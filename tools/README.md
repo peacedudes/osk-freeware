@@ -11,7 +11,7 @@
 
     tools/check_disk.py disk
 
-Five invariants, each of which has been made to fail on purpose:
+Seven invariants, each of which has been made to fail on purpose:
 
 - no text file contains LF -- OS-9 ends a line with CR alone, and an LF-ended
   file is read as one enormous line
@@ -19,7 +19,10 @@ Five invariants, each of which has been made to fail on purpose:
   garbage characters. Legacy 8-bit archive content is left alone, told apart
   by the fact that it does not decode as UTF-8
 - no more than the 15 documented modules carry the SDK author stamp
+- no editor or host litter (a vim swap file reached the tree once, and
+  `mkimage.sh` reads `disk/` off the filesystem, so `.gitignore` cannot stop it)
 - every command is named in `DOC/INDEX`
+- the counts quoted in `readme` and `DOC/INDEX` match the tree
 - `DOC/DEPENDS` is up to date
 
 CI runs this before it builds anything. Note the stamp check reads files in

@@ -27,7 +27,11 @@ reported "copied 3287/3287" while every copy failed.
   5. EVERY COMMAND IS NAMED IN DOC/INDEX. INDEX is what tells a reader what
      a program is; a command absent from it is undiscoverable.
 
-  6. DOC/DEPENDS IS UP TO DATE. It is generated, and drifts the moment
+  6. THE DOCUMENTED COUNTS MATCH THE TREE. The readme opened with "409
+     programs that run" -- a figure no combination of directories produces.
+     Numbers in prose rot silently, so the ones that matter are derived.
+
+  7. DOC/DEPENDS IS UP TO DATE. It is generated, and drifts the moment
      anything is added -- delegated to gen_depends.py, which owns the rule.
 """
 import os, re, subprocess, sys
@@ -177,6 +181,50 @@ def check_index_names(root):
     return not missing, "%d command(s) missing from DOC/INDEX" % len(missing)
 
 
+def check_counts(root):
+    """The counts quoted in readme and DOC/INDEX must match the tree.
+
+    They had drifted: the readme opened with "409 programs that run", a figure
+    no combination of directories produces, and INDEX's section headers were
+    two short. Numbers in prose rot silently, so the ones that matter are
+    derived here and compared.
+
+      total   = files in CMDS and CMDS/GAMES
+      starred = the names listed in INDEX's own "All N" block
+      plain   = total - starred, the ones needing no Microware module
+    """
+    total = sum(1 for d in CMD_DIRS
+                  for n in os.listdir(os.path.join(root, d))
+                  if os.path.isfile(os.path.join(root, d, n)))
+
+    text  = open(os.path.join(root, "DOC", "INDEX"), "rb").read().decode("latin-1")
+    lines = text.replace("\r", "\n").split("\n")
+    start = next(i for i, l in enumerate(lines)
+                 if l.startswith("All ") and "verified" in l)
+    starred = set()
+    for l in lines[start+1:]:
+        if l.startswith("---") or l.startswith("/dd"):
+            break
+        starred.update(l.split())
+
+    readme = open(os.path.join(root, "readme"), "rb").read().decode("latin-1")
+    want = {str(total), str(total - len(starred)), str(len(starred))}
+    missing = [n for n in want if n not in readme]
+
+    # INDEX's own "All N" wording must agree with the list under it.
+    declared = int(re.match(r"All (\d+)", lines[start]).group(1))
+
+    ok = not missing and declared == len(starred)
+    if not ok:
+        print("    tree: %d programs, %d starred, %d need nothing else"
+              % (total, len(starred), total - len(starred)))
+        if missing:
+            print("    readme does not mention: %s" % ", ".join(sorted(missing)))
+        if declared != len(starred):
+            print("    DOC/INDEX says 'All %d' but lists %d" % (declared, len(starred)))
+    return ok, "documented counts disagree with the tree"
+
+
 def check_depends(root):
     gen = os.path.join(os.path.dirname(os.path.abspath(__file__)), "gen_depends.py")
     done = subprocess.run([sys.executable, gen, root, "--check"],
@@ -192,6 +240,7 @@ CHECKS = [
     ("no editor or host leftovers", check_no_leftovers),
     ("no new SDK author stamps", check_author_stamps),
     ("every command is in DOC/INDEX", check_index_names),
+    ("documented counts match the tree", check_counts),
     ("DOC/DEPENDS is up to date", check_depends),
 ]
 
