@@ -27,3 +27,7 @@ notes/FREEWARE-TRIAGE-68k.md
 *.swo
 *~
 .DS_Store
+
+# Python bytecode from running the tools in place.
+__pycache__/
+*.pyc
