@@ -1,0 +1,15 @@
+# The disk tree is the source of an OS-9 filesystem: CR-terminated text and
+# 68k binary modules. Git must never translate line endings anywhere inside
+# it. Today it happens not to -- the text files hold no LF, so git infers
+# they are binary -- but that is luck, not policy: one contributor with
+# core.autocrlf=true, or one file that later gains an LF, and OS-9 reads it
+# as a single enormous line. Say so explicitly instead.
+disk/** -text
+
+# Host-side sources are ordinary text and should be normalised as usual.
+*.py   text diff=python
+*.sh   text
+*.md   text
+*.yml  text
+.gitignore     text
+.gitattributes text

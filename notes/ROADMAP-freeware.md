@@ -100,6 +100,16 @@ Known wrinkles, none blocking:
   `mktar.py` output is byte-identical run to run. Fixing it needs either a
   fixed clock in os9exec or a host-side pass over the finished image.
 
+## Before publishing: the repo has no licence
+
+There is no `LICENSE` at the top level, and this is the one open item nobody
+but the owner can close. It is not about the collection — `disk/SOURCES.txt`
+already records the terms each program arrived under, and those are what they
+are. It is about the work in this repo: `tools/*.py`, `tools/mkimage.sh`, the
+workflow, `README.md`, `notes/`. Published without a licence, that is "all
+rights reserved" by default, which is probably not the intent for something
+whose whole purpose is preservation and sharing.
+
 ## Dropping the emulator from the build entirely
 
 Not needed, and worth knowing the shape of anyway. Shipping a pre-made blank

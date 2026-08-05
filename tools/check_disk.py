@@ -28,16 +28,22 @@ CMD_DIRS     = ["CMDS", "CMDS/GAMES"]
 
 
 def is_text(data):
-    """True for a file worth holding to the CR-only rule.
+    """True for a file worth holding to the text rules.
 
-    An OS-9 module is exempt by its magic; anything else counts as text when
-    almost every byte is printable, which keeps fonts and other binary data
-    out without needing a list of them.
+    An OS-9 module is exempt by its magic. Beyond that the test is the
+    ABSENCE of binary markers, not the presence of ASCII: a NUL byte, or more
+    than a trace of odd control characters.
+
+    High-bit bytes deliberately do NOT count against a file. Much of this
+    archive is genuinely 8-bit -- fortunes.dat, the unaxcess docs -- and
+    scoring those as binary would quietly exempt exactly the files most
+    likely to be wrong. An earlier version of this function did that, and
+    skipped a short file made almost entirely of one em dash.
     """
-    if not data or data[:2] == MODULE_MAGIC:
+    if not data or data[:2] == MODULE_MAGIC or b"\x00" in data:
         return False
-    printable = sum(1 for b in data if 32 <= b < 127 or b in (9, 10, 13, 12))
-    return printable / len(data) > TEXT_RATIO
+    odd = sum(1 for b in data if b < 32 and b not in (9, 10, 12, 13, 27))
+    return odd / len(data) < 1 - TEXT_RATIO
 
 
 def check_line_endings(root):
@@ -54,6 +60,38 @@ def check_line_endings(root):
     for path, n in sorted(bad):
         print("    %s: %d LF" % (path, n))
     return not bad, "%d text file(s) contain LF" % len(bad)
+
+
+def check_no_utf8(root):
+    """Catch modern text that has leaked onto a disk read by an 8-bit OS.
+
+    OS-9 has no UTF-8. An em dash written host-side arrives as three garbage
+    characters, which is how DOC/REBUILT-NOTES.md shipped for a while.
+
+    Plenty of the archive material legitimately carries high-bit bytes -- the
+    unaxcess docs, fortunes.dat, several C sources -- and must not be touched.
+    The two are told apart by DECODING: legacy 8-bit content is not valid
+    UTF-8, so a text file that decodes cleanly AND has a high-bit byte was
+    almost certainly typed on a modern machine.
+    """
+    bad = []
+    for dirpath, _, names in os.walk(root):
+        for name in names:
+            path = os.path.join(dirpath, name)
+            try:
+                data = open(path, "rb").read()
+            except OSError:
+                continue
+            if not is_text(data) or not any(b > 127 for b in data):
+                continue
+            try:
+                data.decode("utf-8")
+            except UnicodeDecodeError:
+                continue                     # legacy 8-bit: leave it alone
+            bad.append(os.path.relpath(path, root))
+    for path in sorted(bad):
+        print("    UTF-8 on an 8-bit disk: %s" % path)
+    return not bad, "%d file(s) carry UTF-8" % len(bad)
 
 
 def check_index_names(root):
@@ -80,6 +118,7 @@ def check_depends(root):
 
 CHECKS = [
     ("line endings are CR-only", check_line_endings),
+    ("no UTF-8 on an 8-bit disk", check_no_utf8),
     ("every command is in DOC/INDEX", check_index_names),
     ("DOC/DEPENDS is up to date", check_depends),
 ]
