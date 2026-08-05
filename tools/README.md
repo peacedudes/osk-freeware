@@ -4,6 +4,8 @@
     mktar.py            write disk/ as a ustar archive (used by mkimage.sh)
     check_disk.py       check the disk tree's invariants
     gen_depends.py      regenerate disk/DOC/DEPENDS
+    gen_catalog.py      build docs/index.html, the browsable guide
+    categories.psv      what each program is FOR -- hand-maintained
     rebuild/            rebuild programs from source (see rebuild/README.md)
     gen_freeware_index.py
 
@@ -11,7 +13,7 @@
 
     tools/check_disk.py disk
 
-Seven invariants, each of which has been made to fail on purpose:
+Eight invariants, each of which has been made to fail on purpose:
 
 - no text file contains LF -- OS-9 ends a line with CR alone, and an LF-ended
   file is read as one enormous line
@@ -23,6 +25,7 @@ Seven invariants, each of which has been made to fail on purpose:
   `mkimage.sh` reads `disk/` off the filesystem, so `.gitignore` cannot stop it)
 - every command is named in `DOC/INDEX`
 - the counts quoted in `readme` and `DOC/INDEX` match the tree
+- every program has a category in `categories.psv`
 - `DOC/DEPENDS` is up to date
 
 CI runs this before it builds anything. Note the stamp check reads files in
@@ -91,3 +94,26 @@ os9exec will not mount one host path as two devices. To have the image be both
 it, so one inode has two names:
 
     ln osk-freeware.dd h0
+
+## The catalogue
+
+    tools/gen_catalog.py disk docs/index.html
+    tools/gen_catalog.py disk --check      # exit 1 if a program has no category
+
+`DOC/INDEX` answers "what is this program?" for someone who already knows the
+name. It cannot answer "I want a better shell" or "is there anything else like
+`rain`?", because it is alphabetical and 700 lines long. `docs/index.html` is
+the other view: grouped by purpose, searchable, and every program clickable for
+what it needs, where it came from and on what terms.
+
+Everything in it is derived from the disk -- `DOC/INDEX`, `DOC/ORIGINS`,
+`DOC/DEPENDS`, the EFFO `info_` files and the tree -- except the category
+assignment, which is hand-maintained in `categories.psv`. No rule gets that
+right: `stone` calls itself a SNOBOL demo and is a game, `rain` lives in
+`CMDS/GAMES` and is not one, and `game` sounds like checkers but carries the
+chess piece letters `PNBRQK`.
+
+**GitHub does not render HTML from a repository** -- clicking an `.html` file
+shows its source. The workflow publishes `docs/` to GitHub Pages, which needs
+Pages enabled for the repo with "GitHub Actions" as the source. Until then that
+step is skipped and the file is still readable locally.

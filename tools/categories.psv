@@ -1,0 +1,671 @@
+# categories.psv -- what each program is FOR.  name | category | subcategory
+#
+# Hand-maintained on purpose.  DOC/INDEX says what a program IS; this says
+# what someone would be looking for when they find it, which no rule gets
+# entirely right: `stone` describes itself as a SNOBOL demo and is a game,
+# `rain` sits in CMDS/GAMES and is not one, and `game` sounds like checkers
+# but carries the chess piece letters PNBRQK.
+#
+# tools/gen_catalog.py reads this and reports any program missing from it, so
+# a new arrival cannot be silently uncategorised.  Fixing a wrong call is a
+# one-line edit here rather than a change to a regex that moves ten others.
+#
+# Keep a category under about 20 entries or give it subcategories; past that
+# a reader is back to scanning an alphabetical list.
+
+
+# ---- Amusements ----
+areacode|Amusements|Curiosities
+dam|Amusements|Curiosities
+pow|Amusements|Curiosities
+setfont|Amusements|Curiosities
+ssl|Amusements|Curiosities
+touchtype|Amusements|Curiosities
+wysecrack|Amusements|Curiosities
+wysetime|Amusements|Curiosities
+name|Amusements|Generators
+pwgen|Amusements|Generators
+reagan|Amusements|Generators
+rndname|Amusements|Generators
+scales|Amusements|Generators
+bio|Amusements|Simulations
+england|Amusements|Simulations
+florida|Amusements|Simulations
+georgia|Amusements|Simulations
+logisim|Amusements|Simulations
+minnesota|Amusements|Simulations
+nasa|Amusements|Simulations
+
+# ---- Archives & compression ----
+compr|Archives & compression|Compress a file
+compress|Archives & compression|Compress a file
+gzip|Archives & compression|Compress a file
+ar|Archives & compression|Create & extract
+arc|Archives & compression|Create & extract
+cat|Archives & compression|Create & extract
+cat.cio|Archives & compression|Create & extract
+lha|Archives & compression|Create & extract
+lharc|Archives & compression|Create & extract
+marc|Archives & compression|Create & extract
+shar|Archives & compression|Create & extract
+tar|Archives & compression|Create & extract
+unzip|Archives & compression|Create & extract
+zip|Archives & compression|Create & extract
+zipnote|Archives & compression|Create & extract
+zipsplit|Archives & compression|Create & extract
+zoo|Archives & compression|Create & extract
+liborder|Archives & compression|OS-9 module libraries
+modbuster|Archives & compression|OS-9 module libraries
+unpacklib|Archives & compression|OS-9 module libraries
+
+# ---- Communications ----
+ckermit|Communications|Kermit
+kermit|Communications|Kermit
+kermit2|Communications|Kermit
+kermit3|Communications|Kermit
+xkermit|Communications|Kermit
+newsgen|Communications|Networking & news
+aterm|Communications|Terminal & session
+cls|Communications|Terminal & session
+connect|Communications|Terminal & session
+fkeys|Communications|Terminal & session
+initvdu|Communications|Terminal & session
+input|Communications|Terminal & session
+sbreak|Communications|Terminal & session
+screen|Communications|Terminal & session
+setterm|Communications|Terminal & session
+tsmon2|Communications|Terminal & session
+udate|Communications|Terminal & session
+uwho|Communications|Terminal & session
+
+# ---- Compilers & build ----
+as0|Compilers & build|Assemblers & linkers
+as09|Compilers & build|Assemblers & linkers
+as1|Compilers & build|Assemblers & linkers
+as11|Compilers & build|Assemblers & linkers
+as4|Compilers & build|Assemblers & linkers
+as5|Compilers & build|Assemblers & linkers
+lnk|Compilers & build|Assemblers & linkers
+lnk.org|Compilers & build|Assemblers & linkers
+my.opt|Compilers & build|Assemblers & linkers
+compiler|Compilers & build|C toolchain
+assembler|Compilers & build|Make & generators
+bison|Compilers & build|Make & generators
+dmake|Compilers & build|Make & generators
+flex|Compilers & build|Make & generators
+gmake|Compilers & build|Make & generators
+m4|Compilers & build|Make & generators
+make|Compilers & build|Make & generators
+makeinfo|Compilers & build|Make & generators
+rtf|Compilers & build|Make & generators
+yacc|Compilers & build|Make & generators
+for|Compilers & build|Other languages
+
+# ---- Developer tools ----
+disktest|Developer tools|Benchmarks
+fibo|Developer tools|Benchmarks
+float|Developer tools|Benchmarks
+paranoia|Developer tools|Benchmarks
+savage|Developer tools|Benchmarks
+sieve|Developer tools|Benchmarks
+time|Developer tools|Benchmarks
+timeio|Developer tools|Benchmarks
+timid|Developer tools|Benchmarks
+sdb|Developer tools|Debugging
+trap|Developer tools|Debugging
+cb|Developer tools|Source formatting
+cpr|Developer tools|Source formatting
+ifdef|Developer tools|Source formatting
+indent|Developer tools|Source formatting
+patch|Developer tools|Source formatting
+unifdef|Developer tools|Source formatting
+ctags|Developer tools|Source navigation
+cxref|Developer tools|Source navigation
+etags|Developer tools|Source navigation
+xrf|Developer tools|Source navigation
+ci|Developer tools|Version control
+co|Developer tools|Version control
+rcs|Developer tools|Version control
+rcsdiff|Developer tools|Version control
+rcsident|Developer tools|Version control
+rcsmerge|Developer tools|Version control
+rlog|Developer tools|Version control
+
+# ---- Disk & DOS ----
+msattrib|Disk & DOS|MS-DOS media (mtools)
+msbadblocks|Disk & DOS|MS-DOS media (mtools)
+mscd|Disk & DOS|MS-DOS media (mtools)
+mscopy|Disk & DOS|MS-DOS media (mtools)
+msdel|Disk & DOS|MS-DOS media (mtools)
+msdeltree|Disk & DOS|MS-DOS media (mtools)
+msdir|Disk & DOS|MS-DOS media (mtools)
+msformat|Disk & DOS|MS-DOS media (mtools)
+msinfo|Disk & DOS|MS-DOS media (mtools)
+mslabel|Disk & DOS|MS-DOS media (mtools)
+msmd|Disk & DOS|MS-DOS media (mtools)
+msmove|Disk & DOS|MS-DOS media (mtools)
+msrd|Disk & DOS|MS-DOS media (mtools)
+msread|Disk & DOS|MS-DOS media (mtools)
+msren|Disk & DOS|MS-DOS media (mtools)
+mstoolstest|Disk & DOS|MS-DOS media (mtools)
+mstype|Disk & DOS|MS-DOS media (mtools)
+mswrite|Disk & DOS|MS-DOS media (mtools)
+mtools|Disk & DOS|MS-DOS media (mtools)
+
+# ---- Documentation ----
+help|Documentation|Readers & pagers
+helpindex|Documentation|Readers & pagers
+less|Documentation|Readers & pagers
+rdoc|Documentation|Readers & pagers
+
+# ---- Editors ----
+beav|Editors|Binary & hex
+chbase|Editors|Binary & hex
+hexed|Editors|Binary & hex
+hexedit|Editors|Binary & hex
+pbyte|Editors|Binary & hex
+ed|Editors|Line & stream
+editor|Editors|Line & stream
+sed|Editors|Line & stream
+emacs|Editors|emacs family
+emacs.mm1|Editors|emacs family
+me|Editors|emacs family
+mg|Editors|emacs family
+sedt|Editors|vi family
+VI|Editors|vi family
+vi|Editors|vi family
+vi_cio|Editors|vi family
+vi_nocio|Editors|vi family
+vis|Editors|vi family
+
+# ---- Encoding & conversion ----
+checksum|Encoding & conversion|Ciphers & hashes
+chksum|Encoding & conversion|Ciphers & hashes
+crypto|Encoding & conversion|Ciphers & hashes
+des|Encoding & conversion|Ciphers & hashes
+md5|Encoding & conversion|Ciphers & hashes
+xcrypt|Encoding & conversion|Ciphers & hashes
+cvtbase|Encoding & conversion|Number bases
+divide|Encoding & conversion|Number bases
+atob|Encoding & conversion|Text encodings
+btoa|Encoding & conversion|Text encodings
+chardef|Encoding & conversion|Text encodings
+todos|Encoding & conversion|Text encodings
+toos9|Encoding & conversion|Text encodings
+uudecode|Encoding & conversion|Text encodings
+uuencode|Encoding & conversion|Text encodings
+uuexpand|Encoding & conversion|Text encodings
+
+# ---- Files & directories ----
+chgrp|Files & directories|Attributes & ownership
+chown|Files & directories|Attributes & ownership
+eset|Files & directories|Attributes & ownership
+owner|Files & directories|Attributes & ownership
+cp|Files & directories|Copy, move, delete
+dback|Files & directories|Copy, move, delete
+delbak|Files & directories|Copy, move, delete
+eunlink|Files & directories|Copy, move, delete
+move|Files & directories|Copy, move, delete
+mv|Files & directories|Copy, move, delete
+remove|Files & directories|Copy, move, delete
+rm|Files & directories|Copy, move, delete
+undel|Files & directories|Copy, move, delete
+mkdir|Files & directories|Create & rename
+ren|Files & directories|Create & rename
+rendsk|Files & directories|Create & rename
+dfiles|Files & directories|Find & compare
+du|Files & directories|Find & compare
+ff|Files & directories|Find & compare
+find|Files & directories|Find & compare
+space|Files & directories|Find & compare
+dir|Files & directories|List & navigate
+dm|Files & directories|List & navigate
+edir|Files & directories|List & navigate
+l|Files & directories|List & navigate
+ls|Files & directories|List & navigate
+tree|Files & directories|List & navigate
+basename|Files & directories|Paths
+basename.cio|Files & directories|Paths
+dirname|Files & directories|Paths
+dirname.cio|Files & directories|Paths
+
+# ---- Games ----
+advcom|Games|Adventure & fiction
+advent|Games|Adventure & fiction
+advint|Games|Adventure & fiction
+infocom|Games|Adventure & fiction
+infocom.tcap|Games|Adventure & fiction
+bite|Games|Arcade & action
+greed|Games|Arcade & action
+lander|Games|Arcade & action
+pacman|Games|Arcade & action
+robots|Games|Arcade & action
+snake|Games|Arcade & action
+sokoban|Games|Arcade & action
+tet|Games|Arcade & action
+wanderer|Games|Arcade & action
+back|Games|Board & card
+blackjack|Games|Board & card
+chess|Games|Board & card
+crib|Games|Board & card
+cribbage|Games|Board & card
+gnuan|Games|Board & card
+gnuchess|Games|Board & card
+gnuchessc|Games|Board & card
+gnuchessn|Games|Board & card
+gnuchessr|Games|Board & card
+mille|Games|Board & card
+nchess|Games|Board & card
+queens|Games|Board & card
+tttt|Games|Board & card
+bincheckr|Games|Chess utilities
+checkgame|Games|Chess utilities
+game|Games|Chess utilities
+postprint|Games|Chess utilities
+hack|Games|Dungeon crawl
+larn|Games|Dungeon crawl
+ularn|Games|Dungeon crawl
+convert|Games|Other games
+fuddle|Games|Other games
+hotel|Games|Other games
+mkdict|Games|Other games
+mkindex|Games|Other games
+nobs|Games|Other games
+piano|Games|Other games
+tess|Games|Other games
+tt|Games|Other games
+vtxtcn|Games|Other games
+world|Games|Other games
+zot|Games|Other games
+maze|Games|Puzzles
+mines|Games|Puzzles
+puz15|Games|Puzzles
+puzzle15|Games|Puzzles
+animal|Games|Word & guessing
+bog|Games|Word & guessing
+hang|Games|Word & guessing
+joke|Games|Word & guessing
+
+# ---- Graphics & images ----
+banner|Graphics & images|Drawing & display
+bush|Graphics & images|Drawing & display
+cursive|Graphics & images|Drawing & display
+draw|Graphics & images|Drawing & display
+loadmem|Graphics & images|Drawing & display
+pdraw|Graphics & images|Drawing & display
+savemem|Graphics & images|Drawing & display
+snap|Graphics & images|Drawing & display
+cjpeg|Graphics & images|JPEG
+cjpeg.070|Graphics & images|JPEG
+djpeg|Graphics & images|JPEG
+djpeg.070|Graphics & images|JPEG
+rdjpgcom|Graphics & images|JPEG
+rdjpgcom.070|Graphics & images|JPEG
+wrjpgcom|Graphics & images|JPEG
+wrjpgcom.070|Graphics & images|JPEG
+pbmclean|Graphics & images|NETPBM: edit & analyse
+pbmlife|Graphics & images|NETPBM: edit & analyse
+pbmmake|Graphics & images|NETPBM: edit & analyse
+pbmmask|Graphics & images|NETPBM: edit & analyse
+pbmpscale|Graphics & images|NETPBM: edit & analyse
+pbmreduce|Graphics & images|NETPBM: edit & analyse
+pbmtext|Graphics & images|NETPBM: edit & analyse
+pbmupc|Graphics & images|NETPBM: edit & analyse
+pgmbentley|Graphics & images|NETPBM: edit & analyse
+pgmcrater|Graphics & images|NETPBM: edit & analyse
+pgmedge|Graphics & images|NETPBM: edit & analyse
+pgmenhance|Graphics & images|NETPBM: edit & analyse
+pgmhist|Graphics & images|NETPBM: edit & analyse
+pgmkernel|Graphics & images|NETPBM: edit & analyse
+pgmnoise|Graphics & images|NETPBM: edit & analyse
+pgmnorm|Graphics & images|NETPBM: edit & analyse
+pgmoil|Graphics & images|NETPBM: edit & analyse
+pgmramp|Graphics & images|NETPBM: edit & analyse
+pgmtexture|Graphics & images|NETPBM: edit & analyse
+pnmalias|Graphics & images|NETPBM: edit & analyse
+pnmarith|Graphics & images|NETPBM: edit & analyse
+pnmcat|Graphics & images|NETPBM: edit & analyse
+pnmcomp|Graphics & images|NETPBM: edit & analyse
+pnmconvol|Graphics & images|NETPBM: edit & analyse
+pnmcrop|Graphics & images|NETPBM: edit & analyse
+pnmcut|Graphics & images|NETPBM: edit & analyse
+pnmdepth|Graphics & images|NETPBM: edit & analyse
+pnmenlarge|Graphics & images|NETPBM: edit & analyse
+pnmfile|Graphics & images|NETPBM: edit & analyse
+pnmflip|Graphics & images|NETPBM: edit & analyse
+pnmgamma|Graphics & images|NETPBM: edit & analyse
+pnmhisteq|Graphics & images|NETPBM: edit & analyse
+pnmhistmap|Graphics & images|NETPBM: edit & analyse
+pnminvert|Graphics & images|NETPBM: edit & analyse
+pnmnlfilt|Graphics & images|NETPBM: edit & analyse
+pnmnoraw|Graphics & images|NETPBM: edit & analyse
+pnmpad|Graphics & images|NETPBM: edit & analyse
+pnmpaste|Graphics & images|NETPBM: edit & analyse
+pnmrotate|Graphics & images|NETPBM: edit & analyse
+pnmscale|Graphics & images|NETPBM: edit & analyse
+pnmshear|Graphics & images|NETPBM: edit & analyse
+pnmsmooth|Graphics & images|NETPBM: edit & analyse
+pnmtile|Graphics & images|NETPBM: edit & analyse
+ppm3d|Graphics & images|NETPBM: edit & analyse
+ppmbrighten|Graphics & images|NETPBM: edit & analyse
+ppmchange|Graphics & images|NETPBM: edit & analyse
+ppmdim|Graphics & images|NETPBM: edit & analyse
+ppmdist|Graphics & images|NETPBM: edit & analyse
+ppmdither|Graphics & images|NETPBM: edit & analyse
+ppmflash|Graphics & images|NETPBM: edit & analyse
+ppmforge|Graphics & images|NETPBM: edit & analyse
+ppmhist|Graphics & images|NETPBM: edit & analyse
+ppmmake|Graphics & images|NETPBM: edit & analyse
+ppmmix|Graphics & images|NETPBM: edit & analyse
+ppmnorm|Graphics & images|NETPBM: edit & analyse
+ppmntsc|Graphics & images|NETPBM: edit & analyse
+ppmpat|Graphics & images|NETPBM: edit & analyse
+ppmquant|Graphics & images|NETPBM: edit & analyse
+ppmqvga|Graphics & images|NETPBM: edit & analyse
+ppmrelief|Graphics & images|NETPBM: edit & analyse
+ppmshift|Graphics & images|NETPBM: edit & analyse
+ppmspread|Graphics & images|NETPBM: edit & analyse
+asciitopgm|Graphics & images|NETPBM: into PNM
+atktopbm|Graphics & images|NETPBM: into PNM
+bioradtopgm|Graphics & images|NETPBM: into PNM
+bmptoppm|Graphics & images|NETPBM: into PNM
+brushtopbm|Graphics & images|NETPBM: into PNM
+cmuwmtopbm|Graphics & images|NETPBM: into PNM
+fitstopnm|Graphics & images|NETPBM: into PNM
+fstopgm|Graphics & images|NETPBM: into PNM
+g3topbm|Graphics & images|NETPBM: into PNM
+gemtopbm|Graphics & images|NETPBM: into PNM
+giftopnm|Graphics & images|NETPBM: into PNM
+gouldtoppm|Graphics & images|NETPBM: into PNM
+hipstopgm|Graphics & images|NETPBM: into PNM
+hpcdtoppm|Graphics & images|NETPBM: into PNM
+icontopbm|Graphics & images|NETPBM: into PNM
+ilbmtoppm|Graphics & images|NETPBM: into PNM
+imgtoppm|Graphics & images|NETPBM: into PNM
+lispmtopgm|Graphics & images|NETPBM: into PNM
+macptopbm|Graphics & images|NETPBM: into PNM
+mgrtopbm|Graphics & images|NETPBM: into PNM
+mtvtoppm|Graphics & images|NETPBM: into PNM
+pcxtoppm|Graphics & images|NETPBM: into PNM
+pi1toppm|Graphics & images|NETPBM: into PNM
+pi3topbm|Graphics & images|NETPBM: into PNM
+picttoppm|Graphics & images|NETPBM: into PNM
+pjtoppm|Graphics & images|NETPBM: into PNM
+pktopbm|Graphics & images|NETPBM: into PNM
+psidtopgm|Graphics & images|NETPBM: into PNM
+qrttoppm|Graphics & images|NETPBM: into PNM
+rasttopnm|Graphics & images|NETPBM: into PNM
+rawtopgm|Graphics & images|NETPBM: into PNM
+rawtoppm|Graphics & images|NETPBM: into PNM
+rgb3toppm|Graphics & images|NETPBM: into PNM
+sgitopnm|Graphics & images|NETPBM: into PNM
+sirtopnm|Graphics & images|NETPBM: into PNM
+sldtoppm|Graphics & images|NETPBM: into PNM
+spctoppm|Graphics & images|NETPBM: into PNM
+spottopgm|Graphics & images|NETPBM: into PNM
+sputoppm|Graphics & images|NETPBM: into PNM
+tgatoppm|Graphics & images|NETPBM: into PNM
+xbmtopbm|Graphics & images|NETPBM: into PNM
+ximtoppm|Graphics & images|NETPBM: into PNM
+xpmtoppm|Graphics & images|NETPBM: into PNM
+xvminitoppm|Graphics & images|NETPBM: into PNM
+xwdtopnm|Graphics & images|NETPBM: into PNM
+ybmtopbm|Graphics & images|NETPBM: into PNM
+yuvsplittoppm|Graphics & images|NETPBM: into PNM
+yuvtoppm|Graphics & images|NETPBM: into PNM
+zeisstopnm|Graphics & images|NETPBM: into PNM
+pbmto10x|Graphics & images|NETPBM: out of PNM
+pbmto4425|Graphics & images|NETPBM: out of PNM
+pbmtoascii|Graphics & images|NETPBM: out of PNM
+pbmtoatk|Graphics & images|NETPBM: out of PNM
+pbmtobbnbg|Graphics & images|NETPBM: out of PNM
+pbmtocmuwm|Graphics & images|NETPBM: out of PNM
+pbmtoepsi|Graphics & images|NETPBM: out of PNM
+pbmtoepson|Graphics & images|NETPBM: out of PNM
+pbmtog3|Graphics & images|NETPBM: out of PNM
+pbmtogem|Graphics & images|NETPBM: out of PNM
+pbmtogo|Graphics & images|NETPBM: out of PNM
+pbmtoicon|Graphics & images|NETPBM: out of PNM
+pbmtolj|Graphics & images|NETPBM: out of PNM
+pbmtoln03|Graphics & images|NETPBM: out of PNM
+pbmtolps|Graphics & images|NETPBM: out of PNM
+pbmtomacp|Graphics & images|NETPBM: out of PNM
+pbmtomgr|Graphics & images|NETPBM: out of PNM
+pbmtopgm|Graphics & images|NETPBM: out of PNM
+pbmtopi3|Graphics & images|NETPBM: out of PNM
+pbmtopk|Graphics & images|NETPBM: out of PNM
+pbmtoplot|Graphics & images|NETPBM: out of PNM
+pbmtoptx|Graphics & images|NETPBM: out of PNM
+pbmtox10bm|Graphics & images|NETPBM: out of PNM
+pbmtoxbm|Graphics & images|NETPBM: out of PNM
+pbmtoybm|Graphics & images|NETPBM: out of PNM
+pbmtozinc|Graphics & images|NETPBM: out of PNM
+pgmtofs|Graphics & images|NETPBM: out of PNM
+pgmtolispm|Graphics & images|NETPBM: out of PNM
+pgmtopbm|Graphics & images|NETPBM: out of PNM
+pgmtoppm|Graphics & images|NETPBM: out of PNM
+pnmtoddif|Graphics & images|NETPBM: out of PNM
+pnmtofits|Graphics & images|NETPBM: out of PNM
+pnmtops|Graphics & images|NETPBM: out of PNM
+pnmtorast|Graphics & images|NETPBM: out of PNM
+pnmtosgi|Graphics & images|NETPBM: out of PNM
+pnmtosir|Graphics & images|NETPBM: out of PNM
+pnmtoxwd|Graphics & images|NETPBM: out of PNM
+ppmtoacad|Graphics & images|NETPBM: out of PNM
+ppmtobmp|Graphics & images|NETPBM: out of PNM
+ppmtogif|Graphics & images|NETPBM: out of PNM
+ppmtoicr|Graphics & images|NETPBM: out of PNM
+ppmtoilbm|Graphics & images|NETPBM: out of PNM
+ppmtomap|Graphics & images|NETPBM: out of PNM
+ppmtomitsu|Graphics & images|NETPBM: out of PNM
+ppmtopcx|Graphics & images|NETPBM: out of PNM
+ppmtopgm|Graphics & images|NETPBM: out of PNM
+ppmtopi1|Graphics & images|NETPBM: out of PNM
+ppmtopict|Graphics & images|NETPBM: out of PNM
+ppmtopj|Graphics & images|NETPBM: out of PNM
+ppmtopjxl|Graphics & images|NETPBM: out of PNM
+ppmtopuzz|Graphics & images|NETPBM: out of PNM
+ppmtorgb3|Graphics & images|NETPBM: out of PNM
+ppmtosixel|Graphics & images|NETPBM: out of PNM
+ppmtotga|Graphics & images|NETPBM: out of PNM
+ppmtouil|Graphics & images|NETPBM: out of PNM
+ppmtoxpm|Graphics & images|NETPBM: out of PNM
+ppmtoyuv|Graphics & images|NETPBM: out of PNM
+ppmtoyuvsplit|Graphics & images|NETPBM: out of PNM
+mtst|Graphics & images|Ray tracing & 3D
+rayshade|Graphics & images|Ray tracing & 3D
+rsconvert|Graphics & images|Ray tracing & 3D
+basicwin|Graphics & images|X11
+X11R6shl|Graphics & images|X11
+xengine|Graphics & images|X11
+
+# ---- Languages ----
+forth|Languages|Interpreters
+wam.sbprolog|Languages|Interpreters
+xlisp|Languages|Interpreters
+blackjak|Languages|Language demos
+poker|Languages|Language demos
+stone|Languages|Language demos
+
+# ---- Maths & calculators ----
+orbit|Maths & calculators|Astronomy & orbits
+gcl|Maths & calculators|Calculators
+hc|Maths & calculators|Calculators
+loan|Maths & calculators|Calculators
+rechne|Maths & calculators|Calculators
+rpn|Maths & calculators|Calculators
+sc|Maths & calculators|Calculators
+lac|Maths & calculators|Plotting & charts
+main|Maths & calculators|Plotting & charts
+scope|Maths & calculators|Plotting & charts
+sin|Maths & calculators|Plotting & charts
+
+# ---- Printing ----
+gs33|Printing|PostScript
+gothic|Printing|Spooling
+lp|Printing|Spooling
+lpq|Printing|Spooling
+lprm|Printing|Spooling
+lpshut|Printing|Spooling
+perr|Printing|Spooling
+prjob|Printing|Spooling
+qp|Printing|Spooling
+
+# ---- Screen toys ----
+life|Screen toys|Screen toys
+rain|Screen toys|Screen toys
+suicide|Screen toys|Screen toys
+suicide1|Screen toys|Screen toys
+suicide2|Screen toys|Screen toys
+worms|Screen toys|Screen toys
+
+# ---- Shells ----
+checkenv|Shells|Shell helpers
+exist|Shells|Shell helpers
+fc|Shells|Shell helpers
+getenv|Shells|Shell helpers
+hist|Shells|Shell helpers
+if|Shells|Shell helpers
+paths|Shells|Shell helpers
+printenv|Shells|Shell helpers
+printf|Shells|Shell helpers
+run|Shells|Shell helpers
+xc|Shells|Shell helpers
+bash|Shells|Shells
+gshell|Shells|Shells
+ksh|Shells|Shells
+sh|Shells|Shells
+wish|Shells|Shells
+
+# ---- System & modules ----
+dinfo|System & modules|Devices & disks
+shdev|System & modules|Devices & disks
+bootgen|System & modules|OS-9 modules
+flink|System & modules|OS-9 modules
+gen|System & modules|OS-9 modules
+mexist|System & modules|OS-9 modules
+os9lib|System & modules|OS-9 modules
+rtfdat|System & modules|OS-9 modules
+version|System & modules|OS-9 modules
+aprocs|System & modules|Processes & memory
+dpark|System & modules|Processes & memory
+launch|System & modules|Processes & memory
+signal|System & modules|Processes & memory
+sysmax|System & modules|Processes & memory
+sysmem|System & modules|Processes & memory
+sysmin|System & modules|Processes & memory
+sysmon|System & modules|Processes & memory
+t|System & modules|Processes & memory
+top|System & modules|Processes & memory
+who|System & modules|Processes & memory
+cron|System & modules|Scheduling
+minute|System & modules|Scheduling
+clock|System & modules|System state
+date|System & modules|System state
+firq|System & modules|System state
+loglist|System & modules|System state
+oskversion|System & modules|System state
+setime|System & modules|System state
+sysid|System & modules|System state
+
+# ---- Text tools ----
+ascii|Text tools|Count & inspect
+dump|Text tools|Count & inspect
+file|Text tools|Count & inspect
+gdd|Text tools|Count & inspect
+strings|Text tools|Count & inspect
+strings.cio|Text tools|Count & inspect
+tail|Text tools|Count & inspect
+wc|Text tools|Count & inspect
+wc.cio|Text tools|Count & inspect
+lout|Text tools|Format & typeset
+nroff|Text tools|Format & typeset
+proff|Text tools|Format & typeset
+roff|Text tools|Format & typeset
+tformat|Text tools|Format & typeset
+cookhash|Text tools|Fortune & sayings
+cookie|Text tools|Fortune & sayings
+fortune|Text tools|Fortune & sayings
+rpoem|Text tools|Fortune & sayings
+rstory|Text tools|Fortune & sayings
+rstory2|Text tools|Fortune & sayings
+sonnet|Text tools|Fortune & sayings
+strfile|Text tools|Fortune & sayings
+unstr|Text tools|Fortune & sayings
+pagefraz|Text tools|KWIC index
+pagekwic|Text tools|KWIC index
+pageline|Text tools|KWIC index
+bm|Text tools|Search & match
+bmgtest|Text tools|Search & match
+bmgtest2|Text tools|Search & match
+fgrep|Text tools|Search & match
+grep|Text tools|Search & match
+soundex|Text tools|Search & match
+cdiff|Text tools|Sort, compare & merge
+diff|Text tools|Sort, compare & merge
+ediff|Text tools|Sort, compare & merge
+fcomp|Text tools|Sort, compare & merge
+join|Text tools|Sort, compare & merge
+nsort|Text tools|Sort, compare & merge
+qsort9|Text tools|Sort, compare & merge
+sort|Text tools|Sort, compare & merge
+spiff|Text tools|Sort, compare & merge
+unip|Text tools|Sort, compare & merge
+uniq|Text tools|Sort, compare & merge
+buildhash|Text tools|Spelling & words
+ispell|Text tools|Spelling & words
+jargon|Text tools|Spelling & words
+makelex|Text tools|Spelling & words
+speech|Text tools|Spelling & words
+sepwords|Text tools|Split & join
+splitalf|Text tools|Split & join
+ape|Text tools|Transform & filter
+autolf|Text tools|Transform & filter
+casefix|Text tools|Transform & filter
+cut|Text tools|Transform & filter
+cuts|Text tools|Transform & filter
+detab|Text tools|Transform & filter
+deton|Text tools|Transform & filter
+eo|Text tools|Transform & filter
+field|Text tools|Transform & filter
+fillup|Text tools|Transform & filter
+gep|Text tools|Transform & filter
+paste|Text tools|Transform & filter
+pep|Text tools|Transform & filter
+psc|Text tools|Transform & filter
+qt|Text tools|Transform & filter
+rot|Text tools|Transform & filter
+shuffle|Text tools|Transform & filter
+souper|Text tools|Transform & filter
+tabs|Text tools|Transform & filter
+upperdir|Text tools|Transform & filter
+valspeak|Text tools|Transform & filter
+
+# ---- Time & calendar ----
+ephem|Time & calendar|Astronomy
+ephem881|Time & calendar|Astronomy
+cal|Time & calendar|Calendars
+calen|Time & calendar|Calendars
+calendar|Time & calendar|Calendars
+calender|Time & calendar|Calendars
+digclk|Time & calendar|Calendars
+easter|Time & calendar|Calendars
+japan|Time & calendar|Calendars
+setimex|Time & calendar|Calendars
+shire|Time & calendar|Calendars
+today|Time & calendar|Calendars
+
+# ---- newly visible once the INDEX parser stopped losing them ----
+cc1plus|Compilers & build|C toolchain
+cc2|Compilers & build|C toolchain
+cc2plus|Compilers & build|C toolchain
+cccp2|Compilers & build|C toolchain
+collect|Compilers & build|C toolchain
+gcc|Compilers & build|C toolchain
+gcc2|Compilers & build|C toolchain
+gcc_cc1|Compilers & build|C toolchain
+gcc_cc1plus|Compilers & build|C toolchain
+gcc_cccp|Compilers & build|C toolchain
+gcc_collect|Compilers & build|C toolchain
+gpp|Compilers & build|C toolchain
+mscheck|Disk & DOS|MS-DOS media (mtools)

@@ -1,0 +1,243 @@
+<title>OS-9/68K Freeware Collection — a guide to 601 programs</title>
+<style>
+  :root{
+    --paper:#F4F5F3; --card:#FFF; --ink:#191D21; --dim:#5A646B; --faint:#8A949B;
+    --rule:#DDE1DE; --hair:#EBEEEB; --accent:#B26A00; --soft:#F7E8D2;
+    --warn:#8C2F1E; --ok:#2E6A4F;
+    --shadow:0 1px 2px rgba(20,25,30,.05),0 12px 28px -20px rgba(20,25,30,.45);
+    --mono:ui-monospace,SFMono-Regular,"SF Mono",Menlo,Consolas,monospace;
+    --sans:system-ui,-apple-system,"Segoe UI",Roboto,sans-serif;
+    --serif:ui-serif,Charter,"Iowan Old Style",Georgia,serif;
+  }
+  @media (prefers-color-scheme:dark){:root{
+    --paper:#131619; --card:#1A1E22; --ink:#E3E7EA; --dim:#98A4AC; --faint:#6B777E;
+    --rule:#282E34; --hair:#20252A; --accent:#F0A93C; --soft:#372B16;
+    --warn:#E08064; --ok:#6FBF97;
+    --shadow:0 1px 2px rgba(0,0,0,.4),0 12px 30px -20px #000;}}
+  :root[data-theme="dark"]{
+    --paper:#131619; --card:#1A1E22; --ink:#E3E7EA; --dim:#98A4AC; --faint:#6B777E;
+    --rule:#282E34; --hair:#20252A; --accent:#F0A93C; --soft:#372B16;
+    --warn:#E08064; --ok:#6FBF97;
+    --shadow:0 1px 2px rgba(0,0,0,.4),0 12px 30px -20px #000;}
+  :root[data-theme="light"]{
+    --paper:#F4F5F3; --card:#FFF; --ink:#191D21; --dim:#5A646B; --faint:#8A949B;
+    --rule:#DDE1DE; --hair:#EBEEEB; --accent:#B26A00; --soft:#F7E8D2;
+    --warn:#8C2F1E; --ok:#2E6A4F;
+    --shadow:0 1px 2px rgba(20,25,30,.05),0 12px 28px -20px rgba(20,25,30,.45);}
+
+  *{box-sizing:border-box}
+  body{margin:0;background:var(--paper);color:var(--ink);font-family:var(--sans);
+       line-height:1.5;-webkit-font-smoothing:antialiased}
+  .wrap{max-width:1180px;margin:0 auto;padding:0 22px}
+  header{padding:46px 0 22px}
+  .eyebrow{font-family:var(--mono);font-size:11px;letter-spacing:.15em;
+           text-transform:uppercase;color:var(--dim)}
+  h1{font-family:var(--serif);font-size:clamp(28px,3.6vw,42px);font-weight:600;
+     margin:12px 0 0;line-height:1.09;letter-spacing:-.015em;max-width:22ch;text-wrap:balance}
+  .lede{max-width:62ch;color:var(--dim);font-size:16.5px;margin:12px 0 0}
+  .lede b{color:var(--ink);font-weight:600}
+
+  .bar{position:sticky;top:0;z-index:30;background:var(--paper);padding:12px 0;
+       border-bottom:1px solid var(--rule)}
+  .row{display:flex;flex-wrap:wrap;gap:9px;align-items:center}
+  input[type=search]{flex:1 1 250px;min-width:0;font:inherit;font-size:15px;padding:9px 12px;
+    border:1px solid var(--rule);border-radius:8px;background:var(--card);color:var(--ink)}
+  :focus-visible{outline:2px solid var(--accent);outline-offset:2px}
+  .chip{font:inherit;font-size:12.5px;padding:7px 12px;border-radius:999px;cursor:pointer;
+    border:1px solid var(--rule);background:var(--card);color:var(--dim);white-space:nowrap}
+  .chip:hover{color:var(--ink)}
+  .chip[aria-pressed="true"]{background:var(--soft);border-color:var(--accent);color:var(--ink)}
+  .tally{font-family:var(--mono);font-size:12px;color:var(--faint);margin-left:auto;
+         font-variant-numeric:tabular-nums}
+
+  main{display:grid;grid-template-columns:1fr;gap:16px;padding:14px 0 70px}
+  .cats{display:grid;grid-template-columns:repeat(auto-fill,minmax(320px,1fr));gap:14px;
+        align-items:start}
+  details.cat{background:var(--card);border:1px solid var(--rule);border-radius:11px;
+    box-shadow:var(--shadow);overflow:hidden}
+  details.cat>summary{list-style:none;cursor:pointer;padding:14px 16px}
+  details.cat>summary::-webkit-details-marker{display:none}
+  .ct{font-family:var(--serif);font-size:18px;font-weight:600;display:flex;
+      align-items:baseline;gap:8px}
+  .ct .n{font-family:var(--mono);font-size:11.5px;color:var(--faint);font-weight:400;
+         font-variant-numeric:tabular-nums}
+  .ct .cv{margin-left:auto;color:var(--faint);font-size:12px;transition:transform .12s}
+  details[open] .ct .cv{transform:rotate(90deg)}
+  .blurb{margin:5px 0 0;font-size:13px;color:var(--dim);max-width:48ch}
+  .subh{font-family:var(--mono);font-size:10.5px;letter-spacing:.09em;text-transform:uppercase;
+        color:var(--faint);padding:11px 16px 3px;border-top:1px solid var(--hair)}
+  ul{list-style:none;margin:0;padding:0 0 8px}
+  li.p{display:grid;grid-template-columns:minmax(92px,128px) 1fr;gap:10px;padding:4px 16px;
+     align-items:baseline;cursor:pointer}
+  li.p:hover,li.p:focus-visible{background:var(--soft)}
+  .nm{font-family:var(--mono);font-size:13px;font-weight:600;overflow-wrap:anywhere}
+  .nm .st{color:var(--accent)}
+  .ds{font-size:13px;color:var(--dim);overflow-wrap:anywhere}
+
+  /* detail panel */
+  .sheet{position:fixed;inset:0;z-index:60;background:rgba(10,14,18,.42);
+         display:none;align-items:flex-end;justify-content:center}
+  .sheet[open],.sheet.on{display:flex}
+  .panel{background:var(--card);width:min(660px,100%);max-height:86vh;overflow-y:auto;
+    border-radius:14px 14px 0 0;box-shadow:0 -8px 40px -12px rgba(0,0,0,.5);padding:22px 24px 30px}
+  @media (min-width:700px){.sheet{align-items:center}.panel{border-radius:14px}}
+  .pn{font-family:var(--mono);font-size:21px;font-weight:600;margin:0}
+  .pd{color:var(--dim);margin:5px 0 0;font-size:15px}
+  .flags{display:flex;flex-wrap:wrap;gap:6px;margin:13px 0 0}
+  .flag{font-size:11.5px;padding:3px 9px;border-radius:999px;border:1px solid var(--rule);
+        color:var(--dim)}
+  .flag.cio{border-color:var(--accent);color:var(--accent)}
+  .flag.mil{border-color:var(--warn);color:var(--warn)}
+  .flag.ok{border-color:var(--ok);color:var(--ok)}
+  dl{display:grid;grid-template-columns:130px 1fr;gap:7px 14px;margin:18px 0 0;font-size:13.5px}
+  dt{color:var(--faint);font-family:var(--mono);font-size:11px;letter-spacing:.06em;
+     text-transform:uppercase;padding-top:2px}
+  dd{margin:0;color:var(--ink);overflow-wrap:anywhere}
+  dd code{font-family:var(--mono);font-size:12.5px;color:var(--dim)}
+  dd .miss{color:var(--warn)}
+  .close{position:absolute;right:0;top:0}
+  .xbtn{float:right;font:inherit;font-size:20px;line-height:1;background:none;border:0;
+        color:var(--faint);cursor:pointer;padding:0 2px}
+  .xbtn:hover{color:var(--ink)}
+  .empty{padding:52px 0;text-align:center;color:var(--dim)}
+  footer{border-top:1px solid var(--rule);padding:20px 0 56px;color:var(--faint);font-size:12.5px}
+  footer code{font-family:var(--mono);color:var(--dim)}
+  @media (prefers-reduced-motion:reduce){*{transition:none!important}}
+</style>
+
+<header class="wrap">
+  <div class="eyebrow">OS-9/68000 &middot; one disk image &middot; 1983&ndash;1998</div>
+  <h1>601 programs, sorted by what they are for.</h1>
+  <p class="lede">Three decades of OS-9/68K community software, gathered and
+    <b>made to run again</b>. The disk&rsquo;s own index is alphabetical, which is no use
+    when you do not yet know what you are looking for. Open a category, or click any
+    program to see what it needs and where it came from.</p>
+</header>
+
+<div class="bar"><div class="wrap row">
+  <input type="search" id="q" placeholder="Try: shell, chess, compress, screen&hellip;"
+         aria-label="Search" autocomplete="off">
+  <button class="chip" id="f-nocio" aria-pressed="false">Runs without cio</button>
+  <button class="chip" id="f-src" aria-pressed="false">Source on disk</button>
+  <button class="chip" id="f-doc" aria-pressed="false">Has docs</button>
+  <button class="chip" id="f-open" aria-pressed="false">Expand all</button>
+  <span class="tally" id="tally"></span>
+</div></div>
+
+<main class="wrap"><div class="cats" id="cats"></div></main>
+
+<div class="sheet" id="sheet" role="dialog" aria-modal="true" aria-labelledby="pn">
+  <div class="panel" id="panel"></div>
+</div>
+
+<footer class="wrap">
+  <span style="color:var(--accent)">&#9733;</span> needs Microware&rsquo;s <code>cio</code>
+  &mdash; see <code>DOC/README-CIO</code>. Built from <code>DOC/INDEX</code>,
+  <code>DOC/ORIGINS</code>, <code>DOC/DEPENDS</code>, the EFFO <code>info_</code> files
+  and the tree itself, so it cannot drift from what ships.
+</footer>
+
+<script>
+const DATA = __DATA__;
+const BLURB = __BLURB__;
+const ORDER = __ORDER__;
+const esc = s => String(s==null?"":s).replace(/&/g,"&amp;").replace(/</g,"&lt;").replace(/>/g,"&gt;");
+const kb = n => n>=1024 ? Math.round(n/1024)+"K" : n+"B";
+const st = {q:"", nocio:false, src:false, doc:false, open:false};
+
+function ok(p){
+  if(st.nocio && p.star) return false;
+  if(st.src && !p.hassrc) return false;
+  if(st.doc && !p.docs) return false;
+  if(!st.q) return true;
+  const q=st.q.toLowerCase();
+  return p.name.toLowerCase().includes(q) || (p.desc||"").toLowerCase().includes(q)
+      || p.cat.toLowerCase().includes(q) || p.sub.toLowerCase().includes(q);
+}
+
+function render(){
+  const hits=DATA.filter(ok);
+  document.getElementById("tally").textContent =
+    hits.length===DATA.length ? DATA.length+" programs" : hits.length+" of "+DATA.length;
+  const by={};
+  for(const p of hits){ (by[p.cat] ||= {}); (by[p.cat][p.sub] ||= []).push(p); }
+  const open = st.open || st.q.length>0;
+  const out=[];
+  for(const cat of ORDER){
+    const subs=by[cat]; if(!subs) continue;
+    const total=Object.values(subs).reduce((a,b)=>a+b.length,0);
+    out.push(`<details class="cat"${open?" open":""}><summary><div class="ct">${esc(cat)}`+
+      `<span class="n">${total}</span><span class="cv">&#9656;</span></div>`+
+      `<p class="blurb">${esc(BLURB[cat]||"")}</p></summary>`);
+    const names=Object.keys(subs).sort((a,b)=>subs[b].length-subs[a].length);
+    const single = names.length===1;
+    for(const s of names){
+      if(!single) out.push(`<div class="subh">${esc(s)} &middot; ${subs[s].length}</div>`);
+      out.push("<ul>"+subs[s].sort((a,b)=>a.name.localeCompare(b.name)).map(p=>
+        `<li class="p" tabindex="0" data-n="${esc(p.name)}"><span class="nm">`+
+        `${p.star?'<span class="st" title="needs cio">&#9733;</span>':''}${esc(p.name)}</span>`+
+        `<span class="ds">${esc(p.desc)}</span></li>`).join("")+"</ul>");
+    }
+    out.push("</details>");
+  }
+  document.getElementById("cats").innerHTML = out.join("") ||
+    `<p class="empty">Nothing matches that.</p>`;
+}
+
+function detail(name){
+  const p=DATA.find(x=>x.name===name); if(!p) return;
+  const F=[];
+  if(p.star)     F.push('<span class="flag cio">&#9733; needs cio</span>');
+  if(p.basic09)  F.push('<span class="flag cio">BASIC09 &mdash; needs runb</span>');
+  if(p.military) F.push('<span class="flag mil">author asks: no military use</span>');
+  if(!p.star && !p.basic09) F.push('<span class="flag ok">runs on the bare disk</span>');
+  if(p.hassrc)   F.push('<span class="flag">source on disk</span>');
+  if(p.docs)     F.push('<span class="flag">documented</span>');
+
+  const D=[];
+  const add=(k,v)=>{ if(v) D.push(`<dt>${k}</dt><dd>${v}</dd>`); };
+  add("Category", esc(p.cat)+" &middot; "+esc(p.sub));
+  add("On the disk", `<code>/dd/${esc(p.dir)}/${esc(p.name)}</code>`+
+      (p.size?` &middot; ${kb(p.size)}`:""));
+  const i=p.info||{};
+  add("Version",   esc(i.version));
+  add("Author",    esc(i.author));
+  add("Copyright", esc(i.copyright));
+  add("Terms",     esc(i.availability||i.conditions));
+  add("Language",  esc(i.language));
+  add("Status",    esc(i.status));
+  add("Came from", p.origin ? esc(p.origin)+(p.archive?` &mdash; ${esc(p.archive)}`:"") : "");
+  add("Source",    p.src ? `<code>SRC/${esc(p.src)}</code>` : (p.hassrc?`<code>SRC/${esc(p.name)}</code>`:""));
+  add("Docs",      p.docs ? `<code>DOC/${esc(p.name)}/</code>` : "");
+  if(p.needs && p.needs.length)
+    add("Also needs", p.needs.map(n=>`<code>${esc(n.path)}</code>`+
+        (n.missing?' <span class="miss">(not on this disk)</span>':"")).join("<br>"));
+  add("Restrictions", esc(i.restrictions));
+  add("Hardware",     esc(i.hardware));
+
+  document.getElementById("panel").innerHTML =
+    `<button class="xbtn" id="x" aria-label="Close">&times;</button>`+
+    `<h2 class="pn" id="pn">${esc(p.name)}</h2>`+
+    `<p class="pd">${esc(i.purpose||p.desc)}</p>`+
+    (F.length?`<div class="flags">${F.join("")}</div>`:"")+
+    (D.length?`<dl>${D.join("")}</dl>`:"");
+  document.getElementById("sheet").classList.add("on");
+  document.getElementById("x").onclick=close;
+}
+function close(){ document.getElementById("sheet").classList.remove("on"); }
+
+document.getElementById("sheet").addEventListener("click",e=>{
+  if(e.target.id==="sheet") close(); });
+document.addEventListener("keydown",e=>{ if(e.key==="Escape") close(); });
+document.getElementById("cats").addEventListener("click",e=>{
+  const li=e.target.closest("li.p"); if(li) detail(li.dataset.n); });
+document.getElementById("cats").addEventListener("keydown",e=>{
+  const li=e.target.closest("li.p");
+  if(li && (e.key==="Enter"||e.key===" ")){ e.preventDefault(); detail(li.dataset.n); } });
+document.getElementById("q").addEventListener("input",e=>{st.q=e.target.value;render();});
+for(const [id,k] of [["f-nocio","nocio"],["f-src","src"],["f-doc","doc"],["f-open","open"]]){
+  const b=document.getElementById(id);
+  b.onclick=()=>{ st[k]=!st[k]; b.setAttribute("aria-pressed",String(st[k])); render(); };
+}
+render();
+</script>

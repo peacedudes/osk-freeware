@@ -31,6 +31,8 @@ jobs:
     runs-on: ubuntu-latest
     permissions:
       contents: write         # the release step uploads the image
+      pages: write            # the catalogue is published to GitHub Pages
+      id-token: write         # deploy-pages authenticates with OIDC
     steps:
       - name: Check out the collection
         uses: actions/checkout@v4
@@ -103,3 +105,22 @@ jobs:
           gh release create "${GITHUB_REF_NAME}" --generate-notes --verify-tag \
             || echo "release already exists, uploading to it"
           gh release upload "${GITHUB_REF_NAME}" osk-freeware.dd.gz --clobber
+
+      # GitHub renders Markdown from a repository but not HTML -- clicking an
+      # .html file shows its source. The catalogue is only inviting once Pages
+      # serves it, so publish it there. Requires Pages enabled for the repo
+      # with "GitHub Actions" as the source; until then this step is skipped.
+      - name: Rebuild the catalogue
+        run: tools/gen_catalog.py disk docs/index.html
+
+      - name: Package the catalogue for Pages
+        if: github.ref == 'refs/heads/main'
+        uses: actions/upload-pages-artifact@v3
+        with:
+          path: docs
+
+      - name: Publish to Pages
+        if: github.ref == 'refs/heads/main'
+        id: pages
+        continue-on-error: true          # Pages may not be enabled yet
+        uses: actions/deploy-pages@v4

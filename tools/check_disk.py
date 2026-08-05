@@ -31,7 +31,10 @@ reported "copied 3287/3287" while every copy failed.
      programs that run" -- a figure no combination of directories produces.
      Numbers in prose rot silently, so the ones that matter are derived.
 
-  7. DOC/DEPENDS IS UP TO DATE. It is generated, and drifts the moment
+  7. EVERY PROGRAM HAS A CATEGORY. tools/categories.psv drives the guide;
+     a program missing from it is invisible to anyone browsing by purpose.
+
+  8. DOC/DEPENDS IS UP TO DATE. It is generated, and drifts the moment
      anything is added -- delegated to gen_depends.py, which owns the rule.
 """
 import os, re, subprocess, sys
@@ -225,6 +228,21 @@ def check_counts(root):
     return ok, "documented counts disagree with the tree"
 
 
+def check_categories(root):
+    """Every program on the disk must have a category in tools/categories.psv.
+
+    Delegated to gen_catalog.py, which owns the rule. Without this a new
+    program joins the disk and lands nowhere in the guide -- visible in the
+    alphabetical index and invisible to anyone browsing by what they want.
+    """
+    gen = os.path.join(os.path.dirname(os.path.abspath(__file__)), "gen_catalog.py")
+    done = subprocess.run([sys.executable, gen, root, "--check"],
+                          capture_output=True, text=True)
+    if done.returncode:
+        print("    " + done.stdout.strip().replace("\n", "\n    "))
+    return done.returncode == 0, "some programs have no category"
+
+
 def check_depends(root):
     gen = os.path.join(os.path.dirname(os.path.abspath(__file__)), "gen_depends.py")
     done = subprocess.run([sys.executable, gen, root, "--check"],
@@ -241,6 +259,7 @@ CHECKS = [
     ("no new SDK author stamps", check_author_stamps),
     ("every command is in DOC/INDEX", check_index_names),
     ("documented counts match the tree", check_counts),
+    ("every program has a category", check_categories),
     ("DOC/DEPENDS is up to date", check_depends),
 ]
 
