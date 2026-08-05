@@ -1,7 +1,7 @@
 # osk-freeware
 
 Three decades of community software for **OS-9/68000 (OSK)**, gathered in one
-place and made to run again: 629 programs with their source, their
+place and made to run again: 614 programs with their source, their
 documentation, and a record of where each one came from.
 
 OS-9 itself is Microware's, and still a current product. This is the software
@@ -16,17 +16,30 @@ disk**: os9exec is the kernel, and this is the disk it mounts as `/dd` — the
 root and home. There is no established name for that role.
 
     disk/       the tree the image is built from
-      CMDS/       363 commands, plus GAMES/ REBUILT/ BROKEN/ NETPBM/ GCC*/
+      CMDS/       364 commands, plus GAMES/ REBUILT/ BROKEN/ NETPBM/ GCC*/
       SRC/        C source for most of it
       DOC/        per-package documentation, plus the index files below
       GAMES/      game data
       SYS/ LIB/ DEFS/
     tools/      how the image gets built (see tools/README.md)
 
+## What is actually in it
+
+**[docs/CATALOG.md](docs/CATALOG.md) — every program, grouped by what it is for.**
+That is the one to open first. `DOC/INDEX` on the disk is alphabetical and 700
+lines long, which is no help until you already know the name you want.
+
+`docs/index.html` is the same catalogue as a searchable page: filter by
+category, hide anything needing `cio`, and click a program for what it needs,
+where it came from and on what terms. GitHub shows HTML files as source rather
+than rendering them, so **download the repository and open that file** — it is
+self-contained, no server and nothing to install.
+
 ## Start here
 
 | | |
 |---|---|
+| [`docs/CATALOG.md`](docs/CATALOG.md) | what is here, by category |
 | `disk/readme` | the front door |
 | `disk/DOC/README-RUNNING` | three ways to run it — read this first |
 | `disk/DOC/INDEX` | what every program is |
@@ -84,5 +97,5 @@ The image is a release artefact and is not committed.
 recipes** — one line per program, so nobody has to re-derive them. See
 `tools/rebuild/README.md`.
 
-418 of the 629 modules have no source anywhere and can only be preserved, not
-rebuilt. That is why the binaries are committed.
+Most of the 621 modules under `CMDS/` have no source anywhere and can only be
+preserved, not rebuilt. That is why the binaries are committed.

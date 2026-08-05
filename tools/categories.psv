@@ -483,9 +483,9 @@ xengine|Graphics & images|X11
 forth|Languages|Interpreters
 wam.sbprolog|Languages|Interpreters
 xlisp|Languages|Interpreters
-blackjak|Languages|Language demos
-poker|Languages|Language demos
-stone|Languages|Language demos
+blackjak|Games|Board & card
+poker|Games|Board & card
+stone|Games|Other games
 
 # ---- Maths & calculators ----
 orbit|Maths & calculators|Astronomy & orbits
@@ -586,9 +586,9 @@ tformat|Text tools|Format & typeset
 cookhash|Text tools|Fortune & sayings
 cookie|Text tools|Fortune & sayings
 fortune|Text tools|Fortune & sayings
-rpoem|Text tools|Fortune & sayings
-rstory|Text tools|Fortune & sayings
-rstory2|Text tools|Fortune & sayings
+rpoem|Amusements|Generators
+rstory|Amusements|Generators
+rstory2|Amusements|Generators
 sonnet|Text tools|Fortune & sayings
 strfile|Text tools|Fortune & sayings
 unstr|Text tools|Fortune & sayings
