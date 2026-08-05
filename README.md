@@ -55,10 +55,15 @@ in `disk/DOC/INDEX`; `disk/DOC/README-CIO` explains how to point at your own.
 
 ## Building the image
 
-Needs a working [os9exec](https://github.com/…/os9exec) — the build drives the
-real Microware toolchain inside the emulator.
+Needs the [os9exec](https://github.com/peacedudes/os9exec) binary, and nothing
+else — no Microware utility and no OS-9 system disk.
 
     OS9EXEC_DIR=/path/to/os9exec tools/mkimage.sh disk osk-freeware.dd
+
+os9exec's own `mount -k` writes the blank image, `tools/mktar.py` packs the
+tree host-side with the finished disk's attributes already in the mode bits,
+and the collection's **own** `tar` extracts it — so the disk populates itself.
+Takes about four seconds. See `tools/README.md`.
 
 The image is a release artefact and is not committed.
 

@@ -41,13 +41,23 @@ Two different things were being conflated:
   now carries `GAMES/LARN/PLAYGROUND/.lscore12.0`, the scoreboard larn created
   for itself; larn reads it back on the next run without complaint.
 
-- **`.larn.help` is genuinely absent** and is the only remaining complaint. It
-  costs the in-game `?` help text and nothing else.
+- **`.larn.help` was genuinely absent** — that was the only remaining
+  complaint, and it cost the in-game `?` help. Recovered, along with
+  `.lfortune` and `.larnmaze`, from the larn 12.2p4 sources at
+  `github.com/HunterZ/larn` (`larn.hlp`, `larn.ftn`, `larn.maz`), converted to
+  CR to match the disk and ularn's own data files. All three now read without
+  complaint and `?` shows the help.
 
-No larn source anywhere: no `SRC` tree, nothing in `CMDS/archives/`, and
-`DOC/ORIGINS` does not mention larn or `ularn` at all. larn 12.0 is freely
-redistributable and widely archived, so `.larn.help` could be recovered from
-an outside distribution — nothing in this repo has it.
+**The version is not an exact match and should be watched.** The binary
+reports 12.0; no 12.0 source has survived anywhere we can find, and the
+earliest in that repository is 12.2p4. Help and fortune text are inert, but
+`.larnmaze` defines level layouts — it was only exercised on the first level.
+If a level ever renders wrong deep in the dungeon, that file is the first
+suspect, and deleting it costs nothing: larn lays out its own levels without
+it. `SOURCES.txt` records where all three came from.
+
+No larn source on the disk: no `SRC` tree, nothing in `CMDS/archives/`, and
+`DOC/ORIGINS` mentions neither larn nor `ularn`.
 
 `gnuchessc`/`gnuan` had a real missing-data problem and are FIXED — theirs was
 recovered from the download pool into `GNUCHESS4.0/MISC/`.
@@ -75,11 +85,33 @@ line endings on the text files, `DOC/DEPENDS` regenerating identically, every
 module named somewhere in `DOC/INDEX`, and the star list still matching a live
 measurement.
 
-Two known wrinkles, neither blocking:
+Known wrinkles, none blocking:
 
+- **The workflow pins os9exec to a moving branch.** `arm64-uae-integration`,
+  because `master` has no `mount -k` at all. A force-push or a regression
+  there breaks this build with no warning. Pin to a commit SHA once the
+  branch settles.
+- **`DOC/DEPENDS` has no generator in `tools/`**, though it is meant to be
+  regenerated whenever the tree changes. Its larn line was corrected by hand,
+  twice. It is a scan of every binary for absolute paths — worth writing,
+  and the only way the file can be trusted after a change.
 - **The image is not byte-reproducible, by 352 bytes** — the LSN0 volume date
   and 351 directory creation dates come from the clock. Content is exact and
-  `mktar.py` output is byte-identical run to run.
-- **`DOC/DEPENDS` has no generator in `tools/`**, though it is meant to be
-  regenerated whenever the tree changes. Its larn line was last corrected by
-  hand.
+  `mktar.py` output is byte-identical run to run. Fixing it needs either a
+  fixed clock in os9exec or a host-side pass over the finished image.
+
+## Dropping the emulator from the build entirely
+
+Not needed, and worth knowing the shape of anyway. Shipping a pre-made blank
+image in the repo does NOT do it: populating the image is what needs os9exec,
+because only the emulator can run the collection's own `tar`. A committed
+blank would only relax WHICH os9exec you need — the populate step works with
+a much older one than `mount -k -v=` does. A blank 125 M image is 127 KB
+gzipped, 19 KB xz, so committing one is cheap if that coupling ever hurts;
+the cost is a fixed size, where `mkimage.sh` currently sizes to content.
+
+What would actually remove the dependency is writing the populate step
+host-side — directory entries, file descriptors, allocation bitmap. That is a
+few hundred lines of Python against a format this repo already understands.
+It would also make the build instant and fully reproducible. Nobody needs it
+today.
