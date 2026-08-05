@@ -14,13 +14,32 @@ Moved out of os9exec's ROADMAP.md when the collection got its own repo.
   exactly the 2 bytes of the `B_` name prefix — so either ORIGINS is wrong or
   one copy is a stale duplicate of the other.
 
-## Freeware disk: elvis has docs and source but no binary
+## Freeware disk: elvis has docs and source but no binary — BUILDABLE
 
 `DOC/elvis/` carries the full man-page set and `CMDS/archives/elvis1.7.lzh`
-has the source, but the elvis binary is not on the disk. It is a vi clone
-worth having (and its ctags is the free replacement for the quarantined
-Microware one). Building it would remove a documented-but-absent program,
-which is the same class of defect as SRC/ls.
+has the source, but the elvis binary is not on the disk. Building it would
+remove a documented-but-absent program, the same class of defect as SRC/ls.
+
+**It is not a lost cause — the OS-9 port already exists inside that archive.**
+`README.OSK` says it plainly:
+
+> version 1.7 of elvis by Steve Kirkendall, ported to os9 by Peter Reinig.
+> Repacked and brushed up by Martin Gregorie and Peter Smulders.
+> This port is for the old Microware C compiler (V2.3).
+
+What is in the archive:
+
+- `osk.c` / `osk.h` — the OS-9/68k platform layer, from upstream elvis 1.7
+- `makefile` (1998), with `make`, `make install` and `make -i clob.os9`
+- `alias.c` beside `alias.c.orig`, so the OS-9 patch is visible
+- the `.os9` link scripts (`linkelv`, `linkvi`, `linkview`, `linkinput`) are
+  all **zero bytes** in the archive — that is the one gap, and the makefile
+  may not need them
+
+It builds four programs, not one: elvis, vi, view and input. Its `ctags` is
+also a free replacement for Microware's. Worth a run through
+`tools/rebuild/`; the recipe would be the first that drives a whole makefile
+rather than a file list.
 
 ## Freeware disk: larn plays; only its help file is absent — FIXED
 
