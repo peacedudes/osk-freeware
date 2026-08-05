@@ -11,10 +11,20 @@
 
     tools/check_disk.py disk
 
-Three invariants, each of which has been made to fail on purpose: no text file
-contains LF (OS-9 ends a line with CR alone, and an LF-ended file is read as
-one enormous line), every command is named in `DOC/INDEX`, and `DOC/DEPENDS`
-is up to date. CI runs this before it builds anything.
+Five invariants, each of which has been made to fail on purpose:
+
+- no text file contains LF -- OS-9 ends a line with CR alone, and an LF-ended
+  file is read as one enormous line
+- no UTF-8 on an 8-bit disk -- an em dash written host-side arrives as three
+  garbage characters. Legacy 8-bit archive content is left alone, told apart
+  by the fact that it does not decode as UTF-8
+- no more than the 15 documented modules carry the SDK author stamp
+- every command is named in `DOC/INDEX`
+- `DOC/DEPENDS` is up to date
+
+CI runs this before it builds anything. Note the stamp check reads files in
+Python on purpose: `grep -r` on this machine is ugrep, which skips binary
+files and reports a confident zero.
 
 ## Regenerating DOC/DEPENDS
 

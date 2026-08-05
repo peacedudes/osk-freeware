@@ -12,3 +12,10 @@
 
 # Collaboration guide -- for working ON this repo, not for its users.
 CLAUDE.md
+
+# Working notes that say so themselves: decision aids and indexes of a
+# personal archive, not deliverables. Kept on disk, out of the repo.
+notes/CORPUS-AUDIT-68k.md
+notes/DOWNLOADS-68k.md
+notes/FREEWARE-INDEX.md
+notes/FREEWARE-TRIAGE-68k.md

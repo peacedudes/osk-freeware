@@ -94,6 +94,40 @@ def check_no_utf8(root):
     return not bad, "%d file(s) carry UTF-8" % len(bad)
 
 
+AUTHOR_STAMP   = b"from the disk of"
+STAMPED_KNOWN  = 15     # notes/FREEWARE-REBAKE.md: 224 -> 15, each documented
+
+
+def check_author_stamps(root):
+    """Fail if more modules carry the SDK author stamp than the known 15.
+
+    The SDK copy these were built with has a 64-byte `Author` psect added to
+    its `cstart.r`, so every binary built through it is stamped with whoever
+    owns that copy. Removing them was the point of the rebake: 224 down to 15,
+    and those 15 are listed in notes/FREEWARE-REBAKE.md with a reason each --
+    no source, or rebuilding would regress a working program.
+
+    The count is asserted rather than the names, so rebuilding one of the 15
+    is not a failure but reintroducing a stamp is. Note the file must be read
+    in Python: `grep -r` here is ugrep, which skips binary files and reports
+    a confident zero.
+    """
+    stamped = []
+    for dirpath, _, names in os.walk(root):
+        for name in names:
+            path = os.path.join(dirpath, name)
+            try:
+                if AUTHOR_STAMP in open(path, "rb").read():
+                    stamped.append(os.path.relpath(path, root))
+            except OSError:
+                continue
+    if len(stamped) > STAMPED_KNOWN:
+        for path in sorted(stamped):
+            print("    stamped: %s" % path)
+    return (len(stamped) <= STAMPED_KNOWN,
+            "%d modules stamped, %d documented" % (len(stamped), STAMPED_KNOWN))
+
+
 def check_index_names(root):
     index = os.path.join(root, "DOC", "INDEX")
     words = set(re.findall(r"[A-Za-z0-9_.]+",
@@ -119,6 +153,7 @@ def check_depends(root):
 CHECKS = [
     ("line endings are CR-only", check_line_endings),
     ("no UTF-8 on an 8-bit disk", check_no_utf8),
+    ("no new SDK author stamps", check_author_stamps),
     ("every command is in DOC/INDEX", check_index_names),
     ("DOC/DEPENDS is up to date", check_depends),
 ]
