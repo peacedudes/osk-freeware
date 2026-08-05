@@ -37,8 +37,12 @@ root and home. There is no established name for that role.
 
 ## Licensing
 
-This is a patchwork, not one licence. Each program keeps its own terms and
-`SOURCES.txt` records them per program:
+The tooling and the writing — `tools/`, `.github/`, this README, `notes/` —
+are MIT; see `LICENSE`. That covers the build and the checks, nothing more.
+
+The collection under `disk/` is **not** ours to license. It is a patchwork,
+and each program keeps its own terms, which `SOURCES.txt` records per
+program:
 
 - GPL and BSD packages, with their `COPYING` files in `disk/DOC/<pkg>/`
 - public domain, and author-distributable usenet postings
