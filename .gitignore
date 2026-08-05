@@ -4,6 +4,7 @@
 /h0
 /hz
 *.dd
+*.dd.gz
 
 # macOS
 .DS_Store

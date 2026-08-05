@@ -1,0 +1,99 @@
+# Build the RBF image, and attach it to a release when one is tagged.
+#
+# The build needs no Microware utility and no OS-9 system disk -- only the
+# os9exec binary, which this workflow compiles from source. That is the whole
+# reason CI is possible at all; see notes/ROADMAP-freeware.md.
+name: build-image
+
+on:
+  push:
+    tags: ['v*']            # tagged release: build and attach the image
+    branches: [main]        # ordinary push: build and check, no release
+  pull_request:
+    branches: [main]
+  workflow_dispatch:
+    inputs:
+      os9exec_ref:
+        description: 'os9exec ref to build against'
+        required: false
+        default: arm64-uae-integration
+
+env:
+  # mount -k=<size> -v=<name> is required. -k landed on this branch; -v came
+  # with the fix that also stopped images being dated 1902. Both live on
+  # arm64-uae-integration, not master -- master has no mount -k at all.
+  OS9EXEC_REPO: peacedudes/os9exec
+  OS9EXEC_REF: arm64-uae-integration
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write         # the release step uploads the image
+    steps:
+      - name: Check out the collection
+        uses: actions/checkout@v4
+
+      - name: Pick the os9exec ref
+        id: ref
+        run: echo "value=${{ github.event.inputs.os9exec_ref || env.OS9EXEC_REF }}" >> "$GITHUB_OUTPUT"
+
+      - name: Check out os9exec
+        uses: actions/checkout@v4
+        with:
+          repository: ${{ env.OS9EXEC_REPO }}
+          ref: ${{ steps.ref.outputs.value }}
+          path: os9exec
+
+      - name: Build os9exec
+        run: make -C os9exec -j"$(nproc)"
+
+      # Fail here, with a reason, rather than let mkimage.sh report an
+      # "unknown option" that says nothing about which commit is missing.
+      - name: Check os9exec can create a named blank image
+        run: |
+          if ! ./os9exec/os9exec -r mount '-?' 2>&1 | tr -d '\000' | grep -q -- '-v=<name>'; then
+            echo "::error::os9exec at '${{ steps.ref.outputs.value }}' has no 'mount -k -v=<name>'."
+            echo "::error::That branch needs the commit which also stopped images being dated 1902."
+            exit 1
+          fi
+
+      - name: Build the image
+        run: OS9EXEC_DIR="$PWD/os9exec" tools/mkimage.sh disk osk-freeware.dd
+
+      # mkimage.sh fails if tar extracted the wrong number of files. This is
+      # the other half: mount the finished image and use it. Both checks below
+      # fail against a blank image, which is what makes them worth running.
+      - name: Read the image back
+        run: |
+          img="$PWD/osk-freeware.dd"
+          run() { OS9DISK="$img" ./os9exec/os9exec -r "$@" 2>&1 | tr -d '\000' | grep -v '^#'; }
+
+          run wc /dd/startup | grep -q '/dd/startup' || {
+            echo "::error::cannot read /dd/startup from the image"; exit 1; }
+
+          run basename /a/b/c | grep -qx 'c' || {
+            echo "::error::cannot load and run a module from the image"; exit 1; }
+
+          echo "image reads files and executes modules"
+
+      - name: Compress
+        run: |
+          gzip -9 -c osk-freeware.dd > osk-freeware.dd.gz
+          ls -lh osk-freeware.dd osk-freeware.dd.gz
+
+      - name: Upload as a build artefact
+        uses: actions/upload-artifact@v4
+        with:
+          name: osk-freeware-image
+          path: osk-freeware.dd.gz
+          retention-days: 14
+
+      - name: Attach to the release
+        if: startsWith(github.ref, 'refs/tags/v')
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          gh release create "${GITHUB_REF_NAME}" --generate-notes --verify-tag \
+            || echo "release already exists, uploading to it"
+          gh release upload "${GITHUB_REF_NAME}" osk-freeware.dd.gz --clobber
