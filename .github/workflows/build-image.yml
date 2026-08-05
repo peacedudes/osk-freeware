@@ -16,14 +16,15 @@ on:
       os9exec_ref:
         description: 'os9exec ref to build against'
         required: false
-        default: arm64-uae-integration
+        default: 261b4b69ce2eced889ec18b50c9b611f9ca19881
 
 env:
-  # mount -k=<size> -v=<name> is required. -k landed on this branch; -v came
-  # with the fix that also stopped images being dated 1902. Both live on
-  # arm64-uae-integration, not master -- master has no mount -k at all.
+  # mount -k=<size> -v=<name> is required, and lives on arm64-uae-integration
+  # -- master has no mount -k at all. Pinned to a COMMIT, not the branch: a
+  # force-push or a regression on a moving branch would break this build with
+  # no warning and no way to tell which change did it. Bump deliberately.
   OS9EXEC_REPO: peacedudes/os9exec
-  OS9EXEC_REF: arm64-uae-integration
+  OS9EXEC_REF: 261b4b69ce2eced889ec18b50c9b611f9ca19881
 
 jobs:
   build:
@@ -37,6 +38,11 @@ jobs:
       - name: Pick the os9exec ref
         id: ref
         run: echo "value=${{ github.event.inputs.os9exec_ref || env.OS9EXEC_REF }}" >> "$GITHUB_OUTPUT"
+
+      # Runs before anything is compiled: these catch the mistakes that are
+      # invisible in a built image, and cost seconds.
+      - name: Check the disk tree
+        run: tools/check_disk.py disk
 
       - name: Check out os9exec
         uses: actions/checkout@v4

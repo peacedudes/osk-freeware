@@ -2,8 +2,30 @@
 
     mkimage.sh          build the disk image from disk/
     mktar.py            write disk/ as a ustar archive (used by mkimage.sh)
+    check_disk.py       check the disk tree's invariants
+    gen_depends.py      regenerate disk/DOC/DEPENDS
     rebuild/            rebuild programs from source (see rebuild/README.md)
     gen_freeware_index.py
+
+## Checking the tree
+
+    tools/check_disk.py disk
+
+Three invariants, each of which has been made to fail on purpose: no text file
+contains LF (OS-9 ends a line with CR alone, and an LF-ended file is read as
+one enormous line), every command is named in `DOC/INDEX`, and `DOC/DEPENDS`
+is up to date. CI runs this before it builds anything.
+
+## Regenerating DOC/DEPENDS
+
+    tools/gen_depends.py disk           # rewrite it
+    tools/gen_depends.py disk --check   # exit 1 if it would change
+
+`DOC/DEPENDS` says what each program needs besides its own binary, found by
+scanning every binary for `/dd` and `/h0` paths. Run it after adding or
+removing anything. It had drifted badly from hand-editing — it listed 110
+programs where 158 have dependencies, and attributed one `gnuchess`'s paths to
+the other.
 
 ## Building the image
 
