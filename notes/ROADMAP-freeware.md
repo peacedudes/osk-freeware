@@ -102,12 +102,23 @@ Known wrinkles, none blocking:
 
 ## Licence — DONE, but check the name on it
 
-`LICENSE` is MIT, and scoped: it says in plain words that it covers `tools/`,
-`.github/`, `README.md` and `notes/`, and that nothing under `disk/` is ours
-to license. Copyright is asserted as "2026 Robert Doggett" — change that if it
-should read otherwise. MIT was chosen over a public-domain dedication mainly
-for its warranty disclaimer: `mkimage.sh` writes 125 MB disk images, and
-"AS IS" is worth having when someone points it at the wrong path.
+The root `LICENSE` is **not** a licence grant, deliberately. It is a statement
+of terms: the collection was gathered from public archives, every program
+keeps its own author's copyright, nothing here relicenses any of it, and
+`disk/SOURCES.txt` is where to look before redistributing. It ends with an
+offer to remove anything a rightsholder objects to.
+
+An earlier draft put MIT at the root with a scope note. That was wrong: GitHub
+labels a repository by its root licence file, so the whole collection would
+have been advertised as MIT — a claim nobody here can make. The MIT text now
+lives in `tools/LICENSE`, covering only what was written for this repository.
+Expect GitHub to show no licence badge as a result, which is the honest
+outcome.
+
+MIT was chosen for the tooling over a public-domain dedication mainly for its
+warranty disclaimer: `mkimage.sh` writes 125 MB disk images, and "AS IS" is
+worth having when someone points it at the wrong path. Copyright is asserted
+as "2026 Robert Doggett" — change that if it should read otherwise.
 
 ## Dropping the emulator from the build entirely
 

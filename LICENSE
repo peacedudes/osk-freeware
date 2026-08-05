@@ -1,48 +1,61 @@
-WHAT THIS LICENCE COVERS
-========================
+TERMS
+=====
 
-This repository holds two quite different things, and this licence applies to
-only one of them.
-
-IT COVERS the work created for this repository: everything under `tools/` and
-`.github/`, plus `README.md`, `CLAUDE.md` and the working notes in `notes/`.
-That is the build (`mkimage.sh`, `mktar.py`), the checks (`check_disk.py`,
-`gen_depends.py`), the rebuild recipes, and the writing that explains them.
-
-IT DOES NOT COVER anything under `disk/`. That is a preserved collection of
-OS-9/68000 community software written by other people, most of it published
-between the mid-1980s and the mid-1990s. Nobody here wrote it and nobody here
-can relicense it. Each program arrived under its own terms -- public domain,
-GNU GPL, freeware, or in several cases a copyright notice and no licence text
-at all. `disk/SOURCES.txt` records what is known about each one, program by
-program, and `disk/DOC/ORIGINS` names the archive it came from. Those terms
-are what govern that software; if you intend to redistribute a program from
-this collection, read them.
-
-Assembling, documenting and indexing a collection is not authorship of the
-things collected. The licence below is offered so that the tooling is plainly
-free to use, not to assert any claim over the software it packages.
+This is a collection, not a work. Read this before redistributing anything
+out of it.
 
 
-MIT License
-===========
+THE SOFTWARE UNDER disk/
+------------------------
 
-Copyright (c) 2026 Robert Doggett
+Every program under `disk/` was written by somebody else, most of it
+published between the mid-1980s and the mid-1990s. It was gathered from
+places that have carried it in the open for decades: the OS-9 hobbyist
+archives, the Hamburg OS-9 Users Group, EFFO user-group disks, usenet
+postings from comp.sources.games and comp.sources.misc, and other public
+preservation sites. It is collected here as a convenience -- one disk image
+instead of a scatter of archives -- and for no other reason.
 
-Permission is hereby granted, free of charge, to any person obtaining a copy
-of this software and associated documentation files (the "Software"), to deal
-in the Software without restriction, including without limitation the rights
-to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
-copies of the Software, and to permit persons to whom the Software is
-furnished to do so, subject to the following conditions:
+**Nothing here relicenses any of it.** Each program remains under whatever
+copyright and terms its own author gave it, and those terms, not this file,
+are what govern its use and redistribution. They vary widely:
 
-The above copyright notice and this permission notice shall be included in all
-copies or substantial portions of the Software.
+- some is explicitly public domain
+- some is under the GNU GPL, with the `COPYING` files kept in `disk/DOC/`
+- some is freeware, distributable by the author's stated permission
+- SB-Prolog is under SUNY Stony Brook's licence, which **requires** that the
+  licence travel with the program (`disk/DOC/sbprolog/COPYING`)
+- four EFFO programs carry their authors' request for no military use, and
+  their `info_*` files ship beside them because that is what those terms ask
+- some carries a copyright notice and no licence text at all -- larn, for
+  instance, is "copyrighted 1986 by Noah Morgan" with no accompanying grant
 
-THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
-IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
-FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
-AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
-LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
-OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
-SOFTWARE.
+`disk/SOURCES.txt` records what is known for each program, and says so
+plainly where nothing is known rather than guessing. `disk/DOC/ORIGINS` names
+the archive each one came out of. **If you intend to redistribute a program
+from this collection, those files are your starting point, not this one.**
+
+Assembling and indexing a collection is not authorship of the things
+collected, and no claim is made over them here.
+
+If you hold rights in something in this collection and would rather it were
+not here, say so and it will be removed.
+
+
+THE TOOLING
+-----------
+
+The part that was written for this repository -- `tools/`, `.github/`,
+`README.md`, `notes/` -- is offered under the MIT licence, in
+`tools/LICENSE`. It is a build script, an archive packer and two checkers.
+They are kept deliberately separate from the above so that nothing about
+them reads as a claim over the collection.
+
+
+NO MICROWARE PRODUCT IS HERE
+----------------------------
+
+No Microware utilities, headers, libraries or `cio`. OS-9 is Microware's and
+is still a current product; this collection is for people running it. The
+programs were compiled with Microware's `cc`, which links its `cstart` and C
+library -- that is what a compiler is for.

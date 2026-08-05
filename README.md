@@ -37,12 +37,12 @@ root and home. There is no established name for that role.
 
 ## Licensing
 
-The tooling and the writing — `tools/`, `.github/`, this README, `notes/` —
-are MIT; see `LICENSE`. That covers the build and the checks, nothing more.
-
-The collection under `disk/` is **not** ours to license. It is a patchwork,
-and each program keeps its own terms, which `SOURCES.txt` records per
-program:
+Everything under `disk/` was written by other people and gathered from public
+archives — it is collected here as a convenience, and **nothing here
+relicenses any of it**. Each program keeps its own author's terms, which
+`SOURCES.txt` records per program. Read `LICENSE` before redistributing
+anything out of this collection; read it rather than assuming, because the
+terms are a patchwork:
 
 - GPL and BSD packages, with their `COPYING` files in `disk/DOC/<pkg>/`
 - public domain, and author-distributable usenet postings
@@ -51,6 +51,13 @@ program:
 - four EFFO programs whose authors asked for no military use — their
   `info_*` files ship alongside them, which is what those terms ask
 - a few with no stated terms at all, recorded as such rather than guessed at
+
+If you hold rights in something here and would rather it were not, say so and
+it will be removed.
+
+Separately, and covering none of the above: the tooling written for this
+repository — `tools/`, `.github/`, this README, `notes/` — is MIT, in
+`tools/LICENSE`.
 
 No Microware product is in this repo: no utilities, no headers, no libraries.
 The programs were built with Microware's `cc`, which is what a compiler is
