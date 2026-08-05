@@ -95,6 +95,8 @@
   dd{margin:0;color:var(--ink);overflow-wrap:anywhere}
   dd code{font-family:var(--mono);font-size:12.5px;color:var(--dim)}
   dd .miss{color:var(--warn)}
+  dd a.kin{color:var(--accent);text-decoration:none}
+  dd a.kin:hover{text-decoration:underline}
   .close{position:absolute;right:0;top:0}
   .xbtn{float:right;font:inherit;font-size:20px;line-height:1;background:none;border:0;
         color:var(--faint);cursor:pointer;padding:0 2px}
@@ -121,6 +123,7 @@
   <button class="chip" id="f-src" aria-pressed="false">Source on disk</button>
   <button class="chip" id="f-doc" aria-pressed="false">Has docs</button>
   <button class="chip" id="f-open" aria-pressed="false">Expand all</button>
+  <button class="chip" id="f-az" aria-pressed="false">A&ndash;Z</button>
   <span class="tally" id="tally"></span>
 </div></div>
 
@@ -143,7 +146,7 @@ const BLURB = __BLURB__;
 const ORDER = __ORDER__;
 const esc = s => String(s==null?"":s).replace(/&/g,"&amp;").replace(/</g,"&lt;").replace(/>/g,"&gt;");
 const kb = n => n>=1024 ? Math.round(n/1024)+"K" : n+"B";
-const st = {q:"", nocio:false, src:false, doc:false, open:false};
+const st = {q:"", nocio:false, src:false, doc:false, open:false, az:false};
 
 function ok(p){
   if(st.nocio && p.star) return false;
@@ -155,10 +158,33 @@ function ok(p){
       || p.cat.toLowerCase().includes(q) || p.sub.toLowerCase().includes(q);
 }
 
+function renderAZ(hits){
+  // One list, initial-letter headings, category shown alongside. The same
+  // order DOC/INDEX uses, for when you already know the name you want.
+  const by={};
+  for(const p of hits){ const k=p.name[0].toUpperCase(); (by[k] ||= []).push(p); }
+  const out=[];
+  for(const k of Object.keys(by).sort()){
+    out.push(`<details class="cat" open><summary><div class="ct">${k}`+
+      `<span class="n">${by[k].length}</span></div></summary><ul>`+
+      by[k].sort((a,b)=>a.name.localeCompare(b.name)).map(p=>
+        `<li class="p" tabindex="0" data-n="${esc(p.name)}"><span class="nm">`+
+        `${p.star?'<span class="st" title="needs cio">&#9733;</span>':''}${esc(p.name)}</span>`+
+        `<span class="ds">${esc(p.desc)} <span style="color:var(--faint)">&middot; `+
+        `${esc(p.cat)}</span></span></li>`).join("")+"</ul></details>");
+  }
+  return out;
+}
+
 function render(){
   const hits=DATA.filter(ok);
   document.getElementById("tally").textContent =
     hits.length===DATA.length ? DATA.length+" programs" : hits.length+" of "+DATA.length;
+  if(st.az){
+    document.getElementById("cats").innerHTML =
+      renderAZ(hits).join("") || `<p class="empty">Nothing matches that.</p>`;
+    return;
+  }
   const by={};
   for(const p of hits){ (by[p.cat] ||= {}); (by[p.cat][p.sub] ||= []).push(p); }
   const open = st.open || st.q.length>0;
@@ -215,6 +241,14 @@ function detail(name){
   add("Restrictions", esc(i.restrictions));
   add("Hardware",     esc(i.hardware));
 
+  // Siblings: the answer to "is there anything else like this?", which is
+  // the question that sent someone looking for a category in the first place.
+  const kin=DATA.filter(x=>x.sub===p.sub && x.name!==p.name)
+                .sort((a,b)=>a.name.localeCompare(b.name));
+  if(kin.length) add("See also", kin.slice(0,14).map(x=>
+      `<a href="#" class="kin" data-n="${esc(x.name)}"><code>${esc(x.name)}</code></a>`)
+      .join(", ") + (kin.length>14?` &hellip; and ${kin.length-14} more`:""));
+
   document.getElementById("panel").innerHTML =
     `<button class="xbtn" id="x" aria-label="Close">&times;</button>`+
     `<h2 class="pn" id="pn">${esc(p.name)}</h2>`+
@@ -223,6 +257,8 @@ function detail(name){
     (D.length?`<dl>${D.join("")}</dl>`:"");
   document.getElementById("sheet").classList.add("on");
   document.getElementById("x").onclick=close;
+  for(const a of document.querySelectorAll(".kin"))
+    a.onclick=e=>{ e.preventDefault(); detail(a.dataset.n); };
 }
 function close(){ document.getElementById("sheet").classList.remove("on"); }
 
@@ -235,7 +271,8 @@ document.getElementById("cats").addEventListener("keydown",e=>{
   const li=e.target.closest("li.p");
   if(li && (e.key==="Enter"||e.key===" ")){ e.preventDefault(); detail(li.dataset.n); } });
 document.getElementById("q").addEventListener("input",e=>{st.q=e.target.value;render();});
-for(const [id,k] of [["f-nocio","nocio"],["f-src","src"],["f-doc","doc"],["f-open","open"]]){
+for(const [id,k] of [["f-nocio","nocio"],["f-src","src"],["f-doc","doc"],
+                     ["f-open","open"],["f-az","az"]]){
   const b=document.getElementById(id);
   b.onclick=()=>{ st[k]=!st[k]; b.setAttribute("aria-pressed",String(st[k])); render(); };
 }
