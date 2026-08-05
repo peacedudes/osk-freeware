@@ -1,0 +1,1 @@
+# Animal - makefile## System Dependencies - edit as appropriate for your machine# OS-9ODIR = /h0/cmds/gamesRDIR = /r0CFLAGS= -qixt=/r0 -DBOGUS_GET -DBOGUS_BOXLIBS= -l=/dd/lib/curses.l -l=/dd/lib/termlib.l -l=/dd/lib/math.lLFLAGS= -qixm=2kOBJS= an.r scr.rOBJ= animal$(OBJ): $(OBJS)	chd $(RDIR); cc $(LFLAGS) $(OBJS) -f=$(ODIR)/$(OBJ) $(LIBS)

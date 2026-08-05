@@ -1,0 +1,1 @@
+NAME=   	OSKversionFLAGS=		-ixt=/r0     	# -bg     # -v=/h0/DFES  \				# -l=/h0/LIB/os9lib.l  # -l=/h0/LIB/curses.l \				# -l=/h0/LIB/termlib.l # -w=/h0/LIB \$(NAME):			cc $(NAME).c $(FLAGS) -fd=$(NAME) ; attr -e -pe $(NAME)

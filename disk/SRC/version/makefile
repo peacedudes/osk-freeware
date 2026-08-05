@@ -1,0 +1,1 @@
+# die Edition ist die angezeigte versions-nummer:#CFLAGS = -t=/r0 LFLAGS = -e=21version : version.rversion.r : version.c

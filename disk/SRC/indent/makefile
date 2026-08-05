@@ -1,0 +1,1 @@
+# makefile for the 'indent' commandRDIR  = RELSODIR  = /h0/USR/CMDSCFLAGS = -ixt=/r0 # -DlintLFLAGS = -ixm=20OBJS = indent.r io.r lexi.r parse.r comment.r args.rindent: $(OBJS)    chd $(RDIR); cc $(LFLAGS) $(OBJS) -f=$(ODIR)/$@    attr -prpe $(ODIR)/$@$(OBJS): globs.h codes.h

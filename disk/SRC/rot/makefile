@@ -1,0 +1,1 @@
+# OSK makefile for rot.cODIR = /h0/cmds/dogCFLAGS = -qim=2k -t=/r0LFLAGS = -l=/dd/lib/strings.rrot: rot.c

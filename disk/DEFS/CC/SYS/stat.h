@@ -1,0 +1,1 @@
+#ifndef stat_h#pragma onceextern "C"{#ifndef OSK#include "//usr/include/sys/stat.h"#else#include "/dd/defs/stat.h"#endif#ifndef stat_h#define stat_h 1int stat (char *path, struct stat *buf);int lstat (char *path, struct stat *buf);int fstat (int fd, struct stat *buf);#endif}#endif

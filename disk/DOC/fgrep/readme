@@ -1,0 +1,1 @@
+FGREP is a replacement for the standard utility GREP or for BM.It is about 4 times faster than BM and 40 times (!!!) faster than GREP.I think it has all the options you can dream of (-> 'fgrep -?').Stephan

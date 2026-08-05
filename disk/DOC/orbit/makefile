@@ -1,0 +1,1 @@
+CFLAGS = -v=/h0/defs -iorbit:: orbit.o orbitr.o	cc orbit.o orbitr.o -fd=./orbit

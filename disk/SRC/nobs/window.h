@@ -1,0 +1,1 @@
+#include <curses.h>extern	WINDOW	*Crib;extern	WINDOW	*Board;extern	WINDOW	*Select;extern	WINDOW	*Cut;extern	WINDOW	*Hscore;extern	WINDOW	*Humanhand;extern	WINDOW	*Programhand;extern	WINDOW	*Prompt;extern	WINDOW	*Pscore;

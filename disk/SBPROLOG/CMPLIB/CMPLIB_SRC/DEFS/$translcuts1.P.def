@@ -1,0 +1,1 @@
+prag($transl_softcuts,5, index(3)).prag($transl_hardcuts,6, index(4)).prag($transl_cut_clauses,3, index(2)).prag($transl_cutclauses1,3, index(2)).prag($transl_contains_cut,1,index).prag($inline_test,2, index).

@@ -1,0 +1,1 @@
+echo 'Demonstration of the "basename" and "dirname" programs'path='/dd/DEV/C/UNIX/dirname.c'echo "\nThe full pathname is $path\n"n=`basename $path`bn=`basename $path ".c"`d=`dirname $path`echo "Directory: $d"echo "Filename:  $n"echo "Basename:  $bn"echo "\nFinished\n"

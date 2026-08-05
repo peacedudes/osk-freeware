@@ -1,0 +1,1 @@
+/* this gets an environment variable value.For example getenv('SIMPATH',V) results in V being bound to a buffercontaining the simpath variable.  */getenv(Name,Val) :-	alloc_heap(4,Argbuff),alloc_heap(4,Retbuff),	ptoc(str,Name,Argbuff,0,4),	brocall(2,Argbuff,Retbuff),	ctop(str,Val,Retbuff,0,4).

@@ -1,0 +1,1 @@
+extern	float	distable[2][91];

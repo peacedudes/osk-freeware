@@ -1,0 +1,1 @@
+#ifndef _setjmp_h#pragma onceextern "C" {#define  setjmp  C_header_setjmp#define  longjmp C_header_longjmp#ifndef OSK#include "/usr/include/setjmp.h"#else#include "/dd/defs/setjmp.h"#endif#undef setjmp#undef longjmp#ifndef _setjmp_h#define _setjmp_h 1#endifextern int setjmp(jmp_buf);extern void longjmp(jmp_buf, int);}#endif

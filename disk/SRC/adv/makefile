@@ -1,0 +1,1 @@
+# this is the makefile to make advent 68000NAME = adventRFILES = main.r init.r io.r done.r subr.r vocab.r rand.rRDIR = relsCFLAGS = -gixv=/dd/defs -t=/ddODIR = /h0/cmds/gamesLIB = /dd/lib$(NAME): $(RFILES)	chd $(RDIR); l68 $(LIB)/cstart.r $(RFILES) -o=$(ODIR)/$(NAME)\		-l=$(LIB)/cio.l -l=$(LIB)/clib.l -l=$(LIB)/usr.l -M=8k$(RFILES) : hdr.h

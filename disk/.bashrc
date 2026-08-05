@@ -1,0 +1,1 @@
+# /dd/.bashrc -- read for interactive shells once HOME is set by the profile.PS1='os9$ 'alias ls='dir'alias ll='dir -e'

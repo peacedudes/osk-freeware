@@ -1,0 +1,1 @@
+outfile=/dd/cattestecho $outfilecat <<EOF >$outfileThe content of this file has been created usingthe cat program and the here document subsystemof the sh-like shell for OS-9.The previously defined end-of-file mark 'EOF'is only considered, if at the beginningof a new line. EOF EOF EOF at anotherposition have no special meaning.EOF

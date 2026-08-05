@@ -1,0 +1,1 @@
+# makefile for screens for OSK CFLAGS = -qixm=2k -t=/r0LFLAGS = -l=/dd/lib/rand.r -l=/dd/lib/strings.r -l=/dd/lib/math.l screen:	screens.r scandir.r	cc $(CFLAGS) $(LFLAGS) screens.r scandir.r -f=screen

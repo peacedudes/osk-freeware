@@ -1,0 +1,1 @@
+# Makefile for typefastOBJ=game.r utils.r words.r os9.rCFLAGS = -qt=/r0all:    $(OBJ) 	cc -qf=typefast $(OBJ) -l=/dd/lib/termlib.l -l=/dd/lib/curses.l\		-l=/dd/lib/termlib.l -l=/dd/lib/rand.r -l=/dd/lib/egetopt.r

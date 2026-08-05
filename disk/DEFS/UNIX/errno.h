@@ -1,0 +1,1 @@
+/*  * UNIX Error codes  */#define EBADF     9      /* Bad file number                      */#define ENOTTY   25      /* Not a typewriter                     */#define EINVAL   22      /* Invalid argument                     */

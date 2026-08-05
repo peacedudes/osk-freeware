@@ -1,0 +1,206 @@
+# prog|srctree|sources|defines|extra libs|extra cc flags
+# Fields are '|'-separated, not TAB: tab is an IFS whitespace character,
+# so an empty defines field silently shifts libs into defs.
+animal|animal|an.c scr.c|BOGUS_GET BOGUS_BOX|/dd/LIB/curses.l /dd/LIB/termlib.l /dd/LIB/math.l|
+ape|hc_loose|ape.c|||
+areacode|hc_utils|areacode.c|||
+ascii|misc|ascii.c|||
+assembler|eff_gshell|assembler.c selectfile.c|||
+banner|misc|banner.c|||
+bite|v_misc|bite.c|||
+blackjak|effo_snobol|blackjak.c cardpak.c genprim.c pattern.c pokev.c quest.c rperm.c rselect.c rsent.c snorand.c|||
+bmgtest|strsch|bmgtest.c bmgsubs.c|BSD||
+bmgtest2|strsch|bmgtest2.c bmgsubs.c|BSD||
+bootgen|bix|bootgen.c|||
+bush|misc|bush.c|||
+calen|hc_loose|calen.c|||
+calendar|hc_utils|calendar.c|||
+calender|calender|calender.c|||
+casefix|hc_loose|casefix.c|||
+cdiff|v_misc|cdiff.c|||
+chardef|eff_chardef|chardef.c|||
+checksum|eff_checksum|checksum.c|||
+chess|chess/CH5|main.c computer.c human.c io.c|||
+chksum|chksum|chksum.c crc32.c||/dd/LIB/math.l|
+clock|misc|clock.c|||
+cls|bix|cls.c|||
+compiler|eff_gshell|compiler.c selectfile.c|||
+compress|hc_utils|compress.c|||
+connect|bix|connect.c|||
+convert|world|demons.c helper.c motion.c parser.c verbs1.c verbs2.c world.c||/dd/LIB/rand.r|
+cookhash|cookie|cookhash.c|||
+cookie|cookie|cookie.c|||
+cpr|cpr|cpr.c|||
+crib|crib|extern.c crib.c support.c cards.c score.c io.c||/dd/LIB/curses.l /dd/LIB/termlib.l /dd/LIB/math.l /dd/LIB/rand.r|
+cron|bix|cron.c|||
+crypto|crypto|crypto.c|||
+cuts|cuts|cuts.c cuts_decode.c cuts_encode.c cuts_getopt.c|||
+cvtbase|misc|cvtbase.c|||
+dam|effo_wolk|dam.c|||
+des|des|des.c|||
+deton|hc_utils|deton.c|||
+dfiles|dfiles|dfiles.c|||
+diff|diff|diff.c||/dd/LIB/egetopt.r|
+digclk|digclk|clock.c digits.c hostname.c mytime.c||/dd/LIB/curses.l /dd/LIB/termlib.l /dd/LIB/math.l /dd/LIB/strings.r|
+dinfo|eff_dinfo|dinfo.c|||
+du|eff_du|du.c|||
+easter|v_misc|easter.c|||
+ediff|eff_ediff|ediff.c|||
+editor|eff_gshell|editor.c selectfile.c|||
+england|weather|weather.c|GREGORIAN MID_ATLANTIC|/dd/LIB/rand.r /dd/LIB/math.l|
+eo|eff_eo|eo.c|||
+etags|eff_etags|etags.c|||
+fcomp|bix|fcomp.c|||
+ff|effo_wolk|ff.c|||
+fibo|eff_bench|fibo.c|||
+fillup|fillup|fillup.c|||
+find|eff_effind|find.c|||
+firq|hc_utils|firq.c|||
+fkeys|eff_fkeys|fkeys.c|||
+flink|eff_flink|flink.c|||
+float|eff_bench|float.c|||
+florida|weather|weather.c|GREGORIAN GULF|/dd/LIB/rand.r /dd/LIB/math.l|
+gcl|v_misc|gcl.c|||
+gen|divutils|gen.c misc.c|||
+georgia|weather|weather.c|GREGORIAN S_ATLANTIC|/dd/LIB/rand.r /dd/LIB/math.l|
+gep|bix|gep.c|||
+gothic|gothic|gothic0.c gothic1.c|||
+greed|v_misc|greed.c|||
+gshell|eff_gshell|gshell.c selectfile.c|||
+hang|hang|main.c dogame.c||/dd/LIB/curses.l /dd/LIB/termlib.l /dd/LIB/rand.r /dd/LIB/strings.r|
+help|eff_help|help.c|||
+helpindex|eff_help|helpindex.c|||
+hexed|eff_hexed|hexed.c|||
+hist|hist/SRC|h_edit.c h_expand.c h_main.c h_rw.c h_term.c|MCTERM||-V=/h6/hist/INC
+if|divutils|if.c|||
+ifdef|ifdef|ifdef.c|||
+indent|eff_indent/SRC|indent.c io.c lexi.c parse.c comment.c args.c|||
+input|effo_unaxcess|input.c|||
+japan|weather|weather.c|JAPAN N_PACIFIC|/dd/LIB/rand.r /dd/LIB/math.l|
+joke|toys|joke.c|||
+kermit|kermit|os9ker.c os9con.c os9get.c os9qui.c os9raw.c os9rec.c os9sen.c os9srv.c os9utl.c|||
+lac|tc|lac.c|||
+lander|lander|land.c screen.c move.c score.c|RAND_BSD HS_FILE BSD|/dd/LIB/curses.l /dd/LIB/termlib.l /dd/LIB/math.l /dd/LIB/unix.l|
+liborder|eff_libutils|liborder.c|||
+life|life|life.c|||
+loan|misc|loan.c|||
+logisim|eff_logisim|logisim.c|||
+lp|eff_lp|lp.c os9geteuid.c|||
+lpq|eff_lp|lpq.c os9geteuid.c|||
+lprm|eff_lp|lprm.c|||
+lpshut|eff_lp|lpshut.c|||
+ls|ls|argmatch.c error.c filemode.c getopt.c idcache.c ls.c obstack.c os9stubs.c savedir.c t.c xmalloc.c xstrtol.c|||
+m4|eff_m4b|main.c eval.c expr.c look.c misc.c serv.c||/dd/LIB/egetopt.r|
+main|tc|main.c|||
+make|eff_make|make.c parse.c stat.c tstring.c utime.c|OS9||
+makelex|sonnet|makelex.c|||
+maze|v_misc|maze.c|||
+mines|mines|mines.c|||
+minnesota|weather|weather.c|GREGORIAN N_ATLANTIC|/dd/LIB/rand.r /dd/LIB/math.l|
+minute|hc_utils|minute.c|||
+mkdict|bog|mkdict.c|||
+mkindex|bog|mkindex.c|||
+mtst|eff_spline|mtst.c|||
+my.opt|my.opt|main.c ctype.c instr.c io.c label.c misc.c mnem.c opnd.c opt.c parse.c|||
+name|hc_loose|name.c|||
+nasa|eff_orbit|nasa.c|||
+newsgen|toys|newsgen.c ctime.c|||
+nroff|nroff|command.c escape.c io.c low.c macros.c main.c strings.c text.c|||
+nsort|hc_loose|nsort.c|||
+orbit|eff_orbit|orbit.c orbitr.c|||
+oskversion|eff_oskversion|oskversion.c|||
+pacman|toys|pacman.c|||
+pagefraz|bix|pagefraz.c|||
+pagekwic|bix|pagekwic.c|||
+pageline|bix|pageline.c|||
+patch|patch|patch.c inp.c os9link.c pch.c util.c version.c os9popen.c|||
+paths|hc_utils|paths.c|||
+pbyte|bix|pbyte.c|||
+pdraw|effo_pdraw|IOread.c data.c list.c main.c parser.c pif.c plotNOX.c plotX.c plotX11.c plotps.c sort.c time.c|||
+pep|effo_wolk|pep.c|||
+poker|effo_snobol|poker.c cardpak.c genprim.c pattern.c pokev.c quest.c rperm.c rselect.c rsent.c snorand.c|||
+pow|pow|pow.c direct.c event.c help.c screen.c control.c||/dd/LIB/termlib.l|
+printf|misc|printf.c|||
+prjob|eff_lp|prjob.c|||
+puz15|v_misc|puz15.c|||
+puzzle15|eff_puzzle15|puzzle15.c|||
+pwgen|misc|pwgen.c|||
+qp|eff_qp|qp.c|||
+qt|misc|qt.c|||
+rain|toys|rain.c ctime.c rand.c screen.c||/dd/LIB/usr.l /dd/LIB/termlib.l|
+rdoc|eff_rdoc|rdoc.c|||
+reagan|reagan|reagan.c|||
+remove|eff_remove|remove.c|||
+ren|hc_utils|ren.c|||
+rendsk|eff_rendsk|rendsk.c|||
+rndname|rndname|name.c|||
+roff|eff_roff|roff.c|||
+rot|rot|rot.c|||
+rpn|eff_rpn|rpn.c|||
+rpoem|effo_snobol|rpoem.c cardpak.c genprim.c pattern.c pokev.c quest.c rperm.c rselect.c rsent.c snorand.c|||
+rstory|effo_snobol|rstory.c cardpak.c genprim.c pattern.c pokev.c quest.c rperm.c rselect.c rsent.c snorand.c|||
+rstory2|effo_snobol|rstory2.c|||
+run|divutils|run.c misc.c|||
+savage|eff_bench|savage.c|||
+scales|hc_loose|scales.c|||
+scope|tc|scope.c|||
+screen|screen|scandir.c screens.c||/dd/LIB/rand.r /dd/LIB/strings.r /dd/LIB/math.l|
+sdb|effo_sdb|cmd.c com.c cre.c err.c iex.c int.c io.c mth.c pcjunk.c scn.c sdb.c sel.c srt.c tbl.c|||
+sed|eff_sed|alloca.c glob.c regex.c sed.c|||
+sedt|effo_sedt|sedt.c buf.c com.c com1.c edit.c ent.c key.c menu.c vdu.c|||
+sepwords|bix|sepwords.c|||
+setfont|effo_wolk|setfont.c|||
+shire|weather|weather.c|MIDDLE_EARTH MID_ATLANTIC|/dd/LIB/rand.r /dd/LIB/math.l|
+sieve|eff_bench|sieve.c|||
+sin|tc|sin.c|||
+snap|snap|main.c signals.c snapshot.c echo.c h29.c wy50.c kt7.c|||
+sokoban|sokoban|sok.c readscreen.c showscreen.c play.c save.c score.c osk.c||/dd/LIB/termlib.l /dd/LIB/strings.r|
+sonnet|sonnet|sonnet.c compose.c getopt.c|USE_INDEX|/dd/LIB/curses.l /dd/LIB/termlib.l /dd/LIB/math.l|
+soundex|soundex|soundex.c|TESTPROG||
+souper|hc_utils|souper.c|||
+space|eff_space|space.c|||
+speech|speech|parse.c phoneme.c spellword.c sayord.c english.c||/dd/LIB/sys.l|
+spiff|spiff|spiff.c output.c compare.c float.c strings.c exact.c miller.c parse.c command.c comment.c tol.c line.c floatrep.c token.c misc.c visual.c|M_TERMCAP|/dd/LIB/termlib.l /dd/LIB/unix.l|
+splitalf|bix|splitalf.c|||
+ssl|effo_wolk|ssl.c|||
+stone|effo_snobol|stone.c cardpak.c genprim.c pattern.c pokev.c quest.c rperm.c rselect.c rsent.c snorand.c|||
+strfile|fortune|strfile.c|||
+strings|v_misc|strings.c|||
+sysid|hc_utils|sysid.c|||
+sysmax|hc_utils|sysmax.c|||
+sysmem|hc_utils|sysmem.c|||
+sysmin|hc_utils|sysmin.c|||
+tar|eff_tar|tar.c|||
+tess|tess|tess.c|||
+tet|tet|MoveR.c MoveL.c NewP.c AdvanceP.c Rotate.c tet.c||/dd/LIB/curses.l /dd/LIB/termlib.l /dd/LIB/rand.r /dd/LIB/math.l|
+tformat|effo_snobol|tformat.c|||
+time|hc_utils|time.c|||
+timeio|hc_utils|timeio.c|||
+timid|hc_utils|timid.c|||
+top|eff_top|top.c|||
+touchtype|touchtype|game.c utils.c words.c os9.c||/dd/LIB/termlib.l /dd/LIB/curses.l /dd/LIB/rand.r /dd/LIB/egetopt.r|
+trap|trap|ctrap.c traptst.c||/dd/LIB/cio.l /dd/LIB/clib.l /dd/LIB/sys.l|
+tree|eff_tree|tree.c|||
+tsmon2|eff_tsmon2|tsmon2.c|||
+tttt|hc_loose|tttt.c|||
+udate|effo_unaxcess|udate.c date.c|||
+undel|eff_undel|undel.c|||
+unifdef|hc_utils|unifdef.c|||
+unip|bix|unip.c|||
+unpacklib|eff_libutils|unpacklib.c|||
+unstr|fortune|unstr.c|||
+uuexpand|v_misc|uuexpand.c||/dd/LIB/egetopt.r|
+uwho|effo_unaxcess|uwho.c date.c os9getpw.c os9geteuid.c|||
+valspeak|toys|valspeak.c|||
+version|version|version.c|||
+vi|effo_vi|ex.c ex_OS9.c ex_addr.c ex_cmds.c ex_cmds2.c ex_cmdsub.c ex_data.c ex_extern.c ex_get.c ex_io.c ex_put.c ex_re.c ex_set.c ex_subr.c ex_temp.c ex_tty.c ex_unix.c ex_v.c ex_vadj.c ex_vget.c ex_vmain.c ex_voper.c ex_vops.c ex_vops2.c ex_vops3.c ex_vput.c ex_vwind.c pprintf.c||/dd/LIB/termlib.l|
+vis|vis|vis.c||/dd/LIB/egetopt.r|
+vtxtcn|world|vtxtcn.c|||
+wanderer|wanderer|m.c display.c edit.c fall.c game.c help.c icon.c jump.c read.c save.c scores.c||/dd/LIB/curses.l /dd/LIB/termlib.l|
+wish|toys|wish.c|||
+worms|toys|worms.c ctime.c rand.c screen.c||/dd/LIB/usr.l /dd/LIB/termlib.l|
+xc|v_misc|xc.c||/dd/LIB/egetopt.r|
+xcrypt|xrand|xcrypt.c|||-K=2L
+xrf|eff_xrf|xrf.c|||
+yacc|effo_yacc|closure.c error.c lalr.c lr0.c main.c mkpar.c output.c reader.c skeleton.c symtab.c verbose.c warshall.c|||
+zot|zot|zot.c|||

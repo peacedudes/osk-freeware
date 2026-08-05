@@ -1,0 +1,1 @@
+printpidprio() {echo "This shell's PID is $$, its priority is $:."}oldprio=$:newprio=255printpidprioecho Changing priority to $newpriosetpr $$ $newprioprintpidprioecho Resetting priority to $oldpriosetpr $$ $oldprioprintpidprio

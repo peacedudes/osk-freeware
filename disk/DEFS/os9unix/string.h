@@ -1,0 +1,1 @@
+#ifndef __STRING_H__#define __STRING_H__#include "/dd/defs/strings.h"char	*strchr();int	strcspn();char	*strrchr();int	strspn();char	*strtok();char	*strerror();#endif

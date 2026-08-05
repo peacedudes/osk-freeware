@@ -1,0 +1,1 @@
+/* osdefs.h - system specific function declarations */extern LVAL xsystem(),xgetkey();#ifdef OSKextern LVAL xchd();#endif

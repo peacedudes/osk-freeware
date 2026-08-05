@@ -1,0 +1,1 @@
+/* Minimal BSD <sys/wait.h> for porting usenet sources to OS-9/68k. */#ifndef WEXITSTATUS#define WEXITSTATUS(s) (((s) >> 8) & 0xff)#define WIFEXITED(s)   (((s) & 0xff) == 0)#define WTERMSIG(s)    ((s) & 0x7f)#endif

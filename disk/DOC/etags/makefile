@@ -1,0 +1,1 @@
+# Makefile for etags (a GNU ctags clone)## etags is part of GNU Emacs## adapted to OSK by Hubert Nehring -- 04/92## The command "make" creates "etags"# The command "make ctags" creates "ctags" which is a UNIX compatible clone-boetags: etags.c    cc -ixt=/r0 -o=2 -dETAGS etags.c -f=etagsctags: etags.c    cc -ixt=/r0 -o=2 -dCTAGS etags.c -f=ctags

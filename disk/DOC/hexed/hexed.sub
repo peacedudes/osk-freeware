@@ -1,0 +1,1 @@
+cc -t=/r0 -f=/d0/CMDS/hexed -ix hexed.c* cc -t=/r0 -f=/r0/hexed -ixg hexed.c

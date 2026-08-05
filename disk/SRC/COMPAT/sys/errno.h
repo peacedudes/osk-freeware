@@ -1,0 +1,1 @@
+/* Minimal BSD <sys/errno.h>: OS-9 keeps these in <errno.h>.   Guarded, because OS-9 headers have no include guards of their own and a   file that includes both would otherwise hit "redefined macro". */#ifndef E_ILLFNC#include <errno.h>#endif

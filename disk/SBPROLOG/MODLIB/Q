@@ -1,0 +1,1 @@
+X is 3+4, write(X), nl.append([a,b],[c,d],L), write(L), nl.halt.

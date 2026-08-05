@@ -1,0 +1,1 @@
+*calsetenv TERM xterm-256colorsetenv _sh 0setenv PATH "share:/h0/cmds:/h1/cmds"setenv EDITOR umacs*setenv MAILOPTS "printer=!spl -jn=dogma,maildev=/n0/moby/h0"*tmode -w=1 nopausetmode eof=04echo okdir-l

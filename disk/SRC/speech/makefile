@@ -1,0 +1,1 @@
+# Makefile to make speech# THIS MAKEFILE IS SPECIFIC TO 68000 SYSTEMS#   Some changes are needed to use this makefile on 6809 systemsFILES = parse.r phoneme.r spellword.r sayord.r english.rODIR = /h0/cmds/gamesRDIR = relsCFLAGS = -I -X -T=/dd -Gspeech: $(FILES)	chd $(RDIR); cc -gixm=2k -l=/dd/lib/sys.l -t=/dd $(FILES) -f=speech	$(FILES):

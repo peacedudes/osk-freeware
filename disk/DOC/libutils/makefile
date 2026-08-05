@@ -1,0 +1,1 @@
+Make: unpacklib liborderMakeOS9: unpacklib.os9 liborder.os9liborder: liborder.c	cc -O -o liborder liborder.cliborder.os9 : liborder.c	cc68 -k=2w -f=liborder.os9 liborder.cunpacklib: unpacklib.c	cc -O -o unpacklib unpacklib.cunpacklib.os9 : unpacklib.c	cc68 -k=2w -f=unpacklib.os9 unpacklib.cInstall:	cp liborder unpacklib ../../bin

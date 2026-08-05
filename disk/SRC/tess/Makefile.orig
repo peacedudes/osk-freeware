@@ -1,0 +1,1 @@
+# simple makefile for tessCFLAGS = -Otess: tess.c tess_def.c parser.c       cc -o tess $(CFLAGS) tess.c

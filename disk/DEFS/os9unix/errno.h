@@ -1,0 +1,1 @@
+#ifndef __ERRNO_H#define __ERRNO_H#endif#ifndef E_ILLFNC#include "/dd/defs/errno.h"#endif#define EBADF	E_BPNUM#define EEXIST	E_CEF#define EINVAL	E_ILLARG#define EINTR	E_ILLFNC#define ENOENT	E_PNNF#define ENOTTY	E_BMODE/* Ivans additions */#define ENOEXEC E_NEMOD#define EAGAIN	0x500#define ENOTDIR	E_FNA

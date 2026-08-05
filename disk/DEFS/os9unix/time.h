@@ -1,0 +1,1 @@
+#ifndef CLK_TCK#include "/dd/defs/time.h"#endif

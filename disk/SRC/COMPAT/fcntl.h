@@ -1,0 +1,1 @@
+/* Minimal BSD <fcntl.h> for porting usenet sources to OS-9/68k. */#ifndef O_RDONLY#include <sys/file.h>#endif#ifndef F_GETFL#define F_DUPFD 0#define F_GETFD 1#define F_SETFD 2#define F_GETFL 3#define F_SETFL 4#endif

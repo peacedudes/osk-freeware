@@ -1,0 +1,1 @@
+/* termios.h stub for OS-9 */

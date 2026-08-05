@@ -1,0 +1,1 @@
+#ifndef S_IFMT#include "/dd/defs/modes.h"#endif

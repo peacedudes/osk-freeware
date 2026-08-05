@@ -1,0 +1,1 @@
+CFLAGS = -sqgixt=/ddRFLAGS = -qRDIR = RELSPROG = ctrap$(PROG): tstart.r $(PROG).r	chd $(RDIR);\	l68 tstart.r $(PROG).r -l=/dd/lib/cio.l -l=/dd/lib/clib.l -l=/dd/lib/sys.l\				-o=$(PROG) -g

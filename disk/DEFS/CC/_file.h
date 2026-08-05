@@ -1,0 +1,1 @@
+, S~* @-#Y1~"#pragma once#include <sys/file.h>#ifdef OSKenum state_value{ _good = 0, _eof = 1, _fail = 2, _bad = 4};enum io_mode{ io_readonly, io_writeonly, io_readwrite, io_appendonly, io_append};enum access_mode{ a_createonly, a_create, a_useonly, a_use};#endif#endif

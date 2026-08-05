@@ -1,0 +1,1 @@
+ODIR=	/h0/cmds/dogRDIR=	/r0RELS= init.r redraw.r main.r command.rSRCS= init.c redraw.c main.c command.cCFLAGS=	-qm=8k -t=/r0LIBS= -l=/dd/lib/curses.l -l=/dd/lib/termlib.l -l=/dd/lib/mytime.rdraw: $(RELS)	chd $(RDIR); cc -f=$(ODIR)/draw $(RELS) $(LIBS) $(CFLAGS)$(RELS) : draw.h

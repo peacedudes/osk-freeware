@@ -1,0 +1,1 @@
+/* error.h -- error printing */#ifndef ERROR_H#define ERROR_Hvoid error __P ((int status, int errnum, const char *message, ...));#endif

@@ -1,0 +1,1 @@
+/* dummy crypt() function */static char buffer[12];char *crypt(p,s)char *p,*s;{	strncpy(buffer+2,p,8);	buffer[10] = '\0';	return(buffer);}

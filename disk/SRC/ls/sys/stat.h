@@ -1,0 +1,1 @@
+#ifndef D_TckSec#define D_TckSec 0x0028#endif#include <stat.h>

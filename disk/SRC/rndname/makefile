@@ -1,0 +1,1 @@
+#  makefile for name.c#	Comment out the BSD line if you're on System V#	Comment out the SYSV line if you're using Berkely Unix.  (or OSK) # SYSTEM = -DSYSV SYSTEM = -DBSD CFLAGS = -ixm=2k -t=/r0	$(SYSTEM)LFLAGS = -l=/dd/lib/rand.r -l=/dd/lib/strings.r name:	name.c

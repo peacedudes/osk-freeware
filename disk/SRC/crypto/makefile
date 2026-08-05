@@ -1,0 +1,1 @@
+#	simple makefile for crypto - edit appropriatelyODIR	=/h0/cmds/gamesCFLAGS	= -qixt=/r0 -m=4kLFLAGS	= $(CFLAGS) -l=/dd/lib/curses.l -l=/dd/lib/termlib.l\			-l=/dd/lib/math.l -l=/dd/lib/strings.r -l=/dd/lib/rand.rcrypto:	crypto.r ./makefilecrypto.r: local.h

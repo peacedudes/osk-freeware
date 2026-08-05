@@ -1,0 +1,1 @@
+/* * A test (with parentheses) */extern int main(),           func();static int func2();main(ac,av)register int ac;char **av;{   int interrupt;   char *ptr = "World\n";   (void)func2(func,ptr);}intfunc(){   printf("Hello ");}static intfunc2(my_func,s)void (*my_func)();const char *s;{   (*my_func)();   return(printf("%s",s));}

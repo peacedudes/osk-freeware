@@ -1,0 +1,1 @@
+#ifndef assert#ifndef NDEBUG#define assert(arg) ((arg) ? 0 : (fprintf(stderr, "Assertion failed: file %s line %d.\n", __FILE__, __LINE__), exit(1)))#else#define assert(arg) (0)#endif#endif

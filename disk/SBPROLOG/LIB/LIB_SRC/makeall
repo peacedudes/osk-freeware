@@ -1,0 +1,1 @@
+#setenv SIMPATH .:$HOME/cer/cmplib/src/code:$HOME/cer/newmodlib:$HOME/cer/lib$HOME/cer/sim/sim $HOME/cer/modlib/\$readloop <<ENDSIMcompile('\$exists.P','code/\$exists',[v,i]).compile('access.P','code/access',[v,i]).compile('subsumes.P','code/subsumes',[v,i]).ENDSIM

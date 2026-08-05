@@ -1,0 +1,1 @@
+extern long rand();direct int  i;main(){    pflinit();    for(i = 0;;++i)        printf(" %12ld%s", rand(), i%5 < 4 ? ", " : "\n");}

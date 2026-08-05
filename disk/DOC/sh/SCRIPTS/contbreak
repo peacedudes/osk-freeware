@@ -1,0 +1,1 @@
+#echo Will display arg1 to arg4for i in arg1 arg2 noarg arg3 arg4do  if [ $i = noarg ]  then    continue  fi  echo Argument $idoneecho#echo Will display arg1 and arg2 and finish after lastargfor i in arg1 arg2 lastarg arg3 arg4 arg5 arg6do  echo Argument $i  if [ $i = lastarg ]  then    break  fidone

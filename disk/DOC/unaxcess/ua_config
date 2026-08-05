@@ -1,0 +1,1 @@
+readonly	YESrestricted	YESshell		shellread-env	$YESbbs-user	""time-limit      60sysop		"sysop"private-msgs    YESlogging		YESbanner		""login-msg	""login-tries	3validation-level	1

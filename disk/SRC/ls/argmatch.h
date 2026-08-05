@@ -1,0 +1,1 @@
+/* argmatch.h -- old 2-arg interface used by fileutils 3.13 ls */#ifndef ARGMATCH_H#define ARGMATCH_H/* Returns index of match in arglist, -1 if ambiguous, -2 if no match */int argmatch __P ((char *arg, char **arglist));#endif

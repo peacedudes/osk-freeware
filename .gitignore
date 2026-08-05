@@ -1,0 +1,13 @@
+# Built artefacts -- the image is a release asset, not source.
+/osk-freeware.dd
+/dd
+/h0
+/hz
+*.dd
+
+# macOS
+.DS_Store
+._*
+
+# Collaboration guide -- for working ON this repo, not for its users.
+CLAUDE.md

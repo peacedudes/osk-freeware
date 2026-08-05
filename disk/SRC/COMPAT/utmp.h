@@ -1,0 +1,1 @@
+/* Minimal BSD <utmp.h> for porting usenet sources to OS-9/68k. */#define UT_NAMESIZE 8#define UT_LINESIZE 12struct utmp {	char ut_line[UT_LINESIZE];	char ut_name[UT_NAMESIZE];	long ut_time;};

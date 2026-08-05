@@ -1,0 +1,1 @@
+# makefile for karl's PD fortune cookie programmake.all:	cookie cookhash	@echo doneCFLAGS = -qixm=2k -t=/r0LFLAGS = -ql=/dd/lib/rand.rcookie:	cookie.hcookhash:

@@ -1,0 +1,1 @@
+Leider lief der SED nicht auf anhieb. Aber mit einer kleinen Aenderunggiengs dann. Der SED hat naemlich die schlechte Angewohnheit 'malloc(0)'aufzurufen was unter OS-9 einen error zur Folge hat (-> ck_malloc() ).STP

@@ -1,0 +1,1 @@
+# makefile for dfiles# increment version (EDITION) after each change#EDITION = 14ODIR = /h0/cmdsCFLAGS = -t=/r0 LFLAGS = -e=$(EDITION) dfiles: dfiles.rdfiles.r: dfiles.c 

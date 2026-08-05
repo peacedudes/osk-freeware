@@ -1,0 +1,1 @@
+/* fnmatch.h stub -- real fnmatch defined in system.h */

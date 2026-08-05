@@ -1,0 +1,1 @@
+CFLAGS = -igxRFILES = sdb.r cmd.r com.r cre.r err.r iex.r int.r io.r mth.r pcjunk.r scn.r \sel.r srt.r tbl.rsdb: $(RFILES)  cc -igxt=/r0 $(RFILES) -f=/DD/USR/MB/CMDS/sdb

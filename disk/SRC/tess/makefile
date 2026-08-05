@@ -1,0 +1,1 @@
+# makefile for tess for OSK CFLAGS = -qixm=20k -t=/ddLFLAGS = -l=/dd/lib/rand.r -l=/dd/lib/strings.r -l=/dd/lib/math.l tess:	tess.r	cc $(CFLAGS) $(LFLAGS) tess.r -f=tess

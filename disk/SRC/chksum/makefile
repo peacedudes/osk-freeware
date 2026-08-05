@@ -1,0 +1,1 @@
+CFLAGS =	-qixm=2k -t=/r0LFLAGS =	-l=/dd/lib/math.lRDIR =		/r0chksum: chksum.r crc32.r	chd $(RDIR); cc -f=$@ $(CFLAGS) $(LFLAGS) chksum.r crc32.r

@@ -1,0 +1,1 @@
+/* sys/sysmacros.h stub */

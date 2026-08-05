@@ -1,0 +1,1 @@
+/* stddef.h stub -- size_t comes from types.h, use same guard */#ifndef NULL#define NULL 0#endif#ifndef _TYPES1_typedef int size_t;#endif#ifndef _PTRDIFF_T#define _PTRDIFF_Ttypedef int ptrdiff_t;#endif

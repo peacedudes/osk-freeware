@@ -1,0 +1,1 @@
+OPTIMIZE = -OCCFLAGS =CC = gccRDIR = relsLIB = libsurf.lINCLUDE = -I... -I..CFLAGS = $(CCFLAGS) $(INCLUDE) $(OPTIMIZE).c.r:	$(CC) $(CFLAGS) -c -o $(RDIR)/$*.r $*.cOFILES = atmosphere.r fog.r fogdeck.r mist.r surface.r surfshade.r$(LIB): $(OFILES)	chd $(RDIR);merge -b100 $(OFILES) >-../$(LIB)clean:	-chd $(RDIR); del -f $(OFILES)    -del -f $(LIB)

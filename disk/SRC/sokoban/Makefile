@@ -1,0 +1,1 @@
+RDIR = RELSODIR = /h0/cmds/dogCFLAGS = -qixm=4k -t=/r0LFLAGS = -ql=/dd/lib/curses.l -l=/dd/lib/termlib.l -l=/dd/lib/strings.rFILES = sok.r readscreen.r showscreen.r play.r save.r score.r osk.rsokoban: $(FILES)	chd $(RDIR); cc $(FILES) $(LFLAGS) -f=sokoban$(FILES): sokoban.h

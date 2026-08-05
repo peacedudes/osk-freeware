@@ -1,0 +1,1 @@
+CFLAGS = -ixm=2k -t=/r0LFLAGS = -l=/dd/lib/rand.r -l=/dd/lib/strings.rzot: zot.r 

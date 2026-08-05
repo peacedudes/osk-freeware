@@ -1,0 +1,1 @@
+#ifndef errno_h#pragma onceextern "C" {#ifndef OSK#include "//usr/include/errno.h"#else#include "/dd/defs/errno.h"#endif}#ifndef errno_h#define errno_h 1#endif#include <std.h>#endif

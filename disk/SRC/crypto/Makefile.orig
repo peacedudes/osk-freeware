@@ -1,0 +1,1 @@
+####      Makefile for crypto.c####  Choose your poison:##      BSDLIBS    = -lcurses -ltermcapCC      = cc -DBSD -O -o crypto##      System V#LIBS   = -lcurses#CC     = cc -s -DSYSV -O -o crypto##      Turbo C#LIBS   = scurses.lib#CC     = tcc -DTURBO -O -Ic:\turboc\include -Lc:\turboc\libcrypto: local.h crypto.c        $(CC) crypto.c $(LIBS)

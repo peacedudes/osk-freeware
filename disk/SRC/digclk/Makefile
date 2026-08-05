@@ -1,0 +1,1 @@
+# OSK makefile for digclk  - digital clock displayPROGRAM	= digclkRELS	= clock.r digits.r hostname.r mytime.rRDIR	= RELSODIR	= /h0/cmds/gamesCFLAGS	= -qixm=2k -t=/r0LFLAGS	= -l=/dd/lib/curses.l -l=/dd/lib/termlib.l -l=/dd/lib/math.l\			-l=/dd/lib/strings.r$(PROGRAM):	$(RELS) ./makefile	6	chd $(RDIR); cc $(CFLAGS) $(RELS) $(LFLAGS) -f=$(ODIR)/$(PROGRAM)

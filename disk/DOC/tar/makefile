@@ -1,0 +1,1 @@
+CFLAGS=-qit=/r0CC=cc.makedate: tar.c     $(CC) $(CFLAGS) -fd=tar tar.c     @attr tar -ea     @touch .makedate

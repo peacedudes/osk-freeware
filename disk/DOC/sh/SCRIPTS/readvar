@@ -1,0 +1,1 @@
+#echo -r "Please enter your name: "read nameecho -r "Hello ${name}, how do you do? "read behaviorecho "Yes, ${name}, it is an important experience to feel ${behavior}."echo "Nice to talk to you, ${name}."echo "The editor 'edt' is now started. Type 'q' to quit."touch _temp_edt _temp_-nxdel _temp_

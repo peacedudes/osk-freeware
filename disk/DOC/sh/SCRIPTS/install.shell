@@ -1,0 +1,1 @@
+*echo "The read command in an sh-script does not work when the sh session is"echo "invoked from the Mware shell. In addition, it is not possible to fork"echo "a program that requires standard input path such as an editor." echo "Both functions work, however, when the '-y' option is specified."sh -y readvar

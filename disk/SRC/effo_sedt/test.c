@@ -1,0 +1,1 @@
+main(){int I,L=5;  for (I=1;I<=L;I++)    printf("%d ",I);  for (I=L;I;I--)    printf("%d ",I);}   printf("%d ",I);

@@ -1,0 +1,1 @@
+##       Makefile for gothic banner print program.OBJ =		gothic0.r gothic1.rODIR =		/h0/cmds/gamesCFLAGS =	-gixgothic :	$(OBJ)	cc $(OBJ) $(CFLAGS) -f=gothic

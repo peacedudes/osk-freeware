@@ -1,0 +1,1 @@
+/* dirent.h stub -- OS-9 uses dir.h for directory API */#include <dir.h>/* Alias struct dirent -> struct direct for code that uses dirent */#define dirent direct/* NAMLEN -- use d_namlen from struct direct, or strlen as fallback */#ifndef NAMLEN#define NAMLEN(dp) strlen((dp)->d_name)#endif

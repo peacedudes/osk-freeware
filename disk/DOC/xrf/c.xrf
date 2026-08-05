@@ -1,0 +1,1 @@
+abort abs alloc atof atoicalloc case char close createdefine doubleelse exitfabs fclose feof fgetc fgets file float fopen for fprintf fputc fputs freefscanf ftoagetc getchar gets getwif include intmain mallocnullputc puts putwprintfreturnsizeof sscanf static stderr stdin stdoutstrcat strchr strcmp strcpy strlen strncmpstructswitchtrueungetc upperwhile write 

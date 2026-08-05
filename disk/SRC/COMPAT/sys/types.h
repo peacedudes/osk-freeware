@@ -1,0 +1,1 @@
+/* Minimal BSD <sys/types.h> for porting usenet sources to OS-9/68k.   NOTE: dev_t is deliberately NOT defined here -- DEFS/UNIX/stat.h declares   it as char* (a device NAME), and redefining it as a scalar breaks stat.h. */#include <types.h>#ifndef _OSK_COMPAT_TYPES#define _OSK_COMPAT_TYPEStypedef long  ino_t;typedef short nlink_t;typedef long  off_t;#endif

@@ -1,0 +1,1 @@
+/***  This file records official patches.****  $Header: patchlog.h,v 2.0 89/02/08 16:30:24 rsalz Release1 $****  $Log:      patchlog.h,v $**  Revision 2.0  89/02/08  16:30:24  rsalz**  First net release.**  */#define VERSION 2#define PATCHLEVEL 0

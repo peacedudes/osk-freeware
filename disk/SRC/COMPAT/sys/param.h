@@ -1,0 +1,1 @@
+/* Minimal BSD <sys/param.h> for porting usenet sources to OS-9/68k. */#include <types.h>#define MAXPATHLEN 256#define NOFILE     32#define NBBY       8#ifndef MAX#define MAX(a,b) ((a)>(b)?(a):(b))#define MIN(a,b) ((a)<(b)?(a):(b))#endif

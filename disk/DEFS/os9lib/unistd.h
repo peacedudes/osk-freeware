@@ -1,0 +1,1 @@
+/* Fuer OS9LIB angepaszt	08-03-92 	--- jl --- */#ifndef _FCNTL_#include <sys/fcntl.h>#endif/* for access(2) */#define access	unix_access	/* umdefinieren von OS9 access() nach UNIX access()	*/#define R_OK		4#define W_OK		2#define X_OK		1#define F_OK		0#define XX_OK		0x80	/* exec permission in exec dir				*/

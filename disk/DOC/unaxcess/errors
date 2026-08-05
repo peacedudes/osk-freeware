@@ -1,0 +1,1 @@
+'system.c'cpp:c68:o68:r68:'ua.r''message.r''conference.r''date.r''bulletin.r''system.r''user.r''fileudl.r''io.r''osksys.r''crypt.r'l68:cc -dOSK -dNOAUTOPATH="/dd/unaxcess/sysbase" -r system.ccc -f=ua ua.r message.r conference.r date.r bulletin.r system.r user.r  fileudl.r io.r osksys.r crypt.r -M=50 

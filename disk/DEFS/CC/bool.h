@@ -1,0 +1,1 @@
+#ifndef _bool_h#pragma once#define _bool_h 1enum bool { FALSE = 0, TRUE = 1 };#endif

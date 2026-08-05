@@ -1,0 +1,1 @@
+##       Makefile for very verbose date command (today).RDIR =	RELSODIR =	/h0/cmds/gamesOBJ =   datetx.r moontx.r nbrtxt.r timetx.r today.r localtime.rCFLAGS = -qgixt=/ddtoday:  $(OBJ)        chd $(RDIR); cc $(OBJ) $(CFLAGS) -f=today

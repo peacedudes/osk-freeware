@@ -1,0 +1,1 @@
+## Makefile for libray# C. Kolb 1/91## $Id: Makefile,v 4.0.1.1 91/10/10 18:33:41 cek Exp Locker: cek $#-bMAKEFLAGS =CCFLAGS =MAKE = make "CCFLAGS=$(CCFLAGS)" $(MAKEFLAGS)STUFF = rsconvertMERGE = merge -b200default:	chd rsconvert; $(MAKE)## Have to keep clean/depend separete so# Configure will work#clean:	chd rsconvert; $(MAKE) -b clean

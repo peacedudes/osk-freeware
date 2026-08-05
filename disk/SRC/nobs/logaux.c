@@ -1,0 +1,1 @@
+#include "defs.h"intcindex(a, b)CARD a, b;{	register t, u;	t = RANK(a);	u = RANK(b);	if (t < u) {		t = RANK(b);		u = RANK(a);	}	return u - 1 + (t * (t-1))/2;}

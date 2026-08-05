@@ -1,0 +1,1 @@
+RDIR=RELSSDIR=.CFLAGS= -t=/r0 -bp -x -i LFLAGS= -t=/r0 -bpLIBS= tek.l termio.ltek.l: tek.r    cp $(RDIR)/tek.r $(RDIR)/tek.ltermio.l: termio.r    cp $(RDIR)/termio.r $(RDIR)/termio.ltek.r: tek.h termio.htermio.r:

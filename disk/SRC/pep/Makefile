@@ -1,0 +1,1 @@
+# Makefile for pep  for OS-9RDIR =		RELSODIR =		/h0/cmds/dogCFLAGS =	-qxm=2k -t=/r0 -Dunix -DSTRICMPLFLAGS =	-l=/dd/lib/unix.lRFILES =	main.r ansi.r plain.r bdmg.r$(ODIR)/pep: $(RFILES)	chd $(RDIR); cc $(CFLAGS) $(LFLAGS) -f=$@ $(RFILES)$(RFILES):	pep.hmain.r:		bdmg.h

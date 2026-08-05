@@ -1,0 +1,1 @@
+SB-Prolog:=========Version#  Date			Notes-------	  ----			-----   2	  2/86	The "basic" version.  Differs from version 1   		in introducing indexing, instruction format		change for even length instructions.  Also,		numerous bug fixes.   2.1	  2/87	Bug fixes; improvements to "assert" and "trace"   		packages.   2.2	  3/87	Floating point numbers.

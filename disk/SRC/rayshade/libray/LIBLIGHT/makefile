@@ -1,0 +1,1 @@
+OPTIMIZE = -OCCFLAGS =CC = gccRDIR = relsLIB = liblight.lINCLUDE = -I... -I..CFLAGS = $(CCFLAGS) $(INCLUDE) $(OPTIMIZE).c.r:	$(CC) $(CFLAGS) -c -o $(RDIR)/$*.r $*.cOFILES = light.r extended.r infinite.r jittered.r point.r shadow.r spot.r$(LIB): $(OFILES)	chd $(RDIR);merge -b100 $(OFILES) >-../$(LIB)clean:	-chd $(RDIR); del -f $(OFILES)    -del -f $(LIB)

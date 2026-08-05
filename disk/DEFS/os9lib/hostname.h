@@ -1,0 +1,1 @@
+/* * hostname.h */#define HNAMELEN (11)#ifdef __GNUC__extern char *gethostname( char *, int );#elseextern char *gethostname();#endif

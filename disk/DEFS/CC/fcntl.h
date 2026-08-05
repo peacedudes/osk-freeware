@@ -1,0 +1,1 @@
+#ifndef fcntl_h#pragma onceextern "C" {#define KERNEL#include "//usr/include/fcntl.h"#ifndef fcntl_h#define fcntl_h 1#endif#undef KERNEL}#include <std.h>#endif

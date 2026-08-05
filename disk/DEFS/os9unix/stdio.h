@@ -1,0 +1,1 @@
+#ifndef	stdin#include "/dd/defs/stdio.h"#endif

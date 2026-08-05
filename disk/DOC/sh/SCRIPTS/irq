@@ -1,0 +1,1 @@
+## irq: display either all devices or only those that match specified pattern#if test $# -eq 0then  echo none  irqselse  if test $1 = "-?"  then    echo 'Syntax: irq [<device>]' 1>&2    echo 'Function: search <device> in IRQ table' 1>&2    echo '          display all devices, if no argument specified'  1>&2    exit 1  fi  irqs | grep $1fi

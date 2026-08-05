@@ -1,0 +1,1 @@
+CFLAGS = -ixt=/ddcursive: cursive.r font.r        cc -ixf=cursive cursive.r font.r

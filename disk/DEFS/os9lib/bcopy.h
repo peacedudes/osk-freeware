@@ -1,0 +1,1 @@
+#ifndef _BCOPY_DEF#define _BCOPY_DEF#define bcopy(src,dest,size)	memcpy((dest),(src),(size))#define bcmp(src,dest,size)	memcmp((src),(dest),(size))#define bzero(src,size)		memset((src),0,(size))#endif

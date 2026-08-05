@@ -1,0 +1,1 @@
+#include "defs.h"#include "globs.h"deal(){	int i;	CARD *packp;	shuf();	packp = pack+39;	/* Only the last 13 cards */	for (i=0; i<6; i++) {		hand[0][i] = *packp++;		hand[1][i] = *packp++;	}	cut = *packp;}

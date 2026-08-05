@@ -1,0 +1,1 @@
+prag($asm_process_pil_inst,4, index).prag($asm_proc_index,3, index).prag($asm_index_inst,2,index).prag($asm_index_inst1,2,index).

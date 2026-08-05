@@ -1,0 +1,1 @@
+# This example shows how to redirect standard error output to# standard data output so that in can be run through pipe.# Show frestore's pre-extend option:echo 'frestore: option to pre-extend temp file is'frestore -? 2>&1 | grep pre-extend

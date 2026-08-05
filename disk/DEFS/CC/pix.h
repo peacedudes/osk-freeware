@@ -1,0 +1,1 @@
+#ifndef _Pix_h#pragma once#define _Pix_h 1typedef void* Pix;#endif

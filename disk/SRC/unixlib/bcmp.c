@@ -1,0 +1,1 @@
+/* bcmp - Berklix equivalent of memcmp *//* == 0 or != 0 for equality and inequality */int bcmp(s1, s2, length)          char *s1;          char *s2;          int length;          {          return (memcmp(s1, s2, length));          } /* end of bcmp */

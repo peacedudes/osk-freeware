@@ -1,0 +1,1 @@
+/* *  keyBuild.h  Useful keybuilding constatnts */#define ASCENDING   1   /* ascending order key                      */#define DESCENDING  -1  /* descending order key                     */#define EOK         -99 /* end of keys                              */
