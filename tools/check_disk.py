@@ -14,10 +14,20 @@ reported "copied 3287/3287" while every copy failed.
      is invisible until something tries to read the file. Binaries are
      skipped: 0x0A is an ordinary byte in a module.
 
-  2. EVERY COMMAND IS NAMED IN DOC/INDEX. INDEX is what tells a reader what
+  2. NO UTF-8 ON AN 8-BIT DISK. An em dash typed host-side reaches OS-9 as
+     three garbage characters. Legacy 8-bit archive content is left alone,
+     told apart by the fact that it does not decode as UTF-8.
+
+  3. NO EDITOR OR HOST LEFTOVERS. mkimage.sh reads disk/ off the filesystem,
+     so .gitignore does not keep a vim swap file out of the shipped image.
+
+  4. NO NEW SDK AUTHOR STAMPS. Removing them was the point of the rebake;
+     the 15 that remain are documented individually.
+
+  5. EVERY COMMAND IS NAMED IN DOC/INDEX. INDEX is what tells a reader what
      a program is; a command absent from it is undiscoverable.
 
-  3. DOC/DEPENDS IS UP TO DATE. It is generated, and drifts the moment
+  6. DOC/DEPENDS IS UP TO DATE. It is generated, and drifts the moment
      anything is added -- delegated to gen_depends.py, which owns the rule.
 """
 import os, re, subprocess, sys
@@ -128,6 +138,32 @@ def check_author_stamps(root):
             "%d modules stamped, %d documented" % (len(stamped), STAMPED_KNOWN))
 
 
+LEFTOVERS = (".swp", ".swo", ".bak", ".rej", "~", ".DS_Store", ".pyc")
+LEFTOVER_NAMES = ("core", "Thumbs.db", ".DS_Store")
+
+
+def check_no_leftovers(root):
+    """Fail on editor and host litter that has landed in the disk tree.
+
+    `mkimage.sh` reads `disk/` straight off the filesystem, so .gitignore does
+    not protect the image: a stray file here is baked into what ships. A vim
+    swap file is the one that actually happened, and it carried the host
+    username inside it.
+
+    `.orig` is deliberately NOT in this list. Thirteen `Makefile.orig` files
+    are pristine upstream makefiles kept beside their OS-9 adaptations, which
+    is provenance worth having, not litter.
+    """
+    bad = []
+    for dirpath, _, names in os.walk(root):
+        for name in names:
+            if name in LEFTOVER_NAMES or name.endswith(LEFTOVERS):
+                bad.append(os.path.relpath(os.path.join(dirpath, name), root))
+    for path in sorted(bad):
+        print("    leftover: %s  (close the editor, or delete it)" % path)
+    return not bad, "%d editor/host leftover(s) in the tree" % len(bad)
+
+
 def check_index_names(root):
     index = os.path.join(root, "DOC", "INDEX")
     words = set(re.findall(r"[A-Za-z0-9_.]+",
@@ -153,6 +189,7 @@ def check_depends(root):
 CHECKS = [
     ("line endings are CR-only", check_line_endings),
     ("no UTF-8 on an 8-bit disk", check_no_utf8),
+    ("no editor or host leftovers", check_no_leftovers),
     ("no new SDK author stamps", check_author_stamps),
     ("every command is in DOC/INDEX", check_index_names),
     ("DOC/DEPENDS is up to date", check_depends),

@@ -19,3 +19,11 @@ notes/CORPUS-AUDIT-68k.md
 notes/DOWNLOADS-68k.md
 notes/FREEWARE-INDEX.md
 notes/FREEWARE-TRIAGE-68k.md
+
+# Editor and host litter. Note these are also refused by tools/check_disk.py:
+# mkimage.sh reads disk/ off the filesystem, so ignoring them here is not
+# enough to keep them out of the image.
+*.swp
+*.swo
+*~
+.DS_Store
