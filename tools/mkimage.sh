@@ -71,6 +71,18 @@ ndirs=$(find "$SRC" -mindepth 1 -type d | wc -l | tr -d ' ')
 echo "  $SRC ($(du -sh "$SRC" | cut -f1)) -> ${MB}M image, volume '$VOL'"
 echo "  $ndirs dirs, $nfiles files"
 
+# The image is built from the working tree, not from git, so .gitignore is no
+# protection: a vim swap file sitting in disk/ would be packed into what ships.
+# Two seconds here is cheaper than finding out after release. SKIP_CHECKS=1
+# exists for bisecting a build, not for routine use.
+if [ "${SKIP_CHECKS:-0}" != "1" ]; then
+  "$HERE/check_disk.py" "$SRC" || {
+    echo "  refusing to build from a tree that fails its own checks"
+    echo "  (set SKIP_CHECKS=1 to override, and know why you are doing it)"
+    exit 1
+  }
+fi
+
 TMP=$(mktemp -d)
 # $WORK is removed too. A failed run that left its half-built image behind
 # would make the NEXT run refuse with "already exists", which reads like a
