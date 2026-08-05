@@ -1,5 +1,1 @@
-* startup -- os9exec default boot script
-*
-setenv PATH /dd/CMDS:/dd/CMDS/UNIX:/h0/CMDS:/h1/CMDS
-setenv TERM xterm-256color
-ex shell <>>>/term
+* startup -- os9exec default boot script*setenv PATH /dd/CMDS:/dd/CMDS/UNIX:/h0/CMDS:/h1/CMDSsetenv TERM xterm-256colorex shell <>>>/term
