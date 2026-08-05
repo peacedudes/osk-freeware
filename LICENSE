@@ -47,9 +47,10 @@ THE TOOLING
 
 The part that was written for this repository -- `tools/`, `.github/`,
 `README.md`, `notes/` -- is offered under the MIT licence, in
-`tools/LICENSE`. It is a build script, an archive packer and two checkers.
-They are kept deliberately separate from the above so that nothing about
-them reads as a claim over the collection.
+`tools/LICENSE`. It is a build script, an archive packer, a generator for
+`DOC/DEPENDS` and a checker for the disk's invariants. They are kept
+deliberately separate from the above so that nothing about them reads as a
+claim over the collection.
 
 
 NO MICROWARE PRODUCT IS HERE

@@ -1,5 +1,16 @@
 # REBAKE MANIFEST -- modules carrying the SDK author stamp
 
+This is the record of a finished job, kept for the reasoning rather than the
+mechanics. The driver scripts it names in passing — `build_games.sh`,
+`verify3.sh`, `rebuild_recipes.sh` and the rest — were one-off scripts written
+during the run and are **not in this repository**. What was kept is
+`tools/rebuild/`: `rebuild.sh`, `verify.sh` and the 203 recipes in
+`recipes.psv`. Read that if you want to rebuild something; read this if you
+want to know why a binary is the way it is.
+
+`tools/check_disk.py` now fails if more than the 15 documented modules carry
+the stamp, so a regression cannot creep back unnoticed.
+
 Every C program built with this SDK links `LIB/cstart.r`, which carries a
 64-byte `Author` psect reading:
 
