@@ -361,6 +361,59 @@ def render_markdown(progs):
     return "\n".join(L) + "\n"
 
 
+def render_disk_index(progs):
+    """DOC/CATEGORIES -- the same grouping, for someone already at an OS-9 prompt.
+
+    The HTML and Markdown catalogues only help people who found the repository.
+    Anyone who has the disk image and nothing else has DOC/INDEX, which is
+    alphabetical. CR-terminated, 80 columns, no high-bit characters.
+    """
+    by = {}
+    for p in progs:
+        by.setdefault(p["cat"], {}).setdefault(p["sub"], []).append(p)
+    free = sum(1 for p in progs if not p.get("star") and not p.get("basic09"))
+
+    L = ["CATEGORIES -- what is here, grouped by what it is for",
+         "=====================================================",
+         "",
+         "DOC/INDEX lists every program alphabetically and says what each one is.",
+         "This is the same set in the order you want when you do not yet know the",
+         "name: %d programs, of which %d need nothing but this disk.  A star means" % (len(progs), free),
+         "the program wants Microware's cio -- see DOC/README-CIO.",
+         ""]
+    for cat in ORDER:
+        if cat not in by:
+            continue
+        subs = by[cat]
+        n = sum(len(v) for v in subs.values())
+        L += ["-" * 70, "%s (%d)" % (cat.upper(), n), "-" * 70, ""]
+        blurb = BLURB.get(cat, "")
+        while blurb:                                  # wrap the blurb at 70
+            cut = blurb.rfind(" ", 0, 70) if len(blurb) > 70 else len(blurb)
+            L.append("  " + blurb[:cut])
+            blurb = blurb[cut:].lstrip()
+        L.append("")
+        for sub in sorted(subs, key=lambda s: -len(subs[s])):
+            if len(subs) > 1:
+                L.append("  %s:" % sub)
+            for p in sorted(subs[sub], key=lambda x: x["name"].lower()):
+                star = "*" if p.get("star") else " "
+                desc = p.get("desc") or ""
+                if len(desc) > 52:                 # cut on a word, not mid-word
+                    cut = desc.rfind(" ", 0, 52)
+                    desc = desc[:cut if cut > 30 else 52].rstrip(" ,;--") + "..."
+                L.append("   %s%-16s %s" % (star, p["name"], desc))
+            L.append("")
+    L += ["-" * 70,
+          "Generated from DOC/INDEX and the tree.  DOC/INDEX remains the fuller",
+          "account: it carries the notes, the caveats and the per-package detail.",
+          ""]
+    text = "\r".join(L)
+    assert "\n" not in text, "DOC/CATEGORIES must be CR-only"
+    assert all(ord(c) < 128 for c in text), "DOC/CATEGORIES must be plain ASCII"
+    return text
+
+
 def render(progs, template, standalone=True):
     """Fill the template. `standalone` wraps it as a complete document.
 
@@ -417,6 +470,11 @@ if __name__ == "__main__":
     md = os.path.join(os.path.dirname(os.path.abspath(out)), "CATALOG.md")
     open(md, "w", encoding="utf-8").write(render_markdown(progs))
 
+    # And the same grouping on the disk itself, for anyone who has only that.
+    disk_doc = os.path.join(root, "DOC", "CATEGORIES")
+    open(disk_doc, "wb").write(render_disk_index(progs).encode("ascii"))
+
     print("  %s" % out)
     print("  %s" % md)
+    print("  %s" % disk_doc)
     print("  %d programs, %d categories" % (len(progs), len(set(p["cat"] for p in progs))))

@@ -14,6 +14,28 @@ Moved out of os9exec's ROADMAP.md when the collection got its own repo.
   exactly the 2 bytes of the `B_` name prefix — so either ORIGINS is wrong or
   one copy is a stale duplicate of the other.
 
+## Documented, with source, and no binary — the pattern to sweep for
+
+Three found so far. The signature is a `DOC/<pkg>/` directory and a `SRC/`
+tree with nothing in `CMDS/` to match, which reads to a browser as a program
+that ought to be here.
+
+- **elvis** — the big one, below. A complete OS-9 port; buildable.
+- **spline** — `DOC/spline/` (readme + makefile) and `SRC/eff_spline/spline.c`
+  are here; only `mtst`, its test driver, ships. The makefile wants `tek.l`
+  and `-t=/r0`, so it was built for a Tektronix-graphics machine and may not
+  be worth reviving as-is. Paul William Farquhar, Augsburg.
+- **snobol** — FIXED, and it was a wording problem rather than a missing
+  program. `DOC/snobol/` and `SRC/effo_snobol/` describe Robert Heller's
+  SNOBOL4-in-C: a C library that simulates SNOBOL4's pattern matcher. Seven
+  programs advertised themselves as a "SNOBOL demo", which sent people looking
+  for an interpreter that was never part of it. DOC/INDEX now says so plainly.
+
+Worth a proper sweep: `DOC/` has 23 directories with no program of the same
+name, and most are package names whose programs are named differently
+(`pdksh` is `ksh`, `wolk` is `dam`/`ssl`/`ff`). Only the three above document
+something genuinely absent.
+
 ## Freeware disk: elvis has docs and source but no binary — BUILDABLE
 
 `DOC/elvis/` carries the full man-page set and `CMDS/archives/elvis1.7.lzh`
