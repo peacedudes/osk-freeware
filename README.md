@@ -23,6 +23,20 @@ root and home. There is no established name for that role.
       SYS/ LIB/ DEFS/
     tools/      how the image gets built (see tools/README.md)
 
+## Running it
+
+    ln osk-freeware.dd h0        # one inode, two names; os9exec needs both
+    OS9DISK=$PWD/osk-freeware.dd OS9H0=$PWD/h0 \
+        os9exec /dd/CMDS/bash /dd/SYS/login
+
+The trailing `/dd/SYS/login` is not optional. bash on this disk cannot read a
+startup file — its `.` builtin fails on every path — so started bare it has no
+`PATH`, no `HOME` and no `TERM`, finds no command, and complains about a
+missing `.bashrc`. `SYS/login` is a script that exports the three and hands
+over to an interactive shell. Without `TERM`, `vi` clears the screen, draws
+nothing and ignores `:q` — which reads as a lock-up and is a missing terminal
+type.
+
 ## What is actually in it
 
 **[docs/CATALOG.md](docs/CATALOG.md) — every program, grouped by what it is for.**

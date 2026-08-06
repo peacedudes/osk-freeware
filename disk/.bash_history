@@ -1,0 +1,1 @@
+echo PATH=$PATHls /dd/DOC/shexit
