@@ -29,6 +29,33 @@ root and home. There is no established name for that role.
 That is the one to open first. `DOC/INDEX` on the disk is alphabetical and 700
 lines long, which is no help until you already know the name you want.
 
+<!-- CATEGORIES:START -->
+
+| Category | | |
+|---|--:|---|
+| **Shells** | 16 | The stock OS-9 shell is thin. These give you history, job control and a command line worth living in. |
+| **Editors** | 18 | vi and emacs in several flavours, line and stream editors, and editors for binary and hex. |
+| **Text tools** | 71 | Search, sort, compare, reformat, split and spell-check. |
+| **Files & directories** | 31 | Listing, copying, finding, renaming, and knowing what you have. |
+| **Developer tools** | 28 | Version control, tags, cross-reference, formatters, a debugger and benchmarks. |
+| **Compilers & build** | 33 | C compilers and their passes, assemblers, linkers, make and parser generators. |
+| **Languages** | 3 | Interpreters and language systems beyond C. |
+| **Archives & compression** | 20 | Pack, unpack and shrink -- lha, zip, tar, arc, zoo, and OS-9 module libraries. |
+| **Encoding & conversion** | 16 | Between text encodings, line endings, number bases, ciphers and hashes. |
+| **Communications** | 20 | Kermit in several builds, terminal sessions, and networking. |
+| **Graphics & images** | 189 | The netpbm toolkit, JPEG, a ray tracer, and things that draw. |
+| **Games** | 58 | Adventures, board and card games, arcade ports, dungeon crawls and puzzles. |
+| **Screen toys** | 6 | Things to watch rather than play. Start one and leave it going. |
+| **Amusements** | 18 | Generators, simulators and diversions that are not quite games. |
+| **System & modules** | 32 | OS-9 module and process tools, devices, system state and scheduling. |
+| **Disk & DOS** | 20 | Reading and writing MS-DOS media with the mtools set. |
+| **Time & calendar** | 12 | Calendars, clocks and astronomy. |
+| **Maths & calculators** | 11 | Calculators, plotting, orbits and number theory. |
+| **Printing** | 8 | Spoolers, page formatting and PostScript. |
+| **Documentation** | 4 | Pagers, readers and the help system. |
+
+<!-- CATEGORIES:END -->
+
 `docs/index.html` is the same catalogue as a searchable page: filter by
 category, hide anything needing `cio`, and click a program for what it needs,
 where it came from and on what terms. GitHub shows HTML files as source rather

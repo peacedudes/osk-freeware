@@ -64,6 +64,13 @@
   .ct .cv{margin-left:auto;color:var(--faint);font-size:12px;transition:transform .12s}
   details[open] .ct .cv{transform:rotate(90deg)}
   .blurb{margin:5px 0 0;font-size:13px;color:var(--dim);max-width:48ch}
+  details.sub{border-top:1px solid var(--hair)}
+  details.sub>summary{list-style:none;cursor:pointer}
+  details.sub>summary::-webkit-details-marker{display:none}
+  details.sub>summary .subh{display:flex;align-items:center;gap:6px;border-top:0}
+  details.sub>summary:hover .subh{color:var(--dim)}
+  details.sub .cv{color:var(--faint);transition:transform .12s;display:inline-block}
+  details.sub[open]>summary .cv{transform:rotate(90deg)}
   .subh{font-family:var(--mono);font-size:10.5px;letter-spacing:.09em;text-transform:uppercase;
         color:var(--faint);padding:11px 16px 3px;border-top:1px solid var(--hair)}
   ul{list-style:none;margin:0;padding:0 0 8px}
@@ -152,6 +159,7 @@ const ORDER = __ORDER__;
 const esc = s => String(s==null?"":s).replace(/&/g,"&amp;").replace(/</g,"&lt;").replace(/>/g,"&gt;");
 const kb = n => n>=1024 ? Math.round(n/1024)+"K" : n+"B";
 const st = {q:"", nocio:false, src:false, doc:false, open:false, az:false};
+const BIG = 12;   // fold a subcategory longer than this
 
 function ok(p){
   if(st.nocio && p.star) return false;
@@ -203,11 +211,20 @@ function render(){
     const names=Object.keys(subs).sort((a,b)=>subs[b].length-subs[a].length);
     const single = names.length===1;
     for(const s of names){
-      if(!single) out.push(`<div class="subh">${esc(s)} &middot; ${subs[s].length}</div>`);
-      out.push("<ul>"+subs[s].sort((a,b)=>a.name.localeCompare(b.name)).map(p=>
+      const rows = subs[s].sort((a,b)=>a.name.localeCompare(b.name));
+      const list = "<ul>"+rows.map(p=>
         `<li class="p" tabindex="0" data-n="${esc(p.name)}"><span class="nm">`+
         `${p.star?'<span class="st" title="needs cio">&#9733;</span>':''}${esc(p.name)}</span>`+
-        `<span class="ds">${esc(p.desc)}</span></li>`).join("")+"</ul>");
+        `<span class="ds">${esc(p.desc)}</span></li>`).join("")+"</ul>";
+      // Long runs fold away. netpbm's 62 converters otherwise push every
+      // other category off the bottom of the page.
+      if(rows.length > BIG && !st.q){
+        out.push(`<details class="sub"><summary><span class="subh">${esc(s)} `+
+          `&middot; ${rows.length}<span class="cv">&#9656;</span></span></summary>${list}</details>`);
+      } else {
+        if(!single) out.push(`<div class="subh">${esc(s)} &middot; ${rows.length}</div>`);
+        out.push(list);
+      }
     }
     out.push("</details>");
   }

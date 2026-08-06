@@ -149,7 +149,7 @@ def derive_netpbm_desc(name):
 
 # ---- the program's own help text -------------------------------------
 
-USAGE_START = re.compile(rb"(?i)^(usage|syntax|use)\s*[:\-]")
+USAGE_START = re.compile(rb"(?i)(usage|syntax)\s*:")
 USAGE_CONT  = re.compile(rb"(?i)^(options?|function|where|flags?|commands?)\s*[:\-]")
 USAGE_OPT   = re.compile(rb"(?i)^\s{0,6}-{1,2}[A-Za-z?][\w=]*\s")
 
@@ -173,14 +173,19 @@ def usage_of(path, name, limit=1200):
         return None
     out, taking = [], False
     for m in re.finditer(rb"[ -~\t]{6,}", data):
-        line = re.sub(rb"^[^A-Za-z/\-]{0,6}", b"", m.group()).rstrip()
+        line = m.group().rstrip()
         if not line:
             continue
         if not taking:
-            if USAGE_START.match(line):
+            # SEARCH, not match: these strings often carry a few bytes of
+            # surrounding code, and "N]NuUsage: gnuchess [-a]" starts with a
+            # letter, so stripping non-letters off the front never reached it.
+            hit = USAGE_START.search(line)
+            if hit:
                 taking = True
-                out.append(line)
+                out.append(line[hit.start():])
             continue
+        line = re.sub(rb"^[^A-Za-z/\-]{0,6}", b"", line)
         if USAGE_OPT.match(line) or USAGE_CONT.match(line) or re.match(rb"^\s{2,}\S", line):
             out.append(line)
             if sum(len(x) for x in out) > limit:
@@ -193,7 +198,17 @@ def usage_of(path, name, limit=1200):
     text = re.sub(r"[ \t]{3,}", "   ", text)
     # these are printf templates; %s is almost always the program's own name
     text = text.replace("%s", name)
-    return text[:limit]
+    text = text[:limit]
+
+    # Reject what substitution turned into noise. netpbm composes its usage at
+    # run time from "usage:  %s %s", so the argument spec is never in the
+    # binary and this yields "usage: pnmcut pnmcut" -- worse than saying
+    # nothing, because it looks like the program takes its own name twice.
+    body = re.sub(r"(?i)^\s*(usage|syntax)\s*:", "", text).strip()
+    body = body.replace(name, "").strip()
+    if len(body) < 6 or not re.search(r"[\[<(\-]|\w\s+\w", body):
+        return None
+    return text
 
 
 def from_origins(root, progs):
@@ -467,6 +482,37 @@ def render_disk_index(progs):
     return text
 
 
+
+README_START = "<!-- CATEGORIES:START -->"
+README_END   = "<!-- CATEGORIES:END -->"
+
+def update_readme(progs, path):
+    """Refresh the category table between the markers in README.md.
+
+    Not the whole list -- docs/CATALOG.md is that, and repeating 614 rows on
+    the front page helps nobody. This is the shape of the collection at a
+    glance, so a visitor knows what is here before deciding to click.
+    """
+    if not os.path.exists(path):
+        return False
+    text = open(path, encoding="utf-8").read()
+    if README_START not in text or README_END not in text:
+        return False
+    counts = {}
+    for p in progs:
+        counts[p["cat"]] = counts.get(p["cat"], 0) + 1
+    rows = ["| Category | | |", "|---|--:|---|"]
+    for cat in ORDER:
+        if cat in counts:
+            rows.append("| **%s** | %d | %s |" % (cat, counts[cat], BLURB.get(cat, "")))
+    block = "%s\n\n%s\n\n%s" % (README_START, "\n".join(rows), README_END)
+    new = re.sub(re.escape(README_START) + r".*?" + re.escape(README_END),
+                 lambda _: block, text, flags=re.S)
+    if new != text:
+        open(path, "w", encoding="utf-8").write(new)
+    return True
+
+
 def render(progs, template, standalone=True):
     """Fill the template. `standalone` wraps it as a complete document.
 
@@ -534,4 +580,6 @@ if __name__ == "__main__":
     print("  %s" % out)
     print("  %s" % md)
     print("  %s" % disk_doc)
+    if update_readme(progs, os.path.join(repo, "README.md")):
+        print("  %s (category table)" % os.path.join(repo, "README.md"))
     print("  %d programs, %d categories" % (len(progs), len(set(p["cat"] for p in progs))))
