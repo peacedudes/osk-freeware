@@ -31,3 +31,8 @@ notes/FREEWARE-TRIAGE-68k.md
 # Python bytecode from running the tools in place.
 __pycache__/
 *.pyc
+
+# Shell history, written into $HOME (= /dd) by a session on the tree.
+.bash_history
+.sh_history
+.pdksh_hist

@@ -146,7 +146,10 @@ def check_author_stamps(root):
 
 
 LEFTOVERS = (".swp", ".swo", ".bak", ".rej", "~", ".DS_Store", ".pyc")
-LEFTOVER_NAMES = ("core", "Thumbs.db", ".DS_Store")
+LEFTOVER_NAMES = ("core", "Thumbs.db", ".DS_Store",
+                  # shells write these into $HOME, which is /dd. Running the
+                  # tree directly leaves a session's history in the source.
+                  ".bash_history", ".sh_history", ".pdksh_hist", ".ksh_history")
 
 
 def check_no_leftovers(root):
