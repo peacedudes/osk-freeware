@@ -25,20 +25,19 @@ root and home. There is no established name for that role.
 
 ## Running it
 
-    ln osk-freeware.dd h0
+    ln -s osk-freeware.dd h0
     OS9DISK=$PWD/osk-freeware.dd OS9H0=$PWD/h0 \
         os9exec /dd/CMDS/bash /dd/SYS/login
 
-`h0` is **not a second copy** — `ln` without `-s` makes a hard link, so the two
-names share one inode and one 123 MB of disk. Check with `ls -li`: same inode
-number, and `du -ch` totals 123 MB, not 246.
+**The disk has to be both `/dd` and `/h0`, and a symlink is enough.** os9exec
+will not mount one path as two devices, so it needs two names — but `ln -s`
+does the job, costs nothing, and `ls -l` shows plainly that it is a link.
 
-Two names are needed because os9exec refuses to mount one host path as two
-devices, and this disk has to be both. 96 programs carry hardcoded `/h0` paths
-— 70 of them want `/h0/sys/termcap`, which is on the disk — so without the
-second name they fail to find files that are right there. Delete `h0` whenever
-you like and remake it; it costs nothing either way. Hard links do not survive
-`zip` or plain `tar`, so make it after unpacking.
+Both names are needed because the programs disagree about where they live. 96
+of them carry hardcoded `/h0` paths, 70 wanting `/h0/sys/termcap`. Others
+hardcode `/dd`: `advent` reads `/dd/GAMES/adv/glorkz` and stops dead without
+it, which is exactly what you see if you mount the disk only as `/h0`. Neither
+name alone covers the collection.
 
 The trailing `/dd/SYS/login` is not optional. bash on this disk cannot read a
 startup file — its `.` builtin fails on every path — so started bare it has no
