@@ -82,23 +82,34 @@ Two different things were being conflated:
   now carries `GAMES/LARN/PLAYGROUND/.lscore12.0`, the scoreboard larn created
   for itself; larn reads it back on the next run without complaint.
 
-- **`.larn.help` was genuinely absent** — that was the only remaining
-  complaint, and it cost the in-game `?` help. Recovered, along with
-  `.lfortune` and `.larnmaze`, from the larn 12.2p4 sources at
-  `github.com/HunterZ/larn` (`larn.hlp`, `larn.ftn`, `larn.maz`), converted to
-  CR to match the disk and ularn's own data files. All three now read without
-  complaint and `?` shows the help.
+- **`.larn.help` was absent, and so was the rest of the data** — but not
+  lost. `.larn.help`, `.larnmaze`, `.lfortune`, `.holidays`, `.larnopts` and
+  the original `.llog12.0` were all sitting in `h4/GAMES/LARN/PLAYGROUND`,
+  on a disk we had. They are in now, and `?` shows the help.
 
-**The version is not an exact match and should be watched.** The binary
-reports 12.0; no 12.0 source has survived anywhere we can find, and the
-earliest in that repository is 12.2p4. Help and fortune text are inert, but
-`.larnmaze` defines level layouts — it was only exercised on the first level.
-If a level ever renders wrong deep in the dungeon, that file is the first
-suspect, and deleting it costs nothing: larn lays out its own levels without
-it. `SOURCES.txt` records where all three came from.
+**An earlier pass fetched 12.2p4 substitutes off the internet for three of
+those.** They are gone, replaced by the originals. The version mismatch that
+worried me never existed: these are what the 12.0 binary shipped with. The
+lesson is cheaper than the one I wrote down — look at the disks you were
+given before fetching anything.
 
 No larn source on the disk: no `SRC` tree, nothing in `CMDS/archives/`, and
 `DOC/ORIGINS` mentions neither larn nor `ularn`.
+
+## advent — FIXED, from the same disk
+
+`advent` stopped at "Cannot open data file /dd/GAMES/adv/glorkz" in every
+image built here, the pre-tar one included. `glorkz` is Colossal Cave's 67 K
+data file and it was on `h4/GAMES/ADV`. Copied in, advent loads its twelve
+sections and prints "Advent is ready." Its `startup` came with it.
+
+**Still on h4 and deliberately NOT taken: `GAMES/DOGADV`** — eight files
+making an ADVSYS adventure (`dog.adv`, `dog.adi`, `objects.adi`,
+`advsys.doc`). The collection already carries `advint`, the ADVSYS
+interpreter, so it would run. Left out because its provenance is unknown: it
+reads as somebody's own adventure rather than anything out of the archives,
+and this collection only carries what it can say the origin of. Worth a
+decision rather than a default.
 
 `gnuchessc`/`gnuan` had a real missing-data problem and are FIXED — theirs was
 recovered from the download pool into `GNUCHESS4.0/MISC/`.
