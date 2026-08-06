@@ -13,7 +13,14 @@ pass the old build needed:
 
     OS-9 module (4AFC magic)  0555  ->  e+pe+r+pr, not writable
     everything else           0444  ->  r+pr, no execute
-    directory                 0555  ->  d+e+r+pe+pr
+    directory                 0777  ->  d+e+w+r+pe+pw+pr
+
+A DIRECTORY MUST BE WRITABLE or the programs that create files in it fail --
+advent writes glorkz into GAMES/ADV, larn its scoreboard, and 35 programs use
+/dd/tmp. 0555 here made every directory read-only, which the old `makdir`
+build never did: it left them d-ewrewr. The symptom is a program that refuses
+to save, and it does not depend on who you are logged in as; not even 0.0 can
+write to a directory with no w bit.
 
 Two things that are easy to get wrong:
 
@@ -36,7 +43,7 @@ not close; the check stays in because exceeding it silently truncates.
 import os, sys, tarfile
 
 MODULE_MAGIC = b"\x4a\xfc"
-MODE_MODULE, MODE_DATA, MODE_DIR = 0o555, 0o444, 0o555
+MODE_MODULE, MODE_DATA, MODE_DIR = 0o555, 0o444, 0o777
 MTIME    = 1785801600      # 2026-08-04T00:00:00Z -- any fixed instant will do
 USTAR_MAX = 100
 

@@ -119,5 +119,11 @@ if [ "$got" -ne "$nfiles" ]; then
 fi
 echo "  extracted $got/$nfiles files"
 
+# tar ignores the mode on a directory entry and applies its own, which leaves
+# every directory read-only. Nothing can then create a file in it -- advent
+# cannot write glorkz, larn cannot post a score -- and it is not a question of
+# who you are logged in as. `makdir` gave d-ewrewr; this restores that.
+python3 "$HERE/fixattrs.py" "$WORK" || exit 1
+
 mv "$WORK" "$OUT"
 echo "  wrote $OUT ($(du -h "$OUT" | cut -f1))"
