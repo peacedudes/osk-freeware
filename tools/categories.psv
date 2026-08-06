@@ -16,13 +16,13 @@
 
 # ---- Amusements ----
 areacode|Amusements|Curiosities
-dam|Amusements|Curiosities
-pow|Amusements|Curiosities
-setfont|Amusements|Curiosities
-ssl|Amusements|Curiosities
+dam|System & modules|Devices & disks
+pow|System & modules|Hardware control
+setfont|Communications|Terminal & session
+ssl|System & modules|Devices & disks
 touchtype|Amusements|Curiosities
-wysecrack|Amusements|Curiosities
-wysetime|Amusements|Curiosities
+wysecrack|Communications|Terminal & session
+wysetime|Communications|Terminal & session
 name|Amusements|Generators
 pwgen|Amusements|Generators
 reagan|Amusements|Generators
@@ -64,7 +64,7 @@ kermit|Communications|Kermit
 kermit2|Communications|Kermit
 kermit3|Communications|Kermit
 xkermit|Communications|Kermit
-newsgen|Communications|Networking & news
+newsgen|Amusements|Generators
 aterm|Communications|Terminal & session
 cls|Communications|Terminal & session
 connect|Communications|Terminal & session
@@ -287,9 +287,9 @@ hang|Games|Word & guessing
 joke|Games|Word & guessing
 
 # ---- Graphics & images ----
-banner|Graphics & images|Drawing & display
+banner|Text tools|Banners & text art
 bush|Graphics & images|Drawing & display
-cursive|Graphics & images|Drawing & display
+cursive|Text tools|Banners & text art
 draw|Graphics & images|Drawing & display
 loadmem|Graphics & images|Drawing & display
 pdraw|Graphics & images|Drawing & display
@@ -502,7 +502,7 @@ sin|Maths & calculators|Plotting & charts
 
 # ---- Printing ----
 gs33|Printing|PostScript
-gothic|Printing|Spooling
+gothic|Text tools|Banners & text art
 lp|Printing|Spooling
 lpq|Printing|Spooling
 lprm|Printing|Spooling

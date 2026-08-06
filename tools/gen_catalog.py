@@ -146,6 +146,56 @@ def derive_netpbm_desc(name):
     return "netpbm image tool"
 
 
+
+# ---- the program's own help text -------------------------------------
+
+USAGE_START = re.compile(rb"(?i)^(usage|syntax|use)\s*[:\-]")
+USAGE_CONT  = re.compile(rb"(?i)^(options?|function|where|flags?|commands?)\s*[:\-]")
+USAGE_OPT   = re.compile(rb"(?i)^\s{0,6}-{1,2}[A-Za-z?][\w=]*\s")
+
+def usage_of(path, name, limit=1200):
+    """Lift a program's syntax line and option list out of its own binary.
+
+    "WOLK - dam utility" tells a reader nothing they can act on, and no
+    second-hand summary beats the program's own account. Almost every OS-9
+    program carries its usage text as plain strings.
+
+    Telling that text from the rest of a binary is the awkward part: symbol
+    tables and format fragments look similar. Anchor on a syntax line, then
+    keep following strings only while they still look like option
+    documentation, and stop at the first that does not.
+    """
+    try:
+        data = open(path, "rb").read()
+    except OSError:
+        return None
+    if data[:2] != b"\x4a\xfc":
+        return None
+    out, taking = [], False
+    for m in re.finditer(rb"[ -~\t]{6,}", data):
+        line = re.sub(rb"^[^A-Za-z/\-]{0,6}", b"", m.group()).rstrip()
+        if not line:
+            continue
+        if not taking:
+            if USAGE_START.match(line):
+                taking = True
+                out.append(line)
+            continue
+        if USAGE_OPT.match(line) or USAGE_CONT.match(line) or re.match(rb"^\s{2,}\S", line):
+            out.append(line)
+            if sum(len(x) for x in out) > limit:
+                break
+        else:
+            break
+    if not out:
+        return None
+    text = b"\n".join(out).decode("latin-1")
+    text = re.sub(r"[ \t]{3,}", "   ", text)
+    # these are printf templates; %s is almost always the program's own name
+    text = text.replace("%s", name)
+    return text[:limit]
+
+
 def from_origins(root, progs):
     RX = re.compile(r"^  (\S+)\s+(\S+)\s+(usenet archive|EFFO forum|hc disk|PD disk)\b(.*)$")
     for line in read(root, "DOC/ORIGINS").split("\n"):
@@ -213,6 +263,9 @@ def from_tree(root, progs, starred):
             progs[n]["size"] = os.path.getsize(p)
             if len(head) > 0x14 and head[:2] == b"\x4a\xfc" and head[0x13] == 2:
                 progs[n]["basic09"] = True      # I-code: needs runb, not the kernel
+            u = usage_of(p, n)
+            if u:
+                progs[n]["usage"] = u
 
     docs = {x.lower() for x in os.listdir(os.path.join(root, "DOC"))
             if os.path.isdir(os.path.join(root, "DOC", x))}
@@ -293,7 +346,7 @@ ORDER = ["Shells","Editors","Text tools","Files & directories","Developer tools"
  "Printing","Documentation","Uncategorised"]
 
 KEEP = ("name","desc","cat","sub","star","dir","size","origin","archive","src",
-        "docs","hassrc","military","basic09","needs","info")
+        "docs","hassrc","military","basic09","needs","info","usage")
 
 def render_markdown(progs):
     """A catalogue GitHub will actually render in the repository view.
@@ -424,7 +477,11 @@ def render(progs, template, standalone=True):
     slim = [{k: v for k, v in p.items() if k in KEEP and v not in (None, "", False, [])}
             for p in progs]
     html = open(template, encoding="utf-8").read()
-    html = html.replace("__DATA__",  json.dumps(slim, separators=(",", ":")))
+    # Escape '<' as \u003c. sed's own usage line is "sed [-n] <script> [<path>]",
+    # and that literal <script> closes the element early -- the page dies at the
+    # letter s. Valid JSON either way; the browser parses it back to '<'.
+    data = json.dumps(slim, separators=(",", ":")).replace("<", "\\u003c")
+    html = html.replace("__DATA__", data)
     html = html.replace("__BLURB__", json.dumps(BLURB))
     html = html.replace("__ORDER__", json.dumps(ORDER))
     html = html.replace("__TOTAL__", str(len(progs)))

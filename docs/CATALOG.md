@@ -10,23 +10,23 @@
 |---|--:|---|
 | [Shells](#shells) | 16 | The stock OS-9 shell is thin. These give you history, job control and a command line worth living in. |
 | [Editors](#editors) | 18 | vi and emacs in several flavours, line and stream editors, and editors for binary and hex. |
-| [Text tools](#text-tools) | 68 | Search, sort, compare, reformat, split and spell-check. |
+| [Text tools](#text-tools) | 71 | Search, sort, compare, reformat, split and spell-check. |
 | [Files & directories](#files--directories) | 31 | Listing, copying, finding, renaming, and knowing what you have. |
 | [Developer tools](#developer-tools) | 28 | Version control, tags, cross-reference, formatters, a debugger and benchmarks. |
 | [Compilers & build](#compilers--build) | 33 | C compilers and their passes, assemblers, linkers, make and parser generators. |
 | [Languages](#languages) | 3 | Interpreters and language systems beyond C. |
 | [Archives & compression](#archives--compression) | 20 | Pack, unpack and shrink -- lha, zip, tar, arc, zoo, and OS-9 module libraries. |
 | [Encoding & conversion](#encoding--conversion) | 16 | Between text encodings, line endings, number bases, ciphers and hashes. |
-| [Communications](#communications) | 18 | Kermit in several builds, terminal sessions, and networking. |
-| [Graphics & images](#graphics--images) | 191 | The netpbm toolkit, JPEG, a ray tracer, and things that draw. |
+| [Communications](#communications) | 20 | Kermit in several builds, terminal sessions, and networking. |
+| [Graphics & images](#graphics--images) | 189 | The netpbm toolkit, JPEG, a ray tracer, and things that draw. |
 | [Games](#games) | 58 | Adventures, board and card games, arcade ports, dungeon crawls and puzzles. |
 | [Screen toys](#screen-toys) | 6 | Things to watch rather than play. Start one and leave it going. |
-| [Amusements](#amusements) | 23 | Generators, simulators and diversions that are not quite games. |
-| [System & modules](#system--modules) | 29 | OS-9 module and process tools, devices, system state and scheduling. |
+| [Amusements](#amusements) | 18 | Generators, simulators and diversions that are not quite games. |
+| [System & modules](#system--modules) | 32 | OS-9 module and process tools, devices, system state and scheduling. |
 | [Disk & DOS](#disk--dos) | 20 | Reading and writing MS-DOS media with the mtools set. |
 | [Time & calendar](#time--calendar) | 12 | Calendars, clocks and astronomy. |
 | [Maths & calculators](#maths--calculators) | 11 | Calculators, plotting, orbits and number theory. |
-| [Printing](#printing) | 9 | Spoolers, page formatting and PostScript. |
+| [Printing](#printing) | 8 | Spoolers, page formatting and PostScript. |
 | [Documentation](#documentation) | 4 | Pagers, readers and the help system. |
 
 ## Shells
@@ -113,7 +113,7 @@
 
 *Search, sort, compare, reformat, split and spell-check.*
 
-<details><summary>68 programs</summary>
+<details><summary>71 programs</summary>
 
 **Transform & filter**
 
@@ -213,6 +213,14 @@
 | `roff` | roff text formatter |
 | `tformat` | text formatter (SNOBOL4-in-C) |
 
+**Banners & text art**
+
+| | |
+|---|---|
+| `banner` | print large banner text |
+| `cursive` | generate a horizontal cursive banner |
+| `gothic` | print text as a gothic/blackletter banner |
+
 **KWIC index**
 
 | | |
@@ -267,7 +275,7 @@
 |---|---|
 | `dfiles` | find duplicate files on disk and issue the cmp commands |
 | `du` | disk usage, by directory |
-| `ff` | WOLK - file find |
+| `ff` | find files by name -- ff [<opts>] <name>... |
 | `find` | find 1.1.5 -- search a directory tree |
 | `space` | effective disk usage  [conditions apply -- run `help space`] |
 
@@ -521,7 +529,7 @@
 
 *Kermit in several builds, terminal sessions, and networking.*
 
-<details><summary>18 programs</summary>
+<details><summary>20 programs</summary>
 
 **Terminal & session**
 
@@ -535,10 +543,13 @@
 | `input` | UNAXCESS BBS - input helper |
 | `sbreak` | Send/clear an SS_Break signal on a serial path |
 | `screen` | Screen multiplexer (needs HOME set) |
+| `setfont` | load a downloadable terminal font -- setfont <path> |
 | `setterm` | &#9733; set terminal type |
 | `tsmon2` | tsmon replacement - terminal monitor |
 | `udate` | UNAXCESS BBS - date display |
 | `uwho` | UNAXCESS BBS - who is online |
+| `wysecrack` | &#9733; Wyse terminal baud detect -- needs real Wyse hardware |
+| `wysetime` | Wyse terminal time utility |
 
 **Kermit**
 
@@ -550,19 +561,13 @@
 | `kermit3` | Kermit file transfer (variant 3) |
 | `xkermit` | &#9733; Kermit variant |
 
-**Networking & news**
-
-| | |
-|---|---|
-| `newsgen` | generate a fake news bulletin |
-
 </details>
 
 ## Graphics & images
 
 *The netpbm toolkit, JPEG, a ray tracer, and things that draw.*
 
-<details><summary>191 programs</summary>
+<details><summary>189 programs</summary>
 
 **NETPBM: edit & analyse**
 
@@ -748,19 +753,6 @@
 | `yuvtoppm` | Abekas YUV to PPM (colour) |
 | `zeisstopnm` | Zeiss confocal to PNM |
 
-**Drawing & display**
-
-| | |
-|---|---|
-| `banner` | print large banner text |
-| `bush` | draw a random bush/tree |
-| `cursive` | generate a horizontal cursive banner |
-| `draw` | character-graphics drawing program |
-| `loadmem` | load memory image |
-| `pdraw` | Pdraw 1.4 - 2D/3D data plotting, PostScript output |
-| `savemem` | save memory image |
-| `snap` | snapshot the screen to a file |
-
 **JPEG**
 
 | | |
@@ -773,6 +765,17 @@
 | `rdjpgcom.070` | read a JPEG's comment (IJG 0.70 build) |
 | `wrjpgcom` | write a comment into a JPEG file |
 | `wrjpgcom.070` | write a JPEG's comment (IJG 0.70 build) |
+
+**Drawing & display**
+
+| | |
+|---|---|
+| `bush` | draw a random bush/tree |
+| `draw` | character-graphics drawing program |
+| `loadmem` | load memory image |
+| `pdraw` | Pdraw 1.4 - 2D/3D data plotting, PostScript output |
+| `savemem` | save memory image |
+| `snap` | snapshot the screen to a file |
 
 **X11**
 
@@ -919,26 +922,14 @@
 
 *Generators, simulators and diversions that are not quite games.*
 
-<details><summary>23 programs</summary>
-
-**Curiosities**
-
-| | |
-|---|---|
-| `areacode` | look up a US telephone area code |
-| `dam` | WOLK - dam utility |
-| `pow` | X-10 Powerhouse home control (needs /x1 hardware) |
-| `setfont` | WOLK - load a terminal font |
-| `ssl` | WOLK - ssl utility |
-| `touchtype` | typing tutor |
-| `wysecrack` | &#9733; Wyse terminal baud detect -- needs real Wyse hardware |
-| `wysetime` | Wyse terminal time utility |
+<details><summary>18 programs</summary>
 
 **Generators**
 
 | | |
 |---|---|
 | `name` | random name generator |
+| `newsgen` | generate a fake news bulletin |
 | `pwgen` | random password generator |
 | `reagan` | satirical speech generator |
 | `rndname` | random name generator |
@@ -959,13 +950,20 @@
 | `minnesota` | weather simulator - Minnesota (Gregorian/N-Atlantic) |
 | `nasa` | NASA orbital-element reader |
 
+**Curiosities**
+
+| | |
+|---|---|
+| `areacode` | look up a US telephone area code |
+| `touchtype` | typing tutor |
+
 </details>
 
 ## System & modules
 
 *OS-9 module and process tools, devices, system state and scheduling.*
 
-<details><summary>29 programs</summary>
+<details><summary>32 programs</summary>
 
 **Processes & memory**
 
@@ -1007,6 +1005,15 @@
 | `setime` | Set system time (prompts YYMMDDHHMMSS) |
 | `sysid` | show system identification |
 
+**Devices & disks**
+
+| | |
+|---|---|
+| `dam` | display the disk allocation map -- dam [<drive>] |
+| `dinfo` | disk/device information |
+| `shdev` | &#9733; show devices |
+| `ssl` | show a file's segment list, sector by sector -- ssl <file> |
+
 **Scheduling**
 
 | | |
@@ -1014,12 +1021,11 @@
 | `cron` | run commands at specified times (daemon) |
 | `minute` | minute timer |
 
-**Devices & disks**
+**Hardware control**
 
 | | |
 |---|---|
-| `dinfo` | disk/device information |
-| `shdev` | &#9733; show devices |
+| `pow` | X-10 Powerhouse home control (needs /x1 hardware) |
 
 </details>
 
@@ -1122,13 +1128,12 @@
 
 *Spoolers, page formatting and PostScript.*
 
-<details><summary>9 programs</summary>
+<details><summary>8 programs</summary>
 
 **Spooling**
 
 | | |
 |---|---|
-| `gothic` | print text as a gothic/blackletter banner |
 | `lp` | line printer spooler - submit a job |
 | `lpq` | show the print queue |
 | `lprm` | remove a job from the print queue |
