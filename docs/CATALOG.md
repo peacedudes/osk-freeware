@@ -294,7 +294,7 @@
 |---|---|
 | `chgrp` | &#9733; change group |
 | `chown` | &#9733; change owner |
-| `eset` | &#9733; set file attributes |
+| `eset` | &#9733; set an OS-9 event to a value -- eset <event> <num> |
 | `owner` | &#9733; show file owner |
 
 **Create & rename**
