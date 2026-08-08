@@ -303,6 +303,26 @@ def load_categories(path):
     return cats
 
 
+def load_howto(path):
+    """Hand-written "how do I run this" notes, from tools/howto.psv.
+
+    Separate from categories.psv because it answers a different question and
+    covers a handful of programs rather than all of them. Most programs need
+    no entry -- usage_of() lifts their usage line straight out of the binary,
+    which cannot go stale the way a written note can.
+    """
+    notes = {}
+    if not os.path.exists(path):
+        return notes
+    for line in open(path, encoding="utf-8"):
+        line = line.strip()
+        if not line or line.startswith("#"):
+            continue
+        name, text = line.split("|", 1)
+        notes[name] = text
+    return notes
+
+
 def gather(root, catfile):
     progs, starred = from_index(root)
     groups = netpbm_groups(root)
@@ -314,11 +334,15 @@ def gather(root, catfile):
         if p.get("section") == "CMDS/NETPBM" and not p["desc"]:
             p["desc"] = derive_netpbm_desc(p["name"])
 
-    cats = load_categories(catfile)
+    cats  = load_categories(catfile)
+    howto = load_howto(os.path.join(os.path.dirname(os.path.abspath(__file__)),
+                                    "howto.psv"))
     out, uncategorised = [], []
     for p in sorted(progs.values(), key=lambda x: x["name"].lower()):
         if not p.get("dir"):
             continue                      # named in INDEX but not on the disk
+        if p["name"] in howto:
+            p["howto"] = howto[p["name"]]
         if p["name"] in cats:
             p["cat"], p["sub"] = cats[p["name"]]
         elif p["name"] in groups:
@@ -361,7 +385,7 @@ ORDER = ["Shells","Editors","Text tools","Files & directories","Developer tools"
  "Printing","Documentation","Uncategorised"]
 
 KEEP = ("name","desc","cat","sub","star","dir","size","origin","archive","src",
-        "docs","hassrc","military","basic09","needs","info","usage")
+        "docs","hassrc","military","basic09","needs","info","usage","howto")
 
 def render_markdown(progs):
     """A catalogue GitHub will actually render in the repository view.
@@ -417,7 +441,18 @@ def render_markdown(progs):
             L += ["| | |", "|---|---|"]
             for p in sorted(subs[sub], key=lambda x: x["name"].lower()):
                 star = "&#9733; " if p.get("star") else ""
-                L.append("| `%s` | %s%s |" % (p["name"], star, p.get("desc", "").replace("|", "\\|")))
+                cell = star + p.get("desc", "").replace("|", "\\|")
+                # How to run it, which is what a reader actually wants next.
+                # The usage line comes out of the binary; the note is written.
+                # Both were previously generated and then shown only in the
+                # HTML, where most people never see them.
+                if p.get("howto"):
+                    cell += "<br>**How:** " + p["howto"].replace("|", "\\|")
+                elif p.get("usage"):
+                    one = p["usage"].strip().splitlines()[0].strip()
+                    if one:
+                        cell += "<br>`%s`" % one.replace("|", "\\|")
+                L.append("| `%s` | %s |" % (p["name"], cell))
             L.append("")
         L += ["</details>", ""]
 
@@ -471,6 +506,14 @@ def render_disk_index(progs):
                     cut = desc.rfind(" ", 0, 52)
                     desc = desc[:cut if cut > 30 else 52].rstrip(" ,;--") + "..."
                 L.append("   %s%-16s %s" % (star, p["name"], desc))
+                # A written "how do I run this" note, wrapped under the entry.
+                # Only a handful of programs carry one, and they are exactly
+                # the ones that otherwise look broken -- see tools/howto.psv.
+                note = p.get("howto")
+                while note:
+                    cut = note.rfind(" ", 0, 62) if len(note) > 62 else len(note)
+                    L.append("      %s" % note[:cut])
+                    note = note[cut:].lstrip()
             L.append("")
     L += ["-" * 70,
           "Generated from DOC/INDEX and the tree.  DOC/INDEX remains the fuller",

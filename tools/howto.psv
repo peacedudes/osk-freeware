@@ -1,0 +1,38 @@
+# howto.psv -- how to actually RUN a program, where that is not obvious.
+#
+#   <name>|<one line, imperative>
+#
+# WHY THIS FILE EXISTS. A play-test of the collection found that most programs
+# reported as "does nothing" or "just goes dead" were working perfectly and
+# waiting for an argument, a data file or a working directory that nothing on
+# the disk mentioned. `orbit' is the case that made the point: it prints
+# '"kepler.dat" not found' and exits, and kepler.dat was on the disk the whole
+# time, in DOC/orbit. Run it from there and it offers you 21 satellites.
+#
+# Most programs need no entry: gen_catalog.py lifts the usage text out of the
+# binary itself for 266 of them, and that is better than anything written by
+# hand because it cannot go stale. This file is for what the binary does NOT
+# say -- where the data lives, which program feeds which, why a thing dies.
+#
+# Keep each line to one sentence or two. It is read at an OS-9 prompt, in 80
+# columns, by someone who has just been disappointed.
+
+orbit|Reads a bare "kepler.dat" from the CURRENT directory, so run it from where that file is: `chd /dd/DOC/orbit` first. Then it lists 21 satellites and asks which.
+nasa|The program that FEEDS orbit. Give it NASA two-line elements in a file called nasa.dat in the current directory and it writes kepler.dat, which is what orbit reads. Neither file ships -- you supply nasa.dat.
+pwgen|pwgen <length> [count]. With no arguments it prints nothing and exits, which reads as a hang and is not one.
+bmgtest|bmgtest [-i] [-n] <pattern> [file ...]. A demonstration of Boyer-Moore-Gosper searching, not a tool you would use.
+life|life [init-file]. The patterns are in /dd/GAMES/LIFE -- try `life /dd/GAMES/LIFE/glider`. It also wants more memory than the default; from the OS-9 shell that is `life #22k <file>`, and bash has no #size syntax at all.
+bio|BASIC09 I-code, not 68000 code. `load runb` first, then run `bio` by BARE NAME. Giving runb a pathname instead raises BASIC09 error 43, which reads like a broken program and is not.
+logisim|Simulates a logic circuit described in a file. The format is in DOC/logisim/logisim.doc; there is no example circuit on the disk.
+calender|Prints the year in GERMAN. Not a typo of `calendar' -- a different program by a different author.
+gdd|A data dump -- like `od', with GNU-style long options. Needs Microware's cio.
+easter|Prints Easter dates for 1988 to 2000 and nothing else. The range is compiled in.
+england|One of six weather simulators that differ only in climate and calendar: england, florida, georgia, minnesota, japan (Japanese calendar) and shire (Middle-earth). Each prints a day's weather and stops.
+japan|A weather simulator, not a calendar tool -- see `england'. It uses the Japanese calendar, which is the only reason it looks like one.
+shire|A weather simulator using the Middle-earth calendar -- see `england'.
+sokoban|Wants a username, so run it from a login rather than a bare shell, or it stops with "cannot get your username".
+robots|Use `robots -m'. Without it the game is effectively unplayable, which its usage line offers and nothing explained.
+advint|Plays an ADVSYS .adi world file. THERE IS NO WORLD FILE ON THIS DISK, so it has nothing to do until you write one with advcom.
+advcom|Compiles ADVSYS .adv source into a .adi world for advint. No .adv source ships here either -- this pair is for writing adventures, not playing them.
+infocom|A Z-machine. Plays the .z3 files in /dd/GAMES/INFORM, which are Inform demonstration programs (dejavu, hellow, shell), not the Infocom games.
+advent|Colossal Cave. Needs this disk as /dd -- it opens /dd/GAMES/adv/glorkz by absolute path, so mounted only as /h0 it cannot find its data.
