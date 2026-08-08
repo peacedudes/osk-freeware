@@ -2,6 +2,267 @@
 
 Moved out of os9exec's ROADMAP.md when the collection got its own repo.
 
+## Open, as of 2026-08-08
+
+### Next session starts at notes/PLAN-keep-drop.md
+
+`keep` / `drop` — taking selected programs off the collection onto your own
+`/dd`, with a receipt that makes removal exact and cannot eat your saves. The
+design is settled apart from where files land; that one is blocking and is
+written up there.
+
+### Data files programs want that this disk does NOT have
+
+Found by scanning for `/dd` paths that do not resolve here -- a hole in the
+earlier scan, which only kept paths that DID resolve and so filed every gap as
+"the user's problem". rdoggett spotted `utmp` by hand, which is what prompted
+the recount.
+
+| wanted by | path |
+|---|---|
+| `ci co rcs rcsdiff rcsmerge rlog` | `/dd/SYS/utmp` |
+| `vi` | `/dd/SYS/vi_errmsg`, `/dd/SYS/vi_usage`, `/dd/SYS/.exrc` |
+| `less` | `/dd/sys/less.hlp` |
+| `cal` | `/dd/sys/cal.holidays`, `cal.init`, `holidays` |
+| `ephem ephem881` | `/dd/sys/ephem.cfg`, `ephem.db` |
+| `file` `dm` `mg` `forth` | `/dd/SYS/magic`, `dm.hlp`, `mgrc`, `/dd/lib/tile` |
+
+Some are runtime-created and need only a writable directory (`utmp` is a login
+record; the `XXXXXX` names are mktemp templates). The rest are real absences
+worth hunting on h4/h2 before assuming they are lost. Not one problem -- do not
+treat them as a batch.
+
+### Microware C is available, and an earlier note here implied otherwise
+
+`tools/rebuild/rebuild.sh` has always driven `cc`; 203 programs on this disk
+were built with it. The rule is only that the IMAGE BUILD must not need
+Microware, because it runs on GitHub -- binaries are committed, and CI never
+sees a compiler. Verified this session against the SDK at
+`~/Developer/os9/play/oskBoot`: `cc -qm=16k -n=hi` produced a module that runs
+on the freeware disk with no `cio` present at all.
+
+`gcc` on the disk cannot substitute: it is starred, and a compile attempt gives
+`**** Can't install trap handler **** cio`. `as0`, `as1`, `lnk`, `ar`, `make`
+and `tar` are all trap-free. `tar`'s source is `SRC/eff_tar/tar.c`, one file.
+
+### OS-9 modules can be generated from nothing, and it is verified
+
+Both header integrity rules were derived from the corpus and checked against it
+before use:
+
+- the CRC (poly `$800063`, complemented) reproduces **all 362** modules exactly
+- header parity -- the 24 header words XOR to `$FFFF` -- reproduces **all 361**
+
+A Swift emitter then produced a working program module with no assembler and no
+linker anywhere in the path, and os9exec ran it. Two things this unlocks:
+patching an existing module and re-CRCing it (proven on `gnuchessc`, whose
+`/h0` paths were rewritten to `/dd` and which then found its data), and
+generating data modules host-side.
+
+**The trap worth remembering: `M$IData` and `M$IRefs` may not be zero.** Zero
+does not mean "none" -- the loader reads eight bytes AT that offset as
+`{destination, count}`, so zero makes it parse the module header as a
+descriptor, read `$4AFC0001` as a destination, and reject the module with
+`E_BMID`. Point them at an empty descriptor and a terminated table. Derived
+from os9exec's `prepData()` after the first attempt failed.
+
+### The /h0 vs /dd rewrite -- decided AGAINST, and why
+
+Patching device prefixes in the binaries was proven to work and then dropped in
+favour of `keep`. Recorded because the proof stands and the decision could be
+revisited: rewriting is byte-length-preserving (`/h0` and `/dd` are both three
+characters) and CRC-correct.
+
+Under the premise that everyone has a Microware boot disk, the direction would
+be `/dd` -> `/h0`, not the reverse: **41 programs** name `/dd` data this
+collection provides, against **94** naming `/h0`. More to the point, the ~20
+left alone would be the ones that prove it -- `bash`, `sh`, `ksh`, `chown`
+naming `/dd/SYS/errmsg`, `/dd/sys/password`, `/dd/CMDS`, `/dd/tmp`. Those are
+the user's system and must stay; the other direction would have had to get
+every one of them wrong.
+
+## Open, as of 2026-08-06
+
+Written down because they were found in conversation and would otherwise be
+lost with the session.
+
+### cd and pwd -- FIXED, and the earlier note here was wrong
+
+An earlier version of this entry said `cd` aborts the shell. It does not.
+`pwd` is the one that kills a session, and the difference matters because
+`pwd` is what a person types when they are already lost. Measured:
+
+| arrangement          | `cd`                     | `pwd`             |
+|----------------------|--------------------------|-------------------|
+| `/dd` is an RBF disk | works                    | **hangs**         |
+| no RBF `/dd`         | **bus error, kills bash**| getwd error       |
+
+Both are the same cause: bash's `getwd()` walks `..` looking for a directory
+that is its own parent, and OS-9 has one root per DEVICE with nothing above
+them. The walk has no stopping point.
+
+`/dd/.bashrc` now defines `cd` and `pwd` as functions that track the path by
+string. `cd` still calls `builtin cd` to actually move -- only the getwd part
+is replaced. Verified for absolute, relative, `.`, `..`, `../DOC` and a bare
+`cd`, in both arrangements.
+
+**The reason it can be fixed there at all is that the old note was wrong
+twice.** `SYS/login` claimed bash "CANNOT read a startup file. Its `.' builtin
+fails with E$Unit on every path". It reads `$HOME/.bashrc` perfectly well from
+an RBF image; E$Unit is what a HOST DIRECTORY mounted as a device gives, and
+that is the device, not bash. So `.bashrc` is a real file that really runs,
+and `SYS/login` now sets `HOME` to the disk to guarantee it is read.
+
+Still true and worth knowing: there is no `chd` or `pd` here -- those are
+OS-9 shell builtins, not programs.
+
+**`SYS/login`'s `builtin cd $ROOT` is load-bearing and must not be tidied
+away.** Where /dd is not an RBF disk, the FIRST getwd of an *interactive*
+shell aborts it with a bus error, but the identical failure inside a *script*
+is survivable. Spending it in the login script is what leaves `cd` working in
+the shell that follows. Measured both ways: remove that line and the first
+`cd` a user types kills bash; keep it and `cd`, `pwd` and `ls` all work with
+no OS9DISK set at all. Its stderr goes to `/nil` because the message it prints
+is alarming and means nothing to the reader.
+
+The one warning still shown in that arrangement, `shell-init: getwd: cannot
+access parent directories`, comes from bash before any of our code runs and
+cannot be suppressed from inside. Documented as harmless in README-RUNNING.
+
+Starting bash bare remains a trap -- no PATH, no HOME, no working cd. Now
+called out at the top of README-RUNNING's shell section, because it is what a
+person naturally tries first.
+
+### TERMCAP removes most of the /h0 problem
+
+69 programs name `/h0/sys/termcap` outright, and **all 69 read the `TERMCAP`
+environment variable first** -- measured, no exceptions. `SYS/login` now
+exports it, so those 69 run with the disk mounted anywhere and no `/h0` at
+all. That takes the programs needing a real `/h0` from 94 down to 37, and
+most of the 37 are gcc passes and the linker.
+
+`vi_nocio` (PVic) drives a vt100 with no termcap file whatsoever, which makes
+it the editor to point people at. Plain `vi` is the EFFO build.
+
+### Category calls that are mine, not measured
+
+`tools/categories.psv` is hand-maintained and some entries are judgement:
+whether "Amusements" and "Screen toys" should be one category; whether
+`banner`, `cursive` and `gothic` belong in Text tools where I put them. A
+one-line edit each -- that is why the file exists.
+
+### Sweeps done, and what came of them
+
+`h4` gave up advent's `glorkz` and larn's complete data. `h2` holds the same
+`GAMES` tree as `h4`, nothing new. `he` is 200 KB and effectively empty. `h1`
+is a Microware system disk -- `OS9Boot`, `SYSMODS`, `IO`, `DEFS`, `LIB` -- and
+nothing was taken from it. Its root directory is unreadable to toolshed
+(`error 214`); read read-only with `tools/fixattrs.py`'s reader instead.
+
+`GAMES/DOGADV` on h4 was deliberately left: unknown provenance, and rdoggett
+said no.
+
+### Smaller things
+
+- **GitHub Pages is not enabled**, so the workflow's publish step is skipped
+  and `docs/index.html` is only readable after downloading the repo.
+- **The catalogue extracts usage text for 266 of 439** non-netpbm programs.
+  The rest either carry none or compose it at run time.
+- **`tools/gen_catalog.py` has no test.** It is 500 lines of parsing against
+  documents that have already surprised us four times.
+- **`disk/.login` is gone.** It was the previous owner's Microware-shell login
+  script -- wrong `PATH`, `umacs` as EDITOR, and a `MAILOPTS` naming their
+  print spooler and mail host. Not dead weight either: Microware's `shell`
+  runs `.login` at login, so with this disk as `/dd` it would have executed.
+  In git history if it is ever wanted.
+
+### Games: a play-test found one real bug and a lot of arrangement
+
+rdoggett played through the games on 2026-08-07 while running with the
+collection as `/h0` and **no `OS9DISK` at all**. Most of what that turned up
+was the arrangement rather than the games.
+
+**The one real bug, now fixed: data files shipped read-only.** `mktar.py` gave
+every non-module file 0444, so `sokoban`'s `sok.score`, larn's `.lscore12.0`,
+hack's `record` and bones, cribbage's `criblog`, wanderer's `hiscore` and the
+`SAVES` trees were all unwritable. **As `0.0` you cannot see this** — RBF gives
+the super-user a software bypass, so every write succeeds and the disk looks
+fine. Log in as anyone else and `sokoban` stops with "cannot open score file".
+Every file here is owned `0.0` (tar writes uid 0 and an RBF file descriptor
+keeps its creator), so a real user is never the owner and only the PUBLIC
+write bit counts. Data is now 0666; modules stay 0555. This is the same root
+cause as the earlier "logged in as dog and couldn't run advent".
+
+**Arrangement, not defect** — all confirmed working with the disk as `/dd`:
+`bog` (dict is in `GAMES/BOG`), `hang` (`GAMES/dict`), `snake`, `wanderer`
+(screens are in `GAMES/WAND/screens` — INDEX said "SCREEN DATA MISSING" and
+was wrong), `sokoban`, `advent`. `advent` needing a `chd` into
+`/h0/games/adv` is the same thing seen from the other side: it opens
+`/dd/GAMES/adv/glorkz` by absolute path, and with no `/dd` only the working
+directory saves it.
+
+**Still broken, and each has source in `SRC/` if anyone wants a run at it:**
+
+- `tet` — draws the board, takes no input. Uses SysV `ioctl(TCGETA/TCSETA)`
+  for raw mode; `SRC/unixlib/ioctl.c` implements that over `_ss_opt`, so the
+  question is whether this binary was linked against it. Its README also names
+  a compile-time `INIT_PAUSE` for machine speed.
+- `lander` — no input, and a corrupt screen after a crash. Its README wants
+  "SysV.3 curses line drawing", which vt100 termcap does not provide.
+- `snake`, `maze` — start and sit. No source for `maze`.
+- `bite` — not broken. It is a skull animation, not a game; INDEX now says so.
+- `robots` — playable only with `-m`, which its usage string offers and
+  nothing explained. INDEX now says use it.
+
+**Removed:** `joke` (rdoggett: not funny and not appropriate); `GAMES/ADV/startup`,
+which was never a startup file but 333 bytes of the previous owner's captured
+terminal session, error message and all; and `USR/ANON/.login`, the second
+stale login script found, with a wrong `PATH` and a `RULESFILE` pointing into
+someone's personal tree.
+
+**`puz15` and `puzzle15` are the same program**, built twice — 99.3% identical,
+differing in module name and a "Goodbye." string. Both kept, both now
+cross-referenced in INDEX. Worth a decision on dropping one.
+
+**Chess:** `nchess` works and prompts "Enter #moves #minutes"; `gnuchessc`
+starts its curses display; `gnuchess` finds its opening book at
+`/USR/src/chess/gnuchess.book`, which is already on the disk. All of them want
+the collection as `/h0`. `chess` itself appears to do nothing and is unexplained.
+
+**The adventure programs are three unrelated systems**, which is why they read
+as a muddle: `advent` is Colossal Cave, self-contained; `advcom`/`advint` are
+the ADVSYS compiler and interpreter, with **no world file on the disk to feed
+them**; `infocom`/`infocom.tcap` are a Z-machine playing the three Inform
+demos in `GAMES/INFORM`. INDEX now says which is which.
+
+### readme's per-directory counts had rotted, and nothing checked them
+
+`readme` claimed 354 commands, 57 games, 3 broken and 16 rebuilt against a
+tree holding 364, 62, 2 and 10. Every one was wrong. `check_disk.py` only
+verified the three headline numbers, so these could drift indefinitely; it now
+derives and checks the per-directory counts too. Made to fail on purpose.
+
+### The star list was re-measured, and it holds
+
+Every one of the 439 files in `CMDS`, `CMDS/GAMES`, `CMDS/REBUILT` and
+`CMDS/BROKEN` was run with no cio present, four at a time, each worker on its
+own image copy. Result: **92 trap, exactly matching `DOC/INDEX`, with no
+program starred that runs and none unstarred that traps.**
+
+The one apparent mismatch is not one: `gnuchess` names two different programs,
+and `CMDS/gnuchess` traps while `CMDS/GAMES/gnuchess` does not. The star block
+is a flat list of names, so it cannot say that, and the name belongs in it.
+
+Seven never started, all four kinds already documented in INDEX: `bio`,
+`wysetime` and `blackjack` are BASIC09 I-code needing `runb`; `X11R6shl` is a
+trap-handler library and `rtfdat` a data module, neither a program; `who` and
+`mscheck` are shell scripts.
+
+Two static shortcuts were tried first and BOTH gave confident wrong answers --
+searching binaries for `cio\0`, then for the high-bit-terminated `ci\xef`
+form. The second found zero of the 92. Neither is in the tree; running the
+programs is the only method that works.
+
 ## Freeware disk: two small open items
 
 

@@ -1,11 +1,11 @@
 # osk-freeware
 
 Three decades of community software for **OS-9/68000 (OSK)**, gathered in one
-place and made to run again: 614 programs with their source, their
+place and made to run again: 612 programs with their source, their
 documentation, and a record of where each one came from.
 
-OS-9 itself is Microware's, and still a current product. This is the software
-the community wrote for it.
+OS-9 is Microware's, and still a current product. This is the software the
+community wrote for it, and it is meant to be run on a real OS-9 system.
 
 Not for the 6809 line — these are 68k binaries.
 
@@ -16,7 +16,7 @@ disk**: os9exec is the kernel, and this is the disk it mounts as `/dd` — the
 root and home. There is no established name for that role.
 
     disk/       the tree the image is built from
-      CMDS/       364 commands, plus GAMES/ REBUILT/ BROKEN/ NETPBM/ GCC*/
+      CMDS/       363 commands, plus GAMES/ REBUILT/ BROKEN/ NETPBM/ GCC*/
       SRC/        C source for most of it
       DOC/        per-package documentation, plus the index files below
       GAMES/      game data
@@ -25,27 +25,46 @@ root and home. There is no established name for that role.
 
 ## Running it
 
-    ln -s osk-freeware.dd h0
-    OS9DISK=$PWD/osk-freeware.dd OS9H0=$PWD/h0 \
-        os9exec /dd/CMDS/bash /dd/SYS/login
+**If you have OS-9, keep your own system as `/dd` and mount this as `/h0`:**
 
-**The disk has to be both `/dd` and `/h0`, and a symlink is enough.** os9exec
-will not mount one path as two devices, so it needs two names — but `ln -s`
-does the job, costs nothing, and `ls -l` shows plainly that it is a link.
+    OS9DISK=<your own disk>  OS9H0=<this image, named h0>  os9exec shell
+    setenv PATH /dd/CMDS:/h0/CMDS:/h0/CMDS/GAMES
 
-Both names are needed because the programs disagree about where they live. 96
-of them carry hardcoded `/h0` paths, 70 wanting `/h0/sys/termcap`. Others
-hardcode `/dd`: `advent` reads `/dd/GAMES/adv/glorkz` and stops dead without
-it, which is exactly what you see if you mount the disk only as `/h0`. Neither
-name alone covers the collection.
+That is the arrangement to prefer. Your `cio`, `csl` and `math` are on `/dd`
+where the programs expect them, so the 92 starred programs run alongside the
+rest — you get all 612, not the 520 that need nothing. The image must be a
+file *named* `h0`; os9exec resolves an image by filename.
 
-The trailing `/dd/SYS/login` is not optional. bash on this disk cannot read a
-startup file — its `.` builtin fails on every path — so started bare it has no
-`PATH`, no `HOME` and no `TERM`, finds no command, and complains about a
-missing `.bashrc`. `SYS/login` is a script that exports the three and hands
-over to an interactive shell. Without `TERM`, `vi` clears the screen, draws
-nothing and ignores `:q` — which reads as a lock-up and is a missing terminal
-type.
+One thing to know either way: **20 programs read their data from `/dd`** —
+`advent` wants `/dd/GAMES/adv/glorkz`, `fortune` wants
+`/dd/GAMES/FORTUNE/fortunes.dat`, `nroff` wants `/dd/LIB/tmac.*`. With your own
+disk as `/dd` those paths are yours, not ours, so those programs will not find
+their files. `DOC/README-RUNNING` covers the ways round it, and `DOC/DEPENDS`
+lists every path each program opens.
+
+### Without an OS-9 of your own
+
+The collection runs by itself:
+
+    OS9DISK=$PWD/osk-freeware.dd os9exec -r bash /dd/SYS/login
+
+What you give up is `cio`: the 92 starred programs in `DOC/INDEX` want it and
+stop with "Can't install trap handler". The other 520 do not need it, and
+`DOC/README-CIO` explains how to supply your own if you have one.
+
+`SYS/login` works out where the disk is mounted from the path you hand it,
+then sets `PATH`, `HOME`, `TERM` and `TERMCAP`. That last one matters: 69
+programs name `/h0/sys/termcap` outright, and every one of them reads
+`TERMCAP` first — measured, no exceptions — so they work with no `/h0` in
+sight. Setting `HOME` is also what makes bash read `/dd/.bashrc`, where `cd`
+and `pwd` are defined; **bash's own `pwd` hangs the shell** here, because its
+`getwd()` walks `..` looking for a single root and OS-9 has one per device.
+
+Only 37 programs, mostly compiler passes, still want data under a real `/h0`.
+If you want those too, give os9exec the image under a second name
+(`ln -s osk-freeware.dd h0`, then `OS9H0=$PWD/h0`) — one image behind two
+device names, each with its own sector cache, so read through both freely but
+do not write through both at once.
 
 ## What is actually in it
 
@@ -68,12 +87,12 @@ lines long, which is no help until you already know the name you want.
 | **Encoding & conversion** | 16 | Between text encodings, line endings, number bases, ciphers and hashes. |
 | **Communications** | 20 | Kermit in several builds, terminal sessions, and networking. |
 | **Graphics & images** | 189 | The netpbm toolkit, JPEG, a ray tracer, and things that draw. |
-| **Games** | 58 | Adventures, board and card games, arcade ports, dungeon crawls and puzzles. |
+| **Games** | 57 | Adventures, board and card games, arcade ports, dungeon crawls and puzzles. |
 | **Screen toys** | 6 | Things to watch rather than play. Start one and leave it going. |
-| **Amusements** | 18 | Generators, simulators and diversions that are not quite games. |
+| **Amusements** | 19 | Generators, simulators and diversions that are not quite games. |
 | **System & modules** | 32 | OS-9 module and process tools, devices, system state and scheduling. |
 | **Disk & DOS** | 20 | Reading and writing MS-DOS media with the mtools set. |
-| **Time & calendar** | 12 | Calendars, clocks and astronomy. |
+| **Time & calendar** | 10 | Calendars, clocks and astronomy. |
 | **Maths & calculators** | 11 | Calculators, plotting, orbits and number theory. |
 | **Printing** | 8 | Spoolers, page formatting and PostScript. |
 | **Documentation** | 4 | Pagers, readers and the help system. |
@@ -123,15 +142,16 @@ Separately, and covering none of the above: the tooling written for this
 repository — `tools/`, `.github/`, this README, `notes/` — is MIT, in
 `tools/LICENSE`.
 
-No Microware product is in this repo: no utilities, no headers, no libraries.
-The programs were built with Microware's `cc`, which is what a compiler is
-for. Programs that want Microware's `cio` at runtime are marked with a star
-in `disk/DOC/INDEX`; `disk/DOC/README-CIO` explains how to point at your own.
+Microware's own utilities, headers and libraries are not here; they come with
+OS-9 and you will already have them. Most of these programs were compiled with
+Microware's `cc`, and 92 of them use its `cio` at run time — those are starred
+in `disk/DOC/INDEX`, and `disk/DOC/README-CIO` explains how to point them at
+your copy.
 
 ## Building the image
 
-Needs the [os9exec](https://github.com/peacedudes/os9exec) binary, and nothing
-else — no Microware utility and no OS-9 system disk.
+Needs the [os9exec](https://github.com/peacedudes/os9exec) binary. Nothing
+else has to be installed, which is what lets CI rebuild the image.
 
     OS9EXEC_DIR=/path/to/os9exec tools/mkimage.sh disk osk-freeware.dd
 

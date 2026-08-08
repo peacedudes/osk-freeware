@@ -215,6 +215,17 @@ def check_counts(root):
 
     readme = open(os.path.join(root, "readme"), "rb").read().decode("latin-1")
     want = {str(total), str(total - len(starred)), str(len(starred))}
+
+    # The per-directory counts in readme's "WHAT IS ON IT" block rot the same
+    # way and were not covered: they read 354 commands, 57 games, 3 broken and
+    # 16 rebuilt against a tree holding 364, 62, 2 and 10. Every one of them
+    # was wrong, and had been for long enough that nobody could say when.
+    for sub in ("CMDS", "CMDS/GAMES", "CMDS/BROKEN", "CMDS/REBUILT"):
+        d = os.path.join(root, sub)
+        if os.path.isdir(d):
+            want.add(str(sum(1 for n in os.listdir(d)
+                             if os.path.isfile(os.path.join(d, n)))))
+
     missing = [n for n in want if n not in readme]
 
     # INDEX's own "All N" wording must agree with the list under it.
