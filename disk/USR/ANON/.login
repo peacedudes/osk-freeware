@@ -1,1 +1,0 @@
-setenv TERM xterm-256colorsetenv _sh 0setenv PATH "/h1/cmds:/dd/cmds:/dd/cmds/share"setenv NAME anonsetenv EDITOR vi*setenv MAILOPTS "printer=/p,maildev=/h3"*setenv RULESFILE /h3/usr/dog/c/v/spew/japecho "anonymous login"dirtmode -w=1 nopause*-l ;* forces "logout" instead of exiting at eoftmode eof=04 ;* sets eof char to ^d (linux norm)

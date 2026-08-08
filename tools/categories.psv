@@ -25,7 +25,6 @@ wysecrack|Communications|Terminal & session
 wysetime|Communications|Terminal & session
 name|Amusements|Generators
 pwgen|Amusements|Generators
-reagan|Amusements|Generators
 rndname|Amusements|Generators
 scales|Amusements|Generators
 bio|Amusements|Simulations
@@ -284,7 +283,6 @@ puzzle15|Games|Puzzles
 animal|Games|Word & guessing
 bog|Games|Word & guessing
 hang|Games|Word & guessing
-joke|Games|Word & guessing
 
 # ---- Graphics & images ----
 banner|Text tools|Banners & text art
@@ -650,9 +648,9 @@ calendar|Time & calendar|Calendars
 calender|Time & calendar|Calendars
 digclk|Time & calendar|Calendars
 easter|Time & calendar|Calendars
-japan|Time & calendar|Calendars
+japan|Amusements|Simulations
 setimex|Time & calendar|Calendars
-shire|Time & calendar|Calendars
+shire|Amusements|Simulations
 today|Time & calendar|Calendars
 
 # ---- newly visible once the INDEX parser stopped losing them ----
