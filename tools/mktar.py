@@ -12,8 +12,22 @@ sets them from the mode bits as it extracts. That removes the separate `attr`
 pass the old build needed:
 
     OS-9 module (4AFC magic)  0555  ->  e+pe+r+pr, not writable
-    everything else           0444  ->  r+pr, no execute
+    everything else           0666  ->  r+w+pr+pw, no execute
     directory                 0777  ->  d+e+w+r+pe+pw+pr
+
+DATA FILES ARE PUBLICLY WRITABLE, and the "publicly" is the whole point.
+Everything on this disk is owned by 0.0, because tar writes uid 0 and an RBF
+file descriptor keeps the owner it was created with. A person logged in as
+anybody else -- 1.3, say -- is therefore never the owner of anything here,
+so the OWNER write bit does nothing for them and only the PUBLIC one counts.
+
+Shipping data 0444 meant every file a game has to update was read-only:
+sokoban's sok.score, larn's .lscore12.0, hack's record and bones files,
+cribbage's criblog, wanderer's hiscore, the SAVES trees. As 0.0 you never
+see it -- RBF gives the super-user a software bypass, so the write just
+works and the disk looks fine. Log in as yourself and sokoban stops with
+"cannot open score file". That is the bug this mode fixes, and it is why
+testing as 0.0 could not find it.
 
 A DIRECTORY MUST BE WRITABLE or the programs that create files in it fail --
 advent writes glorkz into GAMES/ADV, larn its scoreboard, and 35 programs use
@@ -43,7 +57,7 @@ not close; the check stays in because exceeding it silently truncates.
 import os, sys, tarfile
 
 MODULE_MAGIC = b"\x4a\xfc"
-MODE_MODULE, MODE_DATA, MODE_DIR = 0o555, 0o444, 0o777
+MODE_MODULE, MODE_DATA, MODE_DIR = 0o555, 0o666, 0o777
 MTIME    = 1785801600      # 2026-08-04T00:00:00Z -- any fixed instant will do
 USTAR_MAX = 100
 
