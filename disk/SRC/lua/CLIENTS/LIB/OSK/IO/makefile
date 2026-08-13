@@ -1,0 +1,1 @@
+CC= uccRDIR=RELSDEFINES = -DOSKCFLAGS=$(DEFINES)###############################################################  Usually you don't have to edit anything below this line..OBJS= $(RDIR)/_input.r $(RDIR)/sscanf.r #$(RDIR)/fscanf.r $(RDIR)/scanf.rLIB=scanf.lall:   $(LIB)        @echo "OK"scanf.l: $(OBJS)	libgen -co=...../LIB/$(LIB) $(OBJS)

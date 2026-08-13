@@ -667,3 +667,6 @@ gcc_cccp|Compilers & build|C toolchain
 gcc_collect|Compilers & build|C toolchain
 gpp|Compilers & build|C toolchain
 mscheck|Disk & DOS|MS-DOS media (mtools)
+lua|Languages|Interpreters
+luac|Languages|Interpreters
+runc|Languages|Interpreters

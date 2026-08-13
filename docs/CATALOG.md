@@ -1,6 +1,6 @@
 # What is on this disk
 
-612 programs of OS-9/68K community software, gathered from the archives that kept it and made to run again. **517 of them need nothing but this disk**; the rest want Microware's `cio`, marked below with a star.
+615 programs of OS-9/68K community software, gathered from the archives that kept it and made to run again. **517 of them need nothing but this disk**; the rest want Microware's `cio`, marked below with a star.
 
 `DOC/INDEX` on the disk lists everything alphabetically. This is the same collection sorted by what each program is *for*, which is the more useful order when you do not yet know what you are looking for.
 
@@ -14,7 +14,7 @@
 | [Files & directories](#files--directories) | 31 | Listing, copying, finding, renaming, and knowing what you have. |
 | [Developer tools](#developer-tools) | 28 | Version control, tags, cross-reference, formatters, a debugger and benchmarks. |
 | [Compilers & build](#compilers--build) | 33 | C compilers and their passes, assemblers, linkers, make and parser generators. |
-| [Languages](#languages) | 3 | Interpreters and language systems beyond C. |
+| [Languages](#languages) | 6 | Interpreters and language systems beyond C. |
 | [Archives & compression](#archives--compression) | 20 | Pack, unpack and shrink -- lha, zip, tar, arc, zoo, and OS-9 module libraries. |
 | [Encoding & conversion](#encoding--conversion) | 16 | Between text encodings, line endings, number bases, ciphers and hashes. |
 | [Communications](#communications) | 20 | Kermit in several builds, terminal sessions, and networking. |
@@ -208,7 +208,7 @@
 | | |
 |---|---|
 | `lout` | Lout 2.05 document formatter (Basser Lout, Jeffrey Kingston)<br>`usage: -o<filename>` |
-| `nroff` | nroff text formatter -- setenv TMACDIR /dd/LIB first<br>`Usage: nroff [options] file [...]` |
+| `nroff` | nroff text formatter -- setenv TMACDIR /dd/LIB first<br>**How:** Formats man pages. The -man macros in LIB/tmac.an were extended for this collection because the originals defined only .TH .SH .SS .PP and .I; LIB/orig.tmac.an is the untouched version. Try `nroff -man /dd/DOC/netpbm/pnmscale.1'. |
 | `proff` | proff - portable roff text formatter (macros in LIB/proff)<br>`usage: proff [+n] [-n] [-v] [-ifile] [-s] [-pon] [infile [outfile]]` |
 | `roff` | roff text formatter<br>`Syntax: roff {[+00] [-00] [-s] -[h] file}` |
 | `tformat` | text formatter (SNOBOL4-in-C)<br>`Usage: tformat [width\|-?] [<infile] [>outfile]` |
@@ -433,11 +433,14 @@
 
 *Interpreters and language systems beyond C.*
 
-<details><summary>3 programs</summary>
+<details><summary>6 programs</summary>
 
 | | |
 |---|---|
 | `forth` | &#9733; Forth interpreter<br>`Syntax   : forth [<opts>] [<file>] [<opts>]` |
+| `lua` | &#9733; Lua 3.0 -- a small scripting language.  OS-9 port with its own<br>**How:** Lua 3.0, and it needs Microware's csl -- see DOC/README-CIO. Run a script with `lua file.lua'. NOTE: 3.0 has no numeric `for' loop; that arrived in Lua 3.1, so `for i=1,10 do' is a syntax error here and `while' is the idiom. Examples in DOC/lua/examples. |
+| `luac` | &#9733; Lua bytecode compiler -- luac -o out in.lua<br>**How:** Compiles a Lua script to bytecode: `luac -o out in.lua'. Needs csl. runc then runs the result as an OS-9 command. |
+| `runc` | &#9733; Runs a compiled Lua chunk as an OS-9 command |
 | `wam.sbprolog` | SB-Prolog 2.2 WAM engine -- see DOC/sbprolog/README-SBPROLOG<br>`Usage: sim [-Ttdns] [-m s_size] [-p p_size] [-b tr_size] [-ui num] pil_file_name ...` |
 | `xlisp` | XLISP 2.1 Lisp interpreter |
 
@@ -579,7 +582,7 @@
 | `pbmmask` | netpbm image tool |
 | `pbmpscale` | netpbm image tool |
 | `pbmreduce` | netpbm image tool |
-| `pbmtext` | netpbm image tool |
+| `pbmtext` | netpbm image tool<br>**How:** pbmtext <word> draws it as an image. `pbmtext os9 \| pbmtoascii' prints it on the terminal and needs no file at all -- the shortest demonstration of the 169 NETPBM programs. See DOC/README-NETPBM. |
 | `pbmupc` | netpbm image tool |
 | `pgmbentley` | netpbm image tool |
 | `pgmcrater` | netpbm image tool |
@@ -612,7 +615,7 @@
 | `pnmpad` | netpbm image tool |
 | `pnmpaste` | netpbm image tool |
 | `pnmrotate` | netpbm image tool |
-| `pnmscale` | netpbm image tool |
+| `pnmscale` | netpbm image tool<br>**How:** pnmscale <factor> <file>. Given only a filename it takes THAT as the factor and then reads empty standard input, reporting "bad magic number" -- which means you left out the factor, not that anything is broken. |
 | `pnmshear` | netpbm image tool |
 | `pnmsmooth` | netpbm image tool |
 | `pnmtile` | netpbm image tool |
@@ -642,7 +645,7 @@
 |---|---|
 | `pbmto10x` | PBM (bitmap) to 10x |
 | `pbmto4425` | PBM (bitmap) to 4425 |
-| `pbmtoascii` | PBM (bitmap) to ASCII art |
+| `pbmtoascii` | PBM (bitmap) to ASCII art<br>**How:** Prints an image as characters, so NETPBM can be seen on an ordinary terminal with no graphics. Try `pnminvert /dd/DEMO/sphere.pgm \| pgmtopbm -threshold -value 0.5 \| pbmtoascii'. |
 | `pbmtoatk` | PBM (bitmap) to Andrew toolkit |
 | `pbmtobbnbg` | PBM (bitmap) to bbnbg |
 | `pbmtocmuwm` | PBM (bitmap) to CMU window manager |
@@ -659,7 +662,7 @@
 | `pbmtomgr` | PBM (bitmap) to MGR |
 | `pbmtopgm` | PBM (bitmap) to PGM (greyscale) |
 | `pbmtopi3` | PBM (bitmap) to Atari PI3 |
-| `pbmtopk` | PBM (bitmap) to packed font |
+| `pbmtopk` | PBM (bitmap) to packed font<br>**How:** A TeX font tool, not an image converter: it wants a pkfile, a .tfm metric file and a resolution. No .tfm ships on this disk. |
 | `pbmtoplot` | PBM (bitmap) to plot |
 | `pbmtoptx` | PBM (bitmap) to ptx |
 | `pbmtox10bm` | PBM (bitmap) to X10 bitmap |
@@ -720,11 +723,11 @@
 | `icontopbm` | Sun icon to PBM (bitmap) |
 | `ilbmtoppm` | IFF/ILBM to PPM (colour) |
 | `imgtoppm` | GEM IMG to PPM (colour) |
-| `lispmtopgm` | Lisp machine to PGM (greyscale) |
+| `lispmtopgm` | Lisp machine to PGM (greyscale)<br>**How:** This build handles at most 16 grey levels and says "depth is too large" otherwise. Run the image through `pnmdepth 15' before pgmtolispm. |
 | `macptopbm` | MacPaint to PBM (bitmap) |
 | `mgrtopbm` | MGR to PBM (bitmap) |
 | `mtvtoppm` | MTV ray tracer to PPM (colour) |
-| `pcxtoppm` | PCX to PPM (colour) |
+| `pcxtoppm` | PCX to PPM (colour)<br>**How:** Cannot read a pipe: it seeks backwards in its input and stops with "error seeking past header". Write the PCX to a file first and pass the filename. |
 | `pi1toppm` | Atari PI1 to PPM (colour) |
 | `pi3topbm` | Atari PI3 to PBM (bitmap) |
 | `picttoppm` | PICT to PPM (colour) |
@@ -736,7 +739,7 @@
 | `rawtopgm` | raw bytes to PGM (greyscale) |
 | `rawtoppm` | raw bytes to PPM (colour) |
 | `rgb3toppm` | rgb3 to PPM (colour) |
-| `sgitopnm` | SGI to PNM |
+| `sgitopnm` | SGI to PNM<br>**How:** Cannot read a pipe -- same as pcxtoppm. Give it a filename or it reports "premature EOF". |
 | `sirtopnm` | sir to PNM |
 | `sldtoppm` | AutoCAD slide to PPM (colour) |
 | `spctoppm` | Atari Spectrum to PPM (colour) |
@@ -750,7 +753,7 @@
 | `xwdtopnm` | X window dump to PNM |
 | `ybmtopbm` | ybm to PBM (bitmap) |
 | `yuvsplittoppm` | yuvsplit to PPM (colour) |
-| `yuvtoppm` | Abekas YUV to PPM (colour) |
+| `yuvtoppm` | Abekas YUV to PPM (colour)<br>**How:** yuvtoppm <width> <height>. The dimensions are not stored in a YUV file, so you must supply the ones ppmtoyuv started from. |
 | `zeisstopnm` | Zeiss confocal to PNM |
 
 **JPEG**

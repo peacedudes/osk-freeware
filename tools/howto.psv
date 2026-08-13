@@ -36,3 +36,14 @@ advint|Plays an ADVSYS .adi world file. THERE IS NO WORLD FILE ON THIS DISK, so 
 advcom|Compiles ADVSYS .adv source into a .adi world for advint. No .adv source ships here either -- this pair is for writing adventures, not playing them.
 infocom|A Z-machine. Plays the .z3 files in /dd/GAMES/INFORM, which are Inform demonstration programs (dejavu, hellow, shell), not the Infocom games.
 advent|Colossal Cave. Needs this disk as /dd -- it opens /dd/GAMES/adv/glorkz by absolute path, so mounted only as /h0 it cannot find its data.
+pbmtext|pbmtext <word> draws it as an image. `pbmtext os9 | pbmtoascii' prints it on the terminal and needs no file at all -- the shortest demonstration of the 169 NETPBM programs. See DOC/README-NETPBM.
+pbmtoascii|Prints an image as characters, so NETPBM can be seen on an ordinary terminal with no graphics. Try `pnminvert /dd/DEMO/sphere.pgm | pgmtopbm -threshold -value 0.5 | pbmtoascii'.
+pnmscale|pnmscale <factor> <file>. Given only a filename it takes THAT as the factor and then reads empty standard input, reporting "bad magic number" -- which means you left out the factor, not that anything is broken.
+pcxtoppm|Cannot read a pipe: it seeks backwards in its input and stops with "error seeking past header". Write the PCX to a file first and pass the filename.
+sgitopnm|Cannot read a pipe -- same as pcxtoppm. Give it a filename or it reports "premature EOF".
+yuvtoppm|yuvtoppm <width> <height>. The dimensions are not stored in a YUV file, so you must supply the ones ppmtoyuv started from.
+lispmtopgm|This build handles at most 16 grey levels and says "depth is too large" otherwise. Run the image through `pnmdepth 15' before pgmtolispm.
+pbmtopk|A TeX font tool, not an image converter: it wants a pkfile, a .tfm metric file and a resolution. No .tfm ships on this disk.
+nroff|Formats man pages. The -man macros in LIB/tmac.an were extended for this collection because the originals defined only .TH .SH .SS .PP and .I; LIB/orig.tmac.an is the untouched version. Try `nroff -man /dd/DOC/netpbm/pnmscale.1'.
+lua|Lua 3.0, and it needs Microware's csl -- see DOC/README-CIO. Run a script with `lua file.lua'. NOTE: 3.0 has no numeric `for' loop; that arrived in Lua 3.1, so `for i=1,10 do' is a syntax error here and `while' is the idiom. Examples in DOC/lua/examples.
+luac|Compiles a Lua script to bytecode: `luac -o out in.lua'. Needs csl. runc then runs the result as an OS-9 command.

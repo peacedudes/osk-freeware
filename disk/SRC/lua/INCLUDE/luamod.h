@@ -1,0 +1,1 @@
+/* Lua OSK module definition */typedef struct {	struct modhcom _mh;	long   	_mlsize;			/* code size */	long   	_mlcode;			/* code offset */	long	_mlid;				/* sync */} mod_lua;#define 	MOD_ID_CHUNK	(0xFCAB696C)#define 	MOD_LANG		(5)				/* Cobol I-Code */

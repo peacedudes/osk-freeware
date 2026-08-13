@@ -82,7 +82,7 @@ lines long, which is no help until you already know the name you want.
 | **Files & directories** | 31 | Listing, copying, finding, renaming, and knowing what you have. |
 | **Developer tools** | 28 | Version control, tags, cross-reference, formatters, a debugger and benchmarks. |
 | **Compilers & build** | 33 | C compilers and their passes, assemblers, linkers, make and parser generators. |
-| **Languages** | 3 | Interpreters and language systems beyond C. |
+| **Languages** | 6 | Interpreters and language systems beyond C. |
 | **Archives & compression** | 20 | Pack, unpack and shrink -- lha, zip, tar, arc, zoo, and OS-9 module libraries. |
 | **Encoding & conversion** | 16 | Between text encodings, line endings, number bases, ciphers and hashes. |
 | **Communications** | 20 | Kermit in several builds, terminal sessions, and networking. |
