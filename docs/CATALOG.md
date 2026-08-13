@@ -851,7 +851,7 @@
 | `greed` | Greed - grid game<br>`Usage: greed [-p] [-s]` |
 | `lander` | lunar lander -- KNOWN BROKEN: takes no input, and the |
 | `pacman` | Pac-Man |
-| `robots` | &#9733; robots -- outrun them until they crash into each other.<br>**How:** Use `robots -m'. Without it the game is effectively unplayable, which its usage line offers and nothing explained. |
+| `robots` | &#9733; robots -- outrun them until they crash into each other.<br>**How:** Play with `robots -m' -- manual mode, where the robots take one step per move you make. Keys are the numeric keypad 1-9 (5 stands still), `s' for last stand, `t' to teleport. Needs Microware's math module and a real TERM. |
 | `snake` | snake arcade game -- KNOWN BROKEN: starts and then sits |
 | `sokoban` | Sokoban puzzle<br>**How:** Wants a username, so run it from a login rather than a bare shell, or it stops with "cannot get your username". |
 | `tet` | Tetris -- KNOWN BROKEN: draws its board and takes no input |

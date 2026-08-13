@@ -31,7 +31,7 @@ england|One of six weather simulators that differ only in climate and calendar: 
 japan|A weather simulator, not a calendar tool -- see `england'. It uses the Japanese calendar, which is the only reason it looks like one.
 shire|A weather simulator using the Middle-earth calendar -- see `england'.
 sokoban|Wants a username, so run it from a login rather than a bare shell, or it stops with "cannot get your username".
-robots|Use `robots -m'. Without it the game is effectively unplayable, which its usage line offers and nothing explained.
+robots|Play with `robots -m' -- manual mode, where the robots take one step per move you make. Keys are the numeric keypad 1-9 (5 stands still), `s' for last stand, `t' to teleport. Needs Microware's math module and a real TERM.
 advint|Plays an ADVSYS .adi world file. THERE IS NO WORLD FILE ON THIS DISK, so it has nothing to do until you write one with advcom.
 advcom|Compiles ADVSYS .adv source into a .adi world for advint. No .adv source ships here either -- this pair is for writing adventures, not playing them.
 infocom|A Z-machine. Plays the .z3 files in /dd/GAMES/INFORM, which are Inform demonstration programs (dejavu, hellow, shell), not the Infocom games.

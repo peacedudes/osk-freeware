@@ -1,0 +1,1 @@
+/* unknown stuff */#include   <curses.h>      #define SEC256THS 0x80000000inkey(){	if(chkin())		return(getch());	tsleep (SEC256THS + 64);	return(0);}char *getlogin(){	return("your name");}

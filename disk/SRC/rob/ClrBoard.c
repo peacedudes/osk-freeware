@@ -1,0 +1,1 @@
+#include        <curses.h>#include        "define.h"ClrBoard (){        int     row, col;   for (row = 1; row <= MAXrows; row++)      for (col = 1; col <= MAXcols; col++)      {         move (row, col);         addch (' ');      }   refresh ();}

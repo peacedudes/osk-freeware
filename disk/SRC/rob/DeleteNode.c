@@ -1,0 +1,1 @@
+#include        "define.h"#define NULL    0DeleteNode (node, head, tail)        ToptenNode      *head, *tail, node;{   if (node == *head)      *head = node->next;   else      node->prev->next = node->next;   if (node == *tail)      *tail = node->prev;   else      node->next->prev = node->prev;   free (node);}
