@@ -1,0 +1,1 @@
+/* * this provides sort of a tick based interface to the sytem clocks */#ifndef D_TckSec# include <setsys.h>#endif#define TICKS		((long) _getsys(D_Ticks, 4))#ifndef CLK_TCK# define CLK_TCK		((long) _getsys(D_TckSec, 2))#endif

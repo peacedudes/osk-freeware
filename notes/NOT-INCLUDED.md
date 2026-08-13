@@ -12,9 +12,7 @@ a reason for.
 
 ## Held for your decision
 
-| | |
-|---|---|
-| **`auxlib`** — `alib.l`, `alib020.l` and nine headers, a personal extension to Microware's C library | The author's own read.me says *"I don't have any sort of docs. That is perhaps the main reason I don't distribute this."* That is a habit rather than a term, and the archive was published to the hobbyist archive regardless. Useful to anyone compiling C here. Extracted and ready; left out only because the author's sentence deserves your eye, not mine. `[LIB/auxlib.ar]` |
+*(empty — `auxlib` was the only entry and is now included; see SOURCES.txt)*
 
 ## Excluded on the owner's terms
 
