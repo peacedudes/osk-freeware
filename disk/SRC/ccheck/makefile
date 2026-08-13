@@ -1,0 +1,1 @@
+ccheck : ccheck.r		cc ccheck.r -iccheck.r : ccheck.c		cc ccheck.c -dUNIX -r

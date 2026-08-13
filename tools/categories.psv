@@ -680,3 +680,9 @@ gnuplot|Graphics & images|Plotting
 gawk|Text tools|Pattern processing
 sox|Encoding & conversion|Audio
 p2c|Compilers & build|Translators
+ccheck|Developer tools|Source checking
+libsplit|Developer tools|Libraries
+lwf|Printing|PostScript
+tab|Developer tools|Assembly
+textb|Amusements|Fractals
+xlate|Developer tools|Assembly
