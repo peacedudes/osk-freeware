@@ -737,3 +737,7 @@ macunpack|Encoding & conversion|Macintosh
 mcvert|Encoding & conversion|Macintosh
 UnMacpack|Encoding & conversion|Macintosh
 unsit|Encoding & conversion|Macintosh
+ar2|Archives & compression|OS-9 archives
+checkfile|Developer tools|Source checking
+fstat|Files & directories|Attributes
+mines|Games|Puzzles

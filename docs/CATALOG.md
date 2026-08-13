@@ -1,6 +1,6 @@
 # What is on this disk
 
-666 programs of OS-9/68K community software, gathered from the archives that kept it and made to run again. **540 of them need nothing but this disk**; the rest want Microware's `cio`, marked below with a star.
+669 programs of OS-9/68K community software, gathered from the archives that kept it and made to run again. **540 of them need nothing but this disk**; the rest want Microware's `cio`, marked below with a star.
 
 `DOC/INDEX` on the disk lists everything alphabetically. This is the same collection sorted by what each program is *for*, which is the more useful order when you do not yet know what you are looking for.
 
@@ -11,11 +11,11 @@
 | [Shells](#shells) | 21 | Unix shells to sit beside OS-9's own -- bash and ksh bring history, job control, and scripts that come across unchanged. |
 | [Editors](#editors) | 18 | vi and emacs in several flavours, line and stream editors, and editors for binary and hex. |
 | [Text tools](#text-tools) | 82 | Search, sort, compare, reformat, split and spell-check. |
-| [Files & directories](#files--directories) | 37 | Listing, copying, finding, renaming, and knowing what you have. |
-| [Developer tools](#developer-tools) | 32 | Version control, tags, cross-reference, formatters, a debugger and benchmarks. |
+| [Files & directories](#files--directories) | 38 | Listing, copying, finding, renaming, and knowing what you have. |
+| [Developer tools](#developer-tools) | 33 | Version control, tags, cross-reference, formatters, a debugger and benchmarks. |
 | [Compilers & build](#compilers--build) | 34 | C compilers and their passes, assemblers, linkers, make and parser generators. |
 | [Languages](#languages) | 6 | Interpreters and language systems beyond C. |
-| [Archives & compression](#archives--compression) | 23 | Pack, unpack and shrink -- lha, zip, tar, arc, zoo, and OS-9 module libraries. |
+| [Archives & compression](#archives--compression) | 24 | Pack, unpack and shrink -- lha, zip, tar, arc, zoo, and OS-9 module libraries. |
 | [Encoding & conversion](#encoding--conversion) | 26 | Between text encodings, line endings, number bases, ciphers and hashes. |
 | [Communications](#communications) | 20 | Kermit in several builds, terminal sessions, and networking. |
 | [Graphics & images](#graphics--images) | 190 | The netpbm toolkit, JPEG, a ray tracer, and things that draw. |
@@ -273,7 +273,7 @@
 
 *Listing, copying, finding, renaming, and knowing what you have.*
 
-<details><summary>37 programs</summary>
+<details><summary>38 programs</summary>
 
 **Copy, move, delete**
 
@@ -347,13 +347,19 @@
 | `ren` | bulk rename files<br>`Syntax: ren [<opts>] <pathlist> <newname>` |
 | `rendsk` | rename a disk volume<br>`Syntax:   rendsk [<opts>] <disk device> <new name>` |
 
+**Attributes**
+
+| | |
+|---|---|
+| `fstat` | Report a file's status and attributes<br>`Syntax: FStat [<opts>] <file1> [<opts>]` |
+
 </details>
 
 ## Developer tools
 
 *Version control, tags, cross-reference, formatters, a debugger and benchmarks.*
 
-<details><summary>32 programs</summary>
+<details><summary>33 programs</summary>
 
 **Benchmarks**
 
@@ -401,6 +407,13 @@
 | `etags` | generate an emacs TAGS file<br>`Syntax: etags { [<opts>] <path> }` |
 | `xrf` | C cross-reference generator |
 
+**Source checking**
+
+| | |
+|---|---|
+| `ccheck` | &#9733; C program checker -- matching brackets, quotes, comment<br>**How:** Checks C source for mismatched brackets, quotes and comment markers, and for indentation that disagrees with the nesting. Needs cio. |
+| `checkfile` | &#9733; Check a C source file for structural mistakes.  Wants TERM |
+
 **Debugging**
 
 | | |
@@ -414,12 +427,6 @@
 |---|---|
 | `tab` | Tabulate 6809 or 68000 assembly source -- opcode-aware, and<br>`Syntax: tab [<opts>]` |
 | `xlate` | &#9733; Translate 6809 assembly source to 68000<br>**How:** Translates 6809 assembly source into 68000. Pairs with as09 (the 6809 assembler on this disk) and with `tab', which tabulates either dialect. Needs cio. |
-
-**Source checking**
-
-| | |
-|---|---|
-| `ccheck` | &#9733; C program checker -- matching brackets, quotes, comment<br>**How:** Checks C source for mismatched brackets, quotes and comment markers, and for indentation that disagrees with the nesting. Needs cio. |
 
 **Libraries**
 
@@ -517,7 +524,7 @@
 
 *Pack, unpack and shrink -- lha, zip, tar, arc, zoo, and OS-9 module libraries.*
 
-<details><summary>23 programs</summary>
+<details><summary>24 programs</summary>
 
 **Create & extract**
 
@@ -560,6 +567,12 @@
 |---|---|
 | `booz` | &#9733; Extract or list a zoo archive.  Public domain, Rahul Dhesi<br>**How:** Extracts and lists zoo archives. `booz -l file.zoo' to look, `booz -x' to extract. fiz repairs a zoo archive that will not open. |
 | `fiz` | &#9733; Repair a damaged zoo archive.  Public domain<br>`Usage:  fiz archive[.zoo]  ("fiz -h" for help)` |
+
+**OS-9 archives**
+
+| | |
+|---|---|
+| `ar2` | &#9733; Ar V2.00 -- Carl Kreider's archiver, a later edition than<br>`Usage:  Ar -<cmd>[<modifier>] archive [file .. ]` |
 
 **zip**
 
@@ -987,7 +1000,7 @@
 | | |
 |---|---|
 | `maze` | maze generator -- KNOWN BROKEN: goes dead |
-| `mines` | minesweeper |
+| `mines` | &#9733; minesweeper |
 | `puz15` | the 15-puzzle -- same program as CMDS/puzzle15, built twice<br>`usage: puz15 [<width[x<height>]] puz15` |
 | `puzzle15` | the 15-puzzle -- same program as GAMES/puz15, built twice<br>`usage: puzzle15 [<width[x<height>]] puzzle15` |
 
