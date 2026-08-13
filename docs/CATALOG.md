@@ -458,12 +458,12 @@
 
 | | |
 |---|---|
-| `as0` | 68000 assembler (xasm)<br>`Usage: as0 [files]` |
+| `as0` | 6800/6802 cross-assembler (xasm).  NOT a 68000 assembler --<br>**How:** A 6800 cross-assembler, not a 68000 one -- as1 is 6801, as4 is 6804, as5 is 6805, as11 is 68HC11 and as09 is 6809. DOC/xasm/asm.doc is their manual; source for all of them is in SRC/xasm. |
 | `as09` | &#9733; 6809 assembler<br>`Usage: as09 [files]` |
-| `as1` | 68010 assembler (xasm)<br>`Usage: as1 [files]` |
-| `as11` | 68HC11 assembler (xasm)<br>`Usage: as11 [files]` |
-| `as4` | 68040 assembler (xasm)<br>`Usage: as4 [files]` |
-| `as5` | 68050 assembler (xasm)<br>`Usage: as5 [files]` |
+| `as1` | 6801/6803 cross-assembler (xasm)<br>`Usage: as1 [files]` |
+| `as11` | 68HC11 cross-assembler (xasm)<br>`Usage: as11 [files]` |
+| `as4` | 6804 cross-assembler (xasm)<br>`Usage: as4 [files]` |
+| `as5` | 6805/68HC05 cross-assembler (xasm)<br>`Usage: as5 [files]` |
 | `lnk` | module linker |
 | `lnk.org` | module linker (original build) |
 | `my.opt` | 68k assembly peephole optimiser<br>`syntax: optim {opt} [infile] {opt} [outfile] {opt}` |

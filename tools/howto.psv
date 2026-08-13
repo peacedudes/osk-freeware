@@ -62,3 +62,4 @@ sddemo|White's Speedisk 2.10 de-fragmenter, demo build. Wants an 80x24 screen an
 dhry|Dhrystone 2.0. Twelve builds of the same source sit in CMDS/DHRY -- run several and compare, which is what tells you the compiler's cost. Under os9exec the number describes the host machine, not a 68000.
 head|First lines of a file. This GNU build wants `head -n 20 file' -- the older `head -20' form is rejected as an unrecognized option. Needs cio.
 tac|Prints a file backwards, last line first -- cat's mirror image. Needs cio.
+as0|A 6800 cross-assembler, not a 68000 one -- as1 is 6801, as4 is 6804, as5 is 6805, as11 is 68HC11 and as09 is 6809. DOC/xasm/asm.doc is their manual; source for all of them is in SRC/xasm.
