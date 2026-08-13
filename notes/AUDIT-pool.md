@@ -185,6 +185,24 @@ a file as binary if it contains a NUL, not if it starts with 4AFC. Verify
 installs against their originals; sizes matching proves nothing when the
 damage is a one-for-one byte substitution.
 
+## `man` was chased and left out, and here is why
+
+`MISC/man.lzh` looked like the best find on the list -- a `man` command, when
+this session had just hand-extended `LIB/tmac.an` so `nroff -man` could format
+the netpbm pages. It is not that program.
+
+Its own manual (`Man.prf` in the archive) says it looks in `/dd/USR/MAN` for
+`topic.prf` -- **proff-format source** -- or `topic.man`, a plain text file it
+lists as-is, and otherwise forks OS-9's `help`. The macro names in its `.man`
+file coincide with troff's, which is what made it look familiar, but it is a
+front end for a proff-formatted manual tree, not a formatter of the troff man
+pages this collection actually has.
+
+Shipping it would mean building a `/dd/USR/MAN` of proff-format files that do
+not exist, and it wants `cio` and `/PIPE` besides. `nroff -man` already reads
+the 172 pages in `DOC/netpbm`. Left out; revisit only if someone builds that
+manual tree.
+
 ## Closing the module list: what was taken, and what was not
 
 Every one of the 75 absent modules has now been run or reasoned about.
