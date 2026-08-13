@@ -140,6 +140,19 @@ Atari ST graphics memory. The GIF *decoder* source is portable and is what
 has value. Its author is Bill Rosenkranz, the same person who wrote this
 disk's `nroff`.
 
+## A trap that silently corrupts what you install
+
+The installer converted line endings for anything that was not an OS-9 module
+(4AFC magic). **Linker libraries and relocatable objects are neither.**
+`libp2c.l`, both `basic.l` files and dhry's `.r` objects were rewritten
+byte-for-byte LF to CR -- same file size, wrong contents, no error anywhere.
+p2c and the BASIC compilers would have failed later for no visible reason.
+
+Caught by diffing every installed file against its source. The rule is: treat
+a file as binary if it contains a NUL, not if it starts with 4AFC. Verify
+installs against their originals; sizes matching proves nothing when the
+damage is a one-for-one byte substitution.
+
 ## The assemblers are mislabelled, now from a primary source
 
 `MISC/xasm.ar` contains `asm.doc`, which opens:
