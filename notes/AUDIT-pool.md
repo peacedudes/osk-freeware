@@ -185,6 +185,44 @@ a file as binary if it contains a NUL, not if it starts with 4AFC. Verify
 installs against their originals; sizes matching proves nothing when the
 damage is a one-for-one byte substitution.
 
+## Closing the module list: what was taken, and what was not
+
+Every one of the 75 absent modules has now been run or reasoned about.
+
+**Taken** (see SOURCES.txt for terms and provenance): oleo, gs403 with its
+fonts, the GNU shellutils (env, expr, whoami, logname, su), zoo's booz and
+fiz, Info-ZIP's funzip and zipinfo, lesskey and lessecho, eight of Carl
+Kreider's utilities, the nine macutil programs, ar2, checkfile, fstat, mines,
+scqref, and six GNU text filters (head, tac, expand, unexpand, split, sum).
+
+**Left, with the reason:**
+
+| | |
+|---|---|
+| `hex` | The disk's `hexedit` is the same program under its other name. |
+| `lharcs` | C-LHarc 1.01; the disk already has lha 2.08 and lharc. |
+| `gtar`, `diff_1.1`, `compress_4.0`, `m4_0.5`, `sed_1.06`, `fgrep_1.11`, `lha208.bin` | Duplicates. Two are byte-identical to what ships. |
+| `cc1`, `cccp` | gcc 1.42 passes; the disk carries GCC 1.39 and 2.x complete. |
+| `f68k`/`os9lader` | F68K is a Forth system, not Fortran as the name suggests. Its OS-9 part is only a loader. |
+| `advent0` and colossal.lzh | Already here — `GAMES/adv` holds advent0 and advent1-4.txt, and `SRC/adv` the source. |
+| `gnuplot_x11` | An X11 driver, with no X11 here and no gnuplot binary in that archive. |
+| `regex`, `strcmp`, `testpad`, `makecrc` | Library and test fragments, not programs. |
+| `mgif`, `tplot` | Write to Atari ST graphics memory. |
+| `alps` | Drives one 1980s printer. |
+| `uac_view`, `umusek` | A private system's data viewer; a program that cannot get a screen address. |
+| `dedit` | Will not load: error 205, E_BMID. |
+| `cmake`, `dearc` | Carl's own note calls cmake obsolete; arc covers dearc. |
+| `ubdemo` (68020) | The 68000 sibling is in CMDS/DEMOS. |
+| the 15 `pbmexec` programs, `pbmdoc.ar` | The 1991 PBM suite and its docs, replaced by netpbm. |
+| `updates.lzh` drivers | MM/1 hardware. |
+| `sddemo` | Taken, actually -- see CMDS/DEMOS. |
+
+**A second lesson about the method.** Matching only against `CMDS` produced
+false positives of its own: `advent0` looked absent but lives in `GAMES/adv`,
+and trminfo's terminal descriptions in `SYS/TERM`. Programs are not the only
+thing a collection ships, and a name absent from `CMDS` is not a name absent
+from the disk.
+
 ## The assemblers are mislabelled, now from a primary source
 
 `MISC/xasm.ar` contains `asm.doc`, which opens:

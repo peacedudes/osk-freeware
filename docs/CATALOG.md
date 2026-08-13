@@ -1,6 +1,6 @@
 # What is on this disk
 
-669 programs of OS-9/68K community software, gathered from the archives that kept it and made to run again. **540 of them need nothing but this disk**; the rest want Microware's `cio`, marked below with a star.
+670 programs of OS-9/68K community software, gathered from the archives that kept it and made to run again. **540 of them need nothing but this disk**; the rest want Microware's `cio`, marked below with a star.
 
 `DOC/INDEX` on the disk lists everything alphabetically. This is the same collection sorted by what each program is *for*, which is the more useful order when you do not yet know what you are looking for.
 
@@ -25,7 +25,7 @@
 | [System & modules](#system--modules) | 33 | OS-9 module and process tools, devices, system state and scheduling. |
 | [Disk & DOS](#disk--dos) | 20 | Reading and writing MS-DOS media with the mtools set. |
 | [Time & calendar](#time--calendar) | 10 | Calendars, clocks and astronomy. |
-| [Maths & calculators](#maths--calculators) | 12 | Calculators, plotting, orbits and number theory. |
+| [Maths & calculators](#maths--calculators) | 13 | Calculators, plotting, orbits and number theory. |
 | [Printing](#printing) | 13 | Spoolers, page formatting and PostScript. |
 | [Documentation](#documentation) | 6 | Pagers, readers and the help system. |
 
@@ -1226,7 +1226,7 @@
 
 *Calculators, plotting, orbits and number theory.*
 
-<details><summary>12 programs</summary>
+<details><summary>13 programs</summary>
 
 **Calculators**
 
@@ -1253,6 +1253,7 @@
 | | |
 |---|---|
 | `oleo` | GNU Oleo 1.6 -- a spreadsheet.  Wants a real TERM.  The<br>**How:** GNU Oleo, a spreadsheet. It needs a real terminal -- run it from a login so TERM is set, not from a bare shell. sc is the other spreadsheet on this disk; they are unrelated programs. |
+| `scqref` | &#9733; Quick reference for sc, the spreadsheet on this disk |
 
 **Astronomy & orbits**
 
