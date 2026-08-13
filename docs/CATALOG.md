@@ -1,6 +1,6 @@
 # What is on this disk
 
-631 programs of OS-9/68K community software, gathered from the archives that kept it and made to run again. **527 of them need nothing but this disk**; the rest want Microware's `cio`, marked below with a star.
+637 programs of OS-9/68K community software, gathered from the archives that kept it and made to run again. **527 of them need nothing but this disk**; the rest want Microware's `cio`, marked below with a star.
 
 `DOC/INDEX` on the disk lists everything alphabetically. This is the same collection sorted by what each program is *for*, which is the more useful order when you do not yet know what you are looking for.
 
@@ -10,7 +10,7 @@
 |---|--:|---|
 | [Shells](#shells) | 16 | Unix shells to sit beside OS-9's own -- bash and ksh bring history, job control, and scripts that come across unchanged. |
 | [Editors](#editors) | 18 | vi and emacs in several flavours, line and stream editors, and editors for binary and hex. |
-| [Text tools](#text-tools) | 72 | Search, sort, compare, reformat, split and spell-check. |
+| [Text tools](#text-tools) | 78 | Search, sort, compare, reformat, split and spell-check. |
 | [Files & directories](#files--directories) | 37 | Listing, copying, finding, renaming, and knowing what you have. |
 | [Developer tools](#developer-tools) | 32 | Version control, tags, cross-reference, formatters, a debugger and benchmarks. |
 | [Compilers & build](#compilers--build) | 34 | C compilers and their passes, assemblers, linkers, make and parser generators. |
@@ -113,7 +113,7 @@
 
 *Search, sort, compare, reformat, split and spell-check.*
 
-<details><summary>72 programs</summary>
+<details><summary>78 programs</summary>
 
 **Transform & filter**
 
@@ -192,6 +192,17 @@
 | `sonnet` | writes (bad) sonnets in iambic pentameter, curses-based<br>`Usage:  sonnet [-l input] [-f outfilename]` |
 | `strfile` | build fortune's index file<br>`usage:  strfile [ - ] [ -cC ] [ -sv ] inputfile [ datafile ]` |
 | `unstr` | reverse strfile - dump a fortune index<br>`usage: unstr datafile[.dat] [ outfile ]` |
+
+**Filters**
+
+| | |
+|---|---|
+| `expand` | &#9733; Turn tabs into spaces (GNU)<br>`Usage: expand [-tab1[,tab2[,...]]] [-t tab1[,tab2[,...]]] [-i]` |
+| `head` | &#9733; First lines of a file -- `head -n 20 file'.  These GNU builds<br>**How:** First lines of a file. This GNU build wants `head -n 20 file' -- the older `head -20' form is rejected as an unrecognized option. Needs cio. |
+| `split` | &#9733; Split a file into pieces (GNU)<br>`Usage: split [-lines] [-l lines] [-b bytes[km]] [-C bytes[km]] [+lines=lines]` |
+| `sum` | &#9733; Checksum and block count (GNU) |
+| `tac` | &#9733; Print a file backwards, last line first (GNU)<br>**How:** Prints a file backwards, last line first -- cat's mirror image. Needs cio. |
+| `unexpand` | &#9733; Turn leading spaces back into tabs (GNU)<br>`Usage: unexpand [-tab1[,tab2[,...]]] [-t tab1[,tab2[,...]]] [-a]` |
 
 **Spelling & words**
 

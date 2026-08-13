@@ -60,3 +60,5 @@ ub68kdemo|UniBasic 1.10. `chd /dd/DOC/unibasic' first -- its library and its ben
 ob68kdemo|OmniBasic 1.16, same arrangement as ub68kdemo -- `chd /dd/DOC/omnibasic' and run it there, and it too forks `cc' to finish a build. DEMO VERSION, capped symbol table.
 sddemo|White's Speedisk 2.10 de-fragmenter, demo build. Wants an 80x24 screen and drops to tty mode without one.
 dhry|Dhrystone 2.0. Twelve builds of the same source sit in CMDS/DHRY -- run several and compare, which is what tells you the compiler's cost. Under os9exec the number describes the host machine, not a 68000.
+head|First lines of a file. This GNU build wants `head -n 20 file' -- the older `head -20' form is rejected as an unrecognized option. Needs cio.
+tac|Prints a file backwards, last line first -- cat's mirror image. Needs cio.
