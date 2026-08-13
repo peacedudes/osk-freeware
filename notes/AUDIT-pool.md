@@ -140,6 +140,38 @@ Atari ST graphics memory. The GIF *decoder* source is portable and is what
 has value. Its author is Bill Rosenkranz, the same person who wrote this
 disk's `nroff`.
 
+## The archive-level pass was the wrong unit -- 75 modules were hiding
+
+The first cross-reference asked "does this archive contain any program that is
+on the disk?" and called the archive represented if so. That is the wrong
+question. `gnu.bin.t.gz` counted as covered because `cat` and `ls` are here,
+while `cp`, `mv`, `rm`, `mkdir`, `head`, `tac` and eleven more inside it had
+never been looked at.
+
+Redone at the module level -- every archive extracted, every 4AFC module found,
+its name read from `M$Name` at header offset `0x0C` rather than from its
+filename. **278 distinct module names in the pool; 75 are not on this disk.**
+The full list is `notes/pool-modules-absent.txt`. The substantial ones:
+
+| | |
+|---|---|
+| `oleo` | GNU Oleo, a spreadsheet, 403 KB. Nothing like it here except `sc`. |
+| `gs403` | Ghostscript 4.03, 1.2 MB. The disk carries gs33 (3.33). |
+| `gnuplot` 3.2 | Newer than the 2.0 added on 2026-08-13, with an X11 driver. |
+| carlutil | Twelve of Carl Kreider's utilities -- `cmake`, `dedit`, `tplot`, `dearc`, `splman`/`splprt`/`splstat`, `charcnt`, `tcmp`, `subber`, `unp`, `bsplt68`. He wrote the `ar` this disk already ships. |
+| macutils | Nine Macintosh format tools -- `binhex`, `hexbin`, `macbin`, `mcvert`, `unsit`, `macunpack`, `unmacpack`, `macsave`, `macstream`. |
+| sh_utils73 | `env`, `expr`, `ggrep`, `logname`, `su`, `whoami` -- excluded once for wanting cio. |
+| zoo, unzip | `booz`, `fiz`, `funzip`, `zipinfo`. |
+| less | `lesskey`, `lessecho`. |
+| gcc 1.42 | `cc1`, `cccp` passes. |
+
+Not worth taking, already reasoned about elsewhere: the fifteen `pbmexec`
+programs (the 1991 PBM suite, superseded by netpbm), the `updates.lzh` MM/1
+drivers, `mgif`, `alps`, `uac_view`, `umusek`, and `ubdemo` (the 68020 build
+of the UniBasic demo whose 68000 sibling is already in CMDS/DEMOS).
+
+**Nothing in that list has been run yet.** It is an inventory, not a verdict.
+
 ## A trap that silently corrupts what you install
 
 The installer converted line endings for anything that was not an OS-9 module
