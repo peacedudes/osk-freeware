@@ -94,6 +94,52 @@ And the `GNU/*.Z` binaries the old note dismissed as "162 need cio" —
 `sed_1.06`, `gawk_2.11`, `m4_0.5`, `diff_1.1`, `fgrep_1.11`, `compress_4.0`,
 `gtar_1_10`. Needing `cio` is not a reason; see `SOURCES.txt`.
 
+## First pass of actual testing -- two of my top five did not survive
+
+The list above was built from archive listings, not from running anything.
+Testing started 2026-08-12 and immediately demoted two of them. Recorded
+because a ranked list that is never checked is exactly the failure this
+project keeps repeating.
+
+- **`APPS/trminfo1.lzh` -- ALREADY HERE.** 28 of its 30 terminal descriptions
+  are in `SYS/TERM` already. Only `c/coco` and `readme.terminfo` are missing.
+  It read as absent because its members are `SYS/TERM/...` data paths, not
+  program names, so nothing matched. Worth taking `coco`; not a find.
+- **`ARCHIVERS/gziposk124.tar` -- MARGINAL.** `CMDS/gzip` is 77778 bytes and
+  so is `ARCHIVERS/gzip_1_2_2.bin`: the disk already ships that build, and it
+  is already trap-free. The 1.2.4 set adds 68020 and CPU32 variants and a
+  `_nocsl` 68k build. CPU variants for hardware nobody here is emulating.
+- **`SRC/msdos_diskaccess.lzh`** is the source for `CMDS/mtools`, which is on
+  the disk. Useful as source; not a missing program.
+
+**Still genuinely absent, confirmed by name against `CMDS`:** `man`,
+`Librarian`/`EditLibr` and the rest of HomeLibrary, `gnuplot`, `sox`,
+`inform`, `p2c`, `dhry`, `ccheck`, `lwf`, `hdump`.
+
+### GIF images: the converters finally have something to convert
+
+`GRAPHICS/mgif.lzh` holds `gulls.gif` (320x200), `jessica1.gif` (320x396) and
+`school46.gif` (512x320), all GIF87a. Verified on the disk:
+
+    giftopnm /h1/gulls.gif | pnmfile        ->  PPM raw, 320 by 200
+    giftopnm | ppmtopgm | pnmscale -width 78 | pgmtopbm | pbmtoascii
+
+renders a real photograph as terminal art. That is the first actual picture
+this collection has ever had.
+
+**Not shipped, pending a decision.** The porter's readme says only "I have
+included some gif pictures for you to test the stuff" -- which covers the
+bundle, not the photographs' own copyright. `jessica1` and `school46` look
+like photographs of identifiable people, possibly children. Adding those to a
+public repository on an implied 1992 permission is not a call to make quietly.
+They are being used as test material only.
+
+**`mgif` itself does not belong here.** Its own OS-9 port note: "it runs on
+ST's only, if you don't change the source" -- `flicker.c` writes straight to
+Atari ST graphics memory. The GIF *decoder* source is portable and is what
+has value. Its author is Bill Rosenkranz, the same person who wrote this
+disk's `nroff`.
+
 ## The assemblers are mislabelled, now from a primary source
 
 `MISC/xasm.ar` contains `asm.doc`, which opens:
