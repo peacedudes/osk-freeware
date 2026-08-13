@@ -66,9 +66,23 @@ WORK=$OUTDIR/$DEV
 # flex and rayshade. Content plus ~90% is generous without being silly.
 [ "$MB" -eq 0 ] && MB=$(( $(du -sm "$SRC" | cut -f1) * 19 / 10 + 8 ))
 
+# CLUSTER SIZE, and why this is not always 1. RBF's allocation bitmap holds one
+# bit per cluster, and `mount -k' cannot address more than 512000 sectors of
+# 256 bytes -- 125 MiB -- at one sector per cluster. Ask for more and it stops
+# with "cluster size is too small for this device", which reads like a bad
+# argument and is really the disk having outgrown the geometry. The collection
+# crossed that line in August 2026. Double the cluster until the sector count
+# fits; os9exec reports the minimum it needs, so this agrees with it.
+SECTORS_PER_MB=4096
+MAX_SECTORS=512000
+CLUSTER=1
+while [ $(( MB * SECTORS_PER_MB / CLUSTER )) -gt $MAX_SECTORS ]; do
+  CLUSTER=$(( CLUSTER * 2 ))
+done
+
 nfiles=$(find "$SRC" -type f | wc -l | tr -d ' ')
 ndirs=$(find "$SRC" -mindepth 1 -type d | wc -l | tr -d ' ')
-echo "  $SRC ($(du -sh "$SRC" | cut -f1)) -> ${MB}M image, volume '$VOL'"
+echo "  $SRC ($(du -sh "$SRC" | cut -f1)) -> ${MB}M image, cluster $CLUSTER, volume '$VOL'"
 echo "  $ndirs dirs, $nfiles files"
 
 # The image is built from the working tree, not from git, so .gitignore is no
@@ -93,7 +107,7 @@ trap 'rm -rf "$TMP"; rm -f "$WORK"' EXIT
 python3 "$HERE/mktar.py" "$SRC" "$TMP/collection.tar" || exit 1
 
 # ---- 2. the blank image, written by the emulator into $OUTDIR
-( cd "$OUTDIR" && "$EXEC" -r mount -k="${MB}M" -v="$VOL" "$DEV" ) 2>&1 \
+( cd "$OUTDIR" && "$EXEC" -r mount -k="${MB}M" -c="$CLUSTER" -v="$VOL" "$DEV" ) 2>&1 \
   | tr -d '\000' | grep -aiE "error|cannot" && { echo "  FAILED: mount -k"; exit 1; }
 [ -e "$WORK" ] || { echo "  FAILED: mount -k created no image at $WORK"; exit 1; }
 
