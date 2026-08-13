@@ -1,0 +1,1 @@
+ dim a(50000):byte dim b:integer dim i:integer dim j:integer shell "date" for j=1 to 20	for i=1 to 50000		b=addr(a(i))	next i next j shell "date"

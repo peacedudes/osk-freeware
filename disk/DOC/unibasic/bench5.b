@@ -1,0 +1,1 @@
+ type UserType=a:integer;b:byte dim x:UserType dim i:integer shell "date" for i=1 to 1000000 x.a=x.b next i shell "date"

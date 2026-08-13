@@ -1,0 +1,1 @@
+ dim i:integer dim a:integer dim b:integer dim c:integer dim d:integer dim e:integer dim f:integer dim g:integer shell "date" a=1 b=2 c=3 d=4 e=5 f=6 g=7 for i=1 to 100000 a=b+c*d/e*(f+g) next i shell "date"

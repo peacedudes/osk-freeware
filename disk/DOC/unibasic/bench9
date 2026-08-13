@@ -1,0 +1,1 @@
+PROCEDURE bench9DIM a:INTEGERa=0SHELL "date"10 a=a+1IF a<1000000 THEN 10SHELL "date"

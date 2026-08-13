@@ -1,0 +1,1 @@
+ dim a:byte dim i:integer shell "date" for i=1 to 1000000 a=land($55,a) next i shell "date"

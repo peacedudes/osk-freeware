@@ -1,0 +1,1 @@
+ dim i:integer dim j:integer shell "date" for j=1 to 1000 for i=1 to 10000 next i next j shell "date"

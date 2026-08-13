@@ -56,3 +56,7 @@ textb|An ASCII Mandelbrot viewer -- it asks four questions and draws. Try X_Coor
 xlate|Translates 6809 assembly source into 68000. Pairs with as09 (the 6809 assembler on this disk) and with `tab', which tabulates either dialect. Needs cio.
 lwf|Turns plain text into PostScript, the way Unix enscript does. It reads /dd/USR/LIB/lwf.prologue and stops without it. No PostScript printer here, so send the output to a file and take it elsewhere.
 ccheck|Checks C source for mismatched brackets, quotes and comment markers, and for indentation that disagrees with the nesting. Needs cio.
+ub68kdemo|UniBasic 1.10. `chd /dd/DOC/unibasic' first -- its library and its bench1..bench11 examples live there. It starts and translates with no cio, but forks `cc' to finish, so a complete build needs Microware's C compiler; without it you get "Error Exit" and error 216. The precompiled bench programs show what the output looks like. DEMO VERSION: the symbol table is capped, nothing else is.
+ob68kdemo|OmniBasic 1.16, same arrangement as ub68kdemo -- `chd /dd/DOC/omnibasic' and run it there, and it too forks `cc' to finish a build. DEMO VERSION, capped symbol table.
+sddemo|White's Speedisk 2.10 de-fragmenter, demo build. Wants an 80x24 screen and drops to tty mode without one.
+dhry|Dhrystone 2.0. Twelve builds of the same source sit in CMDS/DHRY -- run several and compare, which is what tells you the compiler's cost. Under os9exec the number describes the host machine, not a 68000.

@@ -1,0 +1,1 @@
+ dim x:real dim i:integer shell "date" for i=1 to 10000 x=sqr(i) next i shell "date"

@@ -1,0 +1,1 @@
+ dim i:integer shell "date" for i=1 to 1000000	if 4=5 then	endif	while 4=5 do	endwhile	repeat	until 5=5 next i shell "date"

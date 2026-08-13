@@ -1,0 +1,1 @@
+* this one shows:* 1) a centered title* 2) right justified floating point args dim a$:string[100] dim a:real print using("^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^","Centered Title") a$="         >>>>>>>>>>>>" a=4.5 print using(a$,a) a=456.66 print using(a$,a) print "         ____________" a=4.5+456.66 print using(a$,a)

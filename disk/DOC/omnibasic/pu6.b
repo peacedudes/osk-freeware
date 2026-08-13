@@ -1,0 +1,1 @@
+* this one shows:* 1) literal fields* 2) left justified, zero-filled hexadecimal numbers* 3) left justified, zero-filled decimal numbers dim a:short dim a$:string[50] dim i:byte a$="Count=$>>>>=>>>> hexidecimal, decimal" for i=1 to 20	print using(a$,zhex$(i),zstr$(i)) next i

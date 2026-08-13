@@ -1,0 +1,1 @@
+ dim a:integer dim i:integer shell "date" for i=1 to 1000000 a=a+1 next i shell "date"

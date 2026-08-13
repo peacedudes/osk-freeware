@@ -1,0 +1,1 @@
+ dim a:integer a=0 shell "date"10 a=a+1 if a<1000000 then 10 shell "date"

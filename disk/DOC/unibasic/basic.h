@@ -1,0 +1,1 @@
+/* HEADER FILE FOR OS9 */#include <errno.h>#include <setjmp.h>#include <time.h>#include <math.h>#define A_READ 1#define A_WRITE 2#define A_UPDATE 3#define A_DIR 0x80#define A_CREAT 0#define A_EXCL 0#define A_TEXT 0#define A_BINARY 0#define P_WRITE 3#define P_READ 3#define E_EXIST 218#define S_ORG 0#define S_CUR 1#define S_END 2
