@@ -66,3 +66,4 @@ as0|A 6800 cross-assembler, not a 68000 one -- as1 is 6801, as4 is 6804, as5 is 
 oleo|GNU Oleo, a spreadsheet. It needs a real terminal -- run it from a login so TERM is set, not from a bare shell. sc is the other spreadsheet on this disk; they are unrelated programs.
 booz|Extracts and lists zoo archives. `booz -l file.zoo' to look, `booz -x' to extract. fiz repairs a zoo archive that will not open.
 funzip|Unzips from a pipe rather than a file: `funzip < thing.zip > thing'. For a normal archive use unzip; zipinfo lists what is inside one.
+gs403|Aladdin Ghostscript 4.03. Set GS_LIB first -- `setenv GS_LIB /dd/LIB/gs403' -- or it cannot find gs_init.ps and stops. Everything it needs, fonts included, is in that directory. The older gs33 on this disk has never had its support files.

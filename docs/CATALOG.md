@@ -1,6 +1,6 @@
 # What is on this disk
 
-656 programs of OS-9/68K community software, gathered from the archives that kept it and made to run again. **530 of them need nothing but this disk**; the rest want Microware's `cio`, marked below with a star.
+657 programs of OS-9/68K community software, gathered from the archives that kept it and made to run again. **531 of them need nothing but this disk**; the rest want Microware's `cio`, marked below with a star.
 
 `DOC/INDEX` on the disk lists everything alphabetically. This is the same collection sorted by what each program is *for*, which is the more useful order when you do not yet know what you are looking for.
 
@@ -26,7 +26,7 @@
 | [Disk & DOS](#disk--dos) | 20 | Reading and writing MS-DOS media with the mtools set. |
 | [Time & calendar](#time--calendar) | 10 | Calendars, clocks and astronomy. |
 | [Maths & calculators](#maths--calculators) | 12 | Calculators, plotting, orbits and number theory. |
-| [Printing](#printing) | 12 | Spoolers, page formatting and PostScript. |
+| [Printing](#printing) | 13 | Spoolers, page formatting and PostScript. |
 | [Documentation](#documentation) | 6 | Pagers, readers and the help system. |
 
 ## Shells
@@ -1239,7 +1239,7 @@
 
 *Spoolers, page formatting and PostScript.*
 
-<details><summary>12 programs</summary>
+<details><summary>13 programs</summary>
 
 **Spooling**
 
@@ -1253,6 +1253,14 @@
 | `prjob` | print a job |
 | `qp` | queue/print helper<br>`Syntax: qp <cmd> <arg1> ... <argn>` |
 
+**PostScript**
+
+| | |
+|---|---|
+| `gs33` | Ghostscript 3.33 -- the older one, and it has never had the<br>`Usage: gs ... -%c file.ps arg1 ... argn` |
+| `gs403` | Aladdin Ghostscript 4.03 -- interprets PostScript, and this<br>**How:** Aladdin Ghostscript 4.03. Set GS_LIB first -- `setenv GS_LIB /dd/LIB/gs403' -- or it cannot find gs_init.ps and stops. Everything it needs, fonts included, is in that directory. The older gs33 on this disk has never had its support files. |
+| `lwf` | ASCII to PostScript, like Unix enscript.  Reads its prologue<br>**How:** Turns plain text into PostScript, the way Unix enscript does. It reads /dd/USR/LIB/lwf.prologue and stops without it. No PostScript printer here, so send the output to a file and take it elsewhere. |
+
 **Spooler**
 
 | | |
@@ -1260,13 +1268,6 @@
 | `splman` | &#9733; OS-9 print spooler: manager (Carl Kreider) |
 | `splprt` | &#9733; OS-9 print spooler: printer process |
 | `splstat` | &#9733; OS-9 print spooler: queue status.  Needs a queue to look at |
-
-**PostScript**
-
-| | |
-|---|---|
-| `gs33` | Ghostscript 3.33 (needs gs_init.ps + fonts)<br>`Usage: gs ... -%c file.ps arg1 ... argn` |
-| `lwf` | ASCII to PostScript, like Unix enscript.  Reads its prologue<br>**How:** Turns plain text into PostScript, the way Unix enscript does. It reads /dd/USR/LIB/lwf.prologue and stops without it. No PostScript printer here, so send the output to a file and take it elsewhere. |
 
 </details>
 

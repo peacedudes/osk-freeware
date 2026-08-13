@@ -94,7 +94,7 @@ lines long, which is no help until you already know the name you want.
 | **Disk & DOS** | 20 | Reading and writing MS-DOS media with the mtools set. |
 | **Time & calendar** | 10 | Calendars, clocks and astronomy. |
 | **Maths & calculators** | 12 | Calculators, plotting, orbits and number theory. |
-| **Printing** | 12 | Spoolers, page formatting and PostScript. |
+| **Printing** | 13 | Spoolers, page formatting and PostScript. |
 | **Documentation** | 6 | Pagers, readers and the help system. |
 
 <!-- CATEGORIES:END -->
