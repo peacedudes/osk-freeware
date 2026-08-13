@@ -8,7 +8,7 @@
 
 | Category | Programs | |
 |---|--:|---|
-| [Shells](#shells) | 16 | The stock OS-9 shell is thin. These give you history, job control and a command line worth living in. |
+| [Shells](#shells) | 16 | Unix shells to sit beside OS-9's own -- bash and ksh bring history, job control, and scripts that come across unchanged. |
 | [Editors](#editors) | 18 | vi and emacs in several flavours, line and stream editors, and editors for binary and hex. |
 | [Text tools](#text-tools) | 72 | Search, sort, compare, reformat, split and spell-check. |
 | [Files & directories](#files--directories) | 37 | Listing, copying, finding, renaming, and knowing what you have. |
@@ -31,7 +31,7 @@
 
 ## Shells
 
-*The stock OS-9 shell is thin. These give you history, job control and a command line worth living in.*
+*Unix shells to sit beside OS-9's own -- bash and ksh bring history, job control, and scripts that come across unchanged.*
 
 <details><summary>16 programs</summary>
 
@@ -58,7 +58,7 @@
 | `bash` | GNU Bourne-Again Shell 1.12 -- this disk's shell; reads .bashrc<br>`usage: fc [-e ename] [-nlr] [first] [last] or fc -s [pat=rep] [command]` |
 | `gshell` | GSHELL - a shell<br>`Syntax: gshell [<path>]` |
 | `ksh` | &#9733; Public Domain Korn Shell 4.3 (edition 11, OS-9 port)<br>`Syntax: 'setpr <prior>' or 'setpr <pid> [<pid>..] <prior>'` |
-| `sh` | Bourne shell v7.5 -- the startup script's shell; needs no Microware module |
+| `sh` | Bourne shell v7.5 -- what the startup script runs |
 | `wish` | WiSH - full-screen windowing shell over the OS-9 shell |
 
 </details>

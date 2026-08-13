@@ -76,7 +76,7 @@ lines long, which is no help until you already know the name you want.
 
 | Category | | |
 |---|--:|---|
-| **Shells** | 16 | The stock OS-9 shell is thin. These give you history, job control and a command line worth living in. |
+| **Shells** | 16 | Unix shells to sit beside OS-9's own -- bash and ksh bring history, job control, and scripts that come across unchanged. |
 | **Editors** | 18 | vi and emacs in several flavours, line and stream editors, and editors for binary and hex. |
 | **Text tools** | 72 | Search, sort, compare, reformat, split and spell-check. |
 | **Files & directories** | 37 | Listing, copying, finding, renaming, and knowing what you have. |

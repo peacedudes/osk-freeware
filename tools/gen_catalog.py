@@ -357,7 +357,7 @@ def gather(root, catfile):
 # ---------------------------------------------------------------- writing
 
 BLURB = {
- "Shells":"The stock OS-9 shell is thin. These give you history, job control and a command line worth living in.",
+ "Shells":"Unix shells to sit beside OS-9's own -- bash and ksh bring history, job control, and scripts that come across unchanged.",
  "Editors":"vi and emacs in several flavours, line and stream editors, and editors for binary and hex.",
  "Text tools":"Search, sort, compare, reformat, split and spell-check.",
  "Files & directories":"Listing, copying, finding, renaming, and knowing what you have.",
