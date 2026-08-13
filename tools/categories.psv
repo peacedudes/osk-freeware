@@ -728,3 +728,12 @@ splman|Printing|Spooler
 splprt|Printing|Spooler
 splstat|Printing|Spooler
 gs403|Printing|PostScript
+binhex|Encoding & conversion|Macintosh
+hexbin|Encoding & conversion|Macintosh
+macbin|Encoding & conversion|Macintosh
+macsave|Encoding & conversion|Macintosh
+macstream|Encoding & conversion|Macintosh
+macunpack|Encoding & conversion|Macintosh
+mcvert|Encoding & conversion|Macintosh
+UnMacpack|Encoding & conversion|Macintosh
+unsit|Encoding & conversion|Macintosh

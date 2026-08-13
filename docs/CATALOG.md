@@ -1,6 +1,6 @@
 # What is on this disk
 
-657 programs of OS-9/68K community software, gathered from the archives that kept it and made to run again. **531 of them need nothing but this disk**; the rest want Microware's `cio`, marked below with a star.
+666 programs of OS-9/68K community software, gathered from the archives that kept it and made to run again. **540 of them need nothing but this disk**; the rest want Microware's `cio`, marked below with a star.
 
 `DOC/INDEX` on the disk lists everything alphabetically. This is the same collection sorted by what each program is *for*, which is the more useful order when you do not yet know what you are looking for.
 
@@ -16,7 +16,7 @@
 | [Compilers & build](#compilers--build) | 34 | C compilers and their passes, assemblers, linkers, make and parser generators. |
 | [Languages](#languages) | 6 | Interpreters and language systems beyond C. |
 | [Archives & compression](#archives--compression) | 23 | Pack, unpack and shrink -- lha, zip, tar, arc, zoo, and OS-9 module libraries. |
-| [Encoding & conversion](#encoding--conversion) | 17 | Between text encodings, line endings, number bases, ciphers and hashes. |
+| [Encoding & conversion](#encoding--conversion) | 26 | Between text encodings, line endings, number bases, ciphers and hashes. |
 | [Communications](#communications) | 20 | Kermit in several builds, terminal sessions, and networking. |
 | [Graphics & images](#graphics--images) | 190 | The netpbm toolkit, JPEG, a ray tracer, and things that draw. |
 | [Games](#games) | 57 | Adventures, board and card games, arcade ports, dungeon crawls and puzzles. |
@@ -573,7 +573,21 @@
 
 *Between text encodings, line endings, number bases, ciphers and hashes.*
 
-<details><summary>17 programs</summary>
+<details><summary>26 programs</summary>
+
+**Macintosh**
+
+| | |
+|---|---|
+| `binhex` | Encode a file as Macintosh BinHex 4.0<br>`Usage: binhex [-binhex] [files]` |
+| `hexbin` | Decode BinHex back to a Macintosh file<br>**How:** Decodes Macintosh BinHex (.hqx) files, which is how Mac software travelled by mail and BBS. binhex goes the other way; unsit opens StuffIt archives and macunpack opens PackIt ones. All trap-free. DOC/macutils has the package readme. |
+| `macbin` | MacBinary encode/decode<br>`Usage  :   Converts files to MacBinary format` |
+| `macsave` | Save a Macintosh file with its resource fork intact |
+| `macstream` | Read a MacTerminal file stream<br>`Usage: macstream [-macstream] files` |
+| `macunpack` | Unpack a packed Macintosh archive<br>`Usage: macunpack [-macunpack] [filename]` |
+| `mcvert` | Convert between Macintosh file representations<br>`Usage: Mcvert [-rduxh] [DUpqsv] filename(s)` |
+| `UnMacpack` | Unpack MacPack format.  Named for its module, which is<br>`Usage: macunpack [-UnMacpack] [filename]` |
+| `unsit` | Unpack a StuffIt archive (V1.15f, Nigel Perry)<br>`Usage: Unsit [-rdulM] [-vqfm] filename` |
 
 **Text encodings**
 
