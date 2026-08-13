@@ -670,3 +670,13 @@ mscheck|Disk & DOS|MS-DOS media (mtools)
 lua|Languages|Interpreters
 luac|Languages|Interpreters
 runc|Languages|Interpreters
+Ascii2Libr|Files & directories|Home Librarian
+EditLibr|Files & directories|Home Librarian
+Librarian|Files & directories|Home Librarian
+Libr2Ascii|Files & directories|Home Librarian
+PrintCards|Files & directories|Home Librarian
+PrintLabels|Files & directories|Home Librarian
+gnuplot|Graphics & images|Plotting
+gawk|Text tools|Pattern processing
+sox|Encoding & conversion|Audio
+p2c|Compilers & build|Translators

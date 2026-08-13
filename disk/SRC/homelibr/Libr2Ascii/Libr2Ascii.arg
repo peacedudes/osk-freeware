@@ -1,0 +1,1 @@
+D Convert a Librarian Card Catalog file to a plain ASCII text file.D Output is sent to stdout.S R infile Input file

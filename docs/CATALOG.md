@@ -1,6 +1,6 @@
 # What is on this disk
 
-615 programs of OS-9/68K community software, gathered from the archives that kept it and made to run again. **517 of them need nothing but this disk**; the rest want Microware's `cio`, marked below with a star.
+625 programs of OS-9/68K community software, gathered from the archives that kept it and made to run again. **524 of them need nothing but this disk**; the rest want Microware's `cio`, marked below with a star.
 
 `DOC/INDEX` on the disk lists everything alphabetically. This is the same collection sorted by what each program is *for*, which is the more useful order when you do not yet know what you are looking for.
 
@@ -10,15 +10,15 @@
 |---|--:|---|
 | [Shells](#shells) | 16 | The stock OS-9 shell is thin. These give you history, job control and a command line worth living in. |
 | [Editors](#editors) | 18 | vi and emacs in several flavours, line and stream editors, and editors for binary and hex. |
-| [Text tools](#text-tools) | 71 | Search, sort, compare, reformat, split and spell-check. |
-| [Files & directories](#files--directories) | 31 | Listing, copying, finding, renaming, and knowing what you have. |
+| [Text tools](#text-tools) | 72 | Search, sort, compare, reformat, split and spell-check. |
+| [Files & directories](#files--directories) | 37 | Listing, copying, finding, renaming, and knowing what you have. |
 | [Developer tools](#developer-tools) | 28 | Version control, tags, cross-reference, formatters, a debugger and benchmarks. |
-| [Compilers & build](#compilers--build) | 33 | C compilers and their passes, assemblers, linkers, make and parser generators. |
+| [Compilers & build](#compilers--build) | 34 | C compilers and their passes, assemblers, linkers, make and parser generators. |
 | [Languages](#languages) | 6 | Interpreters and language systems beyond C. |
 | [Archives & compression](#archives--compression) | 20 | Pack, unpack and shrink -- lha, zip, tar, arc, zoo, and OS-9 module libraries. |
-| [Encoding & conversion](#encoding--conversion) | 16 | Between text encodings, line endings, number bases, ciphers and hashes. |
+| [Encoding & conversion](#encoding--conversion) | 17 | Between text encodings, line endings, number bases, ciphers and hashes. |
 | [Communications](#communications) | 20 | Kermit in several builds, terminal sessions, and networking. |
-| [Graphics & images](#graphics--images) | 189 | The netpbm toolkit, JPEG, a ray tracer, and things that draw. |
+| [Graphics & images](#graphics--images) | 190 | The netpbm toolkit, JPEG, a ray tracer, and things that draw. |
 | [Games](#games) | 57 | Adventures, board and card games, arcade ports, dungeon crawls and puzzles. |
 | [Screen toys](#screen-toys) | 6 | Things to watch rather than play. Start one and leave it going. |
 | [Amusements](#amusements) | 19 | Generators, simulators and diversions that are not quite games. |
@@ -113,7 +113,7 @@
 
 *Search, sort, compare, reformat, split and spell-check.*
 
-<details><summary>71 programs</summary>
+<details><summary>72 programs</summary>
 
 **Transform & filter**
 
@@ -236,13 +236,19 @@
 | `sepwords` | split a file to one word per line<br>`Syntax: sepwords [<in_path> [<out_path>]]` |
 | `splitalf` | split a file alphabetically<br>`Syntax: splitalf <opts> [<in_path>] <opts>` |
 
+**Pattern processing**
+
+| | |
+|---|---|
+| `gawk` | &#9733; GNU awk 2.11 -- the pattern-and-action language.  The disk<br>**How:** GNU awk 2.11, the first awk this disk has ever carried. Needs Microware's cio. `gawk "{print \$1}" file' -- and mind that the OS-9 shell, not gawk, is what mangles quoting. |
+
 </details>
 
 ## Files & directories
 
 *Listing, copying, finding, renaming, and knowing what you have.*
 
-<details><summary>31 programs</summary>
+<details><summary>37 programs</summary>
 
 **Copy, move, delete**
 
@@ -257,6 +263,17 @@
 | `remove` | remove files, with confirmation<br>`Syntax   : remove [<opt>] [<modules>] [<opt>] [<modules>] [<opt>]` |
 | `rm` | &#9733; remove files<br>`Usage: rm [-dfirvPR] [+directory] [+force] [+interactive] [+recursive]` |
 | `undel` | undelete a file<br>`Usage: attr <file> -d` |
+
+**Home Librarian**
+
+| | |
+|---|---|
+| `Ascii2Libr` | Home Librarian: rebuild a catalogue from a plain-text file<br>`Syntax: Ascii2Libr [opts]` |
+| `EditLibr` | Home Librarian: edit a catalogue<br>`Syntax: EditLibr [opts]` |
+| `Libr2Ascii` | Home Librarian: dump a catalogue to plain text<br>`Syntax: Libr2Ascii [opts]` |
+| `Librarian` | Home Librarian: search a catalogue.  SIX PROGRAMS AND THEIR<br>**How:** One of six Home Librarian programs that must stay together -- its licence says so. Start here to search a catalogue; EditLibr edits one, Ascii2Libr builds one from text, Libr2Ascii dumps it back, PrintCards and PrintLabels print it. Manual in DOC/homelibr. |
+| `PrintCards` | Home Librarian: print catalogue cards<br>`Syntax: PrintCards [opts]` |
+| `PrintLabels` | Home Librarian: print labels<br>`Syntax: PrintLabels [opts]` |
 
 **List & navigate**
 
@@ -372,7 +389,7 @@
 
 *C compilers and their passes, assemblers, linkers, make and parser generators.*
 
-<details><summary>33 programs</summary>
+<details><summary>34 programs</summary>
 
 **C toolchain**
 
@@ -426,6 +443,12 @@
 | | |
 |---|---|
 | `for` | RTF/68K FORTRAN compiler driver |
+
+**Translators**
+
+| | |
+|---|---|
+| `p2c` | Pascal to C translator (GPL).  Reads LIB/p2c/p2crc; programs<br>**How:** Translates Pascal to C. It reads LIB/p2c/p2crc at startup and stops with "file not found" if that is missing; programs it emits must be linked against LIB/libp2c.l. |
 
 </details>
 
@@ -493,7 +516,7 @@
 
 *Between text encodings, line endings, number bases, ciphers and hashes.*
 
-<details><summary>16 programs</summary>
+<details><summary>17 programs</summary>
 
 **Text encodings**
 
@@ -525,6 +548,12 @@
 |---|---|
 | `cvtbase` | convert a number between bases |
 | `divide` | &#9733; integer divide |
+
+**Audio**
+
+| | |
+|---|---|
+| `sox` | &#9733; Sound eXchange -- audio format converter.  Sample .iff<br>**How:** Converts between audio formats. There is no sound device here, so it converts files rather than plays them. Sample .iff sounds are in DOC/sox. Needs Microware's cio. |
 
 </details>
 
@@ -570,7 +599,7 @@
 
 *The netpbm toolkit, JPEG, a ray tracer, and things that draw.*
 
-<details><summary>189 programs</summary>
+<details><summary>190 programs</summary>
 
 **NETPBM: edit & analyse**
 
@@ -795,6 +824,12 @@
 | `mtst` | spline curve fitting - test driver |
 | `rayshade` | ray tracer 4.0 -- RUNS but renders wrong; see DOC/rayshade<br>`usage: rayshade [options] [filename]` |
 | `rsconvert` | convert rayshade image output between formats<br>`usage: rsconvert [oldfile]` |
+
+**Plotting**
+
+| | |
+|---|---|
+| `gnuplot` | &#9733; gnuplot 2.0 -- plots functions and data files.  Built-in help<br>**How:** Type `set term' first -- it lists every output device it knows, and refuses to plot until you choose one. Its whole manual is built in: type `help'. Demos and sample data are in DOC/gnuplot/demo. Needs Microware's cio. |
 
 </details>
 
