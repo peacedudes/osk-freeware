@@ -707,3 +707,23 @@ split|Text tools|Filters
 sum|Text tools|Filters
 tac|Text tools|Filters
 unexpand|Text tools|Filters
+oleo|Maths & calculators|Spreadsheets
+env|Shells|Shell utilities
+expr|Shells|Shell utilities
+whoami|Shells|Shell utilities
+logname|Shells|Shell utilities
+su|Shells|Shell utilities
+booz|Archives & compression|zoo
+fiz|Archives & compression|zoo
+funzip|Archives & compression|zip
+zipinfo|Archives & compression|zip
+lesskey|Documentation|Pagers
+lessecho|Documentation|Pagers
+bsplt68|System & modules|Modules
+charcnt|Text tools|Filters
+subber|Text tools|Filters
+tcmp|Text tools|Filters
+unp|Text tools|Filters
+splman|Printing|Spooler
+splprt|Printing|Spooler
+splstat|Printing|Spooler

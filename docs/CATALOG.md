@@ -1,6 +1,6 @@
 # What is on this disk
 
-637 programs of OS-9/68K community software, gathered from the archives that kept it and made to run again. **527 of them need nothing but this disk**; the rest want Microware's `cio`, marked below with a star.
+656 programs of OS-9/68K community software, gathered from the archives that kept it and made to run again. **530 of them need nothing but this disk**; the rest want Microware's `cio`, marked below with a star.
 
 `DOC/INDEX` on the disk lists everything alphabetically. This is the same collection sorted by what each program is *for*, which is the more useful order when you do not yet know what you are looking for.
 
@@ -8,32 +8,32 @@
 
 | Category | Programs | |
 |---|--:|---|
-| [Shells](#shells) | 16 | Unix shells to sit beside OS-9's own -- bash and ksh bring history, job control, and scripts that come across unchanged. |
+| [Shells](#shells) | 21 | Unix shells to sit beside OS-9's own -- bash and ksh bring history, job control, and scripts that come across unchanged. |
 | [Editors](#editors) | 18 | vi and emacs in several flavours, line and stream editors, and editors for binary and hex. |
-| [Text tools](#text-tools) | 78 | Search, sort, compare, reformat, split and spell-check. |
+| [Text tools](#text-tools) | 82 | Search, sort, compare, reformat, split and spell-check. |
 | [Files & directories](#files--directories) | 37 | Listing, copying, finding, renaming, and knowing what you have. |
 | [Developer tools](#developer-tools) | 32 | Version control, tags, cross-reference, formatters, a debugger and benchmarks. |
 | [Compilers & build](#compilers--build) | 34 | C compilers and their passes, assemblers, linkers, make and parser generators. |
 | [Languages](#languages) | 6 | Interpreters and language systems beyond C. |
-| [Archives & compression](#archives--compression) | 20 | Pack, unpack and shrink -- lha, zip, tar, arc, zoo, and OS-9 module libraries. |
+| [Archives & compression](#archives--compression) | 23 | Pack, unpack and shrink -- lha, zip, tar, arc, zoo, and OS-9 module libraries. |
 | [Encoding & conversion](#encoding--conversion) | 17 | Between text encodings, line endings, number bases, ciphers and hashes. |
 | [Communications](#communications) | 20 | Kermit in several builds, terminal sessions, and networking. |
 | [Graphics & images](#graphics--images) | 190 | The netpbm toolkit, JPEG, a ray tracer, and things that draw. |
 | [Games](#games) | 57 | Adventures, board and card games, arcade ports, dungeon crawls and puzzles. |
 | [Screen toys](#screen-toys) | 6 | Things to watch rather than play. Start one and leave it going. |
 | [Amusements](#amusements) | 20 | Generators, simulators and diversions that are not quite games. |
-| [System & modules](#system--modules) | 32 | OS-9 module and process tools, devices, system state and scheduling. |
+| [System & modules](#system--modules) | 33 | OS-9 module and process tools, devices, system state and scheduling. |
 | [Disk & DOS](#disk--dos) | 20 | Reading and writing MS-DOS media with the mtools set. |
 | [Time & calendar](#time--calendar) | 10 | Calendars, clocks and astronomy. |
-| [Maths & calculators](#maths--calculators) | 11 | Calculators, plotting, orbits and number theory. |
-| [Printing](#printing) | 9 | Spoolers, page formatting and PostScript. |
-| [Documentation](#documentation) | 4 | Pagers, readers and the help system. |
+| [Maths & calculators](#maths--calculators) | 12 | Calculators, plotting, orbits and number theory. |
+| [Printing](#printing) | 12 | Spoolers, page formatting and PostScript. |
+| [Documentation](#documentation) | 6 | Pagers, readers and the help system. |
 
 ## Shells
 
 *Unix shells to sit beside OS-9's own -- bash and ksh bring history, job control, and scripts that come across unchanged.*
 
-<details><summary>16 programs</summary>
+<details><summary>21 programs</summary>
 
 **Shell helpers**
 
@@ -60,6 +60,16 @@
 | `ksh` | &#9733; Public Domain Korn Shell 4.3 (edition 11, OS-9 port)<br>`Syntax: 'setpr <prior>' or 'setpr <pid> [<pid>..] <prior>'` |
 | `sh` | Bourne shell v7.5 -- what the startup script runs |
 | `wish` | WiSH - full-screen windowing shell over the OS-9 shell |
+
+**Shell utilities**
+
+| | |
+|---|---|
+| `env` | &#9733; Print or set the environment for a command (GNU)<br>`Usage: env [OPTION]... [-] [NAME=VALUE]... [COMMAND [ARG]...]` |
+| `expr` | &#9733; Evaluate an expression (GNU) |
+| `logname` | &#9733; Print your login name (GNU)<br>`Usage: logname [OPTION]...` |
+| `su` | &#9733; Become another user (GNU)<br>`Usage: su [OPTION]... [-] [USER [ARG]...]` |
+| `whoami` | &#9733; Print who you are logged in as (GNU)<br>`Usage: whoami [OPTION]...` |
 
 </details>
 
@@ -113,7 +123,7 @@
 
 *Search, sort, compare, reformat, split and spell-check.*
 
-<details><summary>78 programs</summary>
+<details><summary>82 programs</summary>
 
 **Transform & filter**
 
@@ -157,6 +167,21 @@
 | `unip` | unique lines with page numbers<br>`Syntax: unip [<opts>] [<srcpath>] [<opts>]` |
 | `uniq` | &#9733; drop duplicate lines<br>`Usage: UNIQ [-u][-d][-c] [-n] [^n] input [>output]` |
 
+**Filters**
+
+| | |
+|---|---|
+| `charcnt` | &#9733; Count characters in a file (Carl Kreider) |
+| `expand` | &#9733; Turn tabs into spaces (GNU)<br>`Usage: expand [-tab1[,tab2[,...]]] [-t tab1[,tab2[,...]]] [-i]` |
+| `head` | &#9733; First lines of a file -- `head -n 20 file'.  These GNU builds<br>**How:** First lines of a file. This GNU build wants `head -n 20 file' -- the older `head -20' form is rejected as an unrecognized option. Needs cio. |
+| `split` | &#9733; Split a file into pieces (GNU)<br>`Usage: split [-lines] [-l lines] [-b bytes[km]] [-C bytes[km]] [+lines=lines]` |
+| `subber` | &#9733; Substitute text in a stream, ,old,new style (Carl Kreider)<br>`Usage : subber <opts> wordlist <filename>` |
+| `sum` | &#9733; Checksum and block count (GNU) |
+| `tac` | &#9733; Print a file backwards, last line first (GNU)<br>**How:** Prints a file backwards, last line first -- cat's mirror image. Needs cio. |
+| `tcmp` | &#9733; Compare two text files (Carl Kreider)<br>`Usage:  tcmp [options] file1 file2` |
+| `unexpand` | &#9733; Turn leading spaces back into tabs (GNU)<br>`Usage: unexpand [-tab1[,tab2[,...]]] [-t tab1[,tab2[,...]]] [-a]` |
+| `unp` | &#9733; Strip unprintable characters from a stream (Carl Kreider)<br>`Usage:  unp [-?] [file]` |
+
 **Count & inspect**
 
 | | |
@@ -192,17 +217,6 @@
 | `sonnet` | writes (bad) sonnets in iambic pentameter, curses-based<br>`Usage:  sonnet [-l input] [-f outfilename]` |
 | `strfile` | build fortune's index file<br>`usage:  strfile [ - ] [ -cC ] [ -sv ] inputfile [ datafile ]` |
 | `unstr` | reverse strfile - dump a fortune index<br>`usage: unstr datafile[.dat] [ outfile ]` |
-
-**Filters**
-
-| | |
-|---|---|
-| `expand` | &#9733; Turn tabs into spaces (GNU)<br>`Usage: expand [-tab1[,tab2[,...]]] [-t tab1[,tab2[,...]]] [-i]` |
-| `head` | &#9733; First lines of a file -- `head -n 20 file'.  These GNU builds<br>**How:** First lines of a file. This GNU build wants `head -n 20 file' -- the older `head -20' form is rejected as an unrecognized option. Needs cio. |
-| `split` | &#9733; Split a file into pieces (GNU)<br>`Usage: split [-lines] [-l lines] [-b bytes[km]] [-C bytes[km]] [+lines=lines]` |
-| `sum` | &#9733; Checksum and block count (GNU) |
-| `tac` | &#9733; Print a file backwards, last line first (GNU)<br>**How:** Prints a file backwards, last line first -- cat's mirror image. Needs cio. |
-| `unexpand` | &#9733; Turn leading spaces back into tabs (GNU)<br>`Usage: unexpand [-tab1[,tab2[,...]]] [-t tab1[,tab2[,...]]] [-a]` |
 
 **Spelling & words**
 
@@ -503,7 +517,7 @@
 
 *Pack, unpack and shrink -- lha, zip, tar, arc, zoo, and OS-9 module libraries.*
 
-<details><summary>20 programs</summary>
+<details><summary>23 programs</summary>
 
 **Create & extract**
 
@@ -539,6 +553,19 @@
 | `liborder` | order the modules in an OS-9 library<br>`Usage: liborder <options> file1.r file2.r ...` |
 | `modbuster` | Split merged OS-9 module files<br>`Syntax: Modbuster [<opts>] <path> [<opts>]` |
 | `unpacklib` | split an OS-9 library into its modules<br>`Usage: unpacklib <options> file1.l file2.l ...` |
+
+**zoo**
+
+| | |
+|---|---|
+| `booz` | &#9733; Extract or list a zoo archive.  Public domain, Rahul Dhesi<br>**How:** Extracts and lists zoo archives. `booz -l file.zoo' to look, `booz -x' to extract. fiz repairs a zoo archive that will not open. |
+| `fiz` | &#9733; Repair a damaged zoo archive.  Public domain<br>`Usage:  fiz archive[.zoo]  ("fiz -h" for help)` |
+
+**zip**
+
+| | |
+|---|---|
+| `funzip` | &#9733; Unzip straight from a pipe -- funzip < file.zip<br>**How:** Unzips from a pipe rather than a file: `funzip < thing.zip > thing'. For a normal archive use unzip; zipinfo lists what is inside one. |
 
 </details>
 
@@ -1037,7 +1064,7 @@
 
 *OS-9 module and process tools, devices, system state and scheduling.*
 
-<details><summary>32 programs</summary>
+<details><summary>33 programs</summary>
 
 **Processes & memory**
 
@@ -1094,6 +1121,12 @@
 |---|---|
 | `cron` | run commands at specified times (daemon) |
 | `minute` | minute timer<br>`Syntax: minute[<opts>]` |
+
+**Modules**
+
+| | |
+|---|---|
+| `bsplt68` | Split a boot file into its component modules (Carl Kreider) |
 
 **Hardware control**
 
@@ -1166,7 +1199,7 @@
 
 *Calculators, plotting, orbits and number theory.*
 
-<details><summary>11 programs</summary>
+<details><summary>12 programs</summary>
 
 **Calculators**
 
@@ -1188,6 +1221,12 @@
 | `scope` | tc suite - scope display<br>`Syntax: scope [<opts>]` |
 | `sin` | tc suite - sine plot<br>`Syntax: sin {<opts>} [<file>] {<opts>}` |
 
+**Spreadsheets**
+
+| | |
+|---|---|
+| `oleo` | GNU Oleo 1.6 -- a spreadsheet.  Wants a real TERM.  The<br>**How:** GNU Oleo, a spreadsheet. It needs a real terminal -- run it from a login so TERM is set, not from a bare shell. sc is the other spreadsheet on this disk; they are unrelated programs. |
+
 **Astronomy & orbits**
 
 | | |
@@ -1200,7 +1239,7 @@
 
 *Spoolers, page formatting and PostScript.*
 
-<details><summary>9 programs</summary>
+<details><summary>12 programs</summary>
 
 **Spooling**
 
@@ -1213,6 +1252,14 @@
 | `perr` | &#9733; print an OS-9 error message<br>`Syntax: perr [<error_codes>]` |
 | `prjob` | print a job |
 | `qp` | queue/print helper<br>`Syntax: qp <cmd> <arg1> ... <argn>` |
+
+**Spooler**
+
+| | |
+|---|---|
+| `splman` | &#9733; OS-9 print spooler: manager (Carl Kreider) |
+| `splprt` | &#9733; OS-9 print spooler: printer process |
+| `splstat` | &#9733; OS-9 print spooler: queue status.  Needs a queue to look at |
 
 **PostScript**
 
@@ -1227,7 +1274,9 @@
 
 *Pagers, readers and the help system.*
 
-<details><summary>4 programs</summary>
+<details><summary>6 programs</summary>
+
+**Readers & pagers**
 
 | | |
 |---|---|
@@ -1235,6 +1284,13 @@
 | `helpindex` | build the help index<br>`Syntax:   helpindex [<opts>] {<help file>} [<opts>]` |
 | `less` | Pager (wants a real TERM) |
 | `rdoc` | document reader |
+
+**Pagers**
+
+| | |
+|---|---|
+| `lessecho` | &#9733; Helper for less<br>`usage: lessecho [-ox] [-cx] [-pn] [-dn] [-a] file ...` |
+| `lesskey` | Compile a key-binding file for less<br>`usage: lesskey [-o output] [input]` |
 
 </details>
 
