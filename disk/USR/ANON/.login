@@ -1,0 +1,1 @@
+* .login -- run by the OS-9 shell when this account logs in.* A fresh login inherits no environment at all, so set the essentials.setenv PATH /dd/CMDS:/dd/CMDS/GAMES:/dd/CMDS/NETPBMsetenv TERM vt100setenv TERMCAP /dd/SYS/termcap
