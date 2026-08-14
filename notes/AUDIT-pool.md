@@ -8,6 +8,15 @@ list needed re-reading rather than trusting.
 archives contribute nothing to the disk. A handful were correctly left out.
 Most were never assessed at all.
 
+## SCOPE WARNING: this audits 281 files, not the 419 that were downloaded
+
+`notes/DOWNLOADS-68k.md` records 17 categories fetched from the Microware
+hobbyist archive. The pool directory holds 13. **DRIVERS (13 files), EFFO (36,
+12.8 MB), GWINDOWS (7), NETWORK (20, 8.3 MB) and TELECOM (77, 11.2 MB) are
+absent** -- 153 archives, about 34 MB, that nothing below has examined. The
+pool's own `download.log` covers only the surviving 13, so those five were
+fetched in another pass and not kept. See `notes/MGR.md`.
+
 ## Where the pool is
 
 `/Users/rdoggett/mine/os9/xxx/os9exec/os9/PUBCMDS/microware-archive` —
