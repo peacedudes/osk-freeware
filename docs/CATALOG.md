@@ -997,7 +997,7 @@
 | `robots` | &#9733; robots -- outrun them until they crash into each other.<br>**How:** Play with `robots -m' -- manual mode, where the robots take one step per move you make. Keys are the numeric keypad 1-9 (5 stands still), `s' for last stand, `t' to teleport. Needs Microware's math module and a real TERM. |
 | `snake` | snake arcade game -- KNOWN BROKEN: starts and then sits |
 | `sokoban` | Sokoban puzzle<br>**How:** Wants a username, so run it from a login rather than a bare shell, or it stops with "cannot get your username". |
-| `tet` | Tetris -- KNOWN BROKEN: draws its board and takes no input |
+| `tet` | Tetris -- KNOWN BROKEN: draws its board and takes no input<br>**How:** Draws the board and ignores the keyboard, and the reason is in its source: tet.c puts the terminal in raw mode inside `#ifndef OSK', so the OS-9 build has no terminal setup at all. Set the mode from outside before starting it (Microware's tmode), or rebuild with an OSK branch using _ss_opt -- LIB/alib.l provides both that and ioctl. Source in SRC/tet. |
 | `wanderer` | Boulderdash-style maze game.  Screens ARE here, in |
 
 **Adventure & fiction**

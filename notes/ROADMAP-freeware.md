@@ -201,6 +201,29 @@ was wrong), `sokoban`, `advent`. `advent` needing a `chd` into
 `/dd/GAMES/adv/glorkz` by absolute path, and with no `/dd` only the working
 directory saves it.
 
+### The broken games, diagnosed from their source (2026-08-13)
+
+Read rather than guessed at, which changes what each one needs.
+
+- **`tet` — the raw-mode setup is compiled out.** `tet.c` puts the terminal
+  into raw mode with `ioctl(TCGETA/TCSETA)` and reopens stdin `O_NDELAY`, but
+  **all of it sits inside `#ifndef OSK`**. The OS-9 branch is `srand(0)` and
+  nothing else. So the binary never sets raw mode and never gets a
+  non-blocking read: it draws the board and the keystrokes stay in the line
+  buffer. This is not "was it linked against an ioctl", which is what the
+  entry below assumed — there is no ioctl call in the OS-9 build to link.
+  Two ways out: set the terminal from outside first (Microware's `tmode`,
+  which this disk does not carry, is the obvious one), or write an OSK branch
+  that does the same job with `_ss_opt`. `LIB/alib.l` (auxlib) now provides
+  both `ioctl` and `_ss_opt` if the first route is preferred.
+- **`snake` does set raw mode** — `snake.c` calls curses `raw()`, and the file
+  carries no OSK conditionals at all. Whatever stops it, it is not the
+  terminal mode, so the guess that it and `tet` share a cause is wrong.
+- **`lander`'s OSK conditionals are about `M_PI` and `random`**, not input; it
+  reads with curses `wgetch`. That leaves the original reading — it wants
+  curses line-drawing that vt100 termcap does not provide — as the live
+  theory.
+
 **Still broken, and each has source in `SRC/` if anyone wants a run at it:**
 
 - `tet` — draws the board, takes no input. Uses SysV `ioctl(TCGETA/TCSETA)`
