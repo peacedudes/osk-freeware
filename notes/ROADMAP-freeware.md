@@ -304,7 +304,7 @@ Three found so far. The signature is a `DOC/<pkg>/` directory and a `SRC/`
 tree with nothing in `CMDS/` to match, which reads to a browser as a program
 that ought to be here.
 
-- **elvis** — the big one, below. A complete OS-9 port; buildable.
+- **elvis** — BUILT 2026-08-13, all nine programs. See below.
 - **spline** — `DOC/spline/` (readme + makefile) and `SRC/eff_spline/spline.c`
   are here; only `mtst`, its test driver, ships. The makefile wants `tek.l`
   and `-t=/r0`, so it was built for a Tektronix-graphics machine and may not
@@ -319,6 +319,24 @@ Worth a proper sweep: `DOC/` has 23 directories with no program of the same
 name, and most are package names whose programs are named differently
 (`pdksh` is `ksh`, `wolk` is `dam`/`ssl`/`ff`). Only the three above document
 something genuinely absent.
+
+## Freeware disk: elvis — BUILT, 2026-08-13
+
+All nine programs are on the disk, built from `CMDS/archives/elvis1.7.lzh`:
+`elvis`, `view`, `ref`, `elvrec`, `fmt`, `elvprsv` in CMDS, and `vi.elvis`,
+`ctags.elvis`, `input.elvis` in REBUILT where the names were already taken.
+All trap-free, none carrying an author stamp. `SOURCES.txt` has the recipe.
+
+**Two things the entry below had wrong.** The zero-byte `.os9` files are not
+missing link scripts — `linkelv.os9` and the rest are makefile TARGETS, and
+the empty files are leftovers from the rule's own `touch $@`. Nothing was
+absent. What actually stops a plain `make` is that OS-9 make has no implicit
+`.c` to `.r` rule, so it stops at *"can't find source file to make blk.r"*;
+drive `cc` directly instead. Also: the makefile's `-O=2` is rejected by this
+`cc`, and `ctags`/`fmt` need `osk.r` linked for `perror` while `elvprsv` must
+not have it.
+
+The original entry follows, for the record.
 
 ## Freeware disk: elvis has docs and source but no binary — BUILDABLE
 
