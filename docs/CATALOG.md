@@ -1,6 +1,6 @@
 # What is on this disk
 
-670 programs of OS-9/68K community software, gathered from the archives that kept it and made to run again. **540 of them need nothing but this disk**; the rest want Microware's `cio`, marked below with a star.
+677 programs of OS-9/68K community software, gathered from the archives that kept it and made to run again. **545 of them need nothing but this disk**; the rest want Microware's `cio`, marked below with a star.
 
 `DOC/INDEX` on the disk lists everything alphabetically. This is the same collection sorted by what each program is *for*, which is the more useful order when you do not yet know what you are looking for.
 
@@ -15,7 +15,7 @@
 | [Developer tools](#developer-tools) | 33 | Version control, tags, cross-reference, formatters, a debugger and benchmarks. |
 | [Compilers & build](#compilers--build) | 34 | C compilers and their passes, assemblers, linkers, make and parser generators. |
 | [Languages](#languages) | 6 | Interpreters and language systems beyond C. |
-| [Archives & compression](#archives--compression) | 24 | Pack, unpack and shrink -- lha, zip, tar, arc, zoo, and OS-9 module libraries. |
+| [Archives & compression](#archives--compression) | 30 | Pack, unpack and shrink -- lha, zip, tar, arc, zoo, and OS-9 module libraries. |
 | [Encoding & conversion](#encoding--conversion) | 26 | Between text encodings, line endings, number bases, ciphers and hashes. |
 | [Communications](#communications) | 20 | Kermit in several builds, terminal sessions, and networking. |
 | [Graphics & images](#graphics--images) | 190 | The netpbm toolkit, JPEG, a ray tracer, and things that draw. |
@@ -26,7 +26,7 @@
 | [Disk & DOS](#disk--dos) | 20 | Reading and writing MS-DOS media with the mtools set. |
 | [Time & calendar](#time--calendar) | 10 | Calendars, clocks and astronomy. |
 | [Maths & calculators](#maths--calculators) | 13 | Calculators, plotting, orbits and number theory. |
-| [Printing](#printing) | 13 | Spoolers, page formatting and PostScript. |
+| [Printing](#printing) | 14 | Spoolers, page formatting and PostScript. |
 | [Documentation](#documentation) | 6 | Pagers, readers and the help system. |
 
 ## Shells
@@ -173,7 +173,7 @@
 |---|---|
 | `charcnt` | &#9733; Count characters in a file (Carl Kreider) |
 | `expand` | &#9733; Turn tabs into spaces (GNU)<br>`Usage: expand [-tab1[,tab2[,...]]] [-t tab1[,tab2[,...]]] [-i]` |
-| `head` | &#9733; First lines of a file -- `head -n 20 file'.  These GNU builds<br>**How:** First lines of a file. This GNU build wants `head -n 20 file' -- the older `head -20' form is rejected as an unrecognized option. Needs cio. |
+| `head` | First lines of a file -- `head -n 20 file'.  These GNU builds<br>**How:** First lines of a file. This GNU build wants `head -n 20 file' -- the older `head -20' form is rejected as an unrecognized option. Needs cio. |
 | `split` | &#9733; Split a file into pieces (GNU)<br>`Usage: split [-lines] [-l lines] [-b bytes[km]] [-C bytes[km]] [+lines=lines]` |
 | `subber` | &#9733; Substitute text in a stream, ,old,new style (Carl Kreider)<br>`Usage : subber <opts> wordlist <filename>` |
 | `sum` | &#9733; Checksum and block count (GNU) |
@@ -524,7 +524,7 @@
 
 *Pack, unpack and shrink -- lha, zip, tar, arc, zoo, and OS-9 module libraries.*
 
-<details><summary>24 programs</summary>
+<details><summary>30 programs</summary>
 
 **Create & extract**
 
@@ -544,6 +544,17 @@
 | `zipnote` | Info-ZIP zipnote -- view/edit zip comments<br>`Usage:  zipnote [-w] [-b path] zipfile` |
 | `zipsplit` | Info-ZIP zipsplit -- split a zip archive<br>`Usage:  zipsplit [-ti] [-n size] [-b path] zipfile` |
 | `zoo` | &#9733; zoo archiver<br>`Usage: zoo {acDeglLPTuUvx}[aAcCdEfInmMNoOpPqu1:/.@n] archive file` |
+
+**Alternates**
+
+| | |
+|---|---|
+| `compress_4.0` | compress 4.0, another edition of CMDS/compress<br>`Syntax   : compress [-cdfvV] [-b maxbits] [file ...]` |
+| `diff_1.1` | another build of GNU diff 1.1<br>`Syntax   : diff [<options>] file1 file2` |
+| `gtar` | another GNU tar; CMDS/tar is the one the image build uses |
+| `lharcs` | C-LHarc 1.01, older than CMDS/lha 2.08<br>`Usage: lharcs {axevlufdmctp}[qnftv] archive_file [files or directories...]` |
+| `m4_0.5` | &#9733; another build of m4<br>`Usage: m4 [options] file ....` |
+| `sed_1.06` | &#9733; another build of sed<br>`Syntax   : sed [<opts>] [<file>]` |
 
 **Compress a file**
 
@@ -1267,7 +1278,7 @@
 
 *Spoolers, page formatting and PostScript.*
 
-<details><summary>13 programs</summary>
+<details><summary>14 programs</summary>
 
 **Spooling**
 
@@ -1296,6 +1307,12 @@
 | `splman` | &#9733; OS-9 print spooler: manager (Carl Kreider) |
 | `splprt` | &#9733; OS-9 print spooler: printer process |
 | `splstat` | &#9733; OS-9 print spooler: queue status.  Needs a queue to look at |
+
+**Printers**
+
+| | |
+|---|---|
+| `alps` | &#9733; Switch an ALPS ASP-1000 printer between draft and NLQ<br>`Syntax: alps [<opts>] >/<device>` |
 
 </details>
 

@@ -83,7 +83,7 @@ lines long, which is no help until you already know the name you want.
 | **Developer tools** | 33 | Version control, tags, cross-reference, formatters, a debugger and benchmarks. |
 | **Compilers & build** | 34 | C compilers and their passes, assemblers, linkers, make and parser generators. |
 | **Languages** | 6 | Interpreters and language systems beyond C. |
-| **Archives & compression** | 24 | Pack, unpack and shrink -- lha, zip, tar, arc, zoo, and OS-9 module libraries. |
+| **Archives & compression** | 30 | Pack, unpack and shrink -- lha, zip, tar, arc, zoo, and OS-9 module libraries. |
 | **Encoding & conversion** | 26 | Between text encodings, line endings, number bases, ciphers and hashes. |
 | **Communications** | 20 | Kermit in several builds, terminal sessions, and networking. |
 | **Graphics & images** | 190 | The netpbm toolkit, JPEG, a ray tracer, and things that draw. |
@@ -94,7 +94,7 @@ lines long, which is no help until you already know the name you want.
 | **Disk & DOS** | 20 | Reading and writing MS-DOS media with the mtools set. |
 | **Time & calendar** | 10 | Calendars, clocks and astronomy. |
 | **Maths & calculators** | 13 | Calculators, plotting, orbits and number theory. |
-| **Printing** | 13 | Spoolers, page formatting and PostScript. |
+| **Printing** | 14 | Spoolers, page formatting and PostScript. |
 | **Documentation** | 6 | Pagers, readers and the help system. |
 
 <!-- CATEGORIES:END -->
