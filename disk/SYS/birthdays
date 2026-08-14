@@ -1,0 +1,1 @@
+* birthdays -- yours to fill in.** cal's holidays file ends with `INCLUDE /dd/sys/birthdays', so anything you* put here is printed alongside the public holidays.  Same format:**   3/17 St. Patrick's Day        a fixed date*   *5/Lmonday Memorial Day       a rule; the * means US-only in the shipped file** Nothing below this line yet.

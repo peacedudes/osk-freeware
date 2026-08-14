@@ -199,7 +199,7 @@
 |---|---|
 | `ascii` | ASCII character table |
 | `dump` | hex dump of a file or module<br>`Syntax: dump [<opts>] <path/module> [<opts>] [<starting byte>] [<opts>]` |
-| `file` | Identify file types (warns: no /dd/SYS/magic file -- still IDs OS-9 modules)<br>`Syntax:   file [<opts>] {<file>}` |
+| `file` | Identify file types.  SYS/magic is now here, so it names real formats -- "GIF picture ver. 87a 320 x 200, interlaced, 256 colors" -- and not just OS-9 modules<br>**How:** Names real formats now that SYS/magic is here: `file /dd/DEMO/gulls.gif' reports the GIF version, size and colour count. Before the magic file arrived it could only recognise OS-9 modules. |
 | `gdd` | &#9733; data dump<br>**How:** A data dump -- like `od', with GNU-style long options. Needs Microware's cio. |
 | `strings` | extract printable strings |
 | `strings.cio` | &#9733; archived build, needs cio; superseded by the gcc2 rebuild<br>`Usage: strings.cio [-anpl=n] [file [file]]` |
@@ -322,7 +322,7 @@
 | | |
 |---|---|
 | `dir` | &#9733; directory listing<br>`Syntax: dir [<opts>] {<dir names> [<opts>]}` |
-| `dm` | &#9733; disk/dir monitor<br>`Usage: DiskMaster [-c] [-d<dir name>]` |
+| `dm` | &#9733; Disk and directory monitor.  SYS/dm.hlp is now here, so its built-in help works<br>`Usage: DiskMaster [-c] [-d<dir name>]` |
 | `edir` | &#9733; extended directory listing<br>`Syntax: edir [<opts>]` |
 | `l` | &#9733; brief directory listing<br>`Usage: l [-options] [file] [file] [-options]` |
 | `ls` | GNU ls (fileutils 3.13) -- OUR OWN FIXED BUILD: real stat(), columns, -al<br>`Usage: ls [OPTION]... [FILE]...` |
@@ -1285,7 +1285,7 @@
 
 | | |
 |---|---|
-| `cal` | &#9733; calendar<br>`Usage: calendar [<opts>]` |
+| `cal` | &#9733; Calendar, Bob van der Poel.  `cal -h' prints holidays with it -- SYS/holidays is here, and SYS/birthdays is an empty template for your own dates.  SYS/cal.init is a printer setup for a laser<br>**How:** `cal -h' prints holidays alongside the calendar -- SYS/holidays is on the disk now, and SYS/birthdays is an empty template the holidays file INCLUDEs, so anything you add there shows up too. Add `-g' if the rule under the day names comes out as garbage on your terminal. |
 | `calen` | calendar printer (v_misc) |
 | `calendar` | reminder service - reads a calendar file |
 | `calender` | print a whole year's calendar (German)<br>**How:** Prints the year in GERMAN. Not a typo of `calendar' -- a different program by a different author. |
@@ -1398,7 +1398,7 @@
 |---|---|
 | `help` | help system<br>`Syntax:   help [<opts>] [<topic> {<subtopic>}] [<opts>]` |
 | `helpindex` | build the help index<br>`Syntax:   helpindex [<opts>] {<help file>} [<opts>]` |
-| `less` | Pager (wants a real TERM) |
+| `less` | Pager (wants a real TERM).  Its help screen works now: SYS/less.hlp is on the disk |
 | `rdoc` | document reader |
 
 **Pagers**

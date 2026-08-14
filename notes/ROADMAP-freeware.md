@@ -11,6 +11,15 @@ Moved out of os9exec's ROADMAP.md when the collection got its own repo.
 design is settled apart from where files land; that one is blocking and is
 written up there.
 
+### Data files programs want -- FOUR FOUND, 2026-08-13
+
+`magic` (file), `less.hlp` (less), `dm.hlp` (dm) and the cal holiday data
+were all in the archive pool and are now in `SYS/`. `file` names real
+formats instead of only OS-9 modules, and `cal -h` prints holidays. See
+`SOURCES.txt`. Still missing: vi's `vi_usage`/`vi_errmsg`/`.exrc`, ephem's
+`ephem.cfg`/`ephem.db`, mg's `mgrc`, forth's `lib/tile`. `utmp` is a login
+record a running system creates, not shipped data.
+
 ### Data files programs want that this disk does NOT have
 
 Found by scanning for `/dd` paths that do not resolve here -- a hole in the
