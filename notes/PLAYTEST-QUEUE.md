@@ -20,6 +20,16 @@ only be seen at a terminal.
     chd /dd/CMDS/REBUILT
     tet.unixlib
 
+**Second attempt, 2026-08-13.** The first rebuild still echoed keys and
+ignored them, which was the useful result: echo still on means the mode never
+changed. The cause was a second fault underneath the first -- `LIB/unix.l`'s
+`ioctl.c` implements `TCSETA` but **not `TCSETAW`**, and `TCSETAW` is the call
+tet uses to go raw. It fell through silently. `SRC/unixlib/ioctl.c` now sends
+`TCSETAW` and `TCSETAF` into the `TCSETA` case, `LIB/unix.l` is rebuilt, and
+tet is relinked against it. Also needed a `randint` shim
+(`tools/rebuild/shims/os9randint.c`): tet's makefile links a `/dd/lib/rand.r`
+that exists nowhere.
+
 Keys are on its own menu: `q` quits, `p` pauses, `b` is the boss key, `s`
 shows the score. **What to report:** does `q` quit? If yes it is fixed, and
 it should replace `GAMES/tet`. If it still ignores everything, the raw-mode
