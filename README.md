@@ -87,7 +87,7 @@ lines long, which is no help until you already know the name you want.
 | **Encoding & conversion** | 26 | Between text encodings, line endings, number bases, ciphers and hashes. |
 | **Communications** | 20 | Kermit in several builds, terminal sessions, and networking. |
 | **Graphics & images** | 192 | The netpbm toolkit, JPEG, a ray tracer, and things that draw. |
-| **Games** | 57 | Adventures, board and card games, arcade ports, dungeon crawls and puzzles. |
+| **Games** | 58 | Adventures, board and card games, arcade ports, dungeon crawls and puzzles. |
 | **Screen toys** | 6 | Things to watch rather than play. Start one and leave it going. |
 | **Amusements** | 20 | Generators, simulators and diversions that are not quite games. |
 | **System & modules** | 43 | OS-9 module and process tools, devices, system state and scheduling. |
@@ -96,7 +96,6 @@ lines long, which is no help until you already know the name you want.
 | **Maths & calculators** | 13 | Calculators, plotting, orbits and number theory. |
 | **Printing** | 14 | Spoolers, page formatting and PostScript. |
 | **Documentation** | 6 | Pagers, readers and the help system. |
-| **Uncategorised** | 1 |  |
 
 <!-- CATEGORIES:END -->
 

@@ -19,7 +19,7 @@
 | [Encoding & conversion](#encoding--conversion) | 26 | Between text encodings, line endings, number bases, ciphers and hashes. |
 | [Communications](#communications) | 20 | Kermit in several builds, terminal sessions, and networking. |
 | [Graphics & images](#graphics--images) | 192 | The netpbm toolkit, JPEG, a ray tracer, and things that draw. |
-| [Games](#games) | 57 | Adventures, board and card games, arcade ports, dungeon crawls and puzzles. |
+| [Games](#games) | 58 | Adventures, board and card games, arcade ports, dungeon crawls and puzzles. |
 | [Screen toys](#screen-toys) | 6 | Things to watch rather than play. Start one and leave it going. |
 | [Amusements](#amusements) | 20 | Generators, simulators and diversions that are not quite games. |
 | [System & modules](#system--modules) | 43 | OS-9 module and process tools, devices, system state and scheduling. |
@@ -28,7 +28,6 @@
 | [Maths & calculators](#maths--calculators) | 13 | Calculators, plotting, orbits and number theory. |
 | [Printing](#printing) | 14 | Spoolers, page formatting and PostScript. |
 | [Documentation](#documentation) | 6 | Pagers, readers and the help system. |
-| [Uncategorised](#uncategorised) | 1 |  |
 
 ## Shells
 
@@ -982,7 +981,7 @@
 
 *Adventures, board and card games, arcade ports, dungeon crawls and puzzles.*
 
-<details><summary>57 programs</summary>
+<details><summary>58 programs</summary>
 
 **Board & card**
 
@@ -1035,6 +1034,7 @@
 | `snake` | snake arcade game -- KNOWN BROKEN: starts and then sits |
 | `sokoban` | Sokoban puzzle<br>**How:** Wants a username, so run it from a login rather than a bare shell, or it stops with "cannot get your username". |
 | `tet` | Tetris -- KNOWN BROKEN: draws its board and takes no input<br>**How:** Draws the board and ignores the keyboard, and the reason is in its source: tet.c puts the terminal in raw mode inside `#ifndef OSK', so the OS-9 build has no terminal setup at all. Set the mode from outside before starting it (Microware's tmode), or rebuild with an OSK branch using _ss_opt -- LIB/alib.l provides both that and ioctl. Source in SRC/tet. |
+| `tet.unixlib` | tet rebuilt so its keyboard code is actually compiled in. GAMES/tet takes no input because its raw-mode setup sits inside `#ifndef OSK' and the OS-9 build skipped it; this one is built with that path enabled, against LIB/unix.l which implements TCGETA/TCSETA over _ss_opt.  UNTESTED at a real terminal -- it cannot be checked from a pipe, because tet calls ttyname(0) and reopens it.  If it takes keys for you, it should replace GAMES/tet |
 | `wanderer` | Boulderdash-style maze game.  Screens ARE here, in GAMES/WAND/screens; needs this disk as /dd to find them. |
 
 **Adventure & fiction**
@@ -1407,18 +1407,6 @@
 |---|---|
 | `lessecho` | &#9733; Helper for less<br>`usage: lessecho [-ox] [-cx] [-pn] [-dn] [-a] file ...` |
 | `lesskey` | Compile a key-binding file for less<br>`usage: lesskey [-o output] [input]` |
-
-</details>
-
-## Uncategorised
-
-**
-
-<details><summary>1 programs</summary>
-
-| | |
-|---|---|
-| `tet.unixlib` | tet rebuilt so its keyboard code is actually compiled in. GAMES/tet takes no input because its raw-mode setup sits inside `#ifndef OSK' and the OS-9 build skipped it; this one is built with that path enabled, against LIB/unix.l which implements TCGETA/TCSETA over _ss_opt.  UNTESTED at a real terminal -- it cannot be checked from a pipe, because tet calls ttyname(0) and reopens it.  If it takes keys for you, it should replace GAMES/tet |
 
 </details>
 
