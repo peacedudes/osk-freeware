@@ -77,10 +77,10 @@ lines long, which is no help until you already know the name you want.
 | Category | | |
 |---|--:|---|
 | **Shells** | 21 | Unix shells to sit beside OS-9's own -- bash and ksh bring history, job control, and scripts that come across unchanged. |
-| **Editors** | 18 | vi and emacs in several flavours, line and stream editors, and editors for binary and hex. |
-| **Text tools** | 82 | Search, sort, compare, reformat, split and spell-check. |
+| **Editors** | 24 | vi and emacs in several flavours, line and stream editors, and editors for binary and hex. |
+| **Text tools** | 83 | Search, sort, compare, reformat, split and spell-check. |
 | **Files & directories** | 38 | Listing, copying, finding, renaming, and knowing what you have. |
-| **Developer tools** | 33 | Version control, tags, cross-reference, formatters, a debugger and benchmarks. |
+| **Developer tools** | 35 | Version control, tags, cross-reference, formatters, a debugger and benchmarks. |
 | **Compilers & build** | 34 | C compilers and their passes, assemblers, linkers, make and parser generators. |
 | **Languages** | 6 | Interpreters and language systems beyond C. |
 | **Archives & compression** | 31 | Pack, unpack and shrink -- lha, zip, tar, arc, zoo, and OS-9 module libraries. |

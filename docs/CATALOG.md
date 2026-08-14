@@ -1,6 +1,6 @@
 # What is on this disk
 
-680 programs of OS-9/68K community software, gathered from the archives that kept it and made to run again. **547 of them need nothing but this disk**; the rest want Microware's `cio`, marked below with a star.
+689 programs of OS-9/68K community software, gathered from the archives that kept it and made to run again. **556 of them need nothing but this disk**; the rest want Microware's `cio`, marked below with a star.
 
 `DOC/INDEX` on the disk lists everything alphabetically. This is the same collection sorted by what each program is *for*, which is the more useful order when you do not yet know what you are looking for.
 
@@ -9,10 +9,10 @@
 | Category | Programs | |
 |---|--:|---|
 | [Shells](#shells) | 21 | Unix shells to sit beside OS-9's own -- bash and ksh bring history, job control, and scripts that come across unchanged. |
-| [Editors](#editors) | 18 | vi and emacs in several flavours, line and stream editors, and editors for binary and hex. |
-| [Text tools](#text-tools) | 82 | Search, sort, compare, reformat, split and spell-check. |
+| [Editors](#editors) | 24 | vi and emacs in several flavours, line and stream editors, and editors for binary and hex. |
+| [Text tools](#text-tools) | 83 | Search, sort, compare, reformat, split and spell-check. |
 | [Files & directories](#files--directories) | 38 | Listing, copying, finding, renaming, and knowing what you have. |
-| [Developer tools](#developer-tools) | 33 | Version control, tags, cross-reference, formatters, a debugger and benchmarks. |
+| [Developer tools](#developer-tools) | 35 | Version control, tags, cross-reference, formatters, a debugger and benchmarks. |
 | [Compilers & build](#compilers--build) | 34 | C compilers and their passes, assemblers, linkers, make and parser generators. |
 | [Languages](#languages) | 6 | Interpreters and language systems beyond C. |
 | [Archives & compression](#archives--compression) | 31 | Pack, unpack and shrink -- lha, zip, tar, arc, zoo, and OS-9 module libraries. |
@@ -77,7 +77,18 @@
 
 *vi and emacs in several flavours, line and stream editors, and editors for binary and hex.*
 
-<details><summary>18 programs</summary>
+<details><summary>24 programs</summary>
+
+**vi clones**
+
+| | |
+|---|---|
+| `elvis` | Elvis 1.7 -- a full vi/ex clone, BUILT HERE from the source<br>**How:** A full vi/ex clone, built here from the archive that was always on this disk. Needs TERM and TERMCAP set -- `SYS/login' does both. `view' opens read-only, REBUILT/vi.elvis is the same program as vi, and all of them need CMDS/elvis present because they exec it. |
+| `elvprsv` | Preserve an elvis session across a crash |
+| `elvrec` | Recover a preserved elvis session<br>`usage: elvrec [preserved_file [recovery_file]]` |
+| `input.elvis` | elvis under its `input' personality; CMDS/input is |
+| `vi.elvis` | elvis 1.7 as vi.  CMDS/vi is the EFFO build and |
+| `view` | elvis opened read-only |
 
 **vi family**
 
@@ -123,7 +134,7 @@
 
 *Search, sort, compare, reformat, split and spell-check.*
 
-<details><summary>82 programs</summary>
+<details><summary>83 programs</summary>
 
 **Transform & filter**
 
@@ -261,6 +272,12 @@
 | `sepwords` | split a file to one word per line<br>`Syntax: sepwords [<in_path> [<out_path>]]` |
 | `splitalf` | split a file alphabetically<br>`Syntax: splitalf <opts> [<in_path>] <opts>` |
 
+**Formatting**
+
+| | |
+|---|---|
+| `fmt` | Simple text formatter (elvis 1.7)<br>`usage: fmt [-width] [files]...` |
+
 **Pattern processing**
 
 | | |
@@ -359,7 +376,7 @@
 
 *Version control, tags, cross-reference, formatters, a debugger and benchmarks.*
 
-<details><summary>33 programs</summary>
+<details><summary>35 programs</summary>
 
 **Benchmarks**
 
@@ -413,6 +430,13 @@
 |---|---|
 | `ccheck` | &#9733; C program checker -- matching brackets, quotes, comment<br>**How:** Checks C source for mismatched brackets, quotes and comment markers, and for indentation that disagrees with the nesting. Needs cio. |
 | `checkfile` | &#9733; Check a C source file for structural mistakes.  Wants TERM |
+
+**Tags**
+
+| | |
+|---|---|
+| `ctags.elvis` | elvis 1.7's ctags; CMDS/ctags is the BSD one<br>`usage: ctags [flags] filenames...` |
+| `ref` | Look up a C function's declaration from a tags file<br>`usage: ref [-t] [-c class] [-f file] tag` |
 
 **Debugging**
 

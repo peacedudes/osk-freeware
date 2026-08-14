@@ -766,3 +766,12 @@ windio.52|System & modules|MM/1 drivers
 mgif|Graphics & images|Viewers
 dearc|Archives & compression|MS-DOS
 tplot|Graphics & images|Plotting
+elvis|Editors|vi clones
+view|Editors|vi clones
+ref|Developer tools|Tags
+elvrec|Editors|vi clones
+fmt|Text tools|Formatting
+elvprsv|Editors|vi clones
+vi.elvis|Editors|vi clones
+ctags.elvis|Developer tools|Tags
+input.elvis|Editors|vi clones
