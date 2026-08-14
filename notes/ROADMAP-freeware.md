@@ -289,6 +289,48 @@ programs is the only method that works.
 ## Freeware disk: two small open items
 
 
+### Module-name mismatches: 53, not 7, and most are deliberate (2026-08-13)
+
+Measured across every program directory by reading `M$Name` from each header.
+Before anyone "fixes" these, three of the four groups are working as intended:
+
+**Case only** -- `aterm`/ATerm, `atob`/AtoB, `btoa`/BtoA, `lha`/LHa,
+`fstat`/FStat, `sbreak`/Sbreak, `modbuster`/Modbuster, `hexedit`/hex,
+`wam.sbprolog`/SBP. The module keeps its author's capitals; the file is
+lowercase so it is easy to type. Leave alone.
+
+**Deliberate disambiguation** -- where two builds share one module name, the
+FILE carries the distinguishing suffix: `cjpeg.070`, `djpeg.070`,
+`rdjpgcom.070`, `wrjpgcom.070`, `emacs.mm1`, `ephem881`, `infocom.tcap`,
+`kermit2`, `kermit3`, `vi_cio`, `lnk.org`, and everything in REBUILT with a
+`.cio`, `.elvis`, `_csl`, `_nocsl` or version suffix, plus `ub68020demo` and
+the MM/1 drivers. This is the alternates convention doing its job -- six
+`gzip*` files all say `gzip` because they are the same program for different
+CPUs. Leave alone.
+
+**`ckermit` says `wermit`** -- C-Kermit's own internal name. Upstream's, not
+ours.
+
+**Genuinely accidental, and the ones the entry below means:**
+
+| file | says | why |
+|---|---|---|
+| `REBUILT/compress` | `R_compress` | built without `-n=`, so the name came from the `-f=R_<prog>` output file |
+| `REBUILT/kermit` | `R_kermit` | same |
+| `REBUILT/screen` | `R_screen` | same |
+| `hc` | `B_hc` | the original author's `B_` build prefix |
+| `tabs` | `B_tabs` | same |
+| `GAMES/wish` | `B_wish` | same |
+| `queens` | `B_baruch` | same prefix, and a different name entirely |
+
+The three `R_` ones are `tools/rebuild/`'s own documented trap. They could be
+rebuilt with `-n=`, or the name patched in place and the CRC and header parity
+recomputed -- both are proven techniques here. **But note the side effect:**
+`REBUILT/compress` and `CMDS/compress` would then both be module `compress`,
+and the same for `kermit`. That collision may be why the prefix was left. The
+`B_` four need their source identified first; `DOC/ORIGINS` names a tree for
+all but `tabs`, and the named tree has no matching `.c`.
+
 - **7 modules still report a module name that is not their filename**:
   hc, queens, tabs, GAMES/wish, REBUILT/compress, REBUILT/kermit,
   REBUILT/screen. Each needs its source tree identified before it can be
