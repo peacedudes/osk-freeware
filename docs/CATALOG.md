@@ -1,6 +1,6 @@
 # What is on this disk
 
-689 programs of OS-9/68K community software, gathered from the archives that kept it and made to run again. **556 of them need nothing but this disk**; the rest want Microware's `cio`, marked below with a star.
+711 programs of OS-9/68K community software, gathered from the archives that kept it and made to run again. **578 of them need nothing but this disk**; the rest want Microware's `cio`, marked below with a star.
 
 `DOC/INDEX` on the disk lists everything alphabetically. This is the same collection sorted by what each program is *for*, which is the more useful order when you do not yet know what you are looking for.
 
@@ -12,7 +12,7 @@
 | [Editors](#editors) | 24 | vi and emacs in several flavours, line and stream editors, and editors for binary and hex. |
 | [Text tools](#text-tools) | 83 | Search, sort, compare, reformat, split and spell-check. |
 | [Files & directories](#files--directories) | 38 | Listing, copying, finding, renaming, and knowing what you have. |
-| [Developer tools](#developer-tools) | 35 | Version control, tags, cross-reference, formatters, a debugger and benchmarks. |
+| [Developer tools](#developer-tools) | 47 | Version control, tags, cross-reference, formatters, a debugger and benchmarks. |
 | [Compilers & build](#compilers--build) | 34 | C compilers and their passes, assemblers, linkers, make and parser generators. |
 | [Languages](#languages) | 6 | Interpreters and language systems beyond C. |
 | [Archives & compression](#archives--compression) | 31 | Pack, unpack and shrink -- lha, zip, tar, arc, zoo, and OS-9 module libraries. |
@@ -22,7 +22,7 @@
 | [Games](#games) | 57 | Adventures, board and card games, arcade ports, dungeon crawls and puzzles. |
 | [Screen toys](#screen-toys) | 6 | Things to watch rather than play. Start one and leave it going. |
 | [Amusements](#amusements) | 20 | Generators, simulators and diversions that are not quite games. |
-| [System & modules](#system--modules) | 33 | OS-9 module and process tools, devices, system state and scheduling. |
+| [System & modules](#system--modules) | 43 | OS-9 module and process tools, devices, system state and scheduling. |
 | [Disk & DOS](#disk--dos) | 20 | Reading and writing MS-DOS media with the mtools set. |
 | [Time & calendar](#time--calendar) | 10 | Calendars, clocks and astronomy. |
 | [Maths & calculators](#maths--calculators) | 13 | Calculators, plotting, orbits and number theory. |
@@ -83,11 +83,11 @@
 
 | | |
 |---|---|
-| `elvis` | Elvis 1.7 -- the best-documented of this disk's three vi<br>**How:** A full vi/ex clone, built here from the archive that was always on this disk. Needs TERM and TERMCAP set -- `SYS/login' does both. `view' opens read-only, REBUILT/vi.elvis is the same program as vi, and all of them need CMDS/elvis present because they exec it. |
+| `elvis` | Elvis 1.7 -- the best-documented of this disk's three vi editors, and the one with the most options.  BUILT HERE from the source in CMDS/archives.  Needs TERM and TERMCAP; runs with no trap handler.  vi.elvis, view and input are the same program under its other personalities and need elvis present to run<br>**How:** A full vi/ex clone, built here from the archive that was always on this disk. Needs TERM and TERMCAP set -- `SYS/login' does both. `view' opens read-only, REBUILT/vi.elvis is the same program as vi, and all of them need CMDS/elvis present because they exec it. |
 | `elvprsv` | Preserve an elvis session across a crash |
 | `elvrec` | Recover a preserved elvis session<br>`usage: elvrec [preserved_file [recovery_file]]` |
-| `input.elvis` | elvis under its `input' personality; CMDS/input is |
-| `vi.elvis` | elvis 1.7 as vi.  CMDS/vi is the EFFO build and |
+| `input.elvis` | elvis under its `input' personality; CMDS/input is a different program entirely |
+| `vi.elvis` | elvis 1.7 as vi.  CMDS/vi is the EFFO build and CMDS/vi_nocio is PVic -- three unrelated vi clones |
 | `view` | elvis opened read-only |
 
 **vi family**
@@ -96,9 +96,9 @@
 |---|---|
 | `sedt` | SEDT screen editor |
 | `VI` | PVIC, public domain            -> /dd/CMDS/REBUILT (name was taken)<br>`Usage: vi [file ...]` |
-| `vi` | THE REAL vi/ex -- its source in SRC/effo_vi is the Berkeley<br>**How:** One of three unrelated vi editors here, and the only one that is the genuine Berkeley ex/vi rather than a clone -- its source in SRC/effo_vi is the real ex_*.c files. `vi -x' becomes ex, `vi -d' becomes edit. DOC/README-VI compares all three. |
+| `vi` | THE REAL vi/ex -- its source in SRC/effo_vi is the Berkeley ex source itself, not a clone.  `vi -x' is ex, `vi -d' is edit.  See DOC/README-VI<br>**How:** One of three unrelated vi editors here, and the only one that is the genuine Berkeley ex/vi rather than a clone -- its source in SRC/effo_vi is the real ex_*.c files. `vi -x' becomes ex, `vi -d' becomes edit. DOC/README-VI compares all three. |
 | `vi_cio` | &#9733; PVic vi, cio build (use vi_nocio instead)<br>`Usage: vi [file ...]` |
-| `vi_nocio` | PVIC 1.0a -- the smallest of this disk's three vi editors,<br>**How:** PVIC 1.0a, the smallest of the three vi editors on this disk, public domain, no source or docs here. DOC/README-VI compares it with vi and elvis. |
+| `vi_nocio` | PVIC 1.0a -- the smallest of this disk's three vi editors, public domain.  See DOC/README-VI to choose between them<br>**How:** PVIC 1.0a, the smallest of the three vi editors on this disk, public domain, no source or docs here. DOC/README-VI compares it with vi and elvis. |
 | `vis` | make non-printing characters visible |
 
 **Binary & hex**
@@ -184,7 +184,7 @@
 |---|---|
 | `charcnt` | &#9733; Count characters in a file (Carl Kreider) |
 | `expand` | &#9733; Turn tabs into spaces (GNU)<br>`Usage: expand [-tab1[,tab2[,...]]] [-t tab1[,tab2[,...]]] [-i]` |
-| `head` | First lines of a file -- `head -n 20 file'.  These GNU builds<br>**How:** First lines of a file. This GNU build wants `head -n 20 file' -- the older `head -20' form is rejected as an unrecognized option. Needs cio. |
+| `head` | First lines of a file -- `head -n 20 file'.  These GNU builds want -n 20, not -20<br>**How:** First lines of a file. This GNU build wants `head -n 20 file' -- the older `head -20' form is rejected as an unrecognized option. Needs cio. |
 | `split` | &#9733; Split a file into pieces (GNU)<br>`Usage: split [-lines] [-l lines] [-b bytes[km]] [-C bytes[km]] [+lines=lines]` |
 | `subber` | &#9733; Substitute text in a stream, ,old,new style (Carl Kreider)<br>`Usage : subber <opts> wordlist <filename>` |
 | `sum` | &#9733; Checksum and block count (GNU) |
@@ -282,7 +282,7 @@
 
 | | |
 |---|---|
-| `gawk` | &#9733; GNU awk 2.11 -- the pattern-and-action language.  The disk<br>**How:** GNU awk 2.11, the first awk this disk has ever carried. Needs Microware's cio. `gawk "{print \$1}" file' -- and mind that the OS-9 shell, not gawk, is what mangles quoting. |
+| `gawk` | &#9733; GNU awk 2.11 -- the pattern-and-action language.  The disk had no awk of any kind before this<br>**How:** GNU awk 2.11, the first awk this disk has ever carried. Needs Microware's cio. `gawk "{print \$1}" file' -- and mind that the OS-9 shell, not gawk, is what mangles quoting. |
 
 </details>
 
@@ -313,7 +313,7 @@
 | `Ascii2Libr` | Home Librarian: rebuild a catalogue from a plain-text file<br>`Syntax: Ascii2Libr [opts]` |
 | `EditLibr` | Home Librarian: edit a catalogue<br>`Syntax: EditLibr [opts]` |
 | `Libr2Ascii` | Home Librarian: dump a catalogue to plain text<br>`Syntax: Libr2Ascii [opts]` |
-| `Librarian` | Home Librarian: search a catalogue.  SIX PROGRAMS AND THEIR<br>**How:** One of six Home Librarian programs that must stay together -- its licence says so. Start here to search a catalogue; EditLibr edits one, Ascii2Libr builds one from text, Libr2Ascii dumps it back, PrintCards and PrintLabels print it. Manual in DOC/homelibr. |
+| `Librarian` | Home Librarian: search a catalogue.  SIX PROGRAMS AND THEIR DOCS TRAVEL TOGETHER -- its licence requires it<br>**How:** One of six Home Librarian programs that must stay together -- its licence says so. Start here to search a catalogue; EditLibr edits one, Ascii2Libr builds one from text, Libr2Ascii dumps it back, PrintCards and PrintLabels print it. Manual in DOC/homelibr. |
 | `PrintCards` | Home Librarian: print catalogue cards<br>`Syntax: PrintCards [opts]` |
 | `PrintLabels` | Home Librarian: print labels<br>`Syntax: PrintLabels [opts]` |
 
@@ -326,7 +326,7 @@
 | `edir` | &#9733; extended directory listing<br>`Syntax: edir [<opts>]` |
 | `l` | &#9733; brief directory listing<br>`Usage: l [-options] [file] [file] [-options]` |
 | `ls` | GNU ls (fileutils 3.13) -- OUR OWN FIXED BUILD: real stat(), columns, -al<br>`Usage: ls [OPTION]... [FILE]...` |
-| `tree` | Print a directory tree -- BUT fails on this disk: it opens the raw<br>`Syntax: tree [<directory>] [<opts>]` |
+| `tree` | Print a directory tree -- BUT fails on this disk: it opens the raw device (/dd@), which a host-native disk has no equivalent for<br>`Syntax: tree [<directory>] [<opts>]` |
 
 **Find & compare**
 
@@ -376,12 +376,24 @@
 
 *Version control, tags, cross-reference, formatters, a debugger and benchmarks.*
 
-<details><summary>35 programs</summary>
+<details><summary>47 programs</summary>
 
 **Benchmarks**
 
 | | |
 |---|---|
+| `dhry` | Microware cc<br>**How:** Dhrystone 2.0. Twelve builds of the same source sit in CMDS/DHRY -- run several and compare, which is what tells you the compiler's cost. Under os9exec the number describes the host machine, not a 68000. |
+| `dhryGcc` | GCC 1.x |
+| `dhryGcc2` | GCC 2.x |
+| `dhryGcc2in` | GCC 2.x, inlined |
+| `dhryGcc2mx` | GCC 2.x, mixed |
+| `dhryGcc2o2` | GCC 2.x, optimised |
+| `dhryGccin` | GCC 1.x, inlined |
+| `dhryGccmx` | GCC 1.x, mixed |
+| `dhryGcco2` | GCC 1.x, optimised |
+| `dhryO2` | Microware cc, optimised |
+| `dhryshamu` | Shamus build |
+| `dhryshamu2` | Shamus build, second variant |
 | `disktest` | measure disk performance  [no military use -- DOC/EFFO-INFO]<br>`Syntax   : disktest [<opt>]` |
 | `fibo` | Fibonacci benchmark |
 | `float` | floating-point benchmark |
@@ -428,7 +440,7 @@
 
 | | |
 |---|---|
-| `ccheck` | &#9733; C program checker -- matching brackets, quotes, comment<br>**How:** Checks C source for mismatched brackets, quotes and comment markers, and for indentation that disagrees with the nesting. Needs cio. |
+| `ccheck` | &#9733; C program checker -- matching brackets, quotes, comment brackets, and indentation that disagrees with them<br>**How:** Checks C source for mismatched brackets, quotes and comment markers, and for indentation that disagrees with the nesting. Needs cio. |
 | `checkfile` | &#9733; Check a C source file for structural mistakes.  Wants TERM |
 
 **Tags**
@@ -449,7 +461,7 @@
 
 | | |
 |---|---|
-| `tab` | Tabulate 6809 or 68000 assembly source -- opcode-aware, and<br>`Syntax: tab [<opts>]` |
+| `tab` | Tabulate 6809 or 68000 assembly source -- opcode-aware, and works on code that will not assemble<br>`Syntax: tab [<opts>]` |
 | `xlate` | &#9733; Translate 6809 assembly source to 68000<br>**How:** Translates 6809 assembly source into 68000. Pairs with as09 (the 6809 assembler on this disk) and with `tab', which tabulates either dialect. Needs cio. |
 
 **Libraries**
@@ -503,7 +515,7 @@
 
 | | |
 |---|---|
-| `as0` | 6800/6802 cross-assembler (xasm).  NOT a 68000 assembler --<br>**How:** A 6800 cross-assembler, not a 68000 one -- as1 is 6801, as4 is 6804, as5 is 6805, as11 is 68HC11 and as09 is 6809. DOC/xasm/asm.doc is their manual; source for all of them is in SRC/xasm. |
+| `as0` | 6800/6802 cross-assembler (xasm).  NOT a 68000 assembler -- see the note below this list<br>**How:** A 6800 cross-assembler, not a 68000 one -- as1 is 6801, as4 is 6804, as5 is 6805, as11 is 68HC11 and as09 is 6809. DOC/xasm/asm.doc is their manual; source for all of them is in SRC/xasm. |
 | `as09` | &#9733; 6809 assembler<br>`Usage: as09 [files]` |
 | `as1` | 6801/6803 cross-assembler (xasm)<br>`Usage: as1 [files]` |
 | `as11` | 68HC11 cross-assembler (xasm)<br>`Usage: as11 [files]` |
@@ -523,7 +535,7 @@
 
 | | |
 |---|---|
-| `p2c` | Pascal to C translator (GPL).  Reads LIB/p2c/p2crc; programs<br>**How:** Translates Pascal to C. It reads LIB/p2c/p2crc at startup and stops with "file not found" if that is missing; programs it emits must be linked against LIB/libp2c.l. |
+| `p2c` | Pascal to C translator (GPL).  Reads LIB/p2c/p2crc; programs it emits link against LIB/libp2c.l<br>**How:** Translates Pascal to C. It reads LIB/p2c/p2crc at startup and stops with "file not found" if that is missing; programs it emits must be linked against LIB/libp2c.l. |
 
 </details>
 
@@ -536,7 +548,7 @@
 | | |
 |---|---|
 | `forth` | &#9733; Forth interpreter<br>`Syntax   : forth [<opts>] [<file>] [<opts>]` |
-| `lua` | &#9733; Lua 3.0 -- a small scripting language.  OS-9 port with its own<br>**How:** Lua 3.0, and it needs Microware's csl -- see DOC/README-CIO. Run a script with `lua file.lua'. NOTE: 3.0 has no numeric `for' loop; that arrived in Lua 3.1, so `for i=1,10 do' is a syntax error here and `while' is the idiom. Examples in DOC/lua/examples. |
+| `lua` | &#9733; Lua 3.0 -- a small scripting language.  OS-9 port with its own module/shell library; needs csl.  See DOC/lua and DOC/README-LUA<br>**How:** Lua 3.0, and it needs Microware's csl -- see DOC/README-CIO. Run a script with `lua file.lua'. NOTE: 3.0 has no numeric `for' loop; that arrived in Lua 3.1, so `for i=1,10 do' is a syntax error here and `while' is the idiom. Examples in DOC/lua/examples. |
 | `luac` | &#9733; Lua bytecode compiler -- luac -o out in.lua<br>**How:** Compiles a Lua script to bytecode: `luac -o out in.lua'. Needs csl. runc then runs the result as an OS-9 command. |
 | `runc` | &#9733; Runs a compiled Lua chunk as an OS-9 command |
 | `wam.sbprolog` | SB-Prolog 2.2 WAM engine -- see DOC/sbprolog/README-SBPROLOG<br>`Usage: sim [-Ttdns] [-m s_size] [-p p_size] [-b tr_size] [-ui num] pil_file_name ...` |
@@ -607,13 +619,13 @@
 
 | | |
 |---|---|
-| `ar2` | &#9733; Ar V2.00 -- Carl Kreider's archiver, a later edition than<br>`Usage:  Ar -<cmd>[<modifier>] archive [file .. ]` |
+| `ar2` | &#9733; Ar V2.00 -- Carl Kreider's archiver, a later edition than the V1.2 shipped as `ar'.  Both are here; ar is unstarred<br>`Usage:  Ar -<cmd>[<modifier>] archive [file .. ]` |
 
 **MS-DOS**
 
 | | |
 |---|---|
-| `dearc` | &#9733; Extract an MS-DOS .ARC archive (Carl Kreider).  arc and<br>`Usage: dearc [p] filename` |
+| `dearc` | &#9733; Extract an MS-DOS .ARC archive (Carl Kreider).  arc and marc handle the OS-9 side<br>`Usage: dearc [p] filename` |
 
 **zip**
 
@@ -640,7 +652,7 @@
 | `macstream` | Read a MacTerminal file stream<br>`Usage: macstream [-macstream] files` |
 | `macunpack` | Unpack a packed Macintosh archive<br>`Usage: macunpack [-macunpack] [filename]` |
 | `mcvert` | Convert between Macintosh file representations<br>`Usage: Mcvert [-rduxh] [DUpqsv] filename(s)` |
-| `UnMacpack` | Unpack MacPack format.  Named for its module, which is<br>`Usage: macunpack [-UnMacpack] [filename]` |
+| `UnMacpack` | Unpack MacPack format.  Named for its module, which is UnMacpack rather than unmacpack<br>`Usage: macunpack [-UnMacpack] [filename]` |
 | `unsit` | Unpack a StuffIt archive (V1.15f, Nigel Perry)<br>`Usage: Unsit [-rdulM] [-vqfm] filename` |
 
 **Text encodings**
@@ -678,7 +690,7 @@
 
 | | |
 |---|---|
-| `sox` | &#9733; Sound eXchange -- audio format converter.  Sample .iff<br>**How:** Converts between audio formats. There is no sound device here, so it converts files rather than plays them. Sample .iff sounds are in DOC/sox. Needs Microware's cio. |
+| `sox` | &#9733; Sound eXchange -- audio format converter.  Sample .iff sounds are in DOC/sox<br>**How:** Converts between audio formats. There is no sound device here, so it converts files rather than plays them. Sample .iff sounds are in DOC/sox. Needs Microware's cio. |
 
 </details>
 
@@ -769,7 +781,7 @@
 | `pnmpad` | netpbm image tool |
 | `pnmpaste` | netpbm image tool |
 | `pnmrotate` | netpbm image tool |
-| `pnmscale` | netpbm image tool<br>**How:** pnmscale <factor> <file>. Given only a filename it takes THAT as the factor and then reads empty standard input, reporting "bad magic number" -- which means you left out the factor, not that anything is broken. |
+| `pnmscale` | netpbm image tool<br>**How:** Scales an image: `pnmscale 0.5 file'. Given only a filename it takes THAT as the scale factor and then waits on empty input, reporting "bad magic number" -- which means you left out the factor, not that your file is bad. The same trap catches pnmdepth, pnmcut, pnmrotate and others. |
 | `pnmshear` | netpbm image tool |
 | `pnmsmooth` | netpbm image tool |
 | `pnmtile` | netpbm image tool |
@@ -870,7 +882,7 @@
 | `fstopgm` | Usenix FaceSaver to PGM (greyscale) |
 | `g3topbm` | Group 3 fax to PBM (bitmap) |
 | `gemtopbm` | GEM to PBM (bitmap) |
-| `giftopnm` | GIF to PNM |
+| `giftopnm` | GIF to PNM<br>**How:** Reads a GIF into the PNM formats the other 168 converters work on -- try `giftopnm /dd/DEMO/gulls.gif \| pnmfile'. IMPORTANT for anyone piping images out of the emulator: os9exec turns CR into CRLF on the way to the host, so a raw image containing byte 13 arrives corrupted. Keep binary inside OS-9 and convert with pnmnoraw before taking a picture anywhere else. DOC/README-NETPBM has the details. |
 | `gouldtoppm` | Gould scanner to PPM (colour) |
 | `hipstopgm` | HIPS to PGM (greyscale) |
 | `hpcdtoppm` | PhotoCD to PPM (colour)<br>`Usage: hpcdtoppm [options] pcd-file [ppm-file]` |
@@ -881,7 +893,7 @@
 | `macptopbm` | MacPaint to PBM (bitmap) |
 | `mgrtopbm` | MGR to PBM (bitmap) |
 | `mtvtoppm` | MTV ray tracer to PPM (colour) |
-| `pcxtoppm` | PCX to PPM (colour)<br>**How:** Cannot read a pipe: it seeks backwards in its input and stops with "error seeking past header". Write the PCX to a file first and pass the filename. |
+| `pcxtoppm` | PCX to PPM (colour)<br>**How:** Cannot read a pipe -- it seeks backwards in its input and stops with "error seeking past header". Write the PCX to a file and pass the filename. sgitopnm has the same limitation. |
 | `pi1toppm` | Atari PI1 to PPM (colour) |
 | `pi3topbm` | Atari PI3 to PBM (bitmap) |
 | `picttoppm` | PICT to PPM (colour) |
@@ -954,14 +966,14 @@
 
 | | |
 |---|---|
-| `gnuplot` | &#9733; gnuplot 2.0 -- plots functions and data files.  Built-in help<br>**How:** Type `set term' first -- it lists every output device it knows, and refuses to plot until you choose one. Its whole manual is built in: type `help'. Demos and sample data are in DOC/gnuplot/demo. Needs Microware's cio. |
-| `tplot` | Plot data to a plotter.  Asks for an interval and a range<br>`Usage : hiplot <-opt1> .. <-optn> <file1> .. <filen>` |
+| `gnuplot` | &#9733; gnuplot 2.0 -- plots functions and data files.  Built-in help (SYS/gnuplot.gih); demos and sample data in DOC/gnuplot/demo<br>**How:** Type `set term' first -- it lists every output device it knows, and refuses to plot until you choose one. Its whole manual is built in: type `help'. Demos and sample data are in DOC/gnuplot/demo. Needs Microware's cio. |
+| `tplot` | Plot data to a plotter.  Asks for an interval and a range and drives the output device; written for an Atari ST<br>`Usage : hiplot <-opt1> .. <-optn> <file1> .. <filen>` |
 
 **Viewers**
 
 | | |
 |---|---|
-| `mgif` | GIF inspector and viewer.  `mgif -i file.gif' reports a<br>**How:** `mgif -i file.gif' inspects a GIF and prints its structure -- that works on any terminal. Displaying an image does not: it writes straight to Atari ST graphics memory. Try it on /dd/DEMO/gulls.gif. |
+| `mgif` | GIF inspector and viewer.  `mgif -i file.gif' reports a GIF's structure and works anywhere; DISPLAYING one needs an Atari ST, because flicker.c writes to ST graphics memory.  Source in SRC/mgif -- its GIF decoder is portable and is the part worth having<br>**How:** `mgif -i file.gif' inspects a GIF and prints its structure -- that works on any terminal. Displaying an image does not: it writes straight to Atari ST graphics memory. Try it on /dd/DEMO/gulls.gif. |
 
 </details>
 
@@ -976,7 +988,7 @@
 | | |
 |---|---|
 | `back` | &#9733; backgammon -- '?' gives the built-in help |
-| `blackjack` | Las Vegas blackjack (M. Theys) -- BASIC09; stops at line 8 |
+| `blackjack` | Las Vegas blackjack (M. Theys) -- BASIC09; stops at line 8 with error 56, 'Parameter error'.  See the BASIC09 note below -- this one is a real fault, not the invocation. |
 | `blackjak` | blackjack -- from the SNOBOL4-in-C package, see below |
 | `chess` | chess - 68k port (three engine versions built)<br>`Syntax: chess [<opts>] <name> [<opts>]` |
 | `crib` | cribbage |
@@ -1016,22 +1028,22 @@
 |---|---|
 | `bite` | a skull animation, not a game you play |
 | `greed` | Greed - grid game<br>`Usage: greed [-p] [-s]` |
-| `lander` | lunar lander -- KNOWN BROKEN: takes no input, and the |
+| `lander` | lunar lander -- KNOWN BROKEN: takes no input, and the post-crash screen is corrupt.  Wants SysV curses line drawing that vt100 termcap does not give it. |
 | `pacman` | Pac-Man |
-| `robots` | &#9733; robots -- outrun them until they crash into each other.<br>**How:** Play with `robots -m' -- manual mode, where the robots take one step per move you make. Keys are the numeric keypad 1-9 (5 stands still), `s' for last stand, `t' to teleport. Needs Microware's math module and a real TERM. |
+| `robots` | &#9733; robots -- outrun them until they crash into each other. REBUILT HERE from source, in SRC/rob.  The archive binary drew cursor-up as a bare ^K, which a terminal reads as index -- DOWN -- so the screen scrolled and the board was left with characters that were not really there. USE -m: without it the game is effectively unplayable.<br>**How:** Play with `robots -m' -- manual mode, where the robots take one step per move you make. Keys are the numeric keypad 1-9 (5 stands still), `s' for last stand, `t' to teleport. Needs Microware's math module and a real TERM. |
 | `snake` | snake arcade game -- KNOWN BROKEN: starts and then sits |
 | `sokoban` | Sokoban puzzle<br>**How:** Wants a username, so run it from a login rather than a bare shell, or it stops with "cannot get your username". |
 | `tet` | Tetris -- KNOWN BROKEN: draws its board and takes no input<br>**How:** Draws the board and ignores the keyboard, and the reason is in its source: tet.c puts the terminal in raw mode inside `#ifndef OSK', so the OS-9 build has no terminal setup at all. Set the mode from outside before starting it (Microware's tmode), or rebuild with an OSK branch using _ss_opt -- LIB/alib.l provides both that and ioctl. Source in SRC/tet. |
-| `wanderer` | Boulderdash-style maze game.  Screens ARE here, in |
+| `wanderer` | Boulderdash-style maze game.  Screens ARE here, in GAMES/WAND/screens; needs this disk as /dd to find them. |
 
 **Adventure & fiction**
 
 | | |
 |---|---|
-| `advcom` | ADVSYS adventure COMPILER -- turns .adv source into a .adi<br>**How:** Compiles ADVSYS .adv source into a .adi world for advint. No .adv source ships here either -- this pair is for writing adventures, not playing them. |
-| `advent` | Colossal Cave Adventure -- self-contained, reads<br>**How:** Colossal Cave. Needs this disk as /dd -- it opens /dd/GAMES/adv/glorkz by absolute path, so mounted only as /h0 it cannot find its data. |
-| `advint` | ADVSYS adventure INTERPRETER -- plays a .adi world file.<br>**How:** Plays an ADVSYS .adi world file. THERE IS NO WORLD FILE ON THIS DISK, so it has nothing to do until you write one with advcom. |
-| `infocom` | Infocom Z-MACHINE interpreter -- a third, unrelated adventure<br>**How:** A Z-machine. Plays the .z3 files in /dd/GAMES/INFORM, which are Inform demonstration programs (dejavu, hellow, shell), not the Infocom games. |
+| `advcom` | ADVSYS adventure COMPILER -- turns .adv source into a .adi world file.  Only useful if you are writing an adventure; no .adv source ships here.<br>**How:** Compiles ADVSYS .adv source into a .adi world for advint. No .adv source ships here either -- this pair is for writing adventures, not playing them. |
+| `advent` | Colossal Cave Adventure -- self-contained, reads /dd/GAMES/adv/glorkz.  Needs this disk as /dd; mounted only as /h0 it cannot find its data.  Unrelated to advcom/advint.<br>**How:** Colossal Cave. Needs this disk as /dd -- it opens /dd/GAMES/adv/glorkz by absolute path, so mounted only as /h0 it cannot find its data. |
+| `advint` | ADVSYS adventure INTERPRETER -- plays a .adi world file. Nothing on this disk to feed it; DOC/advint has the format.<br>**How:** Plays an ADVSYS .adi world file. THERE IS NO WORLD FILE ON THIS DISK, so it has nothing to do until you write one with advcom. |
+| `infocom` | Infocom Z-MACHINE interpreter -- a third, unrelated adventure system.  Plays the .z3 files in GAMES/INFORM (dejavu, hellow, shell -- Inform demos, not the Infocom games).<br>**How:** A Z-machine. Plays the .z3 files in /dd/GAMES/INFORM, which are Inform demonstration programs (dejavu, hellow, shell), not the Infocom games. |
 | `infocom.tcap` | Infocom interpreter, termcap build<br>`Usage: infocom.tcap [-aehlnoprstvx] <filename>` |
 
 **Chess utilities**
@@ -1131,7 +1143,7 @@
 
 | | |
 |---|---|
-| `textb` | &#9733; Mandelbrot set drawn in ASCII on an 80x25 terminal.  Start<br>**How:** An ASCII Mandelbrot viewer -- it asks four questions and draws. Try X_Coord -2.3, Y_Coord -2.0, RANGE 4.0, Max Iter 32. Needs Microware's cio. |
+| `textb` | &#9733; Mandelbrot set drawn in ASCII on an 80x25 terminal.  Start with X -2.3, Y -2.0, range 4.0, 32 iterations<br>**How:** An ASCII Mandelbrot viewer -- it asks four questions and draws. Try X_Coord -2.3, Y_Coord -2.0, RANGE 4.0, Max Iter 32. Needs Microware's cio. |
 
 </details>
 
@@ -1139,7 +1151,7 @@
 
 *OS-9 module and process tools, devices, system state and scheduling.*
 
-<details><summary>33 programs</summary>
+<details><summary>43 programs</summary>
 
 **Processes & memory**
 
@@ -1155,7 +1167,7 @@
 | `sysmon` | &#9733; system monitor<br>`Syntax: sysmon [<opt>]` |
 | `t` | tiny test/stub binary |
 | `top` | show the busiest processes<br>`Syntax: top [<opts>] [<num>]` |
-| `who` | 'who is logged in'.  Written in MICROWARE SHELL syntax |
+| `who` | 'who is logged in'.  Written in MICROWARE SHELL syntax ('!' pipes), not sh, and needs procs/field/qsort/tr, none of which are on this disk. |
 
 **OS-9 modules**
 
@@ -1181,6 +1193,17 @@
 | `setime` | Set system time (prompts YYMMDDHHMMSS) |
 | `sysid` | show system identification |
 
+**MM/1 drivers**
+
+| | |
+|---|---|
+| `keydrv.mm1` | keyboard driver |
+| `msdrv.901_340` | mouse driver, and msdrv_340.901.ms its descriptor |
+| `rb37c65` | floppy driver (37C65 controller) |
+| `scsi_mm1a` | SCSI driver |
+| `snddrv` | sound driver |
+| `windio.52` | windowing terminal driver |
+
 **Devices & disks**
 
 | | |
@@ -1189,6 +1212,15 @@
 | `dinfo` | disk/device information<br>`Syntax:   dinfo [<opts>] {<device name> [<opts>]}` |
 | `shdev` | &#9733; show devices |
 | `ssl` | show a file's segment list, sector by sector -- ssl <file> |
+
+**Vendor demos**
+
+| | |
+|---|---|
+| `ob68kdemo` | OmniBasic 1.16 -- a BASIC compiler.  Limited symbol table; otherwise the shipping compiler.  Run it from /dd/DOC/omnibasic, where its library and examples are. Like UniBasic it needs Microware's cc to finish a build<br>**How:** OmniBasic 1.16, same arrangement as ub68kdemo and the same SHELL trick -- see its entry. Run it from /dd/DOC/omnibasic. DEMO VERSION, capped symbol table. |
+| `sddemo` | White's Speedisk 2.10 -- disk de-fragmenter.  Wants an 80x24 screen; falls back to tty mode<br>**How:** White's Speedisk 2.10 de-fragmenter, demo build. Wants an 80x24 screen and drops to tty mode without one. |
+| `ub68020demo` | UniBasic 1.10 built for the 68020, beside the 68000 one |
+| `ub68kdemo` | UniBasic 1.10 -- a BASIC compiler, same arrangement as OmniBasic.  Run it from /dd/DOC/unibasic<br>**How:** UniBasic 1.10, and it does compile -- the trick is that it runs its build through $SHELL. With SHELL unset it hunts for `/dd/bash' and dies with "Error Exit" and error 216. Do `setenv SHELL /dd/CMDS/sh', work in a directory holding basic.h and basic.l (DOC/unibasic has them), have your C toolchain reachable with CDEF and CLIB set, and give it memory. Verified end to end. DEMO VERSION: the symbol table is capped, nothing else is. |
 
 **Scheduling**
 
@@ -1222,7 +1254,7 @@
 | `msattrib` | mtools 3.6 -- MS-DOS attrib (drive a: and b: are ready)<br>`Usage: msattrib [-p] [-a\|+a] [-h\|+h] [-r\|+r] [-s\|+s] msdosfile [msdosfiles...]` |
 | `msbadblocks` | mtools 3.6 -- MS-DOS badblocks (drive a: and b: are ready)<br>`Usage: msbadblocks [-V] device` |
 | `mscd` | mtools 3.6 -- MS-DOS cd (drive a: and b: are ready)<br>`Usage: mscd: [-V] msdosdirectory` |
-| `mscheck` | mtools disk verifier.  A ksh script (#!ksh), and ksh |
+| `mscheck` | mtools disk verifier.  A ksh script (#!ksh), and ksh is starred, so this one wants cio too.  Drives a: and b: are ready. |
 | `mscopy` | mtools 3.6 -- MS-DOS copy (drive a: and b: are ready)<br>`Usage: mscopy [-tnmvV] sourcefile targetfile` |
 | `msdel` | mtools 3.6 -- MS-DOS del (drive a: and b: are ready)<br>`Usage: msdel [-v] msdosfile [msdosfiles...]` |
 | `msdeltree` | mtools 3.6 -- MS-DOS deltree (drive a: and b: are ready)<br>`Usage: msdeltree [-v] msdosfile [msdosfiles...]` |
@@ -1300,7 +1332,7 @@
 
 | | |
 |---|---|
-| `oleo` | GNU Oleo 1.6 -- a spreadsheet.  Wants a real TERM.  The<br>**How:** GNU Oleo, a spreadsheet. It needs a real terminal -- run it from a login so TERM is set, not from a bare shell. sc is the other spreadsheet on this disk; they are unrelated programs. |
+| `oleo` | GNU Oleo 1.6 -- a spreadsheet.  Wants a real TERM.  The other spreadsheet here is sc<br>**How:** GNU Oleo, a spreadsheet. It needs a real terminal -- run it from a login so TERM is set, not from a bare shell. sc is the other spreadsheet on this disk; they are unrelated programs. |
 | `scqref` | &#9733; Quick reference for sc, the spreadsheet on this disk |
 
 **Astronomy & orbits**
@@ -1333,9 +1365,9 @@
 
 | | |
 |---|---|
-| `gs33` | Ghostscript 3.33 -- the older one, and it has never had the<br>`Usage: gs ... -%c file.ps arg1 ... argn` |
-| `gs403` | Aladdin Ghostscript 4.03 -- interprets PostScript, and this<br>**How:** Aladdin Ghostscript 4.03. Set GS_LIB first -- `setenv GS_LIB /dd/LIB/gs403' -- or it cannot find gs_init.ps and stops. Everything it needs, fonts included, is in that directory. The older gs33 on this disk has never had its support files. |
-| `lwf` | ASCII to PostScript, like Unix enscript.  Reads its prologue<br>**How:** Turns plain text into PostScript, the way Unix enscript does. It reads /dd/USR/LIB/lwf.prologue and stops without it. No PostScript printer here, so send the output to a file and take it elsewhere. |
+| `gs33` | Ghostscript 3.33 -- the older one, and it has never had the gs_init.ps and fonts it needs.  Use gs403 instead<br>`Usage: gs ... -%c file.ps arg1 ... argn` |
+| `gs403` | Aladdin Ghostscript 4.03 -- interprets PostScript, and this one is COMPLETE: its init files and fonts are in LIB/gs403.  Set GS_LIB to that directory first.  Runs with no trap handler -- built with GCC 2.5.8 by its porter<br>**How:** Aladdin Ghostscript 4.03. Set GS_LIB first -- `setenv GS_LIB /dd/LIB/gs403' -- or it cannot find gs_init.ps and stops. Everything it needs, fonts included, is in that directory. The older gs33 on this disk has never had its support files. |
+| `lwf` | ASCII to PostScript, like Unix enscript.  Reads its prologue from /dd/USR/LIB/lwf.prologue<br>**How:** Turns plain text into PostScript, the way Unix enscript does. It reads /dd/USR/LIB/lwf.prologue and stops without it. No PostScript printer here, so send the output to a file and take it elsewhere. |
 
 **Spooler**
 

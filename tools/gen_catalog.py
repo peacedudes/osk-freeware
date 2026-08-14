@@ -53,8 +53,10 @@ def from_index(root):
     ENTRY   = re.compile(r"^ {1,4}(\*?) ?([A-Za-z0-9_.][\w.]*)\s{2,}(\S.*)$")
     # SECTION captures to the first space, so the gcc heading yields this:
     COLUMNAR = ("CMDS/NETPBM", "CMDS/GCC139")
+    # Continuations sit far enough right that no entry could match.
+    CONT     = re.compile(r"^ {10,}\S")
 
-    progs, section, in_stars = {}, None, False
+    progs, section, in_stars, last = {}, None, False, None
     for line in lines:
         if line.startswith("All ") and "verified" in line:
             in_stars = True
@@ -78,6 +80,17 @@ def from_index(root):
         if m and section:
             progs.setdefault(m.group(2), {"name": m.group(2), "desc": m.group(3).strip(),
                                           "section": section})
+            last = m.group(2)
+            continue
+        # A wrapped description continues under the first line, indented past
+        # where a name would sit. Those lines used to be dropped, so a
+        # multi-line entry showed only its first line in the guide and
+        # everything explaining it was lost. Fold them back in.
+        if section and last and CONT.match(line):
+            progs[last]["desc"] += " " + line.strip()
+            continue
+        if not line.strip():
+            last = None
 
     start = next(i for i, l in enumerate(lines) if l.startswith("All ") and "verified" in l)
     starred = set()
@@ -264,8 +277,12 @@ def from_effo(root, progs):
 
 
 def from_tree(root, progs, starred):
+    # Every directory holding programs must be listed here or its contents are
+    # invisible in the guide -- which is where people actually go looking.
+    # CMDS/DEMOS, CMDS/DHRY and CMDS/MM1 were added in 2026-08 and were absent
+    # from the catalogue until someone noticed the gap.
     for d in ("CMDS", "CMDS/GAMES", "CMDS/NETPBM", "CMDS/BROKEN", "CMDS/REBUILT",
-              "CMDS/GCC139", "CMDS/GCC2"):
+              "CMDS/GCC139", "CMDS/GCC2", "CMDS/DEMOS", "CMDS/DHRY", "CMDS/MM1"):
         full = os.path.join(root, d)
         if not os.path.isdir(full):
             continue
