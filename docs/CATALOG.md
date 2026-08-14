@@ -1,6 +1,6 @@
 # What is on this disk
 
-678 programs of OS-9/68K community software, gathered from the archives that kept it and made to run again. **546 of them need nothing but this disk**; the rest want Microware's `cio`, marked below with a star.
+680 programs of OS-9/68K community software, gathered from the archives that kept it and made to run again. **547 of them need nothing but this disk**; the rest want Microware's `cio`, marked below with a star.
 
 `DOC/INDEX` on the disk lists everything alphabetically. This is the same collection sorted by what each program is *for*, which is the more useful order when you do not yet know what you are looking for.
 
@@ -15,10 +15,10 @@
 | [Developer tools](#developer-tools) | 33 | Version control, tags, cross-reference, formatters, a debugger and benchmarks. |
 | [Compilers & build](#compilers--build) | 34 | C compilers and their passes, assemblers, linkers, make and parser generators. |
 | [Languages](#languages) | 6 | Interpreters and language systems beyond C. |
-| [Archives & compression](#archives--compression) | 30 | Pack, unpack and shrink -- lha, zip, tar, arc, zoo, and OS-9 module libraries. |
+| [Archives & compression](#archives--compression) | 31 | Pack, unpack and shrink -- lha, zip, tar, arc, zoo, and OS-9 module libraries. |
 | [Encoding & conversion](#encoding--conversion) | 26 | Between text encodings, line endings, number bases, ciphers and hashes. |
 | [Communications](#communications) | 20 | Kermit in several builds, terminal sessions, and networking. |
-| [Graphics & images](#graphics--images) | 191 | The netpbm toolkit, JPEG, a ray tracer, and things that draw. |
+| [Graphics & images](#graphics--images) | 192 | The netpbm toolkit, JPEG, a ray tracer, and things that draw. |
 | [Games](#games) | 57 | Adventures, board and card games, arcade ports, dungeon crawls and puzzles. |
 | [Screen toys](#screen-toys) | 6 | Things to watch rather than play. Start one and leave it going. |
 | [Amusements](#amusements) | 20 | Generators, simulators and diversions that are not quite games. |
@@ -524,7 +524,7 @@
 
 *Pack, unpack and shrink -- lha, zip, tar, arc, zoo, and OS-9 module libraries.*
 
-<details><summary>30 programs</summary>
+<details><summary>31 programs</summary>
 
 **Create & extract**
 
@@ -584,6 +584,12 @@
 | | |
 |---|---|
 | `ar2` | &#9733; Ar V2.00 -- Carl Kreider's archiver, a later edition than<br>`Usage:  Ar -<cmd>[<modifier>] archive [file .. ]` |
+
+**MS-DOS**
+
+| | |
+|---|---|
+| `dearc` | &#9733; Extract an MS-DOS .ARC archive (Carl Kreider).  arc and<br>`Usage: dearc [p] filename` |
 
 **zip**
 
@@ -694,7 +700,7 @@
 
 *The netpbm toolkit, JPEG, a ray tracer, and things that draw.*
 
-<details><summary>191 programs</summary>
+<details><summary>192 programs</summary>
 
 **NETPBM: edit & analyse**
 
@@ -925,6 +931,7 @@
 | | |
 |---|---|
 | `gnuplot` | &#9733; gnuplot 2.0 -- plots functions and data files.  Built-in help<br>**How:** Type `set term' first -- it lists every output device it knows, and refuses to plot until you choose one. Its whole manual is built in: type `help'. Demos and sample data are in DOC/gnuplot/demo. Needs Microware's cio. |
+| `tplot` | Plot data to a plotter.  Asks for an interval and a range<br>`Usage : hiplot <-opt1> .. <-optn> <file1> .. <filen>` |
 
 **Viewers**
 

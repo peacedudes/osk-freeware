@@ -764,3 +764,5 @@ scsi_mm1a|System & modules|MM/1 drivers
 snddrv|System & modules|MM/1 drivers
 windio.52|System & modules|MM/1 drivers
 mgif|Graphics & images|Viewers
+dearc|Archives & compression|MS-DOS
+tplot|Graphics & images|Plotting
