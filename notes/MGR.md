@@ -90,5 +90,29 @@ is an audit of 281 files, not 419.** The EFFO forum disks in particular are
 where European OS-9 community software lived -- which is exactly the world the
 HOWTO says used MGR.
 
-Re-fetching those five categories is the obvious next move, for MGR and for
+## The five categories were re-fetched, 2026-08-14 -- and MGR is not there
+
+All 152 missing archives recovered from Microware's OS-9 Archive, zero
+failures, 35 MB. The pool now holds all 432 files. `tools/refetch_archive.py`
+is the fetcher; the archive runs Phoca Download behind a POST form with a
+per-session token, so each file's page must be fetched before its download.
+Category ids under OSK (98): drivers 105, effo 108, gwindows 122,
+network 127, telecom 134.
+
+**MGR is not in any of them.** Across all 6508 members of those 152 archives
+(`notes/pool-newcategories-members.txt`) the only matches are traces of it
+being *used*, never the thing itself:
+
+| where | what |
+|---|---|
+| `forum23.lzh` | `f23a/HARDWARE/ATARI/CUMANA/keydef_mgr.a` -- a keyboard-definition module for **Cumana OS-9/68000 V2.1** on the Atari ST, and its whole difference from the plain `keydef.a` is that it fills in the function keys (`OC0`-`OCF`) the other leaves at zero. Somebody wanted F-keys working under MGR. |
+| `forum17.lzh` | `SOFTWARE/C/BEAV/.beavrc.mgr` -- a config for the BEAV editor tuned for running in an MGR window. |
+| `netpbm_*.lzh` | `mgrtopbm`, `pbmtomgr` -- the format converters we already ship. |
+| `forum23.lzh` | `SOFTWARE/SCULPTOR/mgr` -- Sculptor's database *manager*, unrelated. |
+
+So two independent programs in this archive were configured for MGR, on the
+Cumana Atari port Wikipedia names -- and the window system itself was never
+deposited here. It has to come from somewhere else.
+
+Re-fetching those five categories was the obvious next move, for MGR and for
 whatever else is in 34 MB nobody here has opened.

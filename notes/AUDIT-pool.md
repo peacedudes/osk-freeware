@@ -8,7 +8,18 @@ list needed re-reading rather than trusting.
 archives contribute nothing to the disk. A handful were correctly left out.
 Most were never assessed at all.
 
-## SCOPE WARNING: this audits 281 files, not the 419 that were downloaded
+## SCOPE: the missing 152 were recovered 2026-08-14, and are NOT audited below
+
+The five absent categories -- DRIVERS, EFFO, GWINDOWS, NETWORK, TELECOM --
+were re-fetched from Microware's OS-9 Archive with `tools/refetch_archive.py`.
+**The pool is now complete at 432 files.** Everything below still describes
+the original 281. The 152 new archives hold 6508 members
+(`notes/pool-newcategories-members.txt`) and nothing in them has been
+assessed -- including 36 EFFO forum and public-domain disks, which are where
+European OS-9 community software lived.
+
+## Superseded scope warning (kept for the record)
+
 
 `notes/DOWNLOADS-68k.md` records 17 categories fetched from the Microware
 hobbyist archive. The pool directory holds 13. **DRIVERS (13 files), EFFO (36,
