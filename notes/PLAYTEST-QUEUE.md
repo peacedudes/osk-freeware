@@ -20,6 +20,27 @@ only be seen at a terminal.
     chd /dd/CMDS/REBUILT
     tet.unixlib
 
+**Third attempt, 2026-08-13.** Still no keys after the TCSETAW fix, which
+pointed past the ioctl entirely. The real stopper was two lines above it:
+
+    close (0);
+    open (ttnam, O_NDELAY);
+
+`O_NDELAY` is a Unix open() *flag*; OS-9's `open()` takes an *access mode*,
+and `DEFS/os9lib/fcntl.h` defines `O_NDELAY` as **0** -- no read, no write.
+tet closed its own stdin and reopened it unreadable. Writes on fd 1 still
+worked, which is precisely why the board draws and nothing is ever read. No
+ioctl fix could have helped. Now opens `S_IREAD`.
+
+That exposed a second thing: `GetKey()` loops until `read` returns 0, so it
+needs a non-blocking read -- what `O_NDELAY` was for. OS-9 has no such flag
+on a path, so `GetKey` now calls `_gs_rdy(0)` first and returns when nothing
+is waiting. Without that the game would block between keystrokes and the
+piece would never fall.
+
+All three faults and the build line are written up in `SRC/tet/README`, and
+the patched source is in `SRC/tet` so the change is readable.
+
 **Second attempt, 2026-08-13.** The first rebuild still echoed keys and
 ignored them, which was the useful result: echo still on means the mode never
 changed. The cause was a second fault underneath the first -- `LIB/unix.l`'s
