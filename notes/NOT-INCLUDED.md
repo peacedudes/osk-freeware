@@ -22,38 +22,48 @@ a reason for.
 
 ## Excluded as duplicates of what already ships
 
+The bar here is **byte-identical, or the same program under another name**.
+A different build or an older edition is NOT a reason — those now live in
+`CMDS/REBUILT`, which exists precisely so alternates can sit beside the
+curated choice.
+
 | | |
 |---|---|
-| `lha208.bin`, `fgrep_1.11` | **Byte-identical** to `CMDS/lha` and `CMDS/fgrep`. |
-| `diff_1.1`, `compress_4.0`, `m4_0.5`, `sed_1.06`, `gtar` | Different builds of programs already here and working. `tar` in particular is load-bearing — `mkimage.sh` populates the disk with it. |
-| `hex` | The disk's `hexedit` is the same program under its other name. |
-| `lharcs` | C-LHarc 1.01; the disk has lha 2.08 and lharc. |
-| `cc1`, `cccp` | gcc 1.42 passes; GCC 1.39 and 2.x ship complete. |
-| `trminfo1.lzh` | 28 of its 30 terminal descriptions are already in `SYS/TERM`. Only `coco` is missing — worth taking on its own. |
-| `gziposk124` | `CMDS/gzip` is the same 1.2.2 build; the rest are 68020/CPU32 variants. |
+| `lha208.bin`, `fgrep_1.11`, `hex` | **Byte-identical** to `CMDS/lha`, `CMDS/fgrep` and `CMDS/hexedit`. Nothing to add. |
+| `trminfo1.lzh` | Every one of its terminal descriptions is already in `SYS/TERM`, `coco3` included. |
 | `advent0`, `colossal.lzh` | Already here: `GAMES/adv` holds advent0 and advent1-4.txt, `SRC/adv` the source. |
-| `ubdemo` (68020) | The 68000 sibling is in `CMDS/DEMOS`. |
-| PBMPLUS, the 15 `pbmexec` programs, `pbmdoc.ar` | The 1991 suite and its documentation that netpbm replaced. netpbm is newer, needs no trap handler, and now ships its own manual. |
+| `cc1`, `cccp` | gcc 1.42 passes with no rest-of-toolchain; GCC 1.39 and 2.x ship complete. |
+
+**Reversed, and now included:** `compress_4.0`, `diff_1.1`, `gtar`, `lharcs`,
+`m4_0.5`, `sed_1.06` (other editions) and the six-build `gzip` 1.2.4 set
+(68000, 68020 and CPU32, with and without csl) — all in `CMDS/REBUILT`. Also
+`ub68020demo` in `CMDS/DEMOS`. Calling a 68020 build a duplicate of a 68000
+one was wrong: on a 68020 machine it is the build that fits.
 
 ## Excluded because they cannot work here
 
 | | |
 |---|---|
-| `mgif`, `tplot` | Write straight to Atari ST graphics memory. `mgif`'s own port note: *"it runs on ST's only, if you don't change the source."* |
-| `updates.lzh` — `windio`, `scsi_mm1a`, `rb37c65`, `snddrv`, `keydrv`, two `msdrv` | MM/1 hardware drivers. |
+| the 15 `pbmexec` programs | **Not because netpbm replaced them.** They cannot read PBM as it exists on this disk: `pbminvert` rejects a hand-written, textbook plain P1 that netpbm's own `pnmfile` reads correctly — *"Junk in file where an integer should be!"* — and does the same with raw P4. Fourteen of the names are free and would have been genuine additions (`cbmtopbm`, `pbmtops`, `pbmcrop`, `pbmtrnspos`…); they simply do not work with anything here. |
 | `umusek` | Stops with *"Can't get screen addr"*. |
-| `alps` | Switches an ALPS ASP-1000 printer between draft and NLQ. One printer, 1988. |
 | `dedit` | Will not load at all — error 205, `E_BMID`, a bad module ID. |
-| `gnuplot_x11` | An X11 driver, and that archive holds no `gnuplot` binary. gnuplot 2.0 ships instead. |
+| `gnuplot_x11` | An X11 driver, and that archive holds no `gnuplot` binary to drive. |
 | `f68k` / `os9lader` | F68K is a **Forth** system despite the name; its OS-9 part is only a loader, and `forth` is already here. |
 | `regex`, `strcmp`, `testpad`, `makecrc` | Library and test fragments, not programs. |
+| `tplot` | Drives an Atari ST plotter, and unlike mgif it has no mode that does anything without one. |
+
+**Reversed, and now included:** the seven **MM/1 drivers** (`CMDS/MM1`) — a
+driver is not meant to be *run*, so "fails to start" was never a reason, and
+an MM/1 is a real OS-9 machine somebody still owns. And **`mgif`**, because
+`mgif -i` inspects a GIF perfectly well on any terminal; only *display* needs
+the ST.
 
 ## Excluded on merit
 
 | | |
 |---|---|
 | `cmake` | Carl Kreider's own one-line description: *"crude make, obsolete."* `make` and `gmake` are here. |
-| `dearc` | `arc` covers it. |
+| `dearc` | `arc` covers it. Weak, and worth revisiting. |
 | `uac_view` | A viewer for one person's system data files, shipped with 79 files of that data. |
 | `dhry` — **reversed** | Excluded once as "a benchmark that measures the host under emulation". That was wrong: on real hardware it measures your machine, and with a figure from real hardware it is useful under emulation too. All twelve builds now ship in `CMDS/DHRY`. |
 | Vendor demos — **reversed** | Excluded once as "commercial demo versions". UniBasic's manual contains an explicit *grant*. All three now ship in `CMDS/DEMOS`. |

@@ -1,6 +1,6 @@
 # What is on this disk
 
-677 programs of OS-9/68K community software, gathered from the archives that kept it and made to run again. **545 of them need nothing but this disk**; the rest want Microware's `cio`, marked below with a star.
+678 programs of OS-9/68K community software, gathered from the archives that kept it and made to run again. **546 of them need nothing but this disk**; the rest want Microware's `cio`, marked below with a star.
 
 `DOC/INDEX` on the disk lists everything alphabetically. This is the same collection sorted by what each program is *for*, which is the more useful order when you do not yet know what you are looking for.
 
@@ -18,7 +18,7 @@
 | [Archives & compression](#archives--compression) | 30 | Pack, unpack and shrink -- lha, zip, tar, arc, zoo, and OS-9 module libraries. |
 | [Encoding & conversion](#encoding--conversion) | 26 | Between text encodings, line endings, number bases, ciphers and hashes. |
 | [Communications](#communications) | 20 | Kermit in several builds, terminal sessions, and networking. |
-| [Graphics & images](#graphics--images) | 190 | The netpbm toolkit, JPEG, a ray tracer, and things that draw. |
+| [Graphics & images](#graphics--images) | 191 | The netpbm toolkit, JPEG, a ray tracer, and things that draw. |
 | [Games](#games) | 57 | Adventures, board and card games, arcade ports, dungeon crawls and puzzles. |
 | [Screen toys](#screen-toys) | 6 | Things to watch rather than play. Start one and leave it going. |
 | [Amusements](#amusements) | 20 | Generators, simulators and diversions that are not quite games. |
@@ -694,7 +694,7 @@
 
 *The netpbm toolkit, JPEG, a ray tracer, and things that draw.*
 
-<details><summary>190 programs</summary>
+<details><summary>191 programs</summary>
 
 **NETPBM: edit & analyse**
 
@@ -925,6 +925,12 @@
 | | |
 |---|---|
 | `gnuplot` | &#9733; gnuplot 2.0 -- plots functions and data files.  Built-in help<br>**How:** Type `set term' first -- it lists every output device it knows, and refuses to plot until you choose one. Its whole manual is built in: type `help'. Demos and sample data are in DOC/gnuplot/demo. Needs Microware's cio. |
+
+**Viewers**
+
+| | |
+|---|---|
+| `mgif` | GIF inspector and viewer.  `mgif -i file.gif' reports a<br>**How:** `mgif -i file.gif' inspects a GIF and prints its structure -- that works on any terminal. Displaying an image does not: it writes straight to Atari ST graphics memory. Try it on /dd/DEMO/gulls.gif. |
 
 </details>
 
