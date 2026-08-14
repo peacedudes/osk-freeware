@@ -83,7 +83,7 @@
 
 | | |
 |---|---|
-| `elvis` | Elvis 1.7 -- a full vi/ex clone, BUILT HERE from the source<br>**How:** A full vi/ex clone, built here from the archive that was always on this disk. Needs TERM and TERMCAP set -- `SYS/login' does both. `view' opens read-only, REBUILT/vi.elvis is the same program as vi, and all of them need CMDS/elvis present because they exec it. |
+| `elvis` | Elvis 1.7 -- the best-documented of this disk's three vi<br>**How:** A full vi/ex clone, built here from the archive that was always on this disk. Needs TERM and TERMCAP set -- `SYS/login' does both. `view' opens read-only, REBUILT/vi.elvis is the same program as vi, and all of them need CMDS/elvis present because they exec it. |
 | `elvprsv` | Preserve an elvis session across a crash |
 | `elvrec` | Recover a preserved elvis session<br>`usage: elvrec [preserved_file [recovery_file]]` |
 | `input.elvis` | elvis under its `input' personality; CMDS/input is |
@@ -96,9 +96,9 @@
 |---|---|
 | `sedt` | SEDT screen editor |
 | `VI` | PVIC, public domain            -> /dd/CMDS/REBUILT (name was taken)<br>`Usage: vi [file ...]` |
-| `vi` | vi/ex editor (EFFO build, has its own ex_OS9.c) |
+| `vi` | THE REAL vi/ex -- its source in SRC/effo_vi is the Berkeley<br>**How:** One of three unrelated vi editors here, and the only one that is the genuine Berkeley ex/vi rather than a clone -- its source in SRC/effo_vi is the real ex_*.c files. `vi -x' becomes ex, `vi -d' becomes edit. DOC/README-VI compares all three. |
 | `vi_cio` | &#9733; PVic vi, cio build (use vi_nocio instead)<br>`Usage: vi [file ...]` |
-| `vi_nocio` | PVic 1.0a -- vi-compatible editor, cio-free (the vi to use here)<br>`Usage: vi [file ...]` |
+| `vi_nocio` | PVIC 1.0a -- the smallest of this disk's three vi editors,<br>**How:** PVIC 1.0a, the smallest of the three vi editors on this disk, public domain, no source or docs here. DOC/README-VI compares it with vi and elvis. |
 | `vis` | make non-printing characters visible |
 
 **Binary & hex**
