@@ -96,6 +96,7 @@ lines long, which is no help until you already know the name you want.
 | **Maths & calculators** | 13 | Calculators, plotting, orbits and number theory. |
 | **Printing** | 14 | Spoolers, page formatting and PostScript. |
 | **Documentation** | 6 | Pagers, readers and the help system. |
+| **Uncategorised** | 1 |  |
 
 <!-- CATEGORIES:END -->
 

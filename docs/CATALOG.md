@@ -1,6 +1,6 @@
 # What is on this disk
 
-711 programs of OS-9/68K community software, gathered from the archives that kept it and made to run again. **578 of them need nothing but this disk**; the rest want Microware's `cio`, marked below with a star.
+712 programs of OS-9/68K community software, gathered from the archives that kept it and made to run again. **579 of them need nothing but this disk**; the rest want Microware's `cio`, marked below with a star.
 
 `DOC/INDEX` on the disk lists everything alphabetically. This is the same collection sorted by what each program is *for*, which is the more useful order when you do not yet know what you are looking for.
 
@@ -28,6 +28,7 @@
 | [Maths & calculators](#maths--calculators) | 13 | Calculators, plotting, orbits and number theory. |
 | [Printing](#printing) | 14 | Spoolers, page formatting and PostScript. |
 | [Documentation](#documentation) | 6 | Pagers, readers and the help system. |
+| [Uncategorised](#uncategorised) | 1 |  |
 
 ## Shells
 
@@ -1406,6 +1407,18 @@
 |---|---|
 | `lessecho` | &#9733; Helper for less<br>`usage: lessecho [-ox] [-cx] [-pn] [-dn] [-a] file ...` |
 | `lesskey` | Compile a key-binding file for less<br>`usage: lesskey [-o output] [input]` |
+
+</details>
+
+## Uncategorised
+
+**
+
+<details><summary>1 programs</summary>
+
+| | |
+|---|---|
+| `tet.unixlib` | tet rebuilt so its keyboard code is actually compiled in. GAMES/tet takes no input because its raw-mode setup sits inside `#ifndef OSK' and the OS-9 build skipped it; this one is built with that path enabled, against LIB/unix.l which implements TCGETA/TCSETA over _ss_opt.  UNTESTED at a real terminal -- it cannot be checked from a pipe, because tet calls ttyname(0) and reopens it.  If it takes keys for you, it should replace GAMES/tet |
 
 </details>
 
