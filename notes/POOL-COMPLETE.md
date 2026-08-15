@@ -146,7 +146,8 @@ were added.
 Read by hand, per archive, and recorded per program in
 `notes/pool-newcategories-gathered.tsv`. **111 of the 177 assessed carry no
 licence statement at all** -- which is what this corpus is, not a gap in the
-search. EFFO's 31 Info files all state open availability. Three things must
+search. EFFO's 29 Info files all say public on `$AVAILABILITY`, but seven
+attach a condition -- see above. Three things must
 not ship: `rz`, `sz` (Omen Technology, $20/user) and `smbmount` (no bundling),
 plus `msfm` (Microware's, out of Dibble's *OS-9 Insights*) and `csl`.
 
