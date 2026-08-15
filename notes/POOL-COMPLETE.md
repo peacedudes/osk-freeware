@@ -109,6 +109,38 @@ handler present, then again with `cio`, `csl` and `math881` alongside.
 Nothing here is a pile of wreckage: the great majority runs, and the split
 between "runs bare" and "wants cio" matches the disk's own 369/135.
 
+## The EFFO Info form -- and the field that misleads
+
+EFFO defined a structured metadata form, `Info_empty_form`, and shipped a blank
+on every disk. 29 filled-in ones survive across the pool
+(`notes/pool-effo-info-full.json`, `tools/parse_effo_info.py`).
+
+**Two of its fields look alike and are not.** `$SOURCE-AVAILABILITY` says
+whether the SOURCE can be had. `$AVAILABILITY` -- "Public, Shareware,
+Commercial ?", mandatory -- is the one that speaks to redistribution, and
+`$CONDITIONS` qualifies it. An earlier pass here read the first in place of the
+second and concluded all 29 were unconditionally free.
+
+They are not. On `$AVAILABILITY` all 29 do say public, freeware or public
+domain -- but **seven carry a condition, and six of those are "no military
+use"**:
+
+| program | condition | on this disk |
+|---|---|---|
+| `space` (L. Zeller) | conditions in the help file prohibit military use | yes |
+| `disktest` (St. Paschedag) | no military use | yes |
+| `hist`, `hexed` (H. Hoheisel-Zimmermann) | no military use | yes |
+| `rxmod`/`txmod` (W. Wittig) | no military use | no |
+| `i_am_i` (C. Mahr) | no military use | no |
+| **`help`** (L. Zeller) | peaceful applications only; no weapons work; **and `help.hlp` and `helpindex` HAVE TO be included when distributing** | **yes** |
+
+`DOC/EFFO-INFO` on the disk already existed to record exactly this and had five
+of the seven. `help` was missing, which mattered: it ships, and its condition 3
+places a requirement on anyone who copies it onward. The disk does meet that
+requirement -- `SYS/HELP/help.hlp` and `CMDS/helpindex` are both there -- and
+`DOC/EFFO-INFO` now says so. Its counts went 27 to 29 and both missing entries
+were added.
+
 ## Terms
 
 Read by hand, per archive, and recorded per program in

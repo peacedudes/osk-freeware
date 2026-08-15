@@ -159,9 +159,13 @@ Two different `fpu` modules turned up, 12724 bytes in `xyz.lzh` and 14572 in
 EFFO defined a metadata form -- `$PURPOSE`, `$AUTHOR-NAME`, `$HARDWARE`,
 `$SOURCE-AVAILABILITY` and more -- and asked contributors to ship one per
 program. 31 unique ones are in these archives
-(`notes/pool-newcategories-effo-info.json`, `tools/parse_effo_info.py`), and
-**every single one states open availability**: "public", "full source
-available", "public domain". Not one is restricted.
+(`notes/pool-effo-info-full.json`, `tools/parse_effo_info.py`).
+
+**Correction, 2026-08-15:** this section first read `$SOURCE-AVAILABILITY` --
+which is about the source code -- and concluded none was restricted. The field
+that governs redistribution is `$AVAILABILITY`, qualified by `$CONDITIONS`, and
+by those seven of the 29 carry a condition, six of them "no military use". See
+`notes/POOL-COMPLETE.md`.
 
 They mostly describe programs already on the disk (beav, fgrep, sed, m4, yacc,
 indent, flex, lharc), so they add little to the 177 -- but they settle the
