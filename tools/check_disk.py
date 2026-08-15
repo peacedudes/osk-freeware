@@ -197,7 +197,19 @@ def check_counts(root):
 
       total   = files in CMDS and CMDS/GAMES
       starred = the names listed in INDEX's own "All N" block
-      plain   = total - starred, the ones needing no Microware module
+      plain   = total - the starred names that live in those two directories
+
+    Two ways this went wrong, both found 2026-08-14 and both fixed here:
+
+    Subtracting the WHOLE starred set from a total that counts only two
+    directories is not arithmetic that means anything -- eleven starred
+    programs live in CMDS/REBUILT and CMDS/BROKEN, so the readme's "360 of
+    which need nothing" was nine short of the tree's 369.
+
+    And the names have to RESOLVE. `gzipcpu32k_csl` and `head` had been sitting
+    in the list as the single run-together token `gzipcpu32k_cslhead`, which
+    made the count agree with itself while naming a program that does not
+    exist and losing one that does.
     """
     total = sum(1 for d in CMD_DIRS
                   for n in os.listdir(os.path.join(root, d))
@@ -213,8 +225,24 @@ def check_counts(root):
             break
         starred.update(l.split())
 
+    # Every starred name must be a real file somewhere under CMDS, and the
+    # "needs nothing" figure counts only the ones inside CMD_DIRS.
+    where = {}
+    for d, _, names in os.walk(os.path.join(root, "CMDS")):
+        rel = os.path.relpath(d, root)
+        for n in names:
+            where.setdefault(n, rel)
+    unresolved = sorted(n for n in starred if n not in where)
+
+    # Count FILES, not names: one starred name exists in both CMDS and
+    # CMDS/GAMES, and both of those files need cio. Counting the name once
+    # leaves the "needs nothing" figure one too high.
+    in_scope = sum(1 for d in CMD_DIRS
+                     for n in os.listdir(os.path.join(root, d))
+                     if n in starred and os.path.isfile(os.path.join(root, d, n)))
+
     readme = open(os.path.join(root, "readme"), "rb").read().decode("latin-1")
-    want = {str(total), str(total - len(starred)), str(len(starred))}
+    want = {str(total), str(total - in_scope), str(len(starred))}
 
     # The per-directory counts in readme's "WHAT IS ON IT" block rot the same
     # way and were not covered: they read 354 commands, 57 games, 3 broken and
@@ -231,14 +259,19 @@ def check_counts(root):
     # INDEX's own "All N" wording must agree with the list under it.
     declared = int(re.match(r"All (\d+)", lines[start]).group(1))
 
-    ok = not missing and declared == len(starred)
+    ok = not missing and declared == len(starred) and not unresolved
     if not ok:
-        print("    tree: %d programs, %d starred, %d need nothing else"
-              % (total, len(starred), total - len(starred)))
+        print("    tree: %d programs, %d starred (%d of them in %s), "
+              "%d need nothing else"
+              % (total, len(starred), in_scope, " and ".join(CMD_DIRS),
+                 total - in_scope))
         if missing:
             print("    readme does not mention: %s" % ", ".join(sorted(missing)))
         if declared != len(starred):
             print("    DOC/INDEX says 'All %d' but lists %d" % (declared, len(starred)))
+        if unresolved:
+            print("    starred in DOC/INDEX but no such file: %s"
+                  % ", ".join(unresolved))
     return ok, "documented counts disagree with the tree"
 
 
