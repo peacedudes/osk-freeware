@@ -64,12 +64,18 @@ def extract_ar(path, dest):
     os.makedirs(dest, exist_ok=True)
     name = os.path.basename(path)
     open(os.path.join(dest, name), "wb").write(open(path, "rb").read())
-    script = "cd /h6\n/dd/CMDS/ar2 -x /h6/%s\n\033\n\004\n" % name
+    script = "cd /h6\n/dd/CMDS/ar2 -x /h6/%s\nexit\n" % name
     env = dict(os.environ, OS9DISK=img, OS9MDIR=cio, OS9H6=os.path.abspath(dest))
-    p = subprocess.run([exe, "-r", "bash", "/dd/SYS/login"], input=script.encode(),
-                       capture_output=True, env=env, timeout=180)
+    try:
+        subprocess.run([exe, "-r", "bash", "/dd/SYS/login"], input=script.encode(),
+                       capture_output=True, env=env, timeout=60)
+    except subprocess.TimeoutExpired:
+        pass                    # bash may not quit on EOF; the files are what matter
     os.remove(os.path.join(dest, name))
-    return b"extracting" in p.stdout
+    # Success is what LANDED, not what was printed. os9exec's output carries
+    # NULs and escape sequences, and matching on it reported FAILED for three
+    # archives that had in fact extracted perfectly well.
+    return any(fs for _, _, fs in os.walk(dest))
 
 def extract(path, dest):
     """True if something was unpacked into dest."""
