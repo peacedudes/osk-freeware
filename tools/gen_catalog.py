@@ -282,7 +282,8 @@ def from_tree(root, progs, starred):
     # CMDS/DEMOS, CMDS/DHRY and CMDS/MM1 were added in 2026-08 and were absent
     # from the catalogue until someone noticed the gap.
     for d in ("CMDS", "CMDS/GAMES", "CMDS/NETPBM", "CMDS/BROKEN", "CMDS/REBUILT",
-              "CMDS/GCC139", "CMDS/GCC2", "CMDS/DEMOS", "CMDS/DHRY", "CMDS/MM1"):
+              "CMDS/GCC139", "CMDS/GCC2", "CMDS/DEMOS", "CMDS/DHRY", "CMDS/MM1",
+              "CMDS/UUCP"):
         full = os.path.join(root, d)
         if not os.path.isdir(full):
             continue

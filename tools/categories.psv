@@ -776,3 +776,21 @@ vi.elvis|Editors|vi clones
 ctags.elvis|Developer tools|Tags
 input.elvis|Editors|vi clones
 tet.unixlib|Games|Arcade & action
+adduser|Communications|System administration
+dotilde|Communications|Mail
+expire|Communications|News
+fileserv|Communications|File transfer
+fixtext|Communications|File transfer
+mailx|Communications|Mail
+postnews|Communications|News
+readnews|Communications|News
+rmail|Communications|Mail
+rnews|Communications|News
+subscribe|Communications|News
+unsubscribe|Communications|News
+uucico|Communications|UUCP
+uuclean|Communications|UUCP
+uucp|Communications|UUCP
+uulog|Communications|UUCP
+uuname|Communications|UUCP
+uuxqt|Communications|UUCP

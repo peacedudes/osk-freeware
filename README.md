@@ -83,9 +83,9 @@ lines long, which is no help until you already know the name you want.
 | **Developer tools** | 47 | Version control, tags, cross-reference, formatters, a debugger and benchmarks. |
 | **Compilers & build** | 34 | C compilers and their passes, assemblers, linkers, make and parser generators. |
 | **Languages** | 6 | Interpreters and language systems beyond C. |
-| **Archives & compression** | 31 | Pack, unpack and shrink -- lha, zip, tar, arc, zoo, and OS-9 module libraries. |
+| **Archives & compression** | 35 | Pack, unpack and shrink -- lha, zip, tar, arc, zoo, and OS-9 module libraries. |
 | **Encoding & conversion** | 26 | Between text encodings, line endings, number bases, ciphers and hashes. |
-| **Communications** | 20 | Kermit in several builds, terminal sessions, and networking. |
+| **Communications** | 38 | Kermit in several builds, terminal sessions, and networking. |
 | **Graphics & images** | 192 | The netpbm toolkit, JPEG, a ray tracer, and things that draw. |
 | **Games** | 58 | Adventures, board and card games, arcade ports, dungeon crawls and puzzles. |
 | **Screen toys** | 6 | Things to watch rather than play. Start one and leave it going. |

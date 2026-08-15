@@ -175,13 +175,23 @@ def check_no_leftovers(root):
 
 
 def check_index_names(root):
+    """Every command under CMDS must be named in DOC/INDEX.
+
+    This walks the WHOLE of CMDS, not just CMD_DIRS. Checking only the two
+    counted directories meant a new subdirectory documented nothing and still
+    passed: CMDS/UUCP arrived with eighteen programs and all eight checks
+    stayed green until this was widened.
+    """
     index = os.path.join(root, "DOC", "INDEX")
     words = set(re.findall(r"[A-Za-z0-9_.]+",
                 open(index, "rb").read().decode("latin-1")))
-    missing = [os.path.join(d, n)
-               for d in CMD_DIRS
-               for n in sorted(os.listdir(os.path.join(root, d)))
-               if os.path.isfile(os.path.join(root, d, n)) and n not in words]
+    missing = []
+    for dirpath, _, names in os.walk(os.path.join(root, "CMDS")):
+        if os.path.basename(dirpath) == "archives":   # the original tarballs
+            continue
+        for n in sorted(names):
+            if os.path.isfile(os.path.join(dirpath, n)) and n not in words:
+                missing.append(os.path.relpath(os.path.join(dirpath, n), root))
     for m in missing:
         print("    not in DOC/INDEX: %s" % m)
     return not missing, "%d command(s) missing from DOC/INDEX" % len(missing)

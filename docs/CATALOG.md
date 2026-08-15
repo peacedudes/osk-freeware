@@ -1,6 +1,6 @@
 # What is on this disk
 
-712 programs of OS-9/68K community software, gathered from the archives that kept it and made to run again. **579 of them need nothing but this disk**; the rest want Microware's `cio`, marked below with a star.
+734 programs of OS-9/68K community software, gathered from the archives that kept it and made to run again. **580 of them need nothing but this disk**; the rest want Microware's `cio`, marked below with a star.
 
 `DOC/INDEX` on the disk lists everything alphabetically. This is the same collection sorted by what each program is *for*, which is the more useful order when you do not yet know what you are looking for.
 
@@ -15,9 +15,9 @@
 | [Developer tools](#developer-tools) | 47 | Version control, tags, cross-reference, formatters, a debugger and benchmarks. |
 | [Compilers & build](#compilers--build) | 34 | C compilers and their passes, assemblers, linkers, make and parser generators. |
 | [Languages](#languages) | 6 | Interpreters and language systems beyond C. |
-| [Archives & compression](#archives--compression) | 31 | Pack, unpack and shrink -- lha, zip, tar, arc, zoo, and OS-9 module libraries. |
+| [Archives & compression](#archives--compression) | 35 | Pack, unpack and shrink -- lha, zip, tar, arc, zoo, and OS-9 module libraries. |
 | [Encoding & conversion](#encoding--conversion) | 26 | Between text encodings, line endings, number bases, ciphers and hashes. |
-| [Communications](#communications) | 20 | Kermit in several builds, terminal sessions, and networking. |
+| [Communications](#communications) | 38 | Kermit in several builds, terminal sessions, and networking. |
 | [Graphics & images](#graphics--images) | 192 | The netpbm toolkit, JPEG, a ray tracer, and things that draw. |
 | [Games](#games) | 58 | Adventures, board and card games, arcade ports, dungeon crawls and puzzles. |
 | [Screen toys](#screen-toys) | 6 | Things to watch rather than play. Start one and leave it going. |
@@ -184,7 +184,7 @@
 |---|---|
 | `charcnt` | &#9733; Count characters in a file (Carl Kreider) |
 | `expand` | &#9733; Turn tabs into spaces (GNU)<br>`Usage: expand [-tab1[,tab2[,...]]] [-t tab1[,tab2[,...]]] [-i]` |
-| `head` | First lines of a file -- `head -n 20 file'.  These GNU builds want -n 20, not -20<br>**How:** First lines of a file. This GNU build wants `head -n 20 file' -- the older `head -20' form is rejected as an unrecognized option. Needs cio. |
+| `head` | &#9733; First lines of a file -- `head -n 20 file'.  These GNU builds want -n 20, not -20<br>**How:** First lines of a file. This GNU build wants `head -n 20 file' -- the older `head -20' form is rejected as an unrecognized option. Needs cio. |
 | `split` | &#9733; Split a file into pieces (GNU)<br>`Usage: split [-lines] [-l lines] [-b bytes[km]] [-C bytes[km]] [+lines=lines]` |
 | `subber` | &#9733; Substitute text in a stream, ,old,new style (Carl Kreider)<br>`Usage : subber <opts> wordlist <filename>` |
 | `sum` | &#9733; Checksum and block count (GNU) |
@@ -560,7 +560,7 @@
 
 *Pack, unpack and shrink -- lha, zip, tar, arc, zoo, and OS-9 module libraries.*
 
-<details><summary>31 programs</summary>
+<details><summary>35 programs</summary>
 
 **Create & extract**
 
@@ -588,6 +588,10 @@
 | `compress_4.0` | compress 4.0, another edition of CMDS/compress<br>`Syntax   : compress [-cdfvV] [-b maxbits] [file ...]` |
 | `diff_1.1` | another build of GNU diff 1.1<br>`Syntax   : diff [<options>] file1 file2` |
 | `gtar` | another GNU tar; CMDS/tar is the one the image build uses |
+| `gzip020_csl` | &#9733; gzip 1.2.4, 68020, needs csl<br>`usage: gzip020_csl [-gzip020_cslcdfhlLnNgzip020_csltvV19] [-S suffix] [file ...]` |
+| `gzip020_nocsl` | gzip 1.2.4, 68020, no csl needed<br>`usage: gzip020_nocsl [-gzip020_nocslcdfhlLnNgzip020_nocsltvV19] [-S suffix] [file ...]` |
+| `gzip68k_csl` | &#9733; gzip 1.2.4, 68000, needs csl<br>`usage: gzip68k_csl [-gzip68k_cslcdfhlLnNgzip68k_csltvV19] [-S suffix] [file ...]` |
+| `gzip68k_nocsl` | gzip 1.2.4, 68000, no csl needed<br>`usage: gzip68k_nocsl [-gzip68k_nocslcdfhlLnNgzip68k_nocsltvV19] [-S suffix] [file ...]` |
 | `lharcs` | C-LHarc 1.01, older than CMDS/lha 2.08<br>`Usage: lharcs {axevlufdmctp}[qnftv] archive_file [files or directories...]` |
 | `m4_0.5` | &#9733; another build of m4<br>`Usage: m4 [options] file ....` |
 | `sed_1.06` | &#9733; another build of sed<br>`Syntax   : sed [<opts>] [<file>]` |
@@ -698,7 +702,7 @@
 
 *Kermit in several builds, terminal sessions, and networking.*
 
-<details><summary>20 programs</summary>
+<details><summary>38 programs</summary>
 
 **Terminal & session**
 
@@ -720,6 +724,28 @@
 | `wysecrack` | &#9733; Wyse terminal baud detect -- needs real Wyse hardware |
 | `wysetime` | Wyse terminal time utility |
 
+**News**
+
+| | |
+|---|---|
+| `expire` | &#9733; delete news articles past their expiry date |
+| `postnews` | &#9733; post an article to a newsgroup<br>`Usage: postnews [options]` |
+| `readnews` | &#9733; read news |
+| `rnews` | &#9733; unpack an incoming news batch |
+| `subscribe` | &#9733; add a newsgroup to your subscription list<br>`usage: subscribe <newsgroup> [newsgroup...]` |
+| `unsubscribe` | &#9733; drop one<br>`usage: unsubscribe <newsgroup> [newsgroup...]` |
+
+**UUCP**
+
+| | |
+|---|---|
+| `uucico` | &#9733; the transfer program itself -- dials, talks UUCP<br>`usage: uucico [opts] -r \| sys [sys...]  [opts]` |
+| `uuclean` | &#9733; remove stale jobs from the spool<br>`Usage: uuclean [opts]` |
+| `uucp` | &#9733; queue a file copy to or from another site |
+| `uulog` | &#9733; show the transfer log<br>`Usage: uulog [-s<sysname> -u<username> -d<days>] [-f]` |
+| `uuname` | &#9733; list the sites you can reach<br>`Usage:  uuname [-l]` |
+| `uuxqt` | &#9733; run the jobs a remote site queued here<br>`Usage:  uuxqt [opts]  <sys> [<sys>...]  [opts]` |
+
 **Kermit**
 
 | | |
@@ -729,6 +755,27 @@
 | `kermit2` | Kermit file transfer (variant 2)<br>`Usage:   kermit c[le line esc.char]   (connect mode)` |
 | `kermit3` | Kermit file transfer (variant 3)<br>`Usage: kermit [-x arg [-x arg]...[-yyy]...]]` |
 | `xkermit` | &#9733; Kermit variant<br>`Usage: kermit c[le line esc.char]   (connect mode)` |
+
+**Mail**
+
+| | |
+|---|---|
+| `dotilde` | &#9733; expand ~user in a path, as the mailer does |
+| `mailx` | &#9733; the mail reader and sender |
+| `rmail` | &#9733; deliver incoming mail (invoked by uuxqt, not by you)<br>`usage: rmail [file] "site!user[@site]"` |
+
+**File transfer**
+
+| | |
+|---|---|
+| `fileserv` | &#9733; serve files to remote sites on request |
+| `fixtext` | &#9733; repair the line endings of a received text batch<br>`Usage:  fixtext [infile] [outfile]` |
+
+**System administration**
+
+| | |
+|---|---|
+| `adduser` | &#9733; add a user to the system, for uucp logins<br>`Usage: adduser [opts] [<username> [<userid>] ]` |
 
 </details>
 
