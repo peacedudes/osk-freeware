@@ -1,0 +1,178 @@
+program	archive	bare	with_traps	licence	evidence	availability	author	purpose	docs	src
+add_errmsg	EFFO/forum13.lzh	NEEDS-	WORKS-WITH-TRAPS	EFFO forum disk	author's own $SOURCE-AVAILABILITY, where stated				2	0
+adduser	TELECOM/uub21osk.lzh	NEEDS-cio	WORKS-WITH-TRAPS	GPL v2	copying in the archive				1	0
+adlcomp	EFFO/forum3.lzh	RUNS	-	EFFO forum disk	author's own $SOURCE-AVAILABILITY, where stated				7	0
+adldebug	EFFO/forum3.lzh	RUNS	-	EFFO forum disk	author's own $SOURCE-AVAILABILITY, where stated				7	0
+adlrun	EFFO/forum3.lzh	RUNS	-	EFFO forum disk	author's own $SOURCE-AVAILABILITY, where stated				7	0
+adltouch	EFFO/forum3.lzh	RUNS	-	EFFO forum disk	author's own $SOURCE-AVAILABILITY, where stated				7	0
+afm2tfm	DRIVERS/dvips_source.lzh	RUNS	-	free (TeX)	dvips, Radical Eye; TeX-world terms				0	1
+ansishow	TELECOM/KWIN_LinkUp_1_0.lzh	NEEDS-cio	WORKS-WITH-TRAPS	shareware, ASK	KWindows suite; terms not stated				7	0
+answer	TELECOM/InfoXpress_FrontEnd.lzh	NEEDS-cio	WORKS-WITH-TRAPS	Elm licence	BNU/ELM_2.4/Notice -- distribution expressly permitted				1	0
+apfel	EFFO/forum6.lzh	RUNS	-	EFFO forum disk	author's own $SOURCE-AVAILABILITY, where stated				0	0
+arepdaemon	TELECOM/InfoXpress_FrontEnd.lzh	NEEDS-cio	WORKS-WITH-TRAPS	Elm licence	BNU/ELM_2.4/Notice -- distribution expressly permitted				1	0
+argproc_demo	EFFO/forum7.lzh	RUNS	-	EFFO forum disk	author's own $SOURCE-AVAILABILITY, where stated				2	0
+ask	EFFO/forum20.lzh	RUNS	-	EFFO forum disk	author's own $SOURCE-AVAILABILITY, where stated				2	2
+audioplay	TELECOM/KWIN_LinkUp_1_0.lzh	RUNS	-	shareware, ASK	KWindows suite; terms not stated				7	0
+authwn	TELECOM/wn1.zip	RUNS	-	GPL	WN, John Franks 1996				0	0
+autoreply	TELECOM/InfoXpress_FrontEnd.lzh	NEEDS-cio	WORKS-WITH-TRAPS	Elm licence	BNU/ELM_2.4/Notice -- distribution expressly permitted				1	0
+backgammon	EFFO/forum5.lzh	NEEDS-	WORKS-WITH-TRAPS	EFFO forum disk	author's own $SOURCE-AVAILABILITY, where stated				2	0
+bcheck	EFFO/forum11.lzh	NEEDS-	WORKS-WITH-TRAPS	EFFO forum disk	author's own $SOURCE-AVAILABILITY, where stated				3	0
+bigsetter	EFFO/forum8.lzh	RUNS	-	EFFO forum disk	author's own $SOURCE-AVAILABILITY, where stated				2	2
+biory	EFFO/forum5.lzh	RUNS	-	EFFO forum disk	author's own $SOURCE-AVAILABILITY, where stated				1	1
+blastem	TELECOM/blastem.lzh	RUNS	-	free, unstated	MM/1 X/Ymodem; no terms found				1	3
+bootlogger	EFFO/forum11.lzh	NEEDS-	WORKS-WITH-TRAPS	EFFO forum disk	author's own $SOURCE-AVAILABILITY, where stated				3	0
+break	EFFO/forum5.lzh	NOOUTPUT	WORKS-WITH-TRAPS	EFFO forum disk	author's own $SOURCE-AVAILABILITY, where stated				2	2
+btop	EFFO/forum20.lzh	NOOUTPUT	WORKS-WITH-TRAPS	EFFO forum disk	author's own $SOURCE-AVAILABILITY, where stated				2	0
+btree	EFFO/forum2.lzh	NEEDS-cio	WORKS-WITH-TRAPS	EFFO forum disk	author's own $SOURCE-AVAILABILITY, where stated				0	0
+checkalias	TELECOM/InfoXpress_FrontEnd.lzh	NEEDS-cio	WORKS-WITH-TRAPS	Elm licence	BNU/ELM_2.4/Notice -- distribution expressly permitted				1	0
+clear	EFFO/forum16.lzh	NEEDS-	WORKS-WITH-TRAPS	EFFO forum disk	author's own $SOURCE-AVAILABILITY, where stated				3	1
+colortest	GWINDOWS/colortest.lzh	NEEDS-csl	WORKS-WITH-TRAPS	free, unstated	G-Windows colour chart				1	0
+combine	EFFO/forum11.lzh	NEEDS-	WORKS-WITH-TRAPS	EFFO forum disk	author's own $SOURCE-AVAILABILITY, where stated				3	0
+confer	TELECOM/KWIN_LaTerm_1_1.lzh	RUNS	-	shareware, ASK	$35 registration; distribution not stated				2	0
+config	EFFO/forum7.lzh	RUNS	-	EFFO forum disk	author's own $SOURCE-AVAILABILITY, where stated				2	0
+counter	TELECOM/wn2.zip	NEEDS-cio	WORKS-WITH-TRAPS	GPL	WN, John Franks 1996				0	2
+cpu	EFFO/forum11.lzh	NEEDS-cio	STILL-TRAP	EFFO forum disk	author's own $SOURCE-AVAILABILITY, where stated				3	0
+creadoc	EFFO/forum5.lzh	RUNS	-	EFFO forum disk	author's own $SOURCE-AVAILABILITY, where stated				1	1
+cyberwar	GWINDOWS/cyberwar.lzh	NEEDS-csl	STILL-TRAP	shareware, copying allowed	Carville 1994: no charge for distributing				2	0
+dclock	GWINDOWS/dclock.lzh	NEEDS-csl	WORKS-WITH-TRAPS	free, unstated	High-G Software 1996				1	0
+demerge	EFFO/forum16.lzh	RUNS	-	EFFO forum disk	author's own $SOURCE-AVAILABILITY, where stated				1	1
+demo	EFFO/forum7.lzh	RUNS	-	EFFO forum disk	author's own $SOURCE-AVAILABILITY, where stated				2	0
+devprc	EFFO/forum16.lzh	RUNS	-	EFFO forum disk	author's own $SOURCE-AVAILABILITY, where stated				1	3
+disable	TELECOM/uucp.lzh	NEEDS-cio	WORKS-WITH-TRAPS	free, unstated	Blars UUCP; no terms found				1	0
+dld	TELECOM/XmodemUpDown.lzh	NEEDS-cio	WORKS-WITH-TRAPS	freely distributable	ReadMe: distribute freely if this file is included				1	0
+dload	EFFO/forum4.lzh	NEEDS-cio	WORKS-WITH-TRAPS	EFFO forum disk	author's own $SOURCE-AVAILABILITY, where stated				3	0
+doform.cgi	TELECOM/wn2.zip	NEEDS-cio	WORKS-WITH-TRAPS	GPL	WN, John Franks 1996				1	3
+dotilde	TELECOM/uub21osk.lzh	NEEDS-cio	WORKS-WITH-TRAPS	GPL v2	copying in the archive				1	0
+dvips	DRIVERS/dvips_source.lzh	RUNS	-	free (TeX)	dvips, Radical Eye; TeX-world terms				0	1
+e	EFFO/forum11.lzh	RUNS	-	EFFO forum disk	author's own $SOURCE-AVAILABILITY, where stated				1	0
+elm	TELECOM/InfoXpress_FrontEnd.lzh	NEEDS-cio	WORKS-WITH-TRAPS	Elm licence	BNU/ELM_2.4/Notice -- distribution expressly permitted				1	0
+em	EFFO/forum3.lzh	RUNS	-	EFFO forum disk	author's own $SOURCE-AVAILABILITY, where stated				7	0
+enable	TELECOM/uucp.lzh	NEEDS-cio	WORKS-WITH-TRAPS	free, unstated	Blars UUCP; no terms found				1	0
+envi	TELECOM/wn2.zip	NEEDS-cio	WORKS-WITH-TRAPS	GPL	WN, John Franks 1996				0	2
+epson	EFFO/forum15.lzh	NEEDS-	WORKS-WITH-TRAPS	EFFO forum disk	author's own $SOURCE-AVAILABILITY, where stated				1	0
+every	EFFO/forum2.lzh	NEEDS-cio	WORKS-WITH-TRAPS	EFFO forum disk	author's own $SOURCE-AVAILABILITY, where stated				0	0
+expire	TELECOM/uubb21p1.lzh	NEEDS-cio	WORKS-WITH-TRAPS	GPL v2	same package, patch 1				1	0
+expreserve	EFFO/forum13.lzh	NEEDS-	WORKS-WITH-TRAPS	EFFO forum disk	author's own $SOURCE-AVAILABILITY, where stated				2	0
+exrecover	EFFO/forum13.lzh	NEEDS-	WORKS-WITH-TRAPS	EFFO forum disk	author's own $SOURCE-AVAILABILITY, where stated				2	0
+fastcc	EFFO/forum16.lzh	NEEDS-	WORKS-WITH-TRAPS	EFFO forum disk	author's own $SOURCE-AVAILABILITY, where stated				1	1
+fastmail	TELECOM/InfoXpress_FrontEnd.lzh	NEEDS-cio	WORKS-WITH-TRAPS	Elm licence	BNU/ELM_2.4/Notice -- distribution expressly permitted				1	0
+fileserv	TELECOM/uub21osk.lzh	NEEDS-cio	WORKS-WITH-TRAPS	GPL v2	copying in the archive				1	0
+filter	TELECOM/InfoXpress_FrontEnd.lzh	RUNS	-	Elm licence	BNU/ELM_2.4/Notice -- distribution expressly permitted				1	0
+fixtext	TELECOM/uub21osk.lzh	NEEDS-cio	WORKS-WITH-TRAPS	GPL v2	copying in the archive				1	0
+fontgen	EFFO/forum3.lzh	RUNS	-	EFFO forum disk	author's own $SOURCE-AVAILABILITY, where stated				7	1
+frm	TELECOM/InfoXpress_FrontEnd.lzh	NEEDS-cio	WORKS-WITH-TRAPS	Elm licence	BNU/ELM_2.4/Notice -- distribution expressly permitted				1	0
+g	EFFO/forum6.lzh	NEEDS-	STILL-TRAP	EFFO forum disk	author's own $SOURCE-AVAILABILITY, where stated				0	0
+getsys	EFFO/forum23.lzh	NEEDS-cio	WORKS-WITH-TRAPS	EFFO forum disk	author's own $SOURCE-AVAILABILITY, where stated				0	2
+gport	TELECOM/KWIN_LinkUp_1_0.lzh	NEEDS-cio	WORKS-WITH-TRAPS	shareware, ASK	KWindows suite; terms not stated				7	0
+graph	EFFO/forum4.lzh	RUNS	-	EFFO forum disk	author's own $SOURCE-AVAILABILITY, where stated				1	1
+graphdemo	EFFO/forum6.lzh	RUNS	-	EFFO forum disk	author's own $SOURCE-AVAILABILITY, where stated				0	0
+graphsave	EFFO/forum6.lzh	RUNS	-	EFFO forum disk	author's own $SOURCE-AVAILABILITY, where stated				0	0
+greg	EFFO/forum6.lzh	NEEDS-cio	WORKS-WITH-TRAPS	EFFO forum disk	author's own $SOURCE-AVAILABILITY, where stated				1	1
+hinterhalt	EFFO/forum7.lzh	NEEDS-cio	WORKS-WITH-TRAPS	EFFO forum disk	author's own $SOURCE-AVAILABILITY, where stated				2	2
+i_am_i	EFFO/forum16.lzh	RUNS	-	EFFO forum disk	author's own $SOURCE-AVAILABILITY, where stated	public	Christian Mahr	puzzle	2	1
+inetd	TELECOM/wn1.zip	NEEDS-cio	WORKS-WITH-TRAPS	GPL	WN, John Franks 1996				0	0
+inetdc	TELECOM/wn1.zip	NEEDS-cio	WORKS-WITH-TRAPS	GPL	WN, John Franks 1996				0	0
+isam	EFFO/forum2.lzh	NEEDS-cio	WORKS-WITH-TRAPS	EFFO forum disk	author's own $SOURCE-AVAILABILITY, where stated				0	0
+k	TELECOM/xyz.lzh	RUNS	-	free; needs fpu	Kientzle xy/z/k, Ultra C build; fpu grant in fpu.doc				3	0
+ladial	TELECOM/KWIN_LaTerm_1_1.lzh	RUNS	-	shareware, ASK	$35 registration; distribution not stated				2	0
+laterm	TELECOM/KWIN_LaTerm_1_1.lzh	RUNS	-	shareware, ASK	$35 registration; distribution not stated				2	0
+lcasep	TELECOM/smail25.lzh	NEEDS-cio	WORKS-WITH-TRAPS	free, unstated	smail 2.5; no terms found				2	0
+lfmaker	GWINDOWS/lfmaker.lzh	RUNS	-	free, unstated	Carville 1996				1	1
+lgrep	EFFO/forum13.lzh	NEEDS-	WORKS-WITH-TRAPS	EFFO forum disk	author's own $SOURCE-AVAILABILITY, where stated				1	1
+liborder.os9	EFFO/forum15.lzh	RUNS	-	EFFO forum disk	author's own $SOURCE-AVAILABILITY, where stated				3	2
+linkup	TELECOM/KWIN_LinkUp_1_0.lzh	NEEDS-cio	WORKS-WITH-TRAPS	shareware, ASK	KWindows suite; terms not stated				7	0
+listalias	TELECOM/InfoXpress_FrontEnd.lzh	NEEDS-cio	WORKS-WITH-TRAPS	Elm licence	BNU/ELM_2.4/Notice -- distribution expressly permitted				1	0
+lmail	TELECOM/uucp.lzh	NEEDS-cio	WORKS-WITH-TRAPS	free, unstated	Blars UUCP; no terms found				1	0
+lmargin	EFFO/forum15.lzh	NEEDS-	WORKS-WITH-TRAPS	EFFO forum disk	author's own $SOURCE-AVAILABILITY, where stated				1	0
+lpsched	EFFO/forum4.lzh	NEEDS-cio	WORKS-WITH-TRAPS	EFFO forum disk	author's own $SOURCE-AVAILABILITY, where stated				3	0
+lunisolar	EFFO/forum16.lzh	NEEDS-	STILL-TRAP	EFFO forum disk	author's own $SOURCE-AVAILABILITY, where stated				3	1
+mail	EFFO/forum5.lzh	NEEDS-cio	WORKS-WITH-TRAPS	EFFO forum disk	author's own $SOURCE-AVAILABILITY, where stated				2	0
+mailx	TELECOM/uub21osk.lzh	NEEDS-cio	WORKS-WITH-TRAPS	GPL v2	copying in the archive				1	0
+makedb	TELECOM/philmail.lzh	RUNS	-	free, unstated	no terms found				2	0
+maketexpk	DRIVERS/dvips_source.lzh	RUNS	-	free (TeX)	dvips, Radical Eye; TeX-world terms				0	1
+map	EFFO/forum5.lzh	NEEDS-cio	WORKS-WITH-TRAPS	EFFO forum disk	author's own $SOURCE-AVAILABILITY, where stated				1	1
+messages	TELECOM/InfoXpress_FrontEnd.lzh	NEEDS-cio	WORKS-WITH-TRAPS	Elm licence	BNU/ELM_2.4/Notice -- distribution expressly permitted				1	0
+modinfo	EFFO/forum15.lzh	RUNS	-	EFFO forum disk	author's own $SOURCE-AVAILABILITY, where stated				3	1
+mshell	EFFO/forum9.lzh	NEEDS-	WORKS-WITH-TRAPS	EFFO forum disk	author's own $SOURCE-AVAILABILITY, where stated				2	1
+mvolformat	EFFO/forum9.lzh	RUNS	-	EFFO forum disk	author's own $SOURCE-AVAILABILITY, where stated				2	1
+names	EFFO/forum5.lzh	NEEDS-cio	WORKS-WITH-TRAPS	EFFO forum disk	author's own $SOURCE-AVAILABILITY, where stated				2	1
+net	TELECOM/KA9Q_net_9410.gz	NOEXEC	WORKS-WITH-TRAPS	amateur-radio freeware	K5JB build of KA9Q NOS				10	0
+new_e	EFFO/forum11.lzh	RUNS	-	EFFO forum disk	author's own $SOURCE-AVAILABILITY, where stated				1	0
+newalias	TELECOM/InfoXpress_FrontEnd.lzh	NEEDS-cio	WORKS-WITH-TRAPS	Elm licence	BNU/ELM_2.4/Notice -- distribution expressly permitted				1	0
+newmail	TELECOM/InfoXpress_FrontEnd.lzh	NEEDS-cio	WORKS-WITH-TRAPS	Elm licence	BNU/ELM_2.4/Notice -- distribution expressly permitted				1	0
+nptx	TELECOM/smail25.lzh	NEEDS-cio	WORKS-WITH-TRAPS	free, unstated	smail 2.5; no terms found				2	0
+osknet	NETWORK/osknet12.tar.gz	NOEXEC	WORKS-WITH-TRAPS	free, attribution	Charles Hedrick 1987: anyone may reproduce				24	0
+passwd	EFFO/forum5.lzh	RUNS	-	EFFO forum disk	author's own $SOURCE-AVAILABILITY, where stated				1	3
+pathalias	TELECOM/philmail.lzh	RUNS	-	free, unstated	no terms found				2	0
+philmail	TELECOM/RCIS_2_3_demo.lzh	RUNS	-	demo	vendor demonstration				2	2
+phone	EFFO/forum5.lzh	RUNS	-	EFFO forum disk	author's own $SOURCE-AVAILABILITY, where stated				2	0
+postnews	TELECOM/uub21osk.lzh	NEEDS-cio	WORKS-WITH-TRAPS	GPL v2	copying in the archive				1	0
+preset	EFFO/forum3.lzh	RUNS	-	EFFO forum disk	author's own $SOURCE-AVAILABILITY, where stated				7	0
+pri	EFFO/forum4.lzh	RUNS	-	EFFO forum disk	author's own $SOURCE-AVAILABILITY, where stated				3	0
+printmail	TELECOM/InfoXpress_FrontEnd.lzh	NEEDS-cio	WORKS-WITH-TRAPS	Elm licence	BNU/ELM_2.4/Notice -- distribution expressly permitted				1	0
+ptob	EFFO/forum20.lzh	NOOUTPUT	WORKS-WITH-TRAPS	EFFO forum disk	author's own $SOURCE-AVAILABILITY, where stated				2	0
+ptxminst	DRIVERS/ptybin.lzh	RUNS	-	free, unstated	Nick Holgate 1995, pseudo-tty				1	0
+puzzle	GWINDOWS/puzzle_68k.lzh	NEEDS-csl	WORKS-WITH-TRAPS	shareware, copying allowed	Carville 1995				2	0
+pwparse	TELECOM/smail25.lzh	NEEDS-cio	WORKS-WITH-TRAPS	free, unstated	smail 2.5; no terms found				2	0
+qr.cgi	TELECOM/wn2.zip	RUNS	-	GPL	WN, John Franks 1996				1	3
+read_mail	EFFO/forum13.lzh	NEEDS-	WORKS-WITH-TRAPS	EFFO forum disk	author's own $SOURCE-AVAILABILITY, where stated				2	0
+readmsg	TELECOM/InfoXpress_FrontEnd.lzh	NEEDS-cio	WORKS-WITH-TRAPS	Elm licence	BNU/ELM_2.4/Notice -- distribution expressly permitted				1	0
+readnews	TELECOM/uub21osk.lzh	NEEDS-cio	WORKS-WITH-TRAPS	GPL v2	copying in the archive				1	0
+repeat	EFFO/forum10.lzh	RUNS	-	EFFO forum disk	author's own $SOURCE-AVAILABILITY, where stated				2	1
+rmail	TELECOM/uub21osk.lzh	NEEDS-cio	WORKS-WITH-TRAPS	GPL v2	copying in the archive				1	0
+rndir	EFFO/forum12.lzh	NEEDS-	WORKS-WITH-TRAPS	EFFO forum disk	author's own $SOURCE-AVAILABILITY, where stated				3	0
+rnews	TELECOM/uub21osk.lzh	NEEDS-cio	WORKS-WITH-TRAPS	GPL v2	copying in the archive				1	0
+rxmod	EFFO/forum15.lzh	RUNS	-	EFFO forum disk	author's own $SOURCE-AVAILABILITY, where stated				2	0
+rz	TELECOM/rzsz_3_36_3_OSK.lzh	RUNS	-	EXCLUDE: commercial	Omen Technology, $20/user order form				4	0
+sample.cgi	TELECOM/wn2.zip	NEEDS-cio	WORKS-WITH-TRAPS	GPL	WN, John Franks 1996				1	3
+scriptmaster	GWINDOWS/scriptmaster.lzh	NEEDS-csl	WORKS-WITH-TRAPS	free, unstated	Carville 1994/1996				1	0
+send_break	TELECOM/KWIN_LaTerm_1_1.lzh	RUNS	-	shareware, ASK	$35 registration; distribution not stated				2	0
+showpic	EFFO/forum6.lzh	RUNS	-	EFFO forum disk	author's own $SOURCE-AVAILABILITY, where stated				0	0
+sine	EFFO/forum6.lzh	RUNS	-	EFFO forum disk	author's own $SOURCE-AVAILABILITY, where stated				0	0
+smail	TELECOM/smail25.lzh	NEEDS-cio	WORKS-WITH-TRAPS	free, unstated	smail 2.5; no terms found				2	0
+smbmount	NETWORK/smbfm209t.zip	RUNS	-	EXCLUDE: no bundling	license.sw: not with other software packages				2	0
+snd_sig	EFFO/forum6.lzh	NEEDS-cio	WORKS-WITH-TRAPS	EFFO forum disk	author's own $SOURCE-AVAILABILITY, where stated				1	1
+spline	EFFO/forum15.lzh	NEEDS-	STILL-TRAP	EFFO forum disk	author's own $SOURCE-AVAILABILITY, where stated				1	0
+sqrtx	EFFO/forum1.lzh	RUNS	-	EFFO forum disk	author's own $SOURCE-AVAILABILITY, where stated				1	0
+sterm	TELECOM/STerm68k.lzh	RUNS	-	free, unstated	carries Microware csl and fpu -- csl must not ship				0	0
+striche	EFFO/forum6.lzh	NEEDS-	STILL-TRAP	EFFO forum disk	author's own $SOURCE-AVAILABILITY, where stated				0	0
+submit	EFFO/forum4.lzh	NEEDS-cio	WORKS-WITH-TRAPS	EFFO forum disk	author's own $SOURCE-AVAILABILITY, where stated				3	0
+subscribe	TELECOM/uub21osk.lzh	NEEDS-cio	WORKS-WITH-TRAPS	GPL v2	copying in the archive				1	0
+suse	EFFO/forum2.lzh	RUNS	-	EFFO forum disk	author's own $SOURCE-AVAILABILITY, where stated				0	0
+suspend	EFFO/forum11.lzh	NEEDS-	WORKS-WITH-TRAPS	EFFO forum disk	author's own $SOURCE-AVAILABILITY, where stated				3	0
+sz	TELECOM/rzsz_3_24_3_OSK.lzh	RUNS	-	EXCLUDE: commercial	Omen Technology, $20/user order form				4	0
+t_trtest	EFFO/forum7.lzh	RUNS	-	EFFO forum disk	author's own $SOURCE-AVAILABILITY, where stated				2	0
+teachgammon	EFFO/forum5.lzh	NEEDS-	WORKS-WITH-TRAPS	EFFO forum disk	author's own $SOURCE-AVAILABILITY, where stated				2	0
+terminal	TELECOM/KWIN_Terminal_1_00.lzh	NEEDS-cio	WORKS-WITH-TRAPS	shareware, copying allowed	$25 asked; 'give it to as many as you wish'				0	0
+testibc	EFFO/forum10.lzh	RUNS	-	EFFO forum disk	author's own $SOURCE-AVAILABILITY, where stated				1	0
+transfer	EFFO/forum1.lzh	NEEDS-cio	WORKS-WITH-TRAPS	EFFO forum disk	author's own $SOURCE-AVAILABILITY, where stated				1	0
+trunc	EFFO/forum23.lzh	NEEDS-cio	WORKS-WITH-TRAPS	EFFO forum disk	author's own $SOURCE-AVAILABILITY, where stated				0	1
+tsu	TELECOM/tterm_68k.lzh	NEEDS-csl	WORKS-WITH-TRAPS	freely distributable	Stephen Carville 1995: may be freely distributed				3	0
+tterm	TELECOM/tterm_68k.lzh	NEEDS-csl	WORKS-WITH-TRAPS	freely distributable	Stephen Carville 1995: may be freely distributed				3	0
+tty	EFFO/forum6.lzh	NEEDS-cio	WORKS-WITH-TRAPS	EFFO forum disk	author's own $SOURCE-AVAILABILITY, where stated				2	0
+txmod	EFFO/forum15.lzh	RUNS	-	EFFO forum disk	author's own $SOURCE-AVAILABILITY, where stated				2	0
+uld	TELECOM/XmodemUpDown.lzh	NEEDS-cio	WORKS-WITH-TRAPS	freely distributable	ReadMe: distribute freely if this file is included				1	0
+umacs	EFFO/forum1.lzh	NEEDS-cio	WORKS-WITH-TRAPS	EFFO forum disk	author's own $SOURCE-AVAILABILITY, where stated				1	0
+unpacklib.os9	EFFO/forum15.lzh	RUNS	-	EFFO forum disk	author's own $SOURCE-AVAILABILITY, where stated				3	2
+unsubscribe	TELECOM/uub21osk.lzh	NEEDS-cio	WORKS-WITH-TRAPS	GPL v2	copying in the archive				1	0
+uucico	TELECOM/uub21osk.lzh	NEEDS-cio	WORKS-WITH-TRAPS	GPL v2	copying in the archive				1	0
+uuclean	TELECOM/uub21osk.lzh	NEEDS-cio	WORKS-WITH-TRAPS	GPL v2	copying in the archive				1	0
+uucp	TELECOM/uub21osk.lzh	NEEDS-cio	WORKS-WITH-TRAPS	GPL v2	copying in the archive				1	0
+uulog	TELECOM/uub21osk.lzh	NEEDS-cio	WORKS-WITH-TRAPS	GPL v2	copying in the archive				1	0
+uuname	TELECOM/uucp.lzh	NEEDS-cio	WORKS-WITH-TRAPS	free, unstated	Blars UUCP; no terms found				1	0
+uupoll	TELECOM/uucp.lzh	NEEDS-cio	WORKS-WITH-TRAPS	free, unstated	Blars UUCP; no terms found				1	0
+uux	TELECOM/uucp.lzh	NEEDS-cio	WORKS-WITH-TRAPS	free, unstated	Blars UUCP; no terms found				1	0
+uuxqt	TELECOM/uub21osk.lzh	NEEDS-cio	WORKS-WITH-TRAPS	GPL v2	copying in the archive				1	0
+vc	EFFO/forum7.lzh	NEEDS-cio	WORKS-WITH-TRAPS	EFFO forum disk	author's own $SOURCE-AVAILABILITY, where stated				2	11
+vlen	EFFO/forum2.lzh	NEEDS-cio	WORKS-WITH-TRAPS	EFFO forum disk	author's own $SOURCE-AVAILABILITY, where stated				0	0
+what	EFFO/forum5.lzh	RUNS	-	EFFO forum disk	author's own $SOURCE-AVAILABILITY, where stated				2	4
+wisecrack	EFFO/forum20.lzh	NOOUTPUT	WORKS-WITH-TRAPS	EFFO forum disk	author's own $SOURCE-AVAILABILITY, where stated				2	2
+wn	TELECOM/wn2.zip	RUNS	-	GPL	WN, John Franks 1996				0	0
+wndex	TELECOM/wn2.zip	RUNS	-	GPL	WN, John Franks 1996				0	0
+xlharc	EFFO/forum21.lzh	RUNS	-	EFFO forum disk	author's own $SOURCE-AVAILABILITY, where stated				2	0
+xy	TELECOM/xyz.lzh	RUNS	-	free; needs fpu	Kientzle xy/z/k, Ultra C build; fpu grant in fpu.doc				3	0
+xydown	TELECOM/XYDown.lzh	RUNS	-	public domain	Readme: released into the public domain				1	0
+xyt	TELECOM/tterm_68k.lzh	NEEDS-csl	WORKS-WITH-TRAPS	freely distributable	Stephen Carville 1995: may be freely distributed				3	0
+yagi	TELECOM/OSKTag_2_01.lzh	RUNS	-	free, unstated	packet radio BBS				0	0
+ynad	EFFO/forum2.lzh	NEEDS-cio	WORKS-WITH-TRAPS	EFFO forum disk	author's own $SOURCE-AVAILABILITY, where stated				0	0
+z	TELECOM/xyz.lzh	RUNS	-	free; needs fpu	Kientzle xy/z/k, Ultra C build; fpu grant in fpu.doc				3	0

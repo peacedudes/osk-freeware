@@ -105,6 +105,73 @@ terms of individual programs carried on those disks -- the same forum disks also
 carry `arc` under System Enhancement Associates' copyright, and `msfm` under
 Microware's. Per-program checking still governs.
 
+## The gathering, complete
+
+Every one of the 177 was traced to its pool archive, run twice, and had the
+terms of the archive it arrived in read by hand. `tools/gather_pool_programs.py`
+builds the table (`notes/pool-newcategories-gathered.tsv`, one row per
+program: origin, both runnability verdicts, licence, evidence, doc and source
+counts). All 177 come from the five recovered categories and none of those 50
+archives duplicates anything already in the pool -- checked, not assumed.
+
+### Terms, by what the archive actually says
+
+| how many | terms | note |
+|---:|---|---|
+| 87 | EFFO forum disk | EFFO's charter is distribution; per-program terms still govern, and most state nothing |
+| 17 | GPL v2 | UUCPbb 2.1 -- **already integrated**, `CMDS/UUCP` |
+| 14 | Elm licence | distribution expressly permitted |
+| 10 | GPL | WN 1.14.3, the web server |
+| 20 | free, but unstated | no terms found anywhere in the archive |
+| 8 | shareware, distribution NOT stated | KWIN LaTerm and LinkUp -- worth asking, not assuming |
+| 5 | freely distributable | tterm/xyt, XmodemUpDown ("distribute freely as long as this file is included") |
+| 3 | shareware, copying expressly allowed | Carville's cyberwar, puzzle; KWIN Terminal |
+| 3 | free (TeX world) | dvips and friends |
+| 3 | free, needs `fpu` | Kientzle's xy/z/k, Ultra C builds |
+| 1 | public domain | XYDown, in as many words |
+| 1 | free, attribution | osknet (Hedrick, 1987) |
+| 1 | amateur-radio freeware | KA9Q net |
+| 1 | vendor demo | RCIS |
+| **3** | **must not ship** | rz, sz (Omen Technology, $20/user) and smbmount (no bundling) |
+
+**111 of the 177 carry no licence statement at all.** That is not a gap in the
+search -- it is what this corpus is. People put programs on a forum disk
+because they meant them to be passed around, and mostly did not write it down.
+It is the same footing the rest of the collection already stands on.
+
+### Microware granted `fpu`, in writing
+
+`xyz.lzh` carries `fpu.doc`, and its first two lines are:
+
+> FPU - (C) 1995 Microware Systems Corp.
+> Permission to distribute FPU is granted so long as this file is retained.
+
+So `fpu` **may** ship, provided that file ships beside it -- which reverses the
+call made earlier on this page and makes the Ultra C builds (`xy`, `z`, `k`)
+usable rather than dead weight. The grant is specific to `fpu`; no such words
+were found for `cio` or `csl`, and those stay out.
+
+Two different `fpu` modules turned up, 12724 bytes in `xyz.lzh` and 14572 in
+`STerm68k.lzh`. Only the first travels with the grant text.
+
+### EFFO's Info files
+
+EFFO defined a metadata form -- `$PURPOSE`, `$AUTHOR-NAME`, `$HARDWARE`,
+`$SOURCE-AVAILABILITY` and more -- and asked contributors to ship one per
+program. 31 unique ones are in these archives
+(`notes/pool-newcategories-effo-info.json`, `tools/parse_effo_info.py`), and
+**every single one states open availability**: "public", "full source
+available", "public domain". Not one is restricted.
+
+They mostly describe programs already on the disk (beav, fgrep, sed, m4, yacc,
+indent, flex, lharc), so they add little to the 177 -- but they settle the
+question of what EFFO thought it was distributing.
+
+One trap worth recording: `Info_empty_form` is the blank template EFFO ships
+on every disk. It lists "shareware" among the options a contributor might
+write, so a naive text search makes every forum disk look like it carries
+shareware. It is skipped.
+
 ## Still to do
 
 - Read the remaining licences (marked "to read" above).

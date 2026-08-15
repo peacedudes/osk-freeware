@@ -68,7 +68,14 @@ whole haul is described in `notes/POOL-NEW-HAUL.md`.
 | `rz`, `sz` (ZMODEM) | Omen Technology's, and the archive carries the order form: **$20 per user**, 1-10 users, *"payment of this license authorizes the installation and use"*. Both run trap-free and would have been a genuinely useful pair. Not ours to ship. |
 | `smbmount`, `samba`, `smbdrv` | The author encourages free copying and then draws a line: *"No part of this material may be distributed with other software packages without the express permission from the author."* A curated collection is precisely that. Worth asking him. |
 | `msfm` (MS-DOS file manager) | Derived from source printed in Peter Dibble's *OS-9 Insights*, and its own `note.doc` carries Microware's notice -- *"proprietary confidential property ... distribution in any form to any party other than licensee is strictly prohibited."* |
-| `csl`, `fpu` | Microware's, found redistributed inside `STerm68k.lzh`. Finding them in a freeware archive does not make them freeware. |
+| `csl` | Microware's, found redistributed inside `STerm68k.lzh`. Finding it in a freeware archive does not make it freeware. |
+
+**`fpu` was on this list and comes off it.** `xyz.lzh` carries `fpu.doc`, which
+says in its first two lines: *"FPU - (C) 1995 Microware Systems Corp.
+Permission to distribute FPU is granted so long as this file is retained."*
+That is the rights holder granting it. `fpu` may ship as long as `fpu.doc`
+ships beside it, and the Ultra C builds that need it are usable rather than
+dead. No such grant exists for `cio` or `csl`.
 
 ## Excluded on merit
 
