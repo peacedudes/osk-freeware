@@ -172,6 +172,35 @@ on every disk. It lists "shareware" among the options a contributor might
 write, so a naive text search makes every forum disk look like it carries
 shareware. It is skipped.
 
+## Is the pool actually everything? Now it is
+
+The 152 filled five empty categories, but that left the question of whether
+the categories we *did* have were complete. They were not.
+
+`tools/fill_archive_gaps.py` compares the archive's listing to the pool **by
+name** and fetches the difference. Counting alone would have missed it and
+lied twice over: GCC and GNU hold more locally than the site lists, because
+those came from elsewhere, so a count comparison shows a surplus where there
+is a shortfall.
+
+It found **32 files missing across six categories** and fetched all 32:
+
+| category | what came back |
+|---|---|
+| apps (16) | **nn 6.3.10**, **mnews** (binary and source), **mg** -- MicroGnuEmacs -- with its DVI and PostScript docs, `elm.lzh`, the HL10 zoo set, `sox.man` |
+| graphics (4) | `JPEGSRC.V4`, `pbmsrc.ar`, `pbmview`, `TekDemos` |
+| cmds (3) | `finger`, `hpset`, `Scsicmd 0.1` |
+| misc (3) | `scsiutil`, `sector0.c`, `ucc_support_386` |
+| drivers (2) | the two dvips text manuals |
+| telecom (2), network (1), src (1) | WN's readmes, `samba_ref.pdf`, `elm.tar.Z` |
+
+`nn`, `mnews` and `mg` are real programs nobody had looked at -- a threaded
+newsreader, a mail/news reader, and the small Emacs -- and none of them was in
+the 177, because none of them was in the pool when the 177 were counted.
+
+The original `download.log` also records two failures, both rejected as too
+small: `APPS/btoa.readme` (87 bytes) and `APPS/sc_needs_terminfo` (18 bytes).
+
 ## Still to do
 
 - Read the remaining licences (marked "to read" above).
