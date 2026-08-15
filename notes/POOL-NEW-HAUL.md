@@ -45,7 +45,7 @@ results in `notes/pool-newcategories-runnability.tsv`.
 | need a trap handler nobody here has | 4 |
 | no output at all, unclassified | 2 |
 
-That ratio is close to the disk's own (360 unstarred, 134 starred), which is
+That ratio is close to the disk's own (369 unstarred, 135 starred), which is
 the reassuring answer: this is ordinary OS-9 freeware, not a pile of wreckage.
 
 The four that stay broken want something specific, not the usual libraries:
@@ -69,17 +69,17 @@ weight of the haul falls.
 |---|---|---|
 | **UUCPbb 2.1** | A complete store-and-forward mail and news system: `uucico`, `uucp`, `uux`, `uuxqt`, `uuname`, `uupoll`, `uulog`, `uuclean`, `rmail`, `rnews`, `readnews`, `postnews`, `expire`, `subscribe`, `unsubscribe`, `fileserv`, `dotilde`, `fixtext` | **GPL v2**, `copying` in the archive |
 | **Elm 2.4** | Full-screen mail reader plus ~20 helpers (`frm`, `newmail`, `readmsg`, `filter`, `answer`, `autoreply`, `newalias`, `checkalias`, `fastmail`, `messages`, `printmail`, `arepdaemon`) | **Elm General Public License** -- distribution expressly permitted |
-| **WN 1.14.3** | An HTTP server for OSK, with CGI examples and a hit counter. John Franks, 1996 | GPL (confirm before shipping) |
-| **KA9Q net (K5JB, 1994)** | TCP/IP over SLIP or AX.25 -- telnet client, ftp, smtp -- plus the `bm` mailer and the full docs | amateur-radio freeware (confirm) |
+| **WN 1.14.3** | An HTTP server for OSK, with CGI examples and a hit counter. John Franks, 1996 | GPL |
+| **KA9Q net (K5JB, 1994)** | TCP/IP over SLIP or AX.25 -- telnet client, ftp, smtp -- plus the `bm` mailer and the full docs | amateur-radio freeware |
 | **osknet 1.2** | Networking with its own doc set (`howto`, `protcols`, `smtp`, `techref`) | Charles Hedrick, 1987, "anyone may reproduce" |
-| **smail 2.5 / pathalias / philmail** | Mail routing | to read |
+| **smail 2.5 / pathalias / philmail** | Mail routing | free, no terms stated |
 | terminals & transfer | `tterm`+`xyt`, `blastem` (X/Ymodem), `sterm`, KWIN `terminal`, `gport`, `linkup`, `xydown`, `txmod`/`rxmod` | `tterm` freely distributable; KWIN `terminal` shareware but "give it to as many as you wish" |
 | editors | `umacs` (MicroEMACS), `sedt` (VT220 and generic) | sedt: free redistribution to facilitate porting |
-| languages | `adl` -- compiler, runtime, debugger and `adltouch` | to read |
-| TeX | `dvips`, `afm2tfm`, `MakeTeXPK` | to read |
-| games | `backgammon`, `teachgammon`, `cyberwar`, `puzzle`, `wisecrack` | to read |
-| utilities | `modinfo`, `btree`, `msfm` (an **MS-DOS file manager**), `clear`, `repeat`, `passwd`, `phone`, `trunc`, `getsys`, `spline`, `mvolformat`, `vc`, `ynad`, `xlharc` | to read |
-| drivers | 10, for CT68000/CT68020 floppy, Atari OMTI hard disc, Gepard and Hercules terminals, MTH serial | to read |
+| languages | `adl` -- compiler, runtime, debugger and `adltouch` | EFFO disk 3, no terms stated |
+| TeX | `dvips`, `afm2tfm`, `MakeTeXPK` | free, TeX-world terms |
+| games | `backgammon`, `teachgammon`, `cyberwar`, `puzzle`, `wisecrack` | cyberwar and puzzle shareware, copying allowed; rest unstated |
+| utilities | `modinfo`, `btree`, `clear`, `repeat`, `passwd`, `phone`, `trunc`, `getsys`, `spline`, `mvolformat`, `vc`, `ynad`, `xlharc` (**not** `msfm` -- see below) | EFFO disks, no terms stated |
+| drivers | 10, for CT68000/CT68020 floppy, Atari OMTI hard disc, Gepard and Hercules terminals, MTH serial | EFFO disks, no terms stated |
 
 ## Excluded already, with the reason measured
 
@@ -88,7 +88,7 @@ weight of the haul falls.
 | `rz` / `sz` (ZMODEM) | **Omen Technology commercial licence.** The archive carries the order form: $20 per user, 1-10 users, "payment of this license authorizes the installation and use". Not ours to ship. |
 | `smbfm` (Samba file manager, with `samba` and `smbdrv`) | The author encourages free copying, then: *"No part of this material may be distributed with other software packages without the express permission from the author."* A curated collection is exactly that. Would need his permission. |
 | `csl` | Microware's C shared library, redistributed inside `STerm68k.lzh`. Their product. It does not go on this disk, and finding it in a freeware archive changes nothing. |
-| `fpu` | Ships with the same archive, and `xyz`'s own readme says its binaries need it because they were built with Ultra C 1.3. Same answer -- but `xyz`'s **source** is there, so `xy`/`z`/`k` can be rebuilt instead. |
+| ~~`fpu`~~ | **Reversed.** Microware granted distribution in writing -- see below. It may ship as long as `fpu.doc` ships with it. |
 | `msfm` (MS-DOS file manager) | Tempting -- reading and writing DOS floppies from OS-9 -- and not ours. Its own `note.doc` names the origin: Peter Dibble's *OS-9 Insights*, carrying Microware's notice that the source is *"proprietary confidential property of Microware Systems Corporation ... Reproduction, publication, or distribution in any form to any party other than licensee is strictly prohibited."* |
 
 ## EFFO's own terms
