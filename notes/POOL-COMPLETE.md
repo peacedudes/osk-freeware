@@ -169,7 +169,7 @@ inside rather than at the magic bytes: `blackjack_68k.uue`,
 they are shell scripts from strangers in 1990, and running one to see what is
 in it is the wrong trade.
 
-Final count: **958 modules, 420 not on the disk, 275 of them programs.**
+Final count: **961 modules, 422 not on the disk, 277 of them programs.**
 
 ### 176 alternates that name-matching was hiding
 
@@ -208,6 +208,73 @@ out. That is a different thing from the `fpu.doc` in `xyz.lzh`, which grants
 distribution outright -- and the two `fpu` builds are not even the same file
 (same 12,724 bytes, different md5), so the grant travels with its own copy and
 not with this one.
+
+## The pass that should have come first: what is not a binary
+
+Asked to check that the discarded really was worthless, the answer is that a
+lot of it was not. Counting only OS-9 modules had quietly made everything else
+"the rest".
+
+Deduplicated by content across the whole extracted pool:
+
+| kind | files | MB |
+|---|---:|---:|
+| **source** | 6,129 | 52.3 |
+| OS-9 modules | 1,166 | 55.8 |
+| plain text | 4,076 | 30.4 |
+| documentation | 1,652 | 20.4 |
+| binary/data | 1,657 | 18.1 |
+| | **14,684** | **177.0** |
+
+**5,034 unique source files -- 44.5 MB -- are not on the disk**, against the
+1,834 files (16 MB) it carries in `SRC/`. Nearly three times again as much.
+Where it lives, largest first: `osknet` (367 files), the X11R6 library (240),
+**oleo 1.6** (217 -- the GNU spreadsheet), Elm 2.4 (272 across two archives),
+GNU ATP (155), `OS9lib` (240 across two), macutils (113), stg v4 (112), `mg`
+(110), `nn` (103), UUCPbb source (102), `mtp` (100), MicroEMACS 4.00 (96),
+zoo 2.1 (77), libg++ (72), jpeglib 5a (72).
+
+### And the "plain text" bucket was not filler
+
+A sample of the largest, which is where the interesting things were hiding:
+
+- **518 KB of `comp.os.os9`** on EFFO forum 22 -- Usenet articles 1078 to 1875,
+  1990 to 1992, with a curated `hilites` index. Article 1078 is somebody asking
+  whether TeX exists for OS-9/68000, which is the very package this pass found
+  in `APPS/TeXSystem.lzh`. The newsgroup and the software arrived together.
+- **`f_disks`** -- EFFO's own bilingual index of every forum disk it ever
+  issued, in four editions as it grew.
+- **376 `.mf` files** -- MetaFont sources, which is exactly what the TeX system
+  needs and does not ship.
+- 96 `.afm` font metrics, 46 LaTeX `.sty` files, gnuplot terminal drivers.
+- `cookies` and `stquotes` -- fortune databases, 240 KB and 440 KB.
+- `teapot.ray` -- the Utah teapot, for rayshade.
+
+### One more extractor gap, and two more programs
+
+Nested `.tar` files had been left as empty `.x` directories: the first pass
+dispatched on extension and its untar had no `ignore_zeros`. Re-running the
+content-sniffing extractor over the staged tree opened **13 more archives** --
+including a zoo nested in a forum disk and an `.ar` nested inside an `.ar` --
+and turned up two more programs, `ltb` and `msterm`.
+
+That is the third time widening a check has found something. It is the reason
+to keep widening them.
+
+### On splitting the disk
+
+The numbers make the split you suggested straightforward rather than a guess:
+
+| | |
+|---|---|
+| the disk today | 77 MB |
+| all pool modules + documentation | ~76 MB |
+| all pool source | ~52 MB |
+
+So a **binaries-and-documentation** disk and a **source** disk are each
+comfortably within the size the build already produces, and neither would need
+to be trimmed to fit. Source and binary are also naturally separable audiences:
+one wants to run the collection, the other wants to build or study it.
 
 ## What is NOT gathered
 
