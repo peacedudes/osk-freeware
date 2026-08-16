@@ -83,3 +83,26 @@ worth ten minutes each:
 
 `oleo`, `mines`, `checkfile`, `sc` and `scqref` all want a real TERM and were
 only checked far enough to see them start.
+
+## The "how do I quit" gap -- found 2026-08-16
+
+rdoggett ran `ephem` on the finished disk and reported: *"seems boring to me,
+doesn't do much and i cant figure out how to quit"*. Both halves of that are
+our fault, not the program's. It quits on **control-D**, from command mode,
+and the way to make it do something is to set StpSz and NStep and let it run
+time forward -- none of which is discoverable from the screen. A how-to note
+now says so.
+
+**67 full-screen programs have no how-to note at all** -- they read termcap,
+take over the screen, and tell you nothing about how to leave. That is the
+same trap, 67 more times: `beav`, `hexedit`, `jargon`, `larn`, `hack`,
+`greed`, `mille`, `cribbage`, `bog`, `hang`, `lander`, `mg`, `me`, `emacs`,
+`gnuchess`, `ispell`, `draw`, `editor` and the rest.
+
+31 of the 67 now have a documentation directory, so the answers are mostly on
+the disk already. **Do not generate these automatically.** A regex over the
+manuals produced five candidates and at least three were wrong -- it matched
+MicroEMACS's `!RETURN` macro directive and `sh`'s line-editing description as
+if they were quit keys. Each note has to be read out of the manual by a person
+and, where the program can be driven from a pipe, tried.
+

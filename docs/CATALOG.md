@@ -1355,8 +1355,8 @@
 
 | | |
 |---|---|
-| `ephem` | &#9733; ephem - astronomical ephemeris<br>`usage: [-c <configfile>] [-d <database>] [field=value ...]` |
-| `ephem881` | &#9733; ephem, 68881 build<br>`usage: [-c <configfile>] [-d <database>] [field=value ...]` |
+| `ephem` | &#9733; ephem - astronomical ephemeris<br>**How:** An astronomical ephemeris: it shows where the Sun, Moon and planets are, for a place and a moment. It starts LOOPING -- press any key to stop and enter command mode. CONTROL-D QUITS; `?' is help; control-L redraws. In command mode the arrow keys (or h/j/k/l) move between fields: RETURN opens the one under the cursor, type a value, RETURN accepts. `d' jumps to the date, `z' to the step size. The point of the program is that last pair: set StpSz to a day and NStep to 30, press `q', and it runs time forward and you watch the planets move. |
+| `ephem881` | &#9733; ephem, 68881 build<br>**How:** The same program built for a 68881 coprocessor -- see the note for `ephem'. CONTROL-D quits. |
 
 </details>
 
