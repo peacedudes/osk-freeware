@@ -280,6 +280,66 @@ A sample of the largest, which is where the interesting things were hiding:
 The rest of that bucket is what it sounds like: `.gif`s, `.dat` files, a
 rayshade scene, two PDFs.
 
+### The libraries: the disk can hardly build anything
+
+Following the source through to what it needs to compile turns up the largest
+single gap yet. **The pool holds 47 libraries the disk does not have**, and the
+pattern is consistent -- the disk ships headers and finished programs, but not
+the code you link against.
+
+The clearest case: `DEFS/os9lib` ships **32 headers** and there is **no
+os9lib library anywhere on the disk**. Declarations without code. Meanwhile
+**71 packages in the pool reference os9lib** -- elm, elvis, nn, zoo 2.1, ed,
+finger, hexedit, memacs400 and more. It is the keystone of OS-9 ports of Unix
+software, because it supplies what Microware's C library does not; the dvips
+port says so outright: *"The only trick to compiling is the need for
+popen()/pclose(), which aren't part of the Microware C library. If you have
+TOP's os9lib.l ... you should be able to just compile."*
+
+The library is in the pool, in `LIB/OS9_os9lib.tar.Z` -- the **TOP package**,
+second release -- and it is called **`os9.l`**, not `os9lib.l`, which is why
+nothing had found it. 88,820 bytes, and its symbol table has `popen`, `pclose`,
+`opendir`, `readdir`, `getcwd`, `strdup`.
+
+What else is missing, by family:
+
+| | |
+|---|---|
+| GCC C library | `gclib000/020/881/300` -- all four CPU variants. The disk has `libgcc.l` but not these |
+| C++ | `libgpp` ×4, `libiostream` ×4, `libio` ×4 |
+| images | `libtiff`, `libjpeg`, `libpbm`, `libppm`, `libpnm` -- netpbm's own libraries |
+| X11 | `X11R6shl.l`, `os9unix.l` |
+| Lua | `lua.l`, `lualib.l`, `osklib.l`, `matchlib.l`, `ldblib.l` |
+| rayshade | `libray`, `libshade`, `libobj`, `libtext`, `libcommon` |
+| others | `mtools.l`, `curses.l`, `blarslib.l`, `editline.l`, `htlib`/`htlibg` (oleo) |
+
+Together with the **831 `.r` relocatable objects** and the 5,034 source files,
+this is what a build-side disk would carry, and it is the difference between
+shipping source as an artefact and shipping source somebody can actually use.
+
+### Source packages that exist only as source
+
+Identified while tracing the above. None of these has a binary anywhere in the
+pool:
+
+| package | what it is |
+|---|---|
+| `OS9lib` / TOP | the library above, plus its 32 headers and documentation |
+| `mtp.lzh` | **MNEWS** -- Ulrich Dessauer's mail and news package, Germering, 1989-90 |
+| `file4351`, `file4352` | **rn** -- Larry Wall's newsreader, the original shar kits. (The file *named* `rn.tar.Z` is the RCIS bulletin board. The names are swapped.) |
+| `stg_v4.lzh` | the **StG Net V4** project, unfinished, released as-is |
+| `mg2a` | MicroGnuEmacs |
+| `memacs400_src` | MicroEMACS 4.00 |
+| `nn6.3.10` | the nn newsreader |
+| `elm.lzh`, `elm.tar.Z` | Elm 2.4 source, matching the binaries in the haul |
+| `UUCPbb_2_1_src` | source for the UUCP suite already installed in `CMDS/UUCP` |
+| `nulman.lzh` | the dvips port's own source and notes |
+
+**A licence to record: MNEWS.** Its `Copyright` file allows copying and
+modification but states *"you aren't allowed to ... sell parts or the whole
+package"*. Free to redistribute, not to sell -- the same shelf as the
+"no military use" conditions.
+
 ### One more extractor gap, and two more programs
 
 Nested `.tar` files had been left as empty `.x` directories: the first pass
