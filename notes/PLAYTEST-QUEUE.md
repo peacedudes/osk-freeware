@@ -131,12 +131,28 @@ and, where the program can be driven from a pipe, tried.
   bones files) and running from inside it makes no difference. The string sits
   next to "Saved level" and a `l%02d%02d%02d' filename pattern, so it is
   probably stat'ing a lock or level file it expects to find beside itself.
-- **gnuchess, gnuchessn, jargon** -- all three answer `'vt100': Unknown
-  terminal type.` while `less` reads the same SYS/termcap correctly and draws.
-  Three programs now, so this is a family, not a one-off: our termcap is
-  converted from macOS terminfo and something about it these parsers reject.
-  Adding a short classic vt100 entry did not help and was reverted.
+- ~~gnuchess, gnuchessn, jargon~~ **SOLVED, and it was six programs, not
+  three.** They share a termcap library that reads TERMCAP as the CAPABILITY
+  STRING, not as a filename -- which is why no file, however correct, ever
+  satisfied them. `SYS/termcap.entry` holds one in that form; source it and
+  **gnuchess, gnuchessn, jargon, hexedit, sc and vi_cio** all draw. Proved by
+  running each.
 - **top** -- draws its header, then E_PRCABT(228).
 - **digclk, draw, greed, sc, sh, vi_cio** -- hold the screen and are not quit
   by q, Q, control-C, control-D, control-X control-C or ESC.
+
+## Re-tested with SYS/termcap.entry, 2026-08-16
+
+Of the 29 that had not held the screen, most were never broken -- they want an
+argument and say so: `EditLibr`, `crypto`, `hexedit`, `infocom.tcap`,
+`ispell`, `less`, `spiff`, `vis`. Those now have how-to notes.
+
+Genuinely still wrong:
+
+- **top, digclk, draw** -- draw something, then `E_PRCABT(228)`, process
+  aborted.
+- **greed, suicide** -- start and produce nothing at all.
+- **hack** -- "Cannot get status of hack." See above.
+- **pow** wants a controller at `/x1`, and **initvdu** wants particular VDU
+  hardware. Neither is a defect; both are noted as needing the machine.
 

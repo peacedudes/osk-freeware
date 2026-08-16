@@ -97,7 +97,7 @@
 | `sedt` | SEDT screen editor |
 | `VI` | PVIC, public domain            -> /dd/CMDS/REBUILT (name was taken)<br>`Usage: vi [file ...]` |
 | `vi` | THE REAL vi/ex -- its source in SRC/effo_vi is the Berkeley ex source itself, not a clone.  `vi -x' is ex, `vi -d' is edit.  See DOC/README-VI<br>**How:** One of three unrelated vi editors here, and the only one that is the genuine Berkeley ex/vi rather than a clone -- its source in SRC/effo_vi is the real ex_*.c files. `vi -x' becomes ex, `vi -d' becomes edit. DOC/README-VI compares all three. |
-| `vi_cio` | &#9733; PVic vi, cio build (use vi_nocio instead)<br>`Usage: vi [file ...]` |
+| `vi_cio` | &#9733; PVic vi, cio build (use vi_nocio instead)<br>**How:** PVic vi, the cio build. Needs `. /dd/SYS/termcap.entry' first, then it opens on an empty buffer. CMDS/vi_nocio is the same editor needing no module; DOC/README-VI compares all three vi editors here. |
 | `vi_nocio` | PVIC 1.0a -- the smallest of this disk's three vi editors, public domain.  See DOC/README-VI to choose between them<br>**How:** PVIC 1.0a, the smallest of the three vi editors on this disk, public domain, no source or docs here. DOC/README-VI compares it with vi and elvis. |
 | `vis` | make non-printing characters visible |
 
@@ -108,7 +108,7 @@
 | `beav` | BEAV 1.40 -- Binary Editor And Viewer (needs TERM)<br>**How:** Full-screen: it takes over the display. **control-C gets you out** -- tested, and none of q, Q, control-D or ESC did. If it has a quit command of its own, its documentation in DOC/ will say. |
 | `chbase` | &#9733; change module base<br>`Syntax   : chbase <number> [ <base A> [ <base B> ] ]` |
 | `hexed` | hex editor via your text editor  [no military use -- EFFO-INFO]<br>`Syntax: hexed [<opts>] <path> {[<opts>] \| [<path>]}` |
-| `hexedit` | Hex file editor -- hex [-vdr] file<br>`Usage: hex [-vdr] 'file'` |
+| `hexedit` | Hex file editor -- hex [-vdr] file<br>**How:** A hex editor -- Hexpert v2.4 by Dominic Alston. Takes a file: `hexedit <file>'. Needs `. /dd/SYS/termcap.entry' first or it will not draw. |
 | `pbyte` | patch bytes in a file at a hex offset<br>`Syntax: pbyte <path> <hex_offset> <hex_byte> [<hex_byte>]` |
 
 **emacs family**
@@ -174,7 +174,7 @@
 | `nsort` | numeric sort<br>`Usage: nsort <unordered >sorted` |
 | `qsort9` | &#9733; sort filter<br>`Syntax: qsort9 [<opts>] [<srcpath>] [<opts>]` |
 | `sort` | GNU sort<br>`Usage: sort [-cmus] [-t separator] [-o output-file] [-bdfiMnr] [+POS1 [-POS2]]` |
-| `spiff` | tolerant diff - ignores formatting noise<br>`Syntax: spiff [-s script] [-f sfile] [-bteiqcdwm] [-abr value] -value f1 f2` |
+| `spiff` | tolerant diff - ignores formatting noise<br>**How:** Compares two files while ignoring differences that do not matter (whitespace, number formatting). Takes TWO filenames. |
 | `unip` | unique lines with page numbers<br>`Syntax: unip [<opts>] [<srcpath>] [<opts>]` |
 | `uniq` | &#9733; drop duplicate lines<br>`Usage: UNIQ [-u][-d][-c] [-n] [^n] input [>output]` |
 
@@ -234,7 +234,7 @@
 | | |
 |---|---|
 | `buildhash` | build ispell's dictionary hash (writes LIB/ispell.hash) |
-| `ispell` | interactive spelling checker |
+| `ispell` | interactive spelling checker<br>**How:** Interactive spelling checker. Takes a file: `ispell <file>'. `ispell -a' is the pipe interface programs use. |
 | `jargon` | Jargon-file browser (needs its database files)<br>**How:** A browser for the Jargon File, which is here: VH/jargon.txt, version 3.0.0 of 27 July 1993, with its index. It will not read SYS/termcap -- do `. /dd/SYS/termcap.entry' first, then `jargon -m'. Tested. |
 | `makelex` | compiles sonnet's lex.data word list into a C array |
 | `speech` | English-to-phoneme translation<br>`Usage: PHONEME [infile [outfile]]` |
@@ -311,7 +311,7 @@
 | | |
 |---|---|
 | `Ascii2Libr` | Home Librarian: rebuild a catalogue from a plain-text file<br>`Syntax: Ascii2Libr [opts]` |
-| `EditLibr` | Home Librarian: edit a catalogue<br>`Syntax: EditLibr [opts]` |
+| `EditLibr` | Home Librarian: edit a catalogue<br>**How:** Part of the HL10 librarian set. Wants an edit file as a parameter; `EditLibr' alone prints its syntax. |
 | `Libr2Ascii` | Home Librarian: dump a catalogue to plain text<br>`Syntax: Libr2Ascii [opts]` |
 | `Librarian` | Home Librarian: search a catalogue.  SIX PROGRAMS AND THEIR DOCS TRAVEL TOGETHER -- its licence requires it<br>**How:** One of six Home Librarian programs that must stay together -- its licence says so. Start here to search a catalogue; EditLibr edits one, Ascii2Libr builds one from text, Libr2Ascii dumps it back, PrintCards and PrintLabels print it. Manual in DOC/homelibr. |
 | `PrintCards` | Home Librarian: print catalogue cards<br>`Syntax: PrintCards [opts]` |
@@ -678,7 +678,7 @@
 |---|---|
 | `checksum` | file checksum<br>`Syntax:   checksum <file> [<file>...]` |
 | `chksum` | 32-bit file checksum |
-| `crypto` | cryptogram puzzle solver's assistant<br>`usage: crypto [-cegnru] [file(s)]` |
+| `crypto` | cryptogram puzzle solver's assistant<br>**How:** File encryption. Takes files: `crypto [-cegnru] <file>...'; `crypto -h' is the help. |
 | `des` | DES file encryption |
 | `md5` | MD5 checksum<br>`Usage: MD%d <-opts> <filename>` |
 | `xcrypt` | file encryption/decryption |
@@ -712,7 +712,7 @@
 | `cls` | clear the screen (termcap)<br>`Syntax: cls` |
 | `connect` | connect to a serial line<br>`Usage: connect [<switches>] [<path1>] [<switches>] [<path2>]` |
 | `fkeys` | define terminal function keys<br>`Syntax: fkeys [<path>]` |
-| `initvdu` | &#9733; init video display<br>`Syntax  : initvdu [<opts>]` |
+| `initvdu` | &#9733; init video display<br>**How:** Answers "is not defined for this terminal": it sets up specific VDU hardware, not a general terminal. |
 | `input` | UNAXCESS BBS - input helper |
 | `sbreak` | Send/clear an SS_Break signal on a serial path<br>`Syntax:   sbreak [/device]` |
 | `screen` | Screen multiplexer (needs HOME set) |
@@ -1092,7 +1092,7 @@
 | `advent` | Colossal Cave Adventure -- self-contained, reads /dd/GAMES/adv/glorkz.  Needs this disk as /dd; mounted only as /h0 it cannot find its data.  Unrelated to advcom/advint.<br>**How:** Colossal Cave. Needs this disk as /dd -- it opens /dd/GAMES/adv/glorkz by absolute path, so mounted only as /h0 it cannot find its data. |
 | `advint` | ADVSYS adventure INTERPRETER -- plays a .adi world file. Nothing on this disk to feed it; DOC/advint has the format.<br>**How:** Plays an ADVSYS .adi world file. THERE IS NO WORLD FILE ON THIS DISK, so it has nothing to do until you write one with advcom. |
 | `infocom` | Infocom Z-MACHINE interpreter -- a third, unrelated adventure system.  Plays the .z3 files in GAMES/INFORM (dejavu, hellow, shell -- Inform demos, not the Infocom games).<br>**How:** A Z-machine. Plays the .z3 files in /dd/GAMES/INFORM, which are Inform demonstration programs (dejavu, hellow, shell), not the Infocom games. |
-| `infocom.tcap` | Infocom interpreter, termcap build<br>`Usage: infocom.tcap [-aehlnoprstvx] <filename>` |
+| `infocom.tcap` | Infocom interpreter, termcap build<br>**How:** Plays Infocom adventure game files -- it needs the game's data file as an argument, which this disk does not carry. |
 
 **Chess utilities**
 
@@ -1207,7 +1207,7 @@
 |---|---|
 | `aprocs` | &#9733; process monitor<br>`Syntax: aprocs [<opts>]` |
 | `dpark` | &#9733; park a process<br>`Syntax:   dpark [/device]` |
-| `launch` | &#9733; launch background process<br>`Syntax  : launch <opts> <shell> [shellargs...]` |
+| `launch` | &#9733; launch background process<br>**How:** Says "nothing to launch" until it is configured -- see its documentation. |
 | `signal` | &#9733; send a signal to a process<br>`Syntax: signal <process-id> <signal-code> [<seconds>]` |
 | `sysmax` | show maximum system memory |
 | `sysmem` | show system memory use |
@@ -1305,7 +1305,7 @@
 
 | | |
 |---|---|
-| `pow` | X-10 Powerhouse home control (needs /x1 hardware)<br>`syntax: x10 {[<opt>]}` |
+| `pow` | X-10 Powerhouse home control (needs /x1 hardware)<br>**How:** Wants a hardware controller at /x1 and cannot run without it. |
 
 </details>
 
@@ -1383,7 +1383,7 @@
 | `loan` | loan/amortisation calculator |
 | `rechne` | &#9733; RPN calculator |
 | `rpn` | RPN calculator |
-| `sc` | sc -- spreadsheet calculator (needs TERM)<br>`Syntax: sc [-c] [-r] [-m] [-n]` |
+| `sc` | sc -- spreadsheet calculator (needs TERM)<br>**How:** The spreadsheet, version 6.16. It will not read SYS/termcap: do `. /dd/SYS/termcap.entry' first, then `sc' opens and says "Type '?' for help". Tested. |
 
 **Plotting & charts**
 

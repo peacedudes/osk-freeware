@@ -120,3 +120,14 @@ wanderer|Full-screen: it takes over the display. **`q' quits** -- tested.
 gnuchess|Full-screen chess. It will not read SYS/termcap -- it wants the entry in the variable itself. Do `. /dd/SYS/termcap.entry' first and it draws its time-control menu and plays. Tested.
 gnuchessn|As gnuchess: `. /dd/SYS/termcap.entry' first. Tested.
 jargon|A browser for the Jargon File, which is here: VH/jargon.txt, version 3.0.0 of 27 July 1993, with its index. It will not read SYS/termcap -- do `. /dd/SYS/termcap.entry' first, then `jargon -m'. Tested.
+sc|The spreadsheet, version 6.16. It will not read SYS/termcap: do `. /dd/SYS/termcap.entry' first, then `sc' opens and says "Type '?' for help". Tested.
+vi_cio|PVic vi, the cio build. Needs `. /dd/SYS/termcap.entry' first, then it opens on an empty buffer. CMDS/vi_nocio is the same editor needing no module; DOC/README-VI compares all three vi editors here.
+hexedit|A hex editor -- Hexpert v2.4 by Dominic Alston. Takes a file: `hexedit <file>'. Needs `. /dd/SYS/termcap.entry' first or it will not draw.
+ispell|Interactive spelling checker. Takes a file: `ispell <file>'. `ispell -a' is the pipe interface programs use.
+spiff|Compares two files while ignoring differences that do not matter (whitespace, number formatting). Takes TWO filenames.
+infocom.tcap|Plays Infocom adventure game files -- it needs the game's data file as an argument, which this disk does not carry.
+EditLibr|Part of the HL10 librarian set. Wants an edit file as a parameter; `EditLibr' alone prints its syntax.
+crypto|File encryption. Takes files: `crypto [-cegnru] <file>...'; `crypto -h' is the help.
+pow|Wants a hardware controller at /x1 and cannot run without it.
+launch|Says "nothing to launch" until it is configured -- see its documentation.
+initvdu|Answers "is not defined for this terminal": it sets up specific VDU hardware, not a general terminal.
