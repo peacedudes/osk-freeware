@@ -82,10 +82,20 @@ itself. **All 30 run trap-free**, and `dvips` came in with the DRIVERS
 category. Fonts are not included -- the documentation is explicit that
 MetaFont generates them.
 
-**A complete bulletin board**, RCIS -- 37 programs inside the file named
-`rn.tar.Z`: `rcis`, `rchat`, `conference`, `rcbulletin`, `msgedit`, `tsmon`,
+**A complete bulletin board**, RCIS -- but read the caveat below it. 37
+programs inside the file named `rn.tar.Z`: `rcis`, `rchat`, `conference`, `rcbulletin`, `msgedit`, `tsmon`,
 `watchdog`, `online`, `nodeon`/`nodeoff`, the user and message tools. This is
 what an OS-9 machine ran when it answered the phone.
+
+**RCIS is mostly BASIC09, and that matters.** Of the 86 subroutine modules in
+the pool that the disk does not have, **81 are RCIS and 83 of the 86 are
+BASIC09 I-code** (type 0x02, language 0x02) -- `chaton`, `Doors`, `editusr`,
+`bbslist`, `filexfer`, `Calcost` and the rest. So the bulletin board is not 37
+programs; it is 37 programs driving 81 BASIC09 modules, and **the whole thing
+needs Microware's `runb`** to do anything. That is a heavier dependency than
+`cio`: `runb` is an interpreter, and it is not among the modules this
+collection would ask permission for. Worth knowing before RCIS is counted as a
+shippable feature.
 
 **A Y2K kit** -- `fixyear`, `setyear`, `setime2`, from the file named
 `file3988`, which had no extension and so was never opened.

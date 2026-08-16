@@ -46,11 +46,19 @@ one was wrong: on a 68020 machine it is the build that fits.
 |---|---|
 | the 15 `pbmexec` programs | **Not because netpbm replaced them.** They cannot read PBM as it exists on this disk: `pbminvert` rejects a hand-written, textbook plain P1 that netpbm's own `pnmfile` reads correctly — *"Junk in file where an integer should be!"* — and does the same with raw P4. Fourteen of the names are free and would have been genuine additions (`cbmtopbm`, `pbmtops`, `pbmcrop`, `pbmtrnspos`…); they simply do not work with anything here. |
 | `umusek` | Stops with *"Can't get screen addr"*. |
-| `dedit` | Will not load at all — error 205, `E_BMID`, a bad module ID. |
 | `gnuplot_x11` | An X11 driver, and that archive holds no `gnuplot` binary to drive. |
 | `f68k` / `os9lader` | F68K is a **Forth** system despite the name; its OS-9 part is only a loader, and `forth` is already here. |
 | `regex`, `strcmp`, `testpad`, `makecrc` | Library and test fragments, not programs. |
 | `tplot` | Drives an Atari ST plotter, and unlike mgif it has no mode that does anything without one. |
+
+**Reversed 2026-08-15: `dedit`.** It was excluded as *"will not load at all --
+error 205, `E_BMID`, a bad module ID"*. That error is real and reproduces
+exactly -- but it is what OS-9 says when you try to **fork a BASIC09 module as
+a 68k program**. `dedit` is type 0x02, language 0x02: I-code, the same kind of
+module as `bio`, `blackjack` and `wysetime`, which this disk already ships and
+already documents. Run it the documented way -- `runb` with the bare module
+name -- and it loads and runs. This is the identical mistake the collection
+caught once before, on `bio`, and did not think to look for again.
 
 **Reversed, and now included:** the seven **MM/1 drivers** (`CMDS/MM1`) — a
 driver is not meant to be *run*, so "fails to start" was never a reason, and
