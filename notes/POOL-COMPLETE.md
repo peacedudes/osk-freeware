@@ -260,6 +260,26 @@ A sample of the largest, which is where the interesting things were hiding:
 - `cookies` and `stquotes` -- fortune databases, 240 KB and 440 KB.
 - `teapot.ray` -- the Utah teapot, for rayshade.
 
+### The bucket labelled "binary/data" was two useful things
+
+18 MB I had never characterised. It is mostly not opaque data:
+
+- **831 `.r` files -- OS-9 relocatable objects.** The disk carries 18. These
+  are link-ready compiled objects, the input to `l68`, and a module inventory
+  cannot see them because they are not modules. 420 are `GCC/gclib.lzh` (the
+  GCC library), then oleo (92), macutils (60), lout (40), JPEG (38), gdbm
+  (28), less and gnutar (21 each). For anything that needs rebuilding, these
+  save the compile.
+- **TeX font material**, which corrects what this page said earlier. Not
+  "fonts are not included": the pool holds **390 `.tfm`** metrics, **94 `.vf`**
+  virtual fonts, **378 `.mf`** MetaFont sources and **16 `.pfb`** Type 1
+  outlines. What is missing is the `.pk`/`.gf` bitmaps -- exactly the
+  device-specific files the TeX documentation says MetaFont generates for your
+  printer. The system is far more complete than "no fonts" implied.
+
+The rest of that bucket is what it sounds like: `.gif`s, `.dat` files, a
+rayshade scene, two PDFs.
+
 ### One more extractor gap, and two more programs
 
 Nested `.tar` files had been left as empty `.x` directories: the first pass
