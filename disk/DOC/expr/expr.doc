@@ -1,0 +1,1 @@
+Kurzanleitung fuer <expr>	Aufruf: expr Wert1 Operation Wert2Wert1 und Wert2 sind zwei Zahlen. Als Operationen sind alle C-Funktionenzugelassen +, * ,+=, != etc. Beachte:Alle Operationen die Zeichen enthalten, die von der Shell interpretiertwerden, sind mit " zu umgeben (z.B. "*").
