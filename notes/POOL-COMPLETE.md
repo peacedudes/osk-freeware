@@ -154,11 +154,66 @@ plus `msfm` (Microware's, out of Dibble's *OS-9 Insights*) and `csl`.
 And one grant in the other direction: **Microware permits `fpu` to be
 distributed**, in writing, so long as `fpu.doc` travels with it.
 
+## Everything opened, and one more class of thing found
+
+The four `.zoo` archives are open. Nothing host-side reads zoo either, so the
+same answer served: **the disk's own `zoo`**, run under os9exec, next to `ar2`.
+`tools/extract_pool.py` does both. They added **no new programs** -- and that
+is now measured rather than assumed: all six modules in `hl10obin.zoo` are
+byte-identical to the disk's, and the rest is C source.
+
+Five more archives were hiding in the "plain text" bucket, found by looking
+inside rather than at the magic bytes: `blackjack_68k.uue`,
+`ucc_support_386.uue`, `ucc_support_68k.uue` (uuencoded), and `tar.shar` and
+`mtp.shar`. The shars are read by `tools/`'s parser rather than executed --
+they are shell scripts from strangers in 1990, and running one to see what is
+in it is the wrong trade.
+
+Final count: **958 modules, 420 not on the disk, 275 of them programs.**
+
+### 176 alternates that name-matching was hiding
+
+Asking "is this name on the disk?" quietly hides every *different build* of a
+name already present. `tools/find_alternates.py` compares content, and finds
+**176** (`notes/pool-alternates.txt`). Among them:
+
+| module | on the disk | in the pool |
+|---|---:|---:|
+| `blackjack` | 6,524 -- BASIC09 I-code, in `CMDS/BROKEN` | 156,896 -- a 68k G-Windows game. **Not the same program at all** |
+| `kermit` | 26,828 | 294,542 -- C-Kermit 188 |
+| `gnuchess`, `gnuchessr`, `gnuchessn` | 97,762 / 66,152 / 101,652 | 200,116 / 174,148 / 203,136 -- the GNUCHESS 4.0 archive |
+| `cc2`, `cc2plus`, `gcc2` | the disk's GCC2 | the **68060** builds |
+| `hack` | 198,584 | 260,964 -- the EFFO pd6 build |
+| `cp`, `tail` | 4,228 / 4,038 | 41,598 / 32,586 -- the full GNU builds |
+| `sc`, `gawk`, `dmake`, `screen`, `sysmon`, `lout` | | different editions of each |
+
+This is not a licence question and mostly not a "which is better" question --
+`CMDS/REBUILT` exists precisely so an alternate can sit beside the curated
+choice, and `notes/NOT-INCLUDED.md` already records that a different build is
+**not** a reason to exclude. `blackjack` is the one that is not an alternate at
+all but a separate program.
+
+### Microware runtime modules, and where the line is
+
+`ucc_support_68k.uue` holds `csl`, `csl020`, `fpu`, `fpu040` and `p2init`;
+`ucc_support_386.uue` holds `csl` and `fpuem`. Its readme is explicit:
+
+> The modules in this archive are copyrighted and are subject to the same
+> License Agreement that appears on software distributed by Microware Systems
+> Corporation. ... Uploaded with permission of Microware Systems Corp.
+
+**Permission to upload there is not permission for us to redistribute**, and
+the modules stay under Microware's agreement by their own words. These stay
+out. That is a different thing from the `fpu.doc` in `xyz.lzh`, which grants
+distribution outright -- and the two `fpu` builds are not even the same file
+(same 12,724 bytes, different md5), so the grant travels with its own copy and
+not with this one.
+
 ## What is NOT gathered
 
-- **4 `.zoo` archives** -- `hl10obin/doc/src.zoo` and `unix.zoo`. No zoo tool
-  is installed here. HL10 is also present as `.lzh`, so the loss may be nil,
-  but it is unchecked.
+- Nothing, of the pool itself. Every one of the 464 files has been opened or
+  identified: archives unpacked, modules read, text read, and two PDFs and a
+  DVI that are what they look like.
 - `nn` 6.3.10, `mnews` and `mg` are **source** distributions, not binaries.
 - The pool is the Microware OS-9 Archive only. The disk's `DOC/ORIGINS` also
   credits the **hc disk** and a set of **usenet `.ar` archives**, and neither

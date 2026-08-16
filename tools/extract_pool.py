@@ -8,10 +8,11 @@ are bare OS-9 modules, `rtclock1287.lzh` is a ZIP, and twelve files are named
 description text the archive serves under an archive-looking name -- not
 failed downloads, just mislabelled upstream.
 
-OS-9 `ar` archives are extracted BY THE COLLECTION'S OWN `ar2`, running under
-os9exec. Nothing host-side reads Carl Kreider's format, and the disk's V1.2
-`ar` answers "unknown compression algo" -- V2.00 (`ar2`) reads them, and it
-needs cio, which is why OS9CIO must point at a directory holding one.
+OS-9 `ar` and zoo archives are extracted BY THE COLLECTION'S OWN `ar2` and
+`zoo`, running under os9exec. Nothing host-side reads Carl Kreider's format,
+and the disk's V1.2 `ar` answers "unknown compression algo" -- V2.00 (`ar2`)
+reads them. Both are starred, which is why OS9CIO must point at a directory
+holding a cio.
 
 Usage:  extract_pool.py <pool-dir> <out-dir>
 Env:    OS9EXEC   path to the os9exec binary   (needed for .ar)
@@ -55,8 +56,15 @@ def untar(data, dest):
             if f:
                 open(out, "wb").write(f.read())
 
-def extract_ar(path, dest):
-    """Run the collection's own ar2 under os9exec, with the target as /h6."""
+def extract_in_universe(path, dest, cmd):
+    """Run one of the collection's OWN archivers under os9exec, with the target
+    directory mounted as /h6.
+
+    Two formats here have no host-side reader: Carl Kreider's `+AR0.0+` and
+    zoo. Both are on the disk, both are starred, and both do the job -- so the
+    collection unpacks its own archives, the way it populates itself with its
+    own `tar`.
+    """
     exe, img, cio = (os.environ.get("OS9EXEC"), os.environ.get("OS9IMAGE"),
                      os.environ.get("OS9CIO"))
     if not (exe and img and cio):
@@ -64,7 +72,7 @@ def extract_ar(path, dest):
     os.makedirs(dest, exist_ok=True)
     name = os.path.basename(path)
     open(os.path.join(dest, name), "wb").write(open(path, "rb").read())
-    script = "cd /h6\n/dd/CMDS/ar2 -x /h6/%s\nexit\n" % name
+    script = "cd /h6\n%s /h6/%s\nexit\n" % (cmd, name)
     env = dict(os.environ, OS9DISK=img, OS9MDIR=cio, OS9H6=os.path.abspath(dest))
     try:
         subprocess.run([exe, "-r", "bash", "/dd/SYS/login"], input=script.encode(),
@@ -80,7 +88,7 @@ def extract_ar(path, dest):
 def extract(path, dest):
     """True if something was unpacked into dest."""
     k = sniff(path)
-    if k in ("module", "other", "empty", "unreadable", "zoo"):
+    if k in ("module", "other", "empty", "unreadable"):
         return False
     os.makedirs(dest, exist_ok=True)
     try:
@@ -106,7 +114,9 @@ def extract(path, dest):
         elif k == "uue":
             run(["uudecode", "-o", os.path.join(dest, "decoded"), os.path.abspath(path)])
         elif k == "os9ar":
-            return extract_ar(path, dest)
+            return extract_in_universe(path, dest, "/dd/CMDS/ar2 -x")
+        elif k == "zoo":
+            return extract_in_universe(path, dest, "/dd/CMDS/zoo -extract")
     except Exception:
         return False
     return any(fs for _, _, fs in os.walk(dest))
