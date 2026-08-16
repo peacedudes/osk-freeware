@@ -366,6 +366,43 @@ comfortably within the size the build already produces, and neither would need
 to be trimmed to fit. Source and binary are also naturally separable audiences:
 one wants to run the collection, the other wants to build or study it.
 
+## Triaging the 176 alternates
+
+Sorted by what they actually are, rather than treated as one pile:
+
+| how many | kind | what to do with them |
+|---:|---|---|
+| 95 | EFFO forum and PD disk builds | mostly the same program off a different disk. Low value individually; `CMDS/REBUILT` is where any would go |
+| 40 | another archive's edition | same |
+| 15 | the `pbmexec` family | **already excluded on merit** -- measured as unable to read PBM as it exists here |
+| 14 | GNU, fuller builds | `cp`, `tail` and friends, where the disk ships a small build and the pool a complete one |
+| 9 | GCC toolchain, other CPU or version | **the strongest case** -- see below |
+| 3 | not alternates at all | see below |
+
+### The nine GCC ones are worth having
+
+The disk's GCC2 is one build. The pool holds `cc2`, `cc2plus` and `gcc2` from
+**gcc2_68060**, `collect` from **gcc 2.7.2**, `cccp2` from **gcc 2.5.8**, and
+`cc1`/`cccp` from **gcc 1.42**. That is 68060 support and two later compiler
+versions the collection does not have -- not duplicates, different targets.
+`liborder` and `unpacklib` come with `gclib`, the GCC C library the disk also
+lacks.
+
+### Three are not alternates at all
+
+They share a name with something on the disk and are unrelated to it. The
+module type and language give it away:
+
+| name | on the disk | in the pool |
+|---|---|---|
+| `blackjack` | type 02 / lang 02 -- BASIC09 I-code, 6,524 bytes, in `CMDS/BROKEN` | type 01 / lang 01 -- a 156,896-byte 68k G-Windows game |
+| `clock` | type 01 -- a program, 36,566 bytes | type **0C** -- a *system module*, 622 bytes: `mc68230clk`, a hardware clock driver for the CT68020 |
+| `ascii` | type 01 -- a program, 14,286 bytes | type **02** -- a subroutine module, 334 bytes, from the xasm package |
+
+Matching on name alone would have filed a hardware driver as a newer `clock`,
+which is how a collection acquires something that cannot work and nobody can
+explain. All three should keep their own names if taken.
+
 ## What is NOT gathered
 
 - Nothing, of the pool itself. Every one of the 464 files has been opened or
