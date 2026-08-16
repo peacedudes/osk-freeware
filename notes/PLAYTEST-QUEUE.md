@@ -123,3 +123,20 @@ MicroEMACS's `!RETURN` macro directive and `sh`'s line-editing description as
 if they were quit keys. Each note has to be read out of the manual by a person
 and, where the program can be driven from a pipe, tried.
 
+## Still broken, with the diagnosis so far (2026-08-16)
+
+- **hack** -- "Cannot get status of hack." and stops. The `%s' is literally
+  `hack', not the player and not a path, and it does not change with USER or
+  `-u'. Its playground is complete (record, data, help, hh, rumors, three
+  bones files) and running from inside it makes no difference. The string sits
+  next to "Saved level" and a `l%02d%02d%02d' filename pattern, so it is
+  probably stat'ing a lock or level file it expects to find beside itself.
+- **gnuchess, gnuchessn, jargon** -- all three answer `'vt100': Unknown
+  terminal type.` while `less` reads the same SYS/termcap correctly and draws.
+  Three programs now, so this is a family, not a one-off: our termcap is
+  converted from macOS terminfo and something about it these parsers reject.
+  Adding a short classic vt100 entry did not help and was reverted.
+- **top** -- draws its header, then E_PRCABT(228).
+- **digclk, draw, greed, sc, sh, vi_cio** -- hold the screen and are not quit
+  by q, Q, control-C, control-D, control-X control-C or ESC.
+
