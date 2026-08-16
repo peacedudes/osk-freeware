@@ -1,6 +1,6 @@
 # What is on this disk
 
-739 programs of OS-9/68K community software, gathered from the archives that kept it and made to run again. **585 of them need nothing but this disk**; the rest want Microware's `cio`, marked below with a star.
+742 programs of OS-9/68K community software, gathered from the archives that kept it and made to run again. **588 of them need nothing but this disk**; the rest want Microware's `cio`, marked below with a star.
 
 `DOC/INDEX` on the disk lists everything alphabetically. This is the same collection sorted by what each program is *for*, which is the more useful order when you do not yet know what you are looking for.
 
@@ -22,7 +22,7 @@
 | [Games](#games) | 58 | Adventures, board and card games, arcade ports, dungeon crawls and puzzles. |
 | [Screen toys](#screen-toys) | 6 | Things to watch rather than play. Start one and leave it going. |
 | [Amusements](#amusements) | 20 | Generators, simulators and diversions that are not quite games. |
-| [System & modules](#system--modules) | 48 | OS-9 module and process tools, devices, system state and scheduling. |
+| [System & modules](#system--modules) | 51 | OS-9 module and process tools, devices, system state and scheduling. |
 | [Disk & DOS](#disk--dos) | 20 | Reading and writing MS-DOS media with the mtools set. |
 | [Time & calendar](#time--calendar) | 10 | Calendars, clocks and astronomy. |
 | [Maths & calculators](#maths--calculators) | 13 | Calculators, plotting, orbits and number theory. |
@@ -56,7 +56,7 @@
 | | |
 |---|---|
 | `bash` | GNU Bourne-Again Shell 1.12 -- this disk's shell; reads .bashrc<br>`usage: fc [-e ename] [-nlr] [first] [last] or fc -s [pat=rep] [command]` |
-| `gshell` | GSHELL - a shell<br>`Syntax: gshell [<path>]` |
+| `gshell` | GSHELL - a shell<br>**How:** Full-screen: it takes over the display. **control-C gets you out** -- tested, and none of q, Q, control-D or ESC did. If it has a quit command of its own, its documentation in DOC/ will say. |
 | `ksh` | &#9733; Public Domain Korn Shell 4.3 (edition 11, OS-9 port)<br>`Syntax: 'setpr <prior>' or 'setpr <pid> [<pid>..] <prior>'` |
 | `sh` | Bourne shell v7.5 -- what the startup script runs |
 | `wish` | WiSH - full-screen windowing shell over the OS-9 shell |
@@ -105,7 +105,7 @@
 
 | | |
 |---|---|
-| `beav` | BEAV 1.40 -- Binary Editor And Viewer (needs TERM)<br>`Syntax   : beav {<filename>}` |
+| `beav` | BEAV 1.40 -- Binary Editor And Viewer (needs TERM)<br>**How:** Full-screen: it takes over the display. **control-C gets you out** -- tested, and none of q, Q, control-D or ESC did. If it has a quit command of its own, its documentation in DOC/ will say. |
 | `chbase` | &#9733; change module base<br>`Syntax   : chbase <number> [ <base A> [ <base B> ] ]` |
 | `hexed` | hex editor via your text editor  [no military use -- EFFO-INFO]<br>`Syntax: hexed [<opts>] <path> {[<opts>] \| [<path>]}` |
 | `hexedit` | Hex file editor -- hex [-vdr] file<br>`Usage: hex [-vdr] 'file'` |
@@ -115,17 +115,17 @@
 
 | | |
 |---|---|
-| `emacs` | &#9733; MicroEmacs 4.00 |
-| `emacs.mm1` | &#9733; MicroEmacs macro module |
-| `me` | MicroEmacs 3.11 -- ADDED; needs TERM.  (memacs400 `emacs` needs cio)<br>`Syntax:   emacs [opts] <files>` |
-| `mg` | &#9733; MicroGnuEmacs |
+| `emacs` | &#9733; MicroEmacs 4.00<br>**How:** Full-screen editor, MicroEMACS key bindings. **control-X control-C quits** (exit-emacs) -- tested. Its macros and online help are in USR/LIB/EMACS. |
+| `emacs.mm1` | &#9733; MicroEmacs macro module<br>**How:** Full-screen editor, MicroEMACS key bindings. **control-X control-C quits** (exit-emacs) -- tested. Its macros and online help are in USR/LIB/EMACS. |
+| `me` | MicroEmacs 3.11 -- ADDED; needs TERM.  (memacs400 `emacs` needs cio)<br>**How:** Full-screen editor, MicroEMACS key bindings. **control-X control-C quits** (exit-emacs) -- tested. Its macros and online help are in USR/LIB/EMACS. |
+| `mg` | &#9733; MicroGnuEmacs<br>**How:** Full-screen editor, MicroEMACS key bindings. **control-X control-C quits** (exit-emacs) -- tested. Its macros and online help are in USR/LIB/EMACS. |
 
 **Line & stream**
 
 | | |
 |---|---|
 | `ed` | &#9733; GNU ed 0.2 line editor<br>`Usage: ed [OPTION]... [FILE]` |
-| `editor` | GSHELL front-end for the editor<br>`Syntax: editor [<path>]` |
+| `editor` | GSHELL front-end for the editor<br>**How:** Full-screen: it takes over the display. **control-C gets you out** -- tested, and none of q, Q, control-D or ESC did. If it has a quit command of its own, its documentation in DOC/ will say. |
 | `sed` | sed - stream editor (verified: s/x/y/ substitution works)<br>`Syntax: sed [<opts>] [<path>] [<opts>]` |
 
 </details>
@@ -156,7 +156,7 @@
 | `psc` | &#9733; sc's print/format filter<br>`Syntax: psc [-rkfLSPv?] [-s v] [-R i] [-C i] [-n i] [-d c] [<path1] [>path2]` |
 | `qt` | quick text utility |
 | `rot` | rot-N text transformer |
-| `shuffle` | shuffle lines/cards<br>`Usage: shuffle [-] [-L level]` |
+| `shuffle` | shuffle lines/cards<br>**How:** Full-screen: it takes over the display. **`q' quits** -- tested. |
 | `souper` | souper - text utility |
 | `tabs` | tab/space conversion filter<br>`Syntax   : tabs [<opts>] [<input_redirection>] [<output_redirection>]` |
 | `upperdir` | Normalise case: files lowercase, dirs uppercase<br>`Usage: UpperDir [directory name]` |
@@ -225,7 +225,7 @@
 | `cookhash` | build the hash file cookie(1) needs, from a sayings file<br>`usage: cookhash <cookiefile >hashfile` |
 | `cookie` | print a random fortune cookie<br>`usage: cookie cookiefile hashfile` |
 | `fortune` | print a random quotation<br>`usage:  fortune [ - ] [ -wsloa ] [ file ]` |
-| `sonnet` | writes (bad) sonnets in iambic pentameter, curses-based<br>`Usage:  sonnet [-l input] [-f outfilename]` |
+| `sonnet` | writes (bad) sonnets in iambic pentameter, curses-based<br>**How:** Full-screen: it takes over the display. **control-C gets you out** -- tested, and none of q, Q, control-D or ESC did. If it has a quit command of its own, its documentation in DOC/ will say. |
 | `strfile` | build fortune's index file<br>`usage:  strfile [ - ] [ -cC ] [ -sv ] inputfile [ datafile ]` |
 | `unstr` | reverse strfile - dump a fortune index<br>`usage: unstr datafile[.dat] [ outfile ]` |
 
@@ -441,7 +441,7 @@
 | | |
 |---|---|
 | `ccheck` | &#9733; C program checker -- matching brackets, quotes, comment brackets, and indentation that disagrees with them<br>**How:** Checks C source for mismatched brackets, quotes and comment markers, and for indentation that disagrees with the nesting. Needs cio. |
-| `checkfile` | &#9733; Check a C source file for structural mistakes.  Wants TERM |
+| `checkfile` | &#9733; Check a C source file for structural mistakes.  Wants TERM<br>**How:** Full-screen: it takes over the display. **`q' quits** -- tested. |
 
 **Tags**
 
@@ -487,7 +487,7 @@
 | `cc2plus` |  |
 | `cccp2` | <br>`Usage: cccp2 [switches] input output` |
 | `collect` | <br>`Syntax   : collect [<opts>] {<file>} [<opts>]` |
-| `compiler` | GSHELL front-end for the C compiler<br>`Syntax: compiler [<path>]` |
+| `compiler` | GSHELL front-end for the C compiler<br>**How:** Full-screen: it takes over the display. **control-C gets you out** -- tested, and none of q, Q, control-D or ESC did. If it has a quit command of its own, its documentation in DOC/ will say. |
 | `gcc` | <br>`Usage: gcc {options} {files} {options}` |
 | `gcc2` | <br>`Usage: gcc2 {options} {files} {options}` |
 | `gcc_cc1` |  |
@@ -500,7 +500,7 @@
 
 | | |
 |---|---|
-| `assembler` | GSHELL front-end for the assembler<br>`Syntax: assembler [<path>]` |
+| `assembler` | GSHELL front-end for the assembler<br>**How:** Full-screen: it takes over the display. **control-C gets you out** -- tested, and none of q, Q, control-D or ESC did. If it has a quit command of its own, its documentation in DOC/ will say. |
 | `bison` | GNU bison 1.19 parser generator -- ADDED; skeletons in /dd/LIB<br>`Usage: bison [-dltvyV] [-b file-prefix] [-o outfile] [-p name-prefix]` |
 | `dmake` | &#9733; dmake 3.70 - parallel make with its own makefile dialect |
 | `flex` | lexical analyzer generator -- see DOC/flex/README-FLEX FIRST<br>`Syntax   : flex [-bcdfinpstvFILT8 -C[efmF] -Sskeleton] [filename ...]` |
@@ -717,7 +717,7 @@
 | `sbreak` | Send/clear an SS_Break signal on a serial path<br>`Syntax:   sbreak [/device]` |
 | `screen` | Screen multiplexer (needs HOME set) |
 | `setfont` | load a downloadable terminal font -- setfont <path><br>`usage: setfont <path>` |
-| `setterm` | &#9733; set terminal type<br>`Syntax:   setterm [opts] [term type]` |
+| `setterm` | &#9733; set terminal type<br>**How:** Full-screen: it takes over the display. **control-C gets you out** -- tested, and none of q, Q, control-D or ESC did. If it has a quit command of its own, its documentation in DOC/ will say. |
 | `tsmon2` | tsmon replacement - terminal monitor<br>`Syntax:   tsmon2 [<options>] <device name>` |
 | `udate` | UNAXCESS BBS - date display |
 | `uwho` | UNAXCESS BBS - who is online |
@@ -1038,18 +1038,18 @@
 | `blackjack` | Las Vegas blackjack (M. Theys) -- BASIC09; stops at line 8 with error 56, 'Parameter error'.  See the BASIC09 note below -- this one is a real fault, not the invocation. |
 | `blackjak` | blackjack -- from the SNOBOL4-in-C package, see below |
 | `chess` | chess - 68k port (three engine versions built)<br>`Syntax: chess [<opts>] <name> [<opts>]` |
-| `crib` | cribbage |
-| `cribbage` | &#9733; cribbage -- offers instructions before it deals |
+| `crib` | cribbage<br>**How:** Full-screen: it takes over the display. **control-C gets you out** -- tested, and none of q, Q, control-D or ESC did. If it has a quit command of its own, its documentation in DOC/ will say. |
+| `cribbage` | &#9733; cribbage -- offers instructions before it deals<br>**How:** Full-screen: it takes over the display. **control-C gets you out** -- tested, and none of q, Q, control-D or ESC did. If it has a quit command of its own, its documentation in DOC/ will say. |
 | `gnuan` | GNU Chess analyser -- annotates a saved game move by move |
 | `gnuchess` | &#9733; GNU Chess<br>`Usage: gnuchess [-a] [-h] [-x xwndw]` |
 | `gnuchessc` | GNU Chess 4.0, curses display |
 | `gnuchessn` | &#9733; GNU Chess (ncurses)<br>`Usage: gnuchess [-a] [-h] [-x xwndw]` |
 | `gnuchessr` | &#9733; GNU Chess (raw)<br>`Usage: gnuchess [-a] [-h] [-x xwndw]` |
-| `mille` | &#9733; Mille Bornes -- the French car-racing card game<br>`usage: milles [ restore_file ]` |
+| `mille` | &#9733; Mille Bornes -- the French car-racing card game<br>**How:** Full-screen: it takes over the display. **control-C gets you out** -- tested, and none of q, Q, control-D or ESC did. If it has a quit command of its own, its documentation in DOC/ will say. |
 | `nchess` | GNU Chess 4.0 (plain display) |
 | `poker` | poker -- from the SNOBOL4-in-C package, see below |
 | `queens` | N-queens solver -- IOCCC entry by M. Baruch; reads N on stdin |
-| `tttt` | tic-tac-toe |
+| `tttt` | tic-tac-toe<br>**How:** Full-screen: it takes over the display. **`q' quits** -- tested. |
 
 **Other games**
 
@@ -1057,14 +1057,14 @@
 |---|---|
 | `convert` | world - build its data tables |
 | `fuddle` | chess - fuddle variant |
-| `hotel` | &#9733; hotel -- two-player board game, played by coordinates |
+| `hotel` | &#9733; hotel -- two-player board game, played by coordinates<br>**How:** Full-screen: it takes over the display. **control-C gets you out** -- tested, and none of q, Q, control-D or ESC did. If it has a quit command of its own, its documentation in DOC/ will say. |
 | `mkdict` | bog - build the dictionary |
 | `mkindex` | bog - build the dictionary index |
-| `nobs` | cribbage (Colonel's program) |
+| `nobs` | cribbage (Colonel's program)<br>**How:** Full-screen: it takes over the display. **control-C gets you out** -- tested, and none of q, Q, control-D or ESC did. If it has a quit command of its own, its documentation in DOC/ will say. |
 | `piano` | &#9733; play notes -- piano <base note> <note duration><br>`syntax: piano <base note> <note duration>` |
 | `stone` | stone -- a game, from the SNOBOL4-in-C package |
 | `tess` | tesselation puzzle |
-| `tt` | typing/terminal game<br>`Usage: tt [ -s ] [ -b ] [ -l# ]` |
+| `tt` | typing/terminal game<br>**How:** Full-screen: it takes over the display. **`q' quits** -- tested. |
 | `vtxtcn` | world - build its text tables |
 | `world` | World - text adventure |
 | `zot` | Zot - arcade game |
@@ -1073,16 +1073,16 @@
 
 | | |
 |---|---|
-| `bite` | a skull animation, not a game you play |
+| `bite` | a skull animation, not a game you play<br>**How:** Full-screen: it takes over the display. **`q' quits** -- tested. |
 | `greed` | Greed - grid game<br>`Usage: greed [-p] [-s]` |
-| `lander` | lunar lander -- KNOWN BROKEN: takes no input, and the post-crash screen is corrupt.  Wants SysV curses line drawing that vt100 termcap does not give it. |
+| `lander` | lunar lander -- KNOWN BROKEN: takes no input, and the post-crash screen is corrupt.  Wants SysV curses line drawing that vt100 termcap does not give it.<br>**How:** Full-screen: it takes over the display. **`q' quits** -- tested. |
 | `pacman` | Pac-Man |
 | `robots` | &#9733; robots -- outrun them until they crash into each other. REBUILT HERE from source, in SRC/rob.  The archive binary drew cursor-up as a bare ^K, which a terminal reads as index -- DOWN -- so the screen scrolled and the board was left with characters that were not really there. USE -m: without it the game is effectively unplayable.<br>**How:** Play with `robots -m' -- manual mode, where the robots take one step per move you make. Keys are the numeric keypad 1-9 (5 stands still), `s' for last stand, `t' to teleport. Needs Microware's math module and a real TERM. |
-| `snake` | snake arcade game -- KNOWN BROKEN: starts and then sits |
+| `snake` | snake arcade game -- KNOWN BROKEN: starts and then sits<br>**How:** Full-screen: it takes over the display. **control-C gets you out** -- tested, and none of q, Q, control-D or ESC did. If it has a quit command of its own, its documentation in DOC/ will say. |
 | `sokoban` | Sokoban puzzle<br>**How:** Wants a username, so run it from a login rather than a bare shell, or it stops with "cannot get your username". |
 | `tet` | Tetris -- KNOWN BROKEN: draws its board and takes no input<br>**How:** Draws the board and ignores the keyboard, and the reason is in its source: tet.c puts the terminal in raw mode inside `#ifndef OSK', so the OS-9 build has no terminal setup at all. Set the mode from outside before starting it (Microware's tmode), or rebuild with an OSK branch using _ss_opt -- LIB/alib.l provides both that and ioctl. Source in SRC/tet. |
 | `tet.unixlib` | tet rebuilt with its keyboard code compiled in and TCSETAW implemented.  GAMES/tet takes no input for two reasons stacked on each other: its raw-mode setup sits inside `#ifndef OSK', and LIB/unix.l's ioctl had no TCSETAW case -- which is the call tet uses -- so even with the code compiled in the mode never changed and keys kept echoing. Both are fixed here.  Still needs a play-test at a real terminal; it cannot be checked from a pipe, because tet calls ttyname(0) and reopens it.  If it takes keys for you, it should replace GAMES/tet.  Its fall rate is now a real clock rather than a counting loop -- the original measured time in polling passes and so ran at whatever speed the machine did.  INIT_PAUSE at the top of SRC/tet/tet.c tunes it |
-| `wanderer` | Boulderdash-style maze game.  Screens ARE here, in GAMES/WAND/screens; needs this disk as /dd to find them. |
+| `wanderer` | Boulderdash-style maze game.  Screens ARE here, in GAMES/WAND/screens; needs this disk as /dd to find them.<br>**How:** Full-screen: it takes over the display. **`q' quits** -- tested. |
 
 **Adventure & fiction**
 
@@ -1108,24 +1108,24 @@
 | | |
 |---|---|
 | `maze` | maze generator -- KNOWN BROKEN: goes dead |
-| `mines` | &#9733; minesweeper |
-| `puz15` | the 15-puzzle -- same program as CMDS/puzzle15, built twice<br>`usage: puz15 [<width[x<height>]] puz15` |
-| `puzzle15` | the 15-puzzle -- same program as GAMES/puz15, built twice<br>`usage: puzzle15 [<width[x<height>]] puzzle15` |
+| `mines` | &#9733; minesweeper<br>**How:** Full-screen: it takes over the display. **`q' quits** -- tested. |
+| `puz15` | the 15-puzzle -- same program as CMDS/puzzle15, built twice<br>**How:** Full-screen: it takes over the display. **control-C gets you out** -- tested, and none of q, Q, control-D or ESC did. If it has a quit command of its own, its documentation in DOC/ will say. |
+| `puzzle15` | the 15-puzzle -- same program as GAMES/puz15, built twice<br>**How:** Full-screen: it takes over the display. **control-C gets you out** -- tested, and none of q, Q, control-D or ESC did. If it has a quit command of its own, its documentation in DOC/ will say. |
 
 **Word & guessing**
 
 | | |
 |---|---|
-| `animal` | guess-the-animal learning game<br>`Usage: animal {data-file}` |
-| `bog` | Boggle word game<br>`Usage: bog [-b] [-d] [-s#] [-t#] [-w#] [+[+]] [boardspec]` |
-| `hang` | hangman |
+| `animal` | guess-the-animal learning game<br>**How:** Full-screen: it takes over the display. **control-C gets you out** -- tested, and none of q, Q, control-D or ESC did. If it has a quit command of its own, its documentation in DOC/ will say. |
+| `bog` | Boggle word game<br>**How:** Full-screen: it takes over the display. **control-C gets you out** -- tested, and none of q, Q, control-D or ESC did. If it has a quit command of its own, its documentation in DOC/ will say. |
+| `hang` | hangman<br>**How:** Full-screen: it takes over the display. **control-C gets you out** -- tested, and none of q, Q, control-D or ESC did. If it has a quit command of its own, its documentation in DOC/ will say. |
 
 **Dungeon crawl**
 
 | | |
 |---|---|
 | `hack` | hack -- the original dungeon crawl NetHack grew out of |
-| `larn` | &#9733; larn -- dungeon crawl; see the PLAYGROUND note above |
+| `larn` | &#9733; larn -- dungeon crawl; see the PLAYGROUND note above<br>**How:** Full-screen: it takes over the display. **control-C gets you out** -- tested, and none of q, Q, control-D or ESC did. If it has a quit command of its own, its documentation in DOC/ will say. |
 | `ularn` | ULarn -- the larn variant, and its data is complete |
 
 </details>
@@ -1139,7 +1139,7 @@
 | | |
 |---|---|
 | `life` | Conway's Game of Life<br>**How:** life [init-file]. The patterns are in /dd/GAMES/LIFE -- try `life /dd/GAMES/LIFE/glider`. It also wants more memory than the default; from the OS-9 shell that is `life #22k <file>`, and bash has no #size syntax at all. |
-| `rain` | raindrops screen effect |
+| `rain` | raindrops screen effect<br>**How:** Full-screen: it takes over the display. **control-C gets you out** -- tested, and none of q, Q, control-D or ESC did. If it has a quit command of its own, its documentation in DOC/ will say. |
 | `suicide` | animation: a stick figure walks off a rooftop |
 | `suicide1` | suicide, variant |
 | `suicide2` | suicide, variant |
@@ -1185,7 +1185,7 @@
 | | |
 |---|---|
 | `areacode` | look up a US telephone area code<br>`Usage: areacode nnn nnn ...` |
-| `touchtype` | typing tutor |
+| `touchtype` | typing tutor<br>**How:** Full-screen: it takes over the display. **control-C gets you out** -- tested, and none of q, Q, control-D or ESC did. If it has a quit command of its own, its documentation in DOC/ will say. |
 
 **Fractals**
 
@@ -1199,7 +1199,7 @@
 
 *OS-9 module and process tools, devices, system state and scheduling.*
 
-<details><summary>48 programs</summary>
+<details><summary>51 programs</summary>
 
 **Processes & memory**
 
@@ -1279,6 +1279,14 @@
 | `sddemo` | White's Speedisk 2.10 -- disk de-fragmenter.  Wants an 80x24 screen; falls back to tty mode<br>**How:** White's Speedisk 2.10 de-fragmenter, demo build. Wants an 80x24 screen and drops to tty mode without one. |
 | `ub68020demo` | UniBasic 1.10 built for the 68020, beside the 68000 one |
 | `ub68kdemo` | UniBasic 1.10 -- a BASIC compiler, same arrangement as OmniBasic.  Run it from /dd/DOC/unibasic<br>**How:** UniBasic 1.10, and it does compile -- the trick is that it runs its build through $SHELL. With SHELL unset it hunts for `/dd/bash' and dies with "Error Exit" and error 216. Do `setenv SHELL /dd/CMDS/sh', work in a directory holding basic.h and basic.l (DOC/unibasic has them), have your C toolchain reachable with CDEF and CLIB set, and give it memory. Verified end to end. DEMO VERSION: the symbol table is capped, nothing else is. |
+
+**Keeping and dropping**
+
+| | |
+|---|---|
+| `drop` | put back exactly what keep wrote.  It refuses to remove any file whose checksum has changed, so your saves and scores are safe from it by construction. |
+| `keep` | take a program off this collection onto your own disk -- copies it and whatever DOC/DEPENDS says it needs, and records every file written.  `keep -n' shows what it would do without doing it.  See DOC/README-KEEP. |
+| `kept` | list what has been taken, and how much it came to |
 
 **Scheduling**
 
@@ -1381,10 +1389,10 @@
 
 | | |
 |---|---|
-| `lac` | commodity price chart (tc suite)<br>`Syntax: lac {<opts>} [<file>] {<opts>}` |
-| `main` | tc suite - main driver<br>`Syntax: plot [<opts>]` |
-| `scope` | tc suite - scope display<br>`Syntax: scope [<opts>]` |
-| `sin` | tc suite - sine plot<br>`Syntax: sin {<opts>} [<file>] {<opts>}` |
+| `lac` | commodity price chart (tc suite)<br>**How:** Full-screen: it takes over the display. **`q' quits** -- tested. |
+| `main` | tc suite - main driver<br>**How:** Full-screen: it takes over the display. **`q' quits** -- tested. |
+| `scope` | tc suite - scope display<br>**How:** Full-screen: it takes over the display. **`q' quits** -- tested. |
+| `sin` | tc suite - sine plot<br>**How:** Full-screen: it takes over the display. **`q' quits** -- tested. |
 
 **Spreadsheets**
 

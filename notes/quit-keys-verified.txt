@@ -1,0 +1,67 @@
+  EditLibr     did not hold the screen (exited or never started)
+  animal       QUITS ON '\\003'
+  assembler    QUITS ON '\\003'
+  bash         did not hold the screen (exited or never started)
+  beav         QUITS ON '\\003'
+  bite         QUITS ON 'q'
+  bog          QUITS ON '\\003'
+  checkfile    QUITS ON 'q'
+  clock        did not hold the screen (exited or never started)
+  cls          did not hold the screen (exited or never started)
+  compiler     QUITS ON '\\003'
+  crib         QUITS ON '\\003'
+  cribbage     QUITS ON '\\003'
+  crypto       did not hold the screen (exited or never started)
+  digclk       not quit by 'q' 'Q' '\\003' '\\030\\003' '\\004' '\\033'
+  draw         not quit by 'q' 'Q' '\\003' '\\030\\003' '\\004' '\\033'
+  editor       QUITS ON '\\003'
+  emacs        QUITS ON '\\030\\003'
+  emacs.mm1    QUITS ON '\\030\\003'
+  gnuchess     did not hold the screen (exited or never started)
+  gnuchessn    did not hold the screen (exited or never started)
+  greed        not quit by 'q' 'Q' '\\003' '\\030\\003' '\\004' '\\033'
+  gshell       QUITS ON '\\003'
+  hack         did not hold the screen (exited or never started)
+  hang         QUITS ON '\\003'
+  hexedit      did not hold the screen (exited or never started)
+  hotel        QUITS ON '\\003'
+  infocom.tcap did not hold the screen (exited or never started)
+  initvdu      did not hold the screen (exited or never started)
+  ispell       did not hold the screen (exited or never started)
+  jargon       did not hold the screen (exited or never started)
+  lac          QUITS ON 'q'
+  lander       QUITS ON 'q'
+  larn         QUITS ON '\\003'
+  launch       did not hold the screen (exited or never started)
+  less         did not hold the screen (exited or never started)
+  main         QUITS ON 'q'
+  me           QUITS ON '\\030\\003'
+  mg           QUITS ON '\\030\\003'
+  mille        QUITS ON '\\003'
+  mines        QUITS ON 'q'
+  nobs         QUITS ON '\\003'
+  pow          did not hold the screen (exited or never started)
+  puz15        QUITS ON '\\003'
+  puzzle15     QUITS ON '\\003'
+  rain         QUITS ON '\\003'
+  sc           not quit by 'q' 'Q' '\\003' '\\030\\003' '\\004' '\\033'
+  scope        QUITS ON 'q'
+  setterm      QUITS ON '\\003'
+  sh           not quit by 'q' 'Q' '\\003' '\\030\\003' '\\004' '\\033'
+  shuffle      QUITS ON 'q'
+  sin          QUITS ON 'q'
+  snake        QUITS ON '\\003'
+  sonnet       QUITS ON '\\003'
+  spiff        did not hold the screen (exited or never started)
+  suicide      did not hold the screen (exited or never started)
+  suicide1     did not hold the screen (exited or never started)
+  suicide2     did not hold the screen (exited or never started)
+  top          did not hold the screen (exited or never started)
+  touchtype    QUITS ON '\\003'
+  tt           QUITS ON 'q'
+  tttt         QUITS ON 'q'
+  ularn        did not hold the screen (exited or never started)
+  vi_cio       not quit by 'q' 'Q' '\\003' '\\030\\003' '\\004' '\\033'
+  vis          did not hold the screen (exited or never started)
+  wanderer     QUITS ON 'q'
+DONE

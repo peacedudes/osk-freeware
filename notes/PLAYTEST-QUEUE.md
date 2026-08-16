@@ -99,8 +99,25 @@ same trap, 67 more times: `beav`, `hexedit`, `jargon`, `larn`, `hack`,
 `greed`, `mille`, `cribbage`, `bog`, `hang`, `lander`, `mg`, `me`, `emacs`,
 `gnuchess`, `ispell`, `draw`, `editor` and the rest.
 
-31 of the 67 now have a documentation directory, so the answers are mostly on
-the disk already. **Do not generate these automatically.** A regex over the
+**Done 2026-08-16, by running them.** `tools/try_quit.py` drives each program
+through `SYS/login` under a real pty, lets it draw, sends a candidate key, and
+watches for the shell prompt to come back -- with a control run that sends no
+key, so a program that exits on its own cannot be mistaken for one the key
+worked on. 37 of the 67 now have a tested quit key
+(`notes/quit-keys-verified.txt`), and those are in `tools/howto.psv`.
+
+Two earlier approaches failed and are worth not repeating: piping to these
+proves nothing (with stdin not a terminal they exit at EOF, so every key
+"works"), and driving os9exec directly with `-r` fails because it does not
+inherit TERM into the OS-9 environment -- the program stops with "TERM
+environment variable not set". `SYS/login` is what sets it.
+
+Of the rest: 22 never took the screen (they need an argument, or exited), and
+6 were not quit by q, Q, control-C, control-D, control-X control-C or ESC --
+`digclk`, `draw`, `greed`, `sc`, `sh` and `vi_cio` still need a person.
+
+31 of the 67 have a documentation directory, so the answers are mostly on
+the disk already. **Do not generate these automatically without testing.** A regex over the
 manuals produced five candidates and at least three were wrong -- it matched
 MicroEMACS's `!RETURN` macro directive and `sh`'s line-editing description as
 if they were quit keys. Each note has to be read out of the manual by a person

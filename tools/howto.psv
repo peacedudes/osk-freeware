@@ -80,3 +80,40 @@ cal|`cal -h' prints holidays alongside the calendar -- SYS/holidays is on the di
 file|Names real formats now that SYS/magic is here: `file /dd/DEMO/gulls.gif' reports the GIF version, size and colour count. Before the magic file arrived it could only recognise OS-9 modules.
 ephem|An astronomical ephemeris: it shows where the Sun, Moon and planets are, for a place and a moment. It starts LOOPING -- press any key to stop and enter command mode. CONTROL-D QUITS; `?' is help; control-L redraws. In command mode the arrow keys (or h/j/k/l) move between fields: RETURN opens the one under the cursor, type a value, RETURN accepts. `d' jumps to the date, `z' to the step size. The point of the program is that last pair: set StpSz to a day and NStep to 30, press `q', and it runs time forward and you watch the planets move.
 ephem881|The same program built for a 68881 coprocessor -- see the note for `ephem'. CONTROL-D quits.
+animal|Full-screen: it takes over the display. **control-C gets you out** -- tested, and none of q, Q, control-D or ESC did. If it has a quit command of its own, its documentation in DOC/ will say.
+assembler|Full-screen: it takes over the display. **control-C gets you out** -- tested, and none of q, Q, control-D or ESC did. If it has a quit command of its own, its documentation in DOC/ will say.
+beav|Full-screen: it takes over the display. **control-C gets you out** -- tested, and none of q, Q, control-D or ESC did. If it has a quit command of its own, its documentation in DOC/ will say.
+bite|Full-screen: it takes over the display. **`q' quits** -- tested.
+bog|Full-screen: it takes over the display. **control-C gets you out** -- tested, and none of q, Q, control-D or ESC did. If it has a quit command of its own, its documentation in DOC/ will say.
+checkfile|Full-screen: it takes over the display. **`q' quits** -- tested.
+compiler|Full-screen: it takes over the display. **control-C gets you out** -- tested, and none of q, Q, control-D or ESC did. If it has a quit command of its own, its documentation in DOC/ will say.
+crib|Full-screen: it takes over the display. **control-C gets you out** -- tested, and none of q, Q, control-D or ESC did. If it has a quit command of its own, its documentation in DOC/ will say.
+cribbage|Full-screen: it takes over the display. **control-C gets you out** -- tested, and none of q, Q, control-D or ESC did. If it has a quit command of its own, its documentation in DOC/ will say.
+editor|Full-screen: it takes over the display. **control-C gets you out** -- tested, and none of q, Q, control-D or ESC did. If it has a quit command of its own, its documentation in DOC/ will say.
+emacs|Full-screen editor, MicroEMACS key bindings. **control-X control-C quits** (exit-emacs) -- tested. Its macros and online help are in USR/LIB/EMACS.
+emacs.mm1|Full-screen editor, MicroEMACS key bindings. **control-X control-C quits** (exit-emacs) -- tested. Its macros and online help are in USR/LIB/EMACS.
+gshell|Full-screen: it takes over the display. **control-C gets you out** -- tested, and none of q, Q, control-D or ESC did. If it has a quit command of its own, its documentation in DOC/ will say.
+hang|Full-screen: it takes over the display. **control-C gets you out** -- tested, and none of q, Q, control-D or ESC did. If it has a quit command of its own, its documentation in DOC/ will say.
+hotel|Full-screen: it takes over the display. **control-C gets you out** -- tested, and none of q, Q, control-D or ESC did. If it has a quit command of its own, its documentation in DOC/ will say.
+lac|Full-screen: it takes over the display. **`q' quits** -- tested.
+lander|Full-screen: it takes over the display. **`q' quits** -- tested.
+larn|Full-screen: it takes over the display. **control-C gets you out** -- tested, and none of q, Q, control-D or ESC did. If it has a quit command of its own, its documentation in DOC/ will say.
+main|Full-screen: it takes over the display. **`q' quits** -- tested.
+me|Full-screen editor, MicroEMACS key bindings. **control-X control-C quits** (exit-emacs) -- tested. Its macros and online help are in USR/LIB/EMACS.
+mg|Full-screen editor, MicroEMACS key bindings. **control-X control-C quits** (exit-emacs) -- tested. Its macros and online help are in USR/LIB/EMACS.
+mille|Full-screen: it takes over the display. **control-C gets you out** -- tested, and none of q, Q, control-D or ESC did. If it has a quit command of its own, its documentation in DOC/ will say.
+mines|Full-screen: it takes over the display. **`q' quits** -- tested.
+nobs|Full-screen: it takes over the display. **control-C gets you out** -- tested, and none of q, Q, control-D or ESC did. If it has a quit command of its own, its documentation in DOC/ will say.
+puz15|Full-screen: it takes over the display. **control-C gets you out** -- tested, and none of q, Q, control-D or ESC did. If it has a quit command of its own, its documentation in DOC/ will say.
+puzzle15|Full-screen: it takes over the display. **control-C gets you out** -- tested, and none of q, Q, control-D or ESC did. If it has a quit command of its own, its documentation in DOC/ will say.
+rain|Full-screen: it takes over the display. **control-C gets you out** -- tested, and none of q, Q, control-D or ESC did. If it has a quit command of its own, its documentation in DOC/ will say.
+scope|Full-screen: it takes over the display. **`q' quits** -- tested.
+setterm|Full-screen: it takes over the display. **control-C gets you out** -- tested, and none of q, Q, control-D or ESC did. If it has a quit command of its own, its documentation in DOC/ will say.
+shuffle|Full-screen: it takes over the display. **`q' quits** -- tested.
+sin|Full-screen: it takes over the display. **`q' quits** -- tested.
+snake|Full-screen: it takes over the display. **control-C gets you out** -- tested, and none of q, Q, control-D or ESC did. If it has a quit command of its own, its documentation in DOC/ will say.
+sonnet|Full-screen: it takes over the display. **control-C gets you out** -- tested, and none of q, Q, control-D or ESC did. If it has a quit command of its own, its documentation in DOC/ will say.
+touchtype|Full-screen: it takes over the display. **control-C gets you out** -- tested, and none of q, Q, control-D or ESC did. If it has a quit command of its own, its documentation in DOC/ will say.
+tt|Full-screen: it takes over the display. **`q' quits** -- tested.
+tttt|Full-screen: it takes over the display. **`q' quits** -- tested.
+wanderer|Full-screen: it takes over the display. **`q' quits** -- tested.
