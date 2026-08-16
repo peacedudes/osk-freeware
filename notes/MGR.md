@@ -149,8 +149,8 @@ and earlier in the same issue:
 > May 22 and June 26th.
 
 **The OS-9 MGR was a commercial product, sold by Spectralab, with a paid
-training course.** That is why a freeware archive does not have it, and it is
-also a reason not to go looking for a copy to ship. Bellcore's original MGR was
+training course.** That is why a freeware archive does not have it. It is a
+licence question, not a technical one. Bellcore's original MGR was
 freely distributable; the OS-9 port was somebody's product.
 
 ### One named client, catalogued but never distributed
@@ -175,8 +175,16 @@ zterm terminal file extended to include vt320, **mgr** and cumana.
 
 ### What would actually work
 
-Nothing in this collection can exercise MGR, because no client of any kind
-survives here. The route that remains is to build MGR's clients from the
+**If any part of MGR turns up, keep it.** An earlier draft of this page argued
+the server was useless because os9exec cannot run it. That is the same reasoning
+that once excluded the MM/1 drivers, and it was wrong for the same reason: this
+collection is not only for people running the emulator. Somebody with a VME
+board or an Atari with the right hardware is exactly who a preserved server
+would be for. Clients, server, fonts, `PERF` -- all worth having if found, on
+the usual licence terms.
+
+Nothing in this collection can exercise MGR today, because no client of any
+kind survives here. The route that remains is to build MGR's clients from the
 GitHub sources for OS-9 with Microware `cc`, run the X11 server on the host,
 and connect an os9exec `/tN` pty to it. That is a sound test of the SCF
 terminal path -- but it produces NEW software, not preserved software, and
