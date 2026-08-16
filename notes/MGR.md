@@ -190,3 +190,39 @@ and connect an os9exec `/tN` pty to it. That is a sound test of the SCF
 terminal path -- but it produces NEW software, not preserved software, and
 belongs in `tools/` or a demo, not in the collection as community freeware.
 
+## os9exec itself expects MGR clients -- found 2026-08-16
+
+While building a pty test harness, os9exec's own option list turned up four
+options nobody here had noticed:
+
+    -x width    define MGR screen width
+    -y height   define MGR screen height
+    -z          define MGR fullscreen mode
+    -g ip_addr  open   MGR screen at IP address
+
+os9exec does **not** implement MGR. What it does is expose the parameters an
+MGR *client* reads, as system globals (`Source/OS9exec_core/fcalls.c`):
+
+    #define D_ScreenW  0x1000   /* Width in pixels of this system's screen  */
+    #define D_ScreenH  0x1004   /* Height  "   "    "    "    "        "    */
+    #define D_ScreenW1 0x1008   /* Width in pixels from OS9exec's option -x */
+    #define D_ScreenH1 0x100C   /* Height  "   "    from OS9exec's option -y */
+    #define D_IPAddr   0x1014   /* Open MGR screen at IP address: option -g */
+
+and its header notes, of the pty buffer size, *"DEFAULTPTYSZ is now exactly
+512 bytes (seems to be ok for MGR)"*, with the TTY definitions commented
+*"will be used for telnet and MGR"*.
+
+Two things follow. The emulator's authors expected **OS-9 MGR clients to
+exist and to be run under it** -- they sized a buffer for them and wired up an
+IP address to point a client at a server. And the route is exactly the one
+sketched from the other side: run an MGR server anywhere reachable, start
+os9exec with `-g <ip>`, and a client picks the address out of the system
+globals.
+
+What is still missing is the client. Nothing in the 464-file pool links the
+MGR library (every one of `m_setmode`, `m_newwin`, `m_ttyset`, `ckmgrterm`
+and the rest returns zero across 17,413 files), so there is nothing here to
+point at a server yet. Building one from the GitHub sources would exercise a
+path os9exec was explicitly built to support.
+
