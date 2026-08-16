@@ -116,3 +116,69 @@ deposited here. It has to come from somewhere else.
 
 Re-fetching those five categories was the obvious next move, for MGR and for
 whatever else is in 34 MB nobody here has opened.
+
+## 2026-08-16 -- why it is not here, from the archive's own paperwork
+
+The client/server split is the right way to think about it: the server owns the
+framebuffer and could never run under os9exec, while the clients are ordinary
+programs writing an escape stream, which is what a freeware collection would
+plausibly carry. So the search was redone against **client** signatures, at
+content level, across all 17,413 files of the fully-extracted pool.
+
+**Neither half is here.** Every MGR client-library symbol returns zero:
+`m_setmode`, `m_newwin`, `m_selectwin`, `m_ttyset`, `m_clearwin`, `m_flush`,
+`ckmgrterm`, `menu_load`, `get_mgrterm`, `MGRLIB`. No `mgr.l`, no `.mgrrc`, no
+`mgr` binary. The one `mgr.h` in the pool is netpbm's, and its first line says
+what it is: *"the following defs are taken from the MGR header file
+lib/dump.h"* -- the bitmap dump format for `mgrtopbm`, not the client library.
+The `.fnt` files are KWindows', not MGR's.
+
+### The reason, in the CERN OS-9 newsletter of April 1992
+
+`EFFO/forum22.lzh`, `FORUM22/INFO/cern_92.04`, under the heading **Commercial**:
+
+> 'MGR', Spectralab, 92
+> The window package available for OS-9, Lynx-OS, MS-DOS, UNIX which has all
+> the functions you would hope for. The documentation contains a lot of
+> examples.
+
+and earlier in the same issue:
+
+> MGR : Spectralab are offering a one day course on this software product,
+> which they demonstrated at CERN. The price is 800sf and the dates are
+> May 22 and June 26th.
+
+**The OS-9 MGR was a commercial product, sold by Spectralab, with a paid
+training course.** That is why a freeware archive does not have it, and it is
+also a reason not to go looking for a copy to ship. Bellcore's original MGR was
+freely distributable; the OS-9 port was somebody's product.
+
+### One named client, catalogued but never distributed
+
+EFFO's `soft_list` -- carried on forums 16, 17, 20, 21, 22 and 23 -- has
+exactly one MGR entry:
+
+    Program name : PERF                        Class : UTILITY
+    Description  : graphical performance display
+    Hardware     : ATARI
+    Where        : B. Stotz ETH
+    > displays cpu load and free memory on a mgr window
+    > !!!!runs only on the mgr window system!!!!!
+
+Note the `Where:` field. Other entries say "EFFO Forum 6"; this one names the
+author, meaning EFFO catalogued it but did not carry it. `perf` appears nowhere
+in the pool, by filename or module name.
+
+`soft_list` also names distribution channels we do not hold at all -- an
+**"OS9 Pool"** appears against eight entries -- and `cern_91.2` mentions a
+zterm terminal file extended to include vt320, **mgr** and cumana.
+
+### What would actually work
+
+Nothing in this collection can exercise MGR, because no client of any kind
+survives here. The route that remains is to build MGR's clients from the
+GitHub sources for OS-9 with Microware `cc`, run the X11 server on the host,
+and connect an os9exec `/tN` pty to it. That is a sound test of the SCF
+terminal path -- but it produces NEW software, not preserved software, and
+belongs in `tools/` or a demo, not in the collection as community freeware.
+
