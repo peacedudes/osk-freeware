@@ -152,7 +152,15 @@ Genuinely still wrong:
 - **top, digclk, draw** -- draw something, then `E_PRCABT(228)`, process
   aborted.
 - **greed, suicide** -- start and produce nothing at all.
-- **hack** -- "Cannot get status of hack." See above.
+- **hack** -- "Cannot get status of hack.", and I ran out of ideas honestly.
+  What is known: the string sits between `/h0/games/hack/playground`,
+  `Cannot chdir to %s`, and `Saved level is out of date`, so hack chdirs into
+  its playground and then stats something to date-check saved levels -- very
+  likely its own executable. Putting a file named `hack` in the playground did
+  NOT satisfy it. Running with the playground as the working directory could
+  not be tested: bash's `cd` only tracks the path as a string, and `sh`, which
+  does chdir for real, then refuses to fork an absolute pathname. Someone with
+  hack's source (SRC has none) or a real OS-9 shell should look.
 - **pow** wants a controller at `/x1`, and **initvdu** wants particular VDU
   hardware. Neither is a defect; both are noted as needing the machine.
 

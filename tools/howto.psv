@@ -108,11 +108,11 @@ puz15|Full-screen: it takes over the display. **control-C gets you out** -- test
 puzzle15|Full-screen: it takes over the display. **control-C gets you out** -- tested, and none of q, Q, control-D or ESC did. If it has a quit command of its own, its documentation in DOC/ will say.
 rain|Full-screen: it takes over the display. **control-C gets you out** -- tested, and none of q, Q, control-D or ESC did. If it has a quit command of its own, its documentation in DOC/ will say.
 scope|Full-screen: it takes over the display. **`q' quits** -- tested.
-setterm|Full-screen: it takes over the display. **control-C gets you out** -- tested, and none of q, Q, control-D or ESC did. If it has a quit command of its own, its documentation in DOC/ will say.
+setterm|Full-screen: it takes over the display. **ESC quits** -- tested. (control-C also gets you out, but ESC is the program's own way.)
 shuffle|Full-screen: it takes over the display. **`q' quits** -- tested.
 sin|Full-screen: it takes over the display. **`q' quits** -- tested.
-snake|Full-screen: it takes over the display. **control-C gets you out** -- tested, and none of q, Q, control-D or ESC did. If it has a quit command of its own, its documentation in DOC/ will say.
-sonnet|Full-screen: it takes over the display. **control-C gets you out** -- tested, and none of q, Q, control-D or ESC did. If it has a quit command of its own, its documentation in DOC/ will say.
+snake|Full-screen: it takes over the display. **`x' quits** -- tested. (control-C also gets you out, but `x' is the program's own way.)
+sonnet|Full-screen: it takes over the display. **ESC quits** -- tested. (control-C also gets you out, but ESC is the program's own way.)
 touchtype|Full-screen: it takes over the display. **control-C gets you out** -- tested, and none of q, Q, control-D or ESC did. If it has a quit command of its own, its documentation in DOC/ will say.
 tt|Full-screen: it takes over the display. **`q' quits** -- tested.
 tttt|Full-screen: it takes over the display. **`q' quits** -- tested.

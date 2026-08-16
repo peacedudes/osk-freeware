@@ -225,7 +225,7 @@
 | `cookhash` | build the hash file cookie(1) needs, from a sayings file<br>`usage: cookhash <cookiefile >hashfile` |
 | `cookie` | print a random fortune cookie<br>`usage: cookie cookiefile hashfile` |
 | `fortune` | print a random quotation<br>`usage:  fortune [ - ] [ -wsloa ] [ file ]` |
-| `sonnet` | writes (bad) sonnets in iambic pentameter, curses-based<br>**How:** Full-screen: it takes over the display. **control-C gets you out** -- tested, and none of q, Q, control-D or ESC did. If it has a quit command of its own, its documentation in DOC/ will say. |
+| `sonnet` | writes (bad) sonnets in iambic pentameter, curses-based<br>**How:** Full-screen: it takes over the display. **ESC quits** -- tested. (control-C also gets you out, but ESC is the program's own way.) |
 | `strfile` | build fortune's index file<br>`usage:  strfile [ - ] [ -cC ] [ -sv ] inputfile [ datafile ]` |
 | `unstr` | reverse strfile - dump a fortune index<br>`usage: unstr datafile[.dat] [ outfile ]` |
 
@@ -717,7 +717,7 @@
 | `sbreak` | Send/clear an SS_Break signal on a serial path<br>`Syntax:   sbreak [/device]` |
 | `screen` | Screen multiplexer (needs HOME set) |
 | `setfont` | load a downloadable terminal font -- setfont <path><br>`usage: setfont <path>` |
-| `setterm` | &#9733; set terminal type<br>**How:** Full-screen: it takes over the display. **control-C gets you out** -- tested, and none of q, Q, control-D or ESC did. If it has a quit command of its own, its documentation in DOC/ will say. |
+| `setterm` | &#9733; set terminal type<br>**How:** Full-screen: it takes over the display. **ESC quits** -- tested. (control-C also gets you out, but ESC is the program's own way.) |
 | `tsmon2` | tsmon replacement - terminal monitor<br>`Syntax:   tsmon2 [<options>] <device name>` |
 | `udate` | UNAXCESS BBS - date display |
 | `uwho` | UNAXCESS BBS - who is online |
@@ -1078,7 +1078,7 @@
 | `lander` | lunar lander -- KNOWN BROKEN: takes no input, and the post-crash screen is corrupt.  Wants SysV curses line drawing that vt100 termcap does not give it.<br>**How:** Full-screen: it takes over the display. **`q' quits** -- tested. |
 | `pacman` | Pac-Man |
 | `robots` | &#9733; robots -- outrun them until they crash into each other. REBUILT HERE from source, in SRC/rob.  The archive binary drew cursor-up as a bare ^K, which a terminal reads as index -- DOWN -- so the screen scrolled and the board was left with characters that were not really there. USE -m: without it the game is effectively unplayable.<br>**How:** Play with `robots -m' -- manual mode, where the robots take one step per move you make. Keys are the numeric keypad 1-9 (5 stands still), `s' for last stand, `t' to teleport. Needs Microware's math module and a real TERM. |
-| `snake` | snake arcade game -- KNOWN BROKEN: starts and then sits<br>**How:** Full-screen: it takes over the display. **control-C gets you out** -- tested, and none of q, Q, control-D or ESC did. If it has a quit command of its own, its documentation in DOC/ will say. |
+| `snake` | snake arcade game -- KNOWN BROKEN: starts and then sits<br>**How:** Full-screen: it takes over the display. **`x' quits** -- tested. (control-C also gets you out, but `x' is the program's own way.) |
 | `sokoban` | Sokoban puzzle<br>**How:** Wants a username, so run it from a login rather than a bare shell, or it stops with "cannot get your username". |
 | `tet` | Tetris -- KNOWN BROKEN: draws its board and takes no input<br>**How:** Draws the board and ignores the keyboard, and the reason is in its source: tet.c puts the terminal in raw mode inside `#ifndef OSK', so the OS-9 build has no terminal setup at all. Set the mode from outside before starting it (Microware's tmode), or rebuild with an OSK branch using _ss_opt -- LIB/alib.l provides both that and ioctl. Source in SRC/tet. |
 | `tet.unixlib` | tet rebuilt with its keyboard code compiled in and TCSETAW implemented.  GAMES/tet takes no input for two reasons stacked on each other: its raw-mode setup sits inside `#ifndef OSK', and LIB/unix.l's ioctl had no TCSETAW case -- which is the call tet uses -- so even with the code compiled in the mode never changed and keys kept echoing. Both are fixed here.  Still needs a play-test at a real terminal; it cannot be checked from a pipe, because tet calls ttyname(0) and reopens it.  If it takes keys for you, it should replace GAMES/tet.  Its fall rate is now a real clock rather than a counting loop -- the original measured time in polling passes and so ran at whatever speed the machine did.  INIT_PAUSE at the top of SRC/tet/tet.c tunes it |
