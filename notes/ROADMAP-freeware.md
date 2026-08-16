@@ -16,8 +16,15 @@ written up there.
 `magic` (file), `less.hlp` (less), `dm.hlp` (dm) and the cal holiday data
 were all in the archive pool and are now in `SYS/`. `file` names real
 formats instead of only OS-9 modules, and `cal -h` prints holidays. See
-`SOURCES.txt`. Still missing: vi's `vi_usage`/`vi_errmsg`/`.exrc`, ephem's
-`ephem.cfg`/`ephem.db`, mg's `mgrc`, forth's `lib/tile`. `utmp` is a login
+`SOURCES.txt`. **Four of these were recovered 2026-08-16** once the whole pool
+was extracted: vi's `vi_usage`, `vi_errmsg` and `.exrc` from EFFO forum 13
+(`SOFTWARE/C/VI/SYS`, the same disk its source came from), and ephem's
+`ephem.cfg` and `ephem.db` from EFFO pd9. Both programs were then run: `vi -x`
+opens a file, reports its size and quits cleanly; `ephem` draws its title page
+-- *"Ephem - an interactive astronomical ephemeris program, Version 4.13,
+April 3 1990"* -- and then asks for `math`, which is its ordinary starred
+dependency. Still missing: mg's `mgrc` and forth's `lib/tile`, neither of
+which is anywhere in the pool. `utmp` is a login
 record a running system creates, not shipped data.
 
 ### Data files programs want that this disk does NOT have
