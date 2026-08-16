@@ -117,3 +117,6 @@ touchtype|Full-screen: it takes over the display. **control-C gets you out** -- 
 tt|Full-screen: it takes over the display. **`q' quits** -- tested.
 tttt|Full-screen: it takes over the display. **`q' quits** -- tested.
 wanderer|Full-screen: it takes over the display. **`q' quits** -- tested.
+gnuchess|Full-screen chess. It will not read SYS/termcap -- it wants the entry in the variable itself. Do `. /dd/SYS/termcap.entry' first and it draws its time-control menu and plays. Tested.
+gnuchessn|As gnuchess: `. /dd/SYS/termcap.entry' first. Tested.
+jargon|A browser for the Jargon File, which is here: VH/jargon.txt, version 3.0.0 of 27 July 1993, with its index. It will not read SYS/termcap -- do `. /dd/SYS/termcap.entry' first, then `jargon -m'. Tested.

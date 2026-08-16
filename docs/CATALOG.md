@@ -235,7 +235,7 @@
 |---|---|
 | `buildhash` | build ispell's dictionary hash (writes LIB/ispell.hash) |
 | `ispell` | interactive spelling checker |
-| `jargon` | Jargon-file browser (needs its database files)<br>`usage: jargon [-cigmr] [-b key] [srcname] [indexname]` |
+| `jargon` | Jargon-file browser (needs its database files)<br>**How:** A browser for the Jargon File, which is here: VH/jargon.txt, version 3.0.0 of 27 July 1993, with its index. It will not read SYS/termcap -- do `. /dd/SYS/termcap.entry' first, then `jargon -m'. Tested. |
 | `makelex` | compiles sonnet's lex.data word list into a C array |
 | `speech` | English-to-phoneme translation<br>`Usage: PHONEME [infile [outfile]]` |
 
@@ -1041,9 +1041,9 @@
 | `crib` | cribbage<br>**How:** Full-screen: it takes over the display. **control-C gets you out** -- tested, and none of q, Q, control-D or ESC did. If it has a quit command of its own, its documentation in DOC/ will say. |
 | `cribbage` | &#9733; cribbage -- offers instructions before it deals<br>**How:** Full-screen: it takes over the display. **control-C gets you out** -- tested, and none of q, Q, control-D or ESC did. If it has a quit command of its own, its documentation in DOC/ will say. |
 | `gnuan` | GNU Chess analyser -- annotates a saved game move by move |
-| `gnuchess` | &#9733; GNU Chess<br>`Usage: gnuchess [-a] [-h] [-x xwndw]` |
+| `gnuchess` | &#9733; GNU Chess<br>**How:** Full-screen chess. It will not read SYS/termcap -- it wants the entry in the variable itself. Do `. /dd/SYS/termcap.entry' first and it draws its time-control menu and plays. Tested. |
 | `gnuchessc` | GNU Chess 4.0, curses display |
-| `gnuchessn` | &#9733; GNU Chess (ncurses)<br>`Usage: gnuchess [-a] [-h] [-x xwndw]` |
+| `gnuchessn` | &#9733; GNU Chess (ncurses)<br>**How:** As gnuchess: `. /dd/SYS/termcap.entry' first. Tested. |
 | `gnuchessr` | &#9733; GNU Chess (raw)<br>`Usage: gnuchess [-a] [-h] [-x xwndw]` |
 | `mille` | &#9733; Mille Bornes -- the French car-racing card game<br>**How:** Full-screen: it takes over the display. **control-C gets you out** -- tested, and none of q, Q, control-D or ESC did. If it has a quit command of its own, its documentation in DOC/ will say. |
 | `nchess` | GNU Chess 4.0 (plain display) |
