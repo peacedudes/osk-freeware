@@ -131,3 +131,4 @@ crypto|File encryption. Takes files: `crypto [-cegnru] <file>...'; `crypto -h' i
 pow|Wants a hardware controller at /x1 and cannot run without it.
 launch|Says "nothing to launch" until it is configured -- see its documentation.
 initvdu|Answers "is not defined for this terminal": it sets up specific VDU hardware, not a general terminal.
+hack|RUN IT BY ITS FULL PATH: `/dd/CMDS/GAMES/hack', not `hack'. It chdirs into its playground and then stats argv[0] to date-check saved levels, so a bare name cannot resolve and it stops with "Cannot get status of hack." Invoked in full it starts: "Are you an experienced player?". Its playground -- record, bones, rumors, help -- is in GAMES/HACK/PLAYGROUND.

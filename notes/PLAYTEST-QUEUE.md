@@ -152,15 +152,19 @@ Genuinely still wrong:
 - **top, digclk, draw** -- draw something, then `E_PRCABT(228)`, process
   aborted.
 - **greed, suicide** -- start and produce nothing at all.
-- **hack** -- "Cannot get status of hack.", and I ran out of ideas honestly.
-  What is known: the string sits between `/h0/games/hack/playground`,
-  `Cannot chdir to %s`, and `Saved level is out of date`, so hack chdirs into
-  its playground and then stats something to date-check saved levels -- very
-  likely its own executable. Putting a file named `hack` in the playground did
-  NOT satisfy it. Running with the playground as the working directory could
-  not be tested: bash's `cd` only tracks the path as a string, and `sh`, which
-  does chdir for real, then refuses to fork an absolute pathname. Someone with
-  hack's source (SRC has none) or a real OS-9 shell should look.
+- ~~hack~~ **SOLVED, and it was how it is invoked.** hack chdirs into its
+  playground and then stats **argv[0]** to date-check saved levels. Run as a
+  bare `hack` off PATH, argv[0] is just "hack", which cannot resolve from
+  inside the playground -- hence "Cannot get status of hack." Run it by its
+  full path and it starts:
+
+      /dd/CMDS/GAMES/hack
+      Are you an experienced player? [ny]
+
+  `larn` and `ularn` behave the same way and also start. rdoggett called it:
+  a configuration issue, not a broken binary. Two of my earlier attempts were
+  worthless for a reason worth remembering -- bash's `cd` only tracks the path
+  as a string, so "run it from the playground" never actually happened.
 - **pow** wants a controller at `/x1`, and **initvdu** wants particular VDU
   hardware. Neither is a defect; both are noted as needing the machine.
 
