@@ -183,3 +183,48 @@ Source/OS9exec_core/fileaccess.c. Reproduce:
     adlrun /h6/tiny                                          # asserts
     adlcomp ... -o /dd/tmp/tiny ... ; adlrun /dd/tmp/tiny     # fine
 
+## Getting WN to actually serve -- how far it got (2026-08-16)
+
+Everything on this side is done and shipped:
+
+- document root at `/h0/c/unid/wn_1.14.3/osk` (the path compiled into the
+  binary), with an `index.html` and a WN `index` file
+- `wndex` builds the cache: *"Wrote cache file .../index.cache"*
+- `mime.types` in `/h0/c/unid/wn_1.14.3/lib`, where wndex looks for it
+- the log directory, so `wn` starts and opens `wn.log`
+
+**os9exec CAN do sockets.** `Source/OS9exec_core/network.c` implements
+`SS_Bind`, `SS_Listen`, `SS_Accept`, `SS_Connect`, `SS_Recv`, `SS_Send` --
+this is not a dead end.
+
+Two things stop it:
+
+1. **`inetd` needs the `inetdb` module** or it stops with "tcp protocol
+   unknown". `inetdb` is Microware's, it lives on the SDK boot disk at
+   `CMDS/BOOTOBJS/SPF/inetdb`, and it is NOT covered by the permission we
+   have (that names cio, math, math881, csl, csl020 only). A user with OS-9
+   networking has one. Supplying it does clear the error.
+
+2. **With `inetdb` present, `inetd` dies in os9exec's allocator**:
+
+       No more memory !!!
+       Process   Pid: 2, inetd, edition 7
+       Exit code: E_BUSERR(102) bus error TRAP 2 occurred
+
+   Unchanged by `-m 4M`, `-mm 4M`, `-M 128M`. os9exec's own comment at
+   `memstuff.c:172` says that message is ambiguous -- it is printed both
+   when the 68k arena is exhausted AND when the memtable (MAX_MEMALLOC) is
+   full -- "the cause is genuinely ambiguous once you are down there". The
+   bus error immediately after suggests inetd does not check the failed
+   allocation and dereferences it.
+
+   So: either inetd asks for something os9exec cannot give, or it exhausts
+   MAX_MEMALLOC with many small blocks. Distinguishing the two needs
+   os9exec's `-d` memory debug mask, which is the next thing to try.
+
+Reproduce:
+
+    cp <SDK>/CMDS/BOOTOBJS/SPF/inetdb /tmp/net/
+    os9exec -m 4M -r /dd/CMDS/WN/inetd 8080 /dd/CMDS/WN/wn
+    curl http://127.0.0.1:8080/
+
