@@ -218,9 +218,43 @@ Two things stop it:
    bus error immediately after suggests inetd does not check the failed
    allocation and dereferences it.
 
-   So: either inetd asks for something os9exec cannot give, or it exhausts
-   MAX_MEMALLOC with many small blocks. Distinguishing the two needs
-   os9exec's `-d` memory debug mask, which is the next thing to try.
+   **DIAGNOSED, and it is neither.** The `-d 0x60` trace puts the failure
+   inside `F$Link "inetdb"`, immediately after the module loads cleanly:
+
+       # load_module: allocated memory 2008 @ 0x720a447f40
+       # load_module: Name of module loaded='inetdb'
+       No more memory !!!
+
+   That is `adapt_inetdb()` in `modstuff.c`, which reads a start and an end
+   pointer for the module's "hosts" field at fixed offsets and allocates the
+   difference:
+
+       b0 = mh + os9_long(*(uint32_t*)(mh + OFFS_HOSTS));      /* 0x34 */
+       bL = mh + os9_long(*(uint32_t*)(mh + OFFS_HOSTS + 4));  /* 0x38 */
+       size = bL - b0;
+       v0 = get_mem(size);
+       memcpy(v0, b0, size);
+
+   In the SDK's inetdb, word 0x34 is **0x0100000D** -- not an offset into a
+   2008-byte module -- and word 0x38 is 0x74. So `size` comes out
+   **4,278,190,183** (a negative difference read as unsigned), `get_mem`
+   refuses it, and the NULL goes straight into `memcpy` -- which is the
+   `E_BUSERR(102)` a line later.
+
+   Checked all three inetdb modules on the SDK disk (`inetdb`, `inetdb2`,
+   `BOOTOBJS/SPF/inetdb2`): every one gives a bogus size, because they are
+   **SPF** (SoftStax) modules, while `adapt_inetdb`'s comment says it expects
+   the one from the **ISP** (Internet Support Package). Different product,
+   different layout, same name.
+
+   Two separate fixes, both small:
+
+   - **os9exec should not trust those offsets.** Bounds-check b0 and bL
+     against the module's own length, and check `get_mem`'s return before
+     the memcpy. Today a wrong-variant inetdb is an unexplained
+     "No more memory" and a bus error.
+   - **To actually serve, an ISP-layout `inetdb` is needed.** None is on the
+     SDK disk here and none is in the 464-file pool.
 
 Reproduce:
 
