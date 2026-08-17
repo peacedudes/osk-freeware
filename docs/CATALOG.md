@@ -1,6 +1,6 @@
 # What is on this disk
 
-742 programs of OS-9/68K community software, gathered from the archives that kept it and made to run again. **588 of them need nothing but this disk**; the rest want Microware's `cio`, marked below with a star.
+759 programs of OS-9/68K community software, gathered from the archives that kept it and made to run again. **605 of them need nothing but this disk**; the rest want Microware's `cio`, marked below with a star.
 
 `DOC/INDEX` on the disk lists everything alphabetically. This is the same collection sorted by what each program is *for*, which is the more useful order when you do not yet know what you are looking for.
 
@@ -19,10 +19,10 @@
 | [Encoding & conversion](#encoding--conversion) | 26 | Between text encodings, line endings, number bases, ciphers and hashes. |
 | [Communications](#communications) | 38 | Kermit in several builds, terminal sessions, and networking. |
 | [Graphics & images](#graphics--images) | 192 | The netpbm toolkit, JPEG, a ray tracer, and things that draw. |
-| [Games](#games) | 58 | Adventures, board and card games, arcade ports, dungeon crawls and puzzles. |
+| [Games](#games) | 61 | Adventures, board and card games, arcade ports, dungeon crawls and puzzles. |
 | [Screen toys](#screen-toys) | 6 | Things to watch rather than play. Start one and leave it going. |
 | [Amusements](#amusements) | 20 | Generators, simulators and diversions that are not quite games. |
-| [System & modules](#system--modules) | 51 | OS-9 module and process tools, devices, system state and scheduling. |
+| [System & modules](#system--modules) | 65 | OS-9 module and process tools, devices, system state and scheduling. |
 | [Disk & DOS](#disk--dos) | 20 | Reading and writing MS-DOS media with the mtools set. |
 | [Time & calendar](#time--calendar) | 10 | Calendars, clocks and astronomy. |
 | [Maths & calculators](#maths--calculators) | 13 | Calculators, plotting, orbits and number theory. |
@@ -1028,7 +1028,7 @@
 
 *Adventures, board and card games, arcade ports, dungeon crawls and puzzles.*
 
-<details><summary>58 programs</summary>
+<details><summary>61 programs</summary>
 
 **Board & card**
 
@@ -1055,6 +1055,7 @@
 
 | | |
 |---|---|
+| `backgammon` | backgammon, with a computer opponent<br>`Usage:  backgammon [-] [n r w b pr pw pb t3a]` |
 | `convert` | world - build its data tables |
 | `fuddle` | chess - fuddle variant |
 | `hotel` | &#9733; hotel -- two-player board game, played by coordinates<br>**How:** Full-screen: it takes over the display. **control-C gets you out** -- tested, and none of q, Q, control-D or ESC did. If it has a quit command of its own, its documentation in DOC/ will say. |
@@ -1063,9 +1064,11 @@
 | `nobs` | cribbage (Colonel's program)<br>**How:** Full-screen: it takes over the display. **control-C gets you out** -- tested, and none of q, Q, control-D or ESC did. If it has a quit command of its own, its documentation in DOC/ will say. |
 | `piano` | &#9733; play notes -- piano <base note> <note duration><br>`syntax: piano <base note> <note duration>` |
 | `stone` | stone -- a game, from the SNOBOL4-in-C package |
+| `teachgammon` | backgammon that teaches you the game as you play<br>`Usage:  backgammon [-] [n r w b pr pw pb t3a]` |
 | `tess` | tesselation puzzle |
 | `tt` | typing/terminal game<br>**How:** Full-screen: it takes over the display. **`q' quits** -- tested. |
 | `vtxtcn` | world - build its text tables |
+| `wisecrack` | prints a wisecrack; a pipe fitting for other programs |
 | `world` | World - text adventure |
 | `zot` | Zot - arcade game |
 
@@ -1199,7 +1202,26 @@
 
 *OS-9 module and process tools, devices, system state and scheduling.*
 
-<details><summary>51 programs</summary>
+<details><summary>65 programs</summary>
+
+**Utilities**
+
+| | |
+|---|---|
+| `btree` | B-tree file handling demonstration and test |
+| `clear` | clear the screen<br>`Syntax:   clear` |
+| `fixyear` | Y2K: correct a date the clock got wrong<br>`Usage: fixyear [-opt] <file\|dir> <dir\|file> [-opt]` |
+| `getsys` | report the system's globals -- what OS-9 thinks it is running on<br>`Syntax: getsys [<opts>]` |
+| `modinfo` | report a module's header -- name, type, size, edition, CRC<br>`Syntax:   module [modulename]` |
+| `mvolformat` | format a multi-volume set<br>`Syntax: mvolformat drive volname volcount [format options]` |
+| `phone` | a phone-number book<br>`Syntax: phone <communication-path>` |
+| `repeat` | run a command over and over, with a delay<br>`syntax: repeat [number of repetitions] [OS-9 command]` |
+| `setime2` | Y2K: set the system time, four-digit year<br>`Syntax:   setime2 [<opt>] [<setime2>] [<opt>]` |
+| `setyear` | Y2K: set the year directly<br>`Syntax:   setyear <YYYY>` |
+| `trunc` | truncate a file to a given length<br>`Syntax: trunc <path> <num>` |
+| `vc` | visual compare of two files, side by side |
+| `xlharc` | extract LHarc archives<br>`Usage: xlharc {axevlufdmctp}[qnftv] archive_file [files or directories...]` |
+| `ynad` | yes/no answer dialogue for shell scripts |
 
 **Processes & memory**
 
