@@ -151,3 +151,8 @@ adlcomp|Compiles an ADL world: `adlcomp /dd/ADL/DEMOS/tiny.adl -o /dd/tmp/tiny -
 adlrun|Plays a compiled ADL world: `adlrun /dd/tmp/tiny'. Tested -- the tiny demo opens "You are in a small but comfortable room... There is a red pillow here." NOTE: play from an RBF disk, not a host-directory mount; reading a world off /hN under os9exec trips an assertion inside the emulator.
 adldebug|adlrun with the debugger attached.
 adltouch|Refreshes a compiled world after you edit its source.
+osknet|Charles Hedrick's TCP/IP for OS-9 -- Telnet, FTP, Ping and SMTP. It needs a network interface, which os9exec does not present, so it starts and does nothing here. Its own documentation is nine files in DOC/osknet: start with howto.doc and useguide.doc.
+net|KA9Q net, Phil Karn's TCP/IP over SLIP or AX.25 -- the stack amateur radio ran on. Needs NETHOME, NETSPOOL and TMPDIR set and a real interface; see DOC/ka9q.
+dbz|The news history database from C News: `dbz [-a] [-x] [-c] database [file]...'. Part of a news system, not useful alone.
+finger|Asks another machine who is logged in: `finger <userid>'. Needs a network.
+msntp|Sets the clock from a network time server.

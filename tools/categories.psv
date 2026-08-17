@@ -883,3 +883,15 @@ txmod|Communications|Terminal & transfer
 uld|Communications|Terminal & transfer
 xydown|Communications|Terminal & transfer
 xyt|Communications|Terminal & transfer
+bdecode|Communications|News
+byteflip|Communications|News
+c7decode|Communications|News
+dbz|Communications|News
+newshist|Communications|News
+newslock|Communications|News
+atp|Communications|TCP/IP
+finger|Communications|TCP/IP
+infoxpress|Communications|TCP/IP
+msntp|Communications|TCP/IP
+net|Communications|TCP/IP
+osknet|Communications|TCP/IP
