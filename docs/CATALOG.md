@@ -1213,7 +1213,7 @@
 |---|---|
 | `add_errmsg` | &#9733; build vi's error-message file -- it wants /dd/SYS/vi_errmsg, which ships |
 | `argproc_demo` | demonstrates the RICO argument-processing library |
-| `ask` | ask a yes/no question in a shell script and set the status |
+| `ask` | ask a yes/no question in a shell script and set the status<br>**How:** Asks a yes/no question and sets the shell status, for scripts. On its own it says "No Wisecracks coming" -- it is the front half of the `wisecrack' pipe from EFFO forum 20. |
 | `bigsetter` | &#9733; Modula-2 set-operations demonstration |
 | `biory` | FORTRAN example: Biorhythm |
 | `btree` | B-tree file handling demonstration and test |
@@ -1222,13 +1222,13 @@
 | `creadoc` | extract documentation comments from FORTRAN source |
 | `demerge` | &#9733; split a merged file back into its parts<br>`Syntax:   demerge <path>` |
 | `devprc` | &#9733; report the device and process tables |
-| `em` | a screen editor (EFFO forum 3)<br>`Syntax: em [<opts>] [<filenames> [<opts>]]` |
-| `expreserve` | &#9733; preserve a vi buffer when the editor or the line dies |
-| `exrecover` | &#9733; recover a vi buffer that expreserve saved |
+| `em` | a screen editor (EFFO forum 3)<br>**How:** A screen editor. It stops with "Environment variable TERM not defined!" unless TERM is set -- SYS/login sets it, so run it from a login shell rather than bare. |
+| `expreserve` | &#9733; preserve a vi buffer when the editor or the line dies<br>**How:** Saves a vi buffer when the editor or the line dies; vi runs it for you rather than you running it. |
+| `exrecover` | &#9733; recover a vi buffer that expreserve saved<br>**How:** Recovers what expreserve saved. Again, vi's helper rather than a command you start. |
 | `fixyear` | Y2K: correct a date the clock got wrong<br>`Usage: fixyear [-opt] <file\|dir> <dir\|file> [-opt]` |
-| `fontgen` | generate a font for the Gepard display |
+| `fontgen` | generate a font for the Gepard display<br>**How:** Generates a character font for the Gepard display -- it prints the assembler source of an 80-column font on stdout. |
 | `getsys` | report the system's globals -- what OS-9 thinks it is running on<br>`Syntax: getsys [<opts>]` |
-| `ggrep` | &#9733; GNU grep, from the sh_utils collection<br>`usage: ggrep [-[[AB] ]<num>] [-[CEFGVchilnqsvwx]] [-[ef]] <expr> [<files...>]` |
+| `ggrep` | &#9733; GNU grep, from the sh_utils collection<br>**How:** GNU grep. `ggrep <expr> <files...>'; -E, -F, -i, -v, -w and the rest as you would expect. |
 | `modinfo` | report a module's header -- name, type, size, edition, CRC<br>`Syntax:   module [modulename]` |
 | `mvolformat` | format a multi-volume set<br>`Syntax: mvolformat drive volname volcount [format options]` |
 | `phone` | a phone-number book<br>`Syntax: phone <communication-path>` |
@@ -1236,7 +1236,7 @@
 | `setime2` | Y2K: set the system time, four-digit year<br>`Syntax:   setime2 [<opt>] [<setime2>] [<opt>]` |
 | `setyear` | Y2K: set the year directly<br>`Syntax:   setyear <YYYY>` |
 | `trunc` | truncate a file to a given length<br>`Syntax: trunc <path> <num>` |
-| `umacs` | &#9733; MicroEMACS -- a small Emacs, EFFO forum 1 |
+| `umacs` | &#9733; MicroEMACS -- a small Emacs, EFFO forum 1<br>**How:** A small Emacs (uMacs 1.0). Full-screen: it takes the display and shows "== uMacs 1.0 == main ==" at the foot. Needs a terminal; source `. /dd/SYS/termcap.entry' first if it will not draw. |
 | `vc` | visual compare of two files, side by side |
 | `xlharc` | extract LHarc archives<br>`Usage: xlharc {axevlufdmctp}[qnftv] archive_file [files or directories...]` |
 | `ynad` | yes/no answer dialogue for shell scripts |
