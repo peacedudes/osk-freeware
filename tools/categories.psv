@@ -976,3 +976,23 @@ mail|Communications|Mail
 disable|Communications|Mail
 enable|Communications|Mail
 maketexpk|Text tools|TeX
+apfel|Graphics & images|Hardware demos
+graphdemo|Graphics & images|Hardware demos
+graphsave|Graphics & images|Hardware demos
+showpic|Graphics & images|Hardware demos
+sine|Graphics & images|Hardware demos
+striche|Graphics & images|Hardware demos
+g|Graphics & images|Hardware demos
+graph|Graphics & images|Hardware demos
+cam|Graphics & images|Hardware demos
+lissaj|Graphics & images|Hardware demos
+lorenz3d|Graphics & images|Hardware demos
+wgen|Graphics & images|Hardware demos
+btop|System & modules|Utilities
+ptob|System & modules|Utilities
+break|System & modules|Utilities
+epson|System & modules|Utilities
+read_mail|System & modules|Utilities
+vecho|System & modules|Utilities
+ptxminst|System & modules|Utilities
+umusek|System & modules|Utilities

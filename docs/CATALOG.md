@@ -1,6 +1,6 @@
 # What is on this disk
 
-832 programs of OS-9/68K community software, gathered from the archives that kept it and made to run again. **631 of them need nothing but this disk**; the rest want Microware's `cio`, marked below with a star.
+852 programs of OS-9/68K community software, gathered from the archives that kept it and made to run again. **641 of them need nothing but this disk**; the rest want Microware's `cio`, marked below with a star.
 
 `DOC/INDEX` on the disk lists everything alphabetically. This is the same collection sorted by what each program is *for*, which is the more useful order when you do not yet know what you are looking for.
 
@@ -18,11 +18,11 @@
 | [Archives & compression](#archives--compression) | 35 | Pack, unpack and shrink -- lha, zip, tar, arc, zoo, and OS-9 module libraries. |
 | [Encoding & conversion](#encoding--conversion) | 26 | Between text encodings, line endings, number bases, ciphers and hashes. |
 | [Communications](#communications) | 51 | Kermit in several builds, terminal sessions, and networking. |
-| [Graphics & images](#graphics--images) | 192 | The netpbm toolkit, JPEG, a ray tracer, and things that draw. |
+| [Graphics & images](#graphics--images) | 204 | The netpbm toolkit, JPEG, a ray tracer, and things that draw. |
 | [Games](#games) | 66 | Adventures, board and card games, arcade ports, dungeon crawls and puzzles. |
 | [Screen toys](#screen-toys) | 6 | Things to watch rather than play. Start one and leave it going. |
 | [Amusements](#amusements) | 20 | Generators, simulators and diversions that are not quite games. |
-| [System & modules](#system--modules) | 120 | OS-9 module and process tools, devices, system state and scheduling. |
+| [System & modules](#system--modules) | 128 | OS-9 module and process tools, devices, system state and scheduling. |
 | [Disk & DOS](#disk--dos) | 20 | Reading and writing MS-DOS media with the mtools set. |
 | [Time & calendar](#time--calendar) | 10 | Calendars, clocks and astronomy. |
 | [Maths & calculators](#maths--calculators) | 13 | Calculators, plotting, orbits and number theory. |
@@ -796,7 +796,7 @@
 
 *The netpbm toolkit, JPEG, a ray tracer, and things that draw.*
 
-<details><summary>192 programs</summary>
+<details><summary>204 programs</summary>
 
 **NETPBM: edit & analyse**
 
@@ -981,6 +981,23 @@
 | `yuvsplittoppm` | yuvsplit to PPM (colour) |
 | `yuvtoppm` | Abekas YUV to PPM (colour)<br>**How:** yuvtoppm <width> <height>. The dimensions are not stored in a YUV file, so you must supply the ones ppmtoyuv started from. |
 | `zeisstopnm` | Zeiss confocal to PNM |
+
+**Hardware demos**
+
+| | |
+|---|---|
+| `apfel` | Mandelbrot (Apfelmaennchen) -- Atari GRAPH display |
+| `cam` | &#9733; Tektronix demo: camera |
+| `g` | &#9733; an Atari GRAPH demo pair with striche |
+| `graph` | Atari graphics demonstration |
+| `graphdemo` | Atari GRAPH demonstration |
+| `graphsave` | save an Atari GRAPH screen |
+| `lissaj` | &#9733; Tektronix demo: Lissajous figures |
+| `lorenz3d` | &#9733; Tektronix demo: the Lorenz attractor in 3D |
+| `showpic` | show a picture on the Atari GRAPH display |
+| `sine` | sine plot, Atari GRAPH |
+| `striche` | &#9733; line drawing, Atari GRAPH -- wants a `Graph' trap module |
+| `wgen` | Tektronix waveform generator |
 
 **JPEG**
 
@@ -1220,7 +1237,7 @@
 
 *OS-9 module and process tools, devices, system state and scheduling.*
 
-<details><summary>120 programs</summary>
+<details><summary>128 programs</summary>
 
 **Utilities**
 
@@ -1233,6 +1250,8 @@
 | `bigsetter` | &#9733; Modula-2 set-operations demonstration |
 | `biory` | FORTRAN example: Biorhythm |
 | `bootlogger` | &#9733; log what happens during boot |
+| `break` | &#9733; send a BREAK on a serial line (assembler example)<br>`Syntax: break` |
+| `btop` | &#9733; bitmap to Gepard fat-font<br>`Syntax:   BtoP [<opts>] [<path1>] [<opts>] [<path2>] [<opts>]` |
 | `btree` | B-tree file handling demonstration and test |
 | `clear` | clear the screen<br>`Syntax:   clear` |
 | `combine` | &#9733; combine files<br>`Syntax: combine [<file1>] [<file2>] [<outfile>] [<opt>]` |
@@ -1245,6 +1264,7 @@
 | `dload` | &#9733; download a file over a serial line<br>`Syntax: dload <filename>` |
 | `e` | SEDT editor, VT220 keys |
 | `em` | a screen editor (EFFO forum 3)<br>**How:** A screen editor. It stops with "Environment variable TERM not defined!" unless TERM is set -- SYS/login sets it, so run it from a login shell rather than bare. |
+| `epson` | &#9733; spline output driver for an Epson printer<br>`usage: epson [<opts>]` |
 | `every` | &#9733; run a command at intervals<br>`Syntax: every <time> <progname> [<progopts>]` |
 | `expreserve` | &#9733; preserve a vi buffer when the editor or the line dies<br>**How:** Saves a vi buffer when the editor or the line dies; vi runs it for you rather than you running it. |
 | `exrecover` | &#9733; recover a vi buffer that expreserve saved<br>**How:** Recovers what expreserve saved. Again, vi's helper rather than a command you start. |
@@ -1273,6 +1293,9 @@
 | `phone` | a phone-number book<br>`Syntax: phone <communication-path>` |
 | `preset` | preset memory to a pattern |
 | `pri` | change a process's priority |
+| `ptob` | &#9733; Gepard fat-font back to bitmap<br>`Syntax:   PtoB [<opts>] [<path1>] [<opts>] [<path2>] [<opts>]` |
+| `ptxminst` | install the pseudo-tty driver |
+| `read_mail` | &#9733; vi's mail-reading helper |
 | `repeat` | run a command over and over, with a delay<br>`syntax: repeat [number of repetitions] [OS-9 command]` |
 | `rndir` | &#9733; rename a directory<br>`Syntax: rndir [<opt>]` |
 | `scsiutil` | SCSI device utility<br>`Usage: SCSIutil [/scsi_dev@] <command>` |
@@ -1290,7 +1313,9 @@
 | `trunc` | truncate a file to a given length<br>`Syntax: trunc <path> <num>` |
 | `tty` | &#9733; report the terminal's name |
 | `umacs` | &#9733; MicroEMACS -- a small Emacs, EFFO forum 1<br>**How:** A small Emacs (uMacs 1.0). Full-screen: it takes the display and shows "== uMacs 1.0 == main ==" at the foot. Needs a terminal; source `. /dd/SYS/termcap.entry' first if it will not draw. |
+| `umusek` | UMusEK -- a music editor; wants a screen address |
 | `vc` | visual compare of two files, side by side |
+| `vecho` | echo without a newline (from less) |
 | `vlen` | &#9733; report a file's record length |
 | `xlharc` | extract LHarc archives<br>`Usage: xlharc {axevlufdmctp}[qnftv] archive_file [files or directories...]` |
 | `yagi` | Yagi antenna design calculator |
