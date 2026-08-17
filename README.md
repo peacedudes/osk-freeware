@@ -85,12 +85,12 @@ lines long, which is no help until you already know the name you want.
 | **Languages** | 6 | Interpreters and language systems beyond C. |
 | **Archives & compression** | 35 | Pack, unpack and shrink -- lha, zip, tar, arc, zoo, and OS-9 module libraries. |
 | **Encoding & conversion** | 26 | Between text encodings, line endings, number bases, ciphers and hashes. |
-| **Communications** | 38 | Kermit in several builds, terminal sessions, and networking. |
+| **Communications** | 51 | Kermit in several builds, terminal sessions, and networking. |
 | **Graphics & images** | 192 | The netpbm toolkit, JPEG, a ray tracer, and things that draw. |
-| **Games** | 64 | Adventures, board and card games, arcade ports, dungeon crawls and puzzles. |
+| **Games** | 66 | Adventures, board and card games, arcade ports, dungeon crawls and puzzles. |
 | **Screen toys** | 6 | Things to watch rather than play. Start one and leave it going. |
 | **Amusements** | 20 | Generators, simulators and diversions that are not quite games. |
-| **System & modules** | 80 | OS-9 module and process tools, devices, system state and scheduling. |
+| **System & modules** | 120 | OS-9 module and process tools, devices, system state and scheduling. |
 | **Disk & DOS** | 20 | Reading and writing MS-DOS media with the mtools set. |
 | **Time & calendar** | 10 | Calendars, clocks and astronomy. |
 | **Maths & calculators** | 13 | Calculators, plotting, orbits and number theory. |

@@ -915,3 +915,64 @@ cyberwar|Games|Other games
 dclock|Games|Other games
 dvips|Text tools|TeX
 afm2tfm|Text tools|TeX
+e|System & modules|Utilities
+new_e|System & modules|Utilities
+every|System & modules|Utilities
+greg|System & modules|Utilities
+isam|System & modules|Utilities
+lgrep|System & modules|Utilities
+liborder.os9|System & modules|Utilities
+lmargin|System & modules|Utilities
+lunisolar|System & modules|Utilities
+map|System & modules|Utilities
+mshell|System & modules|Utilities
+names|System & modules|Utilities
+preset|System & modules|Utilities
+pri|System & modules|Utilities
+rndir|System & modules|Utilities
+sqrtx|System & modules|Utilities
+submit|System & modules|Utilities
+suse|System & modules|Utilities
+suspend|System & modules|Utilities
+t_trtest|System & modules|Utilities
+testibc|System & modules|Utilities
+transfer|System & modules|Utilities
+tty|System & modules|Utilities
+vlen|System & modules|Utilities
+what|System & modules|Utilities
+yagi|System & modules|Utilities
+unpacklib.os9|System & modules|Utilities
+bcheck|System & modules|Utilities
+bootlogger|System & modules|Utilities
+combine|System & modules|Utilities
+cpu|System & modules|Utilities
+fastcc|System & modules|Utilities
+makecrc|System & modules|Utilities
+scsiutil|System & modules|Utilities
+spline|System & modules|Utilities
+demo|System & modules|Utilities
+lpsched|System & modules|Utilities
+dload|System & modules|Utilities
+snd_sig|System & modules|Utilities
+hinterhalt|System & modules|Utilities
+i_am_i|System & modules|Utilities
+lfmaker|System & modules|Utilities
+puzzle|Games|Other games
+scriptmaster|Games|Other games
+xy|Communications|Terminal & transfer
+z|Communications|Terminal & transfer
+k|Communications|Terminal & transfer
+uux|Communications|Mail
+uupoll|Communications|Mail
+lmail|Communications|Mail
+smail|Communications|Mail
+nptx|Communications|Mail
+pwparse|Communications|Mail
+lcasep|Communications|Mail
+pathalias|Communications|Mail
+makedb|Communications|Mail
+philmail|Communications|Mail
+mail|Communications|Mail
+disable|Communications|Mail
+enable|Communications|Mail
+maketexpk|Text tools|TeX

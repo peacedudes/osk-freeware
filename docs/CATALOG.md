@@ -1,6 +1,6 @@
 # What is on this disk
 
-777 programs of OS-9/68K community software, gathered from the archives that kept it and made to run again. **613 of them need nothing but this disk**; the rest want Microware's `cio`, marked below with a star.
+832 programs of OS-9/68K community software, gathered from the archives that kept it and made to run again. **631 of them need nothing but this disk**; the rest want Microware's `cio`, marked below with a star.
 
 `DOC/INDEX` on the disk lists everything alphabetically. This is the same collection sorted by what each program is *for*, which is the more useful order when you do not yet know what you are looking for.
 
@@ -17,12 +17,12 @@
 | [Languages](#languages) | 6 | Interpreters and language systems beyond C. |
 | [Archives & compression](#archives--compression) | 35 | Pack, unpack and shrink -- lha, zip, tar, arc, zoo, and OS-9 module libraries. |
 | [Encoding & conversion](#encoding--conversion) | 26 | Between text encodings, line endings, number bases, ciphers and hashes. |
-| [Communications](#communications) | 38 | Kermit in several builds, terminal sessions, and networking. |
+| [Communications](#communications) | 51 | Kermit in several builds, terminal sessions, and networking. |
 | [Graphics & images](#graphics--images) | 192 | The netpbm toolkit, JPEG, a ray tracer, and things that draw. |
-| [Games](#games) | 64 | Adventures, board and card games, arcade ports, dungeon crawls and puzzles. |
+| [Games](#games) | 66 | Adventures, board and card games, arcade ports, dungeon crawls and puzzles. |
 | [Screen toys](#screen-toys) | 6 | Things to watch rather than play. Start one and leave it going. |
 | [Amusements](#amusements) | 20 | Generators, simulators and diversions that are not quite games. |
-| [System & modules](#system--modules) | 80 | OS-9 module and process tools, devices, system state and scheduling. |
+| [System & modules](#system--modules) | 120 | OS-9 module and process tools, devices, system state and scheduling. |
 | [Disk & DOS](#disk--dos) | 20 | Reading and writing MS-DOS media with the mtools set. |
 | [Time & calendar](#time--calendar) | 10 | Calendars, clocks and astronomy. |
 | [Maths & calculators](#maths--calculators) | 13 | Calculators, plotting, orbits and number theory. |
@@ -702,7 +702,28 @@
 
 *Kermit in several builds, terminal sessions, and networking.*
 
-<details><summary>38 programs</summary>
+<details><summary>51 programs</summary>
+
+**Mail**
+
+| | |
+|---|---|
+| `disable` | &#9733; disable a UUCP device<br>`Syntax: disable <port>` |
+| `dotilde` | &#9733; expand ~user in a path, as the mailer does |
+| `enable` | &#9733; re-enable a UUCP device<br>`Syntax: enable [<opts>] <port> [<opts>]` |
+| `lcasep` | &#9733; lower-case a name for mail<br>`usage: lcasep [-f file] [-o outfile]` |
+| `lmail` | &#9733; local mail delivery<br>`Syntax: lmail <user name> {<user name>}` |
+| `mail` | &#9733; a simple mail sender<br>`Syntax: mail [<opts>] [<user>]` |
+| `mailx` | &#9733; the mail reader and sender |
+| `makedb` | build the alias database |
+| `nptx` | &#9733; expand a mail alias list |
+| `pathalias` | compute mail routes from a map<br>`usage: pathalias [-vciDfI] [-l localname] [-d deadlink] [-t tracelink] [-g edgeout] [-s treeout] [-a avoid] [files ...]` |
+| `philmail` | the philmail mailer |
+| `pwparse` | &#9733; parse the password file for the mailer |
+| `rmail` | &#9733; deliver incoming mail (invoked by uuxqt, not by you)<br>`usage: rmail [file] "site!user[@site]"` |
+| `smail` | &#9733; smart mail router<br>`Usage:   smail [<options>] address...` |
+| `uupoll` | &#9733; poll a site for waiting work<br>`Usage: uupoll [-g<grade>] system` |
+| `uux` | &#9733; run a command on another UUCP site<br>`Syntax: uux [<opts>] <host>!<prog> [<args>]` |
 
 **Terminal & session**
 
@@ -755,14 +776,6 @@
 | `kermit2` | Kermit file transfer (variant 2)<br>`Usage:   kermit c[le line esc.char]   (connect mode)` |
 | `kermit3` | Kermit file transfer (variant 3)<br>`Usage: kermit [-x arg [-x arg]...[-yyy]...]]` |
 | `xkermit` | &#9733; Kermit variant<br>`Usage: kermit c[le line esc.char]   (connect mode)` |
-
-**Mail**
-
-| | |
-|---|---|
-| `dotilde` | &#9733; expand ~user in a path, as the mailer does |
-| `mailx` | &#9733; the mail reader and sender |
-| `rmail` | &#9733; deliver incoming mail (invoked by uuxqt, not by you)<br>`usage: rmail [file] "site!user[@site]"` |
 
 **File transfer**
 
@@ -1028,7 +1041,7 @@
 
 *Adventures, board and card games, arcade ports, dungeon crawls and puzzles.*
 
-<details><summary>64 programs</summary>
+<details><summary>66 programs</summary>
 
 **Other games**
 
@@ -1045,6 +1058,8 @@
 | `mkindex` | bog - build the dictionary index |
 | `nobs` | cribbage (Colonel's program)<br>**How:** Full-screen: it takes over the display. **control-C gets you out** -- tested, and none of q, Q, control-D or ESC did. If it has a quit command of its own, its documentation in DOC/ will say. |
 | `piano` | &#9733; play notes -- piano <base note> <note duration><br>`syntax: piano <base note> <note duration>` |
+| `puzzle` | &#9733; sliding-tile puzzle for G-Windows |
+| `scriptmaster` | &#9733; G-Windows scripting tool<br>`Usage: scriptmaster -t=<title> -d=<directory>.` |
 | `stone` | stone -- a game, from the SNOBOL4-in-C package |
 | `teachgammon` | backgammon that teaches you the game as you play<br>`Usage:  backgammon [-] [n r w b pr pw pb t3a]` |
 | `tess` | tesselation puzzle |
@@ -1205,7 +1220,7 @@
 
 *OS-9 module and process tools, devices, system state and scheduling.*
 
-<details><summary>80 programs</summary>
+<details><summary>120 programs</summary>
 
 **Utilities**
 
@@ -1214,31 +1229,71 @@
 | `add_errmsg` | &#9733; build vi's error-message file -- it wants /dd/SYS/vi_errmsg, which ships |
 | `argproc_demo` | demonstrates the RICO argument-processing library |
 | `ask` | ask a yes/no question in a shell script and set the status<br>**How:** Asks a yes/no question and sets the shell status, for scripts. On its own it says "No Wisecracks coming" -- it is the front half of the `wisecrack' pipe from EFFO forum 20. |
+| `bcheck` | &#9733; check a boot file<br>`Syntax: bcheck [<opt>] [<filename>]` |
 | `bigsetter` | &#9733; Modula-2 set-operations demonstration |
 | `biory` | FORTRAN example: Biorhythm |
+| `bootlogger` | &#9733; log what happens during boot |
 | `btree` | B-tree file handling demonstration and test |
 | `clear` | clear the screen<br>`Syntax:   clear` |
+| `combine` | &#9733; combine files<br>`Syntax: combine [<file1>] [<file2>] [<outfile>] [<opt>]` |
 | `config` | the RICO configuration tool |
+| `cpu` | &#9733; CPU speed test |
 | `creadoc` | extract documentation comments from FORTRAN source |
 | `demerge` | &#9733; split a merged file back into its parts<br>`Syntax:   demerge <path>` |
+| `demo` | egetopt option-parsing demonstration |
 | `devprc` | &#9733; report the device and process tables |
+| `dload` | &#9733; download a file over a serial line<br>`Syntax: dload <filename>` |
+| `e` | SEDT editor, VT220 keys |
 | `em` | a screen editor (EFFO forum 3)<br>**How:** A screen editor. It stops with "Environment variable TERM not defined!" unless TERM is set -- SYS/login sets it, so run it from a login shell rather than bare. |
+| `every` | &#9733; run a command at intervals<br>`Syntax: every <time> <progname> [<progopts>]` |
 | `expreserve` | &#9733; preserve a vi buffer when the editor or the line dies<br>**How:** Saves a vi buffer when the editor or the line dies; vi runs it for you rather than you running it. |
 | `exrecover` | &#9733; recover a vi buffer that expreserve saved<br>**How:** Recovers what expreserve saved. Again, vi's helper rather than a command you start. |
+| `fastcc` | &#9733; a faster front end for cc |
 | `fixyear` | Y2K: correct a date the clock got wrong<br>`Usage: fixyear [-opt] <file\|dir> <dir\|file> [-opt]` |
 | `fontgen` | generate a font for the Gepard display<br>**How:** Generates a character font for the Gepard display -- it prints the assembler source of an 80-column font on stdout. |
 | `getsys` | report the system's globals -- what OS-9 thinks it is running on<br>`Syntax: getsys [<opts>]` |
 | `ggrep` | &#9733; GNU grep, from the sh_utils collection<br>**How:** GNU grep. `ggrep <expr> <files...>'; -E, -F, -i, -v, -w and the rest as you would expect. |
+| `greg` | &#9733; regular-expression search demo |
+| `hinterhalt` | &#9733; a small game (EFFO forum 7) |
+| `i_am_i` | prints its own source (Pascal) |
+| `isam` | &#9733; indexed-sequential file demonstration |
+| `lfmaker` | make a G-Windows launch file |
+| `lgrep` | &#9733; line grep<br>`Syntax: lgrep <arg1> ... <argn>` |
+| `liborder.os9` | report the order of modules in a library<br>`Usage: liborder <options> file1.r file2.r ...` |
+| `lmargin` | &#9733; set a left margin on text<br>`usage: epson [<opts>]` |
+| `lpsched` | &#9733; the line-printer scheduler<br>`Syntax: lpsched [-r] {<devname>}` |
+| `lunisolar` | &#9733; lunar and solar position calculator |
+| `makecrc` | compute a CRC |
+| `map` | &#9733; memory map display<br>`Syntax: map [<opts>] <file> {<file>}` |
 | `modinfo` | report a module's header -- name, type, size, edition, CRC<br>`Syntax:   module [modulename]` |
+| `mshell` | &#9733; a small shell |
 | `mvolformat` | format a multi-volume set<br>`Syntax: mvolformat drive volname volcount [format options]` |
+| `names` | &#9733; list the names of modules in a file |
+| `new_e` | SEDT editor, generic terminal |
 | `phone` | a phone-number book<br>`Syntax: phone <communication-path>` |
+| `preset` | preset memory to a pattern |
+| `pri` | change a process's priority |
 | `repeat` | run a command over and over, with a delay<br>`syntax: repeat [number of repetitions] [OS-9 command]` |
+| `rndir` | &#9733; rename a directory<br>`Syntax: rndir [<opt>]` |
+| `scsiutil` | SCSI device utility<br>`Usage: SCSIutil [/scsi_dev@] <command>` |
 | `setime2` | Y2K: set the system time, four-digit year<br>`Syntax:   setime2 [<opt>] [<setime2>] [<opt>]` |
 | `setyear` | Y2K: set the year directly<br>`Syntax:   setyear <YYYY>` |
+| `snd_sig` | &#9733; send a signal to a process<br>`Syntax:   snd_sig [-options] pid pid1...pidn` |
+| `spline` | &#9733; fit a spline through points, output PostScript |
+| `sqrtx` | square-root demonstration |
+| `submit` | &#9733; submit a job to the print spooler<br>`Syntax: submit [<opts>] [<submit file>] [{<parameter>)]` |
+| `suse` | show a program's usage line |
+| `suspend` | &#9733; suspend a process<br>`Syntax  : suspend  [<processname>]  [<opt>]` |
+| `t_trtest` | RICO trap-handler test |
+| `testibc` | IEEE binary-coded test (Pascal) |
+| `transfer` | &#9733; transfer a file between devices<br>`Syntax: transfer` |
 | `trunc` | truncate a file to a given length<br>`Syntax: trunc <path> <num>` |
+| `tty` | &#9733; report the terminal's name |
 | `umacs` | &#9733; MicroEMACS -- a small Emacs, EFFO forum 1<br>**How:** A small Emacs (uMacs 1.0). Full-screen: it takes the display and shows "== uMacs 1.0 == main ==" at the foot. Needs a terminal; source `. /dd/SYS/termcap.entry' first if it will not draw. |
 | `vc` | visual compare of two files, side by side |
+| `vlen` | &#9733; report a file's record length |
 | `xlharc` | extract LHarc archives<br>`Usage: xlharc {axevlufdmctp}[qnftv] archive_file [files or directories...]` |
+| `yagi` | Yagi antenna design calculator |
 | `ynad` | yes/no answer dialogue for shell scripts |
 
 **Processes & memory**
