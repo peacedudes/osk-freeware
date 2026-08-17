@@ -856,3 +856,20 @@ adlcomp|Languages|Adventure authoring
 adldebug|Languages|Adventure authoring
 adlrun|Languages|Adventure authoring
 adltouch|Languages|Adventure authoring
+modinfo|System & modules|Utilities
+btree|System & modules|Utilities
+clear|System & modules|Utilities
+repeat|System & modules|Utilities
+phone|System & modules|Utilities
+trunc|System & modules|Utilities
+getsys|System & modules|Utilities
+mvolformat|System & modules|Utilities
+vc|System & modules|Utilities
+ynad|System & modules|Utilities
+xlharc|System & modules|Utilities
+fixyear|System & modules|Utilities
+setyear|System & modules|Utilities
+setime2|System & modules|Utilities
+backgammon|Games|Other games
+teachgammon|Games|Other games
+wisecrack|Games|Other games
