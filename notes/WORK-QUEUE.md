@@ -16,13 +16,14 @@ Read the top unticked item, do it, tick it, go on. Written 2026-08-16 so that
 
 ## To do
 
-- [ ] **GNU ATP 1.40** (6) -- news transport: dbz, newshist, newslock, bdecode,
+- [x] **C News** (6, mislabelled GNU_ATP) -- CMDS/NEWS
+- [x] ~~GNU ATP 1.40~~ (6) -- news transport: dbz, newshist, newslock, bdecode,
       c7decode, byteflip. Licence: GPL (it says GNU).
-- [ ] **networking** -- KA9Q net (3 builds), osknet, msntp, finger, atp,
+- [x] **networking** (6) -- CMDS/NETWORK: KA9Q net, osknet, atp, msntp, finger, infoxpress -- KA9Q net (3 builds), osknet, msntp, finger, atp,
       infoxpress. All want a network; preserve, do not expect to demo.
-- [ ] **EFFO leftovers** -- forum4/5/6/7/11/13/15/16 utilities not yet taken.
+- [x] **EFFO leftovers** -- 61 + 20 more taken across CMDS, GAMES, COMMS, UUCP -- forum4/5/6/7/11/13/15/16 utilities not yet taken.
       Check each for a data file it needs before installing.
-- [ ] **uucp_lzh (Blars UUCP)** (5) -- a SECOND uucp implementation; decide
+- [x] **Blars UUCP** -- taken into CMDS/UUCP with its own USR/LIB/UUCP config -- a SECOND uucp implementation; decide
       whether it belongs beside UUCPbb or in REBUILT as an alternate.
 - [ ] **RCIS** (37 programs + 81 BASIC09 modules) -- needs Microware's `runb`,
       which we have no permission for. Document; probably do not ship.
