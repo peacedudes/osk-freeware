@@ -1,0 +1,1 @@
+mpu		: *.adl ../../adlcomp/adlcomp ../standard.adl	adlcomp mpu.adl -i.. -o mpu

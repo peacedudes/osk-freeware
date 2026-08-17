@@ -1,0 +1,1 @@
+This directory contains several dungeons intended to demonstrate specificfeatures of ADL.  They are as follows:	actdemo.adl		-- Demonstrates multiple Actors and fuses	baby.adl		-- Demonstrates standard.adl	multi.adl		-- Demonstrates multiple Players	tiny.adl		-- Dungeon included in ADL documentTo make these dungeons, simply type "make" in this directory.

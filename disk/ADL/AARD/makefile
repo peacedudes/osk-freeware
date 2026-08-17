@@ -1,0 +1,1 @@
+aard		: *.adl ../../adlcomp/adlcomp ../standard.adl	adlcomp aard.adl -w -o aard -i..

@@ -1,0 +1,1 @@
+actdemo		: actdemo.adl ../standard.adl	adlcomp actdemo.adl -o actdemo -i ..baby		: baby.adl ../standard.adl	adlcomp baby.adl -i.. -o babymulti		: multi.adl	adlcomp multi.adl -o multitiny		: tiny.adl ../standard.adl	adlcomp tiny.adl -i.. -o tiny

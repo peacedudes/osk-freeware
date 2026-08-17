@@ -168,3 +168,18 @@ Genuinely still wrong:
 - **pow** wants a controller at `/x1`, and **initvdu** wants particular VDU
   hardware. Neither is a defect; both are noted as needing the machine.
 
+## An os9exec bug, found by running ADL (2026-08-16)
+
+`adlrun` reading a compiled world from a HOST-DIRECTORY mount stops with
+
+    Assertion failed: (buffer!=NULL), function pFread,
+    file fileaccess.c, line 336.
+
+The same world on an RBF image plays. So os9exec's host-directory read path
+has a case ADL reaches and RBF does not -- worth a look in
+Source/OS9exec_core/fileaccess.c. Reproduce:
+
+    adlcomp /dd/ADL/DEMOS/tiny.adl -o /h6/tiny -i /dd/ADL   # /h6 a host dir
+    adlrun /h6/tiny                                          # asserts
+    adlcomp ... -o /dd/tmp/tiny ... ; adlrun /dd/tmp/tiny     # fine
+
