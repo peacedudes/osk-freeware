@@ -722,8 +722,8 @@
 | `pwparse` | &#9733; parse the password file for the mailer |
 | `rmail` | &#9733; deliver incoming mail (invoked by uuxqt, not by you)<br>`usage: rmail [file] "site!user[@site]"` |
 | `smail` | &#9733; smart mail router<br>`Usage:   smail [<options>] address...` |
-| `uupoll` | &#9733; poll a site for waiting work<br>`Usage: uupoll [-g<grade>] system` |
-| `uux` | &#9733; run a command on another UUCP site<br>`Syntax: uux [<opts>] <host>!<prog> [<args>]` |
+| `uupoll` | &#9733; poll a site for waiting work<br>**How:** Polls a UUCP site for waiting work. Blars uucp; wants the `uucp' user, which SYS/password now has. |
+| `uux` | &#9733; run a command on another UUCP site<br>**How:** Runs a command on another UUCP site. This is BLARS uucp, which reads USR/LIB/UUCP/Config -- a different configuration from UUCPbb's SYS/UUCP. Both ship. |
 
 **Terminal & session**
 

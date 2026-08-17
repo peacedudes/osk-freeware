@@ -164,3 +164,6 @@ fontgen|Generates a character font for the Gepard display -- it prints the assem
 expreserve|Saves a vi buffer when the editor or the line dies; vi runs it for you rather than you running it.
 exrecover|Recovers what expreserve saved. Again, vi's helper rather than a command you start.
 dvips|DVI to PostScript. `dvips <file>.dvi'. Pair it with gs33 (ETC/LIB/GS33) to see the result without a printer.
+elm|The full-screen mail reader. On first run it offers to create a .elm directory in your home for its elmrc and aliases -- say y. Mail lives at /dd/SPOOL/MAIL/<user> and SYS/login points MAIL there; `readmsg 1' prints a message without opening the reader.
+uux|Runs a command on another UUCP site. This is BLARS uucp, which reads USR/LIB/UUCP/Config -- a different configuration from UUCPbb's SYS/UUCP. Both ship.
+uupoll|Polls a UUCP site for waiting work. Blars uucp; wants the `uucp' user, which SYS/password now has.
