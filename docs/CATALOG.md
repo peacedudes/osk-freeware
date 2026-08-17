@@ -1,6 +1,6 @@
 # What is on this disk
 
-759 programs of OS-9/68K community software, gathered from the archives that kept it and made to run again. **605 of them need nothing but this disk**; the rest want Microware's `cio`, marked below with a star.
+777 programs of OS-9/68K community software, gathered from the archives that kept it and made to run again. **613 of them need nothing but this disk**; the rest want Microware's `cio`, marked below with a star.
 
 `DOC/INDEX` on the disk lists everything alphabetically. This is the same collection sorted by what each program is *for*, which is the more useful order when you do not yet know what you are looking for.
 
@@ -19,10 +19,10 @@
 | [Encoding & conversion](#encoding--conversion) | 26 | Between text encodings, line endings, number bases, ciphers and hashes. |
 | [Communications](#communications) | 38 | Kermit in several builds, terminal sessions, and networking. |
 | [Graphics & images](#graphics--images) | 192 | The netpbm toolkit, JPEG, a ray tracer, and things that draw. |
-| [Games](#games) | 61 | Adventures, board and card games, arcade ports, dungeon crawls and puzzles. |
+| [Games](#games) | 64 | Adventures, board and card games, arcade ports, dungeon crawls and puzzles. |
 | [Screen toys](#screen-toys) | 6 | Things to watch rather than play. Start one and leave it going. |
 | [Amusements](#amusements) | 20 | Generators, simulators and diversions that are not quite games. |
-| [System & modules](#system--modules) | 65 | OS-9 module and process tools, devices, system state and scheduling. |
+| [System & modules](#system--modules) | 80 | OS-9 module and process tools, devices, system state and scheduling. |
 | [Disk & DOS](#disk--dos) | 20 | Reading and writing MS-DOS media with the mtools set. |
 | [Time & calendar](#time--calendar) | 10 | Calendars, clocks and astronomy. |
 | [Maths & calculators](#maths--calculators) | 13 | Calculators, plotting, orbits and number theory. |
@@ -1028,7 +1028,31 @@
 
 *Adventures, board and card games, arcade ports, dungeon crawls and puzzles.*
 
-<details><summary>61 programs</summary>
+<details><summary>64 programs</summary>
+
+**Other games**
+
+| | |
+|---|---|
+| `backgammon` | backgammon, with a computer opponent<br>`Usage:  backgammon [-] [n r w b pr pw pb t3a]` |
+| `colortest` | G-Windows colour chart |
+| `convert` | world - build its data tables |
+| `cyberwar` | &#9733; CyberWar -- Stephen Carville's game, needs G-Windows |
+| `dclock` | &#9733; a digital clock for G-Windows<br>`Usage: dclock [options]` |
+| `fuddle` | chess - fuddle variant |
+| `hotel` | &#9733; hotel -- two-player board game, played by coordinates<br>**How:** Full-screen: it takes over the display. **control-C gets you out** -- tested, and none of q, Q, control-D or ESC did. If it has a quit command of its own, its documentation in DOC/ will say. |
+| `mkdict` | bog - build the dictionary |
+| `mkindex` | bog - build the dictionary index |
+| `nobs` | cribbage (Colonel's program)<br>**How:** Full-screen: it takes over the display. **control-C gets you out** -- tested, and none of q, Q, control-D or ESC did. If it has a quit command of its own, its documentation in DOC/ will say. |
+| `piano` | &#9733; play notes -- piano <base note> <note duration><br>`syntax: piano <base note> <note duration>` |
+| `stone` | stone -- a game, from the SNOBOL4-in-C package |
+| `teachgammon` | backgammon that teaches you the game as you play<br>`Usage:  backgammon [-] [n r w b pr pw pb t3a]` |
+| `tess` | tesselation puzzle |
+| `tt` | typing/terminal game<br>**How:** Full-screen: it takes over the display. **`q' quits** -- tested. |
+| `vtxtcn` | world - build its text tables |
+| `wisecrack` | prints a wisecrack; a pipe fitting for other programs |
+| `world` | World - text adventure |
+| `zot` | Zot - arcade game |
 
 **Board & card**
 
@@ -1050,27 +1074,6 @@
 | `poker` | poker -- from the SNOBOL4-in-C package, see below |
 | `queens` | N-queens solver -- IOCCC entry by M. Baruch; reads N on stdin |
 | `tttt` | tic-tac-toe<br>**How:** Full-screen: it takes over the display. **`q' quits** -- tested. |
-
-**Other games**
-
-| | |
-|---|---|
-| `backgammon` | backgammon, with a computer opponent<br>`Usage:  backgammon [-] [n r w b pr pw pb t3a]` |
-| `convert` | world - build its data tables |
-| `fuddle` | chess - fuddle variant |
-| `hotel` | &#9733; hotel -- two-player board game, played by coordinates<br>**How:** Full-screen: it takes over the display. **control-C gets you out** -- tested, and none of q, Q, control-D or ESC did. If it has a quit command of its own, its documentation in DOC/ will say. |
-| `mkdict` | bog - build the dictionary |
-| `mkindex` | bog - build the dictionary index |
-| `nobs` | cribbage (Colonel's program)<br>**How:** Full-screen: it takes over the display. **control-C gets you out** -- tested, and none of q, Q, control-D or ESC did. If it has a quit command of its own, its documentation in DOC/ will say. |
-| `piano` | &#9733; play notes -- piano <base note> <note duration><br>`syntax: piano <base note> <note duration>` |
-| `stone` | stone -- a game, from the SNOBOL4-in-C package |
-| `teachgammon` | backgammon that teaches you the game as you play<br>`Usage:  backgammon [-] [n r w b pr pw pb t3a]` |
-| `tess` | tesselation puzzle |
-| `tt` | typing/terminal game<br>**How:** Full-screen: it takes over the display. **`q' quits** -- tested. |
-| `vtxtcn` | world - build its text tables |
-| `wisecrack` | prints a wisecrack; a pipe fitting for other programs |
-| `world` | World - text adventure |
-| `zot` | Zot - arcade game |
 
 **Arcade & action**
 
@@ -1202,16 +1205,30 @@
 
 *OS-9 module and process tools, devices, system state and scheduling.*
 
-<details><summary>65 programs</summary>
+<details><summary>80 programs</summary>
 
 **Utilities**
 
 | | |
 |---|---|
+| `add_errmsg` | &#9733; build vi's error-message file -- it wants /dd/SYS/vi_errmsg, which ships |
+| `argproc_demo` | demonstrates the RICO argument-processing library |
+| `ask` | ask a yes/no question in a shell script and set the status |
+| `bigsetter` | &#9733; Modula-2 set-operations demonstration |
+| `biory` | FORTRAN example: Biorhythm |
 | `btree` | B-tree file handling demonstration and test |
 | `clear` | clear the screen<br>`Syntax:   clear` |
+| `config` | the RICO configuration tool |
+| `creadoc` | extract documentation comments from FORTRAN source |
+| `demerge` | &#9733; split a merged file back into its parts<br>`Syntax:   demerge <path>` |
+| `devprc` | &#9733; report the device and process tables |
+| `em` | a screen editor (EFFO forum 3)<br>`Syntax: em [<opts>] [<filenames> [<opts>]]` |
+| `expreserve` | &#9733; preserve a vi buffer when the editor or the line dies |
+| `exrecover` | &#9733; recover a vi buffer that expreserve saved |
 | `fixyear` | Y2K: correct a date the clock got wrong<br>`Usage: fixyear [-opt] <file\|dir> <dir\|file> [-opt]` |
+| `fontgen` | generate a font for the Gepard display |
 | `getsys` | report the system's globals -- what OS-9 thinks it is running on<br>`Syntax: getsys [<opts>]` |
+| `ggrep` | &#9733; GNU grep, from the sh_utils collection<br>`usage: ggrep [-[[AB] ]<num>] [-[CEFGVchilnqsvwx]] [-[ef]] <expr> [<files...>]` |
 | `modinfo` | report a module's header -- name, type, size, edition, CRC<br>`Syntax:   module [modulename]` |
 | `mvolformat` | format a multi-volume set<br>`Syntax: mvolformat drive volname volcount [format options]` |
 | `phone` | a phone-number book<br>`Syntax: phone <communication-path>` |
@@ -1219,6 +1236,7 @@
 | `setime2` | Y2K: set the system time, four-digit year<br>`Syntax:   setime2 [<opt>] [<setime2>] [<opt>]` |
 | `setyear` | Y2K: set the year directly<br>`Syntax:   setyear <YYYY>` |
 | `trunc` | truncate a file to a given length<br>`Syntax: trunc <path> <num>` |
+| `umacs` | &#9733; MicroEMACS -- a small Emacs, EFFO forum 1 |
 | `vc` | visual compare of two files, side by side |
 | `xlharc` | extract LHarc archives<br>`Usage: xlharc {axevlufdmctp}[qnftv] archive_file [files or directories...]` |
 | `ynad` | yes/no answer dialogue for shell scripts |

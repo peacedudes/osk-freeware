@@ -895,3 +895,23 @@ infoxpress|Communications|TCP/IP
 msntp|Communications|TCP/IP
 net|Communications|TCP/IP
 osknet|Communications|TCP/IP
+add_errmsg|System & modules|Utilities
+argproc_demo|System & modules|Utilities
+ask|System & modules|Utilities
+biory|System & modules|Utilities
+bigsetter|System & modules|Utilities
+config|System & modules|Utilities
+creadoc|System & modules|Utilities
+demerge|System & modules|Utilities
+devprc|System & modules|Utilities
+em|System & modules|Utilities
+expreserve|System & modules|Utilities
+exrecover|System & modules|Utilities
+fontgen|System & modules|Utilities
+ggrep|System & modules|Utilities
+umacs|System & modules|Utilities
+colortest|Games|Other games
+cyberwar|Games|Other games
+dclock|Games|Other games
+dvips|Text tools|TeX
+afm2tfm|Text tools|TeX
