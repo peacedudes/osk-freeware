@@ -1,0 +1,1 @@
+# aliases -- Elm alias file. Add lines of the form#   short = Full Name = address# then run newalias to rebuild the database Elm reads.

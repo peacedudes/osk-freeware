@@ -139,3 +139,8 @@ slitex|LaTeX for slides; its format is SYS/TEX/FORMATS/splain.fmt, already built
 dvitype|Shows what is inside a .dvi file as readable text. `dvitype <file>.dvi', then it asks for an output level -- 4 is a complete listing, 0 errors only.
 dvips|DVI to PostScript. Pair it with gs33 (ETC/LIB/GS33) to see the result without a printer.
 MakeTeXPK|Generates the bitmap font TeX asked for, at the size it wants, by running MetaFont. That is why the .pk fonts are not shipped -- they are made for your device.
+elm|The full-screen mail reader. It needs a password entry it can parse and currently stops with "You have no password entry!" -- its OSK library reads /DD/SYS/Password but does not accept this disk's entries. The rest of the suite works: `readmsg 1' prints a message, `messages' counts the folder. Mail lives at /dd/SPOOL/MAIL/<user>, and SYS/login points MAIL at it.
+readmsg|Prints messages from a mail folder: `readmsg 1' for the first. Tested -- it reads the welcome message in /dd/SPOOL/MAIL/tester.
+messages|Counts what is in your mail folder. Tested: "There is 1 message in your mailbox".
+frm|Lists who your mail is from, one line each. Reads $MAIL, which SYS/login sets.
+newalias|Rebuilds the Elm alias database from USR/LIB/ELM/aliases.text after you edit it.
