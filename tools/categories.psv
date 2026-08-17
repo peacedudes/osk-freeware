@@ -802,3 +802,33 @@ math881|System & modules|Microware runtime
 keep|System & modules|Keeping and dropping
 drop|System & modules|Keeping and dropping
 kept|System & modules|Keeping and dropping
+bibtex|Text tools|TeX
+dvialw|Text tools|DVI drivers
+dvidjp|Text tools|DVI drivers
+dvieps|Text tools|DVI drivers
+dviimp|Text tools|DVI drivers
+dvijep|Text tools|DVI drivers
+dvijet|Text tools|DVI drivers
+dvilj2|Text tools|DVI drivers
+dvimac|Text tools|DVI drivers
+dvioki|Text tools|DVI drivers
+dvitos|Text tools|DVI drivers
+dvitype|Text tools|TeX
+gftopk|Text tools|TeX
+gftype|Text tools|TeX
+inimf|Text tools|TeX
+initex|Text tools|TeX
+latex|Text tools|TeX
+pktogf|Text tools|TeX
+pktype|Text tools|TeX
+pltotf|Text tools|TeX
+slitex|Text tools|TeX
+tangle|Text tools|TeX
+tex|Text tools|TeX
+texidx|Text tools|TeX
+tftopl|Text tools|TeX
+vftovp|Text tools|TeX
+virmf|Text tools|TeX
+virtex|Text tools|TeX
+vptovf|Text tools|TeX
+weave|Text tools|TeX

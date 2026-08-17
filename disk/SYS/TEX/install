@@ -1,0 +1,1 @@
+-t** First, build the TeX, LaTeX, and SliTeX format files*(chd formats; install.script)** Now, build the MetaFont base files.  "Plain" is the* MetaFont language described in the MetaFontBook,* while "cmbase" is used to build the Computer Modern* fonts.*(chd mfbases; install.script)** All done!*

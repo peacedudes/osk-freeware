@@ -1,0 +1,1 @@
+% slant font for slope 1/6 on the Doverif mode<>dover: errmessage "This file is for dover only"; fis=1/6;n=30;r#=.4;u=2; % an approximation to r in pixelsfont_identifier "SLANTDOVER6";input slant

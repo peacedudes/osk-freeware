@@ -1,0 +1,1 @@
+% Gray font for Dover with proofsheet resolution 96 pixels per inchif mode<>dover: errmessage "This file is for dover only"; fifont_identifier "GRAYDOVER";input grayf

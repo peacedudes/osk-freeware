@@ -1,0 +1,1 @@
+% Black font for Dover with proofsheet resolution 96 pixels per inchif mode<>dover: errmessage "This file is for dover only"; fifont_identifier "BLACKDOVER";picture pix_picture; pix_wd := pix_ht := 4;pix_picture := unitpixel scaled 4;input grayf

@@ -1,0 +1,1 @@
+** Build the MetaFont base files**-tinimf 'plain; \input modes; dump'inimf '&plain cmbase dump'del *.logattr -pr -r *

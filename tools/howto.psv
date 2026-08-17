@@ -132,3 +132,10 @@ pow|Wants a hardware controller at /x1 and cannot run without it.
 launch|Says "nothing to launch" until it is configured -- see its documentation.
 initvdu|Answers "is not defined for this terminal": it sets up specific VDU hardware, not a general terminal.
 hack|RUN IT BY ITS FULL PATH: `/dd/CMDS/GAMES/hack', not `hack'. It chdirs into its playground and then stats argv[0] to date-check saved levels, so a bare name cannot resolve and it stops with "Cannot get status of hack." Invoked in full it starts: "Are you an experienced player?". Its playground -- record, bones, rumors, help -- is in GAMES/HACK/PLAYGROUND.
+virtex|The real TeX engine. It needs a FORMAT: `virtex "&/dd/SYS/TEX/FORMATS/plain <file>.tex"'. Tested end to end -- it typesets and reports "Output written on <file>.dvi". `tex' is a small driver in front of it.
+initex|TeX with no format preloaded -- this is what BUILDS the .fmt files. `initex "plain \dump"'. The three formats already ship in SYS/TEX/FORMATS, built this way, so you only need this to make your own.
+latex|LaTeX. Its format is SYS/TEX/FORMATS/lplain.fmt, already built: `virtex "&/dd/SYS/TEX/FORMATS/lplain <file>.tex"'.
+slitex|LaTeX for slides; its format is SYS/TEX/FORMATS/splain.fmt, already built.
+dvitype|Shows what is inside a .dvi file as readable text. `dvitype <file>.dvi', then it asks for an output level -- 4 is a complete listing, 0 errors only.
+dvips|DVI to PostScript. Pair it with gs33 (ETC/LIB/GS33) to see the result without a printer.
+MakeTeXPK|Generates the bitmap font TeX asked for, at the size it wants, by running MetaFont. That is why the .pk fonts are not shipped -- they are made for your device.

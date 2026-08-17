@@ -1,0 +1,1 @@
+% 12-point cmcsc.design_size := 12.000000;input build_cmcsc;

@@ -1,0 +1,1 @@
+% temporary kludge to make the QMS font for proofmode with new MFmagnification 1.0;tfmmode;fontfacebyte 84;ppi=300; % pixels per inchfontidentifier "FIG";codingscheme "GFGRAY";input gray;end

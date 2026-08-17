@@ -1,0 +1,1 @@
+% 17-point cmsy.design_size := 17.280001;input build_cmsy;
