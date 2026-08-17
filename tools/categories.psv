@@ -846,3 +846,9 @@ newalias|Communications|Mail
 newmail|Communications|Mail
 printmail|Communications|Mail
 readmsg|Communications|Mail
+authwn|Communications|Web server
+inetd|Communications|Web server
+inetdc|Communications|Web server
+wn|Communications|Web server
+wn.stb|Communications|Web server
+wndex|Communications|Web server

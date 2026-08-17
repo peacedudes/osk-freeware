@@ -1,0 +1,1 @@
+WN keeps its log here.The path /h0/c/unid/wn_1.14.3/osk/logs is compiled into the wn binary --it is where the person who ported it kept the source. Since this collectionis /h0, the directory exists here so wn can open its log and start.

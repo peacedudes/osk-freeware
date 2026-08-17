@@ -144,3 +144,6 @@ readmsg|Prints messages from a mail folder: `readmsg 1' for the first. Tested --
 messages|Counts what is in your mail folder. Tested: "There is 1 message in your mailbox".
 frm|Lists who your mail is from, one line each. Reads $MAIL, which SYS/login sets.
 newalias|Rebuilds the Elm alias database from USR/LIB/ELM/aliases.text after you edit it.
+wn|A real HTTP server (WN 1.14.3, GPL). It starts and opens its log -- the path /h0/c/unid/wn_1.14.3/osk/logs is compiled into the binary, and that directory is on this disk so it can. What it cannot do here is serve: os9exec has no network. On a machine with TCP/IP it is the real thing. Its manual is 30 HTML files in DOC/wn.
+wndex|Builds the index WN serves from. Run it in a directory you want published; on its own it says "Can't open ./index -- skipping it", which means there is nothing there to index yet.
+inetd|The listener that hands incoming connections to wn. Needs a network.
