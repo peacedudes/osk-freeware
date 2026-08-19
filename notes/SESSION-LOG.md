@@ -207,22 +207,46 @@ The last fifteen traced. Four want a file that is not here (`bootlogger`,
 with a byte count of `$FFFFFF80` — minus 128 — and gets `E_BPADDR`. `ls` does
 the same job and works.
 
+**`Core: the VMod_trap library from the pool, and oleo's F$RTE diagnosed`**
+`rxmod` asked `F$TLink` for `VMod_trap` and got `E_PNNF`. The library was in
+the pool (EFFO forum 15, the SERLOAD utilities) — and its module name was
+lowercase `vmod_trap`, **the same case mismatch as `graph`**, so it could never
+have worked on real OS-9 either. Renamed, CRC recomputed, both checked good
+before and after. The trap now installs; the library then bus-errors because
+`M$Attr` is `$A0` — supervisor state — exactly like Graph. Assembler source in
+`SRC/serload`.
+`trap` turned out not to be silent at all: it prints `tlink: -1` and names the
+handler it wanted. `oleo` calls **`F$RTE`**, which kills the caller unless it
+is genuinely inside an intercept routine; execution then resumes at a bad
+address and takes `Illegal instruction: 000b`.
+
+**`Docs: the five never-assessed categories, assessed -- 65 absent modules`**
+`AUDIT-pool.md` feared a large backlog in DRIVERS, EFFO, GWINDOWS, NETWORK and
+TELECOM. Measured: **537 distinct modules, only 65 not already on the disk**,
+and most of those are other people's hardware — Gepard, Atari and CT68000
+descriptors and drivers — or already-refused packages (rz/sz, samba, the KWIN
+shareware, msfm). Full write-up in `notes/POOL-ASSESSMENT.md`.
+**One find matters: a Microware `fpu` sitting loose inside `TELECOM/STerm68k`,
+14,572 bytes against the SDK's 12,848** — a different build, so neither hashing
+nor line overlap would have caught it. Caught by name. The screener now carries
+a named-module denylist (`fpu`, `fpu040`, `cio020`, `p2init`, `os9p1`, `rbf`,
+`scf`, …) and explicitly **exempts the five Microware did permit**, so a later
+pass cannot "fix" the disk by deleting `cio`, `csl`, `csl020`, `math` or
+`math881`.
+
 ---
 
 ## Still open, in plan order
 
 - **E3** — the remaining 195 trap-free rebuilds, ~4.9 MB. The clean-overlay
   build path is now proven, so this is mechanical but wants care per program.
-- **B2** — the five SNOBOL4 games, one shared code path.
-- **B5** — `firq`/`souper`/`sysmem`: whether OS-9/68k specifies `A0` at entry.
-  Answerable from the v2.4 Technical Reference, now available in `txtResources`.
-- **B6/B7/B8** — `oleo`, `rxmod`, `trap`; the remaining 20 silent programs;
-  the ten that start and then fail.
+- **B8** — the ten that start and then fail later, and the unknown quit keys
+  for `digclk`, `draw`, `sc`, `sh`, `vi_cio`.
 - **B9** — `ksh`'s interactive loop; pdksh source is at `SRC/pdksh/sh/`.
-- **C1/C2** — the documentation sweep: ~383 programs whose only entry is one
-  line in `DOC/INDEX`.
-- **D1/D3** — the 6,508 members of the 152 recovered archives, never assessed;
-  and reconciling the 419 pool modules the disk lacks.
+- **C2** — measured usage capture for the 352 still carrying only an INDEX
+  line. The pool has no manual for them; most never had one.
+- **D3** — reconciling the remaining pool modules the disk lacks; `passwd`,
+  `channel`, `osktag` and `readstr` are the only untaken candidates worth a look.
 
 ## One thing for rdoggett
 
