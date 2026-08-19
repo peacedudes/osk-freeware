@@ -12,8 +12,9 @@ format"); Python's tarfile reads them, which is why this is not a shell
 script. Unix compress (.Z) is handed to gzip(1), which Python cannot do.
 """
 import io, os, subprocess, sys, tarfile, zipfile
+import paths
 
-POOL = "/Users/rdoggett/mine/os9/xxx/os9exec/os9/PUBCMDS/microware-archive"
+POOL = paths.pool()
 LZH = (".lzh", ".lha", ".lhz")
 
 
