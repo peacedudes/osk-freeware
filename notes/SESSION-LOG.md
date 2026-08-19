@@ -15,10 +15,11 @@ Each entry is one commit, with what changed and how it was verified. All eight
 | program files under `CMDS` | 949 |
 | not programs at all | 25 |
 | **actual programs** | **924** |
-| demonstrated running | **877 (95.0%)** |
-| did not | 47 |
+| demonstrated running | **885 (95.8%)** |
+| did not | 39 |
 
-Was 870 of 925 (94.1%) when this pass started.
+Was 870 of 925 (94.1%) when this pass started. Every one of the 34
+silent programs now has a named cause; none of them is a broken binary.
 
 ---
 
@@ -138,6 +139,73 @@ then the CRC recomputed — CRC and parity checked good before the patch as well
 as after. All seven now **start**, both `F$TLink` calls succeed, and the
 library takes a bus error (vector `$08`) on its own first instruction, at the
 entry address `F$TLink` just returned. It drives Atari hardware directly.
+
+**`Fix: all five SNOBOL4 games play -- they wanted a syntax file, not a repair`**
+`poker`, `blackjak`, `rpoem`, `rstory`, `stone` died on `Illegal instruction:
+4afc` — both the 68000 ILLEGAL opcode and the module sync word, so control had
+jumped into a header. It read as a corrupt shared library and was not one.
+*Method:* rebuilt from source and it failed **identically**, which proved the
+bug was in the source, not the binary; then bisected with flushed `printf`
+tracing to `que_init()` → `ph_init()`, which `phrase.h` defines as
+`rsent_init("PHRASE.SYN")`. The open failed, the null result became a pattern
+tree, and the first match jumped through a null function pointer. The syntax
+files existed all along in `DOC/snobol` — not somewhere a running program
+looks. Data moved to `GAMES/SNOBOL`, the five rebuilt to name it there; `chd`
+alone would not have worked, since bash cannot change the OS-9 data directory
+and sh cannot fork an absolute path. *Verified:* all five run in a plain login
+session — `rpoem` writes poetry.
+*One caught mistake:* an intermediate image build failed and I had hidden it
+with `>/dev/null`, so I spent a cycle tracing a stale image.
+
+**`Docs: A0 is undefined at entry -- the three faulters want supervisor state`**
+The question the last pass could not settle. Microware's v2.4 Technical
+Reference, F$Fork, lists the registers handed to a new process and says
+**`(a0) = undefined`** outright — the module pointer these three appear to want
+is in `(a3)`. So os9exec is not at fault. The deeper reason is in their source:
+`firq`, `souper` and `sysmem` all declare `@_sysattr: equ $a001` and read the
+kernel's globals through Microware's `<sysglob.h>`. They are **system-state
+programs**, they cannot be rebuilt here (that header is Microware's and is
+kernel internals), and they will not run under os9exec. A complete answer, not
+a gap.
+
+**`Core: ptxm from the pool, and five more silent programs explained`**
+`makecrc` **works** — it generates `arc.c`, `binhex.c`, `ccitt.c`,
+`ccitt32.c`, `kermit.c`, `zip.c`, CRC-table source for six polynomials, and
+writes nothing to the terminal. `ptxminst` linked a module `Ptxm` that was not
+here; it is now, from the pool's DRIVERS category — Nick Holgate's Path Table
+eXtension Module, courtesyware. It is **not** a pseudo-tty installer, which is
+what `DOC/INDEX` claimed. `pri` chains to `/r0/cmds/copy` with no arguments;
+`suse` and `t` make no system call at all and are stubs.
+
+**`Docs: G-Windows programs get their authors' documentation`**
+`cyberwar`, `lfmaker`, `puzzle`, `scriptmaster` — all Stephen Carville's, all
+already shipped, none documented. Their readmes and manuals recovered from the
+pool's GWINDOWS category, plus `cyberhelp.data`. **Licence flagged, not
+settled:** the readmes carry a copyright line and no distribution statement
+either way. Recorded in `SOURCES.txt`. I did not add `dclock` or `colortest`
+from the same archive, because adding a new program on unstated terms is a
+different question from documenting one already present.
+
+**`Docs: 23 manuals mined from the pool, and Graph explained by its own`**
+`tools/doc_census.py` makes the coverage number reproducible: **598 of 950
+documented (62%)**, 352 with nothing but their INDEX line.
+`tools/find_pool_docs.py` searched the member inventory rather than extracting
+454 archives, and found real manuals for 23 of the 352 — the honest finding is
+that most of the rest never had one.
+The prize was `graph.doc`, which **answers the bus error**: the library
+*"laeuft mit gesetztem Supervisor-Bit"* and is explicitly not linkable into
+ordinary programs. The module agrees — `M$Attr` is `$A0` and bit 5 is the
+supervisor-state bit. Its assembler source and two more manuals came with it.
+A. Greulich, 1988, public domain.
+
+**`Docs: every one of the 34 silent programs now has a named cause`**
+The last fifteen traced. Four want a file that is not here (`bootlogger`,
+`cron`, `read_mail`, `arepdaemon` — each named); one wants an argument
+(`bincheckr`); three want hardware or a network (`infoxpress` opens `/t3`,
+`authwn`, `inetdc`); two are daemons that are silent by design (`splman`,
+`splprt`); four want G-Windows. **One has a real bug:** `dir` calls `I$WritLn`
+with a byte count of `$FFFFFF80` — minus 128 — and gets `E_BPADDR`. `ls` does
+the same job and works.
 
 ---
 
