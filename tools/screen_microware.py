@@ -52,6 +52,24 @@ CLAIM = re.compile(
 # Extensions Microware ships and freeware generally does not.
 MICROWARE_KINDS = {".l": "linkable library", ".d": "assembler defs"}
 
+# Microware runtime modules BY NAME, because they turn up loose inside other
+# people's archives: a 14,572-byte `fpu' was found bundled in TELECOM's
+# STerm68k package, a different build from the SDK's 12,848-byte copy, so
+# neither hashing nor line-overlap would have caught it.
+#
+# cio, csl, csl020, math and math881 are NOT here: Microware gave permission
+# for exactly those five and they already ship in disk/CMDS. Everything else
+# of theirs is still theirs.
+MICROWARE_MODULES = {
+    "fpu": "floating-point emulator", "fpu040": "floating-point emulator",
+    "cio020": "C I/O trap handler", "p2init": "system extension installer",
+    "sysgo": "system startup", "os9p1": "kernel part 1",
+    "os9p2": "kernel part 2", "init": "system init module",
+    "rbf": "RBF file manager", "scf": "SCF file manager",
+    "pipeman": "pipe file manager", "sbf": "SBF file manager",
+    "ioman": "I/O manager", "clock": "system clock module",
+}
+
 # SOURCE is the category that actually matters, and this is why: Microware's
 # concern is not lost licence revenue, it is that infrastructure in Japan and
 # Germany runs OS-9/68k TODAY and published source could expose vulnerabilities
@@ -149,10 +167,18 @@ def sdk_index():
     return by_name, texts, digests
 
 
+# The five Microware GAVE PERMISSION FOR, 2026-08-16. They are Microware's and
+# they will match the SDK exactly -- that is expected and is not a finding.
+# Saying so here stops a later pass "fixing" it by deleting them.
+PERMITTED = {"cio", "csl", "csl020", "math", "math881"}
+
+
 def screen(path, by_name, texts, digests):
     """Return a list of reasons this file looks like Microware's, or []."""
     reasons = []
     base = os.path.basename(path)
+    if os.path.splitext(base)[0].lower() in PERMITTED:
+        return []
 
     try:
         raw = open(path, "rb").read()
@@ -169,6 +195,11 @@ def screen(path, by_name, texts, digests):
     if CLAIM.search(raw):
         hit = CLAIM.search(raw).group(0).decode("latin-1", "replace")
         reasons.append(f"claims: {hit!r}")
+
+    stem = os.path.splitext(base)[0].lower()
+    if stem in MICROWARE_MODULES:
+        reasons.append(f"NAMED MICROWARE MODULE: {MICROWARE_MODULES[stem]}"
+                       " -- permission covers only cio, csl, csl020, math, math881")
 
     ext = os.path.splitext(base)[1].lower()
     if ext in MICROWARE_KINDS:
