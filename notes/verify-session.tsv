@@ -1,0 +1,116 @@
+keep	CMDS	SESSION-OK	usage: keep [-n] [-f] <name>...   take a program onto your disk        kept                       wh
+devprc	CMDS	STILL-BAD	
+bio	CMDS	STILL-BAD	
+blackjack	CMDS/BROKEN	STILL-BAD	
+mscheck	CMDS	STILL-BAD	
+config	CMDS	SESSION-OK	/* Char = 8 bits, signed */ /* Maximum short = 32767 (= 2**15-1) */ /* Maximum int = 2147483647 (= 2
+rxmod	CMDS/COMMS	STILL-BAD	can't install Vmod Trap handler 
+os9lib	CMDS	STILL-BAD	Process   Pid: 3, os9lib, edition 0     Exit code: E_PRCABT(228) Process Aborted   Directories: Curr
+sysmem	CMDS	STILL-BAD	Process   Pid: 3, sysmem, edition 3     Exit code: E_PRCABT(228) Process Aborted   Directories: Curr
+X11R6shl	CMDS	STILL-BAD	
+trap	CMDS	STILL-BAD	tlink: -1 **** Can't install trap handler ****  **** +-*/&|^<>@? ****  
+math	CMDS	STILL-BAD	
+firq	CMDS	STILL-BAD	Process   Pid: 3, firq, edition 1     Exit code: E_PRCABT(228) Process Aborted   Directories: Curren
+keydrv.mm1	CMDS/MM1	STILL-BAD	
+msdrv_340.901.ms	CMDS/MM1	STILL-BAD	No more memory !!! No more memory !!! 
+windio.52	CMDS/MM1	STILL-BAD	
+scsi_mm1a	CMDS/MM1	STILL-BAD	No more memory !!! No more memory !!! 
+msdrv.901_340	CMDS/MM1	STILL-BAD	No more memory !!! No more memory !!! 
+rb37c65	CMDS/MM1	STILL-BAD	
+snddrv	CMDS/MM1	STILL-BAD	
+drop	CMDS	SESSION-OK	usage: drop [-n] <name>... 
+math881	CMDS	STILL-BAD	
+who	CMDS	STILL-BAD	*help: command not found ADL: is a directory *Syntax:: command not found 
+wysetime	CMDS	STILL-BAD	
+rtfdat	CMDS	STILL-BAD	No more memory !!! No more memory !!! 
+csl020	CMDS	STILL-BAD	
+csl	CMDS	STILL-BAD	
+oleo	CMDS	STILL-BAD	Illegal instruction: 0009 at 000465d2 Process   Pid: 3, oleo, edition 7     Exit code: E_PRCABT(228)
+souper	CMDS	STILL-BAD	Process   Pid: 3, souper, edition 1     Exit code: E_PRCABT(228) Process Aborted   Directories: Curr
+aterm	CMDS	SESSION-OK	[2J                    ATerm : A terminal program for OS9/68000                     ===== = = =====
+kept	CMDS	SESSION-OK	nothing has been kept on this disk 
+graphsave	CMDS/GAMES	STILL-BAD	
+apfel	CMDS/GAMES	STILL-BAD	
+cribbage	CMDS/GAMES	SESSION-OK	[H[2J[11;40HDo[Cyou[Cneed[Cinstructions[Cfor[Ccribbage?[C[1;1H[K [K [K 
+poker	CMDS/GAMES	STILL-BAD	Error #255:255 (E_???) <<unknown error code>> Illegal instruction: 4afc at 000a71de Process   Pid: 3
+striche	CMDS/GAMES	STILL-BAD	**** Can't install trap handler ****  **** Graph 
+rpoem	CMDS/GAMES	STILL-BAD	Error #255:255 (E_???) <<unknown error code>> Illegal instruction: 4afc at 000a5c48 Process   Pid: 3
+rstory	CMDS/GAMES	STILL-BAD	Error #255:255 (E_???) <<unknown error code>> Illegal instruction: 4afc at 000a6800 Process   Pid: 3
+graph	CMDS/GAMES	STILL-BAD	
+sine	CMDS/GAMES	STILL-BAD	
+g	CMDS/GAMES	STILL-BAD	**** Can't install trap handler ****  **** Graph 
+blackjak	CMDS/GAMES	STILL-BAD	Error #255:255 (E_???) <<unknown error code>> Illegal instruction: 4afc at 000a66e2 Process   Pid: 3
+stone	CMDS/GAMES	STILL-BAD	Error #255:255 (E_???) <<unknown error code>> Illegal instruction: 4afc at 000a6236 Process   Pid: 3
+graphdemo	CMDS/GAMES	STILL-BAD	
+showpic	CMDS/GAMES	STILL-BAD	
+snake	CMDS/GAMES	SESSION-OK	[?1h=[?1h= 
+crib	CMDS/GAMES	SESSION-OK	[H[2J[11;40HDo[Cyou[Cneed[Cinstructions[Cfor[Ccribbage?[C[1;1H[K [K [K 
+cio	CMDS	STILL-BAD	
+wn.stb	CMDS/WN	STILL-BAD	No more memory !!! No more memory !!! 
+minute	CMDS	STILL-BAD	
+demo	CMDS	STILL-BAD	
+snd_sig	CMDS	STILL-BAD	
+ssl	CMDS	STILL-BAD	
+dump	CMDS	SESSION-OK	Syntax: dump [<opts>] <path/module> [<opts>] [<starting byte>] [<opts>] Function: formatted display 
+ptxminst	CMDS	STILL-BAD	
+creadoc	CMDS	STILL-BAD	
+wysecrack	CMDS/BROKEN	STILL-BAD	
+lnk.org	CMDS	STILL-BAD	
+rtf	CMDS	STILL-BAD	
+assembler	CMDS	SESSION-OK	[H[2J[1;1H                 Assembler-SHELL  V1.0           Uwe Simon  1988 Directory : .    +  sh
+lfmaker	CMDS	STILL-BAD	
+tex	CMDS/TEXCMDS	STILL-BAD	
+slitex	CMDS/TEXCMDS	STILL-BAD	
+texidx	CMDS/TEXCMDS	STILL-BAD	
+latex	CMDS/TEXCMDS	STILL-BAD	
+delbak	CMDS	STILL-BAD	
+pri	CMDS	STILL-BAD	
+printenv	CMDS	SESSION-OK	COLUMNS=80 PWD=/dd SHELL=/dd/bash 
+sysid	CMDS	STILL-BAD	
+infoxpress	CMDS/NETWORK	STILL-BAD	
+ppmforge	CMDS/NETPBM	STILL-BAD	
+pgmcrater	CMDS/NETPBM	STILL-BAD	
+read_mail	CMDS	STILL-BAD	
+mcvert	CMDS	STILL-BAD	
+arepdaemon	CMDS/ELM	STILL-BAD	
+t	CMDS	STILL-BAD	
+env	CMDS	SESSION-OK	COLUMNS=80 PWD=/dd SHELL=/dd/bash 
+splprt	CMDS	STILL-BAD	
+makecrc	CMDS	STILL-BAD	
+elvprsv	CMDS	STILL-BAD	
+cxref	CMDS	STILL-BAD	
+byteflip	CMDS/NEWS	STILL-BAD	
+macbin	CMDS	STILL-BAD	
+make	CMDS	STILL-BAD	
+splman	CMDS	STILL-BAD	
+vecho	CMDS	STILL-BAD	
+dir	CMDS	STILL-BAD	
+for	CMDS	STILL-BAD	
+disktest	CMDS	STILL-BAD	
+perr	CMDS	STILL-BAD	
+find	CMDS	STILL-BAD	
+add_errmsg	CMDS	STILL-BAD	
+lessecho	CMDS	STILL-BAD	
+lnk	CMDS	STILL-BAD	
+elvrec	CMDS	STILL-BAD	
+bootlogger	CMDS	STILL-BAD	
+suse	CMDS	STILL-BAD	
+puzzle	CMDS/GAMES	STILL-BAD	
+cyberwar	CMDS/GAMES	STILL-BAD	
+bincheckr	CMDS/GAMES	STILL-BAD	
+scriptmaster	CMDS/GAMES	STILL-BAD	
+wisecrack	CMDS/GAMES	STILL-BAD	
+vtxtcn	CMDS/GAMES	STILL-BAD	
+dfiles	CMDS	STILL-BAD	
+gshell	CMDS	SESSION-OK	[H[2J[1;1H                        GSHELL  V1.1		   Uwe Simon  1988 Directory : .    +  show next 
+compiler	CMDS	SESSION-OK	[H[2J[1;1H                    CC-SHELL  V1.0           Uwe Simon  1988 Directory : .    +  show n
+authwn	CMDS/WN	STILL-BAD	
+inetdc	CMDS/WN	STILL-BAD	
+editor	CMDS	SESSION-OK	[H[2J[1;1H                   UMACS-SHELL  V1.0           Uwe Simon  1988 Directory : .    +  show
+banner	CMDS	STILL-BAD	
+rnews	CMDS/UUCP	STILL-BAD	
+philmail	CMDS/UUCP	SESSION-OK	Welcome to philmail. Checking out file..... successfully opened /dd/SPOOL/MAIL/tester File seems to 
+uupoll	CMDS/UUCP	STILL-BAD	
+cron	CMDS	STILL-BAD	
+epson	CMDS	STILL-BAD	
+biory	CMDS	STILL-BAD	
