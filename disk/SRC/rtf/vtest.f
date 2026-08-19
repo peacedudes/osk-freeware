@@ -1,0 +1,1 @@
+      program vtest      common a      dimension a(3000, 50)      equivalence (i, d7)      do i = 1, 3000        do j = 1, 50           a(i, j) = float(i * j)        end do      end do      call shell('procs', i)      end

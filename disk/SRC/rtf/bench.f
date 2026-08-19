@@ -1,0 +1,1 @@
+ options float=hard, CPU=68020      program bench      parameter COUNT = 10000      real s      integer ic      equivalence (s, f0)      equivalence (i, d7)      s = 0.0      do i = 1, COUNT      s = s + atan(tan(alog(exp(sqrt(i*i)/i))))      end do      call shell('procs', i)      type *, s      end

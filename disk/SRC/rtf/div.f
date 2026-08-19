@@ -1,0 +1,1 @@
+options muldiv=short, CPU=68010      program div      implicit none      integer i, j, k, l      equivalence (i, d7), (j, d6), (k, d5), (l, d4)      l = 0      k = 10      do i = 1, 100000        j = i / k        l = l + j      end do      call shell('procs', i)      type *, l      end
