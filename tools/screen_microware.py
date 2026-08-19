@@ -52,6 +52,42 @@ CLAIM = re.compile(
 # Extensions Microware ships and freeware generally does not.
 MICROWARE_KINDS = {".l": "linkable library", ".d": "assembler defs"}
 
+# SOURCE is the category that actually matters, and this is why: Microware's
+# concern is not lost licence revenue, it is that infrastructure in Japan and
+# Germany runs OS-9/68k TODAY and published source could expose vulnerabilities
+# nobody has found yet (rdoggett, 2026-08-19). That is also why permission for
+# cio/csl/math was straightforward -- those are runtime BINARIES and expose
+# nothing. So a Microware binary in an archive is merely their property; a
+# Microware SOURCE file, especially system internals, is the one that could
+# hurt somebody. These markers name the internals.
+SOURCE_EXT = (".c", ".a", ".asm", ".s", ".h", ".d", ".mk")
+
+# NAMED OS-9 internals, not a pattern. A first attempt matched /V_[A-Z]+/ and
+# /D_[A-Z]+/ case-insensitively and flagged 30 innocent files: Tetris's
+# V_TYPE, Phantasia's D_BEYOND, and POSIX's own d_name. A regex over that
+# shape cannot tell a device driver's static storage from a game's enum, so
+# these are the actual symbols, case-sensitive, and TWO distinct ones are
+# required before anything is said.
+SYSTEM_SYMBOLS = (
+    # system globals (D_ prefix in Microware's sysglob)
+    "D_ModDir", "D_PrcDBT", "D_Clock", "D_TotRAM", "D_MinPty", "D_SysPrc",
+    "D_Slice", "D_ModEnd", "D_BlkMap", "D_SysDis", "D_UsrDis", "D_Init",
+    "D_IRQ", "D_Poll", "D_DevTbl", "D_PolTbl", "D_SysMem", "D_SysStk",
+    # path descriptor
+    "PD_PD", "PD_MOD", "PD_CNT", "PD_DEV", "PD_CPR", "PD_RGS", "PD_BUF",
+    "PD_FST", "PD_DTB", "PD_OPT",
+    # device static storage a driver defines
+    "V_PORT", "V_LPRC", "V_BUSY", "V_WAKE", "V_USER", "V_STAT", "V_NDRV",
+    "V_PATHS", "V_DRIVEX",
+    # privileged system calls and psect kinds
+    "F$SetSys", "F$AllRAM", "F$AllPrc", "F$VModul", "F$SSvc", "F$IODel",
+    "ModSub", "ModTrap", "ModDrivr", "ModFlMgr", "ModSystm",
+    # the defs files themselves
+    "os9defs", "systype.d", "sysglob", "iodefs",
+)
+SYSTEM_SOURCE = re.compile(
+    b"(" + b"|".join(re.escape(x.encode()) for x in SYSTEM_SYMBOLS) + b")")
+
 
 def norm_lines(path):
     """Distinct, meaningful lines of a text file; empty set if binary."""
@@ -137,6 +173,13 @@ def screen(path, by_name, texts, digests):
     ext = os.path.splitext(base)[1].lower()
     if ext in MICROWARE_KINDS:
         reasons.append(f"file kind: {MICROWARE_KINDS[ext]}")
+
+    if ext in SOURCE_EXT:
+        hits = {m.group(0).decode("latin-1") for m in SYSTEM_SOURCE.finditer(raw)}
+        if len(hits) >= 2:
+            reasons.append("SYSTEM SOURCE: names "
+                           + ", ".join(sorted(hits)[:4])
+                           + " -- read this one yourself")
 
     mine = norm_lines(path)
     if len(mine) >= MIN_LINES:
