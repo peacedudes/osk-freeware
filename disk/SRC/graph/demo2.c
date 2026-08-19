@@ -1,0 +1,1 @@
+main(){ int i;  g_init();  g_clrscr();  g_setcolor(2);  for (i=100; i<300; ++i)    g_circle(520,i,100);  g_setcolor(1);  for (i=0; i<400; i += 10)  {    g_segment(399,0,i,i,0,399);    g_segment(0,0,i,400-i,399,399);  }}
