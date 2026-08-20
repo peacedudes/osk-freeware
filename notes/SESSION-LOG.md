@@ -412,3 +412,75 @@ The complete ARGPROC package — library source, the demo's own source, and a
 manual for `argproc()` — was in the pool and is now at `SRC/argproc` and
 `DOC/argproc_demo`. Rebuilding the demo needs `vsprintf` and `bcopy`, which
 the cio-linked library set lacks — the same wall the relink hit.
+
+## The os9exec fix, and what it repaired
+
+rdoggett asked whether I should fix os9exec or hand it to a separate session.
+I did it, because I held the diagnosis, the manual citation and a reproduction.
+**The change is NOT committed, at his instruction** -- one modified file in
+`~/Developer/os9/os9exec`, `Source/OS9exec_core/consio.c`.
+
+    pConsIn:  ConsRead( pid,spP, maxlenP,buffer,false, ot->_sgs_eorch );
+    was:      ConsRead( pid,spP, maxlenP,buffer,false, 0 );
+
+`endchar == 0` means "no terminator" to `ConsRead`, so a program that
+deliberately zeroes PD_EOR for raw input behaves exactly as before. There is
+no regression path.
+
+**Verified in the order he asked:**
+
+1. The assembly test -- the 256-byte `I$Read` now returns at the carriage
+   return with the bytes typed. Before, it never returned.
+2. `make test` -- **195 passed, 0 failed**, including six console tests
+   (XOFF, baud pacing, ^S/^Q passthrough) which is exactly where a change to
+   the read path would break something.
+3. `ksh` -- a complete interactive shell: prompt, commands, `for` loops,
+   variable expansion, forking external programs, exit.
+
+**Then: what else does it fix?** Two programs, not one.
+
+  - **`ksh`**, as above.
+  - **`expreserve`**, vi's crash-recovery helper. It asks the terminal for
+    388 bytes. The trace is unambiguous: before, `I$Read : D1.l=$184` with no
+    return line ever; after, `I$Read returns: D1.l=$6`.
+
+**Nothing else, and that is measured rather than assumed.** Every program on
+the disk that issues an `I$Read` on a terminal path was enumerated -- 60 of
+them, the whole at-risk population. All but three ask for ONE byte at a time,
+which was never affected; the third, `flex`, asks for 8192 but does not reach
+that read interactively.
+
+The 48 known-broken programs were run on a real pty with the emulator built
+BOTH ways -- the change stashed, an unfixed binary built, the sweep run, then
+the change restored and the source verified byte-identical to a copy saved
+aside. **0 of 48 changed.** Nine interactive programs the sweep never called
+broken (`sh`, `vi_cio`, `vi_nocio`, `sc`, `sedt`, `beav`, `em`, `mg`, `less`)
+were also identical.
+*And the harness was proved able to detect a change*, using `ksh` through the
+same harness as a positive control -- otherwise "0 changed" would only have
+meant "my test does not work".
+
+Worth knowing: **both repaired programs were already scored "OK as a filter"**
+by the four-stage sweep, because with piped input the data is there to satisfy
+the request and the defect vanishes. Neither was ever in the broken list. The
+sweep measures pipes, not terminals.
+
+## Two more causes established, both emulator-side
+
+**No supervisor state.** os9exec never tests the module attribute word for
+bit 5 -- it reads it and hands it back to callers, and its own source says the
+supervisor bit is "kept as an honest guard in case emulated supervisor code is
+ever run". `CMDS/GAMES/graph` and `CMDS/COMMS/vmod_trap` are both `M$Attr $A0`,
+so a user-state process faults on entry. That is the complete story for the
+seven Atari graphics programs plus `rxmod` and `trap`. A missing FEATURE, not
+a defect to file.
+
+**A missing path in `DOC/DEPENDS` is often just a fallback.** Nineteen mtools
+programs list `/dd/sys/mtools` as absent and every one works, reading
+`/dd/sys/mtools.conf` instead. Same for `/dd/SYS/errmsg.short`, `/dd/SYS/utmp`
+and `/dd/TEMP`: `env`, `expr`, `ci`, `co` and `cjpeg` all list one and all run.
+`gen_depends.py`'s header now says so, because chasing those looks exactly
+like finding real bugs and is not.
+
+**Every one of the 48 now has a documented cause** -- 34 silent (all
+explained), 7 Graph, 2 trap libraries, 1 FPU, 1 `oleo` (F$RTE), 3 system-state.
