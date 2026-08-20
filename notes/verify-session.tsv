@@ -1,14 +1,18 @@
 keep	CMDS	SESSION-OK	usage: keep [-n] [-f] <name>...   take a program onto your disk        kept                       wh
-devprc	CMDS	STILL-BAD	
+devprc	CMDS	STILL-BAD	Process   Pid: 3, devprc, edition 7     Exit code: E_PRCABT(228) Process Aborted   Directories: Curr
 bio	CMDS	STILL-BAD	
+ptxm	CMDS	STILL-BAD	No more memory !!! No more memory !!! 
 blackjack	CMDS/BROKEN	STILL-BAD	
+cpu	CMDS	SESSION-OK	[2J[1;Hos9$  
 mscheck	CMDS	STILL-BAD	
 config	CMDS	SESSION-OK	/* Char = 8 bits, signed */ /* Maximum short = 32767 (= 2**15-1) */ /* Maximum int = 2147483647 (= 2
+vmod_trap	CMDS/COMMS	STILL-BAD	
 rxmod	CMDS/COMMS	STILL-BAD	can't install Vmod Trap handler 
 os9lib	CMDS	STILL-BAD	Process   Pid: 3, os9lib, edition 0     Exit code: E_PRCABT(228) Process Aborted   Directories: Curr
 sysmem	CMDS	STILL-BAD	Process   Pid: 3, sysmem, edition 3     Exit code: E_PRCABT(228) Process Aborted   Directories: Curr
 X11R6shl	CMDS	STILL-BAD	
 trap	CMDS	STILL-BAD	tlink: -1 **** Can't install trap handler ****  **** +-*/&|^<>@? ****  
+aprocs	CMDS	SESSION-OK	F$SetSys: unimplemented 0030 (size=80000004) F$SetSys: unimplemented 0034 (size=80000004) Process   
 math	CMDS	STILL-BAD	
 firq	CMDS	STILL-BAD	Process   Pid: 3, firq, edition 1     Exit code: E_PRCABT(228) Process Aborted   Directories: Curren
 keydrv.mm1	CMDS/MM1	STILL-BAD	
@@ -32,18 +36,13 @@ kept	CMDS	SESSION-OK	nothing has been kept on this disk
 graphsave	CMDS/GAMES	STILL-BAD	
 apfel	CMDS/GAMES	STILL-BAD	
 cribbage	CMDS/GAMES	SESSION-OK	[H[2J[11;40HDo[Cyou[Cneed[Cinstructions[Cfor[Ccribbage?[C[1;1H[K [K [K 
-poker	CMDS/GAMES	STILL-BAD	Error #255:255 (E_???) <<unknown error code>> Illegal instruction: 4afc at 000a71de Process   Pid: 3
 striche	CMDS/GAMES	STILL-BAD	**** Can't install trap handler ****  **** Graph 
-rpoem	CMDS/GAMES	STILL-BAD	Error #255:255 (E_???) <<unknown error code>> Illegal instruction: 4afc at 000a5c48 Process   Pid: 3
-rstory	CMDS/GAMES	STILL-BAD	Error #255:255 (E_???) <<unknown error code>> Illegal instruction: 4afc at 000a6800 Process   Pid: 3
 graph	CMDS/GAMES	STILL-BAD	
 sine	CMDS/GAMES	STILL-BAD	
 g	CMDS/GAMES	STILL-BAD	**** Can't install trap handler ****  **** Graph 
-blackjak	CMDS/GAMES	STILL-BAD	Error #255:255 (E_???) <<unknown error code>> Illegal instruction: 4afc at 000a66e2 Process   Pid: 3
-stone	CMDS/GAMES	STILL-BAD	Error #255:255 (E_???) <<unknown error code>> Illegal instruction: 4afc at 000a6236 Process   Pid: 3
 graphdemo	CMDS/GAMES	STILL-BAD	
 showpic	CMDS/GAMES	STILL-BAD	
-snake	CMDS/GAMES	SESSION-OK	[?1h=[?1h= 
+snake	CMDS/GAMES	SESSION-OK	[?1h=[?1h=[H[2J[8;14HI[19;5H#[18;33H$[6;59Hs[As[As[As[As S[1;2H----------------
 crib	CMDS/GAMES	SESSION-OK	[H[2J[11;40HDo[Cyou[Cneed[Cinstructions[Cfor[Ccribbage?[C[1;1H[K [K [K 
 cio	CMDS	STILL-BAD	
 wn.stb	CMDS/WN	STILL-BAD	No more memory !!! No more memory !!! 
@@ -51,6 +50,7 @@ minute	CMDS	STILL-BAD
 demo	CMDS	STILL-BAD	
 snd_sig	CMDS	STILL-BAD	
 ssl	CMDS	STILL-BAD	
+ape	CMDS	STILL-BAD	
 dump	CMDS	SESSION-OK	Syntax: dump [<opts>] <path/module> [<opts>] [<starting byte>] [<opts>] Function: formatted display 
 ptxminst	CMDS	STILL-BAD	
 creadoc	CMDS	STILL-BAD	
@@ -95,6 +95,7 @@ lnk	CMDS	STILL-BAD
 elvrec	CMDS	STILL-BAD	
 bootlogger	CMDS	STILL-BAD	
 suse	CMDS	STILL-BAD	
+valspeak	CMDS/GAMES	STILL-BAD	
 puzzle	CMDS/GAMES	STILL-BAD	
 cyberwar	CMDS/GAMES	STILL-BAD	
 bincheckr	CMDS/GAMES	STILL-BAD	

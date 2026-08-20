@@ -1,7 +1,7 @@
-devprc	CMDS	NO-USAGE	
 bio	CMDS	NO-USAGE	
 blackjack	CMDS/BROKEN	NO-USAGE	
 mscheck	CMDS	NO-USAGE	
+vmod_trap	CMDS/COMMS	NO-USAGE	
 X11R6shl	CMDS	NO-USAGE	
 math	CMDS	NO-USAGE	
 keydrv.mm1	CMDS/MM1	NO-USAGE	
@@ -23,6 +23,7 @@ minute	CMDS	USAGE-OK	Syntax: minute[<opts>] Function: wait for system time to ro
 demo	CMDS	USAGE-OK		option index (optind) after egetopt():     2 		egetopt() return value:            ! (33) 		char tha
 snd_sig	CMDS	USAGE-OK	Function: Wakeup a process with the wake signal Options:           -?              display synopsis 
 ssl	CMDS	USAGE-OK	File descriptor sector -?: 0  Seg#     start    lenght ------------------------- 
+ape	CMDS	USAGE-OK	syntax: ape {opts} Function: write gibberish in the style of <stdin> to <stdout> Options: 
 ptxminst	CMDS	NO-USAGE	
 creadoc	CMDS	NO-USAGE	
 wysecrack	CMDS/BROKEN	NO-USAGE	
@@ -63,6 +64,7 @@ lnk	CMDS	NO-USAGE
 elvrec	CMDS	USAGE-OK	/dd/-?: no recovered file has that exact name 
 bootlogger	CMDS	NO-USAGE	
 suse	CMDS	NO-USAGE	
+valspeak	CMDS/GAMES	NO-USAGE	
 puzzle	CMDS/GAMES	NO-USAGE	
 cyberwar	CMDS/GAMES	NO-USAGE	
 bincheckr	CMDS/GAMES	NO-USAGE	

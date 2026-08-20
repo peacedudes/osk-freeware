@@ -2,7 +2,7 @@ indent	CMDS	FILTER	the quick brown fox jumped over 3 lazy dogs
 minute	CMDS	QUIET	
 demo	CMDS	QUIET	
 split	CMDS	FILTER	the quick brown fox jumped over 3 lazy dogs 
-cat	CMDS	FILTER	the quick brown fox jumped over 3 lazy dogs 
+cat	CMDS	FILTER	the quick brown fox the quick brown fox 
 tabs	CMDS	FILTER	the quick brown fox the quick brown fox 
 snd_sig	CMDS	QUIET	
 pageline	CMDS	FILTER	the quick brown fox the 1 
@@ -16,8 +16,7 @@ rot	CMDS	FILTER	the quick brown fox jumped over 3 lazy dogs
 expand	CMDS	FILTER	the quick brown fox the quick brown fox 
 ssl	CMDS	QUIET	
 my.opt	CMDS	FILTER	the quick brown fox my.opt: line 1: can't find mnemonic 'quick' 
-ape	CMDS	FILTER	the quick brown fox jumped over 3 lazy dogs 
-pagefraz	CMDS	FILTER	the quick brown fox the quick brown fox 1 
+ape	CMDS	QUIET	
 binhex	CMDS	FILTER	the quick brown fox jumped over 3 lazy dogs 
 dump	CMDS	QUIET	
 ptxminst	CMDS	QUIET	
@@ -35,7 +34,6 @@ slitex	CMDS/TEXCMDS	QUIET
 texidx	CMDS/TEXCMDS	QUIET	
 latex	CMDS/TEXCMDS	QUIET	
 unp	CMDS	FILTER	the quick brown fox the quick brown fox 
-pagekwic	CMDS	FILTER	the quick brown fox the quick brown fox 1 
 delbak	CMDS	QUIET	
 pri	CMDS	QUIET	
 cpr	CMDS	FILTER	the quick brown fox jumped over 3 lazy dogs 
@@ -44,7 +42,7 @@ cjpeg	CMDS	FILTER	the quick brown fox Unrecognized input file format --- perhaps
 uudecode	CMDS	FILTER	the quick brown fox jumped over 3 lazy dogs 
 fmt	CMDS	FILTER	the quick brown fox the quick brown foxjumped over 3 lazy dogs 
 psc	CMDS	FILTER	the quick brown fox rightstring A0 = "the" 
-cat.cio	CMDS/REBUILT	FILTER	the quick brown fox the quick brown fox 
+cat.nocio	CMDS/REBUILT	FILTER	the quick brown fox jumped over 3 lazy dogs 
 wc.cio	CMDS/REBUILT	FILTER	the quick brown fox jumped over 3 lazy dogs 
 m4_0.5	CMDS/REBUILT	FILTER	the quick brown fox the quick brown fox 
 printenv	CMDS	QUIET	
@@ -243,7 +241,7 @@ bootlogger	CMDS	QUIET
 queens	CMDS	FILTER	the quick brown fox 
 suse	CMDS	QUIET	
 flex	CMDS	FILTER	the quick brown fox jumped over 3 lazy dogs 
-valspeak	CMDS/GAMES	FILTER	the quick brown fox the quick brown fox 
+valspeak	CMDS/GAMES	QUIET	
 puzzle	CMDS/GAMES	QUIET	
 cyberwar	CMDS/GAMES	QUIET	
 mkindex	CMDS/GAMES	FILTER	the quick brown fox jumped over 3 lazy dogs 
@@ -271,6 +269,7 @@ lmail	CMDS/UUCP	FILTER	the quick brown fox jumped over 3 lazy dogs
 lcasep	CMDS/UUCP	FILTER	the quick brown fox the quick brown fox 
 philmail	CMDS/UUCP	QUIET	
 nptx	CMDS/UUCP	FILTER	the quick brown fox format error: the quick brown fox 
+makedb	CMDS/UUCP	FILTER	the quick brown fox jumped over 3 lazy dogs 
 uupoll	CMDS/UUCP	QUIET	
 fileserv	CMDS/UUCP	FILTER	the quick brown fox jumped over 3 lazy dogs 
 l	CMDS	FILTER	the quick brown fox the quick brown fox 
