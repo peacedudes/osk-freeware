@@ -42,14 +42,14 @@ the one that could hurt somebody. `screen_microware.py` weights it that way.
 ## What was actually new
 
 **`chess.ar` — installed.** Four engine source trees (`CH`, `CH3`, `CH4`,
-`CH5`, 23 files) for the `chess` that ships in `CMDS/GAMES` with no source.
+`CH5`, 23 files) for the `chess` in `CMDS/GAMES`, which has no source.
 `DOC/ORIGINS` already promised a `SRC/chess` tree and there was none; now
 there is. `fuddle`, also in this archive, is already on the disk.
 
 ## What was already mined — most of it
 
 **`ARR/x` was a false alarm of mine.** I reported it as holding source for five
-shipped games that had none — `pacman`, `valspeak`, `newsgen`, `worms`, `rain`.
+games on the disk that had none — `pacman`, `valspeak`, `newsgen`, `worms`, `rain`.
 Wrong: all of it is already in `disk/SRC/toys`, 11 of 15 files byte-identical.
 The error was searching for a *directory* named after each program instead of
 the files inside a tree named for the archive — the exact mistake CLAUDE.md
@@ -63,12 +63,12 @@ Adds nothing: the disk already carries **51** screens to the archive's 50, and
 every shared name is byte-identical. `wanderer` runs and draws its board.
 
 **`unix.lib.ar`, `de.ar`, `srt.ar`** — already present as `SRC/unixlib`,
-`SRC/deansi`, and the shipped `sort`. `de.ar` additionally carries `tst.out`
+`SRC/deansi`, and the `sort` already here. `de.ar` additionally carries `tst.out`
 and a file called `mine`, which is scratch.
 
 **Known refusals, unchanged** — `cdecl` (ANSI C source, Microware C is K&R),
 `phan` (18 corrupt bytes in every copy), `gammon` and `tet2` (want BSD
-`sgtty.h`), `hack` (source damaged in all three copies; the binary ships).
+`sgtty.h`), `hack` (source damaged in all three copies; the binary is here).
 
 ## Worth a look, not yet acted on
 
@@ -78,7 +78,7 @@ and a file called `mine`, which is scratch.
     and two patches) written for Unix, so it needs reassembly and a port. Not
     a quick win, but the licence is clean and `CMDS/COMMS` is where it belongs.
   - **`fft.ar`** — an FFT library: `complex.h`, `fft.l`, `realfft.l`, a readme
-    and worked examples. A library rather than a program, so it ships only if
+    and worked examples. A library rather than a program, so it belongs here only if
     the collection decides libraries are in scope.
   - **`dates.ar`** — twelve month files and `shortdates`. Data for something;
     no program identified.

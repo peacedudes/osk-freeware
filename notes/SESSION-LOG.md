@@ -86,7 +86,7 @@ comment banner flagged 30 innocent files.
 *Verified:* catches Microware system source renamed, stripped of its copyright
 and with 46% of its lines deleted — at 100% line overlap.
 
-**`Core: screen archives for Microware source before anything ships`**
+**`Core: screen archives for Microware source before anything is added`**
 Weighted toward **source**, because that is the actual concern: infrastructure
 in Japan and Germany runs OS-9/68k today and published source could expose
 unknown vulnerabilities. Binaries are a lesser worry, which is why permission
@@ -100,17 +100,17 @@ All 65 `ar` archives in `play/h4/ARR` opened, 1,192 members screened.
 Full write-up: `notes/ARR-TRIAGE.md`. **`curses.ar` excluded** — its
 `curses.h` is 82% line-identical to the SDK's, with a `.l` library and full C
 source. It was never on the disk, so the screen caught it as a candidate.
-`chess.ar` gave 23 files of engine source for the shipped `chess`, filling a
+`chess.ar` gave 23 files of engine source for the the chess on the disk`, filling a
 `SRC/chess` tree `DOC/ORIGINS` already promised.
 *A correction to my own earlier claim:* I reported `ARR/x` as holding source
-for five games that shipped without any. Wrong — it is all in `disk/SRC/toys`,
+for five games that included without any. Wrong — it is all in `disk/SRC/toys`,
 11 of 15 files byte-identical. I had searched for directories named after each
 program instead of files inside a tree named for the archive, which is the
 exact mistake CLAUDE.md warns about.
 
 **`Core: ship the cio builds of cat, basename, dirname, strings -- 52KB smaller`**
-199 shipped binaries are our trap-free `-qm` rebuilds, 4.9 MB in total, built
-before it was known `cio` would ship. Four had a working cio build already on
+199 binaries on the disk are our trap-free `-qm` rebuilds, 4.9 MB in total, built
+before it was known `cio` would be included. Four had a working cio build already on
 the disk. *Verified one at a time, and that mattered:* `cat.cio` produces
 **byte-identical output**, `basename`/`dirname` match and have real usage
 banners; **`wc.cio` is broken** — nothing at all for a file argument where ours
@@ -179,7 +179,7 @@ what `DOC/INDEX` claimed. `pri` chains to `/r0/cmds/copy` with no arguments;
 
 **`Docs: G-Windows programs get their authors' documentation`**
 `cyberwar`, `lfmaker`, `puzzle`, `scriptmaster` — all Stephen Carville's, all
-already shipped, none documented. Their readmes and manuals recovered from the
+already on the disk, none documented. Their readmes and manuals recovered from the
 pool's GWINDOWS category, plus `cyberhelp.data`. **Licence flagged, not
 settled:** the readmes carry a copyright line and no distribution statement
 either way. Recorded in `SOURCES.txt`. I did not add `dclock` or `colortest`
@@ -250,7 +250,7 @@ pass cannot "fix" the disk by deleting `cio`, `csl`, `csl020`, `math` or
 
 ## One thing for rdoggett
 
-15 shipped modules carry `>>>from the disk of Robert Doggett<<<` in their
+15 modules on the disk carry `>>>from the disk of Robert Doggett<<<` in their
 `cstart` author psect — `wc`, `ls`, `pep`, `pdraw`, `queens`, `ularn`, `hotel`,
 `suicide`, `tt` and the `.nocio` builds among them. It is documented in
 `notes/FREEWARE-REBAKE.md` as accepted (they cannot be rebuilt), and

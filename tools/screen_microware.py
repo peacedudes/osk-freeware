@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Screen candidate files for Microware intellectual property before shipping.
+"""Screen candidate files for Microware intellectual property before adding anything.
 
 OS-9 is Microware's and is still a product they sell. Their utilities, headers,
 libraries and system source may not be redistributed. Freeware archives from
@@ -13,7 +13,7 @@ So a candidate is screened four ways, cheapest first:
   NAME      its basename matches a file in the SDK
   CONTENT   its lines overlap an SDK file's heavily, whatever it is called
   CLAIM     it carries a Microware copyright or ownership string
-  KIND      it is a file type only Microware ships (.l libraries, DEFS .d/.h)
+  KIND      it is a file type only Microware is included (.l libraries, DEFS .d/.h)
 
 NAME alone is weak -- `makefile` and `math.h` collide with everything. CONTENT
 is the one that catches a renamed or lightly-edited copy, and it is why this
@@ -49,7 +49,7 @@ CLAIM = re.compile(
     rb"|property\s+of\s+microware"
     rb"|licensed[^\n]{0,30}microware)", re.I)
 
-# Extensions Microware ships and freeware generally does not.
+# Extensions Microware is included and freeware generally does not.
 MICROWARE_KINDS = {".l": "linkable library", ".d": "assembler defs"}
 
 # Microware runtime modules BY NAME, because they turn up loose inside other
@@ -127,7 +127,7 @@ def norm_lines(path):
 
 def sdk_index():
     """Microware's OWN files, indexed by basename and by content lines."""
-    # ONLY the directories Microware actually ships. `play/oskBoot` is a
+    # ONLY the directories Microware actually is included. `play/oskBoot` is a
     # WORKING disk: its SRC/ and USR/ hold this project's own repairs (the
     # GNU fileutils `ls` build, the `rob` game) plus loose scratch files, and
     # indexing those made the screener report our own work as Microware's --

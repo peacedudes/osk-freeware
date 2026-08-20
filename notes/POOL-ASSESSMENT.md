@@ -34,7 +34,7 @@ controller. Nothing here can use them.
   - `msfm` — Microware's, out of Dibble's *OS-9 Insights*
 
 **WN's own example CGIs** — `counter`, `envi`, `doform.cgi`, `qr.cgi`,
-`sample.cgi`. WN ships on this disk but does not run (the os9exec
+`sample.cgi`. WN is on this disk but does not run (the os9exec
 `adapt_inetdb` defect); its examples add nothing while the server cannot run.
 
 **And one that must never be taken.**
@@ -68,7 +68,7 @@ Everything below came out of these categories during this pass:
     was lowercase, so it could never have worked on real OS-9. Renamed,
     CRC recomputed. Assembler source in `SRC/serload`.
   - **The G-Windows documentation** — `cyberwar`, `lfmaker`, `puzzle` and
-    `scriptmaster` all shipped undocumented; their authors' readmes and
+    `scriptmaster` were all here undocumented; their authors' readmes and
     manuals came from GWINDOWS. Licence position recorded in `SOURCES.txt`.
   - **`graph`'s documentation and source** — from EFFO forums 4 and 6, and
     it is what finally explained the bus error the seven Atari programs take.
@@ -87,6 +87,6 @@ Everything below came out of these categories during this pass:
 
 The five categories were not a hidden trove. They were mostly other people's
 hardware. What they did hold was **two missing trap/system modules that two
-shipped programs were failing to find**, and **documentation for six shipped
-programs that had none** — which is a good return, but it is a different
+programs on the disk were failing to find**, and **documentation for six programs
+already here that had none** — which is a good return, but it is a different
 finding from "274 programs we never assessed".

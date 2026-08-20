@@ -32,15 +32,15 @@ Settled with rdoggett before he left, and not to be relitigated:
   own measured usage output is recorded, and it is marked as measured output
   rather than dressed up as a manual.
 - **Build from source wherever we have source — but do not replace working
-  shipped binaries with our own builds for its own sake.** Rebuilding is a
-  diagnostic and a repair, not a policy. A shipped binary that works stays.
+  binaries on the disk with our own builds for its own sake.** Rebuilding is a
+  diagnostic and a repair, not a policy. A binary on the disk that works stays.
   Host-side module patching stays available where it is the only route
   (`devprc`'s CRC, `graph`'s module name); every patched module keeps its
   original beside it and a line saying what changed and why.
 
 - **Retire the trap-free rebuilds — see front E.** A set of programs was
   rebuilt `-qm` (trap-free, no `cio`) before it was known that `cio` and
-  `csl` would ship by permission. That reason has expired and the builds are
+  `csl` would be included by permission. That reason has expired and the builds are
   several times larger than the cio-linked equivalents. Toss them; use the
   cio version where one already exists, rebuild against the libraries where
   one does not.
@@ -123,7 +123,7 @@ five separate faults. Full K&R source is at `SRC/effo_snobol`. Read the two
 paths against each other; rebuild all seven if that is what it takes. Five
 programs for one fix, and the best value on this list.
 
-**B3. `devprc`.** Bad module CRC as shipped — stored `6CF320`, computed
+**B3. `devprc`.** Bad module CRC as included — stored `6CF320`, computed
 `9F16E0`, header parity fine. The EFFO forum-16 copy is byte-identical and
 equally bad, so this is not damage the collection introduced. Source is at
 `SRC/devprc`; the recipe in `tools/rebuild/recipes.psv` is marked UNTESTED and
@@ -245,14 +245,14 @@ For these five the cio version is **already on the disk**, sitting in
 string, so it is the archive original rather than one of ours.
 
 **E1. Measure the real extent first.** `recipes.psv` has 204 lines, but how
-many shipped binaries are actually our trap-free builds is not recorded
+many binaries on the disk are actually our trap-free builds is not recorded
 anywhere. The test is mechanical: a binary with no `cio\0` reference that has
 a starred counterpart in `REBUILT` or the pool. Produce the list and the total
 size at stake before changing anything.
 
 **E2. Swap where the cio build already exists.** Those five, plus whatever E1
 adds. Retire our build, install the cio one under the plain name, verify it
-runs with the shipped `cio` present, and keep the trap-free build in `REBUILT`
+runs with the included `cio` present, and keep the trap-free build in `REBUILT`
 rather than deleting it — the star in `DOC/INDEX` moves with it, and a person
 who strips the Microware modules out still has somewhere to go.
 
@@ -295,10 +295,10 @@ usenet archives `DOC/ORIGINS` cites by name, sitting in a tree nothing in
     `curses`, `curses.vax`, `dates`, `de`, `fft`, `pcomm`, `srt`, `unix.lib`,
     `wand3`, plus `cdecl`, `gammon`, `hack`, `phan` and `tet2`, which are the
     documented build failures. `chess` and `hack` both SHIP as binaries with
-    no source on the disk — so this is the source for two shipped programs.
+    no source on the disk — so this is the source for two programs on the disk.
   - `pcomm`, `dates`, `de`, `fft`, `srt` and `wand3` have no binary on the
     disk at all and appear in no exclusion list. Genuinely unassessed.
-  - **`ARR/x` holds loose C source for five shipped games that have none** —
+  - **`ARR/x` holds loose C source for five included games that have none** —
     `pacman`, `valspeak`, `newsgen`, `worms`, `rain` — and for `joke`, `worm`,
     `play` and `ctime`, which are not on the disk in any form. `ARR/xx` holds
     three unnamed 50 KB files and an `indent` tree.
@@ -334,7 +334,7 @@ a missing binary whose docs already ship.
 3. **D2 `elvis`** — a known missing binary that may simply be sitting in
    `68k_unpacked`.
 4. **E1, E2** — measure the trap-free rebuilds, swap the ones whose cio build
-   already ships. Bounded, immediately verifiable, and it makes the disk
+   already is included. Bounded, immediately verifiable, and it makes the disk
    smaller.
 5. **B1, B3, B4** — the FPU pair, `devprc`, the `Graph` seven. Each either
    succeeds or fails clearly.
