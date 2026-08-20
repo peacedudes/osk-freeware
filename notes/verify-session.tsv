@@ -97,3 +97,18 @@ puzzle	CMDS/GAMES	STILL-BAD
 cyberwar	CMDS/GAMES	STILL-BAD	
 bincheckr	CMDS/GAMES	STILL-BAD	
 scriptmaster	CMDS/GAMES	STILL-BAD	
+wisecrack	CMDS/GAMES	STILL-BAD	
+vtxtcn	CMDS/GAMES	STILL-BAD	
+dfiles	CMDS	STILL-BAD	
+gshell	CMDS	SESSION-OK	[H[2J[1;1H                        GSHELL  V1.1		   Uwe Simon  1988 Directory : .    +  show next 
+compiler	CMDS	SESSION-OK	[H[2J[1;1H                    CC-SHELL  V1.0           Uwe Simon  1988 Directory : .    +  show n
+authwn	CMDS/WN	STILL-BAD	
+inetdc	CMDS/WN	STILL-BAD	
+editor	CMDS	SESSION-OK	[H[2J[1;1H                   UMACS-SHELL  V1.0           Uwe Simon  1988 Directory : .    +  show
+banner	CMDS	STILL-BAD	
+rnews	CMDS/UUCP	STILL-BAD	
+philmail	CMDS/UUCP	SESSION-OK	Welcome to philmail. Checking out file..... successfully opened /dd/SPOOL/MAIL/tester File seems to 
+uupoll	CMDS/UUCP	STILL-BAD	
+cron	CMDS	STILL-BAD	
+epson	CMDS	STILL-BAD	
+biory	CMDS	STILL-BAD	

@@ -29,22 +29,25 @@ difference between them.
 
 ## The reproduction
 
-```c
-#include <stdio.h>
-main()
-{
-    char buf[300];
-    printf("1-byte read -- press any key:\n"); fflush(stdout);
-    printf("  read(0,buf,1) returned %d\n", read(0, buf, 1)); fflush(stdout);
-    printf("256-byte read -- press a key then return:\n"); fflush(stdout);
-    printf("  read(0,buf,256) returned %d\n", read(0, buf, 256)); fflush(stdout);
-    exit(0);
-}
-```
+`notes/os9exec-iread/ireadt.a` -- **pure 68000 assembly**, 414 bytes linked.
+No C, no `cio`, no library of any kind between it and the syscall, and no
+`I$SetStt`, so the path keeps whatever `PD_EOR` the shell handed it (CR).
 
-Build it with the SDK (`cc rd1.c -qixm=8k -n=rd1 -fd=rd1`) and run it under a
-pty. The first line prints and reports 1. The second prints and then nothing
-ever follows.
+    r68 ireadt.a -o=ireadt.r
+    l68 ireadt.r -o=/h6/ireadt      (name the output PATH: l68 writes -o= to
+                                     the EXECUTION directory, not the data one)
+
+Run it on a pty, press a key, then type a line and press Return:
+
+    A: I$Read for 1 byte -- press a key
+    X                                     <- typed, echoed
+    A: returned                           <- the 1-byte read CAME BACK
+    B: I$Read for 256 bytes -- type a line, press return
+    hello                                 <- typed, with Return, echoed
+                                          <- "B: returned" never appears
+
+The 1-byte read returns on the first keypress. The 256-byte read never
+returns, though a complete line terminated by carriage return was typed.
 
 **It must be run on a PTY.** Piped or redirected input hides the defect
 completely, because the data is already there to satisfy the whole request.

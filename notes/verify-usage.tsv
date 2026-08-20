@@ -40,9 +40,7 @@ sysid	CMDS	NO-USAGE
 infoxpress	CMDS/NETWORK	NO-USAGE	
 ppmforge	CMDS/NETPBM	USAGE-OK	usage:  ppmforge        [-width|-xsize <x>] [-height|-ysize <y>] [-mesh <n>]       [-clouds] [-dimen
 pgmcrater	CMDS/NETPBM	USAGE-OK	usage:  pgmcrater [-number <n>] [-width|-xsize <w>]                   [-height|-ysize <h>] [-gamma <
-read_mail	CMDS	NO-USAGE	
 mcvert	CMDS	USAGE-OK	Mcvert V1.05 By Doug Moore OSK Port by Dean Leiber  Usage: Mcvert [-rduxh] [DUpqsv] filename(s) 
-arepdaemon	CMDS/ELM	NO-USAGE	
 t	CMDS	NO-USAGE	
 splprt	CMDS	NO-USAGE	
 makecrc	CMDS	NO-USAGE	
@@ -52,8 +50,8 @@ byteflip	CMDS/NEWS	NO-USAGE
 macbin	CMDS	USAGE-OK	MacBinary file converter version 1.1 Usage  :   Converts files to MacBinary format Syntax :   macbin
 make	CMDS	USAGE-OK	Syntax :	make {[-f <makefile>] [-dDinrst] [<target>] [<macro>=<value>]} Function :	maintain, update 
 splman	CMDS	NO-USAGE	
+splstat	CMDS	USAGE-OK	Splstat: device out of range 
 vecho	CMDS	USAGE-OK	-? 
-dir	CMDS	NO-USAGE	
 for	CMDS	NO-USAGE	
 disktest	CMDS	USAGE-OK	Syntax   : disktest [<opt>] Function : measure diskperformance Options  : -?  show this text 
 perr	CMDS	USAGE-OK	Syntax: perr [<error_codes>] Function: print error code messages   <error_code> is <ddd> or <ddd>:<d
