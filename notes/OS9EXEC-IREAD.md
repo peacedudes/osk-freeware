@@ -151,3 +151,23 @@ anyway. `ksh` is the only casualty.
 
 os9exec lives at `~/Developer/os9/os9exec`. Nothing here has been changed in
 it; that is rdoggett's call.
+
+---
+
+## A separate finding, while looking at the same file
+
+**os9exec does not execute guest code in supervisor state at all.** The module
+attribute word `_mattrev` is read and returned to callers (`F$Link` and
+friends, `fcalls.c`) but is never tested for bit 5, and `os9_tick.c` says the
+supervisor bit is "kept as an honest guard in case emulated supervisor code is
+ever run".
+
+That is the complete explanation for nine more programs on the freeware disk.
+`CMDS/GAMES/graph` and `CMDS/COMMS/vmod_trap` are both type-$0B trap libraries
+with `M$Attr = $A0` -- bit 5 set -- so a user-state process faults the instant
+it enters them. The seven Atari graphics programs, plus `rxmod` and `trap`,
+all stop there.
+
+Unlike the I$Read case this is a missing FEATURE, not a defect: nothing in the
+emulator claims to support it. It is recorded only so the next person does not
+spend a day proving it from the outside, as this pass nearly did.
