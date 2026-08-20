@@ -46,6 +46,25 @@ file argument. Two out of roughly 180 is a low rate and a completely
 sufficient reason to test every one individually rather than trusting the
 size.
 
+**NEW-SPEAKS was a bad rule, and it cost six programs.** It treated ANY
+output from the new binary as an improvement. `No more memory !!!` is output,
+and it is os9exec refusing to give the process its static storage — strictly
+worse than the silence it replaced. Six of the ten so scored regressed this
+way: `m4`, `ifdef`, `pageline`, `sepwords`, `casefix`, `input`. All six were
+reverted from git.
+
+Raising `-qixm` from 16k to 32k and 64k changed neither the binary size nor
+the behaviour, so the memory flag is not the lever and the cause is not yet
+understood. The other two NEW-SPEAKS, `pagefraz` and `pagekwic`, print
+`word too long in line 0`, which is the program working on empty input, and
+`valspeak` and `ape` print nothing at all now — their "speaks" was transient.
+
+**Every installed binary was then audited by running it**, looking for the
+failure modes a size comparison cannot see: `No more memory`, `E_BMID`,
+`E_NEMOD`, `User Trap`, `Illegal instruction`, `BUSERR`. Of 117 installed,
+**111 ok and 6 NO-MEMORY** — the same six, and no faults anywhere else. That
+audit is the check that should have run before installing rather than after.
+
 **BOTH-QUIET is not a pass.** Seventeen programs printed nothing either way.
 That is no evidence the rebuild works, so none of them was installed. An
 earlier verifier in this collection reported 20/20 OK having run nothing at
@@ -61,7 +80,8 @@ first 400 bytes and installed only if that prefix matches exactly.
 ## What was installed
 
     118  passed the comparison in the dry run
-    117  installed (one DIFFERENT re-check flipped between runs -- full-screen
+    111  installed and verified by running (117 installed, 6 reverted)
+         (one DIFFERENT re-check flipped between runs -- full-screen
          programs do not draw byte-identically every time, and the installer
          is deliberately the stricter of the two)
      57  skipped
