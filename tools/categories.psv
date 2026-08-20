@@ -42,7 +42,6 @@ gzip|Archives & compression|Compress a file
 ar|Archives & compression|Create & extract
 arc|Archives & compression|Create & extract
 cat|Archives & compression|Create & extract
-cat.nocio|Archives & compression|Create & extract
 lha|Archives & compression|Create & extract
 lharc|Archives & compression|Create & extract
 marc|Archives & compression|Create & extract
@@ -224,9 +223,7 @@ l|Files & directories|List & navigate
 ls|Files & directories|List & navigate
 tree|Files & directories|List & navigate
 basename|Files & directories|Paths
-basename.nocio|Files & directories|Paths
 dirname|Files & directories|Paths
-dirname.nocio|Files & directories|Paths
 
 # ---- Games ----
 advcom|Games|Adventure & fiction
@@ -572,7 +569,6 @@ dump|Text tools|Count & inspect
 file|Text tools|Count & inspect
 gdd|Text tools|Count & inspect
 strings|Text tools|Count & inspect
-strings.nocio|Text tools|Count & inspect
 tail|Text tools|Count & inspect
 wc|Text tools|Count & inspect
 wc.cio|Text tools|Count & inspect

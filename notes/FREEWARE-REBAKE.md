@@ -489,3 +489,62 @@ cannot pass is as useless as one that cannot fail, and neither announces itself.
 Also fixed: the shim-retry logic reused the variable `extra`, which by then was
 also the recipe's extra-flags field, so the retry passed a host path where a
 filename belonged.
+
+
+## The last fifteen stamps are gone — 2026-08-20
+
+rdoggett asked for his name out of the binaries. All fifteen are clear and
+`check_disk.py`'s threshold is now **zero**, not fifteen.
+
+**Four were removed outright** — `basename.nocio`, `cat.nocio`, `dirname.nocio`
+and `strings.nocio` were my own trap-free builds, kept in `CMDS/REBUILT` as an
+alternative for someone who strips the Microware runtime modules out. Git holds
+them at `326dbd7^` if they are ever wanted.
+
+**One was rebuilt** — `queens`, from `SRC/ioccc/baruch.c` against the clean
+overlay. 16,932 bytes down to 2,234, same behaviour.
+
+**Eleven were edited in place**, with `tools/blank_author.py`. The Author psect
+is DATA, not code, and the replacement is spaces of the SAME LENGTH, so no
+offset, relocation or entry point moved; only the CRC changed, and it was
+recomputed. CRC and header parity are verified good BEFORE the edit as well as
+after, and a module whose CRC was already wrong would have been left alone
+rather than have a detectable fault turned into a silent one. `wc` was checked
+byte-for-byte against its original output.
+
+    pep  pdraw  wc  wam.sbprolog  ls
+    hotel  suicide  suicide1  suicide2  ularn  tt
+
+**Why they could not simply be rebuilt**, which is what the stamp exists to
+record:
+
+  - **No source anywhere** — `hotel`, `suicide`, `suicide1`, `suicide2`, `tt`,
+    `ularn`, `wc`. Not on the disk, not in the pool, not in the `play` trees.
+    CLAUDE.md says `wc`'s source is "on the h0 workshop disk"; `play/h1`,
+    `h2` and `he` are image FILES, not directories, so it is not reachable.
+  - **`ls`** is a gcc2 build — its `.r` objects carry gcc's `dead face` magic,
+    which Microware's `l68` will not link, and `argmatch.c` will not compile
+    with the K&R `cc` ("pointer required").
+  - **`pdraw`** wants `popen`; the cio-linked library set has no such symbol.
+    (Its `plotX.c` also wants X11 headers, but `plotNOX.c` exists for that.)
+  - **`wam.sbprolog`** wants `netdb.h`.
+  - **`pep`** calls `standby()` and `init_via()` — the EPROM programmer's
+    hardware driver, which is not on this disk.
+
+## What was deliberately LEFT
+
+Four files still name him, and should:
+
+    SRC/misc/qt.c        "Robert Doggett, converted to OSK and major rewrite"
+    SRC/zot/zot.c        "Heavily mucked with for OSK by Robert Doggett, 1988"
+    SRC/hc_utils/me.c
+    DOC/zot/zot.1
+
+Those are **authorship credits for his own 1988-89 work**, not an SDK stamp.
+Removing them would be stripping attribution, which is the opposite of what
+was asked.
+
+Two binaries contain the string "Doggett" by pure coincidence and were not
+touched: `CMDS/draw` has it in a name table beside Pig Latin weekdays, and
+`GAMES/hack` has it among Irish place names — Skibbereen, Kanturk, Lahinch —
+in its random name generator. Doggett is an Irish townland.
