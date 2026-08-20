@@ -342,3 +342,73 @@ installing, not after — a size comparison cannot see any of those.
 collection is headed for public release with your name inside those binaries.
 Now that the clean-overlay build path works, several could be rebuilt without
 it if you would rather they were not there.
+
+---
+
+## 2026-08-20
+
+**`Fix: cron, bootlogger, read_mail and arepdaemon get the files they open`**
+Four of the long-silent programs each opened one file, failed, and exited
+without a word. The files now exist and are **empty**, which is the correct
+state for all four: `cron` reads its crontab to end-of-file and schedules
+nothing, `bootlogger` opens the log to read and to append, `read_mail` reads
+the mailbox and quotes it for a reply, `arepdaemon` takes its lock and gets it.
+*Caught while doing it:* my first `mail_` contained prose explaining why the
+file existed — and `read_mail` dutifully quoted that prose as if it were mail.
+The data files are empty; the explanations moved to READMEs beside them.
+
+**`Fix: dir lists directories -- moveq #128 sign-extended to -128`**
+A genuine 68000 bug, in `SRC/bix/dir.c` line 1066:
+
+    wr_line1  moveq.l   #128,d1
+              os9       I$WritLn
+
+MOVEQ sign-extends an 8-bit immediate, so 128 becomes −128 and `I$WritLn` got
+a byte count of `$FFFFFF80` and returned `E_BPADDR`. MOVEQ's range is
+−128..+127; 128 is one past it. There is no rebuild recipe for `dir`, so the
+module was patched in place: `72 80` → `72 7F` at `$1A38`, the only occurrence
+in the module and immediately followed by the trap. Same two bytes, CRC
+recomputed, CRC and parity checked good before as well as after. The only
+behavioural difference is a 127-character maximum line. **`dir` lists a
+directory now.**
+
+**`Fix: the print spooler gets its queue; bincheckr reads a chess book`**
+`splstat`, `splman` and `splprt` all open `/DD/SPL/splq`; the directory did not
+exist, so each stopped at error 216. Created and empty. `splstat` now opens
+the queue and exits 0. `bincheckr` works when given the opening book that was
+on the disk all along: `bincheckr /dd/GAMES/gnuchess.book`.
+
+**`Docs: ksh is dead because os9exec's I$Read waits for the full count`**
+The big one. Full write-up: `notes/OS9EXEC-IREAD.md`.
+Measured on a pty, in one program: `read(0,buf,1)` returns on the first
+keypress; **`read(0,buf,256)` never returns**, however much is typed. Line-mode
+reads (`fgets`, `I$ReadLn`) are unaffected — which is the entire difference
+between `bash`/`sh`, which are interactive here, and `ksh`, which is not.
+pdksh reads its command line with `read(ttyfd, line, LINE)` and `LINE` is 256.
+The trace matches exactly: `I$Read D1.l=$100`, no return.
+*Two things ruled out by measurement:* `isatty` works, and the line editor is
+not to blame — setting `ENV` to a file with `set +o emacs` makes the **prompt
+appear**, proving ksh reads and runs its ENV file, and the command read still
+hangs.
+*Checked:* no other program on the disk is affected. All 43 failures were
+traced for a large `I$Read`; two do one, both from a file rather than a
+terminal, and both now work anyway.
+*Blocked:* a one-function patch to `lex.c` is written, but pdksh cannot be
+rebuilt here — `osklib.r` exists nowhere at all, and the `std/` header tree
+wants `/usr/include` symlinked in. **This is where I stopped.**
+
+**`Docs: DOC/USAGE -- 179 undocumented programs describe themselves`**
+352 programs have nothing but their `DOC/INDEX` line, and the pool has manuals
+for only 23. So each was asked `-?` and what it said was kept: **179 answered
+with a real usage or syntax line**, 114 printed something else, 9 faulted, 50
+said nothing. Every line in `DOC/USAGE` came out of a program; none of it was
+composed. `-?` is a convention and not a rule — TeX prompts with `**` and
+reads stdin, which is correct — so silence there is not evidence of a fault.
+
+**`Docs: argproc library source and manual, from EFFO forum 7`**
+`argproc_demo` stops with `**** Stack Overflow ****` whatever it is given. Its
+`M$Stack` is 3072, the same as programs that work, so the fault is its own.
+The complete ARGPROC package — library source, the demo's own source, and a
+manual for `argproc()` — was in the pool and is now at `SRC/argproc` and
+`DOC/argproc_demo`. Rebuilding the demo needs `vsprintf` and `bcopy`, which
+the cio-linked library set lacks — the same wall the relink hit.
