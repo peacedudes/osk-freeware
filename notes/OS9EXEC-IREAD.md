@@ -50,6 +50,37 @@ ever follows.
 completely, because the data is already there to satisfy the whole request.
 That is presumably why it has gone unnoticed.
 
+## Where it is, in one line
+
+rdoggett asked the right question: does ksh, or anything else, disable EOR or
+change it? If a program deliberately asks for raw input, waiting for the full
+count would be CORRECT and there would be no defect here.
+
+**Nothing disables it.** os9exec's own header documents the field --
+`os9defs/sgstat_from_book.h`:
+
+    uint8_t  _sgs_eorch;  /* 0x0B  PD_EOR   end-of-record (CR) character */
+
+and os9exec honours it in three places: on writes (`ConsPutcEdit`, consio.c),
+on `I$ReadLn`, and on pipes (`pipefiles.c` reads `ot->_sgs_eorch`). The read
+path is the exception, and the two calls sit side by side in `consio.c`:
+
+    pConsIn   (I$Read)    ConsRead( pid,spP, maxlenP,buffer, false, 0  );
+    pConsInLn (I$ReadLn)  ConsRead( pid,spP, maxlenP,buffer, true,  CR );
+
+`pConsIn` passes a literal `0` as the end character rather than
+`ot->_sgs_eorch`. So the terminator is not disabled by anybody -- it is never
+consulted on that path in the first place.
+
+The control experiment is the reproduction below: it does no `ioctl` and no
+`SS_Opt` at all, so the path is in its default state with EOR = CR, and the
+256-byte read still never returns.
+
+(For completeness: pdksh's `edit.c` DOES put the terminal in raw mode via
+`x_mode()` when its line editor is active. But with the editor off -- `set +o
+emacs` -- `lex.c`'s plain `read(ttyfd, line, LINE)` runs with the terminal
+untouched, and it hangs just the same.)
+
 ## Why it kills ksh
 
 pdksh reads its command line at `SRC/pdksh/sh/lex.c` line 559:

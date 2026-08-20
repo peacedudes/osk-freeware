@@ -3,7 +3,6 @@ devprc	CMDS	STILL-BAD	Process   Pid: 3, devprc, edition 7     Exit code: E_PRCAB
 bio	CMDS	STILL-BAD	
 ptxm	CMDS	STILL-BAD	No more memory !!! No more memory !!! 
 blackjack	CMDS/BROKEN	STILL-BAD	
-cpu	CMDS	SESSION-OK	[2J[1;Hos9$  
 mscheck	CMDS	STILL-BAD	
 config	CMDS	SESSION-OK	/* Char = 8 bits, signed */ /* Maximum short = 32767 (= 2**15-1) */ /* Maximum int = 2147483647 (= 2
 vmod_trap	CMDS/COMMS	STILL-BAD	
@@ -42,7 +41,7 @@ sine	CMDS/GAMES	STILL-BAD
 g	CMDS/GAMES	STILL-BAD	**** Can't install trap handler ****  **** Graph 
 graphdemo	CMDS/GAMES	STILL-BAD	
 showpic	CMDS/GAMES	STILL-BAD	
-snake	CMDS/GAMES	SESSION-OK	[?1h=[?1h=[H[2J[8;14HI[19;5H#[18;33H$[6;59Hs[As[As[As[As S[1;2H----------------
+snake	CMDS/GAMES	SESSION-OK	[?1h=[?1h=[H[2J[18;9HI[A[A#[4;7H$[21;4Hs[As[As s[As S[1;2H-------------------
 crib	CMDS/GAMES	SESSION-OK	[H[2J[11;40HDo[Cyou[Cneed[Cinstructions[Cfor[Ccribbage?[C[1;1H[K [K [K 
 cio	CMDS	STILL-BAD	
 wn.stb	CMDS/WN	STILL-BAD	No more memory !!! No more memory !!! 
@@ -70,9 +69,7 @@ sysid	CMDS	STILL-BAD
 infoxpress	CMDS/NETWORK	STILL-BAD	
 ppmforge	CMDS/NETPBM	STILL-BAD	
 pgmcrater	CMDS/NETPBM	STILL-BAD	
-read_mail	CMDS	STILL-BAD	
 mcvert	CMDS	STILL-BAD	
-arepdaemon	CMDS/ELM	STILL-BAD	
 t	CMDS	STILL-BAD	
 env	CMDS	SESSION-OK	COLUMNS=80 PWD=/dd SHELL=/dd/bash 
 splprt	CMDS	STILL-BAD	
@@ -83,8 +80,8 @@ byteflip	CMDS/NEWS	STILL-BAD
 macbin	CMDS	STILL-BAD	
 make	CMDS	STILL-BAD	
 splman	CMDS	STILL-BAD	
+splstat	CMDS	STILL-BAD	
 vecho	CMDS	STILL-BAD	
-dir	CMDS	STILL-BAD	
 for	CMDS	STILL-BAD	
 disktest	CMDS	STILL-BAD	
 perr	CMDS	STILL-BAD	
@@ -100,18 +97,3 @@ puzzle	CMDS/GAMES	STILL-BAD
 cyberwar	CMDS/GAMES	STILL-BAD	
 bincheckr	CMDS/GAMES	STILL-BAD	
 scriptmaster	CMDS/GAMES	STILL-BAD	
-wisecrack	CMDS/GAMES	STILL-BAD	
-vtxtcn	CMDS/GAMES	STILL-BAD	
-dfiles	CMDS	STILL-BAD	
-gshell	CMDS	SESSION-OK	[H[2J[1;1H                        GSHELL  V1.1		   Uwe Simon  1988 Directory : .    +  show next 
-compiler	CMDS	SESSION-OK	[H[2J[1;1H                    CC-SHELL  V1.0           Uwe Simon  1988 Directory : .    +  show n
-authwn	CMDS/WN	STILL-BAD	
-inetdc	CMDS/WN	STILL-BAD	
-editor	CMDS	SESSION-OK	[H[2J[1;1H                   UMACS-SHELL  V1.0           Uwe Simon  1988 Directory : .    +  show
-banner	CMDS	STILL-BAD	
-rnews	CMDS/UUCP	STILL-BAD	
-philmail	CMDS/UUCP	SESSION-OK	Welcome to philmail. Checking out file..... successfully opened /dd/SPOOL/MAIL/tester File seems to 
-uupoll	CMDS/UUCP	STILL-BAD	
-cron	CMDS	STILL-BAD	
-epson	CMDS	STILL-BAD	
-biory	CMDS	STILL-BAD	
