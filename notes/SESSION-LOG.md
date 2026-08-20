@@ -12,14 +12,27 @@ Each entry is one commit, with what changed and how it was verified. All eight
 
 |  |  |
 |---|---:|
-| program files under `CMDS` | 949 |
-| not programs at all | 25 |
+| program files under `CMDS` | 951 |
+| not 68k programs at all | 26 |
 | **actual programs** | **924** |
-| demonstrated running | **884 (95.7%)** |
-| did not | 40 |
+| demonstrated running | **874 (94.5%)** |
+| did not | 51, of which 8 work under a stated condition |
 
-Was 870 of 925 (94.1%) when this pass started. Every one of the 34
-silent programs now has a named cause; none of them is a broken binary.
+Was 870 of 925 (94.1%) when this pass started.
+
+**This is a fresh four-stage sweep, re-run 2026-08-19 against the current
+binaries — not the old measurement with repairs added on.** The figure moved
+very little, and for a while I was quoting 884 because I had been incrementing
+the total each time I fixed something without re-measuring. That was wrong and
+the sweep corrected it downward.
+
+Eight programs run but under a condition the sweep does not create, so it
+cannot credit them: the six of the Fortran-77 suite (they link `os9lib`, and
+the sweep sets no module directory), `devprc` (its `-h` works; bare it aborts)
+and `makecrc` (it writes files, never to the terminal). They are named in
+`DOC/STATUS` rather than quietly folded into the total.
+
+All 34 of the previously-silent programs now have a named cause.
 
 ---
 
