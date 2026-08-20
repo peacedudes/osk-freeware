@@ -271,6 +271,40 @@ interrupt it. `draw`'s own help says `<esc>`, but escape did not end it under
 `try_quit.py`, so that is recorded as documented-but-unconfirmed rather than
 written up as verified.
 
+**`Core: 117 programs relinked against cio -- disk 194M to 190M`** and
+**`Fix: revert six relinks that regressed to 'No more memory'`**
+
+The big one, and the one I got partly wrong. Full write-up:
+`notes/RELINK-CIO.md`.
+
+174 of 198 rebuilt cio-linked, 53.3% smaller in total. Each was run against
+the binary it would replace and the outputs compared; 117 passed and were
+installed, **1.46 MB reclaimed**, disk 99M → 96M and the image 194M → 190M.
+
+*Three separate mistakes, all mine, all caught:*
+
+1. **`tar` must never be relinked.** `mkimage.sh` populates the image with the
+   collection's own `tar`, which is why the build needs no Microware software.
+   My relinked `tar` needed `cio`. The next image build failed outright —
+   `tar extracted 0 files, expected 5596` — because the test image had the five
+   modules deliberately removed. Reverted.
+2. **Keeping a `.nocio` copy of all 117 made the tree bigger**, 2.5 MB of
+   copies against 1.46 MB reclaimed, which defeats the purpose. Removed; git
+   is the record.
+3. **`NEW-SPEAKS` was a bad verdict.** It scored any output from the new
+   binary as an improvement, and `No more memory !!!` is output — os9exec
+   refusing the process its static storage, strictly worse than the silence it
+   replaced. Six programs regressed that way and were reverted. Raising
+   `-qixm` to 32k and 64k changed neither size nor behaviour, so the cause is
+   not yet understood.
+
+*What finally settled it:* every installed binary was **run** and checked for
+`No more memory`, `E_BMID`, `E_NEMOD`, `User Trap`, `Illegal instruction` and
+`BUSERR`. 111 ok, 6 NO-MEMORY, no faults. That audit should have run before
+installing, not after — a size comparison cannot see any of those.
+
+**Net: 111 programs relinked and verified by running.**
+
 ---
 
 ## Still open, in plan order
