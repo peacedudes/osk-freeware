@@ -234,6 +234,43 @@ a named-module denylist (`fpu`, `fpu040`, `cio020`, `p2init`, `os9p1`, `rbf`,
 pass cannot "fix" the disk by deleting `cio`, `csl`, `csl020`, `math` or
 `math881`.
 
+**`Core: relink-against-cio driver, and say 'on the disk' not 'shipped'`**
+`tools/rebuild/relink_cio.sh` rebuilds the 199 trap-free programs with
+`-qixm` (links cio) instead of `-qm`. It mirrors `rebuild.sh`'s proven
+invocation — `-V=/h6 -V=/h7` for the tree's own headers and the COMPAT shims,
+and four libraries linked unconditionally. Without `/h7`, `yacc` stops at
+`can't open /dd/defs/assert.h`; without `math.l`, `wanderer` fails on
+`_T$LtoD`.
+*Two bugs found by making it fail:* the first run processed 2 of 198 rows
+because **os9exec inside the loop was eating the loop's own stdin** — a trap
+this collection's notes already record. `< /dev/null` fixes it. The second was
+mine in reporting: I had been writing "shipped" throughout to mean "is on the
+disk", which reads as a claim of distribution. **Nothing has been released.**
+Reworded across the disk docs and notes.
+
+**Result: 174 of 198 rebuilt, 4,083,098 → 1,905,744 bytes — 53.3% smaller.**
+21 failed to build, 3 have no source tree.
+
+**`Fix: makedb builds its database; the five screen programs all draw`**
+`makedb` wanted `/dd/usr/lib/smail/`, which did not exist. Created, with a
+starter `palias`; it now writes `palias.dir` and `palias.pag` and completes.
+The five carried as "start, then fail later" all do their job when watched in
+a session: **`suicide` animates its stick figure** (it was recorded as
+producing no output), `draw` renders a live clock and calendar, `top` draws
+the process table, `greed` and `digclk` draw their screens. They are
+full-screen interactive programs that OS-9 aborts when input closes — not a
+fault.
+`mail` wants a scratch file on an `/r0` RAM disk. os9exec offers RAM disks
+(`mount -r=<kB>`), but the mount is refused once a session is running, for
+`r0` and `hX` alike, so `/r0` cannot be produced from inside.
+
+**`Docs: digclk has no quit key by design; draw's is unconfirmed`**
+`SRC/digclk/clock.c` reads the keyboard only inside `#ifdef MSDOS`; on OSK the
+loop is sleep-and-redraw with no read at all, so **no key quits it** — you
+interrupt it. `draw`'s own help says `<esc>`, but escape did not end it under
+`try_quit.py`, so that is recorded as documented-but-unconfirmed rather than
+written up as verified.
+
 ---
 
 ## Still open, in plan order
