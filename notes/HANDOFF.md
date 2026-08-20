@@ -105,6 +105,7 @@ In rough order of value:
   - Never `pkill -f os9exec` — other sessions match that pattern.
   - OS-9 text files are CR-only. Never call any of this "bootable".
   - Do not write about Microware adversarially.
-  - os9exec's `-m`/`-M` options do not parse in this build (`-m 64k`, `-m64k`
-    and `-M64M` all fail with `Error in decimal number` naming the *program*).
-    Memory-pressure theories are untested territory as a result.
+  - ~~os9exec's `-m`/`-M` options do not parse in this build~~ **WRONG,
+    corrected 2026-08-20.** They parse fine; the number must be a SEPARATE
+    argument (`-m 64k prog`, not `-m=64k` or `-m64k`). os9main.c's `getlnum:`
+    does `k++; p = argv[k]`. See notes/RELINK-CIO.md.

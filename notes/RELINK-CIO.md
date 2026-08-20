@@ -64,11 +64,25 @@ header — `m4`'s new `M$Mem` is 14,992 against the old 16,974, i.e. it asks for
 Raising `-qixm` from 16k to 32k to 64k changed neither the binary size nor the
 behaviour, so that flag is not the lever.
 
-**And os9exec's own memory options cannot be used to raise the ceiling.** `-m`,
-`-mm` and `-M` all fail with `Error in decimal number 'm4'` — the emulator
-parses the *program name* as the numeric argument. `-m 512k`, `-m512k`,
-`-M 64M` and `-mm 512k` were all tried. This confirms the note carried in
-`notes/HANDOFF.md`; it is a live defect in this build, not a stale claim. The other two NEW-SPEAKS, `pagefraz` and `pagekwic`, print
+**os9exec's memory options DO parse — the earlier claim was wrong, and it was
+mine.** `notes/HANDOFF.md` records `-m`/`-M` as failing with `Error in decimal
+number` naming the program, and I reproduced that and repeated it. It is a
+QUOTING mistake, not a defect. `os9main.c` takes the number as the **next argv
+element** (`getlnum:` does `k++; p = argv[k]`), so the value must be a separate
+argument:
+
+    os9exec -r -m 64k m4        works -- parses, runs
+    os9exec -r -m=64k m4        fails -- `=64k' is not a number
+    os9exec -r "-m 64k" m4      fails -- one argument, not two
+
+`-m`, `-mm` and `-M` were all confirmed working this way. **`notes/HANDOFF.md`
+is wrong on this point and should be corrected.**
+
+None of them helps here, though: `-m 512k`, `-mm 512k`, `-M 64M` and `-M 128M`
+all still give `No more memory !!!`. The failing call is `F$SRqMem` for 326,504
+bytes, which os9exec answers from `os9malloc()` rather than from the static
+storage `-m` adjusts or the arena `-M` sizes. So the cause is understood, the
+lever is not `-m`/`-M`, and the six keep their trap-free builds -- which work. The other two NEW-SPEAKS, `pagefraz` and `pagekwic`, print
 `word too long in line 0`, which is the program working on empty input, and
 `valspeak` and `ape` print nothing at all now — their "speaks" was transient.
 
