@@ -43,7 +43,7 @@ deton|hc_utils|deton.c|||
 # The shipped binary has a bad CRC and will not load -- see notes/SECOND-PASS.md.
 devprc|devprc|devprc.c getopt.c|||
 dfiles|dfiles|dfiles.c|||
-diff|diff|diff.c||/dd/LIB/egetopt.r|
+diff|diff|alloca.c analyze.c context.c diff.c dir.c ed.c io.c normal.c os9.c regex.c util.c getopt.c|||
 digclk|digclk|clock.c digits.c hostname.c mytime.c||/dd/LIB/curses.l /dd/LIB/termlib.l /dd/LIB/math.l /dd/LIB/strings.r|
 dinfo|eff_dinfo|dinfo.c|||
 du|eff_du|du.c|||
