@@ -107,9 +107,13 @@ the build is blocked on a missing support library.**
 
 A program is entitled to ask for more bytes than are available; a terminal
 read should return what has arrived. Fixing it in the emulator fixes ksh
-without touching pdksh, and fixes anything else doing a large raw read from a
-terminal — which is worth checking for among the programs on this disk that
-still read as silent.
+without touching pdksh.
+
+**Nothing else on this disk is affected, checked 2026-08-20.** Every one of
+the 43 programs that do not run was traced for a large `I$Read`. Two do one —
+`dir` asks for `$180` and `read_mail` for `$200` — but both are reads from a
+FILE on path 3, not from a terminal, and both of those programs now work
+anyway. `ksh` is the only casualty.
 
 os9exec lives at `~/Developer/os9/os9exec`. Nothing here has been changed in
 it; that is rdoggett's call.
