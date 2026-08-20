@@ -58,6 +58,42 @@ case: old and new emit the same escape sequences, the same `File:` banner and
 the same ruler, and differ only past the cut. Those are re-checked on the
 first 400 bytes and installed only if that prefix matches exactly.
 
+## What was installed
+
+    118  passed the comparison in the dry run
+    117  installed (one DIFFERENT re-check flipped between runs -- full-screen
+         programs do not draw byte-identically every time, and the installer
+         is deliberately the stricter of the two)
+     57  skipped
+      1,455,706  bytes reclaimed
+
+Disk tree 99M -> 96M; the built image 194M -> 190M.
+
+**The `.nocio` copies were NOT kept.** Keeping a trap-free copy of each
+replaced binary made the tree *larger* — 117 copies is 2.5 MB against
+1.46 MB reclaimed — which defeats the point. Git holds every one of them, so
+`git show <commit>:disk/CMDS/<prog>` recovers any single binary exactly. The
+four from the earlier hand-checked swap (`cat`, `basename`, `dirname`,
+`strings`) are kept, because `DOC/INDEX` documents them as an alternative for
+somebody who removes the Microware modules.
+
+## One regression, caused and caught
+
+**`tar` must never be relinked, and I relinked it.** `mkimage.sh` populates
+the image using the collection's *own* `tar`, which is why the header says the
+build needs no Microware software at all. The relinked `tar` requires `cio`.
+Nothing detected this by inspection — the next image build simply failed with
+`tar extracted 0 files, expected 5596`, because the test image deliberately had
+the five modules removed.
+
+`tar` was reverted from git. `sh`, the only other program `mkimage.sh`
+depends on, was not relinked and needs nothing.
+
+**The rule this leaves:** anything the image build itself runs is off limits
+to this exercise, and the way to prove it is to build an image with the five
+Microware modules absent. That is now a two-minute check and it should be run
+after any future relinking.
+
 ## The 21 that would not build, by cause
 
   - **`/dd/LIB/strings.r` missing — 4** (`digclk`, `hang`, `screen`,
