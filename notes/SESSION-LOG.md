@@ -15,8 +15,8 @@ Each entry is one commit, with what changed and how it was verified. All eight
 | program files under `CMDS` | 949 |
 | not programs at all | 25 |
 | **actual programs** | **924** |
-| demonstrated running | **885 (95.8%)** |
-| did not | 39 |
+| demonstrated running | **884 (95.7%)** |
+| did not | 40 |
 
 Was 870 of 925 (94.1%) when this pass started. Every one of the 34
 silent programs now has a named cause; none of them is a broken binary.
