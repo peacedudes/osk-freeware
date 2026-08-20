@@ -29,7 +29,7 @@ ar2	CMDS	OK bare
 arc	CMDS	OK bare
 arc	CMDS/REBUILT	OK bare
 areacode	CMDS	OK bare
-arepdaemon	CMDS/ELM	NEEDS WORK
+arepdaemon	CMDS/ELM	OK bare
 argproc_demo	CMDS	OK bare
 as0	CMDS	OK bare
 as09	CMDS	OK bare
@@ -140,7 +140,7 @@ cookhash	CMDS	OK bare
 cookie	CMDS	OK bare
 cp	CMDS	OK bare
 cpr	CMDS	OK as a filter
-cpu	CMDS	OK in a session
+cpu	CMDS	OK bare
 creadoc	CMDS	NEEDS WORK
 crib	CMDS/GAMES	OK in a session
 cribbage	CMDS/GAMES	OK in a session
@@ -186,7 +186,7 @@ diff	CMDS	OK bare
 diff_1.1	CMDS/REBUILT	OK bare
 digclk	CMDS	OK bare
 dinfo	CMDS	OK bare
-dir	CMDS	NEEDS WORK
+dir	CMDS	OK bare
 dirname	CMDS	OK bare
 dirname.nocio	CMDS/REBUILT	OK bare
 disable	CMDS/UUCP	OK bare
@@ -696,7 +696,7 @@ rcsmerge	CMDS	OK bare
 rdjpgcom	CMDS	OK as a filter
 rdjpgcom.070	CMDS	OK as a filter
 rdoc	CMDS	OK bare
-read_mail	CMDS	NEEDS WORK
+read_mail	CMDS	OK bare
 readmsg	CMDS/ELM	OK bare
 readnews	CMDS/UUCP	OK bare
 rechne	CMDS	OK bare
@@ -783,7 +783,7 @@ split	CMDS	OK as a filter
 splitalf	CMDS	OK bare
 splman	CMDS	NEEDS WORK
 splprt	CMDS	NEEDS WORK
-splstat	CMDS	OK bare
+splstat	CMDS	OK given arguments
 spottopgm	CMDS/NETPBM	OK bare
 sputoppm	CMDS/NETPBM	OK as a filter
 sqrtx	CMDS	OK bare

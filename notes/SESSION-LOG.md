@@ -15,8 +15,8 @@ Each entry is one commit, with what changed and how it was verified. All eight
 | program files under `CMDS` | 951 |
 | not 68k programs at all | 26 |
 | **actual programs** | **924** |
-| demonstrated running | **874 (94.5%)** |
-| did not | 51, of which 8 work under a stated condition |
+| demonstrated running | **877 (94.8%)** |
+| did not | 48, of which 13 work but print nothing |
 
 Was 870 of 925 (94.1%) when this pass started.
 
