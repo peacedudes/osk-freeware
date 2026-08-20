@@ -130,6 +130,7 @@ the obvious next increment and it was not attempted.
 
 ## What is kept
 
-Each replaced binary is preserved as `CMDS/REBUILT/<prog>.nocio`, so any swap
-is one move to undo, and so somebody who removes the Microware runtime modules
-still has a build that runs without them.
+Only the four hand-checked ones from the earlier swap keep a `.nocio` copy on
+the disk. For the other 117, git is the record: `git show 326dbd7^:disk/CMDS/<prog>`
+returns the trap-free binary byte for byte. See "What was installed" above for
+why keeping all of them on the disk was the wrong call.
