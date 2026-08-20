@@ -1,0 +1,1 @@
+/* Include file for users of argproc(). */#include <boolean.h>#include <lose.h>long argproc();

@@ -1,0 +1,1 @@
+/*-------------------------------------------------------------------------- Local definitions; peoples' preferences for these are hard to predict...--------------------------------------------------------------------------*/typedef short boolean;#ifndef TRUE#define TRUE	((boolean) 1)#define FALSE	((boolean) 0)#endif
