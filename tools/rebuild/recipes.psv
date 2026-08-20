@@ -9,8 +9,8 @@ assembler|eff_gshell|assembler.c selectfile.c|||
 banner|misc|banner.c|||
 bite|v_misc|bite.c|||
 blackjak|effo_snobol|blackjak.c cardpak.c genprim.c pattern.c pokev.c quest.c rperm.c rselect.c rsent.c snorand.c|||
-bmgtest|strsch|bmgtest.c bmgsubs.c|BSD||
-bmgtest2|strsch|bmgtest2.c bmgsubs.c|BSD||
+bmgtest|strsch|bmgtest.c bmgsubs.c bcopy.c|BSD||
+bmgtest2|strsch|bmgtest2.c bmgsubs.c bcopy.c|BSD||
 bootgen|bix|bootgen.c|||
 bush|misc|bush.c|||
 calen|hc_loose|calen.c|||
