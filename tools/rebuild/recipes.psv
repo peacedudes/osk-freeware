@@ -88,8 +88,8 @@ liborder|eff_libutils|liborder.c|||
 life|life|life.c|||
 loan|misc|loan.c|||
 logisim|eff_logisim|logisim.c|||
-lp|eff_lp|lp.c os9geteuid.c|||
-lpq|eff_lp|lpq.c os9geteuid.c|||
+lp|eff_lp|lp.c os9geteuid.c os9getpw.c|||
+lpq|eff_lp|lpq.c os9geteuid.c os9getpw.c|||
 lprm|eff_lp|lprm.c|||
 lpshut|eff_lp|lpshut.c|||
 ls|ls|argmatch.c error.c filemode.c getopt.c idcache.c ls.c obstack.c os9stubs.c savedir.c t.c xmalloc.c xstrtol.c|||
