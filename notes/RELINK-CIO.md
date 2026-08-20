@@ -53,9 +53,22 @@ worse than the silence it replaced. Six of the ten so scored regressed this
 way: `m4`, `ifdef`, `pageline`, `sepwords`, `casefix`, `input`. All six were
 reverted from git.
 
-Raising `-qixm` from 16k to 32k and 64k changed neither the binary size nor
-the behaviour, so the memory flag is not the lever and the cause is not yet
-understood. The other two NEW-SPEAKS, `pagefraz` and `pagekwic`, print
+**Root cause, traced 2026-08-19.** The cio-linked build calls `F$SRqMem` for
+`$4FB68` — 326,504 bytes — and os9exec returns `E_NORAM`, whereupon the
+program retries the identical request forever, printing the message each time.
+The trap-free build never makes that request: cio's allocator asks for one
+large arena where the statically linked stdio does not. It is not the module
+header — `m4`'s new `M$Mem` is 14,992 against the old 16,974, i.e. it asks for
+*less*.
+
+Raising `-qixm` from 16k to 32k to 64k changed neither the binary size nor the
+behaviour, so that flag is not the lever.
+
+**And os9exec's own memory options cannot be used to raise the ceiling.** `-m`,
+`-mm` and `-M` all fail with `Error in decimal number 'm4'` — the emulator
+parses the *program name* as the numeric argument. `-m 512k`, `-m512k`,
+`-M 64M` and `-mm 512k` were all tried. This confirms the note carried in
+`notes/HANDOFF.md`; it is a live defect in this build, not a stale claim. The other two NEW-SPEAKS, `pagefraz` and `pagekwic`, print
 `word too long in line 0`, which is the program working on empty input, and
 `valspeak` and `ape` print nothing at all now — their "speaks" was transient.
 
