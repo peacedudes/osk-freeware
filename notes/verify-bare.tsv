@@ -49,3 +49,136 @@ setfont	CMDS	OK	usage: setfont <path>
 devprc	CMDS	CRASH	# # Exception: pid=2 vector=$02 err=#000:102 — process will be killed (x to continue) Process   Pid:
 msren	CMDS	OK	Mtools version 3.6, dated 14 Apr 97 Usage: msren [-itnmvV] file targetfile        msren [-itnmvV] fi
 vi	CMDS	OK	Visual needs addressible cursor or upline capability : 
+textb	CMDS	OK	Input X_COORD:  
+rot	CMDS	SILENT	
+bsplt68	CMDS	OK	Usage :   bsplt68 bootfile  
+dmake	CMDS	OK	dmake:  Error -- No target 
+expand	CMDS	SILENT	
+strings	CMDS	OK	Usage: strings [-anpl=n] [file [file]]      searches named binary files for strings      -a   string
+ref	CMDS	OK	usage: ref [-t] [-c class] [-f file] tag    -t        output tag info, instead of the function heade
+ssl	CMDS	SILENT	
+my.opt	CMDS	SILENT	
+remove	CMDS	OK	Syntax   : remove [<opt>] [<modules>] [<opt>] [<modules>] [<opt>] Function : remove modules from mem
+sysmax	CMDS	OK	F$SetSys: unimplemented 08A8 (size=80000002) system maximum age is 0 
+msattrib	CMDS	OK	Mtools version 3.6, dated 14 Apr 97 Usage: msattrib [-p] [-a|+a] [-h|+h] [-r|+r] [-s|+s] msdosfile [
+shuffle	CMDS	OK	Unknown terminal type ''. 
+ephem	CMDS	OK	Must have addressable cursor 
+gs403	CMDS	OK	Can't find initialization file gs_init.ps. 
+pow	CMDS	OK	pow: can't open controller path '/x1' 
+loan	CMDS	OK	Enter principal amount:  
+deton	CMDS	OK	You have 3 seconds to terminate self-destruct... 
+splitalf	CMDS	OK	splitalf: can't open output file(s) 
+tty	CMDS	OK	term 
+ape	CMDS	SILENT	
+basename	CMDS	OK	basename v1.0 (c) M.C.Gregorie, 1994 Syntax:   basename <path> [<suffix>] Function: Outputs string a
+bio	CMDS	NOSTART	# Emulation could not start due to OS-9 error #000:205 (E_BMID): '/dd/CMDS/bio' #   Bad Module ID 
+pagefraz	CMDS	OK	pagefraz: word too long in line 0 
+binhex	CMDS	SILENT	
+des	CMDS	OK	Usage: des file ... 
+dump	CMDS	SILENT	
+names	CMDS	OK	 
+calendar	CMDS	OK	calendar: Can't open "/.dates" 
+mvolformat	CMDS	OK	Syntax: mvolformat drive volname volcount [format options] Function: format multiple floppies with s
+libsplit	CMDS	OK	Syntax   : [<opts>] {<library>} [<opts>] Function : Splits a new Type Library into ROF files.       
+lharc	CMDS	OK	C-LHarc for OS-9/68k Version 1.00   (C) 1989-1990 Y.Tagawa, Kai Uwe Rommel Usage: lharc {axevlufdmct
+lprm	CMDS	OK	lprm: can't link to 'spoolqueue' 
+du	CMDS	OK	Disk usage starting from "." on 19126-08-20  01:21:41 Directory name                      Bytes    k
+rsconvert	CMDS	OK	/* Converted by rsconvert */ **** Stack Overflow **** 
+every	CMDS	OK	Syntax: every <time> <progname> [<progopts>] Function: repeat program every <time> seconds 
+ptxminst	CMDS	SILENT	
+yagi	CMDS	OK	This program designs UHF/VHF yagi antennas based on designs by DL6WU. See "More Gain with Yagi Anten
+dload	CMDS	OK	Syntax: dload <filename> Function: loads datafile into datamodule dload: need fileargument to work 
+booz	CMDS	OK	Public domain zoo archive extractor/lister by Rahul Dhesi Version 2.0 (1991/07/07) Usage:  booz {lxt
+jargon	CMDS	OK	Browsing jargon... TERM environment variable not set. 
+Ascii2Libr	CMDS	OK	Missing parameter: outfile Syntax: Ascii2Libr [opts] Program to read the ASCII text file generated b
+creadoc	CMDS	SILENT	
+rechne	CMDS	OK	RECHNE   Version UTIL 2.80 by DESIGNA VLT 03.08.98 rechne [Optionen] <Ausdruck>    Moegliche Operato
+ptxm	CMDS	NOSTART	# Emulation could not start due to OS-9 error #000:237 (E_NORAM): '/dd/CMDS/ptxm' #   No Ram Availab
+atob	CMDS	SILENT	
+liborder	CMDS	OK	Usage: liborder <options> file1.r file2.r ... Produces an ordered list of the input modules to build
+wysecrack	CMDS/BROKEN	SILENT	
+blackjack	CMDS/BROKEN	NOSTART	# Emulation could not start due to OS-9 error #000:205 (E_BMID): '/dd/CMDS/BROKEN/blackjack' #   Bad
+cjpeg.070	CMDS	SILENT	
+owner	CMDS	OK	owner: change ownership of files                    (super user only)                 Usage: owner u
+as4	CMDS	OK	Usage: as4 [files] 
+england	CMDS	OK	                                                                  Snow Year   1    Weather        Sk
+macstream	CMDS	OK	Usage: macstream [-rduUc:t:ilqVH] files Use "macstream -H" for help. 
+fiz	CMDS	OK	Fiz 2.0 (1987/02/01) public domain Zoo archive repair utility by Rahul Dhesi Usage:  fiz archive[.zo
+join	CMDS	OK	Usage: join [-a 1|2] [-v 1|2] [-e empty-string] [-o field-list...] [-t char]        [-j[1|2] field] 
+dinfo	CMDS	OK	Device name   : /dd Volume name   : "OSK-Freeware" Creation date : 2026-8-20 1:17 
+submit	CMDS	OK	Zu wenig Parameter Syntax: submit [<opts>] [<submit file>] [{<parameter>)] Function: Executes comman
+gnuplot	CMDS	OK		G N U P L O T 	unix version 2.0 	patchlevel 1 
+luac	CMDS	OK	usage: luac [-c | -u] [-d] [-l] [-p] [-q] [-v] [-o output] file ...  -c	compile (default)  -u	undump
+lnk.org	CMDS	SILENT	
+rtf	CMDS	SILENT	
+assembler	CMDS	SILENT	
+unstr	CMDS	OK	usage: unstr datafile[.dat] [ outfile ] 
+combine	CMDS	OK	[2J[1;H(c.) 1989 by F.R.Schmitt MPI Kernphysik Heidelberg Syntax: combine [<file1>] [<file2>] [<ou
+PrintCards	CMDS	OK	Missing parameter: infile Syntax: PrintCards [opts] Libraian Card Catalog card printer 
+etags	CMDS	OK	Syntax: etags { [<opts>] <path> } Function: GNU tags file maker. Creates tag table files for editors
+hc	CMDS	OK	usage:  hc [-s] [+tab | -col | -l "str" | filename] ... 
+loglist	CMDS	OK	loglist: Sorry, there is no /dd/sys/loglist 
+lfmaker	CMDS	SILENT	
+sort	CMDS	SILENT	
+whoami	CMDS	OK	su 
+weave	CMDS/TEXCMDS	OK	Usage: weave webfile[.web] [changefile[.ch]] [-x]. 
+dvialw	CMDS/TEXCMDS	OK	[TeX82 DVI Translator Version 2.10b] [PostScript [Apple LaserWriter laser printer]] dvialw: Unable t
+tex	CMDS/TEXCMDS	SILENT	
+vptovf	CMDS/TEXCMDS	OK	Usage: vptovf <vpl file> <vfm file> <tfm file>. 
+dvitype	CMDS/TEXCMDS	OK	Usage: dvitype <dvi file>. 
+virtex	CMDS/TEXCMDS	OK	This is TeX, C Version 3.14 ** 
+dvidjp	CMDS/TEXCMDS	OK	[TeX82 DVI Translator Version 2.10] [Hewlett-Packard Desk Jet plus (from LaserJet) 	WITH Data Compac
+slitex	CMDS/TEXCMDS	SILENT	
+texidx	CMDS/TEXCMDS	SILENT	
+pltotf	CMDS/TEXCMDS	OK	Usage: pltotf [-verbose] <property list file> <tfm file>. 
+latex	CMDS/TEXCMDS	SILENT	
+dvijet	CMDS/TEXCMDS	OK	[TeX82 DVI Translator Version 2.10] [Hewlett-Packard 2686A Laser Jet laser printer] dvijet: Unable t
+afm2tfm	CMDS/TEXCMDS	OK	afm2tfm 7.0, Copyright 1990-92 by Radical Eye Software Usage: afm2tfm foo[.afm] [-O] [-v|-V bar[.vpl
+dviimp	CMDS/TEXCMDS	OK	[TeX82 DVI Translator Version 2.10] [imPRESS [Imagen laser printer family]] dviimp: Unable to fseek(
+inimf	CMDS/TEXCMDS	OK	This is METAFONT, C Version 2.7 (INIMF) ** 
+bibtex	CMDS/TEXCMDS	OK	Please type input file name (no extension)-- 
+gftype	CMDS/TEXCMDS	OK	This is GFtype, C Version 3.1 Usage: gftype [-m] [-i] <gf file>. 
+pktype	CMDS/TEXCMDS	OK	This is PKtype, C Version 2.3 Usage: pktype <pk file>. 
+pktogf	CMDS/TEXCMDS	OK	Usage: pktogf [-v] <pk file> [gf file]. 
+vftovp	CMDS/TEXCMDS	OK	Usage: <vfm file> <tfm file> <vpl file>. 
+maketexpk	CMDS/TEXCMDS	OK	MakeTeXPK: Too few parameters 
+gftopk	CMDS/TEXCMDS	OK	Usage: gftopk [-v] <gf file> [pk file]. 
+initex	CMDS/TEXCMDS	OK	This is TeX, C Version 3.14 (INITEX) ** 
+virmf	CMDS/TEXCMDS	OK	This is METAFONT, C Version 2.7 ** 
+tangle	CMDS/TEXCMDS	OK	Usage: tangle webfile[.web] [changefile[.ch]]. 
+dvilj2	CMDS/TEXCMDS	OK	[TeX82 DVI Translator Version 2.10] [Hewlett-Packard LaserJet II laser printer] dvilj2: Unable to fs
+dvijep	CMDS/TEXCMDS	OK	[TeX82 DVI Translator Version 2.10] [Hewlett-Packard LaserJet Plus laser printer] dvijep: Unable to 
+dvieps	CMDS/TEXCMDS	OK	[TeX82 DVI Translator Version 2.10 [experimental]] [Epson 9-pin family 240dpi x 216dpi dot matrix pr
+dvips	CMDS/TEXCMDS	OK	This is dvipsk 5.495b Copyright 1986, 1992 Radical Eye Software dvips: ! Couldn't find header file t
+dvioki	CMDS/TEXCMDS	OK	[TeX82 DVI Translator Version 2.10] [OKIDATA 192 dot matrix printer at 144dpi] dvioki: Unable to fse
+dvitos	CMDS/TEXCMDS	OK	[TeX82 DVI Translator Version 2.10] [Toshiba P-1351 180h x 180v dpi dot matrix printer] dvitos: Unab
+dvimac	CMDS/TEXCMDS	OK	[TeX82 DVI Translator Version 2.10] [Apple ImageWriter 144 dpi dot matrix printer] dvimac: Unable to
+tftopl	CMDS/TEXCMDS	OK	Usage: tftopl [-verbose] <tfm file> [<property list file>]. 
+tttt	CMDS	OK	Unknown terminal type ''. 
+ask	CMDS	OK	No Wisecracks coming 
+unp	CMDS	SILENT	
+pagekwic	CMDS	OK	pagekwic: word too long in line 0 
+delbak	CMDS	SILENT	
+preset	CMDS	OK	 
+as5	CMDS	OK	Usage: as5 [files] 
+areacode	CMDS	OK	Usage: areacode nnn nnn ... 
+file	CMDS	OK	Syntax:   file [<opts>] {<file>} Function: identify file types Options: 
+georgia	CMDS	OK	                                                                  Snow Year   1    Weather        Sk
+ispell	CMDS	OK	syntax: ispell {opts} {<file> {opts}} Function: interactive spelling checker Options: 
+pri	CMDS	SILENT	
+today	CMDS	OK	Today is Thursday, the twentieth day of August, two thousand and twenty-six. The time is twenty-thre
+mg	CMDS	OK	Panic: Could not determine terminal type 
+less	CMDS	OK	WARNING: terminal cannot clear to end of line WARNING: terminal cannot clear screen WARNING: termina
+puzzle15	CMDS	OK	Unknown terminal type ''. 
+cpu	CMDS	CRASH	# # Exception: pid=2 vector=$07 err=#000:107 — process will be killed (x to continue) [2J[1;H[2J
+fstat	CMDS	OK	Syntax: FStat [<opts>] <file1> [<opts>] Function: Display file descriptor information Options: 
+oskversion	CMDS	OK	OSK level : 1 OSK version : 4 Revision : 0 
+mscheck	CMDS	NOSTART	# Emulation could not start due to OS-9 error #000:214 (E_FNA): '/dd/CMDS/mscheck' #   File Not Acce
+flink	CMDS	OK	flink: link to file     usage: flink [ -? | filename { filename } ]                          option:
+config	CMDS	CRASH	# # Exception: pid=2 vector=$0B err=#000:111 — process will be killed (x to continue) /* Char = 8 bi
+cpr	CMDS	SILENT	
+bm	CMDS	OK	bm: no pattern specified 
+vi_cio	CMDS	OK	[2J[1;1H 
+pdraw	CMDS	OK	Pdraw V1.4  9/4/90    Terminal Type             =     Default Printer           = -P 
+sed	CMDS	OK	sed: No program to run 
+input	CMDS	SILENT	

@@ -130,8 +130,13 @@ after any future relinking.
 ## The 21 that would not build, by cause
 
   - **`/dd/LIB/strings.r` missing — 4** (`digclk`, `hang`, `screen`,
-    `sokoban`). Not in the SDK, and **not anywhere in the pool** either. These
-    four cannot be relinked until that library is found.
+    `sokoban`). Not in the SDK and not anywhere in the pool.
+    **RESOLVED 2026-08-20: they do not need it.** The recipes name it because
+    the trap-free build did; the cio-linked build gets those symbols from cio.
+    Dropping `-l=/dd/LIB/strings.r` builds all four, and each behaves
+    identically to the binary it replaces when run in a login session — the
+    differences seen bare were only two different ways of saying `no TERM`.
+    Installed, **40,656 bytes** reclaimed.
   - **Missing headers, and the source trees are incomplete — 7**
     (`convert`, `sonnet`, `gen`, `if`, `run`, `patch`, `pdraw`). `convert`
     wants `parame.inc`, `sonnet` wants `lex.i`, `gen` wants `../defs/misc.h`.
