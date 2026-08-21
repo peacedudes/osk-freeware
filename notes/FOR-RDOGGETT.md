@@ -85,11 +85,27 @@ exist here*. Every part of that was wrong:
 - **`popen.r` and `netdb.h`** were both in `~/Developer/os9/play/`.
 - `strings.r` was already known not to be needed.
 
-**`ksh` itself is not finished.** It builds, links, starts, and runs `cd`,
-assignments and `print` — but every command that is an *alias* (`echo`, `true`,
-`pwd`) aborts on a null pointer. Four candidate causes are ruled out by
-experiment and written down so nobody retests them. This only matters if the
-os9exec fix is never committed; **ksh works on the collection today**.
+**The `ksh` alias crash is FOUND AND FIXED**, and the cause is worth knowing
+because it is a trap for anything else built here:
+
+> **`strchr` on this system does not match the terminating NUL.**
+> `OSK/DEFS/osk.h` has `#define strchr index`, and `index("print", 0)` returns
+> **NULL** — measured with a five-line program, not assumed. `lex.c`'s alias
+> path reads the last character of an alias value with
+> `strchr(s->str, 0)[-1]`, which is the ANSI idiom for "the end". Here that is
+> `NULL[-1]`: a byte read at `$FFFFFFFF`, a bus error, on **every alias
+> expansion**. Hence `echo`, `true` and `pwd` dying while `print` and `cd`
+> were fine — those three are exactly the aliases `main.c` installs.
+
+With the fix, `ksh -c "x=5; echo x is $x; true; echo status $?"` prints
+`x is 5` and `status 0`. **Any `strchr(s, 0)` anywhere in this collection is a
+latent bus error** — that is worth a grep some day.
+
+**`ksh` is still not finished**: a SECOND and separate fault loses some stdout
+(`print`/`echo` write with `putc` to `shf[1]`; error output goes a different
+way and appears). Characterised, with the next thing to try, in
+`tools/rebuild/pdksh/README.md`. This only matters if the os9exec fix is never
+committed; **ksh works on the collection today**.
 
 Everything in `tools/rebuild/pdksh/README.md`, including a warning worth
 having: the port's `fork()` emulation has the child read the parent's address
