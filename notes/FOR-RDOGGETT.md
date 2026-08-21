@@ -1,18 +1,21 @@
 # For rdoggett, on your return — 2026-08-21
 
-One file, one place to look. Branch: **`release-pass-2026-08-21`**, off `main`.
-Nothing pushed. Every commit made with all eight `check_disk.py` checks green.
-Read `notes/PLAN-release-2026-08-21.md` for what I was asked and what I decided,
-and `notes/SESSION-2026-08-21.md` for the running record.
+One file, one place to look. Branch **`release-pass-2026-08-21`**, off `main`,
+nothing pushed. Every commit made with all `check_disk.py` checks green — there
+are **nine** now, not eight.
 
-## Read this one first
+Detail: `notes/SESSION-2026-08-21.md`. What I was asked and what I decided:
+`notes/PLAN-release-2026-08-21.md`.
 
-**Microware's proprietary source was on the shipping disk, and I have removed
-it.** `disk/SRC/msfm` -- 21 files of OS-9 file-manager internals: path
-descriptors, system globals, process descriptors.
+---
 
-It is byte-identical to EFFO forum disk 12's `SOFTWARE/C/MSFM/SRC`, and that
-archive's `note.doc` says:
+## 1. Read this first — Microware source was on the shipping disk
+
+**`disk/SRC/msfm`, 21 files of OS-9 file-manager internals — path descriptors,
+system globals, process descriptors. I have removed it.**
+
+Byte-identical to EFFO forum disk 12's `SOFTWARE/C/MSFM/SRC`, whose `note.doc`
+says:
 
 > Source of original version: Peter Dibble: OS-9 INSIGHTS ... This source code
 > is the proprietary confidential property of Microware Systems Corporation,
@@ -20,109 +23,156 @@ archive's `note.doc` says:
 > purposes. Reproduction, publication, or distribution in any form to any
 > party other than licensee is strictly prohibited.
 
-Three things make this worth your attention beyond the removal itself:
+Three things beyond the removal:
 
-1. **`msfm` was already on the refused list** in `notes/WORK-QUEUE.md` --
+1. **`msfm` was already on the refused list** in `notes/WORK-QUEUE.md` —
    *"Microware's, out of Dibble's OS-9 Insights"*. The MODULE was refused. The
    SOURCE came in by another route and nobody noticed.
 2. **The notice was a sibling of the directory somebody copied**, one level up
    from the `SRC/` that was taken, so it stayed behind. The 21 files carry no
-   header, no copyright line, nothing. Reading any one of them tells you only
-   that it is a file manager.
-3. **`tools/screen_microware.py` would have caught it** -- it flags 10 of the
-   21 on its SYSTEM SOURCE rule. It had only ever been run on candidates
-   before installing them, never over what was already on the disk.
+   header, no copyright line, nothing.
+3. **`tools/screen_microware.py` would have caught it** — it flags 10 of the 21.
+   It had only ever been run on candidates before installing them, never over
+   what was already on the disk.
 
-So `check_disk.py` has a ninth check now, `no unscreened Microware source`,
-which screens `disk/SRC` on the strong rules only (the NAME rule alone matches
-212 files and a check that cries wolf is one nobody reads). Six pre-existing
-strong flags are listed with reasons in `tools/screened-src.txt` -- **please
-read those six and tell me if you disagree with any**; I judged all six to be
-third-party or common-interface code, but `disk/SRC/hc_utils/sys.c` is yours
-and you would know better than I do.
+`check_disk.py` now has a ninth check, `no unscreened Microware source`, over
+`disk/SRC` on the strong rules only. I proved it fires by putting one msfm file
+back. Accepted exceptions are in **`tools/screened-src.txt`**, each with a
+reason — **please read those and tell me if you disagree**. Most are common
+interface headers (`stat.h`, `pwd.h`, the FSF's `getopt.h`), but
+`disk/SRC/hc_utils/sys.c` is yours and you would know better than I do.
 
-I proved the check fires by putting one msfm file back.
+This is what I would most want a second opinion on before you ship.
 
-This is the item I would most want a second opinion on, and the reason I would
-not ship before you have looked.
+---
 
-## Things that need YOUR decision
-
-1. **`~/Developer/os9/os9exec` has FOUR modified files, not one.** The handoff
-   says the uncommitted change is *"one file, `consio.c`, 25 lines"*. It is
-   actually `consio.c` (+127/-13), `debug.c`, `filestuff.h`, and
-   `test/Sources/OS9Tests/main.swift` (+101) — 219 insertions across four
-   files. I have not touched, committed or reverted any of it, as instructed.
-   But the handoff understates what is sitting there, and you should look
-   before deciding.
-
-2. **The star list and the shipped counts disagree with the disk, everywhere.**
-   `DOC/INDEX`'s own header contradicts itself in three consecutive sentences
-   ("228 programs are starred", "Of the 581 ... 162 are starred", "Of the 499
-   ... 125 are starred"). `DOC/README-CIO` says 101 starred; the measured
-   figure is 367. `DOC/README-RUNNING` says 444 programs where there are 597.
-   I have fixed these by GENERATING them (see below) rather than hand-editing,
-   because hand-editing is what let them rot. **Check I have not generated a
-   number you disagree with.**
-
-3. **Two headers from the recovered pdksh port were refused as Microware's.**
-   `OSK/DEFS/ioctl.h` is byte-identical to the SDK's `DEFS/UNIX/ioctl.h`;
-   `OSK/DEFS/termios.h` has every line in the SDK's `termio.h`. I left both
-   out of `disk/`. The build uses the SDK's copies, which is normal. Say if
-   you would rather ship them — I judged not, and `tools/screen_microware.py`
-   agreed, but it is your call and it is reversible.
-
-## The headline: the missing libraries were not missing
-
-The handoff listed the pdksh rebuild as **blocked on material that does not
-exist here**, naming `osklib.r`. That was wrong on every count:
-
-  - **`osklib.r` is not a file anybody ever shipped.** It is a build product,
-    `merge`d from 21 objects.
-  - **Its sources were in the pool all along**, in
-    `microware-archive/SHELLS/pd_ksh.e11.lzh`.
-  - The import into `disk/SRC/pdksh/` had **dropped the port's entire `OSK/`
-    directory** except `OSK/INCL` (renamed `OSK_INCL`). The shipped source
-    tree could not be built by anybody. It is now complete.
-  - **I built `osklib.r`** — 21 sections, 11 KB.
-  - `popen.r` and `netdb.h`, the other two "blockers", were both sitting in
-    `~/Developer/os9/play/`. `strings.r` was already known not to be needed.
-
-So the honest summary is: nothing was missing except a directory we dropped on
-the way in. Details and the full build recipe: `tools/rebuild/pdksh/README.md`.
-
-**`ksh` itself is not finished.** It builds, links, starts, and runs `cd`,
-assignments and `print` — but every command that is an *alias* (`echo`,
-`true`, `pwd`) aborts on a null pointer. Four candidate causes are ruled out
-by experiment and written down so nobody retests them. This only matters if
-the os9exec fix is never committed; **`ksh` already works on the collection**
-with that fix in place.
-
-## Your `/h0` vs `/dd` question — answered, with numbers
+## 2. Your `/h0` vs `/dd` question — answered
 
 **`/dd`.** Your instinct about `/dd/GAMES` was right, by about five to one.
 
-  - **258** programs want the *collection* mounted as `/dd` (their own data).
-  - **53** want data at `/h0`.
-  - 98 more want only `/h0/sys/termcap`, which `TERMCAP` already settles, so
-    they do not count either way.
+- **258** programs want the *collection* mounted as `/dd` — their own data is
+  here.
+- **53** want data at `/h0`.
+- 98 more want only `/h0/sys/termcap`, which `TERMCAP` already settles, so they
+  do not count either way.
 
-Demonstrated live, not just counted — `fortune` prints a fortune as `/dd` and
-says `can't open /dd/GAMES/FORTUNE/fortunes.dat` as `/h0`. Full reasoning and
-what it means for `keep` in **`notes/DECISION-placement.md`**; the measurement
-is `tools/measure_layout.py` so you can rerun it rather than trust me.
+Demonstrated, not just counted: `fortune` prints a fortune as `/dd`, and says
+`can't open /dd/GAMES/FORTUNE/fortunes.dat` as `/h0`.
 
-The recommendation is: ship as `/dd`, keep the `/h0` hard link (it costs one
-inode and collects the 53), and steer people away from `/h0`-only, which is
-the worst of the three arrangements.
+Recommendation: ship as `/dd`, keep the `/h0` hard link (one inode, collects
+the 53), steer people away from `/h0`-only — it is the worst of the three and
+strands 258 programs. `DOC/README-RUNNING` now says so; arrangement 2 is
+marked recommended and arrangement 1's cost is stated honestly (it said "20
+programs", it is 174).
 
-## Also worth knowing
+Reasoning: **`notes/DECISION-placement.md`**. Measurement:
+**`tools/measure_layout.py`**, so you can rerun it rather than trust me.
 
-- **The `OS9CLEAN` overlay had gone missing.** `tools/rebuild/README.md` listed
-  it under "Prerequisites, none of which are in this repo", so it was somebody's
-  local directory and it was gone — the whole rebuild machinery was unusable
-  until I worked it out again. It is now `tools/rebuild/make_overlay.sh`.
-- **`elvis` is not missing.** `CLAUDE.md` and the ROADMAP say it "has full docs
-  and source on the disk but no binary". It is on the disk, it is 111,944
-  bytes, and it works — draws the screen, loads a file, takes `:q!`. I rebuilt
-  it from source to the same size to confirm. Stale note, not a gap.
+---
+
+## 3. The missing libraries were not missing
+
+The handoff listed the pdksh rebuild as *blocked on material that does not
+exist here*. Every part of that was wrong:
+
+- **`osklib.r` is not a file anybody shipped.** It is a build product,
+  `merge`d from 21 objects.
+- **Its sources were in the pool all along**, in `SHELLS/pd_ksh.e11.lzh`.
+- The import into `disk/SRC/pdksh/` had **dropped the port's entire `OSK/`
+  directory** except `OSK/INCL` (renamed `OSK_INCL`). The shipped source could
+  not be built by anybody. It is complete now.
+- **I built `osklib.r`** — 21 sections, 11 KB.
+- **`popen.r` and `netdb.h`** were both in `~/Developer/os9/play/`.
+- `strings.r` was already known not to be needed.
+
+**`ksh` itself is not finished.** It builds, links, starts, and runs `cd`,
+assignments and `print` — but every command that is an *alias* (`echo`, `true`,
+`pwd`) aborts on a null pointer. Four candidate causes are ruled out by
+experiment and written down so nobody retests them. This only matters if the
+os9exec fix is never committed; **ksh works on the collection today**.
+
+Everything in `tools/rebuild/pdksh/README.md`, including a warning worth
+having: the port's `fork()` emulation has the child read the parent's address
+space through SSM, so a rebuilt ksh may start and still not fork on os9exec.
+
+---
+
+## 4. Things that need YOUR decision
+
+1. **`~/Developer/os9/os9exec` has FOUR modified files, not one.** The handoff
+   says *"one file, `consio.c`, 25 lines"*. It is `consio.c` (+127/−13),
+   `debug.c`, `filestuff.h`, and `test/Sources/OS9Tests/main.swift` (+101) —
+   219 insertions. I have not touched, committed or reverted any of it. But
+   the handoff understates what is sitting there.
+
+2. **I replaced your three `keep`/`drop`/`kept` bash scripts with compiled
+   modules.** I overwrote them before checking they existed, which was
+   careless; I restored them from HEAD and then decided on evidence. The
+   evidence: run against a `/dd` that is not the collection — the only case
+   `keep` is for — the script version needs `bash` and `/dd/tmp` ON THE
+   DESTINATION, has neither, copies nothing, and says almost nothing about
+   why. Its own header assumes the collection lives on `/h0`, the premise the
+   measurement overturned. Originals kept as `SRC/keep/*.sh`. Reversible.
+
+3. **Two headers from the recovered pdksh port were refused as Microware's** —
+   `OSK/DEFS/ioctl.h` (byte-identical to the SDK's `DEFS/UNIX/ioctl.h`) and
+   `OSK/DEFS/termios.h`. The build uses the SDK's copies, which is normal.
+   Say if you would rather ship them.
+
+4. **`CLAUDE.md` is gitignored, and I edited it.** Stale star counts, stale
+   `/h0` figures, the `elvis` claim, the missing overlay, the nine checks, and
+   the keep/drop section. Those edits live only in the working copy, so they
+   are not in the branch you are about to review.
+
+---
+
+## 5. What else changed
+
+**Removed:** `msfm` (above).
+
+**Added — programs:** `passwd` (Matthias Rosenthal's, EFFO forum 5, with
+source and his read_me); `dedit` (a reversal decided 2026-08-15 and never
+carried out — it is BASIC09 I-code, and its header bytes match `bio` and
+`wysetime` exactly); `zoo_2.1` as a REBUILT alternate; `keep`, `drop`, `kept`.
+
+**Added — source, 17 trees, taking coverage from 354 to 406 of 939 (43%):**
+`uucpbb` (which `DOC/ORIGINS` had promised for 18 programs since they were
+added — there was no such tree), `pdksh/OSK`, `zoo`, `jpeglib`, `macutils`,
+`gnuchess`, `ed`, `rcs`, `beav`, `lout`, `gtar`, `pvic`, `smail`, `dm`,
+`cnews`, `infoxpress`, `uucp_blars`, `less`.
+
+**Added — documentation:** the `sox` manual (its DOC directory held four audio
+samples and no text at all, so the census counted it as documented), the
+`msntp` manual, and the full MicroGnuEmacs manual in PostScript and DVI — the
+disk ships ghostscript and TeX, so both are readable on it.
+
+**Fixed — tooling:** `tools/rebuild/make_overlay.sh` (the clean `/dd` overlay
+had gone missing entirely, and the rebuild machinery was unusable);
+`tools/extract_pool.py`, which **silently dropped 16 pool files** and had done
+since it was written — `untar` with `ignore_zeros=True` returns zero members
+instead of raising, so the not-a-tar fallback never fired. That bug is why the
+sox and mg manuals were never found.
+
+**Fixed — documentation.** Every count I could find had drifted. `DOC/INDEX`'s
+header contradicted itself in three consecutive sentences. `DOC/README-CIO`
+still told people to go and fetch `cio`, months after the five modules started
+shipping by Microware's permission — I rewrote it. The readme claimed the
+collection ships "with their source"; it is 43%, and it now says so.
+
+---
+
+## 6. Open, in the order I would take them
+
+1. **Read `tools/screened-src.txt`** — six pre-existing strong flags I accepted.
+2. **`DOC/STATUS` is stale.** A full four-stage sweep was running when I wrote
+   this; see `notes/verify-bare.tsv` and the note at the end of the session
+   log. `passwd` was added after it started and is not in it.
+3. **The ksh alias bug**, if you want the collection self-sufficient on a
+   released os9exec.
+4. **`APPS/oleo1.6.tar.gz`** is the biggest source gap left — 217 files for
+   `oleo` — but it arrives wrapped in a `DEFS/` of 59 files, 27 of which
+   overlap the SDK's heavily (`dma68450.h` 100%, `rbf.h` 96%). The sources are
+   fine; separating them from the tree is a careful job.
+5. **`fpu`** — `NOT-INCLUDED.md` says a grant puts it back in,
+   `POOL-ASSESSMENT.md` says it stays out. Two notes disagree. Your call.
+6. The four G-Windows programs' licence, still unanswered.
