@@ -1,8 +1,10 @@
 # osk-freeware
 
 Three decades of community software for **OS-9/68000 (OSK)**, gathered in one
-place and made to run again: 612 programs with their source, their
-documentation, and a record of where each one came from.
+place and made to run again: 604 programs in `CMDS` and `CMDS/GAMES`, 942 in
+all, with the documentation and the source that could be found for them and a
+record of where each one came from. About 43% of the collection has source
+here; most of the rest never had any that survived.
 
 OS-9 is Microware's, and still a current product. This is the software the
 community wrote for it, and it is meant to be run on a real OS-9 system.
@@ -11,12 +13,12 @@ Not for the 6809 line — these are 68k binaries.
 
 ## What it is
 
-A single OS-9 RBF disk image, ~125 MB, built from `disk/`. It is **not a boot
+A single OS-9 RBF disk image, ~195 MB, built from `disk/`. It is **not a boot
 disk**: os9exec is the kernel, and this is the disk it mounts as `/dd` — the
 root and home. There is no established name for that role.
 
     disk/       the tree the image is built from
-      CMDS/       363 commands, plus GAMES/ REBUILT/ BROKEN/ NETPBM/ GCC*/
+      CMDS/       522 commands, plus GAMES/ REBUILT/ BROKEN/ NETPBM/ GCC*/
       SRC/        C source for most of it
       DOC/        per-package documentation, plus the index files below
       GAMES/      game data
@@ -25,46 +27,50 @@ root and home. There is no established name for that role.
 
 ## Running it
 
-**If you have OS-9, keep your own system as `/dd` and mount this as `/h0`:**
+**Mount this as `/dd`:**
+
+    OS9DISK=$PWD/osk-freeware.dd os9exec -r bash /dd/SYS/login
+
+That is the arrangement to prefer, and it is not a close call. **258 programs
+read their own data from `/dd`** — `advent` wants `/dd/GAMES/adv/glorkz`,
+`fortune` wants `/dd/GAMES/FORTUNE/fortunes.dat`, `nroff` wants
+`/dd/LIB/tmac.*` — against 53 that want data under `/h0`. Measured with
+`tools/measure_layout.py`; the reasoning is in `notes/DECISION-placement.md`.
+
+Nothing has to be fetched. `cio`, `csl`, `csl020`, `math` and `math881` — the
+Microware runtime modules the 293 starred programs need — **ship on the disk,
+with Microware's permission**. `SOURCES.txt` records the exchange.
+
+`SYS/login` works out where the disk is mounted from the path you hand it,
+then sets `PATH`, `HOME`, `TERM` and `TERMCAP`.
+
+**Add `/h0` as well** — it costs one inode and collects the 53:
+
+    ln osk-freeware.dd h0     # a hard link: os9exec will not mount one path twice
+    OS9DISK=$PWD/osk-freeware.dd OS9H0=$PWD/h0 os9exec -r bash /dd/SYS/login
+
+### If you already run OS-9 and want to keep your own `/dd`
 
     OS9DISK=<your own disk>  OS9H0=<this image, named h0>  os9exec shell
     setenv PATH /dd/CMDS:/h0/CMDS:/h0/CMDS/GAMES
 
-That is the arrangement to prefer. Your `cio`, `csl` and `math` are on `/dd`
-where the programs expect them, so the 92 starred programs run alongside the
-rest — you get all 612, not the 520 that need nothing. The image must be a
-file *named* `h0`; os9exec resolves an image by filename.
+This keeps your system, your `LIB` and your own `cio`. What it costs is those
+258 programs: `/dd` is now yours, so their data is not where they look. The
+disk carries **`keep`** for exactly this — it copies a program onto your `/dd`
+together with the files `DOC/DEPENDS` says it reads, records every byte it
+wrote, and `drop` will not remove anything you have since changed. See
+`DOC/README-KEEP`. `docs/index.html` will build the command for you: tick
+programs and it writes out `keep a b c` to paste.
 
-One thing to know either way: **20 programs read their data from `/dd`** —
-`advent` wants `/dd/GAMES/adv/glorkz`, `fortune` wants
-`/dd/GAMES/FORTUNE/fortunes.dat`, `nroff` wants `/dd/LIB/tmac.*`. With your own
-disk as `/dd` those paths are yours, not ours, so those programs will not find
-their files. `DOC/README-RUNNING` covers the ways round it, and `DOC/DEPENDS`
-lists every path each program opens.
+### Two things worth knowing either way
 
-### Without an OS-9 of your own
+**`TERMCAP` matters.** 98 programs name `/h0/sys/termcap` outright, and the 69
+measured so far all read the `TERMCAP` variable first — no exceptions — so
+they work with no `/h0` in sight. `SYS/login` sets it.
 
-The collection runs by itself:
-
-    OS9DISK=$PWD/osk-freeware.dd os9exec -r bash /dd/SYS/login
-
-What you give up is `cio`: the 92 starred programs in `DOC/INDEX` want it and
-stop with "Can't install trap handler". The other 520 do not need it, and
-`DOC/README-CIO` explains how to supply your own if you have one.
-
-`SYS/login` works out where the disk is mounted from the path you hand it,
-then sets `PATH`, `HOME`, `TERM` and `TERMCAP`. That last one matters: 69
-programs name `/h0/sys/termcap` outright, and every one of them reads
-`TERMCAP` first — measured, no exceptions — so they work with no `/h0` in
-sight. Setting `HOME` is also what makes bash read `/dd/.bashrc`, where `cd`
-and `pwd` are defined; **bash's own `pwd` hangs the shell** here, because its
-`getwd()` walks `..` looking for a single root and OS-9 has one per device.
-
-Only 37 programs, mostly compiler passes, still want data under a real `/h0`.
-If you want those too, give os9exec the image under a second name
-(`ln -s osk-freeware.dd h0`, then `OS9H0=$PWD/h0`) — one image behind two
-device names, each with its own sector cache, so read through both freely but
-do not write through both at once.
+**bash's own `pwd` hangs the shell** here: its `getwd()` walks `..` looking for
+a single root, and OS-9 has one per device. Setting `HOME` is what makes bash
+read `/dd/.bashrc`, where working `cd` and `pwd` are defined.
 
 ## What is actually in it
 
@@ -142,11 +148,16 @@ Separately, and covering none of the above: the tooling written for this
 repository — `tools/`, `.github/`, this README, `notes/` — is MIT, in
 `tools/LICENSE`.
 
-Microware's own utilities, headers and libraries are not here; they come with
-OS-9 and you will already have them. Most of these programs were compiled with
-Microware's `cc`, and 92 of them use its `cio` at run time — those are starred
-in `disk/DOC/INDEX`, and `disk/DOC/README-CIO` explains how to point them at
-your copy.
+Microware's own utilities, headers and libraries are not here — with one
+deliberate exception. **Five runtime modules ship by permission**: `cio`,
+`csl`, `csl020`, `math` and `math881`. Allan at Microware was asked for exactly
+those and replied *"I do not see a problem with those modules."*
+`disk/SOURCES.txt` records the exchange.
+
+Most of these programs were compiled with Microware's `cc`, and 367 module
+names — 372 files — use `cio` at run time. Those are starred in
+`disk/DOC/INDEX`; `disk/DOC/README-CIO` explains what the star means and how to
+use your own copy instead if you would rather.
 
 ## Building the image
 
