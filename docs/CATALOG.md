@@ -1,6 +1,6 @@
 # What is on this disk
 
-851 programs of OS-9/68K community software, gathered from the archives that kept it and made to run again. **510 of them need nothing but this disk**; the rest want Microware's `cio`, marked below with a star.
+852 programs of OS-9/68K community software, gathered from the archives that kept it and made to run again. **511 of them need nothing but this disk**; the rest want Microware's `cio`, marked below with a star.
 
 `DOC/INDEX` on the disk lists everything alphabetically. This is the same collection sorted by what each program is *for*, which is the more useful order when you do not yet know what you are looking for.
 
@@ -22,7 +22,7 @@
 | [Games](#games) | 66 | Adventures, board and card games, arcade ports, dungeon crawls and puzzles. |
 | [Screen toys](#screen-toys) | 6 | Things to watch rather than play. Start one and leave it going. |
 | [Amusements](#amusements) | 20 | Generators, simulators and diversions that are not quite games. |
-| [System & modules](#system--modules) | 129 | OS-9 module and process tools, devices, system state and scheduling. |
+| [System & modules](#system--modules) | 130 | OS-9 module and process tools, devices, system state and scheduling. |
 | [Disk & DOS](#disk--dos) | 20 | Reading and writing MS-DOS media with the mtools set. |
 | [Time & calendar](#time--calendar) | 10 | Calendars, clocks and astronomy. |
 | [Maths & calculators](#maths--calculators) | 13 | Calculators, plotting, orbits and number theory. |
@@ -1239,7 +1239,7 @@
 
 *OS-9 module and process tools, devices, system state and scheduling.*
 
-<details><summary>129 programs</summary>
+<details><summary>130 programs</summary>
 
 **Utilities**
 
@@ -1428,6 +1428,12 @@
 | | |
 |---|---|
 | `dedit` | BASIC09 disk sector editor (Carl Kreider) -- read, edit and write raw sectors, decode a disk's identification sector.  I-CODE, not 68000 code: run it with runb and the bare module name, like bio and wysetime.  Nine modules in the one file. |
+
+**Users and login**
+
+| | |
+|---|---|
+| `passwd` | change your own password in /dd/SYS/password.  Matches on the user NAME, and the name must be spelt exactly as the password file has it, capitals included.  Matthias Rosenthal's, EFFO forum disk 5; source in SRC/passwd.<br>`Syntax: passwd` |
 
 **Hardware control**
 

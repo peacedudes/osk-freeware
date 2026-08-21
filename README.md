@@ -90,7 +90,7 @@ lines long, which is no help until you already know the name you want.
 | **Games** | 66 | Adventures, board and card games, arcade ports, dungeon crawls and puzzles. |
 | **Screen toys** | 6 | Things to watch rather than play. Start one and leave it going. |
 | **Amusements** | 20 | Generators, simulators and diversions that are not quite games. |
-| **System & modules** | 129 | OS-9 module and process tools, devices, system state and scheduling. |
+| **System & modules** | 130 | OS-9 module and process tools, devices, system state and scheduling. |
 | **Disk & DOS** | 20 | Reading and writing MS-DOS media with the mtools set. |
 | **Time & calendar** | 10 | Calendars, clocks and astronomy. |
 | **Maths & calculators** | 13 | Calculators, plotting, orbits and number theory. |
