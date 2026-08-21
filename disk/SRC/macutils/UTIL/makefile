@@ -1,0 +1,1 @@
+CC = ccRDIR = ./RELS CFLAGS = -r -dOSK -dNODOTtransname.r:	transname.c   $(CC) $(CFLAGS) transname.cbacktrans.r:	backtrans.c masks.h   $(CC) $(CFLAGS) backtrans.cutil.r:	util.c ../fileio/fileglob.h masks.h util.h   $(CC) $(CFLAGS) util.c

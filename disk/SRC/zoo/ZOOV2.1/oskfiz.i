@@ -1,0 +1,1 @@
+/*   oskfiz.c   definitions to get fiz running under OSK   22 Jul 91  					hcz@reto.aragon.stgt.sub.org*/int quiet = 0;void zooexit(status)int status;{   if (status != 0)      (void) _errmsg(status, "fiz exited, error status = %d\n", status);   exit(status) ;}

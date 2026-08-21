@@ -1,0 +1,1 @@
+gcc2 jpegshow.c -gg -mcpu32 -ucc -oldlibs -O -o68 -T/r0 -l/dd/lib/cgfx.l -llibjpeg.l -l/dd/lib/os9lib.l -Fcc2s300 -o /h0/cmds/jpegshow

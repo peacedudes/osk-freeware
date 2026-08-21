@@ -1,0 +1,1 @@
+CC =ccCSOURCES = mcvert.c hqxify.c unpack.cSOURCES = mcvert.c hqxify.c unpack.c mactypes.h MakefileOBJECTS = mcvert.r hqxify.r unpack.rCFLAGS = -dOSK mcvert: $(OBJECTS)	$(CC) $(CFLAGS) $(OBJECTS) -FD=mcvert -l=/dd/lib/blarslib.l$(OBJECTS): mactypes.h

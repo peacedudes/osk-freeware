@@ -1,0 +1,1 @@
+CC = ccCFLAGS = -r -dOSKunsit : unsit.r updcrc.r getopt.r	$(CC) -FD=unsit unsit.r updcrc.r getopt.r -l=/dd/lib/blarslib.lunsit.r : unsit.c stuffit.h   $(CC) $(CFLAGS) unsit.cgetopt.r :getopt.c  $(CC) $(CFLAGS) getopt.cupdcrc.r : updcrc.c  $(CC) $(CFLAGS) updcrc.c

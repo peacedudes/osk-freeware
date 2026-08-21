@@ -1,0 +1,1 @@
+/* For some reason make, wouldn't allow my #define so here we are *//*  OSK - Dean Leiber */#ifdef OSK#include "globals.h"fputc(var,path)char var;FILE *path;{fprintf(path,"%c",var);}#endif

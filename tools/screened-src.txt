@@ -33,3 +33,10 @@ disk/SRC/hc_utils/sys.c
 # full 2026-08-21. See tools/rebuild/pdksh/README.md.
 disk/SRC/pdksh/OSK/SRC/ssmpermit.a
 disk/SRC/pdksh/OSK/SRC/ssmprotect.a
+
+# The FSF's own getopt.h, GPL, copyright Free Software Foundation. The SDK
+# ships a copy of the same GNU file -- Microware shipped GNU tools too -- so
+# the overlap is a common ancestor and runs the other way round. This is the
+# screen's known blind spot: "matches the SDK" is not the same as "is
+# Microware's", because the SDK contains third-party code as well.
+disk/SRC/ed/getopt.h
