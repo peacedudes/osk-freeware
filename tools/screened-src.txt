@@ -43,3 +43,10 @@ disk/SRC/ed/getopt.h
 
 # Same FSF getopt.h as SRC/ed -- GNU tar ships the same header.
 disk/SRC/gtar/GNUTAR/getopt.h
+
+# A declaration of `struct passwd` -- the interface a program must match to
+# call the system at all, so overlap with the SDK's is unavoidable and means
+# nothing. Matthias Rosenthal's, from EFFO forum disk 5; it carries the OS-9
+# fields pw_prio and pw_xdir. disk/SRC/COMPAT/pwd.h is our own second
+# expression of the same interface.
+disk/SRC/passwd/pwd.h

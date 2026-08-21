@@ -1,0 +1,1 @@
+/*  pwd.h   Headerfile for passwordfunctions */struct passwd {	char *pw_name;	char *pw_passwd;	int pw_uid;	int pw_gid;	int pw_prio;	char *pw_xdir;	char *pw_dir;	char *pw_shell;};extern struct passwd *getpwent(),*getpwuid(),*getpwnam();	
