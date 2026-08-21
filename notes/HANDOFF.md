@@ -1,4 +1,22 @@
-# Handoff — 2026-08-21
+# Handoff — 2026-08-21 (morning)
+
+> **SUPERSEDED by `notes/FOR-RDOGGETT.md`, written later the same day.**
+> Most of this still stands. Three claims in it do not, and they are the ones
+> a reader is most likely to act on:
+>
+> - **"Blocked on material that does not exist here — `osklib.r` ... not on the
+>   disk, in the SDK, or in the pool."** Wrong on every count. `osklib.r` is a
+>   BUILD PRODUCT, `merge`d from 21 objects, and its sources were in the pool
+>   the whole time (`SHELLS/pd_ksh.e11.lzh`). The import into
+>   `disk/SRC/pdksh/` had dropped the port's entire `OSK/` directory. It is
+>   built now. `popen.r` and `netdb.h` were both in `~/Developer/os9/play/`.
+> - **"one file, `consio.c`, 25 lines"** understates the uncommitted os9exec
+>   change: it is four files and 219 insertions.
+> - **`elvis` "has full docs and source on the disk but no binary"** — it has a
+>   binary, 111,944 bytes, and it works.
+>
+> Read `notes/FOR-RDOGGETT.md` first, then `notes/SESSION-2026-08-21.md`.
+
 
 Read this, then `notes/SESSION-LOG.md` for the commit-by-commit record and
 `notes/WORK-QUEUE.md` for what is left. This supersedes the 2026-08-17
