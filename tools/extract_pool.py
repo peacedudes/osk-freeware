@@ -44,8 +44,21 @@ def run(cmd, **kw):
     return subprocess.run(cmd, capture_output=True, **kw)
 
 def untar(data, dest):
-    # ignore_zeros: mnews.t.Z has a stray block that makes bsdtar reject the
-    # whole archive, and it holds 200 members.
+    """Unpack a tar, returning how many files came out.
+
+    ignore_zeros: mnews.t.Z has a stray block that makes bsdtar reject the
+    whole archive, and it holds 200 members.
+
+    THE COUNT IS LOAD-BEARING. With ignore_zeros set, tarfile does not raise
+    on input that is not a tar at all -- it reports zero members and returns
+    quietly. The caller's `except Exception` fallback therefore never fired,
+    and 16 pool files that decompress to a single plain payload were silently
+    dropped by every sweep that has ever run here. Among them the sox manual
+    for a program that ships with no documentation, the MicroGnuEmacs manual,
+    and two host-side builds of Carl Kreider's `ar`. Return the count and make
+    the caller check it.
+    """
+    n = 0
     with tarfile.open(fileobj=io.BytesIO(data), ignore_zeros=True) as t:
         for m in t.getmembers():
             if m.isdir():
@@ -55,6 +68,8 @@ def untar(data, dest):
             f = t.extractfile(m)
             if f:
                 open(out, "wb").write(f.read())
+                n += 1
+    return n
 
 def extract_in_universe(path, dest, cmd):
     """Run one of the collection's OWN archivers under os9exec, with the target
@@ -104,7 +119,8 @@ def extract(path, dest):
             if not data:
                 return False
             try:
-                untar(data, dest)
+                if untar(data, dest) == 0:
+                    raise ValueError("decompressed to something that is not a tar")
             except Exception:
                 base = os.path.basename(path)
                 for suf in (".gz", ".Z", ".z", ".tgz"):
@@ -146,4 +162,9 @@ def main():
         if not again:
             break
 
-main()
+
+# Guarded so the module can be imported and its parts tested. Without this,
+# `from extract_pool import extract` runs the whole pool sweep and then dies
+# on sys.argv.
+if __name__ == "__main__":
+    main()
