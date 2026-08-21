@@ -25,6 +25,10 @@
 >   4. `DOC/DEPENDS` at run time — read it, from the collection. `keep` finds
 >      the collection by looking for `DOC/DEPENDS` on `/h0`, `/h1`, `/h2`,
 >      `/dd`, or wherever `KEEP_FROM` says.
+> - **Two commands in the list below were NOT built**: `keep <category>` and
+>   `keep -a`. Neither is promised anywhere a user reads — `DOC/README-KEEP`
+>   documents only what exists — but if you want them, the category comes from
+>   `DOC/CATEGORIES` and `-a` should print the total size and ask first.
 
 Written 2026-08-08, at the end of a session that started with "spot checking
 this stuff is depressing" and ended somewhere better. This is the design to
