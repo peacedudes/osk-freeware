@@ -171,3 +171,59 @@ all stop there.
 Unlike the I$Read case this is a missing FEATURE, not a defect: nothing in the
 emulator claims to support it. It is recorded only so the next person does not
 spend a day proving it from the outside, as this pass nearly did.
+
+---
+
+## A second deviation on the same spec line -- NOT fixed
+
+Found while looking for siblings of the first, and proved the same way:
+`notes/os9exec-iread/eortest.a`.
+
+The manual's PD_EOR entry governs **both** calls:
+
+    PD_EOR   End of record character
+             Defines the last character on each line entered
+             (I$Read, I$ReadLn).  An output line is terminated (I$Writln)
+             when this character is sent.  Normally PD_EOR should be set to
+             $0D.  WARNING: If PD_EOR is set to zero, SCF's I$ReadLn will
+             never terminate, unless an EOF or error occurs.
+
+`pConsInLn` passes a hardcoded `CR`, not `ot->_sgs_eorch`:
+
+    err= ConsRead( pid,spP,maxlenP,buffer,true,CR );
+
+`eortest.a` sets PD_EOR to LINEFEED through I$SetStt SS_Opt, then calls
+I$ReadLn and waits. Typing text and pressing RETURN -- a CR, which is no
+longer the end-of-record character -- the read returns anyway:
+
+    setting PD_EOR to LINEFEED
+    now type text and press RETURN (a CR, not a LF)
+    abc
+    I$ReadLn RETURNED -- so it used CR and ignored PD_EOR
+
+**It was left alone deliberately, and the reasoning matters more than the
+finding.** Unlike the I$Read case this has no known victim and a real
+downside:
+
+  - Every program on this disk uses the default PD_EOR of CR, so none can
+    tell the difference. There is no `ksh' here waiting to be fixed.
+  - I$ReadLn is what `bash', `sh' and every line-mode read go through. A
+    regression there is far worse than the bug.
+  - Matching the spec exactly would import the manual's own documented
+    footgun: with PD_EOR zero, the read must never terminate. os9exec's
+    hardcoded CR is wrong, but it is wrong in the safe direction.
+
+So: recorded, reproducible, and somebody else's call. The I$Read fix had a
+concrete victim and no downside; this one has neither.
+
+## The fields nothing reads
+
+While looking, every SCF path option was checked against the code. Seven are
+never read at all: `_sgs_dtp`, `_sgs_dlo`, `_sgs_nul`, `_sgs_rprch`,
+`_sgs_pscch`, `_sgs_ovfch`, `_sgs_par`.
+
+None can hang a program, which is what made the I$Read case serious. They
+mean a line-editing key does nothing (`rprch` reprint, `pscch` pause-scroll),
+no bell on overflow (`ovfch`), or a setting with no meaning on a pty
+(`par` parity, `nul` padding for slow terminals, `dlo` delete-line style).
+Worth knowing; not worth chasing.
