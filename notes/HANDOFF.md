@@ -1,111 +1,161 @@
-# Handoff — 2026-08-17
+# Handoff — 2026-08-21
 
-Written before a reboot. Read this, then `notes/SECOND-PASS.md`.
+Read this, then `notes/SESSION-LOG.md` for the commit-by-commit record and
+`notes/WORK-QUEUE.md` for what is left. This supersedes the 2026-08-17
+handoff; every item on its "pick up here" list is done.
 
-## Where things stand
+## The one thing that is not committed, and why
 
-Everything below is **finished, built and verified**. All eight
-`tools/check_disk.py` checks pass, the image rebuilds (192 MB), and the new
-docs were read back off the mounted image to confirm they are there.
+**`~/Developer/os9/os9exec` has an uncommitted change** — one file,
+`Source/OS9exec_core/consio.c`, 25 lines. That is deliberate.
 
-**The work is staged in git and NOT committed.** That is deliberate — commits
-wait for rdoggett's approval. `git status` shows 26 files: 5 modified, 21
-added. Nothing is half-done; if the tree looks dirty, that is why.
+rdoggett had just released os9exec after weeks of work when this defect turned
+up, and asked to hold the commit until the repo has been **fully exercised**,
+in case anything else embarrassing is lurking. So: do not commit it, and do
+not revert it. If asked to carry on, keep exercising and report; the decision
+is his.
 
-Proposed commit message (one line, needs approval before use):
+What it does — `pConsIn` passed a literal `0` where the path's end-of-record
+character belongs:
 
-    Docs: measured verification of all 949 programs, four stages
+    return ConsRead( pid,spP, maxlenP,buffer,false, ot->_sgs_eorch );   /* was 0 */
 
-HEAD is `b37001c Docs: tick the work queue` on `main`.
+`I$Read`'s `d1.l` is a MAXIMUM, and the v2.4 Technical Reference says the read
+ends when "an end-of-record occurs (SCF only)". Without that, a terminal read
+waited for the full count, so `ksh` — which asks for 256 bytes per command
+line — never saw a single typed command. It repairs `ksh` and `expreserve`,
+and nothing else: every program on the disk that reads a terminal was
+enumerated (60), and all but three ask for one byte at a time.
 
-## What this session did
+Reproduction in 68000 assembly with no library in the way:
+`notes/os9exec-iread/ireadt.a`. Full write-up: `notes/OS9EXEC-IREAD.md`.
 
-Ran **every** program file under `disk/CMDS` and classified the result. The
-number that came out is **870 of 925 actual programs running — 94.1%**.
+**Exercised so far, all against that change:**
 
-An earlier sweep in this same session claimed **98.2% and was wrong twice**;
-both mistakes are written up in `notes/SECOND-PASS.md` under "Read this before
-trusting any sweep of this disk". Short version:
+    make warnings          0 warnings
+    make test              195 passed, 0 failed
+    make test-notick       ok
+    make conformance       44/44, "no unexplained divergence"
+    make hammer            4 runs, 4 passed
+    CONF68K host + RBF     ok       live-verify corpus   ok
+    self-contained disk    ok
+    make verify            9 passed, 1 failed, 2 skipped
 
-1. Filtering out os9exec's `#` lines to isolate program output throws away
-   `E_BMID`, `E_NEMOD` and `unintialized User Trap` — the blank remainder then
-   scores as OK. **91 programs that do not load were reported working.**
-2. Running bare gives a program no TERM and no TERMCAP. `aterm` and `snake`
-   take **bus errors** without it and work fine in a login session. A bus error
-   is not proof a program is broken.
+The single `verify` failure is the **warning sweep's Linux leg, which needs
+docker**, and docker is not running here. Proven not to be the change:
+stashing it and re-running gives an identical failure. Three of four
+toolchains report 0 warnings, 0 errors.
 
-The four-stage harness that gets it right, run in this order:
+## What this pass did to the disk
 
-    tools/verify_all.sh          -> notes/verify-bare.tsv      (949 rows)
-    tools/verify_filters.sh      -> notes/verify-filters.tsv   (281 rows)
-    tools/verify_in_session.sh   -> notes/verify-session.tsv   (116 rows)
-    tools/verify_usage.sh        -> notes/verify-usage.tsv      (80 rows)
+`main` is at the merge of 66 commits. All eight `check_disk.py` checks pass,
+the image builds at 190M.
 
-Combined verdicts are in `notes/verify-final.tsv`. Each script's header
-comment carries the trap that caught me — do not "tidy" the `#`-line handling,
-the `head -c`, or the read-from-a-file loop. `head -c` is what keeps the sweep
-at one hour instead of seven.
+**877 of 925 programs run — 94.8%**, from re-running the whole four-stage
+sweep, not from adding repairs to an older figure. Thirteen more work but
+print nothing or need a condition the sweep cannot create; they are named
+individually in `DOC/STATUS` rather than folded into the total. All 48 that do
+not run have a documented cause.
 
-`tools/module_census.py` is new and answers a question that had never been
-asked: **24 of the 949 files in CMDS are not programs.** Running those as
-programs proves nothing either way.
+Repaired: the whole **RTF Fortran-77 system** (six programs — they wanted
+`os9lib` in the module directory), all five **SNOBOL4 games** (they wanted a
+syntax file that was on the disk in the wrong place), **devprc** (rebuilt; the
+archived module's body was corrupt, not just its CRC), **dir** (a real 68000
+bug — `moveq #128` sign-extends to −128), plus `makecrc`, `makedb`,
+`bincheckr`, `cron`, `bootlogger`, `read_mail`, `arepdaemon` and the three
+spooler programs.
 
-## The count, when asked
+**rdoggett's name is out of every binary** — four removed, one rebuilt, eleven
+blanked with `tools/blank_author.py`. `check_disk.py`'s threshold is now ZERO,
+not fifteen. Four files still credit him and should: `SRC/misc/qt.c`,
+`SRC/zot/zot.c`, `SRC/hc_utils/me.c`, `DOC/zot/zot.1` — that is authorship of
+his own 1988–89 work, not an SDK stamp.
 
-  - **55 wouldn't run** — measured, grouped by cause in `notes/SECOND-PASS.md`
-  - **10 couldn't build**, but only **8 genuinely absent**: `hack`'s binary
-    ships and `m4` is on the disk (its other source copy built)
-  - **63 total**, two of which are on the disk anyway
-  - **Separate list, ~10 items**: `top`, `digclk`, `draw`, `greed`, `suicide`,
-    `mail`, `makedb`, `adlrun`, `wn`, `inetd` all score OK in this sweep
-    because they start and speak. They fail *later*. **This sweep tests that a
-    program starts, not that it finishes.** Nothing here supersedes them.
+## Things you will otherwise rediscover the hard way
 
-## Pick up here
+- **Never derive the cio star list by searching binaries for `cio`.** It is a
+  proxy and it is wrong in both directions: `vi_nocio` contains the string and
+  does not need it; `cyberwar`, `gnuchess` and `g` lack it and do need a trap
+  handler. Measure by RUNNING every program against an image with the five
+  Microware modules removed. The current 367 was measured that way.
+- **`DOC/INDEX` holds the star list twice** — a per-program entry line and the
+  "All 367" grid — and `check_disk` validates only the grid. Roughly 27 entry
+  lines lack a star their program deserves. Fixing it is cosmetic and
+  DANGEROUS: a regex over "lines starting with two spaces" also matches lines
+  INSIDE the grid, silently creating a program called `*arepdaemon`. I did
+  exactly that; check_disk caught it. Exclude the grid region explicitly.
+- **A missing path in `DOC/DEPENDS` is usually a compiled-in fallback, not a
+  fault.** Nineteen mtools programs list `/dd/sys/mtools` as absent and every
+  one works, reading `mtools.conf`. Same for `/dd/SYS/errmsg.short`,
+  `/dd/SYS/utmp`, `/dd/TEMP`. The header now says so.
+- **A long-running `os9exec` here is probably rdoggett's own open shell.** He
+  keeps one. Never kill one you did not start; identify yours by its
+  arguments, never by the binary name.
+- **Do not hide build output.** `mkimage.sh` refuses to build from a tree that
+  fails its checks; `>/dev/null` turns that refusal into a silently stale
+  image. It cost this pass a cycle tracing a binary that was never in the
+  image.
+- **os9exec inside a `while read` loop eats the loop's stdin.** Give it
+  `< /dev/null`, or the loop does two rows and then treats data as filenames.
+- **os9exec's `-m`/`-M` DO parse.** The old handoff said otherwise; the number
+  is simply a SEPARATE argument (`-m 64k prog`, never `-m=64k`).
 
-In rough order of value:
+## Not done, and worth not forgetting
 
-1. **`ksh`'s interactive loop.** `ksh -c '<commands>'` works completely — for
-   loops, variables, `$PWD`. Interactively it prints no prompt and runs
-   nothing, on a pty as well as a pipe, with CR, LF or CRLF. A shell you
-   cannot type at is the biggest single gap on the disk. `disk/SYS/profile.ksh`
-   exists and may never be read; `ENV` is not set by `SYS/login`.
+**Blocked on material that does not exist here** — rdoggett confirmed he does
+not have any of it:
 
-2. **The 28 still-silent programs** listed in `notes/SECOND-PASS.md`. They ran
-   without complaint and printed nothing in all four stages. `sysid` is the
-   odd one — `sysmax` and `sysmin` from the same suite both print a value.
+  - **`osklib.r`** — the only thing stopping a proper **pdksh rebuild**. Its
+    `dmakefile` links it; not on the disk, in the SDK, or in the pool.
+    `SRC/pdksh/OSK_INCL/` holds what look like its sources. A `lex.c` patch
+    that would fix ksh without touching the emulator at all is written up in
+    `notes/OS9EXEC-IREAD.md` and cannot currently be built.
+  - **`netdb.h`** — blocks relinking `wam.sbprolog`.
+  - **`popen`** — blocks relinking `pdraw`; not in the cio-linked library set.
+  - `strings.r` — named by four recipes, which turned out not to need it. Now
+    only a curiosity.
 
-3. **`devprc`** — bad module CRC (stored `6CF320`, computed `9F16E0`; header
-   parity is fine). The EFFO forum-16 copy is byte-identical and equally bad,
-   so it shipped that way. Source is now on the disk at `SRC/devprc` and a
-   recipe is in `tools/rebuild/recipes.psv`, marked UNTESTED — its makefile
-   also wants `getsys.a`, which is 68k assembly.
+**Deliberately not fixed, with the reasoning:**
 
-4. **The five SNOBOL4 games** (`poker`, `blackjak`, `rpoem`, `rstory`,
-   `stone`) fail identically: `Illegal instruction: 4afc`, which is control
-   jumping into a module header. `rstory2` and `tformat` from the same archive
-   both run. One fix, five programs. Source: `SRC/effo_snobol`.
+  - **`I$ReadLn` ignores `PD_EOR` too.** The same manual line governs both
+    calls and `pConsInLn` passes a hardcoded `CR`. Proved with
+    `notes/os9exec-iread/eortest.a`. NOT fixed: it has no victim on this disk
+    (everything uses the default CR) and a real downside — `I$ReadLn` is what
+    bash, sh and every line-mode read go through, and matching the spec would
+    import the manual's own documented hang when `PD_EOR` is zero. os9exec is
+    wrong here, but wrong in the safe direction.
+  - **The four G-Windows programs** — `cyberwar`, `lfmaker`, `puzzle`,
+    `scriptmaster`, Stephen Carville's, copyright line and no distribution
+    statement either way. rdoggett has no knowledge of them and said he would
+    be guessing. Recorded in `SOURCES.txt`. The question applies to the
+    binaries, which predate this pass; their documentation came from the same
+    public archive.
+  - **`nasa`** wants a NORAD two-line element set. The format is documented in
+    `DOC/INDEX` from its own source; no orbital data was invented for it.
 
-5. **The `fpu` question.** `os9lib` and `config` both execute 68881
-   instructions with no coprocessor. That is what Microware's `fpu` is for, and
-   the permission obtained covers only cio, math, math881, csl, csl020. The
-   earlier decision was "if we don't need them we don't ask" — this is what
-   needing them looks like. rdoggett's call, not mine.
+**Genuinely impossible here:** seven programs have no source anywhere
+(`hotel`, `suicide`, `suicide1`, `suicide2`, `tt`, `ularn`, `wc`); `ls` is a
+gcc2 build whose objects Microware's `l68` will not link; `pep` calls an EPROM
+programmer's hardware driver; and the nine `Graph`/`VMod` programs need
+supervisor state, which os9exec does not implement at all — its module
+attribute word is read and returned but never tested for bit 5.
 
-6. **`graph` module-name case.** `CMDS/GAMES/graph` is the `Graph' trap
-   library. Its module name is lowercase `graph` while the seven programs ask
-   for `Graph`; os9exec only found it via a case-insensitive host filename
-   lookup, and **real OS-9 matches module names exactly**. Renaming it (M$Name
-   string, then CRC and header parity) is doable host-side but unverifiable
-   from here.
+## Where everything lives
 
-## Standing constraints, unchanged
+`~/mine` is OFF LIMITS entirely. Everything needed moved to `~/Developer/os9/`
+on 2026-08-18 — pool, manuals, SDK. `tools/paths.py` is the single place that
+knows, and every accessor fails loudly rather than returning an empty
+directory. `~/Developer/os9/play` is rdoggett's own play area; tread lightly.
 
-  - Commits need rdoggett's approval. Show the checks first.
-  - Never `pkill -f os9exec` — other sessions match that pattern.
+## Standing constraints
+
+  - Commits: rdoggett delegated repo management. Commit per finished unit with
+    all eight checks green. **Nothing is pushed to GitHub** — this repo has
+    never been uploaded and is not for sharing until he says so.
+  - Never `pkill -f os9exec`.
   - OS-9 text files are CR-only. Never call any of this "bootable".
-  - Do not write about Microware adversarially.
-  - ~~os9exec's `-m`/`-M` options do not parse in this build~~ **WRONG,
-    corrected 2026-08-20.** They parse fine; the number must be a SEPARATE
-    argument (`-m 64k prog`, not `-m=64k` or `-m64k`). os9main.c's `getlnum:`
-    does `k++; p = argv[k]`. See notes/RELINK-CIO.md.
+  - Do not write about Microware adversarially. Their concern is SOURCE, not
+    binaries: infrastructure in Japan and Germany runs OS-9/68k today and they
+    do not want vulnerabilities exposed. That is why permission for the five
+    runtime modules was straightforward. `tools/screen_microware.py` screens
+    for it and is weighted accordingly.

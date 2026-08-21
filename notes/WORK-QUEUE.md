@@ -76,3 +76,33 @@ plan it followed.
       under try_quit.py. Recorded as unconfirmed.
 - [ ] **The four G-Windows programs' licence.** Copyright line, no
       distribution statement. Recorded in SOURCES.txt for a decision.
+
+## Closed 2026-08-21 -- see notes/HANDOFF.md
+
+- [x] **The star list** -- re-measured by running, 367. Do NOT re-derive it
+      from the `cio` string; that proxy is wrong in both directions.
+- [x] **ksh** -- cause found and fixed in the EMULATOR, not the shell.
+      os9exec's I$Read ignored the end-of-record character. Also repairs
+      `expreserve`. The change is uncommitted on purpose; see HANDOFF.
+- [x] **The 21 relinks that would not build** -- 9 recovered (103 KB). The
+      rest need `netdb.h`, `popen`, or an EPROM driver that does not exist
+      here. `strings.r` turned out not to be needed at all.
+- [x] **rdoggett's name** -- out of every binary; check_disk threshold is
+      now zero.
+- [x] **draw's quit key** -- superseded. `draw` reads one byte at a time, so
+      it was never affected by the I$Read defect; the key remains unconfirmed
+      and is recorded as such in `notes/quit-keys-verified.txt`.
+
+## Still open, in rough order of value
+
+- [ ] **Finish exercising os9exec** so the fix can be committed. `make verify`
+      needs docker for its fourth toolchain; everything else is green.
+- [ ] **`I$ReadLn` ignores PD_EOR too** -- proved, deliberately not fixed.
+      Reasoning in `notes/OS9EXEC-IREAD.md`. Someone else's call.
+- [ ] **The four G-Windows programs' licence** -- rdoggett has no knowledge of
+      them. Recorded in `SOURCES.txt`; applies to the binaries first.
+- [ ] **27 INDEX entry lines lack a star** the program deserves. Cosmetic and
+      dangerous to automate -- read the HANDOFF warning before trying.
+- [ ] **352 programs still have no documentation** beyond their INDEX line and
+      the measured `DOC/USAGE` capture. The pool has manuals for 23 and that
+      was taken; most never had one.
