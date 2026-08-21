@@ -1,5 +1,31 @@
 # PLAN: `keep` and `drop` — taking things off the collection
 
+> **SETTLED AND BUILT, 2026-08-21. This file is history, not a live design.**
+>
+> - **Placement** — the blocking question — is answered, and not the way this
+>   plan assumed. The collection belongs on `/dd`, measured 258 programs to 53:
+>   `notes/DECISION-placement.md`. That makes `keep` a tool for someone whose
+>   `/dd` is their OWN OS-9 system, not the normal way to use the disk.
+> - **Built** as three OS-9 modules, `disk/SRC/keep/keep.c`, `cc -qm` so they
+>   need no `cio`. They replaced three bash scripts that could not do the job
+>   on a foreign `/dd` — they need `bash` and `/dd/tmp` on the destination.
+>   The originals are kept as `SRC/keep/*.sh`.
+> - **The receipt works**, including the part that matters: `drop` refuses to
+>   remove a file whose CRC has changed, demonstrated by appending a line to a
+>   kept `fortunes.dat` and watching `drop` leave it alone.
+> - **The browser is the chooser**, as this plan wanted: `docs/index.html` now
+>   has a `+` on every program and a tray that builds `keep a b c` to paste.
+> - Answers to the four open questions at the foot of this file:
+>   1. Placement — mirror the collection's layout, refuse on collision, `-p`
+>      and `KEEP_TO` to send it elsewhere. No namespace directory.
+>   2. Game state — static data only; `keep` never copies a score file, and a
+>      dependency that is a DIRECTORY is skipped and said so out loud.
+>   3. Collection version in the receipt — NOT done. There is still no version
+>      string on the disk.
+>   4. `DOC/DEPENDS` at run time — read it, from the collection. `keep` finds
+>      the collection by looking for `DOC/DEPENDS` on `/h0`, `/h1`, `/h2`,
+>      `/dd`, or wherever `KEEP_FROM` says.
+
 Written 2026-08-08, at the end of a session that started with "spot checking
 this stuff is depressing" and ended somewhere better. This is the design to
 start the next session from. Nothing here is built yet.
