@@ -1,0 +1,11 @@
+--- /private/tmp/claude-501/-Users-rdoggett-Developer-os9-osk-freeware/a1b843ce-500e-4a36-8d53-023c1a94e8fb/scratchpad/hunt/pdksh/OSK/DEFS/SYS/types.h	1992-02-07 18:34:00
++++ /private/tmp/claude-501/-Users-rdoggett-Developer-os9-osk-freeware/a1b843ce-500e-4a36-8d53-023c1a94e8fb/scratchpad/h6/pdksh/OSK/DEFS/SYS/types.h	2026-08-21 02:29:14
+@@ -1,7 +1,7 @@
+ #ifndef __TYPES_H
+ #define __TYPES_H
+ #ifndef CLK_TCK
+-#include "/dd/defs/time.h"
++#include <time.h>
+ #endif
+ 
+ typedef	struct {char dev_name[32];} dev_t;

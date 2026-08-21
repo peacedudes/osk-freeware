@@ -1,0 +1,1 @@
+struct tms {	time_t	tms_utime;	time_t	tms_stime;	time_t	tms_cutime;  /* child times: not available in OSK */	time_t	tms_cstime;  /*  - " - */};#define	HZ	CLK_TCK

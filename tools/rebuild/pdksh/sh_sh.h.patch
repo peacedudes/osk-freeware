@@ -1,0 +1,23 @@
+--- /private/tmp/claude-501/-Users-rdoggett-Developer-os9-osk-freeware/a1b843ce-500e-4a36-8d53-023c1a94e8fb/scratchpad/hunt/pdksh/sh/sh.h	1992-04-29 17:23:00
++++ /private/tmp/claude-501/-Users-rdoggett-Developer-os9-osk-freeware/a1b843ce-500e-4a36-8d53-023c1a94e8fb/scratchpad/h6/pdksh/sh/sh.h	2026-08-21 02:26:39
+@@ -13,8 +13,20 @@
+ #endif
+ 
+ #ifndef SHELL
++#ifdef OSK
++/* The port's dmakefile passes these as -D options with embedded quotes,
++ * which do not survive being typed at the OS-9 shell.  The values are the
++ * dmakefile's own: SHNAME is `ksh`.  main.c needs SHELLENV unconditionally,
++ * as a string in its initcoms[] table.
++ */
++#define	SHELL	"ksh"		/* shell to exec scripts */
++#ifndef SHELLENV
++#define	SHELLENV	"SHELL=ksh"
++#endif
++#else
+ #define	SHELL	"/bin/sh"	/* shell to exec scripts */
+ #endif
++#endif
+ 
+ /* some people object to this use of __STDC__ */
+ #ifdef __STDC__

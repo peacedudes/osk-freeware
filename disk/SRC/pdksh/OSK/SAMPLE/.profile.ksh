@@ -1,0 +1,1 @@
+print .profile.kshCDPATH=$CDPATH:$HOME/PROJEKTE:$HOME/UTIL:$HOME/236:$HOME/KSH:$HOME/KSH/KSHexport M63=/t3

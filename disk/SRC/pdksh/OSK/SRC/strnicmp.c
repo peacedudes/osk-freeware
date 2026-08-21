@@ -1,0 +1,1 @@
+/*   case-insensitive string compare   hcz*/strnicmp(s1, s2, n)unsigned char *s1, *s2;register int n;{   register unsigned char c;   for (; 0 < n; ++s1, ++s2, --n)      if ((c = *s1 ^ *s2) != '\0' && c != 0x20)         return ( s1 < s2 ? -1 : 1);      else if (*s1 == '\0')         return (0);   return(0);}

@@ -1,0 +1,1 @@
+#ifndef __TYPES_H#define __TYPES_H#ifndef CLK_TCK#include "/dd/defs/time.h"#endiftypedef	struct {char dev_name[32];} dev_t;typedef long ino_t;/* typedef unsigned short u_short; */typedef long off_t;/* typedef long size_t; */#endif

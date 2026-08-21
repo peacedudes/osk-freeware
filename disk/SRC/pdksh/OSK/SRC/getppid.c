@@ -1,0 +1,1 @@
+#include <procid.h>int getppid(){   procid procdesc;   (void) _get_process_desc(getpid(), (int)sizeof(procdesc), &procdesc);   return(procdesc._pid);}

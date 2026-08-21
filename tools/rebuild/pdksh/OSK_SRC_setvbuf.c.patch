@@ -1,0 +1,20 @@
+--- /private/tmp/claude-501/-Users-rdoggett-Developer-os9-osk-freeware/a1b843ce-500e-4a36-8d53-023c1a94e8fb/scratchpad/hunt/pdksh/OSK/SRC/setvbuf.c	1992-05-06 12:56:00
++++ /private/tmp/claude-501/-Users-rdoggett-Developer-os9-osk-freeware/a1b843ce-500e-4a36-8d53-023c1a94e8fb/scratchpad/h6/pdksh/OSK/SRC/setvbuf.c	2026-08-21 02:25:45
+@@ -1,7 +1,7 @@
+ #include <stdio.h>
+ #include "osk.h"
+ 
+-void setvbuf(stream, buf, type, size)
++int setvbuf(stream, buf, type, size)
+ FILE *stream;
+ char *buf;
+ int type,
+@@ -15,6 +15,7 @@
+                    changes editing modes too: */
+           stream->_flag &= ~_UNBUF ; break;   /* line buffering */
+    }
++   return 0;
+ }
+    
+    
+\ No newline at end of file

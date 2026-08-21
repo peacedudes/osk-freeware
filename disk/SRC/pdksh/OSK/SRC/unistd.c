@@ -1,0 +1,1 @@
+/* misc. POSIX emulation *//* $Header$ */longulimit(cmd, limit)	int cmd;	long limit;{	return 0;}

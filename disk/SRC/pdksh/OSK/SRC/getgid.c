@@ -1,0 +1,1 @@
+int getgid(){    return (int)((unsigned)getuid()>>16);}int getegid(){    return (int)((unsigned)getuid()>>16);}int geteuid(){    return getuid();}
