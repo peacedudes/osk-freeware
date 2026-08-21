@@ -5,6 +5,47 @@ Nothing pushed. Every commit made with all eight `check_disk.py` checks green.
 Read `notes/PLAN-release-2026-08-21.md` for what I was asked and what I decided,
 and `notes/SESSION-2026-08-21.md` for the running record.
 
+## Read this one first
+
+**Microware's proprietary source was on the shipping disk, and I have removed
+it.** `disk/SRC/msfm` -- 21 files of OS-9 file-manager internals: path
+descriptors, system globals, process descriptors.
+
+It is byte-identical to EFFO forum disk 12's `SOFTWARE/C/MSFM/SRC`, and that
+archive's `note.doc` says:
+
+> Source of original version: Peter Dibble: OS-9 INSIGHTS ... This source code
+> is the proprietary confidential property of Microware Systems Corporation,
+> and is provided to licensee solely for documentation and educational
+> purposes. Reproduction, publication, or distribution in any form to any
+> party other than licensee is strictly prohibited.
+
+Three things make this worth your attention beyond the removal itself:
+
+1. **`msfm` was already on the refused list** in `notes/WORK-QUEUE.md` --
+   *"Microware's, out of Dibble's OS-9 Insights"*. The MODULE was refused. The
+   SOURCE came in by another route and nobody noticed.
+2. **The notice was a sibling of the directory somebody copied**, one level up
+   from the `SRC/` that was taken, so it stayed behind. The 21 files carry no
+   header, no copyright line, nothing. Reading any one of them tells you only
+   that it is a file manager.
+3. **`tools/screen_microware.py` would have caught it** -- it flags 10 of the
+   21 on its SYSTEM SOURCE rule. It had only ever been run on candidates
+   before installing them, never over what was already on the disk.
+
+So `check_disk.py` has a ninth check now, `no unscreened Microware source`,
+which screens `disk/SRC` on the strong rules only (the NAME rule alone matches
+212 files and a check that cries wolf is one nobody reads). Six pre-existing
+strong flags are listed with reasons in `tools/screened-src.txt` -- **please
+read those six and tell me if you disagree with any**; I judged all six to be
+third-party or common-interface code, but `disk/SRC/hc_utils/sys.c` is yours
+and you would know better than I do.
+
+I proved the check fires by putting one msfm file back.
+
+This is the item I would most want a second opinion on, and the reason I would
+not ship before you have looked.
+
 ## Things that need YOUR decision
 
 1. **`~/Developer/os9/os9exec` has FOUR modified files, not one.** The handoff
