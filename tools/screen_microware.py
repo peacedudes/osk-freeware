@@ -167,6 +167,29 @@ def sdk_index():
     return by_name, texts, digests
 
 
+def provenance(sdk_path):
+    """Say which SDK a match came from, because they are not equal evidence.
+
+    `paths.SDK` is rdoggett's WORKING build overlay. Beside Microware's own
+    files it carries libraries this collection built or collected --
+    `ncurses.l`, `libgcc.l`, `libgpp.l`, `unet.l` and the `os9unix/` headers
+    are in it and in NEITHER pristine SDK. A file matching one of those is
+    matching OUR OWN work, and reporting it as "IDENTICAL to SDK" is how a
+    screen teaches people to stop reading it: run this over `disk/LIB` and it
+    flags 113 files, nearly all self-matches.
+
+    So a match under the pristine tree is evidence, and a match found only in
+    the overlay is a question. Say which.
+    """
+    if paths.SDK_FULL in sdk_path:
+        return ""
+    rel = os.path.relpath(sdk_path, paths.SDK)
+    twin = os.path.join(paths.SDK_FULL, rel)
+    if os.path.exists(twin):
+        return ""
+    return "  [build overlay only -- may be OUR file, check before acting]"
+
+
 # The five Microware GAVE PERMISSION FOR, 2026-08-16. They are Microware's and
 # they will match the SDK exactly -- that is expected and is not a finding.
 # Saying so here stops a later pass "fixing" it by deleting them.
@@ -187,7 +210,8 @@ def screen(path, by_name, texts, digests):
 
     d = hashlib.sha1(raw).hexdigest()
     if len(raw) >= MIN_BYTES and d in digests:
-        reasons.append(f"IDENTICAL to SDK {os.path.relpath(digests[d], paths.OS9)}")
+        reasons.append(f"IDENTICAL to SDK {os.path.relpath(digests[d], paths.OS9)}"
+                       + provenance(digests[d]))
 
     if base.lower() in by_name:
         reasons.append(f"name matches SDK {os.path.basename(by_name[base.lower()][0])}")
@@ -223,7 +247,8 @@ def screen(path, by_name, texts, digests):
                     best, best_p = frac, p
         if best >= COPY_THRESHOLD:
             reasons.append(
-                f"{best:.0%} of its lines are in SDK {os.path.basename(best_p)}")
+                f"{best:.0%} of its lines are in SDK {os.path.basename(best_p)}"
+                + provenance(best_p))
     return reasons
 
 

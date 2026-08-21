@@ -1,0 +1,1 @@
+/* * ioctl.h *//* * tty control */#define fIOC        ('f'<<8)#define tIOC        ('t'<<8)#define FIONREAD    (fIOC|127)     /* get # of bytes to read     */#define TIOCFLUSH   (tIOC|16)      /* flush buffers              */

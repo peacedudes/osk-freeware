@@ -55,3 +55,19 @@ disk/SRC/passwd/pwd.h
 # terms of OS-9's own S_IREAD/S_IWRITE. It overlaps the SDK's stat.h because
 # it names the same constants, which is the entire point of the file.
 disk/SRC/infoxpress/BNU/ELM_2.4/HDRS/osk.h
+
+# The pd-ksh port's own UNIX-compatibility headers, restored 2026-08-21 after
+# being refused earlier the same day on weaker evidence than it looked.
+#
+# Both matched a file under `play/oskBoot`, which is rdoggett's WORKING build
+# overlay, not a pristine SDK. Neither `ioctl.h` nor `termio.h` exists in the
+# pristine tree at all, and no copy in the overlay carries a Microware
+# copyright or any ownership claim. They are the standard System V ioctl and
+# termio definitions, which is why they overlap: any two expressions of that
+# interface do.
+#
+# Finding this is what `provenance()` in screen_microware.py was added for --
+# "matches the SDK" had been reported the same way whether the match was
+# against Microware's own files or against ours sitting beside them.
+disk/SRC/pdksh/OSK/DEFS/ioctl.h
+disk/SRC/pdksh/OSK/DEFS/termios.h

@@ -19,11 +19,16 @@ The import into `disk/SRC/pdksh/` took `sh/`, `std/`, `etc/`, `machines/`,
 could not be built by anyone**, and the earlier note that `OSK_INCL` "holds
 what look like its sources" was a reasonable guess at the wrong directory.
 
-`disk/SRC/pdksh/OSK/` now holds the recovered tree. Two headers were refused
-by `tools/screen_microware.py` and are NOT there — `DEFS/ioctl.h`, which is
-byte-identical to the SDK's `DEFS/UNIX/ioctl.h`, and `DEFS/termios.h`, whose
-every line is in the SDK's `termio.h`. The build uses the SDK's copies; they
-do not travel. German comments in `ssmpermit.a`, `ssmprotect.a` and
+`disk/SRC/pdksh/OSK/` now holds the recovered tree, all of it.
+
+Two headers — `DEFS/ioctl.h` and `DEFS/termios.h` — were refused at first and
+then RESTORED the same day, and the round trip is worth recording. Both matched
+a file under `play/oskBoot`, which is a WORKING BUILD OVERLAY, not a pristine
+SDK. Neither `ioctl.h` nor `termio.h` is in the pristine tree at all, and no
+copy of either carries a Microware copyright. They are the standard System V
+definitions, which is exactly why they overlap. `screen_microware.py` now says
+which SDK a match came from, so the difference is visible instead of having to
+be remembered. German comments in `ssmpermit.a`, `ssmprotect.a` and
 `SAMPLE/envi.ksh` were transliterated to ASCII (`ä`→`ae`), because the disk is
 7-bit by rule.
 
