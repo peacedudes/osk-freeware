@@ -1,6 +1,6 @@
 # What is on this disk
 
-852 programs of OS-9/68K community software, gathered from the archives that kept it and made to run again. **641 of them need nothing but this disk**; the rest want Microware's `cio`, marked below with a star.
+851 programs of OS-9/68K community software, gathered from the archives that kept it and made to run again. **510 of them need nothing but this disk**; the rest want Microware's `cio`, marked below with a star.
 
 `DOC/INDEX` on the disk lists everything alphabetically. This is the same collection sorted by what each program is *for*, which is the more useful order when you do not yet know what you are looking for.
 
@@ -10,8 +10,8 @@
 |---|--:|---|
 | [Shells](#shells) | 21 | Unix shells to sit beside OS-9's own -- bash and ksh bring history, job control, and scripts that come across unchanged. |
 | [Editors](#editors) | 24 | vi and emacs in several flavours, line and stream editors, and editors for binary and hex. |
-| [Text tools](#text-tools) | 83 | Search, sort, compare, reformat, split and spell-check. |
-| [Files & directories](#files--directories) | 38 | Listing, copying, finding, renaming, and knowing what you have. |
+| [Text tools](#text-tools) | 82 | Search, sort, compare, reformat, split and spell-check. |
+| [Files & directories](#files--directories) | 36 | Listing, copying, finding, renaming, and knowing what you have. |
 | [Developer tools](#developer-tools) | 47 | Version control, tags, cross-reference, formatters, a debugger and benchmarks. |
 | [Compilers & build](#compilers--build) | 34 | C compilers and their passes, assemblers, linkers, make and parser generators. |
 | [Languages](#languages) | 6 | Interpreters and language systems beyond C. |
@@ -22,7 +22,7 @@
 | [Games](#games) | 66 | Adventures, board and card games, arcade ports, dungeon crawls and puzzles. |
 | [Screen toys](#screen-toys) | 6 | Things to watch rather than play. Start one and leave it going. |
 | [Amusements](#amusements) | 20 | Generators, simulators and diversions that are not quite games. |
-| [System & modules](#system--modules) | 128 | OS-9 module and process tools, devices, system state and scheduling. |
+| [System & modules](#system--modules) | 129 | OS-9 module and process tools, devices, system state and scheduling. |
 | [Disk & DOS](#disk--dos) | 20 | Reading and writing MS-DOS media with the mtools set. |
 | [Time & calendar](#time--calendar) | 10 | Calendars, clocks and astronomy. |
 | [Maths & calculators](#maths--calculators) | 13 | Calculators, plotting, orbits and number theory. |
@@ -47,7 +47,7 @@
 | `if` | conditional execution for shell scripts (varval/loaded/def)<br>`Syntax: if [not] <cond> {<arg>} {<cmd1>} [else` |
 | `paths` | show/expand the PATH |
 | `printenv` | &#9733; print the environment<br>`Syntax:   printenv [<options>] [{<env var name}]` |
-| `printf` | formatted print from the shell<br>`Usage: printf <format-string> [ arg1 . . . ]` |
+| `printf` | &#9733; formatted print from the shell<br>`Usage: printf <format-string> [ arg1 . . . ]` |
 | `run` | run a program with stdio rebound to the terminal (needs PORT)<br>`Syntax: run '<prgname> {<arg>}'` |
 | `xc` | execute commands from a file (needs a .xc) |
 
@@ -57,9 +57,9 @@
 |---|---|
 | `bash` | GNU Bourne-Again Shell 1.12 -- this disk's shell; reads .bashrc<br>`usage: fc [-e ename] [-nlr] [first] [last] or fc -s [pat=rep] [command]` |
 | `gshell` | GSHELL - a shell<br>**How:** Full-screen: it takes over the display. **control-C gets you out** -- tested, and none of q, Q, control-D or ESC did. If it has a quit command of its own, its documentation in DOC/ will say. |
-| `ksh` | &#9733; Public Domain Korn Shell 4.3 (edition 11, OS-9 port)<br>`Syntax: 'setpr <prior>' or 'setpr <pid> [<pid>..] <prior>'` |
+| `ksh` | &#9733; Korn shell.  `ksh -c '<commands>'` works completely.  Its INTERACTIVE loop depends on the EMULATOR: it reads the command line with read(fd,buf,256), and os9exec's I$Read returned only when the full count arrived rather than at the end-of-record character, so no typed command ever reached it.  With that corrected, ksh is a full shell -- prompt, for loops, variables, forking.  DOC/README-KSH<br>`Syntax: 'setpr <prior>' or 'setpr <pid> [<pid>..] <prior>'` |
 | `sh` | Bourne shell v7.5 -- what the startup script runs |
-| `wish` | WiSH - full-screen windowing shell over the OS-9 shell |
+| `wish` | &#9733; WiSH - full-screen windowing shell over the OS-9 shell |
 
 **Shell utilities**
 
@@ -83,7 +83,7 @@
 
 | | |
 |---|---|
-| `elvis` | Elvis 1.7 -- the best-documented of this disk's three vi editors, and the one with the most options.  BUILT HERE from the source in CMDS/archives.  Needs TERM and TERMCAP; runs with no trap handler.  vi.elvis, view and input are the same program under its other personalities and need elvis present to run<br>**How:** A full vi/ex clone, built here from the archive that was always on this disk. Needs TERM and TERMCAP set -- `SYS/login' does both. `view' opens read-only, REBUILT/vi.elvis is the same program as vi, and all of them need CMDS/elvis present because they exec it. |
+| `elvis` | Elvis 1.7 -- the best-documented of this disk's three vi editors, and the one with the most options.  BUILT HERE from the source in CMDS/archives.  Needs TERM and TERMCAP; runs with no program under its other personalities and need elvis present to run<br>**How:** A full vi/ex clone, built here from the archive that was always on this disk. Needs TERM and TERMCAP set -- `SYS/login' does both. `view' opens read-only, REBUILT/vi.elvis is the same program as vi, and all of them need CMDS/elvis present because they exec it. |
 | `elvprsv` | Preserve an elvis session across a crash |
 | `elvrec` | Recover a preserved elvis session<br>`usage: elvrec [preserved_file [recovery_file]]` |
 | `input.elvis` | elvis under its `input' personality; CMDS/input is a different program entirely |
@@ -94,12 +94,12 @@
 
 | | |
 |---|---|
-| `sedt` | SEDT screen editor |
+| `sedt` | &#9733; SEDT screen editor |
 | `VI` | PVIC, public domain            -> /dd/CMDS/REBUILT (name was taken)<br>`Usage: vi [file ...]` |
-| `vi` | THE REAL vi/ex -- its source in SRC/effo_vi is the Berkeley ex source itself, not a clone.  `vi -x' is ex, `vi -d' is edit.  See DOC/README-VI<br>**How:** One of three unrelated vi editors here, and the only one that is the genuine Berkeley ex/vi rather than a clone -- its source in SRC/effo_vi is the real ex_*.c files. `vi -x' becomes ex, `vi -d' becomes edit. DOC/README-VI compares all three. |
+| `vi` | &#9733; THE REAL vi/ex -- its source in SRC/effo_vi is the Berkeley ex source itself, not a clone.  `vi -x' is ex, `vi -d' is edit.  See DOC/README-VI<br>**How:** One of three unrelated vi editors here, and the only one that is the genuine Berkeley ex/vi rather than a clone -- its source in SRC/effo_vi is the real ex_*.c files. `vi -x' becomes ex, `vi -d' becomes edit. DOC/README-VI compares all three. |
 | `vi_cio` | &#9733; PVic vi, cio build (use vi_nocio instead)<br>**How:** PVic vi, the cio build. Needs `. /dd/SYS/termcap.entry' first, then it opens on an empty buffer. CMDS/vi_nocio is the same editor needing no module; DOC/README-VI compares all three vi editors here. |
 | `vi_nocio` | PVIC 1.0a -- the smallest of this disk's three vi editors, public domain.  See DOC/README-VI to choose between them<br>**How:** PVIC 1.0a, the smallest of the three vi editors on this disk, public domain, no source or docs here. DOC/README-VI compares it with vi and elvis. |
-| `vis` | make non-printing characters visible |
+| `vis` | &#9733; make non-printing characters visible |
 
 **Binary & hex**
 
@@ -107,9 +107,9 @@
 |---|---|
 | `beav` | BEAV 1.40 -- Binary Editor And Viewer (needs TERM)<br>**How:** Full-screen: it takes over the display. **control-C gets you out** -- tested, and none of q, Q, control-D or ESC did. If it has a quit command of its own, its documentation in DOC/ will say. |
 | `chbase` | &#9733; change module base<br>`Syntax   : chbase <number> [ <base A> [ <base B> ] ]` |
-| `hexed` | hex editor via your text editor  [no military use -- EFFO-INFO]<br>`Syntax: hexed [<opts>] <path> {[<opts>] \| [<path>]}` |
+| `hexed` | &#9733; hex editor via your text editor  [no military use -- EFFO-INFO]<br>`Syntax: hexed [<opts>] <path> {[<opts>] \| [<path>]}` |
 | `hexedit` | Hex file editor -- hex [-vdr] file<br>**How:** A hex editor -- Hexpert v2.4 by Dominic Alston. Takes a file: `hexedit <file>'. Needs `. /dd/SYS/termcap.entry' first or it will not draw. |
-| `pbyte` | patch bytes in a file at a hex offset<br>`Syntax: pbyte <path> <hex_offset> <hex_byte> [<hex_byte>]` |
+| `pbyte` | &#9733; patch bytes in a file at a hex offset<br>`Syntax: pbyte <path> <hex_offset> <hex_byte> [<hex_byte>]` |
 
 **emacs family**
 
@@ -126,7 +126,7 @@
 |---|---|
 | `ed` | &#9733; GNU ed 0.2 line editor<br>`Usage: ed [OPTION]... [FILE]` |
 | `editor` | GSHELL front-end for the editor<br>**How:** Full-screen: it takes over the display. **control-C gets you out** -- tested, and none of q, Q, control-D or ESC did. If it has a quit command of its own, its documentation in DOC/ will say. |
-| `sed` | sed - stream editor (verified: s/x/y/ substitution works)<br>`Syntax: sed [<opts>] [<path>] [<opts>]` |
+| `sed` | &#9733; sed - stream editor (verified: s/x/y/ substitution works)<br>`Syntax: sed [<opts>] [<path>] [<opts>]` |
 
 </details>
 
@@ -134,47 +134,47 @@
 
 *Search, sort, compare, reformat, split and spell-check.*
 
-<details><summary>83 programs</summary>
+<details><summary>82 programs</summary>
 
 **Transform & filter**
 
 | | |
 |---|---|
-| `ape` | APE - text filter |
+| `ape` | &#9733; APE - text filter |
 | `autolf` | &#9733; auto-linefeed filter<br>`Usage:   autolf [<opts>] {<file names> [<opts>]}` |
 | `casefix` | normalise letter case in a text file |
 | `cut` | cut selected fields from each line |
-| `cuts` | Coco Usenet Transfer Utility<br>`Usage: cuts <-d> [-o name] <file>...` |
+| `cuts` | &#9733; Coco Usenet Transfer Utility<br>`Usage: cuts <-d> [-o name] <file>...` |
 | `detab` | &#9733; tabs to spaces<br>`Usage: detab [-tn] [infile] or [<infile]` |
-| `deton` | detab - convert tabs to spaces<br>`syntax: deton [seconds]` |
-| `eo` | eo - text utility |
+| `deton` | &#9733; detab - convert tabs to spaces<br>`syntax: deton [seconds]` |
+| `eo` | &#9733; eo - text utility |
 | `field` | &#9733; extract fields<br>`Syntax  : field [<opts>] <fields...> [<opts>]` |
-| `fillup` | fill a file up to a given length with a constant byte<br>`Syntax:   fillup [<options>] <file>` |
-| `gep` | global expression parser - grep-like filter<br>`Syntax: gep [<opts>] [<srcpath>] [<opts>]` |
+| `fillup` | &#9733; fill a file up to a given length with a constant byte<br>`Syntax:   fillup [<options>] <file>` |
+| `gep` | &#9733; global expression parser - grep-like filter<br>`Syntax: gep [<opts>] [<srcpath>] [<opts>]` |
 | `paste` | merge lines of files<br>`USAGE: paste [-s] [-d<list>] files` |
 | `pep` | file 'detergent' - strip junk from files<br>`Usage: pep [options] [filename ...]` |
 | `psc` | &#9733; sc's print/format filter<br>`Syntax: psc [-rkfLSPv?] [-s v] [-R i] [-C i] [-n i] [-d c] [<path1] [>path2]` |
-| `qt` | quick text utility |
+| `qt` | &#9733; quick text utility |
 | `rot` | rot-N text transformer |
 | `shuffle` | shuffle lines/cards<br>**How:** Full-screen: it takes over the display. **`q' quits** -- tested. |
-| `souper` | souper - text utility |
+| `souper` | souper - text utility -- bus errors before its first system call, in a login session too.  See DOC/README-BUSERR |
 | `tabs` | tab/space conversion filter<br>`Syntax   : tabs [<opts>] [<input_redirection>] [<output_redirection>]` |
 | `upperdir` | Normalise case: files lowercase, dirs uppercase<br>`Usage: UpperDir [directory name]` |
-| `valspeak` | Valley-speak text filter |
+| `valspeak` | &#9733; Valley-speak text filter |
 
 **Sort, compare & merge**
 
 | | |
 |---|---|
-| `cdiff` | context diff |
-| `diff` | GNU diff 1.1 -- ADDED; the disk had no diff at all.  Verified on CR files<br>`Usage: diff [-options] file1 file2` |
+| `cdiff` | &#9733; context diff |
+| `diff` | &#9733; GNU diff 1.1 -- ADDED; the disk had no diff at all.  Verified on CR files<br>`Usage: diff [-options] file1 file2` |
 | `ediff` | visual file compare<br>`Syntax   : 'ediff <file'  or  'diff <f1> <f2> ! ediff'` |
-| `fcomp` | compare two text files<br>`Syntax: fcomp <file_1> <file_2>` |
+| `fcomp` | &#9733; compare two text files<br>`Syntax: fcomp <file_1> <file_2>` |
 | `join` | GNU join -- relational join of two sorted files<br>`Usage: join [-a 1\|2] [-v 1\|2] [-e empty-string] [-o field-list...] [-t char]` |
 | `nsort` | numeric sort<br>`Usage: nsort <unordered >sorted` |
 | `qsort9` | &#9733; sort filter<br>`Syntax: qsort9 [<opts>] [<srcpath>] [<opts>]` |
 | `sort` | GNU sort<br>`Usage: sort [-cmus] [-t separator] [-o output-file] [-bdfiMnr] [+POS1 [-POS2]]` |
-| `spiff` | tolerant diff - ignores formatting noise<br>**How:** Compares two files while ignoring differences that do not matter (whitespace, number formatting). Takes TWO filenames. |
+| `spiff` | &#9733; tolerant diff - ignores formatting noise<br>**How:** Compares two files while ignoring differences that do not matter (whitespace, number formatting). Takes TWO filenames. |
 | `unip` | unique lines with page numbers<br>`Syntax: unip [<opts>] [<srcpath>] [<opts>]` |
 | `uniq` | &#9733; drop duplicate lines<br>`Usage: UNIQ [-u][-d][-c] [-n] [^n] input [>output]` |
 
@@ -183,37 +183,36 @@
 | | |
 |---|---|
 | `charcnt` | &#9733; Count characters in a file (Carl Kreider) |
-| `expand` | &#9733; Turn tabs into spaces (GNU)<br>`Usage: expand [-tab1[,tab2[,...]]] [-t tab1[,tab2[,...]]] [-i]` |
-| `head` | &#9733; First lines of a file -- `head -n 20 file'.  These GNU builds want -n 20, not -20<br>**How:** First lines of a file. This GNU build wants `head -n 20 file' -- the older `head -20' form is rejected as an unrecognized option. Needs cio. |
-| `split` | &#9733; Split a file into pieces (GNU)<br>`Usage: split [-lines] [-l lines] [-b bytes[km]] [-C bytes[km]] [+lines=lines]` |
+| `expand` | Turn tabs into spaces (GNU)<br>`Usage: expand [-tab1[,tab2[,...]]] [-t tab1[,tab2[,...]]] [-i]` |
+| `head` | First lines of a file -- `head -n 20 file'.  These GNU builds want -n 20, not -20<br>**How:** First lines of a file. This GNU build wants `head -n 20 file' -- the older `head -20' form is rejected as an unrecognized option. Needs cio. |
+| `split` | Split a file into pieces (GNU)<br>`Usage: split [-lines] [-l lines] [-b bytes[km]] [-C bytes[km]] [+lines=lines]` |
 | `subber` | &#9733; Substitute text in a stream, ,old,new style (Carl Kreider)<br>`Usage : subber <opts> wordlist <filename>` |
-| `sum` | &#9733; Checksum and block count (GNU) |
-| `tac` | &#9733; Print a file backwards, last line first (GNU)<br>**How:** Prints a file backwards, last line first -- cat's mirror image. Needs cio. |
+| `sum` | Checksum and block count (GNU) |
+| `tac` | Print a file backwards, last line first (GNU)<br>**How:** Prints a file backwards, last line first -- cat's mirror image. Needs cio. |
 | `tcmp` | &#9733; Compare two text files (Carl Kreider)<br>`Usage:  tcmp [options] file1 file2` |
-| `unexpand` | &#9733; Turn leading spaces back into tabs (GNU)<br>`Usage: unexpand [-tab1[,tab2[,...]]] [-t tab1[,tab2[,...]]] [-a]` |
+| `unexpand` | Turn leading spaces back into tabs (GNU)<br>`Usage: unexpand [-tab1[,tab2[,...]]] [-t tab1[,tab2[,...]]] [-a]` |
 | `unp` | &#9733; Strip unprintable characters from a stream (Carl Kreider)<br>`Usage:  unp [-?] [file]` |
 
 **Count & inspect**
 
 | | |
 |---|---|
-| `ascii` | ASCII character table |
+| `ascii` | &#9733; ASCII character table |
 | `dump` | hex dump of a file or module<br>`Syntax: dump [<opts>] <path/module> [<opts>] [<starting byte>] [<opts>]` |
 | `file` | Identify file types.  SYS/magic is now here, so it names real formats -- "GIF picture ver. 87a 320 x 200, interlaced, 256 colors" -- and not just OS-9 modules<br>**How:** Names real formats now that SYS/magic is here: `file /dd/DEMO/gulls.gif' reports the GIF version, size and colour count. Before the magic file arrived it could only recognise OS-9 modules. |
 | `gdd` | &#9733; data dump<br>**How:** A data dump -- like `od', with GNU-style long options. Needs Microware's cio. |
-| `strings` | extract printable strings |
-| `strings.cio` | &#9733; archived build, needs cio; superseded by the gcc2 rebuild<br>`Usage: strings.cio [-anpl=n] [file [file]]` |
+| `strings` | &#9733; extract printable strings, reported as $offset: <text><br>`Usage: strings [-anpl=n] [file [file]]` |
 | `tail` | &#9733; last lines of a file |
 | `wc` | count lines/words/chars -- REBUILT HERE with gcc2; counts CR or LF lines |
-| `wc.cio` | &#9733; archived build, needs cio; superseded by the gcc2 rebuild |
+| `wc.cio` | &#9733; archived build; DOES NOT WORK -- prints nothing for a file argument, which is why wc is still the gcc2 build |
 
 **Search & match**
 
 | | |
 |---|---|
 | `bm` | &#9733; bm - fast grep utility (Boyer-Moore) |
-| `bmgtest` | Boyer-Moore-Gosper substring search demo<br>**How:** bmgtest [-i] [-n] <pattern> [file ...]. A demonstration of Boyer-Moore-Gosper searching, not a tool you would use. |
-| `bmgtest2` | Boyer-Moore-Gosper substring search demo (variant)<br>`usage: bmgtest [-i] [-n] pattern [file ...]` |
+| `bmgtest` | &#9733; Boyer-Moore-Gosper substring search demo<br>**How:** bmgtest [-i] [-n] <pattern> [file ...]. A demonstration of Boyer-Moore-Gosper searching, not a tool you would use. |
+| `bmgtest2` | &#9733; Boyer-Moore-Gosper substring search demo (variant)<br>`usage: bmgtest [-i] [-n] pattern [file ...]` |
 | `fgrep` | &#9733; very fast grep utility<br>`usage: fgrep [-[[AB] ]<num>] [-[CVchilnsvwx]] [-[ef]] <expr> [<files...>]` |
 | `grep` | GNU grep 2.0 -- pattern search<br>`usage: grep [-[[AB] ]<num>] [-[CEFGVchilnqsvwx]] [-[ef]] <expr> [<files...>]` |
 | `soundex` | Soundex phonetic key for each word on stdin |
@@ -222,12 +221,12 @@
 
 | | |
 |---|---|
-| `cookhash` | build the hash file cookie(1) needs, from a sayings file<br>`usage: cookhash <cookiefile >hashfile` |
+| `cookhash` | &#9733; build the hash file cookie(1) needs, from a sayings file<br>`usage: cookhash <cookiefile >hashfile` |
 | `cookie` | print a random fortune cookie<br>`usage: cookie cookiefile hashfile` |
 | `fortune` | print a random quotation<br>`usage:  fortune [ - ] [ -wsloa ] [ file ]` |
 | `sonnet` | writes (bad) sonnets in iambic pentameter, curses-based<br>**How:** Full-screen: it takes over the display. **ESC quits** -- tested. (control-C also gets you out, but ESC is the program's own way.) |
-| `strfile` | build fortune's index file<br>`usage:  strfile [ - ] [ -cC ] [ -sv ] inputfile [ datafile ]` |
-| `unstr` | reverse strfile - dump a fortune index<br>`usage: unstr datafile[.dat] [ outfile ]` |
+| `strfile` | &#9733; build fortune's index file<br>`usage:  strfile [ - ] [ -cC ] [ -sv ] inputfile [ datafile ]` |
+| `unstr` | &#9733; reverse strfile - dump a fortune index<br>`usage: unstr datafile[.dat] [ outfile ]` |
 
 **Spelling & words**
 
@@ -236,7 +235,7 @@
 | `buildhash` | build ispell's dictionary hash (writes LIB/ispell.hash) |
 | `ispell` | interactive spelling checker<br>**How:** Interactive spelling checker. Takes a file: `ispell <file>'. `ispell -a' is the pipe interface programs use. |
 | `jargon` | Jargon-file browser (needs its database files)<br>**How:** A browser for the Jargon File, which is here: VH/jargon.txt, version 3.0.0 of 27 July 1993, with its index. It will not read SYS/termcap -- do `. /dd/SYS/termcap.entry' first, then `jargon -m'. Tested. |
-| `makelex` | compiles sonnet's lex.data word list into a C array |
+| `makelex` | &#9733; compiles sonnet's lex.data word list into a C array |
 | `speech` | English-to-phoneme translation<br>`Usage: PHONEME [infile [outfile]]` |
 
 **Format & typeset**
@@ -244,7 +243,7 @@
 | | |
 |---|---|
 | `lout` | Lout 2.05 document formatter (Basser Lout, Jeffrey Kingston)<br>`usage: -o<filename>` |
-| `nroff` | nroff text formatter -- setenv TMACDIR /dd/LIB first<br>**How:** Formats man pages. The -man macros in LIB/tmac.an were extended for this collection because the originals defined only .TH .SH .SS .PP and .I; LIB/orig.tmac.an is the untouched version. Try `nroff -man /dd/DOC/netpbm/pnmscale.1'. |
+| `nroff` | &#9733; nroff text formatter -- setenv TMACDIR /dd/LIB first<br>**How:** Formats man pages. The -man macros in LIB/tmac.an were extended for this collection because the originals defined only .TH .SH .SS .PP and .I; LIB/orig.tmac.an is the untouched version. Try `nroff -man /dd/DOC/netpbm/pnmscale.1'. |
 | `proff` | proff - portable roff text formatter (macros in LIB/proff)<br>`usage: proff [+n] [-n] [-v] [-ifile] [-s] [-pon] [infile [outfile]]` |
 | `roff` | roff text formatter<br>`Syntax: roff {[+00] [-00] [-s] -[h] file}` |
 | `tformat` | text formatter (SNOBOL4-in-C)<br>`Usage: tformat [width\|-?] [<infile] [>outfile]` |
@@ -253,16 +252,16 @@
 
 | | |
 |---|---|
-| `banner` | print large banner text |
+| `banner` | &#9733; print large banner text |
 | `cursive` | generate a horizontal cursive banner<br>`usage: cursive [-tn] [-in] message` |
-| `gothic` | print text as a gothic/blackletter banner |
+| `gothic` | &#9733; print text as a gothic/blackletter banner |
 
 **KWIC index**
 
 | | |
 |---|---|
-| `pagefraz` | KWIC suite - phrase extractor<br>`Syntax: pagefraz <opts> [<in_path> [<out_path>]] <opts>` |
-| `pagekwic` | KWIC suite - split a Stylo file to one phrase per line with page no.<br>`Syntax: pagekwic <opts> [<in_path> [<out_path>]] <opts>` |
+| `pagefraz` | &#9733; KWIC suite - phrase extractor<br>`Syntax: pagefraz <opts> [<in_path> [<out_path>]] <opts>` |
+| `pagekwic` | &#9733; KWIC suite - split a Stylo file to one phrase per line with page no.<br>`Syntax: pagekwic <opts> [<in_path> [<out_path>]] <opts>` |
 | `pageline` | KWIC suite - line/page numbering<br>`Syntax: pageline <opts> [<in_path> [<out_path>]] <opts>` |
 
 **Split & join**
@@ -270,7 +269,7 @@
 | | |
 |---|---|
 | `sepwords` | split a file to one word per line<br>`Syntax: sepwords [<in_path> [<out_path>]]` |
-| `splitalf` | split a file alphabetically<br>`Syntax: splitalf <opts> [<in_path>] <opts>` |
+| `splitalf` | &#9733; split a file alphabetically<br>`Syntax: splitalf <opts> [<in_path>] <opts>` |
 
 **Formatting**
 
@@ -290,7 +289,7 @@
 
 *Listing, copying, finding, renaming, and knowing what you have.*
 
-<details><summary>38 programs</summary>
+<details><summary>36 programs</summary>
 
 **Copy, move, delete**
 
@@ -302,9 +301,9 @@
 | `eunlink` | &#9733; extended unlink<br>`Syntax: eunlink {<event>}` |
 | `move` | &#9733; move files between directories<br>`Syntax:   move [<options>] <from> [<to>] [<options>]` |
 | `mv` | &#9733; move/rename<br>`Usage: mv [-bfiuv] [-S backup-suffix] [-V {numbered,existing,simple}]` |
-| `remove` | remove files, with confirmation<br>`Syntax   : remove [<opt>] [<modules>] [<opt>] [<modules>] [<opt>]` |
+| `remove` | &#9733; remove files, with confirmation<br>`Syntax   : remove [<opt>] [<modules>] [<opt>] [<modules>] [<opt>]` |
 | `rm` | &#9733; remove files<br>`Usage: rm [-dfirvPR] [+directory] [+force] [+interactive] [+recursive]` |
-| `undel` | undelete a file<br>`Usage: attr <file> -d` |
+| `undel` | &#9733; undelete a file<br>`Usage: attr <file> -d` |
 
 **Home Librarian**
 
@@ -321,7 +320,7 @@
 
 | | |
 |---|---|
-| `dir` | &#9733; directory listing<br>`Syntax: dir [<opts>] {<dir names> [<opts>]}` |
+| `dir` | &#9733; directory listing.  PATCHED HERE: its moveq #128 was sign-extended to -128; see DOC/STATUS<br>`Syntax: dir [<opts>] {<dir names> [<opts>]}` |
 | `dm` | &#9733; Disk and directory monitor.  SYS/dm.hlp is now here, so its built-in help works<br>`Usage: DiskMaster [-c] [-d<dir name>]` |
 | `edir` | &#9733; extended directory listing<br>`Syntax: edir [<opts>]` |
 | `l` | &#9733; brief directory listing<br>`Usage: l [-options] [file] [file] [-options]` |
@@ -332,20 +331,11 @@
 
 | | |
 |---|---|
-| `dfiles` | find duplicate files on disk and issue the cmp commands |
-| `du` | disk usage, by directory<br>`Syntax: du <directory>` |
-| `ff` | find files by name -- ff [<opts>] <name>... |
-| `find` | find 1.1.5 -- search a directory tree<br>`Syntax: find {<opts>} [<path>]` |
-| `space` | effective disk usage  [conditions apply -- run `help space`]<br>`Syntax:   space [<opts>] {<dir/file path>} [<opts>]` |
-
-**Paths**
-
-| | |
-|---|---|
-| `basename` | strip directory from a pathname -- REBUILT HERE with gcc2<br>`usage: basename path [suffix]` |
-| `basename.cio` | &#9733; archived build, needs cio; superseded by the gcc2 rebuild<br>`Syntax:   basename <path> [<suffix>]` |
-| `dirname` | strip filename from a pathname -- REBUILT HERE with gcc2 |
-| `dirname.cio` | &#9733; archived build, needs cio; superseded by the gcc2 rebuild<br>`Syntax:   dirname <path>` |
+| `dfiles` | &#9733; find duplicate files on disk and issue the cmp commands |
+| `du` | &#9733; disk usage, by directory<br>`Syntax: du <directory>` |
+| `ff` | &#9733; find files by name -- ff [<opts>] <name>... |
+| `find` | &#9733; find 1.1.5 -- search a directory tree<br>`Syntax: find {<opts>} [<path>]` |
+| `space` | &#9733; effective disk usage  [conditions apply -- run `help space`]<br>`Syntax:   space [<opts>] {<dir/file path>} [<opts>]` |
 
 **Attributes & ownership**
 
@@ -361,8 +351,15 @@
 | | |
 |---|---|
 | `mkdir` | &#9733; make directory<br>`Usage: mkdir [-p] [-m mode] [+path] [+mode mode] dir...` |
-| `ren` | bulk rename files<br>`Syntax: ren [<opts>] <pathlist> <newname>` |
-| `rendsk` | rename a disk volume<br>`Syntax:   rendsk [<opts>] <disk device> <new name>` |
+| `ren` | &#9733; bulk rename files<br>`Syntax: ren [<opts>] <pathlist> <newname>` |
+| `rendsk` | &#9733; rename a disk volume<br>`Syntax:   rendsk [<opts>] <disk device> <new name>` |
+
+**Paths**
+
+| | |
+|---|---|
+| `basename` | &#9733; strip directory from a pathname (M.C. Gregorie, 1994)<br>`Syntax:   basename <path> [<suffix>]` |
+| `dirname` | &#9733; strip filename from a pathname (M.C. Gregorie, 1994)<br>`Syntax:   dirname <path>` |
 
 **Attributes**
 
@@ -383,25 +380,25 @@
 | | |
 |---|---|
 | `dhry` | Microware cc<br>**How:** Dhrystone 2.0. Twelve builds of the same source sit in CMDS/DHRY -- run several and compare, which is what tells you the compiler's cost. Under os9exec the number describes the host machine, not a 68000. |
-| `dhryGcc` | GCC 1.x |
-| `dhryGcc2` | GCC 2.x |
-| `dhryGcc2in` | GCC 2.x, inlined |
-| `dhryGcc2mx` | GCC 2.x, mixed |
-| `dhryGcc2o2` | GCC 2.x, optimised |
-| `dhryGccin` | GCC 1.x, inlined |
-| `dhryGccmx` | GCC 1.x, mixed |
-| `dhryGcco2` | GCC 1.x, optimised |
+| `dhryGcc` | &#9733; GCC 1.x |
+| `dhryGcc2` | &#9733; GCC 2.x |
+| `dhryGcc2in` | &#9733; GCC 2.x, inlined |
+| `dhryGcc2mx` | &#9733; GCC 2.x, mixed |
+| `dhryGcc2o2` | &#9733; GCC 2.x, optimised |
+| `dhryGccin` | &#9733; GCC 1.x, inlined |
+| `dhryGccmx` | &#9733; GCC 1.x, mixed |
+| `dhryGcco2` | &#9733; GCC 1.x, optimised |
 | `dhryO2` | Microware cc, optimised |
-| `dhryshamu` | Shamus build |
-| `dhryshamu2` | Shamus build, second variant |
+| `dhryshamu` | &#9733; Shamus build |
+| `dhryshamu2` | &#9733; Shamus build, second variant |
 | `disktest` | measure disk performance  [no military use -- DOC/EFFO-INFO]<br>`Syntax   : disktest [<opt>]` |
-| `fibo` | Fibonacci benchmark |
-| `float` | floating-point benchmark |
+| `fibo` | &#9733; Fibonacci benchmark |
+| `float` | &#9733; floating-point benchmark |
 | `paranoia` | &#9733; floating-point benchmark |
-| `savage` | Savage floating-point accuracy benchmark |
-| `sieve` | sieve of Eratosthenes benchmark |
-| `time` | time a command |
-| `timeio` | time I/O operations |
+| `savage` | &#9733; Savage floating-point accuracy benchmark |
+| `sieve` | &#9733; sieve of Eratosthenes benchmark |
+| `time` | &#9733; time a command |
+| `timeio` | &#9733; time I/O operations |
 | `timid` | timing utility<br>`Syntax: timit [<opts>]` |
 
 **Version control**
@@ -425,7 +422,7 @@
 | `ifdef` | resolve #ifdefs in C source<br>`Syntax: ifdef [<opts>] [<file>] [<opts>]` |
 | `indent` | reformat a C source program for readability<br>`Syntax: indent [<opts>] [<inpath> [<outpath>]] [<opts>]` |
 | `patch` | Larry Wall's patch - apply a diff |
-| `unifdef` | remove #ifdef sections from C source<br>`syntax: unifdef {<opts>} [<file>]` |
+| `unifdef` | &#9733; remove #ifdef sections from C source<br>`syntax: unifdef {<opts>} [<file>]` |
 
 **Source navigation**
 
@@ -433,8 +430,8 @@
 |---|---|
 | `ctags` | generate a vi tags file from C source (BSD)<br>`usage: ctags [-BFadtuwvx] [-f tagsfile] file ...` |
 | `cxref` | &#9733; C cross-reference lister -- numbered listing + symbol table<br>`Syntax:		cxref [-opts] [path]` |
-| `etags` | generate an emacs TAGS file<br>`Syntax: etags { [<opts>] <path> }` |
-| `xrf` | C cross-reference generator |
+| `etags` | &#9733; generate an emacs TAGS file<br>`Syntax: etags { [<opts>] <path> }` |
+| `xrf` | &#9733; C cross-reference generator |
 
 **Source checking**
 
@@ -485,11 +482,11 @@
 | `cc1plus` |  |
 | `cc2` |  |
 | `cc2plus` |  |
-| `cccp2` | <br>`Usage: cccp2 [switches] input output` |
+| `cccp2` | &#9733; <br>`Usage: cccp2 [switches] input output` |
 | `collect` | <br>`Syntax   : collect [<opts>] {<file>} [<opts>]` |
 | `compiler` | GSHELL front-end for the C compiler<br>**How:** Full-screen: it takes over the display. **control-C gets you out** -- tested, and none of q, Q, control-D or ESC did. If it has a quit command of its own, its documentation in DOC/ will say. |
-| `gcc` | <br>`Usage: gcc {options} {files} {options}` |
-| `gcc2` | <br>`Usage: gcc2 {options} {files} {options}` |
+| `gcc` | &#9733; <br>`Usage: gcc {options} {files} {options}` |
+| `gcc2` | &#9733; <br>`Usage: gcc2 {options} {files} {options}` |
 | `gcc_cc1` |  |
 | `gcc_cc1plus` |  |
 | `gcc_cccp` | <br>`Usage: gcc_cccp [switches] input output` |
@@ -506,10 +503,10 @@
 | `flex` | lexical analyzer generator -- see DOC/flex/README-FLEX FIRST<br>`Syntax   : flex [-bcdfinpstvFILT8 -C[efmF] -Sskeleton] [filename ...]` |
 | `gmake` | GNU make -- ADDED (the gnu.bin build of make is the broken one)<br>`Usage: gmake [options] [target] ...` |
 | `m4` | m4 macro processor<br>`Usage: m4 [-Dname[=val]] [-Uname]` |
-| `make` | make - maintain and regenerate groups of files (verified: -? works)<br>`Syntax :	make {[-f <makefile>] [-dDinrst] [<target>] [<macro>=<value>]}` |
+| `make` | &#9733; make - maintain and regenerate groups of files (verified: -? works)<br>`Syntax :	make {[-f <makefile>] [-dDinrst] [<target>] [<macro>=<value>]}` |
 | `makeinfo` | GNU makeinfo -- Texinfo to info<br>`Usage: makeinfo [options] texinfo-file...` |
-| `rtf` | RTF/68K FORTRAN compiler proper |
-| `yacc` | yacc parser generator<br>`Syntax   : yacc [-dltv] [-b <prefix>] filename` |
+| `rtf` | RTF/68K Real-Time Fortran-77 compiler, v2.14 (CERN, 1987). Compiles .f to 68k ASSEMBLY; assembling and linking then need Microware's r68 and l68.  Manual: DOC/rtf/rtfman.txt |
+| `yacc` | &#9733; yacc parser generator<br>`Syntax   : yacc [-dltv] [-b <prefix>] filename` |
 
 **Assemblers & linkers**
 
@@ -521,15 +518,15 @@
 | `as11` | 68HC11 cross-assembler (xasm)<br>`Usage: as11 [files]` |
 | `as4` | 6804 cross-assembler (xasm)<br>`Usage: as4 [files]` |
 | `as5` | 6805/68HC05 cross-assembler (xasm)<br>`Usage: as5 [files]` |
-| `lnk` | module linker |
-| `lnk.org` | module linker (original build) |
+| `lnk` | RTF FORTRAN link driver; calls l68 with /h0/LIB/sys.l, which is Microware's and not here |
+| `lnk.org` | as lnk, the original build |
 | `my.opt` | 68k assembly peephole optimiser<br>`syntax: optim {opt} [infile] {opt} [outfile] {opt}` |
 
 **Other languages**
 
 | | |
 |---|---|
-| `for` | RTF/68K FORTRAN compiler driver |
+| `for` | RTF/68K FORTRAN compiler driver.  Needs os9lib loaded |
 
 **Translators**
 
@@ -548,9 +545,9 @@
 | | |
 |---|---|
 | `forth` | &#9733; Forth interpreter<br>`Syntax   : forth [<opts>] [<file>] [<opts>]` |
-| `lua` | &#9733; Lua 3.0 -- a small scripting language.  OS-9 port with its own module/shell library; needs csl.  See DOC/lua and DOC/README-LUA<br>**How:** Lua 3.0, and it needs Microware's csl -- see DOC/README-CIO. Run a script with `lua file.lua'. NOTE: 3.0 has no numeric `for' loop; that arrived in Lua 3.1, so `for i=1,10 do' is a syntax error here and `while' is the idiom. Examples in DOC/lua/examples. |
+| `lua` | Lua 3.0 -- a small scripting language.  OS-9 port with its own module/shell library; needs csl.  See DOC/lua and DOC/README-LUA<br>**How:** Lua 3.0, and it needs Microware's csl -- see DOC/README-CIO. Run a script with `lua file.lua'. NOTE: 3.0 has no numeric `for' loop; that arrived in Lua 3.1, so `for i=1,10 do' is a syntax error here and `while' is the idiom. Examples in DOC/lua/examples. |
 | `luac` | &#9733; Lua bytecode compiler -- luac -o out in.lua<br>**How:** Compiles a Lua script to bytecode: `luac -o out in.lua'. Needs csl. runc then runs the result as an OS-9 command. |
-| `runc` | &#9733; Runs a compiled Lua chunk as an OS-9 command |
+| `runc` | Runs a compiled Lua chunk as an OS-9 command |
 | `wam.sbprolog` | SB-Prolog 2.2 WAM engine -- see DOC/sbprolog/README-SBPROLOG<br>`Usage: sim [-Ttdns] [-m s_size] [-p p_size] [-b tr_size] [-ui num] pil_file_name ...` |
 | `xlisp` | XLISP 2.1 Lisp interpreter |
 
@@ -568,8 +565,7 @@
 |---|---|
 | `ar` | archive librarian (Carl Kreider) -- .ar files<br>`Usage:  Ar -<cmd>[<modifier>] [file .. ]` |
 | `arc` | third-party, no terms stated   -> /dd/CMDS/REBUILT (name was taken)<br>`Usage: arc -{amufdxeplvtc}[bswn][g<password>]` |
-| `cat` | concatenate files -- REBUILT HERE with gcc2 (archived cat needs cio) |
-| `cat.cio` | &#9733; archived build, needs cio; superseded by the gcc2 rebuild |
+| `cat` | &#9733; concatenate files (S.M. Ryger, 1987) |
 | `lha` | LHa 2.08 -- create/extract .lzh archives<br>`Syntax: LHa -{axelvudmcp}[qvnfodiszrgc012][w=<dir>] archive_file [file...]` |
 | `lharc` | LHarc archiver<br>`Usage: lharc {axevlufdmctp}[qnftv] archive_file [files or directories...]` |
 | `marc` | MARC archiver<br>`Usage: MARC <tgtarc> <srcarc> [<filename> . . .]` |
@@ -608,9 +604,9 @@
 
 | | |
 |---|---|
-| `liborder` | order the modules in an OS-9 library<br>`Usage: liborder <options> file1.r file2.r ...` |
+| `liborder` | &#9733; order the modules in an OS-9 library<br>`Usage: liborder <options> file1.r file2.r ...` |
 | `modbuster` | Split merged OS-9 module files<br>`Syntax: Modbuster [<opts>] <path> [<opts>]` |
-| `unpacklib` | split an OS-9 library into its modules<br>`Usage: unpacklib <options> file1.l file2.l ...` |
+| `unpacklib` | &#9733; split an OS-9 library into its modules<br>`Usage: unpacklib <options> file1.l file2.l ...` |
 
 **zoo**
 
@@ -623,7 +619,7 @@
 
 | | |
 |---|---|
-| `ar2` | &#9733; Ar V2.00 -- Carl Kreider's archiver, a later edition than the V1.2 shipped as `ar'.  Both are here; ar is unstarred<br>`Usage:  Ar -<cmd>[<modifier>] archive [file .. ]` |
+| `ar2` | &#9733; Ar V2.00 -- Carl Kreider's archiver, a later edition than the V1.2 included as `ar'.  Both are here; ar is unstarred<br>`Usage:  Ar -<cmd>[<modifier>] archive [file .. ]` |
 
 **MS-DOS**
 
@@ -636,6 +632,12 @@
 | | |
 |---|---|
 | `funzip` | &#9733; Unzip straight from a pipe -- funzip < file.zip<br>**How:** Unzips from a pipe rather than a file: `funzip < thing.zip > thing'. For a normal archive use unzip; zipinfo lists what is inside one. |
+
+**Archivers**
+
+| | |
+|---|---|
+| `zoo_2.1` | zoo 2.1 (1991), newer than the 2.01 in CMDS.  Same OSK porters as pd-ksh.  Reads what 2.01 writes; CMDS/zoo is left in place because the pool tools here call it.<br>`Usage: zoo {acDeglLPTuUvx}[aAcCdEfInmMNoOpPqu1:/.@n] archive file` |
 
 </details>
 
@@ -676,18 +678,18 @@
 
 | | |
 |---|---|
-| `checksum` | file checksum<br>`Syntax:   checksum <file> [<file>...]` |
-| `chksum` | 32-bit file checksum |
-| `crypto` | cryptogram puzzle solver's assistant<br>**How:** File encryption. Takes files: `crypto [-cegnru] <file>...'; `crypto -h' is the help. |
-| `des` | DES file encryption |
+| `checksum` | &#9733; file checksum<br>`Syntax:   checksum <file> [<file>...]` |
+| `chksum` | &#9733; 32-bit file checksum |
+| `crypto` | &#9733; cryptogram puzzle solver's assistant<br>**How:** File encryption. Takes files: `crypto [-cegnru] <file>...'; `crypto -h' is the help. |
+| `des` | &#9733; DES file encryption |
 | `md5` | MD5 checksum<br>`Usage: MD%d <-opts> <filename>` |
-| `xcrypt` | file encryption/decryption |
+| `xcrypt` | &#9733; file encryption/decryption |
 
 **Number bases**
 
 | | |
 |---|---|
-| `cvtbase` | convert a number between bases |
+| `cvtbase` | &#9733; convert a number between bases |
 | `divide` | &#9733; integer divide |
 
 **Audio**
@@ -729,19 +731,19 @@
 
 | | |
 |---|---|
-| `aterm` | ATerm 2.6 -- terminal emulator<br>`Syntax  : ATerm /serial_path` |
+| `aterm` | ATerm 2.6 terminal emulator.  WORKS -- config is in SYS/ATERM; run it from a login session, not as os9exec's first process, or its terminal library bus errors.  `aterm /t1' for a real serial port.  Manual DOC/aterm, source SRC/aterm<br>`Syntax  : ATerm /serial_path` |
 | `cls` | clear the screen (termcap)<br>`Syntax: cls` |
-| `connect` | connect to a serial line<br>`Usage: connect [<switches>] [<path1>] [<switches>] [<path2>]` |
+| `connect` | &#9733; connect to a serial line<br>`Usage: connect [<switches>] [<path1>] [<switches>] [<path2>]` |
 | `fkeys` | define terminal function keys<br>`Syntax: fkeys [<path>]` |
 | `initvdu` | &#9733; init video display<br>**How:** Answers "is not defined for this terminal": it sets up specific VDU hardware, not a general terminal. |
 | `input` | UNAXCESS BBS - input helper |
 | `sbreak` | Send/clear an SS_Break signal on a serial path<br>`Syntax:   sbreak [/device]` |
-| `screen` | Screen multiplexer (needs HOME set) |
-| `setfont` | load a downloadable terminal font -- setfont <path><br>`usage: setfont <path>` |
+| `screen` | &#9733; Screen multiplexer (needs HOME set) |
+| `setfont` | &#9733; load a downloadable terminal font -- setfont <path><br>`usage: setfont <path>` |
 | `setterm` | &#9733; set terminal type<br>**How:** Full-screen: it takes over the display. **ESC quits** -- tested. (control-C also gets you out, but ESC is the program's own way.) |
 | `tsmon2` | tsmon replacement - terminal monitor<br>`Syntax:   tsmon2 [<options>] <device name>` |
-| `udate` | UNAXCESS BBS - date display |
-| `uwho` | UNAXCESS BBS - who is online |
+| `udate` | &#9733; UNAXCESS BBS - date display |
+| `uwho` | &#9733; UNAXCESS BBS -- who is online.  Opens `/etc/utmp', and in OS-9 a leading /etc names a DEVICE, not a directory, so this cannot work here whatever is placed under /dd.  A Unix-ism left in the port; the BBS itself would have to supply an /etc device |
 | `wysecrack` | &#9733; Wyse terminal baud detect -- needs real Wyse hardware |
 | `wysetime` | Wyse terminal time utility |
 
@@ -772,7 +774,7 @@
 | | |
 |---|---|
 | `ckermit` | &#9733; C-Kermit (cio build) |
-| `kermit` | C-Kermit 5A(188) -- serial file transfer + terminal emulation<br>`Usage: kermit c[le line esc.char]   (connect mode)` |
+| `kermit` | &#9733; C-Kermit 5A(188) -- serial file transfer + terminal emulation<br>`Usage: kermit c[le line esc.char]   (connect mode)` |
 | `kermit2` | Kermit file transfer (variant 2)<br>`Usage:   kermit c[le line esc.char]   (connect mode)` |
 | `kermit3` | Kermit file transfer (variant 3)<br>`Usage: kermit [-x arg [-x arg]...[-yyy]...]]` |
 | `xkermit` | &#9733; Kermit variant<br>`Usage: kermit c[le line esc.char]   (connect mode)` |
@@ -988,15 +990,15 @@
 |---|---|
 | `apfel` | Mandelbrot (Apfelmaennchen) -- Atari GRAPH display |
 | `cam` | &#9733; Tektronix demo: camera |
-| `g` | &#9733; an Atari GRAPH demo pair with striche |
-| `graph` | Atari graphics demonstration |
+| `g` | &#9733; an Atari GRAPH demo, paired with striche.  Needs the `graph' |
+| `graph` | the `Graph' TRAP LIBRARY itself, not a program -- a type-$0B module.  It is what g, striche, apfel, sine, showpic, graphdemo and graphsave all link.  Point OS9MDIR at CMDS/GAMES and the trap installs; the library then drives Atari hardware, which is where it stops here.  Note its module name is lowercase `graph' while the programs ask for `Graph', and real OS-9 matches module names exactly |
 | `graphdemo` | Atari GRAPH demonstration |
 | `graphsave` | save an Atari GRAPH screen |
 | `lissaj` | &#9733; Tektronix demo: Lissajous figures |
 | `lorenz3d` | &#9733; Tektronix demo: the Lorenz attractor in 3D |
 | `showpic` | show a picture on the Atari GRAPH display |
 | `sine` | sine plot, Atari GRAPH |
-| `striche` | &#9733; line drawing, Atari GRAPH -- wants a `Graph' trap module |
+| `striche` | &#9733; line drawing, Atari GRAPH.  Needs the `graph' trap library found -- see the graph entry below |
 | `wgen` | Tektronix waveform generator |
 
 **JPEG**
@@ -1016,12 +1018,12 @@
 
 | | |
 |---|---|
-| `bush` | draw a random bush/tree |
+| `bush` | &#9733; draw a random bush/tree |
 | `draw` | character-graphics drawing program |
 | `loadmem` | load memory image<br>`Syntax   : LOADMEM <destinati address> <upper limit address> <path>` |
 | `pdraw` | Pdraw 1.4 - 2D/3D data plotting, PostScript output<br>`usage: pdraw [-v vx vy vz] [-o options-file] [-Pprinter] [-s scale] [-e] [-h] [-nosort] [-noplot] [-print] [-ps] infile1 infile2 ...` |
 | `savemem` | save memory image<br>`Syntax   : SAVEMEM <from address> <to address> <path>` |
-| `snap` | snapshot the screen to a file |
+| `snap` | &#9733; snapshot the screen to a file |
 
 **X11**
 
@@ -1035,7 +1037,7 @@
 
 | | |
 |---|---|
-| `mtst` | spline curve fitting - test driver |
+| `mtst` | &#9733; spline curve fitting - test driver |
 | `rayshade` | ray tracer 4.0 -- RUNS but renders wrong; see DOC/rayshade<br>`usage: rayshade [options] [filename]` |
 | `rsconvert` | convert rayshade image output between formats<br>`usage: rsconvert [oldfile]` |
 
@@ -1044,7 +1046,7 @@
 | | |
 |---|---|
 | `gnuplot` | &#9733; gnuplot 2.0 -- plots functions and data files.  Built-in help (SYS/gnuplot.gih); demos and sample data in DOC/gnuplot/demo<br>**How:** Type `set term' first -- it lists every output device it knows, and refuses to plot until you choose one. Its whole manual is built in: type `help'. Demos and sample data are in DOC/gnuplot/demo. Needs Microware's cio. |
-| `tplot` | Plot data to a plotter.  Asks for an interval and a range and drives the output device; written for an Atari ST<br>`Usage : hiplot <-opt1> .. <-optn> <file1> .. <filen>` |
+| `tplot` | &#9733; Plot data to a plotter.  Asks for an interval and a range and drives the output device; written for an Atari ST<br>`Usage : hiplot <-opt1> .. <-optn> <file1> .. <filen>` |
 
 **Viewers**
 
@@ -1064,8 +1066,8 @@
 
 | | |
 |---|---|
-| `backgammon` | backgammon, with a computer opponent<br>`Usage:  backgammon [-] [n r w b pr pw pb t3a]` |
-| `colortest` | G-Windows colour chart |
+| `backgammon` | &#9733; backgammon, with a computer opponent<br>`Usage:  backgammon [-] [n r w b pr pw pb t3a]` |
+| `colortest` | &#9733; G-Windows colour chart |
 | `convert` | world - build its data tables |
 | `cyberwar` | &#9733; CyberWar -- Stephen Carville's game, needs G-Windows |
 | `dclock` | &#9733; a digital clock for G-Windows<br>`Usage: dclock [options]` |
@@ -1077,14 +1079,14 @@
 | `piano` | &#9733; play notes -- piano <base note> <note duration><br>`syntax: piano <base note> <note duration>` |
 | `puzzle` | &#9733; sliding-tile puzzle for G-Windows |
 | `scriptmaster` | &#9733; G-Windows scripting tool<br>`Usage: scriptmaster -t=<title> -d=<directory>.` |
-| `stone` | stone -- a game, from the SNOBOL4-in-C package |
-| `teachgammon` | backgammon that teaches you the game as you play<br>`Usage:  backgammon [-] [n r w b pr pw pb t3a]` |
-| `tess` | tesselation puzzle |
+| `stone` | &#9733; the stones game (SNOBOL4-in-C).  Data: GAMES/SNOBOL |
+| `teachgammon` | &#9733; backgammon that teaches you the game as you play<br>`Usage:  backgammon [-] [n r w b pr pw pb t3a]` |
+| `tess` | &#9733; tesselation puzzle |
 | `tt` | typing/terminal game<br>**How:** Full-screen: it takes over the display. **`q' quits** -- tested. |
-| `vtxtcn` | world - build its text tables |
-| `wisecrack` | prints a wisecrack; a pipe fitting for other programs |
+| `vtxtcn` | world - build its text tables.  Writes .inc files and prints nothing; needs world's .dat files in the current directory |
+| `wisecrack` | prints a wisecrack; writes to /PIPE/txtpipe, so it prints nothing at all unless something is reading that pipe |
 | `world` | World - text adventure |
-| `zot` | Zot - arcade game |
+| `zot` | &#9733; Zot - arcade game |
 
 **Board & card**
 
@@ -1092,10 +1094,10 @@
 |---|---|
 | `back` | &#9733; backgammon -- '?' gives the built-in help |
 | `blackjack` | Las Vegas blackjack (M. Theys) -- BASIC09; stops at line 8 with error 56, 'Parameter error'.  See the BASIC09 note below -- this one is a real fault, not the invocation. |
-| `blackjak` | blackjack -- from the SNOBOL4-in-C package, see below |
+| `blackjak` | &#9733; Las Vegas BlackJack (SNOBOL4-in-C).  Data: GAMES/SNOBOL |
 | `chess` | chess - 68k port (three engine versions built)<br>`Syntax: chess [<opts>] <name> [<opts>]` |
-| `crib` | cribbage<br>**How:** Full-screen: it takes over the display. **control-C gets you out** -- tested, and none of q, Q, control-D or ESC did. If it has a quit command of its own, its documentation in DOC/ will say. |
-| `cribbage` | &#9733; cribbage -- offers instructions before it deals<br>**How:** Full-screen: it takes over the display. **control-C gets you out** -- tested, and none of q, Q, control-D or ESC did. If it has a quit command of its own, its documentation in DOC/ will say. |
+| `crib` | cribbage.  Needs TERM set, so run it from a login session -- bare it says `Unknown terminal type'<br>**How:** Full-screen: it takes over the display. **control-C gets you out** -- tested, and none of q, Q, control-D or ESC did. If it has a quit command of its own, its documentation in DOC/ will say. |
+| `cribbage` | &#9733; cribbage -- offers instructions before it deals.  Needs TERM, so run it from a login session<br>**How:** Full-screen: it takes over the display. **control-C gets you out** -- tested, and none of q, Q, control-D or ESC did. If it has a quit command of its own, its documentation in DOC/ will say. |
 | `gnuan` | GNU Chess analyser -- annotates a saved game move by move |
 | `gnuchess` | &#9733; GNU Chess<br>**How:** Full-screen chess. It will not read SYS/termcap -- it wants the entry in the variable itself. Do `. /dd/SYS/termcap.entry' first and it draws its time-control menu and plays. Tested. |
 | `gnuchessc` | GNU Chess 4.0, curses display |
@@ -1103,8 +1105,8 @@
 | `gnuchessr` | &#9733; GNU Chess (raw)<br>`Usage: gnuchess [-a] [-h] [-x xwndw]` |
 | `mille` | &#9733; Mille Bornes -- the French car-racing card game<br>**How:** Full-screen: it takes over the display. **control-C gets you out** -- tested, and none of q, Q, control-D or ESC did. If it has a quit command of its own, its documentation in DOC/ will say. |
 | `nchess` | GNU Chess 4.0 (plain display) |
-| `poker` | poker -- from the SNOBOL4-in-C package, see below |
-| `queens` | N-queens solver -- IOCCC entry by M. Baruch; reads N on stdin |
+| `poker` | &#9733; Cold-hand Poker (SNOBOL4-in-C).  Data: GAMES/SNOBOL |
+| `queens` | &#9733; N-queens solver -- IOCCC entry by M. Baruch; reads N on stdin |
 | `tttt` | tic-tac-toe<br>**How:** Full-screen: it takes over the display. **`q' quits** -- tested. |
 
 **Arcade & action**
@@ -1116,8 +1118,8 @@
 | `lander` | lunar lander -- KNOWN BROKEN: takes no input, and the post-crash screen is corrupt.  Wants SysV curses line drawing that vt100 termcap does not give it.<br>**How:** Full-screen: it takes over the display. **`q' quits** -- tested. |
 | `pacman` | Pac-Man |
 | `robots` | &#9733; robots -- outrun them until they crash into each other. REBUILT HERE from source, in SRC/rob.  The archive binary drew cursor-up as a bare ^K, which a terminal reads as index -- DOWN -- so the screen scrolled and the board was left with characters that were not really there. USE -m: without it the game is effectively unplayable.<br>**How:** Play with `robots -m' -- manual mode, where the robots take one step per move you make. Keys are the numeric keypad 1-9 (5 stands still), `s' for last stand, `t' to teleport. Needs Microware's math module and a real TERM. |
-| `snake` | snake arcade game -- KNOWN BROKEN: starts and then sits<br>**How:** Full-screen: it takes over the display. **`x' quits** -- tested. (control-C also gets you out, but `x' is the program's own way.) |
-| `sokoban` | Sokoban puzzle<br>**How:** Wants a username, so run it from a login rather than a bare shell, or it stops with "cannot get your username". |
+| `snake` | snake arcade game.  WORKS -- draws its board in a login session.  Run bare, with no TERMCAP, it bus errors instead; see DOC/README-BUSERR<br>**How:** Full-screen: it takes over the display. **`x' quits** -- tested. (control-C also gets you out, but `x' is the program's own way.) |
+| `sokoban` | &#9733; Sokoban puzzle<br>**How:** Wants a username, so run it from a login rather than a bare shell, or it stops with "cannot get your username". |
 | `tet` | Tetris -- KNOWN BROKEN: draws its board and takes no input<br>**How:** Draws the board and ignores the keyboard, and the reason is in its source: tet.c puts the terminal in raw mode inside `#ifndef OSK', so the OS-9 build has no terminal setup at all. Set the mode from outside before starting it (Microware's tmode), or rebuild with an OSK branch using _ss_opt -- LIB/alib.l provides both that and ioctl. Source in SRC/tet. |
 | `tet.unixlib` | tet rebuilt with its keyboard code compiled in and TCSETAW implemented.  GAMES/tet takes no input for two reasons stacked on each other: its raw-mode setup sits inside `#ifndef OSK', and LIB/unix.l's ioctl had no TCSETAW case -- which is the call tet uses -- so even with the code compiled in the mode never changed and keys kept echoing. Both are fixed here.  Still needs a play-test at a real terminal; it cannot be checked from a pipe, because tet calls ttyname(0) and reopens it.  If it takes keys for you, it should replace GAMES/tet.  Its fall rate is now a real clock rather than a counting loop -- the original measured time in polling passes and so ran at whatever speed the machine did.  INIT_PAUSE at the top of SRC/tet/tet.c tunes it |
 | `wanderer` | Boulderdash-style maze game.  Screens ARE here, in GAMES/WAND/screens; needs this disk as /dd to find them.<br>**How:** Full-screen: it takes over the display. **`q' quits** -- tested. |
@@ -1126,7 +1128,7 @@
 
 | | |
 |---|---|
-| `advcom` | ADVSYS adventure COMPILER -- turns .adv source into a .adi world file.  Only useful if you are writing an adventure; no .adv source ships here.<br>**How:** Compiles ADVSYS .adv source into a .adi world for advint. No .adv source ships here either -- this pair is for writing adventures, not playing them. |
+| `advcom` | ADVSYS adventure COMPILER -- turns .adv source into a .adi world file.  Only useful if you are writing an adventure; no .adv source is here.<br>**How:** Compiles ADVSYS .adv source into a .adi world for advint. No .adv source ships here either -- this pair is for writing adventures, not playing them. |
 | `advent` | Colossal Cave Adventure -- self-contained, reads /dd/GAMES/adv/glorkz.  Needs this disk as /dd; mounted only as /h0 it cannot find its data.  Unrelated to advcom/advint.<br>**How:** Colossal Cave. Needs this disk as /dd -- it opens /dd/GAMES/adv/glorkz by absolute path, so mounted only as /h0 it cannot find its data. |
 | `advint` | ADVSYS adventure INTERPRETER -- plays a .adi world file. Nothing on this disk to feed it; DOC/advint has the format.<br>**How:** Plays an ADVSYS .adi world file. THERE IS NO WORLD FILE ON THIS DISK, so it has nothing to do until you write one with advcom. |
 | `infocom` | Infocom Z-MACHINE interpreter -- a third, unrelated adventure system.  Plays the .z3 files in GAMES/INFORM (dejavu, hellow, shell -- Inform demos, not the Infocom games).<br>**How:** A Z-machine. Plays the .z3 files in /dd/GAMES/INFORM, which are Inform demonstration programs (dejavu, hellow, shell), not the Infocom games. |
@@ -1156,7 +1158,7 @@
 |---|---|
 | `animal` | guess-the-animal learning game<br>**How:** Full-screen: it takes over the display. **control-C gets you out** -- tested, and none of q, Q, control-D or ESC did. If it has a quit command of its own, its documentation in DOC/ will say. |
 | `bog` | Boggle word game<br>**How:** Full-screen: it takes over the display. **control-C gets you out** -- tested, and none of q, Q, control-D or ESC did. If it has a quit command of its own, its documentation in DOC/ will say. |
-| `hang` | hangman<br>**How:** Full-screen: it takes over the display. **control-C gets you out** -- tested, and none of q, Q, control-D or ESC did. If it has a quit command of its own, its documentation in DOC/ will say. |
+| `hang` | &#9733; hangman<br>**How:** Full-screen: it takes over the display. **control-C gets you out** -- tested, and none of q, Q, control-D or ESC did. If it has a quit command of its own, its documentation in DOC/ will say. |
 
 **Dungeon crawl**
 
@@ -1196,33 +1198,33 @@
 | | |
 |---|---|
 | `bio` | biorhythm chart (F. Kaefer 1987) -- BASIC09, needs runb<br>**How:** BASIC09 I-code, not 68000 code. `load runb` first, then run `bio` by BARE NAME. Giving runb a pathname instead raises BASIC09 error 43, which reads like a broken program and is not. |
-| `england` | weather simulator - England (Gregorian/mid-Atlantic)<br>**How:** One of six weather simulators that differ only in climate and calendar: england, florida, georgia, minnesota, japan (Japanese calendar) and shire (Middle-earth). Each prints a day's weather and stops. |
-| `florida` | weather simulator - Florida (Gregorian/Gulf) |
-| `georgia` | weather simulator - Georgia (Gregorian/S-Atlantic) |
-| `japan` | weather simulator - Japan (Japanese calendar/N-Pacific)<br>**How:** A weather simulator, not a calendar tool -- see `england'. It uses the Japanese calendar, which is the only reason it looks like one. |
-| `logisim` | logic circuit simulator<br>**How:** Simulates a logic circuit described in a file. The format is in DOC/logisim/logisim.doc; there is no example circuit on the disk. |
-| `minnesota` | weather simulator - Minnesota (Gregorian/N-Atlantic) |
-| `nasa` | NASA orbital-element reader<br>**How:** The program that FEEDS orbit. Give it NASA two-line elements in a file called nasa.dat in the current directory and it writes kepler.dat, which is what orbit reads. Neither file ships -- you supply nasa.dat. |
+| `england` | &#9733; weather simulator - England (Gregorian/mid-Atlantic)<br>**How:** One of six weather simulators that differ only in climate and calendar: england, florida, georgia, minnesota, japan (Japanese calendar) and shire (Middle-earth). Each prints a day's weather and stops. |
+| `florida` | &#9733; weather simulator - Florida (Gregorian/Gulf) |
+| `georgia` | &#9733; weather simulator - Georgia (Gregorian/S-Atlantic) |
+| `japan` | &#9733; weather simulator - Japan (Japanese calendar/N-Pacific)<br>**How:** A weather simulator, not a calendar tool -- see `england'. It uses the Japanese calendar, which is the only reason it looks like one. |
+| `logisim` | &#9733; logic circuit simulator<br>**How:** Simulates a logic circuit described in a file. The format is in DOC/logisim/logisim.doc; there is no example circuit on the disk. |
+| `minnesota` | &#9733; weather simulator - Minnesota (Gregorian/N-Atlantic) |
+| `nasa` | &#9733; NASA orbital-element reader.  Wants `nasa.dat' in the CURRENT directory: NORAD two-line element sets -- a name line, then TLE line 1 and line 2 per satellite -- and writes kepler.dat. No element set ships here; supply a current one.  The format is parsed in SRC/eff_orbit/nasa.c and is column-sensitive<br>**How:** The program that FEEDS orbit. Give it NASA two-line elements in a file called nasa.dat in the current directory and it writes kepler.dat, which is what orbit reads. Neither file ships -- you supply nasa.dat. |
 | `shire` | weather simulator - the Shire (Middle-earth calendar)<br>**How:** A weather simulator using the Middle-earth calendar -- see `england'. |
 
 **Generators**
 
 | | |
 |---|---|
-| `name` | random name generator<br>`Usage: name number-of-names` |
-| `newsgen` | generate a fake news bulletin |
-| `pwgen` | random password generator<br>**How:** pwgen <length> [count]. With no arguments it prints nothing and exits, which reads as a hang and is not one. |
-| `rndname` | random name generator<br>`Usage: name number-of-names` |
-| `rpoem` | random poem generator (SNOBOL4-in-C) |
-| `rstory` | random story generator (SNOBOL4-in-C) |
-| `rstory2` | random story generator, second version (SNOBOL4-in-C) |
-| `scales` | musical scale generator<br>`Usage: scales [-h] [-d] [-a] [-m] [-c] [outname]` |
+| `name` | &#9733; random name generator<br>`Usage: name number-of-names` |
+| `newsgen` | &#9733; generate a fake news bulletin |
+| `pwgen` | &#9733; random password generator<br>**How:** pwgen <length> [count]. With no arguments it prints nothing and exits, which reads as a hang and is not one. |
+| `rndname` | &#9733; random name generator<br>`Usage: name number-of-names` |
+| `rpoem` | &#9733; random poem generator (SNOBOL4-in-C).  Data: GAMES/SNOBOL |
+| `rstory` | random story generator, roff output.  Data: GAMES/SNOBOL |
+| `rstory2` | &#9733; random story generator, second version (SNOBOL4-in-C) |
+| `scales` | &#9733; musical scale generator<br>`Usage: scales [-h] [-d] [-a] [-m] [-c] [outname]` |
 
 **Curiosities**
 
 | | |
 |---|---|
-| `areacode` | look up a US telephone area code<br>`Usage: areacode nnn nnn ...` |
+| `areacode` | &#9733; look up a US telephone area code<br>`Usage: areacode nnn nnn ...` |
 | `touchtype` | typing tutor<br>**How:** Full-screen: it takes over the display. **control-C gets you out** -- tested, and none of q, Q, control-D or ESC did. If it has a quit command of its own, its documentation in DOC/ will say. |
 
 **Fractals**
@@ -1237,41 +1239,41 @@
 
 *OS-9 module and process tools, devices, system state and scheduling.*
 
-<details><summary>128 programs</summary>
+<details><summary>129 programs</summary>
 
 **Utilities**
 
 | | |
 |---|---|
-| `add_errmsg` | &#9733; build vi's error-message file -- it wants /dd/SYS/vi_errmsg, which ships |
-| `argproc_demo` | demonstrates the RICO argument-processing library |
+| `add_errmsg` | &#9733; build vi's error-message file -- it wants /dd/SYS/vi_errmsg, which is here |
+| `argproc_demo` | demonstration of argproc(), RICO's command-line argument parser.  STOPS WITH `**** Stack Overflow ****' whatever it is given -- its M\$Stack is 3072, the same as programs that work, so the fault is its own.  Source and the argproc library manual are now here: SRC/argproc and DOC/argproc_demo/man.argproc, from EFFO forum 7 |
 | `ask` | ask a yes/no question in a shell script and set the status<br>**How:** Asks a yes/no question and sets the shell status, for scripts. On its own it says "No Wisecracks coming" -- it is the front half of the `wisecrack' pipe from EFFO forum 20. |
 | `bcheck` | &#9733; check a boot file<br>`Syntax: bcheck [<opt>] [<filename>]` |
-| `bigsetter` | &#9733; Modula-2 set-operations demonstration |
-| `biory` | FORTRAN example: Biorhythm |
+| `bigsetter` | Modula-2 set-operations demonstration |
+| `biory` | FORTRAN example: Biorhythm.  Runs and prompts (in German) once os9lib is loaded.  Source: SRC/rtf/biory.f |
 | `bootlogger` | &#9733; log what happens during boot |
-| `break` | &#9733; send a BREAK on a serial line (assembler example)<br>`Syntax: break` |
-| `btop` | &#9733; bitmap to Gepard fat-font<br>`Syntax:   BtoP [<opts>] [<path1>] [<opts>] [<path2>] [<opts>]` |
-| `btree` | B-tree file handling demonstration and test |
-| `clear` | clear the screen<br>`Syntax:   clear` |
+| `break` | send a BREAK on a serial line (assembler example)<br>`Syntax: break` |
+| `btop` | bitmap to Gepard fat-font<br>`Syntax:   BtoP [<opts>] [<path1>] [<opts>] [<path2>] [<opts>]` |
+| `btree` | &#9733; B-tree file handling demonstration and test |
+| `clear` | &#9733; clear the screen<br>`Syntax:   clear` |
 | `combine` | &#9733; combine files<br>`Syntax: combine [<file1>] [<file2>] [<outfile>] [<opt>]` |
-| `config` | the RICO configuration tool |
+| `config` | report this machine's C type properties as #defines -- char, short, int, long, pointer and float all come out; it then aborts where `double' begins, because that needs a 68881 or Microware's fpu.  See DOC/README-BUSERR |
 | `cpu` | &#9733; CPU speed test |
-| `creadoc` | extract documentation comments from FORTRAN source |
-| `demerge` | &#9733; split a merged file back into its parts<br>`Syntax:   demerge <path>` |
+| `creadoc` | extract documentation comments from FORTRAN source; needs os9lib.  DOC/rtf/biory.doc is its output for biory.f |
+| `demerge` | split a merged file back into its parts<br>`Syntax:   demerge <path>` |
 | `demo` | egetopt option-parsing demonstration |
-| `devprc` | &#9733; report the device and process tables |
+| `devprc` | show which device belongs to which process.  REBUILT HERE: the archived module has a bad CRC and a corrupt initialised- data descriptor, and does not load.  -h works; -a needs the kernel process table, which os9exec answers without real data |
 | `dload` | &#9733; download a file over a serial line<br>`Syntax: dload <filename>` |
 | `e` | SEDT editor, VT220 keys |
 | `em` | a screen editor (EFFO forum 3)<br>**How:** A screen editor. It stops with "Environment variable TERM not defined!" unless TERM is set -- SYS/login sets it, so run it from a login shell rather than bare. |
 | `epson` | &#9733; spline output driver for an Epson printer<br>`usage: epson [<opts>]` |
 | `every` | &#9733; run a command at intervals<br>`Syntax: every <time> <progname> [<progopts>]` |
-| `expreserve` | &#9733; preserve a vi buffer when the editor or the line dies<br>**How:** Saves a vi buffer when the editor or the line dies; vi runs it for you rather than you running it. |
+| `expreserve` | &#9733; vi's crash-recovery helper: preserves an edit buffer when the editor dies.  Like ksh it reads the terminal asking for more bytes than you type (388), so it depends on the same emulator behaviour -- see DOC/README-KSH<br>**How:** Saves a vi buffer when the editor or the line dies; vi runs it for you rather than you running it. |
 | `exrecover` | &#9733; recover a vi buffer that expreserve saved<br>**How:** Recovers what expreserve saved. Again, vi's helper rather than a command you start. |
 | `fastcc` | &#9733; a faster front end for cc |
 | `fixyear` | Y2K: correct a date the clock got wrong<br>`Usage: fixyear [-opt] <file\|dir> <dir\|file> [-opt]` |
 | `fontgen` | generate a font for the Gepard display<br>**How:** Generates a character font for the Gepard display -- it prints the assembler source of an 80-column font on stdout. |
-| `getsys` | report the system's globals -- what OS-9 thinks it is running on<br>`Syntax: getsys [<opts>]` |
+| `getsys` | &#9733; report the system's globals -- what OS-9 thinks it is running on<br>`Syntax: getsys [<opts>]` |
 | `ggrep` | &#9733; GNU grep, from the sh_utils collection<br>**How:** GNU grep. `ggrep <expr> <files...>'; -E, -F, -i, -v, -w and the rest as you would expect. |
 | `greg` | &#9733; regular-expression search demo |
 | `hinterhalt` | &#9733; a small game (EFFO forum 7) |
@@ -1293,8 +1295,8 @@
 | `phone` | a phone-number book<br>`Syntax: phone <communication-path>` |
 | `preset` | preset memory to a pattern |
 | `pri` | change a process's priority |
-| `ptob` | &#9733; Gepard fat-font back to bitmap<br>`Syntax:   PtoB [<opts>] [<path1>] [<opts>] [<path2>] [<opts>]` |
-| `ptxminst` | install the pseudo-tty driver |
+| `ptob` | Gepard fat-font back to bitmap<br>`Syntax:   PtoB [<opts>] [<path1>] [<opts>] [<path2>] [<opts>]` |
+| `ptxminst` | install Ptxm.  NOT a pseudo-tty installer -- that is what this entry said until 2026-08-19 and it was wrong |
 | `read_mail` | &#9733; vi's mail-reading helper |
 | `repeat` | run a command over and over, with a delay<br>`syntax: repeat [number of repetitions] [OS-9 command]` |
 | `rndir` | &#9733; rename a directory<br>`Syntax: rndir [<opt>]` |
@@ -1310,16 +1312,16 @@
 | `t_trtest` | RICO trap-handler test |
 | `testibc` | IEEE binary-coded test (Pascal) |
 | `transfer` | &#9733; transfer a file between devices<br>`Syntax: transfer` |
-| `trunc` | truncate a file to a given length<br>`Syntax: trunc <path> <num>` |
+| `trunc` | &#9733; truncate a file to a given length<br>`Syntax: trunc <path> <num>` |
 | `tty` | &#9733; report the terminal's name |
 | `umacs` | &#9733; MicroEMACS -- a small Emacs, EFFO forum 1<br>**How:** A small Emacs (uMacs 1.0). Full-screen: it takes the display and shows "== uMacs 1.0 == main ==" at the foot. Needs a terminal; source `. /dd/SYS/termcap.entry' first if it will not draw. |
 | `umusek` | UMusEK -- a music editor; wants a screen address |
-| `vc` | visual compare of two files, side by side |
+| `vc` | &#9733; visual compare of two files, side by side |
 | `vecho` | echo without a newline (from less) |
 | `vlen` | &#9733; report a file's record length |
 | `xlharc` | extract LHarc archives<br>`Usage: xlharc {axevlufdmctp}[qnftv] archive_file [files or directories...]` |
 | `yagi` | Yagi antenna design calculator |
-| `ynad` | yes/no answer dialogue for shell scripts |
+| `ynad` | &#9733; yes/no answer dialogue for shell scripts |
 
 **Processes & memory**
 
@@ -1329,25 +1331,25 @@
 | `dpark` | &#9733; park a process<br>`Syntax:   dpark [/device]` |
 | `launch` | &#9733; launch background process<br>**How:** Says "nothing to launch" until it is configured -- see its documentation. |
 | `signal` | &#9733; send a signal to a process<br>`Syntax: signal <process-id> <signal-code> [<seconds>]` |
-| `sysmax` | show maximum system memory |
-| `sysmem` | show system memory use |
-| `sysmin` | show minimum system memory |
+| `sysmax` | &#9733; show maximum system memory |
+| `sysmem` | show system memory use -- bus errors before its first system call, in a login session too.  See DOC/README-BUSERR |
+| `sysmin` | &#9733; show minimum system memory |
 | `sysmon` | &#9733; system monitor<br>`Syntax: sysmon [<opt>]` |
 | `t` | tiny test/stub binary |
-| `top` | show the busiest processes<br>`Syntax: top [<opts>] [<num>]` |
+| `top` | &#9733; show the busiest processes<br>`Syntax: top [<opts>] [<num>]` |
 | `who` | 'who is logged in'.  Written in MICROWARE SHELL syntax ('!' pipes), not sh, and needs procs/field/qsort/tr, none of which are on this disk. |
 
 **OS-9 modules**
 
 | | |
 |---|---|
-| `bootgen` | generate an OS-9 boot file<br>`Syntax:   bootgen [<opts>] <device> {<path> [<opts>] }` |
-| `flink` | list a module's links<br>`usage: flink [ -? \| filename { filename } ]` |
+| `bootgen` | &#9733; generate an OS-9 boot file<br>`Syntax:   bootgen [<opts>] <device> {<path> [<opts>] }` |
+| `flink` | &#9733; list a module's links<br>`usage: flink [ -? \| filename { filename } ]` |
 | `gen` | generate a C program/module/type source frame<br>`Syntax: gen [<opt>] <pathname> [<opts>]` |
 | `mexist` | &#9733; test module existence<br>`Usage: mexist [options] <Module>` |
-| `os9lib` | OS-9 support library module |
+| `os9lib` | RTF/68K FORTRAN run-time LIBRARY.  Not a program: rtf, for, lnk, biory and creadoc all F$Link it, and every one of them fails E_MNF until it is in the module directory.  See DOC/README-FORTRAN.  Running it AS a program executes its floating-point code and stops -- that is not a fault. |
 | `rtfdat` | RTF FORTRAN data module |
-| `version` | show a module's version/edition |
+| `version` | &#9733; show a module's version/edition |
 
 **System state**
 
@@ -1355,11 +1357,11 @@
 |---|---|
 | `clock` | display a clock |
 | `date` | Print date and time |
-| `firq` | FIRQ utility |
+| `firq` | FIRQ utility -- bus errors before its first system call, in a login session too.  See DOC/README-BUSERR |
 | `loglist` | &#9733; log listing<br>`Syntax   : loglist [-option(s)]` |
-| `oskversion` | report the OS-9/OSK version<br>`Syntax:   OSKversion` |
+| `oskversion` | &#9733; report the OS-9/OSK version<br>`Syntax:   OSKversion` |
 | `setime` | Set system time (prompts YYMMDDHHMMSS) |
-| `sysid` | show system identification |
+| `sysid` | &#9733; show system identification |
 
 **MM/1 drivers**
 
@@ -1386,16 +1388,16 @@
 
 | | |
 |---|---|
-| `dam` | display the disk allocation map -- dam [<drive>] |
-| `dinfo` | disk/device information<br>`Syntax:   dinfo [<opts>] {<device name> [<opts>]}` |
+| `dam` | &#9733; display the disk allocation map -- dam [<drive>] |
+| `dinfo` | &#9733; disk/device information<br>`Syntax:   dinfo [<opts>] {<device name> [<opts>]}` |
 | `shdev` | &#9733; show devices |
-| `ssl` | show a file's segment list, sector by sector -- ssl <file> |
+| `ssl` | &#9733; show a file's segment list, sector by sector -- ssl <file> |
 
 **Vendor demos**
 
 | | |
 |---|---|
-| `ob68kdemo` | OmniBasic 1.16 -- a BASIC compiler.  Limited symbol table; otherwise the shipping compiler.  Run it from /dd/DOC/omnibasic, where its library and examples are. Like UniBasic it needs Microware's cc to finish a build<br>**How:** OmniBasic 1.16, same arrangement as ub68kdemo and the same SHELL trick -- see its entry. Run it from /dd/DOC/omnibasic. DEMO VERSION, capped symbol table. |
+| `ob68kdemo` | OmniBasic 1.16 -- a BASIC compiler.  Limited symbol table; otherwise the including compiler.  Run it from /dd/DOC/omnibasic, where its library and examples are. Like UniBasic it needs Microware's cc to finish a build<br>**How:** OmniBasic 1.16, same arrangement as ub68kdemo and the same SHELL trick -- see its entry. Run it from /dd/DOC/omnibasic. DEMO VERSION, capped symbol table. |
 | `sddemo` | White's Speedisk 2.10 -- disk de-fragmenter.  Wants an 80x24 screen; falls back to tty mode<br>**How:** White's Speedisk 2.10 de-fragmenter, demo build. Wants an 80x24 screen and drops to tty mode without one. |
 | `ub68020demo` | UniBasic 1.10 built for the 68020, beside the 68000 one |
 | `ub68kdemo` | UniBasic 1.10 -- a BASIC compiler, same arrangement as OmniBasic.  Run it from /dd/DOC/unibasic<br>**How:** UniBasic 1.10, and it does compile -- the trick is that it runs its build through $SHELL. With SHELL unset it hunts for `/dd/bash' and dies with "Error Exit" and error 216. Do `setenv SHELL /dd/CMDS/sh', work in a directory holding basic.h and basic.l (DOC/unibasic has them), have your C toolchain reachable with CDEF and CLIB set, and give it memory. Verified end to end. DEMO VERSION: the symbol table is capped, nothing else is. |
@@ -1404,16 +1406,16 @@
 
 | | |
 |---|---|
-| `drop` | put back exactly what keep wrote.  It refuses to remove any file whose checksum has changed, so your saves and scores are safe from it by construction. |
-| `keep` | take a program off this collection onto your own disk -- copies it and whatever DOC/DEPENDS says it needs, and records every file written.  `keep -n' shows what it would do without doing it.  See DOC/README-KEEP. |
-| `kept` | list what has been taken, and how much it came to |
+| `drop` | put back exactly what keep wrote.  It refuses to remove any file whose checksum has changed, so your saves and scores are safe from it by construction.<br>`Usage: keep [-n] [-f] [-q] [-p <dir>] <program>...` |
+| `keep` | take a program off this collection onto your own disk -- copies it and whatever DOC/DEPENDS says it needs, and records every file written.  `keep -n' shows what it would do without doing it.  See DOC/README-KEEP.<br>`Usage: keep [-n] [-f] [-q] [-p <dir>] <program>...` |
+| `kept` | list what has been taken, and how much it came to<br>`Usage: keep [-n] [-f] [-q] [-p <dir>] <program>...` |
 
 **Scheduling**
 
 | | |
 |---|---|
 | `cron` | run commands at specified times (daemon) |
-| `minute` | minute timer<br>`Syntax: minute[<opts>]` |
+| `minute` | minute timer -- waits for the system clock to roll over a minute, so printing nothing is what success looks like<br>`Syntax: minute[<opts>]` |
 
 **Modules**
 
@@ -1421,11 +1423,17 @@
 |---|---|
 | `bsplt68` | Split a boot file into its component modules (Carl Kreider) |
 
+**Disks and devices**
+
+| | |
+|---|---|
+| `dedit` | BASIC09 disk sector editor (Carl Kreider) -- read, edit and write raw sectors, decode a disk's identification sector.  I-CODE, not 68000 code: run it with runb and the bare module name, like bio and wysetime.  Nine modules in the one file. |
+
 **Hardware control**
 
 | | |
 |---|---|
-| `pow` | X-10 Powerhouse home control (needs /x1 hardware)<br>**How:** Wants a hardware controller at /x1 and cannot run without it. |
+| `pow` | &#9733; X-10 Powerhouse home control (needs /x1 hardware)<br>**How:** Wants a hardware controller at /x1 and cannot run without it. |
 
 </details>
 
@@ -1473,9 +1481,9 @@
 | `cal` | &#9733; Calendar, Bob van der Poel.  `cal -h' prints holidays with it -- SYS/holidays is here, and SYS/birthdays is an empty template for your own dates.  SYS/cal.init is a printer setup for a laser<br>**How:** `cal -h' prints holidays alongside the calendar -- SYS/holidays is on the disk now, and SYS/birthdays is an empty template the holidays file INCLUDEs, so anything you add there shows up too. Add `-g' if the rule under the day names comes out as garbage on your terminal. |
 | `calen` | calendar printer (v_misc) |
 | `calendar` | reminder service - reads a calendar file |
-| `calender` | print a whole year's calendar (German)<br>**How:** Prints the year in GERMAN. Not a typo of `calendar' -- a different program by a different author. |
-| `digclk` | digital clock with hostname<br>`Usage: digclk [refresh_rate]` |
-| `easter` | compute the date of Easter<br>**How:** Prints Easter dates for 1988 to 2000 and nothing else. The range is compiled in. |
+| `calender` | &#9733; print a whole year's calendar (German)<br>**How:** Prints the year in GERMAN. Not a typo of `calendar' -- a different program by a different author. |
+| `digclk` | &#9733; digital clock with hostname<br>`Usage: digclk [refresh_rate]` |
+| `easter` | &#9733; compute the date of Easter<br>**How:** Prints Easter dates for 1988 to 2000 and nothing else. The range is compiled in. |
 | `setimex` | &#9733; set time from hardware clock<br>`Usage:` |
 | `today` | date, moon phase and this-day-in-history |
 
@@ -1498,11 +1506,11 @@
 
 | | |
 |---|---|
-| `gcl` | gcl - general calculation utility |
+| `gcl` | &#9733; gcl - general calculation utility |
 | `hc` | hex calculator |
-| `loan` | loan/amortisation calculator |
+| `loan` | &#9733; loan/amortisation calculator |
 | `rechne` | &#9733; RPN calculator |
-| `rpn` | RPN calculator |
+| `rpn` | &#9733; RPN calculator |
 | `sc` | sc -- spreadsheet calculator (needs TERM)<br>**How:** The spreadsheet, version 6.16. It will not read SYS/termcap: do `. /dd/SYS/termcap.entry' first, then `sc' opens and says "Type '?' for help". Tested. |
 
 **Plotting & charts**
@@ -1525,7 +1533,7 @@
 
 | | |
 |---|---|
-| `orbit` | satellite orbit calculator<br>**How:** Reads a bare "kepler.dat" from the CURRENT directory, so run it from where that file is: `chd /dd/DOC/orbit` first. Then it lists 21 satellites and asks which. |
+| `orbit` | &#9733; satellite orbit calculator<br>**How:** Reads a bare "kepler.dat" from the CURRENT directory, so run it from where that file is: `chd /dd/DOC/orbit` first. Then it lists 21 satellites and asks which. |
 
 </details>
 
@@ -1539,13 +1547,13 @@
 
 | | |
 |---|---|
-| `lp` | line printer spooler - submit a job<br>`Syntax: lp [<opts>] {<path>}` |
-| `lpq` | show the print queue<br>`Syntax: lpq [-p=dev] [user]` |
-| `lprm` | remove a job from the print queue<br>`Syntax: lprm [-d=dev] [-] job..` |
-| `lpshut` | shut down the printer scheduler<br>`Syntax: lpshut` |
+| `lp` | &#9733; line printer spooler - submit a job<br>`Syntax: lp [<opts>] {<path>}` |
+| `lpq` | &#9733; show the print queue<br>`Syntax: lpq [-p=dev] [user]` |
+| `lprm` | &#9733; remove a job from the print queue<br>`Syntax: lprm [-d=dev] [-] job..` |
+| `lpshut` | &#9733; shut down the printer scheduler<br>`Syntax: lpshut` |
 | `perr` | &#9733; print an OS-9 error message<br>`Syntax: perr [<error_codes>]` |
-| `prjob` | print a job |
-| `qp` | queue/print helper<br>`Syntax: qp <cmd> <arg1> ... <argn>` |
+| `prjob` | &#9733; print a job |
+| `qp` | &#9733; queue/print helper<br>`Syntax: qp <cmd> <arg1> ... <argn>` |
 
 **PostScript**
 
@@ -1582,9 +1590,9 @@
 | | |
 |---|---|
 | `help` | help system<br>`Syntax:   help [<opts>] [<topic> {<subtopic>}] [<opts>]` |
-| `helpindex` | build the help index<br>`Syntax:   helpindex [<opts>] {<help file>} [<opts>]` |
+| `helpindex` | &#9733; build the help index<br>`Syntax:   helpindex [<opts>] {<help file>} [<opts>]` |
 | `less` | Pager (wants a real TERM).  Its help screen works now: SYS/less.hlp is on the disk |
-| `rdoc` | document reader |
+| `rdoc` | &#9733; document reader |
 
 **Pagers**
 
