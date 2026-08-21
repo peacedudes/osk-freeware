@@ -37,9 +37,22 @@ STAGES = [
 ]
 
 
-def read(name):
+def read(name, newer_than=None):
+    """Load a stage file, refusing one left over from an earlier sweep.
+
+    THIS GUARD IS THE POINT. Each stage overwrites its own file, so a stage
+    that has not been re-run leaves the PREVIOUS pass's answers sitting there
+    looking exactly like fresh ones -- and combining them silently produces a
+    number that is part this measurement and part the last. That is the shape
+    of every false result this collection has produced. The stages run in
+    order, so any file older than verify-bare.tsv is from a previous sweep.
+    """
     path = os.path.join(NOTES, name)
     if not os.path.exists(path):
+        return None
+    if newer_than is not None and os.path.getmtime(path) < newer_than:
+        print(f"  STALE: {name} predates verify-bare.tsv -- from an earlier"
+              f" sweep, ignored")
         return None
     rows = {}
     for line in open(path, encoding="latin-1"):
@@ -79,11 +92,12 @@ def main():
     bare = read("verify-bare.tsv")
     if not bare:
         sys.exit("no notes/verify-bare.tsv -- run tools/verify_all.sh first")
+    started = os.path.getmtime(os.path.join(NOTES, "verify-bare.tsv"))
 
     final = {k: "NEEDS WORK" for k in bare}
     missing = []
     for name, wins in STAGES:
-        rows = read(name)
+        rows = read(name, newer_than=started)
         if rows is None:
             missing.append(name)
             continue
