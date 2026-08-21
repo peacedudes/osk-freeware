@@ -1,5 +1,5 @@
 --- /private/tmp/claude-501/-Users-rdoggett-Developer-os9-osk-freeware/a1b843ce-500e-4a36-8d53-023c1a94e8fb/scratchpad/hunt/pdksh/sh/lex.c	1992-04-29 16:27:00
-+++ /private/tmp/claude-501/-Users-rdoggett-Developer-os9-osk-freeware/a1b843ce-500e-4a36-8d53-023c1a94e8fb/scratchpad/h6/pdksh/sh/lex.c	2026-08-21 04:47:55
++++ /private/tmp/claude-501/-Users-rdoggett-Developer-os9-osk-freeware/a1b843ce-500e-4a36-8d53-023c1a94e8fb/scratchpad/h6/pdksh/sh/lex.c	2026-08-21 04:53:23
 @@ -556,7 +556,40 @@
  			else
  #endif
@@ -41,7 +41,18 @@
  			if (c < 0 && sigchld_caught)
  			{
  			  goto retry;
-@@ -635,7 +668,24 @@
+@@ -595,7 +628,9 @@
+ #endif
+ 			shellf("%s\n", s->str);
+ 			strcpy(line, s->str);
+-			s->str = strchr(line, 0);
++			/* strchr(x,0) is a bus error here -- osk.h maps strchr to
++			 * index, and index(s,0) returns NULL, not the terminator. */
++			s->str = line + strlen(line);
+ 			*s->str++ = '\n';
+ 			*s->str = 0;
+ 			s->str = line;
+@@ -635,7 +670,24 @@
  		  case SALIAS:
  			s->str = s->u.tblp->val.s;
  			if (s->str[0] != 0) {

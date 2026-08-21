@@ -139,13 +139,38 @@ build:
     ksh -c "print hello"                               -> nothing
 
 So it is not simply "the first line is lost"; two-command sequences print
-both. Suspect the stdio buffering: this build had to drop osklib's `fputc`
-because it collides with `clibn.l`'s `putc_c` psect, and that psect also
-carries `fflush`, so dropping one changed which library object supplies the
-other. **Build with `-i` (cio), as the original did** -- `ksh` is starred, so
-that is the faithful build anyway -- and try restoring osklib's `fputc`, since
-under cio the C library comes from the trap handler and the collision may not
-arise.
+both. ### What the second fault actually is, as far as measurement goes
+
+It is **not** the alias path. `ksh -c "print one; print two"` -- no alias in
+sight -- prints only `two`. It is **the first command's output, whatever the
+command**, and it is lost to a FILE as well as to the terminal, so it is not a
+terminal artefact:
+
+    ksh -c "for i in a b c; do echo n=$i; done" > file   -> n=b, n=c
+    the shipped ksh, same line                           -> n=a, n=b, n=c
+
+The decisive clue: **change `io.c`'s `setvbuf(shf[fd], NULL, _IOFBF, BUFSIZ)`
+to `_IONBF` and each write emits exactly ONE CHARACTER** (`print one; print
+two` prints `t`). Unbuffered should print everything. That is not a flushing
+problem; that is the `FILE` structure being written through a layout the
+library does not share.
+
+Where to look, in order:
+
+  1. **The FILE layout.** `std/stdc/stdio.h` declares its own `FILE`
+     (`_ptr, _base, _end, _flag, _fd, _save, _bufsiz`) and osklib's
+     `setvbuf.c` pokes `stream->_flag` directly. This build deliberately keeps
+     `std/stdc` OFF the include path -- it shadows the SDK's `time.h` and
+     `limits.h` -- so the compiler sees the SDK's `<stdio.h>`. If the two
+     disagree about where `_flag` sits, every stdio call through this port is
+     writing to the wrong offset. **Compare the two structs first.** It is one
+     `diff` and it either explains everything or rules the theory out.
+  2. **`setvbuf` itself is in `clib.l` and `clibn.l` as well as in osklib.**
+     Which one the link chose decides whether `_IOFBF` allocates a real buffer
+     or just clears a flag bit.
+  3. **osklib's `fputc` had to be dropped**: it collides with `clibn.l`'s
+     `putc_c` psect, and that psect also carries `fflush`. Dropping one
+     changed which library object supplies the other.
 
 ### Ruled out by experiment, so do not re-test
 
