@@ -114,10 +114,20 @@ space through SSM, so a rebuilt ksh may start and still not fork on os9exec.
    why. Its own header assumes the collection lives on `/h0`, the premise the
    measurement overturned. Originals kept as `SRC/keep/*.sh`. Reversible.
 
-3. **Two headers from the recovered pdksh port were refused as Microware's** —
-   `OSK/DEFS/ioctl.h` (byte-identical to the SDK's `DEFS/UNIX/ioctl.h`) and
-   `OSK/DEFS/termios.h`. The build uses the SDK's copies, which is normal.
-   Say if you would rather ship them.
+3. ~~Two headers from the pdksh port were refused as Microware's.~~
+   **Reversed, same day, and the reversal is the interesting part.** I refused
+   `OSK/DEFS/ioctl.h` and `OSK/DEFS/termios.h` because the screener said they
+   matched the SDK. They matched a file under `play/oskBoot` — your WORKING
+   BUILD OVERLAY, not a pristine SDK. Neither `ioctl.h` nor `termio.h` exists
+   in the pristine tree at all, and no copy of either carries a Microware
+   copyright: they are the standard System V definitions, and any two
+   expressions of that interface overlap.
+
+   `screen_microware.py` now says **which** SDK a match came from. That one
+   change also removes most of the noise from running it over `disk/LIB`,
+   where it flagged 113 files, nearly all of them our own `ncurses.l`,
+   `libgcc.l` and friends sitting in the overlay. A screen that cries wolf is
+   one people stop reading, and this one was close to it.
 
 4. **`CLAUDE.md` is gitignored, and I edited it.** Stale star counts, stale
    `/h0` figures, the `elvis` claim, the missing overlay, the nine checks, and
