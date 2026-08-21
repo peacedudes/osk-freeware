@@ -1,0 +1,1 @@
+uucp spool directory.arepdaemon -- elm's autoreply daemon -- takes its lock here, as/dd/spool/uucp/LCK..arep.  The directory must exist for it to start.

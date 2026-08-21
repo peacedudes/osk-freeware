@@ -14,8 +14,9 @@ header rather than the filename, because the two disagree often enough to
 matter (7 programs on the disk already report a name that is not their file).
 """
 import io, os, struct, subprocess, sys, tarfile, zipfile
+import paths
 
-POOL = "/Users/rdoggett/mine/os9/xxx/os9exec/os9/PUBCMDS/microware-archive"
+POOL = paths.pool()
 OUT = "allstage"
 LZH = (".lzh", ".lha", ".lhz")
 

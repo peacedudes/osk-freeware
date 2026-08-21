@@ -9,9 +9,10 @@ because those came from elsewhere.
 Same Phoca POST/CSRF dance as tools/refetch_archive.py.
 """
 import http.cookiejar, os, re, time, urllib.parse, urllib.request, sys
+import paths
 
 BASE = "https://microware.com"
-A = "/Users/rdoggett/mine/os9/xxx/os9exec/os9/PUBCMDS/microware-archive"
+A = paths.pool()
 UA = "Mozilla/5.0 (osk-freeware preservation; contact via github.com/peacedudes)"
 CATS = {"apps":99,"archivers":102,"cmds":103,"demos":104,"drivers":105,"effo":108,
         "games":110,"gcc":112,"gnu":117,"graphics":121,"gwindows":122,"languages":124,

@@ -112,11 +112,21 @@ def check_no_utf8(root):
 
 
 AUTHOR_STAMP   = b"from the disk of"
-STAMPED_KNOWN  = 15     # notes/FREEWARE-REBAKE.md: 224 -> 15, each documented
+STAMPED_KNOWN = 0   # was 15; rdoggett's name was taken out 2026-08-20
 
 
 def check_author_stamps(root):
-    """Fail if more modules carry the SDK author stamp than the known 15.
+    """Fail if ANY module carries the SDK author stamp.
+
+    Was "no more than the known 15" until 2026-08-20, when rdoggett asked for
+    his name taken out of the binaries. Five were rebuilt or removed; the other
+    eleven could not be rebuilt (no source, or source that will not build here)
+    and were edited instead -- the Author psect is DATA and the replacement is
+    the same length, so nothing in the module moved and only the CRC changed.
+    tools/blank_author.py does it and re-verifies CRC and header parity.
+
+    The threshold is now ZERO. A stamp reappearing means something was built
+    against an SDK whose cstart still carries one.
 
     The SDK copy these were built with has a 64-byte `Author` psect added to
     its `cstart.r`, so every binary built through it is stamped with whoever

@@ -9,8 +9,8 @@ assembler|eff_gshell|assembler.c selectfile.c|||
 banner|misc|banner.c|||
 bite|v_misc|bite.c|||
 blackjak|effo_snobol|blackjak.c cardpak.c genprim.c pattern.c pokev.c quest.c rperm.c rselect.c rsent.c snorand.c|||
-bmgtest|strsch|bmgtest.c bmgsubs.c|BSD||
-bmgtest2|strsch|bmgtest2.c bmgsubs.c|BSD||
+bmgtest|strsch|bmgtest.c bmgsubs.c bcopy.c|BSD||
+bmgtest2|strsch|bmgtest2.c bmgsubs.c bcopy.c|BSD||
 bootgen|bix|bootgen.c|||
 bush|misc|bush.c|||
 calen|hc_loose|calen.c|||
@@ -39,8 +39,11 @@ cvtbase|misc|cvtbase.c|||
 dam|effo_wolk|dam.c|||
 des|des|des.c|||
 deton|hc_utils|deton.c|||
+# devprc UNTESTED: its makefile also wants getsys.a, which is 68k assembly.
+# The shipped binary has a bad CRC and will not load -- see notes/SECOND-PASS.md.
+devprc|devprc|devprc.c getopt.c|||
 dfiles|dfiles|dfiles.c|||
-diff|diff|diff.c||/dd/LIB/egetopt.r|
+diff|diff|alloca.c analyze.c context.c diff.c dir.c ed.c io.c normal.c os9.c regex.c util.c getopt.c|||
 digclk|digclk|clock.c digits.c hostname.c mytime.c||/dd/LIB/curses.l /dd/LIB/termlib.l /dd/LIB/math.l /dd/LIB/strings.r|
 dinfo|eff_dinfo|dinfo.c|||
 du|eff_du|du.c|||
@@ -85,8 +88,8 @@ liborder|eff_libutils|liborder.c|||
 life|life|life.c|||
 loan|misc|loan.c|||
 logisim|eff_logisim|logisim.c|||
-lp|eff_lp|lp.c os9geteuid.c|||
-lpq|eff_lp|lpq.c os9geteuid.c|||
+lp|eff_lp|lp.c os9geteuid.c os9getpw.c|||
+lpq|eff_lp|lpq.c os9geteuid.c os9getpw.c|||
 lprm|eff_lp|lprm.c|||
 lpshut|eff_lp|lpshut.c|||
 ls|ls|argmatch.c error.c filemode.c getopt.c idcache.c ls.c obstack.c os9stubs.c savedir.c t.c xmalloc.c xstrtol.c|||

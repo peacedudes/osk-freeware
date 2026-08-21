@@ -1,0 +1,1 @@
+# NOTE: NO STACK CHECKINGCFLAGS = -gi -s -t=/ddLFLAGS = -gODIR = /h0/cmdsRDIR = RELSPARTS = main.r computer.r human.r move.r io.rchess: $(PARTS) ./makefile	chd $(RDIR); cc $(CFLAGS) $(PARTS) -f=$*$(PARTS): chess.h

@@ -1,0 +1,1 @@
+setof.pl :		CProlog setof/bagof/sorting package (Public Domain)newlips.pl :	Misst Anzahl logical inferences per second (Lips),				Aufruf einfach durch bench(4).benchmarks.pl :	Benchmark package von Fernando Pereira (Public Domain),				Aufruf durch benches.

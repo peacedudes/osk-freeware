@@ -8,8 +8,9 @@ parent, then the parent's parent -- and stops at the first level that has
 documentation, which is where a package keeps its own readme.
 """
 import os, re, json, collections
+import paths
 
-A = "/Users/rdoggett/mine/os9/xxx/os9exec/os9/PUBCMDS/microware-archive"
+A = paths.pool()
 CATS = ("DRIVERS", "EFFO", "GWINDOWS", "NETWORK", "TELECOM")
 STAGE = "newstage"
 

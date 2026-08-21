@@ -35,3 +35,44 @@ Read the top unticked item, do it, tick it, go on. Written 2026-08-16 so that
 - rz, sz -- Omen Technology, $20/user
 - smbmount, samba, smbdrv -- "not with other software packages"
 - msfm -- Microware's, out of Dibble's OS-9 Insights
+
+## Added 2026-08-19 -- the repair, documentation and archive pass
+
+Everything below is on branch `repair-and-document`; see `notes/SESSION-LOG.md`
+for the commit-by-commit record and `notes/PLAN-repair-and-document.md` for the
+plan it followed.
+
+- [x] **Fortran-77** -- the whole RTF suite works; it wanted `os9lib` loaded.
+      Manual, sources and demos recovered from the pool.  DOC/README-FORTRAN
+- [x] **SNOBOL4 games (5)** -- they wanted a syntax file, not a repair
+- [x] **devprc** -- rebuilt; the archived module's body was corrupt
+- [x] **Graph (7)** and **VMod_trap** -- both module names were lowercase and
+      could never have matched on real OS-9; renamed, CRCs recomputed
+- [x] **All 34 silent programs** -- every one now has a named cause
+- [x] **A0-at-entry** -- answered from the v2.4 manual: `(a0) = undefined`
+- [x] **Microware screening** -- `tools/screen_microware.py`; caught an
+      `oskdefs.d` I had installed, and an `fpu` loose in a freeware archive
+- [x] **ARR (65 archives)** and **the five never-assessed pool categories**
+- [x] **Relink against cio** -- 117 programs, 1.46 MB reclaimed.
+      `notes/RELINK-CIO.md`
+
+- [ ] **The star list in DOC/INDEX.** 117 programs became cio-dependent in the
+      relink, so the measured star list is out of date. A re-measurement was
+      running when this was written: build an image with the five Microware
+      modules removed and run every program against it, matching
+      `**** Can't install trap handler ****`. Do NOT infer it from a `cio\0`
+      string in the binary -- that is a proxy, and the number in DOC/INDEX has
+      always been a measurement.
+- [ ] **The 21 relinks that would not build.** 4 want `/dd/LIB/strings.r`,
+      which is in neither the SDK nor the pool. 7 want headers missing from
+      their own source trees (`parame.inc` and `lex.i` are nowhere in the
+      pool). 7 want symbols the cio-linked library set lacks -- `bcopy`,
+      `getpwuid`, `xmalloc`, `standby`; `clib.l` does not supply them.
+- [ ] **ksh's interactive loop.** Partly diagnosed: `isatty` works (SS_Opt
+      succeeds on paths 0 and 1), the shell writes and reads, and it scans
+      directories -- `FHASHALL` is set alongside `FTALKING`. It still prints
+      no prompt and runs nothing after 45 seconds. pdksh source: SRC/pdksh/sh
+- [ ] **draw's quit key.** Its own help says `<esc>`; escape did not end it
+      under try_quit.py. Recorded as unconfirmed.
+- [ ] **The four G-Windows programs' licence.** Copyright line, no
+      distribution statement. Recorded in SOURCES.txt for a decision.

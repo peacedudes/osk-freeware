@@ -1,0 +1,278 @@
+indent	CMDS	FILTER	the quick brown fox jumped over 3 lazy dogs 
+minute	CMDS	QUIET	
+demo	CMDS	QUIET	
+split	CMDS	FILTER	the quick brown fox jumped over 3 lazy dogs 
+cat	CMDS	FILTER	the quick brown fox the quick brown fox 
+tabs	CMDS	FILTER	the quick brown fox the quick brown fox 
+snd_sig	CMDS	QUIET	
+pageline	CMDS	FILTER	the quick brown fox the 1 
+gdd	CMDS	FILTER	the quick brown fox jumped over 3 lazy dogs 
+proff	CMDS	FILTER	the quick brown fox jumped over 3 lazy dogs 
+autolf	CMDS	FILTER	the quick brown fox jumped over 3 lazy dogs 
+chardef	CMDS	FILTER	the quick brown fox thequickbrownfoxjumped over 3 lazy dogs 
+md5	CMDS	FILTER	the quick brown fox jumped over 3 lazy dogs 
+pep	CMDS	FILTER	the quick brown fox jumped over 3 lazy dogs 
+rot	CMDS	FILTER	the quick brown fox jumped over 3 lazy dogs 
+expand	CMDS	FILTER	the quick brown fox the quick brown fox 
+ssl	CMDS	QUIET	
+my.opt	CMDS	FILTER	the quick brown fox my.opt: line 1: can't find mnemonic 'quick' 
+ape	CMDS	QUIET	
+binhex	CMDS	FILTER	the quick brown fox jumped over 3 lazy dogs 
+dump	CMDS	QUIET	
+ptxminst	CMDS	QUIET	
+creadoc	CMDS	QUIET	
+atob	CMDS	FILTER	the quick brown fox jumped over 3 lazy dogs 
+wysecrack	CMDS/BROKEN	QUIET	
+cjpeg.070	CMDS	FILTER	the quick brown fox Unrecognized input file format --- perhaps y
+lnk.org	CMDS	QUIET	
+rtf	CMDS	QUIET	
+assembler	CMDS	QUIET	
+lfmaker	CMDS	QUIET	
+sort	CMDS	FILTER	the quick brown fox jumped over 3 lazy dogs 
+tex	CMDS/TEXCMDS	QUIET	
+slitex	CMDS/TEXCMDS	QUIET	
+texidx	CMDS/TEXCMDS	QUIET	
+latex	CMDS/TEXCMDS	QUIET	
+unp	CMDS	FILTER	the quick brown fox the quick brown fox 
+delbak	CMDS	QUIET	
+pri	CMDS	QUIET	
+cpr	CMDS	FILTER	the quick brown fox jumped over 3 lazy dogs 
+input	CMDS	FILTER	the quick brown fox the quick brown fox 
+cjpeg	CMDS	FILTER	the quick brown fox Unrecognized input file format --- perhaps y
+uudecode	CMDS	FILTER	the quick brown fox jumped over 3 lazy dogs 
+fmt	CMDS	FILTER	the quick brown fox the quick brown foxjumped over 3 lazy dogs 
+psc	CMDS	FILTER	the quick brown fox rightstring A0 = "the" 
+cat.nocio	CMDS/REBUILT	FILTER	the quick brown fox jumped over 3 lazy dogs 
+wc.cio	CMDS/REBUILT	FILTER	the quick brown fox jumped over 3 lazy dogs 
+m4_0.5	CMDS/REBUILT	FILTER	the quick brown fox the quick brown fox 
+printenv	CMDS	QUIET	
+sysid	CMDS	QUIET	
+fc	CMDS	FILTER	the quick brown fox jumped over 3 lazy dogs 
+gcc_cc1	CMDS/GCC139	FILTER	the quick brown fox 	psect	stdin_gc,0,0,0,0,0 
+gcc_cc1plus	CMDS/GCC139	FILTER	the quick brown fox 	psect	stdin_gc,0,0,0,0,0 
+gcc_cccp	CMDS/GCC139	FILTER	the quick brown fox jumped over 3 lazy dogs 
+infoxpress	CMDS/NETWORK	QUIET	
+ppmtouil	CMDS/NETPBM	FILTER	the quick brown fox **** Stack Overflow **** 
+xwdtopnm	CMDS/NETPBM	FILTER	the quick brown fox jumped over 3 lazy dogs 
+ppmtorgb3	CMDS/NETPBM	FILTER	the quick brown fox ppmtorgb3: bad magic number - not a ppm, pgm
+pnminvert	CMDS/NETPBM	FILTER	the quick brown fox pnminvert: bad magic number - not a ppm, pgm
+pgmhist	CMDS/NETPBM	FILTER	the quick brown fox pgmhist: bad magic number - not a pgm or pbm
+pnmhistmap	CMDS/NETPBM	FILTER	the quick brown fox pnmhistmap: bad magic number - not a ppm, pg
+fitstopnm	CMDS/NETPBM	FILTER	the quick brown fox jumped over 3 lazy dogs 
+pnmtofits	CMDS/NETPBM	FILTER	the quick brown fox pnmtofits: bad magic number - not a ppm, pgm
+pbmtog3	CMDS/NETPBM	FILTER	the quick brown fox pbmtog3: bad magic number - not a pbm file 
+ppmforge	CMDS/NETPBM	QUIET	
+pnmtosgi	CMDS/NETPBM	FILTER	the quick brown fox pnmtosgi: bad magic number - not a ppm, pgm,
+mtvtoppm	CMDS/NETPBM	FILTER	the quick brown fox mtvtoppm: unable to parse MTV file header 
+pnmnoraw	CMDS/NETPBM	FILTER	the quick brown fox pnmnoraw: bad magic number - not a ppm, pgm,
+ppmtoilbm	CMDS/NETPBM	FILTER	the quick brown fox ppmtoilbm: bad magic number - not a ppm, pgm
+lispmtopgm	CMDS/NETPBM	FILTER	the quick brown fox jumped over 3 lazy dogs 
+pnmtops	CMDS/NETPBM	FILTER	the quick brown fox pnmtops: bad magic number - not a ppm, pgm, 
+pbmtoxbm	CMDS/NETPBM	FILTER	the quick brown fox pbmtoxbm: bad magic number - not a pbm file 
+pnmtoddif	CMDS/NETPBM	FILTER	the quick brown fox pnmtoddif: bad magic number - not a ppm, pgm
+ppmqvga	CMDS/NETPBM	FILTER	the quick brown fox ppmqvga: bad magic number - not a ppm, pgm, 
+ppmtotga	CMDS/NETPBM	FILTER	the quick brown fox ppmtotga: bad magic number - not a ppm, pgm,
+pgmenhance	CMDS/NETPBM	FILTER	the quick brown fox pgmenhance: bad magic number - not a pgm or 
+pbmtogem	CMDS/NETPBM	FILTER	the quick brown fox pbmtogem: bad magic number - not a pbm file 
+ilbmtoppm	CMDS/NETPBM	FILTER	the quick brown fox ilbmtoppm: input is not a FORM type IFF file
+pbmtox10bm	CMDS/NETPBM	FILTER	the quick brown fox pbmtox10bm: bad magic number - not a pbm fil
+pnmfile	CMDS/NETPBM	FILTER	the quick brown fox pnmfile: bad magic number - not a ppm, pgm, 
+pbmtolps	CMDS/NETPBM	FILTER	the quick brown fox pbmtolps: bad magic number - not a pbm file 
+pgmnorm	CMDS/NETPBM	FILTER	the quick brown fox pgmnorm: bad magic number - not a pgm or pbm
+zeisstopnm	CMDS/NETPBM	FILTER	the quick brown fox jumped over 3 lazy dogs 
+rasttopnm	CMDS/NETPBM	FILTER	the quick brown fox rasttopnm: unable to read in rasterfile head
+ppmtopjxl	CMDS/NETPBM	FILTER	the quick brown fox ppmtopjxl: bad magic number - not a ppm, pgm
+pbmtoicon	CMDS/NETPBM	FILTER	the quick brown fox pbmtoicon: bad magic number - not a pbm file
+ppmdist	CMDS/NETPBM	FILTER	the quick brown fox ppmdist: bad magic number - not a ppm, pgm, 
+pbmtozinc	CMDS/NETPBM	FILTER	the quick brown fox pbmtozinc: bad magic number - not a pbm file
+pgmtexture	CMDS/NETPBM	FILTER	the quick brown fox pgmtexture: bad magic number - not a pgm or 
+pbmto4425	CMDS/NETPBM	FILTER	the quick brown fox pbmto4425: bad magic number - not a pbm file
+ppmtopuzz	CMDS/NETPBM	FILTER	the quick brown fox ppmtopuzz: bad magic number - not a ppm, pgm
+ybmtopbm	CMDS/NETPBM	FILTER	the quick brown fox ybmtopbm: bad magic number in YBM file 
+pbmtomgr	CMDS/NETPBM	FILTER	the quick brown fox pbmtomgr: bad magic number - not a pbm file 
+pbmtopi3	CMDS/NETPBM	FILTER	the quick brown fox pbmtopi3: bad magic number - not a pbm file 
+pgmtolispm	CMDS/NETPBM	FILTER	the quick brown fox pgmtolispm: bad magic number - not a pgm or 
+pjtoppm	CMDS/NETPBM	FILTER	the quick brown fox jumped over 3 lazy dogs 
+sirtopnm	CMDS/NETPBM	FILTER	the quick brown fox sirtopnm: Input file is not a Solitaire file
+brushtopbm	CMDS/NETPBM	FILTER	the quick brown fox brushtopbm: bad magic number 1 
+fstopgm	CMDS/NETPBM	FILTER	the quick brown fox **** Stack Overflow **** 
+ppmtopi1	CMDS/NETPBM	FILTER	the quick brown fox ppmtopi1: bad magic number - not a ppm, pgm,
+g3topbm	CMDS/NETPBM	FILTER	the quick brown fox jumped over 3 lazy dogs 
+pbmtoascii	CMDS/NETPBM	FILTER	the quick brown fox pbmtoascii: bad magic number - not a pbm fil
+pnmcrop	CMDS/NETPBM	FILTER	the quick brown fox pnmcrop: bad magic number - not a ppm, pgm, 
+pbmlife	CMDS/NETPBM	FILTER	the quick brown fox pbmlife: bad magic number - not a pbm file 
+sgitopnm	CMDS/NETPBM	FILTER	the quick brown fox jumped over 3 lazy dogs 
+pbmtoepsi	CMDS/NETPBM	FILTER	the quick brown fox pbmtoepsi: bad magic number - not a pbm file
+sldtoppm	CMDS/NETPBM	FILTER	the quick brown fox jumped over 3 lazy dogs 
+pnmflip	CMDS/NETPBM	FILTER	the quick brown fox pnmflip: bad magic number - not a ppm, pgm, 
+pnmtosir	CMDS/NETPBM	FILTER	the quick brown fox **** Stack Overflow **** 
+giftopnm	CMDS/NETPBM	FILTER	the quick brown fox giftopnm: not a GIF file 
+pbmtobbnbg	CMDS/NETPBM	FILTER	the quick brown fox pbmtobbnbg: bad magic number - not a pbm fil
+ppmtosixel	CMDS/NETPBM	FILTER	the quick brown fox ppmtosixel: bad magic number - not a ppm, pg
+pnmtorast	CMDS/NETPBM	FILTER	the quick brown fox pnmtorast: bad magic number - not a ppm, pgm
+pnmhisteq	CMDS/NETPBM	FILTER	the quick brown fox pnmhisteq: bad magic number - not a ppm, pgm
+gemtopbm	CMDS/NETPBM	FILTER	the quick brown fox gemtopbm: unknown version number (29800) 
+ppmdither	CMDS/NETPBM	FILTER	the quick brown fox ppmdither: bad magic number - not a ppm, pgm
+pi1toppm	CMDS/NETPBM	FILTER	the quick brown fox pi1toppm: not a PI1 file 
+spctoppm	CMDS/NETPBM	FILTER	the quick brown fox spctoppm: not a Spectrum picture 
+mgrtopbm	CMDS/NETPBM	FILTER	the quick brown fox mgrtopbm: bad magic chars in MGR file: 'th' 
+ximtoppm	CMDS/NETPBM	FILTER	the quick brown fox jumped over 3 lazy dogs 
+ppmtoacad	CMDS/NETPBM	FILTER	the quick brown fox ppmtoacad: bad magic number - not a ppm, pgm
+macptopbm	CMDS/NETPBM	FILTER	the quick brown fox jumped over 3 lazy dogs 
+pbmtogo	CMDS/NETPBM	FILTER	the quick brown fox pbmtogo: bad magic number - not a pbm file 
+pbmmask	CMDS/NETPBM	FILTER	the quick brown fox pbmmask: bad magic number - not a pbm file 
+sputoppm	CMDS/NETPBM	FILTER	the quick brown fox jumped over 3 lazy dogs 
+cmuwmtopbm	CMDS/NETPBM	FILTER	the quick brown fox cmuwmtopbm: bad magic number in CMU window m
+tgatoppm	CMDS/NETPBM	FILTER	the quick brown fox jumped over 3 lazy dogs 
+pi3topbm	CMDS/NETPBM	FILTER	the quick brown fox pi3topbm: bad resolution 
+pbmtoepson	CMDS/NETPBM	FILTER	the quick brown fox pbmtoepson: bad magic number - not a pbm fil
+ppmtobmp	CMDS/NETPBM	FILTER	the quick brown fox ppmtobmp: bad magic number - not a ppm, pgm,
+pnmtoxwd	CMDS/NETPBM	FILTER	the quick brown fox pnmtoxwd: bad magic number - not a ppm, pgm,
+qrttoppm	CMDS/NETPBM	FILTER	the quick brown fox P6 
+pbmtoatk	CMDS/NETPBM	FILTER	the quick brown fox pbmtoatk: bad magic number - not a pbm file 
+pgmoil	CMDS/NETPBM	FILTER	the quick brown fox pgmoil: bad magic number - not a pgm or pbm 
+bioradtopgm	CMDS/NETPBM	FILTER	the quick brown fox jumped over 3 lazy dogs 
+ppmtopict	CMDS/NETPBM	FILTER	the quick brown fox ppmtopict: bad magic number - not a ppm, pgm
+atktopbm	CMDS/NETPBM	FILTER	the quick brown fox atktopbm: input file not Andrew raster objec
+ppmtogif	CMDS/NETPBM	FILTER	the quick brown fox ppmtogif: bad magic number - not a ppm, pgm,
+pbmclean	CMDS/NETPBM	FILTER	the quick brown fox pbmclean: bad magic number - not a pbm file 
+ppmrelief	CMDS/NETPBM	FILTER	the quick brown fox ppmrelief: bad magic number - not a ppm, pgm
+ppmtoicr	CMDS/NETPBM	FILTER	the quick brown fox ppmtoicr: bad magic number - not a ppm, pgm,
+pbmtocmuwm	CMDS/NETPBM	FILTER	the quick brown fox pbmtocmuwm: bad magic number - not a pbm fil
+pbmtoplot	CMDS/NETPBM	FILTER	the quick brown fox pbmtoplot: bad magic number - not a pbm file
+ppmtopgm	CMDS/NETPBM	FILTER	the quick brown fox ppmtopgm: bad magic number - not a ppm, pgm,
+pgmbentley	CMDS/NETPBM	FILTER	the quick brown fox pgmbentley: bad magic number - not a pgm or 
+rawtopgm	CMDS/NETPBM	FILTER	the quick brown fox jumped over 3 lazy dogs 
+gouldtoppm	CMDS/NETPBM	FILTER	the quick brown fox jumped over 3 lazy dogs 
+ppmtopj	CMDS/NETPBM	FILTER	the quick brown fox ppmtopj: bad magic number - not a ppm, pgm, 
+pcxtoppm	CMDS/NETPBM	FILTER	the quick brown fox pcxtoppm: bad magic number - not a PCX file 
+pgmedge	CMDS/NETPBM	FILTER	the quick brown fox pgmedge: bad magic number - not a pgm or pbm
+ppmhist	CMDS/NETPBM	FILTER	the quick brown fox ppmhist: bad magic number - not a ppm, pgm, 
+xbmtopbm	CMDS/NETPBM	FILTER	the quick brown fox jumped over 3 lazy dogs 
+ppmtoyuv	CMDS/NETPBM	FILTER	the quick brown fox ppmtoyuv: bad magic number - not a ppm, pgm,
+ppmtomap	CMDS/NETPBM	FILTER	the quick brown fox ppmtomap: bad magic number - not a ppm, pgm,
+pgmcrater	CMDS/NETPBM	QUIET	
+pnmalias	CMDS/NETPBM	FILTER	the quick brown fox pnmalias: bad magic number - not a ppm, pgm,
+pgmtopbm	CMDS/NETPBM	FILTER	the quick brown fox pgmtopbm: bad magic number - not a pgm or pb
+pbmto10x	CMDS/NETPBM	FILTER	the quick brown fox pbmto10x: bad magic number - not a pbm file 
+ppmtopcx	CMDS/NETPBM	FILTER	the quick brown fox ppmtopcx: bad magic number - not a ppm, pgm,
+xvminitoppm	CMDS/NETPBM	FILTER	the quick brown fox **** Stack Overflow **** 
+pgmtofs	CMDS/NETPBM	FILTER	the quick brown fox pgmtofs: bad magic number - not a pgm or pbm
+pbmtomacp	CMDS/NETPBM	FILTER	the quick brown fox pbmtomacp: bad magic number - not a pbm file
+pnmpad	CMDS/NETPBM	FILTER	the quick brown fox pnmpad: bad magic number - not a ppm, pgm, o
+pbmtoptx	CMDS/NETPBM	FILTER	the quick brown fox pbmtoptx: bad magic number - not a pbm file 
+pbmtolj	CMDS/NETPBM	FILTER	the quick brown fox pbmtolj: bad magic number - not a pbm file 
+pbmtoln03	CMDS/NETPBM	FILTER	the quick brown fox pbmtoln03: bad magic number - not a pbm file
+pbmtoybm	CMDS/NETPBM	FILTER	the quick brown fox pbmtoybm: bad magic number - not a pbm file 
+ppmbrighten	CMDS/NETPBM	FILTER	the quick brown fox ppmbrighten: bad magic number - not a ppm, p
+icontopbm	CMDS/NETPBM	FILTER	the quick brown fox jumped over 3 lazy dogs 
+ppmtomitsu	CMDS/NETPBM	FILTER	the quick brown fox ppmtomitsu: bad magic number - not a ppm, pg
+ppmnorm	CMDS/NETPBM	FILTER	the quick brown fox **** Stack Overflow **** 
+bmptoppm	CMDS/NETPBM	FILTER	the quick brown fox bmptoppm: standard input is not a BMP file 
+nsort	CMDS	FILTER	the quick brown fox jumped over 3 lazy dogs 
+tac	CMDS	FILTER	the quick brown fox jumped over 3 lazy dogs 
+sepwords	CMDS	FILTER	the quick brown fox the 
+wc	CMDS	FILTER	the quick brown fox jumped over 3 lazy dogs 
+rcsident	CMDS	FILTER	the quick brown fox jumped over 3 lazy dogs 
+fkeys	CMDS	FILTER	the quick brown fox thequickbrownfoxjumped over 3 lazy dogs 
+soundex	CMDS	FILTER	the quick brown fox T221 
+mcvert	CMDS	QUIET	
+djpeg	CMDS	FILTER	the quick brown fox jumped over 3 lazy dogs 
+t	CMDS	QUIET	
+tab	CMDS	FILTER	the quick brown fox the         quick     brown                 
+casefix	CMDS	FILTER	the quick brown fox The quick brown fox 
+tail	CMDS	FILTER	the quick brown fox jumped over 3 lazy dogs 
+ptob	CMDS	FILTER	the quick brown fox format error in line 1 
+env	CMDS	QUIET	
+head	CMDS	FILTER	the quick brown fox jumped over 3 lazy dogs 
+splprt	CMDS	QUIET	
+sh	CMDS	FILTER	the: nowhere found jumped: nowhere found 
+uniq	CMDS	FILTER	the quick brown fox jumped over 3 lazy dogs 
+makecrc	CMDS	QUIET	
+cc2	CMDS/GCC2	FILTER	the quick brown fox 	psect stdin_gc,0,0,0,0,0 
+cc1plus	CMDS/GCC2	FILTER	the quick brown fox 	psect	stdin_gc,0,0,0,0,0 
+cccp2	CMDS/GCC2	FILTER	the quick brown fox jumped over 3 lazy dogs 
+cc2plus	CMDS/GCC2	FILTER	the quick brown fox 	psect stdin_gc,0,0,0,0,0 
+cursive	CMDS	FILTER	the quick brown fox  _/_ /                       /       /      
+elvprsv	CMDS	QUIET	
+cxref	CMDS	QUIET	
+patch	CMDS	FILTER	the quick brown fox jumped over 3 lazy dogs 
+c7decode	CMDS/NEWS	FILTER	the quick brown fox c7decode: Bad data 
+bdecode	CMDS/NEWS	FILTER	the quick brown fox jumped over 3 lazy dogs 
+byteflip	CMDS/NEWS	QUIET	
+unip	CMDS	FILTER	the quick brown fox jumped over 3 lazy dogs 
+sum	CMDS	FILTER	the quick brown fox jumped over 3 lazy dogs 
+macbin	CMDS	QUIET	
+make	CMDS	QUIET	
+macunpack	CMDS	FILTER	the quick brown fox Unrecognized archive type 
+splman	CMDS	QUIET	
+roff	CMDS	FILTER	the quick brown fox jumped over 3 lazy dogs 
+splstat	CMDS	QUIET	
+vecho	CMDS	QUIET	
+lout	CMDS	FILTER	the quick brown fox jumped over 3 lazy dogs 
+expreserve	CMDS	FILTER	the quick brown fox jumped over 3 lazy dogs 
+djpeg.070	CMDS	FILTER	the quick brown fox jumped over 3 lazy dogs 
+for	CMDS	QUIET	
+p2c	CMDS	FILTER	the quick brown fox /* From input file "<stdin>" */ 
+qsort9	CMDS	FILTER	the quick brown fox jumped over 3 lazy dogs 
+disktest	CMDS	QUIET	
+ifdef	CMDS	FILTER	the quick brown fox the quick brown fox 
+ksh	CMDS	FILTER	jumped over 3 lazy dogs the quick brown fox 
+m4	CMDS	FILTER	the quick brown fox te uc rw o 
+rdjpgcom.070	CMDS	FILTER	the quick brown fox Not a JPEG file 
+btop	CMDS	FILTER	the quick brown fox 
+lmargin	CMDS	FILTER	the quick brown fox      the quick brown fox 
+perr	CMDS	QUIET	
+find	CMDS	QUIET	
+hexbin	CMDS	FILTER	the quick brown fox jumped over 3 lazy dogs 
+ccheck	CMDS	FILTER	the quick brown fox jumped over 3 lazy dogs 
+break	CMDS	FILTER	the quick brown fox D0: 00000002 D1: 00000000 D2: 00000080 D3: 0
+add_errmsg	CMDS	QUIET	
+uuexpand	CMDS	FILTER	the quick brown fox 00101110000101101010011000000100100011101010
+lessecho	CMDS	QUIET	
+lnk	CMDS	QUIET	
+unexpand	CMDS	FILTER	the quick brown fox the quick brown fox 
+ediff	CMDS	FILTER	the quick brown fox the quick brown fox 
+elvrec	CMDS	QUIET	
+cb	CMDS	FILTER	the quick brown fox the quick brown fox 
+bootlogger	CMDS	QUIET	
+queens	CMDS	FILTER	the quick brown fox 
+suse	CMDS	QUIET	
+flex	CMDS	FILTER	the quick brown fox jumped over 3 lazy dogs 
+valspeak	CMDS/GAMES	QUIET	
+puzzle	CMDS/GAMES	QUIET	
+cyberwar	CMDS/GAMES	QUIET	
+mkindex	CMDS/GAMES	FILTER	the quick brown fox jumped over 3 lazy dogs 
+bincheckr	CMDS/GAMES	QUIET	
+mkdict	CMDS/GAMES	FILTER	the quick brown fox jumped over 3 lazy dogs 
+scriptmaster	CMDS/GAMES	QUIET	
+wisecrack	CMDS/GAMES	QUIET	
+maze	CMDS/GAMES	FILTER	the quick brown fox ._._._._._._._._._._._._._._._._._._._._._._
+vtxtcn	CMDS/GAMES	QUIET	
+tformat	CMDS/GAMES	FILTER	the quick brown fox jumped over 3 lazy dogs 
+dfiles	CMDS	QUIET	
+gshell	CMDS	QUIET	
+compiler	CMDS	QUIET	
+authwn	CMDS/WN	QUIET	
+inetdc	CMDS/WN	QUIET	
+wn	CMDS/WN	FILTER	the quick brown fox jumped over 3 lazy dogs 
+rdjpgcom	CMDS	FILTER	the quick brown fox Not a JPEG file 
+editor	CMDS	QUIET	
+banner	CMDS	QUIET	
+paste	CMDS	FILTER	the quick brown fox the quick brown fox 
+macsave	CMDS	FILTER	the quick brown fox Input is not MacBinary 
+fixtext	CMDS/UUCP	FILTER	the quick brown fox the quick brown fox 
+rnews	CMDS/UUCP	QUIET	
+lmail	CMDS/UUCP	FILTER	the quick brown fox jumped over 3 lazy dogs 
+lcasep	CMDS/UUCP	FILTER	the quick brown fox the quick brown fox 
+philmail	CMDS/UUCP	QUIET	
+nptx	CMDS/UUCP	FILTER	the quick brown fox format error: the quick brown fox 
+makedb	CMDS/UUCP	FILTER	the quick brown fox jumped over 3 lazy dogs 
+uupoll	CMDS/UUCP	QUIET	
+fileserv	CMDS/UUCP	FILTER	the quick brown fox jumped over 3 lazy dogs 
+l	CMDS	FILTER	the quick brown fox the quick brown fox 
+cron	CMDS	QUIET	
+UnMacpack	CMDS	FILTER	the quick brown fox Unrecognized archive type 
+epson	CMDS	QUIET	
+biory	CMDS	QUIET	
+detab	CMDS	FILTER	the quick brown fox the quick brown fox 

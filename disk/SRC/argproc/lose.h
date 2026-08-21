@@ -1,0 +1,1 @@
+#define ERR_FATAL 1#define ERR_WARN  2#define ERR_NOTE  3void lose_title();void lose();void warn();void PrintErr();

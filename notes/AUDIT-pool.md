@@ -30,14 +30,25 @@ fetched in another pass and not kept. See `notes/MGR.md`.
 
 ## Where the pool is
 
-`/Users/rdoggett/mine/os9/xxx/os9exec/os9/PUBCMDS/microware-archive` —
-281 files, 41 MB, in category directories, with a `download.log`.
+**Moved 2026-08-18, and `~/mine` is now off limits entirely.** rdoggett
+relocated everything this project needs; copyrighted source he may not share
+stays behind and must not be read, at any depth.
 
-`notes/DOWNLOADS-68k.md` says the archives live in `scratchpad/web/dl/` and
-calls that temporary. **That path is now empty.** A session trusting the note
-concludes the archives are lost; they are not, they were moved. Do not read
-above `.../xxx/os9exec` — copyrighted material rdoggett cannot share lives
-there.
+`~/Developer/os9/Scraped/os9/PUBCMDS/microware-archive` — **465 files, 79 MB**,
+in eighteen category directories, with a `download.log`. Beside it sit two
+trees no audit note has ever covered: `../68k` (32 archives) and
+`../68k_unpacked` (512 files already extracted). A third, 65 usenet `ar`
+archives, is at `~/Developer/os9/play/h4/ARR`.
+
+**Do not hardcode any of these.** `tools/paths.py` is the single place that
+knows, and every accessor fails loudly rather than returning an empty
+directory. Eight tools broke at once when this moved, because each carried
+its own copy of the path.
+
+Two earlier notes still name dead paths and cannot be trusted on this point:
+`notes/DOWNLOADS-68k.md` says `scratchpad/web/dl/`, which is empty, and the
+figure of 281 files above describes the pool before the 152 missing archives
+were recovered.
 
 ## Method
 

@@ -7,8 +7,9 @@ Dispatching on the extension missed real archives three separate ways:
   twelve files are named fileNNNN, with no extension, and are LHA or ZIP
 """
 import os, sys, collections
+import paths
 
-A = "/Users/rdoggett/mine/os9/xxx/os9exec/os9/PUBCMDS/microware-archive"
+A = paths.pool()
 
 def kind(p):
     with open(p, "rb") as f:

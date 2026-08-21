@@ -1,0 +1,1 @@
+NAME=		devprcRDIR=		RELSCFLAGS=		-ixt=/r0LFLAGS=		-ixt=/r0 -l=/h0/lib/os9lib.lRFILES=		$(NAME).r getopt.r getsys.rCFILES=		$(NAME).c getopt.cAFILES=		getsys.a$(NAME):	$(RFILES)			chd $(RDIR);cc $(RFILES) -fd=../$(NAME) $(LFLAGS)

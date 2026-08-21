@@ -65,3 +65,14 @@
   vis          did not hold the screen (exited or never started)
   wanderer     QUITS ON 'q'
 DONE
+
+digclk    NONE EXISTS -- measured from source 2026-08-19.  SRC/digclk/clock.c
+          reads the keyboard only inside `#ifdef MSDOS'; on OSK the loop is
+          sleep() and redraw with no read at all.  There is no key that quits
+          it.  Interrupt it: Ctrl-C or Ctrl-E (both go to the device's LAST
+          WRITER, so aim with `kill <pid>' if anything else is writing), or
+          let its own refresh_rate argument bound the run.
+draw      its help screen says `<esc>  quit', and its keys are redefinable
+          with `setenv DRAW name=key,...'.  Escape did NOT end it under
+          tools/try_quit.py, so the documented key is recorded here and the
+          behaviour is UNCONFIRMED -- do not write it up as verified.

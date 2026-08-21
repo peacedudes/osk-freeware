@@ -7,8 +7,9 @@ a 4-byte big-endian offset at header 0x0C -- reading it at offset 4 (an
 earlier mistake here) yields garbage like " hu" and "d".
 """
 import io, os, struct, subprocess, tarfile, zipfile
+import paths
 
-POOL = "/Users/rdoggett/mine/os9/xxx/os9exec/os9/PUBCMDS/microware-archive"
+POOL = paths.pool()
 CATS = ("DRIVERS", "EFFO", "GWINDOWS", "NETWORK", "TELECOM")
 OUT = "newstage"
 ARCH = (".lzh", ".lha", ".lhz", ".zip", ".tgz", ".tar.gz", ".tar", ".gz", ".z", ".zoo", ".ar")

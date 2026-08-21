@@ -1,0 +1,1 @@
+		nam		Dummy		ttl		OS-9/68000		use		<oskdefs.d>Edition equ		1Typ_Lang equ 	(Prgrm<<8)+ObjctAttr_Rev equ 	(ReEnt<<8)		psect	Dummy,Typ_Lang,Attr_Rev,Edition,8192,entryStdIn	equ		0StdOut	equ		1StdErr	equ		2		use		<graphmakros>		use		<mathmakros>entry:			MInit		GInit						Graphik-Trapjhandler installiertexit:		moveq 	#0,d1		os9 	F$Exit		ends

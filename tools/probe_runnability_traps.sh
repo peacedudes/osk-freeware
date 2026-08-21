@@ -7,7 +7,7 @@
 set -u
 S=/private/tmp/claude-501/-Users-rdoggett-Developer-os9-osk-freeware/2819709a-7a1e-4d9f-b0f0-9628c0581438/scratchpad
 REPO=/Users/rdoggett/Developer/os9/osk-freeware
-OS9EXEC=/Users/rdoggett/mine/os9/xxx/os9exec/os9exec-git_code/os9exec
+OS9EXEC=${OS9EXEC:-/Users/rdoggett/Developer/os9/os9exec/os9exec}
 B=$HOME/Developer/os9/play/oskBoot/CMDS
 : > "$S/probe/verdicts2.tsv"
 awk -F'\t' '$2!="RUNS"{print $1"\t"$3}' "$S/probe/verdicts.tsv" | while IFS=$'\t' read -r prog path; do

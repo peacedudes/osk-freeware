@@ -1,0 +1,1 @@
+TXMOD = link (txmod.r, tstsw.r)txmod.r = assemble (txmod.a)        txmod.a uses:  tparsopt.a                       ../rt_comm/setopt.atstsw.r = assemble (tstsw.a)        tstsw.a uses:  ../rt_comm/rt_comm.a                       topenf.a                       ../rt_comm/pack.a                       ../rt_comm/unpack.a which uses : ../rt_comm/rdlin_tim.a

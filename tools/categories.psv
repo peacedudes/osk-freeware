@@ -42,7 +42,6 @@ gzip|Archives & compression|Compress a file
 ar|Archives & compression|Create & extract
 arc|Archives & compression|Create & extract
 cat|Archives & compression|Create & extract
-cat.cio|Archives & compression|Create & extract
 lha|Archives & compression|Create & extract
 lharc|Archives & compression|Create & extract
 marc|Archives & compression|Create & extract
@@ -224,9 +223,7 @@ l|Files & directories|List & navigate
 ls|Files & directories|List & navigate
 tree|Files & directories|List & navigate
 basename|Files & directories|Paths
-basename.cio|Files & directories|Paths
 dirname|Files & directories|Paths
-dirname.cio|Files & directories|Paths
 
 # ---- Games ----
 advcom|Games|Adventure & fiction
@@ -572,7 +569,6 @@ dump|Text tools|Count & inspect
 file|Text tools|Count & inspect
 gdd|Text tools|Count & inspect
 strings|Text tools|Count & inspect
-strings.cio|Text tools|Count & inspect
 tail|Text tools|Count & inspect
 wc|Text tools|Count & inspect
 wc.cio|Text tools|Count & inspect
@@ -996,3 +992,5 @@ read_mail|System & modules|Utilities
 vecho|System & modules|Utilities
 ptxminst|System & modules|Utilities
 umusek|System & modules|Utilities
+ptxm|System & kernel|Modules
+vmod_trap|System & kernel|Modules
