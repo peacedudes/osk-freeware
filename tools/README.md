@@ -5,15 +5,24 @@
     check_disk.py       check the disk tree's invariants
     gen_depends.py      regenerate disk/DOC/DEPENDS
     gen_catalog.py      build docs/index.html, the browsable guide
+    measure_layout.py   where the programs expect their files -- /dd or /h0
+    screen_microware.py screen a candidate for Microware material BEFORE it
+                        goes anywhere near disk/
+    screened-src.txt    files under disk/SRC that screen strongly and have
+                        been read and accepted, each with the reason
     categories.psv      what each program is FOR -- hand-maintained
     rebuild/            rebuild programs from source (see rebuild/README.md)
+    rebuild/make_overlay.sh
+                        build the clean /dd overlay those rebuilds need. It
+                        was an undocumented local directory until 2026-08-21,
+                        when it turned out to be gone
     gen_freeware_index.py
 
 ## Checking the tree
 
     tools/check_disk.py disk
 
-Eight invariants, each of which has been made to fail on purpose:
+Nine invariants, each of which has been made to fail on purpose:
 
 - no text file contains LF -- OS-9 ends a line with CR alone, and an LF-ended
   file is read as one enormous line
@@ -27,6 +36,13 @@ Eight invariants, each of which has been made to fail on purpose:
 - the counts quoted in `readme` and `DOC/INDEX` match the tree
 - every program has a category in `categories.psv`
 - `DOC/DEPENDS` is up to date
+- no unscreened Microware source under `disk/SRC`. Added 2026-08-21, when
+  `disk/SRC/msfm` turned out to be 21 files of OS-9 file-manager internals
+  whose proprietary-confidential notice was a sibling of the directory
+  somebody copied, and so stayed behind. Only the STRONG rules count here --
+  the NAME rule alone matches 212 files under `disk/SRC`, every `makefile` and
+  `string.h` in the collection, and a check that cries wolf is one nobody
+  reads
 
 CI runs this before it builds anything. Note the stamp check reads files in
 Python on purpose: `grep -r` on this machine is ugrep, which skips binary
@@ -89,9 +105,14 @@ latter from the archive.
 
 ## Using the result
 
-os9exec will not mount one host path as two devices. To have the image be both
-`/dd` and `/h0` — which 108 programs with hardcoded `/h0` paths want — hard-link
-it, so one inode has two names:
+**Mount it as `/dd`.** That is settled and measured -- 258 programs want the
+collection at `/dd` because their own data is here, against 53 that want data
+at `/h0`. `notes/DECISION-placement.md` has the reasoning;
+`tools/measure_layout.py disk` prints the numbers rather than asking you to
+believe them.
+
+Then add `/h0` as well, to collect the 53. os9exec will not mount one host path
+as two devices, so hard-link it and one inode has two names:
 
     ln osk-freeware.dd h0
 
