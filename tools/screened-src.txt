@@ -50,3 +50,8 @@ disk/SRC/gtar/GNUTAR/getopt.h
 # fields pw_prio and pw_xdir. disk/SRC/COMPAT/pwd.h is our own second
 # expression of the same interface.
 disk/SRC/passwd/pwd.h
+
+# Third-party compatibility glue: defines O_RDONLY, O_WRONLY and friends in
+# terms of OS-9's own S_IREAD/S_IWRITE. It overlaps the SDK's stat.h because
+# it names the same constants, which is the entire point of the file.
+disk/SRC/infoxpress/BNU/ELM_2.4/HDRS/osk.h

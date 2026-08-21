@@ -1,0 +1,1 @@
+#ifndef S_IREAD#include <modes.h>#endif/* permissions */#ifndef O_RDONLY#define  O_RDONLY	S_IREAD	 	/* owner read */#define  O_WRONLY	S_IWRITE	/* owner write */#define  O_RDWR		(S_IREAD | S_IWRITE)#define  O_EXCL		S_ISHARE	/* unsharable */#endif#ifndef CLK_TCK#include <time.h>#endif

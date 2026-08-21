@@ -1,0 +1,1 @@
+cc -r  -D_OSK_MWC32 -DDEBUG=0 -DSTRCSPN -k=0 -v=. regexp.cregexp.c : line 71 **** redefined macro ****#define	END	0	/* no	End of program. */            ^"regexp.c", line 980: ****  duplicate cases ****			return(1);	 			^"regexp.c", line 1157: ****  duplicate cases ****		p = "END";		^errors in compilation : 2cpp:c68:gmake: *** [regexp.r] Hangup

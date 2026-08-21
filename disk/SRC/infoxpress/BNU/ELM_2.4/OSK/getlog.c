@@ -1,0 +1,1 @@
+/* * getlog * * Was only a dummy ... * * Now returns the same as calling cuserid with a null arg - MSH * */char *getlogin(){    return(cuserid((char *)0));}
