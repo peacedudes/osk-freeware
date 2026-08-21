@@ -123,6 +123,25 @@
   .empty{padding:52px 0;text-align:center;color:var(--dim)}
   footer{border-top:1px solid var(--rule);padding:20px 0 56px;color:var(--faint);font-size:12.5px}
   footer code{font-family:var(--mono);color:var(--dim)}
+  /* The chooser. PLAN-keep-drop asked for this: choosing happens somewhere
+     pleasant, and the OS-9 side stays a plain command you paste. What it
+     builds is what DOC/README-KEEP documents. */
+  li.p .pick{margin-left:10px;width:20px;height:20px;flex:0 0 20px;
+    border:1px solid var(--rule);border-radius:5px;background:var(--paper);
+    color:var(--faint);font:600 13px/18px var(--mono);text-align:center;
+    cursor:pointer;padding:0;transition:.12s;order:9}
+  li.p .pick:hover{border-color:var(--accent);color:var(--accent)}
+  li.p.picked .pick{background:var(--accent);border-color:var(--accent);color:#fff}
+  .tray{position:fixed;left:0;right:0;bottom:0;z-index:60;background:var(--card);
+    border-top:1px solid var(--rule);box-shadow:0 -6px 24px rgba(0,0,0,.10);
+    transform:translateY(110%);transition:transform .18s ease}
+  .tray.on{transform:none}
+  .tray .row2{display:flex;gap:12px;align-items:center;padding:12px 0 14px;
+    flex-wrap:wrap}
+  .tray code{flex:1 1 320px;font-family:var(--mono);font-size:13px;
+    background:var(--paper);border:1px solid var(--rule);border-radius:6px;
+    padding:9px 11px;color:var(--ink);overflow-x:auto;white-space:nowrap}
+  .tray .meta{color:var(--faint);font-size:12px;font-family:var(--mono)}
   @media (prefers-reduced-motion:reduce){*{transition:none!important}}
 </style>
 </head>
@@ -154,7 +173,19 @@
   <div class="panel" id="panel"></div>
 </div>
 
+<div class="tray" id="tray" role="region" aria-label="Programs picked to keep">
+  <div class="wrap row2">
+    <code id="traycmd">keep</code>
+    <span class="meta" id="traysize"></span>
+    <button class="chip" id="traycopy">Copy</button>
+    <button class="chip" id="trayclear">Clear</button>
+  </div>
+</div>
+
 <footer class="wrap">
+  Tick programs with <b>+</b> (or the space bar) to build a <code>keep</code>
+  command you can paste at an OS-9 shell &mdash; see <code>DOC/README-KEEP</code>.
+  <br><br>
   <span style="color:var(--accent)">&#9733;</span> needs Microware&rsquo;s <code>cio</code>
   &mdash; see <code>DOC/README-CIO</code>. Built from <code>DOC/INDEX</code>,
   <code>DOC/ORIGINS</code>, <code>DOC/DEPENDS</code>, the EFFO <code>info_</code> files
@@ -168,6 +199,7 @@ const ORDER = ["Shells", "Editors", "Text tools", "Files & directories", "Develo
 const esc = s => String(s==null?"":s).replace(/&/g,"&amp;").replace(/</g,"&lt;").replace(/>/g,"&gt;");
 const kb = n => n>=1024 ? Math.round(n/1024)+"K" : n+"B";
 const st = {q:"", nocio:false, src:false, doc:false, open:false, az:false};
+const picked = new Set();
 const BIG = 12;   // fold a subcategory longer than this
 
 function ok(p){
@@ -190,7 +222,11 @@ function renderAZ(hits){
     out.push(`<details class="cat" open><summary><div class="ct">${k}`+
       `<span class="n">${by[k].length}</span></div></summary><ul>`+
       by[k].sort((a,b)=>a.name.localeCompare(b.name)).map(p=>
-        `<li class="p" tabindex="0" data-n="${esc(p.name)}"><span class="nm">`+
+        `<li class="p${picked.has(p.name)?" picked":""}" tabindex="0" `+
+        `data-n="${esc(p.name)}">`+
+        `<button class="pick" data-pick="${esc(p.name)}" tabindex="-1" `+
+        `aria-label="pick ${esc(p.name)}">${picked.has(p.name)?"&#10003;":"+"}`+
+        `</button><span class="nm">`+
         `${p.star?'<span class="st" title="needs cio">&#9733;</span>':''}${esc(p.name)}</span>`+
         `<span class="ds">${esc(p.desc)} <span style="color:var(--faint)">&middot; `+
         `${esc(p.cat)}</span></span></li>`).join("")+"</ul></details>");
@@ -222,7 +258,11 @@ function render(){
     for(const s of names){
       const rows = subs[s].sort((a,b)=>a.name.localeCompare(b.name));
       const list = "<ul>"+rows.map(p=>
-        `<li class="p" tabindex="0" data-n="${esc(p.name)}"><span class="nm">`+
+        `<li class="p${picked.has(p.name)?" picked":""}" tabindex="0" `+
+        `data-n="${esc(p.name)}">`+
+        `<button class="pick" data-pick="${esc(p.name)}" tabindex="-1" `+
+        `aria-label="pick ${esc(p.name)}">${picked.has(p.name)?"&#10003;":"+"}`+
+        `</button><span class="nm">`+
         `${p.star?'<span class="st" title="needs cio">&#9733;</span>':''}${esc(p.name)}</span>`+
         `<span class="ds">${esc(p.desc)}</span></li>`).join("")+"</ul>";
       // Long runs fold away. netpbm's 62 converters otherwise push every
@@ -317,18 +357,55 @@ function close(){ document.getElementById("sheet").classList.remove("on"); }
 document.getElementById("sheet").addEventListener("click",e=>{
   if(e.target.id==="sheet") close(); });
 document.addEventListener("keydown",e=>{ if(e.key==="Escape") close(); });
+function tray(){
+  const names=[...picked].sort();
+  document.getElementById("tray").classList.toggle("on", names.length>0);
+  document.getElementById("traycmd").textContent =
+    names.length ? "keep " + names.join(" ") : "keep";
+  const by=Object.fromEntries(DATA.map(p=>[p.name,p]));
+  const bytes=names.reduce((n,x)=>n+((by[x]&&by[x].size)||0),0);
+  document.getElementById("traysize").textContent =
+    names.length + (names.length===1?" program, ":" programs, ")
+    + kb(bytes) + " of binaries";
+}
 document.getElementById("cats").addEventListener("click",e=>{
+  const pb=e.target.closest("button.pick");
+  if(pb){                       // picking, not opening
+    e.stopPropagation();
+    const n=pb.dataset.pick;
+    picked.has(n) ? picked.delete(n) : picked.add(n);
+    pb.closest("li.p").classList.toggle("picked", picked.has(n));
+    pb.innerHTML = picked.has(n) ? "&#10003;" : "+";
+    tray();
+    return;
+  }
   const li=e.target.closest("li.p"); if(li) detail(li.dataset.n); });
 document.getElementById("cats").addEventListener("keydown",e=>{
-  const li=e.target.closest("li.p");
-  if(li && (e.key==="Enter"||e.key===" ")){ e.preventDefault(); detail(li.dataset.n); } });
+  const li=e.target.closest("li.p"); if(!li) return;
+  if(e.key==="Enter"){ e.preventDefault(); detail(li.dataset.n); }
+  else if(e.key===" "){ e.preventDefault();
+    const pb=li.querySelector("button.pick"); if(pb) pb.click(); } });
 document.getElementById("q").addEventListener("input",e=>{st.q=e.target.value;render();});
 for(const [id,k] of [["f-nocio","nocio"],["f-src","src"],["f-doc","doc"],
                      ["f-open","open"],["f-az","az"]]){
   const b=document.getElementById(id);
   b.onclick=()=>{ st[k]=!st[k]; b.setAttribute("aria-pressed",String(st[k])); render(); };
 }
-render();
+document.getElementById("traycopy").onclick=()=>{
+  const el=document.getElementById("traycmd");
+  const b=document.getElementById("traycopy");
+  const done=()=>{ b.textContent="Copied"; setTimeout(()=>b.textContent="Copy",1200); };
+  const selectIt=()=>{ const r=document.createRange(); r.selectNodeContents(el);
+    const s=getSelection(); s.removeAllRanges(); s.addRange(r); };
+  // Selecting the text is the fallback: the clipboard API is unavailable on a
+  // page opened from a file:// URL in several browsers, and this page is meant
+  // to be readable straight off the disk.
+  if(navigator.clipboard && navigator.clipboard.writeText)
+    navigator.clipboard.writeText(el.textContent).then(done, selectIt);
+  else selectIt();
+};
+document.getElementById("trayclear").onclick=()=>{ picked.clear(); render(); tray(); };
+render(); tray();
 </script>
 
 </body>
