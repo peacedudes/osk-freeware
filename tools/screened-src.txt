@@ -1,0 +1,35 @@
+# Files under disk/SRC that tools/screen_microware.py flags on a STRONG rule
+# and that a person has read and accepted. One path per line.
+#
+# check_disk.py fails if a file not listed here flags strongly, so a newly
+# imported source tree carrying Microware material is caught before release
+# rather than after. Adding a line here is a decision: read the file, and say
+# in a comment why it is all right.
+#
+# The rule that makes this necessary, learned 2026-08-21: `disk/SRC/msfm` was
+# 21 files of OS-9 file-manager internals, byte-identical to EFFO forum disk
+# 12, whose sibling `note.doc` -- one directory ABOVE the SRC/ that was taken
+# -- carries Microware's proprietary-confidential notice. The notice did not
+# travel with the source. msfm had already been refused once, as a module.
+# Nobody had ever run the screen over disk/SRC.
+
+# flex is GNU's, and the SDK ships its own build of the same flex, so the two
+# share a generated header. Common ancestor, not a copy.
+disk/SRC/flex/flexdef.h
+
+# Two <stat.h> declaring the same OS-9 file-status interface. An interface a
+# program must match to call the system at all; the SDK's is one expression
+# of it, these are another.
+disk/SRC/eff_make/stat.h
+disk/SRC/lua/CLIENTS/LIB/OSK/stat.h
+
+# rdoggett's own 1988-89 work. Names system globals because that is what it
+# reads; it is his code, not Microware's.
+disk/SRC/hc_utils/sys.c
+
+# Heike C. Zimmerer's, from the pd-ksh edition 11 OSK port. German comments
+# throughout, and they call the documented F$Permit/F$Protect calls the SSM
+# manual describes -- third-party code using a published interface. Read in
+# full 2026-08-21. See tools/rebuild/pdksh/README.md.
+disk/SRC/pdksh/OSK/SRC/ssmpermit.a
+disk/SRC/pdksh/OSK/SRC/ssmprotect.a

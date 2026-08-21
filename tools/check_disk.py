@@ -319,6 +319,64 @@ def check_depends(root):
     return done.returncode == 0, "DOC/DEPENDS is stale"
 
 
+def check_src_screened(root):
+    """No unreviewed Microware material in the shipped source trees.
+
+    `tools/screen_microware.py` existed and was run on candidates BEFORE they
+    were installed. It had never been run over what was already on the disk,
+    and on 2026-08-21 that turned out to matter: `disk/SRC/msfm` was 21 files
+    of OS-9 file-manager internals, byte-identical to EFFO forum disk 12,
+    whose `note.doc` -- a sibling of the SRC/ directory somebody copied, and
+    therefore left behind -- carries Microware's proprietary-confidential
+    notice. It shipped for months.
+
+    Only the STRONG rules count here: an identical or heavily-overlapping SDK
+    file, an ownership claim, or system-source symbols. The NAME rule alone
+    matches 212 files under disk/SRC -- every `makefile` and `string.h` in the
+    collection -- and a check that cries wolf 212 times is one nobody reads.
+
+    Accepted files are listed, with reasons, in tools/screened-src.txt.
+    """
+    here = os.path.dirname(os.path.abspath(__file__))
+    screen = os.path.join(here, "screen_microware.py")
+    allow = os.path.join(here, "screened-src.txt")
+
+    known = set()
+    if os.path.exists(allow):
+        for line in open(allow):
+            line = line.strip()
+            if line and not line.startswith("#"):
+                known.add(line)
+
+    src = os.path.join(root, "SRC")
+    if not os.path.isdir(src):
+        return True, ""
+    files = [os.path.join(r, f) for r, _, fs in os.walk(src) for f in fs]
+    done = subprocess.run([sys.executable, screen, "-q"] + files,
+                          capture_output=True, text=True)
+
+    STRONG = ("SYSTEM SOURCE", "IDENTICAL to", "Microware copyright",
+              "proprietary", "% of its lines")
+    bad, path = [], None
+    for line in done.stdout.splitlines():
+        if line.startswith("FLAG"):
+            path = line.split(None, 1)[1].strip()
+        elif path and any(s in line for s in STRONG):
+            rel = os.path.relpath(path, os.path.dirname(os.path.abspath(root)))
+            for cand in (path, rel, os.path.relpath(path)):
+                if cand in known:
+                    break
+            else:
+                bad.append((path, line.strip()))
+            path = None
+    for p, why in bad:
+        print("    %s\n      %s" % (p, why))
+    if bad:
+        print("    Read each one. If it is all right, add it to"
+              " tools/screened-src.txt with the reason.")
+    return not bad, "unreviewed Microware material under SRC"
+
+
 CHECKS = [
     ("line endings are CR-only", check_line_endings),
     ("no UTF-8 on an 8-bit disk", check_no_utf8),
@@ -328,6 +386,7 @@ CHECKS = [
     ("documented counts match the tree", check_counts),
     ("every program has a category", check_categories),
     ("DOC/DEPENDS is up to date", check_depends),
+    ("no unscreened Microware source", check_src_screened),
 ]
 
 if __name__ == "__main__":

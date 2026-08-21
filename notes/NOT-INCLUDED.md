@@ -117,3 +117,24 @@ data directories that have never existed, so only `su` could ever log in. Fixed
 2026-08-13: both now point at `/dd/CMDS` and have a data directory with a
 `.login` that sets PATH, TERM and TERMCAP, because a fresh OS-9 login inherits
 nothing.
+
+## msfm -- removed from the disk 2026-08-21
+
+`msfm` was on the "Refused, with the reason -- do not add" list, as
+*"Microware's, out of Dibble's OS-9 Insights"*. The MODULE was never added.
+**The SOURCE was**, as `disk/SRC/msfm`, 21 files, and sat there until a sweep
+of the pool found it.
+
+How it got in is the useful part: the licence notice is in a SIBLING file,
+`note.doc`, one directory up from `SRC/` in `EFFO/forum12.lzh`. Whoever took
+the source took the `SRC/` directory and the notice stayed behind. The files
+themselves carry no header, no copyright line, nothing -- reading any one of
+them tells you only that it is a file manager.
+
+`tools/screen_microware.py` flags 10 of the 21 on its SYSTEM SOURCE rule
+(`PD_BUF`, `PD_CPR`, `PD_DEV`, `V_BUSY`, `V_STAT`, `V_NDRV`), which is exactly
+what that rule is for. It was never run over `disk/SRC/`.
+
+**The lesson worth keeping: when taking a source tree out of an archive, read
+what is in the directory ABOVE it.** A licence that applies to a subtree is
+routinely stored at the top of it.
