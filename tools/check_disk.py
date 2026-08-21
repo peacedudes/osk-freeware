@@ -341,12 +341,17 @@ def check_src_screened(root):
     screen = os.path.join(here, "screen_microware.py")
     allow = os.path.join(here, "screened-src.txt")
 
+    # Entries are stored the way a person would type them, `disk/SRC/...`,
+    # but the tree being checked is not always called `disk`: mkimage.sh
+    # builds a copy elsewhere for the "does it work with no Microware modules
+    # present" release check, and that must not fail on path spelling alone.
+    # So compare on the part below the tree root.
     known = set()
     if os.path.exists(allow):
         for line in open(allow):
             line = line.strip()
             if line and not line.startswith("#"):
-                known.add(line)
+                known.add(line.split("/", 1)[1] if "/" in line else line)
 
     src = os.path.join(root, "SRC")
     if not os.path.isdir(src):
@@ -362,11 +367,7 @@ def check_src_screened(root):
         if line.startswith("FLAG"):
             path = line.split(None, 1)[1].strip()
         elif path and any(s in line for s in STRONG):
-            rel = os.path.relpath(path, os.path.dirname(os.path.abspath(root)))
-            for cand in (path, rel, os.path.relpath(path)):
-                if cand in known:
-                    break
-            else:
+            if os.path.relpath(path, root) not in known:
                 bad.append((path, line.strip()))
             path = None
     for p, why in bad:
