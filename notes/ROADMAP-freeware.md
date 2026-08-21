@@ -2,14 +2,21 @@
 
 Moved out of os9exec's ROADMAP.md when the collection got its own repo.
 
+> **Partly overtaken by the 2026-08-21 release pass.** Read
+> `notes/FOR-RDOGGETT.md` and `notes/SESSION-2026-08-21.md` before working
+> from anything below. In particular the `keep`/`drop` item is done, `elvis`
+> is not missing, and the CI pin is now 51 commits behind os9exec's HEAD.
+
 ## Open, as of 2026-08-08
 
-### Next session starts at notes/PLAN-keep-drop.md
+### ~~Next session starts at notes/PLAN-keep-drop.md~~ — DONE 2026-08-21
 
-`keep` / `drop` — taking selected programs off the collection onto your own
-`/dd`, with a receipt that makes removal exact and cannot eat your saves. The
-design is settled apart from where files land; that one is blocking and is
-written up there.
+`keep`, `drop` and `kept` are built, as OS-9 modules from
+`disk/SRC/keep/keep.c`. The blocking question -- where kept files land -- is
+answered in `notes/DECISION-placement.md`, and not the way the plan assumed:
+the collection belongs on `/dd`, so `keep` is for someone whose `/dd` is their
+OWN OS-9 system. `PLAN-keep-drop.md` carries the answers to its own four open
+questions at the top.
 
 ### Data files programs want -- FOUR FOUND, 2026-08-13
 
