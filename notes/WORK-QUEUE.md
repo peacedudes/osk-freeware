@@ -101,8 +101,27 @@ plan it followed.
       Reasoning in `notes/OS9EXEC-IREAD.md`. Someone else's call.
 - [ ] **The four G-Windows programs' licence** -- rdoggett has no knowledge of
       them. Recorded in `SOURCES.txt`; applies to the binaries first.
-- [ ] **27 INDEX entry lines lack a star** the program deserves. Cosmetic and
-      dangerous to automate -- read the HANDOFF warning before trying.
-- [ ] **352 programs still have no documentation** beyond their INDEX line and
-      the measured `DOC/USAGE` capture. The pool has manuals for 23 and that
-      was taken; most never had one.
+- [x] **27 INDEX entry lines lack a star** -- CLOSED 2026-08-21, and there
+      were not 27. Checked both directions with the grid region excluded
+      explicitly (it runs from the `All 367` line to the rule that follows,
+      currently lines 404-497): **one** entry line lacks a star its name has
+      in the grid, and **none** carries a star its name lacks. The one is
+      `REBUILT/screen`, which is deliberately unstarred -- commit 349da1e,
+      "keep REBUILT/screen unstarred" -- because it is the trap-free source
+      build while `CMDS/screen` is the archive binary that needs cio.
+      The count was stale: it predated the re-measurement that produced 367.
+
+      Worth knowing: the grid is a list of NAMES, and a name can live in two
+      directories with different cio needs. `screen` is the case. Any future
+      checker must compare per-file, not per-name, or it will report this
+      deliberate difference as a fault every time.
+- [ ] **~345 programs still have no documentation** beyond their INDEX line
+      and the measured `DOC/USAGE` capture. Most never had any. 2026-08-21:
+      `sox` and `msntp` were recovered from the pool -- `sox` had a DOC
+      directory holding four audio samples and no text at all, so the census
+      counted it as documented. Both were only findable after fixing
+      `extract_pool.py`, which had silently dropped 16 pool files since it was
+      written (`untar` with `ignore_zeros=True` returns zero members instead
+      of raising, so the not-a-tar fallback never fired). **The pool's
+      documentation is now exhausted** -- a full sweep of it on 2026-08-21
+      found nothing else matching a shipped program.
