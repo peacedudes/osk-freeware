@@ -176,3 +176,15 @@ collection ships "with their source"; it is 43%, and it now says so.
 5. **`fpu`** — `NOT-INCLUDED.md` says a grant puts it back in,
    `POOL-ASSESSMENT.md` says it stays out. Two notes disagree. Your call.
 6. The four G-Windows programs' licence, still unanswered.
+7. **The CI pin is 51 commits behind.** `.github/workflows/build-image.yml`
+   pins os9exec to `261b4b69`; `~/Developer/os9/os9exec` HEAD is 51 commits
+   past it. The comment says to bump it deliberately, so I have not. Worth
+   knowing what it implies: whatever CI builds against is what a person
+   downloading a release will effectively be running, and **no released
+   os9exec has the `I$Read` fix** — so on a release today, `ksh` is not usable
+   interactively. That is the argument for finishing the ksh source rebuild,
+   and it is the only thing that would make the collection self-sufficient.
+
+I checked the workflow itself as far as I can without running it:
+`tools/gen_catalog.py disk docs/index.html` (the two-argument form CI uses)
+works, and `check_disk.py disk` passes. I did not exercise the workflow.
