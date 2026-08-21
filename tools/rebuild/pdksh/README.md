@@ -92,7 +92,70 @@ settles it.
     makes `ksh` usable on an os9exec that does NOT have the `I$Read`
     end-of-record fix. See `notes/OS9EXEC-IREAD.md`.
 
+## The alias crash: FOUND AND FIXED
+
+**`strchr` here does not match the terminating NUL, and `lex.c` depends on it
+doing so.**
+
+`OSK/DEFS/osk.h` has `#define strchr index`, and the alias-expansion path in
+`lex.c` reads the last character of an alias value to spot a trailing space:
+
+    c = strchr(s->str, 0)[-1];
+
+ANSI says `strchr` matches the terminating null and returns a pointer to it.
+**OS-9's `index` returns NULL** for that search -- measured, with a five-line
+program, not assumed:
+
+    index("print", 0)  -> NULL
+    index("print",'i') -> found
+
+So the expression was `NULL[-1]`: a byte read at address `$FFFFFFFF`, a bus
+error, on EVERY alias expansion. That is exactly the symptom -- `echo`, `true`
+and `pwd` died and `print` and `cd` did not, because those three are the
+aliases `main.c` installs in `initcoms[]` and the other two are not aliases at
+all.
+
+`sh_lex.c.patch` replaces it with `s->str[strlen(s->str) - 1]`, which is the
+same value; `s->str[0]` is known non-zero immediately above, so the length is
+at least 1.
+
+**The crash is gone.** With the fix, `x=5; echo x is $x; true; echo status $?`
+prints `x is 5` and `status 0` from a `-c` invocation.
+
+Worth keeping in mind for the rest of this port: **any `strchr(s, 0)` in this
+codebase is a latent bus error.** It is the idiom for "find the end", and it
+does not work here.
+
 ## Where it stands — one bug left, and it is well cornered
+
+**Some stdout is still lost**, and it is a different fault from the crash.
+`print` and `echo` write with `putc` to `shf[1]`; error messages go through
+`shellf` -> `vfprintf` to `shf[2]` and those DO appear. Observed with the cio
+build:
+
+    ksh -c "x=5; echo x is $x; true; echo status $?"   -> both lines, correct
+    ksh -c "for i in a b c; do echo n=$i; done"        -> n=b and n=c, no n=a
+    ksh -c "echo ALIAS FIXED"                          -> nothing
+    ksh -c "print hello"                               -> nothing
+
+So it is not simply "the first line is lost"; two-command sequences print
+both. Suspect the stdio buffering: this build had to drop osklib's `fputc`
+because it collides with `clibn.l`'s `putc_c` psect, and that psect also
+carries `fflush`, so dropping one changed which library object supplies the
+other. **Build with `-i` (cio), as the original did** -- `ksh` is starred, so
+that is the faithful build anyway -- and try restoring osklib's `fputc`, since
+under cio the C library comes from the trap handler and the collision may not
+arise.
+
+### Ruled out by experiment, so do not re-test
+
+  - **Not the `lex.c` read patch.** Rebuilt with pristine `lex.c`: same.
+  - **Not the include-path inconsistency.** Fixed and rebuilt: same.
+  - **Not `$ENV`.** Setting it changes nothing.
+  - The crash and the missing output are **two separate faults**; fixing the
+    first did not touch the second.
+
+## The old section, kept because its ruled-out list is still valid
 
 The build completes. `ksh` links at ~137 KB, is correctly named, carries no
 author stamp, and **starts**. `cd`, assignments and `print` all work.

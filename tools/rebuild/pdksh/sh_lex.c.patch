@@ -1,5 +1,5 @@
 --- /private/tmp/claude-501/-Users-rdoggett-Developer-os9-osk-freeware/a1b843ce-500e-4a36-8d53-023c1a94e8fb/scratchpad/hunt/pdksh/sh/lex.c	1992-04-29 16:27:00
-+++ /private/tmp/claude-501/-Users-rdoggett-Developer-os9-osk-freeware/a1b843ce-500e-4a36-8d53-023c1a94e8fb/scratchpad/h6/pdksh/sh/lex.c	2026-08-21 02:46:31
++++ /private/tmp/claude-501/-Users-rdoggett-Developer-os9-osk-freeware/a1b843ce-500e-4a36-8d53-023c1a94e8fb/scratchpad/h6/pdksh/sh/lex.c	2026-08-21 04:47:55
 @@ -556,7 +556,40 @@
  			else
  #endif
@@ -41,3 +41,28 @@
  			if (c < 0 && sigchld_caught)
  			{
  			  goto retry;
+@@ -635,7 +668,24 @@
+ 		  case SALIAS:
+ 			s->str = s->u.tblp->val.s;
+ 			if (s->str[0] != 0) {
++#ifdef OSK
++				/* Last character of the alias value, to spot a
++				 * trailing space.  It was strchr(s->str, 0)[-1],
++				 * which relies on strchr MATCHING THE TERMINATING
++				 * NUL and returning a pointer to it, as ANSI
++				 * requires.  OS-9's does not: osk.h has
++				 * `#define strchr index', and index(s, 0) returns
++				 * NULL here -- measured.  So this read address -1
++				 * and took a bus error on EVERY alias expansion,
++				 * which is why `echo', `true' and `pwd' died while
++				 * `print' and `cd' were fine: those three are the
++				 * aliases main.c installs.  s->str[0] is known
++				 * non-zero just above, so strlen is at least 1.
++				 */
++				c = s->str[strlen(s->str) - 1];
++#else
+ 				c = strchr(s->str, 0)[-1];
++#endif
+ 				if (c == ' ' || c == '\t')
+ 					alias = 1;	/* trailing ' ' */
+ 			}
