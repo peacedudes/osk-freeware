@@ -155,9 +155,31 @@ two` prints `t`). Unbuffered should print everything. That is not a flushing
 problem; that is the `FILE` structure being written through a layout the
 library does not share.
 
+**Tried and NOT the cure, though both were real faults worth keeping:**
+
+  - **`setvbuf` rewritten** (`OSK_SRC_setvbuf.c.patch`). The port's body only
+    ever cleared `_UNBUF`, which was right for an older library where that was
+    the only buffering bit. This one has three -- `_IONBF 0x0004`,
+    `_IOLBF 0x0800`, `_IOFBF 0x1000`, with `_BUFMASK 0x1804` -- and `putc` is
+    a MACRO that reads them. Clearing `_UNBUF` and setting nothing left the
+    stream with no buffering mode at all. The patch clears the mask and sets
+    the mode asked for. Correct, and the symptom did not change.
+  - **Dropping osklib's `setvbuf` entirely** so the library's own is used:
+    will not link under `-i`. `setvbuf` and `setbuf` are already in `cio.l`,
+    and pulling `setbuf_c` out of `clibn.l` collides with `cio_a`.
+  - **`_IONBF` instead of `_IOFBF` in `io.c`**: makes it far worse -- exactly
+    ONE CHARACTER escapes per command. That measurement is the best clue there
+    is and it is what the list below is for.
+
 Where to look, in order:
 
-  1. **The FILE layout.** `std/stdc/stdio.h` declares its own `FILE`
+  1. **`savefd`/`restfd` around the first command.** `io.c`'s own comment on
+     `flushshf` says it "must invalidate input and output buffers". If
+     `comexec` saves and restores fd 1 without flushing `shf[1]` first, the
+     pending first line goes with it -- and only the first, because after that
+     the stream has been through the cycle once. This is the theory that fits
+     "the first command, whatever it is" best, and it was not tested.
+  2. **The FILE layout.** `std/stdc/stdio.h` declares its own `FILE`
      (`_ptr, _base, _end, _flag, _fd, _save, _bufsiz`) and osklib's
      `setvbuf.c` pokes `stream->_flag` directly. This build deliberately keeps
      `std/stdc` OFF the include path -- it shadows the SDK's `time.h` and
