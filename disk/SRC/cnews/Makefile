@@ -1,0 +1,1 @@
+libcnews.l: libbig/lib_big.l libcnews/lib_cnews.l libc/lib_c.l dbz/lib_dbz.l libfake/lib_fake.l libosk/lib_osk.l  merge -z=liblist >-$@

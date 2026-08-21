@@ -1,0 +1,1 @@
+# libbig makefile# moidified for os9/68k by blarsINCLUDE=../includeDEFINES=-v=$(INCLUDE) -v=../relay -v=/h0/blarslib/defsCOPTS= -t=/r0CFLAGS= $(COPTS) $(DEFINES)SRCS=active.fast.c sys.fast.cOBJS=active.fast.r sys.fast.rlib_big.l: $(OBJS)  merge $(OBJS) >-$@active.fast.r: active.fast.csys.fast.r: sys.fast.c

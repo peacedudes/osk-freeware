@@ -1,0 +1,1 @@
+I = ../include# beware -- build knows about NEEDEDNEEDED =  ../include/string.hall:	$(NEEDED)$(I)/string.h:	string.h	cp string.h $@$(I)/sys/timeb.h:	timeb.h	cp timeb.h $@clean:

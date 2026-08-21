@@ -1,0 +1,1 @@
+/* * fopenexcl(name) - fopen(name, "w") with error and errno==EEXIST, *	if name exists (OSK) */#include <stdio.h>#include <modes.h>FILE *fopenexcl(name)register char *name;{	register int fd;	fd = create(name, S_IWRITE, S_IREAD | S_IWRITE | S_IOREAD);	if(fd < 0) return NULL;	return fdopen(fd, "w");}

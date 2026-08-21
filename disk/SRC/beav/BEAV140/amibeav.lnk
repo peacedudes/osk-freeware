@@ -1,0 +1,1 @@
+FROM LIB:c.o+amiga.o basic.o ebcdic.o fileio.o region.o text.o wangpc.obuffer.o echo.o language.o main.o search.o tty.o window.ocinfo.o extend.o kbd.o spawn.o ttyio.o termio.o tcap.o word.odisplay.o file.o line.o random.o symbol.o ttykbd.o format.oTO "beav"LIB LIB:lc.lib LIB:amiga.lib

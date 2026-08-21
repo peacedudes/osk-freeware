@@ -1,0 +1,1 @@
+/* * osk gethostname simulation */static char defhost[] = "blars";intgethostname(hostname, size)register char *hostname;int size;{	strncpy(hostname, defhost, size);	return 0;}

@@ -1,0 +1,1 @@
+# C news libosk makefileINCLUDE = ../includeDEFINES=-v=$(INCLUDE) -v=/h0/blarslib/defsCOPTS=-t=/r0CFLAGS=$(COPTS) $(DEFINES)OBJS = clsexec.r fopenexcl.r setgid.r freespace.rlib_osk.l:  $(OBJS)  merge $(OBJS) >-$@

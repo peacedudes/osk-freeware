@@ -1,0 +1,1 @@
+# makefile for os9/68k by blarsCFLAGS= -t=/r0 -v=/h0/blarslib/defsOBJS= fsync.r symlink.rlib_fake.l: $(OBJS)  merge $(OBJS) >-$@

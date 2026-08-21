@@ -1,0 +1,1 @@
+#! /bin/shumask 002set -x: installing setnewsidscp setnewsids /h1/Lib/News/dd/Cmds/chown root /h1/Lib/News/setnewsidschmod u+s /h1/Lib/News/setnewsids: done: setting uids for setuid programs.../dd/Cmds/chown news.news /h1/Lib/Newsbin/input/newsspool /h1/Lib/Newsbin/relay/relaynewschmod u+s,g+s /h1/Lib/Newsbin/input/newsspool /h1/Lib/Newsbin/relay/relaynews: done

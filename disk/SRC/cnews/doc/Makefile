@@ -1,0 +1,1 @@
+install.out:	install	nroff -Tdumb -ms install >$@

@@ -1,0 +1,1 @@
+/* * u m a s k * * Only a dummy ... */int umask(){  return(0);}

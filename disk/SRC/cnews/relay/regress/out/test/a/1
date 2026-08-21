@@ -1,0 +1,1 @@
+Path: hostb!host!foo!userFrom: user@hostMessage-ID: <#1@host>Newsgroups: test.a## This should appear in test/a/1 and not be sent to foo

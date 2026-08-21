@@ -1,0 +1,1 @@
+/* fake setgid for os9/68k */int setgid(gid)int gid;{	return 0;}

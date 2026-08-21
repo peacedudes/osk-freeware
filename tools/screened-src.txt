@@ -40,3 +40,6 @@ disk/SRC/pdksh/OSK/SRC/ssmprotect.a
 # screen's known blind spot: "matches the SDK" is not the same as "is
 # Microware's", because the SDK contains third-party code as well.
 disk/SRC/ed/getopt.h
+
+# Same FSF getopt.h as SRC/ed -- GNU tar ships the same header.
+disk/SRC/gtar/GNUTAR/getopt.h

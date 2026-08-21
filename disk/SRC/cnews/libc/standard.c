@@ -1,0 +1,1 @@
+#define	NULL	0extern void closeall();extern char	**environ;static char	*stdenv[] = {/* =()<	"PATH=@<NEWSPATH>@",>()=	*/	"PATH=/bin:/usr/bin",	"IFS= \t\n",	NULL};voidstandard(){	environ = stdenv;	closeall(1);}voidsafe(){	setgid(getgid());	setuid(getuid());	closeall(1);}

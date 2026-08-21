@@ -1,0 +1,1 @@
+/* stricmp - case insensitive strcmp */int stricmp(s,t)register char *s, *t;{    while (toupper(*s) == toupper(*t++)) if (!*s++) return 0;    return(toupper(s[0]) - toupper(t[-1]));}

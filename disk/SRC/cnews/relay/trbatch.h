@@ -1,0 +1,1 @@
+/* * interface to the transmit batch files */struct batchfile {#ifdef notdef	int bf_ref;			/* reference count */#endif	FILE *bf_str;			/* stream */	char *bf_name;			/* file name */	int bf_lines;			/* until fflush */};/* imports from trbatch.c */extern struct batchfile *bfopen(), *bfisopen();extern statust bffkclose(), bfrealclose();extern int bfflush();

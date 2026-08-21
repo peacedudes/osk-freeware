@@ -1,0 +1,1 @@
+#define	DEBUG(x)	printf ("ich bin an dieser Stelle --- %d\n",x);	

@@ -1,0 +1,1 @@
+#include <stdio.h>#include <sys/types.h>#include "libc.h"char *nemalloc(size)			/* news emalloc - calls errunlock on error */unsigned size;{	register char *result = malloc(size);	if (result == NULL)		errunlock("out of memory", "");	return result;}
