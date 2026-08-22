@@ -87,7 +87,7 @@ lines long, which is no help until you already know the name you want.
 | **Text tools** | 81 | Search, sort, compare, reformat, split and spell-check. |
 | **Files & directories** | 35 | Listing, copying, finding, renaming, and knowing what you have. |
 | **Developer tools** | 46 | Version control, tags, cross-reference, formatters, a debugger and benchmarks. |
-| **Compilers & build** | 34 | C compilers and their passes, assemblers, linkers, make and parser generators. |
+| **Compilers & build** | 33 | C compilers and their passes, assemblers, linkers, make and parser generators. |
 | **Languages** | 6 | Interpreters and language systems beyond C. |
 | **Archives & compression** | 35 | Pack, unpack and shrink -- lha, zip, tar, arc, zoo, and OS-9 module libraries. |
 | **Encoding & conversion** | 26 | Between text encodings, line endings, number bases, ciphers and hashes. |
@@ -96,10 +96,10 @@ lines long, which is no help until you already know the name you want.
 | **Games** | 66 | Adventures, board and card games, arcade ports, dungeon crawls and puzzles. |
 | **Screen toys** | 6 | Things to watch rather than play. Start one and leave it going. |
 | **Amusements** | 20 | Generators, simulators and diversions that are not quite games. |
-| **System & modules** | 127 | OS-9 module and process tools, devices, system state and scheduling. |
+| **System & modules** | 126 | OS-9 module and process tools, devices, system state and scheduling. |
 | **Disk & DOS** | 20 | Reading and writing MS-DOS media with the mtools set. |
 | **Time & calendar** | 9 | Calendars, clocks and astronomy. |
-| **Maths & calculators** | 13 | Calculators, plotting, orbits and number theory. |
+| **Maths & calculators** | 9 | Calculators, plotting, orbits and number theory. |
 | **Printing** | 14 | Spoolers, page formatting and PostScript. |
 | **Documentation** | 6 | Pagers, readers and the help system. |
 

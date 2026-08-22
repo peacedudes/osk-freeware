@@ -1,6 +1,6 @@
 # What is on this disk
 
-844 programs of OS-9/68K community software, gathered from the archives that kept it and made to run again. **505 of them need nothing but this disk**; the rest want Microware's `cio`, marked below with a star.
+838 programs of OS-9/68K community software, gathered from the archives that kept it and made to run again. **500 of them need nothing but this disk**; the rest want Microware's `cio`, marked below with a star.
 
 `DOC/INDEX` on the disk lists everything alphabetically. This is the same collection sorted by what each program is *for*, which is the more useful order when you do not yet know what you are looking for.
 
@@ -13,7 +13,7 @@
 | [Text tools](#text-tools) | 81 | Search, sort, compare, reformat, split and spell-check. |
 | [Files & directories](#files--directories) | 35 | Listing, copying, finding, renaming, and knowing what you have. |
 | [Developer tools](#developer-tools) | 46 | Version control, tags, cross-reference, formatters, a debugger and benchmarks. |
-| [Compilers & build](#compilers--build) | 34 | C compilers and their passes, assemblers, linkers, make and parser generators. |
+| [Compilers & build](#compilers--build) | 33 | C compilers and their passes, assemblers, linkers, make and parser generators. |
 | [Languages](#languages) | 6 | Interpreters and language systems beyond C. |
 | [Archives & compression](#archives--compression) | 35 | Pack, unpack and shrink -- lha, zip, tar, arc, zoo, and OS-9 module libraries. |
 | [Encoding & conversion](#encoding--conversion) | 26 | Between text encodings, line endings, number bases, ciphers and hashes. |
@@ -22,10 +22,10 @@
 | [Games](#games) | 66 | Adventures, board and card games, arcade ports, dungeon crawls and puzzles. |
 | [Screen toys](#screen-toys) | 6 | Things to watch rather than play. Start one and leave it going. |
 | [Amusements](#amusements) | 20 | Generators, simulators and diversions that are not quite games. |
-| [System & modules](#system--modules) | 127 | OS-9 module and process tools, devices, system state and scheduling. |
+| [System & modules](#system--modules) | 126 | OS-9 module and process tools, devices, system state and scheduling. |
 | [Disk & DOS](#disk--dos) | 20 | Reading and writing MS-DOS media with the mtools set. |
 | [Time & calendar](#time--calendar) | 9 | Calendars, clocks and astronomy. |
-| [Maths & calculators](#maths--calculators) | 13 | Calculators, plotting, orbits and number theory. |
+| [Maths & calculators](#maths--calculators) | 9 | Calculators, plotting, orbits and number theory. |
 | [Printing](#printing) | 14 | Spoolers, page formatting and PostScript. |
 | [Documentation](#documentation) | 6 | Pagers, readers and the help system. |
 
@@ -469,7 +469,7 @@
 
 *C compilers and their passes, assemblers, linkers, make and parser generators.*
 
-<details><summary>34 programs</summary>
+<details><summary>33 programs</summary>
 
 **C toolchain**
 
@@ -516,7 +516,6 @@
 | `as5` | 6805/68HC05 cross-assembler (xasm)<br>`Usage: as5 [files]` |
 | `lnk` | RTF FORTRAN link driver; calls l68 with /h0/LIB/sys.l, which is Microware's and not here |
 | `lnk.org` | as lnk, the original build |
-| `my.opt` | 68k assembly peephole optimiser<br>`syntax: optim {opt} [infile] {opt} [outfile] {opt}` |
 
 **Other languages**
 
@@ -1235,7 +1234,7 @@
 
 *OS-9 module and process tools, devices, system state and scheduling.*
 
-<details><summary>127 programs</summary>
+<details><summary>126 programs</summary>
 
 **Utilities**
 
@@ -1428,12 +1427,6 @@
 |---|---|
 | `passwd` | change your own password in /dd/SYS/password.  Matches on the user NAME, and the name must be spelt exactly as the password file has it, capitals included.  Matthias Rosenthal's, EFFO forum disk 5; source in SRC/passwd.<br>`Syntax: passwd` |
 
-**Hardware control**
-
-| | |
-|---|---|
-| `pow` | &#9733; X-10 Powerhouse home control (needs /x1 hardware)<br>**How:** Wants a hardware controller at /x1 and cannot run without it. |
-
 </details>
 
 ## Disk & DOS
@@ -1498,7 +1491,7 @@
 
 *Calculators, plotting, orbits and number theory.*
 
-<details><summary>13 programs</summary>
+<details><summary>9 programs</summary>
 
 **Calculators**
 
@@ -1510,15 +1503,6 @@
 | `rechne` | &#9733; RPN calculator |
 | `rpn` | &#9733; RPN calculator |
 | `sc` | sc -- spreadsheet calculator (needs TERM)<br>**How:** The spreadsheet, version 6.16. It will not read SYS/termcap: do `. /dd/SYS/termcap.entry' first, then `sc' opens and says "Type '?' for help". Tested. |
-
-**Plotting & charts**
-
-| | |
-|---|---|
-| `lac` | commodity price chart (tc suite)<br>**How:** Full-screen: it takes over the display. **`q' quits** -- tested. |
-| `main` | tc suite - main driver<br>**How:** Full-screen: it takes over the display. **`q' quits** -- tested. |
-| `scope` | tc suite - scope display<br>**How:** Full-screen: it takes over the display. **`q' quits** -- tested. |
-| `sin` | tc suite - sine plot<br>**How:** Full-screen: it takes over the display. **`q' quits** -- tested. |
 
 **Spreadsheets**
 

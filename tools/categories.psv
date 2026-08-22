@@ -17,7 +17,6 @@
 # ---- Amusements ----
 areacode|Amusements|Curiosities
 dam|System & modules|Devices & disks
-pow|System & modules|Hardware control
 setfont|Communications|Terminal & session
 ssl|System & modules|Devices & disks
 touchtype|Amusements|Curiosities
@@ -85,7 +84,6 @@ as4|Compilers & build|Assemblers & linkers
 as5|Compilers & build|Assemblers & linkers
 lnk|Compilers & build|Assemblers & linkers
 lnk.org|Compilers & build|Assemblers & linkers
-my.opt|Compilers & build|Assemblers & linkers
 compiler|Compilers & build|C toolchain
 assembler|Compilers & build|Make & generators
 bison|Compilers & build|Make & generators
@@ -488,10 +486,6 @@ loan|Maths & calculators|Calculators
 rechne|Maths & calculators|Calculators
 rpn|Maths & calculators|Calculators
 sc|Maths & calculators|Calculators
-lac|Maths & calculators|Plotting & charts
-main|Maths & calculators|Plotting & charts
-scope|Maths & calculators|Plotting & charts
-sin|Maths & calculators|Plotting & charts
 
 # ---- Printing ----
 gs33|Printing|PostScript
