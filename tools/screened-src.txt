@@ -23,9 +23,9 @@ disk/SRC/flex/flexdef.h
 disk/SRC/eff_make/stat.h
 disk/SRC/lua/CLIENTS/LIB/OSK/stat.h
 
-# rdoggett's own 1988-89 work. Names system globals because that is what it
-# reads; it is his code, not Microware's.
-disk/SRC/hc_utils/sys.c
+# (disk/SRC/hc_utils/sys.c was here. REMOVED 2026-08-22 on rdoggett's
+# instruction -- "I don't want to ship sys.c". It was his own, it displayed
+# OS-9 system information, and nothing on the disk was built from it.)
 
 # Heike C. Zimmerer's, from the pd-ksh edition 11 OSK port. German comments
 # throughout, and they call the documented F$Permit/F$Protect calls the SSM
