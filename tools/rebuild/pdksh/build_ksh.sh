@@ -47,25 +47,55 @@ for p in "$here"/*.patch; do
     # sh_lex.c -> sh/lex.c ; OSK_DEFS_SYS_types.h -> OSK/DEFS/SYS/types.h
     target="$work/pdksh/$rel"
     [ -f "$target" ] || { echo "patch $p has no target $rel" >&2; exit 1; }
-    patch -s -p0 -d / "$target" < "$p" 2>/dev/null ||
-      patch -s "$target" < "$p" ||
-      { echo "failed to apply $(basename "$p")" >&2; exit 1; }
+    # The sources are CR-terminated and the patches are ordinary LF diffs, so
+    # `patch' sees a one-line file and reports "No such line 2". Translate,
+    # apply, translate back -- the result has to be CR-only or `cpp' reads it
+    # as one enormous line and says "source line too long".
+    # The PATCHES carry CRs too -- they were diffed from CR-only files, so each
+    # context line ends CR+LF. Strip those or nothing matches.
+    /usr/bin/tr '\r' '\n' < "$target" > "$target.lf"
+    tail -c1 "$target.lf" | /usr/bin/od -An -c | /usr/bin/grep -q '\\n' ||
+        printf '\n' >> "$target.lf"
+    # ...and drop `\ No newline at end of file'. With the CRs gone that marker
+    # no longer describes either side, and patch calls the hunk malformed.
+    /usr/bin/tr -d '\r' < "$p" | /usr/bin/grep -av '^\\ No newline' > "$work/patch.lf"
+    if ! patch -s "$target.lf" < "$work/patch.lf"; then
+        echo "failed to apply $(basename "$p")" >&2
+        exit 1
+    fi
+    /usr/bin/tr '\n' '\r' < "$target.lf" > "$target"
+    rm -f "$target.lf" "$target.lf.orig"
     echo "  patched $rel"
 done
 cp "$here/memmove.c" "$here/vfprintf.c" "$work/pdksh/sh/"
 cp "$here/time.h" "$work/pdksh/OSK/DEFS/"
+# `misc.c' is the one file that wants <limits.h>, and the SDK has none. The
+# port's own copy is in std/stdc, which stays OFF the include path because it
+# also shadows time.h and stdlib.h -- so take just this one header across.
+cp "$work/pdksh/std/stdc/limits.h" "$work/pdksh/OSK/DEFS/"
 
 D="-V=/h6/pdksh/OSK/DEFS -V=/h6/pdksh/etc -V=/h7 -V=/dd/DEFS"
 OSKDEF="-DKSH -DDT_INET=9"
 SHDEF="-D_SYSV -DBIT8 -DDT_INET=9 -DUSE_SIGNAL -DNSIG=255 \
 -Dopendir=_x_opendir -Dopen=_x_open -Daccess=_x_access -Dcreat=_x_creat"
 
-osklib=$(cd "$work/pdksh/OSK/SRC" && ls *.c | tr '\n' ' ')
+# osklib's object list is its dmakefile's FILES, NOT every .c in the directory.
+# `maketemp.c' and `unistd.c' are in the directory and NOT in the library, and
+# linking them too gives "tempnam ... already appeared" and the same for
+# `ulimit'.  `fputc' is in the list and is dropped here on purpose: it collides
+# with clibn.l's `putc_c' psect, which also carries `fflush'.
+osklib="stat.c times.c setvbuf.c signal.c fcntl.c execve.c laccess.c getcwd.c \
+getgid.c ioctl.c osk.c getppid.c tempnam.c _x_open.c _x_opendir.c strnicmp.c \
+_x_access.c _x_creat.c"
+# ...and two of the 21 are 68k ASSEMBLY, which is why `jobs.c' comes back with
+# `ssmpermit' and `ssmprotect' unresolved if you only compile the C.
+oskasm="ssmpermit.a ssmprotect.a"
 shsrc=$(cd "$work/pdksh/sh" && ls *.c | tr '\n' ' ')
 
 # The two merge lists, CR-terminated the way `merge -z' wants them.
 : > "$work/pdksh/OSK/SRC/ctmp.list"
 for c in $osklib; do printf '%s\r' "${c%.c}.r" >> "$work/pdksh/OSK/SRC/ctmp.list"; done
+for a in $oskasm; do printf '%s\r' "${a%.a}.r" >> "$work/pdksh/OSK/SRC/ctmp.list"; done
 : > "$work/pdksh/sh/ctmp.list"
 for c in $shsrc; do printf '%s\r' "${c%.c}.r" >> "$work/pdksh/sh/ctmp.list"; done
 printf 'osklib.r\r' >> "$work/pdksh/sh/ctmp.list"
@@ -74,6 +104,7 @@ printf 'osklib.r\r' >> "$work/pdksh/sh/ctmp.list"
   printf 'setenv CLIB /dd/LIB\nsetenv CDEF /dd/DEFS\nchx /dd/CMDS\n'
   printf 'chd /h6/pdksh/OSK/SRC\n'
   for c in $osklib; do printf 'cc %s %s %s -r=/h6/pdksh/OSK/SRC\n' "$c" "$OSKDEF" "$D"; done
+  for a in $oskasm; do printf 'r68 %s -o=%s.r\n' "$a" "${a%.a}"; done
   printf 'del ctmp.parts.l\nmerge -z=ctmp.list >ctmp.parts.l\n'
   printf 'chd /h6/pdksh/sh\n'
   printf 'del osklib.r\ncopy /h6/pdksh/OSK/SRC/ctmp.parts.l osklib.r\n'
