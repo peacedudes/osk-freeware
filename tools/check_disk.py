@@ -224,6 +224,33 @@ def check_index_names(root):
     return not missing, "%d command(s) missing from DOC/INDEX" % len(missing)
 
 
+def check_no_build_litter(root):
+    """No build product may be sitting in the tree that becomes the image.
+
+    Added 2026-08-22, after `tools/build.sh` was run for the first time on a
+    clean checkout. Every recipe compiles IN PLACE -- cc writes `foo.r' beside
+    `foo.c' and the linked module as `R_<prog>' -- and `mkimage.sh' reads
+    `disk/' off the filesystem. So a build immediately before an image build
+    shipped 77 object files, fourteen overwritten copies of the ARCHIVE's own
+    `.r' files, and five `ctmp.*' temporaries cc left behind when a compile was
+    interrupted.
+
+    `.r' files cannot be screened by name: 432 of them are the archives' own
+    and belong on the disk. `R_' and `ctmp.' are unambiguous -- nothing in any
+    archive here is named either -- so those are what this looks for.
+    """
+    bad = []
+    for here, dirs, files in os.walk(root):
+        for name in files:
+            if name.startswith("R_") or name.startswith("ctmp."):
+                bad.append(os.path.relpath(os.path.join(here, name), root))
+    for path in sorted(bad)[:12]:
+        print("    build product: %s" % path)
+    if len(bad) > 12:
+        print("    ... and %d more" % (len(bad) - 12))
+    return not bad, "%d build product(s) left in the tree" % len(bad)
+
+
 def check_recipes(root):
     """Every build recipe must name a source tree that is actually here.
 
@@ -265,7 +292,24 @@ def check_recipes(root):
             bad.append((prog, "sources that are all gone from SRC/%s" % tree))
     for prog, why in bad:
         print("    recipe for %s names %s" % (prog, why))
-    return not bad, "%d recipe(s) point at source that is gone" % len(bad)
+
+    # A duplicate line builds the same program twice and reports it twice, so
+    # a run of eleven recipes printed fifteen rows and three of the failures
+    # were the same failure. It happened by appending a batch of recipes that
+    # had already been appended -- silently, because nothing looked.
+    seen, dup = set(), []
+    for line in open(recipes):
+        line = line.rstrip("\n")
+        if line.startswith("#") or not line.strip():
+            continue
+        if line in seen:
+            dup.append(line.split("|")[0])
+        seen.add(line)
+    for prog in dup:
+        print("    recipe for %s appears more than once" % prog)
+    return (not bad and not dup,
+            "%d recipe(s) point at source that is gone, %d duplicated"
+            % (len(bad), len(dup)))
 
 
 def check_star_grid(root):
@@ -410,6 +454,7 @@ CHECKS = [
     ("line endings are CR-only", check_line_endings),
     ("no UTF-8 on an 8-bit disk", check_no_utf8),
     ("no editor or host leftovers", check_no_leftovers),
+    ("no build products in the tree", check_no_build_litter),
     ("no new SDK author stamps", check_author_stamps),
     ("every command is in DOC/INDEX", check_index_names),
     ("the star grid is self-consistent", check_star_grid),

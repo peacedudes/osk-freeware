@@ -61,9 +61,20 @@ compile() {   # $1 arch  $2 sources  $3 oskdef  $4 defines  $5 prog  $6 extra  $
   printf '\033\n\004\n'
 }
 
-run() {       # $1 pool  $2 command-file
+# The output goes to a FILE and only a bounded slice of it reaches a shell
+# variable.  ed.h carries a REALLOC macro whose continuation lines join into one
+# logical line of about 1400 characters; cc says "source line too long" and, on
+# 2026-08-22, said it 161 MEGABYTES' worth.  Capturing that with out=$(run ...)
+# left the driver spinning on a 161 MB string for five minutes with no os9exec
+# running and no sign of what it was doing.  Head and tail together because the
+# reason lives at both ends: cc's diagnostics come first, l68's "Symbol 'x'
+# unresolved" comes last.
+run() {       # $1 pool  $2 command-file  $3 output file
   ( cd "$REPO" && gtimeout 240 env OS9DISK="$OS9CLEAN" OS9H6="$1" OS9H7="$OS9COMPAT" \
-      "$EXE" -r shell < "$2" 2>&1 | /usr/bin/tr -d '\000' )
+      "$EXE" -r shell < "$2" 2>&1 | /usr/bin/tr -d '\000' ) > "$3"
+  /usr/bin/head -c 400000 "$3"
+  [ "$(/usr/bin/wc -c < "$3")" -gt 500000 ] && printf '\n[... output truncated ...]\n'
+  /usr/bin/tail -c 100000 "$3"
 }
 
 # '|' not TAB: tab is an IFS *whitespace* character, so bash collapses runs of
@@ -92,7 +103,7 @@ while IFS='|' read -r prog arch srcs defs libs extra; do
   done
 
   compile "$arch" "$srcs" "$OSKDEF" "$D" "$prog" "${extra:-}" "$L" > "$WORK/cmd"
-  out=$(run "$POOL" "$WORK/cmd")
+  out=$(run "$POOL" "$WORK/cmd" "$WORK/out")
   printf '=== %s (%s)\n%s\n' "$prog" "$arch" "$out" >> "$LOG"
 
   # Retry once with a shim if the only thing missing is a BSD/Unix function
@@ -111,7 +122,7 @@ while IFS='|' read -r prog arch srcs defs libs extra; do
     if [ -n "$shim" ]; then
       cp "$HERE/shims/$shim" "$d/" 2>/dev/null
       compile "$arch" "$srcs $shim" "$OSKDEF" "$D" "$prog" "${extra:-}" "$L" > "$WORK/cmd"
-      out=$(run "$POOL" "$WORK/cmd")
+      out=$(run "$POOL" "$WORK/cmd" "$WORK/out")
       printf '=== %s (%s) RETRY with %s\n%s\n' "$prog" "$arch" "$shim" "$out" >> "$LOG"
     fi
   fi

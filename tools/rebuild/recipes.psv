@@ -220,3 +220,28 @@ ispell|ispell|ispell.c term.c good.c lookup.c hash.c tree.c|TERMCAPS||
 
 # less 3.32, from its own Makefile.o9c object list
 less|less/less_332|main.c screen.c brac.c ch.c charset.c cmdbuf.c command.c decode.c edit.c filename.c forwback.c help.c ifile.c input.c jump.c line.c linenum.c lsystem.c mark.c optfunc.c option.c opttbl.c os.c output.c position.c prompt.c search.c signal.c tags.c ttyin.c version.c regexp.c|_OSK_MWC32=1 _OSK=1||
+# Added 2026-08-22, second pass over the trees that still had no recipe.
+# Each was built and produced a module before it was written down. Where a
+# tree carries a makefile, its object list is the source of truth -- guessing
+# from "every .c in the directory" was wrong for adv, cursive, gnu and snake,
+# and right for none of them.
+advent|adv|main.c init.c io.c done.c subr.c vocab.c rand.c|||
+alps|alps|alps.c|||
+ccheck|ccheck|ccheck.c|UNIX||
+checkfile|checkfile|checkfile.c|||
+cursive|cursive|cursive.c font.c|||
+dhry|dhry|dhry_p1.c dhry_p2.c|||
+fstat|fstat|fstat.c|||
+passwd|passwd|passwd.c pwd.c|||
+snake|snake|snake.c move.c rand.c||/dd/LIB/curses.l /dd/LIB/termlib.l /dd/LIB/math.l|
+textb|textb|textb.c|||
+xlate|xlate|static.c xlate.c|||
+# GNU Chess builds two ways from one core: gnuchess is the curses display,
+# nchess the plain one. W_OK is a Unix name for access()'s write bit, which
+# OS-9 spells S_IWRITE = 2.
+gnuchess|gnu|gnuchess.c uxdsp.c os9times.c|W_OK=2|/dd/LIB/curses.l /dd/LIB/termlib.l /dd/LIB/math.l|
+nchess|gnu|gnuchess.c nondsp.c os9times.c|W_OK=2 CHESSTOOL|/dd/LIB/math.l|
+# A second, smaller diff -- the EFFO one. The collection ships GNU diff as
+# `diff'; this is the other source that produces the same command, kept
+# because it is here and it compiles.
+diff|eff_effdiff|diff.c|||

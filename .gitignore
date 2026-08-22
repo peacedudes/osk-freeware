@@ -36,3 +36,7 @@ __pycache__/
 .bash_history
 .sh_history
 .pdksh_hist
+
+# Modules produced by tools/build.sh. The disk ships committed binaries;
+# these are what a rebuild made this time, for comparison or installation.
+/built/
