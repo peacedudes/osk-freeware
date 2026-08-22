@@ -207,3 +207,14 @@ xcrypt|xrand|xcrypt.c|||-K=2L
 xrf|eff_xrf|xrf.c|||
 yacc|effo_yacc|closure.c error.c lalr.c lr0.c main.c mkpar.c output.c reader.c skeleton.c symtab.c verbose.c warshall.c|||
 zot|zot|zot.c|||
+
+# Added 2026-08-22 by tools/try_compile.sh -- trees that had no recipe and
+# turned out to build. See notes/COMPILE-AUDIT.md for the ones that did not.
+tsmon2|eff_tsmon|tsmon2.c|||
+indent|indent|args.c comment.c indent.c io.c lexi.c parse.c|||
+robots|rob|AppendNode.c ClrBoard.c DeleteNode.c GameBoard.c InsertNode.c Main.c TopTen.c deleterbts.c dmpscore.c dress.c dumpstats.c getargs.c getdate.c gettops.c loadtops.c moverbts.c moveyou.c os9stuff.c rand.c showrbts.c showscore.c showyou.c writetop.c|||
+today|today|datetx.c localtime.c moontx.c nbrtxt.c timetx.c today.c|||
+wish|wish|commandline.c cursor.c files.c flabel.c getwd.c keyboard.c more.c movement.c paging.c termcap.c wish.c|||
+xlisp|xlisp|os9stuff.c xlbfun.c xlcont.c xldbug.c xldmem.c xleval.c xlfio.c xlftab.c xlglob.c xlimage.c xlinit.c xlio.c xlisp.c xljump.c xllist.c xlmath.c xlobj.c xlpp.c xlprin.c xlread.c xlstr.c xlstruct.c xlsubr.c xlsym.c xlsys.c|||
+draw|draw|command.c init.c main.c redraw.c||/dd/LIB/mytime.r|
+shuffle|shuffle|game.c main.c switch.c visual.c xrand.c||/dd/LIB/os9lib.l|
