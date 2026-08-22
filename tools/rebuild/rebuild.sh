@@ -221,6 +221,13 @@ while IFS='|' read -r prog arch srcs defs libs extra; do
     esac
     [ -n "$shim" ] || break
     case " $added " in *" $shim "*) break;; esac      # already tried: stop
+    # NEVER shadow a file the tree already has.  SRC/patch carries its own
+    # os9popen.c and NAMES it in its recipe; copying the shim over it, and
+    # then tidying the shim away afterwards, DELETED the archive's source.
+    if [ -e "$d/$shim" ]; then
+      echo "  note: $prog wants $shim but SRC/$arch has one of its own" >> "$LOG"
+      break
+    fi
     cp "$HERE/shims/$shim" "$d/" 2>/dev/null || break
     added="$added $shim"
     out=$(attempt "$srcs$added")
