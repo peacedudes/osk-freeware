@@ -10,30 +10,39 @@ accessible in universe.** Everything below serves one of them.
 
 ---
 
-## 1. Write recipes for the 61 source trees that have none  — BIGGEST
+## 1. Write recipes for the source trees that have none  — BIGGEST
 
-`tools/build.sh --missing` lists them. 109 of 170 trees have a recipe, which
-is what "we know this compiles" means. The other 61 have never been
-established either way, so the collection cannot honestly claim its source is
-good.
+`tools/build.sh --missing` lists them, and `tools/build.sh` builds everything
+there is a recipe for. As of 2026-08-22 the failures are down to three, each
+for a reason that is written down rather than guessed:
 
-**Method, per tree, about five minutes each:**
+  - `flex`  — Microware's `cpp` bus-errors on its nested macros.
+    `notes/CPP-MACRO-CRASH.md` has a three-file reproduction.
+  - `ls`    — a gcc2 build; K&R `cc` will not take it.
+  - `pdraw` — wants X11 headers, which are not here and are not coming.
 
-    tools/try_compile.sh <tree> <program>
+and three trees that will never have one:
 
-It makes the naive attempt and classifies the failure against the table in
-`tools/rebuild/README.md`. Then either add a recipe to
-`tools/rebuild/recipes.psv` or write down why it cannot have one.
+  - `COMPAT` is headers, `unixlib` is a LIBRARY (it has a recipe now, named
+    `unix.l` — a first field ending in `.l` builds one), and `rcs` is
+    genuinely incomplete: `rcssyn.c`, `rcsrev.c` and `rcsutil.c` are missing
+    from the tree AND from `rcs4.lha` in the pool. It is RCS **version 4**
+    (Purdue, 1987); GNU's 5.7 files are not drop-in.
+  - `pep` calls `standby()` and `init_via()`, which live in the mc EPROM
+    programmer's own hardware library. Its own header says it runs only on
+    that board.
 
-**Read `DOC/ORIGINS` first for each tree** — a tree is named by ARCHIVE, not
-by program. `SRC/divutils` builds `gen`, `run` and `if`; `toys` builds `wish`.
-Guessing `SRC/<program>` finds nothing for most of the disk.
+**What is left is the trees with no recipe at all** — `tools/build.sh
+--missing`. Several are known to be out of reach (`homelibr` is C++, `graph`
+and `aterm` and `serload` are 68k assembly, `lout` and `ed` are ANSI/gcc,
+`deansi` needs a lex runtime, `calc` and `cgrafik` want headers -- h_grafik.h,
+graf.h -- that are nowhere on the disk or in the pool). The rest are ordinary
+work: read the tree's own makefile for the object list, which has been right
+every time a guess was wrong.
 
-The failure shapes already seen, and their fixes, are in
-`notes/COMPILE-VERIFY.md`. Most are: sources named in another tree (reach them
-as `../unixlib/bcopy.c`), a file list that is too long (two `main`s) or too
-short, a header included as `<foo.h>` when it sits beside the source, or a
-function this C library never had.
+**Method that pays:** `tools/try_compile.sh <tree> <program>` for a first
+look, then the makefile. `tools/rebuild/README.md` has the failure table, and
+it grew six rows on 2026-08-22 — read it before diagnosing anything.
 
 ## 2. Take the counts out of the two docs that still carry them
 
