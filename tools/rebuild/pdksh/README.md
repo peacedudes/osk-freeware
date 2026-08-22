@@ -126,6 +126,52 @@ Worth keeping in mind for the rest of this port: **any `strchr(s, 0)` in this
 codebase is a latent bus error.** It is the idiom for "find the end", and it
 does not work here.
 
+## 2026-08-22: the shipped ksh works, and that changes what this is for
+
+Two things were measured on 2026-08-22 against os9exec carrying the `I$Read`
+end-of-record fix — the fix rdoggett has since said IS going to be released:
+
+    os9exec -r ksh                      interactive; typed commands run,
+                                        assignments and $-expansion work, exit
+                                        exits
+    ksh -c "print one; print two"       prints both lines
+    ksh -c "echo hello world"           prints it
+
+**That is `disk/CMDS/ksh`, the shipped binary, unmodified.** So the reason this
+rebuild existed has largely gone: `sh_lex.c.patch` reads the command line a
+byte at a time as insurance against an os9exec WITHOUT the `I$Read` fix, and
+that release is not going to happen. Nobody has to rebuild ksh to have a
+working ksh.
+
+What the rebuild is still for is changing the port — and for that,
+`build_ksh.sh` now does the whole thing in one command instead of the prose
+recipe below. It stages a copy, applies every patch here, compiles osklib and
+sh, assembles the two `.a` files, merges and links. About four minutes.
+
+**Our rebuild still loses ALL output**, which is worse than the cio build
+described below and is a fault in the rebuild, not in what ships:
+
+    built/ksh -c "print one; print two"     nothing
+    built/ksh -c "nosuchcommandhere"        nothing -- not even the error
+
+Two more theories were tried on 2026-08-22 and are **not** the cure. Both were
+plausible enough to be worth writing down so nobody spends the afternoon again:
+
+  - **`flushshf`'s OSK guard.** It flushes only when `_WRITTEN` and `_WRITE`
+    are both set, and `restfd` calls `flushshf` and then `close(fd)` — so a
+    buffer the guard declines to flush goes with the descriptor. Replacing the
+    guard with `fd != 0` (never flush the input stream, always flush the
+    others) changed nothing.
+  - **`fdopen(fd, "r+")` in `fopenshf`.** `"r+"` asks for a descriptor open
+    for both, and fd 1 as handed to a program is open for writing; the
+    non-OSK arm sidesteps this by re-using `_iob[fd]` instead, and the OSK arm
+    was written to skip that. Falling back to `fdopen(fd, "w")` when `"r+"` is
+    refused changed nothing either — so `shf[1]` is evidently not NULL.
+
+Which leaves the FILE-layout question (below) as the live one, and the fastest
+way at it is now a two-line probe in `fopenshf` writing `shf[1]->_fd` and
+`_flag` straight to fd 2 with `write()`.
+
 ## Where it stands — one bug left, and it is well cornered
 
 **Some stdout is still lost**, and it is a different fault from the crash.
