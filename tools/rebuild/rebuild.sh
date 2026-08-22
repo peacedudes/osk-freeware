@@ -74,6 +74,24 @@ compile() {   # $1 arch  $2 sources  $3 oskdef  $4 defines  $5 prog  $6 extra  $
 # running and no sign of what it was doing.  Head and tail together because the
 # reason lives at both ends: cc's diagnostics come first, l68's "Symbol 'x'
 # unresolved" comes last.
+# A LIBRARY, not a program.  A recipe whose first field ends in `.l' is built
+# by compiling each source and merging the objects -- there is no main() and
+# nothing to link.  SRC/unixlib is the one that wants this: its own makefile
+# ends `merge -b99 -z=lib_list', and the result is what somebody would put in
+# their own LIB rather than name source-by-source in every recipe.
+compile_lib() {    # $1 arch  $2 sources  $3 oskdef  $4 defines  $5 name  $6 dir
+  : > "$6/ctmp.list"
+  for s in $2; do
+    printf '%s\r' "$(basename "$s" .c).r" >> "$6/ctmp.list"
+  done
+  printf 'setenv CLIB /dd/LIB\nsetenv CDEF /dd/DEFS\nchx /dd/CMDS\nchd /h6/%s\n' "$1"
+  for s in $2; do
+    printf 'cc %s %s%s -r=/h6/%s -V=/h6/%s -V=/h7\n' "$s" "$3" "$4" "$1" "$1"
+  done
+  printf 'merge -z=ctmp.list >R_%s\n' "$5"
+  printf '\033\n\004\n'
+}
+
 # THE LONG-ARGUMENT PATH.  OS-9's shell truncates a command line at about 600
 # characters, silently: `mtools' has 45 sources, its cc line ran to 900, and
 # what arrived was the line cut off in the middle of `-V=/h6/mtools/MTOOLS_3.6'
@@ -164,6 +182,12 @@ while IFS='|' read -r prog arch srcs defs libs extra; do
   # are 430 characters and its cc line is 900, because the output path, the -V
   # directories and four libraries come after them.
   attempt() {   # $1 sources
+    case "$prog" in
+      *.l) compile_lib "$arch" "$1" "$OSKDEF" "$D" "$prog" "$d" > "$WORK/cmd"
+           LIMIT=900
+           run "$POOL" "$WORK/cmd" "$WORK/out"
+           return;;
+    esac
     compile "$arch" "$1" "$OSKDEF" "$D" "$prog" "${extra:-}" "$L" > "$WORK/cmd"
     longest=$(/usr/bin/awk '{ if (length($0) > m) m = length($0) } END { print m+0 }' "$WORK/cmd")
     LIMIT=240

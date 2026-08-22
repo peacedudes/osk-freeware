@@ -288,3 +288,10 @@ elvis|elvis|blk.c cmd1.c cmd2.c ctype.c curses.c cut.c ex.c input.c main.c misc.
 # beav's def.h pulls in prototyp.h, which is ANSI prototypes this K&R compiler
 # cannot parse.  The port left the switch in place: -DNOPROTO.
 beav|beav/BEAV140|basic.c ebcdic.c fileio.c region.c text.c wangpc.c buffer.c echo.c language.c main.c search.c tty.c window.c cinfo.c extend.c kbd.c spawn.c ttyio.c termio_osk.c tcap.c word.c display.c file.c line.c random.c symbol.c ttykbd.c format.c osk.c|NOPROTO|/dd/LIB/termlib.l|
+# A LIBRARY, not a program: a first field ending in `.l' makes rebuild.sh
+# compile each source and merge the objects, with nothing to link.  This is
+# SRC/unixlib built the way its own makefile builds it, and it is what somebody
+# would drop into their own LIB rather than name file-by-file in every recipe
+# that wants getopt or vsprintf.
+unix.l|unixlib|alarm.c stat.c _secsince70.c ioctl.c ttyname.c isatty.c signal.c execl.c perror.c bcmp.c rand.c strchr.c strrchr.c strpbrk.c strtok.c strspn.c strcspn.c getopt.c vsprintf.c ctype.c bcopy.c execv.c|STATIC||
+

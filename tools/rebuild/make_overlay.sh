@@ -103,6 +103,32 @@ if [ -d "$REPO/disk/SRC/COMPAT/sys" ]; then
     echo "  added SRC/COMPAT/sys to DEFS (cpp will not find <sys/x.h> via -V)"
 fi
 
+# The COLLECTION's own DEFS as well.  disk/DEFS carries headers the SDK does
+# not -- auxlib/local.h, os9lib, os9unix, ncurses, p2c.h -- and programs on
+# this disk were built against them.  `spooler' asks for <local.h> and there is
+# no other copy.  Only what the SDK does not already have is copied, so an SDK
+# header is never shadowed by an older one from the disk.
+if [ -d "$REPO/disk/DEFS" ]; then
+    added=0
+    for f in "$REPO/disk/DEFS"/*; do
+        name=$(basename "$f")
+        [ -e "$DEST/DEFS/$name" ] && continue
+        cp -R "$f" "$DEST/DEFS/$name"
+        added=$((added+1))
+    done
+    # ...and auxlib's headers by name too: a program writes <local.h>, not
+    # <auxlib/local.h>, and cpp will not search a subdirectory for it.
+    if [ -d "$REPO/disk/DEFS/auxlib" ]; then
+        for f in "$REPO/disk/DEFS/auxlib"/*.h; do
+            name=$(basename "$f")
+            [ -e "$DEST/DEFS/$name" ] && continue
+            cp "$f" "$DEST/DEFS/$name"
+            added=$((added+1))
+        done
+    fi
+    echo "  added $added header(s) from the collection's own DEFS"
+fi
+
 # Make the check fail once before believing it.  If any stamp survives in LIB,
 # every binary built through this overlay would carry it.
 if grep -rl "from the disk of" "$DEST/LIB" >/dev/null 2>&1; then
