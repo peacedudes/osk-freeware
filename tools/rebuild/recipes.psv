@@ -26,7 +26,16 @@ cls|bix|cls.c|||
 compiler|eff_gshell|compiler.c selectfile.c|||
 compress|hc_utils|compress.c|||
 connect|bix|connect.c|||
-convert|world|demons.c helper.c motion.c parser.c verbs1.c verbs2.c world.c||/dd/LIB/rand.r|
+# world -- and the two generators its makefile runs before it.
+#
+# This used to be one recipe called `convert', which was wrong twice: it built
+# world's game sources under the wrong module name, and `convert' in the
+# makefile is not a program at all but a `touch'ed timestamp.  It failed on
+# `can't open parame.inc', which is GENERATED -- vcnvrt reads vocab.dat and
+# vtxtcn reads vtext.dat, and neither data file was in SRC/world.  Both were
+# still in play/h4/ARR/world.ar, which the import had read only partly; see
+# SRC/world/README-RECOVERED.
+world|world|demons.c helper.c motion.c parser.c verbs1.c verbs2.c world.c||/dd/LIB/rand.r|
 cookhash|cookie|cookhash.c|||
 cookie|cookie|cookie.c|||
 cpr|cpr|cpr.c|||
@@ -184,6 +193,7 @@ version|version|version.c|||
 vi|effo_vi|ex.c ex_OS9.c ex_addr.c ex_cmds.c ex_cmds2.c ex_cmdsub.c ex_data.c ex_extern.c ex_get.c ex_io.c ex_put.c ex_re.c ex_set.c ex_subr.c ex_temp.c ex_tty.c ex_unix.c ex_v.c ex_vadj.c ex_vget.c ex_vmain.c ex_voper.c ex_vops.c ex_vops2.c ex_vops3.c ex_vput.c ex_vwind.c pprintf.c||/dd/LIB/termlib.l|
 vis|vis|vis.c||/dd/LIB/egetopt.r|
 vtxtcn|world|vtxtcn.c|||
+vcnvrt|world|vcnvrt.c|||
 wanderer|wanderer|m.c display.c edit.c fall.c game.c help.c icon.c jump.c read.c save.c scores.c||/dd/LIB/curses.l /dd/LIB/termlib.l|
 wish|toys|wish.c|||
 worms|toys|worms.c ctime.c rand.c screen.c||/dd/LIB/usr.l /dd/LIB/termlib.l|
