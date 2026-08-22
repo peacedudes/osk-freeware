@@ -1,5 +1,6 @@
 bio	CMDS	NO-USAGE	
 blackjack	CMDS/BROKEN	NO-USAGE	
+dedit	CMDS	NO-USAGE	
 mscheck	CMDS	NO-USAGE	
 vmod_trap	CMDS/COMMS	NO-USAGE	
 X11R6shl	CMDS	NO-USAGE	
@@ -67,6 +68,7 @@ puzzle	CMDS/GAMES	NO-USAGE
 cyberwar	CMDS/GAMES	NO-USAGE	
 bincheckr	CMDS/GAMES	NO-USAGE	
 scriptmaster	CMDS/GAMES	NO-USAGE	
+postprint	CMDS/GAMES	NO-USAGE	
 wisecrack	CMDS/GAMES	NO-USAGE	
 vtxtcn	CMDS/GAMES	NO-USAGE	
 dfiles	CMDS	USAGE-OK	dfiles 0.7 Usage: dfiles <path> [<path> ...] 

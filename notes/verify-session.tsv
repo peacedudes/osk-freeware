@@ -1,8 +1,9 @@
-keep	CMDS	SESSION-OK	usage: keep [-n] [-f] <name>...   take a program onto your disk        kept                       wh
 devprc	CMDS	STILL-BAD	Process   Pid: 3, devprc, edition 7     Exit code: E_PRCABT(228) Process Aborted   Directories: Curr
 bio	CMDS	STILL-BAD	
 ptxm	CMDS	STILL-BAD	No more memory !!! No more memory !!! 
 blackjack	CMDS/BROKEN	STILL-BAD	
+dedit	CMDS	STILL-BAD	
+cpu	CMDS	SESSION-OK	[2J[1;Hos9$  
 mscheck	CMDS	STILL-BAD	
 config	CMDS	SESSION-OK	/* Char = 8 bits, signed */ /* Maximum short = 32767 (= 2**15-1) */ /* Maximum int = 2147483647 (= 2
 vmod_trap	CMDS/COMMS	STILL-BAD	
@@ -21,7 +22,6 @@ scsi_mm1a	CMDS/MM1	STILL-BAD	No more memory !!! No more memory !!!
 msdrv.901_340	CMDS/MM1	STILL-BAD	No more memory !!! No more memory !!! 
 rb37c65	CMDS/MM1	STILL-BAD	
 snddrv	CMDS/MM1	STILL-BAD	
-drop	CMDS	SESSION-OK	usage: drop [-n] <name>... 
 math881	CMDS	STILL-BAD	
 who	CMDS	STILL-BAD	*help: command not found ADL: is a directory *Syntax:: command not found 
 wysetime	CMDS	STILL-BAD	
@@ -31,7 +31,6 @@ csl	CMDS	STILL-BAD
 oleo	CMDS	STILL-BAD	Illegal instruction: 0009 at 000465d2 Process   Pid: 3, oleo, edition 7     Exit code: E_PRCABT(228)
 souper	CMDS	STILL-BAD	Process   Pid: 3, souper, edition 1     Exit code: E_PRCABT(228) Process Aborted   Directories: Curr
 aterm	CMDS	SESSION-OK	[2J                    ATerm : A terminal program for OS9/68000                     ===== = = =====
-kept	CMDS	SESSION-OK	nothing has been kept on this disk 
 graphsave	CMDS/GAMES	STILL-BAD	
 apfel	CMDS/GAMES	STILL-BAD	
 cribbage	CMDS/GAMES	SESSION-OK	[H[2J[11;40HDo[Cyou[Cneed[Cinstructions[Cfor[Ccribbage?[C[1;1H[K [K [K 
@@ -41,7 +40,7 @@ sine	CMDS/GAMES	STILL-BAD
 g	CMDS/GAMES	STILL-BAD	**** Can't install trap handler ****  **** Graph 
 graphdemo	CMDS/GAMES	STILL-BAD	
 showpic	CMDS/GAMES	STILL-BAD	
-snake	CMDS/GAMES	SESSION-OK	[?1h=[?1h=[H[2J[18;9HI[A[A#[4;7H$[21;4Hs[As[As s[As S[1;2H-------------------
+snake	CMDS/GAMES	SESSION-OK	[?1h=[?1h=[H[2J[19;11HI[3;15H#[17;67H$[12;28Hs[As s s[As[AS[1;2H-----------------
 crib	CMDS/GAMES	SESSION-OK	[H[2J[11;40HDo[Cyou[Cneed[Cinstructions[Cfor[Ccribbage?[C[1;1H[K [K [K 
 cio	CMDS	STILL-BAD	
 wn.stb	CMDS/WN	STILL-BAD	No more memory !!! No more memory !!! 
@@ -97,6 +96,7 @@ puzzle	CMDS/GAMES	STILL-BAD
 cyberwar	CMDS/GAMES	STILL-BAD	
 bincheckr	CMDS/GAMES	STILL-BAD	
 scriptmaster	CMDS/GAMES	STILL-BAD	
+postprint	CMDS/GAMES	STILL-BAD	
 wisecrack	CMDS/GAMES	STILL-BAD	
 vtxtcn	CMDS/GAMES	STILL-BAD	
 dfiles	CMDS	STILL-BAD	

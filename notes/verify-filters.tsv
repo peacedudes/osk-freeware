@@ -42,7 +42,6 @@ cjpeg	CMDS	FILTER	the quick brown fox Unrecognized input file format --- perhaps
 uudecode	CMDS	FILTER	the quick brown fox jumped over 3 lazy dogs 
 fmt	CMDS	FILTER	the quick brown fox the quick brown foxjumped over 3 lazy dogs 
 psc	CMDS	FILTER	the quick brown fox rightstring A0 = "the" 
-cat.nocio	CMDS/REBUILT	FILTER	the quick brown fox jumped over 3 lazy dogs 
 wc.cio	CMDS/REBUILT	FILTER	the quick brown fox jumped over 3 lazy dogs 
 m4_0.5	CMDS/REBUILT	FILTER	the quick brown fox the quick brown fox 
 printenv	CMDS	QUIET	
@@ -184,7 +183,7 @@ casefix	CMDS	FILTER	the quick brown fox The quick brown fox
 tail	CMDS	FILTER	the quick brown fox jumped over 3 lazy dogs 
 ptob	CMDS	FILTER	the quick brown fox format error in line 1 
 env	CMDS	QUIET	
-head	CMDS	FILTER	the quick brown fox jumped over 3 lazy dogs 
+head	CMDS	FILTER	the quick brown fox the quick brown fox 
 splprt	CMDS	QUIET	
 sh	CMDS	FILTER	the: nowhere found jumped: nowhere found 
 uniq	CMDS	FILTER	the quick brown fox jumped over 3 lazy dogs 
@@ -210,14 +209,14 @@ roff	CMDS	FILTER	the quick brown fox jumped over 3 lazy dogs
 splstat	CMDS	QUIET	
 vecho	CMDS	QUIET	
 lout	CMDS	FILTER	the quick brown fox jumped over 3 lazy dogs 
-expreserve	CMDS	FILTER	the quick brown fox jumped over 3 lazy dogs 
+expreserve	CMDS	FILTER	the quick brown fox Buffer format error	 
 djpeg.070	CMDS	FILTER	the quick brown fox jumped over 3 lazy dogs 
 for	CMDS	QUIET	
 p2c	CMDS	FILTER	the quick brown fox /* From input file "<stdin>" */ 
 qsort9	CMDS	FILTER	the quick brown fox jumped over 3 lazy dogs 
 disktest	CMDS	QUIET	
 ifdef	CMDS	FILTER	the quick brown fox the quick brown fox 
-ksh	CMDS	FILTER	jumped over 3 lazy dogs the quick brown fox 
+ksh	CMDS	FILTER	the: not found jumped: not found 
 m4	CMDS	FILTER	the quick brown fox te uc rw o 
 rdjpgcom.070	CMDS	FILTER	the quick brown fox Not a JPEG file 
 btop	CMDS	FILTER	the quick brown fox 
@@ -246,6 +245,7 @@ mkindex	CMDS/GAMES	FILTER	the quick brown fox jumped over 3 lazy dogs
 bincheckr	CMDS/GAMES	QUIET	
 mkdict	CMDS/GAMES	FILTER	the quick brown fox jumped over 3 lazy dogs 
 scriptmaster	CMDS/GAMES	QUIET	
+postprint	CMDS/GAMES	QUIET	
 wisecrack	CMDS/GAMES	QUIET	
 maze	CMDS/GAMES	FILTER	the quick brown fox ._._._._._._._._._._._._._._._._._._._._._._
 vtxtcn	CMDS/GAMES	QUIET	
@@ -255,7 +255,6 @@ gshell	CMDS	QUIET
 compiler	CMDS	QUIET	
 authwn	CMDS/WN	QUIET	
 inetdc	CMDS/WN	QUIET	
-wn	CMDS/WN	FILTER	the quick brown fox jumped over 3 lazy dogs 
 rdjpgcom	CMDS	FILTER	the quick brown fox Not a JPEG file 
 editor	CMDS	QUIET	
 banner	CMDS	QUIET	
