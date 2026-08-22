@@ -26,7 +26,11 @@ here=$(cd "$(dirname "$0")/.." && pwd)
 exe=${OS9EXEC:-$here/../os9exec/os9exec}
 work=${TMPDIR:-/tmp}/os9try.$$
 mkdir -p "$work"
-trap 'rm -rf "$work"' EXIT
+# The LOG SURVIVES. The whole point of this script is the failure message, and
+# a one-line summary is often not enough -- "errors in compilation : 1" tells
+# you nothing about which line. Its path is printed after every failure.
+trap 'rm -rf "$work"/*/ 2>/dev/null' EXIT
+KEEP=${TMPDIR:-/tmp}/os9try.log
 
 attempt() {           # $1 tree  $2 program  $3.. extra args
     local tree=$1 prog=$2; shift 2
@@ -64,7 +68,9 @@ attempt() {           # $1 tree  $2 program  $3.. extra args
     local why
     why=$(grep -a -m1 -E "unresolved|duplicate symbol|can't open|undeclared|out of range|source line too long|no recognized suffix|errors in compilation" "$work/log" \
           | sed 's/^[ \t]*//' | cut -c1-58)
-    printf '%-14s %-12s FAILS    %s\n' "$tree" "$prog" "${why:-unknown, read the log}"
+    cp "$work/log" "$KEEP" 2>/dev/null
+    printf '%-14s %-12s FAILS    %s\n' "$tree" "$prog" \
+           "${why:-unknown -- full log in $KEEP}"
 }
 
 if [ "${1:-}" = "--all" ]; then
