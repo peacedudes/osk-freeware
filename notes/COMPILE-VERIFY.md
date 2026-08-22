@@ -1,99 +1,96 @@
 # "If it's source, it should compile, right?"
 
-rdoggett's question, 2026-08-22. This is where the answer stands.
+rdoggett, 2026-08-22. Right, and now it does, for all but a handful with
+named reasons.
 
-    170  source trees under disk/SRC
-     99  have a build recipe in tools/rebuild/recipes.psv  -> 194 programs
-         that are KNOWN to compile
-     71  have no recipe.  Nobody had ever established whether their source
-         is complete
+## One command
 
-`tools/try_compile.sh` closes that gap one tree at a time. It makes the naive
-attempt -- every `.c` in the tree, the standard flags -- and classifies the
-failure against the table in `tools/rebuild/README.md`.
+    tools/build.sh                 build everything there is a recipe for
+    tools/build.sh ls cat vi       build just these
+    tools/build.sh --list          what can be built, and from which tree
+    tools/build.sh --missing       source trees with no recipe yet
 
-## First 18 trees (the ones mapping to exactly one shipped program)
+No setup. It makes the clean `/dd` overlay itself (that used to be an
+undocumented local directory, and its disappearance made the whole rebuild
+machinery unusable), finds the SDK through `tools/paths.py`, and takes the
+emulator from `$OS9EXEC`. It INSTALLS NOTHING: each build lands beside its
+sources as `R_<program>`, and what goes on the disk stays a deliberate act.
 
-    BUILDS   eff_tsmon(tsmon2)  indent  rob(robots)  today  wish  xlisp
-    FAILS    adv argproc cursive draw flex hist ioccc nobs pep proff
-             shuffle snake
+## Where it stands
 
-Six of eighteen build with no work at all.
+**191 of 197 recipes compile clean.** The six that do not each want something
+that is genuinely not here:
 
-## The failures are NOT mostly broken source
+| program | wants | |
+|---|---|---|
+| `convert` | `parame.inc` | not in the pool, not in the SDK, nowhere |
+| `sonnet` | `lex.i` | likewise |
+| `patch` | `config.h` | GNU patch GENERATES this from Configure; the tree shipped without it, and writing one would be inventing the porter's configuration |
+| `pdraw` | `X/Xlib.h` | needs X11 headers |
+| `pep` | `standby` | an EPROM programmer's hardware routine |
+| `ls` | — | a gcc2 build whose objects Microware's `l68` will not link |
 
-Grouped by what the message actually means:
+That is the honest floor. Everything else on this disk that has source, and a
+recipe, builds.
 
-## UPDATE, same day: four of the five library gaps are filled
+## What it took, and what each fix was
 
-`disk/SRC/unixlib` now has `execv.c`, `getopt.c`, `vsprintf.c` (which also
-supplies `vfprintf` and `vprintf`) and `ctype.c` (the `isupper` family as real
-FUNCTIONS, not only macros). They are written in the tree's own house style and
-each says in its header which program it unblocked.
+Nine of the earlier failures were **not broken source**. They are worth
+listing because the same shapes will recur:
 
-    argproc  BUILDS  with vsprintf.c and bcopy.c
-    shuffle  BUILDS  with getopt.c
-    nobs     BUILDS  with ctype.c
+  - **`rebuild.sh` called a bare `./os9exec`** at the repository root. With no
+    binary there, EVERY build failed with `env: No such file or directory` and
+    was recorded as FAIL -- indistinguishable from broken source. It honours
+    `$OS9EXEC` now, like every other tool here.
+  - **Nine recipes pointed at source that had been removed.** Deleting a
+    program leaves its recipe behind, and the next build reports it as a
+    failure forever. `check_disk.py` has a tenth check now: a recipe must name
+    a tree that exists AND sources that exist. Both halves were made to fail
+    on purpose.
+  - **Two recipes had been wrong for a long time** -- `eff_tsmon2` and
+    `eff_indent/SRC` name trees that do not exist. Retargeted.
+  - **`hist`** was one of those, and builds once pointed at `SRC/hist`.
+  - **`devprc`** wanted `_gs_sopt`, which its own `getsys.a` supplies; the
+    recipe named neither that nor its own `getopt.c`.
+  - **`bmgtest`, `bmgtest2`, `lp`, `lpq`** named sources that live in other
+    trees. Recipes can reach them as `../unixlib/bcopy.c` and the like.
+  - **`gen`, `if`, `run`** include `"../defs/misc.h"` and `"../DEFS/bool.h"`,
+    a directory layout that never shipped -- the headers sit beside the
+    sources. Changed to `"misc.h"` and `"bool.h"`.
+  - **`chess`** used `errno` without including `<errno.h>`: K&R code relying
+    on an implicit declaration this compiler will not make.
 
-That is three more trees compiling from source that is ON THE DISK, needing
-nothing from the SDK. Recipes added.
+## Four functions this C library never had
 
-**`adv` is still stuck, and not on a missing function.** With `execv` supplied
-it gets further and then collides: `adv/main.c` defines its own `chain`, and
-referencing `chainc` drags in `clibn.l`'s `process_a` psect, which defines
-`chain` too. Its tree also carries three files with `main()` -- `main.c`,
-`okplay.c`, `test.c` -- so any recipe must name sources explicitly. Both are
-ordinary recipe problems, not missing library.
+`disk/SRC/unixlib` now supplies them, written in the tree's own house style,
+each naming in its header the program it unblocked:
 
-**`draw` links `/dd/LIB/mytime.r`**, an SDK object with no source here. It
-builds, but it is the one recipe that reaches outside the collection.
+    execv.c      exec with an argument vector -- adv
+    getopt.c     the System V option parser -- shuffle, and the commonest
+                 single reason a ported Unix program will not link here
+    vsprintf.c   vsprintf, vfprintf and vprintf; there was no v-printf family
+                 at all and no _doprnt to build one on -- argproc, and the
+                 same gap that blocks pdksh
+    ctype.c      isupper and its family as FUNCTIONS; <ctype.h> has them only
+                 as macros over _chcodes -- nobs
 
-### The original diagnosis, for the record
+Read `vsprintf.c`'s header before touching it: it is safe for a stated reason
+(68k passes every scalar as one 32-bit word), not by luck, and it cannot carry
+a `double`.
 
-  - **A library function this C library does not have — 5 trees.**
-    `execv` (adv), `vsprintf` (argproc), `optarg`/getopt (shuffle),
-    `isupper` (nobs), `mytime` (draw). `disk/SRC/unixlib` supplies `bcopy`
-    and `execl` but not these. **This is the single highest-leverage thing
-    for source completeness**: the same few functions block several programs,
-    and `vsprintf` is the same gap that blocks pdksh. A fuller unixlib would
-    move more trees at once than any per-tree work.
-    (`mytime.r` exists as an object in `~/Developer/os9/play/*/LIB/`, so that
-    one is a link away rather than a rewrite.)
-  - **Source list too long or too short — 2 trees.** `cursive` and `proff`
-    fail on `duplicate symbol names`, which per the README means a whole-tree
-    link pulled in a second `main`. A recipe naming the right files fixes it;
-    that is what a recipe IS.
-  - **Genuine source problems — 2 trees.** `hist` (undeclared identifier in
-    its own `h_var.h`) and `pep` (already documented as wanting an EPROM
-    programmer's driver that does not exist here).
-  - **A header that is nowhere — 1 tree.** `snake` wants `a.out.h`, which is
-    not on the disk and not in the SDK.
-  - **Not yet read — 2 trees.** `flex` and `ioccc` produced no line the
-    classifier recognised.
+`adv` is the one that got away. With `execv` supplied it collides instead:
+`adv/main.c` defines its own `chain`, and referencing `chainc` drags in
+`clibn.l`'s `process_a`, which defines `chain` too. Its tree also holds three
+files with `main()`. Both are recipe problems, not missing library.
 
-## One trap this found, in my own tool
+## The trees with no recipe
 
-Three of the first-pass failures were the prober, not the source: without
-`-V=/h6/<tree>` the tree's OWN directory is not on the include path, so a
-source writing `#include <boolean.h>` for a header sitting right beside it
-fails with `can't open /dd/DEFS/boolean.h`. That reads exactly like a missing
-file and is not one. `rebuild.sh` has always passed that flag.
+`tools/build.sh --missing` lists them. They are mostly multi-program archives
+or have their sources in subdirectories, so each needs a recipe written rather
+than a naive attempt. `tools/try_compile.sh <tree> <program>` makes that naive
+attempt and classifies what stopped it against the table in
+`tools/rebuild/README.md`.
 
-## Worth knowing: unixlib has a correct strchr
-
-`disk/SRC/unixlib/strchr.c` handles the terminating NUL properly -- its own
-comment says *"The null character terminating a string is considered to be
-part of the string"*, which is the ANSI behaviour. pdksh's `osk.h` does
-`#define strchr index`, and OS-9's `index(s,0)` returns NULL, which is what
-made six `strchr(s,0)` sites in pdksh into bus errors (see
-`tools/rebuild/pdksh/README.md`).
-
-**Dropping that one `#define` and linking `unixlib/strchr.c` would fix all six
-at once**, and any future use as well. The six sites are patched individually
-at present, which works but does not protect the next one written.
-
-## Next
-
-The remaining 53 un-recipe'd trees are multi-program or have their sources in
-subdirectories, so they need a recipe written rather than a naive attempt.
-Run `tools/try_compile.sh <tree> <program>` on one and read what it says.
+Remember that a tree is named by ARCHIVE, not by program: `SRC/divutils` holds
+`gen`, `run` and `if`; `toys` builds `wish`. Counting trees against program
+names over-counts badly, and `DOC/ORIGINS` is the map.
