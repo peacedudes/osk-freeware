@@ -307,4 +307,7 @@ beav|beav/BEAV140|basic.c ebcdic.c fileio.c region.c text.c wangpc.c buffer.c ec
 # would drop into their own LIB rather than name file-by-file in every recipe
 # that wants getopt or vsprintf.
 unix.l|unixlib|alarm.c stat.c _secsince70.c ioctl.c ttyname.c isatty.c signal.c execl.c perror.c bcmp.c rand.c strchr.c strrchr.c strpbrk.c strtok.c strspn.c strcspn.c getopt.c vsprintf.c ctype.c bcopy.c execv.c|STATIC||
+# pvic -- a vi clone; its Makefile's RELS is the list, and it is 26 of the
+# tree's 28 sources.
+pvic|pvic/SRCE|alloc.c main.c cmdline.c edit.c enveval.c fileio.c help.c hexchars.c linefunc.c mark.c misccmds.c normal.c ops.c param.c ptrfunc.c regexp.c regsub.c screen.c search.c sentence.c tagcmd.c undo.c termcap.c termin.c general.c locfuncs.c||/dd/LIB/curses.l /dd/LIB/termlib.l /dd/LIB/math.l|
 

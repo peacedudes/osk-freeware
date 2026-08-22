@@ -112,6 +112,17 @@ if [ -d "$REPO/disk/DEFS" ]; then
     added=0
     for f in "$REPO/disk/DEFS"/*; do
         name=$(basename "$f")
+        if [ -d "$f" ] && [ -d "$DEST/DEFS/$name" ]; then
+            # MERGE, do not skip.  The SDK has its own DEFS/ncurses, so
+            # skipping the whole directory left out the collection's
+            # ncurses.h -- which is the only reason gnuchess 4.0 wants it.
+            for g in "$f"/*; do
+                [ -e "$DEST/DEFS/$name/$(basename "$g")" ] && continue
+                cp -R "$g" "$DEST/DEFS/$name/"
+                added=$((added+1))
+            done
+            continue
+        fi
         [ -e "$DEST/DEFS/$name" ] && continue
         cp -R "$f" "$DEST/DEFS/$name"
         added=$((added+1))
@@ -128,6 +139,20 @@ if [ -d "$REPO/disk/DEFS" ]; then
     fi
     echo "  added $added header(s) from the collection's own DEFS"
 fi
+
+# DEFS/types.h has no include guard.  It sets `_types' at the BOTTOM and
+# nothing at the top, so a source that reaches it twice -- gnuchess 4.0 asks
+# for <types.h> and <sys/types.h> both -- gets "multiple definition" on every
+# typedef in it.  Wrap it here, in the overlay, where the edit is disposable
+# and nothing ships.  The marker is the header's own.
+python3 - "$DEST/DEFS/types.h" <<'GUARD'
+import sys
+p = sys.argv[1]
+t = open(p, "rb").read()
+if b"_types" in t and not t.lstrip().startswith(b"#ifndef _types"):
+    open(p, "wb").write(b"#ifndef _types\r" + t + b"\r#endif\r")
+    print("  guarded DEFS/types.h (it had none, and gnuchess reaches it twice)")
+GUARD
 
 # Make the check fail once before believing it.  If any stamp survives in LIB,
 # every binary built through this overlay would carry it.

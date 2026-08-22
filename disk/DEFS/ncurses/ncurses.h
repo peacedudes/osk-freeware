@@ -1,0 +1,1 @@
+/* * <ncurses.h> for OS-9. * * The ncurses port here installs its header as <curses.h>; sources written * against ncurses proper ask for <ncurses.h>, which is the same interface * under the name the library is usually known by. GNU Chess 4.0's gnuchess.h * is the one on this disk that does. */#include <curses.h>
