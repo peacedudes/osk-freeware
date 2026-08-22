@@ -29,6 +29,15 @@ POOL2=${3:-$POOL1}
 HERE=$(cd "$(dirname "$0")" && pwd)
 REPO=$(cd "$HERE/../.." && pwd)
 : "${OS9CLEAN:?set OS9CLEAN to the clean /dd overlay}"
+
+# The emulator. This used to be a bare `./os9exec' relative to the repository
+# root, which meant the driver only worked if somebody had dropped a binary or
+# a symlink there -- and when nobody had, every build failed with
+# `env: ./os9exec: No such file or directory' and was reported as FAIL, which
+# looks exactly like a broken source tree. Same convention as every other tool
+# here: $OS9EXEC, else the sibling checkout.
+EXE=${OS9EXEC:-$REPO/../os9exec/os9exec}
+[ -x "$EXE" ] || { echo "no os9exec at $EXE -- set OS9EXEC" >&2; exit 2; }
 : "${OS9COMPAT:=$REPO/freeware/SRC/COMPAT}"
 WORK=${TMPDIR:-/tmp}/os9rebuild.$$
 mkdir -p "$WORK"
@@ -54,7 +63,7 @@ compile() {   # $1 arch  $2 sources  $3 oskdef  $4 defines  $5 prog  $6 extra  $
 
 run() {       # $1 pool  $2 command-file
   ( cd "$REPO" && gtimeout 240 env OS9DISK="$OS9CLEAN" OS9H6="$1" OS9H7="$OS9COMPAT" \
-      ./os9exec -r shell < "$2" 2>&1 | /usr/bin/tr -d '\000' )
+      "$EXE" -r shell < "$2" 2>&1 | /usr/bin/tr -d '\000' )
 }
 
 # '|' not TAB: tab is an IFS *whitespace* character, so bash collapses runs of

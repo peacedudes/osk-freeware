@@ -14,7 +14,6 @@ bmgtest2|strsch|bmgtest2.c bmgsubs.c bcopy.c|BSD||
 bootgen|bix|bootgen.c|||
 bush|misc|bush.c|||
 calen|hc_loose|calen.c|||
-calendar|hc_utils|calendar.c|||
 calender|calender|calender.c|||
 casefix|hc_loose|casefix.c|||
 cdiff|v_misc|cdiff.c|||
@@ -41,9 +40,9 @@ des|des|des.c|||
 deton|hc_utils|deton.c|||
 # devprc UNTESTED: its makefile also wants getsys.a, which is 68k assembly.
 # The shipped binary has a bad CRC and will not load -- see notes/SECOND-PASS.md.
-devprc|devprc|devprc.c getopt.c|||
+devprc|devprc|devprc.c ../unixlib/getopt.c|||
 dfiles|dfiles|dfiles.c|||
-diff|diff|alloca.c analyze.c context.c diff.c dir.c ed.c io.c normal.c os9.c regex.c util.c getopt.c|||
+diff|diff|alloca.c analyze.c context.c diff.c dir.c ed.c io.c normal.c os9.c regex.c util.c ../unixlib/getopt.c|||
 digclk|digclk|clock.c digits.c hostname.c mytime.c||/dd/LIB/curses.l /dd/LIB/termlib.l /dd/LIB/math.l /dd/LIB/strings.r|
 dinfo|eff_dinfo|dinfo.c|||
 du|eff_du|du.c|||
@@ -58,7 +57,6 @@ ff|effo_wolk|ff.c|||
 fibo|eff_bench|fibo.c|||
 fillup|fillup|fillup.c|||
 find|eff_effind|find.c|||
-firq|hc_utils|firq.c|||
 fkeys|eff_fkeys|fkeys.c|||
 flink|eff_flink|flink.c|||
 float|eff_bench|float.c|||
@@ -74,15 +72,13 @@ hang|hang|main.c dogame.c||/dd/LIB/curses.l /dd/LIB/termlib.l /dd/LIB/rand.r /dd
 help|eff_help|help.c|||
 helpindex|eff_help|helpindex.c|||
 hexed|eff_hexed|hexed.c|||
-hist|hist/SRC|h_edit.c h_expand.c h_main.c h_rw.c h_term.c|MCTERM||-V=/h6/hist/INC
 if|divutils|if.c|||
 ifdef|ifdef|ifdef.c|||
-indent|eff_indent/SRC|indent.c io.c lexi.c parse.c comment.c args.c|||
+indent|indent|indent.c io.c lexi.c parse.c comment.c args.c|||
 input|effo_unaxcess|input.c|||
 japan|weather|weather.c|JAPAN N_PACIFIC|/dd/LIB/rand.r /dd/LIB/math.l|
 joke|toys|joke.c|||
 kermit|kermit|os9ker.c os9con.c os9get.c os9qui.c os9raw.c os9rec.c os9sen.c os9srv.c os9utl.c|||
-lac|tc|lac.c|||
 lander|lander|land.c screen.c move.c score.c|RAND_BSD HS_FILE BSD|/dd/LIB/curses.l /dd/LIB/termlib.l /dd/LIB/math.l /dd/LIB/unix.l|
 liborder|eff_libutils|liborder.c|||
 life|life|life.c|||
@@ -94,17 +90,14 @@ lprm|eff_lp|lprm.c|||
 lpshut|eff_lp|lpshut.c|||
 ls|ls|argmatch.c error.c filemode.c getopt.c idcache.c ls.c obstack.c os9stubs.c savedir.c t.c xmalloc.c xstrtol.c|||
 m4|eff_m4b|main.c eval.c expr.c look.c misc.c serv.c||/dd/LIB/egetopt.r|
-main|tc|main.c|||
 make|eff_make|make.c parse.c stat.c tstring.c utime.c|OS9||
 makelex|sonnet|makelex.c|||
 maze|v_misc|maze.c|||
 mines|mines|mines.c|||
 minnesota|weather|weather.c|GREGORIAN N_ATLANTIC|/dd/LIB/rand.r /dd/LIB/math.l|
-minute|hc_utils|minute.c|||
 mkdict|bog|mkdict.c|||
 mkindex|bog|mkindex.c|||
 mtst|eff_spline|mtst.c|||
-my.opt|my.opt|main.c ctype.c instr.c io.c label.c misc.c mnem.c opnd.c opt.c parse.c|||
 name|hc_loose|name.c|||
 nasa|eff_orbit|nasa.c|||
 newsgen|toys|newsgen.c ctime.c|||
@@ -117,12 +110,10 @@ pagefraz|bix|pagefraz.c|||
 pagekwic|bix|pagekwic.c|||
 pageline|bix|pageline.c|||
 patch|patch|patch.c inp.c os9link.c pch.c util.c version.c os9popen.c|||
-paths|hc_utils|paths.c|||
 pbyte|bix|pbyte.c|||
 pdraw|effo_pdraw|IOread.c data.c list.c main.c parser.c pif.c plotNOX.c plotX.c plotX11.c plotps.c sort.c time.c|||
 pep|effo_wolk|pep.c|||
 poker|effo_snobol|poker.c cardpak.c genprim.c pattern.c pokev.c quest.c rperm.c rselect.c rsent.c snorand.c|||
-pow|pow|pow.c direct.c event.c help.c screen.c control.c||/dd/LIB/termlib.l|
 printf|misc|printf.c|||
 prjob|eff_lp|prjob.c|||
 puz15|v_misc|puz15.c|||
@@ -134,7 +125,6 @@ rain|toys|rain.c ctime.c rand.c screen.c||/dd/LIB/usr.l /dd/LIB/termlib.l|
 rdoc|eff_rdoc|rdoc.c|||
 reagan|reagan|reagan.c|||
 remove|eff_remove|remove.c|||
-ren|hc_utils|ren.c|||
 rendsk|eff_rendsk|rendsk.c|||
 rndname|rndname|name.c|||
 roff|eff_roff|roff.c|||
@@ -146,7 +136,6 @@ rstory2|effo_snobol|rstory2.c|||
 run|divutils|run.c misc.c|||
 savage|eff_bench|savage.c|||
 scales|hc_loose|scales.c|||
-scope|tc|scope.c|||
 screen|screen|scandir.c screens.c||/dd/LIB/rand.r /dd/LIB/strings.r /dd/LIB/math.l|
 sdb|effo_sdb|cmd.c com.c cre.c err.c iex.c int.c io.c mth.c pcjunk.c scn.c sdb.c sel.c srt.c tbl.c|||
 sed|eff_sed|alloca.c glob.c regex.c sed.c|||
@@ -155,12 +144,10 @@ sepwords|bix|sepwords.c|||
 setfont|effo_wolk|setfont.c|||
 shire|weather|weather.c|MIDDLE_EARTH MID_ATLANTIC|/dd/LIB/rand.r /dd/LIB/math.l|
 sieve|eff_bench|sieve.c|||
-sin|tc|sin.c|||
 snap|snap|main.c signals.c snapshot.c echo.c h29.c wy50.c kt7.c|||
 sokoban|sokoban|sok.c readscreen.c showscreen.c play.c save.c score.c osk.c||/dd/LIB/termlib.l /dd/LIB/strings.r|
 sonnet|sonnet|sonnet.c compose.c getopt.c|USE_INDEX|/dd/LIB/curses.l /dd/LIB/termlib.l /dd/LIB/math.l|
 soundex|soundex|soundex.c|TESTPROG||
-souper|hc_utils|souper.c|||
 space|eff_space|space.c|||
 speech|speech|parse.c phoneme.c spellword.c sayord.c english.c||/dd/LIB/sys.l|
 spiff|spiff|spiff.c output.c compare.c float.c strings.c exact.c miller.c parse.c command.c comment.c tol.c line.c floatrep.c token.c misc.c visual.c|M_TERMCAP|/dd/LIB/termlib.l /dd/LIB/unix.l|
@@ -171,20 +158,18 @@ strfile|fortune|strfile.c|||
 strings|v_misc|strings.c|||
 sysid|hc_utils|sysid.c|||
 sysmax|hc_utils|sysmax.c|||
-sysmem|hc_utils|sysmem.c|||
 sysmin|hc_utils|sysmin.c|||
 tar|eff_tar|tar.c|||
 tess|tess|tess.c|||
 tet|tet|MoveR.c MoveL.c NewP.c AdvanceP.c Rotate.c tet.c||/dd/LIB/curses.l /dd/LIB/termlib.l /dd/LIB/rand.r /dd/LIB/math.l|
 tformat|effo_snobol|tformat.c|||
 time|hc_utils|time.c|||
-timeio|hc_utils|timeio.c|||
 timid|hc_utils|timid.c|||
 top|eff_top|top.c|||
 touchtype|touchtype|game.c utils.c words.c os9.c||/dd/LIB/termlib.l /dd/LIB/curses.l /dd/LIB/rand.r /dd/LIB/egetopt.r|
 trap|trap|ctrap.c traptst.c||/dd/LIB/cio.l /dd/LIB/clib.l /dd/LIB/sys.l|
 tree|eff_tree|tree.c|||
-tsmon2|eff_tsmon2|tsmon2.c|||
+tsmon2|eff_tsmon|tsmon2.c|||
 tttt|hc_loose|tttt.c|||
 udate|effo_unaxcess|udate.c date.c|||
 undel|eff_undel|undel.c|||
@@ -210,11 +195,14 @@ zot|zot|zot.c|||
 
 # Added 2026-08-22 by tools/try_compile.sh -- trees that had no recipe and
 # turned out to build. See notes/COMPILE-AUDIT.md for the ones that did not.
-tsmon2|eff_tsmon|tsmon2.c|||
-indent|indent|args.c comment.c indent.c io.c lexi.c parse.c|||
 robots|rob|AppendNode.c ClrBoard.c DeleteNode.c GameBoard.c InsertNode.c Main.c TopTen.c deleterbts.c dmpscore.c dress.c dumpstats.c getargs.c getdate.c gettops.c loadtops.c moverbts.c moveyou.c os9stuff.c rand.c showrbts.c showscore.c showyou.c writetop.c|||
 today|today|datetx.c localtime.c moontx.c nbrtxt.c timetx.c today.c|||
-wish|wish|commandline.c cursor.c files.c flabel.c getwd.c keyboard.c more.c movement.c paging.c termcap.c wish.c|||
 xlisp|xlisp|os9stuff.c xlbfun.c xlcont.c xldbug.c xldmem.c xleval.c xlfio.c xlftab.c xlglob.c xlimage.c xlinit.c xlio.c xlisp.c xljump.c xllist.c xlmath.c xlobj.c xlpp.c xlprin.c xlread.c xlstr.c xlstruct.c xlsubr.c xlsym.c xlsys.c|||
 draw|draw|command.c init.c main.c redraw.c||/dd/LIB/mytime.r|
-shuffle|shuffle|game.c main.c switch.c visual.c xrand.c||/dd/LIB/os9lib.l|
+shuffle|shuffle|game.c main.c switch.c visual.c xrand.c ../unixlib/getopt.c|||
+
+# Added 2026-08-22. Each needs one source from SRC/unixlib copied in
+# beside the tree's own: the functions did not exist here until then.
+argproc_demo|argproc|argproc.c demo.c lose.c makeargv.c varargs.c ../unixlib/vsprintf.c ../unixlib/bcopy.c|||
+nobs|nobs|deal.c gamescore.c globs.c human.c logaux.c logglobs.c nobs.c os9rand48.c pegs.c play.c playscore.c progaux.c program.c show.c shuf.c version.c wglobs.c window.c ../unixlib/ctype.c|||
+hist|hist|h_edit.c h_expand.c h_main.c h_rw.c h_term.c|MCTERM||-V=/h6/hist

@@ -224,6 +224,50 @@ def check_index_names(root):
     return not missing, "%d command(s) missing from DOC/INDEX" % len(missing)
 
 
+def check_recipes(root):
+    """Every build recipe must name a source tree that is actually here.
+
+    Added 2026-08-22. Removing a program leaves its recipe behind pointing at
+    a tree that no longer exists, and `rebuild.sh` then reports that recipe as
+    a FAILED BUILD -- which reads exactly like broken source and is not. Six
+    such recipes were left over from one afternoon's removals, and two more
+    (`eff_tsmon2`, `eff_indent/SRC`) had been wrong for long enough that
+    nobody could say when.
+
+    The disk itself does not carry recipes, so this checks the repository. It
+    is skipped when the tree being checked is not the repository's own disk/.
+    """
+    here = os.path.dirname(os.path.abspath(__file__))
+    recipes = os.path.join(here, "rebuild", "recipes.psv")
+    src = os.path.join(root, "SRC")
+    if not (os.path.exists(recipes) and os.path.isdir(src)):
+        return True, ""
+    trees = set(os.listdir(src))
+    bad = []
+    for line in open(recipes):
+        if line.startswith("#") or not line.strip():
+            continue
+        parts = line.split("|")
+        if len(parts) < 2:
+            continue
+        prog, tree = parts[0].strip(), parts[1].strip()
+        if tree.split("/")[0] not in trees:
+            bad.append((prog, "SRC/%s, which is not here" % tree))
+            continue
+        # ...and the sources it names must exist, or the recipe is for a
+        # program somebody removed and its build will be reported as a FAILURE
+        # rather than as the leftover it is. Nine such recipes survived one
+        # afternoon's removals.
+        srcs = [s for s in parts[2].split() if not s.startswith("-")]
+        gone = [s for s in srcs
+                if not os.path.exists(os.path.join(src, tree, s))]
+        if srcs and len(gone) == len(srcs):
+            bad.append((prog, "sources that are all gone from SRC/%s" % tree))
+    for prog, why in bad:
+        print("    recipe for %s names %s" % (prog, why))
+    return not bad, "%d recipe(s) point at source that is gone" % len(bad)
+
+
 def check_star_grid(root):
     """DOC/INDEX's star grid must say how many names it holds, and be right.
 
@@ -369,6 +413,7 @@ CHECKS = [
     ("no new SDK author stamps", check_author_stamps),
     ("every command is in DOC/INDEX", check_index_names),
     ("the star grid is self-consistent", check_star_grid),
+    ("every recipe names a real tree", check_recipes),
     ("every program has a category", check_categories),
     ("DOC/DEPENDS is up to date", check_depends),
     ("no unscreened Microware source", check_src_screened),

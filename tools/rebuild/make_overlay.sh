@@ -83,6 +83,14 @@ if not blanked:
 print(f"  {blanked} cstart copies blanked")
 PY
 
+# The collection's own os9lib.l, which several recipes link and which is NOT
+# part of the SDK -- it lives on the disk, in GNULIB. Without it those recipes
+# fail with an unresolved symbol that looks like missing source.
+if [ -f "$REPO/disk/GNULIB/os9lib.l" ]; then
+    cp "$REPO/disk/GNULIB/os9lib.l" "$DEST/LIB/os9lib.l"
+    echo "  added the collection's own os9lib.l"
+fi
+
 # Make the check fail once before believing it.  If any stamp survives in LIB,
 # every binary built through this overlay would carry it.
 if grep -rl "from the disk of" "$DEST/LIB" >/dev/null 2>&1; then

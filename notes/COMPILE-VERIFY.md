@@ -24,6 +24,32 @@ Six of eighteen build with no work at all.
 
 Grouped by what the message actually means:
 
+## UPDATE, same day: four of the five library gaps are filled
+
+`disk/SRC/unixlib` now has `execv.c`, `getopt.c`, `vsprintf.c` (which also
+supplies `vfprintf` and `vprintf`) and `ctype.c` (the `isupper` family as real
+FUNCTIONS, not only macros). They are written in the tree's own house style and
+each says in its header which program it unblocked.
+
+    argproc  BUILDS  with vsprintf.c and bcopy.c
+    shuffle  BUILDS  with getopt.c
+    nobs     BUILDS  with ctype.c
+
+That is three more trees compiling from source that is ON THE DISK, needing
+nothing from the SDK. Recipes added.
+
+**`adv` is still stuck, and not on a missing function.** With `execv` supplied
+it gets further and then collides: `adv/main.c` defines its own `chain`, and
+referencing `chainc` drags in `clibn.l`'s `process_a` psect, which defines
+`chain` too. Its tree also carries three files with `main()` -- `main.c`,
+`okplay.c`, `test.c` -- so any recipe must name sources explicitly. Both are
+ordinary recipe problems, not missing library.
+
+**`draw` links `/dd/LIB/mytime.r`**, an SDK object with no source here. It
+builds, but it is the one recipe that reaches outside the collection.
+
+### The original diagnosis, for the record
+
   - **A library function this C library does not have — 5 trees.**
     `execv` (adv), `vsprintf` (argproc), `optarg`/getopt (shuffle),
     `isupper` (nobs), `mytime` (draw). `disk/SRC/unixlib` supplies `bcopy`
