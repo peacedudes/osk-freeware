@@ -33,7 +33,16 @@ Nine invariants, each of which has been made to fail on purpose:
 - no editor or host litter (a vim swap file reached the tree once, and
   `mkimage.sh` reads `disk/` off the filesystem, so `.gitignore` cannot stop it)
 - every command is named in `DOC/INDEX`
-- the counts quoted in `readme` and `DOC/INDEX` match the tree
+- `DOC/INDEX`'s star grid is self-consistent: it says "All N", lists N
+  distinct names, and every one is a real file under `CMDS`.
+  **This replaced a check on the counts quoted in `readme` and `DOC/INDEX`.**
+  Those counts are gone: rdoggett's instruction, 2026-08-22, was to keep
+  numbers out of the prose entirely -- *"Suppose we release the collection,
+  and somebody writes sometime later offering us a new trove? It's a
+  constant update nightmare, just so we can say 99 million sold."* He is
+  right, and the old check was the proof: every removal cost an edit in five
+  files. `DOC/CATEGORIES` and the catalogue are GENERATED and can carry
+  numbers safely; hand-written prose cannot
 - every program has a category in `categories.psv`
 - `DOC/DEPENDS` is up to date
 - no unscreened Microware source under `disk/SRC`. Added 2026-08-21, when

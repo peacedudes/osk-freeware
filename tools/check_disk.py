@@ -207,92 +207,59 @@ def check_index_names(root):
     return not missing, "%d command(s) missing from DOC/INDEX" % len(missing)
 
 
-def check_counts(root):
-    """The counts quoted in readme and DOC/INDEX must match the tree.
+def check_star_grid(root):
+    """DOC/INDEX's star grid must say how many names it holds, and be right.
 
-    They had drifted: the readme opened with "409 programs that run", a figure
-    no combination of directories produces, and INDEX's section headers were
-    two short. Numbers in prose rot silently, so the ones that matter are
-    derived here and compared.
+    THIS REPLACED `documented counts match the tree`, 2026-08-22, on rdoggett's
+    instruction: "avoid putting actual numbers of anything in the docs ...
+    Suppose we release the collection, and somebody writes sometime later
+    offering us a new trove? It's a constant update nightmare, just so we can
+    say 99 million sold."
 
-      total   = files in CMDS and CMDS/GAMES
-      starred = the names listed in INDEX's own "All N" block
-      plain   = total - the starred names that live in those two directories
+    He is right, and the old check was the evidence: it existed only because
+    hand-written counts in `readme` and `DOC/INDEX` drifted every time the tree
+    changed, and keeping them true cost an edit in five files per removal. The
+    counts are gone from the prose now. `DOC/CATEGORIES` and the catalogue are
+    generated and can carry numbers safely; prose cannot.
 
-    Two ways this went wrong, both found 2026-08-14 and both fixed here:
-
-    Subtracting the WHOLE starred set from a total that counts only two
-    directories is not arithmetic that means anything -- eleven starred
-    programs live in CMDS/REBUILT and CMDS/BROKEN, so the readme's "360 of
-    which need nothing" was nine short of the tree's 369.
-
-    And the names have to RESOLVE. `gzipcpu32k_csl` and `head` had been sitting
-    in the list as the single run-together token `gzipcpu32k_cslhead`, which
-    made the count agree with itself while naming a program that does not
-    exist and losing one that does.
+    What is still worth checking is INTERNAL consistency, which costs nobody
+    an edit: the grid announces "All N" and must then list N names, and every
+    name must be a real file under CMDS. That catches the failure the grid
+    actually has -- `gzipcpu32k_csl` and `head` once sat in it as the single
+    run-together token `gzipcpu32k_cslhead`, which kept the count agreeing with
+    itself while naming a program that does not exist and losing one that does.
     """
-    total = sum(1 for d in CMD_DIRS
-                  for n in os.listdir(os.path.join(root, d))
-                  if os.path.isfile(os.path.join(root, d, n)))
-
-    text  = open(os.path.join(root, "DOC", "INDEX"), "rb").read().decode("latin-1")
+    text = open(os.path.join(root, "DOC", "INDEX"), "rb").read().decode("latin-1")
     lines = text.replace("\r", "\n").split("\n")
-    start = next(i for i, l in enumerate(lines)
-                 if l.startswith("All ") and "verified" in l)
-    starred = set()
-    for l in lines[start+1:]:
+    try:
+        start = next(i for i, l in enumerate(lines)
+                     if l.startswith("All ") and "verified" in l)
+    except StopIteration:
+        return False, "DOC/INDEX has no 'All N' star grid"
+
+    claimed = int(re.match(r"All (\d+)", lines[start]).group(1))
+    names = []
+    for l in lines[start + 1:]:
         if l.startswith("---") or l.startswith("/dd"):
             break
-        starred.update(l.split())
+        names.extend(l.split())
 
-    # Every starred name must be a real file somewhere under CMDS, and the
-    # "needs nothing" figure counts only the ones inside CMD_DIRS.
-    where = {}
-    for d, _, names in os.walk(os.path.join(root, "CMDS")):
-        rel = os.path.relpath(d, root)
-        for n in names:
-            where.setdefault(n, rel)
-    unresolved = sorted(n for n in starred if n not in where)
+    where = set()
+    for d, _, fs in os.walk(os.path.join(root, "CMDS")):
+        where.update(fs)
+    missing = sorted(n for n in names if n not in where)
 
-    # Count FILES, not names: one starred name exists in both CMDS and
-    # CMDS/GAMES, and both of those files need cio. Counting the name once
-    # leaves the "needs nothing" figure one too high.
-    in_scope = sum(1 for d in CMD_DIRS
-                     for n in os.listdir(os.path.join(root, d))
-                     if n in starred and os.path.isfile(os.path.join(root, d, n)))
-
-    readme = open(os.path.join(root, "readme"), "rb").read().decode("latin-1")
-    want = {str(total), str(total - in_scope), str(len(starred))}
-
-    # The per-directory counts in readme's "WHAT IS ON IT" block rot the same
-    # way and were not covered: they read 354 commands, 57 games, 3 broken and
-    # 16 rebuilt against a tree holding 364, 62, 2 and 10. Every one of them
-    # was wrong, and had been for long enough that nobody could say when.
-    for sub in ("CMDS", "CMDS/GAMES", "CMDS/BROKEN", "CMDS/REBUILT"):
-        d = os.path.join(root, sub)
-        if os.path.isdir(d):
-            want.add(str(sum(1 for n in os.listdir(d)
-                             if os.path.isfile(os.path.join(d, n)))))
-
-    missing = [n for n in want if n not in readme]
-
-    # INDEX's own "All N" wording must agree with the list under it.
-    declared = int(re.match(r"All (\d+)", lines[start]).group(1))
-
-    ok = not missing and declared == len(starred) and not unresolved
-    if not ok:
-        print("    tree: %d programs, %d starred (%d of them in %s), "
-              "%d need nothing else"
-              % (total, len(starred), in_scope, " and ".join(CMD_DIRS),
-                 total - in_scope))
-        if missing:
-            print("    readme does not mention: %s" % ", ".join(sorted(missing)))
-        if declared != len(starred):
-            print("    DOC/INDEX says 'All %d' but lists %d" % (declared, len(starred)))
-        if unresolved:
-            print("    starred in DOC/INDEX but no such file: %s"
-                  % ", ".join(unresolved))
-    return ok, "documented counts disagree with the tree"
+    ok = True
+    if len(names) != claimed:
+        print("    grid says All %d but lists %d names" % (claimed, len(names)))
+        ok = False
+    if len(set(names)) != len(names):
+        dup = sorted({n for n in names if names.count(n) > 1})
+        print("    duplicated in the grid: %s" % ", ".join(dup[:6]))
+        ok = False
+    for n in missing:
+        print("    starred in DOC/INDEX but no such file: %s" % n)
+    return (ok and not missing), "the star grid disagrees with itself or the tree"
 
 
 def check_categories(root):
@@ -384,7 +351,7 @@ CHECKS = [
     ("no editor or host leftovers", check_no_leftovers),
     ("no new SDK author stamps", check_author_stamps),
     ("every command is in DOC/INDEX", check_index_names),
-    ("documented counts match the tree", check_counts),
+    ("the star grid is self-consistent", check_star_grid),
     ("every program has a category", check_categories),
     ("DOC/DEPENDS is up to date", check_depends),
     ("no unscreened Microware source", check_src_screened),
