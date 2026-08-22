@@ -1,0 +1,1 @@
+/* * <stat.h> for OS-9. * * zoo's osk.c writes #include <stat.h>, which is where its author's system * kept it. Everything else here asks for <sys/stat.h>. One line rather than * an edit to the archive's source. */#include <sys/stat.h>

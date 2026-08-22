@@ -88,9 +88,15 @@ compile() {   # $1 arch  $2 sources  $3 oskdef  $4 defines  $5 prog  $6 extra  $
 # The gathered file must be a LIBRARY passed with -l=, not an object: l68 reads
 # one ROF from a plain filename and would take only the first of the 44.
 compile_long() {   # $1 arch  $2 sources  $3 oskdef  $4 defines  $5 prog  $6 extra  $7 libs  $8 dir
+  # Through `tr' first: these sources are CR-terminated, so grep sees the whole
+  # file as ONE line and `^' matches only at its start. Without that, zoo.c's
+  # `main(argc, argv)' is invisible and the recipe is reported as having no
+  # main() at all.
   local mainsrc="" s
   for s in $2; do
-    /usr/bin/grep -qaE '^[A-Za-z_][A-Za-z0-9_ *]*\bmain[[:space:]]*\(' "$8/$s" && mainsrc=$s
+    /usr/bin/tr '\r' '\n' < "$8/$s" |
+      /usr/bin/grep -qaE '^([A-Za-z_][A-Za-z0-9_ *]*[ *])?main[[:space:]]*\(' &&
+        mainsrc=$s
   done
   [ -n "$mainsrc" ] || { echo "  $5: no main() among its sources" >&2; return 1; }
 
@@ -104,8 +110,13 @@ compile_long() {   # $1 arch  $2 sources  $3 oskdef  $4 defines  $5 prog  $6 ext
   for s in $2; do
     printf 'cc %s %s%s -r -V=/h6/%s -V=/h7\n' "$s" "$3" "$4" "$1"
   done
+  # -l= five times, not once.  l68 makes ONE pass over a library, so a member
+  # that calls another member later in the file is left unresolved: zoo's huf.c
+  # wants putbits from io.c and came back with 24 unresolved references to it.
+  # Repeating the search costs nothing and settles any dependency depth this
+  # collection has.
   printf 'merge -z=ctmp.list >ctmp.parts.l\n'
-  printf 'cc %s.r -qm=16k -n=%s -f=/h6/%s/R_%s -l=ctmp.parts.l %s%s' \
+  printf 'cc %s.r -qm=16k -n=%s -f=/h6/%s/R_%s -l=ctmp.parts.l -l=ctmp.parts.l -l=ctmp.parts.l -l=ctmp.parts.l -l=ctmp.parts.l %s%s' \
          "$(basename "$mainsrc" .c)" "$5" "$1" "$5" "$6" "$7"
   printf ' -l=/dd/LIB/curses.l -l=/dd/LIB/termlib.l -l=/dd/LIB/unix.l -l=/dd/LIB/math.l\n'
   printf '\033\n\004\n'
@@ -148,40 +159,54 @@ while IFS='|' read -r prog arch srcs defs libs extra; do
     else echo "  note: $prog wants $x, not present -- omitted" >> "$LOG"; fi
   done
 
-  # Measure the line that is actually going to be typed, not the recipe field:
-  # mtools' sources are 430 characters and its cc line is 900, because the
-  # output path, the -V directories and four libraries come after them.
-  compile "$arch" "$srcs" "$OSKDEF" "$D" "$prog" "${extra:-}" "$L" > "$WORK/cmd"
-  longest=$(/usr/bin/awk '{ if (length($0) > m) m = length($0) } END { print m+0 }' "$WORK/cmd")
-  LIMIT=240
-  if [ "$longest" -gt 480 ]; then
-    compile_long "$arch" "$srcs" "$OSKDEF" "$D" "$prog" "${extra:-}" "$L" "$d" > "$WORK/cmd"
-    LIMIT=900
-  fi
-  out=$(run "$POOL" "$WORK/cmd" "$WORK/out")
+  # One build attempt with whatever source list it is given.  Measures the line
+  # that is actually going to be TYPED, not the recipe field: mtools' sources
+  # are 430 characters and its cc line is 900, because the output path, the -V
+  # directories and four libraries come after them.
+  attempt() {   # $1 sources
+    compile "$arch" "$1" "$OSKDEF" "$D" "$prog" "${extra:-}" "$L" > "$WORK/cmd"
+    longest=$(/usr/bin/awk '{ if (length($0) > m) m = length($0) } END { print m+0 }' "$WORK/cmd")
+    LIMIT=240
+    if [ "$longest" -gt 480 ]; then
+      compile_long "$arch" "$1" "$OSKDEF" "$D" "$prog" "${extra:-}" "$L" "$d" > "$WORK/cmd"
+      LIMIT=900
+    fi
+    run "$POOL" "$WORK/cmd" "$WORK/out"
+  }
+
+  out=$(attempt "$srcs")
   printf '=== %s (%s)\n%s\n' "$prog" "$arch" "$out" >> "$LOG"
 
-  # Retry once with a shim if the only thing missing is a BSD/Unix function
-  # OS-9's K&R library never had.  shims/ holds small, documented equivalents.
-  # Note this handles ONE shim: a program needing two (uwho wants getpwuid and
-  # geteuid both) must name them in its recipe's sources instead.
-  if [ ! -f "$d/R_$prog" ]; then
+  # Retry with shims when what is missing is a BSD or Unix function OS-9's K&R
+  # library never had.  shims/ holds small, documented equivalents.
+  #
+  # This used to add exactly ONE and give up.  `lwf' wants getpwuid AND popen,
+  # so it failed on popen having been given the passwd shim, and the recipe
+  # could not name the second because shims live outside disk/SRC.  Now it
+  # keeps adding while each round names a shim it has not already tried.
+  added=""
+  while [ ! -f "$d/R_$prog" ]; do
     shim=""
     case "$out" in
       *"'bcopy' unresolved"*|*"'bzero' unresolved"*|*"'bcmp' unresolved"*)          shim=os9bcopy.c;;
-      *"'getpwuid' unresolved"*|*"'getpwnam' unresolved"*)                          shim=os9getpw.c;;
+      *"'getpwuid' unresolved"*|*"'getpwnam' unresolved"*|*"'getlogin' unresolved"*) shim=os9getpw.c;;
       *"'srand48' unresolved"*|*"'drand48' unresolved"*|*"'lrand48' unresolved"*)   shim=os9rand48.c;;
       *"'geteuid' unresolved"*|*"'getuid' unresolved"*)                             shim=os9geteuid.c;;
-      *"'popen' unresolved"*)                                                       shim=os9popen.c;;
-      *"'strucmp' unresolved"*|*"'strnucmp' unresolved"*)                          shim=os9strucmp.c;;
+      *"'popen' unresolved"*|*"'pclose' unresolved"*)                               shim=os9popen.c;;
+      *"'strucmp' unresolved"*|*"'strnucmp' unresolved"*|*"'strstr' unresolved"*|*"'rename' unresolved"*) shim=os9alib.c;;
     esac
-    if [ -n "$shim" ]; then
-      cp "$HERE/shims/$shim" "$d/" 2>/dev/null
-      compile "$arch" "$srcs $shim" "$OSKDEF" "$D" "$prog" "${extra:-}" "$L" > "$WORK/cmd"
-      out=$(run "$POOL" "$WORK/cmd" "$WORK/out")
-      printf '=== %s (%s) RETRY with %s\n%s\n' "$prog" "$arch" "$shim" "$out" >> "$LOG"
-    fi
-  fi
+    [ -n "$shim" ] || break
+    case " $added " in *" $shim "*) break;; esac      # already tried: stop
+    cp "$HERE/shims/$shim" "$d/" 2>/dev/null || break
+    added="$added $shim"
+    out=$(attempt "$srcs$added")
+    printf '=== %s (%s) RETRY with%s\n%s\n' "$prog" "$arch" "$added" "$out" >> "$LOG"
+  done
+
+  # Take the shims back out.  They are this driver's, not the archive's, and a
+  # copy left behind in disk/SRC would ship on the disk as if the port had
+  # always carried it.
+  for s in $added; do rm -f "$d/$s"; done
 
   if [ -f "$d/R_$prog" ]; then
     st=$(/usr/bin/grep -qa 'from the disk of' "$d/R_$prog" && echo STAMPED || echo clean)

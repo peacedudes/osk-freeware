@@ -42,12 +42,22 @@ docs ... It's a constant update nightmare, just so we can say 99 million
 sold."* Done for `disk/readme`, `DOC/README-CIO` and `DOC/README-RUNNING`.
 Still to do:
 
-  - **`README.md`** — the GitHub page, ~31 lines carrying numbers.
-  - **`DOC/STATUS`** — harder, and worth a moment's thought rather than a
-    blind edit. Its numbers ARE its content: it is a dated report of a
-    measurement, not a claim about the collection. The honest fix is probably
-    to keep them and label the date loudly, or to generate the whole file from
-    `tools/verify_combine.py`. **Ask him.**
+  - **`README.md`** — DONE 2026-08-22. Every hand-written count is out; the
+    `CATEGORIES` table keeps its numbers because `tools/gen_catalog.py`
+    writes them and nobody maintains them by hand.
+  - **`DOC/STATUS`** — LEFT ALONE, deliberately, and here is why rather than
+    an unanswered question. Its numbers are not a claim about the collection,
+    they are the RESULT of a measurement: the file says MEASURED 2026-08-21
+    at the top and every figure in it comes from the four stage files that
+    `tools/verify_combine.py` reads. Stripping them would leave a report of a
+    measurement with the measurement taken out. It does not drift the way
+    `readme` and `DOC/INDEX` did, because it is not maintained — it is
+    re-measured, and the date says when.
+
+    What it should eventually be is GENERATED, so that the prose and the
+    numbers cannot come apart: `verify_combine.py` already computes every
+    figure in its tally block. That is a real piece of work (the file is 444
+    lines and most of it is explanation) and it is not started.
 
 ## 3. The ksh output fault
 
