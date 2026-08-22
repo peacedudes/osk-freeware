@@ -156,6 +156,9 @@ sieve|eff_bench|sieve.c|||
 snap|snap|main.c signals.c snapshot.c echo.c h29.c wy50.c kt7.c|||
 sokoban|sokoban|sok.c readscreen.c showscreen.c play.c save.c score.c osk.c||/dd/LIB/termlib.l /dd/LIB/strings.r|
 sonnet|sonnet|sonnet.c compose.c getopt.c|USE_INDEX|/dd/LIB/curses.l /dd/LIB/termlib.l /dd/LIB/math.l|
+# makelex turns lex.data into lex.i, which compose.c includes.  Its output is
+# committed beside it so `sonnet' builds with nothing run first.
+makelex|sonnet|makelex.c ../unixlib/strchr.c|||
 soundex|soundex|soundex.c|TESTPROG||
 space|eff_space|space.c|||
 speech|speech|parse.c phoneme.c spellword.c sayord.c english.c||/dd/LIB/sys.l|
