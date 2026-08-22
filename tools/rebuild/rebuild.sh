@@ -108,7 +108,7 @@ compile_long() {   # $1 arch  $2 sources  $3 oskdef  $4 defines  $5 prog  $6 ext
 
   printf 'setenv CLIB /dd/LIB\nsetenv CDEF /dd/DEFS\nchx /dd/CMDS\nchd /h6/%s\n' "$1"
   for s in $2; do
-    printf 'cc %s %s%s -r -V=/h6/%s -V=/h7\n' "$s" "$3" "$4" "$1"
+    printf 'cc %s %s%s -r=/h6/%s -V=/h6/%s -V=/h7\n' "$s" "$3" "$4" "$1" "$1"
   done
   # -l= five times, not once.  l68 makes ONE pass over a library, so a member
   # that calls another member later in the file is left unresolved: zoo's huf.c

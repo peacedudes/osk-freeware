@@ -59,9 +59,16 @@ archive's own prebuilt binary, every program ends up reporting itself as
 never had — `bcopy`, `getpwuid`, `geteuid`, `srand48`, `popen`. `rebuild.sh`
 retries once with the matching shim when a link fails on one of those names.
 
-It handles **one** shim per program. `uwho` needs two (`getpwuid` and
-`geteuid`), so it names them in its recipe's source list instead. If a program
-fails on a second missing symbol after a shim retry, that is why.
+It adds shims one at a time and keeps going while each round names one it has
+not already tried, so a program that wants two gets two: `lwf` needs
+`getpwuid` and `popen` both. The shims are removed from the tree afterwards —
+they are the driver's, not the archive's, and a copy left behind would ship on
+the disk as if the port had always carried it.
+
+Before writing a shim, look in `LIB` first. `rename` is not in `clib.l` and
+looks exactly like a missing-function case; it is in `os9lib.l`, which the
+recipe can simply ask for. A shim written for it used `link()`, which OS-9 has
+no more than it has `rename()`, and the build failed one symbol further on.
 
 ## What a failing build usually means
 
@@ -74,7 +81,12 @@ In rough order of how often it was the answer:
 | `can't open <header>` | sources are in a subdirectory, or the header wants `SRC/COMPAT`. |
 | `undeclared identifier` | a conditional-compilation arm. Read the `#ifdef` maze before adding anything: `make` needs `-DOS9` because `union wait` is in the `#ifndef OS9` branch. |
 | `*** error - value out of range ***` | this is **r68**, the assembler, not the compiler. `-K=2L`. |
-| `source line too long` | an LF-terminated file. OS-9 text is CR-terminated, and `cpp` reads an LF file as one enormous line. This bites files you wrote yourself. |
+| `source line too long` | an LF-terminated file. OS-9 text is CR-terminated, and `cpp` reads an LF file as one enormous line. This bites files you wrote yourself. A macro whose continuation lines join into something very long does it too — that is `ed.h`, and there `cpp` said so 161 MB worth. |
+| `can't open /dd/DEFS/sys/types.h` | `cpp` does not search the `-V` directories for an include name that has a DIRECTORY in it. `SRC/COMPAT/sys` is copied into the overlay's `DEFS` by `make_overlay.sh` for exactly this. |
+| a header that IS in `SRC/COMPAT` still "can't open" | `$OS9COMPAT` is not set. `tools/build.sh` sets it; calling `rebuild.sh` directly used to fall back to a path that has not existed since this repo was split out. |
+| the error names something that is not on the command line at all | the OS-9 shell **truncates a command line at about 600 characters, silently**. `mtools` has 45 sources and its `cc` line ran to 900; what arrived was cut mid-option, and the error was `can't open /dd/DEFS/stdlib.h`. `rebuild.sh` measures the line it is about to type and switches to compiling each source separately when it would be too long. |
+| unresolved symbols that are plainly IN the link | `l68` makes **one pass** over a library. A member calling another member further down the file is left unresolved — `zoo`'s `huf.c` wanted `putbits` from `io.c` 24 times. Name the library more than once. |
+| `E_BUSERR` from `cpp` itself | nested macro expansion. See `notes/CPP-MACRO-CRASH.md`; it has a three-file reproduction. `flex` is the one program here that hits it. |
 
 ## Verify, and check that the check can fail
 
