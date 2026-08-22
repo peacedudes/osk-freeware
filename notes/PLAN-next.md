@@ -68,19 +68,26 @@ Still to do:
     figure in its tally block. That is a real piece of work (the file is 444
     lines and most of it is explanation) and it is not started.
 
-## 3. The ksh output fault
+## 3. The ksh output fault — much less urgent than it looked
 
-The alias crash is fixed (`strchr(s,0)` is a bus error here — `osk.h` maps
-`strchr` to `index`, and `index(s,0)` returns NULL). A second fault remains:
-the FIRST command's output is lost, to a file as well as to the terminal.
+**Measured 2026-08-22: the SHIPPED `ksh` works.** Interactively
+(`os9exec -r ksh`: typed commands run, assignments and `$`-expansion work,
+`exit` exits) and with `-c` (`print one; print two` prints both lines). That is
+`disk/CMDS/ksh` unmodified, on os9exec carrying the `I$Read` fix — the fix
+rdoggett has said is going to be released.
 
-Everything known is in `tools/rebuild/pdksh/README.md`, including the decisive
-clue: setting `_IONBF` in `io.c` makes each write emit exactly ONE CHARACTER,
-which is not a flushing problem but a `FILE` layout one. The next thing to try
-is `savefd`/`restfd` around the first command in `exec.c`.
+So the reason the rebuild existed has largely gone. `sh_lex.c.patch` reads the
+command line a byte at a time as insurance against an os9exec WITHOUT that fix,
+and that release is not going to happen.
 
-Worth doing because it is the only thing that would make `ksh` work on a
-RELEASED os9exec, which is what anybody downloading this will have.
+What is still true: **our rebuild of ksh loses all output**, and that is a
+port defect in the rebuild, not in what ships. `tools/rebuild/pdksh/README.md`
+has what was tried on 2026-08-22 and ruled out — the `flushshf` guard and the
+`fdopen(fd, "r+")` mode — and names the one probe that would settle the
+remaining FILE-layout theory in two lines.
+
+`tools/rebuild/pdksh/build_ksh.sh` now builds it in one command, about four
+minutes, so the next attempt is a short loop rather than an afternoon.
 
 ## 4. `adv` — DONE 2026-08-22
 
