@@ -40,7 +40,14 @@ Same branch, nothing pushed, **eleven** checks now. Detail:
    would unlock `macutils` and replace most of `tools/rebuild/shims/`. Eight
    of its headers are byte identical to Microware's. **That one is yours.**
 
-6. Recipes went from 203 to 241; `tools/build.sh` builds them all on demand
+6. **`ksh` works.** Interactively — `os9exec -r ksh`, typed commands, `$`
+   expansion, `exit` — and with `-c`. That is the shipped binary on os9exec
+   carrying your `I$Read` fix, measured this morning. Which also means the
+   pdksh rebuild's whole reason for being (a `lex.c` patch as insurance
+   against a release WITHOUT that fix) has gone. `build_ksh.sh` builds it in
+   one command now if you ever want to change the port.
+
+7. Recipes went from 203 to 241; `tools/build.sh` builds them all on demand
    and `--missing` names the trees that still have none. `disk/DOC/START-HERE`
    is the live-demo affordance you asked for. Counts are out of `README.md`.
 
