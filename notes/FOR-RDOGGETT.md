@@ -1,13 +1,55 @@
-# For rdoggett, on your return — 2026-08-21
+# For rdoggett, on your return
 
 One file, one place to look. Branch **`release-pass-2026-08-21`**, off `main`,
-nothing pushed. Every commit made with all `check_disk.py` checks green — there
-are **nine** now, not eight.
+nothing pushed. Every commit made with the `check_disk.py` checks green.
+
+Newest first. The 2026-08-21 pass is below the 2026-08-22 one and still
+stands — nothing in it was undone.
+
+---
+
+# 2026-08-22 — the build pass, in six points
+
+Same branch, nothing pushed, **eleven** checks now. Detail:
+`notes/SESSION-2026-08-22.md`. What is left: `notes/PLAN-next.md`.
+
+1. **You said the os9exec fixes ship, and the hold is timing.** So I treated
+   this pass as os9exec's exercise. Nothing the emulator did was wrong. Two
+   things looked like it and were not — `notes/CPP-MACRO-CRASH.md` is a
+   minimal three-file reproduction of Microware's `cpp` taking a bus error on
+   nested macro expansion, which is why `flex` will not build.
+
+2. **Every build was dirtying `disk/`, and `mkimage.sh` reads `disk/` off the
+   filesystem.** Object files, cc temporaries, and fourteen of the ARCHIVES'
+   own `.r` files overwritten by ours. A new check refuses it, and it caught a
+   `ctmp.000003.o` that had already been committed and was shipping.
+
+3. **The OS-9 shell truncates a command line at about 600 characters,
+   silently.** That is why `mtools` "could not find stdlib.h". The driver now
+   compiles source-by-source when the line would be too long.
+
+4. **Three programs were failing for want of a file that was in the archive
+   all along** — `world` (its whole vocabulary), `patch` (`config.h`),
+   `sonnet` (a generated `lex.i`). `tools/missing_from_archive.py` is that
+   search generalised; it found sixty more files, of which seventeen man pages
+   and notes are now on the disk, and `advint` finally has an adventure to
+   play.
+
+5. **`blarslib` is in the pool and I did not add it** —
+   `notes/BLARSLIB.md`. Freely distributable by its author's own words, and it
+   would unlock `macutils` and replace most of `tools/rebuild/shims/`. Eight
+   of its headers are byte identical to Microware's. **That one is yours.**
+
+6. Recipes went from 203 to 241; `tools/build.sh` builds them all on demand
+   and `--missing` names the trees that still have none. `disk/DOC/START-HERE`
+   is the live-demo affordance you asked for. Counts are out of `README.md`.
+
+---
+
+# 2026-08-21 — the repair pass
 
 Detail: `notes/SESSION-2026-08-21.md`. What I was asked and what I decided:
 `notes/PLAN-release-2026-08-21.md`.
-
----
 
 ## 1. Read this first — Microware source was on the shipping disk
 
