@@ -61,6 +61,8 @@ print(f"{len(trees)} source trees, {len(trees) - len(missing)} with a recipe, "
 for i in range(0, len(missing), 5):
     print("   " + "".join(f"{n:<17}" for n in missing[i:i+5]))
 print("\ntools/try_compile.sh <tree> <program> tries one and says what stopped it.")
+print("notes/COMPILE-AUDIT.md says why each of these has none -- read it first,")
+print("because most of them are accounted for and only some are work.")
 PY
     exit 0;;
 esac
