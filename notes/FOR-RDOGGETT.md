@@ -190,9 +190,22 @@ collection ships "with their source"; it is 43%, and it now says so.
 ## 6. Open, in the order I would take them
 
 1. **Read `tools/screened-src.txt`** — six pre-existing strong flags I accepted.
-2. **`DOC/STATUS` is stale.** A full four-stage sweep was running when I wrote
-   this; see `notes/verify-bare.tsv` and the note at the end of the session
-   log. `passwd` was added after it started and is not in it.
+2. ~~`DOC/STATUS` is stale.~~ **DONE.** The full four-stage sweep was re-run
+   from scratch: **877 of 926 actual programs, 94.7%**, against the previous
+   pass's 877 of 925. The same collection measured again, not a different one.
+
+   `tools/verify_combine.py` is new and produces that number from the four
+   stage files — it was hand-work before, so the figure the collection
+   advertises most loudly could not be recomputed. It reproduces the previous
+   pass's committed result exactly (626 / 211 / 71 / 26 / 17) from the
+   previous pass's stage files, which is how I know it is right. It also
+   **refuses a stage file left over from an earlier sweep**, and that guard
+   earned its place within the hour: stage 4 was killed mid-run and its file
+   reverted to the previous pass's, which would have silently produced a
+   number that was part one measurement and part another.
+
+   `passwd` is counted separately and said so in `DOC/STATUS`: it went on the
+   disk after the sweep began, so it was verified by hand instead.
 3. **The ksh alias bug**, if you want the collection self-sufficient on a
    released os9exec.
 4. **`APPS/oleo1.6.tar.gz`** is the biggest source gap left — 217 files for
