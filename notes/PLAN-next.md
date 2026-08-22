@@ -82,26 +82,37 @@ is `savefd`/`restfd` around the first command in `exec.c`.
 Worth doing because it is the only thing that would make `ksh` work on a
 RELEASED os9exec, which is what anybody downloading this will have.
 
-## 4. `adv`
+## 4. `adv` — DONE 2026-08-22
 
-The one tree that got away. Supplying `execv` moves the problem: `adv/main.c`
-defines its own `chain`, which collides with `clibn.l`'s `process_a` psect
-that `chainc` drags in, and its tree carries three files with `main()`
-(`main.c`, `okplay.c`, `test.c`). Both are recipe problems, not missing
-library.
+It was a recipe problem, exactly as suspected, and the answer was where it
+always is: the tree's own makefile. `RFILES = main.r init.r io.r done.r
+subr.r vocab.r rand.r` — seven of the tree's files, not all of them, which is
+why the all-`.c` attempt kept dragging in `okplay.c`'s and `test.c`'s `main`.
+`advent` builds.
 
-## 5. A live-demo affordance
+## 5. blarslib — one decision, and several programs turn on it
+
+`notes/BLARSLIB.md`. Found in the pool, freely distributable by its author's
+own words, and blocked only on eight header files in it that are byte
+identical to Microware's. That is a provenance call, not a technical one.
+Saying yes unlocks `macutils` (five programs), and gives the collection a real
+Unix-compat library instead of `tools/rebuild/shims/`.
+
+## 6. A live-demo affordance
 
 "Simple to live demo" is the one capability with no tool behind it. Today the
 answer is "mount it as /dd and type a program name", which is fine but assumes
 you know a name worth typing. `about` answers *tell me about X*; nothing
 answers *show me something good*.
 
-Cheapest useful thing: a short curated list on the disk — `DOC/START-HERE`, a
-dozen programs that demo well with one line each and no setup (`fortune`,
-`cookie`, `rain`, `worms`, `hack`, `advent`, `zot`, `bog`...). Generated is
-better than hand-written if it can be, but this one is a taste judgement and
-probably has to be typed.
+**DONE 2026-08-22** — `disk/DOC/START-HERE`, and `disk/readme` points at it.
+A dozen programs that run with nothing set up, grouped by what they do to the
+terminal, with the quit key for each (from `notes/quit-keys-verified.txt`, so
+they are measured rather than assumed). It is typed, not generated: which
+programs demo well is a taste judgement.
+
+Read it and change what you disagree with — that is the point of it being
+short.
 
 ---
 
