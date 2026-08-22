@@ -1,6 +1,6 @@
 # What is on this disk
 
-852 programs of OS-9/68K community software, gathered from the archives that kept it and made to run again. **511 of them need nothing but this disk**; the rest want Microware's `cio`, marked below with a star.
+851 programs of OS-9/68K community software, gathered from the archives that kept it and made to run again. **511 of them need nothing but this disk**; the rest want Microware's `cio`, marked below with a star.
 
 `DOC/INDEX` on the disk lists everything alphabetically. This is the same collection sorted by what each program is *for*, which is the more useful order when you do not yet know what you are looking for.
 
@@ -11,7 +11,7 @@
 | [Shells](#shells) | 21 | Unix shells to sit beside OS-9's own -- bash and ksh bring history, job control, and scripts that come across unchanged. |
 | [Editors](#editors) | 24 | vi and emacs in several flavours, line and stream editors, and editors for binary and hex. |
 | [Text tools](#text-tools) | 82 | Search, sort, compare, reformat, split and spell-check. |
-| [Files & directories](#files--directories) | 36 | Listing, copying, finding, renaming, and knowing what you have. |
+| [Files & directories](#files--directories) | 35 | Listing, copying, finding, renaming, and knowing what you have. |
 | [Developer tools](#developer-tools) | 47 | Version control, tags, cross-reference, formatters, a debugger and benchmarks. |
 | [Compilers & build](#compilers--build) | 34 | C compilers and their passes, assemblers, linkers, make and parser generators. |
 | [Languages](#languages) | 6 | Interpreters and language systems beyond C. |
@@ -289,7 +289,7 @@
 
 *Listing, copying, finding, renaming, and knowing what you have.*
 
-<details><summary>36 programs</summary>
+<details><summary>35 programs</summary>
 
 **Copy, move, delete**
 
@@ -346,20 +346,19 @@
 | `eset` | &#9733; set an OS-9 event to a value -- eset <event> <num><br>`Syntax: eset <event> <num> [<opts>]` |
 | `owner` | &#9733; show file owner<br>`Usage: owner user file file ...` |
 
-**Create & rename**
-
-| | |
-|---|---|
-| `mkdir` | &#9733; make directory<br>`Usage: mkdir [-p] [-m mode] [+path] [+mode mode] dir...` |
-| `ren` | &#9733; bulk rename files<br>`Syntax: ren [<opts>] <pathlist> <newname>` |
-| `rendsk` | &#9733; rename a disk volume<br>`Syntax:   rendsk [<opts>] <disk device> <new name>` |
-
 **Paths**
 
 | | |
 |---|---|
 | `basename` | &#9733; strip directory from a pathname (M.C. Gregorie, 1994)<br>`Syntax:   basename <path> [<suffix>]` |
 | `dirname` | &#9733; strip filename from a pathname (M.C. Gregorie, 1994)<br>`Syntax:   dirname <path>` |
+
+**Create & rename**
+
+| | |
+|---|---|
+| `mkdir` | &#9733; make directory<br>`Usage: mkdir [-p] [-m mode] [+path] [+mode mode] dir...` |
+| `rendsk` | &#9733; rename a disk volume<br>`Syntax:   rendsk [<opts>] <disk device> <new name>` |
 
 **Attributes**
 

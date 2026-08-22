@@ -209,7 +209,6 @@ remove|Files & directories|Copy, move, delete
 rm|Files & directories|Copy, move, delete
 undel|Files & directories|Copy, move, delete
 mkdir|Files & directories|Create & rename
-ren|Files & directories|Create & rename
 rendsk|Files & directories|Create & rename
 dfiles|Files & directories|Find & compare
 du|Files & directories|Find & compare
