@@ -13,7 +13,7 @@ Not for the 6809 line — these are 68k binaries.
 
 ## What it is
 
-A single OS-9 RBF disk image, ~195 MB, built from `disk/`. It is **not a boot
+A single OS-9 RBF disk image, ~228 MB, built from `disk/`. It is **not a boot
 disk**: os9exec is the kernel, and this is the disk it mounts as `/dd` — the
 root and home. There is no established name for that role.
 
