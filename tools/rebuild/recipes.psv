@@ -206,3 +206,14 @@ shuffle|shuffle|game.c main.c switch.c visual.c xrand.c ../unixlib/getopt.c|||
 argproc_demo|argproc|argproc.c demo.c lose.c makeargv.c varargs.c ../unixlib/vsprintf.c ../unixlib/bcopy.c|||
 nobs|nobs|deal.c gamescore.c globs.c human.c logaux.c logglobs.c nobs.c os9rand48.c pegs.c play.c playscore.c progaux.c program.c show.c shuf.c version.c wglobs.c window.c ../unixlib/ctype.c|||
 hist|hist|h_edit.c h_expand.c h_main.c h_rw.c h_term.c|MCTERM||-V=/h6/hist
+
+# Added 2026-08-22: multi-program archives. Each program gets the tree's
+# shared sources plus its own main; the naive all-.c link fails on duplicate
+# symbols because two or three files define main().
+advcom|advint|advcom.c advfcn.c advscn.c advexp.c advavl.c advfio.c|||
+advint|advint|advmsg.c advtrm.c advprs.c advdbs.c advint.c advjunk.c advexe.c|||
+cut|cutpaste|cut.c getopt.c spaste.c|||
+paste|cutpaste|getopt.c paste.c spaste.c|||
+proff|proff|proff.c proff01.c proff02.c lookup.c pinit.c putwrd.c pxlex.c pxxparse.c dostuff2.c eval.c stack.c map.c|||
+buildhash|ispell|buildhash.c hash.c|||
+ispell|ispell|ispell.c term.c good.c lookup.c hash.c tree.c|TERMCAPS||

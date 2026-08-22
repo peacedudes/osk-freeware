@@ -51,7 +51,10 @@ rec = set()
 for line in open(os.path.join(here, "tools/rebuild/recipes.psv")):
     if line.startswith("#") or not line.strip():
         continue
-    rec.add(line.split("|")[1].strip())
+    # A recipe may name a SUBDIRECTORY -- `chess/CH5', `hist/SRC' -- so the
+    # tree it covers is the first component. Comparing the whole string
+    # reported chess and others as unrecipe'd when they are not.
+    rec.add(line.split("|")[1].strip().split("/")[0])
 missing = sorted(trees - rec)
 print(f"{len(trees)} source trees, {len(trees) - len(missing)} with a recipe, "
       f"{len(missing)} without:\n")
