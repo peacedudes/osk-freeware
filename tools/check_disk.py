@@ -191,6 +191,23 @@ def check_index_names(root):
     counted directories meant a new subdirectory documented nothing and still
     passed: CMDS/UUCP arrived with eighteen programs and all eight checks
     stayed green until this was widened.
+
+    KNOWN WEAKNESS, measured 2026-08-22 and left alone deliberately. The test
+    is "the name appears as a word anywhere in DOC/INDEX", including inside
+    ordinary prose -- so a program whose name is an English word can pass
+    without being documented at all. `about` did exactly that, on the strength
+    of "says more about each one".
+
+    Tightening it to "appears as an entry line" was tried and is WRONG: INDEX
+    documents in at least four shapes -- entry lines, four-per-line name grids
+    for the 169 netpbm converters, single-spaced runs like
+    `GCC139 (7) gcc gcc_cc1 gcc_cc1plus ...`, and the star grid. A stricter
+    rule reported 14 programs as undocumented and every one of them was in
+    fact documented. False alarms are worse than this hole, because they train
+    people to ignore the check.
+
+    The real protection is `about <program>`, which shows a reader at once
+    whether a program has an entry, a category, an origin, source and docs.
     """
     index = os.path.join(root, "DOC", "INDEX")
     words = set(re.findall(r"[A-Za-z0-9_.]+",
