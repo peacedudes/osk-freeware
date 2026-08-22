@@ -34,11 +34,18 @@ DULL_SUFFIX = (".r", ".o", ".bak", ".orig", ".old", ".rej", "~", ".tmp",
                ".lst", ".map", ".sym", ".bk")
 DULL_NAMES = {"core", "a.out", "makefile.bak", "tmp", "temp", "junk"}
 
+# Names so common that finding one SOMEWHERE on the disk proves nothing about
+# THIS package. `DOC/gnu/COPYING' would otherwise hide the fact that diff's own
+# COPYING never arrived. These are compared against the tree's own places only.
+GENERIC = {"readme", "readme.1st", "copying", "copyright", "license",
+           "licence", "makefile", "manifest", "help", "save", "man",
+           "man.cat", "changelog", "install", "todo", "notes", "index"}
+
 
 def origins(repo):
-    """{tree: {archive names}} from DOC/ORIGINS' `usenet archive  x.ar' lines."""
+    """({tree: archives}, {tree: programs}) from DOC/ORIGINS."""
     path = os.path.join(repo, "disk", "DOC", "ORIGINS")
-    out = {}
+    out, progs = {}, {}
     for line in open(path, "rb").read().decode("latin-1").replace("\r", "\n").split("\n"):
         if not line.startswith("  ") or line[2:3] == " ":
             continue
@@ -48,7 +55,8 @@ def origins(repo):
         for token in parts:
             if token.endswith(".ar"):
                 out.setdefault(parts[1], set()).add(token)
-    return out
+                progs.setdefault(parts[1], set()).add(parts[0])
+    return out, progs
 
 
 def extract(archive, dest, exe, image):
@@ -84,13 +92,37 @@ def main(argv):
     stage = os.path.abspath(argv[0]) if argv else os.path.join(
         os.environ.get("TMPDIR", "/tmp"), "os9missing")
 
-    trees = origins(repo)
+    # Every basename the disk carries ANYWHERE, not just in SRC. A game's data
+    # lives under GAMES and its manual under DOC, so comparing against SRC
+    # alone called `glorkz', `gnuchess.book' and `sokoban.help' missing when
+    # all three ship -- 30-odd false gaps out of 142, which is enough to make
+    # the list not worth reading.
+    everywhere = set()
+    for here, dirs, files in os.walk(os.path.join(repo, "disk")):
+        for f in files:
+            everywhere.add(f.lower())
+        # DIRECTORIES too: sokoban's `screens' and `SAVES' are directories on
+        # the disk and files in the archive, and walking only the files called
+        # both of them missing.
+        for d in dirs:
+            everywhere.add(d.lower())
+
+    trees, progs = origins(repo)
     gaps = 0
     for tree in sorted(trees):
         here = os.path.join(repo, "disk", "SRC", tree)
         if not os.path.isdir(here):
             continue
         have = {f.lower() for f in os.listdir(here)}
+        # ...and the DOC directory of every program that came from this tree,
+        # which is where a README or a man page actually lands.
+        for prog in progs.get(tree, ()):
+            doc = os.path.join(repo, "disk", "DOC", prog)
+            if os.path.isdir(doc):
+                have |= {f.lower() for f in os.listdir(doc)}
+        doc = os.path.join(repo, "disk", "DOC", tree)
+        if os.path.isdir(doc):
+            have |= {f.lower() for f in os.listdir(doc)}
         for archive in sorted(trees[tree]):
             src = os.path.join(arr, archive)
             if not os.path.isfile(src):
@@ -100,7 +132,9 @@ def main(argv):
             if not members:
                 print(f"{tree:16} {archive:16} -- nothing extracted")
                 continue
-            absent = [m for m in members if m.lower() not in have]
+            absent = [m for m in members
+                      if m.lower() not in have
+                      and (m.lower() in GENERIC or m.lower() not in everywhere)]
             interesting = [m for m in absent if not dull(m)]
             print(f"{tree:16} {archive:16} {len(members):3} members, "
                   f"{len(absent):3} not in SRC/{tree}"
