@@ -88,6 +88,18 @@ In rough order of how often it was the answer:
 | unresolved symbols that are plainly IN the link | `l68` makes **one pass** over a library. A member calling another member further down the file is left unresolved — `zoo`'s `huf.c` wanted `putbits` from `io.c` 24 times. Name the library more than once. |
 | `E_BUSERR` from `cpp` itself | nested macro expansion. See `notes/CPP-MACRO-CRASH.md`; it has a three-file reproduction. `flex` is the one program here that hits it. |
 
+## Do not edit a script while it is running
+
+`bash` reads a script by BYTE OFFSET as it goes. Editing `tools/build.sh`
+during a 40-minute full build shifted every offset after the edit, and the
+running copy died with a syntax error on a line that is perfectly good — after
+the last program was built and before the tidy-up, so it left 440 modified
+object files behind and reported nothing. The file was never wrong; `bash -n`
+said so immediately.
+
+The same applies to `rebuild.sh` and to this repository's other long-running
+shell scripts. Wait, or copy the script and edit the copy.
+
 ## Verify, and check that the check can fail
 
 `verify.sh` runs each module and rejects it if the module name does not match
