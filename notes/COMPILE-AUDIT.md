@@ -6,6 +6,71 @@ compile, right?)"*
 Right. Until now that had only ever been established for the trees that have a
 recipe. This is the count, and the method for closing the rest.
 
+## Where it stands, 2026-08-22 (end of the build pass)
+
+Run `tools/build.sh` for the live answer and `tools/build.sh --missing` for
+the trees that still have no recipe. As measured on 2026-08-22:
+
+    237 of 240 recipes build clean
+
+and the three that do not, plus every tree with no recipe at all, are
+accounted for below. Nothing in this list is "unknown" any more.
+
+### The three recipes that fail
+
+  - **`ls`** — a gcc2 build. K&R `cc` will not take it.
+  - **`pdraw`** — wants X11 headers. They are not here and are not coming.
+  - **`pep`** — calls `standby()` and `init_via()`, which live in the mc
+    EPROM programmer's own hardware library. Its own header says it runs only
+    on that board, so this one is correct as it stands.
+
+### Trees with no recipe, and why
+
+**Wrong language or wrong compiler.**
+
+  - `homelibr` — C++ (`.cc`). No C++ compiler here.
+  - `aterm`, `serload` — 68k assembly only. `r68` would do it; nothing in
+    `rebuild.sh` drives the assembler yet.
+  - `graph` — three `.c` and eight `.a`; same.
+  - `ed`, `lout`, `gnuchess/GNUCHESS4.0` — ANSI C. GNU `ed` also carries a
+    macro that `cpp` calls too long; `lout`'s `externs` uses typed bitfields;
+    GNU Chess 4.0's header is several hundred ANSI prototypes.
+  - `rtf` — Fortran.
+
+**Something genuinely absent.**
+
+  - `rcs` — `rcssyn.c`, `rcsrev.c`, `rcsutil.c` missing from the tree AND from
+    `rcs4.lha` in the pool. RCS **version 4** (Purdue, 1987); GNU's 5.7 files
+    are not drop-in.
+  - `calc` wants `h_grafik.h`, `cgrafik` wants `graf.h` — neither is anywhere
+    on the disk or in the pool.
+  - `mgif` wants `screenbaseaddress` from `/h0/lib/gpprim.r`, a graphics
+    primitive library that is not here.
+  - `deansi` is lex output and wants a lex runtime (`yyreject`).
+  - `spooler` wants its author's `local.h` — the one with `loop` and `ERROR`
+    in it, not the `auxlib` one this disk carries.
+  - `macutils`, `mtools`, `gtar` want **blarslib**, which IS in the pool.
+    See `notes/BLARSLIB.md`; that is a decision, not a search.
+
+**A `cpp` defect.**
+
+  - `flex` — see `notes/CPP-MACRO-CRASH.md`.
+
+**Not program trees.**
+
+  - `COMPAT` is headers. `unixlib` is a library and now has a recipe of its
+    own kind (`unix.l`).
+
+**Still ordinary work, nobody has done it.**
+
+  - `cnews`, `smail`, `infoxpress`, `uucpbb`, `uucp_blars`, `jpeglib`, `lua`,
+    `rayshade`, `sbprolog`, `pdksh`, `inform`, `ioccc` (eleven more contest
+    entries), `macutils` if blarslib is settled. Each is a makefile away.
+
+---
+
+# The 2026-08-22 morning pass, as it stood then
+
 ## Where it stands
 
     170  source trees under disk/SRC
