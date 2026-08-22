@@ -1,6 +1,6 @@
 # What is on this disk
 
-851 programs of OS-9/68K community software, gathered from the archives that kept it and made to run again. **511 of them need nothing but this disk**; the rest want Microware's `cio`, marked below with a star.
+844 programs of OS-9/68K community software, gathered from the archives that kept it and made to run again. **505 of them need nothing but this disk**; the rest want Microware's `cio`, marked below with a star.
 
 `DOC/INDEX` on the disk lists everything alphabetically. This is the same collection sorted by what each program is *for*, which is the more useful order when you do not yet know what you are looking for.
 
@@ -8,11 +8,11 @@
 
 | Category | Programs | |
 |---|--:|---|
-| [Shells](#shells) | 21 | Unix shells to sit beside OS-9's own -- bash and ksh bring history, job control, and scripts that come across unchanged. |
+| [Shells](#shells) | 20 | Unix shells to sit beside OS-9's own -- bash and ksh bring history, job control, and scripts that come across unchanged. |
 | [Editors](#editors) | 24 | vi and emacs in several flavours, line and stream editors, and editors for binary and hex. |
-| [Text tools](#text-tools) | 82 | Search, sort, compare, reformat, split and spell-check. |
+| [Text tools](#text-tools) | 81 | Search, sort, compare, reformat, split and spell-check. |
 | [Files & directories](#files--directories) | 35 | Listing, copying, finding, renaming, and knowing what you have. |
-| [Developer tools](#developer-tools) | 47 | Version control, tags, cross-reference, formatters, a debugger and benchmarks. |
+| [Developer tools](#developer-tools) | 46 | Version control, tags, cross-reference, formatters, a debugger and benchmarks. |
 | [Compilers & build](#compilers--build) | 34 | C compilers and their passes, assemblers, linkers, make and parser generators. |
 | [Languages](#languages) | 6 | Interpreters and language systems beyond C. |
 | [Archives & compression](#archives--compression) | 35 | Pack, unpack and shrink -- lha, zip, tar, arc, zoo, and OS-9 module libraries. |
@@ -22,9 +22,9 @@
 | [Games](#games) | 66 | Adventures, board and card games, arcade ports, dungeon crawls and puzzles. |
 | [Screen toys](#screen-toys) | 6 | Things to watch rather than play. Start one and leave it going. |
 | [Amusements](#amusements) | 20 | Generators, simulators and diversions that are not quite games. |
-| [System & modules](#system--modules) | 130 | OS-9 module and process tools, devices, system state and scheduling. |
+| [System & modules](#system--modules) | 127 | OS-9 module and process tools, devices, system state and scheduling. |
 | [Disk & DOS](#disk--dos) | 20 | Reading and writing MS-DOS media with the mtools set. |
-| [Time & calendar](#time--calendar) | 10 | Calendars, clocks and astronomy. |
+| [Time & calendar](#time--calendar) | 9 | Calendars, clocks and astronomy. |
 | [Maths & calculators](#maths--calculators) | 13 | Calculators, plotting, orbits and number theory. |
 | [Printing](#printing) | 14 | Spoolers, page formatting and PostScript. |
 | [Documentation](#documentation) | 6 | Pagers, readers and the help system. |
@@ -33,7 +33,7 @@
 
 *Unix shells to sit beside OS-9's own -- bash and ksh bring history, job control, and scripts that come across unchanged.*
 
-<details><summary>21 programs</summary>
+<details><summary>20 programs</summary>
 
 **Shell helpers**
 
@@ -45,7 +45,6 @@
 | `getenv` | &#9733; print an environment variable<br>`USAGE: getenv [-n\|-p\|-l\|-x] <Environment> [<Wert>]` |
 | `hist` | C-shell history + commandline editing  [no military use -- EFFO-INFO] |
 | `if` | conditional execution for shell scripts (varval/loaded/def)<br>`Syntax: if [not] <cond> {<arg>} {<cmd1>} [else` |
-| `paths` | show/expand the PATH |
 | `printenv` | &#9733; print the environment<br>`Syntax:   printenv [<options>] [{<env var name}]` |
 | `printf` | &#9733; formatted print from the shell<br>`Usage: printf <format-string> [ arg1 . . . ]` |
 | `run` | run a program with stdio rebound to the terminal (needs PORT)<br>`Syntax: run '<prgname> {<arg>}'` |
@@ -134,7 +133,7 @@
 
 *Search, sort, compare, reformat, split and spell-check.*
 
-<details><summary>82 programs</summary>
+<details><summary>81 programs</summary>
 
 **Transform & filter**
 
@@ -157,7 +156,6 @@
 | `qt` | &#9733; quick text utility |
 | `rot` | rot-N text transformer |
 | `shuffle` | shuffle lines/cards<br>**How:** Full-screen: it takes over the display. **`q' quits** -- tested. |
-| `souper` | souper - text utility -- bus errors before its first system call, in a login session too.  See DOC/README-BUSERR |
 | `tabs` | tab/space conversion filter<br>`Syntax   : tabs [<opts>] [<input_redirection>] [<output_redirection>]` |
 | `upperdir` | Normalise case: files lowercase, dirs uppercase<br>`Usage: UpperDir [directory name]` |
 | `valspeak` | &#9733; Valley-speak text filter |
@@ -372,7 +370,7 @@
 
 *Version control, tags, cross-reference, formatters, a debugger and benchmarks.*
 
-<details><summary>47 programs</summary>
+<details><summary>46 programs</summary>
 
 **Benchmarks**
 
@@ -397,7 +395,6 @@
 | `savage` | &#9733; Savage floating-point accuracy benchmark |
 | `sieve` | &#9733; sieve of Eratosthenes benchmark |
 | `time` | &#9733; time a command |
-| `timeio` | &#9733; time I/O operations |
 | `timid` | timing utility<br>`Syntax: timit [<opts>]` |
 
 **Version control**
@@ -1238,7 +1235,7 @@
 
 *OS-9 module and process tools, devices, system state and scheduling.*
 
-<details><summary>130 programs</summary>
+<details><summary>127 programs</summary>
 
 **Utilities**
 
@@ -1331,7 +1328,6 @@
 | `launch` | &#9733; launch background process<br>**How:** Says "nothing to launch" until it is configured -- see its documentation. |
 | `signal` | &#9733; send a signal to a process<br>`Syntax: signal <process-id> <signal-code> [<seconds>]` |
 | `sysmax` | &#9733; show maximum system memory |
-| `sysmem` | show system memory use -- bus errors before its first system call, in a login session too.  See DOC/README-BUSERR |
 | `sysmin` | &#9733; show minimum system memory |
 | `sysmon` | &#9733; system monitor<br>`Syntax: sysmon [<opt>]` |
 | `t` | tiny test/stub binary |
@@ -1356,7 +1352,6 @@
 |---|---|
 | `clock` | display a clock |
 | `date` | Print date and time |
-| `firq` | FIRQ utility -- bus errors before its first system call, in a login session too.  See DOC/README-BUSERR |
 | `loglist` | &#9733; log listing<br>`Syntax   : loglist [-option(s)]` |
 | `oskversion` | &#9733; report the OS-9/OSK version<br>`Syntax:   OSKversion` |
 | `setime` | Set system time (prompts YYMMDDHHMMSS) |
@@ -1409,18 +1404,17 @@
 | `keep` | take a program off this collection onto your own disk -- copies it and whatever DOC/DEPENDS says it needs, and records every file written.  `keep -n' shows what it would do without doing it.  See DOC/README-KEEP.<br>`Usage: keep [-n] [-f] [-q] [-p <dir>] <program>...` |
 | `kept` | list what has been taken, and how much it came to<br>`Usage: keep [-n] [-f] [-q] [-p <dir>] <program>...` |
 
-**Scheduling**
-
-| | |
-|---|---|
-| `cron` | run commands at specified times (daemon) |
-| `minute` | minute timer -- waits for the system clock to roll over a minute, so printing nothing is what success looks like<br>`Syntax: minute[<opts>]` |
-
 **Modules**
 
 | | |
 |---|---|
 | `bsplt68` | Split a boot file into its component modules (Carl Kreider) |
+
+**Scheduling**
+
+| | |
+|---|---|
+| `cron` | run commands at specified times (daemon) |
 
 **Disks and devices**
 
@@ -1477,7 +1471,7 @@
 
 *Calendars, clocks and astronomy.*
 
-<details><summary>10 programs</summary>
+<details><summary>9 programs</summary>
 
 **Calendars**
 
@@ -1485,7 +1479,6 @@
 |---|---|
 | `cal` | &#9733; Calendar, Bob van der Poel.  `cal -h' prints holidays with it -- SYS/holidays is here, and SYS/birthdays is an empty template for your own dates.  SYS/cal.init is a printer setup for a laser<br>**How:** `cal -h' prints holidays alongside the calendar -- SYS/holidays is on the disk now, and SYS/birthdays is an empty template the holidays file INCLUDEs, so anything you add there shows up too. Add `-g' if the rule under the day names comes out as garbage on your terminal. |
 | `calen` | calendar printer (v_misc) |
-| `calendar` | reminder service - reads a calendar file |
 | `calender` | &#9733; print a whole year's calendar (German)<br>**How:** Prints the year in GERMAN. Not a typo of `calendar' -- a different program by a different author. |
 | `digclk` | &#9733; digital clock with hostname<br>`Usage: digclk [refresh_rate]` |
 | `easter` | &#9733; compute the date of Easter<br>**How:** Prints Easter dates for 1988 to 2000 and nothing else. The range is compiled in. |

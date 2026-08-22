@@ -107,7 +107,6 @@ paranoia|Developer tools|Benchmarks
 savage|Developer tools|Benchmarks
 sieve|Developer tools|Benchmarks
 time|Developer tools|Benchmarks
-timeio|Developer tools|Benchmarks
 timid|Developer tools|Benchmarks
 sdb|Developer tools|Debugging
 trap|Developer tools|Debugging
@@ -520,7 +519,6 @@ fc|Shells|Shell helpers
 getenv|Shells|Shell helpers
 hist|Shells|Shell helpers
 if|Shells|Shell helpers
-paths|Shells|Shell helpers
 printenv|Shells|Shell helpers
 printf|Shells|Shell helpers
 run|Shells|Shell helpers
@@ -546,17 +544,14 @@ dpark|System & modules|Processes & memory
 launch|System & modules|Processes & memory
 signal|System & modules|Processes & memory
 sysmax|System & modules|Processes & memory
-sysmem|System & modules|Processes & memory
 sysmin|System & modules|Processes & memory
 sysmon|System & modules|Processes & memory
 t|System & modules|Processes & memory
 top|System & modules|Processes & memory
 who|System & modules|Processes & memory
 cron|System & modules|Scheduling
-minute|System & modules|Scheduling
 clock|System & modules|System state
 date|System & modules|System state
-firq|System & modules|System state
 loglist|System & modules|System state
 oskversion|System & modules|System state
 setime|System & modules|System state
@@ -629,7 +624,6 @@ psc|Text tools|Transform & filter
 qt|Text tools|Transform & filter
 rot|Text tools|Transform & filter
 shuffle|Text tools|Transform & filter
-souper|Text tools|Transform & filter
 tabs|Text tools|Transform & filter
 upperdir|Text tools|Transform & filter
 valspeak|Text tools|Transform & filter
@@ -639,7 +633,6 @@ ephem|Time & calendar|Astronomy
 ephem881|Time & calendar|Astronomy
 cal|Time & calendar|Calendars
 calen|Time & calendar|Calendars
-calendar|Time & calendar|Calendars
 calender|Time & calendar|Calendars
 digclk|Time & calendar|Calendars
 easter|Time & calendar|Calendars
