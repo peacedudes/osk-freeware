@@ -1,10 +1,9 @@
 # osk-freeware
 
 Three decades of community software for **OS-9/68000 (OSK)**, gathered in one
-place and made to run again: 604 programs in `CMDS` and `CMDS/GAMES`, 942 in
-all, with the documentation and the source that could be found for them and a
-record of where each one came from. About 43% of the collection has source
-here; most of the rest never had any that survived.
+place and made to run again, with the documentation and the source that could
+be found for them and a record of where each one came from. Rather less than
+half of it has source here; most of the rest never had any that survived.
 
 OS-9 is Microware's, and still a current product. This is the software the
 community wrote for it, and it is meant to be run on a real OS-9 system.
@@ -13,12 +12,12 @@ Not for the 6809 line — these are 68k binaries.
 
 ## What it is
 
-A single OS-9 RBF disk image, ~228 MB, built from `disk/`. It is **not a boot
+A single OS-9 RBF disk image, built from `disk/`. It is **not a boot
 disk**: os9exec is the kernel, and this is the disk it mounts as `/dd` — the
 root and home. There is no established name for that role.
 
     disk/       the tree the image is built from
-      CMDS/       522 commands, plus GAMES/ REBUILT/ BROKEN/ NETPBM/ GCC*/
+      CMDS/       the commands, plus GAMES/ REBUILT/ BROKEN/ NETPBM/ GCC*/
       SRC/        C source for most of it
       DOC/        per-package documentation, plus the index files below
       GAMES/      game data
@@ -31,20 +30,21 @@ root and home. There is no established name for that role.
 
     OS9DISK=$PWD/osk-freeware.dd os9exec -r bash /dd/SYS/login
 
-That is the arrangement to prefer, and it is not a close call. **258 programs
-read their own data from `/dd`** — `advent` wants `/dd/GAMES/adv/glorkz`,
-`fortune` wants `/dd/GAMES/FORTUNE/fortunes.dat`, `nroff` wants
-`/dd/LIB/tmac.*` — against 53 that want data under `/h0`. Measured with
-`tools/measure_layout.py`; the reasoning is in `notes/DECISION-placement.md`.
+That is the arrangement to prefer, and it is not a close call. Most of the
+programs that read data of their own read it from `/dd` — `advent` wants
+`/dd/GAMES/adv/glorkz`, `fortune` wants `/dd/GAMES/FORTUNE/fortunes.dat`,
+`nroff` wants `/dd/LIB/tmac.*`. A minority want theirs under `/h0`. Run
+`tools/measure_layout.py` for the tally as it stands; the reasoning is in
+`notes/DECISION-placement.md`.
 
 Nothing has to be fetched. `cio`, `csl`, `csl020`, `math` and `math881` — the
-Microware runtime modules the 293 starred programs need — **ship on the disk,
-with Microware's permission**. `SOURCES.txt` records the exchange.
+Microware runtime modules the starred programs need — **ship on the disk, with
+Microware's permission**. `SOURCES.txt` records the exchange.
 
 `SYS/login` works out where the disk is mounted from the path you hand it,
 then sets `PATH`, `HOME`, `TERM` and `TERMCAP`.
 
-**Add `/h0` as well** — it costs one inode and collects the 53:
+**Add `/h0` as well** — it costs one inode and collects the rest:
 
     ln osk-freeware.dd h0     # a hard link: os9exec will not mount one path twice
     OS9DISK=$PWD/osk-freeware.dd OS9H0=$PWD/h0 os9exec -r bash /dd/SYS/login
@@ -54,8 +54,9 @@ then sets `PATH`, `HOME`, `TERM` and `TERMCAP`.
     OS9DISK=<your own disk>  OS9H0=<this image, named h0>  os9exec shell
     setenv PATH /dd/CMDS:/h0/CMDS:/h0/CMDS/GAMES
 
-This keeps your system, your `LIB` and your own `cio`. What it costs is those
-258 programs: `/dd` is now yours, so their data is not where they look. The
+This keeps your system, your `LIB` and your own `cio`. What it costs is the
+programs that keep data here: `/dd` is now yours, so their data is not where
+they look. The
 disk carries **`keep`** for exactly this — it copies a program onto your `/dd`
 together with the files `DOC/DEPENDS` says it reads, records every byte it
 wrote, and `drop` will not remove anything you have since changed. See
@@ -64,9 +65,9 @@ programs and it writes out `keep a b c` to paste.
 
 ### Two things worth knowing either way
 
-**`TERMCAP` matters.** 98 programs name `/h0/sys/termcap` outright, and the 69
-measured so far all read the `TERMCAP` variable first — no exceptions — so
-they work with no `/h0` in sight. `SYS/login` sets it.
+**`TERMCAP` matters.** A good many programs name `/h0/sys/termcap` outright,
+and every one measured so far reads the `TERMCAP` variable first — no
+exceptions — so they work with no `/h0` in sight. `SYS/login` sets it.
 
 **bash's own `pwd` hangs the shell** here: its `getwd()` walks `..` looking for
 a single root, and OS-9 has one per device. Setting `HOME` is what makes bash
@@ -75,8 +76,8 @@ read `/dd/.bashrc`, where working `cd` and `pwd` are defined.
 ## What is actually in it
 
 **[docs/CATALOG.md](docs/CATALOG.md) — every program, grouped by what it is for.**
-That is the one to open first. `DOC/INDEX` on the disk is alphabetical and 700
-lines long, which is no help until you already know the name you want.
+That is the one to open first. `DOC/INDEX` on the disk is alphabetical, which
+is no help until you already know the name you want.
 
 <!-- CATEGORIES:START -->
 
@@ -154,8 +155,8 @@ deliberate exception. **Five runtime modules ship by permission**: `cio`,
 those and replied *"I do not see a problem with those modules."*
 `disk/SOURCES.txt` records the exchange.
 
-Most of these programs were compiled with Microware's `cc`, and 367 module
-names — 372 files — use `cio` at run time. Those are starred in
+Most of these programs were compiled with Microware's `cc`, and a good share
+of them use `cio` at run time. Those are starred in
 `disk/DOC/INDEX`; `disk/DOC/README-CIO` explains what the star means and how to
 use your own copy instead if you would rather.
 
@@ -175,9 +176,10 @@ The image is a release artefact and is not committed.
 
 ## Rebuilding programs from source
 
-`tools/rebuild/` holds the driver, the shims, and **203 known-good build
-recipes** — one line per program, so nobody has to re-derive them. See
-`tools/rebuild/README.md`.
+`tools/rebuild/` holds the driver, the shims, and the known-good build
+recipes — one line per program, so nobody has to re-derive them.
+`tools/build.sh` builds everything there is a recipe for and `--missing` names
+the trees that still have none. See `tools/rebuild/README.md`.
 
-Most of the 621 modules under `CMDS/` have no source anywhere and can only be
+Most of the modules under `CMDS/` have no source anywhere and can only be
 preserved, not rebuilt. That is why the binaries are committed.

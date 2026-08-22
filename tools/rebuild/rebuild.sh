@@ -38,7 +38,12 @@ REPO=$(cd "$HERE/../.." && pwd)
 # here: $OS9EXEC, else the sibling checkout.
 EXE=${OS9EXEC:-$REPO/../os9exec/os9exec}
 [ -x "$EXE" ] || { echo "no os9exec at $EXE -- set OS9EXEC" >&2; exit 2; }
-: "${OS9COMPAT:=$REPO/freeware/SRC/COMPAT}"
+# The tree moved out of freeware/ when this repo was split off; the old default
+# silently pointed at nothing, so every <stdlib.h> and <pwd.h> came back as
+# "can't open /dd/DEFS/..." for anyone who ran this script directly instead of
+# through tools/build.sh.
+: "${OS9COMPAT:=$REPO/disk/SRC/COMPAT}"
+[ -d "$OS9COMPAT" ] || { echo "no COMPAT headers at $OS9COMPAT" >&2; exit 2; }
 WORK=${TMPDIR:-/tmp}/os9rebuild.$$
 mkdir -p "$WORK"
 trap 'rm -rf "$WORK"' EXIT
@@ -69,8 +74,49 @@ compile() {   # $1 arch  $2 sources  $3 oskdef  $4 defines  $5 prog  $6 extra  $
 # running and no sign of what it was doing.  Head and tail together because the
 # reason lives at both ends: cc's diagnostics come first, l68's "Symbol 'x'
 # unresolved" comes last.
+# THE LONG-ARGUMENT PATH.  OS-9's shell truncates a command line at about 600
+# characters, silently: `mtools' has 45 sources, its cc line ran to 900, and
+# what arrived was the line cut off in the middle of `-V=/h6/mtools/MTOOLS_3.6'
+# with the trailing `-V=/h7' and every library gone.  The error that came back
+# was "can't open /dd/DEFS/stdlib.h", which reads exactly like a missing header.
+#
+# So above that length each source is compiled on its own short line, the
+# objects are gathered with `merge -z=<file>' -- which takes its file list from
+# a FILE and therefore has no line limit -- and the module is linked from the
+# one object holding main() plus that gathering as a library.
+#
+# The gathered file must be a LIBRARY passed with -l=, not an object: l68 reads
+# one ROF from a plain filename and would take only the first of the 44.
+compile_long() {   # $1 arch  $2 sources  $3 oskdef  $4 defines  $5 prog  $6 extra  $7 libs  $8 dir
+  local mainsrc="" s
+  for s in $2; do
+    /usr/bin/grep -qaE '^[A-Za-z_][A-Za-z0-9_ *]*\bmain[[:space:]]*\(' "$8/$s" && mainsrc=$s
+  done
+  [ -n "$mainsrc" ] || { echo "  $5: no main() among its sources" >&2; return 1; }
+
+  : > "$8/ctmp.list"
+  for s in $2; do
+    [ "$s" = "$mainsrc" ] && continue
+    printf '%s\r' "$(basename "$s" .c).r" >> "$8/ctmp.list"
+  done
+
+  printf 'setenv CLIB /dd/LIB\nsetenv CDEF /dd/DEFS\nchx /dd/CMDS\nchd /h6/%s\n' "$1"
+  for s in $2; do
+    printf 'cc %s %s%s -r -V=/h6/%s -V=/h7\n' "$s" "$3" "$4" "$1"
+  done
+  printf 'merge -z=ctmp.list >ctmp.parts.l\n'
+  printf 'cc %s.r -qm=16k -n=%s -f=/h6/%s/R_%s -l=ctmp.parts.l %s%s' \
+         "$(basename "$mainsrc" .c)" "$5" "$1" "$5" "$6" "$7"
+  printf ' -l=/dd/LIB/curses.l -l=/dd/LIB/termlib.l -l=/dd/LIB/unix.l -l=/dd/LIB/math.l\n'
+  printf '\033\n\004\n'
+}
+
+# $LIMIT seconds per program.  240 is right for a one-line build; the
+# long-argument path compiles each source separately and zoo's 35 and mtools'
+# 45 both ran past it and were recorded FAIL with no output at all.
+LIMIT=240
 run() {       # $1 pool  $2 command-file  $3 output file
-  ( cd "$REPO" && gtimeout 240 env OS9DISK="$OS9CLEAN" OS9H6="$1" OS9H7="$OS9COMPAT" \
+  ( cd "$REPO" && gtimeout "$LIMIT" env OS9DISK="$OS9CLEAN" OS9H6="$1" OS9H7="$OS9COMPAT" \
       "$EXE" -r shell < "$2" 2>&1 | /usr/bin/tr -d '\000' ) > "$3"
   /usr/bin/head -c 400000 "$3"
   [ "$(/usr/bin/wc -c < "$3")" -gt 500000 ] && printf '\n[... output truncated ...]\n'
@@ -102,7 +148,16 @@ while IFS='|' read -r prog arch srcs defs libs extra; do
     else echo "  note: $prog wants $x, not present -- omitted" >> "$LOG"; fi
   done
 
+  # Measure the line that is actually going to be typed, not the recipe field:
+  # mtools' sources are 430 characters and its cc line is 900, because the
+  # output path, the -V directories and four libraries come after them.
   compile "$arch" "$srcs" "$OSKDEF" "$D" "$prog" "${extra:-}" "$L" > "$WORK/cmd"
+  longest=$(/usr/bin/awk '{ if (length($0) > m) m = length($0) } END { print m+0 }' "$WORK/cmd")
+  LIMIT=240
+  if [ "$longest" -gt 480 ]; then
+    compile_long "$arch" "$srcs" "$OSKDEF" "$D" "$prog" "${extra:-}" "$L" "$d" > "$WORK/cmd"
+    LIMIT=900
+  fi
   out=$(run "$POOL" "$WORK/cmd" "$WORK/out")
   printf '=== %s (%s)\n%s\n' "$prog" "$arch" "$out" >> "$LOG"
 
@@ -118,6 +173,7 @@ while IFS='|' read -r prog arch srcs defs libs extra; do
       *"'srand48' unresolved"*|*"'drand48' unresolved"*|*"'lrand48' unresolved"*)   shim=os9rand48.c;;
       *"'geteuid' unresolved"*|*"'getuid' unresolved"*)                             shim=os9geteuid.c;;
       *"'popen' unresolved"*)                                                       shim=os9popen.c;;
+      *"'strucmp' unresolved"*|*"'strnucmp' unresolved"*)                          shim=os9strucmp.c;;
     esac
     if [ -n "$shim" ]; then
       cp "$HERE/shims/$shim" "$d/" 2>/dev/null

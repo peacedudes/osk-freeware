@@ -91,6 +91,18 @@ if [ -f "$REPO/disk/GNULIB/os9lib.l" ]; then
     echo "  added the collection's own os9lib.l"
 fi
 
+# SRC/COMPAT/sys/ goes into DEFS, not just onto the -V path.  `cpp' finds a
+# plain `<stdlib.h>' through -V but NOT a `<sys/types.h>': given a name with a
+# directory in it, it reports `can't open /dd/DEFS/sys/types.h' and stops,
+# having apparently never tried the -V directories at all.  mtools and lwf both
+# fail that way, and the error reads like a missing header when the header is
+# right there in COMPAT.  Copying the directory in is the whole fix.
+if [ -d "$REPO/disk/SRC/COMPAT/sys" ]; then
+    mkdir -p "$DEST/DEFS/sys"
+    cp "$REPO/disk/SRC/COMPAT/sys/"* "$DEST/DEFS/sys/"
+    echo "  added SRC/COMPAT/sys to DEFS (cpp will not find <sys/x.h> via -V)"
+fi
+
 # Make the check fail once before believing it.  If any stamp survives in LIB,
 # every binary built through this overlay would carry it.
 if grep -rl "from the disk of" "$DEST/LIB" >/dev/null 2>&1; then
