@@ -264,4 +264,27 @@ keep|keep|keep.c|||
 drop|keep|keep.c|MODE_DROP||
 kept|keep|keep.c|MODE_KEPT||
 about|keep|about.c|||
-
+# `wish' is from the toys archive; its makefile names the eleven sources.
+wish|wish|wish.c files.c termcap.c keyboard.c movement.c commandline.c getwd.c more.c flabel.c paging.c cursor.c||/dd/LIB/termlib.l|
+# One IOCCC entry out of the twelve in SRC/ioccc became a program on this disk;
+# DOC/ORIGINS names it: `queens ... IOCCC entry by M. Baruch'.  The other
+# eleven are entries nobody built and there is nothing on the disk to match.
+queens|ioccc|baruch.c|||
+# The six xasm cross-assemblers, all from one common core plus one do<n>.c.
+# They are 6800, 6801, 6804, 6805, 6809 and 68HC11 -- NOT 68k, whatever
+# DOC/INDEX used to say.  Two defects had to go first: as.h declared Page_num
+# and Obj_name EXTERN while as.c also defines them (and as.c compiles with
+# EXTERN empty), and do11.c alone still spelled the program counter Pc/Old_pc
+# after everything else had been renamed PPC/Old_PPC.
+as0|xasm|do0.c as.c util.c ffwd.c output.c pseudo.c eval.c symtab.c|||
+as1|xasm|do1.c as.c util.c ffwd.c output.c pseudo.c eval.c symtab.c|||
+as4|xasm|do4.c as.c util.c ffwd.c output.c pseudo.c eval.c symtab.c|||
+as5|xasm|do5.c as.c util.c ffwd.c output.c pseudo.c eval.c symtab.c|||
+as9|xasm|do9.c as.c util.c ffwd.c output.c pseudo.c eval.c symtab.c|||
+as11|xasm|do11.c as.c util.c ffwd.c output.c pseudo.c eval.c symtab.c|||
+# elvis needs tinyprnt.c, which its makefile carries as EXTRA: vi.h maps
+# sprintf to Sprintf and tinyprnt.c is where Sprintf lives.
+elvis|elvis|blk.c cmd1.c cmd2.c ctype.c curses.c cut.c ex.c input.c main.c misc.c modify.c move1.c move2.c move3.c move4.c move5.c opts.c recycle.c redraw.c regexp.c regsub.c system.c tio.c tmp.c vars.c vcmd.c vi.c osk.c tinyprnt.c||/dd/LIB/termlib.l|
+# beav's def.h pulls in prototyp.h, which is ANSI prototypes this K&R compiler
+# cannot parse.  The port left the switch in place: -DNOPROTO.
+beav|beav/BEAV140|basic.c ebcdic.c fileio.c region.c text.c wangpc.c buffer.c echo.c language.c main.c search.c tty.c window.c cinfo.c extend.c kbd.c spawn.c ttyio.c termio_osk.c tcap.c word.c display.c file.c line.c random.c symbol.c ttykbd.c format.c osk.c|NOPROTO|/dd/LIB/termlib.l|
