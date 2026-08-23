@@ -111,6 +111,26 @@ de-ANSIfier, from the JPEG distribution, itself written in K&R so it
 bootstraps -- **builds here**, and a recipe with `KNR` in its defines runs
 every source through it before `cc`.
 
+**ansi2knr only sees a function whose NAME IS AT THE LEFT MARGIN.** Its own
+header says so:
+
+> ansi2knr recognizes functions by seeing a non-keyword identifier at the left
+> margin, followed by a left parenthesis ... the function name must be the
+> first thing on the line.
+
+JPEG writes the return type on its own line and the name at the margin, so
+ansi2knr converts it. `mtools` and `lua` write `static void f(void)` all on
+one line -- that begins with a keyword, ansi2knr skips it, and every prototype
+reaches c68 intact. This is a code-style limit, and it is the FIRST thing to
+check before reaching for the flag; the tree's config header is the second.
+
+Counting, per tree, headers with the name at the left margin against those
+starting with a keyword: JPEG 348/12 (reachable), mtools 3/477, lua 1/236
+(not). **The count alone does not settle it**, because a K&R definition also
+has its name at the left margin -- `ed` scores 118/0 and is not an ANSI tree
+at all. The count says whether ansi2knr will TOUCH a tree, not whether it will
+help.
+
 **`ansi2knr` is only safe on a tree that is ANSI throughout.** Given a K&R
 definition whose parameters are declared on the lines *after* the header --
 which is the ordinary K&R shape --

@@ -34,16 +34,28 @@ measurements and the reproduction they explain.
     friends) that want narrow `SRC/COMPAT` additions. Do **not** reach for
     `DEFS/os9lib`, which has all of them — it is ANSI-era, it collides with
     COMPAT's `struct stat`, and two hours have already been spent proving it.
-  - `inform` — untouched since the measurement; "bad character" was recorded
-    against the old theory and is worth re-testing rather than trusting.
+  - **`inform` — BUILDS**, 2026-08-23. Three blockers, none of them "bad
+    character": cpp's 512-char line, a `SRC/COMPAT/limits.h` that was useless
+    in a `#if`, and `o68` miscompiling `c68 -k`. It recompiles the
+    collection's own `hellow.inf` to a story file byte-identical to
+    `GAMES/INFORM/hellow.z3`.
 
-**b. `mtools`.** 45 sources; times out even at the 30-minute limit, or fails
-with an empty log. Worth one careful run with the log kept.
+**b. `mtools` — SETTLED, and it was never a timeout.** It finishes in minutes;
+c68 rejects a prototype on nearly every line. Its port is a `gcc2` build, same
+category as `ls`. `ansi2knr` cannot reach it — see the left-margin rule in
+`tools/rebuild/README.md`. Nothing further to do unless somebody wants a gcc2
+on this disk.
 
-**c. ANSI trees the `KNR` flag cannot reach** — `lua`, and probably `ed` and
-`lout`. `ansi2knr` rewrites definitions and leaves headers alone, so a tree is
-only reachable if its own config header can be told to stop declaring
-prototypes. JPEG could; lua's `lua.h` cannot. That is header work.
+**c. `ed` — BUILDS**, 2026-08-23, and the audit's "ANSI C" was wrong: it is
+K&R throughout. At runtime it wants `/r0`, which os9exec cannot provide; the
+shipped `disk/CMDS/ed` has the same dependency, so that is the archive's and
+not new.
+
+**Still open in this area:** `lua` (genuinely ANSI, unreachable by ansi2knr),
+`lout`, GNU Chess 4.0, `gtar` (a port decision, see CPP-MACRO-CRASH.md),
+`macutils`, and `cnews`/`rayshade`/`infoxpress`/`rcs`, none of which has been
+tried since the two limits were measured. `cnews` scores 454/2 on the
+left-margin count and is the most promising.
 
 **d. `macutils`.** Blocked on an include-path knot: it needs `struct stat` as
 blarslib declares it, and `cpp` will not search a `-V` directory for a name

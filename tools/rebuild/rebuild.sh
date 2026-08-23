@@ -314,6 +314,7 @@ FIXUP
 compile_cpp2_post() {  # $1 arch  $2 sources  $3 prog  $4 extra  $5 libs  $6 dir
   local mainsrc="" s base
   for s in $2; do
+    [ -n "$mainsrc" ] && break                 # FIRST match, not last -- see below
     /usr/bin/tr '\r' '\n' < "$6/$s" |
       /usr/bin/grep -qaE '^([A-Za-z_][A-Za-z0-9_ *]*[ *])?main[[:space:]]*\(' &&
         mainsrc=$s
@@ -360,6 +361,7 @@ compile_cpp2_post() {  # $1 arch  $2 sources  $3 prog  $4 extra  $5 libs  $6 dir
 compile_knr() {    # $1 arch  $2 sources  $3 oskdef  $4 defines  $5 prog  $6 extra  $7 libs  $8 dir
   local mainsrc="" s base
   for s in $2; do
+    [ -n "$mainsrc" ] && break                 # FIRST match, not last
     /usr/bin/tr '\r' '\n' < "$8/$s" |
       /usr/bin/grep -qaE '^([A-Za-z_][A-Za-z0-9_ *]*[ *])?main[[:space:]]*\(' &&
         mainsrc=$s
@@ -391,6 +393,12 @@ compile_knr() {    # $1 arch  $2 sources  $3 oskdef  $4 defines  $5 prog  $6 ext
   printf '\033\n\004\n'
 }
 
+# WHICH SOURCE HOLDS main().  The FIRST one in the recipe that has it, not the
+# last -- and the difference is not academic.  GNU `ed' builds getopt1.c, whose
+# tail is a `#ifdef TEST' self-test with a main() of its own; taking the last
+# match linked `ed' as getopt1's test harness, silently, with no diagnostic
+# anywhere.  A recipe names the program's own source first by convention, and
+# now that convention is what decides.
 compile_long() {   # $1 arch  $2 sources  $3 oskdef  $4 defines  $5 prog  $6 extra  $7 libs  $8 dir
   # Through `tr' first: these sources are CR-terminated, so grep sees the whole
   # file as ONE line and `^' matches only at its start. Without that, zoo.c's
@@ -398,6 +406,7 @@ compile_long() {   # $1 arch  $2 sources  $3 oskdef  $4 defines  $5 prog  $6 ext
   # main() at all.
   local mainsrc="" s
   for s in $2; do
+    [ -n "$mainsrc" ] && break                 # FIRST match, not last
     /usr/bin/tr '\r' '\n' < "$8/$s" |
       /usr/bin/grep -qaE '^([A-Za-z_][A-Za-z0-9_ *]*[ *])?main[[:space:]]*\(' &&
         mainsrc=$s
@@ -536,6 +545,7 @@ while IFS='|' read -r prog arch srcs defs libs extra; do
       *"'popen' unresolved"*|*"'pclose' unresolved"*)                               shim=os9popen.c;;
       *"'strucmp' unresolved"*|*"'strnucmp' unresolved"*|*"'strstr' unresolved"*|*"'rename' unresolved"*) shim=os9alib.c;;
       *"'ctime' unresolved"*)                                                     shim=os9ctime.c;;
+      *"'strtol' unresolved"*|*"'strtoul' unresolved"*)                            shim=os9strtol.c;;
     esac
     [ -n "$shim" ] || break
     case " $added " in *" $shim "*) break;; esac      # already tried: stop

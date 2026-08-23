@@ -32,9 +32,12 @@ accounted for below. Nothing in this list is "unknown" any more.
   - `aterm`, `serload` — 68k assembly only. `r68` would do it; nothing in
     `rebuild.sh` drives the assembler yet.
   - `graph` — three `.c` and eight `.a`; same.
-  - `ed`, `lout`, `gnuchess/GNUCHESS4.0` — ANSI C. GNU `ed` also carries a
-    macro that `cpp` calls too long; `lout`'s `externs` uses typed bitfields;
-    GNU Chess 4.0's header is several hundred ANSI prototypes.
+  - ~~`ed`~~ — **wrong, and corrected 2026-08-23: `ed` is K&R throughout and
+    BUILDS.** Running `ansi2knr` over it is destructive. Its only real blocker
+    was `ed.h`'s `REALLOC` macro joining into ~1400 characters, past cpp's
+    512; `CPP2` clears it. See its recipe.
+  - `lout`, `gnuchess/GNUCHESS4.0` — ANSI C. `lout`'s `externs` uses typed
+    bitfields; GNU Chess 4.0's header is several hundred ANSI prototypes.
   - `rtf` — Fortran.
 
 **Something genuinely absent.**
@@ -49,8 +52,14 @@ accounted for below. Nothing in this list is "unknown" any more.
   - `deansi` is lex output and wants a lex runtime (`yyreject`).
   - `spooler` wants its author's `local.h` — the one with `loop` and `ERROR`
     in it, not the `auxlib` one this disk carries.
-  - `macutils`, `mtools`, `gtar` want **blarslib**, which IS in the pool.
-    See `notes/BLARSLIB.md`; that is a decision, not a search.
+  - `macutils`, `gtar` want **blarslib**, which IS in the pool. See
+    `notes/BLARSLIB.md`; that is a decision, not a search.
+  - `mtools` — **not a timeout, and not blarslib. Measured 2026-08-23:** it
+    runs to completion in minutes and c68 rejects a prototype on nearly every
+    line. Its OSK port is a `gcc2` build (`CC = gcc2`,
+    `-I/h0/mwos/src/defs/GCC2`), which puts it with `ls`. `ansi2knr` cannot
+    help: it only converts a definition whose NAME is at the left margin, and
+    mtools writes `static void f(void)` on one line, 477 times against 3.
 
 **A `cpp` defect -- and it is now MEASURED, not guessed.**
 

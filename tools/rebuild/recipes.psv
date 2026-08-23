@@ -430,4 +430,28 @@ flex|flex|ccl.c dfa.c ecs.c gen.c main.c misc.c nfa.c parse.c scan.c sym.c tblcm
 # Verified beyond linking: it recompiles the collection's own hellow.inf to a
 # story file byte-identical to GAMES/INFORM/hellow.z3.
 inform|inform|informosk.c|CPP2 LONGREF||
+# GNU ed 0.2.  COMPILE-AUDIT called this an ANSI tree; it is not, it is K&R
+# throughout, and ansi2knr WRECKS it -- `get_sbuf_line (lp)' becomes
+# `get_sbuf_line (lp)  lp;'.  No KNR here.  What actually stopped it was
+# ed.h's REALLOC macro, whose continuation lines join into ~1400 characters,
+# well past cpp's 512 (notes/CPP-MACRO-CRASH.md).  CPP2 clears it.
+#
+# The rest is ordinary:
+#   ERANGE     the SDK's <errno.h> is OS-9's own numbers and has no ERANGE;
+#              0x100 is the value DEFS/os9lib/errno.h gives it, so a caller
+#              that got it from there and one that got it here agree.
+#   alloca.c xmalloc.c error.c   the tree's own, named by its Makefile's
+#              LIBSRCS, which the first recipe attempt left out.
+#   os9lib.l   umask, alloca.   blarslib.l  vfprintf, for error.c.
+#   strtol     is in no library a -qm link can use (csl.l needs the trap
+#              handler, ppplib.l is not a relocatable module), so the driver
+#              adds shims/os9strtol.c.
+#
+# AT RUNTIME IT WANTS /r0.  buf.c hardcodes its scratch file as
+# "/r0/ed.XXXXXX", the conventional OS-9 RAM disk.  os9exec has no /r0: OS9R0
+# is ignored, and `mount -r' from inside a shell fails E_PNNF.  This is the
+# ARCHIVE's, not ours -- the shipped disk/CMDS/ed has the same string -- and
+# our build is the better of the two anyway, being trap-free where the shipped
+# one is starred and cannot start without cio.
+ed|ed|main.c buf.c glbl.c io.c re.c signal.c sub.c undo.c version.c getopt.c getopt1.c regex.c alloca.c xmalloc.c error.c|CPP2 HAVE_CONFIG_H ERANGE=0x100|/dd/LIB/os9lib.l /dd/LIB/blarslib.l|
 
