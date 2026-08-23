@@ -52,9 +52,10 @@ accounted for below. Nothing in this list is "unknown" any more.
   - `macutils`, `mtools`, `gtar` want **blarslib**, which IS in the pool.
     See `notes/BLARSLIB.md`; that is a decision, not a search.
 
-**A `cpp` defect.**
+**A `cpp` defect -- now the biggest single blocker.**
 
-  - `flex` — see `notes/CPP-MACRO-CRASH.md`.
+  - `flex`, `gtar`, `djpeg`, `inform`. Each had every other obstacle cleared
+    first and then died in the preprocessor. See `notes/CPP-MACRO-CRASH.md`.
 
 **Not program trees.**
 
