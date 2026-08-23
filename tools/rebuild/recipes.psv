@@ -395,9 +395,17 @@ ansi2knr|jpeglib/JPEG_5A|ansi2knr.c|||
 # `const' defined empty, HAVE_STDDEF_H on, and INCOMPLETE_TYPES_BROKEN on --
 # that last is the one JPEG provides for compilers exactly like this one.
 #
-# `djpeg' is NOT here: cpp bus-errors on jdmarker.c, the same defect as flex
-# and gtar.  See notes/CPP-MACRO-CRASH.md.
 cjpeg|jpeglib/JPEG_5A|cjpeg.c rdppm.c rdgif.c rdtarga.c rdrle.c rdbmp.c jcapi.c jcparam.c jdatadst.c jcmaster.c jcmarker.c jcmainct.c jcprepct.c jccoefct.c jccolor.c jcsample.c jchuff.c jcdctmgr.c jfdctfst.c jfdctflt.c jfdctint.c jcomapi.c jutils.c jerror.c jmemmgr.c jmemnobs.c|KNR||
+# The JPEG decompressor.  It needs BOTH flags and neither alone will do it:
+# it is the same ANSI tree as cjpeg, and one of its thirty sources --
+# jdmarker.c -- is a victim of the cpp bus error (notes/CPP-MACRO-CRASH.md).
+# KNR alone dies in cpp on that file; CPP2 alone hands c68 a prototype.  With
+# both, ansi2knr runs first and cccp2 reads its output.
+#
+# Sources are DOBJECTS + DLIBOBJECTS + COMOBJECTS from the tree's own
+# makefile.unix -- the decoder half of the library, not every .c in the
+# directory (that would pull cjpeg's main in as well).
+djpeg|jpeglib/JPEG_5A|djpeg.c wrppm.c wrgif.c wrtarga.c wrrle.c wrbmp.c rdcolmap.c jdapi.c jdatasrc.c jdmaster.c jdmarker.c jdmainct.c jdcoefct.c jdpostct.c jddctmgr.c jidctfst.c jidctflt.c jidctint.c jidctred.c jdhuff.c jdsample.c jdcolor.c jquant1.c jquant2.c jdmerge.c jcomapi.c jutils.c jerror.c jmemmgr.c jmemnobs.c|KNR CPP2||
 # flex, through GNU's preprocessor (the CPP2 flag).  Microware's cpp bus-errors
 # on dfa.c's nested macros -- notes/CPP-MACRO-CRASH.md -- and this is the way
 # round it: cccp2 in cpp's place, then c68/o68/r68 by hand.  Two further things

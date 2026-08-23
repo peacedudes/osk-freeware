@@ -86,7 +86,22 @@ In rough order of how often it was the answer:
 | a header that IS in `SRC/COMPAT` still "can't open" | `$OS9COMPAT` is not set. `tools/build.sh` sets it; calling `rebuild.sh` directly used to fall back to a path that has not existed since this repo was split out. |
 | the error names something that is not on the command line at all | **SCF will not read a line longer than 512 bytes** — that is the OS, always has been, and there is nothing to fix. A longer command line arrives cut off. `mtools` has 45 sources and its `cc` line ran to 900 characters; it was cut mid-option and the error was `can't open /dd/DEFS/stdlib.h`. `rebuild.sh` measures the line it is about to type and compiles each source separately when it would be too long. |
 | unresolved symbols that are plainly IN the link | `l68` makes **one pass** over a library. A member calling another member further down the file is left unresolved — `zoo`'s `huf.c` wanted `putbits` from `io.c` 24 times. Name the library more than once. |
-| `E_BUSERR` from `cpp` itself | nested macro expansion. See `notes/CPP-MACRO-CRASH.md`; it has a three-file reproduction. `flex` is the one program here that hits it. |
+| `E_BUSERR` from `cpp` itself | a source line of **513 characters or more** — measured, 2026-08-23. Nesting is not the cause, it is just how a line usually gets that long. Use the `CPP2` flag. See `notes/CPP-MACRO-CRASH.md`. |
+| `cpp` reports nothing and the build fails anyway | in some shapes it does not crash on an over-long line, it **truncates and exits quietly**. Check the size of the `.m`, not the exit status. |
+| `**** input line too long ****` from `c68` | **1023 characters or more** — measured, same day. Only reachable through the `CPP2` path, because GNU cpp splices the backslash-newline continuations Microware's cpp keeps. `cpp2_fixup` re-wraps for this. |
+
+## The four recipe flags
+
+These four words are read out of the defines field and never reach `cc` as a
+`-D`. They compose: `djpeg` uses `KNR` and `CPP2` together, and `gtar` would
+use `KNR=<files>` with `CPP2`.
+
+| flag | what it does |
+|---|---|
+| `NOOSK` | drop the `-DOSK` every other recipe gets |
+| `KNR` | run every source through `ansi2knr` first |
+| `KNR=a.c,b.c` | run only those sources through it |
+| `CPP2` | preprocess with GNU's `cccp2` instead of Microware's `cpp` |
 
 ## ANSI C: the KNR flag
 
@@ -95,6 +110,26 @@ Microware's `cc` is K&R and will not read a prototype, which is what stops
 de-ANSIfier, from the JPEG distribution, itself written in K&R so it
 bootstraps -- **builds here**, and a recipe with `KNR` in its defines runs
 every source through it before `cc`.
+
+**`ansi2knr` is only safe on a tree that is ANSI throughout.** Given a K&R
+definition whose parameters are declared on the lines *after* the header --
+which is the ordinary K&R shape --
+
+    int
+    wildmat(s, p)
+        register char   *s;
+        register char   *p;
+
+it reads `s, p` as an ANSI parameter list and emits
+
+    wildmat(s, p)  s; p;
+        register char   *s;
+
+adding two `int` declarations that then fight the real ones. gtar came back
+from a blanket `KNR` with more damage than it started with. Where a mostly-K&R
+tree has a handful of ANSI definitions, name them: `KNR=create.c,list.c`. A
+source that is NOT translated compiles under its own name, so its object is
+`<base>.r` rather than `ctmp_<base>.r`, and the merge list follows.
 
     tools/build.sh ansi2knr        once, first: make_overlay.sh takes it
                                    from built/ into the overlay

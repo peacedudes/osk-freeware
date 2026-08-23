@@ -92,34 +92,20 @@ fi
 "$here/tools/rebuild/rebuild.sh" "$use" "$here/disk/SRC"
 status=$?
 
-# TIDY THE TREE.  Every recipe compiles IN PLACE: cc writes `foo.r' beside
-# `foo.c' and l68 writes the module as `R_<prog>'.  `mkimage.sh' reads `disk/'
-# off the filesystem, so a build immediately before an image build shipped 77
-# object files, five `ctmp.*' temporaries and -- worse -- fourteen of the
-# ARCHIVES' OWN `.r' files, overwritten by ours.  `check_disk.py' now refuses a
-# tree with build products in it; this is what keeps that check quiet.
+# TIDY THE TREE -- by calling the one script that does it, not a second copy.
+# Every recipe compiles IN PLACE: cc writes `foo.r' beside `foo.c' and l68
+# writes the module as `R_<prog>'.  `mkimage.sh' reads `disk/' off the
+# filesystem, so a build immediately before an image build shipped 77 object
+# files, five temporaries and -- worse -- fourteen of the ARCHIVES' OWN `.r'
+# files, overwritten by ours.  `check_disk.py' refuses a tree with build
+# products in it; this is what keeps that check quiet.
 #
-# The modules are the point, so they are MOVED to built/ rather than deleted.
-# Only files this build could have produced are touched: an intentional edit to
-# a source file under disk/SRC is not a build product and is left alone.
-out=$here/built
-mkdir -p "$out"
-moved=0
-while IFS= read -r m; do
-    [ -n "$m" ] || continue
-    mv "$m" "$out/$(basename "$m" | sed 's/^R_//')" && moved=$((moved+1))
-done <<EOF
-$(find "$here/disk/SRC" -name 'R_*' -type f)
-EOF
-find "$here/disk/SRC" -name 'ctmp.*' -type f -delete
-
-if git -C "$here" rev-parse --git-dir >/dev/null 2>&1; then
-    # Ours, not theirs: restore any archive .r we overwrote, drop any we made.
-    git -C "$here" diff --name-only -- 'disk/SRC/*.r' | while IFS= read -r f; do
-        git -C "$here" checkout -- "$f"
-    done
-    git -C "$here" ls-files --others --exclude-standard -- 'disk/SRC/*.r' |
-        while IFS= read -r f; do rm -f "$here/$f"; done
-fi
-echo "  $moved module(s) in $out/  (the tree is left as it was found)"
+# It used to be an inline copy of `tools/rebuild/tidy.sh', and the copies
+# drifted: tidy.sh learned to delete `ctmp_<base>.c' when the KNR path started
+# writing one per source, and this did not.  A full build then finished saying
+# "the tree is left as it was found" and left 228 files in it, which is exactly
+# the check that then failed.  One implementation, called from both places.
+"$here/tools/rebuild/tidy.sh"
+built=$(find "$here/built" -type f 2>/dev/null | wc -l | tr -d ' ')
+echo "  $built module(s) in $here/built/  (the tree is left as it was found)"
 exit $status

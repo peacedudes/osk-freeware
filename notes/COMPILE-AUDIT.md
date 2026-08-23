@@ -52,10 +52,21 @@ accounted for below. Nothing in this list is "unknown" any more.
   - `macutils`, `mtools`, `gtar` want **blarslib**, which IS in the pool.
     See `notes/BLARSLIB.md`; that is a decision, not a search.
 
-**A `cpp` defect -- now the biggest single blocker.**
+**A `cpp` defect -- and it is now MEASURED, not guessed.**
 
-  - `flex`, `gtar`, `djpeg`, `inform`. Each had every other obstacle cleared
-    first and then died in the preprocessor. See `notes/CPP-MACRO-CRASH.md`.
+  Microware's `cpp` bus-errors on a source line of **513 characters or more**;
+  `c68` stops at **1023**. Both measured 2026-08-23 -- see
+  `notes/CPP-MACRO-CRASH.md`, whose title is now the only wrong thing left in
+  it. It is not "nested macro expansion"; nesting is just how a line gets long.
+
+  - `flex` -- BUILDS, through `CPP2`.
+  - `djpeg` -- BUILDS, through `CPP2` and `KNR` together, 2026-08-23. The
+    IJG's own round-trip test passes on it.
+  - `gtar` -- past `cpp`, past `c68`'s line limit, past its includes and its
+    three ANSI definitions. Stopped on five or six names (`ERROR`, `TRUE`,
+    `S_IFREG`, Unix `errno`) that want narrow COMPAT additions. The
+    `DEFS/os9lib` set has them all and is a dead end; the note says why.
+  - `inform` -- not attempted since the measurement.
 
 **Not program trees.**
 

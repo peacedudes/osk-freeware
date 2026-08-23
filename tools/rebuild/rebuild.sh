@@ -110,6 +110,31 @@ compile_lib() {    # $1 arch  $2 sources  $3 oskdef  $4 defines  $5 name  $6 dir
 #
 # The gathered file must be a LIBRARY passed with -l=, not an object: l68 reads
 # one ROF from a plain filename and would take only the first of the 44.
+# Is this one source to go through ansi2knr?  Bare `KNR\' means every source in
+# the recipe; `KNR=a.c,b.c\' means only those.  The selective form exists
+# because ansi2knr is safe on an ANSI tree and NOT safe on a K&R one: given
+# gtar\'s wildmat.c, whose parameters are declared `register char *s;\' on the
+# lines after a K&R header, it emits `wildmat(s, p)  s; p;\' and adds two bogus
+# declarations -- and a tree with five ANSI definitions among nineteen files
+# came back with more damage than it started with.  JPEG is ANSI throughout and
+# takes the bare form; gtar names its three.
+knr_wanted() {     # $1 source file as the recipe spells it
+  [ "$KNRMODE" = 1 ] || return 1
+  [ -n "$KNRFILES" ] || return 0
+  case " $KNRFILES " in *" $1 "*) return 0;; esac
+  return 1
+}
+
+# The object a source compiles to.  A translated source compiles as
+# ctmp_<base>.c and so lands as ctmp_<base>.r; an untranslated one keeps its
+# own name.  The merge list has to agree, or `merge\' stops at the first file
+# it cannot open and the link then reports every symbol in the recipe
+# unresolved -- which reads like a missing library, not a naming slip.
+obj() {            # $1 source file
+  if knr_wanted "$1"; then printf 'ctmp_%s.r' "$(basename "$1" .c)"
+  else                     printf '%s.r' "$(basename "$1" .c)"; fi
+}
+
 # THE GNU PREPROCESSOR PATH.  A recipe asks for this with the CPP2
 # pseudo-define, and it is the way round Microware `cpp\'s bus error on nested
 # macro expansion (notes/CPP-MACRO-CRASH.md), which is what stops flex, gtar,
@@ -133,20 +158,118 @@ compile_lib() {    # $1 arch  $2 sources  $3 oskdef  $4 defines  $5 name  $6 dir
 # Both edits happen host-side, between the runs, because /h6 is a host
 # directory. Doing them with the OS-9 shell is not possible: `echo #P\' writes
 # nothing, `#\' being a comment.
-compile_cpp2_pre() {   # $1 arch  $2 sources  $3 oskdef  $4 defines
+#
+# CPP2 AND KNR TOGETHER.  A recipe may name both, and `djpeg\' is why: it is
+# ANSI C, so it needs the ansi2knr pass, AND one of its thirty sources
+# (jdmarker.c) is the one that bus-errors Microware\'s cpp.  Neither flag alone
+# builds it -- KNR alone dies in cpp, CPP2 alone hands c68 a prototype.  When
+# both are set the ansi2knr pass runs FIRST and cccp2 reads its output, because
+# ansi2knr rewrites C and cccp2\'s output is no longer C that ansi2knr could
+# read.
+#
+# THE RECIPE\'S OWN INCLUDE DIRECTORIES REACH THIS PASS TOO.  A recipe names an
+# extra header directory as `-V=<dir>\' in its last field, which is what
+# Microware `cc\' understands; GNU cpp spells the same thing `-I\'.  The first
+# draft of this path passed only the three built-in directories, so a CPP2
+# recipe\'s `-V=\' was silently ignored and every header under it came back
+# `file not found\' -- gtar wants <grp.h> and <bcopy.h> out of /dd/DEFS/os9lib,
+# and that is how it presented.  Translating here keeps ONE spelling in the
+# recipe file whichever path builds it.
+#
+# They go in AHEAD of /h7 and /dd/DEFS, second only to the tree's own directory,
+# because a recipe that names a header directory is usually naming the one its
+# port was written against, and wants it to WIN.  gtar again: /dd/DEFS/os9lib
+# is a complete alternate DEFS set whose <errno.h> carries the Unix codes and
+# `extern int errno\', and behind /dd/DEFS it never gets looked at at all.
+compile_cpp2_pre() {   # $1 arch  $2 sources  $3 oskdef  $4 defines  $5 extra
+  local inc="" x
+  for x in ${5:-}; do
+    case "$x" in -V=*) inc="$inc -I${x#-V=}";; esac
+  done
   printf 'chx /dd/CMDS\nchd /h6/%s\n' "$1"
   for s in $2; do
     base=$(basename "$s" .c)
+    src=$s
+    if knr_wanted "$s"; then
+      printf 'del ctmp_%s.c\nansi2knr %s ctmp_%s.c\n' "$base" "$s" "$base"
+      src=ctmp_$base.c
+    fi
     printf 'del ctmp_%s.raw\n' "$base"
-    printf 'cccp2 -P -traditional %s%s -I/h6/%s -I/h7 -I/dd/DEFS %s ctmp_%s.raw\n' \
-           "$3" "$4" "$1" "$s" "$base"
+    printf 'cccp2 -P -traditional %s%s -I/h6/%s%s -I/h7 -I/dd/DEFS %s ctmp_%s.raw\n' \
+           "$3" "$4" "$1" "$inc" "$src" "$base"
   done
   printf '\033\n\004\n'
 }
 
+# The third host-side edit: RE-WRAP LINES GNU cpp MADE TOO LONG.
+#
+# Two limits govern this and BOTH were measured on 2026-08-23, by feeding each
+# tool one-line files of rising length, rather than read off any manual:
+#
+#   * Microware `cpp\' bus-errors on a source line of 513 characters or more.
+#     512 is fine.  That single 512-byte line buffer -- not "nested macro
+#     expansion" -- is what stops flex, gtar, djpeg and inform; nesting is just
+#     the usual way a line gets that long.  See notes/CPP-MACRO-CRASH.md.
+#   * c68 reads at most 1022 characters in a line and says `input line too
+#     long\' at 1023.
+#
+# So GNU cpp gets past the first limit and can walk straight into the second:
+# Microware\'s cpp keeps a source\'s backslash-newline continuations, GNU\'s
+# splices them, and gtar\'s tar.c usage text -- five fputs and fprintf calls
+# written across forty continued lines -- arrives as 2113 characters on one.
+#
+# THE CUT MUST FALL OUTSIDE A STRING LITERAL.  c68 has neither of the two ways
+# a long literal is normally split: adjacent-literal concatenation (`"a" "b"\')
+# is ANSI and it is K&R, and a backslash-newline INSIDE a literal is spliced in
+# translation phase 2, which for a `.m\' file already happened -- in Microware\'s
+# cpp, which is the phase being replaced.  Both were tried and both give
+# `unterminated string\'.  So a literal is indivisible here and the wrap breaks
+# only at whitespace between tokens, which is enough because what makes these
+# lines long is several STATEMENTS joined, not one enormous literal: tar.c\'s
+# longest single literal is 622 characters, comfortably inside c68\'s 1022.
+#
+# When no cut fits, the line is left alone rather than cut somewhere unsafe --
+# `input line too long\' is a diagnostic somebody can act on, and a literal
+# broken in half is a mystery.
 cpp2_fixup() {         # $1 sources  $2 dir
   python3 - "$2" $1 <<'FIXUP'
 import os, sys
+
+WIDTH = 1000         # inside c68's measured 1022
+
+def breakpoints(line):
+    """Indices of the whitespace outside any literal, where a cut is safe."""
+    pts, instr, inchr, esc = [], False, False, False
+    for i, c in enumerate(line):
+        if esc:
+            esc = False
+        elif c == "\\" and (instr or inchr):
+            esc = True
+        elif instr:
+            instr = c != '"'
+        elif inchr:
+            inchr = c != "'"
+        elif c == '"':
+            instr = True
+        elif c == "'":
+            inchr = True
+        elif c in " \t" and i:
+            pts.append(i)
+    return pts
+
+def wrap(line):
+    if len(line) <= WIDTH:
+        return [line]
+    pts, out, start = breakpoints(line), [], 0
+    while len(line) - start > WIDTH:
+        fits = [i for i in pts if start < i <= start + WIDTH]
+        if not fits:
+            break                    # nothing safe within reach: leave it long
+        out.append(line[start:fits[-1]])
+        start = fits[-1] + 1
+    out.append(line[start:])
+    return out
+
 d, srcs = sys.argv[1], sys.argv[2:]
 for s in srcs:
     base = os.path.basename(s)[:-2]
@@ -154,7 +277,10 @@ for s in srcs:
     if not os.path.exists(raw):
         continue
     body = open(raw, "rb").read().decode("latin-1")
-    kept = [l for l in body.split("\r") if not l.startswith("#")]
+    kept = []
+    for l in body.split("\r"):
+        if not l.startswith("#"):
+            kept.extend(wrap(l))
     head = "#P\r%s_c\r0\r#7\r%s\r%s_c\r#5\r0\r" % (base, s, base)
     open(os.path.join(d, "ctmp_%s.m" % base), "wb").write(
         (head + "\r".join(kept)).encode("latin-1"))
@@ -194,8 +320,11 @@ compile_cpp2_post() {  # $1 arch  $2 sources  $3 prog  $4 extra  $5 libs  $6 dir
 # ANSI C, run through ansi2knr first.  A recipe asks for this with the KNR
 # pseudo-define, the way NOOSK opts out of -DOSK.  Microware's cc is K&R and
 # will not read a prototype; ansi2knr is the standard de-ANSIfier, is itself
-# K&R so it bootstraps, and builds here.  Each source is translated into a
+# K&R so it bootstraps, and builds here.  A translated source becomes a
 # ctmp_<base>.c beside it and that is what gets compiled.
+#
+# `KNR' translates every source; `KNR=a.c,b.c' translates only those.  Reach
+# for the selective form on a tree that is mostly K&R -- see knr_wanted().
 #
 # KNR implies the long path whatever the line length: the one-line form has
 # nowhere to put the intermediate.
@@ -211,19 +340,24 @@ compile_knr() {    # $1 arch  $2 sources  $3 oskdef  $4 defines  $5 prog  $6 ext
   : > "$8/ctmp.list"
   for s in $2; do
     [ "$s" = "$mainsrc" ] && continue
-    printf '%s\r' "ctmp_$(basename "$s" .c).r" >> "$8/ctmp.list"
+    printf '%s\r' "$(obj "$s")" >> "$8/ctmp.list"
   done
 
   printf 'setenv CLIB /dd/LIB\nsetenv CDEF /dd/DEFS\nchx /dd/CMDS\nchd /h6/%s\n' "$1"
   for s in $2; do
     base=$(basename "$s" .c)
-    printf 'del ctmp_%s.c\nansi2knr %s ctmp_%s.c\n' "$base" "$s" "$base"
-    printf 'cc ctmp_%s.c %s%s -r=/h6/%s -V=/h6/%s -V=/h7 %s\n' \
-           "$base" "$3" "$4" "$1" "$1" "$6"
+    if knr_wanted "$s"; then
+      printf 'del ctmp_%s.c\nansi2knr %s ctmp_%s.c\n' "$base" "$s" "$base"
+      printf 'cc ctmp_%s.c %s%s -r=/h6/%s -V=/h6/%s -V=/h7 %s\n' \
+             "$base" "$3" "$4" "$1" "$1" "$6"
+    else
+      printf 'cc %s %s%s -r=/h6/%s -V=/h6/%s -V=/h7 %s\n' \
+             "$s" "$3" "$4" "$1" "$1" "$6"
+    fi
   done
   printf 'del ctmp.parts.l\nmerge -z=ctmp.list >ctmp.parts.l\n'
-  printf 'cc ctmp_%s.r -qm=16k -n=%s -f=/h6/%s/R_%s -l=ctmp.parts.l -l=ctmp.parts.l -l=ctmp.parts.l %s%s' \
-         "$(basename "$mainsrc" .c)" "$5" "$1" "$5" "$6" "$7"
+  printf 'cc %s -qm=16k -n=%s -f=/h6/%s/R_%s -l=ctmp.parts.l -l=ctmp.parts.l -l=ctmp.parts.l %s%s' \
+         "$(obj "$mainsrc")" "$5" "$1" "$5" "$6" "$7"
   printf ' -l=/dd/LIB/curses.l -l=/dd/LIB/termlib.l -l=/dd/LIB/unix.l -l=/dd/LIB/math.l\n'
   printf '\033\n\004\n'
 }
@@ -289,12 +423,21 @@ while IFS='|' read -r prog arch srcs defs libs extra; do
   # -DOSK is right for most of this corpus but not all of it: name.c takes the
   # SYSV arm when both are set and then skips its "#ifndef OSK" fallback, so
   # rnd() ends up defined by neither.  NOOSK opts a recipe out.
+  # One pass over the field, not three substitutions: `${defs/KNR/}' turns
+  # `KNR=a.c,b.c' into `=a.c,b.c', which then reaches cc as `-D=a.c,b.c'.
   OSKDEF=-DOSK
-  case " $defs " in *" NOOSK "*) OSKDEF=""; defs="${defs/NOOSK/}";; esac
-  KNRMODE=0
-  case " $defs " in *" KNR "*) KNRMODE=1; defs="${defs/KNR/}";; esac
-  CPP2MODE=0
-  case " $defs " in *" CPP2 "*) CPP2MODE=1; defs="${defs/CPP2/}";; esac
+  KNRMODE=0; KNRFILES=""; CPP2MODE=0; keep=""
+  for x in $defs; do
+    case "$x" in
+      NOOSK)  OSKDEF="";;
+      KNR)    KNRMODE=1;;
+      KNR=*)  KNRMODE=1
+              KNRFILES=$(printf '%s' "${x#KNR=}" | /usr/bin/tr ',' ' ');;
+      CPP2)   CPP2MODE=1;;
+      *)      keep="$keep $x";;
+    esac
+  done
+  defs=$keep
 
   D=""; for x in $defs;  do [ -n "$x" ] && D="$D -D$x"; done
   L=""
@@ -311,7 +454,7 @@ while IFS='|' read -r prog arch srcs defs libs extra; do
   attempt() {   # $1 sources
     if [ "$CPP2MODE" = 1 ]; then
       LIMIT=1800
-      compile_cpp2_pre "$arch" "$1" "$OSKDEF" "$D" > "$WORK/cmd"
+      compile_cpp2_pre "$arch" "$1" "$OSKDEF" "$D" "${extra:-}" > "$WORK/cmd"
       run "$POOL" "$WORK/cmd" "$WORK/out1"
       cpp2_fixup "$1" "$d"
       compile_cpp2_post "$arch" "$1" "$prog" "${extra:-}" "$L" "$d" > "$WORK/cmd" || return

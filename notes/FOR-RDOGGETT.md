@@ -8,6 +8,39 @@ stands — nothing in it was undone.
 
 ---
 
+# 2026-08-23 (evening) — the cpp bug is not what we said it was
+
+**Needs you: one judgement call, below. Nothing else.**
+
+  - **Microware's `cpp` dies on a line of 513 characters.** That is the whole
+    bug. It is not "nested macro expansion" — nesting is just how a line gets
+    long. Measured, and it explains the three-file reproduction we have been
+    carrying: the crashing one expands to 542 characters, the two that compile
+    to 270 and 222. `c68` has a limit too, 1023.
+  - **`djpeg` builds** — the JPEG decoder, which never has here. Verified by
+    decoding, not by linking: compress a test image with `cjpeg`, decompress
+    it, the smooth channels come back within about 1 of 255.
+  - **`gtar` does not**, but nothing about the preprocessor stands in its way
+    now, and the five names still missing are written down.
+  - Four headers went into `SRC/COMPAT`, all new names, none able to change
+    what an existing build resolves.
+  - The disk's JPEG test images are damaged — no byte above 0x7f anywhere in
+    any of the three. A 7-bit transfer, long before us. Not worth fixing
+    unless you want the IJG self-test to run.
+
+**The judgement call.** Three function definitions in `SRC/gtar` were ANSI and
+are K&R now, changed in place with a comment at each. They are the OSK
+porter's own additions, not FSF code, and `ansi2knr` cannot do the job without
+wrecking the nineteen K&R files around them. I took the `jconfig.h` precedent
+— fix in place, mark it where it is. **If you would rather source edits lived
+as patches under `tools/rebuild/`, say so and I will move them**; it is three
+small hunks.
+
+Detail: `notes/CPP-MACRO-CRASH.md` (rewritten), `notes/SESSION-2026-08-23.md`
+(second half).
+
+---
+
 # 2026-08-22/23 — the build pass
 
 **Needs you: nothing.** `blarslib` was the one question and you answered it.

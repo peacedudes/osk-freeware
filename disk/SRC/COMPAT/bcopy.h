@@ -1,0 +1,1 @@
+/* <bcopy.h> for porting Unix sources to OS-9/68k -- the BSD bcopy/bcmp/bzero   trio as macros over memcpy/memcmp/memset.  The disk has it already, as   DEFS/os9lib/bcopy.h; this only puts it where a Unix source looks.  See the   note in grp.h for why this forwards instead of widening the include path. */#include <os9lib/bcopy.h>

@@ -17,13 +17,25 @@ each has none. As of 2026-08-23: **277 recipes, 24 trees without one.** Most of
 those 24 are accounted for (wrong language, material genuinely absent, not a
 program tree). What is real work, in the order I would take it:
 
-**a. The three remaining `cpp` victims, now that there is a way round it.**
-`flex` builds through the `CPP2` flag (GNU's `cccp2` in Microware `cpp`'s
-place). `gtar`, `djpeg` and `inform` get past `cpp` the same way and each then
-stops somewhere new — `gtar` on "input line too long" (c68 has a line limit of
-its own and GNU cpp joins an expansion onto one line), `djpeg` on "not an
-argument", `inform` on "bad character". Three separate small ports, each with
-the hard part already done.
+**a. The `cpp` victims — two down, two to go.** UPDATED 2026-08-23.
+
+The defect is now measured rather than guessed: `cpp` bus-errors on a source
+line of **513 characters or more**, `c68` stops at **1023**, and neither has
+anything to do with macro nesting. `notes/CPP-MACRO-CRASH.md` has both
+measurements and the reproduction they explain.
+
+  - `flex` — builds, through `CPP2`.
+  - **`djpeg` — BUILDS.** It needed `CPP2` and `KNR` at once, which the driver
+    could not do; it can now. Verified by round-trip against `cjpeg`, not just
+    by linking.
+  - **`gtar` — much closer, and the remaining work is named.** Everything
+    blamed on the preprocessor is cleared. What stops it is five or six
+    undeclared names (`ERROR`, `TRUE`/`FALSE`, `S_IFREG`, Unix `errno` and
+    friends) that want narrow `SRC/COMPAT` additions. Do **not** reach for
+    `DEFS/os9lib`, which has all of them — it is ANSI-era, it collides with
+    COMPAT's `struct stat`, and two hours have already been spent proving it.
+  - `inform` — untouched since the measurement; "bad character" was recorded
+    against the old theory and is worth re-testing rather than trusting.
 
 **b. `mtools`.** 45 sources; times out even at the 30-minute limit, or fails
 with an empty log. Worth one careful run with the log kept.

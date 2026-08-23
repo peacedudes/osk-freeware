@@ -1,100 +1,146 @@
-# Microware's `cpp` takes a bus error on nested macro expansion
+# Microware's `cpp` bus-errors on a source line of 513 characters or more
 
-> **There is a way round it, and it is in the driver: the `CPP2` recipe flag.**
-> GNU cpp 2.5.6 ships in the SDK as `cccp2`. `rebuild.sh` can run it in
-> Microware `cpp`'s place and start the chain at `c68`, which is enough to
-> build `flex` — the program this bug was found on. Two details make it work
-> and neither is guessable: c68 learns the psect name from a `#P` preamble
-> that only Microware's cpp writes, and it reads a leading `#` as a directive
-> whose argument is the NEXT LINE, so GNU's `# 1 "file"` markers swallow a
-> line each and must be stripped. Both are done host-side between two runs.
-> See `tools/rebuild/rebuild.sh`.
+> **The title of this file used to say "on nested macro expansion", and that
+> was wrong.** Nesting is not the cause, it is just the usual way a line gets
+> long. Corrected 2026-08-23 by measurement; the filename is kept because
+> several other notes and the driver point at it.
 
+Two limits govern the whole of this collection's building, and neither is
+written down in any manual we have. Both were measured on 2026-08-23 by
+feeding each tool one-line files of rising length:
 
-Found 2026-08-22 while writing a build recipe for `flex`. Minimal
-reproduction and the two nearest non-crashing cases are in
-`notes/cpp-macro-crash/`.
+| tool | limit | what happens past it |
+|---|---|---|
+| `cpp` edition 37 | **512 characters per line** | bus error at 513 — or, in some shapes, silent truncation |
+| `c68` | **1022 characters per line** | `**** input line too long ****` at 1023 |
 
-## What happens
+Both are per LOGICAL line: `cpp` splices backslash-newline continuations
+before it counts.
 
-    $ cpp crash5.c -o=out.m
-    Error #000:102 (E_BUSERR) bus error TRAP 2 occurred
+## How the cpp limit was measured
 
-`cpp` is edition 37, from the SDK. The register dump is the giveaway:
+A file of the shape
 
-    Dn=00000020 656E745F ...
-    An=6D61785F ...
+    main(){
+    fputs ("yyyy...", stderr);          <- this line exactly N characters
+    int j = 2;
+    }
 
-`$6D61785F` is ASCII `max_` and `$656E745F` is `ent_` — fragments of the
-identifiers `current_max_dfa_size` and `current_...`. An address register
-holding text means a pointer was overwritten with string data, which is a
-fixed-size buffer being run past, not a resource running out.
+512 preprocesses cleanly. 513 and 514 both give
 
-## What it takes to trigger
+    # Exception: pid=3 vector=$02 err=#000:102
 
-`notes/cpp-macro-crash/crash5.c` is five levels of a macro that expands to two
-copies of the level below it, with a twelve-character body:
+**It does not always crash, and that is what hid it.** Where the over-long
+line was the whole program on one line, `cpp` instead wrote about a kilobyte
+of output and exited with no diagnostic at all — 500, 1000, 2000 and 4000
+character cases all produced the same 1110-byte truncated `.m`. An earlier
+pass on this same file read those silent truncations as passes and concluded
+that long lines were fine. They are not: **distrust a `cpp` run that reports
+nothing; check the size of its output.**
 
-    #define M0(x) { a = (x); }
-    #define M1(x) { M0(x) M0(x) }
-    ...
-    #define M5(x) { M4(x) M4(x) }
-    main() { M5(1) }
+## It explains the original reproduction exactly
 
-Neither half of that does it, which is what makes the bug awkward rather than
-obvious:
+`notes/cpp-macro-crash/` holds the three files this was first bisected to.
+Expanding each of them (any preprocessor will do) gives:
 
-| file                        | shape                          | result   |
-|-----------------------------|--------------------------------|----------|
-| `ok4.c`                     | same, four levels               | compiles |
-| `ok5tiny.c`                 | five levels, body is `a;`       | compiles |
-| `crash5.c`                  | five levels, twelve-char body   | **bus error** |
-| a flat `#define` of 2000 characters      |                    | compiles |
-| a `#define` continued over 8000 characters |                  | compiles |
-| a chain of forty macros, each expanding to one |              | compiles |
+| file | longest expanded line | limit | result |
+|---|---|---|---|
+| `crash5.c` | **542** | 512 | bus error |
+| `ok4.c` | 270 | 512 | compiles |
+| `ok5tiny.c` | 222 | 512 | compiles |
 
-So it is neither depth alone, nor expansion length alone, nor the number of
-expansions — it is a nested expansion whose intermediate text passes some
-size. Giving the process more memory (`cpp ... #512k`) changes nothing, which
-rules out the stack and the heap.
+Five levels of nesting with a twelve-character body reaches 542 characters;
+four levels reaches 270, and five levels of `a;` reaches 222. That is the
+whole of the "neither depth alone nor expansion length alone" puzzle — it was
+always just the length, and the two non-crashing cases are the two that come
+in under 512.
+
+The old note also recorded that a flat `#define` of 2000 characters, and one
+continued over 8000, both compiled. They do, and that is consistent: a
+`#define` is consumed by the directive parser and never becomes an output
+line unless something expands it.
 
 ## Whose bug it is
 
-`cpp`'s. A fixed-size buffer overrun reproduces the same way on real hardware
-— it would smash the same memory and take the same trap — and os9exec's part
-in it is only to report it, which it does cleanly and with enough of a dump to
+`cpp`'s. A fixed-size line buffer overruns the same way on real hardware —
+it would smash the same memory and take the same trap — and os9exec's part in
+it is only to report it, which it does cleanly and with enough of a dump to
 diagnose. Recorded here because rdoggett is exercising os9exec before
 publishing, and because "the compiler died" is otherwise indistinguishable
 from "the emulator died".
 
-## What it costs this collection
+The register dump names the text it was chewing when the buffer went: on
+gtar's `tar.c` the address registers held `$74732028` (`ts (`) and
+`$6D61785F` (`max_`) — pieces of `fputs (` and `current_max_dfa_size`.
 
-**Four programs here hit it, and it is now the single biggest thing standing
-between this collection and a complete build:**
+## The way round it, and the second wall behind it
 
-    flex     dfa.c        the original find, bisected to STACK_STATE
-                          -- BUILDS NOW, through CPP2
-    gtar     tar.c        kills cpp before one object is written
-    djpeg    jdmarker.c   after the other 25 sources have compiled
-    inform   informosk.c  one 5,000-line file, heavily macroed
+**`CPP2`**, a recipe flag. GNU cpp 2.5.6 ships in the SDK as `cccp2` and has
+no such limit. `rebuild.sh` runs it in `cpp`'s place and starts the chain at
+`c68`. Three host-side edits between the two os9exec runs make that work, and
+none of them is guessable:
 
-The other three get past `cpp` with `CPP2` and then each stops somewhere new,
-which is progress rather than a fix: `gtar` on "input line too long" (c68 has a
-line limit of its own, and GNU cpp joins an expansion onto one line), `djpeg`
-on "not an argument", `inform` on "bad character". Three separate ports.
+  1. **Strip GNU's `# 1 "file"` markers.** A `.m` is a directive stream, and
+     `c68` reads a leading `#` as a directive whose argument is the NEXT line,
+     so each marker swallows a line.
+  2. **Put a `#P<name>_c` preamble in front.** That is where `c68` learns the
+     psect name; without it `r68` rejects every mnemonic in the file.
+  3. **Re-wrap lines GNU cpp made too long** — the second wall. Microware's
+     cpp KEEPS a source's backslash-newline continuations; GNU's splices
+     them. gtar's `tar.c` usage text, written as forty continued lines, comes
+     out of `cccp2` as 2113 characters on one, and walks straight into c68's
+     1022.
 
-In each case the register dump has ASCII where an address should be. Each of
-the four had every OTHER obstacle cleared first -- blarslib, a generated
-`testpad.h`, an `ansi2knr` pass, a `limits.h` -- so this is what is left.
+**The re-wrap may only cut OUTSIDE a string literal**, because `c68` has
+neither way of splitting a long one: adjacent-literal concatenation
+(`"a" "b"`) is ANSI and it is K&R, and a backslash-newline inside a literal is
+spliced in translation phase 2 — which for a `.m` already happened, in the
+very preprocessor being replaced. Both were tried; both give
+`**** unterminated string ****`. That bounds what this route can build: a
+program whose single longest literal exceeds 1022 characters cannot go
+through it. In practice they do not — what makes these lines long is several
+STATEMENTS joined, and tar.c's longest single literal is 622.
 
-`flex`'s `dfa.c` defines `STACK_STATE`,
-which expands `PUT_ON_STACK` → `DO_REALLOCATION` and `MARK_STATE`, then
-`CHECK_ACCEPT`, then `ADD_STATE` → `DO_REALLOCATION` again. The
-`current_max_dfa_size` inside `DO_REALLOCATION` is the `max_` in the register
-dump. `flex` therefore has no recipe; the shipped binary was built elsewhere. Nor
-does `gtar`, though everything else it needed — a generated `testpad.h` and
-blarslib — is now in place, so it is one `cpp` defect away. Nor `djpeg`: its
-compressor half, `cjpeg`, builds from the same headers and the same `ansi2knr`
-pass, so the decompressor is one file away.
+## Where the four victims stand
 
-A port could flatten those macros into functions. Nothing has been changed.
+    flex     dfa.c        BUILDS, through CPP2
+    djpeg    jdmarker.c   BUILDS, through CPP2 + KNR together   (2026-08-23)
+    gtar     tar.c        past cpp and past c68's line limit; stopped
+                          elsewhere -- see below
+    inform   informosk.c  not attempted since the measurement
+
+### gtar, as far as it got (2026-08-23)
+
+Everything the preprocessor was blamed for is now cleared, and what is left is
+ordinary header work:
+
+  - `CPP2` plus the re-wrap gets every one of its nineteen sources through
+    `cpp` and `c68`'s line limit.
+  - `-DUSG -DNO_REMOTE` are the right OS-9 answers to two of its switches:
+    `USG` skips the `<sys/mtio.h>` include (there is no tape ioctl here, and
+    every use of one is guarded on `MTIOCTOP`), and `NO_REMOTE` maps the whole
+    `rmt*` family to plain `open`/`read`/`ioctl` and drops `rtape_lib.c`.
+  - `-DVARARGS_MSG`, not the makefile's `-DSTDC_MSG`: the STDC arm of `port.c`
+    declares `msg(char *str,...)`, which is a prototype.
+  - `SRC/COMPAT` gained `sys/ioctl.h`, `sys/sysmacros.h`, `grp.h` and
+    `bcopy.h` — all four are forwards or a handful of macros, and each says in
+    its own header why it is there.
+  - Three ANSI function definitions, all additions by the OSK porter rather
+    than FSF code, are K&R now and marked as changed in place:
+    `create.c:to_unix_mode`, `list.c:to_os9_format`,
+    `buffer.c:rmt_jl_open`. **`ansi2knr` cannot do this job here** — see
+    `knr_wanted()` in the driver: on a K&R definition whose parameters are
+    declared on the following lines it emits `wildmat(s, p)  s; p;` and adds
+    bogus `int` declarations that then fight the real ones.
+
+**What stops it now**: `ERROR`, `TRUE`/`FALSE`, `S_IFREG`, and the Unix
+`errno`/`EBADF`/`ENOSPC`/`EIO`/`ENXIO` are all undeclared. The port was
+written against `DEFS/os9lib`, a complete alternate DEFS set that has every
+one of them — and that set is a **dead end for this toolchain**: it is
+ANSI-era (`_cmpnam( char *, char *, int)`, `const char *`), its `struct stat`
+and `dev_t` collide with the ones COMPAT already supplies, and its `time.h`
+includes `</h0/defs/setsys.h>` by absolute path. Two hours went into proving
+that; do not spend them again.
+
+The next step is narrow COMPAT-style additions for those five or six names,
+not a wholesale DEFS swap.

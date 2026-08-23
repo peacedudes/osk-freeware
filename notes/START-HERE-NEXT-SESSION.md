@@ -13,17 +13,19 @@ clean, all eleven `check_disk.py` checks green.
     tools/build.sh ansi2knr                     # KNR recipes need it in the overlay
     tools/build.sh --missing                    # what has no recipe, and why
     tools/check_disk.py disk                    # eleven checks
-    tools/rebuild/tidy.sh                       # after ANY build, always
+    tools/rebuild/tidy.sh                       # only if you drove rebuild.sh
+                                                # directly; build.sh calls it
 
-`tools/build.sh` builds every recipe (~1.5 hours, 277 of them). One program:
+`tools/build.sh` builds every recipe (~1.5 hours, 278 of them). One program:
 `tools/build.sh flex`.
 
-## The one thing that is NOT verified
+## Where the build stands
 
-The last whole-tree build was **271 of 274 clean**. Since then three recipes
-were added — `ansi2knr`, `cjpeg`, `flex` — each verified on its own but never
-in a full run. **Run `tools/build.sh` once and trust that number, not this
-paragraph.**
+**275 of 278 recipes clean**, whole tree, measured 2026-08-23 with every recipe
+in one run. The three that fail are the three that have always failed and each
+has a reason in `notes/COMPILE-AUDIT.md`: `ls` (a gcc2 build), `pdraw` (X11)
+and `pep` (the EPROM board's own library). Re-measure rather than trust this
+paragraph — but it was a full run, not a prediction.
 
 ## Rules that cost time to learn
 
