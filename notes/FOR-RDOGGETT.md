@@ -8,6 +8,64 @@ stands — nothing in it was undone.
 
 ---
 
+# 2026-08-23 (overnight) — three programs that had never built
+
+
+**Needs you: one judgement call, at the bottom. Nothing else.**
+
+**`inform`, `djpeg` and `ed` all build now.** None of them ever had. Each was
+verified by RUNNING it, not by linking it:
+
+  - **`inform`** — Graham Nelson's Inform compiler, the thing that produced
+    everything in `GAMES/INFORM`. `DOC/INDEX` has said for months that our cpp
+    aborts on it. It recompiles the collection's own `hellow.inf` to a story
+    file **byte-identical to the `hellow.z3` that has shipped since day one.**
+  - **`djpeg`** — the JPEG decoder. Verified by round trip against `cjpeg`.
+  - **`ed`** — GNU ed. The audit called it an ANSI tree; it is K&R throughout,
+    and the de-ANSIfier we run was *destroying* it.
+
+**Two compiler bugs, both measured, both with small reproductions:**
+
+  1. **`cpp` dies on a source line of 513 characters.** That is the whole of
+     the "nested macro" bug we have been carrying — nesting is just how a line
+     gets long. It explains our own three-file reproduction exactly: the one
+     that crashes expands to 542 characters, the two that compile to 270 and
+     222. `c68` has a limit too, 1023. **And cpp does not always crash — in
+     some shapes it truncates and exits silently**, which is how an earlier
+     pass concluded long lines were fine.
+  2. **`o68` miscompiles what `c68 -k` emits**, and only in one construct: the
+     true arm of `a ? "this" : "that"` on string literals gets an address
+     eight bytes wrong. `one ? "Error" : "Warning"` prints `rning`. That is
+     what made inform report impossible diagnostics. Ten-case probe; nine
+     cases fine.
+
+**Also:**
+
+  - The whole tree still builds: **277 of 280 recipes clean**, the same three
+    known failures (`ls`, `pdraw`, `pep`). That is after four changes that
+    touch every recipe, so it is a real check, not a formality.
+  - **`build.sh` was leaving 228 files in `disk/`** while printing "the tree is
+    left as it was found". It had its own stale copy of `tidy.sh`. It calls the
+    real one now.
+  - **The `strchr(s,0)` grep you wanted is done.** The guidance was too broad:
+    `unix.l`'s `strchr` is *correct*; it is `index`, `rindex` and `strrchr`
+    that fail on NUL. Only pdksh is exposed and **all six of its sites are
+    already patched**. Nothing to do.
+  - `mtools` is not a timeout and never was — it is a `gcc2` build like `ls`.
+    Settled, off the list.
+
+**The judgement call.** Small source fixes were made in place, each marked with
+a comment saying what and why: three ANSI function definitions in `SRC/gtar`,
+and one `typedef` guard in `SRC/ed/regex.h`. All four are the OSK porter's own
+lines, not upstream code, and the automatic tool cannot do the job without
+wrecking the files around them. I took the `jconfig.h` precedent — fix in
+place, mark it. **If you would rather source edits lived as patches under
+`tools/rebuild/`, say so and I will move them.**
+
+Detail: `notes/CPP-MACRO-CRASH.md` (rewritten), `notes/SESSION-2026-08-23.md`.
+
+---
+
 # 2026-08-23 (evening) — the cpp bug is not what we said it was
 
 **Needs you: one judgement call, below. Nothing else.**
@@ -27,14 +85,6 @@ stands — nothing in it was undone.
   - The disk's JPEG test images are damaged — no byte above 0x7f anywhere in
     any of the three. A 7-bit transfer, long before us. Not worth fixing
     unless you want the IJG self-test to run.
-
-**The judgement call.** Three function definitions in `SRC/gtar` were ANSI and
-are K&R now, changed in place with a comment at each. They are the OSK
-porter's own additions, not FSF code, and `ansi2knr` cannot do the job without
-wrecking the nineteen K&R files around them. I took the `jconfig.h` precedent
-— fix in place, mark it where it is. **If you would rather source edits lived
-as patches under `tools/rebuild/`, say so and I will move them**; it is three
-small hunks.
 
 Detail: `notes/CPP-MACRO-CRASH.md` (rewritten), `notes/SESSION-2026-08-23.md`
 (second half).
