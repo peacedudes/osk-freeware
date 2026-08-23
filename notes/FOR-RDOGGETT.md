@@ -39,8 +39,16 @@ verified by RUNNING it, not by linking it:
      what made inform report impossible diagnostics. Ten-case probe; nine
      cases fine.
 
+**The sweep is re-run — 868 of 913, 95.1%** (it was 876 of 925). The number
+went up and the count went down, and it reconciles to the unit: eleven of the
+fourteen programs you dropped had been working, `about` and `passwd` joined,
+and `postprint` started passing. **935 programs were measured in both sweeps
+and exactly TWO changed verdict**, neither a regression. `DOC/STATUS` is
+updated throughout, not just the tally.
+
 **Also:**
 
+  - Five of C News's six programs build — that tree had no recipe at all.
   - The whole tree still builds: **277 of 280 recipes clean**, the same three
     known failures (`ls`, `pdraw`, `pep`). That is after four changes that
     touch every recipe, so it is a real check, not a formality.
