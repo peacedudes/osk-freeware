@@ -413,4 +413,21 @@ djpeg|jpeglib/JPEG_5A|djpeg.c wrppm.c wrgif.c wrtarga.c wrrle.c wrbmp.c rdcolmap
 # from <sys/types.h>, which is System V behaviour the SDK does not have, and
 # `ctime' lives in a clib psect a trap-free link will not take (shim).
 flex|flex|ccl.c dfa.c ecs.c gen.c main.c misc.c nfa.c parse.c scan.c sym.c tblcmp.c yylex.c|CPP2 time_t=long||
+# inform -- Graham Nelson's Inform 1.0 (v796), the Z-machine compiler behind
+# GAMES/INFORM.  It has never been built here; DOC/INDEX has said so for
+# months ("this SDK's cpp aborts partway through").  Three things were in the
+# way and all three are now measured rather than guessed:
+#
+#   CPP2     one 775-character logical line, over cpp's 512 (CPP-MACRO-CRASH).
+#   limits.h SRC/COMPAT's derived every limit through a CAST, which is correct
+#            C and always FALSE in a #if.  inform picks its 32-bit type with a
+#            four-arm #if over SCHAR_MAX/SHRT_MAX/INT_MAX/LONG_MAX, so every
+#            arm failed and it reached `#error No type large enough'.  The
+#            header is plain constants now.
+#   LONGREF  100K of code needs long PC-relative branches, and o68 miscompiles
+#            them -- see the note on compile_cpp2_post in rebuild.sh.
+#
+# Verified beyond linking: it recompiles the collection's own hellow.inf to a
+# story file byte-identical to GAMES/INFORM/hellow.z3.
+inform|inform|informosk.c|CPP2 LONGREF||
 

@@ -287,6 +287,30 @@ for s in srcs:
 FIXUP
 }
 
+# LONGREF: `c68 -k\', AND NO o68 PASS -- the two are inseparable.
+#
+# A module whose code passes 32K cannot reach all of itself with the 68000\'s
+# 16-bit BSR displacement, and r68 says `*** error - branch out of range ***\'
+# once per call.  `c68 -k\' (force long PC-relative references) is the answer,
+# and `inform\' -- one 4,400-line source, 100K of code -- is the program that
+# needs it.
+#
+# But `o68\', the object-code improver, MISCOMPILES what -k emits, and it does
+# so silently.  Measured 2026-08-23 with a ten-case probe: given a conditional
+# expression choosing between two string LITERALS, the TRUE arm gets the wrong
+# address -- `one ? "Error" : "Warning"\' prints `rning\'.  Nothing else in the
+# probe moved: plain literals, an array of them, if/else, switch, and a
+# function returning one are all correct with -k, and every case is correct
+# with -k and no o68.  inform showed it as two impossible diagnostics on every
+# source it compiled ("Names are not permitted to start with an _" against a
+# `for\' loop) and a summary reading "0 warningsput)".
+#
+# Dropping o68 costs some optimisation and nothing else: r68 assembles c68\'s
+# output directly.  With it dropped, inform compiles the collection\'s own
+# hellow.inf to a story file BYTE-IDENTICAL to the hellow.z3 in GAMES/INFORM.
+#
+# If you ever want -k on the ordinary `cc\' path instead, it is `-K=0CL\' --
+# and you must add `-O\' with it, for the same reason.
 compile_cpp2_post() {  # $1 arch  $2 sources  $3 prog  $4 extra  $5 libs  $6 dir
   local mainsrc="" s base
   for s in $2; do
@@ -306,9 +330,14 @@ compile_cpp2_post() {  # $1 arch  $2 sources  $3 prog  $4 extra  $5 libs  $6 dir
   for s in $2; do
     base=$(basename "$s" .c)
     printf 'del ctmp_%s.a\ndel ctmp_%s.o\ndel ctmp_%s.r\n' "$base" "$base" "$base"
-    printf 'c68 ctmp_%s.m -t -o=ctmp_%s.a\n' "$base" "$base"
-    printf 'o68 ctmp_%s.a ctmp_%s.o\n' "$base" "$base"
-    printf 'r68 ctmp_%s.o -q -o=/h6/%s/ctmp_%s.r\n' "$base" "$1" "$base"
+    if [ "$LONGREF" = 1 ]; then
+      printf 'c68 ctmp_%s.m -t -k -o=ctmp_%s.a\n' "$base" "$base"
+      printf 'r68 ctmp_%s.a -q -o=/h6/%s/ctmp_%s.r\n' "$base" "$1" "$base"
+    else
+      printf 'c68 ctmp_%s.m -t -o=ctmp_%s.a\n' "$base" "$base"
+      printf 'o68 ctmp_%s.a ctmp_%s.o\n' "$base" "$base"
+      printf 'r68 ctmp_%s.o -q -o=/h6/%s/ctmp_%s.r\n' "$base" "$1" "$base"
+    fi
   done
   printf 'del ctmp.parts.l\nmerge -z=ctmp.list >ctmp.parts.l\n'
   printf 'cc ctmp_%s.r -qm=16k -n=%s -f=/h6/%s/R_%s -l=ctmp.parts.l -l=ctmp.parts.l -l=ctmp.parts.l %s%s' \
@@ -426,7 +455,7 @@ while IFS='|' read -r prog arch srcs defs libs extra; do
   # One pass over the field, not three substitutions: `${defs/KNR/}' turns
   # `KNR=a.c,b.c' into `=a.c,b.c', which then reaches cc as `-D=a.c,b.c'.
   OSKDEF=-DOSK
-  KNRMODE=0; KNRFILES=""; CPP2MODE=0; keep=""
+  KNRMODE=0; KNRFILES=""; CPP2MODE=0; LONGREF=0; keep=""
   for x in $defs; do
     case "$x" in
       NOOSK)  OSKDEF="";;
@@ -434,6 +463,7 @@ while IFS='|' read -r prog arch srcs defs libs extra; do
       KNR=*)  KNRMODE=1
               KNRFILES=$(printf '%s' "${x#KNR=}" | /usr/bin/tr ',' ' ');;
       CPP2)   CPP2MODE=1;;
+      LONGREF) LONGREF=1;;
       *)      keep="$keep $x";;
     esac
   done
