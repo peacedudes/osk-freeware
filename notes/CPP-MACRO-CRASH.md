@@ -58,11 +58,15 @@ from "the emulator died".
 
 ## What it costs this collection
 
-`flex` is the one program known to hit it: `dfa.c` defines `STACK_STATE`,
+**Two programs here hit it**, so it is not a curiosity: `flex` and GNU `tar`,
+whose `tar.c` kills `cpp` before a single object is written.
+
+`flex`'s `dfa.c` defines `STACK_STATE`,
 which expands `PUT_ON_STACK` → `DO_REALLOCATION` and `MARK_STATE`, then
 `CHECK_ACCEPT`, then `ADD_STATE` → `DO_REALLOCATION` again. The
 `current_max_dfa_size` inside `DO_REALLOCATION` is the `max_` in the register
-dump. `flex` therefore has no recipe; the shipped binary was built elsewhere.
+dump. `flex` therefore has no recipe; the shipped binary was built elsewhere. Nor
+does `gtar`, though everything else it needed — a generated `testpad.h` and
+blarslib — is now in place, so it is one `cpp` defect away.
 
-A port could flatten those macros into functions. Nothing else in the
-collection is known to need it, so nothing has been changed.
+A port could flatten those macros into functions. Nothing has been changed.

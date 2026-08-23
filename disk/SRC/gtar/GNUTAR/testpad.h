@@ -1,0 +1,1 @@
+/* GENERATED 2026-08-23 by this tree's own testpad, built and run here: * *     tools/build.sh testpad     then   testpad >testpad.h * * It reports whether tar's header struct needs a pad byte on this * machine, and every object in the tree includes it.  gtar had been * failing with "can't open testpad.h" for want of one command nobody * had run. */#define NEEDPAD

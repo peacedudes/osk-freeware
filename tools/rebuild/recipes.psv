@@ -365,3 +365,9 @@ uulog|uucpbb|uulog.c getopt.c osk.c parse.c getenv.c strdup.c mfgets.c|TERMCAP _
 uuname|uucpbb|uuname.c parse.c mfgets.c osk.c|TERMCAP _OSK|/dd/LIB/termlib.l|
 uuxqt|uucpbb|uuxqt.c findxwork.c getline.c parse.c docmd.c gtime.c filemove.c mfgets.c getopt.c strdetab.c strdup.c getdirs.c strupr.c getenv.c getenv.c osk.c|TERMCAP _OSK|/dd/LIB/termlib.l|
 whoami|uucpbb|whoami.c osk.c pwent.c parse.c|TERMCAP _OSK|/dd/LIB/termlib.l|
+# gtar's testpad reports whether tar's header struct needs a pad byte; every
+# object in that tree includes its output, and nobody had run it.  gtar itself
+# still does not build -- cpp bus-errors on tar.c, the same defect as flex.
+# See notes/CPP-MACRO-CRASH.md.
+testpad|gtar/GNUTAR|testpad.c|||
+
