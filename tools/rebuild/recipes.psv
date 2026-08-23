@@ -454,4 +454,21 @@ inform|inform|informosk.c|CPP2 LONGREF||
 # our build is the better of the two anyway, being trap-free where the shipped
 # one is starred and cannot start without cio.
 ed|ed|main.c buf.c glbl.c io.c re.c signal.c sub.c undo.c version.c getopt.c getopt1.c regex.c alloca.c xmalloc.c error.c|CPP2 HAVE_CONFIG_H ERANGE=0x100|/dd/LIB/os9lib.l /dd/LIB/blarslib.l|
-
+# C News. Its source tree has been here since 2026-08-21 with no recipe; six of
+# the disk's programs come out of it, and five build. It is K&R throughout --
+# no KNR flag -- and the whole difficulty is that the tree is a PACKAGE: the
+# sources live in one directory and the headers they want in another.
+#
+#   bdecode    <coder.h> and crctab from batch/
+#   dbz        <fileinfo.h>, which the SDK does not have; it is in blarsdefs
+#   newslock   link(), which OS-9 has not -- blarslib's ln.c supplies it
+#
+# `newshist' is the sixth and is NOT here: it wants gethistory() from
+# relay/history.c, and that file pulls in the relay machinery behind it
+# (libc.h fails to parse, and history.c has a macro called without arguments).
+# That is a package build, not a recipe.
+bdecode|cnews/input|bdecode.c ../batch/crctab.c|||-V=/h6/cnews/batch
+c7decode|cnews/input|c7decode.c|||
+byteflip|cnews/dbz|byteflip.c|||
+dbz|cnews/dbz|dbzmain.c dbz.c||/dd/LIB/os9lib.l|-V=/dd/DEFS/blarsdefs
+newslock|cnews/misc|newslock.c||/dd/LIB/blarslib.l|-V=/h6/cnews/h
