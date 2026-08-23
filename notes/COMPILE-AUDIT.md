@@ -61,11 +61,22 @@ accounted for below. Nothing in this list is "unknown" any more.
   - `COMPAT` is headers. `unixlib` is a library and now has a recipe of its
     own kind (`unix.l`).
 
+**ANSI C.** This is the big remaining category, and it is one job, not
+several: these trees declare prototypes, and Microware's `cc` is K&R.
+
+  - `lua`, `jpeglib`, `gnuchess/GNUCHESS4.0`, `ed`, `lout`, and probably
+    `cnews`, `rayshade` and `infoxpress`.
+
+  **There is a lever.** `jpeglib` ships `ansi2knr.c` -- the standard
+  de-ANSIfier, written in K&R so it can bootstrap -- and **it builds here**
+  (2026-08-23). Teaching `rebuild.sh` a per-source `ansi2knr` step would open
+  all of these at once. That is the highest-value thing left in this file.
+
 **Still ordinary work, nobody has done it.**
 
-  - `cnews`, `smail`, `infoxpress`, `uucpbb`, `uucp_blars`, `jpeglib`, `lua`,
-    `rayshade`, `sbprolog`, `pdksh`, `inform`, `ioccc` (eleven more contest
-    entries), `macutils` if blarslib is settled. Each is a makefile away.
+  - `inform`, `ioccc` (eleven more contest entries), `macutils` (blocked on
+    an include-path knot, see `notes/SESSION-2026-08-23.md`), `pdksh` (has its
+    own `build_ksh.sh` rather than a recipe).
 
 ---
 

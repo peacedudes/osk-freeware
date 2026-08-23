@@ -370,4 +370,18 @@ whoami|uucpbb|whoami.c osk.c pwent.c parse.c|TERMCAP _OSK|/dd/LIB/termlib.l|
 # still does not build -- cpp bus-errors on tar.c, the same defect as flex.
 # See notes/CPP-MACRO-CRASH.md.
 testpad|gtar/GNUTAR|testpad.c|||
+# smail 2.5, from its own Makefile.osk.  It wants blarslib for getopt and the
+# passwd functions, and two things OS-9 has no answer for at all -- gethostname
+# and gettz -- which come from a shim.
+#
+# off_t comes from SRC/COMPAT/types.h, which is new and guarded twice -- read
+# its header before touching it.  Four other ways were tried: -Doff_t=long
+# collides with COMPAT's own typedef, an unguarded off_t in COMPAT broke
+# `less' (it #defines off_t), a types.h in smail's own directory is found by
+# COMPAT's `#include <types.h>' and loops, and -UOSK sends every other file
+# down the wrong arm.
+smail|smail/BNU/SMAIL_2.5/SRC|main.c map.c resolve.c deliver.c misc.c alias.c pw.c headers.c getpath.c str.c||/dd/LIB/blarslib.l /dd/LIB/unix.l| -V=/dd/DEFS/UNIX
+lcasep|smail/BNU/SMAIL_2.5/SRC|lcasep.c||/dd/LIB/blarslib.l|
+nptx|smail/BNU/SMAIL_2.5/SRC|nptx.c pw.c str.c||/dd/LIB/blarslib.l|
+svbinmail|smail/BNU/SMAIL_2.5/SRC|svbinmail.c||/dd/LIB/blarslib.l|
 

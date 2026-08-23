@@ -219,7 +219,7 @@ while IFS='|' read -r prog arch srcs defs libs extra; do
     case "$out" in
       *"'bcopy' unresolved"*|*"'bzero' unresolved"*|*"'bcmp' unresolved"*)          shim=os9bcopy.c;;
       *"'getpwuid' unresolved"*|*"'getpwnam' unresolved"*|*"'getlogin' unresolved"*) shim=os9getpw.c;;
-      *"'gethostname' unresolved"*)                                              shim=os9hostname.c;;
+      *"'gethostname' unresolved"*|*"'gettz' unresolved"*)                       shim=os9hostname.c;;
       *"'srand48' unresolved"*|*"'drand48' unresolved"*|*"'lrand48' unresolved"*)   shim=os9rand48.c;;
       *"'geteuid' unresolved"*|*"'getuid' unresolved"*)                             shim=os9geteuid.c;;
       *"'popen' unresolved"*|*"'pclose' unresolved"*)                               shim=os9popen.c;;
