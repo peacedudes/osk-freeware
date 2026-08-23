@@ -67,10 +67,23 @@ several: these trees declare prototypes, and Microware's `cc` is K&R.
   - `lua`, `jpeglib`, `gnuchess/GNUCHESS4.0`, `ed`, `lout`, and probably
     `cnews`, `rayshade` and `infoxpress`.
 
-  **There is a lever.** `jpeglib` ships `ansi2knr.c` -- the standard
-  de-ANSIfier, written in K&R so it can bootstrap -- and **it builds here**
-  (2026-08-23). Teaching `rebuild.sh` a per-source `ansi2knr` step would open
-  all of these at once. That is the highest-value thing left in this file.
+  **The lever exists and is in** -- the `KNR` recipe flag, 2026-08-23. It runs
+  every source through `ansi2knr` before `cc`. `cjpeg` builds that way; that
+  is JPEG's whole compressor, 27 sources, and it had never compiled here.
+
+  **But it only goes so far.** `ansi2knr` rewrites function DEFINITIONS and
+  leaves headers alone, so a tree is only reachable if its own headers can be
+  told to stop declaring prototypes:
+
+    reachable      JPEG -- jconfig.h has HAVE_PROTOTYPES, `const', and
+                   INCOMPLETE_TYPES_BROKEN, which is provided for compilers
+                   exactly like this one
+    not reachable  lua -- lua.h declares prototypes unconditionally and there
+                   is no switch; the headers would have to be converted by
+                   hand, and ansi2knr does not do declarations
+
+  So `lua`, and probably `ed` and `lout`, are header work rather than a flag.
+  `djpeg` is neither: it is the cpp defect.
 
 **Still ordinary work, nobody has done it.**
 
