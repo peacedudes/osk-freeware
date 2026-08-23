@@ -311,6 +311,21 @@ FIXUP
 #
 # If you ever want -k on the ordinary `cc\' path instead, it is `-K=0CL\' --
 # and you must add `-O\' with it, for the same reason.
+#
+# M020: THE 68020 BACKEND, and it is a different answer to a different wall.
+# r68 says `*** error - value out of range ***' when a stack displacement
+# passes the 68000's signed 16-bit limit -- rayshade's shadow.c reaches
+# 39586(sp).  `cc -K=2L' answers that by running c68020 and r68020 instead of
+# c68 and r68, and this is the same thing for the CPP2 path.
+#
+# The o68 bug above does NOT apply here, measured the same day: `cc -K=2L'
+# runs c68020 -k AND o68, and the ten-case probe comes back perfect.  So the
+# defect is o68 mis-optimising the 68000 c68's long-PC-relative output
+# specifically, and the one existing -K=2L recipe (`xcrypt') was never at risk.
+# M020 therefore keeps the o68 pass; LONGREF is the one that must drop it.
+#
+# The cost is a 68020-only binary, so ask for it only where the program
+# already wants one -- rayshade's own makefile says `-mc68040'.
 compile_cpp2_post() {  # $1 arch  $2 sources  $3 prog  $4 extra  $5 libs  $6 dir
   local mainsrc="" s base
   for s in $2; do
@@ -331,7 +346,11 @@ compile_cpp2_post() {  # $1 arch  $2 sources  $3 prog  $4 extra  $5 libs  $6 dir
   for s in $2; do
     base=$(basename "$s" .c)
     printf 'del ctmp_%s.a\ndel ctmp_%s.o\ndel ctmp_%s.r\n' "$base" "$base" "$base"
-    if [ "$LONGREF" = 1 ]; then
+    if [ "$M020" = 1 ]; then
+      printf 'c68020 ctmp_%s.m -t -k -o=ctmp_%s.a\n' "$base" "$base"
+      printf 'o68 ctmp_%s.a ctmp_%s.o\n' "$base" "$base"
+      printf 'r68020 ctmp_%s.o -q -o=/h6/%s/ctmp_%s.r\n' "$base" "$1" "$base"
+    elif [ "$LONGREF" = 1 ]; then
       printf 'c68 ctmp_%s.m -t -k -o=ctmp_%s.a\n' "$base" "$base"
       printf 'r68 ctmp_%s.a -q -o=/h6/%s/ctmp_%s.r\n' "$base" "$1" "$base"
     else
@@ -464,7 +483,7 @@ while IFS='|' read -r prog arch srcs defs libs extra; do
   # One pass over the field, not three substitutions: `${defs/KNR/}' turns
   # `KNR=a.c,b.c' into `=a.c,b.c', which then reaches cc as `-D=a.c,b.c'.
   OSKDEF=-DOSK
-  KNRMODE=0; KNRFILES=""; CPP2MODE=0; LONGREF=0; keep=""
+  KNRMODE=0; KNRFILES=""; CPP2MODE=0; LONGREF=0; M020=0; keep=""
   for x in $defs; do
     case "$x" in
       NOOSK)  OSKDEF="";;
@@ -473,6 +492,7 @@ while IFS='|' read -r prog arch srcs defs libs extra; do
               KNRFILES=$(printf '%s' "${x#KNR=}" | /usr/bin/tr ',' ' ');;
       CPP2)   CPP2MODE=1;;
       LONGREF) LONGREF=1;;
+      M020)   M020=1;;
       *)      keep="$keep $x";;
     esac
   done

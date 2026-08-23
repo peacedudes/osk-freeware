@@ -472,3 +472,24 @@ c7decode|cnews/input|c7decode.c|||
 byteflip|cnews/dbz|byteflip.c|||
 dbz|cnews/dbz|dbzmain.c dbz.c||/dd/LIB/os9lib.l|-V=/dd/DEFS/blarsdefs
 newslock|cnews/misc|newslock.c||/dd/LIB/blarslib.l|-V=/h6/cnews/h
+# Rayshade 4.0, Craig Kolb's ray tracer -- 78 sources across six nested
+# libraries, and the first PACKAGE build here rather than a directory build.
+# Four separate walls, each with its own answer:
+#
+#   CPP2     the sources include <libcommon/common.h> -- a DIRECTORY in the
+#            include name, which Microware's cpp will not look for in a -V
+#            directory at all (it is also what blocks macutils).  GNU cpp has
+#            no such limit, and with CPP2 every one of them resolves.
+#   M020     shadow.c's stack frame overruns the 68000's 16-bit displacement;
+#            c68020/r68020 is what `cc -K=2L' switches to for that.
+#   geom.h   and it STILL overruns, because a HitList is a local: hence
+#            MAXMODELDEPTH 128 -> 48, measured, with -M=200k for the runtime
+#            side of the same thing.  See the note in geom.h.
+#   I_STDLIB funcdefs.h's own RCS log names this switch: "Don't declare free
+#            or exit void if stdlib.h is used."
+#
+# VERIFIED BY RENDERING, not by linking: planet.ray, solids.ray and balls.ray
+# all come out complete at 24x24, and planet is recognisably a lit sphere.
+# csg.ray truncates and blob.ray takes a bus error -- both untested against the
+# shipped binary, because THAT one cannot render at all (config.h note).
+rayshade|rayshade|libray/LIBCOMMON/expr.c libray/LIBCOMMON/memory.c libray/LIBCOMMON/rotate.c libray/LIBCOMMON/sampling.c libray/LIBCOMMON/scale.c libray/LIBCOMMON/transform.c libray/LIBCOMMON/translate.c libray/LIBCOMMON/vecmath.c libray/LIBCOMMON/xform.c libray/LIBIMAGE/image.c libray/LIBLIGHT/extended.c libray/LIBLIGHT/infinite.c libray/LIBLIGHT/jittered.c libray/LIBLIGHT/light.c libray/LIBLIGHT/point.c libray/LIBLIGHT/shadow.c libray/LIBLIGHT/spot.c libray/LIBOBJ/blob.c libray/LIBOBJ/bounds.c libray/LIBOBJ/box.c libray/LIBOBJ/cone.c libray/LIBOBJ/csg.c libray/LIBOBJ/cylinder.c libray/LIBOBJ/disc.c libray/LIBOBJ/geom.c libray/LIBOBJ/grid.c libray/LIBOBJ/hf.c libray/LIBOBJ/instance.c libray/LIBOBJ/intersect.c libray/LIBOBJ/list.c libray/LIBOBJ/plane.c libray/LIBOBJ/poly.c libray/LIBOBJ/roots.c libray/LIBOBJ/sphere.c libray/LIBOBJ/torus.c libray/LIBOBJ/triangle.c libray/LIBSURF/atmosphere.c libray/LIBSURF/fog.c libray/LIBSURF/fogdeck.c libray/LIBSURF/mist.c libray/LIBSURF/surface.c libray/LIBSURF/surfshade.c libray/LIBTEXT/blotch.c libray/LIBTEXT/bump.c libray/LIBTEXT/checker.c libray/LIBTEXT/cloud.c libray/LIBTEXT/fbm.c libray/LIBTEXT/fbmbump.c libray/LIBTEXT/gloss.c libray/LIBTEXT/imagetext.c libray/LIBTEXT/mapping.c libray/LIBTEXT/marble.c libray/LIBTEXT/mount.c libray/LIBTEXT/noise.c libray/LIBTEXT/sky.c libray/LIBTEXT/stripe.c libray/LIBTEXT/textaux.c libray/LIBTEXT/texture.c libray/LIBTEXT/windy.c libray/LIBTEXT/wood.c libshade/builtin.c libshade/lex.c libshade/lightdef.c libshade/misc.c libshade/objdef.c libshade/options.c libshade/picture.c libshade/setup.c libshade/shade.c libshade/stats.c libshade/surfdef.c libshade/symtab.c libshade/viewing.c libshade/yacc.c rayshade/main.c rayshade/raytrace.c rayshade/version.c|CPP2 M020 I_STDLIB|/dd/LIB/os9lib.l|-K=2L -M=200k -V=/h6/rayshade/libray -V=/h6/rayshade/libshade -V=/h6/rayshade/rayshade
