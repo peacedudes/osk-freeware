@@ -50,10 +50,17 @@ accounted for below. Nothing in this list is "unknown" any more.
   - `mgif` wants `screenbaseaddress` from `/h0/lib/gpprim.r`, a graphics
     primitive library that is not here.
   - `deansi` is lex output and wants a lex runtime (`yyreject`).
+  - `rayshade` — **BUILDS 2026-08-23**, and renders. 78 sources over six
+    nested libraries, the first package build here. Four walls, all in its
+    recipe's note.
   - `spooler` wants its author's `local.h` — the one with `loop` and `ERROR`
     in it, not the `auxlib` one this disk carries.
-  - `macutils`, `gtar` want **blarslib**, which IS in the pool. See
+  - `gtar` wants **blarslib**, which IS in the pool. See
     `notes/BLARSLIB.md`; that is a decision, not a search.
+  - ~~`macutils`~~ — **UNBLOCKED 2026-08-23.** The reason given below (cpp
+    will not search a `-V` directory for an include name with a directory in
+    it) was correct and is now obsolete: GNU cpp does, and a recipe's `-V=`
+    reaches that pass. `binhex` and `unsit` build.
   - `mtools` — **not a timeout, and not blarslib. Measured 2026-08-23:** it
     runs to completion in minutes and c68 rejects a prototype on nearly every
     line. Its OSK port is a `gcc2` build (`CC = gcc2`,

@@ -13,7 +13,9 @@ accessible in universe.** Everything below serves one of them.
 ## 1. The trees with no recipe — what is actually left
 
 `tools/build.sh --missing` lists them and `notes/COMPILE-AUDIT.md` says why
-each has none. As of 2026-08-23: **277 recipes, 24 trees without one.** Most of
+each has none. As of 2026-08-23 (end of the overnight pass): **288 recipes, 19 trees
+without one** -- `cnews`, `ed`, `inform`, `rayshade` and `macutils` all gained
+one during it. Most of
 those 24 are accounted for (wrong language, material genuinely absent, not a
 program tree). What is real work, in the order I would take it:
 
@@ -57,9 +59,18 @@ not new.
 tried since the two limits were measured. `cnews` scores 454/2 on the
 left-margin count and is the most promising.
 
-**d. `macutils`.** Blocked on an include-path knot: it needs `struct stat` as
-blarslib declares it, and `cpp` will not search a `-V` directory for a name
-with a directory in it, so two trees cannot have a different `<sys/types.h>`.
+**d. `macutils` — UNBLOCKED, and so is anything else with that shape.** The
+include-path knot was real: `cpp` will not search a `-V` directory for an
+include name containing a directory. GNU cpp does, and a recipe's `-V=` now
+reaches it, so **`CPP2` is the general answer to that whole class**. `binhex`
+and `unsit` build; `mcvert` wants `ftime()` and `macsave`/`macunpack` are not
+run down.
+
+**e. `rayshade` — BUILDS and RENDERS.** The first package build here, 78
+sources over six nested libraries. Its recipe note has the four walls. Two
+scenes still fail (`csg.ray` truncates, `blob.ray` bus-errors) and neither has
+been run down. Separately: the SHIPPED rayshade could never render anything,
+because it asks for a preprocessor called `cccp` and the disk has `cccp2`.
 
 **Method that has been right every time:** read the tree's own makefile for the
 object list. Guessing "every .c in the directory" was wrong for `adv`,

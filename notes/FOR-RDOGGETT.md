@@ -46,12 +46,27 @@ and `postprint` started passing. **935 programs were measured in both sweeps
 and exactly TWO changed verdict**, neither a regression. `DOC/STATUS` is
 updated throughout, not just the tally.
 
+**`rayshade` builds AND RENDERS** — 78 sources over six nested libraries, the
+first package build here. And a finding you will care about: **the rayshade
+you ship has never been able to render anything.** It pipes every scene
+through a preprocessor called `cccp`, which is on no disk here; it says
+`Nothing to be rendered` and stops. The disk does carry GNU cpp as
+`CMDS/GCC2/cccp2`, so it is a one-word fix in `config.h`, and it is made. The
+sweep never caught it because `rayshade` with no arguments prints a usage
+message, which scores as working.
+
 **Also:**
 
+  - **`macutils` is unblocked** — the audit's reason (cpp will not search a
+    `-V` directory for an include name with a directory in it) was correct and
+    is now obsolete, because GNU cpp does. `binhex` and `unsit` build.
+  - A driver bug: two sources sharing a BASENAME silently clobbered each
+    other's temporaries, and the link then blamed a missing `main`. Fixed.
   - Five of C News's six programs build — that tree had no recipe at all.
-  - The whole tree still builds: **277 of 280 recipes clean**, the same three
-    known failures (`ls`, `pdraw`, `pep`). That is after four changes that
-    touch every recipe, so it is a real check, not a formality.
+  - The whole tree still builds: **285 of 288 recipes clean**, the same three
+    known failures (`ls`, `pdraw`, `pep`). Recipes went 277 -> 288 overnight.
+    Four whole-tree builds were run, not one — the third caught a fix of mine
+    that worked on one recipe and broke another.
   - **`build.sh` was leaving 228 files in `disk/`** while printing "the tree is
     left as it was found". It had its own stale copy of `tidy.sh`. It calls the
     real one now.

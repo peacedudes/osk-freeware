@@ -125,6 +125,36 @@ knr_wanted() {     # $1 source file as the recipe spells it
   return 1
 }
 
+# THE TEMPORARY NAME FOR ONE SOURCE, on the CPP2 path.
+#
+# The basename, EXCEPT where two sources in the same recipe share one -- then
+# the second and later get `_1\', `_2\' and so on.  macutils\' `binhex\' is the
+# case: it names BINHEX/binhex.c, the program, AND CRC/binhex.c, its CRC table,
+# and it wants both.  With a plain basename both became ctmp_binhex, the second
+# overwrote the first, and the link reported `Symbol \'main\' unresolved\' with
+# nothing anywhere to say why.
+#
+# FLATTENING THE PATH WAS THE FIRST FIX AND IT WAS WRONG: `../libray/LIBCOMMON/
+# expr.c\' becomes `ctmp_libray_LIBCOMMON_expr.raw\', which is 31 characters,
+# and **an OS-9 filename may be at most 29** -- measured 2026-08-23 by creating
+# names of each length; 29 works, 30 does not.  cccp2 then cannot create its
+# output and says `file not found\' about the file it is trying to WRITE, the
+# shell\'s abort-on-error ends the run, and rayshade went from building to not.
+# Suffixing only on a collision leaves every other recipe\'s names untouched.
+#
+# The plain-cc paths cannot do this -- there `cc -r\' names the object after the
+# source and the collision is cc\'s, not ours -- so a same-basename recipe needs
+# CPP2 for now.
+tmpbase() {        # $1 source file  $2 the recipe\'s whole source list
+  local b n=0 x
+  b=$(basename "$1" .c)
+  for x in $2; do
+    [ "$x" = "$1" ] && break
+    [ "$(basename "$x" .c)" = "$b" ] && n=$((n+1))
+  done
+  if [ "$n" = 0 ]; then printf '%s' "$b"; else printf '%s_%d' "$b" "$n"; fi
+}
+
 # The object a source compiles to.  A translated source compiles as
 # ctmp_<base>.c and so lands as ctmp_<base>.r; an untranslated one keeps its
 # own name.  The merge list has to agree, or `merge\' stops at the first file
@@ -188,7 +218,7 @@ compile_cpp2_pre() {   # $1 arch  $2 sources  $3 oskdef  $4 defines  $5 extra
   done
   printf 'chx /dd/CMDS\nchd /h6/%s\n' "$1"
   for s in $2; do
-    base=$(basename "$s" .c)
+    base=$(tmpbase "$s" "$2")
     src=$s
     if knr_wanted "$s"; then
       printf 'del ctmp_%s.c\nansi2knr %s ctmp_%s.c\n' "$base" "$s" "$base"
@@ -271,8 +301,11 @@ def wrap(line):
     return out
 
 d, srcs = sys.argv[1], sys.argv[2:]
-for s in srcs:
+for i, s in enumerate(srcs):
     base = os.path.basename(s)[:-2]
+    n = sum(1 for e in srcs[:i] if os.path.basename(e) == os.path.basename(s))
+    if n:
+        base = "%s_%d" % (base, n)
     raw = os.path.join(d, "ctmp_%s.raw" % base)
     if not os.path.exists(raw):
         continue
@@ -338,13 +371,13 @@ compile_cpp2_post() {  # $1 arch  $2 sources  $3 prog  $4 extra  $5 libs  $6 dir
 
   : > "$6/ctmp.list"
   for s in $2; do
-    base=$(basename "$s" .c)
+    base=$(tmpbase "$s" "$2")
     [ "$s" = "$mainsrc" ] || printf '%s\r' "ctmp_$base.r" >> "$6/ctmp.list"
   done
 
   printf 'setenv CLIB /dd/LIB\nsetenv CDEF /dd/DEFS\nchx /dd/CMDS\nchd /h6/%s\n' "$1"
   for s in $2; do
-    base=$(basename "$s" .c)
+    base=$(tmpbase "$s" "$2")
     printf 'del ctmp_%s.a\ndel ctmp_%s.o\ndel ctmp_%s.r\n' "$base" "$base" "$base"
     if [ "$M020" = 1 ]; then
       printf 'c68020 ctmp_%s.m -t -k -o=ctmp_%s.a\n' "$base" "$base"
@@ -361,7 +394,7 @@ compile_cpp2_post() {  # $1 arch  $2 sources  $3 prog  $4 extra  $5 libs  $6 dir
   done
   printf 'del ctmp.parts.l\nmerge -z=ctmp.list >ctmp.parts.l\n'
   printf 'cc ctmp_%s.r -qm=16k -n=%s -f=/h6/%s/R_%s -l=ctmp.parts.l -l=ctmp.parts.l -l=ctmp.parts.l %s%s' \
-         "$(basename "$mainsrc" .c)" "$3" "$1" "$3" "$4" "$5"
+         "$(tmpbase "$mainsrc" "$2")" "$3" "$1" "$3" "$4" "$5"
   printf ' -l=/dd/LIB/curses.l -l=/dd/LIB/termlib.l -l=/dd/LIB/unix.l -l=/dd/LIB/math.l\n'
   printf '\033\n\004\n'
 }

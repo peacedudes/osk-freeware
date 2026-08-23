@@ -82,7 +82,9 @@ In rough order of how often it was the answer:
 | `undeclared identifier` | a conditional-compilation arm. Read the `#ifdef` maze before adding anything: `make` needs `-DOS9` because `union wait` is in the `#ifndef OS9` branch. |
 | `*** error - value out of range ***` | this is **r68**, the assembler, not the compiler. `-K=2L`. |
 | `source line too long` | an LF-terminated file. OS-9 text is CR-terminated, and `cpp` reads an LF file as one enormous line. This bites files you wrote yourself. A macro whose continuation lines join into something very long does it too — that is `ed.h`, and there `cpp` said so 161 MB worth. |
-| `can't open /dd/DEFS/sys/types.h` | `cpp` does not search the `-V` directories for an include name that has a DIRECTORY in it. `SRC/COMPAT/sys` is copied into the overlay's `DEFS` by `make_overlay.sh` for exactly this. |
+| `can't open /dd/DEFS/sys/types.h` | `cpp` does not search the `-V` directories for an include name that has a DIRECTORY in it. `SRC/COMPAT/sys` is copied into the overlay's `DEFS` by `make_overlay.sh` for exactly this — **but the general answer is `CPP2`**: GNU cpp does search `-I` for such names, which is what unblocked `rayshade` and `macutils`. |
+| `Symbol 'main' unresolved`, or a symbol you can see in a named source | two sources in the recipe share a BASENAME. On the CPP2 path `tmpbase()` keeps them apart; on the plain-cc paths `cc -r` names the object after the source and they still collide, so give such a recipe `CPP2`. |
+| a tool says `file not found` about a file it is WRITING | **an OS-9 filename may be at most 29 characters** — measured 2026-08-23, 29 works and 30 does not. `cccp2` reports a too-long output name exactly like a missing input, and the shell's abort-on-error then ends the run at the first source with nothing to say it did. |
 | a header that IS in `SRC/COMPAT` still "can't open" | `$OS9COMPAT` is not set. `tools/build.sh` sets it; calling `rebuild.sh` directly used to fall back to a path that has not existed since this repo was split out. |
 | the error names something that is not on the command line at all | **SCF will not read a line longer than 512 bytes** — that is the OS, always has been, and there is nothing to fix. A longer command line arrives cut off. `mtools` has 45 sources and its `cc` line ran to 900 characters; it was cut mid-option and the error was `can't open /dd/DEFS/stdlib.h`. `rebuild.sh` measures the line it is about to type and compiles each source separately when it would be too long. |
 | unresolved symbols that are plainly IN the link | `l68` makes **one pass** over a library. A member calling another member further down the file is left unresolved — `zoo`'s `huf.c` wanted `putbits` from `io.c` 24 times. Name the library more than once. |
@@ -102,6 +104,13 @@ use `KNR=<files>` with `CPP2`.
 | `KNR` | run every source through `ansi2knr` first |
 | `KNR=a.c,b.c` | run only those sources through it |
 | `CPP2` | preprocess with GNU's `cccp2` instead of Microware's `cpp` |
+| `LONGREF` | `c68 -k` for long PC-relative branches, and NO `o68` pass |
+| `M020` | the 68020 backend, `c68020`/`r68020`, for oversized stack frames |
+
+`CPP2` is worth reaching for beyond the 512-character line it was written for:
+it also searches `-I` directories for an include name containing a DIRECTORY,
+which Microware's cpp will not do, and it is the only path whose temporaries
+survive two sources sharing a basename.
 
 ## ANSI C: the KNR flag
 

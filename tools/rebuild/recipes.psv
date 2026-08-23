@@ -493,3 +493,19 @@ newslock|cnews/misc|newslock.c||/dd/LIB/blarslib.l|-V=/h6/cnews/h
 # csg.ray truncates and blob.ray takes a bus error -- both untested against the
 # shipped binary, because THAT one cannot render at all (config.h note).
 rayshade|rayshade|libray/LIBCOMMON/expr.c libray/LIBCOMMON/memory.c libray/LIBCOMMON/rotate.c libray/LIBCOMMON/sampling.c libray/LIBCOMMON/scale.c libray/LIBCOMMON/transform.c libray/LIBCOMMON/translate.c libray/LIBCOMMON/vecmath.c libray/LIBCOMMON/xform.c libray/LIBIMAGE/image.c libray/LIBLIGHT/extended.c libray/LIBLIGHT/infinite.c libray/LIBLIGHT/jittered.c libray/LIBLIGHT/light.c libray/LIBLIGHT/point.c libray/LIBLIGHT/shadow.c libray/LIBLIGHT/spot.c libray/LIBOBJ/blob.c libray/LIBOBJ/bounds.c libray/LIBOBJ/box.c libray/LIBOBJ/cone.c libray/LIBOBJ/csg.c libray/LIBOBJ/cylinder.c libray/LIBOBJ/disc.c libray/LIBOBJ/geom.c libray/LIBOBJ/grid.c libray/LIBOBJ/hf.c libray/LIBOBJ/instance.c libray/LIBOBJ/intersect.c libray/LIBOBJ/list.c libray/LIBOBJ/plane.c libray/LIBOBJ/poly.c libray/LIBOBJ/roots.c libray/LIBOBJ/sphere.c libray/LIBOBJ/torus.c libray/LIBOBJ/triangle.c libray/LIBSURF/atmosphere.c libray/LIBSURF/fog.c libray/LIBSURF/fogdeck.c libray/LIBSURF/mist.c libray/LIBSURF/surface.c libray/LIBSURF/surfshade.c libray/LIBTEXT/blotch.c libray/LIBTEXT/bump.c libray/LIBTEXT/checker.c libray/LIBTEXT/cloud.c libray/LIBTEXT/fbm.c libray/LIBTEXT/fbmbump.c libray/LIBTEXT/gloss.c libray/LIBTEXT/imagetext.c libray/LIBTEXT/mapping.c libray/LIBTEXT/marble.c libray/LIBTEXT/mount.c libray/LIBTEXT/noise.c libray/LIBTEXT/sky.c libray/LIBTEXT/stripe.c libray/LIBTEXT/textaux.c libray/LIBTEXT/texture.c libray/LIBTEXT/windy.c libray/LIBTEXT/wood.c libshade/builtin.c libshade/lex.c libshade/lightdef.c libshade/misc.c libshade/objdef.c libshade/options.c libshade/picture.c libshade/setup.c libshade/shade.c libshade/stats.c libshade/surfdef.c libshade/symtab.c libshade/viewing.c libshade/yacc.c rayshade/main.c rayshade/raytrace.c rayshade/version.c|CPP2 M020 I_STDLIB|/dd/LIB/os9lib.l|-K=2L -M=200k -V=/h6/rayshade/libray -V=/h6/rayshade/libshade -V=/h6/rayshade/rayshade
+# macutils -- and COMPILE-AUDIT's reason for having no recipe is now WRONG.
+# It said the tree was blocked on an include-path knot: it wants <sys/types.h>
+# as blarslib declares it, and Microware's cpp will not search a -V directory
+# for an include name with a directory in it.  Both halves are true and CPP2
+# dissolves both -- GNU cpp searches -I for such names, and a recipe's -V= now
+# reaches that pass, so `-V=/dd/DEFS/blarsdefs' does exactly what was wanted.
+#
+# These two also needed the temp-name fix: `binhex' names BINHEX/binhex.c AND
+# CRC/binhex.c, and until 2026-08-23 the driver put both on ctmp_binhex and
+# lost the first.  See tmpbase() in rebuild.sh.
+#
+# `mcvert' is not here: it wants ftime(), which blarslib has and blarslib's
+# ftime.c is one of the four objects NOT taken (see notes/BLARSLIB.md).
+# `macsave' and `macunpack' are not here either; neither has been run down.
+binhex|macutils/BINHEX|binhex.c dofile.c ../UTIL/transname.c ../UTIL/backtrans.c ../UTIL/util.c ../FILEIO/rdfile.c ../FILEIO/fileglob.c ../CRC/binhex.c ../CRC/ccitt.c|CPP2 NODOT|/dd/LIB/blarslib.l|-V=/dd/DEFS/blarsdefs -V=/h6/macutils/UTIL -V=/h6/macutils/FILEIO -V=/h6/macutils/CRC
+unsit|macutils/UNSIT|unsit.c getopt.c updcrc.c ../UTIL/transname.c ../UTIL/backtrans.c ../UTIL/util.c ../FILEIO/rdfile.c ../FILEIO/wrfile.c ../FILEIO/fileglob.c ../CRC/binhex.c ../CRC/ccitt.c|CPP2 NODOT|/dd/LIB/blarslib.l|-V=/dd/DEFS/blarsdefs -V=/h6/macutils/UTIL -V=/h6/macutils/FILEIO -V=/h6/macutils/CRC
