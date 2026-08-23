@@ -336,4 +336,32 @@ uupoll|uucp_blars|uupoll.c||/dd/LIB/blarslib.l|
 # SB-Prolog.  Its makefile builds builtin/ as a library first; naming those
 # sources alongside the simulator's comes to the same thing.
 wam.sbprolog|sbprolog/SIM|dispatch.c init.c float.c io.c sub_inst.c loader.c main.c parse_oprnd.c dis.c print_inst.c unify.c load_work.c aux.c mathutil.c builtin/arith.c builtin/buffer.c builtin/builtin.c builtin/compare.c builtin/file.c builtin/init_branch.c builtin/meta.c builtin/name.c builtin/other.c builtin/saverest.c builtin/structure.c builtin/substuff.c builtin/syscall.c builtin/time.c builtin/tio.c|OS9|/dd/LIB/os9lib.l /dd/LIB/math.l|
-
+# uucpbb -- Bob Billson's uucp/news package, 21 of its 24 programs, each
+# from its own object group in makefile.c32.  Three are out: `login' wants
+# an <os9.h> nothing here has, and `chown' and `cnvrtmail' assign to
+# fd_own, which is an ARRAY in this <direct.h> -- a port written against a
+# version where it was one number, and not something to guess at in a
+# program that changes file ownership.
+# Note uucico, uucp and uuxqt are also built from SRC/uucp_blars; two
+# packages, both here, both compile.
+adduser|uucpbb|adduser.c strdetab.c getenv.c strdup.c termio.c mfgets.c osk.c pwent.c parse.c|TERMCAP _OSK|/dd/LIB/termlib.l|
+dotilde|uucpbb|dotilde.c docmd.c fixline.c parse.c forkshell.c getenv.c mfgets.c strdetab.c strdup.c gtime.c filemove.c termio.c osk.c pwent.c|TERMCAP _OSK|/dd/LIB/termlib.l|
+expire|uucpbb|expire.c expgroup.c makepath.c parse.c newsutils.c gtime.c filemove.c strupr.c mfgets.c strdetab.c strdup.c getdirs.c getopt.c getenv.c getenv.c osk.c|TERMCAP _OSK|/dd/LIB/termlib.l|
+fileserv|uucpbb|fileserv.c getparam.c getdirs.c strdup.c mfgets.c getval.c maketemp.c filemove.c docmd.c gtime.c date822.c getseq.c fixperms.c parse.c getenv.c osk.c|TERMCAP _OSK|/dd/LIB/termlib.l|
+fixtext|uucpbb|fixtext.c fixline.c strdetab.c mfgets.c osk.c parse.c|TERMCAP _OSK|/dd/LIB/termlib.l|
+mailx|uucpbb|mail.c recvmail.c sendmail.c getuser.c docmd.c parse.c fixline.c filemove.c maketemp.c getseq.c getval.c fixperms.c getparam.c userparam.c t2test.c date822.c gtime.c doalias.c forkshell.c strdup.c mfgets.c strdetab.c getenv.c termio.c getdirs.c osk.c pwent.c|TERMCAP _OSK|/dd/LIB/termlib.l|
+postnews|uucpbb|postnews.c getuser.c maketemp.c getseq.c findent.c getsys.c docmd.c fixline.c filemove.c genseq.c getparam.c userparam.c parse.c t2test.c fixperms.c gtime.c date822.c mfgets.c strdetab.c getenv.c strdup.c getdirs.c getopt.c termio.c osk.c pwent.c|TERMCAP _OSK|/dd/LIB/termlib.l|
+readnews|uucpbb|readnews.c getuser.c makepath.c parse.c filemove.c fixline.c docmd.c newsutils.c getval.c getparam.c userparam.c gtime.c t2test.c forkshell.c mfgets.c strupr.c strdetab.c getenv.c strdup.c getdirs.c termio.c osk.c pwent.c|TERMCAP _OSK|/dd/LIB/termlib.l|
+rmail|uucpbb|rmail.c getline.c getuser.c validuser.c setuser.c parse.c genseq.c findent.c getparam.c getval.c maketemp.c gtime.c fixperms.c date822.c filemove.c doalias.c mfgets.c getenv.c strdup.c getdirs.c termio.c docmd.c osk.c pwent.c|TERMCAP _OSK|/dd/LIB/termlib.l|
+rnews|uucpbb|rnews.c getline.c groups.c procbatch.c mbuf.c xatol.c getdirs.c getparam.c parse.c strdup.c mfgets.c openarts.c makepath.c strupr.c procart.c getopt.c fixref.c gtime.c log.c getenv.c osk.c|TERMCAP _OSK|/dd/LIB/termlib.l|
+subscribe|uucpbb|subscribe.c filemove.c mfgets.c getenv.c osk.c pwent.c parse.c strdup.c|TERMCAP _OSK|/dd/LIB/termlib.l|
+unsubscribe|uucpbb|unsubscribe.c filemove.c mfgets.c getenv.c pwent.c parse.c strdup.c osk.c|TERMCAP _OSK|/dd/LIB/termlib.l|
+uucico|uucpbb|uucico.c getopt.c getparam.c findmach.c chksched.c findline.c findent.c finddev.c connect.c openport.c openuucp.c findwork.c filexfer.c gproto.c dumpcode.c filemove.c fixperms.c closeuucp.c parse.c docmd.c gtime.c mfgets.c strdetab.c getenv.c strdup.c getdirs.c strstr.c osk.c pwent.c|TERMCAP _OSK|/dd/LIB/termlib.l|
+uuclean|uucpbb|uuclean.c getparam.c parse.c docmd.c maketemp.c mfgets.c gtime.c filemove.c date822.c setuser.c getval.c getenv.c strdup.c getdirs.c getopt.c osk.c pwent.c|TERMCAP _OSK|/dd/LIB/termlib.l|
+uucp|uucpbb|uucp.c getuser.c getparam.c parse.c genseq.c fixperms.c maketemp.c docmd.c mfgets.c gtime.c getenv.c strdup.c getdirs.c osk.c pwent.c|TERMCAP _OSK|/dd/LIB/termlib.l|
+uudecode|uucpbb|uudecode.c osk.c parse.c|TERMCAP _OSK|/dd/LIB/termlib.l|
+uuencode|uucpbb|uuencode.c osk.c parse.c|TERMCAP _OSK|/dd/LIB/termlib.l|
+uulog|uucpbb|uulog.c getopt.c osk.c parse.c getenv.c strdup.c mfgets.c|TERMCAP _OSK|/dd/LIB/termlib.l|
+uuname|uucpbb|uuname.c parse.c mfgets.c osk.c|TERMCAP _OSK|/dd/LIB/termlib.l|
+uuxqt|uucpbb|uuxqt.c findxwork.c getline.c parse.c docmd.c gtime.c filemove.c mfgets.c getopt.c strdetab.c strdup.c getdirs.c strupr.c getenv.c getenv.c osk.c|TERMCAP _OSK|/dd/LIB/termlib.l|
+whoami|uucpbb|whoami.c osk.c pwent.c parse.c|TERMCAP _OSK|/dd/LIB/termlib.l|
