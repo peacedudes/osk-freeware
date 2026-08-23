@@ -9,12 +9,10 @@ config	CMDS	SESSION-OK	/* Char = 8 bits, signed */ /* Maximum short = 32767 (= 2
 vmod_trap	CMDS/COMMS	STILL-BAD	
 rxmod	CMDS/COMMS	STILL-BAD	can't install Vmod Trap handler 
 os9lib	CMDS	STILL-BAD	Process   Pid: 3, os9lib, edition 0     Exit code: E_PRCABT(228) Process Aborted   Directories: Curr
-sysmem	CMDS	STILL-BAD	Process   Pid: 3, sysmem, edition 3     Exit code: E_PRCABT(228) Process Aborted   Directories: Curr
 X11R6shl	CMDS	STILL-BAD	
 trap	CMDS	STILL-BAD	tlink: -1 **** Can't install trap handler ****  **** +-*/&|^<>@? ****  
 aprocs	CMDS	SESSION-OK	F$SetSys: unimplemented 0030 (size=80000004) F$SetSys: unimplemented 0034 (size=80000004) Process   
 math	CMDS	STILL-BAD	
-firq	CMDS	STILL-BAD	Process   Pid: 3, firq, edition 1     Exit code: E_PRCABT(228) Process Aborted   Directories: Curren
 keydrv.mm1	CMDS/MM1	STILL-BAD	
 msdrv_340.901.ms	CMDS/MM1	STILL-BAD	No more memory !!! No more memory !!! 
 windio.52	CMDS/MM1	STILL-BAD	
@@ -29,7 +27,6 @@ rtfdat	CMDS	STILL-BAD	No more memory !!! No more memory !!!
 csl020	CMDS	STILL-BAD	
 csl	CMDS	STILL-BAD	
 oleo	CMDS	STILL-BAD	Illegal instruction: 0009 at 000465d2 Process   Pid: 3, oleo, edition 7     Exit code: E_PRCABT(228)
-souper	CMDS	STILL-BAD	Process   Pid: 3, souper, edition 1     Exit code: E_PRCABT(228) Process Aborted   Directories: Curr
 aterm	CMDS	SESSION-OK	[2J                    ATerm : A terminal program for OS9/68000                     ===== = = =====
 graphsave	CMDS/GAMES	STILL-BAD	
 apfel	CMDS/GAMES	STILL-BAD	
@@ -40,11 +37,10 @@ sine	CMDS/GAMES	STILL-BAD
 g	CMDS/GAMES	STILL-BAD	**** Can't install trap handler ****  **** Graph 
 graphdemo	CMDS/GAMES	STILL-BAD	
 showpic	CMDS/GAMES	STILL-BAD	
-snake	CMDS/GAMES	SESSION-OK	[?1h=[?1h=[H[2J[19;11HI[3;15H#[17;67H$[12;28Hs[As s s[As[AS[1;2H-----------------
+snake	CMDS/GAMES	SESSION-OK	[?1h=[?1h=[H[2J[6;6HI[2;38H#[14;37H$[3;13Hs s s[Ass[H 
 crib	CMDS/GAMES	SESSION-OK	[H[2J[11;40HDo[Cyou[Cneed[Cinstructions[Cfor[Ccribbage?[C[1;1H[K [K [K 
 cio	CMDS	STILL-BAD	
 wn.stb	CMDS/WN	STILL-BAD	No more memory !!! No more memory !!! 
-minute	CMDS	STILL-BAD	
 demo	CMDS	STILL-BAD	
 snd_sig	CMDS	STILL-BAD	
 ssl	CMDS	STILL-BAD	
@@ -96,7 +92,6 @@ puzzle	CMDS/GAMES	STILL-BAD
 cyberwar	CMDS/GAMES	STILL-BAD	
 bincheckr	CMDS/GAMES	STILL-BAD	
 scriptmaster	CMDS/GAMES	STILL-BAD	
-postprint	CMDS/GAMES	STILL-BAD	
 wisecrack	CMDS/GAMES	STILL-BAD	
 vtxtcn	CMDS/GAMES	STILL-BAD	
 dfiles	CMDS	STILL-BAD	

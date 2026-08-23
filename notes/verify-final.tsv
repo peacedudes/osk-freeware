@@ -7,6 +7,7 @@ PrintCards	CMDS	OK bare
 PrintLabels	CMDS	OK bare
 UnMacpack	CMDS	OK as a filter
 X11R6shl	CMDS	NEEDS WORK
+about	CMDS	OK bare
 add_errmsg	CMDS	OK given arguments
 alps	CMDS	OK bare
 ape	CMDS	OK given arguments
@@ -54,7 +55,6 @@ buildhash	CMDS	OK bare
 bush	CMDS	OK bare
 cal	CMDS	OK bare
 calen	CMDS	OK bare
-calendar	CMDS	OK bare
 calender	CMDS	OK bare
 casefix	CMDS	OK as a filter
 cat	CMDS	OK as a filter
@@ -168,7 +168,6 @@ field	CMDS	OK bare
 file	CMDS	OK bare
 fillup	CMDS	OK bare
 find	CMDS	OK given arguments
-firq	CMDS	NEEDS WORK
 fixyear	CMDS	OK bare
 fiz	CMDS	OK bare
 fkeys	CMDS	OK as a filter
@@ -233,7 +232,6 @@ kermit2	CMDS	OK bare
 kermit3	CMDS	OK bare
 ksh	CMDS	OK as a filter
 l	CMDS	OK as a filter
-lac	CMDS	OK bare
 launch	CMDS	OK bare
 less	CMDS	OK bare
 lessecho	CMDS	OK given arguments
@@ -269,7 +267,6 @@ macbin	CMDS	OK given arguments
 macsave	CMDS	OK as a filter
 macstream	CMDS	OK bare
 macunpack	CMDS	OK as a filter
-main	CMDS	OK bare
 make	CMDS	OK given arguments
 makecrc	CMDS	NEEDS WORK
 makeinfo	CMDS	OK bare
@@ -285,7 +282,6 @@ mexist	CMDS	OK bare
 mg	CMDS	OK bare
 mgif	CMDS	OK bare
 minnesota	CMDS	OK bare
-minute	CMDS	OK given arguments
 mkdir	CMDS	OK bare
 modbuster	CMDS	OK bare
 modinfo	CMDS	OK bare
@@ -314,7 +310,6 @@ mtools	CMDS	OK bare
 mtst	CMDS	OK bare
 mv	CMDS	OK bare
 mvolformat	CMDS	OK bare
-my.opt	CMDS	OK as a filter
 name	CMDS	OK bare
 names	CMDS	OK bare
 nasa	CMDS	OK bare
@@ -331,15 +326,14 @@ pagefraz	CMDS	OK bare
 pagekwic	CMDS	OK bare
 pageline	CMDS	OK as a filter
 paranoia	CMDS	OK bare
+passwd	CMDS	OK bare
 paste	CMDS	OK as a filter
 patch	CMDS	OK as a filter
-paths	CMDS	OK bare
 pbyte	CMDS	OK bare
 pdraw	CMDS	OK bare
 pep	CMDS	OK as a filter
 perr	CMDS	OK given arguments
 phone	CMDS	OK bare
-pow	CMDS	OK bare
 preset	CMDS	OK bare
 pri	CMDS	NEEDS WORK
 printenv	CMDS	OK in a session
@@ -368,7 +362,6 @@ read_mail	CMDS	OK bare
 rechne	CMDS	OK bare
 ref	CMDS	OK bare
 remove	CMDS	OK bare
-ren	CMDS	OK bare
 rendsk	CMDS	OK bare
 repeat	CMDS	OK bare
 rlog	CMDS	OK bare
@@ -388,7 +381,6 @@ savemem	CMDS	OK bare
 sbreak	CMDS	OK bare
 sc	CMDS	OK bare
 scales	CMDS	OK bare
-scope	CMDS	OK bare
 scqref	CMDS	OK bare
 screen	CMDS	OK bare
 scsiutil	CMDS	OK bare
@@ -409,13 +401,11 @@ shire	CMDS	OK bare
 shuffle	CMDS	OK bare
 sieve	CMDS	OK bare
 signal	CMDS	OK bare
-sin	CMDS	OK bare
 snap	CMDS	OK bare
 snd_sig	CMDS	OK given arguments
 sonnet	CMDS	OK bare
 sort	CMDS	OK as a filter
 soundex	CMDS	OK as a filter
-souper	CMDS	NEEDS WORK
 sox	CMDS	OK bare
 space	CMDS	OK bare
 speech	CMDS	OK bare
@@ -438,7 +428,6 @@ suse	CMDS	NEEDS WORK
 suspend	CMDS	OK bare
 sysid	CMDS	NEEDS WORK
 sysmax	CMDS	OK bare
-sysmem	CMDS	NEEDS WORK
 sysmin	CMDS	OK bare
 sysmon	CMDS	OK bare
 t	CMDS	NEEDS WORK
@@ -452,7 +441,6 @@ tcmp	CMDS	OK bare
 testibc	CMDS	OK bare
 textb	CMDS	OK bare
 time	CMDS	OK bare
-timeio	CMDS	OK bare
 timid	CMDS	OK bare
 today	CMDS	OK bare
 todos	CMDS	OK bare
@@ -619,7 +607,7 @@ nobs	CMDS/GAMES	OK bare
 pacman	CMDS/GAMES	OK bare
 piano	CMDS/GAMES	OK bare
 poker	CMDS/GAMES	OK bare
-postprint	CMDS/GAMES	NEEDS WORK
+postprint	CMDS/GAMES	OK bare
 puz15	CMDS/GAMES	OK bare
 puzzle	CMDS/GAMES	NEEDS WORK
 rain	CMDS/GAMES	OK bare
@@ -945,6 +933,6 @@ uuxqt	CMDS/UUCP	OK bare
 authwn	CMDS/WN	NEEDS WORK
 inetd	CMDS/WN	OK bare
 inetdc	CMDS/WN	NEEDS WORK
-wn	CMDS/WN	OK bare
+wn	CMDS/WN	OK as a filter
 wn.stb	CMDS/WN	NEEDS WORK
 wndex	CMDS/WN	OK bare

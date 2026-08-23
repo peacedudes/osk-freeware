@@ -20,7 +20,6 @@ sine	CMDS/GAMES	NO-USAGE
 graphdemo	CMDS/GAMES	NO-USAGE	
 showpic	CMDS/GAMES	NO-USAGE	
 cio	CMDS	NO-USAGE	
-minute	CMDS	USAGE-OK	Syntax: minute[<opts>] Function: wait for system time to rollover a minute             (this is some
 demo	CMDS	USAGE-OK		option index (optind) after egetopt():     2 		egetopt() return value:            ! (33) 		char tha
 snd_sig	CMDS	USAGE-OK	Function: Wakeup a process with the wake signal Options:           -?              display synopsis 
 ssl	CMDS	USAGE-OK	File descriptor sector -?: 0  Seg#     start    lenght ------------------------- 
@@ -68,7 +67,6 @@ puzzle	CMDS/GAMES	NO-USAGE
 cyberwar	CMDS/GAMES	NO-USAGE	
 bincheckr	CMDS/GAMES	NO-USAGE	
 scriptmaster	CMDS/GAMES	NO-USAGE	
-postprint	CMDS/GAMES	NO-USAGE	
 wisecrack	CMDS/GAMES	NO-USAGE	
 vtxtcn	CMDS/GAMES	NO-USAGE	
 dfiles	CMDS	USAGE-OK	dfiles 0.7 Usage: dfiles <path> [<path> ...] 
