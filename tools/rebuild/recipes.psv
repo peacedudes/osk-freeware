@@ -390,4 +390,12 @@ svbinmail|smail/BNU/SMAIL_2.5/SRC|svbinmail.c||/dd/LIB/blarslib.l|
 # it out of built/ into the overlay, and a KNR recipe fails with
 # "ansi2knr: command not found" until it is there.
 ansi2knr|jpeglib/JPEG_5A|ansi2knr.c|||
+# The JPEG compressor, through ansi2knr (the KNR flag).  Three switches in
+# jconfig.h had to change and each is commented there: HAVE_PROTOTYPES off,
+# `const' defined empty, HAVE_STDDEF_H on, and INCOMPLETE_TYPES_BROKEN on --
+# that last is the one JPEG provides for compilers exactly like this one.
+#
+# `djpeg' is NOT here: cpp bus-errors on jdmarker.c, the same defect as flex
+# and gtar.  See notes/CPP-MACRO-CRASH.md.
+cjpeg|jpeglib/JPEG_5A|cjpeg.c rdppm.c rdgif.c rdtarga.c rdrle.c rdbmp.c jcapi.c jcparam.c jdatadst.c jcmaster.c jcmarker.c jcmainct.c jcprepct.c jccoefct.c jccolor.c jcsample.c jchuff.c jcdctmgr.c jfdctfst.c jfdctflt.c jfdctint.c jcomapi.c jutils.c jerror.c jmemmgr.c jmemnobs.c|KNR||
 

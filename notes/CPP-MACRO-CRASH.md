@@ -58,8 +58,10 @@ from "the emulator died".
 
 ## What it costs this collection
 
-**Two programs here hit it**, so it is not a curiosity: `flex` and GNU `tar`,
-whose `tar.c` kills `cpp` before a single object is written.
+**Three programs here hit it**, so it is not a curiosity: `flex`, GNU `tar`
+(its `tar.c` kills `cpp` before a single object is written) and JPEG's `djpeg`
+(`jdmarker.c`, after the other 25 sources have compiled).  In each case the
+register dump has ASCII where an address should be.
 
 `flex`'s `dfa.c` defines `STACK_STATE`,
 which expands `PUT_ON_STACK` → `DO_REALLOCATION` and `MARK_STATE`, then
@@ -67,6 +69,8 @@ which expands `PUT_ON_STACK` → `DO_REALLOCATION` and `MARK_STATE`, then
 `current_max_dfa_size` inside `DO_REALLOCATION` is the `max_` in the register
 dump. `flex` therefore has no recipe; the shipped binary was built elsewhere. Nor
 does `gtar`, though everything else it needed — a generated `testpad.h` and
-blarslib — is now in place, so it is one `cpp` defect away.
+blarslib — is now in place, so it is one `cpp` defect away. Nor `djpeg`: its
+compressor half, `cjpeg`, builds from the same headers and the same `ansi2knr`
+pass, so the decompressor is one file away.
 
 A port could flatten those macros into functions. Nothing has been changed.
