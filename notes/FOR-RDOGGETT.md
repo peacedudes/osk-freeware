@@ -8,28 +8,29 @@ stands — nothing in it was undone.
 
 ---
 
-# 2026-08-22 — the build pass
+# 2026-08-22/23 — the build pass
 
-**Needs you:** nothing outstanding.
+**Needs you: nothing.** `blarslib` was the one question and you answered it.
 
-`blarslib` is in, minus the thirteen headers that were Microware's. One
-correction to what I told you when I asked: I said it would let `macutils`
-build. It does not — `macutils` needs `struct stat` as blarslib defines it,
-and that definition was in one of the headers we left out. The library is
-still worth having on its own; `macutils` is not fixed.
-
-**Worth knowing, in one line each:**
+**Six lines of what changed:**
 
   - `ksh` works as shipped, interactively and with `-c`, on os9exec with your
-    `I$Read` fix.
-  - 238 of 241 build recipes compile clean. The three that do not, and every
-    tree with no recipe, have a written reason in `notes/COMPILE-AUDIT.md`.
-  - Three programs that had never compiled — `world`, `patch`, `sonnet` — were
-    each missing one file that was still in the archive they came from.
-  - Nothing os9exec did was wrong.
+    `I$Read` fix. Nothing os9exec did was wrong all pass.
+  - Build recipes went 203 → 277. Last whole-tree run: 271 of 274 clean; the
+    three added since are each verified alone but not in a full run.
+  - Microware's `cpp` bus-errors on nested macros. **There is a way round it**
+    — GNU's `cccp2`, which is in the SDK — and `flex` builds through it.
+  - `world`, `patch`, `sonnet` had never compiled for want of one file each,
+    and each file was still in the archive it came from.
+  - `blarslib` is in, minus thirteen headers that were Microware's. It
+    unlocked uucp (26 programs), smail and SB-Prolog. It did **not** unlock
+    macutils, which is what I said it would when I asked — that was wrong.
+  - Every build used to leave object files in `disk/`, which `mkimage.sh`
+    ships. A check refuses that now, and it caught one already committed.
 
-Detail, if you ever want it: `notes/SESSION-2026-08-22.md`. What is left:
-`notes/PLAN-next.md`.
+Detail: `notes/SESSION-2026-08-22.md`, `notes/SESSION-2026-08-23.md`.
+What is left: `notes/PLAN-next.md`. A cold start:
+`notes/START-HERE-NEXT-SESSION.md`.
 
 ---
 

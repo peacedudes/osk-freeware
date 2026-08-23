@@ -10,39 +10,36 @@ accessible in universe.** Everything below serves one of them.
 
 ---
 
-## 1. Write recipes for the source trees that have none  — BIGGEST
+## 1. The trees with no recipe — what is actually left
 
-`tools/build.sh --missing` lists them, and `tools/build.sh` builds everything
-there is a recipe for. As of 2026-08-22 the failures are down to three, each
-for a reason that is written down rather than guessed:
+`tools/build.sh --missing` lists them and `notes/COMPILE-AUDIT.md` says why
+each has none. As of 2026-08-23: **277 recipes, 24 trees without one.** Most of
+those 24 are accounted for (wrong language, material genuinely absent, not a
+program tree). What is real work, in the order I would take it:
 
-  - `flex`  — Microware's `cpp` bus-errors on its nested macros.
-    `notes/CPP-MACRO-CRASH.md` has a three-file reproduction.
-  - `ls`    — a gcc2 build; K&R `cc` will not take it.
-  - `pdraw` — wants X11 headers, which are not here and are not coming.
+**a. The three remaining `cpp` victims, now that there is a way round it.**
+`flex` builds through the `CPP2` flag (GNU's `cccp2` in Microware `cpp`'s
+place). `gtar`, `djpeg` and `inform` get past `cpp` the same way and each then
+stops somewhere new — `gtar` on "input line too long" (c68 has a line limit of
+its own and GNU cpp joins an expansion onto one line), `djpeg` on "not an
+argument", `inform` on "bad character". Three separate small ports, each with
+the hard part already done.
 
-and three trees that will never have one:
+**b. `mtools`.** 45 sources; times out even at the 30-minute limit, or fails
+with an empty log. Worth one careful run with the log kept.
 
-  - `COMPAT` is headers, `unixlib` is a LIBRARY (it has a recipe now, named
-    `unix.l` — a first field ending in `.l` builds one), and `rcs` is
-    genuinely incomplete: `rcssyn.c`, `rcsrev.c` and `rcsutil.c` are missing
-    from the tree AND from `rcs4.lha` in the pool. It is RCS **version 4**
-    (Purdue, 1987); GNU's 5.7 files are not drop-in.
-  - `pep` calls `standby()` and `init_via()`, which live in the mc EPROM
-    programmer's own hardware library. Its own header says it runs only on
-    that board.
+**c. ANSI trees the `KNR` flag cannot reach** — `lua`, and probably `ed` and
+`lout`. `ansi2knr` rewrites definitions and leaves headers alone, so a tree is
+only reachable if its own config header can be told to stop declaring
+prototypes. JPEG could; lua's `lua.h` cannot. That is header work.
 
-**What is left is the trees with no recipe at all** — `tools/build.sh
---missing`. Several are known to be out of reach (`homelibr` is C++, `graph`
-and `aterm` and `serload` are 68k assembly, `lout` and `ed` are ANSI/gcc,
-`deansi` needs a lex runtime, `calc` and `cgrafik` want headers -- h_grafik.h,
-graf.h -- that are nowhere on the disk or in the pool). The rest are ordinary
-work: read the tree's own makefile for the object list, which has been right
-every time a guess was wrong.
+**d. `macutils`.** Blocked on an include-path knot: it needs `struct stat` as
+blarslib declares it, and `cpp` will not search a `-V` directory for a name
+with a directory in it, so two trees cannot have a different `<sys/types.h>`.
 
-**Method that pays:** `tools/try_compile.sh <tree> <program>` for a first
-look, then the makefile. `tools/rebuild/README.md` has the failure table, and
-it grew six rows on 2026-08-22 — read it before diagnosing anything.
+**Method that has been right every time:** read the tree's own makefile for the
+object list. Guessing "every .c in the directory" was wrong for `adv`,
+`cursive`, `gnu`, `snake`, `zoo` and `blarslib`, and right for none of them.
 
 ## 2. Take the counts out of the two docs that still carry them
 
@@ -97,13 +94,18 @@ subr.r vocab.r rand.r` — seven of the tree's files, not all of them, which is
 why the all-`.c` attempt kept dragging in `okplay.c`'s and `test.c`'s `main`.
 `advent` builds.
 
-## 5. blarslib — one decision, and several programs turn on it
+## 5. blarslib — DONE 2026-08-23
 
-`notes/BLARSLIB.md`. Found in the pool, freely distributable by its author's
-own words, and blocked only on eight header files in it that are byte
-identical to Microware's. That is a provenance call, not a technical one.
-Saying yes unlocks `macutils` (five programs), and gives the collection a real
-Unix-compat library instead of `tools/rebuild/shims/`.
+In, minus thirteen headers that were Microware's. `notes/BLARSLIB.md`.
+
+## 5a. Re-run the verify sweep — nobody has since 2026-08-21
+
+`notes/verify-final.tsv` and `DOC/STATUS` date from the 2026-08-21 measurement.
+Since then the disk gained `DOC/START-HERE`, seventeen recovered documents, the
+ADVSYS sample, a fixed `about`, `DEFS/blarsdefs` and `LIB/blarslib.l`. None of
+that should move the running figure — but that is a prediction, and this
+collection has a long history of predictions that measured differently.
+`tools/verify_all.sh` then `tools/verify_combine.py`.
 
 ## 6. A live-demo affordance
 
@@ -125,8 +127,13 @@ short.
 
 ## Standing rules for whoever works this
 
-  - **All ten `check_disk.py` checks green before every commit.** Read the
-    output, not the exit code — I committed past a red check twice.
+  - **All ELEVEN `check_disk.py` checks green before every commit.** Read the
+    output, not the exit code — that has gone wrong three times now.
+  - **Never edit a script, a recipe file, or anything under `disk/` while a
+    build is running**, and never `git checkout -- disk/SRC`. Both cost real
+    work. `tools/rebuild/tidy.sh` is the safe cleanup.
+  - The `CPP2` and `KNR` recipe flags exist now; `tools/rebuild/README.md`
+    explains both and the failure table has grown to match.
   - **Make every check fail once before believing it.**
   - Branch `release-pass-2026-08-21`. Nothing pushed.
   - Counts belong in generated files, never in prose.
