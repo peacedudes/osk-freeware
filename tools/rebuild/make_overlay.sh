@@ -185,6 +185,17 @@ if b"_types" in t and not t.lstrip().startswith(b"#ifndef _types"):
     print("  guarded DEFS/types.h (it had none, and gnuchess reaches it twice)")
 GUARD
 
+# ansi2knr, if it has been built.  Recipes flagged KNR run every source
+# through it before cc, because Microware's cc is K&R and will not read a
+# prototype.  It is not on the disk -- it is a BUILD tool -- so it comes from
+# built/, which means `tools/build.sh ansi2knr' has to have been run once.
+# A KNR recipe fails with "ansi2knr: command not found" until it has.
+if [ -f "$REPO/built/ansi2knr" ]; then
+    cp "$REPO/built/ansi2knr" "$DEST/CMDS/ansi2knr"
+    chmod 755 "$DEST/CMDS/ansi2knr"
+    echo "  added ansi2knr (KNR recipes need it)"
+fi
+
 # Make the check fail once before believing it.  If any stamp survives in LIB,
 # every binary built through this overlay would carry it.
 if grep -rl "from the disk of" "$DEST/LIB" >/dev/null 2>&1; then

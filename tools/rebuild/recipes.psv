@@ -384,4 +384,10 @@ smail|smail/BNU/SMAIL_2.5/SRC|main.c map.c resolve.c deliver.c misc.c alias.c pw
 lcasep|smail/BNU/SMAIL_2.5/SRC|lcasep.c||/dd/LIB/blarslib.l|
 nptx|smail/BNU/SMAIL_2.5/SRC|nptx.c pw.c str.c||/dd/LIB/blarslib.l|
 svbinmail|smail/BNU/SMAIL_2.5/SRC|svbinmail.c||/dd/LIB/blarslib.l|
+# ansi2knr -- the standard de-ANSIfier, from the JPEG distribution, itself
+# written in K&R so it can bootstrap.  A recipe with KNR in its defines runs
+# every source through it before cc.  Build this FIRST: make_overlay.sh copies
+# it out of built/ into the overlay, and a KNR recipe fails with
+# "ansi2knr: command not found" until it is there.
+ansi2knr|jpeglib/JPEG_5A|ansi2knr.c|||
 

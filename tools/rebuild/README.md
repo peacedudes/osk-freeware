@@ -88,6 +88,28 @@ In rough order of how often it was the answer:
 | unresolved symbols that are plainly IN the link | `l68` makes **one pass** over a library. A member calling another member further down the file is left unresolved — `zoo`'s `huf.c` wanted `putbits` from `io.c` 24 times. Name the library more than once. |
 | `E_BUSERR` from `cpp` itself | nested macro expansion. See `notes/CPP-MACRO-CRASH.md`; it has a three-file reproduction. `flex` is the one program here that hits it. |
 
+## ANSI C: the KNR flag
+
+Microware's `cc` is K&R and will not read a prototype, which is what stops
+`lua`, `jpeglib`, GNU Chess 4.0, `ed` and `lout`. `ansi2knr` -- the standard
+de-ANSIfier, from the JPEG distribution, itself written in K&R so it
+bootstraps -- **builds here**, and a recipe with `KNR` in its defines runs
+every source through it before `cc`.
+
+    tools/build.sh ansi2knr        once, first: make_overlay.sh takes it
+                                   from built/ into the overlay
+
+It rewrites function DEFINITIONS and leaves headers alone, so a tree's own
+config header still has to stop declaring prototypes. For JPEG that is
+`jconfig.h`: `HAVE_PROTOTYPES` off, `const` defined empty, `HAVE_STDDEF_H` on
+(`size_t` is only there, and `jpeglib.h`'s `size_t free_in_buffer;` is the
+first thing that fails without it).
+
+Status: 26 of jpeglib's 27 sources compile this way. `jccoefct.c` does not --
+`coef->whole_image[0]`, an array of pointers to an incomplete struct, draws
+"undefined struct/union tag referenced" and "can't determine size". Nothing
+else in the tree does that, and it has not been run down.
+
 ## Do not edit a script while it is running
 
 `bash` reads a script by BYTE OFFSET as it goes. Editing `tools/build.sh`

@@ -110,6 +110,43 @@ compile_lib() {    # $1 arch  $2 sources  $3 oskdef  $4 defines  $5 name  $6 dir
 #
 # The gathered file must be a LIBRARY passed with -l=, not an object: l68 reads
 # one ROF from a plain filename and would take only the first of the 44.
+# ANSI C, run through ansi2knr first.  A recipe asks for this with the KNR
+# pseudo-define, the way NOOSK opts out of -DOSK.  Microware's cc is K&R and
+# will not read a prototype; ansi2knr is the standard de-ANSIfier, is itself
+# K&R so it bootstraps, and builds here.  Each source is translated into a
+# ctmp_<base>.c beside it and that is what gets compiled.
+#
+# KNR implies the long path whatever the line length: the one-line form has
+# nowhere to put the intermediate.
+compile_knr() {    # $1 arch  $2 sources  $3 oskdef  $4 defines  $5 prog  $6 extra  $7 libs  $8 dir
+  local mainsrc="" s base
+  for s in $2; do
+    /usr/bin/tr '\r' '\n' < "$8/$s" |
+      /usr/bin/grep -qaE '^([A-Za-z_][A-Za-z0-9_ *]*[ *])?main[[:space:]]*\(' &&
+        mainsrc=$s
+  done
+  [ -n "$mainsrc" ] || { echo "  $5: no main() among its sources" >&2; return 1; }
+
+  : > "$8/ctmp.list"
+  for s in $2; do
+    [ "$s" = "$mainsrc" ] && continue
+    printf '%s\r' "ctmp_$(basename "$s" .c).r" >> "$8/ctmp.list"
+  done
+
+  printf 'setenv CLIB /dd/LIB\nsetenv CDEF /dd/DEFS\nchx /dd/CMDS\nchd /h6/%s\n' "$1"
+  for s in $2; do
+    base=$(basename "$s" .c)
+    printf 'del ctmp_%s.c\nansi2knr %s ctmp_%s.c\n' "$base" "$s" "$base"
+    printf 'cc ctmp_%s.c %s%s -r=/h6/%s -V=/h6/%s -V=/h7 %s\n' \
+           "$base" "$3" "$4" "$1" "$1" "$6"
+  done
+  printf 'del ctmp.parts.l\nmerge -z=ctmp.list >ctmp.parts.l\n'
+  printf 'cc ctmp_%s.r -qm=16k -n=%s -f=/h6/%s/R_%s -l=ctmp.parts.l -l=ctmp.parts.l -l=ctmp.parts.l %s%s' \
+         "$(basename "$mainsrc" .c)" "$5" "$1" "$5" "$6" "$7"
+  printf ' -l=/dd/LIB/curses.l -l=/dd/LIB/termlib.l -l=/dd/LIB/unix.l -l=/dd/LIB/math.l\n'
+  printf '\033\n\004\n'
+}
+
 compile_long() {   # $1 arch  $2 sources  $3 oskdef  $4 defines  $5 prog  $6 extra  $7 libs  $8 dir
   # Through `tr' first: these sources are CR-terminated, so grep sees the whole
   # file as ONE line and `^' matches only at its start. Without that, zoo.c's
@@ -173,6 +210,8 @@ while IFS='|' read -r prog arch srcs defs libs extra; do
   # rnd() ends up defined by neither.  NOOSK opts a recipe out.
   OSKDEF=-DOSK
   case " $defs " in *" NOOSK "*) OSKDEF=""; defs="${defs/NOOSK/}";; esac
+  KNRMODE=0
+  case " $defs " in *" KNR "*) KNRMODE=1; defs="${defs/KNR/}";; esac
 
   D=""; for x in $defs;  do [ -n "$x" ] && D="$D -D$x"; done
   L=""
@@ -187,6 +226,12 @@ while IFS='|' read -r prog arch srcs defs libs extra; do
   # are 430 characters and its cc line is 900, because the output path, the -V
   # directories and four libraries come after them.
   attempt() {   # $1 sources
+    if [ "$KNRMODE" = 1 ]; then
+      compile_knr "$arch" "$1" "$OSKDEF" "$D" "$prog" "${extra:-}" "$L" "$d" > "$WORK/cmd"
+      LIMIT=1800
+      run "$POOL" "$WORK/cmd" "$WORK/out"
+      return
+    fi
     case "$prog" in
       *.l) compile_lib "$arch" "$1" "$OSKDEF" "$D" "$prog" "$d" "${extra:-}" > "$WORK/cmd"
            LIMIT=900
