@@ -310,4 +310,10 @@ unix.l|unixlib|alarm.c stat.c _secsince70.c ioctl.c ttyname.c isatty.c signal.c 
 # pvic -- a vi clone; its Makefile's RELS is the list, and it is 26 of the
 # tree's 28 sources.
 pvic|pvic/SRCE|alloc.c main.c cmdline.c edit.c enveval.c fileio.c help.c hexchars.c linefunc.c mark.c misccmds.c normal.c ops.c param.c ptrfunc.c regexp.c regsub.c screen.c search.c sentence.c tagcmd.c undo.c termcap.c termin.c general.c locfuncs.c||/dd/LIB/curses.l /dd/LIB/termlib.l /dd/LIB/math.l|
+# Bob Larson's Unix-compatibility library.  31 of its 37 objects; the six left
+# out are the ones whose headers were byte identical to Microware's and so did
+# not ship -- stat.c wants <sgstat.h>, getpw.c wants <pwd.h> -- plus ftime,
+# makenv and putenv (time_t) and gethostname (its makefile passes a QUOTED
+# define, which the OS-9 shell will not carry).  See notes/BLARSLIB.md.
+blarslib.l|blarslib|alarm.c atan2.c bstring.c ctermid.c exec.c fsync.c getcwd.c getgid.c getopt.c getwd.c isatty.c mkdir.c perror.c popen.c rand.c signal.c strchr.c strcspn.c strpbrk.c strrchr.c strspn.c strtok.c times.c ttyname.c umask.c usleep.c utime.c vfprintf.c vsprintf.c alloca.c ln.c|STACKDIR=-1 link=link|| -V=/dd/DEFS/blarsdefs
 

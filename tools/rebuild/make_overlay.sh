@@ -140,6 +140,37 @@ if [ -d "$REPO/disk/DEFS" ]; then
     echo "  added $added header(s) from the collection's own DEFS"
 fi
 
+# blarslib's headers and library, so a recipe can ask for them.  Bob Larson's
+# own note says the DEFS directory "cannot and should not be merged with
+# /dd/defs, since it supplies replacements which require the /dd/defs version
+# as well" -- so it goes in as its own directory and a recipe reaches it with
+# -V=/dd/DEFS/blarsdefs.
+if [ -d "$REPO/disk/DEFS/blarsdefs" ] && [ ! -d "$DEST/DEFS/blarsdefs" ]; then
+    cp -R "$REPO/disk/DEFS/blarsdefs" "$DEST/DEFS/blarsdefs"
+    echo "  added blarsdefs"
+fi
+# ...and its <sys/*.h> into DEFS/sys, for the same reason SRC/COMPAT/sys goes
+# there: cpp will not search a -V directory for an include name that has a
+# directory in it.  Only names DEFS/sys does not already have, so COMPAT's are
+# never shadowed.
+if [ -d "$REPO/disk/DEFS/blarsdefs/sys" ]; then
+    mkdir -p "$DEST/DEFS/sys"
+    for f in "$REPO/disk/DEFS/blarsdefs/sys"/*.h; do
+        [ -e "$DEST/DEFS/sys/$(basename "$f")" ] && continue
+        cp "$f" "$DEST/DEFS/sys/"
+    done
+fi
+# ...and at /dd/blarsdefs as well, because macutils' sources do not #include
+# <sys/types.h> -- they write the ABSOLUTE path "/dd/blarsdefs/sys/types.h",
+# which no -V can redirect.
+if [ -d "$REPO/disk/DEFS/blarsdefs" ] && [ ! -d "$DEST/blarsdefs" ]; then
+    cp -R "$REPO/disk/DEFS/blarsdefs" "$DEST/blarsdefs"
+fi
+if [ -f "$REPO/disk/LIB/blarslib.l" ]; then
+    cp "$REPO/disk/LIB/blarslib.l" "$DEST/LIB/blarslib.l"
+    echo "  added blarslib.l"
+fi
+
 # DEFS/types.h has no include guard.  It sets `_types' at the BOTTOM and
 # nothing at the top, so a source that reaches it twice -- gnuchess 4.0 asks
 # for <types.h> and <sys/types.h> both -- gets "multiple definition" on every

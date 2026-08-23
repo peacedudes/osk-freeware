@@ -1,0 +1,1 @@
+#include <modes.h>mkdir(path, mode)char *path;int mode;{    return mknod(path, S_IFDIR | mode);}

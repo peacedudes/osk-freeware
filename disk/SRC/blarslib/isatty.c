@@ -1,0 +1,1 @@
+#include <sgstat.h>int isatty(f)int f;{    struct sgbuf sgbuf;    if(_gs_opt(f, &sgbuf) < 0) return -1;    return sgbuf.sg_class == 0;}

@@ -1,0 +1,1 @@
+/* dummy function */int umask(mask)int mask;{    return mask;}

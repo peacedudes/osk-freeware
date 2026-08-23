@@ -1,0 +1,1 @@
+usleep(time)register unsigned long time;{    tsleep(0x80000000 | (((time << 2)/(5*5*5*5*5*5)) + 1));}

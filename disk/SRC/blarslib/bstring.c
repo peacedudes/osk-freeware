@@ -1,0 +1,1 @@
+void bcopy(src, dst, len)char *src, *dst;int len;{    memcpy(dst, src, len);}int bcmp(a, b, len)char *a, *b;int len;{    return memcmp(b, a, len);}void bzero(b, len)register char *b;register int len;{    while(len--) *b++ = '\0';}

@@ -1,0 +1,1 @@
+#ifndef S_IREAD#include <modes.h>#endif#define O_RDONLY	S_IREAD#define O_RDWR		(S_IREAD | S_IWRITE)#define O_WRONLY	S_IWRITE

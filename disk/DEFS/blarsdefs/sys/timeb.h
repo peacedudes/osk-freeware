@@ -1,0 +1,1 @@
+/* sys/timeb.h */#ifndef __TIMEB__#define __TIMEB__struct timeb {	time_t	time;	unsigned short millitm;	short timezone;	short dstflag;};#endif

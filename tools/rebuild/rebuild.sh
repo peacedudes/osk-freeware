@@ -79,15 +79,18 @@ compile() {   # $1 arch  $2 sources  $3 oskdef  $4 defines  $5 prog  $6 extra  $
 # nothing to link.  SRC/unixlib is the one that wants this: its own makefile
 # ends `merge -b99 -z=lib_list', and the result is what somebody would put in
 # their own LIB rather than name source-by-source in every recipe.
-compile_lib() {    # $1 arch  $2 sources  $3 oskdef  $4 defines  $5 name  $6 dir
+compile_lib() {    # $1 arch  $2 sources  $3 oskdef  $4 defines  $5 name  $6 dir  $7 extra
   : > "$6/ctmp.list"
   for s in $2; do
     printf '%s\r' "$(basename "$s" .c).r" >> "$6/ctmp.list"
   done
   printf 'setenv CLIB /dd/LIB\nsetenv CDEF /dd/DEFS\nchx /dd/CMDS\nchd /h6/%s\n' "$1"
   for s in $2; do
-    printf 'cc %s %s%s -r=/h6/%s -V=/h6/%s -V=/h7\n' "$s" "$3" "$4" "$1" "$1"
+    printf 'cc %s %s%s -r=/h6/%s -V=/h6/%s -V=/h7 %s\n' "$s" "$3" "$4" "$1" "$1" "${7:-}"
   done
+  # The shell's `>' will NOT overwrite -- E_CEF (218) -- so a second build
+  # silently keeps the first one's library and reports it as fresh.
+  printf 'del R_%s\n' "$5"
   printf 'merge -z=ctmp.list >R_%s\n' "$5"
   printf '\033\n\004\n'
 }
@@ -135,7 +138,7 @@ compile_long() {   # $1 arch  $2 sources  $3 oskdef  $4 defines  $5 prog  $6 ext
   # wants putbits from io.c and came back with 24 unresolved references to it.
   # Repeating the search costs nothing and settles any dependency depth this
   # collection has.
-  printf 'merge -z=ctmp.list >ctmp.parts.l\n'
+  printf 'del ctmp.parts.l\nmerge -z=ctmp.list >ctmp.parts.l\n'
   printf 'cc %s.r -qm=16k -n=%s -f=/h6/%s/R_%s -l=ctmp.parts.l -l=ctmp.parts.l -l=ctmp.parts.l -l=ctmp.parts.l -l=ctmp.parts.l %s%s' \
          "$(basename "$mainsrc" .c)" "$5" "$1" "$5" "$6" "$7"
   printf ' -l=/dd/LIB/curses.l -l=/dd/LIB/termlib.l -l=/dd/LIB/unix.l -l=/dd/LIB/math.l\n'
@@ -185,7 +188,7 @@ while IFS='|' read -r prog arch srcs defs libs extra; do
   # directories and four libraries come after them.
   attempt() {   # $1 sources
     case "$prog" in
-      *.l) compile_lib "$arch" "$1" "$OSKDEF" "$D" "$prog" "$d" > "$WORK/cmd"
+      *.l) compile_lib "$arch" "$1" "$OSKDEF" "$D" "$prog" "$d" "${extra:-}" > "$WORK/cmd"
            LIMIT=900
            run "$POOL" "$WORK/cmd" "$WORK/out"
            return;;

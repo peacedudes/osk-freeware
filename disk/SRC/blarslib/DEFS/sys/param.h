@@ -1,0 +1,1 @@
+#define MAXPATHLEN 256#define NOFILE 32
