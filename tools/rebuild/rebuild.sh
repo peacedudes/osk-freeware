@@ -110,6 +110,87 @@ compile_lib() {    # $1 arch  $2 sources  $3 oskdef  $4 defines  $5 name  $6 dir
 #
 # The gathered file must be a LIBRARY passed with -l=, not an object: l68 reads
 # one ROF from a plain filename and would take only the first of the 44.
+# THE GNU PREPROCESSOR PATH.  A recipe asks for this with the CPP2
+# pseudo-define, and it is the way round Microware `cpp\'s bus error on nested
+# macro expansion (notes/CPP-MACRO-CRASH.md), which is what stops flex, gtar,
+# djpeg and inform.
+#
+# `cccp2\' is GNU cpp 2.5.6 and it is in the SDK.  cc\'s phases are
+# cpp -> c68 -> o68 -> r68, so this runs cccp2 in cpp\'s place and starts the
+# chain at c68.  It takes TWO os9exec runs with a host-side pass between them,
+# for two reasons that are not obvious:
+#
+#   * `# 1 "file"\' MARKERS MUST GO.  Microware\'s `.m\' is a directive stream,
+#     not preprocessed C, and c68 reads a leading `#\' as a directive whose
+#     argument is the NEXT LINE.  GNU\'s markers therefore swallow a line each.
+#     Sixteen of them survive `-P\' in flex\'s misc.c, and one sits directly
+#     before `extern char _chcodes[];\' -- which is why that identifier was
+#     reported undeclared 1100 lines below where it is plainly declared.
+#   * A PSECT PREAMBLE MUST GO IN FRONT.  `#P<name>_c\' is where c68 learns the
+#     psect name; without it c68 emits no `psect\' line and r68 then rejects
+#     every mnemonic in the file.
+#
+# Both edits happen host-side, between the runs, because /h6 is a host
+# directory. Doing them with the OS-9 shell is not possible: `echo #P\' writes
+# nothing, `#\' being a comment.
+compile_cpp2_pre() {   # $1 arch  $2 sources  $3 oskdef  $4 defines
+  printf 'chx /dd/CMDS\nchd /h6/%s\n' "$1"
+  for s in $2; do
+    base=$(basename "$s" .c)
+    printf 'del ctmp_%s.raw\n' "$base"
+    printf 'cccp2 -P -traditional %s%s -I/h6/%s -I/h7 -I/dd/DEFS %s ctmp_%s.raw\n' \
+           "$3" "$4" "$1" "$s" "$base"
+  done
+  printf '\033\n\004\n'
+}
+
+cpp2_fixup() {         # $1 sources  $2 dir
+  python3 - "$2" $1 <<'FIXUP'
+import os, sys
+d, srcs = sys.argv[1], sys.argv[2:]
+for s in srcs:
+    base = os.path.basename(s)[:-2]
+    raw = os.path.join(d, "ctmp_%s.raw" % base)
+    if not os.path.exists(raw):
+        continue
+    body = open(raw, "rb").read().decode("latin-1")
+    kept = [l for l in body.split("\r") if not l.startswith("#")]
+    head = "#P\r%s_c\r0\r#7\r%s\r%s_c\r#5\r0\r" % (base, s, base)
+    open(os.path.join(d, "ctmp_%s.m" % base), "wb").write(
+        (head + "\r".join(kept)).encode("latin-1"))
+FIXUP
+}
+
+compile_cpp2_post() {  # $1 arch  $2 sources  $3 prog  $4 extra  $5 libs  $6 dir
+  local mainsrc="" s base
+  for s in $2; do
+    /usr/bin/tr '\r' '\n' < "$6/$s" |
+      /usr/bin/grep -qaE '^([A-Za-z_][A-Za-z0-9_ *]*[ *])?main[[:space:]]*\(' &&
+        mainsrc=$s
+  done
+  [ -n "$mainsrc" ] || { echo "  $3: no main() among its sources" >&2; return 1; }
+
+  : > "$6/ctmp.list"
+  for s in $2; do
+    base=$(basename "$s" .c)
+    [ "$s" = "$mainsrc" ] || printf '%s\r' "ctmp_$base.r" >> "$6/ctmp.list"
+  done
+
+  printf 'setenv CLIB /dd/LIB\nsetenv CDEF /dd/DEFS\nchx /dd/CMDS\nchd /h6/%s\n' "$1"
+  for s in $2; do
+    base=$(basename "$s" .c)
+    printf 'del ctmp_%s.a\ndel ctmp_%s.o\ndel ctmp_%s.r\n' "$base" "$base" "$base"
+    printf 'c68 ctmp_%s.m -t -o=ctmp_%s.a\n' "$base" "$base"
+    printf 'o68 ctmp_%s.a ctmp_%s.o\n' "$base" "$base"
+    printf 'r68 ctmp_%s.o -q -o=/h6/%s/ctmp_%s.r\n' "$base" "$1" "$base"
+  done
+  printf 'del ctmp.parts.l\nmerge -z=ctmp.list >ctmp.parts.l\n'
+  printf 'cc ctmp_%s.r -qm=16k -n=%s -f=/h6/%s/R_%s -l=ctmp.parts.l -l=ctmp.parts.l -l=ctmp.parts.l %s%s' \
+         "$(basename "$mainsrc" .c)" "$3" "$1" "$3" "$4" "$5"
+  printf ' -l=/dd/LIB/curses.l -l=/dd/LIB/termlib.l -l=/dd/LIB/unix.l -l=/dd/LIB/math.l\n'
+  printf '\033\n\004\n'
+}
+
 # ANSI C, run through ansi2knr first.  A recipe asks for this with the KNR
 # pseudo-define, the way NOOSK opts out of -DOSK.  Microware's cc is K&R and
 # will not read a prototype; ansi2knr is the standard de-ANSIfier, is itself
@@ -212,6 +293,8 @@ while IFS='|' read -r prog arch srcs defs libs extra; do
   case " $defs " in *" NOOSK "*) OSKDEF=""; defs="${defs/NOOSK/}";; esac
   KNRMODE=0
   case " $defs " in *" KNR "*) KNRMODE=1; defs="${defs/KNR/}";; esac
+  CPP2MODE=0
+  case " $defs " in *" CPP2 "*) CPP2MODE=1; defs="${defs/CPP2/}";; esac
 
   D=""; for x in $defs;  do [ -n "$x" ] && D="$D -D$x"; done
   L=""
@@ -226,6 +309,16 @@ while IFS='|' read -r prog arch srcs defs libs extra; do
   # are 430 characters and its cc line is 900, because the output path, the -V
   # directories and four libraries come after them.
   attempt() {   # $1 sources
+    if [ "$CPP2MODE" = 1 ]; then
+      LIMIT=1800
+      compile_cpp2_pre "$arch" "$1" "$OSKDEF" "$D" > "$WORK/cmd"
+      run "$POOL" "$WORK/cmd" "$WORK/out1"
+      cpp2_fixup "$1" "$d"
+      compile_cpp2_post "$arch" "$1" "$prog" "${extra:-}" "$L" "$d" > "$WORK/cmd" || return
+      /bin/cat "$WORK/out1"
+      run "$POOL" "$WORK/cmd" "$WORK/out"
+      return
+    fi
     if [ "$KNRMODE" = 1 ]; then
       compile_knr "$arch" "$1" "$OSKDEF" "$D" "$prog" "${extra:-}" "$L" "$d" > "$WORK/cmd"
       LIMIT=1800
@@ -269,6 +362,7 @@ while IFS='|' read -r prog arch srcs defs libs extra; do
       *"'geteuid' unresolved"*|*"'getuid' unresolved"*)                             shim=os9geteuid.c;;
       *"'popen' unresolved"*|*"'pclose' unresolved"*)                               shim=os9popen.c;;
       *"'strucmp' unresolved"*|*"'strnucmp' unresolved"*|*"'strstr' unresolved"*|*"'rename' unresolved"*) shim=os9alib.c;;
+      *"'ctime' unresolved"*)                                                     shim=os9ctime.c;;
     esac
     [ -n "$shim" ] || break
     case " $added " in *" $shim "*) break;; esac      # already tried: stop

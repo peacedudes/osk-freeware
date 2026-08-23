@@ -1,5 +1,16 @@
 # Microware's `cpp` takes a bus error on nested macro expansion
 
+> **There is a way round it, and it is in the driver: the `CPP2` recipe flag.**
+> GNU cpp 2.5.6 ships in the SDK as `cccp2`. `rebuild.sh` can run it in
+> Microware `cpp`'s place and start the chain at `c68`, which is enough to
+> build `flex` — the program this bug was found on. Two details make it work
+> and neither is guessable: c68 learns the psect name from a `#P` preamble
+> that only Microware's cpp writes, and it reads a leading `#` as a directive
+> whose argument is the NEXT LINE, so GNU's `# 1 "file"` markers swallow a
+> line each and must be stripped. Both are done host-side between two runs.
+> See `tools/rebuild/rebuild.sh`.
+
+
 Found 2026-08-22 while writing a build recipe for `flex`. Minimal
 reproduction and the two nearest non-crashing cases are in
 `notes/cpp-macro-crash/`.
@@ -62,9 +73,15 @@ from "the emulator died".
 between this collection and a complete build:**
 
     flex     dfa.c        the original find, bisected to STACK_STATE
+                          -- BUILDS NOW, through CPP2
     gtar     tar.c        kills cpp before one object is written
     djpeg    jdmarker.c   after the other 25 sources have compiled
     inform   informosk.c  one 5,000-line file, heavily macroed
+
+The other three get past `cpp` with `CPP2` and then each stops somewhere new,
+which is progress rather than a fix: `gtar` on "input line too long" (c68 has a
+line limit of its own, and GNU cpp joins an expansion onto one line), `djpeg`
+on "not an argument", `inform` on "bad character". Three separate ports.
 
 In each case the register dump has ASCII where an address should be. Each of
 the four had every OTHER obstacle cleared first -- blarslib, a generated

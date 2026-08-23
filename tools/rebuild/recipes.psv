@@ -398,4 +398,11 @@ ansi2knr|jpeglib/JPEG_5A|ansi2knr.c|||
 # `djpeg' is NOT here: cpp bus-errors on jdmarker.c, the same defect as flex
 # and gtar.  See notes/CPP-MACRO-CRASH.md.
 cjpeg|jpeglib/JPEG_5A|cjpeg.c rdppm.c rdgif.c rdtarga.c rdrle.c rdbmp.c jcapi.c jcparam.c jdatadst.c jcmaster.c jcmarker.c jcmainct.c jcprepct.c jccoefct.c jccolor.c jcsample.c jchuff.c jcdctmgr.c jfdctfst.c jfdctflt.c jfdctint.c jcomapi.c jutils.c jerror.c jmemmgr.c jmemnobs.c|KNR||
+# flex, through GNU's preprocessor (the CPP2 flag).  Microware's cpp bus-errors
+# on dfa.c's nested macros -- notes/CPP-MACRO-CRASH.md -- and this is the way
+# round it: cccp2 in cpp's place, then c68/o68/r68 by hand.  Two further things
+# were in the way and neither is about the preprocessor: misc.c wants time_t
+# from <sys/types.h>, which is System V behaviour the SDK does not have, and
+# `ctime' lives in a clib psect a trap-free link will not take (shim).
+flex|flex|ccl.c dfa.c ecs.c gen.c main.c misc.c nfa.c parse.c scan.c sym.c tblcmp.c yylex.c|CPP2 time_t=long||
 
