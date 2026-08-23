@@ -13,7 +13,10 @@ set -u
 here=$(cd "$(dirname "$0")/../.." && pwd)
 cd "$here" || exit 1
 
-find disk/SRC -name 'ctmp.*' -type f -delete
+# `ctmp.' AND `ctmp_': the KNR path writes ctmp_<base>.c per source,
+# and the first version of this script matched only the dot -- so 27
+# of them were committed.
+find disk/SRC \( -name 'ctmp.*' -o -name 'ctmp_*' \) -type f -delete
 mkdir -p built
 find disk/SRC -name 'R_*' -type f | while IFS= read -r m; do
     mv "$m" "built/$(basename "$m" | sed 's/^R_//')"

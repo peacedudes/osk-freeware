@@ -236,13 +236,16 @@ def check_no_build_litter(root):
     interrupted.
 
     `.r' files cannot be screened by name: 432 of them are the archives' own
-    and belong on the disk. `R_' and `ctmp.' are unambiguous -- nothing in any
-    archive here is named either -- so those are what this looks for.
+    and belong on the disk. `R_', `ctmp.' and `ctmp_' are unambiguous --
+    nothing in any archive here is named any of them -- so those are what this
+    looks for. The KNR path writes `ctmp_<base>.c' per source and the first
+    version of this check matched only the dot, so 27 of them were committed.
     """
     bad = []
     for here, dirs, files in os.walk(root):
         for name in files:
-            if name.startswith("R_") or name.startswith("ctmp."):
+            if (name.startswith("R_") or name.startswith("ctmp.")
+                    or name.startswith("ctmp_")):
                 bad.append(os.path.relpath(os.path.join(here, name), root))
     for path in sorted(bad)[:12]:
         print("    build product: %s" % path)
