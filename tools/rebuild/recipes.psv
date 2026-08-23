@@ -310,10 +310,30 @@ unix.l|unixlib|alarm.c stat.c _secsince70.c ioctl.c ttyname.c isatty.c signal.c 
 # pvic -- a vi clone; its Makefile's RELS is the list, and it is 26 of the
 # tree's 28 sources.
 pvic|pvic/SRCE|alloc.c main.c cmdline.c edit.c enveval.c fileio.c help.c hexchars.c linefunc.c mark.c misccmds.c normal.c ops.c param.c ptrfunc.c regexp.c regsub.c screen.c search.c sentence.c tagcmd.c undo.c termcap.c termin.c general.c locfuncs.c||/dd/LIB/curses.l /dd/LIB/termlib.l /dd/LIB/math.l|
-# Bob Larson's Unix-compatibility library.  31 of its 37 objects; the six left
-# out are the ones whose headers were byte identical to Microware's and so did
-# not ship -- stat.c wants <sgstat.h>, getpw.c wants <pwd.h> -- plus ftime,
-# makenv and putenv (time_t) and gethostname (its makefile passes a QUOTED
-# define, which the OS-9 shell will not carry).  See notes/BLARSLIB.md.
-blarslib.l|blarslib|alarm.c atan2.c bstring.c ctermid.c exec.c fsync.c getcwd.c getgid.c getopt.c getwd.c isatty.c mkdir.c perror.c popen.c rand.c signal.c strchr.c strcspn.c strpbrk.c strrchr.c strspn.c strtok.c times.c ttyname.c umask.c usleep.c utime.c vfprintf.c vsprintf.c alloca.c ln.c|STACKDIR=-1 link=link|| -V=/dd/DEFS/blarsdefs
+# Bob Larson's Unix-compatibility library.  32 of its 36 objects.  The four
+# left out, each for a reason that is not about his code:
+#   stat.c     wants sys/types.h to define dev_t as a STRUCT, and the overlay's
+#              DEFS/sys/types.h is SRC/COMPAT's, which deliberately leaves
+#              dev_t alone.  cpp will not search a -V directory for a name with
+#              a directory in it, so there is no way to give two trees a
+#              different <sys/types.h>.
+#   ftime.c makenv.c putenv.c   want time_t, and the SDK's <time.h> hides its
+#              typedef behind #ifndef ctime.
+#   gethostname.c  its makefile passes -DHOSTNAME="name", quotes and all,
+#              and the OS-9 shell will not carry an embedded quote.  The
+#              collection's own shim supplies gethostname anyway.
+# See notes/BLARSLIB.md.
+blarslib.l|blarslib|alarm.c atan2.c bstring.c ctermid.c exec.c fsync.c getcwd.c getgid.c getopt.c getpw.c getwd.c isatty.c mkdir.c perror.c popen.c rand.c signal.c strchr.c strcspn.c strpbrk.c strrchr.c strspn.c strtok.c times.c ttyname.c umask.c usleep.c utime.c vfprintf.c vsprintf.c alloca.c ln.c|STACKDIR=-1 link=link|| -V=/dd/DEFS/blarsdefs
+# Bob Larson's uucp.  Its own Makefile links blarslib, which is why these could
+# not build before it was here.  gethostname comes from a shim: OS-9 has no
+# node name, and blarslib's own gethostname.c wants a QUOTED -D the OS-9 shell
+# will not carry.
+uucico|uucp_blars|dcp.c dcpsys.c dcpxfer.c dcpgpkt.c dcpfpkt.c dcpmisc.c dcpio.c mfgets.c||/dd/LIB/blarslib.l|
+uux|uucp_blars|uux.c getseq.c||/dd/LIB/blarslib.l|
+uuxqt|uucp_blars|uuxqt.c mfgets.c getargs.c||/dd/LIB/blarslib.l|
+uucp|uucp_blars|uucp.c mfgets.c getseq.c||/dd/LIB/blarslib.l|
+uupoll|uucp_blars|uupoll.c||/dd/LIB/blarslib.l|
+# SB-Prolog.  Its makefile builds builtin/ as a library first; naming those
+# sources alongside the simulator's comes to the same thing.
+wam.sbprolog|sbprolog/SIM|dispatch.c init.c float.c io.c sub_inst.c loader.c main.c parse_oprnd.c dis.c print_inst.c unify.c load_work.c aux.c mathutil.c builtin/arith.c builtin/buffer.c builtin/builtin.c builtin/compare.c builtin/file.c builtin/init_branch.c builtin/meta.c builtin/name.c builtin/other.c builtin/saverest.c builtin/structure.c builtin/substuff.c builtin/syscall.c builtin/time.c builtin/tio.c|OS9|/dd/LIB/os9lib.l /dd/LIB/math.l|
 
