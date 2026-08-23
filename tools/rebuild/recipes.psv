@@ -260,8 +260,8 @@ nchess|gnu|gnuchess.c nondsp.c os9times.c|W_OK=2 CHESSTOOL|/dd/LIB/math.l|
 diff|eff_effdiff|diff.c|||
 # Added 2026-08-22, the long-source-list trees.  These need rebuild.sh's
 # split path (each source compiled on its own line, the objects gathered with
-# `merge -z'), because the OS-9 shell truncates a command line at about 600
-# characters without saying so.
+# `merge -z'), because SCF will not read a line longer than 512 bytes -- an
+# OS limit, not a bug -- and a longer command line arrives cut off.
 zoo|zoo/ZOOV2.1|addbfcrc.c addfname.c basename.c comment.c crcdefs.c getfile.c lzc.c lzd.c machine.c makelist.c misc.c misc2.c nextfile.c needed.c options.c parse.c portable.c prterror.c version.c zoo.c zooadd.c zooadd2.c zoodel.c zooext.c zoofilt.c zoolist.c zoopack.c io.c lzh.c maketbl.c maketree.c huf.c encode.c decode.c osk.c ../../unixlib/vsprintf.c|BIG_MEM NDEBUG|/dd/LIB/os9lib.l|
 fiz|zoo/ZOOV2.1|fiz.c addbfcrc.c portable.c crcdefs.c prterror.c ../../unixlib/vsprintf.c|BIG_MEM NDEBUG|/dd/LIB/os9lib.l|
 # lwf's <time.h> is behind #ifdef OS9, and R_OK is access()'s read bit, which

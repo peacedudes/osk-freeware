@@ -50,9 +50,9 @@ Needs `OS9CLEAN` from `tools/rebuild/make_overlay.sh`.
               merge the 26 sh objects + osklib.r -> kshobjs.r
               cc kshobjs.r -qm=32k -n=ksh -f=<out> -l=/dd/LIB/os9lib.l
 
-`merge` is the SDK's; the OS-9 shell truncates a command line long before 47
-filenames fit, which is why the `dmakefile` merges rather than passing them all
-to `l68`. **The shell's `>` will not overwrite** — `E_CEF (218)` — so delete
+`merge` is the SDK's; SCF will not read a line longer than 512 bytes and 47
+filenames do not fit, which is why the `dmakefile` merges rather than passing
+them all to `l68`. **The shell's `>` will not overwrite** — `E_CEF (218)` — so delete
 the target first or you will silently keep measuring the previous build.
 
 Use ONE include path for every object. Compiling some with `std/stdc` on the

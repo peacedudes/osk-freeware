@@ -92,11 +92,13 @@ compile_lib() {    # $1 arch  $2 sources  $3 oskdef  $4 defines  $5 name  $6 dir
   printf '\033\n\004\n'
 }
 
-# THE LONG-ARGUMENT PATH.  OS-9's shell truncates a command line at about 600
-# characters, silently: `mtools' has 45 sources, its cc line ran to 900, and
-# what arrived was the line cut off in the middle of `-V=/h6/mtools/MTOOLS_3.6'
-# with the trailing `-V=/h7' and every library gone.  The error that came back
-# was "can't open /dd/DEFS/stdlib.h", which reads exactly like a missing header.
+# THE LONG-ARGUMENT PATH.  SCF will not read a line longer than 512 bytes.
+# That is the operating system, not a bug and not something to work around at
+# the far end -- a command line longer than that arrives cut off.  `mtools' has
+# 45 sources and its cc line ran to 900 characters, so what arrived was cut in
+# the middle of `-V=/h6/mtools/MTOOLS_3.6' with every library gone, and the
+# error was "can't open /dd/DEFS/stdlib.h" -- which reads like a missing
+# header.  So: keep the line short enough to be read.
 #
 # So above that length each source is compiled on its own short line, the
 # objects are gathered with `merge -z=<file>' -- which takes its file list from

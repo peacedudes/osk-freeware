@@ -8,48 +8,23 @@ stands — nothing in it was undone.
 
 ---
 
-# 2026-08-22 — the build pass, in six points
+# 2026-08-22 — the build pass
 
-Same branch, nothing pushed, **eleven** checks now. Detail:
-`notes/SESSION-2026-08-22.md`. What is left: `notes/PLAN-next.md`.
+**Needs you:** nothing outstanding. `blarslib` was the one question and you
+answered it (yes, minus the Microware headers); it is in.
 
-1. **You said the os9exec fixes ship, and the hold is timing.** So I treated
-   this pass as os9exec's exercise. Nothing the emulator did was wrong. Two
-   things looked like it and were not — `notes/CPP-MACRO-CRASH.md` is a
-   minimal three-file reproduction of Microware's `cpp` taking a bus error on
-   nested macro expansion, which is why `flex` will not build.
+**Worth knowing, in one line each:**
 
-2. **Every build was dirtying `disk/`, and `mkimage.sh` reads `disk/` off the
-   filesystem.** Object files, cc temporaries, and fourteen of the ARCHIVES'
-   own `.r` files overwritten by ours. A new check refuses it, and it caught a
-   `ctmp.000003.o` that had already been committed and was shipping.
+  - `ksh` works as shipped, interactively and with `-c`, on os9exec with your
+    `I$Read` fix.
+  - 238 of 241 build recipes compile clean. The three that do not, and every
+    tree with no recipe, have a written reason in `notes/COMPILE-AUDIT.md`.
+  - Three programs that had never compiled — `world`, `patch`, `sonnet` — were
+    each missing one file that was still in the archive they came from.
+  - Nothing os9exec did was wrong.
 
-3. **The OS-9 shell truncates a command line at about 600 characters,
-   silently.** That is why `mtools` "could not find stdlib.h". The driver now
-   compiles source-by-source when the line would be too long.
-
-4. **Three programs were failing for want of a file that was in the archive
-   all along** — `world` (its whole vocabulary), `patch` (`config.h`),
-   `sonnet` (a generated `lex.i`). `tools/missing_from_archive.py` is that
-   search generalised; it found sixty more files, of which seventeen man pages
-   and notes are now on the disk, and `advint` finally has an adventure to
-   play.
-
-5. **`blarslib` is in the pool and I did not add it** —
-   `notes/BLARSLIB.md`. Freely distributable by its author's own words, and it
-   would unlock `macutils` and replace most of `tools/rebuild/shims/`. Eight
-   of its headers are byte identical to Microware's. **That one is yours.**
-
-6. **`ksh` works.** Interactively — `os9exec -r ksh`, typed commands, `$`
-   expansion, `exit` — and with `-c`. That is the shipped binary on os9exec
-   carrying your `I$Read` fix, measured this morning. Which also means the
-   pdksh rebuild's whole reason for being (a `lex.c` patch as insurance
-   against a release WITHOUT that fix) has gone. `build_ksh.sh` builds it in
-   one command now if you ever want to change the port.
-
-7. Recipes went from 203 to 241; `tools/build.sh` builds them all on demand
-   and `--missing` names the trees that still have none. `disk/DOC/START-HERE`
-   is the live-demo affordance you asked for. Counts are out of `README.md`.
+Detail, if you ever want it: `notes/SESSION-2026-08-22.md`. What is left:
+`notes/PLAN-next.md`.
 
 ---
 

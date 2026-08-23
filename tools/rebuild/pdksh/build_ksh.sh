@@ -19,9 +19,9 @@
 #     happen. `std/stdc' stays OFF; `OSK/DEFS' carries the one header
 #     (`limits.h') it was needed for.
 #
-#   * `merge', not a long l68 line. The OS-9 shell truncates a command line at
-#     about 600 characters and 47 filenames do not fit. `merge -z=<file>' takes
-#     its list from a file.
+#   * `merge', not a long l68 line. SCF will not read a line longer than 512
+#     bytes -- an OS limit -- and 47 filenames do not fit. `merge -z=<file>'
+#     takes its list from a file.
 #
 #   * The shell's `>' will NOT overwrite -- E_CEF (218). Every output file is
 #     deleted first, or you silently keep measuring the previous build.
