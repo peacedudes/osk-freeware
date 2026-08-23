@@ -10,8 +10,13 @@ stands — nothing in it was undone.
 
 # 2026-08-22 — the build pass
 
-**Needs you:** nothing outstanding. `blarslib` was the one question and you
-answered it (yes, minus the Microware headers); it is in.
+**Needs you:** nothing outstanding.
+
+`blarslib` is in, minus the thirteen headers that were Microware's. One
+correction to what I told you when I asked: I said it would let `macutils`
+build. It does not — `macutils` needs `struct stat` as blarslib defines it,
+and that definition was in one of the headers we left out. The library is
+still worth having on its own; `macutils` is not fixed.
 
 **Worth knowing, in one line each:**
 
