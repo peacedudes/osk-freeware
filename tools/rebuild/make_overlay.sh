@@ -103,6 +103,28 @@ if [ -d "$REPO/disk/SRC/COMPAT/sys" ]; then
     echo "  added SRC/COMPAT/sys to DEFS (cpp will not find <sys/x.h> via -V)"
 fi
 
+# A STAND-IN FOR THE ULTRA C LAYOUT some OSK ports were compiled against.
+# lua's SRC/LUAC/luamod.c opens with
+#
+#     #include </dd/ucc/defs/types.h>          /* LUA uses its own types.h */
+#
+# an ABSOLUTE path, which no -I or -V can redirect -- the same trap
+# DEFS/blarsdefs/errno.h exists for.  process_id is the one type it needs that
+# the SDK headers do not carry.
+#
+# THE OVERLAY ONLY.  Nothing like this goes on the shipped disk, where a `ucc'
+# directory would read as Microware's Ultra C being installed here.
+mkdir -p "$DEST/ucc/defs"
+printf '%s\r' \
+  '/* Stand-in for the Ultra C layout an OSK porter compiled against.' \
+  '   BUILD OVERLAY ONLY -- see tools/rebuild/make_overlay.sh. */' \
+  '#include "/dd/DEFS/types.h"' \
+  '#ifndef _OSK_PROCESS_ID' \
+  '#define _OSK_PROCESS_ID' \
+  'typedef unsigned short process_id;' \
+  '#endif' > "$DEST/ucc/defs/types.h"
+echo "  added ucc/defs/types.h (lua names it by absolute path)"
+
 # The COLLECTION's own DEFS as well.  disk/DEFS carries headers the SDK does
 # not -- auxlib/local.h, os9lib, os9unix, ncurses, p2c.h -- and programs on
 # this disk were built against them.  `spooler' asks for <local.h> and there is

@@ -399,6 +399,94 @@ compile_cpp2_post() {  # $1 arch  $2 sources  $3 prog  $4 extra  $5 libs  $6 dir
   printf '\033\n\004\n'
 }
 
+# THE GCC PATH.  A recipe asks for this with the GCC pseudo-define.
+#
+# WHY IT EXISTS.  Several of the OSK ports here were never written for
+# Microware\'s cc at all -- their own makefiles say `CC = gcc\' (gtar,
+# rayshade) or `CC = gcc2\' (mtools, jpeglib).  GCC is ANSI, has no
+# 512-character line limit, and has -mlong-calls; every one of those is a wall
+# the cc path hits.  A complete GCC 2.5.6 is on this disk, in CMDS/GCC2.
+#
+# It was UNUSABLE until 2026-08-23: `#include <ctype.h>\' followed by
+# `#include <stdlib.h>\' -- two lines, no program -- would not compile,
+# because DEFS/GCC2/stdlib.h declares the ctype functions the SDK\'s
+# <ctype.h> defines as macros, and pulls in a <direct.h> that wants a WORD
+# typedef GCC\'s own <stdio.h> does not have.  Both are fixed in those two
+# headers; without that fix nothing below works.
+#
+# FOUR THINGS ARE NOT GUESSABLE:
+#
+#   * gcc2 PREDEFINES OSK (and _OSK, __OSK__, mc68000), so this path does NOT
+#     pass -DOSK.  Passing it again is a redefinition.
+#   * `gcc2 -c -o <name>.r <src>\' controls the object name, which is what
+#     keeps two sources of the same basename apart -- see tmpbase().
+#   * THE LINK CANNOT BE gcc2, because the module would take its name from
+#     the output FILE.  We write R_<prog> so as not to clobber an archive
+#     binary, and the module would then call itself `R_<prog>\' in its own
+#     usage text -- the exact fault the -n= rule exists to prevent, and
+#     `-Wl,-n=\' does not reach l68.  So the link is l68 by hand, which is
+#     what gcc2 -v shows it running anyway:
+#         l68 -o=<out> -a /DD/LIB/cstart.r <objs> -l=libgcc.l -l=clibn.l
+#             -l=math.l -l=sys.l
+#     plus -n=<prog>.  Verified: gcc2 gives a module called R_wl, l68 -n=
+#     gives one called named.
+#   * SRC/COMPAT IS **NOT** ON THE PATH HERE -- it is opt-in, as `-V=/h7\'.
+#     Every other path adds it automatically, because it exists to fill gaps in
+#     Microware cc\'s header set.  GCC brings its own, and COMPAT then SHADOWS
+#     them: its <stdlib.h> had neither RAND_MAX nor size_t (fixed since, but it
+#     is still thinner), and its <types.h> typedefs off_t, which collides with
+#     the one mtools\' sysincludes.h declares for itself under _OSK.  lua does
+#     want it -- GCC has no <limits.h> at all -- so lua asks with -V=/h7 and
+#     mtools does not.  A shim that shadows a better header has to be at least
+#     as complete as the thing it hides, and COMPAT is not trying to be.
+#   * `clibn.l\' is the no-cio C library and `cstart.r\' comes from the
+#     overlay, whose Author psect is blanked -- so a GCC build is trap-free
+#     and unstamped, both of which this collection requires.  Measured.
+compile_gcc() {    # $1 arch  $2 sources  $3 defines  $4 prog  $5 extra  $6 libs  $7 dir
+  local mainsrc="" s base inc="" lnk="" x
+  # -V=<dir> becomes an -I for the compile; anything else in the extra field is
+  # for the LINK, which here is l68 -- `-M=32k' for stack, and mtools wants it
+  # (mdir bare says `**** Stack Overflow ****' without).
+  for x in ${5:-}; do
+    case "$x" in -V=*) inc="$inc -I${x#-V=}";; *) lnk="$lnk $x";; esac
+  done
+  for s in $2; do
+    [ -n "$mainsrc" ] && break
+    /usr/bin/tr '\r' '\n' < "$7/$s" |
+      /usr/bin/grep -qaE '^([A-Za-z_][A-Za-z0-9_ *]*[ *])?main[[:space:]]*\(' &&
+        mainsrc=$s
+  done
+  [ -n "$mainsrc" ] || { echo "  $4: no main() among its sources" >&2; return 1; }
+
+  : > "$7/ctmp.list"
+  for s in $2; do
+    [ "$s" = "$mainsrc" ] && continue
+    printf '%s\r' "ctmp_$(tmpbase "$s" "$2").r" >> "$7/ctmp.list"
+  done
+
+  printf 'chx /dd/CMDS\nchd /h6/%s\n' "$1"
+  for s in $2; do
+    base=$(tmpbase "$s" "$2")
+    printf 'del ctmp_%s.r\n' "$base"
+    printf 'gcc2 -c %s -I/h6/%s%s -o ctmp_%s.r %s\n' \
+           "$3" "$1" "$inc" "$base" "$s"
+  done
+  # THREE COPIES UNDER THREE NAMES, not one name three times.  l68 makes a
+  # single pass per DISTINCT library FILE -- repeating `-l=x.l' buys nothing,
+  # which is not what the failure table used to imply.  A member that calls a
+  # member defined later in the same file is otherwise left unresolved:
+  # mtools' codepage.c calls strtoul, and its own missing_functions.c defines
+  # strerror, and both sit after their callers.
+  printf 'del ctmp.parts.l\nmerge -z=ctmp.list >ctmp.parts.l\n'
+  printf 'del ctmp.parts2.l\ndel ctmp.parts3.l\n'
+  printf 'copy -r ctmp.parts.l ctmp.parts2.l\ncopy -r ctmp.parts.l ctmp.parts3.l\n'
+  printf 'l68 -o=/h6/%s/R_%s -a -n=%s /dd/LIB/cstart.r ctmp_%s.r' \
+         "$1" "$4" "$4" "$(tmpbase "$mainsrc" "$2")"
+  printf '%s -l=ctmp.parts.l -l=ctmp.parts2.l -l=ctmp.parts3.l%s' "$lnk" "$6"
+  printf ' -l=/dd/LIB/libgcc.l -l=/dd/LIB/clibn.l -l=/dd/LIB/math.l -l=/dd/LIB/sys.l\n'
+  printf '\033\n\004\n'
+}
+
 # ANSI C, run through ansi2knr first.  A recipe asks for this with the KNR
 # pseudo-define, the way NOOSK opts out of -DOSK.  Microware's cc is K&R and
 # will not read a prototype; ansi2knr is the standard de-ANSIfier, is itself
@@ -516,7 +604,7 @@ while IFS='|' read -r prog arch srcs defs libs extra; do
   # One pass over the field, not three substitutions: `${defs/KNR/}' turns
   # `KNR=a.c,b.c' into `=a.c,b.c', which then reaches cc as `-D=a.c,b.c'.
   OSKDEF=-DOSK
-  KNRMODE=0; KNRFILES=""; CPP2MODE=0; LONGREF=0; M020=0; keep=""
+  KNRMODE=0; KNRFILES=""; CPP2MODE=0; LONGREF=0; M020=0; GCCMODE=0; keep=""
   for x in $defs; do
     case "$x" in
       NOOSK)  OSKDEF="";;
@@ -526,12 +614,21 @@ while IFS='|' read -r prog arch srcs defs libs extra; do
       CPP2)   CPP2MODE=1;;
       LONGREF) LONGREF=1;;
       M020)   M020=1;;
+      GCC)    GCCMODE=1;;
       *)      keep="$keep $x";;
     esac
   done
   defs=$keep
 
-  D=""; for x in $defs;  do [ -n "$x" ] && D="$D -D$x"; done
+  # A word that already begins with `-\' is passed through as it stands, so a
+  # recipe can say `-U_OSK\'.  gcc2 PREDEFINES _OSK, and lua\'s lua.c reaches
+  # for a header the tree does not carry when it is set; there is no other way
+  # to turn a predefine off.  Everything else becomes -D<word> as before.
+  D=""
+  for x in $defs; do
+    [ -n "$x" ] || continue
+    case "$x" in -*) D="$D $x";; *) D="$D -D$x";; esac
+  done
   L=""
   for x in $libs; do
     [ -n "$x" ] || continue
@@ -544,6 +641,12 @@ while IFS='|' read -r prog arch srcs defs libs extra; do
   # are 430 characters and its cc line is 900, because the output path, the -V
   # directories and four libraries come after them.
   attempt() {   # $1 sources
+    if [ "$GCCMODE" = 1 ]; then
+      compile_gcc "$arch" "$1" "$D" "$prog" "${extra:-}" "$L" "$d" > "$WORK/cmd" || return
+      LIMIT=1800
+      run "$POOL" "$WORK/cmd" "$WORK/out"
+      return
+    fi
     if [ "$CPP2MODE" = 1 ]; then
       LIMIT=1800
       compile_cpp2_pre "$arch" "$1" "$OSKDEF" "$D" "${extra:-}" > "$WORK/cmd"

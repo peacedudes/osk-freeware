@@ -61,12 +61,11 @@ accounted for below. Nothing in this list is "unknown" any more.
     will not search a `-V` directory for an include name with a directory in
     it) was correct and is now obsolete: GNU cpp does, and a recipe's `-V=`
     reaches that pass. `binhex` and `unsit` build.
-  - `mtools` — **not a timeout, and not blarslib. Measured 2026-08-23:** it
-    runs to completion in minutes and c68 rejects a prototype on nearly every
-    line. Its OSK port is a `gcc2` build (`CC = gcc2`,
-    `-I/h0/mwos/src/defs/GCC2`), which puts it with `ls`. `ansi2knr` cannot
-    help: it only converts a definition whose NAME is at the left margin, and
-    mtools writes `static void f(void)` on one line, 477 times against 3.
+  - ~~`mtools`~~ — **BUILDS, 2026-08-23, with the GCC flag.** It was never a
+    timeout and `ansi2knr` was never going to reach it: its OSK port is a
+    `gcc2` build and the disk carries a whole GCC 2.5.6 in `CMDS/GCC2`. What
+    stopped anyone was that gcc2 here could not compile a two-line program
+    until `DEFS/GCC2` was repaired. 45 sources; `mdir` runs.
 
 **A `cpp` defect -- and it is now MEASURED, not guessed.**
 
@@ -106,9 +105,10 @@ several: these trees declare prototypes, and Microware's `cc` is K&R.
     reachable      JPEG -- jconfig.h has HAVE_PROTOTYPES, `const', and
                    INCOMPLETE_TYPES_BROKEN, which is provided for compilers
                    exactly like this one
-    not reachable  lua -- lua.h declares prototypes unconditionally and there
-                   is no switch; the headers would have to be converted by
-                   hand, and ansi2knr does not do declarations
+    not reachable  lua -- by ansi2knr, yes.  But that was the wrong question:
+                   lua compiles fine under the GCC flag (16 of 17 sources, and
+                   luac 17 of 17).  Both stop on ABSENT MATERIAL instead --
+                   ldblib.h for lua, and Ultra C's syscall library for luac.
 
   So `lua`, and probably `ed` and `lout`, are header work rather than a flag.
   `djpeg` is neither: it is the cpp defect.

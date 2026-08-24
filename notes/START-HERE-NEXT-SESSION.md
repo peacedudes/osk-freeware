@@ -16,12 +16,12 @@ clean, all eleven `check_disk.py` checks green.
     tools/rebuild/tidy.sh                       # only if you drove rebuild.sh
                                                 # directly; build.sh calls it
 
-`tools/build.sh` builds every recipe (~1.5 hours, 288 of them). One program:
+`tools/build.sh` builds every recipe (~1.5 hours, 289 of them). One program:
 `tools/build.sh flex`.
 
 ## Where the build stands
 
-**285 of 288 recipes clean**, whole tree, measured 2026-08-23 with every recipe
+**286 of 289 recipes clean**, whole tree, measured 2026-08-23 with every recipe
 in one run. The three that fail are the three that have always failed and each
 has a reason in `notes/COMPILE-AUDIT.md`: `ls` (a gcc2 build), `pdraw` (X11)
 and `pep` (the EPROM board's own library). Re-measure rather than trust this

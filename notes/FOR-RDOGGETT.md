@@ -8,6 +8,52 @@ stands — nothing in it was undone.
 
 ---
 
+# 2026-08-23 — the GCC flag is built, and mtools builds with it
+
+You told me to do it and I stopped short the first time. Done now.
+
+**`mtools` builds and runs** — 45 sources, the whole DOS-disk toolkit. `mdir -?`
+prints the real mtools 3.6 usage; `mdir` reaches for `/pc1@`, the PC floppy
+descriptor, which is right when none is configured. The audit had it filed
+under "a gcc2 build, same category as `ls`", and that was the end of the
+thought.
+
+**The reason nobody got further: the gcc2 on your disk could not compile a
+two-line program.** Four headers in `DEFS/GCC2` were inconsistent with the SDK
+set underneath them — the worst being `stdio.h`, which was GNU's own, written
+against a GNU libio that is not here, and whose own comment said `/* TODO */`.
+Any program that so much as named `stderr` failed at the link; printf-only
+programs worked, which is why it survived. All four are repaired.
+
+**That very likely explains `ls` being "repaired" rather than rebuilt**, and
+why `mtools` and `lua` were written off.
+
+Three things about the flag that cost time and are worth knowing:
+
+  - gcc2 **predefines `_OSK`**, and `-U_OSK` cannot beat it (user options go
+    ahead of its own `-D`s, and `-Wp,` is dropped). Anything behind
+    `#ifdef _OSK` is unavoidable.
+  - The link **cannot be gcc2** — the module would name itself after the
+    output file, i.e. `R_mtools`. It runs `l68` underneath anyway, so the path
+    calls l68 itself with `-n=`.
+  - **`l68` makes one pass per distinct library FILE.** Repeating `-l=x.l`
+    buys nothing — I measured five repetitions changing nothing. The failure
+    table said otherwise and is corrected; the fix is copies under different
+    names.
+
+`lua` and `luac` are much closer but still blocked, and now on absent material
+rather than the compiler: 16 of 17 and 17 of 17 sources compile. lua wants an
+`ldblib.h` that is in no copy of the tree; luac wants Ultra C's syscall
+library. Neither is a recipe.
+
+**Two more marked source fixes, and I claim these are not compiler
+workarounds:** mtools' `config.h` claimed `HAVE_STRERROR` (it is `configure`
+output from the porter's machine — correcting it is what a config header is
+for), and its `sysincludes.h` declared `void atexit()` while its own
+`missing_functions.c` defines `int atexit()`. The package contradicts itself.
+
+---
+
 # 2026-08-23 — you asked how these ever compiled. Answer: a different compiler
 
 **They were built with GCC, not Microware's `cc`.** Their own makefiles say so
@@ -112,7 +158,7 @@ message, which scores as working.
   - A driver bug: two sources sharing a BASENAME silently clobbered each
     other's temporaries, and the link then blamed a missing `main`. Fixed.
   - Five of C News's six programs build — that tree had no recipe at all.
-  - The whole tree still builds: **285 of 288 recipes clean**, the same three
+  - The whole tree still builds: **286 of 289 recipes clean**, the same three
     known failures (`ls`, `pdraw`, `pep`). Recipes went 277 -> 288 overnight.
     Four whole-tree builds were run, not one — the third caught a fix of mine
     that worked on one recipe and broke another.

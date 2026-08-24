@@ -13,7 +13,7 @@ accessible in universe.** Everything below serves one of them.
 ## 1. The trees with no recipe — what is actually left
 
 `tools/build.sh --missing` lists them and `notes/COMPILE-AUDIT.md` says why
-each has none. As of 2026-08-23 (end of the overnight pass): **288 recipes, 19 trees
+each has none. As of 2026-08-23 (end of the overnight pass): **289 recipes, 18 trees
 without one** -- `cnews`, `ed`, `inform`, `rayshade` and `macutils` all gained
 one during it. Most of
 those 24 are accounted for (wrong language, material genuinely absent, not a

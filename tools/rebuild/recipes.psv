@@ -509,3 +509,37 @@ rayshade|rayshade|libray/LIBCOMMON/expr.c libray/LIBCOMMON/memory.c libray/LIBCO
 # `macsave' and `macunpack' are not here either; neither has been run down.
 binhex|macutils/BINHEX|binhex.c dofile.c ../UTIL/transname.c ../UTIL/backtrans.c ../UTIL/util.c ../FILEIO/rdfile.c ../FILEIO/fileglob.c ../CRC/binhex.c ../CRC/ccitt.c|CPP2 NODOT|/dd/LIB/blarslib.l|-V=/dd/DEFS/blarsdefs -V=/h6/macutils/UTIL -V=/h6/macutils/FILEIO -V=/h6/macutils/CRC
 unsit|macutils/UNSIT|unsit.c getopt.c updcrc.c ../UTIL/transname.c ../UTIL/backtrans.c ../UTIL/util.c ../FILEIO/rdfile.c ../FILEIO/wrfile.c ../FILEIO/fileglob.c ../CRC/binhex.c ../CRC/ccitt.c|CPP2 NODOT|/dd/LIB/blarslib.l|-V=/dd/DEFS/blarsdefs -V=/h6/macutils/UTIL -V=/h6/macutils/FILEIO -V=/h6/macutils/CRC
+# mtools 3.6 -- the first program built with the GCC flag, and the reason the
+# flag exists.  COMPILE-AUDIT filed this under "a gcc2 build, same category as
+# ls" and left it there; the tree ships a whole GCC 2.5.6 in CMDS/GCC2, its own
+# makefile says CC = gcc2, and nobody had tried it since the DEFS under it were
+# repaired (see DEFS/GCC2/stdio.h and errno.h).
+#
+# 45 sources, and every one of the flags below was needed:
+#
+#   GCC              the port is ANSI; Microware cc cannot read a prototype.
+#   HAVE_STRSPN      mtools sysincludes.h declares strspn/strcspn ANSI-style,
+#   HAVE_STRCSPN     which conflicts with DEFS/os9unix/string.h reached through
+#                    SRC/COMPAT.  Its own guards suppress the declarations.
+#   _OSK_COMPAT_OFF_T  COMPAT/types.h typedefs off_t and so does sysincludes.h
+#                    under _OSK -- and gcc2 PREDEFINES _OSK, so that arm always
+#                    fires.  COMPAT already carries a guard for exactly this.
+#   -V=/h7           COMPAT is opt-in on the GCC path; mtools wants its
+#                    <limits.h> and <pwd.h>, which GCC has not got.
+#   -M=64k           `mdir' bare says **** Stack Overflow **** without it.
+#
+# Two source-side corrections, both marked where they are:
+#   config.h         claimed HAVE_STRERROR.  It is configure output from the
+#                    machine the port was built on; this system has no
+#                    strerror in any library a trap-free link can reach, and
+#                    the claim only stopped mtools own copy being compiled.
+#   sysincludes.h    declared `void atexit()' under _OSK while mtools own
+#                    missing_functions.c defines `int atexit()'.  A port bug,
+#                    not a compiler workaround -- it fails for any toolchain
+#                    whose libgcc lacks atexit, which this one does.
+#
+# `strtoul' comes from shims/os9strtol.c, added by the driver's own retry.
+# Verified by running: `mdir -?' prints the real mtools 3.6 usage, and `mdir'
+# reaches for /pc1@, the PC floppy descriptor, which is correct when none is
+# configured.
+mtools|mtools/MTOOLS_3.6|mtools.c buffer.c codepage.c codepages.c config.c copyfile.c devices.c directory.c expand.c fat.c fat_free.c file.c file_name.c file_read.c filter.c force_io.c hash.c init.c match.c mattrib.c mbadblocks.c mcd.c mcopy.c mdel.c mdir.c mformat.c misc.c missing_functions.c mk_direntry.c mlabel.c mmd.c mmove.c mainloop.c minfo.c precmd.c privileges.c parse.c plain_io.c signal.c stream.c streamcache.c subdir.c toupper.c tty.c vfat.c xdf_io.c|GCC HAVE_CONFIG_H HAVE_STRSPN HAVE_STRCSPN _OSK_COMPAT_OFF_T|/dd/LIB/blarslib.l /dd/LIB/unix.l|-V=/h7 -M=64k
