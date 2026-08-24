@@ -468,7 +468,7 @@ causes kept recurring. What actually got them:
 
 | program | reason |
 |---|---|
-| `ls` | GNU fileutils, needs `gcc2` rather than `cc`. **`SRC/ls` is the pre-fix tree** -- its `stat()` still fabricates permissions and never sets `st_mtime`, and `isgraph`/`mode_string` are missing entirely. Rebuilding from what ships would regress a program that currently works. |
+| `ls` | GNU fileutils, needs `gcc2` rather than `cc`. **CONFIRMED BY MEASUREMENT 2026-08-23**: it compiles with the GCC flag and is WORSE -- fabricated modes, no mtime, and a bus error on `-l`. **`SRC/ls` is the pre-fix tree** -- its `stat()` still fabricates permissions and never sets `st_mtime`, and `isgraph`/`mode_string` are missing entirely. Rebuilding from what ships would regress a program that currently works. |
 | `pep` | EPROM programmer; `init_via`, `pgm_byte` and `standby` are in no shipped file. |
 | `pdraw` | needs X11 client headers (`X/Xlib.h`); no archive here has them. |
 | `basename` `cat` `dirname` `wc` `queens` `wam.sbprolog` `hotel` `suicide` `suicide1` `suicide2` `tt` `ularn` | no source on the disk or in the archive pool. Searched by name and by strings lifted out of the binaries; for `ularn` only its data files survive. |

@@ -18,7 +18,13 @@ accounted for below. Nothing in this list is "unknown" any more.
 
 ### The three recipes that fail
 
-  - **`ls`** — a gcc2 build. K&R `cc` will not take it.
+  - **`ls`** — a gcc2 build, and **it compiles now** (GCC flag, 2026-08-23).
+    **It is still not adopted and has no recipe, deliberately**: `SRC/ls` is
+    the PRE-FIX tree. Its `os9stubs.c` gives every regular file the same
+    fabricated mode and never sets `st_mtime`, and the build bus-errors on
+    `ls -l`. The shipped binary prints real per-file modes and real dates, so
+    it came from a later source that is on no disk here. See
+    `notes/SESSION-2026-08-23.md`.
   - **`pdraw`** — wants X11 headers. They are not here and are not coming.
   - **`pep`** — calls `standby()` and `init_via()`, which live in the mc
     EPROM programmer's own hardware library. Its own header says it runs only

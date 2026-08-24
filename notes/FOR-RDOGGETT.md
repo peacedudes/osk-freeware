@@ -8,6 +8,51 @@ stands — nothing in it was undone.
 
 ---
 
+# 2026-08-23 — ls: it compiles, and you should NOT take it
+
+You said same-or-better or not at all. **It is not better, so I have not
+adopted it and there is no recipe.** Here is the comparison, same directory,
+one file `chmod 400`, one `chmod 755`, one dated 1993:
+
+    ls -l   YOUR BINARY                       BUILT FROM SRC/ls
+            -r--------  a.txt                 bus error, TRAP 2
+            -rw-r--r--  b_longer_name.dat
+            -rwxr-xr-x  big.bin
+            drwxrwxrwx  sub
+            real modes, real dates            (bare `ls` also loses columns)
+
+**The old note was right and I can now prove it.** `SRC/ls/os9stubs.c` gives
+every regular file one hard-coded mode —
+
+    buf->st_mode = S_IFREG | S_IRUSR | S_IXUSR | S_IROTH;
+
+— and never assigns `st_mtime` at all. Your binary prints per-file modes and
+real timestamps, so it was built from a **later source that is on no disk
+here**. `disk/SRC/ls` and `play/oskBoot/SRC/ls` are byte-identical and both
+pre-fix; there is no other `os9stubs.c` anywhere under `~/Developer/os9`. The
+binary is the only surviving artefact of the fixed source.
+
+**So the answer to "people trying this with os9exec need ls" is: they have
+it, and it must not be rebuilt from what ships.** If you ever want it from
+source, the only broken part is `os9stubs.c`'s `stat()` — it needs `_gs_gfd`
+to read the real file descriptor for the attribute byte and the date. The rest
+compiles today; the exact recipe is in `notes/SESSION-2026-08-23.md`.
+
+Worth having from the attempt, and all three are committed:
+
+  - **An include cycle in `SRC/COMPAT`** that made cccp2 die with
+    `**** Stack Overflow ****` — `COMPAT/stat.h` and a tree's own
+    `sys/stat.h` calling each other. Reads like a broken source file; is not.
+  - `shims/os9isgraph.c` — `isgraph` is in `csl.l` and nowhere else.
+  - **`DEFS/os9lib` is usable from the GCC path** (it is ANSI-era, which is
+    why it was a dead end for `c68`). It is the only place on this disk with
+    `uid_t` and `S_IRUSR` — **and gtar's missing `TRUE`, `FALSE`, `ERROR` and
+    `S_ISUID` are all in it too.** It needs the overlay mounted as `/h0` as
+    well; that is one line and it is written down, not in the tree, because no
+    recipe needs it yet. First thing to try for gtar.
+
+---
+
 # 2026-08-23 — the GCC flag is built, and mtools builds with it
 
 You told me to do it and I stopped short the first time. Done now.

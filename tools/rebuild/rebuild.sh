@@ -702,6 +702,7 @@ while IFS='|' read -r prog arch srcs defs libs extra; do
       *"'strucmp' unresolved"*|*"'strnucmp' unresolved"*|*"'strstr' unresolved"*|*"'rename' unresolved"*) shim=os9alib.c;;
       *"'ctime' unresolved"*)                                                     shim=os9ctime.c;;
       *"'strtol' unresolved"*|*"'strtoul' unresolved"*)                            shim=os9strtol.c;;
+      *"'isgraph' unresolved"*)                                                   shim=os9isgraph.c;;
     esac
     [ -n "$shim" ] || break
     case " $added " in *" $shim "*) break;; esac      # already tried: stop
