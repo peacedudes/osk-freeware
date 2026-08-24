@@ -274,3 +274,27 @@ so it is worth writing down what it took:
   - `use <name>` resolves to `/dd/defs/name`, which is how every assembly
     source here reaches `oskdefs.d`.
 
+## `clean` means it compiled and linked. Nothing more.
+
+`build.sh` prints `clean` when a module came out the other end. It is not a
+claim that the program works, and on 2026-08-24 that distinction cost a real
+bug: `mtools` had been in the known-good set for weeks, building `clean`
+every time, and the binary printed
+
+        1 file(s)      bytes
+
+where the one that ships prints
+
+        1 file(s)               139 bytes
+
+`mdir.c`'s `dotted_num()` asks `sprintf` to pad an INTEGER to a precision --
+`"%.*ld"` with a width of 26. **No C library on this disk does that.**
+Measured, all four: `clibn`, `clib`, `cio` and `os9lib` each answer `139` for
+`%.26ld`. `len` comes out 3, and the function returns `buf + 3 - 13` -- ten
+bytes before its own buffer.
+
+The only thing that found it was building the program and **running it beside
+the binary that ships**. Do that for anything you add a recipe for. Where
+there is no shipped binary to compare against, say so rather than letting
+`clean` stand in for `works`.
+
