@@ -17,6 +17,25 @@ accessible in universe.** Everything below serves one of them.
 rdoggett, 2026-08-23: *"we will make another pass at all of the collected
 treasures, and should look for ls or its missing piece specifically."*
 
+### ls — TRY os9lib's stat FIRST, before hunting for the lost source
+
+**Found 2026-08-24, and it may make the hunt unnecessary.** `LIB/os9lib.l`
+already contains a `stat()` that WORKS -- distinct inodes, real sizes, real
+mtimes -- provided it is compiled against **os9lib's own `<stat.h>`**, because
+the library fills os9lib's `struct stat` and not the one `DEFS/UNIX` supplies.
+Measured with a five-line probe; the numbers are in
+`notes/SESSION-2026-08-23.md`.
+
+`SRC/ls/os9stubs.c` fabricates precisely the fields os9lib's stat gets right.
+**So the first thing to try is deleting os9stubs.c's stat/fstat and letting
+os9lib's be linked instead**, with `-V=/dd/DEFS/os9lib` and the overlay
+mounted as `/h0` (os9lib/time.h needs `</h0/defs/setsys.h>`, and `ls`'s own
+`system.h` already pre-defines `D_TckSec` to dodge that). That is a far
+cheaper experiment than finding the lost file, and if it works the collection
+can rebuild `ls` from what it already ships.
+
+If it does not work, then hunt:
+
 ### ls — the one missing file, and how to recognise it
 
 The collection ships a good `ls` and cannot rebuild it. **What is missing is
@@ -64,13 +83,17 @@ pre-fix tree comes out **46522**.
 ## 1. The trees with no recipe — what is actually left
 
 `tools/build.sh --missing` lists them and `notes/COMPILE-AUDIT.md` says why
-each has none. As of 2026-08-23 (end of the overnight pass): **289 recipes, 18 trees
+each has none. As of 2026-08-23 (end of the overnight pass): **290 recipes, 17 trees
 without one** -- `cnews`, `ed`, `inform`, `rayshade` and `macutils` all gained
 one during it. Most of
 those 24 are accounted for (wrong language, material genuinely absent, not a
 program tree). What is real work, in the order I would take it:
 
-**a. The `cpp` victims — two down, two to go.** UPDATED 2026-08-23.
+**a. The `cpp` victims — three down, one to go.** UPDATED 2026-08-24: `gtar`
+BUILDS through the GCC flag and reads and extracts real tar archives
+byte-identically. Creating them is wrong (the stat mismatch above) and gtar
+warns loudly on every file; do not install it over anything until that is
+fixed. `inform` and `djpeg` are done; only `flex` was already done.
 
 The defect is now measured rather than guessed: `cpp` bus-errors on a source
 line of **513 characters or more**, `c68` stops at **1023**, and neither has

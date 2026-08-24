@@ -579,8 +579,17 @@ compile_long() {   # $1 arch  $2 sources  $3 oskdef  $4 defines  $5 prog  $6 ext
 # long-argument path compiles each source separately and zoo's 35 and mtools'
 # 45 both ran past it and were recorded FAIL with no output at all.
 LIMIT=240
+# /h0 IS THE OVERLAY TOO -- the arrangement the finished disk ships under,
+# mounted as /dd and hard-linked as /h0 (notes/DECISION-placement.md).  Headers
+# here carry /h0-absolute includes because the people who wrote them kept their
+# tools there: DEFS/os9lib/time.h asks for </h0/defs/setsys.h>, and no -V or -I
+# can redirect an absolute path.  Without an /h0 the whole os9lib DEFS set is
+# unusable -- and os9lib is the only place on this disk with uid_t, S_IRUSR,
+# S_ISUID, ERROR, TRUE, FALSE and the Unix errno codes, which is what gtar and
+# GNU ls were both written against.
 run() {       # $1 pool  $2 command-file  $3 output file
-  ( cd "$REPO" && gtimeout "$LIMIT" env OS9DISK="$OS9CLEAN" OS9H6="$1" OS9H7="$OS9COMPAT" \
+  ( cd "$REPO" && gtimeout "$LIMIT" env OS9DISK="$OS9CLEAN" OS9H0="$OS9CLEAN" \
+      OS9H6="$1" OS9H7="$OS9COMPAT" \
       "$EXE" -r shell < "$2" 2>&1 | /usr/bin/tr -d '\000' ) > "$3"
   /usr/bin/head -c 400000 "$3"
   [ "$(/usr/bin/wc -c < "$3")" -gt 500000 ] && printf '\n[... output truncated ...]\n'
@@ -697,7 +706,9 @@ while IFS='|' read -r prog arch srcs defs libs extra; do
       *"'getpwuid' unresolved"*|*"'getpwnam' unresolved"*|*"'getlogin' unresolved"*) shim=os9getpw.c;;
       *"'gethostname' unresolved"*|*"'gettz' unresolved"*)                       shim=os9hostname.c;;
       *"'srand48' unresolved"*|*"'drand48' unresolved"*|*"'lrand48' unresolved"*)   shim=os9rand48.c;;
-      *"'geteuid' unresolved"*|*"'getuid' unresolved"*)                             shim=os9geteuid.c;;
+      *"'geteuid' unresolved"*|*"'getuid' unresolved"*|*"'unix_getuid' unresolved"*) shim=os9geteuid.c;;
+      *"'ftime' unresolved"*)                                                     shim=os9ftime.c;;
+      *"'_ss_wfm' unresolved"*)                                                   shim=os9sswfm.c;;
       *"'popen' unresolved"*|*"'pclose' unresolved"*)                               shim=os9popen.c;;
       *"'strucmp' unresolved"*|*"'strnucmp' unresolved"*|*"'strstr' unresolved"*|*"'rename' unresolved"*) shim=os9alib.c;;
       *"'ctime' unresolved"*)                                                     shim=os9ctime.c;;

@@ -543,3 +543,45 @@ unsit|macutils/UNSIT|unsit.c getopt.c updcrc.c ../UTIL/transname.c ../UTIL/backt
 # reaches for /pc1@, the PC floppy descriptor, which is correct when none is
 # configured.
 mtools|mtools/MTOOLS_3.6|mtools.c buffer.c codepage.c codepages.c config.c copyfile.c devices.c directory.c expand.c fat.c fat_free.c file.c file_name.c file_read.c filter.c force_io.c hash.c init.c match.c mattrib.c mbadblocks.c mcd.c mcopy.c mdel.c mdir.c mformat.c misc.c missing_functions.c mk_direntry.c mlabel.c mmd.c mmove.c mainloop.c minfo.c precmd.c privileges.c parse.c plain_io.c signal.c stream.c streamcache.c subdir.c toupper.c tty.c vfat.c xdf_io.c|GCC HAVE_CONFIG_H HAVE_STRSPN HAVE_STRCSPN _OSK_COMPAT_OFF_T|/dd/LIB/blarslib.l /dd/LIB/unix.l|-V=/h7 -M=64k
+# GNU tar 1.11, through the GCC flag.  It has had no recipe since the tree
+# arrived; the cpp bus error was blamed, and that was only the first of six
+# walls.  READ notes/SESSION-2026-08-23.md BEFORE CHANGING ANY FLAG BELOW.
+#
+# WHAT IT CAN AND CANNOT DO -- verified by running it, not by linking:
+#   READING and EXTRACTING work, and are the point.  Given a ustar archive
+#   made on another machine it lists it with correct modes, owners, sizes and
+#   dates, and extracts all three test files BYTE-IDENTICAL, including a
+#   3000-byte binary.  That is what somebody with a .tar off the net needs.
+#   CREATING archives is WRONG and says so loudly: `file X shrunk by 720880
+#   bytes, padding with zeros' on every file.  os9lib.l's stat() fills
+#   os9lib's OWN struct stat, and what gtar has in scope here is the one from
+#   DEFS/UNIX via SRC/COMPAT.  Same SIZE, 36 bytes, so nothing is overrun --
+#   the fields simply land in the wrong members and st_size is nonsense.
+#   Do not install this over anything until that is fixed.
+#
+# THE FIX IS KNOWN AND MEASURED.  Pair os9lib's stat() with os9lib's own
+# <stat.h> and it is correct: distinct inodes per file, real sizes, real
+# mtimes.  It cannot be done here yet because gcc2's cc2 dies with a fatal
+# signal on port.c once the os9lib headers are in scope -- both the STDC_MSG
+# and VARARGS_MSG arms, and port.c hardcodes VARARGS_MSG at line 103 anyway.
+# The same pairing is what GNU `ls' needs; see the ls section of that note.
+#
+# THE FLAGS, none of them guessable:
+#   GCC              its makefile says CC = gcc.  Microware cc cannot read it.
+#   S_IF*/S_IS*      OS-9 has no file-type or setuid bits.  These values are
+#                    DEFS/os9lib/stat.h's own, so they are the disk's answer
+#                    rather than one invented here, and S_IFREG and S_IFCHR
+#                    differ (0x100/0x0) so the switch in create.c is legal --
+#                    blarsdefs makes both 0 and it is not.
+#   HAVE_SIZE_T      tar.h typedefs size_t under USG unless told otherwise.
+#   ERROR=-1         rmdir.c wants OS-9's ERROR; only os9lib/stdio.h has it.
+#   time_t=long      getdate.y needs it before any header supplies it.
+#   uint=unsigned    diffarch.c casts to `uint' in its OSK arm.
+#   NO_REMOTE        maps the whole rmt* family to plain open/read/ioctl and
+#                    drops rtape_lib.c.  There is no remote tape here.
+#   USG              System V: skips <sys/mtio.h>, which does not exist here.
+#   -M=32k           without it, gtar overflows its stack.
+#
+# Four shims, all added by the driver's own retry: os9bcopy, os9getpw,
+# os9geteuid (which gained unix_getuid for this), os9ftime and os9sswfm.
+gtar|gtar/GNUTAR|tar.c create.c extract.c buffer.c getoldopt.c list.c update.c rmdir.c version.c names.c diffarch.c port.c wildmat.c getopt.c getopt1.c regex.c gnu.c mangle.c getdate.c|GCC DEFBLOCKING=4 NO_REMOTE USG HAVE_SIZE_T ERROR=-1 S_IFMT=0x0080 S_IFREG=0x0100 S_IFDIR=0x0080 S_IFCHR=0x0000 S_ISUID=0x0800 S_ISGID=0x1000 S_ISVTX=0x2000 TRUE=1 FALSE=0 time_t=long uint=unsigned|/dd/LIB/os9lib.l /dd/LIB/blarslib.l /dd/LIB/unix.l|-V=/h7 -M=32k

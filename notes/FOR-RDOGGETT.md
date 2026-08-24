@@ -8,6 +8,46 @@ stands — nothing in it was undone.
 
 ---
 
+# 2026-08-24 — gtar builds; and I think I found what ls needs
+
+**gtar reads and extracts real tar archives, byte for byte.** Given a `.tar`
+made elsewhere it lists it with correct modes, owners, sizes and dates and
+extracts everything identically, including a binary. Someone who downloads a
+tarball now has something that opens it.
+
+**Creating archives is wrong and it says so loudly** — `file X shrunk by
+720880 bytes, padding with zeros`, on every file. So there is a recipe, but
+**do not install it over anything yet**. Cause below.
+
+**Your three K&R edits objection was right and they are gone.** The gtar
+source is the archive's own again; gcc2 never needed them.
+
+## The thing worth reading
+
+`LIB/os9lib.l` already has a `stat()` that WORKS — I measured it:
+
+    f1   ino=3108864  size=4   mtime=1787549940
+    f2   ino=2079232  size=8   mtime=1787549940     (different inode)
+    d1   ino=2318336  size=64  mode=0177677         (directory)
+
+Distinct inodes, real sizes, a real date. It only works when compiled against
+**os9lib's own `<stat.h>`** — the library fills os9lib's `struct stat`, and
+what everything here has in scope is `DEFS/UNIX`'s. Both are 36 bytes, so
+nothing is overrun; the fields just land in the wrong members. That is exactly
+why gtar's creation writes nonsense sizes.
+
+**And it is exactly what `SRC/ls/os9stubs.c` fabricates.** So before hunting
+the lost ls source in the pool, try the cheap experiment: delete os9stubs.c's
+`stat`/`fstat` and let os9lib's be linked instead. If that works, the
+collection can rebuild `ls` from what it already ships. I have written the
+method into `notes/PLAN-next.md` at the top.
+
+I could not do it for gtar today because gcc2's `cc2` dies on `port.c` once
+the os9lib headers are in scope — a compiler bug on one file, and the whole
+distance between gtar-as-reader and gtar complete.
+
+---
+
 # 2026-08-23 — ls: it compiles, and you should NOT take it
 
 You said same-or-better or not at all. **It is not better, so I have not
@@ -203,7 +243,7 @@ message, which scores as working.
   - A driver bug: two sources sharing a BASENAME silently clobbered each
     other's temporaries, and the link then blamed a missing `main`. Fixed.
   - Five of C News's six programs build — that tree had no recipe at all.
-  - The whole tree still builds: **286 of 289 recipes clean**, the same three
+  - The whole tree still builds: **287 of 290 recipes clean**, the same three
     known failures (`ls`, `pdraw`, `pep`). Recipes went 277 -> 288 overnight.
     Four whole-tree builds were run, not one — the third caught a fix of mine
     that worked on one recipe and broke another.
