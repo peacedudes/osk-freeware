@@ -8,14 +8,29 @@ stands — nothing in it was undone.
 
 ---
 
-# 2026-08-24, later — ls is rebuilt and adopted; gtar creates properly
+# 2026-08-24, later — ls rebuilt and adopted; gtar creates; C++ runs
 
-**One thing needs you, and only you can answer it.** `DOC/INDEX` says the C
-source for `cat`, `wc`, `basename` and `dirname` — our own gcc2 builds — is
-"on the h0 workshop disk". It is not in this repo and it is not in
-`~/Developer/os9/Scraped` (searched). **Do you still have that disk?** If you
-do, those four join `ls` and the collection can rebuild every program it built
-itself. If you do not, say so and I will write it down as gone.
+**Two things need you. Both are one-liners.**
+
+**1. Do you still have the h0 workshop disk?** `DOC/INDEX` says the C source
+for `cat`, `wc`, `basename` and `dirname` — our own gcc2 builds — is on it.
+It is not in this repo and not in `~/Developer/os9/Scraped` (searched). If you
+have it, those four join `ls` and the collection can rebuild everything it
+built itself. If not, say so and I will write it down as gone.
+
+**2. May I add two files to the disk, 256K, to make the C++ compiler work?**
+Right now it cannot compile anything, and I can show you why in one line:
+
+    $ /dd/CMDS/GCC2/gpp -c -o t.r t.cc
+    gpp: Can't fork 'cccp'.
+
+`gpp` forks a preprocessor called `cccp`. The disk ships the same program as
+`cccp2`, which is the name `gcc2` forks. A byte copy under the other name is
+enough. `collect` then opens `gpp.l`, and the disk ships that as `libgpp.l` —
+another byte copy. `CMDS/GCC2/cccp` (84K) and `LIB/gpp.l` (172K), both
+duplicates of files already there, and the shipped C++ compiler works. I have
+proved the whole path — compile, link, run — in the build overlay. I did not
+touch `disk/CMDS`, because you and I agreed I would not without asking.
 
 **`ls` now builds from `SRC/ls` and is installed.** You said same-or-better or
 not at all. Measured against your binary over 40 option cases — `-l -lt -lS
@@ -47,6 +62,22 @@ of the same names straight into them.
 already worked — I only thought it did not because yesterday's note said so.
 Ours is 130868 bytes against its 113562 and behaves the same, so there is
 nothing to gain by swapping it. What is new is that the recipe reproduces it.
+
+**The disk can build C++ now, and that is new.** A class, a constructor, a
+method call — compiled, linked and ran. It needed four things nobody had
+found: `gcc2` cannot start the C++ front end at all (no `.cc` in its suffix
+table), only `gpp` can; `gpp` wants `cccp`; `collect` lives in `CMDS/GCC2`
+rather than `CMDS` and nothing links without it once there is a global
+constructor; and it opens `gpp.l`. `make_overlay.sh` supplies all of that now
+and `rebuild.sh` has a `GPP` flag.
+
+**No recipe uses it yet.** The only C++ in the tree is `homelibr` — six
+programs, all six already on the disk as working binaries — and it needs a
+port, not a recipe: pre-standard class constants GCC 2.5.6 rejects, and an
+`ofstream` that cannot exist here because `LIB/libgpp.l` is libg++ 1.x and has
+no stream file classes at all. Written up in `notes/COMPILE-AUDIT.md`. I fixed
+one real bug there and stopped: `Include/common.h` had `#include <sgstat.h>`
+commented out, which made `Terminal.h` unparseable.
 
 Everything committed on the same branch, all eleven checks green.
 
