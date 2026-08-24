@@ -100,6 +100,18 @@ recipe. The old 42% was taken by hand in a shell on 2026-08-21 and could not
 be re-derived. CLAUDE.md now points at the tool rather than carrying a figure
 that goes stale every time a recipe lands.
 
+**Thirty-five more programs build from source now** — 290 recipes to 325, and
+279 programs built by one to 313. Eighteen mtools commands, six macutils, the
+four elvis helpers, and five singles. Every one compared against your binary
+first; the ones that did not match were left out with the reason written down.
+
+**One of those comparisons is worth your time.** `SRC/bix` has a `chown.c`, a
+`dir.c` and a `mkdir.c`, each a real program with a `main()`. None of them is
+the `CMDS` program of that name — I built all three and compared, and they are
+completely different programs. So a source file matching a program's NAME is
+evidence and not proof, and any count built on it is soft. `src_census.py`
+says that out loud now.
+
 Everything committed on the same branch, all eleven checks green.
 
 ---
