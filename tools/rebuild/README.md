@@ -218,3 +218,36 @@ a pool path moved underneath them: the driver called 38 successes "38 FAIL"
 while the binaries sat on disk, and the verifier called 23 good modules "23
 FAIL". Before believing a sweep, break something on purpose and confirm the
 number moves.
+
+## Building against os9lib
+
+`LIB/os9lib.l` is A. Seyama's OSK library, and its `stat()` is the only one
+here that tells the truth -- distinct inodes, real sizes, real dates. `ls` and
+`gtar` both need that, and both reach it the same way:
+
+    -V=/h7/OS9LIB -V=/dd/DEFS/os9lib -V=/h7
+
+in that ORDER, with `/dd/LIB/os9lib.l` in the libs field. Three things make
+the order load-bearing:
+
+  - `COMPAT/OS9LIB/sys/stat.h` has to be found before COMPAT's own, which
+    routes `<sys/stat.h>` to `<UNIX/stat.h>` and its `<modes.h>` -- and
+    os9lib's `<stat.h>` stops with `#error Can not include both stat.h and
+    modes.h.`
+  - `COMPAT/OS9LIB/fcntl.h` has to be found before os9lib's, which ends
+    `#define open unix_open` / `#define creat unix_creat` and expects a
+    companion **no library on this disk carries**. It keeps os9lib's `O_*`
+    values -- they are OS-9's own access modes, `O_RDONLY` is 1 and not
+    Unix's 0 -- and drops just the two renames.
+  - os9lib's DEFS has to come before COMPAT for everything else.
+
+A recipe doing this must NOT also `-D` the `S_IF*` names: os9lib's `stat.h`
+reads a defined `S_IFMT` as proof that `modes.h` got there first and stops
+with that same `#error`.
+
+**os9lib's `stat()` sign-extends the attribute byte.** A directory (`0xbf`,
+bit 7 set) arrives as `0xffbf` and a plain file (`0x1b`) as `0x001b`. Only the
+low byte means anything, and within it only bit 7 says anything about type --
+so `S_ISDIR` is `(m & 0x0080) != 0` and there is no separate regular-file bit
+to test. An `S_IFMT` of `0x0380` matches the sign fill instead of the type,
+which is what made `ls -l` print a directory instead of listing it.
