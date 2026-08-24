@@ -10,6 +10,57 @@ accessible in universe.** Everything below serves one of them.
 
 ---
 
+---
+
+## 0. THE NEXT POOL PASS — what to look for, before anything else
+
+rdoggett, 2026-08-23: *"we will make another pass at all of the collected
+treasures, and should look for ls or its missing piece specifically."*
+
+### ls — the one missing file, and how to recognise it
+
+The collection ships a good `ls` and cannot rebuild it. **What is missing is
+one file: a fixed `os9stubs.c`.** Everything else in `SRC/ls` compiles.
+
+**Do not go by version.** The shipped binary answers `--version` with
+`ls - 3.13-os9`, which is exactly what the pre-fix tree's `config.h` says. The
+fixed source is a later revision of the same port carrying the same string.
+
+Recognise it by CONTENT. The pre-fix `stat()` is:
+
+    buf->st_mode = S_IFREG | S_IRUSR | S_IXUSR | S_IROTH;   /* every file */
+
+and there is no `st_mtime` anywhere in the file. **The fixed one must read the
+real file descriptor** -- `_gs_gfd` returns the FD sector, which carries the
+attribute byte and the modification date -- and set `st_mode` and `st_mtime`
+from it. So:
+
+    grep -l '_gs_gfd'   over any os9stubs.c
+    grep -l 'st_mtime'  over any os9stubs.c
+    or any ls/fileutils tree whose os9stubs.c is not byte-identical to ours
+
+Already searched and NOT there: everything under `~/Developer/os9`, including
+`play/oskBoot/SRC/ls` (byte-identical to ours) and the 2026-08-10 salvage
+tree (its `src2/ls` holds an empty `sys/`).
+
+Sizes, for quick elimination: shipped binary **47892** bytes; a build from the
+pre-fix tree comes out **46522**.
+
+### Also worth a targeted look while the pool is open
+
+  - **`oleo`** -- `APPS/oleo1.6.tar.gz`, 217 files, the biggest single source
+    gap left. It arrives wrapped in a `DEFS/` of 59 files, 27 overlapping the
+    SDK heavily, so separating the sources is the careful part.
+  - **`ldblib.h`**, for lua -- named by `lua.c` under `#ifdef _OSK` and in no
+    copy of the tree.
+  - **Ultra C's syscall library** (`_os_crc`, `_os_ss_attr`, `_os9_id`), for
+    luac. `os_lib.l` here is not a relocatable module.
+  - **`rcs`** -- `rcssyn.c`, `rcsrev.c`, `rcsutil.c`, missing from the tree and
+    from `rcs4.lha`. RCS **version 4** (Purdue, 1987); GNU 5.7 is not drop-in.
+  - **`h_grafik.h`** (calc), **`graf.h`** (cgrafik), **`gpprim.r`** (mgif),
+    **`local.h`** with `loop`/`ERROR` in it (spooler) -- one file each, and
+    each is the whole blocker for its tree.
+
 ## 1. The trees with no recipe — what is actually left
 
 `tools/build.sh --missing` lists them and `notes/COMPILE-AUDIT.md` says why
