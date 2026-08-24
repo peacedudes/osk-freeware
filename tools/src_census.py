@@ -12,7 +12,10 @@ order matters: each is stronger evidence than the one below it.
   RECIPE    tools/rebuild/recipes.psv builds it, and names the tree. This is
             not an inference -- a recipe that is in that file has been run.
   DIRECT    disk/SRC/<program>/ exists, or some file under disk/SRC is named
-            <program>.c, .cc or .a
+            <program>.c, .cc or .a AND actually defines a program -- a main()
+            for C, a psect with a non-zero type for assembly. Without that
+            second half, CMDS/names matched gtar's names.c and CMDS/t matched
+            a two-line t.c in SRC/ls, and the coverage figure was too high.
   ARCHIVE   disk/SRC/<archive>/ exists, where DOC/ORIGINS says the program
             came from <archive>. A source tree here is named by ARCHIVE, not
             by program -- SRC/divutils holds gen, run and if -- and skipping
@@ -20,6 +23,13 @@ order matters: each is stronger evidence than the one below it.
   NONE      nothing. Most of CMDS is this, and that is the point of the
             collection: the binaries are the artefact, because for most of
             them no source survives anywhere.
+
+The answer is a FLOOR, not an exact count. Requiring a main() stops
+CMDS/names matching gtar's names.c, but it also loses a program whose main
+lives in a differently-named file -- GNU Chess builds `gnuan' from gnuan.c
+plus main.c, so gnuan.c has no main() and `gnuan' reads as NONE. A recipe is
+the cure for that: a recipe says exactly which tree, and RECIPE outranks
+every guess below it.
 
 Build products are NOT source. A run leaves ctmp_*.c and ctmp_*.a beside the
 sources -- c68 emits assembly -- so counting *.a naively during a build turns
@@ -34,7 +44,30 @@ import os
 import re
 import sys
 
-SRC_SUFFIX = (".c", ".cc", ".a", ".y", ".l", ".p", ".f", ".mod", ".pas")
+SRC_SUFFIX = (".c", ".cc", ".a", ".y", ".p", ".f", ".mod", ".pas")
+
+# A source file counts for a program only if it could BE that program. Without
+# this, CMDS/names matched gtar's names.c and CMDS/t matched the two-line t.c
+# in SRC/ls -- neither of which is the program named. `.l' is not in the list
+# above for the same reason: a `.l' beside sources is a LIBRARY far more often
+# than it is lex input, and every one of them matched something.
+HAS_MAIN = re.compile(
+    rb"^([A-Za-z_][A-Za-z0-9_ *]*[ *])?main[ \t]*\(", re.M)
+# An assembly program declares a psect with a type; `psect name,0,0,...' is a
+# subroutine object -- SRC/devprc/getsys.a is one, and it is not CMDS/getsys.
+ASM_PROGRAM = re.compile(rb"^\s*psect\s+[A-Za-z0-9_]+\s*,\s*[^0\s]", re.M | re.I)
+
+
+def is_program(path):
+    """Does this file define a program, as opposed to being one of its parts?"""
+    ext = os.path.splitext(path)[1].lower()
+    if ext not in (".c", ".cc", ".a"):
+        return True          # .y, .p, .f and friends are whole programs here
+    try:
+        body = open(path, "rb").read().replace(b"\r", b"\n")
+    except OSError:
+        return False
+    return bool((ASM_PROGRAM if ext == ".a" else HAS_MAIN).search(body))
 
 
 def cr_text(path):
@@ -60,7 +93,9 @@ def src_index(srcroot):
                 continue
             stem, ext = os.path.splitext(f)
             if ext.lower() in SRC_SUFFIX and stem:
-                stems.setdefault(stem.lower(), os.path.join(dirpath, f))
+                full = os.path.join(dirpath, f)
+                if stem.lower() not in stems and is_program(full):
+                    stems[stem.lower()] = full
     return trees, stems, leftovers
 
 
