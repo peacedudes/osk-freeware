@@ -23,14 +23,14 @@ clean, all eleven `check_disk.py` checks green.
 
 ## Where the build stands
 
-**307 of 309 recipes clean.** 289 of 291 was the whole tree from a clean
-clone on 2026-08-24 (`tools/build.sh --from-scratch`, overlay discarded and
-remade); the eighteen mtools commands were added after that and all eighteen
-build clean and match the shipped binaries. The two that still fail have always failed
-and each has a reason in `notes/COMPILE-AUDIT.md`: `pdraw` wants X11 headers
-that are not here, and `pep` wants the EPROM board's own assembly. Neither is
-a linkage problem — the driver already tries all three linkages on both.
-Re-measure rather than trust this paragraph.
+**323 of 325 recipes clean**, whole tree, from a clean clone, measured
+2026-08-24: `tools/build.sh --from-scratch`, overlay discarded and remade.
+The two that fail have always failed and neither is a linkage problem --
+`pdraw` wants X11 headers that are not here, `pep` wants an EPROM board's own
+assembly. Re-measure rather than trust this paragraph.
+
+`tools/src_census.py disk` for coverage: 390 of 937 programs have source
+here, 313 of them built by a recipe. Both move whenever a recipe lands.
 
 ## Rules that cost time to learn
 
