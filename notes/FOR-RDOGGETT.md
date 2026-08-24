@@ -8,6 +8,50 @@ stands — nothing in it was undone.
 
 ---
 
+# 2026-08-24, later — ls is rebuilt and adopted; gtar creates properly
+
+**One thing needs you, and only you can answer it.** `DOC/INDEX` says the C
+source for `cat`, `wc`, `basename` and `dirname` — our own gcc2 builds — is
+"on the h0 workshop disk". It is not in this repo and it is not in
+`~/Developer/os9/Scraped` (searched). **Do you still have that disk?** If you
+do, those four join `ls` and the collection can rebuild every program it built
+itself. If you do not, say so and I will write it down as gone.
+
+**`ls` now builds from `SRC/ls` and is installed.** You said same-or-better or
+not at all. Measured against your binary over 40 option cases — `-l -lt -lS
+-lR -C -x -m -1 -a -F -d -p -s -k -Q -b -o -g -n -w -T --full-time --help`,
+two directories at once, a missing file, and the whole of `/dd/CMDS`:
+
+    39 of 40 byte-identical
+     1 better:  ls -i printed 0 for every inode.  It prints real ones now.
+
+Three things were wrong and all three are in the source, marked and dated:
+
+  - `os9stubs.c` fabricated `stat`/`fstat` — one mode for every file, no date.
+    os9lib has real ones. Deleted ours; the recipe links `os9lib.l`.
+  - os9lib's `stat()` **sign-extends the attribute byte**, so a directory
+    (`0xbf`) arrives as `0xffbf`. `system.h` tested it through an `S_IFMT` of
+    `0x0380`, matched the sign fill, and `S_ISDIR` was false for every
+    directory on the disk — `ls -l /dd/DOC` printed the directory instead of
+    listing it.
+  - `filemode.c` never included `system.h`, so it rendered OS-9's attribute
+    bits with Unix's `0777` layout and printed `d--S--S--T` for every one.
+
+**gtar creates archives correctly now** — the thing that was broken yesterday.
+`gtar -cf` over `/dd/SYS`, extracted host-side: **809 files, all byte-identical**,
+binaries included. `cc2` no longer dies on `port.c`: os9lib defines `bcopy`,
+`bcmp` and `bzero` as macros, and port.c's `USG` block was defining functions
+of the same names straight into them.
+
+**I did NOT replace `CMDS/REBUILT/gtar`.** That one is an archive binary and it
+already worked — I only thought it did not because yesterday's note said so.
+Ours is 130868 bytes against its 113562 and behaves the same, so there is
+nothing to gain by swapping it. What is new is that the recipe reproduces it.
+
+Everything committed on the same branch, all eleven checks green.
+
+---
+
 # 2026-08-24 — gtar builds; and I think I found what ls needs
 
 **gtar reads and extracts real tar archives, byte for byte.** Given a `.tar`
