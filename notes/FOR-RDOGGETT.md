@@ -8,6 +8,55 @@ stands — nothing in it was undone.
 
 ---
 
+# 2026-08-23 — you asked how these ever compiled. Answer: a different compiler
+
+**They were built with GCC, not Microware's `cc`.** Their own makefiles say so
+— `gtar: CC = gcc`, `rayshade: CC = gcc -mlong-calls`, `mtools` and `jpeglib`:
+`gcc2`. GCC is ANSI, has no 512-character line limit, and `-mlong-calls` is
+exactly the answer to rayshade's huge stack frame. **So most of my source
+edits work around the wrong compiler, not broken source.** You were right to
+push on it.
+
+Which of the six survive that:
+
+  - **gtar's three K&R conversions** — compiler workaround. Confirmed: under
+    gcc2 those files sail past.
+  - **rayshade's `MAXMODELDEPTH` and `lex.c free()`** — compiler workaround.
+  - **rayshade's `CPPSTDIN`** — stands. A real runtime bug, nothing to do with
+    the compiler.
+  - **ed's `_SIZE_T` guard** — stands, but it is MY fault: I created that
+    conflict by adding `size_t` to `SRC/COMPAT/types.h`. ed really is a `cc`
+    build.
+  - **macutils** — no source edits, only a driver fix.
+
+**And the thing worth having: the gcc2 on your disk could not compile this.**
+
+    #include <ctype.h>
+    #include <stdlib.h>
+    main(){return 0;}
+
+Two faults, both in `DEFS/GCC2/stdlib.h`, both now fixed and committed: it
+pulled in `<direct.h>` which needs `WORD` from a `stdio.h` that GCC's own
+shadows, and it declared `isalnum(char c)` and fifteen more as functions when
+`<ctype.h>` defines them as macros. **That is very likely why `ls` was
+"repaired" rather than rebuilt, and why `mtools` and `lua` were written off.**
+Nobody had tried the disk's gcc2 on something small enough to see why.
+
+It does not rescue gtar — under gcc2 it stops on the same names it stopped on
+under `cc` (`TRUE`, `FALSE`, `ERROR`, `S_ISUID`). Two independent routes, same
+wall, so "what is left is a port decision" holds either way.
+
+I did **not** build the `GCC` recipe flag. The DEFS repair under it was the
+real blocker and that is done; the flag itself needs a way to link long object
+lists through `gcc2` (it cannot be `l68` — gcc objects carry their own magic),
+and I would rather you saw the finding than a half-built flag.
+
+**If you want the compiler-workaround edits reverted, say so** — with the
+gcc2 repair in place they may simply be unnecessary, and I would rather have a
+`GCC` recipe than six edits to other people's source.
+
+---
+
 # 2026-08-23 (overnight) — three programs that had never built
 
 
