@@ -24,7 +24,14 @@ order matters: each is stronger evidence than the one below it.
             collection: the binaries are the artefact, because for most of
             them no source survives anywhere.
 
-The answer is a FLOOR, not an exact count. Requiring a main() stops
+The answer is neither a ceiling nor an exact count, in both directions.
+
+It can be too HIGH: a name match is evidence, not proof. `SRC/bix` holds a
+`chown.c`, a `dir.c` and a `mkdir.c`, each with a main(), and not one of them
+is the `CMDS` program of that name -- built and compared, all three differ
+completely. Only a RECIPE settles it, because a recipe has been run.
+
+It can also be too LOW. Requiring a main() stops
 CMDS/names matching gtar's names.c, but it also loses a program whose main
 lives in a differently-named file -- GNU Chess builds `gnuan' from gnuan.c
 plus main.c, so gnuan.c has no main() and `gnuan' reads as NONE. A recipe is

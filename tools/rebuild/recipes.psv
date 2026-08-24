@@ -628,3 +628,19 @@ macsave|macutils/MIXED|macsave.c globals.c macbinary.c dir.c mcb.c ../UTIL/trans
 macstream|macutils/MIXED|macstream.c ../UTIL/transname.c ../UTIL/util.c ../UTIL/backtrans.c ../FILEIO/rdfile.c ../FILEIO/fileglob.c|CPP2 NODOT|/dd/LIB/blarslib.l|-V=/dd/DEFS/blarsdefs -V=/h6/macutils/UTIL -V=/h6/macutils/FILEIO -V=/h6/macutils/CRC
 macunpack|macutils/MACUNPACK|macunpack.c globals.c macbinary.c dir.c mcb.c bin.c jdw.c stf.c lzc.c pit.c sit.c dia.c cpt.c zma.c lzh.c dd.c de_huffman.c de_compress.c de_lzah.c de_lzh.c crc.c bits_be.c ../UTIL/transname.c ../UTIL/util.c ../FILEIO/wrfile.c ../FILEIO/fileglob.c ../CRC/binhex.c ../CRC/ccitt.c|CPP2|/dd/LIB/blarslib.l|-V=/dd/DEFS/blarsdefs -V=/h6/macutils/UTIL -V=/h6/macutils/FILEIO -V=/h6/macutils/CRC
 makecrc|macutils/CRC|makecrc.c|CPP2 NODOT||
+# Five more, each compared against the shipped binary and identical.
+perr|bix|perr.c|||
+qsort9|bix|qsort9.c|||
+rdjpgcom|jpeglib/JPEG_5A|rdjpgcom.c|KNR||
+wrjpgcom|jpeglib/JPEG_5A|wrjpgcom.c|KNR||
+lessecho|less/less_332|lessecho.c version.c|_OSK_MWC32=1 _OSK=1||
+# lesskey builds and works, and is NOT identical to the shipped one: given no
+# key file, ours says "Cannot open /dd/.lesskey" and prints its usage, while
+# the shipped build lets OS-9's E$PNNF escape.  Different builds of the same
+# program.  Nothing installed either way.
+lesskey|less/less_332|lesskey.c version.c|_OSK_MWC32=1 _OSK=1||
+# NOT here on purpose: SRC/bix has chown.c, dir.c and mkdir.c, and none of
+# them is the CMDS program of that name -- compared, and all three differ
+# completely (CMDS/chown takes <opts>, bix's takes -z; CMDS/dir lists a
+# directory, bix's does something else).  Matching a source file by NAME is
+# evidence, not proof, and these three are where it runs out.
