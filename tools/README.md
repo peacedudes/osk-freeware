@@ -6,6 +6,8 @@
     gen_depends.py      regenerate disk/DOC/DEPENDS
     gen_catalog.py      build docs/index.html, the browsable guide
     measure_layout.py   where the programs expect their files -- /dd or /h0
+    doc_census.py       how many programs have documentation
+    src_census.py       how many have SOURCE here, and by which route
     screen_microware.py screen a candidate for Microware material BEFORE it
                         goes anywhere near disk/
     screened-src.txt    files under disk/SRC that screen strongly and have
