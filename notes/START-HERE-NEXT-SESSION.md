@@ -23,11 +23,12 @@ clean, all eleven `check_disk.py` checks green.
 
 ## Where the build stands
 
-**287 of 290 recipes clean**, whole tree, measured 2026-08-23 with every recipe
-in one run. The three that fail are the three that have always failed and each
-has a reason in `notes/COMPILE-AUDIT.md`: `ls` (a gcc2 build), `pdraw` (X11)
-and `pep` (the EPROM board's own library). Re-measure rather than trust this
-paragraph — but it was a full run, not a prediction.
+**288 of 290 recipes clean**, whole tree, measured 2026-08-23 with every recipe
+in one run, `ls` added 2026-08-24. The two that still fail have always failed
+and each has a reason in `notes/COMPILE-AUDIT.md`: `pdraw` wants X11 headers
+that are not here, and `pep` wants the EPROM board's own assembly. Neither is
+a linkage problem — the driver already tries all three linkages on both.
+Re-measure rather than trust this paragraph.
 
 ## Rules that cost time to learn
 
