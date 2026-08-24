@@ -644,3 +644,13 @@ lesskey|less/less_332|lesskey.c version.c|_OSK_MWC32=1 _OSK=1||
 # completely (CMDS/chown takes <opts>, bix's takes -z; CMDS/dir lists a
 # directory, bix's does something else).  Matching a source file by NAME is
 # evidence, not proof, and these three are where it runs out.
+# elvis's four helper programs.  The makefile lists more files on each rule's
+# DEPENDENCY line than its compile line uses -- ctags names wildcard.c and
+# elvprsv names five others, and compiling those really does break the link.
+# Take the compile line, not the dependency line.  All four compared against
+# the shipped binaries and identical; CMDS/ctags is the BSD one, so elvis's is
+# REBUILT/ctags.elvis, whose module is called ctags.
+ctags.elvis|elvis|ctags.c osk.c|MODNAME=ctags|/dd/LIB/termlib.l|
+ref|elvis|ref.c||/dd/LIB/termlib.l|
+elvrec|elvis|elvrec.c osk.c||/dd/LIB/termlib.l|
+elvprsv|elvis|elvprsv.c||/dd/LIB/termlib.l|

@@ -61,7 +61,7 @@ i=0
 compile() {   # $1 arch  $2 sources  $3 oskdef  $4 defines  $5 prog  $6 extra  $7 libs
   printf 'setenv CLIB /dd/LIB\nsetenv CDEF /dd/DEFS\nchx /dd/CMDS\nchd /h6/%s\n' "$1"
   printf 'cc %s %s %s%s -n=%s -f=/h6/%s/R_%s -V=/h6/%s -V=/h7 %s%s' \
-         "$2" "$QMFLAG" "$3" "$4" "$5" "$1" "$5" "$1" "$6" "$7"
+         "$2" "$QMFLAG" "$3" "$4" "${MODNAME:-$5}" "$1" "$5" "$1" "$6" "$7"
   printf '%s\n' "$QMLIBS"
   printf '\033\n\004\n'
 }
@@ -395,7 +395,7 @@ compile_cpp2_post() {  # $1 arch  $2 sources  $3 prog  $4 extra  $5 libs  $6 dir
   done
   printf 'del ctmp.parts.l\nmerge -z=ctmp.list >ctmp.parts.l\n'
   printf 'cc ctmp_%s.r %s -n=%s -f=/h6/%s/R_%s -l=ctmp.parts.l -l=ctmp.parts.l -l=ctmp.parts.l %s%s' \
-         "$(tmpbase "$mainsrc" "$2")" "$QMFLAG" "$3" "$1" "$3" "$4" "$5"
+         "$(tmpbase "$mainsrc" "$2")" "$QMFLAG" "${MODNAME:-$3}" "$1" "$3" "$4" "$5"
   printf '%s\n' "$QMLIBS"
   printf '\033\n\004\n'
 }
@@ -482,7 +482,7 @@ compile_gcc() {    # $1 arch  $2 sources  $3 defines  $4 prog  $5 extra  $6 libs
   printf 'del ctmp.parts2.l\ndel ctmp.parts3.l\n'
   printf 'copy -r ctmp.parts.l ctmp.parts2.l\ncopy -r ctmp.parts.l ctmp.parts3.l\n'
   printf 'l68 -o=/h6/%s/R_%s -a -n=%s /dd/LIB/cstart.r ctmp_%s.r' \
-         "$1" "$4" "$4" "$(tmpbase "$mainsrc" "$2")"
+         "$1" "$4" "${MODNAME:-$4}" "$(tmpbase "$mainsrc" "$2")"
   printf '%s -l=ctmp.parts.l -l=ctmp.parts2.l -l=ctmp.parts3.l%s' "$lnk" "$6"
   printf ' -l=/dd/LIB/libgcc.l -l=/dd/LIB/clibn.l -l=/dd/LIB/math.l -l=/dd/LIB/sys.l\n'
   printf '\033\n\004\n'
@@ -604,7 +604,7 @@ compile_knr() {    # $1 arch  $2 sources  $3 oskdef  $4 defines  $5 prog  $6 ext
   done
   printf 'del ctmp.parts.l\nmerge -z=ctmp.list >ctmp.parts.l\n'
   printf 'cc %s %s -n=%s -f=/h6/%s/R_%s -l=ctmp.parts.l -l=ctmp.parts.l -l=ctmp.parts.l %s%s' \
-         "$(obj "$mainsrc")" "$QMFLAG" "$5" "$1" "$5" "$6" "$7"
+         "$(obj "$mainsrc")" "$QMFLAG" "${MODNAME:-$5}" "$1" "$5" "$6" "$7"
   printf '%s\n' "$QMLIBS"
   printf '\033\n\004\n'
 }
@@ -646,7 +646,7 @@ compile_long() {   # $1 arch  $2 sources  $3 oskdef  $4 defines  $5 prog  $6 ext
   # collection has.
   printf 'del ctmp.parts.l\nmerge -z=ctmp.list >ctmp.parts.l\n'
   printf 'cc %s.r %s -n=%s -f=/h6/%s/R_%s -l=ctmp.parts.l -l=ctmp.parts.l -l=ctmp.parts.l -l=ctmp.parts.l -l=ctmp.parts.l %s%s' \
-         "$(basename "$mainsrc" .c)" "$QMFLAG" "$5" "$1" "$5" "$6" "$7"
+         "$(basename "$mainsrc" .c)" "$QMFLAG" "${MODNAME:-$5}" "$1" "$5" "$6" "$7"
   printf '%s\n' "$QMLIBS"
   printf '\033\n\004\n'
 }
@@ -702,6 +702,10 @@ while IFS='|' read -r prog arch srcs defs libs extra; do
       GCC)    GCCMODE=1;;
       GPP)    GPPMODE=1;;
       ASM)    ASMMODE=1;;
+      # MODNAME= names the MODULE, when it differs from the file.  The disk
+      # has 63 modules whose name is not their filename and 61 of those are
+      # the author's own capitalisation, which a rebuild has to keep:
+      # CMDS/aterm holds ATerm, REBUILT/ctags.elvis holds ctags.
       MODNAME=*) MODNAME=${x#MODNAME=};;
       TRAPFREE) TRAPFREE=1;;
       *)      keep="$keep $x";;
