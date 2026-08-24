@@ -147,10 +147,10 @@ knr_wanted() {     # $1 source file as the recipe spells it
 # CPP2 for now.
 tmpbase() {        # $1 source file  $2 the recipe\'s whole source list
   local b n=0 x y
-  b=$(basename "$1"); b=${b%.cc}; b=${b%.c}
+  b=$(basename "$1"); b=${b%.cc}; b=${b%.c}; b=${b%.a}
   for x in $2; do
     [ "$x" = "$1" ] && break
-    y=$(basename "$x"); y=${y%.cc}; y=${y%.c}
+    y=$(basename "$x"); y=${y%.cc}; y=${y%.c}; y=${y%.a}
     [ "$y" = "$b" ] && n=$((n+1))
   done
   if [ "$n" = 0 ]; then printf '%s' "$b"; else printf '%s_%d' "$b" "$n"; fi
@@ -488,6 +488,39 @@ compile_gcc() {    # $1 arch  $2 sources  $3 defines  $4 prog  $5 extra  $6 libs
   printf '\033\n\004\n'
 }
 
+# 68k assembly, through r68.  A recipe asks for this with ASM; sources end .a.
+#
+# NO cstart.  An assembly module carries its own psect -- type, attributes,
+# entry point -- so l68 gets the objects and two libraries and nothing else.
+#
+# Those two libraries are the whole trick.  ATerm refers to 53 names it never
+# defines (F$Fork, I$GetStt, SS_Opt, PD_BAU, E$CEF, C$CR ...) and the Microware
+# ASSEMBLER definitions file that would supply them is NOT in this SDK copy --
+# DEFS/oskdefs.d here is 1470 bytes and holds only the module type and
+# permission equates.  `os9.l' and `sys.l' between them resolve all 53, so the
+# link that looked like it needed a missing header only needed two -l=.
+#
+# MODNAME matters, and its CASE matters.  With -n=ATerm this produces a module
+# byte-for-byte identical to the aterm that ships; with -n=aterm it differs in
+# exactly five bytes, two in the name and the three CRC bytes after it.
+compile_asm() {    # $1 arch  $2 sources  $3 defines(unused)  $4 prog  $5 extra  $6 libs  $7 dir
+  local s base inc="" lnk="" x objs=""
+  for x in ${5:-}; do
+    case "$x" in -V=*) inc="$inc -V=${x#-V=}";; *) lnk="$lnk $x";; esac
+  done
+  printf 'chx /dd/CMDS\nchd /h6/%s\n' "$1"
+  for s in $2; do
+    base=$(tmpbase "$s" "$2")
+    printf 'del ctmp_%s.r\n' "$base"
+    printf 'r68 %s -o=ctmp_%s.r%s\n' "$s" "$base" "$inc"
+    objs="$objs ctmp_$base.r"
+  done
+  printf 'del R_%s\n' "$4"
+  printf 'l68 -o=/h6/%s/R_%s -a -n=%s%s%s -l=/dd/LIB/os9.l -l=/dd/LIB/sys.l%s\n' \
+         "$1" "$4" "${MODNAME:-$4}" "$objs" "$lnk" "$6"
+  printf '\033\n\004\n'
+}
+
 # C++, through gpp.  A recipe asks for this with GPP, and sources end in .cc.
 #
 # gcc2 cannot start the C++ front end AT ALL: its suffix table has no entry for
@@ -656,7 +689,7 @@ while IFS='|' read -r prog arch srcs defs libs extra; do
   # One pass over the field, not three substitutions: `${defs/KNR/}' turns
   # `KNR=a.c,b.c' into `=a.c,b.c', which then reaches cc as `-D=a.c,b.c'.
   OSKDEF=-DOSK
-  KNRMODE=0; KNRFILES=""; CPP2MODE=0; LONGREF=0; M020=0; GCCMODE=0; GPPMODE=0; TRAPFREE=0; keep=""
+  KNRMODE=0; KNRFILES=""; CPP2MODE=0; LONGREF=0; M020=0; GCCMODE=0; GPPMODE=0; ASMMODE=0; MODNAME=""; TRAPFREE=0; keep=""
   for x in $defs; do
     case "$x" in
       NOOSK)  OSKDEF="";;
@@ -668,6 +701,8 @@ while IFS='|' read -r prog arch srcs defs libs extra; do
       M020)   M020=1;;
       GCC)    GCCMODE=1;;
       GPP)    GPPMODE=1;;
+      ASM)    ASMMODE=1;;
+      MODNAME=*) MODNAME=${x#MODNAME=};;
       TRAPFREE) TRAPFREE=1;;
       *)      keep="$keep $x";;
     esac
@@ -734,6 +769,11 @@ while IFS='|' read -r prog arch srcs defs libs extra; do
   # are 430 characters and its cc line is 900, because the output path, the -V
   # directories and four libraries come after them.
   attempt() {   # $1 sources
+    if [ "$ASMMODE" = 1 ]; then
+      compile_asm "$arch" "$1" "$D" "$prog" "${extra:-}" "$L" "$d" > "$WORK/cmd" || return
+      run "$POOL" "$WORK/cmd" "$WORK/out"
+      return
+    fi
     if [ "$GPPMODE" = 1 ]; then
       compile_gpp "$arch" "$1" "$D" "$prog" "${extra:-}" "$L" "$d" > "$WORK/cmd" || return
       LIMIT=2400

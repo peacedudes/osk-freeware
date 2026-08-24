@@ -588,3 +588,7 @@ mtools|mtools/MTOOLS_3.6|mtools.c buffer.c codepage.c codepages.c config.c copyf
 # Four shims, all added by the driver's own retry: os9bcopy, os9getpw,
 # os9geteuid (which gained unix_getuid for this), os9ftime and os9sswfm.
 gtar|gtar/GNUTAR|tar.c create.c extract.c buffer.c getoldopt.c list.c update.c rmdir.c version.c names.c diffarch.c port.c wildmat.c getopt.c getopt1.c regex.c gnu.c mangle.c getdate.c|GCC DEFBLOCKING=4 NO_REMOTE USG HAVE_SIZE_T HAVE_STRSTR TRUE=1 FALSE=0 time_t=long uint=unsigned|/dd/LIB/os9lib.l /dd/LIB/blarslib.l /dd/LIB/unix.l|-V=/h7/OS9LIB -V=/dd/DEFS/os9lib -V=/h7 -M=32k
+# ASM, and the only recipe that is.  MODNAME because the module is ATerm
+# and the file is aterm: with -n=aterm the result differs from the shipped
+# binary in five bytes, two of the name and the three CRC bytes.
+aterm|aterm|ATerm.a|ASM MODNAME=ATerm||

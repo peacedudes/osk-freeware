@@ -251,3 +251,26 @@ low byte means anything, and within it only bit 7 says anything about type --
 so `S_ISDIR` is `(m & 0x0080) != 0` and there is no separate regular-file bit
 to test. An `S_IFMT` of `0x0380` matches the sign fill instead of the type,
 which is what made `ls -l` print a directory instead of listing it.
+
+## ASM -- assembling a module with r68
+
+One recipe uses it, `aterm`, and it comes out **byte-for-byte identical to the
+binary that ships**. That is the strongest check this machinery has produced,
+so it is worth writing down what it took:
+
+  - **No cstart.** An assembly module carries its own psect: type, language,
+    attributes, edition, stack, entry point. l68 gets the object and two
+    libraries and nothing else.
+  - **`-l=/dd/LIB/os9.l -l=/dd/LIB/sys.l`.** ATerm refers to 53 names it does
+    not define -- `F$Fork`, `I$GetStt`, `SS_Opt`, `PD_BAU`, `E$CEF`, `C$CR`
+    and the rest. Microware's assembler definitions file would supply them and
+    **is not in this SDK copy**: `DEFS/oskdefs.d` here is 1470 bytes and holds
+    only the module-type, attribute and permission equates. Those two
+    libraries resolve all 53. Without them the link fails on every one and
+    reads exactly like a missing header.
+  - **`MODNAME=`, and its case.** The file is `aterm`, the module inside is
+    `ATerm`. With `-n=aterm` the result differs from the shipped binary in
+    five bytes: two of the name, and the three CRC bytes that follow from it.
+  - `use <name>` resolves to `/dd/defs/name`, which is how every assembly
+    source here reaches `oskdefs.d`.
+

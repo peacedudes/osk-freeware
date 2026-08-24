@@ -250,3 +250,24 @@ is a five-minute fix:
 
 None of it is impossible. It is a port, not a recipe, and the payoff is
 reproducibility for six binaries that already work.
+
+## Assembly: aterm reproduces exactly, the other two cannot be built (2026-08-24)
+
+`tools/rebuild/` has an `ASM` flag now. `aterm` builds through it and is
+**byte-for-byte the binary that ships**. The other two assembly trees are
+blocked on files that are not in this repo and not in
+`~/Developer/os9/Scraped`:
+
+  - **`serload`** -- its own `dependencies` file names `../rt_comm/setopt.a`,
+    `../rt_comm/rt_comm.a`, `../rt_comm/pack.a`, `../rt_comm/unpack.a` and
+    `../rt_comm/rdlin_tim.a`. There is no `rt_comm` directory anywhere. Two
+    programs, `txmod` and `rxmod`, both on the disk.
+  - **`graph`** -- `sine.a` and its siblings `use <graphmakros>` and
+    `use <mathmakros>`, which r68 resolves to `/dd/defs/graphmakros` and
+    `/dd/defs/mathmakros`. Neither exists. Six programs, all on the disk:
+    `apfel`, `sine`, `graph`, `showpic`, `graphdemo`, `graphsave`. If those
+    two macro files ever turn up, each is one recipe line.
+
+`devprc/getsys.a` is NOT the shipped `getsys`: its psect is type 0, language
+0, entry 0 -- a subroutine object holding `_gs_sdevn()` for C callers.
+
