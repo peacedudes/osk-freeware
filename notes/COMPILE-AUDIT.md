@@ -193,3 +193,60 @@ The other 53 un-recipe'd trees map to several programs each, or to none that
 ships. Those need the archive-versus-program mapping read out of `DOC/ORIGINS`
 first -- `SRC/divutils` holds `gen`, `run` and `if`, and counting by tree name
 over-counts badly. That is the next increment.
+
+
+## C++ works. homelibr still does not. (2026-08-24)
+
+**The disk can compile, link and run C++.** Proven end to end with a class,
+a constructor and a method call: it printed what it was supposed to. What it
+took, none of it obvious:
+
+  - **`gcc2` cannot start the C++ front end at all.** Its suffix table has no
+    entry for a `.cc` -- it calls one a "linker input file unused since
+    linking not done" -- and `-Fcc2plus`, which the homelibr makefiles use,
+    does not change that. The only door is `gpp`.
+  - **`gpp` forks `cccp`, and nothing on this disk answers to that name.**
+    The preprocessor ships as `cccp2`, which is what `gcc2` forks. A plain
+    copy under the other name is enough; the module inside is still called
+    `cccp2` and os9exec runs it.
+  - **`collect` is in `CMDS/GCC2`, not `CMDS`.** Any program with a global
+    constructor needs it, or the link stops on `__CTOR_LIST__` and
+    `__DTOR_LIST__` unresolved. Only gpp's spec runs it.
+  - **`collect` opens `gpp.l`; the disk ships `libgpp.l`.** Another copy.
+  - The link must go through `gpp`, not `l68` by hand the way the C path
+    does it -- and gpp has no `-n=`, so **the module takes its name from the
+    output FILE**. Write the file as `<prog>` and rename the file afterwards.
+
+`make_overlay.sh` makes all three names now, and `rebuild.sh` has a `GPP`
+recipe flag. **No recipe uses it yet**, because the only C++ in the tree is
+homelibr and homelibr does not build.
+
+### What blocks homelibr
+
+Six programs -- `Ascii2Libr`, `EditLibr`, `Libr2Ascii`, `Librarian`,
+`PrintCards`, `PrintLabels` -- all six already on the disk as working
+binaries. Fixed so far: `Include/common.h` had `#include <sgstat.h>`
+commented out, so `Terminal.h`'s two `sgbuf` members were an undeclared type
+and every file that reached that header stopped. That one is done and marked.
+
+What is left is a **dialect** problem and a **library** problem, and neither
+is a five-minute fix:
+
+  - **Pre-standard class constants.** `const bufSize = 512;` inside a class,
+    then `char Terminal::termBuf[bufSize];` at file scope in the `.cc`.
+    GCC 2.5.6 wants `Terminal::bufSize`. Same for `TCapsLen` and
+    `maxblocks` -- eight or so sites across `Terminal.cc`, `Card.cc`,
+    `PTree.cc`.
+  - **`fstream.h` does not exist here, and cannot.** `EditForm.cc` declares
+    `ofstream` and `ifstream`. `LIB/libgpp.l` is libg++ **1.x**: it has
+    `filebuf` and `File`, and no `fstream`, `ifstream` or `ofstream` at all.
+    Writing the header would mean writing the classes.
+  - **`<stdlib.h>` collides.** With `-I/dd/DEFS/CC` on the path, `<stdlib.h>`
+    is libg++'s, not the SDK's, so `os9forkc` -- which `Terminal.cc` passes
+    to `os9exec` -- is undeclared. Putting the SDK's first breaks the C++
+    headers instead.
+  - `ParseExpr.tab.cc` includes `"ParseExpr.tab.h"` and cccp2 does not search
+    the source file's own directory, so that one needs `-V=<tree>/Lib`.
+
+None of it is impossible. It is a port, not a recipe, and the payoff is
+reproducibility for six binaries that already work.

@@ -146,11 +146,12 @@ knr_wanted() {     # $1 source file as the recipe spells it
 # source and the collision is cc\'s, not ours -- so a same-basename recipe needs
 # CPP2 for now.
 tmpbase() {        # $1 source file  $2 the recipe\'s whole source list
-  local b n=0 x
-  b=$(basename "$1" .c)
+  local b n=0 x y
+  b=$(basename "$1"); b=${b%.cc}; b=${b%.c}
   for x in $2; do
     [ "$x" = "$1" ] && break
-    [ "$(basename "$x" .c)" = "$b" ] && n=$((n+1))
+    y=$(basename "$x"); y=${y%.cc}; y=${y%.c}
+    [ "$y" = "$b" ] && n=$((n+1))
   done
   if [ "$n" = 0 ]; then printf '%s' "$b"; else printf '%s_%d' "$b" "$n"; fi
 }
@@ -487,6 +488,48 @@ compile_gcc() {    # $1 arch  $2 sources  $3 defines  $4 prog  $5 extra  $6 libs
   printf '\033\n\004\n'
 }
 
+# C++, through gpp.  A recipe asks for this with GPP, and sources end in .cc.
+#
+# gcc2 cannot start the C++ front end AT ALL: its suffix table has no entry for
+# a .cc and it answers `linker input file unused since linking not done'.  The
+# only door is `gpp', which make_overlay.sh has to supply two extra names for
+# (see the comment there) -- `cccp', which gpp forks, and `gpp.l', which
+# collect opens.
+#
+# The LINK goes through gpp as well, and NOT through l68 by hand the way the C
+# path does it.  A C++ program with any global constructor needs
+# __CTOR_LIST__ and __DTOR_LIST__, only `collect' builds those, and only gpp's
+# spec runs collect.  gpp has no -n=, so the module takes its name from the
+# OUTPUT FILE -- which is exactly what is wanted here: write the file as
+# <prog>, so the module inside is called <prog>, and rename the FILE to
+# R_<prog> afterwards.  Renaming a file does not touch the module name.
+compile_gpp() {    # $1 arch  $2 sources  $3 defines  $4 prog  $5 extra  $6 libs  $7 dir
+  local s base inc="" lnk="" x objs=""
+  for x in ${5:-}; do
+    case "$x" in -V=*) inc="$inc -I${x#-V=}";; *) lnk="$lnk $x";; esac
+  done
+  printf 'chx /dd/CMDS\nchd /h6/%s\n' "$1"
+  for s in $2; do
+    base=$(tmpbase "$s" "$2")
+    printf 'del ctmp_%s.r\n' "$base"
+    printf 'gpp -c %s -I/h6/%s%s -o ctmp_%s.r %s\n' "$3" "$1" "$inc" "$base" "$s"
+    objs="$objs ctmp_$base.r"
+  done
+  # The output file MUST be called <prog>, because that is where the module
+  # gets its name -- and in this tree <prog> is very often also the name of a
+  # DIRECTORY (homelibr/Librarian holds Librarian.cc).  The first version of
+  # this wrote <prog> in place and then renamed it, which on a failed link
+  # renamed the SOURCE DIRECTORY to R_<prog>.  So: link inside a scratch
+  # directory, where no name can collide, and copy the result out.  A failed
+  # link leaves no R_<prog>, which is exactly how a failure should read.
+  printf 'makdir ctmpout\n'
+  printf 'del ctmpout/%s\ndel R_%s\n' "$4" "$4"
+  printf 'gpp -o ctmpout/%s%s%s%s\n' "$4" "$objs" "$lnk" "$6"
+  printf 'copy -r ctmpout/%s R_%s\n' "$4" "$4"
+  printf 'del ctmpout/%s\n' "$4"
+  printf '\033\n\004\n'
+}
+
 # ANSI C, run through ansi2knr first.  A recipe asks for this with the KNR
 # pseudo-define, the way NOOSK opts out of -DOSK.  Microware's cc is K&R and
 # will not read a prototype; ansi2knr is the standard de-ANSIfier, is itself
@@ -613,7 +656,7 @@ while IFS='|' read -r prog arch srcs defs libs extra; do
   # One pass over the field, not three substitutions: `${defs/KNR/}' turns
   # `KNR=a.c,b.c' into `=a.c,b.c', which then reaches cc as `-D=a.c,b.c'.
   OSKDEF=-DOSK
-  KNRMODE=0; KNRFILES=""; CPP2MODE=0; LONGREF=0; M020=0; GCCMODE=0; TRAPFREE=0; keep=""
+  KNRMODE=0; KNRFILES=""; CPP2MODE=0; LONGREF=0; M020=0; GCCMODE=0; GPPMODE=0; TRAPFREE=0; keep=""
   for x in $defs; do
     case "$x" in
       NOOSK)  OSKDEF="";;
@@ -624,6 +667,7 @@ while IFS='|' read -r prog arch srcs defs libs extra; do
       LONGREF) LONGREF=1;;
       M020)   M020=1;;
       GCC)    GCCMODE=1;;
+      GPP)    GPPMODE=1;;
       TRAPFREE) TRAPFREE=1;;
       *)      keep="$keep $x";;
     esac
@@ -690,6 +734,12 @@ while IFS='|' read -r prog arch srcs defs libs extra; do
   # are 430 characters and its cc line is 900, because the output path, the -V
   # directories and four libraries come after them.
   attempt() {   # $1 sources
+    if [ "$GPPMODE" = 1 ]; then
+      compile_gpp "$arch" "$1" "$D" "$prog" "${extra:-}" "$L" "$d" > "$WORK/cmd" || return
+      LIMIT=2400
+      run "$POOL" "$WORK/cmd" "$WORK/out"
+      return
+    fi
     if [ "$GCCMODE" = 1 ]; then
       compile_gcc "$arch" "$1" "$D" "$prog" "${extra:-}" "$L" "$d" > "$WORK/cmd" || return
       LIMIT=1800

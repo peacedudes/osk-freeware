@@ -234,6 +234,32 @@ if [ -f "$REPO/built/ansi2knr" ]; then
     echo "  added ansi2knr (KNR recipes need it)"
 fi
 
+# The three names C++ needs, none of which anything on this disk answers to.
+# gcc2 cannot start the C++ front end at all -- its suffix table has no entry
+# for a .cc and it calls one a "linker input file" -- so C++ is only reachable
+# through `gpp', and gpp then wants two names that are not here:
+#
+#   cccp    gpp forks it by that name; the disk ships the same preprocessor
+#           as `cccp2', which is what gcc2 forks.  A plain copy is enough --
+#           the module inside is still called cccp2 and os9exec runs it.
+#   gpp.l   `collect' opens it by that name; the disk ships it as libgpp.l.
+#
+# and `collect' itself, which lives in CMDS/GCC2 rather than CMDS and is what
+# builds __CTOR_LIST__ and __DTOR_LIST__.  Without it a link that has any
+# global constructor stops with both of those unresolved.
+for f in collect cccp2; do
+    [ -f "$REPO/disk/CMDS/GCC2/$f" ] || continue
+    cp "$REPO/disk/CMDS/GCC2/$f" "$DEST/CMDS/$f"
+    chmod 755 "$DEST/CMDS/$f"
+done
+[ -f "$DEST/CMDS/cccp2" ] && { cp "$DEST/CMDS/cccp2" "$DEST/CMDS/cccp"; chmod 755 "$DEST/CMDS/cccp"; }
+[ -f "$DEST/LIB/libgpp.l" ] && cp "$DEST/LIB/libgpp.l" "$DEST/LIB/gpp.l"
+if [ -f "$DEST/CMDS/cccp" ] && [ -f "$DEST/CMDS/collect" ] && [ -f "$DEST/LIB/gpp.l" ]; then
+    echo "  added cccp, collect and gpp.l (GPP recipes need all three)"
+else
+    echo "  WARNING: C++ is not buildable in this overlay -- GPP recipes will fail" >&2
+fi
+
 # Make the check fail once before believing it.  If any stamp survives in LIB,
 # every binary built through this overlay would carry it.
 if grep -rl "from the disk of" "$DEST/LIB" >/dev/null 2>&1; then

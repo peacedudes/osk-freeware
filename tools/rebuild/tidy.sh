@@ -17,6 +17,9 @@ cd "$here" || exit 1
 # and the first version of this script matched only the dot -- so 27
 # of them were committed.
 find disk/SRC \( -name 'ctmp.*' -o -name 'ctmp_*' \) -type f -delete
+# The GPP path links inside a scratch DIRECTORY, so clean those too --
+# -type f alone would leave one behind in the tree, and it would ship.
+find disk/SRC -name 'ctmpout' -type d -exec rm -rf {} + 2>/dev/null
 mkdir -p built
 find disk/SRC -name 'R_*' -type f | while IFS= read -r m; do
     mv "$m" "built/$(basename "$m" | sed 's/^R_//')"
