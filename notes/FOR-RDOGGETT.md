@@ -79,6 +79,27 @@ no stream file classes at all. Written up in `notes/COMPILE-AUDIT.md`. I fixed
 one real bug there and stopped: `Include/common.h` had `#include <sgstat.h>`
 commented out, which made `Terminal.h` unparseable.
 
+**`aterm` now builds from its assembly source, and the module that comes out
+is byte-for-byte the one that ships.** Not "works the same" -- identical, all
+13422 bytes. That is the strongest check this machinery has ever produced.
+What it needed was two libraries: `os9.l` and `sys.l` resolve all 53 of the
+`F$Fork`/`I$GetStt`/`SS_Opt` names, because Microware's assembler definitions
+file is not in our SDK copy and `oskdefs.d` here has only the module-type
+equates. The other two assembly trees cannot be built at all -- `serload`
+wants a `rt_comm` directory that exists nowhere, and `graph`'s six programs
+want `graphmakros` and `mathmakros`, likewise nowhere. Both written up.
+
+**The whole tree builds from a clean clone: 289 of 291, one command.**
+`tools/build.sh --from-scratch`. The two that fail are `pdraw` (wants X11
+headers) and `pep` (wants an EPROM board's assembly); neither is a linkage
+problem and both have always failed.
+
+**I stopped quoting the source-coverage number and wrote the tool instead.**
+`tools/src_census.py disk` -- 410 of 937, 43%, of which 279 are built by a
+recipe. The old 42% was taken by hand in a shell on 2026-08-21 and could not
+be re-derived. CLAUDE.md now points at the tool rather than carrying a figure
+that goes stale every time a recipe lands.
+
 Everything committed on the same branch, all eleven checks green.
 
 ---
