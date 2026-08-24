@@ -23,8 +23,10 @@ clean, all eleven `check_disk.py` checks green.
 
 ## Where the build stands
 
-**289 of 291 recipes clean**, whole tree, from a clean clone, measured
-2026-08-24 -- `tools/build.sh --from-scratch`, overlay discarded and remade. The two that still fail have always failed
+**307 of 309 recipes clean.** 289 of 291 was the whole tree from a clean
+clone on 2026-08-24 (`tools/build.sh --from-scratch`, overlay discarded and
+remade); the eighteen mtools commands were added after that and all eighteen
+build clean and match the shipped binaries. The two that still fail have always failed
 and each has a reason in `notes/COMPILE-AUDIT.md`: `pdraw` wants X11 headers
 that are not here, and `pep` wants the EPROM board's own assembly. Neither is
 a linkage problem — the driver already tries all three linkages on both.
