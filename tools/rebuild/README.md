@@ -45,8 +45,25 @@ The source tree is named by **archive**, not by program: `divutils` holds
 
 ## Two flags that are not optional
 
-**`-qm`** makes the binary trap-free: no `cio`, no `math` trap handler. That
-is what lets these run on a disk with no Microware SDK on it. Never `-qixm`.
+**`-qixm`** is the default now, and it links the `cio` trap handler. `-qm`
+links stdio into the module instead. The trade is size:
+
+    ascii    14286 bytes  trap-free      2608 bytes  with cio
+    cookie   19312                       6144
+    banner   11628                       7630
+
+`-qm` was the right default only while `cio` could not be shipped. It ships
+now -- `cio`, `csl`, `csl020`, `math` and `math881`, with Microware's
+permission -- so a cio-linked program works for anybody using the collection,
+and is a third to a fifth of the size. A recipe says `TRAPFREE` when a binary
+has to stand alone anyway.
+
+**This changes only what lands in `built/`.** The driver installs nothing, so
+`DOC/INDEX`'s star grid does not move until somebody installs one on purpose;
+at that point the star list has to be re-measured, and it is measured by
+RUNNING every program against a disk with cio removed. Never by looking for a
+`cio` string in a binary -- that was tried again on 2026-08-24 and reports
+"no" even for `cat`, which is starred.
 
 **`-n=<prog>`** names the module. Without it the module name comes from the
 `-f` output filename, and since builds go to `R_<prog>` to avoid clobbering an
@@ -107,6 +124,7 @@ use `KNR=<files>` with `CPP2`.
 | `LONGREF` | `c68 -k` for long PC-relative branches, and NO `o68` pass |
 | `M020` | the 68020 backend, `c68020`/`r68020`, for oversized stack frames |
 | `GCC` | build with the disk's own GCC 2.5.6, which is what several ports were written for |
+| `TRAPFREE` | link stdio into the module (`-qm`) instead of using the `cio` trap handler |
 
 `CPP2` is worth reaching for beyond the 512-character line it was written for:
 it also searches `-I` directories for an include name containing a DIRECTORY,

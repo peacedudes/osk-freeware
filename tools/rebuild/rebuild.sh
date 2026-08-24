@@ -60,9 +60,9 @@ i=0
 # usage message.
 compile() {   # $1 arch  $2 sources  $3 oskdef  $4 defines  $5 prog  $6 extra  $7 libs
   printf 'setenv CLIB /dd/LIB\nsetenv CDEF /dd/DEFS\nchx /dd/CMDS\nchd /h6/%s\n' "$1"
-  printf 'cc %s -qm=16k %s%s -n=%s -f=/h6/%s/R_%s -V=/h6/%s -V=/h7 %s%s' \
-         "$2" "$3" "$4" "$5" "$1" "$5" "$1" "$6" "$7"
-  printf ' -l=/dd/LIB/curses.l -l=/dd/LIB/termlib.l -l=/dd/LIB/unix.l -l=/dd/LIB/math.l\n'
+  printf 'cc %s %s %s%s -n=%s -f=/h6/%s/R_%s -V=/h6/%s -V=/h7 %s%s' \
+         "$2" "$QMFLAG" "$3" "$4" "$5" "$1" "$5" "$1" "$6" "$7"
+  printf '%s\n' "$QMLIBS"
   printf '\033\n\004\n'
 }
 
@@ -393,9 +393,9 @@ compile_cpp2_post() {  # $1 arch  $2 sources  $3 prog  $4 extra  $5 libs  $6 dir
     fi
   done
   printf 'del ctmp.parts.l\nmerge -z=ctmp.list >ctmp.parts.l\n'
-  printf 'cc ctmp_%s.r -qm=16k -n=%s -f=/h6/%s/R_%s -l=ctmp.parts.l -l=ctmp.parts.l -l=ctmp.parts.l %s%s' \
-         "$(tmpbase "$mainsrc" "$2")" "$3" "$1" "$3" "$4" "$5"
-  printf ' -l=/dd/LIB/curses.l -l=/dd/LIB/termlib.l -l=/dd/LIB/unix.l -l=/dd/LIB/math.l\n'
+  printf 'cc ctmp_%s.r %s -n=%s -f=/h6/%s/R_%s -l=ctmp.parts.l -l=ctmp.parts.l -l=ctmp.parts.l %s%s' \
+         "$(tmpbase "$mainsrc" "$2")" "$QMFLAG" "$3" "$1" "$3" "$4" "$5"
+  printf '%s\n' "$QMLIBS"
   printf '\033\n\004\n'
 }
 
@@ -527,9 +527,9 @@ compile_knr() {    # $1 arch  $2 sources  $3 oskdef  $4 defines  $5 prog  $6 ext
     fi
   done
   printf 'del ctmp.parts.l\nmerge -z=ctmp.list >ctmp.parts.l\n'
-  printf 'cc %s -qm=16k -n=%s -f=/h6/%s/R_%s -l=ctmp.parts.l -l=ctmp.parts.l -l=ctmp.parts.l %s%s' \
-         "$(obj "$mainsrc")" "$5" "$1" "$5" "$6" "$7"
-  printf ' -l=/dd/LIB/curses.l -l=/dd/LIB/termlib.l -l=/dd/LIB/unix.l -l=/dd/LIB/math.l\n'
+  printf 'cc %s %s -n=%s -f=/h6/%s/R_%s -l=ctmp.parts.l -l=ctmp.parts.l -l=ctmp.parts.l %s%s' \
+         "$(obj "$mainsrc")" "$QMFLAG" "$5" "$1" "$5" "$6" "$7"
+  printf '%s\n' "$QMLIBS"
   printf '\033\n\004\n'
 }
 
@@ -569,9 +569,9 @@ compile_long() {   # $1 arch  $2 sources  $3 oskdef  $4 defines  $5 prog  $6 ext
   # Repeating the search costs nothing and settles any dependency depth this
   # collection has.
   printf 'del ctmp.parts.l\nmerge -z=ctmp.list >ctmp.parts.l\n'
-  printf 'cc %s.r -qm=16k -n=%s -f=/h6/%s/R_%s -l=ctmp.parts.l -l=ctmp.parts.l -l=ctmp.parts.l -l=ctmp.parts.l -l=ctmp.parts.l %s%s' \
-         "$(basename "$mainsrc" .c)" "$5" "$1" "$5" "$6" "$7"
-  printf ' -l=/dd/LIB/curses.l -l=/dd/LIB/termlib.l -l=/dd/LIB/unix.l -l=/dd/LIB/math.l\n'
+  printf 'cc %s.r %s -n=%s -f=/h6/%s/R_%s -l=ctmp.parts.l -l=ctmp.parts.l -l=ctmp.parts.l -l=ctmp.parts.l -l=ctmp.parts.l %s%s' \
+         "$(basename "$mainsrc" .c)" "$QMFLAG" "$5" "$1" "$5" "$6" "$7"
+  printf '%s\n' "$QMLIBS"
   printf '\033\n\004\n'
 }
 
@@ -613,7 +613,7 @@ while IFS='|' read -r prog arch srcs defs libs extra; do
   # One pass over the field, not three substitutions: `${defs/KNR/}' turns
   # `KNR=a.c,b.c' into `=a.c,b.c', which then reaches cc as `-D=a.c,b.c'.
   OSKDEF=-DOSK
-  KNRMODE=0; KNRFILES=""; CPP2MODE=0; LONGREF=0; M020=0; GCCMODE=0; keep=""
+  KNRMODE=0; KNRFILES=""; CPP2MODE=0; LONGREF=0; M020=0; GCCMODE=0; TRAPFREE=0; keep=""
   for x in $defs; do
     case "$x" in
       NOOSK)  OSKDEF="";;
@@ -624,6 +624,7 @@ while IFS='|' read -r prog arch srcs defs libs extra; do
       LONGREF) LONGREF=1;;
       M020)   M020=1;;
       GCC)    GCCMODE=1;;
+      TRAPFREE) TRAPFREE=1;;
       *)      keep="$keep $x";;
     esac
   done
@@ -633,6 +634,45 @@ while IFS='|' read -r prog arch srcs defs libs extra; do
   # recipe can say `-U_OSK\'.  gcc2 PREDEFINES _OSK, and lua\'s lua.c reaches
   # for a header the tree does not carry when it is set; there is no other way
   # to turn a predefine off.  Everything else becomes -D<word> as before.
+  # -qixm LINKS THE cio TRAP HANDLER; -qm links stdio into the module instead.
+  # cio, csl, math, math881 and csl020 SHIP on this disk now, with Microware's
+  # permission, so a program that needs cio works for anybody using the
+  # collection -- and it is markedly smaller: 7478 bytes against 11476 for the
+  # same source, measured 2026-08-24.  -qm was the right default only while
+  # cio could not be shipped.
+  #
+  # A recipe says TRAPFREE when a binary has to stand alone anyway.  Note this
+  # changes only what lands in built/; nothing is installed by this driver, so
+  # DOC/INDEX's star grid does not move until somebody installs one on purpose.
+  # THREE WAYS TO LINK, and the smallest is not always available.  Measured on
+  # SRC/misc/ascii.c, 2026-08-24:
+  #
+  #     -qm     14286 bytes   clibn.l + math.l   stands alone
+  #     -qxm    10022          clib.l            uses the math trap
+  #     -qixm    2610          cio.l + clib.l    uses cio and math
+  #
+  # cio, csl, math and math881 ship on this disk by Microware's permission, so
+  # depending on them is free for anybody using the collection, and -qixm is a
+  # fifth of the size.  But cc hands l68 BOTH cio.l and clib.l for -qixm, and
+  # this SDK's clib.l is not a reduced library -- it is 38667 bytes against
+  # clibn.l's 38523, so it still has printf and time.  Whether that collides
+  # depends on which members l68 happens to pull: `banner' links, `joke' stops
+  # with `Symbol printf from psect cio_a ... caused name clashes'.  Thirteen of
+  # 290 broke that way.  CLAUDE.md already said "never -qixm"; this is why.
+  #
+  # So take the best each program can actually have: try -qixm, and on a
+  # duplicate-symbol failure drop to -qxm, which links clib.l alone and still
+  # saves a third.  TRAPFREE forces the standalone build.
+  QMFLAG=-qixm=16k
+  QMLIBS=' -l=/dd/LIB/curses.l -l=/dd/LIB/termlib.l'
+  # $TRAPFREE, not $defs: the pseudo-define loop above has already taken the
+  # word out of defs, so testing defs here always failed and TRAPFREE silently
+  # did nothing.
+  if [ "$TRAPFREE" = 1 ]; then
+    QMFLAG=-qm=16k
+    QMLIBS=' -l=/dd/LIB/curses.l -l=/dd/LIB/termlib.l -l=/dd/LIB/unix.l -l=/dd/LIB/math.l'
+  fi
+
   D=""
   for x in $defs; do
     [ -n "$x" ] || continue
@@ -689,6 +729,27 @@ while IFS='|' read -r prog arch srcs defs libs extra; do
   }
 
   out=$(attempt "$srcs")
+
+  # THE LINK FALLBACK.  Try the smallest linkage first and step down until one
+  # produces a module.  Each step is tried at most once and only if the last
+  # left no R_<prog> behind, so a program that links small keeps the small
+  # build and nothing is rebuilt for the sake of it.
+  if [ "$QMFLAG" = "-qixm=16k" ] && [ "$TRAPFREE" != 1 ]; then
+    for step in qxm qm; do
+      [ -f "$d/R_$prog" ] && break
+      case "$step" in
+        qxm) QMFLAG=-qxm=16k
+             # math.l as well: -x says "reach the math library through traps",
+             # and l68 still wants _T$LtoD and friends resolved at link time.
+             # cc's own -qxm line does not supply them; `robots' found it.
+             QMLIBS=' -l=/dd/LIB/curses.l -l=/dd/LIB/termlib.l -l=/dd/LIB/math.l';;
+        qm)  QMFLAG=-qm=16k
+             QMLIBS=' -l=/dd/LIB/curses.l -l=/dd/LIB/termlib.l -l=/dd/LIB/unix.l -l=/dd/LIB/math.l';;
+      esac
+      out=$(attempt "$srcs")
+      printf '=== %s (%s) RETRY linkage %s\n' "$prog" "$arch" "$step" >> "$LOG"
+    done
+  fi
   printf '=== %s (%s)\n%s\n' "$prog" "$arch" "$out" >> "$LOG"
 
   # Retry with shims when what is missing is a BSD or Unix function OS-9's K&R

@@ -9,8 +9,10 @@ clean, all eleven `check_disk.py` checks green.
     export OS9EXEC=~/Developer/os9/os9exec/os9exec
     export OS9CLEAN=${TMPDIR:-/tmp}/os9clean
 
-    tools/rebuild/make_overlay.sh "$OS9CLEAN"   # the build /dd; ~40s
-    tools/build.sh ansi2knr                     # KNR recipes need it in the overlay
+    tools/build.sh --from-scratch               # THE WHOLE THING, one command:
+                                                # discards the cached overlay,
+                                                # rebuilds it, bootstraps
+                                                # ansi2knr, builds all 290
     tools/build.sh --missing                    # what has no recipe, and why
     tools/check_disk.py disk                    # eleven checks
     tools/rebuild/tidy.sh                       # only if you drove rebuild.sh

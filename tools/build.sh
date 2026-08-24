@@ -4,6 +4,7 @@
 #
 #     tools/build.sh              build everything there is a recipe for
 #     tools/build.sh ls cat vi    build just these
+#     tools/build.sh --from-scratch   throw the overlay away and do the lot
 #     tools/build.sh --list       what can be built, and from which tree
 #     tools/build.sh --missing    programs with no recipe yet
 #
@@ -67,6 +68,15 @@ PY
     exit 0;;
 esac
 
+# --from-scratch: forget the cached overlay entirely.  Without this the overlay
+# is whatever a previous run left in $TMPDIR, which is fine day to day and
+# exactly wrong when you are trying to reproduce a build from a clean checkout.
+if [ "${1:-}" = "--from-scratch" ]; then
+    shift
+    echo "from scratch: discarding $overlay"
+    rm -rf "$overlay"
+fi
+
 # The overlay is the one prerequisite, and it used to be somebody's undocumented
 # local directory -- which is how the whole rebuild machinery came to be
 # unusable when it went missing.  Make it if it is not there.
@@ -76,6 +86,32 @@ if [ ! -d "$overlay/LIB" ]; then
 fi
 export OS9CLEAN=$overlay
 export OS9COMPAT=${OS9COMPAT:-$here/disk/SRC/COMPAT}
+
+# THE ONE BOOTSTRAP, and it is a chicken and egg.  Recipes flagged KNR run
+# every source through `ansi2knr' first, and make_overlay.sh puts ansi2knr into
+# the overlay by copying it out of built/ -- which only has it once a build has
+# made it.  On a clean checkout built/ is empty, so those recipes fail with
+# "ansi2knr: command not found" and the reason is nowhere near the symptom.
+#
+# So: if the overlay has no ansi2knr, build that one program, then put it in.
+# Costs about fifteen seconds and only ever happens once.
+if [ ! -f "$overlay/CMDS/ansi2knr" ]; then
+    echo "bootstrapping ansi2knr (KNR recipes need it in the overlay) ..."
+    if grep -q '^ansi2knr|' "$recipes"; then
+        grep '^ansi2knr|' "$recipes" > "$here/.ansi2knr.psv"
+        OUT=/dev/null LOG=/dev/null \
+          "$here/tools/rebuild/rebuild.sh" "$here/.ansi2knr.psv" "$here/disk/SRC" >/dev/null 2>&1
+        rm -f "$here/.ansi2knr.psv"
+        a2k=$(find "$here/disk/SRC" -name 'R_ansi2knr' | head -1)
+        [ -n "$a2k" ] && cp "$a2k" "$overlay/CMDS/ansi2knr" && rm -f "$a2k"
+        if [ -f "$overlay/CMDS/ansi2knr" ]; then
+            chmod +x "$overlay/CMDS/ansi2knr"
+            echo "  ansi2knr is in the overlay"
+        else
+            echo "  WARNING: ansi2knr did not build; KNR recipes will fail" >&2
+        fi
+    fi
+fi
 
 if [ $# -eq 0 ]; then
     use=$recipes

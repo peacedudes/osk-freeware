@@ -132,6 +132,7 @@ echo "  added ucc/defs/types.h (lua names it by absolute path)"
 # header is never shadowed by an older one from the disk.
 if [ -d "$REPO/disk/DEFS" ]; then
     added=0
+    overridden=0
     for f in "$REPO/disk/DEFS"/*; do
         name=$(basename "$f")
         if [ -d "$f" ] && [ -d "$DEST/DEFS/$name" ]; then
@@ -139,7 +140,20 @@ if [ -d "$REPO/disk/DEFS" ]; then
             # skipping the whole directory left out the collection's
             # ncurses.h -- which is the only reason gnuchess 4.0 wants it.
             for g in "$f"/*; do
-                [ -e "$DEST/DEFS/$name/$(basename "$g")" ] && continue
+                if [ -e "$DEST/DEFS/$name/$(basename "$g")" ]; then
+                    # ...UNLESS WE EDITED IT ON PURPOSE.  A header under
+                    # disk/DEFS carrying the marker `osk-freeware' is one this
+                    # collection has deliberately repaired, and it has to win
+                    # over the SDK's copy or the repair is inert.  Four files
+                    # in DEFS/GCC2 are in that position -- stdio.h, stdlib.h,
+                    # errno.h -- and they only ever worked because somebody
+                    # hand-copied them into the overlay.  `build.sh
+                    # --from-scratch' is what exposed that: a clean overlay
+                    # had the originals back and thirteen builds changed
+                    # behaviour with no edit to blame.
+                    /usr/bin/grep -ql 'osk-freeware' "$g" 2>/dev/null || continue
+                    overridden=$((overridden+1))
+                fi
                 cp -R "$g" "$DEST/DEFS/$name/"
                 added=$((added+1))
             done
@@ -160,6 +174,8 @@ if [ -d "$REPO/disk/DEFS" ]; then
         done
     fi
     echo "  added $added header(s) from the collection's own DEFS"
+    [ "$overridden" -gt 0 ] &&
+      echo "  ...$overridden of them replacing an SDK copy, marked osk-freeware"
 fi
 
 # blarslib's headers and library, so a recipe can ask for them.  Bob Larson's
