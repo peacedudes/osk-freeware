@@ -24,19 +24,31 @@ That leaves **`wc` alone** — 14978 bytes, gcc2, and its source is not in this
 repo, not in the pool, and there is no `wc` binary in the pool either. That one
 really is missing, and it is the only one.
 
-**2. May I add two files to the disk, 256K, to make the C++ compiler work?**
-Right now it cannot compile anything, and I can show you why in one line:
+**2. Five files in `/dd/CMDS`, or a script, or documentation?** My earlier
+"two byte copies and C++ works" was WRONG -- I proved it in the build overlay,
+which has a flat `CMDS` and the SDK headers, and the disk has neither. You
+caught it by asking whether a rename would do.
 
-    $ /dd/CMDS/GCC2/gpp -c -o t.r t.cc
-    gpp: Can't fork 'cccp'.
+What is actually true, now measured on the disk: `gcc2` and `gpp` find their
+passes by a hardcoded prefix, and it is a DIFFERENT prefix for each --
+`/dd/CMDS/gcc_<pass>` and `/dd/CMDS/gpp_<pass>`. The passes ship in
+`/dd/CMDS/GCC2`, which is neither, so `gcc2` cannot fork `cccp2` and **plain
+C fails exactly like C++ did**. And `r68`, `l68`, `clibn.l` and `cstart.r` are
+Microware's, so an SDK is needed regardless -- that part cannot be fixed here.
 
-`gpp` forks a preprocessor called `cccp`. The disk ships the same program as
-`cccp2`, which is the name `gcc2` forks. A byte copy under the other name is
-enough. `collect` then opens `gpp.l`, and the disk ships that as `libgpp.l` —
-another byte copy. `CMDS/GCC2/cccp` (84K) and `LIB/gpp.l` (172K), both
-duplicates of files already there, and the shipped C++ compiler works. I have
-proved the whole path — compile, link, run — in the build overlay. I did not
-touch `disk/CMDS`, because you and I agreed I would not without asking.
+With those in place both compilers work: C and C++ each compiled, linked and
+RAN on the disk, 2026-08-24.
+
+Already landed: `DOC/README-GCC` with the whole procedure, the `DOC/INDEX`
+rationale corrected (its own reasoning is what caused this), and
+`DEFS/GCC2/stdio.h` fixed -- it forwarded to `/dd/DEFS/stdio.h`, which is
+Microware's and not on the disk, so nothing including `<stdio.h>` could
+compile at all.
+
+**The open question is only packaging**: ship the five files (`gcc_cccp2`,
+`gcc_cc2`, `gpp_cccp`, `gpp_cc1plus`, `gpp_collect`, about 1 MB, `cccp2`
+twice), or one `gccsetup` script that makes them, or leave README-GCC to it.
+I would ship the five. Nothing done -- `disk/CMDS` is yours.
 
 **`ls` now builds from `SRC/ls` and is installed.** You said same-or-better or
 not at all. Measured against your binary over 40 option cases — `-l -lt -lS
