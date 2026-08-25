@@ -32,7 +32,20 @@ not starred. So "REBUILT HERE with gcc2" is probably as wrong as the claim
 about the other three was. `DOC/INDEX` now says the provenance is unsettled
 rather than asserting either way.
 
-**If you have a copy, the bytes matter less than where it sits.** Point me at
+**And I checked whether it could be Microware's, since you asked.** It is not
+in their documented utility catalog (which does include `grep`, `tr`, `pr`,
+`qsort`, `cmp`, `dump` -- so the absence means something), it is not flagged
+by `tools/screen_microware.py`, and the `wc` on the SDK disk is 1430 bytes
+against our 14978 and lives in that disk's FREEWARE directory.
+
+While I was there I ran the screen over **all 937 shipped commands**. 36
+flagged, **none of them real**: 28 bare name matches, 7 byte-identical to the
+SDK disk and all seven the GPL GNU C toolchain, and one -- `CMDS/clock` --
+flagged as a named Microware module when it is type `Prgrm`, 36K, and built
+by our own recipe from `SRC/misc/clock.c`, a 1988 freeware screen clock.
+Method written up in `notes/SESSION-2026-08-24.md`.
+
+**If you have a copy of wc, the bytes matter less than where it sits.** Point me at
 the path and I will compare it with ours and read whatever is around it — a
 README, the archive name, the directory it came from. That is where provenance
 lives, and it is the only thread left.
