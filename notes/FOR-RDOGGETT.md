@@ -12,11 +12,17 @@ stands — nothing in it was undone.
 
 **Two things need you. Both are one-liners.**
 
-**1. Do you still have the h0 workshop disk?** `DOC/INDEX` says the C source
-for `cat`, `wc`, `basename` and `dirname` — our own gcc2 builds — is on it.
-It is not in this repo and not in `~/Developer/os9/Scraped` (searched). If you
-have it, those four join `ls` and the collection can rebuild everything it
-built itself. If not, say so and I will write it down as gone.
+**1. ~~Do you still have the h0 workshop disk?~~ Withdrawn — I was asking the
+wrong question.** Three of those four were never our builds. `cat`, `basename`
+and `dirname` are **byte-for-byte identical** to the binaries in Martin
+Gregorie's `sh75` package, which is already in your pool at
+`Scraped/os9/PUBCMDS/microware/sh75/CMDS`. The star grid had been saying so all
+along: all three need `cio`, which a rebuild against os9lib would have removed.
+`DOC/INDEX` is corrected.
+
+That leaves **`wc` alone** — 14978 bytes, gcc2, and its source is not in this
+repo, not in the pool, and there is no `wc` binary in the pool either. That one
+really is missing, and it is the only one.
 
 **2. May I add two files to the disk, 256K, to make the C++ compiler work?**
 Right now it cannot compile anything, and I can show you why in one line:
