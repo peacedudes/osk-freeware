@@ -20,9 +20,22 @@ Gregorie's `sh75` package, which is already in your pool at
 along: all three need `cio`, which a rebuild against os9lib would have removed.
 `DOC/INDEX` is corrected.
 
-That leaves **`wc` alone** — 14978 bytes, gcc2, and its source is not in this
-repo, not in the pool, and there is no `wc` binary in the pool either. That one
-really is missing, and it is the only one.
+That leaves **`wc` alone** — 14978 bytes. Its source is not in this repo, not
+in the pool, and there is no second `wc` in the pool either. The binary gives
+nothing away: no banner, no version, no author, no build path; its only
+printable strings are `%7ld` and ` %s`. Running it with a bad option just says
+`wc: unknown option`.
+
+And its provenance is now doubtful too. It is **starred** — it needs `cio` —
+and a gcc2 build made here links `clibn` and needs none, which is why `ls` is
+not starred. So "REBUILT HERE with gcc2" is probably as wrong as the claim
+about the other three was. `DOC/INDEX` now says the provenance is unsettled
+rather than asserting either way.
+
+**If you have a copy, the bytes matter less than where it sits.** Point me at
+the path and I will compare it with ours and read whatever is around it — a
+README, the archive name, the directory it came from. That is where provenance
+lives, and it is the only thread left.
 
 **2. Five files in `/dd/CMDS`, or a script, or documentation?** My earlier
 "two byte copies and C++ works" was WRONG -- I proved it in the build overlay,
