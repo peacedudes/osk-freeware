@@ -348,3 +348,16 @@ pi1toppm	CMDS/NETPBM	SILENT
 spctoppm	CMDS/NETPBM	SILENT	
 mgrtopbm	CMDS/NETPBM	SILENT	
 ximtoppm	CMDS/NETPBM	SILENT	
+ppmtoacad	CMDS/NETPBM	SILENT	
+macptopbm	CMDS/NETPBM	SILENT	
+pbmtogo	CMDS/NETPBM	SILENT	
+ppmtoxpm	CMDS/NETPBM	OK	**** Stack Overflow **** 
+pbmmask	CMDS/NETPBM	SILENT	
+sputoppm	CMDS/NETPBM	SILENT	
+cmuwmtopbm	CMDS/NETPBM	SILENT	
+tgatoppm	CMDS/NETPBM	SILENT	
+ppmpat	CMDS/NETPBM	OK	ppmpat: a base pattern must be specified 
+hpcdtoppm	CMDS/NETPBM	OK	Error in Arguments ! Usage: hpcdtoppm [options] pcd-file [ppm-file] Opts: 
+pi3topbm	CMDS/NETPBM	SILENT	
+pbmtoepson	CMDS/NETPBM	SILENT	
+ppmtobmp	CMDS/NETPBM	SILENT	
