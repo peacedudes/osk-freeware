@@ -1,0 +1,1 @@
+/* enable.c - turn on MTSmon on <port> */#define ENABLE#include "turnport.c"

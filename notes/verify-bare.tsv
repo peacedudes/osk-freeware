@@ -140,3 +140,52 @@ pktogf	CMDS/TEXCMDS	OK	Usage: pktogf [-v] <pk file> [gf file].
 vftovp	CMDS/TEXCMDS	OK	Usage: <vfm file> <tfm file> <vpl file>. 
 maketexpk	CMDS/TEXCMDS	OK	MakeTeXPK: Too few parameters 
 gftopk	CMDS/TEXCMDS	OK	Usage: gftopk [-v] <gf file> [pk file]. 
+initex	CMDS/TEXCMDS	OK	This is TeX, C Version 3.14 (INITEX) ** 
+virmf	CMDS/TEXCMDS	OK	This is METAFONT, C Version 2.7 ** 
+tangle	CMDS/TEXCMDS	OK	Usage: tangle webfile[.web] [changefile[.ch]]. 
+dvilj2	CMDS/TEXCMDS	OK	[TeX82 DVI Translator Version 2.10] [Hewlett-Packard LaserJet II laser printer] 
+dvijep	CMDS/TEXCMDS	OK	[TeX82 DVI Translator Version 2.10] [Hewlett-Packard LaserJet Plus laser printer] 
+dvieps	CMDS/TEXCMDS	OK	[TeX82 DVI Translator Version 2.10 [experimental]] [Epson 9-pin family 240dpi x 216dpi dot matrix pr
+dvips	CMDS/TEXCMDS	OK	This is dvipsk 5.495b Copyright 1986, 1992 Radical Eye Software dvips: ! Couldn't find header file t
+dvioki	CMDS/TEXCMDS	OK	[TeX82 DVI Translator Version 2.10] [OKIDATA 192 dot matrix printer at 144dpi] 
+dvitos	CMDS/TEXCMDS	OK	[TeX82 DVI Translator Version 2.10] [Toshiba P-1351 180h x 180v dpi dot matrix printer] 
+dvimac	CMDS/TEXCMDS	OK	[TeX82 DVI Translator Version 2.10] [Apple ImageWriter 144 dpi dot matrix printer] 
+tftopl	CMDS/TEXCMDS	OK	Usage: tftopl [-verbose] <tfm file> [<property list file>]. 
+tttt	CMDS	OK	Unknown terminal type ''. 
+ask	CMDS	OK	No Wisecracks coming 
+unp	CMDS	SILENT	
+pagekwic	CMDS	OK	pagekwic: word too long in line 0 
+delbak	CMDS	SILENT	
+preset	CMDS	OK	Ädir Åumacs Çwork.a Ér68 Ñl68 Ö-l=usr.l Ü-o=áwork.r àdsave -ieb128k è/d0ê/d1ë/r0‹`
+as5	CMDS	OK	Usage: as5 [files] 
+areacode	CMDS	OK	Usage: areacode nnn nnn ... 
+file	CMDS	OK	Syntax:   file [<opts>] {<file>} Function: identify file types Options: 
+georgia	CMDS	OK	                                                                  Snow Year   1    Weather        Sk
+ispell	CMDS	OK	syntax: ispell {opts} {<file> {opts}} Function: interactive spelling checker Options: 
+pri	CMDS	SILENT	
+today	CMDS	OK	Today is Wednesday, the twenty-sixth day of August, two thousand and twenty-six. In thirty-three sec
+mg	CMDS	OK	Panic: Could not determine terminal type 
+less	CMDS	OK	WARNING: terminal cannot clear to end of line WARNING: terminal cannot clear screen WARNING: termina
+puzzle15	CMDS	OK	Unknown terminal type ''. 
+cpu	CMDS	CRASH	# # Exception: pid=2 vector=$07 err=#000:107 ‚Äî process will be killed (x to continue) [2J[1;H[2
+fstat	CMDS	OK	Syntax: FStat [<opts>] <file1> [<opts>] Function: Display file descriptor information Options: 
+oskversion	CMDS	OK	OSK level : 1 OSK version : 4 Revision : 0 
+mscheck	CMDS	NOSTART	# Emulation could not start due to OS-9 error #000:214 (E_FNA): '/dd/CMDS/mscheck' #   File Not Acce
+flink	CMDS	OK	flink: link to file     usage: flink [ -? | filename { filename } ]                          option:
+config	CMDS	CRASH	# # Exception: pid=2 vector=$0B err=#000:111 ‚Äî process will be killed (x to continue) /* Char = 8 
+cpr	CMDS	SILENT	
+bm	CMDS	OK	bm: no pattern specified 
+vi_cio	CMDS	OK	[2J[1;1H 
+pdraw	CMDS	OK	Pdraw V1.4  9/4/90    Terminal Type             =     Default Printer           = -P 
+sed	CMDS	OK	sed: No program to run 
+input	CMDS	SILENT	
+cjpeg	CMDS	SILENT	
+prjob	CMDS	OK	prjob: Spooler not installed 
+uudecode	CMDS	SILENT	
+xengine	CMDS	OK	**** csl traphandler mismatch **** 
+fmt	CMDS	SILENT	
+sox	CMDS	OK	sox: Usage: [ -V -S ] [ fopts ] ifile [ fopts ] ofile [ effect [ effopts ] ] fopts: -r rate -v volum
+timid	CMDS	OK	Started 4:55:20 Ended   4:55:20 elapsed ticks: 3,  seconds: 0.03 
+Libr2Ascii	CMDS	OK	Missing parameter: infile Syntax: Libr2Ascii [opts] Convert a Librarian Card Catalog file to a plain
+loadmem	CMDS	OK	Syntax   : LOADMEM <destinati address> <upper limit address> <path> Function : loads file into memor
+psc	CMDS	SILENT	

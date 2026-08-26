@@ -1,0 +1,1 @@
+/* disable.c - turn off MTSmon on <port> */#define DISABLE#include "turnport.c"
