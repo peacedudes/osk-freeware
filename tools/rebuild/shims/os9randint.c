@@ -1,17 +1,1 @@
-/* randint -- a random integer in [0 .. rng-1].
- *
- * tet's makefile links /dd/lib/rand.r for this, and that object is not on
- * this disk or in the archive pool.  The name survives only in a comment in
- * SRC/shuffle/xrand.c, whose own function is called rnd_ri.  One line of
- * shim is cheaper than hunting an object nobody kept.
- *
- * rand() comes from LIB/unix.l (SRC/unixlib/rand.c).
- */
-
-extern int rand();
-
-int randint(rng)
-int rng;
-{
-    return (rng > 0) ? (rand() % rng) : 0;
-}
+/* randint -- a random integer in [0 .. rng-1]. * * tet's makefile links /dd/lib/rand.r for this, and that object is not on * this disk or in the archive pool.  The name survives only in a comment in * SRC/shuffle/xrand.c, whose own function is called rnd_ri.  One line of * shim is cheaper than hunting an object nobody kept. * * rand() comes from LIB/unix.l (SRC/unixlib/rand.c). * * osk-freeware 2026-08-25: TWO things about this file were wrong, and * neither could be seen without trying to use it. * * It was the only shim here written with LF line endings, so c68 read the * whole file as one enormous line and stopped with `bad character'.  It * could never have compiled.  CR-terminated now, like its neighbours. * * And LIB/unix.l ALREADY has a randint, in psect rand_c -- measured, it * returns properly varying values.  So adding this shim to a build that * links unix.l (which the -qm linkage does) fails the link with * `duplicate symbol names'.  It is only of use to a build that does not. * That is also why nothing has ever needed it: rebuild.sh's shim table * has no case for `randint' unresolved, because randint never is. */extern int rand();int randint(rng)int rng;{    return (rng > 0) ? (rand() % rng) : 0;}
