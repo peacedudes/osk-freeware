@@ -218,7 +218,7 @@ ifdef	CMDS	FILTER	the quick brown fox the quick brown fox
 ksh	CMDS	FILTER	the: not found jumped: not found 
 m4	CMDS	FILTER	the quick brown fox te uc rw o 
 rdjpgcom.070	CMDS	FILTER	the quick brown fox Not a JPEG file 
-btop	CMDS	FILTER	the quick brown fox 
+btop	CMDS	FILTER	the quick brown fox · O O O · O · · 
 lmargin	CMDS	FILTER	the quick brown fox      the quick brown fox 
 perr	CMDS	QUIET	
 find	CMDS	QUIET	
