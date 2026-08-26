@@ -361,3 +361,17 @@ hpcdtoppm	CMDS/NETPBM	OK	Error in Arguments ! Usage: hpcdtoppm [options] pcd-fil
 pi3topbm	CMDS/NETPBM	SILENT	
 pbmtoepson	CMDS/NETPBM	SILENT	
 ppmtobmp	CMDS/NETPBM	SILENT	
+pnmtoxwd	CMDS/NETPBM	SILENT	
+qrttoppm	CMDS/NETPBM	SILENT	
+ppm3d	CMDS/NETPBM	OK	usage:  ppm3d leftppmfile rightppmfile horizontal offset 
+pbmtoatk	CMDS/NETPBM	SILENT	
+pnmconvol	CMDS/NETPBM	OK	usage:  pnmconvol <convolutionfile> [pnmfile] 
+pgmoil	CMDS/NETPBM	SILENT	
+bioradtopgm	CMDS/NETPBM	SILENT	
+psidtopgm	CMDS/NETPBM	OK	usage:  psidtopgm <width> <height> <bits/sample> [imagedata] 
+hipstopgm	CMDS/NETPBM	OK	**** Stack Overflow **** 
+ppmtopict	CMDS/NETPBM	SILENT	
+pnmcat	CMDS/NETPBM	OK	pnmcat: one of -lr or -tb must be specified 
+atktopbm	CMDS/NETPBM	SILENT	
+ppmtogif	CMDS/NETPBM	SILENT	
+pbmclean	CMDS/NETPBM	SILENT	

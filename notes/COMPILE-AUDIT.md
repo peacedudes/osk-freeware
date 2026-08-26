@@ -314,3 +314,29 @@ The documentation is in regardless: `DOC/sc/sc.doc`, `psc.doc`, `README` and
 
 `psc`, sc's input formatter, is a second program in the same archive and is
 not on the disk at all.
+
+---
+
+## Candidates REFUTED 2026-08-26 -- same name, different program
+
+`tools/find_missing_source.py` proposes leads by name. Where the archive also
+carried a binary, tonight's installs were confirmed by comparing it with ours
+byte for byte. Where it did not, the test was to pull the distinctive printable
+strings out of OUR binary and look for them in the candidate source.
+
+Two passed and are in: **makeinfo** (75 of 210 strings, including
+``No closing brace for footnote `%s'``) and **upperdir** (6 of 11, the usage
+line matching exactly).
+
+**These scored 0, 1 or 2 and are NOT our programs.** They are recorded so the
+next pass does not spend the same hour: `collect` (0/23), `compr` (0/20),
+`env` (0/28), `infocom` (1/56), `lgrep` (0/9), `lharc` (2/170 -- and both
+"matches" were runs of spaces), `md5` (1/20), `rm` (0/142), `smail` (0/64),
+`su` (0/43), `tail` (0/17), `wndex` (2/36).
+
+`advent`, `eset`, `m4` and `split` DO have a binary in their archive and it
+differs from ours, so those are different builds or different versions; they
+are worth a closer look but were not taken on trust.
+
+The lesson this repo keeps relearning: a name match is a lead, not a finding.
+It has already shipped a recipe pointing at the wrong `pep`.
