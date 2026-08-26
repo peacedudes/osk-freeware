@@ -103,3 +103,40 @@ fiz	CMDS	OK	Fiz 2.0 (1987/02/01) public domain Zoo archive repair utility by Rah
 join	CMDS	OK	Usage: join [-a 1|2] [-v 1|2] [-e empty-string] [-o field-list...] [-t char]        [-j[1|2] field] 
 dinfo	CMDS	OK	Device name   : /dd Volume name   : "OSK-Freeware" Creation date : 2026-8-25 18:48 
 submit	CMDS	OK	Zu wenig Parameter Syntax: submit [<opts>] [<submit file>] [{<parameter>)] Function: Executes comman
+gnuplot	CMDS	OK		G N U P L O T 	unix version 2.0 	patchlevel 1 
+luac	CMDS	OK	usage: luac [-c | -u] [-d] [-l] [-p] [-q] [-v] [-o output] file ...  -c	compile (default)  -u	undump
+lnk.org	CMDS	SILENT	
+dedit	CMDS	NOSTART	# Emulation could not start due to OS-9 error #000:205 (E_BMID): '/dd/CMDS/dedit' #   Bad Module ID 
+rtf	CMDS	SILENT	
+assembler	CMDS	SILENT	
+unstr	CMDS	OK	usage: unstr datafile[.dat] [ outfile ] 
+combine	CMDS	OK	[2J[1;H(c.) 1989 by F.R.Schmitt MPI Kernphysik Heidelberg Syntax: combine [<file1>] [<file2>] [<ou
+PrintCards	CMDS	OK	Missing parameter: infile Syntax: PrintCards [opts] Libraian Card Catalog card printer 
+etags	CMDS	OK	Syntax: etags { [<opts>] <path> } Function: GNU tags file maker. Creates tag table files for editors
+hc	CMDS	OK	usage:  hc [-s] [+tab | -col | -l "str" | filename] ... 
+loglist	CMDS	OK	loglist: Sorry, there is no /dd/sys/loglist 
+lfmaker	CMDS	SILENT	
+sort	CMDS	SILENT	
+whoami	CMDS	OK	su 
+weave	CMDS/TEXCMDS	OK	Usage: weave webfile[.web] [changefile[.ch]] [-x]. 
+dvialw	CMDS/TEXCMDS	OK	[TeX82 DVI Translator Version 2.10b] [PostScript [Apple LaserWriter laser printer]] 
+tex	CMDS/TEXCMDS	SILENT	
+vptovf	CMDS/TEXCMDS	OK	Usage: vptovf <vpl file> <vfm file> <tfm file>. 
+dvitype	CMDS/TEXCMDS	OK	Usage: dvitype <dvi file>. 
+virtex	CMDS/TEXCMDS	OK	This is TeX, C Version 3.14 ** 
+dvidjp	CMDS/TEXCMDS	OK	[TeX82 DVI Translator Version 2.10] [Hewlett-Packard Desk Jet plus (from LaserJet) 	WITH Data Compac
+slitex	CMDS/TEXCMDS	SILENT	
+texidx	CMDS/TEXCMDS	SILENT	
+pltotf	CMDS/TEXCMDS	OK	Usage: pltotf [-verbose] <property list file> <tfm file>. 
+latex	CMDS/TEXCMDS	SILENT	
+dvijet	CMDS/TEXCMDS	OK	[TeX82 DVI Translator Version 2.10] [Hewlett-Packard 2686A Laser Jet laser printer] 
+afm2tfm	CMDS/TEXCMDS	OK	afm2tfm 7.0, Copyright 1990-92 by Radical Eye Software Usage: afm2tfm foo[.afm] [-O] [-v|-V bar[.vpl
+dviimp	CMDS/TEXCMDS	OK	[TeX82 DVI Translator Version 2.10] [imPRESS [Imagen laser printer family]] 
+inimf	CMDS/TEXCMDS	OK	This is METAFONT, C Version 2.7 (INIMF) ** 
+bibtex	CMDS/TEXCMDS	OK	Please type input file name (no extension)-- 
+gftype	CMDS/TEXCMDS	OK	This is GFtype, C Version 3.1 Usage: gftype [-m] [-i] <gf file>. 
+pktype	CMDS/TEXCMDS	OK	This is PKtype, C Version 2.3 Usage: pktype <pk file>. 
+pktogf	CMDS/TEXCMDS	OK	Usage: pktogf [-v] <pk file> [gf file]. 
+vftovp	CMDS/TEXCMDS	OK	Usage: <vfm file> <tfm file> <vpl file>. 
+maketexpk	CMDS/TEXCMDS	OK	MakeTeXPK: Too few parameters 
+gftopk	CMDS/TEXCMDS	OK	Usage: gftopk [-v] <gf file> [pk file]. 
