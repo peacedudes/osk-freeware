@@ -658,3 +658,11 @@ wrjpgcom	CMDS	OK	wrjpgcom inserts a textual comment in a JPEG file. You can add 
 florida	CMDS	OK	                                                                  Snow Year   1    Weather        Sk
 lout	CMDS	SILENT	
 dir	CMDS	OK	Directory of "." 05:29:08  08/26/126 ADL             C               CMDS            DEFS           
+expreserve	CMDS	SILENT	
+snap	CMDS	OK	syntax: snap {opt} [<file>] {opt} function: write terminal screen snapshot to <file> (default "polar
+msdel	CMDS	OK	Mtools version 3.6, dated 14 Apr 97 Usage: msdel [-v] msdosfile [msdosfiles...] 
+mkdir	CMDS	OK	Usage: mkdir [-p] [-m mode] [+path] [+mode mode] dir... 
+as1	CMDS	OK	Usage: as1 [files] 
+elvis	CMDS	OK	Unrecognized TERM type 
+view	CMDS	OK	Unrecognized TERM type 
+rtfdat	CMDS	NOSTART	# Emulation could not start due to OS-9 error #000:237 (E_NORAM): '/dd/CMDS/rtfdat' #   No Ram Avail

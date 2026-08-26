@@ -43,6 +43,18 @@ raw=$(mktemp)
 [ -x "$exe" ]   || { echo "no os9exec at $exe -- set OS9EXEC" >&2; exit 2; }
 [ -f "$image" ] || { echo "no image at $image -- build it first" >&2; exit 2; }
 
+# The sweep LISTS programs from $disk and RUNS them from $image, so anything
+# installed since the image was built reads as E_PNNF and scores NOSTART --
+# a defect that is not one. Measured 2026-08-26: `travesty' did exactly that.
+# Refuse rather than document it.
+newer=$(/usr/bin/find "$disk/CMDS" -type f -newer "$image" 2>/dev/null | /usr/bin/head -5)
+if [ -n "$newer" ]; then
+  echo "$image is older than these, and the sweep would report them missing:" >&2
+  printf '  %s\n' $newer >&2
+  echo "rebuild it:  tools/mkimage.sh $disk $image" >&2
+  exit 2
+fi
+
 # CMDS/archives holds archive files, not programs.
 find "$disk/CMDS" -type f -not -path '*/archives/*' \
   | sed "s|^$disk/||" \
