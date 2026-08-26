@@ -280,3 +280,11 @@ ppmtoilbm	CMDS/NETPBM	SILENT
 lispmtopgm	CMDS/NETPBM	SILENT	
 pbmtopgm	CMDS/NETPBM	OK	usage:  pbmtopgm <w> <h> [pbmfile] 
 pnmtops	CMDS/NETPBM	SILENT	
+pbmtoxbm	CMDS/NETPBM	SILENT	
+pnmtoddif	CMDS/NETPBM	SILENT	
+ppmqvga	CMDS/NETPBM	SILENT	
+ppmtotga	CMDS/NETPBM	SILENT	
+pgmenhance	CMDS/NETPBM	SILENT	
+ppmflash	CMDS/NETPBM	OK	usage:  ppmflash flashfactor [ppmfile]         flashfactor: 0.0 = original picture, 1.0 = total whit
+pbmtogem	CMDS/NETPBM	SILENT	
+ppmspread	CMDS/NETPBM	OK	usage:  ppmspread amount [ppmfile]         amount: # of pixels to displace a pixel by at most 
