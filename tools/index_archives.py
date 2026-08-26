@@ -108,6 +108,33 @@ HANDLERS = {
 }
 
 
+MAGIC = [
+    (b"\x1f\x9d", "compress"),   # .Z -- LZW, what `compress' wrote
+    (b"\x1f\x8b", "gzip"),
+    (b"PK\x03\x04", "zip"),
+]
+
+
+def sniff(path):
+    """What a file ACTUALLY is, by its first bytes. The extension lies.
+
+    Measured 2026-08-26: `pd0.lzh' is compress'd data, `elm24.lzh' is an OS-9
+    module, `dvips.lzh' is CR-terminated ASCII. Fifteen archives were indexed
+    as unreadable because the name was believed over the content, and one of
+    them was an entire EFFO public-domain disk.
+    """
+    try:
+        head = open(path, "rb").read(8)
+    except OSError:
+        return None
+    for magic, kind in MAGIC:
+        if head.startswith(magic):
+            return kind
+    if head[:3] == b"-lh" or head[2:5] == b"-lh":
+        return "lha"
+    return None
+
+
 def handler_for(name):
     low = name.lower()
     for suffix in (".tar.gz", ".tar.z"):        # two-part suffixes first
@@ -147,6 +174,14 @@ def main(argv):
                 skipped_ar += 1
                 continue
             h = handler_for(f)
+            kind = sniff(path)
+            # Content wins over the extension when they disagree.
+            if kind == "compress" or kind == "gzip":
+                h = (_targz, _names_tar)
+            elif kind == "zip":
+                h = (_zip, _names_zip)
+            elif kind == "lha" and not h:
+                h = (_lha, _names_lha)
             if not h:
                 continue
             build, parse = h

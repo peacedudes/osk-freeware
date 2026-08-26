@@ -1,0 +1,1 @@
+#!/bin/cshforeach i ( `find . -type d -print` )echo cd XXX/$i | sed -e 's/XXX\/\./$TOP/'(cd $i; mkmanifest *  | sed -e 's/^mv/swap/')end

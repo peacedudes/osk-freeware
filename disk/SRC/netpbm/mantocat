@@ -1,0 +1,1 @@
+#!/bin/sh## Shell script which reads the man pages in nroff format, calls nroff, and produces cat files.## Syntax: mancp source dest## Example: mancp pgm.5 /usr/local/man/cat5/pgm.0## Oliver Trepte, 93-07-05##TMP=/tmp/mancp$$nroff -man $1 > $TMPcp $TMP $2rm -f $TMPecho "Done with $2"

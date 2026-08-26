@@ -298,3 +298,53 @@ yuvtoppm	CMDS/NETPBM	OK	usage:  yuvtoppm <width> <height> [yuvfile]
 zeisstopnm	CMDS/NETPBM	SILENT	
 yuvsplittoppm	CMDS/NETPBM	OK	usage:  yuvsplittoppm <basename> <width> <height> [-ccir601] 
 rasttopnm	CMDS/NETPBM	SILENT	
+ppmtopjxl	CMDS/NETPBM	SILENT	
+pbmtoicon	CMDS/NETPBM	SILENT	
+pbmreduce	CMDS/NETPBM	OK	usage:  pbmreduce [-floyd|-fs | -threshold] [-value <val>] N [pbmfile] 
+ppmdist	CMDS/NETPBM	SILENT	
+pbmtozinc	CMDS/NETPBM	SILENT	
+pgmtexture	CMDS/NETPBM	SILENT	
+pbmto4425	CMDS/NETPBM	SILENT	
+ppmdim	CMDS/NETPBM	OK	usage:  ppmdim dimfactor [ppmfile]         dimfactor: 0.0 = total blackness, 1.0 = original picture 
+pbmpscale	CMDS/NETPBM	OK	usage:  pbmpscale scale [pbmfile] 
+ppmtopuzz	CMDS/NETPBM	SILENT	
+ybmtopbm	CMDS/NETPBM	SILENT	
+pbmtomgr	CMDS/NETPBM	SILENT	
+pbmtopi3	CMDS/NETPBM	SILENT	
+pktopbm	CMDS/NETPBM	OK	pktopbm: This is PKtoPBM, version 2.4 usage:  pktopbm pkfile[.pk] [[-x width] [-y height] [-c num] p
+pgmtolispm	CMDS/NETPBM	SILENT	
+pnmarith	CMDS/NETPBM	OK	usage:  pnmarith -add|-subtract|-multiply|-difference|-minimum|-maximum pnmfile1 pnmfile2 
+pjtoppm	CMDS/NETPBM	SILENT	
+sirtopnm	CMDS/NETPBM	SILENT	
+brushtopbm	CMDS/NETPBM	SILENT	
+pnmsmooth	CMDS/NETPBM	OK	pnmsmooth: /r0/smooth000002 -  
+pnmenlarge	CMDS/NETPBM	OK	usage:  pnmenlarge N [pnmfile] 
+fstopgm	CMDS/NETPBM	SILENT	
+ppmtopi1	CMDS/NETPBM	SILENT	
+g3topbm	CMDS/NETPBM	SILENT	
+pbmtoascii	CMDS/NETPBM	SILENT	
+pnmcrop	CMDS/NETPBM	SILENT	
+pbmlife	CMDS/NETPBM	SILENT	
+xpmtoppm	CMDS/NETPBM	OK	**** Stack Overflow **** 
+sgitopnm	CMDS/NETPBM	SILENT	
+pbmtoepsi	CMDS/NETPBM	SILENT	
+sldtoppm	CMDS/NETPBM	SILENT	
+pnmflip	CMDS/NETPBM	SILENT	
+pnmtosir	CMDS/NETPBM	SILENT	
+ppmntsc	CMDS/NETPBM	OK	usage:  ppmntsc dimfactor [ppmfile]         dimfactor: 0.0 = total blackness, 1.0 = original picture
+picttoppm	CMDS/NETPBM	OK	picttoppm: warning: can't load font directory 'fontdir' 
+giftopnm	CMDS/NETPBM	SILENT	
+pnmshear	CMDS/NETPBM	OK	usage:  pnmshear [-noantialias] <angle> [pnmfile] 
+pnmtile	CMDS/NETPBM	OK	usage:  pnmtile width height [pnmfile] 
+pbmtobbnbg	CMDS/NETPBM	SILENT	
+pgmramp	CMDS/NETPBM	OK	usage:  pgmramp -lr|-tb|-rectangle|-ellipse <width> <height> 
+pnmcomp	CMDS/NETPBM	OK	usage:  pnmcomp [-invert] [-xoff N] [-yoff N] [-alpha file] overlay [image] [output] 
+ppmtosixel	CMDS/NETPBM	SILENT	
+pnmtorast	CMDS/NETPBM	SILENT	
+pnmhisteq	CMDS/NETPBM	SILENT	
+gemtopbm	CMDS/NETPBM	SILENT	
+ppmdither	CMDS/NETPBM	SILENT	
+pi1toppm	CMDS/NETPBM	SILENT	
+spctoppm	CMDS/NETPBM	SILENT	
+mgrtopbm	CMDS/NETPBM	SILENT	
+ximtoppm	CMDS/NETPBM	SILENT	
