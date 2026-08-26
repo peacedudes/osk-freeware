@@ -375,3 +375,20 @@ pnmcat	CMDS/NETPBM	OK	pnmcat: one of -lr or -tb must be specified
 atktopbm	CMDS/NETPBM	SILENT	
 ppmtogif	CMDS/NETPBM	SILENT	
 pbmclean	CMDS/NETPBM	SILENT	
+ppmrelief	CMDS/NETPBM	SILENT	
+ppmtoicr	CMDS/NETPBM	SILENT	
+pbmtocmuwm	CMDS/NETPBM	SILENT	
+ppmquant	CMDS/NETPBM	OK	usage:  ppmquant [-floyd|-fs] <ncolors> [ppmfile]                  [-floyd|-fs] -map mapfile [ppmfil
+pbmtoplot	CMDS/NETPBM	SILENT	
+pbmmake	CMDS/NETPBM	OK	usage:  pbmmake [-white|-black|-gray] <width> <height> 
+ppmtopgm	CMDS/NETPBM	SILENT	
+pbmtopk	CMDS/NETPBM	OK	pbmtopk: This is PBMtoPK, version 2.4 usage:  pbmtopk pkfile[.pk] tfmfile[.tfm] dpi [-s designsize] 
+pgmbentley	CMDS/NETPBM	SILENT	
+rawtopgm	CMDS/NETPBM	SILENT	
+gouldtoppm	CMDS/NETPBM	SILENT	
+ppmtopj	CMDS/NETPBM	SILENT	
+pcxtoppm	CMDS/NETPBM	SILENT	
+pgmedge	CMDS/NETPBM	SILENT	
+ppmhist	CMDS/NETPBM	SILENT	
+xbmtopbm	CMDS/NETPBM	SILENT	
+ppmtoyuv	CMDS/NETPBM	SILENT	

@@ -180,7 +180,10 @@ def main(argv):
                 h = (_targz, _names_tar)
             elif kind == "zip":
                 h = (_zip, _names_zip)
-            elif kind == "lha" and not h:
+            elif kind == "lha":
+                # Content wins outright, not just when the name gave nothing:
+                # `ptylev.zip' is LHarc, and letting the .zip name keep the zip
+                # handler left it unreadable even though the sniff was right.
                 h = (_lha, _names_lha)
             if not h:
                 continue

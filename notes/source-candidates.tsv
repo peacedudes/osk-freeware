@@ -20,7 +20,6 @@ lharc	/Users/rdoggett/Developer/os9/Scraped/os9/PUBCMDS/microware-archive/ARCHIV
 lharc	/Users/rdoggett/Developer/os9/Scraped/os9/PUBCMDS/microware-archive/SRC/lharc.lzh	LHARC/lharc.c
 lharc	/Users/rdoggett/Developer/os9/Scraped/os9/PUBCMDS/microware-archive/SRC/lharc141.lzh	LHARC/lharc.c
 m4	/Users/rdoggett/Developer/os9/Scraped/os9/PUBCMDS/microware-archive/EFFO/forum14.lzh	SOFTWARE/C/M4/m4.c
-makeinfo	/Users/rdoggett/Developer/os9/Scraped/os9/PUBCMDS/microware-archive/GNU/makeinfo_src.lzh	makeinfo.c
 maketexpk	/Users/rdoggett/Developer/os9/Scraped/os9/PUBCMDS/microware-archive/DRIVERS/dvips_source.lzh	CMDS/MakeTeXPK.C
 maketexpk	/Users/rdoggett/Developer/os9/Scraped/os9/PUBCMDS/microware-archive/DRIVERS/nulman.lzh	MakeTeXPK.C
 maketexpk	/Users/rdoggett/Developer/os9/Scraped/os9/PUBCMDS/microware-archive/DRIVERS/nulman.lzh	OS9/MakeTeXPK.C
@@ -42,7 +41,6 @@ submit	/Users/rdoggett/Developer/os9/Scraped/os9/PUBCMDS/microware-archive/EFFO/
 sum	/Users/rdoggett/Developer/os9/Scraped/os9/PUBCMDS/microware-archive/EFFO/forum22.lzh	FORUM22/SOFTWARE/NCURSES/TEST/CW/sum.c
 sum	/Users/rdoggett/Developer/os9/Scraped/os9/PUBCMDS/microware-archive/LIB/ncurses.lzh	CURSES/TEST/CW/sum.c
 tail	/Users/rdoggett/Developer/os9/Scraped/os9/PUBCMDS/microware-archive/TELECOM/OSKTag_2_01.lzh	/d2/MAILBOX/CC/tail.c
-upperdir	/Users/rdoggett/Developer/os9/Scraped/os9/PUBCMDS/microware-archive/CMDS/upperdir.lzh	upperdir.c
 what	/Users/rdoggett/Developer/os9/Scraped/os9/PUBCMDS/microware-archive/EFFO/forum22.lzh	FORUM22/HARDWARE/GEPARD/what.a
 what	/Users/rdoggett/Developer/os9/Scraped/os9/PUBCMDS/microware-archive/EFFO/forum5.lzh	RECHNER/GEPARD/what.a
 wndex	/Users/rdoggett/Developer/os9/Scraped/os9/PUBCMDS/microware-archive/TELECOM/wn3.zip	WN_1.14.3/OSK/WNDEX/wndex.c
