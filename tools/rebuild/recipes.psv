@@ -15,6 +15,28 @@ bootgen|bix|bootgen.c|||
 bush|misc|bush.c|||
 calen|hc_loose|calen.c|||
 calender|calender|calender.c|||
+# card draws a Towers of Hanoi whose twelve disks are the lines of a
+# Christmas message.  TRAPFREE is not optional, and the reason is the cio.l +
+# clib.l collision described in rebuild.sh -- the SILENT form of it.
+#
+# Measured 2026-08-25, same source, same everything else:
+#
+#     -qixm  cio.l + clib.l          BUS ERROR ~40 moves in, at I$WritLn
+#     -qxm   clib.l alone            runs to the end
+#     -qm    clibn.l, stands alone   runs to the end
+#
+# Stack size makes no difference (16k and 64k fail identically), and neither
+# does curses.l.  `cc -qixm' hands l68 BOTH cio.l and this SDK's clib.l, which
+# is a FULL library -- for thirteen of 290 programs that produced a loud
+# `caused name clashes' and the driver drops to -qxm.  card gets no such
+# error: it links, and ends up with two stdio implementations, writing through
+# a FILE that nothing initialised.  A duplicate-symbol failure is the loud
+# version of what card does quietly.
+#
+# -qxm would also work and is smaller, but the driver only steps down to it
+# after a link error, and -qxm still reaches math through a trap.  -qm stands
+# alone, so card is not starred.
+card|card|card.c|TRAPFREE||
 casefix|hc_loose|casefix.c|||
 cdiff|v_misc|cdiff.c|||
 chardef|eff_chardef|chardef.c|||
@@ -121,7 +143,13 @@ pageline|bix|pageline.c|||
 patch|patch|patch.c inp.c os9link.c pch.c util.c version.c os9popen.c|||
 pbyte|bix|pbyte.c|||
 pdraw|effo_pdraw|IOread.c data.c list.c main.c parser.c pif.c plotNOX.c plotX.c plotX11.c plotps.c sort.c time.c|||
-pep|effo_wolk|pep.c|||
+# TWO different programs are called pep, and this recipe had the wrong one.
+# effo_wolk/pep.c is a German EPROM programmer ("pep.c Programmiert das
+# Eprom von startadr bis endadr") that wants an EPROM board; it has never
+# built and never could.  What SHIPS as CMDS/pep is Gisle Hannemyr's file
+# 'detergent' -- which is what DOC/INDEX has always described -- and its
+# source is SRC/pep.  `rename' comes from the os9alib shim.
+pep|pep|main.c ansi.c plain.c os9stricmp.c|||
 poker|effo_snobol|poker.c cardpak.c genprim.c pattern.c pokev.c quest.c rperm.c rselect.c rsent.c snorand.c|||
 printf|misc|printf.c|||
 prjob|eff_lp|prjob.c|||
@@ -189,6 +217,9 @@ unifdef|hc_utils|unifdef.c|||
 unip|bix|unip.c|||
 unpacklib|eff_libutils|unpacklib.c|||
 unstr|fortune|unstr.c|||
+# Dennis Lo's explosion screen-clearer.  Wants curses, so no NOCURSES here
+# -- its own build line names curses.l, termlib.l and unix.l.
+ttyexp|ttyexp|ttyexp.c|||
 uuexpand|v_misc|uuexpand.c||/dd/LIB/egetopt.r|
 uwho|effo_unaxcess|uwho.c date.c os9getpw.c os9geteuid.c|||
 valspeak|toys|valspeak.c|||
