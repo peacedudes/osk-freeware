@@ -1,0 +1,94 @@
+# Three os9exec defects, found 2026-08-26 by running the collection
+
+Each has a reproduction here that fails in seconds. All three were found by
+running programs from the osk-freeware disk, and none of them is a defect in
+the collection.
+
+Common setup. `$OS9CLEAN` is the SDK build overlay from
+`osk-freeware/tools/rebuild/make_overlay.sh`; `$IMG` is `osk-freeware.dd`.
+Every source here is CR-terminated, as OS-9 text must be.
+
+    cc <file>.c -qixm=16k -DOSK -n=<name> -f=R_<name>       # cio      -> FAILS
+    cc <file>.c -qm=16k   -DOSK -n=<name> -f=R_<name> ...   # standalone -> WORKS
+
+The pattern across all three: **the statically-linked build is right and the
+trap-handler build is wrong.** That is one layer, and it is os9exec's.
+
+---
+
+## 1. F$SRqMem is given a pointer where a byte count belongs
+
+`putchar.c` -- twelve lines, `putchar('x')` 4000 times.
+
+    -qixm   2 characters written, then 3920 x os9exec's own "No more memory !!!"
+    -qm     4002 characters, correct
+
+Under `-d1 0x0042` the process makes **4001 `F$SRqMem` calls, one per
+putchar**, each asking for **413,256 bytes**, never returning one, until the
+32 MB arena is gone. Only **2 `I$WritLn`**: the data never reaches the
+terminal. `syscall-tally.txt` and `trace-excerpt.txt` are that trace.
+
+**The requested "size" is an address, proven by moving the heap under it.**
+Rebuild os9exec with `D_BlkSiz` (`OS9MINSYSALLOC`) 2048 -> 8192 and re-run the
+same module:
+
+    D_BlkSiz 2048   requested $64E48   block landed at $70BC0   2 x's
+    D_BlkSiz 8192   requested $63E48   block landed at $6FBC0   444 x's
+
+The request moved exactly as far as the allocation did. A buffer size does not
+do that; an address does. Low twelve bits `$E48` both times -- the same object
+at a shifted base. The "2 versus 444" is an accident of layout, not health.
+
+`OS9_F_SRqMem` in `fcalls.c` is innocent: it implements the documented
+contract (d0.l in = size, d0.l out = actual, a2 = block). It is the request
+that is absurd. Shape fits cio computing `end - start` with `start` wrongly 0.
+Suggested place to look: what os9exec hands the trap handler at `F$TLink` and
+on trap entry -- the one layer the working builds never touch.
+
+Symptom seen from the other end: `CMDS/GAMES/card` takes a **bus error** about
+forty moves into its animation, and its crash dump shows eighteen 423,344-byte
+blocks.
+
+## 2. cio's stdin never returns end-of-file
+
+`getchar.c` -- nine lines, count bytes to EOF. Redirect **on the OS-9 side**:
+
+    os9exec -r sh -c "gcio < /h6/tiny.txt"    hangs until killed, no output
+    os9exec -r sh -c "gcm  < /h6/tiny.txt"    READ 37 bytes from stdin, exit 0
+
+Same source, same file, same redirect. This eats filters -- anything that
+reads to end-of-file.
+
+**Also worth knowing, and it fooled me for hours:** redirecting os9exec's OWN
+stdin (`os9exec -r prog < file`) never delivers EOF either, for BOTH builds.
+The bytes arrive and appear on the console, but the program blocks. So a
+program can appear to "echo its input" when it has produced no output at all
+and is simply stuck in `getchar`. The tell is that the output length equals
+the INPUT's and ignores any flag that sets output length.
+
+## 3. Module load is case-sensitive where RBF is not
+
+Eight programs stop with `**** Can't install trap handler ****  **** Graph`.
+
+    # Installing Traphandler for pid=2, Trap #5, mpath='Graph'
+    # load_module: load path (exec) = Graph
+    # install_traphandler: link_load('Graph') for pid=2 returned err=$D8
+
+`$D8` = 216 = `E_PNNF`. The module is named `Graph`; the file is named
+`graph`. **RBF's own opens are case-insensitive** -- measured on the same
+image, `ls` finds `/dd/CMDS/GAMES/graph` as `graph`, `GRAPH` and `Graph`. So
+the path layer is case-insensitive and the module-load path is not, which is
+an inconsistency inside os9exec rather than a property of OS-9.
+
+Confirmed from the other side: put a file named `Graph` where the loader looks
+and the trap handler installs and the program runs. Nothing else changed.
+
+Costs eight programs: `g`, `striche`, `apfel`, `sine`, `showpic`,
+`graphdemo`, `graphsave`, and `rxmod` against `vmod_trap` -- a sixth of the 46
+programs the 2026-08-26 sweep lists as needing work. **Nothing was renamed on
+the disk**: a `Graph` beside `graph` would make them work and hide this.
+
+---
+
+Full write-ups: `../OS9EXEC-CIO-SRQMEM.md`, `../OS9EXEC-CIO-STDIN-EOF.md`,
+`../OS9EXEC-MODULE-CASE.md`.
