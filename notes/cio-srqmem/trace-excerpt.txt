@@ -1,0 +1,23 @@
+# 00004650: 03b4 03b8 03c0 03c4 03cc 03d0 03d8 03dc  ".4.8.@.D.L.P.X.\"
+# 00004660: 03e4 03e8 03f0 03f4 03fc 0400 0408 040c  ".d.h.p.t.|......"
+# 00004670: 0414 0418 0420 0000 0000 0000 0002 04f8  "..... .........x"
+# 00004680: 0430 0000 0000 006f 1d58                 ".0.....o.X"
+# get_mem:    allocate block     at 0x748046edc0 (size= 7680)   169088
+# os9malloc:  allocate block #1  at 0x748046edc0 (size= 7680)   169088 pid=3
+# <<< Pid=02: OS9 F$SRtMem returns: 
+# >>> Pid=02: OS9 F$UnLink : A2=$646C0 
+# <<< Pid=03: OS9 F$TLink returns: A0=$64AA9 A1=$6A78A A2=$6A700 
+# >>> Pid=03: OS9 F$SetSys : D0.w=$007C D1.l=$80000004 D2.l=$64E1E 
+# <<< Pid=02: OS9 F$UnLink returns: 
+# >>> Pid=02: OS9 F$Wait : 
+# <<< Pid=03: OS9 F$SetSys returns: D2.l=$800 
+# >>> Pid=03: OS9 F$SRqMem : D0.l=$64E48 
+# get_mem:    allocate block     at 0x7480470bc0 (size=413312)   582400
+# os9malloc:  allocate block #2  at 0x7480470bc0 (size=413264)   582400 pid=3
+# <<< Pid=03: OS9 F$SRqMem returns: D0.l=$64E50 A2=$70BC0 
+# >>> Pid=03: OS9 F$SRqMem : D0.l=$64E48 
+# get_mem:    allocate block     at 0x74804d5a40 (size=413312)   995712
+# os9malloc:  allocate block #3  at 0x74804d5a40 (size=413264)   995712 pid=3
+# <<< Pid=03: OS9 F$SRqMem returns: D0.l=$64E50 A2=$D5A40 
+# >>> Pid=03: OS9 F$SRqMem : D0.l=$64E48 
+# get_mem:    allocate block     at 0x748053a8c0 (size=413312)  1409024

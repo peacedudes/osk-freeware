@@ -1,0 +1,12 @@
+4000 F$SRqMem : D0.l=$64E48 
+   1 I$WritLn : D0.w=$0002 D1.l=$16 A0=$1FFA2C0 
+   1 I$WritLn : D0.w=$0002 D1.l=$1 A0=$1FFA2C0 
+   1 I$GetStt : SS_Opt D0.w=$0002 D1.w=$0000 D2.l=$64E1E D3.l=$6A698 A0=$6A436 
+   1 I$Close : D0.w=$0002 
+   1 I$Close : D0.w=$0001 
+   1 I$Close : D0.w=$0000 
+   1 F$TLink : D0.w=$000D D1.l=$0 A0=$64AA6 "cio" 
+   1 F$SRtMem : D0.l=$1000 A2=$1FF93C0 
+   1 F$SRqMem : D0.l=$1000 
+   1 F$SetSys : D0.w=$007C D1.l=$80000004 D2.l=$64E1E 
+   1 F$Exit : D1.w=$0000 

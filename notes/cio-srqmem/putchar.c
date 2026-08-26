@@ -1,0 +1,1 @@
+#include <stdio.h>/* No termlib, no curses, no tputs.  Just putchar in a loop.   If this dies under -qixm it is stdio through cio, nothing else. */main(){    int i;    for (i = 0; i < 4000; i++)        putchar('x');    fprintf(stderr, "\nSURVIVED 4000 putchar\n");    exit(0);}

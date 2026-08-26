@@ -8,6 +8,173 @@ stands — nothing in it was undone.
 
 ---
 
+# 2026-08-26 — why `card` crashed: it is an os9exec bug, and here is a 12-line repro
+
+**You asked why cio should make the difference. It is not cio, and it is not
+the linkage. The cio build is the only one that goes through os9exec's
+trap-handler path, and something on that path hands `F$SRqMem` a POINTER where
+a byte count belongs.**
+
+Twelve lines reproduce it — `notes/cio-srqmem/putchar.c`, just `putchar('x')`
+4000 times:
+
+    -qixm (cio)   2 characters written, 3920 x "No more memory !!!"
+    -qm           4002 characters, correct
+
+Under `-d1 0x0042` the program makes **4001 `F$SRqMem` calls — one per
+putchar — each asking for 413,256 bytes, none ever returned**, until the 32 MB
+arena is gone. Only **2 `I$WritLn`**: the data never reaches the terminal at
+all. os9exec's own `No more memory !!!` (`memstuff.c:782`) then goes into the
+program's output.
+
+**And D0 really is an address, proven by moving the heap underneath it.**
+Rebuild os9exec with `D_BlkSiz` 2048 -> 8192 and re-run the same module:
+
+| D_BlkSiz | requested "size" | block landed at | x's written |
+|---|---|---|---|
+| 2048 | `$64E48` | `$70BC0` | 2 |
+| 8192 | `$63E48` | `$6FBC0` | 444 |
+
+The request moved exactly as far as the allocation did. A buffer size does not
+do that; an address does. Low twelve bits `$E48` both times — the same object
+at a shifted base. It also means "2 characters" versus "444" is an accident of
+layout, not a difference in health.
+
+`F$SRqMem` itself is innocent — `fcalls.c` implements the documented contract
+exactly. It is the request that is absurd.
+
+**What this means for the collection.** 367 programs here are starred, i.e.
+they use cio, and they were measured as running — because most print a little
+and exit before anything has to grow. I am NOT saying they are broken. I am
+saying **"it ran" is no longer evidence for a cio program that produces
+sustained output**, and `-qixm` is the build driver's default. Nothing built
+by the driver is installed, so nothing shipped is affected today.
+
+`card` keeps `TRAPFREE` as a workaround and its recipe says so.
+
+Full write-up, trace and files: `notes/OS9EXEC-CIO-SRQMEM.md`. Your os9exec
+tree is untouched — the rebuild was a scratch copy.
+
+**Still open:** where the address comes from. It has the shape of `end - start`
+with `start` wrongly 0. Next place to look is what os9exec hands the trap
+handler at `F$TLink` and on trap entry, since that is the only layer the
+working builds never touch.
+
+---
+
+# 2026-08-25 — the STUFF drop, and `pep` was the wrong source all along
+
+**Needs you: one word, on two programs.** Both your questions are answered
+below and the work is done.
+
+**1. pep's tables: `/dd/SYS/PEP`, your guess, and it is in.** I read
+`readtable()` rather than guessing: pep looks in exactly two places, the `-g`
+name as given and then `$PEP/<name>`, and nowhere else. So it is `TERMCAP`'s
+shape, and `SYS/login`, both `profile`s and `startup` now set `PEP`. Verified
+on a fresh image through `SYS/login` with nothing set by hand: `pep -gibm2iso`
+converts CP850 to ISO 8859-1 correctly. `DOC/pep` also gained the archive's
+own release note and manual source.
+
+**2. The five, examined — two are worth having, three are not.**
+
+| | verdict |
+|---|---|
+| `card` | **Ships well.** 1984 VT100 Christmas animation, draws properly. |
+| `ttyexp` | **Ships well.** Fireworks screen-clearer; clears up and exits by itself. |
+| `marquis` | **No.** It scrolls on the terminal's STATUS LINE, and not one entry in our `termcap` has one. It can only ever refuse. |
+| `travesty` | **Worth wanting, but broken.** DJB's Markov generator. It builds and starts, and its output is WRONG — it reproduces the input verbatim. The same source built natively on the Mac generates properly, so it is the OS-9 build. The copy is damaged: its `#ifndef OSK` arm has a bare `else seed = 0;` with no `if`, and it only compiles for us because the damage hides behind the `#ifdef`. A port job of unknown size. |
+| `porsche` | **Yours.** `rfd` in the edition history, `@_sysedit`, `<ptypes.h>`, and it draws to a KT7 nobody has. Left alone. |
+
+**Both are installed now, and I owe you a correction on one of them.**
+
+**`card` was NOT working when I said it was.** The 60-second run I judged it on
+was cut off by my own timeout before the failure. Run to the end it dies with a
+bus error about forty moves in — every time. A check that never ran long enough
+to fail, which is the oldest trap in this collection.
+
+**And my first explanation of WHY was also wrong** — you were right to push on
+it. I had measured three of four cells and read a cause into the gap. The
+missing one says curses is irrelevant:
+
+    -qixm  cio.l + clib.l          bus error ~40 moves in (64k stack: same)
+    -qxm   clib.l alone            runs to the end
+    -qm    clibn.l, curses linked  runs to the end
+
+**It is not cio.** `-qxm` links `clib.l` alone and works. What fails is
+`cio.l` AND `clib.l` in the same link — the collision `rebuild.sh`'s own
+comment already describes, where `cc -qixm` hands l68 both and this SDK's
+`clib.l` still has printf. For thirteen of 290 that is LOUD (`caused name
+clashes`) and the driver drops to `-qxm`. **card is the same fault, silent**:
+nothing clashes by name, so it links, and the program runs with two stdio
+implementations and a `FILE` nothing initialised. That is the wild pointer.
+
+So **yes, we are still using cio on purpose** — `-qixm` remains the default
+and the policy is untouched. card takes `TRAPFREE` as a documented exception,
+the way other recipes already do. The `NOCURSES` flag I invented has been
+removed; `rebuild.sh` is byte-identical to what it was, and card's binary is
+unchanged, because curses never mattered.
+
+Worth keeping: **a duplicate-symbol error is the loud version of a fault that
+can also be silent**, and the silent one looks like a broken program.
+
+What they actually are:
+
+**`card`** — Istvan Mohos, 1984. A Towers of Hanoi whose twelve disks are the
+twelve lines of a Christmas message, longest at the bottom: *"may / every /
+falling / snowflake / bring peace / may every day / be as christmas / filled
+with quiet / expectant happiness / joy and understanding / our human souls
+shining / loving caring for another"*. Solving the puzzle carries the message
+across, 4095 moves, and signs off "Merry Christmas!" / "Happy New Year!".
+Wants `TERMCAP` and 80x23; without them it says so and wishes you merry
+Christmas anyway. In `CMDS/GAMES`.
+
+**`ttyexp`** — Dennis Lo, comp.sources.games. An explosion screen-clearer: a
+firework rises, bursts across the terminal, the particles fall, and you are
+left with a clean screen. In `CMDS`.
+
+Both are trap-free, so neither is starred. Not shipped: `marquis`, `travesty`,
+`porsche`, for the reasons in the table above.
+
+**One repo defect fixed while I was in there.**
+`tools/rebuild/shims/os9randint.c` was the only shim written with LF endings,
+so c68 read it as one enormous line and it could never have compiled. Fixed —
+and fixing it showed the second half: `LIB/unix.l` already HAS a `randint`, so
+the shim collides with it in any `-qm` build. Both facts are now in the file's
+own header.
+
+**`wc`: nothing found, and I am not going to keep pulling on it.** `/h0` is
+the symlink to `osk-freeware.dd`, so `/h0/cmds/wc` is our own copy — the same
+14978 bytes. There is no second `wc` in the pool, in the drop, or anywhere
+under `~/Developer/os9`. `DOC/INDEX` already says its provenance is unsettled,
+which is the honest answer.
+
+**The find: `pep` was a name collision.** The recipe pointed at
+`SRC/effo_wolk/pep.c`, a German EPROM programmer that wants an EPROM board and
+has never built. What ships is Gisle Hannemyr's file 'detergent' — exactly
+what `DOC/INDEX` always said — and its source has been in `SRC/pep` all along.
+Repointed; it builds clean and its output is **byte-identical to your binary**
+on `-h` and on a tab-expansion run. One marked two-line fix in `SRC/pep/pep.h`
+(OS-9 was never one of the four systems that header knew, so `DIRCHAR` was
+undefined). **That was one of the two recipes we call permanently failing.**
+
+**Nine documents installed**, all for programs that ship and had no copy:
+`bog.man`, `cpr.man`, `crib.instr`, `cursive.help`, `nsort.cat` (nsort had no
+doc at all), `rot.cat`, `screen.doc`, `xc.man`, and a fuller `cron.txt`
+alongside our man-page `cron.doc`.
+
+**Two files were Microware's and were refused**: `DOC/net.h` and
+`DOC/man._ssfn`, both Network File Manager material, `net.h` present in the
+pristine SDK. The screen passed `man._ssfn`; what caught both was the
+edition-history wording. A DOC file can be theirs without matching any source.
+
+**Most of the rest was already here byte-for-byte** — all of `v_misc.ar` is
+`SRC/v_misc`, and 10 of the 13 loose sources are `SRC/hc_loose`.
+
+Detail, including what is left and why: `notes/SESSION-2026-08-25.md`.
+All eleven checks green. Nothing committed.
+
+---
+
 # 2026-08-24, later — ls rebuilt and adopted; gtar creates; C++ runs
 
 **Two things need you. Both are one-liners.**
