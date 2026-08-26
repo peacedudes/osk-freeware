@@ -8,6 +8,52 @@ stands — nothing in it was undone.
 
 ---
 
+# 2026-08-26, overnight — two os9exec bugs with repros, and 62 programs gained source
+
+**Needs you: nothing. Read the first two lines and go back to what you were
+doing.**
+
+**1. Two os9exec defects, both reproducible in about ten lines.** You said
+running these programs was how we would find implementation defects. It was.
+
+  - **`F$SRqMem` gets a pointer where a byte count belongs.** 4001 requests of
+    413,256 bytes, one per `putchar`, none freed, arena gone. Proven to be an
+    address by moving the heap and watching the "size" move with it.
+  - **cio's stdin never returns EOF.** A nine-line `getchar` loop hangs
+    forever built `-qixm`, works built `-qm`. This one eats filters.
+
+  `notes/OS9EXEC-CIO-SRQMEM.md`, `notes/OS9EXEC-CIO-STDIN-EOF.md`, files in
+  `notes/cio-srqmem/`. Neither is a reason to move off cio; it stays the
+  default, and the two recipes carrying `TRAPFREE` say it is a workaround.
+
+**2. Source coverage 41% -> 48%**, 392 to 454 of 939 programs, none of it
+downloaded. It was all already in your hoard, inside archives nobody had ever
+opened. `tools/index_archives.py` is new and lists what is inside all 352 of
+them without extracting; `tools/find_missing_source.py` crosses that against
+what has no source here. **Every one was proved before installing** -- the
+archive usually carried the binary too, and only byte-identical matches went
+in. The biggest single find is **`sc`, the spreadsheet, which had no source at
+all**; the complete set was in `EFFO/pd8.lzh`.
+
+**I withdraw two things I told you.** `travesty` is not damaged and its output
+was never wrong -- built with cio it produces NO output, and what I measured
+was os9exec echoing the redirected stdin. And `NOCURSES` was a flag for a
+cause that does not exist; it is gone and `rebuild.sh` is byte-identical to
+what it was.
+
+**Three of our own tools were quietly broken and are fixed**: `verify_all.sh`
+was losing any program that emitted an 8-bit byte (two missing `LC_ALL=C`),
+the `randint` shim was LF-terminated and could never compile, and the new
+archive indexer read every data row as a rule line. All three are the same
+failure -- a check that could not fail.
+
+**Still running when I wrote this:** the verify sweep. `DOC/STATUS` keeps its
+2026-08-21 figures until it lands.
+
+Detail: `notes/SESSION-2026-08-26.md`.
+
+---
+
 # 2026-08-26 — why `card` crashed: it is an os9exec bug, and here is a 12-line repro
 
 **You asked why cio should make the difference. It is not cio, and it is not
