@@ -189,3 +189,36 @@ timid	CMDS	OK	Started 4:55:20 Ended   4:55:20 elapsed ticks: 3,  seconds: 0.03
 Libr2Ascii	CMDS	OK	Missing parameter: infile Syntax: Libr2Ascii [opts] Convert a Librarian Card Catalog file to a plain
 loadmem	CMDS	OK	Syntax   : LOADMEM <destinati address> <upper limit address> <path> Function : loads file into memor
 psc	CMDS	SILENT	
+xlisp	CMDS	OK	XLISP version 2.1, Copyright (c) 1989, by David Betz >  
+ci	CMDS	OK	ci error: No input file command format: ci -r[rev] -l[rev] -u[rev] -f[rev] -k[rev] -q[rev] -mmsg -nn
+btoa	CMDS	OK	xbtoa Begin 
+gtar	CMDS/REBUILT	OK	gtar: you must specify exactly one of the r, c, t, x, or d options For more information, type ``gtar
+compress	CMDS/REBUILT	OK	ùå 
+VI	CMDS/REBUILT	OK	[2J[1;1H[24;1H[KEmpty buffer[2;1H~[3;1H~[4;1H~[5;1H~[6;1H~[7;1H~[8;1H~[9;1H~[10;1H~[11
+gzip020_nocsl	CMDS/REBUILT	OK	gzip: compressed data not written to a terminal. Use -f to force compression. For help, type: gzip -
+gzip68k_csl	CMDS/REBUILT	OK	gzip: compressed data not written to a terminal. Use -f to force compression. For help, type: gzip -
+lharcs	CMDS/REBUILT	OK	C-LHarc for OS-9/68k Version 1.01   (C) 1989-1991 Y.Tagawa, Kai Uwe Rommel,                         
+wc.cio	CMDS/REBUILT	SILENT	
+zoo_2.1	CMDS/REBUILT	OK	zoo 2.1 $Date: 91/07/09 02:10:34$  (OSK port 91/07/22 reto/hcz) Usage: zoo {acDeglLPTuUvx}[aAcCdEfIn
+compress_4.0	CMDS/REBUILT	OK	ùê 
+sed_1.06	CMDS/REBUILT	OK	sed: No program to run 
+vi.elvis	CMDS/REBUILT	OK	Unrecognized TERM type 
+gzipcpu32k_csl	CMDS/REBUILT	OK	gzip: compressed data not written to a terminal. Use -f to force compression. For help, type: gzip -
+input.elvis	CMDS/REBUILT	OK	Unrecognized TERM type 
+diff_1.1	CMDS/REBUILT	OK	diff: requires two file names.  Usage: diff [-options] file1 file2  
+tet.unixlib	CMDS/REBUILT	OK	Unknown terminal type ''. 
+kermit	CMDS/REBUILT	OK	OS-9 Kermit Version 1 Release 5 Usage: kermit c[le line esc.char]   (connect mode) or:    kermit s[d
+screen	CMDS/REBUILT	OK	mode: You must have a $HOME/.screens directory. 
+gzip020_csl	CMDS/REBUILT	OK	gzip: compressed data not written to a terminal. Use -f to force compression. For help, type: gzip -
+gzipcpu32_nocsl	CMDS/REBUILT	OK	gzip: compressed data not written to a terminal. Use -f to force compression. For help, type: gzip -
+arc	CMDS/REBUILT	OK	arc - Archive Utility, 5.12 Usage: arc -{amufdxeplvtc}[bswn][g<password>] <archive> [<filename> . . 
+m4_0.5	CMDS/REBUILT	SILENT	
+gzip68k_nocsl	CMDS/REBUILT	OK	gzip: compressed data not written to a terminal. Use -f to force compression. For help, type: gzip -
+ctags.elvis	CMDS/REBUILT	OK	usage: ctags [flags] filenames... 	-s  include static functions 	-t  include typedefs 
+wrjpgcom.070	CMDS	OK	wrjpgcom inserts a textual comment in a JPEG file. You can add to or replace any existing comment(s)
+launch	CMDS	OK	launch: can't find SHELL environment value  
+modbuster	CMDS	OK	Syntax: Modbuster [<opts>] <path> [<opts>] Function: Seperate merged modules, rels, basic source or 
+logname	CMDS	OK	su 
+chgrp	CMDS	OK	chgrp: Usage:  chgrp [-z] {numerical-gid | username} [file [... file]] 
+printenv	CMDS	SILENT	
+sysid	CMDS	SILENT	
