@@ -222,3 +222,38 @@ logname	CMDS	OK	su
 chgrp	CMDS	OK	chgrp: Usage:  chgrp [-z] {numerical-gid | username} [file [... file]] 
 printenv	CMDS	SILENT	
 sysid	CMDS	SILENT	
+fc	CMDS	SILENT	
+umusek	CMDS	OK	 ) ***DS_ScAdd Error 208. Fran: Can't get screen addr, 'bye! 
+wish	CMDS	OK	Wishing for: 3 potions of gain level Game 1 what happened to "hack" 
+sbreak	CMDS	OK	Sbreak: Must specify device!  
+calender	CMDS	OK	Fuer welches Jahr?  
+strfile	CMDS	OK	No input file name use "strfile -" to get usage 
+unzip	CMDS	OK	UnZip:  Zipfile Extract v5.0 of 21 August 1992;  (c) 1989 S.H.Smith and others Versions 3.0 and late
+umacs	CMDS	OK	Environment variable TERM not defined! 
+modinfo	CMDS	OK	module: Show Module Information Syntax:    module [modulename] modinfo: You must specify modulename(
+msformat	CMDS	OK	Mtools version 3.6, dated 14 Apr 97 Usage: msformat [-V] [-t tracks] [-h heads] [-s sectors] [-l lab
+gcc_cc1	CMDS/GCC139	SILENT	
+gcc_cc1plus	CMDS/GCC139	SILENT	
+gcc	CMDS/GCC139	OK	gcc: No input files specified. 
+gcc_cccp	CMDS/GCC139	SILENT	
+gcc_collect	CMDS/GCC139	OK	Syntax   : collect [<opts>] {<file>} [<opts>] Function : generate global con-/de-structor table for 
+gpp	CMDS/GCC139	OK	gpp: No input files specified. 
+makeinfo	CMDS/GCC139	OK	Usage: makeinfo [options] texinfo-file... This program accepts as input files of texinfo commands an
+co	CMDS	OK	co error: No input file command format: co -f[rev] -l[rev] -p[rev] -q[rev] -r[rev] -ddate -sstate -w
+divide	CMDS	OK	DIVIDE Version 1.1 Copyright (C) 1992 Farside Systems 
+rpn	CMDS	OK	WELCOME TO RPN!!! (Rpn version 1) by Nils McCarthy 
+date	CMDS	OK	August 26, 2100 04:57:54 
+initvdu	CMDS	OK	initvdu: environment variable TERM not defined  
+suspend	CMDS	OK	[2J[1;HSUSPEND V1.1 (C.) 1989 by F.R.Schmitt  Syntax  : suspend  [<processname>]  [<opt>] Function
+msrd	CMDS	OK	Mtools version 3.6, dated 14 Apr 97 Usage: msrd [-v] msdosfile [msdosfiles...] 
+mgif	CMDS	OK	mgif [options] file ... -i       inquire about image only -v       verbose 
+net	CMDS/NETWORK	OK	          Internet Protocol Package, (C) 1988 by Phil Karn, KA9Q                NET/ROM Support (C) 
+atp	CMDS/NETWORK	OK	Environment variable TERM not defined! 
+msntp	CMDS/NETWORK	OK	**** csl traphandler mismatch **** 
+infoxpress	CMDS/NETWORK	SILENT	
+osknet	CMDS/NETWORK	OK	                    OSKNET an OS9 friendly version of:           Internet Protocol Package, (C) 1988
+finger	CMDS/NETWORK	OK	Syntax: finger <userid> Function: display real world info on user. Options: none 
+lp	CMDS	OK	lp: Spooler not installed 
+em	CMDS	OK	Environment variable TERM not defined! 
+ppmtouil	CMDS/NETPBM	SILENT	
+xwdtopnm	CMDS/NETPBM	SILENT	
