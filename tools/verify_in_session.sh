@@ -39,8 +39,8 @@ raw=$(mktemp)
 # failures from the bare sweep, plus anything verify_filters.sh found still
 # QUIET with input.  `env` and `printenv` are in the second group for the
 # obvious reason -- run bare there IS no environment to print.
-awk -F'\t' '$3!="OK" && $3!="SILENT"{print $1"\t"$2}' "$bare" > "$list"
-[ -f "$filters" ] && awk -F'\t' '$3=="QUIET"{print $1"\t"$2}' "$filters" >> "$list"
+LC_ALL=C awk -F'\t' '$3!="OK" && $3!="SILENT"{print $1"\t"$2}' "$bare" > "$list"
+[ -f "$filters" ] && LC_ALL=C awk -F'\t' '$3=="QUIET"{print $1"\t"$2}' "$filters" >> "$list"
 total=$(wc -l < "$list")
 echo "re-running $total programs inside a login session"
 
@@ -49,7 +49,7 @@ while IFS=$'\t' read -r prog dir; do
   printf '/dd/%s/%s\nexit\n' "$dir" "$prog" \
     | gtimeout 20 env OS9DISK="$image" OS9H0="$image" \
         "$exe" -r bash /dd/SYS/login 2>&1 \
-    | /usr/bin/tr -d '\000' | LC_ALL=C /usr/bin/tr '\r' '\n' \
+    | LC_ALL=C /usr/bin/tr -d '\000' | LC_ALL=C /usr/bin/tr '\r' '\n' \
     | /usr/bin/head -c 8000 > "$raw"
 
   # login prints a two-line banner and bash echoes the prompt, the command and
@@ -58,7 +58,7 @@ while IFS=$'\t' read -r prog dir; do
   # including four MM/1 drivers -- drop it explicitly.
   text=$( LC_ALL=C /usr/bin/grep -vE '^#|^os9\$|^OS-9 freeware|^cat and less|^exit$|^$' "$raw" \
           | LC_ALL=C /usr/bin/grep -vF "/dd/$dir/$prog" \
-          | /usr/bin/head -3 | LC_ALL=C /usr/bin/tr '\n' ' ' | /usr/bin/cut -c1-100 )
+          | /usr/bin/head -3 | LC_ALL=C /usr/bin/tr '\n' ' ' | LC_ALL=C /usr/bin/cut -c1-100 )
 
   # `No more memory !!!` is os9exec declining to fork something that is not a
   # program; `command not found` is bash rejecting Microware shell syntax.
@@ -73,6 +73,6 @@ done < "$list"
 
 wrote=$(wc -l < "$out")
 rm -f "$list" "$raw"
-awk -F'\t' '{c[$3]++} END {for (k in c) printf "  %-12s %d\n", k, c[k]}' "$out"
+LC_ALL=C awk -F'\t' '{c[$3]++} END {for (k in c) printf "  %-12s %d\n", k, c[k]}' "$out"
 [ "$wrote" -eq "$total" ] || { echo "INCOMPLETE: $wrote of $total rows" >&2; exit 1; }
 echo "wrote $out ($wrote rows)"
