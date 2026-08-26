@@ -26,8 +26,12 @@ running these programs was how we would find implementation defects. It was.
   `notes/cio-srqmem/`. Neither is a reason to move off cio; it stays the
   default, and the two recipes carrying `TRAPFREE` say it is a workaround.
 
-**2. Source coverage 41% -> 48%**, 392 to 454 of 939 programs, none of it
-downloaded. It was all already in your hoard, inside archives nobody had ever
+**2. Source coverage 41% -> 66%**, 392 to 626 of 939 programs, none of it
+downloaded. **The big one is netpbm -- all 169 of them**, 18% of the disk,
+which had source for none. It was in a 1.25 MB LHa archive named
+`osknet.readme`; the file actually called `netpbm_src.lzh` holds no source at
+all, only man pages (22 of them missing here, now in). Nothing that trusted a
+file extension could have found it. It was all already in your hoard, inside archives nobody had ever
 opened. `tools/index_archives.py` is new and lists what is inside all 352 of
 them without extracting; `tools/find_missing_source.py` crosses that against
 what has no source here. **Every one was proved before installing** -- the

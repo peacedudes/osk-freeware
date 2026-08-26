@@ -419,3 +419,16 @@ spottopgm	CMDS/NETPBM	OK	Usage: spottopgm [-1|2|3] [Firstcol Firstline Lastcol L
 ppmbrighten	CMDS/NETPBM	SILENT	
 icontopbm	CMDS/NETPBM	SILENT	
 pgmtoppm	CMDS/NETPBM	OK	usage:  pgmtoppm <colorspec> [pgmfile]                  <colorspec1>,<colorspec2> [pgmfile]         
+ppmtomitsu	CMDS/NETPBM	SILENT	
+imgtoppm	CMDS/NETPBM	OK	**** Stack Overflow **** 
+ppmnorm	CMDS/NETPBM	SILENT	
+pnmscale	CMDS/NETPBM	OK	usage:  pnmscale <s> [pnmfile]              -xsize|width|-ysize|-height <s> [pnmfile]              -
+bmptoppm	CMDS/NETPBM	SILENT	
+infocom	CMDS	OK	Usage: infocom [-aehlnoprstvx] <filename> 
+if	CMDS	OK	Syntax: if [not] <cond> {<arg>} {<cmd1>} [else {<cmd2>}] endif Function: if the [negated] condition 
+toos9	CMDS	OK	TOOS9    Version UTIL 2.80 by DESIGNA VLT 03.08.98 toos9 <File(Wildcard)> Converts TEXT-File from DO
+as11	CMDS	OK	Usage: as11 [files] 
+msdeltree	CMDS	OK	Mtools version 3.6, dated 14 Apr 97 Usage: msdeltree [-v] msdosfile [msdosfiles...] 
+rndir	CMDS	OK	ROOT: /dd scanning directory ... 
+bootgen	CMDS	OK	bootgen: device name must be specified 
+buildhash	CMDS	OK	No dictionary (dict.191) 
