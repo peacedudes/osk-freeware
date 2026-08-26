@@ -45,7 +45,7 @@ orbit	CMDS	OK	N3EMO Orbit Simulator  v3.7 Available satellites: "kepler.dat" not
 lpsched	CMDS	OK	Syntax: lpsched [-r] {<devname>} Function:  starts Printerspooler Options: 
 setfont	CMDS	OK	usage: setfont <path> 
 devprc	CMDS	CRASH	# # Exception: pid=2 vector=$02 err=#000:102 — process will be killed (x to continue) Process   Pi
-travesty	CMDS	NOSTART	# Emulation could not start due to OS-9 error #000:216 (E_PNNF): '/dd/CMDS/travesty' #   Path Name N
+travesty	CMDS	SILENT	re-measured 2026-08-26 on a fresh image; bare run prints nothing, -A works
 msren	CMDS	OK	Mtools version 3.6, dated 14 Apr 97 Usage: msren [-itnmvV] file targetfile        msren [-itnmvV] fi
 vi	CMDS	OK	Visual needs addressible cursor or upline capability : 
 textb	CMDS	OK	Input X_COORD:  
@@ -666,3 +666,275 @@ as1	CMDS	OK	Usage: as1 [files]
 elvis	CMDS	OK	Unrecognized TERM type 
 view	CMDS	OK	Unrecognized TERM type 
 rtfdat	CMDS	NOSTART	# Emulation could not start due to OS-9 error #000:237 (E_NORAM): '/dd/CMDS/rtfdat' #   No Ram Avail
+djpeg.070	CMDS	SILENT	
+for	CMDS	SILENT	
+p2c	CMDS	SILENT	
+csl020	CMDS	NOSTART	# Emulation could not start due to OS-9 error #000:234 (E_NEMOD): '/dd/CMDS/csl020' #   Non Existing
+charcnt	CMDS	OK	I need some filenames for this!  
+qsort9	CMDS	SILENT	
+disktest	CMDS	SILENT	
+phone	CMDS	OK	Syntax: phone <communication-path> Function: communication between two terminals phone: communicatio
+fillup	CMDS	OK	Syntax:   fillup [<options>] <file> Function: fill up file with constant data Options:  -?        : 
+ifdef	CMDS	SILENT	
+ksh	CMDS	SILENT	
+tplot	CMDS	OK	x interval    ?  
+what	CMDS	OK	What's where in the GEPARD: IO-Address  Ref-Byte  Name of the card ---------------------------------
+hist	CMDS	OK	 
+m4	CMDS	SILENT	
+mslabel	CMDS	OK	Mtools version 3.6, dated 14 Apr 97 Usage: mslabel [-vscV] drive: 
+eunlink	CMDS	OK	Syntax: eunlink {<event>} Function: unlink an event Options: none 
+rdjpgcom.070	CMDS	SILENT	
+csl	CMDS	NOSTART	# Emulation could not start due to OS-9 error #000:234 (E_NEMOD): '/dd/CMDS/csl' #   Non Existing Mo
+as09	CMDS	OK	Usage: as09 [files] 
+msdir	CMDS	OK	 Volume in drive A is FREEWARE     Volume Serial Number is 35D7-0A00  Directory for A:/ 
+rendsk	CMDS	OK	rendsk: Requires two parameters 
+liborder.os9	CMDS	OK	Usage: liborder <options> file1.r file2.r ... Produces an ordered list of the input modules to build
+shar	CMDS	OK	shar: No input files usage: shar [-u archive] [[-a] [-p prefix] [-d delim] [-bcv] files > archive] 
+basicwin	CMDS	OK	**** csl traphandler mismatch **** 
+mv	CMDS	OK	Usage: mv [-bfiuv] [-S backup-suffix] [-V {numbered,existing,simple}]        [+backup] [+force] [+in
+savage	CMDS	OK	start  a = 7.48642602602958e+02 1000 loops done  
+funzip	CMDS	OK	usage: funzip < infile.zip > outfile        extracts to stdout the first zip entry of stdin. 
+dam	CMDS	OK	             | = cluster (512 Bytes) allocated or defective 
+kermit2	CMDS	OK	Kermit Program   Version 1    Release 6  Usage:   kermit c[le line esc.char]         (connect mode) 
+mstype	CMDS	OK	Mtools version 3.6, dated 14 Apr 97 Usage: mstype [-tnmvV] sourcefile targetfile        mstype [-tnm
+dirname	CMDS	OK	dirname v1.0 (c) M.C.Gregorie, 1994 Syntax:   dirname <path> Function: Outputs string after deleting
+cookie	CMDS	OK	Q. What's all wrinkled and hangs out your underwear? A. Your mother. 
+btop	CMDS	SILENT	
+checkenv	CMDS	OK	Syntax: checkenv <eparam> , <evalue> Function: check environment variable value   errors if <evalue>
+lmargin	CMDS	SILENT	
+new_e	CMDS	OK	[62"p F[?7l[?3l=[2J[1;1H[1;24r[0;7m File:                                           insert 
+msbadblocks	CMDS	OK	Mtools version 3.6, dated 14 Apr 97 Usage: msbadblocks [-V] device 
+xlharc	CMDS	OK	C-LHarc for OSK Version 1.00   (C) 1989-1990 Y.Tagawa  (C) 1991 OS9/68000 Version N. Kuehne Usage: x
+compr	CMDS	OK	�� 
+perr	CMDS	SILENT	
+bush	CMDS	OK	-12273 more days of The French Connection 
+eo	CMDS	OK	eo ver 1.8 (c) by marc balmer, basel type 'eo -?' to get some help 
+ar2	CMDS	OK	Ar V2.00 - archive file manager Usage:  Ar -<cmd>[<modifier>] archive [file .. ]       <cmd> is one 
+find	CMDS	SILENT	
+fibo	CMDS	OK	start  10 loops done   Fibonacci( 24) = 46368  
+lha	CMDS	OK	LHa Vrs. 2.08 for OSK - revised Dec. 2, 1994  M.Haaland Syntax: LHa -{axelvudmcp}[qvnfodiszrgc012][w
+nroff	CMDS	OK	Usage: nroff [options] file [...] Options: -a              font changes 
+beav	CMDS	OK	Environment variable TERM not defined! 
+todos	CMDS	OK	TODOS    Version UTIL 2.80 by DESIGNA VLT 03.08.98 todos <File(Wildcard)> Converts TEXT-File from OS
+udate	CMDS	OK	Wednesday, August 26, 19126 - 5:31 AM 
+ls	CMDS	OK	ls: ignoring invalid width in environment variable COLUMNS: %s ADL		GAMES		SPL		atob0		startup C		GN
+hexbin	CMDS	SILENT	
+yacc	CMDS	OK	Syntax   : yacc [-dltv] [-b <prefix>] filename Function : yet another compiler compiler Options  : 
+scsiutil	CMDS	OK	SCSIutil V2.02 [Jan 28 1997 : 15:59:35] - written by Gary Duncan          (gduncan@philips.oz.au) an
+run	CMDS	OK	Syntax: run '<prgname> {<arg>}' Function: execute the program <prgname> with stdio rebound to the te
+ccheck	CMDS	SILENT	
+cp	CMDS	OK	Usage: cp file1 file2   or   cp file1 file2 .. dir     copy one file literally to another, or 
+fcomp	CMDS	OK	Syntax: fcomp <file_1> <file_2> Function: compares two text files Options: 
+ff	CMDS	OK	Was soll'n gesucht wer'n ey ??? 
+break	CMDS	SILENT	
+alps	CMDS	OK	Syntax: alps [<opts>] >/<device> Function: generate Alps ASP-1000 printer codes Options: 
+add_errmsg	CMDS	SILENT	
+uuexpand	CMDS	SILENT	
+lessecho	CMDS	SILENT	
+kermit3	CMDS	OK	Kermit68K version 1.0.00 from 01 July 1987 Kermit68K>  
+lnk	CMDS	SILENT	
+ggrep	CMDS	OK	usage: ggrep [-[[AB] ]<num>] [-[CEFGVchilnqsvwx]] [-[ef]] <expr> [<files...>] 
+rayshade	CMDS	OK	rayshade: Fatal error: popen of "cccp  " failed! 
+lesskey	CMDS	OK	cannot find $HOME - using current directory ./.lesskey: 000:216 (E$PNNF) That path name doesn't lead
+unexpand	CMDS	SILENT	
+arc	CMDS	OK	ARC - archive utility, Version 5.21, created on 04/22/87 at 15:05:21 Usage: arc {amufdxerplvtc}[bisw
+oleo	CMDS	CRASH	# # Exception: pid=2 vector=$04 err=#000:104 — process will be killed (x to continue) Illegal inst
+chown	CMDS	OK	chown: Usage:  chown [-z] {numerical-uid | username} [file [... file]] 
+name	CMDS	OK	Usage: name number-of-names 
+checksum	CMDS	OK	Syntax:   checksum <file> [<file>...] Function: checksum calculation Options:  -?        : displays 
+space	CMDS	OK	Space requirement of ".":                                  Contents  Contents   Sectors   Sectors   
+fgrep	CMDS	OK	usage: fgrep [-[[AB] ]<num>] [-[CVchilnsvwx]] [-[ef]] <expr> [<files...>] 
+ediff	CMDS	SILENT	
+elvrec	CMDS	SILENT	
+cb	CMDS	SILENT	
+connect	CMDS	OK	Connected: Enter ^E to quit 
+aterm	CMDS	CRASH	# # Exception: pid=2 vector=$02 err=#000:102 — process will be killed (x to continue) Process   Pi
+msinfo	CMDS	OK	Mtools version 3.6, dated 14 Apr 97 Usage: msinfo [-v] drive 
+bootlogger	CMDS	SILENT	
+mswrite	CMDS	OK	Mtools version 3.6, dated 14 Apr 97 Usage: mswrite [-tnmvV] sourcefile targetfile        mswrite [-t
+kept	CMDS	OK	Nothing has been kept from this collection. 
+queens	CMDS	SILENT	
+gep	CMDS	OK	gep: 'e' option required 
+trunc	CMDS	OK	trunc: wrong number of parameters, program aborted. 
+suse	CMDS	SILENT	
+flex	CMDS	SILENT	
+i_am_i	CMDS	OK	PROGRAM I_AM_I(output); VAR    zaehler : integer; 
+eset	CMDS	OK	Syntax: eset <event> <num> [<opts>] Function: set event to a new value Options: 
+sysmon	CMDS	OK	SYSMON: Environment variable TERM not defined ! 
+worms	CMDS/GAMES	OK	unknown terminal type: '' 
+graphsave	CMDS/GAMES	TRAP	# main loop: Process pid=2 aborted due to unintialized User Trap #5, err=#227 
+wgen	CMDS/GAMES	OK	Enter resoultion(step):  
+pacman	CMDS/GAMES	OK	 
+piano	CMDS/GAMES	OK	piano: syntax: piano <base note> <note duration> 
+advent	CMDS/GAMES	OK	Section 1 Section 2 Section 3 
+lorenz3d	CMDS/GAMES	OK	dt -> 
+bite	CMDS/GAMES	OK	Unknown terminal type ''. 
+checkgame	CMDS/GAMES	OK	Usage: game file [start [end] ]  
+valspeak	CMDS/GAMES	SILENT	
+rain	CMDS/GAMES	OK	unknown terminal type: '' 
+card	CMDS/GAMES	OK	bad or missing termcap... but MERRY CHRISTMAS ! 
+lander	CMDS/GAMES	OK	Unknown terminal type ''. 
+back	CMDS/GAMES	OK	*=  OS-9 BACKGAMMON=! ----------------------------------------------------------=# -------------
+apfel	CMDS/GAMES	TRAP	# main loop: Process pid=2 aborted due to unintialized User Trap #5, err=#227 
+tess	CMDS/GAMES	OK	               /*--------------/*      ------------------------------------              /  '       
+cribbage	CMDS/GAMES	CRASH	# # Exception: pid=2 vector=$02 err=#000:102 — process will be killed (x to continue) Environment 
+poker	CMDS/GAMES	OK	Welcome to Cold-hand Poker Would you like to know the rules?  
+hotel	CMDS/GAMES	OK	Environment variable TERM not defined. 
+puzzle	CMDS/GAMES	SILENT	
+cyberwar	CMDS/GAMES	SILENT	
+striche	CMDS/GAMES	TRAP	**** Can't install trap handler ****  **** Graph 
+mkindex	CMDS/GAMES	SILENT	
+rpoem	CMDS/GAMES	OK	------------------------------------------ Verse 1 A gentle trap can simmer within heart within stre
+wish	CMDS/GAMES	OK	Wishing for: 3 potions of gain level Game 1 what happened to "hack" 
+bincheckr	CMDS/GAMES	SILENT	
+suicide	CMDS/GAMES	OK	Environment variable TERM not defined. 
+mkdict	CMDS/GAMES	SILENT	
+rstory	CMDS/GAMES	OK	.b .b .b 
+ularn	CMDS/GAMES	OK	Cannot find entry of  in termcap 
+scriptmaster	CMDS/GAMES	SILENT	
+graph	CMDS/GAMES	NOSTART	# Emulation could not start due to OS-9 error #000:234 (E_NEMOD): '/dd/CMDS/GAMES/graph' #   Non Exi
+sine	CMDS/GAMES	TRAP	# main loop: Process pid=2 aborted due to unintialized User Trap #5, err=#227 
+gnuchessc	CMDS/GAMES	OK	NO LANGFILE 
+teachgammon	CMDS/GAMES	OK	[H[2J[2;4HThese rules consist of text describing how to play Backgammon followed by a tutorial se
+suicide2	CMDS/GAMES	OK	Environment variable TERM not defined. 
+hack	CMDS/GAMES	OK	Can't get TERM. 
+world	CMDS/GAMES	OK	WORLD. Amiga C  Version 1.02 Copyright 1987 J.D. McDonald  GOOD LUCK! You are standing on a steeply 
+g	CMDS/GAMES	TRAP	**** Can't install trap handler ****  **** Graph 
+life	CMDS/GAMES	OK	Unknown terminal type ''. **** Stack Overflow **** 
+game	CMDS/GAMES	OK	Usage: game file [start [end] ]  
+postprint	CMDS/GAMES	SILENT	
+wisecrack	CMDS/GAMES	SILENT	
+advint	CMDS/GAMES	OK	ADVINT v1.2 - Copyright (c) 1986, by David Betz usage: advint [-r<rows>] [-c<columns>] [-l<log-file>
+tet	CMDS/GAMES	OK	Unknown terminal type ''. 
+greed	CMDS/GAMES	OK	Unknown terminal type ''. 
+maze	CMDS/GAMES	SILENT	
+zot	CMDS/GAMES	OK	syntax: zot [<opts>] {<text> [<opts>]} Function: echo text line(s) to stdout in interesting ways Opt
+cam	CMDS/GAMES	OK	~> Rocker Ratio (1.00) for measure @lobe -> 
+hang	CMDS/GAMES	OK	Environment variable TERM not defined. 
+bog	CMDS/GAMES	OK	Unknown terminal type ''. 
+nchess	CMDS/GAMES	OK	Enter #moves #minutes:  
+dclock	CMDS/GAMES	OK	dclock only runs under G-Windows 
+fuddle	CMDS/GAMES	OK	=7 Do you want white (y/n default: y) ?  
+blackjak	CMDS/GAMES	OK	Welcome to Las Vagas BlackJack Would you like to know the rules?  
+animal	CMDS/GAMES	OK	Unknown terminal type ''. 
+vtxtcn	CMDS/GAMES	SILENT	
+stone	CMDS/GAMES	OK	Do you want the rules?  
+chess	CMDS/GAMES	OK	 chess Do you want to play white or black (w/b)?  
+backgammon	CMDS/GAMES	OK	[H[2JLast updated on Saturday, January 11, 1986. Do you want the rules of the game? 
+puz15	CMDS/GAMES	OK	Unknown terminal type ''. 
+nobs	CMDS/GAMES	OK	Unknown terminal type ''. 
+gnuan	CMDS/GAMES	OK	NO LANGFILE 
+larn	CMDS/GAMES	OK	Cannot find entry of  in termcap 
+robots	CMDS/GAMES	OK	Unknown terminal type ''. 
+lissaj	CMDS/GAMES	OK	 Lissajous pattern generator (PD)1990 Russell Hoffman X angular freq. ->  
+colortest	CMDS/GAMES	OK	Unable to access "/win" device or CRT descriptor Not a G-Windows sytem??? 
+graphdemo	CMDS/GAMES	TRAP	# main loop: Process pid=2 aborted due to unintialized User Trap #5, err=#227 
+wanderer	CMDS/GAMES	OK	Unknown terminal type ''. 
+rstory2	CMDS/GAMES	OK	What is your name?  
+advcom	CMDS/GAMES	OK	ADVCOM v1.2 - Copyright (c) 1986, by David Betz usage: advcom <file> [ <ofile> ] 
+suicide1	CMDS/GAMES	OK	Environment variable TERM not defined. 
+tt	CMDS/GAMES	OK	tt: couldn't find your terminal in TERMCAP file 
+gnuchess	CMDS/GAMES	OK	Unknown terminal type ''. 
+mines	CMDS/GAMES	OK	Environment variable TERM not defined. 
+tformat	CMDS/GAMES	SILENT	
+showpic	CMDS/GAMES	TRAP	# main loop: Process pid=2 aborted due to unintialized User Trap #5, err=#227 
+newsgen	CMDS/GAMES	OK				T O D A Y ' S    N E W S 				Wed Aug 26 THE TOP STORY-- 
+convert	CMDS/GAMES	OK	WORLD. Amiga C  Version 1.02 Copyright 1987 J.D. McDonald  GOOD LUCK! You are standing on a steeply 
+snake	CMDS/GAMES	CRASH	# # Exception: pid=2 vector=$02 err=#000:102 — process will be killed (x to continue) Process   Pi
+sokoban	CMDS/GAMES	OK	sokoban: cannot get your username 
+crib	CMDS/GAMES	CRASH	# # Exception: pid=2 vector=$02 err=#000:102 — process will be killed (x to continue) Unknown term
+mille	CMDS/GAMES	OK	Environment variable TERM not defined. Sorry.  Need cursor addressing to play mille 
+forth	CMDS	OK	TILE Forth version 2.48, Copyright (c) 1989, by Mikael Patel 
+tar	CMDS	OK	Syntax : tar [ctx][mfv] tarfile [file(s)...] Function: Builds and extracts from Unix tape archive fi
+rdoc	CMDS	OK	Parameter Filename fehlt 
+cookhash	CMDS	OK	000000 
+t_trtest	CMDS	OK	line (or .):   
+makelex	CMDS	OK	/* **  DICTIONARY -- DO NOT EDIT THIS FILE! **  This file is generated by a program.  To edit the wo
+cio	CMDS	NOSTART	# Emulation could not start due to OS-9 error #000:234 (E_NEMOD): '/dd/CMDS/cio' #   Non Existing Mo
+rm	CMDS	OK	Usage: rm [-dfirvPR] [+directory] [+force] [+interactive] [+recursive]        [+verbose] [+no-permis
+dfiles	CMDS	SILENT	
+rlog	CMDS	OK	rlog error: No input file command format: rlog -L -R -h -t -b -ddates -l[lockers] -rrevisions -sstat
+gs33	CMDS	OK	Aladdin Ghostscript 3.33 (4/10/1995) Copyright (C) 1995 Aladdin Enterprises, Menlo Park, CA.  All ri
+gnuchessr	CMDS	OK	Enter #moves #minutes:  
+draw	CMDS	OK	Unknown terminal type ''. 
+gnuchess	CMDS	OK	TERM environment variable not set. 
+gshell	CMDS	SILENT	
+compiler	CMDS	SILENT	
+ob68kdemo	CMDS/DEMOS	OK	OmniBasic Version 1.16 OS9/68000 Version *************** DEMO VERSION *************** 
+sddemo	CMDS/DEMOS	OK	Speedisk must be run on a screen of at least 80x24. Switching to 'tty' mode...     -----------------
+ub68020demo	CMDS/DEMOS	OK	UniBasic Version 1.10 OS9/68020 Version *************** DEMO VERSION *************** 
+ub68kdemo	CMDS/DEMOS	OK	UniBasic Version 1.10 OS9/68000 Version *************** DEMO VERSION *************** 
+qp	CMDS	OK	Syntax: qp <cmd> <arg1> ... <argn> Function: process back-quotes for command expansion no Options 
+signal	CMDS	OK	Syntax: signal <process-id> <signal-code> [<seconds>] Function: send signal to process after specifi
+wn.stb	CMDS/WN	NOSTART	# Emulation could not start due to OS-9 error #000:237 (E_NORAM): '/dd/CMDS/WN/wn.stb' #   No Ram Av
+inetd	CMDS/WN	OK	inetd: Unix inetd emulation by I.Levinson inetd: Usage: inetd <port> <prog> {<prog-options>} 
+authwn	CMDS/WN	SILENT	
+wndex	CMDS/WN	OK		Can't open ./index -- skipping it 
+inetdc	CMDS/WN	SILENT	
+wn	CMDS/WN	OK	Can't open logfile /h0/c/unid/wn_1.14.3/osk/logs/wn.log 
+gnuchessn	CMDS	OK	TERM environment variable not set. 
+gothic	CMDS	OK	Gothic output file <terminal>:  
+xc	CMDS	OK	xc: can't open '/.xc' -  
+bison	CMDS	OK	bison: no grammar file given 
+bcheck	CMDS	OK	[2J[1;HSyntax: bcheck [<opt>] [<filename>] Function: check sourcefile for correct bracketcount Opt
+greg	CMDS	OK	greg: Usage greg <julian_date> 
+zipinfo	CMDS	OK	   ZipInfo:  Zipfile Information Utility v1.0 of 21 August 92    (brought to you by Newtware, Inc., 
+ynad	CMDS	OK	.!YNAD - Yet Another Name & Address program "---------------------------------------------------
+rdjpgcom	CMDS	SILENT	
+fastcc	CMDS	OK	No Files !!!!!!!! 
+e	CMDS	OK	[62"p F[?7l[?3l=[2J[1;1H[1;24r[0;7m File:                                           insert 
+mtools	CMDS	OK	Supported commands: mattrib, mbadblocks, mcd, mcopy, mdel, mdeltree, mdir, mformat minfo, mlabel, mm
+editor	CMDS	SILENT	
+banner	CMDS	SILENT	
+paste	CMDS	SILENT	
+macsave	CMDS	SILENT	
+help	CMDS	OK	help: Can't access help directory "". 
+enable	CMDS/UUCP	OK	Syntax: enable [<opts>] <port> [<opts>] Function: Turn ON MTSMon on <port> Options: 
+uux	CMDS/UUCP	OK	uux: no program 
+dotilde	CMDS/UUCP	OK	Unrecognized tilde command Continuing...type "." or <ESC> to end message... 
+disable	CMDS/UUCP	OK	Syntax: disable <port> Function: Turn OFF MTSMon on <port> 
+fixtext	CMDS/UUCP	SILENT	
+rnews	CMDS/UUCP	SILENT	
+lmail	CMDS/UUCP	SILENT	
+pwparse	CMDS/UUCP	OK		os9 	uucp 	tester 
+adduser	CMDS/UUCP	OK	adduser: MAIL is undefined 
+lcasep	CMDS/UUCP	SILENT	
+mail	CMDS/UUCP	OK	mail: /r0/ma000002 cannot open for writing can't unlink /r0/ma000002  215 
+uuclean	CMDS/UUCP	OK	uuclean: cannot open /dd/usr/spool/uucp ...error 216 
+uucico	CMDS/UUCP	OK	uucico: no remote to call! 
+philmail	CMDS/UUCP	SILENT	
+readnews	CMDS/UUCP	OK	readnews: getuser: HOME is not defined 
+nptx	CMDS/UUCP	SILENT	
+unsubscribe	CMDS/UUCP	OK	unsubscribe: unsubscribe from Usenet newsgroup(s) usage: unsubscribe <newsgroup> [newsgroup...]     
+uuname	CMDS/UUCP	OK	pirsqrd phoenix seabass 
+subscribe	CMDS/UUCP	OK	subscribe: subscribe to Usenet newsgroups usage: subscribe <newsgroup> [newsgroup...]        if <new
+uulog	CMDS/UUCP	OK	rnews (Aug 26-05:42:16) Can't open '' 
+uuxqt	CMDS/UUCP	OK	uuxqt: isuuxqtrunning() can't load 'procs'...error 221 
+makedb	CMDS/UUCP	SILENT	
+uupoll	CMDS/UUCP	SILENT	
+mailx	CMDS/UUCP	OK	mailx: getuser: HOME is not defined 
+fileserv	CMDS/UUCP	SILENT	
+expire	CMDS/UUCP	OK	expire: can't change to news directory '/dd/usr/spool/news'...error 216 
+pathalias	CMDS/UUCP	OK	pathalias: using "lostinspace" for local name 
+rmail	CMDS/UUCP	OK	usage: rmail [file] "site!user[@site]" v2.1 (94Sep30) This is free software released under the GNU G
+uucp	CMDS/UUCP	OK	uucp:  unix to unix copy program        uucp [-options] [system!]fromfile [system!]tofile v2.1 (94Se
+postnews	CMDS/UUCP	OK	Environment variable TERM not defined! 
+smail	CMDS/UUCP	OK	usage: smail [flags] address... 
+passwd	CMDS	OK	Changing password for  New password:  
+clock	CMDS	OK	Unknown terminal type ''. curses initialization failed 
+dpark	CMDS	OK	dpark: Must specify device!  
+logisim	CMDS	OK	Syntax: logisim [opts] filename [opts] Function: Simulates logical circuit described by filename Opt
+l	CMDS	SILENT	
+makeinfo	CMDS	OK	Usage: makeinfo [options] texinfo-file... This program accepts as input files of texinfo commands an
+cron	CMDS	SILENT	
+UnMacpack	CMDS	SILENT	
+touchtype	CMDS	OK	Unknown terminal type ''. 
+cvtbase	CMDS	OK	syntax: cvtbase <input base> <output base> function: convert numbers in <stdin> from one base to ano
+cdiff	CMDS	OK	TRY: diff oldfile newfile  
+fortune	CMDS	OK	Nature and nature's laws lay hid in night, God said, "Let Newton be," and all was light. It did not 
+hexed	CMDS	OK	Syntax: hexed [<opts>] <path> {[<opts>] | [<path>]} Function: dump, edit and retransform file(s) wit
+vlen	CMDS	OK	Creating... Created new filesystem Opening the file... 
+epson	CMDS	SILENT	
+nasa	CMDS	OK	"nasa.dat" not found 
+biory	CMDS	SILENT	
+detab	CMDS	SILENT	
