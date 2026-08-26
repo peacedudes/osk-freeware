@@ -55,7 +55,8 @@ echo "verifying $total programs"
 while IFS=$'\t' read -r prog dir; do
   # `head -c` is load-bearing, not tidying.  It closes the pipe once enough has
   # been read, os9exec takes SIGPIPE, and a chatty program ends in a moment
-  # EVERY `tr' here needs LC_ALL=C, and one of them did not have it until
+  # EVERY tool that touches captured program output needs LC_ALL=C -- `tr',
+  # `cut', `awk', all of them. Two of them did not have it until
   # 2026-08-26.  Without it, `tr -d' aborts with "Illegal byte sequence"
   # the moment a program emits an 8-bit byte -- so the capture is
   # truncated or empty and the program is classified on nothing.  The
@@ -82,11 +83,11 @@ while IFS=$'\t' read -r prog dir; do
   else v=SILENT; fi
 
   case $v in OK|SILENT) ev=$mine ;; *) ev=$diag$mine ;; esac
-  printf '%s\t%s\t%s\t%s\n' "$prog" "$dir" "$v" "$(printf '%s' "$ev" | /usr/bin/cut -c1-100)" >> "$out"
+  printf '%s\t%s\t%s\t%s\n' "$prog" "$dir" "$v" "$(printf '%s' "$ev" | LC_ALL=C /usr/bin/cut -c1-100)" >> "$out"
 done < "$list"
 
 wrote=$(wc -l < "$out")
 rm -f "$list" "$raw"
-awk -F'\t' '{c[$3]++} END {for (k in c) printf "  %-8s %d\n", k, c[k]}' "$out"
+LC_ALL=C awk -F'\t' '{c[$3]++} END {for (k in c) printf "  %-8s %d\n", k, c[k]}' "$out"
 [ "$wrote" -eq "$total" ] || { echo "INCOMPLETE: $wrote of $total rows" >&2; exit 1; }
 echo "wrote $out ($wrote rows)"

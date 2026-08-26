@@ -13,3 +13,13 @@ getenv	CMDS	OK	GETENV   Version UTIL 2.40 by DESIGNA VLT 24.11.97 USAGE: getenv 
 xkermit	CMDS	OK	OS-9 Kermit Version 1 Release 5 Usage: kermit c[le line esc.char]   (connect mode) or:    kermit s[d
 unpacklib.os9	CMDS	OK	Usage: unpacklib <options> file1.l file2.l ... Ricreates OS-9 modules from OS-9 libraries.  Where op
 ckermit	CMDS	OK	C-Kermit 5A(190) BETA.14, 24 Jul 94, for OS-9/68000 Type ? or HELP for help C-Kermit> 
+snd_sig	CMDS	SILENT	
+keep	CMDS	OK	keep 1.0 -- OS-9 freeware collection Usage: keep [-n] [-f] [-q] [-s] [-p <dir>] <program>...        
+tree	CMDS	OK	/dd ---------+- ADL ---------+- AARD               |               |- DEMOS               |         
+move	CMDS	OK	move: must specify files to be moved 
+msmd	CMDS	OK	Mtools version 3.6, dated 14 Apr 97 Usage: msmd [-itnmvV] file targetfile        msmd [-itnmvV] file
+rndname	CMDS	OK	Usage: name number-of-names 
+lgrep	CMDS	OK	Syntax: lgrep <arg1> ... <argn> Function: same as 'grep -l', but prints filenames without comments O
+argproc_demo	CMDS	OK	**** Stack Overflow **** 
+pageline	CMDS	SILENT	
+gmake	CMDS	OK	gmake: *** No targets specified and no makefile found.  Stop. 

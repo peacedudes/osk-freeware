@@ -271,3 +271,46 @@ blocked on files that are not in this repo and not in
 `devprc/getsys.a` is NOT the shipped `getsys`: its psect is type 0, language
 0, entry 0 -- a subroutine object holding `_gs_sdevn()` for C callers.
 
+---
+
+## sc -- source FOUND 2026-08-26, does not link yet
+
+The shipped `sc` spreadsheet had no source here, and the STUFF drop's `sc.ar`
+was a partial set. **The complete source is in the pool**, in
+`Scraped/os9/PUBCMDS/microware-archive/EFFO/pd8.lzh`, an EFFO public-domain
+disk: `SRC/` carries sc.c, sc.h, lex.c, gram.y, gram.c, interp.c, cmds.c,
+range.c, xmalloc.c, help.c, crypt.c, psc.c, getopt.c, the two `.sed` files,
+experres.h, statres.h, y.tab.[ch] and its own makefile -- plus `DOC/sc.doc`,
+`DOC/psc.doc` and a built `CMDS/sc` (108658 bytes, NOT the 233050-byte binary
+we ship, so ours is a different build).
+
+It was found with `tools/index_archives.py`, which is new: no `find` could see
+it, because it had never been unpacked.
+
+Installed as `disk/SRC/sc`, screened clean. **No recipe yet**, and here is
+exactly how far it gets, so nobody re-derives it:
+
+  - `y.tab.h` is NOT redundant with `gram.c` -- `lex.c` includes it. Deleting
+    it as a duplicate costs you a build.
+  - `SIGALRM` is undefined on OS-9. The archive ships `DEFS/signal.h.add`
+    saying `#define SIGALRM 14`; passing `-DSIGALRM=14` in the recipe's
+    defines is enough and leaves the archive's source untouched.
+  - `popen`/`pclose` are wanted; the driver's `os9popen.c` shim supplies them
+    by itself.
+  - **What stops it: `wrefresh`.** The overlay's `curses.l` defines it in two
+    psects, sc references symbols from both, and l68 refuses --
+    `Symbol 'wrefresh' from psect 'screen_c' ... caused name clashes`. Adding
+    `os9lib.l` (which the archive's own makefile links) makes it worse: that
+    has a curses too.
+  - `ncurses.l`, which the disk DOES ship, is not a drop-in: it lacks
+    `wattrset`, `wattron` and `_bootdrive`.
+  - The archive ships its own `LIB/curses.l`, which is very likely the curses
+    sc was built against. Building with it would work; it cannot be committed
+    without knowing whose it is, and a recipe that needs a library not in the
+    repo is not reproducible. **That is the open question for sc.**
+
+The documentation is in regardless: `DOC/sc/sc.doc`, `psc.doc`, `README` and
+`CHANGES` join the `sc.man` and `tutorial.sc` that were already there.
+
+`psc`, sc's input formatter, is a second program in the same archive and is
+not on the disk at all.
