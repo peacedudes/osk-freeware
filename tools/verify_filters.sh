@@ -27,7 +27,7 @@ feed=$(mktemp)
 [ -f "$bare" ]  || { echo "no $bare -- run tools/verify_all.sh first" >&2; exit 2; }
 
 printf 'the quick brown fox\njumped over 3 lazy dogs\nthe quick brown fox\n' > "$feed"
-awk -F'\t' '$3=="SILENT"{print $1"\t"$2}' "$bare" > "$list"
+LC_ALL=C awk -F'\t' '$3=="SILENT"{print $1"\t"$2}' "$bare" > "$list"
 total=$(wc -l < "$list")
 echo "re-running $total silent programs with input"
 
@@ -36,20 +36,25 @@ while IFS=$'\t' read -r prog dir; do
   # Same rule as verify_all.sh: os9exec's own '#' lines are not program
   # output, and a blank line is not output either.  Judging on raw non-empty
   # text called a missing program a working filter.
+  # EVERY tool in this pipeline needs LC_ALL=C. Without it `tr' and `cut'
+  # abort with "Illegal byte sequence" on the first 8-bit byte a program
+  # emits, and that program is then judged on an empty capture -- QUIET,
+  # which reads as dead. Measured 2026-08-26: it hit two programs here and
+  # five in verify_all.sh.
   text=$( cd "$here" && gtimeout 10 env OS9DISK="$image" OS9H0="$image" \
             "$exe" -r "/dd/$dir/$prog" < "$feed" 2>&1 \
-          | /usr/bin/tr -d '\000' | LC_ALL=C /usr/bin/tr '\r' '\n' \
+          | LC_ALL=C /usr/bin/tr -d '\000' | LC_ALL=C /usr/bin/tr '\r' '\n' \
           | /usr/bin/head -c 4000 \
           | LC_ALL=C /usr/bin/grep -v '^#' \
           | LC_ALL=C /usr/bin/grep -v '^[[:space:]]*$' \
           | /usr/bin/head -2 | LC_ALL=C /usr/bin/tr '\n' ' ' \
-          | /usr/bin/cut -c1-64 )
+          | LC_ALL=C /usr/bin/cut -c1-64 )
   [ -z "$text" ] && v=QUIET || v=FILTER
   printf '%s\t%s\t%s\t%s\n' "$prog" "$dir" "$v" "$text" >> "$out"
 done < "$list"
 
 wrote=$(wc -l < "$out")
 rm -f "$list" "$feed"
-awk -F'\t' '{c[$3]++} END {for (k in c) printf "  %-8s %d\n", k, c[k]}' "$out"
+LC_ALL=C awk -F'\t' '{c[$3]++} END {for (k in c) printf "  %-8s %d\n", k, c[k]}' "$out"
 [ "$wrote" -eq "$total" ] || { echo "INCOMPLETE: $wrote of $total rows" >&2; exit 1; }
 echo "wrote $out ($wrote rows)"

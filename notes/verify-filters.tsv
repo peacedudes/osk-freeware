@@ -11,6 +11,7 @@ autolf	CMDS	FILTER	the quick brown fox jumped over 3 lazy dogs
 chardef	CMDS	FILTER	the quick brown fox thequickbrownfoxjumped over 3 lazy dogs 
 md5	CMDS	FILTER	the quick brown fox jumped over 3 lazy dogs 
 pep	CMDS	FILTER	the quick brown fox jumped over 3 lazy dogs 
+travesty	CMDS	FILTER	the quick brown fox jumped over 3 lazy dogs 
 rot	CMDS	FILTER	the quick brown fox jumped over 3 lazy dogs 
 expand	CMDS	FILTER	the quick brown fox the quick brown fox 
 ssl	CMDS	QUIET	
@@ -243,6 +244,7 @@ mkindex	CMDS/GAMES	FILTER	the quick brown fox jumped over 3 lazy dogs
 bincheckr	CMDS/GAMES	QUIET	
 mkdict	CMDS/GAMES	FILTER	the quick brown fox jumped over 3 lazy dogs 
 scriptmaster	CMDS/GAMES	QUIET	
+postprint	CMDS/GAMES	QUIET	
 wisecrack	CMDS/GAMES	QUIET	
 maze	CMDS/GAMES	FILTER	the quick brown fox ._._._._._._._._._._._._._._._._._._._._._._
 vtxtcn	CMDS/GAMES	QUIET	
@@ -252,7 +254,6 @@ gshell	CMDS	QUIET
 compiler	CMDS	QUIET	
 authwn	CMDS/WN	QUIET	
 inetdc	CMDS/WN	QUIET	
-wn	CMDS/WN	FILTER	the quick brown fox jumped over 3 lazy dogs 
 rdjpgcom	CMDS	FILTER	the quick brown fox Not a JPEG file 
 editor	CMDS	QUIET	
 banner	CMDS	QUIET	
