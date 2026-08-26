@@ -22,9 +22,25 @@ running these programs was how we would find implementation defects. It was.
   - **cio's stdin never returns EOF.** A nine-line `getchar` loop hangs
     forever built `-qixm`, works built `-qm`. This one eats filters.
 
-  `notes/OS9EXEC-CIO-SRQMEM.md`, `notes/OS9EXEC-CIO-STDIN-EOF.md`, files in
-  `notes/cio-srqmem/`. Neither is a reason to move off cio; it stays the
+  - **Module load is case-sensitive where RBF is not.** `ls` finds
+    `/dd/CMDS/GAMES/graph` as `graph`, `GRAPH` or `Graph`, but the module
+    loader asking for `Graph` gets `E_PNNF`. **Eight programs** fail on it --
+    the whole `Graph` library demo set, plus `rxmod` against `vmod_trap` --
+    which is a sixth of everything the new sweep lists as needing work.
+
+  `notes/OS9EXEC-CIO-SRQMEM.md`, `-STDIN-EOF.md`, `-MODULE-CASE.md`, files in
+  `notes/cio-srqmem/`. None is a reason to move off cio; it stays the
   default, and the two recipes carrying `TRAPFREE` say it is a workaround.
+  I renamed nothing on the disk to work around the third -- that would hide it.
+
+**The verify sweep landed: 870 of 916 programs run, 95.0%**, first full
+measurement since 2026-08-23 and nothing regressed. `DOC/STATUS` is rewritten.
+It is also the first sweep that can be trusted on 8-bit output -- four tools
+across its stages were missing `LC_ALL=C`, so any program emitting a byte
+above 127 was being classified on an empty capture. **46 real programs need
+work** (the other 24 of the raw 70 are trap handlers, libraries and shell
+scripts that are not meant to run), and eight of the 46 are the case bug
+above.
 
 **2. Source coverage 41% -> 66%**, 392 to 626 of 939 programs, none of it
 downloaded. **The big one is netpbm -- all 169 of them**, 18% of the disk,
