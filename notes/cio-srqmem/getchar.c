@@ -1,0 +1,1 @@
+#include <stdio.h>main(){    int ch, n = 0;    while ((ch = getchar()) != EOF)        n++;    fprintf(stderr, "READ %d bytes from stdin\n", n);    exit(0);}

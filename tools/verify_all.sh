@@ -55,12 +55,18 @@ echo "verifying $total programs"
 while IFS=$'\t' read -r prog dir; do
   # `head -c` is load-bearing, not tidying.  It closes the pipe once enough has
   # been read, os9exec takes SIGPIPE, and a chatty program ends in a moment
+  # EVERY `tr' here needs LC_ALL=C, and one of them did not have it until
+  # 2026-08-26.  Without it, `tr -d' aborts with "Illegal byte sequence"
+  # the moment a program emits an 8-bit byte -- so the capture is
+  # truncated or empty and the program is classified on nothing.  The
+  # symptom is a pile of `tr: Illegal byte sequence' on stderr, which is
+  # easy to read as noise; it is the sweep silently losing programs.
   # instead of running out the timeout.  Without it this sweep takes seven
   # hours instead of one, because every program that prints a lot waits for
   # gtimeout to shoot it.
   gtimeout 10 env OS9DISK="$image" OS9H0="$image" \
       "$exe" -r "/dd/$dir/$prog" < /dev/null 2>&1 \
-    | /usr/bin/tr -d '\000' | LC_ALL=C /usr/bin/tr '\r' '\n' \
+    | LC_ALL=C /usr/bin/tr -d '\000' | LC_ALL=C /usr/bin/tr '\r' '\n' \
     | /usr/bin/head -c 8000 \
     | LC_ALL=C /usr/bin/grep -vE '^# /[a-z0-9]+: (using|no) ' > "$raw"
 

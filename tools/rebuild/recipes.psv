@@ -303,6 +303,11 @@ lwf|lwf|lwf.c range.c|OS9 R_OK=1|/dd/LIB/math.l|
 # shim -- os9lib.l has a real rename, but its psect also defines `copy', which
 # dm's own misc.c defines, and l68 refuses the link.
 dm|dm|diskmaster.c screen.c dirread.c showfiles.c misc.c error.c unarc.c mouse.c multicopy.c multidel.c multimove.c multiattr.c shellsort.c multitag.c listarc.c ../unixlib/getopt.c|VER=1 REV=3||
+# Daniel J. Bernstein's Markov travesty generator.  TRAPFREE is a WORKAROUND,
+# not a preference: built -qixm it hangs forever on end-of-file reading stdin,
+# because cio's read path never returns EOF under os9exec.  See
+# notes/OS9EXEC-CIO-STDIN-EOF.md.  Remove the flag when that is fixed.
+travesty|travesty|travesty.c ../unixlib/getopt.c|TRAPFREE||
 # The collection's own. One source builds three programs; `about' is separate.
 keep|keep|keep.c|||
 drop|keep|keep.c|MODE_DROP||
