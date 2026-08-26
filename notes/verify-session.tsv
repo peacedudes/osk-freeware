@@ -37,7 +37,7 @@ sine	CMDS/GAMES	STILL-BAD
 g	CMDS/GAMES	STILL-BAD	**** Can't install trap handler ****  **** Graph 
 graphdemo	CMDS/GAMES	STILL-BAD	
 showpic	CMDS/GAMES	STILL-BAD	
-snake	CMDS/GAMES	SESSION-OK	[?1h=[?1h=[H[2J[6;6HI[2;38H#[14;37H$[3;13Hs s s[Ass[H 
+snake	CMDS/GAMES	SESSION-OK	[?1h=[?1h=[H[2J[12;54HI[5;42H#[C[C$[3;74Hs s[As[Ass S[1;2H----------------------
 crib	CMDS/GAMES	SESSION-OK	[H[2J[11;40HDo[Cyou[Cneed[Cinstructions[Cfor[Ccribbage?[C[1;1H[K [K [K 
 cio	CMDS	STILL-BAD	
 wn.stb	CMDS/WN	STILL-BAD	No more memory !!! No more memory !!! 
@@ -59,14 +59,14 @@ texidx	CMDS/TEXCMDS	STILL-BAD
 latex	CMDS/TEXCMDS	STILL-BAD	
 delbak	CMDS	STILL-BAD	
 pri	CMDS	STILL-BAD	
-printenv	CMDS	SESSION-OK	COLUMNS=80 PWD=/dd SHELL=/dd/bash 
+printenv	CMDS	SESSION-OK	COLUMNS=80 PEP=/dd/SYS/PEP PWD=/dd 
 sysid	CMDS	STILL-BAD	
 infoxpress	CMDS/NETWORK	STILL-BAD	
 ppmforge	CMDS/NETPBM	STILL-BAD	
 pgmcrater	CMDS/NETPBM	STILL-BAD	
 mcvert	CMDS	STILL-BAD	
 t	CMDS	STILL-BAD	
-env	CMDS	SESSION-OK	COLUMNS=80 PWD=/dd SHELL=/dd/bash 
+env	CMDS	SESSION-OK	COLUMNS=80 PEP=/dd/SYS/PEP PWD=/dd 
 splprt	CMDS	STILL-BAD	
 makecrc	CMDS	STILL-BAD	
 elvprsv	CMDS	STILL-BAD	
@@ -92,6 +92,7 @@ puzzle	CMDS/GAMES	STILL-BAD
 cyberwar	CMDS/GAMES	STILL-BAD	
 bincheckr	CMDS/GAMES	STILL-BAD	
 scriptmaster	CMDS/GAMES	STILL-BAD	
+postprint	CMDS/GAMES	STILL-BAD	
 wisecrack	CMDS/GAMES	STILL-BAD	
 vtxtcn	CMDS/GAMES	STILL-BAD	
 dfiles	CMDS	STILL-BAD	
