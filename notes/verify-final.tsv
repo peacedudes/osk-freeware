@@ -450,11 +450,13 @@ touchtype	CMDS	OK bare
 tplot	CMDS	OK bare
 transfer	CMDS	OK bare
 trap	CMDS	NEEDS WORK
+travesty	CMDS	OK as a filter
 tree	CMDS	OK bare
 trunc	CMDS	OK bare
 tsmon2	CMDS	OK bare
 tttt	CMDS	OK bare
 tty	CMDS	OK bare
+ttyexp	CMDS	OK bare
 udate	CMDS	OK bare
 umacs	CMDS	OK bare
 umusek	CMDS	OK bare
@@ -570,6 +572,7 @@ bite	CMDS/GAMES	OK bare
 blackjak	CMDS/GAMES	OK bare
 bog	CMDS/GAMES	OK bare
 cam	CMDS/GAMES	OK bare
+card	CMDS/GAMES	OK bare
 checkgame	CMDS/GAMES	OK bare
 chess	CMDS/GAMES	OK bare
 colortest	CMDS/GAMES	OK bare
@@ -607,7 +610,7 @@ nobs	CMDS/GAMES	OK bare
 pacman	CMDS/GAMES	OK bare
 piano	CMDS/GAMES	OK bare
 poker	CMDS/GAMES	OK bare
-postprint	CMDS/GAMES	OK bare
+postprint	CMDS/GAMES	NEEDS WORK
 puz15	CMDS/GAMES	OK bare
 puzzle	CMDS/GAMES	NEEDS WORK
 rain	CMDS/GAMES	OK bare
@@ -933,6 +936,6 @@ uuxqt	CMDS/UUCP	OK bare
 authwn	CMDS/WN	NEEDS WORK
 inetd	CMDS/WN	OK bare
 inetdc	CMDS/WN	NEEDS WORK
-wn	CMDS/WN	OK as a filter
+wn	CMDS/WN	OK bare
 wn.stb	CMDS/WN	NEEDS WORK
 wndex	CMDS/WN	OK bare
