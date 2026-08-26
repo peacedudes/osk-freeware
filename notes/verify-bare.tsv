@@ -272,3 +272,11 @@ ppmmix	CMDS/NETPBM	OK	usage:  ppmmix fadefactor ppmfile1 ppmfile2         fadefa
 pnmtofits	CMDS/NETPBM	SILENT	
 pbmtog3	CMDS/NETPBM	SILENT	
 ppmforge	CMDS/NETPBM	SILENT	
+pnmtosgi	CMDS/NETPBM	SILENT	
+mtvtoppm	CMDS/NETPBM	SILENT	
+pnmnoraw	CMDS/NETPBM	SILENT	
+pnmpaste	CMDS/NETPBM	OK	usage:  pnmpaste [-replace|-or|-and|-xor] frompnmfile x y [intopnmfile] 
+ppmtoilbm	CMDS/NETPBM	SILENT	
+lispmtopgm	CMDS/NETPBM	SILENT	
+pbmtopgm	CMDS/NETPBM	OK	usage:  pbmtopgm <w> <h> [pbmfile] 
+pnmtops	CMDS/NETPBM	SILENT	
