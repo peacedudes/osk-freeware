@@ -340,3 +340,32 @@ are worth a closer look but were not taken on trust.
 
 The lesson this repo keeps relearning: a name match is a lead, not a finding.
 It has already shipped a recipe pointing at the wrong `pep`.
+
+---
+
+## netpbm -- source is IN as of 2026-08-26, recipes are the next piece of work
+
+All 169 netpbm programs now have their source under `disk/SRC/netpbm`, and so
+do the four libraries they link:
+
+    PBM   51 sources   libpbm1..5.c
+    PGM   26 sources   libpgm1..2.c
+    PPM   70 sources   libppm1..5.c
+    PNM   45 sources   libpnm1..4.c
+
+That is 18% of the disk going from "binary only" to "source here" in one
+archive. **No recipes yet**, and the shape of the work is known rather than
+guessed, from the package's own `Makefile.std` in each directory:
+
+  - Each program is ONE source file plus the libraries -- `PORTBINARIES` and
+    `OBJECTS` in each Makefile name them, one `.o` per program.
+  - So four library recipes first (`rebuild.sh` already builds `.l` targets
+    through its `compile_lib` path), then 169 one-source recipes against them.
+  - `MATHBINARIES` is kept separate from `PORTBINARIES` in those makefiles --
+    the ones needing the FPU. The port's own `ReadMe.OSK` says the shipped
+    binaries were built for a plain 68000 and that the FPU build is 20-50x
+    faster for `ppmforge` and `pgmcrater`.
+
+Worth knowing before starting: the binaries already ship and work, so this
+buys rebuildability, not function. It is a large, mechanical, well-defined job
+-- the best kind to hand to a long unattended run.

@@ -392,3 +392,30 @@ pgmedge	CMDS/NETPBM	SILENT
 ppmhist	CMDS/NETPBM	SILENT	
 xbmtopbm	CMDS/NETPBM	SILENT	
 ppmtoyuv	CMDS/NETPBM	SILENT	
+ppmtomap	CMDS/NETPBM	SILENT	
+pgmcrater	CMDS/NETPBM	SILENT	
+pnmalias	CMDS/NETPBM	SILENT	
+pgmtopbm	CMDS/NETPBM	SILENT	
+pbmto10x	CMDS/NETPBM	SILENT	
+ppmtopcx	CMDS/NETPBM	SILENT	
+ppmmake	CMDS/NETPBM	OK	usage:  ppmmake <color> <width> <height> 
+rgb3toppm	CMDS/NETPBM	OK	usage:  rgb3toppm <red pgmfile> <green pgmfile> <blue pgmfile>  
+pnmgamma	CMDS/NETPBM	OK	usage:  pnmgamma <value> [pnmfile] 		<redvalue> <greenvalue> <bluevalue> [pnmfile] 
+xvminitoppm	CMDS/NETPBM	SILENT	
+pnmnlfilt	CMDS/NETPBM	OK	usage:  pnmnlfilt alpha radius pnmfile  0.0 <= alpha <= 0.5 for alpha trimmed mean -or-   1.0 <= alp
+pgmtofs	CMDS/NETPBM	SILENT	
+pbmtomacp	CMDS/NETPBM	SILENT	
+pbmtext	CMDS/NETPBM	OK	**** Stack Overflow **** 
+pnmpad	CMDS/NETPBM	SILENT	
+pbmupc	CMDS/NETPBM	OK	usage:  pbmupc [-s1|-s2] <type> <manufac> <product> 
+pbmtoptx	CMDS/NETPBM	SILENT	
+pgmnoise	CMDS/NETPBM	OK	usage:  pgmnoise width height         width and height are picture dimensions in pixels 
+pbmtolj	CMDS/NETPBM	SILENT	
+pnmdepth	CMDS/NETPBM	OK	usage:  pnmdepth newmaxval [pnmfile] 
+ppmshift	CMDS/NETPBM	OK	usage:  ppmshift shift [ppmfile]         shift: maximum number of pixels to shift a line by 
+pbmtoln03	CMDS/NETPBM	SILENT	
+pbmtoybm	CMDS/NETPBM	SILENT	
+spottopgm	CMDS/NETPBM	OK	Usage: spottopgm [-1|2|3] [Firstcol Firstline Lastcol Lastline] input_file 
+ppmbrighten	CMDS/NETPBM	SILENT	
+icontopbm	CMDS/NETPBM	SILENT	
+pgmtoppm	CMDS/NETPBM	OK	usage:  pgmtoppm <colorspec> [pgmfile]                  <colorspec1>,<colorspec2> [pgmfile]         
