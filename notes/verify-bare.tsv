@@ -257,3 +257,18 @@ lp	CMDS	OK	lp: Spooler not installed
 em	CMDS	OK	Environment variable TERM not defined! 
 ppmtouil	CMDS/NETPBM	SILENT	
 xwdtopnm	CMDS/NETPBM	SILENT	
+ppmtorgb3	CMDS/NETPBM	SILENT	
+ppmtoyuvsplit	CMDS/NETPBM	OK	usage:  ppmtoyuvsplit basename [ppmfile] 
+pnminvert	CMDS/NETPBM	SILENT	
+pnmrotate	CMDS/NETPBM	OK	usage:  pnmrotate [-noantialias] <angle> [pnmfile] 
+asciitopgm	CMDS/NETPBM	OK	usage:  asciitopgm [-d <val>] height width [asciifile] 
+pgmkernel	CMDS/NETPBM	OK	usage:  pgmkernel [-weight f] width [height] 
+pgmhist	CMDS/NETPBM	SILENT	
+rawtoppm	CMDS/NETPBM	OK	usage:  rawtoppm [-headerskip N] [-rowskip N] [-rgb|-rbg|-grb|-gbr|-brg|-bgr] [-interpixel|-interrow
+pnmcut	CMDS/NETPBM	OK	usage:  pnmcut x y width height [pnmfile] 
+pnmhistmap	CMDS/NETPBM	SILENT	
+fitstopnm	CMDS/NETPBM	SILENT	
+ppmmix	CMDS/NETPBM	OK	usage:  ppmmix fadefactor ppmfile1 ppmfile2         fadefactor: 0.0 = only ppmfile1, 1.0 = only ppmf
+pnmtofits	CMDS/NETPBM	SILENT	
+pbmtog3	CMDS/NETPBM	SILENT	
+ppmforge	CMDS/NETPBM	SILENT	
