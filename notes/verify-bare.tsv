@@ -432,3 +432,229 @@ msdeltree	CMDS	OK	Mtools version 3.6, dated 14 Apr 97 Usage: msdeltree [-v] msdo
 rndir	CMDS	OK	ROOT: /dd scanning directory ... 
 bootgen	CMDS	OK	bootgen: device name must be specified 
 buildhash	CMDS	OK	No dictionary (dict.191) 
+nsort	CMDS	SILENT	
+ed	CMDS	OK	/r0/ed.000002: 000:221 module not found 
+read_mail	CMDS	OK	[L]ist again ,  e[X]it & delete mail ,  exit & [N]ot delete   ?   
+dearc	CMDS	OK	Usage: dearc [p] filename Option p enables selective retrieval 
+msmove	CMDS	OK	Mtools version 3.6, dated 14 Apr 97 Usage: msmove [-itnmvV] file targetfile        msmove [-itnmvV] 
+spiff	CMDS	OK	spiff requires two file names. 
+bmgtest2	CMDS	OK	bmgtest: pattern argument missing 
+tac	CMDS	SILENT	
+hinterhalt	CMDS	OK	Environment variable TERM not defined! 
+vmod_trap	CMDS/COMMS	NOSTART	# Emulation could not start due to OS-9 error #000:234 (E_NEMOD): '/dd/CMDS/COMMS/vmod_trap' #   Non
+xydown	CMDS/COMMS	OK	XYDOWN ver. 1.1 XYDown:Can't open serial port. -- Error 240 
+xyt	CMDS/COMMS	OK	Environment variable "TERM" not defined 
+rxmod	CMDS/COMMS	TRAP	can't install Vmod Trap handler 
+z	CMDS/COMMS	OK	Receiving... **B0100000027fed4  
+txmod	CMDS/COMMS	OK	 EETXMod - Err:  no filename given ! ? TXMod Ed.1 Rv.2 - send Module via SCF to RXMod to link there 
+dld	CMDS/COMMS	OK	dld version 1.4   (c) 1986 FHL dld: no filename specified 
+tterm	CMDS/COMMS	OK	No MODEM port defined! 
+uld	CMDS/COMMS	OK	uld version 1.4   (c) 1986 FHL uld: no filename specified 
+blastem	CMDS/COMMS	OK	Blastem: Filename required for Xmodem! 
+tsu	CMDS/COMMS	OK	Checking /dd/USR...OK! Checking /dd/USR/TTERM...Creating Checking /dd/USR/TTERM/generic.dial...Creat
+sterm	CMDS/COMMS	OK	Environment variable TERM not defined! 
+xy	CMDS/COMMS	OK	Receiving... C 
+k	CMDS/COMMS	OK	Receiving... 
+subber	CMDS	OK	No arguments Usage : subber <opts> wordlist <filename>         if no filename standard in is used 
+qt	CMDS	OK	It's almost twenty past five. 
+os9lib	CMDS	CRASH	# # Exception: pid=2 vector=$02 err=#000:102 โ€” process will be killed (x to continue) NON-IMPLEMEN
+transfer	CMDS	OK	Environment variable TERM not defined! 
+sepwords	CMDS	SILENT	
+wc	CMDS	SILENT	
+rcsident	CMDS	SILENT	
+fkeys	CMDS	SILENT	
+soundex	CMDS	SILENT	
+fontgen	CMDS	OK	            nam      text80z.font             ttl      Character-Font fuer 80-Zeichen-Karte         
+unpacklib	CMDS	OK	Usage: unpacklib <options> file1.l file2.l ... Ricreates OS-9 modules from OS-9 libraries.  Where op
+expr	CMDS	OK	Try `expr --help' for more information. 
+cls	CMDS	OK	cls: unknown terminal type ''. 
+checkfile	CMDS	OK	Environment variable TERM not defined! 
+lpq	CMDS	OK	lpq: no spooler installed 
+mcvert	CMDS	SILENT	
+gzip	CMDS	OK	gzip: compressed data not written to a terminal. Use -f to force compression. For help, type: gzip -
+djpeg	CMDS	SILENT	
+diff	CMDS	OK	diff: requires two file names.  Usage: diff [-options] file1 file2 
+messages	CMDS/ELM	OK	messages: Cannot figure out name of your incoming mail folder. 
+answer	CMDS/ELM	OK	** Fatal Error: Could not open /.elm/aliases! 
+listalias	CMDS/ELM	OK	Could not open user data file! Could not open system data file! 
+checkalias	CMDS/ELM	OK	Usage: checkalias alias [alias ...] 
+elm	CMDS/ELM	OK	Sorry, but you must specify what type of terminal you're on if you want to run the "elm" program. (Y
+frm	CMDS/ELM	OK	No mail. 
+printmail	CMDS/ELM	OK	Usage: printmail [-p] [-r filename] <message list> 
+arepdaemon	CMDS/ELM	OK	Error 216 attempting fstat on /dd/USR/LIB/ELM/autoreply.data 
+newmail	CMDS/ELM	OK	Newmail: I can't get username! 
+readmsg	CMDS/ELM	OK	readmsg: Cannot figure out name of your incoming mail folder. 
+filter	CMDS/ELM	OK	filter (Wed Aug 26 05:20:00 2026 su): LEAVE Cannot open temporary file /r0/filter.2 
+autoreply	CMDS/ELM	OK	You're not currently autoreplying to mail. 
+newalias	CMDS/ELM	OK	Updating your personal alias file... Couldn't open /.ELM/aliases.text for input! 
+fastmail	CMDS/ELM	OK	Usage: fastmail {args} [ filename | - ] address(es)    where {args} can be; 	-b bcc-list 
+mtst	CMDS	OK	a: 1.000000		b: 1.000000		c: 1.000000 i: 1			j: 1			k: 1 a: 0.000000		ceil(a): 0.000000		floor(a): 0
+zipnote	CMDS	OK	Copyright (C) 1990-1992 Mark Adler, Richard B. Wales, Jean-loup Gailly and Kai Uwe Rommel. Type 'zip
+printf	CMDS	OK	printf: Usage: printf <format-string> [ arg1 . . . ] 
+mscd	CMDS	OK	A:/ 
+setyear	CMDS	OK	Syntax:    setyear <YYYY> Function:  set system date to year YYYY            (YYYY must be 1970 to 2
+about	CMDS	OK	about -- what this collection knows about a program Usage: about <program>...   Prints what it is, w
+emacs.mm1	CMDS	OK	Environment variable TERM not defined! 
+X11R6shl	CMDS	NOSTART	# Emulation could not start due to OS-9 error #000:234 (E_NEMOD): '/dd/CMDS/X11R6shl' #   Non Existi
+marc	CMDS	OK	MARC - archive merger, Version 5.21, created on 04/22/87 at 15:05:10 Usage: MARC <tgtarc> <srcarc> [
+trap	CMDS	TRAP	tlink: -1 **** Can't install trap handler ****  **** +-*/&|^<>@? ****  
+fixyear	CMDS	OK	Usage: fixyear [-opt] <file|dir> <dir|file> [-opt]        Fix modification year if less than 1970 Op
+mstoolstest	CMDS	OK	drive A: 	#fn=1 mode=0 	file="/dd/DOS/a.img" fat_bits=0  
+runc	CMDS	OK	**** csl traphandler mismatch **** 
+t	CMDS	SILENT	
+sysmin	CMDS	OK	F$SetSys: unimplemented 08A6 (size=80000002) system minimun priority is 0 
+tab	CMDS	SILENT	
+gen	CMDS	OK	Syntax: gen [<opt>] <pathname> [<opts>] Function: generate a program frame Note: there must be exact
+shire	CMDS	OK	                                                                  Snow Year   1    Weather        Sk
+casefix	CMDS	SILENT	
+aprocs	CMDS	CRASH	# # Exception: pid=2 vector=$02 err=#000:102 โ€” process will be killed (x to continue) F$SetSys: un
+zipsplit	CMDS	OK	Copyright (C) 1990-1992 Mark Adler, Richard B. Wales, Jean-loup Gailly and Kai Uwe Rommel. Type 'zip
+field	CMDS	OK	field: no fields selected  
+tail	CMDS	SILENT	
+mexist	CMDS	OK	mexist                  4262 Byte   Program    Reent|               cio                    18058 Byt
+math	CMDS	NOSTART	# Emulation could not start due to OS-9 error #000:234 (E_NEMOD): '/dd/CMDS/math' #   Non Existing M
+lpshut	CMDS	OK	lpshut: no spooler active 
+grep	CMDS	OK	usage: grep [-[[AB] ]<num>] [-[CEFGVchilnqsvwx]] [-[ef]] <expr> [<files...>] 
+sedt	CMDS	OK	[62"p F[?7l[?3l=[2J[1;1H[1;24r[0;7m File:                                           insert 
+speech	CMDS	OK	Enter english text (Ctrl-Z to end): 
+undel	CMDS	OK	U N D E L E T E    V1.1   by  Stephan Enzler -------------------------------------------- Please Ent
+gcl	CMDS	OK	G0=                                                         =!                                   
+emacs	CMDS	OK	Environment variable TERM not defined! 
+lua	CMDS	OK	**** csl traphandler mismatch **** 
+tsmon2	CMDS	OK	tsmon2: exactly one argument required 
+bash	CMDS	OK	/.bashrc:  (E$MNF) That module isn't currently loaded. bash#  
+scales	CMDS	OK	Usage: scales [-h] [-d] [-a] [-m] [-c] [outname]              -h: This message only              -d:
+bmgtest	CMDS	OK	bmgtest: pattern argument missing 
+cal	CMDS	OK	July            2026      August          2026      September       2026  S  M  T  W  T  F  S       
+time	CMDS	OK	time can't fork ''.   
+chksum	CMDS	OK	syntax: chksum [-cehtv]	{file|--|-}... function: calculate 32-bit checksum for file(s), output to st
+shdev	CMDS	OK	Device       Fmgr      Driver      Capabilities ----------------------------------------------- 
+lunisolar	CMDS	OK	The moon is waxing and gibbous (97% of full). 
+rcs	CMDS	OK	rcs error: No input file command format: rcs -i -alogins -Alogins -e[logins] -b[rev] -c[commentleade
+ptob	CMDS	SILENT	
+env	CMDS	SILENT	
+head	CMDS	SILENT	
+dhryO2	CMDS/DHRY	OK	Dhrystone Benchmark, Version 2.0 (Language: C) Program compiled with 'register' attribute Please giv
+dhryGcco2	CMDS/DHRY	OK	Dhrystone Benchmark, Version 2.0 (Language: C) Program compiled with 'register' attribute Please giv
+dhryGccin	CMDS/DHRY	OK	Dhrystone Benchmark, Version 2.0 (Language: C) Program compiled with 'register' attribute Please giv
+dhryGcc2	CMDS/DHRY	OK	Dhrystone Benchmark, Version 2.0 (Language: C) Program compiled with 'register' attribute Please giv
+dhryGcc	CMDS/DHRY	OK	Dhrystone Benchmark, Version 2.0 (Language: C) Program compiled with 'register' attribute Please giv
+dhryGcc2mx	CMDS/DHRY	OK	Dhrystone Benchmark, Version 2.0 (Language: C) Program compiled with 'register' attribute Please giv
+dhry	CMDS/DHRY	OK	Dhrystone Benchmark, Version 2.0 (Language: C) Program compiled with 'register' attribute Please giv
+dhryshamu2	CMDS/DHRY	OK	Dhrystone Benchmark, Version 2.0 (Language: C) Program compiled with 'register' attribute Please giv
+dhryGcc2o2	CMDS/DHRY	OK	Dhrystone Benchmark, Version 2.0 (Language: C) Program compiled with 'register' attribute Please giv
+dhryGcc2in	CMDS/DHRY	OK	Dhrystone Benchmark, Version 2.0 (Language: C) Program compiled with 'register' attribute Please giv
+dhryshamu	CMDS/DHRY	OK	Dhrystone Benchmark, Version 2.0 (Language: C) Program compiled with 'register' attribute Please giv
+dhryGccmx	CMDS/DHRY	OK	Dhrystone Benchmark, Version 2.0 (Language: C) Program compiled with 'register' attribute Please giv
+keydrv.mm1	CMDS/MM1	NOSTART	# Emulation could not start due to OS-9 error #000:205 (E_BMID): '/dd/CMDS/MM1/keydrv.mm1' #   Bad M
+msdrv_340.901.ms	CMDS/MM1	NOSTART	# Emulation could not start due to OS-9 error #000:237 (E_NORAM): '/dd/CMDS/MM1/msdrv_340.901.ms' # 
+windio.52	CMDS/MM1	NOSTART	# Emulation could not start due to OS-9 error #000:205 (E_BMID): '/dd/CMDS/MM1/windio.52' #   Bad Mo
+scsi_mm1a	CMDS/MM1	NOSTART	# Emulation could not start due to OS-9 error #000:237 (E_NORAM): '/dd/CMDS/MM1/scsi_mm1a' #   No Ra
+msdrv.901_340	CMDS/MM1	NOSTART	# Emulation could not start due to OS-9 error #000:237 (E_NORAM): '/dd/CMDS/MM1/msdrv.901_340' #   N
+rb37c65	CMDS/MM1	NOSTART	# Emulation could not start due to OS-9 error #000:205 (E_BMID): '/dd/CMDS/MM1/rb37c65' #   Bad Modu
+snddrv	CMDS/MM1	NOSTART	# Emulation could not start due to OS-9 error #000:205 (E_BMID): '/dd/CMDS/MM1/snddrv' #   Bad Modul
+splprt	CMDS	SILENT	
+isam	CMDS	OK	ISAM Test driver: here we go 1. Create filesystem ok Part Code: 000001 - This is part #1 Bin: A029 
+japan	CMDS	OK	                                                                  Snow Year   1    Weather        Sk
+clear	CMDS	OK	ClearScreen : Environment variable TERM not defined. 
+tcmp	CMDS	OK	[Tcmp v2.3] Usage:  tcmp [options] file1 file2   options: 
+chbase	CMDS	OK	chbase:  Error options !!! 
+sh	CMDS	SILENT	
+uniq	CMDS	SILENT	
+demerge	CMDS	OK	Syntax:   demerge <path> Function: demerges a file of merged modules to single module           file
+adlrun	CMDS/ADL	OK	Error opening file adlcomp.out 
+adldebug	CMDS/ADL	OK	Usage: adldebug dungeon. 
+adlcomp	CMDS/ADL	OK	Usage: adlcomp Infile (with any of the following) 	-o Outfile		File for output 	-i Dir			Directory f
+adltouch	CMDS/ADL	OK	Usage: adltouch <file> <number> 
+zip	CMDS	OK	Copyright (C) 1990-1992 Mark Adler, Richard B. Wales, Jean-loup Gailly and Kai Uwe Rommel. Type 'zip
+setterm	CMDS	OK	TERM = (dumb)  
+makecrc	CMDS	SILENT	
+collect	CMDS/GCC2	OK	Syntax   : collect [<opts>] {<file>} [<opts>] Function : generate global con-/de-structor table for 
+cc2	CMDS/GCC2	SILENT	
+gcc	CMDS/GCC2	OK	gcc: No input files specified. 
+gcc2	CMDS/GCC2	OK	gcc2: No input files specified. 
+gpp	CMDS/GCC2	OK	gpp: No input files specified. 
+cc1plus	CMDS/GCC2	SILENT	
+cccp2	CMDS/GCC2	SILENT	
+cc2plus	CMDS/GCC2	SILENT	
+cursive	CMDS	SILENT	
+setime2	CMDS	OK	      yyy mm dd hh mm ss [am/pm] Time:  
+upperdir	CMDS	OK	ADL             CMDS            DEFS            DEMO            DOC             DOS             ETC 
+vi_nocio	CMDS	OK	[2J[1;1H 
+vis	CMDS	OK	syntax: vis {opt} <command> <args> function: repeatedly execute command, refreshing screen with its 
+btree	CMDS	OK	SoftFocus BTree Library --------- ----- ------- This program is used to test the BTree Library. Plea
+helpindex	CMDS	OK	helpindex: Missing names of files to create index for. 
+elvprsv	CMDS	SILENT	
+exrecover	CMDS	OK	 Wrong number of arguments to exrecover 
+wam.sbprolog	CMDS	OK	Usage: sim [-Ttdns] [-m s_size] [-p p_size] [-b tr_size] [-ui num] pil_file_name ... 
+drop	CMDS	OK	keep 1.0 -- OS-9 freeware collection Usage: keep [-n] [-f] [-q] [-s] [-p <dir>] <program>...        
+cxref	CMDS	SILENT	
+savemem	CMDS	OK	Syntax   : SAVEMEM <from address> <to address> <path> Function : saves memory block to file Notes   
+patch	CMDS	SILENT	
+map	CMDS	OK	Syntax: map [<opts>] <file> {<file>} Function: shows blocks used by a file Options: 
+su	CMDS	OK	su: user root does not exist 
+unsit	CMDS	OK	Unsit V1.15f Update by Nigel Perry              Orginal by Allen G Weber              OSK Port by De
+infocom.tcap	CMDS	OK	Usage: infocom [-aehlnoprstvx] <filename> 
+vc	CMDS	OK	Environment variable TERM not defined! 
+dback	CMDS	OK	Can't open directory /d0 
+exist	CMDS	OK	EXIST    Version UTIL 2.40 by DESIGNA VLT 24.11.97 Aufruf: exist [options] <File, Dir> no param Exit
+paranoia	CMDS	OK	Welcome to Paranoia! HOW TO PLAY:   Just press <RETURN> until you are asked to make a choice. 
+ttyexp	CMDS	OK	Unknown terminal type ''. Unknown terminal type ''. 
+math881	CMDS	NOSTART	# Emulation could not start due to OS-9 error #000:234 (E_NEMOD): '/dd/CMDS/math881' #   Non Existin
+mscopy	CMDS	OK	Mtools version 3.6, dated 14 Apr 97 Usage: mscopy [-tnmvV] sourcefile targetfile        mscopy [-tnm
+zoo	CMDS	OK	Usage: zoo {acDeglLPTuUvx}[aAcCdEfInmMNoOpPqu1:/.@n] archive file ("zoo h" for help) Novice usage:  
+cuts	CMDS	OK	Usage: cuts <-d> [-o name] <file>...        cuts <-e> [-o name] [[<->9abr] <file>] ... 'cuts -h' for
+testibc	CMDS	OK	TestIbc: Running ... Using "/dd/sys/errmsg.ibc" as Error message file. TestIbc: ErrPath =          0
+setimex	CMDS	OK	Time now: Wed Aug 26 05:26:04 2026 
+sonnet	CMDS	OK	Unknown terminal type ''. 
+newslock	CMDS/NEWS	OK	Usage: newslock tempname lockname 
+dbz	CMDS/NEWS	OK	usage: dbz [-a] [-x] [-c] database [file] ... 
+c7decode	CMDS/NEWS	SILENT	
+bdecode	CMDS/NEWS	SILENT	
+byteflip	CMDS/NEWS	SILENT	
+newshist	CMDS/NEWS	OK	usage: newshist [-df file] msgid ... 
+version	CMDS	OK	Dies ist das Program 'version', Version 7 ... oder in anderer Notation, version 0.7 
+edir	CMDS	OK	   Event Directory at  5:26:45 
+rcsdiff	CMDS	OK	rcsdiff error: No input file command format:     rcsdiff [-biwt] [-q] [-cefhn] [-rrev1] [-rrev2] fil
+unip	CMDS	SILENT	
+sum	CMDS	SILENT	
+lwf	CMDS	OK	%!PS-Adobe-2.0 %%Creator: lwf on evtech %%CreationDate: Wed Aug 26 05:27:05 2026 
+minnesota	CMDS	OK	                                                                  Snow Year   1    Weather        Sk
+gawk	CMDS	OK	Syntax   : gawk [<opts>] <program-file> [<file>] Function : pattern scanning and processing language
+xrf	CMDS	OK	XRF: Usage is XRF [input name] <output name> 
+uuencode	CMDS	OK	begin 644  
+macbin	CMDS	SILENT	
+hexedit	CMDS	OK	Usage: hex [-vdr] 'file' 
+ephem881	CMDS	OK	Must have addressable cursor 
+make	CMDS	SILENT	
+macunpack	CMDS	SILENT	
+kermit	CMDS	OK	OS-9 Kermit Version 1 Release 5 Usage: kermit c[le line esc.char]   (connect mode) or:    kermit s[d
+xlate	CMDS	OK	Syntax: xlate [<opts>] <pathname> Function: Translate a 6809 assembly language to 68000 Options: 
+splman	CMDS	SILENT	
+roff	CMDS	SILENT	
+sdb	CMDS	OK	SDB - version 2.0 SDB>  
+sqrtx	CMDS	OK	    2 1.41421   2.00000000000000000   9.54e-07     3 1.73205   3.00000000000000000   1.91e-06     5 
+me	CMDS	OK	Umgebungsvariable TERM nicht definiert! 
+as0	CMDS	OK	Usage: as0 [files] 
+xcrypt	CMDS	OK	en/decrypt <input-file> <output-file> 
+sieve	CMDS	OK	start   100 sieves done  
+float	CMDS	OK	start  7000 loops done  
+pwgen	CMDS	OK	usage: pwgen length [count] 
+screen	CMDS	OK	mode: You must have a $HOME/.screens directory. 
+mshell	CMDS	OK	Environment variable TERM not defined! 
+setime	CMDS	OK	YYMMDDHHMMSS 
+spline	CMDS	OK	%!0LY1LF.or#\LG,nl(ILF.or#\LG*aa&CLF,nl(ILG+hu,VLF,nl(ILG*ca*OLF+hu,VLG*b~1BLF+hu,VL
+dm	CMDS	OK	23[2J [10;30Hษ[10;31Hอออออออออออออออออออ[10;50Hป[11;30Hบ[12;30Hบ[13;30Hบ[14;30Hบ[11;50
+scqref	CMDS	OK	sc Quick Reference $Revision: 6.16 $  Overview: 
+splstat	CMDS	SILENT	
+ar	CMDS	OK	Ar V1.2 - archive file manager Usage:  Ar -<cmd>[<modifier>] [file .. ]       <cmd> is one of the fo
+who	CMDS	NOSTART	# Emulation could not start due to OS-9 error #000:214 (E_FNA): '/dd/CMDS/who' #   File Not Accessib
+unifdef	CMDS	OK	syntax: unifdef {<opts>} [<file>] function: remove ifdef'ed lines from source file options: 
+cut	CMDS	OK	Must have one of -f or -c cut [-d<delimitor>] [-s] -c<list>|-f<list> [files] 
+bigsetter	CMDS	OK	Test fuer BigSet mit 36 Elementen define Set A Set A :      {} 
+vecho	CMDS	SILENT	
+wysetime	CMDS	NOSTART	# Emulation could not start due to OS-9 error #000:205 (E_BMID): '/dd/CMDS/wysetime' #   Bad Module 
+wrjpgcom	CMDS	OK	wrjpgcom inserts a textual comment in a JPEG file. You can add to or replace any existing comment(s)
+florida	CMDS	OK	                                                                  Snow Year   1    Weather        Sk
+lout	CMDS	SILENT	
+dir	CMDS	OK	Directory of "." 05:29:08  08/26/126 ADL             C               CMDS            DEFS           
