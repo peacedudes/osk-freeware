@@ -66,27 +66,25 @@ program can appear to "echo its input" when it has produced no output at all
 and is simply stuck in `getchar`. The tell is that the output length equals
 the INPUT's and ignores any flag that sets output length.
 
-## 3. Module load is case-sensitive where RBF is not
+## 3. WITHDRAWN -- `Graph` is not a case bug
 
-Eight programs stop with `**** Can't install trap handler ****  **** Graph`.
+The claim here was that module load is case-sensitive where RBF is not. **It
+is wrong.** Put ONLY the lowercase `graph` on the module search path and the
+program runs; case never mattered. See `../OS9EXEC-MODULE-CASE.md`.
 
-    # Installing Traphandler for pid=2, Trap #5, mpath='Graph'
-    # load_module: load path (exec) = Graph
-    # install_traphandler: link_load('Graph') for pid=2 returned err=$D8
+What actually happens is that the trap-handler search goes to **`OS9MDIR`, a
+HOST directory**, and falls back to a path that does not exist when the
+variable is unset -- it never looks on `/dd`. `E_PNNF` is therefore correct.
 
-`$D8` = 216 = `E_PNNF`. The module is named `Graph`; the file is named
-`graph`. **RBF's own opens are case-insensitive** -- measured on the same
-image, `ls` finds `/dd/CMDS/GAMES/graph` as `graph`, `GRAPH` and `Graph`. So
-the path layer is case-insensitive and the module-load path is not, which is
-an inconsistency inside os9exec rather than a property of OS-9.
+There may still be an os9exec question in there -- should a trap-handler link
+search the process's execution directory on the mounted disk first? -- but I
+am not asserting it, because I could not localise it and guessing is exactly
+what produced the withdrawn claim. **Do not spend maintainer time on this one
+until that question is answered on its own terms.**
 
-Confirmed from the other side: put a file named `Graph` where the loader looks
-and the trap handler installs and the program runs. Nothing else changed.
-
-Costs eight programs: `g`, `striche`, `apfel`, `sine`, `showpic`,
-`graphdemo`, `graphsave`, and `rxmod` against `vmod_trap` -- a sixth of the 46
-programs the 2026-08-26 sweep lists as needing work. **Nothing was renamed on
-the disk**: a `Graph` beside `graph` would make them work and hide this.
+The user-facing problem is real and is probably OURS: eight programs link a
+library that sits beside them on the image and cannot find it, and this disk
+ships no `load` for anyone to preload it with.
 
 ---
 
