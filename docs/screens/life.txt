@@ -12,13 +12,3 @@
                @@.@.
                .@@
                 @.
-
-
-
-
-
-
-
-
-
-bash#     Generation: 12                Cycles every 8 generations.

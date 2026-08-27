@@ -1,3 +1,0 @@
-Welcome to the game of Hotel.
-
-Instructions? (Y/N) bash#

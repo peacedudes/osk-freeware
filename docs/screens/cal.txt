@@ -1,14 +1,3 @@
-# /h0: using OS9H0='/Users/rdoggett/Developer/os9/osk-freeware/h0', ignoring '/'
-/.bashrc:  (E$MNF) That module isn't currently loaded.
-
-bash# export TERM=vt100
-bash# export TERMCAP=/dd/SYS/termcap
-bash# export HOME=/dd
-bash# export USER=tester
-bash# export LOGNAME=tester
-bash# export PATH=/dd/CMDS:/dd/CMDS/GAMES:.
-bash# export HELPDIR=/dd/SYS/HELP
-bash# /dd/CMDS/cal -m=8 -y=2026
 August          2026
  S  M  T  W  T  F  S
 ÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄ
@@ -18,5 +7,3 @@ August          2026
 16 17 18 19 20 21 22
 23 24 25 26 27 28 29
 30 31
-
-bash#

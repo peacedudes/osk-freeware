@@ -1,24 +1,24 @@
-                                             a - 6 food rations.
-                                             b - a tin.
-                                             c - 3 fortune cookies.
-                                             d - 2 tripe rations.
-                                             e - 2 apples.
-                                             f - 2 magenta potions.
-                                             g - an expensive camera.
-                                             h - 32 +2 darts (weapon in hand).
-                                             i - a can opener.
-                                            --More--
+                                   a - a +0 two handed sword (weapon in hand).
+                                   b - a +0 ring mail (being worn).
+                                  --More--
+
+
+                                       ------
+                                       |....|
+                                       |..%$+
+                                       |.d..|
+                                       +....|
+                                       |@...|
+                                       +....|
+                                       ------
 
 
 
 
-                                       -+-----------
-                                       +...........|
-                                       |.......@...|
-                                       |.......d...|
-                                       |...........|
-                                       -------------
 
 
 
-Level 1    Hp  10(10)   Ac 10   Str 11      Exp  1
+
+
+
+Level 1    Hp  14(14)   Ac 7    Str 17      Exp  1

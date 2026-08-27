@@ -21,4 +21,3 @@ every binary -- was the normal way to build for OS-9, and it is why a starred
 program is often a fraction of the size of a trap-free one.  Much of this
 collection was rebuilt trap-free (`-qm`) so it would run with nothing loaded
 -----Mg: README-CIO                       (fundamental)-------------------------
-bash#

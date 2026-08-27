@@ -15,4 +15,3 @@
 
 
 Level:   1  Packets:   6  Saved:   0  Moves:          2  Pushes:          0
-bash#

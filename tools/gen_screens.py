@@ -97,9 +97,19 @@ def esc(s):
     return (s.replace("&", "&amp;").replace("<", "&lt;").replace(">", "&gt;"))
 
 
+SHELL_NOISE = ("bash#", "/.bashrc:", "# /h0:", "export ")
+
+
 def trim(text):
-    """Drop leading/trailing blank lines; keep the shape of what is left."""
-    lines = [l.rstrip() for l in text.split("\n")]
+    """Drop the shell's own lines, then leading/trailing blank lines.
+
+    A capture holds whatever the harness typed to get the program going --
+    the os9exec banner, the export lines, the command itself, the prompt it
+    returned to. None of that is the program, and a gallery of screenshots
+    showing somebody else's shell prompt is not a gallery of this software.
+    """
+    lines = [l.rstrip() for l in text.split("\n")
+             if not any(n in l for n in SHELL_NOISE)]
     while lines and not lines[0].strip():
         lines.pop(0)
     while lines and not lines[-1].strip():
@@ -134,6 +144,10 @@ def pick(name):
 def main():
     if not os.path.isdir(CAPS):
         sys.exit("no captures in %s -- run tools/playtest.py --all first" % CAPS)
+    # Start clean: a screen that no longer qualifies must not linger from a
+    # previous run and end up in the gallery by accident.
+    if os.path.isdir(KEEP):
+        shutil.rmtree(KEEP)
     os.makedirs(KEEP, exist_ok=True)
     names = sorted({f.split(".")[0] for f in os.listdir(CAPS)
                     if f.endswith(".txt")})

@@ -17,8 +17,3 @@
 14     Intrinsic crystal static kernel Zen
 
 [m# u# r w[file] q; ? for help]:
-
-
-
-
-bash#

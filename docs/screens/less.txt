@@ -20,5 +20,3 @@ has the detail.
 
 The starred ones in DOC/INDEX use Microware's cio (see DOC/README-CIO).
 They run: the module is here.
-
-bash#

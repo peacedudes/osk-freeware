@@ -21,4 +21,3 @@ If you would rather use your own
 --------------------------------
 
 You run OS-9, so you have these modules already, and you may prefer your copy
-bash#

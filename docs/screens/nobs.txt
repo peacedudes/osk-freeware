@@ -11,9 +11,8 @@
 
 
 
-                               6d   6s   Ks   Kh   4c  10d
+                               Jd   3s   7h   9c   Js   8c
                                 a    b    c    d    e    f
 
 
-     It is my crib.
-     Select 2 cards.  Type RETURN to discard. bash#
+     It is your crib.

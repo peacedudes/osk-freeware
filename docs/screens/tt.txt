@@ -19,5 +19,3 @@
 ||                    ||    Pause:      's'
 ||                    ||    Quit:       'q'
 ++===== Aborted! =====++    Refresh:    '^L'
-
-bash#

@@ -1,11 +1,3 @@
-bash# export TERM=vt100
-bash# export TERMCAP=/dd/SYS/termcap
-bash# export HOME=/dd
-bash# export USER=tester
-bash# export LOGNAME=tester
-bash# export PATH=/dd/CMDS:/dd/CMDS/GAMES:.
-bash# export HELPDIR=/dd/SYS/HELP
-bash# /dd/CMDS/GAMES/world
 WORLD. Amiga C  Version 1.02 Copyright 1987 J.D. McDonald  GOOD LUCK!
 
 You are standing on a steeply climbing trail nearing the top of
@@ -20,5 +12,3 @@ trail, the suns are shining brightly, totally unobscured by the
 odd mirage effect which so far has prevented your mother ship
 850 kilometers above from getting clear photos of the large
 valley which must lie just beyond the pass you now approach.
-
->bash#

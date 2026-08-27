@@ -15,4 +15,3 @@
                 O          O                  #                  *
                 O      OO  O                  #
                 O    OO  OO                    #                      *
-bash#

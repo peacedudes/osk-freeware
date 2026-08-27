@@ -1,5 +1,3 @@
-bash# export HELPDIR=/dd/SYS/HELP
-bash# /dd/CMDS/GAMES/tess
                /*--------------/*      ------------------------------------
              /  '            /  '           Beyond The Tesseract   V2.0p
            /   '|          /   '|      ------------------------------------
@@ -21,4 +19,3 @@ bash# /dd/CMDS/GAMES/tess
 */--------------*/                            'Set the software free'
 
 Scenario and instructions?
-bash#

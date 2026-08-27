@@ -21,4 +21,3 @@ program is often a fraction of the size of a trap-free one.  Much of this
 collection was rebuilt trap-free (`-qm`) so it would run with nothing loaded
 at all; most of the programs under CMDS need no module whatever.  The rest
 :q!
-bash#

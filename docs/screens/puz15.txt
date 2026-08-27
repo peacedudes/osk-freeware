@@ -15,4 +15,3 @@
 
 Time used: 00 min 00 sec   Move: 0
 bye!
-bash#
