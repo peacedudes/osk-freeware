@@ -38,9 +38,13 @@ Script format (one directive per line, # comments ignored):
 
 Exit status is 0 when every `expect' was met and no `absent' appeared.
 """
+import fcntl
 import os
+import pty
+import struct
 import subprocess
 import sys
+import termios
 import threading
 import time
 
@@ -92,7 +96,7 @@ def parse(path):
     return spec
 
 
-def feed(spec, fifo, with_keys, cap=None, marks=None):
+def feed(spec, master, with_keys, cap=None, marks=None):
     """Write the shell lines, then the keystrokes, at human speed.
 
     `marks' collects (label, byte-offset) pairs at each `snap'. The offset is
@@ -101,14 +105,28 @@ def feed(spec, fifo, with_keys, cap=None, marks=None):
     is how a mid-game screen -- hack's inventory, tet's board in play -- gets
     captured without stopping the program.
     """
-    with open(fifo, "w") as f:
-        def out(s):
-            f.write(s)
-            f.flush()
-        out("export TERM=vt100\r")
-        time.sleep(0.6)
-        out("export TERMCAP=%s\r" % TERMCAP)
-        time.sleep(0.6)
+    def out(s):
+        os.write(master, s.encode("latin-1"))
+    if True:
+        # LET os9exec COME UP FIRST. On a pty the terminal echoes whatever is
+        # typed before the emulator has taken the line, so a command sent too
+        # early is simply lost -- `export TERM=vt100' vanished that way and
+        # hack then stopped with "Unknown terminal type: dumb."
+        time.sleep(3.5)
+        # THE ENVIRONMENT A PERSON ACTUALLY ARRIVES WITH. Running bash bare is
+        # not how anyone meets this disk -- SYS/login sets these first, and a
+        # program that wants one of them fails in a way that looks like a bug
+        # in the program. `sokoban' stops with "cannot get your username"
+        # without USER, and the harness scored that PASS until 2026-08-27.
+        for line in ("export TERM=vt100",
+                     "export TERMCAP=%s" % TERMCAP,
+                     "export HOME=/dd",
+                     "export USER=tester",
+                     "export LOGNAME=tester",
+                     "export PATH=/dd/CMDS:/dd/CMDS/GAMES:.",
+                     "export HELPDIR=/dd/SYS/HELP"):
+            out(line + "\r")
+            time.sleep(0.5)
         for line in spec["setup"]:
             out(line + "\r")
             time.sleep(0.6)
@@ -132,37 +150,60 @@ def feed(spec, fifo, with_keys, cap=None, marks=None):
         time.sleep(2.0)
 
 
-def run(spec, image, with_keys, cap, marks=None):
-    fifo = cap + ".fifo"
-    if os.path.exists(fifo):
-        os.unlink(fifo)
-    os.mkfifo(fifo)
+def run(spec, image, with_keys, cap, marks=None, size=(24, 80)):
+    """Drive the program on a REAL PSEUDO-TERMINAL.
+
+    This used to use a FIFO, and a FIFO is not a terminal. Programs that ask
+    `isatty()', or that reopen their own tty by name the way `tet' does, take
+    a different path -- and so does os9exec, which puts a tty into raw
+    character-at-a-time mode at startup and leaves a pipe alone. `hack' hung
+    under the FIFO harness and works perfectly for a person at a terminal:
+    the harness was wrong, not hack.
+
+    A pty also lets the window size be SET, which matters because OS-9 has no
+    way to ask for it: everything believes the 24x80 in the termcap entry, so
+    a mismatch with the real window is what makes `life' fall apart.
+    """
     env = dict(os.environ, OS9DISK=image)
-    # The writer goes FIRST, on its own thread. Opening a FIFO read-only blocks
-    # until a writer appears, so this ordering is what lets os9exec take the
-    # read end as an ordinary blocking stdin -- the same arrangement that works
-    # by hand as `os9exec bash < fifo'. Handing Popen an O_RDWR descriptor
-    # instead looked equivalent and was not: bash came up and never saw a byte.
-    writer = threading.Thread(target=feed,
-                              args=(spec, fifo, with_keys, cap, marks))
-    writer.daemon = True
-    writer.start()
-    with open(cap, "wb") as sink:
-        rfd = os.open(fifo, os.O_RDONLY)
-        proc = subprocess.Popen([OS9EXEC, "bash"], stdin=rfd,
-                                stdout=sink, stderr=subprocess.STDOUT, env=env)
-        writer.join(timeout=180)
-        try:
-            proc.wait(timeout=15)
-        except subprocess.TimeoutExpired:
-            proc.terminate()               # ask it to stop, then give it time
+    master, slave = pty.openpty()
+    rows, cols = size
+    fcntl.ioctl(slave, termios.TIOCSWINSZ,
+                struct.pack("HHHH", rows, cols, 0, 0))
+
+    collected = []
+
+    def drain():
+        while True:
             try:
-                proc.wait(timeout=10)
-            except subprocess.TimeoutExpired:
-                proc.kill()                # only after a polite stop failed
-        os.close(rfd)
-    os.unlink(fifo)
-    return open(cap, "rb").read()
+                chunk = os.read(master, 65536)
+            except OSError:
+                break
+            if not chunk:
+                break
+            collected.append(chunk)
+            with open(cap, "ab") as fh:      # so `snap' can size the capture
+                fh.write(chunk)
+
+    open(cap, "wb").close()
+    reader = threading.Thread(target=drain)
+    reader.daemon = True
+    reader.start()
+
+    proc = subprocess.Popen([OS9EXEC, "bash"], stdin=slave, stdout=slave,
+                            stderr=slave, env=env, close_fds=True)
+    os.close(slave)
+    feed(spec, master, with_keys, cap, marks)
+    try:
+        proc.wait(timeout=15)
+    except subprocess.TimeoutExpired:
+        proc.terminate()                     # ask, then allow time
+        try:
+            proc.wait(timeout=10)
+        except subprocess.TimeoutExpired:
+            proc.kill()                      # only after a polite stop failed
+    reader.join(timeout=5)
+    os.close(master)
+    return b"".join(collected)
 
 
 def playtest(path, image, outdir):
@@ -204,11 +245,29 @@ def playtest(path, image, outdir):
     # startup about one run in six, so the keyed screen held a bash prompt and
     # the control held a drawn board. The two texts DIFFERED, so `responds'
     # was true and it was scored PASS -- while the program had not started.
-    starved = best.ink() + 20 < cs.ink()
+    # Starved means THE PROGRAM NEVER GOT GOING, not merely that it drew less.
+    # A ratio, not a difference: keys often make a program QUIT sooner, so the
+    # control legitimately ends up with more on screen. `tet' quits on `q' and
+    # finishes on its high-score board (282 ink) while the untouched control
+    # plays on and stacks the board (366) -- that is healthy, and a plain
+    # difference called it a failure. A run that never started sits far lower
+    # than that: snake's hung run holds a bash prompt, under a third of what
+    # its control drew.
+    starved = cs.ink() > 80 and best.ink() < 0.5 * cs.ink()
+
+    # A PROGRAM THAT SAYS IT FAILED HAS FAILED, however much it drew.
+    # `sokoban' printed "cannot get your username" and was scored PASS
+    # because something appeared and the screen changed.
+    COMPLAINTS = ("cannot get", "can't open", "Can't open", "cannot open",
+                  "illegal char", "illegal command",
+                  "not found", "No such", "unknown terminal",
+                  "Unknown terminal", "command not found", "Stack Overflow",
+                  "Can't install trap handler", "bus error", "Bus error")
+    complained = [c for c in COMPLAINTS if c in alltext]
 
     verdict = "PASS"
     if (missing or present or not responds or orphans
-            or best.ink() < 10 or starved):
+            or best.ink() < 10 or starved or complained):
         verdict = "FAIL"
 
     print("%-14s %-5s ink=%-5d(%s) orphans=%-3d responds=%-3s%s%s"
@@ -216,6 +275,7 @@ def playtest(path, image, outdir):
              "yes" if responds else "NO",
              "  missing=%s" % missing if missing else "",
              ("  STARVED (control drew %d)" % cs.ink()) if starved
+             else ("  SAID: %s" % complained[0]) if complained
              else ("  found=%s" % present if present else "")))
     return verdict == "PASS", spec, best
 
