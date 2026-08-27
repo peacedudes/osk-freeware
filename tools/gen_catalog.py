@@ -430,6 +430,8 @@ def render_markdown(progs):
          "collection sorted by what each program is *for*, which is the more useful "
          "order when you do not yet know what you are looking for.",
          "",
+         "> Screens photographed from the running programs: `docs/screens.html`.\n"
+         ">\n"
          "> Prefer to click around? `docs/index.html` is a searchable version with "
          "per-program detail — what it needs, where it came from, on what terms. "
          "GitHub will not render it here; download the repository and open it, "

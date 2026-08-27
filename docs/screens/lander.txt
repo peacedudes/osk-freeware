@@ -1,0 +1,22 @@
+                                 Lunar Lander
+
+
+                    The classic arcade game comes to OS-9.
+
+
+                             '0'-'9' - power level
+                                   Controls:
+                         +--------------------------+
+                         |Unable to display HS file.|
+                         --press space to start game--
+                'x' or 'k' - set vertical thrust to power level
+                  'c' or 'l' - set right retro to power level
+
+
+
+                         Stacey Campbell at HCR, 1989
+
+                         --press space to start game--
+
+
+bash#

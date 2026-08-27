@@ -1,0 +1,18 @@
+                                        |                     You   Comp   Value
+                                        | Milestones Played     0     0
+                                        |       Each Safety     0     0      100
+                                        |    All 4 Safeties     0     0      300
+                                        |  Each Coup Fourre     0     0      300
+--HAND--            --DECK--            |                    ----   ----   -----
+P                     89                |        Hand Total     0     0
+1 100               --DISCARD--         |                   -----  -----
+2 75                                    |     Overall Total     0     0
+3 Go                                    |              Games    0     0
+4 Speed Limit       >>:Move: bash#      |
+5 75                                    | p: pick            q: quit
+6 Go                                    | u: use #           o: order hand
+--BATTLE--          --BATTLE--          | d: discard #       s: save
+                                        | w: toggle window   r: reprint
+--SPEED--           --SPEED--           |
+                                        |_______________________________________
+--MILEAGE--                              --MILEAGE--

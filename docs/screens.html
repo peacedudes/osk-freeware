@@ -1,0 +1,413 @@
+<!doctype html>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>OS-9/68K Freeware &mdash; screens</title>
+<style>
+ :root{ --paper:#F4F5F3; --card:#FFF; --ink:#191D21; --dim:#5A646B;
+        --rule:#DDE1DE; --accent:#B26A00;
+        --mono:ui-monospace,SFMono-Regular,"SF Mono",Menlo,Consolas,monospace;
+        --sans:system-ui,-apple-system,"Segoe UI",Roboto,sans-serif; }
+ @media (prefers-color-scheme:dark){ :root{
+        --paper:#131619; --card:#1A1E22; --ink:#E3E7EA; --dim:#98A4AC;
+        --rule:#2A3036; --accent:#E0A040; } }
+ *{box-sizing:border-box}
+ body{margin:0;background:var(--paper);color:var(--ink);font-family:var(--sans);
+      line-height:1.5;padding:2rem 1rem 4rem}
+ .wrap{max-width:78rem;margin:0 auto}
+ h1{font-size:1.6rem;margin:0 0 .25rem}
+ .lede{color:var(--dim);max-width:46rem;margin:0 0 2rem}
+ .shot{background:var(--card);border:1px solid var(--rule);border-radius:8px;
+       padding:1rem 1.1rem;margin:0 0 1.6rem;overflow:hidden}
+ .shot h2{font-size:1.05rem;margin:0 0 .15rem;font-family:var(--mono);
+          color:var(--accent)}
+ .shot p{margin:0 0 .7rem;color:var(--dim);font-size:.92rem}
+ pre{margin:0;font-family:var(--mono);font-size:11.5px;line-height:1.18;
+     background:#0E1113;color:#CFE3CF;padding:.85rem 1rem;border-radius:5px;
+     overflow-x:auto;white-space:pre}
+ footer{color:var(--dim);font-size:.85rem;margin-top:2.5rem;
+        border-top:1px solid var(--rule);padding-top:1rem}
+</style>
+<div class="wrap">
+<h1>Screens</h1>
+<p class="lede">Every screen below was photographed from a running program.
+Keystrokes were fed to os9exec's console at human speed and the terminal
+stream that came back was rendered into the grid a vt100 would have shown.
+Nothing here is mocked up.</p>
+<div class="shot">
+<h2>bite</h2>
+<p>Bite, a snake variant.</p>
+<pre>                              __---------__
+                            _~             ~_
+                           /                 \
+                          ~                   ~
+                         /                     \
+                         |    XXXX     XXXX    |
+                         |    XXXX     XXXX    |
+                         |    XXX       XXX    |
+                          \         @         /
+                           --\     @@@     /--
+                            | |    @@@    | |
+                            | |           | |
+                            | vvVvvvvvvvVvv |
+                            |  ^^^^^^^^^^^  |
+                             \_           _/
+                               ~---------~
+
+
+
+
+
+bash# jklq</pre>
+</div>
+<div class="shot">
+<h2>bog</h2>
+<p>Boggle, with its letter grid.</p>
+<pre>+---+---+---+---+   Type '?' for help
+| R | I | U | S |
++---+---+---+---+   2:56
+| A | A | T | G |
++---+---+---+---+
+| C | D | Y | Y |
++---+---+---+---+
+| Y | M | W | B |
++---+---+---+---+</pre>
+</div>
+<div class="shot">
+<h2>cribbage</h2>
+<p>Cribbage dealing a hand.</p>
+<pre>                                      +---------------------------------------+
+                                      |  Score:   0     YOU                   |
+                                      | *.....:.....:.....:.....:.....:.....  |
+                                      | *.....:.....:.....:.....:.....:.....  |
+                                      |                                       |
+                                      | *.....:.....:.....:.....:.....:.....  |
+                                      | *.....:.....:.....:.....:.....:.....  |
+                                      |  Score:   0      ME                   |
+                                      +---------------------------------------+
+
+                                       Do you need instructions for cribbage? N
+                                       Long (to 121) or Short (to 61)?
+                                      *Cut to see whose crib it is -- low card
+                                        wins?</pre>
+</div>
+<div class="shot">
+<h2>greed</h2>
+<p>Greed: eat digits, each one moves you that far. The whole board is generated at random on startup.</p>
+<pre>6617558592359543266118643327371789134762167264622359787@42973972257314635958884
+7929913427544597722186874258674472724783771316815317551268269216562113819974348
+9473399543283889198992975572629582611777343142471112262611751174978716554535221
+8719491825725396263544825675377135427472337879631686595226459425224475477527636
+8712594319112823165527687613457237172311977665557871474327614432258378219442221
+9572154476621154491837248152811816234762549252897832231922481463745581573687528
+4711159213837643772358118414758927137273712312637318696883726117329175834514818
+1615871546149942636134537765859542799757382524998664597888586627837724674762629
+7435927638655937117319765617732883695235638742427994178125867891559114971517843
+5615132926888578418584177357584857123472125484271253132439277469115862182381437
+5297252896466535277277411972246571366729526537261597544178417639623228432331947
+8453136182545577158779238744973912513325527143165378213279162215475187913469223
+7114891513436758499962971661612268734147741465454665328254786871679364495612543
+8278815534123296351189626749369874261986335825496167635626523331885939965346892
+3425877279124956859147163365119557529177348413188361918883855546323926628756325
+3321583823719595133183827433563776746565292359167811639863759331596466146871547
+3612379162129446725488131857668941475154171697693571132911983377423746137369346
+4281868712844515816236899482126479814266261146628554929638851841652165371775211
+5338794339366618711532419636453362945973442982462157297815813282297829525756284
+2663329737429941946434318191734194951915351632513585715612477148942813449176277
+7567325572693739528267574436629563731849252622578561463395924613983213557488477
+5131123786515516926195365769986494652123455981815479231335163122945958681671449
+
+Score: 1  0.06%                         Greed v2.0a - Hit '?' for help.</pre>
+</div>
+<div class="shot">
+<h2>hang</h2>
+<p>Hangman, after guessing a e i o u r s t l n -- the guessed letters are struck from the alphabet and the gallows grows.</p>
+<pre>Unused Letters:
+ bcd fgh jk m  pq    vwxyz                   ------------
+                                             |           |
+                                             |           |
+                                             |
+                                             |
+                                             |
+                                             |
+                                        ---------------------------
+                                        |                         |
+                                        |                         |
+a_an_on                                 |                         |
+                                        |                         |
+                                        |                         |
+                                        |                         |
+                                        |                         |
+                                        |                         |
+                                        |                         |
+                                        |                         |
+                                        ---------------------------
+There are 7 letters in the word
+HIT</pre>
+</div>
+<div class="shot">
+<h2>lander</h2>
+<p>Lunar lander, with its instrument panel.</p>
+<pre>                                 Lunar Lander
+
+
+                    The classic arcade game comes to OS-9.
+
+
+                             '0'-'9' - power level
+                                   Controls:
+                         +--------------------------+
+                         |Unable to display HS file.|
+                         --press space to start game--
+                'x' or 'k' - set vertical thrust to power level
+                  'c' or 'l' - set right retro to power level
+
+
+
+                         Stacey Campbell at HCR, 1989
+
+                         --press space to start game--
+
+
+bash#</pre>
+</div>
+<div class="shot">
+<h2>life</h2>
+<p>Conway's Life. It detects the oscillator period and says so -- this pattern cycles every 8 generations.</p>
+<pre>................................................................................
+
+
+
+            .@
+            @@.
+          .@.@@
+          @@@..@
+           .@.@ @
+             @ @.@.
+              @..@@@
+               @@.@.
+               .@@
+                @.
+
+
+
+
+
+
+
+
+
+bash#     Generation: 12                Cycles every 8 generations.</pre>
+</div>
+<div class="shot">
+<h2>mille</h2>
+<p>Mille Bornes, the card game.</p>
+<pre>                                        |                     You   Comp   Value
+                                        | Milestones Played     0     0
+                                        |       Each Safety     0     0      100
+                                        |    All 4 Safeties     0     0      300
+                                        |  Each Coup Fourre     0     0      300
+--HAND--            --DECK--            |                    ----   ----   -----
+P                     89                |        Hand Total     0     0
+1 100               --DISCARD--         |                   -----  -----
+2 75                                    |     Overall Total     0     0
+3 Go                                    |              Games    0     0
+4 Speed Limit       &gt;&gt;:Move: bash#      |
+5 75                                    | p: pick            q: quit
+6 Go                                    | u: use #           o: order hand
+--BATTLE--          --BATTLE--          | d: discard #       s: save
+                                        | w: toggle window   r: reprint
+--SPEED--           --SPEED--           |
+                                        |_______________________________________
+--MILEAGE--                              --MILEAGE--</pre>
+</div>
+<div class="shot">
+<h2>puzzle15</h2>
+<p>The fifteen puzzle.</p>
+<pre>                             +----+----+----+----+
+                             |  9 |  1 | 12 |  6 |
+                             +----+----+----+----+
+                             |  3 |  7 | 14 | 13 |
+                             +----+----+----+----+
+                             | 10 | 11 |  4 |  2 |
+                             +----+----+----+----+
+                             |  5 | 15 |  8 | bash#
+                             +----+----+----+----+
+
+
+
+
+
+
+Time used: 00 min 00 sec   Move: 0</pre>
+</div>
+<div class="shot">
+<h2>rain</h2>
+<p>Rain, a screen toy.</p>
+<pre>                                                     -
+  -     .                                           / \
+ |.|                                               | O |
+  -                                                 \ / |
+                                                     - /
+                                                      -
+
+-                            | |
+|.|                           -
+ -
+                                      o
+
+
+
+   O
+
+
+
+bash#</pre>
+</div>
+<div class="shot">
+<h2>robots</h2>
+<p>Robots. They chase you; you teleport.</p>
+<pre>                           ROBOTS                                 MOVE      V3.
+                                                  Automatic
+                         TOP TEN                       Fire         8
+                                                                   7 9
+         1.  your name   201,520     8-29-87   11                 4   6
+         2.  your name   180,620     8-30-87   11                  1 3
+         3.  your name   179,740     8-30-87   11                   2
+         4.  your name   172,040     8-30-87   11
+         5.  your name   160,160      9-3-87   11
+         6.  your name   147,000     8-29-87   10
+         7.  your name   139,400     9-16-88   10
+         8.  your name   129,400     9-28-87   10
+         9.  your name   113,640      9-8-87    9
+        10.  your name   112,380    10-27-87    9
+                                                                      KEY
+                                                                   I -you
+                                                                   # -robot
+                                                                   @ -junk heep
+
+
+                                                                   SCREEN    1
+                         QUIT ?                                    ROBOTS   18
+
+                            PJC                                SCORE        40</pre>
+</div>
+<div class="shot">
+<h2>snake</h2>
+<p>Snake: steer with h j k l, collect the treasure, reach the goal without being caught.</p>
+<pre># /h0: using OS9H0='/Users/rdoggett/Developer/os9/osk-freeware/h0', ignoring '/'
+/.bashrc:  (E$MNF) That module isn't currently loaded.
+
+bash# export TERM=vt100
+bash# export TERMCAP=/dd/SYS/termcap
+bash# /dd/CMDS/GAMES/snake</pre>
+</div>
+<div class="shot">
+<h2>sonnet</h2>
+<p>Writes (bad) sonnets in iambic pentameter.</p>
+<pre> 1     Unhinged exemplify champagne connect
+ 2     Expel baptismal package business ace
+ 3     Insult recombinant employ attempt
+ 4     Incompetent blueprint funk inferno case
+
+ 5     Deform genetic pizza-faced beget
+ 6     Exhausted shutdown hard core overhang
+ 7     Defrocked ad infinitum ha ha wet
+ 8     Revealing Bach the feared unfair the rag
+
+ 9     The wow centrifugal the deaf bilingual
+10     Bonanza diligent nightmare budgeted speared
+11     Of punt the flank the coarse erratic fatal
+12     Thereafter building heat-seeking lunchtime feared
+
+13     Petite revealing X-rated dog in a God
+14     Hosanna libel buzz the fat facade
+
+[m# u# r w[file] q; ? for help]:
+
+
+
+
+bash#</pre>
+</div>
+<div class="shot">
+<h2>tet</h2>
+<p>Tetris. Pieces stack, rows score, and the high-score table at the right is written to /dd/GAMES/tet.hs.</p>
+<pre>              .----------.                .----------.
+              |          |                |  .58...  |
+              |     OO   |                `----------'
+              |     OO   |
+              |    WWW   |         .---------------------------.
+              |     W    |         |     Hit 'm' for menu      |
+              |    RRR   |         |                           |
+              |    ROO   |         |        HIGH SCORES        |
+              |     OO   |         | 1.               64       |
+              |    WWW   |         | 2.               58       |
+              |     W    |         | 3.                        |
+              |    BBB   |         | 4.                        |
+              |      B   |         | 5.                        |
+              |    BBB   |         | 6.                        |
+              |      B   |         | 7.                        |
+              |    RRR   |         | 8.                        |
+              |    R     |         | 9.                        |
+              |    BBB   |         |10.                        |
+              |      B   |         |                           |
+              |      OO  |         |                           |
+              |      OO  |         |                           |
+              `----------'         `---------------------------'</pre>
+</div>
+<div class="shot">
+<h2>tet-speed</h2>
+<p>The same board photographed 3 seconds into a game. Pieces fall at about 1.5 seconds a cell.</p>
+<pre>              .----------.                .----------.
+              |          |                |  .0....  |
+              |          |                `----------'
+              |          |
+              |    BBB   |         .---------------------------.
+              |      B   |         |                           |
+              |          |         |      ..   Menu   ..       |
+              |          |         |                           |
+              |          |         |   h     .... high scores  |
+              |          |         |   b     .... toggle beep  |
+              |          |         |   p     .... play         |
+              |          |         |   q     .... quit         |
+              |          |         |                           |
+              |          |         | s or j  .... move left    |
+              |          |         | d or k  .... rotate piece |
+              |          |         | f or l  .... move right   |
+              |          |         |  spc    .... fall piece   |
+              |          |         |  esc    .... pause        |
+              |          |         |                           |
+              |          |         | LATEST: allow concurrent  |
+              |          |         |    high score setting     |
+              `----------'         `---------------------------'</pre>
+</div>
+<div class="shot">
+<h2>worms</h2>
+<p>Worms, a screen toy.</p>
+<pre>                                                                 ***
+                       #              ##                       **   *
+                                        #                    *      *
+                           #    #####    #                  *       *
+                           #   #                            *        **
+                            ###                             *          *
+
+
+
+                                                       O
+                                                   O                     *     #
+                                                  O
+                                                 O
+                                                 O
+                                                          O
+                                                  O       O
+                                                   O      O
+                                                    OOO  O
+                                                       OO
+
+
+
+
+bash#</pre>
+</div>
+<footer>Captured by <code>tools/playtest.py</code> and rendered by <code>tools/ansiscreen.py</code>. Re-make with <code>tools/playtest.py --all && tools/gen_screens.py</code>.</footer>
+</div>

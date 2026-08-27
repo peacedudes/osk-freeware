@@ -1,0 +1,22 @@
+Unused Letters:
+ bcd fgh jk m  pq    vwxyz                   ------------
+                                             |           |
+                                             |           |
+                                             |
+                                             |
+                                             |
+                                             |
+                                        ---------------------------
+                                        |                         |
+                                        |                         |
+a_an_on                                 |                         |
+                                        |                         |
+                                        |                         |
+                                        |                         |
+                                        |                         |
+                                        |                         |
+                                        |                         |
+                                        |                         |
+                                        ---------------------------
+There are 7 letters in the word
+HIT

@@ -1,0 +1,22 @@
+              .----------.                .----------.
+              |          |                |  .0....  |
+              |          |                `----------'
+              |          |
+              |    BBB   |         .---------------------------.
+              |      B   |         |                           |
+              |          |         |      ..   Menu   ..       |
+              |          |         |                           |
+              |          |         |   h     .... high scores  |
+              |          |         |   b     .... toggle beep  |
+              |          |         |   p     .... play         |
+              |          |         |   q     .... quit         |
+              |          |         |                           |
+              |          |         | s or j  .... move left    |
+              |          |         | d or k  .... rotate piece |
+              |          |         | f or l  .... move right   |
+              |          |         |  spc    .... fall piece   |
+              |          |         |  esc    .... pause        |
+              |          |         |                           |
+              |          |         | LATEST: allow concurrent  |
+              |          |         |    high score setting     |
+              `----------'         `---------------------------'
