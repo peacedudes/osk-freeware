@@ -90,3 +90,79 @@ ships no `load` for anyone to preload it with.
 
 Full write-ups: `../OS9EXEC-CIO-SRQMEM.md`, `../OS9EXEC-CIO-STDIN-EOF.md`,
 `../OS9EXEC-MODULE-CASE.md`.
+
+---
+
+# Second pass, 2026-08-26 evening -- after independent reproduction
+
+Reviewed by another session on a licensed disk with a different cio edition
+and a separate build. Same counts: 4001 `F$SRqMem`, 2 `I$WritLn`. The symptoms
+are confirmed; the ATTRIBUTION below is what changed.
+
+## Two corrections to what I wrote above
+
+**Bug 2 is not an EOF bug.** Traced under cio, the child makes ONE `F$TLink`
+and then no syscalls at all -- it never reaches a read. The static build on the
+identical path does 2 `I$Read`s and exits clean, so EOF delivery works. cio
+hangs in its own setup. "stdin never returns EOF" names a layer above where it
+dies. **Bugs 1 and 2 are very likely ONE defect**: `putchar` turns it into an
+allocation storm, `getchar` into a spin.
+
+**My inference was unsound.** I argued "the static build is right and the
+trap-handler build is wrong, therefore os9exec's layer". The static build never
+enters cio, so it cannot testify about os9exec's handling of cio. That is the
+same shape as the withdrawn claim 3, and I used it twice.
+
+## Measurements that narrow it -- and kill one lead
+
+The other session found the request equalling `a3+$3C` and flagged it as
+pointer-where-a-value-belongs. **That correlation does not hold here.** With
+the same reproduction on this build, `a3` MOVES between calls (it is the block
+just returned) while `d0` stays fixed, so the two cannot be related:
+
+    ### SRqMem absurd: d0=$47DC8  a3=$52138   a3+$3C=$52174   no match
+    ### SRqMem absurd: d0=$47DC8  a3=$53A48   a3+$3C=$53A84   no match
+
+**What does hold: `d0` is the process's own data block, plus $48.** Measured
+across three builds differing only in requested memory:
+
+    -qixm=4k    block #0 base $47D80  size 10192   d0=$47DC8   pc=$4A72E
+    -qixm=16k   block #0 base $47D80  size 22480   d0=$47DC8   pc=$4D72E
+    -qixm=64k   block #0 base $47D80  size 71632   d0=$47DC8   pc=$5972E
+
+`d0` is invariant. The data area's SIZE changes by 7x and the value does not
+move; cio's own return address (`pc`) does move, which is just cio being
+loaded after the data area. So the absurd "size" is **a pointer 72 bytes into
+the process's own data block** -- constant because the block's base is
+constant, not because it is a constant.
+
+That also explains the earlier `D_BlkSiz` experiment: 2048 -> 8192 moved the
+value $64E48 -> $63E48 because it shifted the whole arena, not because the
+value has anything to do with block size. My "proven to be an address" claim
+survives; my implied "and therefore os9exec computed it" does not.
+
+Full register set at the trap, first call, 16k build:
+
+    d0=$00047DC8  a0=$00047DBA      d0-a0 = $E
+    d1=$00000078  a1=$0004D60A
+    d2=$00047D9E  a2=$00052138
+    d3=$0004D54C  a3=$00052138
+    d4=$00008FB9  a4=$0004D548
+    d5=$00008FB8  a5=$0004D4DA
+    d6=$000057D0  a6=$00059C40
+    d7=$00000000  a7=$0004D4D6
+
+`d0`, `a0` and `d2` all point into the first 72 bytes of the data block.
+
+## Where I stop
+
+**I cannot say whether this is os9exec's or cio's, and I am not going to guess
+a third time tonight.** The walk-back proposed by the other session is the
+right next step, and the measurement above gives it a target: find what
+writes, or reads, `data_block_base + $48`. If that word is something os9exec
+put there, it is ours; if cio computed it from its own state, it is cio's or a
+kernel service we do not provide.
+
+The instrumentation that produced these numbers is a three-line dump in
+`OS9_F_SRqMem` in a SCRATCH build of os9exec. rdoggett's os9exec tree is
+untouched.
