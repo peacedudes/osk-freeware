@@ -1,11 +1,16 @@
 name    lorenz3d
 prog    /dd/CMDS/GAMES/lorenz3d
-# Generic: does it draw, and does the screen change when keys arrive?
-rate    0.7
+# DOC/INDEX: "Tektronix demo: the Lorenz attractor in 3D".  It draws VECTORS
+# for a Tektronix 4010, not characters for a vt100, so the rendered screen
+# here will never look like anything.  It prompts `dt ->' for a step size.
+# Tested only as far as "does it accept the parameter and start drawing".
+rate    0.5
 wait    5
-snap    opening
-wait 3
-wait    2
-snap    played
+snap    prompt
+keys    0.01
+key     \r
+wait    4
+snap    running
 key     \003
 wait    2
+expect  dt

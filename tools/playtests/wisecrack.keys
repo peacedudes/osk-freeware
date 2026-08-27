@@ -1,13 +1,14 @@
 name    wisecrack
-prog    /dd/CMDS/GAMES/wisecrack
-# Generic: does it draw, and does the screen change when keys arrive?
-rate    0.7
-wait    5
-snap    opening
-wait 3
+prog    /dd/CMDS/cat /pipe/txtpipe
+# wisecrack WRITES to /pipe/txtpipe and prints nothing itself -- it is a
+# message ticker, not a program with a screen.  DOC/STATUS said so; this
+# proves it.  The writer has to start FIRST: the named pipe does not exist
+# until something creates it, so reading first fails with E_PNNF (216).
+setup   /dd/CMDS/GAMES/wisecrack &
+rate    0.5
+wait    6
+snap    ticker
 wait    2
-snap    played
 key     \003
 wait    2
-# KNOWN BROKEN: notes/verify-final.tsv has recorded this as NEEDS WORK
-# since the 2026-08-26 sweep.  Kept so the failure stays visible.
+expect  COVE

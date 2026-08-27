@@ -1,16 +1,11 @@
-                                   a - a +0 two handed sword (weapon in hand).
-                                   b - a +0 ring mail (being worn).
-                                  --More--
-
-
-                                       ------
-                                       |....|
-                                       |..%$+
-                                       |.d..|
-                                       +....|
-                                       |@...|
-                                       +....|
-                                       ------
+                                          a - a +1 mace (weapon in hand).
+                                          b - a +1 bow.
+                                          c - 48 +0 arrows.
+                                          d - a +0 leather armor (being worn).
+                                         --More--
+                                                                    +.d..|
+                                                                    |....|
+                                                                    ------
 
 
 
@@ -21,4 +16,9 @@
 
 
 
-Level 1    Hp  14(14)   Ac 7    Str 17      Exp  1
+
+
+
+
+
+Level 1    Hp  16(16)   Ac 8    Str 18      Exp  1

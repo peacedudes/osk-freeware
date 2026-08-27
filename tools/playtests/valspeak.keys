@@ -1,13 +1,14 @@
 name    valspeak
 prog    /dd/CMDS/GAMES/valspeak
-# Generic: does it draw, and does the screen change when keys arrive?
-rate    0.7
+# CONFIRMED BROKEN, 2026-08-27.  DOC/INDEX calls it a "Valley-speak text
+# filter", but it produces nothing under any invocation tried: bare, with
+# `-?', with a file argument, and with standard input redirected from a file.
+# It exits at once every time.  Agrees with the 2026-08-26 sweep's NEEDS WORK.
+rate    0.4
 wait    5
-snap    opening
-wait 3
+keys    this is a totally excellent computer
+key     \r
+wait    3
+snap    output
+key     \004
 wait    2
-snap    played
-key     \003
-wait    2
-# KNOWN BROKEN: notes/verify-final.tsv has recorded this as NEEDS WORK
-# since the 2026-08-26 sweep.  Kept so the failure stays visible.
