@@ -1,0 +1,11 @@
+name    bite
+prog    /dd/CMDS/GAMES/bite
+# Generic: does it draw, and does the screen change when keys arrive?
+rate    0.7
+wait    4
+snap    opening
+keys    hjkl
+wait    2
+snap    played
+key     q
+wait    2

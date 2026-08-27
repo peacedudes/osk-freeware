@@ -1,0 +1,17 @@
+name    hack
+prog    /dd/CMDS/GAMES/hack
+# hack asks "Who are you?" first -- a NAME, then Enter.  Then it offers to
+# pick a character class.  'i' is inventory, the screen worth photographing.
+rate    0.5
+wait    4
+keys    rodney
+key     \r
+wait    3
+snap    named
+key     y
+wait    3
+snap    start
+key     i
+wait    2
+snap    inventory
+expect  Hello

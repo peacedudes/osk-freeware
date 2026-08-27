@@ -112,7 +112,7 @@ joke|toys|joke.c|||
 kermit|kermit|os9ker.c os9con.c os9get.c os9qui.c os9raw.c os9rec.c os9sen.c os9srv.c os9utl.c|||
 lander|lander|land.c screen.c move.c score.c|RAND_BSD HS_FILE BSD|/dd/LIB/curses.l /dd/LIB/termlib.l /dd/LIB/math.l /dd/LIB/unix.l|
 liborder|eff_libutils|liborder.c|||
-life|life|life.c|||
+life|life|life.c|MEM=64k||
 loan|misc|loan.c|||
 logisim|eff_logisim|logisim.c|||
 lp|eff_lp|lp.c os9geteuid.c ../effo_unaxcess/os9getpw.c|||

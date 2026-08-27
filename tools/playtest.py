@@ -72,6 +72,11 @@ def parse(path):
         elif word == "wait":
             spec["acts"].append(("wait", float(rest)))
         elif word == "key":
+            named = {"\\r": "\r", "\\n": "\n", "\\e": "\033", "\\s": " "}
+            if rest in named:
+                rest = named[rest]
+            elif rest.startswith("\\") and rest[1:].isdigit():
+                rest = chr(int(rest[1:], 8))      # \003 -> Ctrl-C
             spec["acts"].append(("send", rest))
         elif word == "esc":
             spec["acts"].append(("send", "\033"))
@@ -172,27 +177,38 @@ def playtest(path, image, outdir):
     ks = ansiscreen.render(keyed)
     cs = ansiscreen.render(control)
     open(base + ".screen.txt", "w").write(ks.text() + "\n")
+    open(base + ".control.txt", "w").write(cs.text() + "\n")
+
+    # JUDGE EVERY SCREEN, NOT THE LAST ONE. A program that tidies up on the
+    # way out leaves an empty final frame: `hang' clears the screen when the
+    # game ends, so the last frame is bare and the FIRST verdict this tool
+    # gave it was FAIL -- while its snapshots showed a working hangman with
+    # the guessed letters struck off. The screen worth judging, and the screen
+    # worth publishing, is the one with the most on it.
+    screens = [("final", ks)]
     for label, off in marks:
         snap = ansiscreen.render(keyed[:off])
         open("%s.%s.txt" % (base, label), "w").write(snap.text() + "\n")
-    open(base + ".control.txt", "w").write(cs.text() + "\n")
+        screens.append((label, snap))
+    best_label, best = max(screens, key=lambda p: p[1].ink())
 
-    text = ks.text()
-    missing = [e for e in spec["expect"] if e not in text]
+    alltext = "\n".join(s.text() for _, s in screens)
+    missing = [e for e in spec["expect"] if e not in alltext]
     present = [a for a in spec["absent"]
-               if a in text or a in keyed.decode("latin-1", "replace")]
-    responds = ks.text() != cs.text()
+               if a in alltext or a in keyed.decode("latin-1", "replace")]
+    responds = ks.text() != cs.text() or best.ink() > cs.ink() + 4
+    orphans = sum(len(s.orphans) for _, s in screens)
 
     verdict = "PASS"
-    if missing or present or not responds or ks.orphans:
+    if missing or present or not responds or orphans or best.ink() < 10:
         verdict = "FAIL"
 
-    print("%-14s %-5s ink=%-5d orphans=%-3d responds=%-3s%s%s"
-          % (spec["name"], verdict, ks.ink(), len(ks.orphans),
+    print("%-14s %-5s ink=%-5d(%s) orphans=%-3d responds=%-3s%s%s"
+          % (spec["name"], verdict, best.ink(), best_label, orphans,
              "yes" if responds else "NO",
              "  missing=%s" % missing if missing else "",
              "  found=%s" % present if present else ""))
-    return verdict == "PASS", spec, ks
+    return verdict == "PASS", spec, best
 
 
 def main(argv):

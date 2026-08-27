@@ -726,7 +726,7 @@ while IFS='|' read -r prog arch srcs defs libs extra; do
   # One pass over the field, not three substitutions: `${defs/KNR/}' turns
   # `KNR=a.c,b.c' into `=a.c,b.c', which then reaches cc as `-D=a.c,b.c'.
   OSKDEF=-DOSK
-  KNRMODE=0; KNRFILES=""; CPP2MODE=0; LONGREF=0; M020=0; GCCMODE=0; GPPMODE=0; ASMMODE=0; MODNAME=""; TRAPFREE=0; CIOLINK=0; LIBWANT=0; LIBGOT=0; keep=""
+  KNRMODE=0; KNRFILES=""; CPP2MODE=0; LONGREF=0; M020=0; GCCMODE=0; GPPMODE=0; ASMMODE=0; MODNAME=""; TRAPFREE=0; CIOLINK=0; LIBWANT=0; LIBGOT=0; MEMSZ=16k; keep=""
   for x in $defs; do
     case "$x" in
       NOOSK)  OSKDEF="";;
@@ -748,6 +748,12 @@ while IFS='|' read -r prog arch srcs defs libs extra; do
       # kept so the recipes that carry the word still parse.
       TRAPFREE) TRAPFREE=1;;
       CIOLINK)  CIOLINK=1;;
+      # MEM= sets the module's memory size, which on OS-9 is where the
+      # STACK lives. `life' drew one generation and died with
+      # **** Stack Overflow **** at the default 16k, 2026-08-27: it
+      # recurses over the board. This is the knob for that, and it is a
+      # per-recipe decision because the cost is real memory per process.
+      MEM=*)    MEMSZ=${x#MEM=};;
       *)      keep="$keep $x";;
     esac
   done
@@ -807,10 +813,10 @@ while IFS='|' read -r prog arch srcs defs libs extra; do
   # TRAPFREE is now the default and the keyword is a no-op, kept so the six
   # recipes that carry it still parse.  CIOLINK opts one build back into -qixm
   # for a deliberate experiment; do not use it for anything installed.
-  QMFLAG=-qm=16k
+  QMFLAG=-qm=$MEMSZ
   QMLIBS=' -l=/dd/LIB/curses.l -l=/dd/LIB/termlib.l -l=/dd/LIB/unix.l -l=/dd/LIB/math.l'
   if [ "$CIOLINK" = 1 ]; then
-    QMFLAG=-qixm=16k
+    QMFLAG=-qixm=$MEMSZ
     QMLIBS=' -l=/dd/LIB/curses.l -l=/dd/LIB/termlib.l'
   fi
 

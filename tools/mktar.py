@@ -58,6 +58,24 @@ import os, sys, tarfile
 
 MODULE_MAGIC = b"\x4a\xfc"
 MODE_MODULE, MODE_DATA, MODE_DIR = 0o555, 0o666, 0o777
+
+
+def is_command(path):
+    """Is this a COMMAND that is not an OS-9 module?
+
+    Everything under CMDS is a command by definition -- DOC/INDEX names them
+    all and check_disk.py enforces it -- but two of them are shell PROCEDURE
+    FILES rather than modules: `who' and `mscheck'. The module test alone gave
+    those 0666, no execute bit, so they shipped as data and could not be run
+    at all. rdoggett found it from the outside on 2026-08-27: "/h0/cmds/who
+    isn't even executable".
+
+    Keyed off the directory, not the content: a procedure file has no magic
+    number to test for, and guessing from the first bytes would be the same
+    class of proxy this collection keeps getting wrong.
+    """
+    parts = os.path.normpath(path).split(os.sep)
+    return "CMDS" in parts and not os.path.basename(path).startswith(".")
 MTIME    = 1785801600      # 2026-08-04T00:00:00Z -- any fixed instant will do
 USTAR_MAX = 100
 
@@ -107,7 +125,8 @@ def build(src, out):
             full = os.path.join(src, f)
             mod  = is_module(full)
             modules += mod
-            info = entry(f, MODE_MODULE if mod else MODE_DATA,
+            info = entry(f, MODE_MODULE if (mod or is_command(full))
+                         else MODE_DATA,
                          tarfile.REGTYPE, os.path.getsize(full))
             with open(full, "rb") as fh:
                 tar.addfile(info, fh)
