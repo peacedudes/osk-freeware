@@ -183,3 +183,15 @@ the trees that still have none. See `tools/rebuild/README.md`.
 
 Most of the modules under `CMDS/` have no source anywhere and can only be
 preserved, not rebuilt. That is why the binaries are committed.
+
+## Working on this collection
+
+**`notes/START-HERE-NEXT-SESSION.md` is the cold-start handoff** — the
+two-minute setup, where the work stands, what is next in order, and the traps
+that have already cost real time. It is kept current, and it is the right
+first read whether you are a person coming back to this after a month or an
+assistant opening the repository for the first time.
+
+`notes/FOR-RDOGGETT.md` is what needs a decision, newest first.
+`notes/SESSION-<date>.md` files are history — read one when the handoff sends
+you there, not before.
