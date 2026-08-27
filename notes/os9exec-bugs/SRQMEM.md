@@ -165,3 +165,8 @@ board — the difference between them and ours is still open.
 **What it decides:** `-qm` is the driver default as of 2026-08-27, on the
 evidence above and not on a size preference. `tools/rebuild/README.md` carries
 the short version.
+
+**Confirmed on the SHIPPED disk as well**, same day, same two modules run
+against `osk-freeware.dd` instead of the overlay: `-qixm` wrote 0 characters
+and 3889 `No more memory !!!`, `-qm` wrote all 4000. So this is not an artefact
+of the build overlay -- it is what a user of the collection would get.
