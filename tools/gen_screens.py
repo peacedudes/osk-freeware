@@ -50,8 +50,9 @@ CAPTIONS = {
     "worms":    ("Worms, a screen toy.", "final"),
     "rain":     ("Rain, a screen toy.", "final"),
     "sonnet":   ("Writes (bad) sonnets in iambic pentameter.", "final"),
-    "hack":     ("hack -- currently HANGS after taking your name. Kept here "
-                 "because the failure is the finding.", "named"),
+    "hack":     ("hack, with the inventory open: a fighter starts with a two "
+                 "handed sword in hand and ring mail worn. @ is you, d your "
+                 "dog, G a gnome, $ gold, + a door.", "inventory"),
 }
 
 PAGE_HEAD = """<!doctype html>

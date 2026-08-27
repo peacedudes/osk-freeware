@@ -1,17 +1,21 @@
 name    hack
 prog    /dd/CMDS/GAMES/hack
-# hack asks "Who are you?" first -- a NAME, then Enter.  Then it offers to
-# pick a character class.  'i' is inventory, the screen worth photographing.
+# "Who are you?" -> name; "experienced player?" -> y; then pick a class.
+# F is Fighter, who starts with weapons and armour, so the inventory is
+# worth photographing.  'i' opens it.
 rate    0.5
-wait    4
+wait    5
 keys    rodney
 key     \r
 wait    3
-snap    named
 key     y
 wait    3
-snap    start
-key     i
+key     F
+wait    5
+key     \s
 wait    2
+snap    dungeon
+key     i
+wait    3
 snap    inventory
-expect  Hello
+expect  two handed sword

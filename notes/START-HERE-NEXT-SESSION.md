@@ -170,6 +170,53 @@ Also open and needing him, not you: the gcc packaging decision (2026-08-24).
 **`wc`'s provenance is CLOSED, 2026-08-27.** rdoggett: *"I do not have wc."*
 There is no copy to compare against and no thread left. Stop pulling on it.
 
+## PLAY-TESTING: tools/playtest.py, AND THE TWO WAYS IT LIED TO ME
+
+Built 2026-08-27 because rdoggett kept finding broken programs by hand:
+*"A very small sampling showed more than half had issues... Would it be
+unreasonable to expect you to try running them, not just to see if they crash
+BOOM on launch, but to make sure they work as expected."*
+
+    tools/playtest.py --all      # drive every script in tools/playtests/
+    tools/gen_screens.py         # turn the captures into docs/screens.html
+
+It drives a program on a **pseudo-terminal** at human typing speed, runs a
+CONTROL pass with no keys, and renders both with `tools/ansiscreen.py` into
+the 80x24 grid a vt100 would show. `docs/screens.html` is the gallery.
+
+**IT USED A FIFO FIRST, AND A FIFO IS NOT A TERMINAL.** Programs that call
+`isatty()` or reopen their own tty take a different path, and so does os9exec
+-- it puts a *tty* into raw character-at-a-time mode at startup and leaves a
+pipe alone. `hack` "hung" under the FIFO harness and works perfectly for a
+person. rdoggett: *"hack works for me."* Use the pty; never go back.
+
+**IT SCORED A PROGRAM THAT NEVER STARTED AS PASSING.** `snake` hangs at
+startup perhaps one run in eight, so the keyed screen held a bash prompt while
+the CONTROL screen held a drawn board. The two differed, so "responds" was
+true and it passed. There is now a `starved` check: a keyed run that drew LESS
+than the control is a failure.
+
+**And it renders 80x24, so it CANNOT catch the terminal-size class** that
+rdoggett found in `life`. See the README-RUNNING section on this. A pty can
+set its size, so that test is now possible -- it has not been written yet.
+
+## SNAKE STILL HANGS AT STARTUP ABOUT ONE RUN IN EIGHT
+
+Measured on the ARCHIVE binary, so it is not something we introduced:
+
+    with keys     drew 18 of 20
+    without keys  drew 17 of 20
+    archive 11/12 vs our rebuild 10/12 -- indistinguishable
+
+A failing run emits the keypad-init string `ESC[?1h ESC=` and stops before
+`setup()` ever draws: 289 bytes instead of ~780. Keys are NOT the trigger.
+**All of those numbers came from the FIFO harness and are worth re-taking on
+the pty before anyone reasons from them.**
+
+A six-run sample said 6/6 against 4/6 and I believed it and reverted a good
+change on that basis. Twelve runs said 11/12 against 10/12. Do not conclude
+anything here from fewer than about twenty runs.
+
 ## THE SWEEP CANNOT TEST INPUT, AND IT SCORES SUCH PROGRAMS AS WORKING
 
 Found 2026-08-27 by rdoggett spot-checking games from `/h0/cmds/games`.
