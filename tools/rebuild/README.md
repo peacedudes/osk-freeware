@@ -67,6 +67,14 @@ The 367 starred ARCHIVE binaries are unaffected and `cio` keeps shipping for
 them: their authors linked them against their own runtime, and 621 programs
 run bare. This is about what WE build.
 
+**`MEM=<size>`** sets the module's memory allocation, which on OS-9 is where
+the STACK lives. The default is 16k and that is not always enough: `life`
+drew one generation and died with `**** Stack Overflow ****` until it was
+given `MEM=64k`, after which it runs indefinitely and detects its own
+oscillator period. If a program dies partway through a run rather than at
+startup, and especially if it recurses, try this before anything else --
+it costs memory per process and nothing else.
+
 `TRAPFREE` in a recipe is now a no-op, kept so the six recipes carrying it
 still parse. `CIOLINK` opts a single build back into `-qixm` for a deliberate
 experiment -- never for anything installed.

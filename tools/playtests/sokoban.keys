@@ -1,0 +1,10 @@
+name    sokoban
+prog    /dd/CMDS/GAMES/sokoban
+rate    0.7
+wait    5
+snap    opening
+keys    hjkl
+wait    2
+snap    played
+key     \003
+wait    2

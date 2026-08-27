@@ -1,0 +1,10 @@
+name    wanderer
+prog    /dd/CMDS/GAMES/wanderer
+rate    0.7
+wait    5
+snap    opening
+keys    hjkl
+wait    2
+snap    played
+key     \003
+wait    2

@@ -1,0 +1,14 @@
+name    sc
+prog    /dd/CMDS/sc
+# The spreadsheet.  Type a number into A0, move, type another, then quit.
+rate    0.5
+wait    5
+snap    opening
+keys    =42
+key     \r
+wait    2
+snap    entered
+key     q
+wait    1
+key     y
+wait    2

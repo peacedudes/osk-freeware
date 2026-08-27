@@ -1,0 +1,18 @@
+name    advent
+prog    /dd/CMDS/GAMES/advent
+# Colossal Cave.  It asks whether you want instructions, then drops you
+# outside the building.  "enter" and "get lamp" are the classic first moves.
+rate    0.4
+wait    5
+key     n
+key     \r
+wait    3
+snap    outside
+keys    enter
+key     \r
+wait    3
+keys    get lamp
+key     \r
+wait    3
+snap    inside
+expect  building
