@@ -118,20 +118,26 @@ interesting and it is not blocking anything.
    `-qm` wrote all 4000. Skew is not what breaks it. Attribution — os9exec's
    `F$SRqMem` or cio's ABI — stays unsettled; the decision does not depend on
    it. `notes/os9exec-bugs/SRQMEM.md` has the run.
-2. **Ship a `load` command.** The cheapest fix that changes what a USER can do.
-   A user following `DOC/README-RUNNING` sets only `OS9DISK`, so `OS9MDIR` is
-   unset and there is no `load` on the disk to preload anything with.
-   Microware's `load` is not an option — the SDK's stops on our `csl` with
-   `**** csl traphandler mismatch ****` — so this is a small `F$Load` wrapper
-   built `-qm`.
+2. ~~Ship a `load` command.~~ **DECIDED AGAINST, 2026-08-27.** rdoggett asked
+   the right question -- *"do you feel load is essential? Like, should we
+   rewrite our own load?"* -- and the answer is no.
 
-   **The payoff is the RTF Fortran six, NOT the `Graph` group.** Corrected
-   2026-08-27; the earlier version of this file had it backwards.
-   `rtf for lnk lnk.org biory creadoc` all `F$Link` for `os9lib`, get `E_MNF`
-   and exit silently, and all six run once it is loaded (`DOC/README-FORTRAN`).
-   The `Graph` seven and `rxmod` go from `E_PNNF` to a BUS ERROR either way —
-   those libraries carry `M$Attr $A0`, the supervisor bit, and os9exec does not
-   run guest code in supervisor state. `DOC/STATUS` has that in full.
+   `load` is Microware's, it is a standard system utility, and anyone running
+   OS-9 has it. Shipping our own reimplementation that behaved *almost* like
+   the real one is exactly the kind of trap this collection avoids.
+
+   **And it was never needed.** The only real beneficiaries were the RTF
+   Fortran six, and the route already existed: point `OS9MDIR` at a HOST
+   directory holding `os9lib`. The repository ships `disk/` as a host tree, so
+   that directory is `<repo>/disk/CMDS` and is already on the user's machine.
+   Verified that day: with `OS9MDIR=$PWD/disk/CMDS`, `rtf` starts and asks for
+   a source file; without it, `rtf` prints nothing. What was actually missing
+   was DOCUMENTATION -- `DOC/README-RUNNING` never mentioned `OS9MDIR` at all.
+   It does now, and `DOC/README-FORTRAN` names both routes.
+
+   The `Graph` seven and `rxmod` were never candidates: they bus-error on the
+   supervisor bit whatever is loaded.
+
 3. **The programs that need work** — `notes/verify-final.tsv`, filtered by
    `tools/module_census.py` for what is actually a program. Read `DOC/STATUS`
    FIRST: most of the 45 are already explained and closed there (supervisor
