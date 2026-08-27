@@ -9,5 +9,9 @@ wait    2
 snap    played
 key     \003
 wait    2
-# KNOWN BROKEN: notes/verify-final.tsv has recorded this as NEEDS WORK
-# since the 2026-08-26 sweep.  Kept so the failure stays visible.
+# CANNOT PASS AND SHOULD NOT: DOC/INDEX describes this as the "sliding-tile
+# puzzle for G-Windows".  It draws through a graphics windowing system that
+# does not exist here, so it writes nothing to a terminal -- the same
+# situation as the Graph family.  CMDS/puzzle15 and GAMES/puz15 are ordinary
+# terminal 15-puzzles and both play; use those.  Kept so this stays recorded
+# rather than being rediscovered as a "broken program" every few months.
