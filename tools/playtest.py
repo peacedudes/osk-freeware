@@ -199,15 +199,24 @@ def playtest(path, image, outdir):
     responds = ks.text() != cs.text() or best.ink() > cs.ink() + 4
     orphans = sum(len(s.orphans) for _, s in screens)
 
+    # A KEYED RUN THAT DREW LESS THAN THE CONTROL IS A FAILURE, not a pass.
+    # `snake' fooled the first version of this check: typing made it hang at
+    # startup about one run in six, so the keyed screen held a bash prompt and
+    # the control held a drawn board. The two texts DIFFERED, so `responds'
+    # was true and it was scored PASS -- while the program had not started.
+    starved = best.ink() + 20 < cs.ink()
+
     verdict = "PASS"
-    if missing or present or not responds or orphans or best.ink() < 10:
+    if (missing or present or not responds or orphans
+            or best.ink() < 10 or starved):
         verdict = "FAIL"
 
     print("%-14s %-5s ink=%-5d(%s) orphans=%-3d responds=%-3s%s%s"
           % (spec["name"], verdict, best.ink(), best_label, orphans,
              "yes" if responds else "NO",
              "  missing=%s" % missing if missing else "",
-             "  found=%s" % present if present else ""))
+             ("  STARVED (control drew %d)" % cs.ink()) if starved
+             else ("  found=%s" % present if present else "")))
     return verdict == "PASS", spec, best
 
 
