@@ -8,4 +8,4 @@ wait    2
 snap    secondpage
 key     q
 wait    2
-expect  TERMINAL
+expect  HOW TO RUN THIS DISK

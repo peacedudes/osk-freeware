@@ -237,7 +237,16 @@ def playtest(path, image, outdir):
     missing = [e for e in spec["expect"] if e not in alltext]
     present = [a for a in spec["absent"]
                if a in alltext or a in keyed.decode("latin-1", "replace")]
-    responds = ks.text() != cs.text() or best.ink() > cs.ink() + 4
+    # ONLY DEMAND A RESPONSE IF WE ACTUALLY TYPED SOMETHING AT IT.
+    # Most of this disk's "games" are not interactive at all -- valspeak,
+    # wisecrack, colortest and dclock print and stop. A script for one of
+    # those sends a single quit key and nothing else, so the keyed and control
+    # screens are identical BY CONSTRUCTION and `responds' was false for
+    # seventeen perfectly healthy programs. Two or more keystrokes means we
+    # were really driving it; one means we were only getting out.
+    typed = sum(1 for kind, _ in spec["acts"] if kind == "send")
+    responds = (ks.text() != cs.text() or best.ink() > cs.ink() + 4
+                if typed >= 2 else True)
     orphans = sum(len(s.orphans) for _, s in screens)
 
     # A KEYED RUN THAT DREW LESS THAN THE CONTROL IS A FAILURE, not a pass.

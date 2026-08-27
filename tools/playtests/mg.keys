@@ -1,0 +1,12 @@
+name    mg
+prog    /dd/CMDS/mg /dd/DOC/README-CIO
+# MicroGnuEmacs.  Ctrl-X Ctrl-C quits.
+rate    0.6
+wait    5
+snap    opened
+key     \026
+wait    2
+snap    paged
+key     \030
+key     \003
+wait    2

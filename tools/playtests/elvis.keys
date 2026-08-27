@@ -1,0 +1,12 @@
+name    elvis
+prog    /dd/CMDS/elvis /dd/DOC/README-CIO
+rate    0.6
+wait    5
+snap    opened
+key     \006
+wait    2
+snap    paged
+key     :
+keys    q!
+key     \r
+wait    2

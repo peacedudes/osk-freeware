@@ -1,0 +1,6 @@
+name    fortune
+prog    /dd/CMDS/fortune
+rate    0.6
+wait    5
+snap    output
+wait    2

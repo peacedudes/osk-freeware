@@ -18,4 +18,4 @@ snap    dungeon
 key     i
 wait    3
 snap    inventory
-expect  two handed sword
+expect  --More--

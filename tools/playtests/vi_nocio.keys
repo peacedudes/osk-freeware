@@ -1,0 +1,13 @@
+name    vi_nocio
+prog    /dd/CMDS/vi_nocio /dd/DOC/README-CIO
+# PVic.  Open a file read-only, page down, then quit without saving.
+rate    0.6
+wait    5
+snap    opened
+key     \s
+wait    2
+snap    paged
+key     :
+keys    q!
+key     \r
+wait    2
