@@ -1,7 +1,7 @@
 # A cio-linked program never sees end-of-file on stdin, and hangs forever
 
 **Found 2026-08-26**, an hour after the `F$SRqMem` runaway
-(`notes/OS9EXEC-CIO-SRQMEM.md`), while trying to work out why `travesty`
+(`SRQMEM.md`), while trying to work out why `travesty`
 "reproduced its input verbatim". It did no such thing. It never produced any
 output at all, and never will, because it never finishes reading.
 

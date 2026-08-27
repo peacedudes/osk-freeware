@@ -306,7 +306,7 @@ dm|dm|diskmaster.c screen.c dirread.c showfiles.c misc.c error.c unarc.c mouse.c
 # Daniel J. Bernstein's Markov travesty generator.  TRAPFREE is a WORKAROUND,
 # not a preference: built -qixm it hangs forever on end-of-file reading stdin,
 # because cio's read path never returns EOF under os9exec.  See
-# notes/OS9EXEC-CIO-STDIN-EOF.md.  Remove the flag when that is fixed.
+# notes/os9exec-bugs/STDIN-EOF.md.  Remove the flag when that is fixed.
 travesty|travesty|travesty.c ../unixlib/getopt.c|TRAPFREE||
 # The collection's own. One source builds three programs; `about' is separate.
 keep|keep|keep.c|||

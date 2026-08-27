@@ -70,7 +70,7 @@ the INPUT's and ignores any flag that sets output length.
 
 The claim here was that module load is case-sensitive where RBF is not. **It
 is wrong.** Put ONLY the lowercase `graph` on the module search path and the
-program runs; case never mattered. See `../OS9EXEC-MODULE-CASE.md`.
+program runs; case never mattered. See `MODULE-CASE.md`.
 
 What actually happens is that the trap-handler search goes to **`OS9MDIR`, a
 HOST directory**, and falls back to a path that does not exist when the
@@ -88,8 +88,8 @@ ships no `load` for anyone to preload it with.
 
 ---
 
-Full write-ups: `../OS9EXEC-CIO-SRQMEM.md`, `../OS9EXEC-CIO-STDIN-EOF.md`,
-`../OS9EXEC-MODULE-CASE.md`.
+Full write-ups: `SRQMEM.md`, `STDIN-EOF.md`,
+`MODULE-CASE.md`.
 
 ---
 
