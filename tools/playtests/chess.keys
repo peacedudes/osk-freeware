@@ -1,11 +1,18 @@
 name    chess
 prog    /dd/CMDS/GAMES/chess
-# Generic: does it draw, and does the screen change when keys arrive?
-rate    0.7
+# It opens with "Do you want to play white or black (w/b)?"
+rate    0.6
 wait    5
-snap    opening
-wait 3
+key     w
+wait    3
+snap    board
+keys    tester
+key     \r
 wait    2
-snap    played
+keys    e2e4
+key     \r
+wait    4
+snap    moved
 key     \003
 wait    2
+expect  black

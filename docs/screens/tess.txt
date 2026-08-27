@@ -1,0 +1,24 @@
+bash# export HELPDIR=/dd/SYS/HELP
+bash# /dd/CMDS/GAMES/tess
+               /*--------------/*      ------------------------------------
+             /  '            /  '           Beyond The Tesseract   V2.0p
+           /   '|          /   '|      ------------------------------------
+        */----'---------*/    ' |          An abstract text adventure by
+       '|    '  |      '|    '  |            David Lo   4516 Albert St.
+      ' |   '   |     ' |   '   |                       Burnaby, B.C.
+     '  |  '   /*----'--|--'---/*                       V5C 2G5   Canada
+    '   | '  /  '   '   | '  /  '        email c/o: viola@idacom.cs.ubc.ca
+   '    |' /   '   '    |' /   '       ------------------------------------
+  '    /*/----'---'----/*/    '         This is FreeShareAnythingWare.
+ '   /  '    '   '   /  '    '          If you like this program, hate it,
+'  /   '|   '   '  /   '|   '           or really don't care at all, then
+*/----'----'----*/    ' |  '            I would be happy to hear from you
+|    '  | '     |    '  | '             (a letter, a post-it note, etc).
+|   '   |'      |   '   |'
+|  '   /*-------|--'---/*               Please share unmodified copies of
+| '  /          | '  /                  this adventure with everyone.
+|' /            |' /                   ------------------------------------
+*/--------------*/                            'Set the software free'
+
+Scenario and instructions?
+bash#

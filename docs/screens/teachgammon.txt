@@ -1,0 +1,3 @@
+   These rules consist of text describing how to play Backgammon
+followed by a tutorial session where you play a practice game
+against the computer.  When using

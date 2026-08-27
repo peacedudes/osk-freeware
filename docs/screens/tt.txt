@@ -1,0 +1,23 @@
+||                    ||  TETRIS FOR TERMINALS
+||                    ||
+||                    ||  Written by Mike Taylor
+||                    ||  Email: mirk@uk.ac.warwick.cs
+||                    ||  Started: Thu Aug 27 08:27:11 2026
+||                    ||
+||                    ||  Game level: 0
+||                    ||
+||                    ||  Score:
+||                    ||  Pieces:
+||                    ||  Levels:
+||                    ||
+||                    ||    Use keys:
+||                    ||    =========
+||                    ||    Move left:  ','
+||                    ||    Move right: '/'
+||                    ||    Rotate:     '.'
+||                    ||    Drop:       ' '
+||                    ||    Pause:      's'
+||                    ||    Quit:       'q'
+++===== Aborted! =====++    Refresh:    '^L'
+
+bash#

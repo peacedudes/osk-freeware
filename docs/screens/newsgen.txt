@@ -1,0 +1,24 @@
+/.bashrc:  (E$MNF) That module isn't currently loaded.
+
+bash# export TERM=vt100
+bash# export TERMCAP=/dd/SYS/termcap
+bash# export HOME=/dd
+bash# export USER=tester
+bash# export LOGNAME=tester
+bash# export PATH=/dd/CMDS:/dd/CMDS/GAMES:.
+bash# export HELPDIR=/dd/SYS/HELP
+bash# /dd/CMDS/GAMES/newsgen
+
+
+                        T O D A Y ' S    N E W S
+
+                                Thu Aug 27
+
+THE TOP STORY--
+George Harrison filed suit against Jane Fonda early this evening.  Both are
+now recuperating at Boston City Hospital.  Harrison just can't seem to get
+enough.
+
+THE WEATHER--
+Baby twister expected late this afternoon.  All babies stay home.
+bash#

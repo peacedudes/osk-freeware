@@ -1,10 +1,13 @@
 name    pacman
 prog    /dd/CMDS/GAMES/pacman
-# Generic: does it draw, and does the screen change when keys arrive?
+# Its own Document says the keypad digits steer: 8 up, 2 down, 4 left, 6 right.
+# NOTE: pacman emits raw control bytes (0x01 0x02 0x0e 0x16), not ANSI --
+# it is written for a specific terminal, not vt100, so the rendered screen
+# will be wrong here whatever we do.  Kept so the fact is recorded.
 rate    0.7
 wait    5
 snap    opening
-keys    hjkl
+keys    6688
 wait    2
 snap    played
 key     \003

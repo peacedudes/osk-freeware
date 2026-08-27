@@ -35,6 +35,9 @@ Script format (one directive per line, # comments ignored):
     snap    inventory               SAVE THE SCREEN HERE, under this label
     expect  Tetrix                  text that must appear on the final screen
     absent  Couldn't open           text that must NOT appear anywhere
+    allow   trap handler            a COMPLAINT phrase to forgive for this
+                                    program -- an editor showing a file full
+                                    of error messages is not itself failing
 
 Exit status is 0 when every `expect' was met and no `absent' appeared.
 """
@@ -56,11 +59,18 @@ OS9EXEC = os.environ.get("OS9EXEC",
                          os.path.join(REPO, "..", "os9exec", "os9exec"))
 TERMCAP = "/dd/SYS/termcap"
 
+# After `clear', the only thing on screen before the program draws is the
+# command line itself -- about 30 characters. A program that leaves less than
+# this behind did not really run: `pacman' exits the instant it starts and
+# scored 35, which was all echo. Raised from 10 on 2026-08-27 after pacman,
+# chess and lorenz3d all passed on the strength of the shell prompt.
+MIN_INK = 40
+
 
 def parse(path):
     spec = {"name": os.path.basename(path).replace(".keys", ""),
             "prog": None, "setup": [], "acts": [], "expect": [], "absent": [],
-            "rate": 0.6}
+            "allow": [], "rate": 0.6}
     for raw in open(path):
         line = raw.split("#", 1)[0].strip()
         if not line:
@@ -89,7 +99,7 @@ def parse(path):
                 spec["acts"].append(("send", ch))
         elif word == "snap":
             spec["acts"].append(("snap", rest))
-        elif word in ("expect", "absent"):
+        elif word in ("expect", "absent", "allow"):
             spec[word].append(rest)
     if not spec["prog"]:
         sys.exit("%s: no `prog' line" % path)
@@ -124,7 +134,13 @@ def feed(spec, master, with_keys, cap=None, marks=None):
                      "export USER=tester",
                      "export LOGNAME=tester",
                      "export PATH=/dd/CMDS:/dd/CMDS/GAMES:.",
-                     "export HELPDIR=/dd/SYS/HELP"):
+                     "export HELPDIR=/dd/SYS/HELP",
+                     # CLEAR THE SETUP OFF THE SCREEN. Those eight export
+                     # lines are ~150 characters of ink, and `ink' is how this
+                     # tool decides a program drew something. pacman, chess
+                     # and lorenz3d all scored PASS on the strength of my own
+                     # shell prompt while drawing nothing at all.
+                     "clear"):
             out(line + "\r")
             time.sleep(0.5)
         for line in spec["setup"]:
@@ -276,11 +292,12 @@ def playtest(path, image, outdir):
                   "No such file", "no such file", "command not found",
                   "unknown terminal", "Unknown terminal", "Stack Overflow",
                   "Can't install trap handler", "bus error", "Bus error")
-    complained = [c for c in COMPLAINTS if c in alltext]
+    complained = [c for c in COMPLAINTS if c in alltext
+                  and not any(a in c or c in a for a in spec["allow"])]
 
     verdict = "PASS"
     if (missing or present or not responds or orphans
-            or best.ink() < 10 or starved or complained):
+            or best.ink() < MIN_INK or starved or complained):
         verdict = "FAIL"
 
     print("%-14s %-5s ink=%-5d(%s) orphans=%-3d responds=%-3s%s%s"

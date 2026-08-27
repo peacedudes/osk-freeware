@@ -10,3 +10,5 @@ key     :
 keys    q!
 key     \r
 wait    2
+allow   trap handler
+allow   Can't open

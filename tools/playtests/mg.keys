@@ -10,3 +10,5 @@ snap    paged
 key     \030
 key     \003
 wait    2
+allow   trap handler
+allow   Can't open

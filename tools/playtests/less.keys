@@ -9,3 +9,5 @@ snap    secondpage
 key     q
 wait    2
 expect  HOW TO RUN THIS DISK
+allow   trap handler
+allow   Can't open

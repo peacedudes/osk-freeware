@@ -1,0 +1,23 @@
+  A B C D E F G H I J K L M N O P
+A + + + + + + + + + + + + + + + + A
+B + + + + + + + + + + + + + + + + B
+C + + + + + + + + + + + + + + + + C
+D + + + + + + + + + + + + + + + + D
+E + + + + + + + + + + + + + + + + E
+F + + + + + + + + + + + + + + + + F
+G + + + + + + + + + + + + + + + + G
+H + + + + + + + + + + + + + + + + H
+I + + + + + + + + + + + + + + + + I           Mines - by David Ravegum
+J + + + + + + + + + + + + + + + + J         Ported to OSK by Russ Hoffman
+K + + + + + + + + + + + + + + + + K
+L + + + + + + + + + + + + + + + + L               Markers left: 40
+M + + + + + + + + + + + + + + + + M
+N + + + + + + + + + + + + + + + + N
+O + + + + + + + + + + + + + + + + O
+P + + + + + + + + + + + + + + + + P
+  A B C D E F G H I J K L M N O P
+
+Row: (A-P) h
+Column: (A-P) j                                         ? for help
+Mark? (Y/[N]) bash#                                     * for BBS info
+                                                        q to quit

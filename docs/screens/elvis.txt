@@ -1,0 +1,24 @@
+collection was rebuilt trap-free (`-qm`) so it would run with nothing loaded
+at all; most of the programs under CMDS need no module whatever.  The rest
+were left as their authors built them.
+
+A program that cannot find its trap handler stops at once with
+
+    **** Can't install trap handler ****
+
+That is the message to recognise.  It is not a broken program, and on this
+disk you should never see it -- if you do, the five modules have been removed
+or the execution directory is not this disk's CMDS.
+
+The list was MEASURED, by running every program on a disk with the five
+modules taken away and matching that message.  It was never derived from
+looking for the string `cio` inside a binary: that proxy is wrong in both
+directions, and this collection has the scars to prove it -- `vi_nocio`
+contains the string and does not need the module, while `cyberwar`, `gnuchess`
+and `g` lack it and do.
+
+If you would rather use your own
+--------------------------------
+
+You run OS-9, so you have these modules already, and you may prefer your copy
+bash#
