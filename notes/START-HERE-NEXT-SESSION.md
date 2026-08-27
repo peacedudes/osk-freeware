@@ -1,7 +1,8 @@
-# Picking this up cold
+# Picking this up cold — written 2026-08-27
 
-Branch `release-pass-2026-08-21`, 343 commits, **nothing pushed**. Working tree
-clean, all eleven `check_disk.py` checks green.
+Branch `release-pass-2026-08-21`, **184 commits ahead of main, nothing pushed**
+(there is no git remote and no GitHub repo yet — see "not urgent" below).
+Working tree clean, all eleven `check_disk.py` checks green.
 
 ## Get running in two minutes
 
@@ -9,95 +10,160 @@ clean, all eleven `check_disk.py` checks green.
     export OS9EXEC=~/Developer/os9/os9exec/os9exec
     export OS9CLEAN=${TMPDIR:-/tmp}/os9clean
 
-    tools/build.sh --from-scratch               # THE WHOLE THING, one command:
-                                                # discards the cached overlay,
-                                                # rebuilds it, bootstraps
-                                                # ansi2knr, builds all 325
-    tools/build.sh --missing                    # what has no recipe, and why
-    tools/check_disk.py disk                    # eleven checks
-    tools/rebuild/tidy.sh                       # only if you drove rebuild.sh
-                                                # directly; build.sh calls it
+    tools/rebuild/make_overlay.sh            # the SDK build overlay
+    tools/mkimage.sh $PWD/disk $PWD/osk-freeware.dd     # ~1 min
+    tools/check_disk.py disk                 # eleven checks
+    OS9DISK=osk-freeware.dd os9exec -r bash /dd/SYS/login    # a shell on the disk
 
-`tools/build.sh` builds every recipe (~2 hours, 325 of them). One program:
-`tools/build.sh flex`.
+**`osk-freeware.dd` is a build artefact and goes stale.** It cost a whole
+exchange on 2026-08-25: the documented run command opened a five-hour-old image
+and two new programs "did not exist". `verify_all.sh` now refuses to run
+against an image older than the tree; nothing else checks. Rebuild it after
+touching `disk/`.
 
-## Where the build stands
+## Where things stand
 
-**323 of 325 recipes clean**, whole tree, from a clean clone, measured
-2026-08-24: `tools/build.sh --from-scratch`, overlay discarded and remade.
-The two that fail have always failed and neither is a linkage problem --
-`pdraw` wants X11 headers that are not here, `pep` wants an EPROM board's own
-assembly. Re-measure rather than trust this paragraph.
+**The collection runs: 870 of 916 programs, 95.0%** — `DOC/STATUS`, measured
+2026-08-26, all four sweep stages from scratch. 46 real programs need work
+(`notes/verify-final.tsv`); the other 24 of the raw 70 are trap handlers,
+libraries and shell scripts that were never meant to run bare.
 
-`tools/src_census.py disk` for coverage: 390 of 937 programs have source
-here, 313 of them built by a recipe. Both move whenever a recipe lands.
+**Source coverage 66%** — 626 of 939, up from 41% on 2026-08-25. Run
+`tools/src_census.py disk` rather than quoting that.
 
-## What changed on 2026-08-23/24, in one screen
+---
 
-Read `notes/SESSION-2026-08-24.md` for the detail. The headlines:
+# THE THING TO UNDERSTAND FIRST: version skew, not emulator bugs
 
-  - **`ls` is rebuilt from `SRC/ls` and INSTALLED** -- 39 of 40 option cases
-    byte-identical to the binary it replaced, `-i` better (real inodes).
-    The only shipped binary changed in this pass.
-  - **Recipes 290 -> 325**, programs built by a recipe **279 -> 313**.
-    18 mtools commands, 6 macutils, elvis's 4 helpers, 5 singles, `aterm`.
-  - **`aterm` assembles byte-for-byte identical to the shipped binary.**
-    New `ASM` recipe flag; `os9.l` + `sys.l` resolve the 53 system names.
-  - **The disk can build C++**, and the gcc toolchains are documented and
-    usable for the first time -- see below.
-  - **`tools/src_census.py`** is new: source coverage as a re-derivable
-    number instead of a hand count. 390 of 937, 41%.
+Most of 2026-08-26 went into three claimed os9exec defects. **Two were
+withdrawn or reattributed, and the reason matters more than the bugs.**
 
-## The gcc toolchains -- the thing most likely to bite you
+## The rule
 
-`DOC/README-GCC` is the full story. The short version, because it wasted
-hours: **gcc2 and gpp find their passes by a hardcoded prefix, and it is a
-DIFFERENT prefix for each.**
+> **"Trap-library build fails, static build works" is a VERSION-SKEW
+> signature on this collection, not evidence about the emulator.**
 
-    gcc2   /dd/CMDS/gcc_<pass>    and  /h0/CMDS/gcc_<pass>
-    gpp    /dd/CMDS/gpp_<pass>    and  /h0/CMDS/gpp_<pass>
+A `-qm` build never enters cio, so it cannot testify about how os9exec handles
+cio. I used that inference twice in one night and it was unsound both times.
+It is now in `CLAUDE.md`.
 
-Everything else it runs -- `r68`, `l68`, `del` -- is forked by bare name and
-found in the EXECUTION directory, normally `/dd/CMDS`. The passes ship in
-`/dd/CMDS/GCC2`, which is none of those places, so out of the box you get
-`Can't fork 'cccp2'`. That is not a broken binary.
+## What is actually skewed, measured
 
-`r68`, `l68`, `clibn.l` and `cstart.r` are Microware's and are NOT on the
-disk. gcc compiles to assembly and stops there without them. Bring an SDK.
-With one, both C and C++ compile, link and run -- verified 2026-08-24.
+    what we SHIP            bytes   edition
+      cio                   18058     6
+      csl                   47192    16      <-- nine editions behind the SDK
+      csl020                43794    15
+      math                   7798    13
+      math881                3220     6
 
-**A trap that cost a wrong recommendation:** the BUILD OVERLAY has a flat
-`CMDS` and the SDK headers, so everything gcc works there. The DISK has
-neither. Proving something in the overlay proves nothing about the disk.
+Every `csl` in the SDK — 68000, 68020 and CPU32, three different builds — is
+**edition 25**. Ours is 16, and our `csl020` is 15, so our two are not even the
+same edition as each other. Direct evidence, hit twice: the SDK's `load` run
+against the disk's `csl` stops with `**** csl traphandler mismatch ****` and
+runs clean against the SDK's own.
 
-## One decision waiting for rdoggett
+`cio` shows no skew by edition — three distinct binaries on this machine and
+**all three are edition 6**, which is itself odd. There is exactly ONE `cio.l`
+anywhere (4453 bytes, 1990-05-24, identical on `oskBoot` and `h4`), so every
+program here was linked against that one library. No fourth cio exists on this
+machine: I checked all 530 archives in the content index and swept the
+filesystem.
 
-Whether to ship five files in `/dd/CMDS` -- `gcc_cccp2`, `gcc_cc2`,
-`gpp_cccp`, `gpp_cc1plus`, `gpp_collect` (~1 MB, `cccp2` twice) -- so the
-compilers work without the user first reading README-GCC. Alternatives: one
-`gccsetup` script, or leave it to the documentation. He has not answered.
-Do not do it unasked; `disk/CMDS` is his.
+## Why this is NOT a nightmare, and what to do about it
 
-## Rules that cost time to learn
+**The skew does not touch what ships.** The archive binaries that use cio were
+built by their own authors against their own matching runtime, and they work —
+`banner`, `cursive` and `fortune` all pass, and 621 programs run bare. The
+2026-08-26 sweep is the evidence.
 
-  - **Never edit a script, a recipe file, or anything under `disk/` while a
-    build is running.** `bash` reads a script by byte offset; a mid-run edit
-    killed a 40-minute build with a syntax error on a good line. And a build
-    measures the tree at the moment each recipe is reached, so an edit makes
-    the results a mixture.
-  - **Never `git checkout -- disk/SRC`.** It ate deliberate source fixes twice.
-    `tools/rebuild/tidy.sh` touches only files a build could have made.
-  - **Grep CR-only files through `tr '\r' '\n'` first**, or you dump the whole
-    file. Set `LC_ALL=C` or `tr` fails on 8-bit bytes.
-  - **`zsh` does not word-split unquoted variables.** Two loops died of it.
-  - Read `check_disk.py`'s OUTPUT, not its exit code. Committing past a red
-    check has happened three times.
+**It only bites programs WE rebuild with `-qixm`**, which links the SDK-era
+`cio.l` and then runs against the older shipped `cio`. Nothing built by the
+driver is currently installed, so **nothing shipped is affected today**.
 
-## Where the work is
+**The recommendation, and it is one line:** make `-qm` the driver's default
+for anything we install. `-qm` has never failed this way. It costs size
+(the driver's own measurement: 14286 bytes against 2610 for `ascii.c`) and
+buys a binary that stands alone and cannot skew. `cio` keeps shipping for the
+367 starred archive binaries that need it. Stop trying to reconcile Microware's
+editions; we cannot, and we do not need to.
 
-`notes/PLAN-next.md`, in order. `notes/COMPILE-AUDIT.md` says why each tree
-without a recipe has none — most are accounted for, only some are work.
+Two recipes already carry `TRAPFREE` for exactly this reason (`card`,
+`travesty`) and say so in the file.
 
-For rdoggett: `notes/FOR-RDOGGETT.md`, which is short on purpose. He stops
-reading when notes are long or report things he cannot act on. Lead with what
-needs him, one line each, and say plainly when the answer is nothing.
+## The one thing that may still be an os9exec defect
+
+`notes/os9exec-bugs/` — the `F$SRqMem` storm. A cio-linked program asks for
+413,256 bytes once per `putchar`, never frees, exhausts the arena.
+Independently reproduced by the os9exec session on a licensed disk with a
+different cio edition, same counts. **Attribution is unsettled** and the
+os9exec side now believes it is ABI skew rather than their bug.
+
+What I contributed and what is still open is in that directory's README. Two
+things there are worth not re-deriving:
+  - the `a3+$3C` correlation is a coincidence — it does not hold on this build
+  - the absurd value is `process data block base + $48`, invariant across
+    `-qixm=4k/16k/64k` while cio's own code address moves
+
+**Do not spend more time on it without a specific question to answer.** It is
+interesting and it is not blocking anything.
+
+---
+
+# What to work on, in order
+
+1. **Make `-qm` the default for installed rebuilds** and write down why. Small,
+   settles the whole class above. Then the two `TRAPFREE` recipes lose their
+   special-case comments.
+2. **The 46 programs that need work** — `notes/verify-final.tsv`, filtered by
+   `tools/module_census.py` for what is actually a program. Eight of them are
+   the `Graph` group, which needs a `load` on the disk (see below), not an
+   emulator fix.
+3. **Ship a `load` command.** Eight programs link a library module sitting
+   beside them on the image and cannot find it, because a user following
+   `DOC/README-RUNNING` never sets `OS9MDIR` and this disk has no `load`.
+   That is ours, and it is the cheapest real fix on the list.
+4. **netpbm recipes** — all 169 now have source; `notes/COMPILE-AUDIT.md` has
+   the shape of the work (four library recipes, then 169 one-source ones). Big,
+   mechanical, ideal for a long unattended run.
+5. **The rest of the pool pass** — `tools/index_archives.py` and
+   `tools/find_missing_source.py` are new and did most of tonight's work.
+   32 candidates remain, and `COMPILE-AUDIT.md` lists twelve already REFUTED
+   so they are not re-chased.
+6. `sc` builds except for `wrefresh`; `notes/COMPILE-AUDIT.md` has exactly
+   where it stops.
+
+## Not urgent, and deliberately not on the list
+
+GitHub: no repo, no remote, Pages off, CI never run. rdoggett, 2026-08-26:
+*"we will come to that naturally when we are willing to put this on github.
+Why on earth would you prioritize this when we dont even have a repo ready to
+share yet?"* It waits on the collection being worth pushing, which is what
+items 1-6 are for.
+
+Also open and needing him, not you: the gcc packaging decision (2026-08-24),
+and `wc`'s provenance (unsettled, nothing left to pull on).
+
+## Rules that cost real time to learn
+
+  - **Never edit a script while a run is reading it.** bash reads a script by
+    byte offset. I did this to `verify_all.sh` mid-sweep on 2026-08-26 and it
+    died at row 928 of 940 with a syntax error on a good line.
+  - **Every tool in a capture pipeline needs `LC_ALL=C`** — `tr`, `cut`, `awk`.
+    Four were missing it across the sweep's four stages, so any program
+    emitting a byte above 127 was classified on an empty capture. All fixed.
+  - **A name match is a lead, not a finding.** Prove source against the binary:
+    byte-identical if the archive carries one, or match the binary's own
+    distinctive strings. Twelve candidates were refuted that way.
+  - **Grep CR-only files through `tr '\r' '\n'` first** or you dump the whole
+    file as one line. Cost context three times in one night.
+  - **Make every check fail once before believing it.** Two of tonight's three
+    "defects" came from a check that had only ever succeeded.
+  - Read `check_disk.py`'s OUTPUT, not its exit code.
+
+## Where the detail is
+
+  - `notes/SESSION-2026-08-26.md` — the whole overnight pass
+  - `notes/os9exec-bugs/README.md` — the reproductions and what is unsettled
+  - `notes/COMPILE-AUDIT.md` — why each tree has no recipe, and refutations
+  - `notes/FOR-RDOGGETT.md` — what needs him, newest first, short on purpose
+  - `notes/AGENDA-2026-08-26.md` — the ordered list this replaces

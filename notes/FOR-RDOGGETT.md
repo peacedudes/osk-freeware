@@ -8,6 +8,52 @@ stands — nothing in it was undone.
 
 ---
 
+# 2026-08-27 — it is version skew, and it is not a nightmare
+
+**Needs you: nothing. This is the summary you asked for before a fresh
+session; the cold-start file is `notes/START-HERE-NEXT-SESSION.md`.**
+
+**Your instinct was right and mine was wrong twice.** Three claimed os9exec
+defects: one withdrawn outright (the `Graph` case claim — the loader looks in
+a HOST directory, case had nothing to do with it), one reattributed, and the
+third still unsettled with the os9exec side now calling it ABI skew.
+
+**The reasoning error, since it is the useful part.** I argued "the
+trap-library build fails and the static build works, therefore os9exec". A
+`-qm` build never enters `cio`, so it cannot testify about how os9exec handles
+`cio`. That is now a rule in `CLAUDE.md`.
+
+**Three edition-6 cio binaries is screwy, and you can stop worrying about it.**
+`csl` is where the real skew shows: we ship **edition 16**, and every `csl` in
+the SDK — 68000, 68020, CPU32 — is **edition 25**. Our `csl020` is edition 15,
+so our own two do not match each other. There is exactly ONE `cio.l` anywhere
+(1990-05-24), and no fourth `cio` on this machine — I checked all 530 archives
+in the new content index and swept the filesystem.
+
+**Why it is not a nightmare:** the skew does not touch what ships. The archive
+binaries that use `cio` were built by their authors against their own matching
+runtime and they work — `banner`, `cursive`, `fortune` all pass and 621
+programs run bare. **It only bites programs WE rebuild with `-qixm`, and
+nothing built by the driver is installed.** So nothing on the disk is affected
+today.
+
+**How to continue, one line:** make `-qm` the driver's default for anything we
+install. It has never failed this way. It costs size and buys a binary that
+stands alone and cannot skew. `cio` keeps shipping for the 367 starred archive
+binaries. We do not need to reconcile Microware's editions and we cannot.
+
+Also landed since you went to bed: **the sweep — 870 of 916 programs run,
+95.0%**, first full measurement since 08-23, `DOC/STATUS` rewritten, and it is
+the first one trustworthy on 8-bit output (four tools across its stages were
+missing `LC_ALL=C`). **Source coverage 41% → 66%**, all of it found inside
+archives in your own hoard that nobody had opened, including all 169 netpbm
+converters.
+
+Detail: `notes/SESSION-2026-08-26.md`. Reproductions and what is still open:
+`notes/os9exec-bugs/README.md`.
+
+---
+
 # 2026-08-26, overnight — two os9exec bugs with repros, and 62 programs gained source
 
 **Needs you: nothing. Read the first two lines and go back to what you were
