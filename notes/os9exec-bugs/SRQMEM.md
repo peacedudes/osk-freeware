@@ -132,3 +132,36 @@ That stays until this is fixed; it is a workaround, and the recipe says so.
 
 Files: `notes/cio-srqmem/putchar.c` (minimal), `tputs.c` (the first, larger
 reproduction, via termlib), `trace-excerpt.txt`, `syscall-tally.txt`.
+
+---
+
+## Re-measured 2026-08-27 — and it is NOT this collection's version skew
+
+Reproduced independently, same repro (`putchar.c`), against the **SDK build
+overlay** — which carries the SDK's own `csl` (48366 bytes), not the edition-16
+`csl` (47192) this collection ships. `cio` is the same 18058-byte module in
+both places; there is only one `cio` on this machine.
+
+    cc /h6/putchar.c -qixm=16k -DOSK -n=pcio -f=/h6/R_pcio
+      -> R_pcio  1532 bytes
+      -> run:    0 characters written, 3888 x "No more memory !!!"
+
+    cc /h6/putchar.c -qm=16k -DOSK -n=pqm -f=/h6/R_pqm \
+       -l=/dd/LIB/unix.l -l=/dd/LIB/math.l
+      -> R_pqm  13040 bytes
+      -> run:   4000 characters, correct
+
+**What this settles:** the 2026-08-27 handoff said the `-qixm` failures are our
+version skew — that we link the SDK-era `cio.l` and then run against an older
+shipped runtime. **That explanation does not survive this run.** The failure
+happens with the SDK's own matched `csl` present. The skew is real and measured
+and is simply not what breaks `-qixm` builds.
+
+**What this does NOT settle:** whose fault it is. os9exec's `F$SRqMem` handling
+and a `cio` ABI mismatch both still fit; the analysis above stands unchanged.
+367 archive binaries link `cio` and work, so `cio` is not broken across the
+board — the difference between them and ours is still open.
+
+**What it decides:** `-qm` is the driver default as of 2026-08-27, on the
+evidence above and not on a size preference. `tools/rebuild/README.md` carries
+the short version.

@@ -689,7 +689,7 @@ while IFS='|' read -r prog arch srcs defs libs extra; do
   # One pass over the field, not three substitutions: `${defs/KNR/}' turns
   # `KNR=a.c,b.c' into `=a.c,b.c', which then reaches cc as `-D=a.c,b.c'.
   OSKDEF=-DOSK
-  KNRMODE=0; KNRFILES=""; CPP2MODE=0; LONGREF=0; M020=0; GCCMODE=0; GPPMODE=0; ASMMODE=0; MODNAME=""; TRAPFREE=0; keep=""
+  KNRMODE=0; KNRFILES=""; CPP2MODE=0; LONGREF=0; M020=0; GCCMODE=0; GPPMODE=0; ASMMODE=0; MODNAME=""; TRAPFREE=0; CIOLINK=0; keep=""
   for x in $defs; do
     case "$x" in
       NOOSK)  OSKDEF="";;
@@ -707,7 +707,10 @@ while IFS='|' read -r prog arch srcs defs libs extra; do
       # the author's own capitalisation, which a rebuild has to keep:
       # CMDS/aterm holds ATerm, REBUILT/ctags.elvis holds ctags.
       MODNAME=*) MODNAME=${x#MODNAME=};;
+      # TRAPFREE is the default since 2026-08-27 and this is now a no-op,
+      # kept so the recipes that carry the word still parse.
       TRAPFREE) TRAPFREE=1;;
+      CIOLINK)  CIOLINK=1;;
       *)      keep="$keep $x";;
     esac
   done
@@ -743,17 +746,35 @@ while IFS='|' read -r prog arch srcs defs libs extra; do
   # with `Symbol printf from psect cio_a ... caused name clashes'.  Thirteen of
   # 290 broke that way.  CLAUDE.md already said "never -qixm"; this is why.
   #
-  # So take the best each program can actually have: try -qixm, and on a
-  # duplicate-symbol failure drop to -qxm, which links clib.l alone and still
-  # saves a third.  TRAPFREE forces the standalone build.
-  QMFLAG=-qixm=16k
-  QMLIBS=' -l=/dd/LIB/curses.l -l=/dd/LIB/termlib.l'
-  # $TRAPFREE, not $defs: the pseudo-define loop above has already taken the
-  # word out of defs, so testing defs here always failed and TRAPFREE silently
-  # did nothing.
-  if [ "$TRAPFREE" = 1 ]; then
-    QMFLAG=-qm=16k
-    QMLIBS=' -l=/dd/LIB/curses.l -l=/dd/LIB/termlib.l -l=/dd/LIB/unix.l -l=/dd/LIB/math.l'
+  # THE DEFAULT IS -qm, AND IT IS NOT A SIZE PREFERENCE.  MEASURED 2026-08-27,
+  # against the SDK OVERLAY -- its own matched csl (48366 bytes), not the older
+  # one this collection ships:
+  #
+  #     putchar.c, 4000 x putchar('x')
+  #       -qixm   1532 bytes    0 characters written, 3888 x "No more memory !!!"
+  #       -qm    13040 bytes    4000 characters, correct
+  #
+  # A -qixm binary's stdout DOES NOT WORK under os9exec.  Eight times the size
+  # buys a program that produces its output; that is not a trade, it is the
+  # difference between working and not.
+  #
+  # AND IT IS NOT OUR VERSION SKEW.  The run above used the SDK's own csl, so
+  # the shipped edition-16 csl is not what breaks it.  Whether the fault is
+  # os9exec's F$SRqMem handling or cio's ABI is UNSETTLED and is not this
+  # script's problem -- see notes/os9exec-bugs/.  Either way -qixm cannot be
+  # the default for anything we install.
+  #
+  # The 367 starred ARCHIVE binaries are unaffected: their authors linked them
+  # against their own runtime and they work.  cio keeps shipping for them.
+  #
+  # TRAPFREE is now the default and the keyword is a no-op, kept so the six
+  # recipes that carry it still parse.  CIOLINK opts one build back into -qixm
+  # for a deliberate experiment; do not use it for anything installed.
+  QMFLAG=-qm=16k
+  QMLIBS=' -l=/dd/LIB/curses.l -l=/dd/LIB/termlib.l -l=/dd/LIB/unix.l -l=/dd/LIB/math.l'
+  if [ "$CIOLINK" = 1 ]; then
+    QMFLAG=-qixm=16k
+    QMLIBS=' -l=/dd/LIB/curses.l -l=/dd/LIB/termlib.l'
   fi
 
   D=""
@@ -828,7 +849,7 @@ while IFS='|' read -r prog arch srcs defs libs extra; do
   # produces a module.  Each step is tried at most once and only if the last
   # left no R_<prog> behind, so a program that links small keeps the small
   # build and nothing is rebuilt for the sake of it.
-  if [ "$QMFLAG" = "-qixm=16k" ] && [ "$TRAPFREE" != 1 ]; then
+  if [ "$QMFLAG" = "-qixm=16k" ] && [ "$CIOLINK" = 1 ]; then
     for step in qxm qm; do
       [ -f "$d/R_$prog" ] && break
       case "$step" in

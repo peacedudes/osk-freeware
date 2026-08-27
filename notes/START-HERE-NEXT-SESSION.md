@@ -80,12 +80,12 @@ built by their own authors against their own matching runtime, and they work —
 `cio.l` and then runs against the older shipped `cio`. Nothing built by the
 driver is currently installed, so **nothing shipped is affected today**.
 
-**The recommendation, and it is one line:** make `-qm` the driver's default
-for anything we install. `-qm` has never failed this way. It costs size
-(the driver's own measurement: 14286 bytes against 2610 for `ascii.c`) and
-buys a binary that stands alone and cannot skew. `cio` keeps shipping for the
-367 starred archive binaries that need it. Stop trying to reconcile Microware's
-editions; we cannot, and we do not need to.
+**`-qm` IS the driver's default as of 2026-08-27** — but not for the reason
+this section originally gave. A `-qixm` binary's stdout does not work under
+os9exec **even with the SDK's own matched `csl`**, so the skew is not the
+cause. The skew is real, measured, and a separate fact. Either way: `cio` keeps
+shipping for the 367 starred archive binaries that need it, and we stop trying
+to reconcile Microware's editions, which we cannot do and do not need to.
 
 Two recipes already carry `TRAPFREE` for exactly this reason (`card`,
 `travesty`) and say so in the file.
@@ -111,17 +111,32 @@ interesting and it is not blocking anything.
 
 # What to work on, in order
 
-1. **Make `-qm` the default for installed rebuilds** and write down why. Small,
-   settles the whole class above. Then the two `TRAPFREE` recipes lose their
-   special-case comments.
-2. **The 46 programs that need work** — `notes/verify-final.tsv`, filtered by
-   `tools/module_census.py` for what is actually a program. Eight of them are
-   the `Graph` group, which needs a `load` on the disk (see below), not an
-   emulator fix.
-3. **Ship a `load` command.** Eight programs link a library module sitting
-   beside them on the image and cannot find it, because a user following
-   `DOC/README-RUNNING` never sets `OS9MDIR` and this disk has no `load`.
-   That is ours, and it is the cheapest real fix on the list.
+1. ~~Make `-qm` the default for installed rebuilds.~~ **DONE 2026-08-27, and
+   the REASON in this file was wrong.** `-qixm` does not fail because of our
+   version skew. Re-measured against the SDK overlay, with the SDK's OWN `csl`
+   present: `-qixm` putchar wrote 0 characters and 3888 x "No more memory !!!";
+   `-qm` wrote all 4000. Skew is not what breaks it. Attribution — os9exec's
+   `F$SRqMem` or cio's ABI — stays unsettled; the decision does not depend on
+   it. `notes/os9exec-bugs/SRQMEM.md` has the run.
+2. **Ship a `load` command.** The cheapest fix that changes what a USER can do.
+   A user following `DOC/README-RUNNING` sets only `OS9DISK`, so `OS9MDIR` is
+   unset and there is no `load` on the disk to preload anything with.
+   Microware's `load` is not an option — the SDK's stops on our `csl` with
+   `**** csl traphandler mismatch ****` — so this is a small `F$Load` wrapper
+   built `-qm`.
+
+   **The payoff is the RTF Fortran six, NOT the `Graph` group.** Corrected
+   2026-08-27; the earlier version of this file had it backwards.
+   `rtf for lnk lnk.org biory creadoc` all `F$Link` for `os9lib`, get `E_MNF`
+   and exit silently, and all six run once it is loaded (`DOC/README-FORTRAN`).
+   The `Graph` seven and `rxmod` go from `E_PNNF` to a BUS ERROR either way —
+   those libraries carry `M$Attr $A0`, the supervisor bit, and os9exec does not
+   run guest code in supervisor state. `DOC/STATUS` has that in full.
+3. **The programs that need work** — `notes/verify-final.tsv`, filtered by
+   `tools/module_census.py` for what is actually a program. Read `DOC/STATUS`
+   FIRST: most of the 45 are already explained and closed there (supervisor
+   state, no FPU, `F$SysID` unimplemented, silent-by-design daemons). Subtract
+   item 2's six and the genuinely open residue is small.
 4. **netpbm recipes** — all 169 now have source; `notes/COMPILE-AUDIT.md` has
    the shape of the work (four library recipes, then 169 one-source ones). Big,
    mechanical, ideal for a long unattended run.
@@ -140,8 +155,10 @@ Why on earth would you prioritize this when we dont even have a repo ready to
 share yet?"* It waits on the collection being worth pushing, which is what
 items 1-6 are for.
 
-Also open and needing him, not you: the gcc packaging decision (2026-08-24),
-and `wc`'s provenance (unsettled, nothing left to pull on).
+Also open and needing him, not you: the gcc packaging decision (2026-08-24).
+
+**`wc`'s provenance is CLOSED, 2026-08-27.** rdoggett: *"I do not have wc."*
+There is no copy to compare against and no thread left. Stop pulling on it.
 
 ## Rules that cost real time to learn
 
@@ -162,8 +179,13 @@ and `wc`'s provenance (unsettled, nothing left to pull on).
 
 ## Where the detail is
 
-  - `notes/SESSION-2026-08-26.md` — the whole overnight pass
-  - `notes/os9exec-bugs/README.md` — the reproductions and what is unsettled
+  - `notes/os9exec-bugs/` — the reproductions, and what is unsettled
   - `notes/COMPILE-AUDIT.md` — why each tree has no recipe, and refutations
-  - `notes/FOR-RDOGGETT.md` — what needs him, newest first, short on purpose
-  - `notes/AGENDA-2026-08-26.md` — the ordered list this replaces
+  - `notes/FOR-RDOGGETT.md` — open questions for rdoggett. Keep it SHORT; he
+    has said twice that he skips long files. Answers go here, not there.
+  - `DOC/STATUS` — every program, run and classified, with the failures grouped
+    by cause. The authority on what does and does not work.
+
+**notes/ was pruned 2026-08-27, 74 files to 36.** Session logs, superseded
+plans and pool working data were deleted; `git log --diff-filter=D --name-only`
+finds any of them if you need one back.

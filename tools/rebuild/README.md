@@ -45,18 +45,31 @@ The source tree is named by **archive**, not by program: `divutils` holds
 
 ## Two flags that are not optional
 
-**`-qixm`** is the default now, and it links the `cio` trap handler. `-qm`
-links stdio into the module instead. The trade is size:
+**`-qm`** is the default, and **this is not a size preference.** It links
+stdio into the module. `-qixm` links the `cio` trap handler instead and makes
+a much smaller binary that DOES NOT WORK. Measured 2026-08-27, against the SDK
+overlay and its own matched `csl`:
 
-    ascii    14286 bytes  trap-free      2608 bytes  with cio
-    cookie   19312                       6144
-    banner   11628                       7630
+    putchar.c -- putchar('x') 4000 times
+      -qixm    1532 bytes     0 characters written, 3888 x "No more memory !!!"
+      -qm     13040 bytes     4000 characters, correct
 
-`-qm` was the right default only while `cio` could not be shipped. It ships
-now -- `cio`, `csl`, `csl020`, `math` and `math881`, with Microware's
-permission -- so a cio-linked program works for anybody using the collection,
-and is a third to a fifth of the size. A recipe says `TRAPFREE` when a binary
-has to stand alone anyway.
+Eight times the size buys a program that produces its output. There is no
+trade to weigh.
+
+**It is not this collection's version skew, either.** That run used the SDK's
+own `csl`, not the older edition this disk ships, and it failed the same way.
+Whether the fault is os9exec's `F$SRqMem` handling or `cio`'s ABI is
+**unsettled** -- `notes/os9exec-bugs/` has the reproduction and the trace.
+Either way `-qixm` cannot be the default for anything installed.
+
+The 367 starred ARCHIVE binaries are unaffected and `cio` keeps shipping for
+them: their authors linked them against their own runtime, and 621 programs
+run bare. This is about what WE build.
+
+`TRAPFREE` in a recipe is now a no-op, kept so the six recipes carrying it
+still parse. `CIOLINK` opts a single build back into `-qixm` for a deliberate
+experiment -- never for anything installed.
 
 **This changes only what lands in `built/`.** The driver installs nothing, so
 `DOC/INDEX`'s star grid does not move until somebody installs one on purpose;
