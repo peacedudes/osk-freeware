@@ -651,6 +651,12 @@ gcc_cc1plus|Compilers & build|C toolchain
 gcc_cccp|Compilers & build|C toolchain
 gcc_collect|Compilers & build|C toolchain
 gpp|Compilers & build|C toolchain
+# ---- GCC2's passes under the names its drivers actually fork, 2026-08-27 ----
+gcc_cc2|Compilers & build|C toolchain
+gcc_cccp2|Compilers & build|C toolchain
+gpp_cc1plus|Compilers & build|C toolchain
+gpp_cccp|Compilers & build|C toolchain
+gpp_collect|Compilers & build|C toolchain
 mscheck|Disk & DOS|MS-DOS media (mtools)
 lua|Languages|Interpreters
 luac|Languages|Interpreters
