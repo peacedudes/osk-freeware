@@ -50,6 +50,13 @@ CAPTIONS = {
     "worms":    ("Worms, a screen toy.", "final"),
     "rain":     ("Rain, a screen toy.", "final"),
     "sonnet":   ("Writes (bad) sonnets in iambic pentameter.", "final"),
+    "netpbm":   ("A real netpbm pipeline: pgmramp makes a greyscale ramp, "
+                 "pgmtopbm dithers it to a bitmap, pbmtoascii renders that as "
+                 "text. The gradient is visible in the density of the "
+                 "characters.", "asciiart"),
+    "wisecrack": ("wisecrack writes to /pipe/txtpipe and prints nothing "
+                  "itself; attach a reader and its messages appear.",
+                  "ticker"),
     "hack":     ("hack, with the inventory open: a fighter starts with a two "
                  "handed sword in hand and ring mail worn. @ is you, d your "
                  "dog, G a gnome, $ gold, + a door.", "inventory"),

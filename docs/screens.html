@@ -682,6 +682,25 @@ Column: (A-P) j                                         ? for help
                                                         q to quit</pre>
 </div>
 <div class="shot">
+<h2>netpbm</h2>
+<p>A real netpbm pipeline: pgmramp makes a greyscale ramp, pgmtopbm dithers it to a bitmap, pbmtoascii renders that as text. The gradient is visible in the density of the characters.</p>
+<pre>os9$ P=/dd/CMDS/NETPBM
+
+os9$ $P/pgmramp -lr 48 12 &gt; /dd/tmp/r.pgm
+os9$ $P/pgmtopbm $P/../../tmp/r.pgm &gt; /dd/tmp/r.pbm
+os9$ $P/pnmfile /dd/tmp/r.pgm /dd/tmp/r.pbm
+/dd/tmp/r.pgm:  PGM raw, 48 by 12  maxval 255
+/dd/tmp/r.pbm:  PBM raw, 48 by 12
+os9$ $P/pbmtoascii /dd/tmp/r.pbm
+MMMMMMMMMMM"M"M"oMo"oM"o"o M o" o o "
+MMMMMMoMMoM"M"Mo"oM"oo"o"o"o M "o o" " "   o
+MMMMM"MoMMM"M"oMM Mo"oM M M o" o o o"  " o
+MMMMMMMMoM"M"MoMoM"o"o"o"o"o" M "  o " o
+MMMMMoMM"MM"MoMo"oM"o"o"o"o M o"o" o "   "  "
+MMMMM"MM"MoMMoMo"M M"oM M M o"o o" o " o  o
+os9$</pre>
+</div>
+<div class="shot">
 <h2>newsgen</h2>
 <p>Captured while running.</p>
 <pre>                        T O D A Y ' S    N E W S
@@ -1320,8 +1339,21 @@ at all; most of the programs under CMDS need no module whatever.  The rest
 </div>
 <div class="shot">
 <h2>wisecrack</h2>
-<p>Captured while running.</p>
-<pre>+ COVE IST SPITZE +
+<p>wisecrack writes to /pipe/txtpipe and prints nothing itself; attach a reader and its messages appear.</p>
+<pre>AUF WIEDERSEHEN 1993
+COVE GRUESST EFFO
+OSK_92 - SEMINAR
+OSK_92 - SEMINAR
+OSK_92 - SEMINAR
+GRUSS VON FILE HUGO
+GRUSS VON FILE HUGO
+COMPUTER-VEREIN E.V
+AUF WIEDERSEHEN 1993
+VIEL SPASS MIT OSK
++ COVE IST SPITZE +
++ COVE IST SPITZE +
+COVE GRUESST EFFO
++ COVE IST SPITZE +
 + WERDE  MITGLIED +
 + COVE IST SPITZE +
 COMPUTER-VEREIN E.V
@@ -1331,19 +1363,7 @@ OSK_92 - SEMINAR
 AUF WIEDERSEHEN 1993
 GRUSS VON FILE HUGO
 + WERDE  MITGLIED +
-+ COVE IST SPITZE +
-+ WERDE  MITGLIED +
-COMPUTER-VEREIN E.V
-OSK_92 - SEMINAR
-+ COVE IST SPITZE +
-OSK_92 - SEMINAR
-COMPUTER-VEREIN E.V
-+ COVE IST SPITZE +
-+ COVE IST SPITZE +
-COVE GRUESST EFFO
-+ WERDE  MITGLIED +
-AUF WIEDERSEHEN 1993
-COVE GRUESST EFFO</pre>
++</pre>
 </div>
 <div class="shot">
 <h2>wish</h2>

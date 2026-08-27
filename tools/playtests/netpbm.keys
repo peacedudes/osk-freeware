@@ -1,0 +1,26 @@
+name    netpbm
+prog    /dd/CMDS/bash
+# A REAL NETPBM PIPELINE, not a launch test.  Makes a greyscale ramp, turns
+# it into a bitmap, renders that as ASCII art, and asks pnmfile to identify
+# each intermediate.  169 netpbm programs ship here and none had ever been
+# run against actual image data.
+rate    0.25
+wait    5
+keys    P=/dd/CMDS/NETPBM
+key     \r
+wait    1
+keys    $P/pgmramp -lr 48 12 > /dd/tmp/r.pgm
+key     \r
+wait    2
+keys    $P/pgmtopbm $P/../../tmp/r.pgm > /dd/tmp/r.pbm
+key     \r
+wait    2
+keys    $P/pnmfile /dd/tmp/r.pgm /dd/tmp/r.pbm
+key     \r
+wait    2
+snap    identified
+keys    $P/pbmtoascii /dd/tmp/r.pbm
+key     \r
+wait    3
+snap    asciiart
+expect  PGM raw
