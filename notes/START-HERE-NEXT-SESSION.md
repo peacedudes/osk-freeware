@@ -190,6 +190,27 @@ the 80x24 grid a vt100 would show. `docs/screens.html` is the gallery.
 pipe alone. `hack` "hung" under the FIFO harness and works perfectly for a
 person. rdoggett: *"hack works for me."* Use the pty; never go back.
 
+**EVERY FALSE PASS IT HAS GIVEN, so nobody rebuilds them.** Each of these
+scored a broken program as working, and each was found by looking at a screen
+rather than at a number:
+
+  1. **A FIFO is not a terminal** -- `hack' hung under it and plays fine for a
+     person. Use the pty.
+  2. **Judging the last frame only** -- `hang' clears the screen when the game
+     ends, so a working hangman looked empty. Judge every snapshot.
+  3. **No login environment** -- `sokoban' said "cannot get your username".
+     The harness now exports what `SYS/login' does.
+  4. **Ink counted the shell's own lines** -- `pacman', `chess' and `lorenz3d'
+     passed on the strength of my export lines while drawing NOTHING. The
+     screen is cleared before the program starts, and ink now ignores any line
+     holding `bash#'.
+  5. **Complaint keywords convicted prose** -- "No such" matched a line of
+     `sonnet's own poetry, and "Can't install trap handler" matched the text
+     of README-CIO while `elvis' was displaying it. Phrases are specific now
+     and a script can `allow' one.
+  6. **Demanding a response from programs it never typed at** -- most of this
+     disk is print-and-stop, so seventeen healthy programs failed at once.
+
 **IT SCORED A PROGRAM THAT NEVER STARTED AS PASSING.** `snake` hangs at
 startup perhaps one run in eight, so the keyed screen held a bash prompt while
 the CONTROL screen held a drawn board. The two differed, so "responds" was
