@@ -1,0 +1,23 @@
+   9          Clear      Clear    Fair ( 55)      None      Calm
+  10          Clear      Clear    Fair ( 55)      None      Calm
+  11       Overcast  Heavy Fog    Fair ( 55)      None      Calm
+  12       Overcast     Cloudy    Warm ( 65)      None      Calm
+  13          Clear      Clear    Fair ( 55)      None      Calm
+  14          Clear      Clear    Warm ( 65)      None      Calm
+  15          Clear      Clear    Warm ( 65)      None      Calm
+  16          Clear      Clear    Warm ( 65)      None      Calm
+  17          Clear      Clear    Fair ( 60)      None      Calm
+  18  Precipitation     Cloudy    Warm ( 70)  Sprinkle     Brisk         Rain -,
+  19  Precipitation  Heavy Fog    Warm ( 65)  Sprinkle     Light         Rain -,
+  20  Precipitation       Mist    Fair ( 50)  Sprinkle     Light         Rain -,
+  21  Precipitation     Cloudy    Warm ( 70)     Heavy  Blustery         Storm ,
+  22          Clear      Clear    Warm ( 65)      None     Light
+  23       Overcast       Mist    Warm ( 65)      None     Brisk
+  24          Clear      Clear    Warm ( 70)      None      Calm
+  25          Clear      Clear    Warm ( 65)      None      Calm
+  26          Clear      Clear    Warm ( 70)      None      Calm
+  27          Clear      Clear    Warm ( 70)      None      Calm
+  28          Clear      Clear    Warm ( 65)      None      Calm
+  29          Clear      Clear    Fair ( 60)      None     Light
+  30          Clear      Clear    Warm ( 65)      None      Calm
+High Temp =  80, Low Temp =  45, Aver     None      Calm

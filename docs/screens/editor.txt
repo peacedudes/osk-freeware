@@ -1,0 +1,7 @@
+Process   Pid: 3, editor, edition 7
+    Exit code: E_PRCABT(228) Process Aborted
+  Directories: Current   - /dd
+               Execution - /dd/CMDS
+        Files: 00 fCons /term
+               01 fCons /term
+               02 fCons /term

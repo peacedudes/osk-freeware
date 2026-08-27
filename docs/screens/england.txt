@@ -1,0 +1,23 @@
+  12  Precipitation       Mist    Warm ( 65)  Sprinkle     Brisk         Rain -,
+  13  Precipitation  Heavy Fog    Warm ( 65)    Shower     Light         Storm ,
+  14          Clear      Clear    Warm ( 65)      None      Calm
+  15          Clear      Clear    Warm ( 70)      None      Calm
+  16          Clear      Clear    Warm ( 65)      None      Calm
+  17          Clear      Clear    Fair ( 60)      None      Calm
+  18          Clear      Clear    Warm ( 65)      None      Calm
+  19          Clear      Clear    Warm ( 65)      None      Calm
+  20          Clear      Clear    Fair ( 50)      None      Calm
+  21          Clear      Clear    Warm ( 70)      None      Calm         Fall Ex
+  22          Clear      Clear    Fair ( 55)      None      Calm
+  23          Clear      Clear    Warm ( 70)      None      Calm
+  24          Clear      Clear     Hot ( 80)      None      Calm
+  25          Clear      Clear    Warm ( 65)      None      Calm
+  26          Clear      Clear    Warm ( 65)      None      Calm
+  27  Precipitation     Cloudy    Warm ( 65)  Sprinkle  Blustery         Rain -,
+  28  Precipitation       Mist    Warm ( 65)     Heavy  Blustery         Storm ,
+  29          Clear      Clear    Fair ( 50)      None      Calm
+  30          Clear      Clear    Warm ( 65)      None      Calm
+High Temp =  80, Low Temp =  45, Average Temp =  62
+
+October
+   Clear    Fair ( 55)      None     Light        None     Light

@@ -1,0 +1,22 @@
+          0: 52 45 41 44 4D 45 2D 43  49 4F 20 2D 2D 20 74 68  README-CIO -- th
+         10: 65 20 73 74 61 72 72 65  64 20 70 72 6F 67 72 61  e starred progra
+         20: 6D 73 2C 20 61 6E 64 20  74 68 65 20 66 69 76 65  ms, and the five
+         30: 20 6D 6F 64 75 6C 65 73  20 74 68 61 74 20 73 65   modules that se
+         40: 72 76 65 20 74 68 65 6D  0D 3D 3D 3D 3D 3D 3D 3D  rve them.=======
+         50: 3D 3D 3D 3D 3D 3D 3D 3D  3D 3D 3D 3D 3D 3D 3D 3D  ================
+         60: 3D 3D 3D 3D 3D 3D 3D 3D  3D 3D 3D 3D 3D 3D 3D 3D  ================
+         70: 3D 3D 3D 3D 3D 3D 3D 3D  3D 3D 3D 3D 3D 3D 3D 3D  ================
+         80: 3D 3D 3D 3D 3D 3D 3D 3D  3D 3D 3D 3D 3D 3D 3D 3D  ================
+         90: 0D 0D 53 6F 6D 65 20 6F  66 20 74 68 65 20 6E 61  ..Some of the na
+         A0: 6D 65 73 20 69 6E 20 44  4F 43 2F 49 4E 44 45 58  mes in DOC/INDEX
+         B0: 20 63 61 72 72 79 20 61  20 73 74 61 72 2E 20 20   carry a star.
+         C0: 41 20 73 74 61 72 20 6D  65 61 6E 73 20 74 68 65  A star means the
+         D0: 20 70 72 6F 67 72 61 6D  20 6E 65 65 64 73 0D 6F   program needs.o
+         E0: 6E 65 20 6F 66 20 4D 69  63 72 6F 77 61 72 65 27  ne of Microware'
+         F0: 73 20 72 75 6E 74 69 6D  65 20 74 72 61 70 20 6D  s runtime trap m
+        100: 6F 64 75 6C 65 73 3A 20  60 63 69 6F 60 20 66 6F  odules: `cio` fo
+        110: 72 20 6E 65 61 72 6C 79  20 61 6C 6C 20 6F 66 20  r nearly all of
+        120: 74 68 65 6D 2C 20 61 6E  64 0D 66 6F 72 20 73 6F  them, and.for so
+        130: 6D 65 20 60 6D 61 74 68  60 2C 20 60 6D 61 74 68  me `math`, `math
+        140: 38 38 31 60 2C 20 60 63  73 6C 60 20 6F 72 20 60  881`, `csl` or `
+BEAV  I README-CIO   File: /dd/DOC/README-CIO [RW]    CURSOR=00000000, 1   HEX $

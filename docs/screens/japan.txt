@@ -1,0 +1,23 @@
+  26        Typhoon     Cloudy    Warm ( 70)      None      Gale
+  27          Clear      Clear    Warm ( 75)      None     Light
+  28  Precipitation  Heavy Fog    Warm ( 75)  Sprinkle     Light         Rain -,
+  29  Precipitation     Cloudy    Warm ( 75)  Sprinkle     Light         Rain -,
+  30  Precipitation     Cloudy    Fair ( 60)  Sprinkle     Light         Rain -,
+High Temp =  90, Low Temp =  60, Average Temp =  74
+
+Monkey
+   1          Clear      Clear    Warm ( 70)      None      Calm         Shinto,
+   2          Clear      Clear    Fair ( 50)      None     Brisk
+   3          Clear      Clear    Warm ( 65)      None     Light
+   4          Clear      Clear    Warm ( 70)      None      Calm
+   5          Clear      Clear    Warm ( 75)      None      Calm
+   6          Clear      Clear    Fair ( 55)      None      Calm
+   7          Clear      Clear    Warm ( 65)      None      Calm
+   8          Clear      Clear    Fair ( 60)      None      Calm         Buddhi,
+   9          Clear      Clear    Fair ( 55)      None      Calm
+  10          Clear      Clear    Warm ( 75)      None      Calm
+  11          Clear      Clear    Warm ( 70)      None     Light
+  12          Clear      Clear    Warm ( 65)      None      Calm
+  13          Clear      Clear    Warm ( 65)      None     Light
+  14          Clear      Clear    Warm ( 70)      None     Light
+  15          Clear      Clear    Warm ( 65)      None     Brisk  rm ( 65)  Spr,

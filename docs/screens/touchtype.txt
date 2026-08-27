@@ -1,0 +1,23 @@
+<><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><
+
+
+
+
+                              The TYPEFAST Game
+
+
+
+
+
+
+          Do you need instructions?  Press y or n (no RETURN)
+
+
+
+
+
+
+
+
+
+Fatal Game Error - Unexpected signal received

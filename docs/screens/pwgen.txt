@@ -1,0 +1,1 @@
+usage: /dd/CMDS/pwgen length [count]

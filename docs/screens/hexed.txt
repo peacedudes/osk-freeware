@@ -1,0 +1,2 @@
+Creating '/r0/README-CIO.hd' from '/dd/DOC/README-CIO'.
+error: can't create '/r0/README-CIO.hd' !

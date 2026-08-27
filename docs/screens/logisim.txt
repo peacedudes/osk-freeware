@@ -1,0 +1,5 @@
+Syntax: logisim [opts] filename [opts]
+Function: Simulates logical circuit described by filename
+Options:
+    -i  shows instable states
+logisim: one and only one filename required
