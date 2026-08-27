@@ -106,9 +106,13 @@ class Screen:
                     continue
                 i += 1
                 continue
-            # An ESC-less "[12;34H" is the echo-corruption signature, not text.
+            # An ESC-less "[12;34H" is the corruption signature, not text.
+            # REQUIRE DIGITS. Without them this flagged ordinary prose: the
+            # "[file]" in sonnet's usage line was counted as six corrupted
+            # escapes and failed a program that was working perfectly. A real
+            # cursor move always carries numeric parameters.
             if b == b"[":
-                m = re.match(rb"\[([0-9;]*)([A-Za-z])", data[i:])
+                m = re.match(rb"\[([0-9]+(?:;[0-9]+)*)([A-Za-z])", data[i:])
                 if m and m.group(2) in b"HfABCDJKm":
                     self.orphans.append(m.group(0).decode("latin-1"))
                     for ch in m.group(0).decode("latin-1"):

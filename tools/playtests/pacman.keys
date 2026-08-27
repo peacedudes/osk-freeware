@@ -1,0 +1,11 @@
+name    pacman
+prog    /dd/CMDS/GAMES/pacman
+# Generic: does it draw, and does the screen change when keys arrive?
+rate    0.7
+wait    5
+snap    opening
+keys    hjkl
+wait    2
+snap    played
+key     \003
+wait    2
