@@ -1,6 +1,6 @@
 # What is on this disk
 
-838 programs of OS-9/68K community software, gathered from the archives that kept it and made to run again. **500 of them need nothing but this disk**; the rest want Microware's `cio`, marked below with a star.
+834 programs of OS-9/68K community software, gathered from the archives that kept it and made to run again. **497 of them need nothing but this disk**; the rest want Microware's `cio`, marked below with a star.
 
 `DOC/INDEX` on the disk lists everything alphabetically. This is the same collection sorted by what each program is *for*, which is the more useful order when you do not yet know what you are looking for.
 
@@ -13,16 +13,16 @@
 | [Text tools](#text-tools) | 81 | Search, sort, compare, reformat, split and spell-check. |
 | [Files & directories](#files--directories) | 35 | Listing, copying, finding, renaming, and knowing what you have. |
 | [Developer tools](#developer-tools) | 46 | Version control, tags, cross-reference, formatters, a debugger and benchmarks. |
-| [Compilers & build](#compilers--build) | 33 | C compilers and their passes, assemblers, linkers, make and parser generators. |
+| [Compilers & build](#compilers--build) | 26 | C compilers and their passes, assemblers, linkers, make and parser generators. |
 | [Languages](#languages) | 6 | Interpreters and language systems beyond C. |
 | [Archives & compression](#archives--compression) | 35 | Pack, unpack and shrink -- lha, zip, tar, arc, zoo, and OS-9 module libraries. |
 | [Encoding & conversion](#encoding--conversion) | 26 | Between text encodings, line endings, number bases, ciphers and hashes. |
 | [Communications](#communications) | 51 | Kermit in several builds, terminal sessions, and networking. |
 | [Graphics & images](#graphics--images) | 204 | The netpbm toolkit, JPEG, a ray tracer, and things that draw. |
-| [Games](#games) | 66 | Adventures, board and card games, arcade ports, dungeon crawls and puzzles. |
+| [Games](#games) | 65 | Adventures, board and card games, arcade ports, dungeon crawls and puzzles. |
 | [Screen toys](#screen-toys) | 6 | Things to watch rather than play. Start one and leave it going. |
-| [Amusements](#amusements) | 20 | Generators, simulators and diversions that are not quite games. |
-| [System & modules](#system--modules) | 126 | OS-9 module and process tools, devices, system state and scheduling. |
+| [Amusements](#amusements) | 23 | Generators, simulators and diversions that are not quite games. |
+| [System & modules](#system--modules) | 127 | OS-9 module and process tools, devices, system state and scheduling. |
 | [Disk & DOS](#disk--dos) | 20 | Reading and writing MS-DOS media with the mtools set. |
 | [Time & calendar](#time--calendar) | 9 | Calendars, clocks and astronomy. |
 | [Maths & calculators](#maths--calculators) | 9 | Calculators, plotting, orbits and number theory. |
@@ -201,7 +201,7 @@
 | `gdd` | &#9733; data dump<br>**How:** A data dump -- like `od', with GNU-style long options. Needs Microware's cio. |
 | `strings` | &#9733; extract printable strings, reported as $offset: <text><br>`Usage: strings [-anpl=n] [file [file]]` |
 | `tail` | &#9733; last lines of a file |
-| `wc` | count lines/words/chars -- REBUILT HERE with gcc2; counts CR or LF lines |
+| `wc` | count lines/words/chars; counts CR or LF lines.  Where this build came from is NOT established -- it was long listed as ours, built with gcc2, and the evidence is against that: it is starred, and a gcc2 build here links clibn and needs no cio.  The three commands listed beside it turned out to be archive binaries.  No source and no second copy has been found in this repo or the archive pool |
 | `wc.cio` | &#9733; archived build; DOES NOT WORK -- prints nothing for a file argument, which is why wc is still the gcc2 build |
 
 **Search & match**
@@ -469,25 +469,7 @@
 
 *C compilers and their passes, assemblers, linkers, make and parser generators.*
 
-<details><summary>33 programs</summary>
-
-**C toolchain**
-
-| | |
-|---|---|
-| `cc1plus` |  |
-| `cc2` |  |
-| `cc2plus` |  |
-| `cccp2` | &#9733; <br>`Usage: cccp2 [switches] input output` |
-| `collect` | <br>`Syntax   : collect [<opts>] {<file>} [<opts>]` |
-| `compiler` | GSHELL front-end for the C compiler<br>**How:** Full-screen: it takes over the display. **control-C gets you out** -- tested, and none of q, Q, control-D or ESC did. If it has a quit command of its own, its documentation in DOC/ will say. |
-| `gcc` | &#9733; <br>`Usage: gcc {options} {files} {options}` |
-| `gcc2` | &#9733; <br>`Usage: gcc2 {options} {files} {options}` |
-| `gcc_cc1` |  |
-| `gcc_cc1plus` |  |
-| `gcc_cccp` | <br>`Usage: gcc_cccp [switches] input output` |
-| `gcc_collect` | <br>`Syntax   : collect [<opts>] {<file>} [<opts>]` |
-| `gpp` | <br>`Usage: gpp {options} {files} {options}` |
+<details><summary>26 programs</summary>
 
 **Make & generators**
 
@@ -516,6 +498,17 @@
 | `as5` | 6805/68HC05 cross-assembler (xasm)<br>`Usage: as5 [files]` |
 | `lnk` | RTF FORTRAN link driver; calls l68 with /h0/LIB/sys.l, which is Microware's and not here |
 | `lnk.org` | as lnk, the original build |
+
+**C toolchain**
+
+| | |
+|---|---|
+| `compiler` | GSHELL front-end for the C compiler<br>**How:** Full-screen: it takes over the display. **control-C gets you out** -- tested, and none of q, Q, control-D or ESC did. If it has a quit command of its own, its documentation in DOC/ will say. |
+| `gcc_cc2` |  |
+| `gcc_cccp2` | &#9733; <br>`Usage: gcc_cccp2 [switches] input output` |
+| `gpp_cc1plus` |  |
+| `gpp_cccp` | &#9733; <br>`Usage: gpp_cccp [switches] input output` |
+| `gpp_collect` | <br>`Syntax   : collect [<opts>] {<file>} [<opts>]` |
 
 **Other languages**
 
@@ -1055,7 +1048,7 @@
 
 *Adventures, board and card games, arcade ports, dungeon crawls and puzzles.*
 
-<details><summary>66 programs</summary>
+<details><summary>65 programs</summary>
 
 **Other games**
 
@@ -1116,7 +1109,6 @@
 | `snake` | snake arcade game.  WORKS -- draws its board in a login session.  Run bare, with no TERMCAP, it bus errors instead; see DOC/README-BUSERR<br>**How:** Full-screen: it takes over the display. **`x' quits** -- tested. (control-C also gets you out, but `x' is the program's own way.) |
 | `sokoban` | &#9733; Sokoban puzzle<br>**How:** Wants a username, so run it from a login rather than a bare shell, or it stops with "cannot get your username". |
 | `tet` | Tetris -- KNOWN BROKEN: draws its board and takes no input<br>**How:** Draws the board and ignores the keyboard, and the reason is in its source: tet.c puts the terminal in raw mode inside `#ifndef OSK', so the OS-9 build has no terminal setup at all. Set the mode from outside before starting it (Microware's tmode), or rebuild with an OSK branch using _ss_opt -- LIB/alib.l provides both that and ioctl. Source in SRC/tet. |
-| `tet.unixlib` | tet rebuilt with its keyboard code compiled in and TCSETAW implemented.  GAMES/tet takes no input for two reasons stacked on each other: its raw-mode setup sits inside `#ifndef OSK', and LIB/unix.l's ioctl had no TCSETAW case -- which is the call tet uses -- so even with the code compiled in the mode never changed and keys kept echoing. Both are fixed here.  Still needs a play-test at a real terminal; it cannot be checked from a pipe, because tet calls ttyname(0) and reopens it.  If it takes keys for you, it should replace GAMES/tet.  Its fall rate is now a real clock rather than a counting loop -- the original measured time in polling passes and so ran at whatever speed the machine did.  INIT_PAUSE at the top of SRC/tet/tet.c tunes it |
 | `wanderer` | Boulderdash-style maze game.  Screens ARE here, in GAMES/WAND/screens; needs this disk as /dd to find them.<br>**How:** Full-screen: it takes over the display. **`q' quits** -- tested. |
 
 **Adventure & fiction**
@@ -1186,7 +1178,7 @@
 
 *Generators, simulators and diversions that are not quite games.*
 
-<details><summary>20 programs</summary>
+<details><summary>23 programs</summary>
 
 **Simulations**
 
@@ -1214,6 +1206,7 @@
 | `rstory` | random story generator, roff output.  Data: GAMES/SNOBOL |
 | `rstory2` | &#9733; random story generator, second version (SNOBOL4-in-C) |
 | `scales` | &#9733; musical scale generator<br>`Usage: scales [-h] [-d] [-a] [-m] [-c] [outname]` |
+| `travesty` | make a travesty of the input -- Markov chains, DJB<br>`Usage: travesty [ -oord ] [ -nnum ] [ -rrand ] [ -sS ] [ -ACHUVW ]` |
 
 **Curiosities**
 
@@ -1221,6 +1214,13 @@
 |---|---|
 | `areacode` | &#9733; look up a US telephone area code<br>`Usage: areacode nnn nnn ...` |
 | `touchtype` | typing tutor<br>**How:** Full-screen: it takes over the display. **control-C gets you out** -- tested, and none of q, Q, control-D or ESC did. If it has a quit command of its own, its documentation in DOC/ will say. |
+
+**Screen toys**
+
+| | |
+|---|---|
+| `card` | Towers of Hanoi whose twelve disks are the lines of a Christmas message; VT100, wants TERMCAP |
+| `ttyexp` | fireworks that clear the screen; VT100, wants TERMCAP<br>`Usage: ttyexp <parameters>` |
 
 **Fractals**
 
@@ -1234,12 +1234,13 @@
 
 *OS-9 module and process tools, devices, system state and scheduling.*
 
-<details><summary>126 programs</summary>
+<details><summary>127 programs</summary>
 
 **Utilities**
 
 | | |
 |---|---|
+| `about` | what this collection knows about one program: what it is, what it is for, where it came from, the files it opens and whether they are here, and whether its source survived. Reads DOC/INDEX, CATEGORIES, ORIGINS and DEPENDS for you. what it is for, where it came from, the files it opens and whether they are here, and whether its source and documentation survived.  One card per program -- `about hack'.  DOC/CATEGORIES browses; this answers.<br>`Usage: about <program>...` |
 | `add_errmsg` | &#9733; build vi's error-message file -- it wants /dd/SYS/vi_errmsg, which is here |
 | `argproc_demo` | demonstration of argproc(), RICO's command-line argument parser.  STOPS WITH `**** Stack Overflow ****' whatever it is given -- its M\$Stack is 3072, the same as programs that work, so the fault is its own.  Source and the argproc library manual are now here: SRC/argproc and DOC/argproc_demo/man.argproc, from EFFO forum 7 |
 | `ask` | ask a yes/no question in a shell script and set the status<br>**How:** Asks a yes/no question and sets the shell status, for scripts. On its own it says "No Wisecracks coming" -- it is the front half of the `wisecrack' pipe from EFFO forum 20. |
@@ -1399,9 +1400,9 @@
 
 | | |
 |---|---|
-| `drop` | put back exactly what keep wrote.  It refuses to remove any file whose checksum has changed, so your saves and scores are safe from it by construction.<br>`Usage: keep [-n] [-f] [-q] [-p <dir>] <program>...` |
-| `keep` | take a program off this collection onto your own disk -- copies it and whatever DOC/DEPENDS says it needs, and records every file written.  `keep -n' shows what it would do without doing it.  See DOC/README-KEEP.<br>`Usage: keep [-n] [-f] [-q] [-p <dir>] <program>...` |
-| `kept` | list what has been taken, and how much it came to<br>`Usage: keep [-n] [-f] [-q] [-p <dir>] <program>...` |
+| `drop` | put back exactly what keep wrote.  It refuses to remove any file whose checksum has changed, so your saves and scores are safe from it by construction.<br>`Usage: keep [-n] [-f] [-q] [-s] [-p <dir>] <program>...` |
+| `keep` | take a program off this collection onto your own disk -- copies it and whatever DOC/DEPENDS says it needs, and records every file written.  `keep -n' shows what it would do without doing it.  See DOC/README-KEEP.<br>`Usage: keep [-n] [-f] [-q] [-s] [-p <dir>] <program>...` |
+| `kept` | list what has been taken, and how much it came to<br>`Usage: keep [-n] [-f] [-q] [-s] [-p <dir>] <program>...` |
 
 **Modules**
 
