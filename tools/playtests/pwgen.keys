@@ -1,0 +1,9 @@
+name    pwgen
+prog    /dd/CMDS/pwgen
+# Amusement: mostly these print and stop.
+rate    0.6
+wait    5
+snap    output
+wait    3
+key     \003
+wait    2

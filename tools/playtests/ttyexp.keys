@@ -1,0 +1,17 @@
+name    ttyexp
+prog    /dd/CMDS/ttyexp
+# DOC/INDEX: "fireworks that clear the screen; VT100, wants TERMCAP".  It
+# CLEARS as it goes, so a single late snapshot catches a blank screen -- take
+# several early ones and let the fullest win.
+rate    0.5
+wait    2
+snap    burst1
+wait    1
+snap    burst2
+wait    1
+snap    burst3
+wait    1
+snap    burst4
+key     \003
+wait    2
+minbytes 2000

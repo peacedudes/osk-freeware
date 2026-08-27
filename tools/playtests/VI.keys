@@ -1,0 +1,11 @@
+name    VI
+prog    /dd/CMDS/VI /dd/DOC/README-CIO
+# Editor: open a file, look at it, leave without saving.
+allow   trap handler
+allow   Can't open
+rate    0.6
+wait    5
+snap    opened
+wait    2
+key     \003
+wait    2

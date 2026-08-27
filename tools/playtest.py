@@ -35,6 +35,9 @@ Script format (one directive per line, # comments ignored):
     snap    inventory               SAVE THE SCREEN HERE, under this label
     expect  Tetrix                  text that must appear on the final screen
     absent  Couldn't open           text that must NOT appear anywhere
+    minbytes 2000                   pass on RAW OUTPUT VOLUME instead of ink,
+                                    for a screen animation that clears as it
+                                    goes and is therefore blank at any instant
     allow   trap handler            a COMPLAINT phrase to forgive for this
                                     program -- an editor showing a file full
                                     of error messages is not itself failing
@@ -70,7 +73,7 @@ MIN_INK = 8
 def parse(path):
     spec = {"name": os.path.basename(path).replace(".keys", ""),
             "prog": None, "setup": [], "acts": [], "expect": [], "absent": [],
-            "allow": [], "rate": 0.6}
+            "allow": [], "minbytes": 0, "rate": 0.6}
     for raw in open(path):
         line = raw.split("#", 1)[0].strip()
         if not line:
@@ -79,6 +82,8 @@ def parse(path):
         rest = rest.strip()
         if word in ("name", "prog"):
             spec[word] = rest
+        elif word == "minbytes":
+            spec["minbytes"] = int(rest)
         elif word == "rate":
             spec["rate"] = float(rest)
         elif word == "setup":
@@ -309,9 +314,15 @@ def playtest(path, image, outdir):
     complained = [c for c in COMPLAINTS if c in alltext
                   and not any(a in c or c in a for a in spec["allow"])]
 
+    # A SCREEN ANIMATION IS BLANK AT EVERY INSTANT. `ttyexp' is fireworks that
+    # clear as they go: 3256 bytes of real cursor motion, and any single frame
+    # holds about five characters. For those, volume is the honest measure.
+    drew_enough = (len(keyed) >= spec["minbytes"] if spec["minbytes"]
+                   else own_ink(best) >= MIN_INK)
+
     verdict = "PASS"
     if (missing or present or not responds or orphans
-            or own_ink(best) < MIN_INK or starved or complained):
+            or not drew_enough or starved or complained):
         verdict = "FAIL"
 
     print("%-14s %-5s ink=%-5d(%s) orphans=%-3d responds=%-3s%s%s"
