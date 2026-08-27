@@ -55,11 +55,15 @@ rules out anything that would lose data.
 
 It is in snake's own code. Two candidates, neither confirmed:
 
-  1. `pstring()' in move.c silently DROPS every byte below space --
-     `if (s[0] < ' ') break;' -- and prints the rest. Anything holding an
-     escape sequence that reaches pstring would come out as exactly this
-     corruption. What remains is to find what passes one to it; the obvious
-     `__printf' calls all take plain text.
+  1. ~~`pstring()' dropping escapes.~~ **TESTED AND IT IS NOT THE CAUSE.**
+     `pstring' in move.c really does discard every byte below space
+     (`if (s[0] < ' ') break;'), and letting ESC through instead recovered
+     five sequences in a typical run -- ESC bytes went 38 to 43, `ESC['
+     29 to 34. **The orphan count did not move: 7 before, 7 after**, and the
+     `ESC ESC' pairs stayed at 6. So pstring silently swallows some escapes,
+     which is a real if minor defect, and it is NOT what corrupts the board.
+     The experiment was reverted; a change that does not fix the reported
+     problem should not ship.
   2. `static char str[80]' in move.c is shared by `__printf' and `a__printf'
      via `sprintf', with no bound. An overflow would corrupt the statics
      beside it.
