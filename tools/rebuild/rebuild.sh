@@ -360,6 +360,43 @@ FIXUP
 #
 # The cost is a 68020-only binary, so ask for it only where the program
 # already wants one -- rayshade's own makefile says `-mc68040'.
+# A LIBRARY through the CPP2 pipeline.  Same as compile_cpp2_post but there is
+# no main() to find and nothing to link: every preprocessed source becomes an
+# object and they are merged.  netpbm's pnm.l needs this -- libpnm3.c kills
+# Microware's cpp, and until 2026-08-27 CPP2 and the `.l' path were mutually
+# exclusive because the mode branches ran before the `*.l' case.
+compile_lib_cpp2() {   # $1 arch  $2 sources  $3 name  $4 extra  $5 dir
+  local s base
+  : > "$5/ctmp.list"
+  for s in $2; do
+    base=$(tmpbase "$s" "$2")
+    printf '%s\r' "ctmp_$base.r" >> "$5/ctmp.list"
+  done
+  printf 'setenv CLIB /dd/LIB\nsetenv CDEF /dd/DEFS\nchx /dd/CMDS\nchd /h6/%s\n' "$1"
+  for s in $2; do
+    base=$(tmpbase "$s" "$2")
+    printf 'del ctmp_%s.a\ndel ctmp_%s.o\ndel ctmp_%s.r\n' "$base" "$base" "$base"
+    printf 'c68 ctmp_%s.m -t -o=ctmp_%s.a\n' "$base" "$base"
+    printf 'o68 ctmp_%s.a ctmp_%s.o\n' "$base" "$base"
+    printf 'r68 ctmp_%s.o -q -o=/h6/%s/ctmp_%s.r\n' "$base" "$1" "$base"
+  done
+  printf 'del R_%s\n' "$3"
+  printf 'merge -z=ctmp.list >R_%s\n' "$3"
+  printf '\033\n\004\n'
+}
+
+# Did every source in a library recipe actually produce an object?  Sets
+# LIBWANT/LIBGOT for the verdict at the foot of the main loop.
+count_lib_objects() {  # $1 dir  $2 object prefix ("" or "ctmp_")  $3 sources
+  local s base
+  LIBWANT=0; LIBGOT=0
+  for s in $3; do
+    if [ -n "$2" ]; then base=$(tmpbase "$s" "$3"); else base=$(basename "$s" .c); fi
+    LIBWANT=$((LIBWANT+1))
+    [ -s "$1/$2$base.r" ] && LIBGOT=$((LIBGOT+1))
+  done
+}
+
 compile_cpp2_post() {  # $1 arch  $2 sources  $3 prog  $4 extra  $5 libs  $6 dir
   local mainsrc="" s base
   for s in $2; do
@@ -689,7 +726,7 @@ while IFS='|' read -r prog arch srcs defs libs extra; do
   # One pass over the field, not three substitutions: `${defs/KNR/}' turns
   # `KNR=a.c,b.c' into `=a.c,b.c', which then reaches cc as `-D=a.c,b.c'.
   OSKDEF=-DOSK
-  KNRMODE=0; KNRFILES=""; CPP2MODE=0; LONGREF=0; M020=0; GCCMODE=0; GPPMODE=0; ASMMODE=0; MODNAME=""; TRAPFREE=0; CIOLINK=0; keep=""
+  KNRMODE=0; KNRFILES=""; CPP2MODE=0; LONGREF=0; M020=0; GCCMODE=0; GPPMODE=0; ASMMODE=0; MODNAME=""; TRAPFREE=0; CIOLINK=0; LIBWANT=0; LIBGOT=0; keep=""
   for x in $defs; do
     case "$x" in
       NOOSK)  OSKDEF="";;
@@ -816,6 +853,13 @@ while IFS='|' read -r prog arch srcs defs libs extra; do
       compile_cpp2_pre "$arch" "$1" "$OSKDEF" "$D" "${extra:-}" > "$WORK/cmd"
       run "$POOL" "$WORK/cmd" "$WORK/out1"
       cpp2_fixup "$1" "$d"
+      case "$prog" in
+        *.l) compile_lib_cpp2 "$arch" "$1" "$prog" "${extra:-}" "$d" > "$WORK/cmd"
+             /bin/cat "$WORK/out1"
+             run "$POOL" "$WORK/cmd" "$WORK/out"
+             count_lib_objects "$d" "ctmp_" "$1"
+             return;;
+      esac
       compile_cpp2_post "$arch" "$1" "$prog" "${extra:-}" "$L" "$d" > "$WORK/cmd" || return
       /bin/cat "$WORK/out1"
       run "$POOL" "$WORK/cmd" "$WORK/out"
@@ -831,6 +875,13 @@ while IFS='|' read -r prog arch srcs defs libs extra; do
       *.l) compile_lib "$arch" "$1" "$OSKDEF" "$D" "$prog" "$d" "${extra:-}" > "$WORK/cmd"
            LIMIT=900
            run "$POOL" "$WORK/cmd" "$WORK/out"
+           # EVERY source must have produced an object.  `merge' happily builds
+           # a library out of whatever objects it finds, so ONE failed compile
+           # gives a library that looks fine here and fails much later with an
+           # unresolved symbol in a program that has nothing wrong with it.
+           # netpbm's pnm.l found this on 2026-08-27: libpnm3.c died in cpp and
+           # the driver reported clean=4.
+           count_lib_objects "$d" "" "$1"
            return;;
     esac
     compile "$arch" "$1" "$OSKDEF" "$D" "$prog" "${extra:-}" "$L" > "$WORK/cmd"
@@ -911,9 +962,23 @@ while IFS='|' read -r prog arch srcs defs libs extra; do
   # always carried it.
   for s in $added; do rm -f "$d/$s"; done
 
-  if [ -f "$d/R_$prog" ]; then
+  # EXISTS IS NOT ENOUGH -- IT MUST HAVE BYTES IN IT.  `merge' on an empty
+  # object list writes a ZERO-BYTE file and returns success, so a library whose
+  # every source failed to compile was recorded `built 1/1, clean=1' with
+  # nothing in it.  Found 2026-08-27 on netpbm's pbm.l, where all five sources
+  # had died on a missing <unistd.h> and the driver said the build was clean.
+  # This is the "make every check fail once" rule in CLAUDE.md, and this check
+  # had only ever succeeded.
+  if [ "$LIBWANT" -gt 0 ] && [ "$LIBGOT" -ne "$LIBWANT" ]; then
+    rm -f "$d/R_$prog"
+    printf '%s\t%s\tFAIL\t%s\n' "$prog" "$arch" \
+      "only $LIBGOT of $LIBWANT sources compiled -- incomplete library" >> "$OUT"
+  elif [ -s "$d/R_$prog" ]; then
     st=$(/usr/bin/grep -qa 'from the disk of' "$d/R_$prog" && echo STAMPED || echo clean)
     printf '%s\t%s\t%s\t%s\n' "$prog" "$arch" "$st" "$d/R_$prog" >> "$OUT"
+  elif [ -f "$d/R_$prog" ]; then
+    rm -f "$d/R_$prog"
+    printf '%s\t%s\tFAIL\t%s\n' "$prog" "$arch" "empty output -- every source failed" >> "$OUT"
   else
     why=$(printf '%s' "$out" | /usr/bin/grep -aoE "Symbol '[^']+' unresolved|can't open [^ ]+|\*\*\*\*  [a-z ]+ \*\*\*\*" | head -1)
     printf '%s\t%s\tFAIL\t%s\n' "$prog" "$arch" "${why:-unknown}" >> "$OUT"

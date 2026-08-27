@@ -690,3 +690,21 @@ ctags.elvis|elvis|ctags.c osk.c|MODNAME=ctags|/dd/LIB/termlib.l|
 ref|elvis|ref.c||/dd/LIB/termlib.l|
 elvrec|elvis|elvrec.c osk.c||/dd/LIB/termlib.l|
 elvprsv|elvis|elvprsv.c||/dd/LIB/termlib.l|
+
+# ---- netpbm / pbmplus, the four support libraries ----------------------
+# Andrzej Kotanski's OSK port, 169 programs.  Every one of them is ONE source
+# file plus one of these libraries -- the package's own Makefile.std says so
+# in its PORTBINARIES/OBJECTS lists and in its `$(PORTBINARIES): $(LIBPBM)'
+# rule.  So the libraries come first and the programs are mechanical after.
+#
+# -V=/h6/netpbm is not optional: every source opens "../pbmplus.h", and
+# libpbm1.c also wants ../version.h and ../compile.h.  Makefile.std spells
+# this INCLUDE = -I.. and it is the only include path the package needs.
+#
+# PGM/PPM/PNM stack: pgm.h includes pbm.h, ppm.h includes pgm.h, pnm.h
+# includes all three, so each library above PBM needs the directories below
+# it on the search path as well.
+pbm.l|netpbm/PBM|libpbm1.c libpbm2.c libpbm3.c libpbm4.c libpbm5.c|_OSK|| -V=/h6/netpbm
+pgm.l|netpbm/PGM|libpgm1.c libpgm2.c|_OSK|| -V=/h6/netpbm -V=/h6/netpbm/PBM
+ppm.l|netpbm/PPM|libppm1.c libppm2.c libppm3.c libppm4.c libppm5.c|_OSK|| -V=/h6/netpbm -V=/h6/netpbm/PBM -V=/h6/netpbm/PGM
+pnm.l|netpbm/PNM|libpnm1.c libpnm2.c libpnm3.c libpnm4.c|_OSK CPP2|| -V=/h6/netpbm -V=/h6/netpbm/PBM -V=/h6/netpbm/PGM -V=/h6/netpbm/PPM
