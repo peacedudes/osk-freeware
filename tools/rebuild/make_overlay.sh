@@ -209,6 +209,18 @@ if [ -f "$REPO/disk/LIB/blarslib.l" ]; then
     echo "  added blarslib.l"
 fi
 
+# netpbm's four support libraries.  They are OURS -- built by recipe from
+# disk/SRC/netpbm -- and 168 netpbm recipes link them by /dd/LIB/<name>.l.
+# The overlay's LIB is the SDK's and does not carry them, so without this every
+# one of those 168 fails at link with the library simply absent.  Added
+# 2026-08-27, after exactly that happened to the first six.
+for l in pbm pgm ppm pnm; do
+    if [ -f "$REPO/disk/LIB/$l.l" ]; then
+        cp "$REPO/disk/LIB/$l.l" "$DEST/LIB/$l.l"
+        echo "  added $l.l"
+    fi
+done
+
 # DEFS/types.h has no include guard.  It sets `_types' at the BOTTOM and
 # nothing at the top, so a source that reaches it twice -- gnuchess 4.0 asks
 # for <types.h> and <sys/types.h> both -- gets "multiple definition" on every

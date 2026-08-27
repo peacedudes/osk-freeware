@@ -701,10 +701,191 @@ elvprsv|elvis|elvprsv.c||/dd/LIB/termlib.l|
 # libpbm1.c also wants ../version.h and ../compile.h.  Makefile.std spells
 # this INCLUDE = -I.. and it is the only include path the package needs.
 #
+# SYSV is the package's own switch for a System V-ish C library, and it is
+# the right one here: it maps random/srandom onto rand/srand, index/rindex
+# onto strchr/strrchr, bcopy/bzero/bcmp onto memcpy/memset/memcmp, and takes
+# <string.h> rather than BSD's <strings.h>.  OS-9's K&R library has the
+# System V spellings and none of the BSD ones.
+#
+# NEED_VFPRINTF2 is the package's OWN answer, not a shim of ours: libpbm1.c
+# carries a portable mini-vfprintf behind that define, for systems with
+# neither vfprintf nor _doprnt, and OS-9's K&R library is one.  Without it
+# every program linking pbm.l stops with `Symbol vfprintf unresolved,
+# referenced by psect libpbm1_c'.  Only libpbm1.c has the #ifdef, so only
+# this recipe carries the define.
+#
+# NEED_VFPRINTF2 is the package's OWN answer, not a shim of ours: libpbm1.c
+# carries a portable mini-vfprintf behind that define, for systems with
+# neither vfprintf nor _doprnt, and OS-9's K&R library is one.  Without it
+# every program linking pbm.l stops with `Symbol vfprintf unresolved,
+# referenced by psect libpbm1_c'.  Only libpbm1.c has the #ifdef, so only
+# this recipe carries the define.
+#
 # PGM/PPM/PNM stack: pgm.h includes pbm.h, ppm.h includes pgm.h, pnm.h
 # includes all three, so each library above PBM needs the directories below
 # it on the search path as well.
-pbm.l|netpbm/PBM|libpbm1.c libpbm2.c libpbm3.c libpbm4.c libpbm5.c|_OSK|| -V=/h6/netpbm
-pgm.l|netpbm/PGM|libpgm1.c libpgm2.c|_OSK|| -V=/h6/netpbm -V=/h6/netpbm/PBM
-ppm.l|netpbm/PPM|libppm1.c libppm2.c libppm3.c libppm4.c libppm5.c|_OSK|| -V=/h6/netpbm -V=/h6/netpbm/PBM -V=/h6/netpbm/PGM
-pnm.l|netpbm/PNM|libpnm1.c libpnm2.c libpnm3.c libpnm4.c|_OSK CPP2|| -V=/h6/netpbm -V=/h6/netpbm/PBM -V=/h6/netpbm/PGM -V=/h6/netpbm/PPM
+pbm.l|netpbm/PBM|libpbm1.c libpbm2.c libpbm3.c libpbm4.c libpbm5.c|_OSK SYSV NEED_VFPRINTF2|| -V=/h6/netpbm
+pgm.l|netpbm/PGM|libpgm1.c libpgm2.c|_OSK SYSV|| -V=/h6/netpbm -V=/h6/netpbm/PBM
+ppm.l|netpbm/PPM|libppm1.c libppm2.c libppm3.c libppm4.c libppm5.c|_OSK SYSV|| -V=/h6/netpbm -V=/h6/netpbm/PBM -V=/h6/netpbm/PGM
+pnm.l|netpbm/PNM|libpnm1.c libpnm2.c libpnm3.c libpnm4.c|_OSK SYSV CPP2|| -V=/h6/netpbm -V=/h6/netpbm/PBM -V=/h6/netpbm/PGM -V=/h6/netpbm/PPM
+
+# ---- netpbm / pbmplus, the programs -------------------------------------
+# 152 of the package's 168.  One source file each against the libraries
+# above.  CPP2 on a recipe means Microware's cpp ABORTS on that file
+# (E_PRCABT) and GNU cpp does not; LONGREF goes with it because LONGREF is
+# only implemented on the CPP2 and GCC paths, not the plain one.
+# pbm.l is named three times because l68 makes ONE pass per -l= and
+# libpbm5 calls libpbm2's pbm_readpbm.
+# The 16 that do not build are in notes/COMPILE-AUDIT.md with their causes.
+atktopbm|netpbm/PBM|atktopbm.c|_OSK SYSV|/dd/LIB/pbm.l /dd/LIB/pbm.l /dd/LIB/pbm.l| -V=/h6/netpbm
+brushtopbm|netpbm/PBM|brushtopbm.c|_OSK SYSV|/dd/LIB/pbm.l /dd/LIB/pbm.l /dd/LIB/pbm.l| -V=/h6/netpbm
+cmuwmtopbm|netpbm/PBM|cmuwmtopbm.c|_OSK SYSV|/dd/LIB/pbm.l /dd/LIB/pbm.l /dd/LIB/pbm.l| -V=/h6/netpbm
+icontopbm|netpbm/PBM|icontopbm.c|_OSK SYSV|/dd/LIB/pbm.l /dd/LIB/pbm.l /dd/LIB/pbm.l| -V=/h6/netpbm
+gemtopbm|netpbm/PBM|gemtopbm.c|_OSK SYSV|/dd/LIB/pbm.l /dd/LIB/pbm.l /dd/LIB/pbm.l| -V=/h6/netpbm
+macptopbm|netpbm/PBM|macptopbm.c|_OSK SYSV|/dd/LIB/pbm.l /dd/LIB/pbm.l /dd/LIB/pbm.l| -V=/h6/netpbm
+mgrtopbm|netpbm/PBM|mgrtopbm.c|_OSK SYSV|/dd/LIB/pbm.l /dd/LIB/pbm.l /dd/LIB/pbm.l| -V=/h6/netpbm
+pbmclean|netpbm/PBM|pbmclean.c|_OSK SYSV|/dd/LIB/pbm.l /dd/LIB/pbm.l /dd/LIB/pbm.l| -V=/h6/netpbm
+pbmlife|netpbm/PBM|pbmlife.c|_OSK SYSV|/dd/LIB/pbm.l /dd/LIB/pbm.l /dd/LIB/pbm.l| -V=/h6/netpbm
+pbmmake|netpbm/PBM|pbmmake.c|_OSK SYSV|/dd/LIB/pbm.l /dd/LIB/pbm.l /dd/LIB/pbm.l| -V=/h6/netpbm
+pbmmask|netpbm/PBM|pbmmask.c|_OSK SYSV|/dd/LIB/pbm.l /dd/LIB/pbm.l /dd/LIB/pbm.l| -V=/h6/netpbm
+pbmpscale|netpbm/PBM|pbmpscale.c|_OSK SYSV|/dd/LIB/pbm.l /dd/LIB/pbm.l /dd/LIB/pbm.l| -V=/h6/netpbm
+pbmreduce|netpbm/PBM|pbmreduce.c|_OSK SYSV|/dd/LIB/pbm.l /dd/LIB/pbm.l /dd/LIB/pbm.l| -V=/h6/netpbm
+pbmtext|netpbm/PBM|pbmtext.c|_OSK SYSV|/dd/LIB/pbm.l /dd/LIB/pbm.l /dd/LIB/pbm.l| -V=/h6/netpbm
+pbmto10x|netpbm/PBM|pbmto10x.c|_OSK SYSV|/dd/LIB/pbm.l /dd/LIB/pbm.l /dd/LIB/pbm.l| -V=/h6/netpbm
+pbmto4425|netpbm/PBM|pbmto4425.c|_OSK SYSV|/dd/LIB/pbm.l /dd/LIB/pbm.l /dd/LIB/pbm.l| -V=/h6/netpbm
+pbmtoascii|netpbm/PBM|pbmtoascii.c|_OSK SYSV|/dd/LIB/pbm.l /dd/LIB/pbm.l /dd/LIB/pbm.l| -V=/h6/netpbm
+pbmtoatk|netpbm/PBM|pbmtoatk.c|_OSK SYSV|/dd/LIB/pbm.l /dd/LIB/pbm.l /dd/LIB/pbm.l| -V=/h6/netpbm
+pbmtobbnbg|netpbm/PBM|pbmtobbnbg.c|_OSK SYSV|/dd/LIB/pbm.l /dd/LIB/pbm.l /dd/LIB/pbm.l| -V=/h6/netpbm
+pbmtocmuwm|netpbm/PBM|pbmtocmuwm.c|_OSK SYSV|/dd/LIB/pbm.l /dd/LIB/pbm.l /dd/LIB/pbm.l| -V=/h6/netpbm
+pbmtoepsi|netpbm/PBM|pbmtoepsi.c|_OSK SYSV|/dd/LIB/pbm.l /dd/LIB/pbm.l /dd/LIB/pbm.l| -V=/h6/netpbm
+pbmtoepson|netpbm/PBM|pbmtoepson.c|_OSK SYSV|/dd/LIB/pbm.l /dd/LIB/pbm.l /dd/LIB/pbm.l| -V=/h6/netpbm
+pbmtog3|netpbm/PBM|pbmtog3.c|_OSK SYSV|/dd/LIB/pbm.l /dd/LIB/pbm.l /dd/LIB/pbm.l| -V=/h6/netpbm
+pbmtogem|netpbm/PBM|pbmtogem.c|_OSK SYSV CPP2|/dd/LIB/pbm.l /dd/LIB/pbm.l /dd/LIB/pbm.l| -V=/h6/netpbm
+pbmtogo|netpbm/PBM|pbmtogo.c|_OSK SYSV|/dd/LIB/pbm.l /dd/LIB/pbm.l /dd/LIB/pbm.l| -V=/h6/netpbm
+pbmtoicon|netpbm/PBM|pbmtoicon.c|_OSK SYSV|/dd/LIB/pbm.l /dd/LIB/pbm.l /dd/LIB/pbm.l| -V=/h6/netpbm
+pbmtolj|netpbm/PBM|pbmtolj.c|_OSK SYSV|/dd/LIB/pbm.l /dd/LIB/pbm.l /dd/LIB/pbm.l| -V=/h6/netpbm
+pbmtoln03|netpbm/PBM|pbmtoln03.c|_OSK SYSV|/dd/LIB/pbm.l /dd/LIB/pbm.l /dd/LIB/pbm.l| -V=/h6/netpbm
+pbmtolps|netpbm/PBM|pbmtolps.c|_OSK SYSV|/dd/LIB/pbm.l /dd/LIB/pbm.l /dd/LIB/pbm.l| -V=/h6/netpbm
+pbmtomacp|netpbm/PBM|pbmtomacp.c|_OSK SYSV|/dd/LIB/pbm.l /dd/LIB/pbm.l /dd/LIB/pbm.l| -V=/h6/netpbm
+pbmtomgr|netpbm/PBM|pbmtomgr.c|_OSK SYSV|/dd/LIB/pbm.l /dd/LIB/pbm.l /dd/LIB/pbm.l| -V=/h6/netpbm
+pbmtopi3|netpbm/PBM|pbmtopi3.c|_OSK SYSV|/dd/LIB/pbm.l /dd/LIB/pbm.l /dd/LIB/pbm.l| -V=/h6/netpbm
+pbmtoplot|netpbm/PBM|pbmtoplot.c|_OSK SYSV|/dd/LIB/pbm.l /dd/LIB/pbm.l /dd/LIB/pbm.l| -V=/h6/netpbm
+pbmtoptx|netpbm/PBM|pbmtoptx.c|_OSK SYSV|/dd/LIB/pbm.l /dd/LIB/pbm.l /dd/LIB/pbm.l| -V=/h6/netpbm
+pbmtox10bm|netpbm/PBM|pbmtox10bm.c|_OSK SYSV CPP2|/dd/LIB/pbm.l /dd/LIB/pbm.l /dd/LIB/pbm.l| -V=/h6/netpbm
+pbmtoxbm|netpbm/PBM|pbmtoxbm.c|_OSK SYSV CPP2|/dd/LIB/pbm.l /dd/LIB/pbm.l /dd/LIB/pbm.l| -V=/h6/netpbm
+pbmtoybm|netpbm/PBM|pbmtoybm.c|_OSK SYSV|/dd/LIB/pbm.l /dd/LIB/pbm.l /dd/LIB/pbm.l| -V=/h6/netpbm
+pbmtozinc|netpbm/PBM|pbmtozinc.c|_OSK SYSV CPP2|/dd/LIB/pbm.l /dd/LIB/pbm.l /dd/LIB/pbm.l| -V=/h6/netpbm
+pbmupc|netpbm/PBM|pbmupc.c|_OSK SYSV|/dd/LIB/pbm.l /dd/LIB/pbm.l /dd/LIB/pbm.l| -V=/h6/netpbm
+pi3topbm|netpbm/PBM|pi3topbm.c|_OSK SYSV|/dd/LIB/pbm.l /dd/LIB/pbm.l /dd/LIB/pbm.l| -V=/h6/netpbm
+pktopbm|netpbm/PBM|pktopbm.c|_OSK SYSV|/dd/LIB/pbm.l /dd/LIB/pbm.l /dd/LIB/pbm.l| -V=/h6/netpbm
+xbmtopbm|netpbm/PBM|xbmtopbm.c|_OSK SYSV|/dd/LIB/pbm.l /dd/LIB/pbm.l /dd/LIB/pbm.l| -V=/h6/netpbm
+ybmtopbm|netpbm/PBM|ybmtopbm.c|_OSK SYSV|/dd/LIB/pbm.l /dd/LIB/pbm.l /dd/LIB/pbm.l| -V=/h6/netpbm
+pbmtopk|netpbm/PBM|pbmtopk.c|_OSK SYSV|/dd/LIB/pbm.l /dd/LIB/pbm.l /dd/LIB/pbm.l /dd/LIB/math.l| -V=/h6/netpbm
+asciitopgm|netpbm/PGM|asciitopgm.c|_OSK SYSV|/dd/LIB/pgm.l /dd/LIB/pbm.l /dd/LIB/pbm.l /dd/LIB/pbm.l| -V=/h6/netpbm -V=/h6/netpbm/PBM
+bioradtopgm|netpbm/PGM|bioradtopgm.c|_OSK SYSV|/dd/LIB/pgm.l /dd/LIB/pbm.l /dd/LIB/pbm.l /dd/LIB/pbm.l| -V=/h6/netpbm -V=/h6/netpbm/PBM
+fstopgm|netpbm/PGM|fstopgm.c|_OSK SYSV|/dd/LIB/pgm.l /dd/LIB/pbm.l /dd/LIB/pbm.l /dd/LIB/pbm.l| -V=/h6/netpbm -V=/h6/netpbm/PBM
+hipstopgm|netpbm/PGM|hipstopgm.c|_OSK SYSV|/dd/LIB/pgm.l /dd/LIB/pbm.l /dd/LIB/pbm.l /dd/LIB/pbm.l| -V=/h6/netpbm -V=/h6/netpbm/PBM
+lispmtopgm|netpbm/PGM|lispmtopgm.c|_OSK SYSV|/dd/LIB/pgm.l /dd/LIB/pbm.l /dd/LIB/pbm.l /dd/LIB/pbm.l| -V=/h6/netpbm -V=/h6/netpbm/PBM
+pbmtopgm|netpbm/PGM|pbmtopgm.c|_OSK SYSV|/dd/LIB/pgm.l /dd/LIB/pbm.l /dd/LIB/pbm.l /dd/LIB/pbm.l| -V=/h6/netpbm -V=/h6/netpbm/PBM
+pgmbentley|netpbm/PGM|pgmbentley.c|_OSK SYSV|/dd/LIB/pgm.l /dd/LIB/pbm.l /dd/LIB/pbm.l /dd/LIB/pbm.l| -V=/h6/netpbm -V=/h6/netpbm/PBM
+pgmenhance|netpbm/PGM|pgmenhance.c|_OSK SYSV|/dd/LIB/pgm.l /dd/LIB/pbm.l /dd/LIB/pbm.l /dd/LIB/pbm.l| -V=/h6/netpbm -V=/h6/netpbm/PBM
+pgmhist|netpbm/PGM|pgmhist.c|_OSK SYSV|/dd/LIB/pgm.l /dd/LIB/pbm.l /dd/LIB/pbm.l /dd/LIB/pbm.l| -V=/h6/netpbm -V=/h6/netpbm/PBM
+pgmkernel|netpbm/PGM|pgmkernel.c|_OSK SYSV|/dd/LIB/pgm.l /dd/LIB/pbm.l /dd/LIB/pbm.l /dd/LIB/pbm.l| -V=/h6/netpbm -V=/h6/netpbm/PBM
+pgmnoise|netpbm/PGM|pgmnoise.c|_OSK SYSV|/dd/LIB/pgm.l /dd/LIB/pbm.l /dd/LIB/pbm.l /dd/LIB/pbm.l| -V=/h6/netpbm -V=/h6/netpbm/PBM
+pgmnorm|netpbm/PGM|pgmnorm.c|_OSK SYSV|/dd/LIB/pgm.l /dd/LIB/pbm.l /dd/LIB/pbm.l /dd/LIB/pbm.l| -V=/h6/netpbm -V=/h6/netpbm/PBM
+pgmoil|netpbm/PGM|pgmoil.c|_OSK SYSV|/dd/LIB/pgm.l /dd/LIB/pbm.l /dd/LIB/pbm.l /dd/LIB/pbm.l| -V=/h6/netpbm -V=/h6/netpbm/PBM
+pgmramp|netpbm/PGM|pgmramp.c|_OSK SYSV|/dd/LIB/pgm.l /dd/LIB/pbm.l /dd/LIB/pbm.l /dd/LIB/pbm.l| -V=/h6/netpbm -V=/h6/netpbm/PBM
+pgmtofs|netpbm/PGM|pgmtofs.c|_OSK SYSV|/dd/LIB/pgm.l /dd/LIB/pbm.l /dd/LIB/pbm.l /dd/LIB/pbm.l| -V=/h6/netpbm -V=/h6/netpbm/PBM
+pgmtolispm|netpbm/PGM|pgmtolispm.c|_OSK SYSV|/dd/LIB/pgm.l /dd/LIB/pbm.l /dd/LIB/pbm.l /dd/LIB/pbm.l| -V=/h6/netpbm -V=/h6/netpbm/PBM
+pgmtopbm|netpbm/PGM|pgmtopbm.c|_OSK SYSV|/dd/LIB/pgm.l /dd/LIB/pbm.l /dd/LIB/pbm.l /dd/LIB/pbm.l| -V=/h6/netpbm -V=/h6/netpbm/PBM
+psidtopgm|netpbm/PGM|psidtopgm.c|_OSK SYSV|/dd/LIB/pgm.l /dd/LIB/pbm.l /dd/LIB/pbm.l /dd/LIB/pbm.l| -V=/h6/netpbm -V=/h6/netpbm/PBM
+spottopgm|netpbm/PGM|spottopgm.c|_OSK SYSV|/dd/LIB/pgm.l /dd/LIB/pbm.l /dd/LIB/pbm.l /dd/LIB/pbm.l| -V=/h6/netpbm -V=/h6/netpbm/PBM
+pgmcrater|netpbm/PGM|pgmcrater.c|_OSK SYSV|/dd/LIB/pgm.l /dd/LIB/pbm.l /dd/LIB/pbm.l /dd/LIB/pbm.l /dd/LIB/math.l| -V=/h6/netpbm -V=/h6/netpbm/PBM
+pgmedge|netpbm/PGM|pgmedge.c|_OSK SYSV|/dd/LIB/pgm.l /dd/LIB/pbm.l /dd/LIB/pbm.l /dd/LIB/pbm.l /dd/LIB/math.l| -V=/h6/netpbm -V=/h6/netpbm/PBM
+pgmtexture|netpbm/PGM|pgmtexture.c|_OSK SYSV|/dd/LIB/pgm.l /dd/LIB/pbm.l /dd/LIB/pbm.l /dd/LIB/pbm.l /dd/LIB/math.l| -V=/h6/netpbm -V=/h6/netpbm/PBM
+rawtopgm|netpbm/PGM|rawtopgm.c|_OSK SYSV|/dd/LIB/pgm.l /dd/LIB/pbm.l /dd/LIB/pbm.l /dd/LIB/pbm.l /dd/LIB/math.l| -V=/h6/netpbm -V=/h6/netpbm/PBM
+gouldtoppm|netpbm/PPM|gouldtoppm.c|_OSK SYSV|/dd/LIB/ppm.l /dd/LIB/pgm.l /dd/LIB/pbm.l /dd/LIB/pbm.l /dd/LIB/pbm.l| -V=/h6/netpbm -V=/h6/netpbm/PBM -V=/h6/netpbm/PGM
+ilbmtoppm|netpbm/PPM|ilbmtoppm.c|_OSK SYSV|/dd/LIB/ppm.l /dd/LIB/pgm.l /dd/LIB/pbm.l /dd/LIB/pbm.l /dd/LIB/pbm.l| -V=/h6/netpbm -V=/h6/netpbm/PBM -V=/h6/netpbm/PGM
+imgtoppm|netpbm/PPM|imgtoppm.c|_OSK SYSV|/dd/LIB/ppm.l /dd/LIB/pgm.l /dd/LIB/pbm.l /dd/LIB/pbm.l /dd/LIB/pbm.l| -V=/h6/netpbm -V=/h6/netpbm/PBM -V=/h6/netpbm/PGM
+mtvtoppm|netpbm/PPM|mtvtoppm.c|_OSK SYSV|/dd/LIB/ppm.l /dd/LIB/pgm.l /dd/LIB/pbm.l /dd/LIB/pbm.l /dd/LIB/pbm.l| -V=/h6/netpbm -V=/h6/netpbm/PBM -V=/h6/netpbm/PGM
+pcxtoppm|netpbm/PPM|pcxtoppm.c|_OSK SYSV|/dd/LIB/ppm.l /dd/LIB/pgm.l /dd/LIB/pbm.l /dd/LIB/pbm.l /dd/LIB/pbm.l| -V=/h6/netpbm -V=/h6/netpbm/PBM -V=/h6/netpbm/PGM
+pgmtoppm|netpbm/PPM|pgmtoppm.c|_OSK SYSV|/dd/LIB/ppm.l /dd/LIB/pgm.l /dd/LIB/pbm.l /dd/LIB/pbm.l /dd/LIB/pbm.l| -V=/h6/netpbm -V=/h6/netpbm/PBM -V=/h6/netpbm/PGM
+pi1toppm|netpbm/PPM|pi1toppm.c|_OSK SYSV|/dd/LIB/ppm.l /dd/LIB/pgm.l /dd/LIB/pbm.l /dd/LIB/pbm.l /dd/LIB/pbm.l| -V=/h6/netpbm -V=/h6/netpbm/PBM -V=/h6/netpbm/PGM
+pjtoppm|netpbm/PPM|pjtoppm.c|_OSK SYSV|/dd/LIB/ppm.l /dd/LIB/pgm.l /dd/LIB/pbm.l /dd/LIB/pbm.l /dd/LIB/pbm.l| -V=/h6/netpbm -V=/h6/netpbm/PBM -V=/h6/netpbm/PGM
+ppm3d|netpbm/PPM|ppm3d.c|_OSK SYSV|/dd/LIB/ppm.l /dd/LIB/pgm.l /dd/LIB/pbm.l /dd/LIB/pbm.l /dd/LIB/pbm.l| -V=/h6/netpbm -V=/h6/netpbm/PBM -V=/h6/netpbm/PGM
+ppmbrighten|netpbm/PPM|ppmbrighten.c|_OSK SYSV|/dd/LIB/ppm.l /dd/LIB/pgm.l /dd/LIB/pbm.l /dd/LIB/pbm.l /dd/LIB/pbm.l| -V=/h6/netpbm -V=/h6/netpbm/PBM -V=/h6/netpbm/PGM
+ppmchange|netpbm/PPM|ppmchange.c|_OSK SYSV|/dd/LIB/ppm.l /dd/LIB/pgm.l /dd/LIB/pbm.l /dd/LIB/pbm.l /dd/LIB/pbm.l| -V=/h6/netpbm -V=/h6/netpbm/PBM -V=/h6/netpbm/PGM
+ppmdim|netpbm/PPM|ppmdim.c|_OSK SYSV|/dd/LIB/ppm.l /dd/LIB/pgm.l /dd/LIB/pbm.l /dd/LIB/pbm.l /dd/LIB/pbm.l| -V=/h6/netpbm -V=/h6/netpbm/PBM -V=/h6/netpbm/PGM
+ppmdist|netpbm/PPM|ppmdist.c|_OSK SYSV|/dd/LIB/ppm.l /dd/LIB/pgm.l /dd/LIB/pbm.l /dd/LIB/pbm.l /dd/LIB/pbm.l| -V=/h6/netpbm -V=/h6/netpbm/PBM -V=/h6/netpbm/PGM
+ppmdither|netpbm/PPM|ppmdither.c|_OSK SYSV|/dd/LIB/ppm.l /dd/LIB/pgm.l /dd/LIB/pbm.l /dd/LIB/pbm.l /dd/LIB/pbm.l| -V=/h6/netpbm -V=/h6/netpbm/PBM -V=/h6/netpbm/PGM
+ppmflash|netpbm/PPM|ppmflash.c|_OSK SYSV|/dd/LIB/ppm.l /dd/LIB/pgm.l /dd/LIB/pbm.l /dd/LIB/pbm.l /dd/LIB/pbm.l| -V=/h6/netpbm -V=/h6/netpbm/PBM -V=/h6/netpbm/PGM
+ppmhist|netpbm/PPM|ppmhist.c|_OSK SYSV|/dd/LIB/ppm.l /dd/LIB/pgm.l /dd/LIB/pbm.l /dd/LIB/pbm.l /dd/LIB/pbm.l| -V=/h6/netpbm -V=/h6/netpbm/PBM -V=/h6/netpbm/PGM
+ppmmake|netpbm/PPM|ppmmake.c|_OSK SYSV|/dd/LIB/ppm.l /dd/LIB/pgm.l /dd/LIB/pbm.l /dd/LIB/pbm.l /dd/LIB/pbm.l| -V=/h6/netpbm -V=/h6/netpbm/PBM -V=/h6/netpbm/PGM
+ppmmix|netpbm/PPM|ppmmix.c|_OSK SYSV|/dd/LIB/ppm.l /dd/LIB/pgm.l /dd/LIB/pbm.l /dd/LIB/pbm.l /dd/LIB/pbm.l| -V=/h6/netpbm -V=/h6/netpbm/PBM -V=/h6/netpbm/PGM
+ppmnorm|netpbm/PPM|ppmnorm.c|_OSK SYSV|/dd/LIB/ppm.l /dd/LIB/pgm.l /dd/LIB/pbm.l /dd/LIB/pbm.l /dd/LIB/pbm.l| -V=/h6/netpbm -V=/h6/netpbm/PBM -V=/h6/netpbm/PGM
+ppmntsc|netpbm/PPM|ppmntsc.c|_OSK SYSV|/dd/LIB/ppm.l /dd/LIB/pgm.l /dd/LIB/pbm.l /dd/LIB/pbm.l /dd/LIB/pbm.l| -V=/h6/netpbm -V=/h6/netpbm/PBM -V=/h6/netpbm/PGM
+ppmquant|netpbm/PPM|ppmquant.c|_OSK SYSV|/dd/LIB/ppm.l /dd/LIB/pgm.l /dd/LIB/pbm.l /dd/LIB/pbm.l /dd/LIB/pbm.l| -V=/h6/netpbm -V=/h6/netpbm/PBM -V=/h6/netpbm/PGM
+ppmrelief|netpbm/PPM|ppmrelief.c|_OSK SYSV|/dd/LIB/ppm.l /dd/LIB/pgm.l /dd/LIB/pbm.l /dd/LIB/pbm.l /dd/LIB/pbm.l| -V=/h6/netpbm -V=/h6/netpbm/PBM -V=/h6/netpbm/PGM
+ppmtoacad|netpbm/PPM|ppmtoacad.c|_OSK SYSV|/dd/LIB/ppm.l /dd/LIB/pgm.l /dd/LIB/pbm.l /dd/LIB/pbm.l /dd/LIB/pbm.l| -V=/h6/netpbm -V=/h6/netpbm/PBM -V=/h6/netpbm/PGM
+ppmtogif|netpbm/PPM|ppmtogif.c|_OSK SYSV|/dd/LIB/ppm.l /dd/LIB/pgm.l /dd/LIB/pbm.l /dd/LIB/pbm.l /dd/LIB/pbm.l| -V=/h6/netpbm -V=/h6/netpbm/PBM -V=/h6/netpbm/PGM
+ppmtoicr|netpbm/PPM|ppmtoicr.c|_OSK SYSV|/dd/LIB/ppm.l /dd/LIB/pgm.l /dd/LIB/pbm.l /dd/LIB/pbm.l /dd/LIB/pbm.l| -V=/h6/netpbm -V=/h6/netpbm/PBM -V=/h6/netpbm/PGM
+ppmtoilbm|netpbm/PPM|ppmtoilbm.c|_OSK SYSV|/dd/LIB/ppm.l /dd/LIB/pgm.l /dd/LIB/pbm.l /dd/LIB/pbm.l /dd/LIB/pbm.l| -V=/h6/netpbm -V=/h6/netpbm/PBM -V=/h6/netpbm/PGM
+ppmtomitsu|netpbm/PPM|ppmtomitsu.c|_OSK SYSV|/dd/LIB/ppm.l /dd/LIB/pgm.l /dd/LIB/pbm.l /dd/LIB/pbm.l /dd/LIB/pbm.l| -V=/h6/netpbm -V=/h6/netpbm/PBM -V=/h6/netpbm/PGM
+ppmtopcx|netpbm/PPM|ppmtopcx.c|_OSK SYSV|/dd/LIB/ppm.l /dd/LIB/pgm.l /dd/LIB/pbm.l /dd/LIB/pbm.l /dd/LIB/pbm.l| -V=/h6/netpbm -V=/h6/netpbm/PBM -V=/h6/netpbm/PGM
+ppmtopgm|netpbm/PPM|ppmtopgm.c|_OSK SYSV|/dd/LIB/ppm.l /dd/LIB/pgm.l /dd/LIB/pbm.l /dd/LIB/pbm.l /dd/LIB/pbm.l| -V=/h6/netpbm -V=/h6/netpbm/PBM -V=/h6/netpbm/PGM
+ppmtopi1|netpbm/PPM|ppmtopi1.c|_OSK SYSV|/dd/LIB/ppm.l /dd/LIB/pgm.l /dd/LIB/pbm.l /dd/LIB/pbm.l /dd/LIB/pbm.l| -V=/h6/netpbm -V=/h6/netpbm/PBM -V=/h6/netpbm/PGM
+ppmtopict|netpbm/PPM|ppmtopict.c|_OSK SYSV|/dd/LIB/ppm.l /dd/LIB/pgm.l /dd/LIB/pbm.l /dd/LIB/pbm.l /dd/LIB/pbm.l| -V=/h6/netpbm -V=/h6/netpbm/PBM -V=/h6/netpbm/PGM
+ppmtopj|netpbm/PPM|ppmtopj.c|_OSK SYSV|/dd/LIB/ppm.l /dd/LIB/pgm.l /dd/LIB/pbm.l /dd/LIB/pbm.l /dd/LIB/pbm.l| -V=/h6/netpbm -V=/h6/netpbm/PBM -V=/h6/netpbm/PGM
+ppmtopjxl|netpbm/PPM|ppmtopjxl.c|_OSK SYSV CPP2|/dd/LIB/ppm.l /dd/LIB/pgm.l /dd/LIB/pbm.l /dd/LIB/pbm.l /dd/LIB/pbm.l| -V=/h6/netpbm -V=/h6/netpbm/PBM -V=/h6/netpbm/PGM
+ppmtopuzz|netpbm/PPM|ppmtopuzz.c|_OSK SYSV|/dd/LIB/ppm.l /dd/LIB/pgm.l /dd/LIB/pbm.l /dd/LIB/pbm.l /dd/LIB/pbm.l| -V=/h6/netpbm -V=/h6/netpbm/PBM -V=/h6/netpbm/PGM
+ppmtorgb3|netpbm/PPM|ppmtorgb3.c|_OSK SYSV|/dd/LIB/ppm.l /dd/LIB/pgm.l /dd/LIB/pbm.l /dd/LIB/pbm.l /dd/LIB/pbm.l| -V=/h6/netpbm -V=/h6/netpbm/PBM -V=/h6/netpbm/PGM
+ppmtosixel|netpbm/PPM|ppmtosixel.c|_OSK SYSV|/dd/LIB/ppm.l /dd/LIB/pgm.l /dd/LIB/pbm.l /dd/LIB/pbm.l /dd/LIB/pbm.l| -V=/h6/netpbm -V=/h6/netpbm/PBM -V=/h6/netpbm/PGM
+ppmtotga|netpbm/PPM|ppmtotga.c|_OSK SYSV|/dd/LIB/ppm.l /dd/LIB/pgm.l /dd/LIB/pbm.l /dd/LIB/pbm.l /dd/LIB/pbm.l| -V=/h6/netpbm -V=/h6/netpbm/PBM -V=/h6/netpbm/PGM
+ppmtouil|netpbm/PPM|ppmtouil.c|_OSK SYSV|/dd/LIB/ppm.l /dd/LIB/pgm.l /dd/LIB/pbm.l /dd/LIB/pbm.l /dd/LIB/pbm.l| -V=/h6/netpbm -V=/h6/netpbm/PBM -V=/h6/netpbm/PGM
+ppmtoxpm|netpbm/PPM|ppmtoxpm.c|_OSK SYSV|/dd/LIB/ppm.l /dd/LIB/pgm.l /dd/LIB/pbm.l /dd/LIB/pbm.l /dd/LIB/pbm.l| -V=/h6/netpbm -V=/h6/netpbm/PBM -V=/h6/netpbm/PGM
+ppmtoyuv|netpbm/PPM|ppmtoyuv.c|_OSK SYSV|/dd/LIB/ppm.l /dd/LIB/pgm.l /dd/LIB/pbm.l /dd/LIB/pbm.l /dd/LIB/pbm.l| -V=/h6/netpbm -V=/h6/netpbm/PBM -V=/h6/netpbm/PGM
+ppmtoyuvsplit|netpbm/PPM|ppmtoyuvsplit.c|_OSK SYSV|/dd/LIB/ppm.l /dd/LIB/pgm.l /dd/LIB/pbm.l /dd/LIB/pbm.l /dd/LIB/pbm.l| -V=/h6/netpbm -V=/h6/netpbm/PBM -V=/h6/netpbm/PGM
+qrttoppm|netpbm/PPM|qrttoppm.c|_OSK SYSV|/dd/LIB/ppm.l /dd/LIB/pgm.l /dd/LIB/pbm.l /dd/LIB/pbm.l /dd/LIB/pbm.l| -V=/h6/netpbm -V=/h6/netpbm/PBM -V=/h6/netpbm/PGM
+rawtoppm|netpbm/PPM|rawtoppm.c|_OSK SYSV|/dd/LIB/ppm.l /dd/LIB/pgm.l /dd/LIB/pbm.l /dd/LIB/pbm.l /dd/LIB/pbm.l| -V=/h6/netpbm -V=/h6/netpbm/PBM -V=/h6/netpbm/PGM
+rgb3toppm|netpbm/PPM|rgb3toppm.c|_OSK SYSV|/dd/LIB/ppm.l /dd/LIB/pgm.l /dd/LIB/pbm.l /dd/LIB/pbm.l /dd/LIB/pbm.l| -V=/h6/netpbm -V=/h6/netpbm/PBM -V=/h6/netpbm/PGM
+sldtoppm|netpbm/PPM|sldtoppm.c|_OSK SYSV|/dd/LIB/ppm.l /dd/LIB/pgm.l /dd/LIB/pbm.l /dd/LIB/pbm.l /dd/LIB/pbm.l| -V=/h6/netpbm -V=/h6/netpbm/PBM -V=/h6/netpbm/PGM
+ximtoppm|netpbm/PPM|ximtoppm.c|_OSK SYSV|/dd/LIB/ppm.l /dd/LIB/pgm.l /dd/LIB/pbm.l /dd/LIB/pbm.l /dd/LIB/pbm.l| -V=/h6/netpbm -V=/h6/netpbm/PBM -V=/h6/netpbm/PGM
+xpmtoppm|netpbm/PPM|xpmtoppm.c|_OSK SYSV|/dd/LIB/ppm.l /dd/LIB/pgm.l /dd/LIB/pbm.l /dd/LIB/pbm.l /dd/LIB/pbm.l| -V=/h6/netpbm -V=/h6/netpbm/PBM -V=/h6/netpbm/PGM
+xvminitoppm|netpbm/PPM|xvminitoppm.c|_OSK SYSV|/dd/LIB/ppm.l /dd/LIB/pgm.l /dd/LIB/pbm.l /dd/LIB/pbm.l /dd/LIB/pbm.l| -V=/h6/netpbm -V=/h6/netpbm/PBM -V=/h6/netpbm/PGM
+yuvtoppm|netpbm/PPM|yuvtoppm.c|_OSK SYSV|/dd/LIB/ppm.l /dd/LIB/pgm.l /dd/LIB/pbm.l /dd/LIB/pbm.l /dd/LIB/pbm.l| -V=/h6/netpbm -V=/h6/netpbm/PBM -V=/h6/netpbm/PGM
+yuvsplittoppm|netpbm/PPM|yuvsplittoppm.c|_OSK SYSV|/dd/LIB/ppm.l /dd/LIB/pgm.l /dd/LIB/pbm.l /dd/LIB/pbm.l /dd/LIB/pbm.l| -V=/h6/netpbm -V=/h6/netpbm/PBM -V=/h6/netpbm/PGM
+ppmforge|netpbm/PPM|ppmforge.c|_OSK SYSV|/dd/LIB/ppm.l /dd/LIB/pgm.l /dd/LIB/pbm.l /dd/LIB/pbm.l /dd/LIB/pbm.l /dd/LIB/math.l| -V=/h6/netpbm -V=/h6/netpbm/PBM -V=/h6/netpbm/PGM
+pnmalias|netpbm/PNM|pnmalias.c|_OSK SYSV|/dd/LIB/pnm.l /dd/LIB/ppm.l /dd/LIB/pgm.l /dd/LIB/pbm.l /dd/LIB/pbm.l /dd/LIB/pbm.l| -V=/h6/netpbm -V=/h6/netpbm/PBM -V=/h6/netpbm/PGM -V=/h6/netpbm/PPM
+pnmarith|netpbm/PNM|pnmarith.c|_OSK SYSV CPP2|/dd/LIB/pnm.l /dd/LIB/ppm.l /dd/LIB/pgm.l /dd/LIB/pbm.l /dd/LIB/pbm.l /dd/LIB/pbm.l| -V=/h6/netpbm -V=/h6/netpbm/PBM -V=/h6/netpbm/PGM -V=/h6/netpbm/PPM
+pnmcat|netpbm/PNM|pnmcat.c|_OSK SYSV CPP2|/dd/LIB/pnm.l /dd/LIB/ppm.l /dd/LIB/pgm.l /dd/LIB/pbm.l /dd/LIB/pbm.l /dd/LIB/pbm.l| -V=/h6/netpbm -V=/h6/netpbm/PBM -V=/h6/netpbm/PGM -V=/h6/netpbm/PPM
+pnmcomp|netpbm/PNM|pnmcomp.c|_OSK SYSV|/dd/LIB/pnm.l /dd/LIB/ppm.l /dd/LIB/pgm.l /dd/LIB/pbm.l /dd/LIB/pbm.l /dd/LIB/pbm.l| -V=/h6/netpbm -V=/h6/netpbm/PBM -V=/h6/netpbm/PGM -V=/h6/netpbm/PPM
+pnmconvol|netpbm/PNM|pnmconvol.c|_OSK SYSV CPP2|/dd/LIB/pnm.l /dd/LIB/ppm.l /dd/LIB/pgm.l /dd/LIB/pbm.l /dd/LIB/pbm.l /dd/LIB/pbm.l| -V=/h6/netpbm -V=/h6/netpbm/PBM -V=/h6/netpbm/PGM -V=/h6/netpbm/PPM
+pnmcrop|netpbm/PNM|pnmcrop.c|_OSK SYSV|/dd/LIB/pnm.l /dd/LIB/ppm.l /dd/LIB/pgm.l /dd/LIB/pbm.l /dd/LIB/pbm.l /dd/LIB/pbm.l| -V=/h6/netpbm -V=/h6/netpbm/PBM -V=/h6/netpbm/PGM -V=/h6/netpbm/PPM
+pnmcut|netpbm/PNM|pnmcut.c|_OSK SYSV|/dd/LIB/pnm.l /dd/LIB/ppm.l /dd/LIB/pgm.l /dd/LIB/pbm.l /dd/LIB/pbm.l /dd/LIB/pbm.l| -V=/h6/netpbm -V=/h6/netpbm/PBM -V=/h6/netpbm/PGM -V=/h6/netpbm/PPM
+pnmdepth|netpbm/PNM|pnmdepth.c|_OSK SYSV|/dd/LIB/pnm.l /dd/LIB/ppm.l /dd/LIB/pgm.l /dd/LIB/pbm.l /dd/LIB/pbm.l /dd/LIB/pbm.l| -V=/h6/netpbm -V=/h6/netpbm/PBM -V=/h6/netpbm/PGM -V=/h6/netpbm/PPM
+pnmenlarge|netpbm/PNM|pnmenlarge.c|_OSK SYSV|/dd/LIB/pnm.l /dd/LIB/ppm.l /dd/LIB/pgm.l /dd/LIB/pbm.l /dd/LIB/pbm.l /dd/LIB/pbm.l| -V=/h6/netpbm -V=/h6/netpbm/PBM -V=/h6/netpbm/PGM -V=/h6/netpbm/PPM
+pnmfile|netpbm/PNM|pnmfile.c|_OSK SYSV|/dd/LIB/pnm.l /dd/LIB/ppm.l /dd/LIB/pgm.l /dd/LIB/pbm.l /dd/LIB/pbm.l /dd/LIB/pbm.l| -V=/h6/netpbm -V=/h6/netpbm/PBM -V=/h6/netpbm/PGM -V=/h6/netpbm/PPM
+pnmflip|netpbm/PNM|pnmflip.c|_OSK SYSV|/dd/LIB/pnm.l /dd/LIB/ppm.l /dd/LIB/pgm.l /dd/LIB/pbm.l /dd/LIB/pbm.l /dd/LIB/pbm.l| -V=/h6/netpbm -V=/h6/netpbm/PBM -V=/h6/netpbm/PGM -V=/h6/netpbm/PPM
+pnmhisteq|netpbm/PNM|pnmhisteq.c|_OSK SYSV|/dd/LIB/pnm.l /dd/LIB/ppm.l /dd/LIB/pgm.l /dd/LIB/pbm.l /dd/LIB/pbm.l /dd/LIB/pbm.l| -V=/h6/netpbm -V=/h6/netpbm/PBM -V=/h6/netpbm/PGM -V=/h6/netpbm/PPM
+pnmhistmap|netpbm/PNM|pnmhistmap.c|_OSK SYSV|/dd/LIB/pnm.l /dd/LIB/ppm.l /dd/LIB/pgm.l /dd/LIB/pbm.l /dd/LIB/pbm.l /dd/LIB/pbm.l| -V=/h6/netpbm -V=/h6/netpbm/PBM -V=/h6/netpbm/PGM -V=/h6/netpbm/PPM
+pnminvert|netpbm/PNM|pnminvert.c|_OSK SYSV|/dd/LIB/pnm.l /dd/LIB/ppm.l /dd/LIB/pgm.l /dd/LIB/pbm.l /dd/LIB/pbm.l /dd/LIB/pbm.l| -V=/h6/netpbm -V=/h6/netpbm/PBM -V=/h6/netpbm/PGM -V=/h6/netpbm/PPM
+pnmnoraw|netpbm/PNM|pnmnoraw.c|_OSK SYSV|/dd/LIB/pnm.l /dd/LIB/ppm.l /dd/LIB/pgm.l /dd/LIB/pbm.l /dd/LIB/pbm.l /dd/LIB/pbm.l| -V=/h6/netpbm -V=/h6/netpbm/PBM -V=/h6/netpbm/PGM -V=/h6/netpbm/PPM
+pnmpad|netpbm/PNM|pnmpad.c|_OSK SYSV|/dd/LIB/pnm.l /dd/LIB/ppm.l /dd/LIB/pgm.l /dd/LIB/pbm.l /dd/LIB/pbm.l /dd/LIB/pbm.l| -V=/h6/netpbm -V=/h6/netpbm/PBM -V=/h6/netpbm/PGM -V=/h6/netpbm/PPM
+pnmpaste|netpbm/PNM|pnmpaste.c|_OSK SYSV CPP2|/dd/LIB/pnm.l /dd/LIB/ppm.l /dd/LIB/pgm.l /dd/LIB/pbm.l /dd/LIB/pbm.l /dd/LIB/pbm.l| -V=/h6/netpbm -V=/h6/netpbm/PBM -V=/h6/netpbm/PGM -V=/h6/netpbm/PPM
+pnmtile|netpbm/PNM|pnmtile.c|_OSK SYSV|/dd/LIB/pnm.l /dd/LIB/ppm.l /dd/LIB/pgm.l /dd/LIB/pbm.l /dd/LIB/pbm.l /dd/LIB/pbm.l| -V=/h6/netpbm -V=/h6/netpbm/PBM -V=/h6/netpbm/PGM -V=/h6/netpbm/PPM
+pnmtoddif|netpbm/PNM|pnmtoddif.c|_OSK SYSV|/dd/LIB/pnm.l /dd/LIB/ppm.l /dd/LIB/pgm.l /dd/LIB/pbm.l /dd/LIB/pbm.l /dd/LIB/pbm.l| -V=/h6/netpbm -V=/h6/netpbm/PBM -V=/h6/netpbm/PGM -V=/h6/netpbm/PPM
+pnmtofits|netpbm/PNM|pnmtofits.c|_OSK SYSV|/dd/LIB/pnm.l /dd/LIB/ppm.l /dd/LIB/pgm.l /dd/LIB/pbm.l /dd/LIB/pbm.l /dd/LIB/pbm.l| -V=/h6/netpbm -V=/h6/netpbm/PBM -V=/h6/netpbm/PGM -V=/h6/netpbm/PPM
+pnmtops|netpbm/PNM|pnmtops.c|_OSK SYSV|/dd/LIB/pnm.l /dd/LIB/ppm.l /dd/LIB/pgm.l /dd/LIB/pbm.l /dd/LIB/pbm.l /dd/LIB/pbm.l| -V=/h6/netpbm -V=/h6/netpbm/PBM -V=/h6/netpbm/PGM -V=/h6/netpbm/PPM
+pnmtorast|netpbm/PNM|pnmtorast.c|_OSK SYSV|/dd/LIB/pnm.l /dd/LIB/ppm.l /dd/LIB/pgm.l /dd/LIB/pbm.l /dd/LIB/pbm.l /dd/LIB/pbm.l| -V=/h6/netpbm -V=/h6/netpbm/PBM -V=/h6/netpbm/PGM -V=/h6/netpbm/PPM
+pnmtosgi|netpbm/PNM|pnmtosgi.c|_OSK SYSV|/dd/LIB/pnm.l /dd/LIB/ppm.l /dd/LIB/pgm.l /dd/LIB/pbm.l /dd/LIB/pbm.l /dd/LIB/pbm.l| -V=/h6/netpbm -V=/h6/netpbm/PBM -V=/h6/netpbm/PGM -V=/h6/netpbm/PPM
+pnmtosir|netpbm/PNM|pnmtosir.c|_OSK SYSV|/dd/LIB/pnm.l /dd/LIB/ppm.l /dd/LIB/pgm.l /dd/LIB/pbm.l /dd/LIB/pbm.l /dd/LIB/pbm.l| -V=/h6/netpbm -V=/h6/netpbm/PBM -V=/h6/netpbm/PGM -V=/h6/netpbm/PPM
+rasttopnm|netpbm/PNM|rasttopnm.c|_OSK SYSV|/dd/LIB/pnm.l /dd/LIB/ppm.l /dd/LIB/pgm.l /dd/LIB/pbm.l /dd/LIB/pbm.l /dd/LIB/pbm.l| -V=/h6/netpbm -V=/h6/netpbm/PBM -V=/h6/netpbm/PGM -V=/h6/netpbm/PPM
+sgitopnm|netpbm/PNM|sgitopnm.c|_OSK SYSV|/dd/LIB/pnm.l /dd/LIB/ppm.l /dd/LIB/pgm.l /dd/LIB/pbm.l /dd/LIB/pbm.l /dd/LIB/pbm.l| -V=/h6/netpbm -V=/h6/netpbm/PBM -V=/h6/netpbm/PGM -V=/h6/netpbm/PPM
+sirtopnm|netpbm/PNM|sirtopnm.c|_OSK SYSV|/dd/LIB/pnm.l /dd/LIB/ppm.l /dd/LIB/pgm.l /dd/LIB/pbm.l /dd/LIB/pbm.l /dd/LIB/pbm.l| -V=/h6/netpbm -V=/h6/netpbm/PBM -V=/h6/netpbm/PGM -V=/h6/netpbm/PPM
+xwdtopnm|netpbm/PNM|xwdtopnm.c|_OSK SYSV|/dd/LIB/pnm.l /dd/LIB/ppm.l /dd/LIB/pgm.l /dd/LIB/pbm.l /dd/LIB/pbm.l /dd/LIB/pbm.l| -V=/h6/netpbm -V=/h6/netpbm/PBM -V=/h6/netpbm/PGM -V=/h6/netpbm/PPM
+zeisstopnm|netpbm/PNM|zeisstopnm.c|_OSK SYSV|/dd/LIB/pnm.l /dd/LIB/ppm.l /dd/LIB/pgm.l /dd/LIB/pbm.l /dd/LIB/pbm.l /dd/LIB/pbm.l| -V=/h6/netpbm -V=/h6/netpbm/PBM -V=/h6/netpbm/PGM -V=/h6/netpbm/PPM
+pnmgamma|netpbm/PNM|pnmgamma.c|_OSK SYSV|/dd/LIB/pnm.l /dd/LIB/ppm.l /dd/LIB/pgm.l /dd/LIB/pbm.l /dd/LIB/pbm.l /dd/LIB/pbm.l /dd/LIB/math.l| -V=/h6/netpbm -V=/h6/netpbm/PBM -V=/h6/netpbm/PGM -V=/h6/netpbm/PPM
+pnmnlfilt|netpbm/PNM|pnmnlfilt.c|CPP2 LONGREF SYSV _OSK|/dd/LIB/pnm.l /dd/LIB/ppm.l /dd/LIB/pgm.l /dd/LIB/pbm.l /dd/LIB/pbm.l /dd/LIB/pbm.l /dd/LIB/math.l| -V=/h6/netpbm -V=/h6/netpbm/PBM -V=/h6/netpbm/PGM -V=/h6/netpbm/PPM
+pnmrotate|netpbm/PNM|pnmrotate.c|_OSK SYSV|/dd/LIB/pnm.l /dd/LIB/ppm.l /dd/LIB/pgm.l /dd/LIB/pbm.l /dd/LIB/pbm.l /dd/LIB/pbm.l /dd/LIB/math.l| -V=/h6/netpbm -V=/h6/netpbm/PBM -V=/h6/netpbm/PGM -V=/h6/netpbm/PPM
+pnmscale|netpbm/PNM|pnmscale.c|_OSK SYSV|/dd/LIB/pnm.l /dd/LIB/ppm.l /dd/LIB/pgm.l /dd/LIB/pbm.l /dd/LIB/pbm.l /dd/LIB/pbm.l /dd/LIB/math.l| -V=/h6/netpbm -V=/h6/netpbm/PBM -V=/h6/netpbm/PGM -V=/h6/netpbm/PPM
+pnmshear|netpbm/PNM|pnmshear.c|_OSK SYSV|/dd/LIB/pnm.l /dd/LIB/ppm.l /dd/LIB/pgm.l /dd/LIB/pbm.l /dd/LIB/pbm.l /dd/LIB/pbm.l /dd/LIB/math.l| -V=/h6/netpbm -V=/h6/netpbm/PBM -V=/h6/netpbm/PGM -V=/h6/netpbm/PPM
