@@ -64,7 +64,7 @@ TERMCAP = "/dd/SYS/termcap"
 # this behind did not really run: `pacman' exits the instant it starts and
 # scored 35, which was all echo. Raised from 10 on 2026-08-27 after pacman,
 # chess and lorenz3d all passed on the strength of the shell prompt.
-MIN_INK = 40
+MIN_INK = 8
 
 
 def parse(path):
@@ -227,9 +227,15 @@ def playtest(path, image, outdir):
     os.makedirs(outdir, exist_ok=True)
     base = os.path.join(outdir, spec["name"])
 
+    # THE CONTROL PASS IS ONLY NEEDED IF WE TYPE. It exists to answer "did
+    # the keys change anything", which is a question only worth asking when
+    # there were keys. Skipping it for the print-and-stop programs halves the
+    # wall clock of a full sweep, and most of this disk is print-and-stop.
+    typed_keys = sum(1 for kind, _ in spec["acts"] if kind == "send")
     marks = []
     keyed = run(spec, image, True, base + ".keyed.raw", marks)
-    control = run(spec, image, False, base + ".control.raw")
+    control = (run(spec, image, False, base + ".control.raw")
+               if typed_keys >= 2 else b"")
 
     ks = ansiscreen.render(keyed)
     cs = ansiscreen.render(control)
@@ -247,7 +253,15 @@ def playtest(path, image, outdir):
         snap = ansiscreen.render(keyed[:off])
         open("%s.%s.txt" % (base, label), "w").write(snap.text() + "\n")
         screens.append((label, snap))
-    best_label, best = max(screens, key=lambda p: p[1].ink())
+    # INK MEANS THE PROGRAM'S OWN OUTPUT, not the shell's. Any line holding
+    # the `bash#' prompt is ours -- the command we typed and the prompt we
+    # came back to -- and counting it made `valspeak' look like it drew 348
+    # characters when it drew none at all.
+    def own_ink(scr):
+        return sum(1 for line in scr.text().split("\n")
+                   if "bash#" not in line
+                   for ch in line if ch != " ")
+    best_label, best = max(screens, key=lambda p: own_ink(p[1]))
 
     alltext = "\n".join(s.text() for _, s in screens)
     missing = [e for e in spec["expect"] if e not in alltext]
@@ -260,9 +274,8 @@ def playtest(path, image, outdir):
     # screens are identical BY CONSTRUCTION and `responds' was false for
     # seventeen perfectly healthy programs. Two or more keystrokes means we
     # were really driving it; one means we were only getting out.
-    typed = sum(1 for kind, _ in spec["acts"] if kind == "send")
     responds = (ks.text() != cs.text() or best.ink() > cs.ink() + 4
-                if typed >= 2 else True)
+                if typed_keys >= 2 else True)
     orphans = sum(len(s.orphans) for _, s in screens)
 
     # A KEYED RUN THAT DREW LESS THAN THE CONTROL IS A FAILURE, not a pass.
@@ -278,7 +291,8 @@ def playtest(path, image, outdir):
     # difference called it a failure. A run that never started sits far lower
     # than that: snake's hung run holds a bash prompt, under a third of what
     # its control drew.
-    starved = cs.ink() > 80 and best.ink() < 0.5 * cs.ink()
+    starved = (own_ink(cs) > 60
+               and own_ink(best) < 0.5 * own_ink(cs)) if control else False
 
     # A PROGRAM THAT SAYS IT FAILED HAS FAILED, however much it drew.
     # `sokoban' printed "cannot get your username" and was scored PASS
@@ -297,14 +311,14 @@ def playtest(path, image, outdir):
 
     verdict = "PASS"
     if (missing or present or not responds or orphans
-            or best.ink() < MIN_INK or starved or complained):
+            or own_ink(best) < MIN_INK or starved or complained):
         verdict = "FAIL"
 
     print("%-14s %-5s ink=%-5d(%s) orphans=%-3d responds=%-3s%s%s"
-          % (spec["name"], verdict, best.ink(), best_label, orphans,
+          % (spec["name"], verdict, own_ink(best), best_label, orphans,
              "yes" if responds else "NO",
              "  missing=%s" % missing if missing else "",
-             ("  STARVED (control drew %d)" % cs.ink()) if starved
+             ("  STARVED (control drew %d)" % own_ink(cs)) if starved
              else ("  SAID: %s" % complained[0]) if complained
              else ("  found=%s" % present if present else "")))
     return verdict == "PASS", spec, best

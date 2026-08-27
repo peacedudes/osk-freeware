@@ -9,3 +9,5 @@ wait    2
 snap    played
 key     \003
 wait    2
+# KNOWN BROKEN: notes/verify-final.tsv has recorded this as NEEDS WORK
+# since the 2026-08-26 sweep.  Kept so the failure stays visible.

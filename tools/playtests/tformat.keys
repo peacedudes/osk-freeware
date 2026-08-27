@@ -1,11 +1,12 @@
 name    tformat
 prog    /dd/CMDS/GAMES/tformat
-# Generic: does it draw, and does the screen change when keys arrive?
-rate    0.7
+# A FILTER: the 2026-08-26 sweep classified it "OK as a filter", so it reads
+# standard input and writes to standard output.  Type a line at it.
+rate    0.4
 wait    5
-snap    opening
-wait 3
-wait    2
-snap    played
-key     \003
+keys    the quick brown fox
+key     \r
+wait    3
+snap    output
+key     \004
 wait    2
