@@ -267,10 +267,14 @@ def playtest(path, image, outdir):
     # A PROGRAM THAT SAYS IT FAILED HAS FAILED, however much it drew.
     # `sokoban' printed "cannot get your username" and was scored PASS
     # because something appeared and the screen changed.
-    COMPLAINTS = ("cannot get", "can't open", "Can't open", "cannot open",
-                  "illegal char", "illegal command",
-                  "not found", "No such", "unknown terminal",
-                  "Unknown terminal", "command not found", "Stack Overflow",
+    # SPECIFIC PHRASES ONLY. "No such" on its own matched a line of sonnet's
+    # own poetry -- "No such the grasp the byte biweekly genius" -- and failed
+    # a program that was doing exactly what it is for. A keyword list that
+    # reads program OUTPUT has to be narrow enough not to convict prose.
+    COMPLAINTS = ("cannot get your", "can't open", "Can't open", "cannot open",
+                  "illegal char in", "illegal command line",
+                  "No such file", "no such file", "command not found",
+                  "unknown terminal", "Unknown terminal", "Stack Overflow",
                   "Can't install trap handler", "bus error", "Bus error")
     complained = [c for c in COMPLAINTS if c in alltext]
 
