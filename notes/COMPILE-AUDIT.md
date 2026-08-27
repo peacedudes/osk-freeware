@@ -343,29 +343,63 @@ It has already shipped a recipe pointing at the wrong `pep`.
 
 ---
 
-## netpbm -- source is IN as of 2026-08-26, recipes are the next piece of work
+## netpbm -- 152 of 168 build, 2026-08-27
 
-All 169 netpbm programs now have their source under `disk/SRC/netpbm`, and so
-do the four libraries they link:
+Recipes are in `tools/rebuild/recipes.psv`: four libraries (`pbm.l pgm.l ppm.l
+pnm.l`, installed in `disk/LIB`) then 152 one-source programs. **The shipped
+binaries already work -- this buys rebuildability, not function.**
 
-    PBM   51 sources   libpbm1..5.c
-    PGM   26 sources   libpgm1..2.c
-    PPM   70 sources   libppm1..5.c
-    PNM   45 sources   libpnm1..4.c
+### What it took, and three of them were upstream bugs
 
-That is 18% of the disk going from "binary only" to "source here" in one
-archive. **No recipes yet**, and the shape of the work is known rather than
-guessed, from the package's own `Makefile.std` in each directory:
+  - **`-D_OSK`** -- the port's own guard. `pbmplus.h` skips `<unistd.h>` when
+    `_OSK` is defined; gcc2 predefines it, Microware's `cc` does not.
+  - **`-DSYSV`** -- the port's own switch for a System V C library, which is
+    what OS-9 has: `random`/`srandom` onto `rand`/`srand`, `index`/`rindex`
+    onto `strchr`/`strrchr`, `bcopy`/`bzero`/`bcmp` onto the `mem*` ones, and
+    `<string.h>` rather than BSD's `<strings.h>`.
+  - **`disk/SRC/COMPAT/malloc.h`, NEW** -- SYSV makes `pbmplus.h` include
+    `<malloc.h>`, which OS-9 does not ship. Turning SYSV on without it broke
+    three of the four libraries.
+  - **`libpbm1.c` -- upstream typo, fixed.** The `NEED_VFPRINTF2` block ends
+    `return nc;` and `nc` is declared nowhere in the file, so that block could
+    never have compiled anywhere. OS-9 is the first system here to need it: it
+    has neither `vfprintf` nor `_doprnt`.
+  - **`pgmnoise.c` -- upstream omission, fixed.** Uses `time_t` and never
+    includes `<time.h>`; it compiled elsewhere only because `pbmplus.h` pulls
+    `<time.h>` in on the MSDOS/AMIGA arm.
+  - **`pbm.l` named three times** in every recipe -- `l68` makes ONE pass per
+    `-l=`, and `libpbm5` calls `libpbm2`'s `pbm_readpbm`.
 
-  - Each program is ONE source file plus the libraries -- `PORTBINARIES` and
-    `OBJECTS` in each Makefile name them, one `.o` per program.
-  - So four library recipes first (`rebuild.sh` already builds `.l` targets
-    through its `compile_lib` path), then 169 one-source recipes against them.
-  - `MATHBINARIES` is kept separate from `PORTBINARIES` in those makefiles --
-    the ones needing the FPU. The port's own `ReadMe.OSK` says the shipped
-    binaries were built for a plain 68000 and that the FPU build is 20-50x
-    faster for `ppmforge` and `pgmcrater`.
+### The 16 that do not build, with their MEASURED causes
 
-Worth knowing before starting: the binaries already ship and work, so this
-buys rebuildability, not function. It is a large, mechanical, well-defined job
--- the best kind to hand to a long unattended run.
+**Static data over 64k -- 7.** `l68: non-remote data allocation of NNNNN bytes
+value exceeds 64k`, or `r68: *** error - value out of range ***`.
+
+    g3topbm  spctoppm  sputoppm  tgatoppm  ppmqvga  ppmtomap  giftopnm
+
+  `LONGREF` is NOT enough -- tried, with `CPP2` so that it is actually
+  implemented, and all seven still fail. Needs a real look at the data model.
+
+**Source problems -- 7.**
+
+    bmptoppm ppmtobmp   undefined struct/union tag referenced
+    picttoppm           cannot initialize
+    hpcdtoppm ppmshift ppmspread   undeclared identifier
+    pnmtoxwd            identifier missing
+
+**Missing pieces -- 2.**
+
+    ppmpat      Symbol 'atan2' unresolved -- math.l has no atan2, though
+                blarslib carries an atan2.c
+    fitstopnm   can't open /dd/DEFS/float.h -- OS-9 ships no float.h
+
+### An OPEN constraint, measured and NOT explained
+
+Through the **shell**, a `cc` line carrying 19 `-l=` flags fails with
+`can't open /dd/DEFS/ppm.h` -- the `-V=` flags are lost. Eleven works. Forking
+`cc` DIRECTLY with the identical 19 flags builds fine.
+
+**It is not line truncation, and I said twice that it was.** The failing line
+measures **469 characters** against SCF's 512. The mechanism is unknown. It is
+worked around by naming only `pbm.l` three times instead of all four
+libraries, which is what the recipes do.

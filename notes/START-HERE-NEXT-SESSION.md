@@ -143,9 +143,13 @@ interesting and it is not blocking anything.
    FIRST: most of the 45 are already explained and closed there (supervisor
    state, no FPU, `F$SysID` unimplemented, silent-by-design daemons). Subtract
    item 2's six and the genuinely open residue is small.
-4. **netpbm recipes** — all 169 now have source; `notes/COMPILE-AUDIT.md` has
-   the shape of the work (four library recipes, then 169 one-source ones). Big,
-   mechanical, ideal for a long unattended run.
+4. ~~netpbm recipes.~~ **DONE 2026-08-27: 152 of 168 build**, four libraries
+   installed in `disk/LIB`. `notes/COMPILE-AUDIT.md` has the 16 that do not,
+   grouped by measured cause, and one OPEN constraint worth knowing: through
+   the shell a `cc` line with 19 `-l=` flags silently loses its `-V=` flags,
+   forking `cc` directly with the same argv does not, and it is NOT line
+   truncation -- the line is 469 characters against SCF's 512. Mechanism
+   unknown.
 5. **The rest of the pool pass** — `tools/index_archives.py` and
    `tools/find_missing_source.py` are new and did most of tonight's work.
    32 candidates remain, and `COMPILE-AUDIT.md` lists twelve already REFUTED
@@ -165,6 +169,33 @@ Also open and needing him, not you: the gcc packaging decision (2026-08-24).
 
 **`wc`'s provenance is CLOSED, 2026-08-27.** rdoggett: *"I do not have wc."*
 There is no copy to compare against and no thread left. Stop pulling on it.
+
+## THE SWEEP CANNOT TEST INPUT, AND IT SCORES SUCH PROGRAMS AS WORKING
+
+Found 2026-08-27 by rdoggett spot-checking games from `/h0/cmds/games`.
+
+`GAMES/tet` was scored **"OK bare"** by the four-stage sweep and **took no
+keys at a real terminal**. The sweep scores a program by what it PRINTS; `tet`
+prints its board on startup, so it passed. It cannot press keys, and `tet`
+calls `ttyname(0)` and reopens it, so it cannot even be driven through a pipe.
+
+**A working rebuild had been sitting in `CMDS/REBUILT/tet.unixlib` since
+2026-08-13**, with a `DOC/INDEX` note saying "if it takes keys for you, it
+should replace GAMES/tet" -- waiting on a play-test nobody did. Now installed.
+
+Two lessons, and the second is the bigger one:
+
+  - **Any program whose value is in its INPUT handling is uncredited by the
+    sweep**, whatever `DOC/STATUS` says about it. Editors, games, anything
+    interactive. `notes/PLAYTEST-QUEUE.md` exists for this and is the thing to
+    work through, not the sweep numbers.
+  - **The rebuild driver INSTALLS NOTHING.** It writes `R_<prog>` into
+    `disk/SRC` and those get deleted after every run, because `check_disk`
+    fails on build products in the tree. So "we built a working X" and "the
+    disk ships a working X" are separate facts and nothing reconciles them
+    automatically. `tet` is where that gap bit. When a rebuild is BETTER, the
+    swap is a deliberate, separate act -- do it, or the note saying it should
+    happen will sit there for months.
 
 ## Rules that cost real time to learn
 
