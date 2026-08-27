@@ -75,7 +75,16 @@ def is_command(path):
     class of proxy this collection keeps getting wrong.
     """
     parts = os.path.normpath(path).split(os.sep)
-    return "CMDS" in parts and not os.path.basename(path).startswith(".")
+    if "CMDS" not in parts:
+        return False
+    # CMDS/archives is the ONE place under CMDS that holds data: the .lzh
+    # source archives for ed, elvis, grep and friends. DOC/INDEX does not
+    # count them as commands and neither does check_disk.py, and marking them
+    # executable would also take away the public write bit every data file on
+    # this disk is supposed to keep.
+    if "archives" in parts:
+        return False
+    return not os.path.basename(path).startswith(".")
 MTIME    = 1785801600      # 2026-08-04T00:00:00Z -- any fixed instant will do
 USTAR_MAX = 100
 
