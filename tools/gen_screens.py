@@ -253,6 +253,10 @@ SHELL_NOISE = ("/.bashrc:", "# /h0:", "# /dd:")
 # unexplained gap in the middle. A screen is a session: show the commands,
 # just not the prompt they were typed at.
 PROMPT = re.compile(r"^bash#\s?")
+# A program that ends its output without a newline leaves the next prompt
+# sitting on the same line -- `August 28, 2100 04:45:27bash# date -t'. That is
+# one line on the terminal and two things to a reader, so it gets split.
+RUNON = re.compile(r"(?<=.)bash#(?:\s|$)")
 # os9exec's own file-table dump, printed when it reports a crash. The lines
 # that NAME the crash are kept -- a program that died should be seen dying --
 # but the open-path list belongs to the emulator, not to the program.
@@ -268,17 +272,22 @@ def trim(text, first=""):
     gallery of this software.
     """
     lines = []
-    for ln in text.split("\n"):
-        if any(n in ln for n in SHELL_NOISE) or DUMP.match(ln):
-            continue
-        if ln.startswith("export ") and "PATH" in ln:
-            continue                       # the harness's own login lines
-        if PROMPT.match(ln):
-            rest = PROMPT.sub("", ln).rstrip()
-            if not rest:
-                continue                   # a bare prompt is not a line
-            ln = "$ " + rest
-        lines.append(ln.rstrip())
+    for raw in text.split("\n"):
+        # A program whose last write has no newline leaves the next prompt on
+        # its own line -- `04:45:27bash# date -t'. Two things to a reader.
+        for ln in RUNON.sub("\n$ ", raw).split("\n"):
+            if any(n in ln for n in SHELL_NOISE) or DUMP.match(ln):
+                continue
+            if ln.startswith("export ") and "PATH" in ln:
+                continue                   # the harness's own login lines
+            if PROMPT.match(ln):
+                rest = PROMPT.sub("", ln).rstrip()
+                if not rest:
+                    continue               # a bare prompt is not a line
+                ln = "$ " + rest
+            if ln.strip() == "$":
+                continue
+            lines.append(ln.rstrip())
     while lines and not lines[0].strip():
         lines.pop(0)
     while lines and not lines[-1].strip():

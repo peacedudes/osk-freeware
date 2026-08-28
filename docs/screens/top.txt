@@ -5,4 +5,4 @@ Process   Pid: 3, top, edition 7
     Exit code: E_PRCABT(228) Process Aborted
   Directories: Current   - /dd
                Execution - /dd/CMDS
-        Files: 00 fCons /termbash#
+        Files: 00 fCons /term

@@ -16,4 +16,4 @@
 
 
      It is my crib.
-     Select 2 cards.  Type RETURN to discard. bash#
+     Select 2 cards.  Type RETURN to discard.

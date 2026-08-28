@@ -1,4 +1,13 @@
--> let r0c0 = cho S9READYclearversion /dd/CMDS/todaymexist bashecho S9READYclear
-
-
-              <
+$ modinfo /dd/CMDS/ptxm | head -n 12
+-------------------------------- /dd/CMDS/ptxm  - - - - - - - - - - - - - - - --
+Module name           = Ptxm
+System revision       = 1
+Module size           = 2886
+Owner Id              = 0.0
+Offset to module name = 00000b3cH
+Access permission     = e-re-re-r
+Type/Language          = 0c01H  System                 68000 Object Code Module
+Attribute/Revision    = a000H   reentrant  execute in supervisor state
+Edition               = 3
+Comment string offset = 00000000H
+Symbol table offset   = 00000000H

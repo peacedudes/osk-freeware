@@ -6,6 +6,6 @@ Not a JPEG file
 $ rdjpgcom /dd/tmp/gc.jpg
 Not a JPEG file
 $ ls -l /dd/DEMO/gulls.gif /dd/tmp/g.ppm /dd/tmp/g.jpg
--rw-rw-rw-   1 0        0           43008 Aug 28 04:49 /dd/DEMO/gulls.gif
--rw-rw-rw-   1 0        0               0 Aug 28 04:51 /dd/tmp/g.jpg
--rw-rw-rw-   1 0        0          192015 Aug 28 04:51 /dd/tmp/g.ppm
+-rw-rw-rw-   1 0        0           43008 Aug  3 19:00 /dd/DEMO/gulls.gif
+-rw-rw-rw-   1 0        0               0 Aug 28 16:48 /dd/tmp/g.jpg
+-rw-rw-rw-   1 0        0          192015 Aug 28 16:48 /dd/tmp/g.ppm

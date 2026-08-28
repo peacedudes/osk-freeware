@@ -459,16 +459,18 @@ wait    40
 shot    ppmforge
 cap     ppmforge invents a planet from a random seed: fractal terrain, an
 cap     atmosphere and a star field, none of it drawn by anybody.
-run     ppmforge -width 152 -height 88 -seed 7 | ppmtopgm | pgmtopbm | pbmtoascii -2x4
-wait    40
+run     ppmforge -width 152 -height 88 -seed 7 > /dd/tmp/planet.ppm
+wait    300
+run     ppmtopgm /dd/tmp/planet.ppm | pgmtopbm | pbmtoascii -2x4
+wait    60
 
 shot    ppmforge-clouds
 for     ppmforge ppmdim ppmbrighten
 cap     The same program asked for clouds only -- no land, all atmosphere.
 run     ppmforge -clouds -width 152 -height 88 -seed 3 > /dd/tmp/clouds.ppm
-wait    600
+wait    300
 run     ppmtopgm /dd/tmp/clouds.ppm | pgmtopbm | pbmtoascii -2x4
-wait    20
+wait    60
 
 shot    ppmhist
 for     ppmhist ppmpat

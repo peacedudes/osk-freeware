@@ -144,5 +144,32 @@ the fork finds the module without a filesystem search -- 8602 of 8602 files
 extracted. The other four now mount their scratch directory as a device and
 run the program by its path there.
 
+## Reading the screens found more than taking them did
+
+You were right that they have to be READ. Doing that, one card at a time:
+
+  - **`vc` is a spreadsheet**, not the "visual compare" DOC/INDEX called it --
+    and it survived Ctrl-E and ate the next five screens, which is how it was
+    found. The harness's readiness check had been fooled by vc echoing the
+    marker back; it is split when typed and whole when printed now.
+  - **`m4` was mangling its output** -- `i hr ` for `hi there`. The build in
+    CMDS/REBUILT is correct and now ships. That is the second swap after
+    `sed`; nineteen REBUILT pairs are still untested and worth an hour.
+  - **`rayshade` RENDERS.** It needed two things nobody had found: a program
+    called `shell`, because OS-9's popen() forks one by that name and this
+    disk has bash and sh and no `shell`; and `cccp` in the DATA directory,
+    because the forked shell looks there. `copy sh shell` and `copy
+    GCC139/gcc_cccp /dd/cccp`, and it traces the scene. **That popen finding
+    is bigger than rayshade** -- every program here that uses popen() or
+    system() fails the same way.
+  - **`des` does not decrypt**: it encrypts to `<file>.n`, removes the
+    original, and run over its own output produces 00000000.
+  - **`patch` cannot finish**: it recognises a diff and then cannot read its
+    own temporary file. `diff` itself is fine.
+  - **Ghostscript does not render** -- banner, then no file and no message.
+  - `divide` is a file splitter, `find` wants `-n=`, `tail` wants `-l=`,
+    `xrf` wants its language table in the data directory, and `for` is a bash
+    keyword so the Fortran driver needs its path.
+
 ## Nothing needs you
 

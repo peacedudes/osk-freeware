@@ -3,4 +3,4 @@ $ lissaj
 Lissajous pattern generator (PD)1990 Russell Hoffman
 
 
-X angular freq. -> bash#
+X angular freq. ->

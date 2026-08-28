@@ -266,13 +266,21 @@ def moments(sess, shot, start, end):
     """
     rows, cols = shot["size"]
     best, best_worth = None, -1
+    fallback, fallback_worth = None, -1
     for at in list(shot.get("_marks", [])) + [end]:
         if at <= start:
             continue
         scr = ansiscreen.render(trim_partial(sess.slice(start, at)), rows, cols)
-        n = worth(scr)
+        n, raw = worth(scr), ink(scr)
         if n >= best_worth:
             best, best_worth = scr, n
+        if raw >= fallback_worth:
+            fallback, fallback_worth = scr, raw
+    # A program that ONLY ever produced the dump -- `top' aborts before it
+    # draws anything -- scores zero at every moment, and publishing an empty
+    # screen instead of the abort would be hiding what happened.
+    if best is not None and ink(best) == 0 and fallback_worth > 0:
+        best = fallback
     return best if best is not None else ansiscreen.render(b"", rows, cols)
 
 
@@ -371,6 +379,16 @@ def ink(scr):
                for ch in line if ch != " ")
 
 
+# The lines of os9exec's own abort dump. It lands ON TOP of whatever the
+# program had drawn, so where it overlays a picture it destroys ink it does
+# not replace -- and a moment that lost ink that way loses to the one before
+# it. Where the dump is ALL there is, as for the Graph library set, nothing
+# was destroyed and the dump stands as the screen. That falls out of simply
+# not counting these lines rather than penalising a screen for wearing them.
+ABORT_DUMP = ("Process   Pid:", "Exit code: E_", "Directories: Current",
+              "Execution -", "Files: 0")
+
+
 def worth(scr):
     """How much a screen is WORTH LOOKING AT, which is not how full it is.
 
@@ -384,6 +402,8 @@ def worth(scr):
     for line in scr.text().split("\n"):
         if "bash#" in line or not line.strip() or line in seen:
             continue
+        if any(line.lstrip().startswith(m) for m in ABORT_DUMP):
+            continue                       # the emulator talking, not the program
         seen.add(line)
         total += sum(1 for ch in line if ch != " ")
     return total

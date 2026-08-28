@@ -9,4 +9,4 @@ Process   Pid: 3, bincheckr, edition 7
   Directories: Current   - /dd
                Execution - /dd/CMDS
         Files: 00 fCons /term
-               0bash#
+               0

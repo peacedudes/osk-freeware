@@ -6,7 +6,8 @@ Process   Pid: 3, oleo, edition 7
   Directories: Current   - /dd
                Execution - /dd/CMDS
         Files: 00 fCons /term
-   bash# 12
+
+$ 12
 12: command not found
 $ 30
 30: command not found

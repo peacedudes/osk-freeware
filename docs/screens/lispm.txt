@@ -1,9 +1,6 @@
 $ pgmtolispm /dd/tmp/base.pgm | lispmtopgm | pnmfile
-lispmtopgm: depth is too large - try reconfiguring with PGM_BIGGRAYS
+pgmtolispm: /dd/tmp/base.pgm -
+lispmtopgm: bad id string in Lispm file
 pnmfile: EOF / read error reading magic number
 $ ppmtomap /dd/tmp/base.ppm | head -n 8
-ppmtomap: 6 colors found
-P6
-6 1
-255
-O.+A/{(...\vJ#bash#
+ppmtomap: /dd/tmp/base.ppm -

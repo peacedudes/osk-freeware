@@ -1,4 +1,6 @@
 $ basename /dd/CMDS/GAMES/hack
-hackbash# dirname /dd/CMDS/GAMES/hack
-/dd/CMDS/GAMESbash# owner /dd/CMDS/hack
+hack
+$ dirname /dd/CMDS/GAMES/hack
+/dd/CMDS/GAMES
+$ owner /dd/CMDS/hack
 No such user

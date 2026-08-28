@@ -1,2 +1,2 @@
 $ find /dd/SYS -name "cal*" -print
-find: only one parameter allowedbash#
+find: only one parameter allowed

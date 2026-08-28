@@ -1,5 +1,6 @@
 $ tty
-termbash# vecho "no newline here -- "
+term
+$ vecho "no newline here -- "
 no newline here --
 $ lmargin -?
 usage: epson [<opts>]
