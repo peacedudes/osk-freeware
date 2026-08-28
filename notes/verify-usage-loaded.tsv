@@ -1,0 +1,61 @@
+add_errmsg	CMDS	USAGE	usage: add_errmsg "msg1" ... "msgN"     appends messages at the 
+ape	CMDS	USAGE	syntax: ape {opts} Function: write gibberish in the style of <st
+authwn	CMDS/WN	MUTE	
+banner	CMDS	USAGE	         @@@@@         @     @ 
+bincheckr	CMDS/GAMES	MUTE	
+bootlogger	CMDS	MUTE	
+break	CMDS	MUTE	
+byteflip	CMDS/NEWS	MUTE	
+cron	CMDS	MUTE	
+cxref	CMDS	USAGE	Syntax:		/dd/CMDS/cxref [-opts] [path] Function:	Create and prin
+cyberwar	CMDS/GAMES	MUTE	
+delbak	CMDS	USAGE	Usage: delbak [-options] [directory] [-options]      -n      = n
+demo	CMDS	USAGE		option index (optind) after egetopt():     2 		egetopt() return
+dfiles	CMDS	USAGE	dfiles 0.7 Usage: 
+disktest	CMDS	USAGE	Syntax   : disktest [<opt>] Function : measure diskperformance 
+elvprsv	CMDS	MUTE	
+elvrec	CMDS	USAGE	/dd/-?: no recovered file has that exact name 
+epson	CMDS	USAGE	usage: epson [<opts>]  	c<int>	number of characters per line 
+fileserv	CMDS/UUCP	MUTE	
+find	CMDS	USAGE	Syntax: find {<opts>} [<path>] Function: finds files in Filesyst
+imgtoppm	CMDS/NETPBM	USAGE	imgtoppm: -? -  
+inetdc	CMDS/WN	MUTE	
+infoxpress	CMDS/NETWORK	MUTE	
+latex	CMDS/TEXCMDS	MUTE	
+lessecho	CMDS	USAGE	usage: lessecho [-ox] [-cx] [-pn] [-dn] [-a] file ... 
+lfmaker	CMDS	MUTE	
+lmail	CMDS/UUCP	USAGE	Syntax: lmail <user name> {<user name>} Function: sends local ma
+macbin	CMDS	USAGE	MacBinary file converter version 1.1 Usage  :   Converts files t
+make	CMDS	USAGE	Syntax :	make {[-f <makefile>] [-dDinrst] [<target>] [<macro>=<v
+makecrc	CMDS	MUTE	
+makedb	CMDS/UUCP	USAGE	/dd/CMDS/UUCP/makedb: illegal option -- ? /dd/CMDS/UUCP/makedb [
+mcvert	CMDS	USAGE	Mcvert V1.05 By Doug Moore OSK Port by Dean Leiber  
+mkdict	CMDS/GAMES	MUTE	
+perr	CMDS	USAGE	Syntax: perr [<error_codes>] Function: print error code messages
+pgmcrater	CMDS/NETPBM	USAGE	usage:  pgmcrater [-number <n>] [-width|-xsize <w>]             
+ppmforge	CMDS/NETPBM	USAGE	usage:  ppmforge        [-width|-xsize <x>] [-height|-ysize <y>]
+pri	CMDS	MUTE	
+puzzle	CMDS/GAMES	MUTE	
+queens	CMDS	MUTE	
+read_mail	CMDS	MUTE	
+rnews	CMDS/UUCP	USAGE	rnews [-x debug_level] [-n inital_newsgroup] [-z] newsfile 
+scriptmaster	CMDS/GAMES	MUTE	
+slitex	CMDS/TEXCMDS	MUTE	
+snd_sig	CMDS	USAGE	Syntax:   /dd/CMDS/snd_sig [-options] pid pid1...pidn Function: 
+split	CMDS	USAGE	/dd/CMDS/split: unrecognized option `-?' Usage: /dd/CMDS/split [
+splman	CMDS	MUTE	
+splprt	CMDS	MUTE	
+splstat	CMDS	USAGE	Splstat: device out of range 
+ssl	CMDS	USAGE	File descriptor sector -?: 0  Seg#     start    lenght 
+suse	CMDS	MUTE	
+sysid	CMDS	MUTE	
+t	CMDS	MUTE	
+tex	CMDS/TEXCMDS	MUTE	
+texidx	CMDS/TEXCMDS	USAGE	texi: invalid command switch ? 
+uuexpand	CMDS	USAGE	Usage: uuexpand [opts]    or: uuunexpand [opts] 
+uupoll	CMDS/UUCP	USAGE	Usage: uupoll [-g<grade>] system 
+valspeak	CMDS/GAMES	MUTE	
+vecho	CMDS	USAGE	-? 
+vtxtcn	CMDS/GAMES	MUTE	
+wisecrack	CMDS/GAMES	MUTE	
+wysecrack	CMDS/BROKEN	MUTE	

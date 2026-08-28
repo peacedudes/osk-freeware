@@ -40,12 +40,20 @@ captions for one screen and the gallery picking whichever sheet sorted last.
 Do not re-plan. `notes/PLAN-verification.md` is the plan and it is current.
 Do not stop between items to report; commit and start the next one.
 
-**A. Re-run stage 2 -- the FILTERS pass -- the loaded way.** 272 programs came
-   back SILENT from `tools/sweep_loaded.sh`, and most of them are filters:
-   printing nothing at end-of-file is what a filter is FOR. `verify_filters.sh`
-   is the stage that separates them and it has never been run with an
-   environment or a module loaded. Until it is, the SILENT column means
-   nothing and the collection has no honest headline figure.
+**A. ~~Re-run stage 2 the loaded way.~~ DONE 2026-08-28, and stage 4 with
+   it.** `tools/sweep_filters_loaded.sh` gave the 272 silent programs real
+   input -- 211 are filters -- and `tools/sweep_usage_loaded.sh` asked the
+   rest for their usage; 30 answered. So all four stages have now been run
+   the way a person runs the disk:
+
+       922 programs (945 files less 23 that are not programs)
+       871 demonstrated running -- 94.5%
+        31 silent at every stage, 18 crash, 2 want a trap handler
+
+   **Do not compare that percentage with the old 95.0%**: the denominators
+   differ, because 23 files that are not programs came out of this one.
+   DOC/STATUS has the whole thing under RUN THE WAY A PERSON RUNS IT, and
+   the 51 that remain are almost all already explained further down it.
 
 **B. Tier A, the families with no cases yet** -- Files & directories (35) and
    Maths & calculators (9) are the two whole categories `tools/datatests/`
@@ -183,6 +191,12 @@ see item 2. `notes/os9exec-bugs/PRIVILEGED-INSTRUCTIONS.md` has the re-run.
 2026-08-26, all four sweep stages from scratch. 46 real programs need work
 (`notes/verify-final.tsv`); the other 24 of the raw 70 are trap handlers,
 libraries and shell scripts that were never meant to run bare.
+
+**THAT 95.0% IS SUPERSEDED** by the four stages run with an environment and
+the library modules loaded, 2026-08-28: 871 of 922, 94.5%, and the two
+figures are not comparable because 23 files that are not programs came out
+of the denominator. What follows is why the old one was not to be trusted
+either, and it still applies to any figure scored by what a program PRINTS.
 
 **TREAT THAT 95.0% AS STALE IN BOTH DIRECTIONS.** It is too kind, because it
 scores a program by what it PRINTS -- `zip`, `todos` and `pnmtosir` are all in
