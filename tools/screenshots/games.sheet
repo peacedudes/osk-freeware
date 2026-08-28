@@ -12,16 +12,6 @@ cap     one anyway looks like.
 run     advint /dd/GAMES/ADVSYS/objects
 wait    8
 
-shot    backgammon
-cap     Backgammon against the computer: the board drawn in characters and
-cap     the dice rolled for you.
-run     backgammon
-wait    4
-send    N\r
-wait    4
-send    N\r
-wait    6
-
 shot    bincheckr
 cap     bincheckr reads GNU Chess's opening book -- and reports booksize 0
 cap     for a book of 145 KB, then aborts.  DOC/STATUS credited it as
@@ -31,11 +21,14 @@ wait    8
 kill
 
 shot    blackjak
-cap     Las Vegas blackjack, SNOBOL4, with a hand dealt.
+cap     Las Vegas blackjack, SNOBOL4 again, with a hand dealt and a bet on
+cap     the table.
 run     blackjak
-wait    4
+wait    5
 send    no\r
-wait    6
+wait    5
+send    10\r
+wait    8
 
 shot    checkgame
 cap     `checkgame' and `game' are meant to replay a saved chess game move
@@ -90,12 +83,18 @@ send    e2e4\r
 wait    10
 
 shot    hotel
-cap     hotel, a two-player board game played by coordinates -- the board
-cap     as it stands at the start.
+cap     hotel, a two-player board game played by coordinates.  It asks how
+cap     many are playing and then draws the board.
 run     hotel
-wait    4
+wait    5
 send    N\r
 wait    4
+send    2\r
+wait    5
+send    Alice\r
+wait    4
+send    Bob\r
+wait    8
 
 shot    infocom
 cap     The Infocom Z-machine interpreter playing a real story file --
@@ -135,12 +134,17 @@ send    e2e4\r
 wait    8
 
 shot    poker
-cap     Cold-hand poker dealing a hand.  It wants the word `no', not `N',
-cap     and says so in its own voice.
+cap     Cold-hand poker, one of four SNOBOL4 games here -- the interpreter
+cap     was compiled to C and its games came with it.  It wants the word
+cap     `no', not `N', and says so in its own voice if you try.
 run     poker
-wait    4
+wait    5
 send    no\r
+wait    5
+send    50\r
 wait    6
+send    10\r
+wait    8
 
 shot    postprint
 cap     postprint writes a chess position as PostScript for printing.  It
@@ -156,11 +160,19 @@ run     echo 6 | queens | head -n 21
 wait    8
 
 shot    stone
-cap     The stones game -- take stones from the pile, do not take the last.
+cap     The stones game: take stones from the pile, do not take the last
+cap     one.  Twenty-one stones, the parity chosen, and the first move
+cap     made.  It answers a wrong answer in its own voice.
 run     stone
-wait    4
+wait    5
 send    no\r
 wait    5
+send    21\r
+wait    6
+send    1\r
+wait    6
+send    3\r
+wait    8
 
 shot    tttt
 cap     Tic-tac-toe on a four-by-four board, mid-game.

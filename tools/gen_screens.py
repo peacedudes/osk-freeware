@@ -90,6 +90,11 @@ CAPTIONS = {
     "animal":   ("The guess-the-animal game, which learns a new question "
                  "every time it loses.", "final"),
     "back":     ("Backgammon, with the board drawn in characters.", "final"),
+    "backgammon": ("The OTHER backgammon -- it asks three questions a single "
+                   "key at a time (rules, instructions, colour) and then "
+                   "draws its board frame. The points and the pieces do not "
+                   "arrive on this terminal; `back' is the one that draws a "
+                   "whole board.", "board"),
     "banner":   ("banner, the letters made of their own initials.", "final"),
     "beav":     ("beav, the binary editor, on a file of this disk's own "
                  "documentation: hex on the left, characters on the right.",

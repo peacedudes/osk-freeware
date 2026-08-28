@@ -1,11 +1,20 @@
 name    backgammon
 prog    backgammon
-# Generic: does it draw, and does the screen change when keys arrive?
-rate    0.7
-wait    5
-snap    opening
-wait 3
-wait    2
-snap    played
+# Backgammon asks three questions before it draws anything: the rules, the
+# instructions, and which colour you want.  Its prompts end WITHOUT a
+# newline and it reads a single key, so the answers go one at a time.
+rate    0.8
+wait    6
+snap    asking
+key     n
+wait    3
+key     n
+wait    3
+key     w
+wait    14
+snap    board
+key     \r
+wait    6
 key     \003
-wait    2
+wait    3
+expect  Do you want the rules
