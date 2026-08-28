@@ -55,16 +55,36 @@ Do not stop between items to report; commit and start the next one.
    DOC/STATUS has the whole thing under RUN THE WAY A PERSON RUNS IT, and
    the 51 that remain are almost all already explained further down it.
 
-**B. Tier A, the families with no cases yet** -- Files & directories (35) and
-   Maths & calculators (9) are the two whole categories `tools/datatests/`
-   does not touch. netpbm, encoding, archives, text and modules are done;
-   105 cases, 102 passing.
+**B. ~~Tier A, the families with no cases yet.~~ DONE 2026-08-28** -- files
+   (14 cases) and maths (12). Seven families now, 131 cases, 128 passing;
+   the three failures are the known defects. Writing them found `cvtbase`
+   and `printf` flooding `No more memory`, `divide` being a FILE SPLITTER
+   rather than integer division, `find` refusing the Unix syntax, and
+   `queens` working perfectly when given a NUMBER instead of prose.
 
-**C. `cp` takes a bus error** (vector $02) after printing its usage, and `top`
-   does the same after its heading. Both were scored OK by the bare sweep,
-   which never saw the crash because it came after the output. They are two
-   of eighteen CRASHes in `notes/verify-loaded.tsv`; that list is where to
-   start.
+**C. ~~`cp` takes a bus error.~~ ANSWERED 2026-08-28.** `cp` COPIES
+   correctly -- md5 in, md5 out -- and crashes only when run with no
+   arguments, inside I$Open after printing its usage. `top` is the other way
+   round and has no invocation that gets past its heading. The remaining
+   sixteen crashes are the documented groups.
+
+## WHAT TO DO NEXT, then
+
+**1. The 42 programs with no screen.** `docs/screens.js` covers 876 of 918.
+   What is left is mostly unreachable -- X11 clients with no server, the
+   G-Windows four, netpbm readers for formats no file here is in -- but
+   `tools/screenshots/*.sheet` is where a new one goes, ONE STANZA PER
+   PROGRAM, and `tools/README.md` has the rules.
+
+**2. Tier B is where the plan says the work is** -- 138 programs whose value
+   is in what they do with the keyboard, 76 with a play-test. The screens
+   pass photographed many of them, but a picture is not a judgement:
+   `tools/playtest.py` is the harness that decides, and its false-pass list
+   in this file is what it cost to make it honest.
+
+**3. The three data-test failures are deliberate** -- zip, todos, pnmtosir --
+   and a FOURTH would be a regression. Run `tools/datatest.py --all` before
+   believing anything else.
 
 The three that were here are done and are kept below, because each one found
 something that is worth not re-deriving.

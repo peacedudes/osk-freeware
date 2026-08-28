@@ -72,3 +72,10 @@ case    the-scratch-tree-goes-away-again
 run     /dd/CMDS/rm -rf /dd/tmp/ft
 run     /dd/CMDS/ls /dd/tmp/ft
 expect  216
+
+# `queens' reads the board size on standard input as a NUMBER, which is why
+# every sweep here scored it silent: they all feed the same three lines of
+# prose.  It is in this family because the point is the INPUT, not the file.
+case    queens-solves-a-board-when-given-a-number
+run     echo 5 | /dd/CMDS/queens
+expect  Q# #
