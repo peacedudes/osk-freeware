@@ -20,8 +20,10 @@ send    look\r
 wait    5
 
 shot    forth
-cap     TILE Forth 2.48.  A word is defined and then run: the squares of 1
-cap     to 10, printed by the definition itself.
+cap     TILE Forth 2.48: two numbers added, then a word DEFINED and run --
+cap     the squares of 1 to 10, printed by the definition itself -- and then
+cap     `words', which is Forth showing you its whole vocabulary with the
+cap     one you just made at the head of it.
 run     forth
 wait    3
 send    2 3 + . cr\r
@@ -29,8 +31,8 @@ wait    2
 send    : squares 11 1 do i dup * . loop cr ;\r
 wait    2
 send    squares\r
-wait    3
-send    32 0 do i emit loop cr\r
+wait    4
+send    words\r
 wait    3
 quit    bye\r
 
@@ -55,9 +57,9 @@ send    X is 6*7, write(X), nl.\r
 wait    6
 
 shot    xlisp
-cap     XLISP 2.1, David Betz's Lisp.  Defining factorial recursively and
-cap     mapping it over a list -- 32-bit integers, so 20! overflows and it
-cap     says so by wrapping.
+cap     XLISP 2.1, David Betz's Lisp: factorial defined recursively, mapped
+cap     over ten numbers, and a dolist walking a list of symbols.  Three
+cap     forms typed at its prompt, three answers.
 run     xlisp
 wait    2
 send    (defun fact (n) (if (< n 2) 1 (* n (fact (1- n)))))\r

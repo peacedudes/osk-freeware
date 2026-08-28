@@ -1,12 +1,24 @@
-$ forth
-TILE Forth version 2.48, Copyright (c) 1989, by Mikael Patel
 2 3 + . cr
 5
 : squares 11 1 do i dup * . loop cr ;
 squares
 1 4 9 16 25 36 49 64 81 100
-32 0 do i emit loop cr
-do ??
-i ??
-vinterpret: stack underflow
-loop ??
+words
+VOCABULARY forth DEFINITIONS
+squares        argv           argc           field          vocabulary
+constant       variable       create         :              forward
+entry          words          forget         find           lookup
+'              restore        only           definitions    last
+current        context        word           ]              [
+compiling      state          private        compilation    execution
+immediate      allot          ,              \              (
+#path          #include       #ifundef       #ifdef         #then
+#else          #if            .name          >body          tib
+pad            here           abort          quit           interpret
+forth-83       span           expect         key            spaces
+space          type           emit           cr             .(
+ascii          u.             .              bye            execute
+?number        #>             sign           hold           #s
+#              <#             convert        hex            decimal
+octal          binary         base           -trailing      count
+fill           cmove>
