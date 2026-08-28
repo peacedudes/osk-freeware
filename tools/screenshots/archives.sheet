@@ -129,3 +129,29 @@ run     /dd/CMDS/REBUILT/zoo_2.1 a /dd/tmp/z2.zoo /dd/SYS/motd
 wait    10
 run     /dd/CMDS/booz -l /dd/tmp/z2.zoo
 wait    8
+
+
+shot    zip
+cap     Info-ZIP's zip DEFLATES correctly and then cannot rename its
+cap     temporary file over the target -- `_Z000003' is left behind and
+cap     the archive is never written.  Two directories were tried.  This
+cap     is one of the three failures the data tests keep failing on
+cap     purpose; `unzip' reads other people's archives perfectly well.
+run     /dd/CMDS/mkdir /dd/tmp/zt
+wait    6
+run     /dd/CMDS/cp /dd/SYS/motd /dd/tmp/zt/motd
+wait    6
+run     /dd/CMDS/zip /dd/tmp/zt/test.zip /dd/tmp/zt/motd
+wait    15
+run     /dd/CMDS/dir /dd/tmp/zt
+wait    10
+
+
+shot    alternates
+for     diff_1.1 gtar m4_0.5 lharcs compress_4.0 sed_1.06 zoo_2.1
+cap     CMDS/REBUILT keeps a second build of several programs, because
+cap     they do not all behave the same.  Each one says which it is.
+run     /dd/CMDS/REBUILT/diff_1.1 -v
+wait    10
+run     /dd/CMDS/REBUILT/gtar --version
+wait    10

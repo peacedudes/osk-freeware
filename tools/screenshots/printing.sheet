@@ -84,3 +84,16 @@ run     /dd/CMDS/splstat
 wait    6
 run     /dd/CMDS/splman -?
 wait    6
+
+
+shot    spooler
+for     splman splprt splstat gs33
+cap     Carl Kreider's print spooler -- manager, printer process and
+cap     status -- with its queue at /dd/SPL, and the older Ghostscript
+cap     beside it.
+run     /dd/CMDS/splstat
+wait    8
+run     /dd/CMDS/splprt
+wait    8
+run     /dd/CMDS/gs33 -h | /dd/CMDS/head -n 8
+wait    12

@@ -1,0 +1,13 @@
+/dd/CMDS/msinfo a: | /dd/CMDS/head -n 12
+device information:
+===================
+sectors per track: 18
+heads: 2
+cylinders: 80
+
+mformat command line: mformat -t 80 -h 2 -s 18 a:
+
+bootsector information
+======================
+filename="/dd/DOS/a.img"
+banner:"BSD  4.4"

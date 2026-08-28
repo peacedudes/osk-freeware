@@ -57,3 +57,12 @@ send    2\r
 wait    1
 send    q\r
 wait    2
+
+
+shot    gcl
+for     gcl scqref
+cap     gcl, a general calculation utility, and scqref -- the quick
+cap     reference card for `sc', which is a document rather than a
+cap     program and prints itself.
+run     /dd/CMDS/scqref | /dd/CMDS/head -n 16
+wait    12

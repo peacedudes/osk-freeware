@@ -1,0 +1,12 @@
+/dd/CMDS/fgrep chess /dd/DOC/INDEX | /dd/CMDS/head -n 5
+  getenv          getsys          ggrep           gnuchess
+  gnuchessn       gnuchessr       gnuplot         gothic
+from.  Its sibling ularn is complete and also runs.  gnuchessc and
+ *gnuchess       GNU Chess
+ *gnuchessn      GNU Chess (ncurses)
+/dd/CMDS/gdd: unrecognized option `/dd/SYS/motd'
+Usage: /dd/CMDS/gdd [if=file] [of=file] [ibs=bytes] [obs=bytes] [bs=bytes] [cbs]
+       [skip=blocks] [seek=blocks] [count=blocks]
+       [conv={ascii,ebcdic,ibm,block,unblock,lcase,ucase,swab,noerror,sync}]
+Numbers can be followed by a multiplier:
+b=512, k=1024, w=2, xm=number m

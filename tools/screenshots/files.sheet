@@ -139,3 +139,15 @@ cap     the RAW DEVICE (/dd@) to walk the directory structure itself, and
 cap     os9exec does not offer the raw device of a host directory.
 run     /dd/CMDS/tree /dd/SYS
 wait    8
+
+
+shot    filetools
+for     dback delbak eunlink undel EditLibr Libr2Ascii PrintLabels
+cap     The last of the file shelf: backup, un-delete, and the two Home
+cap     Librarian programs that get a catalogue in and out of plain text.
+run     /dd/CMDS/delbak -?
+wait    8
+run     /dd/CMDS/undel
+wait    8
+run     /dd/CMDS/Libr2Ascii
+wait    8

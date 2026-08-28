@@ -125,3 +125,15 @@ run     /dd/CMDS/xcrypt -k=freeware /dd/tmp/x.enc /dd/tmp/x.dec
 wait    6
 run     /dd/CMDS/chksum /dd/SYS/motd /dd/tmp/x.dec
 wait    5
+
+
+shot    macfiles
+for     macsave macstream macunpack UnMacpack unsit hexbin macbin
+cap     The Macintosh set: StuffIt, MacBinary, BinHex and MacPack, from
+cap     when a Mac file had two forks and neither survived a plain copy.
+run     /dd/CMDS/unsit
+wait    8
+run     /dd/CMDS/macunpack
+wait    8
+run     /dd/CMDS/UnMacpack
+wait    8

@@ -1,18 +1,11 @@
-/dd/CMDS/msattrib +r a:/DOCS/WELCOME.TXT
-Path component "DOCS" is not a directory
-msattrib: File "a:/DOCS/WELCOME.TXT" not found
- Volume in drive A is FREEWARE
+/dd/CMDS/msattrib +r a:/DOCS/README.TXT
+  A    R     A:/DOCS/README.TXT
+ Volume in drive A is OS9FREEWARE
  Volume Serial Number is 35D7-0A00
- Directory for A:/
+ Directory for A:/DOCS
 
-File "DOCS" not found
-                         1 457 152 bytes free
-
-msdel: File "a:HOLIDAYS.TXT" not found
- Volume in drive A is FREEWARE
- Volume Serial Number is 35D7-0A00
- Directory for A:/
-
-readme   txt       139 08-02-2026   2:22a readme.txt
-        1 file(s)               139 bytes
-                          1 457 152 bytes free
+.            <DIR>     08-27-2026  10:49p
+..           <DIR>     08-27-2026  10:49p
+README   TXT        40 08-27-2026  10:49p
+        3 file(s)                40 bytes
+                          1 454 592 bytes free

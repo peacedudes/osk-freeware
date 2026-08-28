@@ -67,3 +67,14 @@ wait    2
 send    (dolist (x '(alpha beta gamma)) (print (list x (length (symbol-name x)))))\r
 wait    3
 quit    (exit)\r
+
+
+shot    csl-mismatch
+for     lua runc
+cap     Two programs built against a LATER csl than the edition 16 this
+cap     disk ships.  They stop before they start, and no amount of
+cap     arranging the disk will change it -- see DOC/STATUS.
+run     /dd/CMDS/lua
+wait    10
+run     /dd/CMDS/runc
+wait    10

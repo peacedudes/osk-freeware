@@ -1,0 +1,9 @@
+/dd/CMDS/splstat
+Aladdin Ghostscript 3.33 (4/10/1995)
+Copyright (C) 1995 Aladdin Enterprises, Menlo Park, CA.  All rights reserved.
+Usage: gs [switches] [file1.ps file2.ps ...]
+Available devices:
+        kwin deskjet djet500 epson epsonc eps9mid eps9high ibmpro
+        st800 ap3250 laserjet ljetplus ljet2p ljet3 ljet4 cdeskjet
+        cdjcolor cdjmono cdj550 pj pjxl pjxl300 bj10e bj200
+        dfaxhigh

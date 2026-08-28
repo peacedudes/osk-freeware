@@ -1,0 +1,22 @@
+[1{1}]  [OK]
+      0      0      0
+[TeX82 DVI Translator Version 2.10b]
+[PostScript [Apple LaserWriter laser printer]]
+[Input from DVI file story.dvi]
+[Output on file story.dvi_alw]
+[1 pages]
+[Log file [story.dvi_err] created]
+
+Font file [cmsl10 [300 dpi]] could not be opened; 0 font files are open
+Proceeding with zero size characters for this font
+Current TeX page counters: [0]
+
+Font file [cmbx10 [300 dpi]] could not be opened; 0 font files are open
+Proceeding with zero size characters for this font
+Current TeX page counters: [0]
+
+Font file [cmr10 [300 dpi]] could not be opened; 0 font files are open
+Proceeding with zero size characters for this font
+Current TeX page counters: [0]
+[1{1}]  [OK]
+      0      0      0

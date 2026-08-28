@@ -1,6 +1,22 @@
-/dd/CMDS/mswrite /dd/SYS/motd a:RAW.TXT
+File "/dd/tmp/raw.out" exists, overwrite (y/n) ?
+File "/dd/tmp/raw.out" exists, overwrite (y/n) ?
+File "/dd/tmp/raw.out" exists, overwrite (y/n) ?
+File "/dd/tmp/raw.out" exists, overwrite (y/n) ?
+File "/dd/tmp/raw.out" exists, overwrite (y/n) ?
+File "/dd/tmp/raw.out" exists, overwrite (y/n) ?
+File "/dd/tmp/raw.out" exists, overwrite (y/n) ?
+File "/dd/tmp/raw.out" exists, overwrite (y/n) ?
+File "/dd/tmp/raw.out" exists, overwrite (y/n) ?
+File "/dd/tmp/raw.out" exists, overwrite (y/n) ?
+File "/dd/tmp/raw.out" exists, overwrite (y/n) ?
+File "/dd/tmp/raw.out" exists, overwrite (y/n) ?
+File "/dd/tmp/raw.out" exists, overwrite (y/n) ?
+File "/dd/tmp/raw.out" exists, overwrite (y/n) ?
+File "/dd/tmp/raw.out" exists, overwrite (y/n) ?
+File "/dd/tmp/raw.out" exists, overwrite (y/n) ?
+File "/dd/tmp/raw.out" exists, overwrite (y/n) ?
+File "/dd/tmp/raw.out" exists, overwrite (y/n) ?
+File "/dd/tmp/raw.out" exists, overwrite (y/n) ?
+File "/dd/tmp/raw.out" exists, overwrite (y/n) ?
+File "/dd/tmp/raw.out" exists, overwrite (y/n) ?
 Copying RAW.TXT
-4b68af85
-4b68af85
-========
-9d870070

@@ -1,78 +1,105 @@
 # mtools 3.6: MS-DOS media, read and written from OS-9.
+#
+# THESE STANZAS RUN IN ORDER AND DEPEND ON EACH OTHER, and each one clears
+# up after itself so the sheet can be run again and mean the same thing.
+# When a regroup once sorted them alphabetically, three screens came out as
+# mtools asking what to do about files a previous run had left.
+#
+# The image is /dd/DOS/a.img, configured as drive a: in SYS/mtools.conf.
 
-shot    msattrib
-for     msattrib msdel msrd msdeltree
-cap     DOS attributes set and read back, then the file and the directory
-cap     removed again.
-run     /dd/CMDS/msattrib +r a:/DOCS/WELCOME.TXT
-wait    8
-run     /dd/CMDS/msdir a:/DOCS
-wait    8
-run     /dd/CMDS/msdel a:HOLIDAYS.TXT
-wait    8
-run     /dd/CMDS/msdir a:
-wait    8
+shot    msinfo
+for     msinfo mslabel msformat
+cap     What the DOS floppy image is, read out of its own boot sector, and
+cap     the label put on it.  msformat will NOT make one: bare it refuses
+cap     non-removable media, and given the geometry it aborts on an illegal
+cap     instruction.  The image that ships is the one you get.
+run     /dd/CMDS/mslabel a:OS9FREEWARE
+wait    10
+run     /dd/CMDS/msinfo a: | /dd/CMDS/head -n 13
+wait    12
+run     /dd/CMDS/msformat a:
+wait    12
 
 shot    mscopy
-for     mscopy msdir mstype
-cap     Writing files onto the DOS disk, listing them with DOS's own 8.3
-cap     names, and reading one back.
+for     mscopy msdir mstype msdel
+cap     Writing two files onto the DOS disk, listing them with DOS's own
+cap     8.3 names and free-space line, and reading one back.  The deletes
+cap     first are what make this repeatable: mtools stops to ask before it
+cap     overwrites, and a stanza that stops to ask eats the rest of its
+cap     own sheet.
+run     /dd/CMDS/msdel a:MOTD.TXT
+wait    8
 run     /dd/CMDS/mscopy /dd/SYS/motd a:MOTD.TXT
 wait    10
-run     /dd/CMDS/mscopy /dd/SYS/holidays a:HOLIDAYS.TXT
-wait    10
 run     /dd/CMDS/msdir a:
-wait    8
+wait    10
 run     /dd/CMDS/mstype a:MOTD.TXT
-wait    8
-
-shot    msdir
-cap     Writing a file onto the DOS disk and reading the directory back --
-cap     8.3 names, DOS attributes, and free space in DOS's own words.
-run     /dd/CMDS/mscopy /dd/SYS/motd a:MOTD.TXT
-wait    8
-run     /dd/CMDS/msdir a:
-wait    8
-
-shot    msformat
-cap     Formatting an MS-DOS floppy image and then asking what it is.  The
-cap     drives a: and b: are configured in SYS/mtools.conf.
-run     /dd/CMDS/msformat a:
 wait    10
-run     /dd/CMDS/msinfo a:
-wait    8
 
 shot    msmd
-for     msmd mscd msmove msren
-cap     Making a directory on the DOS disk, moving a file into it and
-cap     renaming it -- md, move and ren, spelled the DOS way.
+for     msmd mscd msrd msdeltree
+cap     A directory made on the DOS disk, a file copied into it, and then
+cap     the whole tree deleted again -- md, cd, rd and deltree, spelled the
+cap     DOS way.
+run     /dd/CMDS/msdeltree a:/DOCS
+wait    10
 run     /dd/CMDS/msmd a:/DOCS
-wait    8
-run     /dd/CMDS/msmove a:MOTD.TXT a:/DOCS
-wait    8
-run     /dd/CMDS/msren a:/DOCS/MOTD.TXT WELCOME.TXT
-wait    8
+wait    10
+run     /dd/CMDS/mscopy /dd/SYS/motd a:/DOCS/README.TXT
+wait    10
 run     /dd/CMDS/msdir a:/DOCS
-wait    8
+wait    10
+
+shot    msattrib
+for     msattrib
+cap     A DOS attribute set and read back: R is the read-only bit, and
+cap     msdir shows it.
+run     /dd/CMDS/msattrib +r a:/DOCS/README.TXT
+wait    10
+run     /dd/CMDS/msattrib a:/DOCS/README.TXT
+wait    10
+run     /dd/CMDS/msdir a:/DOCS
+wait    10
 
 shot    msread
 for     msread mswrite msbadblocks mstoolstest
-cap     msread and mswrite are the raw pair -- a whole file in and out
-cap     without the DOS filename rules getting involved.
+cap     msread and mswrite are the raw pair -- a whole file in and out with
+cap     none of the DOS filename rules involved.  The checksums either side
+cap     show it came back unchanged.
+run     /dd/CMDS/msdel a:RAW.TXT
+wait    8
 run     /dd/CMDS/mswrite /dd/SYS/motd a:RAW.TXT
-wait    10
+wait    12
 run     /dd/CMDS/msread a:RAW.TXT /dd/tmp/raw.out
-wait    10
+wait    12
 run     /dd/CMDS/chksum /dd/SYS/motd /dd/tmp/raw.out
-wait    8
-
-shot    mstype
-cap     mstype reading the file back off the DOS disk.
-run     /dd/CMDS/mstype a:MOTD.TXT
-wait    8
+wait    10
 
 shot    mtools
-cap     The mtools front end, listing the sub-commands that ship with it --
-cap     eighteen of them, each a separate program on this disk.
+for     mtools mscheck
+cap     The mtools front end, listing the eighteen sub-commands that ship
+cap     with it -- each one a separate program on this disk.
 run     /dd/CMDS/mtools
-wait    5
+wait    10
+
+shot    msmove
+for     msmove msren
+cap     msmove asks before it overwrites, and there is no flag that stops it
+cap     asking.  That is why this stanza is LAST in the sheet: a program
+cap     that stops to ask reads the next commands as answers, and the rest
+cap     of the sheet is gone.  Answered `q' here.
+run     /dd/CMDS/msmove a:MOTD.TXT a:/
+wait    10
+send    q\r
+wait    6
+
+
+shot    dosmore
+for     mscheck msinfo mslabel msdeltree
+cap     The last of mtools: msinfo on the floppy image this session made,
+cap     and mscheck -- which is a ksh script, and ksh is starred, so it
+cap     needs cio present.  It is.
+run     /dd/CMDS/msinfo a: | /dd/CMDS/head -n 12
+wait    12
+run     /dd/CMDS/mslabel a:FREEWARE
+wait    10

@@ -1,23 +1,11 @@
-s)kip S)kip-all q)uit (aArRsSq): /dd/CMDS/msdir a:/DOCS
+/dd/CMDS/msdeltree a:/DOCS
+msdeltree: File "a:/DOCS" not found
+ Volume in drive A is OS9FREEWARE
+ Volume Serial Number is 35D7-0A00
+ Directory for A:/DOCS
 
-Long file name "" is reserved.
-a)utorename A)utorename-all r)ename R)ename-all
-s)kip S)kip-all q)uit (aArRsSq):
-Long file name "" is reserved.
-a)utorename A)utorename-all r)ename R)ename-all
-s)kip S)kip-all q)uit (aArRsSq):
-Long file name "" is reserved.
-a)utorename A)utorename-all r)ename R)ename-all
-s)kip S)kip-all q)uit (aArRsSq):
-Long file name "" is reserved.
-a)utorename A)utorename-all r)ename R)ename-all
-s)kip S)kip-all q)uit (aArRsSq):
-Long file name "" is reserved.
-a)utorename A)utorename-all r)ename R)ename-all
-s)kip S)kip-all q)uit (aArRsSq):
-Long file name "" is reserved.
-a)utorename A)utorename-all r)ename R)ename-all
-s)kip S)kip-all q)uit (aArRsSq):
-Long file name "" is reserved.
-a)utorename A)utorename-all r)ename R)ename-all
-s)kip S)kip-all q)uit (aArRsSq):
+.            <DIR>     08-27-2026  10:49p
+..           <DIR>     08-27-2026  10:49p
+README   TXT        40 08-27-2026  10:49p
+        3 file(s)                40 bytes
+                          1 454 592 bytes free

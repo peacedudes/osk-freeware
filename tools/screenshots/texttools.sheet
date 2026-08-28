@@ -420,3 +420,45 @@ shot    wc
 cap     wc over the collection's own documents.
 run     /dd/CMDS/wc /dd/DOC/INDEX /dd/DOC/ORIGINS /dd/DOC/DEPENDS /dd/SOURCES.txt
 wait    6
+
+
+shot    dvidrivers
+for     dvialw dvidjp dvieps dviimp dvijep dvijet dvilj2 dvimac dvioki dvitos dvips
+cap     Eleven DVI drivers, one per printer that mattered in 1990:
+cap     Apple LaserWriter, DeskJet, Epson, Imagen, LaserJet, Macintosh,
+cap     Okidata, PostScript.  Each turns the same DVI into that machine's
+cap     own language, and `wc' shows what each one made of it.
+run     virtex "&plain" /dd/SYS/TEX/SAMPLES/story.tex
+wait    40
+send    \134end\r
+wait    15
+run     dvieps story.dvi | /dd/CMDS/wc
+wait    20
+run     dvialw story.dvi | /dd/CMDS/wc
+wait    20
+
+
+shot    texfonts
+for     gftopk pktogf gftype pktype vftovp vptovf tftopl pltotf virmf inimf
+cap     TeX's font tools.  tftopl turns a binary font metric into readable
+cap     property lists and pltotf turns it back -- the round trip that lets
+cap     you edit a font's metrics by hand.
+run     tftopl /dd/SYS/TEX/FONTS/TFM/cmr10.tfm > /dd/tmp/cmr10.pl
+wait    20
+run     pltotf /dd/tmp/cmr10.pl /dd/tmp/cmr10.tfm
+wait    20
+run     /dd/CMDS/ls -l /dd/SYS/TEX/FONTS/TFM/cmr10.tfm /dd/tmp/cmr10.tfm
+wait    10
+
+
+shot    misc-text
+for     ediff fgrep gdd tcmp wc.cio
+cap     Four more text tools, and `wc.cio' -- the archived build of wc,
+cap     kept because it does NOT work: it prints nothing for a file
+cap     argument, which is why CMDS/wc is a different binary.
+run     /dd/CMDS/fgrep chess /dd/DOC/INDEX | /dd/CMDS/head -n 5
+wait    10
+run     /dd/CMDS/gdd /dd/SYS/motd | /dd/CMDS/head -n 6
+wait    10
+run     /dd/CMDS/REBUILT/wc.cio /dd/SYS/motd
+wait    10

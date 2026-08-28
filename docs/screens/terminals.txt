@@ -1,0 +1,4 @@
+/dd/CMDS/fkeys
+/dd/CMDS/initvdu
+/dd/CMDS/initvdu/dd/CMDS/wysetime
+/dd/CMDS/wysetime

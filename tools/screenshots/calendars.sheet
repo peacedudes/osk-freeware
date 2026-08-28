@@ -39,3 +39,13 @@ cap     database that ship in SYS.
 run     /dd/CMDS/ephem -c /dd/SYS/ephem.cfg -d /dd/SYS/ephem.db
 wait    12
 quit    q
+
+
+shot    setimex
+for     setimex today
+cap     setimex sets the clock from a hardware clock and reports what it
+cap     found; `today' beside it prints the date in words.
+run     /dd/CMDS/setimex
+wait    8
+run     /dd/CMDS/today
+wait    10

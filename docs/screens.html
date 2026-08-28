@@ -649,6 +649,32 @@ Addr   0 1  2 3  4 5  6 7  8 9  A B  C D  E F 0 2 4 6 8 A C E
 00C0  5800 4A68 FFFE 660A 5988 49E8 FFFC 7001 X.Jh..f.Y.I...p.
 00D0  6026 4235 58FF 204D D7EB 000C 42A7 2F0B `&amp;B5X. M....B./.</pre>
 </div>
+<div class="shot" id="s-dvidrivers">
+<h3>dvidrivers</h3>
+<p>Eleven DVI drivers, one per printer that mattered in 1990: Apple LaserWriter, DeskJet, Epson, Imagen, LaserJet, Macintosh, Okidata, PostScript.  Each turns the same DVI into that machine's own language, and `wc' shows what each one made of it.</p>
+<pre>[1{1}]  [OK]
+      0      0      0
+[TeX82 DVI Translator Version 2.10b]
+[PostScript [Apple LaserWriter laser printer]]
+[Input from DVI file story.dvi]
+[Output on file story.dvi_alw]
+[1 pages]
+[Log file [story.dvi_err] created]
+
+Font file [cmsl10 [300 dpi]] could not be opened; 0 font files are open
+Proceeding with zero size characters for this font
+Current TeX page counters: [0]
+
+Font file [cmbx10 [300 dpi]] could not be opened; 0 font files are open
+Proceeding with zero size characters for this font
+Current TeX page counters: [0]
+
+Font file [cmr10 [300 dpi]] could not be opened; 0 font files are open
+Proceeding with zero size characters for this font
+Current TeX page counters: [0]
+[1{1}]  [OK]
+      0      0      0</pre>
+</div>
 <div class="shot" id="s-dvitype">
 <h3>dvitype</h3>
 <p>dvitype reads the DVI file back and prints what is in it: page by page, the font changes and the character positions TeX computed.</p>
@@ -857,6 +883,22 @@ Transcript written on small.log.</pre>
 <p>Basser Lout 2.05, a document formatter in the TeX tradition, saying what it is.</p>
 <pre>/dd/CMDS/lout -V
 Basser Lout Version 2.05 (July 1993)</pre>
+</div>
+<div class="shot" id="s-misc-text">
+<h3>misc-text</h3>
+<p>Four more text tools, and `wc.cio' -- the archived build of wc, kept because it does NOT work: it prints nothing for a file argument, which is why CMDS/wc is a different binary.</p>
+<pre>/dd/CMDS/fgrep chess /dd/DOC/INDEX | /dd/CMDS/head -n 5
+  getenv          getsys          ggrep           gnuchess
+  gnuchessn       gnuchessr       gnuplot         gothic
+from.  Its sibling ularn is complete and also runs.  gnuchessc and
+ *gnuchess       GNU Chess
+ *gnuchessn      GNU Chess (ncurses)
+/dd/CMDS/gdd: unrecognized option `/dd/SYS/motd'
+Usage: /dd/CMDS/gdd [if=file] [of=file] [ibs=bytes] [obs=bytes] [bs=bytes] [cbs]
+       [skip=blocks] [seek=blocks] [count=blocks]
+       [conv={ascii,ebcdic,ibm,block,unblock,lcase,ucase,swab,noerror,sync}]
+Numbers can be followed by a multiplier:
+b=512, k=1024, w=2, xm=number m</pre>
 </div>
 <div class="shot" id="s-pep">
 <h3>pep</h3>
@@ -1106,6 +1148,13 @@ This is TeX, C Version 3.14
 Output written on story.dvi (1 page, 668 bytes).
 Transcript written on story.log.</pre>
 </div>
+<div class="shot" id="s-texfonts">
+<h3>texfonts</h3>
+<p>TeX's font tools.  tftopl turns a binary font metric into readable property lists and pltotf turns it back -- the round trip that lets you edit a font's metrics by hand.</p>
+<pre>tftopl /dd/SYS/TEX/FONTS/TFM/cmr10.tfm &gt; /dd/tmp/cmr10.pl
+-rw-rw-rw-   1 0        0            1296 Aug  3 19:00 /dd/SYS/TEX/FONTS/TFM/cmm
+-rw-------   1 0        0            1296 Aug 27 22:37 /dd/tmp/cmr10.tfm</pre>
+</div>
 <div class="shot" id="s-tformat">
 <h3>tformat</h3>
 <p>tformat, the SNOBOL4 text formatter.</p>
@@ -1312,6 +1361,27 @@ Directory name                      Bytes    kBytes   Sectors    File #
 /dd/CMDS/GAMES                    3035872      2965     11859        83
 
 Total of 2965 kBytes (11859 sectors) in 1 directories and 83 files.</pre>
+</div>
+<div class="shot" id="s-filetools">
+<h3>filetools</h3>
+<p>The last of the file shelf: backup, un-delete, and the two Home Librarian programs that get a catalogue in and out of plain text.</p>
+<pre>/dd/CMDS/delbak -?
+Usage: delbak [-options] [directory] [-options]
+     -n      = no recursion
+     -l      = list only
+     -f=&lt;ext&gt;= extension to delete, default _bak
+     -?      = report help
+
+
+U N D E L E T E    V1.1   by  Stephan Enzler
+--------------------------------------------
+
+
+Please Enter FULL Pathname of Directory
+or press RETURN for current Directory) : /dd/CMDS/Libr2Ascii
+Error #000:214 (E_FNA) File Not Accessible
+
+ERROR undel: opening Directory /dd/CMDS/Libr2Ascii</pre>
 </div>
 <div class="shot" id="s-find">
 <h3>find</h3>
@@ -1854,6 +1924,13 @@ There is a carbide-flame lamp here.
 There is a copy of a newspaper here.
 &gt;</pre>
 </div>
+<div class="shot" id="s-csl-mismatch">
+<h3>csl-mismatch</h3>
+<p>Two programs built against a LATER csl than the edition 16 this disk ships.  They stop before they start, and no amount of arranging the disk will change it -- see DOC/STATUS.</p>
+<pre>/dd/CMDS/lua
+**** csl traphandler mismatch ****
+**** csl traphandler mismatch ****</pre>
+</div>
 <div class="shot" id="s-forth">
 <h3>forth</h3>
 <p>TILE Forth 2.48.  A word is defined and then run: the squares of 1 to 10, printed by the definition itself.</p>
@@ -1919,6 +1996,32 @@ NIL
 &gt;</pre>
 </div>
 <h2 class="cat" id="archives-compression">Archives &amp; compression</h2>
+<div class="shot" id="s-alternates">
+<h3>alternates</h3>
+<p>CMDS/REBUILT keeps a second build of several programs, because they do not all behave the same.  Each one says which it is.</p>
+<pre>     -B          ignore blank lines
+     -c          generate context-style output
+     -C          context-style and show name of last C function
+     -d          don't discard lines (slow)
+     -e          generate ed-script output
+     -f          sorted ed-script
+     -F &lt;regexp&gt; show previous line of match (only with -c)
+     -H          use heuristics
+     -i          ignore case
+     -I &lt;regexp&gt; ignore lines matching regexp
+     -l          paginate output through 'pr'
+     -n          generate an reverse ed-script for RCS
+     -N          suppress 'Only in &lt;dir&gt;'-messages
+     -r          compare directories recursively
+     -s          announce same files
+     -S &lt;fname&gt;  (re-)start comparision of dirs with fname
+     -t          expand tabs to spaces in output
+     -T          use tabs in output
+     -w          totally ignore spaces
+  Adapted to OS-9/68k by Stephan Paschedag
+/dd/CMDS/REBUILT/gtar: unrecognized option `--'
+/dd/CMDS/REBUILT/gtar: Unknown option.  Use '/dd/CMDS/REBUILT/gtar +help' for a.</pre>
+</div>
 <div class="shot" id="s-ar">
 <h3>ar</h3>
 <p>Carl Kreider's ar, the OS-9 archive librarian.  Its commands take a leading dash: -u to add, -t for the table of contents.</p>
@@ -2081,6 +2184,21 @@ modifiers:
   -j  junk paths (don't make directories)    -U  don't make names lowercase
   -q  quiet mode (-qq =&gt; quieter)</pre>
 </div>
+<div class="shot" id="s-zip">
+<h3>zip</h3>
+<p>Info-ZIP's zip DEFLATES correctly and then cannot rename its temporary file over the target -- `_Z000003' is left behind and the archive is never written.  Two directories were tried.  This is one of the three failures the data tests keep failing on purpose; `unzip' reads other people's archives perfectly well.</p>
+<pre>/dd/CMDS/mkdir /dd/tmp/zt
+adding dd/tmp/zt/motd (stored 0%)
+zip warning: new zip file left as: /dd/tmp/zt/_Z000004
+zip error: file not found
+zip error: Could not create output file (was replacing the original zip file)
+
+Directory of "/dd/tmp/zt" 22:40:35  08/27/126
+
+_Z000004        motd
+
+Total of 2 files.</pre>
+</div>
 <div class="shot" id="s-zoo">
 <h3>zoo</h3>
 <p>zoo, packing and then listing -- compression ratio per member.</p>
@@ -2203,6 +2321,30 @@ Can't open file ??
 f466775e
 ========
 b52f8708</pre>
+</div>
+<div class="shot" id="s-macfiles">
+<h3>macfiles</h3>
+<p>The Macintosh set: StuffIt, MacBinary, BinHex and MacPack, from when a Mac file had two forks and neither survived a plain copy.</p>
+<pre>/dd/CMDS/unsit
+Unsit V1.15f Update by Nigel Perry
+             Orginal by Allen G Weber
+             OSK Port by Dean Leiber
+
+Usage: Unsit [-rdulM] [-vqfm] filename
+
+ Options:
+             -r = Extract Resource Fork only
+             -d = Extract Data Fork only
+             -u = Mac -&gt; Unix Text
+             -l = List Archive Contents
+             -M = Macbinary
+ Modifiers:
+             -v = Verbose
+             -q = Query (Prompt for Y/N)
+             -m = Input Macbinary [Default]
+             -f = Flatten Archive
+/dd/CMDS/UnMacpack
+Unrecognized archive type</pre>
 </div>
 <div class="shot" id="s-md5">
 <h3>md5</h3>
@@ -2491,6 +2633,14 @@ Checking /dd/USR/TTERM...Creating
 Checking /dd/USR/TTERM/tester.dial...Creating
 
 Directory and File structure is correct.</pre>
+</div>
+<div class="shot" id="s-terminals">
+<h3>terminals</h3>
+<p>The small terminal utilities.  cls clears; setterm and fkeys ask the terminal what it is and program its keys; the Wyse pair want real Wyse hardware and say so.</p>
+<pre>/dd/CMDS/fkeys
+/dd/CMDS/initvdu
+/dd/CMDS/initvdu/dd/CMDS/wysetime
+/dd/CMDS/wysetime</pre>
 </div>
 <div class="shot" id="s-uuclean">
 <h3>uuclean</h3>
@@ -4647,6 +4797,33 @@ error: either &lt;text&gt; or -z must be specified</pre>
  /                   \                   \      I
                       -----------------------\/-----------------------</pre>
 </div>
+<div class="shot" id="s-suicide-variants">
+<h3>suicide-variants</h3>
+<p>Two variants of the rooftop animation, caught mid-fall.</p>
+<pre>-------------------Aaaaauuuuuuuugggggggggggggggghhhhhhhhhhhhhhhhhhhhh!!!!!!!!!!
+| ---             |
+| | |             |
+| ---             |
+|                 |
+|      ---        |---------------
+|      | |                        |
+|      ---                        |
+|                 ---             |
+|                 | |             |
+|                 ---             |
+|      ---              ---       |
+|      | |              | |       |
+|      ---              ---       |
+|                                 |
+|                                 |
+|                 ---             |
+|                 | |             |
+|                 ---             |
+|    -----                        |
+|    |   |                        |      \  /
+|    |   |                        |        ===o
+----------------------------------------- / \ /-----------------------</pre>
+</div>
 <div class="shot" id="s-worms">
 <h3>worms</h3>
 <p>Worms, a screen toy.</p>
@@ -4960,6 +5137,27 @@ Fatal Game Error - Unexpected signal received</pre>
 <pre>the quick brown fox jumps over the lazy dog and the quick red fox
 runs over the lazy brown dog while the quick dog naps</pre>
 </div>
+<div class="shot" id="s-weather2">
+<h3>weather2</h3>
+<p>Two more regions for the weather simulator, and the second random story generator.</p>
+<pre>/dd/CMDS/georgia | /dd/CMDS/head -n 10
+                                                                  Snow
+Year   1    Weather        Sky   Temperature    Precip      Wind  Depth  Notes
+January
+   1       Overcast       Mist    Fair ( 50)      None      Calm         New Ye)
+   2       Overcast  Heavy Fog  Chilly ( 30)      None      Calm
+   3          Clear      Clear    Warm ( 65)      None      Calm
+   4          Clear      Clear    Fair ( 40)      None      Calm
+   5          Clear      Clear    Fair ( 40)      None     Light
+   6  Precipitation       Mist    Fair ( 50)     Heavy      Calm         Rain -t
+   7  Precipitation       Mist    Fair ( 50)  Sprinkle      Calm         Rain -,
+Caqij
+Ydoka
+Gejov
+Hapuz
+Ko'it
+Hohirexat</pre>
+</div>
 <h2 class="cat" id="system-modules">System &amp; modules</h2>
 <div class="shot" id="s-about">
 <h3>about</h3>
@@ -5225,6 +5423,23 @@ Device       Fmgr      Driver      Capabilities
 <pre>/dd/CMDS/dload -?
 Syntax: dload &lt;filename&gt;
 Function: loads datafile into datamodule</pre>
+</div>
+<div class="shot" id="s-drivers">
+<h3>drivers</h3>
+<p>The MM/1 drivers -- keyboard, mouse, floppy, SCSI, sound and the windowing terminal.  They are device drivers for hardware that is not here, so again `modinfo' is what there is to show: type $C (device driver) rather than $1 (program).</p>
+<pre>/dd/CMDS/modinfo /dd/CMDS/MM1/keydrv.mm1 | /dd/CMDS/head -n 12
+--------------------------- /dd/CMDS/MM1/keydrv.mm1  - - - - - - - - - - - - - -
+Module name           = keydrv
+System revision       = 1
+Module size           = 1474
+Owner Id              = 0.0
+Offset to module name = 000005b6H
+Access permission     = e-re-re-r
+Type/Language          = 0c01H  System                 68000 Object Code Module
+Attribute/Revision    = a000H   reentrant  execute in supervisor state
+Edition               = 46
+Comment string offset = 00000000H
+Symbol table offset   = 00000000H</pre>
 </div>
 <div class="shot" id="s-drop">
 <h3>drop</h3>
@@ -5557,6 +5772,26 @@ Data storage requirement        =  4292 Bytes
 Stack size                      =  11264 Bytes
 Offset to initialized data      =  000047a4H
 Offset to data reference lists  =  00004b0eH</pre>
+</div>
+<div class="shot" id="s-modules">
+<h3>modules</h3>
+<p>The runtime modules the starred programs need.  They are not programs -- you cannot run them -- so this is what they look like to `modinfo': name, type, edition and CRC.  cio and math ship here by Microware's permission; SOURCES.txt records the exchange.</p>
+<pre>/dd/CMDS/modinfo /dd/CMDS/cio | /dd/CMDS/head -n 10
+--------------------------------- /dd/CMDS/cio  - - - - - - - - - - - - - - - --
+Module name           = cio
+System revision       = 1
+Module size           = 18058
+Owner Id              = 1.0
+Offset to module name = 00004396H
+Access permission     = e-re-re-r
+Type/Language          = 0b01H  Trap handler library   68000 Object Code Module
+Attribute/Revision    = c009H   reentrant
+Edition               = 6
+/dd/CMDS/grep: illegal option -- a
+usage: grep [-[[AB] ]&lt;num&gt;] [-[CEFGVchilnqsvwx]] [-[ef]] &lt;expr&gt; [&lt;files...&gt;]
+&lt;CMDS/math881 | /dd/CMDS/grep -a "name\|Edition\|size"
+/dd/CMDS/grep: illegal option -- a
+usage: grep [-[[AB] ]&lt;num&gt;] [-[CEFGVchilnqsvwx]] [-[ef]] &lt;expr&gt; [&lt;files...&gt;]</pre>
 </div>
 <div class="shot" id="s-mshell">
 <h3>mshell</h3>
@@ -5903,45 +6138,56 @@ Unintelligible word: let r0c0 = cho&lt;= S9READYclear/dd/CMDS/version /dd/CMDS/t
               &lt;</pre>
 </div>
 <h2 class="cat" id="disk-dos">Disk &amp; DOS</h2>
+<div class="shot" id="s-dosmore">
+<h3>dosmore</h3>
+<p>The last of mtools: msinfo on the floppy image this session made, and mscheck -- which is a ksh script, and ksh is starred, so it needs cio present.  It is.</p>
+<pre>/dd/CMDS/msinfo a: | /dd/CMDS/head -n 12
+device information:
+===================
+sectors per track: 18
+heads: 2
+cylinders: 80
+
+mformat command line: mformat -t 80 -h 2 -s 18 a:
+
+bootsector information
+======================
+filename="/dd/DOS/a.img"
+banner:"BSD  4.4"</pre>
+</div>
 <div class="shot" id="s-msattrib">
 <h3>msattrib</h3>
-<p>DOS attributes set and read back, then the file and the directory removed again.</p>
-<pre>/dd/CMDS/msattrib +r a:/DOCS/WELCOME.TXT
-Path component "DOCS" is not a directory
-msattrib: File "a:/DOCS/WELCOME.TXT" not found
- Volume in drive A is FREEWARE
+<p>A DOS attribute set and read back: R is the read-only bit, and msdir shows it.</p>
+<pre>/dd/CMDS/msattrib +r a:/DOCS/README.TXT
+  A    R     A:/DOCS/README.TXT
+ Volume in drive A is OS9FREEWARE
  Volume Serial Number is 35D7-0A00
- Directory for A:/
+ Directory for A:/DOCS
 
-File "DOCS" not found
-                         1 457 152 bytes free
-
-msdel: File "a:HOLIDAYS.TXT" not found
- Volume in drive A is FREEWARE
- Volume Serial Number is 35D7-0A00
- Directory for A:/
-
-readme   txt       139 08-02-2026   2:22a readme.txt
-        1 file(s)               139 bytes
-                          1 457 152 bytes free</pre>
+.            &lt;DIR&gt;     08-27-2026  10:49p
+..           &lt;DIR&gt;     08-27-2026  10:49p
+README   TXT        40 08-27-2026  10:49p
+        3 file(s)                40 bytes
+                          1 454 592 bytes free</pre>
 </div>
 <div class="shot" id="s-mscopy">
 <h3>mscopy</h3>
-<p>Writing files onto the DOS disk, listing them with DOS's own 8.3 names, and reading one back.</p>
-<pre>/dd/CMDS/mscopy /dd/SYS/motd a:MOTD.TXT
- Volume in drive A is FREEWARE
+<p>Writing two files onto the DOS disk, listing them with DOS's own 8.3 names and free-space line, and reading one back.  The deletes first are what make this repeatable: mtools stops to ask before it overwrites, and a stanza that stops to ask eats the rest of its own sheet.</p>
+<pre>/dd/CMDS/msdel a:MOTD.TXT
+msdel: File "a:MOTD.TXT" not found
+ Volume in drive A is OS9FREEWARE
  Volume Serial Number is 35D7-0A00
  Directory for A:/
 
-readme   txt       139 08-02-2026   2:22a readme.txt
-MOTD     TXT        40 08-27-2026   9:37p
-HOLIDAYS TXT       717 08-27-2026   9:37p
-        3 file(s)               896 bytes
+RAW      TXT        40 08-27-2026  10:44p
+HOLIDAYS TXT       717 08-27-2026  10:41p
+MOTD     TXT        40 08-27-2026  10:48p
+        3 file(s)               797 bytes
                           1 455 616 bytes free</pre>
 </div>
 <div class="shot" id="s-msdir">
 <h3>msdir</h3>
-<p>Writing a file onto the DOS disk and reading the directory back -- 8.3 names, DOS attributes, and free space in DOS's own words.</p>
+<p>Captured while running.</p>
 <pre>s)kip S)kip-all q)uit (aArRoOsSq): /dd/CMDS/msdir a:
 
 Long file name "MOTD.TXT" already exists.
@@ -5968,76 +6214,100 @@ s)kip S)kip-all q)uit (aArRoOsSq):</pre>
 </div>
 <div class="shot" id="s-msformat">
 <h3>msformat</h3>
-<p>Formatting an MS-DOS floppy image and then asking what it is.  The drives a: and b: are configured in SYS/mtools.conf.</p>
-<pre>bootsector information
+<p>Captured while running.</p>
+<pre>Illegal instruction: 0009 at 000465d2
+
+Process   Pid: 3, msformat, edition 7
+    Exit code: E_PRCABT(228) Process Aborted
+  Directories: Current   - /dd
+               Execution - /dd/CMDS
+        Files: 00 fCons /term
+device information:
+===================
+sectors per track: 18
+heads: 2
+cylinders: 80
+
+mformat command line: mformat -t 80 -h 2 -s 18 a:
+
+bootsector information
 ======================
 filename="/dd/DOS/a.img"
 banner:"BSD  4.4"
 sector size: 512 bytes
-cluster size: 1 sectors
-reserved (boot) sectors: 1
-fats: 2
-max available root directory slots: 224
-small size: 2880 sectors
-media descriptor byte: 0xf0
-sectors per fat: 9
+cluster size: 1 sectors</pre>
+</div>
+<div class="shot" id="s-msinfo">
+<h3>msinfo</h3>
+<p>What the DOS floppy image is, read out of its own boot sector, and the label put on it.  msformat will NOT make one: bare it refuses non-removable media, and given the geometry it aborts on an illegal instruction.  The image that ships is the one you get.</p>
+<pre>/dd/CMDS/mslabel a:OS9FREEWARE
+device information:
+===================
 sectors per track: 18
 heads: 2
-hidden sectors: 0
-big size: 0 sectors
-physical drive id: 0x0
-reserved=0x0
-dos4=0x29
-serial number: 35D70A00
-disk label="FREEWARE   "
-disk type="FAT12   "</pre>
+cylinders: 80
+
+mformat command line: mformat -t 80 -h 2 -s 18 a:
+
+bootsector information
+======================
+filename="/dd/DOS/a.img"
+banner:"BSD  4.4"
+sector size: 512 bytes
+msformat: Non-removable media is not supported (You must tell the complete geom</pre>
 </div>
 <div class="shot" id="s-msmd">
 <h3>msmd</h3>
-<p>Making a directory on the DOS disk, moving a file into it and renaming it -- md, move and ren, spelled the DOS way.</p>
-<pre>s)kip S)kip-all q)uit (aArRsSq): /dd/CMDS/msdir a:/DOCS
+<p>A directory made on the DOS disk, a file copied into it, and then the whole tree deleted again -- md, cd, rd and deltree, spelled the DOS way.</p>
+<pre>/dd/CMDS/msdeltree a:/DOCS
+msdeltree: File "a:/DOCS" not found
+ Volume in drive A is OS9FREEWARE
+ Volume Serial Number is 35D7-0A00
+ Directory for A:/DOCS
 
-Long file name "" is reserved.
+.            &lt;DIR&gt;     08-27-2026  10:49p
+..           &lt;DIR&gt;     08-27-2026  10:49p
+README   TXT        40 08-27-2026  10:49p
+        3 file(s)                40 bytes
+                          1 454 592 bytes free</pre>
+</div>
+<div class="shot" id="s-msmove">
+<h3>msmove</h3>
+<p>msmove asks before it overwrites, and there is no flag that stops it asking.  That is why this stanza is LAST in the sheet: a program that stops to ask reads the next commands as answers, and the rest of the sheet is gone.  Answered `q' here.</p>
+<pre>/dd/CMDS/msmove a:MOTD.TXT a:/
+Long file name "MOTD.TXT" already exists.
 a)utorename A)utorename-all r)ename R)ename-all
-s)kip S)kip-all q)uit (aArRsSq):
-Long file name "" is reserved.
-a)utorename A)utorename-all r)ename R)ename-all
-s)kip S)kip-all q)uit (aArRsSq):
-Long file name "" is reserved.
-a)utorename A)utorename-all r)ename R)ename-all
-s)kip S)kip-all q)uit (aArRsSq):
-Long file name "" is reserved.
-a)utorename A)utorename-all r)ename R)ename-all
-s)kip S)kip-all q)uit (aArRsSq):
-Long file name "" is reserved.
-a)utorename A)utorename-all r)ename R)ename-all
-s)kip S)kip-all q)uit (aArRsSq):
-Long file name "" is reserved.
-a)utorename A)utorename-all r)ename R)ename-all
-s)kip S)kip-all q)uit (aArRsSq):
-Long file name "" is reserved.
-a)utorename A)utorename-all r)ename R)ename-all
-s)kip S)kip-all q)uit (aArRsSq):</pre>
+s)kip S)kip-all q)uit (aArRsSq): q</pre>
 </div>
 <div class="shot" id="s-msread">
 <h3>msread</h3>
-<p>msread and mswrite are the raw pair -- a whole file in and out without the DOS filename rules getting involved.</p>
-<pre>/dd/CMDS/mswrite /dd/SYS/motd a:RAW.TXT
-Copying RAW.TXT
-4b68af85
-4b68af85
-========
-9d870070</pre>
-</div>
-<div class="shot" id="s-mstype">
-<h3>mstype</h3>
-<p>mstype reading the file back off the DOS disk.</p>
-<pre>/dd/CMDS/mstype a:MOTD.TXT
-mstype: File "a:MOTD.TXT" not found</pre>
+<p>msread and mswrite are the raw pair -- a whole file in and out with none of the DOS filename rules involved.  The checksums either side show it came back unchanged.</p>
+<pre>File "/dd/tmp/raw.out" exists, overwrite (y/n) ?
+File "/dd/tmp/raw.out" exists, overwrite (y/n) ?
+File "/dd/tmp/raw.out" exists, overwrite (y/n) ?
+File "/dd/tmp/raw.out" exists, overwrite (y/n) ?
+File "/dd/tmp/raw.out" exists, overwrite (y/n) ?
+File "/dd/tmp/raw.out" exists, overwrite (y/n) ?
+File "/dd/tmp/raw.out" exists, overwrite (y/n) ?
+File "/dd/tmp/raw.out" exists, overwrite (y/n) ?
+File "/dd/tmp/raw.out" exists, overwrite (y/n) ?
+File "/dd/tmp/raw.out" exists, overwrite (y/n) ?
+File "/dd/tmp/raw.out" exists, overwrite (y/n) ?
+File "/dd/tmp/raw.out" exists, overwrite (y/n) ?
+File "/dd/tmp/raw.out" exists, overwrite (y/n) ?
+File "/dd/tmp/raw.out" exists, overwrite (y/n) ?
+File "/dd/tmp/raw.out" exists, overwrite (y/n) ?
+File "/dd/tmp/raw.out" exists, overwrite (y/n) ?
+File "/dd/tmp/raw.out" exists, overwrite (y/n) ?
+File "/dd/tmp/raw.out" exists, overwrite (y/n) ?
+File "/dd/tmp/raw.out" exists, overwrite (y/n) ?
+File "/dd/tmp/raw.out" exists, overwrite (y/n) ?
+File "/dd/tmp/raw.out" exists, overwrite (y/n) ?
+Copying RAW.TXT</pre>
 </div>
 <div class="shot" id="s-mtools">
 <h3>mtools</h3>
-<p>The mtools front end, listing the sub-commands that ship with it -- eighteen of them, each a separate program on this disk.</p>
+<p>The mtools front end, listing the eighteen sub-commands that ship with it -- each one a separate program on this disk.</p>
 <pre>/dd/CMDS/mtools
 Supported commands:
 mattrib, mbadblocks, mcd, mcopy, mdel, mdeltree, mdir, mformat
@@ -6185,7 +6455,38 @@ easter 2000 is 4/23</pre>
 
                          type any key to continue...</pre>
 </div>
+<div class="shot" id="s-setimex">
+<h3>setimex</h3>
+<p>setimex sets the clock from a hardware clock and reports what it found; `today' beside it prints the date in words.</p>
+<pre>/dd/CMDS/setimex
+Time now: Thu Aug 27 22:44:39 2026
+
+Today is Thursday, the twenty-seventh day of August, two thousand and
+twenty-six. In twelve seconds, the time will be fifteen minutes before
+eleven PM, Daylight Savings Time. The moon is full.</pre>
+</div>
 <h2 class="cat" id="maths-calculators">Maths &amp; calculators</h2>
+<div class="shot" id="s-gcl">
+<h3>gcl</h3>
+<p>gcl, a general calculation utility, and scqref -- the quick reference card for `sc', which is a document rather than a program and prints itself.</p>
+<pre>/dd/CMDS/scqref | /dd/CMDS/head -n 16
+sc Quick Reference
+
+$Revision: 6.16 $
+
+ Overview:
+
+ A:   This overview
+ B:   Options
+ C:   Cursor movement commands
+ D:   Cell entry and editing commands
+ E:   Line Editing
+ F:   File commands
+ G:   Row and column commands
+ H:   Range commands
+ I:   Miscellaneous commands
+ J:   Variable names/Expressions</pre>
+</div>
 <div class="shot" id="s-hc">
 <h3>hc</h3>
 <p>hc, the hex calculator -- and it answers with its usage line to everything tried here, including the form that usage line names.</p>
@@ -6396,6 +6697,19 @@ Error #000:216 (E_PNNF) Path Name Not Found
 Error #000:218 (E_CEF) Creating Existing File
 Error #000:221 (E_MNF) Module Not Found
 Error #000:237 (E_NORAM) No Ram Available</pre>
+</div>
+<div class="shot" id="s-spooler">
+<h3>spooler</h3>
+<p>Carl Kreider's print spooler -- manager, printer process and status -- with its queue at /dd/SPL, and the older Ghostscript beside it.</p>
+<pre>/dd/CMDS/splstat
+Aladdin Ghostscript 3.33 (4/10/1995)
+Copyright (C) 1995 Aladdin Enterprises, Menlo Park, CA.  All rights reserved.
+Usage: gs [switches] [file1.ps file2.ps ...]
+Available devices:
+        kwin deskjet djet500 epson epsonc eps9mid eps9high ibmpro
+        st800 ap3250 laserjet ljetplus ljet2p ljet3 ljet4 cdeskjet
+        cdjcolor cdjmono cdj550 pj pjxl pjxl300 bj10e bj200
+        dfaxhigh</pre>
 </div>
 <h2 class="cat" id="documentation">Documentation</h2>
 <div class="shot" id="s-help">

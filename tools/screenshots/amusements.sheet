@@ -38,3 +38,13 @@ cap     A weather simulator for the Shire, on the Middle-earth calendar:
 cap     Afteryule, Solmath, Rethe.  One of six regions here.
 run     /dd/CMDS/shire | /dd/CMDS/head -n 21
 wait    8
+
+
+shot    weather2
+for     georgia minnesota rndname rstory2
+cap     Two more regions for the weather simulator, and the second random
+cap     story generator.
+run     /dd/CMDS/georgia | /dd/CMDS/head -n 10
+wait    10
+run     /dd/CMDS/rndname 6
+wait    10

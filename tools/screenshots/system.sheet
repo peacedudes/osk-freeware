@@ -477,3 +477,27 @@ send    144\r
 wait    3
 send    5\r
 wait    5
+
+
+shot    modules
+for     cio csl csl020 math math881 os9lib rtfdat
+cap     The runtime modules the starred programs need.  They are not
+cap     programs -- you cannot run them -- so this is what they look like
+cap     to `modinfo': name, type, edition and CRC.  cio and math ship here
+cap     by Microware's permission; SOURCES.txt records the exchange.
+run     /dd/CMDS/modinfo /dd/CMDS/cio | /dd/CMDS/head -n 10
+wait    12
+run     /dd/CMDS/modinfo /dd/CMDS/csl | /dd/CMDS/grep -a "name\|Edition\|size"
+wait    12
+run     /dd/CMDS/modinfo /dd/CMDS/math881 | /dd/CMDS/grep -a "name\|Edition\|size"
+wait    12
+
+
+shot    drivers
+for     keydrv.mm1 msdrv.901_340 rb37c65 scsi_mm1a snddrv windio.52
+cap     The MM/1 drivers -- keyboard, mouse, floppy, SCSI, sound and the
+cap     windowing terminal.  They are device drivers for hardware that is
+cap     not here, so again `modinfo' is what there is to show: type $C
+cap     (device driver) rather than $1 (program).
+run     /dd/CMDS/modinfo /dd/CMDS/MM1/keydrv.mm1 | /dd/CMDS/head -n 12
+wait    12

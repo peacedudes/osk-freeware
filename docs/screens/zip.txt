@@ -1,0 +1,11 @@
+/dd/CMDS/mkdir /dd/tmp/zt
+adding dd/tmp/zt/motd (stored 0%)
+zip warning: new zip file left as: /dd/tmp/zt/_Z000004
+zip error: file not found
+zip error: Could not create output file (was replacing the original zip file)
+
+Directory of "/dd/tmp/zt" 22:40:35  08/27/126
+
+_Z000004        motd
+
+Total of 2 files.

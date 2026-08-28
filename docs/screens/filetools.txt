@@ -1,0 +1,17 @@
+/dd/CMDS/delbak -?
+Usage: delbak [-options] [directory] [-options]
+     -n      = no recursion
+     -l      = list only
+     -f=<ext>= extension to delete, default _bak
+     -?      = report help
+
+
+U N D E L E T E    V1.1   by  Stephan Enzler
+--------------------------------------------
+
+
+Please Enter FULL Pathname of Directory
+or press RETURN for current Directory) : /dd/CMDS/Libr2Ascii
+Error #000:214 (E_FNA) File Not Accessible
+
+ERROR undel: opening Directory /dd/CMDS/Libr2Ascii

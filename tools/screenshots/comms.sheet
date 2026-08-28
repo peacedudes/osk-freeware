@@ -218,3 +218,16 @@ run     /dd/CMDS/COMMS/xydown
 wait    8
 run     /dd/CMDS/COMMS/txmod
 wait    8
+
+
+shot    terminals
+for     cls fkeys initvdu setterm wysecrack wysetime
+cap     The small terminal utilities.  cls clears; setterm and fkeys ask
+cap     the terminal what it is and program its keys; the Wyse pair want
+cap     real Wyse hardware and say so.
+run     /dd/CMDS/fkeys
+wait    8
+run     /dd/CMDS/initvdu
+wait    8
+run     /dd/CMDS/wysetime
+wait    8

@@ -172,6 +172,14 @@ program, please** -- two definitions means two captions for one screen and
 the gallery picking whichever sheet sorted last, which is how `map' came to
 be captioned "the memory map" over a picture of a file's block list.
 
+**Stanzas run top to bottom in one session, and a later one may depend on
+what an earlier one left** -- `tools/screenshots/dos.sheet` formats a DOS
+floppy image in its first stanza and the other five work on it. Sorting that
+sheet alphabetically once put `msattrib` first, and three screens came out as
+mtools asking what to do about files that were already there. Keep such a
+sheet in dependency order, and make the first stanza put the world into a
+known state so the sheet can be run again and mean the same thing.
+
 Two things it survives, both learned the hard way: a program that takes the
 emulator down with it (`cpu` does, every time), and a program that will not
 let go of the terminal (SEDT survived a Ctrl-E and ate the next three
