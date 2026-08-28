@@ -18,6 +18,6 @@ Available devices:
    psmono bit bitrgb bitcmyk pngmono pnggray png16 png256 png16m pdfwrite
    nullpage
 Search path:
-   . : /dd/LIB/gs403 : /dd/etc/lib/gs4
+   . : /dd/etc/lib/gs4
 For more information, see /use.txt.
 Report bugs to ghost@aladdin.com; use the form in new-user.txt.

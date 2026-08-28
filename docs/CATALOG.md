@@ -473,7 +473,7 @@
 | `ctags` | generate a vi tags file from C source (BSD)<br>`usage: ctags [-BFadtuwvx] [-f tagsfile] file ...` |
 | `cxref` | &#9733; C cross-reference lister -- numbered listing + symbol table<br>`Syntax:		cxref [-opts] [path]` |
 | `etags` | &#9733; generate an emacs TAGS file<br>`Syntax: etags { [<opts>] <path> }` |
-| `xrf` | &#9733; C cross-reference generator |
+| `xrf` | &#9733; C cross-reference generator -- it wants its language table, `C.XRF', in the CURRENT DATA DIRECTORY.  The disk has it as DOC/xrf/c.xrf; copy that beside your source or it stops with `Cannot open Language Table file' |
 
 **Source checking**
 
@@ -1661,7 +1661,7 @@
 | | |
 |---|---|
 | `gs33` | Ghostscript 3.33 -- the older one, and it has never had the gs_init.ps and fonts it needs.  Use gs403 instead<br>`Usage: gs ... -%c file.ps arg1 ... argn` |
-| `gs403` | Aladdin Ghostscript 4.03 -- interprets PostScript, and this one is COMPLETE: its init files and fonts are in LIB/gs403.  Set GS_LIB to that directory first.  Runs with no trap handler -- built with GCC 2.5.8 by its porter<br>**How:** Aladdin Ghostscript 4.03. Set GS_LIB first -- `setenv GS_LIB /dd/LIB/gs403' -- or it cannot find gs_init.ps and stops. Everything it needs, fonts included, is in that directory. The older gs33 on this disk has never had its support files. |
+| `gs403` | Aladdin Ghostscript 4.03 -- interprets PostScript, and this  It does NOT render: asked to rasterise a PostScript file to a PBM, with GS_LIB set, it prints its banner and stops -- no output file and no message.  Measured 2026-08-28 one is COMPLETE: its init files and fonts are in LIB/gs403.  Set GS_LIB to that directory first.  Runs with no trap handler -- built with GCC 2.5.8 by its porter<br>**How:** Aladdin Ghostscript 4.03. Set GS_LIB first -- `setenv GS_LIB /dd/LIB/gs403' -- or it cannot find gs_init.ps and stops. Everything it needs, fonts included, is in that directory. The older gs33 on this disk has never had its support files. |
 | `lwf` | ASCII to PostScript, like Unix enscript.  Reads its prologue from /dd/USR/LIB/lwf.prologue<br>**How:** Turns plain text into PostScript, the way Unix enscript does. It reads /dd/USR/LIB/lwf.prologue and stops without it. No PostScript printer here, so send the output to a file and take it elsewhere. |
 
 **Spooler**

@@ -50,11 +50,11 @@ for     dhry dhryO2 dhryGcc dhryGcc2 dhryGcc2o2 dhryGccin dhryGcc2in dhryGccmx d
 cap     Dhrystone built twelve ways -- Microware cc, GCC 1.x and 2.x,
 cap     optimised, inlined and mixed.  Comparison is the whole point of the
 cap     directory, and here are three of the twelve on the same machine.
-run     dhry | tail -n 6
+run     dhry | tail -l=6
 wait    15
-run     dhryO2 | tail -n 6
+run     dhryO2 | tail -l=6
 wait    15
-run     dhryGcc2o2 | tail -n 6
+run     dhryGcc2o2 | tail -l=6
 wait    15
 
 shot    disktest
@@ -109,12 +109,14 @@ wait    10
 
 shot    tab
 for     tab xlate
-cap     tab tabulates assembly source -- it knows the opcode column -- and
-cap     xlate translates 6809 assembly into 68000.
+cap     tab is a FILTER -- source in, tabulated source out -- and with no
+cap     pipe it prints what it takes.  It knows the opcode column of both
+cap     6809 and 68000 assembly; `xlate' beside it translates 6809 source
+cap     into 68000.
 run     tab -?
-wait    6
+wait    8
 run     xlate -?
-wait    6
+wait    8
 
 shot    time
 cap     time, measuring a command the way OS-9 accounts for it.
@@ -123,10 +125,19 @@ wait    12
 
 shot    xrf
 for     xrf ref etags ctags.elvis
-cap     xrf cross-references C source; etags builds the TAGS file emacs
-cap     wants, as ctags does for vi.
-run     xrf /dd/SRC/keep/about.c | head -n 18
-wait    12
+cap     xrf wants its LANGUAGE TABLE, `C.XRF', in the current data directory
+cap     -- the disk has it as DOC/xrf/c.xrf, and the data directory here is
+cap     /dd, so it says so and stops.  Copy the table beside your source and
+cap     it runs.  `etags' underneath builds the TAGS file emacs wants, as
+cap     ctags does for vi.
+run     xrf /dd/SRC/keep/about.c
+wait    8
+run     ls -l /dd/DOC/xrf
+wait    8
+run     etags /dd/SRC/keep/keep.c
+wait    8
+run     head -l=6 TAGS
+wait    8
 
 
 shot    indent

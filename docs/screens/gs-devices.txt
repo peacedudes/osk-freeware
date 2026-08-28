@@ -1,3 +1,18 @@
 $ export GS_LIB=/dd/LIB/gs403
-$ gs403 -h | tail -n 16
-(03) unknown option -n
+$ gs403 -h | tail -l=16
+                                           |            exit after last file
+ -sOutputFile=<file> select output file: - for stdout, |command for pipe,
+                                         embed %d or %ld for page #
+Input formats: PostScript PostScriptLevel1 PostScriptLevel2 PDF
+Available devices:
+   kwin vsc deskjet djet500 laserjet ljetplus ljet2p ljet3 ljet4 cdeskjet
+   cdjcolor cdjmono cdj550 pj pjxl pjxl300 bj10e bj200 bjc600 bjc800 mgrmono
+   mgrgray2 mgrgray4 mgrgray8 mgr4 mgr8 faxg3 faxg32d faxg4 pcxmono pcxgray
+   pcx16 pcx256 pcx24b pbm pbmraw pgm pgmraw pgnm pgnmraw pnm pnmraw ppm
+   ppmraw tiffcrle tiffg3 tiffg32d tiffg4 tifflzw tiffpack tiff12nc tiff24nc
+   psmono bit bitrgb bitcmyk pngmono pnggray png16 png256 png16m pdfwrite
+   nullpage
+Search path:
+   . : /dd/LIB/gs403 : /dd/etc/lib/gs4
+For more information, see /use.txt.
+Report bugs to ghost@aladdin.com; use the form in new-user.txt.

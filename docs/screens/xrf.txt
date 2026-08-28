@@ -1,2 +1,17 @@
-$ xrf /dd/SRC/keep/about.c | head -n 18
+$ xrf /dd/SRC/keep/about.c
 ERROR: Cannot open Language Table file: C.XRF
+$ ls -l /dd/DOC/xrf
+total 3584
+-rw-rw-rw-   1 0        0             380 Aug  3 19:00 c.xrf
+-rw-rw-rw-   1 0        0              62 Aug  3 19:00 makefile
+-rw-rw-rw-   1 0        0             325 Aug  3 19:00 pas.xrf
+-rw-rw-rw-   1 0        0            1645 Aug  3 19:00 xrf.doc
+$ etags /dd/SRC/keep/keep.c
+No more memory !!!
+etags: virtual memory exhausted.
+$ head -l=6 TAGS
+head: unrecognized option `-l'
+Usage: head [-b #] [-c #] [-n #] [-qv] [+blocks=#] [+bytes=#] [+lines=#]
+       [+quiet] [+silent] [+verbose] [file...]
+
+       head [-#bclqv] [file...]

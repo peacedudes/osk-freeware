@@ -372,7 +372,7 @@ cap     sum, the checksum every Unix had before md5, and head and tail
 cap     either end of the same file.
 run     sum /dd/SYS/motd /dd/SYS/holidays
 wait    8
-run     tail -n 4 /dd/SYS/holidays
+run     tail -l=4 /dd/SYS/holidays
 wait    8
 
 shot    tac

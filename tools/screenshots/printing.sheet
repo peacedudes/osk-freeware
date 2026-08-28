@@ -7,25 +7,15 @@ cap     Ghostscript's device list -- what this build can rasterise to.  Both
 cap     Ghostscripts are here; only 4.03 has its initialisation files.
 run     export GS_LIB=/dd/LIB/gs403
 wait    2
-run     gs403 -h | tail -n 16
+run     gs403 -h | tail -l=16
 wait    12
 
-shot    gs-render
-for     gs403
-cap     Ghostscript rasterising one of its own PostScript test files and
-cap     netpbm printing the bitmap as characters.  GS_LIB has to point at
-cap     LIB/gs403, and -c quit is what makes it exit rather than sit at its
-cap     own GS> prompt.
-run     export GS_LIB=/dd/LIB/gs403
-wait    2
-run     gs403 -q -dNOPAUSE -dBATCH -sDEVICE=pbm -r24 -g152x88 -sOutputFile=/dd/tmp/gs.pbm /dd/LIB/gs403/cheq.ps -c quit
-wait    45
-run     pbmtoascii -2x4 /dd/tmp/gs.pbm
-wait    10
-
 shot    gs403
-cap     Aladdin Ghostscript 4.03 -- a complete PostScript interpreter on an
-cap     OS-9 disk.  Its banner, its device list and the prompt it offers.
+cap     Aladdin Ghostscript 4.03 on an OS-9 disk: its banner, its switches
+cap     and the devices it can write.  It does NOT render here -- asked to
+cap     rasterise one of its own test files to a PBM, with GS_LIB pointing
+cap     at LIB/gs403, it prints the banner and stops without writing a file
+cap     or saying why.  Measured 2026-08-28.
 run     gs403 -h
 wait    10
 
