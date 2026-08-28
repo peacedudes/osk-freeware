@@ -119,20 +119,20 @@ wait    8
 run     head -n 12 y.output
 wait    5
 
-
 shot    fortran
 for     rtf for lnk lnk.org biory creadoc os9lib
-cap     The RTF Fortran-77 system -- compiler, driver, linker and two
-cap     example programs -- all of which print NOTHING until their runtime
-cap     library is in the module directory.  `load /dd/CMDS/os9lib' is the
-cap     whole difference, and this screen is the before and the after.
+cap     The RTF Fortran-77 system -- compiler, driver and linker -- prints
+cap     NOTHING until its runtime library is in the module directory.  `load
+cap     /dd/CMDS/os9lib' is the whole difference, and this is the before and
+cap     the after.  Note the driver has to be called by its full path: `for'
+cap     on its own is a bash keyword, and the shell answers before OS-9 can.
 run     rtf
 wait    6
 run     load /dd/CMDS/os9lib
 wait    8
 run     rtf
 wait    8
-run     for
+run     /dd/CMDS/for
 wait    6
 run     lnk
 wait    6

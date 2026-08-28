@@ -63,8 +63,9 @@ wait    8
 
 shot    mail
 for     mail lmail rmail smail
-cap     The mail chain: mail sends, lmail delivers locally, rmail takes
-cap     what arrived, smail routes.
+cap     The mail chain.  `mail' reaches for a scratch file at /r0 -- the RAM
+cap     disk os9exec cannot provide -- and stops; `smail', the router,
+cap     answers properly and shows what it takes.
 run     mail -?
 wait    6
 run     smail -?

@@ -1,5 +1,8 @@
 $ sum /dd/SYS/motd /dd/SYS/holidays
 34333     1 /dd/SYS/motd
 11804     1 /dd/SYS/holidays
-$ tail -n 4 /dd/SYS/holidays
-(03) unknown option -n
+$ tail -l=4 /dd/SYS/holidays
+*11/11 Veteran's Day (US)
+*11/4thur Thanksgiving (US)
+
+INCLUDE /dd/sys/birthdays

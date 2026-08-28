@@ -406,8 +406,10 @@ run     sysmon
 wait    8
 
 shot    top
-cap     top, showing the busiest processes.  Under os9exec these are real
-cap     OS-9 processes with real IDs and real priorities.
+cap     top prints its column headings and then aborts -- every time, with
+cap     no invocation that gets past them.  It is one of the eighteen
+cap     crashes in DOC/STATUS.  `procs' is not on this disk and `aprocs'
+cap     aborts the same way; `map' and `free' are what is left.
 run     top
 wait    6
 

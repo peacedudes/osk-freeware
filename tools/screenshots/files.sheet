@@ -119,7 +119,9 @@ run     fstat /dd/CMDS/tar
 wait    3
 
 shot    l
-cap     l, a brief listing -- names in columns and nothing else.
+cap     `l' should list a directory briefly.  It answers `not accessable,
+cap     error: 214' for every directory tried here -- which is what it does,
+cap     and why DOC/INDEX says so.  `ls', `dir' and `edir' all work.
 run     l /dd/CMDS/GAMES
 wait    4
 

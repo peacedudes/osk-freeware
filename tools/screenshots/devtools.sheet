@@ -83,15 +83,27 @@ wait    8
 
 shot    rcs
 for     ci co rcs rlog rcsdiff rcsident rcsmerge
-cap     RCS on this disk: a file checked in, checked out and logged.  The
-cap     whole suite is here -- ci, co, rcs, rlog, rcsdiff, rcsident and
-cap     rcsmerge.
-run     cp /dd/SYS/motd /dd/tmp/rcstest
+cap     RCS keeping a file: `ci' checks it in, asking for a description the
+cap     way it always has, and `rlog' reads the history back.  The archive
+cap     it writes is `note_v', not the `note,v' a Unix hand expects -- OS-9
+cap     has no comma in a filename.  None of these take `-?'; RCS is older
+cap     than that convention.
+run     rm -rf /dd/tmp/rcs
+wait    5
+run     mkdir /dd/tmp/rcs
+wait    5
+run     cp /dd/SYS/motd /dd/tmp/rcs/note
+wait    5
+run     ci /dd/tmp/rcs/note
 wait    6
-run     rcs -?
+send    the motd, checked in\r
+wait    3
+send    .\r
+wait    8
+run     ls -l /dd/tmp/rcs
 wait    6
-run     rlog -?
-wait    6
+run     rlog /dd/tmp/rcs/note_v | head -n 12
+wait    10
 
 shot    sdb
 for     sdb

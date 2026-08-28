@@ -19,8 +19,10 @@ quit    \030\003
 
 shot    hexedit
 for     hexed
-cap     A hex editor opened on an OS-9 module: the $4AFC sync bytes are the
-cap     first two bytes of every module on this disk.
+cap     The hex editor cannot start: it writes its work file to /r0, the RAM
+cap     disk os9exec has no way to provide, and says so.  Seventeen programs
+cap     here reach for /r0; DOC/README-RUNNING lists them.  `beav' is the
+cap     binary editor that works.
 run     hexed /dd/CMDS/today
 wait    6
 quit    q

@@ -2,7 +2,7 @@ $ rtf
 $ load /dd/CMDS/os9lib
 $ rtf
  command must be: RTF pathname [options..]
-$ for
-syntax error near `for'
+$ /dd/CMDS/for
+command: for file{,file} [-rtfopt{,rtfopt}]
 $ lnk
 command: lnk file{,file} [-l68opts]

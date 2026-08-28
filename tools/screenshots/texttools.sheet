@@ -159,10 +159,13 @@ run     fcomp /dd/tmp/h1 /dd/tmp/h2
 wait    6
 
 shot    file
-cap     file identifying what things are, out of SYS/magic: a module, a
-cap     text file, a GIF and an archive.
-run     file /dd/CMDS/today /dd/DOC/INDEX /dd/DEMO/gulls.gif /dd/tmp/keep.tar
-wait    6
+for     file
+cap     file identifying what things are, out of SYS/magic: an OS-9 module,
+cap     a text file, a GIF and a tar archive it makes for itself first.
+run     tar cf /dd/tmp/f.tar /dd/SYS/motd
+wait    8
+run     file /dd/CMDS/today /dd/DOC/INDEX /dd/DEMO/gulls.gif /dd/tmp/f.tar
+wait    8
 
 shot    fmt
 cap     fmt folding a long text to the terminal width.

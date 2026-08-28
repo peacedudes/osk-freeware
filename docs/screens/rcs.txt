@@ -1,11 +1,23 @@
-$ cp /dd/SYS/motd /dd/tmp/rcstest
-$ rcs -?
-rcs error: Unknown option: -?
-command format:
-rcs -i -alogins -Alogins -e[logins] -b[rev] -c[commentleader] -l[rev] -u[rev] -.
-rcs aborted
-$ rlog -?
-rlog error: unknown option: -?
-command format:
-rlog -L -R -h -t -b -ddates -l[lockers] -rrevisions -sstates -w[logins] file ...
-rlog aborted
+/dd/tmp/rcs/note_v  <--  /dd/tmp/rcs/note
+initial revision: 1.1
+enter description, terminated with <eof> or '.':
+NOTE: This is NOT the log message!
+>> the motd, checked in
+>> .
+done
+$ ls -l /dd/tmp/rcs
+total 512
+-r--r--r--   1 0        0             276 Aug 28 06:15 note_v
+$ rlog /dd/tmp/rcs/note_v | head -n 12
+
+RCS file:        /dd/tmp/rcs/note_v;   Working file:    note
+head:            1.1
+branch:
+locks:           ;  strict
+access list:
+symbolic names:
+comment leader:  "# "
+total revisions: 1;    selected revisions: 1
+description:
+the motd, checked in
+----------------------------

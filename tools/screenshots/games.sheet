@@ -38,7 +38,10 @@ send    no\r
 wait    6
 
 shot    checkgame
-cap     game replays a saved chess game move by move.
+cap     `checkgame' and `game' are meant to replay a saved chess game move
+cap     by move.  Given the opening book that ships here, this is what they
+cap     do: abort, with no output at all.  DOC/STATUS has them among the
+cap     eighteen crashes.
 run     checkgame /dd/GAMES/gnuchess.book 1 3
 wait    8
 
@@ -112,10 +115,10 @@ wait    6
 
 shot    mkdict
 for     mkdict mkindex
-cap     mkdict and mkindex build Boggle's dictionary and its index.  The
-cap     built dictionary is already in GAMES/BOG -- 80 KB of it -- so here
-cap     they are reading the word list and writing it again, and `wc' shows
-cap     what came out.
+cap     mkdict builds Boggle's dictionary -- and it TAKES A BUS ERROR on the
+cap     word list that ships with the game, after writing 924 bytes of the
+cap     80 KB it was given.  The built dictionary is already in GAMES/BOG,
+cap     so nothing is lost by not running it; this is what running it does.
 run     head -n 400 /dd/GAMES/BOG/dict > /dd/tmp/words
 wait    8
 run     mkdict < /dd/tmp/words > /dd/tmp/newdict
