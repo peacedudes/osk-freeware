@@ -342,7 +342,18 @@ def run_sheet(path, image):
                          else "" if ink(scr) >= 20 else "<-- LOOK AT THIS ONE"),
                       flush=True)
                 done += 1
-                if died or not sess.ready():
+                # A PROGRAM THAT FLOODS `No more memory !!!' HAS EATEN THE
+                # ARENA, and the next stanza in the same session pays for it:
+                # `sed' and `diff' both failed for want of memory three
+                # stanzas after one that stormed, and the screens read as
+                # two more broken programs.  The shell is still answering,
+                # so the readiness check cannot see this -- the flood is the
+                # signal.
+                starved = scr.text().count("No more memory") >= 2
+                if starved:
+                    print("      (session replaced -- %s exhausted the arena)"
+                          % shot["name"], flush=True)
+                if died or starved or not sess.ready():
                     print("      (session replaced -- %s left it unusable)"
                           % shot["name"], flush=True)
                     sess.close()

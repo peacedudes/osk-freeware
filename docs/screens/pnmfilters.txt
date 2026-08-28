@@ -1,0 +1,5 @@
+giftopnm /dd/DEMO/gulls.gif | pnmscale -xysize 76 44 > /dd/tmp/w.ppm
+stdin:  PPM raw, 71 by 44  maxval 255
+stdin:  PPM raw, 71 by 44  maxval 255
+ppmdist: Too many colors - Try reducing with ppmquant
+pnmfile: EOF / read error reading magic number

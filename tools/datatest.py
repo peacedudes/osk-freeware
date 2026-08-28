@@ -117,13 +117,20 @@ def parse(path):
     return fam
 
 
-def script_for(fam):
-    """One bash procedure file for the whole family: ONE emulator start."""
+def script_for(fam, cases=None):
+    """One bash procedure file: ONE emulator start for the cases given.
+
+    `cases' is the slice still to run.  A family is normally one start, but a
+    program that KILLS THE SESSION -- `subber' calls an unimplemented system
+    call, `gawk' dies reading its input -- takes every case after it with it,
+    and they were all reported as "never ran".  run_family restarts from
+    where the output stopped, which is why this takes a slice.
+    """
     lines = []
     for mod in fam["load"]:
         lines.append("/dd/CMDS/load %s" % mod)
     lines += fam["setup"]
-    for c in fam["cases"]:
+    for c in (fam["cases"] if cases is None else cases):
         lines.append('echo "%s%s"' % (MARK, c.name))
         lines += c.runs
     lines.append('echo "%send"' % MARK)
@@ -149,18 +156,37 @@ def run_family(path, image, workdir):
     fam = parse(path)
     os.makedirs(os.path.join(workdir, "h1"), exist_ok=True)
     sh = os.path.join(workdir, "h1", "%s.sh" % fam["family"])
-    open(sh, "w", newline="").write(script_for(fam))
-
     env = dict(os.environ, LC_ALL="C", OS9DISK=image,
                OS9H1=os.path.join(workdir, "h1"))
-    proc = subprocess.run(
-        ["gtimeout", "300", OS9EXEC, "-r", "bash", "/h1/%s.sh" % fam["family"]],
-        env=env, stdin=subprocess.DEVNULL, stdout=subprocess.PIPE,
-        stderr=subprocess.STDOUT)
-    text = proc.stdout.decode("latin-1")
-    open(os.path.join(workdir, "%s.raw" % fam["family"]), "w").write(text)
 
-    per = split_output(text, fam)
+    # RESTART WHERE THE OUTPUT STOPPED.  A case whose program takes the
+    # session down with it must not silently fail every case after it: that
+    # reads as a dozen broken programs and is one.  Each restart re-runs the
+    # family's `load' and `setup' lines, so a later case still meets the
+    # world its file describes.
+    per, todo, text = {}, list(fam["cases"]), ""
+    for _attempt in range(len(fam["cases"]) + 1):
+        open(sh, "w", newline="").write(script_for(fam, todo))
+        proc = subprocess.run(
+            ["gtimeout", "300", OS9EXEC, "-r", "bash",
+             "/h1/%s.sh" % fam["family"]],
+            env=env, stdin=subprocess.DEVNULL, stdout=subprocess.PIPE,
+            stderr=subprocess.STDOUT)
+        chunk = proc.stdout.decode("latin-1")
+        text += chunk
+        got = split_output(chunk, fam)
+        for k, v in got.items():
+            per.setdefault(k, v)
+        done = [c for c in todo if c.name in got]
+        if not done:                       # the first case killed it outright
+            per.setdefault(todo[0].name, "")
+            done = todo[:1]
+        todo = [c for c in todo if c.name not in per]
+        if not todo:
+            break
+        print("   %s: restarting after `%s' -- the session did not survive it"
+              % (fam["family"], done[-1].name))
+    open(os.path.join(workdir, "%s.raw" % fam["family"]), "w").write(text)
     results = []
     for c in fam["cases"]:
         got = per.get(c.name)

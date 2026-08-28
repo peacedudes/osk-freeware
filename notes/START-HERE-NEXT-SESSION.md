@@ -40,12 +40,15 @@ captions for one screen and the gallery picking whichever sheet sorted last.
 Do not re-plan. `notes/PLAN-verification.md` is the plan and it is current.
 Do not stop between items to report; commit and start the next one.
 
-**1. Text tools — `tools/datatests/text.cases` (does not exist yet).**
-   81 programs in Tier A, the largest untested block after netpbm. Same shape
-   as the three suites that exist: known input, checked output. Model it on
-   `tools/datatests/encoding.cases` and remember its lesson -- a program that
-   does NOTHING round-trips perfectly, so every transform also asserts that
-   it CHANGED something.
+**1. ~~Text tools — `tools/datatests/text.cases`.~~ DONE 2026-08-28**, 21
+   cases, and writing them found that `sed` did not work at all: every script
+   answered `No more memory !!!`. The alternate build, `REBUILT/sed_1.06`,
+   works and now ships as `sed`. Three cases assert a program's ERROR on
+   purpose -- gawk reading no input, m4 mangling its output, subber calling
+   an unimplemented system call -- so they pass while it is broken and fail
+   the day it is fixed. **`datatest.py` now restarts a family after a case
+   that kills the session** (subber and gawk both do), instead of reporting
+   every later case as "never ran".
 
 **2. Finish the archive family** — `tools/datatests/archives.cases` covers
    compress, gzip, tar, zoo. Still untested: `ar`, `ar2`, `lha`, `lharc`,
@@ -67,7 +70,7 @@ Do not stop between items to report; commit and start the next one.
     tools/playtest.py --all          # Tier B: pty, screen read. SLOW, hours
     tools/check_disk.py disk         # eleven invariants; read the OUTPUT
 
-Current: **70 data cases, 67 passing** (`tools/datatest.py --all`, verified
+Current: **91 data cases, 88 passing** (`tools/datatest.py --all`, verified
 at end of session). The three failures are EXPECTED and are real defects in
 shipped programs, kept failing on purpose:
 

@@ -48,3 +48,20 @@ run     /dd/CMDS/georgia | /dd/CMDS/head -n 10
 wait    10
 run     /dd/CMDS/rndname 6
 wait    10
+
+
+shot    textb
+for     textb
+cap     The Mandelbrot set, drawn in ASCII.  It asks for a centre, a range
+cap     and an iteration count -- -2.3, -2.0, 4.0 and 32 gives the whole
+cap     set, and the cardioid and the bulb are both there in characters.
+run     /dd/CMDS/textb
+wait    4
+send    -2.3\r
+wait    3
+send    -2.0\r
+wait    3
+send    4.0\r
+wait    3
+send    32\r
+wait    60

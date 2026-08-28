@@ -1,0 +1,9 @@
+ppmmake rgb:ff/00/00 8 4 > /dd/tmp/red.ppm
+pnmtosir: Writing a 24-bit SIR format (MGI TYPE 11)
+sirtopnm: Writing a PPM file
+P3
+8 4
+255
+0 255 0  0 255 0  255 0 0  255 0 0  255 0 0  255 0 0
+255 0 0  255 0 0
+255 0 0  255 0 0  255 0 0  255 0 0  255 0 0  255 0 0

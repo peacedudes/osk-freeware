@@ -1,0 +1,121 @@
+family  text
+# THE TEXT TOOLS, proved on data rather than on whether they printed.
+#
+# Most of these came out of photographing the disk on 2026-08-27/28: several
+# of the programs here answer a form of invocation nobody would guess, and
+# three of them do not work at all.  A case that asserts a program's ERROR is
+# not a joke -- it passes today and fails the day the program is fixed, which
+# is the signal you want and does not inflate the count of expected failures.
+#
+# Subject: a four-line file this family writes for itself, so the cases do
+# not depend on the disk's own text staying what it is.
+setup   T=/dd/tmp/text.src
+setup   /dd/CMDS/cat /dd/SYS/motd > /dd/tmp/text.src
+setup   echo "alpha beta gamma" >> /dd/tmp/text.src
+setup   echo "delta epsilon zeta" >> /dd/tmp/text.src
+setup   echo "alpha beta gamma" >> /dd/tmp/text.src
+
+case    wc-counts-what-is-there
+run     /dd/CMDS/wc $T
+expect  4
+
+case    sed-substitutes
+run     /dd/CMDS/sed "s/beta/BETA/" $T
+expect  alpha BETA gamma
+
+case    sed-reads-a-pipe-too
+run     /dd/CMDS/cat $T | /dd/CMDS/sed -n "/delta/p"
+expect  delta epsilon zeta
+
+# The build that shipped as `sed' until 2026-08-28 answered every script with
+# this, and the one here now must not.
+case    sed-does-not-run-out-of-memory
+run     /dd/CMDS/sed "s/a/A/g" $T
+absent  No more memory
+
+# Uppercase sorts before lowercase, so the motd line comes first -- which is
+# what a byte-order sort MEANS and is worth pinning down.
+case    sort-orders-lines
+run     /dd/CMDS/sort $T | /dd/CMDS/head -n 1
+expect  Welcome to os9exec
+
+case    uniq-drops-the-repeat
+run     /dd/CMDS/sort $T | /dd/CMDS/uniq -c | /dd/CMDS/grep alpha
+expect  2 alpha beta gamma
+
+case    tac-reverses
+run     /dd/CMDS/tac $T | /dd/CMDS/head -n 1
+expect  alpha beta gamma
+
+# `tail' here is DESIGNA's, not GNU's: it takes -l=<x> and refuses -n.  head
+# is the GNU one and takes -n.  Two programs on one disk, two conventions.
+case    head-takes-dash-n
+run     /dd/CMDS/head -n 3 $T | /dd/CMDS/head -n 3 | /dd/CMDS/grep -c .
+expect  3
+
+case    tail-takes-dash-l-and-refuses-dash-n
+run     /dd/CMDS/tail -l=1 $T
+expect  alpha beta gamma
+
+case    tail-says-so-when-given-dash-n
+run     /dd/CMDS/tail -n 1 $T
+expect  unknown option
+
+case    grep-finds-and-counts
+run     /dd/CMDS/grep -c alpha $T
+expect  2
+
+case    fgrep-agrees-with-grep
+run     /dd/CMDS/fgrep alpha $T | /dd/CMDS/wc -l
+expect  2
+
+# sepwords writes one word a line and NO terminator after the last, so `wc
+# -l' counts one fewer than there are words.  Asserted here so that the day
+# it grows one, this says so.
+case    sepwords-splits-to-one-a-line
+run     echo "one two three" | /dd/CMDS/sepwords | /dd/CMDS/wc -l
+expect  2
+
+case    soundex-keys-the-sound-not-the-spelling
+run     echo Robert | /dd/CMDS/sepwords | /dd/CMDS/soundex
+expect  R163
+
+# `rot' is NOT a rot-13 cipher, whatever the name suggests: it turns the file
+# on its side, so the first line becomes the first column.  Three lines of
+# `abc' rotate to three columns of `a', `b', `c'.
+case    rot-turns-the-file-on-its-side
+run     echo abc > /dd/tmp/rot.src
+run     echo abc >> /dd/tmp/rot.src
+run     /dd/CMDS/rot /dd/tmp/rot.src
+expect  cc
+
+case    detab-removes-the-tabs
+run     /dd/CMDS/detab $T | /dd/CMDS/grep -c "	"
+expect  0
+
+case    cut-takes-a-field
+run     /dd/CMDS/cut -d, -f1 /dd/SYS/password | /dd/CMDS/head -n 1
+expect  su
+
+case    charcnt-counts-characters
+run     /dd/CMDS/charcnt < $T
+absent  can't
+
+# MEASURED BROKEN, and asserted so on purpose.  Each of these passes while
+# the program is broken and fails the day it is fixed.
+case    gawk-still-reads-no-input
+run     /dd/CMDS/gawk "END{print NR\" records\"}" $T
+absent  records
+
+case    m4-still-mangles-its-output
+run     echo "define(G,hi \$1)G(there)" > /dd/tmp/m.src
+run     /dd/CMDS/m4 < /dd/tmp/m.src
+absent  hi there
+
+# LAST ON PURPOSE: subber's F$Mem failure takes the whole emulator session
+# with it, so every case after it would report `never ran'.
+case    subber-still-calls-an-unimplemented-syscall
+run     echo ",a,A," > /dd/tmp/sub.words
+run     /dd/CMDS/subber /dd/tmp/sub.words $T
+expect  F$Mem
+

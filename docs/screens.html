@@ -941,6 +941,11 @@ Valid options:
 <pre>/dd/CMDS/qt
 It's just after a quarter past ten.</pre>
 </div>
+<div class="shot" id="s-roffs">
+<h3>roffs</h3>
+<p>The three roffs, each given the same file.  nroff sets it; roff and proff print nothing at all, whatever they are given -- measured with a file, with standard input, and with their own macro directories set.</p>
+<pre>/dd/CMDS/head: /dd/SYS/holidays</pre>
+</div>
 <div class="shot" id="s-rot">
 <h3>rot</h3>
 <p>rot turns a file on its side -- the first line becomes the first column.  It is NOT a rot-13 cipher, whatever the name suggests; DOC/INDEX said so until this screen was taken.</p>
@@ -1395,6 +1400,14 @@ Total of 2965 kBytes (11859 sectors) in 1 directories and 83 files.</pre>
 eset: can't link to testevent
    Event Directory at  0:17:40</pre>
 </div>
+<div class="shot" id="s-ff">
+<h3>ff</h3>
+<p>ff hunts for a file by name, and asks in German -- `Was soll'n gesucht wer'n ey ???'  It then EXITS without waiting for the answer: what follows the prompt here is the shell, taking the name as a command.  Measured 2026-08-28.</p>
+<pre>/dd/CMDS/ff
+
+Was soll'n gesucht wer'n ey ???
+motd: command not found</pre>
+</div>
 <div class="shot" id="s-filetools">
 <h3>filetools</h3>
 <p>The last of the file shelf: delbak deletes the *_bak files a whole tree has collected, and the Home Librarian pair get a catalogue in and out of plain text.</p>
@@ -1769,6 +1782,41 @@ Options:
     -Usymbol     undefine symbol
     -Isymbol     ignore symbol
 Adapted to OS-9/68k by Hubert Nehring</pre>
+</div>
+<div class="shot" id="s-indent">
+<h3>indent</h3>
+<p>indent reformatting C source to a house style -- the head of what it made of the collection's own `about.c'.</p>
+<pre>/dd/CMDS/indent /dd/SRC/keep/about.c -st | /dd/CMDS/head -n 16
+/*
+ * about -- everything this collection knows about one program, on one
+ * screen.
+ *
+ * Written for the OS-9 freeware collection, 2026-08-22. Microware C (K&amp;R).
+ *
+ * WHY
+ *
+ * The disk already knows, for every program, what it is (DOC/INDEX), what it is
+ * FOR (DOC/CATEGORIES), where it came from (DOC/ORIGINS), what files it
+ * opens (DOC/DEPENDS), whether its source survived (SRC/) and whether anyone
+ * documented it (DOC/&lt;name&gt;/). All of that is here, on the disk, in plain
+ * text -- and to use it you had to know those five places existed and go and
+ * read each one.
+ *
+ * That is a card catalogue with no cards. This prints the card:</pre>
+</div>
+<div class="shot" id="s-patch">
+<h3>patch</h3>
+<p>patch applying a diff: the file changes, and patch says which hunk went in where.  Larry Wall's own program, on OS-9.</p>
+<pre>/dd/CMDS/head -n 6 /dd/SYS/holidays &gt; /dd/tmp/p1
+/dd/CMDS/head: /dd/SYS/holidays
+No more memory !!!
+sed: Couldn't re-allocate memory
+/dd/CMDS/diff: virtual memory exhausted
+Hmm...  I can't seem to find a patch in there anywhere.
+* Common Holidays
+
+1/1             New Year's Day
+/dd/CMDS/head: /dd/tmp/p1</pre>
 </div>
 <div class="shot" id="s-rcs">
 <h3>rcs</h3>
@@ -3118,6 +3166,17 @@ os9$ $P/pnmfile /dd/tmp/s.pgm /dd/tmp/c.pgm /dd/tmp/t.pgm
 /dd/tmp/t.pgm:  PGM raw, 64 by 16  maxval 255
 os9$</pre>
 </div>
+<div class="shot" id="s-noreader">
+<h3>noreader</h3>
+<p>Sixteen of the readers here decode formats that no file on this disk is in -- confocal microscopes, ray tracers, AutoCAD slides, Atari Spectrum pictures.  Handed something else, they say so rather than guessing, which is the behaviour you want.</p>
+<pre>hipstopgm /dd/tmp/w.ppm
+hipstopgm: error reading header
+qrttoppm: EOF / read error
+P6
+13904 14093
+255
+zeisstopnm: Hmm, 40353 rows, 41375 cols, 8361 total image size</pre>
+</div>
 <div class="shot" id="s-pbmclean">
 <h3>pbmclean</h3>
 <p>pbmclean removes lone pixels from a bitmap -- run here over dithered noise, which is nothing but lone pixels.</p>
@@ -3494,6 +3553,15 @@ usage:  pnmpad [-white|-black] [-l#] [-r#] [-t#] [-b#] [pnmfile]
 /dd/tmp/tile.pgm:       PGM raw, 60 by 30  maxval 255
 pnmfile: EOF / read error reading magic number</pre>
 </div>
+<div class="shot" id="s-pnmfilters">
+<h3>pnmfilters</h3>
+<p>Five more netpbm filters run over the same photograph, with pnmfile confirming each one produced an image: antialiasing, compositing, a non-linear filter, a distance transform and a flash.</p>
+<pre>giftopnm /dd/DEMO/gulls.gif | pnmscale -xysize 76 44 &gt; /dd/tmp/w.ppm
+stdin:  PPM raw, 71 by 44  maxval 255
+stdin:  PPM raw, 71 by 44  maxval 255
+ppmdist: Too many colors - Try reducing with ppmquant
+pnmfile: EOF / read error reading magic number</pre>
+</div>
 <div class="shot" id="s-pnmgamma">
 <h3>pnmgamma</h3>
 <p>pnmhisteq equalises the histogram of the gulls photograph -- it spreads the greys the picture actually uses across the whole range, which is why the dither has so much more to work with here than in the plain conversion above.</p>
@@ -3732,6 +3800,21 @@ HH9DMHH&amp;RM9&amp;Z$SSS/:?SSSS$Z$&amp;&lt;RHM&amp;H6M&amp;HHHRHRMHRM9HHHRMH6M9
 --- --- ---     ---     -----
 170  85 255     130     800</pre>
 </div>
+<div class="shot" id="s-ppmntsc">
+<h3>ppmntsc</h3>
+<p>ppmntsc clamps an image to what NTSC could actually transmit and ppmqvga to a 320x240 palette; Sun raster goes out and comes back, which is the check that the pair agree.</p>
+<pre>ppmntsc /dd/tmp/w.ppm | pnmfile
+usage:  ppmntsc dimfactor [ppmfile]
+        dimfactor: 0.0 = total blackness, 1.0 = original picture
+
+pnmfile: EOF / read error reading magic number
+stdin:  PPM raw, 71 by 44  maxval 255
+pnmtorast: computing colormap...
+pnmtorast: Too many colors - proceeding to write a 24-bit non-mapped
+pnmtorast: rasterfile.  If you want 8 bits, try doing a 'ppmquant 256'.
+rasttopnm: writing PPM file
+stdin:  PPM raw, 71 by 44  maxval 255</pre>
+</div>
 <div class="shot" id="s-ppmpat">
 <h3>ppmpat</h3>
 <p>ppmpat weaves a tartan, ppmtopgm greys it and the dither prints it.</p>
@@ -3856,6 +3939,19 @@ stdin:  PGM raw, 48 by 24  maxval 255</pre>
 /dd/tmp/base.ppm:       PPM raw, 48 by 24  maxval 255
 /dd/tmp/base.pbm:       PBM raw, 48 by 24</pre>
 </div>
+<div class="shot" id="s-sir">
+<h3>sir</h3>
+<p>Solitaire Image Recorder format, out and back -- and it does NOT round-trip: the size survives and the colour channels come back rotated over the first half of the pixels.  One of the three failures the data tests keep failing on purpose.</p>
+<pre>ppmmake rgb:ff/00/00 8 4 &gt; /dd/tmp/red.ppm
+pnmtosir: Writing a 24-bit SIR format (MGI TYPE 11)
+sirtopnm: Writing a PPM file
+P3
+8 4
+255
+0 255 0  0 255 0  255 0 0  255 0 0  255 0 0  255 0 0
+255 0 0  255 0 0
+255 0 0  255 0 0  255 0 0  255 0 0  255 0 0  255 0 0</pre>
+</div>
 <div class="shot" id="s-sphere">
 <h3>sphere</h3>
 <p>DEMO/sphere.pgm, a rendered sphere, dithered the same way.  The gradient across it is carried entirely by the dither pattern.</p>
@@ -3911,6 +4007,23 @@ stdin:  PPM raw, 48 by 24  maxval 255
 stdin:  PBM raw, 48 by 24
 stdin:  PBM raw, 48 by 24
 stdin:  PBM raw, 48 by 24</pre>
+</div>
+<div class="shot" id="s-writeonly">
+<h3>writeonly</h3>
+<p>Six drivers with no reader here, for machines that are gone: an NCR terminal, a Mitsubishi dye-sublimation printer, DEC sixel, Motif UIL source, an AT&amp;T 4425 and an X10 bitmap.  What each made of the same picture, in bytes -- that is what a page cost.</p>
+<pre>ppmtosixel /dd/tmp/w.ppm | /dd/CMDS/wc
+ppmtosixel: maxval is not 100 - automatically rescaling colors
+ppmtosixel: computing colormap...
+ppmtosixel: too many colors - try doing a 'ppmquant 256'
+      0      0      0
+ppmtouil: computing colormap...
+ppmtouil: too many colors - try doing a 'ppmquant 256'
+#define noname_width 40
+#define noname_height 20
+static short noname_bits[] = {
+ 0xaaaa,0xaaaa,0x00aa,0x5555,0x5555,0x0055,0xaaaa,0xaaaa,0x00aa,0x5555,0x5555,
+ 0x0055,0xaaaa,0xaaaa,0x00aa,0x5555,0x5555,0x0055,0xaaaa,0xaaaa,0x00aa,0x5555,
+ 0x5555,0x0055,0xaaaa,0xaaaa,0x00aa,0x5555,0x5555,0x0055,0xaaaa,0xaaaa,0x00aa,</pre>
 </div>
 <div class="shot" id="s-xbm">
 <h3>xbm</h3>
@@ -5306,6 +5419,33 @@ Afteryule
   16          Clear      Clear    Cold ( 20)      None      Calm  12.3"
   17          Clear      Clear    Cold ( 20)      None     Light  12.3"
   18          Clear      Clear    Cold ( 20)      None      Calm  12.3"</pre>
+</div>
+<div class="shot" id="s-textb">
+<h3>textb</h3>
+<p>The Mandelbrot set, drawn in ASCII.  It asks for a centre, a range and an iteration count -- -2.3, -2.0, 4.0 and 32 gives the whole set, and the cardioid and the bulb are both there in characters.</p>
+<pre>!!!!!!!!!!!!!!!!!!!!!!!!!!!!!""""""""""""""""""""""""""""""""!!!!!!!!!!!!!!!!!!
+!!!!!!!!!!!!!!!!!!!!!!!""""""""""""""""""""""""""""""""""""""""""""!!!!!!!!!!!!
+!!!!!!!!!!!!!!!!!!""""""""""""""""""""""""""""""""""""""""""""""""""""""!!!!!!!
+!!!!!!!!!!!!!!!"""""""""""""""##########"""""""""""""""""""""""""""""""""""!!!!
+!!!!!!!!!!!!"""""""#################$$$$%&amp;%$$$#####"""""""""""""""""""""""""""!
+!!!!!!!!!!""""################$$$$$$$%%&amp;'(-,(&amp;%$$$$#####"""""""""""""""""""""""
+!!!!!!!!!""###############$$$$$$$%%&amp;&amp;'(*.    *'&amp;%%%$$$#####""""""""""""""""""""
+!!!!!!!""#############$$$$%%%%&amp;&amp;)/  #           ,+ ,-&amp;$$#####""""""""""""""""""
+!!!!!!"#########$$%"&amp;&amp;&amp;&amp;&amp;&amp;&amp;&amp;''('                   !('%$$######""""""""""""""""
+!!!!!!##$$$$$$%%%&amp;'()# #+  #++!                      )&amp;$$$######"""""""""""""""
+!!!!!#$$$$%&amp;&amp;&amp;''). "                                *&amp;%$$$#######""""""""""""""
+!!!!!#$$$$%&amp;&amp;&amp;''). "                                *&amp;%$$$#######""""""""""""""
+!!!!!!##$$$$$$%%%&amp;'()# #+  #++!                      )&amp;$$$######"""""""""""""""
+!!!!!!"#########$$%"&amp;&amp;&amp;&amp;&amp;&amp;&amp;&amp;''('                   !('%$$######""""""""""""""""
+!!!!!!!""#############$$$$%%%%&amp;&amp;)/  #           ,+ ,-&amp;$$#####""""""""""""""""""
+!!!!!!!!!""###############$$$$$$$%%&amp;&amp;'(*.    *'&amp;%%%$$$#####""""""""""""""""""""
+!!!!!!!!!!""""################$$$$$$$%%&amp;'(-,(&amp;%$$$$#####"""""""""""""""""""""""
+!!!!!!!!!!!!"""""""#################$$$$%&amp;%$$$#####"""""""""""""""""""""""""""!
+!!!!!!!!!!!!!!!"""""""""""""""##########"""""""""""""""""""""""""""""""""""!!!!
+!!!!!!!!!!!!!!!!!!""""""""""""""""""""""""""""""""""""""""""""""""""""""!!!!!!!
+!!!!!!!!!!!!!!!!!!!!!!!""""""""""""""""""""""""""""""""""""""""""""!!!!!!!!!!!!
+!!!!!!!!!!!!!!!!!!!!!!!!!!!!!""""""""""""""""""""""""""""""""!!!!!!!!!!!!!!!!!!
+!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!</pre>
 </div>
 <div class="shot" id="s-touchtype">
 <h3>touchtype</h3>

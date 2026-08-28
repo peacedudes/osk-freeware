@@ -127,3 +127,27 @@ cap     xrf cross-references C source; etags builds the TAGS file emacs
 cap     wants, as ctags does for vi.
 run     /dd/CMDS/xrf /dd/SRC/keep/about.c | /dd/CMDS/head -n 18
 wait    12
+
+
+shot    indent
+for     indent cb ccheck checkfile
+cap     indent reformatting C source to a house style -- the head of what
+cap     it made of the collection's own `about.c'.
+run     /dd/CMDS/indent /dd/SRC/keep/about.c -st | /dd/CMDS/head -n 16
+wait    15
+
+
+shot    patch
+for     patch diff
+cap     patch applying a diff: the file changes, and patch says which hunk
+cap     went in where.  Larry Wall's own program, on OS-9.
+run     /dd/CMDS/head -n 6 /dd/SYS/holidays > /dd/tmp/p1
+wait    8
+run     /dd/CMDS/sed "s/Day/DAY/g" /dd/tmp/p1 > /dd/tmp/p2
+wait    8
+run     /dd/CMDS/diff -c /dd/tmp/p1 /dd/tmp/p2 > /dd/tmp/p.diff
+wait    10
+run     /dd/CMDS/patch /dd/tmp/p1 /dd/tmp/p.diff
+wait    12
+run     /dd/CMDS/head -n 3 /dd/tmp/p1
+wait    8

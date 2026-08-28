@@ -641,3 +641,75 @@ run     /dd/CMDS/GAMES/g
 wait    10
 run     /dd/CMDS/GAMES/striche
 wait    10
+
+
+shot    noreader
+for     bioradtopgm hipstopgm qrttoppm sldtoppm spctoppm zeisstopnm
+cap     Sixteen of the readers here decode formats that no file on this
+cap     disk is in -- confocal microscopes, ray tracers, AutoCAD slides,
+cap     Atari Spectrum pictures.  Handed something else, they say so
+cap     rather than guessing, which is the behaviour you want.
+run     hipstopgm /dd/tmp/w.ppm
+wait    12
+run     qrttoppm /dd/tmp/w.ppm | /dd/CMDS/head -n 3
+wait    12
+run     zeisstopnm /dd/tmp/w.ppm
+wait    12
+
+
+shot    pnmfilters
+for     pnmalias pnmcomp pnmnlfilt ppmdist ppmflash
+cap     Five more netpbm filters run over the same photograph, with pnmfile
+cap     confirming each one produced an image: antialiasing, compositing, a
+cap     non-linear filter, a distance transform and a flash.
+run     giftopnm /dd/DEMO/gulls.gif | pnmscale -xysize 76 44 > /dd/tmp/w.ppm
+wait    25
+run     pnmnlfilt 1.0 0.5 /dd/tmp/w.ppm | pnmfile
+wait    20
+run     ppmflash 0.4 /dd/tmp/w.ppm | pnmfile
+wait    15
+run     ppmdist /dd/tmp/w.ppm | pnmfile
+wait    15
+
+
+shot    ppmntsc
+for     ppmntsc ppmqvga pnmtorast rasttopnm pnmtoddif
+cap     ppmntsc clamps an image to what NTSC could actually transmit and
+cap     ppmqvga to a 320x240 palette; Sun raster goes out and comes back,
+cap     which is the check that the pair agree.
+run     ppmntsc /dd/tmp/w.ppm | pnmfile
+wait    15
+run     ppmqvga /dd/tmp/w.ppm | pnmfile
+wait    15
+run     pnmtorast /dd/tmp/w.ppm > /dd/tmp/w.ras
+wait    10
+run     rasttopnm /dd/tmp/w.ras | pnmfile
+wait    12
+
+
+shot    sir
+for     pnmtosir sirtopnm
+cap     Solitaire Image Recorder format, out and back -- and it does NOT
+cap     round-trip: the size survives and the colour channels come back
+cap     rotated over the first half of the pixels.  One of the three
+cap     failures the data tests keep failing on purpose.
+run     ppmmake rgb:ff/00/00 8 4 > /dd/tmp/red.ppm
+wait    10
+run     pnmtosir /dd/tmp/red.ppm > /dd/tmp/red.sir
+wait    10
+run     sirtopnm /dd/tmp/red.sir | pnmnoraw | /dd/CMDS/head -n 6
+wait    12
+
+
+shot    writeonly
+for     ppmtoicr ppmtomitsu ppmtosixel ppmtouil pbmto4425 pbmtox10bm
+cap     Six drivers with no reader here, for machines that are gone: an NCR
+cap     terminal, a Mitsubishi dye-sublimation printer, DEC sixel, Motif
+cap     UIL source, an AT&T 4425 and an X10 bitmap.  What each made of the
+cap     same picture, in bytes -- that is what a page cost.
+run     ppmtosixel /dd/tmp/w.ppm | /dd/CMDS/wc
+wait    15
+run     ppmtouil /dd/tmp/w.ppm | /dd/CMDS/head -n 8
+wait    15
+run     pbmmake -g 40 20 | pbmtox10bm | /dd/CMDS/head -n 6
+wait    15

@@ -471,3 +471,21 @@ run     /dd/CMDS/tcmp /dd/SYS/motd /dd/SYS/motd
 wait    10
 run     /dd/CMDS/REBUILT/wc.cio /dd/SYS/motd
 wait    10
+
+
+shot    roffs
+for     roff proff nroff
+cap     The three roffs, each given the same file.  nroff sets it; roff and
+cap     proff print nothing at all, whatever they are given -- measured
+cap     with a file, with standard input, and with their own macro
+cap     directories set.
+run     export TMACDIR=/dd/LIB
+wait    3
+run     /dd/CMDS/head -n 12 /dd/SYS/holidays > /dd/tmp/r.txt
+wait    8
+run     /dd/CMDS/nroff /dd/tmp/r.txt | /dd/CMDS/head -n 8
+wait    12
+run     /dd/CMDS/roff /dd/tmp/r.txt
+wait    10
+run     /dd/CMDS/proff /dd/tmp/r.txt
+wait    10

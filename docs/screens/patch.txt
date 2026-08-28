@@ -1,0 +1,10 @@
+/dd/CMDS/head -n 6 /dd/SYS/holidays > /dd/tmp/p1
+/dd/CMDS/head: /dd/SYS/holidays
+No more memory !!!
+sed: Couldn't re-allocate memory
+/dd/CMDS/diff: virtual memory exhausted
+Hmm...  I can't seem to find a patch in there anywhere.
+* Common Holidays
+
+1/1             New Year's Day
+/dd/CMDS/head: /dd/tmp/p1

@@ -127,7 +127,7 @@
 |---|---|
 | `ed` | &#9733; GNU ed 0.2 line editor -- it makes its temporary file at /r0, which os9exec cannot provide, and stops at once with `module not found'.  DOC/README-RUNNING lists the seventeen programs that reach for /r0<br>`Usage: ed [OPTION]... [FILE]` |
 | `editor` | GSHELL front-end for the editor<br>**How:** Full-screen: it takes over the display. **control-C gets you out** -- tested, and none of q, Q, control-D or ESC did. If it has a quit command of its own, its documentation in DOC/ will say. |
-| `sed` | &#9733; sed - stream editor (verified: s/x/y/ substitution works)<br>`Syntax: sed [<opts>] [<path>] [<opts>]` |
+| `sed` | &#9733; sed - stream editor.  SWAPPED 2026-08-28: what ships here is now the CMDS/REBUILT/sed_1.06 build, because the one that used to be here answered every script -- from a file or a pipe, on a four-line input -- with `No more memory !!!' and `Couldn't re-allocate memory'.  The one here now substitutes, deletes and prints with -n<br>`Syntax   : sed [<opts>] [<file>]` |
 
 </details>
 
@@ -245,7 +245,7 @@
 | `file` | Identify file types.  SYS/magic is now here, so it names real formats -- "GIF picture ver. 87a 320 x 200, interlaced, 256 colors" -- and not just OS-9 modules<br>**How:** Names real formats now that SYS/magic is here: `file /dd/DEMO/gulls.gif' reports the GIF version, size and colour count. Before the magic file arrived it could only recognise OS-9 modules. |
 | `gdd` | &#9733; data dump<br>**How:** A data dump -- like `od', with GNU-style long options. Needs Microware's cio. |
 | `strings` | &#9733; extract printable strings, reported as $offset: <text><br>`Usage: strings [-anpl=n] [file [file]]` |
-| `tail` | &#9733; last lines of a file |
+| `tail` | &#9733; last lines of a file -- DESIGNA's, and it takes `-l=<n>', not GNU's `-n <n>', which it rejects as an unknown option.  `head' on this disk IS the GNU one and takes -n: two conventions, one disk |
 | `wc` | count lines/words/chars; counts CR or LF lines.  Where this build came from is NOT established -- it was long listed as ours, built with gcc2, and the evidence is against that: it is starred, and a gcc2 build here links clibn and needs no cio.  The three commands listed beside it turned out to be archive binaries.  No source and no second copy has been found in this repo or the archive pool |
 | `wc.cio` | &#9733; archived build; DOES NOT WORK -- prints nothing for a file argument, which is why wc is still the gcc2 build |
 
@@ -634,7 +634,7 @@
 | `gzip68k_nocsl` | gzip 1.2.4, 68000, no csl needed<br>`usage: gzip68k_nocsl [-gzip68k_nocslcdfhlLnNgzip68k_nocsltvV19] [-S suffix] [file ...]` |
 | `lharcs` | C-LHarc 1.01, older than CMDS/lha 2.08<br>`Usage: lharcs {axevlufdmctp}[qnftv] archive_file [files or directories...]` |
 | `m4_0.5` | &#9733; another build of m4<br>`Usage: m4 [options] file ....` |
-| `sed_1.06` | &#9733; another build of sed<br>`Syntax   : sed [<opts>] [<file>]` |
+| `sed_1.06` | &#9733; another build of sed -- and since 2026-08-28 it IS the build that ships as `sed', the earlier one having turned out to do nothing but exhaust memory<br>`Syntax   : sed [<opts>] [<file>]` |
 
 **Compress a file**
 
