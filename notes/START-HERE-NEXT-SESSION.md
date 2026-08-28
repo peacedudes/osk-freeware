@@ -120,6 +120,13 @@ interesting and it is not blocking anything.
 
 # What to work on, in order
 
+**STEP 1 OF THE PLAN IS DONE, 2026-08-27.** `tools/datatest.py` proves a
+program by the DATA it wrote. 43 netpbm cases, 42 passing, one emulator start.
+It found nine programs dying of a 3072-byte stack (fixed in place by the new
+`tools/set_stack.py`) and one real round-trip corruption in `pnmtosir` that is
+still open. Next: the same treatment for archives and encoders, which prove
+themselves by round trip.
+
 **THE PLAN IS `notes/PLAN-verification.md`.** Written 2026-08-27 at rdoggett's
 request. It sets the bar (every program PROVEN TO DO ITS JOB), splits the 834
 catalogued programs into four tiers by what would actually prove them, and

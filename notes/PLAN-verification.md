@@ -99,6 +99,37 @@ gone from the documentation.
 honest about which parts are mechanical and which are not: steps 1, 2 and 4
 are the machine's work and scale; step 3 does not scale and is the real floor.
 
+## Progress
+
+**2026-08-27, the day the plan was written.** Step 1 is DONE and step 2 is
+started.
+
+  - `tools/datatest.py` exists and works. A family runs in ONE emulator
+    start, so 43 netpbm cases take about a minute where 43 play-tests would
+    take three hours. It refuses a case that asserts nothing, and it was made
+    to fail four different ways before its passes were believed.
+  - `tools/datatests/netpbm.cases` -- 43 cases, 42 passing. Eighteen image
+    formats are proven to round-trip PIXEL FOR PIXEL, not merely to keep
+    their dimensions. Dimensions were the first version's check and it passed
+    all sixteen cases on the day it was written, which is exactly the shape of
+    every false pass this collection has produced.
+
+**It found real bugs on its first run, which is the point:**
+
+  - **Nine netpbm programs died with `**** Stack Overflow ****`.** All 169
+    netpbm modules ship with the same `M$Stack` of 3072 and these nine want
+    more. `tools/set_stack.py` raises the field in place and recomputes the
+    CRC -- `M$Stack` is past the 48-byte header so parity is untouched, and
+    that is asserted either side of the edit. Five went from broken to
+    working; four stopped crashing on input they cannot read and print their
+    own diagnostic instead. 16k was tried first and is not enough.
+  - **`pnmtosir`/`sirtopnm` do not round-trip.** The image returns the right
+    SIZE with its channels rotated over the first half of the pixels -- a
+    solid red 4x1 comes back green, green, red, red. Still open, kept as a
+    failing case, documented in `DOC/INDEX`. This is the exact failure that
+    a dimensions check cannot see, found within an hour of having a check
+    that could.
+
 ## What this plan refuses to do
 
 - **No credit for "it printed something".** That is the bar that produced
