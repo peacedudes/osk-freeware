@@ -1,0 +1,23 @@
+Read record #88; length==50
+Deleted this record (50 bytes)
+Read record #89; length==50
+Read record #90; length==100
+
+minRecl == 10, maxRecl == 300
+mapper entries == 176, deleted mapper entries == 22
+deleted bytes in store == 1550, store size == 11956
+
+Read record #91; length==50
+Read record #92; length==100
+Deleted this record (100 bytes)
+Read record #93; length==50
+Read record #94; length==75
+Read record #95; length==50
+Read record #96; length==50
+Deleted this record (50 bytes)
+Read record #97; length==50
+Read record #98; length==100
+Read record #99; length==50
+
+
+vlTest completed successfully

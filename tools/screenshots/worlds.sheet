@@ -1,0 +1,50 @@
+# Whole worlds that ship on this disk: three unrelated adventure systems, a
+# Prolog, and a ray tracer.  Each one has its data here -- which the
+# catalogue said of only one of them until these were taken.
+shot    infocom
+cap     The Infocom Z-machine interpreter running a real story file --
+cap     GAMES/INFORM/dejavu.z3, compiled with Inform and shipped here.
+run     /dd/CMDS/infocom /dd/GAMES/INFORM/dejavu.z3
+wait    8
+send    look\r
+wait    5
+
+shot    advint
+cap     ADVSYS, a second adventure system, playing GAMES/ADVSYS/objects.adi
+cap     -- the sample world its author shipped, and the source for it is
+cap     here too.
+run     /dd/CMDS/GAMES/advint /dd/GAMES/ADVSYS/objects.adi
+wait    8
+send    look\r
+wait    5
+
+shot    adlrun
+cap     ADL, a third: Adventure Definition Language, with the AARD world
+cap     compiled and ready in /dd/ADL/AARD.
+run     /dd/CMDS/ADL/adlrun /dd/ADL/AARD/aard
+wait    8
+send    look\r
+wait    5
+
+shot    sbprolog
+for     wam.sbprolog
+cap     SB-Prolog 2.2 at its prompt, answering a query.  SIMPATH has to
+cap     point at the module library or it exits silently -- which is what
+cap     DOC/sbprolog warns about, and it is right.
+run     export SIMPATH=/dd/SBPROLOG/MODLIB
+wait    2
+run     /dd/CMDS/wam.sbprolog /dd/SBPROLOG/MODLIB/\$readloop
+wait    10
+send    X is 6*7, write(X), nl.\r
+wait    6
+
+shot    rayshade
+cap     Rayshade 4.0, a full ray tracer, rendering one of its fifteen
+cap     example scenes and reporting what it did: primitives, rays cast,
+cap     shadow rays, and the time it took.
+run     /dd/CMDS/copy /dd/CMDS/GCC139/gcc_cccp /dd/tmp/cccp
+wait    5
+run     export PATH=/dd/tmp:/dd/CMDS:/dd/CMDS/GAMES:/dd/CMDS/NETPBM:.
+wait    2
+run     /dd/CMDS/rayshade -R 48 36 -O /dd/tmp/out.pic /dd/GAMES/rayshade/boxball.ray
+wait    45

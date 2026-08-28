@@ -1,7 +1,7 @@
-the quick brown fox
+ Id PId Grp.Usr Prio SysTime %Sys UserTime %User Totaltime Module
 
-Process   Pid: 3, maze, edition 7
+
+Process   Pid: 3, top, edition 7
     Exit code: E_PRCABT(228) Process Aborted
   Directories: Current   - /dd
                Execution - /dd/CMDS
-        Files: 00 fCons /term

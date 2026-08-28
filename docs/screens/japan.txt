@@ -1,23 +1,22 @@
-   5          Clear      Clear    Warm ( 65)      None      Calm
-   6       Overcast  Heavy Fog    Fair ( 60)      None     Light
-   7       Overcast  Light Fog    Fair ( 60)      None     Light
-   8       Overcast       Mist    Fair ( 60)      None     Brisk         Buddhi,
-   9       Overcast  Light Fog    Fair ( 45)      None     Brisk
-  10       Overcast       Mist    Fair ( 45)      None  Blustery
-  11       Overcast  Heavy Fog    Warm ( 75)      None      Calm
-  12  Precipitation       Mist    Fair ( 60)    Shower     Brisk         Rain -,
-  13  Precipitation     Cloudy    Fair ( 50)     Heavy  Blustery         Rain -,
-  14       Overcast     Cloudy    Fair ( 60)      None  Blustery
-  15  Precipitation       Mist    Fair ( 50)  Sprinkle     Light         Rain -,
-  16  Precipitation       Mist    Fair ( 55)    Shower     Brisk         Rain -,
-  17  Precipitation       Mist    Fair ( 60)    Shower      Calm         Rain -,
-  18  Precipitation       Mist    Fair ( 60)     Heavy      Calm         Rain -,
-  19  Precipitation       Mist    Fair ( 55)  Sprinkle     Light         Rain -,
-  20  Precipitation       Mist    Fair ( 60)  Sprinkle     Brisk         Rain -,
-  21  Precipitation       Mist    Fair ( 60)  Sprinkle     Light         Rain -,
-  22  Precipitation     Cloudy    Fair ( 40)  Sprinkle  Blustery         Rain -,
-  23  Precipitation  Heavy Fog    Fair ( 60)    Shower  Blustery         Rain -,
-  24  Precipitation       Mist    Fair ( 60)  Sprinkle     Brisk         Rain -,
-  25  Precipitation  Light Fog    Fair ( 60)  Sprinkle  Blustery         Rain -,
-  26  Precipitation       Mist    Fair ( 60)  Sprinkle  Blustery         Rain -,
-  27  Precipitation       Mist    Warm ( 70)  Sprinkle  Blustery         Raiare
+/dd/CMDS/japan | /dd/CMDS/head -n 21
+                                                                  Snow
+Year   1    Weather        Sky   Temperature    Precip      Wind  Depth  Notes
+Rat
+   1          Clear      Clear  Chilly ( 25)      None     Light         Shinto)
+   2          Clear      Clear  Chilly ( 30)      None     Brisk         New Ye)
+   3  Precipitation       Mist  Chilly ( 30)  Sprinkle     Light   0.1"  Snow -)
+   4          Clear      Clear    Fair ( 45)      None      Calm         New Ye)
+   5          Clear      Clear    Fair ( 40)      None      Calm         New Ye)
+   6          Clear      Clear  Chilly ( 30)      None      Calm         New Ye)
+   7          Clear      Clear  Chilly ( 35)      None     Brisk
+   8          Clear      Clear    Fair ( 45)      None     Light         Buddhi,
+   9          Clear      Clear    Fair ( 40)      None      Calm
+  10          Clear      Clear  Chilly ( 35)      None     Light
+  11  Precipitation     Cloudy    Fair ( 40)    Shower     Light         Rain -,
+  12  Precipitation  Heavy Fog  Chilly ( 25)    Shower     Brisk   1.0"  Snow -,
+  13          Clear      Clear    Fair ( 40)      None      Calm
+  14          Clear      Clear  Chilly ( 30)      None      Calm
+  15          Clear      Clear    Fair ( 40)      None     Light         Full M,
+  16          Clear      Clear    Fair ( 40)      None      Calm
+  17  Precipitation       Mist    Fair ( 45)  Sprinkle  Blustery         Rain -,
+  18          Clear      Clear    Fair ( 55)      None     Brisk         Buddhi,

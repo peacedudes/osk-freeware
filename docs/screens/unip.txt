@@ -1,0 +1,19 @@
+<dd/DOC/README-CIO | /dd/CMDS/sort | /dd/CMDS/unip | /dd/CMDS/head -n 18
+(`-qm`)
+(the
+****
+*cat.cio
+*ckermit
+*ed
+*emacs
+*fgrep
+*ksh
+*rcs
+*vi_cio
+*zoo
+--
+-------
+-----------
+----------------------------
+--------------------------------
+-qixm`

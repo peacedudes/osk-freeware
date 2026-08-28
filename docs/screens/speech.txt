@@ -1,4 +1,4 @@
 /dd/CMDS/speech
 Enter english text (Ctrl-Z to end):
-The quick brown fox jumps over the lazy dog
-DHAX kwIHk brOWn fAAks jUWmps OWvER DHAX lEYzIH
+OS-9 is a real time operating system
+AAz mIHnAHs nAYn IHz EY rIYl tAYm OWpEREYtIHNG

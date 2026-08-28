@@ -156,11 +156,11 @@
 | `pep` | file 'detergent' - strip junk from files<br>`Usage: pep [options] [filename ...]` |
 | `psc` | &#9733; sc's print/format filter<br>`Syntax: psc [-rkfLSPv?] [-s v] [-R i] [-C i] [-n i] [-d c] [<path1] [>path2]` |
 | `qt` | &#9733; quick text utility |
-| `rot` | rot-N text transformer |
+| `rot` | turn a text file on its side -- line one becomes column one.  NOT a rot-13 cipher, whatever the name suggests |
 | `shuffle` | shuffle lines/cards<br>**How:** Full-screen: it takes over the display. **`q' quits** -- tested. |
 | `tabs` | tab/space conversion filter<br>`Syntax   : tabs [<opts>] [<input_redirection>] [<output_redirection>]` |
 | `upperdir` | Normalise case: files lowercase, dirs uppercase<br>`Usage: UpperDir [directory name]` |
-| `valspeak` | &#9733; Valley-speak text filter |
+| `valspeak` | &#9733; Valley-speak text filter -- prints nothing, from a file or from a pipe |
 
 **Sort, compare & merge**
 
@@ -243,7 +243,7 @@
 | | |
 |---|---|
 | `lout` | Lout 2.05 document formatter (Basser Lout, Jeffrey Kingston)<br>`usage: -o<filename>` |
-| `nroff` | &#9733; nroff text formatter -- setenv TMACDIR /dd/LIB first<br>**How:** Formats man pages. The -man macros in LIB/tmac.an were extended for this collection because the originals defined only .TH .SH .SS .PP and .I; LIB/orig.tmac.an is the untouched version. Try `nroff -man /dd/DOC/netpbm/pnmscale.1'. |
+| `nroff` | &#9733; nroff text formatter -- setenv TMACDIR /dd/LIB first.  It will not read standard input: give it a file<br>**How:** Formats man pages. The -man macros in LIB/tmac.an were extended for this collection because the originals defined only .TH .SH .SS .PP and .I; LIB/orig.tmac.an is the untouched version. Try `nroff -man /dd/DOC/netpbm/pnmscale.1'. |
 | `proff` | proff - portable roff text formatter (macros in LIB/proff)<br>`usage: proff [+n] [-n] [-v] [-ifile] [-s] [-pon] [infile [outfile]]` |
 | `roff` | roff text formatter<br>`Syntax: roff {[+00] [-00] [-s] -[h] file}` |
 | `tformat` | text formatter (SNOBOL4-in-C)<br>`Usage: tformat [width\|-?] [<infile] [>outfile]` |
@@ -281,7 +281,7 @@
 
 | | |
 |---|---|
-| `gawk` | &#9733; GNU awk 2.11 -- the pattern-and-action language.  The disk had no awk of any kind before this<br>**How:** GNU awk 2.11, the first awk this disk has ever carried. Needs Microware's cio. `gawk "{print \$1}" file' -- and mind that the OS-9 shell, not gawk, is what mangles quoting. |
+| `gawk` | &#9733; GNU awk 2.11 -- the pattern-and-action language.  A BEGIN block runs and `getline < "file"' reads, but the moment gawk has to read its OWN input -- any rule, or an END block -- it prints nothing at all.  Measured 2026-08-27<br>**How:** GNU awk 2.11, the first awk this disk has ever carried. Needs Microware's cio. `gawk "{print \$1}" file' -- and mind that the OS-9 shell, not gawk, is what mangles quoting. |
 
 </details>
 
@@ -321,9 +321,9 @@
 | | |
 |---|---|
 | `dir` | &#9733; directory listing.  PATCHED HERE: its moveq #128 was sign-extended to -128; see DOC/STATUS<br>`Syntax: dir [<opts>] {<dir names> [<opts>]}` |
-| `dm` | &#9733; Disk and directory monitor.  SYS/dm.hlp is now here, so its built-in help works<br>`Usage: DiskMaster [-c] [-d<dir name>]` |
-| `edir` | &#9733; extended directory listing<br>`Syntax: edir [<opts>]` |
-| `l` | &#9733; brief directory listing<br>`Usage: l [-options] [file] [file] [-options]` |
+| `dm` | &#9733; Disk and directory monitor.  SYS/dm.hlp is now here, so its built-in help works -- but it stops at once with ERROR 216: Can't open /pipe/getcwdpipe<br>`Usage: DiskMaster [-c] [-d<dir name>]` |
+| `edir` | &#9733; list the EVENT directory -- OS-9 events and their values. Nothing to do with `dir'<br>`Syntax: edir [<opts>]` |
+| `l` | &#9733; brief directory listing -- but it answers `not accessable, error: 214' for every directory tried here<br>`Usage: l [-options] [file] [file] [-options]` |
 | `ls` | GNU ls (fileutils 3.13) -- OUR OWN FIXED BUILD: real stat(), columns, -al<br>`Usage: ls [OPTION]... [FILE]...` |
 | `tree` | Print a directory tree -- BUT fails on this disk: it opens the raw device (/dd@), which a host-native disk has no equivalent for<br>`Syntax: tree [<directory>] [<opts>]` |
 
@@ -482,7 +482,7 @@
 | `dmake` | &#9733; dmake 3.70 - parallel make with its own makefile dialect |
 | `flex` | lexical analyzer generator -- see DOC/flex/README-FLEX FIRST<br>`Syntax   : flex [-bcdfinpstvFILT8 -C[efmF] -Sskeleton] [filename ...]` |
 | `gmake` | GNU make -- ADDED (the gnu.bin build of make is the broken one)<br>`Usage: gmake [options] [target] ...` |
-| `m4` | m4 macro processor<br>`Usage: m4 [-Dname[=val]] [-Uname]` |
+| `m4` | m4 macro processor -- its output is MANGLED here: `GREET(reader)' against a one-line definition comes back as `el edr rm S-9'<br>`Usage: m4 [-Dname[=val]] [-Uname]` |
 | `make` | &#9733; make - maintain and regenerate groups of files (verified: -? works)<br>`Syntax :	make {[-f <makefile>] [-dDinrst] [<target>] [<macro>=<value>]}` |
 | `makeinfo` | GNU makeinfo -- Texinfo to info<br>`Usage: makeinfo [options] texinfo-file...` |
 | `rtf` | RTF/68K Real-Time Fortran-77 compiler, v2.14 (CERN, 1987). Compiles .f to 68k ASSEMBLY; assembling and linking then need Microware's r68 and l68.  Manual: DOC/rtf/rtfman.txt |
@@ -1106,7 +1106,7 @@
 | `bite` | a skull animation, not a game you play<br>**How:** Full-screen: it takes over the display. **`q' quits** -- tested. |
 | `greed` | Greed - grid game<br>`Usage: greed [-p] [-s]` |
 | `lander` | lunar lander -- KNOWN BROKEN: takes no input, and the post-crash screen is corrupt.  Wants SysV curses line drawing that vt100 termcap does not give it.<br>**How:** Full-screen: it takes over the display. **`q' quits** -- tested. |
-| `pacman` | Pac-Man |
+| `pacman` | Pac-Man -- it draws nothing and exits at once, keyed or not |
 | `robots` | &#9733; robots -- outrun them until they crash into each other. REBUILT HERE from source, in SRC/rob.  The archive binary drew cursor-up as a bare ^K, which a terminal reads as index -- DOWN -- so the screen scrolled and the board was left with characters that were not really there. USE -m: without it the game is effectively unplayable.<br>**How:** Play with `robots -m' -- manual mode, where the robots take one step per move you make. Keys are the numeric keypad 1-9 (5 stands still), `s' for last stand, `t' to teleport. Needs Microware's math module and a real TERM. |
 | `snake` | snake arcade game.  WORKS -- draws its board in a login session.  Run bare, with no TERMCAP, it bus errors instead; see DOC/README-BUSERR<br>**How:** Full-screen: it takes over the display. **`x' quits** -- tested. (control-C also gets you out, but `x' is the program's own way.) |
 | `sokoban` | &#9733; Sokoban puzzle<br>**How:** Wants a username, so run it from a login rather than a bare shell, or it stops with "cannot get your username". |
@@ -1119,7 +1119,7 @@
 |---|---|
 | `advcom` | ADVSYS adventure COMPILER -- turns .adv source into a .adi world file.  Only useful if you are writing an adventure; no .adv source is here.<br>**How:** Compiles ADVSYS .adv source into a .adi world for advint. No .adv source ships here either -- this pair is for writing adventures, not playing them. |
 | `advent` | Colossal Cave Adventure -- self-contained, reads /dd/GAMES/adv/glorkz.  Needs this disk as /dd; mounted only as /h0 it cannot find its data.  Unrelated to advcom/advint.<br>**How:** Colossal Cave. Needs this disk as /dd -- it opens /dd/GAMES/adv/glorkz by absolute path, so mounted only as /h0 it cannot find its data. |
-| `advint` | ADVSYS adventure INTERPRETER -- plays a .adi world file. Nothing on this disk to feed it; DOC/advint has the format.<br>**How:** Plays an ADVSYS .adi world file. THERE IS NO WORLD FILE ON THIS DISK, so it has nothing to do until you write one with advcom. |
+| `advint` | ADVSYS adventure INTERPRETER -- plays a world COMPILED by advcom.  The sample source is here (GAMES/ADVSYS), the compiled world is not, and advcom needs a real chd to build it -- GAMES/ADVSYS/README has the three lines.<br>**How:** Plays an ADVSYS .adi world file. THERE IS NO WORLD FILE ON THIS DISK, so it has nothing to do until you write one with advcom. |
 | `infocom` | Infocom Z-MACHINE interpreter -- a third, unrelated adventure system.  Plays the .z3 files in GAMES/INFORM (dejavu, hellow, shell -- Inform demos, not the Infocom games).<br>**How:** A Z-machine. Plays the .z3 files in /dd/GAMES/INFORM, which are Inform demonstration programs (dejavu, hellow, shell), not the Infocom games. |
 | `infocom.tcap` | Infocom interpreter, termcap build<br>**How:** Plays Infocom adventure game files -- it needs the game's data file as an argument, which this disk does not carry. |
 
@@ -1128,8 +1128,8 @@
 | | |
 |---|---|
 | `bincheckr` | check a GNU Chess opening-book file |
-| `checkgame` | replay a saved chess game -- game <file> [start [end]]; 2nd build<br>`Usage: game file [start [end] ]` |
-| `game` | replay a saved chess game -- game <file> [start [end]]<br>`Usage: game file [start [end] ]` |
+| `checkgame` | replay a saved chess game -- prints two lines of PostScript and then aborts (E_PRCABT).  2nd build; `game' is the same<br>`Usage: game file [start [end] ]` |
+| `game` | replay a saved chess game -- prints two lines of PostScript and then aborts (E_PRCABT)<br>`Usage: game file [start [end] ]` |
 | `postprint` | print a chess position as PostScript (GNU Chess) |
 
 **Puzzles**
@@ -1207,7 +1207,7 @@
 | `rpoem` | &#9733; random poem generator (SNOBOL4-in-C).  Data: GAMES/SNOBOL |
 | `rstory` | random story generator, roff output.  Data: GAMES/SNOBOL |
 | `rstory2` | &#9733; random story generator, second version (SNOBOL4-in-C) |
-| `scales` | &#9733; musical scale generator<br>`Usage: scales [-h] [-d] [-a] [-m] [-c] [outname]` |
+| `scales` | &#9733; musical scale generator -- writes `scales.lst' in the current directory and prints nothing to the screen<br>`Usage: scales [-h] [-d] [-a] [-m] [-c] [outname]` |
 | `travesty` | make a travesty of the input -- Markov chains, DJB<br>`Usage: travesty [ -oord ] [ -nnum ] [ -rrand ] [ -sS ] [ -ACHUVW ]` |
 
 **Curiosities**
@@ -1256,7 +1256,7 @@
 | `clear` | &#9733; clear the screen<br>`Syntax:   clear` |
 | `combine` | &#9733; combine files<br>`Syntax: combine [<file1>] [<file2>] [<outfile>] [<opt>]` |
 | `config` | report this machine's C type properties as #defines -- char, short, int, long, pointer and float all come out; it then aborts where `double' begins, because that needs a 68881 or Microware's fpu.  See DOC/README-BUSERR |
-| `cpu` | &#9733; CPU speed test |
+| `cpu` | &#9733; CPU speed test -- draws its bar chart and its answer (156 MHz, which is the emulator), then traps on vector $07 and takes the session down with it |
 | `creadoc` | extract documentation comments from FORTRAN source; needs os9lib.  DOC/rtf/biory.doc is its output for biory.f |
 | `demerge` | split a merged file back into its parts<br>`Syntax:   demerge <path>` |
 | `demo` | egetopt option-parsing demonstration |
@@ -1331,9 +1331,9 @@
 | `signal` | &#9733; send a signal to a process<br>`Syntax: signal <process-id> <signal-code> [<seconds>]` |
 | `sysmax` | &#9733; show maximum system memory |
 | `sysmin` | &#9733; show minimum system memory |
-| `sysmon` | &#9733; system monitor<br>`Syntax: sysmon [<opt>]` |
+| `sysmon` | &#9733; system monitor -- refuses to start: `OS9/68k V4.0 is too old for SYSMON V6.1'<br>`Syntax: sysmon [<opt>]` |
 | `t` | tiny test/stub binary |
-| `top` | &#9733; show the busiest processes<br>`Syntax: top [<opts>] [<num>]` |
+| `top` | &#9733; show the busiest processes -- prints its heading and then aborts (E_PRCABT).  `aprocs' aborts the same way<br>`Syntax: top [<opts>] [<num>]` |
 | `who` | 'who is logged in'.  Written in MICROWARE SHELL syntax ('!' pipes), not sh, and needs procs/field/qsort/tr, none of which are on this disk. |
 
 **OS-9 modules**
@@ -1353,7 +1353,7 @@
 | | |
 |---|---|
 | `clock` | display a clock |
-| `date` | Print date and time |
+| `date` | Print date and time -- it prints the YEAR AS 2100.  `today' gets it right; setime2, setyear and fixyear are the Y2K repairs beside it |
 | `loglist` | &#9733; log listing<br>`Syntax   : loglist [-option(s)]` |
 | `oskversion` | &#9733; report the OS-9/OSK version<br>`Syntax:   OSKversion` |
 | `setime` | Set system time (prompts YYMMDDHHMMSS) |
@@ -1511,7 +1511,7 @@
 
 | | |
 |---|---|
-| `oleo` | GNU Oleo 1.6 -- a spreadsheet.  Wants a real TERM.  The other spreadsheet here is sc<br>**How:** GNU Oleo, a spreadsheet. It needs a real terminal -- run it from a login so TERM is set, not from a bare shell. sc is the other spreadsheet on this disk; they are unrelated programs. |
+| `oleo` | GNU Oleo 1.6 -- a spreadsheet, and it DOES NOT RUN: illegal instruction at 000465d2, process aborted.  `sc' is the spreadsheet that works<br>**How:** GNU Oleo, a spreadsheet. It needs a real terminal -- run it from a login so TERM is set, not from a bare shell. sc is the other spreadsheet on this disk; they are unrelated programs. |
 | `scqref` | &#9733; Quick reference for sc, the spreadsheet on this disk |
 
 **Astronomy & orbits**

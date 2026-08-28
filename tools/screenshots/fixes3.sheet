@@ -1,0 +1,109 @@
+# Fourth pass.  Two of these correct the CATALOGUE, not the stanza: `rot' is
+# not a rot-13 filter and `edir' is not a directory listing.
+shot    rot
+cap     rot turns a file on its side -- the first line becomes the first
+cap     column.  It is NOT a rot-13 cipher, whatever the name suggests;
+cap     DOC/INDEX said so until this screen was taken.
+run     /dd/CMDS/head -n 6 /dd/SYS/holidays > /dd/tmp/h.txt
+wait    3
+run     /dd/CMDS/cat /dd/tmp/h.txt
+wait    3
+run     /dd/CMDS/rot /dd/tmp/h.txt
+wait    5
+
+shot    calen
+cap     calen prints a month as a diary page, ruled for appointments -- it
+cap     asks for month, year and how many months to print.
+run     echo 8 2026 1 | /dd/CMDS/calen | /dd/CMDS/head -n 21
+wait    6
+
+shot    shire
+cap     A weather simulator for the Shire, on the Middle-earth calendar:
+cap     Afteryule, Solmath, Rethe.  One of six regions here.
+run     /dd/CMDS/shire | /dd/CMDS/head -n 21
+wait    8
+
+shot    florida
+cap     The same simulator on the Gulf coast -- Gregorian calendar, and a
+cap     January that never freezes.
+run     /dd/CMDS/florida | /dd/CMDS/head -n 21
+wait    8
+
+shot    japan
+cap     The simulator on the Japanese calendar and the North Pacific.
+run     /dd/CMDS/japan | /dd/CMDS/head -n 21
+wait    8
+
+shot    gawk
+cap     GNU awk 2.11 over the disk's own index: count the programs by the
+cap     letter they start with, then sort by that count.
+run     /dd/CMDS/gawk "{print substr(\$1,1,1)}" /dd/DOC/INDEX | /dd/CMDS/sort | /dd/CMDS/uniq -c | /dd/CMDS/sort -nr | /dd/CMDS/head -n 12
+wait    12
+
+shot    gs-render
+for     gs403
+cap     Ghostscript rasterising one of its own test files to a bitmap, and
+cap     netpbm printing that as characters.  PostScript in, picture out,
+cap     with nothing outside this disk involved.  GS_LIB is what it wants:
+cap     without it, it cannot find gs_init.ps and stops.
+run     export GS_LIB=/dd/LIB/gs403
+wait    2
+run     /dd/CMDS/gs403 -q -dNOPAUSE -dBATCH -sDEVICE=pbm -r24 -g152x88 -sOutputFile=/dd/tmp/gs.pbm /dd/LIB/gs403/cheq.ps
+wait    45
+run     /dd/CMDS/NETPBM/pbmtoascii -2x4 /dd/tmp/gs.pbm
+wait    10
+
+shot    nroff
+cap     nroff setting a page of the disk's own documentation.  It wants a
+cap     FILE: it will not read standard input.
+run     export TMACDIR=/dd/LIB
+wait    2
+run     /dd/CMDS/nroff /dd/DOC/README-CIO | /dd/CMDS/head -n 21
+wait    10
+
+shot    m4
+cap     m4, the macro processor: a macro defined, then expanded with an
+cap     argument.
+run     echo "define(GREET, Hello \$1 from OS-9)GREET(reader)" > /dd/tmp/m.m4
+wait    3
+run     /dd/CMDS/cat /dd/tmp/m.m4
+wait    3
+run     /dd/CMDS/m4 /dd/tmp/m.m4
+wait    8
+
+shot    as09
+cap     as09 assembling 6809 source and listing it: address, object bytes
+cap     and source together.  A 6809 cross-assembler running on a 68000 --
+cap     as0, as1, as4, as5 and as11 are its cousins for the 6800 family,
+cap     and none of the six assembles 68k.
+run     /dd/CMDS/cat /dd/SRC/xasm/sample.a
+wait    4
+run     /dd/CMDS/as09 -l /dd/SRC/xasm/sample.a
+wait    10
+
+shot    make
+cap     make maintaining a target from a rule, and then saying there is
+cap     nothing left to do.
+run     /dd/CMDS/cat /dd/tmp/Makefile
+wait    3
+run     /dd/CMDS/make -f /dd/tmp/Makefile
+wait    8
+
+shot    date
+cap     date, and the two Y2K repairs that sit beside it here.
+run     /dd/CMDS/date
+wait    3
+run     /dd/CMDS/date -t
+wait    4
+
+shot    valspeak
+cap     valspeak, a filter with an attitude, given a file rather than a
+cap     pipe.
+run     /dd/CMDS/GAMES/valspeak /dd/SYS/motd
+wait    5
+
+shot    help
+cap     The help system, listing the topics it has -- each one a .hlp file
+cap     and an index in SYS/HELP.
+run     /dd/CMDS/help
+wait    6

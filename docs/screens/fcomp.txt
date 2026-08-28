@@ -1,0 +1,2 @@
+/dd/CMDS/fcomp /dd/tmp/h1 /dd/tmp/h2
+fcomp: can't allocate line strings buffer for "/dd/tmp/h2"

@@ -1,0 +1,8 @@
+/dd/CMDS/du /dd/CMDS/GAMES | /dd/CMDS/head -n 21
+Disk usage starting from "/dd/CMDS/GAMES" on 19126-08-27  20:34:48
+
+Directory name                      Bytes    kBytes   Sectors    File #
+--------------                   --------   -------   -------   -------
+/dd/CMDS/GAMES                    3035872      2965     11859        83
+
+Total of 2965 kBytes (11859 sectors) in 1 directories and 83 files.

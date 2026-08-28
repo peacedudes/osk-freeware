@@ -1,0 +1,4 @@
+/dd/CMDS/date
+Today is Thursday, the twenty-seventh day of August, two thousand and
+twenty-six. In twenty seconds, the time will be twenty-three minutes
+before nine PM, Daylight Savings Time. The moon is full.

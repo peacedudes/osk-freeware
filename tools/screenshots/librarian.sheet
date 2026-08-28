@@ -1,0 +1,42 @@
+# Home Librarian: six programs and their documentation that travel together,
+# a catalogue for a personal library.
+shot    Librarian
+cap     Home Librarian searching a catalogue -- the program the other five
+cap     exist to feed.
+run     /dd/CMDS/Librarian
+wait    8
+
+shot    Ascii2Libr
+cap     The pair that get data in and out: Ascii2Libr rebuilds a catalogue
+cap     from plain text, Libr2Ascii dumps one back to text.
+run     /dd/CMDS/Ascii2Libr
+wait    5
+run     /dd/CMDS/Libr2Ascii
+wait    5
+
+shot    PrintCards
+cap     PrintCards and PrintLabels, the output half of the same suite.
+run     /dd/CMDS/PrintCards
+wait    5
+run     /dd/CMDS/PrintLabels
+wait    5
+
+shot    dfiles
+cap     dfiles hunts for duplicate files and writes the cmp commands that
+cap     would prove them identical.
+run     /dd/CMDS/dfiles /dd/SYS
+wait    10
+kill
+
+shot    du-tree
+for     du
+cap     du walking a directory tree and adding it up.
+run     /dd/CMDS/du /dd/CMDS/GAMES | /dd/CMDS/head -n 21
+wait    10
+
+shot    ls-long
+for     ls
+cap     GNU ls with -al on the collection's own root: the OS-9 attributes
+cap     mapped onto the mode bits ls knows how to print.
+run     /dd/CMDS/ls -al /dd | /dd/CMDS/head -n 21
+wait    8

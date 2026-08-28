@@ -1,0 +1,2 @@
+/dd/CMDS/GAMES/mkdict -?
+/dd/CMDS/GAMES/mkindex -?

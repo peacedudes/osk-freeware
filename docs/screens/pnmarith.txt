@@ -1,0 +1,5 @@
+pgmramp -lr 152 88 > /dd/tmp/r2.pgm
+<d/tmp/s2.pgm /dd/tmp/r2.pgm | pgmtopbm | pbmtoascii -2x4
+pnmarith: the two anymaps must be the same width and height
+pgmtopbm: EOF / read error reading magic number
+pbmtoascii: EOF / read error reading magic number

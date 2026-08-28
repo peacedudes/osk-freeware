@@ -1,1 +1,1 @@
-<l.ppm | pnmscale -width 152 | pgmedge | pgmtopbm | pbmtoascii
+<le -xysize 152 88 | pgmedge | pgmnorm | pgmtopbm | pbmtoascii -2x4

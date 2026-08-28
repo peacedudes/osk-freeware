@@ -1,0 +1,15 @@
+/dd/CMDS/head -n 10 /dd/SYS/holidays > /dd/tmp/h1
+/dd/CMDS/head: /dd/SYS/holidays
+Syntax: sed [<opts>] [<path>] [<opts>]
+        sed [-n] <script> [<path>]
+Function: stream editor
+     reads text from path or from <stdin> and writes to <stdout>.
+Options:
+     -?            display usage
+     -n            no output
+     -e=<script>   editing commands
+     -f=<sfile>    file with editing commands
+sed: illegal use of 'e'-option.
+>>>> Difference of file "/dd/tmp/h1" and file "/dd/tmp/h2".
+
+MAXLINECOUNT exceeded, must stop.

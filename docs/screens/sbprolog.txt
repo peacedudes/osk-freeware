@@ -1,0 +1,5 @@
+SB-Prolog Version 2.2
+| ?- X is 6*7, write(X), nl.
+42
+
+X = 42

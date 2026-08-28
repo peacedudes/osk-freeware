@@ -1,0 +1,5 @@
+Syntax: bcheck [<opt>] [<filename>]
+Function: check sourcefile for correct bracketcount
+Options:
+     -q      quiet mode
+     -?      show this explanation

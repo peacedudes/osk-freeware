@@ -1,4 +1,1 @@
-<INDEX | /dd/CMDS/sort | /dd/CMDS/uniq -c | /dd/CMDS/head -n 14
-gawk:  syntax error near line 1:
-{print substr(,1,1)}
-              ^ syntax error
+<dd/CMDS/uniq -c | /dd/CMDS/sort -nr | /dd/CMDS/head -n 12

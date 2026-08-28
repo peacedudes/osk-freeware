@@ -1,23 +1,22 @@
-  13          Clear      Clear    Fair ( 55)      None      Calm  36.9"
-  14          Clear      Clear    Fair ( 50)      None     Brisk  30.9"
-  15          Clear      Clear    Fair ( 55)      None      Calm  24.9"
-  16          Clear      Clear    Fair ( 45)      None      Calm  19.9"
-  17  Precipitation     Cloudy    Fair ( 45)  Sprinkle     Brisk  14.9"  Rain -,
-  18          Clear      Clear    Fair ( 50)      None     Light   8.9"
-  19          Clear      Clear    Fair ( 45)      None      Calm   3.9"
-  20          Clear      Clear    Fair ( 40)      None     Brisk
-  21          Clear      Clear    Fair ( 45)      None      Calm
-  22  Precipitation     Cloudy    Fair ( 40)  Sprinkle  Blustery         Rain -,
-  23  Precipitation     Cloudy    Fair ( 45)  Sprinkle  Blustery         Rain -,
-  24  Precipitation       Mist    Fair ( 45)  Sprinkle      Gale         Rain -,
-  25  Precipitation     Cloudy    Fair ( 45)  Sprinkle     Light         Rain -,
-  26  Precipitation  Heavy Fog    Fair ( 45)     Heavy     Light         Rain -,
-  27          Clear      Clear    Fair ( 60)      None     Brisk
-  28          Clear      Clear    Fair ( 45)      None     Brisk
-  29  Precipitation       Mist    Fair ( 40)    Shower     Brisk         Rain -,
-  30  Precipitation     Cloudy    Fair ( 40)  Sprinkle  Blustery         Rain -,
-High Temp =  60, Low Temp =  25, Average Temp =  45
-
-Astron
-   1  Precipitation       Mist    Fair ( 55)    Shower  Blustery         Rain -,
-   2  Precipitation       Mist     Fair ( 55)      None      Calm
+/dd/CMDS/shire | /dd/CMDS/head -n 21
+                                                                  Snow
+Year   1    Weather        Sky   Temperature    Precip      Wind  Depth  Notes
+Afteryule
+   1          Clear      Clear    Cold ( 20)      None      Calm  45.2"
+   2  Precipitation     Cloudy    Cold ( 20)  Sprinkle  Blustery  45.3"  Snow -,
+   3          Clear      Clear    Cold ( 15)      None      Calm  45.3"
+   4          Clear      Clear    Cold ( 10)      None      Calm  45.3"
+   5          Clear      Clear    Cold ( 20)      None     Light  45.3"
+   6          Clear      Clear  Chilly ( 35)      None      Calm  44.3"
+   7          Clear      Clear    Cold ( 20)      None      Calm  44.3"
+   8          Clear      Clear    Cold ( 20)      None      Calm  44.3"
+   9          Clear      Clear    Cold (  5)      None      Calm  44.3"
+  10  Precipitation     Cloudy    Cold ( 20)  Sprinkle      Calm  44.4"  Snow -,
+  11       Overcast       Mist    Cold (  0)      None      Calm  44.4"
+  12       Overcast       Mist  Chilly ( 30)      None      Calm  44.4"
+  13          Clear      Clear    Fair ( 40)      None      Calm  39.4"
+  14          Clear      Clear  Chilly ( 35)      None      Calm  38.4"
+  15          Clear      Clear    Cold ( 20)      None      Calm  38.4"
+  16          Clear      Clear    Cold ( 10)      None      Calm  38.4"
+  17          Clear      Clear    Cold ( 15)      None      Calm  38.4"
+  18  Precipitation     Cloudy    Cold ( 20)  Sprinkle     Light  38.5"  Snow -,

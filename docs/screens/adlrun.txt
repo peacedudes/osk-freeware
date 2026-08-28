@@ -1,0 +1,21 @@
+/dd/CMDS/ADL/adlrun /dd/ADL/AARD/aard
+ADL interpreter - Version 3.2 - June 7, 1987
+Copyright 1985, 1986, 1987 by Ross Cunniff
+All rights reserved.
+Museum entrance
+You are standing outside the north entrance of a large brick building.
+Inscribed above the doorway, appear the text: 'AARDVARK'S MUSEUM -- GATEWAY TO
+ADVENTURELAND'.
+There is a coil of rope here.
+There is a shovel here.
+There is a carbide-flame lamp here.
+There is a copy of a newspaper here.
+> look
+You are standing outside the north entrance of a large brick building.
+Inscribed above the doorway, appear the text: 'AARDVARK'S MUSEUM -- GATEWAY TO
+ADVENTURELAND'.
+There is a coil of rope here.
+There is a shovel here.
+There is a carbide-flame lamp here.
+There is a copy of a newspaper here.
+>

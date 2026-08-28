@@ -1,13 +1,23 @@
-echo The quick brown fox > /dd/tmp/r.txt
-syntax: rot {opt} [<file>]
-function: rotate lines in file (or stdin if none)
-options:
-        -b      don't suppress trailing blanks in output file
-        -c <ch> use ch for as line separater instead of CR
-        -h      huge file: use temp ("/dd") files, instead of memory (SLOW)
-        -l      only print num of lines, and length of longest in the file
-        -o      change the order of columns
-        -r      rotate reverse (counter clockwise)
- note: rot knows nothing about tabs, expand them first if desired
-
-unknown option - 1
+rot: don't like tab characters!
+e321 *
+a///
+s111 C
+t74      o
+e        m
+rSVN m
+ tae o
+E.lw n
+a e
+sPnY H
+tate o
+etia l
+rrnr i
+ ie' d
+Sc's a
+uks  y
+n' D s
+dsDa
+a ay
+yDy
+ a
+ y

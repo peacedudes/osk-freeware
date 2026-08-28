@@ -1,1 +1,2 @@
+/dd/CMDS/GAMES/fuddle
 7 Do you want white (y/n default: y) ?

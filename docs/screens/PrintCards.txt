@@ -1,0 +1,22 @@
+-largep Boolean Optional If true, print large cards, else print small cards
+-by     String Optional Should be one of {Id, Title, Author, Subject} - selects.
+-only   String Optional selection expression
+
+        Version: V1.0Beta
+        Copyright (c) 1991,1992 Robert Heller D/B/A Deepwoods Software
+Missing parameter: infile
+Syntax: PrintLabels [opts]
+Libraian Card Catalog card printer
+This program is used to print out cards
+Prints either large (5x8) or small cards (3x5)
+Prints "Shelf List" (by=Id), Title reference (by=Title),
+Author reference (by=Author), or Subject reference
+(by=Subject).  By default a "Shelf List" is printed.
+Options:
+-infile String Required The name of the file to print records from
+-templatefile   String Required The name of the template file
+-by     String Optional Should be one of {Id, Title, Author, Subject} - selects.
+-only   String Optional selection expression
+
+        Version: V1.0Beta
+        Copyright (c) 1991,1992 Robert Heller D/B/A Deepwoods Software

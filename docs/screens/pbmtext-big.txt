@@ -1,0 +1,12 @@
+pbmtext "netpbm" | pbmpscale 2 | pbmtoascii -2x4
+
+
+
+
+
+                                    *H
+              o ,\.  .,\. dMboooo\.  Mb\. o ,\ ,\.
+              `M'`H  HooD `M' `M'`H  M'`H `M'`M'`H
+              .M. M. Ho..o H.  M..H  M..H .M. M. M.
+              """ `" ``"'' ``" M*''  `"'' """ `" `"
+                              dMb

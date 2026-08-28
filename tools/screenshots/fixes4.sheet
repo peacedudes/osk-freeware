@@ -1,0 +1,103 @@
+# Fifth pass.  Everything here needed a second look at how the program is
+# actually invoked -- the flags, or a file it wants put somewhere first.
+shot    rayshade
+cap     Rayshade 4.0, a full ray tracer, rendering one of its fifteen
+cap     example scenes and reporting the work: primitives, rays cast,
+cap     shadow rays, time.  It preprocesses every scene with cccp, so a C
+cap     preprocessor has to be reachable under that name -- DOC/rayshade
+cap     says so and it is right.
+run     /dd/CMDS/cp /dd/CMDS/GCC139/gcc_cccp /dd/CMDS/cccp
+wait    8
+run     /dd/CMDS/rayshade -R 48 36 -O /dd/tmp/out.pic /dd/GAMES/rayshade/boxball.ray
+wait    50
+
+shot    gs-render
+for     gs403
+cap     Ghostscript rasterising one of its own PostScript test files and
+cap     netpbm printing the bitmap as characters.  GS_LIB has to point at
+cap     LIB/gs403, and -c quit is what makes it exit rather than sit at its
+cap     own GS> prompt.
+run     export GS_LIB=/dd/LIB/gs403
+wait    2
+run     /dd/CMDS/gs403 -q -dNOPAUSE -dBATCH -sDEVICE=pbm -r24 -g152x88 -sOutputFile=/dd/tmp/gs.pbm /dd/LIB/gs403/cheq.ps -c quit
+wait    45
+run     /dd/CMDS/NETPBM/pbmtoascii -2x4 /dd/tmp/gs.pbm
+wait    10
+
+shot    des
+cap     DES encrypting a file and decrypting it back.  It takes filenames
+cap     only and asks for the key itself; the checksums either side show
+cap     the round trip closed.
+run     /dd/CMDS/chksum /dd/SYS/motd
+wait    3
+run     /dd/CMDS/cp /dd/SYS/motd /dd/tmp/d.txt
+wait    4
+run     /dd/CMDS/des /dd/tmp/d.txt
+wait    5
+send    freeware\r
+wait    5
+
+shot    crypto
+cap     crypto, the cryptogram solver's assistant, showing what it offers.
+run     /dd/CMDS/crypto -h
+wait    6
+
+shot    advint
+cap     ADVSYS, David Betz's adventure system, playing the sample world
+cap     that ships with it in GAMES/ADVSYS.  It wants the file named
+cap     WITHOUT its .adi extension -- with it, `can't open data file'.
+run     /dd/CMDS/GAMES/advint /dd/GAMES/ADVSYS/objects
+wait    8
+send    look\r
+wait    6
+
+shot    date
+cap     date, and the Y2K repairs beside it.  It prints the year 2100 for
+cap     2026 -- one of the reasons setyear and fixyear are on this disk.
+run     /dd/CMDS/date
+wait    4
+run     /dd/CMDS/date -t
+wait    4
+run     /dd/CMDS/today
+wait    5
+
+shot    m4
+cap     m4, the macro processor, expanding a macro from a file.
+run     echo "define(GREET,Hello \$1 from OS-9)" > /dd/tmp/m.m4
+wait    3
+run     echo "GREET(reader)" >> /dd/tmp/m.m4
+wait    3
+run     /dd/CMDS/cat /dd/tmp/m.m4
+wait    3
+run     /dd/CMDS/m4 < /dd/tmp/m.m4
+wait    8
+
+shot    as09
+cap     as09 assembling 6809 source and listing it: address, object bytes
+cap     and source together.  A 6809 cross-assembler running on a 68000 --
+cap     as0, as1, as4, as5 and as11 are its cousins for the rest of the
+cap     6800 family, and not one of the six assembles 68k code.
+run     echo "        org   $1000" > /dd/tmp/t.a
+wait    3
+run     echo "count   equ   10" >> /dd/tmp/t.a
+wait    3
+run     echo "start   ldx   #msg" >> /dd/tmp/t.a
+wait    3
+run     echo "loop    lda   ,x+" >> /dd/tmp/t.a
+wait    3
+run     echo "        beq   done" >> /dd/tmp/t.a
+wait    3
+run     echo "        jsr   $A282" >> /dd/tmp/t.a
+wait    3
+run     echo "        bra   loop" >> /dd/tmp/t.a
+wait    3
+run     echo "done    rts" >> /dd/tmp/t.a
+wait    3
+run     echo "msg     fcc   /OS-9/" >> /dd/tmp/t.a
+wait    3
+run     echo "        fcb   0" >> /dd/tmp/t.a
+wait    3
+run     echo "        end   start" >> /dd/tmp/t.a
+wait    3
+run     /dd/CMDS/as09 -l /dd/tmp/t.a
+wait    10

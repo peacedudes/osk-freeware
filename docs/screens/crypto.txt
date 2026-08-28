@@ -1,0 +1,22 @@
+This program allows you to interactively solve cryptogram puzzles, or to simply
+filter the input to the standard output IF the output has been redirected.  The
+input can be pre-encoded or I can encode it for you.  If I encode it, I will be
+able to tell you when you have correctly solved the puzzle.
+
+Command-line options:
+        -u      force all input to Upper-case.
+        -e      Encode the input stream with a random cypher.
+        -r      encode using a simpler, rot-based random cypher.  For a
+                specific rotation, include a number from 1 to 26, e.g.:  -r13.
+        -cSTR   encode using the Code STR as the encryption cypher.
+        -gSTR   initialize the Guessed letters to STR.
+        -n      include No brace-commands when saving or piping.
+        FILE    read input from one or more FILEs instead of stdin.
+        -i      output the Interactive commands.
+        -h      output this Help list.
+        -       the null option can be used to avoid an empty command tail.
+
+Examples:
+        fortune -l | crypto -r
+        crypto -eu puzzles
+        crypto -n -gzyxwvutsrqponmlkjihgfedcba code.file >result.file

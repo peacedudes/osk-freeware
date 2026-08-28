@@ -1,0 +1,3 @@
+printf "%%%%\n[0-9]+   { return NUM; }\n.        ;\n" > /dd/tmp/l.l
+"/dd/tmp/l.l", line 1: premature EOF
+/dd/CMDS/head: lex.yy.c: 000:216 file not found

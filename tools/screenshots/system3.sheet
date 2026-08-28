@@ -1,0 +1,60 @@
+# More of the machine: memory, processes, modules, devices.
+shot    getsys
+cap     getsys reads OS-9's system globals -- what the kernel thinks it is
+cap     running on, straight out of the global page.
+run     /dd/CMDS/getsys | /dd/CMDS/head -n 21
+wait    6
+
+shot    top
+cap     top, showing the busiest processes.  Under os9exec these are real
+cap     OS-9 processes with real IDs and real priorities.
+run     /dd/CMDS/top
+wait    6
+
+shot    sysmon
+cap     sysmon, the system monitor, drawing memory and process state.
+run     /dd/CMDS/sysmon
+wait    8
+
+shot    flink
+cap     flink lists a module's links -- what has it loaded and who holds it.
+run     /dd/CMDS/flink /dd/CMDS/today
+wait    5
+
+shot    modbuster
+cap     modbuster splits a file of merged OS-9 modules back into separate
+cap     ones; unpacklib does the same for a linker library.
+run     /dd/CMDS/modbuster -?
+wait    4
+run     /dd/CMDS/unpacklib -?
+wait    4
+
+shot    makecrc
+cap     makecrc computes the CRC OS-9 stores in every module header -- the
+cap     same polynomial the loader checks.
+run     /dd/CMDS/makecrc /dd/CMDS/today
+wait    5
+
+shot    vlen
+cap     vlen reports a file's record length; trunc cuts a file to size.
+run     /dd/CMDS/vlen /dd/DOC/INDEX
+wait    4
+run     /dd/CMDS/vlen /dd/CMDS/today
+wait    4
+
+shot    dam
+cap     The disk allocation map: one character per cluster across a 253 MB
+cap     volume, so you can see where the collection sits on it.
+run     /dd/CMDS/dam /dd | /dd/CMDS/head -n 21
+wait    10
+
+shot    bcheck
+cap     bcheck reads a boot file and reports what is in it.
+run     /dd/CMDS/bcheck -?
+wait    5
+
+shot    tmode
+cap     What the terminal path is actually set to -- baud, echo, the
+cap     end-of-file character, and the page pause that truncates listings.
+run     /dd/CMDS/suse /dd/CMDS/dm
+wait    5

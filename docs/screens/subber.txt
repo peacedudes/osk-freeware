@@ -1,0 +1,2 @@
+/dd/CMDS/cat /dd/SYS/motd | /dd/CMDS/subber ,os9exec,OS-9,
+cannot open ,os9exec,OS-9,

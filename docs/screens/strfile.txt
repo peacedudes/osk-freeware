@@ -1,7 +1,2 @@
-/dd/CMDS/fortune
-"If you wants to get elected president, you'se got to think up some
-memoraboble homily so's school kids can be pestered into memorizin'
-it, even if they don't know what it means."
-                -- Walt Kelly
-Too much of a good thing is WONDERFUL.
-                -- Mae West
+/dd/CMDS/unstr /dd/GAMES/FORTUNE/fortunes.dat | /dd/CMDS/head -n 12
+unstr: can't open /dd/GAMES/FORTUNE/fortunes.dat.dat

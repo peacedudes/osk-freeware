@@ -1,0 +1,2 @@
+/dd/CMDS/GAMES/postprint | /dd/CMDS/head -n 20
+/V 11 72 mul def /L 60 def

@@ -1,0 +1,3 @@
+/dd/CMDS/sox /dd/DOC/sox/great_oz.iff -t au /dd/tmp/oz.au
+/dd/DOC/sox/great_oz.iff        IFF file
+/dd/tmp/oz.au           audio data: 8-bit linear PCM, mono, 7000 Hz

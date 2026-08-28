@@ -365,22 +365,56 @@ their own (hack wants /h0/games/hack/playground, cribbage wants
  *cribbage       cribbage -- offers instructions before it deals.  Needs TERM,
   nobs           cribbage (Colonel's program)</pre>
 </div>
+<div class="shot" id="s-casefix">
+<h3>casefix</h3>
+<p>casefix normalises letter case; upperdir does the same to a whole directory's names.</p>
+<pre>echo "tHE qUICK bROWN fOX" &gt; /dd/tmp/c.txt</pre>
+</div>
+<div class="shot" id="s-cdiff">
+<h3>cdiff</h3>
+<p>cdiff, a context diff, on two versions of the same file.</p>
+<pre>/dd/CMDS/head -n 10 /dd/SYS/holidays &gt; /dd/tmp/h1
+/dd/CMDS/head: /dd/SYS/holidays
+Syntax: sed [&lt;opts&gt;] [&lt;path&gt;] [&lt;opts&gt;]
+        sed [-n] &lt;script&gt; [&lt;path&gt;]
+Function: stream editor
+     reads text from path or from &lt;stdin&gt; and writes to &lt;stdout&gt;.
+Options:
+     -?            display usage
+     -n            no output
+     -e=&lt;script&gt;   editing commands
+     -f=&lt;sfile&gt;    file with editing commands
+sed: illegal use of 'e'-option.
+&gt;&gt;&gt;&gt; Difference of file "/dd/tmp/h1" and file "/dd/tmp/h2".
+
+MAXLINECOUNT exceeded, must stop.</pre>
+</div>
 <div class="shot" id="s-charcnt">
 <h3>charcnt</h3>
-<p>charcnt counts characters, and shuffle puts the lines of a file in a random order.</p>
-<pre>/dd/CMDS/charcnt &lt; /dd/DOC/INDEX
-I need some filenames for this!
-/dd/CMDS/head: /dd/SYS/holidays
+<p>charcnt counts characters; tcmp compares two text files and says where they first differ.</p>
+<pre>12/25 Christmas Day
+12/26 Boxing Day
 
-* Common Holidays
-*easter+1 Easter Monday
-*easter-46 Ash Wednesday
-*easter-7 Palm Sunday
-1/1             New Year's Day
-2/14 Valentine's Day
-3/17 St. Patrick's Day
-easter Easter Sunday
-easter-2 Good Friday</pre>
+* Canadian Holidays
+
+5/25-monday Victoria Day
+7/1 Canada Day (Canada)
+8/1mon Civic Holiday
+10/2Mond Thanksgiving
+11/11 Rememberence Day
+
+* US Holidays
+
+*1/16 Martin Luther King Jr. Day (US)
+*5/Lmonday Memorial Day (US)
+*6/14 Flag Day (US)
+*7/4 Independence Day (US)
+*10/2Monday Columbus Day (US)
+*11/7 Election Day (US)
+*11/11 Veteran's Day (US)
+*11/4thur Thanksgiving (US)
+
+INCLUDE /dd/sys/birthdays</pre>
 </div>
 <div class="shot" id="s-cookie">
 <h3>cookie</h3>
@@ -411,6 +445,17 @@ tester
 
 uucp
 os9</pre>
+</div>
+<div class="shot" id="s-detab">
+<h3>detab</h3>
+<p>detab turns tabs into spaces; unexpand puts leading spaces back as tabs.  Shown here with dump, so the bytes are visible.</p>
+<pre>printf "a\tb\tc\n" &gt; /dd/tmp/tabs.txt
+Syntax: dump [&lt;opts&gt;] &lt;path/module&gt; [&lt;opts&gt;] [&lt;starting byte&gt;] [&lt;opts&gt;]
+Function: formatted display of contents of a file/module
+Options:
+     -c        don't compress duplicate lines
+     -x        path implies execution directory
+     -m        dump memory module</pre>
 </div>
 <div class="shot" id="s-diff">
 <h3>diff</h3>
@@ -449,6 +494,12 @@ Addr   0 1  2 3  4 5  6 7  8 9  A B  C D  E F 0 2 4 6 8 A C E
 00B0  0000 801A 4A85 671E 0805 0000 6614 41F5 ....J.g.....f.A.
 00C0  5800 4A68 FFFE 660A 5988 49E8 FFFC 7001 X.Jh..f.Y.I...p.
 00D0  6026 4235 58FF 204D D7EB 000C 42A7 2F0B `&amp;B5X. M....B./.</pre>
+</div>
+<div class="shot" id="s-fcomp">
+<h3>fcomp</h3>
+<p>fcomp compares two text files line by line.</p>
+<pre>/dd/CMDS/fcomp /dd/tmp/h1 /dd/tmp/h2
+fcomp: can't allocate line strings buffer for "/dd/tmp/h2"</pre>
 </div>
 <div class="shot" id="s-file">
 <h3>file</h3>
@@ -494,10 +545,7 @@ Where it copies from and to</pre>
 <div class="shot" id="s-gawk">
 <h3>gawk</h3>
 <p>GNU awk 2.11 over DOC/INDEX: the field separator is two spaces, and what comes back is a count of programs by first letter.</p>
-<pre>&lt;INDEX | /dd/CMDS/sort | /dd/CMDS/uniq -c | /dd/CMDS/head -n 14
-gawk:  syntax error near line 1:
-{print substr(,1,1)}
-              ^ syntax error</pre>
+<pre>&lt;dd/CMDS/uniq -c | /dd/CMDS/sort -nr | /dd/CMDS/head -n 12</pre>
 </div>
 <div class="shot" id="s-gothic">
 <h3>gothic</h3>
@@ -567,6 +615,13 @@ gawk:  syntax error near line 1:
 
 Unprogrammed Key</pre>
 </div>
+<div class="shot" id="s-jargon">
+<h3>jargon</h3>
+<p>The Jargon File browser, looking up a word in its own database.</p>
+<pre>/dd/CMDS/jargon foo
+Browsing foo...
+vh: can't find database files for foo</pre>
+</div>
 <div class="shot" id="s-lout">
 <h3>lout</h3>
 <p>Basser Lout 2.05, a document formatter in the TeX tradition, saying what it is.</p>
@@ -576,19 +631,47 @@ Basser Lout Version 2.05 (July 1993)</pre>
 <div class="shot" id="s-rot">
 <h3>rot</h3>
 <p>rot-13 applied to a line and then applied again, which puts it back.</p>
-<pre>echo The quick brown fox &gt; /dd/tmp/r.txt
-syntax: rot {opt} [&lt;file&gt;]
-function: rotate lines in file (or stdin if none)
-options:
-        -b      don't suppress trailing blanks in output file
-        -c &lt;ch&gt; use ch for as line separater instead of CR
-        -h      huge file: use temp ("/dd") files, instead of memory (SLOW)
-        -l      only print num of lines, and length of longest in the file
-        -o      change the order of columns
-        -r      rotate reverse (counter clockwise)
- note: rot knows nothing about tabs, expand them first if desired
-
-unknown option - 1</pre>
+<pre>rot: don't like tab characters!
+e321 *
+a///
+s111 C
+t74      o
+e        m
+rSVN m
+ tae o
+E.lw n
+a e
+sPnY H
+tate o
+etia l
+rrnr i
+ ie' d
+Sc's a
+uks  y
+n' D s
+dsDa
+a ay
+yDy
+ a
+ y</pre>
+</div>
+<div class="shot" id="s-sepwords">
+<h3>sepwords</h3>
+<p>sepwords splits text to one word a line, splitalf splits a file alphabetically -- the two halves of preparing a word list.</p>
+<pre>/dd/CMDS/head -n 4 /dd/SYS/motd | /dd/CMDS/sepwords
+/dd/CMDS/head: /dd/SYS/motd
+Welcome
+to
+os9exec
+--
+OS-9/68k</pre>
+</div>
+<div class="shot" id="s-shuffle">
+<h3>shuffle</h3>
+<p>shuffle puts the lines of a file in a random order; nsort sorts numerically where an ordinary sort would not.</p>
+<pre>/dd/CMDS/head -n 8 /dd/SYS/holidays | /dd/CMDS/shuffle
+Unknown terminal type ''.
+/dd/CMDS/head: /dd/SYS/holidays</pre>
 </div>
 <div class="shot" id="s-sonnet">
 <h3>sonnet</h3>
@@ -645,8 +728,8 @@ A226</pre>
 <p>speech turns English spelling into phonemes.  It reads until you stop it.</p>
 <pre>/dd/CMDS/speech
 Enter english text (Ctrl-Z to end):
-The quick brown fox jumps over the lazy dog
-DHAX kwIHk brOWn fAAks jUWmps OWvER DHAX lEYzIH</pre>
+OS-9 is a real time operating system
+AAz mIHnAHs nAYn IHz EY rIYl tAYm OWpEREYtIHNG</pre>
 </div>
 <div class="shot" id="s-spiff">
 <h3>spiff</h3>
@@ -656,14 +739,9 @@ DHAX kwIHk brOWn fAAks jUWmps OWvER DHAX lEYzIH</pre>
 </div>
 <div class="shot" id="s-strfile">
 <h3>strfile</h3>
-<p>strfile builds the index fortune needs, and fortune reads it.</p>
-<pre>/dd/CMDS/fortune
-"If you wants to get elected president, you'se got to think up some
-memoraboble homily so's school kids can be pestered into memorizin'
-it, even if they don't know what it means."
-                -- Walt Kelly
-Too much of a good thing is WONDERFUL.
-                -- Mae West</pre>
+<p>strfile builds the index that fortune reads, and unstr dumps an index back to text -- the pair behind every fortune on this disk.</p>
+<pre>/dd/CMDS/unstr /dd/GAMES/FORTUNE/fortunes.dat | /dd/CMDS/head -n 12
+unstr: can't open /dd/GAMES/FORTUNE/fortunes.dat.dat</pre>
 </div>
 <div class="shot" id="s-strings">
 <h3>strings</h3>
@@ -685,6 +763,12 @@ $000494: &lt;Thursday&gt;
 $00049D: &lt;Friday&gt;
 $0004A4: &lt;Saturday&gt;
 $0004AE: &lt;Nomember&gt;</pre>
+</div>
+<div class="shot" id="s-subber">
+<h3>subber</h3>
+<p>subber substitutes text in a stream, in the old ,old,new form.</p>
+<pre>/dd/CMDS/cat /dd/SYS/motd | /dd/CMDS/subber ,os9exec,OS-9,
+cannot open ,os9exec,OS-9,</pre>
 </div>
 <div class="shot" id="s-tac">
 <h3>tac</h3>
@@ -724,10 +808,33 @@ collection  is  mounted  alongside as another drive.  Then a program that reads
 /dd/GAMES/adv/glorkz will look on your disk and not find it.   `keep'  is  what
 puts it there -- the program, and the files it reads, in the places it</pre>
 </div>
+<div class="shot" id="s-unip">
+<h3>unip</h3>
+<p>unip numbers the unique lines of a file, uniq drops the repeats.</p>
+<pre>&lt;dd/DOC/README-CIO | /dd/CMDS/sort | /dd/CMDS/unip | /dd/CMDS/head -n 18
+(`-qm`)
+(the
+****
+*cat.cio
+*ckermit
+*ed
+*emacs
+*fgrep
+*ksh
+*rcs
+*vi_cio
+*zoo
+--
+-------
+-----------
+----------------------------
+--------------------------------
+-qixm`</pre>
+</div>
 <div class="shot" id="s-valspeak">
 <h3>valspeak</h3>
 <p>valspeak, a filter with an attitude, run over the disk's own motd.</p>
-<pre>/dd/CMDS/cat /dd/SYS/motd | /dd/CMDS/GAMES/valspeak</pre>
+<pre>/dd/CMDS/GAMES/valspeak /dd/SYS/motd</pre>
 </div>
 <div class="shot" id="s-wc">
 <h3>wc</h3>
@@ -740,6 +847,47 @@ puts it there -- the program, and the files it reads, in the places it</pre>
    4865  29079 250117 total</pre>
 </div>
 <h2 class="cat" id="files-directories">Files &amp; directories</h2>
+<div class="shot" id="s-Ascii2Libr">
+<h3>Ascii2Libr</h3>
+<p>The pair that get data in and out: Ascii2Libr rebuilds a catalogue from plain text, Libr2Ascii dumps one back to text.</p>
+<pre>/dd/CMDS/Ascii2Libr
+Missing parameter: outfile
+Syntax: Ascii2Libr [opts]
+Program to read the ASCII text file generated by Libr2Ascii
+into a Librarian Card Catalog file
+Options:
+-outfile        String Required Output file to create
+-minpages       Integer Optional Minimum number of pages to create file with.
+
+        Version: V1.0Beta
+        Copyright (c) 1991,1992 Robert Heller D/B/A Deepwoods Software
+Missing parameter: infile
+Syntax: Libr2Ascii [opts]
+Convert a Librarian Card Catalog file to a plain ASCII text file.
+Output is sent to stdout.
+Options:
+-infile String Required Input file
+
+        Version: V1.0Beta
+        Copyright (c) 1991,1992 Robert Heller D/B/A Deepwoods Software</pre>
+</div>
+<div class="shot" id="s-dfiles">
+<h3>dfiles</h3>
+<p>dfiles hunts for duplicate files and writes the cmp commands that would prove them identical.</p>
+<pre>/dd/CMDS/dfiles /dd/SYS
+cmp -s  /dd/SYS/TEX/FONTS/PK144/Makefile /dd/SYS/TEX/FONTS/EPSON/Makefile
+cmp -s  /dd/SYS/TEX/FONTS/PK300/Makefile /dd/SYS/TEX/FONTS/EPSON/Makefile
+cmp -s  /dd/SYS/TEX/FONTS/read.me /dd/SYS/TEX/BIB/read.me
+cmp -s  /dd/SYS/TEX/FORMATS/Makefile /dd/SYS/TEX/FONTS/EPSON/Makefile
+cmp -s  /dd/SYS/TEX/MFBASES/Makefile /dd/SYS/TEX/FONTS/EPSON/Makefile
+cmp -s  /dd/SYS/TEX/MFBASES/install.script /dd/SYS/TEX/FORMATS/install.script
+cmp -s  /dd/SYS/TEX/MFINPUTS/CMTEST/Makefile /dd/SYS/TEX/FONTS/EPSON/Makefile
+cmp -s  /dd/SYS/TEX/MFINPUTS/EXTRACM/cmex9.mf /dd/SYS/TEX/MFINPUTS/CM/cmex9.mf
+cmp -s  /dd/SYS/TEX/MFINPUTS/MFCONTRIB/cmcyr/README /dd/SYS/TEX/MFINPUTS/MFCONTE
+cmp -s  /dd/SYS/TEX/MFINPUTS/MFCONTRIB/pandora/README /dd/SYS/TEX/MFINPUTS/MFCOE
+cmp -s  /dd/SYS/TEX/MFINPUTS/MFCONTRIB/ransom/ransom10.tfm /dd/SYS/TEX/FONTS/TFm
+cmp -s  /dd/SYS/profile.ksh /dd/SYS/ksh/profile.ksh</pre>
+</div>
 <div class="shot" id="s-dm">
 <h3>dm</h3>
 <p>dm, the disk and directory monitor -- a full-screen file browser with its own help.</p>
@@ -785,6 +933,18 @@ ERROR 216: Can't open /pipe/getcwdpipe</pre>
 
 Total of 5341 kBytes (21364 sectors) in 44 directories and 818 files.</pre>
 </div>
+<div class="shot" id="s-du-tree">
+<h3>du-tree</h3>
+<p>du walking a directory tree and adding it up.</p>
+<pre>/dd/CMDS/du /dd/CMDS/GAMES | /dd/CMDS/head -n 21
+Disk usage starting from "/dd/CMDS/GAMES" on 19126-08-27  20:34:48
+
+Directory name                      Bytes    kBytes   Sectors    File #
+--------------                   --------   -------   -------   -------
+/dd/CMDS/GAMES                    3035872      2965     11859        83
+
+Total of 2965 kBytes (11859 sectors) in 1 directories and 83 files.</pre>
+</div>
 <div class="shot" id="s-find">
 <h3>find</h3>
 <p>GNU find 1.1.5, walking this disk.</p>
@@ -809,6 +969,20 @@ File Length:  22966 $(59B6)</pre>
 
  File /dd/CMDS/GAMES not accessable, error: 214</pre>
 </div>
+<div class="shot" id="s-Librarian">
+<h3>Librarian</h3>
+<p>Home Librarian searching a catalogue -- the program the other five exist to feed.</p>
+<pre>/dd/CMDS/Librarian
+Missing parameter: infile
+Syntax: Librarian [opts]
+Librarian Card Catalog query program
+This program is used to search a Card Catalog file
+Options:
+-infile String Required The name of the file to search
+
+        Version: V1.0Beta
+        Copyright (c) 1991,1992 Robert Heller D/B/A Deepwoods Software</pre>
+</div>
 <div class="shot" id="s-ls">
 <h3>ls</h3>
 <p>GNU ls, our own fixed build -- a real stat(), columns and -al.</p>
@@ -831,6 +1005,58 @@ drwxrwxrwx   1 0        0             320 Aug 27 19:54 UUCP
 -rw-rw-rw-   1 0        0             449 Aug  3 19:00 cal.init
 -rw-rw-rw-   1 0        0            5203 Aug  3 19:00 dm.hlp
 -rw-rw-rw-   1 0        0             151 Aug  3 19:00 ephem.cfg</pre>
+</div>
+<div class="shot" id="s-ls-long">
+<h3>ls-long</h3>
+<p>GNU ls with -al on the collection's own root: the OS-9 attributes mapped onto the mode bits ls knows how to print.</p>
+<pre>/dd/CMDS/ls -al /dd | /dd/CMDS/head -n 21
+total 214016
+-rw-------   1 0        0              11 Aug 27 20:31 -l.s19
+drwxrwxrwx   1 0        0            1568 Aug 27 20:34 .
+drwxrwxrwx   1 0        0            1568 Aug 27 20:34 ..
+-rw-rw-rw-   1 0        0            1628 Aug  3 19:00 .bashrc
+-rw-------   1 0        0             245 Aug 27 20:20 .newsrc
+-rw-------   1 0        0              62 Aug 27 20:18 .pdksh_hist
+-rw-------   1 0        0               0 Aug 27 20:18 .sh_history
+drwxrwxrwx   1 0        0             192 Aug 27 20:09 ADL
+drwxrwxrwx   1 0        0           17184 Aug 27 20:34 CMDS
+drwxrwxrwx   1 0        0             384 Aug 27 20:09 DEFS
+drwxrwxrwx   1 0        0             160 Aug 27 20:09 DEMO
+drwxrwxrwx   1 0        0            9344 Aug 27 20:09 DOC
+drwxrwxrwx   1 0        0             128 Aug 27 20:09 DOS
+drwxrwxrwx   1 0        0              96 Aug 27 20:09 ETC
+-rw-------   1 0        0               0 Aug 27 20:31 Fwd_refs
+drwxrwxrwx   1 0        0             960 Aug 27 20:09 GAMES
+drwxrwxrwx   1 0        0              96 Aug 27 20:09 GNUCHESS4.0
+drwxrwxrwx   1 0        0             192 Aug 27 20:09 GNULIB
+drwxrwxrwx   1 0        0             896 Aug 27 20:09 LIB
+drwxrwxrwx   1 0        0              96 Aug 27 20:09 LOG</pre>
+</div>
+<div class="shot" id="s-PrintCards">
+<h3>PrintCards</h3>
+<p>PrintCards and PrintLabels, the output half of the same suite.</p>
+<pre>-largep Boolean Optional If true, print large cards, else print small cards
+-by     String Optional Should be one of {Id, Title, Author, Subject} - selects.
+-only   String Optional selection expression
+
+        Version: V1.0Beta
+        Copyright (c) 1991,1992 Robert Heller D/B/A Deepwoods Software
+Missing parameter: infile
+Syntax: PrintLabels [opts]
+Libraian Card Catalog card printer
+This program is used to print out cards
+Prints either large (5x8) or small cards (3x5)
+Prints "Shelf List" (by=Id), Title reference (by=Title),
+Author reference (by=Author), or Subject reference
+(by=Subject).  By default a "Shelf List" is printed.
+Options:
+-infile String Required The name of the file to print records from
+-templatefile   String Required The name of the template file
+-by     String Optional Should be one of {Id, Title, Author, Subject} - selects.
+-only   String Optional selection expression
+
+        Version: V1.0Beta
+        Copyright (c) 1991,1992 Robert Heller D/B/A Deepwoods Software</pre>
 </div>
 <div class="shot" id="s-space">
 <h3>space</h3>
@@ -995,32 +1221,58 @@ start
    fcalls/icalls: 5/6   bytes r/w: 0/25</pre>
 </div>
 <h2 class="cat" id="compilers-build">Compilers &amp; build</h2>
-<div class="shot" id="s-as09">
-<h3>as09</h3>
-<p>as09 assembling 6809 source and listing it: address, object bytes and source, side by side.  A 6809 cross-assembler on a 68000.</p>
-<pre>echo "        org  \$1000" &gt; /dd/tmp/t.a
-&gt; echo "        jsr  \$A282" &gt;&gt; /dd/tmp/t.a
-&gt; echo "        rts" &gt;&gt; /dd/tmp/t.a
-&gt; echo "        end  start" &gt;&gt; /dd/tmp/t.a
-&gt; /dd/CMDS/as09 -l /dd/tmp/t.a
-&gt;</pre>
-</div>
 <div class="shot" id="s-bison">
 <h3>bison</h3>
 <p>GNU bison 1.19 on the same grammar, with its statistics.</p>
 <pre>/dd/CMDS/bison -v /dd/tmp/g.y
 "/dd/tmp/g.y", line 2: invalid text in %token or %nterm declaration</pre>
 </div>
+<div class="shot" id="s-flex">
+<h3>flex</h3>
+<p>flex turning a lexical description into C.</p>
+<pre>printf "%%%%\n[0-9]+   { return NUM; }\n.        ;\n" &gt; /dd/tmp/l.l
+"/dd/tmp/l.l", line 1: premature EOF
+/dd/CMDS/head: lex.yy.c: 000:216 file not found</pre>
+</div>
+<div class="shot" id="s-gmake">
+<h3>gmake</h3>
+<p>GNU make, and dmake beside it, both saying what they are.</p>
+<pre>/dd/CMDS/gmake -v
+GNU Make version 3.67, by Richard Stallman and Roland McGrath.
+Copyright (C) 1988, 89, 90, 91, 92, 93 Free Software Foundation, Inc.
+This is free software; see the source for copying conditions.
+There is NO warranty; not even for MERCHANTABILITY or FITNESS FOR A
+PARTICULAR PURPOSE.
+
+dmake - Copyright (c) 1990,1991 by Dennis Vadura, Version 3.70, PL 2
+
+Default Configuration:
+        MAXPROCESSLIMIT := 10
+        MAXLINELENGTH := 8190
+        .MAKEFILES : dmakefile makefile.mk makefile
+        .SOURCE    : .NULL
+        MAKESTARTUP := $(ROOTDIR)/h0/SYS/startup.mk</pre>
+</div>
 <div class="shot" id="s-m4">
 <h3>m4</h3>
-<p>m4, the macro processor, defining a macro and expanding it.</p>
-<pre>echo "define(GREET, Hello \$1 from OS-9)GREET(reader)" &gt; /dd/tmp/m.m4</pre>
+<p>m4, the macro processor, expanding a macro from a file.</p>
+<pre>echo "define(GREET,Hello \$1 from OS-9)" &gt; /dd/tmp/m.m4
+define(GREET,Hello $1 from OS-9)
+GREET(reader)
+
+el edr rm S-9</pre>
 </div>
 <div class="shot" id="s-make">
 <h3>make</h3>
-<p>make maintaining a file from a rule -- the rule fires, and running it again says there is nothing to do.</p>
-<pre>echo "hello: /dd/SYS/motd" &gt; /dd/tmp/Makefile
-&lt;t /dd/SYS/motd &gt; /dd/tmp/hello\n" &gt;&gt; /dd/tmp/Makefile</pre>
+<p>make maintaining a target from a rule, and then saying there is nothing left to do.</p>
+<pre>/dd/CMDS/cat /dd/tmp/Makefile
+hello: /dd/SYS/motd</pre>
+</div>
+<div class="shot" id="s-p2c">
+<h3>p2c</h3>
+<p>p2c translating Pascal to C -- the head of the C it wrote for a program on this disk.</p>
+<pre>/dd/CMDS/p2c /dd/SRC/i_am_i/i_am_i.pas
+/dd/SRC/i_am_i/i_am_i.pas: file not found</pre>
 </div>
 <h2 class="cat" id="languages">Languages</h2>
 <div class="shot" id="s-forth">
@@ -1061,6 +1313,15 @@ function sq defined at "/dd/tmp/sq.lua":1 (9 bytes at c7308); used at main+1
      4  MULTOP
      5  RETCODE 1
      7  RETCODE 1</pre>
+</div>
+<div class="shot" id="s-sbprolog">
+<h3>sbprolog</h3>
+<p>SB-Prolog 2.2 at its prompt, answering a query.  SIMPATH has to point at the module library or it exits silently -- which is what DOC/sbprolog warns about, and it is right.</p>
+<pre>SB-Prolog Version 2.2
+| ?- X is 6*7, write(X), nl.
+42
+
+X = 42</pre>
 </div>
 <div class="shot" id="s-xlisp">
 <h3>xlisp</h3>
@@ -1108,6 +1369,27 @@ NIL
 ---wr-wr    0/0     20473  33.7% Aug  3 19:00 /dd/SRC/keep/keep.c
 ----------------- ------- ------ ------------ --------------------
  Total    1 file    20473  33.7% Aug 27 20:07</pre>
+</div>
+<div class="shot" id="s-modbuster">
+<h3>modbuster</h3>
+<p>modbuster splits a file of merged OS-9 modules back into separate ones; unpacklib does the same for a linker library.</p>
+<pre>/dd/CMDS/modbuster -?
+Syntax: Modbuster [&lt;opts&gt;] &lt;path&gt; [&lt;opts&gt;]
+Function: Seperate merged modules, rels, basic source or KWindows bitmaps
+Options:
+   -b=&lt;size&gt;  buffer size
+   -q         quiet/silent mode
+   -v         verbose
+   -w=&lt;dir&gt;   seperate into &lt;dir&gt;
+              (default = current work directory)
+unpacklib: Unimplemented option '-?'.
+
+Usage: unpacklib &lt;options&gt; file1.l file2.l ...
+Ricreates OS-9 modules from OS-9 libraries.
+ Where options are:
+   '-verbose':  list all the processed module names
+   '-list':     list module names and size ONLY (don not create files)
+Copyright by CERN, written by CN/CE/MS (Vers.1.0 - 6 July 90)</pre>
 </div>
 <div class="shot" id="s-shar">
 <h3>shar</h3>
@@ -1159,12 +1441,47 @@ xbtoa Begin
 =(Q2XDf'&amp;.FDi:?F#dfVARci7/Kdhf/NGIB3,9XJD09Z'FDl1/
 xbtoa End N 40 28 E 9 S d17 R c31bdd89</pre>
 </div>
+<div class="shot" id="s-btoa-round">
+<h3>btoa-round</h3>
+<p>btoa encodes a file as printable text and atob decodes it again. Five characters for four bytes, with a checksum on the end line.</p>
+<pre>/dd/CMDS/btoa &lt; /dd/SYS/motd &gt; /dd/tmp/m.btoa
+xbtoa Begin
+=(Q2XDf'&amp;.FDi:?F#dfVARci7/Kdhf/NGIB3,9XJD09Z'FDl1/
+xbtoa End N 40 28 E 9 S d17 R c31bdd89
+f2783580b7a4c5ef6a29ec5895e6ad95</pre>
+</div>
 <div class="shot" id="s-checksum">
 <h3>checksum</h3>
 <p>Two older checksums beside each other on the same file.</p>
 <pre>/dd/CMDS/checksum /dd/SYS/motd
 File '/dd/SYS/motd': bytes=40, checksum=$0CEF (3311)
 4b68af85</pre>
+</div>
+<div class="shot" id="s-crypto">
+<h3>crypto</h3>
+<p>crypto, the cryptogram solver's assistant, showing what it offers.</p>
+<pre>This program allows you to interactively solve cryptogram puzzles, or to simply
+filter the input to the standard output IF the output has been redirected.  The
+input can be pre-encoded or I can encode it for you.  If I encode it, I will be
+able to tell you when you have correctly solved the puzzle.
+
+Command-line options:
+        -u      force all input to Upper-case.
+        -e      Encode the input stream with a random cypher.
+        -r      encode using a simpler, rot-based random cypher.  For a
+                specific rotation, include a number from 1 to 26, e.g.:  -r13.
+        -cSTR   encode using the Code STR as the encryption cypher.
+        -gSTR   initialize the Guessed letters to STR.
+        -n      include No brace-commands when saving or piping.
+        FILE    read input from one or more FILEs instead of stdin.
+        -i      output the Interactive commands.
+        -h      output this Help list.
+        -       the null option can be used to avoid an empty command tail.
+
+Examples:
+        fortune -l | crypto -r
+        crypto -eu puzzles
+        crypto -n -gzyxwvutsrqponmlkjihgfedcba code.file &gt;result.file</pre>
 </div>
 <div class="shot" id="s-cvtbase">
 <h3>cvtbase</h3>
@@ -1194,6 +1511,14 @@ No more memory !!!
 No more memory !!!
 No more memory !!!</pre>
 </div>
+<div class="shot" id="s-des">
+<h3>des</h3>
+<p>DES encrypting a file and decrypting it back.  It takes filenames only and asks for the key itself; the checksums either side show the round trip closed.</p>
+<pre>/dd/CMDS/chksum /dd/SYS/motd
+4b68af85
+Type password for /dd/tmp/d.txt: freeware
+Verify password for /dd/tmp/d.txt:</pre>
+</div>
 <div class="shot" id="s-md5">
 <h3>md5</h3>
 <p>MD5 over three files on the disk.</p>
@@ -1201,6 +1526,34 @@ No more memory !!!</pre>
 MD5 (/dd/SYS/motd) = f2783580b7a4c5ef6a29ec5895e6ad95
 MD5 (/dd/SYS/password) = 468f9b420b5bb6d1f44418669c326033
 MD5 (/dd/DOC/INDEX) = 34b33da2d0c267c639f188973599a17b</pre>
+</div>
+<div class="shot" id="s-sox">
+<h3>sox</h3>
+<p>Sound eXchange reading one of the sample sounds in DOC/sox and reporting what is in it -- an IFF/8SVX sample from an Amiga.</p>
+<pre>/dd/CMDS/sox /dd/DOC/sox/great_oz.iff -t au /dd/tmp/oz.au
+/dd/DOC/sox/great_oz.iff        IFF file
+/dd/tmp/oz.au           audio data: 8-bit linear PCM, mono, 7000 Hz</pre>
+</div>
+<div class="shot" id="s-todos">
+<h3>todos</h3>
+<p>todos and toos9 claim to convert line endings between OS-9 and DOS. They do NOT: the file comes back byte-identical, which is what the checksums below show.  Kept here because it is the truth.</p>
+<pre>/dd/CMDS/cat /dd/SYS/motd &gt; /dd/tmp/le.txt
+4b68af85
+del /dd/tmp/le.txt:  (E$PNNF) That path name doesn't lead to anything - check t.
+
+rename todos.$$$.3 /dd/tmp/le.txt:  (E$PNNF) That path name doesn't lead to any.
+
+Src: '/dd/tmp/le.txt', Dest: 'todos.$$$.3'   Rename 'todos.$$$.3' -&gt; '/dd/tmp/l'
+4b68af85</pre>
+</div>
+<div class="shot" id="s-uudecode">
+<h3>uudecode</h3>
+<p>uuencode and uudecode, the pair that carried binaries through mail.</p>
+<pre>/dd/CMDS/uuencode /dd/SYS/motd &gt; /dd/tmp/m.uue
+
+begin 644 /dd/SYS/motd
+H5V5L8V]M92!T;R!O&lt;SEE&gt;&amp;5C("TM($]3+3DO-CAK(&amp;5M=6QA=&amp;]R#0`)X
+/dd/CMDS/head: /dd/tmp/m.uue</pre>
 </div>
 <div class="shot" id="s-uuencode">
 <h3>uuencode</h3>
@@ -1212,6 +1565,17 @@ H5V5L8V]M92!T;R!O&lt;SEE&gt;&amp;5C("TM($]3+3DO-CAK(&amp;5M=6QA=&amp;]R#0`)X
 ``
 end
 size 40</pre>
+</div>
+<div class="shot" id="s-xcrypt">
+<h3>xcrypt</h3>
+<p>xcrypt, a simpler file cipher, and the checksum round trip again.</p>
+<pre>/dd/CMDS/xcrypt -k=freeware /dd/SYS/motd /dd/tmp/x.enc
+en/decrypt &lt;input-file&gt; &lt;output-file&gt;
+en/decrypt &lt;input-file&gt; &lt;output-file&gt;
+4b68af85
+00000000
+========
+4b68af85</pre>
 </div>
 <h2 class="cat" id="communications">Communications</h2>
 <div class="shot" id="s-aterm">
@@ -1366,6 +1730,31 @@ MoMoo  " "oMMMMMMMMMMooooo oM M"MoM MMM"""oMoMM"MMMMM"MMMMMo
 o M"M""M"MMMM "M"MMoo "MoMMMoM"MooooooMMoM"MMMMMM""" MMMMoMo
 ooMo"MMMo""""""ooMo"o" M"""  "ooMo"""    "o" """oMMMM"M"M" M</pre>
 </div>
+<div class="shot" id="s-pbmmake">
+<h3>pbmmake</h3>
+<p>pbmupc draws a real UPC-A barcode from its digits; pbmreduce halves it so the whole code fits a screen.</p>
+<pre>pbmupc 0 72890 00011 | pbmreduce 2 | pbmtoascii -2x4
+
+
+     ,, o,,o,,, o,,o, ,o ,,,,,o,,,o ,o,,,,,,o o, , ,,
+     || M||M||| M||M| |M |||||M|||M |M||||||M M| | ||
+     || M||M||| M||M| |M |||||M|||M |M||||||M M| | ||
+     || M||M||| M||M| |M |||||M|||M |M||||||M M| | ||
+     || M||M||| M||M| |M |||||M|||M |M||||||M M| | ||
+     || M||M||| M||M| |M |||||M|||M |M||||||M M| | ||
+     || M||M||| M||M| |M |||||M|||M |M||||||M M| | ||
+     || M||M||| M||M| |M |||||M|||M |M||||||M M| | ||
+     || M||M||| M||M| |M |||||M|||M |M||||||M M| | ||
+     || M||M||| M||M| |M |||||M|||M |M||||||M M| | ||
+     || M||M||| M||M| |M |||||M|||M |M||||||M M| | ||
+     || M||M||| M||M| |M |||||M|||M |M||||||M M| | ||
+     || M||M||| M||M| |M |||||M|||M |M||||||M M| | ||
+     || M||M||| M||M| |M |||||M|||M |M||||||M M| | ||
+  _. || M|!&amp;?!!_"!?&amp;'.?" ?!'||"?/`$_'"?/`'/'"."| | ||.__
+ $ !||| H| ./-':$|_/-|`L$ !|||$ |/! |$ !|'| -T | | |||\|-
+ ?.?'      /  /!.?'?|:?'?.?'  ?.?'?_?|.?' |  |       ?.$.
+  `        '  "` ``      `     ''  `  `   '  `        ''</pre>
+</div>
 <div class="shot" id="s-pbmtext">
 <h3>pbmtext</h3>
 <p>pbmtext sets a line of type as a bitmap; pbmtoascii renders that bitmap back as characters.  Nothing is drawn by hand.</p>
@@ -1380,6 +1769,22 @@ ooMo"MMMo""""""ooMo"o" M"""  "ooMo"""    "o" """oMMMM"M"M" M</pre>
               M      M   ""Mo  ooooo  "MooM  M M  "M o""Mo  M"Mo
                Mo  oM  Mo  oM           oM  M  Mo  M M   M  M  "Mo
                 """"   " """          ""    "   """   """  """  """</pre>
+</div>
+<div class="shot" id="s-pbmtext-big">
+<h3>pbmtext-big</h3>
+<p>pbmtext sets a line of type, pbmpscale enlarges the bitmap without the staircase an ordinary scale would give.</p>
+<pre>pbmtext "netpbm" | pbmpscale 2 | pbmtoascii -2x4
+
+
+
+
+
+                                    *H
+              o ,\.  .,\. dMboooo\.  Mb\. o ,\ ,\.
+              `M'`H  HooD `M' `M'`H  M'`H `M'`M'`H
+              .M. M. Ho..o H.  M..H  M..H .M. M. M.
+              """ `" ``"'' ``" M*''  `"'' """ `" `"
+                              dMb</pre>
 </div>
 <div class="shot" id="s-pbmupc">
 <h3>pbmupc</h3>
@@ -1435,39 +1840,39 @@ MMoMMM"MMMMM"MMM"MM"MMo"o"o"oM""""Moo" o"ooM o MMMMoMo """"MMMMMMoMo"  "   o  M"
 <div class="shot" id="s-pgmcrater">
 <h3>pgmcrater</h3>
 <p>pgmcrater drops craters at random and shades them -- a whole moon out of a random number generator.</p>
-<pre>"o"o"o"o"o"o"o"o"o"o"o"o"o"o"o"o"o"o"o"o"o"o"o"o"o"o"o"o"o"o"o"o"o"o"o"o"o"o"o"M
-"o" M M M M M M M M M M M M M "o"o"o"o"o"o"o"o"o"o"o"o"o"o"o"o"o"o"o" M "o"o"o"M
-"o""o"o"o"o"o"o"o"o"o"o"o"o"o"o"o"o"o"oo"o"o"o"o"o"o"o"o"o"o"o"o"o"o""o"o"oo"o"M
-"o"o"o"o"o"o"o"o"o"o"o"o"o"o"o"o"o"oo"oo"o"o"o"o"o"o"o"o"o"o"o"o"o"o"M M M o"o"M
-"o"o"o"o"o"o"o"o"o"o" M M M M M M M o"oo"o"o"o"o"o"o"o"o"o"o"o"o"o"o"o"o"o"o"o"M
-"o"o"o"o"o"o"o"o"o"o""o"o"o"o"o"o"o"o"oo"o"o"o"o"o"o"o"o"o" M o"o"o"o"o"o"o"o"oM
-"o"o"o"o"o"o"o"o"o"o"o"o"o"o"o"o"o"o"o"o"o"o"o"o"o"o"o"o"o"M M M M M M M M M M M
-"o"o"o"o"o"o"o"o"o"o"o"o"o"o"o"o"o"o"o"o"o"o"o"o" M o"o"o"o M M M M M M M M M MM
-"o"o"o"o"o"o"o"o"o"o"o"o"o"o"o"o"o"o"o"o"o"o"o"o""o"o"o"o"o"o"o"o"o"o"o"o"o"o"oM
-"o"o"o"o"o"o"o"o"o"o"o"o"o"o"o"o"o"o"o"o"o"o"o"o"o"o"o"o"o"o"o"o"o"o"o"o"o"o"o"M
-"o"o"o"o"o"o"o"o"o"o"o"o"o"o"o"o"o"o"o"o"o"o"o"o"o"o"o"o"o"o"o"o"o"o"o"o"o"o"o"M
-"o"o"o"o"o"o"o"o"o"o"o"o"o"o"o"o"o"o"o"o"o"o"o"o"o"o"o"o"o"o"o"o"o"o"o"o"o"o"o"M
-"o"o"o" M "o"o"o"o"o"o"o"o"o"o"o"o"o"o"o"o"o"o"o"o"o"o"o"o"o"o"o"o"o"o"o"o"o"o"M
-"o"o"o""o"o"oo"o"o"o"o"o"o"o"o"o"o"o"o"o"o"o"o"o"o"o"o"o"o"o"o"o"o"o"o"o"o"o"o"M
-" M M M" M M o"o"o"o"o"o"o"o"o"o"o"o"o"o"o"o"o"o"o"o"o"o"o"o"o"o"o"o"o"o"o"o"o"M
-"o"o"o"o"o"o"o"o"o"o"o"o"o"o"o"o"o"o"o"o"o"o"o"o"o"o"o"o"o"o"o"o"o"o"o"o"o"o"o"M
-"o"o"o"o"o"o"o"o"o"o"o"o"o"o"o"o"o"o"o"o"o"o"o"o"o"o"o"o"o"o"o"o"o"o"o"o"o"o"o"M
-"o"o"o"o"o"o"o"o"o"o"o"o"o"o"o"o"o"o"o"o"o"o"o"o"o"o"o"o"o"o"o"o"o"o"o"o"o"o"o"M
-"o"o"o"o"o"o"o"o"o"o"o" M M o"o"oo"o"o"o"o"o"o"o"o"o"o"o"o"o"o"o"o"o"o"o"o"o"o"M
-M M M M M M M M M M M M" M M M M o"o"o"o"o"o"o"o"o"o"o"o"o"o"o"o"o"o"o"o"o"o"o"M
-o"o"o"o"o"o"o"o"o"o"o"o"o"o"o"o"o"o"o"oo"o"o"o"o"o"o"o"o"o"o"o"o"o"o"o"o"o"o"o"M
- M M M M M M M M M M M M M M M M M M M o"o"o"o"o"o"o"o"o"o"o"o"o"o"o"o"o"o"o"o"M
-"o"o"o"o"o"o"o"o"o"o"o"o"o"o"o"o"o"o"o"o"o"o"o"o"o"o"o"o"o"o"o"o"o"o"o" M "o"o"M</pre>
+<pre>pgmcrater -number 80 -xsize 152 -ysize 88 | pgmtopbm | pbmtoascii -2x4
+?SSSSSSSSSSSSSSSSSSSSSSSSSS:%%%%%%%%%%%%:SSSSSSSSSSSSSSSSS%%SS:%%%(?SSSSSSS1
+SSSSSSSSSSSSSSSSSSSSSSSSSSS:%%%%%%%%%%%%:SSSSSSSSSSSSSSSSSS:%%%%%%%%%%%%%%%&amp;
+SSSSSSSSSSSSSSSSSSSSSSSSSSS&gt;????????????S??????????????????&lt;&gt;$||)))))))))))]
+???????????????????????????????????????????????????????????\F$&lt;:$))))))))))]
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%\*//??SSSSSSSSSS1
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%\$((((((((((((&amp;
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%&amp;
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%&amp;
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%??&lt;%%%%%%%%%%%%%%%%%%%%%%%%%&amp;
+%%%%%%%%%%%%%%%&gt;??%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%&amp;
+%%%&gt;??%%%%%%&gt;???||||&gt;)?%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%&amp;
+%%%%%%%%%%:?S?????????&lt;%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%&amp;
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%:??????????)?%%%%%%%%%%%%%%%%%%%&amp;
+%%%%%%%%%%%%%%%%%%%%%%%%%%%&gt;?%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%&amp;
+%%%%%%%%%%%%%%%%%%%%%%%%%%%$??:%%&gt;?)?%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%&amp;
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%Z??&lt;%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%&amp;
+%%%%%%%%%%%%%)))))))))))))))))))))))))))?%%%%%%%%%%%%%%%%:?S:%%%%:?S:%%%%%%&amp;
+%%%%%%%%%%%%%???????????????????????????&lt;%%%%%%%:?)?%%%%%%%%%%%%%%%%%%?|;SS1
+\|%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%Z??&lt;%%%%%%%%%%%%%%%%%%:SSSS1
+%%%%%%%%%%%%%%%%%%%%%%%%%%:?????????????????SSSSSSSSSSSSSSSSSSSSSSSSSSSSSSS1
+%%%%%%%%%%%%%%%%???:%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%&amp;
+%%%%%%%%%:??????????????????????????????????????%%%%%%%%%%%%%%%%%%%%%%%%%%%&amp;</pre>
 </div>
 <div class="shot" id="s-pgmedge">
 <h3>pgmedge</h3>
-<p>pgmedge finds the edges in the same photograph -- a convolution, then dithered back to black and white.</p>
-<pre>&lt;l.ppm | pnmscale -width 152 | pgmedge | pgmtopbm | pbmtoascii</pre>
+<p>pgmedge keeps only where the brightness changes; on a photograph that leaves the outlines.</p>
+<pre>&lt;le -xysize 152 88 | pgmedge | pgmnorm | pgmtopbm | pbmtoascii -2x4</pre>
 </div>
 <div class="shot" id="s-pgmhist">
 <h3>pgmhist</h3>
-<p>pgmhist counts how many pixels hold each grey value -- the histogram of the ramp above, which is flat by construction.</p>
-<pre>/dd/CMDS/NETPBM/pgmramp -lr 64 16 &gt; /dd/tmp/ramp.pgm
+<p>pgmramp makes a greyscale ramp and pgmhist counts what is in it -- flat by construction, which is how you know both are right.</p>
+<pre>pgmramp -lr 64 16 &gt; /dd/tmp/ramp.pgm
 value   count   b%      w%
 -----   -----   --      --
 0       16       1.56%    100%
@@ -1483,15 +1888,44 @@ value   count   b%      w%
 40      16       17.2%   84.4%
 44      16       18.8%   82.8%
 48      16       20.3%   81.2%
-52      16       21.9%   79.7%</pre>
+52      16       21.9%   79.7%
+56      16       23.4%   78.1%
+60      16         25%   76.6%</pre>
 </div>
 <div class="shot" id="s-pgmnoise">
 <h3>pgmnoise</h3>
-<p>pgmnoise makes white noise, pnmsmooth blurs it, and what comes back looks like cloud.</p>
-<pre>pgmnoise 150 44 | pnmsmooth | pgmtopbm | pbmtoascii
+<p>pgmnoise makes white noise and pnmsmooth blurs it -- a convolution, and what comes out looks like cloud.</p>
+<pre>pgmnoise 152 88 | pnmsmooth | pgmtopbm | pbmtoascii -2x4
 pnmsmooth: /r0/smooth000004 -
 pgmtopbm: EOF / read error reading magic number
 pbmtoascii: EOF / read error reading magic number</pre>
+</div>
+<div class="shot" id="s-pgmoil">
+<h3>pgmoil</h3>
+<p>pgmoil paints the photograph again as if in oils -- each pixel becomes the commonest value around it.</p>
+<pre>pgmnorm: remapping 57..227 to 0..255
+|:&gt;\//:?!/i(//&gt;\//:\:(/i(/:-::|%:S;:??:&gt;:?|::|?:?:&gt;|:?:/\%:S:|\\\?i:/&gt;-
+S?!/;?:&gt;:!|&gt;\/S//S/:/&gt;!/-'    ` :S\\//:i?S!:?i:|S/\\)|:?\&lt;\&gt;/&gt;\/&gt;:|%:S-
+S&gt;\:i??!/)//(//:/|(/i/:..:.&lt;\:|  `?!:|(/iS&lt;/\\!?\/&gt;\/&gt;\(?|:!|?:S//S:|&gt;:
+/i?\///i?/&gt;\:i(\\//\::.:\\!/::|\\ -\/:)\&lt;//S|:/S/\\:i?:/\|?:?|:iS?:&gt;\/.
+i?:i?S?:&gt;|i:?i:|\\\&gt;:::/?\&gt;;&gt;\&lt;|!:::?:?|:/&gt;\%:S\:i(/):&gt;\\%:?\\//\&gt;|::?-
+&lt;Si&lt;/!/:?S:|&gt;/:/\/&lt;\:/\\://&lt;\%:&gt;?\pc/:i\\/S|:&gt;:\:|?\\%!&lt;:&gt;?\\\\S:&gt;:!|/.
+\/&gt;\(:/S/\\|??|/&lt;\%-::::/S|:/|kZ\/??&amp;?&amp;\\/S/\\\&gt;i%|:)i\:|?:%/\&gt;|://:\!:
+?|;?|:\/S/:!?\&gt;|:%-:..:..::'/$/%|:i(/i$\&amp;&amp;&gt;:i(/iS?::?:\%/\?|:\&gt;:!|:\!|.
+?!:|?/SS|:??|:\(:-:.--:`:.-::%!/):::/&gt;\%|7H?:&gt;!|&lt;\?|::|%|::?S!:\&lt;;:S:/.
+S/\\/S/!/)!/)!&lt;::/ :`:.'.-:.-|::/:/\/&lt;:S;&gt;\\&lt;&gt;:?|:?::|&gt;i\\&lt;/!&lt;\;&lt;;&lt;/:?
+|;&gt;\:/:?|;?!:|S/.-:.:.':.'..':        `//i%!:&gt;?\\/&gt;\:iS:&lt;\?:\&gt;i(?!:?|:-
+&lt;\/SSi&lt;/\//\/S\-::-.:`:`.:.'- .     .   `?|:!S:\&lt;//(/)//&gt;!|?\/S|:S|:S!.
+?|\:S&lt;//SS!&lt;\%:-:::.-: :-.-'.- :.::.::.\?.-?S!:|?:/&lt;|:S|:S|:?\\\\//)!/:
+|:?:(\|?\S&lt;/:::.::.-:.-.` ::.-::&gt;:i\\:/&lt;|D|S;?:&gt;iS:|?!:|?:\\://:iS:|%::
+$S{|/Z$&gt;\$F&amp;::::-: :-.'-:-:.:::?:,:/:::/i\&lt;:/:\\(//\&lt;/\\:\/&gt;:iS:&lt;\\\\/.
+Z&amp;Z&amp;Z&amp;&amp;S&amp;&amp;Fk$&lt;:::.: :..'::-:/:::&gt;;:&gt;;:\:S:\b$\}?b\\\&gt;|:&gt;|:S:&gt;:?|:\&lt;\/\-
+HH66&amp;&amp;S&amp;&amp;&amp;FkR\::&gt;- : :. ::::/::.:/:&lt;:):?&gt;??S!&lt;:|$9&amp;11d??:S;S!/:?i\S|:\:
+MMMHMMM&amp;M&amp;RDR&amp;:: : .-.::.\:.-:`:.-::'\!S:|&lt;\\\\/&gt;:???H&amp;#\\|?:i?)|::?|:-
+MMMMMMMMMMMM6|\::::.:-:::/::: :: :-\: :|S|:/&gt;/S/\//:?:%:?S!&lt;:|&lt;:?/|&lt;\/.
+MMMMMMRMMHHHM&amp;&amp;$:/;.`:/:::::::.--::.:`:)\\\//\(/:?|:iS:|?!&lt;:?|:%:S/\\\-
+MM9HHHHH6M9HRMHH$??:: :::.::::`::::.`.:&gt;i(/i?||?/:\//):?|:://:?&lt;\%!&lt;\:-
+MMMHMHMHMMMHM6MHH?:::-::\:.':::-:.-:/:::&lt;/\//&gt;\(/)\\//\\\/?:&gt;\/S/\\;:/.</pre>
 </div>
 <div class="shot" id="s-pgmramp">
 <h3>pgmramp</h3>
@@ -1520,6 +1954,30 @@ MMMMMMMMMMM"MMMM"MMoM"MMM"MM"M"M"MoMMM"M"oMoM"Mo"Mo"Mo"oMo"oM"o"oM"o"oM M"o"o"oo
 MMMMMMoMMMMMMMMMMM"MMM"MM"MM"MMM"MoMoMM"M"oMo"MoM"oM"oMo"oMo"M Mo"o"M M M M M Mo
 MMMMMMMMMMMMMoMMMMMMM"MMM"MM"MoM"MoMoM"M"Mo"M"oMoM"oMo"oMo"oM"o"oM Mo"o"o"o"o"oo</pre>
 </div>
+<div class="shot" id="s-pnmarith">
+<h3>pnmarith</h3>
+<p>pnmarith multiplies two images together -- the sphere by a ramp, so it fades across.</p>
+<pre>pgmramp -lr 152 88 &gt; /dd/tmp/r2.pgm
+&lt;d/tmp/s2.pgm /dd/tmp/r2.pgm | pgmtopbm | pbmtoascii -2x4
+pnmarith: the two anymaps must be the same width and height
+pgmtopbm: EOF / read error reading magic number
+pbmtoascii: EOF / read error reading magic number</pre>
+</div>
+<div class="shot" id="s-pnmcat">
+<h3>pnmcat</h3>
+<p>pnmcat puts two images side by side -- the sphere beside its own negative, made by pnminvert.</p>
+<pre>pnmscale -xysize 74 88 /dd/DEMO/sphere.pgm &gt; /dd/tmp/s.pgm
+M9RM9HHH9H&amp;&amp;&amp;$9Z$\ZZZ&lt;S$$?F$$7/$1|%7/ .. -..-.::.::,&gt;\\&lt;:&gt;://::/&gt;:/&gt;)!://?
+MH6M&amp;&amp;RD7$S???%\&gt;\:?`::\\\\:7?:$|?$$%- .`.::::/?|||)$$?k$Z&amp;$/$&gt;7//Z?:?\!|(
+MDRH&amp;Z$Z??:S::--:: -'---`-::::\\&gt;%\|$` ::::/)SS$1$S&amp;6kRH9HH6HH&amp;M$S&amp;Z$$)):?
+6R&amp;$7/?//::-:.': . ' ' ` -` .::'/S!?%`:.:?||%&amp;%FkH&amp;HM6MMMMMMMMH6M&amp;&amp;FkF1?SS
+M9Z$Z%\\//:`.              - .::::)!? \'//?$]$S6HHHMHMMMMMMMMMMMRMR6&amp;S$}$)
+M&amp;&amp;Z|||?//:.:.-           . - :::/\%%.-::?//|Z$kH6HRMMMMMMMMMMMRM96H&amp;1S$%%
+6MH$$?Z?\&lt;;:.:: :. .. ..- -:.::/:%\|$.`.\:\|T|k&amp;&amp;&amp;&amp;&amp;H&amp;96M6M96HH9FkR&amp;F}?SSS
+M&amp;RH6F&amp;$$)|:%|::&gt;::.:/::;::/i\S:&lt;%$]| - .-:/;&lt;S%Z$\&amp;&lt;F&amp;9$$H&amp;1&amp;$FS$?|}\\!|(
+HMH9HH&amp;H&amp;&amp;1S$S\|LZ:\|%&lt;%????S$$$]?{|? :.-.---\:!::/(&gt;///?T|T||}%&gt;):)\\:?\|
+""""""""""`'"'"`'"'"`'"`'"'"``'''"`'"     ` '   ` ` ' '` ` '` ` ' '` ''``</pre>
+</div>
 <div class="shot" id="s-pnmfile">
 <h3>pnmfile</h3>
 <p>pnmfile identifies what each intermediate in a pipeline actually is -- format, dimensions and whether it is raw or plain.</p>
@@ -1529,32 +1987,43 @@ MMMMMMMMMMMMMoMMMMMMM"MMM"MM"MoM"MoMoM"M"Mo"M"oMoM"oMo"oMo"oM"o"oM Mo"o"o"o"o"oo
 /dd/tmp/ramp.pbm:       PBM raw, 64 by 16
 /dd/tmp/ging.ppm:       PPM raw, 40 by 20  maxval 255</pre>
 </div>
+<div class="shot" id="s-pnmfile-set">
+<h3>pnmfile-set</h3>
+<p>pnmfile identifies each file a pipeline made: format, size, and whether it is raw or plain.  Six formats, all made on this disk.</p>
+<pre>pnmtile 60 30 /dd/tmp/s.pgm &gt; /dd/tmp/tile.pgm
+usage:  pnmpad [-white|-black] [-l#] [-r#] [-t#] [-b#] [pnmfile]
+&lt;pgm /dd/tmp/t.ppm /dd/tmp/tile.pgm /dd/tmp/pad.pgm /dd/tmp/s.pgm
+/dd/tmp/ramp.pgm:       PGM raw, 64 by 16  maxval 255
+/dd/tmp/t.ppm:  PPM raw, 80 by 40  maxval 255
+/dd/tmp/tile.pgm:       PGM raw, 60 by 30  maxval 255
+pnmfile: EOF / read error reading magic number</pre>
+</div>
 <div class="shot" id="s-pnmrotate">
 <h3>pnmrotate</h3>
-<p>pnmrotate turning the sphere thirty degrees, with pnmcrop cutting the empty margin back off.</p>
-<pre>MMMMMMMMMMMMMMMMMMMMMMMM"                                                      M
-MMMMMMMMMMMMMMMMMMMMMMM"                                                       M
-MMMMMMMMMMMMMMMMMMMMMM"                                                        M
-MMMMMMMMMMMMMMMMMMMMMM                                                         M
-MMMMMMMMMMMMMMMMMMMMM"                                                         M
-MMMMMMMMMMMMMMMMMMMMM                                                          M
-MMMMMMMMMMMMMMMMMMMMM                                                         oM
-MMMMMMMMMMMMMMMMMMMMM                                                       ooMM
-MMMMMMMMMMMMMMMMMMMMMo                                                   ooMMMMM
-MMMMMMMMMMMMMMMMMMMMMMo                                            ooooMMMMMMMMM
-MMMMMMMMMMMMMMMMMMMMMMMo                                       ooMMMMMMMMMMMMMMM
-MMMMMMMMMMMMMMMMMMMMMMMMMoo                                ooMMMMMMMMMMMMMMMMMMM
-MMMMMMMMMMMMMMMMMMMMMMMMMMMMooo                     ooMMoMMMMMMMMMMMMMMMMMMMMMMM
-MMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMooooooooooooMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMM
-MMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMM
-MMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMM
-MMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMM
-MMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMM
-MMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMM
-MMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMM
-MMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMM
-MMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMM
-""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""</pre>
+<p>pnmrotate turns the sphere thirty degrees and pnmcrop trims the margin the rotation left behind.</p>
+<pre>&lt;nmscale -xysize 152 88 | pgmtopbm | pbmtoascii -2x4
+MMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMHPTHMMMMMMMMMMM|
+MMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMH&amp;7/$T|7MMMMMMMMMM|
+MMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMM&amp;F?[$4?($/$7MMMMMMMMM|
+MMMMMMMMMMMMMMMMMMMMMMMMMMMMH9S1)S4?%$(|$&gt;)?SHMMMMMMM|
+MMMMMMMMMMMMMMMMMMMMMMMMMH&amp;\Z($?//?|/|!/|!//??HMMMMMM|
+MMMMMMMMMMMMMMMMMMMMMM&amp;PZ$(|\\\:&gt;:-:::::/:&lt;;//|HMMMMM|
+MMMMMMMMMMMMMMMMMMH&amp;S$)):%::&gt;:-:`.': :.':::|:?:|HMMMM|
+MMMMMMMMMMMMMMMRRFS4|!:\::: : '.` . ` -':.:&lt;::|||&amp;MMM|
+MMMMMMMMMMMHM&amp;11?((//:-:- -- '      ' '-.:\::i|||[$MM|
+MMMMMMMMM9R&amp;F&amp;%4||::::'.`           .` :.:&lt;;/||T?($4H|
+MMMMMM9kM19&amp;Z?%%:/\:- .            . .:.:\:/|$$$%$$dH|
+MMM9D6H9H&amp;$S\\\//:-.--  '         -.-.:\\//$$4%$&amp;MMMM|
+MHH6M9H&amp;&amp;$&amp;J|:&gt;/;.-.: .       . :.:.-:|&lt;%Z{?&amp;6MMMMMMM|
+MMRMH9H9S$$|\\/.:::. .. -- :.'.:.:::S/)$$HHMMMMMMMMMM|
+MMMHRM&amp;H&amp;)\\\\\&gt;;.-:::.-:::.::,\:S&gt;?\&amp;HHMMMMMMMMMMMMM|
+MMMMRHM$$FS(((&lt;|:/:::\:::S,&lt;//||L\&amp;HMMMMMMMMMMMMMMMMM|
+MMMMMMH9F&amp;$%||||||/i?i|//||L\?bHMMMMMMMMMMMMMMMMMMMMM|
+MMMMMMHHHH&amp;7$1S$/J?/J?/JS&amp;&amp;&amp;HMMMMMMMMMMMMMMMMMMMMMMMM|
+MMMMMMMM9MHM&amp;&amp;&amp;&amp;&amp;&amp;&amp;&amp;$k6&amp;MHMMMMMMMMMMMMMMMMMMMMMMMMMMM|
+MMMMMMMMMHM&amp;RMH9HH9H6MMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMM|
+MMMMMMMMMMHMH&amp;R6M6MMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMM|
+MMMMMMMMMMMMHRMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMM|</pre>
 </div>
 <div class="shot" id="s-pnmtile">
 <h3>pnmtile</h3>
@@ -1582,37 +2051,100 @@ MMMM"                         MMMM"                         MMMM"              "
 MMM                           MMM                           MMM                M
 MMMo                          MMMo                          MMMo               o</pre>
 </div>
+<div class="shot" id="s-pnmtops">
+<h3>pnmtops</h3>
+<p>pnmtops writes PostScript around a bitmap -- how an image reached a printer in 1990.  The head of what it produced.</p>
+<pre>pnmtops /dd/tmp/ramp.pgm | /dd/CMDS/head -n 18
+%!PS-Adobe-2.0 EPSF-2.0
+%%Creator: pnmtops
+%%Title: /dd/tmp/ramp.ps
+%%Pages: 1
+%%BoundingBox: 298 350 314 412
+%%EndComments
+/readstring {
+  currentfile exch readhexstring pop
+} bind def
+/picstr 64 string def
+%%EndProlog
+%%Page: 1 1
+gsave
+298.32 350.28 translate
+15.36 61.44 scale
+0.5 0.5 translate  90 rotate  -0.5 -0.5 translate
+64 16 8
+[ 64 0 0 -16 0 16 ]</pre>
+</div>
+<div class="shot" id="s-ppmdither">
+<h3>ppmdither</h3>
+<p>ppmquant reduces the photograph to sixteen colours and ppmdither spreads the error -- the two halves of how a picture survived a screen that had no more colours than that.</p>
+<pre>ppmquant: mapping image to new colors...
+:\&gt;/:&lt;;/:S::|:&lt;:(/:/S/\\&lt;:://\\\&lt;::S:)!/&lt;:S/://\/:?|;:&lt;:?\/\?:\?|:iS:&gt;-
+:&gt;\(:S/\\/;:&lt;\/:iS:/&gt;&lt;:: :-:..:.:`\?:\:?:?|//&gt;?:\&gt;/\/;:&lt;\:?\/\?:&gt;:\/&gt;\:
+?\\|?&lt;:)!:S/:/S/:/\\:::.`;,:::.::.'/:?:(::%:&gt;\:S;:/:iS&gt;\/;:?:\&gt;//&gt;\/&lt;::
+!&lt;:(/;&lt;;:|S!:\\/;S:::::S::&gt;::$=&lt;?::.\/?|:&lt;:?:?:(:S;:/&gt;&lt;:&gt;/&lt;:|%!/|i:&gt;\?
+S:%\??!:&lt;\\&gt;/:?::S/::&lt;:/S\\:&lt;//\://:::\\/?|/:/S:\\:i(:S&lt;://:\%:S:&gt;:S:\-
+?!:&lt;S!:?!:&gt;\(/:iS\&lt;::&gt;:\\:/\\/;-:?|:::&gt;\//:/S:\&gt;/\::?::/iS:\&gt;:\:\:?:\?
+/\:S:%|:S!:&gt;:?/&gt;\?::\\|-\?::|$|J||||||?&lt;\/:&gt;\\\!(/:iS;/:S:&gt;&lt;i:\/&lt;\:i%::
+//S|::/\&lt;:?S::S;::: ::\:-:::/)\\:S/:\|||bS$S|::S/:S|;:&lt;//S::&gt;:/:?\\/&gt;\.
+S|::?|:\\/&lt;!:&lt;/!:::::/::: /./\\:i\&gt;:\:\&gt;)\91:::\:/&lt;\?://:&lt;;:&lt;:&gt;\&gt;::/\&gt;.
+?:&gt;\&gt;::\:/&lt;\:S:%:.:-:\:::-:::::&gt;:&lt;:/S:i%!///:?|/::i\?::|&lt;\//:%!:?://\&gt;.
+&lt;:?\\&gt;\|?\\&gt;:Si::.:: :/:..::-:`:.-:.-:::S::|&lt;\&lt;;&lt;/!/:S/!/i%::i\&gt;:?:&gt;\/.
+/\\\?i:\\\//&gt;S:::::::.::/.-:::.-:::.: :.-:&lt;:):iS:&lt;\:?S:\/&lt;\;:/&gt;\%!:?:&gt;.
+\&gt;&lt;\&lt;:S\:/\:\::.::::.::\: :.:-:..:::::/:|?/:\&lt;:\%|:\:?|:\&gt;:/&gt;\/&gt;:\\/i%'
+\\\\/):!|/?\::&lt;:.-/:.::-:::.-:&gt;:::/&lt;:::i$&gt;??S`/:&gt;!S&lt;/::?\\//:?:/S:i(/\:
+?\\?4|||????&lt;:/::.:::.:::.-/&lt;:::S:\::\//\&gt;::S:::\:?::?:i%|:::|S:iS::S\'
+Z%$||%%%?$)));:::::-:: ::::\:::\/&gt;\:&gt;\/;:\\\+$S&gt;S&lt;\?::S;/:/S:&gt;/:/?i!:/.
+kF&amp;&amp;&amp;$$$||&gt;SSS&gt;\:::::: &lt;:::::::;.:/:S/\&lt;SSS&lt;/|+$$D$%ZZ&lt;S://\\:/S/\\\:&gt;.
+kR&amp;$F&amp;&amp;9&amp;&amp;$k||'::: :/:.\\::::::::.::/!/?:(/)::?:/??&lt;$&amp;&amp;&amp;$:&lt;\/i/&gt;&lt;:i?\&lt;
+$&amp;&amp;&amp;H$\\&amp;&amp;&amp;\\\\.::::\:-;.:\:\:::-::::::&gt;:|%!:\\\&gt;//:???&gt;&gt;::|:\\:?:\S:\:
+6$&amp;Fk6&amp;&amp;&amp;&amp;&amp;$ZZ?i|S.:\::\:::::-://::.:::S:&gt;::\\/\&gt;:S!&lt;|:%\&lt;\?|::?::?:?::
+$R&amp;&amp;11S&amp;&amp;&amp;&amp;&amp;&amp;&amp;&amp;\\:S::.::::&lt;.':.:\::::::!:S;:/i%:(/|:::/|%|::?:?:&gt;//&gt;:&lt;'
+&amp;$FF&amp;$FFFFD&amp;1Skk??:::::::\::::::.::::::\!(:://\&gt;\&gt;\&gt;:\(/)://S/:Si\/&gt;\\:</pre>
+</div>
 <div class="shot" id="s-ppmforge">
 <h3>ppmforge</h3>
 <p>ppmforge invents a planet from a random seed: fractal terrain, an atmosphere and a star field, none of it drawn by anybody.</p>
 <pre>&lt;height 88 -seed 7 | ppmtopgm | pgmtopbm | pbmtoascii -2x4</pre>
 </div>
+<div class="shot" id="s-ppmhist">
+<h3>ppmhist</h3>
+<p>ppmpat weaves a pattern and ppmhist counts the colours in it, the commonest first.</p>
+<pre>ppmpat -tartan 80 40 &gt; /dd/tmp/t.ppm
+ r   g   b      lum     count
+--- --- ---     ---     -----
+ 95  33 129     62      1425
+ 47  66  21     55      1128
+143   1 238     70      450
+138 102 132     116     119
+186  69 240     123     75
+229 138 243     177     3</pre>
+</div>
 <div class="shot" id="s-ppmpat">
 <h3>ppmpat</h3>
 <p>ppmpat weaves a tartan, ppmtopgm greys it and the dither prints it.</p>
-<pre>&lt;/NETPBM/ppmtopgm | /dd/CMDS/NETPBM/pgmtopbm | /dd/CMDS/NETPBM/pbmtoascii
-MMMMMMMMMMMMMMMMMM"o"MMMMMMMMMMMMMMMMMMMMo"oM"M MoMMMM"oMo"oM"oMMMM"oM"oM"oM
-MM"MMoMMMMMMMMMMMM"o"MMM"MMMMMMM"MMM"MMM M"o"oM"o"MMoM Mo"M M"oMMMoM Mo"oM M
-MMMMMMMMoMMoMMMoMMM"oMMMMMMoMMMMMMMMMMMMMo"M"o"Mo"MMMo"M M"oM"oMMM M"oM"oM"o
-MMMMMoMMMMMMM"MMMMo"oMMMM"MMMMoMMMMoMMMo"o"Mo"M M"MMMo"M"o"oM"oMMM"oM Mo"oM"
-MMoMMMMMMoMMMMM"MMo"oMMMMMMMM"MMMoMMMMMM"M Mo"M"o"MMMo"M""M Mo"MMMMo"Mo"M M"
-o"o"oo"o"o"o"o"M M o "oo"ooM Mo"o"o"oo"o"o o " o "o"oo o" o o o"oo o o " o "
-MMMMMMMMMMMMMMMMMM M"MMMMMMMMMMMMMMMMMMMo"Mo"M"oM"MMMoMo"Mo"Mo"MMM"o"M""Mo"M
-MMMMMMM"MMMMMMMMMM"o"MMMMoMMMMM"MMMMMMMMo"oM"oMo"oMMMo"oMo"M M"MMMM"oM"M M"o
-MMMoMMMMMMoMMoMMMM"o"MMoMMMMoMMMMMoMMoMMoM"oM Mo"M"MMoM Mo"M"o"MMM Mo"oM"oM"
-MMMM"MMM"MMMMMMMMM"o"MMMMMM"MMMM"MMMMMMMo"oMo"M M"MMMo"M M"oM"oMMM"oM"o"M M"
-M"MMMMMMMMMoMMoMMM"o"MMMoMMMMMMMMMMoMMMMoM Mo"M"o"MMMo"Mo"M M"oMMMM M"o"M"oM
-M"o"ooM M Mo"oM Mo" o"oM Mo"ooM M Mo"ooM o"  o" o" Mo o o" o" o"o"o "o "o o
-Mo"Mo"o"Mo"oM"oM"o"  Mo"M M"o"o"Mo"oM Mo o" "o "o M"o" o "o o" "Mo "o "o o"
-oM"o"M"o"oM"o"oM"o" "o"Mo"M"o"Mo"oM"oM"o" o" o" o M"M " "o o" ""oM "o "o o"
-MMMMMMMMMMMMMMMMMMM""MMMMMMMMMMMMMMMMMMMM"o"Mo"Mo"MMM"M"oM"o"M"MMM"oM"o"oM"M
- Mo"oM Mo"o"oM M M  "o"o"o"oM Mo"o"o"o"o " o o"  M Mo" o o" "o Mo"o o" "  o
-"oM"o"M M"oMo"Mo"M " "Mo"M"o"M M"oM"Mo"M "o "o "o MoM " o "o o MoM o M "o" "
-"oM"o"M"oMo"oMo"Mo" "M M"oM"oM"oMo"oMo"M " o" o" o"oM "o "o "o M M o o" o" "
-MMMMMMMMMMMMMMMMMMM"oMMMMMMMMMMMMMMMMMMM"M"oM"oM"oMMMM"oM"oM"o"MMM"oM"oM""M"
-"o"o"o"oo"oo"oo"oo o M Mo"o"oo"oo"o"o"oM o"  o o" o"oo o "o " "o"M o "o "o "
-"M"o"M"oM"oM"o"Mo"o "oM"oM"oMo"Mo"M"oMo"o "o" o "o"Mo "o "o M "oM"o "o o" o"
-Mo"M"oMo"oMo"Mo"oMo "o"oM Mo"oMo"M Mo"oM o" o" " o"oM " o"  o" "o"o "o o" o</pre>
+<pre>ppmpat -tartan 152 88 | ppmtopgm | pgmtopbm | pbmtoascii -2x4
+RMH96R6RMH&amp;RMH9H&amp;RF[&amp;&amp;HH&amp;R6HH9H&amp;R6M&amp;FM&amp;R6&amp;FkR6&amp;F6&amp;HH9H&amp;&amp;&amp;&amp;FkRFRHFM&amp;&amp;H&amp;&amp;H&amp;&amp;H&amp;
+RH&amp;H9&amp;DRH&amp;RH&amp;FH9H&amp;F1S&amp;H6H&amp;&amp;MH&amp;&amp;RH&amp;RMH&amp;H&amp;H&amp;1&amp;91F6&amp;&amp;H&amp;&amp;kMSH&amp;$k6FkH6H&amp;&amp;H&amp;1H&amp;19&amp;
+RH&amp;6&amp;HH9&amp;9&amp;HH&amp;kM9H&amp;S&amp;SHHFM&amp;&amp;HH9&amp;&amp;RH&amp;6R6R&amp;91&amp;&amp;$FkRHH9&amp;&amp;&amp;H&amp;SFkH9&amp;H&amp;R&amp;FDFkH&amp;1H&amp;
+RH9&amp;9H&amp;HH&amp;6R6M&amp;&amp;6H&amp;Z&amp;19&amp;9&amp;9R6M&amp;FH9&amp;H9&amp;FM&amp;1FFR&amp;Fk6&amp;D6R&amp;9H&amp;1FkH&amp;&amp;HH&amp;FRHFFRH$&amp;R
+H&amp;H9H&amp;9HkM&amp;&amp;&amp;6M&amp;FM&amp;S&amp;&amp;H9H6&amp;9H&amp;HH&amp;RH&amp;9HHHS&amp;FRH&amp;SkH&amp;H&amp;RRH1&amp;1Sk6&amp;FHH&amp;FkkR6&amp;&amp;FkR
+F&amp;$$&amp;Z&amp;%kH%R$\$R$&amp;&amp;|%$\$$&amp;S$$&amp;S&amp;$&amp;$&amp;$$1\$$S1S}&amp;%$F1$$1?$&amp;%}&amp;%F1Z&amp;&amp;/&amp;{?1%$$&amp;{
+HHFM&amp;HH9&amp;DRMH&amp;RH9&amp;H&amp;ZHH9HkRM&amp;HH&amp;H&amp;H6H&amp;kM&amp;1FkRFkM&amp;19H&amp;kR&amp;&amp;9&amp;&amp;9&amp;&amp;9DM&amp;SH&amp;1FRH&amp;&amp;
+RHR6HH&amp;M&amp;HDH&amp;R&amp;kH&amp;H&amp;%D6&amp;9&amp;M1H&amp;6H&amp;6HH&amp;R6M&amp;1Fk6FkM&amp;1H&amp;9$RH$kM&amp;$&amp;6HH&amp;F6&amp;F&amp;Fk6H&amp;
+HH&amp;&amp;HH&amp;6RH9HFM&amp;96R&amp;Z$SHFH9&amp;H9&amp;R6R6M1RH9H&amp;1&amp;&amp;&amp;9&amp;&amp;H$HH&amp;FkDFk6&amp;FkH&amp;M&amp;FkRFkRDFRH
+R6HHHkHH&amp;&amp;D6HH&amp;DDHZ&amp;&amp;1H&amp;kM9&amp;H9H&amp;H&amp;1kM1&amp;9H$&amp;H$k6FkHH9HFkRFkM&amp;$k6RH9&amp;H&amp;Fk6&amp;FH&amp;
+6DRDH&amp;R6M1RHHH9H99}k&amp;&amp;R6H&amp;H9&amp;F6RH9kM&amp;&amp;RHFFkR6kDFkRH9&amp;Fk6Fk6&amp;FkkH&amp;H&amp;Fk6kM&amp;19&amp;
+kR6&amp;DFkH&amp;&amp;$&amp;FH&amp;1&amp;FF|k&amp;&amp;H&amp;19H&amp;1&amp;&amp;1&amp;H19H$&amp;&amp;&amp;Zk$kR&amp;ZkR&amp;kR$&amp;9$S$R&amp;SFkH$F&amp;$&amp;&amp;&amp;1$9
+kRH&amp;1FkM&amp;&amp;SkR&amp;9$kHZ$}SFkRH$&amp;6FRH$kH&amp;11Fk6&amp;11S&amp;&amp;&amp;11$&amp;H$Z&amp;$D&amp;Zk$kFkHS&amp;&amp;&amp;1$$k&amp;&amp;
+DH&amp;&amp;1FkFRH$kM&amp;1FDFk$\1&amp;&amp;&amp;1FkDFkDFkH&amp;$kFkk6$&amp;&amp;11$$&amp;9$kR$&amp;&amp;&amp;S$&amp;&amp;$FkHSk&amp;&amp;$S&amp;$F&amp;
+HHFM&amp;&amp;6H&amp;&amp;RH6H16RM&amp;Z$SRRH&amp;6HH9H&amp;RM&amp;9R6RH&amp;9&amp;$Fk6&amp;FkRMH19&amp;H&amp;1&amp;&amp;6HH&amp;R6FRH&amp;19H1&amp;
+Fk6kRFkRFkR&amp;&amp;R&amp;11DZ$\$6&amp;Fk6FH&amp;19&amp;&amp;&amp;$&amp;H&amp;1$&amp;9&amp;Z&amp;&amp;F&amp;&amp;&amp;11111&amp;&amp;1&amp;%kFk&amp;&amp;&amp;9$Sk$kk&amp;&amp;
+FkH&amp;1Fk6FH&amp;1&amp;FR&amp;kFk$$SH&amp;FkDFkH1&amp;H&amp;S&amp;kH&amp;1F11&amp;ZkD&amp;1&amp;&amp;$kkDZk&amp;$6&amp;$$RH11$Z&amp;&amp;ZkF&amp;&amp;
+FkM&amp;1Sk&amp;FkR&amp;DFkH&amp;Fk&amp;)&amp;H&amp;19H&amp;SH$RH&amp;H&amp;19&amp;1&amp;$&amp;S&amp;&amp;&amp;Z&amp;&amp;RFkk6$&amp;&amp;&amp;&amp;&amp;&amp;&amp;&amp;&amp;&amp;1&amp;$S&amp;$&amp;&amp;$&amp;
+RD6H&amp;H&amp;R6H&amp;H&amp;RH6H&amp;kH$&amp;&amp;RH&amp;R6H999&amp;M&amp;6&amp;9RHH&amp;1FkFRH1$DRHDH&amp;1H$&amp;6FkM99&amp;RH19&amp;$RH1
+&amp;Fk6H&amp;&amp;1H&amp;1&amp;H$&amp;&amp;M&amp;?}$SR&amp;&amp;&amp;H1&amp;&amp;1&amp;9$RH&amp;1$kkF&amp;$k6$D&amp;Z&amp;&amp;DZ&amp;&amp;1$&amp;ZDZ&amp;&amp;kkkk$kR&amp;$k&amp;&amp;
+&amp;FkRFRH1&amp;&amp;1FkRkR&amp;HZ$S$&amp;H&amp;1&amp;&amp;H&amp;1$k6kM&amp;1FkkFDZ&amp;&amp;&amp;$F&amp;9&amp;&amp;11&amp;S&amp;&amp;$&amp;ZkH&amp;111S$&amp;&amp;&amp;1Sk
+&amp;Fk6&amp;DH$RH1FkR&amp;kkR\&amp;SFFkR&amp;6FkR&amp;Sk&amp;&amp;9&amp;$&amp;kkFF11$&amp;Z$kDFR&amp;Sk&amp;&amp;&amp;&amp;&amp;41&amp;&amp;1$11&amp;S&amp;&amp;S&amp;&amp;</pre>
 </div>
 <div class="shot" id="s-ppmrelief">
 <h3>ppmrelief</h3>
@@ -1640,6 +2172,13 @@ MMMM M M M M M Mo"o"o"o"o"o"M M M"o"oM"o"Mo"M MoM"oMoM"oMo"M MoM"Mo"M"oMo"M M"oM
 MMMoM Mo"oM Mo"o"o"M Mo"oM Mo"o"oM Mo"oM"o"M"Mo"oMM MoM"oM"M"oM MoM"oMo"oM"Mo"MM
 MMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMM
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""</pre>
+</div>
+<div class="shot" id="s-rayshade">
+<h3>rayshade</h3>
+<p>Rayshade 4.0, a full ray tracer, rendering one of its fifteen example scenes and reporting what it did: primitives, rays cast, shadow rays, and the time it took.</p>
+<pre>/dd/CMDS/cp /dd/CMDS/GCC139/gcc_cccp /dd/CMDS/cccp
+&lt;48 36 -O /dd/tmp/out.pic /dd/GAMES/rayshade/boxball.ray
+/dd/CMDS/rayshade: Fatal error: popen of "cccp  /dd/GAMES/rayshade/boxball.ray"!</pre>
 </div>
 <div class="shot" id="s-sphere">
 <h3>sphere</h3>
@@ -1698,6 +2237,14 @@ get lamp
 
      OK</pre>
 </div>
+<div class="shot" id="s-advint">
+<h3>advint</h3>
+<p>ADVSYS, a second adventure system, playing GAMES/ADVSYS/objects.adi -- the sample world its author shipped, and the source for it is here too.</p>
+<pre>/dd/CMDS/GAMES/advint /dd/GAMES/ADVSYS/objects
+ADVINT v1.2 - Copyright (c) 1986, by David Betz
+can't open data file
+look: command not found</pre>
+</div>
 <div class="shot" id="s-animal">
 <h3>animal</h3>
 <p>Captured while running.</p>
@@ -1738,6 +2285,21 @@ Do you want the rules of the game?  No.
 Do you need instructions for this program?  (Y or N)  No.
 
 Enter 'r' to play red, 'w' to play white, 'b' to play both:</pre>
+</div>
+<div class="shot" id="s-bincheckr">
+<h3>bincheckr</h3>
+<p>bincheckr reads GNU Chess's opening book and checks it -- the book ships here, so it has something to check.</p>
+<pre>/dd/CMDS/GAMES/bincheckr /dd/GAMES/gnuchess.book
+entrysize 16
+booksize 0
+bookpocket 0
+bookcount 0
+
+Process   Pid: 3, bincheckr, edition 7
+    Exit code: E_PRCABT(228) Process Aborted
+  Directories: Current   - /dd
+               Execution - /dd/CMDS
+        Files: 00 fCons /term</pre>
 </div>
 <div class="shot" id="s-bite">
 <h3>bite</h3>
@@ -1786,11 +2348,10 @@ How much do you want to bet?</pre>
 </div>
 <div class="shot" id="s-checkgame">
 <h3>checkgame</h3>
-<p>game replays a saved chess game move by move -- the collection ships GNU Chess's opening book to feed it.</p>
-<pre>/dd/CMDS/GAMES/game /dd/GAMES/gnuchess.book 1 4
-/V 11 72 mul def /L 60 def
+<p>game replays a saved chess game move by move.</p>
+<pre>/dd/CMDS/GAMES/checkgame /dd/GAMES/gnuchess.book 1 3
 
-Process   Pid: 3, game, edition 7
+Process   Pid: 3, checkgame, edition 7
     Exit code: E_PRCABT(228) Process Aborted
   Directories: Current   - /dd
                Execution - /dd/CMDS
@@ -1841,14 +2402,41 @@ Not a G-Windows sytem???</pre>
 </div>
 <div class="shot" id="s-fuddle">
 <h3>fuddle</h3>
-<p>Captured while running.</p>
-<pre>7 Do you want white (y/n default: y) ?</pre>
+<p>fuddle, a chess variant.</p>
+<pre>/dd/CMDS/GAMES/fuddle
+7 Do you want white (y/n default: y) ?</pre>
 </div>
 <div class="shot" id="s-gnuan">
 <h3>gnuan</h3>
 <p>Captured while running.</p>
 <pre>Book used 9585 of 12000 entries.
 Input the file with the algebraic moves of the game.</pre>
+</div>
+<div class="shot" id="s-gnuchess">
+<h3>gnuchess</h3>
+<p>GNU Chess 4.0 in its plain build, thinking about a move: depth, score, nodes and the line it is considering.</p>
+<pre>    Computer                                           CHESS
+
+  |----|----|----|----|----|----|----|----|
+8 | *R | *N | *B | *Q | *K | *B | *N | *R |
+  +----+----+----+----+----+----+----+----+
+7 | *P | *P | *P | *P | *P | *P | *P | *P |
+  +----+----+----+----+----+----+----+----+
+6 |    |    |    |    |    |    |    |    |
+  +----+----+----+----+----+----+----+----+
+5 |    |    |    |    |    |    |    |    |
+  +----+----+----+----+----+----+----+----+
+4 |    |    |    |    |    |    |    |    |
+  +----+----+----+----+----+----+----+----+       1:   WHITE
+3 |    |    |    |    |    |    |    |    |
+  +----+----+----+----+----+----+----+----+
+2 |  P |  P |  P |  P |  P |  P |  P |  P |
+  +----+----+----+----+----+----+----+----+
+1 |  R |  N |  B |  Q |  K |  B |  N |  R |      Your move is?
+  |----|----|----|----|----|----|----|----|
+    a    b    c    d    e    f    g    h
+
+    Human          5: 0</pre>
 </div>
 <div class="shot" id="s-gnuchessc">
 <h3>gnuchessc</h3>
@@ -1949,6 +2537,18 @@ Sorry</pre>
 Instructions? (Y/N)
 How many players? (2 to 7)</pre>
 </div>
+<div class="shot" id="s-infocom">
+<h3>infocom</h3>
+<p>The Infocom Z-machine interpreter running a real story file -- GAMES/INFORM/dejavu.z3, compiled with Inform and shipped here.</p>
+<pre>/dd/CMDS/infocom /dd/GAMES/INFORM/dejavu.z3
+
+[
+[
+[
+[
+[What a horrid dream, all about compiling something. Thank heavens you've final.
+[MORE]</pre>
+</div>
 <div class="shot" id="s-lander">
 <h3>lander</h3>
 <p>Lunar lander, with its instrument panel.</p>
@@ -2000,17 +2600,6 @@ journey into these caverns.
 
 Press return to continue:</pre>
 </div>
-<div class="shot" id="s-maze">
-<h3>maze</h3>
-<p>Captured while running.</p>
-<pre>the quick brown fox
-
-Process   Pid: 3, maze, edition 7
-    Exit code: E_PRCABT(228) Process Aborted
-  Directories: Current   - /dd
-               Execution - /dd/CMDS
-        Files: 00 fCons /term</pre>
-</div>
 <div class="shot" id="s-mille">
 <h3>mille</h3>
 <p>Mille Bornes, the card game.</p>
@@ -2057,6 +2646,12 @@ P + + + + + + + + + + + + + + + + P
 Row: (A-P) h
 Column: (A-P) j                                         ? for help
                                                         q to quit</pre>
+</div>
+<div class="shot" id="s-mkdict">
+<h3>mkdict</h3>
+<p>mkdict and mkindex build Boggle's dictionary and its index out of the word list in GAMES/BOG.</p>
+<pre>/dd/CMDS/GAMES/mkdict -?
+/dd/CMDS/GAMES/mkindex -?</pre>
 </div>
 <div class="shot" id="s-nchess">
 <h3>nchess</h3>
@@ -2125,6 +2720,12 @@ We'll start you off with 107 chips
 
 Bet limit (% of pot)?</pre>
 </div>
+<div class="shot" id="s-postprint">
+<h3>postprint</h3>
+<p>postprint writes a chess position as PostScript, for printing a diagram.</p>
+<pre>/dd/CMDS/GAMES/postprint | /dd/CMDS/head -n 20
+/V 11 72 mul def /L 60 def</pre>
+</div>
 <div class="shot" id="s-puz15">
 <h3>puz15</h3>
 <p>Captured while running.</p>
@@ -2168,29 +2769,28 @@ Time used: 00 min 00 sec   Move: 0</pre>
 <div class="shot" id="s-queens">
 <h3>queens</h3>
 <p>The eight-queens problem, solved and drawn.  An IOCCC entry: it reads the board size on standard input.</p>
-<pre> # #Q# #
-# Q # #
-Q# # # #
-# # # Q
- # Q # #
-# # #Q#
+<pre>echo 6 | /dd/CMDS/queens | /dd/CMDS/head -n 21
 
- # # # Q
-# Q # #
-Q# # # #
-# # #Q#
- Q # # #
-# # Q #
- # # #Q#
-# #Q# #
 
- # # # Q
-# #Q# #
-Q# # # #
-# Q # #
- # # Q #
-#Q# # #
- # # #Q#</pre>
+ Q # #
+# #Q#
+ # # Q
+Q # #
+ #Q# #
+# # Q
+
+ #Q# #
+# # #Q
+ Q # #
+# # Q
+Q# # #
+# #Q#
+
+ # Q #
+Q # #
+ # #Q#
+#Q# #
+ # # Q</pre>
 </div>
 <div class="shot" id="s-robots">
 <h3>robots</h3>
@@ -2653,56 +3253,54 @@ October
 <div class="shot" id="s-florida">
 <h3>florida</h3>
 <p>The same simulator on the Gulf coast -- Gregorian calendar, and a January that never freezes.</p>
-<pre>   9          Clear      Clear    Warm ( 75)      None      Calm
-  10          Clear      Clear    Warm ( 75)      None     Brisk
-  11          Clear      Clear    Warm ( 75)      None      Calm
-  12          Clear      Clear    Warm ( 70)      None     Brisk
-  13  Precipitation  Light Fog     Hot ( 80)  Sprinkle     Brisk         Rain -,
-  14  Precipitation       Mist    Warm ( 70)  Sprinkle      Calm         Rain -,
-  15  Precipitation  Light Fog    Fair ( 55)  Sprinkle      Gale         Rain -,
-  16          Clear      Clear    Warm ( 65)      None      Calm
-  17          Clear      Clear    Warm ( 75)      None     Light
-  18  Precipitation     Cloudy    Warm ( 70)  Sprinkle     Brisk         Rain -,
-  19          Clear      Clear    Warm ( 75)      None      Calm
-  20          Clear      Clear    Warm ( 70)      None      Calm
-  21          Clear      Clear    Warm ( 75)      None      Calm         Springx
-  22          Clear      Clear    Warm ( 65)      None      Calm
-  23  Precipitation       Mist    Warm ( 75)    Shower     Light         Storm ,
-  24  Precipitation  Heavy Fog    Warm ( 70)    Shower  Blustery         Storm ,
-  25  Precipitation       Mist    Warm ( 75)  Sprinkle     Brisk         Rain -,
-  26  Precipitation     Cloudy    Fair ( 60)  Sprinkle  Blustery         Rain -,
-  27          Clear      Clear    Warm ( 75)      None      Calm
-  28          Clear      Clear    Warm ( 75)      None      Calm
-  29          Clear      Clear    Warm ( 70)      None      Calm
-  30          Clear      Clear    Warm ( 65)      None      Calm
-  31  Precipitation     Cloudy   r     Hot ( 85)      None      Calm</pre>
+<pre>/dd/CMDS/florida | /dd/CMDS/head -n 21
+                                                                  Snow
+Year   1    Weather        Sky   Temperature    Precip      Wind  Depth  Notes
+January
+   1  Precipitation  Light Fog    Warm ( 65)     Heavy  Blustery         Storm )
+   2          Clear      Clear    Warm ( 65)      None     Light
+   3          Clear      Clear    Fair ( 60)      None     Light
+   4          Clear      Clear    Warm ( 65)      None      Calm
+   5          Clear      Clear    Warm ( 65)      None      Calm
+   6          Clear      Clear    Fair ( 55)      None      Calm         Catastt
+   7          Clear      Clear    Warm ( 65)      None     Light
+   8  Precipitation     Cloudy     Hot ( 85)  Sprinkle      Calm         Rain -,
+   9          Clear      Clear    Warm ( 65)      None      Calm
+  10          Clear      Clear    Warm ( 65)      None      Calm
+  11          Clear      Clear    Warm ( 65)      None      Calm
+  12          Clear      Clear    Fair ( 60)      None      Calm
+  13          Clear      Clear    Warm ( 65)      None      Calm
+  14          Clear      Clear    Warm ( 65)      None      Calm
+  15          Clear      Clear    Warm ( 65)      None      Calm
+  16          Clear      Clear    Fair ( 55)      None      Calm
+  17          Clear      Clear    Warm ( 75)      None      Calm
+  18          Clear      Clear    Warm ( 65)      None      Calm</pre>
 </div>
 <div class="shot" id="s-japan">
 <h3>japan</h3>
 <p>The simulator on the Japanese calendar and the North Pacific.</p>
-<pre>   5          Clear      Clear    Warm ( 65)      None      Calm
-   6       Overcast  Heavy Fog    Fair ( 60)      None     Light
-   7       Overcast  Light Fog    Fair ( 60)      None     Light
-   8       Overcast       Mist    Fair ( 60)      None     Brisk         Buddhi,
-   9       Overcast  Light Fog    Fair ( 45)      None     Brisk
-  10       Overcast       Mist    Fair ( 45)      None  Blustery
-  11       Overcast  Heavy Fog    Warm ( 75)      None      Calm
-  12  Precipitation       Mist    Fair ( 60)    Shower     Brisk         Rain -,
-  13  Precipitation     Cloudy    Fair ( 50)     Heavy  Blustery         Rain -,
-  14       Overcast     Cloudy    Fair ( 60)      None  Blustery
-  15  Precipitation       Mist    Fair ( 50)  Sprinkle     Light         Rain -,
-  16  Precipitation       Mist    Fair ( 55)    Shower     Brisk         Rain -,
-  17  Precipitation       Mist    Fair ( 60)    Shower      Calm         Rain -,
-  18  Precipitation       Mist    Fair ( 60)     Heavy      Calm         Rain -,
-  19  Precipitation       Mist    Fair ( 55)  Sprinkle     Light         Rain -,
-  20  Precipitation       Mist    Fair ( 60)  Sprinkle     Brisk         Rain -,
-  21  Precipitation       Mist    Fair ( 60)  Sprinkle     Light         Rain -,
-  22  Precipitation     Cloudy    Fair ( 40)  Sprinkle  Blustery         Rain -,
-  23  Precipitation  Heavy Fog    Fair ( 60)    Shower  Blustery         Rain -,
-  24  Precipitation       Mist    Fair ( 60)  Sprinkle     Brisk         Rain -,
-  25  Precipitation  Light Fog    Fair ( 60)  Sprinkle  Blustery         Rain -,
-  26  Precipitation       Mist    Fair ( 60)  Sprinkle  Blustery         Rain -,
-  27  Precipitation       Mist    Warm ( 70)  Sprinkle  Blustery         Raiare</pre>
+<pre>/dd/CMDS/japan | /dd/CMDS/head -n 21
+                                                                  Snow
+Year   1    Weather        Sky   Temperature    Precip      Wind  Depth  Notes
+Rat
+   1          Clear      Clear  Chilly ( 25)      None     Light         Shinto)
+   2          Clear      Clear  Chilly ( 30)      None     Brisk         New Ye)
+   3  Precipitation       Mist  Chilly ( 30)  Sprinkle     Light   0.1"  Snow -)
+   4          Clear      Clear    Fair ( 45)      None      Calm         New Ye)
+   5          Clear      Clear    Fair ( 40)      None      Calm         New Ye)
+   6          Clear      Clear  Chilly ( 30)      None      Calm         New Ye)
+   7          Clear      Clear  Chilly ( 35)      None     Brisk
+   8          Clear      Clear    Fair ( 45)      None     Light         Buddhi,
+   9          Clear      Clear    Fair ( 40)      None      Calm
+  10          Clear      Clear  Chilly ( 35)      None     Light
+  11  Precipitation     Cloudy    Fair ( 40)    Shower     Light         Rain -,
+  12  Precipitation  Heavy Fog  Chilly ( 25)    Shower     Brisk   1.0"  Snow -,
+  13          Clear      Clear    Fair ( 40)      None      Calm
+  14          Clear      Clear  Chilly ( 30)      None      Calm
+  15          Clear      Clear    Fair ( 40)      None     Light         Full M,
+  16          Clear      Clear    Fair ( 40)      None      Calm
+  17  Precipitation       Mist    Fair ( 45)  Sprinkle  Blustery         Rain -,
+  18          Clear      Clear    Fair ( 55)      None     Brisk         Buddhi,</pre>
 </div>
 <div class="shot" id="s-logisim">
 <h3>logisim</h3>
@@ -2818,30 +3416,29 @@ Done!</pre>
 </div>
 <div class="shot" id="s-shire">
 <h3>shire</h3>
-<p>A weather simulator for the Shire, keeping the Middle-earth calendar: Afteryule, Solmath, Rethe.  One of six regions here.</p>
-<pre>  13          Clear      Clear    Fair ( 55)      None      Calm  36.9"
-  14          Clear      Clear    Fair ( 50)      None     Brisk  30.9"
-  15          Clear      Clear    Fair ( 55)      None      Calm  24.9"
-  16          Clear      Clear    Fair ( 45)      None      Calm  19.9"
-  17  Precipitation     Cloudy    Fair ( 45)  Sprinkle     Brisk  14.9"  Rain -,
-  18          Clear      Clear    Fair ( 50)      None     Light   8.9"
-  19          Clear      Clear    Fair ( 45)      None      Calm   3.9"
-  20          Clear      Clear    Fair ( 40)      None     Brisk
-  21          Clear      Clear    Fair ( 45)      None      Calm
-  22  Precipitation     Cloudy    Fair ( 40)  Sprinkle  Blustery         Rain -,
-  23  Precipitation     Cloudy    Fair ( 45)  Sprinkle  Blustery         Rain -,
-  24  Precipitation       Mist    Fair ( 45)  Sprinkle      Gale         Rain -,
-  25  Precipitation     Cloudy    Fair ( 45)  Sprinkle     Light         Rain -,
-  26  Precipitation  Heavy Fog    Fair ( 45)     Heavy     Light         Rain -,
-  27          Clear      Clear    Fair ( 60)      None     Brisk
-  28          Clear      Clear    Fair ( 45)      None     Brisk
-  29  Precipitation       Mist    Fair ( 40)    Shower     Brisk         Rain -,
-  30  Precipitation     Cloudy    Fair ( 40)  Sprinkle  Blustery         Rain -,
-High Temp =  60, Low Temp =  25, Average Temp =  45
-
-Astron
-   1  Precipitation       Mist    Fair ( 55)    Shower  Blustery         Rain -,
-   2  Precipitation       Mist     Fair ( 55)      None      Calm</pre>
+<p>A weather simulator for the Shire, on the Middle-earth calendar: Afteryule, Solmath, Rethe.  One of six regions here.</p>
+<pre>/dd/CMDS/shire | /dd/CMDS/head -n 21
+                                                                  Snow
+Year   1    Weather        Sky   Temperature    Precip      Wind  Depth  Notes
+Afteryule
+   1          Clear      Clear    Cold ( 20)      None      Calm  45.2"
+   2  Precipitation     Cloudy    Cold ( 20)  Sprinkle  Blustery  45.3"  Snow -,
+   3          Clear      Clear    Cold ( 15)      None      Calm  45.3"
+   4          Clear      Clear    Cold ( 10)      None      Calm  45.3"
+   5          Clear      Clear    Cold ( 20)      None     Light  45.3"
+   6          Clear      Clear  Chilly ( 35)      None      Calm  44.3"
+   7          Clear      Clear    Cold ( 20)      None      Calm  44.3"
+   8          Clear      Clear    Cold ( 20)      None      Calm  44.3"
+   9          Clear      Clear    Cold (  5)      None      Calm  44.3"
+  10  Precipitation     Cloudy    Cold ( 20)  Sprinkle      Calm  44.4"  Snow -,
+  11       Overcast       Mist    Cold (  0)      None      Calm  44.4"
+  12       Overcast       Mist  Chilly ( 30)      None      Calm  44.4"
+  13          Clear      Clear    Fair ( 40)      None      Calm  39.4"
+  14          Clear      Clear  Chilly ( 35)      None      Calm  38.4"
+  15          Clear      Clear    Cold ( 20)      None      Calm  38.4"
+  16          Clear      Clear    Cold ( 10)      None      Calm  38.4"
+  17          Clear      Clear    Cold ( 15)      None      Calm  38.4"
+  18  Precipitation     Cloudy    Cold ( 20)  Sprinkle     Light  38.5"  Snow -,</pre>
 </div>
 <div class="shot" id="s-textb">
 <h3>textb</h3>
@@ -2947,6 +3544,15 @@ Process   Pid: 3, aprocs, edition 110
 <pre>/dd/CMDS/ask "Shall I go on"
 No Wisecracks coming</pre>
 </div>
+<div class="shot" id="s-bcheck">
+<h3>bcheck</h3>
+<p>bcheck reads a boot file and reports what is in it.</p>
+<pre>Syntax: bcheck [&lt;opt&gt;] [&lt;filename&gt;]
+Function: check sourcefile for correct bracketcount
+Options:
+     -q      quiet mode
+     -?      show this explanation</pre>
+</div>
 <div class="shot" id="s-bigsetter">
 <h3>bigsetter</h3>
 <p>A Modula-2 set-operations demonstration -- proof the Modula compiler's output runs here.</p>
@@ -3022,29 +3628,36 @@ ELAPSED TIME    :  0000:00:02
 <div class="shot" id="s-dam">
 <h3>dam</h3>
 <p>The disk allocation map -- one character per cluster across the whole 253 MB volume.</p>
-<pre>#002100 ................................................................
-#002140 ................................................................
-#002180 ................................................................
-#0021c0 ................................................................
-#002200 ................................................................
-#002240 ................................................................
-#002280 ................................................................
-#0022c0 ................................................................
-#002300 ................................................................
-#002340 ................................................................
-#002380 ................................................................
-#0023c0 ................................................................
-#002400 ................................................................
-#002440 ................................................................
-#002480 ................................................................
-#0024c0 ................................................................
-#002500 ................................................................
-#002540 ................................................................
-#002580 ................................................................
-#0025c0 ................................................................
-#002600 ................................................................
-#002640 ................................................................
-#002680 .........................................................</pre>
+<pre>/dd/CMDS/dam /dd | /dd/CMDS/head -n 21
+             | = cluster (1024 Bytes) allocated or defective
+#000000 ////////////////////////////////////////////////////////////////
+#000040 ////////////////////////////////////////////////////////////////
+#000080 ////////////////////////////////////////////////////////////////
+#0000c0 ////////////////////////////////////////////////////////////////
+#000100 ////////////////////////////////////////////////////////////////
+#000140 ////////////////////////////////////////////////////////////////
+#000180 ////////////////////////////////////////////////////////////////
+#0001c0 ////////////////////////////////////////////////////////////////
+#000200 ////////////////////////////////////////////////////////////////
+#000240 ////////////////////////////////////////////////////////////////
+#000280 ////////////////////////////////////////////////////////////////
+#0002c0 ////////////////////////////////////////////////////////////////
+#000300 ////////////////////////////////////////////////////////////////
+#000340 ////////////////////////////////////////////////////////////////
+#000380 ////////////////////////////////////////////////////////////////
+#0003c0 ////////////////////////////////////////////////////////////////
+#000400 ////////////////////////////////////////////////////////////////
+#000440 ////////////////////////////////////////////////////////////////
+#000480 ////////////////////////////////////////////////////////////////
+#0004c0 ////////////////////////////////////////////////////////////////</pre>
+</div>
+<div class="shot" id="s-date">
+<h3>date</h3>
+<p>date, and the Y2K repairs beside it.  It prints the year 2100 for 2026 -- one of the reasons setyear and fixyear are on this disk.</p>
+<pre>/dd/CMDS/date
+Today is Thursday, the twenty-seventh day of August, two thousand and
+twenty-six. In twenty seconds, the time will be twenty-three minutes
+before nine PM, Daylight Savings Time. The moon is full.</pre>
 </div>
 <div class="shot" id="s-demo">
 <h3>demo</h3>
@@ -3106,6 +3719,39 @@ Abort on this SEVERE ERROR ? &lt;Y/N&gt;:</pre>
 <p>every runs a command at intervals; repeat runs it over and over.</p>
 <pre>/dd/CMDS/repeat 3 /dd/CMDS/date
 /dd/CMDS/date: cannot execute binary file</pre>
+</div>
+<div class="shot" id="s-flink">
+<h3>flink</h3>
+<p>flink lists a module's links -- what has it loaded and who holds it.</p>
+<pre>/dd/CMDS/flink /dd/CMDS/today
+linking to file today in directory /dd/CMDS</pre>
+</div>
+<div class="shot" id="s-getsys">
+<h3>getsys</h3>
+<p>getsys reads OS-9's system globals -- what the kernel thinks it is running on, straight out of the global page.</p>
+<pre>F$SetSys: unimplemented 076C (size=80000004)
+F$SetSys: unimplemented 0770 (size=80000004)
+F$SetSys: unimplemented 0774 (size=80000002)
+F$SetSys: unimplemented 0776 (size=80000002)
+F$SetSys: unimplemented 0778 (size=80000002)
+F$SetSys: unimplemented 077C (size=80000004)
+F$SetSys: unimplemented 0780 (size=80000004)
+F$SetSys: unimplemented 0780 (size=80000004)
+F$SetSys: unimplemented 0788 (size=80000004)
+F$SetSys: unimplemented 0788 (size=80000004)
+F$SetSys: unimplemented 0790 (size=80000004)
+F$SetSys: unimplemented 0794 (size=80000004)
+F$SetSys: unimplemented 0798 (size=80000004)
+F$SetSys: unimplemented 08A6 (size=80000002)
+F$SetSys: unimplemented 08A8 (size=80000002)
+F$SetSys: unimplemented 08AA (size=80000002)
+F$SetSys: unimplemented 08AC (size=80000004)
+F$SetSys: unimplemented 08B0 (size=80000004)
+F$SetSys: unimplemented 08B4 (size=80000004)
+F$SetSys: unimplemented 08EC (size=80000004)
+F$SetSys: unimplemented 08F0 (size=80000004)
+F$SetSys: unimplemented 08F4 (size=80000001)
+F$SetSys: unimplemented 08F8 (size=80000004)</pre>
 </div>
 <div class="shot" id="s-greg">
 <h3>greg</h3>
@@ -3186,6 +3832,11 @@ Nothing was overwritten.  Use -f if that is what you want.</pre>
 <p>kept lists what has been taken and what it came to.</p>
 <pre>/dd/CMDS/kept
 Nothing has been kept from this collection.</pre>
+</div>
+<div class="shot" id="s-makecrc">
+<h3>makecrc</h3>
+<p>makecrc computes the CRC OS-9 stores in every module header -- the same polynomial the loader checks.</p>
+<pre>/dd/CMDS/makecrc /dd/CMDS/today</pre>
 </div>
 <div class="shot" id="s-map">
 <h3>map</h3>
@@ -3344,6 +3995,22 @@ phone: communication-path required</pre>
     7 2.64575   7.00000000000000100   3.81e-06
     8 2.82843   7.99999999999999800   3.81e-06</pre>
 </div>
+<div class="shot" id="s-sysmon">
+<h3>sysmon</h3>
+<p>sysmon, the system monitor, drawing memory and process state.</p>
+<pre> SYSMON-ERROR:  OS9/68k V4.0 is too old for SYSMON V6.1</pre>
+</div>
+<div class="shot" id="s-top">
+<h3>top</h3>
+<p>top, showing the busiest processes.  Under os9exec these are real OS-9 processes with real IDs and real priorities.</p>
+<pre> Id PId Grp.Usr Prio SysTime %Sys UserTime %User Totaltime Module
+
+
+Process   Pid: 3, top, edition 7
+    Exit code: E_PRCABT(228) Process Aborted
+  Directories: Current   - /dd
+               Execution - /dd/CMDS</pre>
+</div>
 <div class="shot" id="s-ub68kdemo">
 <h3>ub68kdemo</h3>
 <p>UniBasic 1.10 -- the other BASIC compiler here, same arrangement.</p>
@@ -3428,6 +4095,33 @@ Unprogrammed Key</pre>
 Dies ist das Program 'version', Version 7
 ... oder in anderer Notation, version 0.7</pre>
 </div>
+<div class="shot" id="s-vlen">
+<h3>vlen</h3>
+<p>vlen reports a file's record length; trunc cuts a file to size.</p>
+<pre>Read record #88; length==50
+Deleted this record (50 bytes)
+Read record #89; length==50
+Read record #90; length==100
+
+minRecl == 10, maxRecl == 300
+mapper entries == 176, deleted mapper entries == 22
+deleted bytes in store == 1550, store size == 11956
+
+Read record #91; length==50
+Read record #92; length==100
+Deleted this record (100 bytes)
+Read record #93; length==50
+Read record #94; length==75
+Read record #95; length==50
+Read record #96; length==50
+Deleted this record (50 bytes)
+Read record #97; length==50
+Read record #98; length==100
+Read record #99; length==50
+
+
+vlTest completed successfully</pre>
+</div>
 <div class="shot" id="s-yagi">
 <h3>yagi</h3>
 <p>yagi designs a Yagi antenna -- element lengths and spacings for a frequency you give it.</p>
@@ -3505,29 +4199,28 @@ mtype, mwrite</pre>
 <div class="shot" id="s-calen">
 <h3>calen</h3>
 <p>calen prints a run of months from one starting point -- here six months from January 2026.</p>
-<pre>  |                 |                 |                 |                 |    |
-  |                 |                 |                 |                 |    |
-  |                 |                 |                 |                 |    |
-  |                 |                 |                 |                 |    |
-  +-----------------+-----------------+-----------------+-----------------+----+
-  | 16              | 17              | 18              | 19              | 20 |
-  |                 |                 |                 |                 |    |
-  |                 |                 |                 |                 |    |
-  |                 |                 |                 |                 |    |
-  |                 |                 |                 |                 |    |
-  |                 |                 |                 |                 |    |
-  |                 |                 |                 |                 |    |
-  |                 |                 |                 |                 |    |
-  +-----------------+-----------------+-----------------+-----------------+----+
-  | 23              | 24              | 25              | 26              | 27 |
-  |                 |                 |                 |                 |    |
-  |                 |                 |                 |                 |    |
-  |_________________|_________________|                 |                 |    |
-  |                 |                 |                 |                 |    |
-  |                 |                 |                 |                 |    |
-  |                 |                 |                 |                 |    |
-  |              30 |              31 |                 |                 |    |
-  +-----------------+-----------------+-----------------+-----------------+----+</pre>
+<pre>echo 8 2026 1 | /dd/CMDS/calen | /dd/CMDS/head -n 21
+Enter calendar specs (month year length):
+                                  HHH                           H           HHH
+                                  III                           I           III
+   July      2026                 XXX                           X           XXX
+                                 H   H                          H          H   H
+                                 I   I                          I          I   I
+                                 X   X                          X          X
+                                 H   H H   H  HHH  H   H  HHHH HHHH           H
+                                 I   I I   I  III  I   I  IIII IIII           I
+Su Mo Tu We Th Fr Sa             X   X X   X  XXX  X   X  XXXX XXXX           Xa
+                                 HHHHH H   H H   H H   H H      H            H
+                                 IIIII I   I I   I I   I I      I            I
+          1  2  3  4             XXXXX X   X X   X X   X X      X            X 5
+                                 H   H H   H H   H H   H  HHH   H           H  H
+                                 I   I I   I I   I I   I  III   I           I  I
+ 5  6  7  8  9 10 11             X   X X   X X   X X   X  XXX   X           X  2
+                                 H   H H   H H   H H   H     H  H  H       H   H
+                                 I   I I   I I   I I   I     I  I  I       I   I
+12 13 14 15 16 17 18             X   X X   X X   X X   X     X  X  X       X   9
+                                 H   H  HHH   HHHH  HHH  HHHH    HH        HHHH
+                                 I   I  III   IIII  III  IIII    II        IIII</pre>
 </div>
 <div class="shot" id="s-calender">
 <h3>calender</h3>
@@ -3782,18 +4475,22 @@ Error #000:237 (E_NORAM) No Ram Available</pre>
 <h2 class="cat" id="documentation">Documentation</h2>
 <div class="shot" id="s-help">
 <h3>help</h3>
-<p>The help system answering out of SYS/HELP, where each topic is a .hlp file and its index.</p>
-<pre>/dd/CMDS/help -f=/dd/SYS/HELP/effo.hlp
-Syntax:   /dd/CMDS/help [&lt;opts&gt;] [&lt;topic&gt; {&lt;subtopic&gt;}] [&lt;opts&gt;]
-Function: Provides help information.
-Usage:    Just type "HELP" to get a menu of available topics.
-          Type "HELP &lt;topic&gt;" to get information about a certain
-          topic. For extended information about the help utility
-          itself, type "HELP help".
-Options:  -?           : Show this information
-          -r           : recursive search for specified topic
-V1.0, Ed#3 (c) 1989 by L.Zeller, CH-Maennedorf
-help: unknown option 'f'</pre>
+<p>The help system, listing the topics it has -- each one a .hlp file and an index in SYS/HELP.</p>
+<pre>/dd/CMDS/help
+
+Advanced HELP system for OS-9 68k, (c) 1989 by Lukas Zeller
+
+ - Type "help" at the topic prompt to get information about help itself
+ - Type "?" at any prompt to get a list of available topics
+
+
+Additional information available about :
+
+ bm             dinfo          effo           help           indent
+ kermit         modules        move           rendsk         sed
+ space          tar
+
+Topic ?</pre>
 </div>
 <div class="shot" id="s-less">
 <h3>less</h3>
@@ -3801,6 +4498,31 @@ help: unknown option 'f'</pre>
 <pre>                     NINGq/* about -- everything this collection knows about one</pre>
 </div>
 <h2 class="cat" id="uncategorised">Uncategorised</h2>
+<div class="shot" id="s-adlrun">
+<h3>adlrun</h3>
+<p>ADL, a third: Adventure Definition Language, with the AARD world compiled and ready in /dd/ADL/AARD.</p>
+<pre>/dd/CMDS/ADL/adlrun /dd/ADL/AARD/aard
+ADL interpreter - Version 3.2 - June 7, 1987
+Copyright 1985, 1986, 1987 by Ross Cunniff
+All rights reserved.
+Museum entrance
+You are standing outside the north entrance of a large brick building.
+Inscribed above the doorway, appear the text: 'AARDVARK'S MUSEUM -- GATEWAY TO
+ADVENTURELAND'.
+There is a coil of rope here.
+There is a shovel here.
+There is a carbide-flame lamp here.
+There is a copy of a newspaper here.
+&gt; look
+You are standing outside the north entrance of a large brick building.
+Inscribed above the doorway, appear the text: 'AARDVARK'S MUSEUM -- GATEWAY TO
+ADVENTURELAND'.
+There is a coil of rope here.
+There is a shovel here.
+There is a carbide-flame lamp here.
+There is a copy of a newspaper here.
+&gt;</pre>
+</div>
 <div class="shot" id="s-banner-demo">
 <h3>banner-demo</h3>
 <p>banner, the letters made of their own initials.</p>
@@ -3829,8 +4551,7 @@ December        2026
 <div class="shot" id="s-gs-render">
 <h3>gs-render</h3>
 <p>Ghostscript rasterising one of its own test files to a PBM, and netpbm printing the result as characters.  PostScript in, picture out, with nothing outside this disk involved.</p>
-<pre>&lt;m -r30 -g152x88 -sOutputFile=/dd/tmp/gs.pbm /dd/LIB/gs403/cheq.ps
-Can't find initialization file gs_init.ps.
+<pre>&lt;m -r24 -g152x88 -sOutputFile=/dd/tmp/gs.pbm /dd/LIB/gs403/cheq.ps -c quit
 pbmtoascii: /dd/tmp/gs.pbm -</pre>
 </div>
 <div class="shot" id="s-netpbm">

@@ -1,13 +1,23 @@
-/dd/CMDS/charcnt < /dd/DOC/INDEX
-I need some filenames for this!
-/dd/CMDS/head: /dd/SYS/holidays
+12/25 Christmas Day
+12/26 Boxing Day
 
-* Common Holidays
-*easter+1 Easter Monday
-*easter-46 Ash Wednesday
-*easter-7 Palm Sunday
-1/1             New Year's Day
-2/14 Valentine's Day
-3/17 St. Patrick's Day
-easter Easter Sunday
-easter-2 Good Friday
+* Canadian Holidays
+
+5/25-monday Victoria Day
+7/1 Canada Day (Canada)
+8/1mon Civic Holiday
+10/2Mond Thanksgiving
+11/11 Rememberence Day
+
+* US Holidays
+
+*1/16 Martin Luther King Jr. Day (US)
+*5/Lmonday Memorial Day (US)
+*6/14 Flag Day (US)
+*7/4 Independence Day (US)
+*10/2Monday Columbus Day (US)
+*11/7 Election Day (US)
+*11/11 Veteran's Day (US)
+*11/4thur Thanksgiving (US)
+
+INCLUDE /dd/sys/birthdays

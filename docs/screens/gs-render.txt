@@ -1,3 +1,2 @@
-<m -r30 -g152x88 -sOutputFile=/dd/tmp/gs.pbm /dd/LIB/gs403/cheq.ps
-Can't find initialization file gs_init.ps.
+<m -r24 -g152x88 -sOutputFile=/dd/tmp/gs.pbm /dd/LIB/gs403/cheq.ps -c quit
 pbmtoascii: /dd/tmp/gs.pbm -

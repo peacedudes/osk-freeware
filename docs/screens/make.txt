@@ -1,2 +1,2 @@
-echo "hello: /dd/SYS/motd" > /dd/tmp/Makefile
-<t /dd/SYS/motd > /dd/tmp/hello\n" >> /dd/tmp/Makefile
+/dd/CMDS/cat /dd/tmp/Makefile
+hello: /dd/SYS/motd

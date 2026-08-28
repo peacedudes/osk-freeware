@@ -1,1 +1,5 @@
-echo "define(GREET, Hello \$1 from OS-9)GREET(reader)" > /dd/tmp/m.m4
+echo "define(GREET,Hello \$1 from OS-9)" > /dd/tmp/m.m4
+define(GREET,Hello $1 from OS-9)
+GREET(reader)
+
+el edr rm S-9

@@ -1,0 +1,7 @@
+/dd/CMDS/xcrypt -k=freeware /dd/SYS/motd /dd/tmp/x.enc
+en/decrypt <input-file> <output-file>
+en/decrypt <input-file> <output-file>
+4b68af85
+00000000
+========
+4b68af85
