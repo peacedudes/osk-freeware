@@ -40,6 +40,27 @@ captions for one screen and the gallery picking whichever sheet sorted last.
 Do not re-plan. `notes/PLAN-verification.md` is the plan and it is current.
 Do not stop between items to report; commit and start the next one.
 
+**A. Re-run stage 2 -- the FILTERS pass -- the loaded way.** 272 programs came
+   back SILENT from `tools/sweep_loaded.sh`, and most of them are filters:
+   printing nothing at end-of-file is what a filter is FOR. `verify_filters.sh`
+   is the stage that separates them and it has never been run with an
+   environment or a module loaded. Until it is, the SILENT column means
+   nothing and the collection has no honest headline figure.
+
+**B. Tier A, the families with no cases yet** -- Files & directories (35) and
+   Maths & calculators (9) are the two whole categories `tools/datatests/`
+   does not touch. netpbm, encoding, archives, text and modules are done;
+   105 cases, 102 passing.
+
+**C. `cp` takes a bus error** (vector $02) after printing its usage, and `top`
+   does the same after its heading. Both were scored OK by the bare sweep,
+   which never saw the crash because it came after the output. They are two
+   of eighteen CRASHes in `notes/verify-loaded.tsv`; that list is where to
+   start.
+
+The three that were here are done and are kept below, because each one found
+something that is worth not re-deriving.
+
 **1. ~~Text tools — `tools/datatests/text.cases`.~~ DONE 2026-08-28**, 21
    cases, and writing them found that `sed` did not work at all: every script
    answered `No more memory !!!`. The alternate build, `REBUILT/sed_1.06`,
