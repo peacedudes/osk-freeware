@@ -142,12 +142,23 @@ wait    8
 
 
 shot    filetools
-for     dback delbak eunlink undel EditLibr Libr2Ascii PrintLabels
-cap     The last of the file shelf: backup, un-delete, and the two Home
-cap     Librarian programs that get a catalogue in and out of plain text.
+for     dback delbak eunlink EditLibr Libr2Ascii PrintLabels
+cap     The last of the file shelf: delbak deletes the *_bak files a whole
+cap     tree has collected, and the Home Librarian pair get a catalogue in
+cap     and out of plain text.
 run     /dd/CMDS/delbak -?
-wait    8
-run     /dd/CMDS/undel
 wait    8
 run     /dd/CMDS/Libr2Ascii
 wait    8
+run     /dd/CMDS/EditLibr
+wait    8
+
+shot    undel
+for     undel
+cap     undel asks for a directory and lists what can be brought back --
+cap     it PROMPTS, so it is on its own here: a program that stops to ask
+cap     reads the next command as its answer.
+run     /dd/CMDS/undel
+wait    8
+send    /dd/tmp\r
+wait    10

@@ -1,4 +1,6 @@
 ppmtobmp /dd/tmp/base.ppm > /dd/tmp/t.bmp
-ppmtobmp: /dd/tmp/base.ppm -
-bmptoppm: /dd/tmp/t.bmp: read error
-pnmfile: EOF / read error reading magic number
+ppmtobmp: computing colormap...
+ppmtobmp: 6 colors found
+ppmtobmp: Using 4 bits per pixel
+bmptoppm: OS/2 BMP, 48x24x4
+pnmfile: bad magic number - not a ppm, pgm, or pbm file

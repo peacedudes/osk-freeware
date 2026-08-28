@@ -1,17 +1,21 @@
-/dd/CMDS/delbak -?
-Usage: delbak [-options] [directory] [-options]
-     -n      = no recursion
-     -l      = list only
-     -f=<ext>= extension to delete, default _bak
      -?      = report help
 
+Missing parameter: infile
+Syntax: Libr2Ascii [opts]
+Convert a Librarian Card Catalog file to a plain ASCII text file.
+Output is sent to stdout.
+Options:
+-infile String Required Input file
 
-U N D E L E T E    V1.1   by  Stephan Enzler
---------------------------------------------
+        Version: V1.0Beta
+        Copyright (c) 1991,1992 Robert Heller D/B/A Deepwoods Software
+Missing parameter: editfile
+Syntax: EditLibr [opts]
+Librarian Card Catalog file editor
+This program is used to edit and maintain Card Catalog Files
+Options:
+-editfile       String Required The name of the file to edit
+-minpages       Integer Optional The minimum # of pages to set aside when create
 
-
-Please Enter FULL Pathname of Directory
-or press RETURN for current Directory) : /dd/CMDS/Libr2Ascii
-Error #000:214 (E_FNA) File Not Accessible
-
-ERROR undel: opening Directory /dd/CMDS/Libr2Ascii
+        Version: V1.0Beta
+        Copyright (c) 1991,1992 Robert Heller D/B/A Deepwoods Software

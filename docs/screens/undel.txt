@@ -1,0 +1,8 @@
+/dd/CMDS/undel
+
+U N D E L E T E    V1.1   by  Stephan Enzler
+--------------------------------------------
+
+
+Please Enter FULL Pathname of Directory
+or press RETURN for current Directory) : /dd/tmp

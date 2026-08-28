@@ -149,8 +149,9 @@ wait    10
 
 shot    alternates
 for     diff_1.1 gtar m4_0.5 lharcs compress_4.0 sed_1.06 zoo_2.1
-cap     CMDS/REBUILT keeps a second build of several programs, because
-cap     they do not all behave the same.  Each one says which it is.
+cap     CMDS/REBUILT keeps a second build of several programs because they
+cap     do not all behave the same -- here diff 1.1 answers with its whole
+cap     option list, which is the difference you would be choosing between.
 run     /dd/CMDS/REBUILT/diff_1.1 -v
 wait    10
 run     /dd/CMDS/REBUILT/gtar --version

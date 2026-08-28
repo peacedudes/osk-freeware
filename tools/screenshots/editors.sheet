@@ -38,5 +38,7 @@ shot    sed
 for     sed sed_1.06 psc
 cap     sed doing what a stream editor does, twice over, on the disk's own
 cap     documentation.
-run     /dd/CMDS/head -n 8 /dd/SYS/holidays | /dd/CMDS/sed -e "s/Day/DAY/g" -e "s/^/| /"
+run     /dd/CMDS/head -n 8 /dd/SYS/holidays > /dd/tmp/hol.txt
+wait    6
+run     /dd/CMDS/sed "s/Day/DAY/g" /dd/tmp/hol.txt
 wait    8

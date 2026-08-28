@@ -1,8 +1,3 @@
-/dd/CMDS/unifdef -DOSK /dd/SRC/keep/keep.c | /dd/CMDS/head -n 16
-/dd/CMDS/unifdef: unrecognized option: -DOSK
-syntax: unifdef {<opts>} [<file>]
-function: remove ifdef'ed lines from source file
-options:
         -c                      operation of unifdef is complemented
         -d<sym>         define a symbol
         -id<sym>        ignore lines within defined symbol
@@ -15,3 +10,13 @@ Exit status: 0=output is exact copy of input, 1 if not, 2 if trouble.
 This is public domain software (newsnet), not for sale.
 
 At least one arg from [-d -u -id -iu] is required
+Syntax: ifdef [<opts>] [<file>] [<opts>]
+Function: read C-source from <file> or stdin, remove #ifdefs and write
+    to stdout.
+Options:
+    -t           print #define / #undef table
+    -Dsymbol     define symbol
+    -dsymbol     define symbol, can't be undefined
+    -Usymbol     undefine symbol
+    -Isymbol     ignore symbol
+Adapted to OS-9/68k by Hubert Nehring

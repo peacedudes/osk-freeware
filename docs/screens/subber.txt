@@ -1,2 +1,2 @@
-/dd/CMDS/cat /dd/SYS/motd | /dd/CMDS/subber ,os9exec,OS-9,
-cannot open ,os9exec,OS-9,
+echo ",os9exec,OS-9," > /dd/tmp/words.sub
+# unimplemented F$Mem called by pid=3

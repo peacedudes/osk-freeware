@@ -1,4 +1,20 @@
-/dd/CMDS/fkeys
-/dd/CMDS/initvdu
-/dd/CMDS/initvdu/dd/CMDS/wysetime
-/dd/CMDS/wysetime
+Options:
+          -s   send o/p to std output. Default is /pipe/setterm
+          -i   read std input. Default is to use std output
+               so it can access the terminal from Microware
+               shell .login scripts.
+          -x   don't set TERMCAP. Default is to set TERMCAP
+               unless the resulting command is too big for the shell.
+
+normal use:    setterm [term type]
+               profile /pipe/setterm
+
+        or:    var=`setterm -si [term type]`
+               eval $var
+
+Syntax: fkeys [<path>]
+Function:set User-Defined Keys on VT220 Terminals
+Options: none
+/dd/CMDS/wysecrack:  (E$PNNF) That path name doesn't lead to anything - check t.
+
+/dd/CMDS/wysetime: cannot execute binary file

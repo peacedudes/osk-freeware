@@ -1,8 +1,14 @@
 pbmtolj /dd/tmp/base.pbm | /dd/CMDS/wc
-pbmtolj: /dd/tmp/base.pbm -
-      0      0      0
-pbmtoepson: /dd/tmp/base.pbm -
-      0      0      0
-pbmto10x: /dd/tmp/base.pbm -
-      0      0      0
-pbmtoepsi: /dd/tmp/base.pbm -
+      0      1    288
+      3      4    168
+      3      4    164
+%!PS-Adobe-2.0 EPSF-1.2
+%%BoundingBox: 0 1 47 24
+%%BeginPreview: 48 24 1 24
+% 555555555555
+% aaaaaaaaaaaa
+% 555555555555
+% aaaaaaaaaaaa
+% 555555555555
+% aaaaaaaaaaaa
+% 555555555555

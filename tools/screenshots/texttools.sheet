@@ -354,10 +354,12 @@ run     /dd/CMDS/ls -l /dd/tmp/sp
 wait    8
 
 shot    strfile
-cap     strfile builds the index that fortune reads, and unstr dumps an
-cap     index back to text -- the pair behind every fortune on this disk.
-run     /dd/CMDS/unstr /dd/GAMES/FORTUNE/fortunes.dat | /dd/CMDS/head -n 12
-wait    8
+cap     unstr should dump a fortune index back to text.  Instead it floods
+cap     `No more memory !!!' without stopping -- the F$SRqMem storm that
+cap     notes/os9exec-bugs records, in which a cio-linked program asks for
+cap     400 KB per character written and never frees it.
+run     /dd/CMDS/unstr /dd/GAMES/FORTUNE/fortunes | /dd/CMDS/head -n 12
+wait    10
 
 shot    strings
 cap     strings pulls the printable text out of a binary, each hit reported
@@ -366,9 +368,14 @@ run     /dd/CMDS/strings /dd/CMDS/today | /dd/CMDS/head -n 16
 wait    5
 
 shot    subber
-cap     subber substitutes text in a stream, in the old ,old,new form.
-run     /dd/CMDS/cat /dd/SYS/motd | /dd/CMDS/subber ,os9exec,OS-9,
+cap     subber substitutes text in a stream, reading the substitutions from
+cap     a wordlist FILE rather than the command line.  It cannot run here:
+cap     it calls F$Mem, an OS-9 system call os9exec does not implement, and
+cap     the emulator says so and kills it.
+run     echo ",os9exec,OS-9," > /dd/tmp/words.sub
 wait    6
+run     /dd/CMDS/subber /dd/tmp/words.sub /dd/SYS/motd
+wait    8
 
 shot    sum
 for     sum tail head tac
@@ -458,7 +465,9 @@ cap     kept because it does NOT work: it prints nothing for a file
 cap     argument, which is why CMDS/wc is a different binary.
 run     /dd/CMDS/fgrep chess /dd/DOC/INDEX | /dd/CMDS/head -n 5
 wait    10
-run     /dd/CMDS/gdd /dd/SYS/motd | /dd/CMDS/head -n 6
+run     /dd/CMDS/gdd if=/dd/SYS/motd bs=8 count=3
+wait    10
+run     /dd/CMDS/tcmp /dd/SYS/motd /dd/SYS/motd
 wait    10
 run     /dd/CMDS/REBUILT/wc.cio /dd/SYS/motd
 wait    10

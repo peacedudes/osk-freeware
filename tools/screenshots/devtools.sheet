@@ -73,9 +73,13 @@ wait    8
 
 shot    ifdef
 for     ifdef unifdef cpr
-cap     unifdef resolves the #ifdefs in C source; cpr pretty-lists it.
-run     /dd/CMDS/unifdef -DOSK /dd/SRC/keep/keep.c | /dd/CMDS/head -n 16
-wait    10
+cap     unifdef and ifdef both resolve #ifdefs in C source, and neither
+cap     takes the -D<symbol> form a Unix hand would reach for: their own
+cap     syntax lines are what they answer with.
+run     /dd/CMDS/unifdef -?
+wait    8
+run     /dd/CMDS/ifdef -?
+wait    8
 
 shot    rcs
 for     ci co rcs rlog rcsdiff rcsident rcsmerge

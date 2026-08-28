@@ -96,9 +96,9 @@ wait    6
 
 shot    dosmore
 for     mscheck msinfo mslabel msdeltree
-cap     The last of mtools: msinfo on the floppy image this session made,
-cap     and mscheck -- which is a ksh script, and ksh is starred, so it
-cap     needs cio present.  It is.
+cap     msinfo reading the whole boot sector of the image that ships in
+cap     /dd/DOS -- the geometry, the FAT layout, the media byte and the
+cap     mformat line that would recreate it.
 run     /dd/CMDS/msinfo a: | /dd/CMDS/head -n 12
 wait    12
 run     /dd/CMDS/mslabel a:FREEWARE

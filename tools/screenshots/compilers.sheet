@@ -38,8 +38,12 @@ wait    10
 
 shot    flex
 cap     flex turning a lexical description into C.
-run     printf "%%%%\n[0-9]+   { return NUM; }\n.        ;\n" > /dd/tmp/l.l
-wait    3
+run     echo "%%" > /dd/tmp/l.l
+wait    5
+run     echo "[0-9]+   { return NUM; }" >> /dd/tmp/l.l
+wait    5
+run     echo ".        ;" >> /dd/tmp/l.l
+wait    5
 run     /dd/CMDS/flex /dd/tmp/l.l
 wait    8
 run     /dd/CMDS/head -n 10 lex.yy.c
@@ -72,12 +76,23 @@ run     /dd/CMDS/m4 < /dd/tmp/m.m4
 wait    8
 
 shot    make
-cap     make maintaining a target from a rule, and then saying there is
-cap     nothing left to do.
+cap     One rule, and the two makes on this disk trying to keep it.  The
+cap     rule is in the semicolon form because a TAB does not survive being
+cap     typed at this terminal -- SCF expands it -- and a Makefile without
+cap     its tab is a syntax error.  `make' does not understand that form at
+cap     all.  `gmake' does: it echoes the recipe and runs it, and then the
+cap     recipe cannot open a file that `cat' reads perfectly well by hand,
+cap     and dies on signal 75.  DOC/INDEX already says gmake was added
+cap     because make is the broken one; neither of them builds anything
+cap     here.
+run     echo "hello: /dd/SYS/motd ; /dd/CMDS/cat /dd/SYS/motd > /dd/tmp/hello" > /dd/tmp/Makefile
+wait    6
 run     /dd/CMDS/cat /dd/tmp/Makefile
-wait    3
-run     /dd/CMDS/make -f /dd/tmp/Makefile
+wait    5
+run     /dd/CMDS/make -f /dd/tmp/Makefile hello
 wait    8
+run     /dd/CMDS/gmake -f /dd/tmp/Makefile hello
+wait    10
 
 shot    makeinfo
 for     makeinfo dmake gmake

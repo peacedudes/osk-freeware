@@ -1,4 +1,0 @@
-pgmramp -lr 48 24 > /dd/tmp/base.pgm
-/dd/tmp/base.pgm        PGM "rawbits" file
-/dd/tmp/base.ppm        PPM "rawbits" file
-/dd/tmp/base.pbm        PBM "rawbits" file

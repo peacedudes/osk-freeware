@@ -277,7 +277,9 @@ run     /dd/CMDS/modinfo /dd/CMDS/today
 wait    3
 
 shot    mshell
-cap     mshell, a small shell of its own.
+cap     mshell wants a menu file, cannot find one, says so twice and runs
+cap     anyway.  The error it reports for that failure is #255:255, which
+cap     is not an OS-9 error code at all.
 run     /dd/CMDS/mshell
 wait    4
 send    echo mshell is running\r
@@ -316,7 +318,9 @@ run     /dd/CMDS/passwd -?
 wait    6
 
 shot    phone
-cap     A phone book, kept in a file on the disk.
+cap     `phone' is not an address book: it connects two terminals over a
+cap     communication path, and with none named it says so.  DOC/INDEX
+cap     called it a phone-number book until this screen was taken.
 run     /dd/CMDS/phone
 wait    5
 

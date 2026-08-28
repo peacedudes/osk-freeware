@@ -1,16 +1,16 @@
 <M/pgmtopbm | /dd/CMDS/NETPBM/pbmlife | /dd/CMDS/NETPBM/pbmtoascii
-"Mooo"MMMoMM oMo   M M M M"M o"MMoMooM"MM"  MMM"" MMMM"MMoM"
-o M o"oooM"" MMMMMMMMMM""M M Mo" MMMMMoMoMM"oo"Mo"" "oM MM""
- MooM MM"ooMoM"MMMMMMMMMMo MMMMoMMMMMMMMMM" "MMMoM"MMMoooM
-""M ""   oMMMMMMMMM"MMM"M"Mo MooM""MMM o M MMMMMMMMMM"ooM M
-""" M M""o  MoMMMMMMMoM ""  M M"oo"MMMMo"MMMM MMMMMooM oM Mo
-oMMMoMoMoMoMo M M""M M MMM " oo oMMMM M M"MM"M "M"MMooo"Mo "
-MMMM ooo"""Moo M"MM"MMMMoo  o"o M MMM MMMMMo" MMoMMoM"M"MMoo
-"MMoooo "MMMMoo ooM"M MMMMMoMoMoMMMo"  MMMMoo" M MMMMM"M"MMo
- MMoMoMo  MMMMMMMoooo MMMMMMMMMMM"M"oMoMMMMMMoMMMMM"M"oMo"M
-oMMoMMMMM M"MMMMMMoMMMM"ooooMo""" "oMMMMMMM"MMoMooMo"""M Mo
-oMMM"oM"MMM""oMMMMM"M"MMMoooM"""MoMooMMMM"" M"M"o "  MMM"oo
-M""ooMoMMMo"MMoM ""M"M"MMoo MM"MMMMMoMooo"MoM M M"MMMMMM"oo"
- MooMMMM " "MMMMMMM"o" "ooM"MMMMoMMMMMMoM"MMM M M"MMMMMMM"o
-o"MMMMMM"""MMMMM"MMM Moo""M""oMoMoooMMMMMM oM M"""ooMoM"M""o
-o""M"""""""""oMM""""o """MMooM "MM "o""" """""  o" "  o""""o
+ooooMMMM""""ooooMo"""Moo o MoM MoMoMM""MooMMoo M """oooMM"M"
+  Mooo M MoMoM"o oMMooMMM"MMMMoMMMMMoM M"M"oo"o""MMoMo"" oM
+M MMoMMM"M"MMooMoMMMMo"MMMMMMM "oo"MMMoo"""MMoM "MMMMM M M"M
+"oMMMMMMM"o o oMMMMoo""M""M"MoMMooo oMMMMMM" ooMMMoooMM" M
+ M ""MM"oMMoMoMM"M "oo" ""MMMMMM ooMMMMMMM"M"MMMM"MooM o   M
+o"""M"MMMMMMMMMM""M"o  o"M""MMMMMoooM""MMooMM"" M"" " MM"M "
+o"MMMMMMMMMMMoM """ ""M"MMMM ""MMMoooM"MM MMM"MoM"o  M Mo"
+ MMMMMo"M M"oo oMM ""M MMMMMM"""MMMMoMM" oMMM"""M  "MMMM"" M
+ MMMMooM" "oMMoMo "MM"M"MMMooo""oM o"MMM"  M MMMMo"M"" M"M "
+"MooM"M"M Mo M"MMo "MM"M"M "oo"M o"" MMM""MoMMMMoM"M"MMoM"oo
+Moo MoM MM ooo"M Mo" M"M M"Mooo"MMM"MoMM"MMMMMo"oM"MMMoo" "o
+ o" ""MMMooMMMMMM""MMMo M""MooM""oMMMoMMMMM o Mo "M"MMoooM"o
+ M MMMMMMo"""M"MM"""""" oo"MMMMM"MMM"M  " MMMM"M oMMMMMM"M"o
+ ""MoM MMMMo M"MMMM"MM"" o MMMoo"MMMM MMoMMM"" o M""MMMMoM""
+ "" M ""M" M"""MM M"M"Mo oMM""o  "M"MM"MM"M    M "oMo "MMM"o

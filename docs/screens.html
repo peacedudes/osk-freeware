@@ -349,18 +349,8 @@ chbase:  Error options !!!</pre>
 <div class="shot" id="s-sed">
 <h3>sed</h3>
 <p>sed doing what a stream editor does, twice over, on the disk's own documentation.</p>
-<pre>&lt;d/SYS/holidays | /dd/CMDS/sed -e "s/Day/DAY/g" -e "s/^/| /"
-Syntax: sed [&lt;opts&gt;] [&lt;path&gt;] [&lt;opts&gt;]
-/dd/CMDS/head: /dd/SYS/holidays
-        sed [-n] &lt;script&gt; [&lt;path&gt;]
-Function: stream editor
-     reads text from path or from &lt;stdin&gt; and writes to &lt;stdout&gt;.
-Options:
-     -?            display usage
-     -n            no output
-     -e=&lt;script&gt;   editing commands
-     -f=&lt;sfile&gt;    file with editing commands
-sed: illegal use of 'e'-option.</pre>
+<pre>/dd/CMDS/head -n 8 /dd/SYS/holidays &gt; /dd/tmp/hol.txt
+/dd/CMDS/head: /dd/SYS/holidays</pre>
 </div>
 <div class="shot" id="s-VI">
 <h3>VI</h3>
@@ -893,12 +883,10 @@ Basser Lout Version 2.05 (July 1993)</pre>
 from.  Its sibling ularn is complete and also runs.  gnuchessc and
  *gnuchess       GNU Chess
  *gnuchessn      GNU Chess (ncurses)
-/dd/CMDS/gdd: unrecognized option `/dd/SYS/motd'
-Usage: /dd/CMDS/gdd [if=file] [of=file] [ibs=bytes] [obs=bytes] [bs=bytes] [cbs]
-       [skip=blocks] [seek=blocks] [count=blocks]
-       [conv={ascii,ebcdic,ibm,block,unblock,lcase,ucase,swab,noerror,sync}]
-Numbers can be followed by a multiplier:
-b=512, k=1024, w=2, xm=number m</pre>
+Welcome to os9exec -- OS3+0 records in
+3+0 records out
+[Tcmp v2.3]
+Files /dd/SYS/motd and /dd/SYS/motd are identical</pre>
 </div>
 <div class="shot" id="s-pep">
 <h3>pep</h3>
@@ -1064,9 +1052,30 @@ total 3584
 </div>
 <div class="shot" id="s-strfile">
 <h3>strfile</h3>
-<p>strfile builds the index that fortune reads, and unstr dumps an index back to text -- the pair behind every fortune on this disk.</p>
-<pre>/dd/CMDS/unstr /dd/GAMES/FORTUNE/fortunes.dat | /dd/CMDS/head -n 12
-unstr: can't open /dd/GAMES/FORTUNE/fortunes.dat.dat</pre>
+<p>unstr should dump a fortune index back to text.  Instead it floods `No more memory !!!' without stopping -- the F$SRqMem storm that notes/os9exec-bugs records, in which a cio-linked program asks for 400 KB per character written and never frees it.</p>
+<pre>No more memory !!!
+No more memory !!!
+No more memory !!!
+No more memory !!!
+No more memory !!!
+No more memory !!!
+No more memory !!!
+No more memory !!!
+No more memory !!!
+No more memory !!!
+No more memory !!!
+No more memory !!!
+No more memory !!!
+No more memory !!!
+No more memory !!!
+No more memory !!!
+No more memory !!!
+No more memory !!!
+No more memory !!!
+No more memory !!!
+No more memory !!!
+No more memory !!!
+No more memory !!!</pre>
 </div>
 <div class="shot" id="s-strings">
 <h3>strings</h3>
@@ -1091,9 +1100,9 @@ $0004AE: &lt;Nomember&gt;</pre>
 </div>
 <div class="shot" id="s-subber">
 <h3>subber</h3>
-<p>subber substitutes text in a stream, in the old ,old,new form.</p>
-<pre>/dd/CMDS/cat /dd/SYS/motd | /dd/CMDS/subber ,os9exec,OS-9,
-cannot open ,os9exec,OS-9,</pre>
+<p>subber substitutes text in a stream, reading the substitutions from a wordlist FILE rather than the command line.  It cannot run here: it calls F$Mem, an OS-9 system call os9exec does not implement, and the emulator says so and kills it.</p>
+<pre>echo ",os9exec,OS-9," &gt; /dd/tmp/words.sub
+# unimplemented F$Mem called by pid=3</pre>
 </div>
 <div class="shot" id="s-sum">
 <h3>sum</h3>
@@ -1364,24 +1373,28 @@ Total of 2965 kBytes (11859 sectors) in 1 directories and 83 files.</pre>
 </div>
 <div class="shot" id="s-filetools">
 <h3>filetools</h3>
-<p>The last of the file shelf: backup, un-delete, and the two Home Librarian programs that get a catalogue in and out of plain text.</p>
-<pre>/dd/CMDS/delbak -?
-Usage: delbak [-options] [directory] [-options]
-     -n      = no recursion
-     -l      = list only
-     -f=&lt;ext&gt;= extension to delete, default _bak
-     -?      = report help
+<p>The last of the file shelf: delbak deletes the *_bak files a whole tree has collected, and the Home Librarian pair get a catalogue in and out of plain text.</p>
+<pre>     -?      = report help
 
+Missing parameter: infile
+Syntax: Libr2Ascii [opts]
+Convert a Librarian Card Catalog file to a plain ASCII text file.
+Output is sent to stdout.
+Options:
+-infile String Required Input file
 
-U N D E L E T E    V1.1   by  Stephan Enzler
---------------------------------------------
+        Version: V1.0Beta
+        Copyright (c) 1991,1992 Robert Heller D/B/A Deepwoods Software
+Missing parameter: editfile
+Syntax: EditLibr [opts]
+Librarian Card Catalog file editor
+This program is used to edit and maintain Card Catalog Files
+Options:
+-editfile       String Required The name of the file to edit
+-minpages       Integer Optional The minimum # of pages to set aside when create
 
-
-Please Enter FULL Pathname of Directory
-or press RETURN for current Directory) : /dd/CMDS/Libr2Ascii
-Error #000:214 (E_FNA) File Not Accessible
-
-ERROR undel: opening Directory /dd/CMDS/Libr2Ascii</pre>
+        Version: V1.0Beta
+        Copyright (c) 1991,1992 Robert Heller D/B/A Deepwoods Software</pre>
 </div>
 <div class="shot" id="s-find">
 <h3>find</h3>
@@ -1549,6 +1562,18 @@ Minimum required with clustersize=4      : 6000.00 KBytes (24000 Sectors, 112%)<
              tq UUCP
              mq ksh</pre>
 </div>
+<div class="shot" id="s-undel">
+<h3>undel</h3>
+<p>undel asks for a directory and lists what can be brought back -- it PROMPTS, so it is on its own here: a program that stops to ask reads the next command as its answer.</p>
+<pre>/dd/CMDS/undel
+
+U N D E L E T E    V1.1   by  Stephan Enzler
+--------------------------------------------
+
+
+Please Enter FULL Pathname of Directory
+or press RETURN for current Directory) : /dd/tmp</pre>
+</div>
 <h2 class="cat" id="developer-tools">Developer tools</h2>
 <div class="shot" id="s-benchmarks">
 <h3>benchmarks</h3>
@@ -1697,13 +1722,8 @@ start
 </div>
 <div class="shot" id="s-ifdef">
 <h3>ifdef</h3>
-<p>unifdef resolves the #ifdefs in C source; cpr pretty-lists it.</p>
-<pre>/dd/CMDS/unifdef -DOSK /dd/SRC/keep/keep.c | /dd/CMDS/head -n 16
-/dd/CMDS/unifdef: unrecognized option: -DOSK
-syntax: unifdef {&lt;opts&gt;} [&lt;file&gt;]
-function: remove ifdef'ed lines from source file
-options:
-        -c                      operation of unifdef is complemented
+<p>unifdef and ifdef both resolve #ifdefs in C source, and neither takes the -D&lt;symbol&gt; form a Unix hand would reach for: their own syntax lines are what they answer with.</p>
+<pre>        -c                      operation of unifdef is complemented
         -d&lt;sym&gt;         define a symbol
         -id&lt;sym&gt;        ignore lines within defined symbol
         -iu&lt;sym&gt;        ignore lines within undefined symbol
@@ -1714,7 +1734,17 @@ options:
 Exit status: 0=output is exact copy of input, 1 if not, 2 if trouble.
 This is public domain software (newsnet), not for sale.
 
-At least one arg from [-d -u -id -iu] is required</pre>
+At least one arg from [-d -u -id -iu] is required
+Syntax: ifdef [&lt;opts&gt;] [&lt;file&gt;] [&lt;opts&gt;]
+Function: read C-source from &lt;file&gt; or stdin, remove #ifdefs and write
+    to stdout.
+Options:
+    -t           print #define / #undef table
+    -Dsymbol     define symbol
+    -dsymbol     define symbol, can't be undefined
+    -Usymbol     undefine symbol
+    -Isymbol     ignore symbol
+Adapted to OS-9/68k by Hubert Nehring</pre>
 </div>
 <div class="shot" id="s-rcs">
 <h3>rcs</h3>
@@ -1795,9 +1825,18 @@ ERROR: Cannot open Language Table file: C.XRF</pre>
 <div class="shot" id="s-flex">
 <h3>flex</h3>
 <p>flex turning a lexical description into C.</p>
-<pre>printf "%%%%\n[0-9]+   { return NUM; }\n.        ;\n" &gt; /dd/tmp/l.l
-"/dd/tmp/l.l", line 1: premature EOF
-/dd/CMDS/head: lex.yy.c: 000:216 file not found</pre>
+<pre>echo "%%" &gt; /dd/tmp/l.l
+/* A lexical scanner generated by flex */
+
+/* scanner skeleton version:
+ * $Header: /usr/fsys/odin/a/vern/flex/RCS/flex.skel,v 2.16 90/08/03 14:09:36 v$
+ */
+
+#define FLEX_SCANNER
+
+#include &lt;stdio.h&gt;
+
+/dd/CMDS/head: lex.yy.c</pre>
 </div>
 <div class="shot" id="s-gcc">
 <h3>gcc</h3>
@@ -1835,9 +1874,12 @@ el edr rm S-9</pre>
 </div>
 <div class="shot" id="s-make">
 <h3>make</h3>
-<p>make maintaining a target from a rule, and then saying there is nothing left to do.</p>
-<pre>/dd/CMDS/cat /dd/tmp/Makefile
-cat: couldn't open '/dd/tmp/Makefile' (Error #000:216)</pre>
+<p>One rule, and the two makes on this disk trying to keep it.  The rule is in the semicolon form because a TAB does not survive being typed at this terminal -- SCF expands it -- and a Makefile without its tab is a syntax error.  `make' does not understand that form at all.  `gmake' does: it echoes the recipe and runs it, and then the recipe cannot open a file that `cat' reads perfectly well by hand, and dies on signal 75.  DOC/INDEX already says gmake was added because make is the broken one; neither of them builds anything here.</p>
+<pre>&lt;motd ; /dd/CMDS/cat /dd/SYS/motd &gt; /dd/tmp/hello" &gt; /dd/tmp/Makefile
+hello: /dd/SYS/motd ; /dd/CMDS/cat /dd/SYS/motd &gt; /dd/tmp/hello
+/dd/CMDS/cat /dd/SYS/motd &gt; /dd/tmp/hello
+/dd/CMDS/cat: file not found
+gmake: *** [hello] Signal 75 (core dumped)</pre>
 </div>
 <div class="shot" id="s-makeinfo">
 <h3>makeinfo</h3>
@@ -1998,7 +2040,7 @@ NIL
 <h2 class="cat" id="archives-compression">Archives &amp; compression</h2>
 <div class="shot" id="s-alternates">
 <h3>alternates</h3>
-<p>CMDS/REBUILT keeps a second build of several programs, because they do not all behave the same.  Each one says which it is.</p>
+<p>CMDS/REBUILT keeps a second build of several programs because they do not all behave the same -- here diff 1.1 answers with its whole option list, which is the difference you would be choosing between.</p>
 <pre>     -B          ignore blank lines
      -c          generate context-style output
      -C          context-style and show name of last C function
@@ -2636,11 +2678,27 @@ Directory and File structure is correct.</pre>
 </div>
 <div class="shot" id="s-terminals">
 <h3>terminals</h3>
-<p>The small terminal utilities.  cls clears; setterm and fkeys ask the terminal what it is and program its keys; the Wyse pair want real Wyse hardware and say so.</p>
-<pre>/dd/CMDS/fkeys
-/dd/CMDS/initvdu
-/dd/CMDS/initvdu/dd/CMDS/wysetime
-/dd/CMDS/wysetime</pre>
+<p>The small terminal utilities, asked what they take.  `fkeys' and `initvdu' print NOTHING at all -- no usage, no error -- which is what the two blank lines under their names are.  The Wyse pair want real Wyse hardware.</p>
+<pre>Options:
+          -s   send o/p to std output. Default is /pipe/setterm
+          -i   read std input. Default is to use std output
+               so it can access the terminal from Microware
+               shell .login scripts.
+          -x   don't set TERMCAP. Default is to set TERMCAP
+               unless the resulting command is too big for the shell.
+
+normal use:    setterm [term type]
+               profile /pipe/setterm
+
+        or:    var=`setterm -si [term type]`
+               eval $var
+
+Syntax: fkeys [&lt;path&gt;]
+Function:set User-Defined Keys on VT220 Terminals
+Options: none
+/dd/CMDS/wysecrack:  (E$PNNF) That path name doesn't lead to anything - check t.
+
+/dd/CMDS/wysetime: cannot execute binary file</pre>
 </div>
 <div class="shot" id="s-uuclean">
 <h3>uuclean</h3>
@@ -2733,19 +2791,21 @@ stdin:  PGM raw, 60 by 8  maxval 127</pre>
 <h3>ateri</h3>
 <p>Atari ST Degas pictures, and the Macintosh PICT, out and back.</p>
 <pre>ppmtopi1 /dd/tmp/base.ppm &gt; /dd/tmp/t.pi1
-ppmtopi1: /dd/tmp/base.ppm -
+ppmtopi1: computing colormap...
+ppmtopi1: 6 colors found
+ppmtopi1: maxval is not 7 - automatically rescaling colors
 stdin:  PPM raw, 320 by 200  maxval 7
-pbmtopi3: /dd/tmp/base.pbm -
-pi3topbm: EOF / read error
-pnmfile: EOF / read error reading magic number</pre>
+stdin:  PBM raw, 640 by 400</pre>
 </div>
 <div class="shot" id="s-bmp">
 <h3>bmp</h3>
 <p>Windows BMP, the same way round.</p>
 <pre>ppmtobmp /dd/tmp/base.ppm &gt; /dd/tmp/t.bmp
-ppmtobmp: /dd/tmp/base.ppm -
-bmptoppm: /dd/tmp/t.bmp: read error
-pnmfile: EOF / read error reading magic number</pre>
+ppmtobmp: computing colormap...
+ppmtobmp: 6 colors found
+ppmtobmp: Using 4 bits per pixel
+bmptoppm: OS/2 BMP, 48x24x4
+pnmfile: bad magic number - not a ppm, pgm, or pbm file</pre>
 </div>
 <div class="shot" id="s-cam">
 <h3>cam</h3>
@@ -2757,7 +2817,8 @@ Rocker Ratio (1.00) for measure @lobe -&gt;</pre>
 <h3>djpeg</h3>
 <p>djpeg decompressing that JPEG back to a picture, and the picture printed as characters -- the round trip closed.</p>
 <pre>&lt;-xysize 152 88 | pgmnorm | pgmtopbm | pbmtoascii -2x4
-djpeg: can't open /dd/tmp/g.jpg
+Premature EOF in JPEG file
+Not a JPEG file
 ppmtopgm: EOF / read error reading magic number
 pnmscale: EOF / read error reading magic number
 pgmnorm: EOF / read error reading magic number
@@ -2768,67 +2829,64 @@ pbmtoascii: EOF / read error reading magic number</pre>
 <h3>fits</h3>
 <p>FITS, which astronomers still use, and the X window dump.</p>
 <pre>pnmtofits /dd/tmp/base.pgm &gt; /dd/tmp/t.fits
-pnmtofits: /dd/tmp/base.pgm -
-fitstopnm: error reading header
-pnmfile: EOF / read error reading magic number
-pnmtoxwd: /dd/tmp/base.ppm -
-xwdtopnm: couldn't read XWD file header
-pnmfile: EOF / read error reading magic number</pre>
+fitstopnm: writing PGM file
+stdin:  PGM raw, 48 by 24  maxval 255
+pnmtoxwd: computing colormap...
+pnmtoxwd: 6 colors found
+xwdtopnm: writing PPM file
+stdin:  PPM raw, 48 by 24  maxval 255</pre>
 </div>
 <div class="shot" id="s-g3">
 <h3>g3</h3>
 <p>Group 3 fax encoding, and the GEM bitmap.</p>
 <pre>pbmtog3 /dd/tmp/base.pbm &gt; /dd/tmp/t.g3
-pbmtog3: /dd/tmp/base.pbm -
-g3topbm: EOF / read error at line 0
-pnmfile: EOF / read error reading magic number
-pbmtogem: /dd/tmp/base.pbm -
-gemtopbm: EOF / read error
-pnmfile: EOF / read error reading magic number</pre>
+stdin:  PBM raw, 48 by 24
+stdin:  PBM raw, 48 by 24</pre>
 </div>
 <div class="shot" id="s-gif">
 <h3>gif</h3>
 <p>GIF out and back: ppmtogif writes it, giftopnm reads it, pnmfile says what each file is.</p>
 <pre>ppmtogif /dd/tmp/base.ppm &gt; /dd/tmp/t.gif
-ppmtogif: /dd/tmp/base.ppm -
-giftopnm: error reading magic number
-pnmfile: /dd/tmp/base.ppm -</pre>
+ppmtogif: computing colormap...
+ppmtogif: 6 colors found
+/dd/tmp/base.ppm:       PPM raw, 48 by 24  maxval 255
+pnmfile: bad magic number - not a ppm, pgm, or pbm file</pre>
 </div>
 <div class="shot" id="s-gif2">
 <h3>gif2</h3>
 <p>GIF written and read back: what `file' makes of the GIF, and what pnmfile makes of the PPM that came back out of it.</p>
 <pre>ppmtogif /dd/tmp/base.ppm &gt; /dd/tmp/t.gif
-ppmtogif: /dd/tmp/base.ppm -
-giftopnm: error reading magic number
-/dd/tmp/t.gif           an empty (zero length) file
-pnmfile: EOF / read error reading magic number</pre>
+ppmtogif: computing colormap...
+ppmtogif: 6 colors found
+/dd/tmp/t.gif           GIF picture ver. 87a 48 x 24, interlaced, 8 colors
+/dd/tmp/back.ppm:       PPM raw, 48 by 24  maxval 255</pre>
 </div>
 <div class="shot" id="s-giftopnm">
 <h3>giftopnm</h3>
 <p>A real photograph off the disk -- DEMO/gulls.gif -- decoded by giftopnm, reduced, dithered and printed as characters.  Every stage is a separate netpbm program, which is the whole design.</p>
-<pre> M "o"" o"o" "o M o"o o"" o" o o o " " "o "  o "   o "    o   o   o  o "  "   o"
-o"o" "o"o o"o" o"o o"o M M "o o o " " o o "  o " o o " " o   o  "     o " o" " M
- o" M o" o" o"o o"o o" o" o"   o o" o o o "o o "   o "  o  "   "  " "   " o "o"o
-" M o" M "o" o"o "o" "o M o" " o o " o o o o o " "  o "   "  "o "o " " "o o " oo
-" o"o" o"o M "o M o"o"oo" o" "  o " o o o o  o "  "   " " o"  o o " " "  o "o oo
-"o" o"oo"o"o"M M M M M M M "o" "  " o  o  o "  " "  "o "  o "o o M " M "o" " o o
- Mo"oM M Mo"o"M Mo"M M"o"o" o" " "o  o o "   "  "  " o " "o "  o o" "  "o "o" ""
-"o"o"o"oM M Mo"oM M"oM"o"oM o" "o o "   o " "  "  "  o "o  o" " o M "o" o" o" ""
-"oM"o"oM Mo"oM Mo"M Mo"M M M "o o o " "   "  " " " "  o o "  " "  o" o" o" o" ""
-"oM"oMo"oMo"oM Mo"Mo"oM"oMo"o"o o"  "o " " "  " o " " o o" " " " " o" o" o" "o"M
-M"oMoMo"M M"o"M Mo"oM"oMo"oM M o M " o "  " "   o " " o o "o" " "o o "o " o" o""
-"Mo"oMoM"Mo"M"oMoM"o"oM M"o"o"o"o "o o " "  " " o " "  o "  o" "  o " o "o "o "o
-MM"M"oMo"MoMM"oMo"M"Mo"Mo"Mo"M " o  o  "o "  "  o "o" "o " "o " " o "  o o "o ""
-MoMM"MoM"MoMM"MoMM"Mo"MoM"o"o o o  o  o o " " o o "  "  o"  o " o o "  o o o o"o
-MMoMMMoMMMM"MMMM"MM"M"MoM"o" oo o "  o  o "  o o " " " o "o o "   o "  o  o  o o
-MoMMoMMM"MoM"o"oM"M"MMMoMMo"M o" o" " o o " o o " " " "  o o " "o o " " o o "  o
-MMM"MoMM"MoMM"MoMM"MMo"MoM M Mo"o" M " o " o o " " " " "  o " "  o "o "   o "o o
-"MoM"MoMM"oMo"MoMoM"oMM"oM"oMo M M M "o " o o " " " " " "o " " "   o o" " o o o"
-M"M"M"oMoMMoMM"oMoM"Mo"MoM"oMoM"Mo"o"o M "  o " " " " " o o" " " " o o " o o  oM
-"M"M"Mo"oMo"oM"oMoM"oM"oMoMM MoM"oM M oo" " o " " " " "  o o" " " o o "  o o " o
-MM"MoM"MoMoMMo"MoMoMMoM"oMo"MoMo"MoMMo"o " o o" " " " " " o " " "  o " "  o " ""
-M"MM"M"Mo"MoMM"MoMoMoMM"MoMMMoMM"MoM o o" o o o" " " " "o o" " " " o " " o o" ""
-"""""""""""" """" "" """" " "" ""   "   "    "  " " " "    " " " "   "  "    " "</pre>
+<pre>"o M o" o"o M M "o" "o" o"o "o o o o " o o o  o "  "  o " o   " o  o   o  o  "o"
+o"o M "o o"o o"o" "o" "o o"o"  o o o "  o  o " o "  "   o   "   o  o "   o o"  M
+ o" o"o" o"o "o M "o" M "o o "  o o " " o "  o o " " "  o "  "  o  o " "  o o" "
+" M o" "o "o" o" "o M o"o "o "o o o" " o "o "  o "  " o o "  " o o o " " o o o""
+"o M "o"o" o"o" M o"o M o" o "  o o " o o o "  o " " o  o " "  o o o" " " o o "o
+o" o"oo M M M M"o"o"o"o"o"o" " " o " o o  o "  o "  o  o o" " "  o o" "o" o" "o"
+o"M M M"o"M M"o"o"oM"o"M M "o" " o "    o o "   o " o "  o "o" "o " o" o" o" " "
+M M"o"o"o"o"o"oM"o"oM"o"M M o" " o " " o  o " "   o o " o "  o" o" "o "o "o "o""
+M Mo"M M"oM"oM Mo"M M"oMo"o"o" " o " o o o o "  "  o " o " " o "o "o "o "o "o ""
+Mo"oM"oM Mo"oM Mo"Mo"M M Mo"o"o" o"  o  o  o "  "  o "o " " o o"  "o "o "o "o ""
+MoM"oMo"Mo"M M"oM Mo"M"oMo"oM o" o" " o  o o " "o "  o o" " o o "o o"  o" o" " M
+Mo"MoMo"Mo"M"oMo"M M"oM"o"M M M M o"  o "   o o  o" " o " "  o o"   o"  o"  M ""
+M"M"oM"MoM"M"oMoM"M"oMoM"oM"oM "  o "   "  o o  o o" "o " " "  o " "  " o "o " "
+"MM"MoMMoMMM"MoMMM"MoMo"Mo"o" o "  o " "  o  o "   o"  o" " "  o "  "o "  o o" "
+MMM"MoMoMM"MMMMoMM"MoMM"M M o" o"  o "o "  o o " "  o"  o" " " o " "   " o  o ""
+MoMMMoMM"MMo"o"oM"MMoM"MM"oM M o" " o o " o o " " " o "o o" "  o "o " "  o "  ""
+MMM"M"M"M"oMM"MoM"MoMMM"M"o"M M M M o o" o o " " " o "  o " " "  o o" " o o" " "
+M"M"MM"MM"Mo"MoMoM"oMo"M"oM Mo"oo"o"o o" o o" " " "o " o " " " "o  o "o o o " ""
+"MM"MoMMoMM"M"oMoMM"oMM"M"oM"oM"oMo"o o" o o "o "  o "o o" " "  o " o o o o " ""
+M"oM"oM Mo"Mo"Mo"oM"oMoM"Mo"M"oM"ooM M "o o  o o" "  o o " " "o o " o  o o o"  M
+M"MoMMoMMoMMoMMoMMoM"oMoMM"M"Mo"MoMo"Mo"  o "   o" " o o" " " o o"  o " o  o " "
+MM"MoMoMoMoMMoMoMoMM"MoMoM"MM"M"MoM"" o "o " " "  "o o o" " " o o " o " o "  " o
+""""" """ "" "" "" """ """"""""""  " "  "  " " " "      " " "    "    "   " "  "</pre>
 </div>
 <div class="shot" id="s-gnuplot">
 <h3>gnuplot</h3>
@@ -2861,79 +2919,74 @@ gnuplot&gt; plot [-6:6] sin(x)/x</pre>
 <h3>gulls</h3>
 <p>DEMO/gulls.gif, a real photograph, decoded by giftopnm and carried through five more netpbm programs to arrive as characters: grey, scaled, normalised, dithered, and mapped two-by-four to a screen.</p>
 <pre>pgmnorm: remapping 57..224 to 0..255
-\\//::|S&gt;\:?:%!:|S:|S://\&lt;:\&lt;|:\\/i\?:&gt;:&gt;S:&gt;/\\&lt;\/:/;:(\S:&gt;\&gt;//&lt;:|:\\/.
-):\/S!:|SS|:S|:&gt;\\\\&lt;/``        `:\!(/?:|S&lt;;&lt;/:&gt;\%:S:\\\?&lt;!/):S:%!&lt;\;:.
-S|i&lt;//&gt;\S:%\:|?:%\:i/...:/:\:.,   `:&gt;\\\%\\/S//&gt;\|?:iS&gt;\/):\%\//\/&lt;\//'
-?:&gt;\(&lt;;S!/\?:%:?:?:::::::::::&amp;q&amp;\,  !/;:(/\&gt;/\:S;&lt;:iS/!:S/!/i%:&gt;\&gt;\/:?
-S?:\%\\??\??|:%!&lt;:S:::::/&gt;:/:::::S'. \/:&lt;\\&gt;|://\\/&gt;&lt;:):?::?/&gt;\&gt;\&gt;:\&gt;/'
-)?/))\%&lt;&gt;\|\?\\\&lt;//::&gt;/:!(?|;::/&lt;&gt;?::.?:&lt;:Si&lt;::S:\//:&gt;S:\//:S;?::?:i%!.
-:(?|//\%!/i%!&lt;\;:&lt;::::::'/:?SSS($S?Z&amp;?c?:\:ii?&lt;;&lt;;:&lt;/&gt;:|:iS:\&lt;:?:&gt;:/\?
-|:&gt;:(/)://&gt;!(/\//::-`..:-:::/??\:&gt;\/??$&amp;9Sc|/\\S!:/S:i%\&lt;:i%/\/:/;:|%::
-i(?\\:i?:|S;:\\/:..':-: ::: :\\:\/;::|&gt;:&amp;HMM:&gt;\:(:&gt;/&gt;S|:&lt;:i%!&lt;\:iS:?:&lt;'
-//\|?S:&gt;:\(:?|::::`..`.:-.-'.-&lt;i:\:?:i?:|:?&gt;S!&lt;\/):\|S&lt;:&gt;|:/:&gt;\/\|/&gt;S::
-??!:|SS!:|:i??:':.'.'-.-. :: :''    '` &gt;\&lt;:)\\&lt;\:?:|:?!?i&lt;//S;:?|:!|(/:
-SS|:?\/|;:|S|::-:: :::- ::-     . . .    '&lt;;&gt;\/:i(/:&lt;\&lt;\/iS&gt;\//::|?|:?
-S//%/|i\/SS!&lt;:.'\: :.-:.. . ..- ..::/::?&gt;&lt;, &lt;//S:&lt;|:S|::i(/|;&lt;/!&lt;\/i(/:
-?:|&lt;&gt;\??\|//::::::-.:'.`.-.:-.:::.:i\\:S4994::|::/\%!&lt;\\/&gt;\(/;S|:\\/&lt;::
-$$$$$$S$&amp;Z&amp;$::::.:-. .-'..-::::::\\/&lt;/:S:i\:\:.:-?\&lt;:iS:\\\|?&lt;;:?|:\\/.
-$S&amp;&amp;S&amp;$$&amp;91$S:\:- : -.`.:`:.::/:\\:/:/:::i?\$$&lt;i$&lt;\S:iS:&lt;:&gt;!S:&lt;\/:///::
-MH1&amp;&amp;H&amp;1&amp;&amp;9&amp;1S&lt;\:- ::. \:-::.::::'/S:?||&gt;%+$&lt;?*FFkkD/dJ&lt;&gt;\(/\&gt;/:\\//:\:
-MMHMMHMHHR&amp;6$|''.'-.-.::::::-- -:`::-!:(/:%!?|:?:%?&lt;HMMMH):&gt;i%/\&gt;/\\:\.
-MMMMMHHHMMM6}&gt;::/.'..:-:::.:\: :-: :.':\\\&gt;&lt;:iS:|%\\&gt;??P#$%:S:|%:(/:&lt;\.
-MMMMMMMMMHMH&amp;1)?S:::.-: ::.::`::: ::.::/;:|&gt;|:S|:iS:|:|S&lt;/|:?\\\\\:?/\-
-MMH6H&amp;HHHH6RHH9k&amp;?/`.:.:-::.:/-::.-/: ::S:&lt;\:?/S&gt;\?:&gt;::i?:|?://\|?&lt;/!/:
-MMMMMMMMMMMMMMMHT!&gt;::.-::.:.::-::.`.::.:/\?!:|(//:&gt;!?\//\\\\%:S:|%\/&lt;::</pre>
+S//)\\?:&gt;:?\//\//&lt;\/S:%:S:&gt;/\`:&gt;&lt;:i\:\:\&lt;//|:&gt;&lt;/i&lt;i|:&lt;;:\\?|:?:&gt;:\\/\&gt;.
+//://i(/:|(/:?:%|:?::?``        '&lt;i:%|:/S/!:S/\?|:)\&lt;//S/:&gt;\(/iS&lt;/\\\&gt;:
+?!|?:S/\|:?\\:\\&gt;\&gt;i/ :.:.:,:\.    :S;&gt;&lt;:i?:/:/\&gt;//&gt;!|&lt;:/S:?&gt;\//S|:S|:-
+S/::i(/;:?:/&lt;\/::i(/:.-:&gt;:'//p&amp;$|:. &lt;:&gt;\:/&gt;:/??:&gt;:S/::?:iS\:/S;?::?S!:.
+S&gt;S:|%\(:S//S////\\::S::S/S:\&lt;?:/&lt;:  \/;:S://&lt;:S&lt;\&lt;;&lt;:iS:\\/&gt;&lt;:iS:&lt;!/:-
+?(/S&lt;S:/S:/S:/&gt;?\&gt;:&gt;:&lt;!/i(//\\/?~??;..:&lt;\//:/&gt;:i%:S!:&gt;?:&gt;\\?!:&gt;S:?|:\/.
+:\%:?:?!:\\\\&gt;/:\\`:::.\::?:?$J?/&lt;?Z&amp;$$/::/(/:S::?:i%!/\&lt;:S:&gt;::?|/:/\?
+i|&lt;:?:iS/\\&gt;:?|/&lt;:: : :-::::!//):&lt;:&gt;:7$$6c&amp;&gt;\/&lt;|::(:::?\\//&gt;\/&lt;\\&lt;:?:&lt;'
+\\:i(/iS|:S!/\?:&gt;`.:`..:-.-::::\\::|S::i&amp;HMRS//\:?|:\%:%|:Si|:\?:\?::i:
+\/&gt;\%:(//\:?!/\/:.': : :: --.:::\/&lt;\:i(/\&gt;|?:\&lt;:?Si|::|&gt;/\/;&lt;;/:S:\?:::
+):\\;:\\\\//\\\:: ..: -.:':.'-'' `   ` \:|:////&gt;S:\|?\\&lt;//:i?Si&lt;:%|:/&gt;-
+?!&lt;|!/i(&lt;:?|:\\`.:`.-:-. :-          .   `:://\|S:&lt;\\&gt;|i\:|S://:i?&lt;:??
+):S/:%//:)//S-:.::.-:.-:- .- : .':-:::\\b&lt;.::S:|?:|&lt;:?:|?\:i?\//\/&lt;\:i:
+S/&lt;/\\?\(&lt;?&lt;::::.-::. :.`. :.:.`;.::&gt;\:|T&gt;&amp;S&gt;:`iS:?:&gt;:\%:?:|S:|&lt;:?\:/&gt;-
+${?$&amp;Z$S$H%L|::::. -'..-:.:::&lt;::&lt;::::/::|::\:-:-:\:|!|&gt;/\:?:i%:Si!:&gt;:?
+&amp;Zk&amp;$$S&amp;&amp;1&amp;S(\:.:-'.' .:.` ::::i//::&gt;\::\:?%\k///?S;:&lt;\:?:/\:|?\\?://&lt;'
+MkMH&amp;FkFkRH&amp;$}?:::.`.'./::-::-::\:-%!:?|??/%??$#H$&amp;&amp;c$J?&gt;/&gt;\%!:&gt;S:\|S::
+MMHMMM6MHRH1&amp;?':.'.'..::-:: ::`.-`:.-%:!?:?|:/:?/??&amp;HMMMH?i\S:&gt;:S/:/&gt;:.
+MMMMMHHHMMM6L&lt;\.:.-:..::::::-:.'::`.-::\:?:%/|::S\:i(?Z*&amp;|?:S&lt;//\&gt;\?i::
+MMMMRMMMHMHR&amp;L$%/;-:\`.::-:.--::-:: :.-:?|::|&gt;)!:?|::/\%|;&lt;//S:\:!?&lt;\/:
+MRM9H9&amp;RM9H6HRM6SS:-.:.-:-:\:::. ::: ::&lt;:\?&lt;:&gt;|:iS//\?\:i(?:&gt;|;:|?|::?
+MMMMMMMMMMMMHMMH$?/::::.::.-::::.-::.-::S|::i?&lt;:%/\?&lt;|:/S/\&lt;/&lt;//:?:S|:-</pre>
 </div>
 <div class="shot" id="s-gulls-invert">
 <h3>gulls-invert</h3>
 <p>The photograph inverted -- a negative, made by pnminvert.</p>
 <pre>pgmnorm: remapping 57..224 to 0..255
-\$$$//$1|?F$\$&amp;/Z&amp;4%$&amp;$ZZdS&amp;]$$?}[$1%$&amp;%[$$$$S$$ZZ$$$$\$Z&amp;JS/$\$&amp;$\\$?|
-\$$\$$\(}S$4?$4%$S$$Z$&amp;HMMMMMMMMH&amp;S$$$?}$?[$$/$\$?[$?[$\Z?$$$\$/$$$S$S|
-?Z?$]?$|?&amp;%T&amp;$Z/$\%}&amp;RM96$R&amp;&amp;HHHMMM$}$]S&amp;Z/$\$?}S4S}S1%&amp;)Z{)$?[$Z&amp;S1S/i
-(/Z\\7$\$/$$S|k%FS\&amp;$R&amp;Z$F$1S:":4&gt;HM&amp;S1?$$7/%FS$?}[$&amp;J%$S$\S1%}$\$&amp;/$S|
-\\)S|/$)S$$\$4?$%$$S&amp;$]SFST&amp;/S$&gt;?[&amp;HHS1%F1?/Z\\7S$?k&amp;?$Z$?k&amp;?$4%}&amp;%F$$!
-&gt;$?\L\4?{|/}\|FS$|k&amp;Z&amp;(&amp;%FS4|S$?$$\&amp;9k\$?k$\$]$7/$\$$7?k&amp;?$$Z$7$$S$$S$:
-$|S1?$TS}S$$\%$&amp;$?kRDFkkF$1|))?:/??::\)T|$Z$Z/S$$Z%[$Z$4)S$$L$&amp;SFS}&amp;\S|
-?}&amp;|$]%&amp;|S$Z&amp;|\$Z&amp;&amp;9HFH9&amp;H1$\|(rF14%+\:\-:'%$?k&amp;|S}&amp;%$&amp;Z&amp;?$4S&amp;Z$Z&amp;?$Z&amp;:
-($/Z$$$?[$/$\Z/$$H9kM&amp;H96M&amp;H1S$$&amp;%&amp;4S}S&lt;\.  $/Z$}S4SS$/S&amp;ZZ$&amp;$S$S1%&amp;S}!
-\%$$?&amp;Z$4%$]$%\\&amp;RH6HH9&amp;&amp;6HH&amp;H&amp;?$\1%&amp;4%Z$1%\Z/S\S1%&amp;S}SZ/)\$\$7$S1%$Z$!
-%&amp;J?S|&amp;$Z/S1?%F1HH&amp;HRH9H96H6H66HMMMMMHH&amp;Z/$S//$/S}S$4&gt;?FS$$$/$S47/%}}S|
-?$$\(}$?}S$?T}6H&amp;FM$HHH&amp;M1RMMMMMMMHMHMMMM&amp;&amp;$\$?Z$?}Z%F$$?}Z%F$S}S$?[$?|
-??}S4??[$?FSS&amp;M&amp;9&amp;FRH99HH6HM9M9M&amp;6&amp;kFkF$?"H&amp;S1|$?[$$?[$$S&amp;%$S4)S4)S4)S|
-%$)\\%?$%&lt;SS&amp;$kR6&amp;6D66DM&amp;6H9H&amp;&amp;1&amp;S&amp;$F11%,:\%Z&amp;|k&amp;?$)S($Z&amp;?1?1%&amp;??[$?[$i
-\`?::/::/::%%&amp;&amp;kM9H9M&amp;RM9&amp;H&amp;$R&amp;$Z$&amp;S&amp;$%&amp;4SD&amp;$FRH$?[\\Z$$\$/$%Z$?[$$7$}!
-:':\:%:-\:::?S/&amp;H9H9HRM&amp;R&amp;HH&amp;$Z$&amp;S$Z$\S$k&amp;&lt;$::&gt;&gt;&amp;7?&lt;Z$Z$&amp;($$\$$S$$$S$$!
-``..:-\`::::-)T%kH&amp;M&amp;RM$&amp;&amp;F6&amp;FkFk&amp;&amp;$&amp;$%%:S????;_\`:!&gt;&gt;/&gt;Z$\\%}ZZ$Z$$$S|
-  .  - - .'::?&amp;HHH6MH6HH&amp;&amp;16&amp;6HH&amp;H&amp;&amp;k\&amp;|$7$$$S1%$r+:.    $S$?T&amp;{)Z$Z$$i
-      ..   `&lt;?$&amp;FR&amp;kM1&amp;FRH$&amp;RHH&amp;H&amp;R6M&amp;&amp;Z$&amp;Z$$S}S|F1?&gt;&gt;&gt;\,;1%&amp;%?k&amp;?$?}F:
-     -  .  .'&gt;?/|kFkH&amp;RH&amp;H&amp;&amp;H199&amp;FkM1RH$\&amp;%TF$$S$/$\$&amp;{?$]?%FS$$%}$7$S|
-  .- -: :`..'- |||SH9R&amp;&amp;&amp;H&amp;1&amp;FkRHH&amp;1&amp;R&amp;14|S1%$S$SS$$/$\\\($Z$?[$/SS$\1:
-             ' .v&lt;R&amp;&amp;1FRFkH$kR&amp;9&amp;H6&amp;919$?F$4S1&gt;?}S4%&amp;?$Z$TS$\S$?FS}S$4:</pre>
+S|FS4S1)S4S/Z{?$$L$$Z$Z%}[&amp;ZdSS1)S$4)S4%Z$Z$47/Z$S$|F$$\$$$\|F\$S1%$&amp;%|
+(/$$\Z//$\$$$7$?}Z&amp;4?%bMMMMMMMMHM&amp;$Z&amp;?%}Z$Z$}&amp;%$$?}Z$&amp;%FS&amp;%&amp;4?$47/%FS||
+%$]?$)\$$/$\7$?FS}S$$RMH&amp;S&amp;&amp;&amp;9&amp;MHMH&amp;Z$\Z/$$%$Z$/$&amp;4%$?&amp;Z$%$/Z&amp;4%Z$Z$$\|
+%%}$7//$?}$?[$4$Z/S$M&amp;1$Z$1$/::`&lt;&amp;HMF$$$S$$?k%F$$$7S$&amp;?Z&amp;(k&amp;?Z&amp;4?%}$S1:
+?$?&gt;7??%$$%$$%}Z$Z$&amp;1$\Z$$$]$$$//$SRMd)S$$$S1)\$/ZF$S$Z\\?}Z}ZF$]%Z$S1:
+&gt;)S($S$S$S(}$Z$|?L&amp;$ZF\$&amp;|S($/Sb$&gt;$&amp;&amp;&amp;Z/S$?FS$%F1?$S$1?ZFSS1?$/7/$4%Z$!
+&gt;]?$?FS$$4%$S|k&amp;?$&amp;FkFkF&amp;$/S??\//T\&lt;:?\7?$S1$7$)&amp;%Tk&amp;?$&gt;S$&gt;$]%ZZ$&amp;$\?F:
+7/$4)S($&amp;$%&amp;(&amp;4)S1&amp;66H&amp;6&amp;9&amp;Zk%?\$Z$\&gt;Si:-&gt;`/$$7$$/&amp;$%$SS$\Z$$S&lt;&amp;Z/$$]S|
+4?|$&amp;J%$&amp;|?[$Z$&amp;$&amp;9H&amp;R6H6&amp;9kM%k}S1%&amp;4)&amp;%|. `$\$?F1%&amp;$\$%&amp;$%$&amp;$$/$%F1?$!
+$T)$\\7$$\$$\%}&amp;&amp;9H9HH&amp;HH&amp;H9&amp;R&amp;4S$1%F$S\\1%\$}S$?&amp;%&amp;S&amp;%$&amp;)Z%}$Z{|$Z\$S|
+?Z$/$?[$4%&amp;J%}$H&amp;D6RMH9HR6MHH9HHMMMMMMH$$Z[&amp;4S/$S(k$\$?FS$$?F$4)S$4%&amp;)!
+$/Z&amp;|S1%&amp;|S1?(6H&amp;6&amp;9&amp;HRH9H9HMMMMMMMHRMMMM#$7$$$S1?(}$S$?}Z$4)S$SL&amp;(F$S!
+/$$$%$$$$\$/ZM&amp;&amp;H&amp;&amp;&amp;9H&amp;DM&amp;HMHMH&amp;HH&amp;&amp;$k&amp;?&gt;"#R$S$(/Z&amp;?S4%Z$4)$FS(}Z}Z[$$:
+|&amp;?$$)%$&lt;$?%$6H&amp;SHH9HH6M9RM9&amp;&amp;99&amp;&amp;&amp;1&amp;Sk$:::?Z&amp;$$S}S1?Z\\Z{?$/$\$$/S$\S|
+^/:/Si:\://:S$FRH6H&amp;HM&amp;6&amp;9&amp;$&amp;$&amp;&amp;&amp;$S&amp;$S14%$$F&amp;&amp;9HZ$FS${%&amp;|S}S(k$\|F$$$S|
+:-%:::::&gt;:-/!&gt;SkHHHHDMHFRHFR6&amp;1SF1Z$k&amp;Sk&amp;/c$::&gt;&gt;&amp;&gt;?&amp;$Z$S$$S$$$\$?[$Z$$i
+.':`:::::: :%:S/H&amp;RHM9MS&amp;&amp;Fk6F&amp;&amp;&amp;&amp;&amp;?/Z$(/S|:??::-?:':?\&lt;$]?$$$S$S(k$S$i
+   - - ` ': :b&amp;HRMH&amp;DRH&amp;F&amp;6k66HHH&amp;FH&amp;S${?$%F$?}Z&amp;&gt;+:-   `?$$]?$\%$\$$S|
+     ...   .\|\$RH&amp;9&amp;RHH$kkH1kHFM&amp;R6HH&amp;Z$[\S$S1%ZF$$7/+\\i$\&amp;Z$\Z/&amp;$7?|
+        . . /|?Z?&amp;&amp;1&amp;kH&amp;9kHH1H&amp;H&amp;H1&amp;9kHZ}$?[$&amp;|S&lt;$S(&amp;(\\Z$Z/$4%&amp;//$?F$i
+ . :`.:-.--. - -&gt;Z%6R&amp;91&amp;FFkR&amp;R66&amp;9&amp;kM&amp;}S$S(}S4)\$?FSS$?F$/$$$?&amp;Z?[$$S|
+          '  ` .\c&amp;$RRH&amp;&amp;1&amp;&amp;&amp;1&amp;&amp;9H&amp;R&amp;1&amp;Z?FS$S$$7/{)SZ//Z$/Z$/$1?$4%Z$$!</pre>
 </div>
 <div class="shot" id="s-icon">
 <h3>icon</h3>
 <p>Sun icon format and MacPaint, out and back.</p>
 <pre>pbmtoicon /dd/tmp/base.pbm &gt; /dd/tmp/t.icon
-pbmtoicon: /dd/tmp/base.pbm -
-
-Process   Pid: 5 Invalid sync bytes: corrupted module?
-    Exit code: E_PRCABT(228) Process Aborted
-  Directories: Current   - /dd
-               Execution - /dd/CMDS
-        Files: 00 fPipe /pipe -&gt; '' [wr]
-          #PPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPP</pre>
+stdin:  PBM raw, 48 by 24
+stdin:  PBM raw, 576 by 720</pre>
 </div>
 <div class="shot" id="s-ilbm">
 <h3>ilbm</h3>
 <p>Amiga IFF/ILBM and SGI RGB -- two more machines that had their own idea of a picture file.</p>
 <pre>ppmtoilbm /dd/tmp/base.ppm &gt; /dd/tmp/t.ilbm
-ppmtoilbm: /dd/tmp/base.ppm -
-ilbmtoppm: premature EOF
-pnmfile: EOF / read error reading magic number
-pnmtosgi: /dd/tmp/base.ppm -
-sgitopnm: premature EOF
-pnmfile: EOF / read error reading magic number</pre>
+ppmtoilbm: computing colormap...
+ppmtoilbm: 6 colors found
+ppmtoilbm: BODY compression (byterun1): 6%
+ilbmtoppm: input is a 3-plane ILBM
+stdin:  PPM raw, 48 by 24  maxval 255
+sgitopnm: writing PPM image
+stdin:  PPM raw, 48 by 24  maxval 255</pre>
 </div>
 <div class="shot" id="s-jpeg">
 <h3>jpeg</h3>
@@ -2942,18 +2995,20 @@ pnmfile: EOF / read error reading magic number</pre>
 Bogus data in PPM file
 Not a JPEG file
 Not a JPEG file
--rw-rw-rw-   1 0        0           43008 Aug 27 21:23 /dd/DEMO/gulls.gif
--rw-rw-rw-   1 0        0               0 Aug 27 21:27 /dd/tmp/g.jpg
--rw-rw-rw-   1 0        0          192015 Aug 27 21:27 /dd/tmp/g.ppm</pre>
+-rw-rw-rw-   1 0        0           43008 Aug 27 22:10 /dd/DEMO/gulls.gif
+-rw-rw-rw-   1 0        0               0 Aug 27 23:03 /dd/tmp/g.jpg
+-rw-rw-rw-   1 0        0          192015 Aug 27 23:02 /dd/tmp/g.ppm</pre>
 </div>
 <div class="shot" id="s-lispm">
 <h3>lispm</h3>
 <p>A Lisp machine's bitmap format, and TeX's PK font format, both with readers here.</p>
 <pre>pgmtolispm /dd/tmp/base.pgm | lispmtopgm | pnmfile
-pgmtolispm: /dd/tmp/base.pgm -
-lispmtopgm: bad id string in Lispm file
+lispmtopgm: depth is too large - try reconfiguring with PGM_BIGGRAYS
 pnmfile: EOF / read error reading magic number
-ppmtomap: /dd/tmp/base.ppm -</pre>
+ppmtomap: 6 colors found
+P6
+6 1
+255</pre>
 </div>
 <div class="shot" id="s-lissaj">
 <h3>lissaj</h3>
@@ -2963,48 +3018,48 @@ ppmtomap: /dd/tmp/base.ppm -</pre>
 <div class="shot" id="s-pbmclean">
 <h3>pbmclean</h3>
 <p>pbmclean removes lone pixels from a bitmap -- run here over dithered noise, which is nothing but lone pixels.</p>
-<pre>&gt;$?v??H\&gt;?&lt;\//Z/$&lt;?T:&gt;&amp;??~+\?/|$%/\&lt;:,?:~!$Sb||&amp;?&gt;:?"$/~\?&amp;+/#$?'S/:\7:Zi$?$
-&gt;+::?T/~$??L:i&amp;|)D||$/?{\?\=\\:$&amp;&gt;??????/:)Sq'7:=F:|6?$&amp;~J$??&gt;\|S^?6$\:&gt;$$&amp;:
-&gt;%L:&gt;?$7?qi?\:?||&amp;?)??&gt;:+&lt;$?:|S4\?S/$&lt;$?:?/|&gt;&lt;?$,7??R\,\\+%$?&lt;S,/?Zd\?-$/$/?
-J&amp;$??/?&gt;\?:\(~:%\&lt;?^&lt;&gt;?(+?\:\&lt;&amp;:&gt;&lt;/&gt;?$$~%&amp;/:/\/$:H\/&gt;?H?/7&amp;?~\\'&lt;:/S%?&amp;?$$:&amp;
-?/|?&gt;$~&amp;?$7&lt;d$):\&amp;:$$?|:\:$|?&lt;??(`J#/|||$:v.*|7/$$H:&lt;/:-?&lt;&gt;?&gt;\?Rd:??/S/:{&lt;H.
-}\??ZZ&lt;$\\}7|\\F:~:\?/?:/&gt;|\~%{|\&amp;|&lt;:$v9:S$:&amp;S:?-&lt;/$&gt;/?7&gt;%/$&lt;&amp;R|d`:/S&amp;?\:b\$
-'P?$S&gt;|$/|&amp;/k&gt;&lt;:$&amp;7?ZT{?-$?!/?)??$T?SZ?]\:i&lt;)?}\|:+?\:F:\:Hi/$/&gt;4$4?:&lt;?~?:?S
-?\'\|?c/|\S?$&lt;?b|??Z/+;\&lt;?\$$#\|L\?/?::S%??::?/|i?S|?:/?::|?|\$&amp;$?&gt;/?%?H[$?|
-}/\~:c=?:#\&amp;\\\}$/|?!$?9&lt;::%:$:?/\&lt;?$ZJ:}$c4\\ J?~:\%S&amp;?&amp;&amp;}!J~?:$?\&amp;,$4-:&gt;&gt;$
-?$|?/S}F$?&amp;\&gt;?S:/:b?&gt;^$S$?&amp;?b??|S:$:\$?&amp;\T%$??:`\??b;|:&amp;?|$/:?$/-??\:~7;&amp;?%\
-/,?/(~$?::&lt;$:\\?$&lt;?$&lt;$|$&gt;&amp;v$i:\?//~:(:$|P?Zb?S-Z~&lt;(|Z~$'$?`/F$?&lt;??!/\'?/?&lt;(^
-|&amp;:c?%+&amp;/?+{:&gt;/&lt;.??+?//?($\($~d:?:$1\\&lt;?;/*~7i$/+S/|?$|\J\$/!$?&gt;`\&gt;b$&gt;S??{/-
-/|/$??&gt;/?}$?+:*)S&amp;?\$&gt;??:7&lt;?&lt;?/?/?:&lt;i$&gt;:&amp;ZTZ\/&gt;P?P?:$&gt;Z?/?L&gt;\S-\&lt;$/&gt;'|*:$$/S
-+#|$?&gt;::}??$H4?$&lt;??}?$(?$?/&lt;$|:&amp;&gt;?$'/,&amp;,4d??$?/$v4\/\\i/+?:\|/::?!P?\`+"?v:$
-$|+S$^??\:?c|=:$v~\%/d??/i7?(&lt;$?S\&gt;//(??[?\S4:&gt;\|c\$o$_$??P/$///&amp;'$?/\T://&gt;/
-)||$|-$-\:*?)/!PS&lt;?\&amp;?:c&lt;?iZ77$|7?&amp;?J:$?\?&gt;{?&lt;??$J/\:??$|?(|Z|/7~?~?&gt;&amp;7-v$|H
-:???S&gt;:],7;/$$?/:H\r::=i|'$|$$/,?!$::&gt;Z:?)\\$]:D&amp;cS/&amp;i+|&amp;::\[T,b?$Z$4+&amp;&gt;:/?$
-?i?????7?7|i|:({i$|$|&amp;?S?&amp;$|??:?&gt;?|7~$&gt;??Z:???.?\::(&lt;?|??Z&gt;H\&lt;/b?\~?S?\7\&amp;:v
-\\:\d'P?\|S/?(&gt;`&lt;\??;?'|/-o\?$.::&lt;(q.$&gt;?//\$q~i_&amp;?*$$?$:$?$|H'?&amp;Z&amp;?:'%)$\?\T
-9`/\4:{:/$??S|SP:L//~F&lt;&gt;:&gt;/$:|&amp;$:&lt;%?|&gt;/?Z&lt;&amp;$$(+??%9$?S/$\(+$:$/$~?+":c\|\?/S
-Z&gt;|T?&gt;:+7 |)-$:$\$?&lt;?.&amp;:\/?\S:\:RPd#S:7:/.$|$\/|?$?+%i?&amp;:%\+?$:??&gt;&amp;&gt;&lt;&lt;/:$+:/
-\r'\\\|&lt;:}?&amp;\S:%\|+:+?]/ST|?/^?/$/($(&gt;??:/-/\\?/:d,+&gt;?&gt;:?b7^|:~)$?&gt;\'$//?v/$</pre>
+<pre>?\\7?:$:&gt;S|H&amp;\b\{"//,,?//?&lt;&amp;\&amp;?/7:\$$S]P/d`|||ZZ/?&amp;?:%d:$/}$$\.boS?$'$:|&amp;/)(
+|7\&amp;?|Z?&lt;&amp;$/\#|v?\k/?|$\:\:::Z?$??$&amp;?:\$\1:&amp;??:$/?$$:-?&amp;|$|)ZT?$,.??;$$-?&amp;,b
+($?d%S/?)&lt;/~7$//)|Z|S?~/$|?$&amp;&amp;$??|\//::\:\\}$|!$:}:&gt;b|\|?P:}d\&gt;?:$\:\/{$?$/+
+:b|$:/%4:/&gt;$$:$1d|?S=db/???:?:&gt;?:~P:/'&amp;{$?/:?~d$/??.S?_?.|$?||$?$?&gt;$&lt;~%~$+/)
+:|?$?:i???:$:???Z`v\d$`$&amp;:|:?|o&lt;:$$)+c:+\7&gt;:}/|,}q$":T7SP&gt;c?,$/7:$&amp;$&amp;?$+:pS$
+|;???:?/]:D:$~&amp;&lt;?|)$?*$$&gt;|?$J|$-/+\bb??/:$?c/$:\'\??S&gt;&lt;?\}:$:?$&gt;S/$/&gt;&lt;&amp;:\D&gt;/
+:{TS$?&lt;/%!?:&amp;?$?:'??\1?`:/}4q?\?`:$/|&amp;:\$?:(:|P&amp;&lt;\($v?&amp;{{?p$;??Z/&lt;T|::&gt;?$:Z:
+T$\$i~(Z?!$:%?|&lt;S|\|:$:&gt;?:&amp;:??[|&lt;!/&amp;\/:&lt;$,LZ:L&amp;,$$%\??$??q+H??d?-\\&amp;$\D?$&lt;:?
++?\$????\&amp;$$|7i\Z?D?H~$:T?4/&amp;/\?+???:^&gt;7:?~&gt;:b:$&amp;d/!$&amp;$:&lt;:`?+:4$/{:&lt;?:_b:$i&amp;
+,|$&amp;/\$\:|?(??:?&lt;):?S-$Z?$:S`&amp;?#&amp;v?&amp;:T#$:r?b=':!$+/Z$?k|???:?$~$?{?/:?$&lt;|=Z"
+:|&lt;&gt;$%?$&amp;&lt;|&amp;/;\=?S:/:}.\*v\:7+:$$?&gt;Tk:?&lt;Z:?/?R$?::1?:i\???:/;L?"\$:Z\:d?|?\:
+&gt;$?$,.$Z'6?:?:9:Z~?$,&gt;S:?\\:"d:(://&amp;"$S|`($?;&gt;&amp;'?)?/??:/&amp;:/$\$;b:::Sc:~&gt;\??:
+$//$???&gt;d:/^7?\:+|?://,S+$4;^:SJ?|6:\&gt;&gt;\H&gt;\?F|&lt;\:|&amp;\`%?|$S:D&amp;/&gt;::?&lt;~ZT(T:??$
+/&gt;?$?:/&amp;?$\&gt;^|$?:ZS&amp;?`&amp;&lt;}\P&gt;})&gt;?'&lt;/r||&amp;':|Z$?:}}/:&amp;=/"":/&lt;?:?/-i?d~^i|&amp;&lt;$&amp;?&gt;
+\&amp;$|&gt;|/?:/:L\?\??|?.\4/{,$$:&gt;~d+?(/T&gt;$&lt;+|?|~|:??FP$${\)$S&gt;:/k:??\|Z&gt;S:&amp;:+$Z)
+$p:S/$\]\&amp;:$7|?L$&gt;d?%??|$SS9???\$:Z4\-}&amp;$+$7i(&gt;|&gt;???|&lt;&gt;&amp;/,L$?|?7/d/FS|&amp;&lt;7Z/?
+d?$&amp;&gt;i$|)$S$?\|:$$:?:TP$::&lt;??\?$?$|S?{S||$!?$~7\:$\&lt;&amp;|:?Z:J?\\/$:$/\|[9/D&gt;\%
+|:i|$&gt;?|?+1&lt;|\$$&gt;&lt;.&gt;!*&amp;|/$$\$S_;H??,?:$?/}}c\'$/\$7&lt;/$$;=&amp;~D?&gt;?/$&gt;?|9b~/$H{:
+b/?Z$?//=|SFS/?/?+&gt;:\/$7?&lt;&gt;?::?r&amp;$\$\?[T;Z/&lt;:|S,?///$S:&lt;$$??b\?:/~??~?$\d+^?
+:&amp;$?~%$|??&gt;?,?$$:?&gt;P\T}?/\/:Z~$$/$S$:?&lt;$&gt;~/~|&gt;i)H`/F\:&amp;&lt;o&amp;:&gt;???|?|?L\?|?*|:\
+$\:$???$?"~\|$.|H\$&lt;&lt;?4$#/T4DZ}:&amp;?$|$&lt;$.r&gt;4M{_?:/:/H$:???\$:\?+??S$&amp;/\$^&amp;:&lt;&lt;
+\/Hc&amp;&amp;?`$&lt;:&amp;??c^|:??\\?i^||??:$:\&lt;1?='|.|'&gt;&gt;~$4|$$}/|T'k$\?|$i/$-&amp;?~?b7$'$7:</pre>
 </div>
 <div class="shot" id="s-pbmlife">
 <h3>pbmlife</h3>
 <p>pbmlife runs Conway's Life one generation on a bitmap -- an image tool that is also a cellular automaton.</p>
 <pre>&lt;M/pgmtopbm | /dd/CMDS/NETPBM/pbmlife | /dd/CMDS/NETPBM/pbmtoascii
-"Mooo"MMMoMM oMo   M M M M"M o"MMoMooM"MM"  MMM"" MMMM"MMoM"
-o M o"oooM"" MMMMMMMMMM""M M Mo" MMMMMoMoMM"oo"Mo"" "oM MM""
- MooM MM"ooMoM"MMMMMMMMMMo MMMMoMMMMMMMMMM" "MMMoM"MMMoooM
-""M ""   oMMMMMMMMM"MMM"M"Mo MooM""MMM o M MMMMMMMMMM"ooM M
-""" M M""o  MoMMMMMMMoM ""  M M"oo"MMMMo"MMMM MMMMMooM oM Mo
-oMMMoMoMoMoMo M M""M M MMM " oo oMMMM M M"MM"M "M"MMooo"Mo "
-MMMM ooo"""Moo M"MM"MMMMoo  o"o M MMM MMMMMo" MMoMMoM"M"MMoo
-"MMoooo "MMMMoo ooM"M MMMMMoMoMoMMMo"  MMMMoo" M MMMMM"M"MMo
- MMoMoMo  MMMMMMMoooo MMMMMMMMMMM"M"oMoMMMMMMoMMMMM"M"oMo"M
-oMMoMMMMM M"MMMMMMoMMMM"ooooMo""" "oMMMMMMM"MMoMooMo"""M Mo
-oMMM"oM"MMM""oMMMMM"M"MMMoooM"""MoMooMMMM"" M"M"o "  MMM"oo
-M""ooMoMMMo"MMoM ""M"M"MMoo MM"MMMMMoMooo"MoM M M"MMMMMM"oo"
- MooMMMM " "MMMMMMM"o" "ooM"MMMMoMMMMMMoM"MMM M M"MMMMMMM"o
-o"MMMMMM"""MMMMM"MMM Moo""M""oMoMoooMMMMMM oM M"""ooMoM"M""o
-o""M"""""""""oMM""""o """MMooM "MM "o""" """""  o" "  o""""o</pre>
+ooooMMMM""""ooooMo"""Moo o MoM MoMoMM""MooMMoo M """oooMM"M"
+  Mooo M MoMoM"o oMMooMMM"MMMMoMMMMMoM M"M"oo"o""MMoMo"" oM
+M MMoMMM"M"MMooMoMMMMo"MMMMMMM "oo"MMMoo"""MMoM "MMMMM M M"M
+"oMMMMMMM"o o oMMMMoo""M""M"MoMMooo oMMMMMM" ooMMMoooMM" M
+ M ""MM"oMMoMoMM"M "oo" ""MMMMMM ooMMMMMMM"M"MMMM"MooM o   M
+o"""M"MMMMMMMMMM""M"o  o"M""MMMMMoooM""MMooMM"" M"" " MM"M "
+o"MMMMMMMMMMMoM """ ""M"MMMM ""MMMoooM"MM MMM"MoM"o  M Mo"
+ MMMMMo"M M"oo oMM ""M MMMMMM"""MMMMoMM" oMMM"""M  "MMMM"" M
+ MMMMooM" "oMMoMo "MM"M"MMMooo""oM o"MMM"  M MMMMo"M"" M"M "
+"MooM"M"M Mo M"MMo "MM"M"M "oo"M o"" MMM""MoMMMMoM"M"MMoM"oo
+Moo MoM MM ooo"M Mo" M"M M"Mooo"MMM"MoMM"MMMMMo"oM"MMMoo" "o
+ o" ""MMMooMMMMMM""MMMo M""MooM""oMMMoMMMMM o Mo "M"MMoooM"o
+ M MMMMMMo"""M"MM"""""" oo"MMMMM"MMM"M  " MMMM"M oMMMMMM"M"o
+ ""MoM MMMMo M"MMMM"MM"" o MMMoo"MMMM MMoMMM"" o M""MMMMoM""
+ "" M ""M" M"""MM M"M"Mo oMM""o  "M"MM"MM"M    M "oMo "MMM"o</pre>
 </div>
 <div class="shot" id="s-pbmmake">
 <h3>pbmmake</h3>
@@ -3065,88 +3120,94 @@ o""M"""""""""oMM""""o """MMooM "MM "o""" """""  o" "  o""""o</pre>
 <div class="shot" id="s-pbmupc">
 <h3>pbmupc</h3>
 <p>pbmupc draws a real UPC-A barcode from its digits.  Rendered here through pbmtoascii, the bar widths are the code.</p>
-<pre>        M  M oMM"M o "o"oMM  M M  M Mo oMM M M" oMMo "Mo MoM M"o "  M"
-      "o" oM" MMoM M "M"oMM" "oM  M"oM oMM M MM oMM o"M oM M "M" "  oM
-      o M  M"oMM M o "M"oMM  M M  M Mo" MM o"Mo "oMo oM" M"M MoM M  o"
-      o M oM oMM"M " M"oMoM" "oM  M"oM "MM M M" M"Mo "Mo"M M oMo "  M"
-      o M  M" MMoM M "M MoMo M M  M MoM MM M MM MoMo" M oM"M o"o M  oM
-      o M oM"oMM M " "M"oMM  "oM  M Mo oMM M M"  MM o"M oM"M "Mo "  o"
-        M  M oMM"M M MoM"oM" M M  M"oM oMM M MM "MM o"M oMoM Mo" M  M"
-      "o" oM" MMoM o oMo"MM  "oM  M Mo" MM M M" MoM o"M oM M "oM o  M"
-      o M  M"oMM M M  MoM"Mo M M  M"oM "MM o"MM oMM" oM" M"M M"o "  oM
-      o M oM oMM"M o M"o"MM  "oM  M Mo" MM M Mo "oMo" M" MoM "Mo M  o"
-      o M  M" MMoM " "M"oMM  MoM  M"oM "MM M M" M"M o"M" MoM "oM o  M"
-      o M oM"oMM M M Mo"MoM" ooM  Mo"M "MM o"MM "MM o"M"oM M M"o "  oM
-        M  M oMM"M o Mo"MoM  M M  Mo"M "MM M M" MoM" oM oM"M M"o M  oM
-      "o" oM" MM M " oM"oMM" o"M  M "M oMM o"MM  MMo" M oMoM "Mo "  o"
-      o M  M"oMM"M " oM"oMM  M M  M"M"o MM M M" MoM "oM" M M Mo" M  M"
-      o M oM oMM"M M oM"oMM  M M  Mo"M oMM M MM oMMo" M"oM"M oM" o  oM
-  o o o M  M"o "oo o o oo o oooo o o M o o o o o  o o  oo   o  M "  oM o oo
-  "  M o"  M "  "    o "oo" o  oM  o M  M  " M  M "  M  M   "  o "  o" "oo"
- "o  "         M   o"  M  M  "M "  o    "  o"o  M "  o  o   "o         "  M
-  """             """" " ""  "   """     ""   ""  """   "              "" "</pre>
+<pre>        M  M oMMoM o oMo"MM  M M  M"oM "MM M MM MoM" oM" M"M M"o o  o"
+      "o" oM" MM M " o"oM"Mo "oM  M Mo" MM o"Mo MoM" oM"oMoM o"M "  M"
+      o M  M"oMM"M M "Mo"MM  "oM  M"o"o"MM M MM  MMo" M oM M "Mo M  oM
+      o M oM oMMoM " Mo"MoM" M M  M MM oMM o"Mo M"M o"M oM"M Mo" o  oM
+      o M  M" MM M M oM"oMMo "oM  M"o"o MM M M" oMM o"M oMoM "oM "  o"
+      o M oM"oMM"M o "oM"oM  M M  Mo"M oMM M MM MoM" oM" M M M"o M  M"
+        M  M oMMoM " Mo"M"Mo "oM  M M"o MM M M" o"Mo" M"oM"M "Mo "  oM
+      "o" oM" MM M M oM"MoM  M M  M"oM "MM M MM "MM o"Mo MoM Mo" M  o"
+      o M  M"oMM"M o "oMoMM" "oM  Mo"M "MM o"Mo MoM o"M oM M "oM o  M"
+      o M oM oMM M M "oM MM  M M  Mo"M oMM M M" oMM o"M oM"M M"o "  oM
+      o M  M" MM"M o M"oM"Mo "oM  M M"o MM M MM oMM o"M oM"M M"o M  oM
+      o M oM"oMMoM " "Mo"MM  M M  Mo"M oMM M M" oMM o"M oM M oM" o  o"
+        M  M oMM M M Mo"MoM" "oM  M M"o MM M MM oMM o"M "MoM "oM "  M"
+      " M oM" MM"M o oM"oMM  M M  Mo"M oMM M M" o"Mo "M"oM M M"o M  oM
+      o"o  M"oMMoM " oM"oMMo "oM  M M"o MM M MM "MM "oM oM"M "Mo "  o"
+      o M "M oMM M M o"M MM  M M  Mo"M oMM M M" MoM" oM oMoM Mo" M  M"
+  o o o M  M"o "oo ooo o" o oooo o o M o o o o"o  o"o  oo   o  M o  M" o oo
+ o"  "o " "M o  M    o "oo" o  oM  " M  M  " "  M o  M  "   "  o "  o" "oo"
+  o  M         M   o"  M "M  "M M  o"   "  M M  M o  "  M   "          M  M
+  """             "" " " "   "   ""      ""   ""  """       "           ""</pre>
 </div>
 <div class="shot" id="s-pcx">
 <h3>pcx</h3>
 <p>PCX -- the format every DOS paint program wrote.</p>
 <pre>ppmtopcx /dd/tmp/base.ppm &gt; /dd/tmp/t.pcx
-ppmtopcx: /dd/tmp/base.ppm -
-pcxtoppm: unexpected end of file
-pnmfile: EOF / read error reading magic number</pre>
+ppmtopcx: computing colormap...
+ppmtopcx: 6 colors found
+pcxtoppm: Version: 5
+pcxtoppm: BitsPerPixel: 1
+pcxtoppm: Xmin: 0   Ymin: 0   Xmax: 47   Ymax: 23
+pcxtoppm: Planes: 3    BytesPerLine: 6    PaletteInfo: 1
+pcxtoppm: 16 color -&gt; ppm
+pcxtoppm: done!
+pnmfile: bad magic number - not a ppm, pgm, or pbm file</pre>
 </div>
 <div class="shot" id="s-pgmbentley">
 <h3>pgmbentley</h3>
 <p>The Bentley effect: brightness carried by how tall each pixel is.</p>
-<pre>MMMMMMoMM"MMMMMMMMMoMMMMMMMMM"MMoMMMMMMM"MoMMMMMMMoMoM"MMoM"MMMMMMMMMMMMMMMMoMoo
-MMoM"MMMMMMoMMoM"MMMoMMM"MMMMMMMMMM"MMoMMM"MMoMMMMMMMoMoM"MMMoM"M"MMMMMMMMMMMMMo
-MMMMMMMM"MMMMMMMMMoMMMoMMMMMM"MoMoMMMM"MMoMM"M"MoMMMMMMMMMoM M"MMMMoMM"MMMMMMMM"
-MM"MMoMMMMMMoM"MMMM"MMMMoMo"MMM"MMM"MMMMMMMMMoMM"MoMoMM"MMMMMMMo"o"M"MMMoMoMoM"o
-MMMMMMMM"MoMMMM"MMM"MoMMMM"MM"MMMoMMo"M"MoMoMMMoMo"M"MMM"M"MMMMMMMMoMo"o"o"M"M""
-MMM"MoMMMMMoMMMMMoMMMMoMoMMMMMoMMMM"MMMMoMMMMoMMMMMMoM"MMMMMoM"MMMMMMMMMMMMoMoMo
-MMMMMMMMMoMMMoMMoMM"MM"M"M"MoMoM MMMMo"MM"o"MMMMoMMMMoMo"o""MMMMoM"M"MMMMMMMMMMo
-MMoMMoMMoM"MMoM"MMM"oMMMMMMoMMMMM"oMMMMMoMMM"o"MMMoMoMMMMMMMo"o"M"MMMMoMoMo"M"M"
-MMMMoMMoMMMMM"MM"oMMMoM"MoMMo"oMMMMoM MMMMMoMMM"o"MMMMoM"M"MMMMoMoM o"M"MMMMMMMo
-MMoM"MoMM"oMoMM"MMoMMMM"oMMMM"M"M"MoMMoo"MMMMoMMMMo"o"M"MMMo"M"MMMMMMoMoM "o" Mo
-MMMMMMoM"MMoMMM"M"Moo"MMM"o"MMMMoM"MMMMoM"o"MMMoMoMMMoMoM"MMMMMoMo"M"MMMMMMMMMoo
-MMoMMoMM"MoMo"M"M"oMMM"M"MoM"M"MoM"o""MMM""M M MMMoMo"M"oMoo" MMMMMMMoMo"M""M""o
-MMMMoMMoMMoM"MoM"MMoM"M MMMMM M"MMMoMMo""MMM""M" "MMMMMM"M"MMMo "o"M"MMMMMMMMMMo
-MMoMMMoMoM"M"M"oMMM M"MMMo"oMMM"o"MMMoM"MM"MMMMM"M" o"M"MMMoMoMMMMooMo "o o"M""M
-MMMM"MMoM"M"M"oMoMoM"M"o"oMoM"MMoM M"MMMoo"o"M"MMM"M"oMo"M"MMMMoMoM""MMMMMMooMoo
-MMoMMM"MMM"MoM"o"oM"oMMoM"M"o"o"MMMo" M"MMMoMoo"M"MMMoMoooMo o"MMMMMMooooMoM""MM
-MMMMMMMMMoMMoM"oMo"M"oMoMo"oMMMM oMMMM o"MMMoMoMoo"M"MMMoMo"""oo o"M"MMMMMMMMMMM
-MMoMMoM"MMoMoM"oo"oM M M M"M ooMoM M"MMMoo" MMMoMoMoo"""MMMMMMoM""ooo"o o o""""o
-MMM"MMMMM"MMoMMoM"o"M"oMoM"MoMoo"Mo" """MoMo" oMMMooM" "o ""MMMMMMMoo""""""oMoMo
-MMMMMM"MMM"MMoMoM M"o"o"ooMoo"Mo" MMMMo" MMMoMoo "MMMMMMoM"o" o"""MMMMMMMMMoooo"
-MMoMMMMM"MMM"MM"MMo"o"o"o"o"o" M"M o""MMMo "MMMooM o M""MMMooo" "oo """"MMMMMMM"
-MMMMoMMMMMMMM"MMMMMMMM M o"oo"M M"Moo" o"ooM o MMMoooo """"MMMMMMooo"" "  " o ""
-"" """ "" """"" "" """""""""""""""""""""""""""""""""" """"""""""""""""""""" """"</pre>
+<pre>MMMMMMMMMMMMMMMMMMMMoMMMMMMMM"MMoMMMMMM"MoMoMMMMMM""M"MMoMoMMMMMMMMMMMMMMMMMMoMo
+MMMoMM"MMoMMMMoMM"MMMMM"MMMMoMMMMMMM"MMMoMMMMoMMMMMMMMoMM"MMoMo"M"MMMMMMMMMMMMMo
+MM"MMMMMMMMoMMMMMM"MMMoMMMMMM"MoMoMMMM"MMoMoM"MoMoMMMMMMoMoMo"MMMMMoMM"MMMMMMMM"
+MMMMMoMMoMMMMMoMMMMM"MMMo"oMMMM"MMM"MMMMoMMMMoM"M"MMoM"MMMMMMMM Mo"M"MMMoMoMoM"o
+MM"MMMMMM"MoMMoMMMM"MoMMMMM"M"MMMoMMoM"MMMoMMMMMMoM"MMMM"M"MMMMMMMMoM M M M"M"M"
+MMMMMMoMMMMM"MMMo"MMMM"oMMMMMMoMMMMM"MMo"MMMoMoMMMMoMM"MMMMMoM"MMMMMMMMMMMMoMoMo
+MMMoMM"MMM"MMMoMMMM"MMMM"M"MoMoMo"MMMM"MM"o"MMMMoMMMMoMo"o""MMMMoM""MMMMMMMMMMMo
+MM"MM"MMoMMMMoM"MMM"o"MMMMoMMMMM"Mo"MMMMMMMM"o"MMMoMoMMMMMMM M M"MMMMoMoMoM""M""
+MMMM"MMMoMoM"MMM"oMMMM"M"MoMo"oMMM"Mo"M"MoMoMMM"o"MMMMoM"M"MMMMoMoo"o"M"MMMMMMMo
+MMM"MMoMM"M"MoM"MMoMMMM"oMMMM"M""MMMoMMo"MMMMoMMMMo"o"M"MMMM"M"MMMMMMoMoM "o" Mo
+MMMMMoMMoMMM"MM"M"Moo"MMM"o"MMM"MoMMMMoM""o"MMMooMMMMoMo"M"MMMMoMo"M"MMMMMMMMMoo
+MMoMMoMoM"MoM"M"M"oMMMM"MMoMM"MMMo M MMMM"M"o"oMMMooM"M"MoM o""MMMMMMoMoM""M""Mo
+MMMM"MoM"MoM"MoM"MMoM"o"oMMM M MMMMMoM M"MMM""M "oMMMMMM"M"MMMM o""""MMMMMMMMMMo
+MMoMMMM"MoMM"M"oMMM M"MMMM MMMMo"oMMMoM"M""MMMMM"M M "M"MMMoMo"MMMMoM o o" M""MM
+MMM"MMM"MoMoMM"MoMoM"M"o"oMo"M"MoM M"MMMMo"oM""MMM""MooM"""MMMMMoo"M"MMMMMMooMoo
+MMMMM"MMMoMo"oM Mo"oM"MoM"M"M M"MMM M M"MMMooMo"M"MMMoMoMoMo ""MMMMMMoMoooM""""M
+MMM"MMMMMoM"Mo"M M""MoMoMo"oMMMo"oMMMo M MMMoMoMoo"M"MMMooo""Mo"  M""MMMMMMMMMMM
+M"MMMMoMM"MMMo"M M"o"o"o"""M M Moo"M"MMMo" "MMMoMoMoo"""MMMMMMo"M"oMoo "  """"Mo
+MMMMoMMMMMMMoMMM M"M"oMoMM"MoMo""Mo M M"MMoMo oMMMooMM " "o"MMMMMMooo""M"M"Moooo
+MMM"MMoMMoMMMoMoMo"o"o"o"ooMoM"Mo MMMoo" MMMoooo "MMMMMMo""o"o "M"MMMMMMMMMooMo"
+MMMMMMM"MMoMMM"MM"Mo"o"o"o"o o"""M o""MMMo oMMMooM o "M"MMMooo"o o" o"""MMMMMMM"
+MMoMM"MMM"MMoMMMMMM"MMo"oo" MM"""""oo" o"oooo" MMMoooo o""MMMMMMMooo" " o  o  M"
+"""""""""""""" """"""" """""""""""""""""""""""""""""" """" """""""""""" """ "" "</pre>
 </div>
 <div class="shot" id="s-pgmcrater">
 <h3>pgmcrater</h3>
 <p>pgmcrater drops craters at random and shades them -- a whole moon out of a random number generator.</p>
 <pre>pgmcrater -number 80 -xsize 152 -ysize 88 | pgmtopbm | pbmtoascii -2x4
-????????????????????????????????????????????SSSSSSSSSSSSSSSSSSS?SSSSSSSSSSS1
-SSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSS1
-SSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSS1
-SSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSS1
-SSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSS1
-(((((((((((((((((((((((((((((((((((((((((((((((((((((((((((((((((((((((((((1
-|SSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSS&gt;????????????????????????1
-?????????????????:c(&gt;&gt;))))))))))))))))?%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%&amp;
-%%%%%%%%%%%%%%%%%?%|?Z????????????????&lt;%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%&amp;
-%%%%%%%%%%%%:??????S?|||||||??%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%&amp;
-%%%%%%%%:???????????????????S??????\\\\\\\??:%%%%%%%???:%%%%%%%%%%%&gt;?%%%%%%&amp;
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%&gt;?)?%%%?((&lt;%%%%&amp;
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%?((&lt;%%%%%%%%%%%&amp;
+%%%%%%%%%%SSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSS%%%%%%%%%%%%%%%%%%%%%%%&amp;
+%%%%%%%%%%SSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSS%%%%%%%%%%%%%%%%%%%%%%%&amp;
+%%%%%%%%%%SSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSS%%%%%%%%%%%%%%%%%%%%%%%&amp;
+\|||||||||((((((((((((((((((((((((((((((((((((((((((%%%%%%%%%%%%%%%%%%%%%%%&amp;
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%&gt;??SSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSS1
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%?(((((((((((((((((((((((((((((((((((((((((&amp;
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%&gt;??????%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%&amp;
+%%%%:???????????????????????S????|7?i\))?%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%&amp;
+%%%%%%%%%%%%%%%%%%%%%%%%:?????????/(&gt;$||/))))))))))))))))))))))))))))))))))]
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%:SSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSS1
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%?((((((((((((((((((((SSSSSSSSSSSSSSSSSSSS1
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%:???????SSSSSSSSSSSSSSSSSSSS1
+%%%%%%%%%%%%%%%%%%%%%&gt;????????????????????????????SSSSSSSSSSSSSSSSSSSSSSSSS1
+%%%%%%%%%%%%%%%%%%%%%?((((((((((((((((((((((((((((((((((((SSS:?////??SSSSSS1
+\|(&lt;%%:?)?%%%%%:?))))))))):???????????????????????????////???????????????SS1
+%%%%%%Z??&lt;%%%%%?(((((((((((((((((((((((((((((((((((((((((((((((((((((((((((&amp;
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%&amp;
-\|%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%&amp;
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%&gt;???%%%%%%%%%%%%%%%%%%%%%%%%%%%&amp;
-%%%%%%%%%%%%%%%&gt;???????%%%%%%%%%%%%%%%%%%%%%?((((((((((((((((((((((((((((((&amp;
-%%%%%%%%%%%%%%%?(((((((%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%&amp;
-%%%%%&gt;?)?%%%%%%%%%%%%%%%%&gt;??%%%&gt;?%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%&amp;
-%%%%%?((&gt;))):????????????S???????:?S:%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%&amp;
-%%%%%%%%????????????????????????????&lt;%%%%%%%%%%%%%%%:?S:%%%%%%%%&gt;???))?%%%%&amp;
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%:????):????????SSSSS1</pre>
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%&amp;
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%&gt;?))?%%%%%%%%%%%%%%%%%))))))))))))]
+%%%%&gt;??????????%%%%%%%%%%%%%%%%%%%%%%%%%%&gt;////?????????????????SSSSSSSSSSSS1
+%%%%?((((((((((%%%%%%%%%%%%%%%&gt;?)?%%%%%%%?(((((((((((((((((((((((((((((((((&amp;
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%?((?||\%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%&amp;</pre>
 </div>
 <div class="shot" id="s-pgmedge">
 <h3>pgmedge</h3>
@@ -3188,71 +3249,85 @@ pbmtoascii: EOF / read error reading magic number</pre>
 <h3>pgmoil</h3>
 <p>pgmoil paints the photograph again as if in oils -- each pixel becomes the commonest value around it.</p>
 <pre>pgmnorm: remapping 57..227 to 0..255
-/|??:&gt;\//\(/)|:/(/iS:|?:&gt;/:'-%:S;:?:||?:/|i\:iS:|&gt;\|?:/|&lt;:?&lt;\\(&lt;\/;:??
-:(//:\|??/\%:?:?\\(//:/|'`    ` :Si&lt;;:|&gt;|;:|&lt;&gt;\//:):?|::|?:i?&lt;\/:?:&gt;|::
-\///\\)!/?/i?\|?):&gt;iS-`.-.,|:&gt;-  `/)!/:iS//:i(?!/i(:|?:(//:/S/\\\&lt;//S/'
-|!/i?)!/:|S&gt;\\\\?!:|:;.:/;:&gt;//S&gt;: ``:?:%/\//S|:S!:&lt;:?:i\\&lt;/\:?|:?i\/\&gt;:
-|:?|:\|?\\&lt;;?|:?:%!::&lt;;:|?|:&gt;\/&gt;?\/:?/\\\\\:/&lt;\//\\!|&lt;\\//&gt;\//)!&lt;:S:&lt;::
-?:%:?S!:?\?\\&gt;|:):%::S//\?\??\\?;\&amp;bS!/i%\;:?:&gt;\&gt;:/&gt;S:%|:?i&lt;;&gt;\\|?\\|?-
-S\\:|?:&gt;\&gt;|;:|?:&gt;|::::.'?|:/|;S$S:(?d%\|&lt;\?|:&gt;\&gt;\:|%!/i%!&lt;:|&lt;//\&lt;//&lt;\/.
-:|?)!&lt;\&gt;i?:?|:?:&gt;:'.-:`:.:-///T/?|::?|74&gt;H/:?!&lt;\%\\\:S|:S:\/&gt;\&gt;:/\?:\::
-\\\?:&gt;?\?:S/\//:::::`.: :-:-::S:\|?:i%!/|TH//::|S|:/\?:%|;:\\:?&lt;;:\\\::
-|:%|:&gt;:(/)\&lt;//&gt;:-:-.:-: ::.'.:(/:&lt;:(::i?\\|?:/;S!/)!/:/&gt;\/S:i?\%|:&gt;\:?
-?&lt;/:)//\\\\\&lt;/:\--:.-:..-: :.'         %\:|?!:|(/:?|:i(:|??:&gt;|:&gt;/\//:?
-S?:S/:/|&lt;\/&gt;\/S.`.:-:.:.-`:`.`          -):|::??\\/S:?:|?:&gt;?\\\\\\\:S/'
-S&gt;\//)//\\\%:?:\:.-:.-:`.- :. -`..\:::,\?.\|;&lt;/!:\\?:&gt;)!&lt;|:/|&lt;\\(&lt;|:S!.
-|;/|&gt;??!&lt;\/&gt;\':::::.-: :.'::.:://:::&gt;:///H(\/S//&gt;?\\/S//\?&lt;|:?\&lt;|::?/(.
-$\\$?&amp;$S\\H]::::..-.-.-. :-::::\://::/:?&lt;::\:.:S\/|&lt;|:/S/\\\\?|:&gt;\//\&gt;.
-H$&amp;S&amp;&amp;$&amp;F&amp;&amp;&amp;&gt;Z:;-. : -:-:.':::&gt;i.//&lt;:/&lt;|;:\b\$$?d?/&lt;:S:&lt;:?:\\/i%!:S:i%'
-MH&amp;6kM&amp;S6$M&amp;1\/&lt;:-:.: -:::.:::\-\\&lt;:iS&lt;:|S?/::\?$&amp;&amp;&amp;bZ?//S|:/S;:\\;:(/:
-MMMHMHM&amp;HM&amp;M&amp;&amp;`.- .-.':::-::\.-:.`:`:\S:%/?:/|%:&gt;\?:Z&amp;H&amp;S;&gt;\(\!?:|&lt;\:i:
-MMMMMMMMMMHHR|S:::-: ::\:':::.`.:`..::`&lt;/:)::\\:\\//:?:&gt;:\&gt;iS?|:\/&gt;\:\-
-MMMMMHMHRM9M9Db\:\:::.:::.:::::::.::-://\\\!?|;?|:\(?|:i?&gt;\/S/\/|:S!/\:
-MM9H9M&amp;MR6HH9MH#}?i:::::\:.::.-::.::: /?/\//):&gt;\%//i(//:S!:?|:?\\|SS!/:
-MMMHMHMHMMMMMHMMHZ\:.:-::::-::`::: :::::\|%|:S!&lt;:?\/|?:\?&lt;:?:?!:\\S:%::</pre>
+?&lt;/\?/iS//&gt;?\?:S/\&lt;///S|:/:`:?|:?:?|:&gt;\|?:/&gt;\//\|?&lt;:?/iS?:&gt;|;:|?:\\\&lt;/.
+S?!/?//\/;&gt;:(/)\&lt;//\&gt;|;-'`      '|&lt;:S/(//\&lt;//S;&gt;\\&gt;\?&lt;:?:|?|!:?i:|%\/\-
+?\?||:%:?:/&lt;:?\\\\/&gt;?':. :\/&lt;\:  -\:|:\\:i??:&gt;/\:S/|&lt;\::(//\:|??|?/\//'
+|i&lt;/\\\\\/S/\?/iS:|(.:/:\:\:\&lt;:|&gt; -\/;:??:&gt;\/?:&gt;\/&gt;S!:?|:\%:|?:&gt;\(/;//.
+S&gt;\/S/\:|?S!/iS&lt;;S!/:::&lt;|:\?::|?S\\-%:S;/\\:?\&gt;:?\;&lt;|:&lt;;:|&gt;\(\?\\|?&lt;/!.
+::|%\//\\\//|&lt;\%/\\/&lt;\&lt;/\://)|i:?:&amp;$&gt;:/\?:&gt;:/&gt;!|S&lt;;:%|;&lt;/:?\:?:%:S;&lt;:i:
+?)!:?|:i(\?\//\&lt;\&gt;\-:/:`&gt;\:?\|$&lt;S/\$&gt;?$&lt;\/;&gt;\&lt;:S!:?|::S:/;S:%/\|?:?i\?
+/i?:i?|i:|S&lt;//\&gt;:)':.::`.:.///|?&lt;;&lt;;:/$&gt;1&amp;&gt;://\\\/i/S//&gt;\(/):%\/;&gt;:\\::
+)!/i(/)\&lt;//(/i%:S-:-:: :-:.-:\//S!:S;&lt;;&lt;/&amp;#?\?|:/S|:/&gt;Si\/S/\\/;:(&lt;:ii:
+S?!:|?:i?)!/)!/)'.:.-:.':-::.:&lt;::&gt;\&lt;;:/;S:&gt;|:\//S;:??|//\?\:\&gt;\//&gt;\&lt;:|.
+|/\:S&lt;/:?!:|?:S/.-.-.':.-:.: :'       `///Si\:iS\Si&lt;|:/&gt;!|?|:?\:|?:S/!.
+?!&lt;\/S:|?|i&lt;/\::::.:-:-:.-.-.       .  `-//&gt;\//\\:|?\:i|&lt;\\?&lt;i&lt;//&gt;\:|::
+//&gt;\\&gt;i?/S&gt;\\\\.::..-.:. : :.` .-:;.:\.\?:-\\\://\\\&gt;iS//&gt;\//&lt;|:/|?:S/'
+):?:i|/&gt;\(\\(:::`:::.-:.- ::./\:&gt;:/::&gt;//!&amp;(&gt;::|?/|&lt;\\(/i(//S/\:?|::i(/.
+$\\$?$$\\S$&amp;::::-.:-.`...-::.&gt;::\:S::S:\::&gt;\::&lt;|:://\/?:&gt;\//:iS:|S/\\/.
+6&amp;&amp;Z&amp;&amp;&amp;ZRH&amp;1&gt;?:::: : -. -::\:-::/::/:&lt;:i%;:b$\$%ZZ:S:?!?\\\/;:\\\/&lt;:S!.
+6MR6&amp;H&amp;11&amp;&amp;11&gt;/&lt;:.-.':.:-::::-:-\\:///|(\\:?:/i$&gt;&amp;M%H&lt;?//\:?!:\\&lt;\:\?::
+MMHMHMH96MH1kD:-. -:- :/: :::: :..-:'/&gt;\|?:/|&lt;:?::/??HHH;:|%:&gt;)::?/\?::
+MMMMMMMMMMHHH?/&lt;:.: :.:::::/.:::.-:.:::|?\/&gt;:\\\?:S/\::&lt;?:&gt;:?\///&gt;\%/::
+MMMMMMRM9RM9M&amp;&amp;);::::::\: :::.:-:::: :/\\\&lt;//\//\\\//:i|&lt;:?Si&lt;//&gt;\:/??
+MM9H&amp;RMH6H6M&amp;MHH&amp;?|::::-/:.:/:.:.: ::\::/&gt;?\?|\//\///\&lt;;&gt;\:/:?|:i?:|??
+MMMHM6MMMMMHMM9HH?::::::.::\:`:::.:-/:::?|//\\\\//S/\\\&lt;;:|?:i?|;//S/\-</pre>
 </div>
 <div class="shot" id="s-pgmramp">
 <h3>pgmramp</h3>
 <p>A greyscale ramp dithered to a bitmap: the gradient survives as the density of the characters.</p>
 <pre>&lt;mp -lr 152 44 | /dd/CMDS/NETPBM/pgmtopbm | /dd/CMDS/NETPBM/pbmtoascii
-MMMMMMMMMMMMMMMMMMMMMMMMM"MMM"M"M"M"M"M"M"MoMMo"Mo"MoM"oM"oMo"oM"o"o"o"o"o"o"o"o
-MMMMMMMMMMMMMM"MMoMMoMMoMMMoMMM"MM"MM"M"M"oMoM"M"oM"o"M Mo"o"M M M"oM Mo"oM M Mo
-MMMMMMMMMMMM"MMMMMM"MoMMMoM"MoMM"M"MoMMM"MoMo"Mo"Mo"M"oM"oM"o"M Mo"o"o"o"oo"o"oo
-MMMMMMMMMoMMMMMoMMMMM"MoMMMM"MoMMM"MoMo"MoMoMM"oMMo"M"o"M M"oM"oM M"o"o"o"o"o"o"
-MMMMMMMMMMMMM"MMMoM"MMMMo"MM"MoMMoMMoM"MoMoMoM"oMo"M"M"oM"oMo"o"oM M"o"M M M M "
-MMMMMMMMMM"MMMMM"MMMMMoMMMMM"MoMoMo"MoMMo"oMoM"oMoM"oM"o"M M M"oM Mo"oM M M M Mo
-MMMMMMoMMMMMMM"MMMMoM"MoMMoMM"MoMMM"MoMoM"M MoMM Mo"Mo"M"oM"M Mo"o"o"o"o"o"o"o""
-MMMMMMMMMMMMMMMMMoMMMMMMoM"MM"MoMoM"MoMoMM"MoMoM"Mo"Mo"M Mo"oM M"oM"o"o"M M M Mo
-MMMMMMMMMoMMoMMM"MMoMMoMMM"MM"MoMM"M"oMoMo"Mo"oM"oM"oM"M"o"M M"oM M M"o"o"o"o"o"
-MMMMMMMMMMMMMMMMMM"MMoM"MM"MM"MoMM"M"MoM"M"Mo"Mo"Mo"M Mo"M"oM"o"oM Mo"o"oM M M o
-MMMMMMoMMMMoMMoMMMMMM"MMMM"MM"MoMM"M"Mo"M"MoM"Mo"Mo"M"oM"oM Mo"M M M Mo"o"o"o"oo
-MMMMMMMMMMMMMMMMoMMM"MMoMM"MM"MoM"M"M"M"M"oM"Mo"M"oM"M M"o"M Mo"M M"o"o"o"o"o"oo
-MMMMMMMMMoMMMoMMMMoMMMMM"MM"MM"M"M"MM"M"M"Mo"MoMM"oM"M"oM"oM"oM M"o"oM Mo"o"o"o"
-MMMMMMMMMMM"MMMMoMMMMoM"MM"MM"M"MM"MoM"M"Mo"MoMoM"oMo"M M"oM Mo"oM"o"o"o"o"o"o""
-MMMMMMoMMMMMMMoMMMoMM"MMMM"MM"MM"M"MoMMM"MoMMo"oM"oMo"M"oMo"M Mo"o"oM Mo"o"o"o"o
-MMMMMMMMMMM"MMMM"MM"MMMoMMM"MM"M"M"MoMo"MoMoMoM"oM"oM"oM Mo"oM M"oM M M M M M M"
-MMMMMMMMMMMMMM"MMMMMMoMMoMMM"MM"MM"MoM"MoMoMoM"Mo"Mo"Mo"Mo"M M"oM M M"o"oM M M "
-MMMMMMMoMMMMMMMMMoMMM"MoMMoMM"M"MoMMoM"Mo"oMo"Mo"Mo"Mo"M M"oMo"oM M"o"o"o"o"o"oo
-MMMMMMMMMMoMMMMoMMMoMMM"MoMM"MM"MoMoMM"MoMMo"Mo"Mo"Mo"Mo"Mo"o"M M Mo"M M M M M o
-MMMMMMMMMMMMMoMMMMM"MM"MMM"M"MM"MoMMo"MoMo"M"Mo"MoM"oMo"M M"o"oM"o"o"o"oM M M Mo
-MMMMMMoMMMoMMMMMoMMMMMMMoMMMM"M"MoMoMMMo"M"M"oM"oMoM"o"Mo"M"oM Mo"M Mo"o"o"o"o"o
-MMMMMMMMMMMMMoMMMMoMMoM"MoMM"MM"MoMoMoM"M"M"M"oMM Mo"M"o"M Mo"M M Mo"o"oM M M Mo</pre>
+MMMMMMMMMMMMMMMMMMMMMMMMM"MMM"M"M"M"M"M"MoMM"MoM"Mo"Mo"M"oM Mo"oM"oM M"o"o"o"o"o
+MMMMMMMMMMMMMMM"MMoMMoMM"MMoMMMMM"MM"M"MoMoM"oMo"Mo"Mo"Mo"oMo"M M M Mo"o"o"o"o""
+MMMMMMMMMMoM"MMMM"MM"MoMMMoMMoMoMMMoM"MoMoMoMMo"MoM"oM"oM"oM Mo"M Mo"o"M M M M "
+MMMMMMMMMMMMMMM"MMMMMM"MoMMoMMoMoMoMMM"oMo"oMoM"oMoM"oMo"oM Mo"M Mo"o"o"o"o"o"o"
+MMMMMMMoMMMMMMMMMMoMM"MMMoMMoMMo"MoMoM"MoM"M MoM"oM MoMo"M Mo"oM"o"o"M Mo"o"o"oo
+MMMMMMMMMMMoMMMoMMM"MMMoMMoMMoM"MMo"MoMMoMM"MoMo"Mo"M Mo"M"o"M M M"oM M M M M M"
+MMMMMMMM"MMMM"MMM"MMMMoMMoMMoM"MMoM"MoMoMoM"oMoM"Mo"M"oM"oM"oM"o"oM M Mo"o"o"o"o
+MMMMMMMMMMMMMMMMMMMoMMMoMMoMMM"MoMM"MoMoMoMM"oMo"Mo"Mo"oMo"oM M"o"o"oM M M M M o
+MMMMMMMMMMMoMMMoM"MMoM"MoMMoMM"MoM"M"oMoMoMo"Mo"Mo"Mo"Mo"oM"o"M M"oM M M"o"o"o"o
+MMMMMMoMMMMMM"MMMMMM"MMMMoMMoM"MM"M"M"oMoMoM"Mo"MoM"oMo"M M"oM"o"oM Mo"o"o"o"o""
+MMMMMMMMMM"MMMMMoMMMMMoMMoMMM"MMoMMM"M"oMoM"MoM"oMoM"oM"oM"oM M"oM M M Mo"o"o"o"
+MMMMMMMMMMMMMMM"MMoMM"MoMMoM"MMo"MoMM"M"oMo"Mo"Mo"oM"oM"o"oM Mo"oM M"o"o"o"o"o"o
+MMMMMMMMM"MMoMMMM"MM"MMMoMMM"MoMMMoMM"M"MoM"Mo"MoMM MoM"M"o"M M"o"oM Mo"o"o"o"o"
+MMMMMMoMMMMMMM"MMMMMMMoMMoMMM"MoMoMoMM"MoM"Mo"MoMo"M Mo"oM"oM"oM Mo"o"o"o"o"o"oo
+MMMMMMMMMMMMMMMMMoMMoMMMoMMoMMMo"MoMoM"Mo"M"oMM MoM"Mo"Mo"oM Mo"oM Mo"M M"o"o"oo
+MMMMMMMMMMoMM"MM"MM"MoMMoMMoMMoMMMoM"M"MoMM"Mo"Mo"oMoM"oM"o"M Mo"o"o"o"o"o"o"o""
+MMMMMMM"MMMMMMMMMMMMM"MoMMoMMoMMoMM"M"MoMo"Mo"M"oMM Mo"oM"oM"o"o"M M"o"o"o"o"o"o
+MMMMMMMMMMMM"MMoMMMoMMMMoMMo"MoMoMoMM"Mo"M"M"M"Mo"oM"oM"o"oM"o"M M"o"o"M M M M o
+MMMMMMMMMMMMMMMMMoMMMMoMM"M"MMoMMoMMoM"M"M"Mo"Mo"M"oM"oM"M Mo"M Mo"M Mo"o"o"o"o"
+MMMMMMMMoMMMMoMM"MMoMM"MM"MMMoMoMoMoM"M"M"MoM"MoM"Mo"M Mo"M M"oM Mo"o"o"o"o"o"oo
+MMMMMMMMMMMM"MMMMM"MM"MM"MMoMMoMMoM"M"M"M"oMoM"oM"oM"M"oM"oM"oM Mo""oM M"o"o"o"o
+MMMMMMoMMMMMMMMM"MMMMMM"MMoMMoMoMM"M"M"M"MoMo"Mo"M MoM"o"oM Mo"oM M"o"o"o"o"o"oo</pre>
 </div>
 <div class="shot" id="s-pgmtexture">
 <h3>pgmtexture</h3>
 <p>pgmtexture measures an image the way a pattern-recognition paper does: angular second moment, contrast, correlation, entropy.  On the gulls photograph.</p>
 <pre>pgmtexture -d 2 /dd/tmp/gg.pgm | /dd/CMDS/head -n 18
-pgmtexture: /dd/tmp/gg.pgm -</pre>
+(Image has 213 graylevels.)
+(Computing spatial dependence matrix... done.)
+(Computing textural features......
+Angle                          0         45         90        135        Avg
+Angular Second Moment  1.085e-02  8.881e-03  9.576e-03  9.327e-03  9.660e-03
+Contrast               1.269e+02  3.447e+02  2.414e+02  2.237e+02  2.342e+02
+Correlation            9.450e-01  8.732e-01  9.023e-01  9.176e-01  9.095e-01
+Variance               1.014e+03  1.002e+03  1.012e+03  9.994e+02  1.007e+03
+Inverse Diff Moment    4.042e-01  3.301e-01  3.557e-01  3.404e-01  3.576e-01
+Sum Average            2.850e+02  2.821e+02  2.83..</pre>
 </div>
 <div class="shot" id="s-plotters">
 <h3>plotters</h3>
 <p>Six more write-only drivers, for machines that are gone: a Unix plotter, Zinc, a BBN bitgraph, GraphOn, DEC LN03 and LPS.</p>
 <pre>pbmtoplot /dd/tmp/base.pbm | /dd/CMDS/wc
-pbmtoplot: /dd/tmp/base.pbm -
-      0      0      0
-pbmtozinc: /dd/tmp/base.pbm -
-pbmtoln03: /dd/tmp/base.pbm -
-      0      0      0</pre>
+     36     85   2889
+USHORT /dd/tmp/base[] = {
+  48
+  24
+ 0x5555,0x5555,0x5555,0xaaaa,0xaaaa,0xaaaa,0x5555,0x5555,0x5555,0xaaaa,0xaaaa,
+ 0xaaaa,0x5555,0x5555,0x5555,0xaaaa,0xaaaa,0xaaaa,0x5555,0x5555,0x5555,0xaaaa,
+ 0xaaaa,0xaaaa,0x5555,0x5555,0x5555,0xaaaa,0xaaaa,0xaaaa,0x5555,0x5555,0x5555,
+ 0xaaaa,0xaaaa,0xaaaa,0x5555,0x5555,0x5555,0xaaaa,0xaaaa,0xaaaa,0x5555,0x5555,
+ 0x5555,0xaaaa,0xaaaa,0xaaaa,0x5555,0x5555,0x5555,0xaaaa,0xaaaa,0xaaaa,0x5555,
+      5      6    260</pre>
 </div>
 <div class="shot" id="s-pnmarith">
 <h3>pnmarith</h3>
@@ -3267,16 +3342,16 @@ pbmtoascii: EOF / read error reading magic number</pre>
 <h3>pnmcat</h3>
 <p>pnmcat puts two images side by side -- the sphere beside its own negative, made by pnminvert.</p>
 <pre>pnmscale -xysize 74 88 /dd/DEMO/sphere.pgm &gt; /dd/tmp/s.pgm
-MRM9HH6H&amp;6&amp;&amp;&amp;&amp;&amp;77&amp;)S$7?T}&amp;$TS/$7/$S4| . ..-:. :.:&lt;::\\:(&lt;\(&lt;\&gt;S:iiS:|?|:?)
-6M&amp;6RH99Z$S???%\::\\:/:::/S&lt;&lt;\\4|%|$%-- -.:.\:/:(/Z{|//$$$/$$S$SSSSSS/:\&lt;S
-M6RR&amp;S$??/:&lt;::\:.-- --.--:::\:&lt;i&lt;?\\4 ':-;,\?$|?k&amp;SkHH196MH6HHH111$$\|||?S
-MH&amp;S[((/:\\: -. . ` `  -  ..-`:.:\&gt;?$ '::/))$%F&amp;H&amp;&amp;6M9MMHMHMMMHH6HH1&amp;$Z$%%
-M&amp;Z&amp;(||&gt;::::.'.             .':::\:?? ::\%%$%&amp;$6HHRMMMMMMMMMMMMMM9M1k6$Z$S
-M9&amp;$4||\\::.:.  .         .- : :\&lt;;&lt;%-:.:/|$Z$&amp;$RHHMHMMMMMMMMMMM9M&amp;$R&amp;$$))
-6H6&amp;\$$||::::\.'... ... .. :.:::&lt;|||? .::?:S%\%&amp;&amp;&amp;&amp;6H&amp;6M9HRMRM&amp;9R&amp;FR$\Z?&gt;?
-M9RMDHS$///?/\:/:;-:,-:;.\::/&gt;)|||J?4 - -.\::/(|$$//FFD&amp;SH&amp;1&amp;$9$$SS4||\:?)
-M6H&amp;M9HH1$k$ZZ%?/??\??&lt;\||L($S|&amp;$T??$ :`..-::`:&gt;:\/(//?&gt;|T/??SS??\&gt;\\\\||S
-""""`'"`'"""'"'"``'"``''"`'"`"```'"``          '' ''` ''` '`` '' '''` ''``</pre>
+MRMH9RMFM&amp;SH&amp;&amp;]Z7$$S$ZZ$\&gt;//Z$%&amp;%|$7/ . ..-: :.::.:&gt;:?;/;&gt;?:&gt;://&gt;/&gt;\%||::?
+M6H&amp;M&amp;&amp;&amp;&amp;$\\|\:%!/;'?:/&lt;\\&gt;)|\??S$)?$`.-.-.:&lt;:::&gt;?\\\\$Z\$Z}}&amp;%$$??:\\||;S
+MHM&amp;11Z?/|?::::.---:- --.-::::'S:|T$$. -.::|?SS(kHSkH9&amp;MH6H96H9&amp;&amp;&amp;&amp;&amp;/$\\?&lt;
+M&amp;kPc%%&gt;)::-:--` `    '    --`:::?\%% \:::///%k6&amp;$HHHMHMHMMMHMMH6M1&amp;F&amp;$%%%
+M1$&amp;J||;::-:.'-            `.'.-\&lt;i!?.-;!:($4%kH&amp;M&amp;MMMMMMMMMMMMMMHR&amp;6&amp;&amp;7$S
+M$R&amp;\??/&gt;:::. - .         '..-:.:S|\% :::%&gt;$7Z&amp;&amp;H&amp;RHMMMMMMMMMMMHHRM&amp;&amp;9S$%%
+M9kkk}\\|::&gt;:-::.- - .- :. .:.-:/\%%Z .:.&lt;///|FS&amp;9&amp;H&amp;9H6M9RM6M&amp;RM&amp;&amp;S$$????
+M6HH111$//&lt;%/i&gt;::\i.::::.&gt;::/\\|(|\\4 .--:.&lt;;&lt;SS$?$&amp;Z$D&amp;19&amp;$$R&amp;1$S$?T??/:S
+MH9R6H9&amp;F&amp;&amp;\$$($|/)|/??\|(|$$%?FS|$7/ .`- -.:`::'?\??|T|//?7??7?/|//&gt;\(//S
+"`""'""""''""`"`"`'"``'"'"`'"``''"```  '` '  ` `  '` '` '`` ' ''` ` ''''``</pre>
 </div>
 <div class="shot" id="s-pnmcut">
 <h3>pnmcut</h3>
@@ -3312,87 +3387,89 @@ M6H&amp;M9HH1$k$ZZ%?/??\??&lt;\||L($S|&amp;$T??$ :`..-::`:&gt;:\/(//?&gt;|T/??SS
 usage:  pnmpad [-white|-black] [-l#] [-r#] [-t#] [-b#] [pnmfile]
 &lt;pgm /dd/tmp/t.ppm /dd/tmp/tile.pgm /dd/tmp/pad.pgm /dd/tmp/s.pgm
 /dd/tmp/ramp.pgm:       PGM raw, 64 by 16  maxval 255
-pnmfile: /dd/tmp/t.ppm -</pre>
+/dd/tmp/t.ppm:  PPM raw, 80 by 40  maxval 255
+/dd/tmp/tile.pgm:       PGM raw, 60 by 30  maxval 255
+pnmfile: EOF / read error reading magic number</pre>
 </div>
 <div class="shot" id="s-pnmgamma">
 <h3>pnmgamma</h3>
 <p>pnmhisteq equalises the histogram of the gulls photograph -- it spreads the greys the picture actually uses across the whole range, which is why the dither has so much more to work with here than in the plain conversion above.</p>
-<pre>6RMFkM&amp;1&amp;H&amp;|kH$SLF$$FFS&lt;&gt;\??&lt;?:\\?\\\}$Z$$)$%Z%?\?&amp;|Z%&lt;$(&amp;$c&amp;J|/?((:r).
-6DRH9&amp;H&amp;&amp;H&amp;6&amp;$&amp;&lt;&amp;&amp;&amp;$&amp;$^'        `&lt;\S$&amp;&amp;$&amp;&amp;?F}}Fd$S&amp;$&amp;H&amp;1$&amp;$$k$9]1%D$$&gt;:
-M9H&amp;1&amp;H&amp;kHH19ZH&amp;&amp;ZR&amp;'  ...\,...   ``?d&lt;&amp;\\SFS$9Z$k$&amp;&amp;%F/&amp;$&amp;&amp;FS$&amp;&amp;$&amp;\$&gt;i
-R6&amp;9&amp;$M&amp;SFD&amp;/&amp;&amp;$$&amp;$:.::-;."??##Ho.. \??\?4?\|k$P/S\?|1|/$?}$$&lt;L$$7|S\\'
-6MH&amp;MH&amp;H&amp;HH&amp;d{11$\|:::/i,\?::?'P?$-. \:S|?T|?:TS$)&gt;???$%)]|7)?|$|%|:?:'
-M&amp;HFH&amp;FRH&amp;H#&amp;&amp;FD&amp;&amp;?:::S&lt;&amp;bR6R&amp;"-bob:. /i&lt;?\:\|S:?\$(\?4|/&lt;\\$:??)|\:/&gt;'
-HRH19$FDZ(/$$?$($(:.'-::::?HRMHMRHHMMHHb?\??}?&lt;:S:\%\??%&lt;&gt;:|$??%::\\:/.
-H9&amp;$$&amp;&amp;&amp;$?[$%%$:~!.` : .'-:"&gt;&amp;HP?::?$9HMMHHdS$$|!?&gt;?\\?\):!|r:?:/(::|::
-MH&amp;FR&amp;F&amp;&amp;&amp;|&amp;%\?$? .'- . : -:`.:|:?|/::(/#MMM&amp;$k?$||%\\\?&gt;??(/7:?\|\:\::
-DM&amp;1&amp;&amp;&amp;1&amp;&amp;&amp;{S$?$ . . -.- .'.`.::?|:!??/%&gt;i$*$\%SS?(&gt;|:%(|p??Z$?/$\?//\:
-H6M&amp;HFRH9H1[&amp;&amp;7:. . . . . .  .'       ':::\\\||$%?\&lt;$Z$)SS&amp;$?[$$&lt;?1:(\:
-M&amp;99&amp;RkM1&amp;&amp;&amp;FR:. : - - .. .              `:&gt;|}F\$d$&amp;//S&amp;&gt;k&amp;S&amp;1HSF&amp;/$|(.
-RM&amp;H9&amp;H9&amp;RHkP-. :.: -- .        . ::::|do\_ \S&amp;$S&amp;&amp;&amp;HHS&amp;R&amp;&amp;&amp;}D}k&amp;1?|k%,
-M&amp;M1RM196kM&amp;.::.-- '.'.  .. :.: :/.:/-;|HMMM?:&lt;F$1&amp;&amp;$$Z&amp;$Dk6&amp;&amp;S$$$&amp;i|&gt;.
-MHH6MHRMHRMHL:::.` .    ..-:.:::::.::?\???.-:.:`^&gt;\?$$&amp;7S$$$\??\\??::\-
-MM9HRMHH6MRMH?:-: .  - -` :.:':::::::.::??$&amp;#M##dbb?\?$(&lt;S:$J:?:/&lt;:&gt;`:.
-MMM9MHMMH6MM6M#;. . -  :::.-:.-:.-::/$&amp;M9H&lt;#P&amp;&lt;MHRMHM&amp;#b?$???\\S&gt;\&lt;,\\'
-MMHMMMMMMMHMM/' .  .  '.-::. : - :--`?*&amp;:(:&gt;)!?Z$Z&amp;HMMMMM[6bZ///$%\\\&lt;
-MMMMMHMHMMMHM#?:..:. :.':.':. .` . '--.:|%:&lt;|[($&gt;??k&amp;?R9H6&amp;&amp;$$/$L$||&lt;\'
-MMMMMMMMMM9MHRHMc::::.`::.: :`.`.-:`.:.:\S1$/&amp;FS&amp;&amp;$9FF&amp;&amp;F&amp;FkMH&amp;&amp;SR/&amp;):'
-MMHM6MHMHMMMHMMHMb|: .-.: ::::`.-- : .::|S{%k&amp;&amp;$9$FDH&amp;&gt;&amp;SDFkbkMZc$R{J\-
-MMMMMMMMM6MMMMHHR$.-:.::.-::-:.-: :.`:::&gt;&lt;k&amp;(RH&amp;1&amp;SR&amp;H4F&amp;&amp;SkD&amp;&amp;919&gt;&amp;$|'</pre>
+<pre>M96M&amp;H&amp;&amp;11F$S&amp;$S|FZZ$F\?\\??&lt;&lt;/($&lt;$?&gt;$+S\&amp;T?:Z%Z//Z$4?&lt;SS1$$&amp;$/{&gt;??rr).
+M&amp;&amp;&amp;M169&amp;H9Fk$R/&amp;&amp;&amp;&amp;S$^'        `&lt;|&lt;[$F&amp;$&amp;%&amp;$$&amp;\$S$&amp;/Z&amp;&amp;&amp;{$:&amp;=F&amp;&amp;1{?$&gt;:
+M9H&amp;&amp;91kM1&amp;19Z$F6\$H'   ..___..    `?$&amp;&lt;&amp;\&amp;&amp;?Z$$$kF&amp;&amp;4&amp;&gt;7$FD&amp;]$&amp;$$&amp;|$?:
+M&amp;&amp;H&amp;$kRH&amp;&amp;$ZR&amp;S$F$:\:`:.:?:?##Ho.. '?\S)$?SS4S&amp;||\?||&amp;?S$$](\T$$$|:?\'
+H6MHHH&amp;D6&amp;D6$&amp;&amp;$$[|:/::\::&lt;i::'P?$: `\:/:$)/S?$\$\\?&lt;?&gt;??/Z%S/$7/||;&lt;:-
+M9&amp;9&amp;&amp;RRHFRHH&gt;&amp;H&gt;F*::?&lt;&lt;&amp;#H9RPP-bdo:. /?/?i?\~:\\|\\\\&gt;))\||//&gt;S/&gt;\:?&gt;'
+HH&amp;&amp;]&gt;$DZ($cZS&amp;?b\:.-::`::$9HHMHHHHMMHHb?\??|$:|;:|\||(?/%??/\?%?!|`:S
+H6&amp;F&amp;$[6SZ\$))???`.-.- '.: :&lt;&amp;M$:::S$9HMMHHcH?Z%??i\S;&lt;&gt;%&gt;?&lt;(|???\&lt;:/&gt;'
+M9H1&amp;&amp;$&amp;9$$$$7/?S  -  '- .`.':/|::&gt;:/:&lt;?HHMM&amp;$k%S||?S/SS)??%?&gt;:&lt;/|/::&gt;'
+M&amp;H$99&amp;1HS$}k$+$-.'.` .'- '  -:?:\\::?&gt;?/&lt;?&amp;$)$%S?$/&lt;??&gt;$?//&lt;$&lt;$$?&lt;:iS.
+HRHHH1RH$kHZZ6S-. . ..- - ` '.` `     '::)//$S?\$/S($ZZ|k&amp;/S?[$$&lt;\\|/:i
+HRM&amp;6D6&amp;RHFkR&amp;'.-- -. .` .-              -:\}(k\\\D&amp;//$&amp;&gt;F&amp;$S1&amp;Sk&amp;/(&lt;?.
+DM&amp;H&amp;M&amp;RH&amp;RH&amp;:-.:.'. . ..        .-:::|do\_'&gt;Z}R&amp;&amp;$6&amp;H&amp;Sk6k&amp;b&amp;D$11Z~&amp;|.
+M9RH&amp;6M1kRH&amp;.. :.-` '-    ..-.:::.::.-:&gt;HMMHr`?D&amp;$9$9ZZ$k&amp;9&amp;$S$F\$&amp;)%&gt;.
+6HM9HHHMHRMHL\':'.` .  -.:.':/:-:::::&gt;:Z?; ::::`/\|S}$$SS\?$|}SS$/?//:.
+MHHMHRMMHMHM9?/.:. .   .-..-.:-;.-;:.-:\:$$PHM##d#d?&lt;%((($?&lt;|&gt;|:!|\!::.
+MMRMMRMMHHMRMMq:. . -  ::: :::`.::::\$HRM&amp;&amp;#P$#&amp;MMHMM#H&amp;?/$\\\\7;:\\`;
+MMMMMMM9MMMHM&gt;'  .  .  :::.- -'`.--`-?d&amp;:%&lt;&gt;:\\?%Z&amp;&amp;MMMMM&amp;&amp;\$//?\%\\:&gt;'
+MMMMMHMMMMMMM&amp;?::. ...: :-:.'.: .. '.-.:|%)$?S?}$$)$S$&amp;9HH&amp;FF&amp;/&amp;ZZS/\:.
+MMMRMMMM9MMHHRMH#:::.-.:-: ::.-.--:. -::|\&amp;$/FFS&amp;&amp;&amp;&amp;SH&amp;1&amp;1FkMSFk&amp;&amp;?F??-
+MMHMMRMHMRMMMMMHHk+' ...: ::.-.-:.. ::.:Z$$7#&amp;&amp;$&amp;&amp;&amp;F&amp;H$&amp;&amp;&amp;R&amp;&amp;&amp;&amp;&amp;&amp;&lt;R{|::
+MMMMMMMMMMMM6MMHR$::.:-:.:.-:-:. - :-.::&amp;$&amp;$ZRH&amp;1&amp;&amp;&amp;DFD&amp;&amp;11&amp;&amp;1&amp;&amp;9H&gt;&amp;$\-</pre>
 </div>
 <div class="shot" id="s-pnminvert">
 <h3>pnminvert</h3>
 <p>The sphere that ships in DEMO, inverted, so the light comes from the other side.</p>
-<pre> o    "  "  o" " o" M "o"o"oM M"o"M"oM"M"M"oMo"MoMMM"MMM"MMoMMMM"MMoMMMoMMMMMMM"
-    "  " " " o" M "o"o"o"o"o"M M"oM"oM"M"M"MoMMMMoMMMMM"MMMMMoMMMMMMMMMMMMMMMMMo
-   "  "o " " o" o"o" M M M"o"oM"Mo"M"oMM"M"MoMoMMoMMoMMMMMoMMMMMMMMMMMMMMMMMMMM"
- o  o o o" "o M "o M" M M Mo"oMo"oMM"oMoMM"MoMMoMM"MM"MM"MMMMMMMMMMMMMMMMMMMMMM"
-      o  o" o o" M "o"o"oM M"o"oM"o"M"oMoMMMoM"MoMMMMMMMMMMMoMMMMMMMMMMMMMMMMMMo
-   "  o "  " o" M "o"o"o"o"o"M"o"M"M"M"oMoMoMMMM"MoMMoMMMM"MMMMMMMMMMMMMMMMMMMMo
-   "  o " " "o "o" M M M M"o"oM"Mo"M"oMMo"MoMoMMM"MM"MMoMMMMMMMoMMMMMMMMMMMMMMM"
-   o  o " "o o" o" M o"o"o"M Mo"oM"M"oMoM"MoMMoMMM"MMM"MMM"MM"MMMMMMMMMMMMMMMMM"
- o    o " o " " "o" M M M M Mo"M M"oM"oM"M"oMoMMoMMM"MMM"MMMMMMM"MMM"MMMMMMMMMM"
-    "    "o " "o" o"o M M M M Mo"Mo"M"oM"M"MoMo"MoMMMM"MMM"MM"MMMMMMMMMMMMMMMMMo
-   o  "   o " "o "o M "o"o"o"M M Mo"M"oM"M"oM"M"MoMoMM"MM"MMMMMMM"MM"MMoMMMMM"MM
- o     "  o " o "o "o" o"o"o"o"oM M"oMo"Mo"MoMM"Mo"MoMMM"MMoMMoMMMMMMMMMMMoMMMM"
-    " o  o  "   "o " o"o M "o"o"o"oM M MoM"oMo"M"M"MoMoM"MoMMoMMoMMoMMoMMMM"MMM"
-   o       " " " o "o "o "o"o" M M M M"o"o"M M"M"oM"oM"M"Mo"MoM"MoM"M"MoMM"MMM"o
-      "   o  o o o "o " o" o"o"o"o"o"oM M"oM"oM"Mo"M"oM"M"M"MoMMM"MM"MMoM"MMoMM"
-  "  o  "           o "o " o o" o"o"o M M M M M Mo"M"oM"M"oM"oMo"MoM"MoMM"MoMMo"
-        o  "  "  " o  o " " o" "o o" M M M M M"o"o"oM M"oM"oM"oM"Mo"M"oM"M"oMoM"
-  "   o    o "   o    o " "  o" o" " o" o"o"o"o"o"M M Mo"o"oM"o"oMoM"Mo"Mo"Mo"M"
-    "    "     "   "     "  "  "  "o" " "o M " M "o"o"o"o"M M M"oo"oM M"o"M M"o"
-  "   o  o  "  o  o " "  "  "  " " o "o" o o"o" M "o" M M M M M M M M M"o"M M"oo
-    o        o  o   o  " o "  "  o  o o "  o o" o" o" o" o" M "o"o"o"o"o"o"o"o"o
-  o    "  "       o  o  o   "  "   o  o " "  o "  " "o M " " " o" o" "o" M "o"oM
-     "   o "  " o      o  "  "  "  o  o "  "   " "o o o " M "o" o"o" "o M "o "oo</pre>
+<pre>    "  " o o o" "o M "o"o"o"o"oM"oM"o"MoM"MoM"M"MoMMMMoMMMMMoMMM"MMM"MMMMMMMMMM"
+  "   "   o "o M o" M M M M"oM M"oM"M"oM"MoM"MM"MMoMMoMMoMMMMMMMMMMMMMMMMMMMMMM"
+   "  " " o " o M "o"o"o"o"o"oM"oMoM"MoM"MoMMM"MMoMMMM"MMMoMM"MMMMMMMMMMMMMMMMM"
+  o "  "  o" " o" M "o"o"o"M Mo"oMo"Mo"M"MoMoMMM"MoM"MMMMMMMMMMMMMMMMMMMMMMMMMM"
+     " " "o "o" M "o"o"o"M M"o"Mo"oMM"M"MoMMoM"MM"MMMMMoMM"MMMMMMMMMMMMMMMMMMMM"
+  "  "  " o "o M "o"o"o"o"M M"oMo"Mo"M"MoMoMM"MM"MMMoMMMMMMMMMMoMMMMMMMMMMMMMMMo
+   "  "o "  "o o"o M M M M M"o"oM"oM"M"oMoMoMMM"MMoMMMoMMMMM"MMMMMMMMMMMMMMMMMMo
+ o  "  o " "o o" o"o M M M"o"M Mo"Mo"M"Mo"MoMM"MM"MoM"MMoMMMMMMMMM"MMMMMMMMMMMMo
+    o  o " o o" " o"o"o"o"o"M M"oM"oM"MoMM"oMM"M"MM"MMMM"MMoMM"MMMMMMMMMMMMMMMM"
+  o    o " o o" M o"o M M M M"o"oM"o"Mo"oMM"oMM"MM"MMoMMMMMMMMMMMMMMMoMMMMMMMMM"
+     "    o o "o "o "o" M M M M"o"M"o"M"oMo"MoMM"M"MoMMoMMoMMMoMMoMMMMMMMoMMMM""
+   "   " o  o " o" " o"o"o"o"o"o"o"Mo"M"o"M"Mo"M"M"Mo"MoMMoMMoMMMMMoMMMoMMMMMMM"
+   o  o     o " o M "o o"o" M M Mo"o"oM"M"oM"oM"M"M"M"MoMoMMoMMoMoMMMoMMMMoM"MMM
+ o       "    "  o "o "o o"o"o"o"o"M M M M"o"Mo"M"M"M"Mo"Mo"MoMM"MoMM"MoMM"MMMMo
+    "  "   " o "  o o "o o"o M o"o"o"o"M M"oM"oM"Mo"M"oMM"M"Mo"M"MoMM"MoMMMMoMMM
+   o  o  "       o  o " o o "o M o" M M M M M M Mo"M"oMoM"M"oMM"MoMoM"MoMoMoMoM"
+        o  "  " o  "  " o "o o" o"o"o" M M M M"o"oM Mo"o"oM"oMo"M MoMM"oMoM"oMo"
+  "   o    o  o    o  o  o o o "o o M "o" M M M M M M M"oM Mo"oM"Mo"o"Mo"oM"oMo"
+  o  o   "       "    o  o   o "  o o" o" o" M "o"o"o"o"o"o"o"o"o"o"M Mo"M M"oo"
+        o  "  "  o "    o  "   " o o "o "o" " o"o M "o"o"o"o""o"M M"o"o"M M"o"o"
+   " o   o  "   o   "   o  "  " o   o  o o "o"  o" o"o o"o" M M "o"o"o"o"o"o"o""
+  o        o  "    "  "    "   o  "   "  o "  "o "  o "o o" o" " o" "o" "o" M ""
+     "  "    o  " o  o "  "  "   "  "  o o " o o " "  o o "o M "o" "o M "o" o"o"</pre>
 </div>
 <div class="shot" id="s-pnmrotate">
 <h3>pnmrotate</h3>
 <p>pnmrotate turns the sphere thirty degrees and pnmcrop trims the margin the rotation left behind.</p>
 <pre>&lt;nmscale -xysize 152 88 | pgmtopbm | pbmtoascii -2x4
 MMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMM&amp;&amp;9MMMMMMMMMMM|
-MMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMH97//$|&gt;MMMMMMMMMM|
-MMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMHHS$Z?$?$S\S$MMMMMMMMM|
-MMMMMMMMMMMMMMMMMMMMMMMMMMMMH9\S$S4?%%$&lt;S$|S$HMMMMMMM|
-MMMMMMMMMMMMMMMMMMMMMMMMMHFS\%||||?\|?\?:SS&lt;SS9MMMMMM|
-MMMMMMMMMMMMMMMMMMMMMMHZ//||(&lt;::::::&gt;`/&lt;::&lt;:?:|HMMMMM|
-MMMMMMMMMMMMMMMMMMM&amp;7$???\::::-:--: ::-::.\::?:?HMMMM|
-MMMMMMMMMMMMMMMH&amp;&amp;%$%&gt;):\:-:.'- '` .  :.:-::&gt;&lt;///&amp;MMM|
-MMMMMMMMMMMHRM&amp;Z$||\:&gt;::.- -         -.-.-:::???S|&amp;MM|
-MMMMMMMMMH&amp;Fk&amp;Z%%&gt;:\:-.-  '       . . ..::::&gt;??S$J?4H|
-MMMMMM9&amp;9&amp;H&amp;$\|\\&lt;:: - `             .::::\|\\S1|%|HH|
-MMM9&amp;HHR6R&amp;&amp;||:\::-.:`           . :-.:/?|\\S$$/&amp;HMMM|
-MHRM9RHFkk\\|\\::::. .`      . `..:..:|?i|k$SHMMMMMMM|
-MM96MH6HZ$?||?\:-:.:`.. '.: --.:::;i!&lt;%%Z&amp;HMMMMMMMMMM|
-MMMMH&amp;9&amp;$FS??:&gt;\:\:-.:::.:.`::::/\(($SHMMMMMMMMMMMMMM|
-MMMMHM&amp;Fk\$$|\?|::\\.::&gt;::S;:|/?/JdHMMMMMMMMMMMMMMMMM|
-MMMMMM66DZ$1?///?//i|/)///?//{{&amp;MMMMMMMMMMMMMMMMMMMMM|
-MMMMMMHH9&amp;&amp;S&amp;$\$$|$%$)Z\$Z&amp;6HMMMMMMMMMMMMMMMMMMMMMMMM|
-MMMMMMMM9M9&amp;&amp;HH&amp;H$$6&amp;&amp;&amp;HHMMMMMMMMMMMMMMMMMMMMMMMMMMMM|
-MMMMMMMMMH6M9&amp;HH6RMH6MMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMM|
-MMMMMMMMMMM&amp;RM9HHHMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMM|
-MMMMMMMMMMMM6MHMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMM|</pre>
+MMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMM9%|$%|&amp;MMMMMMMMMM|
+MMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMHR&amp;%$?T/$7/ZZMMMMMMMMM|
+MMMMMMMMMMMMMMMMMMMMMMMMMMMMM&amp;S$$S4?%$&lt;$%%|\\HMMMMMMM|
+MMMMMMMMMMMMMMMMMMMMMMMMMH&amp;?}S(((/S/S:/&gt;\|\\?SHMMMMMM|
+MMMMMMMMMMMMMMMMMMMMMM&amp;PZ?S?&lt;:/&lt;:'/::\::\::i(?|9MMMMM|
+MMMMMMMMMMMMMMMMMMH9S4||\&gt;:://:.`: :-.-:-:::\://&amp;MMMM|
+MMMMMMMMMMMMMMMH&amp;$Z((//&gt;\:.'.:. - ' . -.: ::S|:?S&amp;MMM|
+MMMMMMMMMMMHR6&amp;$}??):\: :- -         .- ::.::SSS|$ZMM|
+MMMMMMMMHR6HZ&amp;&amp;||!::::`. -         .  :-:.\:?&lt;%$T|$TH|
+MMMMMM96HH$F$&gt;?!?\::- -              :.:-::||\\(\\|HH|
+MMM9H9&amp;HH&amp;$FSSS:::-:` .           ':.-;:;:||\\Z/&amp;MMMM|
+MH6M&amp;9RM&amp;ZZ|||::&lt;.-.'.. .   . .` :-.:;,\?%$]Z6MMMMMMM|
+MMMHRM&amp;H&amp;$???S::/\: ..  .. -.-.`.::i\???1dHMMMMMMMMMM|
+MMMH9HH&amp;Z$?S&gt;?\:::;.:::..-:.-;:;i:|$|Z6MMMMMMMMMMMMMM|
+MMMMM6M1&amp;Z$SS|;//&lt;::&lt;:::\:i%\:(??/dHMMMMMMMMMMMMMMMMM|
+MMMMMHH9&amp;$S1|))S|/:?:/i|||||}\kHHMMMMMMMMMMMMMMMMMMMM|
+MMMMMMHM&amp;H1$$Z$Z}?\\|}\\$Z6&amp;6MMMMMMMMMMMMMMMMMMMMMMMM|
+MMMMMMM6M&amp;R66&amp;F&amp;H&amp;1$k6kMHMMMMMMMMMMMMMMMMMMMMMMMMMMMM|
+MMMMMMMMMM6MHHH9H9kM9HMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMM|
+MMMMMMMMMMHHHR6HHHMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMM|
+MMMMMMMMMMMM&amp;MMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMM|</pre>
 </div>
 <div class="shot" id="s-pnmtile">
 <h3>pnmtile</h3>
@@ -3447,55 +3524,55 @@ gsave
 <h3>ppm3d</h3>
 <p>ppmspread scatters every pixel up to eight places from where it belongs -- the photograph is still there underneath, which is the point of the filter.  ppm3d, ppmshift and ppmmix run first, over the same image.</p>
 <pre>&lt;1.ppm | ppmtopgm | pnmscale -xysize 152 88 | pgmtopbm | pbmtoascii -2x4
-|:S/\&lt;:iS:(:?&lt;/:/&gt;&gt;\&lt;:|..:/\'.&gt;\!:,\\:S:\:\&gt;::i\:/&lt;\\|S:%:&gt;:/&gt;\/&lt;\/i%|:
-?&lt;:i?:/&gt;\&gt;/\:?:S::S/:!S :-$v':..\./S-.(/::/\?://:\%|::|%\&lt;;://&gt;\:?i|::|
-:S:(\/&gt;\%:S&gt;\:S:&gt;\|//.::\'&lt;.S,'&gt;:-\&lt;::-?\:?:&gt;\:S!/:?:&gt;\:&lt;:S:\&lt;i!:/:S::?
-\//&gt;\(//:\:/|/:&lt;;:&lt;:i%::/:%::\.\'/\:\\\|&gt;:/S/:/S;:?i!:/:/:i%|:):\:|/S;:
-&gt;\&lt;;&gt;:%!:/&gt;\/S/:S:/\::S::S:iS:\(?::i\\:/;:/&lt;|;://:&lt;\/\&gt;::|:&lt;:S:):\&gt;:&gt;&lt;:
-/||//\\:\&gt;:\/&lt;\:S':&gt;:&gt;;|::\?|:/:+?/::S;:(%:i%&lt;:%\:?:S:\:S:\|?&lt;i|::\\:&lt;;
-:&gt;\//:iS::?|:i%!::.&gt;:\::::/:|!%%\S:Z&gt;?\|\\&gt;:?\&lt;:i%!:S:)://:)!|:i(/:/S;:
-/!/\&lt;:|?:&gt;/::|:&gt;\\:-\:.&lt;.:/.:'&lt;|://&lt;\&gt;|/:S!:?:?&lt;:)::&lt;!:/:/:/S;:/&lt;:\?|;\
-:S!:?|/&lt;:?/i%:\:\:\:::-:-::\:/&gt;);:(&lt;'i&gt;\&lt;!:?:?/S:i?\/:&lt;\\?!:\S:&gt;::|%::?
-\\&gt;/i%!&lt;\/;:!&gt;::&lt; :/.:\:.\:::.:.:.' ':: &lt;\/::/:\&lt;:\\::i\&gt;/:Si:\\/&lt;\:?:&gt;
-&gt;\&gt;)!&lt;:|&lt;\//\&gt;\\::-:::/:::: /.&gt;:,`.\:/,:&gt;:i&gt;,`?/:iS;:/&lt;\/;:/:i%|:\?::?/
-:?!:|:iS:-:/\:&lt;:-/:.:.':/:.:-..:.:`-::-,\v?!-:?(/:S;:%\:?:S:&gt;&lt;:%!/\&gt;:\/
-S:|%?:&gt;%&gt;:\:\%!:.:\'.:-:\.\:`:.:\.'::\&gt;,.:$:?'//::\&gt;/&lt;\&lt;:/S;:|%\&lt;!/:?::
-?/?i|\\&amp;i?:::\\:-:/::.-:-/.:: /:\/;:/::?&gt;)|i\`?S|'&gt;\&gt;\:/:i(:&gt;\&gt;:%\:?&gt;\:
-?S1&lt;/$\$)7;,-?%&lt;?.\.\: :\\:\:::::&lt;::S:\&lt;,;?&lt;/S,?\?&lt;\:?\\:S/:/S!:&gt;:\|/&gt;!
-1\&amp;Z$$cZ$F1?`,Z./.\:.:::.&lt;.:\::&gt;:::&gt;\:\:/(\\/$![&amp;:?b&gt;7d:)::?&lt;;:\//&gt;:\|S
-&lt;FSS&amp;$&amp;&amp;7&amp;|k%&gt;?&lt;\:-;::.-:::::/;:::::\&gt;::\!|:)i\&gt;S\?|$:?P&amp;::/%!:&lt;/::(/:/
-H$9&amp;6H&amp;11?v+9v:&gt;\`.:::\'::\`;.::::.::i/&gt;\/:S/:&gt;&lt;/\:&gt;&gt;::|S?:?\/\\/?i|::/
-F6&lt;}FFF1&amp;$Z&amp;v)?d::.-::::::::.:&lt;:-;-::.!(\:i\&gt;:S:&lt;\/;&gt;$&gt;%?\\/?i\:?|:&lt;::i
-6&amp;99&amp;&amp;S&amp;$F$&amp;&amp;v&amp;d\-$:::::::\:::-:::::&lt;/::\/&lt;\:&gt;/&lt;\:&amp;|::?\:|&amp;!/\:?|::?::S
-&amp;&amp;11&amp;HSkM{%RF&amp;:$&amp;?::\:::::::::\::::-::\|&gt;:&lt;:&gt;\\\:/&lt;:S;:?\\&gt;i%|:Si:&gt;::?/
-RH&amp;&amp;Z$M$&amp;SkDS&amp;?%/(?\`;.\::::::\-::::::/:&gt;\|:\%\;&lt;;:?/&gt;/S/:S:&gt;/\//\\:%|:</pre>
+\\//&gt;:?:%|:Si:\&gt;::S/:`::-\: // .:S,/:'\:&lt;\:S;:/&lt;\\&gt;/\&lt;:\&gt;;//:/:i??i::S;
+\\\&lt;!:\\/\?:&gt;:\\:i&gt;&lt;,:::\?,::\`.`.:(/:\&gt;::?|/:?::&gt;!(/:):&gt;/\:&gt;:?:\\/:\|S
+S/::%/\?!&lt;:(/:);:/\-?.:/\.%\'//\:\\:/\\'/S:\?\\!:&gt;S:&gt;::|?:|?\\?|:&lt;;:&lt;:S
+&lt;\&gt;)::\\S/::i?&gt;:&lt;;:\|\\/&gt;:&lt;:!\\::: /\-&gt;\//&gt;:/:?\\|/S!:/:?|:/\&gt;:%!:&gt;\/:S
+S\\\//:):\//\|S?i:::&gt;::&lt;!/:&lt;:&gt;\\),:|\\&lt;/'S/::?\:&gt;\&gt;/&lt;\\\&gt;/:/&gt;\&gt;:&lt;;::?:/
+?\;:\\/&gt;\/S;:\/&gt;:?;-&gt;;-&gt;:|%\:///&lt;\?:S:\&lt;/S:|/?:&gt;::\&gt;:&gt;\/:?i\\:iS:/:/:S;
+/\?\;:/:\/&lt;|;:/:\/&lt;:`:::iS,\':/$::?)||?&lt;?:\P/\*;:&gt;::\/&gt;\&gt;::|&gt;:S|:\::|&gt;/
+!&lt;:i(/|::|&gt;:S:!./:./:./-:::/:?`&lt;\&gt;/&lt;:P&gt;\/|?dS|:?|?\:?:&gt;\\::&gt;\|S:/:/:/&gt;:
+:\\\&gt;//S/!:\/S;':\:\:`::/::::-Z\&gt;:\:|%:?::\:(&gt;/\\!&lt;:/(/\?:\\\:/&gt;\/&lt;\\:|
+&lt;:i(/;\S:&gt;:&lt;,\`:/.:/:-.:\.--::::.` ?. &amp; :&gt;&gt;:?\/&lt;:%:&gt;:%!&lt;:S:i%|:&lt;::i\&gt;//
+:??:&gt;:!|?i:|/:!%!.:\::-:/:::'.:.:::'&gt;`&lt;::?\'%:!%!/\&gt;?&gt;\/\:|%\\/;:&lt;:iS:/
+|:%|:&gt;&lt;:%|\:&gt;`?.::-:::.:-::.',.:.'\:..$.7:\$&lt;:S|:\\:|/S!:\\\/\://&lt;\;\:i
+/|S&gt;!|%%:&gt;?:?:|.\::\: ::-:::: &gt;'-% &lt;/:-:'&lt;:-:\?:/:\\&gt;:S&gt;\/):!?\\/&lt;\/;:/
+?:+:ZZ&lt;:Z&gt;/?:///i.:::-:::::./\:\::!:::!\&lt;&gt;:&gt;\%\/:/::|?:!/)!:&gt;S::?:S;::i
+%$&gt;$?}$7&lt;%Z/i\&amp;-?,'::.:::\\`::::,:\:\\&lt;/:&gt;Z&gt;&gt;Z.S!:||/\&gt;:S::?\/S;:|S:iS:
+$H+%&gt;?F1$$\?&amp; &gt;\.&lt;:::.-:::::-:%.:\::?:::&lt;:S?:|?S|S;\/&gt;&lt;:&amp;?;!:&gt;&lt;:i(/:\//
+$?M%HH?$&amp;&amp;&amp;/S`Z:::::.`:::,::\.-S.-&gt;:(:%\\//:\$|:\$Z&gt;/|::P7:&lt;\\&gt;&lt;\\!&lt;\/:
+&amp;&amp;$MS6SR(&amp;H].Z/,`&lt;:`/:.:\::::::/:'::&gt;:?|::\&gt;\((?&gt;/:PZ$ZSS7&gt;S::\\/\&gt;/::?
+H$F&amp;&amp;$H&amp;9$d?:R??(&gt;::&gt;':::::::;:::`::-i:;-&gt;::/&lt;/%?:/|:&amp;//?S&lt;/(//:\\:?::S
+&amp;&amp;FDZH$$6&amp;&amp;?&amp;{{{-Z.:\::::::::::::::::::-::iS!/:?:S:/d/:S//%\\/&lt;!/\:|:/i
+&amp;kFF11S&amp;&amp;$S&amp;S$Z&lt;SZ\\:,-:&gt;::::::::-::.::&gt;\|:/&gt;\//S!:S/?!////\|!|\\:iS/:/
+RHS6DH1&amp;&amp;$Sk+HZ/D::::&gt;::\:-::/;::::::&lt;:;:&gt;:&gt;:i/&gt;\&gt;\?:&gt;:S:)::?:|://:\/S;</pre>
 </div>
 <div class="shot" id="s-ppmdither">
 <h3>ppmdither</h3>
 <p>ppmquant reduces the photograph to sixteen colours and ppmdither spreads the error -- the two halves of how a picture survived a screen that had no more colours than that.</p>
 <pre>ppmquant: mapping image to new colors...
-S|::/\&lt;:|&lt;:?:Si|::&lt;:S/:/&gt;:\'/:|/&gt;!(/\|S\\&lt;!:::\?:&gt;::|/&gt;:&lt;:iS\\&lt;/:&lt;\/\?
-:&gt;!|&lt;\\/&lt;:??!:\!|&lt;:S\S`.:-:.:`.-::\//:!?&gt;S::?\&lt;:Si&lt;:&gt;:(/&gt;\&lt;//:&gt;\&gt;:S!/::
-i(/|:i\\\:|%|:\|S:?\::::.::::.:'-:.:::\:\://S/:/S/:?\?&lt;:S?::(&lt;;?::(&lt;;?
-&lt;/\/:?|:://&lt;\?:%|:?::::&gt;:::/&gt;\~L?;.':S::&gt;!i(/|:&gt;\|;:\&gt;&lt;;\:|::?&lt;:iS:\&lt;::
-\(?i?|:/S:/)i\\&lt;\//-::&gt;;:&lt;:S,\&gt;:/?::'/S;://:/S;:\\:?::?S!:/S:\\/&gt;\\|?\.
-\%\%\&gt;??!/)\\\\S:&gt;:\:\!?:\\\/:\&gt;:\S,-:iS/\&lt;!:&gt;:?|;:/:\:|::/i%!:/i%::?::
-:|%|:S|::iS\::?:\::::::&lt;//:/S/???S??%?&lt;\/&gt;\&gt;:S:\?:\\&gt;:Si!/)i\\/:/&gt;\:&gt;\.
-&lt;//:S:%!&lt;:S;:&lt;/:i//:::-:::::&gt;\|?\//:!|||Lk$?&lt;:%|:&lt;:\:|S/:::\\\&lt;:??:\\&gt;.
-\//S:?:|%!&lt;!/::|S.`:::.:\:.:-:\|:i/S/::/|$Z&amp;:?|:&lt;/&lt;\:S:/:S:)::?:&gt;:\:&gt;\.
-\!(/\|?:|%|:i%:%:::\::.-::`:::/:\?::(//\&lt;:\&lt;&gt;&lt;;:%\\:?:S:/&gt;/S:%!:?|::&lt;\.
-)!&lt;\::?:&gt;:i\&lt;:?\.-::/:::-::.::::'.: :::\:)::/)://\|%|:/S/:\&lt;\\?::S:):::
-//\&gt;|:&gt;\\//&gt;!|/::.::\-:::::-.':.':.:-:.-.`:?\/:&gt;/&gt;\\&lt;:(/:\&gt;/:\\!:\\?|:-
-:&gt;!?\\/|%!&lt;/\:::::\:-::::::`.:`\:.-::::%/?::`/%/:S\\|?\?i&lt;;:(/i%/::/S::
-\//\&gt;\(&lt;\S&gt;?:::::::::.: :::.\:::::::/:\&gt;&gt;//?//|:!?\&lt;\\&gt;/:/S|://\&gt;:iS:&lt;'
-&gt;?S|T||||||riS: ::::: :.::::::\:S.-/:S:\\S::/.:::S:\?:\\\/S:&gt;::|\&lt;:?:?'
-S$||//|$SS???:\::/:.:: ::::::./&lt;!:&lt;:)::::S\\?$&gt;?i\|::(/\&gt;;//:iS!:S:/;:.
-&amp;$kk}LLL||bZ%%\|&gt;:.:-:.:-:::\\::\'//:\:i||||\?$:$&amp;\LLL$?\&gt;:/::/;//&lt;:S::
-FF&amp;&amp;&amp;$&amp;9&amp;&amp;11S&lt;':.':.:.:::.:\:.-::::&gt;:/&lt;\:S::iS:&gt;:%?44111&amp;/S;:&lt;\;:/&gt;:\&gt;.
-&amp;&amp;1&amp;&amp;&amp;?}RH$\&gt;\\\:::.:::::::::;.-:-:::\\://\?::?\?&lt;\;::&lt;?$S\:i(:&gt;\\:\:S
-&amp;&amp;&amp;&amp;&amp;&amp;&amp;&amp;&amp;&amp;&amp;S$$&lt;\S/:::::::-::-::::::\::\::/:/\&gt;i%|::?|::/&gt;\)::?:\:i(/:?
-FF&amp;&amp;&amp;9&amp;&amp;&amp;&amp;$&amp;&amp;9&amp;S&gt;?:-:::::::\::\::::::\::\&gt;:?|::|%!:\&lt;;:(&lt;;?:&gt;\/:&gt;/&gt;\&gt;:-
-&amp;&amp;&amp;91$&amp;&amp;&amp;&amp;&amp;Zk&amp;&amp;&amp;?&gt;;::::::\\:\:::::::\\:\\\\:/&gt;\%:S:iS\\:i|&lt;\/;:&gt;:\\\&gt;|</pre>
+:\//\|?\:?|:\\&gt;&lt;:S\\/\|?&lt;:://\&lt;/\\::|iS:\?::S\:iS\\:&gt;&lt;:iS:):\::\/S:\/&lt;'
+&lt;/:/&gt;\%\&lt;:)!/\:\/;/S/&lt;\: ::--.- :|:S::?\&lt;:/&gt;!?:\\:/S!:&gt;&lt;:)/&lt;:/&gt;\//&gt;:\\'
+\//(::\|?\//\:?:i(/\::.:.:&gt;\:;.'.:`:::?:/\\&gt;&lt;/:&gt;\\//S!:S/:S:&gt;\&gt;:|::(/:-
+\?\\&gt;):&gt;:\%!&lt;|::|&lt;\:/::\&lt;:i\&lt;&gt;?L?;.:\:\S:\\:/:?:::i(:&gt;\/&lt;\?|:\\\\::&lt;\\:
+??&lt;\S//)\\/:/\:\?:%::/:\:\&lt;:\//\&lt;:/.-\&gt;:?:\\&gt;\|?&lt;:i%!:&gt;\%/:i(/:):iS\:&lt;'
+S//S;:&lt;/%\\\//\/i(/:\:S:&gt;/?:|?:\?|;;.:?:&gt;\/\:::?::|&lt;:%!/&lt;\&gt;:iS:&lt;:&gt;:iS::
+|:S::?\&lt;&gt;\/:S:\\?:::\:::%|:\?&lt;%%?&lt;%%?&lt;S&gt;S:&gt;:Si::?\/&gt;\%!:\\:?&lt;:i&gt;\|S:\&gt;.
+\!(/;:?:/S;S!:&gt;:&lt;\:.-:\:-;-:&lt;!?|;\\\&gt;)||?Lb&gt;/\&gt;::?&lt;:\|%|:&lt;;::\S::?\:\?
+:S:?&lt;:iS|::S:?S:::\:::::.:\.':Si:\&gt;:%!/:Z$&amp;&amp;\:S\:?!&lt;:%\\:S:&gt;:&lt;:%!:/;/::
+\/&lt;:?:\\:|&lt;:&gt;:/::/:::-::::/::::\?:\\&gt;;//&gt;&gt;:+;&lt;;&lt;;:i&gt;\&gt;:\\&gt;::iiS\:&lt;:S:)
+!:|?:i(/iS:|%\\:::.::: :/.:\:-:.--:-:.:\:!:S:%!:\\:&gt;\%|::?:\S:\\S:&gt;::\'
+\//&gt;S|:/\&gt;:!?/:.-\::::.:::::.-:::.-:.:: ::&gt;/\\:\\:S/\\:?:S://\//&gt;\&gt;\&gt;/'
+&gt;\/&gt;:\\/&gt;!|%!:.:\.-::::.--:-.:-.:/::.&gt;:\&gt;&lt;::::|%!:\&lt;:?:?::/&lt;:iS\\\&gt;::?
+:S//\&gt;:?\:S:\:::.//:::::`.:/-::\:\//:/:\(Z(/|::\&gt;:%!:\\;:&lt;:?:/S//\::\/.
+%?&lt;%%Z?????&lt;&gt;:::'::-::-.\:.::::/:\\'&gt;:/&gt;:/::'::-:i%:%|:&lt;/:)::(/:S:\?:\:
+??$)??ZZ?%%%(&lt;::::::. ::\:::::&gt;::/:\|S:\:::?$&lt;c\&gt;?\\/:?i&lt;::?/&gt;\|S\\/:%
+&amp;&amp;&amp;$}LLL\\b???/\:\:-:-.:;:;:.-:::\&lt;:\&lt;:|??%&gt;)\?&lt;:k\|LLZ&lt;\\/&gt;&lt;:i%!/;:?::
+&amp;11&amp;&amp;1$$RH1$||\:-`::-:.-//-::'::-::::\//:&lt;\/;:&lt;\:S?S$&amp;&amp;$$i|:?::?:S::|&gt;.
+6$&amp;FkF&amp;&lt;111\??:;:::-\-/::::::::\:-:::::?!/:/S:\//&gt;:/;?:S\&lt;|:iS//?i&lt;i:&gt;.
+kR&amp;Z&amp;Fk6$kFF1J//;:%::::::::::::::::-:::/\&gt;::|&gt;/:?:S://\/&lt;:?:\/&gt;:|%|:i%'
+kFFF&amp;&amp;11&amp;1&amp;&amp;$&amp;&amp;$Z:&gt;'..:::/::::::::\-::/:&lt;\\:/)|::S!:\\\&gt;\&lt;:?)://:&gt;\//::
+kH&amp;&amp;&amp;&amp;SkR&amp;FFD&amp;&amp;7$\:::::::::::/::;-::.::&gt;/:/S;:/:/:\\&lt;\&lt;\\:?|//&gt;/S&lt;|::?</pre>
 </div>
 <div class="shot" id="s-ppmforge">
 <h3>ppmforge</h3>
@@ -3534,12 +3611,12 @@ HH9DMHH&amp;RM9&amp;Z$SSS/:?SSSS$Z$&amp;&lt;RHM&amp;H6M&amp;HHHRHRMHRM9HHHRMH6M9
 <pre>ppmpat -tartan 80 40 &gt; /dd/tmp/t.ppm
  r   g   b      lum     count
 --- --- ---     ---     -----
-  5 109 103     77      1425
- 11  62  69     48      1128
-  0 157 137     108     450
-102  32  64     57      119
- 97  80  98     87      75
-194   3  59     66      3</pre>
+ 46  73 118     70      1425
+ 47  16  99     35      1128
+ 46 131 138     106     450
+126  10 146     60      119
+125  67 166     96      75
+205   4 194     86      3</pre>
 </div>
 <div class="shot" id="s-ppmmake">
 <h3>ppmmake</h3>
@@ -3556,80 +3633,80 @@ HH9DMHH&amp;RM9&amp;Z$SSS/:?SSSS$Z$&amp;&lt;RHM&amp;H6M&amp;HHHRHRMHRM9HHHRMH6M9
 <h3>ppmpat</h3>
 <p>ppmpat weaves a tartan, ppmtopgm greys it and the dither prints it.</p>
 <pre>ppmpat -tartan 152 88 | ppmtopgm | pgmtopbm | pbmtoascii -2x4
-H&amp;&amp;F6&amp;F6&amp;HH&amp;&amp;H&amp;1FRH|||FRH&amp;FRH&amp;&amp;H&amp;H&amp;&amp;H&amp;&amp;H4%F1SF1%FS&amp;9&amp;$7ZF1%F1%FF6&amp;&amp;Z$&amp;Z$&amp;Z$S
-6FRHH&amp;&amp;H&amp;19H&amp;H&amp;1FDL||&amp;FkM&amp;&amp;&amp;&amp;H&amp;1H&amp;H&amp;&amp;H&amp;&amp;Z&amp;$4Sk$\S$9H&amp;S&amp;$4S}S1$%R6H?$14%&amp;(k&amp;?
-kRH&amp;FRHH&amp;$kH9H&amp;1H&amp;$%%&amp;1kH&amp;FH&amp;FR&amp;H&amp;SHH&amp;&amp;H4%[$Z$S$$SkFM?$$Z$$Z\\S&amp;H9%F$Z&amp;\&amp;?&amp;$
-kH$kM&amp;1H&amp;SH&amp;&amp;19&amp;&amp;&amp;&amp;|||DFR&amp;FR6H&amp;1FR&amp;HH&amp;&amp;H%k$S$$$Z$ZH&amp;&amp;&amp;$\1%F$]%$H&amp;6&amp;Z$&amp;Z$&amp;&amp;?$
-H&amp;FkM&amp;$&amp;RH1FRH&amp;SM&amp;$||J&amp;H&amp;F6&amp;&amp;H&amp;1FkRH&amp;&amp;Fkk$S$Z$S$&amp;ZH&amp;&amp;Z$}&amp;%[&amp;47?H$kk&amp;?/ZF$1Z$
-||||||$&gt;?:%S&gt;))S&gt;?!/-;SSSSSSSSS&gt;??S&gt;)))):/&gt;:/:S/:\(((|S/:\|&gt;:S::Z&lt;\!\/&lt;|:\:i
-&amp;FH&amp;FRHHS&amp;9&amp;H&amp;H&amp;SHZ?Z{9&amp;FH&amp;FHH&amp;H&amp;SHH&amp;SHH44%&amp;SF$$Z$R6H]?&amp;$\SF14Z&amp;H&amp;$&amp;$9%F1\14
-6&amp;H&amp;FkDDFR&amp;FkHH&amp;1F}??Z&amp;9&amp;FH&amp;FkRM&amp;19H&amp;19H$$&amp;Z&amp;STk$$R&amp;R$}&amp;Z$S&amp;$Z$9H&amp;?k&amp;%&amp;(k&amp;/$
-R&amp;&amp;RHH&amp;&amp;FkRM&amp;&amp;H&amp;1Fk%%&amp;&amp;&amp;&amp;FH&amp;FkR&amp;H$kM&amp;1&amp;&amp;$S&amp;%F1Z$1$&amp;1&amp;S$$Z$FS$&amp;S&amp;9HSk&amp;TS\$?k&amp;
-6FkHH&amp;&amp;H&amp;&amp;H19&amp;H&amp;1HZ%%$99H&amp;H&amp;FkH1HFkM&amp;1RH$4S&amp;&amp;?$14SR&amp;kk&amp;%$&amp;S/ZF1&amp;1$[$Z$?}[&amp;$4
-kR6&amp;DFHH&amp;1&amp;kH&amp;H&amp;1&amp;$(($k&amp;9H1&amp;6H&amp;1&amp;FkM&amp;$H&amp;Sk&amp;S/ZF$?FkDHS$&amp;$?[&amp;$4SRH&amp;1%$&amp;S&amp;(k&amp;%
-Z\$S$&amp;$\S$$$Z&amp;$Z\Sr::?$}&amp;S/Z$S&amp;{S&amp;$%&amp;$Z&amp;?????\||||$F1||||||||||%k&amp;/))))))SSS
-&amp;Z$}&amp;\1%F1$$?k&amp;(k&amp;S:/{?$$$$&amp;$S$$Z$&amp;Z$S$&amp;)))))))???F1%||||||||||&amp;%FSSSSSSSSSS
-$Z$&amp;(k$\Z$1SF$Z\$Z%:S|]$$Z$$/&amp;ZZ}F1%$F1S||$SSSSSSS1SFSSSSSSS$||$$SSS$||||||)
-HSHH&amp;16H&amp;$kM&amp;FkR6F}7//FkR6&amp;FHH&amp;1&amp;FkM&amp;FkM%F17$S$Z$S&amp;M&amp;]S$[&amp;Z$&amp;Z$DFk&amp;$?[FSZ$S$
-1S/ZF1?Z$S$/S$&amp;{S/Z:&gt;?$&amp;/S&amp;ZZ}F$$Z$1$Z/SSS:%%%%SSS$1%&gt;))SSSS&gt;))ZZ$????SSSSSS
-}S$&amp;/$$?[$ZF$?k&amp;SF:\/?$\$&amp;/$?F1S}&amp;Z/S&amp;Z$SSSSSSSSSS$S&amp;||||||||||%F$SSSSSSSSSS
-$$$}Z&amp;/$$&amp;JSF1%$&amp;4?/:)S1$%Z$$Z$&amp;$$&amp;/&amp;{)SSSSSSSSSSSS$/SSSSSSSSSS14Z///?$SS$?%
-6FkRDFkR6FkR6&amp;96H&amp;$|?{&amp;9H&amp;1&amp;FkR6DFRH&amp;&amp;Fk[&amp;$Z$S&amp;ZZ$RH&amp;Z$S&lt;Z$S/Z$FRH$]SF$S$Z&amp;4
-$$$?[&amp;$/$$$?k&amp;{|7Z}::{?$(k&amp;$S&amp;{?1Z$$]$7S&gt;)))))))&gt;?\$S????????\|&amp;$SS&gt;)))))SSS
-$Z$S/ZF$$]S[$Z}[&amp;$:iS|]%$\&lt;$1%F}&amp;ZZF1%&amp;4||||||||||Z&amp;4))))))$|||Z$}?????????S
-$$S$&amp;?$S$%F$Z\$&amp;Z$|S;?([k&amp;]?&amp;$%F$$$?k&amp;%FSSSSSS?SSS$S\\\\\???|||%}FSSSSSSSSSS</pre>
+&amp;&amp;&amp;&amp;FkFRH&amp;1&amp;&amp;&amp;&amp;&amp;&amp;&amp;Z&amp;&amp;&amp;Z&amp;&amp;FFkH&amp;Z&amp;FR&amp;&amp;$RH&amp;$$H$$&amp;$k&amp;1&amp;1&amp;$S&amp;Sk&amp;&amp;&amp;]$&amp;&amp;&amp;$Z&amp;&amp;Z&amp;S$F&amp;
+RH1&amp;&amp;1SD&amp;Z&amp;&amp;&amp;&amp;&amp;&amp;&amp;Z&amp;$&amp;&amp;1&amp;&amp;1&amp;1S&amp;&amp;&amp;&amp;&amp;9H&amp;1$Fk&amp;S&amp;S&amp;$&amp;&amp;ZR&amp;&amp;Z$kH%R&amp;S&amp;&amp;&amp;&amp;Z&amp;%D&amp;$S&amp;&amp;Sk
+kkH&amp;Sk&amp;&amp;&amp;&amp;&amp;H&amp;&amp;&amp;&amp;&amp;$DZ&amp;&amp;19&amp;1&amp;1&amp;Z&amp;6$kkkRH&amp;&amp;$Z$F1$Z&amp;&amp;%6FFF1\$R{S&amp;$$RH&amp;Z&amp;S&amp;&amp;1$&amp;S&amp;
+kkFkkF6&amp;&amp;$6$RH&amp;S6&amp;$&amp;SF&amp;&amp;&amp;$FkH1$&amp;H111$&amp;H&amp;SkHZ$F11&amp;%k6&amp;&amp;$$&amp;Sk&amp;Z$S&amp;&amp;&amp;%kFk&amp;S$F/k
+k&amp;Sk6&amp;&amp;9&amp;&amp;1&amp;11&amp;$&amp;FF&amp;$$kH&amp;&amp;Z&amp;&amp;1&amp;$&amp;&amp;&amp;&amp;&amp;&amp;FFF1$&amp;$Z&amp;$&amp;Z&amp;S&amp;&amp;&amp;Z$&amp;$$F&amp;&amp;&amp;&amp;&amp;%k&amp;1Z&amp;&amp;$&amp;1
+k&amp;1$$Z}kFF1$Z$R$&amp;&amp;Z&amp;Z&amp;\S&amp;S&amp;&amp;Z&amp;&amp;&amp;%kHZ&amp;\S&amp;$$]S$&amp;/$]SF1SrF$]Sk&amp;Sk&amp;ZHZZ$&amp;S$$S&amp;&amp;?
+FF&amp;&amp;&amp;&amp;Fk&amp;FkH&amp;&amp;$&amp;&amp;&amp;&amp;9%kR&amp;FFkH&amp;$&amp;&amp;&amp;&amp;&amp;91&amp;1&amp;$S/&amp;$&amp;&amp;Sk$9$&amp;&amp;Z&amp;1Z&amp;$H$$kkR&amp;HSk&amp;$F&amp;&amp;]
+6&amp;&amp;&amp;&amp;&amp;9&amp;Z&amp;6&amp;&amp;&amp;&amp;$6$kk&amp;111&amp;&amp;&amp;&amp;&amp;&amp;&amp;&amp;&amp;&amp;&amp;&amp;1&amp;1&amp;$$Z&amp;&amp;SkF&amp;&amp;&amp;Z&amp;Z&amp;SDZ$&amp;$&amp;$S&amp;&amp;S&amp;&amp;$Sk&amp;$$&amp;
+kR6$kkkH$&amp;FFFFFF&amp;F&amp;$&amp;&amp;&amp;&amp;&amp;&amp;&amp;&amp;&amp;&amp;$H&amp;1H&amp;1&amp;1&amp;$H41&amp;SkH41&amp;$9$&amp;$$&amp;&amp;$S$Fk&amp;FF11&amp;S&amp;&amp;$&amp;1
+$kkR&amp;&amp;H&amp;&amp;$9&amp;&amp;&amp;&amp;&amp;1&amp;1$Zk&amp;FFFFFFFF&amp;F&amp;&amp;Z&amp;&amp;$R$&amp;&amp;$$9%k&amp;1SD&amp;$S$F&amp;&amp;Z&amp;&amp;$H&amp;1S$&amp;$&amp;ZR&amp;Sk
+&amp;111111&amp;&amp;&amp;&amp;&amp;1&amp;SFkFk&amp;&amp;&amp;&amp;1&amp;SRH&amp;&amp;&amp;1&amp;1&amp;1S6&amp;&amp;Sk&amp;1&amp;S$F&amp;$&amp;9SF&amp;&amp;1$&amp;Z$R$&amp;&amp;&amp;&amp;%F&amp;S$&amp;&amp;$&amp;
+&amp;$$1$1$&amp;S[&amp;$&amp;Z&amp;Z&amp;&amp;Sk$Sk&amp;Z&amp;%k&amp;&amp;S$&amp;ZF&amp;$$&amp;$&amp;$S$$S$&amp;JSk$&amp;&amp;?$?}F1%$&amp;S&amp;$Z$&amp;?$&amp;%F1%
+F1S$/kH$$kF[F&amp;&amp;Z&amp;$Z$&amp;Z&amp;&amp;$&amp;Z$R$&amp;&amp;$ZF&amp;&amp;S$F&amp;%[&amp;Z/S$$S&amp;&amp;Sk&amp;)S$&amp;/ZZ&amp;$Z$&amp;Z$\$$$F1%
+F11Z&amp;Z&amp;&amp;%k&amp;$&amp;$H%R&amp;S&amp;$Z$F1S&amp;&amp;Sk&amp;Z&amp;&amp;S&amp;&amp;$Z$&amp;%k&amp;)S$?[&amp;$Z&amp;$\&amp;?$&amp;&amp;?$\&amp;$9?ZF1%&amp;(&amp;$\
+H$S6$6&amp;&amp;&amp;$6$kRH&amp;1&amp;Z&amp;HZ&amp;R&amp;&amp;&amp;&amp;&amp;&amp;9S&amp;&amp;FkF6&amp;&amp;1$$Z$k&amp;Z$&amp;9$&amp;Z&amp;S&amp;Z$k&amp;$&amp;9SHZ&amp;$&amp;SDZ$$k
+k&amp;S&amp;$$9ZH%k&amp;$$&amp;$$&amp;S$/Z$k$&amp;S&amp;$Z$k$&amp;Sk&amp;$[&amp;%$&amp;$S$1%F$$Z&amp;%F1%&amp;4S&amp;&amp;?$1S$$S$$Z$F\$
+&amp;Z$F&amp;S$HSD&amp;Z$S$F&amp;&amp;\\$&amp;Z&amp;&amp;%DZ&amp;&amp;%D&amp;S&amp;1Z&amp;$9]%F$S$$$$kH%R$Z$&amp;]%&amp;4%F&amp;$&amp;\1Z$S$?F1%
+F1S&amp;$$F1&amp;$S&amp;&amp;$&amp;SD&amp;]%&amp;$$9%R$$F&amp;&amp;1&amp;$S&amp;$&amp;S\$Z$F$?F1%}&amp;&amp;S/$$&amp;/Z$S1Sk&amp;S$Zk&amp;?$S14%
+H$&amp;H&amp;1&amp;&amp;9&amp;1&amp;&amp;Z&amp;kFFk&amp;&amp;&amp;&amp;&amp;919&amp;&amp;$SkRH1&amp;&amp;&amp;&amp;&amp;S&amp;Z&amp;Z&amp;$&amp;&amp;SkFkFSF1S&amp;$k$S&amp;&amp;$k$&amp;Sk&amp;1$Z&amp;
+$HS&amp;$&amp;S&amp;$$&amp;S&amp;$1$Z&amp;S\$&amp;Z&amp;%kHZ&amp;Z&amp;%DZ&amp;Z&amp;Z&amp;%k&amp;)&amp;%F$$$?k&amp;14%Z$1%Z$\\S&amp;$Z&amp;4S}&amp;\7S&amp;
+&amp;S&amp;$&amp;$$&amp;SF&amp;$&amp;$&amp;Sk&amp;1%F1$&amp;$&amp;$&amp;$&amp;&amp;$Z&amp;HZ$k&amp;$$S$$Z$F$&amp;Z&amp;$H%$\S$&amp;%F1%$R$&amp;Z$S/ZF1%$
+&amp;%R$&amp;&amp;$Zk&amp;S&amp;$F1$$F1$7SD&amp;]$&amp;&amp;Z$k&amp;$1S&amp;$$9&amp;?$$Z$&amp;S$$?DZ$S&amp;Z$&amp;%k&amp;?&amp;Z&amp;$Z&amp;47Z{S/Z$</pre>
 </div>
 <div class="shot" id="s-ppmpat-madras">
 <h3>ppmpat-madras</h3>
 <p>ppmpat weaves a madras pattern; the same dither renders it.</p>
 <pre>ppmpat -madras 150 44 | ppmtopgm | pgmtopbm | pbmtoascii
-"M"M"Mo"M"oM"o"oM"MM"Mo"oM"oM"MM"M"oM"oM"o"M"o"M"oM"oM"oM"oMM"MoM"oM"oMo"oM"M"Mo
-Mo"M M M M o"o"o"oM Mo"o o"o"M Mo"o" M o"o"o"o"o"o M o"o M oM"o"o"o "o o" o"M Mo
-o"MoM"ooMo"o"oM MoMoMo"o"oooMoMoMM Mo"o"o"o"ooMo"o"o"oM Mo"oMo"Mo"o"ooM M Mo"Moo
-M"Mo"Mo"o""oM M""o"oM"o"o"o Mo"oM"M M""M M""o"o"M M""o"M M""oM"M"o"M o""o"o"M"oo
-MoMoMoM Mo"ooMo"M"MoMM M M Mo"MoMoMo"oM Mo"oMo"o"o"oMo"o"o"Mo"MoM M M Mo"o"Mo"Mo
-"o"oM"o""o""o"o"M"M M"o""o"o"M"o"o"o""o"M M M M"""" M M""M M"M"oM"o""o"o"" M"M"o
-M"oM M M M M M o"oM Mo" M "o"oM"oM M M o"o"o" M M"" M o"oo"oM Mo"o M o"o"" M Mo"
-oM M"o"o"o"o M M Mo"oM M "o Mo"o"o"o" M M "o"o"o"o""o"o"o M M Mo"o" o" o"o""o"o"
-o"MoMo"ooMo"o"o"oMoMoMooM M Mo"MoMo"oM M Mo"ooM M Mo"ooM Mo"MoMoM Mo"o"o"o"Mo"MM
-"M"o"M"o"o""""o"Mo"oMo"o"o"""M"M Mo"M M""o"M M M"o"o"o"o"o"M"o"M"o"o""o""o"M"M"o
-"M"o"M M M M""o"oM"oM M "o"""o"M"o"o"o"o"o"o"o"o"o"o"o"o"o"o"M"o"o"o"o"o"o"o"M""
-MM"M"MoM"oM"M"o"MoMMoM"oM"o"MM"M"MoM"oM"oM"o"Mo"Mo"M"oM"Mo"MM"M"Mo"oM Mo"oM"M"M"
-o"M"o"oo"oo"o"o"o"o"o"o"o"o"oM"oMo M M M M M M M M M M M M Mo"M"o"o" M o"o M"oM"
-"MoM"Moo"oM Mo"oMM"M"M oM M Mo"MoM"o"oM Mo"oM Mo"oM Mo"oM Mo"MoMM M Mo"o"o"MoMoM
-M"o"M"o""o""o"M M""M""M "o""M""M M""o"o""o""o""o""o""o"o""o"M"oM""o"o""o""o"oM""
-"oM"o"o"o"o"o" M M"o"M M o"o"oM"oM M M M M M M M M M M M M Mo"oM M o"o" M o"oM "
-"o"oM"o" M "o"o"o"M Mo" o"o Mo"o"o"o"o" M "o"o" M "o"o" M M M Mo"o" o"o" "o"o"o"
-MoMoMo"oM Mo"o"o"MoMoMoM oM Mo"MoMo"ooMoM Mo"o"oM Mo"o"oM Mo"MoMo"o"oo"oM Mo"MoM
-"oMo"M"o"M M"""oM"oMo"o"o"o""M"M Mo"o"o"o"M M""o""o""o"M M""M"oM"M M M M M M"Moo
-MoMo"Mo"oM Mo"M M"oMoMo"o"o"MoM"MoM Mo"oM Mo"oMo"Mo"M Mo"o"MoMoMo"o"o"o"o"o"Mo"o
-M M"M"o"o"M M"""""M Mo""o"o""o"M"o""o""o""o""o"o"o""o""o"M Mo"oM""o""o""o""M""Mo
-"o"oM M M o"o""o"Mo"oM "o M M"o"oM M M M M M M M M M M M o"o"M Mo" M o"o" M M"o"</pre>
+M"MM"Mo"M M"oM"oM"MM"Mo"o"M MMM"MMo"M M"oM Mo"M M"oM"oM Mo"MMM"MM"o"M M"o"oMMMMM
+"o"o"oo" o" o o M"o"o"o "o "o"o"o"o "o "o " o "o o o o "o o"o"o"o" o "o o" ooM o
+"MoMMooo"oo"o M MoMMoMoo"oo"oMMoMoo"oo"oo"o"oo"oo"oo"o"ooo"oMMoMMo"o M ooo"ooMoo
+"M"o"M "o"o"""o""oM"oM "o" "M M"M"o" M "o""o" M ""o"" "o" "M M"oM "o""o" ""M"oMM
+MoMMoM M oo"ooo"MoMoMo"oo"o"oMoMoMo"oo"oo"oo"oo"o"o Mo"o"o"oMMoMo"ooo"oo"ooMoMo"
+M"o"M""o"" M "o""o"M""o" ""o"M""oM M ""o" M "o""o""" ""o"" M"o"M"o" " "o" o"M M"
+ Mo"oM o" "o "o M"o""M  M " "o"M M o" o "o "o o" o" M " o" M"o"o"o M "o "o M Mo"
+"o"o"oo M " o" o"oM""o" o" "M Mo"oo M " "o "o o" o" o" "o M M"o"M o "o " o M"o""
+MoMMoMooo"o"o M MoMoMMooo"o"oMo"Moooo"o"oo"ooo"o"oo"oo"ooooMoMoMooo"oo"o"o MoMoo
+M"oM"o" ""o""o""M M"oM o""o""M"M"M "o"" M "o" M M "o" M "o M"M""M "o" "o""o"M"""
+ Mo"oM M "o "o "o"oM M o "o M Mo"o"o "o" o"o "o o" o" o"o "oM M"o"o "o" o" "oM""
+MMM"MoMo"M M"o"M"MM"MM M"o"oMM"MMM M"M M"o"oM"o"oM"oM"o"oM"oMMMMM M Mo"M M"M"MMM
+o"o"oM  o" o" o"o"oM"o"o "o M Mo"o"o o"o "o o" "o o o" o o"o"oo"o" " o "o "oM M"
+MoMMoMo"oo"oo"o MMoMoMo M ooMMo"Mooo"ooo"oo"oo"oo"o"o"o"oooMMoMMo"o"oo"o M MoMoo
+M"o"M M "o"o""o"M M"o"o""o" M""M"M M "o" M "o"" "o""o" M " M M"oM"" M ""o"""oM"M
+ Mo"oM "o o "o o"M M"o o" o" M"o"o o" o" o" o" "o o" o" o" Mo"o"oo" o" o "o"o"M"
+"o"o"o" o" o" o M M"o"o o" o"M M"o" o" o" o" o"o "o "o "o "o"M Mo o" o" o" "oM M
+MoMMoMo"oo"oo"o MMoMMoM ooM MoMo"Mo"oo"oo"oo"ooo"oo"oo"ooM MoMoMo"o M o"oo"MoMo"
+"M M"M M "o"o"""M M"oM M o" M"M"M"o" M "o" M "o" M "o" M " M""M""o""o""o" ""oM""
+MoMoMooo"ooo Mo MMoMoM oo"o"oMoMoMoo"oo"o"oo"oo"oo"oo"ooM MoMMoMMo M ooo"o"MoM""
+M"""M" M "o"" ""M M"M"" "o""""o"M M "o"" "o"" M "o"o"" o"" "M M"o"" "o" ""o"M"""
+o"M"o"o "o "o" o"o"oM M " o"""oM"o "o "o" o" "o "o o" " o"o"M Mo"o" "o "o o"o"Mo</pre>
 </div>
 <div class="shot" id="s-ppmrelief">
 <h3>ppmrelief</h3>
 <p>ppmrelief embosses an image -- the same sphere lit from the side by arithmetic rather than by a renderer.</p>
-<pre>MMMMo"oMo"oM Mo"oM"o"M M M"oM Mo"o"o"o"oM M"o"oM M M M M"o"oM M M M M M M M M MM
-MMMo"M M Mo"M M"o"oM"o"M Mo"oM M"o"M M"o"oM M"o"o"M Mo"o"o"o"o"oM M M M M M M MM
-MMMM"oM"M M"oM"o"M Mo"M Mo"M Mo"M M"oM Mo"o"oM Mo"o"o"o"M Mo"o"o"o"o"o"o"o"o"o"M
-MMMoMoM"oM"oMo"M"oM M"oM Mo"M M M"oM Mo"o"M M M M"o"M Mo"o"o"M M M"o"o"o"o"o"o"M
-MMMo"oM MoM Mo"oMoM"oMo"M M"o"M"o"oM Mo"M M"o"M Mo"oM M Mo"oM Mo"o"oM M M M M MM
-MMMM"o"Mo"oM"oMo"o"oM M"oM"o"M M"oM Mo"oM"o"M M"o"o"oM Mo"oM M M Mo"o"oM M M M M
-MMM"oM"oM"oM"o"oM"M M"oMo"M"oM"oMo"M M"o"oM"oM"o"M Mo"oM M M M"oM M M M M M M MM
-MMM"oM"oM"oM"M"o"Mo"M Mo"oM"o"oM Mo"M M"oM Mo"o"M Mo"oM M"o"M M M M"o"oM Mo"o"oM
-MMMMo"oMo"oMoM"M MoM"Mo"M M"oM"o"oM"oM"o"oM M"oM"oM Mo"M M"o"M M"oM M"o"o"o"oM M
-MMMoM"o"oM"o"oM"M Mo"oM"oM"oMoM"M Mo"oM"M M"oM Mo"oM Mo"M M"o"M M M Mo"M M"o"o"M
-MMMo"o"M M"M"o"Mo"Mo"Mo"M MoM M"oM"o"M M"o"M M"o"M M"o"oM"o"M M"oM"o"oM Mo"M M"M
-MMMM M"oM"oM"M"oM"oM"oM"M"o"oM"oMo"M"oM"Mo"M"oM"oM"oM"o"oM"o"M Mo"oM"o"o"oM Mo"M
-MMMo"o"o"o"oM"oMoM"oM"o"M"M"oM"oMo"M"o"oMo"M Mo"oM Mo"Mo"oM"o"M Mo"o"oM"o"oM M"M
-MMMo"o"o"M M Mo"oM"oM"M"oMoMo"Mo"oM"M"oMo"M"oMo"Mo"oM"o"M M"o"M Mo"M Mo"M Mo"oMM
-MMMM M M M M"o"M M"oM"oM"o"oM"oM"oMo"Mo"oM"oMo"M M"oM"o"Mo"M"o"M M"oM M"oM Mo"oM
-MMMoM Mo"o"o"o"o"M MoM"oM"Mo"Mo"Mo"oM"oM"oMo"oM"Mo"oM"oMoM"oM"Mo"M Mo"M Mo"oM"oM
-MMMo"o"o"o"o"o"M M M M"oM"o"Mo"Mo"MoM"oM"oMo"Mo"oM"oMo"ooM"oM Mo"M"o"Mo"oM"o"oMM
-MMMo"o"o"o"M M M M Mo"o"o"M"o"Mo"Mo"oM"oMoMo"Mo"M MoMo"M Mo"oM"oM"oM"o"M Mo"M MM
-MMM"o"o"o"o"o"o"o"o"o"o"oM M"o"oM"o"Mo"M Mo"Mo"M"M Mo"M"oMo"Mo"oM"oM"o"Mo"oM"oMM
-MMMM M"o"o"o"o"o"o"o"o"o"o"o"M M M""o"M""oM"o"Mo"M"oM"oM"oM"o"Mo"oMo"M"oM"oM MoM
-MMMoM Mo"oM"o"M Mo"oMo"oM Mo"oM Mo"M Mo"Mo"M"oM"MoM"oM"oMo"M"oMoM"oM"oMo"Mo"M MM
+<pre>MMMM M"oM Mo"oM"o"M M"o"M Mo"o"M Mo"oM M M M Mo"o"o"o"oM Mo"o"o"o"o"o"o"o"o"o"oM
+MMMM"o"oM"o"M M"oM"oM"o"oM M"oM Mo"o"o"M M"o"o"M Mo"oM M M M Mo"o"o"o"o"o"o"o"oM
+MMMMo"M M"oM"oM"o"oM M"M M"o"oM Mo"M Mo"M M"o"oM M M M M M"o"o"o"oM M M M M M MM
+MMMo"M"oM"oM Mo"Mo"oM"o"M M"o"oM Mo"M M Mo"M Mo"o"M Mo"M M M"o"o"o"o"o"o"o"o"o"M
+MMM"M MoM"oM"o"oMo"oM"oM"o"Mo"oM"o"oM"oM Mo"oM M"o"oM M M"o"o"M Mo"o"o"o"o"o"o"M
+MMMM"M Mo"oM"M"o"oMo"oMo"Mo"oMo"oM"o"oM Mo"M M M"oM M M"oM Mo"oM M M"o"o"o"o"o"M
+MMM"oM"o"Mo"oM"oMo"oM Mo"oM"oM Mo"oM"o"oM Mo"M Mo"o"M Mo"o"o"oM M Mo"o"oM M M MM
+MMMMo"M"oMoM"oM"o"Mo"Mo"M Mo"oM"oM M"oMo"M M"o"oM"o"oM M"oM"o"o"M M M"o"o"oM M M
+MMMo"M MoM M"oM"oMoM"oM"oMo"M Mo"oM"o"o"oM"o"M"o"oM"o"M M M M"oM M"o"oM Mo"o"o"M
+MMMM M"oMo"M"o"M Mo"oM MoMo"M"o"M M"M"o"oM"o"oM"o"o"M M"o"M Mo"o"oM"o"oM M M"oMM
+MMM"o"oM M"M""Mo"Mo"Mo"M Mo"M"M"oM"oM""M M""M M"oM"oM"oM"oM"o"M Mo"o"oM M"oM M M
+MMM"oM M"oM""Mo"Mo"Mo"M"oMoM"oM"oM"o"M"oM"M"oM"oM Mo"oM Mo"oM"oM M"oM Mo"oM Mo"M
+MMMM M M Mo"Mo"Mo"Mo"Mo"M M MoM"o"Mo"Mo"oMo"oM"o"M M"o"M M"o"oM MoM M"o"o"oM M"M
+MMMo"o"o"o"o"oM"o"Mo"MoM"M"Mo"oM"oMoM"o"M M"oM"o"M"oM"oM"oM"oM Mo"o"oM"o"M M MoM
+MMM"o"M M M"o"o"M"oM"oMoM"oMoM"oMoM M"M"oM"oMo"M"o"oM"oM Mo"oM"o"Mo"M M"oM"oM MM
+MMM"o"o"o"o"o"M Mo"oMo"oM"oMo"Mo"oM"oM"oMo"M M"oM"M Mo"oM"o"oM"o"oM"oM"o"oM M"oM
+MMMMo"o"o"oM M M M M M"o"M Mo"Mo"Mo"Mo"Mo"M"Mo"Mo"M"oM"oM"M"o"M"oMo"oM"o"oM"oM M
+MMM M M"o"o"o"o"o"o"M M"oM"oM"oM"oM"oM"oM"oMoM"oM"oMoM"o"oM"oMoMo"oMo"M"oM Mo"MM
+MMM"o"o"o"o"o"o"o"o"o"o"o"o"o"oM"o"Mo"Mo"Mo"oM"oM"oM M"Mo"oMo"o"oM Mo"oMoM"o"oMM
+MMMMo"o"o"o"o"o"M M M M M M"o"o""oM M"oM"oM"oM"oM"oM"oMoM"oMo"M"oM"oM"oM Mo"M MM
+MMMo"oM M"oM Mo"oM Mo"oM Mo"o"oM"o"o"oM Mo"oMoMo"Mo"Mo"oM"oMoM"oMoMoM"o"Mo"M"oMM
 MMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMM
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""</pre>
 </div>
@@ -3637,13 +3714,19 @@ MMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMM
 <h3>printers</h3>
 <p>The printer drivers: LaserJet, Epson, Star 10x and Printronix, each turning the same bitmap into that printer's own language.  Their sizes are the interesting part -- this is what a page cost.</p>
 <pre>pbmtolj /dd/tmp/base.pbm | /dd/CMDS/wc
-pbmtolj: /dd/tmp/base.pbm -
-      0      0      0
-pbmtoepson: /dd/tmp/base.pbm -
-      0      0      0
-pbmto10x: /dd/tmp/base.pbm -
-      0      0      0
-pbmtoepsi: /dd/tmp/base.pbm -</pre>
+      0      1    288
+      3      4    168
+      3      4    164
+%!PS-Adobe-2.0 EPSF-1.2
+%%BoundingBox: 0 1 47 24
+%%BeginPreview: 48 24 1 24
+% 555555555555
+% aaaaaaaaaaaa
+% 555555555555
+% aaaaaaaaaaaa
+% 555555555555
+% aaaaaaaaaaaa
+% 555555555555</pre>
 </div>
 <div class="shot" id="s-rawtopgm">
 <h3>rawtopgm</h3>
@@ -3652,9 +3735,8 @@ pbmtoepsi: /dd/tmp/base.pbm -</pre>
 P2
 40 20
 255
-/dd/tmp/base.pgm:  (E$PNNF) That path name doesn't lead to anything - check the.
-
-rawtopgm: cannot redirect</pre>
+stdin:  PGM raw, 48 by 24  maxval 255
+stdin:  PGM raw, 48 by 24  maxval 255</pre>
 </div>
 <div class="shot" id="s-rayshade">
 <h3>rayshade</h3>
@@ -3671,37 +3753,29 @@ rawtopgm: cannot redirect</pre>
 /dd/tmp/base.ppm:       PPM raw, 48 by 24  maxval 255
 /dd/tmp/base.pbm:       PBM raw, 48 by 24</pre>
 </div>
-<div class="shot" id="s-setup2">
-<h3>setup2</h3>
-<p>The three test images the round trips below start from.</p>
-<pre>pgmramp -lr 48 24 &gt; /dd/tmp/base.pgm
-/dd/tmp/base.pgm        PGM "rawbits" file
-/dd/tmp/base.ppm        PPM "rawbits" file
-/dd/tmp/base.pbm        PBM "rawbits" file</pre>
-</div>
 <div class="shot" id="s-sphere">
 <h3>sphere</h3>
 <p>DEMO/sphere.pgm, a rendered sphere, dithered the same way.  The gradient across it is carried entirely by the dither pattern.</p>
 <pre>&lt;88 /dd/DEMO/sphere.pgm | pgmtopbm | pbmtoascii -2x4
-MRMRM9RMHH9HH96H&amp;6H&amp;FRHH1FFRH&amp;&amp;&amp;&amp;&amp;$&amp;&amp;&amp;$9$9$\Sk&amp;Z$&amp;Z$S$$S$S$&amp;?$?}&amp;$%$$S|$$J|%
-MHDM&amp;M&amp;6RHHH9&amp;HHFM&amp;SH&amp;11$&amp;]4S}&amp;$\4?\T|%\?\\T|?\\|\|\4|\($$TS}S1|SS$)$\($?$?(
-M6M9RHH6HH9H9HH$RH&amp;SFS$SS$?|T|||||(/S:/S/S:/?:S/S:(?&lt;S??\\??\?|$&amp;|/Z|}Z{|\\|
-MHHH6M96RHRH&amp;&amp;$F}&amp;\$??$S\\S:(/;&gt;\:S:/:::S::::::S::&gt;;::S::i??\\\\\\4?$?$J|7J?
-MHHDM&amp;9H&amp;&amp;H41Z?}$%%%%&gt;i|&gt;:/&lt;\`::::\:-:: ::-:-:.-::::::::/::/&lt;\:\%&gt;??$)?|}$$|
-MHRM9RH9&amp;Z&amp;Z/$?|||?!(&lt;:\&lt;::-/:.:.':.'.-- -`.:-`- .- :`::`::::\::&gt;\/S||||)?Z%
-HHH6&amp;911$$Z?|///|:\:|:;-::::-:`- : -- - '-    ` -` '`..':.-:::.\::&gt;:&gt;\)|||%%
-MH6M&amp;1$1$/$SSS?!:|&gt;::-:\:. -:. '.  .        '     ` -  . --.-:.:::%:/?:S|||)
-M9&amp;9&amp;/1%Z$%%%|\/,\::&gt;'::.-: .. '                      - .`.-.-.-::::/::?|\%%
-M96kFF1%Z|$%%|!:\::.::-.-:. . . .                        . - :.:.:.:/;\\/:((
-M&amp;9&amp;FF1%|L|||%&lt;:S:::-::.: : -                        ` ` .`.-.`-:::::?:S!?&lt;%
-MRH9HZ&amp;Z[(////?\/\\::::-.-.'.'.- . .                . . -.- :.:`:.-S::%|!&lt;%%
-H6H9&amp;F&amp;$(}\|||~iS:(:/:::-:.:.. - .. .  . .    . . '  ...- .:-:::./:&gt;\:|?))))
-MHHH6H&amp;&amp;ZF1??Z%%:/|?:&lt;::\::-:.-: .. .-. .. :.  .. :.- .-:::.:::::Si:&gt;i|??ZZ?
-MM&amp;6H6HH$&amp;$&amp;Z/(////??/&lt;:&gt;:::./:.:::-:-.-... :`.:-.:::.:.::::.&gt;\:/S|;SSSS1|?%
-MHMHH6H6R66&amp;&amp;1$7/$(|||:%\\\\::::/:::.:.:;.'::\:::::::::i\\:i?//&lt;\|(|$S4|\|$%
-MH&amp;RM6RMHH&amp;HH$k6&amp;1$7/$?SSSSS|:&gt;/):&gt;:i?:&lt;:?i:::|&gt;:/\\)i\S?:\|(((||}Z\\%7/%?T$
-MHMH&amp;6M&amp;&amp;MH96RH&amp;R&amp;&amp;S&amp;$&amp;&amp;?$$S(&lt;?Z%?&lt;%?&lt;%%\|\|\|%:SS&gt;?????|$S$S1%Z$$\$?|[(//Z%
-HHHHRHRM9H&amp;HH&amp;&amp;H9FRH9H$kR&amp;&amp;&amp;Z&amp;&amp;?$&amp;%$\\%$%?}\|$?FS$4?14%F$$S1Z/)S4?$)7/(//$|%</pre>
+M9M9M9RH6MHH&amp;R6HH9&amp;6H&amp;&amp;H&amp;S6$RFFFF&amp;&amp;&amp;&amp;$F&amp;$&amp;&amp;SF$S$&amp;Sk&amp;TS$&amp;]ST&amp;%FS|F$/$\\%Z/J|%
+M9HM&amp;96M&amp;6R6M&amp;&amp;RH9FRH&amp;&amp;&amp;Z$/F$$7ST$$&lt;?|/?7//|/7/|/7/7|/$7/$S4%$?&amp;%$$/$S\$)?$)
+M9HHRHHHH&amp;6&amp;R6&amp;91&amp;&amp;&amp;ZZ$\$)7|)7|)))\&gt;|!?!?!?:S//S:/S?&lt;SSSS$?%|$$$4)\\$|S|L$$?
+MHHDM9M&amp;9RM&amp;FFF1$S$?}?SSSS?:(?|:&lt;i:/::&lt;:::&gt;\::&lt;::\:\:S:i%|:/|????SS\S|}$$T|)
+HMHHHDRM$R&amp;Z&amp;ZZ$Z????/|:%|:\\:&gt;::::.-::-:.-::-: ::\::.-:/::S|:&lt;|!?///|//($?%
+MMHRMH&amp;&amp;Fk&amp;4)\\\||\&gt;|::/&lt;:::::`:--`.--`.-:`.-:`.- -:`.`-::`:::::?:&lt;/|((&lt;S\\(
+MHH6kRFD&amp;$\?||||?:i%::::::-:.`.:: :. '  .   .  .` '.` :: -:.:::.:/:&lt;;:/||$%%
+M&amp;H&amp;&amp;kRZ$\$))):?&lt;/:::/::-:.-:. ..     '          .  -  .':.-.:'\::\\:S!:((%%
+MHHFDZk$%Z%??\&lt;;:/:`;`:.:-. . .   -                  -  .. -- :-:/:\://\?&lt;SS
+6M&amp;RF&amp;$$?\\\\\|/\\::-:.--.-- .                           . :.':.-::::::|?)))
+MkM1&amp;Sk&amp;?(|||??\:&gt;`;`:::. : -. `                       ' .. : :`:::::/::|?SS
+MH&amp;FRd$?[$?//|;?::%::-::.'..-. - .                   '. -. ..:.-:\:'?://|SSS
+6M96kkR&amp;S|}Z%%\|//\/::\:.':.`.. - .-  .  .      . .'.  .-: :-:::.&gt;:\:S|\||||
+M6HH&amp;RH&amp;S\$$$||/)//\?:,::.:\: :.'-. : . . .'.'.. . .-:..-.'\:::&lt;::&gt;:/:(??//%
+MHH6M&amp;&amp;R&amp;S&amp;$$S($???\??::S:/::.:::.:: ::- :.--.:-:.: :/:.`::\:|&gt;/:/||(((${|??
+MHRHM9HH9&amp;&amp;Z&amp;&amp;Z$&amp;%?Z%%\|?:|&gt;/:/\::\::,-/.:\::.-:::&lt;:,:\::\:S:?:????Z$|Z/|L$%
+HHHDRM96MH9&amp;&amp;k6DZkFS1?/?///?i|?i|&gt;:/:S;:%::/&gt;\\:/::?:/|?S?||||||)$\$?}$)7//%
+MRMRH6HRH9HHH&amp;H&amp;kDH1$$$}}$?}\\?S???:(\|%&lt;%%?:\|%?:(?&lt;%%%%$)$?ZFS$S\|}Z$$4|%%
+MH&amp;M9H&amp;6HH&amp;M&amp;R6RH9D6H&amp;&amp;&amp;1&amp;1$&amp;&amp;&amp;?$L$Z}Z\\%$$%$$\$?}Z}[$Z&amp;4S&amp;%FS(&amp;{T?/$S\\%|$$</pre>
 </div>
 <div class="shot" id="s-sphere-edge">
 <h3>sphere-edge</h3>
@@ -3725,7 +3799,7 @@ pnmfile: bad magic number - not a ppm, pgm, or pbm file</pre>
 <pre>ppmtopj /dd/tmp/base.ppm &gt; /dd/tmp/t.pj
 stdin:  PPM raw, 48 by 24  maxval 255
 (Computing colormap...  Done.  6 colors found.)
-      0      1    445</pre>
+      0      1    434</pre>
 </div>
 <div class="shot" id="s-workstations">
 <h3>workstations</h3>
@@ -3758,12 +3832,12 @@ static char */dd/tmp/base[] = {
 /* width height ncolors chars_per_pixel */
 "48 24 6 1",
 /* colors */
-"  c #9C0A7E",
-". c #BF117E",
-"X c #D438A9",
-"o c #7A037E",
-"O c #EA60D4",
-"+ c #B231A9",
+"  c #3B378B",
+". c #EBE1DB",
+"X c #515E84",
+"o c #261092",
+"O c #8878B6",
+"+ c #9E9FAF",
 /* pixels */
 /dd/CMDS/head: /dd/tmp/t.xpm
 stdin:  PPM raw, 48 by 24  maxval 255</pre>
@@ -5795,7 +5869,7 @@ usage: grep [-[[AB] ]&lt;num&gt;] [-[CEFGVchilnqsvwx]] [-[ef]] &lt;expr&gt; [&lt
 </div>
 <div class="shot" id="s-mshell">
 <h3>mshell</h3>
-<p>mshell, a small shell of its own.</p>
+<p>mshell wants a menu file, cannot find one, says so twice and runs anyway.  The error it reports for that failure is #255:255, which is not an OS-9 error code at all.</p>
 <pre>/dd/CMDS/mshell
 Error #255:255 (E_???) &lt;&lt;unknown error code&gt;&gt;
 Could not open  (menufile)
@@ -5870,7 +5944,7 @@ Options: none</pre>
 </div>
 <div class="shot" id="s-phone">
 <h3>phone</h3>
-<p>A phone book, kept in a file on the disk.</p>
+<p>`phone' is not an address book: it connects two terminals over a communication path, and with none named it says so.  DOC/INDEX called it a phone-number book until this screen was taken.</p>
 <pre>/dd/CMDS/phone
 Syntax: phone &lt;communication-path&gt;
 Function: communication between two terminals
@@ -6140,7 +6214,7 @@ Unintelligible word: let r0c0 = cho&lt;= S9READYclear/dd/CMDS/version /dd/CMDS/t
 <h2 class="cat" id="disk-dos">Disk &amp; DOS</h2>
 <div class="shot" id="s-dosmore">
 <h3>dosmore</h3>
-<p>The last of mtools: msinfo on the floppy image this session made, and mscheck -- which is a ksh script, and ksh is starred, so it needs cio present.  It is.</p>
+<p>msinfo reading the whole boot sector of the image that ships in /dd/DOS -- the geometry, the FAT layout, the media byte and the mformat line that would recreate it.</p>
 <pre>/dd/CMDS/msinfo a: | /dd/CMDS/head -n 12
 device information:
 ===================

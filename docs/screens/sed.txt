@@ -1,12 +1,2 @@
-<d/SYS/holidays | /dd/CMDS/sed -e "s/Day/DAY/g" -e "s/^/| /"
-Syntax: sed [<opts>] [<path>] [<opts>]
+/dd/CMDS/head -n 8 /dd/SYS/holidays > /dd/tmp/hol.txt
 /dd/CMDS/head: /dd/SYS/holidays
-        sed [-n] <script> [<path>]
-Function: stream editor
-     reads text from path or from <stdin> and writes to <stdout>.
-Options:
-     -?            display usage
-     -n            no output
-     -e=<script>   editing commands
-     -f=<sfile>    file with editing commands
-sed: illegal use of 'e'-option.

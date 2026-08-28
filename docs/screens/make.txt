@@ -1,2 +1,5 @@
-/dd/CMDS/cat /dd/tmp/Makefile
-cat: couldn't open '/dd/tmp/Makefile' (Error #000:216)
+<motd ; /dd/CMDS/cat /dd/SYS/motd > /dd/tmp/hello" > /dd/tmp/Makefile
+hello: /dd/SYS/motd ; /dd/CMDS/cat /dd/SYS/motd > /dd/tmp/hello
+/dd/CMDS/cat /dd/SYS/motd > /dd/tmp/hello
+/dd/CMDS/cat: file not found
+gmake: *** [hello] Signal 75 (core dumped)

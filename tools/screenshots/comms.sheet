@@ -222,12 +222,15 @@ wait    8
 
 shot    terminals
 for     cls fkeys initvdu setterm wysecrack wysetime
-cap     The small terminal utilities.  cls clears; setterm and fkeys ask
-cap     the terminal what it is and program its keys; the Wyse pair want
-cap     real Wyse hardware and say so.
-run     /dd/CMDS/fkeys
+cap     The small terminal utilities, asked what they take.  `fkeys' and
+cap     `initvdu' print NOTHING at all -- no usage, no error -- which is
+cap     what the two blank lines under their names are.  The Wyse pair want
+cap     real Wyse hardware.
+run     /dd/CMDS/setterm -?
 wait    8
-run     /dd/CMDS/initvdu
+run     /dd/CMDS/fkeys -?
 wait    8
-run     /dd/CMDS/wysetime
+run     /dd/CMDS/wysecrack
+wait    8
+run     /dd/CMDS/wysetime -?
 wait    8

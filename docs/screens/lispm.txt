@@ -1,5 +1,7 @@
 pgmtolispm /dd/tmp/base.pgm | lispmtopgm | pnmfile
-pgmtolispm: /dd/tmp/base.pgm -
-lispmtopgm: bad id string in Lispm file
+lispmtopgm: depth is too large - try reconfiguring with PGM_BIGGRAYS
 pnmfile: EOF / read error reading magic number
-ppmtomap: /dd/tmp/base.ppm -
+ppmtomap: 6 colors found
+P6
+6 1
+255

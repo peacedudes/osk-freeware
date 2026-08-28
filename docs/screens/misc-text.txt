@@ -4,9 +4,7 @@
 from.  Its sibling ularn is complete and also runs.  gnuchessc and
  *gnuchess       GNU Chess
  *gnuchessn      GNU Chess (ncurses)
-/dd/CMDS/gdd: unrecognized option `/dd/SYS/motd'
-Usage: /dd/CMDS/gdd [if=file] [of=file] [ibs=bytes] [obs=bytes] [bs=bytes] [cbs]
-       [skip=blocks] [seek=blocks] [count=blocks]
-       [conv={ascii,ebcdic,ibm,block,unblock,lcase,ucase,swab,noerror,sync}]
-Numbers can be followed by a multiplier:
-b=512, k=1024, w=2, xm=number m
+Welcome to os9exec -- OS3+0 records in
+3+0 records out
+[Tcmp v2.3]
+Files /dd/SYS/motd and /dd/SYS/motd are identical

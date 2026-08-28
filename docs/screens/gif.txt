@@ -1,4 +1,5 @@
 ppmtogif /dd/tmp/base.ppm > /dd/tmp/t.gif
-ppmtogif: /dd/tmp/base.ppm -
-giftopnm: error reading magic number
-pnmfile: /dd/tmp/base.ppm -
+ppmtogif: computing colormap...
+ppmtogif: 6 colors found
+/dd/tmp/base.ppm:       PPM raw, 48 by 24  maxval 255
+pnmfile: bad magic number - not a ppm, pgm, or pbm file

@@ -2,6 +2,24 @@
 # by real programs and rendered back to characters so a screen
 # can hold them.  pbmtoascii -2x4 maps a 2x4 block of pixels to
 # one character, so 152x88 pixels is exactly 76x22 characters.
+#
+# THE SETUP STANZA COMES FIRST AND MUST STAY FIRST: it makes the three
+# test images the rest of the sheet reads.  Sorted alphabetically once, it
+# ran fifty stanzas too late and a dozen screens came out as `no such
+# path'.  Stanzas run top to bottom in ONE session.
+
+shot    setup-image
+for     pgmramp ppmpat pnmfile
+cap     The two test images every round trip below starts from: a greyscale
+cap     ramp and a woven gingham, both generated on this disk.
+run     pgmramp -lr 48 24 > /dd/tmp/base.pgm
+wait    5
+run     ppmpat -gingham3 48 24 > /dd/tmp/base.ppm
+wait    5
+run     pbmmake -g 48 24 > /dd/tmp/base.pbm
+wait    5
+run     pnmfile /dd/tmp/base.pgm /dd/tmp/base.ppm /dd/tmp/base.pbm
+wait    5
 
 shot    asciitopgm
 for     asciitopgm ppmtopgm pgmtoppm
@@ -520,31 +538,6 @@ run     /dd/CMDS/cp /dd/CMDS/GCC139/gcc_cccp /dd/CMDS/cccp
 wait    8
 run     /dd/CMDS/rayshade -R 48 36 -O /dd/tmp/out.pic /dd/GAMES/rayshade/boxball.ray
 wait    50
-
-shot    setup-image
-for     pgmramp ppmpat pnmfile
-cap     The two test images every round trip below starts from: a greyscale
-cap     ramp and a woven gingham, both generated on this disk.
-run     pgmramp -lr 48 24 > /dd/tmp/base.pgm
-wait    5
-run     ppmpat -gingham3 48 24 > /dd/tmp/base.ppm
-wait    5
-run     pbmmake -g 48 24 > /dd/tmp/base.pbm
-wait    5
-run     pnmfile /dd/tmp/base.pgm /dd/tmp/base.ppm /dd/tmp/base.pbm
-wait    5
-
-shot    setup2
-for     pgmramp pbmmake ppmpat
-cap     The three test images the round trips below start from.
-run     pgmramp -lr 48 24 > /dd/tmp/base.pgm
-wait    5
-run     ppmpat -gingham3 48 24 > /dd/tmp/base.ppm
-wait    5
-run     pbmmake -g 48 24 > /dd/tmp/base.pbm
-wait    5
-run     /dd/CMDS/file /dd/tmp/base.pgm /dd/tmp/base.ppm /dd/tmp/base.pbm
-wait    6
 
 shot    sphere
 for     pgmtopbm pnmscale

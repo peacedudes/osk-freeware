@@ -1,9 +1,3 @@
 pbmtoicon /dd/tmp/base.pbm > /dd/tmp/t.icon
-pbmtoicon: /dd/tmp/base.pbm -
-
-Process   Pid: 5 Invalid sync bytes: corrupted module?
-    Exit code: E_PRCABT(228) Process Aborted
-  Directories: Current   - /dd
-               Execution - /dd/CMDS
-        Files: 00 fPipe /pipe -> '' [wr]
-          #PPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPP
+stdin:  PBM raw, 48 by 24
+stdin:  PBM raw, 576 by 720

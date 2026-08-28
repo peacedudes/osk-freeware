@@ -2,4 +2,6 @@ pnmtile 60 30 /dd/tmp/s.pgm > /dd/tmp/tile.pgm
 usage:  pnmpad [-white|-black] [-l#] [-r#] [-t#] [-b#] [pnmfile]
 <pgm /dd/tmp/t.ppm /dd/tmp/tile.pgm /dd/tmp/pad.pgm /dd/tmp/s.pgm
 /dd/tmp/ramp.pgm:       PGM raw, 64 by 16  maxval 255
-pnmfile: /dd/tmp/t.ppm -
+/dd/tmp/t.ppm:  PPM raw, 80 by 40  maxval 255
+/dd/tmp/tile.pgm:       PGM raw, 60 by 30  maxval 255
+pnmfile: EOF / read error reading magic number

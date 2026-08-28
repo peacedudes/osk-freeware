@@ -1,6 +1,6 @@
 ppmtopi1 /dd/tmp/base.ppm > /dd/tmp/t.pi1
-ppmtopi1: /dd/tmp/base.ppm -
+ppmtopi1: computing colormap...
+ppmtopi1: 6 colors found
+ppmtopi1: maxval is not 7 - automatically rescaling colors
 stdin:  PPM raw, 320 by 200  maxval 7
-pbmtopi3: /dd/tmp/base.pbm -
-pi3topbm: EOF / read error
-pnmfile: EOF / read error reading magic number
+stdin:  PBM raw, 640 by 400
