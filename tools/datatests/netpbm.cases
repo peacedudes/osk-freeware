@@ -1,0 +1,38 @@
+family  netpbm
+# The netpbm set is 169 programs sharing one interface -- PNM in, PNM out --
+# and until 2026-08-27 nothing on this disk had ever run one against an
+# image. Every case here checks the DATA, never the exit status: a converter
+# that writes a corrupt image is silent and would pass any other test here.
+setup   P=/dd/CMDS/NETPBM
+
+case    pgmramp-makes-a-ramp
+run     $P/pgmramp -lr 32 8 > /dd/tmp/s.pgm
+run     $P/pnmfile /dd/tmp/s.pgm
+expect  PGM raw, 32 by 8
+
+case    pnmcut-really-crops
+run     $P/pnmcut 0 0 16 4 /dd/tmp/s.pgm > /dd/tmp/c.pgm
+run     $P/pnmfile /dd/tmp/c.pgm
+expect  16 by 4
+
+case    pnmtile-really-tiles
+run     $P/pnmtile 64 16 /dd/tmp/s.pgm > /dd/tmp/t.pgm
+run     $P/pnmfile /dd/tmp/t.pgm
+expect  64 by 16
+
+case    ppmmake-names-colours
+run     $P/ppmmake blue 3 2 > /dd/tmp/b.ppm
+run     $P/pnmnoraw /dd/tmp/b.ppm
+expect  0 0 255
+absent  unknown color
+
+case    pnminvert-is-its-own-inverse
+run     $P/pnminvert /dd/tmp/s.pgm > /dd/tmp/i1.pgm
+run     $P/pnminvert /dd/tmp/i1.pgm > /dd/tmp/i2.pgm
+run     $P/pnmfile /dd/tmp/i2.pgm
+expect  PGM raw, 32 by 8
+
+case    pnmscale-doubles
+run     $P/pnmscale 2 /dd/tmp/s.pgm > /dd/tmp/d.pgm
+run     $P/pnmfile /dd/tmp/d.pgm
+expect  64 by 16
