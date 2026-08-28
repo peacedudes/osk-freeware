@@ -70,3 +70,96 @@ absent  error
 case    zip-cannot-write-its-archive
 run     /dd/CMDS/zip /dd/tmp/a.zip $T
 absent  Could not create output file
+
+# THE REST OF THE FAMILY, 2026-08-28.  Every archiver on this disk that can
+# be driven from a script is now here, and each one proves itself by the
+# round trip: pack, take the original away, unpack, and require the md5 back.
+# The commands differ more than you would expect -- `lha a', `ar -u', `marc
+# -a', `zoo a' -- which is exactly why they are worth pinning down.
+
+case    lha-round-trip
+run     /dd/CMDS/cp $T /dd/tmp/lhame.txt
+run     /dd/CMDS/lha a /dd/tmp/a.lzh /dd/tmp/lhame.txt
+run     /dd/CMDS/rm /dd/tmp/lhame.txt
+run     /dd/CMDS/lha x /dd/tmp/a.lzh
+run     /dd/CMDS/md5 /dd/tmp/lhame.txt
+expect  ee2c20fa226fe6fc78feec7f123c7a99
+
+case    lha-lists-with-a-ratio
+run     /dd/CMDS/lha l /dd/tmp/a.lzh
+expect  963
+
+case    lharc-makes-an-archive-lha-can-read
+run     /dd/CMDS/lharc a /dd/tmp/b.lzh $T
+run     /dd/CMDS/lha l /dd/tmp/b.lzh
+expect  963
+
+# `ar' REFUSES AN ABSOLUTE PATH -- "absolute path illegal </dd/SYS/termcap>"
+# -- so everything it is given must be relative to the data directory, which
+# here is /dd.  That is a real constraint on this disk, where `cd' in bash
+# does not move the data directory at all.
+case    ar-adds-and-lists
+run     /dd/CMDS/ar -u tmp/a.ar SYS/termcap
+run     /dd/CMDS/ar -t tmp/a.ar
+expect  SYS/termcap
+
+case    ar-refuses-an-absolute-path
+run     /dd/CMDS/ar -u tmp/b.ar /dd/SYS/termcap
+expect  absolute path illegal
+
+case    ar2-reads-what-ar-wrote
+run     /dd/CMDS/ar2 -t tmp/a.ar
+expect  SYS/termcap
+
+# `marc' IS NOT AN ARCHIVER.  It is MARC, the archive MERGER: `marc <target>
+# <source> [names]' copies members from one .arc into another.  DOC/INDEX
+# called it "MARC archiver" until 2026-08-28.  With no .arc to merge -- `arc'
+# cannot write one, below -- what can be asserted is what it says it is.
+case    marc-is-a-merger-not-an-archiver
+run     /dd/CMDS/marc
+expect  archive merger
+
+# `arc' FAILS EXACTLY AS `zip' DOES: it compresses the file, writes a
+# temporary (.Arc3.arc), and then cannot put it where it belongs --
+# "Cannot rename .Arc3.arc to tmp/y.arc", Error 226 (E_NOCHLD).  Measured
+# with relative and absolute targets, in /dd and in /dd/tmp.
+#
+# WHY: this C library has neither rename() nor link() -- a probe written for
+# it fails to link both, `Symbol 'rename' unresolved'.  Both archivers were
+# ported from Unix, where finishing an archive means renaming or linking the
+# temporary over the target.  DOC/STATUS has the measurement, including the
+# way it first came out wrong.
+case    arc-cannot-write-its-archive
+run     /dd/CMDS/REBUILT/arc -a tmp/y.arc SYS/termcap
+expect  Cannot rename
+
+case    shar-wraps-a-file-as-a-script
+run     /dd/CMDS/shar /dd/SYS/motd > /dd/tmp/a.shar
+run     /dd/CMDS/head -n 12 /dd/tmp/a.shar
+expect  motd
+
+case    zoo-2.1-reads-what-zoo-wrote
+run     /dd/CMDS/REBUILT/zoo_2.1 l /dd/tmp/a.zoo
+expect  963
+
+case    compress_4.0-agrees-with-compress
+run     /dd/CMDS/REBUILT/compress_4.0 -dc < /dd/tmp/z.Z > /dd/tmp/c4.out
+run     /dd/CMDS/md5 /dd/tmp/c4.out
+expect  ee2c20fa226fe6fc78feec7f123c7a99
+
+case    the-four-gzip-builds-all-read-the-same-file
+run     /dd/CMDS/REBUILT/gzip68k_nocsl -dc < /dd/tmp/g.gz > /dd/tmp/g1.out
+run     /dd/CMDS/REBUILT/gzip020_nocsl -dc < /dd/tmp/g.gz > /dd/tmp/g2.out
+run     /dd/CMDS/md5 /dd/tmp/g1.out /dd/tmp/g2.out
+expect  ee2c20fa226fe6fc78feec7f123c7a99
+
+case    gtar-reads-what-tar-wrote
+run     /dd/CMDS/REBUILT/gtar tf /dd/tmp/t.tar
+expect  tarme.txt
+
+# funzip and zipsplit need a zip archive, and `zip' on this disk cannot make
+# one (above).  So they are untestable here rather than broken, and this case
+# records the reason where anyone adding to this file will meet it.
+case    funzip-has-nothing-to-read
+run     /dd/CMDS/funzip < /dd/tmp/a.zip
+absent  ee2c20fa226fe6fc78feec7f123c7a99

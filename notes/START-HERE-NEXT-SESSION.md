@@ -50,9 +50,13 @@ Do not stop between items to report; commit and start the next one.
    that kills the session** (subber and gawk both do), instead of reporting
    every later case as "never ran".
 
-**2. Finish the archive family** — `tools/datatests/archives.cases` covers
-   compress, gzip, tar, zoo. Still untested: `ar`, `ar2`, `lha`, `lharc`,
-   `shar`, `marc`/`dearc`, `arc`, `booz` extraction, `funzip`, `zipsplit`.
+**2. ~~Finish the archive family.~~ DONE 2026-08-28.** 24 cases: lha, lharc,
+   ar, ar2, marc, shar, zoo 2.1, compress_4.0, four gzip builds and gtar, all
+   by round trip where one is possible. What it found: `ar` refuses an
+   ABSOLUTE path; `marc` is the archive MERGER, not an archiver; and BOTH
+   `arc` builds fail exactly as `zip` does -- compress, write a temporary,
+   then cannot move it into place. The reason is measured and in DOC/STATUS:
+   this C library has neither `rename()` nor `link()`.
 
 **3. Re-sweep with `load`** (step 0 of the plan, still not done). Every sweep
    this collection has ever run loaded NO modules, so every program that
@@ -70,7 +74,7 @@ Do not stop between items to report; commit and start the next one.
     tools/playtest.py --all          # Tier B: pty, screen read. SLOW, hours
     tools/check_disk.py disk         # eleven invariants; read the OUTPUT
 
-Current: **91 data cases, 88 passing** (`tools/datatest.py --all`, verified
+Current: **105 data cases, 102 passing** (`tools/datatest.py --all`, verified
 at end of session). The three failures are EXPECTED and are real defects in
 shipped programs, kept failing on purpose:
 
