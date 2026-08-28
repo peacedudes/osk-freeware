@@ -1,0 +1,23 @@
+Deleting Code: 000009
+Deleting Code: 000009
+Deleting Code: 000010
+Deleting Code: 000010
+Deleting Code: 000011
+Deleting Code: 000011
+Deleting Code: 000012
+Deleting Code: 000012
+Deleting Code: 000013
+Deleting Code: 000013
+Deleting Code: 000014
+Deleting Code: 000014
+Deleting Code: 000015
+Deleting Code: 000015
+Deleting Code: NewK01
+Deleting Code: NewK02
+Deleting Code: NewK03
+Deleting Code: NewK04
+
+All gone!
+
+
+itest Completed successfully; test files deleted.

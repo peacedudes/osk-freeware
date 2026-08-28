@@ -1,0 +1,3 @@
+/dd/CMDS/head -n 20 /dd/DOC/INDEX | /dd/CMDS/pr | /dd/CMDS/head -n 18
+/dd/CMDS/pr:  (E$PNNF) That path name doesn't lead to anything - check the spel.
+/dd/CMDS/head: /dd/DOC/INDEX

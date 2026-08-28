@@ -1,0 +1,17 @@
+/dd/CMDS/about elvis
+ elvis          Elvis 1.7 -- the best-documented of this disk's three vi
+                editors, and the one with the most options.  BUILT HERE
+                from the source
+                in CMDS/archives.  Needs TERM and TERMCAP; runs with no
+
+  for        EDITORS -- vi clones
+  needs      /dd/sys/Errmsg                         here
+             /dd/SYS/password                       here
+             /dd/sys/termcap                        here
+             /h0/sys/termcap                        here
+             /dd/tmp                                here
+  source     none on this disk
+  docs       DOC/elvis
+
+  run it     elvis
+  take it    keep elvis

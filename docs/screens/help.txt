@@ -1,0 +1,11 @@
+/dd/CMDS/help -f=/dd/SYS/HELP/effo.hlp
+Syntax:   /dd/CMDS/help [<opts>] [<topic> {<subtopic>}] [<opts>]
+Function: Provides help information.
+Usage:    Just type "HELP" to get a menu of available topics.
+          Type "HELP <topic>" to get information about a certain
+          topic. For extended information about the help utility
+          itself, type "HELP help".
+Options:  -?           : Show this information
+          -r           : recursive search for specified topic
+V1.0, Ed#3 (c) 1989 by L.Zeller, CH-Maennedorf
+help: unknown option 'f'

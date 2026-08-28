@@ -1,0 +1,2 @@
+/dd/CMDS/repeat 3 /dd/CMDS/date
+/dd/CMDS/date: cannot execute binary file

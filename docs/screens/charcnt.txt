@@ -1,0 +1,13 @@
+/dd/CMDS/charcnt < /dd/DOC/INDEX
+I need some filenames for this!
+/dd/CMDS/head: /dd/SYS/holidays
+
+* Common Holidays
+*easter+1 Easter Monday
+*easter-46 Ash Wednesday
+*easter-7 Palm Sunday
+1/1             New Year's Day
+2/14 Valentine's Day
+3/17 St. Patrick's Day
+easter Easter Sunday
+easter-2 Good Friday

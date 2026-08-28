@@ -1,0 +1,6 @@
+echo "        org  \$1000" > /dd/tmp/t.a
+> echo "        jsr  \$A282" >> /dd/tmp/t.a
+> echo "        rts" >> /dd/tmp/t.a
+> echo "        end  start" >> /dd/tmp/t.a
+> /dd/CMDS/as09 -l /dd/tmp/t.a
+>

@@ -1,0 +1,112 @@
+# Third pass.  Each stanza here replaces one whose first run met a different
+# interface than expected -- the correction is the finding.
+shot    poker
+cap     Cold-hand poker dealing a hand.  It wants the word `no', not `N',
+cap     and says so in its own voice.
+run     /dd/CMDS/GAMES/poker
+wait    4
+send    no\r
+wait    6
+
+shot    stone
+cap     The stones game -- take stones from the pile, do not take the last.
+run     /dd/CMDS/GAMES/stone
+wait    4
+send    no\r
+wait    5
+
+shot    blackjak
+cap     Las Vegas blackjack, SNOBOL4, with a hand dealt.
+run     /dd/CMDS/GAMES/blackjak
+wait    4
+send    no\r
+wait    6
+
+shot    nroff
+cap     nroff setting a page.  It wants a FILE -- it will not read standard
+cap     input, whatever the manual habit suggests.
+run     export TMACDIR=/dd/LIB
+wait    1
+run     /dd/CMDS/nroff /dd/SYS/motd
+wait    8
+
+shot    proff
+cap     proff, the portable roff, on one of its own macro-using documents.
+run     /dd/CMDS/proff /dd/SYS/motd
+wait    8
+
+shot    shire
+cap     A weather simulator for the Shire, keeping the Middle-earth
+cap     calendar: Afteryule, Solmath, Rethe.  One of six regions here.
+run     /dd/CMDS/shire
+wait    3
+kill
+
+shot    florida
+cap     The same simulator on the Gulf coast -- Gregorian calendar, and a
+cap     January that never freezes.
+run     /dd/CMDS/florida
+wait    3
+kill
+
+shot    japan
+cap     The simulator on the Japanese calendar and the North Pacific.
+run     /dd/CMDS/japan
+wait    3
+kill
+
+shot    calen
+cap     calen prints a month as a diary page, ruled for appointments.
+run     /dd/CMDS/calen
+wait    2
+send    8 2026 1\r
+wait    5
+kill
+
+shot    forth
+cap     TILE Forth 2.48.  A word is defined and then run: the squares of 1
+cap     to 10, printed by the definition itself.
+run     /dd/CMDS/forth
+wait    3
+send    2 3 + . cr\r
+wait    2
+send    : squares 11 1 do i dup * . loop cr ;\r
+wait    2
+send    squares\r
+wait    3
+send    32 0 do i emit loop cr\r
+wait    3
+quit    bye\r
+
+shot    calender
+cap     A whole year on one screen, in German -- `Fuer welches Jahr?'
+run     /dd/CMDS/calender
+wait    2
+send    2026\r
+wait    3
+kill
+
+shot    kermit
+cap     Kermit, the file-transfer program.  With no serial line to talk to
+cap     it says what it can do: connect, send, receive, or be the server.
+run     /dd/CMDS/REBUILT/kermit
+wait    5
+
+shot    help
+cap     The help system answering out of SYS/HELP, where each topic is a
+cap     .hlp file and its index.
+run     /dd/CMDS/help -f=/dd/SYS/HELP/effo.hlp
+wait    6
+
+shot    hc
+cap     hc, the hex calculator, on an expression.
+run     echo 1f * 3 + 7 | /dd/CMDS/hc
+wait    4
+
+shot    rot
+cap     rot shifts the alphabet by the number you give it -- and shifting
+cap     back by thirteen returns the text.
+run     echo The quick brown fox > /dd/tmp/r.txt
+wait    2
+run     /dd/CMDS/rot -13 /dd/tmp/r.txt
+wait    4

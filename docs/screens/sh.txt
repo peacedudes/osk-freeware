@@ -1,0 +1,5 @@
+/dd/CMDS/sh
+# echo hello from sh; pwd
+hello from sh
+/dd
+# exit

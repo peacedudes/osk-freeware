@@ -1,0 +1,20 @@
+/dd/CMDS/head -n 10 /dd/SYS/motd | /dd/CMDS/lwf | /dd/CMDS/head -n 18
+%!PS-Adobe-2.0
+/dd/CMDS/head: /dd/SYS/motd
+%%Creator: lwf on evtech
+%%CreationDate: Thu Aug 27 20:18:45 2026
+%%For: su
+%%DocumentFonts: Courier
+%%Pages: (atend)
+%%EndComments
+% PostScript Prologue for lwf V2.0 ASCII to PostScript filter
+% Barry Brachman
+% Dept. of Computer Science
+% University of British Columbia
+/B {NW 0 rmoveto}bind def
+/EP {SV restore /#copies exch def showpage}bind def
+/L /lineto load def
+/M /moveto load def
+/NP /newpath load def
+/S /show load def
+/SHP {SP 2 setlinewidth}bind def

@@ -1,0 +1,7 @@
+/dd/CMDS/yagi
+This program designs UHF/VHF yagi antennas based on designs by DL6WU.
+See "More Gain with Yagi Antennas", VHF Communications, 3/77, 4/77, 3/82
+
+Center frequency of antenna (in MHz)? 144
+Number of antenna elements (9-40)? 5
+Number of antenna elements (9-40)?

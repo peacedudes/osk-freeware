@@ -1,0 +1,27 @@
+# mtools 3.6: MS-DOS media, read and written from OS-9.
+shot    mtools
+cap     The mtools front end, listing the sub-commands that ship with it --
+cap     eighteen of them, each a separate program on this disk.
+run     /dd/CMDS/mtools
+wait    5
+
+shot    msformat
+cap     Formatting an MS-DOS floppy image and then asking what it is.  The
+cap     drives a: and b: are configured in SYS/mtools.conf.
+run     /dd/CMDS/msformat a:
+wait    10
+run     /dd/CMDS/msinfo a:
+wait    8
+
+shot    msdir
+cap     Writing a file onto the DOS disk and reading the directory back --
+cap     8.3 names, DOS attributes, and free space in DOS's own words.
+run     /dd/CMDS/mscopy /dd/SYS/motd a:MOTD.TXT
+wait    8
+run     /dd/CMDS/msdir a:
+wait    8
+
+shot    mstype
+cap     mstype reading the file back off the DOS disk.
+run     /dd/CMDS/mstype a:MOTD.TXT
+wait    8

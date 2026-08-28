@@ -1,0 +1,67 @@
+# Games played far enough in to show a board rather than a title.
+rate    0.5
+shot    hotel
+cap     hotel, a two-player board game played by coordinates -- the board
+cap     as it stands at the start.
+run     /dd/CMDS/GAMES/hotel
+wait    4
+send    N\r
+wait    4
+
+shot    poker
+cap     Cold-hand poker dealing a hand.  One of four SNOBOL4 games here:
+cap     the interpreter was compiled to C and its games came with it.
+run     /dd/CMDS/GAMES/poker
+wait    4
+send    N\r
+wait    5
+
+shot    stone
+cap     The stones game -- take stones from the pile, do not take the last.
+run     /dd/CMDS/GAMES/stone
+wait    4
+send    N\r
+wait    4
+send    3\r
+wait    4
+
+shot    blackjak
+cap     Las Vegas blackjack, SNOBOL4 again, with a hand dealt.
+run     /dd/CMDS/GAMES/blackjak
+wait    4
+send    N\r
+wait    4
+send    10\r
+wait    4
+
+shot    backgammon
+cap     Backgammon against the computer: the board drawn in characters and
+cap     the dice rolled for you.
+run     /dd/CMDS/GAMES/backgammon
+wait    4
+send    N\r
+wait    4
+send    N\r
+wait    6
+
+shot    tttt
+cap     Tic-tac-toe on a four-by-four board, mid-game.
+run     /dd/CMDS/tttt
+wait    4
+send    b1\r
+wait    3
+send    c2\r
+wait    4
+
+shot    gnuchessc
+cap     GNU Chess 4.0 with the curses display, after 1. e4.
+run     /dd/CMDS/GAMES/gnuchessc
+wait    6
+send    e2e4\r
+wait    10
+
+shot    checkgame
+cap     game replays a saved chess game move by move -- the collection
+cap     ships GNU Chess's opening book to feed it.
+run     /dd/CMDS/GAMES/game /dd/GAMES/gnuchess.book 1 4
+wait    6

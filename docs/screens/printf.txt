@@ -1,0 +1,2 @@
+/dd/CMDS/printf "%s is %d bytes and %5.2f K\n" tar 22966 22.43
+tar is 22966 bytes and 22.43 K

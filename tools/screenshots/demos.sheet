@@ -1,0 +1,40 @@
+# The vendor demonstrations that shipped with commercial products, and the
+# forum examples they sat beside.
+shot    ob68kdemo
+cap     OmniBasic 1.16, a BASIC compiler, in its demonstration build.
+run     /dd/CMDS/DEMOS/ob68kdemo
+wait    8
+
+shot    ub68kdemo
+cap     UniBasic 1.10 -- the other BASIC compiler here, same arrangement.
+run     /dd/CMDS/DEMOS/ub68kdemo
+wait    8
+
+shot    sddemo
+cap     White's Speedisk 2.10, a disk defragmenter, drawing the map of a
+cap     volume it is about to work on.
+run     /dd/CMDS/DEMOS/sddemo
+wait    10
+
+shot    argproc_demo
+cap     argproc_demo shows RICO's command-line parser.  It is starred: with
+cap     no cio it stops before it starts, and this is what that looks like.
+run     /dd/CMDS/argproc_demo -a -b=2 file
+wait    6
+
+shot    demo
+cap     demo, the egetopt option-parsing example, showing how it read the
+cap     command line it was given.
+run     /dd/CMDS/demo -a -b -c=7 one two
+wait    6
+
+shot    greg
+cap     greg, a regular-expression search demonstration.
+run     /dd/CMDS/greg "[a-z]+chess" /dd/DOC/INDEX
+wait    6
+
+shot    sqrtx
+cap     A square-root demonstration -- one of the small programs the forums
+cap     circulated to prove a compiler worked.
+run     /dd/CMDS/sqrtx
+wait    6

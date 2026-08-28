@@ -1,0 +1,5 @@
+/dd/CMDS/GAMES/gnuchessc
+Chess
+e2e4
+1. ... e2e41. ... e7e6
+My move is: e7e6

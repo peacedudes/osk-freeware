@@ -126,6 +126,10 @@ def esc(s):
 
 
 SHELL_NOISE = ("bash#", "/.bashrc:", "# /h0:", "export ", "# /dd:")
+# os9exec's own file-table dump, printed when it reports a crash. The lines
+# that NAME the crash are kept -- a program that died should be seen dying --
+# but the open-path list belongs to the emulator, not to the program.
+DUMP = re.compile(r"^\s*\d\d f(Cons|Pipe|RBF|Disk)\b")
 
 
 def trim(text):
@@ -137,7 +141,7 @@ def trim(text):
     gallery of this software.
     """
     lines = [ln.rstrip() for ln in text.split("\n")
-             if not any(n in ln for n in SHELL_NOISE)]
+             if not any(n in ln for n in SHELL_NOISE) and not DUMP.match(ln)]
     while lines and not lines[0].strip():
         lines.pop(0)
     while lines and not lines[-1].strip():

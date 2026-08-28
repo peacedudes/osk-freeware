@@ -1,0 +1,23 @@
+        option index (optind) after egetopt():     2
+                egetopt() return value:            a (97)
+                char that begins option (optchar): -
+                actual char looked at (optopt):    a
+                option argument:                   "(null)"
+
+        option index (optind) after egetopt():     3
+                egetopt() return value:            b (98)
+                char that begins option (optchar): -
+                actual char looked at (optopt):    b
+                option argument:                   "(null)"
+
+        option index (optind) after egetopt():     4
+                egetopt() return value:            c (99)
+                char that begins option (optchar): -
+                actual char looked at (optopt):    c
+                option argument:                   "=7"
+
+        argument index                             4
+                argument:                          "one"
+
+        argument index                             5
+                argument:                          "two"

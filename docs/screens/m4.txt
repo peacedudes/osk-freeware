@@ -1,0 +1,1 @@
+echo "define(GREET, Hello \$1 from OS-9)GREET(reader)" > /dd/tmp/m.m4

@@ -1,0 +1,42 @@
+# The formatters: text in, a formatted page out.
+shot    nroff
+cap     nroff setting a paragraph -- the typesetter every Unix manual page
+cap     was written for.  TMACDIR points at the macros in LIB.
+run     export TMACDIR=/dd/LIB
+wait    1
+run     /dd/CMDS/head -n 24 /dd/DOC/README-KEEP | /dd/CMDS/nroff
+wait    8
+
+shot    proff
+cap     proff, the portable roff, on the same text.  Its macros are in
+cap     LIB/proff.
+run     /dd/CMDS/head -n 24 /dd/DOC/README-KEEP | /dd/CMDS/proff
+wait    8
+
+shot    roff
+cap     roff, the oldest of the three.
+run     /dd/CMDS/head -n 24 /dd/DOC/README-KEEP | /dd/CMDS/roff
+wait    8
+
+shot    tformat
+cap     tformat, the SNOBOL4 text formatter.
+run     /dd/CMDS/head -n 24 /dd/DOC/README-KEEP | /dd/CMDS/GAMES/tformat
+wait    8
+
+shot    lwf
+cap     lwf turns plain text into PostScript, the way enscript does -- the
+cap     head of what it wrote.
+run     /dd/CMDS/head -n 10 /dd/SYS/motd | /dd/CMDS/lwf | /dd/CMDS/head -n 18
+wait    8
+
+shot    pr
+cap     Paginating with headers: the file split into pages with a date and
+cap     a page number, ready for a printer.
+run     /dd/CMDS/head -n 20 /dd/DOC/INDEX | /dd/CMDS/pr | /dd/CMDS/head -n 18
+wait    6
+
+shot    lout
+cap     Basser Lout 2.05, a document formatter in the TeX tradition, saying
+cap     what it is.
+run     /dd/CMDS/lout -V
+wait    6

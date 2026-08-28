@@ -1,3 +1,4 @@
 Welcome to the game of Hotel.
 
 Instructions? (Y/N)
+How many players? (2 to 7)

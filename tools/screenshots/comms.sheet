@@ -1,0 +1,48 @@
+# Communications.  Nothing here can dial anything -- there is no modem and
+# no peer -- so what is photographed is each program's own face: the prompt,
+# the settings, the log it keeps.
+shot    kermit
+cap     C-Kermit 5A at its own prompt, showing the file-transfer settings it
+cap     would use.  There is no line to dial here; this is the program
+cap     itself, not a transfer.
+run     /dd/CMDS/REBUILT/kermit
+wait    6
+send    show protocol\r
+wait    5
+send    exit\r
+wait    3
+
+shot    aterm
+cap     ATerm 2.6, the terminal emulator, reading its configuration from
+cap     SYS/ATERM.
+run     /dd/CMDS/aterm
+wait    6
+
+shot    uuname
+cap     uuname lists the UUCP sites this system could reach, out of the
+cap     configuration in SYS.
+run     /dd/CMDS/UUCP/uuname
+wait    4
+run     /dd/CMDS/UUCP/uulog
+wait    4
+
+shot    mailx
+cap     mailx opening with no mail waiting -- which is the honest state of
+cap     a mail reader on a disk with no network.
+run     /dd/CMDS/UUCP/mailx
+wait    5
+send    q\r
+wait    3
+
+shot    readnews
+cap     readnews, the news reader, with no spool to read.
+run     /dd/CMDS/UUCP/readnews
+wait    5
+send    q\r
+wait    3
+
+shot    setterm
+cap     setterm and cls, the two smallest things here that know what a
+cap     terminal is.
+run     /dd/CMDS/setterm
+wait    4

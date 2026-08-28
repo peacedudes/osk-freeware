@@ -1,0 +1,2 @@
+/dd/CMDS/greg "[a-z]+chess" /dd/DOC/INDEX
+2936833 8 -1073741820

@@ -1,22 +1,12 @@
-pad            here           abort          quit           interpret
-forth-83       span           expect         key            spaces
-space          type           emit           cr             .(
-ascii          u.             .              bye            execute
-?number        #>             sign           hold           #s
-#              <#             convert        hex            decimal
-octal          binary         base           -trailing      count
-fill           cmove>         cmove          +!             b!
-b@             f!             f@             c!             c@
-w!             w@             !              @              negate
-abs            max            min            */             */mod
-/mod           mod            /              >>             2/
-um/mod         um*            *              <<             2*
-2-             2+             1-             1+             -
-+              2              1              0              -1
--2             nil            u<             0>             0=
-0<             >              =              <              .s
-depth          ?dup           roll           pick           rot
-over           swap           drop           dup            ?within
-xor            or             and            not            boolean
-true           false          exceptions     multi-tasking  queues
-memory         string         locals         compiler       forth
+/dd/CMDS/forth
+TILE Forth version 2.48, Copyright (c) 1989, by Mikael Patel
+2 3 + . cr
+5
+: squares 11 1 do i dup * . loop cr ;
+squares
+1 4 9 16 25 36 49 64 81 100
+32 0 do i emit loop cr
+do ??
+i ??
+/interpret: stack underflow
+loop ??

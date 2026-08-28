@@ -1,0 +1,5 @@
+/dd/CMDS/GAMES/stone
+
+Do you want the rules? no
+
+Number of stones (odd)?

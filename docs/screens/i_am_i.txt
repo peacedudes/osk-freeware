@@ -1,0 +1,23 @@
+    25 :  tabelle := '                    END;';
+    26 :  tabelle := '   FOR zaehler := 10 TO 28 DO';
+    27 :  tabelle := '      writeln(tabelle(zaehler))';
+    28 :  tabelle := 'END. (* of I_AM_I *)';
+   END (* of case *)
+END; (* of tabelle *)
+
+BEGIN (* of I_AM_I *)
+   string1 := concat(
+   chr(32),chr(58),chr(32),chr(32),chr(116),
+   chr(97),chr(98),chr(101),chr(108),chr(108),
+   chr(101),chr(32),chr(58),chr(61),chr(32),chr(39));
+   string2 := concat(chr(39),chr(59));
+   FOR zaehler := 1 TO 9 DO
+      writeln(tabelle(zaehler));
+   FOR zaehler := 1 TO 28 DO
+                    BEGIN
+                       write(zaehler:6,string1);
+                       writeln(tabelle(zaehler),string2)
+                    END;
+   FOR zaehler := 10 TO 28 DO
+      writeln(tabelle(zaehler))
+END. (* of I_AM_I *)

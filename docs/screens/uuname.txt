@@ -1,0 +1,5 @@
+/dd/CMDS/UUCP/uuname
+pirsqrd
+phoenix
+seabass
+uulog: unable to open '/DD/LOG/uulog'

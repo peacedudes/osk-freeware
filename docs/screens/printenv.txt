@@ -1,0 +1,13 @@
+/dd/CMDS/printenv
+SHELL=/dd/CMDS/bash
+SHLVL=1
+BASH=/dd/bash
+HOME=/dd
+PATH=/dd/CMDS:/dd/CMDS/GAMES:/dd/CMDS/NETPBM:.
+LOGNAME=tester
+HELPDIR=/dd/SYS/HELP
+TERMCAP=/dd/SYS/termcap
+TERM=vt100
+HOSTTYPE=Eurocom6
+USER=tester
+_=/dd/CMDS/printenv

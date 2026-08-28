@@ -1,0 +1,11 @@
+/dd/CMDS/bm cribbage /dd/DOC/INDEX
+  cp              cpu             cribbage        crypto
+their own (hack wants /h0/games/hack/playground, cribbage wants
+  crib           cribbage.  Needs TERM set, so run it from a login session --
+ *cribbage       cribbage -- offers instructions before it deals.  Needs TERM,
+  nobs           cribbage (Colonel's program)
+  cp              cpu             cribbage        crypto
+their own (hack wants /h0/games/hack/playground, cribbage wants
+  crib           cribbage.  Needs TERM set, so run it from a login session --
+ *cribbage       cribbage -- offers instructions before it deals.  Needs TERM,
+  nobs           cribbage (Colonel's program)

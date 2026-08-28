@@ -1,0 +1,2 @@
+/dd/CMDS/bison -v /dd/tmp/g.y
+"/dd/tmp/g.y", line 2: invalid text in %token or %nterm declaration

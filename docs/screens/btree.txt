@@ -1,0 +1,7 @@
+SoftFocus BTree Library
+--------- ----- -------
+
+This program is used to test the BTree Library. Please make
+sure that you have enough disk space available.
+
+The counter is set to 130. Press <return> to start up.

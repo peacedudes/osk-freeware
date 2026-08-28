@@ -1,24 +1,23 @@
-  16  Precipitation  Heavy Fog    Warm ( 65)    Shower  Blustery         Storm ,
-  17          Clear      Clear    Fair ( 60)      None      Calm
-  18  Precipitation     Cloudy    Warm ( 65)     Heavy  Blustery         Storm ,
-  19  Precipitation       Mist    Warm ( 75)     Heavy  Blustery         Storm ,
-  20  Precipitation     Cloudy    Warm ( 65)     Heavy  Blustery         Storm ,
-  21          Clear      Clear    Warm ( 65)      None      Calm
-  22          Clear      Clear    Warm ( 65)      None      Calm
-  23          Clear      Clear    Warm ( 65)      None      Calm
-  24          Clear      Clear    Warm ( 70)      None     Light
-  25  Precipitation       Mist    Warm ( 65)     Heavy  Blustery         Storm ,
-  26  Precipitation       Mist    Warm ( 65)  Sprinkle     Brisk         Rain -,
-  27       Overcast       Mist    Fair ( 60)      None      Calm
-  28          Clear      Clear    Warm ( 65)      None      Calm         Buddhi,
-  29          Clear      Clear    Fair ( 60)      None      Calm
-  30          Clear      Clear    Warm ( 75)      None      Calm         New Mo,
-High Temp =  80, Low Temp =  50, Average Temp =  64
-
-Dragon
-   1          Clear      Clear    Warm ( 70)      None     Light         Shinto,
-   2          Clear      Clear     Hot ( 85)      None      Calm
-   3          Clear      Clear    Warm ( 70)      None     Light
-   4          Clear      Clear    Warm ( 65)      None     Light
-   5       Overcast       Mist    Warm ( 70)      None     Brisk         Boy's )
-   6  Precipitation  Heavy Fog    Warm ( 70)     Heavy      Calm
+   5          Clear      Clear    Warm ( 65)      None      Calm
+   6       Overcast  Heavy Fog    Fair ( 60)      None     Light
+   7       Overcast  Light Fog    Fair ( 60)      None     Light
+   8       Overcast       Mist    Fair ( 60)      None     Brisk         Buddhi,
+   9       Overcast  Light Fog    Fair ( 45)      None     Brisk
+  10       Overcast       Mist    Fair ( 45)      None  Blustery
+  11       Overcast  Heavy Fog    Warm ( 75)      None      Calm
+  12  Precipitation       Mist    Fair ( 60)    Shower     Brisk         Rain -,
+  13  Precipitation     Cloudy    Fair ( 50)     Heavy  Blustery         Rain -,
+  14       Overcast     Cloudy    Fair ( 60)      None  Blustery
+  15  Precipitation       Mist    Fair ( 50)  Sprinkle     Light         Rain -,
+  16  Precipitation       Mist    Fair ( 55)    Shower     Brisk         Rain -,
+  17  Precipitation       Mist    Fair ( 60)    Shower      Calm         Rain -,
+  18  Precipitation       Mist    Fair ( 60)     Heavy      Calm         Rain -,
+  19  Precipitation       Mist    Fair ( 55)  Sprinkle     Light         Rain -,
+  20  Precipitation       Mist    Fair ( 60)  Sprinkle     Brisk         Rain -,
+  21  Precipitation       Mist    Fair ( 60)  Sprinkle     Light         Rain -,
+  22  Precipitation     Cloudy    Fair ( 40)  Sprinkle  Blustery         Rain -,
+  23  Precipitation  Heavy Fog    Fair ( 60)    Shower  Blustery         Rain -,
+  24  Precipitation       Mist    Fair ( 60)  Sprinkle     Brisk         Rain -,
+  25  Precipitation  Light Fog    Fair ( 60)  Sprinkle  Blustery         Rain -,
+  26  Precipitation       Mist    Fair ( 60)  Sprinkle  Blustery         Rain -,
+  27  Precipitation       Mist    Warm ( 70)  Sprinkle  Blustery         Raiare

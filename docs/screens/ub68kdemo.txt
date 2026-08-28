@@ -1,0 +1,17 @@
+/dd/CMDS/DEMOS/ub68kdemo
+
+UniBasic Version 1.10
+OS9/68000 Version
+
+*************** DEMO VERSION ***************
+Modification expressly forbidden!!!
+
+To order call: (573) 236-4372 or 4373
+EMail at mlsmith@vax2.rain.gen.mo.us
+
+Versions for other operating systems available
+
+Copyright  1995, 1996 Computer Design Lab
+All Rights Reserved
+
+No input file

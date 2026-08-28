@@ -1,0 +1,36 @@
+# Printing, and the PostScript interpreter that makes it visible.
+shot    gs403
+cap     Aladdin Ghostscript 4.03 -- a complete PostScript interpreter on an
+cap     OS-9 disk.  Its banner, its device list and the prompt it offers.
+run     /dd/CMDS/gs403 -h
+wait    10
+
+shot    gs-render
+cap     Ghostscript rasterising one of its own test files to a PBM, and
+cap     netpbm printing the result as characters.  PostScript in, picture
+cap     out, with nothing outside this disk involved.
+run     /dd/CMDS/gs403 -q -dNOPAUSE -dBATCH -sDEVICE=pbm -r30 -g152x88 -sOutputFile=/dd/tmp/gs.pbm /dd/LIB/gs403/cheq.ps
+wait    40
+run     /dd/CMDS/NETPBM/pbmtoascii /dd/tmp/gs.pbm
+wait    8
+
+shot    lpq
+cap     The print spooler's queue, empty, and the scheduler that owns it.
+run     /dd/CMDS/lpq
+wait    4
+run     /dd/CMDS/splstat
+wait    4
+
+shot    perr-print
+for     perr
+cap     perr turns an OS-9 error number into its message -- the errors this
+cap     collection meets most.
+run     /dd/CMDS/perr 214 216 218 221 237
+wait    4
+
+shot    spline
+cap     spline fits a curve through points and writes PostScript for it.
+run     echo "0 0" > /dd/tmp/pts
+wait    2
+run     /dd/CMDS/spline /dd/tmp/pts | /dd/CMDS/head -n 14
+wait    5

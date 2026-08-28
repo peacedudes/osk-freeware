@@ -1,24 +1,23 @@
-  16  Precipitation  Heavy Fog     Hot ( 85)  Sprinkle  Blustery         Rain -,
-  17  Precipitation       Mist     Hot ( 80)    Shower     Light         Storm ,
-  18  Precipitation       Mist     Hot ( 80)  Sprinkle      Calm         Rain -,
-  19  Precipitation       Mist     Hot ( 85)    Shower     Light         Storm ,
-  20  Precipitation       Mist     Hot ( 95)    Shower      Calm         Storm ,
-  21  Precipitation       Mist    Warm ( 75)  Sprinkle  Blustery         Rain -,
-  22  Precipitation     Cloudy     Hot ( 80)  Sprinkle     Light         Rain -,
-  23          Clear      Clear    Warm ( 70)      None      Calm
-  24       Overcast       Mist     Hot ( 90)      None      Calm
-  25       Overcast     Cloudy     Hot ( 80)      None      Calm
-  26       Overcast       Mist     Hot ( 80)      None     Brisk
-  27       Overcast       Mist     Hot ( 80)      None      Calm
-  28  Precipitation       Mist     Hot ( 80)    Shower     Light         Storm ,
-  29  Precipitation       Mist     Hot ( 80)     Heavy     Brisk         Storm ,
-  30          Clear      Clear     Hot ( 90)      None      Calm
-High Temp =  95, Low Temp =  60, Average Temp =  81
-
-May
-   1          Clear      Clear    Warm ( 70)      None      Calm         May Day
-   2          Clear      Clear     Hot ( 90)      None      Calm
-   3          Clear      Clear     Hot ( 85)      None     Light
-   4          Clear      Clear     Hot ( 85)      None      Calm
-   5          Clear      Clear    Warm ( 65)      None      Calm
-   6          Clear      Clear     Hot ( 85)      None
+   9          Clear      Clear    Warm ( 75)      None      Calm
+  10          Clear      Clear    Warm ( 75)      None     Brisk
+  11          Clear      Clear    Warm ( 75)      None      Calm
+  12          Clear      Clear    Warm ( 70)      None     Brisk
+  13  Precipitation  Light Fog     Hot ( 80)  Sprinkle     Brisk         Rain -,
+  14  Precipitation       Mist    Warm ( 70)  Sprinkle      Calm         Rain -,
+  15  Precipitation  Light Fog    Fair ( 55)  Sprinkle      Gale         Rain -,
+  16          Clear      Clear    Warm ( 65)      None      Calm
+  17          Clear      Clear    Warm ( 75)      None     Light
+  18  Precipitation     Cloudy    Warm ( 70)  Sprinkle     Brisk         Rain -,
+  19          Clear      Clear    Warm ( 75)      None      Calm
+  20          Clear      Clear    Warm ( 70)      None      Calm
+  21          Clear      Clear    Warm ( 75)      None      Calm         Springx
+  22          Clear      Clear    Warm ( 65)      None      Calm
+  23  Precipitation       Mist    Warm ( 75)    Shower     Light         Storm ,
+  24  Precipitation  Heavy Fog    Warm ( 70)    Shower  Blustery         Storm ,
+  25  Precipitation       Mist    Warm ( 75)  Sprinkle     Brisk         Rain -,
+  26  Precipitation     Cloudy    Fair ( 60)  Sprinkle  Blustery         Rain -,
+  27          Clear      Clear    Warm ( 75)      None      Calm
+  28          Clear      Clear    Warm ( 75)      None      Calm
+  29          Clear      Clear    Warm ( 70)      None      Calm
+  30          Clear      Clear    Warm ( 65)      None      Calm
+  31  Precipitation     Cloudy   r     Hot ( 85)      None      Calm

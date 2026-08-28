@@ -1,0 +1,22 @@
+pnmscale -width 30 /dd/DEMO/sphere.pgm > /dd/tmp/t.pgm
+<p/t.pgm | pgmtopbm -threshold -value 0.4 | pbmtoascii
+MMMMMMMMMMMM"""""""""""MM     MMMMMMMMMMMM"""""""""""MM     MMMMMMMMMMMM"""""""M
+MMMMMM""                      MMMMMM""                      MMMMMM""           "
+MMMM"                         MMMM"                         MMMM"              "
+MMM                           MMM                           MMM                M
+MMMo                          MMMo                          MMMo               o
+MMMMo                         MMMMo                         MMMMo              o
+MMMMMMMoo                     MMMMMMMoo                     MMMMMMMoo          o
+MMMMMMMMMMMMMooooooooMMMM     MMMMMMMMMMMMMooooooooMMMM     MMMMMMMMMMMMMooooooM
+MMMMMMMM""""           ""     MMMMMMMM""""           ""     MMMMMMMM""""       "
+MMMMM"                        MMMMM"                        MMMMM"             "
+MMM"                          MMM"                          MMM"               "
+MMM                           MMM                           MMM                M
+MMMM                          MMMM                          MMMM               M
+MMMMMoo                       MMMMMoo                       MMMMMoo            o
+MMMMMMMMMoooo        oooo     MMMMMMMMMoooo        oooo     MMMMMMMMMoooo      o
+MMMMMMMMMMMM"""""""""""MM     MMMMMMMMMMMM"""""""""""MM     MMMMMMMMMMMM"""""""M
+MMMMMM""                      MMMMMM""                      MMMMMM""           "
+MMMM"                         MMMM"                         MMMM"              "
+MMM                           MMM                           MMM                M
+MMMo                          MMMo                          MMMo               o

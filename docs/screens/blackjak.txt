@@ -1,4 +1,8 @@
+/dd/CMDS/GAMES/blackjak
 Welcome to Las Vagas BlackJack
 
 
-Would you like to know the rules?
+Would you like to know the rules? no
+We'll start you off with 40 chips
+
+How much do you want to bet?

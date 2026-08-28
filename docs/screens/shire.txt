@@ -1,24 +1,23 @@
-  22  Precipitation       Mist    Fair ( 55)  Sprinkle  Blustery         Rain -,
-  23       Overcast     Cloudy    Fair ( 55)      None     Light
-  24  Precipitation  Heavy Fog    Fair ( 55)     Heavy     Light         Rain -,
-  25  Precipitation       Mist    Fair ( 45)  Sprinkle  Blustery         Rain -,
-  26  Precipitation     Cloudy    Fair ( 55)  Sprinkle  Blustery         Rain -,
-  27  Precipitation  Light Fog    Fair ( 45)    Shower  Blustery         Rain -,
-  28  Precipitation  Light Fog    Fair ( 50)    Steady  Blustery         Rain -,
-  29  Precipitation       Mist    Fair ( 60)    Shower     Brisk         Rain -,
-  30  Precipitation       Mist    Warm ( 70)     Heavy      Calm         Storm ,
-High Temp =  70, Low Temp =  35, Average Temp =  55
+  13          Clear      Clear    Fair ( 55)      None      Calm  36.9"
+  14          Clear      Clear    Fair ( 50)      None     Brisk  30.9"
+  15          Clear      Clear    Fair ( 55)      None      Calm  24.9"
+  16          Clear      Clear    Fair ( 45)      None      Calm  19.9"
+  17  Precipitation     Cloudy    Fair ( 45)  Sprinkle     Brisk  14.9"  Rain -,
+  18          Clear      Clear    Fair ( 50)      None     Light   8.9"
+  19          Clear      Clear    Fair ( 45)      None      Calm   3.9"
+  20          Clear      Clear    Fair ( 40)      None     Brisk
+  21          Clear      Clear    Fair ( 45)      None      Calm
+  22  Precipitation     Cloudy    Fair ( 40)  Sprinkle  Blustery         Rain -,
+  23  Precipitation     Cloudy    Fair ( 45)  Sprinkle  Blustery         Rain -,
+  24  Precipitation       Mist    Fair ( 45)  Sprinkle      Gale         Rain -,
+  25  Precipitation     Cloudy    Fair ( 45)  Sprinkle     Light         Rain -,
+  26  Precipitation  Heavy Fog    Fair ( 45)     Heavy     Light         Rain -,
+  27          Clear      Clear    Fair ( 60)      None     Brisk
+  28          Clear      Clear    Fair ( 45)      None     Brisk
+  29  Precipitation       Mist    Fair ( 40)    Shower     Brisk         Rain -,
+  30  Precipitation     Cloudy    Fair ( 40)  Sprinkle  Blustery         Rain -,
+High Temp =  60, Low Temp =  25, Average Temp =  45
 
-Thrimidge
-   1  Precipitation       Mist    Warm ( 65)    Shower     Light         Storm ,
-   2          Clear      Clear    Fair ( 50)      None      Calm
-   3          Clear      Clear    Warm ( 65)      None      Calm
-   4          Clear      Clear    Warm ( 65)      None      Calm
-   5          Clear      Clear    Warm ( 65)      None      Calm
-   6          Clear      Clear    Warm ( 65)      None      Calm
-   7  Precipitation       Mist    Fair ( 50)    Shower     Light         Rain -,
-   8  Precipitation       Mist    Fair ( 60)     Heavy     Light         Rain -,
-   9       Overcast     Cloudy     Hot ( 85)      None      Calm
-  10       Overcast       Mist    Warm ( 65)      None      Calm
-  11       Overcast     Cloudy    Warm ( 65)      None      Calm
-  12
+Astron
+   1  Precipitation       Mist    Fair ( 55)    Shower  Blustery         Rain -,
+   2  Precipitation       Mist     Fair ( 55)      None      Calm

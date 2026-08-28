@@ -95,7 +95,10 @@ def parse(path):
     """A sheet is a list of stanzas. `shot' opens one; the rest fills it."""
     shots, cur, rate, size = [], None, 0.4, (24, 80)
     for raw in open(path):
-        line = raw.split("#", 1)[0].rstrip()
+        # A `#' STARTS A COMMENT ONLY AT THE START OF A LINE. Stripping it
+        # anywhere ate `lda #$41' out of an as09 stanza, and the shell sat
+        # in continuation mode swallowing the three stanzas that followed.
+        line = "" if raw.lstrip().startswith("#") else raw.rstrip()
         if not line.strip():
             continue
         word, _, rest = line.strip().partition(" ")
@@ -182,6 +185,33 @@ class Session:
     def slice(self, a, b):
         with self.lock:
             return bytes(self.buf[a:b])
+
+    READY = "S9READY"
+
+    def ready(self, timeout=10):
+        """Is the shell actually back, or is something still holding the tty?
+
+        Ctrl-E is aimed at the terminal's LAST WRITER and not every program
+        dies of it -- SEDT survived one and then ate the next three stanzas
+        of its sheet, so `vc' and `ispell' were published showing SEDT's
+        buffer. Asking the shell to echo a marker is the only answer that
+        cannot be inferred: either the marker comes back or the session is
+        no longer a shell and has to be replaced.
+        """
+        try:
+            self.write("\r")
+            time.sleep(0.3)
+            at = self.mark()
+            self.write("echo %s\r" % self.READY)
+        except OSError:
+            return False
+        deadline = time.time() + timeout
+        while time.time() < deadline:
+            time.sleep(0.4)
+            # Twice: once as the shell echoes what was typed, once as output.
+            if self.slice(at, self.mark()).count(self.READY.encode()) >= 2:
+                return True
+        return False
 
     def close(self):
         try:
@@ -305,7 +335,9 @@ def run_sheet(path, image):
                          else "" if ink(scr) >= 20 else "<-- LOOK AT THIS ONE"),
                       flush=True)
                 done += 1
-                if died:
+                if died or not sess.ready():
+                    print("      (session replaced -- %s left it unusable)"
+                          % shot["name"], flush=True)
                     sess.close()
                     sess = Session(image, size[0], size[1])
         finally:

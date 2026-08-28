@@ -1,0 +1,2 @@
+echo "hello: /dd/SYS/motd" > /dd/tmp/Makefile
+<t /dd/SYS/motd > /dd/tmp/hello\n" >> /dd/tmp/Makefile

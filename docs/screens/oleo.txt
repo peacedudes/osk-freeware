@@ -6,7 +6,6 @@ Process   Pid: 3, oleo, edition 7
   Directories: Current   - /dd
                Execution - /dd/CMDS
         Files: 00 fCons /term
-               01 fCons /term
 12: command not found
 30: command not found
 =A0+A1: command not found

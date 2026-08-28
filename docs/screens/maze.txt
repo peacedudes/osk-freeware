@@ -5,5 +5,3 @@ Process   Pid: 3, maze, edition 7
   Directories: Current   - /dd
                Execution - /dd/CMDS
         Files: 00 fCons /term
-               01 fCons /term
-               02 fCons /term

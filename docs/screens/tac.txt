@@ -1,0 +1,10 @@
+/dd/CMDS/head -n 8 /dd/SYS/holidays | /dd/CMDS/tac
+/dd/CMDS/head: /dd/SYS/holidays
+*easter-46 Ash Wednesday
+*easter-7 Palm Sunday
+easter Easter Sunday
+3/17 St. Patrick's Day
+2/14 Valentine's Day
+1/1             New Year's Day
+
+* Common Holidays
