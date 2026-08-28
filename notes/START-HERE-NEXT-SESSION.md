@@ -45,8 +45,25 @@ that os9exec cannot make (`mount` creates h0..hz and nothing else); five
 programs need a newer `csl` than the edition 16 that ships; the JPEG tools
 cannot read a PNM, so no JPEG can be made here.
 
-**If you add screens: one stanza per program.** Two definitions means two
-captions for one screen and the gallery picking whichever sheet sorted last.
+**If you add screens: one stanza per program**, and then READ WHAT IT TOOK.
+rdoggett, 2026-08-28, looking at the `cvtbase` card: *"I asked you to
+capture an interesting screen shot, this is what you saved"* -- twenty-four
+copies of `No more memory !!!`. And at `divide`: a caption about integer
+division over a screen showing `Can't open file ??`, with another program's
+checksums underneath. Both had passed every check there was.
+
+So there are three now, and none of them replaces looking:
+
+  - `tools/audit_screens.py` flags a screen that is one line repeated, one
+    with almost nothing on it, one that is only the command typed.
+  - `tools/gen_screens.py` reports DRIFT -- a stanza with no capture, and a
+    capture whose stanza has changed since (each capture carries a hash of
+    what its stanza says, so editing one stanza does not flag its
+    neighbours).
+  - The screens themselves read as a session: the commands are there with a
+    `$`, the prompt is not, and a program is called the way a person calls
+    it. `hack` is the one exception and its file says why.
+
 `tools/README.md` has the rest.
 
 ## DO THIS FIRST — the next three actions, in order
