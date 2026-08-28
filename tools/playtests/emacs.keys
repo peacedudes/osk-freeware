@@ -1,0 +1,11 @@
+name    emacs
+prog    /dd/CMDS/emacs /dd/SYS/motd
+# MicroEmacs 4.00 on a file from the disk.  The mode line at the foot names
+# the version and the file, which is the thing worth photographing.
+rate    0.5
+wait    8
+snap    opened
+key     \030
+key     \003
+wait    3
+expect  motd

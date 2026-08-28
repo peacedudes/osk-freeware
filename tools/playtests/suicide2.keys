@@ -1,0 +1,6 @@
+name    suicide2
+prog    /dd/CMDS/GAMES/suicide2
+cap     the second variant of the same animation
+rate    0.5
+wait    12
+minbytes 800

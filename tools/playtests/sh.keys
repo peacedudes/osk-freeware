@@ -1,0 +1,20 @@
+name    sh
+prog    /dd/CMDS/sh
+# The Bourne shell v7.5 -- and the one with a REAL chd, which is why the
+# image build uses it.  `pwd' proves the data directory moved.
+rate    0.4
+wait    6
+keys    echo hello from sh
+key     \r
+wait    3
+keys    chd /dd/SYS
+key     \r
+wait    2
+keys    pwd
+key     \r
+wait    3
+snap    moved
+keys    exit
+key     \r
+wait    3
+expect  hello from sh

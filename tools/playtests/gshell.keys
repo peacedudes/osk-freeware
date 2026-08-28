@@ -1,0 +1,9 @@
+name    gshell
+prog    /dd/CMDS/gshell
+# GSHELL, a shell with a menu rather than a prompt.
+rate    0.6
+wait    6
+snap    menu
+key     \033
+wait    3
+absent  Can't install trap handler

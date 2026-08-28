@@ -1,0 +1,17 @@
+name    ksh
+prog    /dd/CMDS/ksh
+# pd-ksh as an interactive shell.  DOC/INDEX says `ksh -c' works completely
+# and its interactive mode is the part worth testing, so this types at it.
+rate    0.4
+wait    6
+keys    echo $KSH_VERSION
+key     \r
+wait    3
+keys    for i in 1 2 3; do echo line $i; done
+key     \r
+wait    4
+snap    ran
+keys    exit
+key     \r
+wait    3
+expect  line 3
