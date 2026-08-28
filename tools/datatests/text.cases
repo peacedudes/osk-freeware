@@ -107,10 +107,12 @@ case    gawk-still-reads-no-input
 run     /dd/CMDS/gawk "END{print NR\" records\"}" $T
 absent  records
 
-case    m4-still-mangles-its-output
+# The build that shipped as `m4' until 2026-08-28 expanded this as `i hr ';
+# the alternate build, now shipping, gets it right.
+case    m4-expands-a-macro
 run     echo "define(G,hi \$1)G(there)" > /dd/tmp/m.src
 run     /dd/CMDS/m4 < /dd/tmp/m.src
-absent  hi there
+expect  hi there
 
 # LAST ON PURPOSE: subber's F$Mem failure takes the whole emulator session
 # with it, so every case after it would report `never ran'.

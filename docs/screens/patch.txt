@@ -1,11 +1,17 @@
 $ head -n 6 /dd/SYS/holidays > /dd/tmp/p1
 head: /dd/SYS/holidays
 $ sed "s/Day/DAY/g" /dd/tmp/p1 > /dd/tmp/p2
-$ diff -c /dd/tmp/p1 /dd/tmp/p2 > /dd/tmp/p.diff
+$ diff /dd/tmp/p1 /dd/tmp/p2 > /dd/tmp/p.diff
+$ cat /dd/tmp/p.diff
+3,5c3,5
+< 1/1           New Year's Day
+< 2/14 Valentine's Day
+< 3/17 St. Patrick's Day
+---
+> 1/1           New Year's DAY
+> 2/14 Valentine's DAY
+> 3/17 St. Patrick's DAY
 $ patch /dd/tmp/p1 /dd/tmp/p.diff
-Hmm...  I can't seem to find a patch in there anywhere.
-$ head -n 3 /dd/tmp/p1
-* Common Holidays
-
-1/1             New Year's Day
-head: /dd/tmp/p1
+Hmm...  Looks like a normal diff to me...
+Patching file /dd/tmp/p1 using Plan B...
+Error reading tmp file /dd/tmp/patchi000003.

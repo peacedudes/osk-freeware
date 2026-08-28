@@ -463,7 +463,7 @@
 | `cpr` | print/pretty-list C source files<br>`Usage: cpr [-cCnNsS] [-T title] [-t tabwidth] [-p[num]] [-r[num]] [-l pagelength] [[-f] file] ...` |
 | `ifdef` | resolve #ifdefs in C source<br>`Syntax: ifdef [<opts>] [<file>] [<opts>]` |
 | `indent` | reformat a C source program for readability<br>`Syntax: indent [<opts>] [<inpath> [<outpath>]] [<opts>]` |
-| `patch` | Larry Wall's patch - apply a diff |
+| `patch` | Larry Wall's patch - apply a diff -- it recognises a diff and then CANNOT FINISH: `Error reading tmp file /dd/tmp/patchi000003'.  The file it was patching is left alone.  `diff' itself works |
 | `unifdef` | &#9733; remove #ifdef sections from C source<br>`syntax: unifdef {<opts>} [<file>]` |
 
 **Source navigation**
@@ -526,7 +526,7 @@
 | `dmake` | &#9733; dmake 3.70 - parallel make with its own makefile dialect |
 | `flex` | lexical analyzer generator -- see DOC/flex/README-FLEX FIRST<br>`Syntax   : flex [-bcdfinpstvFILT8 -C[efmF] -Sskeleton] [filename ...]` |
 | `gmake` | GNU make -- ADDED (the gnu.bin build of make is the broken one)<br>`Usage: gmake [options] [target] ...` |
-| `m4` | m4 macro processor -- its output is MANGLED here: `GREET(reader)' against a one-line definition comes back as `el edr rm S-9'<br>`Usage: m4 [-Dname[=val]] [-Uname]` |
+| `m4` | m4 macro processor.  SWAPPED 2026-08-28: what ships is now the CMDS/REBUILT/m4_0.5 build, because the one that used to be here MANGLED its output -- a one-line definition expanded to `i hr ' instead of `hi there'.  The one here now expands correctly, from a file or a pipe<br>`Usage: m4 [options] file ....` |
 | `make` | &#9733; make - maintain and regenerate groups of files (verified: -? works)<br>`Syntax :	make {[-f <makefile>] [-dDinrst] [<target>] [<macro>=<value>]}` |
 | `makeinfo` | GNU makeinfo -- Texinfo to info<br>`Usage: makeinfo [options] texinfo-file...` |
 | `rtf` | RTF/68K Real-Time Fortran-77 compiler, v2.14 (CERN, 1987). Compiles .f to 68k ASSEMBLY; assembling and linking then need Microware's r68 and l68.  Manual: DOC/rtf/rtfman.txt |
@@ -634,7 +634,7 @@
 | `gzip68k_csl` | &#9733; gzip 1.2.4, 68000, needs csl<br>`usage: gzip68k_csl [-gzip68k_cslcdfhlLnNgzip68k_csltvV19] [-S suffix] [file ...]` |
 | `gzip68k_nocsl` | gzip 1.2.4, 68000, no csl needed<br>`usage: gzip68k_nocsl [-gzip68k_nocslcdfhlLnNgzip68k_nocsltvV19] [-S suffix] [file ...]` |
 | `lharcs` | C-LHarc 1.01, older than CMDS/lha 2.08<br>`Usage: lharcs {axevlufdmctp}[qnftv] archive_file [files or directories...]` |
-| `m4_0.5` | &#9733; another build of m4<br>`Usage: m4 [options] file ....` |
+| `m4_0.5` | &#9733; another build of m4 -- and since 2026-08-28 it IS the build that ships as `m4', the earlier one having turned out to mangle what it expanded<br>`Usage: m4 [options] file ....` |
 | `sed_1.06` | &#9733; another build of sed -- and since 2026-08-28 it IS the build that ships as `sed', the earlier one having turned out to do nothing but exhaust memory<br>`Syntax   : sed [<opts>] [<file>]` |
 
 **Compress a file**

@@ -159,18 +159,19 @@ cap     it made of the collection's own `about.c'.
 run     indent /dd/SRC/keep/about.c -st | head -n 16
 wait    15
 
-
 shot    patch
-for     patch diff
-cap     patch applying a diff: the file changes, and patch says which hunk
-cap     went in where.  Larry Wall's own program, on OS-9.
+for     patch diff cdiff spiff
+cap     `diff' works: it says exactly what changed.  `patch' then recognises
+cap     the diff -- "Looks like a normal diff to me" -- and CANNOT FINISH:
+cap     it writes a temporary file into /dd/tmp and then cannot read it
+cap     back.  The file it was patching is left alone.  Measured 2026-08-28.
 run     head -n 6 /dd/SYS/holidays > /dd/tmp/p1
-wait    8
+wait    6
 run     sed "s/Day/DAY/g" /dd/tmp/p1 > /dd/tmp/p2
+wait    6
+run     diff /dd/tmp/p1 /dd/tmp/p2 > /dd/tmp/p.diff
 wait    8
-run     diff -c /dd/tmp/p1 /dd/tmp/p2 > /dd/tmp/p.diff
-wait    10
+run     cat /dd/tmp/p.diff
+wait    6
 run     patch /dd/tmp/p1 /dd/tmp/p.diff
-wait    12
-run     head -n 3 /dd/tmp/p1
-wait    8
+wait    10

@@ -50,13 +50,16 @@ run     dmake -V
 wait    5
 
 shot    m4
-cap     m4, the macro processor, expanding a macro from a file.
+for     m4 m4_0.5
+cap     m4, the macro processor, expanding a macro from a file.  What ships
+cap     as `m4' from 2026-08-28 is the CMDS/REBUILT/m4_0.5 build: the one
+cap     that used to be here expanded this same file as `i hr '.
 run     echo "define(GREET,Hello \$1 from OS-9)" > /dd/tmp/m.m4
-wait    3
+wait    5
 run     echo "GREET(reader)" >> /dd/tmp/m.m4
-wait    3
+wait    5
 run     cat /dd/tmp/m.m4
-wait    3
+wait    5
 run     m4 < /dd/tmp/m.m4
 wait    8
 
