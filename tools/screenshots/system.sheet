@@ -188,8 +188,10 @@ run     gen -?
 wait    8
 
 shot    getsys
-cap     getsys reads OS-9's system globals -- what the kernel thinks it is
-cap     running on, straight out of the global page.
+cap     getsys walks OS-9's whole global page, field by field -- and under
+cap     os9exec most of those fields are not kept, so what comes back is the
+cap     emulator saying `unimplemented' for each one.  This is a picture of
+cap     where the emulation stops, not of a broken program.
 run     getsys | head -n 21
 wait    6
 
