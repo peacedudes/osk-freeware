@@ -1,4 +1,7 @@
-chksum /dd/SYS/motd
+rm -f /dd/tmp/d.txt.n
 4b68af85
 Type password for /dd/tmp/d.txt: freeware
-Verify password for /dd/tmp/d.txt:
+Verify password for /dd/tmp/d.txt: freeware
+Type password for /dd/tmp/d.txt.n: freeware
+Verify password for /dd/tmp/d.txt.n: freeware
+00000000

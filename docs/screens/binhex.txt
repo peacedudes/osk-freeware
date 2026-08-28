@@ -1,2 +1,2 @@
-binhex /dd/DOC/INDEX | head -n 12
+binhex /dd/DOC/INDEX
 File is not MacBinary: /dd/DOC/INDEX

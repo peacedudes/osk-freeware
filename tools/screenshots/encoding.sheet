@@ -2,8 +2,13 @@
 # one is possible.
 
 shot    binhex
-cap     binhex encodes a file the way a Macintosh expected to receive it.
-run     binhex /dd/DOC/INDEX | head -n 12
+for     binhex hexbin
+cap     binhex encodes a file the way a Macintosh expected to receive it --
+cap     but it will only take MACBINARY in, not a plain file, and no
+cap     MacBinary file ships here.  So what it does is refuse, politely and
+cap     by name, which is the useful thing to know before you feed it
+cap     something.
+run     binhex /dd/DOC/INDEX
 wait    8
 
 shot    btoa
@@ -45,17 +50,32 @@ run     cvtbase
 wait    6
 
 shot    des
-cap     DES encrypting a file and decrypting it back.  It takes filenames
-cap     only and asks for the key itself; the checksums either side show
-cap     the round trip closed.
-run     chksum /dd/SYS/motd
-wait    3
-run     cp /dd/SYS/motd /dd/tmp/d.txt
+for     des
+cap     DES asks for the key twice, writes its output as `<file>.n' and
+cap     REMOVES the original.  It encrypts: 40 bytes in, 40 bytes out.  It
+cap     does NOT come back -- run over its own output with the same key, the
+cap     file it writes checksums 00000000 rather than the 4b68af85 it
+cap     started from.  `xcrypt' is the cipher here that round-trips.
+run     rm -f /dd/tmp/d.txt.n
 wait    4
+run     cp /dd/SYS/motd /dd/tmp/d.txt
+wait    5
+run     chksum /dd/tmp/d.txt
+wait    5
 run     des /dd/tmp/d.txt
-wait    5
+wait    4
 send    freeware\r
-wait    5
+wait    3
+send    freeware\r
+wait    6
+run     des /dd/tmp/d.txt.n
+wait    4
+send    freeware\r
+wait    3
+send    freeware\r
+wait    6
+run     chksum /dd/tmp/d.txt.n.n
+wait    8
 
 shot    divide
 for     divide chardef

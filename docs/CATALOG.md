@@ -726,7 +726,7 @@
 | `checksum` | &#9733; file checksum<br>`Syntax:   checksum <file> [<file>...]` |
 | `chksum` | &#9733; 32-bit file checksum |
 | `crypto` | &#9733; cryptogram puzzle solver's assistant<br>**How:** File encryption. Takes files: `crypto [-cegnru] <file>...'; `crypto -h' is the help. |
-| `des` | &#9733; DES file encryption |
+| `des` | &#9733; DES file encryption -- it writes `<file>.n', removes the original, and does NOT decrypt: run over its own output with the same key it produces a file that checksums 00000000.  `xcrypt' round-trips |
 | `md5` | MD5 checksum<br>`Usage: MD%d <-opts> <filename>` |
 | `xcrypt` | &#9733; file encryption/decryption |
 
