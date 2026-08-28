@@ -1,5 +1,6 @@
      -?      = report help
 
+$ Libr2Ascii
 Missing parameter: infile
 Syntax: Libr2Ascii [opts]
 Convert a Librarian Card Catalog file to a plain ASCII text file.
@@ -9,6 +10,7 @@ Options:
 
         Version: V1.0Beta
         Copyright (c) 1991,1992 Robert Heller D/B/A Deepwoods Software
+$ EditLibr
 Missing parameter: editfile
 Syntax: EditLibr [opts]
 Librarian Card Catalog file editor

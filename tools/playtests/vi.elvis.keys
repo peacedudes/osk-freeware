@@ -1,5 +1,5 @@
 name    vi.elvis
-prog    /dd/CMDS/REBUILT/vi.elvis /dd/DOC/README-CIO
+prog    vi.elvis /dd/DOC/README-CIO
 # elvis 1.7 under its `vi' personality -- one of three unrelated vi clones
 # on this disk, and the best documented.
 rate    0.5

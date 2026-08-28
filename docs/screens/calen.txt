@@ -1,4 +1,4 @@
-echo 8 2026 1 | calen | head -n 21
+$ echo 8 2026 1 | calen | head -n 21
 Enter calendar specs (month year length):
                                   HHH                           H           HHH
                                   III                           I           III

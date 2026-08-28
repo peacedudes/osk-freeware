@@ -1,1 +1,3 @@
-printf "10\n9\n100\n2\n" > /dd/tmp/n.txt
+$ printf "10\n9\n100\n2\n" > /dd/tmp/n.txt
+$ qsort9 < /dd/tmp/n.txt
+$ nsort < /dd/tmp/n.txt

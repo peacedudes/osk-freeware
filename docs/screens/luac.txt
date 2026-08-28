@@ -1,4 +1,5 @@
-echo 'function sq(x) return x*x end print(sq(7))' > /dd/tmp/sq.lua
+$ echo 'function sq(x) return x*x end print(sq(7))' > /dd/tmp/sq.lua
+$ luac -l -o /dd/tmp/sq.lc /dd/tmp/sq.lua
 
 main of "/dd/tmp/sq.lua" (23 bytes at c77a8)
      0  PUSHFUNCTION    c7348   ; "/dd/tmp/sq.lua":1

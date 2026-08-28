@@ -1,5 +1,7 @@
-combine /dd/SYS/motd /dd/SYS/holidays > /dd/tmp/comb
+$ combine /dd/SYS/motd /dd/SYS/holidays > /dd/tmp/comb
+$ ls -l /dd/tmp/comb
 -rw-rw-rw-   1 0        0             284 Aug 28 04:51 /dd/tmp/comb
+$ demerge -?
 Syntax:   demerge <path>
 Function: demerges a file of merged modules to single module
           files named as modules

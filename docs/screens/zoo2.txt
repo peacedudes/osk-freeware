@@ -1,3 +1,4 @@
-zoo_2.1 a /dd/tmp/z2.zoo /dd/SYS/motd
+$ zoo_2.1 a /dd/tmp/z2.zoo /dd/SYS/motd
 Zoo:  /dd/SYS/motd --  ( 0%) added
+$ booz -l /dd/tmp/z2.zoo
 Usage:  booz {lxt} archive[.zoo] [ file ... ]

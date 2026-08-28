@@ -1,4 +1,4 @@
-config
+$ config
 /* Char = 8 bits, signed */
 /* Maximum short = 32767 (= 2**15-1) */
 /* Maximum int = 2147483647 (= 2**31-1) */
@@ -19,3 +19,4 @@ config
 Process   Pid: 3, config, edition 7
     Exit code: E_PRCABT(228) Process Aborted
   Directories: Current   - /dd
+               Executibash#

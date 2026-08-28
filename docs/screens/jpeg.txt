@@ -1,7 +1,11 @@
-giftopnm /dd/DEMO/gulls.gif > /dd/tmp/g.ppm
+$ giftopnm /dd/DEMO/gulls.gif > /dd/tmp/g.ppm
+$ cjpeg -quality 50 /dd/tmp/g.ppm > /dd/tmp/g.jpg
 Bogus data in PPM file
+$ wrjpgcom -comment "OS-9 freeware disk" /dd/tmp/g.jpg > /dd/tmp/gc.jpg
 Not a JPEG file
+$ rdjpgcom /dd/tmp/gc.jpg
 Not a JPEG file
+$ ls -l /dd/DEMO/gulls.gif /dd/tmp/g.ppm /dd/tmp/g.jpg
 -rw-rw-rw-   1 0        0           43008 Aug 28 04:49 /dd/DEMO/gulls.gif
 -rw-rw-rw-   1 0        0               0 Aug 28 04:51 /dd/tmp/g.jpg
 -rw-rw-rw-   1 0        0          192015 Aug 28 04:51 /dd/tmp/g.ppm

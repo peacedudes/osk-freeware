@@ -1,4 +1,4 @@
-lp -?
+$ lp -?
 Syntax: lp [<opts>] {<path>}
 Options:
        -z     get file names from standard input
@@ -7,7 +7,9 @@ Options:
        -n=xx  make xx copies (default 1)
        -d=ptr output on device ptr
        -s     silentmode
+$ lpq
 lpq: no spooler installed
+$ lpsched -?
 Syntax: lpsched [-r] {<devname>}
 Function:  starts Printerspooler
 Options:

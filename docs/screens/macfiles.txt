@@ -1,4 +1,4 @@
-unsit
+$ unsit
 Unsit V1.15f Update by Nigel Perry
              Orginal by Allen G Weber
              OSK Port by Dean Leiber
@@ -16,5 +16,6 @@ Usage: Unsit [-rdulM] [-vqfm] filename
              -q = Query (Prompt for Y/N)
              -m = Input Macbinary [Default]
              -f = Flatten Archive
+$ macunpack
 UnMacpack
 Unrecognized archive type

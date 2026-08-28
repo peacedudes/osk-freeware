@@ -1,5 +1,5 @@
 name    netpbm-convert
-prog    /dd/CMDS/bash
+prog    bash
 # Six converters against real image data, checked by DIMENSIONS, not by exit
 # status: pnmcut must actually crop and pnmtile must actually tile.  Nothing
 # in this collection had ever exercised the netpbm set on an image.

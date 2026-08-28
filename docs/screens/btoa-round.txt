@@ -1,5 +1,7 @@
-btoa < /dd/SYS/motd > /dd/tmp/m.btoa
+$ btoa < /dd/SYS/motd > /dd/tmp/m.btoa
+$ cat /dd/tmp/m.btoa
 xbtoa Begin
 =(Q2XDf'&.FDi:?F#dfVARci7/Kdhf/NGIB3,9XJD09Z'FDl1/
 xbtoa End N 40 28 E 9 S d17 R c31bdd89
+$ atob < /dd/tmp/m.btoa | md5
 f2783580b7a4c5ef6a29ec5895e6ad95

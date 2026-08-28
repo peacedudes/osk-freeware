@@ -1,4 +1,4 @@
-infocom /dd/GAMES/INFORM/dejavu.z3
+$ infocom /dd/GAMES/INFORM/dejavu.z3
 
 [
         ... the same line 4 times over

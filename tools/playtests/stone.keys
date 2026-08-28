@@ -1,5 +1,5 @@
 name    stone
-prog    /dd/CMDS/GAMES/stone
+prog    stone
 # Generic: does it draw, and does the screen change when keys arrive?
 rate    0.7
 wait    5

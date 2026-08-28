@@ -1,5 +1,5 @@
 name    sh
-prog    /dd/CMDS/sh
+prog    sh
 # The Bourne shell v7.5 -- and the one with a REAL chd, which is why the
 # image build uses it.  `pwd' proves the data directory moved.
 rate    0.4

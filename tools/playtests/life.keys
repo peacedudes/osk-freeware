@@ -1,5 +1,5 @@
 name    life
-prog    /dd/CMDS/GAMES/life
+prog    life
 # Does it draw, and does the screen change when keys arrive -- AND is the
 # status line intact?  That last one is the terminal-size check.  `life' puts
 # its status on the bottom row by absolute cursor address, so in a window

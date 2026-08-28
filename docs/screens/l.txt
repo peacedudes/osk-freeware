@@ -1,3 +1,4 @@
-l /dd/CMDS/GAMES
+$ l /dd/CMDS/GAMES
 
  File /dd/CMDS/GAMES not accessable, error: 214
+ bash#

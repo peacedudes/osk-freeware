@@ -1,5 +1,5 @@
 name    pwgen
-prog    /dd/CMDS/pwgen
+prog    pwgen
 # Amusement: mostly these print and stop.
 rate    0.6
 wait    5

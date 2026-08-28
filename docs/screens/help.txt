@@ -3,6 +3,7 @@
  declare [-[frxi]] name[=value] ... dirs [-l]
  echo [-neE] [arg ...]              enable [-n] [name ...]
  eval [arg ...]                     exec [ [-] file [redirection ...]]
+ exit [n]                           export [-n] [-p] [-f] [name ...]
  fc [-e ename] [-nlr] [first] [last for NAME [in WORDS ... ;] do COMMA
  function NAME { COMMANDS ; } or NA getopts optstring name [arg]
  hash [-r] [name ...]               help [pattern ...]

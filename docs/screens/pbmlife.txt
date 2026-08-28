@@ -1,4 +1,4 @@
-pgmnoise 60 30 | pgmtopbm | pbmlife | pbmtoascii
+$ pgmnoise 60 30 | pgmtopbm | pbmlife | pbmtoascii
 "oMMMMooo MMo"ooM"""  oo Moooo"oMMMo"o"MoMooMMMo M oMMo Mo""
  M"M M oM""  MMMMoMo"M M Mo"MMooM M"MMMMMMMMM"ooM"o  M""MMM"
 "MMooMMMMM""MMMMMMMMMoo"MoM MoMMMM""MMM"o"""M"" M"MoMM MM"M

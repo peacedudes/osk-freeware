@@ -1,5 +1,5 @@
 name    less
-prog    /dd/CMDS/less /dd/DOC/README-RUNNING
+prog    less /dd/DOC/README-RUNNING
 rate    0.6
 wait    4
 snap    firstpage

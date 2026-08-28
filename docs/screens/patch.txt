@@ -1,6 +1,10 @@
-head -n 6 /dd/SYS/holidays > /dd/tmp/p1
+$ head -n 6 /dd/SYS/holidays > /dd/tmp/p1
 head: /dd/SYS/holidays
+$ sed "s/Day/DAY/g" /dd/tmp/p1 > /dd/tmp/p2
+$ diff -c /dd/tmp/p1 /dd/tmp/p2 > /dd/tmp/p.diff
+$ patch /dd/tmp/p1 /dd/tmp/p.diff
 Hmm...  I can't seem to find a patch in there anywhere.
+$ head -n 3 /dd/tmp/p1
 * Common Holidays
 
 1/1             New Year's Day

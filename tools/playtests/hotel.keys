@@ -1,5 +1,5 @@
 name    hotel
-prog    /dd/CMDS/GAMES/hotel
+prog    hotel
 # Generic: does it draw, and does the screen change when keys arrive?
 rate    0.7
 wait    5

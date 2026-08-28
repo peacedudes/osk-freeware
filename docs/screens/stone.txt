@@ -1,4 +1,4 @@
-stone
+$ stone
 
 Do you want the rules? no
 

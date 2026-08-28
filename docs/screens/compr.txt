@@ -1,2 +1,4 @@
-cp /dd/DOC/INDEX /dd/tmp/idx3
+$ cp /dd/DOC/INDEX /dd/tmp/idx3
+$ compr /dd/tmp/idx3
+$ ls -l /dd/tmp/idx3*
 -rw-------   1 0        0           42999 Aug 28 04:52 /dd/tmp/idx3.Z

@@ -1,4 +1,4 @@
-areacode 212 415 816 314
+$ areacode 212 415 816 314
 Area code 212 is New York City (Manhattan and Bronx) New York.
 Area code 415 is Oakland and San Francisco, California.
 Area code 816 is Kansas City and Saint Joseph, Missouri.

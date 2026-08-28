@@ -1,7 +1,11 @@
-mkdir /dd/tmp/work
+$ mkdir /dd/tmp/work
+$ cp /dd/SYS/motd /dd/tmp/work/one
+$ mv /dd/tmp/work/one /dd/tmp/work/two
+$ dir /dd/tmp/work
 
 Directory of "/dd/tmp/work" 05:00:22  08/28/126
 
 two
 
 Total of 1 files.
+$ rm /dd/tmp/work/two

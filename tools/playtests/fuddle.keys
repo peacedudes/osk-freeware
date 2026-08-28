@@ -1,5 +1,5 @@
 name    fuddle
-prog    /dd/CMDS/GAMES/fuddle
+prog    fuddle
 # Generic: does it draw, and does the screen change when keys arrive?
 rate    0.7
 wait    5

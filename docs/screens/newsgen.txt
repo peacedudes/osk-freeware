@@ -1,4 +1,4 @@
-newsgen
+$ newsgen
 
 
                         T O D A Y ' S    N E W S

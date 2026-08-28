@@ -1,4 +1,4 @@
-pgmramp -lr 152 44 | pgmtopbm | pbmtoascii
+$ pgmramp -lr 152 44 | pgmtopbm | pbmtoascii
 MMMMMMMMMMMMMMMMMMMMMMMM"MM"MM"MoMM"M"MoMM"Mo"MoM"oM"oMo"oM"o"oM M"o"o"o"o""o"oo
 MMMMMMMMMMMMM"MMoMMMoMM"MMM"MM"MoM"M"MoMoMM"oMMo"Mo"Mo"oM"o"M"o"M Mo"M M"o""o"oo
 MMMMMMMMMoMMMMMMMMoMMM"MMoMM"MM"M"M"M"oMoMoM"oMoM"oM"oM"oM"o"oM"oM M M M M M M o

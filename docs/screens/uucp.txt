@@ -1,3 +1,4 @@
+$ uucico -?
 usage: uucico [opts] -r | sys [sys...]  [opts]
 
       sys      -remote system to call as MASTER (default)

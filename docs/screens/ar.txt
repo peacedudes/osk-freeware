@@ -1,3 +1,4 @@
-ar -u /dd/tmp/k2.ar /dd/SRC/keep/keep.c
+$ ar -u /dd/tmp/k2.ar /dd/SRC/keep/keep.c
 ar: absolute path illegal </dd/SRC/keep/keep.c>
+$ ar -t /dd/tmp/k2.ar
 ar: can't find /dd/tmp/k2.ar

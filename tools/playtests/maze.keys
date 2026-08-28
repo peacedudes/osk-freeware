@@ -1,5 +1,5 @@
 name    maze
-prog    /dd/CMDS/GAMES/maze
+prog    maze
 # A FILTER: the 2026-08-26 sweep classified it "OK as a filter", so it reads
 # standard input and writes to standard output.  Type a line at it.
 rate    0.4

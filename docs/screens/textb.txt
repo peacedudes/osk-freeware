@@ -1,4 +1,4 @@
-textb
+$ textb
 Input X_COORD: -2.3
 Input Y_COORD: -2.0
 Input    RANGE: 4.0

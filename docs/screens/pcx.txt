@@ -1,10 +1,12 @@
-ppmtopcx /dd/tmp/base.ppm > /dd/tmp/t.pcx
+$ ppmtopcx /dd/tmp/base.ppm > /dd/tmp/t.pcx
 ppmtopcx: computing colormap...
 ppmtopcx: 6 colors found
+$ pcxtoppm /dd/tmp/t.pcx > /dd/tmp/back3.ppm
 pcxtoppm: Version: 5
 pcxtoppm: BitsPerPixel: 1
 pcxtoppm: Xmin: 0   Ymin: 0   Xmax: 47   Ymax: 23
 pcxtoppm: Planes: 3    BytesPerLine: 6    PaletteInfo: 1
 pcxtoppm: 16 color -> ppm
 pcxtoppm: done!
+$ pnmfile /dd/tmp/t.pcx /dd/tmp/back3.ppm
 pnmfile: bad magic number - not a ppm, pgm, or pbm file

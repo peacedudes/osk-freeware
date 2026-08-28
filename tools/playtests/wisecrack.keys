@@ -1,5 +1,5 @@
 name    wisecrack
-prog    /dd/CMDS/cat /pipe/txtpipe
+prog    cat /pipe/txtpipe
 # wisecrack WRITES to /pipe/txtpipe and prints nothing itself -- it is a
 # message ticker, not a program with a screen.  DOC/STATUS said so; this
 # proves it.  The writer has to start FIRST: the named pipe does not exist

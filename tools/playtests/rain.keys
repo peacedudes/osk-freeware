@@ -1,5 +1,5 @@
 name    rain
-prog    /dd/CMDS/GAMES/rain
+prog    rain
 # Generic: does it draw, and does the screen change when keys arrive?
 rate    0.7
 wait    4

@@ -1,3 +1,3 @@
-jargon foo
+$ jargon foo
 Browsing foo...
 vh: can't find database files for foo

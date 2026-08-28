@@ -1,7 +1,10 @@
-pbmtolj /dd/tmp/base.pbm | wc
+$ pbmtolj /dd/tmp/base.pbm | wc
       0      1    288
+$ pbmtoepson /dd/tmp/base.pbm | wc
       3      4    168
+$ pbmto10x /dd/tmp/base.pbm | wc
       3      4    164
+$ pbmtoepsi /dd/tmp/base.pbm | head -n 10
 %!PS-Adobe-2.0 EPSF-1.2
 %%BoundingBox: 0 1 47 24
 %%BeginPreview: 48 24 1 24

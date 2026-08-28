@@ -1,4 +1,4 @@
-fcomp /dd/tmp/h1 /dd/tmp/h2
+$ fcomp /dd/tmp/h1 /dd/tmp/h2
 
 Changed lines 3-5:
  1/1            New Year's Day

@@ -1,4 +1,4 @@
-virtex "&lplain" /dd/SYS/TEX/SAMPLES/small.tex
+$ virtex "&lplain" /dd/SYS/TEX/SAMPLES/small.tex
 This is TeX, C Version 3.14
 (/dd/SYS/TEX/SAMPLES/small.tex
 LaTeX Version 2.09 <7 Dec 1989>

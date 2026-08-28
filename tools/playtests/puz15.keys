@@ -1,5 +1,5 @@
 name    puz15
-prog    /dd/CMDS/GAMES/puz15
+prog    puz15
 # Generic: does it draw, and does the screen change when keys arrive?
 rate    0.7
 wait    5

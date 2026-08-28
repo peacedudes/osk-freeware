@@ -145,7 +145,16 @@ def feed(spec, master, with_keys, cap=None, marks=None):
                      "export HOME=/dd",
                      "export USER=tester",
                      "export LOGNAME=tester",
-                     "export PATH=/dd/CMDS:/dd/CMDS/GAMES:.",
+                     # EVERY program directory, the way SYS/login sets it,
+                     # so a play-test types `hack' rather than
+                     # /dd/CMDS/GAMES/hack -- which is what a person types
+                     # and all anybody wants to watch.
+                     "export PATH=/dd/CMDS:/dd/CMDS/GAMES:/dd/CMDS/NETPBM:"
+                     "/dd/CMDS/UUCP:/dd/CMDS/TEXCMDS:/dd/CMDS/ELM",
+                     "export PATH=$PATH:/dd/CMDS/COMMS:/dd/CMDS/NETWORK:"
+                     "/dd/CMDS/NEWS:/dd/CMDS/WN:/dd/CMDS/ADL",
+                     "export PATH=$PATH:/dd/CMDS/REBUILT:/dd/CMDS/DEMOS:"
+                     "/dd/CMDS/DHRY:/dd/CMDS/GCC139:.",
                      "export HELPDIR=/dd/SYS/HELP",
                      # CLEAR THE SETUP OFF THE SCREEN. Those eight export
                      # lines are ~150 characters of ink, and `ink' is how this

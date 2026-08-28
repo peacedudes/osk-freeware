@@ -1,4 +1,4 @@
-gnuchessc
+$ gnuchessc
 Chess
 e2e4
 1. ... e2e41. ... c7c5

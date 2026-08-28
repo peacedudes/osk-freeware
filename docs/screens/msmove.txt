@@ -1,4 +1,4 @@
-msmove a:MOTD.TXT a:/
+$ msmove a:MOTD.TXT a:/
 Long file name "MOTD.TXT" already exists.
 a)utorename A)utorename-all r)ename R)ename-all
 s)kip S)kip-all q)uit (aArRsSq): q

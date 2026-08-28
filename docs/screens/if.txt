@@ -1,4 +1,4 @@
-if -?
+$ if -?
 > exist /dd/SYS/motd
 > exist /dd/SYS/nothing-here
 >

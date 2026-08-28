@@ -1,6 +1,7 @@
-lharc a /dd/tmp/l.lzh /dd/SYS/motd
+$ lharc a /dd/tmp/l.lzh /dd/SYS/motd
 
 /dd/SYS/motd - Frozen(100%)o
+$ lharc l /dd/tmp/l.lzh
    SIZE  RATIO     STAMP    NAME
 ------- ------ ------------ --------------------
      40 100.0% Aug 27 23:45 /dd/SYS/motd

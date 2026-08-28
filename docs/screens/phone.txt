@@ -1,4 +1,4 @@
-phone
+$ phone
 Syntax: phone <communication-path>
 Function: communication between two terminals
 

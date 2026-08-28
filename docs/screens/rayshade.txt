@@ -1,2 +1,3 @@
-cp /dd/CMDS/GCC139/gcc_cccp /dd/CMDS/cccp
+$ cp /dd/CMDS/GCC139/gcc_cccp /dd/CMDS/cccp
+$ rayshade -R 48 36 -O /dd/tmp/out.pic /dd/GAMES/rayshade/boxball.ray
 rayshade: Fatal error: popen of "cccp  /dd/GAMES/rayshade/boxball.ray" failed!

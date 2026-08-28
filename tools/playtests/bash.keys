@@ -1,5 +1,5 @@
 name    bash
-prog    /dd/CMDS/bash
+prog    bash
 # The shell this disk hands you, driven as a person drives it.  bash's own
 # `pwd' HANGS it -- SYS/login replaces cd and pwd with functions that track
 # the path as a string -- so this types the things that work.

@@ -1,4 +1,4 @@
-pgmcrater -number 80 -xsize 152 -ysize 88 | pgmtopbm | pbmtoascii -2x4
+$ pgmcrater -number 80 -xsize 152 -ysize 88 | pgmtopbm | pbmtoascii -2x4
 S?SSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSS:%%%%%%%%%%%%%%SSSSSSSS%%%%%%%%%%%&
 SSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSS:%%%%%%%%%%%%%%SSSSSSSS%%%%%%%%%%%&
 SSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSS:??????????????SSSSSSSS%%%%%%%%%%%&

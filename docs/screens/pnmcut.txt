@@ -1,4 +1,8 @@
-pgmramp -lr 64 32 > /dd/tmp/r.pgm
+$ pgmramp -lr 64 32 > /dd/tmp/r.pgm
+$ pnmcut 0 0 32 16 /dd/tmp/r.pgm > /dd/tmp/cut.pgm
+$ pnmenlarge 2 /dd/tmp/cut.pgm > /dd/tmp/big.pgm
+$ pnmshear 20 /dd/tmp/big.pgm > /dd/tmp/shr.pgm
+$ pnmpaste /dd/tmp/cut.pgm 0 0 /dd/tmp/r.pgm > /dd/tmp/pst.pgm
 < /dd/tmp/cut.pgm /dd/tmp/big.pgm /dd/tmp/shr.pgm /dd/tmp/pst.pgm
 /dd/tmp/r.pgm:  PGM raw, 64 by 32  maxval 255
 /dd/tmp/cut.pgm:        PGM raw, 32 by 16  maxval 255

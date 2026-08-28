@@ -1,2 +1,3 @@
-wn -V
+$ wn -V
+Unknown option given to serverbash# wndex -?
 Usage: wndex [-r] [-q] [-v] [-d dir] [-i indexfile] [-c cachefile]

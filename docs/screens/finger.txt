@@ -1,4 +1,5 @@
 Options: none
+$ net
           Internet Protocol Package, (C) 1988 by Phil Karn, KA9Q
                NET/ROM Support (C) 1989 by Dan Frank, W9NK
 

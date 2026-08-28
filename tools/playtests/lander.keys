@@ -1,5 +1,5 @@
 name    lander
-prog    /dd/CMDS/GAMES/lander
+prog    lander
 # Generic: does it draw, and does the screen change when keys arrive?
 rate    0.7
 wait    4

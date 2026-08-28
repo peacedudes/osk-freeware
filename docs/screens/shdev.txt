@@ -1,6 +1,7 @@
-shdev
+$ shdev
 Device       Fmgr      Driver      Capabilities
 -----------------------------------------------
+$ dinfo /dd
 Device name   : /dd
 Volume name   : "OSK-Freeware"
 Creation date : 2026-8-28 4:36

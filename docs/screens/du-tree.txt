@@ -1,4 +1,4 @@
-du /dd/CMDS/GAMES | head -n 21
+$ du /dd/CMDS/GAMES | head -n 21
 Disk usage starting from "/dd/CMDS/GAMES" on 19126-08-28  05:01:26
 
 Directory name                      Bytes    kBytes   Sectors    File #

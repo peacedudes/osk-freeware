@@ -1,4 +1,4 @@
-xlisp
+$ xlisp
 XLISP version 2.1, Copyright (c) 1989, by David Betz
 > (defun fact (n) (if (< n 2) 1 (* n (fact (1- n)))))
 FACT

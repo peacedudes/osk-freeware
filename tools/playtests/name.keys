@@ -1,5 +1,5 @@
 name    name
-prog    /dd/CMDS/name
+prog    name
 # Amusement: mostly these print and stop.
 rate    0.6
 wait    5

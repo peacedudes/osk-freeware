@@ -1,5 +1,6 @@
 Output written on story.dvi (1 page, 668 bytes).
 Transcript written on story.log.
+$ dvieps story.dvi | wc
 [TeX82 DVI Translator Version 2.10 [experimental]]
 [Epson 9-pin family 240dpi x 216dpi dot matrix printer]
 [Input from DVI file story.dvi]

@@ -11,6 +11,7 @@ Process   Pid: 3, cpu, edition 7---------|---------|----------|----------|
   Directories: Current   - /dd
                Execution - /dd/CMDSe a 68000 CPU running at: 312.5Mhz
         Files: 00 fCons /term
+            bash#
 ELAPSED TIME    :  0000:00:00
 
 

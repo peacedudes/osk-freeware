@@ -1,2 +1,2 @@
-lout -V
+$ lout -V
 Basser Lout Version 2.05 (July 1993)

@@ -1,3 +1,4 @@
+$ ppmtopgm /dd/tmp/clouds.ppm | pgmtopbm | pbmtoascii -2x4
 HM9M9M&R&PZ:S$|SS</:<//S:\||$6H9H6M9RM9M9MHHRM9RM9RMRM9M9M9M9RM9HZ&$&TTZ&<RM
 &&$&&DS??\|%|;:|/S-::.'/</:?%??$&&&R&&96MHRHMSH&6MHHH6HH&9&4\$$]|\?</(:<|||Z
 ??S$Z&$|;:>:'\\:.:'-`:-:::!//S/|/Z&SM&HH&9&&1Fk6$RH&M9H6HH&?((|???\\/<\\:/SS

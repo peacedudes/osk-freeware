@@ -1,5 +1,5 @@
 name    bog
-prog    /dd/CMDS/GAMES/bog
+prog    bog
 # Boggle: it says "Type <space> to begin...." and waits for exactly that.
 rate    0.7
 wait    4

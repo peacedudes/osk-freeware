@@ -1,4 +1,4 @@
-gnuchessr
+$ gnuchessr
 
 Enter #moves #minutes: e2e4
 Operator time=

@@ -1,5 +1,5 @@
 name    sokoban
-prog    /dd/CMDS/GAMES/sokoban
+prog    sokoban
 rate    0.7
 wait    5
 snap    opening

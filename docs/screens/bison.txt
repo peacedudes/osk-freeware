@@ -1,2 +1,2 @@
-bison -v /dd/tmp/g.y
+$ bison -v /dd/tmp/g.y
 bison: /dd/tmp/g.y, Errornumber 216

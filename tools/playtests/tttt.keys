@@ -1,5 +1,5 @@
 name    tttt
-prog    /dd/CMDS/tttt
+prog    tttt
 # Tic-tac-toe on a four-by-four board.  It numbers the columns A-D and the
 # rows 0-3 and wants them together, `b1'.  It answers a bad square by asking
 # again, which is how you can tell it is reading the keyboard at all.

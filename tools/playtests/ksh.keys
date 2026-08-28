@@ -1,5 +1,5 @@
 name    ksh
-prog    /dd/CMDS/ksh
+prog    ksh
 # pd-ksh as an interactive shell.  DOC/INDEX says `ksh -c' works completely
 # and its interactive mode is the part worth testing, so this types at it.
 rate    0.4

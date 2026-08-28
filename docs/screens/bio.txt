@@ -1,1 +1,2 @@
+$ bio
 /dd/CMDS/bio: cannot execute binary file

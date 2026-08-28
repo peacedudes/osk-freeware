@@ -1,2 +1,2 @@
-gnuchess
+$ gnuchess
 'vt100': Unknown terminal type.

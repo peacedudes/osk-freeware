@@ -1,5 +1,7 @@
-uuencode /dd/SYS/motd > /dd/tmp/m.uue
+$ uuencode /dd/SYS/motd > /dd/tmp/m.uue
+$ head -n 3 /dd/tmp/m.uue
 
 begin 644 /dd/SYS/motd
 H5V5L8V]M92!T;R!O<SEE>&5C("TM($]3+3DO-CAK(&5M=6QA=&]R#0`*Y
 head: /dd/tmp/m.uue
+$ uudecode /dd/tmp/m.uue

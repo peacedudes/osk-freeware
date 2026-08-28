@@ -1,4 +1,5 @@
-cp /dd/SYS/motd /dd/tmp/own.txt
+$ cp /dd/SYS/motd /dd/tmp/own.txt
+$ fstat /dd/tmp/own.txt
 
 Filename:     /dd/tmp/own.txt
 Owner:        0.0
@@ -6,7 +7,9 @@ Attributes:   ---wr-wr
 Created:      08/28/2026
 Modified:     08/28/2026 04:59 am
 File Length:  40 $(28)
+$ chown 1.7 /dd/tmp/own.txt
 chown: 1.7:  Invalid uid
+$ fstat /dd/tmp/own.txt
 
 Filename:     /dd/tmp/own.txt
 Owner:        0.0

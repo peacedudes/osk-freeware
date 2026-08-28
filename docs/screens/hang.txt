@@ -1,15 +1,13 @@
-Unused Letters:                         HEY! No more wrong guesses OK????
+Unused Letters:
  bcd fgh jk m  pq    vwxyz                   ------------
                                              |           |
                                              |           |
-                                             |          O`\
-                                             |          /|_|
-                                             |         ' ||`
-                                             |           ||
-                                        --------------   '`   -----
+                                             |
+        ... the same line 4 times over
+                                        ---------------------------
                                         |                         |
                                         |                         |
-a_as_                                   |                         |
+a_ase                                   |                         |
                                         |                         |
         ... the same line 7 times over
                                         ---------------------------

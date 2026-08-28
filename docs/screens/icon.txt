@@ -1,3 +1,6 @@
-pbmtoicon /dd/tmp/base.pbm > /dd/tmp/t.icon
+$ pbmtoicon /dd/tmp/base.pbm > /dd/tmp/t.icon
+$ icontopbm /dd/tmp/t.icon | pnmfile
 stdin:  PBM raw, 48 by 24
+$ pbmtomacp /dd/tmp/base.pbm > /dd/tmp/t.macp
+$ macptopbm /dd/tmp/t.macp | pnmfile
 stdin:  PBM raw, 576 by 720

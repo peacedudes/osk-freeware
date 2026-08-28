@@ -1,4 +1,4 @@
-head -n 24 /dd/DOC/README-KEEP | tformat
+$ head -n 24 /dd/DOC/README-KEEP | tformat
 head: /dd/DOC/README-KEEP
 README-KEEP      --      taking      things      off      this       collection
 ================================================

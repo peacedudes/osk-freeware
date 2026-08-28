@@ -1,4 +1,4 @@
-uuencode /dd/SYS/motd | head -n 14
+$ uuencode /dd/SYS/motd | head -n 14
 
 begin 644 /dd/SYS/motd
 H5V5L8V]M92!T;R!O<SEE>&5C("TM($]3+3DO-CAK(&5M=6QA=&]R#0`*Y

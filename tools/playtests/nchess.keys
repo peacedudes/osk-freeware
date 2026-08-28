@@ -1,5 +1,5 @@
 name    nchess
-prog    /dd/CMDS/GAMES/nchess
+prog    nchess
 # GNU Chess 4.0 with the plain display -- the board as characters, which is
 # how it was played over a serial line.  It answers a move by thinking out
 # loud: depth, score, nodes and the line it is considering.

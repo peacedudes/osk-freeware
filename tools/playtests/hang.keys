@@ -1,5 +1,5 @@
 name    hang
-prog    /dd/CMDS/GAMES/hang
+prog    hang
 # Hangman.  It clears the screen when the game ends, so the FINAL frame is
 # bare -- the snapshots are what show it working.
 rate    0.8

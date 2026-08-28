@@ -1,5 +1,5 @@
 name    greed
-prog    /dd/CMDS/GAMES/greed
+prog    greed
 # Generic: does it draw, and does the screen change when keys arrive?
 rate    0.7
 wait    4

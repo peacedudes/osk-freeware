@@ -1,4 +1,4 @@
-fstat /dd/CMDS/tar
+$ fstat /dd/CMDS/tar
 
 Filename:     /dd/CMDS/tar
 Owner:        0.0

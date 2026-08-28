@@ -16,6 +16,7 @@ normal use:    setterm [term type]
         or:    var=`setterm -si [term type]`
                eval $var
 
+$ fkeys -?
 Syntax: fkeys [<path>]
 Function:set User-Defined Keys on VT220 Terminals
 Options: none

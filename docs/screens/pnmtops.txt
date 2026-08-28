@@ -1,4 +1,4 @@
-pnmtops /dd/tmp/ramp.pgm | head -n 18
+$ pnmtops /dd/tmp/ramp.pgm | head -n 18
 %!PS-Adobe-2.0 EPSF-2.0
 %%Creator: pnmtops
 %%Title: /dd/tmp/ramp.ps

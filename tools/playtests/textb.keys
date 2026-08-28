@@ -1,5 +1,5 @@
 name    textb
-prog    /dd/CMDS/textb
+prog    textb
 # Amusement: mostly these print and stop.
 rate    0.6
 wait    5

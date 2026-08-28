@@ -1,10 +1,12 @@
-ppmtosixel /dd/tmp/w.ppm | wc
+$ ppmtosixel /dd/tmp/w.ppm | wc
 ppmtosixel: maxval is not 100 - automatically rescaling colors
 ppmtosixel: computing colormap...
 ppmtosixel: too many colors - try doing a 'ppmquant 256'
       0      0      0
+$ ppmtouil /dd/tmp/w.ppm | head -n 8
 ppmtouil: computing colormap...
 ppmtouil: too many colors - try doing a 'ppmquant 256'
+$ pbmmake -g 40 20 | pbmtox10bm | head -n 6
 #define noname_width 40
 #define noname_height 20
 static short noname_bits[] = {

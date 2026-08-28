@@ -1,3 +1,5 @@
-giftopnm /dd/DEMO/gulls.gif > /dd/tmp/gulls.ppm
+$ giftopnm /dd/DEMO/gulls.gif > /dd/tmp/gulls.ppm
+$ pnmscale -width 300 /dd/tmp/gulls.ppm > /dd/tmp/small.ppm
+$ pnmfile /dd/tmp/gulls.ppm /dd/tmp/small.ppm
 /dd/tmp/gulls.ppm:      PPM raw, 320 by 200  maxval 255
 /dd/tmp/small.ppm:      PPM raw, 300 by 188  maxval 255

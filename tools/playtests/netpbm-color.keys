@@ -1,5 +1,5 @@
 name    netpbm-color
-prog    /dd/CMDS/bash
+prog    bash
 # COLOUR NAMES.  Until 2026-08-27 every netpbm program that takes a colour by
 # name failed -- there was no X11 rgb database on the disk, and the shipped
 # binaries look for /dd/sys/rgb.txt.txt because the OSK port put the extension

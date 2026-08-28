@@ -1,2 +1,3 @@
+$ cam
 ~>
-Rocker Ratio (1.00) for measure @lobe ->
+Rocker Ratio (1.00) for measure @lobe ->bash#

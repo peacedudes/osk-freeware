@@ -1,2 +1,2 @@
-p2c -?
+$ p2c -?
 usage: p2c [options] file [modulename] [-h file.h] [-o file.c]

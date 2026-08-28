@@ -1,3 +1,4 @@
-checksum /dd/SYS/motd
+$ checksum /dd/SYS/motd
 File '/dd/SYS/motd': bytes=40, checksum=$0CEF (3311)
+$ chksum /dd/SYS/motd
 4b68af85

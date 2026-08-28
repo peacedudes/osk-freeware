@@ -1,2 +1,2 @@
-shar /dd/SYS/motd | head -n 18
+$ shar /dd/SYS/motd | head -n 18
 No read access for file: /dd/SYS/motd

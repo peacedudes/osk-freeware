@@ -1,5 +1,5 @@
 name    elvis
-prog    /dd/CMDS/elvis /dd/DOC/README-CIO
+prog    elvis /dd/DOC/README-CIO
 rate    0.6
 wait    5
 snap    opened

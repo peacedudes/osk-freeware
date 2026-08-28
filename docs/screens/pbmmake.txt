@@ -1,4 +1,4 @@
-pbmupc 0 72890 00011 | pbmreduce 2 | pbmtoascii -2x4
+$ pbmupc 0 72890 00011 | pbmreduce 2 | pbmtoascii -2x4
 
 
      ,, o,,o,,, o,,o, ,o ,,,,,o,,,o ,o,,,,,,o o, , ,,

@@ -1,2 +1,3 @@
-echo ",os9exec,OS-9," > /dd/tmp/words.sub
+$ echo ",os9exec,OS-9," > /dd/tmp/words.sub
+$ subber /dd/tmp/words.sub /dd/SYS/motd
 # unimplemented F$Mem called by pid=3

@@ -1,2 +1,2 @@
-flink /dd/CMDS/today
+$ flink /dd/CMDS/today
 linking to file today in directory /dd/CMDS

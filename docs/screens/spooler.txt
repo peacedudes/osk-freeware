@@ -1,4 +1,4 @@
-gs33 -h | head -n 14
+$ gs33 -h | head -n 14
 Aladdin Ghostscript 3.33 (4/10/1995)
 Copyright (C) 1995 Aladdin Enterprises, Menlo Park, CA.  All rights reserved.
 Usage: gs [switches] [file1.ps file2.ps ...]

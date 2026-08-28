@@ -1,4 +1,4 @@
-pbmtext "netpbm" | pbmpscale 2 | pbmtoascii -2x4
+$ pbmtext "netpbm" | pbmpscale 2 | pbmtoascii -2x4
 
 
 

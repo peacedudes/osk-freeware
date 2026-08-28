@@ -1,4 +1,5 @@
-echo The quik brown foxx jmups over the lasy dog > /dd/tmp/sp.txt
+$ echo The quik brown foxx jmups over the lasy dog > /dd/tmp/sp.txt
+$ ispell -l /dd/tmp/sp.txt
 The
 quik
 

@@ -1,5 +1,5 @@
 name    gshell
-prog    /dd/CMDS/gshell
+prog    gshell
 # GSHELL, a shell with a menu rather than a prompt.
 rate    0.6
 wait    6

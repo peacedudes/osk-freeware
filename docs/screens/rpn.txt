@@ -1,4 +1,4 @@
-rpn
+$ rpn
 
 WELCOME TO RPN!!! (Rpn version 1) by Nils McCarthy
 

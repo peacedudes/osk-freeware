@@ -19,4 +19,5 @@ P + + + + + + + + + + + + + + + + P
 
 Row: (A-P) h
 Column: (A-P) j                                         ? for help
+Mark? (Y/[N]) bash#                                     * for BBS info
                                                         q to quit

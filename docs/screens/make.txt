@@ -1,5 +1,8 @@
 <motd ; cat /dd/SYS/motd > /dd/tmp/hello" > /dd/tmp/Makefile
+$ cat /dd/tmp/Makefile
 hello: /dd/SYS/motd ; cat /dd/SYS/motd > /dd/tmp/hello
+$ make -f /dd/tmp/Makefile hello
+make: Don't know how to make ;bash# gmake -f /dd/tmp/Makefile hello
 cat /dd/SYS/motd > /dd/tmp/hello
 cat: nowhere found
 gmake: *** [hello] Signal 75 (core dumped)

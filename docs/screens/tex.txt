@@ -1,4 +1,4 @@
-virtex "&plain" /dd/SYS/TEX/SAMPLES/story.tex
+$ virtex "&plain" /dd/SYS/TEX/SAMPLES/story.tex
 This is TeX, C Version 3.14
 (/dd/SYS/TEX/SAMPLES/story.tex [1])
 *\end

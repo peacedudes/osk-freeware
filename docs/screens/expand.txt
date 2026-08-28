@@ -1,10 +1,12 @@
-printf "a\tb\tc\n" > /dd/tmp/t2.txt
+$ printf "a\tb\tc\n" > /dd/tmp/t2.txt
+$ expand /dd/tmp/t2.txt | dump
 Syntax: dump [<opts>] <path/module> [<opts>] [<starting byte>] [<opts>]
 Function: formatted display of contents of a file/module
 Options:
      -c        don't compress duplicate lines
      -x        path implies execution directory
      -m        dump memory module
+$ unexpand < /dd/tmp/t2.txt | dump
 Syntax: dump [<opts>] <path/module> [<opts>] [<starting byte>] [<opts>]
 Function: formatted display of contents of a file/module
 Options:

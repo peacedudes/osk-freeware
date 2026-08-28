@@ -1,2 +1,2 @@
-xrf /dd/SRC/keep/about.c | head -n 18
+$ xrf /dd/SRC/keep/about.c | head -n 18
 ERROR: Cannot open Language Table file: C.XRF

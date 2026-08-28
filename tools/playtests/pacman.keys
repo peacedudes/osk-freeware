@@ -1,5 +1,5 @@
 name    pacman
-prog    /dd/CMDS/GAMES/pacman
+prog    pacman
 # Its own Document says the keypad digits steer: 8 up, 2 down, 4 left, 6 right.
 # NOTE: pacman emits raw control bytes (0x01 0x02 0x0e 0x16), not ANSI --
 # it is written for a specific terminal, not vt100, so the rendered screen

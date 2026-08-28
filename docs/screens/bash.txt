@@ -1,5 +1,8 @@
-echo $BASH_VERSION
+$ echo $BASH_VERSION
 1.12.12
+$ echo $((355/113)) $((7*6))
 3 42
+$ expr 355 / 113
 3
+$ expr 7 \* 6
 42

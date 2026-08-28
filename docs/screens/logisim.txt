@@ -1,3 +1,4 @@
+$ logisim
 Syntax: logisim [opts] filename [opts]
 Function: Simulates logical circuit described by filename
 Options:

@@ -1,4 +1,4 @@
-lwf /dd/SYS/motd | head -n 18
+$ lwf /dd/SYS/motd | head -n 18
 %!PS-Adobe-2.0
 %%Creator: lwf on evtech
 %%CreationDate: Fri Aug 28 04:44:54 2026

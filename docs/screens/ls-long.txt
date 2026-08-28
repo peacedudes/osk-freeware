@@ -1,4 +1,4 @@
-ls -al /dd | head -n 21
+$ ls -al /dd | head -n 21
 total 243200
 drwxrwxrwx   1 0        0            1760 Aug 28 05:01 .
 drwxrwxrwx   1 0        0            1760 Aug 28 05:01 ..

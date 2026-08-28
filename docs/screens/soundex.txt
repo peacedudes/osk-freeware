@@ -1,4 +1,4 @@
-echo Robert Rupert Rubin Ashcraft Ashcroft | sepwords | soundex
+$ echo Robert Rupert Rubin Ashcraft Ashcroft | sepwords | soundex
 R163
 R163
 R150

@@ -1,3 +1,4 @@
-uwho
+$ uwho
 uwho: can't open /etc/utmp
+$ udate
 Friday, August 28, 19126 - 4:49 AM

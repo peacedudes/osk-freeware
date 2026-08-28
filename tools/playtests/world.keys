@@ -1,5 +1,5 @@
 name    world
-prog    /dd/CMDS/GAMES/world
+prog    world
 # Generic: does it draw, and does the screen change when keys arrive?
 rate    0.7
 wait    5

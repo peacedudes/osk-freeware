@@ -1,1 +1,2 @@
-/dd/CMDS/GAMES/dclock only runs under G-Windows
+$ dclock
+dclock only runs under G-Windows

@@ -1,0 +1,11 @@
+$ bash
+os9$ P=/dd/CMDS/NETPBM
+
+os9$ $P/ppmmake blue 3 2 > /dd/tmp/b.ppm
+os9$ $P/pnmnoraw /dd/tmp/b.ppm
+P3
+3 2
+255
+0 0 255  0 0 255  0 0 255
+0 0 255  0 0 255  0 0 255
+os9$

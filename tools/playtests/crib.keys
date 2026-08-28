@@ -1,5 +1,5 @@
 name    crib
-prog    /dd/CMDS/GAMES/crib
+prog    crib
 # Generic: does it draw, and does the screen change when keys arrive?
 rate    0.7
 wait    5

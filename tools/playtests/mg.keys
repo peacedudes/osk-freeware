@@ -1,5 +1,5 @@
 name    mg
-prog    /dd/CMDS/mg /dd/DOC/README-CIO
+prog    mg /dd/DOC/README-CIO
 # MicroGnuEmacs.  Ctrl-X Ctrl-C quits.
 rate    0.6
 wait    5

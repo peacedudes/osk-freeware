@@ -1,4 +1,4 @@
-dfiles /dd/SYS
+$ dfiles /dd/SYS
 cmp -s  /dd/SYS/TEX/FONTS/PK144/Makefile /dd/SYS/TEX/FONTS/EPSON/Makefile
 cmp -s  /dd/SYS/TEX/FONTS/PK300/Makefile /dd/SYS/TEX/FONTS/EPSON/Makefile
 cmp -s  /dd/SYS/TEX/FONTS/read.me /dd/SYS/TEX/BIB/read.me

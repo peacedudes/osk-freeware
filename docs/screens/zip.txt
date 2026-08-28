@@ -1,8 +1,11 @@
-mkdir /dd/tmp/zt
+$ mkdir /dd/tmp/zt
+$ cp /dd/SYS/motd /dd/tmp/zt/motd
+$ zip /dd/tmp/zt/test.zip /dd/tmp/zt/motd
 adding dd/tmp/zt/motd (stored 0%)
 zip warning: new zip file left as: /dd/tmp/zt/_Z000003
 zip error: file not found
 zip error: Could not create output file (was replacing the original zip file)
+$ dir /dd/tmp/zt
 
 Directory of "/dd/tmp/zt" 04:56:24  08/28/126
 

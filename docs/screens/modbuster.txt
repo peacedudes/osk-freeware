@@ -1,4 +1,4 @@
-modbuster -?
+$ modbuster -?
 Syntax: Modbuster [<opts>] <path> [<opts>]
 Function: Seperate merged modules, rels, basic source or KWindows bitmaps
 Options:
@@ -7,6 +7,7 @@ Options:
    -v         verbose
    -w=<dir>   seperate into <dir>
               (default = current work directory)
+$ unpacklib -?
 unpacklib: Unimplemented option '-?'.
 
 Usage: unpacklib <options> file1.l file2.l ...

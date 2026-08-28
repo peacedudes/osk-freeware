@@ -1,4 +1,4 @@
-ppmpat -tartan 152 88 | ppmtopgm | pgmtopbm | pbmtoascii -2x4
+$ ppmpat -tartan 152 88 | ppmtopgm | pgmtopbm | pbmtoascii -2x4
 F6&FkHFDFRH&H&S6&Fk%%&SH&H&&H&SHH&&&&H&&S&&9&&Z&&&&F6&&&1&1&&Z&FRHSkR&Z&&1&&
 6&&Fk6H&SkR&H&1&&Fk%%&1&SkR6DFk6kRH&&&H&1S&&H&1&&&&SDFF&Sk6&&&$FkH&$&&&&&&&&
 &H&&&19&1&&9H&1H&1&|%&19$k&&9FkH&1FR&FkR&&&&&&&&&&&1&&&ZkkDFFFFFkR6&&&&$FF&&

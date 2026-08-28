@@ -1,4 +1,4 @@
-blackjak
+$ blackjak
 Welcome to Las Vagas BlackJack
 
 

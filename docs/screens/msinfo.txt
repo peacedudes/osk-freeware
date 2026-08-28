@@ -1,4 +1,5 @@
-mslabel a:OS9FREEWARE
+$ mslabel a:OS9FREEWARE
+$ msinfo a: | head -n 13
 device information:
 ===================
 sectors per track: 18
@@ -12,4 +13,5 @@ bootsector information
 filename="/dd/DOS/a.img"
 banner:"BSD  4.4"
 sector size: 512 bytes
+$ msformat a:
 msformat: Non-removable media is not supported (You must tell the complete geom

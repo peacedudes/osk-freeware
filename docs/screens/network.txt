@@ -1,5 +1,6 @@
-msntp -?
+$ msntp -?
 **** csl traphandler mismatch ****
+$ atp
 Reading Configuration file...
 
 Unable to open configuration file /dd/atprc or .atprc !

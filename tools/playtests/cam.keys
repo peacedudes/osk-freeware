@@ -1,5 +1,5 @@
 name    cam
-prog    /dd/CMDS/GAMES/cam
+prog    cam
 # Generic: does it draw, and does the screen change when keys arrive?
 rate    0.7
 wait    5

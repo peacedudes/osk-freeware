@@ -1,5 +1,6 @@
-uuname
+$ uuname
 pirsqrd
 phoenix
 seabass
+$ uulog
 uulog: unable to open '/DD/LOG/uulog'

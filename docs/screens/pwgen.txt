@@ -1,1 +1,2 @@
-usage: /dd/CMDS/pwgen length [count]
+$ pwgen
+usage: pwgen length [count]

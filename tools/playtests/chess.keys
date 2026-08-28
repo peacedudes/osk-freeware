@@ -1,5 +1,5 @@
 name    chess
-prog    /dd/CMDS/GAMES/chess
+prog    chess
 # It opens with "Do you want to play white or black (w/b)?"
 rate    0.6
 wait    5

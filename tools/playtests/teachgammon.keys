@@ -1,5 +1,5 @@
 name    teachgammon
-prog    /dd/CMDS/GAMES/teachgammon
+prog    teachgammon
 # Generic: does it draw, and does the screen change when keys arrive?
 rate    0.7
 wait    5

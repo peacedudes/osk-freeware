@@ -21,4 +21,4 @@ every binary -- was the normal way to build for OS-9, and it is why a starred
 program is often a fraction of the size of a trap-free one.  Much of this
 collection was rebuilt trap-free (`-qm`) so it would run with nothing loaded
 at all; most of the programs under CMDS need no module whatever.  The rest
- "/dd/DOC/README-CIO" [READONLY] 92 lines, 3886 chars
+ "/dd/DOC/README-CIO" [READONLY] 108 lines, 4568 chars

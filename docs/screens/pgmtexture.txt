@@ -1,2 +1,2 @@
-pgmtexture -d 2 /dd/tmp/gg.pgm | head -n 18
+$ pgmtexture -d 2 /dd/tmp/gg.pgm | head -n 18
 pgmtexture: /dd/tmp/gg.pgm -

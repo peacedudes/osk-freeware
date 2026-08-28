@@ -1,5 +1,5 @@
 name    ed
-prog    /dd/CMDS/ed /dd/DOC/README-CIO
+prog    ed /dd/DOC/README-CIO
 # Editor: open a file, look at it, leave without saving.
 allow   trap handler
 allow   Can't open

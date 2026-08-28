@@ -1,5 +1,6 @@
-head -n 8 /dd/SYS/holidays > /dd/tmp/hol.txt
+$ head -n 8 /dd/SYS/holidays > /dd/tmp/hol.txt
 head: /dd/SYS/holidays
+$ sed "s/Day/DAY/g" /dd/tmp/hol.txt
 * Common Holidays
 
 1/1             New Year's DAY

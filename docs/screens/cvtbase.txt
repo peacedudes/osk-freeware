@@ -1,4 +1,4 @@
-cvtbase
+$ cvtbase
 syntax: cvtbase <input base> <output base>
 function: convert numbers in <stdin> from one base to another.
 options: (none)

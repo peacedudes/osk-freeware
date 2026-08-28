@@ -1,3 +1,4 @@
-marc -a /dd/tmp/m.arc /dd/SYS/motd
+$ marc -a /dd/tmp/m.arc /dd/SYS/motd
 ARC: Cannot read source archive /dd/tmp/m.arc
+$ marc -l /dd/tmp/m.arc
 ARC: Cannot read source archive /dd/tmp/m.arc

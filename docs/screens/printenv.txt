@@ -1,4 +1,4 @@
-printenv
+$ printenv
 PEP=/dd/SYS/PEP
 SHELL=/dd/CMDS/bash
 SHLVL=1

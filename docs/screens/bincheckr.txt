@@ -1,4 +1,4 @@
-bincheckr /dd/GAMES/gnuchess.book
+$ bincheckr /dd/GAMES/gnuchess.book
 entrysize 16
 booksize 0
 bookpocket 0
@@ -9,3 +9,4 @@ Process   Pid: 3, bincheckr, edition 7
   Directories: Current   - /dd
                Execution - /dd/CMDS
         Files: 00 fCons /term
+               0bash#

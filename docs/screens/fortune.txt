@@ -1,1 +1,3 @@
-God is not dead!  He's alive and autographing bibles at Cody's
+$ fortune
+Just because your doctor has a name for your condition doesn't mean he
+knows what it is.

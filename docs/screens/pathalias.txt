@@ -1,3 +1,4 @@
-pathalias -?
+$ pathalias -?
 usage: pathalias [-vciDfI] [-l localname] [-d deadlink] [-t tracelink] [-g edge]
+$ makedb -?
 makedb [-o dbmname] [-a] [file ...]

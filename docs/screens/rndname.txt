@@ -1,0 +1,2 @@
+$ rndname
+Usage: name number-of-names

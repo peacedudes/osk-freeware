@@ -1,8 +1,11 @@
-head -n 12 /dd/SYS/holidays > /dd/tmp/dv.txt
+$ head -n 12 /dd/SYS/holidays > /dd/tmp/dv.txt
 head: /dd/SYS/holidays
+$ divide -l=4 /dd/tmp/dv.txt /dd/tmp/piece
+$ ls -l /dd/tmp/piece.1 /dd/tmp/piece.2 /dd/tmp/piece.3
 -rw-------   1 0        0              60 Aug 28 04:44 /dd/tmp/piece.1
 -rw-------   1 0        0              91 Aug 28 04:44 /dd/tmp/piece.2
 -rw-------   1 0        0              91 Aug 28 04:44 /dd/tmp/piece.3
+$ cat /dd/tmp/piece.1
 * Common Holidays
 
 1/1             New Year's Day

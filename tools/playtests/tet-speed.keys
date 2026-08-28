@@ -1,5 +1,5 @@
 name    tet-speed
-prog    /dd/CMDS/GAMES/tet
+prog    tet
 # Start play, then photograph the board every 3 seconds without touching it.
 # A piece falling at 1.5s a cell should be about 2 cells lower each time.
 wait    3

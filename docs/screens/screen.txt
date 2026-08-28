@@ -1,5 +1,6 @@
-screen -v
+$ screen -v
 mode: You must have a $HOME/.screens directory.
+$ tsmon2 -?
 **** TSMON2: de-luxe version of the timesharing monitor (c) 1989 by L.Zeller
 Syntax:   tsmon2 [<options>] <device name>
 Function: Monitor terminal device to initiate the login procedure when

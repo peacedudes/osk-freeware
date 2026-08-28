@@ -1,4 +1,6 @@
-pbmtomgr /dd/tmp/base.pbm | mgrtopbm | pnmfile
+$ pbmtomgr /dd/tmp/base.pbm | mgrtopbm | pnmfile
 stdin:  PBM raw, 48 by 24
+$ pbmtoatk /dd/tmp/base.pbm | atktopbm | pnmfile
 stdin:  PBM raw, 48 by 24
+$ pbmtocmuwm /dd/tmp/base.pbm | cmuwmtopbm | pnmfile
 stdin:  PBM raw, 48 by 24

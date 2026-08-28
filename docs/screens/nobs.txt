@@ -11,8 +11,9 @@
 
 
 
-                               Qh   Jh   6c   2h   As  10s
+                               7h   9c   4c   6s  10s   7s
                                 a    b    c    d    e    f
 
 
      It is my crib.
+     Select 2 cards.  Type RETURN to discard. bash#

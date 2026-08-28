@@ -1,5 +1,5 @@
 name    vi_nocio
-prog    /dd/CMDS/vi_nocio /dd/DOC/README-CIO
+prog    vi_nocio /dd/DOC/README-CIO
 # PVic.  Open a file read-only, page down, then quit without saving.
 rate    0.6
 wait    5

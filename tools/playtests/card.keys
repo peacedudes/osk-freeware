@@ -1,5 +1,5 @@
 name    card
-prog    /dd/CMDS/GAMES/card
+prog    card
 # Generic: does it draw, and does the screen change when keys arrive?
 rate    0.7
 wait    5

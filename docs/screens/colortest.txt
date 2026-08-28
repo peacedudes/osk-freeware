@@ -1,2 +1,3 @@
+$ colortest
 Unable to access "/win" device or CRT descriptor
 Not a G-Windows sytem???

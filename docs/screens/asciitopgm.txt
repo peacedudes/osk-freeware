@@ -1,2 +1,3 @@
-pbmtext "netpbm" | pbmtoascii > /dd/tmp/art.txt
+$ pbmtext "netpbm" | pbmtoascii > /dd/tmp/art.txt
+$ asciitopgm 8 60 < /dd/tmp/art.txt | pnmfile
 stdin:  PGM raw, 60 by 8  maxval 127

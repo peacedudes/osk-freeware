@@ -1,5 +1,7 @@
-edir
+$ edir
    Event Directory at  5:01:41
 
+$ eset testevent 1
 eset: can't link to testevent
+$ edir
    Event Directory at  5:01:59

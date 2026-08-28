@@ -1,4 +1,5 @@
-ctags /dd/SRC/keep/keep.c
+$ ctags /dd/SRC/keep/keep.c
+$ head -n 12 tags
 Mkeep   /dd/SRC/keep/keep.c     /^main(argc, argv)$/
 copy_file       /dd/SRC/keep/keep.c     /^static int copy_file(from, to, execut/
 crc_of  /dd/SRC/keep/keep.c     /^static unsigned long crc_of(path, sizep)$/

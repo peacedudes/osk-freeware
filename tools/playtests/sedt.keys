@@ -1,5 +1,5 @@
 name    sedt
-prog    /dd/CMDS/e /dd/SYS/motd
+prog    e /dd/SYS/motd
 # SEDT, the VMS-style screen editor, under its `e' name.  It does not answer
 # Ctrl-E, so a play-test of it must leave the way SEDT expects: Ctrl-Z then Q.
 rate    0.5

@@ -10,6 +10,7 @@ Exit status: 0=output is exact copy of input, 1 if not, 2 if trouble.
 This is public domain software (newsnet), not for sale.
 
 At least one arg from [-d -u -id -iu] is required
+$ ifdef -?
 Syntax: ifdef [<opts>] [<file>] [<opts>]
 Function: read C-source from <file> or stdin, remove #ifdefs and write
     to stdout.

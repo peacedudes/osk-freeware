@@ -1,8 +1,11 @@
-cat /dd/SYS/motd > /dd/tmp/le.txt
+$ cat /dd/SYS/motd > /dd/tmp/le.txt
+$ chksum /dd/tmp/le.txt
 4b68af85
+$ todos /dd/tmp/le.txt
 del /dd/tmp/le.txt:  (E$PNNF) That path name doesn't lead to anything - check t.
 
 rename todos.$$$.3 /dd/tmp/le.txt:  (E$PNNF) That path name doesn't lead to any.
 
 Src: '/dd/tmp/le.txt', Dest: 'todos.$$$.3'   Rename 'todos.$$$.3' -> '/dd/tmp/l'
+$ chksum /dd/tmp/le.txt
 4b68af85

@@ -1,4 +1,4 @@
-echo 6 | queens | head -n 21
+$ echo 6 | queens | head -n 21
 
 
  Q # #

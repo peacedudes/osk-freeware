@@ -1,4 +1,4 @@
-ppmpat -madras 150 44 | ppmtopgm | pgmtopbm | pbmtoascii
+$ ppmpat -madras 150 44 | ppmtopgm | pgmtopbm | pbmtoascii
 MMMMMM Mo"o"o"o"MMMMMMoMoM"oMMMMMMo"o"M M M M"o"M M"oM M"o"MMMMMM"oM"oM"oMoMMMMo
 M Mo"M o "o "  o"ooM M   o "oM M M o o " o " o o o o o o o Mo"o"o"o o o o o"oM "
 MoMoMooooo M M oMoMoMMo"ooM MoMMMooooo"ooo"ooooooooooooo"o MoMMMoooo"oo"oooMoMM"

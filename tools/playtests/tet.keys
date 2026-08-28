@@ -1,5 +1,5 @@
 name    tet
-prog    /dd/CMDS/GAMES/tet
+prog    tet
 # 'p' starts play; j/k/l move and rotate; 'q' quits from the menu or the game.
 wait    3
 key     p

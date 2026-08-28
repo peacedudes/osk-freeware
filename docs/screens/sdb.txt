@@ -1,3 +1,3 @@
-sdb /dd/CMDS/today
+$ sdb /dd/CMDS/today
 SDB - version 2.0
 SDB>

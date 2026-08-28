@@ -1,5 +1,5 @@
 name    travesty
-prog    /dd/CMDS/travesty
+prog    travesty
 # DOC/INDEX: "make a travesty of the input -- Markov chains, DJB".  A FILTER:
 # it reads standard input, so it prints nothing until fed.
 rate    0.3

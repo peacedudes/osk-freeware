@@ -1,4 +1,4 @@
-about hack
+$ about hack
  hack           hack -- the original dungeon crawl NetHack grew out of
 
   for        GAMES -- Dungeon crawl

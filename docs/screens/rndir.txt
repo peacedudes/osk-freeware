@@ -1,10 +1,13 @@
-mkdir /dd/tmp/rnd
+$ mkdir /dd/tmp/rnd
+$ mkdir /dd/tmp/rnd/olddir
+$ dir /dd/tmp/rnd
 
 Directory of "/dd/tmp/rnd" 04:54:31  08/28/126
 
 olddir
 
 Total of 1 files.
+$ rndir /dd/tmp/rnd/olddir /dd/tmp/rnd/newdir
 
 Syntax: rndir [<opt>]
 Version:  V1.0  13.02.1990

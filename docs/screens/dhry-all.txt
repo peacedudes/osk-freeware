@@ -1,3 +1,4 @@
-dhry | tail -n 6
+$ dhry | tail -n 6
 (03) unknown option -n
+$ dhryO2 | tail -n 6
 (03) unknown option -n

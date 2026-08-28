@@ -1,5 +1,6 @@
-tterm
+$ tterm
 No MODEM port defined!
+$ tsu
 Checking /dd/USR...OK!
 Checking /dd/USR/TTERM...Creating
 Checking /dd/USR/TTERM/tester.dial...Creating

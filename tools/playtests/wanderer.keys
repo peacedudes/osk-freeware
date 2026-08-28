@@ -1,5 +1,5 @@
 name    wanderer
-prog    /dd/CMDS/GAMES/wanderer
+prog    wanderer
 rate    0.7
 wait    5
 snap    opening

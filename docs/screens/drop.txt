@@ -1,4 +1,4 @@
-drop -n hack
+$ drop -n hack
 drop: nothing has been kept -- no /dd/SYS/kept
 
 0 removed, 0 left alone.

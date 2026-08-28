@@ -1,3 +1,4 @@
+$ bash
 os9$ P=/dd/CMDS/NETPBM
 
 os9$ $P/pgmramp -lr 48 12 > /dd/tmp/r.pgm
@@ -6,10 +7,10 @@ os9$ $P/pnmfile /dd/tmp/r.pgm /dd/tmp/r.pbm
 /dd/tmp/r.pgm:  PGM raw, 48 by 12  maxval 255
 /dd/tmp/r.pbm:  PBM raw, 48 by 12
 os9$ $P/pbmtoascii /dd/tmp/r.pbm
-MMMMMMMMMMM"M"M"oMo"oM"o"o M o" o o "
-MMMMMMoMMoM"M"Mo"oM"oo"o"o"o M "o o" " "   o
-MMMMM"MoMMM"M"oMM Mo"oM M M o" o o o"  " o
-MMMMMMMMoM"M"MoMoM"o"o"o"o"o" M "  o " o
-MMMMMoMM"MM"MoMo"oM"o"o"o"o M o"o" o "   "  "
-MMMMM"MM"MoMMoMo"M M"oM M M o"o o" o " o  o
+MMMMMMMMM"M"Mo"MoM"o"M M M M "o "o "   o
+MMMMMMoMM"MM"M"oMo"M Mo"o"o M o"o " " o  "
+MMMMMM"MM"MoM"Mo"oM"o"o"o"o" oo o" " o  o  o
+MMMMoMMM"MMoM"Mo"M M"o"o"o"o" o" o" o o o
+MMMMMMM"MMoMM"Mo"M"o"oM M M "o "o o"       o
+MMMMMM"MMoMoMMo"M"oM"o"o"o" M "o o o" " "
 os9$

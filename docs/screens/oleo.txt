@@ -1,4 +1,4 @@
-oleo
+$ oleo
 Illegal instruction: 0009 at 000465d2
 
 Process   Pid: 3, oleo, edition 7
@@ -6,6 +6,9 @@ Process   Pid: 3, oleo, edition 7
   Directories: Current   - /dd
                Execution - /dd/CMDS
         Files: 00 fCons /term
+   bash# 12
 12: command not found
+$ 30
 30: command not found
+$ =A0+A1
 =A0+A1: command not found

@@ -1,10 +1,13 @@
-fgrep chess /dd/DOC/INDEX | head -n 5
+$ fgrep chess /dd/DOC/INDEX | head -n 5
   getenv          getsys          ggrep           gnuchess
   gnuchessn       gnuchessr       gnuplot         gothic
 from.  Its sibling ularn is complete and also runs.  gnuchessc and
  *gnuchess       GNU Chess
  *gnuchessn      GNU Chess (ncurses)
+$ gdd if=/dd/SYS/motd bs=8 count=3
 Welcome to os9exec -- OS3+0 records in
 3+0 records out
+$ tcmp /dd/SYS/motd /dd/SYS/motd
 [Tcmp v2.3]
 Files /dd/SYS/motd and /dd/SYS/motd are identical
+$ wc.cio /dd/SYS/motd

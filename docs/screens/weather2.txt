@@ -1,4 +1,4 @@
-georgia | head -n 10
+$ georgia | head -n 10
                                                                   Snow
 Year   1    Weather        Sky   Temperature    Precip      Wind  Depth  Notes
 January
@@ -9,6 +9,7 @@ January
    5          Clear      Clear    Fair ( 50)      None      Calm
    6          Clear      Clear    Fair ( 50)      None      Calm         Twelftt
    7          Clear      Clear    Fair ( 50)      None     Light
+$ rndname 6
 Wevohad
 Ueminelu
 Obunumq

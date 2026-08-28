@@ -1,4 +1,4 @@
-cb < /dd/SRC/keep/about.c | head -n 18
+$ cb < /dd/SRC/keep/about.c | head -n 18
 /* about -- everything this collection knows about one program, on one screen.
  *
  * Written for the OS-9 freeware collection, 2026-08-22. Microware C (K&R).

@@ -1,4 +1,4 @@
-ls -al /dd/SYS | head -n 18
+$ ls -al /dd/SYS | head -n 18
 total 187904
 drwxrwxrwx   1 0        0            1440 Aug 28 05:01 .
 drwxrwxrwx   1 0        0            1760 Aug 28 05:01 ..

@@ -1,4 +1,4 @@
-file /dd/CMDS/today /dd/DOC/INDEX /dd/DEMO/gulls.gif /dd/tmp/keep.tar
+$ file /dd/CMDS/today /dd/DOC/INDEX /dd/DEMO/gulls.gif /dd/tmp/keep.tar
 /dd/CMDS/today          OS-9 Program Module "today"
 /dd/DOC/INDEX           unidentified text file
 /dd/DEMO/gulls.gif      GIF picture ver. 87a 320 x 200, interlaced, 256 colors

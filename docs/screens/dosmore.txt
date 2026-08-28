@@ -1,4 +1,4 @@
-msinfo a: | head -n 12
+$ msinfo a: | head -n 12
 device information:
 ===================
 sectors per track: 18
@@ -11,3 +11,4 @@ bootsector information
 ======================
 filename="/dd/DOS/a.img"
 banner:"BSD  4.4"
+$ mslabel a:FREEWARE

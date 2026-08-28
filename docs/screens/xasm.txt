@@ -1,4 +1,6 @@
-as0
+$ as0
 Usage: as0 [files]
+$ as11
 Usage: as11 [files]
+$ as5
 Usage: as5 [files]

@@ -1,4 +1,6 @@
-mkdir /dd/tmp/sp
+$ mkdir /dd/tmp/sp
+$ split -l 6 /dd/SYS/holidays /dd/tmp/sp/part
+$ ls -l /dd/tmp/sp
 total 3584
 -rw-------   1 0        0             104 Aug 28 04:56 partaa
 -rw-------   1 0        0             138 Aug 28 04:56 partab

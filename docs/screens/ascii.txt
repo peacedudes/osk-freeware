@@ -1,4 +1,4 @@
-ascii | head -n 20
+$ ascii | head -n 20
       char   | dec | hex | oct    ||     char   | dec | hex | oct
     ^@ (NUL) |   0 |   0 |   0    ||   @        |  64 |  40 | 100
     ^A (SOH) |   1 |   1 |   1    ||   A        |  65 |  41 | 101

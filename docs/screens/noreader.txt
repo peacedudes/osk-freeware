@@ -1,7 +1,9 @@
-hipstopgm /dd/tmp/w.ppm
+$ hipstopgm /dd/tmp/w.ppm
 hipstopgm: error reading header
+$ qrttoppm /dd/tmp/w.ppm | head -n 3
 qrttoppm: EOF / read error
 P6
 13904 14093
 255
+$ zeisstopnm /dd/tmp/w.ppm
 zeisstopnm: Hmm, 40353 rows, 41375 cols, 8361 total image size

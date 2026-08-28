@@ -1,3 +1,4 @@
+$ zot
 syntax: zot [<opts>] {<text> [<opts>]}
 Function: echo text line(s) to stdout in interesting ways
 Options:

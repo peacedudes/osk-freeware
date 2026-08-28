@@ -1,5 +1,5 @@
 name    mille
-prog    /dd/CMDS/GAMES/mille
+prog    mille
 # Generic: does it draw, and does the screen change when keys arrive?
 rate    0.7
 wait    4

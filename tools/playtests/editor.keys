@@ -1,5 +1,5 @@
 name    editor
-prog    /dd/CMDS/editor /dd/DOC
+prog    editor /dd/DOC
 # UMACS-SHELL: a file PICKER, not a plain editor -- it wants a
 # DIRECTORY and lists it for you to choose from.  Given a file it
 # answers "can't open", which is correct behaviour, not a fault.

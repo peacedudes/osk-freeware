@@ -1,4 +1,5 @@
-pgmramp -lr 64 16 > /dd/tmp/ramp.pgm
+$ pgmramp -lr 64 16 > /dd/tmp/ramp.pgm
+$ pgmhist /dd/tmp/ramp.pgm | head -n 18
 value   count   b%      w%
 -----   -----   --      --
 0       16       1.56%    100%

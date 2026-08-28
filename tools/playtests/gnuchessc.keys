@@ -1,5 +1,5 @@
 name    gnuchessc
-prog    /dd/CMDS/GAMES/gnuchessc
+prog    gnuchessc
 # GNU Chess with the curses display -- and on this terminal it draws no board
 # at all: it announces itself as `Chess', takes the move and answers with its
 # own.  `gnuchess' is the build that draws the board; this one plays.

@@ -1,5 +1,5 @@
 name    cribbage
-prog    /dd/CMDS/GAMES/cribbage
+prog    cribbage
 # It opens with "Do you need instructions for cribbage?" -- answer n, then it
 # asks whether to cut for the crib.
 rate    0.7

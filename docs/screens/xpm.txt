@@ -1,5 +1,6 @@
-ppmtoxpm /dd/tmp/base.ppm > /dd/tmp/t.xpm
+$ ppmtoxpm /dd/tmp/base.ppm > /dd/tmp/t.xpm
 (Computing colormap...  Done.  6 colors found.)
+$ head -n 12 /dd/tmp/t.xpm
 /* XPM */
 static char */dd/tmp/base[] = {
 /* width height ncolors chars_per_pixel */
@@ -13,4 +14,5 @@ static char */dd/tmp/base[] = {
 "+ c #764ADB",
 /* pixels */
 head: /dd/tmp/t.xpm
+$ xpmtoppm /dd/tmp/t.xpm | pnmfile
 stdin:  PPM raw, 48 by 24  maxval 255

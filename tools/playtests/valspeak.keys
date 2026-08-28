@@ -1,5 +1,5 @@
 name    valspeak
-prog    /dd/CMDS/GAMES/valspeak
+prog    valspeak
 # CONFIRMED BROKEN, 2026-08-27.  DOC/INDEX calls it a "Valley-speak text
 # filter", but it produces nothing under any invocation tried: bare, with
 # `-?', with a file argument, and with standard input redirected from a file.

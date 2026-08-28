@@ -1,5 +1,6 @@
-head -n 6 /dd/SYS/holidays > /dd/tmp/h.txt
+$ head -n 6 /dd/SYS/holidays > /dd/tmp/h.txt
 head: /dd/SYS/holidays
+$ cat /dd/tmp/h.txt
 * Common Holidays
 
 1/1             New Year's Day

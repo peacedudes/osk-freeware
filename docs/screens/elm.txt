@@ -1,4 +1,4 @@
-elm
+$ elm
 
 Notice:
 This version of ELM requires the use of a .elm directory in your home

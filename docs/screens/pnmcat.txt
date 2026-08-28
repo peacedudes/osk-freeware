@@ -1,4 +1,6 @@
-pnmscale -xysize 74 88 /dd/DEMO/sphere.pgm > /dd/tmp/s.pgm
+$ pnmscale -xysize 74 88 /dd/DEMO/sphere.pgm > /dd/tmp/s.pgm
+$ pnminvert /dd/tmp/s.pgm > /dd/tmp/si.pgm
+$ pnmcat -lr /dd/tmp/s.pgm /dd/tmp/si.pgm | pgmtopbm | pbmtoascii -2x4
 MRM9RMH9H&FFFFS$$<S$Z%<$?F$7ZZ$$$\4|%. .. ..:.::.:\//:/>>S:\S:\?:\|S?|:?\|
 MH6HH&H9$7|T||S/(<://::<!:S<?||\?$$%$.- :.-:,:||/|J?/JS&{S$$$>Z\?\\\|\:(//
 MH&FF&%\|\>:::::-`.:- -:-`-:\::i???\\ .':/i||||S&$&H1&RMH&6MHH&DH$Zk}\\\|\

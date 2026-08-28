@@ -1,4 +1,5 @@
-cookhash -?
+$ cookhash -?
 usage: cookhash <cookiefile >hashfile
+$ cookie
 "It's easier to get forgiveness than permission."
 -- Walker Mangum (walker@ficc.uu.net)

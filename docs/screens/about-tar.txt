@@ -1,4 +1,4 @@
-about elvis
+$ about elvis
  elvis          Elvis 1.7 -- the best-documented of this disk's three vi
                 editors, and the one with the most options.  BUILT HERE
                 from the source

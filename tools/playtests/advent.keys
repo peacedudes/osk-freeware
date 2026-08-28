@@ -1,5 +1,5 @@
 name    advent
-prog    /dd/CMDS/GAMES/advent
+prog    advent
 # Colossal Cave.  It asks whether you want instructions, then drops you
 # outside the building.  "enter" and "get lamp" are the classic first moves.
 rate    0.4

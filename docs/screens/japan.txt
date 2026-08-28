@@ -1,4 +1,4 @@
-japan | head -n 21
+$ japan | head -n 21
                                                                   Snow
 Year   1    Weather        Sky   Temperature    Precip      Wind  Depth  Notes
 Rat

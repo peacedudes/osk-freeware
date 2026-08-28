@@ -1,5 +1,5 @@
 name    netpbm
-prog    /dd/CMDS/bash
+prog    bash
 # A REAL NETPBM PIPELINE, not a launch test.  Makes a greyscale ramp, turns
 # it into a bitmap, renders that as ASCII art, and asks pnmfile to identify
 # each intermediate.  169 netpbm programs ship here and none had ever been

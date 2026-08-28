@@ -1,4 +1,4 @@
-ccheck /dd/SRC/keep/keep.c
+$ ccheck /dd/SRC/keep/keep.c
 /dd/SRC/keep/keep.c: Mismatched indent on closing ) lines 145, 147; indents 9, .
 /dd/SRC/keep/keep.c: Mismatched indent on closing ) lines 224, 225; indents 6, .
 /dd/SRC/keep/keep.c: Mismatched indent on closing ) lines 270, 271; indents 9, .

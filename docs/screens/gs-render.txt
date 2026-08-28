@@ -1,2 +1,4 @@
+$ export GS_LIB=/dd/LIB/gs403
 <152x88 -sOutputFile=/dd/tmp/gs.pbm /dd/LIB/gs403/cheq.ps -c quit
+$ pbmtoascii -2x4 /dd/tmp/gs.pbm
 pbmtoascii: /dd/tmp/gs.pbm -

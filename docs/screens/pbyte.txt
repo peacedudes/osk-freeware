@@ -1,7 +1,8 @@
-pbyte
+$ pbyte
 pbyte: incomplete command line
 Syntax: pbyte <path> <hex_offset> <hex_byte> [<hex_byte>]
 Function: patch bytes on a path
 Options: none
 
+$ chbase
 chbase:  Error options !!!

@@ -1,4 +1,5 @@
-dload -?
+$ dload -?
 Syntax: dload <filename>
 Function: loads datafile into datamodule
+$ break -?
 break: Only meaningful in a `for', `while', or `until' loop

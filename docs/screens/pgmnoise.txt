@@ -1,4 +1,4 @@
-pgmnoise 152 88 | pnmsmooth | pgmtopbm | pbmtoascii -2x4
+$ pgmnoise 152 88 | pnmsmooth | pgmtopbm | pbmtoascii -2x4
 pnmsmooth: /r0/smooth000004 -
 pgmtopbm: EOF / read error reading magic number
 pbmtoascii: EOF / read error reading magic number

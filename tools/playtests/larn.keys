@@ -1,5 +1,5 @@
 name    larn
-prog    /dd/CMDS/GAMES/larn
+prog    larn
 # Generic: does it draw, and does the screen change when keys arrive?
 rate    0.7
 wait    5

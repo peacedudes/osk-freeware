@@ -1,5 +1,5 @@
 name    banner
-prog    /dd/CMDS/banner OS-9
+prog    banner OS-9
 rate    0.6
 wait    5
 snap    output

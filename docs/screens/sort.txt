@@ -1,4 +1,4 @@
-sepwords < /dd/DOC/README-CIO | sort | uniq -c | sort -nr | head -n 12
+$ sepwords < /dd/DOC/README-CIO | sort | uniq -c | sort -nr | head -n 12
 38 the
 17 and
 16 a

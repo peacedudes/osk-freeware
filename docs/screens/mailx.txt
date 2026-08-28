@@ -1,6 +1,7 @@
-mailx
+$ mailx
 
 mailx: can't change to your mailbox directory: 'su'...error 214
 
+$ ls -l /dd/SPOOL/MAIL
 total 1024
 -rw-rw-rw-   1 0        0             804 Aug  3 19:00 tester

@@ -1,2 +1,3 @@
-lgrep chess /dd/DOC/INDEX | head -n 6
+$ lgrep chess /dd/DOC/INDEX | head -n 6
+$ ggrep -c chess /dd/DOC/INDEX
 14

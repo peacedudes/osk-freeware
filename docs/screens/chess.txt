@@ -1,3 +1,6 @@
+$ chess
+
+
 chess
 
 Do you want to play white or black (w/b)? w

@@ -1,5 +1,7 @@
-msattrib +r a:/DOCS/README.TXT
+$ msattrib +r a:/DOCS/README.TXT
+$ msattrib a:/DOCS/README.TXT
   A    R     A:/DOCS/README.TXT
+$ msdir a:/DOCS
  Volume in drive A is OS9FREEWARE
  Volume Serial Number is 35D7-0A00
  Directory for A:/DOCS

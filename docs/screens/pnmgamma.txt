@@ -1,3 +1,4 @@
+$ pnmhisteq /dd/tmp/gg.pgm | pgmtopbm | pbmtoascii -2x4
 RM9H$H&1F&F$Z&/]$$\$&$\?S<<</?:?$$>?S$>Z(&?$<L|L\(($$%<?|kZc&J|/?(?<(:.
 RDRFM&&&RM&SF&&&&Z&&S$^'         >$<}&&&$\$%}DZ&$\&$&&Z&$k$$k$9]$$1?$%:
 M9R6HH&kM1&9&1SkHZFF'   ..,__..    `%b$FF$&&?&&\<k$Fk&$d]$&&FS$&Zd$)&|:

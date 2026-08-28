@@ -1,5 +1,5 @@
 name    sc
-prog    /dd/CMDS/sc
+prog    sc
 # The spreadsheet.  Type a number into A0, move, type another, then quit.
 rate    0.5
 wait    5

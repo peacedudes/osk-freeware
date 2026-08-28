@@ -1,5 +1,5 @@
 name    gnuan
-prog    /dd/CMDS/GAMES/gnuan
+prog    gnuan
 # Generic: does it draw, and does the screen change when keys arrive?
 rate    0.7
 wait    5

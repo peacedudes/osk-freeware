@@ -1,4 +1,5 @@
-mshell
+$ mshell
 Error #255:255 (E_???) <<unknown error code>>
 Could not open  (menufile)
+$ echo mshell is running
 mshell is running

@@ -1,5 +1,5 @@
 name    cal
-prog    /dd/CMDS/cal -m=8 -y=2026
+prog    cal -m=8 -y=2026
 # NOT `cal 8 2026'.  This is Bob van der Poel's cal, which wants flags:
 # -m=<range> for the months and -y=<year>.  `cal 8 2026' answers
 # "Expecting '-' argument in '8'".

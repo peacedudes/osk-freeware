@@ -1,4 +1,4 @@
-florida | head -n 21
+$ florida | head -n 21
                                                                   Snow
 Year   1    Weather        Sky   Temperature    Precip      Wind  Depth  Notes
 January

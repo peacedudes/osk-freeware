@@ -1,4 +1,6 @@
-date
+$ date
+August 28, 2100 04:45:27bash# date -t
+August 28, 2100 04:45:32bash# today
 Today is Friday, the twenty-eighth day of August, two thousand and
 twenty-six. In twenty-three seconds, the time will be fourteen minutes
 before five AM, Daylight Savings Time. The moon is full.

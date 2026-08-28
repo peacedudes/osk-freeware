@@ -1,5 +1,5 @@
 name    suicide1
-prog    /dd/CMDS/GAMES/suicide1
+prog    suicide1
 # An animation: a stick figure walks off a rooftop.  It clears as it goes, so
 # any single frame holds almost nothing -- volume is the honest measure.
 rate    0.5

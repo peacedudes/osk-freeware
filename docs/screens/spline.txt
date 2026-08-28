@@ -1,2 +1,3 @@
-echo "0 0" > /dd/tmp/pts
+$ echo "0 0" > /dd/tmp/pts
+$ spline /dd/tmp/pts | head -n 14
 %!0LY1LF.or#\LG,nl(ILF.or#\LG*aa&CLF,nl(ILG+hu,VLF,nl(ILG*ca*OLF+hu,VLG*b~1BLF+E

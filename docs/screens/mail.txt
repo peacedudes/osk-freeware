@@ -1,6 +1,7 @@
-mail -?
+$ mail -?
 mail: /r0/ma000003 cannot open for writing
 can't unlink /r0/ma000003  215
+$ smail -?
 Usage:   smail [<options>] address...
 Options:
    -d              debug - verbose and don't invoke mailers.

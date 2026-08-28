@@ -1,0 +1,3 @@
+$ valspeak
+$ this is a totally excellent computer
+this: command not found

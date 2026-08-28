@@ -1,5 +1,5 @@
 name    blackjak
-prog    /dd/CMDS/GAMES/blackjak
+prog    blackjak
 # Generic: does it draw, and does the screen change when keys arrive?
 rate    0.7
 wait    5

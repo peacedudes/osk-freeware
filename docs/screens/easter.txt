@@ -1,4 +1,4 @@
-easter
+$ easter
 easter 1988 is 4/3
 easter 1989 is 3/26
 easter 1990 is 4/15

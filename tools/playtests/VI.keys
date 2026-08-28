@@ -1,5 +1,5 @@
 name    vi
-prog    /dd/CMDS/vi /dd/DOC/README-CIO
+prog    vi /dd/DOC/README-CIO
 # THE REAL vi/ex -- its source in SRC/effo_vi is the Berkeley ex source.
 # Opened on a file, moved through, and left with :q! so nothing is written.
 rate    0.5

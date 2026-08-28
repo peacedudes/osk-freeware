@@ -1,2 +1,3 @@
-ask "Shall I go on"
+$ ask "Shall I go on"
 No Wisecracks coming
+$ y

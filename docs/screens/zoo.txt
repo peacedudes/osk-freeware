@@ -1,5 +1,6 @@
-zoo a /dd/tmp/k.zoo /dd/SRC/keep/keep.c
+$ zoo a /dd/tmp/k.zoo /dd/SRC/keep/keep.c
 Zoo:  /dd/SRC/keep/keep.c --  (54%) added
+$ zoo l /dd/tmp/k.zoo
 
 Archive /dd/tmp/k.zoo:
 Length    CF  Size Now  Date      Time

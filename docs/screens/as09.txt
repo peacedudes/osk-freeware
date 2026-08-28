@@ -1,4 +1,6 @@
-cat /dd/tmp/t.a
+$ cat /dd/tmp/t.a
 cat: couldn't open '/dd/tmp/t.a' (Error #000:216)
+$ as09 /dd/tmp/t.a
 as: can't open /dd/tmp/t.a
+$ cat /dd/tmp/t.s19
 S9030000FC

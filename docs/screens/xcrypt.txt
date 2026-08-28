@@ -1,6 +1,8 @@
-xcrypt -k=freeware /dd/SYS/motd /dd/tmp/x.enc
+$ xcrypt -k=freeware /dd/SYS/motd /dd/tmp/x.enc
 en/decrypt <input-file> <output-file>
+$ xcrypt -k=freeware /dd/tmp/x.enc /dd/tmp/x.dec
 en/decrypt <input-file> <output-file>
+$ chksum /dd/SYS/motd /dd/tmp/x.dec
 4b68af85
 00000000
 ========

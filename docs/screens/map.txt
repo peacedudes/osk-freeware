@@ -1,4 +1,4 @@
-map -e /dd/DOC/INDEX
+$ map -e /dd/DOC/INDEX
                 Blockmap of /dd/DOC/INDEX 04:52:25
 Owner:   0.0
 Attr:  ---wr-wr

@@ -1,5 +1,5 @@
 name    vis
-prog    /dd/CMDS/vis /dd/DOC/README-CIO
+prog    vis /dd/DOC/README-CIO
 # Editor: open a file, look at it, leave without saving.
 allow   trap handler
 allow   Can't open

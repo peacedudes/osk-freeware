@@ -1,5 +1,5 @@
 name    snake
-prog    /dd/CMDS/GAMES/snake
+prog    snake
 # h/j/k/l steer the snake.  It reports "You made N moves." when it ends.
 wait    3
 keys    llll

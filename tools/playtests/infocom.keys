@@ -1,5 +1,5 @@
 name    infocom
-prog    /dd/CMDS/infocom /dd/GAMES/INFORM/dejavu.z3
+prog    infocom /dd/GAMES/INFORM/dejavu.z3
 # The Infocom Z-machine, playing a story file that ships here -- compiled
 # with Inform and left in GAMES/INFORM.  `look' is the one command every
 # adventure understands.

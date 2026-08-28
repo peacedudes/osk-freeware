@@ -241,14 +241,20 @@ def esc(s):
     return "".join(c if c < "\x7f" else "&#%d;" % ord(c) for c in s)
 
 
-SHELL_NOISE = ("bash#", "/.bashrc:", "# /h0:", "export ", "# /dd:")
+SHELL_NOISE = ("/.bashrc:", "# /h0:", "# /dd:")
+# The shell's prompt, and what to show instead of it. DROPPING the prompt
+# lines outright -- which this did at first -- takes the COMMANDS with them,
+# so a five-command screen came out as one command and one listing with an
+# unexplained gap in the middle. A screen is a session: show the commands,
+# just not the prompt they were typed at.
+PROMPT = re.compile(r"^bash#\s?")
 # os9exec's own file-table dump, printed when it reports a crash. The lines
 # that NAME the crash are kept -- a program that died should be seen dying --
 # but the open-path list belongs to the emulator, not to the program.
 DUMP = re.compile(r"^\s*\d\d f(Cons|Pipe|RBF|Disk)\b")
 
 
-def trim(text):
+def trim(text, first=""):
     """Drop the shell's own lines, then leading and trailing blank ones.
 
     A capture holds whatever it took to get the program going -- the emulator
@@ -256,12 +262,28 @@ def trim(text):
     program, and a gallery showing somebody else's shell prompt is not a
     gallery of this software.
     """
-    lines = [ln.rstrip() for ln in text.split("\n")
-             if not any(n in ln for n in SHELL_NOISE) and not DUMP.match(ln)]
+    lines = []
+    for ln in text.split("\n"):
+        if any(n in ln for n in SHELL_NOISE) or DUMP.match(ln):
+            continue
+        if ln.startswith("export ") and "PATH" in ln:
+            continue                       # the harness's own login lines
+        if PROMPT.match(ln):
+            rest = PROMPT.sub("", ln).rstrip()
+            if not rest:
+                continue                   # a bare prompt is not a line
+            ln = "$ " + rest
+        lines.append(ln.rstrip())
     while lines and not lines[0].strip():
         lines.pop(0)
     while lines and not lines[-1].strip():
         lines.pop()
+    # THE FIRST COMMAND HAS NO PROMPT: the screen was cleared before it was
+    # typed, so the shell's prompt is on the line the clear took away. It is
+    # still a command, and a screen whose first line is the only one without
+    # a `$' reads as though something is missing.
+    if lines and first and lines[0].strip() == first.strip():
+        lines[0] = "$ " + lines[0].strip()
     return "\n".join(lines)
 
 
@@ -303,7 +325,9 @@ def sheet_shots():
         if not f.endswith(".sheet"):
             continue
         for shot in screenshots.parse(os.path.join(SHEETS, f)):
+            first = next((v for k, v in shot["acts"] if k == "run"), "")
             shots[shot["name"]] = {"hash": screenshots.stanza_hash(shot),
+                                   "first": first,
                                    "cap": " ".join(shot["cap"]),
                                    "for": shot["for"] or [shot["name"]],
                                    "sheet": f[:-6],
@@ -311,7 +335,7 @@ def sheet_shots():
     return shots
 
 
-def pick(name, want):
+def pick(name, want, first=""):
     """The screen to publish: the asked-for snapshot, else the fullest."""
     cands = []
     for f in os.listdir(CAPS):
@@ -319,7 +343,8 @@ def pick(name, want):
         if not m or m.group(1) == "control":
             continue
         label = "final" if m.group(1) == "screen" else m.group(1)
-        body = collapse(trim(to_cp437(open(os.path.join(CAPS, f)).read())))
+        body = collapse(trim(to_cp437(open(os.path.join(CAPS, f)).read()),
+                             first))
         cands.append((label, body, ink(body)))
     if not cands:
         return None
@@ -343,7 +368,7 @@ def collect():
     for name in names:
         meta = sheets.get(name)
         want = meta and "shot" or CAPTIONS.get(name, (None, "final"))[1]
-        got = pick(name, want)
+        got = pick(name, want, meta["first"] if meta else "")
         if not got:
             continue
         label, screen = got

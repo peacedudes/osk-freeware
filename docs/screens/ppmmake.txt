@@ -1,7 +1,9 @@
-ppmmake rgb:80/40/c0 40 20 > /dd/tmp/flat.ppm
+$ ppmmake rgb:80/40/c0 40 20 > /dd/tmp/flat.ppm
+$ ppmhist /dd/tmp/flat.ppm
  r   g   b      lum     count
 --- --- ---     ---     -----
 128  64 192     98      800
+$ ppmbrighten -v 50 /dd/tmp/flat.ppm | ppmhist
  r   g   b      lum     count
 --- --- ---     ---     -----
 170  85 255     130     800

@@ -1,4 +1,4 @@
-ksh
+$ ksh
 @(#)PD KSH v4.3 92/04/25 i in 1 2 3; do echo line $i; done
 line 1
 line 2

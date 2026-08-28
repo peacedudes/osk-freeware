@@ -1,3 +1,4 @@
-lua
+$ lua
 **** csl traphandler mismatch ****
+$ runc
 **** csl traphandler mismatch ****

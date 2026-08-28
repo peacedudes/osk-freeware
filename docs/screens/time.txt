@@ -1,4 +1,4 @@
-time sieve
+$ time sieve
 start
  100 sieves done
 'sieve' ticks(sys/usr tot): 0/1 1,  elapsed secs: 1

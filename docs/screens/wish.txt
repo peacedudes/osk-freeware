@@ -1,3 +1,4 @@
+$ wish
 Wishing for: 3 potions of gain level
 Game 1
 what happened to "hack"

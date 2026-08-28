@@ -1,2 +1,2 @@
-echo 1f * 3 + 7 | hc
+$ echo 1f * 3 + 7 | hc
 usage:  hc [-s] [+tab | -col | -l "str" | filename] ...

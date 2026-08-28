@@ -1,2 +1,2 @@
-argproc_demo -a -b=2 file
+$ argproc_demo -a -b=2 file
 **** Stack Overflow ****

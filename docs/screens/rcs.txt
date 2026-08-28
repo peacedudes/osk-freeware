@@ -1,8 +1,10 @@
-cp /dd/SYS/motd /dd/tmp/rcstest
+$ cp /dd/SYS/motd /dd/tmp/rcstest
+$ rcs -?
 rcs error: Unknown option: -?
 command format:
 rcs -i -alogins -Alogins -e[logins] -b[rev] -c[commentleader] -l[rev] -u[rev] -.
 rcs aborted
+$ rlog -?
 rlog error: unknown option: -?
 command format:
 rlog -L -R -h -t -b -ddates -l[lockers] -rrevisions -sstates -w[logins] file ...

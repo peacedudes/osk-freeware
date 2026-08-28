@@ -1,4 +1,4 @@
-speech
+$ speech
 Enter english text (Ctrl-Z to end):
 OS-9 is a real time operating system
 AAz mIHnAHs nAYn IHz EY rIYl tAYm OWpEREYtIHNG

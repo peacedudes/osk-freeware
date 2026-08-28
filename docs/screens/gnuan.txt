@@ -1,2 +1,4 @@
+$ gnuan
+
 Book used 9585 of 12000 entries.
 Input the file with the algebraic moves of the game.

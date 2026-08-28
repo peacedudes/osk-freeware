@@ -1,3 +1,4 @@
+$ bash
 os9$ P=/dd/CMDS/NETPBM
 
 os9$ $P/pgmramp -lr 32 8 > /dd/tmp/s.pgm

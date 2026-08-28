@@ -1,5 +1,7 @@
-tty
+$ tty
+termbash# vecho "no newline here -- "
 no newline here --
+$ lmargin -?
 usage: epson [<opts>]
         l<int>  size of left margin in characters, 5
 

@@ -1,4 +1,4 @@
-launch -?
+$ launch -?
 
 launch v1.1 (c) M.C.Gregorie, 1994
 
@@ -10,6 +10,8 @@ Options : -d  debug mode
           -e  set up emacs bindings file from prototypes in /dd/sys
           -i  initialise the terminal using the 'is' capability
               for the terminal
+$ pri -?
+$ signal -?
 Syntax: signal <process-id> <signal-code> [<seconds>]
 Function: send signal to process after specified time.
 Parameters:

@@ -1,9 +1,10 @@
-cat /dd/SYS/password
+$ cat /dd/SYS/password
 su, ,0.0,128,/dd/cmds,/dd/sys,shell -p="su: "
 tester,,1.7,128,/dd/CMDS,/dd/USR/TESTER,shell
 ,,1.99,128,/dd/CMDS,/dd/USR/ANON,shell -p="anon: "
 uucp,,3.1,128,/dd/CMDS/UUCP,/dd/USR/LIB/UUCP,shell
 os9,,0.0,128,/dd/CMDS,/dd,shell
+$ passwd -?
 Syntax: passwd
 Function: get new password
 Options: none

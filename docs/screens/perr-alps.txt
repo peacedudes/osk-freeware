@@ -1,9 +1,10 @@
-perr 1 2 3 4 5
+$ perr 1 2 3 4 5
 Error #000:001 (S_Wake) wake
 Error #000:002 (S_Abort) User abort (Cmd-'.')
 Error #000:003 (S_Intrpt) User interrupt
 Error #000:004 (S_HangUp) modem hangup
 Error #000:005 (S_Active) activate
+$ alps -?
 Syntax: alps [<opts>] >/<device>
 Function: generate Alps ASP-1000 printer codes
 Options:

@@ -1,5 +1,7 @@
-msdel a:MOTD.TXT
+$ msdel a:MOTD.TXT
 msdel: File "a:MOTD.TXT" not found
+$ mscopy /dd/SYS/motd a:MOTD.TXT
+$ msdir a:
  Volume in drive A is OS9FREEWARE
  Volume Serial Number is 35D7-0A00
  Directory for A:/
@@ -8,3 +10,6 @@ readme   txt       139 08-02-2026   2:22a readme.txt
 MOTD     TXT        40 08-28-2026   4:59a
         2 file(s)               179 bytes
                           1 456 640 bytes free
+
+$ mstype a:MOTD.TXT
+$ e to os9exec -- OS-9/68k emulator

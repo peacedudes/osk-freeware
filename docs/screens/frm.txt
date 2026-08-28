@@ -1,4 +1,6 @@
-frm
+$ frm
 tester has no mail.
+$ listalias
 Could not open user data file!
 Could not open system data file!
+$ checkalias root

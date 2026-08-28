@@ -4,6 +4,7 @@
 
         Version: V1.0Beta
         Copyright (c) 1991,1992 Robert Heller D/B/A Deepwoods Software
+$ PrintLabels
 Missing parameter: infile
 Syntax: PrintLabels [opts]
 Libraian Card Catalog card printer

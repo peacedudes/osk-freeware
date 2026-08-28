@@ -1,4 +1,4 @@
-ub68kdemo
+$ ub68kdemo
 
 UniBasic Version 1.10
 OS9/68000 Version
