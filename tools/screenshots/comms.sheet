@@ -29,6 +29,15 @@ run     /dd/CMDS/ELM/elm
 wait    10
 quit    q\r
 
+shot    elm-suite
+for     elm answer arepdaemon autoreply fastmail filter newalias printmail readmsg messages
+cap     The rest of the elm suite: the alias tools, the filter, the
+cap     auto-responder and the daemon that answers while you are away.
+run     /dd/CMDS/ELM/newalias
+wait    8
+run     /dd/CMDS/ELM/printmail
+wait    8
+
 shot    finger
 for     finger net osknet atp msntp infoxpress
 cap     The network set.  There is no interface configured here, so what
@@ -55,6 +64,16 @@ cap     it says what it can do: connect, send, receive, or be the server.
 run     /dd/CMDS/REBUILT/kermit
 wait    5
 
+shot    kermit-family
+for     kermit2 kermit3 xkermit ckermit
+cap     Four more Kermits.  The collection keeps every build it found, and
+cap     they do not all take the same command line -- which is the reason
+cap     to keep them side by side.
+run     /dd/CMDS/kermit2
+wait    8
+run     /dd/CMDS/xkermit
+wait    8
+
 shot    mail
 for     mail lmail rmail smail
 cap     The mail chain: mail sends, lmail delivers locally, rmail takes
@@ -71,6 +90,32 @@ run     /dd/CMDS/UUCP/mailx
 wait    5
 send    q\r
 wait    3
+
+shot    mailx-more
+for     mailx philmail dotilde makedb pathalias
+cap     mailx opening on an empty mailbox, and philmail beside it.
+run     /dd/CMDS/UUCP/mailx
+wait    8
+send    q\r
+wait    6
+
+shot    network
+for     finger msntp atp osknet infoxpress net
+cap     The TCP/IP set: finger, an SNTP client, and OSKnet itself.  There
+cap     is no interface here, so what they print is what they would do.
+run     /dd/CMDS/NETWORK/msntp -?
+wait    8
+run     /dd/CMDS/NETWORK/atp
+wait    8
+
+shot    news-tools
+for     rnews postnews subscribe unsubscribe expire uulog
+cap     What arrives from a news feed and what unpacks it: rnews takes a
+cap     batch, expire deletes what is past its date.
+run     /dd/CMDS/UUCP/rnews -?
+wait    8
+run     /dd/CMDS/UUCP/subscribe -?
+wait    8
 
 shot    newshist
 for     newshist bdecode byteflip c7decode dbz newslock
@@ -97,6 +142,15 @@ wait    5
 send    q\r
 wait    3
 
+shot    screen
+for     screen tsmon2 connect uwho wysetime
+cap     screen, the terminal multiplexer, and tsmon2, which is what watches
+cap     a serial line for someone logging in.
+run     /dd/CMDS/REBUILT/screen -v
+wait    8
+run     /dd/CMDS/tsmon2 -?
+wait    8
+
 shot    setterm
 cap     setterm and cls, the two smallest things here that know what a
 cap     terminal is.
@@ -104,12 +158,21 @@ run     /dd/CMDS/setterm
 wait    4
 
 shot    sterm
-for     sterm tterm xy xydown blastem dld uld k tsu rxmod txmod vmod_trap xyt z
-cap     CMDS/COMMS: fourteen terminal and file-transfer programs for serial
-cap     lines -- xmodem, ymodem and their kin, from before the network.
-run     /dd/CMDS/COMMS/xy
+for     sterm tterm tsu k z blastem dld uld vmod_trap
+cap     The terminal programs: sterm and tterm open a serial line and give
+cap     you the far end.  With no line configured they say so.
+run     /dd/CMDS/COMMS/tterm
 wait    8
-run     /dd/CMDS/COMMS/sterm
+run     /dd/CMDS/COMMS/tsu
+wait    8
+
+shot    uuclean
+for     uuclean uupoll disable enable fileserv fixtext lcasep nptx pwparse
+cap     The UUCP housekeeping: clean the spool, poll a site, take a device
+cap     out of service and put it back.
+run     /dd/CMDS/UUCP/uuclean -?
+wait    8
+run     /dd/CMDS/UUCP/uupoll -?
 wait    8
 
 shot    uucp
@@ -145,4 +208,13 @@ cap     configured to be started by inetd, which is also here.
 run     /dd/CMDS/WN/wn -V
 wait    8
 run     /dd/CMDS/WN/wndex -?
+wait    8
+
+shot    xmodem
+for     xy xydown xyt txmod rxmod
+cap     The xmodem and ymodem set from CMDS/COMMS -- send, receive, and the
+cap     terminal side of a file transfer over a serial line.
+run     /dd/CMDS/COMMS/xydown
+wait    8
+run     /dd/CMDS/COMMS/txmod
 wait    8

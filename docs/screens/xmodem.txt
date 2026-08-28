@@ -1,0 +1,10 @@
+/dd/CMDS/COMMS/xydown
+XYDOWN ver. 1.1
+XYDown:Can't open serial port. -- Error 240
+TXMod Ed.1 Rv.2 - send Module via SCF to RXMod to link there
+Syntax: TXMod [<opts>] module(s) [<opts>]
+Options:
+  -x       :  all modules in EXE dir
+  -l[=]<dev> : use dev for xmission
+              else StdIn/StdOut/StdErr
+  -r       :  send RXMOD to other, show 2 sec responses

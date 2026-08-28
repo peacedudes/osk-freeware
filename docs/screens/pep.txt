@@ -1,0 +1,23 @@
+/dd/CMDS/pep -?
+pep  ver. 2.1; Copyright (c) 1989 Gisle Hannemyr
+Usage: pep [options] [filename ...]
+Valid options:
+        -a        -- about pep
+        -b        -- remove non ASCII-codes
+        -c[size]  -- compress spaces to tabs
+        -d+/-     -- convert to/from DEC 8 bit charset
+        -e[guard] -- interprete ANSI escape sequences
+        -g<file>  -- get conversion table from file
+        -h        -- print this quick summary
+        -i+/-     -- convert to/from IBM-PC charset
+        -k+/-     -- convert to/from "Kman" charset
+        -m+/-     -- convert to/from Macintosh charset
+        -o[b]     -- write output to named files
+        -p        -- display transformations and pause
+        -s[size]  -- extract strings
+        -t[size]  -- expand tabstops
+        -u<term>  -- use special line terminator
+        -v        -- terminate only paragraphs
+        -w+/-     -- convert to/from WS document mode
+        -x        -- expand non printing chars
+        -z        -- zero parity bit

@@ -136,7 +136,7 @@ hello from sh
 </div>
 <div class="shot" id="s-wish">
 <h3>wish</h3>
-<p>Captured while running.</p>
+<p>wish tells you what you would have wished for in hack.</p>
 <pre>Wishing for: 3 potions of gain level
 Game 1
 what happened to "hack"</pre>
@@ -144,7 +144,7 @@ what happened to "hack"</pre>
 <h2 class="cat" id="editors">Editors</h2>
 <div class="shot" id="s-beav">
 <h3>beav</h3>
-<p>Captured while running.</p>
+<p>beav, the binary editor, on a file of this disk's own documentation: hex on the left, characters on the right.</p>
 <pre>          0: 52 45 41 44 4D 45 2D 43  49 4F 20 2D 2D 20 74 68  README-CIO -- th
          10: 65 20 73 74 61 72 72 65  64 20 70 72 6F 67 72 61  e starred progra
          20: 6D 73 2C 20 61 6E 64 20  74 68 65 20 66 69 76 65  ms, and the five
@@ -170,12 +170,12 @@ BEAV  I README-CIO   File: /dd/DOC/README-CIO [RW]    CURSOR=00000000, 1   HEX $
 </div>
 <div class="shot" id="s-ed">
 <h3>ed</h3>
-<p>Captured while running.</p>
+<p>GNU ed cannot start here: it makes its temporary file at /r0, the RAM disk os9exec has no way to provide.</p>
 <pre>/r0/ed.000003: 000:221 module not found</pre>
 </div>
 <div class="shot" id="s-editor">
 <h3>editor</h3>
-<p>Captured while running.</p>
+<p>The GSHELL editor front end aborts on startup (E_PRCABT).</p>
 <pre>Process   Pid: 3, editor, edition 7
     Exit code: E_PRCABT(228) Process Aborted
   Directories: Current   - /dd
@@ -211,7 +211,7 @@ You run OS-9, so you have these modules already, and you may prefer your copy</p
 </div>
 <div class="shot" id="s-hexed">
 <h3>hexed</h3>
-<p>Captured while running.</p>
+<p>hexed writes its work file to /r0 and stops when it cannot -- the RAM disk os9exec has no way to provide.</p>
 <pre>Creating '/r0/README-CIO.hd' from '/dd/DOC/README-CIO'.
 error: can't create '/r0/README-CIO.hd' !</pre>
 </div>
@@ -222,7 +222,7 @@ error: can't create '/r0/README-CIO.hd' !</pre>
 </div>
 <div class="shot" id="s-me">
 <h3>me</h3>
-<p>Captured while running.</p>
+<p>me, a screen editor, showing DOC/README-CIO.</p>
 <pre>README-CIO -- the starred programs, and the five modules that serve them
 =======================================================================
 
@@ -249,7 +249,7 @@ collection was rebuilt trap-free (`-qm`) so it would run with nothing loaded
 </div>
 <div class="shot" id="s-mg">
 <h3>mg</h3>
-<p>Captured while running.</p>
+<p>mg, the small emacs, showing the same file.</p>
 <pre>README-CIO -- the starred programs, and the five modules that serve them
 =======================================================================
 
@@ -292,13 +292,13 @@ sed: illegal use of 'e'-option.</pre>
 </div>
 <div class="shot" id="s-VI">
 <h3>VI</h3>
-<p>Captured while running.</p>
+<p>The EFFO vi -- its source in SRC/effo_vi is the Berkeley ex source.</p>
 <pre>README-CIO -- the starred programs, and the five modules that serve them
 ch of this=============================================================</pre>
 </div>
 <div class="shot" id="s-vi_cio">
 <h3>vi_cio</h3>
-<p>Captured while running.</p>
+<p>vi as built against cio, showing DOC/README-CIO.</p>
 <pre>README-CIO -- the starred programs, and the five modules that serve them
 =======================================================================
 
@@ -326,7 +326,7 @@ at all; most of the programs under CMDS need no module whatever.  The rest
 </div>
 <div class="shot" id="s-vi_nocio">
 <h3>vi_nocio</h3>
-<p>Captured while running.</p>
+<p>PVic, the vi that needs no trap handler, on the same file.</p>
 <pre>=======================================================================
 
 Some of the names in DOC/INDEX carry a star.  A star means the program needs
@@ -353,7 +353,7 @@ at all; most of the programs under CMDS need no module whatever.  The rest
 </div>
 <div class="shot" id="s-view">
 <h3>view</h3>
-<p>Captured while running.</p>
+<p>view, the read-only vi.</p>
 <pre>README-CIO -- the starred programs, and the five modules that serve them
 =======================================================================
 
@@ -381,7 +381,7 @@ at all; most of the programs under CMDS need no module whatever.  The rest
 </div>
 <div class="shot" id="s-vis">
 <h3>vis</h3>
-<p>Captured while running.</p>
+<p>vis, a visual editor with its command line at the top.</p>
 <pre>Command:  /dd/DOC/README-CIO                                          Exec:  1</pre>
 </div>
 <h2 class="cat" id="text-tools">Text tools</h2>
@@ -412,7 +412,7 @@ at all; most of the programs under CMDS need no module whatever.  The rest
 </div>
 <div class="shot" id="s-banner">
 <h3>banner</h3>
-<p>Captured while running.</p>
+<p>banner, the letters made of their own initials.</p>
 <pre>@@@@@@@  @@@@@           @@@@@
 @     @ @     @         @     @
 @     @ @               @     @
@@ -492,6 +492,17 @@ MAXLINECOUNT exceeded, must stop.</pre>
 *11/4thur Thanksgiving (US)
 
 INCLUDE /dd/sys/birthdays</pre>
+</div>
+<div class="shot" id="s-cookhash">
+<h3>cookhash</h3>
+<p>The fortune machinery, both halves: cookhash builds the hash a sayings file needs, and cookie reads one out of it.</p>
+<pre>/dd/CMDS/cookhash -?
+usage: cookhash &lt;cookiefile &gt;hashfile
+"Our journeys to the stars will be made on spaceships created by determined,
+hardworking scientists and engineers applying the principles of science, not
+aboard flying saucers piloted by little gray aliens from some other dimension."
+-- Robert A. Baker, "The Aliens Among Us:  Hypnotic Regression Revisited",
+   The Skeptical Inquirer, Vol. XII, No. 2</pre>
 </div>
 <div class="shot" id="s-cookie">
 <h3>cookie</h3>
@@ -579,6 +590,23 @@ Addr   0 1  2 3  4 5  6 7  8 9  A B  C D  E F 0 2 4 6 8 A C E
 This is DVItype, C Version 3.4
 Output level (default=4, ? for help):</pre>
 </div>
+<div class="shot" id="s-expand">
+<h3>expand</h3>
+<p>Tabs to spaces and back again, with dump showing the bytes so the change is visible rather than asserted.</p>
+<pre>printf "a\tb\tc\n" &gt; /dd/tmp/t2.txt
+Syntax: dump [&lt;opts&gt;] &lt;path/module&gt; [&lt;opts&gt;] [&lt;starting byte&gt;] [&lt;opts&gt;]
+Function: formatted display of contents of a file/module
+Options:
+     -c        don't compress duplicate lines
+     -x        path implies execution directory
+     -m        dump memory module
+Syntax: dump [&lt;opts&gt;] &lt;path/module&gt; [&lt;opts&gt;] [&lt;starting byte&gt;] [&lt;opts&gt;]
+Function: formatted display of contents of a file/module
+Options:
+     -c        don't compress duplicate lines
+     -x        path implies execution directory
+     -m        dump memory module</pre>
+</div>
 <div class="shot" id="s-fcomp">
 <h3>fcomp</h3>
 <p>fcomp compares two text files line by line.</p>
@@ -623,13 +651,19 @@ Where it copies from and to</pre>
 </div>
 <div class="shot" id="s-fortune">
 <h3>fortune</h3>
-<p>Captured while running.</p>
+<p>fortune, reading the collection's own quotation file.</p>
 <pre>God is not dead!  He's alive and autographing bibles at Cody's</pre>
 </div>
 <div class="shot" id="s-gawk">
 <h3>gawk</h3>
 <p>GNU awk 2.11 over the disk's own index: count the programs by the letter they start with, then sort by that count.</p>
 <pre>&lt;dd/CMDS/uniq -c | /dd/CMDS/sort -nr | /dd/CMDS/head -n 12</pre>
+</div>
+<div class="shot" id="s-gep">
+<h3>gep</h3>
+<p>Four more pattern matchers, each from a different decade: a global expression parser, a line grep, GNU grep from sh_utils, and a Boyer-Moore-Gosper demonstration.</p>
+<pre>/dd/CMDS/lgrep chess /dd/DOC/INDEX | /dd/CMDS/head -n 6
+14</pre>
 </div>
 <div class="shot" id="s-gothic">
 <h3>gothic</h3>
@@ -673,31 +707,16 @@ Where it copies from and to</pre>
 </div>
 <div class="shot" id="s-ispell">
 <h3>ispell</h3>
-<p>ispell, the interactive spelling checker, offering corrections for a line of deliberately bad spelling.</p>
-<pre>                                                               3
+<p>ispell listing the words it does not know out of a line of deliberately bad spelling -- the -l form, which is what a script uses.</p>
+<pre>echo The quik brown foxx jmups over the lasy dog &gt; /dd/tmp/sp.txt
+The
+quik
 
-
-
-
-
-
-
-
-
-
-                     S/ispell /dd/tmp/sp.txt/* about -- everything this collecti
-/dd/tmp/sp.txt/dd/CMD/* about -- everything this collection knows about one prog
-
-
-
-
-
-
-
-
- * text -- and to use it you had to know those five places existed and go and
-
-Unprogrammed Key</pre>
+Process   Pid: 3, ispell, edition 7
+    Exit code: E_PRCABT(228) Process Aborted
+  Directories: Current   - /dd
+               Execution - /dd/CMDS
+        Files: 00 fCons /term</pre>
 </div>
 <div class="shot" id="s-jargon">
 <h3>jargon</h3>
@@ -705,6 +724,36 @@ Unprogrammed Key</pre>
 <pre>/dd/CMDS/jargon foo
 Browsing foo...
 vh: can't find database files for foo</pre>
+</div>
+<div class="shot" id="s-join">
+<h3>join</h3>
+<p>paste puts two files side by side and join matches them on a common first field -- the relational pair.</p>
+<pre>/dd/CMDS/head -n 5 /dd/SYS/holidays &gt; /dd/tmp/j1
+/dd/CMDS/head: /dd/SYS/holidays
+/dd/CMDS/head: /dd/SYS/birthdays
+* Common Holidays       * birthdays -- yours to fill in.
+        *
+1/1             New Year's Day  * cal's holidays file ends with `INCLUDE /dd/syu
+2/14 Valentine's Day    * put here is printed alongside the public holidays.  S:
+3/17 St. Patrick's Day  *</pre>
+</div>
+<div class="shot" id="s-kwic">
+<h3>kwic</h3>
+<p>The KWIC suite: a key-word-in-context index, the way a printed concordance was made.  pageline numbers the lines, pagekwic splits them to one phrase each, pagefraz pulls the phrases out.</p>
+<pre>/dd/CMDS/head -n 12 /dd/SYS/holidays &gt; /dd/tmp/k.txt
+/dd/CMDS/head: /dd/SYS/holidays
+* 1
+Common 1
+Holidays 1
+1/1 1
+New 1
+Year's 1
+Day 1
+2/14 1
+Valentine's 1
+Day 1
+3/17 1
+St. 1</pre>
 </div>
 <div class="shot" id="s-latex">
 <h3>latex</h3>
@@ -717,6 +766,38 @@ virtex "&amp;lplain" /dd/SYS/TEX/SAMPLES/about_latex.tex:  (E$PNNF) That path na
 <p>Basser Lout 2.05, a document formatter in the TeX tradition, saying what it is.</p>
 <pre>/dd/CMDS/lout -V
 Basser Lout Version 2.05 (July 1993)</pre>
+</div>
+<div class="shot" id="s-pep">
+<h3>pep</h3>
+<p>pep is a file `detergent' -- it strips the junk out of a file using the character tables in SYS/PEP.</p>
+<pre>/dd/CMDS/pep -?
+pep  ver. 2.1; Copyright (c) 1989 Gisle Hannemyr
+Usage: pep [options] [filename ...]
+Valid options:
+        -a        -- about pep
+        -b        -- remove non ASCII-codes
+        -c[size]  -- compress spaces to tabs
+        -d+/-     -- convert to/from DEC 8 bit charset
+        -e[guard] -- interprete ANSI escape sequences
+        -g&lt;file&gt;  -- get conversion table from file
+        -h        -- print this quick summary
+        -i+/-     -- convert to/from IBM-PC charset
+        -k+/-     -- convert to/from "Kman" charset
+        -m+/-     -- convert to/from Macintosh charset
+        -o[b]     -- write output to named files
+        -p        -- display transformations and pause
+        -s[size]  -- extract strings
+        -t[size]  -- expand tabstops
+        -u&lt;term&gt;  -- use special line terminator
+        -v        -- terminate only paragraphs
+        -w+/-     -- convert to/from WS document mode
+        -x        -- expand non printing chars
+        -z        -- zero parity bit</pre>
+</div>
+<div class="shot" id="s-qsort9">
+<h3>qsort9</h3>
+<p>qsort9 sorts a file, and nsort sorts numerically -- the difference shows on numbers wider than one digit.</p>
+<pre>printf "10\n9\n100\n2\n" &gt; /dd/tmp/n.txt</pre>
 </div>
 <div class="shot" id="s-rot">
 <h3>rot</h3>
@@ -827,6 +908,19 @@ AAz mIHnAHs nAYn IHz EY rIYl tAYm OWpEREYtIHNG</pre>
 <pre>/dd/CMDS/head -n 8 /dd/SYS/motd &gt; /dd/tmp/s1
 /dd/CMDS/head: /dd/SYS/motd</pre>
 </div>
+<div class="shot" id="s-split">
+<h3>split</h3>
+<p>split cuts a file into pieces; here it splits the holidays file and ls shows what it wrote.</p>
+<pre>/dd/CMDS/mkdir /dd/tmp/sp
+total 3584
+-rw-------   1 0        0             104 Aug 27 21:02 partaa
+-rw-------   1 0        0             138 Aug 27 21:02 partab
+-rw-------   1 0        0              94 Aug 27 21:02 partac
+-rw-------   1 0        0             116 Aug 27 21:02 partad
+-rw-------   1 0        0             103 Aug 27 21:02 partae
+-rw-------   1 0        0             136 Aug 27 21:02 partaf
+-rw-------   1 0        0              26 Aug 27 21:02 partag</pre>
+</div>
 <div class="shot" id="s-strfile">
 <h3>strfile</h3>
 <p>strfile builds the index that fortune reads, and unstr dumps an index back to text -- the pair behind every fortune on this disk.</p>
@@ -859,6 +953,14 @@ $0004AE: &lt;Nomember&gt;</pre>
 <p>subber substitutes text in a stream, in the old ,old,new form.</p>
 <pre>/dd/CMDS/cat /dd/SYS/motd | /dd/CMDS/subber ,os9exec,OS-9,
 cannot open ,os9exec,OS-9,</pre>
+</div>
+<div class="shot" id="s-sum">
+<h3>sum</h3>
+<p>sum, the checksum every Unix had before md5, and head and tail either end of the same file.</p>
+<pre>/dd/CMDS/sum /dd/SYS/motd /dd/SYS/holidays
+34333     1 /dd/SYS/motd
+11804     1 /dd/SYS/holidays
+(03) unknown option -n</pre>
 </div>
 <div class="shot" id="s-tac">
 <h3>tac</h3>
@@ -947,6 +1049,15 @@ puts it there -- the program, and the files it reads, in the places it</pre>
 ----------------------------
 --------------------------------
 -qixm`</pre>
+</div>
+<div class="shot" id="s-upperdir">
+<h3>upperdir</h3>
+<p>upperdir normalises case across a directory: files lower, directories upper.  Shown here on a scratch copy, not on the disk.</p>
+<pre>/dd/CMDS/upperdir -?
+
+Usage: UpperDir [directory name]
+       Changes filenames to lowercase,
+       and directories to uppercase.</pre>
 </div>
 <div class="shot" id="s-valspeak">
 <h3>valspeak</h3>
@@ -2045,6 +2156,14 @@ This version of ELM requires the use of a .elm directory in your home
 directory to store your elmrc and alias files. Shall I create the
 directory .elm for you and set it up (y/n/q)? n</pre>
 </div>
+<div class="shot" id="s-elm-suite">
+<h3>elm-suite</h3>
+<p>The rest of the elm suite: the alias tools, the filter, the auto-responder and the daemon that answers while you are away.</p>
+<pre>/dd/CMDS/ELM/newalias
+Updating your personal alias file...
+Couldn't open /dd/.ELM/aliases.text for input!
+Usage: printmail [-p] [-r filename] &lt;message list&gt;</pre>
+</div>
 <div class="shot" id="s-finger">
 <h3>finger</h3>
 <p>The network set.  There is no interface configured here, so what they show is what they would do if there were.</p>
@@ -2091,6 +2210,24 @@ or:    kermit h[difl line]          (Host server mode)
 or:    kermit g[difl line] file ... (get file from server)
 or:    kermit q[diful line]         (Quit remote Host server)</pre>
 </div>
+<div class="shot" id="s-kermit-family">
+<h3>kermit-family</h3>
+<p>Four more Kermits.  The collection keeps every build it found, and they do not all take the same command line -- which is the reason to keep them side by side.</p>
+<pre>/dd/CMDS/kermit2
+Kermit Program   Version 1    Release 6
+Usage:   kermit c[le line esc.char]         (connect mode)
+or:      kermit s[difl line] file ...       (send mode)
+or:      kermit r[difl line]                (receive mode)
+or:      kermit h[difl line]                (Host server mode)
+or:      kermit g[difl line] file ...       (get file from server)
+OS-9 Kermit Version 1 Release 5
+Usage: kermit c[le line esc.char]   (connect mode)
+or:    kermit s[difl line] file ... (send mode)
+or:    kermit r[difl line]          (receive mode)
+or:    kermit h[difl line]          (Host server mode)
+or:    kermit g[difl line] file ... (get file from server)
+or:    kermit q[diful line]         (Quit remote Host server)</pre>
+</div>
 <div class="shot" id="s-mail">
 <h3>mail</h3>
 <p>The mail chain: mail sends, lmail delivers locally, rmail takes what arrived, smail routes.</p>
@@ -2124,6 +2261,37 @@ Options:
 /dd/CMDS/UUCP/mailx: can't change to your mailbox directory: 'su'...error 215
 
 q: command not found</pre>
+</div>
+<div class="shot" id="s-mailx-more">
+<h3>mailx-more</h3>
+<p>mailx opening on an empty mailbox, and philmail beside it.</p>
+<pre>/dd/CMDS/UUCP/mailx
+
+/dd/CMDS/UUCP/mailx: can't change to your mailbox directory: 'su'...error 214
+
+q: command not found</pre>
+</div>
+<div class="shot" id="s-network">
+<h3>network</h3>
+<p>The TCP/IP set: finger, an SNTP client, and OSKnet itself.  There is no interface here, so what they print is what they would do.</p>
+<pre>/dd/CMDS/NETWORK/msntp -?
+**** csl traphandler mismatch ****
+Reading Configuration file...
+
+Unable to open configuration file /dd/atprc or .atprc !</pre>
+</div>
+<div class="shot" id="s-news-tools">
+<h3>news-tools</h3>
+<p>What arrives from a news feed and what unpacks it: rnews takes a batch, expire deletes what is past its date.</p>
+<pre>/dd/CMDS/UUCP/rnews -?
+rnews [-x debug_level] [-n inital_newsgroup] [-z] newsfile
+subscribe: subscribe to Usenet newsgroups
+
+usage: subscribe &lt;newsgroup&gt; [newsgroup...]
+       if &lt;newsgroup&gt; is 'all', all newsgroups are subscribed to
+
+v2.1 (94Sep30) This is free software released under the GNU General Public
+License.  Please send suggestions/bug reports to:  bob@kc2wz.bubble.org</pre>
 </div>
 <div class="shot" id="s-newshist">
 <h3>newshist</h3>
@@ -2162,12 +2330,56 @@ License.  Please send suggestions/bug reports to:  bob@kc2wz.bubble.org
 v2.1 (94Sep30) This is free software released under the GNU General Public
 License.  Please send suggestions/bug reports to:  bob@kc2wz.bubble.org</pre>
 </div>
+<div class="shot" id="s-screen">
+<h3>screen</h3>
+<p>screen, the terminal multiplexer, and tsmon2, which is what watches a serial line for someone logging in.</p>
+<pre>/dd/CMDS/REBUILT/screen -v
+mode: You must have a $HOME/.screens directory.
+**** TSMON2: de-luxe version of the timesharing monitor (c) 1989 by L.Zeller
+Syntax:   /dd/CMDS/tsmon2 [&lt;options&gt;] &lt;device name&gt;
+Function: Monitor terminal device to initiate the login procedure when
+          CR is typed (default case)
+Options:  -i         : initiate login program as soon as DCD goes active
+                       (no CR required to start login)
+          -t[=]&lt;sec&gt; : close and re-open path after specified number of
+                       seconds of inactivity on port while waiting for CR
+          -k         : kill login process and all it's child processes
+                       as soon as DCD goes inactive
+          -p=&lt;prog&gt;  : Start &lt;prog&gt; instead of 'login'
+          -a         : accept any character to initiate instead of CR only
+Note:     Some device drivers can't detect the inactive-to-active
+          transition of the DCD signal and some others don't support
+          DCD monitoring at all. Therefore, the -i and -k options may
+          not work as expected on some systems.</pre>
+</div>
 <div class="shot" id="s-sterm">
 <h3>sterm</h3>
-<p>CMDS/COMMS: fourteen terminal and file-transfer programs for serial lines -- xmodem, ymodem and their kin, from before the network.</p>
-<pre>/dd/CMDS/COMMS/xy
-Receiving...
-C</pre>
+<p>The terminal programs: sterm and tterm open a serial line and give you the far end.  With no line configured they say so.</p>
+<pre>/dd/CMDS/COMMS/tterm
+No MODEM port defined!
+Checking /dd/USR...OK!
+Checking /dd/USR/TTERM...Creating
+Checking /dd/USR/TTERM/tester.dial...Creating
+
+Directory and File structure is correct.</pre>
+</div>
+<div class="shot" id="s-uuclean">
+<h3>uuclean</h3>
+<p>The UUCP housekeeping: clean the spool, poll a site, take a device out of service and put it back.</p>
+<pre>/dd/CMDS/UUCP/uuclean -?
+
+uuclean: removed old UUCP files, rotate UUCP and FileServ log files
+Usage: uuclean [opts]
+
+Opts:   -nX     Remove those files over X days old (default is 7)
+        -ddir   Use this directory name
+        -v      Set verbose option on
+        -l      Do not rotate log files
+        -x      Set debug option on (files are not touched)
+
+v2.1 (94Sep30) This is free software released under the GNU General Public
+License.  Please send suggestions/bug reports to:  bob@kc2wz.bubble.org
+Usage: uupoll [-g&lt;grade&gt;] system</pre>
 </div>
 <div class="shot" id="s-uucp">
 <h3>uucp</h3>
@@ -2217,6 +2429,20 @@ Thursday, August 27, 19126 - 8:44 PM</pre>
 <pre>/dd/CMDS/WN/wn -V
 Usage: /dd/CMDS/WN/wndex [-r] [-q] [-v] [-d dir] [-i indexfile] [-c cachefile]</pre>
 </div>
+<div class="shot" id="s-xmodem">
+<h3>xmodem</h3>
+<p>The xmodem and ymodem set from CMDS/COMMS -- send, receive, and the terminal side of a file transfer over a serial line.</p>
+<pre>/dd/CMDS/COMMS/xydown
+XYDOWN ver. 1.1
+XYDown:Can't open serial port. -- Error 240
+TXMod Ed.1 Rv.2 - send Module via SCF to RXMod to link there
+Syntax: TXMod [&lt;opts&gt;] module(s) [&lt;opts&gt;]
+Options:
+  -x       :  all modules in EXE dir
+  -l[=]&lt;dev&gt; : use dev for xmission
+              else StdIn/StdOut/StdErr
+  -r       :  send RXMOD to other, show 2 sec responses</pre>
+</div>
 <h2 class="cat" id="graphics-images">Graphics &amp; images</h2>
 <div class="shot" id="s-ateri">
 <h3>ateri</h3>
@@ -2240,7 +2466,7 @@ pnmfile: bad magic number - not a ppm, pgm, or pbm file</pre>
 </div>
 <div class="shot" id="s-cam">
 <h3>cam</h3>
-<p>Captured while running.</p>
+<p>cam computes camshaft timing: lift, duration and rocker ratio for an engine you describe to it.</p>
 <pre>~&gt;
 Rocker Ratio (1.00) for measure @lobe -&gt;</pre>
 </div>
@@ -2392,7 +2618,7 @@ P6
 </div>
 <div class="shot" id="s-lissaj">
 <h3>lissaj</h3>
-<p>Captured while running.</p>
+<p>A Lissajous figure generator, drawing the curve two oscillators trace against each other.</p>
 <pre>Lissajous pattern generator (PD)1990 Russell Hoffman</pre>
 </div>
 <div class="shot" id="s-pbmlife">
@@ -3073,7 +3299,7 @@ stdin:  PPM raw, 48 by 24  maxval 255
 <h2 class="cat" id="games">Games</h2>
 <div class="shot" id="s-advent">
 <h3>advent</h3>
-<p>Captured while running.</p>
+<p>Colossal Cave Adventure, at the well house where every player of it starts.</p>
 <pre>Section 0
 Advent is ready.
 
@@ -3108,7 +3334,7 @@ look: command not found</pre>
 </div>
 <div class="shot" id="s-animal">
 <h3>animal</h3>
-<p>Captured while running.</p>
+<p>The guess-the-animal game, which learns a new question every time it loses.</p>
 <pre>|------------------------------------------------------------------------------|
                                     Animal                                     |
  |----------------------------------------------------------------------------||
@@ -3134,7 +3360,7 @@ look: command not found</pre>
 </div>
 <div class="shot" id="s-back">
 <h3>back</h3>
-<p>Captured while running.</p>
+<p>Backgammon, with the board drawn in characters.</p>
 <pre>*  OS-9 BACKGAMMON! ----------------------------------------------------------#</pre>
 </div>
 <div class="shot" id="s-backgammon">
@@ -3220,7 +3446,7 @@ Process   Pid: 3, checkgame, edition 7
 </div>
 <div class="shot" id="s-chess">
 <h3>chess</h3>
-<p>Captured while running.</p>
+<p>The 68k chess port asking how you want to play before it sets the board.</p>
 <pre>chess
 
 Do you want to play white or black (w/b)? w
@@ -3229,13 +3455,13 @@ your name, please: tester
 </div>
 <div class="shot" id="s-colortest">
 <h3>colortest</h3>
-<p>Captured while running.</p>
+<p>colortest wants G-Windows, which is not here, and says so rather than drawing anything: `Not a G-Windows sytem???' -- its own spelling.</p>
 <pre>Unable to access "/win" device or CRT descriptor
 Not a G-Windows sytem???</pre>
 </div>
 <div class="shot" id="s-crib">
 <h3>crib</h3>
-<p>Captured while running.</p>
+<p>Cribbage, offering its instructions first.</p>
 <pre>                                      *Do you need instructions for cribbage?</pre>
 </div>
 <div class="shot" id="s-cribbage">
@@ -3258,7 +3484,7 @@ Not a G-Windows sytem???</pre>
 </div>
 <div class="shot" id="s-dclock">
 <h3>dclock</h3>
-<p>Captured while running.</p>
+<p>dclock is another G-Windows program: it says so and stops. `digclk' is the clock that works on a terminal.</p>
 <pre>/dd/CMDS/GAMES/dclock only runs under G-Windows</pre>
 </div>
 <div class="shot" id="s-fuddle">
@@ -3269,7 +3495,7 @@ Not a G-Windows sytem???</pre>
 </div>
 <div class="shot" id="s-gnuan">
 <h3>gnuan</h3>
-<p>Captured while running.</p>
+<p>gnuan annotates a saved chess game move by move, using GNU Chess's opening book -- 9585 of its 12000 entries.</p>
 <pre>Book used 9585 of 12000 entries.
 Input the file with the algebraic moves of the game.</pre>
 </div>
@@ -3435,7 +3661,7 @@ How many players? (2 to 7)</pre>
 </div>
 <div class="shot" id="s-larn">
 <h3>larn</h3>
-<p>Captured while running.</p>
+<p>Larn: your daughter has a strange disease and the dungeon has the cure.  Fixed here -- its help, fortune and maze files were recovered from the 12.2p4 sources.</p>
 <pre>    Welcome to the game of Larn.  At this moment, you face a great problem.
 Your daughter has contracted a strange disease, and none of your home remedies
 seem to have any effect.  You sense that she is in mortal danger, and you must
@@ -3484,7 +3710,7 @@ P                     89                |        Hand Total     0     0
 </div>
 <div class="shot" id="s-mines">
 <h3>mines</h3>
-<p>Captured while running.</p>
+<p>Minesweeper on a sixteen-by-sixteen board.</p>
 <pre>  A B C D E F G H I J K L M N O P
 A + + + + + + + + + + + + + + + + A
 B + + + + + + + + + + + + + + + + B
@@ -3544,7 +3770,7 @@ Your move is?</pre>
 </div>
 <div class="shot" id="s-nobs">
 <h3>nobs</h3>
-<p>Captured while running.</p>
+<p>nobs, a cribbage variant, dealing its cards.</p>
 <pre>                              XXX  XXX  XXX  XXX  XXX  XXX
 
 
@@ -3566,7 +3792,7 @@ Your move is?</pre>
 </div>
 <div class="shot" id="s-piano">
 <h3>piano</h3>
-<p>Captured while running.</p>
+<p>piano plays notes through the terminal bell; with no arguments it prints what it wants.</p>
 <pre>piano: syntax: piano &lt;base note&gt; &lt;note duration&gt;</pre>
 </div>
 <div class="shot" id="s-poker">
@@ -3589,7 +3815,7 @@ Bet limit (% of pot)?</pre>
 </div>
 <div class="shot" id="s-puz15">
 <h3>puz15</h3>
-<p>Captured while running.</p>
+<p>The fifteen puzzle, drawn in a box.</p>
 <pre>                             +----+----+----+----+
                              |  4 |  6 |  2 | 12 |
                              +----+----+----+----+
@@ -3711,7 +3937,7 @@ Q # #
 </div>
 <div class="shot" id="s-sokoban">
 <h3>sokoban</h3>
-<p>Captured while running.</p>
+<p>Sokoban: push the boxes onto the marks.  Without USER set it stops with `cannot get your username', which is why SYS/login sets it.</p>
 <pre>                             ##########
                              ##      ##
                              ##$$    ##
@@ -3741,14 +3967,14 @@ Number of stones (odd)?</pre>
 </div>
 <div class="shot" id="s-teachgammon">
 <h3>teachgammon</h3>
-<p>Captured while running.</p>
+<p>The backgammon tutor, which explains the rules and then plays a practice game against you.</p>
 <pre>   These rules consist of text describing how to play Backgammon
 followed by a tutorial session where you play a practice game
 against the computer.  When using</pre>
 </div>
 <div class="shot" id="s-tess">
 <h3>tess</h3>
-<p>Captured while running.</p>
+<p>Beyond The Tesseract, a text adventure of its own.</p>
 <pre>               /*--------------/*      ------------------------------------
              /  '            /  '           Beyond The Tesseract   V2.0p
            /   '|          /   '|      ------------------------------------
@@ -3799,7 +4025,7 @@ Scenario and instructions?</pre>
 </div>
 <div class="shot" id="s-tt">
 <h3>tt</h3>
-<p>Captured while running.</p>
+<p>Tetris for Terminals, a second Tetris beside `tet'.</p>
 <pre>||                    ||  TETRIS FOR TERMINALS
 ||                    ||
 ||                    ||  Written by Mike Taylor
@@ -3842,7 +4068,7 @@ Scenario and instructions?</pre>
 </div>
 <div class="shot" id="s-ularn">
 <h3>ularn</h3>
-<p>Captured while running.</p>
+<p>Ularn, the other Larn, choosing a character class.</p>
 <pre>                The Addiction of Ularn
 
 Pick a character class...
@@ -3870,7 +4096,7 @@ So, what are ya?</pre>
 </div>
 <div class="shot" id="s-wanderer">
 <h3>wanderer</h3>
-<p>Captured while running.</p>
+<p>Wanderer: collect the diamonds, do not be crushed.</p>
 <pre>+---------------------------------+             Score      Diamonds
 |                     \_ /^\/^\ _/|                     Found   Total
 |                       \\_/\_//  |
@@ -3918,7 +4144,7 @@ GRUSS VON FILE HUGO
 </div>
 <div class="shot" id="s-world">
 <h3>world</h3>
-<p>Captured while running.</p>
+<p>WORLD, a wilderness adventure -- its data tables are built by `convert' and `vtxtcn', both here.</p>
 <pre>WORLD. Amiga C  Version 1.02 Copyright 1987 J.D. McDonald  GOOD LUCK!
 
 You are standing on a steeply climbing trail nearing the top of
@@ -3936,7 +4162,7 @@ valley which must lie just beyond the pass you now approach.</pre>
 </div>
 <div class="shot" id="s-zot">
 <h3>zot</h3>
-<p>Captured while running.</p>
+<p>zot echoes text `in interesting ways'; with no text it prints its options.</p>
 <pre>syntax: zot [&lt;opts&gt;] {&lt;text&gt; [&lt;opts&gt;]}
 Function: echo text line(s) to stdout in interesting ways
 Options:
@@ -3995,7 +4221,7 @@ error: either &lt;text&gt; or -z must be specified</pre>
 </div>
 <div class="shot" id="s-suicide">
 <h3>suicide</h3>
-<p>Captured while running.</p>
+<p>An animation: a stick figure walks off a rooftop.</p>
 <pre>  ((( (   ( )) ) ))Aaaaauuuuuuuugggggggggggggggghhhhhhhhhhhhhhhhhhhhh!!!!!!!!!!
     | ( (((()( ( )|
 \   |    )  ))) ) |
@@ -4058,12 +4284,12 @@ Area code 314 is Saint Louis, Columbia, Missouri.</pre>
 </div>
 <div class="shot" id="s-bio">
 <h3>bio</h3>
-<p>Captured while running.</p>
+<p>bio is BASIC09 I-code, not a 68000 module, and there is no runb on this disk -- so the shell says `cannot execute binary file'.</p>
 <pre>/dd/CMDS/bio: cannot execute binary file</pre>
 </div>
 <div class="shot" id="s-card">
 <h3>card</h3>
-<p>Captured while running.</p>
+<p>A Towers of Hanoi whose twelve disks spell out a Christmas message.</p>
 <pre>                                              may
 
 
@@ -4086,7 +4312,7 @@ loving caring for another               |                      snowflake
 </div>
 <div class="shot" id="s-england">
 <h3>england</h3>
-<p>Captured while running.</p>
+<p>The weather simulator set in England -- mid-Atlantic, and raining.</p>
 <pre>  12  Precipitation       Mist    Warm ( 65)  Sprinkle     Brisk         Rain -,
   13  Precipitation  Heavy Fog    Warm ( 65)    Shower     Light         Storm ,
   14          Clear      Clear    Warm ( 65)      None      Calm
@@ -4165,7 +4391,7 @@ Rat
 </div>
 <div class="shot" id="s-logisim">
 <h3>logisim</h3>
-<p>Captured while running.</p>
+<p>A logic-circuit simulator.  It wants a file describing the circuit; with none it prints its own syntax.</p>
 <pre>Syntax: logisim [opts] filename [opts]
 Function: Simulates logical circuit described by filename
 Options:
@@ -4209,12 +4435,12 @@ diameter) predicted later today.</pre>
 </div>
 <div class="shot" id="s-pwgen">
 <h3>pwgen</h3>
-<p>Captured while running.</p>
+<p>A random password generator; its usage line is what it prints when given no length.</p>
 <pre>usage: /dd/CMDS/pwgen length [count]</pre>
 </div>
 <div class="shot" id="s-rpoem">
 <h3>rpoem</h3>
-<p>Captured while running.</p>
+<p>A random poem generator -- one of four SNOBOL4 programs here, with their data in GAMES/SNOBOL.</p>
 <pre>A timid rake may bend up gentle power
 And revere the activity of a petal.
 But a gate of time reveres power beside war
@@ -4241,7 +4467,7 @@ While energy under wisdom becomes the rusty muffin.
 </div>
 <div class="shot" id="s-rstory">
 <h3>rstory</h3>
-<p>Captured while running.</p>
+<p>A random story generator from the same SNOBOL4 shelf, writing roff input.</p>
 <pre>suffocate farmer,  farmer won't break the sword,  sword
 won't cut the parrot,   parrot won't jump over the large
 rock and I shan't get home tonight."  But the smoke
@@ -4303,7 +4529,7 @@ Afteryule
 </div>
 <div class="shot" id="s-textb">
 <h3>textb</h3>
-<p>Captured while running.</p>
+<p>The Mandelbrot set in ASCII: it asks for a centre, a range and an iteration count.</p>
 <pre>/dd/CMDS/textb
 Input X_COORD: -2.3
 Input Y_COORD: -2.0
@@ -4312,7 +4538,7 @@ Input iter.:</pre>
 </div>
 <div class="shot" id="s-touchtype">
 <h3>touchtype</h3>
-<p>Captured while running.</p>
+<p>A typing tutor.</p>
 <pre>&lt;&gt;&lt;&gt;&lt;&gt;&lt;&gt;&lt;&gt;&lt;&gt;&lt;&gt;&lt;&gt;&lt;&gt;&lt;&gt;&lt;&gt;&lt;&gt;&lt;&gt;&lt;&gt;&lt;&gt;&lt;&gt;&lt;&gt;&lt;&gt;&lt;&gt;&lt;&gt;&lt;&gt;&lt;&gt;&lt;&gt;&lt;&gt;&lt;&gt;&lt;&gt;&lt;&gt;&lt;&gt;&lt;&gt;&lt;&gt;&lt;&gt;&lt;&gt;&lt;&gt;&lt;&gt;&lt;&gt;&lt;&gt;&lt;&gt;&lt;&gt;&lt;&gt;&lt;
 
 
@@ -4339,7 +4565,7 @@ Fatal Game Error - Unexpected signal received</pre>
 </div>
 <div class="shot" id="s-travesty">
 <h3>travesty</h3>
-<p>Captured while running.</p>
+<p>travesty makes a Markov chain of its input and writes new text from it.</p>
 <pre>the quick brown fox jumps over the lazy dog and the quick red fox
 runs over the lazy brown dog while the quick dog naps</pre>
 </div>
@@ -5248,7 +5474,7 @@ mtype, mwrite</pre>
 <h2 class="cat" id="time-calendar">Time &amp; calendar</h2>
 <div class="shot" id="s-cal">
 <h3>cal</h3>
-<p>Captured while running.</p>
+<p>cal printing a month.  It wants flags -- -m for the months and -y for the year -- not two bare numbers.</p>
 <pre>August          2026
  S  M  T  W  T  F  S
 &#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;
@@ -5386,7 +5612,7 @@ easter 2000 is 4/23</pre>
 </div>
 <div class="shot" id="s-today">
 <h3>today</h3>
-<p>Captured while running.</p>
+<p>today prints the date, the time and the phase of the moon in words -- and gets the year right, which `date' does not.</p>
 <pre>/dd/CMDS/today
 Today is Thursday, the twenty-seventh day of August, two thousand and
 twenty-six. In fifty-one seconds, the time will be eight PM, Daylight
@@ -5630,18 +5856,6 @@ Topic ?</pre>
 <pre>                     NINGq/* about -- everything this collection knows about one</pre>
 </div>
 <h2 class="cat" id="uncategorised">Uncategorised</h2>
-<div class="shot" id="s-banner-demo">
-<h3>banner-demo</h3>
-<p>Captured while running.</p>
-<pre>/dd/CMDS/banner OS-9
-@@@@@@@  @@@@@           @@@@@
-@     @ @     @         @     @
-@     @ @               @     @
-@     @  @@@@@   @@@@@   @@@@@@
-@     @       @               @
-@     @ @     @         @     @
-@@@@@@@  @@@@@           @@@@@</pre>
-</div>
 <div class="shot" id="s-netpbm">
 <h3>netpbm</h3>
 <p>A real netpbm pipeline: pgmramp makes a greyscale ramp, pgmtopbm dithers it to a bitmap, pbmtoascii renders that as text. The gradient is visible in the density of the characters.</p>
@@ -5663,7 +5877,7 @@ os9$</pre>
 </div>
 <div class="shot" id="s-netpbm-convert">
 <h3>netpbm-convert</h3>
-<p>Captured while running.</p>
+<p>A netpbm session at the shell: a ramp made, cut down with pnmcut, and identified at each step.</p>
 <pre>os9$ P=/dd/CMDS/NETPBM
 
 os9$ $P/pgmramp -lr 32 8 &gt; /dd/tmp/s.pgm

@@ -81,6 +81,105 @@ CAPTIONS = {
                  "prompt over it.", "entered"),
     "elvis":    ("Elvis 1.7 -- the best documented of this disk's three vi "
                  "editors -- displaying DOC/README-CIO.", "final"),
+    "advent":   ("Colossal Cave Adventure, at the well house where every "
+                 "player of it starts.", "final"),
+    "animal":   ("The guess-the-animal game, which learns a new question "
+                 "every time it loses.", "final"),
+    "back":     ("Backgammon, with the board drawn in characters.", "final"),
+    "banner":   ("banner, the letters made of their own initials.", "final"),
+    "beav":     ("beav, the binary editor, on a file of this disk's own "
+                 "documentation: hex on the left, characters on the right.",
+                 "final"),
+    "bio":      ("bio is BASIC09 I-code, not a 68000 module, and there is no "
+                 "runb on this disk -- so the shell says `cannot execute "
+                 "binary file'.", "final"),
+    "cal":      ("cal printing a month.  It wants flags -- -m for the months "
+                 "and -y for the year -- not two bare numbers.", "output"),
+    "cam":      ("cam computes camshaft timing: lift, duration and rocker "
+                 "ratio for an engine you describe to it.", "final"),
+    "card":     ("A Towers of Hanoi whose twelve disks spell out a Christmas "
+                 "message.", "final"),
+    "chess":    ("The 68k chess port asking how you want to play before it "
+                 "sets the board.", "final"),
+    "colortest": ("colortest wants G-Windows, which is not here, and says so "
+                  "rather than drawing anything: `Not a G-Windows sytem???' "
+                  "-- its own spelling.", "final"),
+    "crib":     ("Cribbage, offering its instructions first.", "final"),
+    "dclock":   ("dclock is another G-Windows program: it says so and stops. "
+                 "`digclk' is the clock that works on a terminal.", "final"),
+    "ed":       ("GNU ed cannot start here: it makes its temporary file at "
+                 "/r0, the RAM disk os9exec has no way to provide.", "final"),
+    "editor":   ("The GSHELL editor front end aborts on startup (E_PRCABT).",
+                 "final"),
+    "england":  ("The weather simulator set in England -- mid-Atlantic, and "
+                 "raining.", "final"),
+    "fortune":  ("fortune, reading the collection's own quotation file.",
+                 "final"),
+    "gnuan":    ("gnuan annotates a saved chess game move by move, using GNU "
+                 "Chess's opening book -- 9585 of its 12000 entries.",
+                 "final"),
+    "hexed":    ("hexed writes its work file to /r0 and stops when it cannot "
+                 "-- the RAM disk os9exec has no way to provide.", "final"),
+    "larn":     ("Larn: your daughter has a strange disease and the dungeon "
+                 "has the cure.  Fixed here -- its help, fortune and maze "
+                 "files were recovered from the 12.2p4 sources.", "final"),
+    "lissaj":   ("A Lissajous figure generator, drawing the curve two "
+                 "oscillators trace against each other.", "final"),
+    "logisim":  ("A logic-circuit simulator.  It wants a file describing the "
+                 "circuit; with none it prints its own syntax.", "final"),
+    "me":       ("me, a screen editor, showing DOC/README-CIO.", "final"),
+    "mg":       ("mg, the small emacs, showing the same file.", "final"),
+    "mines":    ("Minesweeper on a sixteen-by-sixteen board.", "final"),
+    "netpbm-convert": ("A netpbm session at the shell: a ramp made, cut down "
+                       "with pnmcut, and identified at each step.",
+                       "final"),
+    "nobs":     ("nobs, a cribbage variant, dealing its cards.", "final"),
+    "piano":    ("piano plays notes through the terminal bell; with no "
+                 "arguments it prints what it wants.", "final"),
+    "puz15":    ("The fifteen puzzle, drawn in a box.", "final"),
+    "pwgen":    ("A random password generator; its usage line is what it "
+                 "prints when given no length.", "final"),
+    "rpoem":    ("A random poem generator -- one of four SNOBOL4 programs "
+                 "here, with their data in GAMES/SNOBOL.", "final"),
+    "rstory":   ("A random story generator from the same SNOBOL4 shelf, "
+                 "writing roff input.", "final"),
+    "sokoban":  ("Sokoban: push the boxes onto the marks.  Without USER set "
+                 "it stops with `cannot get your username', which is why "
+                 "SYS/login sets it.", "final"),
+    "suicide":  ("An animation: a stick figure walks off a rooftop.",
+                 "final"),
+    "teachgammon": ("The backgammon tutor, which explains the rules and then "
+                    "plays a practice game against you.", "final"),
+    "tess":     ("Beyond The Tesseract, a text adventure of its own.",
+                 "final"),
+    "textb":    ("The Mandelbrot set in ASCII: it asks for a centre, a range "
+                 "and an iteration count.", "final"),
+    "today":    ("today prints the date, the time and the phase of the moon "
+                 "in words -- and gets the year right, which `date' does "
+                 "not.", "final"),
+    "touchtype": ("A typing tutor.", "final"),
+    "travesty": ("travesty makes a Markov chain of its input and writes new "
+                 "text from it.", "final"),
+    "tt":       ("Tetris for Terminals, a second Tetris beside `tet'.",
+                 "final"),
+    "ularn":    ("Ularn, the other Larn, choosing a character class.",
+                 "final"),
+    "VI":       ("The EFFO vi -- its source in SRC/effo_vi is the Berkeley "
+                 "ex source.", "final"),
+    "vi_cio":   ("vi as built against cio, showing DOC/README-CIO.", "final"),
+    "vi_nocio": ("PVic, the vi that needs no trap handler, on the same "
+                 "file.", "final"),
+    "view":     ("view, the read-only vi.", "final"),
+    "vis":      ("vis, a visual editor with its command line at the top.",
+                 "final"),
+    "wanderer": ("Wanderer: collect the diamonds, do not be crushed.",
+                 "final"),
+    "wish":     ("wish tells you what you would have wished for in hack.",
+                 "final"),
+    "world":    ("WORLD, a wilderness adventure -- its data tables are built "
+                 "by `convert' and `vtxtcn', both here.", "final"),
+    "zot":      ("zot echoes text `in interesting ways'; with no text it "
+                 "prints its options.", "final"),
     "hack":     ("hack, with the inventory open: a fighter starts with a two "
                  "handed sword in hand and ring mail worn. @ is you, d your "
                  "dog, G a gnome, $ gold, + a door.", "inventory"),

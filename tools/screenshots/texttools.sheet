@@ -45,6 +45,15 @@ wait    5
 run     /dd/CMDS/tcmp /dd/SYS/motd /dd/SYS/holidays
 wait    6
 
+shot    cookhash
+for     cookhash cookie strfile unstr fortune
+cap     The fortune machinery, both halves: cookhash builds the hash a
+cap     sayings file needs, and cookie reads one out of it.
+run     /dd/CMDS/cookhash -?
+wait    6
+run     /dd/CMDS/cookie
+wait    6
+
 shot    cookie
 cap     cookie, the fortune-cookie program, reading the collection's own
 cap     sayings file.
@@ -98,6 +107,17 @@ cap     page, the font changes and the character positions TeX computed.
 run     /dd/CMDS/TEXCMDS/dvitype small.dvi | /dd/CMDS/head -n 20
 wait    20
 
+shot    expand
+for     expand unexpand deton tabs autolf
+cap     Tabs to spaces and back again, with dump showing the bytes so the
+cap     change is visible rather than asserted.
+run     printf "a\tb\tc\n" > /dd/tmp/t2.txt
+wait    5
+run     /dd/CMDS/expand /dd/tmp/t2.txt | /dd/CMDS/dump
+wait    8
+run     /dd/CMDS/unexpand < /dd/tmp/t2.txt | /dd/CMDS/dump
+wait    8
+
 shot    fcomp
 cap     fcomp compares two text files line by line.
 run     /dd/CMDS/fcomp /dd/tmp/h1 /dd/tmp/h2
@@ -120,6 +140,16 @@ cap     letter they start with, then sort by that count.
 run     /dd/CMDS/gawk "{print substr(\$1,1,1)}" /dd/DOC/INDEX | /dd/CMDS/sort | /dd/CMDS/uniq -c | /dd/CMDS/sort -nr | /dd/CMDS/head -n 12
 wait    12
 
+shot    gep
+for     gep lgrep ggrep bmgtest bmgtest2 greg
+cap     Four more pattern matchers, each from a different decade: a global
+cap     expression parser, a line grep, GNU grep from sh_utils, and a
+cap     Boyer-Moore-Gosper demonstration.
+run     /dd/CMDS/lgrep chess /dd/DOC/INDEX | /dd/CMDS/head -n 6
+wait    8
+run     /dd/CMDS/ggrep -c chess /dd/DOC/INDEX
+wait    8
+
 shot    gothic
 cap     gothic sets a line in blackletter.  It asks where to write and
 cap     whether to halve the size before it draws.
@@ -141,17 +171,39 @@ run     /dd/CMDS/grep -c "" /dd/DOC/INDEX
 wait    4
 
 shot    ispell
-cap     ispell, the interactive spelling checker, offering corrections for
-cap     a line of deliberately bad spelling.
+for     ispell buildhash makelex
+cap     ispell listing the words it does not know out of a line of
+cap     deliberately bad spelling -- the -l form, which is what a script
+cap     uses.
 run     echo The quik brown foxx jmups over the lasy dog > /dd/tmp/sp.txt
-wait    2
-run     /dd/CMDS/ispell /dd/tmp/sp.txt
-wait    6
-quit    \033
+wait    5
+run     /dd/CMDS/ispell -l /dd/tmp/sp.txt
+wait    10
 
 shot    jargon
 cap     The Jargon File browser, looking up a word in its own database.
 run     /dd/CMDS/jargon foo
+wait    8
+
+shot    join
+for     join paste cut field
+cap     paste puts two files side by side and join matches them on a common
+cap     first field -- the relational pair.
+run     /dd/CMDS/head -n 5 /dd/SYS/holidays > /dd/tmp/j1
+wait    5
+run     /dd/CMDS/head -n 5 /dd/SYS/birthdays > /dd/tmp/j2
+wait    5
+run     /dd/CMDS/paste /dd/tmp/j1 /dd/tmp/j2
+wait    8
+
+shot    kwic
+for     pagefraz pagekwic pageline
+cap     The KWIC suite: a key-word-in-context index, the way a printed
+cap     concordance was made.  pageline numbers the lines, pagekwic splits
+cap     them to one phrase each, pagefraz pulls the phrases out.
+run     /dd/CMDS/head -n 12 /dd/SYS/holidays > /dd/tmp/k.txt
+wait    6
+run     /dd/CMDS/pageline /dd/tmp/k.txt | /dd/CMDS/head -n 12
 wait    8
 
 shot    latex
@@ -175,9 +227,27 @@ wait    2
 run     /dd/CMDS/nroff /dd/DOC/README-CIO | /dd/CMDS/head -n 21
 wait    10
 
+shot    pep
+for     pep ape eo qt cuts
+cap     pep is a file `detergent' -- it strips the junk out of a file using
+cap     the character tables in SYS/PEP.
+run     /dd/CMDS/pep -?
+wait    8
+
 shot    proff
 cap     proff, the portable roff, on one of its own macro-using documents.
 run     /dd/CMDS/proff /dd/SYS/motd
+wait    8
+
+shot    qsort9
+for     qsort9 nsort shuffle uniq unip
+cap     qsort9 sorts a file, and nsort sorts numerically -- the difference
+cap     shows on numbers wider than one digit.
+run     printf "10\n9\n100\n2\n" > /dd/tmp/n.txt
+wait    6
+run     /dd/CMDS/qsort9 < /dd/tmp/n.txt
+wait    8
+run     /dd/CMDS/nsort < /dd/tmp/n.txt
 wait    8
 
 shot    qt
@@ -244,6 +314,17 @@ wait    3
 run     /dd/CMDS/spiff /dd/tmp/s1 /dd/tmp/s2
 wait    5
 
+shot    split
+for     split splitalf sepwords unp fillup
+cap     split cuts a file into pieces; here it splits the holidays file and
+cap     ls shows what it wrote.
+run     /dd/CMDS/mkdir /dd/tmp/sp
+wait    5
+run     /dd/CMDS/split -l 6 /dd/SYS/holidays /dd/tmp/sp/part
+wait    8
+run     /dd/CMDS/ls -l /dd/tmp/sp
+wait    8
+
 shot    strfile
 cap     strfile builds the index that fortune reads, and unstr dumps an
 cap     index back to text -- the pair behind every fortune on this disk.
@@ -260,6 +341,15 @@ shot    subber
 cap     subber substitutes text in a stream, in the old ,old,new form.
 run     /dd/CMDS/cat /dd/SYS/motd | /dd/CMDS/subber ,os9exec,OS-9,
 wait    6
+
+shot    sum
+for     sum tail head tac
+cap     sum, the checksum every Unix had before md5, and head and tail
+cap     either end of the same file.
+run     /dd/CMDS/sum /dd/SYS/motd /dd/SYS/holidays
+wait    8
+run     /dd/CMDS/tail -n 4 /dd/SYS/holidays
+wait    8
 
 shot    tac
 cap     tac prints a file backwards, last line first.
@@ -292,6 +382,13 @@ shot    unip
 cap     unip numbers the unique lines of a file, uniq drops the repeats.
 run     /dd/CMDS/sepwords < /dd/DOC/README-CIO | /dd/CMDS/sort | /dd/CMDS/unip | /dd/CMDS/head -n 18
 wait    10
+
+shot    upperdir
+for     upperdir casefix
+cap     upperdir normalises case across a directory: files lower,
+cap     directories upper.  Shown here on a scratch copy, not on the disk.
+run     /dd/CMDS/upperdir -?
+wait    8
 
 shot    valspeak
 cap     valspeak, a filter with an attitude, given a file rather than a

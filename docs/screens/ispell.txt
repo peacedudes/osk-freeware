@@ -1,24 +1,9 @@
-                                                               3
+echo The quik brown foxx jmups over the lasy dog > /dd/tmp/sp.txt
+The
+quik
 
-
-
-
-
-
-
-
-
-
-                     S/ispell /dd/tmp/sp.txt/* about -- everything this collecti
-/dd/tmp/sp.txt/dd/CMD/* about -- everything this collection knows about one prog
-
-
-
-
-
-
-
-
- * text -- and to use it you had to know those five places existed and go and
-
-Unprogrammed Key
+Process   Pid: 3, ispell, edition 7
+    Exit code: E_PRCABT(228) Process Aborted
+  Directories: Current   - /dd
+               Execution - /dd/CMDS
+        Files: 00 fCons /term

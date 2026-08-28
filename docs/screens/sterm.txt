@@ -1,3 +1,7 @@
-/dd/CMDS/COMMS/xy
-Receiving...
-C
+/dd/CMDS/COMMS/tterm
+No MODEM port defined!
+Checking /dd/USR...OK!
+Checking /dd/USR/TTERM...Creating
+Checking /dd/USR/TTERM/tester.dial...Creating
+
+Directory and File structure is correct.

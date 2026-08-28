@@ -1,0 +1,14 @@
+/dd/CMDS/UUCP/uuclean -?
+
+uuclean: removed old UUCP files, rotate UUCP and FileServ log files
+Usage: uuclean [opts]
+
+Opts:   -nX     Remove those files over X days old (default is 7)
+        -ddir   Use this directory name
+        -v      Set verbose option on
+        -l      Do not rotate log files
+        -x      Set debug option on (files are not touched)
+
+v2.1 (94Sep30) This is free software released under the GNU General Public
+License.  Please send suggestions/bug reports to:  bob@kc2wz.bubble.org
+Usage: uupoll [-g<grade>] system

@@ -1,0 +1,9 @@
+/dd/CMDS/UUCP/rnews -?
+rnews [-x debug_level] [-n inital_newsgroup] [-z] newsfile
+subscribe: subscribe to Usenet newsgroups
+
+usage: subscribe <newsgroup> [newsgroup...]
+       if <newsgroup> is 'all', all newsgroups are subscribed to
+
+v2.1 (94Sep30) This is free software released under the GNU General Public
+License.  Please send suggestions/bug reports to:  bob@kc2wz.bubble.org
