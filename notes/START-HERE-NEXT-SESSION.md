@@ -120,6 +120,14 @@ interesting and it is not blocking anything.
 
 # What to work on, in order
 
+**THE PLAN IS `notes/PLAN-verification.md`.** Written 2026-08-27 at rdoggett's
+request. It sets the bar (every program PROVEN TO DO ITS JOB), splits the 834
+catalogued programs into four tiers by what would actually prove them, and
+gives an order and an estimate -- about fifteen working sessions, not a
+lifetime. The list below is what was open before that plan existed; the plan
+subsumes items 3, 5 and 6.
+
+
 1. ~~Make `-qm` the default for installed rebuilds.~~ **DONE 2026-08-27, and
    the REASON in this file was wrong.** `-qixm` does not fail because of our
    version skew. Re-measured against the SDK overlay, with the SDK's OWN `csl`
