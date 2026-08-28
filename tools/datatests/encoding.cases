@@ -1,0 +1,85 @@
+family  encoding
+# Encoders prove themselves BY ROUND TRIP: encode, decode, and require the
+# md5 of what comes back to equal the md5 of what went in. No reference file
+# is needed and the proof is complete.
+#
+# BUT A ROUND TRIP ALONE IS NOT ENOUGH, and `todos' below is why: a program
+# that does NOTHING round-trips perfectly. Every conversion here that should
+# alter its input also asserts that it DID.
+#
+# Subject: /dd/SYS/termcap, 963 bytes, shipped and never regenerated. Its md5
+# is the same here as on the host, which is worth knowing in itself -- this
+# disk's `md5' agrees with macOS's on the same bytes.
+setup   T=/dd/SYS/termcap
+
+case    md5-agrees-with-the-host
+run     /dd/CMDS/md5 $T
+expect  ee2c20fa226fe6fc78feec7f123c7a99
+
+case    btoa-atob-round-trip
+run     /dd/CMDS/btoa < $T > /dd/tmp/t.btoa
+run     /dd/CMDS/atob < /dd/tmp/t.btoa > /dd/tmp/t.back
+run     /dd/CMDS/md5 /dd/tmp/t.back
+expect  ee2c20fa226fe6fc78feec7f123c7a99
+
+case    btoa-really-encodes
+run     /dd/CMDS/md5 /dd/tmp/t.btoa
+absent  ee2c20fa226fe6fc78feec7f123c7a99
+
+# uuencode's own USAGE line reads `uuencode >outfile [infile] name' and is
+# MISLEADING: with two arguments it prints that usage and does nothing, and
+# with one it encodes that file. Measured 2026-08-27. 963 bytes in, 1393 out.
+case    uuencode-uudecode-round-trip
+run     /dd/CMDS/cp $T /dd/tmp/enc.src
+run     /dd/CMDS/uuencode /dd/tmp/enc.src > /dd/tmp/t.uu
+run     /dd/CMDS/uudecode /dd/tmp/t.uu
+run     /dd/CMDS/md5 /dd/tmp/enc.src
+expect  ee2c20fa226fe6fc78feec7f123c7a99
+
+case    uuencode-really-encodes
+run     /dd/CMDS/wc -c /dd/tmp/t.uu
+expect  1393
+
+# KNOWN FAILURE, found 2026-08-27. `todos' and `toos9' are NO-OPS. They take
+# a FILENAME and rewrite it in place (via todos.$$$.N, which they rename over
+# the original), and the file that comes out is BYTE-IDENTICAL to the one
+# that went in -- same size, same md5 -- on a CR-only OS-9 text file, which
+# is precisely what `todos' says it converts:
+#
+#   TODOS  Version UTIL 2.80 by DESIGNA VLT 03.08.98
+#   Converts TEXT-File from OS9-Format to DOS-Format
+#
+# Measured on /dd/SYS/termcap (963 bytes) and /dd/DOC/README-CIO (3886): both
+# unchanged in size and in md5. A DOS conversion must ADD a linefeed per line
+# and cannot leave the length alone.
+#
+# This case asserts what todos is FOR, so it fails. It is kept failing: the
+# round trip below it passes trivially precisely because neither program
+# does anything, which is the trap this file exists to demonstrate.
+case    todos-must-change-the-file
+run     /dd/CMDS/cp $T /dd/tmp/w.txt
+run     /dd/CMDS/todos /dd/tmp/w.txt
+run     /dd/CMDS/md5 /dd/tmp/w.txt
+absent  ee2c20fa226fe6fc78feec7f123c7a99
+
+case    todos-toos9-round-trip-passes-trivially
+run     /dd/CMDS/cp $T /dd/tmp/x.txt
+run     /dd/CMDS/todos /dd/tmp/x.txt
+run     /dd/CMDS/toos9 /dd/tmp/x.txt
+run     /dd/CMDS/md5 /dd/tmp/x.txt
+expect  ee2c20fa226fe6fc78feec7f123c7a99
+
+case    binhex-produces-hqx
+run     /dd/CMDS/binhex $T > /dd/tmp/t.hqx
+run     /dd/CMDS/wc -c /dd/tmp/t.hqx
+absent  963
+
+case    checksums-agree-with-each-other
+run     /dd/CMDS/sum $T
+run     /dd/CMDS/checksum $T
+run     /dd/CMDS/chksum $T
+expect  46801
+
+case    cvtbase-converts
+run     /dd/CMDS/cvtbase 255 16
+absent  usage

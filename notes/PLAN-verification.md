@@ -130,6 +130,26 @@ started.
     a dimensions check cannot see, found within an hour of having a check
     that could.
 
+**Step 2 continued: `tools/datatests/encoding.cases`, 10 cases, 9 passing.**
+btoa/atob and uuencode/uudecode round-trip exactly; the disk's `md5` agrees
+with the host's on the same bytes; `sum`, `checksum` and `chksum` agree with
+each other. Two more findings:
+
+  - **`todos` and `toos9` are NO-OPS** -- they rewrite a file in place and
+    the bytes are identical, on CR-only OS-9 text, which is what `todos`
+    says it converts. Kept as a failing case and documented in `DOC/INDEX`.
+    **This is the case that justifies the whole approach**: the round trip
+    `toos9(todos(x)) == x` PASSES, and passes precisely because neither
+    program does anything. A suite that only round-trips would have
+    certified them. The assertion that caught it is "todos must CHANGE the
+    file".
+  - **`uuencode`'s own usage message is wrong.** It prints
+    `uuencode >outfile [infile] name` and then fails with two arguments;
+    it works with one.
+  - `xcrypt` sets off the `No more memory !!!` storm from
+    `notes/os9exec-bugs/SRQMEM.md` and is left out of the suite until that
+    is settled.
+
 ## What this plan refuses to do
 
 - **No credit for "it printed something".** That is the bar that produced
