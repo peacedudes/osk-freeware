@@ -38,6 +38,10 @@ Script format (one directive per line, # comments ignored):
     minbytes 2000                   pass on RAW OUTPUT VOLUME instead of ink,
                                     for a screen animation that clears as it
                                     goes and is therefore blank at any instant
+    size    20 80                   drive and render at a NON-STANDARD window
+                                    size, to test what a program does when
+                                    the terminal is not the 80x24 its
+                                    termcap claims it is
     allow   trap handler            a COMPLAINT phrase to forgive for this
                                     program -- an editor showing a file full
                                     of error messages is not itself failing
@@ -73,7 +77,7 @@ MIN_INK = 8
 def parse(path):
     spec = {"name": os.path.basename(path).replace(".keys", ""),
             "prog": None, "setup": [], "acts": [], "expect": [], "absent": [],
-            "allow": [], "minbytes": 0, "rate": 0.6}
+            "allow": [], "minbytes": 0, "rate": 0.6, "size": (24, 80)}
     for raw in open(path):
         line = raw.split("#", 1)[0].strip()
         if not line:
@@ -86,6 +90,9 @@ def parse(path):
             spec["minbytes"] = int(rest)
         elif word == "rate":
             spec["rate"] = float(rest)
+        elif word == "size":
+            rows, cols = rest.split()
+            spec["size"] = (int(rows), int(cols))
         elif word == "setup":
             spec["setup"].append(rest)
         elif word == "wait":
@@ -171,7 +178,7 @@ def feed(spec, master, with_keys, cap=None, marks=None):
         time.sleep(2.0)
 
 
-def run(spec, image, with_keys, cap, marks=None, size=(24, 80)):
+def run(spec, image, with_keys, cap, marks=None):
     """Drive the program on a REAL PSEUDO-TERMINAL.
 
     This used to use a FIFO, and a FIFO is not a terminal. Programs that ask
@@ -183,11 +190,13 @@ def run(spec, image, with_keys, cap, marks=None, size=(24, 80)):
 
     A pty also lets the window size be SET, which matters because OS-9 has no
     way to ask for it: everything believes the 24x80 in the termcap entry, so
-    a mismatch with the real window is what makes `life' fall apart.
+    a mismatch with the real window is what makes `life' fall apart. The
+    `size' directive is how a script asks for that mismatch, and the render
+    grid is set to match it, so the capture is what a person would see.
     """
     env = dict(os.environ, OS9DISK=image)
     master, slave = pty.openpty()
-    rows, cols = size
+    rows, cols = spec["size"]
     fcntl.ioctl(slave, termios.TIOCSWINSZ,
                 struct.pack("HHHH", rows, cols, 0, 0))
 
@@ -242,8 +251,9 @@ def playtest(path, image, outdir):
     control = (run(spec, image, False, base + ".control.raw")
                if typed_keys >= 2 else b"")
 
-    ks = ansiscreen.render(keyed)
-    cs = ansiscreen.render(control)
+    rows, cols = spec["size"]
+    ks = ansiscreen.render(keyed, rows, cols)
+    cs = ansiscreen.render(control, rows, cols)
     open(base + ".screen.txt", "w").write(ks.text() + "\n")
     open(base + ".control.txt", "w").write(cs.text() + "\n")
 
@@ -255,7 +265,7 @@ def playtest(path, image, outdir):
     # worth publishing, is the one with the most on it.
     screens = [("final", ks)]
     for label, off in marks:
-        snap = ansiscreen.render(keyed[:off])
+        snap = ansiscreen.render(keyed[:off], rows, cols)
         open("%s.%s.txt" % (base, label), "w").write(snap.text() + "\n")
         screens.append((label, snap))
     # INK MEANS THE PROGRAM'S OWN OUTPUT, not the shell's. Any line holding

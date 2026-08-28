@@ -217,9 +217,23 @@ the CONTROL screen held a drawn board. The two differed, so "responds" was
 true and it passed. There is now a `starved` check: a keyed run that drew LESS
 than the control is a failure.
 
-**And it renders 80x24, so it CANNOT catch the terminal-size class** that
-rdoggett found in `life`. See the README-RUNNING section on this. A pty can
-set its size, so that test is now possible -- it has not been written yet.
+**The terminal-size class is now testable -- DONE 2026-08-27.** A `size ROWS
+COLS` directive sets both the pty's window size and the render grid, so a
+script can ask what a program does in a window that is not the 80x24 its
+termcap promises. `life` was the exemplar and it is now measured, not asserted:
+at 40x12 its status line is written straight through the middle of the board
+(`Gene@..@@@: 3`), and the mechanism is NOT scrolling -- it addresses line 24
+absolutely and a short terminal clamps that into the picture. The evidence is
+in `DOC/README-RUNNING`.
+
+`life.keys` now carries `expect Cycles every 8 generations.`, which is the
+assertion that sees it. **It was made to fail before it was believed**: the
+same script with `size 12 40` reports `missing=['Cycles every 8 generations.']`.
+
+**But the harness still scores a garbled screen as PASS unless a script asserts
+against it.** At 40x12 every generic check was happy -- it drew, it responded,
+no orphans. Only the `expect` caught it. Any other full-screen program wanting
+this coverage needs its own such assertion; there is no automatic detection.
 
 ## SNAKE STILL HANGS AT STARTUP ABOUT ONE RUN IN EIGHT
 

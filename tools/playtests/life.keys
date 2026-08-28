@@ -1,6 +1,13 @@
 name    life
 prog    /dd/CMDS/GAMES/life
-# Generic: does it draw, and does the screen change when keys arrive?
+# Does it draw, and does the screen change when keys arrive -- AND is the
+# status line intact?  That last one is the terminal-size check.  `life' puts
+# its status on the bottom row by absolute cursor address, so in a window
+# shorter than the 24 lines its termcap promises, the status lands INSIDE the
+# board and both are destroyed.  Measured 2026-08-27 at 40x12: the board read
+# `Gene@..@@@: 3' where the status crossed it.  This `expect' is what fails
+# when that happens; it is the only check here that can see the class of bug
+# rdoggett found by hand.
 rate    0.7
 wait    4
 snap    opening
@@ -8,3 +15,4 @@ wait    4
 snap    played
 key     \003
 wait    2
+expect  Cycles every 8 generations.
