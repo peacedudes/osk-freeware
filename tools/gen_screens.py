@@ -185,6 +185,15 @@ CAPTIONS = {
                  "dog, G a gnome, $ gold, + a door.", "inventory"),
 }
 
+# A play-test whose script is named for the SESSION rather than for one
+# program: what it illustrates has to be said, or the screen lands in
+# `Uncategorised' and hangs on no program's card.
+PLAYTEST_FOR = {
+    "netpbm":         ["pgmramp", "pgmtopbm", "pbmtoascii", "pnmfile"],
+    "netpbm-convert": ["pnmcut", "pnmfile", "pgmramp"],
+    "tet-speed":      ["tet"],
+}
+
 # The line drawing, folded to what a plain ASCII file can hold.
 FOLD = {0x2500: "-", 0x2501: "-", 0x2550: "=", 0x2502: "|", 0x2503: "|",
         0x2551: "|", 0x2591: "#", 0x2592: "#", 0x2593: "#", 0x2588: "#",
@@ -311,7 +320,7 @@ def collect():
             continue                       # nothing worth looking at
         caption = (meta["cap"] if meta
                    else CAPTIONS.get(name, ("",))[0]) or "Captured while running."
-        shows = meta["for"] if meta else [name]
+        shows = meta["for"] if meta else PLAYTEST_FOR.get(name, [name])
         cat = next((bycat[p] for p in shows if p in bycat),
                    bycat.get(name, ("Uncategorised", "")))
         out.append({"name": name, "cap": caption, "screen": screen,

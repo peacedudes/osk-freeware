@@ -41,7 +41,7 @@ the terminal stream that came back was rendered into the grid a vt100 would
 have shown. Nothing here is mocked up &mdash; where a program failed, its
 failure is what you see. <a class="back" href="index.html">Back to the
 catalogue</a>.</p>
-<p class="toc"><a href="#shells">Shells</a> <a href="#editors">Editors</a> <a href="#text-tools">Text tools</a> <a href="#files-directories">Files &amp; directories</a> <a href="#developer-tools">Developer tools</a> <a href="#compilers-build">Compilers &amp; build</a> <a href="#languages">Languages</a> <a href="#archives-compression">Archives &amp; compression</a> <a href="#encoding-conversion">Encoding &amp; conversion</a> <a href="#communications">Communications</a> <a href="#graphics-images">Graphics &amp; images</a> <a href="#games">Games</a> <a href="#screen-toys">Screen toys</a> <a href="#amusements">Amusements</a> <a href="#system-modules">System &amp; modules</a> <a href="#disk-dos">Disk &amp; DOS</a> <a href="#time-calendar">Time &amp; calendar</a> <a href="#maths-calculators">Maths &amp; calculators</a> <a href="#printing">Printing</a> <a href="#documentation">Documentation</a> <a href="#uncategorised">Uncategorised</a> <a href="#system-kernel">System &amp; kernel</a></p>
+<p class="toc"><a href="#shells">Shells</a> <a href="#editors">Editors</a> <a href="#text-tools">Text tools</a> <a href="#files-directories">Files &amp; directories</a> <a href="#developer-tools">Developer tools</a> <a href="#compilers-build">Compilers &amp; build</a> <a href="#languages">Languages</a> <a href="#archives-compression">Archives &amp; compression</a> <a href="#encoding-conversion">Encoding &amp; conversion</a> <a href="#communications">Communications</a> <a href="#graphics-images">Graphics &amp; images</a> <a href="#games">Games</a> <a href="#screen-toys">Screen toys</a> <a href="#amusements">Amusements</a> <a href="#system-modules">System &amp; modules</a> <a href="#disk-dos">Disk &amp; DOS</a> <a href="#time-calendar">Time &amp; calendar</a> <a href="#maths-calculators">Maths &amp; calculators</a> <a href="#printing">Printing</a> <a href="#documentation">Documentation</a> <a href="#system-kernel">System &amp; kernel</a></p>
 <h2 class="cat" id="shells">Shells</h2>
 <div class="shot" id="s-bash">
 <h3>bash</h3>
@@ -3085,6 +3085,39 @@ P6
 <p>A Lissajous figure generator, drawing the curve two oscillators trace against each other.</p>
 <pre>Lissajous pattern generator (PD)1990 Russell Hoffman</pre>
 </div>
+<div class="shot" id="s-netpbm">
+<h3>netpbm</h3>
+<p>A real netpbm pipeline: pgmramp makes a greyscale ramp, pgmtopbm dithers it to a bitmap, pbmtoascii renders that as text. The gradient is visible in the density of the characters.</p>
+<pre>os9$ P=/dd/CMDS/NETPBM
+
+os9$ $P/pgmramp -lr 48 12 &gt; /dd/tmp/r.pgm
+os9$ $P/pgmtopbm $P/../../tmp/r.pgm &gt; /dd/tmp/r.pbm
+os9$ $P/pnmfile /dd/tmp/r.pgm /dd/tmp/r.pbm
+/dd/tmp/r.pgm:  PGM raw, 48 by 12  maxval 255
+/dd/tmp/r.pbm:  PBM raw, 48 by 12
+os9$ $P/pbmtoascii /dd/tmp/r.pbm
+MMMMMMMMMMM"M"M"oMo"oM"o"o M o" o o "
+MMMMMMoMMoM"M"Mo"oM"oo"o"o"o M "o o" " "   o
+MMMMM"MoMMM"M"oMM Mo"oM M M o" o o o"  " o
+MMMMMMMMoM"M"MoMoM"o"o"o"o"o" M "  o " o
+MMMMMoMM"MM"MoMo"oM"o"o"o"o M o"o" o "   "  "
+MMMMM"MM"MoMMoMo"M M"oM M M o"o o" o " o  o
+os9$</pre>
+</div>
+<div class="shot" id="s-netpbm-convert">
+<h3>netpbm-convert</h3>
+<p>A netpbm session at the shell: a ramp made, cut down with pnmcut, and identified at each step.</p>
+<pre>os9$ P=/dd/CMDS/NETPBM
+
+os9$ $P/pgmramp -lr 32 8 &gt; /dd/tmp/s.pgm
+os9$ $P/pnmcut 0 0 16 4 /dd/tmp/s.pgm &gt; /dd/tmp/c.pgm
+os9$ $P/pnmtile 64 16 /dd/tmp/s.pgm &gt; /dd/tmp/t.pgm
+os9$ $P/pnmfile /dd/tmp/s.pgm /dd/tmp/c.pgm /dd/tmp/t.pgm
+/dd/tmp/s.pgm:  PGM raw, 32 by 8  maxval 255
+/dd/tmp/c.pgm:  PGM raw, 16 by 4  maxval 255
+/dd/tmp/t.pgm:  PGM raw, 64 by 16  maxval 255
+os9$</pre>
+</div>
 <div class="shot" id="s-pbmclean">
 <h3>pbmclean</h3>
 <p>pbmclean removes lone pixels from a bitmap -- run here over dithered noise, which is nothing but lone pixels.</p>
@@ -4716,6 +4749,32 @@ Scenario and instructions?</pre>
               |    RRR   |         |                           |
               |    R OO  |         |                           |
               |      OO  |         |                           |
+              `----------'         `---------------------------'</pre>
+</div>
+<div class="shot" id="s-tet-speed">
+<h3>tet-speed</h3>
+<p>The same board photographed 3 seconds into a game. Pieces fall at about 1.5 seconds a cell.</p>
+<pre>              .----------.                .----------.
+              |          |                |  .0....  |
+              |          |                `----------'
+              |          |
+              |     OO   |         .---------------------------.
+              |     OO   |         |                           |
+              |          |         |      ..   Menu   ..       |
+              |          |         |                           |
+              |          |         |   h     .... high scores  |
+              |          |         |   b     .... toggle beep  |
+              |          |         |   p     .... play         |
+              |          |         |   q     .... quit         |
+              |          |         |                           |
+              |          |         | s or j  .... move left    |
+              |          |         | d or k  .... rotate piece |
+              |          |         | f or l  .... move right   |
+              |          |         |  spc    .... fall piece   |
+              |          |         |  esc    .... pause        |
+              |          |         |                           |
+              |          |         | LATEST: allow concurrent  |
+              |          |         |    high score setting     |
               `----------'         `---------------------------'</pre>
 </div>
 <div class="shot" id="s-tt">
@@ -6956,66 +7015,6 @@ for
 
 
 here:</pre>
-</div>
-<h2 class="cat" id="uncategorised">Uncategorised</h2>
-<div class="shot" id="s-netpbm">
-<h3>netpbm</h3>
-<p>A real netpbm pipeline: pgmramp makes a greyscale ramp, pgmtopbm dithers it to a bitmap, pbmtoascii renders that as text. The gradient is visible in the density of the characters.</p>
-<pre>os9$ P=/dd/CMDS/NETPBM
-
-os9$ $P/pgmramp -lr 48 12 &gt; /dd/tmp/r.pgm
-os9$ $P/pgmtopbm $P/../../tmp/r.pgm &gt; /dd/tmp/r.pbm
-os9$ $P/pnmfile /dd/tmp/r.pgm /dd/tmp/r.pbm
-/dd/tmp/r.pgm:  PGM raw, 48 by 12  maxval 255
-/dd/tmp/r.pbm:  PBM raw, 48 by 12
-os9$ $P/pbmtoascii /dd/tmp/r.pbm
-MMMMMMMMMMM"M"M"oMo"oM"o"o M o" o o "
-MMMMMMoMMoM"M"Mo"oM"oo"o"o"o M "o o" " "   o
-MMMMM"MoMMM"M"oMM Mo"oM M M o" o o o"  " o
-MMMMMMMMoM"M"MoMoM"o"o"o"o"o" M "  o " o
-MMMMMoMM"MM"MoMo"oM"o"o"o"o M o"o" o "   "  "
-MMMMM"MM"MoMMoMo"M M"oM M M o"o o" o " o  o
-os9$</pre>
-</div>
-<div class="shot" id="s-netpbm-convert">
-<h3>netpbm-convert</h3>
-<p>A netpbm session at the shell: a ramp made, cut down with pnmcut, and identified at each step.</p>
-<pre>os9$ P=/dd/CMDS/NETPBM
-
-os9$ $P/pgmramp -lr 32 8 &gt; /dd/tmp/s.pgm
-os9$ $P/pnmcut 0 0 16 4 /dd/tmp/s.pgm &gt; /dd/tmp/c.pgm
-os9$ $P/pnmtile 64 16 /dd/tmp/s.pgm &gt; /dd/tmp/t.pgm
-os9$ $P/pnmfile /dd/tmp/s.pgm /dd/tmp/c.pgm /dd/tmp/t.pgm
-/dd/tmp/s.pgm:  PGM raw, 32 by 8  maxval 255
-/dd/tmp/c.pgm:  PGM raw, 16 by 4  maxval 255
-/dd/tmp/t.pgm:  PGM raw, 64 by 16  maxval 255
-os9$</pre>
-</div>
-<div class="shot" id="s-tet-speed">
-<h3>tet-speed</h3>
-<p>The same board photographed 3 seconds into a game. Pieces fall at about 1.5 seconds a cell.</p>
-<pre>              .----------.                .----------.
-              |          |                |  .0....  |
-              |          |                `----------'
-              |          |
-              |     OO   |         .---------------------------.
-              |     OO   |         |                           |
-              |          |         |      ..   Menu   ..       |
-              |          |         |                           |
-              |          |         |   h     .... high scores  |
-              |          |         |   b     .... toggle beep  |
-              |          |         |   p     .... play         |
-              |          |         |   q     .... quit         |
-              |          |         |                           |
-              |          |         | s or j  .... move left    |
-              |          |         | d or k  .... rotate piece |
-              |          |         | f or l  .... move right   |
-              |          |         |  spc    .... fall piece   |
-              |          |         |  esc    .... pause        |
-              |          |         |                           |
-              |          |         | LATEST: allow concurrent  |
-              |          |         |    high score setting     |
-              `----------'         `---------------------------'</pre>
 </div>
 <h2 class="cat" id="system-kernel">System &amp; kernel</h2>
 <div class="shot" id="s-modules2">
