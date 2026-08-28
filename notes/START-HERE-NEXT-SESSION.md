@@ -58,10 +58,24 @@ Do not stop between items to report; commit and start the next one.
    then cannot move it into place. The reason is measured and in DOC/STATUS:
    this C library has neither `rename()` nor `link()`.
 
-**3. Re-sweep with `load`** (step 0 of the plan, still not done). Every sweep
-   this collection has ever run loaded NO modules, so every program that
-   links a library was recorded on a condition that cannot occur on a real
-   system. Until this is redone `DOC/STATUS` overstates what is broken.
+**3. ~~Re-sweep with `load`.~~ DONE 2026-08-28** -- `tools/sweep_loaded.sh`,
+   table in `notes/verify-loaded.tsv`, written up in `DOC/STATUS` under RUN
+   THE WAY A PERSON RUNS IT. Every file under CMDS, each from bash, with the
+   environment `SYS/login` sets and `os9lib`, `graph` and `Ptxm` loaded.
+   **It is one stage of four**, so no percentage comes off it; what it is for
+   is the DELTA against the bare sweep. Five programs came alive for the load
+   (the RTF Fortran set), seven for the environment, seven moved from "wants
+   a trap handler" to "crashes inside it" (the Atari GRAPH group, confirming
+   what DOC/STATUS had inferred), and 23 stopped being scored as programs at
+   all -- they are modules, drivers and shell scripts.
+
+   **Its first run was wrong and the reason is worth keeping**: bash answers
+   `cannot execute binary file` for a trap module, and the classifier counted
+   that as the program printing something -- thirty false OKs. A shell in the
+   path means its complaints have to be recognised as its own.
+
+   Still to do here: stage 2 (the filters pass) has not been re-run this way,
+   and 272 SILENT programs are mostly filters that print nothing at EOF.
 
 ## How to run the three test harnesses
 
