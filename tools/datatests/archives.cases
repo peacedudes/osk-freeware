@@ -1,0 +1,72 @@
+family  archives
+# Archivers and compressors prove themselves BY ROUND TRIP: pack, unpack,
+# and require the md5 of what comes back to equal the md5 of what went in.
+# Subject: /dd/SYS/termcap, 963 bytes, md5 ee2c20fa226fe6fc78feec7f123c7a99.
+setup   T=/dd/SYS/termcap
+
+case    compress-round-trip
+run     /dd/CMDS/compress -c < $T > /dd/tmp/z.Z
+run     /dd/CMDS/compress -dc < /dd/tmp/z.Z > /dd/tmp/z.out
+run     /dd/CMDS/md5 /dd/tmp/z.out
+expect  ee2c20fa226fe6fc78feec7f123c7a99
+
+case    compress-really-compresses
+run     /dd/CMDS/wc -c /dd/tmp/z.Z
+expect  631
+
+case    gzip-round-trip
+run     /dd/CMDS/gzip -c < $T > /dd/tmp/g.gz
+run     /dd/CMDS/gzip -dc < /dd/tmp/g.gz > /dd/tmp/g.out
+run     /dd/CMDS/md5 /dd/tmp/g.out
+expect  ee2c20fa226fe6fc78feec7f123c7a99
+
+case    gzip-really-compresses
+run     /dd/CMDS/wc -c /dd/tmp/g.gz
+expect  553
+
+case    gzip-reads-what-compress-wrote
+run     /dd/CMDS/gzip -dc < /dd/tmp/z.Z > /dd/tmp/zg.out
+run     /dd/CMDS/md5 /dd/tmp/zg.out
+expect  ee2c20fa226fe6fc78feec7f123c7a99
+
+# tar stores the pathname it was GIVEN and does not strip a leading slash,
+# so `tar xf' writes back to the absolute path. Measured 2026-08-27.
+case    tar-round-trip
+run     /dd/CMDS/cp $T /dd/tmp/tarme.txt
+run     /dd/CMDS/tar cf /dd/tmp/t.tar /dd/tmp/tarme.txt
+run     /dd/CMDS/rm /dd/tmp/tarme.txt
+run     /dd/CMDS/tar xf /dd/tmp/t.tar
+run     /dd/CMDS/md5 /dd/tmp/tarme.txt
+expect  ee2c20fa226fe6fc78feec7f123c7a99
+
+case    tar-lists-what-it-stored
+run     /dd/CMDS/tar tvf /dd/tmp/t.tar
+expect  963
+expect  tarme.txt
+
+case    zoo-adds-and-lists
+run     /dd/CMDS/zoo a /dd/tmp/a.zoo $T
+run     /dd/CMDS/zoo l /dd/tmp/a.zoo
+expect  963
+expect  1 file
+
+case    booz-reads-a-zoo
+run     /dd/CMDS/booz -l /dd/tmp/a.zoo
+absent  error
+
+# KNOWN FAILURE, found 2026-08-27. Info-ZIP `zip' deflates correctly and then
+# CANNOT PUT THE RESULT ANYWHERE. It writes a temporary (_Z000003), fails to
+# rename it over the target, and says so:
+#
+#   adding dd/SYS/termcap (deflated 44%)
+#   zip warning: new zip file left as: _Z000003
+#   zip error: file not found
+#   zip error: Could not create output file (was replacing the original zip file)
+#
+# Reproduced writing into /dd/tmp and into /dd, so it is not one bad
+# directory. The deflate works; only the finalising rename fails. `unzip'
+# cannot be judged until there is an archive for it to read -- use zoo, tar
+# or gzip meanwhile. Kept failing on purpose.
+case    zip-cannot-write-its-archive
+run     /dd/CMDS/zip /dd/tmp/a.zip $T
+absent  Could not create output file

@@ -150,6 +150,20 @@ each other. Two more findings:
     `notes/os9exec-bugs/SRQMEM.md` and is left out of the suite until that
     is settled.
 
+**Step 2 continued: `tools/datatests/archives.cases`, 10 cases, 9 passing.**
+`compress`, `gzip`, `tar` and `zoo` all round-trip a file exactly, and gzip
+reads what compress wrote. One more finding:
+
+  - **Info-ZIP `zip` cannot write its archive.** It deflates correctly, writes
+    a temporary `_Z000003`, then fails to rename it over the target:
+    `zip error: Could not create output file`. Reproduced into `/dd/tmp` and
+    into `/dd`, so it is not one bad directory. `unzip` therefore has nothing
+    fresh to read and is untested. Documented in `DOC/INDEX`; kept failing.
+
+**Tally for the day: three suites, 62 cases, 59 passing, and every one of the
+three failures is a real defect in a shipped program that no previous check on
+this disk could see.** Nine more programs were repaired outright.
+
 ## What this plan refuses to do
 
 - **No credit for "it printed something".** That is the bar that produced
