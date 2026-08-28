@@ -1,23 +1,23 @@
 ppmpat -madras 150 44 | ppmtopgm | pgmtopbm | pbmtoascii
-M"M"MM M"o"M Mo"M"M"MoM M M""M"MoM Mo"oM M"o"o"o"M M"M M"o"M"M"MM M"o"o"o"oMM"Mo
-"o"o"o"o "o "o "o"o"o" o "  Mo"o"o"o "o " o" o" o" o o" o" "o"o"oo o o " o o""oo
-MoMoMooo"ooo"oo"oMoMoMoo"o"ooMoMoM oo"oo"oo"oo"oo"oo"oo"oo"MoMoMooo M o"o oM"Mo"
-"oM"o"o" M "o"o""oM"o"o "o" "oM"oM"o"o"o"o"o"o"o"o"o"o" M "M M"oM " M "o"" "M"o"
-MoMo"Mo"oo"oo"o"MoMoM"oo"oo"MoMoMoooM ooM ooM oooo"ooo"oo"o"MoMoMo"oo"oo"o"MoMo"
-M M""M "o"" "o" M M""M " " "o"o"o"o "o" "o" " "o" "o" ""o"""M M M " o" o" ""o"M"
-o"o"M o" o" "o "o"o"M o" "  M"o"oM " o" " o"o" o" " o" "o "o"o"M o" o " o" "o"oo
-"o"o"oo" o" "  M M M M o" " "o"o"o" "o "o"  o" o" "o "o o" "o"o"o o"  " o ""o"o"
-MoMoMoooM oMo"ooMoMoMoo M M MoMoMo"o"oo"oo"oo"oo"o"oo"ooo"oMoMoM"oo M M oo"MoMoo
-M M"oM o"" o"" o"M M"M M "o""oM"oM" M "o"o"o""o"" M M M "o"oM"oM"o" M "o" "o"M o
-M Mo"o"o" M "o" M Mo"oo "o ""o"o"o"o" "o o" o"o M o" o M o"o"oM M o" o" o" M"o""
-MM"M"Mo"oMo"M M"MM"M"Mo"o"o"M"MM"Mo""M"o"oM"oM Mo"oM"oM Mo"M"MoMMo"o"o""o""M"M""
- M"o"oo"o o"o" o"o"M M o" o""o"oM M "o M o "o "o "o "o "o "oM M M o" o" o" M"oM"
-MoMMoM ooM ooM Mo"MoMoo M o"MoMoM"oo"ooo"o"oo"oo"oo"oo"oo"oMo"MoM oo"o M o"oMo"o
-M M M"" o"" " "o"M"o"M "o" "M M"""o" M "" M ""o"" ""o"" "" M""M M" " "" " "M""""
-o"o"oM "o M "o" "o"o"o" o " o"o"M" o"  M " o" o M "o o" M " M"o"o" " " " "o M"M"
-M M M "o o "o "o"oM Mo " o" "o"o"o" o" o" " o" o "o o" " o""o"o"o" " " "o o"o"o"
-oMoMoMooo"ooo"o MoMoMoM ooo"MoMoMo"oo"oo"o"oo"oo"oooo"o"oooMoMoMoM M M ooo MoMoo
-M"oM"o" "o"o""o""oM Mo" "o "M M"oM"o""o""o"o"o"o" M ""o"o" "M M"o" M "o" " M"o"M
-oMoMoMo"ooM oM M"oMoMoM M o"oMoMo"oo"oo"oo"ooo"o"oo"o"oo"o"MoMMoM M o"oo"o"oMMoo
-"o"M M M "o" "o""M M M "o" "M M""M "o" M "o" "o"" "" M "o""o"o""M "o" " M ""o"o"
-M M Mo o" o" " o"o"o"oo"  " "o"o"o"o o" o" o" o" M "o "o o" M M"o "  "o o ""o"o"
+"M"M"Mo"M"oM"o"oM"MM"Mo"oM"oM"MM"M"oM"oM"o"M"o"M"oM"oM"oM"oMM"MoM"oM"oMo"oM"M"Mo
+Mo"M M M M o"o"o"oM Mo"o o"o"M Mo"o" M o"o"o"o"o"o M o"o M oM"o"o"o "o o" o"M Mo
+o"MoM"ooMo"o"oM MoMoMo"o"oooMoMoMM Mo"o"o"o"ooMo"o"o"oM Mo"oMo"Mo"o"ooM M Mo"Moo
+M"Mo"Mo"o""oM M""o"oM"o"o"o Mo"oM"M M""M M""o"o"M M""o"M M""oM"M"o"M o""o"o"M"oo
+MoMoMoM Mo"ooMo"M"MoMM M M Mo"MoMoMo"oM Mo"oMo"o"o"oMo"o"o"Mo"MoM M M Mo"o"Mo"Mo
+"o"oM"o""o""o"o"M"M M"o""o"o"M"o"o"o""o"M M M M"""" M M""M M"M"oM"o""o"o"" M"M"o
+M"oM M M M M M o"oM Mo" M "o"oM"oM M M o"o"o" M M"" M o"oo"oM Mo"o M o"o"" M Mo"
+oM M"o"o"o"o M M Mo"oM M "o Mo"o"o"o" M M "o"o"o"o""o"o"o M M Mo"o" o" o"o""o"o"
+o"MoMo"ooMo"o"o"oMoMoMooM M Mo"MoMo"oM M Mo"ooM M Mo"ooM Mo"MoMoM Mo"o"o"o"Mo"MM
+"M"o"M"o"o""""o"Mo"oMo"o"o"""M"M Mo"M M""o"M M M"o"o"o"o"o"M"o"M"o"o""o""o"M"M"o
+"M"o"M M M M""o"oM"oM M "o"""o"M"o"o"o"o"o"o"o"o"o"o"o"o"o"o"M"o"o"o"o"o"o"o"M""
+MM"M"MoM"oM"M"o"MoMMoM"oM"o"MM"M"MoM"oM"oM"o"Mo"Mo"M"oM"Mo"MM"M"Mo"oM Mo"oM"M"M"
+o"M"o"oo"oo"o"o"o"o"o"o"o"o"oM"oMo M M M M M M M M M M M M Mo"M"o"o" M o"o M"oM"
+"MoM"Moo"oM Mo"oMM"M"M oM M Mo"MoM"o"oM Mo"oM Mo"oM Mo"oM Mo"MoMM M Mo"o"o"MoMoM
+M"o"M"o""o""o"M M""M""M "o""M""M M""o"o""o""o""o""o""o"o""o"M"oM""o"o""o""o"oM""
+"oM"o"o"o"o"o" M M"o"M M o"o"oM"oM M M M M M M M M M M M M Mo"oM M o"o" M o"oM "
+"o"oM"o" M "o"o"o"M Mo" o"o Mo"o"o"o"o" M "o"o" M "o"o" M M M Mo"o" o"o" "o"o"o"
+MoMoMo"oM Mo"o"o"MoMoMoM oM Mo"MoMo"ooMoM Mo"o"oM Mo"o"oM Mo"MoMo"o"oo"oM Mo"MoM
+"oMo"M"o"M M"""oM"oMo"o"o"o""M"M Mo"o"o"o"M M""o""o""o"M M""M"oM"M M M M M M"Moo
+MoMo"Mo"oM Mo"M M"oMoMo"o"o"MoM"MoM Mo"oM Mo"oMo"Mo"M Mo"o"MoMoMo"o"o"o"o"o"Mo"o
+M M"M"o"o"M M"""""M Mo""o"o""o"M"o""o""o""o""o"o"o""o""o"M Mo"oM""o""o""o""M""Mo
+"o"oM M M o"o""o"Mo"oM "o M M"o"oM M M M M M M M M M M M o"o"M Mo" M o"o" M M"o"

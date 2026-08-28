@@ -1,0 +1,7 @@
+giftopnm /dd/DEMO/gulls.gif > /dd/tmp/g.ppm
+Bogus data in PPM file
+Not a JPEG file
+Not a JPEG file
+-rw-rw-rw-   1 0        0           43008 Aug 27 21:23 /dd/DEMO/gulls.gif
+-rw-rw-rw-   1 0        0               0 Aug 27 21:27 /dd/tmp/g.jpg
+-rw-rw-rw-   1 0        0          192015 Aug 27 21:27 /dd/tmp/g.ppm

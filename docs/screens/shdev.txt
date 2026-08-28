@@ -1,0 +1,10 @@
+/dd/CMDS/shdev
+Device       Fmgr      Driver      Capabilities
+-----------------------------------------------
+Device name   : /dd
+Volume name   : "OSK-Freeware"
+Creation date : 2026-8-27 21:18
+Capacity      : 259072 KBytes (1036288 sectors, 100.00%)
+Free          : 132057 KBytes (528228 sectors, 50.97%) in 3 Blocks
+Used          : 127015 KBytes (508060 sectors, 49.03%)
+Largest block : 132052 KBytes (528208 sectors, 50.97%)

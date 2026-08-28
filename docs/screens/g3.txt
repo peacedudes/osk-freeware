@@ -1,3 +1,7 @@
 pbmtog3 /dd/tmp/base.pbm > /dd/tmp/t.g3
-stdin:  PBM raw, 48 by 24
-stdin:  PBM raw, 48 by 24
+pbmtog3: /dd/tmp/base.pbm -
+g3topbm: EOF / read error at line 0
+pnmfile: EOF / read error reading magic number
+pbmtogem: /dd/tmp/base.pbm -
+gemtopbm: EOF / read error
+pnmfile: EOF / read error reading magic number

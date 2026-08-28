@@ -2,21 +2,21 @@
                                                                   Snow
 Year   1    Weather        Sky   Temperature    Precip      Wind  Depth  Notes
 Rat
-   1          Clear      Clear  Chilly ( 25)      None     Light         Shinto)
-   2          Clear      Clear  Chilly ( 30)      None     Brisk         New Ye)
-   3  Precipitation       Mist  Chilly ( 30)  Sprinkle     Light   0.1"  Snow -)
-   4          Clear      Clear    Fair ( 45)      None      Calm         New Ye)
-   5          Clear      Clear    Fair ( 40)      None      Calm         New Ye)
-   6          Clear      Clear  Chilly ( 30)      None      Calm         New Ye)
-   7          Clear      Clear  Chilly ( 35)      None     Brisk
-   8          Clear      Clear    Fair ( 45)      None     Light         Buddhi,
-   9          Clear      Clear    Fair ( 40)      None      Calm
-  10          Clear      Clear  Chilly ( 35)      None     Light
-  11  Precipitation     Cloudy    Fair ( 40)    Shower     Light         Rain -,
-  12  Precipitation  Heavy Fog  Chilly ( 25)    Shower     Brisk   1.0"  Snow -,
-  13          Clear      Clear    Fair ( 40)      None      Calm
-  14          Clear      Clear  Chilly ( 30)      None      Calm
-  15          Clear      Clear    Fair ( 40)      None     Light         Full M,
+   1          Clear      Clear  Chilly ( 30)      None      Calm         Shinto)
+   2  Precipitation       Mist    Fair ( 40)    Shower     Light         Rain -)
+   3  Precipitation       Mist    Fair ( 40)    Steady      Calm         Rain -)
+   4          Clear      Clear    Fair ( 45)      None     Light         New Ye)
+   5          Clear      Clear    Fair ( 40)      None     Light         New Ye)
+   6          Clear      Clear    Fair ( 40)      None      Calm         New Ye)
+   7          Clear      Clear    Fair ( 60)      None      Calm
+   8          Clear      Clear    Fair ( 40)      None      Calm         Buddhi,
+   9          Clear      Clear    Fair ( 55)      None     Light
+  10          Clear      Clear    Fair ( 40)      None     Light
+  11          Clear      Clear  Chilly ( 35)      None      Calm
+  12          Clear      Clear    Fair ( 45)      None     Light
+  13       Overcast  Light Fog    Fair ( 45)      None     Light
+  14          Clear      Clear    Fair ( 40)      None     Brisk
+  15          Clear      Clear  Chilly ( 25)      None      Calm         Full M,
   16          Clear      Clear    Fair ( 40)      None      Calm
-  17  Precipitation       Mist    Fair ( 45)  Sprinkle  Blustery         Rain -,
-  18          Clear      Clear    Fair ( 55)      None     Brisk         Buddhi,
+  17          Clear      Clear    Fair ( 50)      None      Calm
+  18          Clear      Clear    Fair ( 40)      None      Calm         Buddhi,

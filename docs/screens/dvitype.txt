@@ -1,3 +1,21 @@
-/dd/CMDS/TEXCMDS/dvitype small.dvi | /dd/CMDS/head -n 20
-This is DVItype, C Version 3.4
-Output level (default=4, ? for help):
+529: setchar110 h:=4969826+364090=5333916, hh:=337
+530: right2 -18205 h:=5333916-18205=5315711, hh:=336
+533: setchar116 h:=5315711+254863=5570574, hh:=352
+534: setchar115 h:=5570574+258503=5829077, hh:=368
+535: setchar46 h:=5829077+182045=6011122, hh:=380
+[beautiful documents.]
+536: pop
+level 1:(h=0,v=10312579,w=0,x=0,y=786432,z=0,hh=0,vv=653)
+537: down3 4762500 v:=10312579+4762500=15075079, vv:=955
+541: putrule height 26214, width 30785863 (2x1950 pixels)
+550: pop
+level 0:(h=0,v=42152922,w=0,x=0,y=0,z=0,hh=0,vv=2670)
+551: down3 1572864 v:=42152922+1572864=43725786, vv:=2770
+555: push
+level 0:(h=0,v=43725786,w=0,x=0,y=0,z=0,hh=0,vv=2770)
+556: right4 15229091 h:=0+15229091=15229091, hh:=965
+561: setchar49 h:=15229091+327681=15556772, hh:=986
+[ 1]
+562: pop
+level 0:(h=0,v=43725786,w=0,x=0,y=0,z=0,hh=0,vv=2770)
+563: eop

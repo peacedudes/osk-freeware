@@ -100,11 +100,46 @@ cap     four bytes are the sync $4AFC and the module's size.
 run     /dd/CMDS/dump /dd/CMDS/today | /dd/CMDS/head -n 16
 wait    5
 
+shot    tex
+for     tex virtex initex texidx
+cap     TeX itself, typesetting Knuth's own sample story out of
+cap     SYS/TEX/SAMPLES: it loads the plain format, sets the page and writes
+cap     a DVI file.  Note that it is `virtex' being run, not `tex' -- the
+cap     `tex' wrapper forks `virtex' by bare name, and OS-9 resolves a fork
+cap     against the EXECUTION directory rather than PATH, so from /dd/CMDS
+cap     it cannot find it.  Run virtex yourself, or copy it up.
+run     virtex "&plain" /dd/SYS/TEX/SAMPLES/story.tex
+wait    40
+send    \134end\r
+wait    20
+
+shot    latex
+for     latex slitex
+cap     LaTeX is the same program with a different format loaded: `&lplain'
+cap     rather than `&plain'.  Here it sets the sample LaTeX document that
+cap     ships with it, and reports the pages as it writes them.
+run     virtex "&lplain" /dd/SYS/TEX/SAMPLES/small.tex
+wait    60
+send    \r
+wait    10
+
 shot    dvitype
 for     dvitype dvips dvilj2 dvijet
 cap     dvitype reads the DVI file back and prints what is in it: page by
 cap     page, the font changes and the character positions TeX computed.
-run     /dd/CMDS/TEXCMDS/dvitype small.dvi | /dd/CMDS/head -n 20
+run     dvitype story.dvi
+wait    10
+send    4\r
+wait    4
+send    \r
+wait    4
+send    \r
+wait    4
+send    \r
+wait    4
+send    \r
+wait    4
+send    \r
 wait    20
 
 shot    expand
@@ -205,13 +240,6 @@ run     /dd/CMDS/head -n 12 /dd/SYS/holidays > /dd/tmp/k.txt
 wait    6
 run     /dd/CMDS/pageline /dd/tmp/k.txt | /dd/CMDS/head -n 12
 wait    8
-
-shot    latex
-for     latex slitex
-cap     LaTeX on the article that DOC/tex ships to explain LaTeX -- the
-cap     document is its own documentation.
-run     /dd/CMDS/TEXCMDS/latex /dd/SYS/TEX/SAMPLES/about_latex.tex
-wait    45
 
 shot    lout
 cap     Basser Lout 2.05, a document formatter in the TeX tradition, saying
@@ -364,14 +392,6 @@ run     /dd/CMDS/TEXCMDS/tangle
 wait    10
 run     /dd/CMDS/TEXCMDS/tftopl /dd/SYS/TEX/FONTS/TFM/cmr10.tfm | /dd/CMDS/head -n 14
 wait    15
-
-shot    tex
-for     tex virtex initex texidx
-cap     TeX itself, typesetting one of the sample documents that ship in
-cap     SYS/TEX/SAMPLES.  It loads the plain format, sets the pages and
-cap     writes a DVI file -- Knuth's own program, on an OS-9 disk.
-run     /dd/CMDS/TEXCMDS/tex /dd/SYS/TEX/SAMPLES/small.tex
-wait    30
 
 shot    tformat
 cap     tformat, the SNOBOL4 text formatter.

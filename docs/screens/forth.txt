@@ -8,5 +8,5 @@ squares
 32 0 do i emit loop cr
 do ??
 i ??
-/interpret: stack underflow
+vinterpret: stack underflow
 loop ??

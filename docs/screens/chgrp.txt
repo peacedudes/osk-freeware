@@ -4,7 +4,7 @@ Filename:     /dd/tmp/own.txt
 Owner:        0.0
 Attributes:   ---wr-wr
 Created:      08/27/2026
-Modified:     08/27/2026 08:29 pm
+Modified:     08/27/2026 09:41 pm
 File Length:  40 $(28)
 /dd/CMDS/chown: 1.7:  Invalid uid
 
@@ -12,5 +12,5 @@ Filename:     /dd/tmp/own.txt
 Owner:        0.0
 Attributes:   ---wr-wr
 Created:      08/27/2026
-Modified:     08/27/2026 08:29 pm
+Modified:     08/27/2026 09:41 pm
 File Length:  40 $(28)

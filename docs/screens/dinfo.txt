@@ -1,0 +1,10 @@
+/dd/CMDS/dinfo /dd
+Device name   : /dd
+Volume name   : "OSK-Freeware"
+Creation date : 2026-8-27 21:18
+Capacity      : 259072 KBytes (1036288 sectors, 100.00%)
+Free          : 140808 KBytes (563232 sectors, 54.35%) in 1 Blocks
+Used          : 118264 KBytes (473056 sectors, 45.65%)
+Largest block : 140808 KBytes (563232 sectors, 54.35%)
+Device       Fmgr      Driver      Capabilities
+-----------------------------------------------

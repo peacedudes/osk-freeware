@@ -1,0 +1,2 @@
+pgmtexture -d 2 /dd/tmp/gg.pgm | /dd/CMDS/head -n 18
+pgmtexture: /dd/tmp/gg.pgm -

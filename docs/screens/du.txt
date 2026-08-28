@@ -17,6 +17,6 @@
 /dd/SYS/TEX                       5185622      5065     20257         1
 /dd/SYS/UUCP                        10176        10        40         8
 /dd/SYS/ksh                          2847         3        12         3
-/dd/SYS                           5469184      5341     21364        30
+/dd/SYS                           5470174      5342     21368        32
 
-Total of 5341 kBytes (21364 sectors) in 44 directories and 818 files.
+Total of 5342 kBytes (21368 sectors) in 44 directories and 820 files.

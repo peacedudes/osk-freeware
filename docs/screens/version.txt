@@ -1,3 +1,4 @@
-/dd/CMDS/version /dd/CMDS/today
-Dies ist das Program 'version', Version 7
-... oder in anderer Notation, version 0.7
+-> let r0c0 = cho S9READYclear/dd/CMDS/version /dd/CMDS/today/dd/CMDS/mexist ba
+Unintelligible word: let r0c0 = cho<= S9READYclear/dd/CMDS/version /dd/CMDS/todh
+
+              <

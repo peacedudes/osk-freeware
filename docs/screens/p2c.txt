@@ -1,2 +1,2 @@
-/dd/CMDS/p2c /dd/SRC/i_am_i/i_am_i.pas
-/dd/SRC/i_am_i/i_am_i.pas: file not found
+/dd/CMDS/p2c -?
+usage: p2c [options] file [modulename] [-h file.h] [-o file.c]

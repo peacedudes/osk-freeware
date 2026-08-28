@@ -1,0 +1,2 @@
+/dd/CMDS/mstype a:MOTD.TXT
+mstype: File "a:MOTD.TXT" not found

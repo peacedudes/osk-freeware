@@ -1,24 +1,23 @@
-*edt (Screen EDiTor) Version  2.6 12.09.87 (small) for VT100 un2er OS9
-
-
-
-
-
-
-
-
-
-
-DEd/tmp/x1 /dd/tmp/x2/* about -- everything this collection knows about one prog
-/d/* about -- everything this collection knows about one program, on one screen.
-
-
-
-
-
-
-
-
- * text -- and to use it you had to know those five places existed and go and
-
-Unprogrammed Key
+Welcome to the Spreadsheet Calculator, type '?' for help.
+r\c|         0|        1|        2|        3|        4|        5|        6|
+  0|          <
+  1|
+  2|
+  3|
+  4|
+  5|
+  6|
+  7|
+  8|
+  9|
+ 10|
+ 11|
+ 12|
+ 13|
+ 14|
+ 15|
+ 16|
+ 17|
+ 18|
+ 19|
+ 20|

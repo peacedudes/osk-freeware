@@ -1,2 +1,2 @@
 /dd/CMDS/cat /dd/tmp/Makefile
-hello: /dd/SYS/motd
+cat: couldn't open '/dd/tmp/Makefile' (Error #000:216)

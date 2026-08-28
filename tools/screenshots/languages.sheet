@@ -1,6 +1,16 @@
 # Interpreters, each one photographed AT WORK rather than at
 # its banner.
 
+shot    adlcomp
+for     adlcomp adldebug adltouch
+cap     The ADL adventure compiler and its debugger.  /dd/ADL holds the
+cap     AARD world, its source, and standard.adl -- so all three have
+cap     something to work on.
+run     /dd/CMDS/ADL/adlcomp
+wait    8
+run     /dd/CMDS/ADL/adltouch
+wait    8
+
 shot    adlrun
 cap     ADL, a third: Adventure Definition Language, with the AARD world
 cap     compiled and ready in /dd/ADL/AARD.

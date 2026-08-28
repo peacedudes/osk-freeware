@@ -3,6 +3,17 @@
 # can hold them.  pbmtoascii -2x4 maps a 2x4 block of pixels to
 # one character, so 152x88 pixels is exactly 76x22 characters.
 
+shot    asciitopgm
+for     asciitopgm ppmtopgm pgmtoppm
+cap     asciitopgm goes the other way -- characters IN, a greyscale image
+cap     out, each character weighted by how much ink it has.  Here it reads
+cap     back the ASCII art pbmtoascii just wrote, and pnmfile confirms a
+cap     60x8 PGM came out of it.
+run     pbmtext "netpbm" | pbmtoascii > /dd/tmp/art.txt
+wait    12
+run     asciitopgm 8 60 < /dd/tmp/art.txt | pnmfile
+wait    12
+
 shot    ateri
 for     ppmtopi1 pi1toppm pbmtopi3 pi3topbm ppmtopict picttoppm
 cap     Atari ST Degas pictures, and the Macintosh PICT, out and back.
@@ -22,6 +33,13 @@ run     bmptoppm /dd/tmp/t.bmp > /dd/tmp/back2.ppm
 wait    8
 run     pnmfile /dd/tmp/t.bmp /dd/tmp/back2.ppm
 wait    6
+
+shot    djpeg
+for     djpeg
+cap     djpeg decompressing that JPEG back to a picture, and the picture
+cap     printed as characters -- the round trip closed.
+run     djpeg -pnm /dd/tmp/g.jpg | ppmtopgm | pnmscale -xysize 152 88 | pgmnorm | pgmtopbm | pbmtoascii -2x4
+wait    40
 
 shot    fits
 for     pnmtofits fitstopnm pnmtoxwd xwdtopnm
@@ -78,6 +96,23 @@ cap     is a separate netpbm program, which is the whole design.
 run     giftopnm /dd/DEMO/gulls.gif | ppmtopgm | pnmscale -width 152 | pgmtopbm | pbmtoascii
 wait    25
 
+shot    gnuplot
+cap     gnuplot 2.0, and the terminals this build knows about -- there is no
+cap     `dumb' among them, so it cannot draw a plot on the screen; what it
+cap     can do is write PostScript, HP-GL or a printer's own language.  Its
+cap     help database is SYS/gnuplot.gih and its demos are in DOC/gnuplot.
+run     /dd/CMDS/gnuplot
+wait    8
+send    set terminal\r
+wait    8
+send    set terminal postscript\r
+wait    4
+send    set output "/dd/tmp/plot.ps"\r
+wait    4
+send    plot [-6:6] sin(x)/x\r
+wait    8
+quit    quit\r
+
 shot    gulls
 for     giftopnm pbmtoascii ppmtopgm
 cap     DEMO/gulls.gif, a real photograph, decoded by giftopnm and carried
@@ -117,6 +152,23 @@ wait    6
 run     sgitopnm /dd/tmp/t.sgi | pnmfile
 wait    8
 
+shot    jpeg
+for     cjpeg djpeg rdjpgcom wrjpgcom cjpeg.070 djpeg.070
+cap     JPEG, out and back: cjpeg compresses the photograph, wrjpgcom puts
+cap     a comment in it, rdjpgcom reads the comment back and djpeg
+cap     decompresses.  The sizes are the point -- 43K of GIF, and what JPEG
+cap     makes of the same picture.
+run     giftopnm /dd/DEMO/gulls.gif > /dd/tmp/g.ppm
+wait    15
+run     cjpeg -quality 50 /dd/tmp/g.ppm > /dd/tmp/g.jpg
+wait    25
+run     wrjpgcom -comment "OS-9 freeware disk" /dd/tmp/g.jpg > /dd/tmp/gc.jpg
+wait    10
+run     rdjpgcom /dd/tmp/gc.jpg
+wait    8
+run     /dd/CMDS/ls -l /dd/DEMO/gulls.gif /dd/tmp/g.ppm /dd/tmp/g.jpg
+wait    8
+
 shot    lispm
 for     pgmtolispm lispmtopgm pbmtopk pktopbm ppmtomap
 cap     A Lisp machine's bitmap format, and TeX's PK font format, both with
@@ -125,6 +177,15 @@ run     pgmtolispm /dd/tmp/base.pgm | lispmtopgm | pnmfile
 wait    10
 run     ppmtomap /dd/tmp/base.ppm | /dd/CMDS/head -n 8
 wait    8
+
+shot    pbmclean
+for     pbmclean pbmmask pbmtopgm pnmnoraw
+cap     pbmclean removes lone pixels from a bitmap -- run here over dithered
+cap     noise, which is nothing but lone pixels.
+run     pgmnoise 152 88 | pgmtopbm > /dd/tmp/n.pbm
+wait    15
+run     pbmclean /dd/tmp/n.pbm | pbmtoascii -2x4
+wait    20
 
 shot    pbmlife
 cap     pbmlife runs Conway's Life one generation on a bitmap -- an image
@@ -214,6 +275,14 @@ cap     density of the characters.
 run     /dd/CMDS/NETPBM/pgmramp -lr 152 44 | /dd/CMDS/NETPBM/pgmtopbm | /dd/CMDS/NETPBM/pbmtoascii
 wait    8
 
+shot    pgmtexture
+for     pgmtexture pgmkernel pnmhistmap
+cap     pgmtexture measures an image the way a pattern-recognition paper
+cap     does: angular second moment, contrast, correlation, entropy.  On
+cap     the gulls photograph.
+run     pgmtexture -d 2 /dd/tmp/gg.pgm | /dd/CMDS/head -n 18
+wait    30
+
 shot    plotters
 for     pbmtoplot pbmtozinc pbmtobbnbg pbmtogo pbmtoln03 pbmtolps
 cap     Six more write-only drivers, for machines that are gone: a Unix
@@ -247,6 +316,24 @@ wait    6
 run     pnmcat -lr /dd/tmp/s.pgm /dd/tmp/si.pgm | pgmtopbm | pbmtoascii -2x4
 wait    12
 
+shot    pnmcut
+for     pnmcut pnmpaste pnmenlarge pnmshear pnmpad
+cap     Five geometric filters run one after another -- cut a piece out,
+cap     enlarge it, shear it, pad it and paste it back -- with pnmfile
+cap     reporting the size after each, which is where the work shows.
+run     pgmramp -lr 64 32 > /dd/tmp/r.pgm
+wait    8
+run     pnmcut 0 0 32 16 /dd/tmp/r.pgm > /dd/tmp/cut.pgm
+wait    8
+run     pnmenlarge 2 /dd/tmp/cut.pgm > /dd/tmp/big.pgm
+wait    8
+run     pnmshear 20 /dd/tmp/big.pgm > /dd/tmp/shr.pgm
+wait    10
+run     pnmpaste /dd/tmp/cut.pgm 0 0 /dd/tmp/r.pgm > /dd/tmp/pst.pgm
+wait    10
+run     pnmfile /dd/tmp/r.pgm /dd/tmp/cut.pgm /dd/tmp/big.pgm /dd/tmp/shr.pgm /dd/tmp/pst.pgm
+wait    10
+
 shot    pnmfile
 cap     pnmfile identifies what each intermediate in a pipeline actually is
 cap     -- format, dimensions and whether it is raw or plain.
@@ -279,6 +366,19 @@ wait    8
 run     pnmfile /dd/tmp/ramp.pgm /dd/tmp/t.ppm /dd/tmp/tile.pgm /dd/tmp/pad.pgm /dd/tmp/s.pgm
 wait    8
 
+shot    pnmgamma
+for     pnmgamma pnmhisteq
+cap     pnmhisteq equalises the histogram of the gulls photograph -- it
+cap     spreads the greys the picture actually uses across the whole range,
+cap     which is why the dither has so much more to work with here than in
+cap     the plain conversion above.
+run     giftopnm /dd/DEMO/gulls.gif | ppmtopgm | pnmscale -xysize 152 88 > /dd/tmp/gg.pgm
+wait    25
+run     pnmgamma 2.2 /dd/tmp/gg.pgm > /dd/tmp/gam.pgm
+wait    15
+run     pnmhisteq /dd/tmp/gg.pgm | pgmtopbm | pbmtoascii -2x4
+wait    20
+
 shot    pnminvert
 cap     The sphere that ships in DEMO, inverted, so the light comes from
 cap     the other side.
@@ -306,6 +406,25 @@ cap     pnmtops writes PostScript around a bitmap -- how an image reached a
 cap     printer in 1990.  The head of what it produced.
 run     pnmtops /dd/tmp/ramp.pgm | /dd/CMDS/head -n 18
 wait    10
+
+shot    ppm3d
+for     ppm3d ppmspread ppmshift ppmmix
+cap     ppmspread scatters every pixel up to eight places from where it
+cap     belongs -- the photograph is still there underneath, which is the
+cap     point of the filter.  ppm3d, ppmshift and ppmmix run first, over
+cap     the same image.
+run     giftopnm /dd/DEMO/gulls.gif | pnmscale -xysize 76 44 > /dd/tmp/s1.ppm
+wait    20
+run     ppmshift 6 /dd/tmp/s1.ppm > /dd/tmp/sh.ppm
+wait    10
+run     ppm3d /dd/tmp/s1.ppm /dd/tmp/sh.ppm > /dd/tmp/3d.ppm
+wait    12
+run     ppmmix 0.5 /dd/tmp/s1.ppm /dd/tmp/sh.ppm > /dd/tmp/mix.ppm
+wait    12
+run     pnmfile /dd/tmp/sh.ppm /dd/tmp/3d.ppm /dd/tmp/mix.ppm
+wait    8
+run     ppmspread 8 /dd/tmp/s1.ppm | ppmtopgm | pnmscale -xysize 152 88 | pgmtopbm | pbmtoascii -2x4
+wait    25
 
 shot    ppmdither
 for     ppmdither ppmquant ppmtopgm
@@ -337,6 +456,17 @@ run     ppmpat -tartan 80 40 > /dd/tmp/t.ppm
 wait    8
 run     ppmhist /dd/tmp/t.ppm | /dd/CMDS/head -n 18
 wait    8
+
+shot    ppmmake
+for     ppmmake ppmbrighten ppmdim ppmnorm ppmchange
+cap     ppmmake fills an image with one colour; ppmbrighten, ppmdim and
+cap     ppmnorm change what that colour is, and ppmhist counts the result.
+run     ppmmake rgb:80/40/c0 40 20 > /dd/tmp/flat.ppm
+wait    8
+run     ppmhist /dd/tmp/flat.ppm
+wait    8
+run     ppmbrighten -v 50 /dd/tmp/flat.ppm | ppmhist
+wait    10
 
 shot    ppmpat
 cap     ppmpat weaves a tartan, ppmtopgm greys it and the dither prints it.

@@ -87,5 +87,45 @@ would have certified it.
 **The 95.0% figure in DOC/STATUS is stale in both directions** and should not
 be quoted as "works" -- `zip` and `todos` are both inside the 870.
 
+## 2026-08-27, third session -- the screens
+
+**You asked for pictures for the web pages. There are 400-odd now**, and
+taking them found more broken programs than any sweep has. `docs/screens.html`
+is the gallery; every program's own card in `docs/index.html` carries its
+screen. Nothing is mocked up -- keystrokes went into a running program on the
+disk image and the terminal stream was rendered into the grid a vt100 would
+have shown, so where a program failed, the failure is the picture.
+
+**Twelve programs the sweep scored OK do not work.** `gawk` reads no input at
+all (a BEGIN block runs; a rule or an END block prints nothing). `m4` mangles
+its output. `oleo` aborts on an illegal instruction. `top`, `checkgame` and
+`bincheckr` print one line and abort. `date` says the year is 2100. `cpu`
+answers and then traps. `l`, `valspeak` and `pacman` do nothing. All in
+`DOC/STATUS` and against the programs in `DOC/INDEX`.
+
+**Two INDEX entries described the wrong program.** `rot` is not a rot-13
+cipher -- it turns a file on its side, line one becoming column one. `edir`
+is not a directory listing -- it lists OS-9 EVENTS.
+
+**83 programs were missing from the web guide.** `gen_catalog` scanned eleven
+of the eighteen program directories under `CMDS`, so TeX and LaTeX (33
+programs), elm (14), the WN web server, the serial-line set, the network set
+and ADL were on the disk, in `DOC/INDEX`, and invisible in the catalogue.
+917 programs now, not 834. **And `SYS/login` had the same gap** -- four
+directories on `PATH` -- so `tex` could not even find `virtex`. Both fixed.
+
+**Seventeen programs want a RAM disk at /r0** and os9exec cannot make one:
+its `mount` creates h0 through hz and nothing else. `ed` and `hexed` stop at
+once. Nothing on this disk can fix it; `DOC/README-RUNNING` now says so.
+
+**Five programs need a newer `csl` than the edition 16 we ship** -- `lua`,
+`runc`, `msntp`, `basicwin`, `xengine`. Twenty-seven other csl-linked
+programs are perfectly happy with ours, so this is a narrow fact, not the
+version skew swallowing the disk.
+
+**The JPEG pair cannot read their input**: `cjpeg` says "Bogus data in PPM
+file" for a PPM netpbm reads happily. So no JPEG can be made here and `djpeg`
+has nothing to decode.
+
 ## Nothing needs you
 

@@ -1,0 +1,7 @@
+ppmmake rgb:80/40/c0 40 20 > /dd/tmp/flat.ppm
+ r   g   b      lum     count
+--- --- ---     ---     -----
+128  64 192     98      800
+ r   g   b      lum     count
+--- --- ---     ---     -----
+170  85 255     130     800

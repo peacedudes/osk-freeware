@@ -1,5 +1,5 @@
 /dd/CMDS/UUCP/mailx
 
-/dd/CMDS/UUCP/mailx: can't change to your mailbox directory: 'su'...error 215
+/dd/CMDS/UUCP/mailx: can't change to your mailbox directory: 'su'...error 214
 
 q: command not found

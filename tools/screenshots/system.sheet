@@ -48,10 +48,33 @@ cap     compiler's output runs here.
 run     /dd/CMDS/bigsetter
 wait    8
 
+shot    bootgen
+for     bootgen bcheck bsplt68 modbuster
+cap     The boot-file tools: bootgen makes an OS9Boot, bcheck checks one
+cap     and bsplt68 takes one apart.  There is no boot file here -- os9exec
+cap     IS the kernel -- so these are for your own hardware.
+run     /dd/CMDS/bootgen -?
+wait    8
+run     /dd/CMDS/bsplt68 -?
+wait    8
+
 shot    btree
 cap     A B-tree demonstration, building and walking an index.
 run     /dd/CMDS/btree
 wait    8
+
+shot    clock
+for     clock date setime setime2 setyear fixyear
+cap     `clock' does not run here -- `Popen error 216', it wants a pipe it
+cap     cannot open.  What follows is the pair that DO work: setime2 and
+cap     setyear, two of the three Y2K repairs on this disk, which exist
+cap     because `date' answers 2100.
+run     /dd/CMDS/clock
+wait    6
+run     /dd/CMDS/setime2 -?
+wait    6
+run     /dd/CMDS/setyear -?
+wait    6
 
 shot    config
 cap     config reports this machine's C type properties as the #defines a
@@ -87,6 +110,13 @@ cap     command line it was given.
 run     /dd/CMDS/demo -a -b -c=7 one two
 wait    6
 
+shot    devprc
+for     devprc ptxminst t t_trtest
+cap     devprc shows which device belongs to which process.  Rebuilt here:
+cap     the archived module had been patched and would not run.
+run     /dd/CMDS/devprc -h
+wait    8
+
 shot    dinfo
 cap     Device information for the volume this collection is mounted as.
 run     /dd/CMDS/dinfo /dd
@@ -104,11 +134,27 @@ wait    6
 run     /dd/CMDS/break -?
 wait    6
 
+shot    drop
+for     drop keep kept
+cap     drop puts back exactly what keep wrote, and refuses to remove any
+cap     file whose checksum has changed since.  Nothing has been kept here,
+cap     which is what it says.
+run     /dd/CMDS/drop -n hack
+wait    8
+
 shot    e
 cap     SEDT, the VMS-style editor, with VT220 keys.
 run     /dd/CMDS/e /dd/SRC/keep/about.c
 wait    6
 quit    \033\033
+
+shot    em
+for     em new_e e sedt
+cap     em is MicroEMACS 3.8b, from EFFO forum 3, opened on a file -- the
+cap     mode line names the version and the file.
+run     /dd/CMDS/em /dd/SYS/motd
+wait    8
+quit    \033
 
 shot    every
 for     every repeat cron bootlogger loglist
@@ -151,6 +197,13 @@ shot    greg
 cap     greg, a regular-expression search demonstration.
 run     /dd/CMDS/greg "[a-z]+chess" /dd/DOC/INDEX
 wait    6
+
+shot    hinterhalt
+for     hinterhalt testibc sqrtx bigsetter i_am_i
+cap     hinterhalt, a small game that came with EFFO forum 7 -- one of the
+cap     example programs the German OS-9 user group circulated.
+run     /dd/CMDS/hinterhalt
+wait    10
 
 shot    i_am_i
 cap     i_am_i prints its own source: a Pascal quine.
@@ -267,11 +320,46 @@ cap     A phone book, kept in a file on the disk.
 run     /dd/CMDS/phone
 wait    5
 
+shot    rndir
+for     rndir mvolformat rendsk
+cap     rndir renames a directory -- OS-9's `rename' would not touch one,
+cap     so this existed.  Made, renamed and listed in a scratch directory
+cap     of its own.
+run     /dd/CMDS/mkdir /dd/tmp/rnd
+wait    5
+run     /dd/CMDS/mkdir /dd/tmp/rnd/olddir
+wait    5
+run     /dd/CMDS/dir /dd/tmp/rnd
+wait    6
+run     /dd/CMDS/rndir /dd/tmp/rnd/olddir /dd/tmp/rnd/newdir
+wait    6
+run     /dd/CMDS/dir /dd/tmp/rnd
+wait    6
+
+shot    scsiutil
+for     scsiutil dedit expreserve exrecover read_mail add_errmsg
+cap     scsiutil talks to a SCSI device, and expreserve is vi's crash
+cap     recovery.  Neither has anything to work on here, and both say so.
+run     /dd/CMDS/scsiutil -?
+wait    8
+run     /dd/CMDS/expreserve -?
+wait    8
+
 shot    sddemo
 cap     White's Speedisk 2.10, a disk defragmenter, drawing the map of a
 cap     volume it is about to work on.
 run     /dd/CMDS/DEMOS/sddemo
 wait    10
+
+shot    shdev
+for     shdev dinfo ssl dam
+cap     shdev prints its heading and no devices: os9exec keeps no OS-9
+cap     device table for it to walk.  dinfo, underneath, asks the device
+cap     itself and answers properly -- 259 MB, 46% used.
+run     /dd/CMDS/shdev
+wait    8
+run     /dd/CMDS/dinfo /dd
+wait    8
 
 shot    spline
 cap     spline fits a curve through points and writes PostScript for it.
@@ -298,6 +386,18 @@ cap     it -- it reads the module.
 run     /dd/CMDS/suse /dd/CMDS/tar
 wait    3
 
+shot    sysid
+for     sysid sysmax sysmin oskversion
+cap     sysid asks the kernel to identify itself with F$SysID, which
+cap     os9exec does not implement -- so what comes back is the emulator
+cap     saying so, field by field.  The numbers below it are real.
+run     /dd/CMDS/sysid
+wait    6
+run     /dd/CMDS/sysmax
+wait    5
+run     /dd/CMDS/sysmin
+wait    5
+
 shot    sysmon
 cap     sysmon, the system monitor, drawing memory and process state.
 run     /dd/CMDS/sysmon
@@ -320,6 +420,17 @@ wait    5
 run     /dd/CMDS/trunc /dd/tmp/cut.txt 100
 wait    6
 run     /dd/CMDS/ls -l /dd/tmp/cut.txt
+wait    6
+
+shot    tty
+for     tty vecho clear lmargin
+cap     tty names the terminal; vecho writes without a newline; lmargin
+cap     sets a left margin on what follows.
+run     /dd/CMDS/tty
+wait    5
+run     /dd/CMDS/vecho "no newline here -- "
+wait    5
+run     /dd/CMDS/lmargin -?
 wait    6
 
 shot    ub68kdemo

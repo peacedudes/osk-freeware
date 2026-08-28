@@ -5,12 +5,12 @@ static char */dd/tmp/base[] = {
 /* width height ncolors chars_per_pixel */
 "48 24 6 1",
 /* colors */
-"  c #07EAD9",
-". c #D93E7F",
-"X c #9F225C",
-"o c #7094AC",
-"O c #367889",
-"+ c #65063A",
+"  c #9C0A7E",
+". c #BF117E",
+"X c #D438A9",
+"o c #7A037E",
+"O c #EA60D4",
+"+ c #B231A9",
 /* pixels */
 /dd/CMDS/head: /dd/tmp/t.xpm
 stdin:  PPM raw, 48 by 24  maxval 255

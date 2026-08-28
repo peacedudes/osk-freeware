@@ -1,0 +1,23 @@
+       km_tek40xx  Kermit-MS tek40xx terminal emulator - monochrome
+            latex  LaTeX picture environment
+         nec_cp6m  NEC printer CP6 Monochrome
+         nec_cp6c  NEC printer CP6 Color
+         nec_cp6d  NEC printer CP6 Draft monochrome
+       postscript  Postscript graphics language, small characters
+            psbig  Postscript graphics language, big characters
+            epsf1  Encapsulated Postscript graphics language, small characters
+            epsf2  Encapsulated Postscript graphics language, big characters
+       proprinter  IBM Proprinter
+              qms  QMS/QUIC Laser printer (also Talaris 1200 and others)
+            regis  REGIS graphics language
+          selanar  Selanar
+            starc  Star Color Printer
+      tandy_60dpi  Tandy DMP-130 series 60-dot per inch graphics
+          tek410x  Tektronix 4106, 4107, 4109 and 420X terminals
+          tek40xx  Tektronix 4010 and others; most TEK emulators
+            vx384  Vectrix 384 and Tandy color printer
+
+gnuplot> set terminal postscript
+Terminal type set to 'postscript'
+gnuplot> set output "/dd/tmp/plot.ps"
+gnuplot> plot [-6:6] sin(x)/x

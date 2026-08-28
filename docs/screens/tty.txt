@@ -1,0 +1,6 @@
+/dd/CMDS/tty
+no newline here --
+usage: epson [<opts>]
+        l<int>  size of left margin in characters, 5
+
+(C) oettle + reichler Datentechnik GmbH, Paul Farquhar 1990

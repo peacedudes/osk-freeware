@@ -1,13 +1,3 @@
-/dd/CMDS/msformat a:
-msformat: Non-removable media is not supported (You must tell the complete geom
-device information:
-===================
-sectors per track: 18
-heads: 2
-cylinders: 80
-
-mformat command line: mformat -t 80 -h 2 -s 18 a:
-
 bootsector information
 ======================
 filename="/dd/DOS/a.img"
@@ -16,3 +6,17 @@ sector size: 512 bytes
 cluster size: 1 sectors
 reserved (boot) sectors: 1
 fats: 2
+max available root directory slots: 224
+small size: 2880 sectors
+media descriptor byte: 0xf0
+sectors per fat: 9
+sectors per track: 18
+heads: 2
+hidden sectors: 0
+big size: 0 sectors
+physical drive id: 0x0
+reserved=0x0
+dos4=0x29
+serial number: 35D70A00
+disk label="FREEWARE   "
+disk type="FAT12   "

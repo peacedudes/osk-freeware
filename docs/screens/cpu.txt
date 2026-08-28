@@ -1,20 +1,20 @@
          ==== THE OS9/68k CPU-SPEED PROGRAM  SPEED VERSION 1.0 ====
           === (c.) 1988 F.R.Schmitt  MPI Kernphysik Heidelberg ===
-                        <  20:19:08   27-Aug-19126  >
+                        <  21:21:29   27-Aug-19126  >
 
 
                      0        05        10        15         20         25 Mhz
                      |---------|---------|---------|----------|----------|
-CPU-SPEED            |##########################################################
-Process   Pid: 3, cpu, edition 7---------|---------|----------|----------|
-    Exit code: E_PRCABT(228) Process Aborted      15         20         25 Mhz
+CPU-SPEED            |                                                   |
+                     |---------|---------|---------|----------|----------|
+                     0        05        10        15         20         25 Mhz
+
+         Your CPU is performing like a 68000 CPU running at:  3.1 Mhz
+
+Process   Pid: 3, cpu, edition 7
+    Exit code: E_PRCABT(228) Process Aborted
   Directories: Current   - /dd
-               Execution - /dd/CMDSe a 68000 CPU running at: 156.3Mhz
+               Execution - /dd/CMDS
         Files: 00 fCons /term
-ELAPSED TIME    :  0000:00:02
-
-
-
-
 -----------------------------------------------------------------------------
  CPU-SPEED :  Press any key to abort !

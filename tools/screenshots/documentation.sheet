@@ -6,6 +6,15 @@ cap     and an index in SYS/HELP.
 run     /dd/CMDS/help
 wait    6
 
+shot    helpindex
+for     helpindex lessecho lesskey rdoc
+cap     helpindex builds the index the help system reads; lesskey compiles
+cap     a key-binding file for less.
+run     /dd/CMDS/helpindex -?
+wait    8
+run     /dd/CMDS/lesskey -?
+wait    8
+
 shot    less
 cap     less, paging the disk's own documentation.  SYS/less.hlp is here,
 cap     so its help screen works.

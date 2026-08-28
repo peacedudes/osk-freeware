@@ -45,6 +45,14 @@ wait    8
 run     /dd/CMDS/head -n 10 lex.yy.c
 wait    5
 
+shot    gcc
+for     gcc gcc_cc2 gcc_cccp2 gpp gpp_cc1plus gpp_cccp gpp_collect gcc_cc1 gcc_collect
+cap     GCC 1.39 and its passes.  The driver looks for its sub-programs
+cap     under a prefix -- gcc2 wants gcc_, gpp wants gpp_ -- and says so
+cap     when it cannot find them.
+run     /dd/CMDS/GCC139/gcc -v
+wait    10
+
 shot    gmake
 cap     GNU make, and dmake beside it, both saying what they are.
 run     /dd/CMDS/gmake -v
@@ -71,12 +79,33 @@ wait    3
 run     /dd/CMDS/make -f /dd/tmp/Makefile
 wait    8
 
+shot    makeinfo
+for     makeinfo dmake gmake
+cap     makeinfo turns Texinfo source into the info files emacs reads.
+run     /dd/CMDS/GCC139/makeinfo --version
+wait    8
+run     /dd/CMDS/gmake -v
+wait    8
+
 shot    p2c
-cap     p2c translating Pascal to C -- the head of the C it wrote for a
-cap     program on this disk.
-run     /dd/CMDS/p2c /dd/SRC/i_am_i/i_am_i.pas
+for     p2c
+cap     p2c, the Pascal-to-C translator, saying what it is and where its
+cap     configuration lives.
+run     /dd/CMDS/p2c -?
 wait    10
-kill
+
+shot    xasm
+for     as0 as1 as4 as5 as11
+cap     The xasm family: cross-assemblers for the 6800, 6801, 6804, 6805
+cap     and 68HC11.  NOT for the 68000, whatever DOC/INDEX said until
+cap     2026-08-13 -- and there has never been a 68050.  Each one names its
+cap     own processor when it starts.
+run     /dd/CMDS/as0
+wait    6
+run     /dd/CMDS/as11
+wait    6
+run     /dd/CMDS/as5
+wait    6
 
 shot    yacc
 cap     yacc reading a grammar and reporting what it built -- the states

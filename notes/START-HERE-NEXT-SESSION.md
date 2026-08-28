@@ -4,6 +4,37 @@ Branch `release-pass-2026-08-21`. **Tree clean, all eleven `check_disk.py`
 checks green, `osk-freeware.dd` current.** Nothing is half-finished; every
 change below is committed.
 
+## WHAT HAPPENED 2026-08-27 (third session): the screens
+
+**`docs/screens.html` is a gallery of 400-odd programs photographed while
+running**, and every program's card in `docs/index.html` carries its own
+screen. `tools/screenshots.py` takes them: ONE bash session on a pty, many
+programs per session, the bytes each one wrote rendered by `ansiscreen.py`.
+A sheet (`tools/screenshots/*.sheet`) is the source; `tools/gen_screens.py`
+builds the gallery, `docs/screens.js` and `docs/screens/*.txt`.
+
+**Photographing the disk found more than any sweep has.** Twelve programs the
+four-stage sweep scored OK do not work -- `gawk` reads no input at all, `m4`
+mangles its output, `oleo` aborts, `date` says 2100, `cpu` answers and then
+traps -- and two DOC/INDEX entries described the wrong program (`rot`
+transposes a file, `edir` lists OS-9 events). All in `DOC/STATUS` under
+WHAT PHOTOGRAPHING THEM FOUND.
+
+**83 programs were invisible in the web guide.** `gen_catalog` scanned eleven
+of the eighteen program directories under CMDS, so TeX and LaTeX, elm, the WN
+web server, the network and serial-line sets and ADL were never in it. 917
+programs now, not 834. `SYS/login` had the same gap on PATH -- `tex` could not
+find `virtex` -- and now lists every one of them.
+
+Also measured and documented: seventeen programs want a RAM disk at `/r0`
+that os9exec cannot make (`mount` creates h0..hz and nothing else); five
+programs need a newer `csl` than the edition 16 that ships; the JPEG tools
+cannot read a PNM, so no JPEG can be made here.
+
+**If you add screens: one stanza per program.** Two definitions means two
+captions for one screen and the gallery picking whichever sheet sorted last.
+`tools/README.md` has the rest.
+
 ## DO THIS FIRST — the next three actions, in order
 
 Do not re-plan. `notes/PLAN-verification.md` is the plan and it is current.

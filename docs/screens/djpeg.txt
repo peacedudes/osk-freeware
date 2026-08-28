@@ -1,0 +1,7 @@
+<-xysize 152 88 | pgmnorm | pgmtopbm | pbmtoascii -2x4
+djpeg: can't open /dd/tmp/g.jpg
+ppmtopgm: EOF / read error reading magic number
+pnmscale: EOF / read error reading magic number
+pgmnorm: EOF / read error reading magic number
+pgmtopbm: EOF / read error reading magic number
+pbmtoascii: EOF / read error reading magic number

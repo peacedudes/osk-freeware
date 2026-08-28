@@ -1,22 +1,22 @@
 /dd/CMDS/ls -al /dd | /dd/CMDS/head -n 21
-total 214016
--rw-------   1 0        0              11 Aug 27 20:31 -l.s19
-drwxrwxrwx   1 0        0            1568 Aug 27 20:34 .
-drwxrwxrwx   1 0        0            1568 Aug 27 20:34 ..
+total 201728
+-rw-------   1 0        0              11 Aug 27 21:37 -l.s19
+drwxrwxrwx   1 0        0            1536 Aug 27 21:43 .
+drwxrwxrwx   1 0        0            1536 Aug 27 21:43 ..
 -rw-rw-rw-   1 0        0            1628 Aug  3 19:00 .bashrc
--rw-------   1 0        0             245 Aug 27 20:20 .newsrc
--rw-------   1 0        0              62 Aug 27 20:18 .pdksh_hist
--rw-------   1 0        0               0 Aug 27 20:18 .sh_history
-drwxrwxrwx   1 0        0             192 Aug 27 20:09 ADL
-drwxrwxrwx   1 0        0           17184 Aug 27 20:34 CMDS
-drwxrwxrwx   1 0        0             384 Aug 27 20:09 DEFS
-drwxrwxrwx   1 0        0             160 Aug 27 20:09 DEMO
-drwxrwxrwx   1 0        0            9344 Aug 27 20:09 DOC
-drwxrwxrwx   1 0        0             128 Aug 27 20:09 DOS
-drwxrwxrwx   1 0        0              96 Aug 27 20:09 ETC
--rw-------   1 0        0               0 Aug 27 20:31 Fwd_refs
-drwxrwxrwx   1 0        0             960 Aug 27 20:09 GAMES
-drwxrwxrwx   1 0        0              96 Aug 27 20:09 GNUCHESS4.0
-drwxrwxrwx   1 0        0             192 Aug 27 20:09 GNULIB
-drwxrwxrwx   1 0        0             896 Aug 27 20:09 LIB
-drwxrwxrwx   1 0        0              96 Aug 27 20:09 LOG
+-rw-------   1 0        0             245 Aug 27 21:24 .newsrc
+-rw-------   1 0        0              62 Aug 27 21:42 .pdksh_hist
+-rw-------   1 0        0               0 Aug 27 21:43 .sh_history
+drwxrwxrwx   1 0        0             192 Aug 27 21:18 ADL
+drwxrwxrwx   1 0        0           17152 Aug 27 21:44 CMDS
+drwxrwxrwx   1 0        0             384 Aug 27 21:18 DEFS
+drwxrwxrwx   1 0        0             160 Aug 27 21:18 DEMO
+drwxrwxrwx   1 0        0            9344 Aug 27 21:18 DOC
+drwxrwxrwx   1 0        0             128 Aug 27 21:18 DOS
+drwxrwxrwx   1 0        0              96 Aug 27 21:18 ETC
+-rw-------   1 0        0               0 Aug 27 21:37 Fwd_refs
+drwxrwxrwx   1 0        0             960 Aug 27 21:18 GAMES
+drwxrwxrwx   1 0        0              96 Aug 27 21:18 GNUCHESS4.0
+drwxrwxrwx   1 0        0             192 Aug 27 21:18 GNULIB
+drwxrwxrwx   1 0        0             896 Aug 27 21:18 LIB
+drwxrwxrwx   1 0        0              96 Aug 27 21:18 LOG

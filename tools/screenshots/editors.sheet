@@ -1,5 +1,22 @@
 # Editors and pagers, each opened on a real file.
 
+shot    elvrec
+for     elvrec elvprsv vi.elvis input.elvis
+cap     elvis's crash-recovery pair: elvprsv preserves a session, elvrec
+cap     brings it back.  With nothing preserved they say so.
+run     /dd/CMDS/elvrec
+wait    8
+run     /dd/CMDS/REBUILT/vi.elvis -?
+wait    8
+
+shot    emacs
+for     emacs emacs.mm1 umacs
+cap     MicroEmacs 4.00 editing a file from the disk, with its own mode
+cap     line at the foot.
+run     /dd/CMDS/emacs /dd/SYS/motd
+wait    10
+quit    \030\003
+
 shot    hexedit
 for     hexed
 cap     A hex editor opened on an OS-9 module: the $4AFC sync bytes are the
@@ -7,6 +24,15 @@ cap     first two bytes of every module on this disk.
 run     /dd/CMDS/hexed /dd/CMDS/today
 wait    6
 quit    q
+
+shot    pbyte
+for     pbyte chbase
+cap     pbyte patches bytes in a file at a hex offset, and chbase changes a
+cap     module's base -- the two smallest binary editors here.
+run     /dd/CMDS/pbyte
+wait    8
+run     /dd/CMDS/chbase
+wait    8
 
 shot    sed
 for     sed sed_1.06 psc

@@ -1,6 +1,6 @@
 /dd/CMDS/mkdir /dd/tmp/work
 
-Directory of "/dd/tmp/work" 20:55:29  08/27/126
+Directory of "/dd/tmp/work" 21:43:03  08/27/126
 
 two
 

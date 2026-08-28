@@ -1,7 +1,4 @@
 /dd/CMDS/cookhash -?
 usage: cookhash <cookiefile >hashfile
-"Our journeys to the stars will be made on spaceships created by determined,
-hardworking scientists and engineers applying the principles of science, not
-aboard flying saucers piloted by little gray aliens from some other dimension."
--- Robert A. Baker, "The Aliens Among Us:  Hypnotic Regression Revisited",
-   The Skeptical Inquirer, Vol. XII, No. 2
+"VMS isn't an operating system, it's a playpen for DEC system programmers."
+-- Herb Blashtfalt

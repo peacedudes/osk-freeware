@@ -1,1 +1,23 @@
-                     NINGq/* about -- everything this collection knows about one
+HOW TO RUN THIS DISK
+====================
+
+This disk is NOT a boot disk, and os9exec does not boot anything.  There is
+no kernel here and no OS9Boot file.  os9exec is the kernel: you point it at a
+disk with OS9DISK and name a program to run, and that disk is what OS-9 then
+sees as /dd -- its root and its home.  There is no established name for that
+role, which is why people reach for "boot disk"; this disk cannot boot
+anything.
+
+Most of the programs in CMDS and CMDS/GAMES need nothing but this disk.
+
+------------------------------------------------------
+Trying things before you fetch cio
+------------------------------------------------------
+
+If you run OS-9 you have cio, csl and math -- but the SDK may be on a shelf
+rather than to hand.  This is what works in the meantime, so you can look
+around the disk straight away:
+
+    a shell        sh, or bash
+    list a dir     ls
+    read a file    cat, or less

@@ -1,0 +1,21 @@
+This program accepts as input files of texinfo commands and text
+and outputs a file suitable for reading with GNU Info.
+
+The options are:
+`+no-validate' to suppress node cross reference validation.
+`+no-warn' to suppress warning messages (errors are still output).
+`+no-split' to suppress the splitting of large files.
+`+verbose' to print information about what is being done.
+`+version' to print the version number of Makeinfo.
+`+paragraph-indent NUM' to set the paragraph indent to NUM (default 3).
+`+fill-column NUM' to set the filling column to NUM (default 72).
+`+error-limit NUM' to set the error limit to NUM (default 100).
+`+reference-limit NUM' to set the reference warning limit to NUM (default 1000).
+`+footnote-style STYLE' to set the footnote style to STYLE.  STYLE should
+  either be `MN' for `make node', or `BN' for `bottom node'.
+
+GNU Make version 3.67, by Richard Stallman and Roland McGrath.
+Copyright (C) 1988, 89, 90, 91, 92, 93 Free Software Foundation, Inc.
+This is free software; see the source for copying conditions.
+There is NO warranty; not even for MERCHANTABILITY or FITNESS FOR A
+PARTICULAR PURPOSE.

@@ -1,4 +1,4 @@
 ppmtopj /dd/tmp/base.ppm > /dd/tmp/t.pj
 stdin:  PPM raw, 48 by 24  maxval 255
 (Computing colormap...  Done.  6 colors found.)
-      0      1    419
+      0      1    445

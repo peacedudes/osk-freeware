@@ -108,7 +108,7 @@
 |---|---|
 | `beav` | BEAV 1.40 -- Binary Editor And Viewer (needs TERM)<br>**How:** Full-screen: it takes over the display. **control-C gets you out** -- tested, and none of q, Q, control-D or ESC did. If it has a quit command of its own, its documentation in DOC/ will say. |
 | `chbase` | &#9733; change module base<br>`Syntax   : chbase <number> [ <base A> [ <base B> ] ]` |
-| `hexed` | &#9733; hex editor via your text editor  [no military use -- EFFO-INFO]<br>`Syntax: hexed [<opts>] <path> {[<opts>] \| [<path>]}` |
+| `hexed` | &#9733; hex editor via your text editor -- it writes its work file to /r0 and stops when it cannot.  See DOC/README-RUNNING  [no military use -- EFFO-INFO]<br>`Syntax: hexed [<opts>] <path> {[<opts>] \| [<path>]}` |
 | `hexedit` | Hex file editor -- hex [-vdr] file<br>**How:** A hex editor -- Hexpert v2.4 by Dominic Alston. Takes a file: `hexedit <file>'. Needs `. /dd/SYS/termcap.entry' first or it will not draw. |
 | `pbyte` | &#9733; patch bytes in a file at a hex offset<br>`Syntax: pbyte <path> <hex_offset> <hex_byte> [<hex_byte>]` |
 
@@ -125,7 +125,7 @@
 
 | | |
 |---|---|
-| `ed` | &#9733; GNU ed 0.2 line editor<br>`Usage: ed [OPTION]... [FILE]` |
+| `ed` | &#9733; GNU ed 0.2 line editor -- it makes its temporary file at /r0, which os9exec cannot provide, and stops at once with `module not found'.  DOC/README-RUNNING lists the seventeen programs that reach for /r0<br>`Usage: ed [OPTION]... [FILE]` |
 | `editor` | GSHELL front-end for the editor<br>**How:** Full-screen: it takes over the display. **control-C gets you out** -- tested, and none of q, Q, control-D or ESC did. If it has a quit command of its own, its documentation in DOC/ will say. |
 | `sed` | &#9733; sed - stream editor (verified: s/x/y/ substitution works)<br>`Syntax: sed [<opts>] [<path>] [<opts>]` |
 
@@ -580,9 +580,9 @@
 | | |
 |---|---|
 | `forth` | &#9733; Forth interpreter<br>`Syntax   : forth [<opts>] [<file>] [<opts>]` |
-| `lua` | Lua 3.0 -- a small scripting language.  OS-9 port with its own module/shell library; needs csl.  See DOC/lua and DOC/README-LUA<br>**How:** Lua 3.0, and it needs Microware's csl -- see DOC/README-CIO. Run a script with `lua file.lua'. NOTE: 3.0 has no numeric `for' loop; that arrived in Lua 3.1, so `for i=1,10 do' is a syntax error here and `while' is the idiom. Examples in DOC/lua/examples. |
+| `lua` | Lua 3.0 -- a small scripting language.  It was built against a LATER csl than the edition 16 that ships here and stops with `**** csl traphandler mismatch ****'.  `luac', the compiler, is fine.  See DOC/lua and DOC/README-LUA<br>**How:** Lua 3.0, and it needs Microware's csl -- see DOC/README-CIO. Run a script with `lua file.lua'. NOTE: 3.0 has no numeric `for' loop; that arrived in Lua 3.1, so `for i=1,10 do' is a syntax error here and `while' is the idiom. Examples in DOC/lua/examples. |
 | `luac` | &#9733; Lua bytecode compiler -- luac -o out in.lua<br>**How:** Compiles a Lua script to bytecode: `luac -o out in.lua'. Needs csl. runc then runs the result as an OS-9 command. |
-| `runc` | Runs a compiled Lua chunk as an OS-9 command |
+| `runc` | Runs a compiled Lua chunk as an OS-9 command -- and stops with the same csl mismatch as `lua'.  DOC/STATUS names all five programs that do |
 | `wam.sbprolog` | SB-Prolog 2.2 WAM engine -- see DOC/sbprolog/README-SBPROLOG<br>`Usage: sim [-Ttdns] [-m s_size] [-p p_size] [-b tr_size] [-ui num] pil_file_name ...` |
 | `xlisp` | XLISP 2.1 Lisp interpreter |
 
@@ -847,7 +847,7 @@
 | `atp` | &#9733; AX.25 transport, from the KA9Q package |
 | `finger` | &#9733; ask another machine who is logged in<br>**How:** Asks another machine who is logged in: `finger <userid>'. Needs a network. |
 | `infoxpress` | InfoXpress client |
-| `msntp` | set the clock from a network time server<br>**How:** Sets the clock from a network time server. |
+| `msntp` | set the clock from a network time server -- stops with a csl traphandler mismatch; see DOC/STATUS<br>**How:** Sets the clock from a network time server. |
 | `net` | KA9Q net -- TCP/IP over SLIP or AX.25: telnet, ftp, smtp<br>**How:** KA9Q net, Phil Karn's TCP/IP over SLIP or AX.25 -- the stack amateur radio ran on. Needs NETHOME, NETSPOOL and TMPDIR set and a real interface; see DOC/ka9q. |
 | `osknet` | OSKNET -- TCP/IP for OS-9, Telnet, FTP, Ping and SMTP<br>**How:** Charles Hedrick's TCP/IP for OS-9 -- Telnet, FTP, Ping and SMTP. It needs a network interface, which os9exec does not present, so it starts and does nothing here. Its own documentation is nine files in DOC/osknet: start with howto.doc and useguide.doc. |
 
@@ -1109,7 +1109,7 @@
 
 | | |
 |---|---|
-| `cjpeg` | JPEG encoder (IJG) -- ADDED<br>`usage: cjpeg [switches]` |
+| `cjpeg` | JPEG encoder (IJG) -- and it cannot read its input here: `Bogus data in PPM file' for a PPM netpbm reads happily, raw or plain.  cjpeg.070 fails the same way.  So no JPEG can be made here, and djpeg has nothing to decode<br>`usage: cjpeg [switches]` |
 | `cjpeg.070` | JPEG compressor (68070 build)<br>`usage: cjpeg.070 [switches]` |
 | `djpeg` | JPEG decoder (IJG) -- ADDED<br>`usage: djpeg [switches]` |
 | `djpeg.070` | JPEG decompressor (68070 build)<br>`usage: djpeg.070 [switches]` |
@@ -1241,7 +1241,7 @@
 
 | | |
 |---|---|
-| `bincheckr` | check a GNU Chess opening-book file |
+| `bincheckr` | check a GNU Chess opening-book file -- it reports booksize 0 for the 145 KB book that ships here, then aborts |
 | `checkgame` | replay a saved chess game -- prints two lines of PostScript and then aborts (E_PRCABT).  2nd build; `game' is the same<br>`Usage: game file [start [end] ]` |
 | `game` | replay a saved chess game -- prints two lines of PostScript and then aborts (E_PRCABT)<br>`Usage: game file [start [end] ]` |
 | `postprint` | print a chess position as PostScript (GNU Chess) |
@@ -1618,7 +1618,7 @@
 | `hc` | hex calculator |
 | `loan` | &#9733; loan/amortisation calculator |
 | `rechne` | &#9733; RPN calculator |
-| `rpn` | &#9733; RPN calculator |
+| `rpn` | &#9733; RPN calculator -- and its `+' is wrong: 12, 34, + leaves a stack of three with 0 on top instead of one with 46. `rechne' is the calculator that answers correctly |
 | `sc` | sc -- spreadsheet calculator (needs TERM)<br>**How:** The spreadsheet, version 6.16. It will not read SYS/termcap: do `. /dd/SYS/termcap.entry' first, then `sc' opens and says "Type '?' for help". Tested. |
 
 **Spreadsheets**

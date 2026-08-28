@@ -1,0 +1,2 @@
+pbmtext "netpbm" | pbmtoascii > /dd/tmp/art.txt
+stdin:  PGM raw, 60 by 8  maxval 127

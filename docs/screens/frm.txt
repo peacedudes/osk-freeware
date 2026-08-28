@@ -1,4 +1,4 @@
 /dd/CMDS/ELM/frm
-No mail.
+tester has no mail.
 Could not open user data file!
 Could not open system data file!

@@ -1,0 +1,5 @@
+/dd/CMDS/ssl /dd/DOC/INDEX
+
+File descriptor sector /dd/DOC/INDEX: 0
+ Seg#     start    lenght
+-------------------------

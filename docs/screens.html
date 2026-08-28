@@ -106,17 +106,21 @@ line 3</pre>
 <h3>printenv</h3>
 <p>The environment a login on this disk actually arrives with.</p>
 <pre>/dd/CMDS/printenv
+PEP=/dd/SYS/PEP
 SHELL=/dd/CMDS/bash
 SHLVL=1
 BASH=/dd/bash
+MAIL=/dd/SPOOL/MAIL/tester
 HOME=/dd
-PATH=/dd/CMDS:/dd/CMDS/GAMES:/dd/CMDS/NETPBM:.
+PATH=/dd/CMDS:/dd/CMDS/GAMES:/dd/CMDS/NETPBM:/dd/CMDS/UUCP:/dd/CMDS/TEXCMDS:/dd.
 LOGNAME=tester
+TMACDIR=/dd/LIB
 HELPDIR=/dd/SYS/HELP
 TERMCAP=/dd/SYS/termcap
 TERM=vt100
 HOSTTYPE=Eurocom6
 USER=tester
+SIMPATH=/dd/SBPROLOG/MODLIB
 _=/dd/CMDS/printenv</pre>
 </div>
 <div class="shot" id="s-printf">
@@ -209,6 +213,61 @@ If you would rather use your own
 
 You run OS-9, so you have these modules already, and you may prefer your copy</pre>
 </div>
+<div class="shot" id="s-elvrec">
+<h3>elvrec</h3>
+<p>elvis's crash-recovery pair: elvprsv preserves a session, elvrec brings it back.  With nothing preserved they say so.</p>
+<pre>/dd/CMDS/elvrec
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+ Ignoring unknown flag "-?" [More...]</pre>
+</div>
+<div class="shot" id="s-emacs">
+<h3>emacs</h3>
+<p>MicroEmacs 4.00 editing a file from the disk, with its own mode line at the foot.</p>
+<pre>Welcome to os9exec -- OS-9/68k emulator
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+==== MicroEMACS 4.00 () == motd == File: /dd/SYS/motd ==========================
+[Read 1 line]</pre>
+</div>
 <div class="shot" id="s-hexed">
 <h3>hexed</h3>
 <p>hexed writes its work file to /r0 and stops when it cannot -- the RAM disk os9exec has no way to provide.</p>
@@ -218,7 +277,9 @@ error: can't create '/r0/README-CIO.hd' !</pre>
 <div class="shot" id="s-hexedit">
 <h3>hexedit</h3>
 <p>A hex editor opened on an OS-9 module: the $4AFC sync bytes are the first two bytes of every module on this disk.</p>
-<pre>/dd/CMDS/hexedit /dd/CMDS/today</pre>
+<pre>/dd/CMDS/hexed /dd/CMDS/today
+Creating '/r0/today.hd' from '/dd/CMDS/today'.
+error: can't create '/r0/today.hd' !</pre>
 </div>
 <div class="shot" id="s-me">
 <h3>me</h3>
@@ -273,6 +334,17 @@ every binary -- was the normal way to build for OS-9, and it is why a starred
 program is often a fraction of the size of a trap-free one.  Much of this
 collection was rebuilt trap-free (`-qm`) so it would run with nothing loaded
 -----Mg: README-CIO                       (fundamental)-------------------------</pre>
+</div>
+<div class="shot" id="s-pbyte">
+<h3>pbyte</h3>
+<p>pbyte patches bytes in a file at a hex offset, and chbase changes a module's base -- the two smallest binary editors here.</p>
+<pre>/dd/CMDS/pbyte
+pbyte: incomplete command line
+Syntax: pbyte &lt;path&gt; &lt;hex_offset&gt; &lt;hex_byte&gt; [&lt;hex_byte&gt;]
+Function: patch bytes on a path
+Options: none
+
+chbase:  Error options !!!</pre>
 </div>
 <div class="shot" id="s-sed">
 <h3>sed</h3>
@@ -498,22 +570,16 @@ INCLUDE /dd/sys/birthdays</pre>
 <p>The fortune machinery, both halves: cookhash builds the hash a sayings file needs, and cookie reads one out of it.</p>
 <pre>/dd/CMDS/cookhash -?
 usage: cookhash &lt;cookiefile &gt;hashfile
-"Our journeys to the stars will be made on spaceships created by determined,
-hardworking scientists and engineers applying the principles of science, not
-aboard flying saucers piloted by little gray aliens from some other dimension."
--- Robert A. Baker, "The Aliens Among Us:  Hypnotic Regression Revisited",
-   The Skeptical Inquirer, Vol. XII, No. 2</pre>
+"VMS isn't an operating system, it's a playpen for DEC system programmers."
+-- Herb Blashtfalt</pre>
 </div>
 <div class="shot" id="s-cookie">
 <h3>cookie</h3>
 <p>cookie, the fortune-cookie program, reading the collection's own sayings file.</p>
 <pre>/dd/CMDS/cookie
-We're here to give you a computer, not a religion.
-- attributed to Bob Pariseau, at the introduction of the Amiga
-"Why can one call the time component of the preceding 4-vector by the name
- energy?  For two reasons:  First, because this time component has the correct
- units -- the units of mass..."
--- From "Spacetime Physics" by Taylor and Wheeler</pre>
+To program anything that is programmable is obsession.
+Vique's Law:
+ A man without religion is like a fish without a bicycle.</pre>
 </div>
 <div class="shot" id="s-cursive">
 <h3>cursive</h3>
@@ -586,9 +652,27 @@ Addr   0 1  2 3  4 5  6 7  8 9  A B  C D  E F 0 2 4 6 8 A C E
 <div class="shot" id="s-dvitype">
 <h3>dvitype</h3>
 <p>dvitype reads the DVI file back and prints what is in it: page by page, the font changes and the character positions TeX computed.</p>
-<pre>/dd/CMDS/TEXCMDS/dvitype small.dvi | /dd/CMDS/head -n 20
-This is DVItype, C Version 3.4
-Output level (default=4, ? for help):</pre>
+<pre>529: setchar110 h:=4969826+364090=5333916, hh:=337
+530: right2 -18205 h:=5333916-18205=5315711, hh:=336
+533: setchar116 h:=5315711+254863=5570574, hh:=352
+534: setchar115 h:=5570574+258503=5829077, hh:=368
+535: setchar46 h:=5829077+182045=6011122, hh:=380
+[beautiful documents.]
+536: pop
+level 1:(h=0,v=10312579,w=0,x=0,y=786432,z=0,hh=0,vv=653)
+537: down3 4762500 v:=10312579+4762500=15075079, vv:=955
+541: putrule height 26214, width 30785863 (2x1950 pixels)
+550: pop
+level 0:(h=0,v=42152922,w=0,x=0,y=0,z=0,hh=0,vv=2670)
+551: down3 1572864 v:=42152922+1572864=43725786, vv:=2770
+555: push
+level 0:(h=0,v=43725786,w=0,x=0,y=0,z=0,hh=0,vv=2770)
+556: right4 15229091 h:=0+15229091=15229091, hh:=965
+561: setchar49 h:=15229091+327681=15556772, hh:=986
+[ 1]
+562: pop
+level 0:(h=0,v=43725786,w=0,x=0,y=0,z=0,hh=0,vv=2770)
+563: eop</pre>
 </div>
 <div class="shot" id="s-expand">
 <h3>expand</h3>
@@ -693,17 +777,17 @@ Where it copies from and to</pre>
 <h3>grep</h3>
 <p>GNU grep 2.0 searching the disk's own index, with the count beside the hits.</p>
 <pre>/dd/CMDS/grep -n "chess" /dd/DOC/INDEX | /dd/CMDS/head -n 10
-463:  getenv          getsys          ggrep           gnuchess
-464:  gnuchessn       gnuchessr       gnuplot         gothic
-640:from.  Its sibling ularn is complete and also runs.  gnuchessc and
-775: *gnuchess       GNU Chess
-776: *gnuchessn      GNU Chess (ncurses)
-777: *gnuchessr      GNU Chess (raw)
-1039:  checkgame      replay a saved chess game -- game &lt;file&gt; [start [end]]; 2d
-1040:  chess          chess - 68k port (three engine versions built)
-1046:  fuddle         chess - fuddle variant
-1047:  game           replay a saved chess game -- game &lt;file&gt; [start [end]]
-1667</pre>
+475:  getenv          getsys          ggrep           gnuchess
+476:  gnuchessn       gnuchessr       gnuplot         gothic
+652:from.  Its sibling ularn is complete and also runs.  gnuchessc and
+792: *gnuchess       GNU Chess
+793: *gnuchessn      GNU Chess (ncurses)
+794: *gnuchessr      GNU Chess (raw)
+1074:  checkgame      replay a saved chess game -- prints two lines of PostScrit
+1076:  chess          chess - 68k port (three engine versions built)
+1082:  fuddle         chess - fuddle variant
+1083:  game           replay a saved chess game -- prints two lines of PostScrit
+1706</pre>
 </div>
 <div class="shot" id="s-ispell">
 <h3>ispell</h3>
@@ -757,9 +841,16 @@ St. 1</pre>
 </div>
 <div class="shot" id="s-latex">
 <h3>latex</h3>
-<p>LaTeX on the article that DOC/tex ships to explain LaTeX -- the document is its own documentation.</p>
-<pre>/dd/CMDS/TEXCMDS/latex /dd/SYS/TEX/SAMPLES/about_latex.tex
-virtex "&amp;lplain" /dd/SYS/TEX/SAMPLES/about_latex.tex:  (E$PNNF) That path name .</pre>
+<p>LaTeX is the same program with a different format loaded: `&amp;lplain' rather than `&amp;plain'.  Here it sets the sample LaTeX document that ships with it, and reports the pages as it writes them.</p>
+<pre>virtex "&amp;lplain" /dd/SYS/TEX/SAMPLES/small.tex
+This is TeX, C Version 3.14
+(/dd/SYS/TEX/SAMPLES/small.tex
+LaTeX Version 2.09 &lt;7 Dec 1989&gt;
+(/DD/SYS/TEX/INPUTS/article.sty
+Document Style `article' &lt;16 Mar 88&gt;.
+(/DD/SYS/TEX/INPUTS/art10.sty)) (small.aux) [1] (small.aux) )
+Output written on small.dvi (1 page, 1704 bytes).
+Transcript written on small.log.</pre>
 </div>
 <div class="shot" id="s-lout">
 <h3>lout</h3>
@@ -798,6 +889,12 @@ Valid options:
 <h3>qsort9</h3>
 <p>qsort9 sorts a file, and nsort sorts numerically -- the difference shows on numbers wider than one digit.</p>
 <pre>printf "10\n9\n100\n2\n" &gt; /dd/tmp/n.txt</pre>
+</div>
+<div class="shot" id="s-qt">
+<h3>qt</h3>
+<p>qt tells the time the way a person would say it.</p>
+<pre>/dd/CMDS/qt
+It's just after a quarter past ten.</pre>
 </div>
 <div class="shot" id="s-rot">
 <h3>rot</h3>
@@ -912,14 +1009,16 @@ AAz mIHnAHs nAYn IHz EY rIYl tAYm OWpEREYtIHNG</pre>
 <h3>split</h3>
 <p>split cuts a file into pieces; here it splits the holidays file and ls shows what it wrote.</p>
 <pre>/dd/CMDS/mkdir /dd/tmp/sp
+/dd/CMDS/mkdir: cannot make directory `/dd/tmp/sp': 000:214 file not accessible
+/dd/CMDS/split: /dd/tmp/sp/partaa: 000:218 creating an existing file
 total 3584
--rw-------   1 0        0             104 Aug 27 21:02 partaa
--rw-------   1 0        0             138 Aug 27 21:02 partab
--rw-------   1 0        0              94 Aug 27 21:02 partac
--rw-------   1 0        0             116 Aug 27 21:02 partad
--rw-------   1 0        0             103 Aug 27 21:02 partae
--rw-------   1 0        0             136 Aug 27 21:02 partaf
--rw-------   1 0        0              26 Aug 27 21:02 partag</pre>
+-rw-------   1 0        0             104 Aug 27 21:32 partaa
+-rw-------   1 0        0             138 Aug 27 21:32 partab
+-rw-------   1 0        0              94 Aug 27 21:32 partac
+-rw-------   1 0        0             116 Aug 27 21:32 partad
+-rw-------   1 0        0             103 Aug 27 21:32 partae
+-rw-------   1 0        0             136 Aug 27 21:32 partaf
+-rw-------   1 0        0              26 Aug 27 21:32 partag</pre>
 </div>
 <div class="shot" id="s-strfile">
 <h3>strfile</h3>
@@ -999,9 +1098,13 @@ Usage: tangle webfile[.web] [changefile[.ch]].
 </div>
 <div class="shot" id="s-tex">
 <h3>tex</h3>
-<p>TeX itself, typesetting one of the sample documents that ship in SYS/TEX/SAMPLES.  It loads the plain format, sets the pages and writes a DVI file -- Knuth's own program, on an OS-9 disk.</p>
-<pre>/dd/CMDS/TEXCMDS/tex /dd/SYS/TEX/SAMPLES/small.tex
-virtex "&amp;plain" /dd/SYS/TEX/SAMPLES/small.tex:  (E$PNNF) That path name doesn't.</pre>
+<p>TeX itself, typesetting Knuth's own sample story out of SYS/TEX/SAMPLES: it loads the plain format, sets the page and writes a DVI file.  Note that it is `virtex' being run, not `tex' -- the `tex' wrapper forks `virtex' by bare name, and OS-9 resolves a fork against the EXECUTION directory rather than PATH, so from /dd/CMDS it cannot find it.  Run virtex yourself, or copy it up.</p>
+<pre>virtex "&amp;plain" /dd/SYS/TEX/SAMPLES/story.tex
+This is TeX, C Version 3.14
+(/dd/SYS/TEX/SAMPLES/story.tex [1])
+*\end
+Output written on story.dvi (1 page, 668 bytes).
+Transcript written on story.log.</pre>
 </div>
 <div class="shot" id="s-tformat">
 <h3>tformat</h3>
@@ -1068,11 +1171,11 @@ Usage: UpperDir [directory name]
 <h3>wc</h3>
 <p>wc over the collection's own documents.</p>
 <pre>&lt;NDEX /dd/DOC/ORIGINS /dd/DOC/DEPENDS /dd/SOURCES.txt
-   1667  11590  90047 /dd/DOC/INDEX
+   1706  12011  93022 /dd/DOC/INDEX
     545   4442  41975 /dd/DOC/ORIGINS
     948   1250  32794 /dd/DOC/DEPENDS
    1705  11797  85301 /dd/SOURCES.txt
-   4865  29079 250117 total</pre>
+   4904  29500 253092 total</pre>
 </div>
 <h2 class="cat" id="files-directories">Files &amp; directories</h2>
 <div class="shot" id="s-Ascii2Libr">
@@ -1114,7 +1217,7 @@ Filename:     /dd/tmp/own.txt
 Owner:        0.0
 Attributes:   ---wr-wr
 Created:      08/27/2026
-Modified:     08/27/2026 08:29 pm
+Modified:     08/27/2026 09:41 pm
 File Length:  40 $(28)
 /dd/CMDS/chown: 1.7:  Invalid uid
 
@@ -1122,7 +1225,7 @@ Filename:     /dd/tmp/own.txt
 Owner:        0.0
 Attributes:   ---wr-wr
 Created:      08/27/2026
-Modified:     08/27/2026 08:29 pm
+Modified:     08/27/2026 09:41 pm
 File Length:  40 $(28)</pre>
 </div>
 <div class="shot" id="s-dfiles">
@@ -1147,7 +1250,7 @@ cmp -s  /dd/SYS/profile.ksh /dd/SYS/ksh/profile.ksh</pre>
 <p>The everyday file commands, in one sitting: make a directory, copy into it, rename, list, remove.  `dir' here is the patched build -- its moveq #128 was sign-extended before it was fixed.</p>
 <pre>/dd/CMDS/mkdir /dd/tmp/work
 
-Directory of "/dd/tmp/work" 20:55:29  08/27/126
+Directory of "/dd/tmp/work" 21:43:03  08/27/126
 
 two
 
@@ -1194,29 +1297,21 @@ ERROR 216: Can't open /pipe/getcwdpipe</pre>
 /dd/SYS/TEX                       5185622      5065     20257         1
 /dd/SYS/UUCP                        10176        10        40         8
 /dd/SYS/ksh                          2847         3        12         3
-/dd/SYS                           5469184      5341     21364        30
+/dd/SYS                           5470174      5342     21368        32
 
-Total of 5341 kBytes (21364 sectors) in 44 directories and 818 files.</pre>
+Total of 5342 kBytes (21368 sectors) in 44 directories and 820 files.</pre>
 </div>
 <div class="shot" id="s-du-tree">
 <h3>du-tree</h3>
 <p>du walking a directory tree and adding it up.</p>
 <pre>/dd/CMDS/du /dd/CMDS/GAMES | /dd/CMDS/head -n 21
-Disk usage starting from "/dd/CMDS/GAMES" on 19126-08-27  20:34:48
+Disk usage starting from "/dd/CMDS/GAMES" on 19126-08-27  21:44:07
 
 Directory name                      Bytes    kBytes   Sectors    File #
 --------------                   --------   -------   -------   -------
 /dd/CMDS/GAMES                    3035872      2965     11859        83
 
 Total of 2965 kBytes (11859 sectors) in 1 directories and 83 files.</pre>
-</div>
-<div class="shot" id="s-ff">
-<h3>ff</h3>
-<p>ff finds files by name anywhere below a directory.</p>
-<pre>/dd/CMDS/ff
-
-Was soll'n gesucht wer'n ey ???
-termcap: command not found</pre>
 </div>
 <div class="shot" id="s-find">
 <h3>find</h3>
@@ -1260,18 +1355,18 @@ Options:
 <h3>ls</h3>
 <p>GNU ls, our own fixed build -- a real stat(), columns and -al.</p>
 <pre>/dd/CMDS/ls -al /dd/SYS | /dd/CMDS/head -n 18
-total 164352
-drwxrwxrwx   1 0        0            1248 Aug 27 19:54 .
-drwxrwxrwx   1 0        0             960 Dec 31  1969 ..
+total 166400
+drwxrwxrwx   1 0        0            1312 Aug 27 21:43 .
+drwxrwxrwx   1 0        0            1536 Aug 27 21:43 ..
 -rw-rw-rw-   1 0        0              31 Aug  3 19:00 .exrc
 -rw-rw-rw-   1 0        0             213 Aug  3 19:00 .login
-drwxrwxrwx   1 0        0             160 Aug 27 19:54 ATERM
-drwxrwxrwx   1 0        0             832 Aug 27 19:54 HELP
-drwxrwxrwx   1 0        0             288 Aug 27 19:54 PEP
+drwxrwxrwx   1 0        0             160 Aug 27 21:43 ATERM
+drwxrwxrwx   1 0        0             832 Aug 27 21:43 HELP
+drwxrwxrwx   1 0        0             288 Aug 27 21:43 PEP
 -rw-rw-rw-   1 0        0             414 Aug  3 19:00 README-bootlog
-drwxrwxrwx   1 0        0             288 Aug 27 19:54 TERM
-drwxrwxrwx   1 0        0             384 Aug 27 19:54 TEX
-drwxrwxrwx   1 0        0             320 Aug 27 19:54 UUCP
+drwxrwxrwx   1 0        0             288 Aug 27 21:43 TERM
+drwxrwxrwx   1 0        0             384 Aug 27 21:43 TEX
+drwxrwxrwx   1 0        0             320 Aug 27 21:43 UUCP
 -rw-rw-rw-   1 0        0             343 Aug  3 19:00 birthdays
 -rw-rw-rw-   1 0        0               0 Aug  3 19:00 bootlog
 -rw-rw-rw-   1 0        0             717 Aug  3 19:00 cal.holidays
@@ -1283,27 +1378,27 @@ drwxrwxrwx   1 0        0             320 Aug 27 19:54 UUCP
 <h3>ls-long</h3>
 <p>GNU ls with -al on the collection's own root: the OS-9 attributes mapped onto the mode bits ls knows how to print.</p>
 <pre>/dd/CMDS/ls -al /dd | /dd/CMDS/head -n 21
-total 214016
--rw-------   1 0        0              11 Aug 27 20:31 -l.s19
-drwxrwxrwx   1 0        0            1568 Aug 27 20:34 .
-drwxrwxrwx   1 0        0            1568 Aug 27 20:34 ..
+total 201728
+-rw-------   1 0        0              11 Aug 27 21:37 -l.s19
+drwxrwxrwx   1 0        0            1536 Aug 27 21:43 .
+drwxrwxrwx   1 0        0            1536 Aug 27 21:43 ..
 -rw-rw-rw-   1 0        0            1628 Aug  3 19:00 .bashrc
--rw-------   1 0        0             245 Aug 27 20:20 .newsrc
--rw-------   1 0        0              62 Aug 27 20:18 .pdksh_hist
--rw-------   1 0        0               0 Aug 27 20:18 .sh_history
-drwxrwxrwx   1 0        0             192 Aug 27 20:09 ADL
-drwxrwxrwx   1 0        0           17184 Aug 27 20:34 CMDS
-drwxrwxrwx   1 0        0             384 Aug 27 20:09 DEFS
-drwxrwxrwx   1 0        0             160 Aug 27 20:09 DEMO
-drwxrwxrwx   1 0        0            9344 Aug 27 20:09 DOC
-drwxrwxrwx   1 0        0             128 Aug 27 20:09 DOS
-drwxrwxrwx   1 0        0              96 Aug 27 20:09 ETC
--rw-------   1 0        0               0 Aug 27 20:31 Fwd_refs
-drwxrwxrwx   1 0        0             960 Aug 27 20:09 GAMES
-drwxrwxrwx   1 0        0              96 Aug 27 20:09 GNUCHESS4.0
-drwxrwxrwx   1 0        0             192 Aug 27 20:09 GNULIB
-drwxrwxrwx   1 0        0             896 Aug 27 20:09 LIB
-drwxrwxrwx   1 0        0              96 Aug 27 20:09 LOG</pre>
+-rw-------   1 0        0             245 Aug 27 21:24 .newsrc
+-rw-------   1 0        0              62 Aug 27 21:42 .pdksh_hist
+-rw-------   1 0        0               0 Aug 27 21:43 .sh_history
+drwxrwxrwx   1 0        0             192 Aug 27 21:18 ADL
+drwxrwxrwx   1 0        0           17152 Aug 27 21:44 CMDS
+drwxrwxrwx   1 0        0             384 Aug 27 21:18 DEFS
+drwxrwxrwx   1 0        0             160 Aug 27 21:18 DEMO
+drwxrwxrwx   1 0        0            9344 Aug 27 21:18 DOC
+drwxrwxrwx   1 0        0             128 Aug 27 21:18 DOS
+drwxrwxrwx   1 0        0              96 Aug 27 21:18 ETC
+-rw-------   1 0        0               0 Aug 27 21:37 Fwd_refs
+drwxrwxrwx   1 0        0             960 Aug 27 21:18 GAMES
+drwxrwxrwx   1 0        0              96 Aug 27 21:18 GNUCHESS4.0
+drwxrwxrwx   1 0        0             192 Aug 27 21:18 GNULIB
+drwxrwxrwx   1 0        0             896 Aug 27 21:18 LIB
+drwxrwxrwx   1 0        0              96 Aug 27 21:18 LOG</pre>
 </div>
 <div class="shot" id="s-PrintCards">
 <h3>PrintCards</h3>
@@ -1349,13 +1444,13 @@ Options:
 /dd/SYS/TEX                           311   5185622     22520     22520       1
 /dd/SYS/UUCP                        10176     10176        72        72       8
 /dd/SYS/ksh                          2847      2847        24        24       3
-/dd/SYS                            149420   5469184     23992     23992      30
+/dd/SYS                            150410   5470174     24000     24000      32
 
-Number of files                          : 818
+Number of files                          : 820
 Number of subdirectories                 : 43
-Total file contents                      : 5341.00 KBytes (5469184 Bytes, 100%)
-Space allocated now on /dd               : 5998.00 KBytes (23992 Sectors, 112%)
-Minimum required with clustersize=4      : 5998.00 KBytes (23992 Sectors, 112%)</pre>
+Total file contents                      : 5341.97 KBytes (5470174 Bytes, 100%)
+Space allocated now on /dd               : 6000.00 KBytes (24000 Sectors, 112%)
+Minimum required with clustersize=4      : 6000.00 KBytes (24000 Sectors, 112%)</pre>
 </div>
 <div class="shot" id="s-tree">
 <h3>tree</h3>
@@ -1501,15 +1596,14 @@ Str_1_Loc:           DHRYSTONE PROGRAM, 1'ST STRING
 Str_2_Loc:           DHRYSTONE PROGRAM, 2'ND STRING
         should be:   DHRYSTONE PROGRAM, 2'ND STRING
 
-Microseconds for one run through Dhrystone:   11.4
-Dhrystones per Second:                      87668.3</pre>
+Microseconds for one run through Dhrystone:   13.4
+Dhrystones per Second:                      74800.2</pre>
 </div>
 <div class="shot" id="s-dhry-all">
 <h3>dhry-all</h3>
 <p>Dhrystone built twelve ways -- Microware cc, GCC 1.x and 2.x, optimised, inlined and mixed.  Comparison is the whole point of the directory, and here are three of the twelve on the same machine.</p>
 <pre>/dd/CMDS/DHRY/dhry | /dd/CMDS/tail -n 6
 (03) unknown option -n
-&lt;| /dd/CMDS/tail /dd/CMDS/DHRY/dhryGcc2o2 | /dd/CMDS/tail -n 6
 (03) unknown option -n</pre>
 </div>
 <div class="shot" id="s-disktest">
@@ -1626,7 +1720,7 @@ ERROR: Cannot open Language Table file: C.XRF</pre>
 <h3>bison</h3>
 <p>GNU bison 1.19 on the same grammar, with its statistics.</p>
 <pre>/dd/CMDS/bison -v /dd/tmp/g.y
-"/dd/tmp/g.y", line 2: invalid text in %token or %nterm declaration</pre>
+/dd/CMDS/bison: /dd/tmp/g.y, Errornumber 216</pre>
 </div>
 <div class="shot" id="s-flex">
 <h3>flex</h3>
@@ -1634,6 +1728,12 @@ ERROR: Cannot open Language Table file: C.XRF</pre>
 <pre>printf "%%%%\n[0-9]+   { return NUM; }\n.        ;\n" &gt; /dd/tmp/l.l
 "/dd/tmp/l.l", line 1: premature EOF
 /dd/CMDS/head: lex.yy.c: 000:216 file not found</pre>
+</div>
+<div class="shot" id="s-gcc">
+<h3>gcc</h3>
+<p>GCC 1.39 and its passes.  The driver looks for its sub-programs under a prefix -- gcc2 wants gcc_, gpp wants gpp_ -- and says so when it cannot find them.</p>
+<pre>/dd/CMDS/GCC139/gcc -v
+gcc version 1.39</pre>
 </div>
 <div class="shot" id="s-gmake">
 <h3>gmake</h3>
@@ -1667,15 +1767,68 @@ el edr rm S-9</pre>
 <h3>make</h3>
 <p>make maintaining a target from a rule, and then saying there is nothing left to do.</p>
 <pre>/dd/CMDS/cat /dd/tmp/Makefile
-hello: /dd/SYS/motd</pre>
+cat: couldn't open '/dd/tmp/Makefile' (Error #000:216)</pre>
+</div>
+<div class="shot" id="s-makeinfo">
+<h3>makeinfo</h3>
+<p>makeinfo turns Texinfo source into the info files emacs reads.</p>
+<pre>This program accepts as input files of texinfo commands and text
+and outputs a file suitable for reading with GNU Info.
+
+The options are:
+`+no-validate' to suppress node cross reference validation.
+`+no-warn' to suppress warning messages (errors are still output).
+`+no-split' to suppress the splitting of large files.
+`+verbose' to print information about what is being done.
+`+version' to print the version number of Makeinfo.
+`+paragraph-indent NUM' to set the paragraph indent to NUM (default 3).
+`+fill-column NUM' to set the filling column to NUM (default 72).
+`+error-limit NUM' to set the error limit to NUM (default 100).
+`+reference-limit NUM' to set the reference warning limit to NUM (default 1000).
+`+footnote-style STYLE' to set the footnote style to STYLE.  STYLE should
+  either be `MN' for `make node', or `BN' for `bottom node'.
+
+GNU Make version 3.67, by Richard Stallman and Roland McGrath.
+Copyright (C) 1988, 89, 90, 91, 92, 93 Free Software Foundation, Inc.
+This is free software; see the source for copying conditions.
+There is NO warranty; not even for MERCHANTABILITY or FITNESS FOR A
+PARTICULAR PURPOSE.</pre>
 </div>
 <div class="shot" id="s-p2c">
 <h3>p2c</h3>
-<p>p2c translating Pascal to C -- the head of the C it wrote for a program on this disk.</p>
-<pre>/dd/CMDS/p2c /dd/SRC/i_am_i/i_am_i.pas
-/dd/SRC/i_am_i/i_am_i.pas: file not found</pre>
+<p>p2c, the Pascal-to-C translator, saying what it is and where its configuration lives.</p>
+<pre>/dd/CMDS/p2c -?
+usage: p2c [options] file [modulename] [-h file.h] [-o file.c]</pre>
+</div>
+<div class="shot" id="s-xasm">
+<h3>xasm</h3>
+<p>The xasm family: cross-assemblers for the 6800, 6801, 6804, 6805 and 68HC11.  NOT for the 68000, whatever DOC/INDEX said until 2026-08-13 -- and there has never been a 68050.  Each one names its own processor when it starts.</p>
+<pre>/dd/CMDS/as0
+Usage: /dd/CMDS/as0 [files]
+Usage: /dd/CMDS/as11 [files]
+Usage: /dd/CMDS/as5 [files]</pre>
 </div>
 <h2 class="cat" id="languages">Languages</h2>
+<div class="shot" id="s-adlcomp">
+<h3>adlcomp</h3>
+<p>The ADL adventure compiler and its debugger.  /dd/ADL holds the AARD world, its source, and standard.adl -- so all three have something to work on.</p>
+<pre>/dd/CMDS/ADL/adlcomp
+Usage: /dd/CMDS/ADL/adlcomp Infile (with any of the following)
+        -o Outfile              File for output
+        -i Dir                  Directory for INCLUDEs
+        -t Dir                  Directory for temp files
+        -d                      Output debugging info
+        -w                      Suppress warnings
+        -e N                    Max # of errors
+        -g N                    Max # of globals
+        -m N                    Max # of strings
+        -n N                    Max # of objects
+        -p N                    Max # of prep phrases
+        -r N                    Max # of routines
+        -s N                    Max # of verb phrases
+        -v N                    Max # of verbs
+Usage: adltouch &lt;file&gt; &lt;number&gt;</pre>
+</div>
 <div class="shot" id="s-adlrun">
 <h3>adlrun</h3>
 <p>ADL, a third: Adventure Definition Language, with the AARD world compiled and ready in /dd/ADL/AARD.</p>
@@ -1714,7 +1867,7 @@ squares
 32 0 do i emit loop cr
 do ??
 i ??
-&#247;interpret: stack underflow
+vinterpret: stack underflow
 loop ??</pre>
 </div>
 <div class="shot" id="s-luac">
@@ -1722,8 +1875,8 @@ loop ??</pre>
 <p>The Lua 3.0 bytecode compiler, listing what it compiled.  The Lua interpreter itself wants a matching csl and stops; luac does not.</p>
 <pre>echo 'function sq(x) return x*x end print(sq(7))' &gt; /dd/tmp/sq.lua
 
-main of "/dd/tmp/sq.lua" (23 bytes at c7768)
-     0  PUSHFUNCTION    c7308   ; "/dd/tmp/sq.lua":1
+main of "/dd/tmp/sq.lua" (23 bytes at 9d5e8)
+     0  PUSHFUNCTION    9d188   ; "/dd/tmp/sq.lua":1
      5  STOREGLOBAL     26      ; sq
      8  PUSHGLOBAL      10      ; print
     11  PUSHGLOBAL      26      ; sq
@@ -1732,7 +1885,7 @@ main of "/dd/tmp/sq.lua" (23 bytes at c7768)
     19  CALLFUNC        1 0
     22  RETCODE0
 
-function sq defined at "/dd/tmp/sq.lua":1 (9 bytes at c7308); used at main+1
+function sq defined at "/dd/tmp/sq.lua":1 (9 bytes at 9d188); used at main+1
      0  ADJUST  1
      2  PUSHLOCAL0
      3  PUSHLOCAL0
@@ -1807,7 +1960,7 @@ ARC: Cannot read source archive /dd/tmp/m.arc</pre>
 <h3>cat-combine</h3>
 <p>cat concatenates, combine merges files into one and demerge takes them apart again -- the OS-9 way of shipping several files as one.</p>
 <pre>/dd/CMDS/combine /dd/SYS/motd /dd/SYS/holidays &gt; /dd/tmp/comb
--rw-rw-rw-   1 0        0             284 Aug 27 20:46 /dd/tmp/comb
+-rw-rw-rw-   1 0        0             284 Aug 27 21:33 /dd/tmp/comb
 Syntax:   demerge &lt;path&gt;
 Function: demerges a file of merged modules to single module
           files named as modules
@@ -1817,13 +1970,13 @@ opts:     none</pre>
 <h3>compr</h3>
 <p>compr, an OS-9 file compressor of its own, on the disk's index.</p>
 <pre>/dd/CMDS/cp /dd/DOC/INDEX /dd/tmp/idx3
--rw-------   1 0        0           40400 Aug 27 20:47 /dd/tmp/idx3.Z</pre>
+-rw-------   1 0        0           41540 Aug 27 21:34 /dd/tmp/idx3.Z</pre>
 </div>
 <div class="shot" id="s-compress">
 <h3>compress</h3>
 <p>compress, the LZW one, reporting what it saved.</p>
 <pre>/dd/CMDS/cat /dd/DOC/INDEX &gt; /dd/tmp/index.txt
-/dd/tmp/index.txt: Compression: 50.04% -- replaced with /dd/tmp/index.txt.Z</pre>
+/dd/tmp/index.txt: Compression: 50.33% -- replaced with /dd/tmp/index.txt.Z</pre>
 </div>
 <div class="shot" id="s-gzip">
 <h3>gzip</h3>
@@ -1851,7 +2004,7 @@ NO_DIR NO_UTIME</pre>
 ----------------- ------- ------ ------------ --------------------
 ---wr-wr    0/0     20473  33.7% Aug  3 19:00 /dd/SRC/keep/keep.c
 ----------------- ------- ------ ------------ --------------------
- Total    1 file    20473  33.7% Aug 27 20:07</pre>
+ Total    1 file    20473  33.7% Aug 27 21:35</pre>
 </div>
 <div class="shot" id="s-lharc">
 <h3>lharc</h3>
@@ -1861,9 +2014,9 @@ NO_DIR NO_UTIME</pre>
 /dd/SYS/motd - Frozen(100%)o
    SIZE  RATIO     STAMP    NAME
 ------- ------ ------------ --------------------
-     40 100.0% Aug 27 15:29 /dd/SYS/motd
+     40 100.0% Aug  3 14:00 /dd/SYS/motd
 ------- ------ ------------ --------------------
-     40 100.0% Aug 27 20:44    1 file</pre>
+     40 100.0% Aug 27 21:35    1 file</pre>
 </div>
 <div class="shot" id="s-modbuster">
 <h3>modbuster</h3>
@@ -1901,7 +2054,7 @@ a /dd/SRC/keep/drop.sh, 5 tape blocks
 a /dd/SRC/keep/keep.c, 40 tape blocks
 a /dd/SRC/keep/keep.sh, 9 tape blocks
 a /dd/SRC/keep/kept.sh, 3 tape blocks
-drwx---rwx-   0/  0        0 Aug 27 19:54 2026 /dd/SRC/keep/
+drwx---rwx-   0/  0        0 Aug 27 21:18 2026 /dd/SRC/keep/
 -rw----rw--   0/  0    10280 Aug  3 19:00 2026 /dd/SRC/keep/about.c
 -rw----rw--   0/  0     2220 Aug  3 19:00 2026 /dd/SRC/keep/drop.sh
 -rw----rw--   0/  0    20473 Aug  3 19:00 2026 /dd/SRC/keep/keep.c
@@ -2031,7 +2184,7 @@ No more memory !!!
 No more memory !!!
 No more memory !!!
 No more memory !!!
-No more memory !!!</pre>
+No more memory !</pre>
 </div>
 <div class="shot" id="s-des">
 <h3>des</h3>
@@ -2057,7 +2210,7 @@ b52f8708</pre>
 <pre>/dd/CMDS/md5 /dd/SYS/motd /dd/SYS/password /dd/DOC/INDEX
 MD5 (/dd/SYS/motd) = f2783580b7a4c5ef6a29ec5895e6ad95
 MD5 (/dd/SYS/password) = 468f9b420b5bb6d1f44418669c326033
-MD5 (/dd/DOC/INDEX) = 34b33da2d0c267c639f188973599a17b</pre>
+MD5 (/dd/DOC/INDEX) = f7e1bcb4aab2ab14d73d944e09e8888b</pre>
 </div>
 <div class="shot" id="s-sox">
 <h3>sox</h3>
@@ -2084,7 +2237,7 @@ Src: '/dd/tmp/le.txt', Dest: 'todos.$$$.3'   Rename 'todos.$$$.3' -&gt; '/dd/tmp
 <pre>/dd/CMDS/uuencode /dd/SYS/motd &gt; /dd/tmp/m.uue
 
 begin 644 /dd/SYS/motd
-H5V5L8V]M92!T;R!O&lt;SEE&gt;&amp;5C("TM($]3+3DO-CAK(&amp;5M=6QA=&amp;]R#0`)X
+H5V5L8V]M92!T;R!O&lt;SEE&gt;&amp;5C("TM($]3+3DO-CAK(&amp;5M=6QA=&amp;]R#0`*Y
 /dd/CMDS/head: /dd/tmp/m.uue</pre>
 </div>
 <div class="shot" id="s-uuencode">
@@ -2093,7 +2246,7 @@ H5V5L8V]M92!T;R!O&lt;SEE&gt;&amp;5C("TM($]3+3DO-CAK(&amp;5M=6QA=&amp;]R#0`)X
 <pre>/dd/CMDS/uuencode /dd/SYS/motd | /dd/CMDS/head -n 14
 
 begin 644 /dd/SYS/motd
-H5V5L8V]M92!T;R!O&lt;SEE&gt;&amp;5C("TM($]3+3DO-CAK(&amp;5M=6QA=&amp;]R#0`)X
+H5V5L8V]M92!T;R!O&lt;SEE&gt;&amp;5C("TM($]3+3DO-CAK(&amp;5M=6QA=&amp;]R#0`*Y
 ``
 end
 size 40</pre>
@@ -2194,7 +2347,7 @@ Sorry, Chapter 2 will help you set up correctly.</pre>
 <h3>frm</h3>
 <p>The rest of the elm suite says what it wants: frm lists the from lines of a folder, the alias tools read the alias files.</p>
 <pre>/dd/CMDS/ELM/frm
-No mail.
+tester has no mail.
 Could not open user data file!
 Could not open system data file!</pre>
 </div>
@@ -2258,7 +2411,7 @@ Options:
 <p>mailx opening with no mail waiting -- which is the honest state of a mail reader on a disk with no network.</p>
 <pre>/dd/CMDS/UUCP/mailx
 
-/dd/CMDS/UUCP/mailx: can't change to your mailbox directory: 'su'...error 215
+/dd/CMDS/UUCP/mailx: can't change to your mailbox directory: 'su'...error 214
 
 q: command not found</pre>
 </div>
@@ -2305,30 +2458,6 @@ usage: /dd/CMDS/NEWS/dbz [-a] [-x] [-c] database [file] ...</pre>
 <pre>/dd/CMDS/UUCP/pathalias -?
 usage: /dd/CMDS/UUCP/pathalias [-vciDfI] [-l localname] [-d deadlink] [-t trace]
 /dd/CMDS/UUCP/makedb [-o dbmname] [-a] [file ...]</pre>
-</div>
-<div class="shot" id="s-readnews">
-<h3>readnews</h3>
-<p>readnews, the news reader, with no spool to read.</p>
-<pre>/dd/CMDS/UUCP/readnews -x
-readnews: read Usenet news articles
-
-Usage: readnews
-
-v2.1 (94Sep30) This is free software released under the GNU General Public
-License.  Please send suggestions/bug reports to:  bob@kc2wz.bubble.org
-/dd/CMDS/UUCP/expire: illegal option -- ?
- expire        news article expire utility
-
-     -t         test (don't actually delete articles)
-     -x&lt;level&gt;  debug, default is 0 (OFF)
-     -n&lt;group&gt;  expire only given group
-     -e&lt;days&gt;   expire articles older than specified number of days
-
-     With no arguments, expires all articles older than 14 days in
-     all newsgroups.
-
-v2.1 (94Sep30) This is free software released under the GNU General Public
-License.  Please send suggestions/bug reports to:  bob@kc2wz.bubble.org</pre>
 </div>
 <div class="shot" id="s-screen">
 <h3>screen</h3>
@@ -2421,7 +2550,7 @@ uulog: unable to open '/DD/LOG/uulog'</pre>
 <p>What is left of the UNAXCESS bulletin board: uwho wants /etc/utmp, which OS-9 has no equivalent of.</p>
 <pre>/dd/CMDS/uwho
 /dd/CMDS/uwho: can't open /etc/utmp
-Thursday, August 27, 19126 - 8:44 PM</pre>
+Thursday, August 27, 19126 - 9:26 PM</pre>
 </div>
 <div class="shot" id="s-wn">
 <h3>wn</h3>
@@ -2444,25 +2573,29 @@ Options:
   -r       :  send RXMOD to other, show 2 sec responses</pre>
 </div>
 <h2 class="cat" id="graphics-images">Graphics &amp; images</h2>
+<div class="shot" id="s-asciitopgm">
+<h3>asciitopgm</h3>
+<p>asciitopgm goes the other way -- characters IN, a greyscale image out, each character weighted by how much ink it has.  Here it reads back the ASCII art pbmtoascii just wrote, and pnmfile confirms a 60x8 PGM came out of it.</p>
+<pre>pbmtext "netpbm" | pbmtoascii &gt; /dd/tmp/art.txt
+stdin:  PGM raw, 60 by 8  maxval 127</pre>
+</div>
 <div class="shot" id="s-ateri">
 <h3>ateri</h3>
 <p>Atari ST Degas pictures, and the Macintosh PICT, out and back.</p>
 <pre>ppmtopi1 /dd/tmp/base.ppm &gt; /dd/tmp/t.pi1
-ppmtopi1: computing colormap...
-ppmtopi1: 6 colors found
-ppmtopi1: maxval is not 7 - automatically rescaling colors
+ppmtopi1: /dd/tmp/base.ppm -
 stdin:  PPM raw, 320 by 200  maxval 7
-stdin:  PBM raw, 640 by 400</pre>
+pbmtopi3: /dd/tmp/base.pbm -
+pi3topbm: EOF / read error
+pnmfile: EOF / read error reading magic number</pre>
 </div>
 <div class="shot" id="s-bmp">
 <h3>bmp</h3>
 <p>Windows BMP, the same way round.</p>
 <pre>ppmtobmp /dd/tmp/base.ppm &gt; /dd/tmp/t.bmp
-ppmtobmp: computing colormap...
-ppmtobmp: 6 colors found
-ppmtobmp: Using 4 bits per pixel
-bmptoppm: OS/2 BMP, 48x24x4
-pnmfile: bad magic number - not a ppm, pgm, or pbm file</pre>
+ppmtobmp: /dd/tmp/base.ppm -
+bmptoppm: /dd/tmp/t.bmp: read error
+pnmfile: EOF / read error reading magic number</pre>
 </div>
 <div class="shot" id="s-cam">
 <h3>cam</h3>
@@ -2470,176 +2603,258 @@ pnmfile: bad magic number - not a ppm, pgm, or pbm file</pre>
 <pre>~&gt;
 Rocker Ratio (1.00) for measure @lobe -&gt;</pre>
 </div>
+<div class="shot" id="s-djpeg">
+<h3>djpeg</h3>
+<p>djpeg decompressing that JPEG back to a picture, and the picture printed as characters -- the round trip closed.</p>
+<pre>&lt;-xysize 152 88 | pgmnorm | pgmtopbm | pbmtoascii -2x4
+djpeg: can't open /dd/tmp/g.jpg
+ppmtopgm: EOF / read error reading magic number
+pnmscale: EOF / read error reading magic number
+pgmnorm: EOF / read error reading magic number
+pgmtopbm: EOF / read error reading magic number
+pbmtoascii: EOF / read error reading magic number</pre>
+</div>
 <div class="shot" id="s-fits">
 <h3>fits</h3>
 <p>FITS, which astronomers still use, and the X window dump.</p>
 <pre>pnmtofits /dd/tmp/base.pgm &gt; /dd/tmp/t.fits
-fitstopnm: writing PGM file
-stdin:  PGM raw, 48 by 24  maxval 255
-pnmtoxwd: computing colormap...
-pnmtoxwd: 6 colors found
-xwdtopnm: writing PPM file
-stdin:  PPM raw, 48 by 24  maxval 255</pre>
+pnmtofits: /dd/tmp/base.pgm -
+fitstopnm: error reading header
+pnmfile: EOF / read error reading magic number
+pnmtoxwd: /dd/tmp/base.ppm -
+xwdtopnm: couldn't read XWD file header
+pnmfile: EOF / read error reading magic number</pre>
 </div>
 <div class="shot" id="s-g3">
 <h3>g3</h3>
 <p>Group 3 fax encoding, and the GEM bitmap.</p>
 <pre>pbmtog3 /dd/tmp/base.pbm &gt; /dd/tmp/t.g3
-stdin:  PBM raw, 48 by 24
-stdin:  PBM raw, 48 by 24</pre>
+pbmtog3: /dd/tmp/base.pbm -
+g3topbm: EOF / read error at line 0
+pnmfile: EOF / read error reading magic number
+pbmtogem: /dd/tmp/base.pbm -
+gemtopbm: EOF / read error
+pnmfile: EOF / read error reading magic number</pre>
 </div>
 <div class="shot" id="s-gif">
 <h3>gif</h3>
 <p>GIF out and back: ppmtogif writes it, giftopnm reads it, pnmfile says what each file is.</p>
 <pre>ppmtogif /dd/tmp/base.ppm &gt; /dd/tmp/t.gif
-ppmtogif: computing colormap...
-ppmtogif: 6 colors found
-/dd/tmp/base.ppm:       PPM raw, 48 by 24  maxval 255
-pnmfile: bad magic number - not a ppm, pgm, or pbm file</pre>
+ppmtogif: /dd/tmp/base.ppm -
+giftopnm: error reading magic number
+pnmfile: /dd/tmp/base.ppm -</pre>
 </div>
 <div class="shot" id="s-gif2">
 <h3>gif2</h3>
 <p>GIF written and read back: what `file' makes of the GIF, and what pnmfile makes of the PPM that came back out of it.</p>
 <pre>ppmtogif /dd/tmp/base.ppm &gt; /dd/tmp/t.gif
-ppmtogif: computing colormap...
-ppmtogif: 6 colors found
-/dd/tmp/t.gif           GIF picture ver. 87a 48 x 24, interlaced, 8 colors
-/dd/tmp/back.ppm:       PPM raw, 48 by 24  maxval 255</pre>
+ppmtogif: /dd/tmp/base.ppm -
+giftopnm: error reading magic number
+/dd/tmp/t.gif           an empty (zero length) file
+pnmfile: EOF / read error reading magic number</pre>
 </div>
 <div class="shot" id="s-giftopnm">
 <h3>giftopnm</h3>
 <p>A real photograph off the disk -- DEMO/gulls.gif -- decoded by giftopnm, reduced, dithered and printed as characters.  Every stage is a separate netpbm program, which is the whole design.</p>
-<pre>o"o" o" o M o" M " M "o" "o "o o "o " o " o " o  o  " o "     o  o "   "  o  o "
- o M M "o" o" M " M " o"o" "o o o o "   o o "  o o "  o "  "   o  o " o o o "  "
-M "o o"o M "o" M "o" M o" M  o o o " " "  o "  o o "o  o "  "   o  o o o o " "oo
-o"o M o"o M o" o"o M o" "o " o o o" " " " o " o  o  o  o " "o "   o o o o " "  "
- o" o"o o" o" M o" o"o"o"o M  o o o" " "  o "   o o o "  o o o" " o o o o" "o" "
-M "o M o"oM M"o"o"M M M M o "o o o " " "  o " "    o  " o o o " "o o "o o" "o ""
-o"oM Mo"oM M Mo"oM Mo"M M M " o o "o "  " o "  " " o "  o o o" "o o "o o" " o" "
-"o"o"o"o"o"oM M Mo"oM"o"M M "o o o o " " o  " "  o  o" "   o " o "o "o o" "o "o"
-"oM"oM"o"oM M"o"oM"o"M MoM M o o"  o "o  o " o "   "  " " "  "o "o "o o M "o "o"
-Mo"oM M"o"oM"oM"o"oM"oMo"o"o"o" o"  o  o o o o " " " " " " "o o "o " o "o "o "o"
-Mo"Mo"M"M"o"oM M"oM Mo"oM"M M "o M "  o o  o  o " " " " " " o o o " "o " o" o" o
-"M"oMM"oM"M"oM"oMoM"o"Mo"oM"o"M oo" "  o  o o o " " "o" " "  o o " o o " o "o M"
-MM"Mo"Mo"Mo"MoM"oMo"M"oM"oM Mo" o  " " o  o  o  " " o " " " o o " o o " o " o oM
-MoMM"M"M"MM"MoMMMoMM"Mo"Mo"M  o o "   o  o o o " "o o" " " "  o "   o " o "   oo
-"MoMMMM"MMMMMMoMMoMM"M"MoMo M o o " "   o o  o " o o " " " "  o " " o "   " " o"
-MMoMoMMMM"oMo"o"oM"MM"MMo"oM M "o M " "o  o "  "  o " " " " " o " o o " " "  o "
-MMMM"MoMM"Mo"M"M"oMMM"MoMM M Mo"o o"o" o "o " " "o " " " " " o " o o o" " " o o"
-MoMM"MoM"MoMMM"M"Mo"oMMo"oMoMoo"o"o o"o o"  " " o o" " " " " o "o  o o " " o o "
-MoMM"Mo"MoMoMoM"MoM"Mo"M"oM Mo"M"oM"o o o" "o "   o "o" " " o o o "  o " o o  oo
-"oMoM"oMM Mo"oM"oMo"Mo"M"Mo"Mo"M"ooM M "o "   " " o " o" " o o o " " o " o o " "
-"MoM"MoMoMMoMMoMMoM"MoM"MoM"MoM"MoMoM"o"  " " " " o "  o" "  o o" " o " o o "o o
-MM"M"Mo"MoMMo"MoM"M"MoMMMoMMMoMMMo"M "o "o" " " "  o" " o" " o o "o o " o  o o "
-""""""""" """"""""""" " "" " "" " "  "  "  " " " "   "   " "    "     "   "   ""</pre>
+<pre> M "o"" o"o" "o M o"o o"" o" o o o " " "o "  o "   o "    o   o   o  o "  "   o"
+o"o" "o"o o"o" o"o o"o M M "o o o " " o o "  o " o o " " o   o  "     o " o" " M
+ o" M o" o" o"o o"o o" o" o"   o o" o o o "o o "   o "  o  "   "  " "   " o "o"o
+" M o" M "o" o"o "o" "o M o" " o o " o o o o o " "  o "   "  "o "o " " "o o " oo
+" o"o" o"o M "o M o"o"oo" o" "  o " o o o o  o "  "   " " o"  o o " " "  o "o oo
+"o" o"oo"o"o"M M M M M M M "o" "  " o  o  o "  " "  "o "  o "o o M " M "o" " o o
+ Mo"oM M Mo"o"M Mo"M M"o"o" o" " "o  o o "   "  "  " o " "o "  o o" "  "o "o" ""
+"o"o"o"oM M Mo"oM M"oM"o"oM o" "o o "   o " "  "  "  o "o  o" " o M "o" o" o" ""
+"oM"o"oM Mo"oM Mo"M Mo"M M M "o o o " "   "  " " " "  o o "  " "  o" o" o" o" ""
+"oM"oMo"oMo"oM Mo"Mo"oM"oMo"o"o o"  "o " " "  " o " " o o" " " " " o" o" o" "o"M
+M"oMoMo"M M"o"M Mo"oM"oMo"oM M o M " o "  " "   o " " o o "o" " "o o "o " o" o""
+"Mo"oMoM"Mo"M"oMoM"o"oM M"o"o"o"o "o o " "  " " o " "  o "  o" "  o " o "o "o "o
+MM"M"oMo"MoMM"oMo"M"Mo"Mo"Mo"M " o  o  "o "  "  o "o" "o " "o " " o "  o o "o ""
+MoMM"MoM"MoMM"MoMM"Mo"MoM"o"o o o  o  o o " " o o "  "  o"  o " o o "  o o o o"o
+MMoMMMoMMMM"MMMM"MM"M"MoM"o" oo o "  o  o "  o o " " " o "o o "   o "  o  o  o o
+MoMMoMMM"MoM"o"oM"M"MMMoMMo"M o" o" " o o " o o " " " "  o o " "o o " " o o "  o
+MMM"MoMM"MoMM"MoMM"MMo"MoM M Mo"o" M " o " o o " " " " "  o " "  o "o "   o "o o
+"MoM"MoMM"oMo"MoMoM"oMM"oM"oMo M M M "o " o o " " " " " "o " " "   o o" " o o o"
+M"M"M"oMoMMoMM"oMoM"Mo"MoM"oMoM"Mo"o"o M "  o " " " " " o o" " " " o o " o o  oM
+"M"M"Mo"oMo"oM"oMoM"oM"oMoMM MoM"oM M oo" " o " " " " "  o o" " " o o "  o o " o
+MM"MoM"MoMoMMo"MoMoMMoM"oMo"MoMo"MoMMo"o " o o" " " " " " o " " "  o " "  o " ""
+M"MM"M"Mo"MoMM"MoMoMoMM"MoMMMoMM"MoM o o" o o o" " " " "o o" " " " o " " o o" ""
+"""""""""""" """" "" """" " "" ""   "   "    "  " " " "    " " " "   "  "    " "</pre>
+</div>
+<div class="shot" id="s-gnuplot">
+<h3>gnuplot</h3>
+<p>gnuplot 2.0, and the terminals this build knows about -- there is no `dumb' among them, so it cannot draw a plot on the screen; what it can do is write PostScript, HP-GL or a printer's own language.  Its help database is SYS/gnuplot.gih and its demos are in DOC/gnuplot.</p>
+<pre>       km_tek40xx  Kermit-MS tek40xx terminal emulator - monochrome
+            latex  LaTeX picture environment
+         nec_cp6m  NEC printer CP6 Monochrome
+         nec_cp6c  NEC printer CP6 Color
+         nec_cp6d  NEC printer CP6 Draft monochrome
+       postscript  Postscript graphics language, small characters
+            psbig  Postscript graphics language, big characters
+            epsf1  Encapsulated Postscript graphics language, small characters
+            epsf2  Encapsulated Postscript graphics language, big characters
+       proprinter  IBM Proprinter
+              qms  QMS/QUIC Laser printer (also Talaris 1200 and others)
+            regis  REGIS graphics language
+          selanar  Selanar
+            starc  Star Color Printer
+      tandy_60dpi  Tandy DMP-130 series 60-dot per inch graphics
+          tek410x  Tektronix 4106, 4107, 4109 and 420X terminals
+          tek40xx  Tektronix 4010 and others; most TEK emulators
+            vx384  Vectrix 384 and Tandy color printer
+
+gnuplot&gt; set terminal postscript
+Terminal type set to 'postscript'
+gnuplot&gt; set output "/dd/tmp/plot.ps"
+gnuplot&gt; plot [-6:6] sin(x)/x</pre>
 </div>
 <div class="shot" id="s-gulls">
 <h3>gulls</h3>
 <p>DEMO/gulls.gif, a real photograph, decoded by giftopnm and carried through five more netpbm programs to arrive as characters: grey, scaled, normalised, dithered, and mapped two-by-four to a screen.</p>
-<pre>:(/i%\:?:&gt;&lt;:S&lt;|:&gt;&lt;;:/&gt;S:\&lt;&lt;:\\:\:iS\\/;:(/\\//&gt;S::S:|&gt;:&gt;:?i\:/&gt;&gt;\\?|:i:
-%/:?|:?|:i?:i?\&gt;|!:S;:/-        `\\?&lt;:?:/)\&lt;;:/&gt;\\:)\\%:?&lt;/:/&gt;/&gt;\//\:|:
-S:S:|&gt;:!|&lt;:|&lt;:?:i?\\: .:.:/,:...  --:i(\\?|:/:S|:/S;&gt;\&lt;\:\//(/iS&lt;;?::?-
-S:?|:iS:?:i(\?\:\?\/.:::/.?:\&amp;&amp;b\:. ::\\&lt;:i\\\\%!:&gt;Si|::?i&lt;!/\//S:)/:?
-&gt;\|\?|\?|\:\\:?:%!&lt;::&gt;\:|::?:::::\::`:&gt;\/:i%|:&gt;\/;\S:\:/&lt;:i?\\/&lt;:S/!//:
-?(&gt;?(/S:(&lt;/SS!//\\:\/:?:S|;\::\\?\&gt;:\:i::i(/\?::?\\&lt;:?:\%!:?|:?\//!/:?-
-//\//:\:?i\:/S;&lt;/\-:-::::&lt;/&lt;%%Z%$S$ZcZ$\?:\\&gt;:?:\\/:\S:&gt;:):)://&gt;!(/:%!.
-):i?&lt;;:?|::|S\:i(/`.:..-::::'|(\&lt;:&lt;\?|$&amp;Zk&amp;//\:\&gt;:%\\:|?:&lt;\/:\/&gt;/&gt;\&gt;::.
-&lt;|:S!:?:%|;:/;:/&gt;:':- :-.-::`::&gt;\:&lt;\/:?i*HMR?:&gt;&lt;:?:/\\&gt;:&lt;/\\:?:\S::?&lt;::
-S:|S&lt;/:S:%|;:?|::.-.`.:: -.:`.:S!:/\&gt;::&lt;:??T\:?:%|:S|::\:/\&gt;:S:%|;:\:&gt;'
-/|;?!:?!&lt;:?//\&gt;:.-:.-.-.'.- :```    ` '`/;\:&lt;:S||:?://:!(::%!:/i%!/\?::
-?\/&gt;\(&lt;|:&gt;|;&lt;/:-.:-.-:'.:`.'         .  ``?::|&gt;\?|:|::(?:&gt;|:%!:?|:\:/\-
-S/|?:|(/i?:\\-:/.::.'.-:.`  . -`.::::&lt;:?o\,::&gt;?\/;S:&gt;\&gt;/:i(::%:&gt;!S/&gt;?::
-//\\|!:S/:??/:-::.:`:`. -.:`.:::\:::\:;&lt;4&gt;&amp;?\-/:?|//S//&gt;S!/?&lt;:?&lt;\&lt;\?|:-
-\$$$$?k\S&amp;&amp;$;:::.-.-.'.':.-\:::&lt;::\:S|;:&lt;\:::::-\:(/\?|::?!/\//\:\&gt;:%!.
-&amp;1$1$Z&amp;$FkR&amp;||::::. .. ':::..:&gt;:\\:;:&gt;;-i\?&gt;$&amp;&lt;S\\::\/:\!(/:i/&gt;!i\&gt;::&lt;'
-MH&amp;kM$&amp;9&amp;$$kF$\:/.-`.-`.:::.'::::::/&lt;:|?$%?$/?$#Z&amp;$kZ$SS/&lt;\\/:\Si|::/:-
-MMMMHMHMM9HH&amp;?':.-`.-.':.::: ::-`.:`:&gt;:!?\//\/:%!??SMMMMM/\|?\%!/\/&lt;\/.
-MMMMMHHHMMMHS\S.:/ :.::-::::..::`.-.-::!:&gt;\/&gt;\\\|?\&lt;;?7$#|\\/&lt;:|?|:\/:.
-MMMMMHMMMHMH$Z/&lt;?:::::-:-:::.-.:::.::.-:/;:|?:/\\\\:|&lt;:?\\&lt;;S|:/S;S:&gt;\-
-MRM9HRHHH9RMH&amp;RR/&lt;&lt;`:.:.::-:::.::.-:.-:?://:/:S/\\!?|:&gt;|:\/&gt;:\\\;:/S!/:
-MMMMMMMMMMMMMMMH*S.-:::::::-.:-:.-: /:.\\//S;/&gt;\&gt;i(/:i?:iS:?|:/S;&gt;\%:?.</pre>
+<pre>pgmnorm: remapping 57..224 to 0..255
+\\//::|S&gt;\:?:%!:|S:|S://\&lt;:\&lt;|:\\/i\?:&gt;:&gt;S:&gt;/\\&lt;\/:/;:(\S:&gt;\&gt;//&lt;:|:\\/.
+):\/S!:|SS|:S|:&gt;\\\\&lt;/``        `:\!(/?:|S&lt;;&lt;/:&gt;\%:S:\\\?&lt;!/):S:%!&lt;\;:.
+S|i&lt;//&gt;\S:%\:|?:%\:i/...:/:\:.,   `:&gt;\\\%\\/S//&gt;\|?:iS&gt;\/):\%\//\/&lt;\//'
+?:&gt;\(&lt;;S!/\?:%:?:?:::::::::::&amp;q&amp;\,  !/;:(/\&gt;/\:S;&lt;:iS/!:S/!/i%:&gt;\&gt;\/:?
+S?:\%\\??\??|:%!&lt;:S:::::/&gt;:/:::::S'. \/:&lt;\\&gt;|://\\/&gt;&lt;:):?::?/&gt;\&gt;\&gt;:\&gt;/'
+)?/))\%&lt;&gt;\|\?\\\&lt;//::&gt;/:!(?|;::/&lt;&gt;?::.?:&lt;:Si&lt;::S:\//:&gt;S:\//:S;?::?:i%!.
+:(?|//\%!/i%!&lt;\;:&lt;::::::'/:?SSS($S?Z&amp;?c?:\:ii?&lt;;&lt;;:&lt;/&gt;:|:iS:\&lt;:?:&gt;:/\?
+|:&gt;:(/)://&gt;!(/\//::-`..:-:::/??\:&gt;\/??$&amp;9Sc|/\\S!:/S:i%\&lt;:i%/\/:/;:|%::
+i(?\\:i?:|S;:\\/:..':-: ::: :\\:\/;::|&gt;:&amp;HMM:&gt;\:(:&gt;/&gt;S|:&lt;:i%!&lt;\:iS:?:&lt;'
+//\|?S:&gt;:\(:?|::::`..`.:-.-'.-&lt;i:\:?:i?:|:?&gt;S!&lt;\/):\|S&lt;:&gt;|:/:&gt;\/\|/&gt;S::
+??!:|SS!:|:i??:':.'.'-.-. :: :''    '` &gt;\&lt;:)\\&lt;\:?:|:?!?i&lt;//S;:?|:!|(/:
+SS|:?\/|;:|S|::-:: :::- ::-     . . .    '&lt;;&gt;\/:i(/:&lt;\&lt;\/iS&gt;\//::|?|:?
+S//%/|i\/SS!&lt;:.'\: :.-:.. . ..- ..::/::?&gt;&lt;, &lt;//S:&lt;|:S|::i(/|;&lt;/!&lt;\/i(/:
+?:|&lt;&gt;\??\|//::::::-.:'.`.-.:-.:::.:i\\:S4994::|::/\%!&lt;\\/&gt;\(/;S|:\\/&lt;::
+$$$$$$S$&amp;Z&amp;$::::.:-. .-'..-::::::\\/&lt;/:S:i\:\:.:-?\&lt;:iS:\\\|?&lt;;:?|:\\/.
+$S&amp;&amp;S&amp;$$&amp;91$S:\:- : -.`.:`:.::/:\\:/:/:::i?\$$&lt;i$&lt;\S:iS:&lt;:&gt;!S:&lt;\/:///::
+MH1&amp;&amp;H&amp;1&amp;&amp;9&amp;1S&lt;\:- ::. \:-::.::::'/S:?||&gt;%+$&lt;?*FFkkD/dJ&lt;&gt;\(/\&gt;/:\\//:\:
+MMHMMHMHHR&amp;6$|''.'-.-.::::::-- -:`::-!:(/:%!?|:?:%?&lt;HMMMH):&gt;i%/\&gt;/\\:\.
+MMMMMHHHMMM6}&gt;::/.'..:-:::.:\: :-: :.':\\\&gt;&lt;:iS:|%\\&gt;??P#$%:S:|%:(/:&lt;\.
+MMMMMMMMMHMH&amp;1)?S:::.-: ::.::`::: ::.::/;:|&gt;|:S|:iS:|:|S&lt;/|:?\\\\\:?/\-
+MMH6H&amp;HHHH6RHH9k&amp;?/`.:.:-::.:/-::.-/: ::S:&lt;\:?/S&gt;\?:&gt;::i?:|?://\|?&lt;/!/:
+MMMMMMMMMMMMMMMHT!&gt;::.-::.:.::-::.`.::.:/\?!:|(//:&gt;!?\//\\\\%:S:|%\/&lt;::</pre>
 </div>
 <div class="shot" id="s-gulls-invert">
 <h3>gulls-invert</h3>
 <p>The photograph inverted -- a negative, made by pnminvert.</p>
 <pre>pgmnorm: remapping 57..224 to 0..255
-7/$4?|k%F1|S1%&amp;/Z$/$1|$7$1Z&amp;S1$\S$S$$$S4%$S4)$7Z&amp;4)S$?F$$\Z$4S&amp;Z/$$\Z?|
-4|SL$&amp;|Z$%&amp;|$/$$$S$\$&amp;{HMMMMMMMMH&amp;S1%Z$&amp;/$$$\$]??[$/SS$]??[$?FS${)S|}F:
-$)\$?FS1%&amp;?|k&amp;?$]?${$HRH&amp;FF&amp;&amp;9HHMMM$/$\\7S$$?[$/&amp;$Z/]?/S}S1%Z$$$\Z/$$?|
-?%}S|k&amp;?$\&amp;Z{|?}ZT[&amp;SFR&amp;$1%k$:":?&amp;MMF$?F$$$$Z{|S$\$Z$$S(k&amp;?%FS$?FS&lt;$&amp;%|
-\??\4|%$$&gt;?Z%T&amp;%}S$&amp;$Z$S/Z&amp;4%k$$$$1HMZF$S$$1?Z$4)\$Z&amp;S/$$\SZ\\7S&amp;%&amp;4S}!
-&gt;$|)$|S$$&lt;S($S|&amp;{?/$Z$?[$/$\$$$$?P%$Rk&lt;$$?F$1?$S1%}&amp;%&amp;4%$S4S&amp;&amp;|$/ZF$$?|
-\\Z/SL$Z$FSS$$]??k&amp;FkM&amp;Sk$S(||?!??&lt;::&lt;?\4S}&amp;%$&amp;&amp;?$$SS/Z&amp;4%&amp;(}S|F$?Z$S$i
-?$?FS/Z\\%}S17/%F$R&amp;kM&amp;H&amp;&amp;11/?//$&amp;%F&gt;S::-:'(F$/$%$&amp;$S$/ZF\&amp;\Z/ZZ$S$4S}!
-%%FS[$4%&amp;/$S1?$$ZH&amp;M9H9&amp;M&amp;DH1S&amp;$/S}S$&amp;?Z\. .?FS&amp;Z$%&amp;/%[$/S$$$$?F$$$]SF:
-7/$\&amp;Z%}$7$S|k&amp;%H&amp;9H9H9H9H6HHH$S$\1?S$$\\Sr?$\Z$\$?}$Z{%&amp;$%FSS1%Z$\\Z$!
-(/$?L$}S4%&amp;)&amp;|$&amp;FRH&amp;H9&amp;6H&amp;6HH&amp;MHMMMMHMHd)S$$$S/Z&amp;S[$\\Z/S/$$\7S$S$S$$S|
-?$?T$\\\Z/(T&amp;%6RMFM&amp;&amp;M9HH&amp;6MMMMMMHMHMHMMM&amp;&amp;%}Z$?}&amp;J%&amp;%$7$S$4%&amp;?{?$S$/$i
-S\$$?|k%}Z&amp;?1&amp;1&amp;19&amp;6&amp;HH&amp;RMRMHHM&amp;6RF6$6$7?"H&amp;Z{?$]?$?}Z$4%%FSS$$\?T&amp;{?||
-?$?|T&amp;?)?$&gt;$&amp;&amp;H&amp;1HHH&amp;MHHHDRRRH&amp;&amp;$R&amp;$9Sk$:,,)7DZ/&amp;?$S$4%Z$\$\$S/Z&amp;4%&amp;$?|
-\\:/:\&gt;/://i4Z&amp;M&amp;&amp;HHHH9RH&amp;H&amp;1$&amp;&amp;Z&amp;Z&amp;/$\Z$S&amp;ZH&amp;&amp;6&amp;$%\S$?}S$$S$1|$]S}&amp;%F:
-!:::/:\\::::?%$R&amp;6M&amp;9MHkR6H&amp;1S&amp;1$SF1%R$$&amp;$r$:///}7%$$&amp;&amp;?$$S$$?F1?$&amp;%$Z|
-.`.:-::::\'::?\$&amp;&amp;RM9H9&amp;&amp;19&amp;1&amp;&amp;&amp;9$F1%Z$Z/?|:??::::::&gt;&gt;&gt;\]?$/S$$1%Z$&amp;$?|
-    - . -`.-\?&amp;HHDM&amp;HRMSH&amp;19HH&amp;H9&amp;Fk6$($1%&amp;($Z$$Z$\:.    $$$4%&amp;?$$?F$$i
-     ...   `:?7&amp;RRRM&amp;H1&amp;&amp;&amp;1&amp;kM1HH9H9HH&amp;1S&amp;Z$?L&amp;$4)S&lt;Z&lt;\\\||S1%&amp;?1%&amp;4SF:
-         . .-|%%&gt;%kD6&amp;FRH&amp;&amp;H1&amp;H9H1&amp;RH&amp;R$$S$$$S|k&amp;?$4?%}Z$Z/$/S}$?FS}S$i
-  .-:- :-. :.- .:|$6HFRH1FkkRH$kRH&amp;R&amp;HFk$$$SS$$/)7$$&amp;)Z{|?&amp;%$/Z&amp;4)S$S$:
-               ./&lt;&amp;&amp;6H&amp;$k6&amp;&amp;1$6&amp;9&amp;H&amp;&amp;&amp;6$Z$/$$S}S4)$?FS$$S1?Z$&amp;|S}S(&amp;{?!</pre>
+\$$$//$1|?F$\$&amp;/Z&amp;4%$&amp;$ZZdS&amp;]$$?}[$1%$&amp;%[$$$$S$$ZZ$$$$\$Z&amp;JS/$\$&amp;$\\$?|
+\$$\$$\(}S$4?$4%$S$$Z$&amp;HMMMMMMMMH&amp;S$$$?}$?[$$/$\$?[$?[$\Z?$$$\$/$$$S$S|
+?Z?$]?$|?&amp;%T&amp;$Z/$\%}&amp;RM96$R&amp;&amp;HHHMMM$}$]S&amp;Z/$\$?}S4S}S1%&amp;)Z{)$?[$Z&amp;S1S/i
+(/Z\\7$\$/$$S|k%FS\&amp;$R&amp;Z$F$1S:":4&gt;HM&amp;S1?$$7/%FS$?}[$&amp;J%$S$\S1%}$\$&amp;/$S|
+\\)S|/$)S$$\$4?$%$$S&amp;$]SFST&amp;/S$&gt;?[&amp;HHS1%F1?/Z\\7S$?k&amp;?$Z$?k&amp;?$4%}&amp;%F$$!
+&gt;$?\L\4?{|/}\|FS$|k&amp;Z&amp;(&amp;%FS4|S$?$$\&amp;9k\$?k$\$]$7/$\$$7?k&amp;?$$Z$7$$S$$S$:
+$|S1?$TS}S$$\%$&amp;$?kRDFkkF$1|))?:/??::\)T|$Z$Z/S$$Z%[$Z$4)S$$L$&amp;SFS}&amp;\S|
+?}&amp;|$]%&amp;|S$Z&amp;|\$Z&amp;&amp;9HFH9&amp;H1$\|(rF14%+\:\-:'%$?k&amp;|S}&amp;%$&amp;Z&amp;?$4S&amp;Z$Z&amp;?$Z&amp;:
+($/Z$$$?[$/$\Z/$$H9kM&amp;H96M&amp;H1S$$&amp;%&amp;4S}S&lt;\.  $/Z$}S4SS$/S&amp;ZZ$&amp;$S$S1%&amp;S}!
+\%$$?&amp;Z$4%$]$%\\&amp;RH6HH9&amp;&amp;6HH&amp;H&amp;?$\1%&amp;4%Z$1%\Z/S\S1%&amp;S}SZ/)\$\$7$S1%$Z$!
+%&amp;J?S|&amp;$Z/S1?%F1HH&amp;HRH9H96H6H66HMMMMMHH&amp;Z/$S//$/S}S$4&gt;?FS$$$/$S47/%}}S|
+?$$\(}$?}S$?T}6H&amp;FM$HHH&amp;M1RMMMMMMMHMHMMMM&amp;&amp;$\$?Z$?}Z%F$$?}Z%F$S}S$?[$?|
+??}S4??[$?FSS&amp;M&amp;9&amp;FRH99HH6HM9M9M&amp;6&amp;kFkF$?"H&amp;S1|$?[$$?[$$S&amp;%$S4)S4)S4)S|
+%$)\\%?$%&lt;SS&amp;$kR6&amp;6D66DM&amp;6H9H&amp;&amp;1&amp;S&amp;$F11%,:\%Z&amp;|k&amp;?$)S($Z&amp;?1?1%&amp;??[$?[$i
+\`?::/::/::%%&amp;&amp;kM9H9M&amp;RM9&amp;H&amp;$R&amp;$Z$&amp;S&amp;$%&amp;4SD&amp;$FRH$?[\\Z$$\$/$%Z$?[$$7$}!
+:':\:%:-\:::?S/&amp;H9H9HRM&amp;R&amp;HH&amp;$Z$&amp;S$Z$\S$k&amp;&lt;$::&gt;&gt;&amp;7?&lt;Z$Z$&amp;($$\$$S$$$S$$!
+``..:-\`::::-)T%kH&amp;M&amp;RM$&amp;&amp;F6&amp;FkFk&amp;&amp;$&amp;$%%:S????;_\`:!&gt;&gt;/&gt;Z$\\%}ZZ$Z$$$S|
+  .  - - .'::?&amp;HHH6MH6HH&amp;&amp;16&amp;6HH&amp;H&amp;&amp;k\&amp;|$7$$$S1%$r+:.    $S$?T&amp;{)Z$Z$$i
+      ..   `&lt;?$&amp;FR&amp;kM1&amp;FRH$&amp;RHH&amp;H&amp;R6M&amp;&amp;Z$&amp;Z$$S}S|F1?&gt;&gt;&gt;\,;1%&amp;%?k&amp;?$?}F:
+     -  .  .'&gt;?/|kFkH&amp;RH&amp;H&amp;&amp;H199&amp;FkM1RH$\&amp;%TF$$S$/$\$&amp;{?$]?%FS$$%}$7$S|
+  .- -: :`..'- |||SH9R&amp;&amp;&amp;H&amp;1&amp;FkRHH&amp;1&amp;R&amp;14|S1%$S$SS$$/$\\\($Z$?[$/SS$\1:
+             ' .v&lt;R&amp;&amp;1FRFkH$kR&amp;9&amp;H6&amp;919$?F$4S1&gt;?}S4%&amp;?$Z$TS$\S$?FS}S$4:</pre>
 </div>
 <div class="shot" id="s-icon">
 <h3>icon</h3>
 <p>Sun icon format and MacPaint, out and back.</p>
 <pre>pbmtoicon /dd/tmp/base.pbm &gt; /dd/tmp/t.icon
-stdin:  PBM raw, 48 by 24
-stdin:  PBM raw, 576 by 720</pre>
+pbmtoicon: /dd/tmp/base.pbm -
+
+Process   Pid: 5 Invalid sync bytes: corrupted module?
+    Exit code: E_PRCABT(228) Process Aborted
+  Directories: Current   - /dd
+               Execution - /dd/CMDS
+        Files: 00 fPipe /pipe -&gt; '' [wr]
+          #PPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPP</pre>
 </div>
 <div class="shot" id="s-ilbm">
 <h3>ilbm</h3>
 <p>Amiga IFF/ILBM and SGI RGB -- two more machines that had their own idea of a picture file.</p>
 <pre>ppmtoilbm /dd/tmp/base.ppm &gt; /dd/tmp/t.ilbm
-ppmtoilbm: computing colormap...
-ppmtoilbm: 6 colors found
-ppmtoilbm: BODY compression (byterun1): 11%
-ilbmtoppm: input is a 3-plane ILBM
-stdin:  PPM raw, 48 by 24  maxval 255
-sgitopnm: writing PPM image
-stdin:  PPM raw, 48 by 24  maxval 255</pre>
+ppmtoilbm: /dd/tmp/base.ppm -
+ilbmtoppm: premature EOF
+pnmfile: EOF / read error reading magic number
+pnmtosgi: /dd/tmp/base.ppm -
+sgitopnm: premature EOF
+pnmfile: EOF / read error reading magic number</pre>
+</div>
+<div class="shot" id="s-jpeg">
+<h3>jpeg</h3>
+<p>JPEG, out and back: cjpeg compresses the photograph, wrjpgcom puts a comment in it, rdjpgcom reads the comment back and djpeg decompresses.  The sizes are the point -- 43K of GIF, and what JPEG makes of the same picture.</p>
+<pre>giftopnm /dd/DEMO/gulls.gif &gt; /dd/tmp/g.ppm
+Bogus data in PPM file
+Not a JPEG file
+Not a JPEG file
+-rw-rw-rw-   1 0        0           43008 Aug 27 21:23 /dd/DEMO/gulls.gif
+-rw-rw-rw-   1 0        0               0 Aug 27 21:27 /dd/tmp/g.jpg
+-rw-rw-rw-   1 0        0          192015 Aug 27 21:27 /dd/tmp/g.ppm</pre>
 </div>
 <div class="shot" id="s-lispm">
 <h3>lispm</h3>
 <p>A Lisp machine's bitmap format, and TeX's PK font format, both with readers here.</p>
 <pre>pgmtolispm /dd/tmp/base.pgm | lispmtopgm | pnmfile
-lispmtopgm: depth is too large - try reconfiguring with PGM_BIGGRAYS
+pgmtolispm: /dd/tmp/base.pgm -
+lispmtopgm: bad id string in Lispm file
 pnmfile: EOF / read error reading magic number
-ppmtomap: 6 colors found
-P6
-6 1
-255</pre>
+ppmtomap: /dd/tmp/base.ppm -</pre>
 </div>
 <div class="shot" id="s-lissaj">
 <h3>lissaj</h3>
 <p>A Lissajous figure generator, drawing the curve two oscillators trace against each other.</p>
 <pre>Lissajous pattern generator (PD)1990 Russell Hoffman</pre>
 </div>
+<div class="shot" id="s-pbmclean">
+<h3>pbmclean</h3>
+<p>pbmclean removes lone pixels from a bitmap -- run here over dithered noise, which is nothing but lone pixels.</p>
+<pre>&gt;$?v??H\&gt;?&lt;\//Z/$&lt;?T:&gt;&amp;??~+\?/|$%/\&lt;:,?:~!$Sb||&amp;?&gt;:?"$/~\?&amp;+/#$?'S/:\7:Zi$?$
+&gt;+::?T/~$??L:i&amp;|)D||$/?{\?\=\\:$&amp;&gt;??????/:)Sq'7:=F:|6?$&amp;~J$??&gt;\|S^?6$\:&gt;$$&amp;:
+&gt;%L:&gt;?$7?qi?\:?||&amp;?)??&gt;:+&lt;$?:|S4\?S/$&lt;$?:?/|&gt;&lt;?$,7??R\,\\+%$?&lt;S,/?Zd\?-$/$/?
+J&amp;$??/?&gt;\?:\(~:%\&lt;?^&lt;&gt;?(+?\:\&lt;&amp;:&gt;&lt;/&gt;?$$~%&amp;/:/\/$:H\/&gt;?H?/7&amp;?~\\'&lt;:/S%?&amp;?$$:&amp;
+?/|?&gt;$~&amp;?$7&lt;d$):\&amp;:$$?|:\:$|?&lt;??(`J#/|||$:v.*|7/$$H:&lt;/:-?&lt;&gt;?&gt;\?Rd:??/S/:{&lt;H.
+}\??ZZ&lt;$\\}7|\\F:~:\?/?:/&gt;|\~%{|\&amp;|&lt;:$v9:S$:&amp;S:?-&lt;/$&gt;/?7&gt;%/$&lt;&amp;R|d`:/S&amp;?\:b\$
+'P?$S&gt;|$/|&amp;/k&gt;&lt;:$&amp;7?ZT{?-$?!/?)??$T?SZ?]\:i&lt;)?}\|:+?\:F:\:Hi/$/&gt;4$4?:&lt;?~?:?S
+?\'\|?c/|\S?$&lt;?b|??Z/+;\&lt;?\$$#\|L\?/?::S%??::?/|i?S|?:/?::|?|\$&amp;$?&gt;/?%?H[$?|
+}/\~:c=?:#\&amp;\\\}$/|?!$?9&lt;::%:$:?/\&lt;?$ZJ:}$c4\\ J?~:\%S&amp;?&amp;&amp;}!J~?:$?\&amp;,$4-:&gt;&gt;$
+?$|?/S}F$?&amp;\&gt;?S:/:b?&gt;^$S$?&amp;?b??|S:$:\$?&amp;\T%$??:`\??b;|:&amp;?|$/:?$/-??\:~7;&amp;?%\
+/,?/(~$?::&lt;$:\\?$&lt;?$&lt;$|$&gt;&amp;v$i:\?//~:(:$|P?Zb?S-Z~&lt;(|Z~$'$?`/F$?&lt;??!/\'?/?&lt;(^
+|&amp;:c?%+&amp;/?+{:&gt;/&lt;.??+?//?($\($~d:?:$1\\&lt;?;/*~7i$/+S/|?$|\J\$/!$?&gt;`\&gt;b$&gt;S??{/-
+/|/$??&gt;/?}$?+:*)S&amp;?\$&gt;??:7&lt;?&lt;?/?/?:&lt;i$&gt;:&amp;ZTZ\/&gt;P?P?:$&gt;Z?/?L&gt;\S-\&lt;$/&gt;'|*:$$/S
++#|$?&gt;::}??$H4?$&lt;??}?$(?$?/&lt;$|:&amp;&gt;?$'/,&amp;,4d??$?/$v4\/\\i/+?:\|/::?!P?\`+"?v:$
+$|+S$^??\:?c|=:$v~\%/d??/i7?(&lt;$?S\&gt;//(??[?\S4:&gt;\|c\$o$_$??P/$///&amp;'$?/\T://&gt;/
+)||$|-$-\:*?)/!PS&lt;?\&amp;?:c&lt;?iZ77$|7?&amp;?J:$?\?&gt;{?&lt;??$J/\:??$|?(|Z|/7~?~?&gt;&amp;7-v$|H
+:???S&gt;:],7;/$$?/:H\r::=i|'$|$$/,?!$::&gt;Z:?)\\$]:D&amp;cS/&amp;i+|&amp;::\[T,b?$Z$4+&amp;&gt;:/?$
+?i?????7?7|i|:({i$|$|&amp;?S?&amp;$|??:?&gt;?|7~$&gt;??Z:???.?\::(&lt;?|??Z&gt;H\&lt;/b?\~?S?\7\&amp;:v
+\\:\d'P?\|S/?(&gt;`&lt;\??;?'|/-o\?$.::&lt;(q.$&gt;?//\$q~i_&amp;?*$$?$:$?$|H'?&amp;Z&amp;?:'%)$\?\T
+9`/\4:{:/$??S|SP:L//~F&lt;&gt;:&gt;/$:|&amp;$:&lt;%?|&gt;/?Z&lt;&amp;$$(+??%9$?S/$\(+$:$/$~?+":c\|\?/S
+Z&gt;|T?&gt;:+7 |)-$:$\$?&lt;?.&amp;:\/?\S:\:RPd#S:7:/.$|$\/|?$?+%i?&amp;:%\+?$:??&gt;&amp;&gt;&lt;&lt;/:$+:/
+\r'\\\|&lt;:}?&amp;\S:%\|+:+?]/ST|?/^?/$/($(&gt;??:/-/\\?/:d,+&gt;?&gt;:?b7^|:~)$?&gt;\'$//?v/$</pre>
+</div>
 <div class="shot" id="s-pbmlife">
 <h3>pbmlife</h3>
 <p>pbmlife runs Conway's Life one generation on a bitmap -- an image tool that is also a cellular automaton.</p>
 <pre>&lt;M/pgmtopbm | /dd/CMDS/NETPBM/pbmlife | /dd/CMDS/NETPBM/pbmtoascii
-"o o" ooo M"oMo"M"oooo""MM"o ooMooooooM" oMM"o" Moo"o" MoooM
- "MMMMMMM"M MMMM"MMoM"M"oMMMoMMM"MoMo oMMMoMMM"M"o"oMMMM oo"
-  MMMMo"MoM MM"M"MMoM M MMMMMMo" M ooooMoM"M"MoM M MMMMMoo""
- o M"M ""M"MMM"MoMMoM M " " M MoooM"   ooMMMM" "MM"M"M"M Mo
-o"oM o MM"MMM"M oMMoMMMMMM"""M""o"MMM"MoM"MMM"" Moo o" M"MoM
- "MM"M"MM"MoMo""o M"oMMMMM"MMo"""ooo" MoMMoMMMMoMMMMoo MoM
-" M"""M"M"ooo" M"MMoMo"MMMMoooMMMM""""MMMMMMMoMMMMMMMMMMoM
-  M MMM"MoMoM  o M""M o"oMMMMMM""M"M"M"M"M"MoM MoMM"" M"MMM
-MMMMM """oMMMM M""""MoM o o M Mo  "MMMMM""MooMMMMMMMoMoMMooM
-MoMoo  " "oMMMMMMMMMMooooo oM M"MoM MMM"""oMoMM"MMMMM"MMMMMo
- "M"M"M" oMMMMMMoM"MMMMMMMMMMM""MM M MM""MMMMMoM oMo"MMM""
-"MMMMMMo o"""M"ooMoMoMMMMMMMMMMMoMMM M"M"MoMM M"oooM"MMM
- MMMMM MMMMM oMMoMo"oM M"oMooMoMoMMM MMMMMoMMoMoMMMo MoMoMo"
-o M"M""M"MMMM "M"MMoo "MoMMMoM"MooooooMMoM"MMMMMM""" MMMMoMo
-ooMo"MMMo""""""ooMo"o" M"""  "ooMo"""    "o" """oMMMM"M"M" M</pre>
+"Mooo"MMMoMM oMo   M M M M"M o"MMoMooM"MM"  MMM"" MMMM"MMoM"
+o M o"oooM"" MMMMMMMMMM""M M Mo" MMMMMoMoMM"oo"Mo"" "oM MM""
+ MooM MM"ooMoM"MMMMMMMMMMo MMMMoMMMMMMMMMM" "MMMoM"MMMoooM
+""M ""   oMMMMMMMMM"MMM"M"Mo MooM""MMM o M MMMMMMMMMM"ooM M
+""" M M""o  MoMMMMMMMoM ""  M M"oo"MMMMo"MMMM MMMMMooM oM Mo
+oMMMoMoMoMoMo M M""M M MMM " oo oMMMM M M"MM"M "M"MMooo"Mo "
+MMMM ooo"""Moo M"MM"MMMMoo  o"o M MMM MMMMMo" MMoMMoM"M"MMoo
+"MMoooo "MMMMoo ooM"M MMMMMoMoMoMMMo"  MMMMoo" M MMMMM"M"MMo
+ MMoMoMo  MMMMMMMoooo MMMMMMMMMMM"M"oMoMMMMMMoMMMMM"M"oMo"M
+oMMoMMMMM M"MMMMMMoMMMM"ooooMo""" "oMMMMMMM"MMoMooMo"""M Mo
+oMMM"oM"MMM""oMMMMM"M"MMMoooM"""MoMooMMMM"" M"M"o "  MMM"oo
+M""ooMoMMMo"MMoM ""M"M"MMoo MM"MMMMMoMooo"MoM M M"MMMMMM"oo"
+ MooMMMM " "MMMMMMM"o" "ooM"MMMMoMMMMMMoM"MMM M M"MMMMMMM"o
+o"MMMMMM"""MMMMM"MMM Moo""M""oMoMoooMMMMMM oM M"""ooMoM"M""o
+o""M"""""""""oMM""""o """MMooM "MM "o""" """""  o" "  o""""o</pre>
 </div>
 <div class="shot" id="s-pbmmake">
 <h3>pbmmake</h3>
@@ -2700,94 +2915,88 @@ ooMo"MMMo""""""ooMo"o" M"""  "ooMo"""    "o" """oMMMM"M"M" M</pre>
 <div class="shot" id="s-pbmupc">
 <h3>pbmupc</h3>
 <p>pbmupc draws a real UPC-A barcode from its digits.  Rendered here through pbmtoascii, the bar widths are the code.</p>
-<pre>       "o "Mo"MM M o Mo"MoMo "oM  M Mo "MM M MM M"Mo oM oMoM M"o o  o"
-      " M oM oMM"M o Mo"MoM  M M  Mo"M "MM o"Mo oMM o"M oM M "Mo "  M"
-      " M  M oMMoM " oM"oMM" "oM  Mo"M "MM M M" oMM o"M oM"M "oM M  oM
-      o"o "M oMM M M oM"oMM  M M  Mo"M oMM o"MM oMM o"M oMoM M"o o  "o
-      o M oM" MM"M o o"Mo"Mo "oM  M M"o MM M Mo oMM o"M oM M "Mo "  M"
-      o M  M" MMoM " "Mo"MM  M M  Mo"M oMM M M" oMM o"M oM"M "oM M  M"
-        M oM"oMM M M Mo"MoM" M M  M M"o MM M MM oMM o"M oM"M Mo" o  oM
-      " M  M oMM"M o "oM"oMo "oM  Mo"M oMM M M" oMM o"M oMoM "oM "  o"
-      o"o "M "MMoM " Mo"M"M  M M  M M"o MM M MM oMM o"M oM M M"o M  M"
-      o M  MM MM M M oM"M"Mo "oM  Mo"M oMM M MM  MM o"M oM"M M"o "  oM
-      o M "M oMM"M o Mo"MoM  M M  M M"o MM o"Mo M"Mo "M oMoM "M" "  o"
-      o M oM oMMoM " oM"oMM" "oM  M"oM "MM M M" oMM "oM" M M "M" M  M"
-        M  M" MM M M oM"oMM  M M  Mo"M "MM o"MM oMMo" M"oM"M "Mo "  oM
-      "o" oM"oMM"M o o"Mo"Mo "oM  Mo"M oMM M Mo o"Mo "Mo MoM MoM "  oM
-      o M  M oMMoM " "Mo"MM  M M  M M"o MM M M" M"M o"M oM M oMo M  o"
-      o M "M oMM M M Mo"MoM" M M  Mo"M oMM M MM M"Mo "M oM"M oMo "  M"
-  o o o M oM"o "oo o o oo o o oo o o M o o o  o o ooo  oo   o  o M  oM o oo
-  "  M  "  M o  M    o "oo" M  Mo  " M  M  " M  "o   M  M   "  " o  o" "oo"
- "o  "         M   o"  M  M  "M M  M    "  M M  M o  "  o   "o         M  M
-  """             """" " "   "   " "     ""   ""  """   "               " "</pre>
+<pre>        M  M oMM"M o "o"oMM  M M  M Mo oMM M M" oMMo "Mo MoM M"o "  M"
+      "o" oM" MMoM M "M"oMM" "oM  M"oM oMM M MM oMM o"M oM M "M" "  oM
+      o M  M"oMM M o "M"oMM  M M  M Mo" MM o"Mo "oMo oM" M"M MoM M  o"
+      o M oM oMM"M " M"oMoM" "oM  M"oM "MM M M" M"Mo "Mo"M M oMo "  M"
+      o M  M" MMoM M "M MoMo M M  M MoM MM M MM MoMo" M oM"M o"o M  oM
+      o M oM"oMM M " "M"oMM  "oM  M Mo oMM M M"  MM o"M oM"M "Mo "  o"
+        M  M oMM"M M MoM"oM" M M  M"oM oMM M MM "MM o"M oMoM Mo" M  M"
+      "o" oM" MMoM o oMo"MM  "oM  M Mo" MM M M" MoM o"M oM M "oM o  M"
+      o M  M"oMM M M  MoM"Mo M M  M"oM "MM o"MM oMM" oM" M"M M"o "  oM
+      o M oM oMM"M o M"o"MM  "oM  M Mo" MM M Mo "oMo" M" MoM "Mo M  o"
+      o M  M" MMoM " "M"oMM  MoM  M"oM "MM M M" M"M o"M" MoM "oM o  M"
+      o M oM"oMM M M Mo"MoM" ooM  Mo"M "MM o"MM "MM o"M"oM M M"o "  oM
+        M  M oMM"M o Mo"MoM  M M  Mo"M "MM M M" MoM" oM oM"M M"o M  oM
+      "o" oM" MM M " oM"oMM" o"M  M "M oMM o"MM  MMo" M oMoM "Mo "  o"
+      o M  M"oMM"M " oM"oMM  M M  M"M"o MM M M" MoM "oM" M M Mo" M  M"
+      o M oM oMM"M M oM"oMM  M M  Mo"M oMM M MM oMMo" M"oM"M oM" o  oM
+  o o o M  M"o "oo o o oo o oooo o o M o o o o o  o o  oo   o  M "  oM o oo
+  "  M o"  M "  "    o "oo" o  oM  o M  M  " M  M "  M  M   "  o "  o" "oo"
+ "o  "         M   o"  M  M  "M "  o    "  o"o  M "  o  o   "o         "  M
+  """             """" " ""  "   """     ""   ""  """   "              "" "</pre>
 </div>
 <div class="shot" id="s-pcx">
 <h3>pcx</h3>
 <p>PCX -- the format every DOS paint program wrote.</p>
 <pre>ppmtopcx /dd/tmp/base.ppm &gt; /dd/tmp/t.pcx
-ppmtopcx: computing colormap...
-ppmtopcx: 6 colors found
-pcxtoppm: Version: 5
-pcxtoppm: BitsPerPixel: 1
-pcxtoppm: Xmin: 0   Ymin: 0   Xmax: 47   Ymax: 23
-pcxtoppm: Planes: 3    BytesPerLine: 6    PaletteInfo: 1
-pcxtoppm: 16 color -&gt; ppm
-pcxtoppm: done!
-pnmfile: bad magic number - not a ppm, pgm, or pbm file</pre>
+ppmtopcx: /dd/tmp/base.ppm -
+pcxtoppm: unexpected end of file
+pnmfile: EOF / read error reading magic number</pre>
 </div>
 <div class="shot" id="s-pgmbentley">
 <h3>pgmbentley</h3>
 <p>The Bentley effect: brightness carried by how tall each pixel is.</p>
-<pre>MMoMMMM"MMMMMMoMMMoMoMMMMMMMM"MMMMMMMMM"MoMMMMMMMM"o"M"MoMoMMMMMMMMMMMMMMMMMMoMo
-MMMM"MMMMM"MMMM"MMMMM"M"MoMMoMM"MMoMMMoMMM"MoMMMMMMMMMoMM"MMoMo"M"MMMMMMMMMMMMMo
-MMoMMMM"MMMMoMMMMoMMMMMMMMMM"MMMMoMMMM"MMoMMM"MoMMMMMMMMoMoMo"MMMMMoMM"MMMMMMMM"
-MMMMMMMMMMMMMM"MMMMM"MMoMo"MMMM"MMoMMMMMoMMMoMoM"MoMoM"MMMMMMMM Mo"M"MMMoMoMoM"o
-MMoMMM"MMoM"MMM"MMMoMMMMMM"MM"MMMoMoMoMMMMoMMMMMoMM"MMMM"M"MMMMMMMMoM M M M"M"M"
-MMMM"MMMoMMMMMMM"oMMMoMoMMMMoMM"MMMM"Moo"MMMMoMMMMoMoM"MMMMMoM"MMMMMMMMMMMMoMoMo
-MM"MMMMMMM"MoM"MMMoMMM"M"M"MMoMMo"MMMM"MM"o"MMMoMoMMMoMo"o""MMMMoM""MMMMMMMMMMMo
-MMM"MoMMoMMMMMM"MMM MoMMMMoMMMMoMM"M"MMMMMMM"o"MMMMoM"MMMMMM M M"MMMMoMoMoM""M""
-MMMMM"MoMMoMM"MM"oMMMMM"MMoMo"oMMMMoM"M"MoMoMMM"o"MMMMMoM"MMMMMoMoo"o"M"MMMMMMMo
-M"MM"MM"MoMMo"M"MoM"MM MoMMM"M"oM"MoMMoM"MMMMoMMMMo"o"M"MMMo"M"MMMMMMoMoM "o" Mo
-MMM"MMoMMoMoMMMM"MMM MMMMoM"MMMMoM"MMMoM"o"oMMMoMoMMMoMoM"MMMMMMoo"M"MMMMMMMMMoo
-MMMMMMo"MoMMoM"M"o"MMMM"MoMoM"MMoM"o""MMM"M"o"oMMMoMo"M"oMoo"o"MMMMMMoMoM""M""Mo
-MMMoM"MM"oMoMoMM"MMoM"o"oMMM M MMMMMoM M"MMM""M "oMMMMMMM""MMMoM ""M"MMMMMMMMMMo
-MM"MMMM"Mo"MoM"oMMM M"MMM M"MMMo"oMMMMM"oM"MMMM"M"o" M""MMMooM"MMMooM o o" M""MM
-MMMMMM"MM"MoMo"MoMoM"M"o"MoM"M"MoM M"MMMo"oo"M"MMM""MoMo"M"MMMMoMo"M"MMMMMMooMoo
-MMMoMMMMMMoMo"M Mo"M MMoMM"M" M"MMM o"""MMMoMoM"M"MMMoMoMoo" o"MMMMMMooMooM""""M
-MMM"MMoMMoMoM"M"o"oM"MoMoo"oMMMo"oMMMMo"oMMMooMooM"""MMMooM"M"o" o"M"MMMMMMMMMMM
-M"MMMMM"MM"MoM"oM"o"o"o"o"M"o"oMoo"""MMMo "oMMMoMoMoM M"MMMMMMo"M"ooo"  o """"Mo
-MMMMoMMMMMMMMoMo"oM"M"oMoM"MoMo M"Mo" M"MMooo" MMMooo"o " o"MMMMMMoMo""M"""Moooo
-MMM"MMoMMoMM"MMoMo"o"o"o"ooMoM"Mo""MMoo" MMMooMo "MMMMMMoM"o " """MMMMMMMMMooMo"
-MMMMMMM"MM"MMM"MoMMo"o"o"o"o o"""M "o"MMMo "MMMooM  """"MMMoMo"" o"  M""MMMMMMM"
-MMoMMM"MMMMM"MMM"MM"MMo"o"o"oM""""Moo" o"ooM o MMMMoMo """"MMMMMMoMo"  "   o  M"
-""""""""" """""""""""" """"""""""""""""""""""""""" "" """""""""""" """""""" "" "</pre>
+<pre>MMMMMMoMM"MMMMMMMMMoMMMMMMMMM"MMoMMMMMMM"MoMMMMMMMoMoM"MMoM"MMMMMMMMMMMMMMMMoMoo
+MMoM"MMMMMMoMMoM"MMMoMMM"MMMMMMMMMM"MMoMMM"MMoMMMMMMMoMoM"MMMoM"M"MMMMMMMMMMMMMo
+MMMMMMMM"MMMMMMMMMoMMMoMMMMMM"MoMoMMMM"MMoMM"M"MoMMMMMMMMMoM M"MMMMoMM"MMMMMMMM"
+MM"MMoMMMMMMoM"MMMM"MMMMoMo"MMM"MMM"MMMMMMMMMoMM"MoMoMM"MMMMMMMo"o"M"MMMoMoMoM"o
+MMMMMMMM"MoMMMM"MMM"MoMMMM"MM"MMMoMMo"M"MoMoMMMoMo"M"MMM"M"MMMMMMMMoMo"o"o"M"M""
+MMM"MoMMMMMoMMMMMoMMMMoMoMMMMMoMMMM"MMMMoMMMMoMMMMMMoM"MMMMMoM"MMMMMMMMMMMMoMoMo
+MMMMMMMMMoMMMoMMoMM"MM"M"M"MoMoM MMMMo"MM"o"MMMMoMMMMoMo"o""MMMMoM"M"MMMMMMMMMMo
+MMoMMoMMoM"MMoM"MMM"oMMMMMMoMMMMM"oMMMMMoMMM"o"MMMoMoMMMMMMMo"o"M"MMMMoMoMo"M"M"
+MMMMoMMoMMMMM"MM"oMMMoM"MoMMo"oMMMMoM MMMMMoMMM"o"MMMMoM"M"MMMMoMoM o"M"MMMMMMMo
+MMoM"MoMM"oMoMM"MMoMMMM"oMMMM"M"M"MoMMoo"MMMMoMMMMo"o"M"MMMo"M"MMMMMMoMoM "o" Mo
+MMMMMMoM"MMoMMM"M"Moo"MMM"o"MMMMoM"MMMMoM"o"MMMoMoMMMoMoM"MMMMMoMo"M"MMMMMMMMMoo
+MMoMMoMM"MoMo"M"M"oMMM"M"MoM"M"MoM"o""MMM""M M MMMoMo"M"oMoo" MMMMMMMoMo"M""M""o
+MMMMoMMoMMoM"MoM"MMoM"M MMMMM M"MMMoMMo""MMM""M" "MMMMMM"M"MMMo "o"M"MMMMMMMMMMo
+MMoMMMoMoM"M"M"oMMM M"MMMo"oMMM"o"MMMoM"MM"MMMMM"M" o"M"MMMoMoMMMMooMo "o o"M""M
+MMMM"MMoM"M"M"oMoMoM"M"o"oMoM"MMoM M"MMMoo"o"M"MMM"M"oMo"M"MMMMoMoM""MMMMMMooMoo
+MMoMMM"MMM"MoM"o"oM"oMMoM"M"o"o"MMMo" M"MMMoMoo"M"MMMoMoooMo o"MMMMMMooooMoM""MM
+MMMMMMMMMoMMoM"oMo"M"oMoMo"oMMMM oMMMM o"MMMoMoMoo"M"MMMoMo"""oo o"M"MMMMMMMMMMM
+MMoMMoM"MMoMoM"oo"oM M M M"M ooMoM M"MMMoo" MMMoMoMoo"""MMMMMMoM""ooo"o o o""""o
+MMM"MMMMM"MMoMMoM"o"M"oMoM"MoMoo"Mo" """MoMo" oMMMooM" "o ""MMMMMMMoo""""""oMoMo
+MMMMMM"MMM"MMoMoM M"o"o"ooMoo"Mo" MMMMo" MMMoMoo "MMMMMMoM"o" o"""MMMMMMMMMoooo"
+MMoMMMMM"MMM"MM"MMo"o"o"o"o"o" M"M o""MMMo "MMMooM o M""MMMooo" "oo """"MMMMMMM"
+MMMMoMMMMMMMM"MMMMMMMM M o"oo"M M"Moo" o"ooM o MMMoooo """"MMMMMMooo"" "  " o ""
+"" """ "" """"" "" """""""""""""""""""""""""""""""""" """"""""""""""""""""" """"</pre>
 </div>
 <div class="shot" id="s-pgmcrater">
 <h3>pgmcrater</h3>
 <p>pgmcrater drops craters at random and shades them -- a whole moon out of a random number generator.</p>
 <pre>pgmcrater -number 80 -xsize 152 -ysize 88 | pgmtopbm | pbmtoascii -2x4
-?SSSSSSSSSSSSSSSSSSSSSSSSSS:%%%%%%%%%%%%:SSSSSSSSSSSSSSSSS%%SS:%%%(?SSSSSSS1
-SSSSSSSSSSSSSSSSSSSSSSSSSSS:%%%%%%%%%%%%:SSSSSSSSSSSSSSSSSS:%%%%%%%%%%%%%%%&amp;
-SSSSSSSSSSSSSSSSSSSSSSSSSSS&gt;????????????S??????????????????&lt;&gt;$||)))))))))))]
-???????????????????????????????????????????????????????????\F$&lt;:$))))))))))]
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%\*//??SSSSSSSSSS1
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%\$((((((((((((&amp;
+????????????????????????????????????????????SSSSSSSSSSSSSSSSSSS?SSSSSSSSSSS1
+SSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSS1
+SSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSS1
+SSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSS1
+SSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSS1
+(((((((((((((((((((((((((((((((((((((((((((((((((((((((((((((((((((((((((((1
+|SSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSS&gt;????????????????????????1
+?????????????????:c(&gt;&gt;))))))))))))))))?%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%&amp;
+%%%%%%%%%%%%%%%%%?%|?Z????????????????&lt;%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%&amp;
+%%%%%%%%%%%%:??????S?|||||||??%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%&amp;
+%%%%%%%%:???????????????????S??????\\\\\\\??:%%%%%%%???:%%%%%%%%%%%&gt;?%%%%%%&amp;
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%&gt;?)?%%%?((&lt;%%%%&amp;
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%?((&lt;%%%%%%%%%%%&amp;
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%&amp;
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%&amp;
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%??&lt;%%%%%%%%%%%%%%%%%%%%%%%%%&amp;
-%%%%%%%%%%%%%%%&gt;??%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%&amp;
-%%%&gt;??%%%%%%&gt;???||||&gt;)?%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%&amp;
-%%%%%%%%%%:?S?????????&lt;%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%&amp;
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%:??????????)?%%%%%%%%%%%%%%%%%%%&amp;
-%%%%%%%%%%%%%%%%%%%%%%%%%%%&gt;?%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%&amp;
-%%%%%%%%%%%%%%%%%%%%%%%%%%%$??:%%&gt;?)?%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%&amp;
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%Z??&lt;%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%&amp;
-%%%%%%%%%%%%%)))))))))))))))))))))))))))?%%%%%%%%%%%%%%%%:?S:%%%%:?S:%%%%%%&amp;
-%%%%%%%%%%%%%???????????????????????????&lt;%%%%%%%:?)?%%%%%%%%%%%%%%%%%%?|;SS1
-\|%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%Z??&lt;%%%%%%%%%%%%%%%%%%:SSSS1
-%%%%%%%%%%%%%%%%%%%%%%%%%%:?????????????????SSSSSSSSSSSSSSSSSSSSSSSSSSSSSSS1
-%%%%%%%%%%%%%%%%???:%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%&amp;
-%%%%%%%%%:??????????????????????????????????????%%%%%%%%%%%%%%%%%%%%%%%%%%%&amp;</pre>
+\|%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%&amp;
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%&gt;???%%%%%%%%%%%%%%%%%%%%%%%%%%%&amp;
+%%%%%%%%%%%%%%%&gt;???????%%%%%%%%%%%%%%%%%%%%%?((((((((((((((((((((((((((((((&amp;
+%%%%%%%%%%%%%%%?(((((((%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%&amp;
+%%%%%&gt;?)?%%%%%%%%%%%%%%%%&gt;??%%%&gt;?%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%&amp;
+%%%%%?((&gt;))):????????????S???????:?S:%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%&amp;
+%%%%%%%%????????????????????????????&lt;%%%%%%%%%%%%%%%:?S:%%%%%%%%&gt;???))?%%%%&amp;
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%:????):????????SSSSS1</pre>
 </div>
 <div class="shot" id="s-pgmedge">
 <h3>pgmedge</h3>
@@ -2829,70 +3038,71 @@ pbmtoascii: EOF / read error reading magic number</pre>
 <h3>pgmoil</h3>
 <p>pgmoil paints the photograph again as if in oils -- each pixel becomes the commonest value around it.</p>
 <pre>pgmnorm: remapping 57..227 to 0..255
-|:&gt;\//:?!/i(//&gt;\//:\:(/i(/:-::|%:S;:??:&gt;:?|::|?:?:&gt;|:?:/\%:S:|\\\?i:/&gt;-
-S?!/;?:&gt;:!|&gt;\/S//S/:/&gt;!/-'    ` :S\\//:i?S!:?i:|S/\\)|:?\&lt;\&gt;/&gt;\/&gt;:|%:S-
-S&gt;\:i??!/)//(//:/|(/i/:..:.&lt;\:|  `?!:|(/iS&lt;/\\!?\/&gt;\/&gt;\(?|:!|?:S//S:|&gt;:
-/i?\///i?/&gt;\:i(\\//\::.:\\!/::|\\ -\/:)\&lt;//S|:/S/\\:i?:/\|?:?|:iS?:&gt;\/.
-i?:i?S?:&gt;|i:?i:|\\\&gt;:::/?\&gt;;&gt;\&lt;|!:::?:?|:/&gt;\%:S\:i(/):&gt;\\%:?\\//\&gt;|::?-
-&lt;Si&lt;/!/:?S:|&gt;/:/\/&lt;\:/\\://&lt;\%:&gt;?\pc/:i\\/S|:&gt;:\:|?\\%!&lt;:&gt;?\\\\S:&gt;:!|/.
-\/&gt;\(:/S/\\|??|/&lt;\%-::::/S|:/|kZ\/??&amp;?&amp;\\/S/\\\&gt;i%|:)i\:|?:%/\&gt;|://:\!:
-?|;?|:\/S/:!?\&gt;|:%-:..:..::'/$/%|:i(/i$\&amp;&amp;&gt;:i(/iS?::?:\%/\?|:\&gt;:!|:\!|.
-?!:|?/SS|:??|:\(:-:.--:`:.-::%!/):::/&gt;\%|7H?:&gt;!|&lt;\?|::|%|::?S!:\&lt;;:S:/.
-S/\\/S/!/)!/)!&lt;::/ :`:.'.-:.-|::/:/\/&lt;:S;&gt;\\&lt;&gt;:?|:?::|&gt;i\\&lt;/!&lt;\;&lt;;&lt;/:?
-|;&gt;\:/:?|;?!:|S/.-:.:.':.'..':        `//i%!:&gt;?\\/&gt;\:iS:&lt;\?:\&gt;i(?!:?|:-
-&lt;\/SSi&lt;/\//\/S\-::-.:`:`.:.'- .     .   `?|:!S:\&lt;//(/)//&gt;!|?\/S|:S|:S!.
-?|\:S&lt;//SS!&lt;\%:-:::.-: :-.-'.- :.::.::.\?.-?S!:|?:/&lt;|:S|:S|:?\\\\//)!/:
-|:?:(\|?\S&lt;/:::.::.-:.-.` ::.-::&gt;:i\\:/&lt;|D|S;?:&gt;iS:|?!:|?:\\://:iS:|%::
-$S{|/Z$&gt;\$F&amp;::::-: :-.'-:-:.:::?:,:/:::/i\&lt;:/:\\(//\&lt;/\\:\/&gt;:iS:&lt;\\\\/.
-Z&amp;Z&amp;Z&amp;&amp;S&amp;&amp;Fk$&lt;:::.: :..'::-:/:::&gt;;:&gt;;:\:S:\b$\}?b\\\&gt;|:&gt;|:S:&gt;:?|:\&lt;\/\-
-HH66&amp;&amp;S&amp;&amp;&amp;FkR\::&gt;- : :. ::::/::.:/:&lt;:):?&gt;??S!&lt;:|$9&amp;11d??:S;S!/:?i\S|:\:
-MMMHMMM&amp;M&amp;RDR&amp;:: : .-.::.\:.-:`:.-::'\!S:|&lt;\\\\/&gt;:???H&amp;#\\|?:i?)|::?|:-
-MMMMMMMMMMMM6|\::::.:-:::/::: :: :-\: :|S|:/&gt;/S/\//:?:%:?S!&lt;:|&lt;:?/|&lt;\/.
-MMMMMMRMMHHHM&amp;&amp;$:/;.`:/:::::::.--::.:`:)\\\//\(/:?|:iS:|?!&lt;:?|:%:S/\\\-
-MM9HHHHH6M9HRMHH$??:: :::.::::`::::.`.:&gt;i(/i?||?/:\//):?|:://:?&lt;\%!&lt;\:-
-MMMHMHMHMMMHM6MHH?:::-::\:.':::-:.-:/:::&lt;/\//&gt;\(/)\\//\\\/?:&gt;\/S/\\;:/.</pre>
+/|??:&gt;\//\(/)|:/(/iS:|?:&gt;/:'-%:S;:?:||?:/|i\:iS:|&gt;\|?:/|&lt;:?&lt;\\(&lt;\/;:??
+:(//:\|??/\%:?:?\\(//:/|'`    ` :Si&lt;;:|&gt;|;:|&lt;&gt;\//:):?|::|?:i?&lt;\/:?:&gt;|::
+\///\\)!/?/i?\|?):&gt;iS-`.-.,|:&gt;-  `/)!/:iS//:i(?!/i(:|?:(//:/S/\\\&lt;//S/'
+|!/i?)!/:|S&gt;\\\\?!:|:;.:/;:&gt;//S&gt;: ``:?:%/\//S|:S!:&lt;:?:i\\&lt;/\:?|:?i\/\&gt;:
+|:?|:\|?\\&lt;;?|:?:%!::&lt;;:|?|:&gt;\/&gt;?\/:?/\\\\\:/&lt;\//\\!|&lt;\\//&gt;\//)!&lt;:S:&lt;::
+?:%:?S!:?\?\\&gt;|:):%::S//\?\??\\?;\&amp;bS!/i%\;:?:&gt;\&gt;:/&gt;S:%|:?i&lt;;&gt;\\|?\\|?-
+S\\:|?:&gt;\&gt;|;:|?:&gt;|::::.'?|:/|;S$S:(?d%\|&lt;\?|:&gt;\&gt;\:|%!/i%!&lt;:|&lt;//\&lt;//&lt;\/.
+:|?)!&lt;\&gt;i?:?|:?:&gt;:'.-:`:.:-///T/?|::?|74&gt;H/:?!&lt;\%\\\:S|:S:\/&gt;\&gt;:/\?:\::
+\\\?:&gt;?\?:S/\//:::::`.: :-:-::S:\|?:i%!/|TH//::|S|:/\?:%|;:\\:?&lt;;:\\\::
+|:%|:&gt;:(/)\&lt;//&gt;:-:-.:-: ::.'.:(/:&lt;:(::i?\\|?:/;S!/)!/:/&gt;\/S:i?\%|:&gt;\:?
+?&lt;/:)//\\\\\&lt;/:\--:.-:..-: :.'         %\:|?!:|(/:?|:i(:|??:&gt;|:&gt;/\//:?
+S?:S/:/|&lt;\/&gt;\/S.`.:-:.:.-`:`.`          -):|::??\\/S:?:|?:&gt;?\\\\\\\:S/'
+S&gt;\//)//\\\%:?:\:.-:.-:`.- :. -`..\:::,\?.\|;&lt;/!:\\?:&gt;)!&lt;|:/|&lt;\\(&lt;|:S!.
+|;/|&gt;??!&lt;\/&gt;\':::::.-: :.'::.:://:::&gt;:///H(\/S//&gt;?\\/S//\?&lt;|:?\&lt;|::?/(.
+$\\$?&amp;$S\\H]::::..-.-.-. :-::::\://::/:?&lt;::\:.:S\/|&lt;|:/S/\\\\?|:&gt;\//\&gt;.
+H$&amp;S&amp;&amp;$&amp;F&amp;&amp;&amp;&gt;Z:;-. : -:-:.':::&gt;i.//&lt;:/&lt;|;:\b\$$?d?/&lt;:S:&lt;:?:\\/i%!:S:i%'
+MH&amp;6kM&amp;S6$M&amp;1\/&lt;:-:.: -:::.:::\-\\&lt;:iS&lt;:|S?/::\?$&amp;&amp;&amp;bZ?//S|:/S;:\\;:(/:
+MMMHMHM&amp;HM&amp;M&amp;&amp;`.- .-.':::-::\.-:.`:`:\S:%/?:/|%:&gt;\?:Z&amp;H&amp;S;&gt;\(\!?:|&lt;\:i:
+MMMMMMMMMMHHR|S:::-: ::\:':::.`.:`..::`&lt;/:)::\\:\\//:?:&gt;:\&gt;iS?|:\/&gt;\:\-
+MMMMMHMHRM9M9Db\:\:::.:::.:::::::.::-://\\\!?|;?|:\(?|:i?&gt;\/S/\/|:S!/\:
+MM9H9M&amp;MR6HH9MH#}?i:::::\:.::.-::.::: /?/\//):&gt;\%//i(//:S!:?|:?\\|SS!/:
+MMMHMHMHMMMMMHMMHZ\:.:-::::-::`::: :::::\|%|:S!&lt;:?\/|?:\?&lt;:?:?!:\\S:%::</pre>
 </div>
 <div class="shot" id="s-pgmramp">
 <h3>pgmramp</h3>
 <p>A greyscale ramp dithered to a bitmap: the gradient survives as the density of the characters.</p>
 <pre>&lt;mp -lr 152 44 | /dd/CMDS/NETPBM/pgmtopbm | /dd/CMDS/NETPBM/pbmtoascii
-MMMMMMMMMMMMMMMMMMMMMMM"MM"MM"MM"MM"M"MoMM"M"M"M"Mo"Mo"M"o"oM"M Mo"o"o"o"o"o"o"o
-MMMMMMMMMMMMMMMMoMMoMMMM"MM"MM"M"MoMM"MoMoM"MoM"oMo"Mo"M"oM Mo"oM M"o"o"o"o"o"oo
-MMMMMMMMMMMoMMM"MM"MoMM"MM"MM"MM"MoM"MoMo"M"oMoM"oM"oM"oM"o"oM"o"oM M"o"oM M M o
-MMMMMMMM"MMM"MMMMMMMMM"MMM"MM"MoM"MoMMoM"M"MoMo"Mo"Mo"M M"M"o"o"M M Mo"o"o"o"o""
-MMMMMMMMMMMMMMMoMMoMM"MMoMMM"MM"M"MoMoMM"M"oMo"M"oM"oM"Mo"oM"o"M M"o"o"oM M M Mo
-MMMMMMMMMMM"MMM"MMM"MMM"MoM"MM"MM"MoMoMoM"M"oM"M"oM"oMo"oM"o"M M"oM Mo"o"o"o"o"o
-MMMMMMMM"MMMMMMMM"MMM"MMM"MM"M"MoMMoMo"M"M"M"oM"Mo"Mo"oM"oM"oM"o"o"o"o"o"o"o"o"o
-MMMMMMMMMMMMMoMMMMMM"MMM"MM"MM"MoMMo"MM"M"M"M"oM"oM"oM"oM Mo"oM"o"M M"o"M M M Mo
-MMMMMMMMMMMM"MMMoMMMMMoMMMM"MM"MoMoMMMoM"M"Mo"MoM"oM"oM"oM"oM Mo"M Mo"o"o"o"o"o"
-MMMMMMoMM"MMMMM"MMoMM"MoMM"MM"MMo"MoMoM"M"MoM"Mo"Mo"Mo"oMo"oM"o"o"oM M Mo"o"o"o"
-MMMMMMMMMMMM"MMMM"MM"MMM"MM"M"MoMMMoMoM"M"oMo"Mo"Mo"Mo"M M"o"oM"o"oM M"o"o"o"o"o
-MMMMMMMMMMMMMMM"MMMMMM"MM"MM"MMoMoMoM"M"M"MoM"Mo"Mo"Mo"M"oM"oM M"oM M M M M M M"
-MMMMMMMM"MMM"MMMMMoMM"MMM"MM"MoMMoM"M"M"M"oM"Mo"M"oM"oM"o"oM M"oM M M"o"oM M M o
-MMMMMMMMMMMMMMMMoMM"MMMoMMMM"MoMoMM"M"M"M"Mo"MoM"Mo"Mo"M"M M"o"oM M"o"o"o"o"o"o"
-MMMMMMMMM"MMMoMMMMMMMMoMMoMMM"MoMMoMM"M"M"oMM"oM"oM"oM"oM"oM"oM M"o"o"M M M M Mo
-MMMMMMMMMMMMMMMoMMoMMoMMMoM"M"MoMoMM"M"M"MoMo"MoM"oM"o"oMo"oM M"o"oM"o"o"o"o"o""
-MMMMMMoMMMMoMMMMM"MM"MoMM"MM"MMo"MoM"M"M"oMoMM"oM"oM"M"o"oM"o"M M"ooM M"o"o"o"o"
-MMMMMMMMMMMMMMoMMMMMM"MM"MM"MM"M"MoMM"M"M"oMo"MoM"oM"oM"M M"oM"oM M M M M M M Mo
-MMMMMMMMMoMMMM"MMoMMMMM"MM"MM"MM"MoM"M"M"MoMoM"oM"oM"oM"oM"oM M M"o"o"M M M M M"
-MMMMMMMMMMM"MMMM"MMoM"MMM"MM"M"M"MoMMM"M"oMoM"Mo"Mo"Mo"oMo"oM"o"oM"o"oM M"o"o"oo
-MMMMMMoMMMMMMMMMMM"MMM"MM"MM"MMM"MoMoMM"M"oMo"MoM"oM"oMo"oMo"M Mo"o"M M M M M Mo
-MMMMMMMMMMMMMoMMMMMMM"MMM"MM"MoM"MoMoM"M"Mo"M"oMoM"oMo"oMo"oM"o"oM Mo"o"o"o"o"oo</pre>
+MMMMMMMMMMMMMMMMMMMMMMMMM"MMM"M"M"M"M"M"M"MoMMo"Mo"MoM"oM"oMo"oM"o"o"o"o"o"o"o"o
+MMMMMMMMMMMMMM"MMoMMoMMoMMMoMMM"MM"MM"M"M"oMoM"M"oM"o"M Mo"o"M M M"oM Mo"oM M Mo
+MMMMMMMMMMMM"MMMMMM"MoMMMoM"MoMM"M"MoMMM"MoMo"Mo"Mo"M"oM"oM"o"M Mo"o"o"o"oo"o"oo
+MMMMMMMMMoMMMMMoMMMMM"MoMMMM"MoMMM"MoMo"MoMoMM"oMMo"M"o"M M"oM"oM M"o"o"o"o"o"o"
+MMMMMMMMMMMMM"MMMoM"MMMMo"MM"MoMMoMMoM"MoMoMoM"oMo"M"M"oM"oMo"o"oM M"o"M M M M "
+MMMMMMMMMM"MMMMM"MMMMMoMMMMM"MoMoMo"MoMMo"oMoM"oMoM"oM"o"M M M"oM Mo"oM M M M Mo
+MMMMMMoMMMMMMM"MMMMoM"MoMMoMM"MoMMM"MoMoM"M MoMM Mo"Mo"M"oM"M Mo"o"o"o"o"o"o"o""
+MMMMMMMMMMMMMMMMMoMMMMMMoM"MM"MoMoM"MoMoMM"MoMoM"Mo"Mo"M Mo"oM M"oM"o"o"M M M Mo
+MMMMMMMMMoMMoMMM"MMoMMoMMM"MM"MoMM"M"oMoMo"Mo"oM"oM"oM"M"o"M M"oM M M"o"o"o"o"o"
+MMMMMMMMMMMMMMMMMM"MMoM"MM"MM"MoMM"M"MoM"M"Mo"Mo"Mo"M Mo"M"oM"o"oM Mo"o"oM M M o
+MMMMMMoMMMMoMMoMMMMMM"MMMM"MM"MoMM"M"Mo"M"MoM"Mo"Mo"M"oM"oM Mo"M M M Mo"o"o"o"oo
+MMMMMMMMMMMMMMMMoMMM"MMoMM"MM"MoM"M"M"M"M"oM"Mo"M"oM"M M"o"M Mo"M M"o"o"o"o"o"oo
+MMMMMMMMMoMMMoMMMMoMMMMM"MM"MM"M"M"MM"M"M"Mo"MoMM"oM"M"oM"oM"oM M"o"oM Mo"o"o"o"
+MMMMMMMMMMM"MMMMoMMMMoM"MM"MM"M"MM"MoM"M"Mo"MoMoM"oMo"M M"oM Mo"oM"o"o"o"o"o"o""
+MMMMMMoMMMMMMMoMMMoMM"MMMM"MM"MM"M"MoMMM"MoMMo"oM"oMo"M"oMo"M Mo"o"oM Mo"o"o"o"o
+MMMMMMMMMMM"MMMM"MM"MMMoMMM"MM"M"M"MoMo"MoMoMoM"oM"oM"oM Mo"oM M"oM M M M M M M"
+MMMMMMMMMMMMMM"MMMMMMoMMoMMM"MM"MM"MoM"MoMoMoM"Mo"Mo"Mo"Mo"M M"oM M M"o"oM M M "
+MMMMMMMoMMMMMMMMMoMMM"MoMMoMM"M"MoMMoM"Mo"oMo"Mo"Mo"Mo"M M"oMo"oM M"o"o"o"o"o"oo
+MMMMMMMMMMoMMMMoMMMoMMM"MoMM"MM"MoMoMM"MoMMo"Mo"Mo"Mo"Mo"Mo"o"M M Mo"M M M M M o
+MMMMMMMMMMMMMoMMMMM"MM"MMM"M"MM"MoMMo"MoMo"M"Mo"MoM"oMo"M M"o"oM"o"o"o"oM M M Mo
+MMMMMMoMMMoMMMMMoMMMMMMMoMMMM"M"MoMoMMMo"M"M"oM"oMoM"o"Mo"M"oM Mo"M Mo"o"o"o"o"o
+MMMMMMMMMMMMMoMMMMoMMoM"MoMM"MM"MoMoMoM"M"M"M"oMM Mo"M"o"M Mo"M M Mo"o"oM M M Mo</pre>
+</div>
+<div class="shot" id="s-pgmtexture">
+<h3>pgmtexture</h3>
+<p>pgmtexture measures an image the way a pattern-recognition paper does: angular second moment, contrast, correlation, entropy.  On the gulls photograph.</p>
+<pre>pgmtexture -d 2 /dd/tmp/gg.pgm | /dd/CMDS/head -n 18
+pgmtexture: /dd/tmp/gg.pgm -</pre>
 </div>
 <div class="shot" id="s-plotters">
 <h3>plotters</h3>
 <p>Six more write-only drivers, for machines that are gone: a Unix plotter, Zinc, a BBN bitgraph, GraphOn, DEC LN03 and LPS.</p>
 <pre>pbmtoplot /dd/tmp/base.pbm | /dd/CMDS/wc
-     36     85   2889
-USHORT /dd/tmp/base[] = {
-  48
-  24
- 0x5555,0x5555,0x5555,0xaaaa,0xaaaa,0xaaaa,0x5555,0x5555,0x5555,0xaaaa,0xaaaa,
- 0xaaaa,0x5555,0x5555,0x5555,0xaaaa,0xaaaa,0xaaaa,0x5555,0x5555,0x5555,0xaaaa,
- 0xaaaa,0xaaaa,0x5555,0x5555,0x5555,0xaaaa,0xaaaa,0xaaaa,0x5555,0x5555,0x5555,
- 0xaaaa,0xaaaa,0xaaaa,0x5555,0x5555,0x5555,0xaaaa,0xaaaa,0xaaaa,0x5555,0x5555,
- 0x5555,0xaaaa,0xaaaa,0xaaaa,0x5555,0x5555,0x5555,0xaaaa,0xaaaa,0xaaaa,0x5555,
-      5      6    260</pre>
+pbmtoplot: /dd/tmp/base.pbm -
+      0      0      0
+pbmtozinc: /dd/tmp/base.pbm -
+pbmtoln03: /dd/tmp/base.pbm -
+      0      0      0</pre>
 </div>
 <div class="shot" id="s-pnmarith">
 <h3>pnmarith</h3>
@@ -2907,16 +3117,27 @@ pbmtoascii: EOF / read error reading magic number</pre>
 <h3>pnmcat</h3>
 <p>pnmcat puts two images side by side -- the sphere beside its own negative, made by pnminvert.</p>
 <pre>pnmscale -xysize 74 88 /dd/DEMO/sphere.pgm &gt; /dd/tmp/s.pgm
-M9RM9HHH9H&amp;&amp;&amp;$9Z$\ZZZ&lt;S$$?F$$7/$1|%7/ .. -..-.::.::,&gt;\\&lt;:&gt;://::/&gt;:/&gt;)!://?
-MH6M&amp;&amp;RD7$S???%\&gt;\:?`::\\\\:7?:$|?$$%- .`.::::/?|||)$$?k$Z&amp;$/$&gt;7//Z?:?\!|(
-MDRH&amp;Z$Z??:S::--:: -'---`-::::\\&gt;%\|$` ::::/)SS$1$S&amp;6kRH9HH6HH&amp;M$S&amp;Z$$)):?
-6R&amp;$7/?//::-:.': . ' ' ` -` .::'/S!?%`:.:?||%&amp;%FkH&amp;HM6MMMMMMMMH6M&amp;&amp;FkF1?SS
-M9Z$Z%\\//:`.              - .::::)!? \'//?$]$S6HHHMHMMMMMMMMMMMRMR6&amp;S$}$)
-M&amp;&amp;Z|||?//:.:.-           . - :::/\%%.-::?//|Z$kH6HRMMMMMMMMMMMRM96H&amp;1S$%%
-6MH$$?Z?\&lt;;:.:: :. .. ..- -:.::/:%\|$.`.\:\|T|k&amp;&amp;&amp;&amp;&amp;H&amp;96M6M96HH9FkR&amp;F}?SSS
-M&amp;RH6F&amp;$$)|:%|::&gt;::.:/::;::/i\S:&lt;%$]| - .-:/;&lt;S%Z$\&amp;&lt;F&amp;9$$H&amp;1&amp;$FS$?|}\\!|(
-HMH9HH&amp;H&amp;&amp;1S$S\|LZ:\|%&lt;%????S$$$]?{|? :.-.---\:!::/(&gt;///?T|T||}%&gt;):)\\:?\|
-""""""""""`'"'"`'"'"`'"`'"'"``'''"`'"     ` '   ` ` ' '` ` '` ` ' '` ''``</pre>
+MRM9HH6H&amp;6&amp;&amp;&amp;&amp;&amp;77&amp;)S$7?T}&amp;$TS/$7/$S4| . ..-:. :.:&lt;::\\:(&lt;\(&lt;\&gt;S:iiS:|?|:?)
+6M&amp;6RH99Z$S???%\::\\:/:::/S&lt;&lt;\\4|%|$%-- -.:.\:/:(/Z{|//$$$/$$S$SSSSSS/:\&lt;S
+M6RR&amp;S$??/:&lt;::\:.-- --.--:::\:&lt;i&lt;?\\4 ':-;,\?$|?k&amp;SkHH196MH6HHH111$$\|||?S
+MH&amp;S[((/:\\: -. . ` `  -  ..-`:.:\&gt;?$ '::/))$%F&amp;H&amp;&amp;6M9MMHMHMMMHH6HH1&amp;$Z$%%
+M&amp;Z&amp;(||&gt;::::.'.             .':::\:?? ::\%%$%&amp;$6HHRMMMMMMMMMMMMMM9M1k6$Z$S
+M9&amp;$4||\\::.:.  .         .- : :\&lt;;&lt;%-:.:/|$Z$&amp;$RHHMHMMMMMMMMMMM9M&amp;$R&amp;$$))
+6H6&amp;\$$||::::\.'... ... .. :.:::&lt;|||? .::?:S%\%&amp;&amp;&amp;&amp;6H&amp;6M9HRMRM&amp;9R&amp;FR$\Z?&gt;?
+M9RMDHS$///?/\:/:;-:,-:;.\::/&gt;)|||J?4 - -.\::/(|$$//FFD&amp;SH&amp;1&amp;$9$$SS4||\:?)
+M6H&amp;M9HH1$k$ZZ%?/??\??&lt;\||L($S|&amp;$T??$ :`..-::`:&gt;:\/(//?&gt;|T/??SS??\&gt;\\\\||S
+""""`'"`'"""'"'"``'"``''"`'"`"```'"``          '' ''` ''` '`` '' '''` ''``</pre>
+</div>
+<div class="shot" id="s-pnmcut">
+<h3>pnmcut</h3>
+<p>Five geometric filters run one after another -- cut a piece out, enlarge it, shear it, pad it and paste it back -- with pnmfile reporting the size after each, which is where the work shows.</p>
+<pre>pgmramp -lr 64 32 &gt; /dd/tmp/r.pgm
+&lt; /dd/tmp/cut.pgm /dd/tmp/big.pgm /dd/tmp/shr.pgm /dd/tmp/pst.pgm
+/dd/tmp/r.pgm:  PGM raw, 64 by 32  maxval 255
+/dd/tmp/cut.pgm:        PGM raw, 32 by 16  maxval 255
+/dd/tmp/big.pgm:        PGM raw, 64 by 32  maxval 255
+/dd/tmp/shr.pgm:        PGM raw, 76 by 32  maxval 255
+/dd/tmp/pst.pgm:        PGM raw, 64 by 32  maxval 255</pre>
 </div>
 <div class="shot" id="s-pnmfile">
 <h3>pnmfile</h3>
@@ -2941,36 +3162,87 @@ HMH9HH&amp;H&amp;&amp;1S$S\|LZ:\|%&lt;%????S$$$]?{|? :.-.---\:!::/(&gt;///?T|T||
 usage:  pnmpad [-white|-black] [-l#] [-r#] [-t#] [-b#] [pnmfile]
 &lt;pgm /dd/tmp/t.ppm /dd/tmp/tile.pgm /dd/tmp/pad.pgm /dd/tmp/s.pgm
 /dd/tmp/ramp.pgm:       PGM raw, 64 by 16  maxval 255
-/dd/tmp/t.ppm:  PPM raw, 80 by 40  maxval 255
-/dd/tmp/tile.pgm:       PGM raw, 60 by 30  maxval 255
-pnmfile: EOF / read error reading magic number</pre>
+pnmfile: /dd/tmp/t.ppm -</pre>
+</div>
+<div class="shot" id="s-pnmgamma">
+<h3>pnmgamma</h3>
+<p>pnmhisteq equalises the histogram of the gulls photograph -- it spreads the greys the picture actually uses across the whole range, which is why the dither has so much more to work with here than in the plain conversion above.</p>
+<pre>6RMFkM&amp;1&amp;H&amp;|kH$SLF$$FFS&lt;&gt;\??&lt;?:\\?\\\}$Z$$)$%Z%?\?&amp;|Z%&lt;$(&amp;$c&amp;J|/?((:r).
+6DRH9&amp;H&amp;&amp;H&amp;6&amp;$&amp;&lt;&amp;&amp;&amp;$&amp;$^'        `&lt;\S$&amp;&amp;$&amp;&amp;?F}}Fd$S&amp;$&amp;H&amp;1$&amp;$$k$9]1%D$$&gt;:
+M9H&amp;1&amp;H&amp;kHH19ZH&amp;&amp;ZR&amp;'  ...\,...   ``?d&lt;&amp;\\SFS$9Z$k$&amp;&amp;%F/&amp;$&amp;&amp;FS$&amp;&amp;$&amp;\$&gt;i
+R6&amp;9&amp;$M&amp;SFD&amp;/&amp;&amp;$$&amp;$:.::-;."??##Ho.. \??\?4?\|k$P/S\?|1|/$?}$$&lt;L$$7|S\\'
+6MH&amp;MH&amp;H&amp;HH&amp;d{11$\|:::/i,\?::?'P?$-. \:S|?T|?:TS$)&gt;???$%)]|7)?|$|%|:?:'
+M&amp;HFH&amp;FRH&amp;H#&amp;&amp;FD&amp;&amp;?:::S&lt;&amp;bR6R&amp;"-bob:. /i&lt;?\:\|S:?\$(\?4|/&lt;\\$:??)|\:/&gt;'
+HRH19$FDZ(/$$?$($(:.'-::::?HRMHMRHHMMHHb?\??}?&lt;:S:\%\??%&lt;&gt;:|$??%::\\:/.
+H9&amp;$$&amp;&amp;&amp;$?[$%%$:~!.` : .'-:"&gt;&amp;HP?::?$9HMMHHdS$$|!?&gt;?\\?\):!|r:?:/(::|::
+MH&amp;FR&amp;F&amp;&amp;&amp;|&amp;%\?$? .'- . : -:`.:|:?|/::(/#MMM&amp;$k?$||%\\\?&gt;??(/7:?\|\:\::
+DM&amp;1&amp;&amp;&amp;1&amp;&amp;&amp;{S$?$ . . -.- .'.`.::?|:!??/%&gt;i$*$\%SS?(&gt;|:%(|p??Z$?/$\?//\:
+H6M&amp;HFRH9H1[&amp;&amp;7:. . . . . .  .'       ':::\\\||$%?\&lt;$Z$)SS&amp;$?[$$&lt;?1:(\:
+M&amp;99&amp;RkM1&amp;&amp;&amp;FR:. : - - .. .              `:&gt;|}F\$d$&amp;//S&amp;&gt;k&amp;S&amp;1HSF&amp;/$|(.
+RM&amp;H9&amp;H9&amp;RHkP-. :.: -- .        . ::::|do\_ \S&amp;$S&amp;&amp;&amp;HHS&amp;R&amp;&amp;&amp;}D}k&amp;1?|k%,
+M&amp;M1RM196kM&amp;.::.-- '.'.  .. :.: :/.:/-;|HMMM?:&lt;F$1&amp;&amp;$$Z&amp;$Dk6&amp;&amp;S$$$&amp;i|&gt;.
+MHH6MHRMHRMHL:::.` .    ..-:.:::::.::?\???.-:.:`^&gt;\?$$&amp;7S$$$\??\\??::\-
+MM9HRMHH6MRMH?:-: .  - -` :.:':::::::.::??$&amp;#M##dbb?\?$(&lt;S:$J:?:/&lt;:&gt;`:.
+MMM9MHMMH6MM6M#;. . -  :::.-:.-:.-::/$&amp;M9H&lt;#P&amp;&lt;MHRMHM&amp;#b?$???\\S&gt;\&lt;,\\'
+MMHMMMMMMMHMM/' .  .  '.-::. : - :--`?*&amp;:(:&gt;)!?Z$Z&amp;HMMMMM[6bZ///$%\\\&lt;
+MMMMMHMHMMMHM#?:..:. :.':.':. .` . '--.:|%:&lt;|[($&gt;??k&amp;?R9H6&amp;&amp;$$/$L$||&lt;\'
+MMMMMMMMMM9MHRHMc::::.`::.: :`.`.-:`.:.:\S1$/&amp;FS&amp;&amp;$9FF&amp;&amp;F&amp;FkMH&amp;&amp;SR/&amp;):'
+MMHM6MHMHMMMHMMHMb|: .-.: ::::`.-- : .::|S{%k&amp;&amp;$9$FDH&amp;&gt;&amp;SDFkbkMZc$R{J\-
+MMMMMMMMM6MMMMHHR$.-:.::.-::-:.-: :.`:::&gt;&lt;k&amp;(RH&amp;1&amp;SR&amp;H4F&amp;&amp;SkD&amp;&amp;919&gt;&amp;$|'</pre>
+</div>
+<div class="shot" id="s-pnminvert">
+<h3>pnminvert</h3>
+<p>The sphere that ships in DEMO, inverted, so the light comes from the other side.</p>
+<pre> o    "  "  o" " o" M "o"o"oM M"o"M"oM"M"M"oMo"MoMMM"MMM"MMoMMMM"MMoMMMoMMMMMMM"
+    "  " " " o" M "o"o"o"o"o"M M"oM"oM"M"M"MoMMMMoMMMMM"MMMMMoMMMMMMMMMMMMMMMMMo
+   "  "o " " o" o"o" M M M"o"oM"Mo"M"oMM"M"MoMoMMoMMoMMMMMoMMMMMMMMMMMMMMMMMMMM"
+ o  o o o" "o M "o M" M M Mo"oMo"oMM"oMoMM"MoMMoMM"MM"MM"MMMMMMMMMMMMMMMMMMMMMM"
+      o  o" o o" M "o"o"oM M"o"oM"o"M"oMoMMMoM"MoMMMMMMMMMMMoMMMMMMMMMMMMMMMMMMo
+   "  o "  " o" M "o"o"o"o"o"M"o"M"M"M"oMoMoMMMM"MoMMoMMMM"MMMMMMMMMMMMMMMMMMMMo
+   "  o " " "o "o" M M M M"o"oM"Mo"M"oMMo"MoMoMMM"MM"MMoMMMMMMMoMMMMMMMMMMMMMMM"
+   o  o " "o o" o" M o"o"o"M Mo"oM"M"oMoM"MoMMoMMM"MMM"MMM"MM"MMMMMMMMMMMMMMMMM"
+ o    o " o " " "o" M M M M Mo"M M"oM"oM"M"oMoMMoMMM"MMM"MMMMMMM"MMM"MMMMMMMMMM"
+    "    "o " "o" o"o M M M M Mo"Mo"M"oM"M"MoMo"MoMMMM"MMM"MM"MMMMMMMMMMMMMMMMMo
+   o  "   o " "o "o M "o"o"o"M M Mo"M"oM"M"oM"M"MoMoMM"MM"MMMMMMM"MM"MMoMMMMM"MM
+ o     "  o " o "o "o" o"o"o"o"oM M"oMo"Mo"MoMM"Mo"MoMMM"MMoMMoMMMMMMMMMMMoMMMM"
+    " o  o  "   "o " o"o M "o"o"o"oM M MoM"oMo"M"M"MoMoM"MoMMoMMoMMoMMoMMMM"MMM"
+   o       " " " o "o "o "o"o" M M M M"o"o"M M"M"oM"oM"M"Mo"MoM"MoM"M"MoMM"MMM"o
+      "   o  o o o "o " o" o"o"o"o"o"oM M"oM"oM"Mo"M"oM"M"M"MoMMM"MM"MMoM"MMoMM"
+  "  o  "           o "o " o o" o"o"o M M M M M Mo"M"oM"M"oM"oMo"MoM"MoMM"MoMMo"
+        o  "  "  " o  o " " o" "o o" M M M M M"o"o"oM M"oM"oM"oM"Mo"M"oM"M"oMoM"
+  "   o    o "   o    o " "  o" o" " o" o"o"o"o"o"M M Mo"o"oM"o"oMoM"Mo"Mo"Mo"M"
+    "    "     "   "     "  "  "  "o" " "o M " M "o"o"o"o"M M M"oo"oM M"o"M M"o"
+  "   o  o  "  o  o " "  "  "  " " o "o" o o"o" M "o" M M M M M M M M M"o"M M"oo
+    o        o  o   o  " o "  "  o  o o "  o o" o" o" o" o" M "o"o"o"o"o"o"o"o"o
+  o    "  "       o  o  o   "  "   o  o " "  o "  " "o M " " " o" o" "o" M "o"oM
+     "   o "  " o      o  "  "  "  o  o "  "   " "o o o " M "o" o"o" "o M "o "oo</pre>
 </div>
 <div class="shot" id="s-pnmrotate">
 <h3>pnmrotate</h3>
 <p>pnmrotate turns the sphere thirty degrees and pnmcrop trims the margin the rotation left behind.</p>
 <pre>&lt;nmscale -xysize 152 88 | pgmtopbm | pbmtoascii -2x4
-MMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMHPTHMMMMMMMMMMM|
-MMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMH&amp;7/$T|7MMMMMMMMMM|
-MMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMM&amp;F?[$4?($/$7MMMMMMMMM|
-MMMMMMMMMMMMMMMMMMMMMMMMMMMMH9S1)S4?%$(|$&gt;)?SHMMMMMMM|
-MMMMMMMMMMMMMMMMMMMMMMMMMH&amp;\Z($?//?|/|!/|!//??HMMMMMM|
-MMMMMMMMMMMMMMMMMMMMMM&amp;PZ$(|\\\:&gt;:-:::::/:&lt;;//|HMMMMM|
-MMMMMMMMMMMMMMMMMMH&amp;S$)):%::&gt;:-:`.': :.':::|:?:|HMMMM|
-MMMMMMMMMMMMMMMRRFS4|!:\::: : '.` . ` -':.:&lt;::|||&amp;MMM|
-MMMMMMMMMMMHM&amp;11?((//:-:- -- '      ' '-.:\::i|||[$MM|
-MMMMMMMMM9R&amp;F&amp;%4||::::'.`           .` :.:&lt;;/||T?($4H|
-MMMMMM9kM19&amp;Z?%%:/\:- .            . .:.:\:/|$$$%$$dH|
-MMM9D6H9H&amp;$S\\\//:-.--  '         -.-.:\\//$$4%$&amp;MMMM|
-MHH6M9H&amp;&amp;$&amp;J|:&gt;/;.-.: .       . :.:.-:|&lt;%Z{?&amp;6MMMMMMM|
-MMRMH9H9S$$|\\/.:::. .. -- :.'.:.:::S/)$$HHMMMMMMMMMM|
-MMMHRM&amp;H&amp;)\\\\\&gt;;.-:::.-:::.::,\:S&gt;?\&amp;HHMMMMMMMMMMMMM|
-MMMMRHM$$FS(((&lt;|:/:::\:::S,&lt;//||L\&amp;HMMMMMMMMMMMMMMMMM|
-MMMMMMH9F&amp;$%||||||/i?i|//||L\?bHMMMMMMMMMMMMMMMMMMMMM|
-MMMMMMHHHH&amp;7$1S$/J?/J?/JS&amp;&amp;&amp;HMMMMMMMMMMMMMMMMMMMMMMMM|
-MMMMMMMM9MHM&amp;&amp;&amp;&amp;&amp;&amp;&amp;&amp;$k6&amp;MHMMMMMMMMMMMMMMMMMMMMMMMMMMM|
-MMMMMMMMMHM&amp;RMH9HH9H6MMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMM|
-MMMMMMMMMMHMH&amp;R6M6MMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMM|
-MMMMMMMMMMMMHRMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMM|</pre>
+MMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMM&amp;&amp;9MMMMMMMMMMM|
+MMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMH97//$|&gt;MMMMMMMMMM|
+MMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMHHS$Z?$?$S\S$MMMMMMMMM|
+MMMMMMMMMMMMMMMMMMMMMMMMMMMMH9\S$S4?%%$&lt;S$|S$HMMMMMMM|
+MMMMMMMMMMMMMMMMMMMMMMMMMHFS\%||||?\|?\?:SS&lt;SS9MMMMMM|
+MMMMMMMMMMMMMMMMMMMMMMHZ//||(&lt;::::::&gt;`/&lt;::&lt;:?:|HMMMMM|
+MMMMMMMMMMMMMMMMMMM&amp;7$???\::::-:--: ::-::.\::?:?HMMMM|
+MMMMMMMMMMMMMMMH&amp;&amp;%$%&gt;):\:-:.'- '` .  :.:-::&gt;&lt;///&amp;MMM|
+MMMMMMMMMMMHRM&amp;Z$||\:&gt;::.- -         -.-.-:::???S|&amp;MM|
+MMMMMMMMMH&amp;Fk&amp;Z%%&gt;:\:-.-  '       . . ..::::&gt;??S$J?4H|
+MMMMMM9&amp;9&amp;H&amp;$\|\\&lt;:: - `             .::::\|\\S1|%|HH|
+MMM9&amp;HHR6R&amp;&amp;||:\::-.:`           . :-.:/?|\\S$$/&amp;HMMM|
+MHRM9RHFkk\\|\\::::. .`      . `..:..:|?i|k$SHMMMMMMM|
+MM96MH6HZ$?||?\:-:.:`.. '.: --.:::;i!&lt;%%Z&amp;HMMMMMMMMMM|
+MMMMH&amp;9&amp;$FS??:&gt;\:\:-.:::.:.`::::/\(($SHMMMMMMMMMMMMMM|
+MMMMHM&amp;Fk\$$|\?|::\\.::&gt;::S;:|/?/JdHMMMMMMMMMMMMMMMMM|
+MMMMMM66DZ$1?///?//i|/)///?//{{&amp;MMMMMMMMMMMMMMMMMMMMM|
+MMMMMMHH9&amp;&amp;S&amp;$\$$|$%$)Z\$Z&amp;6HMMMMMMMMMMMMMMMMMMMMMMMM|
+MMMMMMMM9M9&amp;&amp;HH&amp;H$$6&amp;&amp;&amp;HHMMMMMMMMMMMMMMMMMMMMMMMMMMMM|
+MMMMMMMMMH6M9&amp;HH6RMH6MMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMM|
+MMMMMMMMMMM&amp;RM9HHHMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMM|
+MMMMMMMMMMMM6MHMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMM|</pre>
 </div>
 <div class="shot" id="s-pnmtile">
 <h3>pnmtile</h3>
@@ -3021,37 +3293,90 @@ gsave
 64 16 8
 [ 64 0 0 -16 0 16 ]</pre>
 </div>
+<div class="shot" id="s-ppm3d">
+<h3>ppm3d</h3>
+<p>ppmspread scatters every pixel up to eight places from where it belongs -- the photograph is still there underneath, which is the point of the filter.  ppm3d, ppmshift and ppmmix run first, over the same image.</p>
+<pre>&lt;1.ppm | ppmtopgm | pnmscale -xysize 152 88 | pgmtopbm | pbmtoascii -2x4
+|:S/\&lt;:iS:(:?&lt;/:/&gt;&gt;\&lt;:|..:/\'.&gt;\!:,\\:S:\:\&gt;::i\:/&lt;\\|S:%:&gt;:/&gt;\/&lt;\/i%|:
+?&lt;:i?:/&gt;\&gt;/\:?:S::S/:!S :-$v':..\./S-.(/::/\?://:\%|::|%\&lt;;://&gt;\:?i|::|
+:S:(\/&gt;\%:S&gt;\:S:&gt;\|//.::\'&lt;.S,'&gt;:-\&lt;::-?\:?:&gt;\:S!/:?:&gt;\:&lt;:S:\&lt;i!:/:S::?
+\//&gt;\(//:\:/|/:&lt;;:&lt;:i%::/:%::\.\'/\:\\\|&gt;:/S/:/S;:?i!:/:/:i%|:):\:|/S;:
+&gt;\&lt;;&gt;:%!:/&gt;\/S/:S:/\::S::S:iS:\(?::i\\:/;:/&lt;|;://:&lt;\/\&gt;::|:&lt;:S:):\&gt;:&gt;&lt;:
+/||//\\:\&gt;:\/&lt;\:S':&gt;:&gt;;|::\?|:/:+?/::S;:(%:i%&lt;:%\:?:S:\:S:\|?&lt;i|::\\:&lt;;
+:&gt;\//:iS::?|:i%!::.&gt;:\::::/:|!%%\S:Z&gt;?\|\\&gt;:?\&lt;:i%!:S:)://:)!|:i(/:/S;:
+/!/\&lt;:|?:&gt;/::|:&gt;\\:-\:.&lt;.:/.:'&lt;|://&lt;\&gt;|/:S!:?:?&lt;:)::&lt;!:/:/:/S;:/&lt;:\?|;\
+:S!:?|/&lt;:?/i%:\:\:\:::-:-::\:/&gt;);:(&lt;'i&gt;\&lt;!:?:?/S:i?\/:&lt;\\?!:\S:&gt;::|%::?
+\\&gt;/i%!&lt;\/;:!&gt;::&lt; :/.:\:.\:::.:.:.' ':: &lt;\/::/:\&lt;:\\::i\&gt;/:Si:\\/&lt;\:?:&gt;
+&gt;\&gt;)!&lt;:|&lt;\//\&gt;\\::-:::/:::: /.&gt;:,`.\:/,:&gt;:i&gt;,`?/:iS;:/&lt;\/;:/:i%|:\?::?/
+:?!:|:iS:-:/\:&lt;:-/:.:.':/:.:-..:.:`-::-,\v?!-:?(/:S;:%\:?:S:&gt;&lt;:%!/\&gt;:\/
+S:|%?:&gt;%&gt;:\:\%!:.:\'.:-:\.\:`:.:\.'::\&gt;,.:$:?'//::\&gt;/&lt;\&lt;:/S;:|%\&lt;!/:?::
+?/?i|\\&amp;i?:::\\:-:/::.-:-/.:: /:\/;:/::?&gt;)|i\`?S|'&gt;\&gt;\:/:i(:&gt;\&gt;:%\:?&gt;\:
+?S1&lt;/$\$)7;,-?%&lt;?.\.\: :\\:\:::::&lt;::S:\&lt;,;?&lt;/S,?\?&lt;\:?\\:S/:/S!:&gt;:\|/&gt;!
+1\&amp;Z$$cZ$F1?`,Z./.\:.:::.&lt;.:\::&gt;:::&gt;\:\:/(\\/$![&amp;:?b&gt;7d:)::?&lt;;:\//&gt;:\|S
+&lt;FSS&amp;$&amp;&amp;7&amp;|k%&gt;?&lt;\:-;::.-:::::/;:::::\&gt;::\!|:)i\&gt;S\?|$:?P&amp;::/%!:&lt;/::(/:/
+H$9&amp;6H&amp;11?v+9v:&gt;\`.:::\'::\`;.::::.::i/&gt;\/:S/:&gt;&lt;/\:&gt;&gt;::|S?:?\/\\/?i|::/
+F6&lt;}FFF1&amp;$Z&amp;v)?d::.-::::::::.:&lt;:-;-::.!(\:i\&gt;:S:&lt;\/;&gt;$&gt;%?\\/?i\:?|:&lt;::i
+6&amp;99&amp;&amp;S&amp;$F$&amp;&amp;v&amp;d\-$:::::::\:::-:::::&lt;/::\/&lt;\:&gt;/&lt;\:&amp;|::?\:|&amp;!/\:?|::?::S
+&amp;&amp;11&amp;HSkM{%RF&amp;:$&amp;?::\:::::::::\::::-::\|&gt;:&lt;:&gt;\\\:/&lt;:S;:?\\&gt;i%|:Si:&gt;::?/
+RH&amp;&amp;Z$M$&amp;SkDS&amp;?%/(?\`;.\::::::\-::::::/:&gt;\|:\%\;&lt;;:?/&gt;/S/:S:&gt;/\//\\:%|:</pre>
+</div>
 <div class="shot" id="s-ppmdither">
 <h3>ppmdither</h3>
 <p>ppmquant reduces the photograph to sixteen colours and ppmdither spreads the error -- the two halves of how a picture survived a screen that had no more colours than that.</p>
 <pre>ppmquant: mapping image to new colors...
-:\&gt;/:&lt;;/:S::|:&lt;:(/:/S/\\&lt;:://\\\&lt;::S:)!/&lt;:S/://\/:?|;:&lt;:?\/\?:\?|:iS:&gt;-
-:&gt;\(:S/\\/;:&lt;\/:iS:/&gt;&lt;:: :-:..:.:`\?:\:?:?|//&gt;?:\&gt;/\/;:&lt;\:?\/\?:&gt;:\/&gt;\:
-?\\|?&lt;:)!:S/:/S/:/\\:::.`;,:::.::.'/:?:(::%:&gt;\:S;:/:iS&gt;\/;:?:\&gt;//&gt;\/&lt;::
-!&lt;:(/;&lt;;:|S!:\\/;S:::::S::&gt;::$=&lt;?::.\/?|:&lt;:?:?:(:S;:/&gt;&lt;:&gt;/&lt;:|%!/|i:&gt;\?
-S:%\??!:&lt;\\&gt;/:?::S/::&lt;:/S\\:&lt;//\://:::\\/?|/:/S:\\:i(:S&lt;://:\%:S:&gt;:S:\-
-?!:&lt;S!:?!:&gt;\(/:iS\&lt;::&gt;:\\:/\\/;-:?|:::&gt;\//:/S:\&gt;/\::?::/iS:\&gt;:\:\:?:\?
-/\:S:%|:S!:&gt;:?/&gt;\?::\\|-\?::|$|J||||||?&lt;\/:&gt;\\\!(/:iS;/:S:&gt;&lt;i:\/&lt;\:i%::
-//S|::/\&lt;:?S::S;::: ::\:-:::/)\\:S/:\|||bS$S|::S/:S|;:&lt;//S::&gt;:/:?\\/&gt;\.
-S|::?|:\\/&lt;!:&lt;/!:::::/::: /./\\:i\&gt;:\:\&gt;)\91:::\:/&lt;\?://:&lt;;:&lt;:&gt;\&gt;::/\&gt;.
-?:&gt;\&gt;::\:/&lt;\:S:%:.:-:\:::-:::::&gt;:&lt;:/S:i%!///:?|/::i\?::|&lt;\//:%!:?://\&gt;.
-&lt;:?\\&gt;\|?\\&gt;:Si::.:: :/:..::-:`:.-:.-:::S::|&lt;\&lt;;&lt;/!/:S/!/i%::i\&gt;:?:&gt;\/.
-/\\\?i:\\\//&gt;S:::::::.::/.-:::.-:::.: :.-:&lt;:):iS:&lt;\:?S:\/&lt;\;:/&gt;\%!:?:&gt;.
-\&gt;&lt;\&lt;:S\:/\:\::.::::.::\: :.:-:..:::::/:|?/:\&lt;:\%|:\:?|:\&gt;:/&gt;\/&gt;:\\/i%'
-\\\\/):!|/?\::&lt;:.-/:.::-:::.-:&gt;:::/&lt;:::i$&gt;??S`/:&gt;!S&lt;/::?\\//:?:/S:i(/\:
-?\\?4|||????&lt;:/::.:::.:::.-/&lt;:::S:\::\//\&gt;::S:::\:?::?:i%|:::|S:iS::S\'
-Z%$||%%%?$)));:::::-:: ::::\:::\/&gt;\:&gt;\/;:\\\+$S&gt;S&lt;\?::S;/:/S:&gt;/:/?i!:/.
-kF&amp;&amp;&amp;$$$||&gt;SSS&gt;\:::::: &lt;:::::::;.:/:S/\&lt;SSS&lt;/|+$$D$%ZZ&lt;S://\\:/S/\\\:&gt;.
-kR&amp;$F&amp;&amp;9&amp;&amp;$k||'::: :/:.\\::::::::.::/!/?:(/)::?:/??&lt;$&amp;&amp;&amp;$:&lt;\/i/&gt;&lt;:i?\&lt;
-$&amp;&amp;&amp;H$\\&amp;&amp;&amp;\\\\.::::\:-;.:\:\:::-::::::&gt;:|%!:\\\&gt;//:???&gt;&gt;::|:\\:?:\S:\:
-6$&amp;Fk6&amp;&amp;&amp;&amp;&amp;$ZZ?i|S.:\::\:::::-://::.:::S:&gt;::\\/\&gt;:S!&lt;|:%\&lt;\?|::?::?:?::
-$R&amp;&amp;11S&amp;&amp;&amp;&amp;&amp;&amp;&amp;&amp;\\:S::.::::&lt;.':.:\::::::!:S;:/i%:(/|:::/|%|::?:?:&gt;//&gt;:&lt;'
-&amp;$FF&amp;$FFFFD&amp;1Skk??:::::::\::::::.::::::\!(:://\&gt;\&gt;\&gt;:\(/)://S/:Si\/&gt;\\:</pre>
+S|::/\&lt;:|&lt;:?:Si|::&lt;:S/:/&gt;:\'/:|/&gt;!(/\|S\\&lt;!:::\?:&gt;::|/&gt;:&lt;:iS\\&lt;/:&lt;\/\?
+:&gt;!|&lt;\\/&lt;:??!:\!|&lt;:S\S`.:-:.:`.-::\//:!?&gt;S::?\&lt;:Si&lt;:&gt;:(/&gt;\&lt;//:&gt;\&gt;:S!/::
+i(/|:i\\\:|%|:\|S:?\::::.::::.:'-:.:::\:\://S/:/S/:?\?&lt;:S?::(&lt;;?::(&lt;;?
+&lt;/\/:?|:://&lt;\?:%|:?::::&gt;:::/&gt;\~L?;.':S::&gt;!i(/|:&gt;\|;:\&gt;&lt;;\:|::?&lt;:iS:\&lt;::
+\(?i?|:/S:/)i\\&lt;\//-::&gt;;:&lt;:S,\&gt;:/?::'/S;://:/S;:\\:?::?S!:/S:\\/&gt;\\|?\.
+\%\%\&gt;??!/)\\\\S:&gt;:\:\!?:\\\/:\&gt;:\S,-:iS/\&lt;!:&gt;:?|;:/:\:|::/i%!:/i%::?::
+:|%|:S|::iS\::?:\::::::&lt;//:/S/???S??%?&lt;\/&gt;\&gt;:S:\?:\\&gt;:Si!/)i\\/:/&gt;\:&gt;\.
+&lt;//:S:%!&lt;:S;:&lt;/:i//:::-:::::&gt;\|?\//:!|||Lk$?&lt;:%|:&lt;:\:|S/:::\\\&lt;:??:\\&gt;.
+\//S:?:|%!&lt;!/::|S.`:::.:\:.:-:\|:i/S/::/|$Z&amp;:?|:&lt;/&lt;\:S:/:S:)::?:&gt;:\:&gt;\.
+\!(/\|?:|%|:i%:%:::\::.-::`:::/:\?::(//\&lt;:\&lt;&gt;&lt;;:%\\:?:S:/&gt;/S:%!:?|::&lt;\.
+)!&lt;\::?:&gt;:i\&lt;:?\.-::/:::-::.::::'.: :::\:)::/)://\|%|:/S/:\&lt;\\?::S:):::
+//\&gt;|:&gt;\\//&gt;!|/::.::\-:::::-.':.':.:-:.-.`:?\/:&gt;/&gt;\\&lt;:(/:\&gt;/:\\!:\\?|:-
+:&gt;!?\\/|%!&lt;/\:::::\:-::::::`.:`\:.-::::%/?::`/%/:S\\|?\?i&lt;;:(/i%/::/S::
+\//\&gt;\(&lt;\S&gt;?:::::::::.: :::.\:::::::/:\&gt;&gt;//?//|:!?\&lt;\\&gt;/:/S|://\&gt;:iS:&lt;'
+&gt;?S|T||||||riS: ::::: :.::::::\:S.-/:S:\\S::/.:::S:\?:\\\/S:&gt;::|\&lt;:?:?'
+S$||//|$SS???:\::/:.:: ::::::./&lt;!:&lt;:)::::S\\?$&gt;?i\|::(/\&gt;;//:iS!:S:/;:.
+&amp;$kk}LLL||bZ%%\|&gt;:.:-:.:-:::\\::\'//:\:i||||\?$:$&amp;\LLL$?\&gt;:/::/;//&lt;:S::
+FF&amp;&amp;&amp;$&amp;9&amp;&amp;11S&lt;':.':.:.:::.:\:.-::::&gt;:/&lt;\:S::iS:&gt;:%?44111&amp;/S;:&lt;\;:/&gt;:\&gt;.
+&amp;&amp;1&amp;&amp;&amp;?}RH$\&gt;\\\:::.:::::::::;.-:-:::\\://\?::?\?&lt;\;::&lt;?$S\:i(:&gt;\\:\:S
+&amp;&amp;&amp;&amp;&amp;&amp;&amp;&amp;&amp;&amp;&amp;S$$&lt;\S/:::::::-::-::::::\::\::/:/\&gt;i%|::?|::/&gt;\)::?:\:i(/:?
+FF&amp;&amp;&amp;9&amp;&amp;&amp;&amp;$&amp;&amp;9&amp;S&gt;?:-:::::::\::\::::::\::\&gt;:?|::|%!:\&lt;;:(&lt;;?:&gt;\/:&gt;/&gt;\&gt;:-
+&amp;&amp;&amp;91$&amp;&amp;&amp;&amp;&amp;Zk&amp;&amp;&amp;?&gt;;::::::\\:\:::::::\\:\\\\:/&gt;\%:S:iS\\:i|&lt;\/;:&gt;:\\\&gt;|</pre>
 </div>
 <div class="shot" id="s-ppmforge">
 <h3>ppmforge</h3>
 <p>ppmforge invents a planet from a random seed: fractal terrain, an atmosphere and a star field, none of it drawn by anybody.</p>
 <pre>&lt;height 88 -seed 7 | ppmtopgm | pgmtopbm | pbmtoascii -2x4</pre>
+</div>
+<div class="shot" id="s-ppmforge-clouds">
+<h3>ppmforge-clouds</h3>
+<p>The same program asked for clouds only -- no land, all atmosphere.</p>
+<pre>M9RMH9RR&amp;F$Z%\T|!&lt;\/!:&gt;?:(??$FRMRHM9RMRM9HM9RM6M9HRMRM9RMRMRM9RM9&amp;&amp;&lt;SS$S&amp;&amp;HH
+$&amp;&amp;Z6k}}??\|&gt;i|&gt;::\:.\::&gt;/:!|||$FR&amp;&amp;H$HH6M9HH$R6MHHHH6MH&amp;Fk&amp;\$$?$S$|!?!!//7&amp;
+%%Z/S$$|/::%::\:.'..'. /::|&lt;!:???$HH&amp;9RM&amp;kH&amp;H&amp;1$Z&amp;D6M9&amp;M&amp;6/$$|)7||:/&lt;::S//SS
+S%$S/S\\:/;-; ::: -..- .-:&gt;:&lt;:??\S$&amp;Z$$77$FS1\&amp;H9&amp;&amp;HH&amp;R6HZ$(?&lt;SS&gt;S:\:S::!:||
+S??S|::S/:S:\::::.:-::-:.:S:\&lt;:://:?SSSSS??\??4?$1S6$F&amp;H&amp;$&amp;)?\:(/;:\::%::&gt;??
+/JJ|J||??S|L||/,::/:/&lt;:/i:&lt;\//.:\:\:/))|||)\S1%D&amp;H&amp;&amp;M9HH6H$L}\?/i|//iS/;&gt;)$$
+RDZF$S&amp;$&amp;F&amp;&amp;\???::)|;SSSS:?\://:::(?!&lt;&gt;?|k&amp;$&amp;$&amp;M9RM96M&amp;M&amp;FH?}$$$$4?|&amp;/H1H&amp;kM
+MRH9FkM96M9&amp;R&amp;?//)!:S||;&gt;\:|?::S;\\?????/$&amp;H1&amp;HH6H6M&amp;DRH&amp;Z($S$c$ZZ[&amp;HH6M9H6M
+MH&amp;kRkkRHFR&amp;$$?Z%%\\|||||:'::\\/:\?\\T?&amp;&amp;6M9HHDM9RMHR6}kRkH1HRM9HH96M9HMHRMH
+M&amp;RM&amp;DHDDZ$%$SF&amp;$Z$|\\&lt;::.'.-:|\&lt;://i|F1M&amp;RM9RM9MH&amp;RH&amp;HZ}&amp;71$RMHH6M&amp;6M&amp;DMHDM
+MHHSF&amp;%7//|||??%?/?\\/:::. -.-:.`.//)))S&amp;H9H6MHHHHH6H&amp;F&amp;T|||\&lt;kM9MHRHM9RM&amp;M9
+MH&amp;&amp;/|)))\%|::`::S:;-::::.':.-.::,://$$ZHH9HHHDM96MHS[$|$$$Z&amp;S&amp;6M&amp;H&amp;M&amp;6H6M9M
+RRH$4T??&lt;/:::S::::&gt;-:::-:`. :-/:|||J&amp;&amp;HHH6M&amp;H6RMHDRH%/Z&amp;/66M&amp;6MHH9&amp;HH9&amp;M9HHH
+M9$k7//\&lt;;!::-:::/::-.:-::`..':/i||k&amp;Z&amp;DRHHRHMH&amp;RM9$k6&amp;96HRDH9&amp;DR6MHHHR6M&amp;RM
+RRFS???:\/--`:::/::.:-.- -`.:'::&lt;/((%%$1Z&amp;SRMHHRH6MHkMH&amp;HHHRMkRHZ$&amp;&amp;&amp;&amp;HHHH6M
+RH&amp;&amp;&amp;&amp;$S\:::\:&gt;:: :- .  '.::.::&lt;)SSSS(&amp;&amp;SkH9H9&amp;H9M&amp;kR&amp;&amp;M9HHHDM&amp;S&amp;H{1&amp;&amp;&amp;H&amp;M9H
+M&amp;MZkF6$7///:'.::- -  .:::|:?/{S6H6M&amp;HH9&amp;H&amp;D6M&amp;Skk&amp;&amp;&amp;9&amp;/&amp;6RH&amp;99H&amp;H9&amp;H&amp;&amp;H&amp;1HH
+6M&amp;HHH&amp;Z?)::&gt;:../::.:-.-::SS$&amp;&amp;H9HHH9MHHRM9RMHM&amp;6M9H96M&amp;RMHH&amp;&amp;R6M6MHHHH&amp;M&amp;RM
+MDM9H6H???\\::\::\.:::,::%:&lt;&amp;M9HH6M6M&amp;M&amp;MHHHDM&amp;M&amp;H6MHDMHH&amp;R6M96M&amp;DM&amp;DM96MH6M
+6MHHRM6&amp;S&amp;$&gt;|||?&lt;::\?i:%\|kMH6HH9M&amp;DMHHRHMH6M6M9RMH&amp;6M9RM9MH6HH9RMRM9RM&amp;HHHH
+MHRHM&amp;RMHHHHS///::|?SSS$1$9DR6M6M&amp;M9M9HM&amp;6M9H&amp;H6MHRHM&amp;6H6HH&amp;RM9HHHH6H6MHHRHM
+HH9DMHH&amp;RM9&amp;Z$SSS/:?SSSS$Z$&amp;&lt;RHM&amp;H6M&amp;HHHRHRMHRM9HHHRMH6M9RM9R6MRH6M9RM&amp;9HHRM</pre>
 </div>
 <div class="shot" id="s-ppmhist">
 <h3>ppmhist</h3>
@@ -3059,91 +3384,102 @@ $R&amp;&amp;11S&amp;&amp;&amp;&amp;&amp;&amp;&amp;&amp;\\:S::.::::&lt;.':.:\::::
 <pre>ppmpat -tartan 80 40 &gt; /dd/tmp/t.ppm
  r   g   b      lum     count
 --- --- ---     ---     -----
- 95  33 129     62      1425
- 47  66  21     55      1128
-143   1 238     70      450
-138 102 132     116     119
-186  69 240     123     75
-229 138 243     177     3</pre>
+  5 109 103     77      1425
+ 11  62  69     48      1128
+  0 157 137     108     450
+102  32  64     57      119
+ 97  80  98     87      75
+194   3  59     66      3</pre>
+</div>
+<div class="shot" id="s-ppmmake">
+<h3>ppmmake</h3>
+<p>ppmmake fills an image with one colour; ppmbrighten, ppmdim and ppmnorm change what that colour is, and ppmhist counts the result.</p>
+<pre>ppmmake rgb:80/40/c0 40 20 &gt; /dd/tmp/flat.ppm
+ r   g   b      lum     count
+--- --- ---     ---     -----
+128  64 192     98      800
+ r   g   b      lum     count
+--- --- ---     ---     -----
+170  85 255     130     800</pre>
 </div>
 <div class="shot" id="s-ppmpat">
 <h3>ppmpat</h3>
 <p>ppmpat weaves a tartan, ppmtopgm greys it and the dither prints it.</p>
 <pre>ppmpat -tartan 152 88 | ppmtopgm | pgmtopbm | pbmtoascii -2x4
-RMH96R6RMH&amp;RMH9H&amp;RF[&amp;&amp;HH&amp;R6HH9H&amp;R6M&amp;FM&amp;R6&amp;FkR6&amp;F6&amp;HH9H&amp;&amp;&amp;&amp;FkRFRHFM&amp;&amp;H&amp;&amp;H&amp;&amp;H&amp;
-RH&amp;H9&amp;DRH&amp;RH&amp;FH9H&amp;F1S&amp;H6H&amp;&amp;MH&amp;&amp;RH&amp;RMH&amp;H&amp;H&amp;1&amp;91F6&amp;&amp;H&amp;&amp;kMSH&amp;$k6FkH6H&amp;&amp;H&amp;1H&amp;19&amp;
-RH&amp;6&amp;HH9&amp;9&amp;HH&amp;kM9H&amp;S&amp;SHHFM&amp;&amp;HH9&amp;&amp;RH&amp;6R6R&amp;91&amp;&amp;$FkRHH9&amp;&amp;&amp;H&amp;SFkH9&amp;H&amp;R&amp;FDFkH&amp;1H&amp;
-RH9&amp;9H&amp;HH&amp;6R6M&amp;&amp;6H&amp;Z&amp;19&amp;9&amp;9R6M&amp;FH9&amp;H9&amp;FM&amp;1FFR&amp;Fk6&amp;D6R&amp;9H&amp;1FkH&amp;&amp;HH&amp;FRHFFRH$&amp;R
-H&amp;H9H&amp;9HkM&amp;&amp;&amp;6M&amp;FM&amp;S&amp;&amp;H9H6&amp;9H&amp;HH&amp;RH&amp;9HHHS&amp;FRH&amp;SkH&amp;H&amp;RRH1&amp;1Sk6&amp;FHH&amp;FkkR6&amp;&amp;FkR
-F&amp;$$&amp;Z&amp;%kH%R$\$R$&amp;&amp;|%$\$$&amp;S$$&amp;S&amp;$&amp;$&amp;$$1\$$S1S}&amp;%$F1$$1?$&amp;%}&amp;%F1Z&amp;&amp;/&amp;{?1%$$&amp;{
-HHFM&amp;HH9&amp;DRMH&amp;RH9&amp;H&amp;ZHH9HkRM&amp;HH&amp;H&amp;H6H&amp;kM&amp;1FkRFkM&amp;19H&amp;kR&amp;&amp;9&amp;&amp;9&amp;&amp;9DM&amp;SH&amp;1FRH&amp;&amp;
-RHR6HH&amp;M&amp;HDH&amp;R&amp;kH&amp;H&amp;%D6&amp;9&amp;M1H&amp;6H&amp;6HH&amp;R6M&amp;1Fk6FkM&amp;1H&amp;9$RH$kM&amp;$&amp;6HH&amp;F6&amp;F&amp;Fk6H&amp;
-HH&amp;&amp;HH&amp;6RH9HFM&amp;96R&amp;Z$SHFH9&amp;H9&amp;R6R6M1RH9H&amp;1&amp;&amp;&amp;9&amp;&amp;H$HH&amp;FkDFk6&amp;FkH&amp;M&amp;FkRFkRDFRH
-R6HHHkHH&amp;&amp;D6HH&amp;DDHZ&amp;&amp;1H&amp;kM9&amp;H9H&amp;H&amp;1kM1&amp;9H$&amp;H$k6FkHH9HFkRFkM&amp;$k6RH9&amp;H&amp;Fk6&amp;FH&amp;
-6DRDH&amp;R6M1RHHH9H99}k&amp;&amp;R6H&amp;H9&amp;F6RH9kM&amp;&amp;RHFFkR6kDFkRH9&amp;Fk6Fk6&amp;FkkH&amp;H&amp;Fk6kM&amp;19&amp;
-kR6&amp;DFkH&amp;&amp;$&amp;FH&amp;1&amp;FF|k&amp;&amp;H&amp;19H&amp;1&amp;&amp;1&amp;H19H$&amp;&amp;&amp;Zk$kR&amp;ZkR&amp;kR$&amp;9$S$R&amp;SFkH$F&amp;$&amp;&amp;&amp;1$9
-kRH&amp;1FkM&amp;&amp;SkR&amp;9$kHZ$}SFkRH$&amp;6FRH$kH&amp;11Fk6&amp;11S&amp;&amp;&amp;11$&amp;H$Z&amp;$D&amp;Zk$kFkHS&amp;&amp;&amp;1$$k&amp;&amp;
-DH&amp;&amp;1FkFRH$kM&amp;1FDFk$\1&amp;&amp;&amp;1FkDFkDFkH&amp;$kFkk6$&amp;&amp;11$$&amp;9$kR$&amp;&amp;&amp;S$&amp;&amp;$FkHSk&amp;&amp;$S&amp;$F&amp;
-HHFM&amp;&amp;6H&amp;&amp;RH6H16RM&amp;Z$SRRH&amp;6HH9H&amp;RM&amp;9R6RH&amp;9&amp;$Fk6&amp;FkRMH19&amp;H&amp;1&amp;&amp;6HH&amp;R6FRH&amp;19H1&amp;
-Fk6kRFkRFkR&amp;&amp;R&amp;11DZ$\$6&amp;Fk6FH&amp;19&amp;&amp;&amp;$&amp;H&amp;1$&amp;9&amp;Z&amp;&amp;F&amp;&amp;&amp;11111&amp;&amp;1&amp;%kFk&amp;&amp;&amp;9$Sk$kk&amp;&amp;
-FkH&amp;1Fk6FH&amp;1&amp;FR&amp;kFk$$SH&amp;FkDFkH1&amp;H&amp;S&amp;kH&amp;1F11&amp;ZkD&amp;1&amp;&amp;$kkDZk&amp;$6&amp;$$RH11$Z&amp;&amp;ZkF&amp;&amp;
-FkM&amp;1Sk&amp;FkR&amp;DFkH&amp;Fk&amp;)&amp;H&amp;19H&amp;SH$RH&amp;H&amp;19&amp;1&amp;$&amp;S&amp;&amp;&amp;Z&amp;&amp;RFkk6$&amp;&amp;&amp;&amp;&amp;&amp;&amp;&amp;&amp;&amp;1&amp;$S&amp;$&amp;&amp;$&amp;
-RD6H&amp;H&amp;R6H&amp;H&amp;RH6H&amp;kH$&amp;&amp;RH&amp;R6H999&amp;M&amp;6&amp;9RHH&amp;1FkFRH1$DRHDH&amp;1H$&amp;6FkM99&amp;RH19&amp;$RH1
-&amp;Fk6H&amp;&amp;1H&amp;1&amp;H$&amp;&amp;M&amp;?}$SR&amp;&amp;&amp;H1&amp;&amp;1&amp;9$RH&amp;1$kkF&amp;$k6$D&amp;Z&amp;&amp;DZ&amp;&amp;1$&amp;ZDZ&amp;&amp;kkkk$kR&amp;$k&amp;&amp;
-&amp;FkRFRH1&amp;&amp;1FkRkR&amp;HZ$S$&amp;H&amp;1&amp;&amp;H&amp;1$k6kM&amp;1FkkFDZ&amp;&amp;&amp;$F&amp;9&amp;&amp;11&amp;S&amp;&amp;$&amp;ZkH&amp;111S$&amp;&amp;&amp;1Sk
-&amp;Fk6&amp;DH$RH1FkR&amp;kkR\&amp;SFFkR&amp;6FkR&amp;Sk&amp;&amp;9&amp;$&amp;kkFF11$&amp;Z$kDFR&amp;Sk&amp;&amp;&amp;&amp;&amp;41&amp;&amp;1$11&amp;S&amp;&amp;S&amp;&amp;</pre>
+H&amp;&amp;F6&amp;F6&amp;HH&amp;&amp;H&amp;1FRH|||FRH&amp;FRH&amp;&amp;H&amp;H&amp;&amp;H&amp;&amp;H4%F1SF1%FS&amp;9&amp;$7ZF1%F1%FF6&amp;&amp;Z$&amp;Z$&amp;Z$S
+6FRHH&amp;&amp;H&amp;19H&amp;H&amp;1FDL||&amp;FkM&amp;&amp;&amp;&amp;H&amp;1H&amp;H&amp;&amp;H&amp;&amp;Z&amp;$4Sk$\S$9H&amp;S&amp;$4S}S1$%R6H?$14%&amp;(k&amp;?
+kRH&amp;FRHH&amp;$kH9H&amp;1H&amp;$%%&amp;1kH&amp;FH&amp;FR&amp;H&amp;SHH&amp;&amp;H4%[$Z$S$$SkFM?$$Z$$Z\\S&amp;H9%F$Z&amp;\&amp;?&amp;$
+kH$kM&amp;1H&amp;SH&amp;&amp;19&amp;&amp;&amp;&amp;|||DFR&amp;FR6H&amp;1FR&amp;HH&amp;&amp;H%k$S$$$Z$ZH&amp;&amp;&amp;$\1%F$]%$H&amp;6&amp;Z$&amp;Z$&amp;&amp;?$
+H&amp;FkM&amp;$&amp;RH1FRH&amp;SM&amp;$||J&amp;H&amp;F6&amp;&amp;H&amp;1FkRH&amp;&amp;Fkk$S$Z$S$&amp;ZH&amp;&amp;Z$}&amp;%[&amp;47?H$kk&amp;?/ZF$1Z$
+||||||$&gt;?:%S&gt;))S&gt;?!/-;SSSSSSSSS&gt;??S&gt;)))):/&gt;:/:S/:\(((|S/:\|&gt;:S::Z&lt;\!\/&lt;|:\:i
+&amp;FH&amp;FRHHS&amp;9&amp;H&amp;H&amp;SHZ?Z{9&amp;FH&amp;FHH&amp;H&amp;SHH&amp;SHH44%&amp;SF$$Z$R6H]?&amp;$\SF14Z&amp;H&amp;$&amp;$9%F1\14
+6&amp;H&amp;FkDDFR&amp;FkHH&amp;1F}??Z&amp;9&amp;FH&amp;FkRM&amp;19H&amp;19H$$&amp;Z&amp;STk$$R&amp;R$}&amp;Z$S&amp;$Z$9H&amp;?k&amp;%&amp;(k&amp;/$
+R&amp;&amp;RHH&amp;&amp;FkRM&amp;&amp;H&amp;1Fk%%&amp;&amp;&amp;&amp;FH&amp;FkR&amp;H$kM&amp;1&amp;&amp;$S&amp;%F1Z$1$&amp;1&amp;S$$Z$FS$&amp;S&amp;9HSk&amp;TS\$?k&amp;
+6FkHH&amp;&amp;H&amp;&amp;H19&amp;H&amp;1HZ%%$99H&amp;H&amp;FkH1HFkM&amp;1RH$4S&amp;&amp;?$14SR&amp;kk&amp;%$&amp;S/ZF1&amp;1$[$Z$?}[&amp;$4
+kR6&amp;DFHH&amp;1&amp;kH&amp;H&amp;1&amp;$(($k&amp;9H1&amp;6H&amp;1&amp;FkM&amp;$H&amp;Sk&amp;S/ZF$?FkDHS$&amp;$?[&amp;$4SRH&amp;1%$&amp;S&amp;(k&amp;%
+Z\$S$&amp;$\S$$$Z&amp;$Z\Sr::?$}&amp;S/Z$S&amp;{S&amp;$%&amp;$Z&amp;?????\||||$F1||||||||||%k&amp;/))))))SSS
+&amp;Z$}&amp;\1%F1$$?k&amp;(k&amp;S:/{?$$$$&amp;$S$$Z$&amp;Z$S$&amp;)))))))???F1%||||||||||&amp;%FSSSSSSSSSS
+$Z$&amp;(k$\Z$1SF$Z\$Z%:S|]$$Z$$/&amp;ZZ}F1%$F1S||$SSSSSSS1SFSSSSSSS$||$$SSS$||||||)
+HSHH&amp;16H&amp;$kM&amp;FkR6F}7//FkR6&amp;FHH&amp;1&amp;FkM&amp;FkM%F17$S$Z$S&amp;M&amp;]S$[&amp;Z$&amp;Z$DFk&amp;$?[FSZ$S$
+1S/ZF1?Z$S$/S$&amp;{S/Z:&gt;?$&amp;/S&amp;ZZ}F$$Z$1$Z/SSS:%%%%SSS$1%&gt;))SSSS&gt;))ZZ$????SSSSSS
+}S$&amp;/$$?[$ZF$?k&amp;SF:\/?$\$&amp;/$?F1S}&amp;Z/S&amp;Z$SSSSSSSSSS$S&amp;||||||||||%F$SSSSSSSSSS
+$$$}Z&amp;/$$&amp;JSF1%$&amp;4?/:)S1$%Z$$Z$&amp;$$&amp;/&amp;{)SSSSSSSSSSSS$/SSSSSSSSSS14Z///?$SS$?%
+6FkRDFkR6FkR6&amp;96H&amp;$|?{&amp;9H&amp;1&amp;FkR6DFRH&amp;&amp;Fk[&amp;$Z$S&amp;ZZ$RH&amp;Z$S&lt;Z$S/Z$FRH$]SF$S$Z&amp;4
+$$$?[&amp;$/$$$?k&amp;{|7Z}::{?$(k&amp;$S&amp;{?1Z$$]$7S&gt;)))))))&gt;?\$S????????\|&amp;$SS&gt;)))))SSS
+$Z$S/ZF$$]S[$Z}[&amp;$:iS|]%$\&lt;$1%F}&amp;ZZF1%&amp;4||||||||||Z&amp;4))))))$|||Z$}?????????S
+$$S$&amp;?$S$%F$Z\$&amp;Z$|S;?([k&amp;]?&amp;$%F$$$?k&amp;%FSSSSSS?SSS$S\\\\\???|||%}FSSSSSSSSSS</pre>
 </div>
 <div class="shot" id="s-ppmpat-madras">
 <h3>ppmpat-madras</h3>
 <p>ppmpat weaves a madras pattern; the same dither renders it.</p>
 <pre>ppmpat -madras 150 44 | ppmtopgm | pgmtopbm | pbmtoascii
-M"M"MM M"o"M Mo"M"M"MoM M M""M"MoM Mo"oM M"o"o"o"M M"M M"o"M"M"MM M"o"o"o"oMM"Mo
-"o"o"o"o "o "o "o"o"o" o "  Mo"o"o"o "o " o" o" o" o o" o" "o"o"oo o o " o o""oo
-MoMoMooo"ooo"oo"oMoMoMoo"o"ooMoMoM oo"oo"oo"oo"oo"oo"oo"oo"MoMoMooo M o"o oM"Mo"
-"oM"o"o" M "o"o""oM"o"o "o" "oM"oM"o"o"o"o"o"o"o"o"o"o" M "M M"oM " M "o"" "M"o"
-MoMo"Mo"oo"oo"o"MoMoM"oo"oo"MoMoMoooM ooM ooM oooo"ooo"oo"o"MoMoMo"oo"oo"o"MoMo"
-M M""M "o"" "o" M M""M " " "o"o"o"o "o" "o" " "o" "o" ""o"""M M M " o" o" ""o"M"
-o"o"M o" o" "o "o"o"M o" "  M"o"oM " o" " o"o" o" " o" "o "o"o"M o" o " o" "o"oo
-"o"o"oo" o" "  M M M M o" " "o"o"o" "o "o"  o" o" "o "o o" "o"o"o o"  " o ""o"o"
-MoMoMoooM oMo"ooMoMoMoo M M MoMoMo"o"oo"oo"oo"oo"o"oo"ooo"oMoMoM"oo M M oo"MoMoo
-M M"oM o"" o"" o"M M"M M "o""oM"oM" M "o"o"o""o"" M M M "o"oM"oM"o" M "o" "o"M o
-M Mo"o"o" M "o" M Mo"oo "o ""o"o"o"o" "o o" o"o M o" o M o"o"oM M o" o" o" M"o""
-MM"M"Mo"oMo"M M"MM"M"Mo"o"o"M"MM"Mo""M"o"oM"oM Mo"oM"oM Mo"M"MoMMo"o"o""o""M"M""
- M"o"oo"o o"o" o"o"M M o" o""o"oM M "o M o "o "o "o "o "o "oM M M o" o" o" M"oM"
-MoMMoM ooM ooM Mo"MoMoo M o"MoMoM"oo"ooo"o"oo"oo"oo"oo"oo"oMo"MoM oo"o M o"oMo"o
-M M M"" o"" " "o"M"o"M "o" "M M"""o" M "" M ""o"" ""o"" "" M""M M" " "" " "M""""
-o"o"oM "o M "o" "o"o"o" o " o"o"M" o"  M " o" o M "o o" M " M"o"o" " " " "o M"M"
-M M M "o o "o "o"oM Mo " o" "o"o"o" o" o" " o" o "o o" " o""o"o"o" " " "o o"o"o"
-oMoMoMooo"ooo"o MoMoMoM ooo"MoMoMo"oo"oo"o"oo"oo"oooo"o"oooMoMoMoM M M ooo MoMoo
-M"oM"o" "o"o""o""oM Mo" "o "M M"oM"o""o""o"o"o"o" M ""o"o" "M M"o" M "o" " M"o"M
-oMoMoMo"ooM oM M"oMoMoM M o"oMoMo"oo"oo"oo"ooo"o"oo"o"oo"o"MoMMoM M o"oo"o"oMMoo
-"o"M M M "o" "o""M M M "o" "M M""M "o" M "o" "o"" "" M "o""o"o""M "o" " M ""o"o"
-M M Mo o" o" " o"o"o"oo"  " "o"o"o"o o" o" o" o" M "o "o o" M M"o "  "o o ""o"o"</pre>
+"M"M"Mo"M"oM"o"oM"MM"Mo"oM"oM"MM"M"oM"oM"o"M"o"M"oM"oM"oM"oMM"MoM"oM"oMo"oM"M"Mo
+Mo"M M M M o"o"o"oM Mo"o o"o"M Mo"o" M o"o"o"o"o"o M o"o M oM"o"o"o "o o" o"M Mo
+o"MoM"ooMo"o"oM MoMoMo"o"oooMoMoMM Mo"o"o"o"ooMo"o"o"oM Mo"oMo"Mo"o"ooM M Mo"Moo
+M"Mo"Mo"o""oM M""o"oM"o"o"o Mo"oM"M M""M M""o"o"M M""o"M M""oM"M"o"M o""o"o"M"oo
+MoMoMoM Mo"ooMo"M"MoMM M M Mo"MoMoMo"oM Mo"oMo"o"o"oMo"o"o"Mo"MoM M M Mo"o"Mo"Mo
+"o"oM"o""o""o"o"M"M M"o""o"o"M"o"o"o""o"M M M M"""" M M""M M"M"oM"o""o"o"" M"M"o
+M"oM M M M M M o"oM Mo" M "o"oM"oM M M o"o"o" M M"" M o"oo"oM Mo"o M o"o"" M Mo"
+oM M"o"o"o"o M M Mo"oM M "o Mo"o"o"o" M M "o"o"o"o""o"o"o M M Mo"o" o" o"o""o"o"
+o"MoMo"ooMo"o"o"oMoMoMooM M Mo"MoMo"oM M Mo"ooM M Mo"ooM Mo"MoMoM Mo"o"o"o"Mo"MM
+"M"o"M"o"o""""o"Mo"oMo"o"o"""M"M Mo"M M""o"M M M"o"o"o"o"o"M"o"M"o"o""o""o"M"M"o
+"M"o"M M M M""o"oM"oM M "o"""o"M"o"o"o"o"o"o"o"o"o"o"o"o"o"o"M"o"o"o"o"o"o"o"M""
+MM"M"MoM"oM"M"o"MoMMoM"oM"o"MM"M"MoM"oM"oM"o"Mo"Mo"M"oM"Mo"MM"M"Mo"oM Mo"oM"M"M"
+o"M"o"oo"oo"o"o"o"o"o"o"o"o"oM"oMo M M M M M M M M M M M M Mo"M"o"o" M o"o M"oM"
+"MoM"Moo"oM Mo"oMM"M"M oM M Mo"MoM"o"oM Mo"oM Mo"oM Mo"oM Mo"MoMM M Mo"o"o"MoMoM
+M"o"M"o""o""o"M M""M""M "o""M""M M""o"o""o""o""o""o""o"o""o"M"oM""o"o""o""o"oM""
+"oM"o"o"o"o"o" M M"o"M M o"o"oM"oM M M M M M M M M M M M M Mo"oM M o"o" M o"oM "
+"o"oM"o" M "o"o"o"M Mo" o"o Mo"o"o"o"o" M "o"o" M "o"o" M M M Mo"o" o"o" "o"o"o"
+MoMoMo"oM Mo"o"o"MoMoMoM oM Mo"MoMo"ooMoM Mo"o"oM Mo"o"oM Mo"MoMo"o"oo"oM Mo"MoM
+"oMo"M"o"M M"""oM"oMo"o"o"o""M"M Mo"o"o"o"M M""o""o""o"M M""M"oM"M M M M M M"Moo
+MoMo"Mo"oM Mo"M M"oMoMo"o"o"MoM"MoM Mo"oM Mo"oMo"Mo"M Mo"o"MoMoMo"o"o"o"o"o"Mo"o
+M M"M"o"o"M M"""""M Mo""o"o""o"M"o""o""o""o""o"o"o""o""o"M Mo"oM""o""o""o""M""Mo
+"o"oM M M o"o""o"Mo"oM "o M M"o"oM M M M M M M M M M M M o"o"M Mo" M o"o" M M"o"</pre>
 </div>
 <div class="shot" id="s-ppmrelief">
 <h3>ppmrelief</h3>
 <p>ppmrelief embosses an image -- the same sphere lit from the side by arithmetic rather than by a renderer.</p>
-<pre>MMMM Mo"oM"oM"o"oM Mo"o"M M"o"o"M M M Mo"M M"o"o"o"o"o"o"o"oM M M M M M M M M MM
-MMM"M M"oM Mo"M Mo"oM"o"M M"oM"o"M M"o"o"oM Mo"M M Mo"o"o"o"o"o"o"o"o"o"o"o"o"oM
-MMMM"oM"o"M M"o"M Mo"oM"o"oMo"o"M Mo"M M"o"o"o"o"M M M"o"M M Mo"oM M M M M M M M
-MMM"oMo"Mo"Mo"M"oMo"M M"o"oM M"o"M M M"oM M"oM"o"oM Mo"oM Mo"o"o"o"o"o"o"o"o"o"M
-MMMMo"oMo"M M"oMo"oM"oM""M M"oM"oM"oM"o"o"oM M M"o"oM M M M Mo"oM Mo"oM M M M MM
-MMMo"M Mo"M"oMo"oMo"oMo"Mo"oMo"oM Mo"oM"oMo"M Mo"oM M M"oM Mo"o"o"o"o"o"o"o"o"oM
-MMMM"M"oM"oMo"oMo"oM Mo"oM"o"o"oM"o"oM Mo"o"oM"oM M"oM Mo"o"o"M M"o"o"o"o"o"o"oM
-MMMo"oMo"Mo"oM"oM"oM"oM"oM"oM"M Mo"M Mo"oM"o"oM Mo"oM Mo"M M"o"oM M"o"M M"oM MoM
-MMMM"o"oM"oMM MoM"o"M Mo"oMo"M MoM"oMo"M M"oMo"oM Mo"oM Mo"oM"o"o"oM Mo"oM M M M
-MMMo"Mo"oMoMo"M M""Mo"Mo"M M"oMo"oM Mo"Mo"oM M"o"M M"o"oM Mo"o"M Mo"M M M M Mo"M
-MMM"o"oM Mo"oM"M"M"oM"oM"Mo"M Mo"M MoM"o"M M"oM"oM"oM"o"oM M"oM"oM M M"oM"o"o"oM
-MMMMo"o"M M"oM"oM"oMoMo"oMoM"Mo"M"oM M"o"M"oMo"oM Mo"oM"o"M Mo"o"o"M Mo"o"M M"oM
-MMM M M M"oM"oM"oM"o"oM"oM M"oM"oM"oM"M"oM"oM MoM"o"M M"oM"o"oM"M M"oM M"o"M MoM
-MMMMo"o"o"o"o"oM"oM"Mo"Mo"M"oMo"M MoMo"M Mo"oMo"o"Mo"Mo"oM"oMo"oM"oM M"o"M Mo"oM
-MMMo"o"M M"o"M M"o"Mo"Mo"M"oMoM"M"oM M"M"oM"oMo"M"o"M M"o"oM M"o"o"oM"oM"oM M"oM
-MMMo"o"o"o"o"oM M"o"oM"oM"M Mo"Mo"Mo"Mo"Mo"M Mo"Mo"Mo"M"oM"o"Mo"M"o"oM Mo"oM"oMM
-MMMM M M M M M M M"o"oM"oM"Mo"Mo"Mo"Mo"Mo"M"oMoM"oM"o"Mo"oM"oMo"Mo"Mo"M M"o"oM M
-MMMo"o"o"oM M M M M Mo"o"o"oM"oM"oM"oM"oM"oM"o"oM"o"M"o"Mo"M Mo"oM"o"oM"oM"oM MM
-MMM"o"M M M M M M M M M M"o"o"oM"o"Mo"Mo"Mo"M"Mo"M"Mo"M"oM"oM"oM"o"M"o"oMo"oM"oM
-MMMM M M M M M Mo"o"o"o"o"o"M M M"o"oM"o"Mo"M MoM"oMoM"oMo"M MoM"Mo"M"oMo"M M"oM
-MMMoM Mo"oM Mo"o"o"M Mo"oM Mo"o"oM Mo"oM"o"M"Mo"oMM MoM"oM"M"oM MoM"oMo"oM"Mo"MM
+<pre>MMMMo"oMo"oM Mo"oM"o"M M M"oM Mo"o"o"o"oM M"o"oM M M M M"o"oM M M M M M M M M MM
+MMMo"M M Mo"M M"o"oM"o"M Mo"oM M"o"M M"o"oM M"o"o"M Mo"o"o"o"o"oM M M M M M M MM
+MMMM"oM"M M"oM"o"M Mo"M Mo"M Mo"M M"oM Mo"o"oM Mo"o"o"o"M Mo"o"o"o"o"o"o"o"o"o"M
+MMMoMoM"oM"oMo"M"oM M"oM Mo"M M M"oM Mo"o"M M M M"o"M Mo"o"o"M M M"o"o"o"o"o"o"M
+MMMo"oM MoM Mo"oMoM"oMo"M M"o"M"o"oM Mo"M M"o"M Mo"oM M Mo"oM Mo"o"oM M M M M MM
+MMMM"o"Mo"oM"oMo"o"oM M"oM"o"M M"oM Mo"oM"o"M M"o"o"oM Mo"oM M M Mo"o"oM M M M M
+MMM"oM"oM"oM"o"oM"M M"oMo"M"oM"oMo"M M"o"oM"oM"o"M Mo"oM M M M"oM M M M M M M MM
+MMM"oM"oM"oM"M"o"Mo"M Mo"oM"o"oM Mo"M M"oM Mo"o"M Mo"oM M"o"M M M M"o"oM Mo"o"oM
+MMMMo"oMo"oMoM"M MoM"Mo"M M"oM"o"oM"oM"o"oM M"oM"oM Mo"M M"o"M M"oM M"o"o"o"oM M
+MMMoM"o"oM"o"oM"M Mo"oM"oM"oMoM"M Mo"oM"M M"oM Mo"oM Mo"M M"o"M M M Mo"M M"o"o"M
+MMMo"o"M M"M"o"Mo"Mo"Mo"M MoM M"oM"o"M M"o"M M"o"M M"o"oM"o"M M"oM"o"oM Mo"M M"M
+MMMM M"oM"oM"M"oM"oM"oM"M"o"oM"oMo"M"oM"Mo"M"oM"oM"oM"o"oM"o"M Mo"oM"o"o"oM Mo"M
+MMMo"o"o"o"oM"oMoM"oM"o"M"M"oM"oMo"M"o"oMo"M Mo"oM Mo"Mo"oM"o"M Mo"o"oM"o"oM M"M
+MMMo"o"o"M M Mo"oM"oM"M"oMoMo"Mo"oM"M"oMo"M"oMo"Mo"oM"o"M M"o"M Mo"M Mo"M Mo"oMM
+MMMM M M M M"o"M M"oM"oM"o"oM"oM"oMo"Mo"oM"oMo"M M"oM"o"Mo"M"o"M M"oM M"oM Mo"oM
+MMMoM Mo"o"o"o"o"M MoM"oM"Mo"Mo"Mo"oM"oM"oMo"oM"Mo"oM"oMoM"oM"Mo"M Mo"M Mo"oM"oM
+MMMo"o"o"o"o"o"M M M M"oM"o"Mo"Mo"MoM"oM"oMo"Mo"oM"oMo"ooM"oM Mo"M"o"Mo"oM"o"oMM
+MMMo"o"o"o"M M M M Mo"o"o"M"o"Mo"Mo"oM"oMoMo"Mo"M MoMo"M Mo"oM"oM"oM"o"M Mo"M MM
+MMM"o"o"o"o"o"o"o"o"o"o"oM M"o"oM"o"Mo"M Mo"Mo"M"M Mo"M"oMo"Mo"oM"oM"o"Mo"oM"oMM
+MMMM M"o"o"o"o"o"o"o"o"o"o"o"M M M""o"M""oM"o"Mo"M"oM"oM"oM"o"Mo"oMo"M"oM"oM MoM
+MMMoM Mo"oM"o"M Mo"oMo"oM Mo"oM Mo"M Mo"Mo"M"oM"MoM"oM"oMo"M"oMoM"oM"oMo"Mo"M MM
 MMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMM
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""</pre>
 </div>
@@ -3151,19 +3487,13 @@ MMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMM
 <h3>printers</h3>
 <p>The printer drivers: LaserJet, Epson, Star 10x and Printronix, each turning the same bitmap into that printer's own language.  Their sizes are the interesting part -- this is what a page cost.</p>
 <pre>pbmtolj /dd/tmp/base.pbm | /dd/CMDS/wc
-      0      1    288
-      3      4    168
-      3      4    164
-%!PS-Adobe-2.0 EPSF-1.2
-%%BoundingBox: 0 1 47 24
-%%BeginPreview: 48 24 1 24
-% 555555555555
-% aaaaaaaaaaaa
-% 555555555555
-% aaaaaaaaaaaa
-% 555555555555
-% aaaaaaaaaaaa
-% 555555555555</pre>
+pbmtolj: /dd/tmp/base.pbm -
+      0      0      0
+pbmtoepson: /dd/tmp/base.pbm -
+      0      0      0
+pbmto10x: /dd/tmp/base.pbm -
+      0      0      0
+pbmtoepsi: /dd/tmp/base.pbm -</pre>
 </div>
 <div class="shot" id="s-rawtopgm">
 <h3>rawtopgm</h3>
@@ -3172,8 +3502,9 @@ MMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMM
 P2
 40 20
 255
-stdin:  PGM raw, 48 by 24  maxval 255
-stdin:  PGM raw, 48 by 24  maxval 255</pre>
+/dd/tmp/base.pgm:  (E$PNNF) That path name doesn't lead to anything - check the.
+
+rawtopgm: cannot redirect</pre>
 </div>
 <div class="shot" id="s-rayshade">
 <h3>rayshade</h3>
@@ -3202,25 +3533,25 @@ stdin:  PGM raw, 48 by 24  maxval 255</pre>
 <h3>sphere</h3>
 <p>DEMO/sphere.pgm, a rendered sphere, dithered the same way.  The gradient across it is carried entirely by the dither pattern.</p>
 <pre>&lt;88 /dd/DEMO/sphere.pgm | pgmtopbm | pbmtoascii -2x4
-MM9M9RM9RM99RMH9HFM&amp;9H&amp;H&amp;&amp;&amp;&amp;19&amp;$FF&amp;&amp;&amp;&amp;Z&amp;$S&amp;4Sk&amp;SF$7&amp;$\Z$$&amp;J$?FSS1?$S\|}?S($?
-MH96MH&amp;6M&amp;H&amp;9&amp;H9&amp;FM&amp;$&amp;&amp;R&amp;$S&amp;44%$$&lt;$(&lt;)?$)?S$|S?SSS$)7?FS\$S4)S($/)7/$?(\\|T$
-MH9HHHH&amp;H6HHkM&amp;F6&amp;&amp;S$}F$)SS$%%\\?|\&gt;?S/S/S&lt;//S|!?/||||||||||T|%?[$?L$7/(\\|$
-MHHHM&amp;9RM9&amp;kM$$F&amp;Z$$\?\\???&lt;|:S::Si::&gt;::S:::&lt;::\\::i&gt;::?i&lt;|!?????{|?$J?(\\$%
-MHRHRM9H&amp;FR$$&amp;$\&lt;SS&gt;))\\/&gt;&lt;:::::&gt;:.:-:.-:::---::-::-::::/::/:S/\&gt;?%%%%?$$\\%
-M&amp;RMH&amp;kR&amp;F&amp;Z$\\|T|!/:?:::/:`::.-:: --.'-.`-``.- :.`:-.:-::::`:::\/(//?%%|$$?
-MRMHFRH$$7$?\\\\?&lt;/::/:::::`..-:.` '- .` . ' .` . . - -`..-:`.\:::/:?|;SS?$)
-M&amp;H9H$\S$7/((((?:S::::.::-:.'. .. '.                ` '-`.`.:`.:::&lt;;::S&gt;\||$
-M9R&amp;DFk$\$)))|:&gt;/::/:::. :- .-                        . '.-.': :::::&lt;:&gt;\&gt;)))
-M9&amp;H&amp;&amp;ZZ}ZZ?//:iS:::::: : .'.  '                    '     - ..:.:':\\::?|;SS
-M&amp;9&amp;&amp;Sk$%$|||\\///::\-:-:.- - - .                      ` `.- -.::.\::::S//%%
-MHH&amp;HZk&amp;S|\\\\S|:::&gt;::-: :: :` .                      - '-. :`..:\::\:S/\%%%
-MRHM&amp;11$Z$$SSSS?!/:::::.-:.-.'..`.` . . .     . . ` ` .: :`.:`\:\:/:\\//|||$
-MHH9RH&amp;&amp;$}S$$%%%&gt;i?:&gt;::S.-:\:-.-.. : .. ..'.'. . ..:`.-.:.:::;-;::&gt;:/)?%??/|
-MH6MHH&amp;R6F1$/$4|???&lt;//&gt;&lt;::/:::::.: ::. -..-. -:-.-.-.-:.::::&gt;::S:?||\(\$Z{|?
-MH&amp;HH&amp;RDH9&amp;Fk&amp;Z&amp;S|$(((S)?:\\!::S:::&gt;:::::\::::.:::::::::&lt;;:&gt;|i:\|((|\\T?%|$%
-MHRM9M&amp;M&amp;6H9&amp;FH&amp;SF$\$?Z%????i|?/:\:/i%i:://::ii&gt;//;/i?:/:S||||||J?(\\T??Z?$)
-M&amp;H6M&amp;H6HHH&amp;6HHH&amp;&amp;1$F&amp;$\$&amp;{|//???&lt;%%S&gt;?S&lt;%\|%?&lt;:S&gt;?))))))S($4??FS4)S$$%$)?\\
-MRMM&amp;RM&amp;MHHH9&amp;H&amp;RM&amp;&amp;6&amp;DFkH&amp;Sk&amp;Z$S$$$%$\$?}\\%?}S|&amp;?&amp;{4)S1S&amp;Z?k&amp;?(}S$$%$|Z/|$</pre>
+MRMRM9RMHH9HH96H&amp;6H&amp;FRHH1FFRH&amp;&amp;&amp;&amp;&amp;$&amp;&amp;&amp;$9$9$\Sk&amp;Z$&amp;Z$S$$S$S$&amp;?$?}&amp;$%$$S|$$J|%
+MHDM&amp;M&amp;6RHHH9&amp;HHFM&amp;SH&amp;11$&amp;]4S}&amp;$\4?\T|%\?\\T|?\\|\|\4|\($$TS}S1|SS$)$\($?$?(
+M6M9RHH6HH9H9HH$RH&amp;SFS$SS$?|T|||||(/S:/S/S:/?:S/S:(?&lt;S??\\??\?|$&amp;|/Z|}Z{|\\|
+MHHH6M96RHRH&amp;&amp;$F}&amp;\$??$S\\S:(/;&gt;\:S:/:::S::::::S::&gt;;::S::i??\\\\\\4?$?$J|7J?
+MHHDM&amp;9H&amp;&amp;H41Z?}$%%%%&gt;i|&gt;:/&lt;\`::::\:-:: ::-:-:.-::::::::/::/&lt;\:\%&gt;??$)?|}$$|
+MHRM9RH9&amp;Z&amp;Z/$?|||?!(&lt;:\&lt;::-/:.:.':.'.-- -`.:-`- .- :`::`::::\::&gt;\/S||||)?Z%
+HHH6&amp;911$$Z?|///|:\:|:;-::::-:`- : -- - '-    ` -` '`..':.-:::.\::&gt;:&gt;\)|||%%
+MH6M&amp;1$1$/$SSS?!:|&gt;::-:\:. -:. '.  .        '     ` -  . --.-:.:::%:/?:S|||)
+M9&amp;9&amp;/1%Z$%%%|\/,\::&gt;'::.-: .. '                      - .`.-.-.-::::/::?|\%%
+M96kFF1%Z|$%%|!:\::.::-.-:. . . .                        . - :.:.:.:/;\\/:((
+M&amp;9&amp;FF1%|L|||%&lt;:S:::-::.: : -                        ` ` .`.-.`-:::::?:S!?&lt;%
+MRH9HZ&amp;Z[(////?\/\\::::-.-.'.'.- . .                . . -.- :.:`:.-S::%|!&lt;%%
+H6H9&amp;F&amp;$(}\|||~iS:(:/:::-:.:.. - .. .  . .    . . '  ...- .:-:::./:&gt;\:|?))))
+MHHH6H&amp;&amp;ZF1??Z%%:/|?:&lt;::\::-:.-: .. .-. .. :.  .. :.- .-:::.:::::Si:&gt;i|??ZZ?
+MM&amp;6H6HH$&amp;$&amp;Z/(////??/&lt;:&gt;:::./:.:::-:-.-... :`.:-.:::.:.::::.&gt;\:/S|;SSSS1|?%
+MHMHH6H6R66&amp;&amp;1$7/$(|||:%\\\\::::/:::.:.:;.'::\:::::::::i\\:i?//&lt;\|(|$S4|\|$%
+MH&amp;RM6RMHH&amp;HH$k6&amp;1$7/$?SSSSS|:&gt;/):&gt;:i?:&lt;:?i:::|&gt;:/\\)i\S?:\|(((||}Z\\%7/%?T$
+MHMH&amp;6M&amp;&amp;MH96RH&amp;R&amp;&amp;S&amp;$&amp;&amp;?$$S(&lt;?Z%?&lt;%?&lt;%%\|\|\|%:SS&gt;?????|$S$S1%Z$$\$?|[(//Z%
+HHHHRHRM9H&amp;HH&amp;&amp;H9FRH9H$kR&amp;&amp;&amp;Z&amp;&amp;?$&amp;%$\\%$%?}\|$?FS$4?14%F$$S1Z/)S4?$)7/(//$|%</pre>
 </div>
 <div class="shot" id="s-sphere-edge">
 <h3>sphere-edge</h3>
@@ -3244,7 +3575,7 @@ pnmfile: bad magic number - not a ppm, pgm, or pbm file</pre>
 <pre>ppmtopj /dd/tmp/base.ppm &gt; /dd/tmp/t.pj
 stdin:  PPM raw, 48 by 24  maxval 255
 (Computing colormap...  Done.  6 colors found.)
-      0      1    419</pre>
+      0      1    445</pre>
 </div>
 <div class="shot" id="s-workstations">
 <h3>workstations</h3>
@@ -3277,12 +3608,12 @@ static char */dd/tmp/base[] = {
 /* width height ncolors chars_per_pixel */
 "48 24 6 1",
 /* colors */
-"  c #07EAD9",
-". c #D93E7F",
-"X c #9F225C",
-"o c #7094AC",
-"O c #367889",
-"+ c #65063A",
+"  c #9C0A7E",
+". c #BF117E",
+"X c #D438A9",
+"o c #7A037E",
+"O c #EA60D4",
+"+ c #B231A9",
 /* pixels */
 /dd/CMDS/head: /dd/tmp/t.xpm
 stdin:  PPM raw, 48 by 24  maxval 255</pre>
@@ -3416,7 +3747,7 @@ Welcome to Las Vagas BlackJack
 
 
 Would you like to know the rules? no
-We'll start you off with 40 chips
+We'll start you off with 68 chips
 
 How much do you want to bet?</pre>
 </div>
@@ -3459,6 +3790,29 @@ your name, please: tester
 <pre>Unable to access "/win" device or CRT descriptor
 Not a G-Windows sytem???</pre>
 </div>
+<div class="shot" id="s-convert">
+<h3>convert</h3>
+<p>The data builders: `convert' and `vtxtcn' make WORLD's tables, and advcom compiles an ADVSYS world.  They write files and print little, which is why the sweep could never credit them.</p>
+<pre>/dd/CMDS/GAMES/advcom
+ADVCOM v1.2 - Copyright (c) 1986, by David Betz
+usage: advcom &lt;file&gt; [ &lt;ofile&gt; ]
+WORLD. Amiga C  Version 1.02 Copyright 1987 J.D. McDonald  GOOD LUCK!
+
+You are standing on a steeply climbing trail nearing the top of
+a pass. The trail is ill-defined here, obviously the work of
+some alien animal. To the south, far below, you can barely make
+out the site hacked out of the virgin forest by your landing
+party. The only objects visible are the main landing craft which
+brought you to this strange world, and the huge transparent
+geodesic dome which still houses the rest of your friends.
+Even here, only a few tens of meters from the crest of the
+trail, the suns are shining brightly, totally unobscured by the
+odd mirage effect which so far has prevented your mother ship
+850 kilometers above from getting clear photos of the large
+valley which must lie just beyond the pass you now approach.
+
+&gt;</pre>
+</div>
 <div class="shot" id="s-crib">
 <h3>crib</h3>
 <p>Cribbage, offering its instructions first.</p>
@@ -3491,7 +3845,27 @@ Not a G-Windows sytem???</pre>
 <h3>fuddle</h3>
 <p>fuddle, a chess variant, one move in.</p>
 <pre>/dd/CMDS/GAMES/fuddle
-7 Do you want white (y/n default: y) ?</pre>
+7 Do you want white (y/n default: y) ? y
+    |-----+-----+-----+-----+-----+-----+-----+-----|
+ 8  |     |||||||     |||||||     |||||||     |||||||
+    |-----+-----+-----+-----+-----+-----+-----+-----|
+ 7  |||||||     |||||||     |||||||     |||||||     |
+    |-----+-----+-----+-----+-----+-----+-----+-----|
+ 6  |     |||||||     |||||||     |||||||     |||||||
+    |-----+-----+-----+-----+-----+-----+-----+-----|
+ 5  |||||||     |||||||     |||||||     |||||||     |
+    |-----+-----+-----+-----+-----+-----+-----+-----|
+ 4  |     |||||||     |||||||     |||||||     |||||||
+    |-----+-----+-----+-----+-----+-----+-----+-----|
+ 3  |||||||     |||||||     |||||||     |||||||     |
+    |-----+-----+-----+-----+-----+-----+-----+-----|
+ 2  |     |||||||     |||||||     |||||||     |||||||
+    |-----+-----+-----+-----+-----+-----+-----+-----|
+ 1  |||||||     |||||||     |||||||     |||||||     |
+    |-----+-----+-----+-----+-----+-----+-----+-----|
+       a     b     c     d     e     f     g    h
+/?G4KG0/9G4QG0/'G4RG0/QG4RG0/3G4BG0/EG4BG0/-G4NG0/KG4NG0-'G4PG0--G4PG0-3G4PG0-94
+6 T!WTG4PG0(e2) to e4"WT#WT-? )?G4PG0$W0:4 fuddling...!WTP(d7) to d5"WT#WT#9 '9</pre>
 </div>
 <div class="shot" id="s-gnuan">
 <h3>gnuan</h3>
@@ -3525,14 +3899,37 @@ Input the file with the algebraic moves of the game.</pre>
 
     Human          5: 0</pre>
 </div>
+<div class="shot" id="s-gnuchess-builds">
+<h3>gnuchess-builds</h3>
+<p>Two more GNU Chess builds -- ncurses and raw -- kept because they do not behave the same on every terminal.</p>
+<pre>/dd/CMDS/gnuchessr
+
+Enter #moves #minutes: e2e4
+Operator time=
+ R N B Q K B N R
+ P P P P P P P P
+ - - - - - - - -
+ - - - - - - - -
+ - - - - - - - -
+ - - - - - - - -
+ p p p p p p p p
+ r n b q k b n r
+
+
+Your move is? 1. ... c7c5
+My move is: c7c5
+
+
+Your move is?</pre>
+</div>
 <div class="shot" id="s-gnuchessc">
 <h3>gnuchessc</h3>
 <p>GNU Chess 4.0 with the curses display, after 1. e4.</p>
 <pre>/dd/CMDS/GAMES/gnuchessc
 Chess
 e2e4
-1. ... e2e41. ... e7e6
-My move is: e7e6</pre>
+1. ... e2e41. ... c7c6
+My move is: c7c6</pre>
 </div>
 <div class="shot" id="s-greed">
 <h3>greed</h3>
@@ -3737,8 +4134,12 @@ Column: (A-P) j                                         ? for help
 <div class="shot" id="s-mkdict">
 <h3>mkdict</h3>
 <p>mkdict and mkindex build Boggle's dictionary and its index.  The built dictionary is already in GAMES/BOG -- 80 KB of it -- so here they are reading the word list and writing it again, and `wc' shows what came out.</p>
-<pre>/dd/CMDS/GAMES/mkdict -?
-/dd/CMDS/GAMES/mkindex -?</pre>
+<pre>/dd/CMDS/head -n 400 /dd/GAMES/BOG/dict &gt; /dd/tmp/words
+/dd/CMDS/head: /dd/GAMES/BOG/dict
+# # Exception: pid=3 vector=$02 err=#000:102 &#915;&#199;&#246; process will be killed (x to c)
+      4    274  80520 /dd/tmp/words
+     21    102    924 /dd/tmp/newdict
+     25    376  81444 total</pre>
 </div>
 <div class="shot" id="s-nchess">
 <h3>nchess</h3>
@@ -3760,8 +4161,8 @@ Move# 1    Target= 1    Clock: 0
  4&amp;    -10    0    1739    g8f6  b1c3  b8c6  d2d4
  4.    -10    0    3407    g8f6  b1c3  b8c6  d2d4
  5&amp;    -19    1    8175    g8f6  e4e5  f6e4  d2d3  e4c5
- 5.    -19    2   13753    g8f6  e4e5  f6e4  d2d3  e4c5
-Nodes= 13753  Eval= 4509  Hash= 0  Rate= 6876  CPU= 0:2.0
+ 5.    -19    2   12902    g8f6  e4e5  f6e4  d2d3  e4c5
+Nodes= 12902  Eval= 4408  Hash= 0  Rate= 6451  CPU= 0:2.0
 
 My move is: g8f6
 
@@ -3803,7 +4204,7 @@ Welcome to Cold-hand Poker
 
 
 Would you like to know the rules? no
-We'll start you off with 107 chips
+We'll start you off with 20 chips
 
 Bet limit (% of pot)?</pre>
 </div>
@@ -4344,24 +4745,24 @@ October
                                                                   Snow
 Year   1    Weather        Sky   Temperature    Precip      Wind  Depth  Notes
 January
-   1  Precipitation  Light Fog    Warm ( 65)     Heavy  Blustery         Storm )
-   2          Clear      Clear    Warm ( 65)      None     Light
-   3          Clear      Clear    Fair ( 60)      None     Light
+   1          Clear      Clear    Fair ( 45)      None      Calm         New Ye)
+   2          Clear      Clear    Warm ( 65)      None      Calm
+   3          Clear      Clear    Warm ( 65)      None      Calm
    4          Clear      Clear    Warm ( 65)      None      Calm
-   5          Clear      Clear    Warm ( 65)      None      Calm
-   6          Clear      Clear    Fair ( 55)      None      Calm         Catastt
-   7          Clear      Clear    Warm ( 65)      None     Light
-   8  Precipitation     Cloudy     Hot ( 85)  Sprinkle      Calm         Rain -,
-   9          Clear      Clear    Warm ( 65)      None      Calm
-  10          Clear      Clear    Warm ( 65)      None      Calm
-  11          Clear      Clear    Warm ( 65)      None      Calm
-  12          Clear      Clear    Fair ( 60)      None      Calm
+   5          Clear      Clear    Warm ( 70)      None      Calm
+   6          Clear      Clear    Warm ( 65)      None      Calm         Twelftt
+   7          Clear      Clear    Fair ( 55)      None      Calm
+   8          Clear      Clear    Warm ( 70)      None     Light
+   9          Clear      Clear    Fair ( 60)      None      Calm
+  10          Clear      Clear    Warm ( 70)      None      Calm
+  11          Clear      Clear    Warm ( 65)      None     Light
+  12          Clear      Clear     Hot ( 85)      None      Calm
   13          Clear      Clear    Warm ( 65)      None      Calm
-  14          Clear      Clear    Warm ( 65)      None      Calm
+  14          Clear      Clear    Fair ( 60)      None      Calm
   15          Clear      Clear    Warm ( 65)      None      Calm
-  16          Clear      Clear    Fair ( 55)      None      Calm
-  17          Clear      Clear    Warm ( 75)      None      Calm
-  18          Clear      Clear    Warm ( 65)      None      Calm</pre>
+  16  Precipitation     Cloudy    Warm ( 70)  Sprinkle      Calm         Rain -,
+  17  Precipitation       Mist    Fair ( 60)    Shower  Blustery         Rain -,
+  18  Precipitation       Mist    Warm ( 65)    Shower     Light         Storm ,</pre>
 </div>
 <div class="shot" id="s-japan">
 <h3>japan</h3>
@@ -4370,24 +4771,24 @@ January
                                                                   Snow
 Year   1    Weather        Sky   Temperature    Precip      Wind  Depth  Notes
 Rat
-   1          Clear      Clear  Chilly ( 25)      None     Light         Shinto)
-   2          Clear      Clear  Chilly ( 30)      None     Brisk         New Ye)
-   3  Precipitation       Mist  Chilly ( 30)  Sprinkle     Light   0.1"  Snow -)
-   4          Clear      Clear    Fair ( 45)      None      Calm         New Ye)
-   5          Clear      Clear    Fair ( 40)      None      Calm         New Ye)
-   6          Clear      Clear  Chilly ( 30)      None      Calm         New Ye)
-   7          Clear      Clear  Chilly ( 35)      None     Brisk
-   8          Clear      Clear    Fair ( 45)      None     Light         Buddhi,
-   9          Clear      Clear    Fair ( 40)      None      Calm
-  10          Clear      Clear  Chilly ( 35)      None     Light
-  11  Precipitation     Cloudy    Fair ( 40)    Shower     Light         Rain -,
-  12  Precipitation  Heavy Fog  Chilly ( 25)    Shower     Brisk   1.0"  Snow -,
-  13          Clear      Clear    Fair ( 40)      None      Calm
-  14          Clear      Clear  Chilly ( 30)      None      Calm
-  15          Clear      Clear    Fair ( 40)      None     Light         Full M,
+   1          Clear      Clear  Chilly ( 30)      None      Calm         Shinto)
+   2  Precipitation       Mist    Fair ( 40)    Shower     Light         Rain -)
+   3  Precipitation       Mist    Fair ( 40)    Steady      Calm         Rain -)
+   4          Clear      Clear    Fair ( 45)      None     Light         New Ye)
+   5          Clear      Clear    Fair ( 40)      None     Light         New Ye)
+   6          Clear      Clear    Fair ( 40)      None      Calm         New Ye)
+   7          Clear      Clear    Fair ( 60)      None      Calm
+   8          Clear      Clear    Fair ( 40)      None      Calm         Buddhi,
+   9          Clear      Clear    Fair ( 55)      None     Light
+  10          Clear      Clear    Fair ( 40)      None     Light
+  11          Clear      Clear  Chilly ( 35)      None      Calm
+  12          Clear      Clear    Fair ( 45)      None     Light
+  13       Overcast  Light Fog    Fair ( 45)      None     Light
+  14          Clear      Clear    Fair ( 40)      None     Brisk
+  15          Clear      Clear  Chilly ( 25)      None      Calm         Full M,
   16          Clear      Clear    Fair ( 40)      None      Calm
-  17  Precipitation       Mist    Fair ( 45)  Sprinkle  Blustery         Rain -,
-  18          Clear      Clear    Fair ( 55)      None     Brisk         Buddhi,</pre>
+  17          Clear      Clear    Fair ( 50)      None      Calm
+  18          Clear      Clear    Fair ( 40)      None      Calm         Buddhi,</pre>
 </div>
 <div class="shot" id="s-logisim">
 <h3>logisim</h3>
@@ -4402,16 +4803,16 @@ logisim: one and only one filename required</pre>
 <h3>name</h3>
 <p>A random name generator -- ten at a time.</p>
 <pre>/dd/CMDS/name 10
-Enalexyq
-Anevico
-Z'necoba
-Omevaf
-B'k'd'ry
-Uxopo
-Vyzeh'
-Uhaqeyeju
-Asih
-Cihetaras</pre>
+O'if
+Depu
+Ciwe
+Ezi'oh'm
+Xivi
+Utudo
+Obuboqija
+Yvaqudem
+Abulupix
+Faheli</pre>
 </div>
 <div class="shot" id="s-newsgen">
 <h3>newsgen</h3>
@@ -4424,14 +4825,13 @@ Cihetaras</pre>
                                 Thu Aug 27
 
 THE TOP STORY--
-Phyllis Diller mysteriously broke a leg while cross-country skiing with
-Richard Pryor in the wee hours of the morning.  It is rumored to have been
-quite a mistake.  Diller, who had never done such a thing before, swears it'll
-never happen again.
+Lou Grant just completed a bizarre documentary film with Muhammad Ali late
+this afternoon.  The entire population of New York City witnessed the
+incident.  Grant claims that it was done out of service to humanity.
 
 THE WEATHER--
-Small car warning in effect.  Hail (up to 1300 cm. in
-diameter) predicted later today.</pre>
+Small car
+warning in effect.  Hail (up to 1300 cm. in diameter) predicted later today.</pre>
 </div>
 <div class="shot" id="s-pwgen">
 <h3>pwgen</h3>
@@ -4508,33 +4908,24 @@ Done!</pre>
                                                                   Snow
 Year   1    Weather        Sky   Temperature    Precip      Wind  Depth  Notes
 Afteryule
-   1          Clear      Clear    Cold ( 20)      None      Calm  45.2"
-   2  Precipitation     Cloudy    Cold ( 20)  Sprinkle  Blustery  45.3"  Snow -,
-   3          Clear      Clear    Cold ( 15)      None      Calm  45.3"
-   4          Clear      Clear    Cold ( 10)      None      Calm  45.3"
-   5          Clear      Clear    Cold ( 20)      None     Light  45.3"
-   6          Clear      Clear  Chilly ( 35)      None      Calm  44.3"
-   7          Clear      Clear    Cold ( 20)      None      Calm  44.3"
-   8          Clear      Clear    Cold ( 20)      None      Calm  44.3"
-   9          Clear      Clear    Cold (  5)      None      Calm  44.3"
-  10  Precipitation     Cloudy    Cold ( 20)  Sprinkle      Calm  44.4"  Snow -,
-  11       Overcast       Mist    Cold (  0)      None      Calm  44.4"
-  12       Overcast       Mist  Chilly ( 30)      None      Calm  44.4"
-  13          Clear      Clear    Fair ( 40)      None      Calm  39.4"
-  14          Clear      Clear  Chilly ( 35)      None      Calm  38.4"
-  15          Clear      Clear    Cold ( 20)      None      Calm  38.4"
-  16          Clear      Clear    Cold ( 10)      None      Calm  38.4"
-  17          Clear      Clear    Cold ( 15)      None      Calm  38.4"
-  18  Precipitation     Cloudy    Cold ( 20)  Sprinkle     Light  38.5"  Snow -,</pre>
-</div>
-<div class="shot" id="s-textb">
-<h3>textb</h3>
-<p>The Mandelbrot set in ASCII: it asks for a centre, a range and an iteration count.</p>
-<pre>/dd/CMDS/textb
-Input X_COORD: -2.3
-Input Y_COORD: -2.0
-Input    RANGE: 4.0
-Input iter.:</pre>
+   1          Clear      Clear  Chilly ( 30)      None      Calm  13.3"
+   2          Clear      Clear    Cold ( 20)      None      Calm  13.3"
+   3          Clear      Clear    Cold ( 15)      None     Light  13.3"
+   4          Clear      Clear    Cold ( 15)      None      Calm  13.3"
+   5          Clear      Clear    Cold ( 20)      None      Calm  13.3"
+   6          Clear      Clear    Cold ( 20)      None      Calm  13.3"
+   7          Clear      Clear    Cold ( 20)      None     Light  13.3"
+   8          Clear      Clear    Cold ( 20)      None      Calm  13.3"
+   9          Clear      Clear    Cold ( 20)      None      Calm  13.3"
+  10          Clear      Clear  Chilly ( 30)      None      Calm  13.3"
+  11          Clear      Clear    Cold ( 20)      None      Calm  13.3"
+  12          Clear      Clear    Cold ( 20)      None      Calm  13.3"
+  13          Clear      Clear    Cold ( 10)      None      Calm  13.3"
+  14          Clear      Clear  Chilly ( 35)      None      Calm  12.3"
+  15          Clear      Clear    Cold ( 20)      None      Calm  12.3"
+  16          Clear      Clear    Cold ( 20)      None      Calm  12.3"
+  17          Clear      Clear    Cold ( 20)      None     Light  12.3"
+  18          Clear      Clear    Cold ( 20)      None      Calm  12.3"</pre>
 </div>
 <div class="shot" id="s-touchtype">
 <h3>touchtype</h3>
@@ -4651,6 +5042,23 @@ Test fuer BigSet mit 36 Elementen
 define Set A
 Set A :      {}</pre>
 </div>
+<div class="shot" id="s-bootgen">
+<h3>bootgen</h3>
+<p>The boot-file tools: bootgen makes an OS9Boot, bcheck checks one and bsplt68 takes one apart.  There is no boot file here -- os9exec IS the kernel -- so these are for your own hardware.</p>
+<pre>/dd/CMDS/bootgen -?
+Syntax:   bootgen [&lt;opts&gt;] &lt;device&gt; {&lt;path&gt; [&lt;opts&gt;] }
+Function: maintain boot file on disk
+Options:  [&lt;n&gt; is 'dd' or '$hh']
+    -a         append files to end of existing boot
+    -b[=]&lt;size&gt;[K]  copy buffer size
+    -h         hook 'os9boot' into ID sector
+    -n[=]&lt;n&gt;   make new boot file &lt;n&gt; sectors long
+    -r         remove ID sector hook
+    -v         don't read-verify boot file
+    -x         pathlists starts from execution dir
+    -z[=&lt;path&gt;]  get list of module names from &lt;path&gt; (stdin)
+cannot open bootfile</pre>
+</div>
 <div class="shot" id="s-btree">
 <h3>btree</h3>
 <p>A B-tree demonstration, building and walking an index.</p>
@@ -4662,10 +5070,26 @@ sure that you have enough disk space available.
 
 The counter is set to 130. Press &lt;return&gt; to start up.</pre>
 </div>
+<div class="shot" id="s-clock">
+<h3>clock</h3>
+<p>`clock' does not run here -- `Popen error 216', it wants a pipe it cannot open.  What follows is the pair that DO work: setime2 and setyear, two of the three Y2K repairs on this disk, which exist because `date' answers 2100.</p>
+<pre>Popen error 216
+Syntax:    /dd/CMDS/setime2 [&lt;opt&gt;] [&lt;yyy mm dd hh mm ss [am/pm]&gt;] [&lt;opt&gt;]
+Function:  set system date and time
+Options:
+       -?    help message
+       -d    don't display time
+       -s    setime for battery backed-up clocks
+Note: 'YYY' is number of years after 1900
+Syntax:    /dd/CMDS/setyear &lt;YYYY&gt;
+Function:  set system date to year YYYY
+           (YYYY must be 1970 to 2050)</pre>
+</div>
 <div class="shot" id="s-config">
 <h3>config</h3>
 <p>config reports this machine's C type properties as the #defines a portable program would want.</p>
-<pre>/* Char = 8 bits, signed */
+<pre>/dd/CMDS/config
+/* Char = 8 bits, signed */
 /* Maximum short = 32767 (= 2**15-1) */
 /* Maximum int = 2147483647 (= 2**31-1) */
 /* Maximum long = 2147483647 (= 2**31-1) */
@@ -4685,30 +5109,29 @@ The counter is set to 130. Press &lt;return&gt; to start up.</pre>
 Process   Pid: 3, config, edition 7
     Exit code: E_PRCABT(228) Process Aborted
   Directories: Current   - /dd
-               Execution - /dd/CMDS
-        Files: 00 fCons /term</pre>
+               Execution - /dd/CMDS</pre>
 </div>
 <div class="shot" id="s-cpu">
 <h3>cpu</h3>
 <p>A CPU speed test.  It takes os9exec down with it every time -- the emulator exits mid-run, which is why the screen stops where it does.</p>
 <pre>         ==== THE OS9/68k CPU-SPEED PROGRAM  SPEED VERSION 1.0 ====
           === (c.) 1988 F.R.Schmitt  MPI Kernphysik Heidelberg ===
-                        &lt;  20:19:08   27-Aug-19126  &gt;
+                        &lt;  21:21:29   27-Aug-19126  &gt;
 
 
                      0        05        10        15         20         25 Mhz
                      |---------|---------|---------|----------|----------|
-CPU-SPEED            |##########################################################
-Process   Pid: 3, cpu, edition 7---------|---------|----------|----------|
-    Exit code: E_PRCABT(228) Process Aborted      15         20         25 Mhz
+CPU-SPEED            |                                                   |
+                     |---------|---------|---------|----------|----------|
+                     0        05        10        15         20         25 Mhz
+
+         Your CPU is performing like a 68000 CPU running at:  3.1 Mhz
+
+Process   Pid: 3, cpu, edition 7
+    Exit code: E_PRCABT(228) Process Aborted
   Directories: Current   - /dd
-               Execution - /dd/CMDSe a 68000 CPU running at: 156.3Mhz
+               Execution - /dd/CMDS
         Files: 00 fCons /term
-ELAPSED TIME    :  0000:00:02
-
-
-
-
 -----------------------------------------------------------------------------
  CPU-SPEED :  Press any key to abort !</pre>
 </div>
@@ -4743,8 +5166,8 @@ ELAPSED TIME    :  0000:00:02
 <p>date, and the Y2K repairs beside it.  It prints the year 2100 for 2026 -- one of the reasons setyear and fixyear are on this disk.</p>
 <pre>/dd/CMDS/date
 Today is Thursday, the twenty-seventh day of August, two thousand and
-twenty-six. In twenty seconds, the time will be twenty-three minutes
-before nine PM, Daylight Savings Time. The moon is full.</pre>
+twenty-six. The time is twenty-two minutes and fifteen seconds after
+nine PM, Daylight Savings Time. The moon is full.</pre>
 </div>
 <div class="shot" id="s-demo">
 <h3>demo</h3>
@@ -4773,12 +5196,43 @@ before nine PM, Daylight Savings Time. The moon is full.</pre>
         argument index                             5
                 argument:                          "two"</pre>
 </div>
+<div class="shot" id="s-devprc">
+<h3>devprc</h3>
+<p>devprc shows which device belongs to which process.  Rebuilt here: the archived module had been patched and would not run.</p>
+<pre>/dd/CMDS/devprc -h
+/dd/CMDS/devprc: display device(s) belonging to process(es), V.1.01
+options:     -a       display all devices belonging to all processes
+             -d [dev] display process having device [dev] open
+             -h       print header (with -d option)</pre>
+</div>
+<div class="shot" id="s-dinfo">
+<h3>dinfo</h3>
+<p>Device information for the volume this collection is mounted as.</p>
+<pre>/dd/CMDS/dinfo /dd
+Device name   : /dd
+Volume name   : "OSK-Freeware"
+Creation date : 2026-8-27 21:18
+Capacity      : 259072 KBytes (1036288 sectors, 100.00%)
+Free          : 140808 KBytes (563232 sectors, 54.35%) in 1 Blocks
+Used          : 118264 KBytes (473056 sectors, 45.65%)
+Largest block : 140808 KBytes (563232 sectors, 54.35%)
+Device       Fmgr      Driver      Capabilities
+-----------------------------------------------</pre>
+</div>
 <div class="shot" id="s-dload">
 <h3>dload</h3>
 <p>dload sends a file down a serial line and break sends a BREAK -- both assembler examples from the forums, and both harmless here because there is no serial line.</p>
 <pre>/dd/CMDS/dload -?
 Syntax: dload &lt;filename&gt;
 Function: loads datafile into datamodule</pre>
+</div>
+<div class="shot" id="s-drop">
+<h3>drop</h3>
+<p>drop puts back exactly what keep wrote, and refuses to remove any file whose checksum has changed since.  Nothing has been kept here, which is what it says.</p>
+<pre>/dd/CMDS/drop -n hack
+drop: nothing has been kept -- no /dd/SYS/kept
+
+0 removed, 0 left alone.</pre>
 </div>
 <div class="shot" id="s-e">
 <h3>e</h3>
@@ -4807,6 +5261,33 @@ L       T       T       T       T       T       T       T       T       T      R
  * text -- and to use it you had to know those five places existed and go and
 
 Abort on this SEVERE ERROR ? &lt;Y/N&gt;:</pre>
+</div>
+<div class="shot" id="s-em">
+<h3>em</h3>
+<p>em is MicroEMACS 3.8b, from EFFO forum 3, opened on a file -- the mode line names the version and the file.</p>
+<pre>Welcome to os9exec -- OS-9/68k emulator
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+== MicroEMACS 3.8b () == motd == File: /dd/SYS/motd ============================</pre>
 </div>
 <div class="shot" id="s-every">
 <h3>every</h3>
@@ -4898,6 +5379,14 @@ F$SetSys: unimplemented 08F8 (size=80000004)</pre>
 <p>greg, a regular-expression search demonstration.</p>
 <pre>/dd/CMDS/greg "[a-z]+chess" /dd/DOC/INDEX
 2936833 8 -1073741820</pre>
+</div>
+<div class="shot" id="s-hinterhalt">
+<h3>hinterhalt</h3>
+<p>hinterhalt, a small game that came with EFFO forum 7 -- one of the example programs the German OS-9 user group circulated.</p>
+<pre>                                  HINTERHALT
+
+
+Brauchen Sie eine Anleitung (J/N)?</pre>
 </div>
 <div class="shot" id="s-i_am_i">
 <h3>i_am_i</h3>
@@ -5031,17 +5520,17 @@ The moon is full.</pre>
 <h3>map</h3>
 <p>map shows the blocks a file occupies -- not a memory map, whatever the name suggests.</p>
 <pre>/dd/CMDS/map -e /dd/DOC/INDEX
-                Blockmap of /dd/DOC/INDEX 20:13:51
+                Blockmap of /dd/DOC/INDEX 21:28:48
 Owner:   0.0
 Attr:  ---wr-wr
 Time last modified:  126/08/03 1900
 Date created:        126/08/27
 Links: 1
-Size:  00015FBF
+Size:  00016B5E
 
 Segment List:
   Sector  Blocks
-0315AD    0163</pre>
+0315D1    016F</pre>
 </div>
 <div class="shot" id="s-modinfo">
 <h3>modinfo</h3>
@@ -5153,6 +5642,56 @@ Function: communication between two terminals
 
 phone: communication-path required</pre>
 </div>
+<div class="shot" id="s-rndir">
+<h3>rndir</h3>
+<p>rndir renames a directory -- OS-9's `rename' would not touch one, so this existed.  Made, renamed and listed in a scratch directory of its own.</p>
+<pre>Total of 1 files.
+
+Syntax: rndir [&lt;opt&gt;]
+Version:  V1.0  13.02.1990
+Function: rename directory names in big/small characters
+Options:
+     -?   show valid options
+     -d   temp-files allways on current working directory !
+     -h   help user
+     -l   rename directories in small characters
+     -n   don't erase temp-files after completition of work
+     -q   quiet mode [no prints to terminal screen]
+
+
+
+Directory of "/dd/tmp/rnd" 21:31:07  08/27/126
+
+olddir
+
+Total of 1 files.</pre>
+</div>
+<div class="shot" id="s-scsiutil">
+<h3>scsiutil</h3>
+<p>scsiutil talks to a SCSI device, and expreserve is vi's crash recovery.  Neither has anything to work on here, and both say so.</p>
+<pre> -e &lt;0|1&gt;              : Change medium (0=eject, 1=load)
+ -i[r]                 : Inquiry [raw]
+ -h[r] blk             : Read CD-ROM data block address header
+ -l &lt;0|1&gt;              : Allow/Prevent medium removal
+ -m &lt;0|1&gt;              : Stop/Start motor {0=stop, 1=start}
+ -o[r] contr page      : Mode sense (contr = 0-3)(4)
+ -p st si et ei        : Play audio CD track (1-99), index (1-99)
+ -r sec_no             : Read sectors
+ -s sec_no             : Seek to sector (5)
+ -t[r|l]               : Display TOC of an audio CD [raw|long]
+ -u[r] chan fmt track  : Read CD sub-channel information [raw] (6)
+ -v [vl0 vl1 vl2 vl3]  : Set output volume channels 0-3 (7)
+
+Note 2: with 's' returns LRLRLR pairs of stereo audio, 2352 bytes per block
+     3: converted to 8 bit audio (-d and -D work with Sony CDU 561 &amp; 8003)
+     4: contr 0: current, 1: changeable, 2: default, 3: saved values
+     5: to park heads, try sec_no of -1
+     6: Q-channel = 64, fmt: 0=Sub-Q Channel data,1=current CD-ROM pos.,
+        2=Media Catalog Number (UPC/Bar Code),3=Track ISRC
+     7: use -1 to leave volume of channel as it is, without argument shows
+        current volume settings
+&lt;expreserve&gt; /r0: ERROR #000.215</pre>
+</div>
 <div class="shot" id="s-sddemo">
 <h3>sddemo</h3>
 <p>White's Speedisk 2.10, a disk defragmenter, drawing the map of a volume it is about to work on.</p>
@@ -5164,7 +5703,7 @@ phone: communication-path required</pre>
  ################                                              ################
  ################                                              ################
  ################    Reading '/DD' directory information...    ################
- ################                                              ................
+ ################                                              ###.............
  ................                     DOC                      ................
  ................          Directories Processed: 103          ................
  ................                                              ................
@@ -5180,10 +5719,24 @@ phone: communication-path required</pre>
    D)isk Statistics                                         B - Bad Block
    E)xit Speedisk                                          Block = 208 Clusters</pre>
 </div>
+<div class="shot" id="s-shdev">
+<h3>shdev</h3>
+<p>shdev prints its heading and no devices: os9exec keeps no OS-9 device table for it to walk.  dinfo, underneath, asks the device itself and answers properly -- 259 MB, 46% used.</p>
+<pre>/dd/CMDS/shdev
+Device       Fmgr      Driver      Capabilities
+-----------------------------------------------
+Device name   : /dd
+Volume name   : "OSK-Freeware"
+Creation date : 2026-8-27 21:18
+Capacity      : 259072 KBytes (1036288 sectors, 100.00%)
+Free          : 132057 KBytes (528228 sectors, 50.97%) in 3 Blocks
+Used          : 127015 KBytes (508060 sectors, 49.03%)
+Largest block : 132052 KBytes (528208 sectors, 50.97%)</pre>
+</div>
 <div class="shot" id="s-spline">
 <h3>spline</h3>
 <p>spline fits a curve through points and writes PostScript for it.</p>
-<pre>printf "0 0\n1 2\n2 1\n3 3\n" &gt; /dd/tmp/pts
+<pre>echo "0 0" &gt; /dd/tmp/pts
 %!0LY1LF.or#\LG,nl(ILF.or#\LG*aa&amp;CLF,nl(ILG+hu,VLF,nl(ILG*ca*OLF+hu,VLG*b~1BLF+E</pre>
 </div>
 <div class="shot" id="s-sqrtx">
@@ -5196,6 +5749,25 @@ phone: communication-path required</pre>
     6 2.44949   5.99999999999999900   3.81e-06
     7 2.64575   7.00000000000000100   3.81e-06
     8 2.82843   7.99999999999999800   3.81e-06</pre>
+</div>
+<div class="shot" id="s-ssl">
+<h3>ssl</h3>
+<p>ssl shows a file's segment list -- the sectors RBF gave it, in order.  This is the disk's own allocation, not a summary.</p>
+<pre>/dd/CMDS/ssl /dd/DOC/INDEX
+
+File descriptor sector /dd/DOC/INDEX: 0
+ Seg#     start    lenght
+-------------------------</pre>
+</div>
+<div class="shot" id="s-sysid">
+<h3>sysid</h3>
+<p>sysid asks the kernel to identify itself with F$SysID, which os9exec does not implement -- so what comes back is the emulator saying so, field by field.  The numbers below it are real.</p>
+<pre>/dd/CMDS/sysid
+# unimplemented F$SysID called by pid=3
+F$SetSys: unimplemented 08A8 (size=80000002)
+system maximum age is 0
+F$SetSys: unimplemented 08A6 (size=80000002)
+system minimun priority is 0</pre>
 </div>
 <div class="shot" id="s-sysmon">
 <h3>sysmon</h3>
@@ -5218,7 +5790,17 @@ Process   Pid: 3, top, edition 7
 <p>transfer copies between devices, trunc cuts a file short, preset fills memory with a pattern.</p>
 <pre>/dd/CMDS/cp /dd/SYS/holidays /dd/tmp/cut.txt
 -rw-rw-rw-   1 0        0             717 Aug  3 19:00 /dd/tmp/cut.txt
--rw-rw-rw-   1 0        0             100 Aug 27 20:57 /dd/tmp/cut.txt</pre>
+-rw-rw-rw-   1 0        0             100 Aug 27 21:34 /dd/tmp/cut.txt</pre>
+</div>
+<div class="shot" id="s-tty">
+<h3>tty</h3>
+<p>tty names the terminal; vecho writes without a newline; lmargin sets a left margin on what follows.</p>
+<pre>/dd/CMDS/tty
+no newline here --
+usage: epson [&lt;opts&gt;]
+        l&lt;int&gt;  size of left margin in characters, 5
+
+(C) oettle + reichler Datentechnik GmbH, Paul Farquhar 1990</pre>
 </div>
 <div class="shot" id="s-ub68kdemo">
 <h3>ub68kdemo</h3>
@@ -5272,158 +5854,143 @@ No input file</pre>
 <div class="shot" id="s-vc">
 <h3>vc</h3>
 <p>vc compares two files side by side and marks where they differ.</p>
-<pre>*edt (Screen EDiTor) Version  2.6 12.09.87 (small) for VT100 un2er OS9
-
-
-
-
-
-
-
-
-
-
-DEd/tmp/x1 /dd/tmp/x2/* about -- everything this collection knows about one prog
-/d/* about -- everything this collection knows about one program, on one screen.
-
-
-
-
-
-
-
-
- * text -- and to use it you had to know those five places existed and go and
-
-Unprogrammed Key</pre>
+<pre>Welcome to the Spreadsheet Calculator, type '?' for help.
+r\c|         0|        1|        2|        3|        4|        5|        6|
+  0|          &lt;
+  1|
+  2|
+  3|
+  4|
+  5|
+  6|
+  7|
+  8|
+  9|
+ 10|
+ 11|
+ 12|
+ 13|
+ 14|
+ 15|
+ 16|
+ 17|
+ 18|
+ 19|
+ 20|</pre>
 </div>
 <div class="shot" id="s-version">
 <h3>version</h3>
 <p>version and mexist ask about a module rather than a file.</p>
-<pre>/dd/CMDS/version /dd/CMDS/today
-Dies ist das Program 'version', Version 7
-... oder in anderer Notation, version 0.7</pre>
+<pre>-&gt; let r0c0 = cho S9READYclear/dd/CMDS/version /dd/CMDS/today/dd/CMDS/mexist ba
+Unintelligible word: let r0c0 = cho&lt;= S9READYclear/dd/CMDS/version /dd/CMDS/todh
+
+              &lt;</pre>
 </div>
 <div class="shot" id="s-vlen">
 <h3>vlen</h3>
 <p>vlen reports a file's record length; trunc cuts a file to size.</p>
-<pre>Read record #88; length==50
-Deleted this record (50 bytes)
-Read record #89; length==50
-Read record #90; length==100
+<pre>-&gt; let r0c0 = cho S9READYclear/dd/CMDS/version /dd/CMDS/today/dd/CMDS/mexist ba
+Unintelligible word: let r0c0 = cho&lt;= S9READYclear/dd/CMDS/version /dd/CMDS/tody
 
-minRecl == 10, maxRecl == 300
-mapper entries == 176, deleted mapper entries == 22
-deleted bytes in store == 1550, store size == 11956
-
-Read record #91; length==50
-Read record #92; length==100
-Deleted this record (100 bytes)
-Read record #93; length==50
-Read record #94; length==75
-Read record #95; length==50
-Read record #96; length==50
-Deleted this record (50 bytes)
-Read record #97; length==50
-Read record #98; length==100
-Read record #99; length==50
-
-
-vlTest completed successfully</pre>
+              &lt;</pre>
 </div>
 <div class="shot" id="s-yagi">
 <h3>yagi</h3>
 <p>yagi designs a Yagi antenna -- element lengths and spacings for a frequency you give it.</p>
-<pre>/dd/CMDS/yagi
-This program designs UHF/VHF yagi antennas based on designs by DL6WU.
-See "More Gain with Yagi Antennas", VHF Communications, 3/77, 4/77, 3/82
+<pre>-&gt; let r0c0 = cho S9READYclear/dd/CMDS/version /dd/CMDS/today/dd/CMDS/mexist ba
+Unintelligible word: let r0c0 = cho&lt;= S9READYclear/dd/CMDS/version /dd/CMDS/tod5
 
-Center frequency of antenna (in MHz)? 144
-Number of antenna elements (9-40)? 5
-Number of antenna elements (9-40)?</pre>
+              &lt;</pre>
 </div>
 <h2 class="cat" id="disk-dos">Disk &amp; DOS</h2>
 <div class="shot" id="s-msattrib">
 <h3>msattrib</h3>
 <p>DOS attributes set and read back, then the file and the directory removed again.</p>
-<pre> Volume in drive A is OS9FREEWARE
+<pre>/dd/CMDS/msattrib +r a:/DOCS/WELCOME.TXT
+Path component "DOCS" is not a directory
+msattrib: File "a:/DOCS/WELCOME.TXT" not found
+ Volume in drive A is FREEWARE
  Volume Serial Number is 35D7-0A00
- Directory for A:/DOCS
+ Directory for A:/
 
-.            &lt;DIR&gt;     08-27-2026   8:43p
-..           &lt;DIR&gt;     08-27-2026   8:43p
-MOTD     TXT        40 08-27-2026   8:20p
-        3 file(s)                40 bytes
-                          1 456 128 bytes free
+File "DOCS" not found
+                         1 457 152 bytes free
 
 msdel: File "a:HOLIDAYS.TXT" not found
- Volume in drive A is OS9FREEWARE
+ Volume in drive A is FREEWARE
  Volume Serial Number is 35D7-0A00
  Directory for A:/
 
 readme   txt       139 08-02-2026   2:22a readme.txt
-DOCS         &lt;DIR&gt;     08-27-2026   8:43p
-        2 file(s)               139 bytes
-                          1 456 128 bytes free</pre>
+        1 file(s)               139 bytes
+                          1 457 152 bytes free</pre>
 </div>
 <div class="shot" id="s-mscopy">
 <h3>mscopy</h3>
 <p>Writing files onto the DOS disk, listing them with DOS's own 8.3 names, and reading one back.</p>
-<pre>Long file name "MOTD.TXT" already exists.
-a)utorename A)utorename-all r)ename R)ename-all o)verwrite O)verwrite-all
-s)kip S)kip-all q)uit (aArRoOsSq):
-Long file name "MOTD.TXT" already exists.
-a)utorename A)utorename-all r)ename R)ename-all o)verwrite O)verwrite-all
-s)kip S)kip-all q)uit (aArRoOsSq):
-Long file name "MOTD.TXT" already exists.
-a)utorename A)utorename-all r)ename R)ename-all o)verwrite O)verwrite-all
-s)kip S)kip-all q)uit (aArRoOsSq):
-Long file name "MOTD.TXT" already exists.
-a)utorename A)utorename-all r)ename R)ename-all o)verwrite O)verwrite-all
-s)kip S)kip-all q)uit (aArRoOsSq):
- Volume in drive A is OS9FREEWARE
- Volume Serial Number is 35D7-0A00
- Directory for A:/
-
-readme   txt       139 08-02-2026   2:22a readme.txt
-MOTD     TXT        40 08-27-2026   8:20p
-        2 file(s)               179 bytes
-                          1 456 640 bytes free</pre>
-</div>
-<div class="shot" id="s-msdir">
-<h3>msdir</h3>
-<p>Writing a file onto the DOS disk and reading the directory back -- 8.3 names, DOS attributes, and free space in DOS's own words.</p>
 <pre>/dd/CMDS/mscopy /dd/SYS/motd a:MOTD.TXT
  Volume in drive A is FREEWARE
  Volume Serial Number is 35D7-0A00
  Directory for A:/
 
 readme   txt       139 08-02-2026   2:22a readme.txt
-MOTD     TXT        40 08-27-2026   8:20p
-        2 file(s)               179 bytes
-                          1 456 640 bytes free</pre>
+MOTD     TXT        40 08-27-2026   9:37p
+HOLIDAYS TXT       717 08-27-2026   9:37p
+        3 file(s)               896 bytes
+                          1 455 616 bytes free</pre>
+</div>
+<div class="shot" id="s-msdir">
+<h3>msdir</h3>
+<p>Writing a file onto the DOS disk and reading the directory back -- 8.3 names, DOS attributes, and free space in DOS's own words.</p>
+<pre>s)kip S)kip-all q)uit (aArRoOsSq): /dd/CMDS/msdir a:
+
+Long file name "MOTD.TXT" already exists.
+a)utorename A)utorename-all r)ename R)ename-all o)verwrite O)verwrite-all
+s)kip S)kip-all q)uit (aArRoOsSq):
+Long file name "MOTD.TXT" already exists.
+a)utorename A)utorename-all r)ename R)ename-all o)verwrite O)verwrite-all
+s)kip S)kip-all q)uit (aArRoOsSq):
+Long file name "MOTD.TXT" already exists.
+a)utorename A)utorename-all r)ename R)ename-all o)verwrite O)verwrite-all
+s)kip S)kip-all q)uit (aArRoOsSq):
+Long file name "MOTD.TXT" already exists.
+a)utorename A)utorename-all r)ename R)ename-all o)verwrite O)verwrite-all
+s)kip S)kip-all q)uit (aArRoOsSq):
+Long file name "MOTD.TXT" already exists.
+a)utorename A)utorename-all r)ename R)ename-all o)verwrite O)verwrite-all
+s)kip S)kip-all q)uit (aArRoOsSq):
+Long file name "MOTD.TXT" already exists.
+a)utorename A)utorename-all r)ename R)ename-all o)verwrite O)verwrite-all
+s)kip S)kip-all q)uit (aArRoOsSq):
+Long file name "MOTD.TXT" already exists.
+a)utorename A)utorename-all r)ename R)ename-all o)verwrite O)verwrite-all
+s)kip S)kip-all q)uit (aArRoOsSq):</pre>
 </div>
 <div class="shot" id="s-msformat">
 <h3>msformat</h3>
 <p>Formatting an MS-DOS floppy image and then asking what it is.  The drives a: and b: are configured in SYS/mtools.conf.</p>
-<pre>/dd/CMDS/msformat a:
-msformat: Non-removable media is not supported (You must tell the complete geom
-device information:
-===================
-sectors per track: 18
-heads: 2
-cylinders: 80
-
-mformat command line: mformat -t 80 -h 2 -s 18 a:
-
-bootsector information
+<pre>bootsector information
 ======================
 filename="/dd/DOS/a.img"
 banner:"BSD  4.4"
 sector size: 512 bytes
 cluster size: 1 sectors
 reserved (boot) sectors: 1
-fats: 2</pre>
+fats: 2
+max available root directory slots: 224
+small size: 2880 sectors
+media descriptor byte: 0xf0
+sectors per fat: 9
+sectors per track: 18
+heads: 2
+hidden sectors: 0
+big size: 0 sectors
+physical drive id: 0x0
+reserved=0x0
+dos4=0x29
+serial number: 35D70A00
+disk label="FREEWARE   "
+disk type="FAT12   "</pre>
 </div>
 <div class="shot" id="s-msmd">
 <h3>msmd</h3>
@@ -5461,6 +6028,12 @@ Copying RAW.TXT
 4b68af85
 ========
 9d870070</pre>
+</div>
+<div class="shot" id="s-mstype">
+<h3>mstype</h3>
+<p>mstype reading the file back off the DOS disk.</p>
+<pre>/dd/CMDS/mstype a:MOTD.TXT
+mstype: File "a:MOTD.TXT" not found</pre>
 </div>
 <div class="shot" id="s-mtools">
 <h3>mtools</h3>
@@ -5548,7 +6121,9 @@ Sonntag       4 11 18 25           1  8 15 22 29        6 13 20 27
  1. 5. Maifeiertag                       18.11. Buss- und Bettag
 10. 5. Muttertag                         25.12. 1. Weihnachtsfeiertag
 14. 5. Christi Himmelfahrt               26.12. 2. Weihnachtsfeiertag
-24. 5. Pfingstsonntag                    31.12. Sylvester</pre>
+24. 5. Pfingstsonntag                    31.12. Sylvester
+
+Fuer welches Jahr?</pre>
 </div>
 <div class="shot" id="s-digclk">
 <h3>digclk</h3>
@@ -5556,23 +6131,23 @@ Sonntag       4 11 18 25           1  8 15 22 29        6 13 20 27
 <pre>                                   macOS arm64
                                     Nihon-go
 
-                   ######               ######        ########
+                   ######              ########       ########
                  ##########           ##########     ##########
-                ###      ###         ####    ####   ###     ####
+                ###      ###         ###     ####   ###     ####
                 ###      ###    #    ###      ###   ###      ###
-                ###      ###   ###   ###      ###            ###
-                ###      ###    #    ###      ###            ###
-                 ##########          ###      ###            ###
-                 ##########          ###      ###           ###
-                ###      ###    #    ###      ###          ###
-                ###      ###   ###   ###      ###        ####
-                ###      ###    #    ###      ###      ####
-                ###      ###         ####    ####    ####
-                 ##########           ##########    ############
-                   ######               ######      ############
+                ###      ###   ###            ###            ###
+                ###      ###    #             ###            ###
+                 ###########             #######        #######
+                  #########              #######        #######
+                       ###      #             ###            ###
+                      ###      ###            ###            ###
+                     ###        #    ###      ###   ###      ###
+                    ###              ###     ####   ###     ####
+                   ###                ##########     ##########
+                  ###                  ########       ########
 
 
-           2026 Hachi-gatsu ni-ju-shichi-nichi,  Mokuyo-bi,  20:02:49[11;3</pre>
+           2026 Hachi-gatsu ni-ju-shichi-nichi,  Mokuyo-bi,  21:33:23</pre>
 </div>
 <div class="shot" id="s-easter">
 <h3>easter</h3>
@@ -5609,14 +6184,6 @@ easter 2000 is 4/23</pre>
        by Dr. Peter Duffett-Smith, Cambridge University Press, (c) 1985
 
                          type any key to continue...</pre>
-</div>
-<div class="shot" id="s-today">
-<h3>today</h3>
-<p>today prints the date, the time and the phase of the moon in words -- and gets the year right, which `date' does not.</p>
-<pre>/dd/CMDS/today
-Today is Thursday, the twenty-seventh day of August, two thousand and
-twenty-six. In fifty-one seconds, the time will be eight PM, Daylight
-Savings Time. The moon is full.</pre>
 </div>
 <h2 class="cat" id="maths-calculators">Maths &amp; calculators</h2>
 <div class="shot" id="s-hc">
@@ -5745,7 +6312,7 @@ Available devices:
    psmono bit bitrgb bitcmyk pngmono pnggray png16 png256 png16m pdfwrite
    nullpage
 Search path:
-   . : /dd/etc/lib/gs4
+   . : /dd/LIB/gs403 : /dd/etc/lib/gs4
 For more information, see /use.txt.
 Report bugs to ghost@aladdin.com; use the form in new-user.txt.</pre>
 </div>
@@ -5779,7 +6346,7 @@ lpq: no spooler installed</pre>
 <pre>/dd/CMDS/lwf /dd/SYS/motd | /dd/CMDS/head -n 18
 %!PS-Adobe-2.0
 %%Creator: lwf on evtech
-%%CreationDate: Thu Aug 27 20:46:03 2026
+%%CreationDate: Thu Aug 27 21:43:11 2026
 %%For: su
 %%DocumentFonts: Courier
 %%Pages: (atend)
@@ -5850,10 +6417,72 @@ Additional information available about :
 
 Topic ?</pre>
 </div>
+<div class="shot" id="s-helpindex">
+<h3>helpindex</h3>
+<p>helpindex builds the index the help system reads; lesskey compiles a key-binding file for less.</p>
+<pre>/dd/CMDS/helpindex -?
+Syntax:   /dd/CMDS/helpindex [&lt;opts&gt;] {&lt;help file&gt;} [&lt;opts&gt;]
+Function: Creates index file for specified help files
+          Without the -a option, only files with names ending
+          in ".hlp" and ".hlib" will be processed. The index
+          file name will have the ".hlp"/".hlib" replaced by
+          ".ndx".
+Options:  -a  : Process all files with no name restrictions.
+Note:     existing index files (".ndx") will be overwritten
+V1.0 (c) 1989 by L.Zeller
+usage: lesskey [-o output] [input]</pre>
+</div>
 <div class="shot" id="s-less">
 <h3>less</h3>
 <p>less, paging the disk's own documentation.  SYS/less.hlp is here, so its help screen works.</p>
-<pre>                     NINGq/* about -- everything this collection knows about one</pre>
+<pre>HOW TO RUN THIS DISK
+====================
+
+This disk is NOT a boot disk, and os9exec does not boot anything.  There is
+no kernel here and no OS9Boot file.  os9exec is the kernel: you point it at a
+disk with OS9DISK and name a program to run, and that disk is what OS-9 then
+sees as /dd -- its root and its home.  There is no established name for that
+role, which is why people reach for "boot disk"; this disk cannot boot
+anything.
+
+Most of the programs in CMDS and CMDS/GAMES need nothing but this disk.
+
+------------------------------------------------------
+Trying things before you fetch cio
+------------------------------------------------------
+
+If you run OS-9 you have cio, csl and math -- but the SDK may be on a shelf
+rather than to hand.  This is what works in the meantime, so you can look
+around the disk straight away:
+
+    a shell        sh, or bash
+    list a dir     ls
+    read a file    cat, or less</pre>
+</div>
+<div class="shot" id="s-rdoc">
+<h3>rdoc</h3>
+<p>rdoc, the document reader.</p>
+<pre>do
+
+
+ways:
+
+   drive:
+
+
+
+CMDS:
+
+
+   for
+
+do
+
+for
+
+
+
+here:</pre>
 </div>
 <h2 class="cat" id="uncategorised">Uncategorised</h2>
 <div class="shot" id="s-netpbm">
