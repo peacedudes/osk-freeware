@@ -38,9 +38,10 @@ wait    10
 
 shot    msmd
 for     msmd mscd msrd msdeltree
-cap     A directory made on the DOS disk, a file copied into it, and then
-cap     the whole tree deleted again -- md, cd, rd and deltree, spelled the
-cap     DOS way.
+cap     A directory made on the DOS disk and a file copied into it -- md and
+cap     copy, spelled the DOS way.  The `deltree' at the top is this stanza
+cap     clearing up after its last run and saying there was nothing to
+cap     clear, which is what makes the screen the same every time.
 run     msdeltree a:/DOCS
 wait    10
 run     msmd a:/DOCS

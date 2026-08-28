@@ -174,10 +174,10 @@ wait    8
 
 shot    jpeg
 for     cjpeg djpeg rdjpgcom wrjpgcom cjpeg.070 djpeg.070
-cap     JPEG, out and back: cjpeg compresses the photograph, wrjpgcom puts
-cap     a comment in it, rdjpgcom reads the comment back and djpeg
-cap     decompresses.  The sizes are the point -- 43K of GIF, and what JPEG
-cap     makes of the same picture.
+cap     The JPEG tools cannot read their input.  `cjpeg' is handed a PPM
+cap     that netpbm made and pnmfile identifies -- 192015 bytes of it -- and
+cap     answers `Bogus data in PPM file', writing zero bytes.  Everything
+cap     downstream then has no JPEG to work on.
 run     giftopnm /dd/DEMO/gulls.gif > /dd/tmp/g.ppm
 wait    15
 run     cjpeg -quality 50 /dd/tmp/g.ppm > /dd/tmp/g.jpg
