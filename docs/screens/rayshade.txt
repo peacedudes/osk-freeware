@@ -1,3 +1,23 @@
-$ cp /dd/CMDS/GCC139/gcc_cccp /dd/CMDS/cccp
-$ rayshade -R 48 36 -O /dd/tmp/out.pic /dd/GAMES/rayshade/boxball.ray
-rayshade: Fatal error: popen of "cccp  /dd/GAMES/rayshade/boxball.ray" failed!
+Preprocessing time:     0.02u  0.01s
+Starting trace.
+Finished line 0 (96 rays, 0.03 sec, 951419.32 split)
+Finished line 10 (416 rays, 0.08 sec, 493798.08 split)
+Finished line 20 (736 rays, 0.13 sec, 856529.86 split)
+Eye rays:                       800
+Shadow rays:                    800
+Reflected rays:                 0
+Refracted rays:                 0
+Total rays:                     1600
+Intersecting rays:              818 (51.125%)
+Shadow cache hits:              14 (4 misses)
+Total shadow hits:              18 (2.250%)
+Supersampled pixels:            110
+B.V. intersection tests:        151
+Box intersection tests: 38 (34 hit, 89.473684%)
+Sphere intersection tests:      151 (18 hit, 11.920530%)
+Plane intersection tests:       1586 (800 hit, 50.441362%)
+Total prim. intersection tests: 1775 (852 hit, 48.000000%)
+Total CPU time (sec):           0.15 (0.14u + 0.01s)
+Seconds / ray:                  0.0001
+Seconds / intersecting ray:     0.0002
+Total memory allocated:         19777 bytes

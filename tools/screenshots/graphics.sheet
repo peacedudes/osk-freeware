@@ -533,15 +533,21 @@ run     pgmtofs /dd/tmp/base.pgm | fstopgm | pnmfile
 wait    10
 
 shot    rayshade
-cap     Rayshade 4.0, a full ray tracer, rendering one of its fifteen
-cap     example scenes and reporting the work: primitives, rays cast,
-cap     shadow rays, time.  It preprocesses every scene with cccp, so a C
-cap     preprocessor has to be reachable under that name -- DOC/rayshade
-cap     says so and it is right.
-run     cp /dd/CMDS/GCC139/gcc_cccp /dd/CMDS/cccp
+for     rayshade rsconvert
+cap     Rayshade 4.0 RENDERING -- a full ray tracer on a 68000, reporting
+cap     what it did: primitives, eye rays, shadow rays, cache hits, time.
+cap     Two things have to be in place first and neither is obvious.  It
+cap     preprocesses every scene through `cccp', and it does that with
+cap     popen(), which forks a program called `shell' -- this disk has bash
+cap     and sh and no `shell', so the fork fails.  And the shell it forks
+cap     finds a command in the DATA directory, so cccp has to be at /dd,
+cap     not in CMDS.  Two copies, and the tracer runs.
+run     cp /dd/CMDS/sh /dd/CMDS/shell
 wait    8
-run     rayshade -R 48 36 -O /dd/tmp/out.pic /dd/GAMES/rayshade/boxball.ray
-wait    50
+run     cp /dd/CMDS/GCC139/gcc_cccp /dd/cccp
+wait    8
+run     rayshade -R 32 24 -O /dd/tmp/out.pic /dd/GAMES/rayshade/boxball.ray
+wait    45
 
 shot    sphere
 for     pgmtopbm pnmscale
