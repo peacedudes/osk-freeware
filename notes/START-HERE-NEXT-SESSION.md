@@ -23,6 +23,15 @@ touching `disk/`.
 
 ## Where things stand
 
+**THE SWEEP HAS NEVER LOADED A MODULE, and that invalidates part of it.**
+Found 2026-08-27. All four stages run every program with nothing loaded, so
+any program that links a library module exits early on `F$Link` and is
+recorded on a condition that cannot occur on a real system. The six RTF
+Fortran programs sat in the "silent in every stage" group for weeks for this
+reason alone. Any verification pass that means anything has to `load` first --
+see item 2. `notes/os9exec-bugs/PRIVILEGED-INSTRUCTIONS.md` has the re-run.
+
+
 **The collection runs: 870 of 916 programs, 95.0%** — `DOC/STATUS`, measured
 2026-08-26, all four sweep stages from scratch. 46 real programs need work
 (`notes/verify-final.tsv`); the other 24 of the raw 70 are trap handlers,
@@ -118,25 +127,33 @@ interesting and it is not blocking anything.
    `-qm` wrote all 4000. Skew is not what breaks it. Attribution — os9exec's
    `F$SRqMem` or cio's ABI — stays unsettled; the decision does not depend on
    it. `notes/os9exec-bugs/SRQMEM.md` has the run.
-2. ~~Ship a `load` command.~~ **DECIDED AGAINST, 2026-08-27.** rdoggett asked
-   the right question -- *"do you feel load is essential? Like, should we
-   rewrite our own load?"* -- and the answer is no.
+2. **Ship a `load` command.** REOPENED 2026-08-27 by rdoggett, who is
+   providing a freeware implementation: *"You should NOT be using OS9MDir the
+   way that you are. You should not use it at all. I will provide an
+   implementation of load that you will be able to use. For now you may use
+   Microware's load."*
 
-   `load` is Microware's, it is a standard system utility, and anyone running
-   OS-9 has it. Shipping our own reimplementation that behaved *almost* like
-   the real one is exactly the kind of trap this collection avoids.
+   The 2026-08-27 decision AGAINST this was wrong, and the reason it was wrong
+   is worth keeping: it rested on `OS9MDIR` being an acceptable substitute.
+   It is not. `OS9MDIR` is an **os9exec environment variable**, and
+   documenting it to users taught an emulator mechanism as if it were OS-9 --
+   the same class of error as calling this a "boot disk". It has been purged
+   from `DOC/README-RUNNING`, `DOC/README-FORTRAN`, `DOC/INDEX`, `DOC/STATUS`
+   and the generated web catalogue.
 
-   **And it was never needed.** The only real beneficiaries were the RTF
-   Fortran six, and the route already existed: point `OS9MDIR` at a HOST
-   directory holding `os9lib`. The repository ships `disk/` as a host tree, so
-   that directory is `<repo>/disk/CMDS` and is already on the user's machine.
-   Verified that day: with `OS9MDIR=$PWD/disk/CMDS`, `rtf` starts and asks for
-   a source file; without it, `rtf` prints nothing. What was actually missing
-   was DOCUMENTATION -- `DOC/README-RUNNING` never mentioned `OS9MDIR` at all.
-   It does now, and `DOC/README-FORTRAN` names both routes.
+   **For now use Microware's `load`, for TESTING ONLY -- it must never be
+   committed into `disk/`.** Use the trap-free build at
+   `~/Developer/os9/play/oskBoot/CMDS/NOCSL/load`; the ordinary one stops with
+   `**** csl traphandler mismatch ****` against our edition-16 `csl`.
+   Working invocation:
 
-   The `Graph` seven and `rxmod` were never candidates: they bus-error on the
-   supervisor bit whatever is loaded.
+       env OS9DISK=$PWD/osk-freeware.dd OS9H4=<sdk>/CMDS \
+           os9exec -r bash /h1/script.sh
+       # inside: /h4/NOCSL/load /dd/CMDS/os9lib
+
+   `OS9MDIR` is still used by host-side TOOLING -- `mkimage.sh`, both
+   `probe_runnability*` scripts, two `rebuild/*` scripts, `extract_pool.py`.
+   It is load-bearing there and comes out when the freeware `load` lands.
 
 3. **The programs that need work** — `notes/verify-final.tsv`, filtered by
    `tools/module_census.py` for what is actually a program. Read `DOC/STATUS`

@@ -981,7 +981,7 @@
 | `apfel` | Mandelbrot (Apfelmaennchen) -- Atari GRAPH display |
 | `cam` | &#9733; Tektronix demo: camera |
 | `g` | &#9733; an Atari GRAPH demo, paired with striche.  Needs the `graph' |
-| `graph` | the `Graph' TRAP LIBRARY itself, not a program -- a type-$0B module.  It is what g, striche, apfel, sine, showpic, graphdemo and graphsave all link.  Point OS9MDIR at CMDS/GAMES and the trap installs; the library then drives Atari hardware, which is where it stops here.  Note its module name is lowercase `graph' while the programs ask for `Graph', and real OS-9 matches module names exactly |
+| `graph` | the `Graph' TRAP LIBRARY itself, not a program -- a type-$0B module.  It is what g, striche, apfel, sine, showpic, graphdemo and graphsave all link.  `load' it and the trap installs; the library is then entered and stops on a privilege violation at its own `RTE', a supervisor-only instruction -- it was written to run in supervisor state.  Note its module name is lowercase `graph' while the programs ask for `Graph', and real OS-9 matches module names exactly |
 | `graphdemo` | Atari GRAPH demonstration |
 | `graphsave` | save an Atari GRAPH screen |
 | `lissaj` | &#9733; Tektronix demo: Lissajous figures |
@@ -1067,7 +1067,7 @@
 | `mkindex` | bog - build the dictionary index |
 | `nobs` | cribbage (Colonel's program)<br>**How:** Full-screen: it takes over the display. **control-C gets you out** -- tested, and none of q, Q, control-D or ESC did. If it has a quit command of its own, its documentation in DOC/ will say. |
 | `piano` | &#9733; play notes -- piano <base note> <note duration><br>`syntax: piano <base note> <note duration>` |
-| `puzzle` | &#9733; sliding-tile puzzle for G-Windows |
+| `puzzle` | &#9733; sliding-tile puzzle for G-Windows -- it draws through a windowing system that is not here, so at a terminal it prints nothing at all.  For a 15-puzzle you can play, use puzzle15 or GAMES/puz15; both work |
 | `scriptmaster` | &#9733; G-Windows scripting tool<br>`Usage: scriptmaster -t=<title> -d=<directory>.` |
 | `stone` | &#9733; the stones game (SNOBOL4-in-C).  Data: GAMES/SNOBOL |
 | `teachgammon` | &#9733; backgammon that teaches you the game as you play<br>`Usage:  backgammon [-] [n r w b pr pw pb t3a]` |
