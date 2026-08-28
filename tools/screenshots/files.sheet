@@ -23,8 +23,10 @@ wait    5
 
 shot    basename
 for     basename dirname owner fstat
-cap     basename and dirname take a path apart; owner says who a file
-cap     belongs to.
+cap     basename and dirname take a path apart -- neither prints a newline
+cap     after its answer, which is why they run into what follows.  `owner'
+cap     then says `No such user' for a file owned 0.0: everything on this
+cap     disk is, and SYS/password has no name for that number.
 run     /dd/CMDS/basename /dd/CMDS/GAMES/hack
 wait    4
 run     /dd/CMDS/dirname /dd/CMDS/GAMES/hack

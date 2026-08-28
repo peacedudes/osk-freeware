@@ -76,31 +76,36 @@ shipped programs, kept failing on purpose:
 If one of those starts passing, something was fixed -- find out what before
 celebrating. If a FOURTH appears, that is a regression.
 
-## Using `load` — Microware's, for now
+## `load` SHIPS NOW — and OS9MDIR is gone
 
-rdoggett, 2026-08-27: *"You should NOT be using OS9MDir the way that you are.
-You should not use it at all. I will provide an implementation of load that
-you will be able to use. For now you may use Microware's load."*
+**CMDS/load is on the disk, with its source in SRC/load.** It is a clean-room
+reimplementation of Microware's utility, written from the published manuals
+and contributed by the os9exec project on 2026-08-27; rdoggett: *"Move load.c
+into your files; you own it now."* It is built here with the ordinary `-qm`,
+so it links no trap handler and needs no `cio`:
 
-**`OS9MDIR` is gone from all user-facing documentation and must stay gone.**
-It is an os9exec environment variable and documenting it taught an emulator
-mechanism as if it were OS-9. It survives only in host-side TOOLING
-(`mkimage.sh`, both `probe_runnability*`, two `rebuild/*`, `extract_pool.py`)
-where it is load-bearing until his `load` lands.
+    load /dd/CMDS/os9lib        and the RTF Fortran set comes alive
 
-Use the SDK's **trap-free** build -- the ordinary one stops with
-`**** csl traphandler mismatch ****` against our edition-16 `csl`:
+Its `-?` says what it is, so nobody meets it and wonders. Verified: `-?`, a
+load that works, a load that fails (`Error #000:216`), and `-l`.
 
-    ~/Developer/os9/play/oskBoot/CMDS/NOCSL/load
+**`OS9MDIR` IS NO LONGER USED ANYWHERE.** rdoggett, 2026-08-27: *"Please stop
+using OS9MDIR, it shouldn't be needed anymore."* All five host-side users are
+converted and the only mentions left in the tree are comments saying what
+replaced them:
 
-**TESTING ONLY. It must never be committed into `disk/`.** Working shape:
+  - `mkimage.sh` -- `sh` cannot find `tar` once `chd` has moved to the new
+    image, so the build now runs `load /dd/CMDS/tar` first and F$Fork finds
+    the module without touching the filesystem. Verified: 8602/8602 extracted.
+  - `probe_runnability.sh`, `install_relink.sh`, `compare_relink.sh` -- the
+    scratch directory is MOUNTED as `/h5` and the program run as `/h5/<name>`.
+  - `probe_runnability_traps.sh` -- the same, plus `OS9CMDS` so that the
+    execution directory is that directory too, which is where F$Load looks
+    for a trap handler and the whole point of that probe.
+  - `extract_pool.py` -- `load /h5/cio` before the unpacker runs.
 
-    env OS9DISK=$PWD/osk-freeware.dd OS9H1=<scratch> OS9H4=<sdk>/CMDS \
-        os9exec -r bash /h1/script.sh
-    # inside the script:  /h4/NOCSL/load /dd/CMDS/os9lib
-
-`tools/datatest.py` already does this itself for any `.cases` file with a
-`load` line; it copies the binary to a scratch `h4` and never into the tree.
+The Microware `load` at `~/Developer/os9/play/oskBoot/CMDS/NOCSL/load` is no
+longer needed for anything.
 
 ## Get running in two minutes
 
@@ -266,33 +271,12 @@ subsumes items 3, 5 and 6.
    `-qm` wrote all 4000. Skew is not what breaks it. Attribution — os9exec's
    `F$SRqMem` or cio's ABI — stays unsettled; the decision does not depend on
    it. `notes/os9exec-bugs/SRQMEM.md` has the run.
-2. **Ship a `load` command.** REOPENED 2026-08-27 by rdoggett, who is
-   providing a freeware implementation: *"You should NOT be using OS9MDir the
-   way that you are. You should not use it at all. I will provide an
-   implementation of load that you will be able to use. For now you may use
-   Microware's load."*
-
-   The 2026-08-27 decision AGAINST this was wrong, and the reason it was wrong
-   is worth keeping: it rested on `OS9MDIR` being an acceptable substitute.
-   It is not. `OS9MDIR` is an **os9exec environment variable**, and
-   documenting it to users taught an emulator mechanism as if it were OS-9 --
-   the same class of error as calling this a "boot disk". It has been purged
-   from `DOC/README-RUNNING`, `DOC/README-FORTRAN`, `DOC/INDEX`, `DOC/STATUS`
-   and the generated web catalogue.
-
-   **For now use Microware's `load`, for TESTING ONLY -- it must never be
-   committed into `disk/`.** Use the trap-free build at
-   `~/Developer/os9/play/oskBoot/CMDS/NOCSL/load`; the ordinary one stops with
-   `**** csl traphandler mismatch ****` against our edition-16 `csl`.
-   Working invocation:
-
-       env OS9DISK=$PWD/osk-freeware.dd OS9H4=<sdk>/CMDS \
-           os9exec -r bash /h1/script.sh
-       # inside: /h4/NOCSL/load /dd/CMDS/os9lib
-
-   `OS9MDIR` is still used by host-side TOOLING -- `mkimage.sh`, both
-   `probe_runnability*` scripts, two `rebuild/*` scripts, `extract_pool.py`.
-   It is load-bearing there and comes out when the freeware `load` lands.
+2. ~~Ship a `load` command.~~ **DONE 2026-08-27.** The os9exec project
+   contributed a clean-room implementation, rdoggett handed the source over
+   (*"Move load.c into your files; you own it now"*), and it is built here
+   trap-free and installed as `CMDS/load` with its source in `SRC/load`. Its
+   `-?` names itself as a clean-room reimplementation. `OS9MDIR` is out of
+   every tool -- see the section above for what each one does instead.
 
 3. **The programs that need work** — `notes/verify-final.tsv`, filtered by
    `tools/module_census.py` for what is actually a program. Read `DOC/STATUS`

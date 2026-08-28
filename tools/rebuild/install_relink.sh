@@ -33,8 +33,8 @@ exe=${OS9EXEC:-$here/../os9exec/os9exec}
 image=${OS9IMAGE:-$here/osk-freeware.dd}
 PREFIX=${PREFIX:-400}      # bytes compared when re-checking a DIFFERENT
 
-capture() {   # $1 = module dir  $2 = program
-  gtimeout 8 env OS9DISK="$image" OS9MDIR="$1" "$exe" -r "$2" </dev/null 2>&1 \
+capture() {   # $1 = directory to mount as /h5   $2 = program
+  gtimeout 8 env OS9DISK="$image" OS9H5="$1" "$exe" -r "/h5/$2" </dev/null 2>&1 \
     | /usr/bin/tr -d '\000' \
     | LC_ALL=C /usr/bin/grep -av '^# /h0:' \
     | /usr/bin/head -c "$PREFIX"

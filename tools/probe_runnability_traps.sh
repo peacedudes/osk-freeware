@@ -14,8 +14,13 @@ awk -F'\t' '$2!="RUNS"{print $1"\t"$3}' "$S/probe/verdicts.tsv" | while IFS=$'\t
   d="$S/t2/$prog"; rm -rf "$d"; mkdir -p "$d"
   cp "$B/cio" "$B/csl" "$B/math881" "$d/" 2>/dev/null
   cp "$S/newstage/$path" "$d/" 2>/dev/null || { printf '%s\tMISSING\t%s\n' "$prog" "$path" >> "$S/probe/verdicts2.tsv"; continue; }
-  out=$( cd "$REPO" && gtimeout 20 env OS9DISK="$REPO/osk-freeware.dd" OS9MDIR="$d" \
-           "$OS9EXEC" -r "$(basename "$path")" < /dev/null 2>&1 \
+  # /h5 is the candidate's own directory, and OS9CMDS makes it the EXECUTION
+  # directory as well -- which is where F$Load looks for a trap handler, and
+  # the whole point of this probe is that cio must come from here and from
+  # nowhere else.
+  out=$( cd "$REPO" && gtimeout 20 env OS9DISK="$REPO/osk-freeware.dd" \
+           OS9H5="$d" OS9CMDS="$d" \
+           "$OS9EXEC" -r "/h5/$(basename "$path")" < /dev/null 2>&1 \
          | /usr/bin/tr -d '\000' | /usr/bin/sed $'s/\033\\[[0-9?]*[a-zA-Z=]//g' \
          | /usr/bin/grep -vE '^# |^#$' )
   if   printf '%s' "$out" | /usr/bin/grep -q 'install trap handler'   ; then v=STILL-TRAP

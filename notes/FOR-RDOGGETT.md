@@ -127,5 +127,22 @@ version skew swallowing the disk.
 file" for a PPM netpbm reads happily. So no JPEG can be made here and `djpeg`
 has nothing to decode.
 
+## `load` is in, and OS9MDIR is out
+
+**Your `load` ships.** CMDS/load, source in SRC/load, built here with `-qm`
+so it needs no cio -- the contributed build was cio-linked at 4148 bytes,
+ours is 17084 and depends on nothing. Verified four ways: `-?`, `-l`, a load
+that works (`load /dd/CMDS/os9lib`, and then `for` speaks where it was
+silent), and a load that fails. Its `-?` now ends with a line saying it is a
+clean-room reimplementation written so the collection can stand on its own.
+It is in DOC/INDEX, ORIGINS, SOURCES.txt and the gallery.
+
+**OS9MDIR is gone from every tool.** The one that mattered was the image
+build: `sh` cannot find `tar` once `chd` has moved into the new image, which
+is what OS9MDIR was papering over. It now runs `load /dd/CMDS/tar` first and
+the fork finds the module without a filesystem search -- 8602 of 8602 files
+extracted. The other four now mount their scratch directory as a device and
+run the program by its path there.
+
 ## Nothing needs you
 

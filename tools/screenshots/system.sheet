@@ -505,3 +505,19 @@ cap     not here, so again `modinfo' is what there is to show: type $C
 cap     (device driver) rather than $1 (program).
 run     /dd/CMDS/modinfo /dd/CMDS/MM1/keydrv.mm1 | /dd/CMDS/head -n 12
 wait    12
+
+shot    load
+cap     load puts a MODULE in the module directory so that a program which
+cap     LINKS it can find it.  `for', the RTF Fortran driver, prints nothing
+cap     at all until os9lib is loaded -- and then it says what it takes.
+cap     That silence is the whole symptom, and this is the cure: a
+cap     clean-room load, contributed by the os9exec project and built here,
+cap     with its source in SRC/load.
+run     /dd/CMDS/for
+wait    6
+run     /dd/CMDS/load /dd/CMDS/os9lib
+wait    8
+run     /dd/CMDS/for
+wait    8
+run     /dd/CMDS/load /dd/CMDS/nosuchthing
+wait    8

@@ -24,9 +24,14 @@
 #     the output directory first. Do not "fix" that by setting OS9Hz.
 #   * OS-9 does not group command-line arguments with quotes, so a volume
 #     name CANNOT contain a space. Refused below rather than silently split.
-#   * F$Load searches the execution directory, which `chd /hz` moves away
-#     from. OS9MDIR loads modules regardless of the data directory, which is
-#     what lets tar keep running once the working directory is the image.
+#   * `sh` has the real `chd` this needs, and once the working directory is
+#     the new image it can no longer find `tar` -- it resolves a bare name
+#     against the data directory, and refuses an absolute pathname outright.
+#     So `tar` is LOADED INTO THE MODULE DIRECTORY first, by the collection's
+#     own `load`, and F$Fork then finds it without touching the filesystem.
+#     This used to be done with os9exec's OS9MDIR environment variable, which
+#     is an emulator mechanism rather than an OS-9 one; `load` is the OS-9
+#     answer and the disk now carries it.
 #   * os9exec will not mount one host path as two devices. To use the result
 #     as both /dd and /h0, hard-link it: `ln osk-freeware.dd h0`.
 set -u
@@ -115,9 +120,11 @@ python3 "$HERE/mktar.py" "$SRC" "$TMP/collection.tar" || exit 1
 # Verbose on purpose: the count of extracted files is the only honest check
 # that anything happened. This collection has produced a builder that
 # reported "copied 3287/3287" while every copy failed.
-( cd "$OUTDIR" && env OS9DISK="$SRC" OS9MDIR="$SRC/CMDS" \
+printf '/dd/CMDS/load /dd/CMDS/tar\r/dd/CMDS/sh -c "chd /%s; tar xvf /h6/collection.tar"\r' \
+      "$DEV" > "$TMP/extract.sh"
+( cd "$OUTDIR" && env OS9DISK="$SRC" \
       "OS9H${DEV#h}=$WORK" OS9H6="$TMP" \
-      "$EXEC" -r sh -c "chd /$DEV; tar xvf /h6/collection.tar" ) 2>&1 \
+      "$EXEC" -r bash /h6/extract.sh ) 2>&1 \
   | tr -d '\000' > "$TMP/out"
 
 if grep -aiE "cannot create|no more memory|error #" "$TMP/out" | head -4 | grep -q .; then

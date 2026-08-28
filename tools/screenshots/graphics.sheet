@@ -189,8 +189,10 @@ wait    8
 
 shot    lispm
 for     pgmtolispm lispmtopgm pbmtopk pktopbm ppmtomap
-cap     A Lisp machine's bitmap format, and TeX's PK font format, both with
-cap     readers here.
+cap     A Lisp machine's bitmap format, written and then read back -- and
+cap     lispmtopgm refuses what pgmtolispm just wrote: `depth is too large
+cap     - try reconfiguring with PGM_BIGGRAYS'.  The pair do not agree with
+cap     each other in this build.  ppmtomap, underneath, works.
 run     pgmtolispm /dd/tmp/base.pgm | lispmtopgm | pnmfile
 wait    10
 run     ppmtomap /dd/tmp/base.ppm | /dd/CMDS/head -n 8
@@ -551,7 +553,7 @@ for     pgmedge
 cap     pgmedge on the sphere: a convolution that keeps only where the
 cap     brightness changes, which leaves the outline and the terminator.
 run     pnmscale -xysize 152 88 /dd/DEMO/sphere.pgm | pgmedge | pgmnorm | pgmtopbm | pbmtoascii -2x4
-wait    18
+wait    60
 
 shot    tga
 for     ppmtotga tgatoppm

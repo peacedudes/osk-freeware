@@ -33,11 +33,14 @@ secs=${TIMEOUT:-10}
 [ -x "$exe" ]   || { echo "no os9exec at $exe" >&2; exit 2; }
 [ -f "$image" ] || { echo "no image at $image" >&2; exit 2; }
 
-# Run one binary from a module directory, capture what a user would see.
+# Run one binary from a scratch directory, capture what a user would see.
+# The directory is MOUNTED as /h5 and the program run by its path there.
+# This used to set OS9MDIR, which is an os9exec variable rather than an
+# OS-9 mechanism; a device and a pathname are what OS-9 itself offers.
 # `head -c` closes the pipe so chatty programs finish at once instead of
 # running out the timeout -- it is what keeps a sweep at one hour, not seven.
-capture() {   # $1 = module dir  $2 = program name
-  gtimeout "$secs" env OS9DISK="$image" OS9MDIR="$1" "$exe" -r "$2" </dev/null 2>&1 \
+capture() {   # $1 = directory to mount as /h5   $2 = program name
+  gtimeout "$secs" env OS9DISK="$image" OS9H5="$1" "$exe" -r "/h5/$2" </dev/null 2>&1 \
     | /usr/bin/tr -d '\000' \
     | LC_ALL=C /usr/bin/sed $'s/\033\\[[0-9?;]*[a-zA-Z=]//g' \
     | LC_ALL=C /usr/bin/grep -av '^# /h0:' \
@@ -52,7 +55,7 @@ while IFS=$'\t' read -r prog tree old new delta verdict; do
   cur=$(find "$here/disk/CMDS" -name "$prog" -type f | head -1)
   [ -n "$cur" ] || continue
 
-  # Each binary needs its own directory, or OS9MDIR finds the wrong one.
+  # Each binary needs its own directory: /h5 is one device at a time.
   tmp=$outdir/.cmp.$prog; rm -rf "$tmp"; mkdir -p "$tmp/old" "$tmp/new"
   cp "$cur" "$tmp/old/$prog"; cp "$outdir/$prog/$prog" "$tmp/new/$prog"
 

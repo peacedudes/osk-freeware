@@ -4,6 +4,11 @@
 # in the path, because the freeware disk's `sh` would not resolve commands
 # here and every verdict came back a false NOTFOUND.
 #
+# The candidate's directory is MOUNTED as /h5 and the module run by its path
+# there.  This used to set OS9MDIR, an os9exec variable rather than an OS-9
+# mechanism; a device and a pathname are what OS-9 itself offers, and the
+# disk now carries a `load' for the cases that really do need one.
+#
 # An empty capture is its own verdict and never a pass.
 set -u
 S=/private/tmp/claude-501/-Users-rdoggett-Developer-os9-osk-freeware/2819709a-7a1e-4d9f-b0f0-9628c0581438/scratchpad
@@ -13,8 +18,8 @@ OS9EXEC=${OS9EXEC:-/Users/rdoggett/Developer/os9/os9exec/os9exec}
 while IFS=$'\t' read -r prog path; do
   f="$S/newstage/$path"
   [ -f "$f" ] || { printf '%s\tMISSING\t%s\n' "$prog" "$path" >> "$S/probe/verdicts.tsv"; continue; }
-  out=$( cd "$REPO" && gtimeout 20 env OS9DISK="$REPO/osk-freeware.dd" OS9MDIR="$(dirname "$f")" \
-           "$OS9EXEC" -r "$(basename "$f")" < /dev/null 2>&1 \
+  out=$( cd "$REPO" && gtimeout 20 env OS9DISK="$REPO/osk-freeware.dd" OS9H5="$(dirname "$f")" \
+           "$OS9EXEC" -r "/h5/$(basename "$f")" < /dev/null 2>&1 \
          | /usr/bin/tr -d '\000' | /usr/bin/sed $'s/\033\\[[0-9?]*[a-zA-Z=]//g' \
          | /usr/bin/grep -vE '^# |^#$' )
   if   [ -z "$out" ]                                                    ; then v=NOOUTPUT

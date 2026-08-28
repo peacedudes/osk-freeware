@@ -1,6 +1,6 @@
 # What is on this disk
 
-917 programs of OS-9/68K community software, gathered from the archives that kept it and made to run again. **552 of them need nothing but this disk**; the rest want Microware's `cio`, marked below with a star.
+918 programs of OS-9/68K community software, gathered from the archives that kept it and made to run again. **553 of them need nothing but this disk**; the rest want Microware's `cio`, marked below with a star.
 
 `DOC/INDEX` on the disk lists everything alphabetically. This is the same collection sorted by what each program is *for*, which is the more useful order when you do not yet know what you are looking for.
 
@@ -24,7 +24,7 @@
 | [Games](#games) | 65 | Adventures, board and card games, arcade ports, dungeon crawls and puzzles. |
 | [Screen toys](#screen-toys) | 6 | Things to watch rather than play. Start one and leave it going. |
 | [Amusements](#amusements) | 23 | Generators, simulators and diversions that are not quite games. |
-| [System & modules](#system--modules) | 127 | OS-9 module and process tools, devices, system state and scheduling. |
+| [System & modules](#system--modules) | 128 | OS-9 module and process tools, devices, system state and scheduling. |
 | [Disk & DOS](#disk--dos) | 20 | Reading and writing MS-DOS media with the mtools set. |
 | [Time & calendar](#time--calendar) | 9 | Calendars, clocks and astronomy. |
 | [Maths & calculators](#maths--calculators) | 9 | Calculators, plotting, orbits and number theory. |
@@ -1350,7 +1350,7 @@
 
 *OS-9 module and process tools, devices, system state and scheduling.*
 
-<details><summary>127 programs</summary>
+<details><summary>128 programs</summary>
 
 **Utilities**
 
@@ -1404,7 +1404,7 @@
 | `mvolformat` | format a multi-volume set<br>`Syntax: mvolformat drive volname volcount [format options]` |
 | `names` | &#9733; list the names of modules in a file |
 | `new_e` | SEDT editor, generic terminal |
-| `phone` | a phone-number book<br>`Syntax: phone <communication-path>` |
+| `phone` | connect two terminals -- NOT an address book<br>`Syntax: phone <communication-path>` |
 | `preset` | preset memory to a pattern |
 | `pri` | change a process's priority |
 | `ptob` | Gepard fat-font back to bitmap<br>`Syntax:   PtoB [<opts>] [<path1>] [<opts>] [<path2>] [<opts>]` |
@@ -1457,6 +1457,7 @@
 | `bootgen` | &#9733; generate an OS-9 boot file<br>`Syntax:   bootgen [<opts>] <device> {<path> [<opts>] }` |
 | `flink` | &#9733; list a module's links<br>`usage: flink [ -? \| filename { filename } ]` |
 | `gen` | generate a C program/module/type source frame<br>`Syntax: gen [<opt>] <pathname> [<opts>]` |
+| `load` | load a module into memory, so a program that LINKS a library MODULE can find it -- `load /dd/CMDS/os9lib' and the RTF Fortran set comes alive, where before it printed nothing.  A clean-room reimplementation of Microware's load, written from the published manuals and contributed by the os9exec project; maintained here now, source in SRC/load, built trap-free so it needs no cio<br>`Syntax:   load [<opts>] {<module> [<opts>]}` |
 | `mexist` | &#9733; test module existence<br>`Usage: mexist [options] <Module>` |
 | `os9lib` | RTF/68K FORTRAN run-time LIBRARY.  Not a program: rtf, for, lnk, biory and creadoc all F$Link it, and every one of them fails E_MNF until it is in the module directory.  See DOC/README-FORTRAN.  Running it AS a program executes its floating-point code and stops -- that is not a fault. |
 | `rtfdat` | RTF FORTRAN data module |

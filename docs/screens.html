@@ -1262,7 +1262,7 @@ Options:
 </div>
 <div class="shot" id="s-basename">
 <h3>basename</h3>
-<p>basename and dirname take a path apart; owner says who a file belongs to.</p>
+<p>basename and dirname take a path apart -- neither prints a newline after its answer, which is why they run into what follows.  `owner' then says `No such user' for a file owned 0.0: everything on this disk is, and SYS/password has no name for that number.</p>
 <pre>/dd/CMDS/basename /dd/CMDS/GAMES/hack
 No such user</pre>
 </div>
@@ -3001,7 +3001,7 @@ Not a JPEG file
 </div>
 <div class="shot" id="s-lispm">
 <h3>lispm</h3>
-<p>A Lisp machine's bitmap format, and TeX's PK font format, both with readers here.</p>
+<p>A Lisp machine's bitmap format, written and then read back -- and lispmtopgm refuses what pgmtolispm just wrote: `depth is too large - try reconfiguring with PGM_BIGGRAYS'.  The pair do not agree with each other in this build.  ppmtomap, underneath, works.</p>
 <pre>pgmtolispm /dd/tmp/base.pgm | lispmtopgm | pnmfile
 lispmtopgm: depth is too large - try reconfiguring with PGM_BIGGRAYS
 pnmfile: EOF / read error reading magic number
@@ -5793,6 +5793,13 @@ Parameters:
      &lt;signal-code&gt;   code of signal to be sent
      &lt;seconds&gt;       number of seconds to wait
                      default is 0 seconds</pre>
+</div>
+<div class="shot" id="s-load">
+<h3>load</h3>
+<p>load puts a MODULE in the module directory so that a program which LINKS it can find it.  `for', the RTF Fortran driver, prints nothing at all until os9lib is loaded -- and then it says what it takes. That silence is the whole symptom, and this is the cure: a clean-room load, contributed by the os9exec project and built here, with its source in SRC/load.</p>
+<pre>/dd/CMDS/for
+command: for file{,file} [-rtfopt{,rtfopt}]
+load: can't load "/dd/CMDS/nosuchthing" - Error #000:216 (E_PNNF) Path Name Notd</pre>
 </div>
 <div class="shot" id="s-lunisolar">
 <h3>lunisolar</h3>
