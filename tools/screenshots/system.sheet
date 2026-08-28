@@ -521,3 +521,25 @@ run     /dd/CMDS/for
 wait    8
 run     /dd/CMDS/load /dd/CMDS/nosuchthing
 wait    8
+
+
+shot    biory
+for     biory creadoc
+cap     biory is the RTF Fortran example: a biorhythm program that prompts
+cap     in German, once os9lib is loaded.  creadoc, beside it, pulls the
+cap     documentation comments out of Fortran source.
+run     /dd/CMDS/load /dd/CMDS/os9lib
+wait    8
+run     /dd/CMDS/biory
+wait    8
+send    Tester\r
+wait    6
+
+
+shot    modules2
+for     ptxm wn.stb
+cap     Two more modules that are not programs: `ptxm', Nick Holgate's Path
+cap     Table eXtension Module, which `ptxminst' installs, and `wn.stb', the
+cap     symbol table that ships beside the WN web server.
+run     /dd/CMDS/modinfo /dd/CMDS/ptxm | /dd/CMDS/head -n 12
+wait    12

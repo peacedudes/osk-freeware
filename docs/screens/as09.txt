@@ -1,0 +1,9 @@
+/dd/CMDS/cat /dd/tmp/t.a
+        org   $1000
+start   lda   $A000
+        sta   $A001
+        jsr   $A282
+        rts
+        end   start
+S10D1000B6A000B7A001BDA282391A
+S9030000FC

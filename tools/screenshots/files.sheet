@@ -89,11 +89,16 @@ run     /dd/CMDS/du /dd/CMDS/GAMES | /dd/CMDS/head -n 21
 wait    10
 
 shot    edir
-cap     edir, the extended directory listing: attributes, owner, size and
-cap     dates the way OS-9 keeps them.
-run     /dd/CMDS/edir /dd/SYS
-wait    4
-kill
+for     edir eset
+cap     edir lists the EVENT directory -- OS-9 events, their values and
+cap     their wait queues, not files.  There are no events set here, so
+cap     what it prints is the heading and the time.
+run     /dd/CMDS/edir
+wait    8
+run     /dd/CMDS/eset testevent 1
+wait    8
+run     /dd/CMDS/edir
+wait    8
 
 shot    ff
 cap     ff finds files by name anywhere below a directory.

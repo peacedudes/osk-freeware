@@ -41,8 +41,17 @@ the terminal stream that came back was rendered into the grid a vt100 would
 have shown. Nothing here is mocked up &mdash; where a program failed, its
 failure is what you see. <a class="back" href="index.html">Back to the
 catalogue</a>.</p>
-<p class="toc"><a href="#shells">Shells</a> <a href="#editors">Editors</a> <a href="#text-tools">Text tools</a> <a href="#files-directories">Files &amp; directories</a> <a href="#developer-tools">Developer tools</a> <a href="#compilers-build">Compilers &amp; build</a> <a href="#languages">Languages</a> <a href="#archives-compression">Archives &amp; compression</a> <a href="#encoding-conversion">Encoding &amp; conversion</a> <a href="#communications">Communications</a> <a href="#graphics-images">Graphics &amp; images</a> <a href="#games">Games</a> <a href="#screen-toys">Screen toys</a> <a href="#amusements">Amusements</a> <a href="#system-modules">System &amp; modules</a> <a href="#disk-dos">Disk &amp; DOS</a> <a href="#time-calendar">Time &amp; calendar</a> <a href="#maths-calculators">Maths &amp; calculators</a> <a href="#printing">Printing</a> <a href="#documentation">Documentation</a> <a href="#uncategorised">Uncategorised</a></p>
+<p class="toc"><a href="#shells">Shells</a> <a href="#editors">Editors</a> <a href="#text-tools">Text tools</a> <a href="#files-directories">Files &amp; directories</a> <a href="#developer-tools">Developer tools</a> <a href="#compilers-build">Compilers &amp; build</a> <a href="#languages">Languages</a> <a href="#archives-compression">Archives &amp; compression</a> <a href="#encoding-conversion">Encoding &amp; conversion</a> <a href="#communications">Communications</a> <a href="#graphics-images">Graphics &amp; images</a> <a href="#games">Games</a> <a href="#screen-toys">Screen toys</a> <a href="#amusements">Amusements</a> <a href="#system-modules">System &amp; modules</a> <a href="#disk-dos">Disk &amp; DOS</a> <a href="#time-calendar">Time &amp; calendar</a> <a href="#maths-calculators">Maths &amp; calculators</a> <a href="#printing">Printing</a> <a href="#documentation">Documentation</a> <a href="#uncategorised">Uncategorised</a> <a href="#system-kernel">System &amp; kernel</a></p>
 <h2 class="cat" id="shells">Shells</h2>
+<div class="shot" id="s-bash">
+<h3>bash</h3>
+<p>The shell this disk hands you, answering for itself: its version, an arithmetic expansion, and `expr' beside it doing the same sum the way a script written for OS-9's own shell would have to.</p>
+<pre>echo $BASH_VERSION
+1.12.12
+3 42
+3
+42</pre>
+</div>
 <div class="shot" id="s-env">
 <h3>env</h3>
 <p>env runs a command with the environment changed, and getenv reads one variable back.</p>
@@ -355,6 +364,12 @@ chbase:  Error options !!!</pre>
 <div class="shot" id="s-VI">
 <h3>VI</h3>
 <p>The EFFO vi -- its source in SRC/effo_vi is the Berkeley ex source.</p>
+<pre>README-CIO -- the starred programs, and the five modules that serve them
+ch of this=============================================================</pre>
+</div>
+<div class="shot" id="s-vi">
+<h3>vi</h3>
+<p>The EFFO vi -- its source in SRC/effo_vi is the Berkeley ex source -- opened on a file from the disk, with the tildes down the left that every vi user knows.</p>
 <pre>README-CIO -- the starred programs, and the five modules that serve them
 ch of this=============================================================</pre>
 </div>
@@ -1371,6 +1386,15 @@ Directory name                      Bytes    kBytes   Sectors    File #
 
 Total of 2965 kBytes (11859 sectors) in 1 directories and 83 files.</pre>
 </div>
+<div class="shot" id="s-edir">
+<h3>edir</h3>
+<p>edir lists the EVENT directory -- OS-9 events, their values and their wait queues, not files.  There are no events set here, so what it prints is the heading and the time.</p>
+<pre>/dd/CMDS/edir
+   Event Directory at  0:17:22
+
+eset: can't link to testevent
+   Event Directory at  0:17:40</pre>
+</div>
 <div class="shot" id="s-filetools">
 <h3>filetools</h3>
 <p>The last of the file shelf: delbak deletes the *_bak files a whole tree has collected, and the Home Librarian pair get a catalogue in and out of plain text.</p>
@@ -1816,6 +1840,19 @@ start
 ERROR: Cannot open Language Table file: C.XRF</pre>
 </div>
 <h2 class="cat" id="compilers-build">Compilers &amp; build</h2>
+<div class="shot" id="s-as09">
+<h3>as09</h3>
+<p>as09 assembling 6809 source.  It says nothing and writes Motorola S-records beside the source -- so the proof is the file: four instructions at $1000, in the format a ROM burner eats.  A 6809 cross-assembler running on a 68000; as0, as1, as4, as5 and as11 are its cousins for the rest of the 6800 family, and not one of the six assembles 68k code.</p>
+<pre>/dd/CMDS/cat /dd/tmp/t.a
+        org   $1000
+start   lda   $A000
+        sta   $A001
+        jsr   $A282
+        rts
+        end   start
+S10D1000B6A000B7A001BDA282391A
+S9030000FC</pre>
+</div>
 <div class="shot" id="s-bison">
 <h3>bison</h3>
 <p>GNU bison 1.19 on the same grammar, with its statistics.</p>
@@ -1837,6 +1874,14 @@ ERROR: Cannot open Language Table file: C.XRF</pre>
 #include &lt;stdio.h&gt;
 
 /dd/CMDS/head: lex.yy.c</pre>
+</div>
+<div class="shot" id="s-fortran">
+<h3>fortran</h3>
+<p>The RTF Fortran-77 system -- compiler, driver, linker and two example programs -- all of which print NOTHING until their runtime library is in the module directory.  `load /dd/CMDS/os9lib' is the whole difference, and this screen is the before and the after.</p>
+<pre>/dd/CMDS/rtf
+ command must be: RTF pathname [options..]
+command: for file{,file} [-rtfopt{,rtfopt}]
+command: lnk file{,file} [-l68opts]</pre>
 </div>
 <div class="shot" id="s-gcc">
 <h3>gcc</h3>
@@ -1919,6 +1964,14 @@ usage: p2c [options] file [modulename] [-h file.h] [-o file.c]</pre>
 Usage: /dd/CMDS/as0 [files]
 Usage: /dd/CMDS/as11 [files]
 Usage: /dd/CMDS/as5 [files]</pre>
+</div>
+<div class="shot" id="s-yacc">
+<h3>yacc</h3>
+<p>yacc reading a grammar and reporting what it built -- the states and the conflicts, which is how you know a grammar is ambiguous.</p>
+<pre>echo "%token NUM" &gt; /dd/tmp/g.y
+%token NUM
+%%
+expr : expr '+' NUM | NUM ;</pre>
 </div>
 <h2 class="cat" id="languages">Languages</h2>
 <div class="shot" id="s-adlcomp">
@@ -2914,6 +2967,23 @@ gnuplot&gt; set terminal postscript
 Terminal type set to 'postscript'
 gnuplot&gt; set output "/dd/tmp/plot.ps"
 gnuplot&gt; plot [-6:6] sin(x)/x</pre>
+</div>
+<div class="shot" id="s-graphlib">
+<h3>graphlib</h3>
+<p>The Atari `Graph' library set.  These do not run here and loading does not help: the library is entered and faults on its own `RTE', a supervisor-only instruction -- it was written to run in supervisor state.  Note the module is `graph' and the programs ask for `Graph', which real OS-9 would not match either.</p>
+<pre>/dd/CMDS/load /dd/CMDS/GAMES/graph
+
+Process   Pid: 3, g, edition 7
+    Exit code: E_PRCABT(228) Process Aborted
+  Directories: Current   - /dd
+               Execution - /dd/CMDS
+        Files: 00 fCons /term
+
+Process   Pid: 3, striche, edition 7
+    Exit code: E_PRCABT(228) Process Aborted
+  Directories: Current   - /dd
+               Execution - /dd/CMDS
+        Files: 00 fCons /term</pre>
 </div>
 <div class="shot" id="s-gulls">
 <h3>gulls</h3>
@@ -5314,6 +5384,14 @@ Test fuer BigSet mit 36 Elementen
 define Set A
 Set A :      {}</pre>
 </div>
+<div class="shot" id="s-biory">
+<h3>biory</h3>
+<p>biory is the RTF Fortran example: a biorhythm program that prompts in German, once os9lib is loaded.  creadoc, beside it, pulls the documentation comments out of Fortran source.</p>
+<pre>/dd/CMDS/load /dd/CMDS/os9lib
+  Ausgabe im Listingfile 'Biory.Lis'
+  Name Vorname (RETURN=Ende)  : Tester
+  Geburtsdatum (TTMMJJ)       :</pre>
+</div>
 <div class="shot" id="s-bootgen">
 <h3>bootgen</h3>
 <p>The boot-file tools: bootgen makes an OS9Boot, bcheck checks one and bsplt68 takes one apart.  There is no boot file here -- os9exec IS the kernel -- so these are for your own hardware.</p>
@@ -6938,6 +7016,24 @@ os9$</pre>
               |          |         | LATEST: allow concurrent  |
               |          |         |    high score setting     |
               `----------'         `---------------------------'</pre>
+</div>
+<h2 class="cat" id="system-kernel">System &amp; kernel</h2>
+<div class="shot" id="s-modules2">
+<h3>modules2</h3>
+<p>Two more modules that are not programs: `ptxm', Nick Holgate's Path Table eXtension Module, which `ptxminst' installs, and `wn.stb', the symbol table that ships beside the WN web server.</p>
+<pre>/dd/CMDS/modinfo /dd/CMDS/ptxm | /dd/CMDS/head -n 12
+-------------------------------- /dd/CMDS/ptxm  - - - - - - - - - - - - - - - --
+Module name           = Ptxm
+System revision       = 1
+Module size           = 2886
+Owner Id              = 0.0
+Offset to module name = 00000b3cH
+Access permission     = e-re-re-r
+Type/Language          = 0c01H  System                 68000 Object Code Module
+Attribute/Revision    = a000H   reentrant  execute in supervisor state
+Edition               = 3
+Comment string offset = 00000000H
+Symbol table offset   = 00000000H</pre>
 </div>
 <footer>Captured by <code>tools/screenshots.py</code> and <code>tools/playtest.py</code>, rendered by <code>tools/ansiscreen.py</code>. Re-make with <code>tools/screenshots.py --all</code> then <code>tools/gen_screens.py</code>.</footer>
 </div>

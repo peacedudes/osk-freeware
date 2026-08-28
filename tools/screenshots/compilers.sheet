@@ -2,34 +2,19 @@
 # something.
 
 shot    as09
-cap     as09 assembling 6809 source and listing it: address, object bytes
-cap     and source together.  A 6809 cross-assembler running on a 68000 --
-cap     as0, as1, as4, as5 and as11 are its cousins for the rest of the
-cap     6800 family, and not one of the six assembles 68k code.
-run     echo "        org   $1000" > /dd/tmp/t.a
-wait    3
-run     echo "count   equ   10" >> /dd/tmp/t.a
-wait    3
-run     echo "start   ldx   #msg" >> /dd/tmp/t.a
-wait    3
-run     echo "loop    lda   ,x+" >> /dd/tmp/t.a
-wait    3
-run     echo "        beq   done" >> /dd/tmp/t.a
-wait    3
-run     echo "        jsr   $A282" >> /dd/tmp/t.a
-wait    3
-run     echo "        bra   loop" >> /dd/tmp/t.a
-wait    3
-run     echo "done    rts" >> /dd/tmp/t.a
-wait    3
-run     echo "msg     fcc   /OS-9/" >> /dd/tmp/t.a
-wait    3
-run     echo "        fcb   0" >> /dd/tmp/t.a
-wait    3
-run     echo "        end   start" >> /dd/tmp/t.a
-wait    3
-run     /dd/CMDS/as09 -l /dd/tmp/t.a
+for     as09
+cap     as09 assembling 6809 source.  It says nothing and writes Motorola
+cap     S-records beside the source -- so the proof is the file: four
+cap     instructions at $1000, in the format a ROM burner eats.  A 6809
+cap     cross-assembler running on a 68000; as0, as1, as4, as5 and as11 are
+cap     its cousins for the rest of the 6800 family, and not one of the six
+cap     assembles 68k code.
+run     /dd/CMDS/cat /dd/tmp/t.a
+wait    6
+run     /dd/CMDS/as09 /dd/tmp/t.a
 wait    10
+run     /dd/CMDS/cat /dd/tmp/t.s19
+wait    8
 
 shot    bison
 cap     GNU bison 1.19 on the same grammar, with its statistics.
@@ -133,3 +118,21 @@ run     /dd/CMDS/yacc -v /dd/tmp/g.y
 wait    8
 run     /dd/CMDS/head -n 12 y.output
 wait    5
+
+
+shot    fortran
+for     rtf for lnk lnk.org biory creadoc os9lib
+cap     The RTF Fortran-77 system -- compiler, driver, linker and two
+cap     example programs -- all of which print NOTHING until their runtime
+cap     library is in the module directory.  `load /dd/CMDS/os9lib' is the
+cap     whole difference, and this screen is the before and the after.
+run     /dd/CMDS/rtf
+wait    6
+run     /dd/CMDS/load /dd/CMDS/os9lib
+wait    8
+run     /dd/CMDS/rtf
+wait    8
+run     /dd/CMDS/for
+wait    6
+run     /dd/CMDS/lnk
+wait    6

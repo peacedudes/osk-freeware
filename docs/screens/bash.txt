@@ -1,0 +1,5 @@
+echo $BASH_VERSION
+1.12.12
+3 42
+3
+42

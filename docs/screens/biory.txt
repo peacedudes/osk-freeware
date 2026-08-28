@@ -1,0 +1,4 @@
+/dd/CMDS/load /dd/CMDS/os9lib
+  Ausgabe im Listingfile 'Biory.Lis'
+  Name Vorname (RETURN=Ende)  : Tester
+  Geburtsdatum (TTMMJJ)       :

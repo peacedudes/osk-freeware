@@ -83,3 +83,18 @@ run     /dd/CMDS/logname
 wait    2
 run     /dd/CMDS/tty
 wait    3
+
+
+shot    bash
+for     bash expr
+cap     The shell this disk hands you, answering for itself: its version,
+cap     an arithmetic expansion, and `expr' beside it doing the same sum
+cap     the way a script written for OS-9's own shell would have to.
+run     echo $BASH_VERSION
+wait    6
+run     echo $((355/113)) $((7*6))
+wait    6
+run     /dd/CMDS/expr 355 / 113
+wait    6
+run     /dd/CMDS/expr 7 \* 6
+wait    8

@@ -626,3 +626,18 @@ run     ppmtorgb3 /dd/tmp/base.ppm
 wait    8
 run     /dd/CMDS/ls -l noname.red noname.grn noname.blu
 wait    8
+
+
+shot    graphlib
+for     g graph graphdemo graphsave apfel showpic sine striche wgen
+cap     The Atari `Graph' library set.  These do not run here and loading
+cap     does not help: the library is entered and faults on its own `RTE',
+cap     a supervisor-only instruction -- it was written to run in
+cap     supervisor state.  Note the module is `graph' and the programs ask
+cap     for `Graph', which real OS-9 would not match either.
+run     /dd/CMDS/load /dd/CMDS/GAMES/graph
+wait    8
+run     /dd/CMDS/GAMES/g
+wait    10
+run     /dd/CMDS/GAMES/striche
+wait    10

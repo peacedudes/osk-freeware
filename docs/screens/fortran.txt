@@ -1,0 +1,4 @@
+/dd/CMDS/rtf
+ command must be: RTF pathname [options..]
+command: for file{,file} [-rtfopt{,rtfopt}]
+command: lnk file{,file} [-l68opts]

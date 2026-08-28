@@ -1,0 +1,5 @@
+/dd/CMDS/edir
+   Event Directory at  0:17:22
+
+eset: can't link to testevent
+   Event Directory at  0:17:40

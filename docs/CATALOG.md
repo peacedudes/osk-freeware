@@ -529,7 +529,7 @@
 | `make` | &#9733; make - maintain and regenerate groups of files (verified: -? works)<br>`Syntax :	make {[-f <makefile>] [-dDinrst] [<target>] [<macro>=<value>]}` |
 | `makeinfo` | GNU makeinfo -- Texinfo to info<br>`Usage: makeinfo [options] texinfo-file...` |
 | `rtf` | RTF/68K Real-Time Fortran-77 compiler, v2.14 (CERN, 1987). Compiles .f to 68k ASSEMBLY; assembling and linking then need Microware's r68 and l68.  Manual: DOC/rtf/rtfman.txt |
-| `yacc` | &#9733; yacc parser generator<br>`Syntax   : yacc [-dltv] [-b <prefix>] filename` |
+| `yacc` | &#9733; yacc parser generator -- it HANGS on a two-rule grammar here: no output, no files written, and the run has to be killed.  `bison' reads the same grammar and reports its states and its conflicts<br>`Syntax   : yacc [-dltv] [-b <prefix>] filename` |
 
 **Assemblers & linkers**
 

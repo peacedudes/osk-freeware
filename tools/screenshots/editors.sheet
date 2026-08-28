@@ -42,3 +42,13 @@ run     /dd/CMDS/head -n 8 /dd/SYS/holidays > /dd/tmp/hol.txt
 wait    6
 run     /dd/CMDS/sed "s/Day/DAY/g" /dd/tmp/hol.txt
 wait    8
+
+
+shot    vi
+for     vi view
+cap     The EFFO vi -- its source in SRC/effo_vi is the Berkeley ex source
+cap     -- opened on a file from the disk, with the tildes down the left
+cap     that every vi user knows.
+run     /dd/CMDS/vi /dd/DOC/README-CIO
+wait    12
+quit    \033:q!\r
