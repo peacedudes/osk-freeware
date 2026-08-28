@@ -452,13 +452,15 @@ wait    6
 quit    \030\003
 
 shot    vc
-cap     vc compares two files side by side and marks where they differ.
-run     head -n 14 /dd/DOC/INDEX > /dd/tmp/x1
-wait    2
-run     sed -e "s/a/A/g" /dd/tmp/x1 > /dd/tmp/x2
-wait    3
-run     vc /dd/tmp/x1 /dd/tmp/x2
-wait    6
+for     vc
+cap     `vc' is not a visual compare at all: it is a SPREADSHEET -- "Welcome
+cap     to the Spreadsheet Calculator, type ? for help" -- with rows and
+cap     columns and a formula line.  DOC/INDEX called it "visual compare of
+cap     two files" until this screen was taken.  It also does not answer
+cap     Ctrl-E, so it is quit properly here with `q'.
+run     vc
+wait    8
+quit    q\r
 
 shot    version
 cap     version and mexist ask about a module rather than a file.
@@ -475,14 +477,21 @@ run     vlen /dd/CMDS/today
 wait    4
 
 shot    yagi
-cap     yagi designs a Yagi antenna -- element lengths and spacings for a
-cap     frequency you give it.
+cap     yagi designs a Yagi antenna to DL6WU's method: give it a frequency,
+cap     an element count, a boom diameter and a tube size, and it works out
+cap     the lengths and spacings.  144 MHz, nine elements, 20 mm boom.
 run     yagi
 wait    4
 send    144\r
 wait    3
-send    5\r
+send    9\r
+wait    4
+send    20\r
+wait    4
+send    N\r
 wait    5
+send    4\r
+wait    10
 
 
 shot    modules
@@ -511,15 +520,17 @@ wait    12
 shot    load
 cap     load puts a MODULE in the module directory so that a program which
 cap     LINKS it can find it.  `for', the RTF Fortran driver, prints nothing
-cap     at all until os9lib is loaded -- and then it says what it takes.
+cap     at all until os9lib is loaded -- and then it says what it takes.  It
+cap     is called by its full path because `for' is a bash keyword and the
+cap     shell would answer first.
 cap     That silence is the whole symptom, and this is the cure: a
 cap     clean-room load, contributed by the os9exec project and built here,
 cap     with its source in SRC/load.
-run     for
+run     /dd/CMDS/for
 wait    6
 run     load /dd/CMDS/os9lib
 wait    8
-run     for
+run     /dd/CMDS/for
 wait    8
 run     load /dd/CMDS/nosuchthing
 wait    8

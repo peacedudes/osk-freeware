@@ -1,4 +1,13 @@
--> let r0c0 = cho S9READYclearversion /dd/CMDS/todaymexist bashecho S9READYclea
-Unintelligible word: let r0c0 = cho<= S9READYclearversion /dd/CMDS/todaymexist 2
-
-              <
+$ modinfo /dd/CMDS/MM1/keydrv.mm1 | head -n 12
+--------------------------- /dd/CMDS/MM1/keydrv.mm1  - - - - - - - - - - - - - -
+Module name           = keydrv
+System revision       = 1
+Module size           = 1474
+Owner Id              = 0.0
+Offset to module name = 000005b6H
+Access permission     = e-re-re-r
+Type/Language          = 0c01H  System                 68000 Object Code Module
+Attribute/Revision    = a000H   reentrant  execute in supervisor state
+Edition               = 46
+Comment string offset = 00000000H
+Symbol table offset   = 00000000H

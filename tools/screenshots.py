@@ -207,18 +207,25 @@ class Session:
         cannot be inferred: either the marker comes back or the session is
         no longer a shell and has to be replaced.
         """
+        # THE MARKER MUST BE SPLIT WHEN TYPED AND WHOLE WHEN PRINTED.
+        # Counting occurrences did not work: `vc', the spreadsheet, survived
+        # Ctrl-E and ECHOED what was typed at it -- twice, in its own error
+        # line -- so the check passed and the next five stanzas were
+        # photographed inside a spreadsheet, complete with `Unintelligible
+        # word: let r0c0 = cho'. Only a shell that RUNS the command can join
+        # the halves.
+        typed = 'echo %s"%s"\r' % (self.READY[:3], self.READY[3:])
         try:
             self.write("\r")
             time.sleep(0.3)
             at = self.mark()
-            self.write("echo %s\r" % self.READY)
+            self.write(typed)
         except OSError:
             return False
         deadline = time.time() + timeout
         while time.time() < deadline:
             time.sleep(0.4)
-            # Twice: once as the shell echoes what was typed, once as output.
-            if self.slice(at, self.mark()).count(self.READY.encode()) >= 2:
+            if self.READY.encode() in self.slice(at, self.mark()):
                 return True
         return False
 

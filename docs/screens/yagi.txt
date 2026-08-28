@@ -1,4 +1,24 @@
--> let r0c0 = cho S9READYclearversion /dd/CMDS/todaymexist bashecho S9READYclea
-Unintelligible word: let r0c0 = cho<= S9READYclearversion /dd/CMDS/todaymexist 5
+   Horizontal beam width: 37 degrees
+   Vertical beam width: 45 degrees
+   Horizontal stacking distance: 3.257m
+   Vertical stacking distance: 2.696m
+   Element tubing diameter: 10.4mm
+   Elements are not insulated from boom.
 
-              <
+Element      Length (mm)     Distance from reflector (mm)
+=========================================================
+reflector      1020.1                  0.0
+driven          967.0                499.7
+director #1     918.7                655.8
+director #2     908.3               1030.5
+director #3     898.3               1478.1
+director #4     888.9               1998.6
+director #5     879.6               2581.5
+director #6     872.3               3206.1
+director #7     865.4               3861.9
+
+Notes:
+
+   1. Dimensions are from center to center in all cases.
+   2. Accuries are +/- 1mm above 400MHz, +/- 1.5mm below.
+   3. Element mounting must be +/- .5mm of e
