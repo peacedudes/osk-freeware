@@ -160,7 +160,7 @@ reads what compress wrote. One more finding:
     into `/dd`, so it is not one bad directory. `unzip` therefore has nothing
     fresh to read and is untested. Documented in `DOC/INDEX`; kept failing.
 
-**Tally for the day: three suites, 62 cases, 59 passing, and every one of the
+**Tally for the day: three suites, 63 cases, 60 passing, and every one of the
 three failures is a real defect in a shipped program that no previous check on
 this disk could see.** Nine more programs were repaired outright.
 

@@ -73,7 +73,7 @@ is built on.
 
 **Three broken programs found, nine repaired.** A new harness
 (`tools/datatest.py`) checks the DATA a program wrote rather than whether it
-printed anything. 62 cases, 59 pass.
+printed anything. 63 cases, 60 pass.
 
   - repaired: nine netpbm programs that died of a 3072-byte stack
   - broken, documented, left failing: `zip` (cannot write its archive),

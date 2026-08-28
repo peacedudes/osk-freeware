@@ -34,9 +34,16 @@ Do not stop between items to report; commit and start the next one.
     tools/playtest.py --all          # Tier B: pty, screen read. SLOW, hours
     tools/check_disk.py disk         # eleven invariants; read the OUTPUT
 
-Current: **62 data cases, 59 passing.** All three failures are real defects in
-shipped programs, deliberately kept failing (`zip`, `todos`, `pnmtosir`). If
-one of those starts passing, something was fixed -- find out what.
+Current: **63 data cases, 60 passing** (`tools/datatest.py --all`, verified
+at end of session). The three failures are EXPECTED and are real defects in
+shipped programs, kept failing on purpose:
+
+    archives  zip-cannot-write-its-archive
+    encoding  todos-must-change-the-file
+    netpbm    sir-round-trip-is-lossy
+
+If one of those starts passing, something was fixed -- find out what before
+celebrating. If a FOURTH appears, that is a regression.
 
 ## Using `load` — Microware's, for now
 
@@ -190,7 +197,7 @@ interesting and it is not blocking anything.
 **STEP 1 OF THE PLAN IS DONE AND STEP 2 IS UNDER WAY, 2026-08-27.**
 `tools/datatest.py` proves a program by the DATA it wrote, one emulator start
 per family. Three suites exist -- `netpbm` (43), `encoding` (10),
-`archives` (10) -- **62 cases, 59 passing.**
+`archives` (10) -- **63 cases, 60 passing.**
 
 What it repaired: **nine netpbm programs died of a 3072-byte stack** and now
 ask for 64k, via the new `tools/set_stack.py` (patches `M$Stack` in place and
