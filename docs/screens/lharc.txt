@@ -1,0 +1,8 @@
+/dd/CMDS/lharc a /dd/tmp/l.lzh /dd/SYS/motd
+
+/dd/SYS/motd - Frozen(100%)o
+   SIZE  RATIO     STAMP    NAME
+------- ------ ------------ --------------------
+     40 100.0% Aug 27 15:29 /dd/SYS/motd
+------- ------ ------------ --------------------
+     40 100.0% Aug 27 20:44    1 file

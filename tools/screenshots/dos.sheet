@@ -1,0 +1,78 @@
+# mtools 3.6: MS-DOS media, read and written from OS-9.
+
+shot    msattrib
+for     msattrib msdel msrd msdeltree
+cap     DOS attributes set and read back, then the file and the directory
+cap     removed again.
+run     /dd/CMDS/msattrib +r a:/DOCS/WELCOME.TXT
+wait    8
+run     /dd/CMDS/msdir a:/DOCS
+wait    8
+run     /dd/CMDS/msdel a:HOLIDAYS.TXT
+wait    8
+run     /dd/CMDS/msdir a:
+wait    8
+
+shot    mscopy
+for     mscopy msdir mstype
+cap     Writing files onto the DOS disk, listing them with DOS's own 8.3
+cap     names, and reading one back.
+run     /dd/CMDS/mscopy /dd/SYS/motd a:MOTD.TXT
+wait    10
+run     /dd/CMDS/mscopy /dd/SYS/holidays a:HOLIDAYS.TXT
+wait    10
+run     /dd/CMDS/msdir a:
+wait    8
+run     /dd/CMDS/mstype a:MOTD.TXT
+wait    8
+
+shot    msdir
+cap     Writing a file onto the DOS disk and reading the directory back --
+cap     8.3 names, DOS attributes, and free space in DOS's own words.
+run     /dd/CMDS/mscopy /dd/SYS/motd a:MOTD.TXT
+wait    8
+run     /dd/CMDS/msdir a:
+wait    8
+
+shot    msformat
+cap     Formatting an MS-DOS floppy image and then asking what it is.  The
+cap     drives a: and b: are configured in SYS/mtools.conf.
+run     /dd/CMDS/msformat a:
+wait    10
+run     /dd/CMDS/msinfo a:
+wait    8
+
+shot    msmd
+for     msmd mscd msmove msren
+cap     Making a directory on the DOS disk, moving a file into it and
+cap     renaming it -- md, move and ren, spelled the DOS way.
+run     /dd/CMDS/msmd a:/DOCS
+wait    8
+run     /dd/CMDS/msmove a:MOTD.TXT a:/DOCS
+wait    8
+run     /dd/CMDS/msren a:/DOCS/MOTD.TXT WELCOME.TXT
+wait    8
+run     /dd/CMDS/msdir a:/DOCS
+wait    8
+
+shot    msread
+for     msread mswrite msbadblocks mstoolstest
+cap     msread and mswrite are the raw pair -- a whole file in and out
+cap     without the DOS filename rules getting involved.
+run     /dd/CMDS/mswrite /dd/SYS/motd a:RAW.TXT
+wait    10
+run     /dd/CMDS/msread a:RAW.TXT /dd/tmp/raw.out
+wait    10
+run     /dd/CMDS/chksum /dd/SYS/motd /dd/tmp/raw.out
+wait    8
+
+shot    mstype
+cap     mstype reading the file back off the DOS disk.
+run     /dd/CMDS/mstype a:MOTD.TXT
+wait    8
+
+shot    mtools
+cap     The mtools front end, listing the sub-commands that ship with it --
+cap     eighteen of them, each a separate program on this disk.
+run     /dd/CMDS/mtools
+wait    5

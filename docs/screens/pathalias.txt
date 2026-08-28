@@ -1,0 +1,3 @@
+/dd/CMDS/UUCP/pathalias -?
+usage: /dd/CMDS/UUCP/pathalias [-vciDfI] [-l localname] [-d deadlink] [-t trace]
+/dd/CMDS/UUCP/makedb [-o dbmname] [-a] [file ...]

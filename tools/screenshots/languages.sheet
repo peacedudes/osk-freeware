@@ -1,0 +1,59 @@
+# Interpreters, each one photographed AT WORK rather than at
+# its banner.
+
+shot    adlrun
+cap     ADL, a third: Adventure Definition Language, with the AARD world
+cap     compiled and ready in /dd/ADL/AARD.
+run     /dd/CMDS/ADL/adlrun /dd/ADL/AARD/aard
+wait    8
+send    look\r
+wait    5
+
+shot    forth
+cap     TILE Forth 2.48.  A word is defined and then run: the squares of 1
+cap     to 10, printed by the definition itself.
+run     /dd/CMDS/forth
+wait    3
+send    2 3 + . cr\r
+wait    2
+send    : squares 11 1 do i dup * . loop cr ;\r
+wait    2
+send    squares\r
+wait    3
+send    32 0 do i emit loop cr\r
+wait    3
+quit    bye\r
+
+shot    luac
+cap     The Lua 3.0 bytecode compiler, listing what it compiled.  The Lua
+cap     interpreter itself wants a matching csl and stops; luac does not.
+run     echo 'function sq(x) return x*x end print(sq(7))' > /dd/tmp/sq.lua
+wait    1
+run     /dd/CMDS/luac -l -o /dd/tmp/sq.lc /dd/tmp/sq.lua
+wait    3
+
+shot    sbprolog
+for     wam.sbprolog
+cap     SB-Prolog 2.2 at its prompt, answering a query.  SIMPATH has to
+cap     point at the module library or it exits silently -- which is what
+cap     DOC/sbprolog warns about, and it is right.
+run     export SIMPATH=/dd/SBPROLOG/MODLIB
+wait    2
+run     /dd/CMDS/wam.sbprolog /dd/SBPROLOG/MODLIB/\$readloop
+wait    10
+send    X is 6*7, write(X), nl.\r
+wait    6
+
+shot    xlisp
+cap     XLISP 2.1, David Betz's Lisp.  Defining factorial recursively and
+cap     mapping it over a list -- 32-bit integers, so 20! overflows and it
+cap     says so by wrapping.
+run     /dd/CMDS/xlisp
+wait    2
+send    (defun fact (n) (if (< n 2) 1 (* n (fact (1- n)))))\r
+wait    1
+send    (mapcar 'fact '(1 2 3 4 5 6 7 8 9 10))\r
+wait    2
+send    (dolist (x '(alpha beta gamma)) (print (list x (length (symbol-name x)))))\r
+wait    3
+quit    (exit)\r

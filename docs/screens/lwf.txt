@@ -1,8 +1,7 @@
-/dd/CMDS/head -n 10 /dd/SYS/motd | /dd/CMDS/lwf | /dd/CMDS/head -n 18
+/dd/CMDS/lwf /dd/SYS/motd | /dd/CMDS/head -n 18
 %!PS-Adobe-2.0
-/dd/CMDS/head: /dd/SYS/motd
 %%Creator: lwf on evtech
-%%CreationDate: Thu Aug 27 20:18:45 2026
+%%CreationDate: Thu Aug 27 20:46:03 2026
 %%For: su
 %%DocumentFonts: Courier
 %%Pages: (atend)

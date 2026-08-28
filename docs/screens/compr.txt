@@ -1,0 +1,2 @@
+/dd/CMDS/cp /dd/DOC/INDEX /dd/tmp/idx3
+-rw-------   1 0        0           40400 Aug 27 20:47 /dd/tmp/idx3.Z

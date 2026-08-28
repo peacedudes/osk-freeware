@@ -1,0 +1,7 @@
+/dd/CMDS/REBUILT/gzip68k_nocsl -V
+gzip68k_nocsl 1.2.4 (18 Aug 93)
+Compilation options:
+NO_DIR NO_UTIME
+gzip020_nocsl 1.2.4 (18 Aug 93)
+Compilation options:
+NO_DIR NO_UTIME

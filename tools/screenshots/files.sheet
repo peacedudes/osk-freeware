@@ -1,13 +1,50 @@
 # Listing, finding and measuring what is on the disk.
-shot    ls
-cap     GNU ls, our own fixed build -- a real stat(), columns and -al.
-run     /dd/CMDS/ls -al /dd/SYS | /dd/CMDS/head -n 18
-wait    4
 
-shot    l
-cap     l, a brief listing -- names in columns and nothing else.
-run     /dd/CMDS/l /dd/CMDS/GAMES
-wait    4
+shot    Ascii2Libr
+cap     The pair that get data in and out: Ascii2Libr rebuilds a catalogue
+cap     from plain text, Libr2Ascii dumps one back to text.
+run     /dd/CMDS/Ascii2Libr
+wait    5
+run     /dd/CMDS/Libr2Ascii
+wait    5
+
+shot    Librarian
+cap     Home Librarian searching a catalogue -- the program the other five
+cap     exist to feed.
+run     /dd/CMDS/Librarian
+wait    8
+
+shot    PrintCards
+cap     PrintCards and PrintLabels, the output half of the same suite.
+run     /dd/CMDS/PrintCards
+wait    5
+run     /dd/CMDS/PrintLabels
+wait    5
+
+shot    dfiles
+cap     dfiles hunts for duplicate files and writes the cmp commands that
+cap     would prove them identical.
+run     /dd/CMDS/dfiles /dd/SYS
+wait    10
+kill
+
+shot    dm
+cap     dm, the disk and directory monitor -- a full-screen file browser
+cap     with its own help.
+run     /dd/CMDS/dm /dd/SYS
+wait    5
+
+shot    du
+cap     Disk usage by directory.
+run     /dd/CMDS/du /dd/SYS
+wait    5
+kill
+
+shot    du-tree
+for     du
+cap     du walking a directory tree and adding it up.
+run     /dd/CMDS/du /dd/CMDS/GAMES | /dd/CMDS/head -n 21
+wait    10
 
 shot    edir
 cap     edir, the extended directory listing: attributes, owner, size and
@@ -26,19 +63,31 @@ cap     GNU find 1.1.5, walking this disk.
 run     /dd/CMDS/find /dd/SYS -name "cal*" -print
 wait    5
 
-shot    du
-cap     Disk usage by directory.
-run     /dd/CMDS/du /dd/SYS
-wait    5
-kill
-
 shot    fstat
 cap     fstat reports a file's status and attributes as RBF holds them.
 run     /dd/CMDS/fstat /dd/CMDS/tar
 wait    3
 
-shot    dm
-cap     dm, the disk and directory monitor -- a full-screen file browser
-cap     with its own help.
-run     /dd/CMDS/dm /dd/SYS
-wait    5
+shot    l
+cap     l, a brief listing -- names in columns and nothing else.
+run     /dd/CMDS/l /dd/CMDS/GAMES
+wait    4
+
+shot    ls
+cap     GNU ls, our own fixed build -- a real stat(), columns and -al.
+run     /dd/CMDS/ls -al /dd/SYS | /dd/CMDS/head -n 18
+wait    4
+
+shot    ls-long
+for     ls
+cap     GNU ls with -al on the collection's own root: the OS-9 attributes
+cap     mapped onto the mode bits ls knows how to print.
+run     /dd/CMDS/ls -al /dd | /dd/CMDS/head -n 21
+wait    8
+
+shot    space
+cap     space measures what a directory tree really costs on the disk,
+cap     directory by directory.
+run     /dd/CMDS/space /dd/SYS
+wait    6
+kill

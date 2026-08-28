@@ -1,50 +1,35 @@
-# Compilers and build tools, each one actually building something.
+# Compilers and build tools, each one actually building
+# something.
+
 shot    as09
 cap     as09 assembling 6809 source and listing it: address, object bytes
-cap     and source, side by side.  A 6809 cross-assembler on a 68000.
-run     echo "        org  \$1000" > /dd/tmp/t.a
-wait    2
-run     echo "start   lda  #\$41" >> /dd/tmp/t.a
-wait    2
-run     echo "        jsr  \$A282" >> /dd/tmp/t.a
-wait    2
-run     echo "        rts" >> /dd/tmp/t.a
-wait    2
-run     echo "        end  start" >> /dd/tmp/t.a
-wait    2
+cap     and source together.  A 6809 cross-assembler running on a 68000 --
+cap     as0, as1, as4, as5 and as11 are its cousins for the rest of the
+cap     6800 family, and not one of the six assembles 68k code.
+run     echo "        org   $1000" > /dd/tmp/t.a
+wait    3
+run     echo "count   equ   10" >> /dd/tmp/t.a
+wait    3
+run     echo "start   ldx   #msg" >> /dd/tmp/t.a
+wait    3
+run     echo "loop    lda   ,x+" >> /dd/tmp/t.a
+wait    3
+run     echo "        beq   done" >> /dd/tmp/t.a
+wait    3
+run     echo "        jsr   $A282" >> /dd/tmp/t.a
+wait    3
+run     echo "        bra   loop" >> /dd/tmp/t.a
+wait    3
+run     echo "done    rts" >> /dd/tmp/t.a
+wait    3
+run     echo "msg     fcc   /OS-9/" >> /dd/tmp/t.a
+wait    3
+run     echo "        fcb   0" >> /dd/tmp/t.a
+wait    3
+run     echo "        end   start" >> /dd/tmp/t.a
+wait    3
 run     /dd/CMDS/as09 -l /dd/tmp/t.a
-wait    8
-
-shot    m4
-cap     m4, the macro processor, defining a macro and expanding it.
-run     echo "define(GREET, Hello \$1 from OS-9)GREET(reader)" > /dd/tmp/m.m4
-wait    3
-run     /dd/CMDS/m4 /dd/tmp/m.m4
-wait    5
-
-shot    make
-cap     make maintaining a file from a rule -- the rule fires, and running
-cap     it again says there is nothing to do.
-run     echo "hello: /dd/SYS/motd" > /dd/tmp/Makefile
-wait    2
-run     printf "\t/dd/CMDS/cat /dd/SYS/motd > /dd/tmp/hello\n" >> /dd/tmp/Makefile
-wait    3
-run     /dd/CMDS/make -f /dd/tmp/Makefile hello
-wait    6
-run     /dd/CMDS/make -f /dd/tmp/Makefile hello
-wait    5
-
-shot    yacc
-cap     yacc reading a grammar and reporting what it built -- the states
-cap     and the conflicts, which is how you know a grammar is ambiguous.
-run     echo "%token NUM" > /dd/tmp/g.y
-wait    2
-run     printf "%%%%\nexpr : expr '+' NUM | NUM ;\n" >> /dd/tmp/g.y
-wait    3
-run     /dd/CMDS/yacc -v /dd/tmp/g.y
-wait    8
-run     /dd/CMDS/head -n 12 y.output
-wait    5
+wait    10
 
 shot    bison
 cap     GNU bison 1.19 on the same grammar, with its statistics.
@@ -60,6 +45,32 @@ wait    8
 run     /dd/CMDS/head -n 10 lex.yy.c
 wait    5
 
+shot    gmake
+cap     GNU make, and dmake beside it, both saying what they are.
+run     /dd/CMDS/gmake -v
+wait    5
+run     /dd/CMDS/dmake -V
+wait    5
+
+shot    m4
+cap     m4, the macro processor, expanding a macro from a file.
+run     echo "define(GREET,Hello \$1 from OS-9)" > /dd/tmp/m.m4
+wait    3
+run     echo "GREET(reader)" >> /dd/tmp/m.m4
+wait    3
+run     /dd/CMDS/cat /dd/tmp/m.m4
+wait    3
+run     /dd/CMDS/m4 < /dd/tmp/m.m4
+wait    8
+
+shot    make
+cap     make maintaining a target from a rule, and then saying there is
+cap     nothing left to do.
+run     /dd/CMDS/cat /dd/tmp/Makefile
+wait    3
+run     /dd/CMDS/make -f /dd/tmp/Makefile
+wait    8
+
 shot    p2c
 cap     p2c translating Pascal to C -- the head of the C it wrote for a
 cap     program on this disk.
@@ -67,9 +78,14 @@ run     /dd/CMDS/p2c /dd/SRC/i_am_i/i_am_i.pas
 wait    10
 kill
 
-shot    gmake
-cap     GNU make, and dmake beside it, both saying what they are.
-run     /dd/CMDS/gmake -v
-wait    5
-run     /dd/CMDS/dmake -V
+shot    yacc
+cap     yacc reading a grammar and reporting what it built -- the states
+cap     and the conflicts, which is how you know a grammar is ambiguous.
+run     echo "%token NUM" > /dd/tmp/g.y
+wait    2
+run     printf "%%%%\nexpr : expr '+' NUM | NUM ;\n" >> /dd/tmp/g.y
+wait    3
+run     /dd/CMDS/yacc -v /dd/tmp/g.y
+wait    8
+run     /dd/CMDS/head -n 12 y.output
 wait    5

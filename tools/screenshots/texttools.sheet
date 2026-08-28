@@ -1,0 +1,267 @@
+# The filters, each one on real text off this disk.
+
+shot    ascii
+cap     The ASCII table, four columns, control names and all.
+run     /dd/CMDS/ascii | /dd/CMDS/head -n 20
+wait    5
+
+shot    bm
+cap     bm, a Boyer-Moore grep, and fgrep beside it -- both older and
+cap     faster than the GNU one, and both still here.
+run     /dd/CMDS/bm cribbage /dd/DOC/INDEX
+wait    4
+run     /dd/CMDS/fgrep cribbage /dd/DOC/INDEX
+wait    4
+
+shot    casefix
+cap     casefix normalises letter case; upperdir does the same to a whole
+cap     directory's names.
+run     echo "tHE qUICK bROWN fOX" > /dd/tmp/c.txt
+wait    3
+run     /dd/CMDS/casefix /dd/tmp/c.txt
+wait    5
+
+shot    cdiff
+cap     cdiff, a context diff, on two versions of the same file.
+run     /dd/CMDS/head -n 10 /dd/SYS/holidays > /dd/tmp/h1
+wait    3
+run     /dd/CMDS/sed -e "s/Day/DAY/" /dd/tmp/h1 > /dd/tmp/h2
+wait    4
+run     /dd/CMDS/cdiff /dd/tmp/h1 /dd/tmp/h2
+wait    6
+
+shot    charcnt
+cap     charcnt counts characters; tcmp compares two text files and says
+cap     where they first differ.
+run     /dd/CMDS/charcnt < /dd/SYS/motd
+wait    5
+run     /dd/CMDS/tcmp /dd/SYS/motd /dd/SYS/holidays
+wait    6
+
+shot    cookie
+cap     cookie, the fortune-cookie program, reading the collection's own
+cap     sayings file.
+run     /dd/CMDS/cookie
+wait    2
+run     /dd/CMDS/cookie
+wait    3
+
+shot    cursive
+cap     cursive writes a joined-up banner sideways down the screen.
+run     echo Freeware | /dd/CMDS/cursive
+wait    6
+kill
+
+shot    cut
+cap     cut taking fields out of the password file, and paste putting two
+cap     streams back together.
+run     /dd/CMDS/cut -d, -f1,3 /dd/SYS/password
+wait    5
+
+shot    detab
+cap     detab turns tabs into spaces; unexpand puts leading spaces back as
+cap     tabs.  Shown here with dump, so the bytes are visible.
+run     printf "a\tb\tc\n" > /dd/tmp/tabs.txt
+wait    3
+run     /dd/CMDS/dump /dd/tmp/tabs.txt
+wait    4
+run     /dd/CMDS/detab /dd/tmp/tabs.txt | /dd/CMDS/dump
+wait    6
+
+shot    diff
+cap     GNU diff 1.1 on two versions of the same file -- the disk had no
+cap     diff at all before this one was added.
+run     /dd/CMDS/head -n 12 /dd/SYS/motd > /dd/tmp/a.txt
+wait    2
+run     /dd/CMDS/sed -e "s/OS-9/OS-Nine/" /dd/tmp/a.txt > /dd/tmp/b.txt
+wait    3
+run     /dd/CMDS/diff -c /dd/tmp/a.txt /dd/tmp/b.txt
+wait    5
+
+shot    dump
+cap     dump, the hex dump: an OS-9 module header, byte by byte.  The first
+cap     four bytes are the sync $4AFC and the module's size.
+run     /dd/CMDS/dump /dd/CMDS/today | /dd/CMDS/head -n 16
+wait    5
+
+shot    fcomp
+cap     fcomp compares two text files line by line.
+run     /dd/CMDS/fcomp /dd/tmp/h1 /dd/tmp/h2
+wait    6
+
+shot    file
+cap     file identifying what things are, out of SYS/magic: a module, a
+cap     text file, a GIF and an archive.
+run     /dd/CMDS/file /dd/CMDS/today /dd/DOC/INDEX /dd/DEMO/gulls.gif /dd/tmp/keep.tar
+wait    6
+
+shot    fmt
+cap     fmt folding a long text to the terminal width.
+run     /dd/CMDS/head -n 30 /dd/DOC/README-KEEP | /dd/CMDS/fmt
+wait    6
+
+shot    gawk
+cap     GNU awk 2.11 over the disk's own index: count the programs by the
+cap     letter they start with, then sort by that count.
+run     /dd/CMDS/gawk "{print substr(\$1,1,1)}" /dd/DOC/INDEX | /dd/CMDS/sort | /dd/CMDS/uniq -c | /dd/CMDS/sort -nr | /dd/CMDS/head -n 12
+wait    12
+
+shot    gothic
+cap     gothic sets a line in blackletter.  It asks where to write and
+cap     whether to halve the size before it draws.
+run     /dd/CMDS/gothic
+wait    3
+send    \r
+wait    2
+send    \r
+wait    2
+send    OS-9\r
+wait    6
+
+shot    grep
+cap     GNU grep 2.0 searching the disk's own index, with the count beside
+cap     the hits.
+run     /dd/CMDS/grep -n "chess" /dd/DOC/INDEX | /dd/CMDS/head -n 10
+wait    6
+run     /dd/CMDS/grep -c "" /dd/DOC/INDEX
+wait    4
+
+shot    ispell
+cap     ispell, the interactive spelling checker, offering corrections for
+cap     a line of deliberately bad spelling.
+run     echo The quik brown foxx jmups over the lasy dog > /dd/tmp/sp.txt
+wait    2
+run     /dd/CMDS/ispell /dd/tmp/sp.txt
+wait    6
+quit    \033
+
+shot    jargon
+cap     The Jargon File browser, looking up a word in its own database.
+run     /dd/CMDS/jargon foo
+wait    8
+
+shot    lout
+cap     Basser Lout 2.05, a document formatter in the TeX tradition, saying
+cap     what it is.
+run     /dd/CMDS/lout -V
+wait    6
+
+shot    nroff
+cap     nroff setting a page of the disk's own documentation.  It wants a
+cap     FILE: it will not read standard input.
+run     export TMACDIR=/dd/LIB
+wait    2
+run     /dd/CMDS/nroff /dd/DOC/README-CIO | /dd/CMDS/head -n 21
+wait    10
+
+shot    proff
+cap     proff, the portable roff, on one of its own macro-using documents.
+run     /dd/CMDS/proff /dd/SYS/motd
+wait    8
+
+shot    qt
+cap     qt tells the time the way a person would say it.
+run     /dd/CMDS/qt
+wait    3
+
+shot    roff
+cap     roff, the oldest of the three.
+run     /dd/CMDS/head -n 24 /dd/DOC/README-KEEP | /dd/CMDS/roff
+wait    8
+
+shot    rot
+cap     rot turns a file on its side -- the first line becomes the first
+cap     column.  It is NOT a rot-13 cipher, whatever the name suggests;
+cap     DOC/INDEX said so until this screen was taken.
+run     /dd/CMDS/head -n 6 /dd/SYS/holidays > /dd/tmp/h.txt
+wait    3
+run     /dd/CMDS/cat /dd/tmp/h.txt
+wait    3
+run     /dd/CMDS/rot /dd/tmp/h.txt
+wait    5
+
+shot    sepwords
+cap     sepwords splits text to one word a line, splitalf splits a file
+cap     alphabetically -- the two halves of preparing a word list.
+run     /dd/CMDS/head -n 4 /dd/SYS/motd | /dd/CMDS/sepwords
+wait    6
+
+shot    shuffle
+cap     shuffle puts the lines of a file in a random order; nsort sorts
+cap     numerically where an ordinary sort would not.
+run     /dd/CMDS/head -n 8 /dd/SYS/holidays | /dd/CMDS/shuffle
+wait    6
+
+shot    sort
+cap     sort and uniq counting the commonest words in the disk's own
+cap     documentation -- a pipeline of five programs, all of them here.
+run     /dd/CMDS/sepwords < /dd/DOC/README-CIO | /dd/CMDS/sort | /dd/CMDS/uniq -c | /dd/CMDS/sort -nr | /dd/CMDS/head -n 12
+wait    12
+
+shot    soundex
+cap     soundex reduces each word to its phonetic key -- Robert and Rupert
+cap     come out the same, which is the whole idea.  It wants one word to
+cap     a line, so sepwords feeds it.
+run     echo Robert Rupert Rubin Ashcraft Ashcroft | /dd/CMDS/sepwords | /dd/CMDS/soundex
+wait    5
+
+shot    speech
+cap     speech turns English spelling into phonemes -- the front half of a
+cap     speech synthesiser, with the sound left to the hardware.
+run     /dd/CMDS/speech
+wait    3
+send    OS-9 is a real time operating system\r
+wait    5
+
+shot    spiff
+cap     spiff is a tolerant diff: it ignores the formatting differences an
+cap     ordinary diff would report.
+run     /dd/CMDS/head -n 8 /dd/SYS/motd > /dd/tmp/s1
+wait    2
+run     /dd/CMDS/detab /dd/tmp/s1 > /dd/tmp/s2
+wait    3
+run     /dd/CMDS/spiff /dd/tmp/s1 /dd/tmp/s2
+wait    5
+
+shot    strfile
+cap     strfile builds the index that fortune reads, and unstr dumps an
+cap     index back to text -- the pair behind every fortune on this disk.
+run     /dd/CMDS/unstr /dd/GAMES/FORTUNE/fortunes.dat | /dd/CMDS/head -n 12
+wait    8
+
+shot    strings
+cap     strings pulls the printable text out of a binary, each hit reported
+cap     with its offset.  Run here on an OS-9 module.
+run     /dd/CMDS/strings /dd/CMDS/today | /dd/CMDS/head -n 16
+wait    5
+
+shot    subber
+cap     subber substitutes text in a stream, in the old ,old,new form.
+run     /dd/CMDS/cat /dd/SYS/motd | /dd/CMDS/subber ,os9exec,OS-9,
+wait    6
+
+shot    tac
+cap     tac prints a file backwards, last line first.
+run     /dd/CMDS/head -n 8 /dd/SYS/holidays | /dd/CMDS/tac
+wait    5
+
+shot    tformat
+cap     tformat, the SNOBOL4 text formatter.
+run     /dd/CMDS/head -n 24 /dd/DOC/README-KEEP | /dd/CMDS/GAMES/tformat
+wait    8
+
+shot    unip
+cap     unip numbers the unique lines of a file, uniq drops the repeats.
+run     /dd/CMDS/sepwords < /dd/DOC/README-CIO | /dd/CMDS/sort | /dd/CMDS/unip | /dd/CMDS/head -n 18
+wait    10
+
+shot    valspeak
+cap     valspeak, a filter with an attitude, given a file rather than a
+cap     pipe.
+run     /dd/CMDS/GAMES/valspeak /dd/SYS/motd
+wait    5
+
+shot    wc
+cap     wc over the collection's own documents.
+run     /dd/CMDS/wc /dd/DOC/INDEX /dd/DOC/ORIGINS /dd/DOC/DEPENDS /dd/SOURCES.txt
+wait    6

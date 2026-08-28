@@ -1,0 +1,3 @@
+pbmtoicon /dd/tmp/base.pbm > /dd/tmp/t.icon
+stdin:  PBM raw, 48 by 24
+stdin:  PBM raw, 576 by 720

@@ -1,0 +1,3 @@
+pbmtog3 /dd/tmp/base.pbm > /dd/tmp/t.g3
+stdin:  PBM raw, 48 by 24
+stdin:  PBM raw, 48 by 24

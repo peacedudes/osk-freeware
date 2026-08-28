@@ -1,0 +1,7 @@
+ppmtotga /dd/tmp/base.ppm > /dd/tmp/t.tga
+ppmtotga: computing colormap...
+ppmtotga: 6 colors found
+pnmtorast: computing colormap...
+pnmtorast: 6 colors found
+rasttopnm: writing PPM file
+pnmfile: bad magic number - not a ppm, pgm, or pbm file

@@ -1,14 +1,21 @@
-# The programmer's shelf: cross-reference, beautifiers, benchmarks, RCS.
-shot    cxref
-cap     cxref lists C source with line numbers and then every symbol in it,
-cap     with the lines it appears on.
-run     /dd/CMDS/cxref /dd/SRC/keep/about.c | /dd/CMDS/head -n 20
-wait    8
+# The programmer's shelf: cross-reference, beautifiers,
+# benchmarks and version control.
+
+shot    benchmarks
+for     sieve fibo float savage paranoia timid time
+cap     The other benchmarks: the sieve, Fibonacci, a floating-point loop
+cap     and Savage's accuracy test, which is about arithmetic rather than
+cap     speed.
+run     /dd/CMDS/sieve
+wait    10
+run     /dd/CMDS/savage
+wait    15
 
 shot    cb
-cap     cb, the C beautifier, re-indenting source as it reads it.
-run     /dd/CMDS/cb /dd/SRC/keep/about.c | /dd/CMDS/head -n 20
-wait    6
+cap     cb, the C beautifier.  It reads standard input and writes standard
+cap     output -- no filenames, which is what its usage line says.
+run     /dd/CMDS/cb < /dd/SRC/keep/about.c | /dd/CMDS/head -n 18
+wait    8
 
 shot    ccheck
 cap     ccheck reads C source and reports unbalanced brackets, quotes and
@@ -24,17 +31,10 @@ wait    5
 run     /dd/CMDS/head -n 12 tags
 wait    4
 
-shot    sieve
-cap     The sieve of Eratosthenes benchmark, one of five here that measure
-cap     the machine rather than do a job.
-run     /dd/CMDS/sieve
-wait    10
-
-shot    fibo
-cap     The Fibonacci benchmark, and float beside it.
-run     /dd/CMDS/fibo
-wait    8
-run     /dd/CMDS/float
+shot    cxref
+cap     cxref lists C source with line numbers and then every symbol in it,
+cap     with the lines it appears on.
+run     /dd/CMDS/cxref /dd/SRC/keep/about.c | /dd/CMDS/head -n 20
 wait    8
 
 shot    dhry
@@ -45,23 +45,81 @@ wait    10
 run     /dd/CMDS/DHRY/dhryGcc2o2
 wait    10
 
-shot    perr
-cap     perr turns an OS-9 error number into its message.  216 is the one
-cap     this collection meets most.
-run     /dd/CMDS/perr 214 216 218 221
-wait    4
+shot    dhry-all
+for     dhry dhryO2 dhryGcc dhryGcc2 dhryGcc2o2 dhryGccin dhryGcc2in dhryGccmx dhryGcc2mx dhryGcco2 dhryshamu dhryshamu2
+cap     Dhrystone built twelve ways -- Microware cc, GCC 1.x and 2.x,
+cap     optimised, inlined and mixed.  Comparison is the whole point of the
+cap     directory, and here are three of the twelve on the same machine.
+run     /dd/CMDS/DHRY/dhry | /dd/CMDS/tail -n 6
+wait    15
+run     /dd/CMDS/DHRY/dhryO2 | /dd/CMDS/tail -n 6
+wait    15
+run     /dd/CMDS/DHRY/dhryGcc2o2 | /dd/CMDS/tail -n 6
+wait    15
 
-shot    diff
-cap     GNU diff 1.1 on two versions of the same file -- the disk had no
-cap     diff at all before this one was added.
-run     /dd/CMDS/head -n 12 /dd/SYS/motd > /dd/tmp/a.txt
-wait    2
-run     /dd/CMDS/sed -e "s/OS-9/OS-Nine/" /dd/tmp/a.txt > /dd/tmp/b.txt
-wait    3
-run     /dd/CMDS/diff -c /dd/tmp/a.txt /dd/tmp/b.txt
-wait    5
+shot    disktest
+for     disktest timid
+cap     disktest measures the disk: how long a read and a write really take
+cap     through RBF.
+run     /dd/CMDS/disktest -?
+wait    8
+
+shot    fibo
+cap     The Fibonacci benchmark, and float beside it.
+run     /dd/CMDS/fibo
+wait    8
+run     /dd/CMDS/float
+wait    8
+
+shot    ifdef
+for     ifdef unifdef cpr
+cap     unifdef resolves the #ifdefs in C source; cpr pretty-lists it.
+run     /dd/CMDS/unifdef -DOSK /dd/SRC/keep/keep.c | /dd/CMDS/head -n 16
+wait    10
+
+shot    rcs
+for     ci co rcs rlog rcsdiff rcsident rcsmerge
+cap     RCS on this disk: a file checked in, checked out and logged.  The
+cap     whole suite is here -- ci, co, rcs, rlog, rcsdiff, rcsident and
+cap     rcsmerge.
+run     /dd/CMDS/cp /dd/SYS/motd /dd/tmp/rcstest
+wait    6
+run     /dd/CMDS/rcs -?
+wait    6
+run     /dd/CMDS/rlog -?
+wait    6
+
+shot    sdb
+for     sdb
+cap     SDB 2.0, the symbolic debugger, opened on a program with no symbol
+cap     file -- which is what it says.
+run     /dd/CMDS/sdb /dd/CMDS/today
+wait    8
+quit    q\r
+
+shot    sieve
+cap     The sieve of Eratosthenes benchmark, one of five here that measure
+cap     the machine rather than do a job.
+run     /dd/CMDS/sieve
+wait    10
+
+shot    tab
+for     tab xlate
+cap     tab tabulates assembly source -- it knows the opcode column -- and
+cap     xlate translates 6809 assembly into 68000.
+run     /dd/CMDS/tab -?
+wait    6
+run     /dd/CMDS/xlate -?
+wait    6
 
 shot    time
 cap     time, measuring a command the way OS-9 accounts for it.
 run     /dd/CMDS/time /dd/CMDS/sieve
+wait    12
+
+shot    xrf
+for     xrf ref etags ctags.elvis
+cap     xrf cross-references C source; etags builds the TAGS file emacs
+cap     wants, as ctags does for vi.
+run     /dd/CMDS/xrf /dd/SRC/keep/about.c | /dd/CMDS/head -n 18
 wait    12

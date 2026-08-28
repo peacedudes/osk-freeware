@@ -1,16 +1,5 @@
-# Communications.  Nothing here can dial anything -- there is no modem and
-# no peer -- so what is photographed is each program's own face: the prompt,
-# the settings, the log it keeps.
-shot    kermit
-cap     C-Kermit 5A at its own prompt, showing the file-transfer settings it
-cap     would use.  There is no line to dial here; this is the program
-cap     itself, not a transfer.
-run     /dd/CMDS/REBUILT/kermit
-wait    6
-send    show protocol\r
-wait    5
-send    exit\r
-wait    3
+# There is no modem here and no site to call, so what these show
+# is their own face: the prompt, the settings, the log.
 
 shot    aterm
 cap     ATerm 2.6, the terminal emulator, reading its configuration from
@@ -18,13 +7,33 @@ cap     SYS/ATERM.
 run     /dd/CMDS/aterm
 wait    6
 
-shot    uuname
-cap     uuname lists the UUCP sites this system could reach, out of the
-cap     configuration in SYS.
-run     /dd/CMDS/UUCP/uuname
+shot    aterm-cfg
+for     aterm setterm fkeys initvdu cls
+cap     The terminal side: ATerm's configuration, setterm, fkeys and the
+cap     two small things that clear a screen.
+run     /dd/CMDS/setterm -?
+wait    5
+run     /dd/CMDS/fkeys -?
+wait    5
+run     /dd/CMDS/cls
 wait    4
-run     /dd/CMDS/UUCP/uulog
-wait    4
+run     /dd/CMDS/tty
+wait    5
+
+shot    kermit
+cap     Kermit, the file-transfer program.  With no serial line to talk to
+cap     it says what it can do: connect, send, receive, or be the server.
+run     /dd/CMDS/REBUILT/kermit
+wait    5
+
+shot    mail
+for     mail lmail rmail smail
+cap     The mail chain: mail sends, lmail delivers locally, rmail takes
+cap     what arrived, smail routes.
+run     /dd/CMDS/UUCP/mail -?
+wait    6
+run     /dd/CMDS/UUCP/smail -?
+wait    6
 
 shot    mailx
 cap     mailx opening with no mail waiting -- which is the honest state of
@@ -33,6 +42,15 @@ run     /dd/CMDS/UUCP/mailx
 wait    5
 send    q\r
 wait    3
+
+shot    pathalias
+for     pathalias makedb nptx dotilde uuclean
+cap     pathalias computes mail routes from a map of who calls whom -- the
+cap     program that made a usenet address possible.
+run     /dd/CMDS/UUCP/pathalias -?
+wait    8
+run     /dd/CMDS/UUCP/makedb -?
+wait    6
 
 shot    readnews
 cap     readnews, the news reader, with no spool to read.
@@ -46,3 +64,29 @@ cap     setterm and cls, the two smallest things here that know what a
 cap     terminal is.
 run     /dd/CMDS/setterm
 wait    4
+
+shot    uucp
+for     uucp uux uuxqt uucico
+cap     The transfer set: uucp queues a copy, uux queues a command, uuxqt
+cap     runs what a remote site queued here, uucico does the talking.
+run     /dd/CMDS/UUCP/uucp -?
+wait    6
+run     /dd/CMDS/UUCP/uucico -?
+wait    6
+
+shot    uuname
+cap     uuname lists the UUCP sites this system could reach, out of the
+cap     configuration in SYS.
+run     /dd/CMDS/UUCP/uuname
+wait    4
+run     /dd/CMDS/UUCP/uulog
+wait    4
+
+shot    uwho
+for     uwho udate input
+cap     What is left of the UNAXCESS bulletin board: uwho wants /etc/utmp,
+cap     which OS-9 has no equivalent of.
+run     /dd/CMDS/uwho
+wait    6
+run     /dd/CMDS/udate
+wait    6

@@ -1,0 +1,3 @@
+/dd/CMDS/marc -a /dd/tmp/m.arc /dd/SYS/motd
+ARC: Cannot read source archive /dd/tmp/m.arc
+ARC: Cannot read source archive /dd/tmp/m.arc

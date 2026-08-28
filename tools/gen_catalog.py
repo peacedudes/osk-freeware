@@ -280,10 +280,16 @@ def from_tree(root, progs, starred):
     # Every directory holding programs must be listed here or its contents are
     # invisible in the guide -- which is where people actually go looking.
     # CMDS/DEMOS, CMDS/DHRY and CMDS/MM1 were added in 2026-08 and were absent
-    # from the catalogue until someone noticed the gap.
+    # from the catalogue until someone noticed the gap.  Seven more were found
+    # the same way on 2026-08-27, while photographing the disk: ADL, COMMS,
+    # ELM, NETWORK, NEWS, TEXCMDS and WN -- 83 programs, TeX and elm among
+    # them, all present in DOC/INDEX and none of them in the guide.  Only
+    # CMDS/archives stays out, and that holds .lzh source archives, not
+    # programs.
     for d in ("CMDS", "CMDS/GAMES", "CMDS/NETPBM", "CMDS/BROKEN", "CMDS/REBUILT",
               "CMDS/GCC139", "CMDS/GCC2", "CMDS/DEMOS", "CMDS/DHRY", "CMDS/MM1",
-              "CMDS/UUCP"):
+              "CMDS/UUCP", "CMDS/ADL", "CMDS/COMMS", "CMDS/ELM", "CMDS/NETWORK",
+              "CMDS/NEWS", "CMDS/TEXCMDS", "CMDS/WN"):
         full = os.path.join(root, d)
         if not os.path.isdir(full):
             continue

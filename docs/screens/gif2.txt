@@ -1,0 +1,5 @@
+ppmtogif /dd/tmp/base.ppm > /dd/tmp/t.gif
+ppmtogif: computing colormap...
+ppmtogif: 6 colors found
+/dd/tmp/t.gif           GIF picture ver. 87a 48 x 24, interlaced, 8 colors
+/dd/tmp/back.ppm:       PPM raw, 48 by 24  maxval 255

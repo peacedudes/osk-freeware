@@ -1,6 +1,6 @@
 # What is on this disk
 
-834 programs of OS-9/68K community software, gathered from the archives that kept it and made to run again. **497 of them need nothing but this disk**; the rest want Microware's `cio`, marked below with a star.
+917 programs of OS-9/68K community software, gathered from the archives that kept it and made to run again. **552 of them need nothing but this disk**; the rest want Microware's `cio`, marked below with a star.
 
 `DOC/INDEX` on the disk lists everything alphabetically. This is the same collection sorted by what each program is *for*, which is the more useful order when you do not yet know what you are looking for.
 
@@ -12,14 +12,14 @@
 |---|--:|---|
 | [Shells](#shells) | 20 | Unix shells to sit beside OS-9's own -- bash and ksh bring history, job control, and scripts that come across unchanged. |
 | [Editors](#editors) | 24 | vi and emacs in several flavours, line and stream editors, and editors for binary and hex. |
-| [Text tools](#text-tools) | 81 | Search, sort, compare, reformat, split and spell-check. |
+| [Text tools](#text-tools) | 114 | Search, sort, compare, reformat, split and spell-check. |
 | [Files & directories](#files--directories) | 35 | Listing, copying, finding, renaming, and knowing what you have. |
 | [Developer tools](#developer-tools) | 46 | Version control, tags, cross-reference, formatters, a debugger and benchmarks. |
 | [Compilers & build](#compilers--build) | 26 | C compilers and their passes, assemblers, linkers, make and parser generators. |
-| [Languages](#languages) | 6 | Interpreters and language systems beyond C. |
+| [Languages](#languages) | 10 | Interpreters and language systems beyond C. |
 | [Archives & compression](#archives--compression) | 35 | Pack, unpack and shrink -- lha, zip, tar, arc, zoo, and OS-9 module libraries. |
 | [Encoding & conversion](#encoding--conversion) | 26 | Between text encodings, line endings, number bases, ciphers and hashes. |
-| [Communications](#communications) | 51 | Kermit in several builds, terminal sessions, and networking. |
+| [Communications](#communications) | 96 | Kermit in several builds, terminal sessions, and networking. |
 | [Graphics & images](#graphics--images) | 204 | The netpbm toolkit, JPEG, a ray tracer, and things that draw. |
 | [Games](#games) | 65 | Adventures, board and card games, arcade ports, dungeon crawls and puzzles. |
 | [Screen toys](#screen-toys) | 6 | Things to watch rather than play. Start one and leave it going. |
@@ -135,7 +135,35 @@
 
 *Search, sort, compare, reformat, split and spell-check.*
 
-<details><summary>81 programs</summary>
+<details><summary>114 programs</summary>
+
+**TeX**
+
+| | |
+|---|---|
+| `afm2tfm` | Adobe font metrics to TeX font metrics<br>`Usage: afm2tfm foo[.afm] [-O] [-v\|-V bar[.vpl]]` |
+| `bibtex` | BibTeX -- bibliography formatter |
+| `dvips` | DVI to PostScript -- pair it with gs33<br>**How:** DVI to PostScript. `dvips <file>.dvi'. Pair it with gs33 (ETC/LIB/GS33) to see the result without a printer. |
+| `dvitype` | show what is inside a .dvi file, as text<br>**How:** Shows what is inside a .dvi file as readable text. `dvitype <file>.dvi', then it asks for an output level -- 4 is a complete listing, 0 errors only. |
+| `gftopk` | MetaFont generic font to packed font<br>`Usage: gftopk [-v] <gf file> [pk file].` |
+| `gftype` | show what is inside a .gf file<br>`Usage: gftype [-m] [-i] <gf file>.` |
+| `inimf` | MetaFont with no base preloaded |
+| `initex` | TeX with no format preloaded, for building .fmt files<br>**How:** TeX with no format preloaded -- this is what BUILDS the .fmt files. `initex "plain \dump"'. The three formats already ship in SYS/TEX/FORMATS, built this way, so you only need this to make your own. |
+| `latex` | LaTeX -- Lamport's document preparation system on top of TeX<br>**How:** LaTeX. Its format is SYS/TEX/FORMATS/lplain.fmt, already built: `virtex "&/dd/SYS/TEX/FORMATS/lplain <file>.tex"'. |
+| `maketexpk` | generate a .pk font at the size TeX asked for |
+| `pktogf` | packed font back to generic font<br>`Usage: pktogf [-v] <pk file> [gf file].` |
+| `pktype` | show what is inside a .pk file<br>`Usage: pktype <pk file>.` |
+| `pltotf` | property list to TeX font metric<br>`Usage: pltotf [-verbose] <property list file> <tfm file>.` |
+| `slitex` | SliTeX -- LaTeX for slides<br>**How:** LaTeX for slides; its format is SYS/TEX/FORMATS/splain.fmt, already built. |
+| `tangle` | WEB to Pascal -- Knuth's literate programming tool<br>`Usage: tangle webfile[.web] [changefile[.ch]].` |
+| `tex` | TeX itself -- the typesetting program (a driver; virtex does the work) |
+| `texidx` | build an index from TeX's .idx output |
+| `tftopl` | TeX font metric to property list (the readable form)<br>`Usage: tftopl [-verbose] <tfm file> [<property list file>].` |
+| `vftovp` | virtual font to virtual property list<br>`Usage: <vfm file> <tfm file> <vpl file>.` |
+| `virmf` | the real MetaFont engine -- generates fonts from .mf sources |
+| `virtex` | the real TeX engine, loaded with a format<br>**How:** The real TeX engine. It needs a FORMAT: `virtex "&/dd/SYS/TEX/FORMATS/plain <file>.tex"'. Tested end to end -- it typesets and reports "Output written on <file>.dvi". `tex' is a small driver in front of it. |
+| `vptovf` | virtual property list to virtual font<br>`Usage: vptovf <vpl file> <vfm file> <tfm file>.` |
+| `weave` | WEB to TeX -- the other half of literate programming<br>`Usage: weave webfile[.web] [changefile[.ch]] [-x].` |
 
 **Transform & filter**
 
@@ -192,6 +220,21 @@
 | `tcmp` | &#9733; Compare two text files (Carl Kreider)<br>`Usage:  tcmp [options] file1 file2` |
 | `unexpand` | Turn leading spaces back into tabs (GNU)<br>`Usage: unexpand [-tab1[,tab2[,...]]] [-t tab1[,tab2[,...]]] [-a]` |
 | `unp` | &#9733; Strip unprintable characters from a stream (Carl Kreider)<br>`Usage:  unp [-?] [file]` |
+
+**DVI drivers**
+
+| | |
+|---|---|
+| `dvialw` | DVI to Apple LaserWriter<br>`Usage: dvialw [opts] dvifiles` |
+| `dvidjp` | DVI to HP DeskJet Plus<br>`Usage: dvidjp [opts] dvifiles` |
+| `dvieps` | DVI to Epson<br>`Usage: dvieps [opts] dvifiles` |
+| `dviimp` | DVI to Imagen<br>`Usage: dviimp [opts] dvifiles` |
+| `dvijep` | DVI to HP LaserJet Plus<br>`Usage: dvijep [opts] dvifiles` |
+| `dvijet` | DVI to HP LaserJet<br>`Usage: dvijet [opts] dvifiles` |
+| `dvilj2` | DVI to HP LaserJet II<br>`Usage: dvilj2 [opts] dvifiles` |
+| `dvimac` | DVI to Macintosh<br>`Usage: dvimac [opts] dvifiles` |
+| `dvioki` | DVI to Okidata<br>`Usage: dvioki [opts] dvifiles` |
+| `dvitos` | DVI to Toshiba<br>`Usage: dvitos [opts] dvifiles` |
 
 **Count & inspect**
 
@@ -530,7 +573,9 @@
 
 *Interpreters and language systems beyond C.*
 
-<details><summary>6 programs</summary>
+<details><summary>10 programs</summary>
+
+**Interpreters**
 
 | | |
 |---|---|
@@ -540,6 +585,15 @@
 | `runc` | Runs a compiled Lua chunk as an OS-9 command |
 | `wam.sbprolog` | SB-Prolog 2.2 WAM engine -- see DOC/sbprolog/README-SBPROLOG<br>`Usage: sim [-Ttdns] [-m s_size] [-p p_size] [-b tr_size] [-ui num] pil_file_name ...` |
 | `xlisp` | XLISP 2.1 Lisp interpreter |
+
+**Adventure authoring**
+
+| | |
+|---|---|
+| `adlcomp` | compile an ADL world<br>**How:** Compiles an ADL world: `adlcomp /dd/ADL/DEMOS/tiny.adl -o /dd/tmp/tiny -i /dd/ADL'. The `-i' is where standard.adl lives and is required. Tested. |
+| `adldebug` | the same, with the debugger<br>**How:** adlrun with the debugger attached. |
+| `adlrun` | <file>        play it<br>**How:** Plays a compiled ADL world: `adlrun /dd/tmp/tiny'. Tested -- the tiny demo opens "You are in a small but comfortable room... There is a red pillow here." NOTE: play from an RBF disk, not a host-directory mount; reading a world off /hN under os9exec trips an assertion inside the emulator. |
+| `adltouch` | update a compiled world after editing<br>**How:** Refreshes a compiled world after you edit its source. |
 
 </details>
 
@@ -694,24 +748,38 @@
 
 *Kermit in several builds, terminal sessions, and networking.*
 
-<details><summary>51 programs</summary>
+<details><summary>96 programs</summary>
 
 **Mail**
 
 | | |
 |---|---|
+| `answer` | &#9733; reply to messages in a folder in turn |
+| `arepdaemon` | &#9733; the daemon autoreply relies on |
+| `autoreply` | &#9733; send an automatic reply while you are away<br>`Usage: autoreply <filename>	to start autoreply,` |
+| `checkalias` | &#9733; check an alias resolves before you rely on it<br>`Usage: checkalias alias [alias ...]` |
 | `disable` | &#9733; disable a UUCP device<br>`Syntax: disable <port>` |
 | `dotilde` | &#9733; expand ~user in a path, as the mailer does |
+| `elm` | &#9733; the Elm mail reader itself -- full-screen, menu-driven<br>**How:** The full-screen mail reader. On first run it offers to create a .elm directory in your home for its elmrc and aliases -- say y. Mail lives at /dd/SPOOL/MAIL/<user> and SYS/login points MAIL there; `readmsg 1' prints a message without opening the reader. |
 | `enable` | &#9733; re-enable a UUCP device<br>`Syntax: enable [<opts>] <port> [<opts>]` |
+| `fastmail` | &#9733; send a file as mail without opening the reader<br>`Usage: fastmail {args} [ filename \| - ] address(es)` |
+| `filter` | sort incoming mail into folders by rule<br>`Usage: \| filter [-nrvlq] [-f rules] [-o file]` |
+| `frm` | &#9733; list who your mail is from, one line each<br>**How:** Lists who your mail is from, one line each. Reads $MAIL, which SYS/login sets. |
 | `lcasep` | &#9733; lower-case a name for mail<br>`usage: lcasep [-f file] [-o outfile]` |
+| `listalias` | &#9733; list the aliases you have<br>`Usage: listalias [ -s \| -u ] <optional-regular-expression>` |
 | `lmail` | &#9733; local mail delivery<br>`Syntax: lmail <user name> {<user name>}` |
 | `mail` | &#9733; a simple mail sender<br>`Syntax: mail [<opts>] [<user>]` |
 | `mailx` | &#9733; the mail reader and sender |
 | `makedb` | build the alias database |
+| `messages` | &#9733; count and list what is in a folder<br>**How:** Counts what is in your mail folder. Tested: "There is 1 message in your mailbox". |
+| `newalias` | &#9733; rebuild the alias database -- run it after editing aliases<br>**How:** Rebuilds the Elm alias database from USR/LIB/ELM/aliases.text after you edit it. |
+| `newmail` | &#9733; watch for mail arriving and say so<br>`Usage: newmail [-d] [-i interval] [-w] {folders}` |
 | `nptx` | &#9733; expand a mail alias list |
 | `pathalias` | compute mail routes from a map<br>`usage: pathalias [-vciDfI] [-l localname] [-d deadlink] [-t tracelink] [-g edgeout] [-s treeout] [-a avoid] [files ...]` |
 | `philmail` | the philmail mailer |
+| `printmail` | &#9733; format a message for a printer<br>`Usage: printmail [-p] [-r filename] <message list>` |
 | `pwparse` | &#9733; parse the password file for the mailer |
+| `readmsg` | &#9733; print selected messages from a folder<br>**How:** Prints messages from a mail folder: `readmsg 1' for the first. Tested -- it reads the welcome message in /dd/SPOOL/MAIL/tester. |
 | `rmail` | &#9733; deliver incoming mail (invoked by uuxqt, not by you)<br>`usage: rmail [file] "site!user[@site]"` |
 | `smail` | &#9733; smart mail router<br>`Usage:   smail [<options>] address...` |
 | `uupoll` | &#9733; poll a site for waiting work<br>**How:** Polls a UUCP site for waiting work. Blars uucp; wants the `uucp' user, which SYS/password now has. |
@@ -737,16 +805,62 @@
 | `wysecrack` | &#9733; Wyse terminal baud detect -- needs real Wyse hardware |
 | `wysetime` | Wyse terminal time utility |
 
+**Terminal & transfer**
+
+| | |
+|---|---|
+| `blastem` | XModem and YModem file transfer, written for the MM/1<br>`Syntax: blastem [<opts>] {<filename> [<opts>]}` |
+| `dld` | &#9733; XModem download<br>`Syntax: dld <file>` |
+| `k` | Kermit transfer (Tim Kientzle) |
+| `rxmod` | receive an OS-9 module over a serial line and enter it in the module directory.  Source: SRC/serload the module directory.  Source: SRC/serload<br>`Syntax: rxmod [<opts> [module(s)]]` |
+| `sterm` | a serial terminal emulator<br>`Usage:  sterm [-df? -l'p' -e'x']` |
+| `tsu` | &#9733; tterm's setup program |
+| `tterm` | &#9733; Stephen Carville's terminal emulator, VT100-ish<br>`Usage:  tterm <options>` |
+| `txmod` | send an OS-9 MODULE over a serial line<br>`Syntax: TXMod [<opts>] module(s) [<opts>]` |
+| `uld` | &#9733; XModem upload<br>`Syntax: uld <file>` |
+| `xy` | XMODEM/YMODEM transfer (Tim Kientzle) |
+| `xydown` | XModem/YModem download, public domain<br>`Usage:  XYDOWN  [opts]  [filename]` |
+| `xyt` | &#9733; X/Y/ZMODEM transfer for tterm<br>`Usage:  xyt [opts] [filename] [opts]` |
+| `z` | ZMODEM transfer (Tim Kientzle) |
+
 **News**
 
 | | |
 |---|---|
+| `bdecode` | &#9733; decode a batched news article<br>`Usage: bdecode [file]` |
+| `byteflip` | &#9733; byte-swap a dbz database between architectures -- silent, and correctly so, unless handed a dbz database |
+| `c7decode` | &#9733; decode 7-bit-safe encoded news |
+| `dbz` | &#9733; the news history database<br>**How:** The news history database from C News: `dbz [-a] [-x] [-c] database [file]...'. Part of a news system, not useful alone. |
 | `expire` | &#9733; delete news articles past their expiry date |
+| `newshist` | &#9733; rebuild the history file<br>`usage: newshist [-df file] msgid ...` |
+| `newslock` | &#9733; the news system's lock<br>`Usage: newslock tempname lockname` |
 | `postnews` | &#9733; post an article to a newsgroup<br>`Usage: postnews [options]` |
 | `readnews` | &#9733; read news |
 | `rnews` | &#9733; unpack an incoming news batch |
 | `subscribe` | &#9733; add a newsgroup to your subscription list<br>`usage: subscribe <newsgroup> [newsgroup...]` |
 | `unsubscribe` | &#9733; drop one<br>`usage: unsubscribe <newsgroup> [newsgroup...]` |
+
+**TCP/IP**
+
+| | |
+|---|---|
+| `atp` | &#9733; AX.25 transport, from the KA9Q package |
+| `finger` | &#9733; ask another machine who is logged in<br>**How:** Asks another machine who is logged in: `finger <userid>'. Needs a network. |
+| `infoxpress` | InfoXpress client |
+| `msntp` | set the clock from a network time server<br>**How:** Sets the clock from a network time server. |
+| `net` | KA9Q net -- TCP/IP over SLIP or AX.25: telnet, ftp, smtp<br>**How:** KA9Q net, Phil Karn's TCP/IP over SLIP or AX.25 -- the stack amateur radio ran on. Needs NETHOME, NETSPOOL and TMPDIR set and a real interface; see DOC/ka9q. |
+| `osknet` | OSKNET -- TCP/IP for OS-9, Telnet, FTP, Ping and SMTP<br>**How:** Charles Hedrick's TCP/IP for OS-9 -- Telnet, FTP, Ping and SMTP. It needs a network interface, which os9exec does not present, so it starts and does nothing here. Its own documentation is nine files in DOC/osknet: start with howto.doc and useguide.doc. |
+
+**Web server**
+
+| | |
+|---|---|
+| `authwn` | authentication helper for protected areas |
+| `inetd` | &#9733; the internet daemon that listens and hands connections to wn<br>**How:** The listener that hands incoming connections to wn. Needs a network. |
+| `inetdc` | &#9733; control program for inetd |
+| `wn` | the web server itself -- serves files over HTTP<br>**How:** A real HTTP server (WN 1.14.3, GPL). It starts and opens its log -- the path /h0/c/unid/wn_1.14.3/osk/logs is compiled into the binary, and that directory is on this disk so it can. What it cannot do here is serve: os9exec has no network. On a machine with TCP/IP it is the real thing. Its manual is 30 HTML files in DOC/wn. |
+| `wn.stb` | WN's symbol table (a data module, not a program) |
+| `wndex` | build the index WN serves from; run it in each directory you publish<br>**How:** Builds the index WN serves from. Run it in a directory you want published; on its own it says "Can't open ./index -- skipping it", which means there is nothing there to index yet. |
 
 **UUCP**
 

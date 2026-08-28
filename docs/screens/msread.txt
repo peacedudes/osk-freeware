@@ -1,0 +1,6 @@
+/dd/CMDS/mswrite /dd/SYS/motd a:RAW.TXT
+Copying RAW.TXT
+4b68af85
+4b68af85
+========
+9d870070

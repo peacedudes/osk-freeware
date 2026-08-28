@@ -1,0 +1,4 @@
+pbmtomgr /dd/tmp/base.pbm | mgrtopbm | pnmfile
+stdin:  PBM raw, 48 by 24
+stdin:  PBM raw, 48 by 24
+stdin:  PBM raw, 48 by 24

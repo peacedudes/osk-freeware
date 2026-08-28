@@ -1,0 +1,16 @@
+ppmtoxpm /dd/tmp/base.ppm > /dd/tmp/t.xpm
+(Computing colormap...  Done.  6 colors found.)
+/* XPM */
+static char */dd/tmp/base[] = {
+/* width height ncolors chars_per_pixel */
+"48 24 6 1",
+/* colors */
+"  c #07EAD9",
+". c #D93E7F",
+"X c #9F225C",
+"o c #7094AC",
+"O c #367889",
+"+ c #65063A",
+/* pixels */
+/dd/CMDS/head: /dd/tmp/t.xpm
+stdin:  PPM raw, 48 by 24  maxval 255

@@ -1,27 +1,9 @@
-# Calculators and the spreadsheet.
-shot    rpn
-cap     An RPN calculator: 12 and 34 pushed, added, then the square root of
-cap     two to fifteen places.
-run     /dd/CMDS/rpn
-wait    2
-send    12\r
-wait    1
-send    34\r
-wait    1
-send    +\r
-wait    1
-send    2\r
-wait    1
-send    q\r
-wait    2
+# Calculators and the spreadsheets.
 
-shot    rechne
-cap     rechne, a German command-line calculator.  It answers in decimal,
-cap     hex and binary at once.
-run     /dd/CMDS/rechne 4095 x 16
-wait    2
-run     /dd/CMDS/rechne -b 12345
-wait    3
+shot    hc
+cap     hc, the hex calculator, on an expression.
+run     echo 1f * 3 + 7 | /dd/CMDS/hc
+wait    4
 
 shot    loan
 cap     The amortisation calculator: principal, rate and term in, the
@@ -48,7 +30,26 @@ send    =A0+A1\r
 wait    3
 quit    \030\003
 
-shot    hc
-cap     hc, the hex calculator, on an expression.
-run     /dd/CMDS/hc -l "0x1f * 3 + 7"
+shot    rechne
+cap     rechne, a German command-line calculator.  It answers in decimal,
+cap     hex and binary at once.
+run     /dd/CMDS/rechne 4095 x 16
+wait    2
+run     /dd/CMDS/rechne -b 12345
 wait    3
+
+shot    rpn
+cap     An RPN calculator: 12 and 34 pushed, added, then the square root of
+cap     two to fifteen places.
+run     /dd/CMDS/rpn
+wait    2
+send    12\r
+wait    1
+send    34\r
+wait    1
+send    +\r
+wait    1
+send    2\r
+wait    1
+send    q\r
+wait    2

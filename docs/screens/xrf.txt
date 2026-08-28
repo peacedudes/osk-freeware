@@ -1,0 +1,2 @@
+/dd/CMDS/xrf /dd/SRC/keep/about.c | /dd/CMDS/head -n 18
+ERROR: Cannot open Language Table file: C.XRF

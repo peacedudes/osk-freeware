@@ -1,0 +1,284 @@
+# The machine looking at itself, and this collection looking at
+# itself.  Some of these meet os9exec's limits rather than their
+# own -- where they do, the screen says so.
+
+shot    about
+cap     The collection's own guide: `about hack' answers what a program is,
+cap     where it came from, what it opens and whether its source survived.
+run     /dd/CMDS/about hack
+wait    4
+
+shot    about-tar
+for     about
+cap     about answers for any program on the disk, out of the same four
+cap     files the web catalogue is built from.
+run     /dd/CMDS/about elvis
+wait    5
+
+shot    aprocs
+cap     A process monitor -- and it cannot run here.  It reads the system
+cap     globals through F$SetSys, which os9exec does not implement, and
+cap     aborts.  This is a limit of the emulator, not of the program.
+run     /dd/CMDS/aprocs
+wait    5
+kill
+
+shot    argproc_demo
+cap     argproc_demo shows RICO's command-line parser.  It is starred: with
+cap     no cio it stops before it starts, and this is what that looks like.
+run     /dd/CMDS/argproc_demo -a -b=2 file
+wait    6
+
+shot    ask
+cap     ask and ynad put a question to the person running a script and set
+cap     the status from the answer.
+run     /dd/CMDS/ask "Shall I go on"
+wait    3
+send    y
+wait    3
+
+shot    bcheck
+cap     bcheck reads a boot file and reports what is in it.
+run     /dd/CMDS/bcheck -?
+wait    5
+
+shot    bigsetter
+cap     A Modula-2 set-operations demonstration -- proof the Modula
+cap     compiler's output runs here.
+run     /dd/CMDS/bigsetter
+wait    8
+
+shot    btree
+cap     A B-tree demonstration, building and walking an index.
+run     /dd/CMDS/btree
+wait    8
+
+shot    config
+cap     config reports this machine's C type properties as the #defines a
+cap     portable program would want.
+run     /dd/CMDS/config
+wait    5
+
+shot    cpu
+cap     A CPU speed test.  It takes os9exec down with it every time -- the
+cap     emulator exits mid-run, which is why the screen stops where it does.
+run     /dd/CMDS/cpu
+wait    10
+
+shot    dam
+cap     The disk allocation map: one character per cluster across a 253 MB
+cap     volume, so you can see where the collection sits on it.
+run     /dd/CMDS/dam /dd | /dd/CMDS/head -n 21
+wait    10
+
+shot    date
+cap     date, and the Y2K repairs beside it.  It prints the year 2100 for
+cap     2026 -- one of the reasons setyear and fixyear are on this disk.
+run     /dd/CMDS/date
+wait    4
+run     /dd/CMDS/date -t
+wait    4
+run     /dd/CMDS/today
+wait    5
+
+shot    demo
+cap     demo, the egetopt option-parsing example, showing how it read the
+cap     command line it was given.
+run     /dd/CMDS/demo -a -b -c=7 one two
+wait    6
+
+shot    dinfo
+cap     Device information for the volume this collection is mounted as.
+run     /dd/CMDS/dinfo /dd
+wait    3
+run     /dd/CMDS/shdev
+wait    3
+
+shot    e
+cap     SEDT, the VMS-style editor, with VT220 keys.
+run     /dd/CMDS/e /dd/SRC/keep/about.c
+wait    6
+quit    \033\033
+
+shot    every
+cap     every runs a command at intervals; repeat runs it over and over.
+run     /dd/CMDS/repeat 3 /dd/CMDS/date
+wait    8
+
+shot    flink
+cap     flink lists a module's links -- what has it loaded and who holds it.
+run     /dd/CMDS/flink /dd/CMDS/today
+wait    5
+
+shot    getsys
+cap     getsys reads OS-9's system globals -- what the kernel thinks it is
+cap     running on, straight out of the global page.
+run     /dd/CMDS/getsys | /dd/CMDS/head -n 21
+wait    6
+
+shot    greg
+cap     greg, a regular-expression search demonstration.
+run     /dd/CMDS/greg "[a-z]+chess" /dd/DOC/INDEX
+wait    6
+
+shot    i_am_i
+cap     i_am_i prints its own source: a Pascal quine.
+run     /dd/CMDS/i_am_i
+wait    5
+
+shot    isam
+cap     The indexed-sequential file demonstration from the same shelf.
+run     /dd/CMDS/isam
+wait    8
+
+shot    keep
+cap     keep is how a program leaves this disk for your own: it copies the
+cap     binary AND whatever it needs.  Dry run first, which is what -n is
+cap     for -- nothing is written here.
+run     /dd/CMDS/keep -n hack
+wait    6
+
+shot    kept
+cap     kept lists what has been taken and what it came to.
+run     /dd/CMDS/kept
+wait    5
+
+shot    makecrc
+cap     makecrc computes the CRC OS-9 stores in every module header -- the
+cap     same polynomial the loader checks.
+run     /dd/CMDS/makecrc /dd/CMDS/today
+wait    5
+
+shot    map
+cap     map shows the blocks a file occupies -- not a memory map, whatever
+cap     the name suggests.
+run     /dd/CMDS/map -e /dd/DOC/INDEX
+wait    5
+
+shot    modinfo
+cap     An OS-9 module header read back: name, type, size, edition and CRC.
+cap     Every program on this disk is a module like this one.
+run     /dd/CMDS/modinfo /dd/CMDS/today
+wait    3
+
+shot    mshell
+cap     mshell, a small shell of its own.
+run     /dd/CMDS/mshell
+wait    4
+send    echo mshell is running\r
+wait    3
+
+shot    names
+cap     names lists the modules inside a file.  os9lib is the FORTRAN
+cap     runtime, and it holds many.
+run     /dd/CMDS/names /dd/CMDS/os9lib
+wait    5
+kill
+
+shot    ob68kdemo
+cap     OmniBasic 1.16, a BASIC compiler, in its demonstration build.
+run     /dd/CMDS/DEMOS/ob68kdemo
+wait    8
+
+shot    oskversion
+cap     What the system says it is.  getsys walks the whole global page, and
+cap     every field os9exec does not keep answers `F$SetSys: unimplemented'
+cap     -- so this screen is a picture of the emulator's edges.
+run     /dd/CMDS/oskversion
+wait    2
+run     /dd/CMDS/sysid
+wait    2
+run     /dd/CMDS/getsys
+wait    4
+
+shot    phone
+cap     A phone book, kept in a file on the disk.
+run     /dd/CMDS/phone
+wait    5
+
+shot    sddemo
+cap     White's Speedisk 2.10, a disk defragmenter, drawing the map of a
+cap     volume it is about to work on.
+run     /dd/CMDS/DEMOS/sddemo
+wait    10
+
+shot    spline
+cap     spline fits a curve through points and writes PostScript for it.
+run     echo "0 0" > /dd/tmp/pts
+wait    2
+run     /dd/CMDS/spline /dd/tmp/pts | /dd/CMDS/head -n 14
+wait    5
+
+shot    sqrtx
+cap     A square-root demonstration -- one of the small programs the forums
+cap     circulated to prove a compiler worked.
+run     /dd/CMDS/sqrtx
+wait    6
+
+shot    ssl
+cap     ssl shows a file's segment list -- the sectors RBF gave it, in
+cap     order.  This is the disk's own allocation, not a summary.
+run     /dd/CMDS/ssl /dd/DOC/INDEX
+wait    4
+
+shot    suse
+cap     suse prints just the usage line out of a program, without running
+cap     it -- it reads the module.
+run     /dd/CMDS/suse /dd/CMDS/tar
+wait    3
+
+shot    sysmon
+cap     sysmon, the system monitor, drawing memory and process state.
+run     /dd/CMDS/sysmon
+wait    8
+
+shot    top
+cap     top, showing the busiest processes.  Under os9exec these are real
+cap     OS-9 processes with real IDs and real priorities.
+run     /dd/CMDS/top
+wait    6
+
+shot    ub68kdemo
+cap     UniBasic 1.10 -- the other BASIC compiler here, same arrangement.
+run     /dd/CMDS/DEMOS/ub68kdemo
+wait    8
+
+shot    umacs
+cap     MicroEMACS, editing the collection's own C source.  The mode line
+cap     at the foot is emacs's, and the keys are emacs's.
+run     /dd/CMDS/umacs /dd/SRC/keep/keep.c
+wait    6
+quit    \030\003
+
+shot    vc
+cap     vc compares two files side by side and marks where they differ.
+run     /dd/CMDS/head -n 14 /dd/DOC/INDEX > /dd/tmp/x1
+wait    2
+run     /dd/CMDS/sed -e "s/a/A/g" /dd/tmp/x1 > /dd/tmp/x2
+wait    3
+run     /dd/CMDS/vc /dd/tmp/x1 /dd/tmp/x2
+wait    6
+
+shot    version
+cap     version and mexist ask about a module rather than a file.
+run     /dd/CMDS/version /dd/CMDS/today
+wait    3
+run     /dd/CMDS/mexist bash
+wait    3
+
+shot    vlen
+cap     vlen reports a file's record length; trunc cuts a file to size.
+run     /dd/CMDS/vlen /dd/DOC/INDEX
+wait    4
+run     /dd/CMDS/vlen /dd/CMDS/today
+wait    4
+
+shot    yagi
+cap     yagi designs a Yagi antenna -- element lengths and spacings for a
+cap     frequency you give it.
+run     /dd/CMDS/yagi
+wait    4
+send    144\r
+wait    3
+send    5\r
+wait    5

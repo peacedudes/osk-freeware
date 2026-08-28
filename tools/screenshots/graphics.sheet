@@ -1,0 +1,495 @@
+# The netpbm toolkit and the ray tracer: real images, converted
+# by real programs and rendered back to characters so a screen
+# can hold them.  pbmtoascii -2x4 maps a 2x4 block of pixels to
+# one character, so 152x88 pixels is exactly 76x22 characters.
+
+shot    ateri
+for     ppmtopi1 pi1toppm pbmtopi3 pi3topbm ppmtopict picttoppm
+cap     Atari ST Degas pictures, and the Macintosh PICT, out and back.
+run     ppmtopi1 /dd/tmp/base.ppm > /dd/tmp/t.pi1
+wait    8
+run     pi1toppm /dd/tmp/t.pi1 | pnmfile
+wait    8
+run     pbmtopi3 /dd/tmp/base.pbm | pi3topbm | pnmfile
+wait    10
+
+shot    bmp
+for     ppmtobmp bmptoppm
+cap     Windows BMP, the same way round.
+run     ppmtobmp /dd/tmp/base.ppm > /dd/tmp/t.bmp
+wait    8
+run     bmptoppm /dd/tmp/t.bmp > /dd/tmp/back2.ppm
+wait    8
+run     pnmfile /dd/tmp/t.bmp /dd/tmp/back2.ppm
+wait    6
+
+shot    fits
+for     pnmtofits fitstopnm pnmtoxwd xwdtopnm
+cap     FITS, which astronomers still use, and the X window dump.
+run     pnmtofits /dd/tmp/base.pgm > /dd/tmp/t.fits
+wait    6
+run     fitstopnm /dd/tmp/t.fits | pnmfile
+wait    8
+run     pnmtoxwd /dd/tmp/base.ppm > /dd/tmp/t.xwd
+wait    6
+run     xwdtopnm /dd/tmp/t.xwd | pnmfile
+wait    8
+
+shot    g3
+for     pbmtog3 g3topbm pbmtogem gemtopbm
+cap     Group 3 fax encoding, and the GEM bitmap.
+run     pbmtog3 /dd/tmp/base.pbm > /dd/tmp/t.g3
+wait    6
+run     g3topbm /dd/tmp/t.g3 | pnmfile
+wait    8
+run     pbmtogem /dd/tmp/base.pbm > /dd/tmp/t.gem
+wait    6
+run     gemtopbm /dd/tmp/t.gem | pnmfile
+wait    8
+
+shot    gif
+for     ppmtogif giftopnm
+cap     GIF out and back: ppmtogif writes it, giftopnm reads it, pnmfile
+cap     says what each file is.
+run     ppmtogif /dd/tmp/base.ppm > /dd/tmp/t.gif
+wait    8
+run     giftopnm /dd/tmp/t.gif > /dd/tmp/back.ppm
+wait    8
+run     pnmfile /dd/tmp/base.ppm /dd/tmp/t.gif /dd/tmp/back.ppm
+wait    6
+
+shot    gif2
+for     ppmtogif giftopnm ppmquant
+cap     GIF written and read back: what `file' makes of the GIF, and what
+cap     pnmfile makes of the PPM that came back out of it.
+run     ppmtogif /dd/tmp/base.ppm > /dd/tmp/t.gif
+wait    8
+run     giftopnm /dd/tmp/t.gif > /dd/tmp/back.ppm
+wait    8
+run     /dd/CMDS/file /dd/tmp/t.gif
+wait    5
+run     pnmfile /dd/tmp/back.ppm
+wait    6
+
+shot    giftopnm
+cap     A real photograph off the disk -- DEMO/gulls.gif -- decoded by
+cap     giftopnm, reduced, dithered and printed as characters.  Every stage
+cap     is a separate netpbm program, which is the whole design.
+run     giftopnm /dd/DEMO/gulls.gif | ppmtopgm | pnmscale -width 152 | pgmtopbm | pbmtoascii
+wait    25
+
+shot    gulls
+for     giftopnm pbmtoascii ppmtopgm
+cap     DEMO/gulls.gif, a real photograph, decoded by giftopnm and carried
+cap     through five more netpbm programs to arrive as characters: grey,
+cap     scaled, normalised, dithered, and mapped two-by-four to a screen.
+run     giftopnm /dd/DEMO/gulls.gif | ppmtopgm | pnmscale -xysize 152 88 | pgmnorm | pgmtopbm | pbmtoascii -2x4
+wait    30
+
+shot    gulls-invert
+for     pnminvert
+cap     The photograph inverted -- a negative, made by pnminvert.
+run     giftopnm /dd/DEMO/gulls.gif | ppmtopgm | pnmscale -xysize 152 88 | pgmnorm | pnminvert | pgmtopbm | pbmtoascii -2x4
+wait    30
+
+shot    icon
+for     pbmtoicon icontopbm pbmtomacp macptopbm
+cap     Sun icon format and MacPaint, out and back.
+run     pbmtoicon /dd/tmp/base.pbm > /dd/tmp/t.icon
+wait    6
+run     icontopbm /dd/tmp/t.icon | pnmfile
+wait    8
+run     pbmtomacp /dd/tmp/base.pbm > /dd/tmp/t.macp
+wait    6
+run     macptopbm /dd/tmp/t.macp | pnmfile
+wait    8
+
+shot    ilbm
+for     ppmtoilbm ilbmtoppm pnmtosgi sgitopnm
+cap     Amiga IFF/ILBM and SGI RGB -- two more machines that had their own
+cap     idea of a picture file.
+run     ppmtoilbm /dd/tmp/base.ppm > /dd/tmp/t.ilbm
+wait    8
+run     ilbmtoppm /dd/tmp/t.ilbm | pnmfile
+wait    8
+run     pnmtosgi /dd/tmp/base.ppm > /dd/tmp/t.sgi
+wait    6
+run     sgitopnm /dd/tmp/t.sgi | pnmfile
+wait    8
+
+shot    lispm
+for     pgmtolispm lispmtopgm pbmtopk pktopbm ppmtomap
+cap     A Lisp machine's bitmap format, and TeX's PK font format, both with
+cap     readers here.
+run     pgmtolispm /dd/tmp/base.pgm | lispmtopgm | pnmfile
+wait    10
+run     ppmtomap /dd/tmp/base.ppm | /dd/CMDS/head -n 8
+wait    8
+
+shot    pbmlife
+cap     pbmlife runs Conway's Life one generation on a bitmap -- an image
+cap     tool that is also a cellular automaton.
+run     /dd/CMDS/NETPBM/pgmnoise 60 30 | /dd/CMDS/NETPBM/pgmtopbm | /dd/CMDS/NETPBM/pbmlife | /dd/CMDS/NETPBM/pbmtoascii
+wait    10
+
+shot    pbmmake
+for     pbmmake pbmupc pbmreduce
+cap     pbmupc draws a real UPC-A barcode from its digits; pbmreduce halves
+cap     it so the whole code fits a screen.
+run     pbmupc 0 72890 00011 | pbmreduce 2 | pbmtoascii -2x4
+wait    15
+
+shot    pbmtext
+cap     pbmtext sets a line of type as a bitmap; pbmtoascii renders that
+cap     bitmap back as characters.  Nothing is drawn by hand.
+run     /dd/CMDS/NETPBM/pbmtext "OS-9/68K" | /dd/CMDS/NETPBM/pbmtoascii
+wait    6
+
+shot    pbmtext-big
+for     pbmtext pbmpscale pbmreduce
+cap     pbmtext sets a line of type, pbmpscale enlarges the bitmap without
+cap     the staircase an ordinary scale would give.
+run     pbmtext "netpbm" | pbmpscale 2 | pbmtoascii -2x4
+wait    12
+
+shot    pbmupc
+cap     pbmupc draws a real UPC-A barcode from its digits.  Rendered here
+cap     through pbmtoascii, the bar widths are the code.
+run     /dd/CMDS/NETPBM/pbmupc 0 72890 00011 | /dd/CMDS/NETPBM/pbmreduce 3 | /dd/CMDS/NETPBM/pbmtoascii
+wait    8
+
+shot    pcx
+for     ppmtopcx pcxtoppm
+cap     PCX -- the format every DOS paint program wrote.
+run     ppmtopcx /dd/tmp/base.ppm > /dd/tmp/t.pcx
+wait    8
+run     pcxtoppm /dd/tmp/t.pcx > /dd/tmp/back3.ppm
+wait    8
+run     pnmfile /dd/tmp/t.pcx /dd/tmp/back3.ppm
+wait    6
+
+shot    pgmbentley
+cap     The Bentley effect: brightness carried by how tall each pixel is.
+run     pnmscale -width 150 /dd/DEMO/sphere.pgm | pgmbentley | pgmtopbm | pbmtoascii
+wait    15
+
+shot    pgmcrater
+cap     pgmcrater drops craters at random and shades them -- a whole moon
+cap     out of a random number generator.
+run     pgmcrater -number 80 -xsize 152 -ysize 88 | pgmtopbm | pbmtoascii -2x4
+wait    30
+
+shot    pgmedge
+for     pgmedge pgmenhance pgmnorm
+cap     pgmedge keeps only where the brightness changes; on a photograph
+cap     that leaves the outlines.
+run     giftopnm /dd/DEMO/gulls.gif | ppmtopgm | pnmscale -xysize 152 88 | pgmedge | pgmnorm | pgmtopbm | pbmtoascii -2x4
+wait    35
+
+shot    pgmhist
+for     pgmhist pgmramp
+cap     pgmramp makes a greyscale ramp and pgmhist counts what is in it --
+cap     flat by construction, which is how you know both are right.
+run     pgmramp -lr 64 16 > /dd/tmp/ramp.pgm
+wait    6
+run     pgmhist /dd/tmp/ramp.pgm | /dd/CMDS/head -n 18
+wait    8
+
+shot    pgmnoise
+for     pgmnoise pnmsmooth pnmconvol
+cap     pgmnoise makes white noise and pnmsmooth blurs it -- a convolution,
+cap     and what comes out looks like cloud.
+run     pgmnoise 152 88 | pnmsmooth | pgmtopbm | pbmtoascii -2x4
+wait    20
+
+shot    pgmoil
+cap     pgmoil paints the photograph again as if in oils -- each pixel
+cap     becomes the commonest value around it.
+run     giftopnm /dd/DEMO/gulls.gif | ppmtopgm | pnmscale -xysize 152 88 | pgmoil | pgmnorm | pgmtopbm | pbmtoascii -2x4
+wait    35
+
+shot    pgmramp
+cap     A greyscale ramp dithered to a bitmap: the gradient survives as the
+cap     density of the characters.
+run     /dd/CMDS/NETPBM/pgmramp -lr 152 44 | /dd/CMDS/NETPBM/pgmtopbm | /dd/CMDS/NETPBM/pbmtoascii
+wait    8
+
+shot    plotters
+for     pbmtoplot pbmtozinc pbmtobbnbg pbmtogo pbmtoln03 pbmtolps
+cap     Six more write-only drivers, for machines that are gone: a Unix
+cap     plotter, Zinc, a BBN bitgraph, GraphOn, DEC LN03 and LPS.
+run     pbmtoplot /dd/tmp/base.pbm | /dd/CMDS/wc
+wait    8
+run     pbmtozinc /dd/tmp/base.pbm | /dd/CMDS/head -n 8
+wait    8
+run     pbmtoln03 /dd/tmp/base.pbm | /dd/CMDS/wc
+wait    8
+
+shot    pnmarith
+for     pnmarith pnmdepth
+cap     pnmarith multiplies two images together -- the sphere by a ramp, so
+cap     it fades across.
+run     pgmramp -lr 152 88 > /dd/tmp/r2.pgm
+wait    8
+run     pnmscale -xysize 152 88 /dd/DEMO/sphere.pgm > /dd/tmp/s2.pgm
+wait    10
+run     pnmarith -multiply /dd/tmp/s2.pgm /dd/tmp/r2.pgm | pgmtopbm | pbmtoascii -2x4
+wait    20
+
+shot    pnmcat
+for     pnmcat pnminvert pnmscale
+cap     pnmcat puts two images side by side -- the sphere beside its own
+cap     negative, made by pnminvert.
+run     pnmscale -xysize 74 88 /dd/DEMO/sphere.pgm > /dd/tmp/s.pgm
+wait    10
+run     pnminvert /dd/tmp/s.pgm > /dd/tmp/si.pgm
+wait    6
+run     pnmcat -lr /dd/tmp/s.pgm /dd/tmp/si.pgm | pgmtopbm | pbmtoascii -2x4
+wait    12
+
+shot    pnmfile
+cap     pnmfile identifies what each intermediate in a pipeline actually is
+cap     -- format, dimensions and whether it is raw or plain.
+run     /dd/CMDS/NETPBM/pgmtopbm /dd/tmp/ramp.pgm > /dd/tmp/ramp.pbm
+wait    3
+run     /dd/CMDS/NETPBM/ppmpat -gingham2 40 20 > /dd/tmp/ging.ppm
+wait    3
+run     /dd/CMDS/NETPBM/pnmfile /dd/tmp/ramp.pgm /dd/tmp/ramp.pbm /dd/tmp/ging.ppm
+wait    4
+
+shot    pnmfile-gulls
+for     pnmfile
+cap     What each stage of that pipeline actually produced, according to
+cap     pnmfile.
+run     giftopnm /dd/DEMO/gulls.gif > /dd/tmp/gulls.ppm
+wait    12
+run     pnmscale -width 300 /dd/tmp/gulls.ppm > /dd/tmp/small.ppm
+wait    12
+run     pnmfile /dd/tmp/gulls.ppm /dd/tmp/small.ppm
+wait    5
+
+shot    pnmfile-set
+for     pnmfile pnmtile pnmpad
+cap     pnmfile identifies each file a pipeline made: format, size, and
+cap     whether it is raw or plain.  Six formats, all made on this disk.
+run     pnmtile 60 30 /dd/tmp/s.pgm > /dd/tmp/tile.pgm
+wait    10
+run     pnmpad -white -left 10 /dd/tmp/tile.pgm > /dd/tmp/pad.pgm
+wait    8
+run     pnmfile /dd/tmp/ramp.pgm /dd/tmp/t.ppm /dd/tmp/tile.pgm /dd/tmp/pad.pgm /dd/tmp/s.pgm
+wait    8
+
+shot    pnminvert
+cap     The sphere that ships in DEMO, inverted, so the light comes from
+cap     the other side.
+run     pnmscale -width 152 /dd/DEMO/sphere.pgm | pnminvert | pgmtopbm | pbmtoascii
+wait    15
+
+shot    pnmrotate
+for     pnmrotate pnmcrop pnmflip
+cap     pnmrotate turns the sphere thirty degrees and pnmcrop trims the
+cap     margin the rotation left behind.
+run     pnmscale -xysize 100 100 /dd/DEMO/sphere.pgm | pnmrotate 30 | pnmcrop | pnmscale -xysize 152 88 | pgmtopbm | pbmtoascii -2x4
+wait    30
+
+shot    pnmtile
+cap     pnmtile repeats a small image to fill a larger one; pbmpscale then
+cap     enlarges a bitmap without the staircase.
+run     pnmscale -width 30 /dd/DEMO/sphere.pgm > /dd/tmp/t.pgm
+wait    8
+run     pnmtile 150 40 /dd/tmp/t.pgm | pgmtopbm -threshold -value 0.4 | pbmtoascii
+wait    12
+
+shot    pnmtops
+for     pnmtops
+cap     pnmtops writes PostScript around a bitmap -- how an image reached a
+cap     printer in 1990.  The head of what it produced.
+run     pnmtops /dd/tmp/ramp.pgm | /dd/CMDS/head -n 18
+wait    10
+
+shot    ppmdither
+for     ppmdither ppmquant ppmtopgm
+cap     ppmquant reduces the photograph to sixteen colours and ppmdither
+cap     spreads the error -- the two halves of how a picture survived a
+cap     screen that had no more colours than that.
+run     giftopnm /dd/DEMO/gulls.gif | pnmscale -xysize 152 88 | ppmquant 16 | ppmtopgm | pgmtopbm | pbmtoascii -2x4
+wait    40
+
+shot    ppmforge
+cap     ppmforge invents a planet from a random seed: fractal terrain, an
+cap     atmosphere and a star field, none of it drawn by anybody.
+run     ppmforge -width 152 -height 88 -seed 7 | ppmtopgm | pgmtopbm | pbmtoascii -2x4
+wait    40
+
+shot    ppmhist
+for     ppmhist ppmpat
+cap     ppmpat weaves a pattern and ppmhist counts the colours in it, the
+cap     commonest first.
+run     ppmpat -tartan 80 40 > /dd/tmp/t.ppm
+wait    8
+run     ppmhist /dd/tmp/t.ppm | /dd/CMDS/head -n 18
+wait    8
+
+shot    ppmpat
+cap     ppmpat weaves a tartan, ppmtopgm greys it and the dither prints it.
+run     ppmpat -tartan 152 88 | ppmtopgm | pgmtopbm | pbmtoascii -2x4
+wait    15
+
+shot    ppmpat-madras
+for     ppmpat
+cap     ppmpat weaves a madras pattern; the same dither renders it.
+run     ppmpat -madras 150 44 | ppmtopgm | pgmtopbm | pbmtoascii
+wait    12
+
+shot    ppmrelief
+cap     ppmrelief embosses an image -- the same sphere lit from the side by
+cap     arithmetic rather than by a renderer.
+run     pgmtoppm white /dd/DEMO/sphere.pgm | ppmrelief | ppmtopgm | pnmscale -width 150 | pgmtopbm | pbmtoascii
+wait    20
+
+shot    printers
+for     pbmtolj pbmtoepson pbmto10x pbmtoptx pbmtoepsi
+cap     The printer drivers: LaserJet, Epson, Star 10x and Printronix, each
+cap     turning the same bitmap into that printer's own language.  Their
+cap     sizes are the interesting part -- this is what a page cost.
+run     pbmtolj /dd/tmp/base.pbm | /dd/CMDS/wc
+wait    8
+run     pbmtoepson /dd/tmp/base.pbm | /dd/CMDS/wc
+wait    8
+run     pbmto10x /dd/tmp/base.pbm | /dd/CMDS/wc
+wait    8
+run     pbmtoepsi /dd/tmp/base.pbm | /dd/CMDS/head -n 10
+wait    8
+
+shot    rawtopgm
+for     rawtopgm rawtoppm pgmtofs fstopgm
+cap     rawtopgm reads headerless bytes as an image -- how you got a picture
+cap     out of a machine that wrote no header at all.
+run     pgmnoise 40 20 | pnmnoraw | /dd/CMDS/head -n 3
+wait    8
+run     rawtopgm 48 24 < /dd/tmp/base.pgm | pnmfile
+wait    8
+run     pgmtofs /dd/tmp/base.pgm | fstopgm | pnmfile
+wait    10
+
+shot    rayshade
+cap     Rayshade 4.0, a full ray tracer, rendering one of its fifteen
+cap     example scenes and reporting the work: primitives, rays cast,
+cap     shadow rays, time.  It preprocesses every scene with cccp, so a C
+cap     preprocessor has to be reachable under that name -- DOC/rayshade
+cap     says so and it is right.
+run     /dd/CMDS/cp /dd/CMDS/GCC139/gcc_cccp /dd/CMDS/cccp
+wait    8
+run     /dd/CMDS/rayshade -R 48 36 -O /dd/tmp/out.pic /dd/GAMES/rayshade/boxball.ray
+wait    50
+
+shot    setup-image
+for     pgmramp ppmpat pnmfile
+cap     The two test images every round trip below starts from: a greyscale
+cap     ramp and a woven gingham, both generated on this disk.
+run     pgmramp -lr 48 24 > /dd/tmp/base.pgm
+wait    5
+run     ppmpat -gingham3 48 24 > /dd/tmp/base.ppm
+wait    5
+run     pbmmake -g 48 24 > /dd/tmp/base.pbm
+wait    5
+run     pnmfile /dd/tmp/base.pgm /dd/tmp/base.ppm /dd/tmp/base.pbm
+wait    5
+
+shot    setup2
+for     pgmramp pbmmake ppmpat
+cap     The three test images the round trips below start from.
+run     pgmramp -lr 48 24 > /dd/tmp/base.pgm
+wait    5
+run     ppmpat -gingham3 48 24 > /dd/tmp/base.ppm
+wait    5
+run     pbmmake -g 48 24 > /dd/tmp/base.pbm
+wait    5
+run     /dd/CMDS/file /dd/tmp/base.pgm /dd/tmp/base.ppm /dd/tmp/base.pbm
+wait    6
+
+shot    sphere
+for     pgmtopbm pnmscale
+cap     DEMO/sphere.pgm, a rendered sphere, dithered the same way.  The
+cap     gradient across it is carried entirely by the dither pattern.
+run     pnmscale -xysize 152 88 /dd/DEMO/sphere.pgm | pgmtopbm | pbmtoascii -2x4
+wait    15
+
+shot    sphere-edge
+for     pgmedge
+cap     pgmedge on the sphere: a convolution that keeps only where the
+cap     brightness changes, which leaves the outline and the terminator.
+run     pnmscale -xysize 152 88 /dd/DEMO/sphere.pgm | pgmedge | pgmnorm | pgmtopbm | pbmtoascii -2x4
+wait    18
+
+shot    tga
+for     ppmtotga tgatoppm
+cap     Targa, and the Sun raster format beside it.
+run     ppmtotga /dd/tmp/base.ppm > /dd/tmp/t.tga
+wait    8
+run     tgatoppm /dd/tmp/t.tga > /dd/tmp/back4.ppm
+wait    8
+run     pnmtorast /dd/tmp/base.ppm > /dd/tmp/t.ras
+wait    6
+run     rasttopnm /dd/tmp/t.ras > /dd/tmp/back5.ppm
+wait    6
+run     pnmfile /dd/tmp/t.tga /dd/tmp/back4.ppm /dd/tmp/t.ras /dd/tmp/back5.ppm
+wait    6
+
+shot    tiffish
+for     ppmtopj pjtoppm ppmtopjxl ppmtoacad
+cap     HP PaintJet, out and back, and two write-only drivers beside it --
+cap     ppmtopjxl and ppmtoacad have no reader here, which is the shape of
+cap     half this toolkit: it was written to FEED devices.
+run     ppmtopj /dd/tmp/base.ppm > /dd/tmp/t.pj
+wait    8
+run     pjtoppm /dd/tmp/t.pj | pnmfile
+wait    8
+run     ppmtopjxl /dd/tmp/base.ppm | /dd/CMDS/wc
+wait    8
+
+shot    workstations
+for     pbmtomgr mgrtopbm pbmtoatk atktopbm pbmtocmuwm cmuwmtopbm
+cap     Three workstation bitmap formats of the late eighties -- MGR, the
+cap     Andrew Toolkit, and CMU's window manager -- each with its reader.
+run     pbmtomgr /dd/tmp/base.pbm | mgrtopbm | pnmfile
+wait    10
+run     pbmtoatk /dd/tmp/base.pbm | atktopbm | pnmfile
+wait    10
+run     pbmtocmuwm /dd/tmp/base.pbm | cmuwmtopbm | pnmfile
+wait    10
+
+shot    xbm
+for     pbmtoxbm xbmtopbm pbmtoybm ybmtopbm
+cap     X bitmaps and Bennet Yee bitmaps: two of the eleven bitmap formats
+cap     this toolkit reads.
+run     pbmtoxbm /dd/tmp/base.pbm > /dd/tmp/t.xbm
+wait    6
+run     /dd/CMDS/head -n 6 /dd/tmp/t.xbm
+wait    5
+run     xbmtopbm /dd/tmp/t.xbm > /dd/tmp/back6.pbm
+wait    6
+run     pbmtoybm /dd/tmp/base.pbm | ybmtopbm | pnmfile
+wait    8
+
+shot    xpm
+for     ppmtoxpm xpmtoppm ppmtopuzz
+cap     The X pixmap is C source with the image in it -- here is the head of
+cap     one this disk just wrote.
+run     ppmtoxpm /dd/tmp/base.ppm > /dd/tmp/t.xpm
+wait    8
+run     /dd/CMDS/head -n 12 /dd/tmp/t.xpm
+wait    5
+run     xpmtoppm /dd/tmp/t.xpm | pnmfile
+wait    8
+
+shot    yuv
+for     ppmtoyuv yuvtoppm ppmtoyuvsplit yuvsplittoppm ppmtorgb3 rgb3toppm
+cap     Video colour spaces: YUV as one stream and as three planes, and RGB
+cap     split into three files.
+run     ppmtoyuv /dd/tmp/base.ppm | yuvtoppm 48 24 | pnmfile
+wait    10
+run     ppmtorgb3 /dd/tmp/base.ppm
+wait    8
+run     /dd/CMDS/ls -l noname.red noname.grn noname.blu
+wait    8

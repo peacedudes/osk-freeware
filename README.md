@@ -85,14 +85,14 @@ is no help until you already know the name you want.
 |---|--:|---|
 | **Shells** | 20 | Unix shells to sit beside OS-9's own -- bash and ksh bring history, job control, and scripts that come across unchanged. |
 | **Editors** | 24 | vi and emacs in several flavours, line and stream editors, and editors for binary and hex. |
-| **Text tools** | 81 | Search, sort, compare, reformat, split and spell-check. |
+| **Text tools** | 114 | Search, sort, compare, reformat, split and spell-check. |
 | **Files & directories** | 35 | Listing, copying, finding, renaming, and knowing what you have. |
 | **Developer tools** | 46 | Version control, tags, cross-reference, formatters, a debugger and benchmarks. |
 | **Compilers & build** | 26 | C compilers and their passes, assemblers, linkers, make and parser generators. |
-| **Languages** | 6 | Interpreters and language systems beyond C. |
+| **Languages** | 10 | Interpreters and language systems beyond C. |
 | **Archives & compression** | 35 | Pack, unpack and shrink -- lha, zip, tar, arc, zoo, and OS-9 module libraries. |
 | **Encoding & conversion** | 26 | Between text encodings, line endings, number bases, ciphers and hashes. |
-| **Communications** | 51 | Kermit in several builds, terminal sessions, and networking. |
+| **Communications** | 96 | Kermit in several builds, terminal sessions, and networking. |
 | **Graphics & images** | 204 | The netpbm toolkit, JPEG, a ray tracer, and things that draw. |
 | **Games** | 65 | Adventures, board and card games, arcade ports, dungeon crawls and puzzles. |
 | **Screen toys** | 6 | Things to watch rather than play. Start one and leave it going. |

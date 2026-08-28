@@ -1,0 +1,6 @@
+ppmtobmp /dd/tmp/base.ppm > /dd/tmp/t.bmp
+ppmtobmp: computing colormap...
+ppmtobmp: 6 colors found
+ppmtobmp: Using 4 bits per pixel
+bmptoppm: OS/2 BMP, 48x24x4
+pnmfile: bad magic number - not a ppm, pgm, or pbm file

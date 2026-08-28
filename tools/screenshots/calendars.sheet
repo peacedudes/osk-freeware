@@ -1,0 +1,33 @@
+# Calendars, clocks and the computus.
+
+shot    cal-holidays
+for     cal
+cap     cal with -h: the holidays in SYS/holidays are marked on the month.
+run     /dd/CMDS/cal -m=12 -y=2026 -h
+wait    4
+
+shot    calen
+cap     calen prints a month as a diary page, ruled for appointments -- it
+cap     asks for month, year and how many months to print.
+run     echo 8 2026 1 | /dd/CMDS/calen | /dd/CMDS/head -n 21
+wait    6
+
+shot    calender
+cap     A whole year on one screen, in German -- `Fuer welches Jahr?'
+run     /dd/CMDS/calender
+wait    2
+send    2026\r
+wait    3
+kill
+
+shot    digclk
+cap     A digital clock drawn in block characters, with the hostname under
+cap     it.  It redraws until you stop it.
+run     /dd/CMDS/digclk
+wait    6
+
+shot    easter
+cap     easter computes the date of Easter for a run of years -- the
+cap     computus, in one small program.
+run     /dd/CMDS/easter
+wait    3

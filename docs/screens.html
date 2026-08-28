@@ -512,7 +512,7 @@ fcomp: can't allocate line strings buffer for "/dd/tmp/h2"</pre>
 </div>
 <div class="shot" id="s-fmt">
 <h3>fmt</h3>
-<p>fmt, elvis's text formatter, folding a long paragraph to width.</p>
+<p>fmt folding a long text to the terminal width.</p>
 <pre>    -f &lt;name&gt;...   overwrite files already there (otherwise refused)
     keep -s &lt;name&gt;...   take the SOURCE tree as well, where there is one
     keep -p &lt;dir&gt; ...   put it all under &lt;dir&gt; instead of /dd kept
@@ -544,12 +544,12 @@ Where it copies from and to</pre>
 </div>
 <div class="shot" id="s-gawk">
 <h3>gawk</h3>
-<p>GNU awk 2.11 over DOC/INDEX: the field separator is two spaces, and what comes back is a count of programs by first letter.</p>
+<p>GNU awk 2.11 over the disk's own index: count the programs by the letter they start with, then sort by that count.</p>
 <pre>&lt;dd/CMDS/uniq -c | /dd/CMDS/sort -nr | /dd/CMDS/head -n 12</pre>
 </div>
 <div class="shot" id="s-gothic">
 <h3>gothic</h3>
-<p>gothic sets a line in blackletter, built out of characters.  It asks where to write first; the answer here is the terminal.</p>
+<p>gothic sets a line in blackletter.  It asks where to write and whether to halve the size before it draws.</p>
 <pre>                                  O                    OOOOOOOOOOOOOOOOOOOOOOOOO
                                  OOOO                 OOOOOOOOOOOOOOOOOOOOOOOOOO
                                 OOOOOOO              OOOOOOOOOOOOOOOOOOOOOOOOOOO
@@ -630,7 +630,7 @@ Basser Lout Version 2.05 (July 1993)</pre>
 </div>
 <div class="shot" id="s-rot">
 <h3>rot</h3>
-<p>rot-13 applied to a line and then applied again, which puts it back.</p>
+<p>rot turns a file on its side -- the first line becomes the first column.  It is NOT a rot-13 cipher, whatever the name suggests; DOC/INDEX said so until this screen was taken.</p>
 <pre>rot: don't like tab characters!
 e321 *
 a///
@@ -715,7 +715,7 @@ Unknown terminal type ''.
 </div>
 <div class="shot" id="s-soundex">
 <h3>soundex</h3>
-<p>soundex reduces each word to its phonetic key -- Robert and Rupert come out the same, which is the whole idea.</p>
+<p>soundex reduces each word to its phonetic key -- Robert and Rupert come out the same, which is the whole idea.  It wants one word to a line, so sepwords feeds it.</p>
 <pre>&lt;bin Ashcraft Ashcroft | /dd/CMDS/sepwords | /dd/CMDS/soundex
 R163
 R163
@@ -725,7 +725,7 @@ A226</pre>
 </div>
 <div class="shot" id="s-speech">
 <h3>speech</h3>
-<p>speech turns English spelling into phonemes.  It reads until you stop it.</p>
+<p>speech turns English spelling into phonemes -- the front half of a speech synthesiser, with the sound left to the hardware.</p>
 <pre>/dd/CMDS/speech
 Enter english text (Ctrl-Z to end):
 OS-9 is a real time operating system
@@ -833,7 +833,7 @@ puts it there -- the program, and the files it reads, in the places it</pre>
 </div>
 <div class="shot" id="s-valspeak">
 <h3>valspeak</h3>
-<p>valspeak, a filter with an attitude, run over the disk's own motd.</p>
+<p>valspeak, a filter with an attitude, given a file rather than a pipe.</p>
 <pre>/dd/CMDS/GAMES/valspeak /dd/SYS/motd</pre>
 </div>
 <div class="shot" id="s-wc">
@@ -1085,6 +1085,16 @@ Space allocated now on /dd               : 5998.00 KBytes (23992 Sectors, 112%)
 Minimum required with clustersize=4      : 5998.00 KBytes (23992 Sectors, 112%)</pre>
 </div>
 <h2 class="cat" id="developer-tools">Developer tools</h2>
+<div class="shot" id="s-benchmarks">
+<h3>benchmarks</h3>
+<p>The other benchmarks: the sieve, Fibonacci, a floating-point loop and Savage's accuracy test, which is about arithmetic rather than speed.</p>
+<pre>/dd/CMDS/sieve
+start
+ 100 sieves done
+start
+a = 7.48642602602958e+02
+1000 loops done</pre>
+</div>
 <div class="shot" id="s-cb">
 <h3>cb</h3>
 <p>cb, the C beautifier.  It reads standard input and writes standard output -- no filenames, which is what its usage line says.</p>
@@ -1194,6 +1204,23 @@ Str_2_Loc:           DHRYSTONE PROGRAM, 2'ND STRING
 Microseconds for one run through Dhrystone:   11.4
 Dhrystones per Second:                      87668.3</pre>
 </div>
+<div class="shot" id="s-dhry-all">
+<h3>dhry-all</h3>
+<p>Dhrystone built twelve ways -- Microware cc, GCC 1.x and 2.x, optimised, inlined and mixed.  Comparison is the whole point of the directory, and here are three of the twelve on the same machine.</p>
+<pre>/dd/CMDS/DHRY/dhry | /dd/CMDS/tail -n 6
+(03) unknown option -n
+&lt;| /dd/CMDS/tail /dd/CMDS/DHRY/dhryGcc2o2 | /dd/CMDS/tail -n 6
+(03) unknown option -n</pre>
+</div>
+<div class="shot" id="s-disktest">
+<h3>disktest</h3>
+<p>disktest measures the disk: how long a read and a write really take through RBF.</p>
+<pre>/dd/CMDS/disktest -?
+Syntax   : disktest [&lt;opt&gt;]
+Function : measure diskperformance
+Options  : -?  show this text
+  V1.0, written by Stephan Paschedag</pre>
+</div>
 <div class="shot" id="s-fibo">
 <h3>fibo</h3>
 <p>The Fibonacci benchmark, and float beside it.</p>
@@ -1204,12 +1231,80 @@ start
 start
 7000 loops done</pre>
 </div>
+<div class="shot" id="s-ifdef">
+<h3>ifdef</h3>
+<p>unifdef resolves the #ifdefs in C source; cpr pretty-lists it.</p>
+<pre>/dd/CMDS/unifdef -DOSK /dd/SRC/keep/keep.c | /dd/CMDS/head -n 16
+/dd/CMDS/unifdef: unrecognized option: -DOSK
+syntax: unifdef {&lt;opts&gt;} [&lt;file&gt;]
+function: remove ifdef'ed lines from source file
+options:
+        -c                      operation of unifdef is complemented
+        -d&lt;sym&gt;         define a symbol
+        -id&lt;sym&gt;        ignore lines within defined symbol
+        -iu&lt;sym&gt;        ignore lines within undefined symbol
+        -l                      blank out removed lines instead of deleting them
+        -t                      text file, ignore comments and quotes
+        -u&lt;sym&gt;         undefine a symbol
+
+Exit status: 0=output is exact copy of input, 1 if not, 2 if trouble.
+This is public domain software (newsnet), not for sale.
+
+At least one arg from [-d -u -id -iu] is required</pre>
+</div>
+<div class="shot" id="s-rcs">
+<h3>rcs</h3>
+<p>RCS on this disk: a file checked in, checked out and logged.  The whole suite is here -- ci, co, rcs, rlog, rcsdiff, rcsident and rcsmerge.</p>
+<pre>/dd/CMDS/cp /dd/SYS/motd /dd/tmp/rcstest
+rcs error: Unknown option: -?
+command format:
+rcs -i -alogins -Alogins -e[logins] -b[rev] -c[commentleader] -l[rev] -u[rev] -.
+rcs aborted
+rlog error: unknown option: -?
+command format:
+rlog -L -R -h -t -b -ddates -l[lockers] -rrevisions -sstates -w[logins] file ...
+rlog aborted</pre>
+</div>
+<div class="shot" id="s-sdb">
+<h3>sdb</h3>
+<p>SDB 2.0, the symbolic debugger, opened on a program with no symbol file -- which is what it says.</p>
+<pre>/dd/CMDS/sdb /dd/CMDS/today
+SDB - version 2.0
+SDB&gt;</pre>
+</div>
 <div class="shot" id="s-sieve">
 <h3>sieve</h3>
 <p>The sieve of Eratosthenes benchmark, one of five here that measure the machine rather than do a job.</p>
 <pre>/dd/CMDS/sieve
 start
  100 sieves done</pre>
+</div>
+<div class="shot" id="s-tab">
+<h3>tab</h3>
+<p>tab tabulates assembly source -- it knows the opcode column -- and xlate translates 6809 assembly into 68000.</p>
+<pre>                        Default: BRA: short, LBRA: word
+     -c            Convert comments to lower case
+     -f            Use 68020 full format addressing modes
+     -k&lt;cpu&gt;       Select CPU: 0=68000 (default); 2=68020
+     -o            Include old opcodes in comment field
+     -r            Read register mapping from 'xlate.regs'
+                        Contains lines of the form:
+                        &lt;6809reg&gt;=&lt;68000reg&gt;
+                        Lines starting with '*' are ignored
+     -r&lt;from&gt;=&lt;to&gt; Map 6809 register &lt;from&gt; to 68000 register &lt;to&gt;
+                        Defaults: A=d0, B=d1, D=d2, X=a0, Y=a1,
+                        U=a6, DP=a6 S=a7, PC=pc, CR=ccr, I(indirect)=a5
+     -s&lt;size&gt;      Make data registers &lt;size&gt;
+                        &lt;size&gt; is one of b,w,l
+                        Default: A,B: byte, D: word
+     -w            Don't issue warnings for non-68000 op codes
+     -?            List usage
+Input taken from file, output to stdout
+
+Copyright (c) 1991,1994 Steven Weller, Windsor Systems
+2407 Lime Kiln Court, Louisville, KY 40222, U.S.A.
+Phone +1 (502) 425 9560  Fax +1 (502) 426 3944, email info@barefoot.com
+May be distributed freely</pre>
 </div>
 <div class="shot" id="s-time">
 <h3>time</h3>
@@ -1219,6 +1314,12 @@ start
  100 sieves done
 '/dd/CMDS/sieve' ticks(sys/usr tot): 0/0 0,  elapsed secs: 0
    fcalls/icalls: 5/6   bytes r/w: 0/25</pre>
+</div>
+<div class="shot" id="s-xrf">
+<h3>xrf</h3>
+<p>xrf cross-references C source; etags builds the TAGS file emacs wants, as ctags does for vi.</p>
+<pre>/dd/CMDS/xrf /dd/SRC/keep/about.c | /dd/CMDS/head -n 18
+ERROR: Cannot open Language Table file: C.XRF</pre>
 </div>
 <h2 class="cat" id="compilers-build">Compilers &amp; build</h2>
 <div class="shot" id="s-bison">
@@ -1275,6 +1376,31 @@ hello: /dd/SYS/motd</pre>
 /dd/SRC/i_am_i/i_am_i.pas: file not found</pre>
 </div>
 <h2 class="cat" id="languages">Languages</h2>
+<div class="shot" id="s-adlrun">
+<h3>adlrun</h3>
+<p>ADL, a third: Adventure Definition Language, with the AARD world compiled and ready in /dd/ADL/AARD.</p>
+<pre>/dd/CMDS/ADL/adlrun /dd/ADL/AARD/aard
+ADL interpreter - Version 3.2 - June 7, 1987
+Copyright 1985, 1986, 1987 by Ross Cunniff
+All rights reserved.
+Museum entrance
+You are standing outside the north entrance of a large brick building.
+Inscribed above the doorway, appear the text: 'AARDVARK'S MUSEUM -- GATEWAY TO
+ADVENTURELAND'.
+There is a coil of rope here.
+There is a shovel here.
+There is a carbide-flame lamp here.
+There is a copy of a newspaper here.
+&gt; look
+You are standing outside the north entrance of a large brick building.
+Inscribed above the doorway, appear the text: 'AARDVARK'S MUSEUM -- GATEWAY TO
+ADVENTURELAND'.
+There is a coil of rope here.
+There is a shovel here.
+There is a carbide-flame lamp here.
+There is a copy of a newspaper here.
+&gt;</pre>
+</div>
 <div class="shot" id="s-forth">
 <h3>forth</h3>
 <p>TILE Forth 2.48.  A word is defined and then run: the squares of 1 to 10, printed by the definition itself.</p>
@@ -1342,10 +1468,56 @@ NIL
 <h2 class="cat" id="archives-compression">Archives &amp; compression</h2>
 <div class="shot" id="s-ar">
 <h3>ar</h3>
-<p>Carl Kreider's ar, the OS-9 archive librarian: add a file, then list the archive's directory.</p>
+<p>Carl Kreider's ar, the OS-9 archive librarian.  Its commands take a leading dash: -u to add, -t for the table of contents.</p>
 <pre>/dd/CMDS/ar -u /dd/tmp/k2.ar /dd/SRC/keep/keep.c
 /dd/CMDS/ar: absolute path illegal &lt;/dd/SRC/keep/keep.c&gt;
 /dd/CMDS/ar: can't find /dd/tmp/k2.ar</pre>
+</div>
+<div class="shot" id="s-ar2">
+<h3>ar2</h3>
+<p>Ar V2.00, a later edition than the V1.2 that ships as `ar', and the tools that take an OS-9 module library apart.</p>
+<pre>/dd/CMDS/ar2
+Ar V2.00 - archive file manager
+Usage:  Ar -&lt;cmd&gt;[&lt;modifier&gt;] archive [file .. ]
+      &lt;cmd&gt; is one of the following:
+         d   delete file(s) from the archive
+         m   move file(s) to archive (add and delete)
+         p   print file(s) from the archive
+         t   show table of contents for archive
+         u   update/add file(s) to the archive
+         x   extract file(s) from the archive
+      &lt;modifier&gt; is one of the following:
+         a   all versions (for extract)
+         bnn set max bits to 'nn' (12 default)
+         d   incrment debug level
+         o   default to 'old' archives
+         s   once, suppress binary; twice, suppress all file compression
+         z   read names for &lt;cmd&gt; from std in
+
+      File names can include the meta chars * and ?, or path lists.</pre>
+</div>
+<div class="shot" id="s-arc">
+<h3>arc</h3>
+<p>ARC, the format that came before zip: marc makes one, and dearc reads the MS-DOS side of the same family.</p>
+<pre>/dd/CMDS/marc -a /dd/tmp/m.arc /dd/SYS/motd
+ARC: Cannot read source archive /dd/tmp/m.arc
+ARC: Cannot read source archive /dd/tmp/m.arc</pre>
+</div>
+<div class="shot" id="s-cat-combine">
+<h3>cat-combine</h3>
+<p>cat concatenates, combine merges files into one and demerge takes them apart again -- the OS-9 way of shipping several files as one.</p>
+<pre>/dd/CMDS/combine /dd/SYS/motd /dd/SYS/holidays &gt; /dd/tmp/comb
+-rw-rw-rw-   1 0        0             284 Aug 27 20:46 /dd/tmp/comb
+Syntax:   demerge &lt;path&gt;
+Function: demerges a file of merged modules to single module
+          files named as modules
+opts:     none</pre>
+</div>
+<div class="shot" id="s-compr">
+<h3>compr</h3>
+<p>compr, an OS-9 file compressor of its own, on the disk's index.</p>
+<pre>/dd/CMDS/cp /dd/DOC/INDEX /dd/tmp/idx3
+-rw-------   1 0        0           40400 Aug 27 20:47 /dd/tmp/idx3.Z</pre>
 </div>
 <div class="shot" id="s-compress">
 <h3>compress</h3>
@@ -1359,6 +1531,17 @@ NIL
 <pre>/dd/CMDS/cat /dd/DOC/INDEX &gt; /dd/tmp/index2.txt
 /dd/tmp/index2.txt:      63.1% -- replaced with /dd/tmp/index2.txt.gz</pre>
 </div>
+<div class="shot" id="s-gzips">
+<h3>gzips</h3>
+<p>Four builds of gzip 1.2.4 -- 68000 and 68020, with and without the csl trap library -- kept side by side so you can take the one your machine wants.  Each says which it is.</p>
+<pre>/dd/CMDS/REBUILT/gzip68k_nocsl -V
+gzip68k_nocsl 1.2.4 (18 Aug 93)
+Compilation options:
+NO_DIR NO_UTIME
+gzip020_nocsl 1.2.4 (18 Aug 93)
+Compilation options:
+NO_DIR NO_UTIME</pre>
+</div>
 <div class="shot" id="s-lha">
 <h3>lha</h3>
 <p>LHa 2.08 on the same file: pack, then list with the ratio.</p>
@@ -1369,6 +1552,18 @@ NIL
 ---wr-wr    0/0     20473  33.7% Aug  3 19:00 /dd/SRC/keep/keep.c
 ----------------- ------- ------ ------------ --------------------
  Total    1 file    20473  33.7% Aug 27 20:07</pre>
+</div>
+<div class="shot" id="s-lharc">
+<h3>lharc</h3>
+<p>LHarc, the older sibling of lha: pack, then list.</p>
+<pre>/dd/CMDS/lharc a /dd/tmp/l.lzh /dd/SYS/motd
+
+/dd/SYS/motd - Frozen(100%)o
+   SIZE  RATIO     STAMP    NAME
+------- ------ ------------ --------------------
+     40 100.0% Aug 27 15:29 /dd/SYS/motd
+------- ------ ------------ --------------------
+     40 100.0% Aug 27 20:44    1 file</pre>
 </div>
 <div class="shot" id="s-modbuster">
 <h3>modbuster</h3>
@@ -1393,7 +1588,7 @@ Copyright by CERN, written by CN/CE/MS (Vers.1.0 - 6 July 90)</pre>
 </div>
 <div class="shot" id="s-shar">
 <h3>shar</h3>
-<p>shar wrapping a file as a shell archive -- the way source travelled over usenet, and how most of this collection arrived.</p>
+<p>shar wraps files as a shell archive -- how source travelled over usenet, and how most of this collection arrived.</p>
 <pre>/dd/CMDS/shar /dd/SYS/motd | /dd/CMDS/head -n 18
 No read access for file: /dd/SYS/motd</pre>
 </div>
@@ -1413,6 +1608,26 @@ drwx---rwx-   0/  0        0 Aug 27 19:54 2026 /dd/SRC/keep/
 -rw----rw--   0/  0     4513 Aug  3 19:00 2026 /dd/SRC/keep/keep.sh
 -rw----rw--   0/  0     1169 Aug  3 19:00 2026 /dd/SRC/keep/kept.sh</pre>
 </div>
+<div class="shot" id="s-unzip">
+<h3>unzip</h3>
+<p>Info-ZIP's readers.  unzip lists an archive that zip on this disk cannot write -- see the note against `zip'.</p>
+<pre>/dd/CMDS/unzip -v
+UnZip:  Zipfile Extract v5.0 of 21 August 1992;  (c) 1989 S.H.Smith and others
+Versions 3.0 and later by Info-ZIP.  Bug reports ONLY to zip-bugs@cs.ucla.edu
+
+OSK Version 1.1 By Ricky Beam 10/16/93
+Usage: unzip [ -options[modifiers] ] file[.zip] [filespec...]
+  -x  extract files (default)                -l  list files (short format)
+  -c  extract files to stdout/screen (CRT)   -v  list files (verbose format)
+  -f  freshen existing files, create none    -p  extract to pipe, no messages
+  -u  update files, create if necessary      -t  test archive integrity
+                                             -z  display archive comment
+modifiers:
+  -n  never overwrite existing files
+  -o  overwrite files WITHOUT prompting      -a  convert text (CR LF =&gt; LF)
+  -j  junk paths (don't make directories)    -U  don't make names lowercase
+  -q  quiet mode (-qq =&gt; quieter)</pre>
+</div>
 <div class="shot" id="s-zoo">
 <h3>zoo</h3>
 <p>zoo, packing and then listing -- compression ratio per member.</p>
@@ -1425,6 +1640,13 @@ Length    CF  Size Now  Date      Time
    20473  54%     9448   3 Aug 26 19:00:00   /dd/SRC/keep/keep.c
 --------  --- --------  --------- --------
    20473  54%     9448     1 file</pre>
+</div>
+<div class="shot" id="s-zoo2">
+<h3>zoo2</h3>
+<p>zoo 2.1, newer than the 2.01 in CMDS, and booz -- the extract-only zoo that fits anywhere.</p>
+<pre>/dd/CMDS/REBUILT/zoo_2.1 a /dd/tmp/z2.zoo /dd/SYS/motd
+Zoo:  /dd/SYS/motd --  ( 0%) added
+Usage:  booz {lxt} archive[.zoo] [ file ... ]</pre>
 </div>
 <h2 class="cat" id="encoding-conversion">Encoding &amp; conversion</h2>
 <div class="shot" id="s-binhex">
@@ -1600,6 +1822,31 @@ or:    kermit h[difl line]          (Host server mode)
 or:    kermit g[difl line] file ... (get file from server)
 or:    kermit q[diful line]         (Quit remote Host server)</pre>
 </div>
+<div class="shot" id="s-mail">
+<h3>mail</h3>
+<p>The mail chain: mail sends, lmail delivers locally, rmail takes what arrived, smail routes.</p>
+<pre>/dd/CMDS/UUCP/mail -?
+mail: /r0/ma000003 cannot open for writing
+can't unlink /r0/ma000003  215
+Usage:   /dd/CMDS/UUCP/smail [&lt;options&gt;] address...
+Options:
+   -d              debug - verbose and don't invoke mailers.
+   -v              verbose - just verbose.
+   -A              print mapped addresses.  don't invoke mailers.
+   -h hostname     set hostname
+   -H hostdomain   set hostdomain (default hostname.MYDOM)
+   -p pathfile     path database filename
+   -r              force routing of host!address
+   -R              reroute even explicit path!user
+   -l              user@domain goes to local mailer
+   -L              all mail goes local
+   -q number       mail queueing cost threshold
+   -m number       limit on number of uux_noqueue jobs
+   -n namelist     list of full names for simple aliases
+   -u string       string of flags for uux
+   -F address      name to substitute in From: line
+   -a aliasfile    aliases filename (not used with SENDMAIL)</pre>
+</div>
 <div class="shot" id="s-mailx">
 <h3>mailx</h3>
 <p>mailx opening with no mail waiting -- which is the honest state of a mail reader on a disk with no network.</p>
@@ -1608,6 +1855,63 @@ or:    kermit q[diful line]         (Quit remote Host server)</pre>
 /dd/CMDS/UUCP/mailx: can't change to your mailbox directory: 'su'...error 215
 
 q: command not found</pre>
+</div>
+<div class="shot" id="s-pathalias">
+<h3>pathalias</h3>
+<p>pathalias computes mail routes from a map of who calls whom -- the program that made a usenet address possible.</p>
+<pre>/dd/CMDS/UUCP/pathalias -?
+usage: /dd/CMDS/UUCP/pathalias [-vciDfI] [-l localname] [-d deadlink] [-t trace]
+/dd/CMDS/UUCP/makedb [-o dbmname] [-a] [file ...]</pre>
+</div>
+<div class="shot" id="s-readnews">
+<h3>readnews</h3>
+<p>readnews, the news reader, with no spool to read.</p>
+<pre>/dd/CMDS/UUCP/readnews -x
+readnews: read Usenet news articles
+
+Usage: readnews
+
+v2.1 (94Sep30) This is free software released under the GNU General Public
+License.  Please send suggestions/bug reports to:  bob@kc2wz.bubble.org
+/dd/CMDS/UUCP/expire: illegal option -- ?
+ expire        news article expire utility
+
+     -t         test (don't actually delete articles)
+     -x&lt;level&gt;  debug, default is 0 (OFF)
+     -n&lt;group&gt;  expire only given group
+     -e&lt;days&gt;   expire articles older than specified number of days
+
+     With no arguments, expires all articles older than 14 days in
+     all newsgroups.
+
+v2.1 (94Sep30) This is free software released under the GNU General Public
+License.  Please send suggestions/bug reports to:  bob@kc2wz.bubble.org</pre>
+</div>
+<div class="shot" id="s-uucp">
+<h3>uucp</h3>
+<p>The transfer set: uucp queues a copy, uux queues a command, uuxqt runs what a remote site queued here, uucico does the talking.</p>
+<pre>usage: uucico [opts] -r | sys [sys...]  [opts]
+
+      sys      -remote system to call as MASTER (default)
+
+opts: -r       -run as SLAVE
+      -u       -do not run UUXQT at all
+      -a       -run UUXQT after each call, default is after all calls
+                  are completed
+      -l       -use RAM disk for temporary "uulog"
+      -o       -orphan UUXQT
+      -pN      -fork UUXQT with a priority of N
+      -q       -run quietly
+      -wN      -use window size of N
+      -xN      -set debug level to N (0-9), default is 0 (off), if N &gt; 5
+                  additional info sent to 'uulog'
+      -z       -send log info to screen if debug level is 1 to 5,
+                  overrides -l
+      -iN      -wait N minutes between call retries, default is 2
+      -tN      -try to call remote up to N times, default is 1
+
+v2.1 (94Sep30) This is free software released under the GNU General Public
+License.  Please send suggestions/bug reports to:  bob@kc2wz.bubble.org</pre>
 </div>
 <div class="shot" id="s-uuname">
 <h3>uuname</h3>
@@ -1618,12 +1922,75 @@ phoenix
 seabass
 uulog: unable to open '/DD/LOG/uulog'</pre>
 </div>
+<div class="shot" id="s-uwho">
+<h3>uwho</h3>
+<p>What is left of the UNAXCESS bulletin board: uwho wants /etc/utmp, which OS-9 has no equivalent of.</p>
+<pre>/dd/CMDS/uwho
+/dd/CMDS/uwho: can't open /etc/utmp
+Thursday, August 27, 19126 - 8:44 PM</pre>
+</div>
 <h2 class="cat" id="graphics-images">Graphics &amp; images</h2>
+<div class="shot" id="s-ateri">
+<h3>ateri</h3>
+<p>Atari ST Degas pictures, and the Macintosh PICT, out and back.</p>
+<pre>ppmtopi1 /dd/tmp/base.ppm &gt; /dd/tmp/t.pi1
+ppmtopi1: computing colormap...
+ppmtopi1: 6 colors found
+ppmtopi1: maxval is not 7 - automatically rescaling colors
+stdin:  PPM raw, 320 by 200  maxval 7
+stdin:  PBM raw, 640 by 400</pre>
+</div>
+<div class="shot" id="s-bmp">
+<h3>bmp</h3>
+<p>Windows BMP, the same way round.</p>
+<pre>ppmtobmp /dd/tmp/base.ppm &gt; /dd/tmp/t.bmp
+ppmtobmp: computing colormap...
+ppmtobmp: 6 colors found
+ppmtobmp: Using 4 bits per pixel
+bmptoppm: OS/2 BMP, 48x24x4
+pnmfile: bad magic number - not a ppm, pgm, or pbm file</pre>
+</div>
 <div class="shot" id="s-cam">
 <h3>cam</h3>
 <p>Captured while running.</p>
 <pre>~&gt;
 Rocker Ratio (1.00) for measure @lobe -&gt;</pre>
+</div>
+<div class="shot" id="s-fits">
+<h3>fits</h3>
+<p>FITS, which astronomers still use, and the X window dump.</p>
+<pre>pnmtofits /dd/tmp/base.pgm &gt; /dd/tmp/t.fits
+fitstopnm: writing PGM file
+stdin:  PGM raw, 48 by 24  maxval 255
+pnmtoxwd: computing colormap...
+pnmtoxwd: 6 colors found
+xwdtopnm: writing PPM file
+stdin:  PPM raw, 48 by 24  maxval 255</pre>
+</div>
+<div class="shot" id="s-g3">
+<h3>g3</h3>
+<p>Group 3 fax encoding, and the GEM bitmap.</p>
+<pre>pbmtog3 /dd/tmp/base.pbm &gt; /dd/tmp/t.g3
+stdin:  PBM raw, 48 by 24
+stdin:  PBM raw, 48 by 24</pre>
+</div>
+<div class="shot" id="s-gif">
+<h3>gif</h3>
+<p>GIF out and back: ppmtogif writes it, giftopnm reads it, pnmfile says what each file is.</p>
+<pre>ppmtogif /dd/tmp/base.ppm &gt; /dd/tmp/t.gif
+ppmtogif: computing colormap...
+ppmtogif: 6 colors found
+/dd/tmp/base.ppm:       PPM raw, 48 by 24  maxval 255
+pnmfile: bad magic number - not a ppm, pgm, or pbm file</pre>
+</div>
+<div class="shot" id="s-gif2">
+<h3>gif2</h3>
+<p>GIF written and read back: what `file' makes of the GIF, and what pnmfile makes of the PPM that came back out of it.</p>
+<pre>ppmtogif /dd/tmp/base.ppm &gt; /dd/tmp/t.gif
+ppmtogif: computing colormap...
+ppmtogif: 6 colors found
+/dd/tmp/t.gif           GIF picture ver. 87a 48 x 24, interlaced, 8 colors
+/dd/tmp/back.ppm:       PPM raw, 48 by 24  maxval 255</pre>
 </div>
 <div class="shot" id="s-giftopnm">
 <h3>giftopnm</h3>
@@ -1704,6 +2071,25 @@ S\$$?|k%}Z&amp;?1&amp;1&amp;19&amp;6&amp;HH&amp;RMRMHHM&amp;6RF6$6$7?"H&amp;Z{?$
          . .-|%%&gt;%kD6&amp;FRH&amp;&amp;H1&amp;H9H1&amp;RH&amp;R$$S$$$S|k&amp;?$4?%}Z$Z/$/S}$?FS}S$i
   .-:- :-. :.- .:|$6HFRH1FkkRH$kRH&amp;R&amp;HFk$$$SS$$/)7$$&amp;)Z{|?&amp;%$/Z&amp;4)S$S$:
                ./&lt;&amp;&amp;6H&amp;$k6&amp;&amp;1$6&amp;9&amp;H&amp;&amp;&amp;6$Z$/$$S}S4)$?FS$$S1?Z$&amp;|S}S(&amp;{?!</pre>
+</div>
+<div class="shot" id="s-icon">
+<h3>icon</h3>
+<p>Sun icon format and MacPaint, out and back.</p>
+<pre>pbmtoicon /dd/tmp/base.pbm &gt; /dd/tmp/t.icon
+stdin:  PBM raw, 48 by 24
+stdin:  PBM raw, 576 by 720</pre>
+</div>
+<div class="shot" id="s-ilbm">
+<h3>ilbm</h3>
+<p>Amiga IFF/ILBM and SGI RGB -- two more machines that had their own idea of a picture file.</p>
+<pre>ppmtoilbm /dd/tmp/base.ppm &gt; /dd/tmp/t.ilbm
+ppmtoilbm: computing colormap...
+ppmtoilbm: 6 colors found
+ppmtoilbm: BODY compression (byterun1): 11%
+ilbmtoppm: input is a 3-plane ILBM
+stdin:  PPM raw, 48 by 24  maxval 255
+sgitopnm: writing PPM image
+stdin:  PPM raw, 48 by 24  maxval 255</pre>
 </div>
 <div class="shot" id="s-lissaj">
 <h3>lissaj</h3>
@@ -1809,6 +2195,20 @@ ooMo"MMMo""""""ooMo"o" M"""  "ooMo"""    "o" """oMMMM"M"M" M</pre>
   "  M  "  M o  M    o "oo" M  Mo  " M  M  " M  "o   M  M   "  " o  o" "oo"
  "o  "         M   o"  M  M  "M M  M    "  M M  M o  "  o   "o         M  M
   """             """" " "   "   " "     ""   ""  """   "               " "</pre>
+</div>
+<div class="shot" id="s-pcx">
+<h3>pcx</h3>
+<p>PCX -- the format every DOS paint program wrote.</p>
+<pre>ppmtopcx /dd/tmp/base.ppm &gt; /dd/tmp/t.pcx
+ppmtopcx: computing colormap...
+ppmtopcx: 6 colors found
+pcxtoppm: Version: 5
+pcxtoppm: BitsPerPixel: 1
+pcxtoppm: Xmin: 0   Ymin: 0   Xmax: 47   Ymax: 23
+pcxtoppm: Planes: 3    BytesPerLine: 6    PaletteInfo: 1
+pcxtoppm: 16 color -&gt; ppm
+pcxtoppm: done!
+pnmfile: bad magic number - not a ppm, pgm, or pbm file</pre>
 </div>
 <div class="shot" id="s-pgmbentley">
 <h3>pgmbentley</h3>
@@ -1954,6 +2354,21 @@ MMMMMMMMMMM"MMMM"MMoM"MMM"MM"M"M"MoMMM"M"oMoM"Mo"Mo"Mo"oMo"oM"o"oM"o"oM M"o"o"oo
 MMMMMMoMMMMMMMMMMM"MMM"MM"MM"MMM"MoMoMM"M"oMo"MoM"oM"oMo"oMo"M Mo"o"M M M M M Mo
 MMMMMMMMMMMMMoMMMMMMM"MMM"MM"MoM"MoMoM"M"Mo"M"oMoM"oMo"oMo"oM"o"oM Mo"o"o"o"o"oo</pre>
 </div>
+<div class="shot" id="s-plotters">
+<h3>plotters</h3>
+<p>Six more write-only drivers, for machines that are gone: a Unix plotter, Zinc, a BBN bitgraph, GraphOn, DEC LN03 and LPS.</p>
+<pre>pbmtoplot /dd/tmp/base.pbm | /dd/CMDS/wc
+     36     85   2889
+USHORT /dd/tmp/base[] = {
+  48
+  24
+ 0x5555,0x5555,0x5555,0xaaaa,0xaaaa,0xaaaa,0x5555,0x5555,0x5555,0xaaaa,0xaaaa,
+ 0xaaaa,0x5555,0x5555,0x5555,0xaaaa,0xaaaa,0xaaaa,0x5555,0x5555,0x5555,0xaaaa,
+ 0xaaaa,0xaaaa,0x5555,0x5555,0x5555,0xaaaa,0xaaaa,0xaaaa,0x5555,0x5555,0x5555,
+ 0xaaaa,0xaaaa,0xaaaa,0x5555,0x5555,0x5555,0xaaaa,0xaaaa,0xaaaa,0x5555,0x5555,
+ 0x5555,0xaaaa,0xaaaa,0xaaaa,0x5555,0x5555,0x5555,0xaaaa,0xaaaa,0xaaaa,0x5555,
+      5      6    260</pre>
+</div>
 <div class="shot" id="s-pnmarith">
 <h3>pnmarith</h3>
 <p>pnmarith multiplies two images together -- the sphere by a ramp, so it fades across.</p>
@@ -1986,6 +2401,13 @@ HMH9HH&amp;H&amp;&amp;1S$S\|LZ:\|%&lt;%????S$$$]?{|? :.-.---\:!::/(&gt;///?T|T||
 /dd/tmp/ramp.pgm:       PGM raw, 64 by 16  maxval 255
 /dd/tmp/ramp.pbm:       PBM raw, 64 by 16
 /dd/tmp/ging.ppm:       PPM raw, 40 by 20  maxval 255</pre>
+</div>
+<div class="shot" id="s-pnmfile-gulls">
+<h3>pnmfile-gulls</h3>
+<p>What each stage of that pipeline actually produced, according to pnmfile.</p>
+<pre>giftopnm /dd/DEMO/gulls.gif &gt; /dd/tmp/gulls.ppm
+/dd/tmp/gulls.ppm:      PPM raw, 320 by 200  maxval 255
+/dd/tmp/small.ppm:      PPM raw, 300 by 188  maxval 255</pre>
 </div>
 <div class="shot" id="s-pnmfile-set">
 <h3>pnmfile-set</h3>
@@ -2146,6 +2568,33 @@ RD6H&amp;H&amp;R6H&amp;H&amp;RH6H&amp;kH$&amp;&amp;RH&amp;R6H999&amp;M&amp;6&amp
 &amp;FkRFRH1&amp;&amp;1FkRkR&amp;HZ$S$&amp;H&amp;1&amp;&amp;H&amp;1$k6kM&amp;1FkkFDZ&amp;&amp;&amp;$F&amp;9&amp;&amp;11&amp;S&amp;&amp;$&amp;ZkH&amp;111S$&amp;&amp;&amp;1Sk
 &amp;Fk6&amp;DH$RH1FkR&amp;kkR\&amp;SFFkR&amp;6FkR&amp;Sk&amp;&amp;9&amp;$&amp;kkFF11$&amp;Z$kDFR&amp;Sk&amp;&amp;&amp;&amp;&amp;41&amp;&amp;1$11&amp;S&amp;&amp;S&amp;&amp;</pre>
 </div>
+<div class="shot" id="s-ppmpat-madras">
+<h3>ppmpat-madras</h3>
+<p>ppmpat weaves a madras pattern; the same dither renders it.</p>
+<pre>ppmpat -madras 150 44 | ppmtopgm | pgmtopbm | pbmtoascii
+M"M"MM M"o"M Mo"M"M"MoM M M""M"MoM Mo"oM M"o"o"o"M M"M M"o"M"M"MM M"o"o"o"oMM"Mo
+"o"o"o"o "o "o "o"o"o" o "  Mo"o"o"o "o " o" o" o" o o" o" "o"o"oo o o " o o""oo
+MoMoMooo"ooo"oo"oMoMoMoo"o"ooMoMoM oo"oo"oo"oo"oo"oo"oo"oo"MoMoMooo M o"o oM"Mo"
+"oM"o"o" M "o"o""oM"o"o "o" "oM"oM"o"o"o"o"o"o"o"o"o"o" M "M M"oM " M "o"" "M"o"
+MoMo"Mo"oo"oo"o"MoMoM"oo"oo"MoMoMoooM ooM ooM oooo"ooo"oo"o"MoMoMo"oo"oo"o"MoMo"
+M M""M "o"" "o" M M""M " " "o"o"o"o "o" "o" " "o" "o" ""o"""M M M " o" o" ""o"M"
+o"o"M o" o" "o "o"o"M o" "  M"o"oM " o" " o"o" o" " o" "o "o"o"M o" o " o" "o"oo
+"o"o"oo" o" "  M M M M o" " "o"o"o" "o "o"  o" o" "o "o o" "o"o"o o"  " o ""o"o"
+MoMoMoooM oMo"ooMoMoMoo M M MoMoMo"o"oo"oo"oo"oo"o"oo"ooo"oMoMoM"oo M M oo"MoMoo
+M M"oM o"" o"" o"M M"M M "o""oM"oM" M "o"o"o""o"" M M M "o"oM"oM"o" M "o" "o"M o
+M Mo"o"o" M "o" M Mo"oo "o ""o"o"o"o" "o o" o"o M o" o M o"o"oM M o" o" o" M"o""
+MM"M"Mo"oMo"M M"MM"M"Mo"o"o"M"MM"Mo""M"o"oM"oM Mo"oM"oM Mo"M"MoMMo"o"o""o""M"M""
+ M"o"oo"o o"o" o"o"M M o" o""o"oM M "o M o "o "o "o "o "o "oM M M o" o" o" M"oM"
+MoMMoM ooM ooM Mo"MoMoo M o"MoMoM"oo"ooo"o"oo"oo"oo"oo"oo"oMo"MoM oo"o M o"oMo"o
+M M M"" o"" " "o"M"o"M "o" "M M"""o" M "" M ""o"" ""o"" "" M""M M" " "" " "M""""
+o"o"oM "o M "o" "o"o"o" o " o"o"M" o"  M " o" o M "o o" M " M"o"o" " " " "o M"M"
+M M M "o o "o "o"oM Mo " o" "o"o"o" o" o" " o" o "o o" " o""o"o"o" " " "o o"o"o"
+oMoMoMooo"ooo"o MoMoMoM ooo"MoMoMo"oo"oo"o"oo"oo"oooo"o"oooMoMoMoM M M ooo MoMoo
+M"oM"o" "o"o""o""oM Mo" "o "M M"oM"o""o""o"o"o"o" M ""o"o" "M M"o" M "o" " M"o"M
+oMoMoMo"ooM oM M"oMoMoM M o"oMoMo"oo"oo"oo"ooo"o"oo"o"oo"o"MoMMoM M o"oo"o"oMMoo
+"o"M M M "o" "o""M M M "o" "M M""M "o" M "o" "o"" "" M "o""o"o""M "o" " M ""o"o"
+M M Mo o" o" " o"o"o"oo"  " "o"o"o"o o" o" o" o" M "o "o o" M M"o "  "o o ""o"o"</pre>
+</div>
 <div class="shot" id="s-ppmrelief">
 <h3>ppmrelief</h3>
 <p>ppmrelief embosses an image -- the same sphere lit from the side by arithmetic rather than by a renderer.</p>
@@ -2173,12 +2622,46 @@ MMMoM Mo"oM Mo"o"o"M Mo"oM Mo"o"oM Mo"oM"o"M"Mo"oMM MoM"oM"M"oM MoM"oMo"oM"Mo"MM
 MMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMM
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""</pre>
 </div>
+<div class="shot" id="s-printers">
+<h3>printers</h3>
+<p>The printer drivers: LaserJet, Epson, Star 10x and Printronix, each turning the same bitmap into that printer's own language.  Their sizes are the interesting part -- this is what a page cost.</p>
+<pre>pbmtolj /dd/tmp/base.pbm | /dd/CMDS/wc
+      0      1    288
+      3      4    168
+      3      4    164
+%!PS-Adobe-2.0 EPSF-1.2
+%%BoundingBox: 0 1 47 24
+%%BeginPreview: 48 24 1 24
+% 555555555555
+% aaaaaaaaaaaa
+% 555555555555
+% aaaaaaaaaaaa
+% 555555555555
+% aaaaaaaaaaaa
+% 555555555555</pre>
+</div>
 <div class="shot" id="s-rayshade">
 <h3>rayshade</h3>
-<p>Rayshade 4.0, a full ray tracer, rendering one of its fifteen example scenes and reporting what it did: primitives, rays cast, shadow rays, and the time it took.</p>
+<p>Rayshade 4.0, a full ray tracer, rendering one of its fifteen example scenes and reporting the work: primitives, rays cast, shadow rays, time.  It preprocesses every scene with cccp, so a C preprocessor has to be reachable under that name -- DOC/rayshade says so and it is right.</p>
 <pre>/dd/CMDS/cp /dd/CMDS/GCC139/gcc_cccp /dd/CMDS/cccp
 &lt;48 36 -O /dd/tmp/out.pic /dd/GAMES/rayshade/boxball.ray
 /dd/CMDS/rayshade: Fatal error: popen of "cccp  /dd/GAMES/rayshade/boxball.ray"!</pre>
+</div>
+<div class="shot" id="s-setup-image">
+<h3>setup-image</h3>
+<p>The two test images every round trip below starts from: a greyscale ramp and a woven gingham, both generated on this disk.</p>
+<pre>pgmramp -lr 48 24 &gt; /dd/tmp/base.pgm
+/dd/tmp/base.pgm:       PGM raw, 48 by 24  maxval 255
+/dd/tmp/base.ppm:       PPM raw, 48 by 24  maxval 255
+/dd/tmp/base.pbm:       PBM raw, 48 by 24</pre>
+</div>
+<div class="shot" id="s-setup2">
+<h3>setup2</h3>
+<p>The three test images the round trips below start from.</p>
+<pre>pgmramp -lr 48 24 &gt; /dd/tmp/base.pgm
+/dd/tmp/base.pgm        PGM "rawbits" file
+/dd/tmp/base.ppm        PPM "rawbits" file
+/dd/tmp/base.pbm        PBM "rawbits" file</pre>
 </div>
 <div class="shot" id="s-sphere">
 <h3>sphere</h3>
@@ -2208,6 +2691,75 @@ MRMM&amp;RM&amp;MHHH9&amp;H&amp;RM&amp;&amp;6&amp;DFkH&amp;Sk&amp;Z$S$$$%$\$?}\\
 <h3>sphere-edge</h3>
 <p>pgmedge on the sphere: a convolution that keeps only where the brightness changes, which leaves the outline and the terminator.</p>
 <pre>&lt;88 /dd/DEMO/sphere.pgm | pgmedge | pgmnorm | pgmtopbm | pbmtoascii -2x4</pre>
+</div>
+<div class="shot" id="s-tga">
+<h3>tga</h3>
+<p>Targa, and the Sun raster format beside it.</p>
+<pre>ppmtotga /dd/tmp/base.ppm &gt; /dd/tmp/t.tga
+ppmtotga: computing colormap...
+ppmtotga: 6 colors found
+pnmtorast: computing colormap...
+pnmtorast: 6 colors found
+rasttopnm: writing PPM file
+pnmfile: bad magic number - not a ppm, pgm, or pbm file</pre>
+</div>
+<div class="shot" id="s-tiffish">
+<h3>tiffish</h3>
+<p>HP PaintJet, out and back, and two write-only drivers beside it -- ppmtopjxl and ppmtoacad have no reader here, which is the shape of half this toolkit: it was written to FEED devices.</p>
+<pre>ppmtopj /dd/tmp/base.ppm &gt; /dd/tmp/t.pj
+stdin:  PPM raw, 48 by 24  maxval 255
+(Computing colormap...  Done.  6 colors found.)
+      0      1    419</pre>
+</div>
+<div class="shot" id="s-workstations">
+<h3>workstations</h3>
+<p>Three workstation bitmap formats of the late eighties -- MGR, the Andrew Toolkit, and CMU's window manager -- each with its reader.</p>
+<pre>pbmtomgr /dd/tmp/base.pbm | mgrtopbm | pnmfile
+stdin:  PBM raw, 48 by 24
+stdin:  PBM raw, 48 by 24
+stdin:  PBM raw, 48 by 24</pre>
+</div>
+<div class="shot" id="s-xbm">
+<h3>xbm</h3>
+<p>X bitmaps and Bennet Yee bitmaps: two of the eleven bitmap formats this toolkit reads.</p>
+<pre>pbmtoxbm /dd/tmp/base.pbm &gt; /dd/tmp/t.xbm
+#define /dd/tmp/base_width 48
+#define /dd/tmp/base_height 24
+static char /dd/tmp/base_bits[] = {
+ 0xaa,0xaa,0xaa,0xaa,0xaa,0xaa,0x55,0x55,0x55,0x55,0x55,0x55,0xaa,0xaa,0xaa,
+ 0xaa,0xaa,0xaa,0x55,0x55,0x55,0x55,0x55,0x55,0xaa,0xaa,0xaa,0xaa,0xaa,0xaa,
+ 0x55,0x55,0x55,0x55,0x55,0x55,0xaa,0xaa,0xaa,0xaa,0xaa,0xaa,0x55,0x55,0x55,
+/dd/CMDS/head: /dd/tmp/t.xbm
+stdin:  PBM raw, 48 by 24</pre>
+</div>
+<div class="shot" id="s-xpm">
+<h3>xpm</h3>
+<p>The X pixmap is C source with the image in it -- here is the head of one this disk just wrote.</p>
+<pre>ppmtoxpm /dd/tmp/base.ppm &gt; /dd/tmp/t.xpm
+(Computing colormap...  Done.  6 colors found.)
+/* XPM */
+static char */dd/tmp/base[] = {
+/* width height ncolors chars_per_pixel */
+"48 24 6 1",
+/* colors */
+"  c #07EAD9",
+". c #D93E7F",
+"X c #9F225C",
+"o c #7094AC",
+"O c #367889",
+"+ c #65063A",
+/* pixels */
+/dd/CMDS/head: /dd/tmp/t.xpm
+stdin:  PPM raw, 48 by 24  maxval 255</pre>
+</div>
+<div class="shot" id="s-yuv">
+<h3>yuv</h3>
+<p>Video colour spaces: YUV as one stream and as three planes, and RGB split into three files.</p>
+<pre>ppmtoyuv /dd/tmp/base.ppm | yuvtoppm 48 24 | pnmfile
+stdin:  PPM raw, 48 by 24  maxval 255
+/dd/CMDS/ls: %s: error 216
+/dd/CMDS/ls: %s: error 216
+/dd/CMDS/ls: %s: error 216</pre>
 </div>
 <h2 class="cat" id="games">Games</h2>
 <div class="shot" id="s-advent">
@@ -2239,7 +2791,7 @@ get lamp
 </div>
 <div class="shot" id="s-advint">
 <h3>advint</h3>
-<p>ADVSYS, a second adventure system, playing GAMES/ADVSYS/objects.adi -- the sample world its author shipped, and the source for it is here too.</p>
+<p>ADVSYS, David Betz's adventure system, playing the sample world that ships with it in GAMES/ADVSYS.  It wants the file named WITHOUT its .adi extension -- with it, `can't open data file'.</p>
 <pre>/dd/CMDS/GAMES/advint /dd/GAMES/ADVSYS/objects
 ADVINT v1.2 - Copyright (c) 1986, by David Betz
 can't open data file
@@ -2323,7 +2875,7 @@ Process   Pid: 3, bincheckr, edition 7
 </div>
 <div class="shot" id="s-blackjak">
 <h3>blackjak</h3>
-<p>Las Vegas blackjack, SNOBOL4 again, with a hand dealt.</p>
+<p>Las Vegas blackjack, SNOBOL4, with a hand dealt.</p>
 <pre>/dd/CMDS/GAMES/blackjak
 Welcome to Las Vagas BlackJack
 
@@ -2710,7 +3262,7 @@ Your move is?</pre>
 </div>
 <div class="shot" id="s-poker">
 <h3>poker</h3>
-<p>Cold-hand poker dealing a hand.  One of four SNOBOL4 games here: the interpreter was compiled to C and its games came with it.</p>
+<p>Cold-hand poker dealing a hand.  It wants the word `no', not `N', and says so in its own voice.</p>
 <pre>/dd/CMDS/GAMES/poker
 Welcome to Cold-hand Poker
 
@@ -2768,7 +3320,7 @@ Time used: 00 min 00 sec   Move: 0</pre>
 </div>
 <div class="shot" id="s-queens">
 <h3>queens</h3>
-<p>The eight-queens problem, solved and drawn.  An IOCCC entry: it reads the board size on standard input.</p>
+<p>The eight-queens problem, solved and drawn -- an IOCCC entry that reads the board size on standard input.</p>
 <pre>echo 6 | /dd/CMDS/queens | /dd/CMDS/head -n 21
 
 
@@ -3442,7 +3994,7 @@ Afteryule
 </div>
 <div class="shot" id="s-textb">
 <h3>textb</h3>
-<p>The Mandelbrot set, drawn in ASCII on an 80x24 terminal.  It asks for a centre and a range; -2.3, -2.0, 4.0 gives the whole set.</p>
+<p>Captured while running.</p>
 <pre>/dd/CMDS/textb
 Input X_COORD: -2.3
 Input Y_COORD: -2.0
@@ -3522,7 +4074,7 @@ runs over the lazy brown dog while the quick dog naps</pre>
 </div>
 <div class="shot" id="s-aprocs">
 <h3>aprocs</h3>
-<p>A process monitor.  os9exec is the kernel here, so these are real OS-9 processes with real process IDs.</p>
+<p>A process monitor -- and it cannot run here.  It reads the system globals through F$SetSys, which os9exec does not implement, and aborts.  This is a limit of the emulator, not of the program.</p>
 <pre>/dd/CMDS/aprocs
 F$SetSys: unimplemented 0030 (size=80000004)
 F$SetSys: unimplemented 0034 (size=80000004)
@@ -3627,7 +4179,7 @@ ELAPSED TIME    :  0000:00:02
 </div>
 <div class="shot" id="s-dam">
 <h3>dam</h3>
-<p>The disk allocation map -- one character per cluster across the whole 253 MB volume.</p>
+<p>The disk allocation map: one character per cluster across a 253 MB volume, so you can see where the collection sits on it.</p>
 <pre>/dd/CMDS/dam /dd | /dd/CMDS/head -n 21
              | = cluster (1024 Bytes) allocated or defective
 #000000 ////////////////////////////////////////////////////////////////
@@ -3840,7 +4392,7 @@ Nothing has been kept from this collection.</pre>
 </div>
 <div class="shot" id="s-map">
 <h3>map</h3>
-<p>The memory map: what OS-9 has handed out and what is left.</p>
+<p>map shows the blocks a file occupies -- not a memory map, whatever the name suggests.</p>
 <pre>/dd/CMDS/map -e /dd/DOC/INDEX
                 Blockmap of /dd/DOC/INDEX 20:13:51
 Owner:   0.0
@@ -3917,7 +4469,7 @@ No input file</pre>
 </div>
 <div class="shot" id="s-oskversion">
 <h3>oskversion</h3>
-<p>What the system says it is: version, identification and the system globals OS-9 keeps about the machine.</p>
+<p>What the system says it is.  getsys walks the whole global page, and every field os9exec does not keep answers `F$SetSys: unimplemented' -- so this screen is a picture of the emulator's edges.</p>
 <pre>Number of actively forked processes. ........ 0
 F$SetSys: unimplemented 0798 (size=80000004)
 Ram found during bootrom search ............. $0
@@ -3981,7 +4533,7 @@ phone: communication-path required</pre>
 <div class="shot" id="s-spline">
 <h3>spline</h3>
 <p>spline fits a curve through points and writes PostScript for it.</p>
-<pre>echo "0 0" &gt; /dd/tmp/pts
+<pre>printf "0 0\n1 2\n2 1\n3 3\n" &gt; /dd/tmp/pts
 %!0LY1LF.or#\LG,nl(ILF.or#\LG*aa&amp;CLF,nl(ILG+hu,VLF,nl(ILG*ca*OLF+hu,VLG*b~1BLF+E</pre>
 </div>
 <div class="shot" id="s-sqrtx">
@@ -4134,6 +4686,53 @@ Number of antenna elements (9-40)? 5
 Number of antenna elements (9-40)?</pre>
 </div>
 <h2 class="cat" id="disk-dos">Disk &amp; DOS</h2>
+<div class="shot" id="s-msattrib">
+<h3>msattrib</h3>
+<p>DOS attributes set and read back, then the file and the directory removed again.</p>
+<pre> Volume in drive A is OS9FREEWARE
+ Volume Serial Number is 35D7-0A00
+ Directory for A:/DOCS
+
+.            &lt;DIR&gt;     08-27-2026   8:43p
+..           &lt;DIR&gt;     08-27-2026   8:43p
+MOTD     TXT        40 08-27-2026   8:20p
+        3 file(s)                40 bytes
+                          1 456 128 bytes free
+
+msdel: File "a:HOLIDAYS.TXT" not found
+ Volume in drive A is OS9FREEWARE
+ Volume Serial Number is 35D7-0A00
+ Directory for A:/
+
+readme   txt       139 08-02-2026   2:22a readme.txt
+DOCS         &lt;DIR&gt;     08-27-2026   8:43p
+        2 file(s)               139 bytes
+                          1 456 128 bytes free</pre>
+</div>
+<div class="shot" id="s-mscopy">
+<h3>mscopy</h3>
+<p>Writing files onto the DOS disk, listing them with DOS's own 8.3 names, and reading one back.</p>
+<pre>Long file name "MOTD.TXT" already exists.
+a)utorename A)utorename-all r)ename R)ename-all o)verwrite O)verwrite-all
+s)kip S)kip-all q)uit (aArRoOsSq):
+Long file name "MOTD.TXT" already exists.
+a)utorename A)utorename-all r)ename R)ename-all o)verwrite O)verwrite-all
+s)kip S)kip-all q)uit (aArRoOsSq):
+Long file name "MOTD.TXT" already exists.
+a)utorename A)utorename-all r)ename R)ename-all o)verwrite O)verwrite-all
+s)kip S)kip-all q)uit (aArRoOsSq):
+Long file name "MOTD.TXT" already exists.
+a)utorename A)utorename-all r)ename R)ename-all o)verwrite O)verwrite-all
+s)kip S)kip-all q)uit (aArRoOsSq):
+ Volume in drive A is OS9FREEWARE
+ Volume Serial Number is 35D7-0A00
+ Directory for A:/
+
+readme   txt       139 08-02-2026   2:22a readme.txt
+MOTD     TXT        40 08-27-2026   8:20p
+        2 file(s)               179 bytes
+                          1 456 640 bytes free</pre>
+</div>
 <div class="shot" id="s-msdir">
 <h3>msdir</h3>
 <p>Writing a file onto the DOS disk and reading the directory back -- 8.3 names, DOS attributes, and free space in DOS's own words.</p>
@@ -4150,28 +4749,61 @@ MOTD     TXT        40 08-27-2026   8:20p
 <div class="shot" id="s-msformat">
 <h3>msformat</h3>
 <p>Formatting an MS-DOS floppy image and then asking what it is.  The drives a: and b: are configured in SYS/mtools.conf.</p>
-<pre>bootsector information
+<pre>/dd/CMDS/msformat a:
+msformat: Non-removable media is not supported (You must tell the complete geom
+device information:
+===================
+sectors per track: 18
+heads: 2
+cylinders: 80
+
+mformat command line: mformat -t 80 -h 2 -s 18 a:
+
+bootsector information
 ======================
 filename="/dd/DOS/a.img"
 banner:"BSD  4.4"
 sector size: 512 bytes
 cluster size: 1 sectors
 reserved (boot) sectors: 1
-fats: 2
-max available root directory slots: 224
-small size: 2880 sectors
-media descriptor byte: 0xf0
-sectors per fat: 9
-sectors per track: 18
-heads: 2
-hidden sectors: 0
-big size: 0 sectors
-physical drive id: 0x0
-reserved=0x0
-dos4=0x29
-serial number: 35D70A00
-disk label="FREEWARE   "
-disk type="FAT12   "</pre>
+fats: 2</pre>
+</div>
+<div class="shot" id="s-msmd">
+<h3>msmd</h3>
+<p>Making a directory on the DOS disk, moving a file into it and renaming it -- md, move and ren, spelled the DOS way.</p>
+<pre>s)kip S)kip-all q)uit (aArRsSq): /dd/CMDS/msdir a:/DOCS
+
+Long file name "" is reserved.
+a)utorename A)utorename-all r)ename R)ename-all
+s)kip S)kip-all q)uit (aArRsSq):
+Long file name "" is reserved.
+a)utorename A)utorename-all r)ename R)ename-all
+s)kip S)kip-all q)uit (aArRsSq):
+Long file name "" is reserved.
+a)utorename A)utorename-all r)ename R)ename-all
+s)kip S)kip-all q)uit (aArRsSq):
+Long file name "" is reserved.
+a)utorename A)utorename-all r)ename R)ename-all
+s)kip S)kip-all q)uit (aArRsSq):
+Long file name "" is reserved.
+a)utorename A)utorename-all r)ename R)ename-all
+s)kip S)kip-all q)uit (aArRsSq):
+Long file name "" is reserved.
+a)utorename A)utorename-all r)ename R)ename-all
+s)kip S)kip-all q)uit (aArRsSq):
+Long file name "" is reserved.
+a)utorename A)utorename-all r)ename R)ename-all
+s)kip S)kip-all q)uit (aArRsSq):</pre>
+</div>
+<div class="shot" id="s-msread">
+<h3>msread</h3>
+<p>msread and mswrite are the raw pair -- a whole file in and out without the DOS filename rules getting involved.</p>
+<pre>/dd/CMDS/mswrite /dd/SYS/motd a:RAW.TXT
+Copying RAW.TXT
+4b68af85
+4b68af85
+========
+9d870070</pre>
 </div>
 <div class="shot" id="s-mtools">
 <h3>mtools</h3>
@@ -4196,9 +4828,22 @@ mtype, mwrite</pre>
 23 24 25 26 27 28 29
 30 31</pre>
 </div>
+<div class="shot" id="s-cal-holidays">
+<h3>cal-holidays</h3>
+<p>cal with -h: the holidays in SYS/holidays are marked on the month.</p>
+<pre>/dd/CMDS/cal -m=12 -y=2026 -h
+December        2026
+ S  M  T  W  T  F  S
+&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;
+       1  2  3  4  5       25 - Christmas Day
+ 6  7  8  9 10 11 12       26 - Boxing Day
+13 14 15 16 17 18 19
+20 21 22 23 24 25 26
+27 28 29 30 31</pre>
+</div>
 <div class="shot" id="s-calen">
 <h3>calen</h3>
-<p>calen prints a run of months from one starting point -- here six months from January 2026.</p>
+<p>calen prints a month as a diary page, ruled for appointments -- it asks for month, year and how many months to print.</p>
 <pre>echo 8 2026 1 | /dd/CMDS/calen | /dd/CMDS/head -n 21
 Enter calendar specs (month year length):
                                   HHH                           H           HHH
@@ -4224,7 +4869,7 @@ Su Mo Tu We Th Fr Sa             X   X X   X  XXX  X   X  XXXX XXXX           Xa
 </div>
 <div class="shot" id="s-calender">
 <h3>calender</h3>
-<p>A whole year on one screen, in German: `Fuer welches Jahr?'</p>
+<p>A whole year on one screen, in German -- `Fuer welches Jahr?'</p>
 <pre>Donnerstag    2  9 16 23 30           6 13 20 27        3 10 17 24
 Freitag       3 10 17 24 31           7 14 21 28        4 11 18 25
 Samstag       4 11 18 25           1  8 15 22 29        5 12 19 26
@@ -4292,7 +4937,7 @@ easter 2000 is 4/23</pre>
 </div>
 <div class="shot" id="s-today">
 <h3>today</h3>
-<p>Prints the date, the time and the phase of the moon in words.</p>
+<p>Captured while running.</p>
 <pre>/dd/CMDS/today
 Today is Thursday, the twenty-seventh day of August, two thousand and
 twenty-six. In fifty-one seconds, the time will be eight PM, Daylight
@@ -4396,6 +5041,12 @@ Bye Bye, now! Please try rpn again!</pre>
 20</pre>
 </div>
 <h2 class="cat" id="printing">Printing</h2>
+<div class="shot" id="s-gs-render">
+<h3>gs-render</h3>
+<p>Ghostscript rasterising one of its own PostScript test files and netpbm printing the bitmap as characters.  GS_LIB has to point at LIB/gs403, and -c quit is what makes it exit rather than sit at its own GS&gt; prompt.</p>
+<pre>&lt;m -r24 -g152x88 -sOutputFile=/dd/tmp/gs.pbm /dd/LIB/gs403/cheq.ps -c quit
+pbmtoascii: /dd/tmp/gs.pbm -</pre>
+</div>
 <div class="shot" id="s-gs403">
 <h3>gs403</h3>
 <p>Aladdin Ghostscript 4.03 -- a complete PostScript interpreter on an OS-9 disk.  Its banner, its device list and the prompt it offers.</p>
@@ -4423,6 +5074,24 @@ Search path:
 For more information, see /use.txt.
 Report bugs to ghost@aladdin.com; use the form in new-user.txt.</pre>
 </div>
+<div class="shot" id="s-lp">
+<h3>lp</h3>
+<p>The spooler set.  With no printer configured they say so, which is the state a fresh disk arrives in.</p>
+<pre>/dd/CMDS/lp -?
+Syntax: lp [&lt;opts&gt;] {&lt;path&gt;}
+Options:
+       -z     get file names from standard input
+       -w     message on terminal when ready
+       -m     mail to user when ready
+       -n=xx  make xx copies (default 1)
+       -d=ptr output on device ptr
+       -s     silentmode
+lpq: no spooler installed
+Syntax: lpsched [-r] {&lt;devname&gt;}
+Function:  starts Printerspooler
+Options:
+       -r    restarts spooler</pre>
+</div>
 <div class="shot" id="s-lpq">
 <h3>lpq</h3>
 <p>The print spooler's queue, empty, and the scheduler that owns it.</p>
@@ -4431,12 +5100,11 @@ lpq: no spooler installed</pre>
 </div>
 <div class="shot" id="s-lwf">
 <h3>lwf</h3>
-<p>lwf turns plain text into PostScript, the way enscript does -- the head of what it wrote.</p>
-<pre>/dd/CMDS/head -n 10 /dd/SYS/motd | /dd/CMDS/lwf | /dd/CMDS/head -n 18
+<p>lwf turns plain text into PostScript, the way enscript does.  Its prologue comes from USR/LIB; here is the head of a page it set.</p>
+<pre>/dd/CMDS/lwf /dd/SYS/motd | /dd/CMDS/head -n 18
 %!PS-Adobe-2.0
-/dd/CMDS/head: /dd/SYS/motd
 %%Creator: lwf on evtech
-%%CreationDate: Thu Aug 27 20:18:45 2026
+%%CreationDate: Thu Aug 27 20:46:03 2026
 %%For: su
 %%DocumentFonts: Courier
 %%Pages: (atend)
@@ -4461,6 +5129,21 @@ Error #000:214 (E_FNA) File Not Accessible
 Error #000:216 (E_PNNF) Path Name Not Found
 Error #000:218 (E_CEF) Creating Existing File
 Error #000:221 (E_MNF) Module Not Found</pre>
+</div>
+<div class="shot" id="s-perr-alps">
+<h3>perr-alps</h3>
+<p>perr names an OS-9 error; alps switches an ALPS printer between draft and letter quality; epson drives an Epson from spline output.</p>
+<pre>/dd/CMDS/perr 1 2 3 4 5
+Error #000:001 (S_Wake) wake
+Error #000:002 (S_Abort) User abort (Cmd-'.')
+Error #000:003 (S_Intrpt) User interrupt
+Error #000:004 (S_HangUp) modem hangup
+Error #000:005 (S_Active) activate
+Syntax: alps [&lt;opts&gt;] &gt;/&lt;device&gt;
+Function: generate Alps ASP-1000 printer codes
+Options:
+     -lq        letter quality mode
+     -norm      normal mode</pre>
 </div>
 <div class="shot" id="s-perr-print">
 <h3>perr-print</h3>
@@ -4498,34 +5181,9 @@ Topic ?</pre>
 <pre>                     NINGq/* about -- everything this collection knows about one</pre>
 </div>
 <h2 class="cat" id="uncategorised">Uncategorised</h2>
-<div class="shot" id="s-adlrun">
-<h3>adlrun</h3>
-<p>ADL, a third: Adventure Definition Language, with the AARD world compiled and ready in /dd/ADL/AARD.</p>
-<pre>/dd/CMDS/ADL/adlrun /dd/ADL/AARD/aard
-ADL interpreter - Version 3.2 - June 7, 1987
-Copyright 1985, 1986, 1987 by Ross Cunniff
-All rights reserved.
-Museum entrance
-You are standing outside the north entrance of a large brick building.
-Inscribed above the doorway, appear the text: 'AARDVARK'S MUSEUM -- GATEWAY TO
-ADVENTURELAND'.
-There is a coil of rope here.
-There is a shovel here.
-There is a carbide-flame lamp here.
-There is a copy of a newspaper here.
-&gt; look
-You are standing outside the north entrance of a large brick building.
-Inscribed above the doorway, appear the text: 'AARDVARK'S MUSEUM -- GATEWAY TO
-ADVENTURELAND'.
-There is a coil of rope here.
-There is a shovel here.
-There is a carbide-flame lamp here.
-There is a copy of a newspaper here.
-&gt;</pre>
-</div>
 <div class="shot" id="s-banner-demo">
 <h3>banner-demo</h3>
-<p>banner, the letters made of their own initials.</p>
+<p>Captured while running.</p>
 <pre>/dd/CMDS/banner OS-9
 @@@@@@@  @@@@@           @@@@@
 @     @ @     @         @     @
@@ -4534,25 +5192,6 @@ There is a copy of a newspaper here.
 @     @       @               @
 @     @ @     @         @     @
 @@@@@@@  @@@@@           @@@@@</pre>
-</div>
-<div class="shot" id="s-cal-holidays">
-<h3>cal-holidays</h3>
-<p>cal with -h: the holidays in SYS/holidays are marked on the month.</p>
-<pre>/dd/CMDS/cal -m=12 -y=2026 -h
-December        2026
- S  M  T  W  T  F  S
-&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;
-       1  2  3  4  5       25 - Christmas Day
- 6  7  8  9 10 11 12       26 - Boxing Day
-13 14 15 16 17 18 19
-20 21 22 23 24 25 26
-27 28 29 30 31</pre>
-</div>
-<div class="shot" id="s-gs-render">
-<h3>gs-render</h3>
-<p>Ghostscript rasterising one of its own test files to a PBM, and netpbm printing the result as characters.  PostScript in, picture out, with nothing outside this disk involved.</p>
-<pre>&lt;m -r24 -g152x88 -sOutputFile=/dd/tmp/gs.pbm /dd/LIB/gs403/cheq.ps -c quit
-pbmtoascii: /dd/tmp/gs.pbm -</pre>
 </div>
 <div class="shot" id="s-netpbm">
 <h3>netpbm</h3>
@@ -4586,60 +5225,6 @@ os9$ $P/pnmfile /dd/tmp/s.pgm /dd/tmp/c.pgm /dd/tmp/t.pgm
 /dd/tmp/c.pgm:  PGM raw, 16 by 4  maxval 255
 /dd/tmp/t.pgm:  PGM raw, 64 by 16  maxval 255
 os9$</pre>
-</div>
-<div class="shot" id="s-pipeprobe">
-<h3>pipeprobe</h3>
-<p>Captured while running.</p>
-<pre>echo hello there | /dd/CMDS/rot 13
-rot: can't open file 13
-      char   | dec | hex | oct    ||     char   | dec | hex | oct
-    ^@ (NUL) |   0 |   0 |   0    ||   @        |  64 |  40 | 100
-    ^A (SOH) |   1 |   1 |   1    ||   A        |  65 |  41 | 101
-    ^B (STX) |   2 |   2 |   2    ||   B        |  66 |  42 | 102
-    ^C (ETX) |   3 |   3 |   3    ||   C        |  67 |  43 | 103
-    ^D (EOT) |   4 |   4 |   4    ||   D        |  68 |  44 | 104
-    534    534   3473</pre>
-</div>
-<div class="shot" id="s-pnmfile-gulls">
-<h3>pnmfile-gulls</h3>
-<p>What each stage of that pipeline actually produced, according to pnmfile.</p>
-<pre>giftopnm /dd/DEMO/gulls.gif &gt; /dd/tmp/gulls.ppm
-/dd/tmp/gulls.ppm:      PPM raw, 320 by 200  maxval 255
-/dd/tmp/small.ppm:      PPM raw, 300 by 188  maxval 255</pre>
-</div>
-<div class="shot" id="s-ppmpat-madras">
-<h3>ppmpat-madras</h3>
-<p>ppmpat weaves a madras pattern; the same dither renders it.</p>
-<pre>ppmpat -madras 150 44 | ppmtopgm | pgmtopbm | pbmtoascii
-M"M"MM M"o"M Mo"M"M"MoM M M""M"MoM Mo"oM M"o"o"o"M M"M M"o"M"M"MM M"o"o"o"oMM"Mo
-"o"o"o"o "o "o "o"o"o" o "  Mo"o"o"o "o " o" o" o" o o" o" "o"o"oo o o " o o""oo
-MoMoMooo"ooo"oo"oMoMoMoo"o"ooMoMoM oo"oo"oo"oo"oo"oo"oo"oo"MoMoMooo M o"o oM"Mo"
-"oM"o"o" M "o"o""oM"o"o "o" "oM"oM"o"o"o"o"o"o"o"o"o"o" M "M M"oM " M "o"" "M"o"
-MoMo"Mo"oo"oo"o"MoMoM"oo"oo"MoMoMoooM ooM ooM oooo"ooo"oo"o"MoMoMo"oo"oo"o"MoMo"
-M M""M "o"" "o" M M""M " " "o"o"o"o "o" "o" " "o" "o" ""o"""M M M " o" o" ""o"M"
-o"o"M o" o" "o "o"o"M o" "  M"o"oM " o" " o"o" o" " o" "o "o"o"M o" o " o" "o"oo
-"o"o"oo" o" "  M M M M o" " "o"o"o" "o "o"  o" o" "o "o o" "o"o"o o"  " o ""o"o"
-MoMoMoooM oMo"ooMoMoMoo M M MoMoMo"o"oo"oo"oo"oo"o"oo"ooo"oMoMoM"oo M M oo"MoMoo
-M M"oM o"" o"" o"M M"M M "o""oM"oM" M "o"o"o""o"" M M M "o"oM"oM"o" M "o" "o"M o
-M Mo"o"o" M "o" M Mo"oo "o ""o"o"o"o" "o o" o"o M o" o M o"o"oM M o" o" o" M"o""
-MM"M"Mo"oMo"M M"MM"M"Mo"o"o"M"MM"Mo""M"o"oM"oM Mo"oM"oM Mo"M"MoMMo"o"o""o""M"M""
- M"o"oo"o o"o" o"o"M M o" o""o"oM M "o M o "o "o "o "o "o "oM M M o" o" o" M"oM"
-MoMMoM ooM ooM Mo"MoMoo M o"MoMoM"oo"ooo"o"oo"oo"oo"oo"oo"oMo"MoM oo"o M o"oMo"o
-M M M"" o"" " "o"M"o"M "o" "M M"""o" M "" M ""o"" ""o"" "" M""M M" " "" " "M""""
-o"o"oM "o M "o" "o"o"o" o " o"o"M" o"  M " o" o M "o o" M " M"o"o" " " " "o M"M"
-M M M "o o "o "o"oM Mo " o" "o"o"o" o" o" " o" o "o o" " o""o"o"o" " " "o o"o"o"
-oMoMoMooo"ooo"o MoMoMoM ooo"MoMoMo"oo"oo"o"oo"oo"oooo"o"oooMoMoMoM M M ooo MoMoo
-M"oM"o" "o"o""o""oM Mo" "o "M M"oM"o""o""o"o"o"o" M ""o"o" "M M"o" M "o" " M"o"M
-oMoMoMo"ooM oM M"oMoMoM M o"oMoMo"oo"oo"oo"ooo"o"oo"o"oo"o"MoMMoM M o"oo"o"oMMoo
-"o"M M M "o" "o""M M M "o" "M M""M "o" M "o" "o"" "" M "o""o"o""M "o" " M ""o"o"
-M M Mo o" o" " o"o"o"oo"  " "o"o"o"o o" o" o" o" M "o "o o" M M"o "  "o o ""o"o"</pre>
-</div>
-<div class="shot" id="s-pr">
-<h3>pr</h3>
-<p>Paginating with headers: the file split into pages with a date and a page number, ready for a printer.</p>
-<pre>/dd/CMDS/head -n 20 /dd/DOC/INDEX | /dd/CMDS/pr | /dd/CMDS/head -n 18
-/dd/CMDS/pr:  (E$PNNF) That path name doesn't lead to anything - check the spel.
-/dd/CMDS/head: /dd/DOC/INDEX</pre>
 </div>
 <div class="shot" id="s-tet-speed">
 <h3>tet-speed</h3>

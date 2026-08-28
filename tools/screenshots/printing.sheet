@@ -1,18 +1,44 @@
-# Printing, and the PostScript interpreter that makes it visible.
+# Printing: the spooler, the PostScript path, and what a
+# printer driver actually receives.
+
+shot    gs-devices
+for     gs403 gs33
+cap     Ghostscript's device list -- what this build can rasterise to.  Both
+cap     Ghostscripts are here; only 4.03 has its initialisation files.
+run     export GS_LIB=/dd/LIB/gs403
+wait    2
+run     /dd/CMDS/gs403 -h | /dd/CMDS/tail -n 16
+wait    12
+
+shot    gs-render
+for     gs403
+cap     Ghostscript rasterising one of its own PostScript test files and
+cap     netpbm printing the bitmap as characters.  GS_LIB has to point at
+cap     LIB/gs403, and -c quit is what makes it exit rather than sit at its
+cap     own GS> prompt.
+run     export GS_LIB=/dd/LIB/gs403
+wait    2
+run     /dd/CMDS/gs403 -q -dNOPAUSE -dBATCH -sDEVICE=pbm -r24 -g152x88 -sOutputFile=/dd/tmp/gs.pbm /dd/LIB/gs403/cheq.ps -c quit
+wait    45
+run     /dd/CMDS/NETPBM/pbmtoascii -2x4 /dd/tmp/gs.pbm
+wait    10
+
 shot    gs403
 cap     Aladdin Ghostscript 4.03 -- a complete PostScript interpreter on an
 cap     OS-9 disk.  Its banner, its device list and the prompt it offers.
 run     /dd/CMDS/gs403 -h
 wait    10
 
-shot    gs-render
-cap     Ghostscript rasterising one of its own test files to a PBM, and
-cap     netpbm printing the result as characters.  PostScript in, picture
-cap     out, with nothing outside this disk involved.
-run     /dd/CMDS/gs403 -q -dNOPAUSE -dBATCH -sDEVICE=pbm -r30 -g152x88 -sOutputFile=/dd/tmp/gs.pbm /dd/LIB/gs403/cheq.ps
-wait    40
-run     /dd/CMDS/NETPBM/pbmtoascii /dd/tmp/gs.pbm
-wait    8
+shot    lp
+for     lp lpq lprm lpsched lpshut submit prjob qp
+cap     The spooler set.  With no printer configured they say so, which is
+cap     the state a fresh disk arrives in.
+run     /dd/CMDS/lp -?
+wait    6
+run     /dd/CMDS/lpq
+wait    5
+run     /dd/CMDS/lpsched -?
+wait    6
 
 shot    lpq
 cap     The print spooler's queue, empty, and the scheduler that owns it.
@@ -21,6 +47,28 @@ wait    4
 run     /dd/CMDS/splstat
 wait    4
 
+shot    lwf
+for     lwf
+cap     lwf turns plain text into PostScript, the way enscript does.  Its
+cap     prologue comes from USR/LIB; here is the head of a page it set.
+run     /dd/CMDS/lwf /dd/SYS/motd | /dd/CMDS/head -n 18
+wait    10
+
+shot    perr
+cap     perr turns an OS-9 error number into its message.  216 is the one
+cap     this collection meets most.
+run     /dd/CMDS/perr 214 216 218 221
+wait    4
+
+shot    perr-alps
+for     perr alps epson
+cap     perr names an OS-9 error; alps switches an ALPS printer between
+cap     draft and letter quality; epson drives an Epson from spline output.
+run     /dd/CMDS/perr 1 2 3 4 5
+wait    6
+run     /dd/CMDS/alps -?
+wait    6
+
 shot    perr-print
 for     perr
 cap     perr turns an OS-9 error number into its message -- the errors this
@@ -28,9 +76,11 @@ cap     collection meets most.
 run     /dd/CMDS/perr 214 216 218 221 237
 wait    4
 
-shot    spline
-cap     spline fits a curve through points and writes PostScript for it.
-run     echo "0 0" > /dd/tmp/pts
-wait    2
-run     /dd/CMDS/spline /dd/tmp/pts | /dd/CMDS/head -n 14
-wait    5
+shot    splman
+for     splman splprt splstat
+cap     Carl Kreider's own spooler: manager, printer process and queue
+cap     status.  The queue is at /dd/SPL/splq and it is empty.
+run     /dd/CMDS/splstat
+wait    6
+run     /dd/CMDS/splman -?
+wait    6

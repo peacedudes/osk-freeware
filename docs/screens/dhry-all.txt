@@ -1,0 +1,4 @@
+/dd/CMDS/DHRY/dhry | /dd/CMDS/tail -n 6
+(03) unknown option -n
+<| /dd/CMDS/tail /dd/CMDS/DHRY/dhryGcc2o2 | /dd/CMDS/tail -n 6
+(03) unknown option -n

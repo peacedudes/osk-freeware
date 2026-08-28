@@ -1,0 +1,19 @@
+/dd/CMDS/ar2
+Ar V2.00 - archive file manager
+Usage:  Ar -<cmd>[<modifier>] archive [file .. ]
+      <cmd> is one of the following:
+         d   delete file(s) from the archive
+         m   move file(s) to archive (add and delete)
+         p   print file(s) from the archive
+         t   show table of contents for archive
+         u   update/add file(s) to the archive
+         x   extract file(s) from the archive
+      <modifier> is one of the following:
+         a   all versions (for extract)
+         bnn set max bits to 'nn' (12 default)
+         d   incrment debug level
+         o   default to 'old' archives
+         s   once, suppress binary; twice, suppress all file compression
+         z   read names for <cmd> from std in
+
+      File names can include the meta chars * and ?, or path lists.
