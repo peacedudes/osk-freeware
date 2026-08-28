@@ -1,1 +1,0 @@
-/dd/CMDS/rm -rf /dd/tmp/ft/dd/CMDS/mkdir /dd/tmp/ft/dd/CMDS/cat /dd/SYS/motd > /dd/tmp/ft/oneecho "@@CASE@@du-adds-up-a-directory"/dd/CMDS/du /dd/tmp/ftecho "@@CASE@@l-still-cannot-list-a-directory"/dd/CMDS/l /dd/tmp/ftecho "@@CASE@@end"

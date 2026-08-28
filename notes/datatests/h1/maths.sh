@@ -1,1 +1,0 @@
-/dd/CMDS/rm -rf /dd/tmp/mt/dd/CMDS/mkdir /dd/tmp/mtecho "@@CASE@@rpn-still-gets-the-sum-wrong"echo 12 > /dd/tmp/mt/inecho 34 >> /dd/tmp/mt/inecho + >> /dd/tmp/mt/inecho q >> /dd/tmp/mt/in/dd/CMDS/rpn < /dd/tmp/mt/inecho "@@CASE@@hc-still-only-prints-its-usage"echo "1f + 3" | /dd/CMDS/hcecho "@@CASE@@end"
