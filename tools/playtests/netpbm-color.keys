@@ -1,0 +1,20 @@
+name    netpbm-color
+prog    /dd/CMDS/bash
+# COLOUR NAMES.  Until 2026-08-27 every netpbm program that takes a colour by
+# name failed -- there was no X11 rgb database on the disk, and the shipped
+# binaries look for /dd/sys/rgb.txt.txt because the OSK port put the extension
+# into RGB_DB and libppm4.c appends another.  Checks the VALUES, not just that
+# the error is gone: blue must be 0 0 255.
+rate    0.25
+wait    5
+keys    P=/dd/CMDS/NETPBM
+key     \r
+wait    1
+keys    $P/ppmmake blue 3 2 > /dd/tmp/b.ppm
+key     \r
+wait    2
+keys    $P/pnmnoraw /dd/tmp/b.ppm
+key     \r
+wait    3
+snap    values
+expect  0 0 255

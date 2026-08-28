@@ -1,0 +1,24 @@
+name    netpbm-convert
+prog    /dd/CMDS/bash
+# Six converters against real image data, checked by DIMENSIONS, not by exit
+# status: pnmcut must actually crop and pnmtile must actually tile.  Nothing
+# in this collection had ever exercised the netpbm set on an image.
+rate    0.25
+wait    5
+keys    P=/dd/CMDS/NETPBM
+key     \r
+wait    1
+keys    $P/pgmramp -lr 32 8 > /dd/tmp/s.pgm
+key     \r
+wait    2
+keys    $P/pnmcut 0 0 16 4 /dd/tmp/s.pgm > /dd/tmp/c.pgm
+key     \r
+wait    2
+keys    $P/pnmtile 64 16 /dd/tmp/s.pgm > /dd/tmp/t.pgm
+key     \r
+wait    2
+keys    $P/pnmfile /dd/tmp/s.pgm /dd/tmp/c.pgm /dd/tmp/t.pgm
+key     \r
+wait    3
+snap    dimensions
+expect  16 by 4
