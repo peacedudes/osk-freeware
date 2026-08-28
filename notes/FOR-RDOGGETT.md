@@ -56,5 +56,36 @@ board in place. Nothing scrolls off, which is why it still looks like a board.
 `docs/screens.html` -- 16 programs photographed while running, linked from the
 catalogue. Every screen came from keystrokes fed to a running program.
 
+## 2026-08-27, second session
+
+**You were right about `OS9MDIR` and it was worse than one bad habit.**
+Purged from all four shipped docs and the web catalogue. Chasing it turned up
+that **every sweep this collection has ever run loaded no modules** -- so any
+program linking a library was scored on a state that cannot happen on a real
+machine. That is why the six Fortran programs sat in "silent" for weeks. Using
+Microware's trap-free `load` for testing only, never into `disk/`, until yours
+lands.
+
+**There is a plan now** -- `notes/PLAN-verification.md`. Four tiers by what
+would actually prove a program, an order, and an estimate: about fifteen
+working sessions, not a lifetime. Your bar, "proven to do its job", is what it
+is built on.
+
+**Three broken programs found, nine repaired.** A new harness
+(`tools/datatest.py`) checks the DATA a program wrote rather than whether it
+printed anything. 62 cases, 59 pass.
+
+  - repaired: nine netpbm programs that died of a 3072-byte stack
+  - broken, documented, left failing: `zip` (cannot write its archive),
+    `todos`/`toos9` (do literally nothing), `pnmtosir` (corrupts half the
+    image)
+
+`todos` is the one worth knowing about: it round-trips perfectly *because* it
+does nothing, so any test that only checked "does it come back the same"
+would have certified it.
+
+**The 95.0% figure in DOC/STATUS is stale in both directions** and should not
+be quoted as "works" -- `zip` and `todos` are both inside the 870.
+
 ## Nothing needs you
 

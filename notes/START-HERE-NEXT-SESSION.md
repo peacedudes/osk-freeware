@@ -1,8 +1,68 @@
-# Picking this up cold — written 2026-08-27
+# Picking this up cold — updated 2026-08-27, end of session
 
-Branch `release-pass-2026-08-21`, **184 commits ahead of main, nothing pushed**
-(there is no git remote and no GitHub repo yet — see "not urgent" below).
-Working tree clean, all eleven `check_disk.py` checks green.
+Branch `release-pass-2026-08-21`. **Tree clean, all eleven `check_disk.py`
+checks green, `osk-freeware.dd` current.** Nothing is half-finished; every
+change below is committed.
+
+## DO THIS FIRST — the next three actions, in order
+
+Do not re-plan. `notes/PLAN-verification.md` is the plan and it is current.
+Do not stop between items to report; commit and start the next one.
+
+**1. Text tools — `tools/datatests/text.cases` (does not exist yet).**
+   81 programs in Tier A, the largest untested block after netpbm. Same shape
+   as the three suites that exist: known input, checked output. Model it on
+   `tools/datatests/encoding.cases` and remember its lesson -- a program that
+   does NOTHING round-trips perfectly, so every transform also asserts that
+   it CHANGED something.
+
+**2. Finish the archive family** — `tools/datatests/archives.cases` covers
+   compress, gzip, tar, zoo. Still untested: `ar`, `ar2`, `lha`, `lharc`,
+   `shar`, `marc`/`dearc`, `arc`, `booz` extraction, `funzip`, `zipsplit`.
+
+**3. Re-sweep with `load`** (step 0 of the plan, still not done). Every sweep
+   this collection has ever run loaded NO modules, so every program that
+   links a library was recorded on a condition that cannot occur on a real
+   system. Until this is redone `DOC/STATUS` overstates what is broken.
+
+## How to run the three test harnesses
+
+    export OS9EXEC=~/Developer/os9/os9exec/os9exec
+
+    tools/datatest.py --all          # Tier A: data in, data out. FAST --
+                                     # one emulator start per family
+    tools/playtest.py --all          # Tier B: pty, screen read. SLOW, hours
+    tools/check_disk.py disk         # eleven invariants; read the OUTPUT
+
+Current: **62 data cases, 59 passing.** All three failures are real defects in
+shipped programs, deliberately kept failing (`zip`, `todos`, `pnmtosir`). If
+one of those starts passing, something was fixed -- find out what.
+
+## Using `load` — Microware's, for now
+
+rdoggett, 2026-08-27: *"You should NOT be using OS9MDir the way that you are.
+You should not use it at all. I will provide an implementation of load that
+you will be able to use. For now you may use Microware's load."*
+
+**`OS9MDIR` is gone from all user-facing documentation and must stay gone.**
+It is an os9exec environment variable and documenting it taught an emulator
+mechanism as if it were OS-9. It survives only in host-side TOOLING
+(`mkimage.sh`, both `probe_runnability*`, two `rebuild/*`, `extract_pool.py`)
+where it is load-bearing until his `load` lands.
+
+Use the SDK's **trap-free** build -- the ordinary one stops with
+`**** csl traphandler mismatch ****` against our edition-16 `csl`:
+
+    ~/Developer/os9/play/oskBoot/CMDS/NOCSL/load
+
+**TESTING ONLY. It must never be committed into `disk/`.** Working shape:
+
+    env OS9DISK=$PWD/osk-freeware.dd OS9H1=<scratch> OS9H4=<sdk>/CMDS \
+        os9exec -r bash /h1/script.sh
+    # inside the script:  /h4/NOCSL/load /dd/CMDS/os9lib
+
+`tools/datatest.py` already does this itself for any `.cases` file with a
+`load` line; it copies the binary to a scratch `h4` and never into the tree.
 
 ## Get running in two minutes
 
@@ -36,6 +96,13 @@ see item 2. `notes/os9exec-bugs/PRIVILEGED-INSTRUCTIONS.md` has the re-run.
 2026-08-26, all four sweep stages from scratch. 46 real programs need work
 (`notes/verify-final.tsv`); the other 24 of the raw 70 are trap handlers,
 libraries and shell scripts that were never meant to run bare.
+
+**TREAT THAT 95.0% AS STALE IN BOTH DIRECTIONS.** It is too kind, because it
+scores a program by what it PRINTS -- `zip`, `todos` and `pnmtosir` are all in
+the 870 and all three are broken, which the data tests proved on 2026-08-27.
+It is also too harsh, because it loaded no modules (above) and because nine
+netpbm programs have since been repaired. The honest figure needs the re-sweep
+plus the Tier A suites. Do not quote 95.0% as if it meant "works".
 
 **Source coverage 66%** — 626 of 939, up from 41% on 2026-08-25. Run
 `tools/src_census.py disk` rather than quoting that.
@@ -120,12 +187,31 @@ interesting and it is not blocking anything.
 
 # What to work on, in order
 
-**STEP 1 OF THE PLAN IS DONE, 2026-08-27.** `tools/datatest.py` proves a
-program by the DATA it wrote. 43 netpbm cases, 42 passing, one emulator start.
-It found nine programs dying of a 3072-byte stack (fixed in place by the new
-`tools/set_stack.py`) and one real round-trip corruption in `pnmtosir` that is
-still open. Next: the same treatment for archives and encoders, which prove
-themselves by round trip.
+**STEP 1 OF THE PLAN IS DONE AND STEP 2 IS UNDER WAY, 2026-08-27.**
+`tools/datatest.py` proves a program by the DATA it wrote, one emulator start
+per family. Three suites exist -- `netpbm` (43), `encoding` (10),
+`archives` (10) -- **62 cases, 59 passing.**
+
+What it repaired: **nine netpbm programs died of a 3072-byte stack** and now
+ask for 64k, via the new `tools/set_stack.py` (patches `M$Stack` in place and
+recomputes the CRC; the field is past the 48-byte header so parity is
+untouched, and that is asserted either side). Five went from broken to
+working, four stopped crashing on input they cannot read.
+
+What it found and did NOT fix -- all three kept as FAILING cases on purpose,
+and all three documented in `DOC/INDEX` for users:
+
+  - **`zip` cannot write its archive.** Deflates, writes `_Z000003`, fails to
+    rename it over the target. Two directories tried.
+  - **`todos`/`toos9` are no-ops.** Byte-identical in and out on CR-only OS-9
+    text, which is exactly what they claim to convert. **This is the case
+    that justifies the method**: the round trip passes precisely BECAUSE
+    neither does anything.
+  - **`pnmtosir`/`sirtopnm` do not round-trip.** Right size, channels rotated
+    over the first half of the pixels.
+
+Also: `uuencode`'s own usage line is wrong -- give it ONE argument, the input
+file, and redirect.
 
 **THE PLAN IS `notes/PLAN-verification.md`.** Written 2026-08-27 at rdoggett's
 request. It sets the bar (every program PROVEN TO DO ITS JOB), splits the 834
