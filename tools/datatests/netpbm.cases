@@ -218,13 +218,67 @@ run     $P/ppmhist /dd/tmp/ild.ppm
 expect  0   0   0
 expect  256
 
-# KNOWN FAILURE, found by this suite 2026-08-27: ppmtoxpm dies with
-# `**** Stack Overflow ****' before writing anything, and xpmtoppm then has
-# no input. The case is KEPT and expected to fail until the binary is
-# rebuilt with a larger stack -- the `life' fix, MEM= in its recipe. Do not
-# delete it; a suite that drops its failures stops being worth running.
-case    xpm-ppmtoxpm-stack-overflow
-run     $P/ppmtoxpm /dd/tmp/c.ppm > /dd/tmp/r.xpm
+# FOUND BY THIS SUITE and FIXED 2026-08-27. ppmtoxpm died with
+# `**** Stack Overflow ****' before writing a byte. It and eight other
+# netpbm programs shipped with M$Stack 3072 -- the value every netpbm module
+# on the disk carries -- and simply want more. tools/set_stack.py raised the
+# nine to 64k in place; 16k was tried first and is NOT enough. The `absent'
+# line is what would catch a regression.
+case    xpm-round-trip-is-lossless
+run     $P/ppmtoxpm /dd/tmp/c.ppm > /dd/tmp/r.xpm 2>/nil
+run     $P/xpmtoppm /dd/tmp/r.xpm > /dd/tmp/xp.ppm 2>/nil
+run     $P/pnmarith -difference /dd/tmp/c.ppm /dd/tmp/xp.ppm > /dd/tmp/xpd.ppm
+run     $P/ppmhist /dd/tmp/xpd.ppm
+expect  0   0   0
+expect  256
+absent  Stack Overflow
+
+# The other eight that set_stack.py repaired. Five now do their job; the
+# other three are being handed a format they do not read, and the point of
+# the case is that they say so INSTEAD OF CRASHING.
+case    ppmnorm-normalises
+run     $P/ppmnorm /dd/tmp/c.ppm > /dd/tmp/nm.ppm 2>/nil
+run     $P/pnmfile /dd/tmp/nm.ppm
+expect  PPM raw, 32 by 8
+absent  Stack Overflow
+
+# KNOWN FAILURE, found by this suite 2026-08-27 and NOT yet fixed.
+# The SIR round trip is LOSSY: it returns an image of the right size whose
+# channels are rotated over the first half of the pixels. Minimal case --
+# a solid red 4x1 image:
+#
+#     in    255 0 0   255 0 0   255 0 0   255 0 0
+#     out     0 255 0   0 255 0   255 0 0   255 0 0
+#
+# and solid green comes back as blue for the same two pixels. So R->G->B on
+# the first half, correct on the second: a plane-offset bug, not rounding.
+# WHICH of the two is at fault is unknown -- there is no reference SIR file
+# on the disk to write or read against, so the pair can only be tested as a
+# pair. The stack patch is NOT the cause: it fixed the crash that used to
+# hide this, and the corruption was here underneath it.
+#
+# The case is kept FAILING on purpose. A suite that deletes its failures
+# stops being worth running.
+case    sir-round-trip-is-lossy
+run     $P/ppmmake red 4 1 > /dd/tmp/k.ppm 2>/nil
+run     $P/pnmtosir /dd/tmp/k.ppm > /dd/tmp/k.sir 2>/nil
+run     $P/sirtopnm /dd/tmp/k.sir > /dd/tmp/k2.ppm 2>/nil
+run     $P/pnmnoraw /dd/tmp/k2.ppm
+expect  255 0 0  255 0 0  255 0 0  255 0 0
+absent  Stack Overflow
+
+case    pbmtext-renders-text
+run     $P/pbmtext hello > /dd/tmp/tx.pbm 2>/nil
+run     $P/pnmfile /dd/tmp/tx.pbm
+expect  PBM raw, 51 by 29
+absent  Stack Overflow
+
+case    wrong-format-diagnosed-not-crashed
+run     $P/fstopgm /dd/tmp/c.ppm > /nil
+run     $P/hipstopgm /dd/tmp/c.ppm > /nil
+run     $P/xvminitoppm /dd/tmp/c.ppm > /nil
+expect  invalid header
+expect  bad magic number
 absent  Stack Overflow
 
 case    rgb3-round-trip-is-lossless
