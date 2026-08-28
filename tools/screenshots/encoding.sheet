@@ -56,6 +56,15 @@ wait    5
 send    freeware\r
 wait    5
 
+shot    divide
+for     divide chardef chksum checksum
+cap     divide does integer division the way a 68000 does it, and reports
+cap     quotient and remainder.
+run     /dd/CMDS/divide 1000 7
+wait    6
+run     /dd/CMDS/chksum /dd/SYS/motd /dd/SYS/holidays
+wait    6
+
 shot    md5
 cap     MD5 over three files on the disk.
 run     /dd/CMDS/md5 /dd/SYS/motd /dd/SYS/password /dd/DOC/INDEX
@@ -96,6 +105,17 @@ cap     uuencode wrapping a binary as printable text -- how files crossed
 cap     mail and usenet before attachments existed.
 run     /dd/CMDS/uuencode /dd/SYS/motd | /dd/CMDS/head -n 14
 wait    5
+
+shot    uuexpand
+for     uuexpand toos9 macbin mcvert hexbin
+cap     uuexpand pads a uuencoded file back out; the Macintosh set beside
+cap     it converts between the formats a Mac expected.
+run     /dd/CMDS/uuencode /dd/SYS/motd > /dd/tmp/u.uue
+wait    6
+run     /dd/CMDS/uuexpand < /dd/tmp/u.uue | /dd/CMDS/head -n 8
+wait    8
+run     /dd/CMDS/mcvert -?
+wait    6
 
 shot    xcrypt
 cap     xcrypt, a simpler file cipher, and the checksum round trip again.

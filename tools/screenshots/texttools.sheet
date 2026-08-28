@@ -5,6 +5,13 @@ cap     The ASCII table, four columns, control names and all.
 run     /dd/CMDS/ascii | /dd/CMDS/head -n 20
 wait    5
 
+shot    bibtex
+for     bibtex afm2tfm maketexpk
+cap     BibTeX, the bibliography processor, with the sample database that
+cap     ships beside it.
+run     /dd/CMDS/TEXCMDS/bibtex
+wait    12
+
 shot    bm
 cap     bm, a Boyer-Moore grep, and fgrep beside it -- both older and
 cap     faster than the GNU one, and both still here.
@@ -84,6 +91,13 @@ cap     four bytes are the sync $4AFC and the module's size.
 run     /dd/CMDS/dump /dd/CMDS/today | /dd/CMDS/head -n 16
 wait    5
 
+shot    dvitype
+for     dvitype dvips dvilj2 dvijet
+cap     dvitype reads the DVI file back and prints what is in it: page by
+cap     page, the font changes and the character positions TeX computed.
+run     /dd/CMDS/TEXCMDS/dvitype small.dvi | /dd/CMDS/head -n 20
+wait    20
+
 shot    fcomp
 cap     fcomp compares two text files line by line.
 run     /dd/CMDS/fcomp /dd/tmp/h1 /dd/tmp/h2
@@ -139,6 +153,13 @@ shot    jargon
 cap     The Jargon File browser, looking up a word in its own database.
 run     /dd/CMDS/jargon foo
 wait    8
+
+shot    latex
+for     latex slitex
+cap     LaTeX on the article that DOC/tex ships to explain LaTeX -- the
+cap     document is its own documentation.
+run     /dd/CMDS/TEXCMDS/latex /dd/SYS/TEX/SAMPLES/about_latex.tex
+wait    45
 
 shot    lout
 cap     Basser Lout 2.05, a document formatter in the TeX tradition, saying
@@ -244,6 +265,23 @@ shot    tac
 cap     tac prints a file backwards, last line first.
 run     /dd/CMDS/head -n 8 /dd/SYS/holidays | /dd/CMDS/tac
 wait    5
+
+shot    tangle
+for     tangle weave tftopl pltotf gftype pktype
+cap     tangle and weave are the WEB tools TeX itself is written with: one
+cap     makes Pascal out of a .web file, the other makes TeX.
+run     /dd/CMDS/TEXCMDS/tangle
+wait    10
+run     /dd/CMDS/TEXCMDS/tftopl /dd/SYS/TEX/FONTS/TFM/cmr10.tfm | /dd/CMDS/head -n 14
+wait    15
+
+shot    tex
+for     tex virtex initex texidx
+cap     TeX itself, typesetting one of the sample documents that ship in
+cap     SYS/TEX/SAMPLES.  It loads the plain format, sets the pages and
+cap     writes a DVI file -- Knuth's own program, on an OS-9 disk.
+run     /dd/CMDS/TEXCMDS/tex /dd/SYS/TEX/SAMPLES/small.tex
+wait    30
 
 shot    tformat
 cap     tformat, the SNOBOL4 text formatter.

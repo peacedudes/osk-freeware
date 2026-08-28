@@ -7,3 +7,10 @@ cap     first two bytes of every module on this disk.
 run     /dd/CMDS/hexed /dd/CMDS/today
 wait    6
 quit    q
+
+shot    sed
+for     sed sed_1.06 psc
+cap     sed doing what a stream editor does, twice over, on the disk's own
+cap     documentation.
+run     /dd/CMDS/head -n 8 /dd/SYS/holidays | /dd/CMDS/sed -e "s/Day/DAY/g" -e "s/^/| /"
+wait    8

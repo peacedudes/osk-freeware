@@ -27,8 +27,9 @@ run     /dd/CMDS/GAMES/newsgen
 wait    4
 
 shot    scales
-cap     A musical scale generator: every scale it knows, written out in
-cap     note names.
+cap     A musical scale generator -- and it writes its scales to
+cap     `scales.lst' in the current directory rather than to the screen,
+cap     which is why there is nothing here but its progress.
 run     /dd/CMDS/scales -a
 wait    4
 

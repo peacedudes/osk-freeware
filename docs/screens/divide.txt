@@ -1,0 +1,6 @@
+/dd/CMDS/divide 1000 7
+Can't open file ??
+4b68af85
+f466775e
+========
+b52f8708

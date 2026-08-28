@@ -1,0 +1,7 @@
+pgmtolispm /dd/tmp/base.pgm | lispmtopgm | pnmfile
+lispmtopgm: depth is too large - try reconfiguring with PGM_BIGGRAYS
+pnmfile: EOF / read error reading magic number
+ppmtomap: 6 colors found
+P6
+6 1
+255

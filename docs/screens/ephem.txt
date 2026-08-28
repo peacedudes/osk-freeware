@@ -1,0 +1,14 @@
+            Ephem - an interactive astronomical ephemeris program
+                          Version 4.13 April 3, 1990
+
+                 Copyright (c) 1990 by Elwood Charles Downey
+
+     Permission is granted to make and distribute copies of this program
+      free of charge, provided the copyright notice and this permission
+       notice are preserved on all copies.  All other rights reserved.
+
+  Many formulas and tables are based, with permission, on material found in
+                   "Astronomy with your Personal Computer"
+       by Dr. Peter Duffett-Smith, Cambridge University Press, (c) 1985
+
+                         type any key to continue...

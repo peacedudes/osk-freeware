@@ -1,0 +1,4 @@
+/dd/CMDS/ELM/frm
+No mail.
+Could not open user data file!
+Could not open system data file!

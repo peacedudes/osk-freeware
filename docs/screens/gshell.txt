@@ -1,0 +1,24 @@
+                        GSHELL  V1.1               Uwe Simon  1988
+
+Directory : .
+
+   +  show next page   -  show first page    A..Z select file
+   !  exit Menue       .  change directory   a..z  file with parameter
+
+===== Execute what Command ?                                            =====
+A  -l.s19                          B  ADL
+C  CMDS                            D  DEFS
+E  DEMO                            F  DOC
+G  DOS                             H  ETC
+I  Fwd_refs                        J  GAMES
+K  GNUCHESS4.0                     L  GNULIB
+M  LIB                             N  LOG
+O  MAIL                            P  SBPROLOG
+Q  SOURCES.txt                     R  SPL
+S  SPOOL                           T  SRC
+U  SYS                             V  USR
+W  VH                              X  arc.c
+Y  binhex.c                        Z  c
+
+
+Select file :

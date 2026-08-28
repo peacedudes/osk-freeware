@@ -21,8 +21,9 @@ send    N\r
 wait    6
 
 shot    bincheckr
-cap     bincheckr reads GNU Chess's opening book and checks it -- the book
-cap     ships here, so it has something to check.
+cap     bincheckr reads GNU Chess's opening book -- and reports booksize 0
+cap     for a book of 145 KB, then aborts.  DOC/STATUS credited it as
+cap     working given a file; this is what it actually does.
 run     /dd/CMDS/GAMES/bincheckr /dd/GAMES/gnuchess.book
 wait    8
 kill
@@ -40,9 +41,13 @@ run     /dd/CMDS/GAMES/checkgame /dd/GAMES/gnuchess.book 1 3
 wait    8
 
 shot    fuddle
-cap     fuddle, a chess variant.
+cap     fuddle, a chess variant, one move in.
 run     /dd/CMDS/GAMES/fuddle
-wait    8
+wait    6
+send    y\r
+wait    6
+send    e2e4\r
+wait    10
 
 shot    gnuchess
 cap     GNU Chess 4.0 in its plain build, thinking about a move: depth,
@@ -81,12 +86,17 @@ run     /dd/CMDS/GAMES/maze
 wait    8
 
 shot    mkdict
-cap     mkdict and mkindex build Boggle's dictionary and its index out of
-cap     the word list in GAMES/BOG.
-run     /dd/CMDS/GAMES/mkdict -?
-wait    5
-run     /dd/CMDS/GAMES/mkindex -?
-wait    5
+for     mkdict mkindex
+cap     mkdict and mkindex build Boggle's dictionary and its index.  The
+cap     built dictionary is already in GAMES/BOG -- 80 KB of it -- so here
+cap     they are reading the word list and writing it again, and `wc' shows
+cap     what came out.
+run     /dd/CMDS/head -n 400 /dd/GAMES/BOG/dict > /dd/tmp/words
+wait    8
+run     /dd/CMDS/GAMES/mkdict < /dd/tmp/words > /dd/tmp/newdict
+wait    10
+run     /dd/CMDS/wc /dd/tmp/words /dd/tmp/newdict
+wait    8
 
 shot    nchess
 cap     GNU Chess 4.0 with its plain display -- the board as characters,
@@ -110,14 +120,15 @@ send    no\r
 wait    6
 
 shot    postprint
-cap     postprint writes a chess position as PostScript, for printing a
-cap     diagram.
+cap     postprint writes a chess position as PostScript for printing.  It
+cap     gets one line out -- the page setup -- and stops there.
 run     /dd/CMDS/GAMES/postprint | /dd/CMDS/head -n 20
 wait    8
 
 shot    queens
-cap     The eight-queens problem, solved and drawn -- an IOCCC entry that
-cap     reads the board size on standard input.
+cap     The N-queens problem, solved and drawn -- an IOCCC entry that reads
+cap     the board size on standard input.  Six here, and it prints every
+cap     solution it finds.
 run     echo 6 | /dd/CMDS/queens | /dd/CMDS/head -n 21
 wait    8
 

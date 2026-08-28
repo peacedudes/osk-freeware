@@ -1,0 +1,2 @@
+/dd/CMDS/TEXCMDS/tex /dd/SYS/TEX/SAMPLES/small.tex
+virtex "&plain" /dd/SYS/TEX/SAMPLES/small.tex:  (E$PNNF) That path name doesn't.

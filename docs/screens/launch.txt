@@ -1,0 +1,19 @@
+/dd/CMDS/launch -?
+
+launch v1.1 (c) M.C.Gregorie, 1994
+
+Syntax  : launch <opts> <shell> [shellargs...]
+Function: Set up login environmental factors dependant on the type
+          of terminal. A default PATH environment string can also
+          be set up. All values are defined in /dd/sys/config.
+Options : -d  debug mode
+          -e  set up emacs bindings file from prototypes in /dd/sys
+          -i  initialise the terminal using the 'is' capability
+              for the terminal
+Syntax: signal <process-id> <signal-code> [<seconds>]
+Function: send signal to process after specified time.
+Parameters:
+     <process-id>    process identification
+     <signal-code>   code of signal to be sent
+     <seconds>       number of seconds to wait
+                     default is 0 seconds

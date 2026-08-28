@@ -20,6 +20,35 @@ wait    4
 run     /dd/CMDS/tty
 wait    5
 
+shot    elm
+for     elm frm newmail readmsg printmail messages
+cap     Elm, the mail reader, opening on an empty mailbox -- which is the
+cap     honest state of a mail system with no network.  Fourteen programs
+cap     travel with it in CMDS/ELM.
+run     /dd/CMDS/ELM/elm
+wait    10
+quit    q\r
+
+shot    finger
+for     finger net osknet atp msntp infoxpress
+cap     The network set.  There is no interface configured here, so what
+cap     they show is what they would do if there were.
+run     /dd/CMDS/NETWORK/finger
+wait    8
+run     /dd/CMDS/NETWORK/net
+wait    8
+
+shot    frm
+for     frm checkalias listalias newalias filter autoreply answer fastmail
+cap     The rest of the elm suite says what it wants: frm lists the from
+cap     lines of a folder, the alias tools read the alias files.
+run     /dd/CMDS/ELM/frm
+wait    6
+run     /dd/CMDS/ELM/listalias
+wait    6
+run     /dd/CMDS/ELM/checkalias root
+wait    6
+
 shot    kermit
 cap     Kermit, the file-transfer program.  With no serial line to talk to
 cap     it says what it can do: connect, send, receive, or be the server.
@@ -43,6 +72,15 @@ wait    5
 send    q\r
 wait    3
 
+shot    newshist
+for     newshist bdecode byteflip c7decode dbz newslock
+cap     CMDS/NEWS: the pieces that unpack a usenet news batch -- decoders,
+cap     the history database and the lock.
+run     /dd/CMDS/NEWS/dbz
+wait    8
+run     /dd/CMDS/NEWS/bdecode
+wait    8
+
 shot    pathalias
 for     pathalias makedb nptx dotilde uuclean
 cap     pathalias computes mail routes from a map of who calls whom -- the
@@ -64,6 +102,15 @@ cap     setterm and cls, the two smallest things here that know what a
 cap     terminal is.
 run     /dd/CMDS/setterm
 wait    4
+
+shot    sterm
+for     sterm tterm xy xydown blastem dld uld k tsu rxmod txmod vmod_trap xyt z
+cap     CMDS/COMMS: fourteen terminal and file-transfer programs for serial
+cap     lines -- xmodem, ymodem and their kin, from before the network.
+run     /dd/CMDS/COMMS/xy
+wait    8
+run     /dd/CMDS/COMMS/sterm
+wait    8
 
 shot    uucp
 for     uucp uux uuxqt uucico
@@ -90,3 +137,12 @@ run     /dd/CMDS/uwho
 wait    6
 run     /dd/CMDS/udate
 wait    6
+
+shot    wn
+for     wn wndex authwn inetd inetdc
+cap     WN, a web server, and its indexer -- on a 68000 OS-9 disk.  It is
+cap     configured to be started by inetd, which is also here.
+run     /dd/CMDS/WN/wn -V
+wait    8
+run     /dd/CMDS/WN/wndex -?
+wait    8

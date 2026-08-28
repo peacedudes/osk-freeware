@@ -112,11 +112,21 @@ where it came from and on what terms. GitHub shows HTML files as source rather
 than rendering them, so **download the repository and open that file** — it is
 self-contained, no server and nothing to install.
 
+**Several hundred of the programs have their picture taken.** Open a program
+in the catalogue and, where there is one, its own screen is on the card:
+photographed from the running program on the disk image, keystrokes fed to
+os9exec's console and the terminal stream rendered into the grid a vt100
+would have shown. `docs/screens.html` is the whole gallery, grouped the way
+the catalogue is. Nothing there is mocked up, and where a program failed the
+failure is what you see — which is how a dozen programs the four-stage sweep
+had scored as working turned out not to be.
+
 ## Start here
 
 | | |
 |---|---|
 | [`docs/CATALOG.md`](docs/CATALOG.md) | what is here, by category |
+| `docs/screens.html` | the programs running, photographed |
 | `disk/readme` | the front door |
 | `disk/DOC/README-RUNNING` | three ways to run it — read this first |
 | `disk/DOC/INDEX` | what every program is |

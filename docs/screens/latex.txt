@@ -1,0 +1,2 @@
+/dd/CMDS/TEXCMDS/latex /dd/SYS/TEX/SAMPLES/about_latex.tex
+virtex "&lplain" /dd/SYS/TEX/SAMPLES/about_latex.tex:  (E$PNNF) That path name .

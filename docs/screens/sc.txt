@@ -1,4 +1,4 @@
-Do you want a chance to save the data?
+A0 (10 2 0) [42]
 
          A         B         C         D         E         F         G
 0        42.00<

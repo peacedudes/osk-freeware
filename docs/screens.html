@@ -43,6 +43,56 @@ failure is what you see. <a class="back" href="index.html">Back to the
 catalogue</a>.</p>
 <p class="toc"><a href="#shells">Shells</a> <a href="#editors">Editors</a> <a href="#text-tools">Text tools</a> <a href="#files-directories">Files &amp; directories</a> <a href="#developer-tools">Developer tools</a> <a href="#compilers-build">Compilers &amp; build</a> <a href="#languages">Languages</a> <a href="#archives-compression">Archives &amp; compression</a> <a href="#encoding-conversion">Encoding &amp; conversion</a> <a href="#communications">Communications</a> <a href="#graphics-images">Graphics &amp; images</a> <a href="#games">Games</a> <a href="#screen-toys">Screen toys</a> <a href="#amusements">Amusements</a> <a href="#system-modules">System &amp; modules</a> <a href="#disk-dos">Disk &amp; DOS</a> <a href="#time-calendar">Time &amp; calendar</a> <a href="#maths-calculators">Maths &amp; calculators</a> <a href="#printing">Printing</a> <a href="#documentation">Documentation</a> <a href="#uncategorised">Uncategorised</a></p>
 <h2 class="cat" id="shells">Shells</h2>
+<div class="shot" id="s-env">
+<h3>env</h3>
+<p>env runs a command with the environment changed, and getenv reads one variable back.</p>
+<pre>/dd/CMDS/env FOO=bar /dd/CMDS/printenv | /dd/CMDS/grep FOO
+FOO=bar
+su</pre>
+</div>
+<div class="shot" id="s-gshell">
+<h3>gshell</h3>
+<p>GSHELL, a shell with a menu, and the other three small shells this disk keeps beside bash.</p>
+<pre>                        GSHELL  V1.1               Uwe Simon  1988
+
+Directory : .
+
+   +  show next page   -  show first page    A..Z select file
+   !  exit Menue       .  change directory   a..z  file with parameter
+
+===== Execute what Command ?                                            =====
+A  -l.s19                          B  ADL
+C  CMDS                            D  DEFS
+E  DEMO                            F  DOC
+G  DOS                             H  ETC
+I  Fwd_refs                        J  GAMES
+K  GNUCHESS4.0                     L  GNULIB
+M  LIB                             N  LOG
+O  MAIL                            P  SBPROLOG
+Q  SOURCES.txt                     R  SPL
+S  SPOOL                           T  SRC
+U  SYS                             V  USR
+W  VH                              X  arc.c
+Y  binhex.c                        Z  c
+
+
+Select file :</pre>
+</div>
+<div class="shot" id="s-if">
+<h3>if</h3>
+<p>if, exist and ask are the pieces a shell script tests with -- OS-9 had no `test' and these are what stood in for it.</p>
+<pre>/dd/CMDS/if -?
+Syntax: if [not] &lt;cond&gt; {&lt;arg&gt;} {&lt;cmd1&gt;} [else {&lt;cmd2&gt;}] endif
+Function: if the [negated] condition &lt;cond&gt; depending on the arguments
+          &lt;arg&gt; is true, then hand the commands &lt;cmd1&gt; to the shell for
+          execution, else, if provided, &lt;cmd2&gt;.
+Conditions available:
+    def    &lt;var&gt;              true, if environment variable &lt;var&gt; is defined
+    loaded &lt;mod&gt;              true, if module &lt;mod&gt; is already loaded
+    varval &lt;var&gt; &lt;val&gt;        true, if envir. variable &lt;var&gt; has value &lt;val&gt;
+Options:
+     (none)</pre>
+</div>
 <div class="shot" id="s-ksh">
 <h3>ksh</h3>
 <p>pd-ksh, the Korn shell, running as a program under bash: its own prompt, its own builtins.</p>
@@ -134,7 +184,7 @@ BEAV  I README-CIO   File: /dd/DOC/README-CIO [RW]    CURSOR=00000000, 1   HEX $
 </div>
 <div class="shot" id="s-elvis">
 <h3>elvis</h3>
-<p>Captured while running.</p>
+<p>Elvis 1.7 -- the best documented of this disk's three vi editors -- displaying DOC/README-CIO.</p>
 <pre>collection was rebuilt trap-free (`-qm`) so it would run with nothing loaded
 at all; most of the programs under CMDS need no module whatever.  The rest
 were left as their authors built them.
@@ -164,6 +214,11 @@ You run OS-9, so you have these modules already, and you may prefer your copy</p
 <p>Captured while running.</p>
 <pre>Creating '/r0/README-CIO.hd' from '/dd/DOC/README-CIO'.
 error: can't create '/r0/README-CIO.hd' !</pre>
+</div>
+<div class="shot" id="s-hexedit">
+<h3>hexedit</h3>
+<p>A hex editor opened on an OS-9 module: the $4AFC sync bytes are the first two bytes of every module on this disk.</p>
+<pre>/dd/CMDS/hexedit /dd/CMDS/today</pre>
 </div>
 <div class="shot" id="s-me">
 <h3>me</h3>
@@ -218,6 +273,22 @@ every binary -- was the normal way to build for OS-9, and it is why a starred
 program is often a fraction of the size of a trap-free one.  Much of this
 collection was rebuilt trap-free (`-qm`) so it would run with nothing loaded
 -----Mg: README-CIO                       (fundamental)-------------------------</pre>
+</div>
+<div class="shot" id="s-sed">
+<h3>sed</h3>
+<p>sed doing what a stream editor does, twice over, on the disk's own documentation.</p>
+<pre>&lt;d/SYS/holidays | /dd/CMDS/sed -e "s/Day/DAY/g" -e "s/^/| /"
+Syntax: sed [&lt;opts&gt;] [&lt;path&gt;] [&lt;opts&gt;]
+/dd/CMDS/head: /dd/SYS/holidays
+        sed [-n] &lt;script&gt; [&lt;path&gt;]
+Function: stream editor
+     reads text from path or from &lt;stdin&gt; and writes to &lt;stdout&gt;.
+Options:
+     -?            display usage
+     -n            no output
+     -e=&lt;script&gt;   editing commands
+     -f=&lt;sfile&gt;    file with editing commands
+sed: illegal use of 'e'-option.</pre>
 </div>
 <div class="shot" id="s-VI">
 <h3>VI</h3>
@@ -349,6 +420,12 @@ at all; most of the programs under CMDS need no module whatever.  The rest
 @     @       @               @
 @     @ @     @         @     @
 @@@@@@@  @@@@@           @@@@@</pre>
+</div>
+<div class="shot" id="s-bibtex">
+<h3>bibtex</h3>
+<p>BibTeX, the bibliography processor, with the sample database that ships beside it.</p>
+<pre>/dd/CMDS/TEXCMDS/bibtex
+Please type input file name (no extension)--</pre>
 </div>
 <div class="shot" id="s-bm">
 <h3>bm</h3>
@@ -495,6 +572,13 @@ Addr   0 1  2 3  4 5  6 7  8 9  A B  C D  E F 0 2 4 6 8 A C E
 00C0  5800 4A68 FFFE 660A 5988 49E8 FFFC 7001 X.Jh..f.Y.I...p.
 00D0  6026 4235 58FF 204D D7EB 000C 42A7 2F0B `&amp;B5X. M....B./.</pre>
 </div>
+<div class="shot" id="s-dvitype">
+<h3>dvitype</h3>
+<p>dvitype reads the DVI file back and prints what is in it: page by page, the font changes and the character positions TeX computed.</p>
+<pre>/dd/CMDS/TEXCMDS/dvitype small.dvi | /dd/CMDS/head -n 20
+This is DVItype, C Version 3.4
+Output level (default=4, ? for help):</pre>
+</div>
 <div class="shot" id="s-fcomp">
 <h3>fcomp</h3>
 <p>fcomp compares two text files line by line.</p>
@@ -621,6 +705,12 @@ Unprogrammed Key</pre>
 <pre>/dd/CMDS/jargon foo
 Browsing foo...
 vh: can't find database files for foo</pre>
+</div>
+<div class="shot" id="s-latex">
+<h3>latex</h3>
+<p>LaTeX on the article that DOC/tex ships to explain LaTeX -- the document is its own documentation.</p>
+<pre>/dd/CMDS/TEXCMDS/latex /dd/SYS/TEX/SAMPLES/about_latex.tex
+virtex "&amp;lplain" /dd/SYS/TEX/SAMPLES/about_latex.tex:  (E$PNNF) That path name .</pre>
 </div>
 <div class="shot" id="s-lout">
 <h3>lout</h3>
@@ -784,6 +874,33 @@ easter Easter Sunday
 
 * Common Holidays</pre>
 </div>
+<div class="shot" id="s-tangle">
+<h3>tangle</h3>
+<p>tangle and weave are the WEB tools TeX itself is written with: one makes Pascal out of a .web file, the other makes TeX.</p>
+<pre>/dd/CMDS/TEXCMDS/tangle
+Usage: tangle webfile[.web] [changefile[.ch]].
+&lt;pl /dd/SYS/TEX/FONTS/TFM/cmr10.tfm | /dd/CMDS/head -n 14
+(FAMILY CMR)
+(FACE O 352)
+(CODINGSCHEME TEX TEXT)
+(DESIGNSIZE R 10.0)
+(COMMENT DESIGNSIZE IS IN POINTS)
+(COMMENT OTHER SIZES ARE MULTIPLES OF DESIGNSIZE)
+(CHECKSUM O 11374260171)
+(FONTDIMEN
+   (SLANT R 0.0)
+   (SPACE R 0.333334)
+   (STRETCH R 0.166667)
+   (SHRINK R 0.111112)
+   (XHEIGHT R 0.430555)
+   (QUAD R 1.000003)</pre>
+</div>
+<div class="shot" id="s-tex">
+<h3>tex</h3>
+<p>TeX itself, typesetting one of the sample documents that ship in SYS/TEX/SAMPLES.  It loads the plain format, sets the pages and writes a DVI file -- Knuth's own program, on an OS-9 disk.</p>
+<pre>/dd/CMDS/TEXCMDS/tex /dd/SYS/TEX/SAMPLES/small.tex
+virtex "&amp;plain" /dd/SYS/TEX/SAMPLES/small.tex:  (E$PNNF) That path name doesn't.</pre>
+</div>
 <div class="shot" id="s-tformat">
 <h3>tformat</h3>
 <p>tformat, the SNOBOL4 text formatter.</p>
@@ -871,6 +988,32 @@ Options:
         Version: V1.0Beta
         Copyright (c) 1991,1992 Robert Heller D/B/A Deepwoods Software</pre>
 </div>
+<div class="shot" id="s-basename">
+<h3>basename</h3>
+<p>basename and dirname take a path apart; owner says who a file belongs to.</p>
+<pre>/dd/CMDS/basename /dd/CMDS/GAMES/hack
+No such user</pre>
+</div>
+<div class="shot" id="s-chgrp">
+<h3>chgrp</h3>
+<p>chown and chgrp on a scratch file, with fstat either side to show the owner actually changed.</p>
+<pre>/dd/CMDS/cp /dd/SYS/motd /dd/tmp/own.txt
+
+Filename:     /dd/tmp/own.txt
+Owner:        0.0
+Attributes:   ---wr-wr
+Created:      08/27/2026
+Modified:     08/27/2026 08:29 pm
+File Length:  40 $(28)
+/dd/CMDS/chown: 1.7:  Invalid uid
+
+Filename:     /dd/tmp/own.txt
+Owner:        0.0
+Attributes:   ---wr-wr
+Created:      08/27/2026
+Modified:     08/27/2026 08:29 pm
+File Length:  40 $(28)</pre>
+</div>
 <div class="shot" id="s-dfiles">
 <h3>dfiles</h3>
 <p>dfiles hunts for duplicate files and writes the cmp commands that would prove them identical.</p>
@@ -887,6 +1030,17 @@ cmp -s  /dd/SYS/TEX/MFINPUTS/MFCONTRIB/cmcyr/README /dd/SYS/TEX/MFINPUTS/MFCONTE
 cmp -s  /dd/SYS/TEX/MFINPUTS/MFCONTRIB/pandora/README /dd/SYS/TEX/MFINPUTS/MFCOE
 cmp -s  /dd/SYS/TEX/MFINPUTS/MFCONTRIB/ransom/ransom10.tfm /dd/SYS/TEX/FONTS/TFm
 cmp -s  /dd/SYS/profile.ksh /dd/SYS/ksh/profile.ksh</pre>
+</div>
+<div class="shot" id="s-dir">
+<h3>dir</h3>
+<p>The everyday file commands, in one sitting: make a directory, copy into it, rename, list, remove.  `dir' here is the patched build -- its moveq #128 was sign-extended before it was fixed.</p>
+<pre>/dd/CMDS/mkdir /dd/tmp/work
+
+Directory of "/dd/tmp/work" 20:55:29  08/27/126
+
+two
+
+Total of 1 files.</pre>
 </div>
 <div class="shot" id="s-dm">
 <h3>dm</h3>
@@ -944,6 +1098,14 @@ Directory name                      Bytes    kBytes   Sectors    File #
 /dd/CMDS/GAMES                    3035872      2965     11859        83
 
 Total of 2965 kBytes (11859 sectors) in 1 directories and 83 files.</pre>
+</div>
+<div class="shot" id="s-ff">
+<h3>ff</h3>
+<p>ff finds files by name anywhere below a directory.</p>
+<pre>/dd/CMDS/ff
+
+Was soll'n gesucht wer'n ey ???
+termcap: command not found</pre>
 </div>
 <div class="shot" id="s-find">
 <h3>find</h3>
@@ -1083,6 +1245,33 @@ Number of subdirectories                 : 43
 Total file contents                      : 5341.00 KBytes (5469184 Bytes, 100%)
 Space allocated now on /dd               : 5998.00 KBytes (23992 Sectors, 112%)
 Minimum required with clustersize=4      : 5998.00 KBytes (23992 Sectors, 112%)</pre>
+</div>
+<div class="shot" id="s-tree">
+<h3>tree</h3>
+<p>tree fails on this disk, and the reason is worth keeping: it opens the RAW DEVICE (/dd@) to walk the directory structure itself, and os9exec does not offer the raw device of a host directory.</p>
+<pre>             x               x               tq PK300
+             x               x               mq TFM
+             x               tq FORMATS
+             x               tq INPUTS
+             x               tq MFBASES
+             x               tq MFINPUTS qqqqwq CM
+             x               x               tq CMTEST
+             x               x               tq EXTRACM
+             x               x               tq LATEX
+             x               x               tq MFCONTRIB qqqwq cmcyr
+             x               x               x               tq concrete
+             x               x               x               tq ocr
+             x               x               x               tq pandora
+             x               x               x               tq punk
+             x               x               x               tq ransom
+             x               x               x               mq washington qqqq
+             x               x               tq SAUTER
+             x               x               tq SAUTERMF
+             x               x               mq UTILITY
+             x               tq POOLS
+             x               mq SAMPLES
+             tq UUCP
+             mq ksh</pre>
 </div>
 <h2 class="cat" id="developer-tools">Developer tools</h2>
 <div class="shot" id="s-benchmarks">
@@ -1741,6 +1930,16 @@ No more memory !!!</pre>
 Type password for /dd/tmp/d.txt: freeware
 Verify password for /dd/tmp/d.txt:</pre>
 </div>
+<div class="shot" id="s-divide">
+<h3>divide</h3>
+<p>divide does integer division the way a 68000 does it, and reports quotient and remainder.</p>
+<pre>/dd/CMDS/divide 1000 7
+Can't open file ??
+4b68af85
+f466775e
+========
+b52f8708</pre>
+</div>
 <div class="shot" id="s-md5">
 <h3>md5</h3>
 <p>MD5 over three files on the disk.</p>
@@ -1788,6 +1987,32 @@ H5V5L8V]M92!T;R!O&lt;SEE&gt;&amp;5C("TM($]3+3DO-CAK(&amp;5M=6QA=&amp;]R#0`)X
 end
 size 40</pre>
 </div>
+<div class="shot" id="s-uuexpand">
+<h3>uuexpand</h3>
+<p>uuexpand pads a uuencoded file back out; the Macintosh set beside it converts between the formats a Mac expected.</p>
+<pre>Mcvert V1.05 By Doug Moore
+OSK Port by Dean Leiber
+
+Usage: Mcvert [-rduxh] [DUpqsv] filename(s)
+ Options:
+          -r = Resource Fork Only
+          -d = Data Fork Only
+          -u = Mac &lt;-&gt; Unix Text Conversion
+          -x = Convert [*Default*]
+          -h = Host
+ Modifiers:
+          -D = Conversion for Download (BinHex -&gt; Macbinary) [*Default*]
+          -U = Conversion for Upload   (Macbinary -&gt; BinHex)
+          -p = PackIT (.PIT) File explode
+          -q = No PIT extraction [*Default*]
+          -s = Silent
+          -v = Verbose [*Default*]
+ Enviromental Vars:
+ MAC_EDITOR     [Default = MACA]  - For Option "-uD"
+ MAC_DLOAD_DIR  [Default = "." ]  - Dir for "-D"
+ MAC_EXT        [Default = .bin]  - Extension for "-U,-D"
+ MAC_LINE_LIMIT [Default = 200 ]  - Length of file for "-U"</pre>
+</div>
 <div class="shot" id="s-xcrypt">
 <h3>xcrypt</h3>
 <p>xcrypt, a simpler file cipher, and the checksum round trip again.</p>
@@ -1809,6 +2034,50 @@ en/decrypt &lt;input-file&gt; &lt;output-file&gt;
                        Syntax  : ATerm /serial_path
                        Function: Terminal program for OSK
                        Example : ATerm /t1</pre>
+</div>
+<div class="shot" id="s-elm">
+<h3>elm</h3>
+<p>Elm, the mail reader, opening on an empty mailbox -- which is the honest state of a mail system with no network.  Fourteen programs travel with it in CMDS/ELM.</p>
+<pre>/dd/CMDS/ELM/elm
+
+Notice:
+This version of ELM requires the use of a .elm directory in your home
+directory to store your elmrc and alias files. Shall I create the
+directory .elm for you and set it up (y/n/q)? n</pre>
+</div>
+<div class="shot" id="s-finger">
+<h3>finger</h3>
+<p>The network set.  There is no interface configured here, so what they show is what they would do if there were.</p>
+<pre>Options: none
+          Internet Protocol Package, (C) 1988 by Phil Karn, KA9Q
+               NET/ROM Support (C) 1989 by Dan Frank, W9NK
+
+                       This puppy was housebroken by
+               Joe Buswell, K5JB, 44.78.0.2, Midwest City OK
+
+     OS9-68k Port, Robert E. Brose II, N0QBJ, 44.94.249.29, St. Paul, MN
+
+                  This version is K5JB.k35c with options:
+                  AX.25/Seg, AX.25/vcipcall, Netrom, MBOX
+                  MDKISS, Mulport, Heard, Unix, OS9-68K
+
+Warning: File /dd/startup.net not found
+Warning: File /dd/ftpusers not found
+Warning: File /dd/hosts.net not found
+Note: File /dd/aliases not found
+Note: File /dd/helpbox.hlp not found
+Error: Directory /usr/spool/mail not found
+Error: Directory /usr/spool/mqueue not found
+
+Sorry, Chapter 2 will help you set up correctly.</pre>
+</div>
+<div class="shot" id="s-frm">
+<h3>frm</h3>
+<p>The rest of the elm suite says what it wants: frm lists the from lines of a folder, the alias tools read the alias files.</p>
+<pre>/dd/CMDS/ELM/frm
+No mail.
+Could not open user data file!
+Could not open system data file!</pre>
 </div>
 <div class="shot" id="s-kermit">
 <h3>kermit</h3>
@@ -1856,6 +2125,12 @@ Options:
 
 q: command not found</pre>
 </div>
+<div class="shot" id="s-newshist">
+<h3>newshist</h3>
+<p>CMDS/NEWS: the pieces that unpack a usenet news batch -- decoders, the history database and the lock.</p>
+<pre>/dd/CMDS/NEWS/dbz
+usage: /dd/CMDS/NEWS/dbz [-a] [-x] [-c] database [file] ...</pre>
+</div>
 <div class="shot" id="s-pathalias">
 <h3>pathalias</h3>
 <p>pathalias computes mail routes from a map of who calls whom -- the program that made a usenet address possible.</p>
@@ -1886,6 +2161,13 @@ License.  Please send suggestions/bug reports to:  bob@kc2wz.bubble.org
 
 v2.1 (94Sep30) This is free software released under the GNU General Public
 License.  Please send suggestions/bug reports to:  bob@kc2wz.bubble.org</pre>
+</div>
+<div class="shot" id="s-sterm">
+<h3>sterm</h3>
+<p>CMDS/COMMS: fourteen terminal and file-transfer programs for serial lines -- xmodem, ymodem and their kin, from before the network.</p>
+<pre>/dd/CMDS/COMMS/xy
+Receiving...
+C</pre>
 </div>
 <div class="shot" id="s-uucp">
 <h3>uucp</h3>
@@ -1928,6 +2210,12 @@ uulog: unable to open '/DD/LOG/uulog'</pre>
 <pre>/dd/CMDS/uwho
 /dd/CMDS/uwho: can't open /etc/utmp
 Thursday, August 27, 19126 - 8:44 PM</pre>
+</div>
+<div class="shot" id="s-wn">
+<h3>wn</h3>
+<p>WN, a web server, and its indexer -- on a 68000 OS-9 disk.  It is configured to be started by inetd, which is also here.</p>
+<pre>/dd/CMDS/WN/wn -V
+Usage: /dd/CMDS/WN/wndex [-r] [-q] [-v] [-d dir] [-i indexfile] [-c cachefile]</pre>
 </div>
 <h2 class="cat" id="graphics-images">Graphics &amp; images</h2>
 <div class="shot" id="s-ateri">
@@ -2090,6 +2378,17 @@ ilbmtoppm: input is a 3-plane ILBM
 stdin:  PPM raw, 48 by 24  maxval 255
 sgitopnm: writing PPM image
 stdin:  PPM raw, 48 by 24  maxval 255</pre>
+</div>
+<div class="shot" id="s-lispm">
+<h3>lispm</h3>
+<p>A Lisp machine's bitmap format, and TeX's PK font format, both with readers here.</p>
+<pre>pgmtolispm /dd/tmp/base.pgm | lispmtopgm | pnmfile
+lispmtopgm: depth is too large - try reconfiguring with PGM_BIGGRAYS
+pnmfile: EOF / read error reading magic number
+ppmtomap: 6 colors found
+P6
+6 1
+255</pre>
 </div>
 <div class="shot" id="s-lissaj">
 <h3>lissaj</h3>
@@ -2640,6 +2939,16 @@ MMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMM
 % aaaaaaaaaaaa
 % 555555555555</pre>
 </div>
+<div class="shot" id="s-rawtopgm">
+<h3>rawtopgm</h3>
+<p>rawtopgm reads headerless bytes as an image -- how you got a picture out of a machine that wrote no header at all.</p>
+<pre>pgmnoise 40 20 | pnmnoraw | /dd/CMDS/head -n 3
+P2
+40 20
+255
+stdin:  PGM raw, 48 by 24  maxval 255
+stdin:  PGM raw, 48 by 24  maxval 255</pre>
+</div>
 <div class="shot" id="s-rayshade">
 <h3>rayshade</h3>
 <p>Rayshade 4.0, a full ray tracer, rendering one of its fifteen example scenes and reporting the work: primitives, rays cast, shadow rays, time.  It preprocesses every scene with cccp, so a C preprocessor has to be reachable under that name -- DOC/rayshade says so and it is right.</p>
@@ -2840,7 +3149,7 @@ Enter 'r' to play red, 'w' to play white, 'b' to play both:</pre>
 </div>
 <div class="shot" id="s-bincheckr">
 <h3>bincheckr</h3>
-<p>bincheckr reads GNU Chess's opening book and checks it -- the book ships here, so it has something to check.</p>
+<p>bincheckr reads GNU Chess's opening book -- and reports booksize 0 for a book of 145 KB, then aborts.  DOC/STATUS credited it as working given a file; this is what it actually does.</p>
 <pre>/dd/CMDS/GAMES/bincheckr /dd/GAMES/gnuchess.book
 entrysize 16
 booksize 0
@@ -2954,7 +3263,7 @@ Not a G-Windows sytem???</pre>
 </div>
 <div class="shot" id="s-fuddle">
 <h3>fuddle</h3>
-<p>fuddle, a chess variant.</p>
+<p>fuddle, a chess variant, one move in.</p>
 <pre>/dd/CMDS/GAMES/fuddle
 7 Do you want white (y/n default: y) ?</pre>
 </div>
@@ -3201,7 +3510,7 @@ Column: (A-P) j                                         ? for help
 </div>
 <div class="shot" id="s-mkdict">
 <h3>mkdict</h3>
-<p>mkdict and mkindex build Boggle's dictionary and its index out of the word list in GAMES/BOG.</p>
+<p>mkdict and mkindex build Boggle's dictionary and its index.  The built dictionary is already in GAMES/BOG -- 80 KB of it -- so here they are reading the word list and writing it again, and `wc' shows what came out.</p>
 <pre>/dd/CMDS/GAMES/mkdict -?
 /dd/CMDS/GAMES/mkindex -?</pre>
 </div>
@@ -3274,7 +3583,7 @@ Bet limit (% of pot)?</pre>
 </div>
 <div class="shot" id="s-postprint">
 <h3>postprint</h3>
-<p>postprint writes a chess position as PostScript, for printing a diagram.</p>
+<p>postprint writes a chess position as PostScript for printing.  It gets one line out -- the page setup -- and stops there.</p>
 <pre>/dd/CMDS/GAMES/postprint | /dd/CMDS/head -n 20
 /V 11 72 mul def /L 60 def</pre>
 </div>
@@ -3320,7 +3629,7 @@ Time used: 00 min 00 sec   Move: 0</pre>
 </div>
 <div class="shot" id="s-queens">
 <h3>queens</h3>
-<p>The eight-queens problem, solved and drawn -- an IOCCC entry that reads the board size on standard input.</p>
+<p>The N-queens problem, solved and drawn -- an IOCCC entry that reads the board size on standard input.  Six here, and it prints every solution it finds.</p>
 <pre>echo 6 | /dd/CMDS/queens | /dd/CMDS/head -n 21
 
 
@@ -3958,7 +4267,7 @@ home that night.</pre>
 </div>
 <div class="shot" id="s-scales">
 <h3>scales</h3>
-<p>A musical scale generator: every scale it knows, written out in note names.</p>
+<p>A musical scale generator -- and it writes its scales to `scales.lst' in the current directory rather than to the screen, which is why there is nothing here but its progress.</p>
 <pre>/dd/CMDS/scales -a
 Initializing...
 Building deck...90 cards made
@@ -4238,6 +4547,13 @@ before nine PM, Daylight Savings Time. The moon is full.</pre>
         argument index                             5
                 argument:                          "two"</pre>
 </div>
+<div class="shot" id="s-dload">
+<h3>dload</h3>
+<p>dload sends a file down a serial line and break sends a BREAK -- both assembler examples from the forums, and both harmless here because there is no serial line.</p>
+<pre>/dd/CMDS/dload -?
+Syntax: dload &lt;filename&gt;
+Function: loads datafile into datamodule</pre>
+</div>
 <div class="shot" id="s-e">
 <h3>e</h3>
 <p>SEDT, the VMS-style editor, with VT220 keys.</p>
@@ -4268,15 +4584,61 @@ Abort on this SEVERE ERROR ? &lt;Y/N&gt;:</pre>
 </div>
 <div class="shot" id="s-every">
 <h3>every</h3>
-<p>every runs a command at intervals; repeat runs it over and over.</p>
-<pre>/dd/CMDS/repeat 3 /dd/CMDS/date
-/dd/CMDS/date: cannot execute binary file</pre>
+<p>every and repeat run a command again and again -- the two halves of cron for a machine that is not left running.</p>
+<pre>/dd/CMDS/every -?
+Syntax: every &lt;time&gt; &lt;progname&gt; [&lt;progopts&gt;]
+Function: repeat program every &lt;time&gt; seconds
+repeat ver 1.2
+function: repeat an OS-9 command several times
+syntax: repeat [number of repetitions] [OS-9 command]
+options: -?     provide this explanation
+example: repeat 10 echo Hello</pre>
+</div>
+<div class="shot" id="s-fastcc">
+<h3>fastcc</h3>
+<p>The GSHELL front ends, and fastcc -- a quicker driver for cc.</p>
+<pre>        -d&lt;name&gt;        define for cpp
+        -e&lt;=num&gt;        edition number for output
+        -u&lt;name&gt;        undefine for cpp
+        -f&lt;=path&gt;       output path (exec-dir)
+        -fd&lt;=path&gt;      outpath (data-dir)
+        -g              generate debugging info
+        -i              use clib-trap-library
+        -j              dont generate a jump-table
+        -l&lt;=name&gt;       additional library to search
+        -n&lt;=name&gt;       output module name
+        -r&lt;=dir&gt;        compile/assemble to rel. files
+        -o              don't run o68
+        -p              pipe cpp-output into the compiler
+        -q              quiet mode
+        -s              omit stack-checking
+        -t&lt;=dir&gt;        dir for temp. files
+        -x              use math-trap-lib
+        -v&lt;=dir&gt;        search-dir for cpp
+        -m&lt;=n&gt;          additional memory for stack in output module
+Syntax: compiler [&lt;path&gt;]
+Function: a menue driven compiler shell
+Options: none</pre>
 </div>
 <div class="shot" id="s-flink">
 <h3>flink</h3>
 <p>flink lists a module's links -- what has it loaded and who holds it.</p>
 <pre>/dd/CMDS/flink /dd/CMDS/today
 linking to file today in directory /dd/CMDS</pre>
+</div>
+<div class="shot" id="s-gen">
+<h3>gen</h3>
+<p>gen writes the frame of a new C program, module or type -- the starting point Microware's own examples used.</p>
+<pre>/dd/CMDS/gen -?
+Syntax: gen [&lt;opt&gt;] &lt;pathname&gt; [&lt;opts&gt;]
+Function: generate a program frame
+Note: there must be exactly one option selected
+Options:
+     -f        generate function declaration frame
+     -m        generate module frame
+     -p        generate program frame
+     -t        generate type declaration frame
+gen: illegal arguments</pre>
 </div>
 <div class="shot" id="s-getsys">
 <h3>getsys</h3>
@@ -4338,6 +4700,26 @@ BEGIN (* of I_AM_I *)
       writeln(tabelle(zaehler))
 END. (* of I_AM_I *)</pre>
 </div>
+<div class="shot" id="s-ident">
+<h3>ident</h3>
+<p>Four ways of asking about a MODULE rather than a file: its header, its edition, whether it is loaded, and what is inside a library.</p>
+<pre>/dd/CMDS/version /dd/CMDS/tar
+Dies ist das Program 'version', Version 7
+... oder in anderer Notation, version 0.7
+liborder: Unimplemented option '-?'.
+
+Usage: liborder &lt;options&gt; file1.r file2.r ...
+Produces an ordered list of the input modules to build OS-9 libraries.
+ Where options are:
+   '-modinfo':  print info about each module (PUBLIC and EXTERNAL)
+   '-public':   list all PUBLIC functions
+   '-external': list all EXTERNAL functions
+   '-preced':   list precedences between modules
+   '-precsymb': list cross referenced symbols
+   '-lump':     print the set of fundamental cycles (need to be grouped)
+   '-exit':     do not perform ordering, print info only
+Copyright by CERN, written by CN/CE/MS (Vers.3.0 - 24 July 90)</pre>
+</div>
 <div class="shot" id="s-isam">
 <h3>isam</h3>
 <p>The indexed-sequential file demonstration from the same shelf.</p>
@@ -4384,6 +4766,35 @@ Nothing was overwritten.  Use -f if that is what you want.</pre>
 <p>kept lists what has been taken and what it came to.</p>
 <pre>/dd/CMDS/kept
 Nothing has been kept from this collection.</pre>
+</div>
+<div class="shot" id="s-launch">
+<h3>launch</h3>
+<p>Process control: launch puts a program in the background, pri changes its priority, signal sends it a signal.</p>
+<pre>/dd/CMDS/launch -?
+
+launch v1.1 (c) M.C.Gregorie, 1994
+
+Syntax  : launch &lt;opts&gt; &lt;shell&gt; [shellargs...]
+Function: Set up login environmental factors dependant on the type
+          of terminal. A default PATH environment string can also
+          be set up. All values are defined in /dd/sys/config.
+Options : -d  debug mode
+          -e  set up emacs bindings file from prototypes in /dd/sys
+          -i  initialise the terminal using the 'is' capability
+              for the terminal
+Syntax: signal &lt;process-id&gt; &lt;signal-code&gt; [&lt;seconds&gt;]
+Function: send signal to process after specified time.
+Parameters:
+     &lt;process-id&gt;    process identification
+     &lt;signal-code&gt;   code of signal to be sent
+     &lt;seconds&gt;       number of seconds to wait
+                     default is 0 seconds</pre>
+</div>
+<div class="shot" id="s-lunisolar">
+<h3>lunisolar</h3>
+<p>The astronomy set: lunisolar computes sun and moon positions and ephem is a full ephemeris with its own database in SYS.</p>
+<pre>/dd/CMDS/lunisolar
+The moon is full.</pre>
 </div>
 <div class="shot" id="s-makecrc">
 <h3>makecrc</h3>
@@ -4494,6 +4905,19 @@ system debugger active flag ................. $0
 F$SetSys: unimplemented 08F8 (size=80000004)
 disk cache buffer head ...................... $0</pre>
 </div>
+<div class="shot" id="s-passwd">
+<h3>passwd</h3>
+<p>passwd changes a password in SYS/password.  It matches on the user NAME, and the file is plain text you can read here.</p>
+<pre>/dd/CMDS/cat /dd/SYS/password
+su, ,0.0,128,/dd/cmds,/dd/sys,shell -p="su: "
+tester,,1.7,128,/dd/CMDS,/dd/USR/TESTER,shell
+,,1.99,128,/dd/CMDS,/dd/USR/ANON,shell -p="anon: "
+uucp,,3.1,128,/dd/CMDS/UUCP,/dd/USR/LIB/UUCP,shell
+os9,,0.0,128,/dd/CMDS,/dd,shell
+Syntax: passwd
+Function: get new password
+Options: none</pre>
+</div>
 <div class="shot" id="s-phone">
 <h3>phone</h3>
 <p>A phone book, kept in a file on the disk.</p>
@@ -4562,6 +4986,13 @@ Process   Pid: 3, top, edition 7
     Exit code: E_PRCABT(228) Process Aborted
   Directories: Current   - /dd
                Execution - /dd/CMDS</pre>
+</div>
+<div class="shot" id="s-transfer">
+<h3>transfer</h3>
+<p>transfer copies between devices, trunc cuts a file short, preset fills memory with a pattern.</p>
+<pre>/dd/CMDS/cp /dd/SYS/holidays /dd/tmp/cut.txt
+-rw-rw-rw-   1 0        0             717 Aug  3 19:00 /dd/tmp/cut.txt
+-rw-rw-rw-   1 0        0             100 Aug 27 20:57 /dd/tmp/cut.txt</pre>
 </div>
 <div class="shot" id="s-ub68kdemo">
 <h3>ub68kdemo</h3>
@@ -4935,6 +5366,24 @@ easter 1998 is 4/12
 easter 1999 is 4/4
 easter 2000 is 4/23</pre>
 </div>
+<div class="shot" id="s-ephem">
+<h3>ephem</h3>
+<p>ephem, the astronomical ephemeris, with the configuration and database that ship in SYS.</p>
+<pre>            Ephem - an interactive astronomical ephemeris program
+                          Version 4.13 April 3, 1990
+
+                 Copyright (c) 1990 by Elwood Charles Downey
+
+     Permission is granted to make and distribute copies of this program
+      free of charge, provided the copyright notice and this permission
+       notice are preserved on all copies.  All other rights reserved.
+
+  Many formulas and tables are based, with permission, on material found in
+                   "Astronomy with your Personal Computer"
+       by Dr. Peter Duffett-Smith, Cambridge University Press, (c) 1985
+
+                         type any key to continue...</pre>
+</div>
 <div class="shot" id="s-today">
 <h3>today</h3>
 <p>Captured while running.</p>
@@ -4946,7 +5395,7 @@ Savings Time. The moon is full.</pre>
 <h2 class="cat" id="maths-calculators">Maths &amp; calculators</h2>
 <div class="shot" id="s-hc">
 <h3>hc</h3>
-<p>hc, the hex calculator, on an expression.</p>
+<p>hc, the hex calculator -- and it answers with its usage line to everything tried here, including the form that usage line names.</p>
 <pre>echo 1f * 3 + 7 | /dd/CMDS/hc
 usage:  hc [-s] [+tab | -col | -l "str" | filename] ...</pre>
 </div>
@@ -4961,7 +5410,7 @@ Enter month payments begin (ex: 8 = August):</pre>
 </div>
 <div class="shot" id="s-oleo">
 <h3>oleo</h3>
-<p>GNU Oleo 1.6, the other spreadsheet here.  A2 holds =A0+A1 and the cell line at the top shows the formula behind the value.</p>
+<p>GNU Oleo 1.6 does not run: an illegal instruction at 000465d2 and the process is aborted before it draws a cell.  The three lines below it are the keystrokes meant for the spreadsheet, landing in the shell instead.  `sc' is the spreadsheet that works.</p>
 <pre>/dd/CMDS/oleo
 Illegal instruction: 0009 at 000465d2
 
@@ -4992,7 +5441,7 @@ Mode: Allgemeine Bitdarstellung
 </div>
 <div class="shot" id="s-rpn">
 <h3>rpn</h3>
-<p>An RPN calculator: 12 and 34 pushed, added, then the square root of two to fifteen places.</p>
+<p>An RPN calculator, and the screen shows it going wrong: 12 and 34 push correctly, and then `+' PUSHES A ZERO instead of replacing them with 46.  The stack grows where it should shrink.</p>
 <pre>/dd/CMDS/rpn
 
 WELCOME TO RPN!!! (Rpn version 1) by Nils McCarthy
@@ -5014,8 +5463,8 @@ Bye Bye, now! Please try rpn again!</pre>
 </div>
 <div class="shot" id="s-sc">
 <h3>sc</h3>
-<p>Captured while running.</p>
-<pre>Do you want a chance to save the data?
+<p>sc, the spreadsheet, with 42 entered in A0 and the quit prompt over it.</p>
+<pre>A0 (10 2 0) [42]
 
          A         B         C         D         E         F         G
 0        42.00&lt;

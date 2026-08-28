@@ -1,0 +1,4 @@
+/dd/CMDS/ff
+
+Was soll'n gesucht wer'n ey ???
+termcap: command not found

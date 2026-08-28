@@ -31,3 +31,11 @@ cap     easter computes the date of Easter for a run of years -- the
 cap     computus, in one small program.
 run     /dd/CMDS/easter
 wait    3
+
+shot    ephem
+for     ephem
+cap     ephem, the astronomical ephemeris, with the configuration and
+cap     database that ship in SYS.
+run     /dd/CMDS/ephem -c /dd/SYS/ephem.cfg -d /dd/SYS/ephem.db
+wait    12
+quit    q

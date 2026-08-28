@@ -149,3 +149,37 @@ chess piece letters `PNBRQK`.
 shows its source. The workflow publishes `docs/` to GitHub Pages, which needs
 Pages enabled for the repo with "GitHub Actions" as the source. Until then that
 step is skipped and the file is still readable locally.
+
+## Photographing the programs
+
+    tools/screenshots.py --all       # many programs per emulator session
+    tools/playtest.py --all          # one interactive program per session, judged
+    tools/gen_screens.py             # docs/screens.html, screens.js, screens/
+
+`screenshots.py` drives ONE bash session on a pseudo-terminal and runs stanza
+after stanza in it, clearing between and keeping the bytes each program wrote.
+Eight programs cost about ninety seconds where `playtest.py` costs five
+minutes -- it is the right tool when the question is "what does this look
+like", and the wrong one when the question is "does it read the keyboard".
+It judges nothing: the screens are for the catalogue and a person looks at
+them.
+
+A sheet (`tools/screenshots/*.sheet`) is stanzas; `shot` opens one, `run`
+types a command, `send`/`keys` type keys, `kill` stops a program while its
+first page is still on screen, `for` names the catalogue programs a screen
+illustrates, and `cap` is the caption the gallery prints. **One stanza per
+program, please** -- two definitions means two captions for one screen and
+the gallery picking whichever sheet sorted last, which is how `map' came to
+be captioned "the memory map" over a picture of a file's block list.
+
+Two things it survives, both learned the hard way: a program that takes the
+emulator down with it (`cpu` does, every time), and a program that will not
+let go of the terminal (SEDT survived a Ctrl-E and ate the next three
+stanzas of its sheet). After every stanza the shell is asked to echo a
+marker; if it does not come back the session is replaced.
+
+`gen_screens.py` decides two things the capture cannot: the high half of the
+character set is read as **CP437**, because that is what these programs were
+written for -- `cal` rules its columns off with $C4 -- and the published
+files stay **ASCII**, with the line drawing carried as numeric escapes in the
+HTML and folded to `-`, `|` and `+` in the `.txt` copies.

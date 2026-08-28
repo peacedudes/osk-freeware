@@ -1,0 +1,23 @@
+             x               x               tq PK300
+             x               x               mq TFM
+             x               tq FORMATS
+             x               tq INPUTS
+             x               tq MFBASES
+             x               tq MFINPUTS qqqqwq CM
+             x               x               tq CMTEST
+             x               x               tq EXTRACM
+             x               x               tq LATEX
+             x               x               tq MFCONTRIB qqqwq cmcyr
+             x               x               x               tq concrete
+             x               x               x               tq ocr
+             x               x               x               tq pandora
+             x               x               x               tq punk
+             x               x               x               tq ransom
+             x               x               x               mq washington qqqq
+             x               x               tq SAUTER
+             x               x               tq SAUTERMF
+             x               x               mq UTILITY
+             x               tq POOLS
+             x               mq SAMPLES
+             tq UUCP
+             mq ksh

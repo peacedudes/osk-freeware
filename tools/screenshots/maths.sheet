@@ -1,7 +1,8 @@
 # Calculators and the spreadsheets.
 
 shot    hc
-cap     hc, the hex calculator, on an expression.
+cap     hc, the hex calculator -- and it answers with its usage line to
+cap     everything tried here, including the form that usage line names.
 run     echo 1f * 3 + 7 | /dd/CMDS/hc
 wait    4
 
@@ -18,8 +19,10 @@ send    30\r
 wait    4
 
 shot    oleo
-cap     GNU Oleo 1.6, the other spreadsheet here.  A2 holds =A0+A1 and the
-cap     cell line at the top shows the formula behind the value.
+cap     GNU Oleo 1.6 does not run: an illegal instruction at 000465d2 and
+cap     the process is aborted before it draws a cell.  The three lines
+cap     below it are the keystrokes meant for the spreadsheet, landing in
+cap     the shell instead.  `sc' is the spreadsheet that works.
 run     /dd/CMDS/oleo
 wait    4
 send    12\r
@@ -39,8 +42,9 @@ run     /dd/CMDS/rechne -b 12345
 wait    3
 
 shot    rpn
-cap     An RPN calculator: 12 and 34 pushed, added, then the square root of
-cap     two to fifteen places.
+cap     An RPN calculator, and the screen shows it going wrong: 12 and 34
+cap     push correctly, and then `+' PUSHES A ZERO instead of replacing
+cap     them with 46.  The stack grows where it should shrink.
 run     /dd/CMDS/rpn
 wait    2
 send    12\r

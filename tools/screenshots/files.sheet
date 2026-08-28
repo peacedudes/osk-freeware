@@ -21,12 +21,52 @@ wait    5
 run     /dd/CMDS/PrintLabels
 wait    5
 
+shot    basename
+for     basename dirname owner fstat
+cap     basename and dirname take a path apart; owner says who a file
+cap     belongs to.
+run     /dd/CMDS/basename /dd/CMDS/GAMES/hack
+wait    4
+run     /dd/CMDS/dirname /dd/CMDS/GAMES/hack
+wait    4
+run     /dd/CMDS/owner /dd/CMDS/hack
+wait    5
+
+shot    chgrp
+for     chgrp chown eset
+cap     chown and chgrp on a scratch file, with fstat either side to show
+cap     the owner actually changed.
+run     /dd/CMDS/cp /dd/SYS/motd /dd/tmp/own.txt
+wait    5
+run     /dd/CMDS/fstat /dd/tmp/own.txt
+wait    6
+run     /dd/CMDS/chown 1.7 /dd/tmp/own.txt
+wait    5
+run     /dd/CMDS/fstat /dd/tmp/own.txt
+wait    6
+
 shot    dfiles
 cap     dfiles hunts for duplicate files and writes the cmp commands that
 cap     would prove them identical.
 run     /dd/CMDS/dfiles /dd/SYS
 wait    10
 kill
+
+shot    dir
+for     dir mkdir cp mv rm move remove
+cap     The everyday file commands, in one sitting: make a directory, copy
+cap     into it, rename, list, remove.  `dir' here is the patched build --
+cap     its moveq #128 was sign-extended before it was fixed.
+run     /dd/CMDS/mkdir /dd/tmp/work
+wait    5
+run     /dd/CMDS/cp /dd/SYS/motd /dd/tmp/work/one
+wait    5
+run     /dd/CMDS/mv /dd/tmp/work/one /dd/tmp/work/two
+wait    5
+run     /dd/CMDS/dir /dd/tmp/work
+wait    6
+run     /dd/CMDS/rm /dd/tmp/work/two
+wait    5
 
 shot    dm
 cap     dm, the disk and directory monitor -- a full-screen file browser
@@ -91,3 +131,11 @@ cap     directory by directory.
 run     /dd/CMDS/space /dd/SYS
 wait    6
 kill
+
+shot    tree
+for     tree
+cap     tree fails on this disk, and the reason is worth keeping: it opens
+cap     the RAW DEVICE (/dd@) to walk the directory structure itself, and
+cap     os9exec does not offer the raw device of a host directory.
+run     /dd/CMDS/tree /dd/SYS
+wait    8

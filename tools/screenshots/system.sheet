@@ -94,6 +94,16 @@ wait    3
 run     /dd/CMDS/shdev
 wait    3
 
+shot    dload
+for     dload break sbreak setfont
+cap     dload sends a file down a serial line and break sends a BREAK --
+cap     both assembler examples from the forums, and both harmless here
+cap     because there is no serial line.
+run     /dd/CMDS/dload -?
+wait    6
+run     /dd/CMDS/break -?
+wait    6
+
 shot    e
 cap     SEDT, the VMS-style editor, with VT220 keys.
 run     /dd/CMDS/e /dd/SRC/keep/about.c
@@ -101,14 +111,35 @@ wait    6
 quit    \033\033
 
 shot    every
-cap     every runs a command at intervals; repeat runs it over and over.
-run     /dd/CMDS/repeat 3 /dd/CMDS/date
-wait    8
+for     every repeat cron bootlogger loglist
+cap     every and repeat run a command again and again -- the two halves of
+cap     cron for a machine that is not left running.
+run     /dd/CMDS/every -?
+wait    6
+run     /dd/CMDS/repeat -?
+wait    6
+run     /dd/CMDS/cron -?
+wait    6
+
+shot    fastcc
+for     fastcc compiler assembler lfmaker
+cap     The GSHELL front ends, and fastcc -- a quicker driver for cc.
+run     /dd/CMDS/fastcc -?
+wait    6
+run     /dd/CMDS/compiler -?
+wait    6
 
 shot    flink
 cap     flink lists a module's links -- what has it loaded and who holds it.
 run     /dd/CMDS/flink /dd/CMDS/today
 wait    5
+
+shot    gen
+for     gen suse about
+cap     gen writes the frame of a new C program, module or type -- the
+cap     starting point Microware's own examples used.
+run     /dd/CMDS/gen -?
+wait    8
 
 shot    getsys
 cap     getsys reads OS-9's system globals -- what the kernel thinks it is
@@ -126,6 +157,19 @@ cap     i_am_i prints its own source: a Pascal quine.
 run     /dd/CMDS/i_am_i
 wait    5
 
+shot    ident
+for     modinfo version mexist flink names liborder.os9
+cap     Four ways of asking about a MODULE rather than a file: its header,
+cap     its edition, whether it is loaded, and what is inside a library.
+run     /dd/CMDS/version /dd/CMDS/tar
+wait    5
+run     /dd/CMDS/mexist bash
+wait    5
+run     /dd/CMDS/mexist nosuchmodule
+wait    5
+run     /dd/CMDS/liborder.os9 -?
+wait    6
+
 shot    isam
 cap     The indexed-sequential file demonstration from the same shelf.
 run     /dd/CMDS/isam
@@ -142,6 +186,24 @@ shot    kept
 cap     kept lists what has been taken and what it came to.
 run     /dd/CMDS/kept
 wait    5
+
+shot    launch
+for     launch dpark pri signal snd_sig suspend
+cap     Process control: launch puts a program in the background, pri
+cap     changes its priority, signal sends it a signal.
+run     /dd/CMDS/launch -?
+wait    6
+run     /dd/CMDS/pri -?
+wait    6
+run     /dd/CMDS/signal -?
+wait    6
+
+shot    lunisolar
+for     lunisolar orbit ephem ephem881 nasa
+cap     The astronomy set: lunisolar computes sun and moon positions and
+cap     ephem is a full ephemeris with its own database in SYS.
+run     /dd/CMDS/lunisolar
+wait    10
 
 shot    makecrc
 cap     makecrc computes the CRC OS-9 stores in every module header -- the
@@ -191,6 +253,15 @@ wait    2
 run     /dd/CMDS/getsys
 wait    4
 
+shot    passwd
+for     passwd who adduser
+cap     passwd changes a password in SYS/password.  It matches on the user
+cap     NAME, and the file is plain text you can read here.
+run     /dd/CMDS/cat /dd/SYS/password
+wait    6
+run     /dd/CMDS/passwd -?
+wait    6
+
 shot    phone
 cap     A phone book, kept in a file on the disk.
 run     /dd/CMDS/phone
@@ -236,6 +307,19 @@ shot    top
 cap     top, showing the busiest processes.  Under os9exec these are real
 cap     OS-9 processes with real IDs and real priorities.
 run     /dd/CMDS/top
+wait    6
+
+shot    transfer
+for     transfer trunc preset fillup vlen
+cap     transfer copies between devices, trunc cuts a file short, preset
+cap     fills memory with a pattern.
+run     /dd/CMDS/cp /dd/SYS/holidays /dd/tmp/cut.txt
+wait    6
+run     /dd/CMDS/ls -l /dd/tmp/cut.txt
+wait    5
+run     /dd/CMDS/trunc /dd/tmp/cut.txt 100
+wait    6
+run     /dd/CMDS/ls -l /dd/tmp/cut.txt
 wait    6
 
 shot    ub68kdemo

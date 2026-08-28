@@ -1,0 +1,6 @@
+/dd/CMDS/ELM/elm
+
+Notice:
+This version of ELM requires the use of a .elm directory in your home
+directory to store your elmrc and alias files. Shall I create the
+directory .elm for you and set it up (y/n/q)? n

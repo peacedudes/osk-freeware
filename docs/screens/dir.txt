@@ -1,0 +1,7 @@
+/dd/CMDS/mkdir /dd/tmp/work
+
+Directory of "/dd/tmp/work" 20:55:29  08/27/126
+
+two
+
+Total of 1 files.

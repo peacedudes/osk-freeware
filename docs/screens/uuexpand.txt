@@ -1,0 +1,22 @@
+Mcvert V1.05 By Doug Moore
+OSK Port by Dean Leiber
+
+Usage: Mcvert [-rduxh] [DUpqsv] filename(s)
+ Options:
+          -r = Resource Fork Only
+          -d = Data Fork Only
+          -u = Mac <-> Unix Text Conversion
+          -x = Convert [*Default*]
+          -h = Host
+ Modifiers:
+          -D = Conversion for Download (BinHex -> Macbinary) [*Default*]
+          -U = Conversion for Upload   (Macbinary -> BinHex)
+          -p = PackIT (.PIT) File explode
+          -q = No PIT extraction [*Default*]
+          -s = Silent
+          -v = Verbose [*Default*]
+ Enviromental Vars:
+ MAC_EDITOR     [Default = MACA]  - For Option "-uD"
+ MAC_DLOAD_DIR  [Default = "." ]  - Dir for "-D"
+ MAC_EXT        [Default = .bin]  - Extension for "-U,-D"
+ MAC_LINE_LIMIT [Default = 200 ]  - Length of file for "-U"

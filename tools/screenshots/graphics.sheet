@@ -321,6 +321,14 @@ cap     atmosphere and a star field, none of it drawn by anybody.
 run     ppmforge -width 152 -height 88 -seed 7 | ppmtopgm | pgmtopbm | pbmtoascii -2x4
 wait    40
 
+shot    ppmforge-clouds
+for     ppmforge ppmdim ppmbrighten
+cap     The same program asked for clouds only -- no land, all atmosphere.
+run     ppmforge -clouds -width 152 -height 88 -seed 3 > /dd/tmp/clouds.ppm
+wait    600
+run     ppmtopgm /dd/tmp/clouds.ppm | pgmtopbm | pbmtoascii -2x4
+wait    20
+
 shot    ppmhist
 for     ppmhist ppmpat
 cap     ppmpat weaves a pattern and ppmhist counts the colours in it, the

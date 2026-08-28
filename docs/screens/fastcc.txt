@@ -1,0 +1,22 @@
+        -d<name>        define for cpp
+        -e<=num>        edition number for output
+        -u<name>        undefine for cpp
+        -f<=path>       output path (exec-dir)
+        -fd<=path>      outpath (data-dir)
+        -g              generate debugging info
+        -i              use clib-trap-library
+        -j              dont generate a jump-table
+        -l<=name>       additional library to search
+        -n<=name>       output module name
+        -r<=dir>        compile/assemble to rel. files
+        -o              don't run o68
+        -p              pipe cpp-output into the compiler
+        -q              quiet mode
+        -s              omit stack-checking
+        -t<=dir>        dir for temp. files
+        -x              use math-trap-lib
+        -v<=dir>        search-dir for cpp
+        -m<=n>          additional memory for stack in output module
+Syntax: compiler [<path>]
+Function: a menue driven compiler shell
+Options: none

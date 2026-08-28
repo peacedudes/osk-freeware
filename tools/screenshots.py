@@ -78,8 +78,15 @@ LOGIN = ("export TERM=vt100",
          "export HOME=/dd",
          "export USER=tester",
          "export LOGNAME=tester",
-         "export PATH=/dd/CMDS:/dd/CMDS/GAMES:/dd/CMDS/NETPBM:.",
+         "export MAIL=/dd/SPOOL/MAIL/tester",
+         "export PATH=/dd/CMDS:/dd/CMDS/GAMES:/dd/CMDS/NETPBM:/dd/CMDS/UUCP",
+         "export PATH=$PATH:/dd/CMDS/TEXCMDS:/dd/CMDS/ELM:/dd/CMDS/COMMS",
+         "export PATH=$PATH:/dd/CMDS/NETWORK:/dd/CMDS/NEWS:/dd/CMDS/WN",
+         "export PATH=$PATH:/dd/CMDS/ADL:/dd/CMDS/REBUILT:.",
+         "export TMACDIR=/dd/LIB",
          "export HELPDIR=/dd/SYS/HELP",
+         "export SIMPATH=/dd/SBPROLOG/MODLIB",
+         "export PEP=/dd/SYS/PEP",
          "export SHELL=/dd/CMDS/bash")
 
 ESCAPES = {"\\r": "\r", "\\n": "\n", "\\e": "\033", "\\s": " ", "\\t": "\t"}

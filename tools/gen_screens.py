@@ -77,6 +77,10 @@ CAPTIONS = {
     "wisecrack": ("wisecrack writes to /pipe/txtpipe and prints nothing "
                   "itself; attach a reader and its messages appear.",
                   "ticker"),
+    "sc":       ("sc, the spreadsheet, with 42 entered in A0 and the quit "
+                 "prompt over it.", "entered"),
+    "elvis":    ("Elvis 1.7 -- the best documented of this disk's three vi "
+                 "editors -- displaying DOC/README-CIO.", "final"),
     "hack":     ("hack, with the inventory open: a fighter starts with a two "
                  "handed sword in hand and ring mail worn. @ is you, d your "
                  "dog, G a gnome, $ gold, + a door.", "inventory"),

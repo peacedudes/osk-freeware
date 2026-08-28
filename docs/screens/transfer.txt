@@ -1,0 +1,3 @@
+/dd/CMDS/cp /dd/SYS/holidays /dd/tmp/cut.txt
+-rw-rw-rw-   1 0        0             717 Aug  3 19:00 /dd/tmp/cut.txt
+-rw-rw-rw-   1 0        0             100 Aug 27 20:57 /dd/tmp/cut.txt

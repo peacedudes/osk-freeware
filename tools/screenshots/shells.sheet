@@ -1,6 +1,17 @@
 # Shells, and the small utilities that exist to be used from
 # them.
 
+shot    env
+for     env getenv printenv checkenv whoami logname su
+cap     env runs a command with the environment changed, and getenv reads
+cap     one variable back.
+run     /dd/CMDS/env FOO=bar /dd/CMDS/printenv | /dd/CMDS/grep FOO
+wait    8
+run     /dd/CMDS/getenv TERM
+wait    5
+run     /dd/CMDS/whoami
+wait    5
+
 shot    exist
 cap     exist and checkenv answer a question for a script and set the
 cap     status -- the OS-9 equivalents of test.
@@ -15,6 +26,24 @@ run     /dd/CMDS/expr 355 / 113
 wait    2
 run     /dd/CMDS/expr 2 \* 21
 wait    3
+
+shot    gshell
+for     gshell mshell xc run fc hist
+cap     GSHELL, a shell with a menu, and the other three small shells this
+cap     disk keeps beside bash.
+run     /dd/CMDS/gshell
+wait    8
+
+shot    if
+for     if exist ask ynad
+cap     if, exist and ask are the pieces a shell script tests with -- OS-9
+cap     had no `test' and these are what stood in for it.
+run     /dd/CMDS/if -?
+wait    6
+run     /dd/CMDS/exist /dd/SYS/motd
+wait    5
+run     /dd/CMDS/exist /dd/SYS/nothing-here
+wait    6
 
 shot    ksh
 cap     pd-ksh, the Korn shell, running as a program under bash: its own
