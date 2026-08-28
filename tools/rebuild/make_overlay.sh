@@ -77,10 +77,16 @@ for path in sorted(glob.glob(os.path.join(sys.argv[1], "*"))):
     blanked += 1
     print("  blanked", os.path.basename(path))
 
-if not blanked:
-    sys.exit("no author stamp found in any LIB file -- has the SDK changed? "
-             "Refusing to report a clean overlay that was never cleaned.")
-print(f"  {blanked} cstart copies blanked")
+# WHAT MUST BE TRUE AT THE END is that no stamp is left, NOT that this pass
+# found one.  On 2026-08-27 the SDK's own LIB/cstart.r was replaced with an
+# untagged build (the tagged original kept beside it as cstart.r.tagged-orig),
+# so the file that matters most now arrives clean.  Demanding a blanking here
+# would have turned that improvement into a hard failure.
+left = [os.path.basename(p) for p in sorted(glob.glob(os.path.join(sys.argv[1], "*")))
+        if os.path.isfile(p) and STAMP.search(open(p, "rb").read())]
+if left:
+    sys.exit("author stamp STILL in: %s" % ", ".join(left))
+print(f"  {blanked} cstart copies blanked; LIB carries no author stamp")
 PY
 
 # The collection's own os9lib.l, which several recipes link and which is NOT

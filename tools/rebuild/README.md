@@ -43,6 +43,28 @@ The source tree is named by **archive**, not by program: `divutils` holds
 - **`gtimeout`** — coreutils. macOS has no plain `timeout`, and a sweep built
   with one completes in seconds having compiled nothing.
 
+## The SDK's cstart is untagged at source now -- REMAKE YOUR OVERLAY
+
+2026-08-27: `$SDK/LIB/cstart.r` was replaced with a build carrying no
+licensee banner at all (the tagged original is kept beside it as
+`cstart.r.tagged-orig`). It is 1274 bytes against the tagged 1355, and it is
+the same generation -- assembling `cstart.a` with the Author block removed
+reproduces it.
+
+Two consequences, both measured here:
+
+- **A rebuild comes out 68 bytes shorter than the same source built through
+  an older overlay.** `load` built through an overlay made before that change
+  is 17084 bytes; through one made after, 17016. Nothing else differs. If a
+  size you recorded earlier no longer reproduces, this is why -- check the
+  overlay's date before suspecting the source.
+- **`make_overlay.sh` no longer requires that it found a stamp to blank.**
+  It used to exit with "no author stamp found in any LIB file", which would
+  have turned the improvement into a hard failure the day the SDK arrived
+  clean. What it checks now is the invariant that matters: that no stamp is
+  left in `LIB` when it finishes. The numbered `cstart.1/.23/.45/.67` are
+  still tagged, so it still has work to do.
+
 ## Two flags that are not optional
 
 **`-qm`** is the default, and **this is not a size preference.** It links
