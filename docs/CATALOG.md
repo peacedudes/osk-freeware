@@ -338,7 +338,7 @@
 
 | | |
 |---|---|
-| `cp` | &#9733; copy files<br>`Usage: cp file1 file2` |
+| `cp` | &#9733; copy files -- and it WORKS: the bytes come back byte for byte.  Run with NO arguments it prints its usage and then takes a bus error inside I$Open, which is how it comes to sit in DOC/STATUS's crash list<br>`Usage: cp file1 file2` |
 | `dback` | Directory backup utility (wants a /d0 device)<br>`Usage: Dback [-options] <fromdir> <todir> [-options]` |
 | `delbak` | &#9733; delete backup files (*_bak) in a directory tree<br>`Usage: delbak [-options] [directory] [-options]` |
 | `eunlink` | &#9733; extended unlink<br>`Syntax: eunlink {<event>}` |
@@ -1210,7 +1210,7 @@
 | `mille` | &#9733; Mille Bornes -- the French car-racing card game<br>**How:** Full-screen: it takes over the display. **control-C gets you out** -- tested, and none of q, Q, control-D or ESC did. If it has a quit command of its own, its documentation in DOC/ will say. |
 | `nchess` | GNU Chess 4.0 (plain display) |
 | `poker` | &#9733; Cold-hand Poker (SNOBOL4-in-C).  Data: GAMES/SNOBOL |
-| `queens` | &#9733; N-queens solver -- IOCCC entry by M. Baruch; reads N on stdin |
+| `queens` | &#9733; N-queens solver -- IOCCC entry by M. Baruch.  It reads the board size on stdin as a NUMBER: `echo 5 \| queens' draws its boards.  Every sweep here fed it prose and scored it silent |
 | `tttt` | tic-tac-toe<br>**How:** Full-screen: it takes over the display. **`q' quits** -- tested. |
 
 **Arcade & action**
@@ -1364,7 +1364,7 @@
 | `bigsetter` | Modula-2 set-operations demonstration |
 | `biory` | FORTRAN example: Biorhythm.  Runs and prompts (in German) once os9lib is loaded.  Source: SRC/rtf/biory.f |
 | `bootlogger` | &#9733; log what happens during boot |
-| `break` | send a BREAK on a serial line (assembler example)<br>`Syntax: break` |
+| `break` | send a BREAK on a serial line (assembler example) -- and under os9exec it reaches F$SysDbg and stops the EMULATOR in its own debugger, waiting for an answer.  In a script that is a hang<br>`Syntax: break` |
 | `btop` | bitmap to Gepard fat-font<br>`Syntax:   BtoP [<opts>] [<path1>] [<opts>] [<path2>] [<opts>]` |
 | `btree` | &#9733; B-tree file handling demonstration and test |
 | `clear` | &#9733; clear the screen<br>`Syntax:   clear` |
