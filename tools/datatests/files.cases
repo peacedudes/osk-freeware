@@ -1,0 +1,74 @@
+family  files
+# FILES AND DIRECTORIES, proved by what is on the disk afterwards rather than
+# by what the program said.  Every case works in /dd/tmp/ft, which the first
+# one makes and the last one takes away, so the family can be run again and
+# mean the same thing.
+setup   /dd/CMDS/rm -rf /dd/tmp/ft
+setup   /dd/CMDS/mkdir /dd/tmp/ft
+setup   /dd/CMDS/cat /dd/SYS/motd > /dd/tmp/ft/one
+
+case    mkdir-and-dir-agree
+run     /dd/CMDS/mkdir /dd/tmp/ft/sub
+run     /dd/CMDS/dir /dd/tmp/ft
+expect  sub
+
+case    cp-copies-the-bytes
+run     /dd/CMDS/cp /dd/tmp/ft/one /dd/tmp/ft/two
+run     /dd/CMDS/md5 /dd/tmp/ft/one /dd/tmp/ft/two
+expect  f2783580b7a4c5ef6a29ec5895e6ad95
+
+case    mv-renames-rather-than-copies
+run     /dd/CMDS/mv /dd/tmp/ft/two /dd/tmp/ft/three
+run     /dd/CMDS/ls /dd/tmp/ft
+expect  three
+absent  two
+
+case    rm-removes
+run     /dd/CMDS/rm /dd/tmp/ft/three
+run     /dd/CMDS/ls /dd/tmp/ft
+absent  three
+
+case    ls-l-shows-the-size
+run     /dd/CMDS/ls -l /dd/tmp/ft/one
+expect  40
+
+case    fstat-reads-the-attributes
+run     /dd/CMDS/fstat /dd/tmp/ft/one
+expect  Owner
+expect  File Length
+
+case    basename-and-dirname-take-a-path-apart
+run     /dd/CMDS/basename /dd/CMDS/GAMES/hack
+expect  hack
+run     /dd/CMDS/dirname /dd/CMDS/GAMES/hack
+expect  /dd/CMDS/GAMES
+
+case    du-adds-up-a-directory
+run     /dd/CMDS/du /dd/tmp/ft
+expect  /dd/tmp/ft
+
+# `find' here is NOT the Unix one: it takes `-n=<name>' and `-o' to output
+# the pathnames, and answers `only one parameter allowed' to the Unix form.
+case    find-walks-a-tree
+run     /dd/CMDS/find -o -n=one /dd/tmp/ft
+expect  /dd/tmp/ft/one
+
+case    find-refuses-the-unix-form
+run     /dd/CMDS/find /dd/tmp/ft -name one -print
+expect  only one parameter allowed
+
+# `l' answers `not accessable, error: 214' for every directory tried, which
+# is not what a brief directory listing should do.  Asserted so it fails the
+# day it is fixed.
+case    l-still-cannot-list-a-directory
+run     /dd/CMDS/l /dd/tmp/ft
+expect  214
+
+case    space-measures-the-tree
+run     /dd/CMDS/space /dd/tmp/ft
+absent  can't
+
+case    the-scratch-tree-goes-away-again
+run     /dd/CMDS/rm -rf /dd/tmp/ft
+run     /dd/CMDS/ls /dd/tmp/ft
+expect  216

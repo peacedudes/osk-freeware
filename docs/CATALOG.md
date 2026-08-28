@@ -48,7 +48,7 @@
 | `hist` | C-shell history + commandline editing  [no military use -- EFFO-INFO] |
 | `if` | conditional execution for shell scripts (varval/loaded/def)<br>`Syntax: if [not] <cond> {<arg>} {<cmd1>} [else` |
 | `printenv` | &#9733; print the environment<br>`Syntax:   printenv [<options>] [{<env var name}]` |
-| `printf` | &#9733; formatted print from the shell<br>`Usage: printf <format-string> [ arg1 . . . ]` |
+| `printf` | &#9733; formatted print from the shell -- it FLOODS `No more memory !!!' here and prints nothing; `echo' is what works<br>`Usage: printf <format-string> [ arg1 . . . ]` |
 | `run` | run a program with stdio rebound to the terminal (needs PORT)<br>`Syntax: run '<prgname> {<arg>}'` |
 | `xc` | execute commands from a file (needs a .xc) |
 
@@ -269,7 +269,7 @@
 | `fortune` | print a random quotation<br>`usage:  fortune [ - ] [ -wsloa ] [ file ]` |
 | `sonnet` | writes (bad) sonnets in iambic pentameter, curses-based<br>**How:** Full-screen: it takes over the display. **ESC quits** -- tested. (control-C also gets you out, but ESC is the program's own way.) |
 | `strfile` | &#9733; build fortune's index file<br>`usage:  strfile [ - ] [ -cC ] [ -sv ] inputfile [ datafile ]` |
-| `unstr` | &#9733; reverse strfile - dump a fortune index<br>`usage: unstr datafile[.dat] [ outfile ]` |
+| `unstr` | &#9733; reverse strfile - dump a fortune index.  It FLOODS `No more memory !!!' and dumps nothing<br>`usage: unstr datafile[.dat] [ outfile ]` |
 
 **Spelling & words**
 
@@ -377,7 +377,7 @@
 | `dfiles` | &#9733; find duplicate files on disk and issue the cmp commands |
 | `du` | &#9733; disk usage, by directory<br>`Syntax: du <directory>` |
 | `ff` | &#9733; find files by name -- ff [<opts>] <name>... |
-| `find` | &#9733; find 1.1.5 -- search a directory tree<br>`Syntax: find {<opts>} [<path>]` |
+| `find` | &#9733; find 1.1.5 -- search a directory tree, and NOT with the Unix syntax: `-n=<name>' matches, `-o' prints what it found, and `find <dir> -name x -print' answers `only one parameter allowed'<br>`Syntax: find {<opts>} [<path>]` |
 | `space` | &#9733; effective disk usage  [conditions apply -- run `help space`]<br>`Syntax:   space [<opts>] {<dir/file path>} [<opts>]` |
 
 **Attributes & ownership**
@@ -733,8 +733,8 @@
 
 | | |
 |---|---|
-| `cvtbase` | &#9733; convert a number between bases |
-| `divide` | &#9733; integer divide |
+| `cvtbase` | &#9733; convert a number between bases -- names them by KEY (b, d, h or x, o), and then FLOODS `No more memory !!!' without converting anything.  Its usage line prints fine, which is why it looked healthy |
+| `divide` | &#9733; SPLIT A FILE into pieces -- Farside Systems 1992, `divide -l=<lines> <infile> [<outfile>]'.  Not integer division, whatever the name suggests |
 
 **Audio**
 
@@ -1618,7 +1618,7 @@
 | `gcl` | &#9733; gcl - general calculation utility |
 | `hc` | hex calculator |
 | `loan` | &#9733; loan/amortisation calculator |
-| `rechne` | &#9733; RPN calculator |
+| `rechne` | &#9733; calculator, German -- and it takes ONE expression with no spaces in it: `rechne 4095+1' answers 4096, $1000 and the binary.  Spaced out it evaluates each argument separately |
 | `rpn` | &#9733; RPN calculator -- and its `+' is wrong: 12, 34, + leaves a stack of three with 0 on top instead of one with 46. `rechne' is the calculator that answers correctly |
 | `sc` | sc -- spreadsheet calculator (needs TERM)<br>**How:** The spreadsheet, version 6.16. It will not read SYS/termcap: do `. /dd/SYS/termcap.entry' first, then `sc' opens and says "Type '?' for help". Tested. |
 
