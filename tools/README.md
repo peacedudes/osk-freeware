@@ -186,6 +186,19 @@ let go of the terminal (SEDT survived a Ctrl-E and ate the next three
 stanzas of its sheet). After every stanza the shell is asked to echo a
 marker; if it does not come back the session is replaced.
 
+**Then LOOK at what was captured.** `tools/audit_screens.py` reads every
+capture and flags what is not worth showing -- a screen that is one line
+repeated, one with almost nothing on it, one that is nothing but the command
+that was typed. It is a prompt to go and look, not a verdict: a chess board
+repeats its rank lines and that is fine. It exists because a card once
+carried twenty-four copies of `No more memory !!!` under a caption about
+converting number bases, and every check there was had passed it.
+
+`gen_screens.py` also reports DRIFT: a stanza with no capture, and a capture
+older than the sheet that defines it -- which is the one way this can lie
+without anybody touching a program, by publishing an old screen under a new
+caption.
+
 `gen_screens.py` folds the captures into **the one catalogue** -- there is no
 separate gallery page, because a second page listing the same programs is a
 second catalogue to keep true. A screen lands on the program's own card in
