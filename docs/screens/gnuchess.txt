@@ -1,3 +1,2 @@
 gnuchess
 'vt100': Unknown terminal type.
-e2e4: command not found

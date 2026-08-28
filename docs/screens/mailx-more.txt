@@ -1,5 +1,0 @@
-mailx
-
-mailx: can't change to your mailbox directory: 'su'...error 214
-
-q: command not found

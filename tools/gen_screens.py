@@ -303,7 +303,8 @@ def sheet_shots():
         if not f.endswith(".sheet"):
             continue
         for shot in screenshots.parse(os.path.join(SHEETS, f)):
-            shots[shot["name"]] = {"cap": " ".join(shot["cap"]),
+            shots[shot["name"]] = {"hash": screenshots.stanza_hash(shot),
+                                   "cap": " ".join(shot["cap"]),
                                    "for": shot["for"] or [shot["name"]],
                                    "sheet": f[:-6],
                                    "path": os.path.join(SHEETS, f)}
@@ -395,9 +396,10 @@ def main():
     stale, missing = [], []
     for name, meta in sorted(sheet_shots().items()):
         cap = os.path.join(CAPS, "%s.shot.txt" % name)
+        stamp = os.path.join(CAPS, "%s.shot.hash" % name)
         if not os.path.exists(cap):
             missing.append(name)
-        elif os.path.getmtime(cap) < os.path.getmtime(meta["path"]):
+        elif os.path.exists(stamp) and open(stamp).read() != meta["hash"]:
             stale.append(name)
     if missing:
         print("  %d stanzas have no capture -- re-shoot them: %s"

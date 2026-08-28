@@ -2,13 +2,15 @@
 # title screen.
 
 shot    advint
-cap     ADVSYS, David Betz's adventure system, playing the sample world
-cap     that ships with it in GAMES/ADVSYS.  It wants the file named
-cap     WITHOUT its .adi extension -- with it, `can't open data file'.
+for     advint advcom
+cap     ADVSYS, David Betz's adventure system.  It plays a world COMPILED by
+cap     advcom, and no compiled world ships -- the sample .adv source does,
+cap     in GAMES/ADVSYS, and building it needs a shell with a real chd
+cap     because advcom opens its include relative to the DATA directory.
+cap     GAMES/ADVSYS/README has the three lines.  This is what asking for
+cap     one anyway looks like.
 run     advint /dd/GAMES/ADVSYS/objects
 wait    8
-send    look\r
-wait    6
 
 shot    backgammon
 cap     Backgammon against the computer: the board drawn in characters and
@@ -60,12 +62,13 @@ send    e2e4\r
 wait    10
 
 shot    gnuchess
-cap     GNU Chess 4.0 in its plain build, thinking about a move: depth,
-cap     score, nodes and the line it is considering.
+for     gnuchess gnuchessn gnuchessr
+cap     THIS build of GNU Chess will not start on this terminal: `'vt100':
+cap     Unknown terminal type'.  It wants a terminfo database, and what the
+cap     disk has is a termcap.  `nchess' and `gnuchessc' are the builds that
+cap     play -- both are here, and both have their own screen.
 run     gnuchess
-wait    6
-send    e2e4\r
-wait    12
+wait    10
 
 shot    gnuchess-builds
 for     gnuchessn gnuchessr infocom.tcap

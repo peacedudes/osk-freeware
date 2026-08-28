@@ -71,19 +71,15 @@ run     smail -?
 wait    6
 
 shot    mailx
-cap     mailx opening with no mail waiting -- which is the honest state of
-cap     a mail reader on a disk with no network.
-run     mailx
-wait    5
-send    q\r
-wait    3
-
-shot    mailx-more
-for     mailx philmail dotilde makedb pathalias
-cap     mailx opening on an empty mailbox, and philmail beside it.
+for     mailx mail philmail dotilde makedb pathalias
+cap     mailx looks your mailbox up by USER NUMBER, not by $USER: this
+cap     session is 0.0, which SYS/password calls `su', and the mailbox that
+cap     ships belongs to `tester'.  So it says it cannot change to your
+cap     mailbox directory, and the listing underneath shows the one that is
+cap     there.  Log in as tester and it finds it.
 run     mailx
 wait    8
-send    q\r
+run     ls -l /dd/SPOOL/MAIL
 wait    6
 
 shot    network

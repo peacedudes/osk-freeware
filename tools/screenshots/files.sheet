@@ -102,14 +102,11 @@ wait    8
 
 shot    ff
 for     ff
-cap     ff hunts for a file by name, and asks in German -- `Was soll'n
-cap     gesucht wer'n ey ???'  It then EXITS without waiting for the answer:
-cap     what follows the prompt here is the shell, taking the name as a
-cap     command.  Measured 2026-08-28.
+cap     ff hunts for a file by name and asks in German -- `Was soll'n
+cap     gesucht wer'n ey ???'  It then EXITS without waiting for an answer,
+cap     so there is nothing to type at it.  Measured 2026-08-28.
 run     ff
-wait    6
-send    motd\r
-wait    10
+wait    8
 
 shot    find
 cap     GNU find 1.1.5, walking this disk.

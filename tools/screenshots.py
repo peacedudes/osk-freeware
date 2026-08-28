@@ -50,6 +50,7 @@ which kills a program however it is blocked. That is what makes it safe to
 put an editor and a game in the same session.
 """
 import fcntl
+import hashlib
 import os
 import pty
 import re
@@ -350,6 +351,13 @@ def trim_partial(data):
     return PARTIAL.sub(b"", data)
 
 
+def stanza_hash(shot):
+    """What this stanza SAYS -- what it runs and what it claims to show."""
+    parts = [shot["name"], " ".join(shot["cap"]), " ".join(shot["for"]),
+             repr(shot["acts"]), str(shot["quit"]), str(shot["size"])]
+    return hashlib.sha1("\n".join(parts).encode("utf-8")).hexdigest()[:16]
+
+
 def ink(scr):
     """The program's own ink -- the shell's prompt and echo are not it."""
     return sum(1 for line in scr.text().split("\n") if "bash#" not in line
@@ -390,6 +398,12 @@ def run_sheet(path, image):
                 scr, died = capture(sess, shot)
                 out = os.path.join(CAPS, "%s.shot.txt" % shot["name"])
                 open(out, "w").write(scr.text() + "\n")
+                # A FINGERPRINT OF THE STANZA THAT TOOK IT, so gen_screens can
+                # say which captures are older than what they claim to show.
+                # A sheet's mtime cannot: editing one stanza makes every
+                # other stanza in the file look stale, and sixty false
+                # alarms are the same as none.
+                open(out[:-4] + ".hash", "w").write(stanza_hash(shot))
                 print("   %-16s ink=%-5d %s"
                       % (shot["name"], ink(scr),
                          "TOOK THE EMULATOR DOWN WITH IT" if died
