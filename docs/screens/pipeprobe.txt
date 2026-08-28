@@ -1,0 +1,9 @@
+echo hello there | /dd/CMDS/rot 13
+rot: can't open file 13
+      char   | dec | hex | oct    ||     char   | dec | hex | oct
+    ^@ (NUL) |   0 |   0 |   0    ||   @        |  64 |  40 | 100
+    ^A (SOH) |   1 |   1 |   1    ||   A        |  65 |  41 | 101
+    ^B (STX) |   2 |   2 |   2    ||   B        |  66 |  42 | 102
+    ^C (ETX) |   3 |   3 |   3    ||   C        |  67 |  43 | 103
+    ^D (EOT) |   4 |   4 |   4    ||   D        |  68 |  44 | 104
+    534    534   3473

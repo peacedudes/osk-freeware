@@ -1,23 +1,24 @@
-  26        Typhoon     Cloudy    Warm ( 70)      None      Gale
-  27          Clear      Clear    Warm ( 75)      None     Light
-  28  Precipitation  Heavy Fog    Warm ( 75)  Sprinkle     Light         Rain -,
-  29  Precipitation     Cloudy    Warm ( 75)  Sprinkle     Light         Rain -,
-  30  Precipitation     Cloudy    Fair ( 60)  Sprinkle     Light         Rain -,
-High Temp =  90, Low Temp =  60, Average Temp =  74
+  16  Precipitation  Heavy Fog    Warm ( 65)    Shower  Blustery         Storm ,
+  17          Clear      Clear    Fair ( 60)      None      Calm
+  18  Precipitation     Cloudy    Warm ( 65)     Heavy  Blustery         Storm ,
+  19  Precipitation       Mist    Warm ( 75)     Heavy  Blustery         Storm ,
+  20  Precipitation     Cloudy    Warm ( 65)     Heavy  Blustery         Storm ,
+  21          Clear      Clear    Warm ( 65)      None      Calm
+  22          Clear      Clear    Warm ( 65)      None      Calm
+  23          Clear      Clear    Warm ( 65)      None      Calm
+  24          Clear      Clear    Warm ( 70)      None     Light
+  25  Precipitation       Mist    Warm ( 65)     Heavy  Blustery         Storm ,
+  26  Precipitation       Mist    Warm ( 65)  Sprinkle     Brisk         Rain -,
+  27       Overcast       Mist    Fair ( 60)      None      Calm
+  28          Clear      Clear    Warm ( 65)      None      Calm         Buddhi,
+  29          Clear      Clear    Fair ( 60)      None      Calm
+  30          Clear      Clear    Warm ( 75)      None      Calm         New Mo,
+High Temp =  80, Low Temp =  50, Average Temp =  64
 
-Monkey
-   1          Clear      Clear    Warm ( 70)      None      Calm         Shinto,
-   2          Clear      Clear    Fair ( 50)      None     Brisk
-   3          Clear      Clear    Warm ( 65)      None     Light
-   4          Clear      Clear    Warm ( 70)      None      Calm
-   5          Clear      Clear    Warm ( 75)      None      Calm
-   6          Clear      Clear    Fair ( 55)      None      Calm
-   7          Clear      Clear    Warm ( 65)      None      Calm
-   8          Clear      Clear    Fair ( 60)      None      Calm         Buddhi,
-   9          Clear      Clear    Fair ( 55)      None      Calm
-  10          Clear      Clear    Warm ( 75)      None      Calm
-  11          Clear      Clear    Warm ( 70)      None     Light
-  12          Clear      Clear    Warm ( 65)      None      Calm
-  13          Clear      Clear    Warm ( 65)      None     Light
-  14          Clear      Clear    Warm ( 70)      None     Light
-  15          Clear      Clear    Warm ( 65)      None     Brisk  rm ( 65)  Spr,
+Dragon
+   1          Clear      Clear    Warm ( 70)      None     Light         Shinto,
+   2          Clear      Clear     Hot ( 85)      None      Calm
+   3          Clear      Clear    Warm ( 70)      None     Light
+   4          Clear      Clear    Warm ( 65)      None     Light
+   5       Overcast       Mist    Warm ( 70)      None     Brisk         Boy's )
+   6  Precipitation  Heavy Fog    Warm ( 70)     Heavy      Calm

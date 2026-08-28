@@ -1,0 +1,13 @@
+/dd/CMDS/ccheck /dd/SRC/keep/keep.c
+/dd/SRC/keep/keep.c: Mismatched indent on closing ) lines 145, 147; indents 9, .
+/dd/SRC/keep/keep.c: Mismatched indent on closing ) lines 224, 225; indents 6, .
+/dd/SRC/keep/keep.c: Mismatched indent on closing ) lines 270, 271; indents 9, .
+/dd/SRC/keep/keep.c: Indent jumps backwards line 272.
+/dd/SRC/keep/keep.c: Indent jumps backwards line 273.
+/dd/SRC/keep/keep.c: Mismatched indent on closing } lines 271, 274; indents 13,.
+/dd/SRC/keep/keep.c: Mismatched indent on closing ) lines 312, 313; indents 9, .
+/dd/SRC/keep/keep.c: Mismatched indent on closing } lines 331, 336; indents 6, .
+/dd/SRC/keep/keep.c: Mismatched indent on closing ) lines 394, 395; indents 6, .
+Further warning messages being suppressed.
+
+/dd/SRC/keep/keep.c:  OK

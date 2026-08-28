@@ -1,0 +1,71 @@
+# Second pass: stanzas whose first attempt met a different interface than
+# the catalogue's description promised.  Each correction is a finding.
+shot    gothic
+cap     gothic sets a line in blackletter.  It asks where to write and
+cap     whether to halve the size before it draws.
+run     /dd/CMDS/gothic
+wait    3
+send    \r
+wait    2
+send    \r
+wait    2
+send    OS-9\r
+wait    6
+
+shot    soundex
+cap     soundex reduces each word to its phonetic key -- Robert and Rupert
+cap     come out the same, which is the whole idea.  It wants one word to
+cap     a line, so sepwords feeds it.
+run     echo Robert Rupert Rubin Ashcraft Ashcroft | /dd/CMDS/sepwords | /dd/CMDS/soundex
+wait    5
+
+shot    cb
+cap     cb, the C beautifier.  It reads standard input and writes standard
+cap     output -- no filenames, which is what its usage line says.
+run     /dd/CMDS/cb < /dd/SRC/keep/about.c | /dd/CMDS/head -n 18
+wait    8
+
+shot    cvtbase
+cap     cvtbase converts between number bases: the bases are arguments, the
+cap     numbers arrive on standard input.
+run     echo 255 1000 65535 | /dd/CMDS/sepwords | /dd/CMDS/cvtbase 10 2
+wait    5
+run     echo 65535 | /dd/CMDS/cvtbase 10 16
+wait    4
+
+shot    ar
+cap     Carl Kreider's ar, the OS-9 archive librarian.  Its commands take a
+cap     leading dash: -u to add, -t for the table of contents.
+run     /dd/CMDS/ar -u /dd/tmp/k2.ar /dd/SRC/keep/keep.c
+wait    6
+run     /dd/CMDS/ar -t /dd/tmp/k2.ar
+wait    5
+
+shot    map
+cap     map shows the blocks a file occupies -- not a memory map, whatever
+cap     the name suggests.
+run     /dd/CMDS/map -e /dd/DOC/INDEX
+wait    5
+
+shot    space
+cap     space measures what a directory tree really costs on the disk,
+cap     directory by directory.
+run     /dd/CMDS/space /dd/SYS
+wait    6
+kill
+
+shot    fmt
+cap     fmt folding a long text to the terminal width.
+run     /dd/CMDS/head -n 30 /dd/DOC/README-KEEP | /dd/CMDS/fmt
+wait    6
+
+shot    binhex
+cap     binhex encodes a file the way a Macintosh expected to receive it.
+run     /dd/CMDS/binhex /dd/DOC/INDEX | /dd/CMDS/head -n 12
+wait    8
+
+shot    shar
+cap     shar wraps files as a shell archive -- how source travelled over
+cap     usenet, and how most of this collection arrived.
+run     /dd/CMDS/shar /dd/SYS/motd | /dd/CMDS/head -n 18
+wait    6

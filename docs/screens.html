@@ -15,10 +15,15 @@
       line-height:1.5;padding:2rem 1rem 4rem}
  .wrap{max-width:78rem;margin:0 auto}
  h1{font-size:1.6rem;margin:0 0 .25rem}
- .lede{color:var(--dim);max-width:46rem;margin:0 0 2rem}
+ h2.cat{font-size:1.1rem;margin:2.4rem 0 .9rem;padding-bottom:.3rem;
+        border-bottom:1px solid var(--rule);letter-spacing:.01em}
+ .lede{color:var(--dim);max-width:48rem;margin:0 0 1.5rem}
+ .toc{margin:0 0 1rem;font-size:.9rem;color:var(--dim)}
+ .toc a{color:var(--accent);text-decoration:none;margin-right:.9rem;
+        white-space:nowrap}
  .shot{background:var(--card);border:1px solid var(--rule);border-radius:8px;
        padding:1rem 1.1rem;margin:0 0 1.6rem;overflow:hidden}
- .shot h2{font-size:1.05rem;margin:0 0 .15rem;font-family:var(--mono);
+ .shot h3{font-size:1.05rem;margin:0 0 .15rem;font-family:var(--mono);
           color:var(--accent)}
  .shot p{margin:0 0 .7rem;color:var(--dim);font-size:.92rem}
  pre{margin:0;font-family:var(--mono);font-size:11.5px;line-height:1.18;
@@ -26,90 +31,28 @@
      overflow-x:auto;white-space:pre}
  footer{color:var(--dim);font-size:.85rem;margin-top:2.5rem;
         border-top:1px solid var(--rule);padding-top:1rem}
+ a.back{color:var(--accent)}
 </style>
 <div class="wrap">
 <h1>Screens</h1>
-<p class="lede">Every screen below was photographed from a running program.
-Keystrokes were fed to os9exec's console at human speed and the terminal
-stream that came back was rendered into the grid a vt100 would have shown.
-Nothing here is mocked up.</p>
-<div class="shot">
-<h2>VI</h2>
+<p class="lede">Every screen below was photographed from a running program on
+the disk image. Keystrokes were fed to os9exec's console at human speed and
+the terminal stream that came back was rendered into the grid a vt100 would
+have shown. Nothing here is mocked up &mdash; where a program failed, its
+failure is what you see. <a class="back" href="index.html">Back to the
+catalogue</a>.</p>
+<p class="toc"><a href="#shells">Shells</a> <a href="#editors">Editors</a> <a href="#text-tools">Text tools</a> <a href="#files-directories">Files &amp; directories</a> <a href="#developer-tools">Developer tools</a> <a href="#languages">Languages</a> <a href="#archives-compression">Archives &amp; compression</a> <a href="#encoding-conversion">Encoding &amp; conversion</a> <a href="#graphics-images">Graphics &amp; images</a> <a href="#games">Games</a> <a href="#screen-toys">Screen toys</a> <a href="#amusements">Amusements</a> <a href="#system-modules">System &amp; modules</a> <a href="#time-calendar">Time &amp; calendar</a> <a href="#maths-calculators">Maths &amp; calculators</a> <a href="#printing">Printing</a> <a href="#documentation">Documentation</a> <a href="#uncategorised">Uncategorised</a></p>
+<h2 class="cat" id="shells">Shells</h2>
+<div class="shot" id="s-wish">
+<h3>wish</h3>
 <p>Captured while running.</p>
-<pre>README-CIO -- the starred programs, and the five modules that serve them
-ch of this=============================================================</pre>
+<pre>Wishing for: 3 potions of gain level
+Game 1
+what happened to "hack"</pre>
 </div>
-<div class="shot">
-<h2>advent</h2>
-<p>Captured while running.</p>
-<pre>Section 0
-Advent is ready.
-
-     Welcome to adventure!!  Would you like instructions?
-n
-
-      You are standing at the end of a road before a small brick building.
-      Around you is a forest.  A small stream flows out of the building and
-      down a gully.
-enter
-
-      You are inside a building, a well house for a large spring.
-
-    There are some keys on the ground here.
-
-    There is a shiny brass lamp nearby.
-
-    There is food here.
-
-    There is a bottle of water here.
-get lamp
-
-     OK</pre>
-</div>
-<div class="shot">
-<h2>animal</h2>
-<p>Captured while running.</p>
-<pre>|------------------------------------------------------------------------------|
-                                    Animal                                     |
- |----------------------------------------------------------------------------||
- |----------------------------------------------------------------------------||
- |----------------------------------------------------------------------------||
- |                                                                            ||
- |                                                                            ||
- |                                                                            ||
- |                                                                            ||
- |                                                                            ||
- |                                                                            ||
- |                                                                            ||
- |                                                                            ||
- |                                                                            ||
- |                                                                            ||
- |                                                                            ||
- |                                                                            ||
- |                                                                            ||
- |                                                                            ||
- |                                                                            ||
- |                                                                            ||
- |----------------------------------------------------------------------------|-</pre>
-</div>
-<div class="shot">
-<h2>back</h2>
-<p>Captured while running.</p>
-<pre>*  OS-9 BACKGAMMON! ----------------------------------------------------------#</pre>
-</div>
-<div class="shot">
-<h2>banner</h2>
-<p>Captured while running.</p>
-<pre>@@@@@@@  @@@@@           @@@@@
-@     @ @     @         @     @
-@     @ @               @     @
-@     @  @@@@@   @@@@@   @@@@@@
-@     @       @               @
-@     @ @     @         @     @
-@@@@@@@  @@@@@           @@@@@</pre>
-</div>
-<div class="shot">
-<h2>beav</h2>
+<h2 class="cat" id="editors">Editors</h2>
+<div class="shot" id="s-beav">
+<h3>beav</h3>
 <p>Captured while running.</p>
 <pre>          0: 52 45 41 44 4D 45 2D 43  49 4F 20 2D 2D 20 74 68  README-CIO -- th
          10: 65 20 73 74 61 72 72 65  64 20 70 72 6F 67 72 61  e starred progra
@@ -134,136 +77,13 @@ get lamp
         140: 38 38 31 60 2C 20 60 63  73 6C 60 20 6F 72 20 60  881`, `csl` or `
 BEAV  I README-CIO   File: /dd/DOC/README-CIO [RW]    CURSOR=00000000, 1   HEX $</pre>
 </div>
-<div class="shot">
-<h2>bio</h2>
-<p>Captured while running.</p>
-<pre>/dd/CMDS/bio: cannot execute binary file</pre>
-</div>
-<div class="shot">
-<h2>bite</h2>
-<p>Bite, a snake variant.</p>
-<pre>                              __---------__
-                            _~             ~_
-                           /                 \
-                          ~                   ~
-                         /                     \
-                         |    XXXX     XXXX    |
-                         |    XXXX     XXXX    |
-                         |    XXX       XXX    |
-                          \         @         /
-                           --\     @@@     /--
-                            | |    @@@    | |
-                            | |           | |
-                            | vvVvvvvvvvVvv |
-                            |  ^^^^^^^^^^^  |
-                             \_           _/
-                               ~---------~</pre>
-</div>
-<div class="shot">
-<h2>bog</h2>
-<p>Boggle, with its letter grid.</p>
-<pre>+---+---+---+---+   Type '?' for help
-| E | I | A | I |
-+---+---+---+---+   2:57
-| H | L | P | A |
-+---+---+---+---+
-| L | N | N | P |
-+---+---+---+---+
-| V | G | E | F |
-+---+---+---+---+</pre>
-</div>
-<div class="shot">
-<h2>cal</h2>
-<p>Captured while running.</p>
-<pre>August          2026
- S  M  T  W  T  F  S
-ÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄ
-                   1
- 2  3  4  5  6  7  8
- 9 10 11 12 13 14 15
-16 17 18 19 20 21 22
-23 24 25 26 27 28 29
-30 31</pre>
-</div>
-<div class="shot">
-<h2>cam</h2>
-<p>Captured while running.</p>
-<pre>~&gt;
-Rocker Ratio (1.00) for measure @lobe -&gt;</pre>
-</div>
-<div class="shot">
-<h2>card</h2>
-<p>Captured while running.</p>
-<pre>                                              may
-
-
-            *                           *                          *
-            |                           |                          |
-            |                          may                         |
-            |                           |            [9;2          |
-            |                           |                          |
-       bring peace                      |                          |
-      may every day                     |                          |
-     be as christmas                    |                          |
-    filled with quiet                   |                          |
-   expectant happiness                  |                          |
-  joy and understanding                 |                        every
- our human souls shining                |                       falling
-loving caring for another               |                      snowflake
-~~~~~~~~~~~~~~~~~~~~~~~~~   ~~~~~~~~~~~~~~~~~~~~~~~~~  ~~~~~~~~~~~~~~~~~~~~~~~~~
-
-                          &lt;&lt;*&gt;&gt;  Merry Christmas! &lt;&lt;*&gt;&gt;</pre>
-</div>
-<div class="shot">
-<h2>chess</h2>
-<p>Captured while running.</p>
-<pre>chess
-
-Do you want to play white or black (w/b)? w
-your name, please: tester
- ong or Short game (l/s)?</pre>
-</div>
-<div class="shot">
-<h2>colortest</h2>
-<p>Captured while running.</p>
-<pre>Unable to access "/win" device or CRT descriptor
-Not a G-Windows sytem???</pre>
-</div>
-<div class="shot">
-<h2>crib</h2>
-<p>Captured while running.</p>
-<pre>                                      *Do you need instructions for cribbage?</pre>
-</div>
-<div class="shot">
-<h2>cribbage</h2>
-<p>Cribbage dealing a hand.</p>
-<pre>                                      +---------------------------------------+
-                                      |  Score:   0     YOU                   |
-                                      | *.....:.....:.....:.....:.....:.....  |
-                                      | *.....:.....:.....:.....:.....:.....  |
-                                      |                                       |
-                                      | *.....:.....:.....:.....:.....:.....  |
-                                      | *.....:.....:.....:.....:.....:.....  |
-                                      |  Score:   0      ME                   |
-                                      +---------------------------------------+
-
-                                       Do you need instructions for cribbage? N
-                                       Long (to 121) or Short (to 61)?
-                                      *Cut to see whose crib it is -- low card
-                                        wins?</pre>
-</div>
-<div class="shot">
-<h2>dclock</h2>
-<p>Captured while running.</p>
-<pre>/dd/CMDS/GAMES/dclock only runs under G-Windows</pre>
-</div>
-<div class="shot">
-<h2>ed</h2>
+<div class="shot" id="s-ed">
+<h3>ed</h3>
 <p>Captured while running.</p>
 <pre>/r0/ed.000003: 000:221 module not found</pre>
 </div>
-<div class="shot">
-<h2>editor</h2>
+<div class="shot" id="s-editor">
+<h3>editor</h3>
 <p>Captured while running.</p>
 <pre>Process   Pid: 3, editor, edition 7
     Exit code: E_PRCABT(228) Process Aborted
@@ -273,8 +93,8 @@ Not a G-Windows sytem???</pre>
                01 fCons /term
                02 fCons /term</pre>
 </div>
-<div class="shot">
-<h2>elvis</h2>
+<div class="shot" id="s-elvis">
+<h3>elvis</h3>
 <p>Captured while running.</p>
 <pre>collection was rebuilt trap-free (`-qm`) so it would run with nothing loaded
 at all; most of the programs under CMDS need no module whatever.  The rest
@@ -300,288 +120,14 @@ If you would rather use your own
 
 You run OS-9, so you have these modules already, and you may prefer your copy</pre>
 </div>
-<div class="shot">
-<h2>england</h2>
-<p>Captured while running.</p>
-<pre>  12  Precipitation       Mist    Warm ( 65)  Sprinkle     Brisk         Rain -,
-  13  Precipitation  Heavy Fog    Warm ( 65)    Shower     Light         Storm ,
-  14          Clear      Clear    Warm ( 65)      None      Calm
-  15          Clear      Clear    Warm ( 70)      None      Calm
-  16          Clear      Clear    Warm ( 65)      None      Calm
-  17          Clear      Clear    Fair ( 60)      None      Calm
-  18          Clear      Clear    Warm ( 65)      None      Calm
-  19          Clear      Clear    Warm ( 65)      None      Calm
-  20          Clear      Clear    Fair ( 50)      None      Calm
-  21          Clear      Clear    Warm ( 70)      None      Calm         Fall Ex
-  22          Clear      Clear    Fair ( 55)      None      Calm
-  23          Clear      Clear    Warm ( 70)      None      Calm
-  24          Clear      Clear     Hot ( 80)      None      Calm
-  25          Clear      Clear    Warm ( 65)      None      Calm
-  26          Clear      Clear    Warm ( 65)      None      Calm
-  27  Precipitation     Cloudy    Warm ( 65)  Sprinkle  Blustery         Rain -,
-  28  Precipitation       Mist    Warm ( 65)     Heavy  Blustery         Storm ,
-  29          Clear      Clear    Fair ( 50)      None      Calm
-  30          Clear      Clear    Warm ( 65)      None      Calm
-High Temp =  80, Low Temp =  45, Average Temp =  62
-
-October
-   Clear    Fair ( 55)      None     Light        None     Light</pre>
-</div>
-<div class="shot">
-<h2>fortune</h2>
-<p>Captured while running.</p>
-<pre>God is not dead!  He's alive and autographing bibles at Cody's</pre>
-</div>
-<div class="shot">
-<h2>fuddle</h2>
-<p>Captured while running.</p>
-<pre>7 Do you want white (y/n default: y) ?</pre>
-</div>
-<div class="shot">
-<h2>gnuan</h2>
-<p>Captured while running.</p>
-<pre>Book used 9585 of 12000 entries.
-Input the file with the algebraic moves of the game.</pre>
-</div>
-<div class="shot">
-<h2>greed</h2>
-<p>Greed: eat digits, each one moves you that far. The whole board is generated at random on startup.</p>
-<pre>6744577469597733347227684778579291986469416182259288142521268384871365552242583
-5986117743283397147754178473839356237679412988281837571859543833441812752591637
-3952399156848254339856842922432116396351857782892467572738525354727547443387322
-6999959542615827941782155782168888883611783961467315742333992683475523598677462
-9761839776775259734246824595863186563626313373515385813843466954668264879136139
-61253383754772823@5679749452853439862387227861374466165611583421325632464747771
-6538284652214378359233933422343772925533416683238312949792673168224517447312731
-6856165215189444333214584564551664463771912261282229647473465564533321758827638
-7159422317932177853364751737887322216267515282337933571659331416382521226236664
-2257167941446483797537277698128938154326424545335473691282171317316258964264411
-1421217265285522182126882469752165937494311469539345312443225442234133338431179
-7658784579181449792838695793251994582183593534825791726462416758284279255513881
-6217339957135857687247548791896391887136693678436245173476985952527964447171832
-3418298768161381567199967774872562733511618264228846123567724537435352576821255
-3285436538844699969274334858649198577857915153674585471754497885738527737774295
-2447211899312719961749572643389815253779655494936319565851261666636272978364236
-3282171757475554399688695359812753213398949665876415752194447257351752353524534
-1831421366428197875442117284222812518218127558339276885858573831487587863411591
-3596933247426674561812292496195785494622318829465623447559336345418581817169271
-3935214254491531694763621172693418836354481863541277736762352796175744618424533
-4961769657637457122558649737598829358432417946181283217587295313765196987335285
-8827625983791867147315973755739521639284745324683295387636339528836634922631371
-
-Score: 1  0.06%                         Greed v2.0a - Hit '?' for help.</pre>
-</div>
-<div class="shot">
-<h2>hack</h2>
-<p>hack, with the inventory open: a fighter starts with a two handed sword in hand and ring mail worn. @ is you, d your dog, G a gnome, $ gold, + a door.</p>
-<pre>                                          a - a +1 mace (weapon in hand).
-                                          b - a +1 bow.
-                                          c - 48 +0 arrows.
-                                          d - a +0 leather armor (being worn).
-                                         --More--
-                                                                    +.d..|
-                                                                    |....|
-                                                                    ------
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-Level 1    Hp  16(16)   Ac 8    Str 18      Exp  1</pre>
-</div>
-<div class="shot">
-<h2>hang</h2>
-<p>Hangman, after guessing a e i o u r s t l n -- the guessed letters are struck from the alphabet and the gallows grows.</p>
-<pre>Unused Letters:                         HEY! No more wrong guesses OK????
- bcd fgh jk m  pq    vwxyz                   ------------
-                                             |           |
-                                             |           |
-                                             |          O`\
-                                             |          /|_|
-                                             |         ' ||`
-                                             |           ||
-                                        --------------   '`   -----
-                                        |                         |
-                                        |                         |
-a_as_                                   |                         |
-                                        |                         |
-                                        |                         |
-                                        |                         |
-                                        |                         |
-                                        |                         |
-                                        |                         |
-                                        |                         |
-                                        ---------------------------
-There are 5 letters in the word
-Sorry</pre>
-</div>
-<div class="shot">
-<h2>hexed</h2>
+<div class="shot" id="s-hexed">
+<h3>hexed</h3>
 <p>Captured while running.</p>
 <pre>Creating '/r0/README-CIO.hd' from '/dd/DOC/README-CIO'.
 error: can't create '/r0/README-CIO.hd' !</pre>
 </div>
-<div class="shot">
-<h2>japan</h2>
-<p>Captured while running.</p>
-<pre>  26        Typhoon     Cloudy    Warm ( 70)      None      Gale
-  27          Clear      Clear    Warm ( 75)      None     Light
-  28  Precipitation  Heavy Fog    Warm ( 75)  Sprinkle     Light         Rain -,
-  29  Precipitation     Cloudy    Warm ( 75)  Sprinkle     Light         Rain -,
-  30  Precipitation     Cloudy    Fair ( 60)  Sprinkle     Light         Rain -,
-High Temp =  90, Low Temp =  60, Average Temp =  74
-
-Monkey
-   1          Clear      Clear    Warm ( 70)      None      Calm         Shinto,
-   2          Clear      Clear    Fair ( 50)      None     Brisk
-   3          Clear      Clear    Warm ( 65)      None     Light
-   4          Clear      Clear    Warm ( 70)      None      Calm
-   5          Clear      Clear    Warm ( 75)      None      Calm
-   6          Clear      Clear    Fair ( 55)      None      Calm
-   7          Clear      Clear    Warm ( 65)      None      Calm
-   8          Clear      Clear    Fair ( 60)      None      Calm         Buddhi,
-   9          Clear      Clear    Fair ( 55)      None      Calm
-  10          Clear      Clear    Warm ( 75)      None      Calm
-  11          Clear      Clear    Warm ( 70)      None     Light
-  12          Clear      Clear    Warm ( 65)      None      Calm
-  13          Clear      Clear    Warm ( 65)      None     Light
-  14          Clear      Clear    Warm ( 70)      None     Light
-  15          Clear      Clear    Warm ( 65)      None     Brisk  rm ( 65)  Spr,</pre>
-</div>
-<div class="shot">
-<h2>lander</h2>
-<p>Lunar lander, with its instrument panel.</p>
-<pre>                                 Lunar Lander
-
-
-                    The classic arcade game comes to OS-9.
-
-
-                             '0'-'9' - power level
-                                   Controls:
-                         +--------------------------+
-                         |Unable to display HS file.|
-                         --press space to start game--
-                'x' or 'k' - set vertical thrust to power level
-                  'c' or 'l' - set right retro to power level
-
-
-
-                         Stacey Campbell at HCR, 1989
-
-                         --press space to start game--</pre>
-</div>
-<div class="shot">
-<h2>larn</h2>
-<p>Captured while running.</p>
-<pre>    Welcome to the game of Larn.  At this moment, you face a great problem.
-Your daughter has contracted a strange disease, and none of your home remedies
-seem to have any effect.  You sense that she is in mortal danger, and you must
-try to save her.  Time ago you heard of a land of great danger and opportunity.
-Perhaps here is the solution you need.
-
-    It has been said that there once was a great magician who called himself
-Polinneaus.  Many years ago, after having many miraculous successes, Polinneaus
-retired to the caverns of Larn, where he devoted most of his time to the
-creation of magic.   Rumors have it that one day Polinneaus set out to dispel
-an attacking army in a forest some distance to the north.  It is believed that
-here he met his demise.
-
-    The caverns of Larn, it is thought, must be magnificent in design,
-and contain much magic and treasure.  One option you have is to undertake a
-journey into these caverns.
-
-
-    Good Luck!  You're going to need it!
-
-
-
-
-Press return to continue:</pre>
-</div>
-<div class="shot">
-<h2>less</h2>
-<p>Captured while running.</p>
-<pre>    copy a file    cat one &gt; two
-
-cp, mv, rm, mkdir and dir are starred -- they are the GNU ones, and they
-want cio like the other starred programs.  Under os9exec the emulator has
-its own copy, move, rename and makdir, which need nothing loaded at all:
-
-    os9exec -r icopy   &lt;from&gt; &lt;to&gt;
-    os9exec -r imakdir &lt;dir&gt;
-    os9exec -r move    &lt;from&gt; &lt;to&gt;
-    os9exec -r rename  &lt;old&gt; &lt;new&gt;
-
-Those are commands of the EMULATOR, not programs on the disk, so they are
-typed where you start os9exec rather than at a shell prompt inside it.
-On your own hardware the equivalents are the ones you already have: copy,
-makdir, del, list and dir.
-
-cio, csl and math now SHIP on this disk, with Microware's permission, so
-the starred programs run too and nothing here is special.  DOC/README-CIO
-has the detail.
-
-The starred ones in DOC/INDEX use Microware's cio (see DOC/README-CIO).
-They run: the module is here.</pre>
-</div>
-<div class="shot">
-<h2>life</h2>
-<p>Conway's Life. It detects the oscillator period and says so -- this pattern cycles every 8 generations.</p>
-<pre>................................................................................
-
-
-
-            .@
-            @@.
-          .@.@@
-          @@@..@
-           .@.@ @
-             @ @.@.
-              @..@@@
-               @@.@.
-               .@@
-                @.</pre>
-</div>
-<div class="shot">
-<h2>lissaj</h2>
-<p>Captured while running.</p>
-<pre>Lissajous pattern generator (PD)1990 Russell Hoffman</pre>
-</div>
-<div class="shot">
-<h2>logisim</h2>
-<p>Captured while running.</p>
-<pre>Syntax: logisim [opts] filename [opts]
-Function: Simulates logical circuit described by filename
-Options:
-    -i  shows instable states
-logisim: one and only one filename required</pre>
-</div>
-<div class="shot">
-<h2>maze</h2>
-<p>Captured while running.</p>
-<pre>the quick brown fox
-
-Process   Pid: 3, maze, edition 7
-    Exit code: E_PRCABT(228) Process Aborted
-  Directories: Current   - /dd
-               Execution - /dd/CMDS
-        Files: 00 fCons /term
-               01 fCons /term
-               02 fCons /term</pre>
-</div>
-<div class="shot">
-<h2>me</h2>
+<div class="shot" id="s-me">
+<h3>me</h3>
 <p>Captured while running.</p>
 <pre>README-CIO -- the starred programs, and the five modules that serve them
 =======================================================================
@@ -607,8 +153,8 @@ program is often a fraction of the size of a trap-free one.  Much of this
 collection was rebuilt trap-free (`-qm`) so it would run with nothing loaded
 ==== MicroEMACS 3.11 BETA () == README-CIO == Datei: /dd/DOC/README-CIO ========</pre>
 </div>
-<div class="shot">
-<h2>mg</h2>
+<div class="shot" id="s-mg">
+<h3>mg</h3>
 <p>Captured while running.</p>
 <pre>README-CIO -- the starred programs, and the five modules that serve them
 =======================================================================
@@ -634,603 +180,14 @@ program is often a fraction of the size of a trap-free one.  Much of this
 collection was rebuilt trap-free (`-qm`) so it would run with nothing loaded
 -----Mg: README-CIO                       (fundamental)-------------------------</pre>
 </div>
-<div class="shot">
-<h2>mille</h2>
-<p>Mille Bornes, the card game.</p>
-<pre>                                        |                     You   Comp   Value
-                                        | Milestones Played     0     0
-                                        |       Each Safety     0     0      100
-                                        |    All 4 Safeties     0     0      300
-                                        |  Each Coup Fourre     0     0      300
---HAND--            --DECK--            |                    ----   ----   -----
-P                     89                |        Hand Total     0     0
-1 100               --DISCARD--         |                   -----  -----
-2 75                                    |     Overall Total     0     0
-3 Go                                    |              Games    0     0
-5 75                                    | p: pick            q: quit
-6 Go                                    | u: use #           o: order hand
---BATTLE--          --BATTLE--          | d: discard #       s: save
-                                        | w: toggle window   r: reprint
---SPEED--           --SPEED--           |
-                                        |_______________________________________
---MILEAGE--                              --MILEAGE--</pre>
-</div>
-<div class="shot">
-<h2>mines</h2>
+<div class="shot" id="s-VI">
+<h3>VI</h3>
 <p>Captured while running.</p>
-<pre>  A B C D E F G H I J K L M N O P
-A + + + + + + + + + + + + + + + + A
-B + + + + + + + + + + + + + + + + B
-C + + + + + + + + + + + + + + + + C
-D + + + + + + + + + + + + + + + + D
-E + + + + + + + + + + + + + + + + E
-F + + + + + + + + + + + + + + + + F
-G + + + + + + + + + + + + + + + + G
-H + + + + + + + + + + + + + + + + H
-I + + + + + + + + + + + + + + + + I           Mines - by David Ravegum
-J + + + + + + + + + + + + + + + + J         Ported to OSK by Russ Hoffman
-K + + + + + + + + + + + + + + + + K
-L + + + + + + + + + + + + + + + + L               Markers left: 40
-M + + + + + + + + + + + + + + + + M
-N + + + + + + + + + + + + + + + + N
-O + + + + + + + + + + + + + + + + O
-P + + + + + + + + + + + + + + + + P
-  A B C D E F G H I J K L M N O P
-
-Row: (A-P) h
-Column: (A-P) j                                         ? for help
-                                                        q to quit</pre>
+<pre>README-CIO -- the starred programs, and the five modules that serve them
+ch of this=============================================================</pre>
 </div>
-<div class="shot">
-<h2>netpbm</h2>
-<p>A real netpbm pipeline: pgmramp makes a greyscale ramp, pgmtopbm dithers it to a bitmap, pbmtoascii renders that as text. The gradient is visible in the density of the characters.</p>
-<pre>os9$ P=/dd/CMDS/NETPBM
-
-os9$ $P/pgmramp -lr 48 12 &gt; /dd/tmp/r.pgm
-os9$ $P/pgmtopbm $P/../../tmp/r.pgm &gt; /dd/tmp/r.pbm
-os9$ $P/pnmfile /dd/tmp/r.pgm /dd/tmp/r.pbm
-/dd/tmp/r.pgm:  PGM raw, 48 by 12  maxval 255
-/dd/tmp/r.pbm:  PBM raw, 48 by 12
-os9$ $P/pbmtoascii /dd/tmp/r.pbm
-MMMMMMMMMMM"M"M"oMo"oM"o"o M o" o o "
-MMMMMMoMMoM"M"Mo"oM"oo"o"o"o M "o o" " "   o
-MMMMM"MoMMM"M"oMM Mo"oM M M o" o o o"  " o
-MMMMMMMMoM"M"MoMoM"o"o"o"o"o" M "  o " o
-MMMMMoMM"MM"MoMo"oM"o"o"o"o M o"o" o "   "  "
-MMMMM"MM"MoMMoMo"M M"oM M M o"o o" o " o  o
-os9$</pre>
-</div>
-<div class="shot">
-<h2>newsgen</h2>
-<p>Captured while running.</p>
-<pre>                        T O D A Y ' S    N E W S
-
-                                Thu Aug 27
-
-THE TOP STORY--
-Linda Lovelace made mud pies for Mary Poppins late this afternoon.  Sources
-say that this is the first in a series of similar occurences.  Lovelace has
-tried unsuccessfully to keep the matter confidential.
-
-THE WEATHER--
-Acid rain.</pre>
-</div>
-<div class="shot">
-<h2>nobs</h2>
-<p>Captured while running.</p>
-<pre>                              XXX  XXX  XXX  XXX  XXX  XXX
-
-
-
-
-
-                            | ::::: ::::: ::::: ::::: ::::: :::::
- XXX  XXX
-                            | ::::: ::::: ::::: ::::: ::::: :::::
-
-
-
-
-                               Qh   Jh   6c   2h   As  10s
-                                a    b    c    d    e    f
-
-
-     It is my crib.</pre>
-</div>
-<div class="shot">
-<h2>piano</h2>
-<p>Captured while running.</p>
-<pre>piano: syntax: piano &lt;base note&gt; &lt;note duration&gt;</pre>
-</div>
-<div class="shot">
-<h2>puz15</h2>
-<p>Captured while running.</p>
-<pre>                             +----+----+----+----+
-                             |  4 |  6 |  2 | 12 |
-                             +----+----+----+----+
-                             | 11 |  9 |  3 | 15 |
-                             +----+----+----+----+
-                             | 10 | 14 | 13 |  8 |
-                             +----+----+----+----+
-                             |  7 |  1 |  5 |    |
-                             +----+----+----+----+
-
-
-
-
-
-
-Time used: 00 min 00 sec   Move: 0
-bye!</pre>
-</div>
-<div class="shot">
-<h2>puzzle15</h2>
-<p>The fifteen puzzle.</p>
-<pre>                             +----+----+----+----+
-                             | 14 | 11 |  5 |  3 |
-                             +----+----+----+----+
-                             |  6 | 12 | 15 |  2 |
-                             +----+----+----+----+
-                             | 10 |  1 | 13 |  7 |
-                             +----+----+----+----+
-                             +----+----+----+----+
-
-
-
-
-
-
-Time used: 00 min 00 sec   Move: 0</pre>
-</div>
-<div class="shot">
-<h2>pwgen</h2>
-<p>Captured while running.</p>
-<pre>usage: /dd/CMDS/pwgen length [count]</pre>
-</div>
-<div class="shot">
-<h2>rain</h2>
-<p>Rain, a screen toy.</p>
-<pre>                                         o
-
-
-
-                                        -
-                                       | |                 / \       O
-                                        -                / \O |
-                                                           \ /
-                                                            -
-
-                                                                   -
-                                                                  |.|
-                                                                   -
-
-
-           -
-          / \     -
-         | O |   / \                                                        .
-          \ /   | O |
-           -     \ /</pre>
-</div>
-<div class="shot">
-<h2>robots</h2>
-<p>Robots. They chase you; you teleport.</p>
-<pre>                           ROBOTS                                 MOVE      V3.
-               I#   #                      #   #    #
-                           ##                                       8
-             #                                                     7 9
-                                                                  4   6
-               #                                                   1 3
-                                 #        #                         2
-                          #
-
-      #
-               #                             #
-
-               #                             #
-
-                                #                                     KEY
-                                                                   I -you
-                     #                                             # -robot
-                                     #                             @ -junk heep
-
-
-                                                                   SCREEN    1
-                                                                   ROBOTS   20
-
-                            PJC                                SCORE         0</pre>
-</div>
-<div class="shot">
-<h2>rpoem</h2>
-<p>Captured while running.</p>
-<pre>A timid rake may bend up gentle power
-And revere the activity of a petal.
-But a gate of time reveres power beside war
-While gentle power understands the timid rake.
-------------------------------------------
-Verse 28
-A sorrowful petal may sing beside the action of a dog
-And worship a mournful flower.
-But a frolicking pond reveres a happy cloud
-While the action of a dog becomes the sorrowful petal.
-------------------------------------------
-Verse 29
-A mournful bone should break on war under hope
-And heal mournful hope.
-But a lustful cloud pursues a muffin of time
-While war under hope heals the mournful bone.
-------------------------------------------
-Verse 30
-A rusty muffin may wiggle on energy under wisdom
-And become a pensive shovel.
-But a gentle face reveres the cloud beside the endurance of a flower
-While energy under wisdom becomes the rusty muffin.
-------------------------------------------</pre>
-</div>
-<div class="shot">
-<h2>rstory</h2>
-<p>Captured while running.</p>
-<pre>suffocate farmer,  farmer won't break the sword,  sword
-won't cut the parrot,   parrot won't jump over the large
-rock and I shan't get home tonight."  But the smoke
-would not.  The little old woman went over hill and
-dale and she met a wind.  She said, "wind, wind, disperse
-smoke,  smoke won't suffocate the farmer,  farmer won't
-break the sword,  sword won't cut the parrot,   parrot
-won't jump over the large rock and I shan't get home
-tonight."  But the wind would not.  The little old woman
-went toward the dark school and she met a smoke.  She
-said, "smoke, smoke, pollute wind,  wind won't disperse
-the smoke,  smoke won't suffocate the farmer,  farmer
-won't break the sword,  sword won't cut the parrot,
-parrot won't jump over the large rock and I shan't get
-home tonight."  The smoke knew the little old woman
-and, in fact, had been saved by her from a wild tiger.
-So the  smoke began to pollute the wind; the  wind began
-to disperse the smoke; the  smoke began to suffocate
-the farmer; the  farmer began to break the sword; the
-sword began to cut the parrot; the   parrot began to
-jump over the large rock and the little old woman got
-home that night.</pre>
-</div>
-<div class="shot">
-<h2>sc</h2>
-<p>Captured while running.</p>
-<pre>Do you want a chance to save the data?
-
-         A         B         C         D         E         F         G
-0        42.00&lt;
-1
-2
-3
-4
-5
-6
-7
-8
-9
-10
-11
-12
-13
-14
-15
-16
-17
-18
-19
-20</pre>
-</div>
-<div class="shot">
-<h2>scales</h2>
-<p>Captured while running.</p>
-<pre>Usage: /dd/CMDS/scales [-h] [-d] [-a] [-m] [-c] [outname]
-
-             -h: This message only
-             -d: include diatonic scales
-             -a: include altered scales
-             -m: include modal scales
-             -c: include chords
-
-No scales or chords are given as a default.</pre>
-</div>
-<div class="shot">
-<h2>shire</h2>
-<p>Captured while running.</p>
-<pre>   9          Clear      Clear    Fair ( 55)      None      Calm
-  10          Clear      Clear    Fair ( 55)      None      Calm
-  11       Overcast  Heavy Fog    Fair ( 55)      None      Calm
-  12       Overcast     Cloudy    Warm ( 65)      None      Calm
-  13          Clear      Clear    Fair ( 55)      None      Calm
-  14          Clear      Clear    Warm ( 65)      None      Calm
-  15          Clear      Clear    Warm ( 65)      None      Calm
-  16          Clear      Clear    Warm ( 65)      None      Calm
-  17          Clear      Clear    Fair ( 60)      None      Calm
-  18  Precipitation     Cloudy    Warm ( 70)  Sprinkle     Brisk         Rain -,
-  19  Precipitation  Heavy Fog    Warm ( 65)  Sprinkle     Light         Rain -,
-  20  Precipitation       Mist    Fair ( 50)  Sprinkle     Light         Rain -,
-  21  Precipitation     Cloudy    Warm ( 70)     Heavy  Blustery         Storm ,
-  22          Clear      Clear    Warm ( 65)      None     Light
-  23       Overcast       Mist    Warm ( 65)      None     Brisk
-  24          Clear      Clear    Warm ( 70)      None      Calm
-  25          Clear      Clear    Warm ( 65)      None      Calm
-  26          Clear      Clear    Warm ( 70)      None      Calm
-  27          Clear      Clear    Warm ( 70)      None      Calm
-  28          Clear      Clear    Warm ( 65)      None      Calm
-  29          Clear      Clear    Fair ( 60)      None     Light
-  30          Clear      Clear    Warm ( 65)      None      Calm
-High Temp =  80, Low Temp =  45, Aver     None      Calm</pre>
-</div>
-<div class="shot">
-<h2>snake</h2>
-<p>Snake: steer with h j k l, collect the treasure, reach the goal without being caught.</p>
-<pre>|-----------------------------------------------------------------------------|
-|                                                                             |
-|                                                                             |
-|                               $                                             |
-|                                                                             |
-|                                                                             |
-|                                                                             |
-|                                                                             |
-|                                                                             |
-|                                                                        I    |
-|                                                                             |
-|                                                                             |
-|                                                                             |
-|                                                                             |
-|                                                                             |
-|                                                                             |
-|s        I                                                                   |
-|S[10;73H  I                                    #                             |
-| [9;73H3H  I                                                                 |
-| s [12;73HI                                                                  |
-|s [13;73HH  I                                                                |
-|  13;74HI                                                                    |
-| [13;76HI  I                                                                 |
-|----------I------------------------------------------------------------------[I</pre>
-</div>
-<div class="shot">
-<h2>sokoban</h2>
-<p>Captured while running.</p>
-<pre>                             ##########
-                             ##      ##
-                             ##$$    ##
-                         ######    $$####
-                         ##    $$  $$  ##
-                     ######  ##  ####  ##      ############
-                     ##      ##  ####  ##########    ....##
-                     ##  $$    $$            @@      ....##
-                     ##########  ######  ##  ####    ....##
-                             ##          ##################
-                             ##############
-
-
-
-
-
-Level:   1  Packets:   6  Saved:   0  Moves:          2  Pushes:          0</pre>
-</div>
-<div class="shot">
-<h2>sonnet</h2>
-<p>Writes (bad) sonnets in iambic pentameter.</p>
-<pre> 1     Eclectic plural downtown prurient windbag
- 2     Laborious the bold betrothal change
- 3     No glaze impinge romance reciprocal
- 4     No much a rot denatured layabout strange
-
- 5     Billion exempt the plaid already corpse
- 6     Cascade emitter omen future wow
- 7     Oblivion performance lipid warps
- 8     Erotic throughput namby-pamby horse
-
- 9     Neurosis blab abrupt of clout to buzz
-10     Detested awful ends adore connote
-11     Ulterior finale taint abduct
-12     Inject impale production fraught deform
-
-13     Epitome degrade ourselves machine
-14     Baboon epitome abort routine
-
-[m# u# r w[file] q; ? for help]:</pre>
-</div>
-<div class="shot">
-<h2>suicide</h2>
-<p>Captured while running.</p>
-<pre>  ((( (   ( )) ) ))Aaaaauuuuuuuugggggggggggggggghhhhhhhhhhhhhhhhhhhhh!!!!!!!!!!
-    | ( (((()( ( )|
-\   |    )  ))) ) |
- \  |             |
-\ \ |             |
- \ \   _____      ---------------.
-  \   /     \                ___/
-   \  |      \    ----------/
-    | |       |   |
-    |  \_____/    |
-    |             |
-    |             |
-    |             |
-    |             |
-    |             |
-    |             |
-    |             |
-    |             |
-    |             |
-   /               \                         o    /
-  |                 |                      /
- /                   \                   \      I
-                      -----------------------\/-----------------------</pre>
-</div>
-<div class="shot">
-<h2>teachgammon</h2>
-<p>Captured while running.</p>
-<pre>   These rules consist of text describing how to play Backgammon
-followed by a tutorial session where you play a practice game
-against the computer.  When using</pre>
-</div>
-<div class="shot">
-<h2>tess</h2>
-<p>Captured while running.</p>
-<pre>               /*--------------/*      ------------------------------------
-             /  '            /  '           Beyond The Tesseract   V2.0p
-           /   '|          /   '|      ------------------------------------
-        */----'---------*/    ' |          An abstract text adventure by
-       '|    '  |      '|    '  |            David Lo   4516 Albert St.
-      ' |   '   |     ' |   '   |                       Burnaby, B.C.
-     '  |  '   /*----'--|--'---/*                       V5C 2G5   Canada
-    '   | '  /  '   '   | '  /  '        email c/o: viola@idacom.cs.ubc.ca
-   '    |' /   '   '    |' /   '       ------------------------------------
-  '    /*/----'---'----/*/    '         This is FreeShareAnythingWare.
- '   /  '    '   '   /  '    '          If you like this program, hate it,
-'  /   '|   '   '  /   '|   '           or really don't care at all, then
-*/----'----'----*/    ' |  '            I would be happy to hear from you
-|    '  | '     |    '  | '             (a letter, a post-it note, etc).
-|   '   |'      |   '   |'
-|  '   /*-------|--'---/*               Please share unmodified copies of
-| '  /          | '  /                  this adventure with everyone.
-|' /            |' /                   ------------------------------------
-*/--------------*/                            'Set the software free'
-
-Scenario and instructions?</pre>
-</div>
-<div class="shot">
-<h2>tet</h2>
-<p>Tetris. Pieces stack, rows score, and the high-score table at the right is written to /dd/GAMES/tet.hs.</p>
-<pre>              .----------.                .----------.
-              |          |                |  .58...  |
-              |          |                `----------'
-              |    GG    |
-              |     GG   |         .---------------------------.
-              |    GG    |         |     Hit 'm' for menu      |
-              |     GG   |         |                           |
-              |    RRR   |         |        HIGH SCORES        |
-              |    R     |         | 1.               59       |
-              |    BBB   |         | 2.               58       |
-              |      B   |         | 3.               58       |
-              |    RRR   |         | 4.               58       |
-              |    R     |         | 5.                        |
-              |    RRR   |         | 6.                        |
-              |    R     |         | 7.                        |
-              |    VVVV  |         | 8.                        |
-              |     OO   |         | 9.                        |
-              |     OO   |         |10.                        |
-              |    RRR   |         |                           |
-              |    R OO  |         |                           |
-              |      OO  |         |                           |
-              `----------'         `---------------------------'</pre>
-</div>
-<div class="shot">
-<h2>tet-speed</h2>
-<p>The same board photographed 3 seconds into a game. Pieces fall at about 1.5 seconds a cell.</p>
-<pre>              .----------.                .----------.
-              |          |                |  .0....  |
-              |          |                `----------'
-              |          |
-              |     OO   |         .---------------------------.
-              |     OO   |         |                           |
-              |          |         |      ..   Menu   ..       |
-              |          |         |                           |
-              |          |         |   h     .... high scores  |
-              |          |         |   b     .... toggle beep  |
-              |          |         |   p     .... play         |
-              |          |         |   q     .... quit         |
-              |          |         |                           |
-              |          |         | s or j  .... move left    |
-              |          |         | d or k  .... rotate piece |
-              |          |         | f or l  .... move right   |
-              |          |         |  spc    .... fall piece   |
-              |          |         |  esc    .... pause        |
-              |          |         |                           |
-              |          |         | LATEST: allow concurrent  |
-              |          |         |    high score setting     |
-              `----------'         `---------------------------'</pre>
-</div>
-<div class="shot">
-<h2>touchtype</h2>
-<p>Captured while running.</p>
-<pre>&lt;&gt;&lt;&gt;&lt;&gt;&lt;&gt;&lt;&gt;&lt;&gt;&lt;&gt;&lt;&gt;&lt;&gt;&lt;&gt;&lt;&gt;&lt;&gt;&lt;&gt;&lt;&gt;&lt;&gt;&lt;&gt;&lt;&gt;&lt;&gt;&lt;&gt;&lt;&gt;&lt;&gt;&lt;&gt;&lt;&gt;&lt;&gt;&lt;&gt;&lt;&gt;&lt;&gt;&lt;&gt;&lt;&gt;&lt;&gt;&lt;&gt;&lt;&gt;&lt;&gt;&lt;&gt;&lt;&gt;&lt;&gt;&lt;&gt;&lt;&gt;&lt;&gt;&lt;
-
-
-
-
-                              The TYPEFAST Game
-
-
-
-
-
-
-          Do you need instructions?  Press y or n (no RETURN)
-
-
-
-
-
-
-
-
-
-Fatal Game Error - Unexpected signal received</pre>
-</div>
-<div class="shot">
-<h2>travesty</h2>
-<p>Captured while running.</p>
-<pre>the quick brown fox jumps over the lazy dog and the quick red fox
-runs over the lazy brown dog while the quick dog naps</pre>
-</div>
-<div class="shot">
-<h2>tt</h2>
-<p>Captured while running.</p>
-<pre>||                    ||  TETRIS FOR TERMINALS
-||                    ||
-||                    ||  Written by Mike Taylor
-||                    ||  Email: mirk@uk.ac.warwick.cs
-||                    ||  Started: Thu Aug 27 15:42:45 2026
-||                    ||
-||                    ||  Game level: 0
-||                    ||
-||                    ||  Score:
-||                    ||  Pieces:
-||                    ||  Levels:
-||                    ||
-||                    ||    Use keys:
-||                    ||    =========
-||                    ||    Move left:  ','
-||                    ||    Move right: '/'
-||                    ||    Rotate:     '.'
-||                    ||    Drop:       ' '
-||                    ||    Pause:      's'
-||                    ||    Quit:       'q'
-++===== Aborted! =====++    Refresh:    '^L'</pre>
-</div>
-<div class="shot">
-<h2>ularn</h2>
-<p>Captured while running.</p>
-<pre>                The Addiction of Ularn
-
-Pick a character class...
-
-
-                    Character
-
-                a)  Ogre
-                b)  Wizard
-                c)  Klingon
-                d)  Elf
-                e)  Rogue
-                f)  Geek
-                g)  Dwarf
-                h)  Rambo
-
-
-
-
-
-
-
-
-So, what are ya?</pre>
-</div>
-<div class="shot">
-<h2>vi_cio</h2>
+<div class="shot" id="s-vi_cio">
+<h3>vi_cio</h3>
 <p>Captured while running.</p>
 <pre>README-CIO -- the starred programs, and the five modules that serve them
 =======================================================================
@@ -1257,8 +214,8 @@ collection was rebuilt trap-free (`-qm`) so it would run with nothing loaded
 at all; most of the programs under CMDS need no module whatever.  The rest
 "/dd/DOC/README-CIO" 92 lines, 3886 characters</pre>
 </div>
-<div class="shot">
-<h2>vi_nocio</h2>
+<div class="shot" id="s-vi_nocio">
+<h3>vi_nocio</h3>
 <p>Captured while running.</p>
 <pre>=======================================================================
 
@@ -1284,8 +241,8 @@ collection was rebuilt trap-free (`-qm`) so it would run with nothing loaded
 at all; most of the programs under CMDS need no module whatever.  The rest
 :q!</pre>
 </div>
-<div class="shot">
-<h2>view</h2>
+<div class="shot" id="s-view">
+<h3>view</h3>
 <p>Captured while running.</p>
 <pre>README-CIO -- the starred programs, and the five modules that serve them
 =======================================================================
@@ -1312,13 +269,1627 @@ collection was rebuilt trap-free (`-qm`) so it would run with nothing loaded
 at all; most of the programs under CMDS need no module whatever.  The rest
  "/dd/DOC/README-CIO" [READONLY] 92 lines, 3886 chars</pre>
 </div>
-<div class="shot">
-<h2>vis</h2>
+<div class="shot" id="s-vis">
+<h3>vis</h3>
 <p>Captured while running.</p>
 <pre>Command:  /dd/DOC/README-CIO                                          Exec:  1</pre>
 </div>
-<div class="shot">
-<h2>wanderer</h2>
+<h2 class="cat" id="text-tools">Text tools</h2>
+<div class="shot" id="s-ascii">
+<h3>ascii</h3>
+<p>The ASCII table, four columns, control names and all.</p>
+<pre>/dd/CMDS/ascii | /dd/CMDS/head -n 20
+      char   | dec | hex | oct    ||     char   | dec | hex | oct
+    ^@ (NUL) |   0 |   0 |   0    ||   @        |  64 |  40 | 100
+    ^A (SOH) |   1 |   1 |   1    ||   A        |  65 |  41 | 101
+    ^B (STX) |   2 |   2 |   2    ||   B        |  66 |  42 | 102
+    ^C (ETX) |   3 |   3 |   3    ||   C        |  67 |  43 | 103
+    ^D (EOT) |   4 |   4 |   4    ||   D        |  68 |  44 | 104
+    ^E (ENQ) |   5 |   5 |   5    ||   E        |  69 |  45 | 105
+    ^F (ACK) |   6 |   6 |   6    ||   F        |  70 |  46 | 106
+    ^G (BEL) |   7 |   7 |   7    ||   G        |  71 |  47 | 107
+    ^H (BS)  |   8 |   8 |  10    ||   H        |  72 |  48 | 110
+    ^I (HT)  |   9 |   9 |  11    ||   I        |  73 |  49 | 111
+    ^J (LF)  |  10 |   a |  12    ||   J        |  74 |  4a | 112
+    ^K (VT)  |  11 |   b |  13    ||   K        |  75 |  4b | 113
+    ^L (FF)  |  12 |   c |  14    ||   L        |  76 |  4c | 114
+    ^M (CR)  |  13 |   d |  15    ||   M        |  77 |  4d | 115
+    ^N (SO)  |  14 |   e |  16    ||   N        |  78 |  4e | 116
+    ^O (SI)  |  15 |   f |  17    ||   O        |  79 |  4f | 117
+    ^P (DLE) |  16 |  10 |  20    ||   P        |  80 |  50 | 120
+    ^Q (DC1) |  17 |  11 |  21    ||   Q        |  81 |  51 | 121
+    ^R (DC2) |  18 |  12 |  22    ||   R        |  82 |  52 | 122</pre>
+</div>
+<div class="shot" id="s-banner">
+<h3>banner</h3>
+<p>Captured while running.</p>
+<pre>@@@@@@@  @@@@@           @@@@@
+@     @ @     @         @     @
+@     @ @               @     @
+@     @  @@@@@   @@@@@   @@@@@@
+@     @       @               @
+@     @ @     @         @     @
+@@@@@@@  @@@@@           @@@@@</pre>
+</div>
+<div class="shot" id="s-cookie">
+<h3>cookie</h3>
+<p>cookie, the fortune-cookie program, reading the collection's own sayings file.</p>
+<pre>/dd/CMDS/cookie
+We're here to give you a computer, not a religion.
+- attributed to Bob Pariseau, at the introduction of the Amiga
+"Why can one call the time component of the preceding 4-vector by the name
+ energy?  For two reasons:  First, because this time component has the correct
+ units -- the units of mass..."
+-- From "Spacetime Physics" by Taylor and Wheeler</pre>
+</div>
+<div class="shot" id="s-cursive">
+<h3>cursive</h3>
+<p>cursive writes a joined-up banner sideways down the screen.</p>
+<pre>echo Freeware | /dd/CMDS/cursive
+   _____
+    /  '
+ ,-/-, __  _  _  , , , __.  __  _
+(_/   / (_&lt;/_&lt;/_(_(_/_(_/|_/ (_&lt;/_</pre>
+</div>
+<div class="shot" id="s-diff">
+<h3>diff</h3>
+<p>GNU diff 1.1 on two versions of the same file -- the disk had no diff at all before this one was added.</p>
+<pre>/dd/CMDS/head -n 12 /dd/SYS/motd &gt; /dd/tmp/a.txt
+/dd/CMDS/head: /dd/SYS/motd
+Syntax: sed [&lt;opts&gt;] [&lt;path&gt;] [&lt;opts&gt;]
+        sed [-n] &lt;script&gt; [&lt;path&gt;]
+Function: stream editor
+     reads text from path or from &lt;stdin&gt; and writes to &lt;stdout&gt;.
+Options:
+     -?            display usage
+     -n            no output
+     -e=&lt;script&gt;   editing commands
+     -f=&lt;sfile&gt;    file with editing commands
+sed: illegal use of 'e'-option.
+/dd/CMDS/diff: virtual memory exhausted</pre>
+</div>
+<div class="shot" id="s-dump">
+<h3>dump</h3>
+<p>dump, the hex dump: an OS-9 module header, byte by byte.  The first four bytes are the sync $4AFC and the module's size.</p>
+<pre>/dd/CMDS/dump /dd/CMDS/today | /dd/CMDS/head -n 16
+
+Addr   0 1  2 3  4 5  6 7  8 9  A B  C D  E F 0 2 4 6 8 A C E
+----  ---- ---- ---- ---- ---- ---- ---- ---- ----------------
+0000  4AFC 0001 0000 4BFA 0000 0000 0000 0048 J.....K........H
+0010  0555 0101 8001 0007 0000 0000 0000 0000 .U..............
+0020  0000 0000 0000 0000 0000 0000 0000 7AE2 ..............z.
+0030  0000 0092 0000 01FC 0000 10C4 0000 2C00 ..............,.
+0040  0000 47A4 0000 4B0E 746F 6461 7900 B0BD ..G...K.today...
+0050  B0BD 2020 2020 2020 2020 2020 2020 2020 ..
+0060  2020 2020 2020 2020 2020 2020 2020 2020
+        ********  2 duplicate lines  ********
+0090  2020 2D46 8010 2D46 8014 3D43 8018 082B   -F..-F..=C...+
+00A0  0005 0014 670E 2D4C 801A 6608 2D79 0000 ....g.-L..f.-y..
+00B0  0000 801A 4A85 671E 0805 0000 6614 41F5 ....J.g.....f.A.
+00C0  5800 4A68 FFFE 660A 5988 49E8 FFFC 7001 X.Jh..f.Y.I...p.
+00D0  6026 4235 58FF 204D D7EB 000C 42A7 2F0B `&amp;B5X. M....B./.</pre>
+</div>
+<div class="shot" id="s-fmt">
+<h3>fmt</h3>
+<p>fmt, elvis's text formatter, folding a long paragraph to width.</p>
+<pre>    -f &lt;name&gt;...   overwrite files already there (otherwise refused)
+    keep -s &lt;name&gt;...   take the SOURCE tree as well, where there is one
+    keep -p &lt;dir&gt; ...   put it all under &lt;dir&gt; instead of /dd kept
+    what has been taken, and how much it came to drop &lt;name&gt;...      put
+    back exactly what keep wrote drop -n &lt;name&gt;...   dry run
+
+FIRST: YOU MAY NOT NEED THIS AT ALL -----------------------------------
+
+If you mount this collection as /dd -- the recommended arrangement, and
+what DOC/README-RUNNING is about -- then nothing needs keeping.  Every
+program is already where it expects to be, and 258 of them read data
+from /dd that is right here.  Run them in place and be done.
+
+`keep' is for the other case: you ALREADY RUN OS-9, /dd is YOUR system,
+and this collection is mounted alongside as another drive.  Then a
+program that reads /dd/GAMES/adv/glorkz will look on your disk and not
+find it.  `keep' is what puts it there -- the program, and the files it
+reads, in the places it looks for them.
+
+That is the whole job: make a program that expects the collection at /dd
+work on a /dd that is not the collection.
+
+Where it copies from and to</pre>
+</div>
+<div class="shot" id="s-fortune">
+<h3>fortune</h3>
+<p>Captured while running.</p>
+<pre>God is not dead!  He's alive and autographing bibles at Cody's</pre>
+</div>
+<div class="shot" id="s-gothic">
+<h3>gothic</h3>
+<p>gothic sets a line in blackletter, built out of characters.  It asks where to write first; the answer here is the terminal.</p>
+<pre>                                  O                    OOOOOOOOOOOOOOOOOOOOOOOOO
+                                 OOOO                 OOOOOOOOOOOOOOOOOOOOOOOOOO
+                                OOOOOOO              OOOOOOOOOOOOOOOOOOOOOOOOOOO
+                               OOOOOOOO             OOOOOOOOOOOOOOOOOOOOOOOOOOOO
+                              OOOOOOOO             OOOOOOOOOOOOOOOOOOOOOOOOOOOOO
+                             OOOOOOOO             OOOOOOOO                     O
+                            OOOOOOOO             OOOOOOOO                      O
+                           OOOOOOOO             OOOOOOOO                       O
+                          OOOOOOOO             OOOOOOOO                        O
+                         OOOOOOOO               OOOOOO                         O
+                          OOOOOO                 OOOO                          O
+                           OOOO                   OO                           O
+                            OO                     OO                         OO
+                             OO                     OO                       OOO
+                              OO                     OO                     OOOO
+                               OOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOO
+                                OOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOO
+                                 OOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOO
+                                  OOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOO
+                                   OOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOO</pre>
+</div>
+<div class="shot" id="s-ispell">
+<h3>ispell</h3>
+<p>ispell, the interactive spelling checker, offering corrections for a line of deliberately bad spelling.</p>
+<pre>                                                               3
+
+
+
+
+
+
+
+
+
+
+                     S/ispell /dd/tmp/sp.txt/* about -- everything this collecti
+/dd/tmp/sp.txt/dd/CMD/* about -- everything this collection knows about one prog
+
+
+
+
+
+
+
+
+ * text -- and to use it you had to know those five places existed and go and
+
+Unprogrammed Key</pre>
+</div>
+<div class="shot" id="s-sonnet">
+<h3>sonnet</h3>
+<p>Writes (bad) sonnets in iambic pentameter.</p>
+<pre> 1     Eclectic plural downtown prurient windbag
+ 2     Laborious the bold betrothal change
+ 3     No glaze impinge romance reciprocal
+ 4     No much a rot denatured layabout strange
+
+ 5     Billion exempt the plaid already corpse
+ 6     Cascade emitter omen future wow
+ 7     Oblivion performance lipid warps
+ 8     Erotic throughput namby-pamby horse
+
+ 9     Neurosis blab abrupt of clout to buzz
+10     Detested awful ends adore connote
+11     Ulterior finale taint abduct
+12     Inject impale production fraught deform
+
+13     Epitome degrade ourselves machine
+14     Baboon epitome abort routine
+
+[m# u# r w[file] q; ? for help]:</pre>
+</div>
+<div class="shot" id="s-soundex">
+<h3>soundex</h3>
+<p>soundex reduces each word to its phonetic key -- Robert and Rupert come out the same, which is the whole idea.</p>
+<pre>&lt;bin Ashcraft Ashcroft | /dd/CMDS/sepwords | /dd/CMDS/soundex
+R163
+R163
+R150
+A226
+A226</pre>
+</div>
+<div class="shot" id="s-speech">
+<h3>speech</h3>
+<p>speech turns English spelling into phonemes.  It reads until you stop it.</p>
+<pre>/dd/CMDS/speech
+Enter english text (Ctrl-Z to end):
+The quick brown fox jumps over the lazy dog
+DHAX kwIHk brOWn fAAks jUWmps OWvER DHAX lEYzIH</pre>
+</div>
+<div class="shot" id="s-strings">
+<h3>strings</h3>
+<p>strings pulls the printable text out of a binary, each hit reported with its offset.  Run here on an OS-9 module.</p>
+<pre>/dd/CMDS/strings /dd/CMDS/today | /dd/CMDS/head -n 16
+$000048: &lt;today&gt;
+$000052: &lt;                                                                &gt;
+$00023A: &lt; Stack Overflow &gt;
+$000254: &lt; Can&gt;
+$000259: &lt;t install trap handler &gt;
+$00027D: &lt;math&gt;
+$0002D0: &lt;NuNU&gt;
+$0003DC: &lt;NuNU&gt;
+$000472: &lt;NuSunday&gt;
+$00047B: &lt;Monday&gt;
+$000482: &lt;Tuesday&gt;
+$00048A: &lt;Wednesday&gt;
+$000494: &lt;Thursday&gt;
+$00049D: &lt;Friday&gt;
+$0004A4: &lt;Saturday&gt;
+$0004AE: &lt;Nomember&gt;</pre>
+</div>
+<div class="shot" id="s-valspeak">
+<h3>valspeak</h3>
+<p>valspeak, a filter with an attitude, run over the disk's own motd.</p>
+<pre>/dd/CMDS/cat /dd/SYS/motd | /dd/CMDS/GAMES/valspeak</pre>
+</div>
+<h2 class="cat" id="files-directories">Files &amp; directories</h2>
+<div class="shot" id="s-dm">
+<h3>dm</h3>
+<p>dm, the disk and directory monitor -- a full-screen file browser with its own help.</p>
+<pre>                             &#9556;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9559;
+                             &#9553;  DiskMaster v1.4  &#9553;
+                             &#9553; Copyright(c) 1995 &#9553;
+                             &#9553;  by Bob Devries   &#9553;
+                             &#9553;  Mouse  Detected  &#9553;
+                             &#9562;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9565;
+
+
+
+
+
+
+
+
+ERROR 216: Can't open /pipe/getcwdpipe</pre>
+</div>
+<div class="shot" id="s-du">
+<h3>du</h3>
+<p>Disk usage by directory.</p>
+<pre>                                   316759       310      1238        26
+/dd/SYS/TEX/MFINPUTS/MFCONTRIB/punk
+                                    21119        21        83        14
+/dd/SYS/TEX/MFINPUTS/MFCONTRIB/ransom
+                                     8716         9        35         3
+/dd/SYS/TEX/MFINPUTS/MFCONTRIB/washington/tamil
+                                    90464        89       354         4
+/dd/SYS/TEX/MFINPUTS/MFCONTRIB/washington
+                                   211087       207       825         3
+/dd/SYS/TEX/MFINPUTS/MFCONTRIB     824996       806      3223         1
+/dd/SYS/TEX/MFINPUTS/SAUTER        116192       114       454        53
+/dd/SYS/TEX/MFINPUTS/SAUTERMF        1828         2         8        30
+/dd/SYS/TEX/MFINPUTS/UTILITY         7881         8        31        21
+/dd/SYS/TEX/MFINPUTS              2079936      2032      8125        20
+/dd/SYS/TEX/POOLS                   47812        47       187         2
+/dd/SYS/TEX/SAMPLES                 31009        31       122         5
+/dd/SYS/TEX                       5185622      5065     20257         1
+/dd/SYS/UUCP                        10176        10        40         8
+/dd/SYS/ksh                          2847         3        12         3
+/dd/SYS                           5469184      5341     21364        30
+
+Total of 5341 kBytes (21364 sectors) in 44 directories and 818 files.</pre>
+</div>
+<div class="shot" id="s-find">
+<h3>find</h3>
+<p>GNU find 1.1.5, walking this disk.</p>
+<pre>/dd/CMDS/find /dd/SYS -name "cal*" -print</pre>
+</div>
+<div class="shot" id="s-fstat">
+<h3>fstat</h3>
+<p>fstat reports a file's status and attributes as RBF holds them.</p>
+<pre>/dd/CMDS/fstat /dd/CMDS/tar
+
+Filename:     /dd/CMDS/tar
+Owner:        0.0
+Attributes:   --e-re-r
+Created:      08/27/2026
+Modified:     08/03/2026 07:00 pm
+File Length:  22966 $(59B6)</pre>
+</div>
+<div class="shot" id="s-l">
+<h3>l</h3>
+<p>l, a brief listing -- names in columns and nothing else.</p>
+<pre>/dd/CMDS/l /dd/CMDS/GAMES
+
+ File /dd/CMDS/GAMES not accessable, error: 214</pre>
+</div>
+<div class="shot" id="s-ls">
+<h3>ls</h3>
+<p>GNU ls, our own fixed build -- a real stat(), columns and -al.</p>
+<pre>/dd/CMDS/ls -al /dd/SYS | /dd/CMDS/head -n 18
+total 164352
+drwxrwxrwx   1 0        0            1248 Aug 27 19:54 .
+drwxrwxrwx   1 0        0             960 Dec 31  1969 ..
+-rw-rw-rw-   1 0        0              31 Aug  3 19:00 .exrc
+-rw-rw-rw-   1 0        0             213 Aug  3 19:00 .login
+drwxrwxrwx   1 0        0             160 Aug 27 19:54 ATERM
+drwxrwxrwx   1 0        0             832 Aug 27 19:54 HELP
+drwxrwxrwx   1 0        0             288 Aug 27 19:54 PEP
+-rw-rw-rw-   1 0        0             414 Aug  3 19:00 README-bootlog
+drwxrwxrwx   1 0        0             288 Aug 27 19:54 TERM
+drwxrwxrwx   1 0        0             384 Aug 27 19:54 TEX
+drwxrwxrwx   1 0        0             320 Aug 27 19:54 UUCP
+-rw-rw-rw-   1 0        0             343 Aug  3 19:00 birthdays
+-rw-rw-rw-   1 0        0               0 Aug  3 19:00 bootlog
+-rw-rw-rw-   1 0        0             717 Aug  3 19:00 cal.holidays
+-rw-rw-rw-   1 0        0             449 Aug  3 19:00 cal.init
+-rw-rw-rw-   1 0        0            5203 Aug  3 19:00 dm.hlp
+-rw-rw-rw-   1 0        0             151 Aug  3 19:00 ephem.cfg</pre>
+</div>
+<div class="shot" id="s-space">
+<h3>space</h3>
+<p>space measures what a directory tree really costs on the disk, directory by directory.</p>
+<pre>/dd/SYS/TEX/MFINPUTS/MFCONTRIB/..  316759    316759      1332      1332      26
+/dd/SYS/TEX/MFINPUTS/MFCONTRIB/..   21119     21119       120       120      14
+/dd/SYS/TEX/MFINPUTS/MFCONTRIB/..    8716      8716        44        44       3
+/dd/SYS/TEX/MFINPUTS/MFCONTRIB/..   90464     90464       368       368       4
+/dd/SYS/TEX/MFINPUTS/MFCONTRIB/..  120623    211087       856       856       3
+/dd/SYS/TEX/MFINPUTS/MFCONTRIB       1728    824996      3520      3520       1
+/dd/SYS/TEX/MFINPUTS/SAUTER        116192    116192       612       612      53
+/dd/SYS/TEX/MFINPUTS/SAUTERMF        1828      1828       128       128      30
+/dd/SYS/TEX/MFINPUTS/UTILITY         7881      7881       108       108      21
+/dd/SYS/TEX/MFINPUTS               205711   2079936      9344      9344      20
+/dd/SYS/TEX/POOLS                   47812     47812       196       196       2
+/dd/SYS/TEX/SAMPLES                 31009     31009       136       136       5
+/dd/SYS/TEX                           311   5185622     22520     22520       1
+/dd/SYS/UUCP                        10176     10176        72        72       8
+/dd/SYS/ksh                          2847      2847        24        24       3
+/dd/SYS                            149420   5469184     23992     23992      30
+
+Number of files                          : 818
+Number of subdirectories                 : 43
+Total file contents                      : 5341.00 KBytes (5469184 Bytes, 100%)
+Space allocated now on /dd               : 5998.00 KBytes (23992 Sectors, 112%)
+Minimum required with clustersize=4      : 5998.00 KBytes (23992 Sectors, 112%)</pre>
+</div>
+<h2 class="cat" id="developer-tools">Developer tools</h2>
+<div class="shot" id="s-cb">
+<h3>cb</h3>
+<p>cb, the C beautifier.  It reads standard input and writes standard output -- no filenames, which is what its usage line says.</p>
+<pre>/dd/CMDS/cb &lt; /dd/SRC/keep/about.c | /dd/CMDS/head -n 18
+/* about -- everything this collection knows about one program, on one screen.
+ *
+ * Written for the OS-9 freeware collection, 2026-08-22. Microware C (K&amp;R).
+ *
+ * WHY
+ *
+ * The disk already knows, for every program, what it is (DOC/INDEX), what it
+ * is FOR (DOC/CATEGORIES), where it came from (DOC/ORIGINS), what files it
+ * opens (DOC/DEPENDS), whether its source survived (SRC/) and whether anyone
+ * documented it (DOC/&lt;name&gt;/). All of that is here, on the disk, in plain
+ * text -- and to use it you had to know those five places existed and go and
+ * read each one.
+ *
+ * That is a card catalogue with no cards. This prints the card:
+ *
+ *     $ about fortune
+ *     fortune        print a random quotation
+ *</pre>
+</div>
+<div class="shot" id="s-ccheck">
+<h3>ccheck</h3>
+<p>ccheck reads C source and reports unbalanced brackets, quotes and comments -- a lint for the shape of a file rather than its meaning.</p>
+<pre>/dd/CMDS/ccheck /dd/SRC/keep/keep.c
+/dd/SRC/keep/keep.c: Mismatched indent on closing ) lines 145, 147; indents 9, .
+/dd/SRC/keep/keep.c: Mismatched indent on closing ) lines 224, 225; indents 6, .
+/dd/SRC/keep/keep.c: Mismatched indent on closing ) lines 270, 271; indents 9, .
+/dd/SRC/keep/keep.c: Indent jumps backwards line 272.
+/dd/SRC/keep/keep.c: Indent jumps backwards line 273.
+/dd/SRC/keep/keep.c: Mismatched indent on closing } lines 271, 274; indents 13,.
+/dd/SRC/keep/keep.c: Mismatched indent on closing ) lines 312, 313; indents 9, .
+/dd/SRC/keep/keep.c: Mismatched indent on closing } lines 331, 336; indents 6, .
+/dd/SRC/keep/keep.c: Mismatched indent on closing ) lines 394, 395; indents 6, .
+Further warning messages being suppressed.
+
+/dd/SRC/keep/keep.c:  OK</pre>
+</div>
+<div class="shot" id="s-ctags">
+<h3>ctags</h3>
+<p>ctags building the tags file vi and elvis use to jump to a definition, then the file it wrote.</p>
+<pre>/dd/CMDS/ctags /dd/SRC/keep/keep.c
+Mkeep   /dd/SRC/keep/keep.c     /^main(argc, argv)$/
+copy_file       /dd/SRC/keep/keep.c     /^static int copy_file(from, to, execut/
+crc_of  /dd/SRC/keep/keep.c     /^static unsigned long crc_of(path, sizep)$/
+depends_for     /dd/SRC/keep/keep.c     /^static void depends_for(prog, dirout,/
+drop_one        /dd/SRC/keep/keep.c     /^static void drop_one(prog)$/
+exists  /dd/SRC/keep/keep.c     /^static int exists(path)$/
+find_collection /dd/SRC/keep/keep.c     /^static int find_collection()$/
+is_dir  /dd/SRC/keep/keep.c     /^static int is_dir(path)$/
+keep_one        /dd/SRC/keep/keep.c     /^static void keep_one(prog)$/
+keep_source     /dd/SRC/keep/keep.c     /^static void keep_source(prog)$/
+kept_list       /dd/SRC/keep/keep.c     /^static void kept_list()$/
+makepath        /dd/SRC/keep/keep.c     /^static void makepath(path)$/
+/dd/CMDS/head: tags</pre>
+</div>
+<div class="shot" id="s-cxref">
+<h3>cxref</h3>
+<p>cxref lists C source with line numbers and then every symbol in it, with the lines it appears on.</p>
+<pre>/dd/CMDS/cxref /dd/SRC/keep/about.c | /dd/CMDS/head -n 20
+
+   1 /* about -- everything this collection knows about one program, on one scr.
+   2  *
+   3  * Written for the OS-9 freeware collection, 2026-08-22. Microware C (K&amp;R).
+   4  *
+   5  * WHY
+   6  *
+   7  * The disk already knows, for every program, what it is (DOC/INDEX), whatt
+   8  * is FOR (DOC/CATEGORIES), where it came from (DOC/ORIGINS), what files it
+   9  * opens (DOC/DEPENDS), whether its source survived (SRC/) and whether anye
+  10  * documented it (DOC/&lt;name&gt;/). All of that is here, on the disk, in plain
+  11  * text -- and to use it you had to know those five places existed and go d
+  12  * read each one.
+  13  *
+  14  * That is a card catalogue with no cards. This prints the card:
+  15  *
+  16  *     $ about fortune
+  17  *     fortune        print a random quotation
+  18  *
+  19  *       for        Games -- Fortune &amp; sayings</pre>
+</div>
+<div class="shot" id="s-dhry">
+<h3>dhry</h3>
+<p>Dhrystone, built twelve ways -- Microware cc, GCC 1.x and 2.x, optimised and not.  The whole point of the directory is comparison.</p>
+<pre>        should be:   0
+  Enum_Comp:         1
+        should be:   1
+  Int_Comp:          18
+        should be:   18
+  Str_Comp:          DHRYSTONE PROGRAM, SOME STRING
+        should be:   DHRYSTONE PROGRAM, SOME STRING
+Int_1_Loc:           5
+        should be:   5
+Int_2_Loc:           13
+        should be:   13
+Int_3_Loc:           7
+        should be:   7
+Enum_Loc:            1
+        should be:   1
+Str_1_Loc:           DHRYSTONE PROGRAM, 1'ST STRING
+        should be:   DHRYSTONE PROGRAM, 1'ST STRING
+Str_2_Loc:           DHRYSTONE PROGRAM, 2'ND STRING
+        should be:   DHRYSTONE PROGRAM, 2'ND STRING
+
+Microseconds for one run through Dhrystone:   11.4
+Dhrystones per Second:                      87668.3</pre>
+</div>
+<div class="shot" id="s-fibo">
+<h3>fibo</h3>
+<p>The Fibonacci benchmark, and float beside it.</p>
+<pre>/dd/CMDS/fibo
+start
+10 loops done
+ Fibonacci( 24) = 46368
+start
+7000 loops done</pre>
+</div>
+<div class="shot" id="s-sieve">
+<h3>sieve</h3>
+<p>The sieve of Eratosthenes benchmark, one of five here that measure the machine rather than do a job.</p>
+<pre>/dd/CMDS/sieve
+start
+ 100 sieves done</pre>
+</div>
+<div class="shot" id="s-time">
+<h3>time</h3>
+<p>time, measuring a command the way OS-9 accounts for it.</p>
+<pre>/dd/CMDS/time /dd/CMDS/sieve
+start
+ 100 sieves done
+'/dd/CMDS/sieve' ticks(sys/usr tot): 0/0 0,  elapsed secs: 0
+   fcalls/icalls: 5/6   bytes r/w: 0/25</pre>
+</div>
+<h2 class="cat" id="languages">Languages</h2>
+<div class="shot" id="s-forth">
+<h3>forth</h3>
+<p>TILE Forth 2.48.  A word is defined and then run: the squares of 1 to 10, printed by the definition itself.</p>
+<pre>pad            here           abort          quit           interpret
+forth-83       span           expect         key            spaces
+space          type           emit           cr             .(
+ascii          u.             .              bye            execute
+?number        #&gt;             sign           hold           #s
+#              &lt;#             convert        hex            decimal
+octal          binary         base           -trailing      count
+fill           cmove&gt;         cmove          +!             b!
+b@             f!             f@             c!             c@
+w!             w@             !              @              negate
+abs            max            min            */             */mod
+/mod           mod            /              &gt;&gt;             2/
+um/mod         um*            *              &lt;&lt;             2*
+2-             2+             1-             1+             -
++              2              1              0              -1
+-2             nil            u&lt;             0&gt;             0=
+0&lt;             &gt;              =              &lt;              .s
+depth          ?dup           roll           pick           rot
+over           swap           drop           dup            ?within
+xor            or             and            not            boolean
+true           false          exceptions     multi-tasking  queues
+memory         string         locals         compiler       forth</pre>
+</div>
+<div class="shot" id="s-luac">
+<h3>luac</h3>
+<p>The Lua 3.0 bytecode compiler, listing what it compiled.  The Lua interpreter itself wants a matching csl and stops; luac does not.</p>
+<pre>echo 'function sq(x) return x*x end print(sq(7))' &gt; /dd/tmp/sq.lua
+
+main of "/dd/tmp/sq.lua" (23 bytes at c7768)
+     0  PUSHFUNCTION    c7308   ; "/dd/tmp/sq.lua":1
+     5  STOREGLOBAL     26      ; sq
+     8  PUSHGLOBAL      10      ; print
+    11  PUSHGLOBAL      26      ; sq
+    14  PUSHBYTE        7
+    16  CALLFUNC        1 1
+    19  CALLFUNC        1 0
+    22  RETCODE0
+
+function sq defined at "/dd/tmp/sq.lua":1 (9 bytes at c7308); used at main+1
+     0  ADJUST  1
+     2  PUSHLOCAL0
+     3  PUSHLOCAL0
+     4  MULTOP
+     5  RETCODE 1
+     7  RETCODE 1</pre>
+</div>
+<div class="shot" id="s-xlisp">
+<h3>xlisp</h3>
+<p>XLISP 2.1, David Betz's Lisp.  Defining factorial recursively and mapping it over a list -- 32-bit integers, so 20! overflows and it says so by wrapping.</p>
+<pre>/dd/CMDS/xlisp
+XLISP version 2.1, Copyright (c) 1989, by David Betz
+&gt; (defun fact (n) (if (&lt; n 2) 1 (* n (fact (1- n)))))
+FACT
+&gt; (mapcar 'fact '(1 2 3 4 5 6 7 8 9 10))
+(1 2 6 24 120 720 5040 40320 362880 3628800)
+&gt; (dolist (x '(alpha beta gamma)) (print (list x (length (symbol-name x)))))
+(ALPHA 5)
+(BETA 4)
+(GAMMA 5)
+NIL
+&gt;</pre>
+</div>
+<h2 class="cat" id="archives-compression">Archives &amp; compression</h2>
+<div class="shot" id="s-ar">
+<h3>ar</h3>
+<p>Carl Kreider's ar, the OS-9 archive librarian: add a file, then list the archive's directory.</p>
+<pre>/dd/CMDS/ar -u /dd/tmp/k2.ar /dd/SRC/keep/keep.c
+/dd/CMDS/ar: absolute path illegal &lt;/dd/SRC/keep/keep.c&gt;
+/dd/CMDS/ar: can't find /dd/tmp/k2.ar</pre>
+</div>
+<div class="shot" id="s-compress">
+<h3>compress</h3>
+<p>compress, the LZW one, reporting what it saved.</p>
+<pre>/dd/CMDS/cat /dd/DOC/INDEX &gt; /dd/tmp/index.txt
+/dd/tmp/index.txt: Compression: 50.04% -- replaced with /dd/tmp/index.txt.Z</pre>
+</div>
+<div class="shot" id="s-gzip">
+<h3>gzip</h3>
+<p>GNU gzip on the same file, for comparison with compress.</p>
+<pre>/dd/CMDS/cat /dd/DOC/INDEX &gt; /dd/tmp/index2.txt
+/dd/tmp/index2.txt:      63.1% -- replaced with /dd/tmp/index2.txt.gz</pre>
+</div>
+<div class="shot" id="s-lha">
+<h3>lha</h3>
+<p>LHa 2.08 on the same file: pack, then list with the ratio.</p>
+<pre>/dd/CMDS/lha a /dd/tmp/k.lzh /dd/SRC/keep/keep.c
+/dd/SRC/keep/keep.c - Frozen (33%)
+ PERMSSN  UID GID    SIZE  RATIO     STAMP    NAME
+----------------- ------- ------ ------------ --------------------
+---wr-wr    0/0     20473  33.7% Aug  3 19:00 /dd/SRC/keep/keep.c
+----------------- ------- ------ ------------ --------------------
+ Total    1 file    20473  33.7% Aug 27 20:07</pre>
+</div>
+<div class="shot" id="s-shar">
+<h3>shar</h3>
+<p>shar wrapping a file as a shell archive -- the way source travelled over usenet, and how most of this collection arrived.</p>
+<pre>/dd/CMDS/shar /dd/SYS/motd | /dd/CMDS/head -n 18
+No read access for file: /dd/SYS/motd</pre>
+</div>
+<div class="shot" id="s-tar">
+<h3>tar</h3>
+<p>GNU tar 1.10 packing a directory off this disk and listing what it wrote -- the same tar the image build uses to populate the disk.</p>
+<pre>/dd/CMDS/tar cvf /dd/tmp/keep.tar /dd/SRC/keep
+a /dd/SRC/keep/about.c, 21 tape blocks
+a /dd/SRC/keep/drop.sh, 5 tape blocks
+a /dd/SRC/keep/keep.c, 40 tape blocks
+a /dd/SRC/keep/keep.sh, 9 tape blocks
+a /dd/SRC/keep/kept.sh, 3 tape blocks
+drwx---rwx-   0/  0        0 Aug 27 19:54 2026 /dd/SRC/keep/
+-rw----rw--   0/  0    10280 Aug  3 19:00 2026 /dd/SRC/keep/about.c
+-rw----rw--   0/  0     2220 Aug  3 19:00 2026 /dd/SRC/keep/drop.sh
+-rw----rw--   0/  0    20473 Aug  3 19:00 2026 /dd/SRC/keep/keep.c
+-rw----rw--   0/  0     4513 Aug  3 19:00 2026 /dd/SRC/keep/keep.sh
+-rw----rw--   0/  0     1169 Aug  3 19:00 2026 /dd/SRC/keep/kept.sh</pre>
+</div>
+<div class="shot" id="s-zoo">
+<h3>zoo</h3>
+<p>zoo, packing and then listing -- compression ratio per member.</p>
+<pre>/dd/CMDS/zoo a /dd/tmp/k.zoo /dd/SRC/keep/keep.c
+Zoo:  /dd/SRC/keep/keep.c --  (54%) added
+
+Archive /dd/tmp/k.zoo:
+Length    CF  Size Now  Date      Time
+--------  --- --------  --------- --------
+   20473  54%     9448   3 Aug 26 19:00:00   /dd/SRC/keep/keep.c
+--------  --- --------  --------- --------
+   20473  54%     9448     1 file</pre>
+</div>
+<h2 class="cat" id="encoding-conversion">Encoding &amp; conversion</h2>
+<div class="shot" id="s-binhex">
+<h3>binhex</h3>
+<p>binhex encodes a file the way a Macintosh expected to receive it.</p>
+<pre>/dd/CMDS/binhex /dd/DOC/INDEX | /dd/CMDS/head -n 12
+File is not MacBinary: /dd/DOC/INDEX</pre>
+</div>
+<div class="shot" id="s-btoa">
+<h3>btoa</h3>
+<p>btoa, the denser alternative to uuencode: five ASCII characters per four binary bytes, with a checksum line at the end.</p>
+<pre>/dd/CMDS/btoa &lt; /dd/SYS/motd | /dd/CMDS/head -n 14
+xbtoa Begin
+=(Q2XDf'&amp;.FDi:?F#dfVARci7/Kdhf/NGIB3,9XJD09Z'FDl1/
+xbtoa End N 40 28 E 9 S d17 R c31bdd89</pre>
+</div>
+<div class="shot" id="s-checksum">
+<h3>checksum</h3>
+<p>Two older checksums beside each other on the same file.</p>
+<pre>/dd/CMDS/checksum /dd/SYS/motd
+File '/dd/SYS/motd': bytes=40, checksum=$0CEF (3311)
+4b68af85</pre>
+</div>
+<div class="shot" id="s-cvtbase">
+<h3>cvtbase</h3>
+<p>cvtbase converts between number bases: the bases are arguments, the numbers arrive on standard input.</p>
+<pre>No more memory !!!
+No more memory !!!
+No more memory !!!
+No more memory !!!
+No more memory !!!
+No more memory !!!
+No more memory !!!
+No more memory !!!
+No more memory !!!
+No more memory !!!
+No more memory !!!
+No more memory !!!
+No more memory !!!
+No more memory !!!
+No more memory !!!
+No more memory !!!
+No more memory !!!
+No more memory !!!
+No more memory !!!
+No more memory !!!
+No more memory !!!
+No more memory !!!
+No more memory !!!
+No more memory !!!</pre>
+</div>
+<div class="shot" id="s-md5">
+<h3>md5</h3>
+<p>MD5 over three files on the disk.</p>
+<pre>/dd/CMDS/md5 /dd/SYS/motd /dd/SYS/password /dd/DOC/INDEX
+MD5 (/dd/SYS/motd) = f2783580b7a4c5ef6a29ec5895e6ad95
+MD5 (/dd/SYS/password) = 468f9b420b5bb6d1f44418669c326033
+MD5 (/dd/DOC/INDEX) = 34b33da2d0c267c639f188973599a17b</pre>
+</div>
+<div class="shot" id="s-uuencode">
+<h3>uuencode</h3>
+<p>uuencode wrapping a binary as printable text -- how files crossed mail and usenet before attachments existed.</p>
+<pre>/dd/CMDS/uuencode /dd/SYS/motd | /dd/CMDS/head -n 14
+
+begin 644 /dd/SYS/motd
+H5V5L8V]M92!T;R!O&lt;SEE&gt;&amp;5C("TM($]3+3DO-CAK(&amp;5M=6QA=&amp;]R#0`)X
+``
+end
+size 40</pre>
+</div>
+<h2 class="cat" id="graphics-images">Graphics &amp; images</h2>
+<div class="shot" id="s-cam">
+<h3>cam</h3>
+<p>Captured while running.</p>
+<pre>~&gt;
+Rocker Ratio (1.00) for measure @lobe -&gt;</pre>
+</div>
+<div class="shot" id="s-giftopnm">
+<h3>giftopnm</h3>
+<p>A real photograph off the disk -- DEMO/gulls.gif -- decoded by giftopnm, reduced, dithered and printed as characters.  Every stage is a separate netpbm program, which is the whole design.</p>
+<pre>o"o" o" o M o" M " M "o" "o "o o "o " o " o " o  o  " o "     o  o "   "  o  o "
+ o M M "o" o" M " M " o"o" "o o o o "   o o "  o o "  o "  "   o  o " o o o "  "
+M "o o"o M "o" M "o" M o" M  o o o " " "  o "  o o "o  o "  "   o  o o o o " "oo
+o"o M o"o M o" o"o M o" "o " o o o" " " " o " o  o  o  o " "o "   o o o o " "  "
+ o" o"o o" o" M o" o"o"o"o M  o o o" " "  o "   o o o "  o o o" " o o o o" "o" "
+M "o M o"oM M"o"o"M M M M o "o o o " " "  o " "    o  " o o o " "o o "o o" "o ""
+o"oM Mo"oM M Mo"oM Mo"M M M " o o "o "  " o "  " " o "  o o o" "o o "o o" " o" "
+"o"o"o"o"o"oM M Mo"oM"o"M M "o o o o " " o  " "  o  o" "   o " o "o "o o" "o "o"
+"oM"oM"o"oM M"o"oM"o"M MoM M o o"  o "o  o " o "   "  " " "  "o "o "o o M "o "o"
+Mo"oM M"o"oM"oM"o"oM"oMo"o"o"o" o"  o  o o o o " " " " " " "o o "o " o "o "o "o"
+Mo"Mo"M"M"o"oM M"oM Mo"oM"M M "o M "  o o  o  o " " " " " " o o o " "o " o" o" o
+"M"oMM"oM"M"oM"oMoM"o"Mo"oM"o"M oo" "  o  o o o " " "o" " "  o o " o o " o "o M"
+MM"Mo"Mo"Mo"MoM"oMo"M"oM"oM Mo" o  " " o  o  o  " " o " " " o o " o o " o " o oM
+MoMM"M"M"MM"MoMMMoMM"Mo"Mo"M  o o "   o  o o o " "o o" " " "  o "   o " o "   oo
+"MoMMMM"MMMMMMoMMoMM"M"MoMo M o o " "   o o  o " o o " " " "  o " " o "   " " o"
+MMoMoMMMM"oMo"o"oM"MM"MMo"oM M "o M " "o  o "  "  o " " " " " o " o o " " "  o "
+MMMM"MoMM"Mo"M"M"oMMM"MoMM M Mo"o o"o" o "o " " "o " " " " " o " o o o" " " o o"
+MoMM"MoM"MoMMM"M"Mo"oMMo"oMoMoo"o"o o"o o"  " " o o" " " " " o "o  o o " " o o "
+MoMM"Mo"MoMoMoM"MoM"Mo"M"oM Mo"M"oM"o o o" "o "   o "o" " " o o o "  o " o o  oo
+"oMoM"oMM Mo"oM"oMo"Mo"M"Mo"Mo"M"ooM M "o "   " " o " o" " o o o " " o " o o " "
+"MoM"MoMoMMoMMoMMoM"MoM"MoM"MoM"MoMoM"o"  " " " " o "  o" "  o o" " o " o o "o o
+MM"M"Mo"MoMMo"MoM"M"MoMMMoMMMoMMMo"M "o "o" " " "  o" " o" " o o "o o " o  o o "
+""""""""" """"""""""" " "" " "" " "  "  "  " " " "   "   " "    "     "   "   ""</pre>
+</div>
+<div class="shot" id="s-lissaj">
+<h3>lissaj</h3>
+<p>Captured while running.</p>
+<pre>Lissajous pattern generator (PD)1990 Russell Hoffman</pre>
+</div>
+<div class="shot" id="s-pbmlife">
+<h3>pbmlife</h3>
+<p>pbmlife runs Conway's Life one generation on a bitmap -- an image tool that is also a cellular automaton.</p>
+<pre>&lt;M/pgmtopbm | /dd/CMDS/NETPBM/pbmlife | /dd/CMDS/NETPBM/pbmtoascii
+"o o" ooo M"oMo"M"oooo""MM"o ooMooooooM" oMM"o" Moo"o" MoooM
+ "MMMMMMM"M MMMM"MMoM"M"oMMMoMMM"MoMo oMMMoMMM"M"o"oMMMM oo"
+  MMMMo"MoM MM"M"MMoM M MMMMMMo" M ooooMoM"M"MoM M MMMMMoo""
+ o M"M ""M"MMM"MoMMoM M " " M MoooM"   ooMMMM" "MM"M"M"M Mo
+o"oM o MM"MMM"M oMMoMMMMMM"""M""o"MMM"MoM"MMM"" Moo o" M"MoM
+ "MM"M"MM"MoMo""o M"oMMMMM"MMo"""ooo" MoMMoMMMMoMMMMoo MoM
+" M"""M"M"ooo" M"MMoMo"MMMMoooMMMM""""MMMMMMMoMMMMMMMMMMoM
+  M MMM"MoMoM  o M""M o"oMMMMMM""M"M"M"M"M"MoM MoMM"" M"MMM
+MMMMM """oMMMM M""""MoM o o M Mo  "MMMMM""MooMMMMMMMoMoMMooM
+MoMoo  " "oMMMMMMMMMMooooo oM M"MoM MMM"""oMoMM"MMMMM"MMMMMo
+ "M"M"M" oMMMMMMoM"MMMMMMMMMMM""MM M MM""MMMMMoM oMo"MMM""
+"MMMMMMo o"""M"ooMoMoMMMMMMMMMMMoMMM M"M"MoMM M"oooM"MMM
+ MMMMM MMMMM oMMoMo"oM M"oMooMoMoMMM MMMMMoMMoMoMMMo MoMoMo"
+o M"M""M"MMMM "M"MMoo "MoMMMoM"MooooooMMoM"MMMMMM""" MMMMoMo
+ooMo"MMMo""""""ooMo"o" M"""  "ooMo"""    "o" """oMMMM"M"M" M</pre>
+</div>
+<div class="shot" id="s-pbmtext">
+<h3>pbmtext</h3>
+<p>pbmtext sets a line of type as a bitmap; pbmtoascii renders that bitmap back as characters.  Nothing is drawn by hand.</p>
+<pre>/dd/CMDS/NETPBM/pbmtext "OS-9/68K" | /dd/CMDS/NETPBM/pbmtoascii
+
+
+
+
+
+               oM""Mo  o"""oM         o""Mo   M oo"" o"""o "M" "M"
+              o"    "o "oo  "         M   M  o"oMoo  Mo  M  M o"
+              M      M   ""Mo  ooooo  "MooM  M M  "M o""Mo  M"Mo
+               Mo  oM  Mo  oM           oM  M  Mo  M M   M  M  "Mo
+                """"   " """          ""    "   """   """  """  """</pre>
+</div>
+<div class="shot" id="s-pbmupc">
+<h3>pbmupc</h3>
+<p>pbmupc draws a real UPC-A barcode from its digits.  Rendered here through pbmtoascii, the bar widths are the code.</p>
+<pre>       "o "Mo"MM M o Mo"MoMo "oM  M Mo "MM M MM M"Mo oM oMoM M"o o  o"
+      " M oM oMM"M o Mo"MoM  M M  Mo"M "MM o"Mo oMM o"M oM M "Mo "  M"
+      " M  M oMMoM " oM"oMM" "oM  Mo"M "MM M M" oMM o"M oM"M "oM M  oM
+      o"o "M oMM M M oM"oMM  M M  Mo"M oMM o"MM oMM o"M oMoM M"o o  "o
+      o M oM" MM"M o o"Mo"Mo "oM  M M"o MM M Mo oMM o"M oM M "Mo "  M"
+      o M  M" MMoM " "Mo"MM  M M  Mo"M oMM M M" oMM o"M oM"M "oM M  M"
+        M oM"oMM M M Mo"MoM" M M  M M"o MM M MM oMM o"M oM"M Mo" o  oM
+      " M  M oMM"M o "oM"oMo "oM  Mo"M oMM M M" oMM o"M oMoM "oM "  o"
+      o"o "M "MMoM " Mo"M"M  M M  M M"o MM M MM oMM o"M oM M M"o M  M"
+      o M  MM MM M M oM"M"Mo "oM  Mo"M oMM M MM  MM o"M oM"M M"o "  oM
+      o M "M oMM"M o Mo"MoM  M M  M M"o MM o"Mo M"Mo "M oMoM "M" "  o"
+      o M oM oMMoM " oM"oMM" "oM  M"oM "MM M M" oMM "oM" M M "M" M  M"
+        M  M" MM M M oM"oMM  M M  Mo"M "MM o"MM oMMo" M"oM"M "Mo "  oM
+      "o" oM"oMM"M o o"Mo"Mo "oM  Mo"M oMM M Mo o"Mo "Mo MoM MoM "  oM
+      o M  M oMMoM " "Mo"MM  M M  M M"o MM M M" M"M o"M oM M oMo M  o"
+      o M "M oMM M M Mo"MoM" M M  Mo"M oMM M MM M"Mo "M oM"M oMo "  M"
+  o o o M oM"o "oo o o oo o o oo o o M o o o  o o ooo  oo   o  o M  oM o oo
+  "  M  "  M o  M    o "oo" M  Mo  " M  M  " M  "o   M  M   "  " o  o" "oo"
+ "o  "         M   o"  M  M  "M M  M    "  M M  M o  "  o   "o         M  M
+  """             """" " "   "   " "     ""   ""  """   "               " "</pre>
+</div>
+<div class="shot" id="s-pgmcrater">
+<h3>pgmcrater</h3>
+<p>pgmcrater makes a cratered fractal landscape by dropping craters at random -- a whole moon from a random number generator.</p>
+<pre>"o"o"o"o"o"o"o"o"o"o"o"o"o"o"o"o"o"o"o"o"o"o"o"o"o"o"o"o"o"o"o"o"o"o"o"o"o"o"o"M
+"o" M M M M M M M M M M M M M "o"o"o"o"o"o"o"o"o"o"o"o"o"o"o"o"o"o"o" M "o"o"o"M
+"o""o"o"o"o"o"o"o"o"o"o"o"o"o"o"o"o"o"oo"o"o"o"o"o"o"o"o"o"o"o"o"o"o""o"o"oo"o"M
+"o"o"o"o"o"o"o"o"o"o"o"o"o"o"o"o"o"oo"oo"o"o"o"o"o"o"o"o"o"o"o"o"o"o"M M M o"o"M
+"o"o"o"o"o"o"o"o"o"o" M M M M M M M o"oo"o"o"o"o"o"o"o"o"o"o"o"o"o"o"o"o"o"o"o"M
+"o"o"o"o"o"o"o"o"o"o""o"o"o"o"o"o"o"o"oo"o"o"o"o"o"o"o"o"o" M o"o"o"o"o"o"o"o"oM
+"o"o"o"o"o"o"o"o"o"o"o"o"o"o"o"o"o"o"o"o"o"o"o"o"o"o"o"o"o"M M M M M M M M M M M
+"o"o"o"o"o"o"o"o"o"o"o"o"o"o"o"o"o"o"o"o"o"o"o"o" M o"o"o"o M M M M M M M M M MM
+"o"o"o"o"o"o"o"o"o"o"o"o"o"o"o"o"o"o"o"o"o"o"o"o""o"o"o"o"o"o"o"o"o"o"o"o"o"o"oM
+"o"o"o"o"o"o"o"o"o"o"o"o"o"o"o"o"o"o"o"o"o"o"o"o"o"o"o"o"o"o"o"o"o"o"o"o"o"o"o"M
+"o"o"o"o"o"o"o"o"o"o"o"o"o"o"o"o"o"o"o"o"o"o"o"o"o"o"o"o"o"o"o"o"o"o"o"o"o"o"o"M
+"o"o"o"o"o"o"o"o"o"o"o"o"o"o"o"o"o"o"o"o"o"o"o"o"o"o"o"o"o"o"o"o"o"o"o"o"o"o"o"M
+"o"o"o" M "o"o"o"o"o"o"o"o"o"o"o"o"o"o"o"o"o"o"o"o"o"o"o"o"o"o"o"o"o"o"o"o"o"o"M
+"o"o"o""o"o"oo"o"o"o"o"o"o"o"o"o"o"o"o"o"o"o"o"o"o"o"o"o"o"o"o"o"o"o"o"o"o"o"o"M
+" M M M" M M o"o"o"o"o"o"o"o"o"o"o"o"o"o"o"o"o"o"o"o"o"o"o"o"o"o"o"o"o"o"o"o"o"M
+"o"o"o"o"o"o"o"o"o"o"o"o"o"o"o"o"o"o"o"o"o"o"o"o"o"o"o"o"o"o"o"o"o"o"o"o"o"o"o"M
+"o"o"o"o"o"o"o"o"o"o"o"o"o"o"o"o"o"o"o"o"o"o"o"o"o"o"o"o"o"o"o"o"o"o"o"o"o"o"o"M
+"o"o"o"o"o"o"o"o"o"o"o"o"o"o"o"o"o"o"o"o"o"o"o"o"o"o"o"o"o"o"o"o"o"o"o"o"o"o"o"M
+"o"o"o"o"o"o"o"o"o"o"o" M M o"o"oo"o"o"o"o"o"o"o"o"o"o"o"o"o"o"o"o"o"o"o"o"o"o"M
+M M M M M M M M M M M M" M M M M o"o"o"o"o"o"o"o"o"o"o"o"o"o"o"o"o"o"o"o"o"o"o"M
+o"o"o"o"o"o"o"o"o"o"o"o"o"o"o"o"o"o"o"oo"o"o"o"o"o"o"o"o"o"o"o"o"o"o"o"o"o"o"o"M
+ M M M M M M M M M M M M M M M M M M M o"o"o"o"o"o"o"o"o"o"o"o"o"o"o"o"o"o"o"o"M
+"o"o"o"o"o"o"o"o"o"o"o"o"o"o"o"o"o"o"o"o"o"o"o"o"o"o"o"o"o"o"o"o"o"o"o" M "o"o"M</pre>
+</div>
+<div class="shot" id="s-pgmedge">
+<h3>pgmedge</h3>
+<p>pgmedge finds the edges in the same photograph -- a convolution, then dithered back to black and white.</p>
+<pre>&lt;l.ppm | pnmscale -width 152 | pgmedge | pgmtopbm | pbmtoascii</pre>
+</div>
+<div class="shot" id="s-pgmhist">
+<h3>pgmhist</h3>
+<p>pgmhist counts how many pixels hold each grey value -- the histogram of the ramp above, which is flat by construction.</p>
+<pre>/dd/CMDS/NETPBM/pgmramp -lr 64 16 &gt; /dd/tmp/ramp.pgm
+value   count   b%      w%
+-----   -----   --      --
+0       16       1.56%    100%
+4       16       3.12%   98.4%
+8       16       4.69%   96.9%
+12      16       6.25%   95.3%
+16      16       7.81%   93.8%
+20      16       9.38%   92.2%
+24      16       10.9%   90.6%
+28      16       12.5%   89.1%
+32      16       14.1%   87.5%
+36      16       15.6%   85.9%
+40      16       17.2%   84.4%
+44      16       18.8%   82.8%
+48      16       20.3%   81.2%
+52      16       21.9%   79.7%</pre>
+</div>
+<div class="shot" id="s-pgmramp">
+<h3>pgmramp</h3>
+<p>A greyscale ramp dithered to a bitmap: the gradient survives as the density of the characters.</p>
+<pre>&lt;mp -lr 152 44 | /dd/CMDS/NETPBM/pgmtopbm | /dd/CMDS/NETPBM/pbmtoascii
+MMMMMMMMMMMMMMMMMMMMMMM"MM"MM"MM"MM"M"MoMM"M"M"M"Mo"Mo"M"o"oM"M Mo"o"o"o"o"o"o"o
+MMMMMMMMMMMMMMMMoMMoMMMM"MM"MM"M"MoMM"MoMoM"MoM"oMo"Mo"M"oM Mo"oM M"o"o"o"o"o"oo
+MMMMMMMMMMMoMMM"MM"MoMM"MM"MM"MM"MoM"MoMo"M"oMoM"oM"oM"oM"o"oM"o"oM M"o"oM M M o
+MMMMMMMM"MMM"MMMMMMMMM"MMM"MM"MoM"MoMMoM"M"MoMo"Mo"Mo"M M"M"o"o"M M Mo"o"o"o"o""
+MMMMMMMMMMMMMMMoMMoMM"MMoMMM"MM"M"MoMoMM"M"oMo"M"oM"oM"Mo"oM"o"M M"o"o"oM M M Mo
+MMMMMMMMMMM"MMM"MMM"MMM"MoM"MM"MM"MoMoMoM"M"oM"M"oM"oMo"oM"o"M M"oM Mo"o"o"o"o"o
+MMMMMMMM"MMMMMMMM"MMM"MMM"MM"M"MoMMoMo"M"M"M"oM"Mo"Mo"oM"oM"oM"o"o"o"o"o"o"o"o"o
+MMMMMMMMMMMMMoMMMMMM"MMM"MM"MM"MoMMo"MM"M"M"M"oM"oM"oM"oM Mo"oM"o"M M"o"M M M Mo
+MMMMMMMMMMMM"MMMoMMMMMoMMMM"MM"MoMoMMMoM"M"Mo"MoM"oM"oM"oM"oM Mo"M Mo"o"o"o"o"o"
+MMMMMMoMM"MMMMM"MMoMM"MoMM"MM"MMo"MoMoM"M"MoM"Mo"Mo"Mo"oMo"oM"o"o"oM M Mo"o"o"o"
+MMMMMMMMMMMM"MMMM"MM"MMM"MM"M"MoMMMoMoM"M"oMo"Mo"Mo"Mo"M M"o"oM"o"oM M"o"o"o"o"o
+MMMMMMMMMMMMMMM"MMMMMM"MM"MM"MMoMoMoM"M"M"MoM"Mo"Mo"Mo"M"oM"oM M"oM M M M M M M"
+MMMMMMMM"MMM"MMMMMoMM"MMM"MM"MoMMoM"M"M"M"oM"Mo"M"oM"oM"o"oM M"oM M M"o"oM M M o
+MMMMMMMMMMMMMMMMoMM"MMMoMMMM"MoMoMM"M"M"M"Mo"MoM"Mo"Mo"M"M M"o"oM M"o"o"o"o"o"o"
+MMMMMMMMM"MMMoMMMMMMMMoMMoMMM"MoMMoMM"M"M"oMM"oM"oM"oM"oM"oM"oM M"o"o"M M M M Mo
+MMMMMMMMMMMMMMMoMMoMMoMMMoM"M"MoMoMM"M"M"MoMo"MoM"oM"o"oMo"oM M"o"oM"o"o"o"o"o""
+MMMMMMoMMMMoMMMMM"MM"MoMM"MM"MMo"MoM"M"M"oMoMM"oM"oM"M"o"oM"o"M M"ooM M"o"o"o"o"
+MMMMMMMMMMMMMMoMMMMMM"MM"MM"MM"M"MoMM"M"M"oMo"MoM"oM"oM"M M"oM"oM M M M M M M Mo
+MMMMMMMMMoMMMM"MMoMMMMM"MM"MM"MM"MoM"M"M"MoMoM"oM"oM"oM"oM"oM M M"o"o"M M M M M"
+MMMMMMMMMMM"MMMM"MMoM"MMM"MM"M"M"MoMMM"M"oMoM"Mo"Mo"Mo"oMo"oM"o"oM"o"oM M"o"o"oo
+MMMMMMoMMMMMMMMMMM"MMM"MM"MM"MMM"MoMoMM"M"oMo"MoM"oM"oMo"oMo"M Mo"o"M M M M M Mo
+MMMMMMMMMMMMMoMMMMMMM"MMM"MM"MoM"MoMoM"M"Mo"M"oMoM"oMo"oMo"oM"o"oM Mo"o"o"o"o"oo</pre>
+</div>
+<div class="shot" id="s-pnmfile">
+<h3>pnmfile</h3>
+<p>pnmfile identifies what each intermediate in a pipeline actually is -- format, dimensions and whether it is raw or plain.</p>
+<pre>/dd/CMDS/NETPBM/pgmtopbm /dd/tmp/ramp.pgm &gt; /dd/tmp/ramp.pbm
+&lt;le /dd/tmp/ramp.pgm /dd/tmp/ramp.pbm /dd/tmp/ging.ppm
+/dd/tmp/ramp.pgm:       PGM raw, 64 by 16  maxval 255
+/dd/tmp/ramp.pbm:       PBM raw, 64 by 16
+/dd/tmp/ging.ppm:       PPM raw, 40 by 20  maxval 255</pre>
+</div>
+<div class="shot" id="s-ppmpat">
+<h3>ppmpat</h3>
+<p>ppmpat generates a tartan; ppmtopgm and pgmtopbm dither it down to black and white, and pbmtoascii prints the result.</p>
+<pre>&lt;/NETPBM/ppmtopgm | /dd/CMDS/NETPBM/pgmtopbm | /dd/CMDS/NETPBM/pbmtoascii
+MMMMMMMMMMMMMMMMMM"o"MMMMMMMMMMMMMMMMMMMMo"oM"M MoMMMM"oMo"oM"oMMMM"oM"oM"oM
+MM"MMoMMMMMMMMMMMM"o"MMM"MMMMMMM"MMM"MMM M"o"oM"o"MMoM Mo"M M"oMMMoM Mo"oM M
+MMMMMMMMoMMoMMMoMMM"oMMMMMMoMMMMMMMMMMMMMo"M"o"Mo"MMMo"M M"oM"oMMM M"oM"oM"o
+MMMMMoMMMMMMM"MMMMo"oMMMM"MMMMoMMMMoMMMo"o"Mo"M M"MMMo"M"o"oM"oMMM"oM Mo"oM"
+MMoMMMMMMoMMMMM"MMo"oMMMMMMMM"MMMoMMMMMM"M Mo"M"o"MMMo"M""M Mo"MMMMo"Mo"M M"
+o"o"oo"o"o"o"o"M M o "oo"ooM Mo"o"o"oo"o"o o " o "o"oo o" o o o"oo o o " o "
+MMMMMMMMMMMMMMMMMM M"MMMMMMMMMMMMMMMMMMMo"Mo"M"oM"MMMoMo"Mo"Mo"MMM"o"M""Mo"M
+MMMMMMM"MMMMMMMMMM"o"MMMMoMMMMM"MMMMMMMMo"oM"oMo"oMMMo"oMo"M M"MMMM"oM"M M"o
+MMMoMMMMMMoMMoMMMM"o"MMoMMMMoMMMMMoMMoMMoM"oM Mo"M"MMoM Mo"M"o"MMM Mo"oM"oM"
+MMMM"MMM"MMMMMMMMM"o"MMMMMM"MMMM"MMMMMMMo"oMo"M M"MMMo"M M"oM"oMMM"oM"o"M M"
+M"MMMMMMMMMoMMoMMM"o"MMMoMMMMMMMMMMoMMMMoM Mo"M"o"MMMo"Mo"M M"oMMMM M"o"M"oM
+M"o"ooM M Mo"oM Mo" o"oM Mo"ooM M Mo"ooM o"  o" o" Mo o o" o" o"o"o "o "o o
+Mo"Mo"o"Mo"oM"oM"o"  Mo"M M"o"o"Mo"oM Mo o" "o "o M"o" o "o o" "Mo "o "o o"
+oM"o"M"o"oM"o"oM"o" "o"Mo"M"o"Mo"oM"oM"o" o" o" o M"M " "o o" ""oM "o "o o"
+MMMMMMMMMMMMMMMMMMM""MMMMMMMMMMMMMMMMMMMM"o"Mo"Mo"MMM"M"oM"o"M"MMM"oM"o"oM"M
+ Mo"oM Mo"o"oM M M  "o"o"o"oM Mo"o"o"o"o " o o"  M Mo" o o" "o Mo"o o" "  o
+"oM"o"M M"oMo"Mo"M " "Mo"M"o"M M"oM"Mo"M "o "o "o MoM " o "o o MoM o M "o" "
+"oM"o"M"oMo"oMo"Mo" "M M"oM"oM"oMo"oMo"M " o" o" o"oM "o "o "o M M o o" o" "
+MMMMMMMMMMMMMMMMMMM"oMMMMMMMMMMMMMMMMMMM"M"oM"oM"oMMMM"oM"oM"o"MMM"oM"oM""M"
+"o"o"o"oo"oo"oo"oo o M Mo"o"oo"oo"o"o"oM o"  o o" o"oo o "o " "o"M o "o "o "
+"M"o"M"oM"oM"o"Mo"o "oM"oM"oMo"Mo"M"oMo"o "o" o "o"Mo "o "o M "oM"o "o o" o"
+Mo"M"oMo"oMo"Mo"oMo "o"oM Mo"oMo"M Mo"oM o" o" " o"oM " o"  o" "o"o "o o" o</pre>
+</div>
+<h2 class="cat" id="games">Games</h2>
+<div class="shot" id="s-advent">
+<h3>advent</h3>
+<p>Captured while running.</p>
+<pre>Section 0
+Advent is ready.
+
+     Welcome to adventure!!  Would you like instructions?
+n
+
+      You are standing at the end of a road before a small brick building.
+      Around you is a forest.  A small stream flows out of the building and
+      down a gully.
+enter
+
+      You are inside a building, a well house for a large spring.
+
+    There are some keys on the ground here.
+
+    There is a shiny brass lamp nearby.
+
+    There is food here.
+
+    There is a bottle of water here.
+get lamp
+
+     OK</pre>
+</div>
+<div class="shot" id="s-animal">
+<h3>animal</h3>
+<p>Captured while running.</p>
+<pre>|------------------------------------------------------------------------------|
+                                    Animal                                     |
+ |----------------------------------------------------------------------------||
+ |----------------------------------------------------------------------------||
+ |----------------------------------------------------------------------------||
+ |                                                                            ||
+ |                                                                            ||
+ |                                                                            ||
+ |                                                                            ||
+ |                                                                            ||
+ |                                                                            ||
+ |                                                                            ||
+ |                                                                            ||
+ |                                                                            ||
+ |                                                                            ||
+ |                                                                            ||
+ |                                                                            ||
+ |                                                                            ||
+ |                                                                            ||
+ |                                                                            ||
+ |                                                                            ||
+ |----------------------------------------------------------------------------|-</pre>
+</div>
+<div class="shot" id="s-back">
+<h3>back</h3>
+<p>Captured while running.</p>
+<pre>*  OS-9 BACKGAMMON! ----------------------------------------------------------#</pre>
+</div>
+<div class="shot" id="s-backgammon">
+<h3>backgammon</h3>
+<p>Backgammon against the computer, with the board drawn in characters and the dice rolled for you.</p>
+<pre>Last updated on Saturday, January 11, 1986.
+
+Do you want the rules of the game?  No.
+Do you need instructions for this program?  (Y or N)</pre>
+</div>
+<div class="shot" id="s-bite">
+<h3>bite</h3>
+<p>Bite, a snake variant.</p>
+<pre>                              __---------__
+                            _~             ~_
+                           /                 \
+                          ~                   ~
+                         /                     \
+                         |    XXXX     XXXX    |
+                         |    XXXX     XXXX    |
+                         |    XXX       XXX    |
+                          \         @         /
+                           --\     @@@     /--
+                            | |    @@@    | |
+                            | |           | |
+                            | vvVvvvvvvvVvv |
+                            |  ^^^^^^^^^^^  |
+                             \_           _/
+                               ~---------~</pre>
+</div>
+<div class="shot" id="s-blackjak">
+<h3>blackjak</h3>
+<p>Las Vegas blackjack, also SNOBOL4.</p>
+<pre>Welcome to Las Vagas BlackJack
+
+
+Would you like to know the rules?</pre>
+</div>
+<div class="shot" id="s-bog">
+<h3>bog</h3>
+<p>Boggle, with its letter grid.</p>
+<pre>+---+---+---+---+   Type '?' for help
+| E | I | A | I |
++---+---+---+---+   2:57
+| H | L | P | A |
++---+---+---+---+
+| L | N | N | P |
++---+---+---+---+
+| V | G | E | F |
++---+---+---+---+</pre>
+</div>
+<div class="shot" id="s-chess">
+<h3>chess</h3>
+<p>Captured while running.</p>
+<pre>chess
+
+Do you want to play white or black (w/b)? w
+your name, please: tester
+ ong or Short game (l/s)?</pre>
+</div>
+<div class="shot" id="s-colortest">
+<h3>colortest</h3>
+<p>Captured while running.</p>
+<pre>Unable to access "/win" device or CRT descriptor
+Not a G-Windows sytem???</pre>
+</div>
+<div class="shot" id="s-crib">
+<h3>crib</h3>
+<p>Captured while running.</p>
+<pre>                                      *Do you need instructions for cribbage?</pre>
+</div>
+<div class="shot" id="s-cribbage">
+<h3>cribbage</h3>
+<p>Cribbage dealing a hand.</p>
+<pre>                                      +---------------------------------------+
+                                      |  Score:   0     YOU                   |
+                                      | *.....:.....:.....:.....:.....:.....  |
+                                      | *.....:.....:.....:.....:.....:.....  |
+                                      |                                       |
+                                      | *.....:.....:.....:.....:.....:.....  |
+                                      | *.....:.....:.....:.....:.....:.....  |
+                                      |  Score:   0      ME                   |
+                                      +---------------------------------------+
+
+                                       Do you need instructions for cribbage? N
+                                       Long (to 121) or Short (to 61)?
+                                      *Cut to see whose crib it is -- low card
+                                        wins?</pre>
+</div>
+<div class="shot" id="s-dclock">
+<h3>dclock</h3>
+<p>Captured while running.</p>
+<pre>/dd/CMDS/GAMES/dclock only runs under G-Windows</pre>
+</div>
+<div class="shot" id="s-fuddle">
+<h3>fuddle</h3>
+<p>Captured while running.</p>
+<pre>7 Do you want white (y/n default: y) ?</pre>
+</div>
+<div class="shot" id="s-gnuan">
+<h3>gnuan</h3>
+<p>Captured while running.</p>
+<pre>Book used 9585 of 12000 entries.
+Input the file with the algebraic moves of the game.</pre>
+</div>
+<div class="shot" id="s-greed">
+<h3>greed</h3>
+<p>Greed: eat digits, each one moves you that far. The whole board is generated at random on startup.</p>
+<pre>6744577469597733347227684778579291986469416182259288142521268384871365552242583
+5986117743283397147754178473839356237679412988281837571859543833441812752591637
+3952399156848254339856842922432116396351857782892467572738525354727547443387322
+6999959542615827941782155782168888883611783961467315742333992683475523598677462
+9761839776775259734246824595863186563626313373515385813843466954668264879136139
+61253383754772823@5679749452853439862387227861374466165611583421325632464747771
+6538284652214378359233933422343772925533416683238312949792673168224517447312731
+6856165215189444333214584564551664463771912261282229647473465564533321758827638
+7159422317932177853364751737887322216267515282337933571659331416382521226236664
+2257167941446483797537277698128938154326424545335473691282171317316258964264411
+1421217265285522182126882469752165937494311469539345312443225442234133338431179
+7658784579181449792838695793251994582183593534825791726462416758284279255513881
+6217339957135857687247548791896391887136693678436245173476985952527964447171832
+3418298768161381567199967774872562733511618264228846123567724537435352576821255
+3285436538844699969274334858649198577857915153674585471754497885738527737774295
+2447211899312719961749572643389815253779655494936319565851261666636272978364236
+3282171757475554399688695359812753213398949665876415752194447257351752353524534
+1831421366428197875442117284222812518218127558339276885858573831487587863411591
+3596933247426674561812292496195785494622318829465623447559336345418581817169271
+3935214254491531694763621172693418836354481863541277736762352796175744618424533
+4961769657637457122558649737598829358432417946181283217587295313765196987335285
+8827625983791867147315973755739521639284745324683295387636339528836634922631371
+
+Score: 1  0.06%                         Greed v2.0a - Hit '?' for help.</pre>
+</div>
+<div class="shot" id="s-hack">
+<h3>hack</h3>
+<p>hack, with the inventory open: a fighter starts with a two handed sword in hand and ring mail worn. @ is you, d your dog, G a gnome, $ gold, + a door.</p>
+<pre>                                          a - a +1 mace (weapon in hand).
+                                          b - a +1 bow.
+                                          c - 48 +0 arrows.
+                                          d - a +0 leather armor (being worn).
+                                         --More--
+                                                                    +.d..|
+                                                                    |....|
+                                                                    ------
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Level 1    Hp  16(16)   Ac 8    Str 18      Exp  1</pre>
+</div>
+<div class="shot" id="s-hang">
+<h3>hang</h3>
+<p>Hangman, after guessing a e i o u r s t l n -- the guessed letters are struck from the alphabet and the gallows grows.</p>
+<pre>Unused Letters:                         HEY! No more wrong guesses OK????
+ bcd fgh jk m  pq    vwxyz                   ------------
+                                             |           |
+                                             |           |
+                                             |          O`\
+                                             |          /|_|
+                                             |         ' ||`
+                                             |           ||
+                                        --------------   '`   -----
+                                        |                         |
+                                        |                         |
+a_as_                                   |                         |
+                                        |                         |
+                                        |                         |
+                                        |                         |
+                                        |                         |
+                                        |                         |
+                                        |                         |
+                                        |                         |
+                                        ---------------------------
+There are 5 letters in the word
+Sorry</pre>
+</div>
+<div class="shot" id="s-hotel">
+<h3>hotel</h3>
+<p>hotel, a two-player board game played by coordinates.</p>
+<pre>Welcome to the game of Hotel.
+
+Instructions? (Y/N)</pre>
+</div>
+<div class="shot" id="s-lander">
+<h3>lander</h3>
+<p>Lunar lander, with its instrument panel.</p>
+<pre>                                 Lunar Lander
+
+
+                    The classic arcade game comes to OS-9.
+
+
+                             '0'-'9' - power level
+                                   Controls:
+                         +--------------------------+
+                         |Unable to display HS file.|
+                         --press space to start game--
+                'x' or 'k' - set vertical thrust to power level
+                  'c' or 'l' - set right retro to power level
+
+
+
+                         Stacey Campbell at HCR, 1989
+
+                         --press space to start game--</pre>
+</div>
+<div class="shot" id="s-larn">
+<h3>larn</h3>
+<p>Captured while running.</p>
+<pre>    Welcome to the game of Larn.  At this moment, you face a great problem.
+Your daughter has contracted a strange disease, and none of your home remedies
+seem to have any effect.  You sense that she is in mortal danger, and you must
+try to save her.  Time ago you heard of a land of great danger and opportunity.
+Perhaps here is the solution you need.
+
+    It has been said that there once was a great magician who called himself
+Polinneaus.  Many years ago, after having many miraculous successes, Polinneaus
+retired to the caverns of Larn, where he devoted most of his time to the
+creation of magic.   Rumors have it that one day Polinneaus set out to dispel
+an attacking army in a forest some distance to the north.  It is believed that
+here he met his demise.
+
+    The caverns of Larn, it is thought, must be magnificent in design,
+and contain much magic and treasure.  One option you have is to undertake a
+journey into these caverns.
+
+
+    Good Luck!  You're going to need it!
+
+
+
+
+Press return to continue:</pre>
+</div>
+<div class="shot" id="s-maze">
+<h3>maze</h3>
+<p>Captured while running.</p>
+<pre>the quick brown fox
+
+Process   Pid: 3, maze, edition 7
+    Exit code: E_PRCABT(228) Process Aborted
+  Directories: Current   - /dd
+               Execution - /dd/CMDS
+        Files: 00 fCons /term
+               01 fCons /term
+               02 fCons /term</pre>
+</div>
+<div class="shot" id="s-mille">
+<h3>mille</h3>
+<p>Mille Bornes, the card game.</p>
+<pre>                                        |                     You   Comp   Value
+                                        | Milestones Played     0     0
+                                        |       Each Safety     0     0      100
+                                        |    All 4 Safeties     0     0      300
+                                        |  Each Coup Fourre     0     0      300
+--HAND--            --DECK--            |                    ----   ----   -----
+P                     89                |        Hand Total     0     0
+1 100               --DISCARD--         |                   -----  -----
+2 75                                    |     Overall Total     0     0
+3 Go                                    |              Games    0     0
+5 75                                    | p: pick            q: quit
+6 Go                                    | u: use #           o: order hand
+--BATTLE--          --BATTLE--          | d: discard #       s: save
+                                        | w: toggle window   r: reprint
+--SPEED--           --SPEED--           |
+                                        |_______________________________________
+--MILEAGE--                              --MILEAGE--</pre>
+</div>
+<div class="shot" id="s-mines">
+<h3>mines</h3>
+<p>Captured while running.</p>
+<pre>  A B C D E F G H I J K L M N O P
+A + + + + + + + + + + + + + + + + A
+B + + + + + + + + + + + + + + + + B
+C + + + + + + + + + + + + + + + + C
+D + + + + + + + + + + + + + + + + D
+E + + + + + + + + + + + + + + + + E
+F + + + + + + + + + + + + + + + + F
+G + + + + + + + + + + + + + + + + G
+H + + + + + + + + + + + + + + + + H
+I + + + + + + + + + + + + + + + + I           Mines - by David Ravegum
+J + + + + + + + + + + + + + + + + J         Ported to OSK by Russ Hoffman
+K + + + + + + + + + + + + + + + + K
+L + + + + + + + + + + + + + + + + L               Markers left: 40
+M + + + + + + + + + + + + + + + + M
+N + + + + + + + + + + + + + + + + N
+O + + + + + + + + + + + + + + + + O
+P + + + + + + + + + + + + + + + + P
+  A B C D E F G H I J K L M N O P
+
+Row: (A-P) h
+Column: (A-P) j                                         ? for help
+                                                        q to quit</pre>
+</div>
+<div class="shot" id="s-nchess">
+<h3>nchess</h3>
+<p>GNU Chess 4.0 with its plain display -- the board as characters, which is how it was played over a serial line.</p>
+<pre> - - - - - - - -
+ - - - - - - - -
+ - - - - - - - -
+ - - - - - - - -
+ p p p p p p p p
+ r n b q k b n r
+
+
+Your move is?
+Move# 1    Target= 1    Clock: 0
+ 1.      7    0      21    g8f6
+ 2.     -6    0     116    g8f6  b1c3
+ 3&amp;      0    0     229    g8f6  b1c3  b8c6
+ 3.      0    0     691    g8f6  b1c3  b8c6
+ 4&amp;    -10    0    1739    g8f6  b1c3  b8c6  d2d4
+ 4.    -10    0    3407    g8f6  b1c3  b8c6  d2d4
+ 5&amp;    -19    1    8175    g8f6  e4e5  f6e4  d2d3  e4c5
+ 5.    -19    2   13753    g8f6  e4e5  f6e4  d2d3  e4c5
+Nodes= 13753  Eval= 4509  Hash= 0  Rate= 6876  CPU= 0:2.0
+
+My move is: g8f6
+
+
+Your move is?</pre>
+</div>
+<div class="shot" id="s-nobs">
+<h3>nobs</h3>
+<p>Captured while running.</p>
+<pre>                              XXX  XXX  XXX  XXX  XXX  XXX
+
+
+
+
+
+                            | ::::: ::::: ::::: ::::: ::::: :::::
+ XXX  XXX
+                            | ::::: ::::: ::::: ::::: ::::: :::::
+
+
+
+
+                               Qh   Jh   6c   2h   As  10s
+                                a    b    c    d    e    f
+
+
+     It is my crib.</pre>
+</div>
+<div class="shot" id="s-piano">
+<h3>piano</h3>
+<p>Captured while running.</p>
+<pre>piano: syntax: piano &lt;base note&gt; &lt;note duration&gt;</pre>
+</div>
+<div class="shot" id="s-poker">
+<h3>poker</h3>
+<p>Cold-hand poker, one of four SNOBOL4 games here -- the interpreter was compiled to C and the games came with it.</p>
+<pre>Welcome to Cold-hand Poker
+
+
+Would you like to know the rules?</pre>
+</div>
+<div class="shot" id="s-puz15">
+<h3>puz15</h3>
+<p>Captured while running.</p>
+<pre>                             +----+----+----+----+
+                             |  4 |  6 |  2 | 12 |
+                             +----+----+----+----+
+                             | 11 |  9 |  3 | 15 |
+                             +----+----+----+----+
+                             | 10 | 14 | 13 |  8 |
+                             +----+----+----+----+
+                             |  7 |  1 |  5 |    |
+                             +----+----+----+----+
+
+
+
+
+
+
+Time used: 00 min 00 sec   Move: 0
+bye!</pre>
+</div>
+<div class="shot" id="s-puzzle15">
+<h3>puzzle15</h3>
+<p>The fifteen puzzle.</p>
+<pre>                             +----+----+----+----+
+                             | 14 | 11 |  5 |  3 |
+                             +----+----+----+----+
+                             |  6 | 12 | 15 |  2 |
+                             +----+----+----+----+
+                             | 10 |  1 | 13 |  7 |
+                             +----+----+----+----+
+                             +----+----+----+----+
+
+
+
+
+
+
+Time used: 00 min 00 sec   Move: 0</pre>
+</div>
+<div class="shot" id="s-queens">
+<h3>queens</h3>
+<p>The eight-queens problem, solved and drawn.  An IOCCC entry: it reads the board size on standard input.</p>
+<pre> # #Q# #
+# Q # #
+Q# # # #
+# # # Q
+ # Q # #
+# # #Q#
+
+ # # # Q
+# Q # #
+Q# # # #
+# # #Q#
+ Q # # #
+# # Q #
+ # # #Q#
+# #Q# #
+
+ # # # Q
+# #Q# #
+Q# # # #
+# Q # #
+ # # Q #
+#Q# # #
+ # # #Q#</pre>
+</div>
+<div class="shot" id="s-robots">
+<h3>robots</h3>
+<p>Robots. They chase you; you teleport.</p>
+<pre>                           ROBOTS                                 MOVE      V3.
+               I#   #                      #   #    #
+                           ##                                       8
+             #                                                     7 9
+                                                                  4   6
+               #                                                   1 3
+                                 #        #                         2
+                          #
+
+      #
+               #                             #
+
+               #                             #
+
+                                #                                     KEY
+                                                                   I -you
+                     #                                             # -robot
+                                     #                             @ -junk heep
+
+
+                                                                   SCREEN    1
+                                                                   ROBOTS   20
+
+                            PJC                                SCORE         0</pre>
+</div>
+<div class="shot" id="s-snake">
+<h3>snake</h3>
+<p>Snake: steer with h j k l, collect the treasure, reach the goal without being caught.</p>
+<pre>|-----------------------------------------------------------------------------|
+|                                                                             |
+|                                                                             |
+|                               $                                             |
+|                                                                             |
+|                                                                             |
+|                                                                             |
+|                                                                             |
+|                                                                             |
+|                                                                        I    |
+|                                                                             |
+|                                                                             |
+|                                                                             |
+|                                                                             |
+|                                                                             |
+|                                                                             |
+|s        I                                                                   |
+|S[10;73H  I                                    #                             |
+| [9;73H3H  I                                                                 |
+| s [12;73HI                                                                  |
+|s [13;73HH  I                                                                |
+|  13;74HI                                                                    |
+| [13;76HI  I                                                                 |
+|----------I------------------------------------------------------------------[I</pre>
+</div>
+<div class="shot" id="s-sokoban">
+<h3>sokoban</h3>
+<p>Captured while running.</p>
+<pre>                             ##########
+                             ##      ##
+                             ##$$    ##
+                         ######    $$####
+                         ##    $$  $$  ##
+                     ######  ##  ####  ##      ############
+                     ##      ##  ####  ##########    ....##
+                     ##  $$    $$            @@      ....##
+                     ##########  ######  ##  ####    ....##
+                             ##          ##################
+                             ##############
+
+
+
+
+
+Level:   1  Packets:   6  Saved:   0  Moves:          2  Pushes:          0</pre>
+</div>
+<div class="shot" id="s-teachgammon">
+<h3>teachgammon</h3>
+<p>Captured while running.</p>
+<pre>   These rules consist of text describing how to play Backgammon
+followed by a tutorial session where you play a practice game
+against the computer.  When using</pre>
+</div>
+<div class="shot" id="s-tess">
+<h3>tess</h3>
+<p>Captured while running.</p>
+<pre>               /*--------------/*      ------------------------------------
+             /  '            /  '           Beyond The Tesseract   V2.0p
+           /   '|          /   '|      ------------------------------------
+        */----'---------*/    ' |          An abstract text adventure by
+       '|    '  |      '|    '  |            David Lo   4516 Albert St.
+      ' |   '   |     ' |   '   |                       Burnaby, B.C.
+     '  |  '   /*----'--|--'---/*                       V5C 2G5   Canada
+    '   | '  /  '   '   | '  /  '        email c/o: viola@idacom.cs.ubc.ca
+   '    |' /   '   '    |' /   '       ------------------------------------
+  '    /*/----'---'----/*/    '         This is FreeShareAnythingWare.
+ '   /  '    '   '   /  '    '          If you like this program, hate it,
+'  /   '|   '   '  /   '|   '           or really don't care at all, then
+*/----'----'----*/    ' |  '            I would be happy to hear from you
+|    '  | '     |    '  | '             (a letter, a post-it note, etc).
+|   '   |'      |   '   |'
+|  '   /*-------|--'---/*               Please share unmodified copies of
+| '  /          | '  /                  this adventure with everyone.
+|' /            |' /                   ------------------------------------
+*/--------------*/                            'Set the software free'
+
+Scenario and instructions?</pre>
+</div>
+<div class="shot" id="s-tet">
+<h3>tet</h3>
+<p>Tetris. Pieces stack, rows score, and the high-score table at the right is written to /dd/GAMES/tet.hs.</p>
+<pre>              .----------.                .----------.
+              |          |                |  .58...  |
+              |          |                `----------'
+              |    GG    |
+              |     GG   |         .---------------------------.
+              |    GG    |         |     Hit 'm' for menu      |
+              |     GG   |         |                           |
+              |    RRR   |         |        HIGH SCORES        |
+              |    R     |         | 1.               59       |
+              |    BBB   |         | 2.               58       |
+              |      B   |         | 3.               58       |
+              |    RRR   |         | 4.               58       |
+              |    R     |         | 5.                        |
+              |    RRR   |         | 6.                        |
+              |    R     |         | 7.                        |
+              |    VVVV  |         | 8.                        |
+              |     OO   |         | 9.                        |
+              |     OO   |         |10.                        |
+              |    RRR   |         |                           |
+              |    R OO  |         |                           |
+              |      OO  |         |                           |
+              `----------'         `---------------------------'</pre>
+</div>
+<div class="shot" id="s-tt">
+<h3>tt</h3>
+<p>Captured while running.</p>
+<pre>||                    ||  TETRIS FOR TERMINALS
+||                    ||
+||                    ||  Written by Mike Taylor
+||                    ||  Email: mirk@uk.ac.warwick.cs
+||                    ||  Started: Thu Aug 27 15:42:45 2026
+||                    ||
+||                    ||  Game level: 0
+||                    ||
+||                    ||  Score:
+||                    ||  Pieces:
+||                    ||  Levels:
+||                    ||
+||                    ||    Use keys:
+||                    ||    =========
+||                    ||    Move left:  ','
+||                    ||    Move right: '/'
+||                    ||    Rotate:     '.'
+||                    ||    Drop:       ' '
+||                    ||    Pause:      's'
+||                    ||    Quit:       'q'
+++===== Aborted! =====++    Refresh:    '^L'</pre>
+</div>
+<div class="shot" id="s-tttt">
+<h3>tttt</h3>
+<p>Tic-tac-toe.  The board is numbered; you answer with a square.</p>
+<pre>                        Tic-Tac-Toc-Toe - by Eric Lechner
+
+
+                                  A   B   C   D
+                                 --- --- --- ---
+                              0 |   |   |   |   |
+                                 --- --- --- ---
+                              1 |   |   |   |   |
+                                 --- --- --- ---
+                              2 |   |   |   |   |
+                                 --- --- --- ---
+                              3 |   |   |   |   |
+                                 --- --- --- ---
+                                 Your move :   1</pre>
+</div>
+<div class="shot" id="s-ularn">
+<h3>ularn</h3>
+<p>Captured while running.</p>
+<pre>                The Addiction of Ularn
+
+Pick a character class...
+
+
+                    Character
+
+                a)  Ogre
+                b)  Wizard
+                c)  Klingon
+                d)  Elf
+                e)  Rogue
+                f)  Geek
+                g)  Dwarf
+                h)  Rambo
+
+
+
+
+
+
+
+
+So, what are ya?</pre>
+</div>
+<div class="shot" id="s-wanderer">
+<h3>wanderer</h3>
 <p>Captured while running.</p>
 <pre>+---------------------------------+             Score      Diamonds
 |                     \_ /^\/^\ _/|                     Found   Total
@@ -1337,8 +1908,8 @@ at all; most of the programs under CMDS need no module whatever.  The rest
 |          .  .  .  .            \|
 +---------------------------------+             Moves remaining = 997</pre>
 </div>
-<div class="shot">
-<h2>wisecrack</h2>
+<div class="shot" id="s-wisecrack">
+<h3>wisecrack</h3>
 <p>wisecrack writes to /pipe/txtpipe and prints nothing itself; attach a reader and its messages appear.</p>
 <pre>AUF WIEDERSEHEN 1993
 COVE GRUESST EFFO
@@ -1365,15 +1936,8 @@ GRUSS VON FILE HUGO
 + WERDE  MITGLIED +
 +</pre>
 </div>
-<div class="shot">
-<h2>wish</h2>
-<p>Captured while running.</p>
-<pre>Wishing for: 3 potions of gain level
-Game 1
-what happened to "hack"</pre>
-</div>
-<div class="shot">
-<h2>world</h2>
+<div class="shot" id="s-world">
+<h3>world</h3>
 <p>Captured while running.</p>
 <pre>WORLD. Amiga C  Version 1.02 Copyright 1987 J.D. McDonald  GOOD LUCK!
 
@@ -1390,8 +1954,94 @@ odd mirage effect which so far has prevented your mother ship
 850 kilometers above from getting clear photos of the large
 valley which must lie just beyond the pass you now approach.</pre>
 </div>
-<div class="shot">
-<h2>worms</h2>
+<div class="shot" id="s-zot">
+<h3>zot</h3>
+<p>Captured while running.</p>
+<pre>syntax: zot [&lt;opts&gt;] {&lt;text&gt; [&lt;opts&gt;]}
+Function: echo text line(s) to stdout in interesting ways
+Options:
+        -d          display text line in all styles, one at a time
+        -s          help with styles  :-)
+        -s[=]&lt;num&gt;  use style &lt;num&gt;
+        -z[=&lt;file&gt;] get text from &lt;file&gt; (or stdin)
+
+By: Marc Kriguer (kriguer@ernie.berkeley.edu) and
+    Roger Murray (ucla-an!remsit!rem@ee.ucla.edu)
+
+error: either &lt;text&gt; or -z must be specified</pre>
+</div>
+<h2 class="cat" id="screen-toys">Screen toys</h2>
+<div class="shot" id="s-life">
+<h3>life</h3>
+<p>Conway's Life. It detects the oscillator period and says so -- this pattern cycles every 8 generations.</p>
+<pre>................................................................................
+
+
+
+            .@
+            @@.
+          .@.@@
+          @@@..@
+           .@.@ @
+             @ @.@.
+              @..@@@
+               @@.@.
+               .@@
+                @.</pre>
+</div>
+<div class="shot" id="s-rain">
+<h3>rain</h3>
+<p>Rain, a screen toy.</p>
+<pre>                                         o
+
+
+
+                                        -
+                                       | |                 / \       O
+                                        -                / \O |
+                                                           \ /
+                                                            -
+
+                                                                   -
+                                                                  |.|
+                                                                   -
+
+
+           -
+          / \     -
+         | O |   / \                                                        .
+          \ /   | O |
+           -     \ /</pre>
+</div>
+<div class="shot" id="s-suicide">
+<h3>suicide</h3>
+<p>Captured while running.</p>
+<pre>  ((( (   ( )) ) ))Aaaaauuuuuuuugggggggggggggggghhhhhhhhhhhhhhhhhhhhh!!!!!!!!!!
+    | ( (((()( ( )|
+\   |    )  ))) ) |
+ \  |             |
+\ \ |             |
+ \ \   _____      ---------------.
+  \   /     \                ___/
+   \  |      \    ----------/
+    | |       |   |
+    |  \_____/    |
+    |             |
+    |             |
+    |             |
+    |             |
+    |             |
+    |             |
+    |             |
+    |             |
+    |             |
+   /               \                         o    /
+  |                 |                      /
+ /                   \                   \      I
+                      -----------------------\/-----------------------</pre>
+</div>
+<div class="shot" id="s-worms">
+<h3>worms</h3>
 <p>Worms, a screen toy.</p>
 <pre>                                                                    O
 
@@ -1416,21 +2066,850 @@ valley which must lie just beyond the pass you now approach.</pre>
 #                                                    *    *
 #                                                    *   *</pre>
 </div>
-<div class="shot">
-<h2>zot</h2>
-<p>Captured while running.</p>
-<pre>syntax: zot [&lt;opts&gt;] {&lt;text&gt; [&lt;opts&gt;]}
-Function: echo text line(s) to stdout in interesting ways
-Options:
-        -d          display text line in all styles, one at a time
-        -s          help with styles  :-)
-        -s[=]&lt;num&gt;  use style &lt;num&gt;
-        -z[=&lt;file&gt;] get text from &lt;file&gt; (or stdin)
-
-By: Marc Kriguer (kriguer@ernie.berkeley.edu) and
-    Roger Murray (ucla-an!remsit!rem@ee.ucla.edu)
-
-error: either &lt;text&gt; or -z must be specified</pre>
+<h2 class="cat" id="amusements">Amusements</h2>
+<div class="shot" id="s-areacode">
+<h3>areacode</h3>
+<p>Looks up US telephone area codes.</p>
+<pre>/dd/CMDS/areacode 212 415 816 314
+Area code 212 is New York City (Manhattan and Bronx) New York.
+Area code 415 is Oakland and San Francisco, California.
+Area code 816 is Kansas City and Saint Joseph, Missouri.
+Area code 314 is Saint Louis, Columbia, Missouri.</pre>
 </div>
-<footer>Captured by <code>tools/playtest.py</code> and rendered by <code>tools/ansiscreen.py</code>. Re-make with <code>tools/playtest.py --all && tools/gen_screens.py</code>.</footer>
+<div class="shot" id="s-bio">
+<h3>bio</h3>
+<p>Captured while running.</p>
+<pre>/dd/CMDS/bio: cannot execute binary file</pre>
+</div>
+<div class="shot" id="s-card">
+<h3>card</h3>
+<p>Captured while running.</p>
+<pre>                                              may
+
+
+            *                           *                          *
+            |                           |                          |
+            |                          may                         |
+            |                           |            [9;2          |
+            |                           |                          |
+       bring peace                      |                          |
+      may every day                     |                          |
+     be as christmas                    |                          |
+    filled with quiet                   |                          |
+   expectant happiness                  |                          |
+  joy and understanding                 |                        every
+ our human souls shining                |                       falling
+loving caring for another               |                      snowflake
+~~~~~~~~~~~~~~~~~~~~~~~~~   ~~~~~~~~~~~~~~~~~~~~~~~~~  ~~~~~~~~~~~~~~~~~~~~~~~~~
+
+                          &lt;&lt;*&gt;&gt;  Merry Christmas! &lt;&lt;*&gt;&gt;</pre>
+</div>
+<div class="shot" id="s-england">
+<h3>england</h3>
+<p>Captured while running.</p>
+<pre>  12  Precipitation       Mist    Warm ( 65)  Sprinkle     Brisk         Rain -,
+  13  Precipitation  Heavy Fog    Warm ( 65)    Shower     Light         Storm ,
+  14          Clear      Clear    Warm ( 65)      None      Calm
+  15          Clear      Clear    Warm ( 70)      None      Calm
+  16          Clear      Clear    Warm ( 65)      None      Calm
+  17          Clear      Clear    Fair ( 60)      None      Calm
+  18          Clear      Clear    Warm ( 65)      None      Calm
+  19          Clear      Clear    Warm ( 65)      None      Calm
+  20          Clear      Clear    Fair ( 50)      None      Calm
+  21          Clear      Clear    Warm ( 70)      None      Calm         Fall Ex
+  22          Clear      Clear    Fair ( 55)      None      Calm
+  23          Clear      Clear    Warm ( 70)      None      Calm
+  24          Clear      Clear     Hot ( 80)      None      Calm
+  25          Clear      Clear    Warm ( 65)      None      Calm
+  26          Clear      Clear    Warm ( 65)      None      Calm
+  27  Precipitation     Cloudy    Warm ( 65)  Sprinkle  Blustery         Rain -,
+  28  Precipitation       Mist    Warm ( 65)     Heavy  Blustery         Storm ,
+  29          Clear      Clear    Fair ( 50)      None      Calm
+  30          Clear      Clear    Warm ( 65)      None      Calm
+High Temp =  80, Low Temp =  45, Average Temp =  62
+
+October
+   Clear    Fair ( 55)      None     Light        None     Light</pre>
+</div>
+<div class="shot" id="s-florida">
+<h3>florida</h3>
+<p>The same weather simulator set on the Gulf coast -- Gregorian calendar, and a January that never freezes.</p>
+<pre>  16  Precipitation  Heavy Fog     Hot ( 85)  Sprinkle  Blustery         Rain -,
+  17  Precipitation       Mist     Hot ( 80)    Shower     Light         Storm ,
+  18  Precipitation       Mist     Hot ( 80)  Sprinkle      Calm         Rain -,
+  19  Precipitation       Mist     Hot ( 85)    Shower     Light         Storm ,
+  20  Precipitation       Mist     Hot ( 95)    Shower      Calm         Storm ,
+  21  Precipitation       Mist    Warm ( 75)  Sprinkle  Blustery         Rain -,
+  22  Precipitation     Cloudy     Hot ( 80)  Sprinkle     Light         Rain -,
+  23          Clear      Clear    Warm ( 70)      None      Calm
+  24       Overcast       Mist     Hot ( 90)      None      Calm
+  25       Overcast     Cloudy     Hot ( 80)      None      Calm
+  26       Overcast       Mist     Hot ( 80)      None     Brisk
+  27       Overcast       Mist     Hot ( 80)      None      Calm
+  28  Precipitation       Mist     Hot ( 80)    Shower     Light         Storm ,
+  29  Precipitation       Mist     Hot ( 80)     Heavy     Brisk         Storm ,
+  30          Clear      Clear     Hot ( 90)      None      Calm
+High Temp =  95, Low Temp =  60, Average Temp =  81
+
+May
+   1          Clear      Clear    Warm ( 70)      None      Calm         May Day
+   2          Clear      Clear     Hot ( 90)      None      Calm
+   3          Clear      Clear     Hot ( 85)      None     Light
+   4          Clear      Clear     Hot ( 85)      None      Calm
+   5          Clear      Clear    Warm ( 65)      None      Calm
+   6          Clear      Clear     Hot ( 85)      None</pre>
+</div>
+<div class="shot" id="s-japan">
+<h3>japan</h3>
+<p>The weather simulator on the Japanese calendar and the North Pacific.</p>
+<pre>  16  Precipitation  Heavy Fog    Warm ( 65)    Shower  Blustery         Storm ,
+  17          Clear      Clear    Fair ( 60)      None      Calm
+  18  Precipitation     Cloudy    Warm ( 65)     Heavy  Blustery         Storm ,
+  19  Precipitation       Mist    Warm ( 75)     Heavy  Blustery         Storm ,
+  20  Precipitation     Cloudy    Warm ( 65)     Heavy  Blustery         Storm ,
+  21          Clear      Clear    Warm ( 65)      None      Calm
+  22          Clear      Clear    Warm ( 65)      None      Calm
+  23          Clear      Clear    Warm ( 65)      None      Calm
+  24          Clear      Clear    Warm ( 70)      None     Light
+  25  Precipitation       Mist    Warm ( 65)     Heavy  Blustery         Storm ,
+  26  Precipitation       Mist    Warm ( 65)  Sprinkle     Brisk         Rain -,
+  27       Overcast       Mist    Fair ( 60)      None      Calm
+  28          Clear      Clear    Warm ( 65)      None      Calm         Buddhi,
+  29          Clear      Clear    Fair ( 60)      None      Calm
+  30          Clear      Clear    Warm ( 75)      None      Calm         New Mo,
+High Temp =  80, Low Temp =  50, Average Temp =  64
+
+Dragon
+   1          Clear      Clear    Warm ( 70)      None     Light         Shinto,
+   2          Clear      Clear     Hot ( 85)      None      Calm
+   3          Clear      Clear    Warm ( 70)      None     Light
+   4          Clear      Clear    Warm ( 65)      None     Light
+   5       Overcast       Mist    Warm ( 70)      None     Brisk         Boy's )
+   6  Precipitation  Heavy Fog    Warm ( 70)     Heavy      Calm</pre>
+</div>
+<div class="shot" id="s-logisim">
+<h3>logisim</h3>
+<p>Captured while running.</p>
+<pre>Syntax: logisim [opts] filename [opts]
+Function: Simulates logical circuit described by filename
+Options:
+    -i  shows instable states
+logisim: one and only one filename required</pre>
+</div>
+<div class="shot" id="s-name">
+<h3>name</h3>
+<p>A random name generator -- ten at a time.</p>
+<pre>/dd/CMDS/name 10
+Enalexyq
+Anevico
+Z'necoba
+Omevaf
+B'k'd'ry
+Uxopo
+Vyzeh'
+Uhaqeyeju
+Asih
+Cihetaras</pre>
+</div>
+<div class="shot" id="s-newsgen">
+<h3>newsgen</h3>
+<p>A fake news bulletin, assembled from parts.</p>
+<pre>/dd/CMDS/GAMES/newsgen
+
+
+                        T O D A Y ' S    N E W S
+
+                                Thu Aug 27
+
+THE TOP STORY--
+Phyllis Diller mysteriously broke a leg while cross-country skiing with
+Richard Pryor in the wee hours of the morning.  It is rumored to have been
+quite a mistake.  Diller, who had never done such a thing before, swears it'll
+never happen again.
+
+THE WEATHER--
+Small car warning in effect.  Hail (up to 1300 cm. in
+diameter) predicted later today.</pre>
+</div>
+<div class="shot" id="s-pwgen">
+<h3>pwgen</h3>
+<p>Captured while running.</p>
+<pre>usage: /dd/CMDS/pwgen length [count]</pre>
+</div>
+<div class="shot" id="s-rpoem">
+<h3>rpoem</h3>
+<p>Captured while running.</p>
+<pre>A timid rake may bend up gentle power
+And revere the activity of a petal.
+But a gate of time reveres power beside war
+While gentle power understands the timid rake.
+------------------------------------------
+Verse 28
+A sorrowful petal may sing beside the action of a dog
+And worship a mournful flower.
+But a frolicking pond reveres a happy cloud
+While the action of a dog becomes the sorrowful petal.
+------------------------------------------
+Verse 29
+A mournful bone should break on war under hope
+And heal mournful hope.
+But a lustful cloud pursues a muffin of time
+While war under hope heals the mournful bone.
+------------------------------------------
+Verse 30
+A rusty muffin may wiggle on energy under wisdom
+And become a pensive shovel.
+But a gentle face reveres the cloud beside the endurance of a flower
+While energy under wisdom becomes the rusty muffin.
+------------------------------------------</pre>
+</div>
+<div class="shot" id="s-rstory">
+<h3>rstory</h3>
+<p>Captured while running.</p>
+<pre>suffocate farmer,  farmer won't break the sword,  sword
+won't cut the parrot,   parrot won't jump over the large
+rock and I shan't get home tonight."  But the smoke
+would not.  The little old woman went over hill and
+dale and she met a wind.  She said, "wind, wind, disperse
+smoke,  smoke won't suffocate the farmer,  farmer won't
+break the sword,  sword won't cut the parrot,   parrot
+won't jump over the large rock and I shan't get home
+tonight."  But the wind would not.  The little old woman
+went toward the dark school and she met a smoke.  She
+said, "smoke, smoke, pollute wind,  wind won't disperse
+the smoke,  smoke won't suffocate the farmer,  farmer
+won't break the sword,  sword won't cut the parrot,
+parrot won't jump over the large rock and I shan't get
+home tonight."  The smoke knew the little old woman
+and, in fact, had been saved by her from a wild tiger.
+So the  smoke began to pollute the wind; the  wind began
+to disperse the smoke; the  smoke began to suffocate
+the farmer; the  farmer began to break the sword; the
+sword began to cut the parrot; the   parrot began to
+jump over the large rock and the little old woman got
+home that night.</pre>
+</div>
+<div class="shot" id="s-scales">
+<h3>scales</h3>
+<p>A musical scale generator: every scale it knows, written out in note names.</p>
+<pre>/dd/CMDS/scales -a
+Initializing...
+Building deck...90 cards made
+Shuffling list...
+Writing list to scales.lst
+Done!</pre>
+</div>
+<div class="shot" id="s-shire">
+<h3>shire</h3>
+<p>A weather simulator for the Shire, keeping the Middle-earth calendar: Afteryule, Solmath, Rethe.  One of six regions here.</p>
+<pre>  22  Precipitation       Mist    Fair ( 55)  Sprinkle  Blustery         Rain -,
+  23       Overcast     Cloudy    Fair ( 55)      None     Light
+  24  Precipitation  Heavy Fog    Fair ( 55)     Heavy     Light         Rain -,
+  25  Precipitation       Mist    Fair ( 45)  Sprinkle  Blustery         Rain -,
+  26  Precipitation     Cloudy    Fair ( 55)  Sprinkle  Blustery         Rain -,
+  27  Precipitation  Light Fog    Fair ( 45)    Shower  Blustery         Rain -,
+  28  Precipitation  Light Fog    Fair ( 50)    Steady  Blustery         Rain -,
+  29  Precipitation       Mist    Fair ( 60)    Shower     Brisk         Rain -,
+  30  Precipitation       Mist    Warm ( 70)     Heavy      Calm         Storm ,
+High Temp =  70, Low Temp =  35, Average Temp =  55
+
+Thrimidge
+   1  Precipitation       Mist    Warm ( 65)    Shower     Light         Storm ,
+   2          Clear      Clear    Fair ( 50)      None      Calm
+   3          Clear      Clear    Warm ( 65)      None      Calm
+   4          Clear      Clear    Warm ( 65)      None      Calm
+   5          Clear      Clear    Warm ( 65)      None      Calm
+   6          Clear      Clear    Warm ( 65)      None      Calm
+   7  Precipitation       Mist    Fair ( 50)    Shower     Light         Rain -,
+   8  Precipitation       Mist    Fair ( 60)     Heavy     Light         Rain -,
+   9       Overcast     Cloudy     Hot ( 85)      None      Calm
+  10       Overcast       Mist    Warm ( 65)      None      Calm
+  11       Overcast     Cloudy    Warm ( 65)      None      Calm
+  12</pre>
+</div>
+<div class="shot" id="s-textb">
+<h3>textb</h3>
+<p>The Mandelbrot set, drawn in ASCII on an 80x24 terminal.  It asks for a centre and a range; -2.3, -2.0, 4.0 gives the whole set.</p>
+<pre>/dd/CMDS/textb
+Input X_COORD: -2.3
+Input Y_COORD: -2.0
+Input    RANGE: 4.0
+Input iter.:</pre>
+</div>
+<div class="shot" id="s-touchtype">
+<h3>touchtype</h3>
+<p>Captured while running.</p>
+<pre>&lt;&gt;&lt;&gt;&lt;&gt;&lt;&gt;&lt;&gt;&lt;&gt;&lt;&gt;&lt;&gt;&lt;&gt;&lt;&gt;&lt;&gt;&lt;&gt;&lt;&gt;&lt;&gt;&lt;&gt;&lt;&gt;&lt;&gt;&lt;&gt;&lt;&gt;&lt;&gt;&lt;&gt;&lt;&gt;&lt;&gt;&lt;&gt;&lt;&gt;&lt;&gt;&lt;&gt;&lt;&gt;&lt;&gt;&lt;&gt;&lt;&gt;&lt;&gt;&lt;&gt;&lt;&gt;&lt;&gt;&lt;&gt;&lt;&gt;&lt;&gt;&lt;&gt;&lt;
+
+
+
+
+                              The TYPEFAST Game
+
+
+
+
+
+
+          Do you need instructions?  Press y or n (no RETURN)
+
+
+
+
+
+
+
+
+
+Fatal Game Error - Unexpected signal received</pre>
+</div>
+<div class="shot" id="s-travesty">
+<h3>travesty</h3>
+<p>Captured while running.</p>
+<pre>the quick brown fox jumps over the lazy dog and the quick red fox
+runs over the lazy brown dog while the quick dog naps</pre>
+</div>
+<h2 class="cat" id="system-modules">System &amp; modules</h2>
+<div class="shot" id="s-about">
+<h3>about</h3>
+<p>The collection's own guide: `about hack' answers what a program is, where it came from, what it opens and whether its source survived.</p>
+<pre>/dd/CMDS/about hack
+ hack           hack -- the original dungeon crawl NetHack grew out of
+
+  for        GAMES -- Dungeon crawl
+  needs      /h0/games/hack/playground              here
+             /dd/sys/termcap                        here
+             /h0/sys/termcap                        here
+  source     none on this disk
+  docs       DOC/hack
+
+  run it     hack
+  take it    keep hack</pre>
+</div>
+<div class="shot" id="s-aprocs">
+<h3>aprocs</h3>
+<p>A process monitor.  os9exec is the kernel here, so these are real OS-9 processes with real process IDs.</p>
+<pre>/dd/CMDS/aprocs
+F$SetSys: unimplemented 0030 (size=80000004)
+F$SetSys: unimplemented 0034 (size=80000004)
+
+Process   Pid: 3, aprocs, edition 110
+    Exit code: E_PRCABT(228) Process Aborted
+  Directories: Current   - /dd
+               Execution - /dd/CMDS</pre>
+</div>
+<div class="shot" id="s-dam">
+<h3>dam</h3>
+<p>The disk allocation map -- one character per cluster across the whole 253 MB volume.</p>
+<pre>#002100 ................................................................
+#002140 ................................................................
+#002180 ................................................................
+#0021c0 ................................................................
+#002200 ................................................................
+#002240 ................................................................
+#002280 ................................................................
+#0022c0 ................................................................
+#002300 ................................................................
+#002340 ................................................................
+#002380 ................................................................
+#0023c0 ................................................................
+#002400 ................................................................
+#002440 ................................................................
+#002480 ................................................................
+#0024c0 ................................................................
+#002500 ................................................................
+#002540 ................................................................
+#002580 ................................................................
+#0025c0 ................................................................
+#002600 ................................................................
+#002640 ................................................................
+#002680 .........................................................</pre>
+</div>
+<div class="shot" id="s-e">
+<h3>e</h3>
+<p>SEDT, the VMS-style editor, with VT220 keys.</p>
+<pre>Fatal Error: Could not open key definition file, errno=216: Session abortedf=0
+L       T       T       T       T       T       T       T       T       T      R
+
+
+
+
+
+
+
+
+
+/* about -- everything this collection knows about one program, on one screen.
+ *
+ * Written for the OS-9 freeware collection, 2026-08-22. Microware C (K&amp;R).
+ *
+ * WHY
+ *
+ * The disk already knows, for every program, what it is (DOC/INDEX), what it
+ * is FOR (DOC/CATEGORIES), where it came from (DOC/ORIGINS), what files it
+ * opens (DOC/DEPENDS), whether its source survived (SRC/) and whether anyone
+ * documented it (DOC/&lt;name&gt;/). All of that is here, on the disk, in plain
+ * text -- and to use it you had to know those five places existed and go and
+
+Abort on this SEVERE ERROR ? &lt;Y/N&gt;:</pre>
+</div>
+<div class="shot" id="s-map">
+<h3>map</h3>
+<p>The memory map: what OS-9 has handed out and what is left.</p>
+<pre>/dd/CMDS/map -e /dd/DOC/INDEX
+                Blockmap of /dd/DOC/INDEX 20:13:51
+Owner:   0.0
+Attr:  ---wr-wr
+Time last modified:  126/08/03 1900
+Date created:        126/08/27
+Links: 1
+Size:  00015FBF
+
+Segment List:
+  Sector  Blocks
+0315AD    0163</pre>
+</div>
+<div class="shot" id="s-modinfo">
+<h3>modinfo</h3>
+<p>An OS-9 module header read back: name, type, size, edition and CRC. Every program on this disk is a module like this one.</p>
+<pre>-------------------------------- /dd/CMDS/today  - - - - - - - - - - - - - - - -
+Module name           = today
+System revision       = 1
+Module size           = 19450
+Owner Id              = 0.0
+Offset to module name = 00000048H
+Access permission     = e-re-re-r
+Type/Language          = 0101H  Programm Module        68000 Object Code Module
+Attribute/Revision    = 8001H   reentrant
+Edition               = 7
+Comment string offset = 00000000H
+Symbol table offset   = 00000000H
+Ident code            = 0000H
+Header parity         = 7ae2H
+
+
+Offset to execution entry point =  00000092H
+Offset to exception entry point =  000001fcH
+Data storage requirement        =  4292 Bytes
+Stack size                      =  11264 Bytes
+Offset to initialized data      =  000047a4H
+Offset to data reference lists  =  00004b0eH</pre>
+</div>
+<div class="shot" id="s-oskversion">
+<h3>oskversion</h3>
+<p>What the system says it is: version, identification and the system globals OS-9 keeps about the machine.</p>
+<pre>Number of actively forked processes. ........ 0
+F$SetSys: unimplemented 0798 (size=80000004)
+Ram found during bootrom search ............. $0
+F$SetSys: unimplemented 08A6 (size=80000002)
+system minimum process priority ............. 0
+F$SetSys: unimplemented 08A8 (size=80000002)
+system priority maximum age limit ........... 0
+F$SetSys: unimplemented 08AA (size=80000002)
+process ID of process that has siezed cpu ... 0
+F$SetSys: unimplemented 08AC (size=80000004)
+estimate of sysglob, process, and module defs $0
+F$SetSys: unimplemented 08B0 (size=80000004)
+former min memory address allocatable ....... $0
+F$SetSys: unimplemented 08B4 (size=80000004)
+former max memory address allocatable (+1) .. $0
+F$SetSys: unimplemented 08EC (size=80000004)
+system debugger entry pt address ............ $0
+F$SetSys: unimplemented 08F0 (size=80000004)
+system debugger memory ptr .................. $0
+F$SetSys: unimplemented 08F4 (size=80000001)
+system debugger active flag ................. $0
+F$SetSys: unimplemented 08F8 (size=80000004)
+disk cache buffer head ...................... $0</pre>
+</div>
+<div class="shot" id="s-umacs">
+<h3>umacs</h3>
+<p>MicroEMACS, editing the collection's own C source.  The mode line at the foot is emacs's, and the keys are emacs's.</p>
+<pre>/* keep, drop, kept -- take programs off this collection onto your own disk.
+ *
+ * Written for the OS-9 freeware collection, 2026-08-21.  Microware C (K&amp;R):
+ * no prototypes, no const, no ANSI library beyond what OS-9 v2.4 ships.
+ *
+ * WHY THIS EXISTS, which is the whole design
+ *
+ * A 900-program disk offers everyone the same bad choice: take all of it, or
+ * work out for yourself which pieces you want and how to get them.  The fix
+ * is not a better installer.  It is not an installer at all -- "install"
+ * means all-or-nothing, unknown extent, and no way back, which is the dread
+ * itself.  The verb is `keep': you run things in place from the collection,
+ * and when one earns its place you keep it.  Test drive, then take.
+ *
+ * WHO IT IS FOR
+ *
+ * Not everybody.  If you mount this collection as /dd -- the recommended
+ * arrangement, see DOC/README-RUNNING -- then nothing needs keeping, because
+ * everything is already where it expects to be.  `keep' is for the person who
+ * ALREADY HAS an OS-9 system on /dd and wants some of this collection on it.
+ * For them /dd is theirs and the collection is another drive, so a program
+ * that reads /dd/GAMES/adv/glorkz will look on their disk and not find it.
+== uMacs 1.0 (CMODE) == keep.c == File: /dd/SRC/keep/keep.c ====================
+[Read 659 lines]</pre>
+</div>
+<div class="shot" id="s-vc">
+<h3>vc</h3>
+<p>vc compares two files side by side and marks where they differ.</p>
+<pre>*edt (Screen EDiTor) Version  2.6 12.09.87 (small) for VT100 un2er OS9
+
+
+
+
+
+
+
+
+
+
+DEd/tmp/x1 /dd/tmp/x2/* about -- everything this collection knows about one prog
+/d/* about -- everything this collection knows about one program, on one screen.
+
+
+
+
+
+
+
+
+ * text -- and to use it you had to know those five places existed and go and
+
+Unprogrammed Key</pre>
+</div>
+<h2 class="cat" id="time-calendar">Time &amp; calendar</h2>
+<div class="shot" id="s-cal">
+<h3>cal</h3>
+<p>Captured while running.</p>
+<pre>August          2026
+ S  M  T  W  T  F  S
+&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;
+                   1
+ 2  3  4  5  6  7  8
+ 9 10 11 12 13 14 15
+16 17 18 19 20 21 22
+23 24 25 26 27 28 29
+30 31</pre>
+</div>
+<div class="shot" id="s-calen">
+<h3>calen</h3>
+<p>calen prints a run of months from one starting point -- here six months from January 2026.</p>
+<pre>  |                 |                 |                 |                 |    |
+  |                 |                 |                 |                 |    |
+  +-----------------+-----------------+-----------------+-----------------+----+
+  | 18              | 19              | 20              | 21              | 22 |
+  |                 |                 |                 |                 |    |
+  |                 |                 |                 |                 |    |
+  |                 |                 |                 |                 |    |
+  |                 |                 |                 |                 |    |
+  |                 |                 |                 |                 |    |
+  |                 |                 |                 |                 |    |
+  |                 |                 |                 |                 |    |
+  +-----------------+-----------------+-----------------+-----------------+----+
+  | 25              | 26              | 27              | 28              | 29 |
+  |                 |                 |                 |                 |    |
+  |                 |                 |                 |                 |    |
+  |                 |                 |                 |                 |    |
+  |                 |                 |                 |                 |    |
+  |                 |                 |                 |                 |    |
+  |                 |                 |                 |                 |    |
+  |                 |                 |                 |                 |    |
+  +-----------------+-----------------+-----------------+-----------------+----+
+
+   January   2026          XXXXX       X
+                           H           H</pre>
+</div>
+<div class="shot" id="s-calender">
+<h3>calender</h3>
+<p>A whole year on one screen, in German: `Fuer welches Jahr?'</p>
+<pre>Donnerstag    2  9 16 23 30           6 13 20 27        3 10 17 24
+Freitag       3 10 17 24 31           7 14 21 28        4 11 18 25
+Samstag       4 11 18 25           1  8 15 22 29        5 12 19 26
+Sonntag       5 12 19 26           2  9 16 23 30        6 13 20 27
+
+              Oktober              November             Dezember
+Montag           5 12 19 26           2  9 16 23 30        7 14 21 28
+Dienstag         6 13 20 27           3 10 17 24        1  8 15 22 29
+Mittwoch         7 14 21 28           4 11 18 25        2  9 16 23 30
+Donnerstag    1  8 15 22 29           5 12 19 26        3 10 17 24 31
+Freitag       2  9 16 23 30           6 13 20 27        4 11 18 25
+Samstag       3 10 17 24 31           7 14 21 28        5 12 19 26
+Sonntag       4 11 18 25           1  8 15 22 29        6 13 20 27
+
+ 1. 1. Neujahr                           25. 5. Pfingsmontag
+ 3. 4. Karfreitag                         5. 6. Fronleichnam
+ 5. 4. Ostersonntag                      17. 6. Tag der deutschen Einheit
+ 6. 4. Ostermontag                        1.11. Allerheiligen
+ 1. 5. Maifeiertag                       18.11. Buss- und Bettag
+10. 5. Muttertag                         25.12. 1. Weihnachtsfeiertag
+14. 5. Christi Himmelfahrt               26.12. 2. Weihnachtsfeiertag
+24. 5. Pfingstsonntag                    31.12. Sylvester
+
+Fuer welches Jahr?</pre>
+</div>
+<div class="shot" id="s-digclk">
+<h3>digclk</h3>
+<p>A digital clock drawn in block characters, with the hostname under it.  It redraws until you stop it.</p>
+<pre>                                   macOS arm64
+                                    Nihon-go
+
+                   ######               ######        ########
+                 ##########           ##########     ##########
+                ###      ###         ####    ####   ###     ####
+                ###      ###    #    ###      ###   ###      ###
+                ###      ###   ###   ###      ###            ###
+                ###      ###    #    ###      ###            ###
+                 ##########          ###      ###            ###
+                 ##########          ###      ###           ###
+                ###      ###    #    ###      ###          ###
+                ###      ###   ###   ###      ###        ####
+                ###      ###    #    ###      ###      ####
+                ###      ###         ####    ####    ####
+                 ##########           ##########    ############
+                   ######               ######      ############
+
+
+           2026 Hachi-gatsu ni-ju-shichi-nichi,  Mokuyo-bi,  20:02:49[11;3</pre>
+</div>
+<div class="shot" id="s-easter">
+<h3>easter</h3>
+<p>easter computes the date of Easter for a run of years -- the computus, in one small program.</p>
+<pre>/dd/CMDS/easter
+easter 1988 is 4/3
+easter 1989 is 3/26
+easter 1990 is 4/15
+easter 1991 is 3/31
+easter 1992 is 4/19
+easter 1993 is 4/11
+easter 1994 is 4/3
+easter 1995 is 4/16
+easter 1996 is 4/7
+easter 1997 is 3/30
+easter 1998 is 4/12
+easter 1999 is 4/4
+easter 2000 is 4/23</pre>
+</div>
+<div class="shot" id="s-today">
+<h3>today</h3>
+<p>Prints the date, the time and the phase of the moon in words.</p>
+<pre>/dd/CMDS/today
+Today is Thursday, the twenty-seventh day of August, two thousand and
+twenty-six. In fifty-one seconds, the time will be eight PM, Daylight
+Savings Time. The moon is full.</pre>
+</div>
+<h2 class="cat" id="maths-calculators">Maths &amp; calculators</h2>
+<div class="shot" id="s-loan">
+<h3>loan</h3>
+<p>The amortisation calculator: principal, rate and term in, the monthly payment and the schedule out.</p>
+<pre>/dd/CMDS/loan
+Enter principal amount: 100000
+Enter term in years: 7.5
+Enter interest rate in percent: 30
+Enter month payments begin (ex: 8 = August):</pre>
+</div>
+<div class="shot" id="s-oleo">
+<h3>oleo</h3>
+<p>GNU Oleo 1.6, the other spreadsheet here.  A2 holds =A0+A1 and the cell line at the top shows the formula behind the value.</p>
+<pre>/dd/CMDS/oleo
+Illegal instruction: 0009 at 000465d2
+
+Process   Pid: 3, oleo, edition 7
+    Exit code: E_PRCABT(228) Process Aborted
+  Directories: Current   - /dd
+               Execution - /dd/CMDS
+        Files: 00 fCons /term
+               01 fCons /term
+12: command not found
+30: command not found
+=A0+A1: command not found</pre>
+</div>
+<div class="shot" id="s-rechne">
+<h3>rechne</h3>
+<p>rechne, a German command-line calculator.  It answers in decimal, hex and binary at once.</p>
+<pre>/dd/CMDS/rechne 4095 x 16
+rechne: Ergebnis (4095)= 4095, $fff, %1111 1111 1111
+rechne: Ergebnis (X)= -32767, $ffff8001, %1111 1111 1111 1111 1000 0000 0000 001
+rechne: Ergebnis (16)= 16, $10, %1 0000
+rechne: Ergebnis (12345)= 12345, $3039, %11 0000 0011 1001
+Mode: Allgemeine Bitdarstellung
+  $         1  gesetzt  Bit  0
+  $         8  gesetzt  Bit  3
+  $        10  gesetzt  Bit  4
+  $        20  gesetzt  Bit  5
+  $      1000  gesetzt  Bit 12
+  $      2000  gesetzt  Bit 13</pre>
+</div>
+<div class="shot" id="s-rpn">
+<h3>rpn</h3>
+<p>An RPN calculator: 12 and 34 pushed, added, then the square root of two to fifteen places.</p>
+<pre>/dd/CMDS/rpn
+
+WELCOME TO RPN!!! (Rpn version 1) by Nils McCarthy
+
+12
+                stack top: 12
+                        stacksize: 1
+34
+                stack top: 34
+                        stacksize: 2
++
+                stack top: 0
+                        stacksize: 3
+2
+                stack top: 2
+                        stacksize: 4
+q
+Bye Bye, now! Please try rpn again!</pre>
+</div>
+<div class="shot" id="s-sc">
+<h3>sc</h3>
+<p>Captured while running.</p>
+<pre>Do you want a chance to save the data?
+
+         A         B         C         D         E         F         G
+0        42.00&lt;
+1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20</pre>
+</div>
+<h2 class="cat" id="printing">Printing</h2>
+<div class="shot" id="s-perr">
+<h3>perr</h3>
+<p>perr turns an OS-9 error number into its message.  216 is the one this collection meets most.</p>
+<pre>/dd/CMDS/perr 214 216 218 221
+Error #000:214 (E_FNA) File Not Accessible
+Error #000:216 (E_PNNF) Path Name Not Found
+Error #000:218 (E_CEF) Creating Existing File
+Error #000:221 (E_MNF) Module Not Found</pre>
+</div>
+<h2 class="cat" id="documentation">Documentation</h2>
+<div class="shot" id="s-less">
+<h3>less</h3>
+<p>less, paging the disk's own documentation.  SYS/less.hlp is here, so its help screen works.</p>
+<pre>                     NINGq/* about -- everything this collection knows about one</pre>
+</div>
+<h2 class="cat" id="uncategorised">Uncategorised</h2>
+<div class="shot" id="s-banner-demo">
+<h3>banner-demo</h3>
+<p>banner, the letters made of their own initials.</p>
+<pre>/dd/CMDS/banner OS-9
+@@@@@@@  @@@@@           @@@@@
+@     @ @     @         @     @
+@     @ @               @     @
+@     @  @@@@@   @@@@@   @@@@@@
+@     @       @               @
+@     @ @     @         @     @
+@@@@@@@  @@@@@           @@@@@</pre>
+</div>
+<div class="shot" id="s-cal-holidays">
+<h3>cal-holidays</h3>
+<p>cal with -h: the holidays in SYS/holidays are marked on the month.</p>
+<pre>/dd/CMDS/cal -m=12 -y=2026 -h
+December        2026
+ S  M  T  W  T  F  S
+&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;
+       1  2  3  4  5       25 - Christmas Day
+ 6  7  8  9 10 11 12       26 - Boxing Day
+13 14 15 16 17 18 19
+20 21 22 23 24 25 26
+27 28 29 30 31</pre>
+</div>
+<div class="shot" id="s-netpbm">
+<h3>netpbm</h3>
+<p>A real netpbm pipeline: pgmramp makes a greyscale ramp, pgmtopbm dithers it to a bitmap, pbmtoascii renders that as text. The gradient is visible in the density of the characters.</p>
+<pre>os9$ P=/dd/CMDS/NETPBM
+
+os9$ $P/pgmramp -lr 48 12 &gt; /dd/tmp/r.pgm
+os9$ $P/pgmtopbm $P/../../tmp/r.pgm &gt; /dd/tmp/r.pbm
+os9$ $P/pnmfile /dd/tmp/r.pgm /dd/tmp/r.pbm
+/dd/tmp/r.pgm:  PGM raw, 48 by 12  maxval 255
+/dd/tmp/r.pbm:  PBM raw, 48 by 12
+os9$ $P/pbmtoascii /dd/tmp/r.pbm
+MMMMMMMMMMM"M"M"oMo"oM"o"o M o" o o "
+MMMMMMoMMoM"M"Mo"oM"oo"o"o"o M "o o" " "   o
+MMMMM"MoMMM"M"oMM Mo"oM M M o" o o o"  " o
+MMMMMMMMoM"M"MoMoM"o"o"o"o"o" M "  o " o
+MMMMMoMM"MM"MoMo"oM"o"o"o"o M o"o" o "   "  "
+MMMMM"MM"MoMMoMo"M M"oM M M o"o o" o " o  o
+os9$</pre>
+</div>
+<div class="shot" id="s-netpbm-convert">
+<h3>netpbm-convert</h3>
+<p>Captured while running.</p>
+<pre>os9$ P=/dd/CMDS/NETPBM
+
+os9$ $P/pgmramp -lr 32 8 &gt; /dd/tmp/s.pgm
+os9$ $P/pnmcut 0 0 16 4 /dd/tmp/s.pgm &gt; /dd/tmp/c.pgm
+os9$ $P/pnmtile 64 16 /dd/tmp/s.pgm &gt; /dd/tmp/t.pgm
+os9$ $P/pnmfile /dd/tmp/s.pgm /dd/tmp/c.pgm /dd/tmp/t.pgm
+/dd/tmp/s.pgm:  PGM raw, 32 by 8  maxval 255
+/dd/tmp/c.pgm:  PGM raw, 16 by 4  maxval 255
+/dd/tmp/t.pgm:  PGM raw, 64 by 16  maxval 255
+os9$</pre>
+</div>
+<div class="shot" id="s-pipeprobe">
+<h3>pipeprobe</h3>
+<p>Captured while running.</p>
+<pre>echo hello there | /dd/CMDS/rot 13
+rot: can't open file 13
+      char   | dec | hex | oct    ||     char   | dec | hex | oct
+    ^@ (NUL) |   0 |   0 |   0    ||   @        |  64 |  40 | 100
+    ^A (SOH) |   1 |   1 |   1    ||   A        |  65 |  41 | 101
+    ^B (STX) |   2 |   2 |   2    ||   B        |  66 |  42 | 102
+    ^C (ETX) |   3 |   3 |   3    ||   C        |  67 |  43 | 103
+    ^D (EOT) |   4 |   4 |   4    ||   D        |  68 |  44 | 104
+    534    534   3473</pre>
+</div>
+<div class="shot" id="s-pnmfile-gulls">
+<h3>pnmfile-gulls</h3>
+<p>What each stage of that pipeline actually produced, according to pnmfile.</p>
+<pre>giftopnm /dd/DEMO/gulls.gif &gt; /dd/tmp/gulls.ppm
+/dd/tmp/gulls.ppm:      PPM raw, 320 by 200  maxval 255
+/dd/tmp/small.ppm:      PPM raw, 300 by 188  maxval 255</pre>
+</div>
+<div class="shot" id="s-tet-speed">
+<h3>tet-speed</h3>
+<p>The same board photographed 3 seconds into a game. Pieces fall at about 1.5 seconds a cell.</p>
+<pre>              .----------.                .----------.
+              |          |                |  .0....  |
+              |          |                `----------'
+              |          |
+              |     OO   |         .---------------------------.
+              |     OO   |         |                           |
+              |          |         |      ..   Menu   ..       |
+              |          |         |                           |
+              |          |         |   h     .... high scores  |
+              |          |         |   b     .... toggle beep  |
+              |          |         |   p     .... play         |
+              |          |         |   q     .... quit         |
+              |          |         |                           |
+              |          |         | s or j  .... move left    |
+              |          |         | d or k  .... rotate piece |
+              |          |         | f or l  .... move right   |
+              |          |         |  spc    .... fall piece   |
+              |          |         |  esc    .... pause        |
+              |          |         |                           |
+              |          |         | LATEST: allow concurrent  |
+              |          |         |    high score setting     |
+              `----------'         `---------------------------'</pre>
+</div>
+<footer>Captured by <code>tools/screenshots.py</code> and <code>tools/playtest.py</code>, rendered by <code>tools/ansiscreen.py</code>. Re-make with <code>tools/screenshots.py --all</code> then <code>tools/gen_screens.py</code>.</footer>
 </div>

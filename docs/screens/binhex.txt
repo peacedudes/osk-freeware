@@ -1,0 +1,2 @@
+/dd/CMDS/binhex /dd/DOC/INDEX | /dd/CMDS/head -n 12
+File is not MacBinary: /dd/DOC/INDEX

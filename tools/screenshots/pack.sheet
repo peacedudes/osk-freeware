@@ -1,0 +1,50 @@
+# Archivers, each one making an archive and then reading it back.
+shot    tar
+cap     GNU tar 1.10 packing a directory off this disk and listing what it
+cap     wrote -- the same tar the image build uses to populate the disk.
+run     /dd/CMDS/tar cvf /dd/tmp/keep.tar /dd/SRC/keep
+wait    5
+run     /dd/CMDS/tar tvf /dd/tmp/keep.tar
+wait    4
+
+shot    zoo
+cap     zoo, packing and then listing -- compression ratio per member.
+run     /dd/CMDS/zoo a /dd/tmp/k.zoo /dd/SRC/keep/keep.c
+wait    5
+run     /dd/CMDS/zoo l /dd/tmp/k.zoo
+wait    4
+
+shot    lha
+cap     LHa 2.08 on the same file: pack, then list with the ratio.
+run     /dd/CMDS/lha a /dd/tmp/k.lzh /dd/SRC/keep/keep.c
+wait    6
+run     /dd/CMDS/lha l /dd/tmp/k.lzh
+wait    4
+
+shot    compress
+cap     compress, the LZW one, reporting what it saved.
+run     /dd/CMDS/cat /dd/DOC/INDEX > /dd/tmp/index.txt
+wait    3
+run     /dd/CMDS/REBUILT/compress -v /dd/tmp/index.txt
+wait    8
+
+shot    gzip
+cap     GNU gzip on the same file, for comparison with compress.
+run     /dd/CMDS/cat /dd/DOC/INDEX > /dd/tmp/index2.txt
+wait    3
+run     /dd/CMDS/gzip -v /dd/tmp/index2.txt
+wait    8
+
+shot    ar
+cap     Carl Kreider's ar, the OS-9 archive librarian: add a file, then
+cap     list the archive's directory.
+run     /dd/CMDS/ar a /dd/tmp/k.ar /dd/SRC/keep/keep.c
+wait    5
+run     /dd/CMDS/ar t /dd/tmp/k.ar
+wait    4
+
+shot    shar
+cap     shar wrapping a file as a shell archive -- the way source travelled
+cap     over usenet, and how most of this collection arrived.
+run     /dd/CMDS/shar /dd/SRC/keep/drop.sh | /dd/CMDS/head -n 18
+wait    5

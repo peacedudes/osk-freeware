@@ -1,0 +1,1 @@
+/dd/CMDS/cat /dd/SYS/motd | /dd/CMDS/GAMES/valspeak

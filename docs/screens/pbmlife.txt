@@ -1,0 +1,16 @@
+<M/pgmtopbm | /dd/CMDS/NETPBM/pbmlife | /dd/CMDS/NETPBM/pbmtoascii
+"o o" ooo M"oMo"M"oooo""MM"o ooMooooooM" oMM"o" Moo"o" MoooM
+ "MMMMMMM"M MMMM"MMoM"M"oMMMoMMM"MoMo oMMMoMMM"M"o"oMMMM oo"
+  MMMMo"MoM MM"M"MMoM M MMMMMMo" M ooooMoM"M"MoM M MMMMMoo""
+ o M"M ""M"MMM"MoMMoM M " " M MoooM"   ooMMMM" "MM"M"M"M Mo
+o"oM o MM"MMM"M oMMoMMMMMM"""M""o"MMM"MoM"MMM"" Moo o" M"MoM
+ "MM"M"MM"MoMo""o M"oMMMMM"MMo"""ooo" MoMMoMMMMoMMMMoo MoM
+" M"""M"M"ooo" M"MMoMo"MMMMoooMMMM""""MMMMMMMoMMMMMMMMMMoM
+  M MMM"MoMoM  o M""M o"oMMMMMM""M"M"M"M"M"MoM MoMM"" M"MMM
+MMMMM """oMMMM M""""MoM o o M Mo  "MMMMM""MooMMMMMMMoMoMMooM
+MoMoo  " "oMMMMMMMMMMooooo oM M"MoM MMM"""oMoMM"MMMMM"MMMMMo
+ "M"M"M" oMMMMMMoM"MMMMMMMMMMM""MM M MM""MMMMMoM oMo"MMM""
+"MMMMMMo o"""M"ooMoMoMMMMMMMMMMMoMMM M"M"MoMM M"oooM"MMM
+ MMMMM MMMMM oMMoMo"oM M"oMooMoMoMMM MMMMMoMMoMoMMMo MoMoMo"
+o M"M""M"MMMM "M"MMoo "MoMMMoM"MooooooMMoM"MMMMMM""" MMMMoMo
+ooMo"MMMo""""""ooMo"o" M"""  "ooMo"""    "o" """oMMMM"M"M" M

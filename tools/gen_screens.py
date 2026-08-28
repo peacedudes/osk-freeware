@@ -1,31 +1,51 @@
 #!/usr/bin/env python3
-"""Build docs/screens.html from the play-test captures.
+r"""Build the screen gallery, and the screens the catalogue shows.
 
-    tools/playtest.py --all          # play everything, capture the screens
-    tools/gen_screens.py             # turn the captures into a gallery
+    tools/screenshots.py --all       # photograph the programs, many per run
+    tools/playtest.py --all          # play the interactive ones and judge
+    tools/gen_screens.py             # turn the captures into the gallery
 
-Every screen here was PHOTOGRAPHED FROM A RUNNING PROGRAM: keystrokes went in
-through os9exec's console at human speed and the terminal stream that came
-back was rendered by tools/ansiscreen.py. Nothing is mocked up and nothing is
-retyped. That is the point -- the four-stage sweep can only say a program
-printed something, and it credited `tet' as working while `tet' ignored the
-keyboard.
+    docs/screens.html   the gallery, grouped the way the catalogue groups
+    docs/screens.js     the same screens, keyed by program, for docs/index.html
+    docs/screens/*.txt  the chosen screens as text, because notes/ is scratch
 
-`notes/playtests/' is scratch and gitignored, so the chosen screens are copied
-into `docs/screens/' where they survive.
+Every screen here was PHOTOGRAPHED FROM A RUNNING PROGRAM on the real disk
+image: keystrokes went into os9exec's console and the terminal stream that
+came back was rendered by tools/ansiscreen.py. Nothing is mocked up, nothing
+is retyped, and a program that failed is shown failing.
+
+Two things are decided here rather than at capture time:
+
+  * THE HIGH HALF IS READ AS CP437. `cal' rules its columns off with $C4 and
+    `dm' draws its box with $C9 $CD $BB -- IBM-PC line drawing, which is what
+    the terminals these programs were written for displayed. Read as Latin-1
+    the same bytes are `A-umlaut', which is what the first version of this
+    gallery published. Where a program meant some other set the picture is
+    wrong in exactly that way and no other.
+
+  * THE FILES STAY ASCII. The HTML and the JavaScript carry the real
+    characters as numeric escapes, so the sources are plain ASCII; the .txt
+    copies fold the line drawing down to `-', `|' and `+', which is lossy and
+    says so here rather than in a surprise.
 """
+import json
 import os
 import re
 import shutil
 import sys
 
 REPO = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
-CAPS = os.path.join(REPO, "notes", "playtests")
-OUT = os.path.join(REPO, "docs", "screens.html")
-KEEP = os.path.join(REPO, "docs", "screens")
+sys.path.insert(0, os.path.join(REPO, "tools"))
+import gen_catalog                                       # noqa: E402
+import screenshots                                       # noqa: E402
 
-# Which snapshot to show, and what to say about it. A program is worth a
-# caption that tells you what you are looking at; "screenshot" is not one.
+CAPS = os.path.join(REPO, "notes", "playtests")
+SHEETS = os.path.join(REPO, "tools", "screenshots")
+DOCS = os.path.join(REPO, "docs")
+KEEP = os.path.join(DOCS, "screens")
+
+# What a play-test capture is showing, and which of its snapshots to use.
+# The sheets carry their own captions; this covers tools/playtests/*.keys.
 CAPTIONS = {
     "tet":      ("Tetris. Pieces stack, rows score, and the high-score table "
                  "at the right is written to /dd/GAMES/tet.hs.", "final"),
@@ -62,6 +82,137 @@ CAPTIONS = {
                  "dog, G a gnome, $ gold, + a door.", "inventory"),
 }
 
+# The line drawing, folded to what a plain ASCII file can hold.
+FOLD = {0x2500: "-", 0x2501: "-", 0x2550: "=", 0x2502: "|", 0x2503: "|",
+        0x2551: "|", 0x2591: "#", 0x2592: "#", 0x2593: "#", 0x2588: "#",
+        0x25a0: "#", 0x2584: "#", 0x2580: "#", 0x00b7: ".", 0x2022: "*",
+        0x00b0: "o", 0x00b1: "+", 0x00f7: "/", 0x00d7: "x", 0x2219: ".",
+        0x221a: "v", 0x2261: "=", 0x2264: "<", 0x2265: ">", 0x2248: "~"}
+
+
+def to_cp437(text):
+    """Re-read the captured high half as the character set it was written in."""
+    out = []
+    for ch in text:
+        if ch < "\x80":
+            out.append(ch)
+        else:
+            try:
+                out.append(bytes([ord(ch)]).decode("cp437"))
+            except (ValueError, UnicodeDecodeError):
+                out.append(" ")
+    return "".join(out)
+
+
+def fold_ascii(text):
+    """Everything above ASCII down to something a .txt file can carry."""
+    out = []
+    for ch in text:
+        if ch < "\x7f":
+            out.append(ch)
+        elif ord(ch) in FOLD:
+            out.append(FOLD[ord(ch)])
+        elif 0x2500 <= ord(ch) <= 0x257f:      # the rest of the box drawing
+            out.append("+")
+        else:
+            out.append(".")
+    return "".join(out)
+
+
+def esc(s):
+    """HTML-escape, and push everything above ASCII into numeric escapes."""
+    s = s.replace("&", "&amp;").replace("<", "&lt;").replace(">", "&gt;")
+    return "".join(c if c < "\x7f" else "&#%d;" % ord(c) for c in s)
+
+
+SHELL_NOISE = ("bash#", "/.bashrc:", "# /h0:", "export ", "# /dd:")
+
+
+def trim(text):
+    """Drop the shell's own lines, then leading and trailing blank ones.
+
+    A capture holds whatever it took to get the program going -- the emulator
+    banner, the exports, the prompt it came back to. None of that is the
+    program, and a gallery showing somebody else's shell prompt is not a
+    gallery of this software.
+    """
+    lines = [ln.rstrip() for ln in text.split("\n")
+             if not any(n in ln for n in SHELL_NOISE)]
+    while lines and not lines[0].strip():
+        lines.pop(0)
+    while lines and not lines[-1].strip():
+        lines.pop()
+    return "\n".join(lines)
+
+
+def ink(text):
+    return len(re.sub(r"\s", "", text))
+
+
+def sheet_shots():
+    """Every stanza in every sheet: its caption and what it illustrates."""
+    shots = {}
+    if not os.path.isdir(SHEETS):
+        return shots
+    for f in sorted(os.listdir(SHEETS)):
+        if not f.endswith(".sheet"):
+            continue
+        for shot in screenshots.parse(os.path.join(SHEETS, f)):
+            shots[shot["name"]] = {"cap": " ".join(shot["cap"]),
+                                   "for": shot["for"] or [shot["name"]],
+                                   "sheet": f[:-6]}
+    return shots
+
+
+def pick(name, want):
+    """The screen to publish: the asked-for snapshot, else the fullest."""
+    cands = []
+    for f in os.listdir(CAPS):
+        m = re.match(re.escape(name) + r"\.([A-Za-z0-9_]+)\.txt$", f)
+        if not m or m.group(1) == "control":
+            continue
+        label = "final" if m.group(1) == "screen" else m.group(1)
+        body = trim(to_cp437(open(os.path.join(CAPS, f)).read()))
+        cands.append((label, body, ink(body)))
+    if not cands:
+        return None
+    for label, body, n in cands:
+        if label == want and n > 10:
+            return label, body
+    label, body, _ = max(cands, key=lambda c: c[2])
+    return label, body
+
+
+def collect():
+    """One entry per photographed program, with what the catalogue knows."""
+    progs, _ = gen_catalog.gather(os.path.join(REPO, "disk"),
+                                  os.path.join(REPO, "tools",
+                                               "categories.psv"))
+    bycat = {p["name"]: (p["cat"], p["sub"]) for p in progs}
+    sheets = sheet_shots()
+    names = sorted({f.split(".")[0] for f in os.listdir(CAPS)
+                    if f.endswith(".txt")})
+    out = []
+    for name in names:
+        meta = sheets.get(name)
+        want = meta and "shot" or CAPTIONS.get(name, (None, "final"))[1]
+        got = pick(name, want)
+        if not got:
+            continue
+        label, screen = got
+        if ink(screen) < 30:
+            continue                       # nothing worth looking at
+        caption = (meta["cap"] if meta
+                   else CAPTIONS.get(name, ("",))[0]) or "Captured while running."
+        shows = meta["for"] if meta else [name]
+        cat = next((bycat[p] for p in shows if p in bycat),
+                   bycat.get(name, ("Uncategorised", "")))
+        out.append({"name": name, "cap": caption, "screen": screen,
+                    "for": [p for p in shows if p in bycat],
+                    "cat": cat[0], "sub": cat[1]})
+    return out
+
+
 PAGE_HEAD = """<!doctype html>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -79,10 +230,15 @@ PAGE_HEAD = """<!doctype html>
       line-height:1.5;padding:2rem 1rem 4rem}
  .wrap{max-width:78rem;margin:0 auto}
  h1{font-size:1.6rem;margin:0 0 .25rem}
- .lede{color:var(--dim);max-width:46rem;margin:0 0 2rem}
+ h2.cat{font-size:1.1rem;margin:2.4rem 0 .9rem;padding-bottom:.3rem;
+        border-bottom:1px solid var(--rule);letter-spacing:.01em}
+ .lede{color:var(--dim);max-width:48rem;margin:0 0 1.5rem}
+ .toc{margin:0 0 1rem;font-size:.9rem;color:var(--dim)}
+ .toc a{color:var(--accent);text-decoration:none;margin-right:.9rem;
+        white-space:nowrap}
  .shot{background:var(--card);border:1px solid var(--rule);border-radius:8px;
        padding:1rem 1.1rem;margin:0 0 1.6rem;overflow:hidden}
- .shot h2{font-size:1.05rem;margin:0 0 .15rem;font-family:var(--mono);
+ .shot h3{font-size:1.05rem;margin:0 0 .15rem;font-family:var(--mono);
           color:var(--accent)}
  .shot p{margin:0 0 .7rem;color:var(--dim);font-size:.92rem}
  pre{margin:0;font-family:var(--mono);font-size:11.5px;line-height:1.18;
@@ -90,97 +246,77 @@ PAGE_HEAD = """<!doctype html>
      overflow-x:auto;white-space:pre}
  footer{color:var(--dim);font-size:.85rem;margin-top:2.5rem;
         border-top:1px solid var(--rule);padding-top:1rem}
+ a.back{color:var(--accent)}
 </style>
 <div class="wrap">
 <h1>Screens</h1>
-<p class="lede">Every screen below was photographed from a running program.
-Keystrokes were fed to os9exec's console at human speed and the terminal
-stream that came back was rendered into the grid a vt100 would have shown.
-Nothing here is mocked up.</p>
+<p class="lede">Every screen below was photographed from a running program on
+the disk image. Keystrokes were fed to os9exec's console at human speed and
+the terminal stream that came back was rendered into the grid a vt100 would
+have shown. Nothing here is mocked up &mdash; where a program failed, its
+failure is what you see. <a class="back" href="index.html">Back to the
+catalogue</a>.</p>
 """
 
 
-def esc(s):
-    return (s.replace("&", "&amp;").replace("<", "&lt;").replace(">", "&gt;"))
-
-
-SHELL_NOISE = ("bash#", "/.bashrc:", "# /h0:", "export ")
-
-
-def trim(text):
-    """Drop the shell's own lines, then leading/trailing blank lines.
-
-    A capture holds whatever the harness typed to get the program going --
-    the os9exec banner, the export lines, the command itself, the prompt it
-    returned to. None of that is the program, and a gallery of screenshots
-    showing somebody else's shell prompt is not a gallery of this software.
-    """
-    lines = [l.rstrip() for l in text.split("\n")
-             if not any(n in l for n in SHELL_NOISE)]
-    while lines and not lines[0].strip():
-        lines.pop(0)
-    while lines and not lines[-1].strip():
-        lines.pop()
-    return "\n".join(lines)
-
-
-def ink(text):
-    return len(re.sub(r"\s", "", text))
-
-
-def pick(name):
-    """The captured screen to publish: the asked-for one, else the fullest."""
-    want = CAPTIONS.get(name, (None, "final"))[1]
-    cands = []
-    for f in os.listdir(CAPS):
-        m = re.match(re.escape(name) + r"\.([A-Za-z0-9_]+)\.txt$", f)
-        if not m or m.group(1) == "control":
-            continue
-        label = "final" if m.group(1) == "screen" else m.group(1)
-        body = trim(open(os.path.join(CAPS, f)).read())
-        cands.append((label, body, ink(body)))
-    if not cands:
-        return None
-    for label, body, n in cands:
-        if label == want and n > 10:
-            return label, body
-    label, body, _ = max(cands, key=lambda c: c[2])
-    return label, body
+def slug(cat):
+    return re.sub(r"[^a-z0-9]+", "-", cat.lower()).strip("-")
 
 
 def main():
     if not os.path.isdir(CAPS):
-        sys.exit("no captures in %s -- run tools/playtest.py --all first" % CAPS)
+        sys.exit("no captures in %s -- run tools/screenshots.py --all first"
+                 % CAPS)
+    entries = collect()
+    order = [c for c in gen_catalog.ORDER
+             if any(e["cat"] == c for e in entries)]
+    order += sorted({e["cat"] for e in entries} - set(order))
+
     # Start clean: a screen that no longer qualifies must not linger from a
     # previous run and end up in the gallery by accident.
     if os.path.isdir(KEEP):
         shutil.rmtree(KEEP)
     os.makedirs(KEEP, exist_ok=True)
-    names = sorted({f.split(".")[0] for f in os.listdir(CAPS)
-                    if f.endswith(".txt")})
-    body, kept = [], 0
-    for name in names:
-        got = pick(name)
-        if not got:
-            continue
-        label, screen = got
-        if ink(screen) < 30:
-            continue                      # nothing worth looking at
-        caption = CAPTIONS.get(name, ("", ""))[0] or "Captured while running."
-        open(os.path.join(KEEP, "%s.txt" % name), "w").write(screen + "\n")
-        body.append('<div class="shot">\n<h2>%s</h2>\n<p>%s</p>\n'
-                    '<pre>%s</pre>\n</div>' % (esc(name), esc(caption),
-                                               esc(screen)))
-        kept += 1
-    with open(OUT, "w") as f:
+
+    body = ['<p class="toc">' + " ".join(
+        '<a href="#%s">%s</a>' % (slug(c), esc(c)) for c in order) + '</p>']
+    screens = {}
+    for cat in order:
+        body.append('<h2 class="cat" id="%s">%s</h2>' % (slug(cat), esc(cat)))
+        for e in sorted((x for x in entries if x["cat"] == cat),
+                        key=lambda x: x["name"].lower()):
+            open(os.path.join(KEEP, "%s.txt" % e["name"]), "w").write(
+                fold_ascii(e["screen"]) + "\n")
+            body.append('<div class="shot" id="s-%s">\n<h3>%s</h3>\n<p>%s</p>\n'
+                        '<pre>%s</pre>\n</div>'
+                        % (esc(e["name"]), esc(e["name"]), esc(e["cap"]),
+                           esc(e["screen"])))
+            for prog in e["for"]:
+                screens.setdefault(prog, {"n": e["name"], "c": e["cap"],
+                                          "s": e["screen"]})
+
+    with open(os.path.join(DOCS, "screens.html"), "w") as f:
         f.write(PAGE_HEAD)
         f.write("\n".join(body))
-        f.write('\n<footer>Captured by <code>tools/playtest.py</code> and '
-                'rendered by <code>tools/ansiscreen.py</code>. '
-                'Re-make with <code>tools/playtest.py --all && '
-                'tools/gen_screens.py</code>.</footer>\n</div>\n')
-    print("wrote %s -- %d screens" % (OUT, kept))
-    print("kept the text in %s" % KEEP)
+        f.write('\n<footer>Captured by <code>tools/screenshots.py</code> and '
+                '<code>tools/playtest.py</code>, rendered by '
+                '<code>tools/ansiscreen.py</code>. Re-make with '
+                '<code>tools/screenshots.py --all</code> then '
+                '<code>tools/gen_screens.py</code>.</footer>\n</div>\n')
+
+    with open(os.path.join(DOCS, "screens.js"), "w") as f:
+        f.write("// Generated by tools/gen_screens.py -- do not edit.\n"
+                "// One photographed screen per program, for the catalogue.\n"
+                "window.SCREENS = ")
+        json.dump(screens, f, ensure_ascii=True, separators=(",", ":"),
+                  sort_keys=True)
+        f.write(";\n")
+
+    print("  %d screens over %d categories" % (len(entries), len(order)))
+    print("  %s" % os.path.join(DOCS, "screens.html"))
+    print("  %s -- %d programs" % (os.path.join(DOCS, "screens.js"),
+                                   len(screens)))
+    print("  %s" % KEEP)
 
 
 if __name__ == "__main__":

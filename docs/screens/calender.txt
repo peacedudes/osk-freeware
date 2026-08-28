@@ -1,0 +1,24 @@
+Donnerstag    2  9 16 23 30           6 13 20 27        3 10 17 24
+Freitag       3 10 17 24 31           7 14 21 28        4 11 18 25
+Samstag       4 11 18 25           1  8 15 22 29        5 12 19 26
+Sonntag       5 12 19 26           2  9 16 23 30        6 13 20 27
+
+              Oktober              November             Dezember
+Montag           5 12 19 26           2  9 16 23 30        7 14 21 28
+Dienstag         6 13 20 27           3 10 17 24        1  8 15 22 29
+Mittwoch         7 14 21 28           4 11 18 25        2  9 16 23 30
+Donnerstag    1  8 15 22 29           5 12 19 26        3 10 17 24 31
+Freitag       2  9 16 23 30           6 13 20 27        4 11 18 25
+Samstag       3 10 17 24 31           7 14 21 28        5 12 19 26
+Sonntag       4 11 18 25           1  8 15 22 29        6 13 20 27
+
+ 1. 1. Neujahr                           25. 5. Pfingsmontag
+ 3. 4. Karfreitag                         5. 6. Fronleichnam
+ 5. 4. Ostersonntag                      17. 6. Tag der deutschen Einheit
+ 6. 4. Ostermontag                        1.11. Allerheiligen
+ 1. 5. Maifeiertag                       18.11. Buss- und Bettag
+10. 5. Muttertag                         25.12. 1. Weihnachtsfeiertag
+14. 5. Christi Himmelfahrt               26.12. 2. Weihnachtsfeiertag
+24. 5. Pfingstsonntag                    31.12. Sylvester
+
+Fuer welches Jahr?

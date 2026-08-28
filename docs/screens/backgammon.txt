@@ -1,0 +1,4 @@
+Last updated on Saturday, January 11, 1986.
+
+Do you want the rules of the game?  No.
+Do you need instructions for this program?  (Y or N)

@@ -1,0 +1,19 @@
+echo 'function sq(x) return x*x end print(sq(7))' > /dd/tmp/sq.lua
+
+main of "/dd/tmp/sq.lua" (23 bytes at c7768)
+     0  PUSHFUNCTION    c7308   ; "/dd/tmp/sq.lua":1
+     5  STOREGLOBAL     26      ; sq
+     8  PUSHGLOBAL      10      ; print
+    11  PUSHGLOBAL      26      ; sq
+    14  PUSHBYTE        7
+    16  CALLFUNC        1 1
+    19  CALLFUNC        1 0
+    22  RETCODE0
+
+function sq defined at "/dd/tmp/sq.lua":1 (9 bytes at c7308); used at main+1
+     0  ADJUST  1
+     2  PUSHLOCAL0
+     3  PUSHLOCAL0
+     4  MULTOP
+     5  RETCODE 1
+     7  RETCODE 1

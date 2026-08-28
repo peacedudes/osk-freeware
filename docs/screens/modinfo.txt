@@ -1,0 +1,22 @@
+-------------------------------- /dd/CMDS/today  - - - - - - - - - - - - - - - -
+Module name           = today
+System revision       = 1
+Module size           = 19450
+Owner Id              = 0.0
+Offset to module name = 00000048H
+Access permission     = e-re-re-r
+Type/Language          = 0101H  Programm Module        68000 Object Code Module
+Attribute/Revision    = 8001H   reentrant
+Edition               = 7
+Comment string offset = 00000000H
+Symbol table offset   = 00000000H
+Ident code            = 0000H
+Header parity         = 7ae2H
+
+
+Offset to execution entry point =  00000092H
+Offset to exception entry point =  000001fcH
+Data storage requirement        =  4292 Bytes
+Stack size                      =  11264 Bytes
+Offset to initialized data      =  000047a4H
+Offset to data reference lists  =  00004b0eH

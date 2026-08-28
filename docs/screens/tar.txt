@@ -1,0 +1,12 @@
+/dd/CMDS/tar cvf /dd/tmp/keep.tar /dd/SRC/keep
+a /dd/SRC/keep/about.c, 21 tape blocks
+a /dd/SRC/keep/drop.sh, 5 tape blocks
+a /dd/SRC/keep/keep.c, 40 tape blocks
+a /dd/SRC/keep/keep.sh, 9 tape blocks
+a /dd/SRC/keep/kept.sh, 3 tape blocks
+drwx---rwx-   0/  0        0 Aug 27 19:54 2026 /dd/SRC/keep/
+-rw----rw--   0/  0    10280 Aug  3 19:00 2026 /dd/SRC/keep/about.c
+-rw----rw--   0/  0     2220 Aug  3 19:00 2026 /dd/SRC/keep/drop.sh
+-rw----rw--   0/  0    20473 Aug  3 19:00 2026 /dd/SRC/keep/keep.c
+-rw----rw--   0/  0     4513 Aug  3 19:00 2026 /dd/SRC/keep/keep.sh
+-rw----rw--   0/  0     1169 Aug  3 19:00 2026 /dd/SRC/keep/kept.sh

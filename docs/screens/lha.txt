@@ -1,0 +1,7 @@
+/dd/CMDS/lha a /dd/tmp/k.lzh /dd/SRC/keep/keep.c
+/dd/SRC/keep/keep.c - Frozen (33%)
+ PERMSSN  UID GID    SIZE  RATIO     STAMP    NAME
+----------------- ------- ------ ------------ --------------------
+---wr-wr    0/0     20473  33.7% Aug  3 19:00 /dd/SRC/keep/keep.c
+----------------- ------- ------ ------------ --------------------
+ Total    1 file    20473  33.7% Aug 27 20:07

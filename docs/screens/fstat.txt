@@ -1,0 +1,8 @@
+/dd/CMDS/fstat /dd/CMDS/tar
+
+Filename:     /dd/CMDS/tar
+Owner:        0.0
+Attributes:   --e-re-r
+Created:      08/27/2026
+Modified:     08/03/2026 07:00 pm
+File Length:  22966 $(59B6)

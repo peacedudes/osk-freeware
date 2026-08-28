@@ -1,0 +1,7 @@
+/dd/CMDS/cookie
+We're here to give you a computer, not a religion.
+- attributed to Bob Pariseau, at the introduction of the Amiga
+"Why can one call the time component of the preceding 4-vector by the name
+ energy?  For two reasons:  First, because this time component has the correct
+ units -- the units of mass..."
+-- From "Spacetime Physics" by Taylor and Wheeler

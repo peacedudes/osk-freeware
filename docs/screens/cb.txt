@@ -1,0 +1,19 @@
+/dd/CMDS/cb < /dd/SRC/keep/about.c | /dd/CMDS/head -n 18
+/* about -- everything this collection knows about one program, on one screen.
+ *
+ * Written for the OS-9 freeware collection, 2026-08-22. Microware C (K&R).
+ *
+ * WHY
+ *
+ * The disk already knows, for every program, what it is (DOC/INDEX), what it
+ * is FOR (DOC/CATEGORIES), where it came from (DOC/ORIGINS), what files it
+ * opens (DOC/DEPENDS), whether its source survived (SRC/) and whether anyone
+ * documented it (DOC/<name>/). All of that is here, on the disk, in plain
+ * text -- and to use it you had to know those five places existed and go and
+ * read each one.
+ *
+ * That is a card catalogue with no cards. This prints the card:
+ *
+ *     $ about fortune
+ *     fortune        print a random quotation
+ *

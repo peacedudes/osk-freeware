@@ -1,0 +1,22 @@
+/dd/SYS/TEX/MFINPUTS/MFCONTRIB/..  316759    316759      1332      1332      26
+/dd/SYS/TEX/MFINPUTS/MFCONTRIB/..   21119     21119       120       120      14
+/dd/SYS/TEX/MFINPUTS/MFCONTRIB/..    8716      8716        44        44       3
+/dd/SYS/TEX/MFINPUTS/MFCONTRIB/..   90464     90464       368       368       4
+/dd/SYS/TEX/MFINPUTS/MFCONTRIB/..  120623    211087       856       856       3
+/dd/SYS/TEX/MFINPUTS/MFCONTRIB       1728    824996      3520      3520       1
+/dd/SYS/TEX/MFINPUTS/SAUTER        116192    116192       612       612      53
+/dd/SYS/TEX/MFINPUTS/SAUTERMF        1828      1828       128       128      30
+/dd/SYS/TEX/MFINPUTS/UTILITY         7881      7881       108       108      21
+/dd/SYS/TEX/MFINPUTS               205711   2079936      9344      9344      20
+/dd/SYS/TEX/POOLS                   47812     47812       196       196       2
+/dd/SYS/TEX/SAMPLES                 31009     31009       136       136       5
+/dd/SYS/TEX                           311   5185622     22520     22520       1
+/dd/SYS/UUCP                        10176     10176        72        72       8
+/dd/SYS/ksh                          2847      2847        24        24       3
+/dd/SYS                            149420   5469184     23992     23992      30
+
+Number of files                          : 818
+Number of subdirectories                 : 43
+Total file contents                      : 5341.00 KBytes (5469184 Bytes, 100%)
+Space allocated now on /dd               : 5998.00 KBytes (23992 Sectors, 112%)
+Minimum required with clustersize=4      : 5998.00 KBytes (23992 Sectors, 112%)

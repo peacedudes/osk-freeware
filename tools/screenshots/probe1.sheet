@@ -1,0 +1,31 @@
+# First sheet -- proving the harness on four programs of different shapes:
+# print-and-stop, a prompt-driven one, a curses one, and a shell pipeline.
+shot    today
+cap     Prints the date, the time and the phase of the moon in words.
+run     /dd/CMDS/today
+wait    3
+
+shot    textb
+cap     The Mandelbrot set, drawn in ASCII on an 80x24 terminal.  It asks for
+cap     a centre and a range; -2.3, -2.0, 4.0 gives the whole set.
+run     /dd/CMDS/textb
+wait    2
+send    -2.3\r
+wait    1
+send    -2.0\r
+wait    1
+send    4.0\r
+wait    25
+
+shot    queens
+cap     The eight-queens problem, solved and drawn.  An IOCCC entry: it reads
+cap     the board size on standard input.
+run     /dd/CMDS/queens
+wait    1
+send    8\r
+wait    6
+
+shot    banner-demo
+cap     banner, the letters made of their own initials.
+run     /dd/CMDS/banner OS-9
+wait    3

@@ -1,0 +1,18 @@
+/dd/CMDS/rpn
+
+WELCOME TO RPN!!! (Rpn version 1) by Nils McCarthy
+
+12
+                stack top: 12
+                        stacksize: 1
+34
+                stack top: 34
+                        stacksize: 2
++
+                stack top: 0
+                        stacksize: 3
+2
+                stack top: 2
+                        stacksize: 4
+q
+Bye Bye, now! Please try rpn again!

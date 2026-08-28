@@ -1,0 +1,12 @@
+/dd/CMDS/rechne 4095 x 16
+rechne: Ergebnis (4095)= 4095, $fff, %1111 1111 1111
+rechne: Ergebnis (X)= -32767, $ffff8001, %1111 1111 1111 1111 1000 0000 0000 001
+rechne: Ergebnis (16)= 16, $10, %1 0000
+rechne: Ergebnis (12345)= 12345, $3039, %11 0000 0011 1001
+Mode: Allgemeine Bitdarstellung
+  $         1  gesetzt  Bit  0
+  $         8  gesetzt  Bit  3
+  $        10  gesetzt  Bit  4
+  $        20  gesetzt  Bit  5
+  $      1000  gesetzt  Bit 12
+  $      2000  gesetzt  Bit 13

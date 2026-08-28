@@ -1,0 +1,6 @@
+/dd/CMDS/fibo
+start
+10 loops done
+ Fibonacci( 24) = 46368
+start
+7000 loops done

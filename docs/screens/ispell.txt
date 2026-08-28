@@ -1,0 +1,24 @@
+                                                               3
+
+
+
+
+
+
+
+
+
+
+                     S/ispell /dd/tmp/sp.txt/* about -- everything this collecti
+/dd/tmp/sp.txt/dd/CMD/* about -- everything this collection knows about one prog
+
+
+
+
+
+
+
+
+ * text -- and to use it you had to know those five places existed and go and
+
+Unprogrammed Key

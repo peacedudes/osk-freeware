@@ -1,0 +1,10 @@
+os9$ P=/dd/CMDS/NETPBM
+
+os9$ $P/pgmramp -lr 32 8 > /dd/tmp/s.pgm
+os9$ $P/pnmcut 0 0 16 4 /dd/tmp/s.pgm > /dd/tmp/c.pgm
+os9$ $P/pnmtile 64 16 /dd/tmp/s.pgm > /dd/tmp/t.pgm
+os9$ $P/pnmfile /dd/tmp/s.pgm /dd/tmp/c.pgm /dd/tmp/t.pgm
+/dd/tmp/s.pgm:  PGM raw, 32 by 8  maxval 255
+/dd/tmp/c.pgm:  PGM raw, 16 by 4  maxval 255
+/dd/tmp/t.pgm:  PGM raw, 64 by 16  maxval 255
+os9$

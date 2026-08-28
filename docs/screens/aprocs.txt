@@ -1,0 +1,8 @@
+/dd/CMDS/aprocs
+F$SetSys: unimplemented 0030 (size=80000004)
+F$SetSys: unimplemented 0034 (size=80000004)
+
+Process   Pid: 3, aprocs, edition 110
+    Exit code: E_PRCABT(228) Process Aborted
+  Directories: Current   - /dd
+               Execution - /dd/CMDS

@@ -1,0 +1,20 @@
+       "o "Mo"MM M o Mo"MoMo "oM  M Mo "MM M MM M"Mo oM oMoM M"o o  o"
+      " M oM oMM"M o Mo"MoM  M M  Mo"M "MM o"Mo oMM o"M oM M "Mo "  M"
+      " M  M oMMoM " oM"oMM" "oM  Mo"M "MM M M" oMM o"M oM"M "oM M  oM
+      o"o "M oMM M M oM"oMM  M M  Mo"M oMM o"MM oMM o"M oMoM M"o o  "o
+      o M oM" MM"M o o"Mo"Mo "oM  M M"o MM M Mo oMM o"M oM M "Mo "  M"
+      o M  M" MMoM " "Mo"MM  M M  Mo"M oMM M M" oMM o"M oM"M "oM M  M"
+        M oM"oMM M M Mo"MoM" M M  M M"o MM M MM oMM o"M oM"M Mo" o  oM
+      " M  M oMM"M o "oM"oMo "oM  Mo"M oMM M M" oMM o"M oMoM "oM "  o"
+      o"o "M "MMoM " Mo"M"M  M M  M M"o MM M MM oMM o"M oM M M"o M  M"
+      o M  MM MM M M oM"M"Mo "oM  Mo"M oMM M MM  MM o"M oM"M M"o "  oM
+      o M "M oMM"M o Mo"MoM  M M  M M"o MM o"Mo M"Mo "M oMoM "M" "  o"
+      o M oM oMMoM " oM"oMM" "oM  M"oM "MM M M" oMM "oM" M M "M" M  M"
+        M  M" MM M M oM"oMM  M M  Mo"M "MM o"MM oMMo" M"oM"M "Mo "  oM
+      "o" oM"oMM"M o o"Mo"Mo "oM  Mo"M oMM M Mo o"Mo "Mo MoM MoM "  oM
+      o M  M oMMoM " "Mo"MM  M M  M M"o MM M M" M"M o"M oM M oMo M  o"
+      o M "M oMM M M Mo"MoM" M M  Mo"M oMM M MM M"Mo "M oM"M oMo "  M"
+  o o o M oM"o "oo o o oo o o oo o o M o o o  o o ooo  oo   o  o M  oM o oo
+  "  M  "  M o  M    o "oo" M  Mo  " M  M  " M  "o   M  M   "  " o  o" "oo"
+ "o  "         M   o"  M  M  "M M  M    "  M M  M o  "  o   "o         M  M
+  """             """" " "   "   " "     ""   ""  """   "               " "

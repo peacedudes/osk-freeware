@@ -1,0 +1,3 @@
+giftopnm /dd/DEMO/gulls.gif > /dd/tmp/gulls.ppm
+/dd/tmp/gulls.ppm:      PPM raw, 320 by 200  maxval 255
+/dd/tmp/small.ppm:      PPM raw, 300 by 188  maxval 255

@@ -1,0 +1,39 @@
+# Generators and simulators that are not quite games.
+shot    name
+cap     A random name generator -- ten at a time.
+run     /dd/CMDS/name 10
+wait    3
+
+shot    areacode
+cap     Looks up US telephone area codes.
+run     /dd/CMDS/areacode 212 415 816 314
+wait    3
+
+shot    shire
+cap     A weather simulator for the Shire, keeping the Middle-earth
+cap     calendar: Afteryule, Solmath, Rethe.  One of six regions here.
+run     /dd/CMDS/shire
+wait    4
+
+shot    florida
+cap     The same weather simulator set on the Gulf coast -- Gregorian
+cap     calendar, and a January that never freezes.
+run     /dd/CMDS/florida
+wait    4
+
+shot    japan
+cap     The weather simulator on the Japanese calendar and the North
+cap     Pacific.
+run     /dd/CMDS/japan
+wait    4
+
+shot    scales
+cap     A musical scale generator: every scale it knows, written out in
+cap     note names.
+run     /dd/CMDS/scales -a
+wait    4
+
+shot    newsgen
+cap     A fake news bulletin, assembled from parts.
+run     /dd/CMDS/GAMES/newsgen
+wait    4

@@ -1,0 +1,23 @@
+</NETPBM/ppmtopgm | /dd/CMDS/NETPBM/pgmtopbm | /dd/CMDS/NETPBM/pbmtoascii
+MMMMMMMMMMMMMMMMMM"o"MMMMMMMMMMMMMMMMMMMMo"oM"M MoMMMM"oMo"oM"oMMMM"oM"oM"oM
+MM"MMoMMMMMMMMMMMM"o"MMM"MMMMMMM"MMM"MMM M"o"oM"o"MMoM Mo"M M"oMMMoM Mo"oM M
+MMMMMMMMoMMoMMMoMMM"oMMMMMMoMMMMMMMMMMMMMo"M"o"Mo"MMMo"M M"oM"oMMM M"oM"oM"o
+MMMMMoMMMMMMM"MMMMo"oMMMM"MMMMoMMMMoMMMo"o"Mo"M M"MMMo"M"o"oM"oMMM"oM Mo"oM"
+MMoMMMMMMoMMMMM"MMo"oMMMMMMMM"MMMoMMMMMM"M Mo"M"o"MMMo"M""M Mo"MMMMo"Mo"M M"
+o"o"oo"o"o"o"o"M M o "oo"ooM Mo"o"o"oo"o"o o " o "o"oo o" o o o"oo o o " o "
+MMMMMMMMMMMMMMMMMM M"MMMMMMMMMMMMMMMMMMMo"Mo"M"oM"MMMoMo"Mo"Mo"MMM"o"M""Mo"M
+MMMMMMM"MMMMMMMMMM"o"MMMMoMMMMM"MMMMMMMMo"oM"oMo"oMMMo"oMo"M M"MMMM"oM"M M"o
+MMMoMMMMMMoMMoMMMM"o"MMoMMMMoMMMMMoMMoMMoM"oM Mo"M"MMoM Mo"M"o"MMM Mo"oM"oM"
+MMMM"MMM"MMMMMMMMM"o"MMMMMM"MMMM"MMMMMMMo"oMo"M M"MMMo"M M"oM"oMMM"oM"o"M M"
+M"MMMMMMMMMoMMoMMM"o"MMMoMMMMMMMMMMoMMMMoM Mo"M"o"MMMo"Mo"M M"oMMMM M"o"M"oM
+M"o"ooM M Mo"oM Mo" o"oM Mo"ooM M Mo"ooM o"  o" o" Mo o o" o" o"o"o "o "o o
+Mo"Mo"o"Mo"oM"oM"o"  Mo"M M"o"o"Mo"oM Mo o" "o "o M"o" o "o o" "Mo "o "o o"
+oM"o"M"o"oM"o"oM"o" "o"Mo"M"o"Mo"oM"oM"o" o" o" o M"M " "o o" ""oM "o "o o"
+MMMMMMMMMMMMMMMMMMM""MMMMMMMMMMMMMMMMMMMM"o"Mo"Mo"MMM"M"oM"o"M"MMM"oM"o"oM"M
+ Mo"oM Mo"o"oM M M  "o"o"o"oM Mo"o"o"o"o " o o"  M Mo" o o" "o Mo"o o" "  o
+"oM"o"M M"oMo"Mo"M " "Mo"M"o"M M"oM"Mo"M "o "o "o MoM " o "o o MoM o M "o" "
+"oM"o"M"oMo"oMo"Mo" "M M"oM"oM"oMo"oMo"M " o" o" o"oM "o "o "o M M o o" o" "
+MMMMMMMMMMMMMMMMMMM"oMMMMMMMMMMMMMMMMMMM"M"oM"oM"oMMMM"oM"oM"o"MMM"oM"oM""M"
+"o"o"o"oo"oo"oo"oo o M Mo"o"oo"oo"o"o"oM o"  o o" o"oo o "o " "o"M o "o "o "
+"M"o"M"oM"oM"o"Mo"o "oM"oM"oMo"Mo"M"oMo"o "o" o "o"Mo "o "o M "oM"o "o o" o"
+Mo"M"oMo"oMo"Mo"oMo "o"oM Mo"oMo"M Mo"oM o" o" " o"oM " o"  o" "o"o "o o" o

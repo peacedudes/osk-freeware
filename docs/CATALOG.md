@@ -561,8 +561,8 @@
 | `marc` | MARC archiver<br>`Usage: MARC <tgtarc> <srcarc> [<filename> . . .]` |
 | `shar` | Shell-archive creator |
 | `tar` | GNU tar 1.10<br>`Syntax : tar [ctx][mfv] tarfile [file(s)...]` |
-| `unzip` | &#9733; Info-ZIP unzip<br>`Usage: unzip [ -options[modifiers] ] file[.zip] [filespec...]` |
-| `zip` | Info-ZIP zip 1.9 |
+| `unzip` | &#9733; Info-ZIP unzip.  Nothing here can MAKE a zip for it to read -- see the `zip' entry -- so it is untested against a fresh archive.  It reads zips made elsewhere<br>`Usage: unzip [ -options[modifiers] ] file[.zip] [filespec...]` |
+| `zip` | Info-ZIP zip 1.9 DOES NOT WORK, measured 2026-08-27.  It deflates correctly and then cannot put the result anywhere: it writes a temporary (_Z000003), fails to rename it over the target, and reports `zip error: Could not create output file'.  Reproduced writing into /dd/tmp and into /dd, so it is not one bad directory. Use zoo, tar or gzip instead; all three round-trip exactly. tools/datatests/archives.cases keeps the failing case. |
 | `zipnote` | Info-ZIP zipnote -- view/edit zip comments<br>`Usage:  zipnote [-w] [-b path] zipfile` |
 | `zipsplit` | Info-ZIP zipsplit -- split a zip archive<br>`Usage:  zipsplit [-ti] [-n size] [-b path] zipfile` |
 | `zoo` | &#9733; zoo archiver<br>`Usage: zoo {acDeglLPTuUvx}[aAcCdEfInmMNoOpPqu1:/.@n] archive file` |
@@ -658,10 +658,10 @@
 | `atob` | ASCII-to-binary decode<br>`Usage: atob <filein >fileout` |
 | `btoa` | Binary-to-ASCII encode<br>`Usage : btoa <filein >fileout` |
 | `chardef` | define a character set<br>`Syntax: defchar [<path>]` |
-| `todos` | &#9733; OS-9 to DOS line endings |
-| `toos9` | &#9733; DOS to OS-9 line endings |
+| `todos` | &#9733; OS-9 to DOS line endings -- BUT SEE BELOW, it does nothing |
+| `toos9` | &#9733; DOS to OS-9 line endings -- the same DO NOT RELY ON THESE TWO.  Measured 2026-08-27: both are NO-OPS.  Each takes a FILENAME (not a pipe) and rewrites it in place through a `todos.$$$.N' temporary, and the file that comes out is byte-identical to the one that went in -- same length, same md5 -- on CR-only OS-9 text, which is exactly what todos says it converts.  A real DOS conversion must ADD a linefeed per line and cannot leave the length alone.  Tested on /dd/SYS/termcap (963 bytes) and DOC/README-CIO (3886); neither moved. Use `flip' host-side, or `tr', until this is understood. tools/datatests/encoding.cases keeps the failing case. |
 | `uudecode` | &#9733; uudecode<br>`USAGE: uudecode [infile]` |
-| `uuencode` | &#9733; uuencode<br>`USAGE: uuencode >outfile [infile] name` |
+| `uuencode` | &#9733; uuencode.  ITS OWN USAGE LINE IS WRONG: it prints `uuencode >outfile [infile] name' and then fails with two arguments.  Give it ONE -- the input file -- and redirect: `uuencode myfile > myfile.uu'.  Measured 2026-08-27<br>`USAGE: uuencode >outfile [infile] name` |
 | `uuexpand` | expand uuencoded text<br>`Usage: uuexpand [opts]` |
 
 **Ciphers & hashes**

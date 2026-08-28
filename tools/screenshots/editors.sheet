@@ -1,0 +1,58 @@
+# Editors and pagers, each one opened on a real file.
+shot    umacs
+cap     MicroEMACS, editing the collection's own C source.  The mode line
+cap     at the foot is emacs's, and the keys are emacs's.
+run     /dd/CMDS/umacs /dd/SRC/keep/keep.c
+wait    6
+quit    \030\003
+
+shot    e
+cap     SEDT, the VMS-style editor, with VT220 keys.
+run     /dd/CMDS/e /dd/SRC/keep/about.c
+wait    6
+quit    \033\033
+
+shot    vc
+cap     vc compares two files side by side and marks where they differ.
+run     /dd/CMDS/head -n 14 /dd/DOC/INDEX > /dd/tmp/x1
+wait    2
+run     /dd/CMDS/sed -e "s/a/A/g" /dd/tmp/x1 > /dd/tmp/x2
+wait    3
+run     /dd/CMDS/vc /dd/tmp/x1 /dd/tmp/x2
+wait    6
+
+shot    less
+cap     less, paging the disk's own documentation.  SYS/less.hlp is here,
+cap     so its help screen works.
+run     /dd/CMDS/less /dd/DOC/README-RUNNING
+wait    5
+send    q
+wait    2
+
+shot    ispell
+cap     ispell, the interactive spelling checker, offering corrections for
+cap     a line of deliberately bad spelling.
+run     echo The quik brown foxx jmups over the lasy dog > /dd/tmp/sp.txt
+wait    2
+run     /dd/CMDS/ispell /dd/tmp/sp.txt
+wait    6
+quit    \033
+
+shot    rdoc
+cap     rdoc, the document reader.
+run     /dd/CMDS/rdoc /dd/DOC/README-CIO
+wait    6
+send    q
+wait    2
+
+shot    help
+cap     The help system, answering for one of its own topics.
+run     /dd/CMDS/help space
+wait    5
+
+shot    hexedit
+cap     A hex editor opened on an OS-9 module: the $4AFC sync bytes are the
+cap     first two bytes of every module on this disk.
+run     /dd/CMDS/hexed /dd/CMDS/today
+wait    6
+quit    q

@@ -1,0 +1,56 @@
+# netpbm doing real image work, rendered back to characters so a screen can
+# hold it.  204 of the 834 programs here are this toolkit and until now one
+# pipeline had ever been photographed.
+shot    pbmtext
+cap     pbmtext sets a line of type as a bitmap; pbmtoascii renders that
+cap     bitmap back as characters.  Nothing is drawn by hand.
+run     /dd/CMDS/NETPBM/pbmtext "OS-9/68K" | /dd/CMDS/NETPBM/pbmtoascii
+wait    6
+
+shot    pbmupc
+cap     pbmupc draws a real UPC-A barcode from its digits.  Rendered here
+cap     through pbmtoascii, the bar widths are the code.
+run     /dd/CMDS/NETPBM/pbmupc 0 72890 00011 | /dd/CMDS/NETPBM/pbmreduce 3 | /dd/CMDS/NETPBM/pbmtoascii
+wait    8
+
+shot    ppmpat
+cap     ppmpat generates a tartan; ppmtopgm and pgmtopbm dither it down to
+cap     black and white, and pbmtoascii prints the result.
+run     /dd/CMDS/NETPBM/ppmpat -tartan 76 44 | /dd/CMDS/NETPBM/ppmtopgm | /dd/CMDS/NETPBM/pgmtopbm | /dd/CMDS/NETPBM/pbmtoascii
+wait    10
+
+shot    pgmcrater
+cap     pgmcrater makes a cratered fractal landscape by dropping craters at
+cap     random -- a whole moon from a random number generator.
+run     /dd/CMDS/NETPBM/pgmcrater -number 60 -width 152 -height 88 | /dd/CMDS/NETPBM/pgmtopbm | /dd/CMDS/NETPBM/pbmtoascii
+wait    20
+
+shot    pgmramp
+cap     A greyscale ramp dithered to a bitmap: the gradient survives as the
+cap     density of the characters.
+run     /dd/CMDS/NETPBM/pgmramp -lr 152 44 | /dd/CMDS/NETPBM/pgmtopbm | /dd/CMDS/NETPBM/pbmtoascii
+wait    8
+
+shot    pgmhist
+cap     pgmhist counts how many pixels hold each grey value -- the histogram
+cap     of the ramp above, which is flat by construction.
+run     /dd/CMDS/NETPBM/pgmramp -lr 64 16 > /dd/tmp/ramp.pgm
+wait    3
+run     /dd/CMDS/NETPBM/pgmhist /dd/tmp/ramp.pgm | /dd/CMDS/head -n 16
+wait    5
+
+shot    pnmfile
+cap     pnmfile identifies what each intermediate in a pipeline actually is
+cap     -- format, dimensions and whether it is raw or plain.
+run     /dd/CMDS/NETPBM/pgmtopbm /dd/tmp/ramp.pgm > /dd/tmp/ramp.pbm
+wait    3
+run     /dd/CMDS/NETPBM/ppmpat -gingham2 40 20 > /dd/tmp/ging.ppm
+wait    3
+run     /dd/CMDS/NETPBM/pnmfile /dd/tmp/ramp.pgm /dd/tmp/ramp.pbm /dd/tmp/ging.ppm
+wait    4
+
+shot    pbmlife
+cap     pbmlife runs Conway's Life one generation on a bitmap -- an image
+cap     tool that is also a cellular automaton.
+run     /dd/CMDS/NETPBM/pgmnoise 60 30 | /dd/CMDS/NETPBM/pgmtopbm | /dd/CMDS/NETPBM/pbmlife | /dd/CMDS/NETPBM/pbmtoascii
+wait    10

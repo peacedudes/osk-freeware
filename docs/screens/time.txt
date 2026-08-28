@@ -1,0 +1,5 @@
+/dd/CMDS/time /dd/CMDS/sieve
+start
+ 100 sieves done
+'/dd/CMDS/sieve' ticks(sys/usr tot): 0/0 0,  elapsed secs: 0
+   fcalls/icalls: 5/6   bytes r/w: 0/25

@@ -1,0 +1,12 @@
+/dd/CMDS/about hack
+ hack           hack -- the original dungeon crawl NetHack grew out of
+
+  for        GAMES -- Dungeon crawl
+  needs      /h0/games/hack/playground              here
+             /dd/sys/termcap                        here
+             /h0/sys/termcap                        here
+  source     none on this disk
+  docs       DOC/hack
+
+  run it     hack
+  take it    keep hack

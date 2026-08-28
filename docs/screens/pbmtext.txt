@@ -1,0 +1,11 @@
+/dd/CMDS/NETPBM/pbmtext "OS-9/68K" | /dd/CMDS/NETPBM/pbmtoascii
+
+
+
+
+
+               oM""Mo  o"""oM         o""Mo   M oo"" o"""o "M" "M"
+              o"    "o "oo  "         M   M  o"oMoo  Mo  M  M o"
+              M      M   ""Mo  ooooo  "MooM  M M  "M o""Mo  M"Mo
+               Mo  oM  Mo  oM           oM  M  Mo  M M   M  M  "Mo
+                """"   " """          ""    "   """   """  """  """

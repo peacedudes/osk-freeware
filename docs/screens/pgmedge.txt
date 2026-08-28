@@ -1,0 +1,1 @@
+<l.ppm | pnmscale -width 152 | pgmedge | pgmtopbm | pbmtoascii

@@ -1,0 +1,54 @@
+# Calculators and the spreadsheet.
+shot    rpn
+cap     An RPN calculator: 12 and 34 pushed, added, then the square root of
+cap     two to fifteen places.
+run     /dd/CMDS/rpn
+wait    2
+send    12\r
+wait    1
+send    34\r
+wait    1
+send    +\r
+wait    1
+send    2\r
+wait    1
+send    q\r
+wait    2
+
+shot    rechne
+cap     rechne, a German command-line calculator.  It answers in decimal,
+cap     hex and binary at once.
+run     /dd/CMDS/rechne 4095 x 16
+wait    2
+run     /dd/CMDS/rechne -b 12345
+wait    3
+
+shot    loan
+cap     The amortisation calculator: principal, rate and term in, the
+cap     monthly payment and the schedule out.
+run     /dd/CMDS/loan
+wait    2
+send    100000\r
+wait    1
+send    7.5\r
+wait    1
+send    30\r
+wait    4
+
+shot    oleo
+cap     GNU Oleo 1.6, the other spreadsheet here.  A2 holds =A0+A1 and the
+cap     cell line at the top shows the formula behind the value.
+run     /dd/CMDS/oleo
+wait    4
+send    12\r
+wait    1
+send    30\r
+wait    1
+send    =A0+A1\r
+wait    3
+quit    \030\003
+
+shot    hc
+cap     hc, the hex calculator, on an expression.
+run     /dd/CMDS/hc -l "0x1f * 3 + 7"
+wait    3

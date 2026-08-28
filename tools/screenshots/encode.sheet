@@ -1,0 +1,49 @@
+# Encoders, hashes and conversions.
+shot    uuencode
+cap     uuencode wrapping a binary as printable text -- how files crossed
+cap     mail and usenet before attachments existed.
+run     /dd/CMDS/uuencode /dd/SYS/motd | /dd/CMDS/head -n 14
+wait    5
+
+shot    btoa
+cap     btoa, the denser alternative to uuencode: five ASCII characters per
+cap     four binary bytes, with a checksum line at the end.
+run     /dd/CMDS/btoa < /dd/SYS/motd | /dd/CMDS/head -n 14
+wait    5
+
+shot    md5
+cap     MD5 over three files on the disk.
+run     /dd/CMDS/md5 /dd/SYS/motd /dd/SYS/password /dd/DOC/INDEX
+wait    5
+
+shot    checksum
+cap     Two older checksums beside each other on the same file.
+run     /dd/CMDS/checksum /dd/SYS/motd
+wait    3
+run     /dd/CMDS/chksum /dd/SYS/motd
+wait    3
+
+shot    cvtbase
+cap     cvtbase converts a number between bases.
+run     /dd/CMDS/cvtbase 255 10 2
+wait    3
+run     /dd/CMDS/cvtbase 65535 10 16
+wait    3
+
+shot    binhex
+cap     binhex encodes a file the way a Macintosh expected to receive it --
+cap     BinHex 4.0, resource fork and all.
+run     /dd/CMDS/binhex /dd/SYS/motd | /dd/CMDS/head -n 12
+wait    5
+
+shot    strings
+cap     strings pulls the printable text out of a binary, each hit reported
+cap     with its offset.  Run here on an OS-9 module.
+run     /dd/CMDS/strings /dd/CMDS/today | /dd/CMDS/head -n 16
+wait    5
+
+shot    dump
+cap     dump, the hex dump: an OS-9 module header, byte by byte.  The first
+cap     four bytes are the sync $4AFC and the module's size.
+run     /dd/CMDS/dump /dd/CMDS/today | /dd/CMDS/head -n 16
+wait    5

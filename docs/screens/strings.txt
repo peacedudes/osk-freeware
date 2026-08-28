@@ -1,0 +1,17 @@
+/dd/CMDS/strings /dd/CMDS/today | /dd/CMDS/head -n 16
+$000048: <today>
+$000052: <                                                                >
+$00023A: < Stack Overflow >
+$000254: < Can>
+$000259: <t install trap handler >
+$00027D: <math>
+$0002D0: <NuNU>
+$0003DC: <NuNU>
+$000472: <NuSunday>
+$00047B: <Monday>
+$000482: <Tuesday>
+$00048A: <Wednesday>
+$000494: <Thursday>
+$00049D: <Friday>
+$0004A4: <Saturday>
+$0004AE: <Nomember>

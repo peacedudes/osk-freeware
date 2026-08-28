@@ -1,0 +1,9 @@
+/dd/CMDS/zoo a /dd/tmp/k.zoo /dd/SRC/keep/keep.c
+Zoo:  /dd/SRC/keep/keep.c --  (54%) added
+
+Archive /dd/tmp/k.zoo:
+Length    CF  Size Now  Date      Time
+--------  --- --------  --------- --------
+   20473  54%     9448   3 Aug 26 19:00:00   /dd/SRC/keep/keep.c
+--------  --- --------  --------- --------
+   20473  54%     9448     1 file

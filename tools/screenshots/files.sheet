@@ -1,0 +1,44 @@
+# Listing, finding and measuring what is on the disk.
+shot    ls
+cap     GNU ls, our own fixed build -- a real stat(), columns and -al.
+run     /dd/CMDS/ls -al /dd/SYS | /dd/CMDS/head -n 18
+wait    4
+
+shot    l
+cap     l, a brief listing -- names in columns and nothing else.
+run     /dd/CMDS/l /dd/CMDS/GAMES
+wait    4
+
+shot    edir
+cap     edir, the extended directory listing: attributes, owner, size and
+cap     dates the way OS-9 keeps them.
+run     /dd/CMDS/edir /dd/SYS
+wait    4
+kill
+
+shot    ff
+cap     ff finds files by name anywhere below a directory.
+run     /dd/CMDS/ff -p=/dd/CMDS termcap
+wait    4
+
+shot    find
+cap     GNU find 1.1.5, walking this disk.
+run     /dd/CMDS/find /dd/SYS -name "cal*" -print
+wait    5
+
+shot    du
+cap     Disk usage by directory.
+run     /dd/CMDS/du /dd/SYS
+wait    5
+kill
+
+shot    fstat
+cap     fstat reports a file's status and attributes as RBF holds them.
+run     /dd/CMDS/fstat /dd/CMDS/tar
+wait    3
+
+shot    dm
+cap     dm, the disk and directory monitor -- a full-screen file browser
+cap     with its own help.
+run     /dd/CMDS/dm /dd/SYS
+wait    5

@@ -1,0 +1,12 @@
+/dd/CMDS/xlisp
+XLISP version 2.1, Copyright (c) 1989, by David Betz
+> (defun fact (n) (if (< n 2) 1 (* n (fact (1- n)))))
+FACT
+> (mapcar 'fact '(1 2 3 4 5 6 7 8 9 10))
+(1 2 6 24 120 720 5040 40320 362880 3628800)
+> (dolist (x '(alpha beta gamma)) (print (list x (length (symbol-name x)))))
+(ALPHA 5)
+(BETA 4)
+(GAMMA 5)
+NIL
+>

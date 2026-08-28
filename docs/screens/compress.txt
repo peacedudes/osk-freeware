@@ -1,0 +1,2 @@
+/dd/CMDS/cat /dd/DOC/INDEX > /dd/tmp/index.txt
+/dd/tmp/index.txt: Compression: 50.04% -- replaced with /dd/tmp/index.txt.Z

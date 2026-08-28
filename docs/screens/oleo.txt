@@ -1,0 +1,12 @@
+/dd/CMDS/oleo
+Illegal instruction: 0009 at 000465d2
+
+Process   Pid: 3, oleo, edition 7
+    Exit code: E_PRCABT(228) Process Aborted
+  Directories: Current   - /dd
+               Execution - /dd/CMDS
+        Files: 00 fCons /term
+               01 fCons /term
+12: command not found
+30: command not found
+=A0+A1: command not found

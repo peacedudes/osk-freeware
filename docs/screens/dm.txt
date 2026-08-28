@@ -1,0 +1,15 @@
+                             +===================+
+                             |  DiskMaster v1.4  |
+                             | Copyright(c) 1995 |
+                             |  by Bob Devries   |
+                             |  Mouse  Detected  |
+                             +===================+
+
+
+
+
+
+
+
+
+ERROR 216: Can't open /pipe/getcwdpipe

@@ -1,0 +1,2 @@
+/dd/CMDS/cat /dd/DOC/INDEX > /dd/tmp/index2.txt
+/dd/tmp/index2.txt:      63.1% -- replaced with /dd/tmp/index2.txt.gz
