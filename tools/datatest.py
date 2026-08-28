@@ -25,6 +25,7 @@ Case-file format (one directive per line, # comments ignored)
     family  netpbm              what to call this set
     setup   P=/dd/CMDS/NETPBM   shell lines run once, before any case
     load    /dd/CMDS/os9lib     module to `load' before anything runs
+                                (CMDS/load on the disk does it)
 
     case    pnmcut-crops        start a case; everything after is part of it
     run     $P/pnmcut 0 0 16 4 /dd/tmp/s.pgm > /dd/tmp/c.pgm
@@ -59,11 +60,11 @@ import sys
 
 REPO = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 OS9EXEC = os.environ.get("OS9EXEC", os.path.join(REPO, "..", "os9exec", "os9exec"))
-# Microware's `load', TESTING ONLY -- it is never committed into disk/.
-# The trap-free build: the ordinary one stops with `csl traphandler mismatch'
-# against the edition-16 csl this collection ships.
-SDK_LOAD = os.environ.get(
-    "OS9LOAD", os.path.expanduser("~/Developer/os9/play/oskBoot/CMDS/NOCSL/load"))
+# THE COLLECTION'S OWN `load', which is on the disk as of 2026-08-27 -- a
+# clean-room implementation contributed by the os9exec project, source in
+# SRC/load.  This used to borrow Microware's from an SDK outside the tree,
+# which meant a family with a `load' line could not be tested by anyone who
+# did not have that disk.
 MARK = "@@CASE@@"
 
 
@@ -120,7 +121,7 @@ def script_for(fam):
     """One bash procedure file for the whole family: ONE emulator start."""
     lines = []
     for mod in fam["load"]:
-        lines.append("/h4/load %s" % mod)
+        lines.append("/dd/CMDS/load %s" % mod)
     lines += fam["setup"]
     for c in fam["cases"]:
         lines.append('echo "%s%s"' % (MARK, c.name))
@@ -150,18 +151,8 @@ def run_family(path, image, workdir):
     sh = os.path.join(workdir, "h1", "%s.sh" % fam["family"])
     open(sh, "w", newline="").write(script_for(fam))
 
-    h4 = os.path.join(workdir, "h4")
-    os.makedirs(h4, exist_ok=True)
-    dst = os.path.join(h4, "load")
-    if fam["load"] and not os.path.exists(dst):
-        if not os.path.exists(SDK_LOAD):
-            sys.exit("this family needs `load' and none is at %s "
-                     "(set OS9LOAD)" % SDK_LOAD)
-        import shutil
-        shutil.copy2(SDK_LOAD, dst)
-
     env = dict(os.environ, LC_ALL="C", OS9DISK=image,
-               OS9H1=os.path.join(workdir, "h1"), OS9H4=h4)
+               OS9H1=os.path.join(workdir, "h1"))
     proc = subprocess.run(
         ["gtimeout", "300", OS9EXEC, "-r", "bash", "/h1/%s.sh" % fam["family"]],
         env=env, stdin=subprocess.DEVNULL, stdout=subprocess.PIPE,

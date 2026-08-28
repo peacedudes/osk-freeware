@@ -61,11 +61,13 @@ Do not stop between items to report; commit and start the next one.
     export OS9EXEC=~/Developer/os9/os9exec/os9exec
 
     tools/datatest.py --all          # Tier A: data in, data out. FAST --
-                                     # one emulator start per family
+                                     # one emulator start per family.  The
+                                     # `modules' family LOADS os9lib first,
+                                     # with the disk's own CMDS/load
     tools/playtest.py --all          # Tier B: pty, screen read. SLOW, hours
     tools/check_disk.py disk         # eleven invariants; read the OUTPUT
 
-Current: **63 data cases, 60 passing** (`tools/datatest.py --all`, verified
+Current: **70 data cases, 67 passing** (`tools/datatest.py --all`, verified
 at end of session). The three failures are EXPECTED and are real defects in
 shipped programs, kept failing on purpose:
 

@@ -1,0 +1,54 @@
+family  modules
+# THE FIRST FAMILY THAT LOADS A MODULE, and the reason this file exists.
+#
+# Every sweep this collection has run started every program with an EMPTY
+# module directory. A program that links a library MODULE -- the RTF
+# Fortran-77 system links os9lib -- exits at F$Link before it prints
+# anything, and was recorded as silent on a condition that cannot occur on a
+# real system. Six programs sat in "silent in every stage" for weeks for that
+# reason alone.
+#
+# `load' is what puts a module where F$Link can find it, and as of 2026-08-27
+# the collection HAS one: CMDS/load, clean-room, source in SRC/load. These
+# cases prove the pair -- that load works, and that the Fortran set comes
+# alive when it has.
+load    /dd/CMDS/os9lib
+
+case    for-speaks-once-os9lib-is-loaded
+run     /dd/CMDS/for
+expect  command: for file
+
+case    lnk-speaks-too
+run     /dd/CMDS/lnk
+expect  command: lnk
+
+case    rtf-the-compiler-itself
+run     /dd/CMDS/rtf
+expect  RTF pathname
+
+# A module that is not there must FAIL, and say so with the error number. A
+# `load' that reported success for a missing file would make every case above
+# meaningless -- it is the check that can fail.
+case    load-refuses-what-is-not-there
+run     /dd/CMDS/load /dd/CMDS/no-such-module
+expect  216
+
+# -l prints the pathlist it loaded from, which is how you tell WHICH copy of
+# a module you got when two are reachable.
+case    load-l-reports-the-path
+run     /dd/CMDS/load -l /dd/CMDS/rtfdat
+expect  loaded "/dd/CMDS/rtfdat"
+
+# And the module really is resident afterwards.  `mexist' PRINTS NOTHING in
+# either case -- it answers in the exit status only -- so the status is what
+# this asks for.  Written the obvious way (`absent not found') the case
+# passed with no module loaded at all, because an `absent' test over empty
+# output can never fail.  That is the shape of a check that cannot fail, and
+# this file is where one would do the most damage.
+case    the-module-is-in-the-directory
+run     /dd/CMDS/mexist os9lib; echo "mexist os9lib says $?"
+expect  mexist os9lib says 0
+
+case    mexist-says-no-to-what-is-not-loaded
+run     /dd/CMDS/mexist definitelynotamodule; echo "mexist junk says $?"
+absent  mexist junk says 0
