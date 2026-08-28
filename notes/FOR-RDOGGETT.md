@@ -21,8 +21,15 @@ on that basis. Twelve runs said 11/12 vs 10/12. Still open.
 **`life` and terminal size: you are right and it cannot be fixed in `life`.**
 os9exec implements no screen-size call at all, so a program can only learn its
 size from termcap, which says 24x80. `DOC/README-RUNNING` now says in bold
-that the disk needs an 80x24 terminal. My harness renders 80x24 too, so it
-shares the blind spot.
+that the disk needs an 80x24 terminal.
+
+My harness no longer shares the blind spot. It can size the terminal now, and
+`life` at 40x12 writes its status line straight through the middle of the
+board -- `Gene@..@@@: 3`. So the warning in README-RUNNING is measured rather
+than asserted, and `life`'s play-test carries the assertion that catches it.
+The mechanism turned out not to be scrolling: `life` addresses line 24
+absolutely and a short terminal clamps that into the picture, overwriting the
+board in place. Nothing scrolls off, which is why it still looks like a board.
 
 ## Fixed and verified this session
 
