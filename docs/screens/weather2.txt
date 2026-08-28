@@ -1,17 +1,17 @@
-/dd/CMDS/georgia | /dd/CMDS/head -n 10
+georgia | head -n 10
                                                                   Snow
 Year   1    Weather        Sky   Temperature    Precip      Wind  Depth  Notes
 January
-   1       Overcast       Mist    Fair ( 50)      None      Calm         New Ye)
-   2       Overcast  Heavy Fog  Chilly ( 30)      None      Calm
-   3          Clear      Clear    Warm ( 65)      None      Calm
-   4          Clear      Clear    Fair ( 40)      None      Calm
-   5          Clear      Clear    Fair ( 40)      None     Light
-   6  Precipitation       Mist    Fair ( 50)     Heavy      Calm         Rain -t
-   7  Precipitation       Mist    Fair ( 50)  Sprinkle      Calm         Rain -,
-Caqij
-Ydoka
-Gejov
-Hapuz
-Ko'it
-Hohirexat
+   1          Clear      Clear    Fair ( 50)      None      Calm         New Ye)
+   2          Clear      Clear    Fair ( 50)      None      Calm
+   3          Clear      Clear    Fair ( 50)      None      Calm
+   4          Clear      Clear    Fair ( 50)      None      Calm
+   5          Clear      Clear    Fair ( 50)      None      Calm
+   6          Clear      Clear    Fair ( 50)      None      Calm         Twelftt
+   7          Clear      Clear    Fair ( 50)      None     Light
+Wevohad
+Ueminelu
+Obunumq
+Byqikog
+Tupug
+Ruo

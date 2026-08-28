@@ -1,4 +1,4 @@
-/dd/CMDS/pep -?
+pep -?
 pep  ver. 2.1; Copyright (c) 1989 Gisle Hannemyr
 Usage: pep [options] [filename ...]
 Valid options:

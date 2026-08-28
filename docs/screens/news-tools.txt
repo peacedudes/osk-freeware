@@ -1,4 +1,4 @@
-/dd/CMDS/UUCP/rnews -?
+rnews -?
 rnews [-x debug_level] [-n inital_newsgroup] [-z] newsfile
 subscribe: subscribe to Usenet newsgroups
 

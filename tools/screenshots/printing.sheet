@@ -7,7 +7,7 @@ cap     Ghostscript's device list -- what this build can rasterise to.  Both
 cap     Ghostscripts are here; only 4.03 has its initialisation files.
 run     export GS_LIB=/dd/LIB/gs403
 wait    2
-run     /dd/CMDS/gs403 -h | /dd/CMDS/tail -n 16
+run     gs403 -h | tail -n 16
 wait    12
 
 shot    gs-render
@@ -18,82 +18,75 @@ cap     LIB/gs403, and -c quit is what makes it exit rather than sit at its
 cap     own GS> prompt.
 run     export GS_LIB=/dd/LIB/gs403
 wait    2
-run     /dd/CMDS/gs403 -q -dNOPAUSE -dBATCH -sDEVICE=pbm -r24 -g152x88 -sOutputFile=/dd/tmp/gs.pbm /dd/LIB/gs403/cheq.ps -c quit
+run     gs403 -q -dNOPAUSE -dBATCH -sDEVICE=pbm -r24 -g152x88 -sOutputFile=/dd/tmp/gs.pbm /dd/LIB/gs403/cheq.ps -c quit
 wait    45
-run     /dd/CMDS/NETPBM/pbmtoascii -2x4 /dd/tmp/gs.pbm
+run     pbmtoascii -2x4 /dd/tmp/gs.pbm
 wait    10
 
 shot    gs403
 cap     Aladdin Ghostscript 4.03 -- a complete PostScript interpreter on an
 cap     OS-9 disk.  Its banner, its device list and the prompt it offers.
-run     /dd/CMDS/gs403 -h
+run     gs403 -h
 wait    10
 
 shot    lp
 for     lp lpq lprm lpsched lpshut submit prjob qp
 cap     The spooler set.  With no printer configured they say so, which is
 cap     the state a fresh disk arrives in.
-run     /dd/CMDS/lp -?
+run     lp -?
 wait    6
-run     /dd/CMDS/lpq
+run     lpq
 wait    5
-run     /dd/CMDS/lpsched -?
+run     lpsched -?
 wait    6
 
 shot    lpq
-cap     The print spooler's queue, empty, and the scheduler that owns it.
-run     /dd/CMDS/lpq
-wait    4
-run     /dd/CMDS/splstat
-wait    4
+for     lpq lp lprm lpsched lpshut submit prjob qp splstat
+cap     The print spooler with nothing configured: `lpq' says there is no
+cap     spooler installed, which is the honest state of a fresh disk, and
+cap     `lp' says what it would take.  Carl Kreider's `splstat' prints
+cap     nothing whatever, so the last line here is just its command.
+run     lpq
+wait    5
+run     lp -?
+wait    6
+run     splstat
+wait    5
 
 shot    lwf
 for     lwf
 cap     lwf turns plain text into PostScript, the way enscript does.  Its
 cap     prologue comes from USR/LIB; here is the head of a page it set.
-run     /dd/CMDS/lwf /dd/SYS/motd | /dd/CMDS/head -n 18
+run     lwf /dd/SYS/motd | head -n 18
 wait    10
 
 shot    perr
 cap     perr turns an OS-9 error number into its message.  216 is the one
 cap     this collection meets most.
-run     /dd/CMDS/perr 214 216 218 221
+run     perr 214 216 218 221
 wait    4
 
 shot    perr-alps
 for     perr alps epson
 cap     perr names an OS-9 error; alps switches an ALPS printer between
 cap     draft and letter quality; epson drives an Epson from spline output.
-run     /dd/CMDS/perr 1 2 3 4 5
+run     perr 1 2 3 4 5
 wait    6
-run     /dd/CMDS/alps -?
+run     alps -?
 wait    6
 
 shot    perr-print
 for     perr
 cap     perr turns an OS-9 error number into its message -- the errors this
 cap     collection meets most.
-run     /dd/CMDS/perr 214 216 218 221 237
+run     perr 214 216 218 221 237
 wait    4
-
-shot    splman
-for     splman splprt splstat
-cap     Carl Kreider's own spooler: manager, printer process and queue
-cap     status.  The queue is at /dd/SPL/splq and it is empty.
-run     /dd/CMDS/splstat
-wait    6
-run     /dd/CMDS/splman -?
-wait    6
-
 
 shot    spooler
 for     splman splprt splstat gs33
-cap     Carl Kreider's print spooler -- manager, printer process and
-cap     status -- with its queue at /dd/SPL, and the older Ghostscript
-cap     beside it.
-run     /dd/CMDS/splstat
-wait    8
-run     /dd/CMDS/splprt
-wait    8
-run     /dd/CMDS/gs33 -h | /dd/CMDS/head -n 8
+cap     Ghostscript 3.33, the older of the two -- it lists its devices and
+cap     then says what it is missing, which is its initialisation files.
+cap     Carl Kreider's spooler (splman, splprt, splstat) is named here too
+cap     because all three print NOTHING at all, with or without a queue.
+run     gs33 -h | head -n 14
 wait    12

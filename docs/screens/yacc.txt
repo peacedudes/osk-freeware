@@ -1,4 +1,0 @@
-echo "%token NUM" > /dd/tmp/g.y
-%token NUM
-%%
-expr : expr '+' NUM | NUM ;

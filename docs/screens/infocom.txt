@@ -1,8 +1,18 @@
-/dd/CMDS/infocom /dd/GAMES/INFORM/dejavu.z3
+infocom /dd/GAMES/INFORM/dejavu.z3
 
 [
-[
-[
-[
+        ... the same line 4 times over
 [What a horrid dream, all about compiling something. Thank heavens you've final.
+[
+[DEJA VU
+[An Interactive Demonstration
+[Copyright (c) 1993 by Graham Nelson. All rights given away.
+[Release 2 / Serial number 931203  (Compiled by Inform v798)
+[
+[Y2 Rock Room
+[You are in a large room, veined with quartz, with a passage to the south, a pa.
+[
+[On the Y2 rock is a featureless white cube.
+[
+[A little red car is parked here.
 [MORE]

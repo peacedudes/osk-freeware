@@ -183,9 +183,11 @@
   Tick programs with <b>+</b> (or the space bar) to build a <code>keep</code>
   command you can paste at an OS-9 shell &mdash; see <code>DOC/README-KEEP</code>.
   <br><br>
-  Screens photographed from the running programs are in the
-  <a href="screens.html" style="color:var(--accent)">gallery</a>, and on each
-  program&rsquo;s own card.
+  <b>Sample output</b> on a program&rsquo;s card was photographed from that
+  program running on the disk image &mdash; keystrokes into os9exec&rsquo;s
+  console, and the terminal stream rendered into the grid a vt100 would have
+  shown. Nothing is mocked up, and where a program failed, its failure is
+  what you see.
   <br><br>
   <span style="color:var(--accent)">&#9733;</span> needs Microware&rsquo;s <code>cio</code>
   &mdash; see <code>DOC/README-CIO</code>. Built from <code>DOC/INDEX</code>,
@@ -339,12 +341,13 @@ function detail(name){
     if(gone.length) D.push(`<dt></dt><dd class="advice">${advice(p,gone)}</dd>`);
   }
   if(p.usage) D.push(`<dt>Its own help</dt><dd><pre class="usage">${esc(p.usage)}</pre></dd>`);
-  // THE PROGRAM RUNNING. Photographed from the disk image, not mocked up --
-  // see docs/screens.html for the whole gallery and how it was taken.
+  // THE PROGRAM RUNNING, beside its own help: photographed from the disk
+  // image, never composed. This is ONE catalogue -- there is no separate
+  // gallery page, because a second page listing the same programs is a
+  // second catalogue to keep true.
   const shot=SHOTS[p.name];
-  if(shot) D.push(`<dt>On screen</dt><dd><pre class="shot">${esc(shot.s)}</pre>`+
-      `<p class="shotcap">${esc(shot.c)} `+
-      `<a href="screens.html#s-${esc(shot.n)}">in the gallery</a></p></dd>`);
+  if(shot) D.push(`<dt>Sample output</dt><dd><pre class="shot">${esc(shot.s)}</pre>`+
+      `<p class="shotcap">${esc(shot.c)}</p></dd>`);
   add("Restrictions", esc(i.restrictions));
   add("Hardware",     esc(i.hardware));
 

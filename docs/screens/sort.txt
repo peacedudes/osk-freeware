@@ -1,13 +1,13 @@
-<DS/sort | /dd/CMDS/uniq -c | /dd/CMDS/sort -nr | /dd/CMDS/head -n 12
-30 the
+sepwords < /dd/DOC/README-CIO | sort | uniq -c | sort -nr | head -n 12
+38 the
 17 and
-15 a
-13 is
-12 you
+16 a
+16 is
+14 you
+11 it
 11 of
-9 --
-8 it
+10 --
+10 this
+9 in
 8 that
-8 this
-7 modules
-7 your
+8 with

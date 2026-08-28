@@ -1,4 +1,4 @@
-/dd/CMDS/ar2
+ar2
 Ar V2.00 - archive file manager
 Usage:  Ar -<cmd>[<modifier>] archive [file .. ]
       <cmd> is one of the following:

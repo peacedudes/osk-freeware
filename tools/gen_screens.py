@@ -1,13 +1,17 @@
 #!/usr/bin/env python3
-r"""Build the screen gallery, and the screens the catalogue shows.
+r"""Turn the captures into the SAMPLE OUTPUT the catalogue shows.
 
     tools/screenshots.py --all       # photograph the programs, many per run
     tools/playtest.py --all          # play the interactive ones and judge
-    tools/gen_screens.py             # turn the captures into the gallery
+    tools/gen_screens.py             # fold the captures into the catalogue
 
-    docs/screens.html   the gallery, grouped the way the catalogue groups
-    docs/screens.js     the same screens, keyed by program, for docs/index.html
-    docs/screens/*.txt  the chosen screens as text, because notes/ is scratch
+    docs/screens.js     one screen per program, read by docs/index.html
+    docs/screens/*.txt  the same screens as text, because notes/ is scratch
+
+THERE IS ONE CATALOGUE.  These screens used to have a gallery page of their
+own, and that was a second catalogue listing the same programs and needing
+the same maintenance.  A screen belongs on the program's card, beside its
+usage line: sample help, sample output.
 
 Every screen here was PHOTOGRAPHED FROM A RUNNING PROGRAM on the real disk
 image: keystrokes went into os9exec's console and the terminal stream that
@@ -265,6 +269,31 @@ def ink(text):
     return len(re.sub(r"\s", "", text))
 
 
+def collapse(text, keep=3):
+    """Fold a run of identical lines into one line and a count.
+
+    A program that floods -- `No more memory !!!' filling the grid -- is
+    worth showing ONCE with the number beside it. Twenty-four copies is not
+    sample output, it is a wall, and it pushes the command that caused it off
+    the top of the card. rdoggett, 2026-08-28, looking at cvtbase: "I asked
+    you to capture an interesting screen shot, this is what you saved".
+    """
+    out, lines = [], text.split("\n")
+    i = 0
+    while i < len(lines):
+        j = i
+        while j + 1 < len(lines) and lines[j + 1] == lines[i]:
+            j += 1
+        run = j - i + 1
+        if run > keep and lines[i].strip():
+            out.append(lines[i])
+            out.append("        ... the same line %d times over" % run)
+        else:
+            out.extend(lines[i:j + 1])
+        i = j + 1
+    return "\n".join(out)
+
+
 def sheet_shots():
     """Every stanza in every sheet: its caption and what it illustrates."""
     shots = {}
@@ -276,7 +305,8 @@ def sheet_shots():
         for shot in screenshots.parse(os.path.join(SHEETS, f)):
             shots[shot["name"]] = {"cap": " ".join(shot["cap"]),
                                    "for": shot["for"] or [shot["name"]],
-                                   "sheet": f[:-6]}
+                                   "sheet": f[:-6],
+                                   "path": os.path.join(SHEETS, f)}
     return shots
 
 
@@ -288,7 +318,7 @@ def pick(name, want):
         if not m or m.group(1) == "control":
             continue
         label = "final" if m.group(1) == "screen" else m.group(1)
-        body = trim(to_cp437(open(os.path.join(CAPS, f)).read()))
+        body = collapse(trim(to_cp437(open(os.path.join(CAPS, f)).read())))
         cands.append((label, body, ink(body)))
     if not cands:
         return None
@@ -329,109 +359,55 @@ def collect():
     return out
 
 
-PAGE_HEAD = """<!doctype html>
-<meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<title>OS-9/68K Freeware &mdash; screens</title>
-<style>
- :root{ --paper:#F4F5F3; --card:#FFF; --ink:#191D21; --dim:#5A646B;
-        --rule:#DDE1DE; --accent:#B26A00;
-        --mono:ui-monospace,SFMono-Regular,"SF Mono",Menlo,Consolas,monospace;
-        --sans:system-ui,-apple-system,"Segoe UI",Roboto,sans-serif; }
- @media (prefers-color-scheme:dark){ :root{
-        --paper:#131619; --card:#1A1E22; --ink:#E3E7EA; --dim:#98A4AC;
-        --rule:#2A3036; --accent:#E0A040; } }
- *{box-sizing:border-box}
- body{margin:0;background:var(--paper);color:var(--ink);font-family:var(--sans);
-      line-height:1.5;padding:2rem 1rem 4rem}
- .wrap{max-width:78rem;margin:0 auto}
- h1{font-size:1.6rem;margin:0 0 .25rem}
- h2.cat{font-size:1.1rem;margin:2.4rem 0 .9rem;padding-bottom:.3rem;
-        border-bottom:1px solid var(--rule);letter-spacing:.01em}
- .lede{color:var(--dim);max-width:48rem;margin:0 0 1.5rem}
- .toc{margin:0 0 1rem;font-size:.9rem;color:var(--dim)}
- .toc a{color:var(--accent);text-decoration:none;margin-right:.9rem;
-        white-space:nowrap}
- .shot{background:var(--card);border:1px solid var(--rule);border-radius:8px;
-       padding:1rem 1.1rem;margin:0 0 1.6rem;overflow:hidden}
- .shot h3{font-size:1.05rem;margin:0 0 .15rem;font-family:var(--mono);
-          color:var(--accent)}
- .shot p{margin:0 0 .7rem;color:var(--dim);font-size:.92rem}
- pre{margin:0;font-family:var(--mono);font-size:11.5px;line-height:1.18;
-     background:#0E1113;color:#CFE3CF;padding:.85rem 1rem;border-radius:5px;
-     overflow-x:auto;white-space:pre}
- footer{color:var(--dim);font-size:.85rem;margin-top:2.5rem;
-        border-top:1px solid var(--rule);padding-top:1rem}
- a.back{color:var(--accent)}
-</style>
-<div class="wrap">
-<h1>Screens</h1>
-<p class="lede">Every screen below was photographed from a running program on
-the disk image. Keystrokes were fed to os9exec's console at human speed and
-the terminal stream that came back was rendered into the grid a vt100 would
-have shown. Nothing here is mocked up &mdash; where a program failed, its
-failure is what you see. <a class="back" href="index.html">Back to the
-catalogue</a>.</p>
-"""
-
-
-def slug(cat):
-    return re.sub(r"[^a-z0-9]+", "-", cat.lower()).strip("-")
-
-
 def main():
     if not os.path.isdir(CAPS):
         sys.exit("no captures in %s -- run tools/screenshots.py --all first"
                  % CAPS)
     entries = collect()
-    order = [c for c in gen_catalog.ORDER
-             if any(e["cat"] == c for e in entries)]
-    order += sorted({e["cat"] for e in entries} - set(order))
 
     # Start clean: a screen that no longer qualifies must not linger from a
-    # previous run and end up in the gallery by accident.
+    # previous run and end up in the catalogue by accident.
     if os.path.isdir(KEEP):
         shutil.rmtree(KEEP)
     os.makedirs(KEEP, exist_ok=True)
 
-    body = ['<p class="toc">' + " ".join(
-        '<a href="#%s">%s</a>' % (slug(c), esc(c)) for c in order) + '</p>']
     screens = {}
-    for cat in order:
-        body.append('<h2 class="cat" id="%s">%s</h2>' % (slug(cat), esc(cat)))
-        for e in sorted((x for x in entries if x["cat"] == cat),
-                        key=lambda x: x["name"].lower()):
-            open(os.path.join(KEEP, "%s.txt" % e["name"]), "w").write(
-                fold_ascii(e["screen"]) + "\n")
-            body.append('<div class="shot" id="s-%s">\n<h3>%s</h3>\n<p>%s</p>\n'
-                        '<pre>%s</pre>\n</div>'
-                        % (esc(e["name"]), esc(e["name"]), esc(e["cap"]),
-                           esc(e["screen"])))
-            for prog in e["for"]:
-                screens.setdefault(prog, {"n": e["name"], "c": e["cap"],
-                                          "s": e["screen"]})
-
-    with open(os.path.join(DOCS, "screens.html"), "w") as f:
-        f.write(PAGE_HEAD)
-        f.write("\n".join(body))
-        f.write('\n<footer>Captured by <code>tools/screenshots.py</code> and '
-                '<code>tools/playtest.py</code>, rendered by '
-                '<code>tools/ansiscreen.py</code>. Re-make with '
-                '<code>tools/screenshots.py --all</code> then '
-                '<code>tools/gen_screens.py</code>.</footer>\n</div>\n')
+    for e in sorted(entries, key=lambda x: x["name"].lower()):
+        open(os.path.join(KEEP, "%s.txt" % e["name"]), "w").write(
+            fold_ascii(e["screen"]) + "\n")
+        for prog in e["for"]:
+            screens.setdefault(prog, {"n": e["name"], "c": e["cap"],
+                                      "s": e["screen"]})
 
     with open(os.path.join(DOCS, "screens.js"), "w") as f:
         f.write("// Generated by tools/gen_screens.py -- do not edit.\n"
-                "// One photographed screen per program, for the catalogue.\n"
+                "// One photographed screen per program: docs/index.html shows\n"
+                "// it on that program's card, under `Sample output'.\n"
                 "window.SCREENS = ")
         json.dump(screens, f, ensure_ascii=True, separators=(",", ":"),
                   sort_keys=True)
         f.write(";\n")
 
-    print("  %d screens over %d categories" % (len(entries), len(order)))
-    print("  %s" % os.path.join(DOCS, "screens.html"))
-    print("  %s -- %d programs" % (os.path.join(DOCS, "screens.js"),
-                                   len(screens)))
+    # KEEPING THIS TRUE IS THE HARD PART, so say what has drifted rather than
+    # leaving it to be noticed. A stanza edited after its capture was taken
+    # publishes the OLD screen under the NEW caption, which is the one way
+    # this can lie without anybody touching a program.
+    stale, missing = [], []
+    for name, meta in sorted(sheet_shots().items()):
+        cap = os.path.join(CAPS, "%s.shot.txt" % name)
+        if not os.path.exists(cap):
+            missing.append(name)
+        elif os.path.getmtime(cap) < os.path.getmtime(meta["path"]):
+            stale.append(name)
+    if missing:
+        print("  %d stanzas have no capture -- re-shoot them: %s"
+              % (len(missing), " ".join(missing[:8])))
+    if stale:
+        print("  %d captures are OLDER than the sheet that defines them: %s"
+              % (len(stale), " ".join(stale[:8])))
+
+    print("  %d screens, %d programs" % (len(entries), len(screens)))
+    print("  %s" % os.path.join(DOCS, "screens.js"))
     print("  %s" % KEEP)
 
 

@@ -1,4 +1,4 @@
-/dd/CMDS/bootgen -?
+bootgen -?
 Syntax:   bootgen [<opts>] <device> {<path> [<opts>] }
 Function: maintain boot file on disk
 Options:  [<n> is 'dd' or '$hh']

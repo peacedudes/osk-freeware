@@ -1,4 +1,4 @@
-/dd/CMDS/cut -d, -f1,3 /dd/SYS/password
+cut -d, -f1,3 /dd/SYS/password
 su
 tester
 

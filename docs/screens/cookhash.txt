@@ -1,4 +1,4 @@
-/dd/CMDS/cookhash -?
+cookhash -?
 usage: cookhash <cookiefile >hashfile
-"VMS isn't an operating system, it's a playpen for DEC system programmers."
--- Herb Blashtfalt
+"It's easier to get forgiveness than permission."
+-- Walker Mangum (walker@ficc.uu.net)

@@ -1,4 +1,4 @@
-ppmtosixel /dd/tmp/w.ppm | /dd/CMDS/wc
+ppmtosixel /dd/tmp/w.ppm | wc
 ppmtosixel: maxval is not 100 - automatically rescaling colors
 ppmtosixel: computing colormap...
 ppmtosixel: too many colors - try doing a 'ppmquant 256'

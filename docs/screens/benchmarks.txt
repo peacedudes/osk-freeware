@@ -1,4 +1,4 @@
-/dd/CMDS/sieve
+sieve
 start
  100 sieves done
 start

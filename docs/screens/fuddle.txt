@@ -1,4 +1,4 @@
-/dd/CMDS/GAMES/fuddle
+fuddle
 7 Do you want white (y/n default: y) ? y
     |-----+-----+-----+-----+-----+-----+-----+-----|
  8  |     |||||||     |||||||     |||||||     |||||||

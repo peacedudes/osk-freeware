@@ -1,4 +1,4 @@
-/dd/CMDS/dump /dd/CMDS/today | /dd/CMDS/head -n 16
+dump /dd/CMDS/today | head -n 16
 
 Addr   0 1  2 3  4 5  6 7  8 9  A B  C D  E F 0 2 4 6 8 A C E
 ----  ---- ---- ---- ---- ---- ---- ---- ---- ----------------

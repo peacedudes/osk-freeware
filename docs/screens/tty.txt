@@ -1,4 +1,4 @@
-/dd/CMDS/tty
+tty
 no newline here --
 usage: epson [<opts>]
         l<int>  size of left margin in characters, 5

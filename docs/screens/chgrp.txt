@@ -1,16 +1,16 @@
-/dd/CMDS/cp /dd/SYS/motd /dd/tmp/own.txt
+cp /dd/SYS/motd /dd/tmp/own.txt
 
 Filename:     /dd/tmp/own.txt
 Owner:        0.0
 Attributes:   ---wr-wr
-Created:      08/27/2026
-Modified:     08/27/2026 09:41 pm
+Created:      08/28/2026
+Modified:     08/28/2026 04:59 am
 File Length:  40 $(28)
-/dd/CMDS/chown: 1.7:  Invalid uid
+chown: 1.7:  Invalid uid
 
 Filename:     /dd/tmp/own.txt
 Owner:        0.0
 Attributes:   ---wr-wr
-Created:      08/27/2026
-Modified:     08/27/2026 09:41 pm
+Created:      08/28/2026
+Modified:     08/28/2026 04:59 am
 File Length:  40 $(28)

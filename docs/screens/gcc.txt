@@ -1,2 +1,0 @@
-/dd/CMDS/GCC139/gcc -v
-gcc version 1.39

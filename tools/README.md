@@ -154,7 +154,7 @@ step is skipped and the file is still readable locally.
 
     tools/screenshots.py --all       # many programs per emulator session
     tools/playtest.py --all          # one interactive program per session, judged
-    tools/gen_screens.py             # docs/screens.html, screens.js, screens/
+    tools/gen_screens.py             # docs/screens.js and docs/screens/
 
 `screenshots.py` drives ONE bash session on a pseudo-terminal and runs stanza
 after stanza in it, clearing between and keeping the bytes each program wrote.
@@ -186,7 +186,13 @@ let go of the terminal (SEDT survived a Ctrl-E and ate the next three
 stanzas of its sheet). After every stanza the shell is asked to echo a
 marker; if it does not come back the session is replaced.
 
-`gen_screens.py` decides two things the capture cannot: the high half of the
+`gen_screens.py` folds the captures into **the one catalogue** -- there is no
+separate gallery page, because a second page listing the same programs is a
+second catalogue to keep true. A screen lands on the program's own card in
+`docs/index.html`, under `Sample output', beside the usage line the program
+prints for itself.
+
+It decides two things the capture cannot: the high half of the
 character set is read as **CP437**, because that is what these programs were
 written for -- `cal` rules its columns off with $C4 -- and the published
 files stay **ASCII**, with the line drawing carried as numeric escapes in the

@@ -1,2 +1,2 @@
-/dd/CMDS/TEXCMDS/bibtex
+bibtex
 Please type input file name (no extension)--

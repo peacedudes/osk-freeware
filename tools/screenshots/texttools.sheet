@@ -2,22 +2,22 @@
 
 shot    ascii
 cap     The ASCII table, four columns, control names and all.
-run     /dd/CMDS/ascii | /dd/CMDS/head -n 20
+run     ascii | head -n 20
 wait    5
 
 shot    bibtex
 for     bibtex afm2tfm maketexpk
 cap     BibTeX, the bibliography processor, with the sample database that
 cap     ships beside it.
-run     /dd/CMDS/TEXCMDS/bibtex
+run     bibtex
 wait    12
 
 shot    bm
 cap     bm, a Boyer-Moore grep, and fgrep beside it -- both older and
 cap     faster than the GNU one, and both still here.
-run     /dd/CMDS/bm cribbage /dd/DOC/INDEX
+run     bm cribbage /dd/DOC/INDEX
 wait    4
-run     /dd/CMDS/fgrep cribbage /dd/DOC/INDEX
+run     fgrep cribbage /dd/DOC/INDEX
 wait    4
 
 shot    casefix
@@ -25,53 +25,53 @@ cap     casefix normalises letter case; upperdir does the same to a whole
 cap     directory's names.
 run     echo "tHE qUICK bROWN fOX" > /dd/tmp/c.txt
 wait    3
-run     /dd/CMDS/casefix /dd/tmp/c.txt
+run     casefix /dd/tmp/c.txt
 wait    5
 
 shot    cdiff
 cap     cdiff, a context diff, on two versions of the same file.
-run     /dd/CMDS/head -n 10 /dd/SYS/holidays > /dd/tmp/h1
+run     head -n 10 /dd/SYS/holidays > /dd/tmp/h1
 wait    3
-run     /dd/CMDS/sed -e "s/Day/DAY/" /dd/tmp/h1 > /dd/tmp/h2
+run     sed -e "s/Day/DAY/" /dd/tmp/h1 > /dd/tmp/h2
 wait    4
-run     /dd/CMDS/cdiff /dd/tmp/h1 /dd/tmp/h2
+run     cdiff /dd/tmp/h1 /dd/tmp/h2
 wait    6
 
 shot    charcnt
 cap     charcnt counts characters; tcmp compares two text files and says
 cap     where they first differ.
-run     /dd/CMDS/charcnt < /dd/SYS/motd
+run     charcnt < /dd/SYS/motd
 wait    5
-run     /dd/CMDS/tcmp /dd/SYS/motd /dd/SYS/holidays
+run     tcmp /dd/SYS/motd /dd/SYS/holidays
 wait    6
 
 shot    cookhash
 for     cookhash cookie strfile unstr fortune
 cap     The fortune machinery, both halves: cookhash builds the hash a
 cap     sayings file needs, and cookie reads one out of it.
-run     /dd/CMDS/cookhash -?
+run     cookhash -?
 wait    6
-run     /dd/CMDS/cookie
+run     cookie
 wait    6
 
 shot    cookie
 cap     cookie, the fortune-cookie program, reading the collection's own
 cap     sayings file.
-run     /dd/CMDS/cookie
+run     cookie
 wait    2
-run     /dd/CMDS/cookie
+run     cookie
 wait    3
 
 shot    cursive
 cap     cursive writes a joined-up banner sideways down the screen.
-run     echo Freeware | /dd/CMDS/cursive
+run     echo Freeware | cursive
 wait    6
 kill
 
 shot    cut
 cap     cut taking fields out of the password file, and paste putting two
 cap     streams back together.
-run     /dd/CMDS/cut -d, -f1,3 /dd/SYS/password
+run     cut -d, -f1,3 /dd/SYS/password
 wait    5
 
 shot    detab
@@ -79,25 +79,25 @@ cap     detab turns tabs into spaces; unexpand puts leading spaces back as
 cap     tabs.  Shown here with dump, so the bytes are visible.
 run     printf "a\tb\tc\n" > /dd/tmp/tabs.txt
 wait    3
-run     /dd/CMDS/dump /dd/tmp/tabs.txt
+run     dump /dd/tmp/tabs.txt
 wait    4
-run     /dd/CMDS/detab /dd/tmp/tabs.txt | /dd/CMDS/dump
+run     detab /dd/tmp/tabs.txt | dump
 wait    6
 
 shot    diff
 cap     GNU diff 1.1 on two versions of the same file -- the disk had no
 cap     diff at all before this one was added.
-run     /dd/CMDS/head -n 12 /dd/SYS/motd > /dd/tmp/a.txt
+run     head -n 12 /dd/SYS/motd > /dd/tmp/a.txt
 wait    2
-run     /dd/CMDS/sed -e "s/OS-9/OS-Nine/" /dd/tmp/a.txt > /dd/tmp/b.txt
+run     sed -e "s/OS-9/OS-Nine/" /dd/tmp/a.txt > /dd/tmp/b.txt
 wait    3
-run     /dd/CMDS/diff -c /dd/tmp/a.txt /dd/tmp/b.txt
+run     diff -c /dd/tmp/a.txt /dd/tmp/b.txt
 wait    5
 
 shot    dump
 cap     dump, the hex dump: an OS-9 module header, byte by byte.  The first
 cap     four bytes are the sync $4AFC and the module's size.
-run     /dd/CMDS/dump /dd/CMDS/today | /dd/CMDS/head -n 16
+run     dump /dd/CMDS/today | head -n 16
 wait    5
 
 shot    tex
@@ -148,31 +148,31 @@ cap     Tabs to spaces and back again, with dump showing the bytes so the
 cap     change is visible rather than asserted.
 run     printf "a\tb\tc\n" > /dd/tmp/t2.txt
 wait    5
-run     /dd/CMDS/expand /dd/tmp/t2.txt | /dd/CMDS/dump
+run     expand /dd/tmp/t2.txt | dump
 wait    8
-run     /dd/CMDS/unexpand < /dd/tmp/t2.txt | /dd/CMDS/dump
+run     unexpand < /dd/tmp/t2.txt | dump
 wait    8
 
 shot    fcomp
 cap     fcomp compares two text files line by line.
-run     /dd/CMDS/fcomp /dd/tmp/h1 /dd/tmp/h2
+run     fcomp /dd/tmp/h1 /dd/tmp/h2
 wait    6
 
 shot    file
 cap     file identifying what things are, out of SYS/magic: a module, a
 cap     text file, a GIF and an archive.
-run     /dd/CMDS/file /dd/CMDS/today /dd/DOC/INDEX /dd/DEMO/gulls.gif /dd/tmp/keep.tar
+run     file /dd/CMDS/today /dd/DOC/INDEX /dd/DEMO/gulls.gif /dd/tmp/keep.tar
 wait    6
 
 shot    fmt
 cap     fmt folding a long text to the terminal width.
-run     /dd/CMDS/head -n 30 /dd/DOC/README-KEEP | /dd/CMDS/fmt
+run     head -n 30 /dd/DOC/README-KEEP | fmt
 wait    6
 
 shot    gawk
 cap     GNU awk 2.11 over the disk's own index: count the programs by the
 cap     letter they start with, then sort by that count.
-run     /dd/CMDS/gawk "{print substr(\$1,1,1)}" /dd/DOC/INDEX | /dd/CMDS/sort | /dd/CMDS/uniq -c | /dd/CMDS/sort -nr | /dd/CMDS/head -n 12
+run     gawk "{print substr(\$1,1,1)}" /dd/DOC/INDEX | sort | uniq -c | sort -nr | head -n 12
 wait    12
 
 shot    gep
@@ -180,15 +180,15 @@ for     gep lgrep ggrep bmgtest bmgtest2 greg
 cap     Four more pattern matchers, each from a different decade: a global
 cap     expression parser, a line grep, GNU grep from sh_utils, and a
 cap     Boyer-Moore-Gosper demonstration.
-run     /dd/CMDS/lgrep chess /dd/DOC/INDEX | /dd/CMDS/head -n 6
+run     lgrep chess /dd/DOC/INDEX | head -n 6
 wait    8
-run     /dd/CMDS/ggrep -c chess /dd/DOC/INDEX
+run     ggrep -c chess /dd/DOC/INDEX
 wait    8
 
 shot    gothic
 cap     gothic sets a line in blackletter.  It asks where to write and
 cap     whether to halve the size before it draws.
-run     /dd/CMDS/gothic
+run     gothic
 wait    3
 send    \r
 wait    2
@@ -200,9 +200,9 @@ wait    6
 shot    grep
 cap     GNU grep 2.0 searching the disk's own index, with the count beside
 cap     the hits.
-run     /dd/CMDS/grep -n "chess" /dd/DOC/INDEX | /dd/CMDS/head -n 10
+run     grep -n "chess" /dd/DOC/INDEX | head -n 10
 wait    6
-run     /dd/CMDS/grep -c "" /dd/DOC/INDEX
+run     grep -c "" /dd/DOC/INDEX
 wait    4
 
 shot    ispell
@@ -212,23 +212,23 @@ cap     deliberately bad spelling -- the -l form, which is what a script
 cap     uses.
 run     echo The quik brown foxx jmups over the lasy dog > /dd/tmp/sp.txt
 wait    5
-run     /dd/CMDS/ispell -l /dd/tmp/sp.txt
+run     ispell -l /dd/tmp/sp.txt
 wait    10
 
 shot    jargon
 cap     The Jargon File browser, looking up a word in its own database.
-run     /dd/CMDS/jargon foo
+run     jargon foo
 wait    8
 
 shot    join
 for     join paste cut field
 cap     paste puts two files side by side and join matches them on a common
 cap     first field -- the relational pair.
-run     /dd/CMDS/head -n 5 /dd/SYS/holidays > /dd/tmp/j1
+run     head -n 5 /dd/SYS/holidays > /dd/tmp/j1
 wait    5
-run     /dd/CMDS/head -n 5 /dd/SYS/birthdays > /dd/tmp/j2
+run     head -n 5 /dd/SYS/birthdays > /dd/tmp/j2
 wait    5
-run     /dd/CMDS/paste /dd/tmp/j1 /dd/tmp/j2
+run     paste /dd/tmp/j1 /dd/tmp/j2
 wait    8
 
 shot    kwic
@@ -236,35 +236,22 @@ for     pagefraz pagekwic pageline
 cap     The KWIC suite: a key-word-in-context index, the way a printed
 cap     concordance was made.  pageline numbers the lines, pagekwic splits
 cap     them to one phrase each, pagefraz pulls the phrases out.
-run     /dd/CMDS/head -n 12 /dd/SYS/holidays > /dd/tmp/k.txt
+run     head -n 12 /dd/SYS/holidays > /dd/tmp/k.txt
 wait    6
-run     /dd/CMDS/pageline /dd/tmp/k.txt | /dd/CMDS/head -n 12
+run     pageline /dd/tmp/k.txt | head -n 12
 wait    8
 
 shot    lout
 cap     Basser Lout 2.05, a document formatter in the TeX tradition, saying
 cap     what it is.
-run     /dd/CMDS/lout -V
+run     lout -V
 wait    6
-
-shot    nroff
-cap     nroff setting a page of the disk's own documentation.  It wants a
-cap     FILE: it will not read standard input.
-run     export TMACDIR=/dd/LIB
-wait    2
-run     /dd/CMDS/nroff /dd/DOC/README-CIO | /dd/CMDS/head -n 21
-wait    10
 
 shot    pep
 for     pep ape eo qt cuts
 cap     pep is a file `detergent' -- it strips the junk out of a file using
 cap     the character tables in SYS/PEP.
-run     /dd/CMDS/pep -?
-wait    8
-
-shot    proff
-cap     proff, the portable roff, on one of its own macro-using documents.
-run     /dd/CMDS/proff /dd/SYS/motd
+run     pep -?
 wait    8
 
 shot    qsort9
@@ -273,61 +260,56 @@ cap     qsort9 sorts a file, and nsort sorts numerically -- the difference
 cap     shows on numbers wider than one digit.
 run     printf "10\n9\n100\n2\n" > /dd/tmp/n.txt
 wait    6
-run     /dd/CMDS/qsort9 < /dd/tmp/n.txt
+run     qsort9 < /dd/tmp/n.txt
 wait    8
-run     /dd/CMDS/nsort < /dd/tmp/n.txt
+run     nsort < /dd/tmp/n.txt
 wait    8
 
 shot    qt
 cap     qt tells the time the way a person would say it.
-run     /dd/CMDS/qt
+run     qt
 wait    3
-
-shot    roff
-cap     roff, the oldest of the three.
-run     /dd/CMDS/head -n 24 /dd/DOC/README-KEEP | /dd/CMDS/roff
-wait    8
 
 shot    rot
 cap     rot turns a file on its side -- the first line becomes the first
 cap     column.  It is NOT a rot-13 cipher, whatever the name suggests;
 cap     DOC/INDEX said so until this screen was taken.
-run     /dd/CMDS/head -n 6 /dd/SYS/holidays > /dd/tmp/h.txt
+run     head -n 6 /dd/SYS/holidays > /dd/tmp/h.txt
 wait    3
-run     /dd/CMDS/cat /dd/tmp/h.txt
+run     cat /dd/tmp/h.txt
 wait    3
-run     /dd/CMDS/rot /dd/tmp/h.txt
+run     rot /dd/tmp/h.txt
 wait    5
 
 shot    sepwords
 cap     sepwords splits text to one word a line, splitalf splits a file
 cap     alphabetically -- the two halves of preparing a word list.
-run     /dd/CMDS/head -n 4 /dd/SYS/motd | /dd/CMDS/sepwords
+run     head -n 4 /dd/SYS/motd | sepwords
 wait    6
 
 shot    shuffle
 cap     shuffle puts the lines of a file in a random order; nsort sorts
 cap     numerically where an ordinary sort would not.
-run     /dd/CMDS/head -n 8 /dd/SYS/holidays | /dd/CMDS/shuffle
+run     head -n 8 /dd/SYS/holidays | shuffle
 wait    6
 
 shot    sort
 cap     sort and uniq counting the commonest words in the disk's own
 cap     documentation -- a pipeline of five programs, all of them here.
-run     /dd/CMDS/sepwords < /dd/DOC/README-CIO | /dd/CMDS/sort | /dd/CMDS/uniq -c | /dd/CMDS/sort -nr | /dd/CMDS/head -n 12
+run     sepwords < /dd/DOC/README-CIO | sort | uniq -c | sort -nr | head -n 12
 wait    12
 
 shot    soundex
 cap     soundex reduces each word to its phonetic key -- Robert and Rupert
 cap     come out the same, which is the whole idea.  It wants one word to
 cap     a line, so sepwords feeds it.
-run     echo Robert Rupert Rubin Ashcraft Ashcroft | /dd/CMDS/sepwords | /dd/CMDS/soundex
+run     echo Robert Rupert Rubin Ashcraft Ashcroft | sepwords | soundex
 wait    5
 
 shot    speech
 cap     speech turns English spelling into phonemes -- the front half of a
 cap     speech synthesiser, with the sound left to the hardware.
-run     /dd/CMDS/speech
+run     speech
 wait    3
 send    OS-9 is a real time operating system\r
 wait    5
@@ -335,36 +317,43 @@ wait    5
 shot    spiff
 cap     spiff is a tolerant diff: it ignores the formatting differences an
 cap     ordinary diff would report.
-run     /dd/CMDS/head -n 8 /dd/SYS/motd > /dd/tmp/s1
+run     head -n 8 /dd/SYS/motd > /dd/tmp/s1
 wait    2
-run     /dd/CMDS/detab /dd/tmp/s1 > /dd/tmp/s2
+run     detab /dd/tmp/s1 > /dd/tmp/s2
 wait    3
-run     /dd/CMDS/spiff /dd/tmp/s1 /dd/tmp/s2
+run     spiff /dd/tmp/s1 /dd/tmp/s2
 wait    5
 
 shot    split
 for     split splitalf sepwords unp fillup
 cap     split cuts a file into pieces; here it splits the holidays file and
 cap     ls shows what it wrote.
-run     /dd/CMDS/mkdir /dd/tmp/sp
+run     mkdir /dd/tmp/sp
 wait    5
-run     /dd/CMDS/split -l 6 /dd/SYS/holidays /dd/tmp/sp/part
+run     split -l 6 /dd/SYS/holidays /dd/tmp/sp/part
 wait    8
-run     /dd/CMDS/ls -l /dd/tmp/sp
+run     ls -l /dd/tmp/sp
 wait    8
 
 shot    strfile
-cap     unstr should dump a fortune index back to text.  Instead it floods
-cap     `No more memory !!!' without stopping -- the F$SRqMem storm that
-cap     notes/os9exec-bugs records, in which a cio-linked program asks for
-cap     400 KB per character written and never frees it.
-run     /dd/CMDS/unstr /dd/GAMES/FORTUNE/fortunes | /dd/CMDS/head -n 12
-wait    10
+for     strfile unstr cookhash
+cap     strfile builds the index `fortune' reads.  Here it converts the
+cap     collection's own sayings file and reports what it found -- ONE
+cap     string, because this file separates its quotations with a character
+cap     strfile does not take as a delimiter, which is worth knowing before
+cap     you rebuild an index over it.  (Its opposite number `unstr' floods
+cap     `No more memory !!!' instead of dumping one; DOC/INDEX says so.)
+run     cp /dd/GAMES/FORTUNE/fortunes.dat /dd/tmp/f.dat
+wait    5
+run     strfile /dd/tmp/f.dat
+wait    8
+run     ls -l /dd/tmp/f.dat*
+wait    6
 
 shot    strings
 cap     strings pulls the printable text out of a binary, each hit reported
 cap     with its offset.  Run here on an OS-9 module.
-run     /dd/CMDS/strings /dd/CMDS/today | /dd/CMDS/head -n 16
+run     strings /dd/CMDS/today | head -n 16
 wait    5
 
 shot    subber
@@ -374,58 +363,52 @@ cap     it calls F$Mem, an OS-9 system call os9exec does not implement, and
 cap     the emulator says so and kills it.
 run     echo ",os9exec,OS-9," > /dd/tmp/words.sub
 wait    6
-run     /dd/CMDS/subber /dd/tmp/words.sub /dd/SYS/motd
+run     subber /dd/tmp/words.sub /dd/SYS/motd
 wait    8
 
 shot    sum
 for     sum tail head tac
 cap     sum, the checksum every Unix had before md5, and head and tail
 cap     either end of the same file.
-run     /dd/CMDS/sum /dd/SYS/motd /dd/SYS/holidays
+run     sum /dd/SYS/motd /dd/SYS/holidays
 wait    8
-run     /dd/CMDS/tail -n 4 /dd/SYS/holidays
+run     tail -n 4 /dd/SYS/holidays
 wait    8
 
 shot    tac
 cap     tac prints a file backwards, last line first.
-run     /dd/CMDS/head -n 8 /dd/SYS/holidays | /dd/CMDS/tac
+run     head -n 8 /dd/SYS/holidays | tac
 wait    5
 
 shot    tangle
 for     tangle weave tftopl pltotf gftype pktype
 cap     tangle and weave are the WEB tools TeX itself is written with: one
 cap     makes Pascal out of a .web file, the other makes TeX.
-run     /dd/CMDS/TEXCMDS/tangle
+run     tangle
 wait    10
-run     /dd/CMDS/TEXCMDS/tftopl /dd/SYS/TEX/FONTS/TFM/cmr10.tfm | /dd/CMDS/head -n 14
+run     tftopl /dd/SYS/TEX/FONTS/TFM/cmr10.tfm | head -n 14
 wait    15
 
 shot    tformat
 cap     tformat, the SNOBOL4 text formatter.
-run     /dd/CMDS/head -n 24 /dd/DOC/README-KEEP | /dd/CMDS/GAMES/tformat
+run     head -n 24 /dd/DOC/README-KEEP | tformat
 wait    8
 
 shot    unip
 cap     unip numbers the unique lines of a file, uniq drops the repeats.
-run     /dd/CMDS/sepwords < /dd/DOC/README-CIO | /dd/CMDS/sort | /dd/CMDS/unip | /dd/CMDS/head -n 18
+run     sepwords < /dd/DOC/README-CIO | sort | unip | head -n 18
 wait    10
 
 shot    upperdir
 for     upperdir casefix
 cap     upperdir normalises case across a directory: files lower,
 cap     directories upper.  Shown here on a scratch copy, not on the disk.
-run     /dd/CMDS/upperdir -?
+run     upperdir -?
 wait    8
-
-shot    valspeak
-cap     valspeak, a filter with an attitude, given a file rather than a
-cap     pipe.
-run     /dd/CMDS/GAMES/valspeak /dd/SYS/motd
-wait    5
 
 shot    wc
 cap     wc over the collection's own documents.
-run     /dd/CMDS/wc /dd/DOC/INDEX /dd/DOC/ORIGINS /dd/DOC/DEPENDS /dd/SOURCES.txt
+run     wc /dd/DOC/INDEX /dd/DOC/ORIGINS /dd/DOC/DEPENDS /dd/SOURCES.txt
 wait    6
 
 
@@ -439,9 +422,9 @@ run     virtex "&plain" /dd/SYS/TEX/SAMPLES/story.tex
 wait    40
 send    \134end\r
 wait    15
-run     dvieps story.dvi | /dd/CMDS/wc
+run     dvieps story.dvi | wc
 wait    20
-run     dvialw story.dvi | /dd/CMDS/wc
+run     dvialw story.dvi | wc
 wait    20
 
 
@@ -454,7 +437,7 @@ run     tftopl /dd/SYS/TEX/FONTS/TFM/cmr10.tfm > /dd/tmp/cmr10.pl
 wait    20
 run     pltotf /dd/tmp/cmr10.pl /dd/tmp/cmr10.tfm
 wait    20
-run     /dd/CMDS/ls -l /dd/SYS/TEX/FONTS/TFM/cmr10.tfm /dd/tmp/cmr10.tfm
+run     ls -l /dd/SYS/TEX/FONTS/TFM/cmr10.tfm /dd/tmp/cmr10.tfm
 wait    10
 
 
@@ -463,29 +446,11 @@ for     ediff fgrep gdd tcmp wc.cio
 cap     Four more text tools, and `wc.cio' -- the archived build of wc,
 cap     kept because it does NOT work: it prints nothing for a file
 cap     argument, which is why CMDS/wc is a different binary.
-run     /dd/CMDS/fgrep chess /dd/DOC/INDEX | /dd/CMDS/head -n 5
+run     fgrep chess /dd/DOC/INDEX | head -n 5
 wait    10
-run     /dd/CMDS/gdd if=/dd/SYS/motd bs=8 count=3
+run     gdd if=/dd/SYS/motd bs=8 count=3
 wait    10
-run     /dd/CMDS/tcmp /dd/SYS/motd /dd/SYS/motd
+run     tcmp /dd/SYS/motd /dd/SYS/motd
 wait    10
-run     /dd/CMDS/REBUILT/wc.cio /dd/SYS/motd
-wait    10
-
-
-shot    roffs
-for     roff proff nroff
-cap     The three roffs, each given the same file.  nroff sets it; roff and
-cap     proff print nothing at all, whatever they are given -- measured
-cap     with a file, with standard input, and with their own macro
-cap     directories set.
-run     export TMACDIR=/dd/LIB
-wait    3
-run     /dd/CMDS/head -n 12 /dd/SYS/holidays > /dd/tmp/r.txt
-wait    8
-run     /dd/CMDS/nroff /dd/tmp/r.txt | /dd/CMDS/head -n 8
-wait    12
-run     /dd/CMDS/roff /dd/tmp/r.txt
-wait    10
-run     /dd/CMDS/proff /dd/tmp/r.txt
+run     wc.cio /dd/SYS/motd
 wait    10

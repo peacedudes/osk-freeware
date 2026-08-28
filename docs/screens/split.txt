@@ -1,11 +1,9 @@
-/dd/CMDS/mkdir /dd/tmp/sp
-/dd/CMDS/mkdir: cannot make directory `/dd/tmp/sp': 000:214 file not accessible
-/dd/CMDS/split: /dd/tmp/sp/partaa: 000:218 creating an existing file
+mkdir /dd/tmp/sp
 total 3584
--rw-------   1 0        0             104 Aug 27 21:32 partaa
--rw-------   1 0        0             138 Aug 27 21:32 partab
--rw-------   1 0        0              94 Aug 27 21:32 partac
--rw-------   1 0        0             116 Aug 27 21:32 partad
--rw-------   1 0        0             103 Aug 27 21:32 partae
--rw-------   1 0        0             136 Aug 27 21:32 partaf
--rw-------   1 0        0              26 Aug 27 21:32 partag
+-rw-------   1 0        0             104 Aug 28 04:56 partaa
+-rw-------   1 0        0             138 Aug 28 04:56 partab
+-rw-------   1 0        0              94 Aug 28 04:56 partac
+-rw-------   1 0        0             116 Aug 28 04:56 partad
+-rw-------   1 0        0             103 Aug 28 04:56 partae
+-rw-------   1 0        0             136 Aug 28 04:56 partaf
+-rw-------   1 0        0              26 Aug 28 04:56 partag

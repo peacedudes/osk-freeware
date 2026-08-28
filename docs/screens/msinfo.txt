@@ -1,4 +1,4 @@
-/dd/CMDS/mslabel a:OS9FREEWARE
+mslabel a:OS9FREEWARE
 device information:
 ===================
 sectors per track: 18

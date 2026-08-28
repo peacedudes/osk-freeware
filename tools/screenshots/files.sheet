@@ -3,22 +3,22 @@
 shot    Ascii2Libr
 cap     The pair that get data in and out: Ascii2Libr rebuilds a catalogue
 cap     from plain text, Libr2Ascii dumps one back to text.
-run     /dd/CMDS/Ascii2Libr
+run     Ascii2Libr
 wait    5
-run     /dd/CMDS/Libr2Ascii
+run     Libr2Ascii
 wait    5
 
 shot    Librarian
 cap     Home Librarian searching a catalogue -- the program the other five
 cap     exist to feed.
-run     /dd/CMDS/Librarian
+run     Librarian
 wait    8
 
 shot    PrintCards
 cap     PrintCards and PrintLabels, the output half of the same suite.
-run     /dd/CMDS/PrintCards
+run     PrintCards
 wait    5
-run     /dd/CMDS/PrintLabels
+run     PrintLabels
 wait    5
 
 shot    basename
@@ -27,30 +27,30 @@ cap     basename and dirname take a path apart -- neither prints a newline
 cap     after its answer, which is why they run into what follows.  `owner'
 cap     then says `No such user' for a file owned 0.0: everything on this
 cap     disk is, and SYS/password has no name for that number.
-run     /dd/CMDS/basename /dd/CMDS/GAMES/hack
+run     basename /dd/CMDS/GAMES/hack
 wait    4
-run     /dd/CMDS/dirname /dd/CMDS/GAMES/hack
+run     dirname /dd/CMDS/GAMES/hack
 wait    4
-run     /dd/CMDS/owner /dd/CMDS/hack
+run     owner /dd/CMDS/hack
 wait    5
 
 shot    chgrp
 for     chgrp chown eset
 cap     chown and chgrp on a scratch file, with fstat either side to show
 cap     the owner actually changed.
-run     /dd/CMDS/cp /dd/SYS/motd /dd/tmp/own.txt
+run     cp /dd/SYS/motd /dd/tmp/own.txt
 wait    5
-run     /dd/CMDS/fstat /dd/tmp/own.txt
+run     fstat /dd/tmp/own.txt
 wait    6
-run     /dd/CMDS/chown 1.7 /dd/tmp/own.txt
+run     chown 1.7 /dd/tmp/own.txt
 wait    5
-run     /dd/CMDS/fstat /dd/tmp/own.txt
+run     fstat /dd/tmp/own.txt
 wait    6
 
 shot    dfiles
 cap     dfiles hunts for duplicate files and writes the cmp commands that
 cap     would prove them identical.
-run     /dd/CMDS/dfiles /dd/SYS
+run     dfiles /dd/SYS
 wait    10
 kill
 
@@ -59,33 +59,33 @@ for     dir mkdir cp mv rm move remove
 cap     The everyday file commands, in one sitting: make a directory, copy
 cap     into it, rename, list, remove.  `dir' here is the patched build --
 cap     its moveq #128 was sign-extended before it was fixed.
-run     /dd/CMDS/mkdir /dd/tmp/work
+run     mkdir /dd/tmp/work
 wait    5
-run     /dd/CMDS/cp /dd/SYS/motd /dd/tmp/work/one
+run     cp /dd/SYS/motd /dd/tmp/work/one
 wait    5
-run     /dd/CMDS/mv /dd/tmp/work/one /dd/tmp/work/two
+run     mv /dd/tmp/work/one /dd/tmp/work/two
 wait    5
-run     /dd/CMDS/dir /dd/tmp/work
+run     dir /dd/tmp/work
 wait    6
-run     /dd/CMDS/rm /dd/tmp/work/two
+run     rm /dd/tmp/work/two
 wait    5
 
 shot    dm
 cap     dm, the disk and directory monitor -- a full-screen file browser
 cap     with its own help.
-run     /dd/CMDS/dm /dd/SYS
+run     dm /dd/SYS
 wait    5
 
 shot    du
 cap     Disk usage by directory.
-run     /dd/CMDS/du /dd/SYS
+run     du /dd/SYS
 wait    5
 kill
 
 shot    du-tree
 for     du
 cap     du walking a directory tree and adding it up.
-run     /dd/CMDS/du /dd/CMDS/GAMES | /dd/CMDS/head -n 21
+run     du /dd/CMDS/GAMES | head -n 21
 wait    10
 
 shot    edir
@@ -93,11 +93,11 @@ for     edir eset
 cap     edir lists the EVENT directory -- OS-9 events, their values and
 cap     their wait queues, not files.  There are no events set here, so
 cap     what it prints is the heading and the time.
-run     /dd/CMDS/edir
+run     edir
 wait    8
-run     /dd/CMDS/eset testevent 1
+run     eset testevent 1
 wait    8
-run     /dd/CMDS/edir
+run     edir
 wait    8
 
 shot    ff
@@ -106,42 +106,42 @@ cap     ff hunts for a file by name, and asks in German -- `Was soll'n
 cap     gesucht wer'n ey ???'  It then EXITS without waiting for the answer:
 cap     what follows the prompt here is the shell, taking the name as a
 cap     command.  Measured 2026-08-28.
-run     /dd/CMDS/ff
+run     ff
 wait    6
 send    motd\r
 wait    10
 
 shot    find
 cap     GNU find 1.1.5, walking this disk.
-run     /dd/CMDS/find /dd/SYS -name "cal*" -print
+run     find /dd/SYS -name "cal*" -print
 wait    5
 
 shot    fstat
 cap     fstat reports a file's status and attributes as RBF holds them.
-run     /dd/CMDS/fstat /dd/CMDS/tar
+run     fstat /dd/CMDS/tar
 wait    3
 
 shot    l
 cap     l, a brief listing -- names in columns and nothing else.
-run     /dd/CMDS/l /dd/CMDS/GAMES
+run     l /dd/CMDS/GAMES
 wait    4
 
 shot    ls
 cap     GNU ls, our own fixed build -- a real stat(), columns and -al.
-run     /dd/CMDS/ls -al /dd/SYS | /dd/CMDS/head -n 18
+run     ls -al /dd/SYS | head -n 18
 wait    4
 
 shot    ls-long
 for     ls
 cap     GNU ls with -al on the collection's own root: the OS-9 attributes
 cap     mapped onto the mode bits ls knows how to print.
-run     /dd/CMDS/ls -al /dd | /dd/CMDS/head -n 21
+run     ls -al /dd | head -n 21
 wait    8
 
 shot    space
 cap     space measures what a directory tree really costs on the disk,
 cap     directory by directory.
-run     /dd/CMDS/space /dd/SYS
+run     space /dd/SYS
 wait    6
 kill
 
@@ -150,7 +150,7 @@ for     tree
 cap     tree fails on this disk, and the reason is worth keeping: it opens
 cap     the RAW DEVICE (/dd@) to walk the directory structure itself, and
 cap     os9exec does not offer the raw device of a host directory.
-run     /dd/CMDS/tree /dd/SYS
+run     tree /dd/SYS
 wait    8
 
 
@@ -159,11 +159,11 @@ for     dback delbak eunlink EditLibr Libr2Ascii PrintLabels
 cap     The last of the file shelf: delbak deletes the *_bak files a whole
 cap     tree has collected, and the Home Librarian pair get a catalogue in
 cap     and out of plain text.
-run     /dd/CMDS/delbak -?
+run     delbak -?
 wait    8
-run     /dd/CMDS/Libr2Ascii
+run     Libr2Ascii
 wait    8
-run     /dd/CMDS/EditLibr
+run     EditLibr
 wait    8
 
 shot    undel
@@ -171,7 +171,7 @@ for     undel
 cap     undel asks for a directory and lists what can be brought back --
 cap     it PROMPTS, so it is on its own here: a program that stops to ask
 cap     reads the next command as its answer.
-run     /dd/CMDS/undel
+run     undel
 wait    8
 send    /dd/tmp\r
 wait    10

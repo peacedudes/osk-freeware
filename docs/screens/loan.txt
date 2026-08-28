@@ -1,4 +1,4 @@
-/dd/CMDS/loan
+loan
 Enter principal amount: 100000
 Enter term in years: 7.5
 Enter interest rate in percent: 30

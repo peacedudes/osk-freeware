@@ -1,2 +1,2 @@
-/dd/CMDS/WN/wn -V
-Usage: /dd/CMDS/WN/wndex [-r] [-q] [-v] [-d dir] [-i indexfile] [-c cachefile]
+wn -V
+Usage: wndex [-r] [-q] [-v] [-d dir] [-i indexfile] [-c cachefile]

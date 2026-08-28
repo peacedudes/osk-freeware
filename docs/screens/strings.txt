@@ -1,4 +1,4 @@
-/dd/CMDS/strings /dd/CMDS/today | /dd/CMDS/head -n 16
+strings /dd/CMDS/today | head -n 16
 $000048: <today>
 $000052: <                                                                >
 $00023A: < Stack Overflow >

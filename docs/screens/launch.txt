@@ -1,4 +1,4 @@
-/dd/CMDS/launch -?
+launch -?
 
 launch v1.1 (c) M.C.Gregorie, 1994
 

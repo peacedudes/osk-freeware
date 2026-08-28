@@ -102,7 +102,7 @@ run     ppmtogif /dd/tmp/base.ppm > /dd/tmp/t.gif
 wait    8
 run     giftopnm /dd/tmp/t.gif > /dd/tmp/back.ppm
 wait    8
-run     /dd/CMDS/file /dd/tmp/t.gif
+run     file /dd/tmp/t.gif
 wait    5
 run     pnmfile /dd/tmp/back.ppm
 wait    6
@@ -119,7 +119,7 @@ cap     gnuplot 2.0, and the terminals this build knows about -- there is no
 cap     `dumb' among them, so it cannot draw a plot on the screen; what it
 cap     can do is write PostScript, HP-GL or a printer's own language.  Its
 cap     help database is SYS/gnuplot.gih and its demos are in DOC/gnuplot.
-run     /dd/CMDS/gnuplot
+run     gnuplot
 wait    8
 send    set terminal\r
 wait    8
@@ -184,7 +184,7 @@ run     wrjpgcom -comment "OS-9 freeware disk" /dd/tmp/g.jpg > /dd/tmp/gc.jpg
 wait    10
 run     rdjpgcom /dd/tmp/gc.jpg
 wait    8
-run     /dd/CMDS/ls -l /dd/DEMO/gulls.gif /dd/tmp/g.ppm /dd/tmp/g.jpg
+run     ls -l /dd/DEMO/gulls.gif /dd/tmp/g.ppm /dd/tmp/g.jpg
 wait    8
 
 shot    lispm
@@ -195,7 +195,7 @@ cap     - try reconfiguring with PGM_BIGGRAYS'.  The pair do not agree with
 cap     each other in this build.  ppmtomap, underneath, works.
 run     pgmtolispm /dd/tmp/base.pgm | lispmtopgm | pnmfile
 wait    10
-run     ppmtomap /dd/tmp/base.ppm | /dd/CMDS/head -n 8
+run     ppmtomap /dd/tmp/base.ppm | head -n 8
 wait    8
 
 shot    pbmclean
@@ -210,7 +210,7 @@ wait    20
 shot    pbmlife
 cap     pbmlife runs Conway's Life one generation on a bitmap -- an image
 cap     tool that is also a cellular automaton.
-run     /dd/CMDS/NETPBM/pgmnoise 60 30 | /dd/CMDS/NETPBM/pgmtopbm | /dd/CMDS/NETPBM/pbmlife | /dd/CMDS/NETPBM/pbmtoascii
+run     pgmnoise 60 30 | pgmtopbm | pbmlife | pbmtoascii
 wait    10
 
 shot    pbmmake
@@ -223,7 +223,7 @@ wait    15
 shot    pbmtext
 cap     pbmtext sets a line of type as a bitmap; pbmtoascii renders that
 cap     bitmap back as characters.  Nothing is drawn by hand.
-run     /dd/CMDS/NETPBM/pbmtext "OS-9/68K" | /dd/CMDS/NETPBM/pbmtoascii
+run     pbmtext "OS-9/68K" | pbmtoascii
 wait    6
 
 shot    pbmtext-big
@@ -236,7 +236,7 @@ wait    12
 shot    pbmupc
 cap     pbmupc draws a real UPC-A barcode from its digits.  Rendered here
 cap     through pbmtoascii, the bar widths are the code.
-run     /dd/CMDS/NETPBM/pbmupc 0 72890 00011 | /dd/CMDS/NETPBM/pbmreduce 3 | /dd/CMDS/NETPBM/pbmtoascii
+run     pbmupc 0 72890 00011 | pbmreduce 3 | pbmtoascii
 wait    8
 
 shot    pcx
@@ -273,7 +273,7 @@ cap     pgmramp makes a greyscale ramp and pgmhist counts what is in it --
 cap     flat by construction, which is how you know both are right.
 run     pgmramp -lr 64 16 > /dd/tmp/ramp.pgm
 wait    6
-run     pgmhist /dd/tmp/ramp.pgm | /dd/CMDS/head -n 18
+run     pgmhist /dd/tmp/ramp.pgm | head -n 18
 wait    8
 
 shot    pgmnoise
@@ -292,7 +292,7 @@ wait    35
 shot    pgmramp
 cap     A greyscale ramp dithered to a bitmap: the gradient survives as the
 cap     density of the characters.
-run     /dd/CMDS/NETPBM/pgmramp -lr 152 44 | /dd/CMDS/NETPBM/pgmtopbm | /dd/CMDS/NETPBM/pbmtoascii
+run     pgmramp -lr 152 44 | pgmtopbm | pbmtoascii
 wait    8
 
 shot    pgmtexture
@@ -300,18 +300,18 @@ for     pgmtexture pgmkernel pnmhistmap
 cap     pgmtexture measures an image the way a pattern-recognition paper
 cap     does: angular second moment, contrast, correlation, entropy.  On
 cap     the gulls photograph.
-run     pgmtexture -d 2 /dd/tmp/gg.pgm | /dd/CMDS/head -n 18
+run     pgmtexture -d 2 /dd/tmp/gg.pgm | head -n 18
 wait    30
 
 shot    plotters
 for     pbmtoplot pbmtozinc pbmtobbnbg pbmtogo pbmtoln03 pbmtolps
 cap     Six more write-only drivers, for machines that are gone: a Unix
 cap     plotter, Zinc, a BBN bitgraph, GraphOn, DEC LN03 and LPS.
-run     pbmtoplot /dd/tmp/base.pbm | /dd/CMDS/wc
+run     pbmtoplot /dd/tmp/base.pbm | wc
 wait    8
-run     pbmtozinc /dd/tmp/base.pbm | /dd/CMDS/head -n 8
+run     pbmtozinc /dd/tmp/base.pbm | head -n 8
 wait    8
-run     pbmtoln03 /dd/tmp/base.pbm | /dd/CMDS/wc
+run     pbmtoln03 /dd/tmp/base.pbm | wc
 wait    8
 
 shot    pnmarith
@@ -357,11 +357,11 @@ wait    10
 shot    pnmfile
 cap     pnmfile identifies what each intermediate in a pipeline actually is
 cap     -- format, dimensions and whether it is raw or plain.
-run     /dd/CMDS/NETPBM/pgmtopbm /dd/tmp/ramp.pgm > /dd/tmp/ramp.pbm
+run     pgmtopbm /dd/tmp/ramp.pgm > /dd/tmp/ramp.pbm
 wait    3
-run     /dd/CMDS/NETPBM/ppmpat -gingham2 40 20 > /dd/tmp/ging.ppm
+run     ppmpat -gingham2 40 20 > /dd/tmp/ging.ppm
 wait    3
-run     /dd/CMDS/NETPBM/pnmfile /dd/tmp/ramp.pgm /dd/tmp/ramp.pbm /dd/tmp/ging.ppm
+run     pnmfile /dd/tmp/ramp.pgm /dd/tmp/ramp.pbm /dd/tmp/ging.ppm
 wait    4
 
 shot    pnmfile-gulls
@@ -424,7 +424,7 @@ shot    pnmtops
 for     pnmtops
 cap     pnmtops writes PostScript around a bitmap -- how an image reached a
 cap     printer in 1990.  The head of what it produced.
-run     pnmtops /dd/tmp/ramp.pgm | /dd/CMDS/head -n 18
+run     pnmtops /dd/tmp/ramp.pgm | head -n 18
 wait    10
 
 shot    ppm3d
@@ -474,7 +474,7 @@ cap     ppmpat weaves a pattern and ppmhist counts the colours in it, the
 cap     commonest first.
 run     ppmpat -tartan 80 40 > /dd/tmp/t.ppm
 wait    8
-run     ppmhist /dd/tmp/t.ppm | /dd/CMDS/head -n 18
+run     ppmhist /dd/tmp/t.ppm | head -n 18
 wait    8
 
 shot    ppmmake
@@ -510,20 +510,20 @@ for     pbmtolj pbmtoepson pbmto10x pbmtoptx pbmtoepsi
 cap     The printer drivers: LaserJet, Epson, Star 10x and Printronix, each
 cap     turning the same bitmap into that printer's own language.  Their
 cap     sizes are the interesting part -- this is what a page cost.
-run     pbmtolj /dd/tmp/base.pbm | /dd/CMDS/wc
+run     pbmtolj /dd/tmp/base.pbm | wc
 wait    8
-run     pbmtoepson /dd/tmp/base.pbm | /dd/CMDS/wc
+run     pbmtoepson /dd/tmp/base.pbm | wc
 wait    8
-run     pbmto10x /dd/tmp/base.pbm | /dd/CMDS/wc
+run     pbmto10x /dd/tmp/base.pbm | wc
 wait    8
-run     pbmtoepsi /dd/tmp/base.pbm | /dd/CMDS/head -n 10
+run     pbmtoepsi /dd/tmp/base.pbm | head -n 10
 wait    8
 
 shot    rawtopgm
 for     rawtopgm rawtoppm pgmtofs fstopgm
 cap     rawtopgm reads headerless bytes as an image -- how you got a picture
 cap     out of a machine that wrote no header at all.
-run     pgmnoise 40 20 | pnmnoraw | /dd/CMDS/head -n 3
+run     pgmnoise 40 20 | pnmnoraw | head -n 3
 wait    8
 run     rawtopgm 48 24 < /dd/tmp/base.pgm | pnmfile
 wait    8
@@ -536,9 +536,9 @@ cap     example scenes and reporting the work: primitives, rays cast,
 cap     shadow rays, time.  It preprocesses every scene with cccp, so a C
 cap     preprocessor has to be reachable under that name -- DOC/rayshade
 cap     says so and it is right.
-run     /dd/CMDS/cp /dd/CMDS/GCC139/gcc_cccp /dd/CMDS/cccp
+run     cp /dd/CMDS/GCC139/gcc_cccp /dd/CMDS/cccp
 wait    8
-run     /dd/CMDS/rayshade -R 48 36 -O /dd/tmp/out.pic /dd/GAMES/rayshade/boxball.ray
+run     rayshade -R 48 36 -O /dd/tmp/out.pic /dd/GAMES/rayshade/boxball.ray
 wait    50
 
 shot    sphere
@@ -578,7 +578,7 @@ run     ppmtopj /dd/tmp/base.ppm > /dd/tmp/t.pj
 wait    8
 run     pjtoppm /dd/tmp/t.pj | pnmfile
 wait    8
-run     ppmtopjxl /dd/tmp/base.ppm | /dd/CMDS/wc
+run     ppmtopjxl /dd/tmp/base.ppm | wc
 wait    8
 
 shot    workstations
@@ -598,7 +598,7 @@ cap     X bitmaps and Bennet Yee bitmaps: two of the eleven bitmap formats
 cap     this toolkit reads.
 run     pbmtoxbm /dd/tmp/base.pbm > /dd/tmp/t.xbm
 wait    6
-run     /dd/CMDS/head -n 6 /dd/tmp/t.xbm
+run     head -n 6 /dd/tmp/t.xbm
 wait    5
 run     xbmtopbm /dd/tmp/t.xbm > /dd/tmp/back6.pbm
 wait    6
@@ -611,7 +611,7 @@ cap     The X pixmap is C source with the image in it -- here is the head of
 cap     one this disk just wrote.
 run     ppmtoxpm /dd/tmp/base.ppm > /dd/tmp/t.xpm
 wait    8
-run     /dd/CMDS/head -n 12 /dd/tmp/t.xpm
+run     head -n 12 /dd/tmp/t.xpm
 wait    5
 run     xpmtoppm /dd/tmp/t.xpm | pnmfile
 wait    8
@@ -624,7 +624,7 @@ run     ppmtoyuv /dd/tmp/base.ppm | yuvtoppm 48 24 | pnmfile
 wait    10
 run     ppmtorgb3 /dd/tmp/base.ppm
 wait    8
-run     /dd/CMDS/ls -l noname.red noname.grn noname.blu
+run     ls -l noname.red noname.grn noname.blu
 wait    8
 
 
@@ -635,11 +635,11 @@ cap     does not help: the library is entered and faults on its own `RTE',
 cap     a supervisor-only instruction -- it was written to run in
 cap     supervisor state.  Note the module is `graph' and the programs ask
 cap     for `Graph', which real OS-9 would not match either.
-run     /dd/CMDS/load /dd/CMDS/GAMES/graph
+run     load /dd/CMDS/GAMES/graph
 wait    8
-run     /dd/CMDS/GAMES/g
+run     g
 wait    10
-run     /dd/CMDS/GAMES/striche
+run     striche
 wait    10
 
 
@@ -651,7 +651,7 @@ cap     Atari Spectrum pictures.  Handed something else, they say so
 cap     rather than guessing, which is the behaviour you want.
 run     hipstopgm /dd/tmp/w.ppm
 wait    12
-run     qrttoppm /dd/tmp/w.ppm | /dd/CMDS/head -n 3
+run     qrttoppm /dd/tmp/w.ppm | head -n 3
 wait    12
 run     zeisstopnm /dd/tmp/w.ppm
 wait    12
@@ -697,7 +697,7 @@ run     ppmmake rgb:ff/00/00 8 4 > /dd/tmp/red.ppm
 wait    10
 run     pnmtosir /dd/tmp/red.ppm > /dd/tmp/red.sir
 wait    10
-run     sirtopnm /dd/tmp/red.sir | pnmnoraw | /dd/CMDS/head -n 6
+run     sirtopnm /dd/tmp/red.sir | pnmnoraw | head -n 6
 wait    12
 
 
@@ -707,9 +707,9 @@ cap     Six drivers with no reader here, for machines that are gone: an NCR
 cap     terminal, a Mitsubishi dye-sublimation printer, DEC sixel, Motif
 cap     UIL source, an AT&T 4425 and an X10 bitmap.  What each made of the
 cap     same picture, in bytes -- that is what a page cost.
-run     ppmtosixel /dd/tmp/w.ppm | /dd/CMDS/wc
+run     ppmtosixel /dd/tmp/w.ppm | wc
 wait    15
-run     ppmtouil /dd/tmp/w.ppm | /dd/CMDS/head -n 8
+run     ppmtouil /dd/tmp/w.ppm | head -n 8
 wait    15
-run     pbmmake -g 40 20 | pbmtox10bm | /dd/CMDS/head -n 6
+run     pbmmake -g 40 20 | pbmtox10bm | head -n 6
 wait    15

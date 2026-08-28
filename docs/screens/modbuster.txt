@@ -1,4 +1,4 @@
-/dd/CMDS/modbuster -?
+modbuster -?
 Syntax: Modbuster [<opts>] <path> [<opts>]
 Function: Seperate merged modules, rels, basic source or KWindows bitmaps
 Options:

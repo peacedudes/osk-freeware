@@ -1,4 +1,4 @@
-/dd/CMDS/GAMES/bincheckr /dd/GAMES/gnuchess.book
+bincheckr /dd/GAMES/gnuchess.book
 entrysize 16
 booksize 0
 bookpocket 0

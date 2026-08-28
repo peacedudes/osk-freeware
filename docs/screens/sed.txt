@@ -1,2 +1,10 @@
-/dd/CMDS/head -n 8 /dd/SYS/holidays > /dd/tmp/hol.txt
-/dd/CMDS/head: /dd/SYS/holidays
+head -n 8 /dd/SYS/holidays > /dd/tmp/hol.txt
+head: /dd/SYS/holidays
+* Common Holidays
+
+1/1             New Year's DAY
+2/14 Valentine's DAY
+3/17 St. Patrick's DAY
+easter Easter Sunday
+*easter-7 Palm Sunday
+*easter-46 Ash Wednesday

@@ -1,3 +1,4 @@
+       kc_tek40xx  Kermit-MS tek40xx terminal emulator - color
        km_tek40xx  Kermit-MS tek40xx terminal emulator - monochrome
             latex  LaTeX picture environment
          nec_cp6m  NEC printer CP6 Monochrome
@@ -20,4 +21,4 @@
 gnuplot> set terminal postscript
 Terminal type set to 'postscript'
 gnuplot> set output "/dd/tmp/plot.ps"
-gnuplot> plot [-6:6] sin(x)/x
+gnuplot>

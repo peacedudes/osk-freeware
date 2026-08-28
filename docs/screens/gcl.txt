@@ -1,4 +1,4 @@
-/dd/CMDS/scqref | /dd/CMDS/head -n 16
+scqref | head -n 16
 sc Quick Reference
 
 $Revision: 6.16 $

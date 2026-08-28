@@ -1,4 +1,4 @@
-/dd/CMDS/load /dd/CMDS/GAMES/graph
+load /dd/CMDS/GAMES/graph
 
 Process   Pid: 3, g, edition 7
     Exit code: E_PRCABT(228) Process Aborted

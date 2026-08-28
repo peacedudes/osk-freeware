@@ -1,4 +1,4 @@
-<bin Ashcraft Ashcroft | /dd/CMDS/sepwords | /dd/CMDS/soundex
+echo Robert Rupert Rubin Ashcraft Ashcroft | sepwords | soundex
 R163
 R163
 R150

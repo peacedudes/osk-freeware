@@ -2,41 +2,41 @@
 
 shot    areacode
 cap     Looks up US telephone area codes.
-run     /dd/CMDS/areacode 212 415 816 314
+run     areacode 212 415 816 314
 wait    3
 
 shot    florida
 cap     The same simulator on the Gulf coast -- Gregorian calendar, and a
 cap     January that never freezes.
-run     /dd/CMDS/florida | /dd/CMDS/head -n 21
+run     florida | head -n 21
 wait    8
 
 shot    japan
 cap     The simulator on the Japanese calendar and the North Pacific.
-run     /dd/CMDS/japan | /dd/CMDS/head -n 21
+run     japan | head -n 21
 wait    8
 
 shot    name
 cap     A random name generator -- ten at a time.
-run     /dd/CMDS/name 10
+run     name 10
 wait    3
 
 shot    newsgen
 cap     A fake news bulletin, assembled from parts.
-run     /dd/CMDS/GAMES/newsgen
+run     newsgen
 wait    4
 
 shot    scales
 cap     A musical scale generator -- and it writes its scales to
 cap     `scales.lst' in the current directory rather than to the screen,
 cap     which is why there is nothing here but its progress.
-run     /dd/CMDS/scales -a
+run     scales -a
 wait    4
 
 shot    shire
 cap     A weather simulator for the Shire, on the Middle-earth calendar:
 cap     Afteryule, Solmath, Rethe.  One of six regions here.
-run     /dd/CMDS/shire | /dd/CMDS/head -n 21
+run     shire | head -n 21
 wait    8
 
 
@@ -44,9 +44,9 @@ shot    weather2
 for     georgia minnesota rndname rstory2
 cap     Two more regions for the weather simulator, and the second random
 cap     story generator.
-run     /dd/CMDS/georgia | /dd/CMDS/head -n 10
+run     georgia | head -n 10
 wait    10
-run     /dd/CMDS/rndname 6
+run     rndname 6
 wait    10
 
 
@@ -55,7 +55,7 @@ for     textb
 cap     The Mandelbrot set, drawn in ASCII.  It asks for a centre, a range
 cap     and an iteration count -- -2.3, -2.0, 4.0 and 32 gives the whole
 cap     set, and the cardioid and the bulb are both there in characters.
-run     /dd/CMDS/textb
+run     textb
 wait    4
 send    -2.3\r
 wait    3

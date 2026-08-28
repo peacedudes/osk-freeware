@@ -1,3 +1,3 @@
-/dd/CMDS/head -n 8 /dd/SYS/holidays | /dd/CMDS/shuffle
+head -n 8 /dd/SYS/holidays | shuffle
 Unknown terminal type ''.
-/dd/CMDS/head: /dd/SYS/holidays
+head: /dd/SYS/holidays

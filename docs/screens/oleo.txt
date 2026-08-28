@@ -1,4 +1,4 @@
-/dd/CMDS/oleo
+oleo
 Illegal instruction: 0009 at 000465d2
 
 Process   Pid: 3, oleo, edition 7

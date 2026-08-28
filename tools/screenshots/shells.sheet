@@ -5,50 +5,54 @@ shot    env
 for     env getenv printenv checkenv whoami logname su
 cap     env runs a command with the environment changed, and getenv reads
 cap     one variable back.
-run     /dd/CMDS/env FOO=bar /dd/CMDS/printenv | /dd/CMDS/grep FOO
+run     env FOO=bar printenv | grep FOO
 wait    8
-run     /dd/CMDS/getenv TERM
+run     getenv TERM
 wait    5
-run     /dd/CMDS/whoami
+run     whoami
 wait    5
 
 shot    exist
-cap     exist and checkenv answer a question for a script and set the
-cap     status -- the OS-9 equivalents of test.
-run     /dd/CMDS/exist /dd/SYS/motd
-wait    3
-run     /dd/CMDS/checkenv TERM
-wait    3
+for     exist checkenv ask ynad
+cap     exist answers in its STATUS rather than on the screen -- 0 for a
+cap     file that is there, 1 for one that is not -- which is what a shell
+cap     script wants and why it looks silent when you run it by hand.
+run     exist /dd/SYS/motd; echo "exist says $?"
+wait    6
+run     exist /dd/SYS/no-such-file; echo "exist says $?"
+wait    6
+run     checkenv TERM; echo "checkenv says $?"
+wait    6
 
 shot    expr
 cap     expr, doing arithmetic for a shell that cannot.
-run     /dd/CMDS/expr 355 / 113
+run     expr 355 / 113
 wait    2
-run     /dd/CMDS/expr 2 \* 21
+run     expr 2 \* 21
 wait    3
 
 shot    gshell
 for     gshell mshell xc run fc hist
 cap     GSHELL, a shell with a menu, and the other three small shells this
 cap     disk keeps beside bash.
-run     /dd/CMDS/gshell
+run     gshell
 wait    8
 
 shot    if
 for     if exist ask ynad
 cap     if, exist and ask are the pieces a shell script tests with -- OS-9
 cap     had no `test' and these are what stood in for it.
-run     /dd/CMDS/if -?
+run     if -?
 wait    6
-run     /dd/CMDS/exist /dd/SYS/motd
+run     exist /dd/SYS/motd
 wait    5
-run     /dd/CMDS/exist /dd/SYS/nothing-here
+run     exist /dd/SYS/nothing-here
 wait    6
 
 shot    ksh
 cap     pd-ksh, the Korn shell, running as a program under bash: its own
 cap     prompt, its own builtins.
-run     /dd/CMDS/ksh
+run     ksh
 wait    4
 send    echo $KSH_VERSION; for i in 1 2 3; do echo line $i; done\r
 wait    4
@@ -57,18 +61,18 @@ wait    2
 
 shot    printenv
 cap     The environment a login on this disk actually arrives with.
-run     /dd/CMDS/printenv
+run     printenv
 wait    4
 
 shot    printf
 cap     printf, formatting rather than echoing.
-run     /dd/CMDS/printf "%s is %d bytes and %5.2f K\n" tar 22966 22.43
+run     printf "%s is %d bytes and %5.2f K\n" tar 22966 22.43
 wait    4
 
 shot    sh
 cap     sh, a small Bourne shell -- and the one with a real OS-9 chd, so
 cap     pwd moves when you ask it to.
-run     /dd/CMDS/sh
+run     sh
 wait    4
 send    echo hello from sh; pwd\r
 wait    4
@@ -76,13 +80,20 @@ send    exit\r
 wait    2
 
 shot    whoami
-cap     Who the shell thinks you are, three ways.
-run     /dd/CMDS/whoami
-wait    2
-run     /dd/CMDS/logname
-wait    2
-run     /dd/CMDS/tty
-wait    3
+for     whoami logname tty su
+cap     Who you are, twice, and it is worth reading closely: `whoami' and
+cap     `logname' answer `su' because they look you up by USER NUMBER in
+cap     SYS/password -- everything here is owned 0.0 -- while $USER, which
+cap     SYS/login set, says tester.  `tty' asks the path itself and answers
+cap     /term.
+run     whoami
+wait    4
+run     logname
+wait    4
+run     echo "USER is $USER, and the terminal is:"
+wait    4
+run     tty
+wait    5
 
 
 shot    bash
@@ -94,7 +105,7 @@ run     echo $BASH_VERSION
 wait    6
 run     echo $((355/113)) $((7*6))
 wait    6
-run     /dd/CMDS/expr 355 / 113
+run     expr 355 / 113
 wait    6
-run     /dd/CMDS/expr 7 \* 6
+run     expr 7 \* 6
 wait    8

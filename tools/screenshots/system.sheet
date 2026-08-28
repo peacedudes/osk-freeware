@@ -5,47 +5,47 @@
 shot    about
 cap     The collection's own guide: `about hack' answers what a program is,
 cap     where it came from, what it opens and whether its source survived.
-run     /dd/CMDS/about hack
+run     about hack
 wait    4
 
 shot    about-tar
 for     about
 cap     about answers for any program on the disk, out of the same four
 cap     files the web catalogue is built from.
-run     /dd/CMDS/about elvis
+run     about elvis
 wait    5
 
 shot    aprocs
 cap     A process monitor -- and it cannot run here.  It reads the system
 cap     globals through F$SetSys, which os9exec does not implement, and
 cap     aborts.  This is a limit of the emulator, not of the program.
-run     /dd/CMDS/aprocs
+run     aprocs
 wait    5
 kill
 
 shot    argproc_demo
 cap     argproc_demo shows RICO's command-line parser.  It is starred: with
 cap     no cio it stops before it starts, and this is what that looks like.
-run     /dd/CMDS/argproc_demo -a -b=2 file
+run     argproc_demo -a -b=2 file
 wait    6
 
 shot    ask
 cap     ask and ynad put a question to the person running a script and set
 cap     the status from the answer.
-run     /dd/CMDS/ask "Shall I go on"
+run     ask "Shall I go on"
 wait    3
 send    y
 wait    3
 
 shot    bcheck
 cap     bcheck reads a boot file and reports what is in it.
-run     /dd/CMDS/bcheck -?
+run     bcheck -?
 wait    5
 
 shot    bigsetter
 cap     A Modula-2 set-operations demonstration -- proof the Modula
 cap     compiler's output runs here.
-run     /dd/CMDS/bigsetter
+run     bigsetter
 wait    8
 
 shot    bootgen
@@ -53,14 +53,14 @@ for     bootgen bcheck bsplt68 modbuster
 cap     The boot-file tools: bootgen makes an OS9Boot, bcheck checks one
 cap     and bsplt68 takes one apart.  There is no boot file here -- os9exec
 cap     IS the kernel -- so these are for your own hardware.
-run     /dd/CMDS/bootgen -?
+run     bootgen -?
 wait    8
-run     /dd/CMDS/bsplt68 -?
+run     bsplt68 -?
 wait    8
 
 shot    btree
 cap     A B-tree demonstration, building and walking an index.
-run     /dd/CMDS/btree
+run     btree
 wait    8
 
 shot    clock
@@ -69,59 +69,59 @@ cap     `clock' does not run here -- `Popen error 216', it wants a pipe it
 cap     cannot open.  What follows is the pair that DO work: setime2 and
 cap     setyear, two of the three Y2K repairs on this disk, which exist
 cap     because `date' answers 2100.
-run     /dd/CMDS/clock
+run     clock
 wait    6
-run     /dd/CMDS/setime2 -?
+run     setime2 -?
 wait    6
-run     /dd/CMDS/setyear -?
+run     setyear -?
 wait    6
 
 shot    config
 cap     config reports this machine's C type properties as the #defines a
 cap     portable program would want.
-run     /dd/CMDS/config
+run     config
 wait    5
 
 shot    cpu
 cap     A CPU speed test.  It takes os9exec down with it every time -- the
 cap     emulator exits mid-run, which is why the screen stops where it does.
-run     /dd/CMDS/cpu
+run     cpu
 wait    10
 
 shot    dam
 cap     The disk allocation map: one character per cluster across a 253 MB
 cap     volume, so you can see where the collection sits on it.
-run     /dd/CMDS/dam /dd | /dd/CMDS/head -n 21
+run     dam /dd | head -n 21
 wait    10
 
 shot    date
 cap     date, and the Y2K repairs beside it.  It prints the year 2100 for
 cap     2026 -- one of the reasons setyear and fixyear are on this disk.
-run     /dd/CMDS/date
+run     date
 wait    4
-run     /dd/CMDS/date -t
+run     date -t
 wait    4
-run     /dd/CMDS/today
+run     today
 wait    5
 
 shot    demo
 cap     demo, the egetopt option-parsing example, showing how it read the
 cap     command line it was given.
-run     /dd/CMDS/demo -a -b -c=7 one two
+run     demo -a -b -c=7 one two
 wait    6
 
 shot    devprc
 for     devprc ptxminst t t_trtest
 cap     devprc shows which device belongs to which process.  Rebuilt here:
 cap     the archived module had been patched and would not run.
-run     /dd/CMDS/devprc -h
+run     devprc -h
 wait    8
 
 shot    dinfo
 cap     Device information for the volume this collection is mounted as.
-run     /dd/CMDS/dinfo /dd
+run     dinfo /dd
 wait    3
-run     /dd/CMDS/shdev
+run     shdev
 wait    3
 
 shot    dload
@@ -129,9 +129,9 @@ for     dload break sbreak setfont
 cap     dload sends a file down a serial line and break sends a BREAK --
 cap     both assembler examples from the forums, and both harmless here
 cap     because there is no serial line.
-run     /dd/CMDS/dload -?
+run     dload -?
 wait    6
-run     /dd/CMDS/break -?
+run     break -?
 wait    6
 
 shot    drop
@@ -139,12 +139,12 @@ for     drop keep kept
 cap     drop puts back exactly what keep wrote, and refuses to remove any
 cap     file whose checksum has changed since.  Nothing has been kept here,
 cap     which is what it says.
-run     /dd/CMDS/drop -n hack
+run     drop -n hack
 wait    8
 
 shot    e
 cap     SEDT, the VMS-style editor, with VT220 keys.
-run     /dd/CMDS/e /dd/SRC/keep/about.c
+run     e /dd/SRC/keep/about.c
 wait    6
 quit    \033\033
 
@@ -152,7 +152,7 @@ shot    em
 for     em new_e e sedt
 cap     em is MicroEMACS 3.8b, from EFFO forum 3, opened on a file -- the
 cap     mode line names the version and the file.
-run     /dd/CMDS/em /dd/SYS/motd
+run     em /dd/SYS/motd
 wait    8
 quit    \033
 
@@ -160,127 +160,131 @@ shot    every
 for     every repeat cron bootlogger loglist
 cap     every and repeat run a command again and again -- the two halves of
 cap     cron for a machine that is not left running.
-run     /dd/CMDS/every -?
+run     every -?
 wait    6
-run     /dd/CMDS/repeat -?
+run     repeat -?
 wait    6
-run     /dd/CMDS/cron -?
+run     cron -?
 wait    6
 
 shot    fastcc
 for     fastcc compiler assembler lfmaker
 cap     The GSHELL front ends, and fastcc -- a quicker driver for cc.
-run     /dd/CMDS/fastcc -?
+run     fastcc -?
 wait    6
-run     /dd/CMDS/compiler -?
+run     compiler -?
 wait    6
 
 shot    flink
 cap     flink lists a module's links -- what has it loaded and who holds it.
-run     /dd/CMDS/flink /dd/CMDS/today
+run     flink /dd/CMDS/today
 wait    5
 
 shot    gen
 for     gen suse about
 cap     gen writes the frame of a new C program, module or type -- the
 cap     starting point Microware's own examples used.
-run     /dd/CMDS/gen -?
+run     gen -?
 wait    8
 
 shot    getsys
 cap     getsys reads OS-9's system globals -- what the kernel thinks it is
 cap     running on, straight out of the global page.
-run     /dd/CMDS/getsys | /dd/CMDS/head -n 21
+run     getsys | head -n 21
 wait    6
 
 shot    greg
 cap     greg, a regular-expression search demonstration.
-run     /dd/CMDS/greg "[a-z]+chess" /dd/DOC/INDEX
+run     greg "[a-z]+chess" /dd/DOC/INDEX
 wait    6
 
 shot    hinterhalt
 for     hinterhalt testibc sqrtx bigsetter i_am_i
 cap     hinterhalt, a small game that came with EFFO forum 7 -- one of the
 cap     example programs the German OS-9 user group circulated.
-run     /dd/CMDS/hinterhalt
+run     hinterhalt
 wait    10
 
 shot    i_am_i
 cap     i_am_i prints its own source: a Pascal quine.
-run     /dd/CMDS/i_am_i
+run     i_am_i
 wait    5
 
 shot    ident
 for     modinfo version mexist flink names liborder.os9
 cap     Four ways of asking about a MODULE rather than a file: its header,
 cap     its edition, whether it is loaded, and what is inside a library.
-run     /dd/CMDS/version /dd/CMDS/tar
+run     version /dd/CMDS/tar
 wait    5
-run     /dd/CMDS/mexist bash
+run     mexist bash
 wait    5
-run     /dd/CMDS/mexist nosuchmodule
+run     mexist nosuchmodule
 wait    5
-run     /dd/CMDS/liborder.os9 -?
+run     liborder.os9 -?
 wait    6
 
 shot    isam
 cap     The indexed-sequential file demonstration from the same shelf.
-run     /dd/CMDS/isam
+run     isam
 wait    8
 
 shot    keep
 cap     keep is how a program leaves this disk for your own: it copies the
 cap     binary AND whatever it needs.  Dry run first, which is what -n is
 cap     for -- nothing is written here.
-run     /dd/CMDS/keep -n hack
+run     keep -n hack
 wait    6
 
 shot    kept
 cap     kept lists what has been taken and what it came to.
-run     /dd/CMDS/kept
+run     kept
 wait    5
 
 shot    launch
 for     launch dpark pri signal snd_sig suspend
 cap     Process control: launch puts a program in the background, pri
 cap     changes its priority, signal sends it a signal.
-run     /dd/CMDS/launch -?
+run     launch -?
 wait    6
-run     /dd/CMDS/pri -?
+run     pri -?
 wait    6
-run     /dd/CMDS/signal -?
+run     signal -?
 wait    6
 
 shot    lunisolar
 for     lunisolar orbit ephem ephem881 nasa
 cap     The astronomy set: lunisolar computes sun and moon positions and
 cap     ephem is a full ephemeris with its own database in SYS.
-run     /dd/CMDS/lunisolar
+run     lunisolar
 wait    10
 
 shot    makecrc
-cap     makecrc computes the CRC OS-9 stores in every module header -- the
-cap     same polynomial the loader checks.
-run     /dd/CMDS/makecrc /dd/CMDS/today
-wait    5
+for     makecrc
+cap     makecrc is a GENERATOR: it writes CRC table source for six
+cap     polynomials into the current directory and says nothing at all.
+cap     The files it left are the output.
+run     makecrc
+wait    10
+run     ls -l arc.c binhex.c ccitt.c kermit.c zip.c
+wait    8
 
 shot    map
 cap     map shows the blocks a file occupies -- not a memory map, whatever
 cap     the name suggests.
-run     /dd/CMDS/map -e /dd/DOC/INDEX
+run     map -e /dd/DOC/INDEX
 wait    5
 
 shot    modinfo
 cap     An OS-9 module header read back: name, type, size, edition and CRC.
 cap     Every program on this disk is a module like this one.
-run     /dd/CMDS/modinfo /dd/CMDS/today
+run     modinfo /dd/CMDS/today
 wait    3
 
 shot    mshell
 cap     mshell wants a menu file, cannot find one, says so twice and runs
 cap     anyway.  The error it reports for that failure is #255:255, which
 cap     is not an OS-9 error code at all.
-run     /dd/CMDS/mshell
+run     mshell
 wait    4
 send    echo mshell is running\r
 wait    3
@@ -288,40 +292,40 @@ wait    3
 shot    names
 cap     names lists the modules inside a file.  os9lib is the FORTRAN
 cap     runtime, and it holds many.
-run     /dd/CMDS/names /dd/CMDS/os9lib
+run     names /dd/CMDS/os9lib
 wait    5
 kill
 
 shot    ob68kdemo
 cap     OmniBasic 1.16, a BASIC compiler, in its demonstration build.
-run     /dd/CMDS/DEMOS/ob68kdemo
+run     ob68kdemo
 wait    8
 
 shot    oskversion
 cap     What the system says it is.  getsys walks the whole global page, and
 cap     every field os9exec does not keep answers `F$SetSys: unimplemented'
 cap     -- so this screen is a picture of the emulator's edges.
-run     /dd/CMDS/oskversion
+run     oskversion
 wait    2
-run     /dd/CMDS/sysid
+run     sysid
 wait    2
-run     /dd/CMDS/getsys
+run     getsys
 wait    4
 
 shot    passwd
 for     passwd who adduser
 cap     passwd changes a password in SYS/password.  It matches on the user
 cap     NAME, and the file is plain text you can read here.
-run     /dd/CMDS/cat /dd/SYS/password
+run     cat /dd/SYS/password
 wait    6
-run     /dd/CMDS/passwd -?
+run     passwd -?
 wait    6
 
 shot    phone
 cap     `phone' is not an address book: it connects two terminals over a
 cap     communication path, and with none named it says so.  DOC/INDEX
 cap     called it a phone-number book until this screen was taken.
-run     /dd/CMDS/phone
+run     phone
 wait    5
 
 shot    rndir
@@ -329,30 +333,30 @@ for     rndir mvolformat rendsk
 cap     rndir renames a directory -- OS-9's `rename' would not touch one,
 cap     so this existed.  Made, renamed and listed in a scratch directory
 cap     of its own.
-run     /dd/CMDS/mkdir /dd/tmp/rnd
+run     mkdir /dd/tmp/rnd
 wait    5
-run     /dd/CMDS/mkdir /dd/tmp/rnd/olddir
+run     mkdir /dd/tmp/rnd/olddir
 wait    5
-run     /dd/CMDS/dir /dd/tmp/rnd
+run     dir /dd/tmp/rnd
 wait    6
-run     /dd/CMDS/rndir /dd/tmp/rnd/olddir /dd/tmp/rnd/newdir
+run     rndir /dd/tmp/rnd/olddir /dd/tmp/rnd/newdir
 wait    6
-run     /dd/CMDS/dir /dd/tmp/rnd
+run     dir /dd/tmp/rnd
 wait    6
 
 shot    scsiutil
 for     scsiutil dedit expreserve exrecover read_mail add_errmsg
 cap     scsiutil talks to a SCSI device, and expreserve is vi's crash
 cap     recovery.  Neither has anything to work on here, and both say so.
-run     /dd/CMDS/scsiutil -?
+run     scsiutil -?
 wait    8
-run     /dd/CMDS/expreserve -?
+run     expreserve -?
 wait    8
 
 shot    sddemo
 cap     White's Speedisk 2.10, a disk defragmenter, drawing the map of a
 cap     volume it is about to work on.
-run     /dd/CMDS/DEMOS/sddemo
+run     sddemo
 wait    10
 
 shot    shdev
@@ -360,122 +364,116 @@ for     shdev dinfo ssl dam
 cap     shdev prints its heading and no devices: os9exec keeps no OS-9
 cap     device table for it to walk.  dinfo, underneath, asks the device
 cap     itself and answers properly -- 259 MB, 46% used.
-run     /dd/CMDS/shdev
+run     shdev
 wait    8
-run     /dd/CMDS/dinfo /dd
+run     dinfo /dd
 wait    8
 
 shot    spline
 cap     spline fits a curve through points and writes PostScript for it.
 run     echo "0 0" > /dd/tmp/pts
 wait    2
-run     /dd/CMDS/spline /dd/tmp/pts | /dd/CMDS/head -n 14
+run     spline /dd/tmp/pts | head -n 14
 wait    5
 
 shot    sqrtx
 cap     A square-root demonstration -- one of the small programs the forums
 cap     circulated to prove a compiler worked.
-run     /dd/CMDS/sqrtx
+run     sqrtx
 wait    6
 
 shot    ssl
 cap     ssl shows a file's segment list -- the sectors RBF gave it, in
 cap     order.  This is the disk's own allocation, not a summary.
-run     /dd/CMDS/ssl /dd/DOC/INDEX
+run     ssl /dd/DOC/INDEX
 wait    4
-
-shot    suse
-cap     suse prints just the usage line out of a program, without running
-cap     it -- it reads the module.
-run     /dd/CMDS/suse /dd/CMDS/tar
-wait    3
 
 shot    sysid
 for     sysid sysmax sysmin oskversion
 cap     sysid asks the kernel to identify itself with F$SysID, which
 cap     os9exec does not implement -- so what comes back is the emulator
 cap     saying so, field by field.  The numbers below it are real.
-run     /dd/CMDS/sysid
+run     sysid
 wait    6
-run     /dd/CMDS/sysmax
+run     sysmax
 wait    5
-run     /dd/CMDS/sysmin
+run     sysmin
 wait    5
 
 shot    sysmon
 cap     sysmon, the system monitor, drawing memory and process state.
-run     /dd/CMDS/sysmon
+run     sysmon
 wait    8
 
 shot    top
 cap     top, showing the busiest processes.  Under os9exec these are real
 cap     OS-9 processes with real IDs and real priorities.
-run     /dd/CMDS/top
+run     top
 wait    6
 
 shot    transfer
 for     transfer trunc preset fillup vlen
 cap     transfer copies between devices, trunc cuts a file short, preset
 cap     fills memory with a pattern.
-run     /dd/CMDS/cp /dd/SYS/holidays /dd/tmp/cut.txt
+run     cp /dd/SYS/holidays /dd/tmp/cut.txt
 wait    6
-run     /dd/CMDS/ls -l /dd/tmp/cut.txt
+run     ls -l /dd/tmp/cut.txt
 wait    5
-run     /dd/CMDS/trunc /dd/tmp/cut.txt 100
+run     trunc /dd/tmp/cut.txt 100
 wait    6
-run     /dd/CMDS/ls -l /dd/tmp/cut.txt
+run     ls -l /dd/tmp/cut.txt
 wait    6
 
 shot    tty
 for     tty vecho clear lmargin
 cap     tty names the terminal; vecho writes without a newline; lmargin
 cap     sets a left margin on what follows.
-run     /dd/CMDS/tty
+run     tty
 wait    5
-run     /dd/CMDS/vecho "no newline here -- "
+run     vecho "no newline here -- "
 wait    5
-run     /dd/CMDS/lmargin -?
+run     lmargin -?
 wait    6
 
 shot    ub68kdemo
 cap     UniBasic 1.10 -- the other BASIC compiler here, same arrangement.
-run     /dd/CMDS/DEMOS/ub68kdemo
+run     ub68kdemo
 wait    8
 
 shot    umacs
 cap     MicroEMACS, editing the collection's own C source.  The mode line
 cap     at the foot is emacs's, and the keys are emacs's.
-run     /dd/CMDS/umacs /dd/SRC/keep/keep.c
+run     umacs /dd/SRC/keep/keep.c
 wait    6
 quit    \030\003
 
 shot    vc
 cap     vc compares two files side by side and marks where they differ.
-run     /dd/CMDS/head -n 14 /dd/DOC/INDEX > /dd/tmp/x1
+run     head -n 14 /dd/DOC/INDEX > /dd/tmp/x1
 wait    2
-run     /dd/CMDS/sed -e "s/a/A/g" /dd/tmp/x1 > /dd/tmp/x2
+run     sed -e "s/a/A/g" /dd/tmp/x1 > /dd/tmp/x2
 wait    3
-run     /dd/CMDS/vc /dd/tmp/x1 /dd/tmp/x2
+run     vc /dd/tmp/x1 /dd/tmp/x2
 wait    6
 
 shot    version
 cap     version and mexist ask about a module rather than a file.
-run     /dd/CMDS/version /dd/CMDS/today
+run     version /dd/CMDS/today
 wait    3
-run     /dd/CMDS/mexist bash
+run     mexist bash
 wait    3
 
 shot    vlen
 cap     vlen reports a file's record length; trunc cuts a file to size.
-run     /dd/CMDS/vlen /dd/DOC/INDEX
+run     vlen /dd/DOC/INDEX
 wait    4
-run     /dd/CMDS/vlen /dd/CMDS/today
+run     vlen /dd/CMDS/today
 wait    4
 
 shot    yagi
 cap     yagi designs a Yagi antenna -- element lengths and spacings for a
 cap     frequency you give it.
-run     /dd/CMDS/yagi
+run     yagi
 wait    4
 send    144\r
 wait    3
@@ -489,11 +487,11 @@ cap     The runtime modules the starred programs need.  They are not
 cap     programs -- you cannot run them -- so this is what they look like
 cap     to `modinfo': name, type, edition and CRC.  cio and math ship here
 cap     by Microware's permission; SOURCES.txt records the exchange.
-run     /dd/CMDS/modinfo /dd/CMDS/cio | /dd/CMDS/head -n 10
+run     modinfo /dd/CMDS/cio | head -n 10
 wait    12
-run     /dd/CMDS/modinfo /dd/CMDS/csl | /dd/CMDS/grep -a "name\|Edition\|size"
+run     modinfo /dd/CMDS/csl | grep -a "name\|Edition\|size"
 wait    12
-run     /dd/CMDS/modinfo /dd/CMDS/math881 | /dd/CMDS/grep -a "name\|Edition\|size"
+run     modinfo /dd/CMDS/math881 | grep -a "name\|Edition\|size"
 wait    12
 
 
@@ -503,7 +501,7 @@ cap     The MM/1 drivers -- keyboard, mouse, floppy, SCSI, sound and the
 cap     windowing terminal.  They are device drivers for hardware that is
 cap     not here, so again `modinfo' is what there is to show: type $C
 cap     (device driver) rather than $1 (program).
-run     /dd/CMDS/modinfo /dd/CMDS/MM1/keydrv.mm1 | /dd/CMDS/head -n 12
+run     modinfo /dd/CMDS/MM1/keydrv.mm1 | head -n 12
 wait    12
 
 shot    load
@@ -513,13 +511,13 @@ cap     at all until os9lib is loaded -- and then it says what it takes.
 cap     That silence is the whole symptom, and this is the cure: a
 cap     clean-room load, contributed by the os9exec project and built here,
 cap     with its source in SRC/load.
-run     /dd/CMDS/for
+run     for
 wait    6
-run     /dd/CMDS/load /dd/CMDS/os9lib
+run     load /dd/CMDS/os9lib
 wait    8
-run     /dd/CMDS/for
+run     for
 wait    8
-run     /dd/CMDS/load /dd/CMDS/nosuchthing
+run     load /dd/CMDS/nosuchthing
 wait    8
 
 
@@ -528,9 +526,9 @@ for     biory creadoc
 cap     biory is the RTF Fortran example: a biorhythm program that prompts
 cap     in German, once os9lib is loaded.  creadoc, beside it, pulls the
 cap     documentation comments out of Fortran source.
-run     /dd/CMDS/load /dd/CMDS/os9lib
+run     load /dd/CMDS/os9lib
 wait    8
-run     /dd/CMDS/biory
+run     biory
 wait    8
 send    Tester\r
 wait    6
@@ -541,5 +539,5 @@ for     ptxm wn.stb
 cap     Two more modules that are not programs: `ptxm', Nick Holgate's Path
 cap     Table eXtension Module, which `ptxminst' installs, and `wn.stb', the
 cap     symbol table that ships beside the WN web server.
-run     /dd/CMDS/modinfo /dd/CMDS/ptxm | /dd/CMDS/head -n 12
+run     modinfo /dd/CMDS/ptxm | head -n 12
 wait    12

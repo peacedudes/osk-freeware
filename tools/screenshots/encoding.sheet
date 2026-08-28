@@ -3,127 +3,134 @@
 
 shot    binhex
 cap     binhex encodes a file the way a Macintosh expected to receive it.
-run     /dd/CMDS/binhex /dd/DOC/INDEX | /dd/CMDS/head -n 12
+run     binhex /dd/DOC/INDEX | head -n 12
 wait    8
 
 shot    btoa
 cap     btoa, the denser alternative to uuencode: five ASCII characters per
 cap     four binary bytes, with a checksum line at the end.
-run     /dd/CMDS/btoa < /dd/SYS/motd | /dd/CMDS/head -n 14
+run     btoa < /dd/SYS/motd | head -n 14
 wait    5
 
 shot    btoa-round
 for     btoa atob
 cap     btoa encodes a file as printable text and atob decodes it again.
 cap     Five characters for four bytes, with a checksum on the end line.
-run     /dd/CMDS/btoa < /dd/SYS/motd > /dd/tmp/m.btoa
+run     btoa < /dd/SYS/motd > /dd/tmp/m.btoa
 wait    4
-run     /dd/CMDS/cat /dd/tmp/m.btoa
+run     cat /dd/tmp/m.btoa
 wait    4
-run     /dd/CMDS/atob < /dd/tmp/m.btoa | /dd/CMDS/md5
+run     atob < /dd/tmp/m.btoa | md5
 wait    6
 
 shot    checksum
 cap     Two older checksums beside each other on the same file.
-run     /dd/CMDS/checksum /dd/SYS/motd
+run     checksum /dd/SYS/motd
 wait    3
-run     /dd/CMDS/chksum /dd/SYS/motd
+run     chksum /dd/SYS/motd
 wait    3
 
 shot    crypto
 cap     crypto, the cryptogram solver's assistant, showing what it offers.
-run     /dd/CMDS/crypto -h
+run     crypto -h
 wait    6
 
 shot    cvtbase
-cap     cvtbase converts between number bases: the bases are arguments, the
-cap     numbers arrive on standard input.
-run     echo 255 1000 65535 | /dd/CMDS/sepwords | /dd/CMDS/cvtbase 10 2
-wait    5
-run     echo 65535 | /dd/CMDS/cvtbase 10 16
-wait    4
+cap     cvtbase names its bases by KEY -- b, d, h or x, o, or the digits of
+cap     any base you like -- and this is it saying so.  Asked to convert
+cap     anything it floods `No more memory !!!' instead, which is in
+cap     DOC/INDEX and in the data tests; a wall of that message is not a
+cap     picture of what the program is for.
+run     cvtbase
+wait    6
 
 shot    des
 cap     DES encrypting a file and decrypting it back.  It takes filenames
 cap     only and asks for the key itself; the checksums either side show
 cap     the round trip closed.
-run     /dd/CMDS/chksum /dd/SYS/motd
+run     chksum /dd/SYS/motd
 wait    3
-run     /dd/CMDS/cp /dd/SYS/motd /dd/tmp/d.txt
+run     cp /dd/SYS/motd /dd/tmp/d.txt
 wait    4
-run     /dd/CMDS/des /dd/tmp/d.txt
+run     des /dd/tmp/d.txt
 wait    5
 send    freeware\r
 wait    5
 
 shot    divide
-for     divide chardef chksum checksum
-cap     divide does integer division the way a 68000 does it, and reports
-cap     quotient and remainder.
-run     /dd/CMDS/divide 1000 7
+for     divide chardef
+cap     divide SPLITS A FILE into pieces -- Farside Systems, 1992.  Twelve
+cap     lines in, four to a piece, three pieces out.  It is not integer
+cap     division, whatever the name suggests, and DOC/INDEX said it was
+cap     until this screen was taken.
+run     head -n 12 /dd/SYS/holidays > /dd/tmp/dv.txt
 wait    6
-run     /dd/CMDS/chksum /dd/SYS/motd /dd/SYS/holidays
+run     divide -l=4 /dd/tmp/dv.txt /dd/tmp/piece
+wait    8
+run     ls -l /dd/tmp/piece.1 /dd/tmp/piece.2 /dd/tmp/piece.3
+wait    6
+run     cat /dd/tmp/piece.1
 wait    6
 
 shot    md5
 cap     MD5 over three files on the disk.
-run     /dd/CMDS/md5 /dd/SYS/motd /dd/SYS/password /dd/DOC/INDEX
+run     md5 /dd/SYS/motd /dd/SYS/password /dd/DOC/INDEX
 wait    5
 
 shot    sox
 cap     Sound eXchange reading one of the sample sounds in DOC/sox and
 cap     reporting what is in it -- an IFF/8SVX sample from an Amiga.
-run     /dd/CMDS/sox /dd/DOC/sox/great_oz.iff -t au /dd/tmp/oz.au
+run     sox /dd/DOC/sox/great_oz.iff -t au /dd/tmp/oz.au
 wait    10
-run     /dd/CMDS/file /dd/DOC/sox/great_oz.iff /dd/tmp/oz.au
+run     file /dd/DOC/sox/great_oz.iff /dd/tmp/oz.au
 wait    6
 
 shot    todos
 cap     todos and toos9 claim to convert line endings between OS-9 and DOS.
 cap     They do NOT: the file comes back byte-identical, which is what the
 cap     checksums below show.  Kept here because it is the truth.
-run     /dd/CMDS/cat /dd/SYS/motd > /dd/tmp/le.txt
+run     cat /dd/SYS/motd > /dd/tmp/le.txt
 wait    3
-run     /dd/CMDS/chksum /dd/tmp/le.txt
+run     chksum /dd/tmp/le.txt
 wait    3
-run     /dd/CMDS/todos /dd/tmp/le.txt
+run     todos /dd/tmp/le.txt
 wait    4
-run     /dd/CMDS/chksum /dd/tmp/le.txt
+run     chksum /dd/tmp/le.txt
 wait    5
 
 shot    uudecode
 cap     uuencode and uudecode, the pair that carried binaries through mail.
-run     /dd/CMDS/uuencode /dd/SYS/motd > /dd/tmp/m.uue
+run     uuencode /dd/SYS/motd > /dd/tmp/m.uue
 wait    4
-run     /dd/CMDS/head -n 3 /dd/tmp/m.uue
+run     head -n 3 /dd/tmp/m.uue
 wait    4
-run     /dd/CMDS/uudecode /dd/tmp/m.uue
+run     uudecode /dd/tmp/m.uue
 wait    6
 
 shot    uuencode
 cap     uuencode wrapping a binary as printable text -- how files crossed
 cap     mail and usenet before attachments existed.
-run     /dd/CMDS/uuencode /dd/SYS/motd | /dd/CMDS/head -n 14
+run     uuencode /dd/SYS/motd | head -n 14
 wait    5
 
 shot    uuexpand
 for     uuexpand toos9 macbin mcvert hexbin
 cap     uuexpand pads a uuencoded file back out; the Macintosh set beside
 cap     it converts between the formats a Mac expected.
-run     /dd/CMDS/uuencode /dd/SYS/motd > /dd/tmp/u.uue
+run     uuencode /dd/SYS/motd > /dd/tmp/u.uue
 wait    6
-run     /dd/CMDS/uuexpand < /dd/tmp/u.uue | /dd/CMDS/head -n 8
+run     uuexpand < /dd/tmp/u.uue | head -n 8
 wait    8
-run     /dd/CMDS/mcvert -?
+run     mcvert -?
 wait    6
 
 shot    xcrypt
 cap     xcrypt, a simpler file cipher, and the checksum round trip again.
-run     /dd/CMDS/xcrypt -k=freeware /dd/SYS/motd /dd/tmp/x.enc
+run     xcrypt -k=freeware /dd/SYS/motd /dd/tmp/x.enc
 wait    6
-run     /dd/CMDS/xcrypt -k=freeware /dd/tmp/x.enc /dd/tmp/x.dec
+run     xcrypt -k=freeware /dd/tmp/x.enc /dd/tmp/x.dec
 wait    6
-run     /dd/CMDS/chksum /dd/SYS/motd /dd/tmp/x.dec
+run     chksum /dd/SYS/motd /dd/tmp/x.dec
 wait    5
 
 
@@ -131,9 +138,9 @@ shot    macfiles
 for     macsave macstream macunpack UnMacpack unsit hexbin macbin
 cap     The Macintosh set: StuffIt, MacBinary, BinHex and MacPack, from
 cap     when a Mac file had two forks and neither survived a plain copy.
-run     /dd/CMDS/unsit
+run     unsit
 wait    8
-run     /dd/CMDS/macunpack
+run     macunpack
 wait    8
-run     /dd/CMDS/UnMacpack
+run     UnMacpack
 wait    8

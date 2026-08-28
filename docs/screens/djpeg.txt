@@ -1,6 +1,5 @@
 <-xysize 152 88 | pgmnorm | pgmtopbm | pbmtoascii -2x4
-Premature EOF in JPEG file
-Not a JPEG file
+djpeg: can't open /dd/tmp/g.jpg
 ppmtopgm: EOF / read error reading magic number
 pnmscale: EOF / read error reading magic number
 pgmnorm: EOF / read error reading magic number

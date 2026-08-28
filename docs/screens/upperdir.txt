@@ -1,4 +1,4 @@
-/dd/CMDS/upperdir -?
+upperdir -?
 
 Usage: UpperDir [directory name]
        Changes filenames to lowercase,

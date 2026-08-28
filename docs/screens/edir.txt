@@ -1,5 +1,5 @@
-/dd/CMDS/edir
-   Event Directory at  0:17:22
+edir
+   Event Directory at  5:01:41
 
 eset: can't link to testevent
-   Event Directory at  0:17:40
+   Event Directory at  5:01:59

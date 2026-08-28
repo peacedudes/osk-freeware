@@ -1,4 +1,4 @@
-/dd/CMDS/gen -?
+gen -?
 Syntax: gen [<opt>] <pathname> [<opts>]
 Function: generate a program frame
 Note: there must be exactly one option selected

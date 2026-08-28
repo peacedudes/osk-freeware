@@ -1,4 +1,4 @@
-/dd/CMDS/keep -n hack
+keep -n hack
 collection at /h0, keeping into /dd
 
 hack:

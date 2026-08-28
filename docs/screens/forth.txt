@@ -1,4 +1,4 @@
-/dd/CMDS/forth
+forth
 TILE Forth version 2.48, Copyright (c) 1989, by Mikael Patel
 2 3 + . cr
 5

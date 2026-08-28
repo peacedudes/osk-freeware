@@ -13,10 +13,10 @@
 /dd/SYS/TEX                           311   5185622     22520     22520       1
 /dd/SYS/UUCP                        10176     10176        72        72       8
 /dd/SYS/ksh                          2847      2847        24        24       3
-/dd/SYS                            150410   5470174     24000     24000      32
+/dd/SYS                            170291   5490055     24088     24088      36
 
-Number of files                          : 820
+Number of files                          : 824
 Number of subdirectories                 : 43
-Total file contents                      : 5341.97 KBytes (5470174 Bytes, 100%)
-Space allocated now on /dd               : 6000.00 KBytes (24000 Sectors, 112%)
-Minimum required with clustersize=4      : 6000.00 KBytes (24000 Sectors, 112%)
+Total file contents                      : 5361.38 KBytes (5490055 Bytes, 100%)
+Space allocated now on /dd               : 6022.00 KBytes (24088 Sectors, 112%)
+Minimum required with clustersize=4      : 6022.00 KBytes (24088 Sectors, 112%)

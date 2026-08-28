@@ -1,6 +1,6 @@
-/dd/CMDS/head -n 5 /dd/SYS/holidays > /dd/tmp/j1
-/dd/CMDS/head: /dd/SYS/holidays
-/dd/CMDS/head: /dd/SYS/birthdays
+head -n 5 /dd/SYS/holidays > /dd/tmp/j1
+head: /dd/SYS/holidays
+head: /dd/SYS/birthdays
 * Common Holidays       * birthdays -- yours to fill in.
         *
 1/1             New Year's Day  * cal's holidays file ends with `INCLUDE /dd/syu

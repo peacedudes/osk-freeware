@@ -1,4 +1,4 @@
-/dd/CMDS/aprocs
+aprocs
 F$SetSys: unimplemented 0030 (size=80000004)
 F$SetSys: unimplemented 0034 (size=80000004)
 

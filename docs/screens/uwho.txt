@@ -1,3 +1,3 @@
-/dd/CMDS/uwho
-/dd/CMDS/uwho: can't open /etc/utmp
-Thursday, August 27, 19126 - 9:26 PM
+uwho
+uwho: can't open /etc/utmp
+Friday, August 28, 19126 - 4:49 AM

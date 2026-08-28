@@ -4,28 +4,15 @@
 shot    aterm
 cap     ATerm 2.6, the terminal emulator, reading its configuration from
 cap     SYS/ATERM.
-run     /dd/CMDS/aterm
+run     aterm
 wait    6
-
-shot    aterm-cfg
-for     aterm setterm fkeys initvdu cls
-cap     The terminal side: ATerm's configuration, setterm, fkeys and the
-cap     two small things that clear a screen.
-run     /dd/CMDS/setterm -?
-wait    5
-run     /dd/CMDS/fkeys -?
-wait    5
-run     /dd/CMDS/cls
-wait    4
-run     /dd/CMDS/tty
-wait    5
 
 shot    elm
 for     elm frm newmail readmsg printmail messages
 cap     Elm, the mail reader, opening on an empty mailbox -- which is the
 cap     honest state of a mail system with no network.  Fourteen programs
 cap     travel with it in CMDS/ELM.
-run     /dd/CMDS/ELM/elm
+run     elm
 wait    10
 quit    q\r
 
@@ -33,35 +20,35 @@ shot    elm-suite
 for     elm answer arepdaemon autoreply fastmail filter newalias printmail readmsg messages
 cap     The rest of the elm suite: the alias tools, the filter, the
 cap     auto-responder and the daemon that answers while you are away.
-run     /dd/CMDS/ELM/newalias
+run     newalias
 wait    8
-run     /dd/CMDS/ELM/printmail
+run     printmail
 wait    8
 
 shot    finger
 for     finger net osknet atp msntp infoxpress
 cap     The network set.  There is no interface configured here, so what
 cap     they show is what they would do if there were.
-run     /dd/CMDS/NETWORK/finger
+run     finger
 wait    8
-run     /dd/CMDS/NETWORK/net
+run     net
 wait    8
 
 shot    frm
 for     frm checkalias listalias newalias filter autoreply answer fastmail
 cap     The rest of the elm suite says what it wants: frm lists the from
 cap     lines of a folder, the alias tools read the alias files.
-run     /dd/CMDS/ELM/frm
+run     frm
 wait    6
-run     /dd/CMDS/ELM/listalias
+run     listalias
 wait    6
-run     /dd/CMDS/ELM/checkalias root
+run     checkalias root
 wait    6
 
 shot    kermit
 cap     Kermit, the file-transfer program.  With no serial line to talk to
 cap     it says what it can do: connect, send, receive, or be the server.
-run     /dd/CMDS/REBUILT/kermit
+run     kermit
 wait    5
 
 shot    kermit-family
@@ -69,24 +56,24 @@ for     kermit2 kermit3 xkermit ckermit
 cap     Four more Kermits.  The collection keeps every build it found, and
 cap     they do not all take the same command line -- which is the reason
 cap     to keep them side by side.
-run     /dd/CMDS/kermit2
+run     kermit2
 wait    8
-run     /dd/CMDS/xkermit
+run     xkermit
 wait    8
 
 shot    mail
 for     mail lmail rmail smail
 cap     The mail chain: mail sends, lmail delivers locally, rmail takes
 cap     what arrived, smail routes.
-run     /dd/CMDS/UUCP/mail -?
+run     mail -?
 wait    6
-run     /dd/CMDS/UUCP/smail -?
+run     smail -?
 wait    6
 
 shot    mailx
 cap     mailx opening with no mail waiting -- which is the honest state of
 cap     a mail reader on a disk with no network.
-run     /dd/CMDS/UUCP/mailx
+run     mailx
 wait    5
 send    q\r
 wait    3
@@ -94,7 +81,7 @@ wait    3
 shot    mailx-more
 for     mailx philmail dotilde makedb pathalias
 cap     mailx opening on an empty mailbox, and philmail beside it.
-run     /dd/CMDS/UUCP/mailx
+run     mailx
 wait    8
 send    q\r
 wait    6
@@ -103,120 +90,113 @@ shot    network
 for     finger msntp atp osknet infoxpress net
 cap     The TCP/IP set: finger, an SNTP client, and OSKnet itself.  There
 cap     is no interface here, so what they print is what they would do.
-run     /dd/CMDS/NETWORK/msntp -?
+run     msntp -?
 wait    8
-run     /dd/CMDS/NETWORK/atp
+run     atp
 wait    8
 
 shot    news-tools
 for     rnews postnews subscribe unsubscribe expire uulog
 cap     What arrives from a news feed and what unpacks it: rnews takes a
 cap     batch, expire deletes what is past its date.
-run     /dd/CMDS/UUCP/rnews -?
+run     rnews -?
 wait    8
-run     /dd/CMDS/UUCP/subscribe -?
+run     subscribe -?
 wait    8
 
 shot    newshist
 for     newshist bdecode byteflip c7decode dbz newslock
 cap     CMDS/NEWS: the pieces that unpack a usenet news batch -- decoders,
 cap     the history database and the lock.
-run     /dd/CMDS/NEWS/dbz
+run     dbz
 wait    8
-run     /dd/CMDS/NEWS/bdecode
+run     bdecode
 wait    8
 
 shot    pathalias
 for     pathalias makedb nptx dotilde uuclean
 cap     pathalias computes mail routes from a map of who calls whom -- the
 cap     program that made a usenet address possible.
-run     /dd/CMDS/UUCP/pathalias -?
+run     pathalias -?
 wait    8
-run     /dd/CMDS/UUCP/makedb -?
+run     makedb -?
 wait    6
-
-shot    readnews
-cap     readnews, the news reader, with no spool to read.
-run     /dd/CMDS/UUCP/readnews
-wait    5
-send    q\r
-wait    3
 
 shot    screen
 for     screen tsmon2 connect uwho wysetime
 cap     screen, the terminal multiplexer, and tsmon2, which is what watches
 cap     a serial line for someone logging in.
-run     /dd/CMDS/REBUILT/screen -v
+run     screen -v
 wait    8
-run     /dd/CMDS/tsmon2 -?
+run     tsmon2 -?
 wait    8
 
 shot    setterm
 cap     setterm and cls, the two smallest things here that know what a
 cap     terminal is.
-run     /dd/CMDS/setterm
+run     setterm
 wait    4
 
 shot    sterm
 for     sterm tterm tsu k z blastem dld uld vmod_trap
 cap     The terminal programs: sterm and tterm open a serial line and give
 cap     you the far end.  With no line configured they say so.
-run     /dd/CMDS/COMMS/tterm
+run     tterm
 wait    8
-run     /dd/CMDS/COMMS/tsu
+run     tsu
 wait    8
 
 shot    uuclean
 for     uuclean uupoll disable enable fileserv fixtext lcasep nptx pwparse
 cap     The UUCP housekeeping: clean the spool, poll a site, take a device
 cap     out of service and put it back.
-run     /dd/CMDS/UUCP/uuclean -?
+run     uuclean -?
 wait    8
-run     /dd/CMDS/UUCP/uupoll -?
+run     uupoll -?
 wait    8
 
 shot    uucp
 for     uucp uux uuxqt uucico
 cap     The transfer set: uucp queues a copy, uux queues a command, uuxqt
 cap     runs what a remote site queued here, uucico does the talking.
-run     /dd/CMDS/UUCP/uucp -?
+run     uucp -?
 wait    6
-run     /dd/CMDS/UUCP/uucico -?
+run     uucico -?
 wait    6
 
 shot    uuname
 cap     uuname lists the UUCP sites this system could reach, out of the
 cap     configuration in SYS.
-run     /dd/CMDS/UUCP/uuname
+run     uuname
 wait    4
-run     /dd/CMDS/UUCP/uulog
+run     uulog
 wait    4
 
 shot    uwho
 for     uwho udate input
 cap     What is left of the UNAXCESS bulletin board: uwho wants /etc/utmp,
 cap     which OS-9 has no equivalent of.
-run     /dd/CMDS/uwho
+run     uwho
 wait    6
-run     /dd/CMDS/udate
+run     udate
 wait    6
 
 shot    wn
 for     wn wndex authwn inetd inetdc
 cap     WN, a web server, and its indexer -- on a 68000 OS-9 disk.  It is
 cap     configured to be started by inetd, which is also here.
-run     /dd/CMDS/WN/wn -V
+run     wn -V
 wait    8
-run     /dd/CMDS/WN/wndex -?
+run     wndex -?
 wait    8
 
 shot    xmodem
 for     xy xydown xyt txmod rxmod
 cap     The xmodem and ymodem set from CMDS/COMMS -- send, receive, and the
 cap     terminal side of a file transfer over a serial line.
-run     /dd/CMDS/COMMS/xydown
+run     xydown
 wait    8
-run     /dd/CMDS/COMMS/txmod
+run     txmod
 wait    8
 
 
@@ -226,11 +206,11 @@ cap     The small terminal utilities, asked what they take.  `fkeys' and
 cap     `initvdu' print NOTHING at all -- no usage, no error -- which is
 cap     what the two blank lines under their names are.  The Wyse pair want
 cap     real Wyse hardware.
-run     /dd/CMDS/setterm -?
+run     setterm -?
 wait    8
-run     /dd/CMDS/fkeys -?
+run     fkeys -?
 wait    8
-run     /dd/CMDS/wysecrack
+run     wysecrack
 wait    8
-run     /dd/CMDS/wysetime -?
+run     wysetime -?
 wait    8

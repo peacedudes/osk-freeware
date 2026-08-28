@@ -1,4 +1,4 @@
-/dd/CMDS/kermit2
+kermit2
 Kermit Program   Version 1    Release 6
 Usage:   kermit c[le line esc.char]         (connect mode)
 or:      kermit s[difl line] file ...       (send mode)

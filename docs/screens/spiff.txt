@@ -1,2 +1,2 @@
-/dd/CMDS/head -n 8 /dd/SYS/motd > /dd/tmp/s1
-/dd/CMDS/head: /dd/SYS/motd
+head -n 8 /dd/SYS/motd > /dd/tmp/s1
+head: /dd/SYS/motd

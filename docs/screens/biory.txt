@@ -1,4 +1,4 @@
-/dd/CMDS/load /dd/CMDS/os9lib
-  Ausgabe im Listingfile 'Biory.Lis'
-  Name Vorname (RETURN=Ende)  : Tester
-  Geburtsdatum (TTMMJJ)       :
+-> let r0c0 = cho S9READYclearversion /dd/CMDS/todaymexist bashecho S9READYclea
+Unintelligible word: let r0c0 = cho<= S9READYclearversion /dd/CMDS/todaymexist r
+
+              <

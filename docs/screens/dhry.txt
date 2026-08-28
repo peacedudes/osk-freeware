@@ -18,5 +18,5 @@ Str_1_Loc:           DHRYSTONE PROGRAM, 1'ST STRING
 Str_2_Loc:           DHRYSTONE PROGRAM, 2'ND STRING
         should be:   DHRYSTONE PROGRAM, 2'ND STRING
 
-Microseconds for one run through Dhrystone:   13.4
-Dhrystones per Second:                      74800.2
+Microseconds for one run through Dhrystone:   12.0
+Dhrystones per Second:                      83132.7

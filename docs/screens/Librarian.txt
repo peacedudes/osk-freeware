@@ -1,4 +1,4 @@
-/dd/CMDS/Librarian
+Librarian
 Missing parameter: infile
 Syntax: Librarian [opts]
 Librarian Card Catalog query program

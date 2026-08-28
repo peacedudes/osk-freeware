@@ -1,16 +1,4 @@
-/dd/CMDS/modinfo /dd/CMDS/cio | /dd/CMDS/head -n 10
---------------------------------- /dd/CMDS/cio  - - - - - - - - - - - - - - - --
-Module name           = cio
-System revision       = 1
-Module size           = 18058
-Owner Id              = 1.0
-Offset to module name = 00004396H
-Access permission     = e-re-re-r
-Type/Language          = 0b01H  Trap handler library   68000 Object Code Module
-Attribute/Revision    = c009H   reentrant
-Edition               = 6
-/dd/CMDS/grep: illegal option -- a
-usage: grep [-[[AB] ]<num>] [-[CEFGVchilnqsvwx]] [-[ef]] <expr> [<files...>]
-<CMDS/math881 | /dd/CMDS/grep -a "name\|Edition\|size"
-/dd/CMDS/grep: illegal option -- a
-usage: grep [-[[AB] ]<num>] [-[CEFGVchilnqsvwx]] [-[ef]] <expr> [<files...>]
+-> let r0c0 = cho S9READYclearversion /dd/CMDS/todaymexist bashecho S9READYclea
+Unintelligible word: let r0c0 = cho<= S9READYclearversion /dd/CMDS/todaymexist "
+
+              <

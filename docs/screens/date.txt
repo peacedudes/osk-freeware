@@ -1,4 +1,4 @@
-/dd/CMDS/date
-Today is Thursday, the twenty-seventh day of August, two thousand and
-twenty-six. The time is twenty-two minutes and fifteen seconds after
-nine PM, Daylight Savings Time. The moon is full.
+date
+Today is Friday, the twenty-eighth day of August, two thousand and
+twenty-six. In twenty-three seconds, the time will be fourteen minutes
+before five AM, Daylight Savings Time. The moon is full.

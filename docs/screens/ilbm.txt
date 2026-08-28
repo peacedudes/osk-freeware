@@ -1,7 +1,7 @@
 ppmtoilbm /dd/tmp/base.ppm > /dd/tmp/t.ilbm
 ppmtoilbm: computing colormap...
 ppmtoilbm: 6 colors found
-ppmtoilbm: BODY compression (byterun1): 6%
+ppmtoilbm: BODY compression (byterun1): 9%
 ilbmtoppm: input is a 3-plane ILBM
 stdin:  PPM raw, 48 by 24  maxval 255
 sgitopnm: writing PPM image

@@ -1,0 +1,4 @@
+exist /dd/SYS/motd; echo "exist says $?"
+exist says 0
+exist says 1
+checkenv says 1

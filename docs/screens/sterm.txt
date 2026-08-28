@@ -1,4 +1,4 @@
-/dd/CMDS/COMMS/tterm
+tterm
 No MODEM port defined!
 Checking /dd/USR...OK!
 Checking /dd/USR/TTERM...Creating

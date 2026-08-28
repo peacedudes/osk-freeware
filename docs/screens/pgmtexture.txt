@@ -1,11 +1,2 @@
-pgmtexture -d 2 /dd/tmp/gg.pgm | /dd/CMDS/head -n 18
-(Image has 213 graylevels.)
-(Computing spatial dependence matrix... done.)
-(Computing textural features......
-Angle                          0         45         90        135        Avg
-Angular Second Moment  1.085e-02  8.881e-03  9.576e-03  9.327e-03  9.660e-03
-Contrast               1.269e+02  3.447e+02  2.414e+02  2.237e+02  2.342e+02
-Correlation            9.450e-01  8.732e-01  9.023e-01  9.176e-01  9.095e-01
-Variance               1.014e+03  1.002e+03  1.012e+03  9.994e+02  1.007e+03
-Inverse Diff Moment    4.042e-01  3.301e-01  3.557e-01  3.404e-01  3.576e-01
-Sum Average            2.850e+02  2.821e+02  2.83..
+pgmtexture -d 2 /dd/tmp/gg.pgm | head -n 18
+pgmtexture: /dd/tmp/gg.pgm -

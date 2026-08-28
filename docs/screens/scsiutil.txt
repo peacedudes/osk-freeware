@@ -1,3 +1,5 @@
+ -d<l|r|s> sec blks    : Read 16 bit digital audio(start sector/# blocks)(2)
+ -D<l|r|s> sec blks    : Read  8 bit digital audio(left or right channel)(3)
  -e <0|1>              : Change medium (0=eject, 1=load)
  -i[r]                 : Inquiry [raw]
  -h[r] blk             : Read CD-ROM data block address header
@@ -19,4 +21,3 @@ Note 2: with 's' returns LRLRLR pairs of stereo audio, 2352 bytes per block
         2=Media Catalog Number (UPC/Bar Code),3=Track ISRC
      7: use -1 to leave volume of channel as it is, without argument shows
         current volume settings
-<expreserve> /r0: ERROR #000.215

@@ -1,6 +1,9 @@
-/dd/CMDS/divide 1000 7
-Can't open file ??
-4b68af85
-f466775e
-========
-b52f8708
+head -n 12 /dd/SYS/holidays > /dd/tmp/dv.txt
+head: /dd/SYS/holidays
+-rw-------   1 0        0              60 Aug 28 04:44 /dd/tmp/piece.1
+-rw-------   1 0        0              91 Aug 28 04:44 /dd/tmp/piece.2
+-rw-------   1 0        0              91 Aug 28 04:44 /dd/tmp/piece.3
+* Common Holidays
+
+1/1             New Year's Day
+2/14 Valentine's Day

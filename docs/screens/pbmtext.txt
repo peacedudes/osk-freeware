@@ -1,4 +1,4 @@
-/dd/CMDS/NETPBM/pbmtext "OS-9/68K" | /dd/CMDS/NETPBM/pbmtoascii
+pbmtext "OS-9/68K" | pbmtoascii
 
 
 

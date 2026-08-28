@@ -1,5 +1,5 @@
-/dd/CMDS/devprc -h
-/dd/CMDS/devprc: display device(s) belonging to process(es), V.1.01
+devprc -h
+devprc: display device(s) belonging to process(es), V.1.01
 options:     -a       display all devices belonging to all processes
              -d [dev] display process having device [dev] open
              -h       print header (with -d option)

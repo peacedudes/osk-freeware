@@ -1,3 +1,7 @@
+Syntax:   setterm [opts] [term type]
+Function: Optionally prompt for terminal type.
+          Copy the terminal description to the TERMCAP
+          environment variable for faster access.
 Options:
           -s   send o/p to std output. Default is /pipe/setterm
           -i   read std input. Default is to use std output
@@ -15,6 +19,3 @@ normal use:    setterm [term type]
 Syntax: fkeys [<path>]
 Function:set User-Defined Keys on VT220 Terminals
 Options: none
-/dd/CMDS/wysecrack:  (E$PNNF) That path name doesn't lead to anything - check t.
-
-/dd/CMDS/wysetime: cannot execute binary file

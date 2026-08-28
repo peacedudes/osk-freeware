@@ -9,16 +9,16 @@ cap     instructions at $1000, in the format a ROM burner eats.  A 6809
 cap     cross-assembler running on a 68000; as0, as1, as4, as5 and as11 are
 cap     its cousins for the rest of the 6800 family, and not one of the six
 cap     assembles 68k code.
-run     /dd/CMDS/cat /dd/tmp/t.a
+run     cat /dd/tmp/t.a
 wait    6
-run     /dd/CMDS/as09 /dd/tmp/t.a
+run     as09 /dd/tmp/t.a
 wait    10
-run     /dd/CMDS/cat /dd/tmp/t.s19
+run     cat /dd/tmp/t.s19
 wait    8
 
 shot    bison
 cap     GNU bison 1.19 on the same grammar, with its statistics.
-run     /dd/CMDS/bison -v /dd/tmp/g.y
+run     bison -v /dd/tmp/g.y
 wait    10
 
 shot    flex
@@ -29,9 +29,9 @@ run     echo "[0-9]+   { return NUM; }" >> /dd/tmp/l.l
 wait    5
 run     echo ".        ;" >> /dd/tmp/l.l
 wait    5
-run     /dd/CMDS/flex /dd/tmp/l.l
+run     flex /dd/tmp/l.l
 wait    8
-run     /dd/CMDS/head -n 10 lex.yy.c
+run     head -n 10 lex.yy.c
 wait    5
 
 shot    gcc
@@ -39,14 +39,14 @@ for     gcc gcc_cc2 gcc_cccp2 gpp gpp_cc1plus gpp_cccp gpp_collect gcc_cc1 gcc_c
 cap     GCC 1.39 and its passes.  The driver looks for its sub-programs
 cap     under a prefix -- gcc2 wants gcc_, gpp wants gpp_ -- and says so
 cap     when it cannot find them.
-run     /dd/CMDS/GCC139/gcc -v
+run     gcc -v
 wait    10
 
 shot    gmake
 cap     GNU make, and dmake beside it, both saying what they are.
-run     /dd/CMDS/gmake -v
+run     gmake -v
 wait    5
-run     /dd/CMDS/dmake -V
+run     dmake -V
 wait    5
 
 shot    m4
@@ -55,9 +55,9 @@ run     echo "define(GREET,Hello \$1 from OS-9)" > /dd/tmp/m.m4
 wait    3
 run     echo "GREET(reader)" >> /dd/tmp/m.m4
 wait    3
-run     /dd/CMDS/cat /dd/tmp/m.m4
+run     cat /dd/tmp/m.m4
 wait    3
-run     /dd/CMDS/m4 < /dd/tmp/m.m4
+run     m4 < /dd/tmp/m.m4
 wait    8
 
 shot    make
@@ -70,28 +70,28 @@ cap     recipe cannot open a file that `cat' reads perfectly well by hand,
 cap     and dies on signal 75.  DOC/INDEX already says gmake was added
 cap     because make is the broken one; neither of them builds anything
 cap     here.
-run     echo "hello: /dd/SYS/motd ; /dd/CMDS/cat /dd/SYS/motd > /dd/tmp/hello" > /dd/tmp/Makefile
+run     echo "hello: /dd/SYS/motd ; cat /dd/SYS/motd > /dd/tmp/hello" > /dd/tmp/Makefile
 wait    6
-run     /dd/CMDS/cat /dd/tmp/Makefile
+run     cat /dd/tmp/Makefile
 wait    5
-run     /dd/CMDS/make -f /dd/tmp/Makefile hello
+run     make -f /dd/tmp/Makefile hello
 wait    8
-run     /dd/CMDS/gmake -f /dd/tmp/Makefile hello
+run     gmake -f /dd/tmp/Makefile hello
 wait    10
 
 shot    makeinfo
 for     makeinfo dmake gmake
 cap     makeinfo turns Texinfo source into the info files emacs reads.
-run     /dd/CMDS/GCC139/makeinfo --version
+run     makeinfo --version
 wait    8
-run     /dd/CMDS/gmake -v
+run     gmake -v
 wait    8
 
 shot    p2c
 for     p2c
 cap     p2c, the Pascal-to-C translator, saying what it is and where its
 cap     configuration lives.
-run     /dd/CMDS/p2c -?
+run     p2c -?
 wait    10
 
 shot    xasm
@@ -100,11 +100,11 @@ cap     The xasm family: cross-assemblers for the 6800, 6801, 6804, 6805
 cap     and 68HC11.  NOT for the 68000, whatever DOC/INDEX said until
 cap     2026-08-13 -- and there has never been a 68050.  Each one names its
 cap     own processor when it starts.
-run     /dd/CMDS/as0
+run     as0
 wait    6
-run     /dd/CMDS/as11
+run     as11
 wait    6
-run     /dd/CMDS/as5
+run     as5
 wait    6
 
 shot    yacc
@@ -114,9 +114,9 @@ run     echo "%token NUM" > /dd/tmp/g.y
 wait    2
 run     printf "%%%%\nexpr : expr '+' NUM | NUM ;\n" >> /dd/tmp/g.y
 wait    3
-run     /dd/CMDS/yacc -v /dd/tmp/g.y
+run     yacc -v /dd/tmp/g.y
 wait    8
-run     /dd/CMDS/head -n 12 y.output
+run     head -n 12 y.output
 wait    5
 
 
@@ -126,13 +126,13 @@ cap     The RTF Fortran-77 system -- compiler, driver, linker and two
 cap     example programs -- all of which print NOTHING until their runtime
 cap     library is in the module directory.  `load /dd/CMDS/os9lib' is the
 cap     whole difference, and this screen is the before and the after.
-run     /dd/CMDS/rtf
+run     rtf
 wait    6
-run     /dd/CMDS/load /dd/CMDS/os9lib
+run     load /dd/CMDS/os9lib
 wait    8
-run     /dd/CMDS/rtf
+run     rtf
 wait    8
-run     /dd/CMDS/for
+run     for
 wait    6
-run     /dd/CMDS/lnk
+run     lnk
 wait    6

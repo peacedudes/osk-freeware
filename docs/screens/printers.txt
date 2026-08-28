@@ -1,4 +1,4 @@
-pbmtolj /dd/tmp/base.pbm | /dd/CMDS/wc
+pbmtolj /dd/tmp/base.pbm | wc
       0      1    288
       3      4    168
       3      4    164

@@ -1,2 +1,2 @@
-/dd/CMDS/lgrep chess /dd/DOC/INDEX | /dd/CMDS/head -n 6
+lgrep chess /dd/DOC/INDEX | head -n 6
 14

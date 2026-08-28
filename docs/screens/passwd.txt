@@ -1,4 +1,4 @@
-/dd/CMDS/cat /dd/SYS/password
+cat /dd/SYS/password
 su, ,0.0,128,/dd/cmds,/dd/sys,shell -p="su: "
 tester,,1.7,128,/dd/CMDS,/dd/USR/TESTER,shell
 ,,1.99,128,/dd/CMDS,/dd/USR/ANON,shell -p="anon: "

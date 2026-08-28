@@ -1,4 +1,4 @@
-/dd/CMDS/GAMES/advint /dd/GAMES/ADVSYS/objects
+advint /dd/GAMES/ADVSYS/objects
 ADVINT v1.2 - Copyright (c) 1986, by David Betz
 can't open data file
 look: command not found

@@ -1,4 +1,4 @@
-/dd/CMDS/sum /dd/SYS/motd /dd/SYS/holidays
+sum /dd/SYS/motd /dd/SYS/holidays
 34333     1 /dd/SYS/motd
 11804     1 /dd/SYS/holidays
 (03) unknown option -n

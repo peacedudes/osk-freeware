@@ -4,7 +4,8 @@
 
 `DOC/INDEX` on the disk lists everything alphabetically. This is the same collection sorted by what each program is *for*, which is the more useful order when you do not yet know what you are looking for.
 
-> Screens photographed from the running programs: `docs/screens.html`.
+> Open a program in `docs/index.html` for its **sample output** --
+> photographed from that program running on the disk image.
 >
 > Prefer to click around? `docs/index.html` is a searchable version with per-program detail — what it needs, where it came from, on what terms. GitHub will not render it here; download the repository and open it, or enable Pages.
 
@@ -95,7 +96,7 @@
 
 | | |
 |---|---|
-| `sedt` | &#9733; SEDT screen editor |
+| `sedt` | &#9733; SEDT screen editor -- the third build of the same editor, and it needs SYS/sedt.keys like the other two.  All three run now |
 | `VI` | PVIC, public domain            -> /dd/CMDS/REBUILT (name was taken)<br>`Usage: vi [file ...]` |
 | `vi` | &#9733; THE REAL vi/ex -- its source in SRC/effo_vi is the Berkeley ex source itself, not a clone.  `vi -x' is ex, `vi -d' is edit.  See DOC/README-VI<br>**How:** One of three unrelated vi editors here, and the only one that is the genuine Berkeley ex/vi rather than a clone -- its source in SRC/effo_vi is the real ex_*.c files. `vi -x' becomes ex, `vi -d' becomes edit. DOC/README-VI compares all three. |
 | `vi_cio` | &#9733; PVic vi, cio build (use vi_nocio instead)<br>**How:** PVic vi, the cio build. Needs `. /dd/SYS/termcap.entry' first, then it opens on an empty buffer. CMDS/vi_nocio is the same editor needing no module; DOC/README-VI compares all three vi editors here. |
@@ -286,9 +287,9 @@
 | | |
 |---|---|
 | `lout` | Lout 2.05 document formatter (Basser Lout, Jeffrey Kingston)<br>`usage: -o<filename>` |
-| `nroff` | &#9733; nroff text formatter -- setenv TMACDIR /dd/LIB first.  It will not read standard input: give it a file<br>**How:** Formats man pages. The -man macros in LIB/tmac.an were extended for this collection because the originals defined only .TH .SH .SS .PP and .I; LIB/orig.tmac.an is the untouched version. Try `nroff -man /dd/DOC/netpbm/pnmscale.1'. |
-| `proff` | proff - portable roff text formatter (macros in LIB/proff)<br>`usage: proff [+n] [-n] [-v] [-ifile] [-s] [-pon] [infile [outfile]]` |
-| `roff` | roff text formatter<br>`Syntax: roff {[+00] [-00] [-s] -[h] file}` |
+| `nroff` | &#9733; nroff text formatter -- and it PRINTS NOTHING here, from a file or from standard input, with or without -man and with TMACDIR set.  `roff' and `proff' beside it do the same.  Measured 2026-08-28<br>**How:** Formats man pages. The -man macros in LIB/tmac.an were extended for this collection because the originals defined only .TH .SH .SS .PP and .I; LIB/orig.tmac.an is the untouched version. Try `nroff -man /dd/DOC/netpbm/pnmscale.1'. |
+| `proff` | proff - portable roff text formatter (macros in LIB/proff) -- prints nothing here, like `nroff' and `roff'<br>`usage: proff [+n] [-n] [-v] [-ifile] [-s] [-pon] [infile [outfile]]` |
+| `roff` | roff text formatter -- prints nothing here, like `nroff' and `proff'<br>`Syntax: roff {[+00] [-00] [-s] -[h] file}` |
 | `tformat` | text formatter (SNOBOL4-in-C)<br>`Usage: tformat [width\|-?] [<infile] [>outfile]` |
 
 **Banners & text art**
@@ -1376,7 +1377,7 @@
 | `demo` | egetopt option-parsing demonstration |
 | `devprc` | show which device belongs to which process.  REBUILT HERE: the archived module has a bad CRC and a corrupt initialised- data descriptor, and does not load.  -h works; -a needs the kernel process table, which os9exec answers without real data |
 | `dload` | &#9733; download a file over a serial line<br>`Syntax: dload <filename>` |
-| `e` | SEDT editor, VT220 keys |
+| `e` | SEDT editor, VT220 keys.  FIXED 2026-08-28: it wants sys/sedt.keys, sys/sedt.ruler0 and sys/sedt.help, none of which were here -- it stopped with `Could not open key definition file'.  All three are in SYS now, recovered from the EFFO forum 11 archive it came from |
 | `em` | a screen editor (EFFO forum 3)<br>**How:** A screen editor. It stops with "Environment variable TERM not defined!" unless TERM is set -- SYS/login sets it, so run it from a login shell rather than bare. |
 | `epson` | &#9733; spline output driver for an Epson printer<br>`usage: epson [<opts>]` |
 | `every` | &#9733; run a command at intervals<br>`Syntax: every <time> <progname> [<progopts>]` |
@@ -1403,7 +1404,7 @@
 | `mshell` | &#9733; a small shell |
 | `mvolformat` | format a multi-volume set<br>`Syntax: mvolformat drive volname volcount [format options]` |
 | `names` | &#9733; list the names of modules in a file |
-| `new_e` | SEDT editor, generic terminal |
+| `new_e` | SEDT editor, generic terminal -- it picks vt100 or vt220 by TERM.  Needs the same three SYS/sedt.* files as `e' |
 | `phone` | connect two terminals -- NOT an address book<br>`Syntax: phone <communication-path>` |
 | `preset` | preset memory to a pattern |
 | `pri` | change a process's priority |
@@ -1419,7 +1420,7 @@
 | `spline` | &#9733; fit a spline through points, output PostScript |
 | `sqrtx` | square-root demonstration |
 | `submit` | &#9733; submit a job to the print spooler<br>`Syntax: submit [<opts>] [<submit file>] [{<parameter>)]` |
-| `suse` | show a program's usage line |
+| `suse` | show a program's usage line -- it prints nothing, for any module tried |
 | `suspend` | &#9733; suspend a process<br>`Syntax  : suspend  [<processname>]  [<opt>]` |
 | `t_trtest` | RICO trap-handler test |
 | `testibc` | IEEE binary-coded test (Pascal) |

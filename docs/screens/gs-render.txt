@@ -1,2 +1,2 @@
-<m -r24 -g152x88 -sOutputFile=/dd/tmp/gs.pbm /dd/LIB/gs403/cheq.ps -c quit
+<152x88 -sOutputFile=/dd/tmp/gs.pbm /dd/LIB/gs403/cheq.ps -c quit
 pbmtoascii: /dd/tmp/gs.pbm -

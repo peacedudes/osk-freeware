@@ -1,5 +1,5 @@
-/dd/CMDS/head -n 12 /dd/SYS/holidays > /dd/tmp/k.txt
-/dd/CMDS/head: /dd/SYS/holidays
+head -n 12 /dd/SYS/holidays > /dd/tmp/k.txt
+head: /dd/SYS/holidays
 * 1
 Common 1
 Holidays 1

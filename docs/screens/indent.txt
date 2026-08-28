@@ -1,4 +1,4 @@
-/dd/CMDS/indent /dd/SRC/keep/about.c -st | /dd/CMDS/head -n 16
+indent /dd/SRC/keep/about.c -st | head -n 16
 /*
  * about -- everything this collection knows about one program, on one
  * screen.

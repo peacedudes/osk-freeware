@@ -1,3 +1,7 @@
+        -a              Compile to assembler files
+        -bp             show commands before executing
+        -bg             create ghost module on output
+        -c              leave comments in assember-files
         -d<name>        define for cpp
         -e<=num>        edition number for output
         -u<name>        undefine for cpp
@@ -17,6 +21,3 @@
         -x              use math-trap-lib
         -v<=dir>        search-dir for cpp
         -m<=n>          additional memory for stack in output module
-Syntax: compiler [<path>]
-Function: a menue driven compiler shell
-Options: none

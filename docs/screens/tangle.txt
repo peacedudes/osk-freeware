@@ -1,6 +1,5 @@
-/dd/CMDS/TEXCMDS/tangle
+tangle
 Usage: tangle webfile[.web] [changefile[.ch]].
-<pl /dd/SYS/TEX/FONTS/TFM/cmr10.tfm | /dd/CMDS/head -n 14
 (FAMILY CMR)
 (FACE O 352)
 (CODINGSCHEME TEX TEXT)

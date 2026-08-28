@@ -1,4 +1,4 @@
-/dd/CMDS/bigsetter
+bigsetter
 
 
 Test fuer BigSet mit 36 Elementen

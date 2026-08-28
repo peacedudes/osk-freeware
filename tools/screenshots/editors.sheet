@@ -4,16 +4,16 @@ shot    elvrec
 for     elvrec elvprsv vi.elvis input.elvis
 cap     elvis's crash-recovery pair: elvprsv preserves a session, elvrec
 cap     brings it back.  With nothing preserved they say so.
-run     /dd/CMDS/elvrec
+run     elvrec
 wait    8
-run     /dd/CMDS/REBUILT/vi.elvis -?
+run     vi.elvis -?
 wait    8
 
 shot    emacs
 for     emacs emacs.mm1 umacs
 cap     MicroEmacs 4.00 editing a file from the disk, with its own mode
 cap     line at the foot.
-run     /dd/CMDS/emacs /dd/SYS/motd
+run     emacs /dd/SYS/motd
 wait    10
 quit    \030\003
 
@@ -21,7 +21,7 @@ shot    hexedit
 for     hexed
 cap     A hex editor opened on an OS-9 module: the $4AFC sync bytes are the
 cap     first two bytes of every module on this disk.
-run     /dd/CMDS/hexed /dd/CMDS/today
+run     hexed /dd/CMDS/today
 wait    6
 quit    q
 
@@ -29,18 +29,18 @@ shot    pbyte
 for     pbyte chbase
 cap     pbyte patches bytes in a file at a hex offset, and chbase changes a
 cap     module's base -- the two smallest binary editors here.
-run     /dd/CMDS/pbyte
+run     pbyte
 wait    8
-run     /dd/CMDS/chbase
+run     chbase
 wait    8
 
 shot    sed
 for     sed sed_1.06 psc
 cap     sed doing what a stream editor does, twice over, on the disk's own
 cap     documentation.
-run     /dd/CMDS/head -n 8 /dd/SYS/holidays > /dd/tmp/hol.txt
+run     head -n 8 /dd/SYS/holidays > /dd/tmp/hol.txt
 wait    6
-run     /dd/CMDS/sed "s/Day/DAY/g" /dd/tmp/hol.txt
+run     sed "s/Day/DAY/g" /dd/tmp/hol.txt
 wait    8
 
 
@@ -49,6 +49,6 @@ for     vi view
 cap     The EFFO vi -- its source in SRC/effo_vi is the Berkeley ex source
 cap     -- opened on a file from the disk, with the tildes down the left
 cap     that every vi user knows.
-run     /dd/CMDS/vi /dd/DOC/README-CIO
+run     vi /dd/DOC/README-CIO
 wait    12
 quit    \033:q!\r

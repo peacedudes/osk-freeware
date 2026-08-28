@@ -1,4 +1,4 @@
-/dd/CMDS/rtf
+rtf
  command must be: RTF pathname [options..]
-command: for file{,file} [-rtfopt{,rtfopt}]
+syntax error near `for'
 command: lnk file{,file} [-l68opts]

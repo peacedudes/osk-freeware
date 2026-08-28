@@ -1,11 +1,11 @@
 Popen error 216
-Syntax:    /dd/CMDS/setime2 [<opt>] [<yyy mm dd hh mm ss [am/pm]>] [<opt>]
+Syntax:    setime2 [<opt>] [<yyy mm dd hh mm ss [am/pm]>] [<opt>]
 Function:  set system date and time
 Options:
        -?    help message
        -d    don't display time
        -s    setime for battery backed-up clocks
 Note: 'YYY' is number of years after 1900
-Syntax:    /dd/CMDS/setyear <YYYY>
+Syntax:    setyear <YYYY>
 Function:  set system date to year YYYY
            (YYYY must be 1970 to 2050)

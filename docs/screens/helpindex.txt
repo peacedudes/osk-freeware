@@ -1,5 +1,5 @@
-/dd/CMDS/helpindex -?
-Syntax:   /dd/CMDS/helpindex [<opts>] {<help file>} [<opts>]
+helpindex -?
+Syntax:   helpindex [<opts>] {<help file>} [<opts>]
 Function: Creates index file for specified help files
           Without the -a option, only files with names ending
           in ".hlp" and ".hlib" will be processed. The index

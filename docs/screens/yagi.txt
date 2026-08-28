@@ -1,4 +1,4 @@
--> let r0c0 = cho S9READYclear/dd/CMDS/version /dd/CMDS/today/dd/CMDS/mexist ba
-Unintelligible word: let r0c0 = cho<= S9READYclear/dd/CMDS/version /dd/CMDS/tod5
+-> let r0c0 = cho S9READYclearversion /dd/CMDS/todaymexist bashecho S9READYclea
+Unintelligible word: let r0c0 = cho<= S9READYclearversion /dd/CMDS/todaymexist 5
 
               <

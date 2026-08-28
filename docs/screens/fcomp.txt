@@ -1,2 +1,10 @@
-/dd/CMDS/fcomp /dd/tmp/h1 /dd/tmp/h2
-fcomp: can't allocate line strings buffer for "/dd/tmp/h2"
+fcomp /dd/tmp/h1 /dd/tmp/h2
+
+Changed lines 3-5:
+ 1/1            New Year's Day
+ 2/14 Valentine's Day
+ 3/17 St. Patrick's Day
+To:
+ 1/1            New Year's DAY
+ 2/14 Valentine's DAY
+ 3/17 St. Patrick's DAY

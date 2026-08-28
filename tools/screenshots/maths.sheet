@@ -3,13 +3,13 @@
 shot    hc
 cap     hc, the hex calculator -- and it answers with its usage line to
 cap     everything tried here, including the form that usage line names.
-run     echo 1f * 3 + 7 | /dd/CMDS/hc
+run     echo 1f * 3 + 7 | hc
 wait    4
 
 shot    loan
 cap     The amortisation calculator: principal, rate and term in, the
 cap     monthly payment and the schedule out.
-run     /dd/CMDS/loan
+run     loan
 wait    2
 send    100000\r
 wait    1
@@ -23,7 +23,7 @@ cap     GNU Oleo 1.6 does not run: an illegal instruction at 000465d2 and
 cap     the process is aborted before it draws a cell.  The three lines
 cap     below it are the keystrokes meant for the spreadsheet, landing in
 cap     the shell instead.  `sc' is the spreadsheet that works.
-run     /dd/CMDS/oleo
+run     oleo
 wait    4
 send    12\r
 wait    1
@@ -36,16 +36,16 @@ quit    \030\003
 shot    rechne
 cap     rechne, a German command-line calculator.  It answers in decimal,
 cap     hex and binary at once.
-run     /dd/CMDS/rechne 4095 x 16
+run     rechne 4095 x 16
 wait    2
-run     /dd/CMDS/rechne -b 12345
+run     rechne -b 12345
 wait    3
 
 shot    rpn
 cap     An RPN calculator, and the screen shows it going wrong: 12 and 34
 cap     push correctly, and then `+' PUSHES A ZERO instead of replacing
 cap     them with 46.  The stack grows where it should shrink.
-run     /dd/CMDS/rpn
+run     rpn
 wait    2
 send    12\r
 wait    1
@@ -64,5 +64,5 @@ for     gcl scqref
 cap     gcl, a general calculation utility, and scqref -- the quick
 cap     reference card for `sc', which is a document rather than a
 cap     program and prints itself.
-run     /dd/CMDS/scqref | /dd/CMDS/head -n 16
+run     scqref | head -n 16
 wait    12

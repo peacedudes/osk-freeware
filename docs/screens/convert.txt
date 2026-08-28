@@ -1,4 +1,4 @@
-/dd/CMDS/GAMES/advcom
+advcom
 ADVCOM v1.2 - Copyright (c) 1986, by David Betz
 usage: advcom <file> [ <ofile> ]
 WORLD. Amiga C  Version 1.02 Copyright 1987 J.D. McDonald  GOOD LUCK!

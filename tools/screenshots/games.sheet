@@ -5,7 +5,7 @@ shot    advint
 cap     ADVSYS, David Betz's adventure system, playing the sample world
 cap     that ships with it in GAMES/ADVSYS.  It wants the file named
 cap     WITHOUT its .adi extension -- with it, `can't open data file'.
-run     /dd/CMDS/GAMES/advint /dd/GAMES/ADVSYS/objects
+run     advint /dd/GAMES/ADVSYS/objects
 wait    8
 send    look\r
 wait    6
@@ -13,7 +13,7 @@ wait    6
 shot    backgammon
 cap     Backgammon against the computer: the board drawn in characters and
 cap     the dice rolled for you.
-run     /dd/CMDS/GAMES/backgammon
+run     backgammon
 wait    4
 send    N\r
 wait    4
@@ -24,20 +24,20 @@ shot    bincheckr
 cap     bincheckr reads GNU Chess's opening book -- and reports booksize 0
 cap     for a book of 145 KB, then aborts.  DOC/STATUS credited it as
 cap     working given a file; this is what it actually does.
-run     /dd/CMDS/GAMES/bincheckr /dd/GAMES/gnuchess.book
+run     bincheckr /dd/GAMES/gnuchess.book
 wait    8
 kill
 
 shot    blackjak
 cap     Las Vegas blackjack, SNOBOL4, with a hand dealt.
-run     /dd/CMDS/GAMES/blackjak
+run     blackjak
 wait    4
 send    no\r
 wait    6
 
 shot    checkgame
 cap     game replays a saved chess game move by move.
-run     /dd/CMDS/GAMES/checkgame /dd/GAMES/gnuchess.book 1 3
+run     checkgame /dd/GAMES/gnuchess.book 1 3
 wait    8
 
 shot    convert
@@ -45,14 +45,14 @@ for     convert vtxtcn mkindex advcom
 cap     The data builders: `convert' and `vtxtcn' make WORLD's tables, and
 cap     advcom compiles an ADVSYS world.  They write files and print
 cap     little, which is why the sweep could never credit them.
-run     /dd/CMDS/GAMES/advcom
+run     advcom
 wait    8
-run     /dd/CMDS/GAMES/convert
+run     convert
 wait    8
 
 shot    fuddle
 cap     fuddle, a chess variant, one move in.
-run     /dd/CMDS/GAMES/fuddle
+run     fuddle
 wait    6
 send    y\r
 wait    6
@@ -62,7 +62,7 @@ wait    10
 shot    gnuchess
 cap     GNU Chess 4.0 in its plain build, thinking about a move: depth,
 cap     score, nodes and the line it is considering.
-run     /dd/CMDS/GAMES/gnuchess
+run     gnuchess
 wait    6
 send    e2e4\r
 wait    12
@@ -71,14 +71,14 @@ shot    gnuchess-builds
 for     gnuchessn gnuchessr infocom.tcap
 cap     Two more GNU Chess builds -- ncurses and raw -- kept because they
 cap     do not behave the same on every terminal.
-run     /dd/CMDS/gnuchessr
+run     gnuchessr
 wait    8
 send    e2e4\r
 wait    10
 
 shot    gnuchessc
 cap     GNU Chess 4.0 with the curses display, after 1. e4.
-run     /dd/CMDS/GAMES/gnuchessc
+run     gnuchessc
 wait    6
 send    e2e4\r
 wait    10
@@ -86,23 +86,26 @@ wait    10
 shot    hotel
 cap     hotel, a two-player board game played by coordinates -- the board
 cap     as it stands at the start.
-run     /dd/CMDS/GAMES/hotel
+run     hotel
 wait    4
 send    N\r
 wait    4
 
 shot    infocom
-cap     The Infocom Z-machine interpreter running a real story file --
-cap     GAMES/INFORM/dejavu.z3, compiled with Inform and shipped here.
-run     /dd/CMDS/infocom /dd/GAMES/INFORM/dejavu.z3
+cap     The Infocom Z-machine interpreter playing a real story file --
+cap     GAMES/INFORM/dejavu.z3, compiled with Inform and shipped here.  It
+cap     opens with a screenful of brackets, which is its status line meeting
+cap     a terminal it cannot address; the prose underneath is the game.
+run     infocom /dd/GAMES/INFORM/dejavu.z3
 wait    8
+send    \r
+wait    4
 send    look\r
-wait    5
-
-shot    maze
-cap     maze generates a maze and draws it.
-run     /dd/CMDS/GAMES/maze
-wait    8
+wait    6
+send    \r
+wait    4
+send    inventory\r
+wait    6
 
 shot    mkdict
 for     mkdict mkindex
@@ -110,30 +113,25 @@ cap     mkdict and mkindex build Boggle's dictionary and its index.  The
 cap     built dictionary is already in GAMES/BOG -- 80 KB of it -- so here
 cap     they are reading the word list and writing it again, and `wc' shows
 cap     what came out.
-run     /dd/CMDS/head -n 400 /dd/GAMES/BOG/dict > /dd/tmp/words
+run     head -n 400 /dd/GAMES/BOG/dict > /dd/tmp/words
 wait    8
-run     /dd/CMDS/GAMES/mkdict < /dd/tmp/words > /dd/tmp/newdict
+run     mkdict < /dd/tmp/words > /dd/tmp/newdict
 wait    10
-run     /dd/CMDS/wc /dd/tmp/words /dd/tmp/newdict
+run     wc /dd/tmp/words /dd/tmp/newdict
 wait    8
 
 shot    nchess
 cap     GNU Chess 4.0 with its plain display -- the board as characters,
 cap     which is how it was played over a serial line.
-run     /dd/CMDS/GAMES/nchess
+run     nchess
 wait    6
 send    e2e4\r
 wait    8
 
-shot    pacman
-cap     Pac-Man.
-run     /dd/CMDS/GAMES/pacman
-wait    6
-
 shot    poker
 cap     Cold-hand poker dealing a hand.  It wants the word `no', not `N',
 cap     and says so in its own voice.
-run     /dd/CMDS/GAMES/poker
+run     poker
 wait    4
 send    no\r
 wait    6
@@ -141,26 +139,26 @@ wait    6
 shot    postprint
 cap     postprint writes a chess position as PostScript for printing.  It
 cap     gets one line out -- the page setup -- and stops there.
-run     /dd/CMDS/GAMES/postprint | /dd/CMDS/head -n 20
+run     postprint | head -n 20
 wait    8
 
 shot    queens
 cap     The N-queens problem, solved and drawn -- an IOCCC entry that reads
 cap     the board size on standard input.  Six here, and it prints every
 cap     solution it finds.
-run     echo 6 | /dd/CMDS/queens | /dd/CMDS/head -n 21
+run     echo 6 | queens | head -n 21
 wait    8
 
 shot    stone
 cap     The stones game -- take stones from the pile, do not take the last.
-run     /dd/CMDS/GAMES/stone
+run     stone
 wait    4
 send    no\r
 wait    5
 
 shot    tttt
 cap     Tic-tac-toe on a four-by-four board, mid-game.
-run     /dd/CMDS/tttt
+run     tttt
 wait    4
 send    b1\r
 wait    3

@@ -1,7 +1,5 @@
  - - - - - - - -
- - - - - - - - -
- - - - - - - - -
- - - - - - - - -
+        ... the same line 4 times over
  p p p p p p p p
  r n b q k b n r
 
@@ -15,8 +13,8 @@ Move# 1    Target= 1    Clock: 0
  4&    -10    0    1739    g8f6  b1c3  b8c6  d2d4
  4.    -10    0    3407    g8f6  b1c3  b8c6  d2d4
  5&    -19    1    8175    g8f6  e4e5  f6e4  d2d3  e4c5
- 5.    -19    2   12902    g8f6  e4e5  f6e4  d2d3  e4c5
-Nodes= 12902  Eval= 4408  Hash= 0  Rate= 6451  CPU= 0:2.0
+ 5.    -19    2   14956    g8f6  e4e5  f6e4  d2d3  e4c5
+Nodes= 14956  Eval= 4861  Hash= 0  Rate= 7478  CPU= 0:2.0
 
 My move is: g8f6
 

@@ -1,12 +1,12 @@
-/dd/CMDS/grep -n "chess" /dd/DOC/INDEX | /dd/CMDS/head -n 10
-475:  getenv          getsys          ggrep           gnuchess
-476:  gnuchessn       gnuchessr       gnuplot         gothic
-652:from.  Its sibling ularn is complete and also runs.  gnuchessc and
-792: *gnuchess       GNU Chess
-793: *gnuchessn      GNU Chess (ncurses)
-794: *gnuchessr      GNU Chess (raw)
-1074:  checkgame      replay a saved chess game -- prints two lines of PostScrit
-1076:  chess          chess - 68k port (three engine versions built)
-1082:  fuddle         chess - fuddle variant
-1083:  game           replay a saved chess game -- prints two lines of PostScrit
-1706
+grep -n "chess" /dd/DOC/INDEX | head -n 10
+487:  getenv          getsys          ggrep           gnuchess
+488:  gnuchessn       gnuchessr       gnuplot         gothic
+664:from.  Its sibling ularn is complete and also runs.  gnuchessc and
+812: *gnuchess       GNU Chess
+813: *gnuchessn      GNU Chess (ncurses)
+814: *gnuchessr      GNU Chess (raw)
+1129:  checkgame      replay a saved chess game -- prints two lines of PostScrit
+1131:  chess          chess - 68k port (three engine versions built)
+1137:  fuddle         chess - fuddle variant
+1138:  game           replay a saved chess game -- prints two lines of PostScrit
+1763

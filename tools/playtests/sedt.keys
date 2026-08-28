@@ -1,0 +1,15 @@
+name    sedt
+prog    /dd/CMDS/e /dd/SYS/motd
+# SEDT, the VMS-style screen editor, under its `e' name.  It does not answer
+# Ctrl-E, so a play-test of it must leave the way SEDT expects: Ctrl-Z then Q.
+rate    0.5
+wait    8
+snap    opened
+keys    jj
+wait    2
+key     \032
+wait    2
+keys    Q
+key     \r
+wait    3
+absent  Can't install trap handler

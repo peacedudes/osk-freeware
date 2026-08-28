@@ -9,4 +9,4 @@ echo "%%" > /dd/tmp/l.l
 
 #include <stdio.h>
 
-/dd/CMDS/head: lex.yy.c
+head: lex.yy.c

@@ -1,1 +1,1 @@
-<dd/CMDS/uniq -c | /dd/CMDS/sort -nr | /dd/CMDS/head -n 12
+<$1,1,1)}" /dd/DOC/INDEX | sort | uniq -c | sort -nr | head -n 12

@@ -3,5 +3,5 @@
 shot    suicide-variants
 for     suicide1 suicide2
 cap     Two variants of the rooftop animation, caught mid-fall.
-run     /dd/CMDS/GAMES/suicide1
+run     suicide1
 wait    12

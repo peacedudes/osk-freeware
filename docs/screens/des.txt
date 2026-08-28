@@ -1,4 +1,4 @@
-/dd/CMDS/chksum /dd/SYS/motd
+chksum /dd/SYS/motd
 4b68af85
 Type password for /dd/tmp/d.txt: freeware
 Verify password for /dd/tmp/d.txt:

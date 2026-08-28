@@ -1,5 +1,5 @@
-/dd/CMDS/head -n 400 /dd/GAMES/BOG/dict > /dd/tmp/words
-/dd/CMDS/head: /dd/GAMES/BOG/dict
+head -n 400 /dd/GAMES/BOG/dict > /dd/tmp/words
+head: /dd/GAMES/BOG/dict
 # # Exception: pid=3 vector=$02 err=#000:102 ... process will be killed (x to c)
       4    274  80520 /dd/tmp/words
      21    102    924 /dd/tmp/newdict

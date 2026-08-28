@@ -1,2 +1,2 @@
-/dd/CMDS/bison -v /dd/tmp/g.y
-/dd/CMDS/bison: /dd/tmp/g.y, Errornumber 216
+bison -v /dd/tmp/g.y
+bison: /dd/tmp/g.y, Errornumber 216

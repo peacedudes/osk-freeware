@@ -1,11 +1,18 @@
-name    VI
-prog    /dd/CMDS/VI /dd/DOC/README-CIO
-# Editor: open a file, look at it, leave without saving.
-allow   trap handler
-allow   Can't open
-rate    0.6
-wait    5
+name    vi
+prog    /dd/CMDS/vi /dd/DOC/README-CIO
+# THE REAL vi/ex -- its source in SRC/effo_vi is the Berkeley ex source.
+# Opened on a file, moved through, and left with :q! so nothing is written.
+rate    0.5
+wait    8
 snap    opened
+keys    jjjj
 wait    2
-key     \003
-wait    2
+keys    G
+wait    3
+snap    bottom
+key     \033
+keys    :q!
+key     \r
+wait    3
+expect  README-CIO
+absent  Can't install trap handler

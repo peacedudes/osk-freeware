@@ -4,6 +4,8 @@ This is TeX, C Version 3.14
 LaTeX Version 2.09 <7 Dec 1989>
 (/DD/SYS/TEX/INPUTS/article.sty
 Document Style `article' <16 Mar 88>.
-(/DD/SYS/TEX/INPUTS/art10.sty)) (small.aux) [1] (small.aux) )
+(/DD/SYS/TEX/INPUTS/art10.sty))
+No file small.aux.
+[1] (small.aux) )
 Output written on small.dvi (1 page, 1704 bytes).
 Transcript written on small.log.

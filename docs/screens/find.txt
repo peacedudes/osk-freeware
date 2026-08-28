@@ -1,1 +1,0 @@
-/dd/CMDS/find /dd/SYS -name "cal*" -print

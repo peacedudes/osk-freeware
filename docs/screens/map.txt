@@ -1,12 +1,12 @@
-/dd/CMDS/map -e /dd/DOC/INDEX
-                Blockmap of /dd/DOC/INDEX 21:28:48
+map -e /dd/DOC/INDEX
+                Blockmap of /dd/DOC/INDEX 04:52:25
 Owner:   0.0
 Attr:  ---wr-wr
 Time last modified:  126/08/03 1900
-Date created:        126/08/27
+Date created:        126/08/28
 Links: 1
-Size:  00016B5E
+Size:  00017B4F
 
 Segment List:
   Sector  Blocks
-0315D1    016F
+031659    017F

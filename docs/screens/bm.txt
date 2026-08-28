@@ -1,4 +1,4 @@
-/dd/CMDS/bm cribbage /dd/DOC/INDEX
+bm cribbage /dd/DOC/INDEX
   cp              cpu             cribbage        crypto
 their own (hack wants /h0/games/hack/playground, cribbage wants
   crib           cribbage.  Needs TERM set, so run it from a login session --

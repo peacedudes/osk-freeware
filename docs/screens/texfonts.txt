@@ -1,3 +1,3 @@
 tftopl /dd/SYS/TEX/FONTS/TFM/cmr10.tfm > /dd/tmp/cmr10.pl
 -rw-rw-rw-   1 0        0            1296 Aug  3 19:00 /dd/SYS/TEX/FONTS/TFM/cmm
--rw-------   1 0        0            1296 Aug 27 22:37 /dd/tmp/cmr10.tfm
+-rw-------   1 0        0            1296 Aug 28 05:01 /dd/tmp/cmr10.tfm

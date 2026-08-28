@@ -1,4 +1,4 @@
-/dd/CMDS/undel
+undel
 
 U N D E L E T E    V1.1   by  Stephan Enzler
 --------------------------------------------

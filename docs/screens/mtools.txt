@@ -1,4 +1,4 @@
-/dd/CMDS/mtools
+mtools
 Supported commands:
 mattrib, mbadblocks, mcd, mcopy, mdel, mdeltree, mdir, mformat
 minfo, mlabel, mmd, mrd, mread, mmove, mren, mtoolstest

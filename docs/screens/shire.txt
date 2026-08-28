@@ -1,22 +1,22 @@
-/dd/CMDS/shire | /dd/CMDS/head -n 21
+shire | head -n 21
                                                                   Snow
 Year   1    Weather        Sky   Temperature    Precip      Wind  Depth  Notes
 Afteryule
-   1          Clear      Clear  Chilly ( 30)      None      Calm  13.3"
-   2          Clear      Clear    Cold ( 20)      None      Calm  13.3"
-   3          Clear      Clear    Cold ( 15)      None     Light  13.3"
-   4          Clear      Clear    Cold ( 15)      None      Calm  13.3"
-   5          Clear      Clear    Cold ( 20)      None      Calm  13.3"
-   6          Clear      Clear    Cold ( 20)      None      Calm  13.3"
-   7          Clear      Clear    Cold ( 20)      None     Light  13.3"
-   8          Clear      Clear    Cold ( 20)      None      Calm  13.3"
-   9          Clear      Clear    Cold ( 20)      None      Calm  13.3"
-  10          Clear      Clear  Chilly ( 30)      None      Calm  13.3"
-  11          Clear      Clear    Cold ( 20)      None      Calm  13.3"
-  12          Clear      Clear    Cold ( 20)      None      Calm  13.3"
-  13          Clear      Clear    Cold ( 10)      None      Calm  13.3"
-  14          Clear      Clear  Chilly ( 35)      None      Calm  12.3"
-  15          Clear      Clear    Cold ( 20)      None      Calm  12.3"
-  16          Clear      Clear    Cold ( 20)      None      Calm  12.3"
-  17          Clear      Clear    Cold ( 20)      None     Light  12.3"
-  18          Clear      Clear    Cold ( 20)      None      Calm  12.3"
+   1  Precipitation  Light Fog    Cold ( 15)    Shower  Blustery  19.3"  Snow -,
+   2  Precipitation     Cloudy    Cold ( 20)    Steady      Calm  26.3"  Snow -,
+   3  Precipitation       Mist    Cold ( 20)    Steady     Light  37.3"  Snow -,
+   4  Precipitation  Light Fog    Cold ( 20)  Sprinkle      Calm  37.4"  Snow -,
+   5          Clear      Clear    Cold ( 20)      None      Calm  37.4"
+   6  Precipitation       Mist    Cold ( 15)    Shower     Brisk  37.4"  Snow -,
+   7  Precipitation       Mist    Cold ( 20)     Heavy  Blustery  49.4"  Blizza,
+   8  Precipitation       Mist    Cold ( 20)    Steady  Blustery  79.4"  Blizza,
+   9  Precipitation       Mist    Cold ( 20)    Steady      Calm  83.4"  Snow -,
+  10  Precipitation     Cloudy    Cold ( 20)    Steady      Calm  89.4"  Snow -,
+  11  Precipitation     Cloudy    Cold ( 20)    Steady     Brisk  97.4"  Snow -,
+  12          Clear      Clear    Cold ( 10)      None      Calm  97.4"
+  13          Clear      Clear  Chilly ( 35)      None      Calm  96.4"
+  14          Clear      Clear    Cold ( 20)      None      Calm  96.4"
+  15  Precipitation       Mist    Cold ( 20)  Sprinkle  Blustery  96.5"  Snow -,
+  16          Clear      Clear  Chilly ( 30)      None      Calm  96.5"
+  17          Clear      Clear    Cold ( 20)      None      Calm  96.5"
+  18  Precipitation       Mist    Cold ( 15)     Heavy  Blustery 114.5"  Blizza,

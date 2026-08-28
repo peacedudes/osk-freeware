@@ -1,0 +1,4 @@
+whoami
+su
+su
+USER is tester, and the terminal is:

@@ -1,22 +1,7 @@
-File "/dd/tmp/raw.out" exists, overwrite (y/n) ?
-File "/dd/tmp/raw.out" exists, overwrite (y/n) ?
-File "/dd/tmp/raw.out" exists, overwrite (y/n) ?
-File "/dd/tmp/raw.out" exists, overwrite (y/n) ?
-File "/dd/tmp/raw.out" exists, overwrite (y/n) ?
-File "/dd/tmp/raw.out" exists, overwrite (y/n) ?
-File "/dd/tmp/raw.out" exists, overwrite (y/n) ?
-File "/dd/tmp/raw.out" exists, overwrite (y/n) ?
-File "/dd/tmp/raw.out" exists, overwrite (y/n) ?
-File "/dd/tmp/raw.out" exists, overwrite (y/n) ?
-File "/dd/tmp/raw.out" exists, overwrite (y/n) ?
-File "/dd/tmp/raw.out" exists, overwrite (y/n) ?
-File "/dd/tmp/raw.out" exists, overwrite (y/n) ?
-File "/dd/tmp/raw.out" exists, overwrite (y/n) ?
-File "/dd/tmp/raw.out" exists, overwrite (y/n) ?
-File "/dd/tmp/raw.out" exists, overwrite (y/n) ?
-File "/dd/tmp/raw.out" exists, overwrite (y/n) ?
-File "/dd/tmp/raw.out" exists, overwrite (y/n) ?
-File "/dd/tmp/raw.out" exists, overwrite (y/n) ?
-File "/dd/tmp/raw.out" exists, overwrite (y/n) ?
-File "/dd/tmp/raw.out" exists, overwrite (y/n) ?
+msdel a:RAW.TXT
+msdel: File "a:RAW.TXT" not found
 Copying RAW.TXT
+4b68af85
+4b68af85
+========
+9d870070

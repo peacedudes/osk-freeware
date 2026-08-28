@@ -1,4 +1,4 @@
-/dd/CMDS/disktest -?
+disktest -?
 Syntax   : disktest [<opt>]
 Function : measure diskperformance
 Options  : -?  show this text

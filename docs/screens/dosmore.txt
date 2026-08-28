@@ -1,4 +1,4 @@
-/dd/CMDS/msinfo a: | /dd/CMDS/head -n 12
+msinfo a: | head -n 12
 device information:
 ===================
 sectors per track: 18

@@ -1,23 +1,7 @@
-No more memory !!!
-No more memory !!!
-No more memory !!!
-No more memory !!!
-No more memory !!!
-No more memory !!!
-No more memory !!!
-No more memory !!!
-No more memory !!!
-No more memory !!!
-No more memory !!!
-No more memory !!!
-No more memory !!!
-No more memory !!!
-No more memory !!!
-No more memory !!!
-No more memory !!!
-No more memory !!!
-No more memory !!!
-No more memory !!!
-No more memory !!!
-No more memory !!!
-No more memory !!!
+cp /dd/GAMES/FORTUNE/fortunes.dat /dd/tmp/f.dat
+"/dd/tmp/f.dat" converted to "/dd/tmp/f.dat.dat"
+There was 1 string
+Longest string: 117454 bytes
+Shortest string: 32767 bytes
+-rw-rw-rw-   1 0        0          192811 Aug  3 19:00 /dd/tmp/f.dat
+-rw-------   1 0        0          117487 Aug 28 04:56 /dd/tmp/f.dat.dat

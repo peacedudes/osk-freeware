@@ -1,4 +1,4 @@
-/dd/CMDS/perr 1 2 3 4 5
+perr 1 2 3 4 5
 Error #000:001 (S_Wake) wake
 Error #000:002 (S_Abort) User abort (Cmd-'.')
 Error #000:003 (S_Intrpt) User interrupt

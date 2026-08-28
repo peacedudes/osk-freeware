@@ -1,5 +1,5 @@
-/dd/CMDS/head -n 24 /dd/DOC/README-KEEP | /dd/CMDS/GAMES/tformat
-/dd/CMDS/head: /dd/DOC/README-KEEP
+head -n 24 /dd/DOC/README-KEEP | tformat
+head: /dd/DOC/README-KEEP
 README-KEEP      --      taking      things      off      this       collection
 ================================================
     keep <name>...      the program, and whatever it needs     keep -n <name>..

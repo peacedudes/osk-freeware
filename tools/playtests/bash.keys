@@ -1,0 +1,18 @@
+name    bash
+prog    /dd/CMDS/bash
+# The shell this disk hands you, driven as a person drives it.  bash's own
+# `pwd' HANGS it -- SYS/login replaces cd and pwd with functions that track
+# the path as a string -- so this types the things that work.
+rate    0.4
+wait    6
+keys    echo $BASH_VERSION
+key     \r
+wait    3
+keys    echo $((6*7))
+key     \r
+wait    3
+snap    ran
+keys    exit
+key     \r
+wait    3
+expect  42

@@ -1,4 +1,4 @@
-/dd/CMDS/ctags /dd/SRC/keep/keep.c
+ctags /dd/SRC/keep/keep.c
 Mkeep   /dd/SRC/keep/keep.c     /^main(argc, argv)$/
 copy_file       /dd/SRC/keep/keep.c     /^static int copy_file(from, to, execut/
 crc_of  /dd/SRC/keep/keep.c     /^static unsigned long crc_of(path, sizep)$/
@@ -11,4 +11,4 @@ keep_one        /dd/SRC/keep/keep.c     /^static void keep_one(prog)$/
 keep_source     /dd/SRC/keep/keep.c     /^static void keep_source(prog)$/
 kept_list       /dd/SRC/keep/keep.c     /^static void kept_list()$/
 makepath        /dd/SRC/keep/keep.c     /^static void makepath(path)$/
-/dd/CMDS/head: tags
+head: tags

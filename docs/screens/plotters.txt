@@ -1,4 +1,4 @@
-pbmtoplot /dd/tmp/base.pbm | /dd/CMDS/wc
+pbmtoplot /dd/tmp/base.pbm | wc
      36     85   2889
 USHORT /dd/tmp/base[] = {
   48

@@ -1,5 +1,5 @@
-/dd/CMDS/ADL/adlcomp
-Usage: /dd/CMDS/ADL/adlcomp Infile (with any of the following)
+adlcomp
+Usage: adlcomp Infile (with any of the following)
         -o Outfile              File for output
         -i Dir                  Directory for INCLUDEs
         -t Dir                  Directory for temp files

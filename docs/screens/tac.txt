@@ -1,5 +1,5 @@
-/dd/CMDS/head -n 8 /dd/SYS/holidays | /dd/CMDS/tac
-/dd/CMDS/head: /dd/SYS/holidays
+head -n 8 /dd/SYS/holidays | tac
+head: /dd/SYS/holidays
 *easter-46 Ash Wednesday
 *easter-7 Palm Sunday
 easter Easter Sunday

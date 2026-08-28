@@ -18,5 +18,5 @@
      -T          use tabs in output
      -w          totally ignore spaces
   Adapted to OS-9/68k by Stephan Paschedag
-/dd/CMDS/REBUILT/gtar: unrecognized option `--'
-/dd/CMDS/REBUILT/gtar: Unknown option.  Use '/dd/CMDS/REBUILT/gtar +help' for a.
+gtar: unrecognized option `--'
+gtar: Unknown option.  Use 'gtar +help' for a complete list of options.

@@ -1,4 +1,4 @@
-/dd/CMDS/cal -m=12 -y=2026 -h
+cal -m=12 -y=2026 -h
 December        2026
  S  M  T  W  T  F  S
 --------------------

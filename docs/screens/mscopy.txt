@@ -1,11 +1,10 @@
-/dd/CMDS/msdel a:MOTD.TXT
+msdel a:MOTD.TXT
 msdel: File "a:MOTD.TXT" not found
  Volume in drive A is OS9FREEWARE
  Volume Serial Number is 35D7-0A00
  Directory for A:/
 
-RAW      TXT        40 08-27-2026  10:44p
-HOLIDAYS TXT       717 08-27-2026  10:41p
-MOTD     TXT        40 08-27-2026  10:48p
-        3 file(s)               797 bytes
-                          1 455 616 bytes free
+readme   txt       139 08-02-2026   2:22a readme.txt
+MOTD     TXT        40 08-28-2026   4:59a
+        2 file(s)               179 bytes
+                          1 456 640 bytes free

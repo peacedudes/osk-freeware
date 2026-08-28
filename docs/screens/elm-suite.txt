@@ -1,4 +1,4 @@
-/dd/CMDS/ELM/newalias
+newalias
 Updating your personal alias file...
 Couldn't open /dd/.ELM/aliases.text for input!
 Usage: printmail [-p] [-r filename] <message list>

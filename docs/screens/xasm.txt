@@ -1,4 +1,4 @@
-/dd/CMDS/as0
-Usage: /dd/CMDS/as0 [files]
-Usage: /dd/CMDS/as11 [files]
-Usage: /dd/CMDS/as5 [files]
+as0
+Usage: as0 [files]
+Usage: as11 [files]
+Usage: as5 [files]

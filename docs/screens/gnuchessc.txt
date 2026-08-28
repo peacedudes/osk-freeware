@@ -1,5 +1,5 @@
-/dd/CMDS/GAMES/gnuchessc
+gnuchessc
 Chess
 e2e4
-1. ... e2e41. ... c7c6
-My move is: c7c6
+1. ... e2e41. ... c7c5
+My move is: c7c5

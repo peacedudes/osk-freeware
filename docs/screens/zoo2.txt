@@ -1,3 +1,3 @@
-/dd/CMDS/REBUILT/zoo_2.1 a /dd/tmp/z2.zoo /dd/SYS/motd
+zoo_2.1 a /dd/tmp/z2.zoo /dd/SYS/motd
 Zoo:  /dd/SYS/motd --  ( 0%) added
 Usage:  booz {lxt} archive[.zoo] [ file ... ]

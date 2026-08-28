@@ -1,4 +1,4 @@
-/dd/CMDS/UUCP/uuname
+uuname
 pirsqrd
 phoenix
 seabass

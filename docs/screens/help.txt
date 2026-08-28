@@ -1,15 +1,22 @@
-/dd/CMDS/help
-
-Advanced HELP system for OS-9 68k, (c) 1989 by Lukas Zeller
-
- - Type "help" at the topic prompt to get information about help itself
- - Type "?" at any prompt to get a list of available topics
-
-
-Additional information available about :
-
- bm             dinfo          effo           help           indent
- kermit         modules        move           rendsk         sed
- space          tar
-
-Topic ?
+ case WORD in [PATTERN [| PATTERN]. cd [dir]
+ command [-p] [command [arg ...]]   continue [n]
+ declare [-[frxi]] name[=value] ... dirs [-l]
+ echo [-neE] [arg ...]              enable [-n] [name ...]
+ eval [arg ...]                     exec [ [-] file [redirection ...]]
+ fc [-e ename] [-nlr] [first] [last for NAME [in WORDS ... ;] do COMMA
+ function NAME { COMMANDS ; } or NA getopts optstring name [arg]
+ hash [-r] [name ...]               help [pattern ...]
+ history [n] [ [-awrn] [filename]]  if COMMANDS; then COMMANDS; [else
+ kill [-s sigspec | -sigspec] [pid] let arg [arg ...]
+ local name[=value] ...             logout
+ popd [+n | -n]                     pushd [dir | +n | -n]
+ pwd                                read [-r] [name ...]
+ readonly [-p] [-f] [name ...]      return [n]
+ set [-abefhknotuvxldH] [arg ...]   shift [n]
+ source filename                    test [expr]
+ times                              trap [arg] [signal_spec]
+ type [-all] [-type | -path] [name  typeset [-[frxi]] name[=value] ...
+ ulimit [-SHacdmstfpn [limit]]      umask [-S] [mode]
+ unalias [-a] [name ...]            unset [-f] [-v] [name ...]
+ until COMMANDS; do COMMANDS; done  wait [n]
+ while COMMANDS; do COMMANDS; done  { COMMANDS }

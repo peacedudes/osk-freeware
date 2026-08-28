@@ -1,4 +1,4 @@
-Fatal Error: Could not open key definition file, errno=216: Session abortedf=0
+ File: /dd/SRC/keep/about.c                      insert ; Line=1       ; Buf=0
 L       T       T       T       T       T       T       T       T       T      R
 
 
@@ -21,4 +21,4 @@ L       T       T       T       T       T       T       T       T       T      R
  * documented it (DOC/<name>/). All of that is here, on the disk, in plain
  * text -- and to use it you had to know those five places existed and go and
 
-Abort on this SEVERE ERROR ? <Y/N>:
+Sedt (Screen EDiTor) Version  2.6 12.09.87 (small) for VT100 under OS9

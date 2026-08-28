@@ -1,3 +1,3 @@
-/dd/CMDS/DHRY/dhry | /dd/CMDS/tail -n 6
+dhry | tail -n 6
 (03) unknown option -n
 (03) unknown option -n

@@ -82,7 +82,8 @@ LOGIN = ("export TERM=vt100",
          "export PATH=/dd/CMDS:/dd/CMDS/GAMES:/dd/CMDS/NETPBM:/dd/CMDS/UUCP",
          "export PATH=$PATH:/dd/CMDS/TEXCMDS:/dd/CMDS/ELM:/dd/CMDS/COMMS",
          "export PATH=$PATH:/dd/CMDS/NETWORK:/dd/CMDS/NEWS:/dd/CMDS/WN",
-         "export PATH=$PATH:/dd/CMDS/ADL:/dd/CMDS/REBUILT:.",
+         "export PATH=$PATH:/dd/CMDS/ADL:/dd/CMDS/REBUILT",
+         "export PATH=$PATH:/dd/CMDS/DEMOS:/dd/CMDS/DHRY:/dd/CMDS/GCC139:.",
          "export TMACDIR=/dd/LIB",
          "export HELPDIR=/dd/SYS/HELP",
          "export SIMPATH=/dd/SBPROLOG/MODLIB",
@@ -241,6 +242,32 @@ class Session:
         os.close(self.master)
 
 
+def moments(sess, shot, start, end):
+    """Render the stanza at several moments and keep the fullest.
+
+    THE LAST MOMENT IS OFTEN THE WRONG ONE.  A program that scrolls has
+    pushed its heading off; one that clears on the way out leaves a bare
+    screen; one that is still drawing has drawn half.  So the screen is
+    rendered at every mark taken while the stanza ran, and the one with the
+    most of the program's OWN ink wins -- the same rule tools/playtest.py
+    settled on after `hang' published an empty screen because hangman tidies
+    up when the game ends.
+
+    A tie goes to the LATER moment, so a program that simply prints keeps
+    its full output rather than an early fragment of it.
+    """
+    rows, cols = shot["size"]
+    best, best_worth = None, -1
+    for at in list(shot.get("_marks", [])) + [end]:
+        if at <= start:
+            continue
+        scr = ansiscreen.render(trim_partial(sess.slice(start, at)), rows, cols)
+        n = worth(scr)
+        if n >= best_worth:
+            best, best_worth = scr, n
+    return best if best is not None else ansiscreen.render(b"", rows, cols)
+
+
 def capture(sess, shot):
     """Run one stanza and return (screen, the-emulator-died).
 
@@ -259,23 +286,32 @@ def capture(sess, shot):
         died = True
     rows, cols = shot["size"]
     end = shot.get("_end") or sess.mark()
-    return ansiscreen.render(trim_partial(sess.slice(shot["_start"], end)),
-                             rows, cols), died
+    return moments(sess, shot, shot["_start"], end), died
 
 
 def _drive(sess, shot):
     sess.write("clear\r")
     time.sleep(1.2)
     shot["_start"] = sess.mark()
+    shot["_marks"] = []
     for kind, val in shot["acts"]:
         if kind == "run":
             sess.write(val + "\r")
             time.sleep(1.0)
         elif kind == "wait":
-            time.sleep(val)
+            # Mark every couple of seconds, not just at the end of the wait:
+            # a long wait is exactly where a program finishes drawing, starts
+            # scrolling, or clears up after itself.
+            waited = 0.0
+            while waited < val:
+                step = min(2.0, val - waited)
+                time.sleep(step)
+                waited += step
+                shot["_marks"].append(sess.mark())
         elif kind == "send":
             sess.write(val)
             time.sleep(0.6)
+            shot["_marks"].append(sess.mark())
         elif kind == "keys":
             for ch in val:
                 sess.write(ch)
@@ -318,6 +354,24 @@ def ink(scr):
     """The program's own ink -- the shell's prompt and echo are not it."""
     return sum(1 for line in scr.text().split("\n") if "bash#" not in line
                for ch in line if ch != " ")
+
+
+def worth(scr):
+    """How much a screen is WORTH LOOKING AT, which is not how full it is.
+
+    A program that floods one line -- `No more memory !!!' twenty-four times
+    -- fills the grid and says one thing, and picking the fullest moment
+    picked exactly that: a screen of nothing but the flood, with the command
+    that caused it scrolled away. So a line counts ONCE. An earlier moment,
+    holding the command and the first line of the failure, then beats it.
+    """
+    seen, total = set(), 0
+    for line in scr.text().split("\n"):
+        if "bash#" in line or not line.strip() or line in seen:
+            continue
+        seen.add(line)
+        total += sum(1 for ch in line if ch != " ")
+    return total
 
 
 def run_sheet(path, image):

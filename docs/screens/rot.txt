@@ -1,23 +1,8 @@
-rot: don't like tab characters!
-e321 *
-a///
-s111 C
-t74      o
-e        m
-rSVN m
- tae o
-E.lw n
-a e
-sPnY H
-tate o
-etia l
-rrnr i
- ie' d
-Sc's a
-uks  y
-n' D s
-dsDa
-a ay
-yDy
- a
- y
+head -n 6 /dd/SYS/holidays > /dd/tmp/h.txt
+head: /dd/SYS/holidays
+* Common Holidays
+
+1/1             New Year's Day
+2/14 Valentine's Day
+3/17 St. Patrick's Day
+easter Easter Sunday

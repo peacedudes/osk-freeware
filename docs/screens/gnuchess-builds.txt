@@ -1,13 +1,11 @@
-/dd/CMDS/gnuchessr
+gnuchessr
 
 Enter #moves #minutes: e2e4
 Operator time=
  R N B Q K B N R
  P P P P P P P P
  - - - - - - - -
- - - - - - - - -
- - - - - - - - -
- - - - - - - - -
+        ... the same line 4 times over
  p p p p p p p p
  r n b q k b n r
 

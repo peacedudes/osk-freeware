@@ -1,11 +1,11 @@
-/dd/CMDS/msattrib +r a:/DOCS/README.TXT
+msattrib +r a:/DOCS/README.TXT
   A    R     A:/DOCS/README.TXT
  Volume in drive A is OS9FREEWARE
  Volume Serial Number is 35D7-0A00
  Directory for A:/DOCS
 
-.            <DIR>     08-27-2026  10:49p
-..           <DIR>     08-27-2026  10:49p
-README   TXT        40 08-27-2026  10:49p
+.            <DIR>     08-28-2026   4:59a
+..           <DIR>     08-28-2026   4:59a
+README   TXT        40 08-28-2026   5:00a
         3 file(s)                40 bytes
-                          1 454 592 bytes free
+                          1 455 616 bytes free

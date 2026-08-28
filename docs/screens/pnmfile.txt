@@ -1,5 +1,4 @@
-/dd/CMDS/NETPBM/pgmtopbm /dd/tmp/ramp.pgm > /dd/tmp/ramp.pbm
-<le /dd/tmp/ramp.pgm /dd/tmp/ramp.pbm /dd/tmp/ging.ppm
+pgmtopbm /dd/tmp/ramp.pgm > /dd/tmp/ramp.pbm
 /dd/tmp/ramp.pgm:       PGM raw, 64 by 16  maxval 255
 /dd/tmp/ramp.pbm:       PBM raw, 64 by 16
 /dd/tmp/ging.ppm:       PPM raw, 40 by 20  maxval 255

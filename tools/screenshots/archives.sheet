@@ -4,60 +4,60 @@
 shot    ar
 cap     Carl Kreider's ar, the OS-9 archive librarian.  Its commands take a
 cap     leading dash: -u to add, -t for the table of contents.
-run     /dd/CMDS/ar -u /dd/tmp/k2.ar /dd/SRC/keep/keep.c
+run     ar -u /dd/tmp/k2.ar /dd/SRC/keep/keep.c
 wait    6
-run     /dd/CMDS/ar -t /dd/tmp/k2.ar
+run     ar -t /dd/tmp/k2.ar
 wait    5
 
 shot    ar2
 for     ar2 liborder libsplit unpacklib
 cap     Ar V2.00, a later edition than the V1.2 that ships as `ar', and the
 cap     tools that take an OS-9 module library apart.
-run     /dd/CMDS/ar2
+run     ar2
 wait    8
 
 shot    arc
 for     arc marc dearc
 cap     ARC, the format that came before zip: marc makes one, and dearc
 cap     reads the MS-DOS side of the same family.
-run     /dd/CMDS/marc -a /dd/tmp/m.arc /dd/SYS/motd
+run     marc -a /dd/tmp/m.arc /dd/SYS/motd
 wait    10
-run     /dd/CMDS/marc -l /dd/tmp/m.arc
+run     marc -l /dd/tmp/m.arc
 wait    8
 
 shot    cat-combine
 for     cat combine demerge modbuster
 cap     cat concatenates, combine merges files into one and demerge takes
 cap     them apart again -- the OS-9 way of shipping several files as one.
-run     /dd/CMDS/combine /dd/SYS/motd /dd/SYS/holidays > /dd/tmp/comb
+run     combine /dd/SYS/motd /dd/SYS/holidays > /dd/tmp/comb
 wait    8
-run     /dd/CMDS/ls -l /dd/tmp/comb
+run     ls -l /dd/tmp/comb
 wait    6
-run     /dd/CMDS/demerge -?
+run     demerge -?
 wait    6
 
 shot    compr
 for     compr
 cap     compr, an OS-9 file compressor of its own, on the disk's index.
-run     /dd/CMDS/cp /dd/DOC/INDEX /dd/tmp/idx3
+run     cp /dd/DOC/INDEX /dd/tmp/idx3
 wait    8
-run     /dd/CMDS/compr /dd/tmp/idx3
+run     compr /dd/tmp/idx3
 wait    12
-run     /dd/CMDS/ls -l /dd/tmp/idx3*
+run     ls -l /dd/tmp/idx3*
 wait    6
 
 shot    compress
 cap     compress, the LZW one, reporting what it saved.
-run     /dd/CMDS/cat /dd/DOC/INDEX > /dd/tmp/index.txt
+run     cat /dd/DOC/INDEX > /dd/tmp/index.txt
 wait    3
-run     /dd/CMDS/REBUILT/compress -v /dd/tmp/index.txt
+run     compress -v /dd/tmp/index.txt
 wait    8
 
 shot    gzip
 cap     GNU gzip on the same file, for comparison with compress.
-run     /dd/CMDS/cat /dd/DOC/INDEX > /dd/tmp/index2.txt
+run     cat /dd/DOC/INDEX > /dd/tmp/index2.txt
 wait    3
-run     /dd/CMDS/gzip -v /dd/tmp/index2.txt
+run     gzip -v /dd/tmp/index2.txt
 wait    8
 
 shot    gzips
@@ -65,69 +65,69 @@ for     gzip020_csl gzip020_nocsl gzip68k_csl gzip68k_nocsl compress_4.0
 cap     Four builds of gzip 1.2.4 -- 68000 and 68020, with and without the
 cap     csl trap library -- kept side by side so you can take the one your
 cap     machine wants.  Each says which it is.
-run     /dd/CMDS/REBUILT/gzip68k_nocsl -V
+run     gzip68k_nocsl -V
 wait    8
-run     /dd/CMDS/REBUILT/gzip020_nocsl -V
+run     gzip020_nocsl -V
 wait    8
 
 shot    lha
 cap     LHa 2.08 on the same file: pack, then list with the ratio.
-run     /dd/CMDS/lha a /dd/tmp/k.lzh /dd/SRC/keep/keep.c
+run     lha a /dd/tmp/k.lzh /dd/SRC/keep/keep.c
 wait    6
-run     /dd/CMDS/lha l /dd/tmp/k.lzh
+run     lha l /dd/tmp/k.lzh
 wait    4
 
 shot    lharc
 for     lharc lharcs xlharc
 cap     LHarc, the older sibling of lha: pack, then list.
-run     /dd/CMDS/lharc a /dd/tmp/l.lzh /dd/SYS/motd
+run     lharc a /dd/tmp/l.lzh /dd/SYS/motd
 wait    10
-run     /dd/CMDS/lharc l /dd/tmp/l.lzh
+run     lharc l /dd/tmp/l.lzh
 wait    8
 
 shot    modbuster
 cap     modbuster splits a file of merged OS-9 modules back into separate
 cap     ones; unpacklib does the same for a linker library.
-run     /dd/CMDS/modbuster -?
+run     modbuster -?
 wait    4
-run     /dd/CMDS/unpacklib -?
+run     unpacklib -?
 wait    4
 
 shot    shar
 cap     shar wraps files as a shell archive -- how source travelled over
 cap     usenet, and how most of this collection arrived.
-run     /dd/CMDS/shar /dd/SYS/motd | /dd/CMDS/head -n 18
+run     shar /dd/SYS/motd | head -n 18
 wait    6
 
 shot    tar
 cap     GNU tar 1.10 packing a directory off this disk and listing what it
 cap     wrote -- the same tar the image build uses to populate the disk.
-run     /dd/CMDS/tar cvf /dd/tmp/keep.tar /dd/SRC/keep
+run     tar cvf /dd/tmp/keep.tar /dd/SRC/keep
 wait    5
-run     /dd/CMDS/tar tvf /dd/tmp/keep.tar
+run     tar tvf /dd/tmp/keep.tar
 wait    4
 
 shot    unzip
 for     unzip zipnote zipsplit funzip
 cap     Info-ZIP's readers.  unzip lists an archive that zip on this disk
 cap     cannot write -- see the note against `zip'.
-run     /dd/CMDS/unzip -v
+run     unzip -v
 wait    10
 
 shot    zoo
 cap     zoo, packing and then listing -- compression ratio per member.
-run     /dd/CMDS/zoo a /dd/tmp/k.zoo /dd/SRC/keep/keep.c
+run     zoo a /dd/tmp/k.zoo /dd/SRC/keep/keep.c
 wait    5
-run     /dd/CMDS/zoo l /dd/tmp/k.zoo
+run     zoo l /dd/tmp/k.zoo
 wait    4
 
 shot    zoo2
 for     zoo_2.1 fiz booz
 cap     zoo 2.1, newer than the 2.01 in CMDS, and booz -- the extract-only
 cap     zoo that fits anywhere.
-run     /dd/CMDS/REBUILT/zoo_2.1 a /dd/tmp/z2.zoo /dd/SYS/motd
+run     zoo_2.1 a /dd/tmp/z2.zoo /dd/SYS/motd
 wait    10
-run     /dd/CMDS/booz -l /dd/tmp/z2.zoo
+run     booz -l /dd/tmp/z2.zoo
 wait    8
 
 
@@ -137,13 +137,13 @@ cap     temporary file over the target -- `_Z000003' is left behind and
 cap     the archive is never written.  Two directories were tried.  This
 cap     is one of the three failures the data tests keep failing on
 cap     purpose; `unzip' reads other people's archives perfectly well.
-run     /dd/CMDS/mkdir /dd/tmp/zt
+run     mkdir /dd/tmp/zt
 wait    6
-run     /dd/CMDS/cp /dd/SYS/motd /dd/tmp/zt/motd
+run     cp /dd/SYS/motd /dd/tmp/zt/motd
 wait    6
-run     /dd/CMDS/zip /dd/tmp/zt/test.zip /dd/tmp/zt/motd
+run     zip /dd/tmp/zt/test.zip /dd/tmp/zt/motd
 wait    15
-run     /dd/CMDS/dir /dd/tmp/zt
+run     dir /dd/tmp/zt
 wait    10
 
 
@@ -152,7 +152,7 @@ for     diff_1.1 gtar m4_0.5 lharcs compress_4.0 sed_1.06 zoo_2.1
 cap     CMDS/REBUILT keeps a second build of several programs because they
 cap     do not all behave the same -- here diff 1.1 answers with its whole
 cap     option list, which is the difference you would be choosing between.
-run     /dd/CMDS/REBUILT/diff_1.1 -v
+run     diff_1.1 -v
 wait    10
-run     /dd/CMDS/REBUILT/gtar --version
+run     gtar --version
 wait    10

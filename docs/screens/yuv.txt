@@ -1,5 +1,5 @@
 ppmtoyuv /dd/tmp/base.ppm | yuvtoppm 48 24 | pnmfile
 stdin:  PPM raw, 48 by 24  maxval 255
-/dd/CMDS/ls: %s: error 216
-/dd/CMDS/ls: %s: error 216
-/dd/CMDS/ls: %s: error 216
+ls: %s: error 216
+ls: %s: error 216
+ls: %s: error 216

@@ -1,4 +1,4 @@
-/dd/CMDS/version /dd/CMDS/tar
+version /dd/CMDS/tar
 Dies ist das Program 'version', Version 7
 ... oder in anderer Notation, version 0.7
 liborder: Unimplemented option '-?'.

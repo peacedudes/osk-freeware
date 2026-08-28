@@ -1,2 +1,2 @@
-/dd/CMDS/basename /dd/CMDS/GAMES/hack
+basename /dd/CMDS/GAMES/hack
 No such user

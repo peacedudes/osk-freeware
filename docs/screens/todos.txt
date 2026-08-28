@@ -1,4 +1,4 @@
-/dd/CMDS/cat /dd/SYS/motd > /dd/tmp/le.txt
+cat /dd/SYS/motd > /dd/tmp/le.txt
 4b68af85
 del /dd/tmp/le.txt:  (E$PNNF) That path name doesn't lead to anything - check t.
 

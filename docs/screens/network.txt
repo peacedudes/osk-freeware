@@ -1,4 +1,4 @@
-/dd/CMDS/NETWORK/msntp -?
+msntp -?
 **** csl traphandler mismatch ****
 Reading Configuration file...
 

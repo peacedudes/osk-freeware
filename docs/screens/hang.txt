@@ -11,12 +11,7 @@ Unused Letters:                         HEY! No more wrong guesses OK????
                                         |                         |
 a_as_                                   |                         |
                                         |                         |
-                                        |                         |
-                                        |                         |
-                                        |                         |
-                                        |                         |
-                                        |                         |
-                                        |                         |
+        ... the same line 7 times over
                                         ---------------------------
 There are 5 letters in the word
 Sorry

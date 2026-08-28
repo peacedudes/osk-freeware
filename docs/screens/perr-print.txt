@@ -1,4 +1,4 @@
-/dd/CMDS/perr 214 216 218 221 237
+perr 214 216 218 221 237
 Error #000:214 (E_FNA) File Not Accessible
 Error #000:216 (E_PNNF) Path Name Not Found
 Error #000:218 (E_CEF) Creating Existing File

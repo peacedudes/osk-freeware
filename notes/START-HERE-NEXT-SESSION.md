@@ -6,12 +6,26 @@ change below is committed.
 
 ## WHAT HAPPENED 2026-08-27 (third session): the screens
 
-**`docs/screens.html` is a gallery of 400-odd programs photographed while
-running**, and every program's card in `docs/index.html` carries its own
-screen. `tools/screenshots.py` takes them: ONE bash session on a pty, many
-programs per session, the bytes each one wrote rendered by `ansiscreen.py`.
-A sheet (`tools/screenshots/*.sheet`) is the source; `tools/gen_screens.py`
-builds the gallery, `docs/screens.js` and `docs/screens/*.txt`.
+**Every program's card in `docs/index.html` carries its own SAMPLE OUTPUT**,
+photographed while running -- 876 of 918 of them. `tools/screenshots.py`
+takes the pictures: ONE bash session on a pty, many programs per session,
+the bytes each one wrote rendered by `ansiscreen.py`. A sheet
+(`tools/screenshots/*.sheet`) is the source; `tools/gen_screens.py` folds
+the captures into `docs/screens.js`, which the catalogue reads, and
+`docs/screens/*.txt`.
+
+**There is ONE catalogue.** The screens had a gallery page of their own for
+a day; rdoggett, 2026-08-28: *"They need to be incorporated with the other
+html; it's one catalog... this is sample output (you already have sample
+help)."* A second page listing the same programs is a second catalogue to
+keep true, and it is gone.
+
+**Commands in the screens are typed the way a person types them** -- `banner
+OS-9`, not `/dd/CMDS/banner OS-9`. rdoggett: *"It's kind of unnatural /
+annoying that you ALWAYS use complete /dd/CMDS/thing paths... It's just
+excess noise, right?"* It is. `SYS/login` puts every program directory on
+PATH, and the sheets use bare names; a path in a screen now means a FILE
+being operated on, which is real.
 
 **Photographing the disk found more than any sweep has.** Twelve programs the
 four-stage sweep scored OK do not work -- `gawk` reads no input at all, `m4`
@@ -396,11 +410,12 @@ unreasonable to expect you to try running them, not just to see if they crash
 BOOM on launch, but to make sure they work as expected."*
 
     tools/playtest.py --all      # drive every script in tools/playtests/
-    tools/gen_screens.py         # turn the captures into docs/screens.html
+    tools/gen_screens.py         # fold the captures into the catalogue
 
 It drives a program on a **pseudo-terminal** at human typing speed, runs a
 CONTROL pass with no keys, and renders both with `tools/ansiscreen.py` into
-the 80x24 grid a vt100 would show. `docs/screens.html` is the gallery.
+the 80x24 grid a vt100 would show, and `gen_screens.py` puts it on the
+program's card in the catalogue.
 
 **IT USED A FIFO FIRST, AND A FIFO IS NOT A TERMINAL.** Programs that call
 `isatty()` or reopen their own tty take a different path, and so does os9exec

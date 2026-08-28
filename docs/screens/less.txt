@@ -21,3 +21,4 @@ around the disk straight away:
     a shell        sh, or bash
     list a dir     ls
     read a file    cat, or less
+/dd/DOC/README-RUNNING

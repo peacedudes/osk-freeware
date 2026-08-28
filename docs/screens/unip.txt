@@ -1,5 +1,6 @@
-<dd/DOC/README-CIO | /dd/CMDS/sort | /dd/CMDS/unip | /dd/CMDS/head -n 18
+sepwords < /dd/DOC/README-CIO | sort | unip | head -n 18
 (`-qm`)
+(source
 (the
 ****
 *cat.cio
@@ -16,4 +17,3 @@
 -----------
 ----------------------------
 --------------------------------
--qixm`
