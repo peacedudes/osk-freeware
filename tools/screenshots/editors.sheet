@@ -25,7 +25,7 @@ wait    10
 quit    \030\003
 
 shot    hexedit
-for     hexed
+for     hexed hexedit
 cap     The hex editor cannot start: it writes its work file to /r0, the RAM
 cap     disk os9exec has no way to provide, and says so.  Seventeen programs
 cap     here reach for /r0; DOC/README-RUNNING lists them.  `beav' is the

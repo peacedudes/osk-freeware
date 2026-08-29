@@ -1,0 +1,18 @@
+$ mgif -?
+mgif [options] file ...
+
+-i       inquire about image only
+-v       verbose
+-N       use NTSC equation for luminescence
+file     a .gif file
+
+If more than one file, all share command switch settings.
+e
+$ umusek
+ )
+
+***DS_ScAdd Error 208.
+
+
+
+Fran: Can't get screen addr, 'bye!

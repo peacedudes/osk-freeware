@@ -1,0 +1,14 @@
+$ tplot -?
+Usage : hiplot <-opt1> .. <-optn> <file1> .. <filen>
+        Plots data from files or stdin,  prompting for axis
+        information unless the -a opt is used.
+        A blank line in the point file will lift the pen
+        If no files are specified stdin is used
+
+        opts :
+              -a=file   file has 3 lines with
+                        x interval,  y interval,  x, y divisions
+                        each line two numbers separated by ' '
+              -x=xaxis  xaxis title of x-axis
+              -y=yaxis  yaxis title of y-axis
+              -t=title  plot title

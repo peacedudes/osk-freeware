@@ -56,7 +56,7 @@ wait    6
 
 shot    djpeg
 size    36 80
-for     djpeg
+for     djpeg rdjpgcom.070 wrjpgcom.070
 cap     djpeg has nothing to decompress: `cjpeg' above cannot read a PNM, so
 cap     no JPEG was ever written, and the whole pipeline says so file by
 cap     file.  The JPEG tools are untested here rather than broken -- there
@@ -708,10 +708,14 @@ wait    10
 
 shot    noreader
 for     bioradtopgm hipstopgm qrttoppm sldtoppm spctoppm zeisstopnm
+for     brushtopbm gouldtoppm hpcdtoppm imgtoppm mtvtoppm psidtopgm
+for     spottopgm sputoppm ximtoppm xvminitoppm
 cap     Sixteen of the readers here decode formats that no file on this
 cap     disk is in -- confocal microscopes, ray tracers, AutoCAD slides,
-cap     Atari Spectrum pictures.  Handed something else, they say so
-cap     rather than guessing, which is the behaviour you want.
+cap     Atari Spectrum pictures, Photo CD, Amiga brushes, Gould scanners.
+cap     Handed something else, they say so rather than guessing, which is
+cap     the behaviour you want.  Three of the sixteen are shown; the rest
+cap     answer the same way.
 run     hipstopgm /dd/tmp/w.ppm
 wait    12
 run     qrttoppm /dd/tmp/w.ppm | head -n 3
@@ -778,3 +782,15 @@ run     ppmtomitsu /dd/tmp/q.ppm | wc
 wait    20
 run     pbmmake -g 40 20 | pbmtox10bm | head -n 6
 wait    15
+
+shot    mgif
+for     mgif umusek
+cap     mgif reads a GIF and can be asked to inquire rather than display --
+cap     there is no screen here to display on, and it says what it takes.
+cap     `umusek' beside it wants a G-Windows screen address and stops with
+cap     `Can't get screen addr' where there is no G-Windows.
+run     mgif -?
+wait    8
+run     umusek
+wait    8
+

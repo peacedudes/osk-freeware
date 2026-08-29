@@ -136,17 +136,21 @@ run     shdev
 wait    3
 
 shot    dload
-for     dload break sbreak setfont
+for     dload break sbreak setfont trap
 cap     dload sends a file down a serial line; break and sbreak send a
 cap     BREAK -- assembler examples from the forums, harmless here because
 cap     there is no serial line.  `break' has to be asked for by path: it
 cap     is a bash builtin too, and the builtin answers first.  It prints
 cap     nothing whatever it is given, which is why sbreak is shown as well.
+cap     `trap' -- also a bash builtin -- is the system-state trap-handler
+cap     example, and cannot install one from user state.
 run     dload -?
 wait    6
 run     /dd/CMDS/break -?
 wait    4
 run     sbreak -?
+wait    6
+run     /dd/CMDS/trap -?
 wait    6
 
 shot    drop
@@ -273,11 +277,21 @@ run     signal -?
 wait    6
 
 shot    lunisolar
-for     lunisolar orbit ephem ephem881 nasa
-cap     The astronomy set: lunisolar computes sun and moon positions and
-cap     ephem is a full ephemeris with its own database in SYS.
+for     lunisolar orbit ephem881 nasa
+cap     The rest of the astronomy set.  `lunisolar' gives the phase of the
+cap     moon in one line, or a whole lunisolar calendar as LaTeX if you
+cap     give it a year and a time zone.  `orbit', the N3EMO satellite
+cap     simulator, and `nasa' both want an element file -- kepler.dat and
+cap     nasa.dat -- that no archive here carried.  `ephem' proper is the
+cap     one with its database on the disk, and has its own card.
 run     lunisolar
-wait    10
+wait    8
+run     lunisolar -?
+wait    8
+run     orbit -?
+wait    8
+run     nasa -?
+wait    8
 
 shot    makecrc
 for     makecrc
@@ -585,3 +599,28 @@ cap     Table eXtension Module, which `ptxminst' installs, and `wn.stb', the
 cap     symbol table that ships beside the WN web server.
 run     modinfo /dd/CMDS/ptxm | head -n 12
 wait    12
+
+shot    memtools
+for     loadmem savemem snap scriptmaster
+cap     Three that read or write something the shell cannot reach.  loadmem
+cap     puts a file into memory at an address and savemem writes a block of
+cap     memory out; both say plainly that you must be the super user and
+cap     that the addresses are hex.  `snap' photographs the terminal into a
+cap     file -- called `polaroid' if you do not name one.  `scriptmaster'
+cap     prints nothing whatever it is given.
+run     loadmem -?
+wait    8
+run     savemem -?
+wait    8
+run     snap -?
+wait    8
+
+shot    mtst
+for     mtst
+cap     mtst exercises the C maths library and prints what each function
+cap     returned beside what it was given -- ceil, floor and round on the
+cap     same number, integer and floating side by side.  It is one of the
+cap     small programs a port was checked with.
+run     mtst | head -n 16
+wait    12
+

@@ -189,3 +189,12 @@ run     cat /dd/tmp/p.diff
 wait    6
 run     patch /dd/tmp/p1 /dd/tmp/p.diff
 wait    10
+
+shot    tplot
+for     tplot
+cap     tplot -- hiplot inside -- plots columns of numbers from a file or
+cap     from a pipe, prompting for the axes unless you give them.  A blank
+cap     line lifts the pen, which is how you draw more than one curve.
+run     tplot -?
+wait    10
+

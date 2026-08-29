@@ -65,3 +65,13 @@ send    4.0\r
 wait    3
 send    32\r
 wait    60
+
+shot    ttyexp
+for     ttyexp
+cap     ttyexp sets off explosions on the terminal -- characters thrown out
+cap     from a point and falling back.  It takes how many at once, how big,
+cap     and how long to wait, and answers with all of that when the option
+cap     it is given is not one of them.
+run     ttyexp -?
+wait    8
+

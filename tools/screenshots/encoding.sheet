@@ -29,6 +29,7 @@ run     atob < /dd/tmp/m.btoa | md5
 wait    6
 
 shot    checksum
+for     checksum chksum
 cap     Two older checksums beside each other on the same file.
 run     checksum /dd/SYS/motd
 wait    3

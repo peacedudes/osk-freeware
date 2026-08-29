@@ -1,0 +1,14 @@
+$ ttyexp -?
+*** Invalid option: -?
+Usage: ttyexp <parameters>
+Parameters can be one of
+   -s<n> :<n> = # of simultaneous explosions. Default: 1
+   -x<n> :<n> = Explosion X size.             Default: 40
+   -y<n> :<n> = Explosion Y size.             Default: 15
+   -p<n> :<n> = #pts/explosion. Max 300.      Default: 10
+   -t<n> :<n> = Trail length.                 Default: 4
+   -d<n> :<n> = Delay factor.                 Default: 0
+   -g<n> :<n> = Gravity (vert accel).         Default: 1000
+   -w<n> :<n> = Wind (horiz accel).           Default: 0
+   -c<n> :<n> = Explosion character.          Default: '@'
+   -D<n> :<n> = Duration.                     Default: 10

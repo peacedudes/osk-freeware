@@ -1,0 +1,18 @@
+$ lunisolar
+The moon is full.
+$ lunisolar -?
+Bad args: lunisolar -?
+Usage: lunisolar
+gives the phase of the moon,
+and: lunisolar <year> <time_zone>
+generates a lunisolar calendar for LaTeX.
+Time zone may be one of:
+GMT     NST     AST     EST     CST
+MST     PST     YST     HST     BST
+JST
+$ orbit -?
+N3EMO Orbit Simulator  v3.7
+Available satellites:
+"kepler.dat" not found
+$ nasa -?
+"nasa.dat" not found
