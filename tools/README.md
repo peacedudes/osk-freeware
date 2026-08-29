@@ -201,6 +201,22 @@ file repeats every name in a four-column grid that matches the same regex.
 Hand-editing got all four of those wrong in one session. Import `fix` and
 give it the program name and the replacement lines.
 
+**`until <text>` waits for the program, instead of guessing at seconds.**
+Added to `playtest.py` on 2026-08-29 because a test for hack's documented
+way out -- `Q` then `y` -- passed about every other run with fixed waits, and
+a flaky test is worse than no test. `until` polls the capture for the text,
+up to 60 seconds; the keyed pass watches for it and records how long it took,
+and the control pass replays that as a plain sleep, so the two passes still
+cost the same wall clock and the comparison between them still means
+something.
+
+**Read the markers out of a real capture.** Every guess about what hack
+prints was wrong: it does not ask "Who are you?" here (it takes the name from
+USER), the quit confirmation is "Really quit?", the dungeon drawing is not
+the end of start-up because a `Hello ... welcome to hack!` pager follows it,
+and on some runs a second pager -- `You are lucky! Full moon tonight.` --
+follows that. `notes/playtests/<name>.keyed.raw` is where to look.
+
 **Probe a program with the environment SYS/login gives it, not just PATH.**
 On 2026-08-29 a sweep over DOC/INDEX entries ran each program with PATH set
 and nothing else, and produced false negatives: `mailx' said "HOME is not

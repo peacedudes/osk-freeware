@@ -194,17 +194,25 @@ A description that says "does nothing" should be tested against every
 invocation the program's own usage line offers before it is written down.
 Each of these three was found by doing exactly that.
 
-## A FLAKY TEST IS WORSE THAN NO TEST
+## `until` -- waiting for the program instead of guessing at seconds
 
-`hack`'s documented way out -- `Q' then `y' -- was verified by hand on
-2026-08-29 and does work: high-score table, terminal handed back. A
-play-test for it was written and **thrown away**, because hack's start-up
-timing varies enough that fixed waits reach the dungeon only about half the
-time, and a test that fails every other run teaches people to ignore
-failures. The fact is recorded in `DOC/START-HERE` instead. If you want the
-test, it needs a way to wait for a MARKER on screen rather than a fixed
-number of seconds -- which `playtest.py` has no directive for yet, and which
-would be worth adding before anyone writes more timing-sensitive scripts.
+`hack`'s documented way out -- `Q` then `y` -- now has a play-test,
+`tools/playtests/hackquit.keys`, and getting it there was the useful part.
+The first version used fixed waits and passed about every other run, and a
+flaky test is worse than no test. So `playtest.py` gained an **`until
+<text>`** directive: it polls for the text, up to 60 seconds, and the control
+pass replays the recorded duration so both passes still cost the same wall
+clock.
+
+Then every marker had to be read out of a real capture, because every guess
+was wrong: hack does not ask "Who are you?" here (it takes the name from
+USER), the quit confirmation is "Really quit?", the dungeon drawing is not
+the end of start-up -- a `Hello ... welcome to hack!` pager follows it -- and
+on some runs a second pager, `You are lucky! Full moon tonight.`, follows
+that. With those, seven runs in a row pass.
+
+**Use `until` for anything whose timing varies**, and read the markers out of
+`notes/playtests/<name>.keyed.raw` rather than guessing them.
 
 ## WHAT TO DO NEXT, then
 

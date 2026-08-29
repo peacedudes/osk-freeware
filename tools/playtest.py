@@ -28,6 +28,13 @@ Script format (one directive per line, # comments ignored):
     prog    /dd/CMDS/GAMES/tet      what to run
     setup   export FOO=bar          extra shell line before the program
     wait    4                       seconds
+    until   Dungeon level             WAIT FOR THIS TEXT to appear, up to 60
+                                    seconds, instead of guessing at a number.
+                                    A program whose start-up time varies --
+                                    hack takes anywhere from 5 to 15 seconds
+                                    to reach the dungeon -- cannot be driven
+                                    by fixed waits without being flaky, and a
+                                    flaky test is worse than no test.
     key     p                       one keystroke
     keys    jkl                     several, spaced by `rate'
     rate    1.0                     seconds between keys (default 0.6)
@@ -72,6 +79,10 @@ TERMCAP = "/dd/SYS/termcap"
 # scored 35, which was all echo. Raised from 10 on 2026-08-27 after pacman,
 # chess and lorenz3d all passed on the strength of the shell prompt.
 MIN_INK = 8
+# How long `until' will wait for its text before giving up and carrying on.
+# Long enough for hack to reach the dungeon on a slow run, short enough that
+# a script with a typo in its marker does not hang the sweep.
+UNTIL_TIMEOUT = 60
 
 
 def parse(path):
@@ -118,7 +129,8 @@ def parse(path):
     return spec
 
 
-def feed(spec, master, with_keys, cap=None, marks=None):
+def feed(spec, master, with_keys, cap=None, marks=None,
+         until_times=None):
     """Write the shell lines, then the keystrokes, at human speed.
 
     `marks' collects (label, byte-offset) pairs at each `snap'. The offset is
@@ -172,6 +184,29 @@ def feed(spec, master, with_keys, cap=None, marks=None):
         for kind, val in spec["acts"]:
             if kind == "wait":
                 time.sleep(val)
+            elif kind == "until":
+                # THE KEYED PASS WATCHES; THE CONTROL PASS REPLAYS THE CLOCK.
+                # Polling in both would leave the control run waiting out the
+                # whole timeout for text its silent program never prints, and
+                # the two passes have to cost the same wall clock or the
+                # comparison between them means nothing.
+                if with_keys:
+                    began = time.time()
+                    deadline = began + UNTIL_TIMEOUT
+                    needle = val.encode("latin-1")
+                    while time.time() < deadline:
+                        try:
+                            if needle in open(cap, "rb").read():
+                                break
+                        except OSError:
+                            pass
+                        time.sleep(0.4)
+                    if until_times is not None:
+                        until_times.append(time.time() - began)
+                elif until_times:
+                    time.sleep(until_times.pop(0))
+                else:
+                    time.sleep(5.0)
             elif kind == "snap":
                 time.sleep(0.8)                # let the screen settle
                 if marks is not None and cap:
@@ -187,7 +222,7 @@ def feed(spec, master, with_keys, cap=None, marks=None):
         time.sleep(2.0)
 
 
-def run(spec, image, with_keys, cap, marks=None):
+def run(spec, image, with_keys, cap, marks=None, until_times=None):
     """Drive the program on a REAL PSEUDO-TERMINAL.
 
     This used to use a FIFO, and a FIFO is not a terminal. Programs that ask
@@ -231,7 +266,7 @@ def run(spec, image, with_keys, cap, marks=None):
     proc = subprocess.Popen([OS9EXEC, "bash"], stdin=slave, stdout=slave,
                             stderr=slave, env=env, close_fds=True)
     os.close(slave)
-    feed(spec, master, with_keys, cap, marks)
+    feed(spec, master, with_keys, cap, marks, until_times)
     try:
         proc.wait(timeout=15)
     except subprocess.TimeoutExpired:
@@ -255,9 +290,10 @@ def playtest(path, image, outdir):
     # there were keys. Skipping it for the print-and-stop programs halves the
     # wall clock of a full sweep, and most of this disk is print-and-stop.
     typed_keys = sum(1 for kind, _ in spec["acts"] if kind == "send")
-    marks = []
-    keyed = run(spec, image, True, base + ".keyed.raw", marks)
-    control = (run(spec, image, False, base + ".control.raw")
+    marks, until_times = [], []
+    keyed = run(spec, image, True, base + ".keyed.raw", marks, until_times)
+    control = (run(spec, image, False, base + ".control.raw",
+                   None, list(until_times))
                if typed_keys >= 2 else b"")
 
     rows, cols = spec["size"]

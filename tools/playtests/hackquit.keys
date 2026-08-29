@@ -1,0 +1,41 @@
+name    hackquit
+prog    /dd/CMDS/GAMES/hack
+# THE DOCUMENTED WAY OUT, TESTED.  DOC/START-HERE tells a new user `Q' then
+# `y' to quit hack, and a person stuck in a game is the worst thing this disk
+# can do to somebody.  This drives hack into the dungeon and takes that way
+# out; the high-score table is what you get, and getting it means the game
+# let go of the terminal.
+#
+# WRITTEN WITH `until', NOT WITH GUESSES.  hack takes anywhere from five to
+# fifteen seconds to reach the dungeon and the first version of this script
+# used fixed waits and passed about every other run.  A flaky test is worse
+# than no test.
+#
+# EVERY MARKER BELOW IS TEXT HACK REALLY PRINTS, read out of a capture.  It
+# does not ask "Who are you?" here -- it takes the name from USER -- and the
+# quit confirmation is "Really quit?", not the possessions question the first
+# draft guessed at.  And the dungeon drawing is not the end of the start-up:
+# a `Hello tester, welcome to hack!' line arrives after it with its own
+# --More--, and a Q typed before that is answered by the pager, not the game.
+# There can be TWO of those: `You are lucky! Full moon tonight.' turns up on
+# some runs and not others, so the script clears the pager twice.  A second
+# space with nothing to clear is harmless -- hack ignores it.
+rate    0.6
+until   experienced player
+key     n
+until   Hit space to continue
+key     \s
+until   Level 1
+until   --More--
+key     \s
+wait    2
+key     \s
+wait    2
+snap    dungeon
+key     Q
+until   Really quit
+key     y
+until   quit on dungeon level
+wait    2
+snap    afterquit
+expect  quit on dungeon level
