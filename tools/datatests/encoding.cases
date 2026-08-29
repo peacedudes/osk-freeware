@@ -56,6 +56,11 @@ expect  1393
 # This case asserts what todos is FOR, so it fails. It is kept failing: the
 # round trip below it passes trivially precisely because neither program
 # does anything, which is the trap this file exists to demonstrate.
+#
+# WHY it does nothing was found 2026-08-29 and is asserted at the foot of
+# this file: todos converts into `todos.$$$.<pid>' and then cannot RENAME
+# it back, because this C library has no rename(). Same wall as zip and arc.
+# `autolf -c -C -L < in > out' does the job and is on this disk.
 case    todos-must-change-the-file
 run     /dd/CMDS/cp $T /dd/tmp/w.txt
 run     /dd/CMDS/todos /dd/tmp/w.txt
