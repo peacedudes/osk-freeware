@@ -72,11 +72,18 @@ quit    (exit)\r
 
 
 shot    csl-mismatch
-for     lua runc
-cap     Two programs built against a LATER csl than the edition 16 this
+for     lua runc xengine basicwin
+cap     FOUR programs built against a LATER csl than the edition 16 this
 cap     disk ships.  They stop before they start, and no amount of
-cap     arranging the disk will change it -- see DOC/STATUS.
+cap     arranging the disk will change it -- see DOC/STATUS.  `xengine'
+cap     and `basicwin', the two X11 clients that get this far, answer the
+cap     same way, so it is the runtime and not the missing X server that
+cap     stops them.
 run     lua
-wait    10
+wait    8
 run     runc
-wait    10
+wait    8
+run     xengine
+wait    8
+run     basicwin
+wait    8

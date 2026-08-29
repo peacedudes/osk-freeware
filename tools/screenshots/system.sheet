@@ -633,3 +633,22 @@ cap     waiting on the terminal if you forget to give it one.
 run     fontgen < /nil | head -n 10
 wait    12
 
+shot    silent
+for     blackjack readnews ub68020demo X11R6shl pdraw
+cap     The last few that say nothing worth photographing.  `blackjack' is
+cap     one of the three BASIC09 programs here and needs runb; `readnews'
+cap     wants a news spool; `ub68020demo' exits at once.  `X11R6shl' is
+cap     not a program at all -- bash calls it what it is, a binary it
+cap     cannot execute.  `pdraw' does print: its configuration, terminal
+cap     type and default printer, before it looks for an X server.
+run     blackjack
+wait    6
+run     readnews
+wait    6
+run     ub68020demo
+wait    6
+run     X11R6shl
+wait    6
+run     pdraw
+wait    8
+

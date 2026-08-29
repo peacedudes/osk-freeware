@@ -2,3 +2,7 @@ $ lua
 **** csl traphandler mismatch ****
 $ runc
 **** csl traphandler mismatch ****
+$ xengine
+**** csl traphandler mismatch ****
+$ basicwin
+**** csl traphandler mismatch ****

@@ -1,0 +1,20 @@
+$ blackjack
+blackjack: command not found
+$ readnews
+
+**** End of newsgroups [yq] ub68020demo
+Unsubscribing from group news.announce.newusers
+**** End of newsgroups [yq] X
+Illegal command: x
+**** End of newsgroups [yq] 1
+Illeghl
+al command: 1
+**** End of newsgroups [yq] 1
+Illegal command: 1
+**** End of newsgroups [yq] R
+Illegal command: r
+**** End of newsgroups [yq] 6
+Illegal command: 6
+**** End of newsgroups [yq] s
+Group hl not found
+**** End of newsgroups [yq]

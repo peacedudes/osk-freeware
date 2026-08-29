@@ -113,10 +113,15 @@ wait    8
 
 shot    ff
 for     ff
-cap     ff hunts for a file by name and asks in German -- `Was soll'n
-cap     gesucht wer'n ey ???'  It then EXITS without waiting for an answer,
-cap     so there is nothing to type at it.  Measured 2026-08-28.
+cap     `ff' -- find file -- asks in German dialect what to look for when
+cap     it is given nothing: `Was soll'n gesucht wer'n ey ???', and then
+cap     exits without waiting for an answer.  Told what to look for on the
+cap     command line it forks `dir' and cannot find it -- it looks in its
+cap     own execution directory, the way OS-9 does, and that is not where
+cap     bash found ff.  `find', `tree' and `dir' all work.
 run     ff
+wait    8
+run     ff termcap
 wait    8
 
 shot    find
