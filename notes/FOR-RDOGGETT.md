@@ -211,5 +211,30 @@ The harness learned two things as well: it no longer publishes os9exec's
 abort dump printed on top of a program's picture, and a command longer than
 the terminal is split so the card does not open mid-word.
 
+## The REBUILT pairs, asked at last
+
+`tools/datatests/rebuilt.cases` is new and holds the answers, so nobody has
+to re-open the question:
+
+  - **`vi` should probably not be the EFFO one.** It paints two lines and
+    stops. `elvis`, `vi_nocio` and `REBUILT/VI` (PVIC) all paint a full
+    screen and edit properly -- I checked PVIC by typing a line into a file
+    and writing it out. I did NOT swap: `vi` is the genuine Berkeley ex
+    source and the other three are clones, so which name gets which program
+    is your call, not a defect I should quietly fix. DOC/INDEX now says
+    plainly that `vi` does not paint and names the three that do.
+  - `wc` vs `wc.cio`: same counts, different wording, and `wc.cio` cannot
+    take a filename. The shipped one is better.
+  - `ctags` vs `ctags.elvis`: the shipped one finds the statics; elvis's
+    finds `main` and nothing else.
+  - `diff` vs `diff_1.1`: identical output, and diff_1.1 is twice the size.
+  - `arc` vs `REBUILT/arc`: the shipped one is 5.21 and takes a bare command
+    letter; the alternate is 5.12 and wants a leading dash.
+  - `lharc` 1.00 vs `lharcs` 1.01: newer, no difference found, each reads
+    the other's archives.
+  - `screen` vs `REBUILT/screen`: same program, same stop.
+  - `kermit` cannot be compared from a script -- both builds sit waiting on
+    the terminal whatever you redirect.
+
 ## Nothing needs you
 

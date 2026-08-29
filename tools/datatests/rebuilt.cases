@@ -55,7 +55,37 @@ run     /dd/CMDS/rm -f /dd/a2.arc
 run     $R/arc a a2.arc $T
 expect  arc - Archive Utility, 5.12
 
+# C-LHarc: the shipped `lharc' is 1.00, REBUILT/lharcs is 1.01 -- newer, and
+# no behavioural difference found. Each reads the other's archive, so there
+# is nothing to choose and nothing to swap.
+case    lharc-is-1.00-and-lharcs-is-1.01
+run     /dd/CMDS/lharc
+expect  Version 1.00
+
+case    lharcs-is-the-newer-one
+run     $R/lharcs
+expect  Version 1.01
+
+case    each-lharc-reads-the-other-s-archive
+run     /dd/CMDS/rm -f /dd/tmp/l1.lzh /dd/tmp/l2.lzh
+run     /dd/CMDS/lharc a /dd/tmp/l1.lzh $T
+run     $R/lharcs a /dd/tmp/l2.lzh $T
+run     /dd/CMDS/lharc l /dd/tmp/l2.lzh
+expect  1 file
+run     $R/lharcs l /dd/tmp/l1.lzh
+expect  1 file
+
+# REBUILT/screen is the trap-free build of the same program and stops at the
+# same place -- there is no $HOME/.SCREENS on this disk. It also still
+# reports its module name as `R_screen', which is the rebuild that forgot
+# -n=; see CLAUDE.md. Nothing to swap.
+case    both-screens-want-a-.SCREENS-directory
+run     /dd/CMDS/screen
+expect  .screens directory
+run     $R/screen
+expect  .screens directory
+
 case    the-scratch-archives-go-away
-run     /dd/CMDS/rm -f /dd/a1.arc /dd/a2.arc /dd/tags
+run     /dd/CMDS/rm -f /dd/a1.arc /dd/a2.arc /dd/tags /dd/tmp/l1.lzh /dd/tmp/l2.lzh
 run     /dd/CMDS/ls /dd/a1.arc
 expect  error
