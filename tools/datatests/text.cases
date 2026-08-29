@@ -218,3 +218,18 @@ absent  No Wisecracks coming
 case    ksh-forks-an-external-command
 run     /dd/CMDS/ksh -c "/dd/CMDS/chksum /dd/SYS/motd"
 expect  4b68af85
+
+# TEX TYPESETS.  DOC/STATUS listed tex/latex/slitex among the SILENT because
+# they prompt with `**' and a sweep types nothing at it.  Run the ENGINE and
+# it works: `virtex "&plain" <file>' for plain TeX, `&lplain' for LaTeX.  The
+# `tex' wrapper forks `virtex' by bare name and OS-9 resolves a fork against
+# the execution directory rather than PATH, which is why the wrapper alone
+# does nothing.
+case    virtex-typesets-plain-tex
+run     /dd/CMDS/TEXCMDS/virtex "&plain" /dd/SYS/TEX/SAMPLES/story.tex < /nil
+expect  Output written on story.dvi
+
+case    virtex-typesets-latex-too
+run     /dd/CMDS/TEXCMDS/virtex "&lplain" /dd/SYS/TEX/SAMPLES/small.tex < /nil
+expect  LaTeX Version 2.09
+expect  Output written on small.dvi
