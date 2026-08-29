@@ -111,9 +111,14 @@ run     file /dd/DOC/sox/great_oz.iff /dd/tmp/oz.au
 wait    6
 
 shot    todos
+for     todos toos9 autolf
 cap     todos and toos9 claim to convert line endings between OS-9 and DOS.
-cap     They do NOT: the file comes back byte-identical, which is what the
-cap     checksums below show.  Kept here because it is the truth.
+cap     They do NOT, and the screen says why: todos converts into
+cap     `todos.$$$.3' and then cannot RENAME it back, so the file comes
+cap     back byte-identical.  That is the same missing rename() that stops
+cap     zip and arc.  `autolf' below is the program that does the job --
+cap     40 bytes in, 41 out, the 0D at the end of the line now 0D 0A --
+cap     because as a FILTER it never has to rename anything.
 run     cat /dd/SYS/motd > /dd/tmp/le.txt
 wait    3
 run     chksum /dd/tmp/le.txt
@@ -121,7 +126,11 @@ wait    3
 run     todos /dd/tmp/le.txt
 wait    4
 run     chksum /dd/tmp/le.txt
+wait    4
+run     autolf -c -C -L < /dd/SYS/motd > /dd/tmp/le2.txt
 wait    5
+run     wc -c /dd/SYS/motd /dd/tmp/le2.txt
+wait    6
 
 shot    uudecode
 cap     uuencode and uudecode, the pair that carried binaries through mail.

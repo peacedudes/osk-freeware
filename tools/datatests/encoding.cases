@@ -83,3 +83,27 @@ expect  46801
 case    cvtbase-converts
 run     /dd/CMDS/cvtbase 255 16
 absent  usage
+
+# `autolf' IS THE LINE-ENDING CONVERTER THAT WORKS, found 2026-08-29 while
+# checking DOC/INDEX entries nobody had ever run. As a FILTER it turns the
+# CR at the end of an OS-9 line into CRLF: 40 bytes in, 41 out. Given a
+# FILENAME it converts through a temporary and cannot rename it back, which
+# is the same missing rename() that stops zip, arc and todos itself -- and
+# todos now says so on screen: `rename todos.$$$.3 ... (E$PNNF)'.
+case    autolf-converts-cr-to-crlf-as-a-filter
+run     /dd/CMDS/autolf -c -C -L < /dd/SYS/motd > /dd/tmp/al.out
+run     /dd/CMDS/wc -c /dd/tmp/al.out
+expect  41
+
+case    autolf-cannot-rename-when-given-a-filename
+run     /dd/CMDS/cp /dd/SYS/motd /dd/tmp/al2.txt
+run     /dd/CMDS/autolf -c -C -L /dd/tmp/al2.txt
+expect  couldn't rename
+
+case    todos-fails-for-the-same-reason
+run     /dd/CMDS/cp /dd/SYS/motd /dd/tmp/td.txt
+# The `(E$PNNF)' half of todos's complaint goes to the TERMINAL, not to
+# stderr -- OS-9 reports its own errors there -- so only this line survives
+# a pipe.  It is enough: it names the temporary todos could not rename.
+run     /dd/CMDS/todos /dd/tmp/td.txt 2>&1
+expect  todos.$$$

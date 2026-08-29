@@ -170,8 +170,8 @@
 
 | | |
 |---|---|
-| `ape` | &#9733; APE - text filter |
-| `autolf` | &#9733; auto-linefeed filter<br>`Usage:   autolf [<opts>] {<file names> [<opts>]}` |
+| `ape` | &#9733; writes GIBBERISH in the style of whatever it is given -- a travesty generator, not a text filter.  `travesty' and `newsgen' are the others of its kind here.  Clarified 2026-08-29 |
+| `autolf` | &#9733; Mike Tozer's line-ending converter, 1995, and THE ONE THAT WORKS: it turns CR into CRLF or LF and back, expands tabs, and handles ^Z.  Use it as a FILTER -- `autolf -c -C -L < in > out' makes DOS text out of OS-9 text, 40 bytes in and 41 out with 0D 0A at the end.  Given a FILENAME it converts in place through a temporary and then cannot rename it back -- this C library has no rename(), the same wall zip and arc hit.  `-H' explains the conversions.  It is what `todos' and `toos9' were supposed to be.  Measured 2026-08-29<br>`Usage:   autolf [<opts>] {<file names> [<opts>]}` |
 | `casefix` | normalise letter case in a text file |
 | `cut` | cut selected fields from each line |
 | `cuts` | &#9733; Coco Usenet Transfer Utility<br>`Usage: cuts <-d> [-o name] <file>...` |
@@ -713,8 +713,8 @@
 | `atob` | ASCII-to-binary decode<br>`Usage: atob <filein >fileout` |
 | `btoa` | Binary-to-ASCII encode<br>`Usage : btoa <filein >fileout` |
 | `chardef` | define a character set<br>`Syntax: defchar [<path>]` |
-| `todos` | &#9733; OS-9 to DOS line endings -- BUT SEE BELOW, it does nothing |
-| `toos9` | &#9733; DOS to OS-9 line endings -- the same DO NOT RELY ON THESE TWO.  Measured 2026-08-27: both are NO-OPS.  Each takes a FILENAME (not a pipe) and rewrites it in place through a `todos.$$$.N' temporary, and the file that comes out is byte-identical to the one that went in -- same length, same md5 -- on CR-only OS-9 text, which is exactly what todos says it converts.  A real DOS conversion must ADD a linefeed per line and cannot leave the length alone.  Tested on /dd/SYS/termcap (963 bytes) and DOC/README-CIO (3886); neither moved. Use `flip' host-side, or `tr', until this is understood. tools/datatests/encoding.cases keeps the failing case. |
+| `todos` | &#9733; OS-9 to DOS line endings -- BUT SEE BELOW, it does nothing. `autolf -c -C -L' does the job and is on this disk |
+| `toos9` | &#9733; DOS to OS-9 line endings -- the same, and the same answer: `autolf -l -C' converts the other way DO NOT RELY ON THESE TWO.  Measured 2026-08-27: both are NO-OPS.  Each takes a FILENAME (not a pipe) and rewrites it in place through a `todos.$$$.N' temporary, and the file that comes out is byte-identical to the one that went in -- same length, same md5 -- on CR-only OS-9 text, which is exactly what todos says it converts.  A real DOS conversion must ADD a linefeed per line and cannot leave the length alone.  Tested on /dd/SYS/termcap (963 bytes) and DOC/README-CIO (3886); neither moved. Use `flip' host-side, or `tr', until this is understood. tools/datatests/encoding.cases keeps the failing case. |
 | `uudecode` | &#9733; uudecode<br>`USAGE: uudecode [infile]` |
 | `uuencode` | &#9733; uuencode.  ITS OWN USAGE LINE IS WRONG: it prints `uuencode >outfile [infile] name' and then fails with two arguments.  Give it ONE -- the input file -- and redirect: `uuencode myfile > myfile.uu'.  Measured 2026-08-27<br>`USAGE: uuencode >outfile [infile] name` |
 | `uuexpand` | expand uuencoded text<br>`Usage: uuexpand [opts]` |

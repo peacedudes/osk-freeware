@@ -9,3 +9,8 @@ rename todos.$$$.3 /dd/tmp/le.txt:  (E$PNNF) That path name doesn't lead to any.
 Src: '/dd/tmp/le.txt', Dest: 'todos.$$$.3'   Rename 'todos.$$$.3' -> '/dd/tmp/l'
 $ chksum /dd/tmp/le.txt
 4b68af85
+$ autolf -c -C -L < /dd/SYS/motd > /dd/tmp/le2.txt
+$ wc -c /dd/SYS/motd /dd/tmp/le2.txt
+     40 /dd/SYS/motd
+     41 /dd/tmp/le2.txt
+     81 total
