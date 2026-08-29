@@ -1,9 +1,14 @@
 # The help system and the pagers.
 
 shot    help
-cap     The help system, listing the topics it has -- each one a .hlp file
-cap     and an index in SYS/HELP.
-run     help
+cap     The help system answering a topic.  It keeps a .hlp file and an
+cap     index per subject in SYS/HELP, offers what it has at the `Topic ?'
+cap     prompt, and pages the article.  It is asked for by path because
+cap     bash has a `help' builtin of its own, and the builtin wins: typing
+cap     `help' alone never reaches this program.
+run     /dd/CMDS/help
+wait    5
+send    space\r
 wait    6
 
 shot    helpindex
@@ -24,8 +29,10 @@ send    q
 wait    2
 
 shot    rdoc
-cap     rdoc, the document reader.
-run     rdoc /dd/DOC/README-CIO
-wait    6
-send    q
-wait    2
+cap     rdoc is Rueckdokumentation -- reverse documentation, from c't in
+cap     1988.  Hand it C source and it prints the control structure as an
+cap     indented skeleton: every if, else, for, switch and case in place,
+cap     with the code between them taken away.  This is the tail of what it
+cap     makes of keep.c.
+run     rdoc /dd/SRC/keep/keep.c | tail -l=20
+wait    90

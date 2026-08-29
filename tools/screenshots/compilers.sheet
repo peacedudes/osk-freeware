@@ -36,11 +36,14 @@ wait    5
 
 shot    gcc
 for     gcc gcc_cc2 gcc_cccp2 gpp gpp_cc1plus gpp_cccp gpp_collect gcc_cc1 gcc_collect
-cap     GCC 1.39 and its passes.  The driver looks for its sub-programs
-cap     under a prefix -- gcc2 wants gcc_, gpp wants gpp_ -- and says so
-cap     when it cannot find them.
+cap     GCC 1.39 and its passes.  Asked to compile, the driver prints the
+cap     preprocessor command it wants to run and then cannot find `cccp':
+cap     the passes are installed under a prefix -- gcc2 wants gcc_, gpp
+cap     wants gpp_ -- and the driver does not look where they live.
 run     gcc -v
-wait    10
+wait    4
+run     gcc -v -c /dd/SRC/load/load.c
+wait    12
 
 shot    gmake
 cap     GNU make, and dmake beside it, both saying what they are.

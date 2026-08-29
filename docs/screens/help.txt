@@ -1,23 +1,24 @@
- case WORD in [PATTERN [| PATTERN]. cd [dir]
- command [-p] [command [arg ...]]   continue [n]
- declare [-[frxi]] name[=value] ... dirs [-l]
- echo [-neE] [arg ...]              enable [-n] [name ...]
- eval [arg ...]                     exec [ [-] file [redirection ...]]
- exit [n]                           export [-n] [-p] [-f] [name ...]
- fc [-e ename] [-nlr] [first] [last for NAME [in WORDS ... ;] do COMMA
- function NAME { COMMANDS ; } or NA getopts optstring name [arg]
- hash [-r] [name ...]               help [pattern ...]
- history [n] [ [-awrn] [filename]]  if COMMANDS; then COMMANDS; [else
- kill [-s sigspec | -sigspec] [pid] let arg [arg ...]
- local name[=value] ...             logout
- popd [+n | -n]                     pushd [dir | +n | -n]
- pwd                                read [-r] [name ...]
- readonly [-p] [-f] [name ...]      return [n]
- set [-abefhknotuvxldH] [arg ...]   shift [n]
- source filename                    test [expr]
- times                              trap [arg] [signal_spec]
- type [-all] [-type | -path] [name  typeset [-[frxi]] name[=value] ...
- ulimit [-SHacdmstfpn [limit]]      umask [-S] [mode]
- unalias [-a] [name ...]            unset [-f] [-v] [name ...]
- until COMMANDS; do COMMANDS; done  wait [n]
- while COMMANDS; do COMMANDS; done  { COMMANDS }
+Topic ? space
+
+
+SPACE
+-----
+
+SPACE - Show effective space requirement of files and directories
+
+Important:    This   program    is  public    domain  and  may  be  used  and
+              distributed freely as long as the "Distribution_Rules" are  met
+              (see subtopic in this help file).
+
+Syntax:       SPACE [<opts>] {<dir/file path>} [<opts>]
+
+Function:     Shows effective  space  requirements  of  directory  trees  and
+              single files on a given disk. "Effective" space means that  not
+              only the number of bytes *contained* in the files, but also all
+              space  consumed  by  the  file  system  itself  such  as   file
+              descriptors, directory files and  partially  used  clusters  is
+              taken into account (unlike "du" or "dir -e").
+              SPACE completely replaces the "du" (disk usage) utility and  is
+              about 3 to 4 times faster than "du"  because  it  is  specially
+              designed for OSK.
+[More...]

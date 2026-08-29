@@ -1,22 +1,21 @@
-CMDS:
+$ rdoc /dd/SRC/keep/keep.c | tail -l=20
+       case
+         if
+         else  if
+         break
+       case
+       default
+      }
+   }
 
-
+else
+   if  {
+   }
+   if
    for
-
-   else
-   are:
-
-
-
-   round:
-
-do
-
-for
-
-
-
-here:
-
-
-$ q
+else
+   for
+   if
+   if
+   if
+}

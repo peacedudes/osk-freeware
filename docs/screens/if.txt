@@ -1,4 +1,13 @@
-$ if -?
-> exist /dd/SYS/motd
-> exist /dd/SYS/nothing-here
->
+$ /dd/CMDS/if -?
+Syntax: if [not] <cond> {<arg>} {<cmd1>} [else {<cmd2>}] endif
+Function: if the [negated] condition <cond> depending on the arguments
+          <arg> is true, then hand the commands <cmd1> to the shell for
+          execution, else, if provided, <cmd2>.
+Conditions available:
+    def    <var>              true, if environment variable <var> is defined
+    loaded <mod>              true, if module <mod> is already loaded
+    varval <var> <val>        true, if envir. variable <var> has value <val>
+Options:
+     (none)
+$ exist /dd/SYS/motd
+$ exist /dd/SYS/nothing-here

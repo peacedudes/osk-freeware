@@ -3,14 +3,15 @@
 
 shot    env
 for     env getenv printenv checkenv whoami logname su
-cap     env runs a command with the environment changed, and getenv reads
-cap     one variable back.
+cap     env runs a command with the environment changed; getenv reads one
+cap     variable back, and wants -p before it will print rather than just
+cap     set a status.  It is DESIGNA's, and answers in German.
 run     env FOO=bar printenv | grep FOO
 wait    8
-run     getenv TERM
+run     getenv -p TERM
 wait    5
-run     whoami
-wait    5
+run     getenv -?
+wait    6
 
 shot    exist
 for     exist checkenv ask ynad
@@ -41,8 +42,10 @@ wait    8
 shot    if
 for     if exist ask ynad
 cap     if, exist and ask are the pieces a shell script tests with -- OS-9
-cap     had no `test' and these are what stood in for it.
-run     if -?
+cap     had no `test' and these are what stood in for it.  This one is
+cap     asked for by path because `if' is also a bash KEYWORD, and the
+cap     keyword wins: typing `if' alone never reaches the program.
+run     /dd/CMDS/if -?
 wait    6
 run     exist /dd/SYS/motd
 wait    5
@@ -54,7 +57,9 @@ cap     pd-ksh, the Korn shell, running as a program under bash: its own
 cap     prompt, its own builtins.
 run     ksh
 wait    4
-send    echo $KSH_VERSION; for i in 1 2 3; do echo line $i; done\r
+send    \r
+wait    1
+send    echo; for i in 1 2 3; do echo line $i; done\r
 wait    4
 send    exit\r
 wait    2
@@ -85,7 +90,7 @@ cap     Who you are, twice, and it is worth reading closely: `whoami' and
 cap     `logname' answer `su' because they look you up by USER NUMBER in
 cap     SYS/password -- everything here is owned 0.0 -- while $USER, which
 cap     SYS/login set, says tester.  `tty' asks the path itself and answers
-cap     /term.
+cap     `term', the name of the console device.
 run     whoami
 wait    4
 run     logname
