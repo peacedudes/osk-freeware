@@ -214,6 +214,28 @@ that. With those, seven runs in a row pass.
 **Use `until` for anything whose timing varies**, and read the markers out of
 `notes/playtests/<name>.keyed.raw` rather than guessing them.
 
+## THE ONE LESSON FROM 2026-08-29, IN A SENTENCE
+
+**A program that is silent to a sweep has usually not been asked the right
+question.** Everything found that day came out of asking again:
+
+  - the **RTF Fortran compiler** compiles, once `os9lib` is loaded;
+  - **`wisecrack` and `ask`** are a server and its client, and only work
+    together;
+  - **`readnews`** opens the news reader, **`infoxpress`** opens a serial
+    device, **`ub68020demo`** announces its processor -- all three were
+    filed as mute;
+  - **`shar`** is one broken access check away from working, and writes its
+    whole preamble for a file that is not there;
+  - **`printf`** works except for the literal before the first conversion,
+    and does NOT flood as the storm list claimed;
+  - **`lfmaker`** and **`etags`** DO flood, and no sweep could ever have
+    found them -- a storming program prints, so every stage scores it OK.
+
+And the counterpart: a program the docs call broken deserves the same
+re-asking. `printf`, `shar` and `hexedit` were all described more harshly
+than the measurements justified, and rdoggett caught the first of them.
+
 ## WHAT TO DO NEXT, then
 
 **1. Coverage is done: `docs/screens.js` covers 918 of 918.** The last
