@@ -507,8 +507,15 @@ run     lmargin -?
 wait    6
 
 shot    ub68kdemo
+for     ub68kdemo ub68020demo
 cap     UniBasic 1.10 -- the other BASIC compiler here, same arrangement.
-run     ub68kdemo
+cap     It ships twice, once for the 68000 and once for the 68020, and
+cap     BOTH run: each announces its own processor, which is the only line
+cap     that differs.  The 020 build was filed as saying nothing until
+cap     2026-08-29, and it never did.
+run     ub68kdemo | head -n 3
+wait    8
+run     ub68020demo | head -n 3
 wait    8
 
 shot    umacs
@@ -658,21 +665,24 @@ run     fontgen < /nil | head -n 10
 wait    12
 
 shot    silent
-for     blackjack readnews ub68020demo X11R6shl pdraw
-cap     The last few that say nothing worth photographing.  `blackjack' is
-cap     one of the three BASIC09 programs here and needs runb; `readnews'
-cap     wants a news spool; `ub68020demo' exits at once.  `X11R6shl' is
-cap     not a program at all -- bash calls it what it is, a binary it
-cap     cannot execute.  `pdraw' does print: its configuration, terminal
-cap     type and default printer, before it looks for an X server.
-run     blackjack
-wait    6
-run     readnews
-wait    6
-run     ub68020demo
+for     blackjack X11R6shl pdraw readnews
+cap     The last few with nothing much to show, and two of them turned out
+cap     to have something after all.  `readnews' RUNS -- it opens the news
+cap     reader and says there are no newsgroups, which is the truth on a
+cap     disk with no spool.  `pdraw' prints its configuration before it
+cap     looks for an X server.  `blackjack' is one of the three BASIC09
+cap     programs here: it lives in CMDS/BROKEN, off the login PATH, and
+cap     wants `runb'.  `X11R6shl' is not a program at all, and bash says
+cap     so.  `readnews' goes last here because it does not stop asking:
+cap     with nothing on its standard input it puts the same question over
+cap     and over, so the card takes one answer and ends it.
+run     pdraw < /nil | head -n 4
+wait    8
+run     /dd/CMDS/BROKEN/blackjack
 wait    6
 run     X11R6shl
 wait    6
-run     pdraw
+run     readnews < /nil | head -n 2
 wait    8
+kill
 

@@ -836,7 +836,7 @@
 | `newshist` | &#9733; rebuild the history file<br>`usage: newshist [-df file] msgid ...` |
 | `newslock` | &#9733; the news system's lock<br>`Usage: newslock tempname lockname` |
 | `postnews` | &#9733; post an article to a newsgroup<br>`Usage: postnews [options]` |
-| `readnews` | &#9733; read news |
+| `readnews` | &#9733; read Usenet news articles -- and it RUNS: it opens the reader and answers `**** End of newsgroups', which is the truth on a disk with no news spool.  Every sweep scored it mute because it asks its question and waits. Corrected 2026-08-29 |
 | `rnews` | &#9733; unpack an incoming news batch |
 | `subscribe` | &#9733; add a newsgroup to your subscription list<br>`usage: subscribe <newsgroup> [newsgroup...]` |
 | `unsubscribe` | &#9733; drop one<br>`usage: unsubscribe <newsgroup> [newsgroup...]` |
@@ -1511,7 +1511,7 @@
 |---|---|
 | `ob68kdemo` | OmniBasic 1.16 -- a BASIC compiler.  Limited symbol table; otherwise the including compiler.  Run it from /dd/DOC/omnibasic, where its library and examples are. Like UniBasic it needs Microware's cc to finish a build<br>**How:** OmniBasic 1.16, same arrangement as ub68kdemo and the same SHELL trick -- see its entry. Run it from /dd/DOC/omnibasic. DEMO VERSION, capped symbol table. |
 | `sddemo` | White's Speedisk 2.10 -- disk de-fragmenter.  Wants an 80x24 screen; falls back to tty mode<br>**How:** White's Speedisk 2.10 de-fragmenter, demo build. Wants an 80x24 screen and drops to tty mode without one. |
-| `ub68020demo` | UniBasic 1.10 built for the 68020, beside the 68000 one |
+| `ub68020demo` | UniBasic 1.10 for the 68020 -- the same demonstration as `ub68kdemo' and it runs the same way, announcing `OS9/68020 Version' where the other says 68000.  It was filed as silent until 2026-08-29 and never was |
 | `ub68kdemo` | UniBasic 1.10 -- a BASIC compiler, same arrangement as OmniBasic.  Run it from /dd/DOC/unibasic<br>**How:** UniBasic 1.10, and it does compile -- the trick is that it runs its build through $SHELL. With SHELL unset it hunts for `/dd/bash' and dies with "Error Exit" and error 216. Do `setenv SHELL /dd/CMDS/sh', work in a directory holding basic.h and basic.l (DOC/unibasic has them), have your C toolchain reachable with CDEF and CLIB set, and give it memory. Verified end to end. DEMO VERSION: the symbol table is capped, nothing else is. |
 
 **Keeping and dropping**

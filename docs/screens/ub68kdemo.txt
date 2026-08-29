@@ -1,17 +1,12 @@
-$ ub68kdemo
+$ ub68kdemo | head -n 3
+
 
 UniBasic Version 1.10
+
 OS9/68000 Version
+$ ub68020demo | head -n 3
 
-*************** DEMO VERSION ***************
-Modification expressly forbidden!!!
 
-To order call: (573) 236-4372 or 4373
-EMail at mlsmith@vax2.rain.gen.mo.us
+UniBasic Version 1.10
 
-Versions for other operating systems available
-
-Copyright  1995, 1996 Computer Design Lab
-All Rights Reserved
-
-No input file
+OS9/68020 Version
