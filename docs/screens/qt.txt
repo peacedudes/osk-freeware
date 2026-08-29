@@ -1,0 +1,10 @@
+$ qt
+It's nearly a quarter past four.
+$ vis -?
+syntax: vis {opt} <command> <args>
+function: repeatedly execute command, refreshing screen with its output
+options:
+        -d=<delay> loop delay period, in seconds (default 2)
+        -f         force continuation if <command> returns error
+        -h         don't print header (use all lines for screen)
+        -s         show changes highlighted

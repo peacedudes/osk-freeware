@@ -322,9 +322,17 @@ run     sort -n /dd/tmp/n.txt
 wait    8
 
 shot    qt
-cap     qt tells the time the way a person would say it.
+for     qt vis
+cap     `qt' tells the time the way a person says it out loud -- `It's just
+cap     gone ten past four'.  DOC/INDEX called it a quick text utility,
+cap     which is what put it in this file; it is corrected there now.
+cap     `vis' beside it is not the Unix `vis' either: it runs a command
+cap     over and over and refreshes the screen with the output, which is
+cap     what `watch' does on other systems.
 run     qt
-wait    3
+wait    6
+run     vis -?
+wait    8
 
 shot    rot
 cap     rot turns a file on its side -- the first line becomes the first
