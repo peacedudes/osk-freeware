@@ -8,5 +8,7 @@ pcxtoppm: Xmin: 0   Ymin: 0   Xmax: 47   Ymax: 23
 pcxtoppm: Planes: 3    BytesPerLine: 6    PaletteInfo: 1
 pcxtoppm: 16 color -> ppm
 pcxtoppm: done!
-$ pnmfile /dd/tmp/t.pcx /dd/tmp/back3.ppm
-pnmfile: bad magic number - not a ppm, pgm, or pbm file
+$ ls -l /dd/tmp/t.pcx
+-rw-rw-rw-   1 0        0             572 Aug 28 17:22 /dd/tmp/t.pcx
+$ pnmfile /dd/tmp/back3.ppm
+/dd/tmp/back3.ppm:      PPM raw, 48 by 24  maxval 255

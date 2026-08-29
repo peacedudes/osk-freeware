@@ -1,8 +1,5 @@
-$ ppmntsc /dd/tmp/w.ppm | pnmfile
-usage:  ppmntsc dimfactor [ppmfile]
-        dimfactor: 0.0 = total blackness, 1.0 = original picture
-
-pnmfile: EOF / read error reading magic number
+$ ppmntsc 0.8 /dd/tmp/w.ppm | pnmfile
+stdin:  PPM raw, 71 by 44  maxval 255
 $ ppmqvga /dd/tmp/w.ppm | pnmfile
 stdin:  PPM raw, 71 by 44  maxval 255
 $ pnmtorast /dd/tmp/w.ppm > /dd/tmp/w.ras

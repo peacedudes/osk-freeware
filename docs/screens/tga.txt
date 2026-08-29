@@ -7,5 +7,9 @@ pnmtorast: computing colormap...
 pnmtorast: 6 colors found
 $ rasttopnm /dd/tmp/t.ras > /dd/tmp/back5.ppm
 rasttopnm: writing PPM file
-$ pnmfile /dd/tmp/t.tga /dd/tmp/back4.ppm /dd/tmp/t.ras /dd/tmp/back5.ppm
-pnmfile: bad magic number - not a ppm, pgm, or pbm file
+$ ls -l /dd/tmp/t.tga /dd/tmp/t.ras
+-rw-rw-rw-   1 0        0            1085 Aug 28 17:23 /dd/tmp/t.ras
+-rw-rw-rw-   1 0        0             228 Aug 28 17:23 /dd/tmp/t.tga
+$ pnmfile /dd/tmp/back4.ppm /dd/tmp/back5.ppm
+/dd/tmp/back4.ppm:      PPM raw, 48 by 24  maxval 255
+/dd/tmp/back5.ppm:      PPM raw, 48 by 24  maxval 255

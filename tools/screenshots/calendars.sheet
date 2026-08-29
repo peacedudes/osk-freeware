@@ -35,9 +35,13 @@ wait    3
 shot    ephem
 for     ephem
 cap     ephem, the astronomical ephemeris, with the configuration and
-cap     database that ship in SYS.
+cap     database that ship in SYS.  Past the copyright page it draws its
+cap     table: the sun, the moon and the planets for the date it is set to,
+cap     with rise, transit and set down the side.
 run     ephem -c /dd/SYS/ephem.cfg -d /dd/SYS/ephem.db
-wait    12
+wait    8
+send    \r
+wait    10
 quit    q
 
 

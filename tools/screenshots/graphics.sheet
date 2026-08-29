@@ -49,7 +49,9 @@ run     ppmtobmp /dd/tmp/base.ppm > /dd/tmp/t.bmp
 wait    8
 run     bmptoppm /dd/tmp/t.bmp > /dd/tmp/back2.ppm
 wait    8
-run     pnmfile /dd/tmp/t.bmp /dd/tmp/back2.ppm
+run     ls -l /dd/tmp/t.bmp
+wait    3
+run     pnmfile /dd/tmp/back2.ppm
 wait    6
 
 shot    djpeg
@@ -87,13 +89,15 @@ wait    8
 
 shot    gif
 for     ppmtogif giftopnm
-cap     GIF out and back: ppmtogif writes it, giftopnm reads it, pnmfile
-cap     says what each file is.
+cap     GIF out and back: ppmtogif writes it, giftopnm reads it, and
+cap     pnmfile confirms the picture came back the size it went in.
 run     ppmtogif /dd/tmp/base.ppm > /dd/tmp/t.gif
 wait    8
 run     giftopnm /dd/tmp/t.gif > /dd/tmp/back.ppm
 wait    8
-run     pnmfile /dd/tmp/base.ppm /dd/tmp/t.gif /dd/tmp/back.ppm
+run     ls -l /dd/tmp/t.gif
+wait    3
+run     pnmfile /dd/tmp/base.ppm /dd/tmp/back.ppm
 wait    6
 
 shot    gif2
@@ -248,7 +252,9 @@ run     ppmtopcx /dd/tmp/base.ppm > /dd/tmp/t.pcx
 wait    8
 run     pcxtoppm /dd/tmp/t.pcx > /dd/tmp/back3.ppm
 wait    8
-run     pnmfile /dd/tmp/t.pcx /dd/tmp/back3.ppm
+run     ls -l /dd/tmp/t.pcx
+wait    3
+run     pnmfile /dd/tmp/back3.ppm
 wait    6
 
 shot    pgmbentley
@@ -280,10 +286,15 @@ wait    8
 
 shot    pgmnoise
 for     pgmnoise pnmsmooth pnmconvol
-cap     pgmnoise makes white noise and pnmsmooth blurs it -- a convolution,
-cap     and what comes out looks like cloud.
-run     pgmnoise 152 88 | pnmsmooth | pgmtopbm | pbmtoascii -2x4
+cap     pgmnoise makes white noise -- every pixel an independent random
+cap     grey, thresholded here to black and white.  pnmsmooth would blur
+cap     it into cloud, but it is a script that scratches in /r0 and this
+cap     disk has no RAM disk; pnmconvol, which does the actual work, is
+cap     here and takes a kernel file.
+run     pgmnoise 152 88 | pgmtopbm | pbmtoascii -2x4
 wait    20
+run     pnmsmooth /dd/tmp/base.pgm
+wait    10
 
 shot    pgmoil
 cap     pgmoil paints the photograph again as if in oils -- each pixel
@@ -318,13 +329,16 @@ wait    8
 
 shot    pnmarith
 for     pnmarith pnmdepth
-cap     pnmarith multiplies two images together -- the sphere by a ramp, so
-cap     it fades across.
+cap     pnmarith multiplies two images together, and it insists they be
+cap     exactly the same size -- a scaled photograph and a ramp asked for
+cap     at the same dimensions are not, because pnmscale keeps the aspect
+cap     ratio.  Two ramps, one left-to-right and one top-to-bottom,
+cap     multiply into a corner that fades both ways at once.
 run     pgmramp -lr 152 88 > /dd/tmp/r2.pgm
 wait    8
-run     pnmscale -xysize 152 88 /dd/DEMO/sphere.pgm > /dd/tmp/s2.pgm
-wait    10
-run     pnmarith -multiply /dd/tmp/s2.pgm /dd/tmp/r2.pgm | pgmtopbm | pbmtoascii -2x4
+run     pgmramp -tb 152 88 > /dd/tmp/r3.pgm
+wait    8
+run     pnmarith -multiply /dd/tmp/r2.pgm /dd/tmp/r3.pgm | pgmtopbm | pbmtoascii -2x4
 wait    20
 
 shot    pnmcat
@@ -576,7 +590,9 @@ run     pnmtorast /dd/tmp/base.ppm > /dd/tmp/t.ras
 wait    6
 run     rasttopnm /dd/tmp/t.ras > /dd/tmp/back5.ppm
 wait    6
-run     pnmfile /dd/tmp/t.tga /dd/tmp/back4.ppm /dd/tmp/t.ras /dd/tmp/back5.ppm
+run     ls -l /dd/tmp/t.tga /dd/tmp/t.ras
+wait    3
+run     pnmfile /dd/tmp/back4.ppm /dd/tmp/back5.ppm
 wait    6
 
 shot    tiffish
@@ -628,14 +644,18 @@ wait    8
 
 shot    yuv
 for     ppmtoyuv yuvtoppm ppmtoyuvsplit yuvsplittoppm ppmtorgb3 rgb3toppm
-cap     Video colour spaces: YUV as one stream and as three planes, and RGB
-cap     split into three files.
+cap     Video colour spaces: YUV as one stream and as three planes, and
+cap     RGB split into three files -- ppmtorgb3 names them after the input
+cap     and writes them beside it, so base.ppm becomes base.red, base.grn
+cap     and base.blu, and rgb3toppm puts them back together.
 run     ppmtoyuv /dd/tmp/base.ppm | yuvtoppm 48 24 | pnmfile
 wait    10
 run     ppmtorgb3 /dd/tmp/base.ppm
 wait    8
-run     ls -l noname.red noname.grn noname.blu
+run     ls -l /dd/tmp/base.red /dd/tmp/base.grn /dd/tmp/base.blu
 wait    8
+run     rgb3toppm /dd/tmp/base.red /dd/tmp/base.grn /dd/tmp/base.blu | pnmfile
+wait    10
 
 
 shot    graphlib
@@ -678,8 +698,8 @@ run     pnmnlfilt 1.0 0.5 /dd/tmp/w.ppm | pnmfile
 wait    20
 run     ppmflash 0.4 /dd/tmp/w.ppm | pnmfile
 wait    15
-run     ppmdist /dd/tmp/w.ppm | pnmfile
-wait    15
+run     ppmquant 256 /dd/tmp/w.ppm | ppmdist | pnmfile
+wait    20
 
 
 shot    ppmntsc
@@ -687,7 +707,7 @@ for     ppmntsc ppmqvga pnmtorast rasttopnm pnmtoddif
 cap     ppmntsc clamps an image to what NTSC could actually transmit and
 cap     ppmqvga to a 320x240 palette; Sun raster goes out and comes back,
 cap     which is the check that the pair agree.
-run     ppmntsc /dd/tmp/w.ppm | pnmfile
+run     ppmntsc 0.8 /dd/tmp/w.ppm | pnmfile
 wait    15
 run     ppmqvga /dd/tmp/w.ppm | pnmfile
 wait    15

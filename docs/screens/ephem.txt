@@ -1,14 +1,24 @@
-            Ephem - an interactive astronomical ephemeris program
-                          Version 4.13 April 3, 1990
+Updating...
 
-                 Copyright (c) 1990 by Elwood Charles Downey
-
-     Permission is granted to make and distribute copies of this program
-      free of charge, provided the copyright notice and this permission
-       notice are preserved on all copies.  All other rights reserved.
-
-  Many formulas and tables are based, with permission, on material found in
-                   "Astronomy with your Personal Computer"
-       by Dr. Peter Duffett-Smith, Cambridge University Press, (c) 1985
-
-                         type any key to continue...
+    23:19:41  8/28/2026 | LST   21:23:11 | Lat   47:15:40 |     August 2026
+UTC 22:19:41  8/28/2026 |                | Long  -8:41:43 | Su Mo Tu We Th Fr Sa
+JulianDat 2461281.43034 | Dawn      3:48 | Elev   1500 ft |                    1
+                        | Dusk     21:03 | Temp      40 F |  2  3  4  5  6  7  8
+Watch                   | NiteLn    6:45 | AtmPr 29.50 in |  9 10 11 NM 13 14 15
+Search              off |                | TZ    -1:00:00 | 16 17 18 19 20 21 22
+Plot                off | NStep        0 | Epoch (OfDate) | 23 24 25 26 27 FM 29
+Menu        Planet Data | StpSz RT CLOCK |                | 30 31
+--------------------------------------------------------------------------------
+Ob   R.A.    Dec    Az     Alt  H Long H Lat  Ea Dst Sn Dst Elong  Size VMag Phs
+Su 10:29.7   9:27 340:41 -31:24 335:38        1.0100               1900  -27
+Mo 23:01.0  -4:50 150:19  32:51               240906 1.0126 -171.0 1849  -13  95
+Me 10:36.8  10:36 339:02 -29:52 160:15   6:31 1.3681 0.3607    2.1  4.9 -2.0 100
+Ve 13:11.7 -10:51 287:43 -30:00 301:29  -2:23 0.5781 0.7282   45.1 29.3 -5.3  41
+Ma
+Ju
+Sa
+Ur
+Ne
+Pl
+X
+Y

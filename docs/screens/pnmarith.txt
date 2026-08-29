@@ -1,6 +1,23 @@
-$ pgmramp -lr 152 88 > /dd/tmp/r2.pgm
-$ pnmscale -xysize 152 88 /dd/DEMO/sphere.pgm > /dd/tmp/s2.pgm
-<d/tmp/s2.pgm /dd/tmp/r2.pgm | pgmtopbm | pbmtoascii -2x4
-pnmarith: the two anymaps must be the same width and height
-pgmtopbm: EOF / read error reading magic number
-pbmtoascii: EOF / read error reading magic number
+<d/tmp/r2.pgm /dd/tmp/r3.pgm | pgmtopbm | pbmtoascii -2x4
+MMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMM
+MMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMM
+MMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMHMHMHMHM9MRMRMRMRM9RM6M6MHRHMHHMHHHHHDM&HHHH
+MMMMMMMMMMMMMMMMMMMRMMMHM96MHM6MM9MMHRMMH6MHHH6H6M9RMH&RHRMH&HH&H&M99R6M&HH9
+MMMMMMMMMMMMMRMMHMHMHHMRMMHMH6MH6MHHRM9&MHHH6RM9H&6HH&M&&M&&R6HH&R&6&FkR6HH&
+MMMMMMMMMMM6MMM9M9MHMH6MHHM6M6MHDMHMHHH9RM&H6HHHH&kM9H&RH&FRHSHH&19H&19$kH&&
+MMMMMMMMMHMMHHMMHMHHMH6HM&RHHH9HRM&&RH6&9H&RH9kMSM&1$RH&H&$kkR&&Z&&&6$&&&&Sk
+MMMMMMM6MMHMMRMHMMMHM9RMRMH&M&H9&9M&FM&FH&R&&9&$kH&1Fk&SkH&$&&1S$/&$$$&&%F&$
+MMMMMM9MM9MHMM9MHHRMRMH&RM9HFMH&RH9&6H&&&9&H&&&&1&$kFF&$&S&&$$&&%&$&$S$S$?}F
+MMMMMMMMHM9HM6MDMHHH6M&M&H9H&H&RH&6H&&FRH1&&9SFD&&Z$R&SF1S$&S&(k&%Z$4?/$$$Z?
+MMMMMMHMMMRMHMHMHHRHM&96R66R6M&1&&19&1&$H&$$&&&Z$F1%k&S$$4)S$4)$)\|&?$|S$||)
+MMMM6MMMH6MHHRHM9&RHRM&RH&RH&&FFR&&&&1&Z$F&&\$9%FS$$?FS$$|F$|?$7|SS$|||SSSSS
+MMMMMMHMRMHM&M96MHH&&6H9&HH1FRH&S6&&&&&S&S$$S$$S1$%$/$$\($?(|$%Z??%%%%%>?%|\
+MMMMMHMHM9MHH6HHHHHH&&H&9&&1&&FF&$F&&1%k&$Z&4%TFS$4|Z?((|}?|}??????%>i|%\%:S
+MMM6MMHMHRMHH6M9&RMFM&1&&191F&&Z&HZ&$$S$Z&(&(}S$//%|T||||||||||\\S|:%\\/<:\/
+MMMMM9MM9RMRM9HH6&9&R6FRH11$&&&Z$1%k&$Z\\Z$\$$\4|??SSSSSSS/|/|/\\S!:>\/:\<:\
+MMMMMHMHMHH6MHH&HH&6&&Fk&S&&$F&&%k&/$Z/$\$)\\|)?$)))))|\>/:|?:?|:<::/>\:::::
+MMMHMMRMHHHH&DM&H&RH9&1FF&&Z&&$&$\&S}$\\%|$($??????<S|//(//\\>:::<:\:\\::::-
+MMMMM6MMHRMHH96RH&kH9&11&$F&&&SFS$/$?T$$|)7|||||||\>S/\\>::\:?://;.-:\.----:
+MMMMHMHH9MH9H9&DkH&kF6$&&$Z$1$Z$\$$$T?(||T||||S?!?:S:?:<\!:<:::\'::::-:.:':
+MMM9MHMHHHHH&HH&&kD9&$9$&S$&S$%}&T)?$???????%\|\\/:\<::>`:::://:`.:-.-.- -
+MMMMMM96M9&6H1RRH1&&9&SFF1%F$]?$?$|)??????):?:|?\/:\:\:::.\.--::`.:- -. -`
