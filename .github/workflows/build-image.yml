@@ -46,6 +46,17 @@ jobs:
       - name: Check the disk tree
         run: tools/check_disk.py disk
 
+      # The catalogue and the sample-output screens are GENERATED and
+      # committed, so they can fall behind what they describe without any
+      # test noticing. These two say so. --check on gen_screens is the one
+      # that matters: a stanza edited after its capture was taken publishes
+      # the OLD screen under the NEW caption, and nothing else catches it.
+      - name: Check every program is catalogued
+        run: tools/gen_catalog.py disk --check
+
+      - name: Check no screen has drifted from its stanza
+        run: tools/gen_screens.py --check
+
       - name: Check out os9exec
         uses: actions/checkout@v4
         with:

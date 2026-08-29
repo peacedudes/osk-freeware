@@ -4,6 +4,7 @@ r"""Turn the captures into the SAMPLE OUTPUT the catalogue shows.
     tools/screenshots.py --all       # photograph the programs, many per run
     tools/playtest.py --all          # play the interactive ones and judge
     tools/gen_screens.py             # fold the captures into the catalogue
+    tools/gen_screens.py --check     # exit 1 if any capture has drifted
 
     docs/screens.js     one screen per program, read by docs/index.html
     docs/screens/*.txt  the same screens as text, because notes/ is scratch
@@ -457,6 +458,16 @@ def main():
     print("  %d screens, %d programs" % (len(entries), len(screens)))
     print("  %s" % os.path.join(DOCS, "screens.js"))
     print("  %s" % KEEP)
+
+    # --check MAKES THE DRIFT FATAL. Printing it was not enough: a stanza
+    # edited after its capture was taken publishes the OLD screen under the
+    # NEW caption, and that is the one way a card can lie without anybody
+    # touching a program. It happened four times in one session and was
+    # caught each time only because somebody read the line. CI reads nothing.
+    if "--check" in sys.argv and (missing or stale):
+        sys.exit("gen_screens: %d without a capture, %d stale -- "
+                 "re-shoot them with tools/screenshots.py before committing"
+                 % (len(missing), len(stale)))
 
 
 if __name__ == "__main__":
