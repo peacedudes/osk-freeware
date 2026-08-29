@@ -168,6 +168,26 @@ unstamped entries and run each one. A corrected entry gets a `Corrected
 <date>` or `Clarified <date>` stamp, which is how the next pass knows what
 has been checked. About 165 short entries remain unstamped.
 
+## BE AS FAIR TO A PROGRAM AS TO A TEST
+
+The same care that catches a false pass catches an over-damning description,
+and on 2026-08-29 three needed rebalancing after rdoggett pointed at the
+first: *"to be fair, printf works some of the time"*, with a working example.
+
+  - **`printf` works** except that the literal text before the FIRST
+    conversion is dropped. Everything between and after conversions is
+    right. The first write-up led with the failure and read as though the
+    program were inert.
+  - **`shar` is one broken check away from working.** Its read-access test
+    rejects every file that EXISTS; give it a name that is not there and the
+    check passes vacuously and out comes the whole preamble.
+  - **`hexedit` is HEXPERT V2.4** and identifies itself under `-v`; it is
+    the two other paths that fail, and differently from each other.
+
+A description that says "does nothing" should be tested against every
+invocation the program's own usage line offers before it is written down.
+Each of these three was found by doing exactly that.
+
 ## WHAT TO DO NEXT, then
 
 **1. Coverage is done: `docs/screens.js` covers 918 of 918.** The last
