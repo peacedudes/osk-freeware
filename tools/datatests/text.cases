@@ -209,3 +209,12 @@ run     /dd/CMDS/ls /dd/CMDS > /nil
 run     /dd/CMDS/ls /dd/CMDS > /nil
 run     /dd/CMDS/ask "and now"
 absent  No Wisecracks coming
+
+# `ksh' CAN BE THE FIRST SHELL, re-measured 2026-08-29.  DOC/README-RUNNING
+# said it could not -- that it wanted cio loaded and so needed a shell first
+# -- which was true before the five Microware modules shipped here.  This
+# case runs a command THROUGH ksh from the outer bash, which is the same
+# fork path that was said to be impossible.
+case    ksh-forks-an-external-command
+run     /dd/CMDS/ksh -c "/dd/CMDS/chksum /dd/SYS/motd"
+expect  4b68af85
