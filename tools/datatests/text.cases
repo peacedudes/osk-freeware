@@ -135,13 +135,19 @@ run     /dd/CMDS/sort -n /dd/tmp/ns.txt > /dd/tmp/ns.out
 run     /dd/CMDS/cat /dd/tmp/ns.out
 expect  3
 
-# `printf' DROPS EVERYTHING BEFORE THE FIRST CONVERSION, and prints nothing
-# at all for a format that has no conversion in it.  Begin the format with
-# the conversion and it is correct.  DOC/INDEX said it floods `No more
-# memory !!!' until 2026-08-29; it does not.
+# `printf' WORKS, with one flaw: the literal text BEFORE THE FIRST CONVERSION
+# is dropped.  Everything between and after conversions is right.  These four
+# cases fix the rule from both sides, because the first version of this note
+# read as though printf were simply broken and it is not.  DOC/INDEX said it
+# floods `No more memory !!!' until 2026-08-29; it does not.
 case    printf-is-right-when-the-format-starts-with-a-conversion
-run     /dd/CMDS/printf "%s-%s\n" A B
-expect  A-B
+run     /dd/CMDS/printf "%d %s %d\n" 4 "is bigger than " 3
+expect  4 is bigger than  3
+
+case    printf-keeps-every-literal-after-the-first-conversion
+run     /dd/CMDS/printf "a%db%dc\n" 1 2
+expect  1b2c
+absent  a1b2c
 
 case    printf-drops-what-comes-before-the-first-conversion
 run     /dd/CMDS/printf "[%s]\n" X

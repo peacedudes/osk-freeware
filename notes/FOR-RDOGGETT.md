@@ -257,10 +257,17 @@ to re-open the question:
 
 ## A third reading, 2026-08-29: one bug found three more
 
-**`printf' drops everything before the first conversion.** `printf "[%s]\n" X'
-gives `X]', and a format with no conversion in it at all prints nothing
-whatever arguments follow. DOC/INDEX said it floods `No more memory !!!';
-it does not, and that entry is corrected. Then the same defect turned up
+**`printf' works, with one flaw: the literal text BEFORE the first conversion
+is dropped.** Everything between and after conversions is right --
+`printf "%d %s %d\n" 4 "is bigger than " 3' prints `4 is bigger than  3'
+exactly, and `"a%db%dc\n" 1 2' prints `1b2c', losing only the leading `a'.
+Begin the format with a conversion and nothing is lost. The degenerate case
+of the same flaw is a format with NO conversion: all of it is "before the
+first conversion", so it prints nothing. DOC/INDEX said it floods `No more
+memory !!!'; it does not, and that entry is corrected. (My first write-up
+led with the failure and read as though printf were simply broken -- rdoggett
+pointed out that it works most of the time, which is fair and is now what
+both the entry and the card say.) Then the same defect turned up
 underneath three cards that had been quietly empty for weeks -- `nsort',
 `yacc' and `expand' all built their input with `printf "10\n9\n..."', which
 wrote nothing at all. All three are rebuilt with echo and all three now show

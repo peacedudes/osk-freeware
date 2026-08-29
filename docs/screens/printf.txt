@@ -1,7 +1,9 @@
-$ printf "%s is %d bytes and %5.2f K\n" tar 22966 22.43
-tar is 22966 bytes and 22.43 K
-$ printf "[%s]\n" X
-X]
+$ printf "%d %s %d\n" 4 "is bigger than " 3
+4 is bigger than  3
+$ printf "%dab\n" 7
+7ab
+$ printf "a%db%dc\n" 1 2
+1b2c
 $ printf "hello\n" x
-$ echo "hello -- echo has no such trouble"
-hello -- echo has no such trouble
+$ echo "echo has no such flaw"
+echo has no such flaw
