@@ -30,17 +30,28 @@ run     argproc_demo -a -b=2 file
 wait    6
 
 shot    ask
-cap     ask and ynad put a question to the person running a script and set
-cap     the status from the answer.
+for     ask ynad
+cap     `ask' is not the shell-script prompt its name suggests and DOC/INDEX
+cap     claimed until this card was read.  It is a client: it writes to a
+cap     named pipe, /PIPE/txtpipe, and prints whatever a `wisecracker'
+cap     server sends back.  No such server is on this disk, so it says so,
+cap     to anything you give it.  `ynad' beside it is YNAD, Yet Another
+cap     Name & Address program -- a contact database, also not a dialogue.
 run     ask "Shall I go on"
-wait    3
-send    y
-wait    3
+wait    5
+run     ask -?
+wait    5
 
 shot    bcheck
-cap     bcheck reads a boot file and reports what is in it.
+cap     bcheck COUNTS BRACKETS in a source file and reports a mismatch --
+cap     it is not the boot-file checker DOC/INDEX called it, which is what
+cap     its own usage line says when you ask.  Run over a file it says
+cap     nothing at all when the brackets balance.  Given a file it numbers
+cap     every line with the nesting depth it is at.
 run     bcheck -?
 wait    5
+run     bcheck /dd/SRC/keep/about.c | head -n 10
+wait    10
 
 shot    bigsetter
 cap     A Modula-2 set-operations demonstration -- proof the Modula
