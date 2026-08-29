@@ -1189,7 +1189,7 @@
 | `tess` | &#9733; tesselation puzzle |
 | `tt` | typing/terminal game<br>**How:** Full-screen: it takes over the display. **`q' quits** -- tested. |
 | `vtxtcn` | world - build its text tables.  Writes .inc files and prints nothing; needs world's .dat files in the current directory |
-| `wisecrack` | prints a wisecrack; writes to /PIPE/txtpipe, so it prints nothing at all unless something is reading that pipe |
+| `wisecrack` | a SERVER, and `ask' is its client.  Run it in the background and every `ask' pulls one line out of it through /PIPE/txtpipe -- slogans from a German OS-9 seminar, 1992-93.  Alone it prints nothing at all, which is why every sweep here called both programs mute.  `wisecrack & ask "anything"'.  Measured 2026-08-29 |
 | `world` | World - text adventure |
 | `zot` | &#9733; Zot - arcade game |
 
@@ -1360,7 +1360,7 @@
 | `about` | what this collection knows about one program: what it is, what it is for, where it came from, the files it opens and whether they are here, and whether its source survived. Reads DOC/INDEX, CATEGORIES, ORIGINS and DEPENDS for you. what it is for, where it came from, the files it opens and whether they are here, and whether its source and documentation survived.  One card per program -- `about hack'.  DOC/CATEGORIES browses; this answers.<br>`Usage: about <program>...` |
 | `add_errmsg` | &#9733; build vi's error-message file -- it wants /dd/SYS/vi_errmsg, which is here |
 | `argproc_demo` | demonstration of argproc(), RICO's command-line argument parser.  STOPS WITH `**** Stack Overflow ****' whatever it is given -- its M\$Stack is 3072, the same as programs that work, so the fault is its own.  Source and the argproc library manual are now here: SRC/argproc and DOC/argproc_demo/man.argproc, from EFFO forum 7 |
-| `ask` | NOT a script prompt.  A client for a `wisecracker' server: it writes to /PIPE/txtpipe and prints whatever answers.  No such server is on this disk, so it always says `No Wisecracks coming'.  Corrected 2026-08-28<br>**How:** Asks a yes/no question and sets the shell status, for scripts. On its own it says "No Wisecracks coming" -- it is the front half of the `wisecrack' pipe from EFFO forum 20. |
+| `ask` | the CLIENT for `wisecrack': it reads one line from /PIPE/txtpipe and prints it, and says `No Wisecracks coming' when nothing is feeding the pipe.  Start the server first -- `wisecrack &' -- and it answers.  Not the shell-script prompt the name suggests.  Corrected 2026-08-29<br>**How:** Asks a yes/no question and sets the shell status, for scripts. On its own it says "No Wisecracks coming" -- it is the front half of the `wisecrack' pipe from EFFO forum 20. |
 | `bcheck` | &#9733; count brackets in a source file and report a mismatch -- it is not a boot-file checker.  Corrected 2026-08-28<br>`Syntax: bcheck [<opt>] [<filename>]` |
 | `bigsetter` | Modula-2 set-operations demonstration |
 | `biory` | FORTRAN example: Biorhythm.  Runs and prompts (in German) once os9lib is loaded.  Source: SRC/rtf/biory.f |

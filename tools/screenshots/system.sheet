@@ -30,17 +30,24 @@ run     argproc_demo -a -b=2 file
 wait    6
 
 shot    ask
-for     ask ynad
-cap     `ask' is not the shell-script prompt its name suggests and DOC/INDEX
-cap     claimed until this card was read.  It is a client: it writes to a
-cap     named pipe, /PIPE/txtpipe, and prints whatever a `wisecracker'
-cap     server sends back.  No such server is on this disk, so it says so,
-cap     to anything you give it.  `ynad' beside it is YNAD, Yet Another
-cap     Name & Address program -- a contact database, also not a dialogue.
-run     ask "Shall I go on"
+for     ask ynad wisecrack
+cap     `ask' is not the shell-script prompt its name suggests: it is the
+cap     CLIENT half of a pair.  `wisecrack' is the server -- start it in
+cap     the background and every `ask' pulls one line out of it through
+cap     /PIPE/txtpipe.  Alone, either one is silent, which is why every
+cap     sweep of this disk scored BOTH as mute.  The slogans are from a
+cap     German OS-9 seminar in 1992.  `ynad' beside it is YNAD, Yet
+cap     Another Name & Address program, also not a dialogue.
+run     ask "nothing is feeding the pipe yet"
 wait    5
-run     ask -?
+run     wisecrack &
 wait    5
+run     ask "and now?"
+wait    5
+run     ask "again"
+wait    5
+run     ask "once more"
+wait    6
 
 shot    bcheck
 cap     bcheck COUNTS BRACKETS in a source file and reports a mismatch --

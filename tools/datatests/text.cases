@@ -191,3 +191,21 @@ expect  1008
 case    the-for-driver-cannot-fork-the-compiler
 run     /dd/CMDS/for /dd/SRC/rtf/div.f
 expect  compilation aborted
+
+# `wisecrack' AND `ask' ARE A PAIR, found 2026-08-29.  Every sweep of this
+# disk scored both as mute because neither does anything alone: wisecrack is
+# a server that feeds lines through /PIPE/txtpipe and ask is its client.
+# Start the server in the background and ask answers.
+case    ask-says-so-when-nothing-feeds-the-pipe
+run     /dd/CMDS/ask "nothing there"
+expect  No Wisecracks coming
+
+# THE SERVER NEEDS A MOMENT.  There is no `sleep' on this disk, so the two
+# `ls' lines below are the delay -- without them ask runs before wisecrack
+# has opened the pipe and the case fails on a race, not on the programs.
+case    wisecrack-and-ask-work-as-a-pair
+run     /dd/CMDS/GAMES/wisecrack &
+run     /dd/CMDS/ls /dd/CMDS > /nil
+run     /dd/CMDS/ls /dd/CMDS > /nil
+run     /dd/CMDS/ask "and now"
+absent  No Wisecracks coming
