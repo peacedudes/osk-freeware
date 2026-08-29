@@ -1,8 +1,15 @@
-$ shar /dd/SYS/motd
-No read access for file: /dd/SYS/motd
-$ ls -l /dd/SYS/motd
--rw-rw-rw-   1 0        0              40 Aug  3 19:00 /dd/SYS/motd
-$ shar -?
-shar: illegal option -- ?
-shar: No input files
-usage: shar [-u archive] [[-a] [-p prefix] [-d delim] [-bcv] files > archive]
+$ ls -l /dd/readme
+-rw-rw-rw-   1 0        0            6432 Aug  3 19:00 /dd/readme
+$ shar readme
+No read access for file: readme
+$ shar not-a-file-here | head -n 9
+shar: Can't open 'not-a-file-here'
+#       This is a shell archive.
+#       Remove everything above and including the cut line.
+#       Then run the rest of the file through sh.
+#----cut here-----cut here-----cut here-----cut here----#
+#!/bin/sh
+# shar:    Shell Archiver
+#       Run the following text with /bin/sh to create:
+#       not-a-file-here
+# By:   Jim Omura ()

@@ -106,17 +106,19 @@ run     unpacklib -?
 wait    4
 
 shot    shar
+for     shar
 cap     shar wraps files as a shell archive -- how source travelled over
-cap     usenet, and how most of this collection arrived.  THIS ONE DOES
-cap     NOT: for every file it is given it writes `No read access for
-cap     file:' to its own standard output and stops, and the file it
-cap     refuses is world-readable and `cat' reads it happily.  Its usage
-cap     line, below, is all you get.  tar, zoo and lha all work.
-run     shar /dd/SYS/motd
+cap     usenet, and how most of this collection arrived.  ONE BROKEN CHECK
+cap     stops it: its read-access test rejects every file that EXISTS, and
+cap     the file below is world-readable with `cat' reading it happily.
+cap     Give it a name that is NOT there and the check passes vacuously --
+cap     and out comes the whole preamble, cut line and all.  The archiver
+cap     works; the gatekeeper does not.
+run     ls -l /dd/readme
+wait    5
+run     shar readme
 wait    6
-run     ls -l /dd/SYS/motd
-wait    6
-run     shar -?
+run     shar not-a-file-here | head -n 9
 wait    8
 
 shot    tar

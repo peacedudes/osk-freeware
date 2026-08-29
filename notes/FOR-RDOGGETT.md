@@ -285,8 +285,12 @@ Reading those three found three more:
     which is standard and was worth saying: with it the tab round trip
     closes byte for byte.
 
-**`shar' creates no archive at all** -- `No read access for file:' for every
-file, absolute or relative, on a file world-readable that `cat' reads. Worse,
+**`shar' is one broken check away from working.** Its read-access test
+rejects every file that EXISTS -- `No read access for file:' for a
+world-readable file that `cat' reads. Hand it a name that is NOT there and
+the check passes vacuously and out comes the whole shell-archive preamble,
+cut line and all. So the archiver is fine and the gatekeeper is not; both
+halves are on the card and asserted in the tests. Worse,
 **the data-test case for it was a false pass**: it asserted `motd' appeared
 in the output, and `motd' appears in the error message. That in turn found a
 real bug in `datatest.py': it stripped `#' ANYWHERE in a line, so
