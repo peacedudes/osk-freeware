@@ -133,10 +133,16 @@ case    arc-cannot-write-its-archive
 run     /dd/CMDS/REBUILT/arc -a tmp/y.arc SYS/termcap
 expect  Cannot rename
 
-case    shar-wraps-a-file-as-a-script
+# `shar' DOES NOT WORK, and this case used to say it did -- a FALSE PASS
+# worth keeping the story of. It asserted that `motd' appeared in the output,
+# and it does: inside `No read access for file: /dd/SYS/motd', which is what
+# shar writes to its standard output for every file it is given. Corrected
+# 2026-08-29 to assert the refusal, so the day shar works this fails.
+case    shar-refuses-every-file-it-is-given
 run     /dd/CMDS/shar /dd/SYS/motd > /dd/tmp/a.shar
-run     /dd/CMDS/head -n 12 /dd/tmp/a.shar
-expect  motd
+run     /dd/CMDS/cat /dd/tmp/a.shar
+expect  No read access for file
+absent  #!/bin/sh
 
 case    zoo-2.1-reads-what-zoo-wrote
 run     /dd/CMDS/REBUILT/zoo_2.1 l /dd/tmp/a.zoo

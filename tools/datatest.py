@@ -84,7 +84,13 @@ def parse(path):
            "setup": [], "load": [], "cases": []}
     cur = None
     for lineno, raw in enumerate(open(path), 1):
-        line = raw.split("#", 1)[0].strip()
+        # A `#' STARTS A COMMENT ONLY AT THE START OF A LINE. Stripping it
+        # anywhere ate the argument off `absent  #!/bin/sh' on 2026-08-29,
+        # leaving a bare `absent' that matches the empty string -- which
+        # fails EVERY run, and would have passed every run had it been an
+        # `expect'. The same mistake was found and fixed in the screenshot
+        # sheet parser, where it ate `lda #$41'.
+        line = "" if raw.lstrip().startswith("#") else raw.strip()
         if not line:
             continue
         word, _, rest = line.partition(" ")
@@ -99,6 +105,12 @@ def parse(path):
         elif word in ("run", "expect", "absent"):
             if cur is None:
                 sys.exit("%s:%d: `%s' before any `case'" % (path, lineno, word))
+            # AN EMPTY PATTERN IS NOT AN ASSERTION: `expect' with nothing
+            # after it passes on any output at all and `absent' with nothing
+            # fails on any. Either way the case stops testing the program.
+            if word in ("expect", "absent") and not rest:
+                sys.exit("%s:%d: `%s' with nothing to look for"
+                         % (path, lineno, word))
             (cur.runs if word == "run" else
              cur.expect if word == "expect" else cur.absent).append(rest)
         else:

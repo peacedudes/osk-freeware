@@ -614,7 +614,7 @@
 | `lha` | LHa 2.08 -- create/extract .lzh archives<br>`Syntax: LHa -{axelvudmcp}[qvnfodiszrgc012][w=<dir>] archive_file [file...]` |
 | `lharc` | LHarc archiver<br>`Usage: lharc {axevlufdmctp}[qnftv] archive_file [files or directories...]` |
 | `marc` | MARC, the archive MERGER -- `marc <target> <source> [names]' copies members from one .arc into another.  It is not an archiver and does not make one<br>`Usage: MARC <tgtarc> <srcarc> [<filename> . . .]` |
-| `shar` | Shell-archive creator |
+| `shar` | Shell-archive creator -- and it creates none here: for every file it is given, absolute path or relative, with -a or without, it writes `No read access for file:' to its OWN STANDARD OUTPUT and stops.  The file it refuses is world-readable and `cat' reads it.  Use tar, zoo or lha.  Measured 2026-08-29 |
 | `tar` | GNU tar 1.10<br>`Syntax : tar [ctx][mfv] tarfile [file(s)...]` |
 | `unzip` | &#9733; Info-ZIP unzip.  Nothing here can MAKE a zip for it to read -- see the `zip' entry -- so it is untested against a fresh archive.  It reads zips made elsewhere<br>`Usage: unzip [ -options[modifiers] ] file[.zip] [filespec...]` |
 | `zip` | Info-ZIP zip 1.9 DOES NOT WORK, measured 2026-08-27.  It deflates correctly and then cannot put the result anywhere: it writes a temporary (_Z000003), fails to rename it over the target, and reports `zip error: Could not create output file'.  Reproduced writing into /dd/tmp and into /dd, so it is not one bad directory. Use zoo, tar or gzip instead; all three round-trip exactly. tools/datatests/archives.cases keeps the failing case. |

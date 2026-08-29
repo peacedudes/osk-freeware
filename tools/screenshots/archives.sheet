@@ -107,9 +107,17 @@ wait    4
 
 shot    shar
 cap     shar wraps files as a shell archive -- how source travelled over
-cap     usenet, and how most of this collection arrived.
-run     shar /dd/SYS/motd | head -n 18
+cap     usenet, and how most of this collection arrived.  THIS ONE DOES
+cap     NOT: for every file it is given it writes `No read access for
+cap     file:' to its own standard output and stops, and the file it
+cap     refuses is world-readable and `cat' reads it happily.  Its usage
+cap     line, below, is all you get.  tar, zoo and lha all work.
+run     shar /dd/SYS/motd
 wait    6
+run     ls -l /dd/SYS/motd
+wait    6
+run     shar -?
+wait    8
 
 shot    tar
 cap     GNU tar 1.10 packing a directory off this disk and listing what it
