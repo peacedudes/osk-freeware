@@ -151,6 +151,8 @@ run     uuclean -?
 wait    8
 run     uupoll -?
 wait    8
+run     /dd/CMDS/UUCP/enable -?
+wait    6
 
 shot    uucp
 for     uucp uux uuxqt uucico

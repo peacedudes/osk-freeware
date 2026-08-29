@@ -78,18 +78,22 @@ run     chksum /dd/tmp/d.txt.n.n
 wait    8
 
 shot    divide
-for     divide chardef
+for     divide chardef fc
 cap     divide SPLITS A FILE into pieces -- Farside Systems, 1992.  Twelve
 cap     lines in, four to a piece, three pieces out.  It is not integer
 cap     division, whatever the name suggests, and DOC/INDEX said it was
-cap     until this screen was taken.
-run     head -n 12 /dd/SYS/holidays > /dd/tmp/dv.txt
+cap     until this screen was taken.  `fc' below is the other splitter
+cap     here, cutting at 350,000 bytes to fit a 360k floppy; it needs its
+cap     path because bash has an `fc' builtin.
+run     head -n 12 /dd/SYS/holidays > /dd/tmp/dv.txt 2>/nil
 wait    6
 run     divide -l=4 /dd/tmp/dv.txt /dd/tmp/piece
 wait    8
 run     ls -l /dd/tmp/piece.1 /dd/tmp/piece.2 /dd/tmp/piece.3
 wait    6
 run     cat /dd/tmp/piece.1
+wait    6
+run     /dd/CMDS/fc -?
 wait    6
 
 shot    md5

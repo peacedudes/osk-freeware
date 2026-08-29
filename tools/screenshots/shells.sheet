@@ -33,7 +33,7 @@ run     expr 2 \* 21
 wait    3
 
 shot    gshell
-for     gshell mshell xc run fc hist
+for     gshell mshell xc run hist
 cap     GSHELL, a shell with a menu, and the other three small shells this
 cap     disk keeps beside bash.
 run     gshell

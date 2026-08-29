@@ -1,5 +1,8 @@
 $ dload -?
 Syntax: dload <filename>
 Function: loads datafile into datamodule
-$ break -?
-break: Only meaningful in a `for', `while', or `until' loop
+$ /dd/CMDS/break -?
+$ sbreak -?
+Syntax:   sbreak [/device]
+Function: send break on SCF device
+Options:  none

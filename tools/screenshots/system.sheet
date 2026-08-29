@@ -126,12 +126,16 @@ wait    3
 
 shot    dload
 for     dload break sbreak setfont
-cap     dload sends a file down a serial line and break sends a BREAK --
-cap     both assembler examples from the forums, and both harmless here
-cap     because there is no serial line.
+cap     dload sends a file down a serial line; break and sbreak send a
+cap     BREAK -- assembler examples from the forums, harmless here because
+cap     there is no serial line.  `break' has to be asked for by path: it
+cap     is a bash builtin too, and the builtin answers first.  It prints
+cap     nothing whatever it is given, which is why sbreak is shown as well.
 run     dload -?
 wait    6
-run     break -?
+run     /dd/CMDS/break -?
+wait    4
+run     sbreak -?
 wait    6
 
 shot    drop
