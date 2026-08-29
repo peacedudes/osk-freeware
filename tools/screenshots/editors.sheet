@@ -27,8 +27,8 @@ quit    \030\003
 shot    hexedit
 for     hexed hexedit
 cap     The hex editor cannot start: it writes its work file to /r0, the RAM
-cap     disk os9exec has no way to provide, and says so.  Seventeen programs
-cap     here reach for /r0; DOC/README-RUNNING lists them.  `beav' is the
+cap     disk os9exec has no way to provide, and says so.  Twenty programs
+cap     here reach for /r0; DOC/STATUS lists them.  `beav' is the
 cap     binary editor that works.  `hexedit' below is a different program
 cap     with a similar name -- HEXPERT V2.4, which identifies itself under
 cap     -v and then gets no further: -d says `file not accessible' for a
