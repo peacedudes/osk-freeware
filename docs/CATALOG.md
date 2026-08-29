@@ -108,7 +108,7 @@
 | | |
 |---|---|
 | `beav` | BEAV 1.40 -- Binary Editor And Viewer (needs TERM)<br>**How:** Full-screen: it takes over the display. **control-C gets you out** -- tested, and none of q, Q, control-D or ESC did. If it has a quit command of its own, its documentation in DOC/ will say. |
-| `chbase` | &#9733; change module base<br>`Syntax   : chbase <number> [ <base A> [ <base B> ] ]` |
+| `chbase` | &#9733; converts a NUMBER from one base to another -- Philip Maechler's, and nothing to do with a module's base address.  `cvtbase' is the other one, and floods. Corrected 2026-08-29<br>`Syntax   : chbase <number> [ <base A> [ <base B> ] ]` |
 | `hexed` | &#9733; hex editor via your text editor -- it writes its work file to /r0 and stops when it cannot.  See DOC/README-RUNNING  [no military use -- EFFO-INFO]<br>`Syntax: hexed [<opts>] <path> {[<opts>] \| [<path>]}` |
 | `hexedit` | HEXPERT V2.4 by Dominic Alston -- `hex [-vdr] <file>'.  It starts and identifies itself under -v, and neither of the other two paths gets to an editor: -d answers `file not accessible' (214) for a file that exists and is readable, and the bare form and -r print the terminal type and exit.  `beav' is the binary editor that works here, and `hexed' the one that would if there were a RAM disk. Measured 2026-08-29<br>**How:** A hex editor -- Hexpert v2.4 by Dominic Alston. Takes a file: `hexedit <file>'. Needs `. /dd/SYS/termcap.entry' first or it will not draw. |
 | `pbyte` | &#9733; patch bytes in a file at a hex offset<br>`Syntax: pbyte <path> <hex_offset> <hex_byte> [<hex_byte>]` |
@@ -176,7 +176,7 @@
 | `cut` | cut selected fields from each line |
 | `cuts` | &#9733; Coco Usenet Transfer Utility<br>`Usage: cuts <-d> [-o name] <file>...` |
 | `detab` | &#9733; tabs to spaces<br>`Usage: detab [-tn] [infile] or [<infile]` |
-| `deton` | &#9733; detab - convert tabs to spaces<br>`syntax: deton [seconds]` |
+| `deton` | &#9733; NOT a detab: `deton [seconds]' demonstrates using an alarm to TIME OUT an I/O read.  `detab' and `expand' are what convert tabs.  Corrected 2026-08-29<br>`syntax: deton [seconds]` |
 | `eo` | &#9733; eo - text utility |
 | `field` | &#9733; extract fields<br>`Syntax  : field [<opts>] <fields...> [<opts>]` |
 | `fillup` | &#9733; fill a file up to a given length with a constant byte<br>`Syntax:   fillup [<options>] <file>` |
@@ -872,7 +872,7 @@
 | `uucp` | &#9733; queue a file copy to or from another site |
 | `uulog` | &#9733; show the transfer log<br>`Usage: uulog [-s<sysname> -u<username> -d<days>] [-f]` |
 | `uuname` | &#9733; list the sites you can reach<br>`Usage:  uuname [-l]` |
-| `uuxqt` | &#9733; run the jobs a remote site queued here<br>`Usage:  uuxqt [opts]  <sys> [<sys>...]  [opts]` |
+| `uuxqt` | &#9733; run the jobs a remote site queued here -- and it cannot start: it looks for a module called `procs' to see whether it is already running, and `procs' is not on this disk (error 221).  Measured 2026-08-29<br>`Usage:  uuxqt [opts]  <sys> [<sys>...]  [opts]` |
 
 **Kermit**
 
@@ -1376,7 +1376,7 @@
 | `demerge` | split a merged file back into its parts<br>`Syntax:   demerge <path>` |
 | `demo` | egetopt option-parsing demonstration |
 | `devprc` | show which device belongs to which process.  REBUILT HERE: the archived module has a bad CRC and a corrupt initialised- data descriptor, and does not load.  -h works; -a needs the kernel process table, which os9exec answers without real data |
-| `dload` | &#9733; download a file over a serial line<br>`Syntax: dload <filename>` |
+| `dload` | &#9733; NOT a serial download: `dload <filename>' LOADS A DATA FILE INTO A DATA MODULE, which is its own usage line. `sbreak' and `break' are the serial-line examples here. Corrected 2026-08-29<br>`Syntax: dload <filename>` |
 | `e` | SEDT editor, VT220 keys.  FIXED 2026-08-28: it wants sys/sedt.keys, sys/sedt.ruler0 and sys/sedt.help, none of which were here -- it stopped with `Could not open key definition file'.  All three are in SYS now, recovered from the EFFO forum 11 archive it came from |
 | `em` | a screen editor (EFFO forum 3)<br>**How:** A screen editor. It stops with "Environment variable TERM not defined!" unless TERM is set -- SYS/login sets it, so run it from a login shell rather than bare. |
 | `epson` | &#9733; spline output driver for an Epson printer<br>`usage: epson [<opts>]` |
@@ -1399,7 +1399,7 @@
 | `lpsched` | &#9733; the line-printer scheduler<br>`Syntax: lpsched [-r] {<devname>}` |
 | `lunisolar` | &#9733; lunar and solar position calculator |
 | `makecrc` | compute a CRC |
-| `map` | &#9733; memory map display<br>`Syntax: map [<opts>] <file> {<file>}` |
+| `map` | &#9733; NOT a memory map: `map <file>' shows the disk BLOCKS a file occupies, sector by sector.  `mfree' and `free' are the memory ones.  Corrected 2026-08-29<br>`Syntax: map [<opts>] <file> {<file>}` |
 | `modinfo` | report a module's header -- name, type, size, edition, CRC<br>`Syntax:   module [modulename]` |
 | `mshell` | &#9733; a small shell, and it wants a real terminal: run from a pipe it stops with `Unknown terminal type 'dumb'!'.  Clarified 2026-08-29 |
 | `mvolformat` | format a multi-volume set<br>`Syntax: mvolformat drive volname volcount [format options]` |
@@ -1421,10 +1421,10 @@
 | `sqrtx` | square-root demonstration |
 | `submit` | &#9733; submit a job to the print spooler<br>`Syntax: submit [<opts>] [<submit file>] [{<parameter>)]` |
 | `suse` | show a program's usage line -- it prints nothing, for any module tried, by name or by path, and nothing for -? either. Re-measured 2026-08-29 and still true |
-| `suspend` | &#9733; suspend a process<br>`Syntax  : suspend  [<processname>]  [<opt>]` |
+| `suspend` | &#9733; REMOVES a process from the system -- its own usage line says so -- rather than suspending it.  F.R.Schmitt, 1989.  Clarified 2026-08-29<br>`Syntax  : suspend  [<processname>]  [<opt>]` |
 | `t_trtest` | RICO trap-handler test |
 | `testibc` | IEEE binary-coded test (Pascal) |
-| `transfer` | &#9733; transfer a file between devices<br>`Syntax: transfer` |
+| `transfer` | &#9733; copies files from GDOS DISKS to OS-9, and takes no options at all -- not a general device-to-device copier.  `cp', `copy' and `dsave' are those. Corrected 2026-08-29<br>`Syntax: transfer` |
 | `trunc` | &#9733; truncate a file to a given length<br>`Syntax: trunc <path> <num>` |
 | `tty` | &#9733; report the terminal's name |
 | `umacs` | &#9733; MicroEMACS -- a small Emacs, EFFO forum 1<br>**How:** A small Emacs (uMacs 1.0). Full-screen: it takes the display and shows "== uMacs 1.0 == main ==" at the foot. Needs a terminal; source `. /dd/SYS/termcap.entry' first if it will not draw. |
@@ -1616,7 +1616,7 @@
 
 | | |
 |---|---|
-| `gcl` | &#9733; gcl - general calculation utility |
+| `gcl` | &#9733; displays a GRAND DIGITAL CLOCK, not a calculator: `gcl {opts} [bkgnd]'.  `digclk' is the other clock of its kind here.  Corrected 2026-08-29 |
 | `hc` | hex calculator |
 | `loan` | &#9733; loan/amortisation calculator |
 | `rechne` | &#9733; calculator, German -- and it takes ONE expression with no spaces in it: `rechne 4095+1' answers 4096, $1000 and the binary.  Spaced out it evaluates each argument separately |
