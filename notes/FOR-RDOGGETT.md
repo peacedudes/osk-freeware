@@ -236,5 +236,24 @@ to re-open the question:
   - `kermit` cannot be compared from a script -- both builds sit waiting on
     the terminal whatever you redirect.
 
+## Two loose ends closed, and one that is yours
+
+  - **No module on the disk reports an `R_` name any more.**
+    `REBUILT/compress` and `REBUILT/screen` were the last two, both from a
+    rebuild pass that forgot `-n=`. Rebuilt with the current driver; the new
+    compress makes the same 631-byte archive as the shipped one and each
+    reads the other's. `tools/datatests/rebuilt.cases` holds the proof.
+  - **`infocom.tcap` is the better Infocom build** and the card shows it
+    now: it puts a real status line across the top -- room name and score --
+    where plain `infocom` fills the screen with brackets trying to.
+  - **snake plays, and scatters text over its own board.** 17 of its 46
+    cursor moves in a played game arrive as literal `[13;49H' rather than
+    as motion. I rebuilt it from the fixed source to check: identical. So
+    the echo fix in `SRC/snake/move.c` is not the cure, and I have corrected
+    that comment rather than leaving it claiming to be. The byte stream
+    shows one ESC arriving late and one doubled. I have NOT filed anything
+    against os9exec: two wrong reports came out of that kind of inference
+    before, and this is one program out of 108.
+
 ## Nothing needs you
 
