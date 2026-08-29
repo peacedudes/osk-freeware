@@ -16,9 +16,9 @@ M  MAIL                            N  SBPROLOG
 O  SOURCES.txt                     P  SPL
 Q  SPOOL                           R  SRC
 S  SYS                             T  USR
-U  VH                              V  arc.c
-W  binhex.c                        X  c
-Y  ccitt.c                         Z  ccitt32.c
+U  VH                              V  c
+W  cccp                            X  local
+Y  m.arc                           Z  m4.arc
 
 
 Select file :

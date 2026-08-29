@@ -3,7 +3,7 @@ ppmtogif: computing colormap...
 ppmtogif: 6 colors found
 $ giftopnm /dd/tmp/t.gif > /dd/tmp/back.ppm
 $ ls -l /dd/tmp/t.gif
--rw-rw-rw-   1 0        0             195 Aug 28 17:22 /dd/tmp/t.gif
+-rw-rw-rw-   1 0        0             186 Aug 28 18:58 /dd/tmp/t.gif
 $ pnmfile /dd/tmp/base.ppm /dd/tmp/back.ppm
 /dd/tmp/base.ppm:       PPM raw, 48 by 24  maxval 255
 /dd/tmp/back.ppm:       PPM raw, 48 by 24  maxval 255
