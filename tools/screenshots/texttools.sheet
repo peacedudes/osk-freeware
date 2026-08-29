@@ -211,7 +211,7 @@ wait    10
 
 
 shot    gep
-for     gep lgrep ggrep bmgtest bmgtest2 greg
+for     gep lgrep ggrep bmgtest bmgtest2
 cap     More pattern matchers, each from a different decade.  `ggrep' is
 cap     GNU grep out of sh_utils and counts what it finds.  `lgrep' is
 cap     meant to print the NAMES of files that match, the way grep -l

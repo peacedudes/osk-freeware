@@ -1,0 +1,17 @@
+fortune
+Hummingbirds never remember the words to songs.
+$ bush
+-12276 more days of The Quayle Hunter
+$ ascii | head -n 4
+      char   | dec | hex | oct    ||     char   | dec | hex | oct
+    ^@ (NUL) |   0 |   0 |   0    ||   @        |  64 |  40 | 100
+    ^A (SOH) |   1 |   1 |   1    ||   A        |  65 |  41 | 101
+    ^B (STX) |   2 |   2 |   2    ||   B        |  66 |  42 | 102
+$ banner HI
+@     @   @@@
+@     @    @
+@     @    @
+@@@@@@@    @
+@     @    @
+@     @    @
+@     @   @@@

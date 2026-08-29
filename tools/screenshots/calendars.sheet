@@ -53,3 +53,21 @@ run     setimex
 wait    8
 run     today
 wait    10
+
+shot    greg
+for     greg combine
+cap     `greg' converts a JULIAN DAY NUMBER to a Gregorian date -- 2461281
+cap     is the 29th of August 2026.  It is not the regular-expression demo
+cap     DOC/INDEX called it until this card was made.  `combine' beside it
+cap     is the other program here whose name says less than it does: it
+cap     interleaves two files byte by byte, even bytes from one and odd
+cap     from the other, which is how a 16-bit EPROM image is put back
+cap     together from its two 8-bit halves.  It clears the screen before it
+cap     speaks, which is why it goes first here.
+run     combine -?
+wait    8
+run     greg 2461281
+wait    6
+run     greg 2440588
+wait    8
+

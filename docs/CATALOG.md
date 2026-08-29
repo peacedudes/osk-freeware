@@ -1369,7 +1369,7 @@
 | `btop` | bitmap to Gepard fat-font<br>`Syntax:   BtoP [<opts>] [<path1>] [<opts>] [<path2>] [<opts>]` |
 | `btree` | &#9733; B-tree file handling demonstration and test |
 | `clear` | &#9733; clear the screen<br>`Syntax:   clear` |
-| `combine` | &#9733; combine files<br>`Syntax: combine [<file1>] [<file2>] [<outfile>] [<opt>]` |
+| `combine` | &#9733; interleave two files BYTE BY BYTE, one supplying the even bytes and the other the odd -- how a 16-bit EPROM image is put back together from two 8-bit halves.  F.R.Schmitt, 1989.  Clarified 2026-08-29<br>`Syntax: combine [<file1>] [<file2>] [<outfile>] [<opt>]` |
 | `config` | report this machine's C type properties as #defines -- char, short, int, long, pointer and float all come out; it then aborts where `double' begins, because that needs a 68881 or Microware's fpu.  See DOC/README-BUSERR |
 | `cpu` | &#9733; CPU speed test -- draws its bar chart and its answer (156 MHz, which is the emulator), then traps on vector $07 and takes the session down with it |
 | `creadoc` | extract documentation comments from FORTRAN source; needs os9lib.  DOC/rtf/biory.doc is its output for biory.f |
@@ -1388,7 +1388,7 @@
 | `fontgen` | generate a font for the Gepard display<br>**How:** Generates a character font for the Gepard display -- it prints the assembler source of an 80-column font on stdout. |
 | `getsys` | &#9733; report the system's globals -- what OS-9 thinks it is running on<br>`Syntax: getsys [<opts>]` |
 | `ggrep` | &#9733; GNU grep, from the sh_utils collection<br>**How:** GNU grep. `ggrep <expr> <files...>'; -E, -F, -i, -v, -w and the rest as you would expect. |
-| `greg` | &#9733; regular-expression search demo |
+| `greg` | &#9733; NOT a regular-expression anything: it converts a JULIAN DAY NUMBER to a Gregorian date.  `greg 2461281' answers `2026 8 29'.  Corrected 2026-08-29 |
 | `hinterhalt` | &#9733; a small game (EFFO forum 7) |
 | `i_am_i` | prints its own source (Pascal) |
 | `isam` | &#9733; indexed-sequential file demonstration |
