@@ -1,8 +1,7 @@
-<-xysize 152 88 | pgmnorm | pgmtopbm | pbmtoascii -2x4
+$ djpeg -pnm /dd/tmp/g.jpg > /dd/tmp/dj.ppm
 Premature EOF in JPEG file
 Not a JPEG file
+$ ppmtopgm /dd/tmp/dj.ppm | pgmtopbm | pbmtoascii -2x4
 ppmtopgm: EOF / read error reading magic number
-pnmscale: EOF / read error reading magic number
-pgmnorm: EOF / read error reading magic number
 pgmtopbm: EOF / read error reading magic number
 pbmtoascii: EOF / read error reading magic number

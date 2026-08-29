@@ -78,17 +78,16 @@ run     m4 < /dd/tmp/m.m4
 wait    8
 
 shot    make
-size    28 80
+size    36 80
 cap     One rule, and the two makes on this disk trying to keep it.  The
 cap     rule is in the semicolon form because a TAB does not survive being
 cap     typed at this terminal -- SCF expands it -- and a Makefile without
 cap     its tab is a syntax error.  `make' does not understand that form at
-cap     all.  `gmake' does: it echoes the recipe and runs it, and then the
-cap     recipe cannot open a file that `cat' reads perfectly well by hand,
-cap     and dies on signal 75.  DOC/INDEX already says gmake was added
-cap     because make is the broken one; neither of them builds anything
-cap     here.
-run     echo "hello: /dd/SYS/motd ; cat /dd/SYS/motd > /dd/tmp/hello" > /dd/tmp/Makefile
+cap     all.  `gmake' does: it echoes the recipe and hands it to a shell
+cap     that has no PATH, so `cat' is `nowhere found' and the rule dies on
+cap     signal 75.  DOC/INDEX already says gmake was added because make is
+cap     the broken one; neither of them builds anything here.
+run     echo "hello: ; cat /dd/SYS/motd > /dd/tmp/hello" > /dd/tmp/Makefile
 wait    6
 run     cat /dd/tmp/Makefile
 wait    5

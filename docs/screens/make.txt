@@ -1,6 +1,6 @@
-<motd ; cat /dd/SYS/motd > /dd/tmp/hello" > /dd/tmp/Makefile
+$ echo "hello: ; cat /dd/SYS/motd > /dd/tmp/hello" > /dd/tmp/Makefile
 $ cat /dd/tmp/Makefile
-hello: /dd/SYS/motd ; cat /dd/SYS/motd > /dd/tmp/hello
+hello: ; cat /dd/SYS/motd > /dd/tmp/hello
 $ make -f /dd/tmp/Makefile hello
 make: Don't know how to make ;
 $ gmake -f /dd/tmp/Makefile hello
