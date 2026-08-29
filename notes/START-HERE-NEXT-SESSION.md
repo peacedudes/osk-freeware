@@ -147,11 +147,17 @@ Do not stop between items to report; commit and start the next one.
    not coverage: `tools/audit_screens.py` flags eight, of which four are
    honest (a wall of plus signs is what `puzzle` draws).
 
-**2. Tier B is where the plan says the work is** -- 138 programs whose value
-   is in what they do with the keyboard, 76 with a play-test. The screens
-   pass photographed many of them, but a picture is not a judgement:
-   `tools/playtest.py` is the harness that decides, and its false-pass list
-   in this file is what it cost to make it honest.
+**2. Tier B has been played: 104 of 108 pass.** `tools/playtest.py --all`,
+   run 2026-08-28, about two and a quarter hours. Write-up in `DOC/STATUS`
+   under PLAYED, NOT JUST RUN. The four failures are kept failing on
+   purpose and each script says why -- pacman writes control bytes for a
+   terminal that is not a vt100, puzzle is G-Windows, valspeak exits at
+   once, and **snake plays but scatters text over its own board**: 17
+   cursor moves arrive as literal `[13;49H' instead of as motion. A fresh
+   build from the fixed source behaves identically, so the echo fix in
+   `SRC/snake/move.c` is not the cure -- that comment is corrected and has
+   the byte stream. What is left here is writing scripts for the Tier B
+   programs that still have none.
 
 **3. The three data-test failures are deliberate** -- zip, todos, pnmtosir --
    and a FOURTH would be a regression. Run `tools/datatest.py --all` before
