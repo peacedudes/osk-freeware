@@ -1,7 +1,23 @@
-.------------------------------------------------------------------------------|
-                                                                               |
-        ... the same line 19 times over
+         Draw Commands                      (...Nils McCarthy)
 
-August 28, 2026 Friday 8:12:06 pm
+   ^L        redraw the screen                      y k u
+   \<char>   set pen character to char               \|/
+   p         toggles pen up/down                    h-.-l
+   <esc>     quit                                    /|\
+   ^Z        move up one screen                     b j n
+   ^V        move down one screen                Cursor Movement
+   <CR>      move to beginning of line
+   r         read a file into buffer
+   w         write buffer to file
+   ^T        enter text line
+   ^F        fill region with current char
+   ^N        clear buffer
+    $        shell excape
 
-                                           brush: '#'  pen up    x,y(0,0)
+keys may be redefined by:  setenv DRAW name=key,name=key,...
+...where names are any of the following:
+    up, down, right, left, up_left, up_right, down_left,
+    down_right, pentoggle, penkey, shell
+
+
+press any key to continue

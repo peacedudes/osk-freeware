@@ -188,11 +188,16 @@ wait    4
 
 shot    draw
 for     draw
-cap     draw, a character-graphics drawing program: it rules a canvas
-cap     across the terminal and you move a cursor about it, laying down
-cap     characters.  This is the empty sheet it starts you on.
+cap     draw, Nils McCarthy's character-graphics drawing program: it rules a
+cap     canvas across the terminal and you move a cursor over it laying down
+cap     characters.  This is what `?' shows -- vi's hjkl to move, yubn for
+cap     the diagonals, `p' to lift and drop the pen, backslash to choose the
+cap     character it draws with, and a shell escape.  The keys can be
+cap     rebound through a DRAW environment variable.
 run     draw
-wait    10
+wait    8
+keys    ?
+wait    6
 kill
 
 shot    lorenz3d
