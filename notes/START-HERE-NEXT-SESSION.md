@@ -148,11 +148,17 @@ Do not stop between items to report; commit and start the next one.
 
 The screens found programs whose CARD was wrong. This pass found entries
 whose DESCRIPTION was wrong -- short, unstamped one-liners that read as if
-they had been inferred from the program's name. About sixty were tried and
-**sixteen described a different program**: `greg`, `qt`, `vis`, `dpark`,
-`gdd`, `vlen`, `owner`, `bush`, `read_mail`, `lmargin`, `names`, `qp`,
-`cam`, `version`, `sysmax` and `sysmin`. The table is in
-`notes/FOR-RDOGGETT.md`.
+they had been inferred from the program's name. About a hundred and eighty
+were tried and **twenty-eight described a different program**. The table is
+in `notes/FOR-RDOGGETT.md`; `tools/fix_index.py` is what edits an entry
+without breaking the file, and the method is in `tools/README.md`.
+
+**Two of the twenty-eight were a PAIR nobody had run together.**
+`wisecrack` is a server that feeds lines through /PIPE/txtpipe and `ask` is
+its client; alone each is silent, which is why every stage of every sweep
+scored both mute. `wisecrack & ask "anything"` and it answers. A sweep that
+runs one program at a time cannot find a pair -- worth remembering when the
+next silent program turns up.
 
 **`bush` was DOC/START-HERE's welcome example**, listed as "a tree, drawn",
 and is a countdown. It is replaced there by `today`.
