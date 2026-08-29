@@ -2,12 +2,19 @@
 
 shot    elvrec
 for     elvrec elvprsv vi.elvis input.elvis
-cap     elvis's crash-recovery pair: elvprsv preserves a session, elvrec
-cap     brings it back.  With nothing preserved they say so.
+cap     elvis's crash-recovery pair: elvprsv preserves an interrupted
+cap     session, elvrec brings it back.  Nothing has been preserved on
+cap     this disk, so elvrec lists nothing at all and only names the file
+cap     when you ask for one by name.  `exrecover' is the same job for the
+cap     other vi here, and says what it wants.
 run     elvrec
-wait    8
-run     vi.elvis -?
-wait    8
+wait    6
+run     elvrec /dd/tmp/none
+wait    6
+run     exrecover
+wait    6
+run     elvprsv /dd/tmp/none
+wait    6
 
 shot    emacs
 for     emacs emacs.mm1 umacs
@@ -48,9 +55,24 @@ wait    8
 
 shot    vi
 for     vi view
-cap     The EFFO vi -- its source in SRC/effo_vi is the Berkeley ex source
-cap     -- opened on a file from the disk, with the tildes down the left
-cap     that every vi user knows.
+cap     The EFFO vi -- its source in SRC/effo_vi is the Berkeley ex source.
+cap     It opens the file and paints TWO LINES of it: the first line and a
+cap     half-drawn rule, and no more however long you wait or wherever you
+cap     move.  `elvis' is the vi on this disk that fills the screen, and it
+cap     has its own card.
 run     vi /dd/DOC/README-CIO
-wait    12
+wait    20
+send    \033
+wait    3
+send    1G
+wait    10
+quit    \033:q!\r
+
+shot    elvis
+for     elvis vi.elvis input.elvis ctags.elvis
+cap     elvis, Steve Kirkendall's vi -- the one on this disk that paints a
+cap     full screen.  Opened on the collection's own README-CIO, twenty-two
+cap     lines of it at once, exactly as vi should.
+run     elvis /dd/DOC/README-CIO
+wait    18
 quit    \033:q!\r
