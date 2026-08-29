@@ -4,6 +4,28 @@ Terse on purpose. Everything before 2026-08-27 is in git history.
 
 Branch `release-pass-2026-08-21`. All eleven `check_disk.py` checks green.
 
+---
+
+## TWO THINGS ACTUALLY NEED YOU
+
+**1. Should a program called `shell` ship?** Five programs fail for want of
+one, and I measured exactly what a plain `copy sh shell` buys: `dm` (Disk
+Master 1.4) runs completely, `rayshade` renders, the Fortran driver `for`
+gets one step further, `qp` and `screen` are unaffected. It is a new program
+under a name OS-9 users associate with Microware's shell, so it is your call.
+Full table further down under "measured".
+
+**2. Which `vi` should be called `vi`?** The EFFO one -- the genuine Berkeley
+ex/vi source, which is why it has the name -- paints two lines of a file and
+stops. `elvis`, `vi_nocio` and `REBUILT/VI` (PVIC) all work properly. I have
+documented it everywhere it bites and swapped nothing, because which name
+gets which program is an editorial decision, not a defect.
+
+Everything else below is a report, not a question. Nothing in it is waiting
+on you.
+
+---
+
 ## Where you were right and I was wrong
 
 **`hack` works — my test harness was broken, not hack.** It drove programs
@@ -473,5 +495,7 @@ instead. That list said seventeen; re-measured 2026-08-29 it is twenty, with
 `UUCP/expire`, `UUCP/rnews` and `UUCP/uucico` missed because the earlier
 search required a trailing slash and some binaries stop at `/r0`.
 
-## Nothing needs you
+## Nothing below here needs you
+
+(kept for the record; the two open questions are at the top of this file)
 
