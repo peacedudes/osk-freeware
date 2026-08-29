@@ -148,10 +148,11 @@ Do not stop between items to report; commit and start the next one.
 
 The screens found programs whose CARD was wrong. This pass found entries
 whose DESCRIPTION was wrong -- short, unstamped one-liners that read as if
-they had been inferred from the program's name. About forty were tried and
-**eleven described a different program**: `greg`, `qt`, `vis`, `dpark`,
-`gdd`, `vlen`, `owner`, `bush`, `read_mail`, `lmargin` and `names`. The
-table is in `notes/FOR-RDOGGETT.md`.
+they had been inferred from the program's name. About sixty were tried and
+**sixteen described a different program**: `greg`, `qt`, `vis`, `dpark`,
+`gdd`, `vlen`, `owner`, `bush`, `read_mail`, `lmargin`, `names`, `qp`,
+`cam`, `version`, `sysmax` and `sysmin`. The table is in
+`notes/FOR-RDOGGETT.md`.
 
 **`bush` was DOC/START-HERE's welcome example**, listed as "a tree, drawn",
 and is a countdown. It is replaced there by `today`.
@@ -165,7 +166,7 @@ has that under ONE MISSING FUNCTION, FIVE BROKEN PROGRAMS.
 **How to carry on:** `tools/module_census.py`-style, list DOC/INDEX's short
 unstamped entries and run each one. A corrected entry gets a `Corrected
 <date>` or `Clarified <date>` stamp, which is how the next pass knows what
-has been checked. 182 short entries remain unstamped.
+has been checked. About 165 short entries remain unstamped.
 
 ## WHAT TO DO NEXT, then
 
