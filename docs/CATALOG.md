@@ -110,7 +110,7 @@
 | `beav` | BEAV 1.40 -- Binary Editor And Viewer (needs TERM)<br>**How:** Full-screen: it takes over the display. **control-C gets you out** -- tested, and none of q, Q, control-D or ESC did. If it has a quit command of its own, its documentation in DOC/ will say. |
 | `chbase` | &#9733; change module base<br>`Syntax   : chbase <number> [ <base A> [ <base B> ] ]` |
 | `hexed` | &#9733; hex editor via your text editor -- it writes its work file to /r0 and stops when it cannot.  See DOC/README-RUNNING  [no military use -- EFFO-INFO]<br>`Syntax: hexed [<opts>] <path> {[<opts>] \| [<path>]}` |
-| `hexedit` | Hex file editor -- and on this disk it does nothing: given a file it prints the value of TERM and exits, `vt100' and no more.  `beav' is the binary editor that works, and `hexed' the one that would if there were a RAM disk. Measured 2026-08-29<br>**How:** A hex editor -- Hexpert v2.4 by Dominic Alston. Takes a file: `hexedit <file>'. Needs `. /dd/SYS/termcap.entry' first or it will not draw. |
+| `hexedit` | HEXPERT V2.4 by Dominic Alston -- `hex [-vdr] <file>'.  It starts and identifies itself under -v, and neither of the other two paths gets to an editor: -d answers `file not accessible' (214) for a file that exists and is readable, and the bare form and -r print the terminal type and exit.  `beav' is the binary editor that works here, and `hexed' the one that would if there were a RAM disk. Measured 2026-08-29<br>**How:** A hex editor -- Hexpert v2.4 by Dominic Alston. Takes a file: `hexedit <file>'. Needs `. /dd/SYS/termcap.entry' first or it will not draw. |
 | `pbyte` | &#9733; patch bytes in a file at a hex offset<br>`Syntax: pbyte <path> <hex_offset> <hex_byte> [<hex_byte>]` |
 
 **emacs family**
