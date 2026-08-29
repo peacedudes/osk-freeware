@@ -1094,7 +1094,7 @@
 | | |
 |---|---|
 | `apfel` | Mandelbrot (Apfelmaennchen) -- Atari GRAPH display |
-| `cam` | &#9733; Tektronix demo: camera |
+| `cam` | &#9733; CAMSHAFT, not camera: it asks for the rocker ratio, the lift at a crank angle and the base circle, and plots the lift curve for an intake lobe.  The plot is Tektronix vectors, so on a vt100 it arrives as characters -- the dialogue above it is the readable part.  Corrected 2026-08-29 |
 | `g` | &#9733; an Atari GRAPH demo, paired with striche.  Needs the `graph' |
 | `graph` | the `Graph' TRAP LIBRARY itself, not a program -- a type-$0B module.  It is what g, striche, apfel, sine, showpic, graphdemo and graphsave all link.  `load' it and the trap installs; the library is then entered and stops on a privilege violation at its own `RTE', a supervisor-only instruction -- it was written to run in supervisor state.  Note its module name is lowercase `graph' while the programs ask for `Graph', and real OS-9 matches module names exactly |
 | `graphdemo` | Atari GRAPH demonstration |
@@ -1444,8 +1444,8 @@
 | `dpark` | &#9733; park the DISK HEAD, not a process: `dpark [/device]' restores an RBF device's head to track 00, which is what you did before moving a drive.  Corrected 2026-08-29<br>`Syntax:   dpark [/device]` |
 | `launch` | &#9733; NOT a background launcher.  M.C.Gregorie's login helper: sets the environment for the terminal type, optionally a default PATH and emacs bindings, from /dd/SYS/config, then starts the shell named on its command line.  Corrected 2026-08-28<br>**How:** Says "nothing to launch" until it is configured -- see its documentation. |
 | `signal` | &#9733; send a signal to a process<br>`Syntax: signal <process-id> <signal-code> [<seconds>]` |
-| `sysmax` | &#9733; show maximum system memory |
-| `sysmin` | &#9733; show minimum system memory |
+| `sysmax` | &#9733; shows the system's maximum process AGE, not its memory -- `system maximum age is 0' here, because os9exec does not implement the F$SetSys call it uses.  Corrected 2026-08-29 |
+| `sysmin` | &#9733; shows the system's minimum process PRIORITY, not its memory -- `system minimun priority is 0' here, same unimplemented F$SetSys.  Corrected 2026-08-29 |
 | `sysmon` | &#9733; system monitor -- refuses to start: `OS9/68k V4.0 is too old for SYSMON V6.1'<br>`Syntax: sysmon [<opt>]` |
 | `t` | tiny test/stub binary |
 | `top` | &#9733; show the busiest processes -- prints its heading and then aborts (E_PRCABT).  `aprocs' aborts the same way<br>`Syntax: top [<opts>] [<num>]` |
@@ -1462,7 +1462,7 @@
 | `mexist` | &#9733; test module existence<br>`Usage: mexist [options] <Module>` |
 | `os9lib` | RTF/68K FORTRAN run-time LIBRARY.  Not a program: rtf, for, lnk, biory and creadoc all F$Link it, and every one of them fails E_MNF until it is in the module directory.  See DOC/README-FORTRAN.  Running it AS a program executes its floating-point code and stops -- that is not a fault. |
 | `rtfdat` | RTF FORTRAN data module |
-| `version` | &#9733; show a module's version/edition |
+| `version` | &#9733; prints ITS OWN version and nothing else -- `Dies ist das Program 'version', Version 7' -- whatever module you name. `ident' and `modinfo' show a module's edition.  Corrected 2026-08-29 |
 
 **System state**
 

@@ -1,3 +1,6 @@
 $ cam
 ~>
-Rocker Ratio (1.00) for measure @lobe ->
+Rocker Ratio (1.00) for measure @lobe ->1.5
+Lift @ -180 crank degrees ->0.4
+Lift @ -160 crank degrees ->1.2
+Lift @ -140 crank degrees ->

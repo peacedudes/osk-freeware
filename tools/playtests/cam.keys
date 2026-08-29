@@ -1,11 +1,23 @@
 name    cam
 prog    cam
-# Generic: does it draw, and does the screen change when keys arrive?
-rate    0.7
-wait    5
+# `cam' is a CAMSHAFT lift-curve calculator, not the Tektronix camera demo
+# DOC/INDEX called it until 2026-08-29.  It asks for the rocker ratio, the
+# lift at a crank angle and the base circle, then plots the intake lobe in
+# Tektronix vectors -- which a vt100 shows as characters.  The dialogue is
+# the part worth reading, so answer it rather than watching it draw.  It asks
+# for the lift at every 20 crank degrees from -180, so a real run is a long
+# series of measurements; three answers is enough to show it is listening.
+rate    0.4
+wait    6
 snap    opening
-wait 3
-wait    2
-snap    played
-key     \003
-wait    2
+keys    1.5
+key     \r
+wait    3
+keys    0.4
+key     \r
+wait    3
+keys    1.2
+key     \r
+wait    4
+snap    answered
+expect  Lift @ -140 crank degrees
