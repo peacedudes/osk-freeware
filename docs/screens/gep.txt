@@ -1,3 +1,11 @@
+$ gep -?
+Syntax: gep [<opts>] [<srcpath>] [<opts>]
+Function: global expression(s) parser
+Options:
+     -b[=]<n>[K]  use specified expression buffer size (4096)
+     -e[=]<path>  use <path> for expressions (required)
+     -v        print non-matches
+     -?        print usage
 $ lgrep chess /dd/DOC/INDEX /dd/DOC/STATUS /dd/SYS/motd
 $ lgrep -?
 Syntax: lgrep <arg1> ... <argn>

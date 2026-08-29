@@ -205,6 +205,8 @@ cap     GNU grep out of sh_utils and counts what it finds.  `lgrep' is
 cap     meant to print the NAMES of files that match, the way grep -l
 cap     does, and prints nothing at all here whatever it is given -- its
 cap     usage line is the only output anyone has got out of it.
+run     gep -?
+wait    6
 run     lgrep chess /dd/DOC/INDEX /dd/DOC/STATUS /dd/SYS/motd
 wait    6
 run     lgrep -?

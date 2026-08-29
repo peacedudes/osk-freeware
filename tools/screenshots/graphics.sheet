@@ -227,6 +227,8 @@ shot    pbmmake
 for     pbmmake pbmupc pbmreduce
 cap     pbmupc draws a real UPC-A barcode from its digits; pbmreduce halves
 cap     it so the whole code fits a screen.
+run     pbmmake -g 24 8 | pbmtoascii -1x2
+wait    8
 run     pbmupc 0 72890 00011 | pbmreduce 2 | pbmtoascii -2x4
 wait    15
 

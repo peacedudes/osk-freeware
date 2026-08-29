@@ -29,10 +29,14 @@ for     hexed hexedit
 cap     The hex editor cannot start: it writes its work file to /r0, the RAM
 cap     disk os9exec has no way to provide, and says so.  Seventeen programs
 cap     here reach for /r0; DOC/README-RUNNING lists them.  `beav' is the
-cap     binary editor that works.
+cap     binary editor that works.  `hexedit', a different program with a
+cap     similar name, does nothing at all: given a file it prints the value
+cap     of TERM and exits.
 run     hexed /dd/CMDS/today
 wait    6
 quit    q
+run     hexedit /dd/CMDS/today
+wait    8
 
 shot    pbyte
 for     pbyte chbase
