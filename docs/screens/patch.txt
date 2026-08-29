@@ -1,5 +1,4 @@
 $ head -n 6 /dd/SYS/holidays > /dd/tmp/p1
-head: /dd/SYS/holidays
 $ sed "s/Day/DAY/g" /dd/tmp/p1 > /dd/tmp/p2
 $ diff /dd/tmp/p1 /dd/tmp/p2 > /dd/tmp/p.diff
 $ cat /dd/tmp/p.diff

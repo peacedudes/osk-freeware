@@ -13,6 +13,5 @@ static char */dd/tmp/base[] = {
 "O c #1A825C",
 "+ c #764ADB",
 /* pixels */
-head: /dd/tmp/t.xpm
 $ xpmtoppm /dd/tmp/t.xpm | pnmfile
 stdin:  PPM raw, 48 by 24  maxval 255

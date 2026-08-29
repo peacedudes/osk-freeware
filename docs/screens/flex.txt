@@ -12,5 +12,3 @@ $ head -n 10 lex.yy.c
 #define FLEX_SCANNER
 
 #include <stdio.h>
-
-head: lex.yy.c

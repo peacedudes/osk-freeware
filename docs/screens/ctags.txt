@@ -12,4 +12,3 @@ keep_one        /dd/SRC/keep/keep.c     /^static void keep_one(prog)$/
 keep_source     /dd/SRC/keep/keep.c     /^static void keep_source(prog)$/
 kept_list       /dd/SRC/keep/keep.c     /^static void kept_list()$/
 makepath        /dd/SRC/keep/keep.c     /^static void makepath(path)$/
-head: tags

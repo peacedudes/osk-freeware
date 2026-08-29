@@ -1,5 +1,4 @@
 $ head -n 8 /dd/SYS/holidays | tac
-head: /dd/SYS/holidays
 *easter-46 Ash Wednesday
 *easter-7 Palm Sunday
 easter Easter Sunday

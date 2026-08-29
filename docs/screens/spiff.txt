@@ -1,4 +1,3 @@
 $ head -n 8 /dd/SYS/motd > /dd/tmp/s1
-head: /dd/SYS/motd
 $ detab /dd/tmp/s1 > /dd/tmp/s2
 $ spiff /dd/tmp/s1 /dd/tmp/s2

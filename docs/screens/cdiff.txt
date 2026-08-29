@@ -1,5 +1,4 @@
 $ head -n 10 /dd/SYS/holidays > /dd/tmp/h1
-head: /dd/SYS/holidays
 $ sed -e "s/Day/DAY/" /dd/tmp/h1 > /dd/tmp/h2
 $ cdiff /dd/tmp/h1 /dd/tmp/h2
 >>>> Difference of file "/dd/tmp/h1" and file "/dd/tmp/h2".

@@ -1,5 +1,4 @@
 $ head -n 400 /dd/GAMES/BOG/dict > /dd/tmp/words
-head: /dd/GAMES/BOG/dict
 $ mkdict < /dd/tmp/words > /dd/tmp/newdict
 # # Exception: pid=3 vector=$02 err=#000:102 ... process will be killed (x to c)
 $ wc /dd/tmp/words /dd/tmp/newdict

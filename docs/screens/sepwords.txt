@@ -1,5 +1,4 @@
 $ head -n 4 /dd/SYS/motd | sepwords
-head: /dd/SYS/motd
 Welcome
 to
 os9exec

@@ -1,5 +1,4 @@
 $ head -n 12 /dd/SYS/holidays > /dd/tmp/k.txt
-head: /dd/SYS/holidays
 $ pageline /dd/tmp/k.txt | head -n 12
 * 1
 Common 1

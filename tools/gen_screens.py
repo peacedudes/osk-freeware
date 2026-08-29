@@ -247,6 +247,11 @@ def esc(s):
 
 
 SHELL_NOISE = ("/.bashrc:", "# /h0:", "# /dd:")
+# GNU head announces the file it is reading -- `head: /dd/SYS/motd' on
+# its own line, after the text, on stderr. It is a heading printed in the
+# wrong place, not an error, and on a card it reads as one. Only the bare
+# form goes; `head: unrecognized option `-l'' has more words and stays.
+HEAD_BANNER = re.compile(r"^(head|tail): \S+$")
 # The shell's prompt, and what to show instead of it. DROPPING the prompt
 # lines outright -- which this did at first -- takes the COMMANDS with them,
 # so a five-command screen came out as one command and one listing with an
@@ -277,6 +282,8 @@ def trim(text, first=""):
         # its own line -- `04:45:27bash# date -t'. Two things to a reader.
         for ln in RUNON.sub("\n$ ", raw).split("\n"):
             if any(n in ln for n in SHELL_NOISE) or DUMP.match(ln):
+                continue
+            if HEAD_BANNER.match(ln):
                 continue
             if ln.startswith("export ") and "PATH" in ln:
                 continue                   # the harness's own login lines

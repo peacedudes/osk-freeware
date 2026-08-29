@@ -1,3 +1,2 @@
 $ head -n 8 /dd/SYS/holidays | shuffle
 Unknown terminal type ''.
-head: /dd/SYS/holidays

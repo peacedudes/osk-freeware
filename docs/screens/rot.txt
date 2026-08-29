@@ -1,5 +1,4 @@
 $ head -n 6 /dd/SYS/holidays > /dd/tmp/h.txt
-head: /dd/SYS/holidays
 $ cat /dd/tmp/h.txt
 * Common Holidays
 

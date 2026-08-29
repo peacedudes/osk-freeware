@@ -9,9 +9,5 @@ total 3584
 $ etags /dd/SRC/keep/keep.c
 No more memory !!!
 etags: virtual memory exhausted.
-$ head -l=6 TAGS
-head: unrecognized option `-l'
-Usage: head [-b #] [-c #] [-n #] [-qv] [+blocks=#] [+bytes=#] [+lines=#]
-       [+quiet] [+silent] [+verbose] [file...]
-
-       head [-#bclqv] [file...]
+$ head -n 6 TAGS
+head: TAGS: 000:216 file not found

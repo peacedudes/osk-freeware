@@ -1,7 +1,5 @@
 $ head -n 5 /dd/SYS/holidays > /dd/tmp/j1
-head: /dd/SYS/holidays
 $ head -n 5 /dd/SYS/birthdays > /dd/tmp/j2
-head: /dd/SYS/birthdays
 $ paste /dd/tmp/j1 /dd/tmp/j2
 * Common Holidays       * birthdays -- yours to fill in.
         *

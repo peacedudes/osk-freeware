@@ -140,15 +140,18 @@ for     xrf ref etags ctags.elvis
 cap     xrf wants its LANGUAGE TABLE, `C.XRF', in the current data directory
 cap     -- the disk has it as DOC/xrf/c.xrf, and the data directory here is
 cap     /dd, so it says so and stops.  Copy the table beside your source and
-cap     it runs.  `etags' underneath builds the TAGS file emacs wants, as
-cap     ctags does for vi.
+cap     it runs.  `etags' underneath is meant to build the TAGS file emacs
+cap     wants, the way ctags builds `tags' for vi -- and it cannot: it
+cap     floods `No more memory !!!' and gives up on any file it is given,
+cap     the smallest included.  That is the F$SRqMem storm, the same one
+cap     cvtbase and unstr hit.  `ctags' works; it has its own card.
 run     xrf /dd/SRC/keep/about.c
 wait    8
 run     ls -l /dd/DOC/xrf
 wait    8
 run     etags /dd/SRC/keep/keep.c
 wait    8
-run     head -l=6 TAGS
+run     head -n 6 TAGS
 wait    8
 
 
