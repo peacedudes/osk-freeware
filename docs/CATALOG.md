@@ -803,7 +803,7 @@
 | `tsmon2` | tsmon replacement - terminal monitor<br>`Syntax:   tsmon2 [<options>] <device name>` |
 | `udate` | &#9733; UNAXCESS BBS - date display |
 | `uwho` | &#9733; UNAXCESS BBS -- who is online.  Opens `/etc/utmp', and in OS-9 a leading /etc names a DEVICE, not a directory, so this cannot work here whatever is placed under /dd.  A Unix-ism left in the port; the BBS itself would have to supply an /etc device |
-| `wysecrack` | &#9733; Wyse terminal baud detect -- needs real Wyse hardware |
+| `wysecrack` | &#9733; Wyse terminal baud detect -- it writes `Anybody out there?' to the terminal and waits for a Wyse to answer, which nothing here is.  That one line is all it ever prints.  Measured 2026-08-29 |
 | `wysetime` | Wyse terminal time utility |
 
 **Terminal & transfer**
