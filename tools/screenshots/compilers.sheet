@@ -153,7 +153,9 @@ cap     assembly beside the source: zero errors, zero warnings, `RTF
 cap     normally completed', 1008 bytes of div.a.  Assembling and linking
 cap     that needs Microware's r68 and l68, which are not here.  Call `rtf'
 cap     DIRECTLY: the `for' driver forks a program called `shell' to run it
-cap     and this disk has none, so it prints the command and stops.
+cap     and this disk has none, so it prints the command and stops.  The
+cap     last line is `biory', a Fortran PROGRAM from the same set, running
+cap     off the same loaded library and asking for a name in German.
 run     rtf
 wait    6
 run     load /dd/CMDS/os9lib
@@ -163,4 +165,6 @@ wait    30
 run     ls -l /dd/SRC/rtf/div.a
 wait    8
 run     /dd/CMDS/for /dd/SRC/rtf/div.f
+wait    10
+run     biory < /nil
 wait    10

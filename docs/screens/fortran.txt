@@ -5,7 +5,10 @@ $ rtf /dd/SRC/rtf/div.f
  Total Errors   0   Warnings   0
  RTF normally completed
 $ ls -l /dd/SRC/rtf/div.a
--rw-------   1 0        0            1008 Aug 29 12:59 /dd/SRC/rtf/div.a
+-rw-------   1 0        0            1008 Aug 29 13:03 /dd/SRC/rtf/div.a
 $ /dd/CMDS/for /dd/SRC/rtf/div.f
 rtf /dd/SRC/rtf/div.f
  STOP: compilation aborted
+$ biory < /nil
+  Ausgabe im Listingfile 'Biory.Lis'
+  Name Vorname (RETURN=Ende)  :
