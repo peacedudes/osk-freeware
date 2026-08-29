@@ -38,12 +38,23 @@ run     cxref /dd/SRC/keep/about.c | head -n 20
 wait    8
 
 shot    dhry
+for     dhry dhryO2 dhryGcc dhryGcc2 dhryGcc2o2 dhryGcco2 dhryGccin dhryGccmx
+for     dhryGcc2in dhryGcc2mx dhryshamu dhryshamu2
 cap     Dhrystone, built twelve ways -- Microware cc, GCC 1.x and 2.x,
-cap     optimised and not.  The whole point of the directory is comparison.
-run     dhry
-wait    10
-run     dhryGcc2o2
-wait    10
+cap     optimised and not -- which is what the DHRY directory is FOR.  It
+cap     asks how many runs, and it has to be asked for a lot: at the
+cap     default it finishes before the clock ticks and says the measured
+cap     time is too small.  Two million runs apiece gives the comparison,
+cap     and GCC 2 at -O2 is about 16% ahead of the Microware build.  The
+cap     numbers are the emulator's speed, not a 68000's.
+run     echo 2000000 | dhry > /dd/tmp/d1.txt
+wait    60
+run     tail -l=2 /dd/tmp/d1.txt
+wait    8
+run     echo 2000000 | dhryGcc2o2 > /dd/tmp/d2.txt
+wait    60
+run     tail -l=2 /dd/tmp/d2.txt
+wait    8
 
 shot    dhry-all
 for     dhry dhryO2 dhryGcc dhryGcc2 dhryGcc2o2 dhryGccin dhryGcc2in dhryGccmx dhryGcc2mx dhryGcco2 dhryshamu dhryshamu2
