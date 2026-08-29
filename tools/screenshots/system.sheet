@@ -391,7 +391,10 @@ run     dinfo /dd
 wait    8
 
 shot    spline
-cap     spline fits a curve through points and writes PostScript for it.
+cap     spline fits a curve through points and writes PostScript -- the
+cap     `%!' at the head of the line is the PostScript magic.  It writes
+cap     the same stream whatever it is given, including -?, so it never
+cap     tells you what it wants.
 run     echo "0 0" > /dd/tmp/pts
 wait    2
 run     spline /dd/tmp/pts | head -n 14
@@ -404,8 +407,11 @@ run     sqrtx
 wait    6
 
 shot    ssl
-cap     ssl shows a file's segment list -- the sectors RBF gave it, in
-cap     order.  This is the disk's own allocation, not a summary.
+cap     ssl asks RBF for a file's segment list -- the sectors it was given,
+cap     in order.  It prints the heading and no rows for every file tried
+cap     here: os9exec's RBF does not hand back the file descriptor sector,
+cap     so there is nothing for ssl to list.  `map -e' answers the same
+cap     question and does work; it has its own card.
 run     ssl /dd/DOC/INDEX
 wait    4
 
