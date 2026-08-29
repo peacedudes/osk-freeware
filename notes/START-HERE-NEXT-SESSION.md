@@ -37,7 +37,8 @@ commented (`zip`, `todos`, `pnmtosir`).
 ## WHAT HAPPENED 2026-08-27 (third session): the screens
 
 **Every program's card in `docs/index.html` carries its own SAMPLE OUTPUT**,
-photographed while running -- 876 of 918 of them. `tools/screenshots.py`
+photographed while running -- 869 of 918 of them, from 455 distinct
+captures (one card can cover a family). `tools/screenshots.py`
 takes the pictures: ONE bash session on a pty, many programs per session,
 the bytes each one wrote rendered by `ansiscreen.py`. A sheet
 (`tools/screenshots/*.sheet`) is the source; `tools/gen_screens.py` folds
@@ -131,7 +132,7 @@ Do not stop between items to report; commit and start the next one.
 
 ## WHAT TO DO NEXT, then
 
-**1. The 42 programs with no screen.** `docs/screens.js` covers 876 of 918.
+**1. The 49 programs with no screen.** `docs/screens.js` covers 869 of 918.
    What is left is mostly unreachable -- X11 clients with no server, the
    G-Windows four, netpbm readers for formats no file here is in -- but
    `tools/screenshots/*.sheet` is where a new one goes, ONE STANZA PER

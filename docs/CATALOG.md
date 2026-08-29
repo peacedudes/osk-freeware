@@ -44,7 +44,7 @@
 |---|---|
 | `checkenv` | &#9733; check env var<br>`Syntax: checkenv <eparam> , <evalue>` |
 | `exist` | &#9733; test file existence |
-| `fc` | &#9733; re-execute history<br>`Syntax:   fc [<file>]` |
+| `fc` | &#9733; split a big file in two, to carry it on 360k disks<br>`Syntax:   fc [<file>]` |
 | `getenv` | &#9733; print an environment variable<br>`USAGE: getenv [-n\|-p\|-l\|-x] <Environment> [<Wert>]` |
 | `hist` | C-shell history + commandline editing  [no military use -- EFFO-INFO] |
 | `if` | conditional execution for shell scripts (varval/loaded/def)<br>`Syntax: if [not] <cond> {<arg>} {<cmd1>} [else` |
@@ -325,7 +325,7 @@
 
 | | |
 |---|---|
-| `gawk` | &#9733; GNU awk 2.11 -- the pattern-and-action language.  A BEGIN block runs and `getline < "file"' reads, but the moment gawk has to read its OWN input -- any rule, or an END block -- it prints nothing at all.  Measured 2026-08-27<br>**How:** GNU awk 2.11, the first awk this disk has ever carried. Needs Microware's cio. `gawk "{print \$1}" file' -- and mind that the OS-9 shell, not gawk, is what mangles quoting. |
+| `gawk` | &#9733; GNU awk 2.11 -- the pattern-and-action language.  It works, but it IGNORES A FILENAME ARGUMENT and reads standard input whatever it is given, so redirect: gawk '{...}' < file, never gawk '{...}' file.  Named a file, it sits waiting on the terminal, which is what the 2026-08-27 note here called "prints nothing at all".  Corrected 2026-08-28.<br>**How:** GNU awk 2.11, the first awk this disk has ever carried. Needs Microware's cio. `gawk "{print \$1}" file' -- and mind that the OS-9 shell, not gawk, is what mangles quoting. |
 
 </details>
 
@@ -797,7 +797,7 @@
 | `initvdu` | &#9733; init video display<br>**How:** Answers "is not defined for this terminal": it sets up specific VDU hardware, not a general terminal. |
 | `input` | UNAXCESS BBS - input helper |
 | `sbreak` | Send/clear an SS_Break signal on a serial path<br>`Syntax:   sbreak [/device]` |
-| `screen` | &#9733; Screen multiplexer (needs HOME set) |
+| `screen` | &#9733; NOT the terminal multiplexer.  Russ Smith's `screens': picks a file at random from $HOME/.SCREENS and shows it. On OS-9 it RUNS the file rather than printing it, through system(), which forks a program called `shell' that this disk does not have.  Source in SRC/screen, man page in DOC/screen/screens.6.  Corrected 2026-08-28 |
 | `setfont` | &#9733; load a downloadable terminal font -- setfont <path><br>`usage: setfont <path>` |
 | `setterm` | &#9733; set terminal type<br>**How:** Full-screen: it takes over the display. **ESC quits** -- tested. (control-C also gets you out, but ESC is the program's own way.) |
 | `tsmon2` | tsmon replacement - terminal monitor<br>`Syntax:   tsmon2 [<options>] <device name>` |
@@ -1143,7 +1143,7 @@
 | | |
 |---|---|
 | `mtst` | &#9733; spline curve fitting - test driver |
-| `rayshade` | ray tracer 4.0 -- RUNS but renders wrong; see DOC/rayshade<br>`usage: rayshade [options] [filename]` |
+| `rayshade` | ray tracer 4.0 -- RUNS but renders wrong; see DOC/rayshade  IT RENDERS, given two things: a program called `shell' (popen forks one and this disk has none -- `copy sh shell') and `cccp' in the DATA directory.  DOC/rayshade has the lines<br>`usage: rayshade [options] [filename]` |
 | `rsconvert` | convert rayshade image output between formats<br>`usage: rsconvert [oldfile]` |
 
 **Plotting**
@@ -1360,8 +1360,8 @@
 | `about` | what this collection knows about one program: what it is, what it is for, where it came from, the files it opens and whether they are here, and whether its source survived. Reads DOC/INDEX, CATEGORIES, ORIGINS and DEPENDS for you. what it is for, where it came from, the files it opens and whether they are here, and whether its source and documentation survived.  One card per program -- `about hack'.  DOC/CATEGORIES browses; this answers.<br>`Usage: about <program>...` |
 | `add_errmsg` | &#9733; build vi's error-message file -- it wants /dd/SYS/vi_errmsg, which is here |
 | `argproc_demo` | demonstration of argproc(), RICO's command-line argument parser.  STOPS WITH `**** Stack Overflow ****' whatever it is given -- its M\$Stack is 3072, the same as programs that work, so the fault is its own.  Source and the argproc library manual are now here: SRC/argproc and DOC/argproc_demo/man.argproc, from EFFO forum 7 |
-| `ask` | ask a yes/no question in a shell script and set the status<br>**How:** Asks a yes/no question and sets the shell status, for scripts. On its own it says "No Wisecracks coming" -- it is the front half of the `wisecrack' pipe from EFFO forum 20. |
-| `bcheck` | &#9733; check a boot file<br>`Syntax: bcheck [<opt>] [<filename>]` |
+| `ask` | NOT a script prompt.  A client for a `wisecracker' server: it writes to /PIPE/txtpipe and prints whatever answers.  No such server is on this disk, so it always says `No Wisecracks coming'.  Corrected 2026-08-28<br>**How:** Asks a yes/no question and sets the shell status, for scripts. On its own it says "No Wisecracks coming" -- it is the front half of the `wisecrack' pipe from EFFO forum 20. |
+| `bcheck` | &#9733; count brackets in a source file and report a mismatch -- it is not a boot-file checker.  Corrected 2026-08-28<br>`Syntax: bcheck [<opt>] [<filename>]` |
 | `bigsetter` | Modula-2 set-operations demonstration |
 | `biory` | FORTRAN example: Biorhythm.  Runs and prompts (in German) once os9lib is loaded.  Source: SRC/rtf/biory.f |
 | `bootlogger` | &#9733; log what happens during boot |
@@ -1434,7 +1434,7 @@
 | `vlen` | &#9733; report a file's record length |
 | `xlharc` | extract LHarc archives<br>`Usage: xlharc {axevlufdmctp}[qnftv] archive_file [files or directories...]` |
 | `yagi` | Yagi antenna design calculator |
-| `ynad` | &#9733; yes/no answer dialogue for shell scripts |
+| `ynad` | &#9733; YNAD -- Yet Another Name & Address program.  A contact database, not a yes/no dialogue.  Corrected 2026-08-28 |
 
 **Processes & memory**
 
@@ -1442,7 +1442,7 @@
 |---|---|
 | `aprocs` | &#9733; process monitor<br>`Syntax: aprocs [<opts>]` |
 | `dpark` | &#9733; park a process<br>`Syntax:   dpark [/device]` |
-| `launch` | &#9733; launch background process<br>**How:** Says "nothing to launch" until it is configured -- see its documentation. |
+| `launch` | &#9733; NOT a background launcher.  M.C.Gregorie's login helper: sets the environment for the terminal type, optionally a default PATH and emacs bindings, from /dd/SYS/config, then starts the shell named on its command line.  Corrected 2026-08-28<br>**How:** Says "nothing to launch" until it is configured -- see its documentation. |
 | `signal` | &#9733; send a signal to a process<br>`Syntax: signal <process-id> <signal-code> [<seconds>]` |
 | `sysmax` | &#9733; show maximum system memory |
 | `sysmin` | &#9733; show minimum system memory |
@@ -1693,7 +1693,7 @@
 | `help` | help system<br>`Syntax:   help [<opts>] [<topic> {<subtopic>}] [<opts>]` |
 | `helpindex` | &#9733; build the help index<br>`Syntax:   helpindex [<opts>] {<help file>} [<opts>]` |
 | `less` | Pager (wants a real TERM).  Its help screen works now: SYS/less.hlp is on the disk |
-| `rdoc` | &#9733; document reader |
+| `rdoc` | &#9733; reverse documentation: C source in, structure chart out |
 
 **Pagers**
 
