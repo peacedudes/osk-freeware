@@ -54,6 +54,9 @@ wait    6
 run     cookie
 wait    6
 
+# cookie DRAWS AT RANDOM.  Re-shooting this one changes what it says, and
+# the file has some sayings that do not want to be the face of the disk --
+# read what comes back before committing it.
 shot    cookie
 cap     cookie, the fortune-cookie program, reading the collection's own
 cap     sayings file.
@@ -87,7 +90,7 @@ wait    6
 shot    diff
 cap     GNU diff 1.1 on two versions of the same file -- the disk had no
 cap     diff at all before this one was added.
-run     head -n 12 /dd/SYS/motd > /dd/tmp/a.txt
+run     head -n 12 /dd/SYS/motd > /dd/tmp/a.txt 2>/nil
 wait    2
 run     sed -e "s/OS-9/OS-Nine/" /dd/tmp/a.txt > /dd/tmp/b.txt
 wait    3
