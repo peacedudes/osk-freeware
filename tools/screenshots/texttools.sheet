@@ -158,12 +158,24 @@ wait    20
 shot    expand
 for     expand unexpand deton tabs autolf
 cap     Tabs to spaces and back again, with dump showing the bytes so the
-cap     change is visible rather than asserted.
-run     printf "a\tb\tc\n" > /dd/tmp/t2.txt
+cap     change is visible rather than asserted: one line of SYS/holidays,
+cap     09 09 becoming a run of 20s and then coming back byte for byte.
+cap     `unexpand' needs -a to do it: without it, like every unexpand, it
+cap     only touches whitespace at the START of a line and these tabs are
+cap     in the middle.  `dump' wants a PATH -- it prints its usage for
+cap     anything handed to it on standard input -- so each stage is
+cap     written to a file first.
+run     head -n 3 /dd/SYS/holidays 2>/nil | tail -l=1 > /dd/tmp/t2.txt
 wait    5
-run     expand /dd/tmp/t2.txt | dump
-wait    8
-run     unexpand < /dd/tmp/t2.txt | dump
+run     dump /dd/tmp/t2.txt
+wait    6
+run     expand /dd/tmp/t2.txt > /dd/tmp/t3.txt
+wait    5
+run     dump /dd/tmp/t3.txt
+wait    6
+run     unexpand -a < /dd/tmp/t3.txt > /dd/tmp/t4.txt
+wait    5
+run     dump /dd/tmp/t4.txt
 wait    8
 
 shot    fcomp
