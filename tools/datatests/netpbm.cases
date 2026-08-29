@@ -339,3 +339,17 @@ run     $P/pbmmake -w 16 4 > /dd/tmp/pm.pbm 2>/nil
 run     $P/pbmtopgm 3 3 /dd/tmp/pm.pbm > /dd/tmp/pm.pgm 2>/nil
 run     $P/pnmfile /dd/tmp/pm.pgm
 expect  16 by 4
+
+# `cjpeg' REFUSES EVERY PNM ON THIS DISK -- `Bogus data in PPM file' -- and it
+# is not the file: pnmfile reads the same bytes without complaint. Tried raw
+# and plain PPM, a PGM, an 8x8 solid colour, from a file and on stdin, all on
+# 2026-08-29. Asserted so that the day it reads one, this says so.
+case    cjpeg-still-refuses-every-pnm
+run     $P/ppmmake red 8 8 > /dd/tmp/red.ppm 2>/nil
+run     /dd/CMDS/cjpeg /dd/tmp/red.ppm
+expect  Bogus data in PPM file
+
+case    cjpeg-refuses-a-pgm-the-same-way
+run     $P/pgmramp -lr 16 16 > /dd/tmp/t16.pgm 2>/nil
+run     /dd/CMDS/cjpeg /dd/tmp/t16.pgm
+expect  Bogus data in PPM file

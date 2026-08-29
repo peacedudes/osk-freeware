@@ -1110,7 +1110,7 @@
 
 | | |
 |---|---|
-| `cjpeg` | JPEG encoder (IJG) -- and it cannot read its input here: `Bogus data in PPM file' for a PPM netpbm reads happily, raw or plain.  cjpeg.070 fails the same way.  So no JPEG can be made here, and djpeg has nothing to decode<br>`usage: cjpeg [switches]` |
+| `cjpeg` | JPEG encoder (IJG) -- and it cannot read its input here: `Bogus data in PPM file' for every PNM tried, and the trying was thorough (2026-08-29): raw PPM and plain PPM, a PGM, an 8x8 solid colour, from a file and from standard input.  pnmfile reads the same files without complaint. cjpeg.070 fails the same way.  So no JPEG can be made here, and djpeg has nothing to decode<br>`usage: cjpeg [switches]` |
 | `cjpeg.070` | JPEG compressor (68070 build)<br>`usage: cjpeg.070 [switches]` |
 | `djpeg` | JPEG decoder (IJG) -- ADDED<br>`usage: djpeg [switches]` |
 | `djpeg.070` | JPEG decompressor (68070 build)<br>`usage: djpeg.070 [switches]` |
