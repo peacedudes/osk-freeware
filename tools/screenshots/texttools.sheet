@@ -323,8 +323,10 @@ wait    8
 
 shot    qt
 for     qt vis
-cap     `qt' tells the time the way a person says it out loud -- `It's just
-cap     gone ten past four'.  DOC/INDEX called it a quick text utility,
+cap     `qt' tells the time the way a person says it out loud -- `just gone
+cap     ten past four', `nearly a quarter past', and it says whatever the
+cap     clock says when the picture is taken.  DOC/INDEX called it a quick
+cap     text utility,
 cap     which is what put it in this file; it is corrected there now.
 cap     `vis' beside it is not the Unix `vis' either: it runs a command
 cap     over and over and refreshes the screen with the output, which is

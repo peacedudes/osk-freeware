@@ -1,5 +1,5 @@
 $ qt
-It's nearly a quarter past four.
+It's almost twenty-five past four.
 $ vis -?
 syntax: vis {opt} <command> <args>
 function: repeatedly execute command, refreshing screen with its output
