@@ -294,5 +294,30 @@ of TERM and exits, `devprc' crashes bare and works with `-h' exactly as `cp'
 does, and `cjpeg' refuses every PNM tried -- raw, plain, PGM, 8x8, from a
 file and from stdin.
 
+## The disk already had the converter todos was supposed to be
+
+**`autolf' works.** Mike Tozer's, 1995, sitting in CMDS under a DOC/INDEX
+entry that said `auto-linefeed filter' and had evidently never been run. As a
+FILTER it does exactly what `todos' and `toos9' fail to do: `autolf -c -C -L
+< in > out' turns OS-9 text into DOS text -- 40 bytes in, 41 out, the trailing
+0D now 0D 0A. It also does LF, tab expansion and ^Z, and `-H' explains the
+conversions.
+
+And it explains the others. Given a FILENAME rather than a pipe, autolf
+converts through a temporary and reports `couldn't rename'. **That is the
+same missing rename() that stops zip and arc** -- and `todos' now says so on
+its own card: it converts into `todos.$$$.3' and cannot rename it back, which
+is why the file comes back byte-identical and the program looked inert. One
+missing library function, four programs. `DOC/STATUS' has them together now.
+
+Found while re-testing DOC/INDEX entries that were short, unstamped and
+looked inferred from the program's name. The same pass found `greg' is a
+JULIAN DATE converter and not a regular-expression demo, `combine'
+interleaves two files byte by byte for EPROM images, `ape' writes gibberish
+in the style of its input, `bush' is a countdown rather than a drawn tree --
+it was in DOC/START-HERE as "a tree, drawn", the first thing a new user is
+told to type, and is replaced there by `today' -- and `names' does not come
+back at all.
+
 ## Nothing needs you
 
