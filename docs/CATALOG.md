@@ -1654,7 +1654,7 @@
 | `lpshut` | &#9733; shut down the printer scheduler<br>`Syntax: lpshut` |
 | `perr` | &#9733; print an OS-9 error message<br>`Syntax: perr [<error_codes>]` |
 | `prjob` | &#9733; print a job |
-| `qp` | &#9733; queue/print helper<br>`Syntax: qp <cmd> <arg1> ... <argn>` |
+| `qp` | &#9733; NOT a print helper: `qp <cmd> <args>' processes BACK-QUOTES for command expansion, which Microware's shell has no way to do.  It produces nothing here whatever it is given -- like everything else that forks a program called `shell', which this disk does not have.  Corrected 2026-08-29<br>`Syntax: qp <cmd> <arg1> ... <argn>` |
 
 **PostScript**
 
