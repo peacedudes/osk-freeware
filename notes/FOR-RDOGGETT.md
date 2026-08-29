@@ -400,14 +400,24 @@ broken -- your printf point, applied to everything else I had written that
 day. It found three descriptions that were too harsh (printf, shar, hexedit)
 and one that was hiding a working compiler.
 
-**A question, not a change I have made.** Four programs now fail for want of
-a program named `shell`, and a fifth (rayshade) renders as soon as one is
-there. `copy sh shell` is not quite enough -- the forked sh has no PATH, so
-`for` then gets `rtf: nowhere found` -- but a `shell` that sets PATH and
-hands off would fix all five at once. That is a new program shipping on the
-disk under a name OS-9 users associate with Microware's shell, so it is your
-call, not mine. The alternative is what I have done: document it everywhere
-it bites, and tell people to call the real program directly.
+**A question, not a change I have made -- now measured.** I built a test
+image with `sh` copied to `shell` and ran every program that fails for want
+of one. Exactly what `copy sh shell` buys:
+
+| program | with no shell | with `sh` as `shell` |
+|---|---|---|
+| `dm` (Disk Master 1.4) | `ERROR 216: Can't open /pipe/getcwdpipe` | **works fully** -- two-pane browser, directory list, file-information panel |
+| `rayshade` | cannot render | **renders** (also needs `cccp` in the data directory) |
+| `for` (Fortran driver) | prints the command, stops | reaches the shell, which then says `rtf: nowhere found` -- sh has no PATH of its own |
+| `qp` | silent | still silent |
+| `screen` | wants `$HOME/.SCREENS` | unchanged -- that is a different problem |
+
+So a plain copy fixes **two** programs outright and gets a third one step
+further. A `shell` that also set PATH would probably finish `for` as well.
+It is still a new program shipping under a name OS-9 users associate with
+Microware's, so it is your call. What I have done instead is document it
+everywhere it bites and tell people to call the real program directly --
+`rtf` rather than `for`, and so on.
 
 ## Nothing needs you
 
