@@ -1392,7 +1392,7 @@
 | `hinterhalt` | &#9733; a small game (EFFO forum 7) |
 | `i_am_i` | prints its own source (Pascal) |
 | `isam` | &#9733; indexed-sequential file demonstration |
-| `lfmaker` | make a G-Windows launch file |
+| `lfmaker` | make a G-Windows launch file -- and it FLOODS `No more memory !!!' as soon as it is given an argument, which is the F$SRqMem storm DOC/STATUS lists.  Measured 2026-08-29 |
 | `lgrep` | &#9733; line grep<br>`Syntax: lgrep <arg1> ... <argn>` |
 | `liborder.os9` | report the order of modules in a library<br>`Usage: liborder <options> file1.r file2.r ...` |
 | `lmargin` | &#9733; set the left margin ON AN EPSON PRINTER -- its own usage line says `epson'.  It is a printer control, not a text filter; `fmt', `proff' and `pep' are what indent text.  Clarified 2026-08-29<br>`usage: epson [<opts>]` |
