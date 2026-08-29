@@ -400,5 +400,14 @@ broken -- your printf point, applied to everything else I had written that
 day. It found three descriptions that were too harsh (printf, shar, hexedit)
 and one that was hiding a working compiler.
 
+**A question, not a change I have made.** Four programs now fail for want of
+a program named `shell`, and a fifth (rayshade) renders as soon as one is
+there. `copy sh shell` is not quite enough -- the forked sh has no PATH, so
+`for` then gets `rtf: nowhere found` -- but a `shell` that sets PATH and
+hands off would fix all five at once. That is a new program shipping on the
+disk under a name OS-9 users associate with Microware's shell, so it is your
+call, not mine. The alternative is what I have done: document it everywhere
+it bites, and tell people to call the real program directly.
+
 ## Nothing needs you
 
