@@ -310,14 +310,29 @@ its own card: it converts into `todos.$$$.3' and cannot rename it back, which
 is why the file comes back byte-identical and the program looked inert. One
 missing library function, four programs. `DOC/STATUS' has them together now.
 
-Found while re-testing DOC/INDEX entries that were short, unstamped and
-looked inferred from the program's name. The same pass found `greg' is a
-JULIAN DATE converter and not a regular-expression demo, `combine'
-interleaves two files byte by byte for EPROM images, `ape' writes gibberish
-in the style of its input, `bush' is a countdown rather than a drawn tree --
-it was in DOC/START-HERE as "a tree, drawn", the first thing a new user is
-told to type, and is replaced there by `today' -- and `names' does not come
-back at all.
+Found by re-testing DOC/INDEX entries that were short, unstamped and looked
+inferred from the program's NAME rather than from running it. About forty
+were tried and eleven were wrong:
+
+| entry said | it actually is |
+|---|---|
+| `greg` regular-expression search demo | converts a JULIAN DAY NUMBER to a date |
+| `qt` quick text utility | tells the time in words -- "just gone ten past four" |
+| `vis` make non-printing characters visible | runs a command over and over, like `watch` |
+| `dpark` park a process | parks a DISK HEAD at track 00 |
+| `gdd` data dump | GNU `dd` |
+| `vlen` report a file's record length | a variable-length-record DEMO that builds its own filesystem |
+| `owner` show file owner | CHANGES an owner; `fstat` shows one |
+| `bush` draw a random bush/tree | a countdown, and it was DOC/START-HERE's welcome example |
+| `read_mail` vi's mail-reading helper | its own mail reader, on /dd/MAIL/mail_&lt;user&gt; |
+| `lmargin` set a left margin on text | sets it on an EPSON PRINTER |
+| `names` list module names in a file | never returns |
+
+`combine' turned out to interleave two files byte by byte for EPROM images
+rather than merely "combine files", `ape' writes gibberish in the style of
+its input, and `mshell' and `mg' both need a real terminal. `bush' is
+replaced in DOC/START-HERE by `today', which prints the date in words and
+the phase of the moon and is a better first thing to type.
 
 ## Nothing needs you
 
