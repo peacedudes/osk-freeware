@@ -454,5 +454,24 @@ saying it could not -- that it wanted cio loaded and so needed a shell first
 -- was true before the five Microware modules shipped here. `os9exec -r
 /dd/CMDS/ksh` starts it and it forks external commands normally.
 
+## DOC/DEPENDS was answering for a third of the disk
+
+`gen_depends.py` scanned `CMDS` and `CMDS/GAMES` and nothing else, so **354
+programs had no entry at all** in the file whose first line promises "what
+each program needs besides its own binary" -- the whole of NETPBM, UUCP, ELM,
+TEXCMDS, COMMS, NETWORK, NEWS, WN, ADL, REBUILT, DEMOS, DHRY, GCC139 and MM1.
+It now scans all eighteen program directories, the same list `gen_catalog.py`
+uses, and DEPENDS went from about 250 programs to **477, with 1333 paths**.
+
+That gap had been found and fixed twice in `gen_catalog.py` and never looked
+for here. If a program directory is ever added, both lists need it.
+
+**`/r0` stays out of DEPENDS on purpose** -- the tool's own docstring argues
+that listing a device this disk should not provide would imply it should --
+so the twenty programs that want a RAM disk are listed in `DOC/STATUS`
+instead. That list said seventeen; re-measured 2026-08-29 it is twenty, with
+`UUCP/expire`, `UUCP/rnews` and `UUCP/uucico` missed because the earlier
+search required a trailing slash and some binaries stop at `/r0`.
+
 ## Nothing needs you
 
