@@ -1,7 +1,10 @@
 $ edir
-   Event Directory at  5:01:41
+   Event Directory at 17:45:18
 
+$ eset -?
+Syntax: eset <event> <num> [<opts>]
+Function: set event to a new value
+Options:
+        -a      start all waiting processes
 $ eset testevent 1
 eset: can't link to testevent
-$ edir
-   Event Directory at  5:01:59

@@ -66,7 +66,9 @@ shot    msread
 for     msread mswrite msbadblocks mstoolstest
 cap     msread and mswrite are the raw pair -- a whole file in and out with
 cap     none of the DOS filename rules involved.  The checksums either side
-cap     show it came back unchanged.
+cap     show it came back unchanged.  The msdel at the top is this card
+cap     clearing up after its last run, so the screen is the same every
+cap     time; on a fresh disk it says the file is not there, and is right.
 run     msdel a:RAW.TXT
 wait    8
 run     mswrite /dd/SYS/motd a:RAW.TXT

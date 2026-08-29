@@ -71,8 +71,11 @@ run     rm /dd/tmp/work/two
 wait    5
 
 shot    dm
-cap     dm, the disk and directory monitor -- a full-screen file browser
-cap     with its own help.
+cap     dm, DiskMaster 1.4 -- a full-screen file browser, and it gets as
+cap     far as its title box before stopping.  It asks the shell for the
+cap     working directory through a named pipe, /pipe/getcwdpipe, and the
+cap     open fails with error 216.  Its help file is on the disk as
+cap     SYS/dm.hlp; `edir', `dir' and `tree' are what browse here.
 run     dm /dd/SYS
 wait    5
 
@@ -92,12 +95,14 @@ shot    edir
 for     edir eset
 cap     edir lists the EVENT directory -- OS-9 events, their values and
 cap     their wait queues, not files.  There are no events set here, so
-cap     what it prints is the heading and the time.
+cap     what it prints is the heading and the time.  `eset' can only
+cap     change an event that already exists, and nothing on this disk
+cap     creates one, so it has nothing to link to.
 run     edir
+wait    8
+run     eset -?
 wait    8
 run     eset testevent 1
-wait    8
-run     edir
 wait    8
 
 shot    ff

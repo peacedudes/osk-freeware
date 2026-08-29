@@ -400,7 +400,11 @@ run     head -n 24 /dd/DOC/README-KEEP | tformat
 wait    8
 
 shot    unip
-cap     unip numbers the unique lines of a file, uniq drops the repeats.
+cap     unip is `unique with page numbers' -- the last stage of the index
+cap     chain that starts with sepwords: split a document into words, sort
+cap     them, and print each one once with the pages it appeared on.  The
+cap     page column is empty here because nothing upstream paginated the
+cap     text; what is left is the vocabulary of the file, in order.
 run     sepwords < /dd/DOC/README-CIO | sort | unip | head -n 18
 wait    10
 

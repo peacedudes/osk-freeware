@@ -407,7 +407,11 @@ run     sysmin
 wait    5
 
 shot    sysmon
-cap     sysmon, the system monitor, drawing memory and process state.
+cap     sysmon draws memory and process state on a real machine, and it
+cap     will not start here: it reads the system's version number and
+cap     refuses anything older than it was built for.  os9exec reports
+cap     V4.0, which sysmon 6.1 considers too old.  `mfree', `map' and
+cap     `free' are what answer the same questions on this disk.
 run     sysmon
 wait    8
 

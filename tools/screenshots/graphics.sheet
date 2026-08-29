@@ -624,7 +624,7 @@ cap     X bitmaps and Bennet Yee bitmaps: two of the eleven bitmap formats
 cap     this toolkit reads.
 run     pbmtoxbm /dd/tmp/base.pbm > /dd/tmp/t.xbm
 wait    6
-run     head -n 6 /dd/tmp/t.xbm
+run     head -n 6 /dd/tmp/t.xbm 2>/nil
 wait    5
 run     xbmtopbm /dd/tmp/t.xbm > /dd/tmp/back6.pbm
 wait    6
@@ -737,9 +737,11 @@ cap     Six drivers with no reader here, for machines that are gone: an NCR
 cap     terminal, a Mitsubishi dye-sublimation printer, DEC sixel, Motif
 cap     UIL source, an AT&T 4425 and an X10 bitmap.  What each made of the
 cap     same picture, in bytes -- that is what a page cost.
-run     ppmtosixel /dd/tmp/w.ppm | wc
-wait    15
-run     ppmtouil /dd/tmp/w.ppm | head -n 8
-wait    15
+run     ppmquant 256 /dd/tmp/w.ppm > /dd/tmp/q.ppm
+wait    20
+run     ppmtosixel /dd/tmp/q.ppm | wc
+wait    20
+run     ppmtomitsu /dd/tmp/q.ppm | wc
+wait    20
 run     pbmmake -g 40 20 | pbmtox10bm | head -n 6
 wait    15
