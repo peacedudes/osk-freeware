@@ -322,8 +322,7 @@ is why the file comes back byte-identical and the program looked inert. One
 missing library function, four programs. `DOC/STATUS' has them together now.
 
 Found by re-testing DOC/INDEX entries that were short, unstamped and looked
-inferred from the program's NAME rather than from running it. About sixty were
-tried and sixteen were wrong:
+inferred from the program's NAME rather than from running it. About a hundred and eighty were tried and **twenty-eight** were wrong:
 
 | entry said | it actually is |
 |---|---|
@@ -343,6 +342,17 @@ tried and sixteen were wrong:
 | `version` show a module's version | prints its OWN version, whatever you name |
 | `sysmax` show maximum system memory | maximum process AGE |
 | `sysmin` show minimum system memory | minimum process PRIORITY |
+| `dload` download a file over a serial line | loads a data file into a data MODULE |
+| `map` memory map display | the disk BLOCKS a file occupies |
+| `transfer` transfer a file between devices | copies from GDOS disks only, no options |
+| `suspend` suspend a process | REMOVES it from the system |
+| `chbase` change module base | converts a NUMBER between bases |
+| `deton` detab -- convert tabs to spaces | an alarm/timeout demonstration |
+| `gcl` general calculation utility | a grand digital CLOCK |
+| `mshell` a small shell | a MENU shell; wants a menu file |
+| `repeat` run a command over and over, with a delay | repeats N times, no delay -- and cannot fork the command |
+| `ask` yes/no question for a script | the CLIENT half of `wisecrack` |
+| `wisecrack` prints a wisecrack | a SERVER; prints nothing itself |
 
 `combine' turned out to interleave two files byte by byte for EPROM images
 rather than merely "combine files", `ape' writes gibberish in the style of
