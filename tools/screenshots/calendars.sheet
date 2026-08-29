@@ -71,3 +71,15 @@ wait    6
 run     greg 2440588
 wait    8
 
+shot    qt
+for     qt vis
+cap     `qt' tells the time the way a person says it out loud -- `It's just
+cap     gone ten past four' -- and is not the quick text utility DOC/INDEX
+cap     called it.  `vis' beside it is not the Unix `vis' either: it runs a
+cap     command over and over and refreshes the screen with the output,
+cap     which is what `watch' does on other systems.
+run     qt
+wait    6
+run     vis -?
+wait    8
+

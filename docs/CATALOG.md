@@ -101,7 +101,7 @@
 | `vi` | &#9733; THE REAL vi/ex -- its source in SRC/effo_vi is the Berkeley ex source itself, not a clone.  `vi -x' is ex, `vi -d' is edit.  See DOC/README-VI.  IT DOES NOT PAINT A FULL SCREEN here: it shows the first line and a half-drawn rule and no more, whatever you do.  `elvis', `vi_nocio' and REBUILT/VI all fill the screen properly.  Measured 2026-08-28<br>**How:** One of three unrelated vi editors here, and the only one that is the genuine Berkeley ex/vi rather than a clone -- its source in SRC/effo_vi is the real ex_*.c files. `vi -x' becomes ex, `vi -d' becomes edit. DOC/README-VI compares all three. |
 | `vi_cio` | &#9733; PVic vi, cio build (use vi_nocio instead)<br>**How:** PVic vi, the cio build. Needs `. /dd/SYS/termcap.entry' first, then it opens on an empty buffer. CMDS/vi_nocio is the same editor needing no module; DOC/README-VI compares all three vi editors here. |
 | `vi_nocio` | PVIC 1.0a -- the smallest of this disk's three vi editors, public domain.  See DOC/README-VI to choose between them<br>**How:** PVIC 1.0a, the smallest of the three vi editors on this disk, public domain, no source or docs here. DOC/README-VI compares it with vi and elvis. |
-| `vis` | &#9733; make non-printing characters visible |
+| `vis` | &#9733; NOT the Unix `vis': it repeatedly runs a command and refreshes the screen with the output, which is what `watch' does elsewhere -- `vis {opts} <command> <args>'.  Corrected 2026-08-29 |
 
 **Binary & hex**
 
@@ -184,7 +184,7 @@
 | `paste` | merge lines of files<br>`USAGE: paste [-s] [-d<list>] files` |
 | `pep` | file 'detergent' - strip junk from files<br>`Usage: pep [options] [filename ...]` |
 | `psc` | &#9733; sc's print/format filter<br>`Syntax: psc [-rkfLSPv?] [-s v] [-R i] [-C i] [-n i] [-d c] [<path1] [>path2]` |
-| `qt` | &#9733; quick text utility |
+| `qt` | &#9733; tells the time IN WORDS, the way a person would say it: `It's just gone ten past four.'  Not a text utility. `today' is the other one of its kind here.  Corrected 2026-08-29 |
 | `rot` | turn a text file on its side -- line one becomes column one.  NOT a rot-13 cipher, whatever the name suggests |
 | `shuffle` | shuffle lines/cards<br>**How:** Full-screen: it takes over the display. **`q' quits** -- tested. |
 | `tabs` | tab/space conversion filter<br>`Syntax   : tabs [<opts>] [<input_redirection>] [<output_redirection>]` |
