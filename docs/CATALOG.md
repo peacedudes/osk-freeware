@@ -1411,7 +1411,7 @@
 | `ptob` | Gepard fat-font back to bitmap<br>`Syntax:   PtoB [<opts>] [<path1>] [<opts>] [<path2>] [<opts>]` |
 | `ptxminst` | install Ptxm.  NOT a pseudo-tty installer -- that is what this entry said until 2026-08-19 and it was wrong |
 | `read_mail` | &#9733; a small mail reader of its own, not vi's helper: it opens /dd/MAIL/mail_<user> and offers `[L]ist again, e[X]it & delete mail, exit & [N]ot delete'.  Corrected 2026-08-29 |
-| `repeat` | run a command over and over, with a delay<br>`syntax: repeat [number of repetitions] [OS-9 command]` |
+| `repeat` | repeat an OS-9 command N times -- `repeat 3 <command>' -- and it cannot here.  It hands the command to whatever $SHELL names, in the form Microware's shell takes: `sh' answers `file not found' because it cannot fork an absolute pathname and `bash' answers `cannot execute binary file' because it treats the module as a script. It also prints `free() called with bad address' on the way out.  Measured 2026-08-29<br>`syntax: repeat [number of repetitions] [OS-9 command]` |
 | `rndir` | &#9733; rename a directory<br>`Syntax: rndir [<opt>]` |
 | `scsiutil` | SCSI device utility<br>`Usage: SCSIutil [/scsi_dev@] <command>` |
 | `setime2` | Y2K: set the system time, four-digit year<br>`Syntax:   setime2 [<opt>] [<setime2>] [<opt>]` |
