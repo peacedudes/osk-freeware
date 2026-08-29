@@ -334,5 +334,15 @@ its input, and `mshell' and `mg' both need a real terminal. `bush' is
 replaced in DOC/START-HERE by `today', which prints the date in words and
 the phase of the moon and is a better first thing to type.
 
+## One of CLAUDE.md's own rules was wrong
+
+**`mkdir -p` works.** The bash-scripting rules in CLAUDE.md said it did not,
+next to the `/nil` and `-f`/`-d` findings that are right. `mkdir -p
+/dd/tmp/pp/a/b/c` builds the whole chain from nothing, and mkdir's own usage
+line lists `-p`. Corrected there, and `tools/datatests/files.cases` now
+asserts it so it cannot drift back. Worth knowing because a script written
+around the false rule builds directories one at a time and has to get the
+order right.
+
 ## Nothing needs you
 

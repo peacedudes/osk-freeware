@@ -82,3 +82,18 @@ expect  216
 case    queens-solves-a-board-when-given-a-number
 run     echo 5 | /dd/CMDS/queens
 expect  Q# #
+
+# `mkdir -p' WORKS, measured 2026-08-29.  CLAUDE.md said it did not, which is
+# the kind of hard-won rule that costs a session when it is wrong: a script
+# that avoids -p builds directories one at a time and gets the order wrong.
+case    mkdir-p-builds-the-whole-chain
+run     /dd/CMDS/rm -rf /dd/tmp/pp
+run     /dd/CMDS/mkdir -p /dd/tmp/pp/a/b/c
+run     /dd/CMDS/ls /dd/tmp/pp/a/b
+expect  c
+absent  Error
+
+case    and-the-scratch-chain-goes-away
+run     /dd/CMDS/rm -rf /dd/tmp/pp
+run     /dd/CMDS/ls /dd/tmp/pp
+expect  216
