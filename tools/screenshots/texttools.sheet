@@ -487,3 +487,29 @@ run     tcmp /dd/SYS/motd /dd/SYS/motd
 wait    10
 run     wc.cio /dd/SYS/motd
 wait    10
+
+shot    roff
+for     roff nroff proff
+cap     Three roffs, none of them GNU.  `proff' justifies text to a
+cap     measure -- the spread-out words below are it filling the line --
+cap     and takes page ranges and a statistics option.  `roff' is the
+cap     small one with the same job; `nroff' answers `illegal switch' to
+cap     -? and wants a real macro package.  `lout' and `tex' are what
+cap     typeset properly here.
+run     head -n 12 /dd/DOC/README-KEEP > /dd/tmp/r.txt 2>/nil
+wait    5
+run     proff /dd/tmp/r.txt | head -n 10
+wait    10
+run     roff -?
+wait    8
+
+shot    btop
+for     btop ptob
+cap     BtoP and PtoB, a pair: characters to bit patterns and back again.
+cap     They are how a font or a bitmap moved through a mail system that
+cap     would only carry text, long before uuencode was on this disk.
+run     btop -?
+wait    8
+run     ptob -?
+wait    8
+

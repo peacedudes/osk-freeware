@@ -75,3 +75,10 @@ cap     it is given is not one of them.
 run     ttyexp -?
 wait    8
 
+shot    bush
+for     bush
+cap     A countdown, left running long past its moment: it still counts,
+cap     in the negative, from a clock the emulator dates to 19126.
+run     bush
+wait    8
+

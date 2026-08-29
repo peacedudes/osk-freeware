@@ -1,0 +1,21 @@
+$ head -n 12 /dd/DOC/README-KEEP > /dd/tmp/r.txt 2>/nil
+$ proff /dd/tmp/r.txt | head -n 10
+
+
+
+
+
+README-KEEP    --    taking    things    off    this   collection
+================================================
+
+    keep <name>...      the program, and whatever it needs
+    keep -n  <name>...    dry  run:  say  what  would be written,
+$ roff -?
+Syntax: roff {[+00] [-00] [-s] -[h] file}
+Function: format textfiles
+Options:
+     +00       start at page 00
+     -00       end at page 00
+     -c        print tabel of contents
+     -s        ????
+     -h        use hardtabs

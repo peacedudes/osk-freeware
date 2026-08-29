@@ -1,0 +1,8 @@
+$ btop -?
+Syntax:   BtoP [<opts>] [<path1>] [<opts>] [<path2>] [<opts>]
+Function: convert characters to bit patterns
+Options:  -o  use stdin for input, path1 for output
+$ ptob -?
+Syntax:   PtoB [<opts>] [<path1>] [<opts>] [<path2>] [<opts>]
+Function: convert bit patterns to chars
+Options:  -o  use stdin for input, path1 for output
