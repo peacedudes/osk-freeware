@@ -12,19 +12,28 @@ exists so nobody has to take this note's word for it.
 
 ## The numbers
 
-`tools/measure_layout.py disk`, over the 942 programs under `CMDS`:
+`tools/measure_layout.py disk`, over the 943 programs under `CMDS`,
+**re-measured 2026-08-29**:
 
-| | programs |
-|---|---:|
-| name no `/dd` path at all | 492 |
-| want **this collection** as `/dd` (its own data files) | **258** |
-| want a real **OS-9 system** as `/dd` (Microware's utilities) | 304 |
-| carry a `/h0` path | 139 |
-| ...of which want only `/h0/sys/termcap` | 98 |
-| ...want other `/h0` data of their own | **53** |
+| | programs | was, 2026-08-21 |
+|---|---:|---:|
+| name no `/dd` path at all | 490 | 492 |
+| want **this collection** as `/dd` (its own data files) | **429** | 258 |
+| want a real **OS-9 system** as `/dd` (Microware's utilities) | 142 | 304 |
+| carry a `/h0` path | 139 | 139 |
+| ...of which want only `/h0/sys/termcap` | 97 | 98 |
+| ...want other `/h0` data of their own | **54** | 53 |
 
-The two figures that decide it are in bold. **258 programs want the
-collection at `/dd`. 53 want data at `/h0`.**
+The two figures that decide it are in bold. **429 programs want the
+collection at `/dd`. 54 want data at `/h0`.** Ratio 7.9 to 1.
+
+THE SHIFT SINCE AUGUST IS THE DISK GETTING BETTER, not the tool changing.
+A program counts as "wants this collection" when the `/dd` path it carries
+RESOLVES here, so every data file recovered into the tree since -- the SEDT
+key files, `SPL/splq`, the vi and ephem data, the cal holidays -- moves
+programs out of "wants an OS-9 system" and into "wants this collection".
+171 of them have moved. The conclusion is not merely unchanged; it is
+stronger than when it was made.
 
 The 98 termcap ones do not count on either side: `SYS/login` exports
 `TERMCAP` and they read that first, so they are satisfied wherever the disk
@@ -50,7 +59,7 @@ remedies do not match your             /dd/GAMES/FORTUNE/fortunes.dat
 problem, you modify the problem...
 ```
 
-That is the 258 in miniature. Nothing about `fortune` is unusual; it was
+That is the 429 in miniature. Nothing about `fortune` is unusual; it was
 picked because its one data file is short to name.
 
 ## What this means for `keep`
@@ -68,7 +77,7 @@ some of this on it. For them the collection is a second disk and `/dd` is
 theirs, so:
 
   - a program with no data (492 of 942) is one file copy;
-  - a program wanting our data (258) needs the program **and** the files
+  - a program wanting our data (429) needs the program **and** the files
     `DOC/DEPENDS` lists, copied to the same `/dd`-relative places;
   - a program wanting `/h0` data (53) needs either a `/h0`, or the data put
     where it looks. `keep` should say so rather than pretend.
@@ -87,7 +96,7 @@ to build than "install", and it is what the receipt makes safe.
    collects the 53. It is what the current arrangement already does and it
    should stay.
 3. **`/h0`-only is the one arrangement to steer people away from.** It is
-   strictly the worst of the three: it strands 258 programs to satisfy 53.
+   strictly the worst of the three: it strands 429 programs to satisfy 54.
 4. **`keep` targets the second case**, someone else's `/dd`, and should be
    written and documented as that.
 
