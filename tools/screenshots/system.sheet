@@ -472,8 +472,11 @@ wait    6
 
 shot    transfer
 for     transfer trunc preset fillup vlen
-cap     transfer copies between devices and trunc cuts a file short -- the
-cap     listing either side of it is the whole demonstration.  `vlen' in
+cap     `trunc' cuts a file short and the listing either side of it is the
+cap     whole demonstration.  `transfer', which names this card, copies
+cap     from GDOS DISKS to OS-9 and takes no options at all -- not the
+cap     general device-to-device copier DOC/INDEX called it; `cp' and
+cap     `dsave' are those.  `vlen' in this group is
 cap     this group is NOT a reporting tool whatever DOC/INDEX said: it is
 cap     a variable-length-record demonstration that builds a filesystem of
 cap     its own and fills it.  `fillup' pads a file out to a length with a
