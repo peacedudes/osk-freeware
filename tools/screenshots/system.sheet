@@ -137,8 +137,10 @@ wait    3
 
 shot    dload
 for     dload break sbreak setfont trap
-cap     dload sends a file down a serial line; break and sbreak send a
-cap     BREAK -- assembler examples from the forums, harmless here because
+cap     `dload' does NOT send a file down a serial line, whatever the name
+cap     and DOC/INDEX said: its own usage line, below, says it loads a data
+cap     file INTO A DATA MODULE.  `break' and `sbreak' are the serial-line
+cap     examples -- assembler ones from the forums, harmless here because
 cap     there is no serial line.  `break' has to be asked for by path: it
 cap     is a bash builtin too, and the builtin answers first.  It prints
 cap     nothing whatever it is given, which is why sbreak is shown as well.

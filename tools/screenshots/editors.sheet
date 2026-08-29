@@ -46,8 +46,10 @@ wait    8
 
 shot    pbyte
 for     pbyte chbase
-cap     pbyte patches bytes in a file at a hex offset, and chbase changes a
-cap     module's base -- the two smallest binary editors here.
+cap     pbyte patches bytes in a file at a hex offset -- the smallest
+cap     binary editor here.  `chbase' beside it is NOT a module-base
+cap     changer whatever DOC/INDEX said: it converts a NUMBER from one
+cap     base to another, which its own banner spells out.
 run     pbyte
 wait    8
 run     chbase
