@@ -17,8 +17,8 @@ O  SOURCES.txt                     P  SPL
 Q  SPOOL                           R  SRC
 S  SYS                             T  USR
 U  VH                              V  c
-W  cccp                            X  local
-Y  m.arc                           Z  m4.arc
+W  local                           X  readme
+Y  startup                         Z  tmp
 
 
 Select file :

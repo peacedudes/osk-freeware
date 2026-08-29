@@ -33,7 +33,7 @@ run     expr 2 \* 21
 wait    3
 
 shot    gshell
-for     gshell mshell xc run hist
+for     gshell mshell
 cap     GSHELL, a shell with a menu, and the other three small shells this
 cap     disk keeps beside bash.
 run     gshell
@@ -114,3 +114,21 @@ run     expr 355 / 113
 wait    6
 run     expr 7 \* 6
 wait    8
+
+shot    hist
+for     hist xc run su
+cap     Four small shell helpers, each wanting something the shell does not
+cap     hand it.  `hist' is meant to be C-shell history and line editing and
+cap     prints a rule of asterisks and exits.  `xc' runs the commands marked
+cap     in a file and refuses to start without HOME.  `run' rebinds a
+cap     program's stdio to a terminal named by PORT and says so when there
+cap     is none.  `su' is GNU su, and answers --help rather than -?.
+run     xc -?
+wait    6
+run     run -?
+wait    6
+run     su --help | head -n 5
+wait    10
+run     hist
+wait    6
+
