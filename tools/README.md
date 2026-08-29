@@ -194,6 +194,13 @@ repeats its rank lines and that is fine. It exists because a card once
 carried twenty-four copies of `No more memory !!!` under a caption about
 converting number bases, and every check there was had passed it.
 
+**`tools/fix_index.py` rewrites one DOC/INDEX entry safely.** The file is
+CR-terminated, its entries have continuation lines indented to a fixed
+column, unstarred names carry an extra leading space, and the head of the
+file repeats every name in a four-column grid that matches the same regex.
+Hand-editing got all four of those wrong in one session. Import `fix` and
+give it the program name and the replacement lines.
+
 **Probe a program with the environment SYS/login gives it, not just PATH.**
 On 2026-08-29 a sweep over DOC/INDEX entries ran each program with PATH set
 and nothing else, and produced false negatives: `mailx' said "HOME is not
