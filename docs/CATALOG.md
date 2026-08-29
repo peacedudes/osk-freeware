@@ -49,7 +49,7 @@
 | `hist` | C-shell history + commandline editing  [no military use -- EFFO-INFO] |
 | `if` | conditional execution for shell scripts (varval/loaded/def)<br>`Syntax: if [not] <cond> {<arg>} {<cmd1>} [else` |
 | `printenv` | &#9733; print the environment<br>`Syntax:   printenv [<options>] [{<env var name}]` |
-| `printf` | &#9733; formatted print from the shell -- it FLOODS `No more memory !!!' here and prints nothing; `echo' is what works<br>`Usage: printf <format-string> [ arg1 . . . ]` |
+| `printf` | &#9733; formatted print from the shell, and it DROPS EVERYTHING BEFORE THE FIRST CONVERSION: `printf "[%s]\n" X' gives `X]', not `[X]', and a format with no conversion in it at all prints nothing.  Start the format with the conversion and it is correct -- `%s-%s' gives `A-B'.  `echo' has no such trouble.  Corrected 2026-08-29; the earlier note here said it floods `No more memory !!!', and it does not<br>`Usage: printf <format-string> [ arg1 . . . ]` |
 | `run` | run a program with stdio rebound to the terminal (needs PORT)<br>`Syntax: run '<prgname> {<arg>}'` |
 | `xc` | execute commands from a file (needs a .xc) |
 

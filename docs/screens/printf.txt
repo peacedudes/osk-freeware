@@ -1,2 +1,7 @@
 $ printf "%s is %d bytes and %5.2f K\n" tar 22966 22.43
 tar is 22966 bytes and 22.43 K
+$ printf "[%s]\n" X
+X]
+$ printf "hello\n" x
+$ echo "hello -- echo has no such trouble"
+hello -- echo has no such trouble

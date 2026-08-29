@@ -63,9 +63,19 @@ run     printenv
 wait    4
 
 shot    printf
-cap     printf, formatting rather than echoing.
+cap     printf formats rather than echoes -- and it DROPS EVERYTHING BEFORE
+cap     THE FIRST CONVERSION.  `[%s]' gives `X]', not `[X]'; a format with
+cap     no conversion at all prints nothing whatever arguments follow it.
+cap     Begin the format with the conversion and it is right, which is why
+cap     the first line below looks perfect and the two under it do not.
 run     printf "%s is %d bytes and %5.2f K\n" tar 22966 22.43
+wait    5
+run     printf "[%s]\n" X
 wait    4
+run     printf "hello\n" x
+wait    4
+run     echo "hello -- echo has no such trouble"
+wait    5
 
 shot    sh
 cap     sh, a small Bourne shell -- and the one with a real OS-9 chd, so

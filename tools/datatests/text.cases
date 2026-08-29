@@ -113,6 +113,23 @@ case    gawk-ignores-a-filename-argument
 run     echo "" | /dd/CMDS/gawk "END{print NR\" records\"}" $T
 expect  1 records
 
+# `printf' DROPS EVERYTHING BEFORE THE FIRST CONVERSION, and prints nothing
+# at all for a format that has no conversion in it.  Begin the format with
+# the conversion and it is correct.  DOC/INDEX said it floods `No more
+# memory !!!' until 2026-08-29; it does not.
+case    printf-is-right-when-the-format-starts-with-a-conversion
+run     /dd/CMDS/printf "%s-%s\n" A B
+expect  A-B
+
+case    printf-drops-what-comes-before-the-first-conversion
+run     /dd/CMDS/printf "[%s]\n" X
+expect  X]
+absent  [X]
+
+case    printf-prints-nothing-without-a-conversion
+run     /dd/CMDS/printf "hello\n" x
+absent  hello
+
 # The build that shipped as `m4' until 2026-08-28 expanded this as `i hr ';
 # the alternate build, now shipping, gets it right.
 case    m4-expands-a-macro
