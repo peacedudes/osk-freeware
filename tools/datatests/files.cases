@@ -97,3 +97,11 @@ case    and-the-scratch-chain-goes-away
 run     /dd/CMDS/rm -rf /dd/tmp/pp
 run     /dd/CMDS/ls /dd/tmp/pp
 expect  216
+
+# PATH SEARCH WORKS AGAINST THE IMAGE.  disk/readme said it did not and told
+# everyone to type /dd/CMDS/ in front of every command; that is the UNPACKED
+# DIRECTORY's behaviour, not the image's.  This case runs a bare command name
+# through the login environment, which is what a person actually types.
+case    a-bare-command-name-is-found-on-the-image
+run     /dd/CMDS/ksh -c "PATH=/dd/CMDS; export PATH; chksum /dd/SYS/motd"
+expect  4b68af85

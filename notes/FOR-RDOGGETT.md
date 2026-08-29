@@ -429,5 +429,30 @@ Microware's, so it is your call. What I have done instead is document it
 everywhere it bites and tell people to call the real program directly --
 `rtf` rather than `for`, and so on.
 
+## The front door was telling everyone to type full paths
+
+`disk/readme` -- the first file anybody opens -- said *"bash's PATH search
+does not work against this filesystem"* and gave three examples all written
+as `/dd/CMDS/...`. **That is the unpacked directory's behaviour, not the
+image's.** Run the image the way the disk ships and a bare `cookie` works,
+`soundex </dd/SYS/motd` works, PATH is set across every program directory by
+SYS/login, and `.bashrc` reads. Point OS9DISK at an unpacked tree instead and
+you get `command not found` and `.bashrc: (E$Unit)`. Both measured
+2026-08-29, side by side.
+
+That is where the `/dd/CMDS/` noise you objected to came from -- the disk's
+own front door taught it. The readme now says "type commands by name" and
+gives the directory case as the one exception.
+
+Two doors down, the same file said **the image must be named `dd`** and that
+`freeware.rbf` "will not mount". It mounts perfectly when OS9DISK gives its
+full path; the filename only matters when os9exec has to find the image for
+itself. Also corrected.
+
+And in `DOC/README-RUNNING`: **`ksh` can be the first shell now.** The note
+saying it could not -- that it wanted cio loaded and so needed a shell first
+-- was true before the five Microware modules shipped here. `os9exec -r
+/dd/CMDS/ksh` starts it and it forks external commands normally.
+
 ## Nothing needs you
 
