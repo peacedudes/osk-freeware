@@ -72,7 +72,7 @@ fkeys|Communications|Terminal & session
 initvdu|Communications|Terminal & session
 input|Communications|Terminal & session
 sbreak|Communications|Terminal & session
-screen|Communications|Terminal & session
+screen|Screen toys|Screen toys
 setterm|Communications|Terminal & session
 tsmon2|Communications|Terminal & session
 udate|Communications|Terminal & session
@@ -154,7 +154,7 @@ mtools|Disk & DOS|MS-DOS media (mtools)
 help|Documentation|Readers & pagers
 helpindex|Documentation|Readers & pagers
 less|Documentation|Readers & pagers
-rdoc|Documentation|Readers & pagers
+rdoc|Developer tools|Source navigation
 
 # ---- Editors ----
 beav|Editors|Binary & hex
@@ -184,7 +184,7 @@ des|Encoding & conversion|Ciphers & hashes
 md5|Encoding & conversion|Ciphers & hashes
 xcrypt|Encoding & conversion|Ciphers & hashes
 cvtbase|Encoding & conversion|Number bases
-divide|Encoding & conversion|Number bases
+divide|Files & directories|Copy, move, delete
 atob|Encoding & conversion|Text encodings
 btoa|Encoding & conversion|Text encodings
 chardef|Encoding & conversion|Text encodings
@@ -512,7 +512,7 @@ worms|Screen toys|Screen toys
 # ---- Shells ----
 checkenv|Shells|Shell helpers
 exist|Shells|Shell helpers
-fc|Shells|Shell helpers
+fc|Files & directories|Copy, move, delete
 getenv|Shells|Shell helpers
 hist|Shells|Shell helpers
 if|Shells|Shell helpers
@@ -888,7 +888,7 @@ net|Communications|TCP/IP
 osknet|Communications|TCP/IP
 add_errmsg|System & modules|Utilities
 argproc_demo|System & modules|Utilities
-ask|System & modules|Utilities
+ask|Games|Other games
 biory|System & modules|Utilities
 bigsetter|System & modules|Utilities
 config|System & modules|Utilities
@@ -933,7 +933,7 @@ vlen|System & modules|Utilities
 what|System & modules|Utilities
 yagi|System & modules|Utilities
 unpacklib.os9|System & modules|Utilities
-bcheck|System & modules|Utilities
+bcheck|Developer tools|Source checking
 bootlogger|System & modules|Utilities
 combine|System & modules|Utilities
 cpu|System & modules|Utilities
@@ -975,7 +975,7 @@ sine|Graphics & images|Hardware demos
 striche|Graphics & images|Hardware demos
 g|Graphics & images|Hardware demos
 graph|Graphics & images|Hardware demos
-cam|Graphics & images|Hardware demos
+cam|Maths & calculators|Calculators
 lissaj|Graphics & images|Hardware demos
 lorenz3d|Graphics & images|Hardware demos
 wgen|Graphics & images|Hardware demos

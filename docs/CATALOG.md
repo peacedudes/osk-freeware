@@ -11,32 +11,32 @@
 
 | Category | Programs | |
 |---|--:|---|
-| [Shells](#shells) | 21 | Unix shells to sit beside OS-9's own -- bash and ksh bring history, job control, and scripts that come across unchanged. |
+| [Shells](#shells) | 20 | Unix shells to sit beside OS-9's own -- bash and ksh bring history, job control, and scripts that come across unchanged. |
 | [Editors](#editors) | 22 | vi and emacs in several flavours, line and stream editors, and editors for binary and hex. |
 | [Text tools](#text-tools) | 112 | Search, sort, compare, reformat, split and spell-check. |
-| [Files & directories](#files--directories) | 35 | Listing, copying, finding, renaming, and knowing what you have. |
-| [Developer tools](#developer-tools) | 46 | Version control, tags, cross-reference, formatters, a debugger and benchmarks. |
+| [Files & directories](#files--directories) | 37 | Listing, copying, finding, renaming, and knowing what you have. |
+| [Developer tools](#developer-tools) | 48 | Version control, tags, cross-reference, formatters, a debugger and benchmarks. |
 | [Compilers & build](#compilers--build) | 26 | C compilers and their passes, assemblers, linkers, make and parser generators. |
 | [Languages](#languages) | 10 | Interpreters and language systems beyond C. |
 | [Archives & compression](#archives--compression) | 35 | Pack, unpack and shrink -- lha, zip, tar, arc, zoo, and OS-9 module libraries. |
-| [Encoding & conversion](#encoding--conversion) | 26 | Between text encodings, line endings, number bases, ciphers and hashes. |
-| [Communications](#communications) | 97 | Kermit in several builds, terminal sessions, and networking. |
-| [Graphics & images](#graphics--images) | 203 | The netpbm toolkit, JPEG, a ray tracer, and things that draw. |
-| [Games](#games) | 65 | Adventures, board and card games, arcade ports, dungeon crawls and puzzles. |
-| [Screen toys](#screen-toys) | 6 | Things to watch rather than play. Start one and leave it going. |
+| [Encoding & conversion](#encoding--conversion) | 25 | Between text encodings, line endings, number bases, ciphers and hashes. |
+| [Communications](#communications) | 96 | Kermit in several builds, terminal sessions, and networking. |
+| [Graphics & images](#graphics--images) | 202 | The netpbm toolkit, JPEG, a ray tracer, and things that draw. |
+| [Games](#games) | 66 | Adventures, board and card games, arcade ports, dungeon crawls and puzzles. |
+| [Screen toys](#screen-toys) | 7 | Things to watch rather than play. Start one and leave it going. |
 | [Amusements](#amusements) | 24 | Generators, simulators and diversions that are not quite games. |
-| [System & modules](#system--modules) | 128 | OS-9 module and process tools, devices, system state and scheduling. |
+| [System & modules](#system--modules) | 126 | OS-9 module and process tools, devices, system state and scheduling. |
 | [Disk & DOS](#disk--dos) | 20 | Reading and writing MS-DOS media with the mtools set. |
 | [Time & calendar](#time--calendar) | 11 | Calendars, clocks and astronomy. |
-| [Maths & calculators](#maths--calculators) | 9 | Calculators, plotting, orbits and number theory. |
+| [Maths & calculators](#maths--calculators) | 10 | Calculators, plotting, orbits and number theory. |
 | [Printing](#printing) | 14 | Spoolers, page formatting and PostScript. |
-| [Documentation](#documentation) | 6 | Pagers, readers and the help system. |
+| [Documentation](#documentation) | 5 | Pagers, readers and the help system. |
 
 ## Shells
 
 *Unix shells to sit beside OS-9's own -- bash and ksh bring history, job control, and scripts that come across unchanged.*
 
-<details><summary>21 programs</summary>
+<details><summary>20 programs</summary>
 
 **Shell helpers**
 
@@ -44,7 +44,6 @@
 |---|---|
 | `checkenv` | &#9733; check env var<br>`Syntax: checkenv <eparam> , <evalue>` |
 | `exist` | &#9733; test file existence |
-| `fc` | &#9733; split a big file in two, to carry it on 360k disks<br>`Syntax:   fc [<file>]` |
 | `getenv` | &#9733; print an environment variable<br>`USAGE: getenv [-n\|-p\|-l\|-x] <Environment> [<Wert>]` |
 | `hist` | C-shell history + commandline editing  [no military use -- EFFO-INFO] |
 | `if` | conditional execution for shell scripts (varval/loaded/def)<br>`Syntax: if [not] <cond> {<arg>} {<cmd1>} [else` |
@@ -330,7 +329,7 @@
 
 *Listing, copying, finding, renaming, and knowing what you have.*
 
-<details><summary>35 programs</summary>
+<details><summary>37 programs</summary>
 
 **Copy, move, delete**
 
@@ -339,7 +338,9 @@
 | `cp` | &#9733; copy files -- and it WORKS: the bytes come back byte for byte.  Run with NO arguments it prints its usage and then takes a bus error inside I$Open, which is how it comes to sit in DOC/STATUS's crash list<br>`Usage: cp file1 file2` |
 | `dback` | Directory backup utility (wants a /d0 device)<br>`Usage: Dback [-options] <fromdir> <todir> [-options]` |
 | `delbak` | &#9733; delete backup files (*_bak) in a directory tree<br>`Usage: delbak [-options] [directory] [-options]` |
+| `divide` | &#9733; SPLIT A FILE into pieces -- Farside Systems 1992, `divide -l=<lines> <infile> [<outfile>]'.  Not integer division, whatever the name suggests |
 | `eunlink` | &#9733; extended unlink<br>`Syntax: eunlink {<event>}` |
+| `fc` | &#9733; split a big file in two, to carry it on 360k disks<br>`Syntax:   fc [<file>]` |
 | `move` | &#9733; move files between directories<br>`Syntax:   move [<options>] <from> [<to>] [<options>]` |
 | `mv` | &#9733; move/rename<br>`Usage: mv [-bfiuv] [-S backup-suffix] [-V {numbered,existing,simple}]` |
 | `remove` | &#9733; remove files, with confirmation<br>`Syntax   : remove [<opt>] [<modules>] [<opt>] [<modules>] [<opt>]` |
@@ -413,7 +414,7 @@
 
 *Version control, tags, cross-reference, formatters, a debugger and benchmarks.*
 
-<details><summary>46 programs</summary>
+<details><summary>48 programs</summary>
 
 **Benchmarks**
 
@@ -470,12 +471,14 @@
 | `ctags` | generate a vi tags file from C source (BSD)<br>`usage: ctags [-BFadtuwvx] [-f tagsfile] file ...` |
 | `cxref` | &#9733; C cross-reference lister -- numbered listing + symbol table<br>`Syntax:		cxref [-opts] [path]` |
 | `etags` | &#9733; generate an emacs TAGS file<br>`Syntax: etags { [<opts>] <path> }` |
+| `rdoc` | &#9733; reverse documentation: C source in, structure chart out |
 | `xrf` | &#9733; C cross-reference generator -- it wants its language table, `C.XRF', in the CURRENT DATA DIRECTORY.  The disk has it as DOC/xrf/c.xrf; copy that beside your source or it stops with `Cannot open Language Table file' |
 
 **Source checking**
 
 | | |
 |---|---|
+| `bcheck` | &#9733; count brackets in a source file and report a mismatch -- it is not a boot-file checker.  Corrected 2026-08-28<br>`Syntax: bcheck [<opt>] [<filename>]` |
 | `ccheck` | &#9733; C program checker -- matching brackets, quotes, comment brackets, and indentation that disagrees with them<br>**How:** Checks C source for mismatched brackets, quotes and comment markers, and for indentation that disagrees with the nesting. Needs cio. |
 | `checkfile` | &#9733; Check a C source file for structural mistakes.  Wants TERM<br>**How:** Full-screen: it takes over the display. **`q' quits** -- tested. |
 
@@ -687,7 +690,7 @@
 
 *Between text encodings, line endings, number bases, ciphers and hashes.*
 
-<details><summary>26 programs</summary>
+<details><summary>25 programs</summary>
 
 **Macintosh**
 
@@ -732,7 +735,6 @@
 | | |
 |---|---|
 | `cvtbase` | &#9733; convert a number between bases -- names them by KEY (b, d, h or x, o), and then FLOODS `No more memory !!!' without converting anything.  Its usage line prints fine, which is why it looked healthy |
-| `divide` | &#9733; SPLIT A FILE into pieces -- Farside Systems 1992, `divide -l=<lines> <infile> [<outfile>]'.  Not integer division, whatever the name suggests |
 
 **Audio**
 
@@ -746,7 +748,7 @@
 
 *Kermit in several builds, terminal sessions, and networking.*
 
-<details><summary>97 programs</summary>
+<details><summary>96 programs</summary>
 
 **Mail**
 
@@ -795,7 +797,6 @@
 | `initvdu` | &#9733; init video display<br>**How:** Answers "is not defined for this terminal": it sets up specific VDU hardware, not a general terminal. |
 | `input` | UNAXCESS BBS - input helper |
 | `sbreak` | Send/clear an SS_Break signal on a serial path<br>`Syntax:   sbreak [/device]` |
-| `screen` | &#9733; NOT the terminal multiplexer.  Russ Smith's `screens': picks a file at random from $HOME/.SCREENS and shows it. On OS-9 it RUNS the file rather than printing it, through system(), which forks a program called `shell' that this disk does not have.  Source in SRC/screen, man page in DOC/screen/screens.6.  Corrected 2026-08-28 |
 | `setfont` | &#9733; load a downloadable terminal font -- setfont <path><br>`usage: setfont <path>` |
 | `setterm` | &#9733; set terminal type<br>**How:** Full-screen: it takes over the display. **ESC quits** -- tested. (control-C also gets you out, but ESC is the program's own way.) |
 | `tsmon2` | tsmon replacement - terminal monitor<br>`Syntax:   tsmon2 [<options>] <device name>` |
@@ -901,7 +902,7 @@
 
 *The netpbm toolkit, JPEG, a ray tracer, and things that draw.*
 
-<details><summary>203 programs</summary>
+<details><summary>202 programs</summary>
 
 **NETPBM: edit & analyse**
 
@@ -1092,7 +1093,6 @@
 | | |
 |---|---|
 | `apfel` | Mandelbrot (Apfelmaennchen) -- Atari GRAPH display |
-| `cam` | &#9733; CAMSHAFT, not camera: it asks for the rocker ratio, the lift at a crank angle and the base circle, and plots the lift curve for an intake lobe.  The plot is Tektronix vectors, so on a vt100 it arrives as characters -- the dialogue above it is the readable part.  Corrected 2026-08-29 |
 | `g` | &#9733; an Atari GRAPH demo, paired with striche.  Needs the `graph' |
 | `graph` | the `Graph' TRAP LIBRARY itself, not a program -- a type-$0B module.  It is what g, striche, apfel, sine, showpic, graphdemo and graphsave all link.  `load' it and the trap installs; the library is then entered and stops on a privilege violation at its own `RTE', a supervisor-only instruction -- it was written to run in supervisor state.  Note its module name is lowercase `graph' while the programs ask for `Graph', and real OS-9 matches module names exactly |
 | `graphdemo` | Atari GRAPH demonstration |
@@ -1162,12 +1162,13 @@
 
 *Adventures, board and card games, arcade ports, dungeon crawls and puzzles.*
 
-<details><summary>65 programs</summary>
+<details><summary>66 programs</summary>
 
 **Other games**
 
 | | |
 |---|---|
+| `ask` | the CLIENT for `wisecrack': it reads one line from /PIPE/txtpipe and prints it, and says `No Wisecracks coming' when nothing is feeding the pipe.  Start the server first -- `wisecrack &' -- and it answers.  Not the shell-script prompt the name suggests.  Corrected 2026-08-29<br>**How:** Asks a yes/no question and sets the shell status, for scripts. On its own it says "No Wisecracks coming" -- it is the front half of the `wisecrack' pipe from EFFO forum 20. |
 | `backgammon` | &#9733; backgammon, with a computer opponent<br>`Usage:  backgammon [-] [n r w b pr pw pb t3a]` |
 | `colortest` | &#9733; G-Windows colour chart |
 | `convert` | world - build its data tables |
@@ -1275,12 +1276,13 @@
 
 *Things to watch rather than play. Start one and leave it going.*
 
-<details><summary>6 programs</summary>
+<details><summary>7 programs</summary>
 
 | | |
 |---|---|
 | `life` | Conway's Game of Life<br>**How:** life [init-file]. The patterns are in /dd/GAMES/LIFE -- try `life /dd/GAMES/LIFE/glider`. It also wants more memory than the default; from the OS-9 shell that is `life #22k <file>`, and bash has no #size syntax at all. |
 | `rain` | raindrops screen effect<br>**How:** Full-screen: it takes over the display. **control-C gets you out** -- tested, and none of q, Q, control-D or ESC did. If it has a quit command of its own, its documentation in DOC/ will say. |
+| `screen` | &#9733; NOT the terminal multiplexer.  Russ Smith's `screens': picks a file at random from $HOME/.SCREENS and shows it. On OS-9 it RUNS the file rather than printing it, through system(), which forks a program called `shell' that this disk does not have.  Source in SRC/screen, man page in DOC/screen/screens.6.  Corrected 2026-08-28 |
 | `suicide` | animation: a stick figure walks off a rooftop |
 | `suicide1` | suicide, variant |
 | `suicide2` | suicide, variant |
@@ -1349,7 +1351,7 @@
 
 *OS-9 module and process tools, devices, system state and scheduling.*
 
-<details><summary>128 programs</summary>
+<details><summary>126 programs</summary>
 
 **Utilities**
 
@@ -1358,8 +1360,6 @@
 | `about` | what this collection knows about one program: what it is, what it is for, where it came from, the files it opens and whether they are here, and whether its source survived. Reads DOC/INDEX, CATEGORIES, ORIGINS and DEPENDS for you. what it is for, where it came from, the files it opens and whether they are here, and whether its source and documentation survived.  One card per program -- `about hack'.  DOC/CATEGORIES browses; this answers.<br>`Usage: about <program>...` |
 | `add_errmsg` | &#9733; build vi's error-message file -- it wants /dd/SYS/vi_errmsg, which is here |
 | `argproc_demo` | demonstration of argproc(), RICO's command-line argument parser.  STOPS WITH `**** Stack Overflow ****' whatever it is given -- its M\$Stack is 3072, the same as programs that work, so the fault is its own.  Source and the argproc library manual are now here: SRC/argproc and DOC/argproc_demo/man.argproc, from EFFO forum 7 |
-| `ask` | the CLIENT for `wisecrack': it reads one line from /PIPE/txtpipe and prints it, and says `No Wisecracks coming' when nothing is feeding the pipe.  Start the server first -- `wisecrack &' -- and it answers.  Not the shell-script prompt the name suggests.  Corrected 2026-08-29<br>**How:** Asks a yes/no question and sets the shell status, for scripts. On its own it says "No Wisecracks coming" -- it is the front half of the `wisecrack' pipe from EFFO forum 20. |
-| `bcheck` | &#9733; count brackets in a source file and report a mismatch -- it is not a boot-file checker.  Corrected 2026-08-28<br>`Syntax: bcheck [<opt>] [<filename>]` |
 | `bigsetter` | Modula-2 set-operations demonstration |
 | `biory` | FORTRAN example: Biorhythm.  Runs and prompts (in German) once os9lib is loaded.  Source: SRC/rtf/biory.f |
 | `bootlogger` | &#9733; log what happens during boot |
@@ -1610,12 +1610,13 @@
 
 *Calculators, plotting, orbits and number theory.*
 
-<details><summary>9 programs</summary>
+<details><summary>10 programs</summary>
 
 **Calculators**
 
 | | |
 |---|---|
+| `cam` | &#9733; CAMSHAFT, not camera: it asks for the rocker ratio, the lift at a crank angle and the base circle, and plots the lift curve for an intake lobe.  The plot is Tektronix vectors, so on a vt100 it arrives as characters -- the dialogue above it is the readable part.  Corrected 2026-08-29 |
 | `chbase` | &#9733; converts a NUMBER from one base to another -- Philip Maechler's, and nothing to do with a module's base address.  `cvtbase' is the other one, and floods. Corrected 2026-08-29<br>`Syntax   : chbase <number> [ <base A> [ <base B> ] ]` |
 | `hc` | hex calculator |
 | `loan` | &#9733; loan/amortisation calculator |
@@ -1684,7 +1685,7 @@
 
 *Pagers, readers and the help system.*
 
-<details><summary>6 programs</summary>
+<details><summary>5 programs</summary>
 
 **Readers & pagers**
 
@@ -1693,7 +1694,6 @@
 | `help` | help system<br>`Syntax:   help [<opts>] [<topic> {<subtopic>}] [<opts>]` |
 | `helpindex` | &#9733; build the help index<br>`Syntax:   helpindex [<opts>] {<help file>} [<opts>]` |
 | `less` | Pager (wants a real TERM).  Its help screen works now: SYS/less.hlp is on the disk |
-| `rdoc` | &#9733; reverse documentation: C source in, structure chart out |
 
 **Pagers**
 
