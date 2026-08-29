@@ -126,16 +126,23 @@ run     as5
 wait    6
 
 shot    yacc
-cap     yacc reading a grammar and reporting what it built -- the states
-cap     and the conflicts, which is how you know a grammar is ambiguous.
+for     yacc
+cap     yacc DOES NOT COME BACK.  Given the three-line grammar built above
+cap     -- the same one `bison' reads and reports on in a second -- it
+cap     prints nothing and never returns, and the session has to be
+cap     stopped.  Measured 2026-08-29.  `bison' is the parser generator
+cap     that works here, and has its own card.
 run     echo "%token NUM" > /dd/tmp/g.y
-wait    2
-run     printf "%%%%\nexpr : expr '+' NUM | NUM ;\n" >> /dd/tmp/g.y
 wait    3
-run     yacc -v /dd/tmp/g.y
-wait    8
-run     head -n 12 y.output
+run     echo "%%" >> /dd/tmp/g.y
+wait    3
+run     echo "expr : expr NUM | NUM ;" >> /dd/tmp/g.y
+wait    3
+run     cat /dd/tmp/g.y
 wait    5
+run     yacc -v /dd/tmp/g.y
+wait    20
+kill
 
 shot    fortran
 for     rtf for lnk lnk.org biory creadoc os9lib

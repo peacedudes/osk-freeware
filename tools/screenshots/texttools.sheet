@@ -287,13 +287,26 @@ wait    8
 
 shot    qsort9
 for     qsort9 nsort shuffle uniq unip
-cap     qsort9 sorts a file, and nsort sorts numerically -- the difference
-cap     shows on numbers wider than one digit.
-run     printf "10\n9\n100\n2\n" > /dd/tmp/n.txt
-wait    6
+cap     Three sorts on the same four numbers, and only one of them is a
+cap     numeric sort.  `qsort9' compares text, which is what it is for.
+cap     `nsort' answers exactly the same -- 111 before 22 before 3 --
+cap     so it is NOT the numeric sort its name and DOC/INDEX promised,
+cap     and the index is corrected.  `sort -n' is the one that gets it
+cap     right.  The file is built with echo because this disk's printf
+cap     prints nothing at all for a format with no conversion in it.
+run     echo 3 > /dd/tmp/n.txt
+wait    3
+run     echo 22 >> /dd/tmp/n.txt
+wait    3
+run     echo 111 >> /dd/tmp/n.txt
+wait    3
+run     echo 4 >> /dd/tmp/n.txt
+wait    4
 run     qsort9 < /dd/tmp/n.txt
 wait    8
 run     nsort < /dd/tmp/n.txt
+wait    8
+run     sort -n /dd/tmp/n.txt
 wait    8
 
 shot    qt

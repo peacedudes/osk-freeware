@@ -1,3 +1,8 @@
 $ echo "%token NUM" > /dd/tmp/g.y
-$ printf "%%%%\nexpr : expr '+' NUM | NUM ;\n" >> /dd/tmp/g.y
+$ echo "%%" >> /dd/tmp/g.y
+$ echo "expr : expr NUM | NUM ;" >> /dd/tmp/g.y
+$ cat /dd/tmp/g.y
+%token NUM
+%%
+expr : expr NUM | NUM ;
 $ yacc -v /dd/tmp/g.y

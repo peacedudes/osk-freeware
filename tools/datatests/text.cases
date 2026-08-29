@@ -113,6 +113,22 @@ case    gawk-ignores-a-filename-argument
 run     echo "" | /dd/CMDS/gawk "END{print NR\" records\"}" $T
 expect  1 records
 
+# `nsort' IS NOT A NUMERIC SORT, whatever its name and DOC/INDEX said until
+# 2026-08-29: it answers exactly what GNU `sort' answers with no options.
+# `sort -n' is the numeric sort on this disk.
+case    nsort-sorts-lexically-not-numerically
+run     echo 3 > /dd/tmp/ns.txt
+run     echo 22 >> /dd/tmp/ns.txt
+run     echo 111 >> /dd/tmp/ns.txt
+run     /dd/CMDS/nsort < /dd/tmp/ns.txt
+expect  111
+absent  3 22 111
+
+case    sort-n-is-the-numeric-one
+run     /dd/CMDS/sort -n /dd/tmp/ns.txt > /dd/tmp/ns.out
+run     /dd/CMDS/cat /dd/tmp/ns.out
+expect  3
+
 # `printf' DROPS EVERYTHING BEFORE THE FIRST CONVERSION, and prints nothing
 # at all for a format that has no conversion in it.  Begin the format with
 # the conversion and it is correct.  DOC/INDEX said it floods `No more

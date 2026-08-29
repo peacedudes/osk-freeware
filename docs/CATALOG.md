@@ -200,7 +200,7 @@
 | `ediff` | visual file compare<br>`Syntax   : 'ediff <file'  or  'diff <f1> <f2> ! ediff'` |
 | `fcomp` | &#9733; compare two text files<br>`Syntax: fcomp <file_1> <file_2>` |
 | `join` | GNU join -- relational join of two sorted files<br>`Usage: join [-a 1\|2] [-v 1\|2] [-e empty-string] [-o field-list...] [-t char]` |
-| `nsort` | numeric sort<br>`Usage: nsort <unordered >sorted` |
+| `nsort` | NOT a numeric sort, whatever the name says: given 3, 22, 111 and 4 it answers 111, 22, 3, 4 -- the same lexical order GNU `sort' gives with no options.  `sort -n' is the numeric sort here and gets it right.  It reads standard input only.  Corrected 2026-08-29<br>`Usage: nsort <unordered >sorted` |
 | `qsort9` | &#9733; sort filter<br>`Syntax: qsort9 [<opts>] [<srcpath>] [<opts>]` |
 | `sort` | GNU sort<br>`Usage: sort [-cmus] [-t separator] [-o output-file] [-bdfiMnr] [+POS1 [-POS2]]` |
 | `spiff` | &#9733; tolerant diff - ignores formatting noise<br>**How:** Compares two files while ignoring differences that do not matter (whitespace, number formatting). Takes TWO filenames. |
