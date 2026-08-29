@@ -25,14 +25,18 @@ shot    basename
 for     basename dirname owner fstat
 cap     basename and dirname take a path apart -- neither prints a newline
 cap     after its answer, which is why they run into what follows.  `owner'
-cap     then says `No such user' for a file owned 0.0: everything on this
-cap     disk is, and SYS/password has no name for that number.
+cap     CHANGES an owner rather than showing one, super user only, so given
+cap     a filename alone it reads that as a user name and answers `No such
+cap     user'.  DOC/INDEX called it `show file owner' until this card was
+cap     read.  `fstat' below is what shows an owner, and does.
 run     basename /dd/CMDS/GAMES/hack
 wait    4
 run     dirname /dd/CMDS/GAMES/hack
 wait    4
-run     owner /dd/CMDS/hack
+run     owner /dd/CMDS/GAMES/hack
 wait    5
+run     fstat /dd/CMDS/GAMES/hack
+wait    6
 
 shot    chgrp
 for     chgrp chown eset

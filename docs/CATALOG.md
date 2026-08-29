@@ -388,7 +388,7 @@
 | `chgrp` | &#9733; change group<br>`Usage:  chgrp [-z] {numerical-gid \| username} [file [... file]]` |
 | `chown` | &#9733; change owner<br>`Usage:  chown [-z] {numerical-uid \| username} [file [... file]]` |
 | `eset` | &#9733; set an OS-9 event to a value -- eset <event> <num><br>`Syntax: eset <event> <num> [<opts>]` |
-| `owner` | &#9733; show file owner<br>`Usage: owner user file file ...` |
+| `owner` | &#9733; CHANGE a file's owner, not show it -- `owner <user> <file> ...', super user only.  Run with a file it prints its usage; run as `owner <file>' it reads the filename as a user name and answers `No such user'.  `fstat' and `ls -l' are what SHOW an owner.  Corrected 2026-08-29<br>`Usage: owner user file file ...` |
 
 **Paths**
 
