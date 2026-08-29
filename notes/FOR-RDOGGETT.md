@@ -378,5 +378,27 @@ of it measured 2026-08-29 against the current image.
     usable, which sends you round a detour on the image you actually use.
   - There is no `/dev/null`; `/nil` is the bit bucket. Still true.
 
+## The Fortran compiler works, and nobody had got that far
+
+**RTF/68K 2.14 compiles.** `load /dd/CMDS/os9lib` first -- without its runtime
+library the whole Fortran set prints nothing, which is all anyone had ever
+recorded -- and then `rtf /dd/SRC/rtf/div.f` answers *"Total Errors 0
+Warnings 0, RTF normally completed"* and leaves 1008 bytes of 68k assembly
+beside the source. `SRC/rtf` has seven programs to try. The ceiling is real
+-- assembling that output needs Microware's r68 and l68, which are not here
+-- but it is a long way above "prints nothing".
+
+**Call `rtf` directly.** The `for` driver forks a program called `shell` to
+run it and this disk has none, so it prints the command and stops. I proved
+that rather than inferring it: built a test image WITH a shell, and the fork
+then reaches it and the shell answers `rtf: nowhere found` because it has no
+PATH of its own. That is the fourth thing the missing `shell` stops, after
+rayshade, `screen` and `qp`.
+
+This came out of asking whether the programs I had called broken were really
+broken -- your printf point, applied to everything else I had written that
+day. It found three descriptions that were too harsh (printf, shar, hexedit)
+and one that was hiding a working compiler.
+
 ## Nothing needs you
 
