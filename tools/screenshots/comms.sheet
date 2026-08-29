@@ -131,12 +131,6 @@ wait    8
 run     tsmon2 -?
 wait    8
 
-shot    setterm
-cap     setterm and cls, the two smallest things here that know what a
-cap     terminal is.
-run     setterm
-wait    4
-
 shot    sterm
 for     sterm tterm tsu k z blastem dld uld vmod_trap
 cap     The terminal programs: sterm and tterm open a serial line and give

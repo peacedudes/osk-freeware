@@ -200,8 +200,13 @@ something that is worth not re-deriving.
    that as the program printing something -- thirty false OKs. A shell in the
    path means its complaints have to be recognised as its own.
 
-   Still to do here: stage 2 (the filters pass) has not been re-run this way,
-   and 272 SILENT programs are mostly filters that print nothing at EOF.
+   **All four stages have now been run this way** and the write-up in
+   `DOC/STATUS` is current: 922 programs, 630 printed bare, 211 as filters,
+   30 when asked `-?' -- 871 demonstrated running, 31 silent, 18 crashed, 2
+   wanting a trap handler. The tables are `notes/verify-loaded.tsv`,
+   `notes/verify-filters-loaded.tsv` and `notes/verify-usage-loaded.tsv`.
+   A note here that said stage 2 was outstanding was stale; checked
+   2026-08-29 against the files' own dates and contents.
 
 ## How to run the three test harnesses
 

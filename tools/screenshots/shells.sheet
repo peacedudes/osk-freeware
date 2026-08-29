@@ -25,13 +25,6 @@ wait    6
 run     checkenv TERM; echo "checkenv says $?"
 wait    6
 
-shot    expr
-cap     expr, doing arithmetic for a shell that cannot.
-run     expr 355 / 113
-wait    2
-run     expr 2 \* 21
-wait    3
-
 shot    gshell
 for     gshell mshell
 cap     GSHELL, a shell with a menu, and the other three small shells this

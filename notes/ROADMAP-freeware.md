@@ -5,7 +5,10 @@ Moved out of os9exec's ROADMAP.md when the collection got its own repo.
 > **Partly overtaken by the 2026-08-21 release pass.** Read
 > `notes/FOR-RDOGGETT.md` and `notes/SESSION-2026-08-21.md` before working
 > from anything below. In particular the `keep`/`drop` item is done, `elvis`
-> is not missing, and the CI pin is now 51 commits behind os9exec's HEAD.
+> is not missing, and the CI pin is 90 commits behind os9exec's HEAD as
+> measured 2026-08-29. The pinned commit 261b4b69 is still a valid
+> ancestor of HEAD, so CI will still build from it; bumping it is a
+> deliberate choice and needs somebody who can watch the run.
 
 ## Open, as of 2026-08-08
 
