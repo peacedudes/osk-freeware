@@ -1,0 +1,61 @@
+family  rebuilt
+# CMDS/REBUILT KEEPS A SECOND BUILD of several programs, and until 2026-08-28
+# nobody had asked which of each pair was the better one. Two swaps came out
+# of asking -- `sed' took REBUILT/sed_1.06 and `m4' took REBUILT/m4_0.5,
+# because the shipped m4 mangled its output. These cases record what the rest
+# of the pairs actually do, so the question does not have to be re-opened.
+#
+# The archive pairs are in archives.cases: compress_4.0, zoo_2.1, gtar, ar2
+# and the four gzip builds all agree with what ships.
+setup   T=/dd/SYS/motd
+setup   R=/dd/CMDS/REBUILT
+
+case    wc-and-wc.cio-count-the-same-file-the-same-way
+run     /dd/CMDS/wc < $T
+expect  1      6     40
+
+case    wc.cio-says-it-in-words-and-ignores-a-filename
+run     $R/wc.cio < $T
+expect  1 lines, 6 words, 40 chars
+
+# The shipped ctags finds the statics as well as main; elvis's finds main
+# and nothing else. That is why the bigger one ships.
+case    ctags-finds-the-static-functions
+run     /dd/CMDS/rm -f /dd/tags
+run     /dd/CMDS/ctags /dd/SRC/keep/about.c
+run     /dd/CMDS/wc -l /dd/tags
+absent  1 /dd/tags
+
+case    ctags.elvis-finds-only-main
+run     /dd/CMDS/rm -f /dd/tags
+run     $R/ctags.elvis /dd/SRC/keep/about.c
+run     /dd/CMDS/cat /dd/tags
+expect  main
+
+# diff_1.1 is twice the size and carries more options; on the same pair of
+# files the two agree line for line, so there is nothing to choose.
+case    the-two-diffs-agree
+run     /dd/CMDS/head -n 6 /dd/SYS/holidays > /dd/tmp/x1 2>/nil
+run     /dd/CMDS/sed -e "s/Day/DAY/" /dd/tmp/x1 > /dd/tmp/x2
+run     /dd/CMDS/diff /dd/tmp/x1 /dd/tmp/x2 > /dd/tmp/d1.out
+run     $R/diff_1.1 /dd/tmp/x1 /dd/tmp/x2 > /dd/tmp/d2.out
+run     /dd/CMDS/cmp /dd/tmp/d1.out /dd/tmp/d2.out
+absent  differ
+
+# REBUILT/arc is version 5.12 and wants its command letter with a LEADING
+# DASH; the shipped 5.21 takes it bare. Handed 5.21's form the older one
+# prints its usage and does nothing, which is why 5.21 is what ships.
+case    the-shipped-arc-is-5.21-and-takes-a-bare-command-letter
+run     /dd/CMDS/rm -f /dd/a1.arc
+run     /dd/CMDS/arc a a1.arc $T
+expect  Creating new archive
+
+case    rebuilt-arc-is-5.12-and-refuses-the-same-line
+run     /dd/CMDS/rm -f /dd/a2.arc
+run     $R/arc a a2.arc $T
+expect  arc - Archive Utility, 5.12
+
+case    the-scratch-archives-go-away
+run     /dd/CMDS/rm -f /dd/a1.arc /dd/a2.arc /dd/tags
+run     /dd/CMDS/ls /dd/a1.arc
+expect  error
