@@ -194,6 +194,18 @@ A description that says "does nothing" should be tested against every
 invocation the program's own usage line offers before it is written down.
 Each of these three was found by doing exactly that.
 
+## A FLAKY TEST IS WORSE THAN NO TEST
+
+`hack`'s documented way out -- `Q' then `y' -- was verified by hand on
+2026-08-29 and does work: high-score table, terminal handed back. A
+play-test for it was written and **thrown away**, because hack's start-up
+timing varies enough that fixed waits reach the dungeon only about half the
+time, and a test that fails every other run teaches people to ignore
+failures. The fact is recorded in `DOC/START-HERE` instead. If you want the
+test, it needs a way to wait for a MARKER on screen rather than a fixed
+number of seconds -- which `playtest.py` has no directive for yet, and which
+would be worth adding before anyone writes more timing-sensitive scripts.
+
 ## WHAT TO DO NEXT, then
 
 **1. Coverage is done: `docs/screens.js` covers 918 of 918.** The last
