@@ -30,6 +30,11 @@ Three things the HARNESS learned, all in `tools/screenshots.py`:
     window and nothing else.
   - `gen_screens.py` splits a prompt that a program's last unterminated
     write left on its line, and drops head's misplaced filename banner.
+  - **Two stanzas whose names differ only in case shared one capture file.**
+    `VI` overwrote `vi`, so the EFFO vi's card carried PVIC's screen. Both
+    tools now refuse such a sheet; the stanza is `pvic` now. Found by the
+    drift check, which is why `--check` exists and why **CI runs
+    `tools/gen_screens.py --check` and `tools/gen_catalog.py disk --check`**.
 
 **Data tests: 129 of 132 pass**, the three failures deliberate and
 commented (`zip`, `todos`, `pnmtosir`).

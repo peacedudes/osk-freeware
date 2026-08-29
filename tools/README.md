@@ -197,7 +197,15 @@ converting number bases, and every check there was had passed it.
 `gen_screens.py` also reports DRIFT: a stanza with no capture, and a capture
 older than the sheet that defines it -- which is the one way this can lie
 without anybody touching a program, by publishing an old screen under a new
-caption.
+caption. **`tools/gen_screens.py --check` makes that fatal**, and CI runs it:
+printing the warning was not enough, because nothing in CI reads warnings.
+
+**No two stanzas may have names differing only in case.** A capture is saved
+as `notes/playtests/<name>.shot.txt`, and on macOS `VI` and `vi` are ONE
+FILE: shooting the second silently overwrote the first, and the `vi` card
+published PVIC's screen under the EFFO vi's caption. Both `screenshots.py`
+and `gen_screens.py` now refuse the sheet and name the pair. The offending
+stanza was renamed `pvic`.
 
 `gen_screens.py` folds the captures into **the one catalogue** -- there is no
 separate gallery page, because a second page listing the same programs is a
