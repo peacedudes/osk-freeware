@@ -529,7 +529,7 @@
 | `m4` | m4 macro processor.  SWAPPED 2026-08-28: what ships is now the CMDS/REBUILT/m4_0.5 build, because the one that used to be here MANGLED its output -- a one-line definition expanded to `i hr ' instead of `hi there'.  The one here now expands correctly, from a file or a pipe<br>`Usage: m4 [options] file ....` |
 | `make` | &#9733; make - maintain and regenerate groups of files (verified: -? works)<br>`Syntax :	make {[-f <makefile>] [-dDinrst] [<target>] [<macro>=<value>]}` |
 | `makeinfo` | GNU makeinfo -- Texinfo to info<br>`Usage: makeinfo [options] texinfo-file...` |
-| `rtf` | RTF/68K Real-Time Fortran-77 compiler, v2.14 (CERN, 1987). Compiles .f to 68k ASSEMBLY; assembling and linking then need Microware's r68 and l68.  Manual: DOC/rtf/rtfman.txt |
+| `rtf` | RTF/68K Real-Time Fortran-77 compiler, v2.14 (CERN, 1987), AND IT COMPILES HERE.  `load /dd/CMDS/os9lib' first -- without its runtime library the whole set prints nothing -- then `rtf <file>.f' reads the Fortran and writes 68k ASSEMBLY beside the source: zero errors, `RTF normally completed'.  Assembling and linking that needs Microware's r68 and l68, which are not here.  CALL IT DIRECTLY: the `for' driver forks a program called `shell' to run rtf, and this disk has none, so it prints the command and stops.  Sources to try in SRC/rtf.  Manual: DOC/rtf/rtfman.txt.  Measured 2026-08-29 |
 | `yacc` | &#9733; yacc parser generator -- it HANGS on a two-rule grammar here: no output, no files written, and the run has to be killed.  `bison' reads the same grammar and reports its states and its conflicts<br>`Syntax   : yacc [-dltv] [-b <prefix>] filename` |
 
 **Assemblers & linkers**

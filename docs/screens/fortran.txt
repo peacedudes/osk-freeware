@@ -1,8 +1,11 @@
 $ rtf
 $ load /dd/CMDS/os9lib
-$ rtf
- command must be: RTF pathname [options..]
-$ /dd/CMDS/for
-command: for file{,file} [-rtfopt{,rtfopt}]
-$ lnk
-command: lnk file{,file} [-l68opts]
+$ rtf /dd/SRC/rtf/div.f
+ RTF/68K Version 2.14 (19-May-1987)
+ Total Errors   0   Warnings   0
+ RTF normally completed
+$ ls -l /dd/SRC/rtf/div.a
+-rw-------   1 0        0            1008 Aug 29 12:59 /dd/SRC/rtf/div.a
+$ /dd/CMDS/for /dd/SRC/rtf/div.f
+rtf /dd/SRC/rtf/div.f
+ STOP: compilation aborted

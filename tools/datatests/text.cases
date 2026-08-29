@@ -172,3 +172,22 @@ run     echo ",a,A," > /dd/tmp/sub.words
 run     /dd/CMDS/subber /dd/tmp/sub.words $T
 expect  F$Mem
 
+# RTF/68K COMPILES, measured 2026-08-29.  Its runtime library has to be in the
+# module directory first; without `load os9lib' the whole Fortran set prints
+# nothing, which is what the card used to show and all anyone had recorded.
+# Call `rtf' DIRECTLY -- the `for' driver forks a program called `shell' to
+# run it and this disk has none, so it prints the command and stops.
+case    rtf-compiles-fortran-to-68k-assembly
+run     /dd/CMDS/load /dd/CMDS/os9lib
+run     /dd/CMDS/rm -f /dd/SRC/rtf/div.a
+run     /dd/CMDS/rtf /dd/SRC/rtf/div.f
+expect  Total Errors   0
+expect  RTF normally completed
+
+case    and-leaves-the-assembly-beside-the-source
+run     /dd/CMDS/wc -c /dd/SRC/rtf/div.a
+expect  1008
+
+case    the-for-driver-cannot-fork-the-compiler
+run     /dd/CMDS/for /dd/SRC/rtf/div.f
+expect  compilation aborted

@@ -146,18 +146,21 @@ kill
 
 shot    fortran
 for     rtf for lnk lnk.org biory creadoc os9lib
-cap     The RTF Fortran-77 system -- compiler, driver and linker -- prints
-cap     NOTHING until its runtime library is in the module directory.  `load
-cap     /dd/CMDS/os9lib' is the whole difference, and this is the before and
-cap     the after.  Note the driver has to be called by its full path: `for'
-cap     on its own is a bash keyword, and the shell answers before OS-9 can.
+cap     RTF/68K 2.14, 1987 -- and IT COMPILES.  Load its runtime library
+cap     first (`load /dd/CMDS/os9lib'; without it the whole set prints
+cap     nothing at all) and `rtf <file>.f' reads Fortran-77 and writes 68k
+cap     assembly beside the source: zero errors, zero warnings, `RTF
+cap     normally completed', 1008 bytes of div.a.  Assembling and linking
+cap     that needs Microware's r68 and l68, which are not here.  Call `rtf'
+cap     DIRECTLY: the `for' driver forks a program called `shell' to run it
+cap     and this disk has none, so it prints the command and stops.
 run     rtf
 wait    6
 run     load /dd/CMDS/os9lib
 wait    8
-run     rtf
+run     rtf /dd/SRC/rtf/div.f
+wait    30
+run     ls -l /dd/SRC/rtf/div.a
 wait    8
-run     /dd/CMDS/for
-wait    6
-run     lnk
-wait    6
+run     /dd/CMDS/for /dd/SRC/rtf/div.f
+wait    10
