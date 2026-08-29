@@ -194,6 +194,18 @@ repeats its rank lines and that is fine. It exists because a card once
 carried twenty-four copies of `No more memory !!!` under a caption about
 converting number bases, and every check there was had passed it.
 
+**Probe a program with the environment SYS/login gives it, not just PATH.**
+On 2026-08-29 a sweep over DOC/INDEX entries ran each program with PATH set
+and nothing else, and produced false negatives: `mailx' said "HOME is not
+defined", `mg' and `mshell' said "Unknown terminal type dumb". With HOME,
+TERM, TERMCAP, USER, LOGNAME, MAIL, TMACDIR and HELPDIR exported the same
+way `SYS/login' exports them, mailx prints its banner, mg opens a file and
+draws its mode line, and mshell gets far enough to ask for its menu file.
+Two index entries were corrected on the strength of the unfair probe and had
+to be corrected again. A full-screen program still needs a pty, which is
+what `tools/screenshots.py' and `tools/playtest.py' give it; the environment
+is the part a plain pipe can and should still get right.
+
 **An expectation must be something an ERROR could not produce.** On
 2026-08-29 a case asserting that `motd` appeared in shar's output was passing
 on the word `motd` inside `No read access for file: /dd/SYS/motd` -- shar has
