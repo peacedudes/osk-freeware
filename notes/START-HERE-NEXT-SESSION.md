@@ -36,8 +36,17 @@ Three things the HARNESS learned, all in `tools/screenshots.py`:
     drift check, which is why `--check` exists and why **CI runs
     `tools/gen_screens.py --check` and `tools/gen_catalog.py disk --check`**.
 
-**Data tests: 129 of 132 pass**, the three failures deliberate and
-commented (`zip`, `todos`, `pnmtosir`).
+**Data tests: 151 of 154 pass**, the three failures deliberate and
+commented (`zip`, `todos`, `pnmtosir`). New families since: `rebuilt.cases`
+(the CMDS/REBUILT alternates) and cases for printf, nsort, cjpeg and shar.
+
+**Two harness bugs were found by their own output, 2026-08-29.** A capture
+file was shared by two stanzas whose names differed only in case, and
+`datatest.py` stripped `#` anywhere in a line -- so `absent  #!/bin/sh`
+became a bare `absent` matching the empty string. Both are fixed and both
+now refuse the input rather than accept it quietly. The second one surfaced
+because a case that said `expect motd` was passing on the word `motd`
+INSIDE the error message `No read access for file: /dd/SYS/motd`.
 
 ## WHAT HAPPENED 2026-08-27 (third session): the screens
 
