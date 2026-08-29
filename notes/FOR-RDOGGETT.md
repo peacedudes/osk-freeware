@@ -514,6 +514,19 @@ Every one of these had a note beside it saying "run the tool, do not quote a
 figure", and every one had a quoted figure anyway. `CLAUDE.md` is updated;
 it is gitignored, so this is the tracked copy.
 
+## Seventeen programs were filed under what they were mistaken for
+
+Correcting a DOC/INDEX entry is only half of it: `tools/categories.psv`
+assigns the browsing category, and it had been filled in from the same wrong
+descriptions. `qt` was a text tool because the index called it one, `gcl` a
+calculator, `vis` a vi, `chbase' a binary editor, `bush` a drawing, `divide`
+a number-base converter, `screen` a terminal multiplexer, `cam` a Tektronix
+demo. Seventeen moved on 2026-08-29 and nothing is uncategorised.
+
+**When an entry is corrected, check `tools/categories.psv` too.** The
+catalogue groups by category and that is where people actually go looking --
+a camshaft calculator filed under Hardware demos is as good as missing.
+
 ## Nothing below here needs you
 
 (kept for the record; the two open questions are at the top of this file)
