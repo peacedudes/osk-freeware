@@ -334,15 +334,33 @@ its input, and `mshell' and `mg' both need a real terminal. `bush' is
 replaced in DOC/START-HERE by `today', which prints the date in words and
 the phase of the moon and is a better first thing to type.
 
-## One of CLAUDE.md's own rules was wrong
+## CLAUDE.md's own bash rules, re-measured -- three were wrong
 
-**`mkdir -p` works.** The bash-scripting rules in CLAUDE.md said it did not,
-next to the `/nil` and `-f`/`-d` findings that are right. `mkdir -p
-/dd/tmp/pp/a/b/c` builds the whole chain from nothing, and mkdir's own usage
-line lists `-p`. Corrected there, and `tools/datatests/files.cases` now
-asserts it so it cannot drift back. Worth knowing because a script written
-around the false rule builds directories one at a time and has to get the
-order right.
+CLAUDE.md is gitignored, so this is the tracked copy of what was found. All
+of it measured 2026-08-29 against the current image.
+
+**WRONG, and corrected in CLAUDE.md:**
+
+  - **`mkdir` DOES have `-p`.** `mkdir -p /dd/tmp/pp/a/b/c` builds the whole
+    chain from nothing and mkdir's own usage line lists it. A script written
+    around the false rule has to build directories one at a time in the right
+    order for no reason. `tools/datatests/files.cases` now asserts it.
+  - **Command substitution DOES inherit PATH.** `$(head -n 1 file)` finds
+    `head` whether PATH is exported or not. The rule said it reverts to a
+    Unix default and that every command inside `$( )` needs an absolute
+    path; neither is so.
+
+**RIGHT, but narrower than it was written:**
+
+  - **Shell functions really are invisible inside command substitution** --
+    `myfunc` works, `$(myfunc)` is `command not found`. That one fact
+    explains the whole symptom the rule was written for.
+  - **`-f` and `-d` fail ON A HOST-DIRECTORY MOUNT only.** With `OS9H5=` a
+    real directory, `[ -f /h5/README ]` is false for a file `ls` lists and
+    `cat` reads. On an RBF image -- `/dd`, or `/h0` when it is the image
+    hard-linked -- both work normally. The rule said they are simply not
+    usable, which sends you round a detour on the image you actually use.
+  - There is no `/dev/null`; `/nil` is the bit bucket. Still true.
 
 ## Nothing needs you
 
