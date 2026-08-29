@@ -37,8 +37,8 @@ commented (`zip`, `todos`, `pnmtosir`).
 ## WHAT HAPPENED 2026-08-27 (third session): the screens
 
 **Every program's card in `docs/index.html` carries its own SAMPLE OUTPUT**,
-photographed while running -- 869 of 918 of them, from 455 distinct
-captures (one card can cover a family). `tools/screenshots.py`
+photographed while running -- ALL 918 of them as of 2026-08-28, from
+471 distinct captures (one card can cover a family). `tools/screenshots.py`
 takes the pictures: ONE bash session on a pty, many programs per session,
 the bytes each one wrote rendered by `ansiscreen.py`. A sheet
 (`tools/screenshots/*.sheet`) is the source; `tools/gen_screens.py` folds
@@ -132,11 +132,15 @@ Do not stop between items to report; commit and start the next one.
 
 ## WHAT TO DO NEXT, then
 
-**1. The 49 programs with no screen.** `docs/screens.js` covers 869 of 918.
-   What is left is mostly unreachable -- X11 clients with no server, the
-   G-Windows four, netpbm readers for formats no file here is in -- but
-   `tools/screenshots/*.sheet` is where a new one goes, ONE STANZA PER
-   PROGRAM, and `tools/README.md` has the rules.
+**1. Coverage is done: `docs/screens.js` covers 918 of 918.** The last
+   forty-nine were closed on 2026-08-28 -- some with new cards (`roff`,
+   `btop`, `memtools`, `mtst`, `tplot`, `ttyexp`, `mgif`, `fontgen`,
+   `draw`, `lorenz3d`, `bush`), the rest by naming them on the card that
+   already showed what they do: the sixteen netpbm readers with no file to
+   read share `noreader`, the G-Windows three share one card, and the four
+   csl-mismatch programs share theirs. What is left to IMPROVE is quality,
+   not coverage: `tools/audit_screens.py` flags eight, of which four are
+   honest (a wall of plus signs is what `puzzle` draws).
 
 **2. Tier B is where the plan says the work is** -- 138 programs whose value
    is in what they do with the keyboard, 76 with a play-test. The screens
