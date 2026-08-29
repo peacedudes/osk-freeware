@@ -37,12 +37,18 @@ wait    5
 shot    chgrp
 for     chgrp chown eset
 cap     chown and chgrp on a scratch file, with fstat either side to show
-cap     the owner actually changed.
+cap     the owner change.  An OS-9 owner is GROUP.USER and the two halves
+cap     are set by different commands: chown moves the user, chgrp the
+cap     group, and each takes a number or a name out of SYS/password.
+cap     `chown 1.7' -- the pair written the way fstat prints it -- is not
+cap     accepted by either.  Everything on this disk ships owned 0.0.
 run     cp /dd/SYS/motd /dd/tmp/own.txt
 wait    5
 run     fstat /dd/tmp/own.txt
 wait    6
-run     chown 1.7 /dd/tmp/own.txt
+run     chown tester /dd/tmp/own.txt
+wait    5
+run     chgrp 1 /dd/tmp/own.txt
 wait    5
 run     fstat /dd/tmp/own.txt
 wait    6
@@ -80,10 +86,10 @@ run     dm /dd/SYS
 wait    5
 
 shot    du
-cap     Disk usage by directory.
-run     du /dd/SYS
-wait    5
-kill
+cap     Disk usage by directory: bytes, kilobytes, sectors and file count
+cap     for every directory under the one named, and a total.
+run     du /dd/DOC/gnuplot
+wait    12
 
 shot    du-tree
 for     du

@@ -1,22 +1,9 @@
-                                   316759       310      1238        26
-/dd/SYS/TEX/MFINPUTS/MFCONTRIB/punk
-                                    21119        21        83        14
-/dd/SYS/TEX/MFINPUTS/MFCONTRIB/ransom
-                                     8716         9        35         3
-/dd/SYS/TEX/MFINPUTS/MFCONTRIB/washington/tamil
-                                    90464        89       354         4
-/dd/SYS/TEX/MFINPUTS/MFCONTRIB/washington
-                                   211087       207       825         3
-/dd/SYS/TEX/MFINPUTS/MFCONTRIB     824996       806      3223         1
-/dd/SYS/TEX/MFINPUTS/SAUTER        116192       114       454        53
-/dd/SYS/TEX/MFINPUTS/SAUTERMF        1828         2         8        30
-/dd/SYS/TEX/MFINPUTS/UTILITY         7881         8        31        21
-/dd/SYS/TEX/MFINPUTS              2079936      2032      8125        20
-/dd/SYS/TEX/POOLS                   47812        47       187         2
-/dd/SYS/TEX/SAMPLES                 31009        31       122         5
-/dd/SYS/TEX                       5185622      5065     20257         1
-/dd/SYS/UUCP                        10176        10        40         8
-/dd/SYS/ksh                          2847         3        12         3
-/dd/SYS                           5490055      5362     21446        36
+$ du /dd/DOC/gnuplot
+Disk usage starting from "/dd/DOC/gnuplot" on 19126-08-28  19:07:54
 
-Total of 5362 kBytes (21446 sectors) in 44 directories and 824 files.
+Directory name                      Bytes    kBytes   Sectors    File #
+--------------                   --------   -------   -------   -------
+/dd/DOC/gnuplot/demo                 7010         7        28         7
+/dd/DOC/gnuplot                     10547        11        42         1
+
+Total of 11 kBytes (42 sectors) in 2 directories and 8 files.
