@@ -248,7 +248,7 @@
 | `strings` | &#9733; extract printable strings, reported as $offset: <text><br>`Usage: strings [-anpl=n] [file [file]]` |
 | `tail` | &#9733; last lines of a file -- DESIGNA's, and it takes `-l=<n>', not GNU's `-n <n>', which it rejects as an unknown option.  `head' on this disk IS the GNU one and takes -n: two conventions, one disk |
 | `wc` | count lines/words/chars; counts CR or LF lines.  Where this build came from is NOT established -- it was long listed as ours, built with gcc2, and the evidence is against that: it is starred, and a gcc2 build here links clibn and needs no cio.  The three commands listed beside it turned out to be archive binaries.  No source and no second copy has been found in this repo or the archive pool |
-| `wc.cio` | &#9733; archived build; DOES NOT WORK -- prints nothing for a file argument, which is why wc is still the gcc2 build |
+| `wc.cio` | &#9733; archived build.  It COUNTS CORRECTLY -- `1 lines, 6 words, 40 chars' where `wc' says `1 6 40' -- but only on standard input: it prints nothing for a file argument, which is why `wc' is still the gcc2 build.  Refined 2026-08-29 |
 
 **Search & match**
 
@@ -288,8 +288,8 @@
 |---|---|
 | `lout` | Lout 2.05 document formatter (Basser Lout, Jeffrey Kingston)<br>`usage: -o<filename>` |
 | `nroff` | &#9733; nroff text formatter -- and it PRINTS NOTHING here, from a file or from standard input, with or without -man and with TMACDIR set.  `roff' and `proff' beside it do the same.  Measured 2026-08-28<br>**How:** Formats man pages. The -man macros in LIB/tmac.an were extended for this collection because the originals defined only .TH .SH .SS .PP and .I; LIB/orig.tmac.an is the untouched version. Try `nroff -man /dd/DOC/netpbm/pnmscale.1'. |
-| `proff` | proff - portable roff text formatter (macros in LIB/proff) -- prints nothing here, like `nroff' and `roff'<br>`usage: proff [+n] [-n] [-v] [-ifile] [-s] [-pon] [infile [outfile]]` |
-| `roff` | roff text formatter -- prints nothing here, like `nroff' and `proff'<br>`Syntax: roff {[+00] [-00] [-s] -[h] file}` |
+| `proff` | proff - portable roff text formatter (macros in LIB/proff). IT WORKS: given a text file it justifies it to a measure, and takes page ranges and a statistics option.  The note here that said it prints nothing was wrong; corrected 2026-08-29.  `roff' works too; `nroff' wants a real macro package and answers `illegal switch' to -?<br>`usage: proff [+n] [-n] [-v] [-ifile] [-s] [-pon] [infile [outfile]]` |
+| `roff` | roff text formatter, and it works: `roff -?' gives its syntax and page-range options.  Corrected 2026-08-29<br>`Syntax: roff {[+00] [-00] [-s] -[h] file}` |
 | `tformat` | text formatter (SNOBOL4-in-C)<br>`Usage: tformat [width\|-?] [<infile] [>outfile]` |
 
 **Banners & text art**
@@ -1420,7 +1420,7 @@
 | `spline` | &#9733; fit a spline through points, output PostScript |
 | `sqrtx` | square-root demonstration |
 | `submit` | &#9733; submit a job to the print spooler<br>`Syntax: submit [<opts>] [<submit file>] [{<parameter>)]` |
-| `suse` | show a program's usage line -- it prints nothing, for any module tried |
+| `suse` | show a program's usage line -- it prints nothing, for any module tried, by name or by path, and nothing for -? either. Re-measured 2026-08-29 and still true |
 | `suspend` | &#9733; suspend a process<br>`Syntax  : suspend  [<processname>]  [<opt>]` |
 | `t_trtest` | RICO trap-handler test |
 | `testibc` | IEEE binary-coded test (Pascal) |
