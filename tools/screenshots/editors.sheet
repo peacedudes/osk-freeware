@@ -58,8 +58,8 @@ for     vi view
 cap     The EFFO vi -- its source in SRC/effo_vi is the Berkeley ex source.
 cap     It opens the file and paints TWO LINES of it: the first line and a
 cap     half-drawn rule, and no more however long you wait or wherever you
-cap     move.  `elvis' is the vi on this disk that fills the screen, and it
-cap     has its own card.
+cap     move.  Three others here fill the screen properly: `elvis',
+cap     `vi_nocio' and REBUILT/VI, each with its own card.
 run     vi /dd/DOC/README-CIO
 wait    20
 send    \033
@@ -76,3 +76,15 @@ cap     lines of it at once, exactly as vi should.
 run     elvis /dd/DOC/README-CIO
 wait    18
 quit    \033:q!\r
+
+shot    VI
+for     VI
+cap     PVIC, the Portable VI Clone, in CMDS/REBUILT because the name `vi'
+cap     was already taken by the EFFO one.  It is a working vi: tildes down
+cap     the left, the file painted a screenful at a time, and o-i-escape-:wq
+cap     writes the line you typed.  Asked for by path, since it is not on
+cap     the login PATH.
+run     /dd/CMDS/REBUILT/VI /dd/DOC/README-CIO
+wait    18
+quit    \033:q!\r
+
