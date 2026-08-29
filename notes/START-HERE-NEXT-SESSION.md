@@ -144,6 +144,29 @@ Do not stop between items to report; commit and start the next one.
    round and has no invocation that gets past its heading. The remaining
    sixteen crashes are the documented groups.
 
+## AND ON 2026-08-29: DOC/INDEX entries nobody had ever run
+
+The screens found programs whose CARD was wrong. This pass found entries
+whose DESCRIPTION was wrong -- short, unstamped one-liners that read as if
+they had been inferred from the program's name. About forty were tried and
+**eleven described a different program**: `greg`, `qt`, `vis`, `dpark`,
+`gdd`, `vlen`, `owner`, `bush`, `read_mail`, `lmargin` and `names`. The
+table is in `notes/FOR-RDOGGETT.md`.
+
+**`bush` was DOC/START-HERE's welcome example**, listed as "a tree, drawn",
+and is a countdown. It is replaced there by `today`.
+
+**`autolf` is the line-ending converter `todos` was meant to be**, and the
+same pass explained `todos`, `toos9`, `zip` and `arc` together: this C
+library has no `rename()`, so every one of them converts or compresses
+correctly into a temporary and then cannot move it into place. `DOC/STATUS`
+has that under ONE MISSING FUNCTION, FIVE BROKEN PROGRAMS.
+
+**How to carry on:** `tools/module_census.py`-style, list DOC/INDEX's short
+unstamped entries and run each one. A corrected entry gets a `Corrected
+<date>` or `Clarified <date>` stamp, which is how the next pass knows what
+has been checked. 182 short entries remain unstamped.
+
 ## WHAT TO DO NEXT, then
 
 **1. Coverage is done: `docs/screens.js` covers 918 of 918.** The last
