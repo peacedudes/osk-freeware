@@ -123,9 +123,15 @@ def parse(path):
                 cur["rate"] = rate
             continue
         if word == "size":
-            size = tuple(int(x) for x in rest.split())
+            # INSIDE a stanza this sets that stanza's window and nothing
+            # else; before any stanza it sets the default for the rest of
+            # the sheet. A tall window is how a stanza whose command wraps
+            # keeps the command on screen under a full-height picture, and
+            # nothing else in the sheet should inherit that.
             if cur:
-                cur["size"] = size
+                cur["size"] = tuple(int(x) for x in rest.split())
+            else:
+                size = tuple(int(x) for x in rest.split())
             continue
         if cur is None:
             sys.exit("%s: `%s' before any `shot'" % (path, word))

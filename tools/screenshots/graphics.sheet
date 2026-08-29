@@ -55,6 +55,7 @@ run     pnmfile /dd/tmp/back2.ppm
 wait    6
 
 shot    djpeg
+size    28 80
 for     djpeg
 cap     djpeg has nothing to decompress: `cjpeg' above cannot read a PNM, so
 cap     no JPEG was ever written, and the whole pipeline says so file by
@@ -62,6 +63,7 @@ cap     file.  The JPEG tools are untested here rather than broken -- there
 cap     is no JPEG on this disk to hand them.
 run     djpeg -pnm /dd/tmp/g.jpg | ppmtopgm | pnmscale -xysize 152 88 | pgmnorm | pgmtopbm | pbmtoascii -2x4
 wait    40
+
 
 shot    fits
 for     pnmtofits fitstopnm pnmtoxwd xwdtopnm
@@ -270,10 +272,21 @@ wait    30
 
 shot    pgmedge
 for     pgmedge pgmenhance pgmnorm
-cap     pgmedge keeps only where the brightness changes; on a photograph
-cap     that leaves the outlines.
-run     giftopnm /dd/DEMO/gulls.gif | ppmtopgm | pnmscale -xysize 152 88 | pgmedge | pgmnorm | pgmtopbm | pbmtoascii -2x4
-wait    35
+cap     pgmedge keeps only where the brightness changes.  It works on a
+cap     gradient and HANGS on a photograph: given the scaled gulls or the
+cap     demo sphere it produces no output, no error and never returns, and
+cap     the emulator has to be stopped.  Measured 2026-08-28 -- a ramp of
+cap     64x36 goes through in a second, the same-sized sphere never does.
+cap     pgmenhance and pgmnorm both handle either.
+run     pgmramp -lr 64 36 > /dd/tmp/t64.pgm
+wait    8
+run     pgmedge /dd/tmp/t64.pgm > /dd/tmp/e64.pgm
+wait    15
+run     pnmfile /dd/tmp/t64.pgm /dd/tmp/e64.pgm
+wait    8
+run     pgmenhance /dd/tmp/t64.pgm | pnmfile
+wait    10
+
 
 shot    pgmhist
 for     pgmhist pgmramp
@@ -328,6 +341,7 @@ run     pbmtoln03 /dd/tmp/base.pbm | wc
 wait    8
 
 shot    pnmarith
+size    28 80
 for     pnmarith pnmdepth
 cap     pnmarith multiplies two images together, and it insists they be
 cap     exactly the same size -- a scaled photograph and a ramp asked for
@@ -340,6 +354,7 @@ run     pgmramp -tb 152 88 > /dd/tmp/r3.pgm
 wait    8
 run     pnmarith -multiply /dd/tmp/r2.pgm /dd/tmp/r3.pgm | pgmtopbm | pbmtoascii -2x4
 wait    20
+
 
 shot    pnmcat
 for     pnmcat pnminvert pnmscale
@@ -422,11 +437,13 @@ run     pnmscale -width 152 /dd/DEMO/sphere.pgm | pnminvert | pgmtopbm | pbmtoas
 wait    15
 
 shot    pnmrotate
+size    28 80
 for     pnmrotate pnmcrop pnmflip
 cap     pnmrotate turns the sphere thirty degrees and pnmcrop trims the
 cap     margin the rotation left behind.
 run     pnmscale -xysize 100 100 /dd/DEMO/sphere.pgm | pnmrotate 30 | pnmcrop | pnmscale -xysize 152 88 | pgmtopbm | pbmtoascii -2x4
 wait    30
+
 
 shot    pnmtile
 cap     pnmtile repeats a small image to fill a larger one; pbmpscale then
@@ -444,6 +461,7 @@ run     pnmtops /dd/tmp/ramp.pgm | head -n 18
 wait    10
 
 shot    ppm3d
+size    28 80
 for     ppm3d ppmspread ppmshift ppmmix
 cap     ppmspread scatters every pixel up to eight places from where it
 cap     belongs -- the photograph is still there underneath, which is the
@@ -462,13 +480,16 @@ wait    8
 run     ppmspread 8 /dd/tmp/s1.ppm | ppmtopgm | pnmscale -xysize 152 88 | pgmtopbm | pbmtoascii -2x4
 wait    25
 
+
 shot    ppmdither
+size    28 80
 for     ppmdither ppmquant ppmtopgm
 cap     ppmquant reduces the photograph to sixteen colours and ppmdither
 cap     spreads the error -- the two halves of how a picture survived a
 cap     screen that had no more colours than that.
 run     giftopnm /dd/DEMO/gulls.gif | pnmscale -xysize 152 88 | ppmquant 16 | ppmtopgm | pgmtopbm | pbmtoascii -2x4
 wait    40
+
 
 shot    ppmforge
 cap     ppmforge invents a planet from a random seed: fractal terrain, an
@@ -566,18 +587,14 @@ run     rayshade -R 32 24 -O /dd/tmp/out.pic /dd/GAMES/rayshade/boxball.ray
 wait    45
 
 shot    sphere
+size    28 80
 for     pgmtopbm pnmscale
 cap     DEMO/sphere.pgm, a rendered sphere, dithered the same way.  The
 cap     gradient across it is carried entirely by the dither pattern.
 run     pnmscale -xysize 152 88 /dd/DEMO/sphere.pgm | pgmtopbm | pbmtoascii -2x4
 wait    15
 
-shot    sphere-edge
-for     pgmedge
-cap     pgmedge on the sphere: a convolution that keeps only where the
-cap     brightness changes, which leaves the outline and the terminator.
-run     pnmscale -xysize 152 88 /dd/DEMO/sphere.pgm | pgmedge | pgmnorm | pgmtopbm | pbmtoascii -2x4
-wait    60
+
 
 shot    tga
 for     ppmtotga tgatoppm

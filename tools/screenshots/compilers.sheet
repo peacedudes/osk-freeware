@@ -78,6 +78,7 @@ run     m4 < /dd/tmp/m.m4
 wait    8
 
 shot    make
+size    28 80
 cap     One rule, and the two makes on this disk trying to keep it.  The
 cap     rule is in the semicolon form because a TAB does not survive being
 cap     typed at this terminal -- SCF expands it -- and a Makefile without
@@ -95,6 +96,7 @@ run     make -f /dd/tmp/Makefile hello
 wait    8
 run     gmake -f /dd/tmp/Makefile hello
 wait    10
+
 
 shot    makeinfo
 for     makeinfo dmake gmake

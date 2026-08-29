@@ -1,1 +1,0 @@
-<88 /dd/DEMO/sphere.pgm | pgmedge | pgmnorm | pgmtopbm | pbmtoascii -2x4

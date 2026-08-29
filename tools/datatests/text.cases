@@ -101,11 +101,17 @@ case    charcnt-counts-characters
 run     /dd/CMDS/charcnt < $T
 absent  can't
 
-# MEASURED BROKEN, and asserted so on purpose.  Each of these passes while
-# the program is broken and fails the day it is fixed.
-case    gawk-still-reads-no-input
-run     /dd/CMDS/gawk "END{print NR\" records\"}" $T
-absent  records
+# gawk IGNORES A FILENAME ARGUMENT and reads standard input whatever it is
+# given.  Named a file it sits waiting on the terminal, which is why this was
+# once recorded as "reads no input".  Both halves are asserted: redirected it
+# counts the lines, named it produces nothing.
+case    gawk-counts-lines-on-stdin
+run     /dd/CMDS/gawk "END{print NR\" records\"}" < $T
+expect  records
+
+case    gawk-ignores-a-filename-argument
+run     echo "" | /dd/CMDS/gawk "END{print NR\" records\"}" $T
+expect  1 records
 
 # The build that shipped as `m4' until 2026-08-28 expanded this as `i hr ';
 # the alternate build, now shipping, gets it right.

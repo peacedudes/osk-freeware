@@ -1,1 +1,14 @@
-<$1,1,1)}" /dd/DOC/INDEX | sort | uniq -c | sort -nr | head -n 12
+$ gawk "{print substr(\$1,1,1)}" < /dd/DOC/INDEX > /dd/tmp/1st
+$ sort /dd/tmp/1st | uniq -c | sort -nr | head -n 12
+371 *
+130
+97 a
+84 s
+81 p
+76 t
+69 m
+63 c
+56 d
+55 -
+46 b
+46 w

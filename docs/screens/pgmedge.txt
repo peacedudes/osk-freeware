@@ -1,1 +1,7 @@
-<le -xysize 152 88 | pgmedge | pgmnorm | pgmtopbm | pbmtoascii -2x4
+$ pgmramp -lr 64 36 > /dd/tmp/t64.pgm
+$ pgmedge /dd/tmp/t64.pgm > /dd/tmp/e64.pgm
+$ pnmfile /dd/tmp/t64.pgm /dd/tmp/e64.pgm
+/dd/tmp/t64.pgm:        PGM raw, 64 by 36  maxval 255
+/dd/tmp/e64.pgm:        PGM raw, 64 by 36  maxval 255
+$ pgmenhance /dd/tmp/t64.pgm | pnmfile
+stdin:  PGM raw, 64 by 36  maxval 255

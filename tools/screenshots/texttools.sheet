@@ -176,10 +176,17 @@ run     head -n 30 /dd/DOC/README-KEEP | fmt
 wait    6
 
 shot    gawk
+size    28 80
 cap     GNU awk 2.11 over the disk's own index: count the programs by the
-cap     letter they start with, then sort by that count.
-run     gawk "{print substr(\$1,1,1)}" /dd/DOC/INDEX | sort | uniq -c | sort -nr | head -n 12
+cap     letter they start with, then sort by that count.  It is fed on
+cap     STDIN because this build ignores a filename argument and reads
+cap     standard input whatever it is given -- name a file and it sits
+cap     waiting for the terminal instead.
+run     gawk "{print substr(\$1,1,1)}" < /dd/DOC/INDEX > /dd/tmp/1st
 wait    12
+run     sort /dd/tmp/1st | uniq -c | sort -nr | head -n 12
+wait    10
+
 
 shot    gep
 for     gep lgrep ggrep bmgtest bmgtest2 greg
