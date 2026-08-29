@@ -1,7 +1,11 @@
-$ rechne 4095 x 16
-rechne: Ergebnis (4095)= 4095, $fff, %1111 1111 1111
-rechne: Ergebnis (X)= -32767, $ffff8001, %1111 1111 1111 1111 1000 0000 0000 001
-rechne: Ergebnis (16)= 16, $10, %1 0000
+$ rechne 4095+1
+rechne: Ergebnis (4095+1)= 4096, $1000, %1 0000 0000 0000
+$ rechne 12x12
+rechne: Ergebnis (12X12)= 144, $90, %1001 0000
+$ rechne \$ff+1
+rechne: Ergebnis ($FF+1)= 256, $100, %1 0000 0000
+$ rechne 100m7
+rechne: Ergebnis (100M7)= 2, $2, %10
 $ rechne -b 12345
 rechne: Ergebnis (12345)= 12345, $3039, %11 0000 0011 1001
 Mode: Allgemeine Bitdarstellung

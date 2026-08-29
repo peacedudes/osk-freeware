@@ -1,5 +1,19 @@
-$ loan
-Enter principal amount: 100000
-Enter term in years: 7.5
-Enter interest rate in percent: 30
-Enter month payments begin (ex: 8 = August):
+$ { echo 120000; echo 30; echo 6.5; echo 8; echo s; } > /dd/tmp/la
+$ loan < /dd/tmp/la > /dd/tmp/lo.txt
+$ head -n 16 /dd/tmp/lo.txt 2>/nil
+Enter principal amount: Enter term in years: Enter interest rate in percent: En?
+[f = file / s = screen] :
+         *** Amortization Schedule ***
+
+Principal:  120000.00
+Future value:  273053.84
+Term of loan in years:  30.0
+Interest Rate:  6.500
+Total Interest Charge:  153053.84
+Payment:  758.48
+
+MONTH   PRINCIPAL       INTEREST        BALANCE
+1        108.48          650.00          119891.52
+2        109.07          649.41          119782.45
+3        109.66          648.82          119672.78
+4        110.26          648.23          119562.52

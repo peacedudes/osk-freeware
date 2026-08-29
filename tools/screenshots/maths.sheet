@@ -7,16 +7,18 @@ run     echo 1f * 3 + 7 | hc
 wait    4
 
 shot    loan
-cap     The amortisation calculator: principal, rate and term in, the
-cap     monthly payment and the schedule out.
-run     loan
-wait    2
-send    100000\r
-wait    1
-send    7.5\r
-wait    1
-send    30\r
-wait    4
+cap     The amortisation calculator.  Principal, term, rate and starting
+cap     month in; the payment, the total interest and a month-by-month
+cap     schedule out, with a subtotal at each year.  It is fed from a file
+cap     here and its report caught in another, because on a terminal the
+cap     schedule scrolls thirty years past before you can read the top of
+cap     it.  120,000 over thirty years at 6.5% is 758.48 a month.
+run     { echo 120000; echo 30; echo 6.5; echo 8; echo s; } > /dd/tmp/la
+wait    3
+run     loan < /dd/tmp/la > /dd/tmp/lo.txt
+wait    10
+run     head -n 16 /dd/tmp/lo.txt 2>/nil
+wait    6
 
 shot    oleo
 cap     GNU Oleo 1.6 does not run: an illegal instruction at 000465d2 and
@@ -34,9 +36,17 @@ wait    3
 quit    \030\003
 
 shot    rechne
-cap     rechne, a German command-line calculator.  It answers in decimal,
-cap     hex and binary at once.
-run     rechne 4095 x 16
+cap     rechne, DESIGNA's German command-line calculator: every answer in
+cap     decimal, hex and binary at once.  The expression is ONE argument
+cap     with no spaces in it -- 4095+1, 12x12, $ff+1 -- and x multiplies,
+cap     m is modulo.  Spaced out, it evaluates each word on its own.
+run     rechne 4095+1
+wait    2
+run     rechne 12x12
+wait    2
+run     rechne \$ff+1
+wait    2
+run     rechne 100m7
 wait    2
 run     rechne -b 12345
 wait    3
