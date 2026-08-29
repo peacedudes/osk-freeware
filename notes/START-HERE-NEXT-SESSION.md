@@ -236,6 +236,27 @@ And the counterpart: a program the docs call broken deserves the same
 re-asking. `printf`, `shar` and `hexedit` were all described more harshly
 than the measurements justified, and rdoggett caught the first of them.
 
+## GENERATED FILES THAT WERE NOT GENERATING ENOUGH
+
+Two tools were quietly answering for less than they claimed, and both were
+found on 2026-08-29 by reading their output rather than their promise:
+
+  - **`gen_depends.py` scanned two directories of eighteen.** 354 programs --
+    all of NETPBM, UUCP, ELM, TEXCMDS and the rest -- had no entry in
+    `DOC/DEPENDS`, whose first line promises "what each program needs".
+    Fixed; DEPENDS went from about 250 programs to 477. The directory list
+    is now identical to `gen_catalog.py`'s, and **adding a program directory
+    means editing both**.
+  - **The `/r0` list in `DOC/STATUS` said seventeen and is twenty.** The
+    earlier search wanted a trailing slash and some binaries stop at `/r0`,
+    so `UUCP/expire`, `UUCP/rnews` and `UUCP/uucico` were missed.
+
+And `notes/DECISION-placement.md` was re-measured: **429 programs want the
+collection at `/dd`, 54 want data at `/h0`**, where it said 258 and 53. The
+shift is the disk getting better -- every data file recovered into the tree
+makes another program's `/dd` path resolve -- so the decision is stronger
+than when it was made, not weaker.
+
 ## WHAT TO DO NEXT, then
 
 **1. Coverage is done: `docs/screens.js` covers 918 of 918.** The last
