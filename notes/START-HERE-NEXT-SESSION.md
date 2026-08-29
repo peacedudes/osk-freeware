@@ -1,8 +1,38 @@
-# Picking this up cold — updated 2026-08-27, end of session
+# Picking this up cold — updated 2026-08-28, end of session
 
 Branch `release-pass-2026-08-21`. **Tree clean, all eleven `check_disk.py`
 checks green, `osk-freeware.dd` current.** Nothing is half-finished; every
 change below is committed.
+
+## WHAT HAPPENED 2026-08-28 (fourth session): reading the screens
+
+Taking a picture is not the job. **Reading it is**, and rdoggett said so:
+*"you have to read the output you are collecting, to make sure it makes
+sense."* Every card was read against its caption. Sixteen more programs
+turned out to be labelled wrong in DOC/INDEX -- `fc`, `rdoc`, `screen`,
+`bcheck`, `ask`, `ynad`, `launch`, `gawk`, `divide`, `vc` among them --
+and each is corrected in the index and on the card. `notes/FOR-RDOGGETT.md`
+has the list with what each one really is.
+
+**Seven programs cannot be reached by name at all**: `break`, `enable`,
+`fc`, `for`, `help`, `if` and `trap` are bash builtins or keywords, so the
+shell answers first and never says it did. DOC/STATUS names them.
+
+Three things the HARNESS learned, all in `tools/screenshots.py`:
+
+  - **os9exec's abort dump lands on top of a program's picture.** Scoring
+    now ignores dump lines, so the moment before the kill wins where there
+    is a picture under it, and the dump still stands where it is all there
+    is (`graphlib`, `top`).
+  - **A command longer than the terminal loses its head.** The line wraps,
+    the top scrolls, and the card opens mid-word. Long pipelines are split
+    into steps in the sheets; `size` inside a stanza now sets that stanza's
+    window and nothing else.
+  - `gen_screens.py` splits a prompt that a program's last unterminated
+    write left on its line, and drops head's misplaced filename banner.
+
+**Data tests: 129 of 132 pass**, the three failures deliberate and
+commented (`zip`, `todos`, `pnmtosir`).
 
 ## WHAT HAPPENED 2026-08-27 (third session): the screens
 
