@@ -194,6 +194,14 @@ repeats its rank lines and that is fine. It exists because a card once
 carried twenty-four copies of `No more memory !!!` under a caption about
 converting number bases, and every check there was had passed it.
 
+**Correcting a DOC/INDEX entry means checking `tools/categories.psv`.** The
+category is assigned by hand from the description, so a wrong description
+puts the program in a wrong category and the catalogue -- where people
+actually go looking -- files it under what it was mistaken for. Seventeen
+moved on 2026-08-29 for exactly that reason: `qt` was a text tool, `gcl` a
+calculator, `vis` a vi, `divide` a number-base converter, `screen` a terminal
+multiplexer, `cam` a Tektronix demo.
+
 **`gen_depends.py` scans every program directory now.** It scanned `CMDS`
 and `CMDS/GAMES` alone until 2026-08-29, which left 354 programs -- a third
 of the disk, all of NETPBM, UUCP, ELM and TEXCMDS among them -- with no entry
