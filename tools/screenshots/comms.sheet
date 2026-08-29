@@ -121,8 +121,11 @@ wait    6
 
 shot    screen
 for     screen tsmon2 connect uwho wysetime
-cap     screen, the terminal multiplexer, and tsmon2, which is what watches
-cap     a serial line for someone logging in.
+cap     `screen' here is NOT the terminal multiplexer -- it is Russ Smith's
+cap     `screens', which picks a file at random from $HOME/.SCREENS and
+cap     shows it, and on OS-9 RUNS the file through system().  There is no
+cap     .SCREENS directory on this disk, so it says so.  tsmon2 beside it
+cap     is what watches a serial line for someone logging in.
 run     screen -v
 wait    8
 run     tsmon2 -?

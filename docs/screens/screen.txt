@@ -1,5 +1,7 @@
-$ screen -v
-mode: You must have a $HOME/.screens directory.
+    Exit code: E_PRCABT(228) Process Aborted
+  Directories: Current   - /dd/.SCREENS
+               Execution - /dd/CMDS
+        Files: 00 fCons /term
 $ tsmon2 -?
 **** TSMON2: de-luxe version of the timesharing monitor (c) 1989 by L.Zeller
 Syntax:   tsmon2 [<options>] <device name>
