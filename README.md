@@ -2,8 +2,8 @@
 
 Three decades of community software for **OS-9/68000 (OSK)**, gathered in one
 place and made to run again, with the documentation and the source that could
-be found for them and a record of where each one came from. Rather less than
-half of it has source here; most of the rest never had any that survived.
+be found for them and a record of where each one came from. Two thirds of it
+has source here; most of the rest never had any that survived.
 
 OS-9 is Microware's, and still a current product. This is the software the
 community wrote for it, and it is meant to be run on a real OS-9 system.
@@ -192,8 +192,10 @@ recipes — one line per program, so nobody has to re-derive them.
 `tools/build.sh` builds everything there is a recipe for and `--missing` names
 the trees that still have none. See `tools/rebuild/README.md`.
 
-Most of the modules under `CMDS/` have no source anywhere and can only be
+A third of the modules under `CMDS/` have no source anywhere and can only be
 preserved, not rebuilt. That is why the binaries are committed.
+`tools/src_census.py disk` counts it — 627 of 945, 66%, as measured
+2026-08-29, and the figure moves every time a recipe lands.
 
 ## Working on this collection
 
