@@ -194,6 +194,14 @@ repeats its rank lines and that is fine. It exists because a card once
 carried twenty-four copies of `No more memory !!!` under a caption about
 converting number bases, and every check there was had passed it.
 
+**`gen_depends.py` scans every program directory now.** It scanned `CMDS`
+and `CMDS/GAMES` alone until 2026-08-29, which left 354 programs -- a third
+of the disk, all of NETPBM, UUCP, ELM and TEXCMDS among them -- with no entry
+in a file whose first line promises "what each program needs". DEPENDS went
+from about 250 programs to 477. The same gap had been found and fixed twice
+in `gen_catalog.py`; the two directory lists are now identical, and adding a
+program directory means editing both.
+
 **`tools/fix_index.py` rewrites one DOC/INDEX entry safely.** The file is
 CR-terminated, its entries have continuation lines indented to a fixed
 column, unstarred names carry an extra leading space, and the head of the

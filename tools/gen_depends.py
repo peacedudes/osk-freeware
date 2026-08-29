@@ -31,7 +31,18 @@ so both appear; the header says so.
 """
 import os, re, sys
 
-SCAN_DIRS = ["CMDS", "CMDS/GAMES"]
+# EVERY DIRECTORY THAT HOLDS PROGRAMS.  This was CMDS and CMDS/GAMES alone
+# until 2026-08-29, which left 354 programs -- a third of the disk, the
+# whole of NETPBM, UUCP, ELM, TEXCMDS and the rest -- with no entry at all
+# in a file whose first line promises "what each program needs".  The same
+# gap was found in gen_catalog.py twice before; the list is kept identical
+# to the one there.  CMDS/archives stays out: it holds .lzh source
+# archives, not programs.
+SCAN_DIRS = ["CMDS", "CMDS/GAMES", "CMDS/NETPBM", "CMDS/BROKEN",
+             "CMDS/REBUILT", "CMDS/GCC139", "CMDS/GCC2", "CMDS/DEMOS",
+             "CMDS/DHRY", "CMDS/MM1", "CMDS/UUCP", "CMDS/ADL",
+             "CMDS/COMMS", "CMDS/ELM", "CMDS/NETWORK", "CMDS/NEWS",
+             "CMDS/TEXCMDS", "CMDS/WN"]
 DEVICES   = ("dd", "h0")
 PATH_CHAR = rb"[A-Za-z0-9_./]"
 PATH_RE   = re.compile(rb"/(?:" + b"|".join(
