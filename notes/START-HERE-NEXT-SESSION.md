@@ -429,7 +429,8 @@ It is also too harsh, because it loaded no modules (above) and because nine
 netpbm programs have since been repaired. The honest figure needs the re-sweep
 plus the Tier A suites. Do not quote 95.0% as if it meant "works".
 
-**Source coverage 66%** — 626 of 939, up from 41% on 2026-08-25. Run
+**Source coverage 66%** — 627 of 945 as measured 2026-08-29, up from 41%
+on 2026-08-25. Run
 `tools/src_census.py disk` rather than quoting that.
 
 ---
