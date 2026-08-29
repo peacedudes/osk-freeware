@@ -365,7 +365,7 @@
 | | |
 |---|---|
 | `dir` | &#9733; directory listing.  PATCHED HERE: its moveq #128 was sign-extended to -128; see DOC/STATUS<br>`Syntax: dir [<opts>] {<dir names> [<opts>]}` |
-| `dm` | &#9733; Disk and directory monitor.  SYS/dm.hlp is now here, so its built-in help works -- but it stops at once with ERROR 216: Can't open /pipe/getcwdpipe<br>`Usage: DiskMaster [-c] [-d<dir name>]` |
+| `dm` | &#9733; DiskMaster 1.4, a two-pane full-screen file browser.  It gets as far as its title box here: it asks the shell for the working directory through a named pipe and the open fails, because OS-9's system() forks a program called `shell' and this disk has none.  MEASURED 2026-08-29 -- with `sh' copied to `shell' it runs completely, directory list and file information panel and all.  Help file: SYS/dm.hlp<br>`Usage: DiskMaster [-c] [-d<dir name>]` |
 | `edir` | &#9733; list the EVENT directory -- OS-9 events and their values. Nothing to do with `dir'<br>`Syntax: edir [<opts>]` |
 | `l` | &#9733; brief directory listing -- but it answers `not accessable, error: 214' for every directory tried here<br>`Usage: l [-options] [file] [file] [-options]` |
 | `ls` | GNU ls (fileutils 3.13) -- OUR OWN FIXED BUILD: real stat(), columns, -al<br>`Usage: ls [OPTION]... [FILE]...` |
