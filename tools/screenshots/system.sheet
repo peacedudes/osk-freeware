@@ -259,8 +259,12 @@ wait    5
 
 shot    launch
 for     launch dpark pri signal snd_sig suspend
-cap     Process control: launch puts a program in the background, pri
-cap     changes its priority, signal sends it a signal.
+cap     `launch' is NOT the background launcher its name and DOC/INDEX
+cap     suggested: it is a LOGIN helper -- set the environment for the
+cap     terminal type from SYS/config, optionally a default PATH and the
+cap     emacs bindings, then start the shell you name.  `pri' changes a
+cap     process's priority and answers nothing to -?; `signal' sends a
+cap     signal, after a delay if you ask.
 run     launch -?
 wait    6
 run     pri -?
