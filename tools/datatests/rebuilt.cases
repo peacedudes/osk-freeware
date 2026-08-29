@@ -85,6 +85,28 @@ expect  .screens directory
 run     $R/screen
 expect  .screens directory
 
+# THE LAST TWO MIS-NAMED MODULES ARE GONE, 2026-08-28. `REBUILT/compress'
+# reported itself as `R_compress' and `REBUILT/screen' as `R_screen' -- both
+# from a rebuild pass that forgot -n=, so a program's own usage text named a
+# module nobody could ask for. Rebuilt with the current driver, which sets the
+# name from the recipe. The new compress is byte-compatible with the shipped
+# one: same 631-byte archive, and each reads the other's.
+case    rebuilt-compress-calls-itself-compress
+run     /dd/CMDS/modinfo $R/compress
+expect  Module name           = compress
+
+case    rebuilt-screen-calls-itself-screen
+run     /dd/CMDS/modinfo $R/screen
+expect  Module name           = screen
+
+case    the-two-compresses-agree-byte-for-byte
+run     $R/compress -c < /dd/SYS/termcap > /dd/tmp/rc.Z
+run     /dd/CMDS/wc -c /dd/tmp/rc.Z
+expect  631
+run     /dd/CMDS/compress -dc < /dd/tmp/rc.Z > /dd/tmp/rc.out
+run     /dd/CMDS/md5 /dd/tmp/rc.out
+expect  ee2c20fa226fe6fc78feec7f123c7a99
+
 case    the-scratch-archives-go-away
 run     /dd/CMDS/rm -f /dd/a1.arc /dd/a2.arc /dd/tags /dd/tmp/l1.lzh /dd/tmp/l2.lzh
 run     /dd/CMDS/ls /dd/a1.arc
