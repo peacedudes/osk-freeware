@@ -348,6 +348,16 @@ def sheet_shots():
             continue
         parsed = screenshots.parse(os.path.join(SHEETS, f))
         screenshots.check_names(parsed)
+        # AND ACROSS SHEETS. check_names only sees one sheet at a time, and
+        # two sheets can name the same stanza: `greg' was defined in both
+        # system.sheet and calendars.sheet on 2026-08-29, the later one won
+        # silently, and the drift report said the capture was stale for ever
+        # because it was being compared against the OTHER stanza's hash.
+        for shot in parsed:
+            if shot["name"] in shots:
+                sys.exit("%s: `%s' is already defined in %s.sheet -- two "
+                         "stanzas of one name share one capture file"
+                         % (f, shot["name"], shots[shot["name"]]["sheet"]))
         for shot in parsed:
             first = next((v for k, v in shot["acts"] if k == "run"), "")
             shots[shot["name"]] = {"hash": screenshots.stanza_hash(shot),

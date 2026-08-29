@@ -214,11 +214,6 @@ cap     where the emulation stops, not of a broken program.
 run     getsys | head -n 21
 wait    6
 
-shot    greg
-cap     greg, a regular-expression search demonstration.
-run     greg "[a-z]+chess" /dd/DOC/INDEX
-wait    6
-
 shot    hinterhalt
 for     hinterhalt testibc sqrtx bigsetter i_am_i
 cap     hinterhalt, a small game that came with EFFO forum 7 -- one of the
