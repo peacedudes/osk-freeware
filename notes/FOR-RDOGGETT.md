@@ -495,6 +495,25 @@ instead. That list said seventeen; re-measured 2026-08-29 it is twenty, with
 `UUCP/expire`, `UUCP/rnews` and `UUCP/uucico` missed because the earlier
 search required a trailing slash and some binaries stop at `/r0`.
 
+## Three figures re-measured, all of them stale in the same direction
+
+Not corrections to prose so much as a reminder that this collection's numbers
+move under you. All 2026-08-29, all from the tools that exist to derive them:
+
+  - **Source coverage is 627 of 945, 66%** -- `tools/src_census.py`.
+    `CLAUDE.md` said 389 of 937 (41%), measured five days earlier and already
+    two improvements to the tool out of date. The recipe count is **484**,
+    where it said 203.
+  - **429 programs want the collection at `/dd`, 54 want data at `/h0`** --
+    `tools/measure_layout.py`. `notes/DECISION-placement.md` said 258 and 53.
+    The shift is the disk improving: every recovered data file makes another
+    program's `/dd` path resolve.
+  - **Twenty programs want a RAM disk at `/r0`**, not seventeen.
+
+Every one of these had a note beside it saying "run the tool, do not quote a
+figure", and every one had a quoted figure anyway. `CLAUDE.md` is updated;
+it is gitignored, so this is the tracked copy.
+
 ## Nothing below here needs you
 
 (kept for the record; the two open questions are at the top of this file)
