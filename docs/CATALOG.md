@@ -244,7 +244,7 @@
 | `ascii` | &#9733; ASCII character table |
 | `dump` | hex dump of a file or module<br>`Syntax: dump [<opts>] <path/module> [<opts>] [<starting byte>] [<opts>]` |
 | `file` | Identify file types.  SYS/magic is now here, so it names real formats -- "GIF picture ver. 87a 320 x 200, interlaced, 256 colors" -- and not just OS-9 modules<br>**How:** Names real formats now that SYS/magic is here: `file /dd/DEMO/gulls.gif' reports the GIF version, size and colour count. Before the magic file arrived it could only recognise OS-9 modules. |
-| `gdd` | &#9733; data dump<br>**How:** A data dump -- like `od', with GNU-style long options. Needs Microware's cio. |
+| `gdd` | &#9733; GNU dd -- `gdd if=<file> of=<file> bs=<n> skip= seek= count=' -- a block copier and converter, not a dump.  `dump' and `od' are the dumps here.  Corrected 2026-08-29<br>**How:** A data dump -- like `od', with GNU-style long options. Needs Microware's cio. |
 | `strings` | &#9733; extract printable strings, reported as $offset: <text><br>`Usage: strings [-anpl=n] [file [file]]` |
 | `tail` | &#9733; last lines of a file -- DESIGNA's, and it takes `-l=<n>', not GNU's `-n <n>', which it rejects as an unknown option.  `head' on this disk IS the GNU one and takes -n: two conventions, one disk |
 | `wc` | count lines/words/chars; counts CR or LF lines.  Where this build came from is NOT established -- it was long listed as ours, built with gcc2, and the evidence is against that: it is starred, and a gcc2 build here links clibn and needs no cio.  The three commands listed beside it turned out to be archive binaries.  No source and no second copy has been found in this repo or the archive pool |
@@ -1441,7 +1441,7 @@
 | | |
 |---|---|
 | `aprocs` | &#9733; process monitor<br>`Syntax: aprocs [<opts>]` |
-| `dpark` | &#9733; park a process<br>`Syntax:   dpark [/device]` |
+| `dpark` | &#9733; park the DISK HEAD, not a process: `dpark [/device]' restores an RBF device's head to track 00, which is what you did before moving a drive.  Corrected 2026-08-29<br>`Syntax:   dpark [/device]` |
 | `launch` | &#9733; NOT a background launcher.  M.C.Gregorie's login helper: sets the environment for the terminal type, optionally a default PATH and emacs bindings, from /dd/SYS/config, then starts the shell named on its command line.  Corrected 2026-08-28<br>**How:** Says "nothing to launch" until it is configured -- see its documentation. |
 | `signal` | &#9733; send a signal to a process<br>`Syntax: signal <process-id> <signal-code> [<seconds>]` |
 | `sysmax` | &#9733; show maximum system memory |
