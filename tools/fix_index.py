@@ -37,6 +37,10 @@ def fix(name, newlines, path=INDEX):
     """Replace the entry for `name' with `newlines'. Returns a status string."""
     text = open(path, "rb").read().decode("latin-1")
     lines = text.split("\r")
+    # Entries sit at one or two leading spaces, a starred one at " *".
+    # A few live in indented SUB-LISTS four spaces in -- the shell
+    # scripts under CMDS, for instance -- and those this does not touch;
+    # edit them by hand and keep the indent.
     pat = re.compile(r"^ (\*| )?%s\s{2,}" % re.escape(name))
     hits = [i for i, l in enumerate(lines) if pat.match(l)]
 
