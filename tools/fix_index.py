@@ -44,7 +44,10 @@ def fix(name, newlines, path=INDEX):
         rest = pat.sub("", line)
         return len(rest.split()) > 3 and any(c in rest for c in ".,:;-()'")
 
-    real = [i for i in hits if prose(lines[i])]
+    # One match is unambiguous whatever it looks like: a short entry like
+    # `gen  generate a program frame' has no punctuation and would fail the
+    # prose test, and there is nothing else it could be.
+    real = hits if len(hits) == 1 else [i for i in hits if prose(lines[i])]
     if len(real) != 1:
         return "SKIP %s (%d matches, %d of them prose)" % (name, len(hits),
                                                            len(real))
