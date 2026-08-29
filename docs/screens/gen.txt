@@ -1,10 +1,17 @@
-$ gen -?
-Syntax: gen [<opt>] <pathname> [<opts>]
-Function: generate a program frame
-Note: there must be exactly one option selected
-Options:
-     -f        generate function declaration frame
-     -m        generate module frame
-     -p        generate program frame
-     -t        generate type declaration frame
-gen: illegal arguments
+$ rm -f /dd/tmp/demo.c
+$ gen -p /dd/tmp/demo
+$ head -n 14 /dd/tmp/demo.c 2>/nil
+/*********************************************************************
+file name and type:
+  /dd/tmp/demo.c, program file
+----------------------------------------------------------------------
+description:
+
+----------------------------------------------------------------------
+shorthand, name and address of authors:
+  MM       M. Moser, Jakob-Brucker-Str. 15, 8950 Kaufbeuren
+----------------------------------------------------------------------
+version, author, date and report:
+  1.0    MM      29.08.126 first version
+----------------------------------------------------------------------
+pecularities:

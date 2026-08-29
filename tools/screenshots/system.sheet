@@ -210,9 +210,17 @@ wait    5
 
 shot    gen
 for     gen suse about
-cap     gen writes the frame of a new C program, module or type -- the
-cap     starting point Microware's own examples used.
-run     gen -?
+cap     gen writes the FRAME of a new C program -- header block, authorship
+cap     and version lines, and the sectioned comments a Microware example
+cap     was laid out with.  It appends `.c' to whatever name you give it,
+cap     which is why it looks as though it wrote nothing: `gen -p frame'
+cap     leaves `frame.c'.  `-m' does a module frame, `-t' a type, `-f' a
+cap     function declaration.
+run     rm -f /dd/tmp/demo.c
+wait    4
+run     gen -p /dd/tmp/demo
+wait    6
+run     head -n 14 /dd/tmp/demo.c 2>/nil
 wait    8
 
 shot    getsys
@@ -468,13 +476,18 @@ cap     transfer copies between devices and trunc cuts a file short -- the
 cap     listing either side of it is the whole demonstration.  `vlen' in
 cap     this group is NOT a reporting tool whatever DOC/INDEX said: it is
 cap     a variable-length-record demonstration that builds a filesystem of
-cap     its own and fills it, and `fillup' pads a file to a length with a
-cap     constant byte.
+cap     its own and fills it.  `fillup' pads a file out to a length with a
+cap     constant byte -- `-n=' the length and `-i=' the byte -- and says
+cap     how many it added, which is the last two lines here.
 run     cp /dd/SYS/holidays /dd/tmp/cut.txt
 wait    6
 run     ls -l /dd/tmp/cut.txt
 wait    5
 run     trunc /dd/tmp/cut.txt 100
+wait    6
+run     ls -l /dd/tmp/cut.txt
+wait    6
+run     fillup -n=200 -i=65 /dd/tmp/cut.txt
 wait    6
 run     ls -l /dd/tmp/cut.txt
 wait    6

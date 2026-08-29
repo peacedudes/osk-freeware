@@ -3,4 +3,8 @@ $ ls -l /dd/tmp/cut.txt
 -rw-rw-rw-   1 0        0             717 Aug  3 19:00 /dd/tmp/cut.txt
 $ trunc /dd/tmp/cut.txt 100
 $ ls -l /dd/tmp/cut.txt
--rw-rw-rw-   1 0        0             100 Aug 29 04:09 /dd/tmp/cut.txt
+-rw-rw-rw-   1 0        0             100 Aug 29 15:16 /dd/tmp/cut.txt
+$ fillup -n=200 -i=65 /dd/tmp/cut.txt
+100 bytes (value=65) appended: total file size is now 200
+$ ls -l /dd/tmp/cut.txt
+-rw-rw-rw-   1 0        0             200 Aug 29 15:17 /dd/tmp/cut.txt
