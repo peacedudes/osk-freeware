@@ -112,14 +112,15 @@ where it came from and on what terms. GitHub shows HTML files as source rather
 than rendering them, so **download the repository and open that file** — it is
 self-contained, no server and nothing to install.
 
-**Most of the programs have their picture taken.** Open one in the catalogue
-and, beside its own help, you get its **sample output** — photographed from
-that program running on the disk image, keystrokes fed to os9exec's console
-and the terminal stream rendered into the grid a vt100 would have shown.
-Nothing is mocked up, and where a program failed the failure is what you
-see — which is how a dozen programs the four-stage sweep had scored as
-working turned out not to be. (The same screens are in `docs/screens/` as
-plain text.)
+**Every program has had its picture taken** — all 918 of them, as of
+2026-08-29. Open one in the catalogue and, beside its own help, you get its
+**sample output**: photographed from that program running on the disk image,
+keystrokes fed to os9exec's console and the terminal stream rendered into the
+grid a vt100 would have shown. Nothing is mocked up, and where a program
+failed the failure is what you see — which is how two dozen programs the
+four-stage sweep had scored as working turned out not to be, and how several
+entries in `DOC/INDEX` were found to describe a different program from the one
+that runs. (The same screens are in `docs/screens/` as plain text.)
 
 ## Start here
 
