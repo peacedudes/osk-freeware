@@ -1123,7 +1123,7 @@
 
 | | |
 |---|---|
-| `bush` | &#9733; draw a random bush/tree |
+| `bush` | &#9733; NOT a drawing, whatever the name suggests: a countdown program from its own moment, printing how many days are left of something.  The clock here dates to 19126, so the number comes out negative.  Corrected 2026-08-29 |
 | `draw` | character-graphics drawing program |
 | `loadmem` | load memory image<br>`Syntax   : LOADMEM <destinati address> <upper limit address> <path>` |
 | `pdraw` | Pdraw 1.4 - 2D/3D data plotting, PostScript output<br>`usage: pdraw [-v vx vy vz] [-o options-file] [-Pprinter] [-s scale] [-e] [-h] [-nosort] [-noplot] [-print] [-ps] infile1 infile2 ...` |
