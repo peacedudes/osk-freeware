@@ -158,7 +158,7 @@ rdoc|Documentation|Readers & pagers
 
 # ---- Editors ----
 beav|Editors|Binary & hex
-chbase|Editors|Binary & hex
+chbase|Maths & calculators|Calculators
 hexed|Editors|Binary & hex
 hexedit|Editors|Binary & hex
 pbyte|Editors|Binary & hex
@@ -174,7 +174,7 @@ VI|Editors|vi family
 vi|Editors|vi family
 vi_cio|Editors|vi family
 vi_nocio|Editors|vi family
-vis|Editors|vi family
+vis|System & modules|Processes & memory
 
 # ---- Encoding & conversion ----
 checksum|Encoding & conversion|Ciphers & hashes
@@ -282,7 +282,7 @@ hang|Games|Word & guessing
 
 # ---- Graphics & images ----
 banner|Text tools|Banners & text art
-bush|Graphics & images|Drawing & display
+bush|Amusements|Curiosities
 cursive|Text tools|Banners & text art
 draw|Graphics & images|Drawing & display
 loadmem|Graphics & images|Drawing & display
@@ -483,7 +483,7 @@ stone|Games|Other games
 
 # ---- Maths & calculators ----
 orbit|Maths & calculators|Astronomy & orbits
-gcl|Maths & calculators|Calculators
+gcl|Time & calendar|Calendars
 hc|Maths & calculators|Calculators
 loan|Maths & calculators|Calculators
 rechne|Maths & calculators|Calculators
@@ -499,7 +499,7 @@ lprm|Printing|Spooling
 lpshut|Printing|Spooling
 perr|Printing|Spooling
 prjob|Printing|Spooling
-qp|Printing|Spooling
+qp|Shells|Shell helpers
 
 # ---- Screen toys ----
 life|Screen toys|Screen toys
@@ -537,7 +537,7 @@ os9lib|System & modules|OS-9 modules
 rtfdat|System & modules|OS-9 modules
 version|System & modules|OS-9 modules
 aprocs|System & modules|Processes & memory
-dpark|System & modules|Processes & memory
+dpark|System & modules|Devices & disks
 launch|System & modules|Processes & memory
 signal|System & modules|Processes & memory
 sysmax|System & modules|Processes & memory
@@ -611,7 +611,7 @@ casefix|Text tools|Transform & filter
 cut|Text tools|Transform & filter
 cuts|Text tools|Transform & filter
 detab|Text tools|Transform & filter
-deton|Text tools|Transform & filter
+deton|System & modules|Utilities
 eo|Text tools|Transform & filter
 field|Text tools|Transform & filter
 fillup|Text tools|Transform & filter
@@ -619,7 +619,7 @@ gep|Text tools|Transform & filter
 paste|Text tools|Transform & filter
 pep|Text tools|Transform & filter
 psc|Text tools|Transform & filter
-qt|Text tools|Transform & filter
+qt|Time & calendar|Calendars
 rot|Text tools|Transform & filter
 shuffle|Text tools|Transform & filter
 tabs|Text tools|Transform & filter
@@ -913,7 +913,7 @@ greg|System & modules|Utilities
 isam|System & modules|Utilities
 lgrep|System & modules|Utilities
 liborder.os9|System & modules|Utilities
-lmargin|System & modules|Utilities
+lmargin|Printing|Spooling
 lunisolar|System & modules|Utilities
 map|System & modules|Utilities
 mshell|System & modules|Utilities
@@ -983,7 +983,7 @@ btop|System & modules|Utilities
 ptob|System & modules|Utilities
 break|System & modules|Utilities
 epson|System & modules|Utilities
-read_mail|System & modules|Utilities
+read_mail|Communications|Mail
 vecho|System & modules|Utilities
 ptxminst|System & modules|Utilities
 umusek|System & modules|Utilities

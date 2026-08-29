@@ -11,23 +11,23 @@
 
 | Category | Programs | |
 |---|--:|---|
-| [Shells](#shells) | 20 | Unix shells to sit beside OS-9's own -- bash and ksh bring history, job control, and scripts that come across unchanged. |
-| [Editors](#editors) | 24 | vi and emacs in several flavours, line and stream editors, and editors for binary and hex. |
-| [Text tools](#text-tools) | 114 | Search, sort, compare, reformat, split and spell-check. |
+| [Shells](#shells) | 21 | Unix shells to sit beside OS-9's own -- bash and ksh bring history, job control, and scripts that come across unchanged. |
+| [Editors](#editors) | 22 | vi and emacs in several flavours, line and stream editors, and editors for binary and hex. |
+| [Text tools](#text-tools) | 112 | Search, sort, compare, reformat, split and spell-check. |
 | [Files & directories](#files--directories) | 35 | Listing, copying, finding, renaming, and knowing what you have. |
 | [Developer tools](#developer-tools) | 46 | Version control, tags, cross-reference, formatters, a debugger and benchmarks. |
 | [Compilers & build](#compilers--build) | 26 | C compilers and their passes, assemblers, linkers, make and parser generators. |
 | [Languages](#languages) | 10 | Interpreters and language systems beyond C. |
 | [Archives & compression](#archives--compression) | 35 | Pack, unpack and shrink -- lha, zip, tar, arc, zoo, and OS-9 module libraries. |
 | [Encoding & conversion](#encoding--conversion) | 26 | Between text encodings, line endings, number bases, ciphers and hashes. |
-| [Communications](#communications) | 96 | Kermit in several builds, terminal sessions, and networking. |
-| [Graphics & images](#graphics--images) | 204 | The netpbm toolkit, JPEG, a ray tracer, and things that draw. |
+| [Communications](#communications) | 97 | Kermit in several builds, terminal sessions, and networking. |
+| [Graphics & images](#graphics--images) | 203 | The netpbm toolkit, JPEG, a ray tracer, and things that draw. |
 | [Games](#games) | 65 | Adventures, board and card games, arcade ports, dungeon crawls and puzzles. |
 | [Screen toys](#screen-toys) | 6 | Things to watch rather than play. Start one and leave it going. |
-| [Amusements](#amusements) | 23 | Generators, simulators and diversions that are not quite games. |
+| [Amusements](#amusements) | 24 | Generators, simulators and diversions that are not quite games. |
 | [System & modules](#system--modules) | 128 | OS-9 module and process tools, devices, system state and scheduling. |
 | [Disk & DOS](#disk--dos) | 20 | Reading and writing MS-DOS media with the mtools set. |
-| [Time & calendar](#time--calendar) | 9 | Calendars, clocks and astronomy. |
+| [Time & calendar](#time--calendar) | 11 | Calendars, clocks and astronomy. |
 | [Maths & calculators](#maths--calculators) | 9 | Calculators, plotting, orbits and number theory. |
 | [Printing](#printing) | 14 | Spoolers, page formatting and PostScript. |
 | [Documentation](#documentation) | 6 | Pagers, readers and the help system. |
@@ -36,7 +36,7 @@
 
 *Unix shells to sit beside OS-9's own -- bash and ksh bring history, job control, and scripts that come across unchanged.*
 
-<details><summary>20 programs</summary>
+<details><summary>21 programs</summary>
 
 **Shell helpers**
 
@@ -50,6 +50,7 @@
 | `if` | conditional execution for shell scripts (varval/loaded/def)<br>`Syntax: if [not] <cond> {<arg>} {<cmd1>} [else` |
 | `printenv` | &#9733; print the environment<br>`Syntax:   printenv [<options>] [{<env var name}]` |
 | `printf` | &#9733; formatted print from the shell.  IT WORKS, with one flaw: the literal text BEFORE THE FIRST CONVERSION is dropped. Everything between and after conversions is right -- `printf "%d %s %d\n" 4 "is bigger than " 3' prints `4 is bigger than  3', and `"a%db%dc\n" 1 2' prints `1b2c', losing only the leading `a'.  So begin the format with a conversion and nothing is lost.  The degenerate case of the same flaw: a format with NO conversion is entirely `before the first conversion', so it prints nothing. Measured 2026-08-29; the earlier note here said it floods `No more memory !!!', and it does not<br>`Usage: printf <format-string> [ arg1 . . . ]` |
+| `qp` | &#9733; NOT a print helper: `qp <cmd> <args>' processes BACK-QUOTES for command expansion, which Microware's shell has no way to do.  It produces nothing here whatever it is given -- like everything else that forks a program called `shell', which this disk does not have.  Corrected 2026-08-29<br>`Syntax: qp <cmd> <arg1> ... <argn>` |
 | `run` | run a program with stdio rebound to the terminal (needs PORT)<br>`Syntax: run '<prgname> {<arg>}'` |
 | `xc` | execute commands from a file (needs a .xc) |
 
@@ -79,7 +80,7 @@
 
 *vi and emacs in several flavours, line and stream editors, and editors for binary and hex.*
 
-<details><summary>24 programs</summary>
+<details><summary>22 programs</summary>
 
 **vi clones**
 
@@ -101,14 +102,12 @@
 | `vi` | &#9733; THE REAL vi/ex -- its source in SRC/effo_vi is the Berkeley ex source itself, not a clone.  `vi -x' is ex, `vi -d' is edit.  See DOC/README-VI.  IT DOES NOT PAINT A FULL SCREEN here: it shows the first line and a half-drawn rule and no more, whatever you do.  `elvis', `vi_nocio' and REBUILT/VI all fill the screen properly.  Measured 2026-08-28<br>**How:** One of three unrelated vi editors here, and the only one that is the genuine Berkeley ex/vi rather than a clone -- its source in SRC/effo_vi is the real ex_*.c files. `vi -x' becomes ex, `vi -d' becomes edit. DOC/README-VI compares all three. |
 | `vi_cio` | &#9733; PVic vi, cio build (use vi_nocio instead)<br>**How:** PVic vi, the cio build. Needs `. /dd/SYS/termcap.entry' first, then it opens on an empty buffer. CMDS/vi_nocio is the same editor needing no module; DOC/README-VI compares all three vi editors here. |
 | `vi_nocio` | PVIC 1.0a -- the smallest of this disk's three vi editors, public domain.  See DOC/README-VI to choose between them<br>**How:** PVIC 1.0a, the smallest of the three vi editors on this disk, public domain, no source or docs here. DOC/README-VI compares it with vi and elvis. |
-| `vis` | &#9733; NOT the Unix `vis': it repeatedly runs a command and refreshes the screen with the output, which is what `watch' does elsewhere -- `vis {opts} <command> <args>'.  Corrected 2026-08-29 |
 
 **Binary & hex**
 
 | | |
 |---|---|
 | `beav` | BEAV 1.40 -- Binary Editor And Viewer (needs TERM)<br>**How:** Full-screen: it takes over the display. **control-C gets you out** -- tested, and none of q, Q, control-D or ESC did. If it has a quit command of its own, its documentation in DOC/ will say. |
-| `chbase` | &#9733; converts a NUMBER from one base to another -- Philip Maechler's, and nothing to do with a module's base address.  `cvtbase' is the other one, and floods. Corrected 2026-08-29<br>`Syntax   : chbase <number> [ <base A> [ <base B> ] ]` |
 | `hexed` | &#9733; hex editor via your text editor -- it writes its work file to /r0 and stops when it cannot.  See DOC/README-RUNNING  [no military use -- EFFO-INFO]<br>`Syntax: hexed [<opts>] <path> {[<opts>] \| [<path>]}` |
 | `hexedit` | HEXPERT V2.4 by Dominic Alston -- `hex [-vdr] <file>'.  It starts and identifies itself under -v, and neither of the other two paths gets to an editor: -d answers `file not accessible' (214) for a file that exists and is readable, and the bare form and -r print the terminal type and exit.  `beav' is the binary editor that works here, and `hexed' the one that would if there were a RAM disk. Measured 2026-08-29<br>**How:** A hex editor -- Hexpert v2.4 by Dominic Alston. Takes a file: `hexedit <file>'. Needs `. /dd/SYS/termcap.entry' first or it will not draw. |
 | `pbyte` | &#9733; patch bytes in a file at a hex offset<br>`Syntax: pbyte <path> <hex_offset> <hex_byte> [<hex_byte>]` |
@@ -136,7 +135,7 @@
 
 *Search, sort, compare, reformat, split and spell-check.*
 
-<details><summary>114 programs</summary>
+<details><summary>112 programs</summary>
 
 **TeX**
 
@@ -176,7 +175,6 @@
 | `cut` | cut selected fields from each line |
 | `cuts` | &#9733; Coco Usenet Transfer Utility<br>`Usage: cuts <-d> [-o name] <file>...` |
 | `detab` | &#9733; tabs to spaces<br>`Usage: detab [-tn] [infile] or [<infile]` |
-| `deton` | &#9733; NOT a detab: `deton [seconds]' demonstrates using an alarm to TIME OUT an I/O read.  `detab' and `expand' are what convert tabs.  Corrected 2026-08-29<br>`syntax: deton [seconds]` |
 | `eo` | &#9733; eo - text utility |
 | `field` | &#9733; extract fields<br>`Syntax  : field [<opts>] <fields...> [<opts>]` |
 | `fillup` | &#9733; fill a file up to a given length with a constant byte<br>`Syntax:   fillup [<options>] <file>` |
@@ -184,7 +182,6 @@
 | `paste` | merge lines of files<br>`USAGE: paste [-s] [-d<list>] files` |
 | `pep` | file 'detergent' - strip junk from files<br>`Usage: pep [options] [filename ...]` |
 | `psc` | &#9733; sc's print/format filter<br>`Syntax: psc [-rkfLSPv?] [-s v] [-R i] [-C i] [-n i] [-d c] [<path1] [>path2]` |
-| `qt` | &#9733; tells the time IN WORDS, the way a person would say it: `It's just gone ten past four.'  Not a text utility. `today' is the other one of its kind here.  Corrected 2026-08-29 |
 | `rot` | turn a text file on its side -- line one becomes column one.  NOT a rot-13 cipher, whatever the name suggests |
 | `shuffle` | shuffle lines/cards<br>**How:** Full-screen: it takes over the display. **`q' quits** -- tested. |
 | `tabs` | tab/space conversion filter<br>`Syntax   : tabs [<opts>] [<input_redirection>] [<output_redirection>]` |
@@ -749,7 +746,7 @@
 
 *Kermit in several builds, terminal sessions, and networking.*
 
-<details><summary>96 programs</summary>
+<details><summary>97 programs</summary>
 
 **Mail**
 
@@ -780,6 +777,7 @@
 | `philmail` | the philmail mailer |
 | `printmail` | &#9733; format a message for a printer<br>`Usage: printmail [-p] [-r filename] <message list>` |
 | `pwparse` | &#9733; parse the password file for the mailer |
+| `read_mail` | &#9733; a small mail reader of its own, not vi's helper: it opens /dd/MAIL/mail_<user> and offers `[L]ist again, e[X]it & delete mail, exit & [N]ot delete'.  Corrected 2026-08-29 |
 | `readmsg` | &#9733; print selected messages from a folder<br>**How:** Prints messages from a mail folder: `readmsg 1' for the first. Tested -- it reads the welcome message in /dd/SPOOL/MAIL/tester. |
 | `rmail` | &#9733; deliver incoming mail (invoked by uuxqt, not by you)<br>`usage: rmail [file] "site!user[@site]"` |
 | `smail` | &#9733; smart mail router<br>`Usage:   smail [<options>] address...` |
@@ -903,7 +901,7 @@
 
 *The netpbm toolkit, JPEG, a ray tracer, and things that draw.*
 
-<details><summary>204 programs</summary>
+<details><summary>203 programs</summary>
 
 **NETPBM: edit & analyse**
 
@@ -1123,7 +1121,6 @@
 
 | | |
 |---|---|
-| `bush` | &#9733; NOT a drawing, whatever the name suggests: a countdown program from its own moment, printing how many days are left of something.  The clock here dates to 19126, so the number comes out negative.  Corrected 2026-08-29 |
 | `draw` | character-graphics drawing program |
 | `loadmem` | load memory image<br>`Syntax   : LOADMEM <destinati address> <upper limit address> <path>` |
 | `pdraw` | Pdraw 1.4 - 2D/3D data plotting, PostScript output<br>`usage: pdraw [-v vx vy vz] [-o options-file] [-Pprinter] [-s scale] [-e] [-h] [-nosort] [-noplot] [-print] [-ps] infile1 infile2 ...` |
@@ -1295,7 +1292,7 @@
 
 *Generators, simulators and diversions that are not quite games.*
 
-<details><summary>23 programs</summary>
+<details><summary>24 programs</summary>
 
 **Simulations**
 
@@ -1330,6 +1327,7 @@
 | | |
 |---|---|
 | `areacode` | &#9733; look up a US telephone area code<br>`Usage: areacode nnn nnn ...` |
+| `bush` | &#9733; NOT a drawing, whatever the name suggests: a countdown program from its own moment, printing how many days are left of something.  The clock here dates to 19126, so the number comes out negative.  Corrected 2026-08-29 |
 | `touchtype` | typing tutor<br>**How:** Full-screen: it takes over the display. **control-C gets you out** -- tested, and none of q, Q, control-D or ESC did. If it has a quit command of its own, its documentation in DOC/ will say. |
 
 **Screen toys**
@@ -1375,6 +1373,7 @@
 | `creadoc` | extract documentation comments from FORTRAN source.  IT ABORTS HERE -- E_PRCABT with os9lib loaded, with a source file or without, absolute path or relative.  It is the one piece of the RTF set that does not run; `rtf' itself compiles and `biory' runs.  DOC/rtf/biory.doc is the output it produced for biory.f on the machine it came from.  Measured 2026-08-29 |
 | `demerge` | split a merged file back into its parts<br>`Syntax:   demerge <path>` |
 | `demo` | egetopt option-parsing demonstration |
+| `deton` | &#9733; NOT a detab: `deton [seconds]' demonstrates using an alarm to TIME OUT an I/O read.  `detab' and `expand' are what convert tabs.  Corrected 2026-08-29<br>`syntax: deton [seconds]` |
 | `devprc` | show which device belongs to which process.  REBUILT HERE: the archived module has a bad CRC and a corrupt initialised- data descriptor, and does not load.  -h works; -a needs the kernel process table, which os9exec answers without real data |
 | `dload` | &#9733; NOT a serial download: `dload <filename>' LOADS A DATA FILE INTO A DATA MODULE, which is its own usage line. `sbreak' and `break' are the serial-line examples here. Corrected 2026-08-29<br>`Syntax: dload <filename>` |
 | `e` | SEDT editor, VT220 keys.  FIXED 2026-08-28: it wants sys/sedt.keys, sys/sedt.ruler0 and sys/sedt.help, none of which were here -- it stopped with `Could not open key definition file'.  All three are in SYS now, recovered from the EFFO forum 11 archive it came from |
@@ -1395,7 +1394,6 @@
 | `lfmaker` | make a G-Windows launch file -- and it FLOODS `No more memory !!!' as soon as it is given an argument, which is the F$SRqMem storm DOC/STATUS lists.  Measured 2026-08-29 |
 | `lgrep` | &#9733; line grep<br>`Syntax: lgrep <arg1> ... <argn>` |
 | `liborder.os9` | report the order of modules in a library<br>`Usage: liborder <options> file1.r file2.r ...` |
-| `lmargin` | &#9733; set the left margin ON AN EPSON PRINTER -- its own usage line says `epson'.  It is a printer control, not a text filter; `fmt', `proff' and `pep' are what indent text.  Clarified 2026-08-29<br>`usage: epson [<opts>]` |
 | `lpsched` | &#9733; the line-printer scheduler<br>`Syntax: lpsched [-r] {<devname>}` |
 | `lunisolar` | &#9733; lunar and solar position calculator |
 | `makecrc` | compute a CRC |
@@ -1410,7 +1408,6 @@
 | `pri` | change a process's priority |
 | `ptob` | Gepard fat-font back to bitmap<br>`Syntax:   PtoB [<opts>] [<path1>] [<opts>] [<path2>] [<opts>]` |
 | `ptxminst` | install Ptxm.  NOT a pseudo-tty installer -- that is what this entry said until 2026-08-19 and it was wrong |
-| `read_mail` | &#9733; a small mail reader of its own, not vi's helper: it opens /dd/MAIL/mail_<user> and offers `[L]ist again, e[X]it & delete mail, exit & [N]ot delete'.  Corrected 2026-08-29 |
 | `repeat` | repeat an OS-9 command N times -- `repeat 3 <command>' -- and it cannot here.  It hands the command to whatever $SHELL names, in the form Microware's shell takes: `sh' answers `file not found' because it cannot fork an absolute pathname and `bash' answers `cannot execute binary file' because it treats the module as a script. It also prints `free() called with bad address' on the way out.  Measured 2026-08-29<br>`syntax: repeat [number of repetitions] [OS-9 command]` |
 | `rndir` | &#9733; rename a directory<br>`Syntax: rndir [<opt>]` |
 | `scsiutil` | SCSI device utility<br>`Usage: SCSIutil [/scsi_dev@] <command>` |
@@ -1441,7 +1438,6 @@
 | | |
 |---|---|
 | `aprocs` | &#9733; process monitor<br>`Syntax: aprocs [<opts>]` |
-| `dpark` | &#9733; park the DISK HEAD, not a process: `dpark [/device]' restores an RBF device's head to track 00, which is what you did before moving a drive.  Corrected 2026-08-29<br>`Syntax:   dpark [/device]` |
 | `launch` | &#9733; NOT a background launcher.  M.C.Gregorie's login helper: sets the environment for the terminal type, optionally a default PATH and emacs bindings, from /dd/SYS/config, then starts the shell named on its command line.  Corrected 2026-08-28<br>**How:** Says "nothing to launch" until it is configured -- see its documentation. |
 | `signal` | &#9733; send a signal to a process<br>`Syntax: signal <process-id> <signal-code> [<seconds>]` |
 | `sysmax` | &#9733; shows the system's maximum process AGE, not its memory -- `system maximum age is 0' here, because os9exec does not implement the F$SetSys call it uses.  Corrected 2026-08-29 |
@@ -1449,6 +1445,7 @@
 | `sysmon` | &#9733; system monitor -- refuses to start: `OS9/68k V4.0 is too old for SYSMON V6.1'<br>`Syntax: sysmon [<opt>]` |
 | `t` | tiny test/stub binary |
 | `top` | &#9733; show the busiest processes -- prints its heading and then aborts (E_PRCABT).  `aprocs' aborts the same way<br>`Syntax: top [<opts>] [<num>]` |
+| `vis` | &#9733; NOT the Unix `vis': it repeatedly runs a command and refreshes the screen with the output, which is what `watch' does elsewhere -- `vis {opts} <command> <args>'.  Corrected 2026-08-29 |
 | `who` | 'who is logged in'.  Written in MICROWARE SHELL syntax ('!' pipes, `( )&' groups, `*' comments), not sh or bash, so no shell here can run it.  It wants `procs', `sleep', `qsort' and `tr', none of which are on this disk -- but `field' and `join', which it also uses, ARE here, and `qsort9' is that sort under another name.  Corrected 2026-08-29: field was listed among the missing and is not. |
 
 **OS-9 modules**
@@ -1502,6 +1499,7 @@
 |---|---|
 | `dam` | &#9733; display the disk allocation map -- dam [<drive>] |
 | `dinfo` | &#9733; disk/device information<br>`Syntax:   dinfo [<opts>] {<device name> [<opts>]}` |
+| `dpark` | &#9733; park the DISK HEAD, not a process: `dpark [/device]' restores an RBF device's head to track 00, which is what you did before moving a drive.  Corrected 2026-08-29<br>`Syntax:   dpark [/device]` |
 | `shdev` | &#9733; show devices |
 | `ssl` | &#9733; show a file's segment list, sector by sector -- ssl <file> |
 
@@ -1583,7 +1581,7 @@
 
 *Calendars, clocks and astronomy.*
 
-<details><summary>9 programs</summary>
+<details><summary>11 programs</summary>
 
 **Calendars**
 
@@ -1594,6 +1592,8 @@
 | `calender` | &#9733; print a whole year's calendar (German)<br>**How:** Prints the year in GERMAN. Not a typo of `calendar' -- a different program by a different author. |
 | `digclk` | &#9733; digital clock with hostname<br>`Usage: digclk [refresh_rate]` |
 | `easter` | &#9733; compute the date of Easter<br>**How:** Prints Easter dates for 1988 to 2000 and nothing else. The range is compiled in. |
+| `gcl` | &#9733; displays a GRAND DIGITAL CLOCK, not a calculator: `gcl {opts} [bkgnd]'.  `digclk' is the other clock of its kind here.  Corrected 2026-08-29 |
+| `qt` | &#9733; tells the time IN WORDS, the way a person would say it: `It's just gone ten past four.'  Not a text utility. `today' is the other one of its kind here.  Corrected 2026-08-29 |
 | `setimex` | &#9733; set time from hardware clock<br>`Usage:` |
 | `today` | date, moon phase and this-day-in-history |
 
@@ -1616,7 +1616,7 @@
 
 | | |
 |---|---|
-| `gcl` | &#9733; displays a GRAND DIGITAL CLOCK, not a calculator: `gcl {opts} [bkgnd]'.  `digclk' is the other clock of its kind here.  Corrected 2026-08-29 |
+| `chbase` | &#9733; converts a NUMBER from one base to another -- Philip Maechler's, and nothing to do with a module's base address.  `cvtbase' is the other one, and floods. Corrected 2026-08-29<br>`Syntax   : chbase <number> [ <base A> [ <base B> ] ]` |
 | `hc` | hex calculator |
 | `loan` | &#9733; loan/amortisation calculator |
 | `rechne` | &#9733; calculator, German -- and it takes ONE expression with no spaces in it: `rechne 4095+1' answers 4096, $1000 and the binary.  Spaced out it evaluates each argument separately |
@@ -1648,13 +1648,13 @@
 
 | | |
 |---|---|
+| `lmargin` | &#9733; set the left margin ON AN EPSON PRINTER -- its own usage line says `epson'.  It is a printer control, not a text filter; `fmt', `proff' and `pep' are what indent text.  Clarified 2026-08-29<br>`usage: epson [<opts>]` |
 | `lp` | &#9733; line printer spooler - submit a job<br>`Syntax: lp [<opts>] {<path>}` |
 | `lpq` | &#9733; shows the spooler queue -- and answers `no spooler installed' here.  It looks for a DATA MODULE called `spoolqueue' in memory, not for SPL/splq; starting `splman' does not create it and nothing on this disk does.  Same for `prjob' and `lp'.  Measured 2026-08-29<br>`Syntax: lpq [-p=dev] [user]` |
 | `lprm` | &#9733; remove a job from the print queue<br>`Syntax: lprm [-d=dev] [-] job..` |
 | `lpshut` | &#9733; shut down the printer scheduler<br>`Syntax: lpshut` |
 | `perr` | &#9733; print an OS-9 error message<br>`Syntax: perr [<error_codes>]` |
 | `prjob` | &#9733; print a job |
-| `qp` | &#9733; NOT a print helper: `qp <cmd> <args>' processes BACK-QUOTES for command expansion, which Microware's shell has no way to do.  It produces nothing here whatever it is given -- like everything else that forks a program called `shell', which this disk does not have.  Corrected 2026-08-29<br>`Syntax: qp <cmd> <arg1> ... <argn>` |
 
 **PostScript**
 
