@@ -1649,7 +1649,7 @@
 | | |
 |---|---|
 | `lp` | &#9733; line printer spooler - submit a job<br>`Syntax: lp [<opts>] {<path>}` |
-| `lpq` | &#9733; show the print queue<br>`Syntax: lpq [-p=dev] [user]` |
+| `lpq` | &#9733; shows the spooler queue -- and answers `no spooler installed' here.  It looks for a DATA MODULE called `spoolqueue' in memory, not for SPL/splq; starting `splman' does not create it and nothing on this disk does.  Same for `prjob' and `lp'.  Measured 2026-08-29<br>`Syntax: lpq [-p=dev] [user]` |
 | `lprm` | &#9733; remove a job from the print queue<br>`Syntax: lprm [-d=dev] [-] job..` |
 | `lpshut` | &#9733; shut down the printer scheduler<br>`Syntax: lpshut` |
 | `perr` | &#9733; print an OS-9 error message<br>`Syntax: perr [<error_codes>]` |
