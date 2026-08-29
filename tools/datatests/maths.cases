@@ -5,9 +5,12 @@ family  maths
 setup   /dd/CMDS/rm -rf /dd/tmp/mt
 setup   /dd/CMDS/mkdir /dd/tmp/mt
 
+# THE ANSWER'S DIGITS ARE NOT IN THE OPERANDS, on purpose: `expr 355 / 113'
+# expecting `3' would have passed on any error message that quoted 355 or
+# 113.  90 / 6 is 15, and neither operand contains a 1 or a 5.
 case    expr-does-integer-arithmetic
-run     /dd/CMDS/expr 355 / 113
-expect  3
+run     /dd/CMDS/expr 90 / 6
+expect  15
 
 case    expr-multiplies
 run     /dd/CMDS/expr 7 \* 6

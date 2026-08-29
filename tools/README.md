@@ -194,6 +194,16 @@ repeats its rank lines and that is fine. It exists because a card once
 carried twenty-four copies of `No more memory !!!` under a caption about
 converting number bases, and every check there was had passed it.
 
+**An expectation must be something an ERROR could not produce.** On
+2026-08-29 a case asserting that `motd` appeared in shar's output was passing
+on the word `motd` inside `No read access for file: /dd/SYS/motd` -- shar has
+never made an archive on this disk. Nine other cases had the same shape: an
+`expect` string that also appears in the case's own command line, so any
+message quoting the arguments would satisfy it. They now assert a column
+heading, a total, or a value whose digits are not in the operands. The check
+is three lines of Python over `datatest.parse` and worth re-running after
+adding cases.
+
 `gen_screens.py` also reports DRIFT: a stanza with no capture, and a capture
 older than the sheet that defines it -- which is the one way this can lie
 without anybody touching a program, by publishing an old screen under a new

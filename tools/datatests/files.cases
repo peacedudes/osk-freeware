@@ -11,6 +11,7 @@ case    mkdir-and-dir-agree
 run     /dd/CMDS/mkdir /dd/tmp/ft/sub
 run     /dd/CMDS/dir /dd/tmp/ft
 expect  sub
+expect  Total of
 
 case    cp-copies-the-bytes
 run     /dd/CMDS/cp /dd/tmp/ft/one /dd/tmp/ft/two
@@ -40,12 +41,14 @@ expect  File Length
 case    basename-and-dirname-take-a-path-apart
 run     /dd/CMDS/basename /dd/CMDS/GAMES/hack
 expect  hack
+absent  Usage
 run     /dd/CMDS/dirname /dd/CMDS/GAMES/hack
 expect  /dd/CMDS/GAMES
 
 case    du-adds-up-a-directory
 run     /dd/CMDS/du /dd/tmp/ft
 expect  /dd/tmp/ft
+expect  Total of
 
 # `find' here is NOT the Unix one: it takes `-n=<name>' and `-o' to output
 # the pathnames, and answers `only one parameter allowed' to the Unix form.

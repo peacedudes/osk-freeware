@@ -102,6 +102,7 @@ case    ar-adds-and-lists
 run     /dd/CMDS/ar -u tmp/a.ar SYS/termcap
 run     /dd/CMDS/ar -t tmp/a.ar
 expect  SYS/termcap
+expect  file name
 
 case    ar-refuses-an-absolute-path
 run     /dd/CMDS/ar -u tmp/b.ar /dd/SYS/termcap

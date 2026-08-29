@@ -15,9 +15,11 @@ setup   echo "alpha beta gamma" >> /dd/tmp/text.src
 setup   echo "delta epsilon zeta" >> /dd/tmp/text.src
 setup   echo "alpha beta gamma" >> /dd/tmp/text.src
 
+# All three columns, not just the line count: `4' alone would pass on any
+# message that happened to contain a 4.
 case    wc-counts-what-is-there
 run     /dd/CMDS/wc $T
-expect  4
+expect  4     15     93
 
 case    sed-substitutes
 run     /dd/CMDS/sed "s/beta/BETA/" $T
@@ -49,9 +51,13 @@ expect  alpha beta gamma
 
 # `tail' here is DESIGNA's, not GNU's: it takes -l=<x> and refuses -n.  head
 # is the GNU one and takes -n.  Two programs on one disk, two conventions.
+# ASSERTS CONTENT, NOT A COUNT.  The earlier form expected `3' from a
+# command whose own arguments contained a 3, so an error message quoting them
+# would have passed it -- the same shape as the `shar' false pass.
 case    head-takes-dash-n
-run     /dd/CMDS/head -n 3 $T | /dd/CMDS/head -n 3 | /dd/CMDS/grep -c .
-expect  3
+run     /dd/CMDS/head -n 2 $T
+expect  alpha beta gamma
+absent  delta epsilon zeta
 
 case    tail-takes-dash-l-and-refuses-dash-n
 run     /dd/CMDS/tail -l=1 $T
@@ -107,7 +113,7 @@ absent  can't
 # counts the lines, named it produces nothing.
 case    gawk-counts-lines-on-stdin
 run     /dd/CMDS/gawk "END{print NR\" records\"}" < $T
-expect  records
+expect  4 records
 
 case    gawk-ignores-a-filename-argument
 run     echo "" | /dd/CMDS/gawk "END{print NR\" records\"}" $T
