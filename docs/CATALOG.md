@@ -1403,7 +1403,7 @@
 | `modinfo` | report a module's header -- name, type, size, edition, CRC<br>`Syntax:   module [modulename]` |
 | `mshell` | &#9733; a small shell |
 | `mvolformat` | format a multi-volume set<br>`Syntax: mvolformat drive volname volcount [format options]` |
-| `names` | &#9733; list the names of modules in a file |
+| `names` | &#9733; list the names of modules in a file -- and it DOES NOT COME BACK: given a module it prints nothing and never returns, with a file on its standard input or without. `ident', `modinfo' and `module_census' all answer the same question.  Measured 2026-08-29 |
 | `new_e` | SEDT editor, generic terminal -- it picks vt100 or vt220 by TERM.  Needs the same three SYS/sedt.* files as `e' |
 | `phone` | connect two terminals -- NOT an address book<br>`Syntax: phone <communication-path>` |
 | `preset` | preset memory to a pattern |
