@@ -1,6 +1,10 @@
-$ hipstopgm /dd/tmp/w.ppm
-hipstopgm: /dd/tmp/w.ppm -
-$ qrttoppm /dd/tmp/w.ppm | head -n 3
-qrttoppm: /dd/tmp/w.ppm -
-$ zeisstopnm /dd/tmp/w.ppm
-zeisstopnm: /dd/tmp/w.ppm -
+$ ppmmake red 16 16 > /dd/tmp/nr.ppm
+$ hipstopgm /dd/tmp/nr.ppm
+hipstopgm: error reading header
+$ qrttoppm /dd/tmp/nr.ppm | head -n 3
+qrttoppm: EOF / read error
+P6
+13904 12557
+255
+$ zeisstopnm /dd/tmp/nr.ppm
+zeisstopnm: Input file not in Zeiss format (too small)

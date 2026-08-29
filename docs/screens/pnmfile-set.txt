@@ -1,6 +1,7 @@
-$ pnmtile 60 30 /dd/tmp/s.pgm > /dd/tmp/tile.pgm
-$ pnmpad -white -left 10 /dd/tmp/tile.pgm > /dd/tmp/pad.pgm
-usage:  pnmpad [-white|-black] [-l#] [-r#] [-t#] [-b#] [pnmfile]
-<pgm /dd/tmp/t.ppm /dd/tmp/tile.pgm /dd/tmp/pad.pgm /dd/tmp/s.pgm
-/dd/tmp/ramp.pgm:       PGM raw, 64 by 16  maxval 255
-pnmfile: /dd/tmp/t.ppm -
+$ pgmramp -lr 30 16 > /dd/tmp/ramp2.pgm
+$ pnmtile 60 32 /dd/tmp/ramp2.pgm > /dd/tmp/tile2.pgm
+$ pnmpad -white -l10 -r10 /dd/tmp/tile2.pgm > /dd/tmp/pad2.pgm
+$ pnmfile /dd/tmp/ramp2.pgm /dd/tmp/tile2.pgm /dd/tmp/pad2.pgm
+/dd/tmp/ramp2.pgm:      PGM raw, 30 by 16  maxval 255
+/dd/tmp/tile2.pgm:      PGM raw, 60 by 32  maxval 255
+/dd/tmp/pad2.pgm:       PGM raw, 80 by 32  maxval 255

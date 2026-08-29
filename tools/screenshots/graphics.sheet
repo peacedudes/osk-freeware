@@ -329,9 +329,14 @@ shot    pgmtexture
 for     pgmtexture pgmkernel pnmhistmap
 cap     pgmtexture measures an image the way a pattern-recognition paper
 cap     does: angular second moment, contrast, correlation, entropy.  On
-cap     the gulls photograph.
-run     pgmtexture -d 2 /dd/tmp/gg.pgm | head -n 18
+cap     the gulls photograph, which this card makes for itself rather than
+cap     borrowing one another card happened to leave behind.
+run     giftopnm /dd/DEMO/gulls.gif | ppmtopgm > /dd/tmp/gg2.pgm
 wait    30
+run     pnmscale -xysize 60 40 /dd/tmp/gg2.pgm > /dd/tmp/gg3.pgm
+wait    20
+run     pgmtexture -d 2 /dd/tmp/gg3.pgm | head -n 14
+wait    60
 
 shot    plotters
 for     pbmtoplot pbmtozinc pbmtobbnbg pbmtogo pbmtoln03 pbmtolps
@@ -413,12 +418,17 @@ wait    5
 shot    pnmfile-set
 for     pnmfile pnmtile pnmpad
 cap     pnmfile identifies each file a pipeline made: format, size, and
-cap     whether it is raw or plain.  Six formats, all made on this disk.
-run     pnmtile 60 30 /dd/tmp/s.pgm > /dd/tmp/tile.pgm
+cap     whether it is raw or plain.  Every file here is made by this card,
+cap     so it does not depend on what another one left behind.  `pnmpad'
+cap     takes its margins ATTACHED to the letter -- -l10, not -left 10 --
+cap     and prints its usage for anything else.
+run     pgmramp -lr 30 16 > /dd/tmp/ramp2.pgm
+wait    6
+run     pnmtile 60 32 /dd/tmp/ramp2.pgm > /dd/tmp/tile2.pgm
 wait    10
-run     pnmpad -white -left 10 /dd/tmp/tile.pgm > /dd/tmp/pad.pgm
-wait    8
-run     pnmfile /dd/tmp/ramp.pgm /dd/tmp/t.ppm /dd/tmp/tile.pgm /dd/tmp/pad.pgm /dd/tmp/s.pgm
+run     pnmpad -white -l10 -r10 /dd/tmp/tile2.pgm > /dd/tmp/pad2.pgm
+wait    10
+run     pnmfile /dd/tmp/ramp2.pgm /dd/tmp/tile2.pgm /dd/tmp/pad2.pgm
 wait    8
 
 shot    pnmgamma
@@ -718,11 +728,13 @@ cap     Atari Spectrum pictures, Photo CD, Amiga brushes, Gould scanners.
 cap     Handed something else, they say so rather than guessing, which is
 cap     the behaviour you want.  Three of the sixteen are shown; the rest
 cap     answer the same way.
-run     hipstopgm /dd/tmp/w.ppm
+run     ppmmake red 16 16 > /dd/tmp/nr.ppm
+wait    8
+run     hipstopgm /dd/tmp/nr.ppm
 wait    12
-run     qrttoppm /dd/tmp/w.ppm | head -n 3
+run     qrttoppm /dd/tmp/nr.ppm | head -n 3
 wait    12
-run     zeisstopnm /dd/tmp/w.ppm
+run     zeisstopnm /dd/tmp/nr.ppm
 wait    12
 
 
