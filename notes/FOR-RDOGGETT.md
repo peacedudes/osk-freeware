@@ -255,5 +255,44 @@ to re-open the question:
     against os9exec: two wrong reports came out of that kind of inference
     before, and this is one program out of 108.
 
+## A third reading, 2026-08-29: one bug found three more
+
+**`printf' drops everything before the first conversion.** `printf "[%s]\n" X'
+gives `X]', and a format with no conversion in it at all prints nothing
+whatever arguments follow. DOC/INDEX said it floods `No more memory !!!';
+it does not, and that entry is corrected. Then the same defect turned up
+underneath three cards that had been quietly empty for weeks -- `nsort',
+`yacc' and `expand' all built their input with `printf "10\n9\n..."', which
+wrote nothing at all. All three are rebuilt with echo and all three now show
+something.
+
+Reading those three found three more:
+
+  - **`nsort' is not a numeric sort.** Given 3, 22, 111, 4 it answers 111,
+    22, 3, 4 -- exactly what GNU `sort' answers with no options. `sort -n'
+    is the numeric sort here. Its card now shows all three side by side.
+  - **`yacc' hangs** on a three-line grammar, as DOC/INDEX already said;
+    its card now shows the grammar and the silence. `bison' reads the same
+    grammar in a second.
+  - `unexpand' needs `-a' for tabs that are not at the start of a line,
+    which is standard and was worth saying: with it the tab round trip
+    closes byte for byte.
+
+**`shar' creates no archive at all** -- `No read access for file:' for every
+file, absolute or relative, on a file world-readable that `cat' reads. Worse,
+**the data-test case for it was a false pass**: it asserted `motd' appeared
+in the output, and `motd' appears in the error message. That in turn found a
+real bug in `datatest.py': it stripped `#' ANYWHERE in a line, so
+`absent  #!/bin/sh' became a bare `absent' matching the empty string. The
+screenshot sheet parser had the identical bug and was fixed months ago; the
+test harness had it still. Both are fixed, and an empty pattern is now
+refused at parse time.
+
+Also corrected: **`roff' and `proff' work** (the index said they failed like
+nroff -- they do not; `nroff' hangs, they do not), `hexedit' prints the value
+of TERM and exits, `devprc' crashes bare and works with `-h' exactly as `cp'
+does, and `cjpeg' refuses every PNM tried -- raw, plain, PGM, 8x8, from a
+file and from stdin.
+
 ## Nothing needs you
 
