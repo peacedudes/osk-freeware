@@ -1,2 +1,4 @@
-$ echo "tHE qUICK bROWN fOX" > /dd/tmp/c.txt
-$ casefix /dd/tmp/c.txt
+$ echo "tHE qUICK bROWN fOX" | casefix
+The quick brown fox
+$ echo "hello THERE from OS-9" | casefix
+Hello there from os-9

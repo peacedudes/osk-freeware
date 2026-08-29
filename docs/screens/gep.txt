@@ -1,3 +1,7 @@
-$ lgrep chess /dd/DOC/INDEX | head -n 6
+$ lgrep chess /dd/DOC/INDEX /dd/DOC/STATUS /dd/SYS/motd
+$ lgrep -?
+Syntax: lgrep <arg1> ... <argn>
+Function: same as 'grep -l', but prints filenames without comments
+Options: same as with 'grep'
 $ ggrep -c chess /dd/DOC/INDEX
 14

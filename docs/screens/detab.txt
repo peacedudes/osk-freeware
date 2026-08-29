@@ -1,9 +1,16 @@
-$ printf "a\tb\tc\n" > /dd/tmp/tabs.txt
+$ head -n 3 /dd/SYS/holidays > /dd/tmp/tabs.txt 2>/nil
 $ dump /dd/tmp/tabs.txt
-$ detab /dd/tmp/tabs.txt | dump
-Syntax: dump [<opts>] <path/module> [<opts>] [<starting byte>] [<opts>]
-Function: formatted display of contents of a file/module
-Options:
-     -c        don't compress duplicate lines
-     -x        path implies execution directory
-     -m        dump memory module
+
+Addr   0 1  2 3  4 5  6 7  8 9  A B  C D  E F 0 2 4 6 8 A C E
+----  ---- ---- ---- ---- ---- ---- ---- ---- ----------------
+0000  2A20 436F 6D6D 6F6E 2048 6F6C 6964 6179 * Common Holiday
+0010  730D 0D31 2F31 0909 4E65 7720 5965 6172 s..1/1..New Year
+0020  2773 2044 6179 0D                       's Day.
+$ detab /dd/tmp/tabs.txt > /dd/tmp/notabs.txt
+$ dump /dd/tmp/notabs.txt
+
+Addr   0 1  2 3  4 5  6 7  8 9  A B  C D  E F 0 2 4 6 8 A C E
+----  ---- ---- ---- ---- ---- ---- ---- ---- ----------------
+0000  2A20 436F 6D6D 6F6E 2048 6F6C 6964 6179 * Common Holiday
+0010  730D 0D31 2F31 2020 2020 2020 4E65 7720 s..1/1      New
+0020  5965 6172 2773 2044 6179 0D             Year's Day.

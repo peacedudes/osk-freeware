@@ -21,16 +21,21 @@ run     fgrep cribbage /dd/DOC/INDEX
 wait    4
 
 shot    casefix
-cap     casefix normalises letter case; upperdir does the same to a whole
-cap     directory's names.
-run     echo "tHE qUICK bROWN fOX" > /dd/tmp/c.txt
-wait    3
-run     casefix /dd/tmp/c.txt
+cap     casefix normalises letter case -- one capital at the front, the
+cap     rest down.  It is a FILTER and takes no filename: given one it
+cap     ignores it and reads the terminal, which is a good way to lose a
+cap     script.  `upperdir' does the same job to a directory's names.
+run     echo "tHE qUICK bROWN fOX" | casefix
+wait    5
+run     echo "hello THERE from OS-9" | casefix
 wait    5
 
 shot    cdiff
-cap     cdiff, a context diff, on two versions of the same file.
-run     head -n 10 /dd/SYS/holidays > /dd/tmp/h1
+cap     cdiff is a context diff and it cannot finish one: `MAXLINECOUNT
+cap     exceeded, must stop' on any pair of files given it here, down to
+cap     three lines apiece.  `diff' and `ediff' both work; diff has its own
+cap     card.
+run     head -n 3 /dd/SYS/holidays > /dd/tmp/h1 2>/nil
 wait    3
 run     sed -e "s/Day/DAY/" /dd/tmp/h1 > /dd/tmp/h2
 wait    4
@@ -38,10 +43,13 @@ run     cdiff /dd/tmp/h1 /dd/tmp/h2
 wait    6
 
 shot    charcnt
-cap     charcnt counts characters; tcmp compares two text files and says
-cap     where they first differ.
+cap     charcnt counts characters -- and it wants FILENAMES, not a
+cap     redirect, and says so when it gets one.  `tcmp' compares two text
+cap     files and says where they first differ.
 run     charcnt < /dd/SYS/motd
 wait    5
+run     charcnt /dd/SYS/motd /dd/SYS/password
+wait    6
 run     tcmp /dd/SYS/motd /dd/SYS/holidays
 wait    6
 
@@ -80,12 +88,14 @@ wait    5
 shot    detab
 cap     detab turns tabs into spaces; unexpand puts leading spaces back as
 cap     tabs.  Shown here with dump, so the bytes are visible.
-run     printf "a\tb\tc\n" > /dd/tmp/tabs.txt
-wait    3
-run     dump /dd/tmp/tabs.txt
+run     head -n 3 /dd/SYS/holidays > /dd/tmp/tabs.txt 2>/nil
 wait    4
-run     detab /dd/tmp/tabs.txt | dump
+run     dump /dd/tmp/tabs.txt
 wait    6
+run     detab /dd/tmp/tabs.txt > /dd/tmp/notabs.txt
+wait    5
+run     dump /dd/tmp/notabs.txt
+wait    8
 
 shot    diff
 cap     GNU diff 1.1 on two versions of the same file -- the disk had no
@@ -190,11 +200,15 @@ wait    10
 
 shot    gep
 for     gep lgrep ggrep bmgtest bmgtest2 greg
-cap     Four more pattern matchers, each from a different decade: a global
-cap     expression parser, a line grep, GNU grep from sh_utils, and a
-cap     Boyer-Moore-Gosper demonstration.
-run     lgrep chess /dd/DOC/INDEX | head -n 6
-wait    8
+cap     More pattern matchers, each from a different decade.  `ggrep' is
+cap     GNU grep out of sh_utils and counts what it finds.  `lgrep' is
+cap     meant to print the NAMES of files that match, the way grep -l
+cap     does, and prints nothing at all here whatever it is given -- its
+cap     usage line is the only output anyone has got out of it.
+run     lgrep chess /dd/DOC/INDEX /dd/DOC/STATUS /dd/SYS/motd
+wait    6
+run     lgrep -?
+wait    6
 run     ggrep -c chess /dd/DOC/INDEX
 wait    8
 

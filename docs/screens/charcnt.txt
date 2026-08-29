@@ -1,23 +1,23 @@
-12/25 Christmas Day
-12/26 Boxing Day
+$ charcnt /dd/SYS/motd /dd/SYS/password
 
-* Canadian Holidays
 
-5/25-monday Victoria Day
-7/1 Canada Day (Canada)
-8/1mon Civic Holiday
-10/2Mond Thanksgiving
-11/11 Rememberence Day
+ ch  cnt  ch  cnt  ch  cnt  ch  cnt  ch  cnt  ch  cnt  ch  cnt  ch  cnt
+ -- ----  -- ----  -- ----  -- ----  -- ----  -- ----  -- ----  -- ----
+ NU:   0  ^P:   0  SP:  10   0:   4   @:   0   P:   2   `:   0   p:   3
+ ^A:   0  ^Q:   0   !:   0   1:   8   A:   1   Q:   0   a:   2   q:   0
+ ^B:   0  ^R:   0   ":   4   2:   5   B:   1   R:   4   b:   0   r:   2
+ ^C:   0  ^S:   0   #:   0   3:   1   C:   6   S:   9   c:   4   s:  13
+ ^D:   0  ^T:   0   $:   0   4:   0   D:   4   T:   2   d:  21   t:   4
+ ^E:   0  ^U:   0   %:   0   5:   0   E:   2   U:   7   e:  12   u:   5
+ ^F:   0  ^V:   0   &:   0   6:   1   F:   0   V:   0   f:   0   v:   0
+ ^G:   0  ^W:   0   ':   0   7:   1   G:   0   W:   1   g:   0   w:   0
+ BS:   0  ^X:   0   (:   0   8:   6   H:   0   X:   0   h:   5   x:   1
+ ^I:   0  ^Y:   0   ):   0   9:   5   I:   1   Y:   0   i:   0   y:   1
+ LF:   0  ^Z:   0   *:   0   ::   2   J:   0   Z:   0   j:   0   z:   0
+ ^K:   0  ES:   0   +:   0   ;:   0   K:   0   [:   0   k:   1   {:   0
+ ^L:   0  FS:   0   ,:  30   <:   0   L:   1   \:   0   l:  12   |:   0
+ CR:   6  GS:   0   -:   5   =:   2   M:   4   ]:   0   m:   3   }:   0
+ ^N:   0  RS:   0   .:   5   >:   0   N:   2   ^:   0   n:   2   ~:   0
+ ^O:   0  US:   0   /:  25   ?:   0   O:   2   _:   0   o:   6  DL:   0
 
-* US Holidays
-
-*1/16 Martin Luther King Jr. Day (US)
-*5/Lmonday Memorial Day (US)
-*6/14 Flag Day (US)
-*7/4 Independence Day (US)
-*10/2Monday Columbus Day (US)
-*11/7 Election Day (US)
-*11/11 Veteran's Day (US)
-*11/4thur Thanksgiving (US)
-
-INCLUDE /dd/sys/birthdays
+Total # of chars read = 266
