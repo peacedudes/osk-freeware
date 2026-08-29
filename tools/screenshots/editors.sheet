@@ -77,7 +77,7 @@ run     elvis /dd/DOC/README-CIO
 wait    18
 quit    \033:q!\r
 
-shot    VI
+shot    pvic
 for     VI
 cap     PVIC, the Portable VI Clone, in CMDS/REBUILT because the name `vi'
 cap     was already taken by the EFFO one.  It is a working vi: tildes down

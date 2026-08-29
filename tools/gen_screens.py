@@ -346,7 +346,9 @@ def sheet_shots():
     for f in sorted(os.listdir(SHEETS)):
         if not f.endswith(".sheet"):
             continue
-        for shot in screenshots.parse(os.path.join(SHEETS, f)):
+        parsed = screenshots.parse(os.path.join(SHEETS, f))
+        screenshots.check_names(parsed)
+        for shot in parsed:
             first = next((v for k, v in shot["acts"] if k == "run"), "")
             shots[shot["name"]] = {"hash": screenshots.stanza_hash(shot),
                                    "first": first,

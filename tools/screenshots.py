@@ -415,8 +415,33 @@ def worth(scr):
     return total
 
 
+def check_names(shots):
+    """No two stanzas may share a name, IGNORING CASE.
+
+    A capture is saved as notes/playtests/<name>.shot.txt, and on a
+    case-insensitive filesystem -- which is what macOS ships -- `VI' and
+    `vi' are ONE FILE. Shooting the second silently overwrote the first, so
+    the `vi' card published PVIC's screen under the EFFO vi's caption: the
+    exact lie the drift check exists to catch, arriving from the harness
+    rather than from a program. Caught 2026-08-28 by that check.
+    """
+    seen = {}
+    for shot in shots:
+        key = shot["name"].lower()
+        if key in seen and seen[key] != shot["name"]:
+            sys.exit("%s: stanzas `%s' and `%s' differ only in case -- "
+                     "their captures are one file on a case-insensitive "
+                     "disk. Rename one." % (shot["sheet"], seen[key],
+                                            shot["name"]))
+        if key in seen:
+            sys.exit("%s: two stanzas are both called `%s'"
+                     % (shot["sheet"], shot["name"]))
+        seen[key] = shot["name"]
+
+
 def run_sheet(path, image):
     shots = parse(path)
+    check_names(shots)
     os.makedirs(CAPS, exist_ok=True)
     print("== %s: %d shots" % (os.path.basename(path), len(shots)),
           flush=True)
