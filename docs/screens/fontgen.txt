@@ -1,0 +1,10 @@
+$ fontgen < /nil | head -n 10
+            nam      text80z.font
+            ttl      Character-Font fuer 80-Zeichen-Karte
+            use      defsfile
+
+Edition     equ      1
+Typ_Lang    equ      (Data<<8)+0
+Attr_Rev    equ      (ReEnt<<8)+0
+
+            psect    text80z.font,Typ_Lang,Attr_Rev,Edition,0,FontData

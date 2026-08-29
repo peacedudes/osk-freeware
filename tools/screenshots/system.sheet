@@ -624,3 +624,12 @@ cap     small programs a port was checked with.
 run     mtst | head -n 16
 wait    12
 
+shot    fontgen
+for     fontgen
+cap     fontgen writes the SOURCE of a character font: an OS-9 data module
+cap     in assembler, psect and all, ready for the 80-column card it was
+cap     written for.  It reads its bitmap from standard input and will sit
+cap     waiting on the terminal if you forget to give it one.
+run     fontgen < /nil | head -n 10
+wait    12
+
