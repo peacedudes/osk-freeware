@@ -3,4 +3,4 @@ $ ls -l /dd/tmp/cut.txt
 -rw-rw-rw-   1 0        0             717 Aug  3 19:00 /dd/tmp/cut.txt
 $ trunc /dd/tmp/cut.txt 100
 $ ls -l /dd/tmp/cut.txt
--rw-rw-rw-   1 0        0             100 Aug 28 04:58 /dd/tmp/cut.txt
+-rw-rw-rw-   1 0        0             100 Aug 29 04:09 /dd/tmp/cut.txt

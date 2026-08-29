@@ -455,8 +455,12 @@ wait    6
 
 shot    transfer
 for     transfer trunc preset fillup vlen
-cap     transfer copies between devices, trunc cuts a file short, preset
-cap     fills memory with a pattern.
+cap     transfer copies between devices and trunc cuts a file short -- the
+cap     listing either side of it is the whole demonstration.  `vlen' in
+cap     this group is NOT a reporting tool whatever DOC/INDEX said: it is
+cap     a variable-length-record demonstration that builds a filesystem of
+cap     its own and fills it, and `fillup' pads a file to a length with a
+cap     constant byte.
 run     cp /dd/SYS/holidays /dd/tmp/cut.txt
 wait    6
 run     ls -l /dd/tmp/cut.txt
