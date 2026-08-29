@@ -311,8 +311,8 @@ is why the file comes back byte-identical and the program looked inert. One
 missing library function, four programs. `DOC/STATUS' has them together now.
 
 Found by re-testing DOC/INDEX entries that were short, unstamped and looked
-inferred from the program's NAME rather than from running it. About forty
-were tried and eleven were wrong:
+inferred from the program's NAME rather than from running it. About sixty were
+tried and sixteen were wrong:
 
 | entry said | it actually is |
 |---|---|
@@ -327,6 +327,11 @@ were tried and eleven were wrong:
 | `read_mail` vi's mail-reading helper | its own mail reader, on /dd/MAIL/mail_&lt;user&gt; |
 | `lmargin` set a left margin on text | sets it on an EPSON PRINTER |
 | `names` list module names in a file | never returns |
+| `qp` queue/print helper | expands BACK-QUOTES for the shell |
+| `cam` Tektronix demo: camera | a CAMSHAFT lift-curve calculator |
+| `version` show a module's version | prints its OWN version, whatever you name |
+| `sysmax` show maximum system memory | maximum process AGE |
+| `sysmin` show minimum system memory | minimum process PRIORITY |
 
 `combine' turned out to interleave two files byte by byte for EPROM images
 rather than merely "combine files", `ape' writes gibberish in the style of
