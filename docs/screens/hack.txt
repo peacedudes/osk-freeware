@@ -1,24 +1,24 @@
-                                          a - a +1 mace (weapon in hand).
-                                          b - a +1 bow.
-                                          c - 21 +0 arrows.
-                                          d - a +0 leather armor (being worn).
-                                         --More--
+                                         a - a +0 long sword (weapon in hand).
+                                         b - a +2 spear.
+                                         c - a +1 ring mail (being worn).
+                                         d - a +0 helmet (being worn).
+                                         e - a +0 shield (being worn).
+                                         f - a +0 pair of gloves (being worn).
+                                        --More--
+
+
+
+                                                           ---------------
+                                                           +.............|
+                                                           |.............|
+                                                           |.............|
+                                                           +.............|
+                                                           |.....a.....@d|
+                                                           ---------------
 
 
 
 
-         --------------
-         |...@........+
-         |$..d.....>..|
-         |............+
-         |............|
-         |............+
-         --------------
 
 
-
-
-
-
-
-Level 1    Hp  16(16)   Ac 8    Str 18      Exp  1
+Level 1    Hp  12(12)   Ac 3    Str 10      Exp  1

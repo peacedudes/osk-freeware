@@ -1,3 +1,3 @@
 $ fortune
-Just because your doctor has a name for your condition doesn't mean he
-knows what it is.
+The fortune program is supported, in part, by user contributions and by
+a major grant from the National Endowment for the Inanities.

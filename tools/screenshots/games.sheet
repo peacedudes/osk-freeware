@@ -97,11 +97,14 @@ send    Bob\r
 wait    8
 
 shot    infocom
+for     infocom infocom.tcap
 cap     The Infocom Z-machine interpreter playing a real story file --
-cap     GAMES/INFORM/dejavu.z3, compiled with Inform and shipped here.  It
-cap     opens with a screenful of brackets, which is its status line meeting
-cap     a terminal it cannot address; the prose underneath is the game.
-run     infocom /dd/GAMES/INFORM/dejavu.z3
+cap     GAMES/INFORM/dejavu.z3, compiled with Inform and shipped here.
+cap     This is the TERMCAP build, `infocom.tcap', which is the one to use:
+cap     it puts a proper status line across the top, room name and score.
+cap     Plain `infocom' plays the same story and fills the screen with
+cap     brackets trying to draw that line.
+run     infocom.tcap /dd/GAMES/INFORM/dejavu.z3
 wait    8
 send    \r
 wait    4

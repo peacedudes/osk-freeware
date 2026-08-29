@@ -7,10 +7,10 @@ os9$ $P/pnmfile /dd/tmp/r.pgm /dd/tmp/r.pbm
 /dd/tmp/r.pgm:  PGM raw, 48 by 12  maxval 255
 /dd/tmp/r.pbm:  PBM raw, 48 by 12
 os9$ $P/pbmtoascii /dd/tmp/r.pbm
-MMMMMMMMM"M"Mo"MoM"o"M M M M "o "o "   o
-MMMMMMoMM"MM"M"oMo"M Mo"o"o M o"o " " o  "
-MMMMMM"MM"MoM"Mo"oM"o"o"o"o" oo o" " o  o  o
-MMMMoMMM"MMoM"Mo"M M"o"o"o"o" o" o" o o o
-MMMMMMM"MMoMM"Mo"M"o"oM M M "o "o o"       o
-MMMMMM"MMoMoMMo"M"oM"o"o"o" M "o o o" " "
+MMMMMMMMMM"M"MoMo"oMo"M M M "o o" o o o  o
+MMMMMMoMMM"M"oMoM"oM M M M "o" o" o o  o   o
+MMMMMoMMoMMM"Mo"oMoM Mo"o"o"o" o" o o o  o
+MMMM"MMoMMoMM"oM"oo"M M M o"o" o"  o o  o
+MMMMMMMMoMo"M"Mo"M Mo"o"o"o" o" o" o o o  "
+MMMMMoMM"M"M"MoM"Mo"oM M M M M "o "  o   o  o
 os9$

@@ -1,0 +1,12 @@
+name    gnuchessn
+prog    gnuchessn
+# KEPT FAILING ON PURPOSE, 2026-08-28.  The ncurses build stops with
+# `'vt100': Unknown terminal type.' -- it wants a TERMINFO database and this
+# disk has a TERMCAP, which is the same wall `gnuchess' hits.  `gnuchessr'
+# is the build that plays and `gnuchessc' the one that answers moves.
+rate    0.5
+wait    6
+keys    e2e4
+key     \r
+wait    8
+expect  My move is

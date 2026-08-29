@@ -1,10 +1,4 @@
- Y2 Rock Room                                               Score: 0/1
-
-
-
-What a horrid dream, all about compiling something. Thank heavens you've
-finally woken up, even if you seem to have been sleep-walking. As you dizzily
-shake your head, you can't help feeling this place is somehow familiar...
+ Y2 Rock Room                                               Score: 0/2
 
 DEJA VU
 An Interactive Demonstration
@@ -18,7 +12,13 @@ passage to the west, and a wall of broken rock to the east. There is a large
 
 On the Y2 rock is a featureless white cube.
 
-[MORE]
+[MORE]look
 A little red car is parked here.
+
+>That's not a verb I recognise.
+
+>take cube
+(the featureless white cube)
+You flinch from touching the cube, which is white hot!
 
 >

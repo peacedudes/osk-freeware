@@ -1,0 +1,16 @@
+name    gnuchessr
+prog    gnuchessr
+# GNU Chess, the `raw' build -- no screen library at all, so it works where
+# the curses and ncurses builds cannot.  It opens by asking for the time
+# control, `Enter #moves #minutes:', and only then takes a move.
+rate    0.5
+wait    6
+keys    40 5
+key     \r
+wait    6
+snap    board
+keys    e2e4
+key     \r
+wait    20
+snap    played
+expect  My move is

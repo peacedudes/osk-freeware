@@ -1,23 +1,23 @@
-  18          Clear      Clear    Warm ( 65)      None      Calm
-  19          Clear      Clear    Fair ( 60)      None      Calm
-  20          Clear      Clear    Warm ( 65)      None      Calm
-  21          Clear      Clear    Warm ( 75)      None      Calm         Fall Ex
-  22          Clear      Clear    Warm ( 65)      None      Calm
-  23          Clear      Clear    Warm ( 65)      None      Calm
+  20          Clear      Clear     Hot ( 80)      None      Calm
+  21          Clear      Clear    Warm ( 65)      None      Calm         Fall Ex
+  22          Clear      Clear    Warm ( 75)      None     Light
+  23          Clear      Clear    Warm ( 70)      None      Calm
   24          Clear      Clear    Warm ( 65)      None      Calm
-  25          Clear      Clear    Warm ( 70)      None      Calm
-  26  Precipitation  Heavy Fog    Warm ( 75)  Sprinkle  Blustery         Rain -,
-  27  Precipitation  Heavy Fog    Fair ( 60)  Sprinkle     Brisk         Rain -,
-  28          Clear      Clear    Fair ( 60)      None      Calm
-  29          Clear      Clear    Fair ( 60)      None      Calm
-  30          Clear      Clear    Warm ( 65)      None      Calm
-High Temp =  85, Low Temp =  50, Average Temp =  66
+  25          Clear      Clear    Warm ( 65)      None      Calm
+  26          Clear      Clear    Fair ( 60)      None      Calm
+  27       Overcast     Cloudy    Warm ( 65)      None      Calm
+  28          Clear      Clear    Warm ( 65)      None      Calm
+  29          Clear      Clear    Warm ( 65)      None      Calm
+  30  Precipitation       Mist    Warm ( 65)  Sprinkle      Calm         Rain -,
+High Temp =  80, Low Temp =  50, Average Temp =  65
 
 October
-   1  Precipitation       Mist    Fair ( 55)    Shower     Light         Rain -,
-   2  Precipitation  Heavy Fog    Fair ( 50)  Sprinkle     Light         Rain -,
-   3          Clear      Clear    Fair ( 50)      None      Calm
-   4          Clear      Clear    Fair ( 50)      None      Calm
-   5          Clear      Clear    Fair ( 55)      None      Calm
-   6          Clear      Clear    Fair ( 40)      None      Calm
-   7          Clear      Clear    Fair ( 45)      None     L
+   1          Clear      Clear    Fair ( 60)      None      Calm
+   2       Overcast     Cloudy    Fair ( 50)      None  Blustery
+   3       Overcast       Mist    Fair ( 45)      None     Light
+   4          Clear      Clear    Fair ( 50)      None     Light
+   5          Clear      Clear    Fair ( 45)      None      Calm
+   6  Precipitation       Mist    Fair ( 60)    Shower     Brisk         Rain -,
+   7          Clear      Clear    Fair ( 45)      None      Calm
+   8          Clear      Clear    Fair ( 50)      None      Calm
+   9          Clear      Clear    Fair ( 50)      None     Brisk          Overc
