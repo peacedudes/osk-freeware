@@ -1401,7 +1401,7 @@
 | `makecrc` | compute a CRC |
 | `map` | &#9733; NOT a memory map: `map <file>' shows the disk BLOCKS a file occupies, sector by sector.  `mfree' and `free' are the memory ones.  Corrected 2026-08-29<br>`Syntax: map [<opts>] <file> {<file>}` |
 | `modinfo` | report a module's header -- name, type, size, edition, CRC<br>`Syntax:   module [modulename]` |
-| `mshell` | &#9733; a small shell, and it wants a real terminal: run from a pipe it stops with `Unknown terminal type 'dumb'!'.  Clarified 2026-08-29 |
+| `mshell` | &#9733; a MENU shell: it takes a menu file as its argument and says `Could not open <name> (menufile)' without one.  It also needs TERM set, as every full-screen program here does.  Corrected 2026-08-29; an earlier note said only that it wanted a terminal, which was an artefact of probing it with no TERM in the environment |
 | `mvolformat` | format a multi-volume set<br>`Syntax: mvolformat drive volname volcount [format options]` |
 | `names` | &#9733; list the names of modules in a file -- and it DOES NOT COME BACK: given a module it prints nothing and never returns, with a file on its standard input or without. `ident', `modinfo' and `module_census' all answer the same question.  Measured 2026-08-29 |
 | `new_e` | SEDT editor, generic terminal -- it picks vt100 or vt220 by TERM.  Needs the same three SYS/sedt.* files as `e' |
