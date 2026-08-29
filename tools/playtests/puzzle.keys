@@ -1,5 +1,9 @@
 name    puzzle
 prog    puzzle
+# KEPT FAILING ON PURPOSE, 2026-08-28. `puzzle' is the sliding-tile puzzle
+# for G-WINDOWS, which this disk does not carry: it draws one rule of plus
+# signs -- the top edge of the tile frame -- and stops there. DOC/INDEX says
+# so. Nothing typed at it can change that, and the card for it says the same.
 # Generic: does it draw, and does the screen change when keys arrive?
 rate    0.7
 wait    5
