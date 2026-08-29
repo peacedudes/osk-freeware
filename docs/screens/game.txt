@@ -1,0 +1,2 @@
+$ game
+Usage: game file [start [end] ]

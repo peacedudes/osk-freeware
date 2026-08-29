@@ -182,3 +182,60 @@ send    b1\r
 wait    3
 send    c2\r
 wait    4
+
+shot    draw
+for     draw
+cap     draw, a character-graphics drawing program: it rules a canvas
+cap     across the terminal and you move a cursor about it, laying down
+cap     characters.  This is the empty sheet it starts you on.
+run     draw
+wait    10
+kill
+
+shot    lorenz3d
+for     lorenz3d
+cap     The Lorenz attractor in three dimensions, asked for parameter by
+cap     parameter: the time step, the z magnification and offset, then
+cap     Lorenz's own a, b and c -- 10, 28 and 8/3 here, the values that
+cap     make the butterfly.  What it draws with is TEKTRONIX vector codes,
+cap     so on a vt100 the picture arrives as characters; the dialogue is
+cap     the part worth photographing.
+run     lorenz3d
+wait    4
+send    0.01\r
+wait    2
+send    20\r
+wait    2
+send    0\r
+wait    2
+send    10\r
+wait    2
+send    28\r
+wait    2
+send    2.667\r
+wait    2
+kill
+
+shot    gwindows-games
+for     cyberwar pacman puzzle
+cap     Three that draw through G-Windows, the graphics system this disk
+cap     does not carry.  `cyberwar' and `pacman' write nothing at all and
+cap     exit; `puzzle' gets as far as one rule of plus signs -- the top
+cap     edge of the tile frame -- and stops there.  They are here because
+cap     they are part of what the archives held, not because they can be
+cap     played on a terminal.
+run     cyberwar
+wait    6
+run     pacman
+wait    6
+run     puzzle
+wait    6
+
+shot    game
+for     game
+cap     `game' replays a saved chess game.  Asked with no arguments it
+cap     says what it takes; given the opening book that ships here it
+cap     aborts, which is the `checkgame' card beside this one.
+run     game
+wait    8
+
