@@ -1,4 +1,20 @@
-$ marc -a /dd/tmp/m.arc /dd/SYS/motd
-ARC: Cannot read source archive /dd/tmp/m.arc
-$ marc -l /dd/tmp/m.arc
-ARC: Cannot read source archive /dd/tmp/m.arc
+$ rm -f m.arc
+$ arc a m.arc /dd/SYS/motd /dd/SYS/termcap
+Creating new archive: m.arc
+adding file:   motd           analyzing, storing, done. (0%)
+adding file:   termcap        analyzing, crunched, done. (36%)
+$ arc v m.arc
+Name          Length    Stowage    SF   Size now  Date       Time    CRC
+============  ========  ========  ====  ========  =========  ======  ====
+motd                41     --       0%        41  19 Sep 26   7:00p  9e9a
+termcap            984  Crunched   36%       636  19 Sep 26   7:00p  4d1f
+        ====  ========            ====  ========
+Total      2      1025             34%       677
+$ marc -?
+MARC - archive merger, Version 5.21, created on 04/22/87 at 15:05:10
+Usage: MARC <tgtarc> <srcarc> [<filename> . . .]
+Where: <tgtarc> is the archive to add files to,
+       <srcarc> is the archive to get files from, and
+       <filename> is zero or more file names to get.
+
+adapted to OS-9/68k by Stephan Paschedag

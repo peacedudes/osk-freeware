@@ -2,12 +2,16 @@
 # back -- a round trip, not a usage line.
 
 shot    ar
-cap     Carl Kreider's ar, the OS-9 archive librarian.  Its commands take a
-cap     leading dash: -u to add, -t for the table of contents.
-run     ar -u /dd/tmp/k2.ar /dd/SRC/keep/keep.c
+cap     Carl Kreider's ar, the OS-9 archive librarian: -u to add, -t for
+cap     the table of contents.  Every path it is given must be RELATIVE --
+cap     handed an absolute one it answers `absolute path illegal' -- so
+cap     these are written from the data directory, which is /dd.
+run     rm -f tmp/k2.ar
+wait    4
+run     ar -u tmp/k2.ar SRC/keep/keep.c
+wait    8
+run     ar -t tmp/k2.ar
 wait    6
-run     ar -t /dd/tmp/k2.ar
-wait    5
 
 shot    ar2
 for     ar2 liborder libsplit unpacklib
@@ -18,12 +22,20 @@ wait    8
 
 shot    arc
 for     arc marc dearc
-cap     ARC, the format that came before zip: marc makes one, and dearc
-cap     reads the MS-DOS side of the same family.
-run     marc -a /dd/tmp/m.arc /dd/SYS/motd
-wait    10
-run     marc -l /dd/tmp/m.arc
+cap     ARC, the format that came before zip -- Stephan Paschedag's OS-9
+cap     port of System Enhancement Associates' 5.21.  `a' adds and `v'
+cap     lists with the compression column.  The archive name has to be
+cap     RELATIVE: arc builds it under a temporary name and then moves it,
+cap     and the move fails on an absolute target -- this C library has no
+cap     rename().  `marc' merges two archives; `dearc' reads them.
+run     rm -f m.arc
+wait    4
+run     arc a m.arc /dd/SYS/motd /dd/SYS/termcap
+wait    12
+run     arc v m.arc
 wait    8
+run     marc -?
+wait    6
 
 shot    cat-combine
 for     cat combine demerge modbuster

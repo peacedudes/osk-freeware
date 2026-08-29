@@ -219,9 +219,11 @@ run     ispell -l /dd/tmp/sp.txt
 wait    10
 
 shot    jargon
-cap     The Jargon File browser, looking up a word in its own database.
-run     jargon foo
-wait    8
+cap     The Jargon File browser, looking up a word in its own database --
+cap     jargon.txt and jargon.idx in /dd/VH.  The database is named by its
+cap     BASE name and nothing else: given a path it says it cannot find it.
+run     jargon -b kluge jargon
+wait    10
 
 shot    join
 for     join paste cut field

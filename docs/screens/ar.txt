@@ -1,4 +1,8 @@
-$ ar -u /dd/tmp/k2.ar /dd/SRC/keep/keep.c
-ar: absolute path illegal </dd/SRC/keep/keep.c>
-$ ar -t /dd/tmp/k2.ar
-ar: can't find /dd/tmp/k2.ar
+$ rm -f tmp/k2.ar
+$ ar -u tmp/k2.ar SRC/keep/keep.c
+archiving <SRC/keep/keep.c>
+$ ar -t tmp/k2.ar
+                                                    file   stored
+  file name                   ver    file date      size    size
+----------------------------- --- --------------   -----   -----
+SRC/keep/keep.c                0  126/08/03 19:00   20473   12674

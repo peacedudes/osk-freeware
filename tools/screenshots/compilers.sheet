@@ -17,9 +17,20 @@ run     cat /dd/tmp/t.s19
 wait    8
 
 shot    bison
-cap     GNU bison 1.19 on the same grammar, with its statistics.
-run     bison -v /dd/tmp/g.y
-wait    10
+cap     GNU bison 1.19 on a two-rule grammar it writes for itself, then
+cap     the report -v leaves behind: the rules as bison read them, the
+cap     terminals with the rules they appear in, and the numbers it gave
+cap     them.  It says nothing at all when it succeeds.
+run     echo "%token NUM" > /dd/tmp/b.y
+wait    3
+run     echo "%%" >> /dd/tmp/b.y
+wait    3
+run     echo "expr : expr NUM | NUM ;" >> /dd/tmp/b.y
+wait    3
+run     bison -v /dd/tmp/b.y
+wait    15
+run     head -n 12 /dd/tmp/b.output 2>/nil
+wait    6
 
 shot    flex
 cap     flex turning a lexical description into C.

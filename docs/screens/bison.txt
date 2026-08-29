@@ -1,2 +1,17 @@
-$ bison -v /dd/tmp/g.y
-bison: /dd/tmp/g.y, Errornumber 216
+$ echo "%token NUM" > /dd/tmp/b.y
+$ echo "%%" >> /dd/tmp/b.y
+$ echo "expr : expr NUM | NUM ;" >> /dd/tmp/b.y
+$ bison -v /dd/tmp/b.y
+$ head -n 12 /dd/tmp/b.output 2>/nil
+
+Grammar
+rule 1    expr -> expr NUM
+rule 2    expr -> NUM
+
+Terminals, with rules where they appear
+
+$ (-1)
+error (256)
+NUM (258) 1 2
+
+Nonterminals, with rules where they appear
