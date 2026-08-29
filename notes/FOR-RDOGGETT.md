@@ -171,5 +171,45 @@ You were right that they have to be READ. Doing that, one card at a time:
     `xrf` wants its language table in the data directory, and `for` is a bash
     keyword so the Fortran driver needs its path.
 
+## Reading them again, 2026-08-28: sixteen more wrong labels
+
+Every one of these was a card whose caption said one thing and whose screen
+said another. DOC/INDEX is corrected in each case and the card re-shot.
+
+  - **Seven programs bash will not let you reach**: `break`, `enable`, `fc`,
+    `for`, `help`, `if` and `trap` are all in CMDS and all bash builtins or
+    keywords. Typing the name never reaches the program and never says it
+    did -- `help` gave you bash's builtin list, not the .hlp system. Give
+    the path and each runs. DOC/STATUS names them; README-RUNNING warns.
+  - **`gawk` works.** The old note -- "prints nothing at all" -- was gawk
+    sitting on the terminal, because this build IGNORES a filename argument
+    and reads standard input whatever it is given. `gawk '{...}' < file`.
+  - `fc` splits a big file in two to fit a 360k floppy; it is not "re-execute
+    history". `rdoc` is Rueckdokumentation from c't 1988 -- C source in, a
+    control-structure skeleton out; not a document reader. `screen` is Russ
+    Smith's random screen displayer, not the terminal multiplexer. `bcheck`
+    counts brackets in source, not a boot file. `launch` is a login helper.
+    `ask` is a client for a `wisecracker' server on /PIPE/txtpipe. `ynad` is
+    Yet Another Name & Address program.
+  - **`vi` paints two lines** of a file and no more, whatever you do.
+    `elvis` fills the screen properly and now has its own card.
+  - **`arc` and `ar` need RELATIVE paths.** arc builds its archive under a
+    temporary name and then moves it; the move fails on an absolute target
+    because this C library has no rename(). Both work perfectly from the
+    data directory.
+  - `pgmedge` hangs on a photograph -- a 64x36 gradient goes through in a
+    second, the same-sized sphere never returns. `etags` cannot build a TAGS
+    file at all: the F$SRqMem storm, on any input. `cdiff` cannot finish a
+    diff of three lines. `lgrep` prints nothing whatever it is given.
+    `sysmon` refuses os9exec's V4.0 as too old. `ssl` gets an empty segment
+    list because os9exec's RBF does not hand back the file descriptor.
+  - **Dhrystone had to be asked properly**: at the default run count every
+    build finishes before the clock ticks. Two million runs apiece, and GCC
+    2 at -O2 comes out about 16% ahead of the Microware build.
+
+The harness learned two things as well: it no longer publishes os9exec's
+abort dump printed on top of a program's picture, and a command longer than
+the terminal is split so the card does not open mid-word.
+
 ## Nothing needs you
 
