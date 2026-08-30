@@ -126,7 +126,7 @@ Do not stop between items to report; commit and start the next one.
    with ordinary work.
 
 **2. Keep splitting the over-broad `for` lists.** "Run by name on its own
-   card" went 579 -> 668 of 918 on 2026-08-29 and about forty cards still
+   card" went 579 -> 787 of 936 over 2026-08-29/30 and about thirty cards still
    credit three or more programs they never type. The one-line finder:
    for each stanza, the `for` names with no `run` line naming them.
    Some of what is left is honest grouping -- eleven DVI drivers, a shelf
@@ -370,6 +370,48 @@ cases that take the session down and get restarted. Ninety commits, several
 touching `F$SRqMem`, and nothing here can tell them apart. Bumping it is
 rdoggett's call; the workflow comment asks for that deliberately.
 
+## 2026-08-30: eighteen programs the catalogue could not see at all
+
+**`gcc` has never been in the web guide.** Nor `gpp`, nor any of the GCC 2
+passes, nor `what`, `zipinfo`, `unpacklib.os9`, the two CPU32 gzips or the
+MM/1 mouse descriptor -- **eighteen programs**, all on the disk, all in
+`tools/categories.psv`, and all invisible.
+
+The cause is a one-way join. `gen_catalog.from_tree` walks the program
+directories but only ANNOTATES entries that `from_index` already found in
+`DOC/INDEX`, so a program the index does not name in a shape the parser
+recognises simply is not there. The GCC section was prose with no list of
+names in it. `unpacklib.os9` had ONE space between its name and its
+description where the parser wants two. `zipinfo` and the CPU32 gzips
+appeared only in the four-column name grid, which carries no prose.
+
+**No check could fail on this.** `gen_catalog --check` reported "every
+program on the disk has a category", and it was true: a program it cannot
+see has no category to be missing. It now reports programs on the disk that
+it could not gather at all, and the first run of that check found the
+eighteen. It was written because an edit of mine that morning deleted a
+four-line list from the ADL section of `DOC/INDEX` and dropped `adlcomp`,
+`adldebug` and `adltouch` out of the catalogue with every check still green.
+
+Catalogue: **936 programs, 787 of them run by name on their own card** --
+918 and 579 the day before.
+
+**Two more programs turned out not to be what they were called.**
+`what` is NOT the SCCS `what`: it prints "What's where in the GEPARD:" and
+lists expansion cards. I wrote it an index entry saying SCCS, from the name,
+and the card disproved it within the hour -- which is the whole argument for
+photographing them. And `gs403` DOES interpret PostScript; the measurement
+that said otherwise had set GS_LIB with `setenv`, which is the OS-9 shell's
+command and not bash's, so the variable was never set. `DOC/README-DOCS` and
+the UniBasic steps in `DOC/INDEX` gave `setenv` to bash readers too, and now
+give both forms.
+
+**ADL compiles and plays**, like ADVSYS before it: `adlcomp
+/dd/ADL/DEMOS/tiny.adl -o /dd/tmp/tiny -i/dd/ADL` gives 0 errors and a
+10548-byte world, and `adlrun` opens it in a small but comfortable room with
+two pillows in it. The `-i` is not optional -- the source includes
+standard.adl by bare name.
+
 ## AND LAST ON 2026-08-29: 47 programs were showing the wrong screen
 
 **`gen_screens.py` assigned each program's screen to the FIRST card that
@@ -435,14 +477,14 @@ than when it was made, not weaker.
 ## WHAT TO DO NEXT, then
 
 **1. Coverage is done by one measure and not by another.**
-   `docs/screens.js` covers 918 of 918 -- but as of 2026-08-29
+   `docs/screens.js` covers 936 of 936 -- but as of 2026-08-29
    `gen_screens.py` also reports how many of those programs are RUN BY NAME
-   on the card that carries them, and that is **668** (579 before the
+   on the card that carries them, and that is **787** (579 before the
    over-broad `for` lists were split). The gap is a card's
    `for` line crediting a screen to several programs. Often right (eleven
    DVI drivers do behave alike); sometimes not (`scsiutil`'s card credited
    `read_mail` and `add_errmsg`, which have nothing to do with SCSI and
-   which it never typed). **The 918 figure cannot fail** -- grouping always
+   which it never typed). **The 936 figure cannot fail** -- grouping always
    satisfies it -- so read the second number. Improving it means splitting
    over-broad `for` lists and giving the program its own two lines. The last
    forty-nine were closed on 2026-08-28 -- some with new cards (`roff`,

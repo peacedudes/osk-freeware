@@ -112,8 +112,8 @@ where it came from and on what terms. GitHub shows HTML files as source rather
 than rendering them, so **download the repository and open that file** — it is
 self-contained, no server and nothing to install.
 
-**Every program has a picture beside it** — all 918 of them, as of
-2026-08-29 — and **668 of those pictures are of the program itself**. The
+**Every program has a picture beside it** — all 936 of them, as of
+2026-08-30 — and **787 of those pictures are of the program itself**. The
 rest share a card with programs that behave alike: eleven DVI drivers on one
 screen, a shelf of device descriptors on another, the netpbm readers with no
 file to read on a third. `tools/gen_screens.py` prints both numbers on every

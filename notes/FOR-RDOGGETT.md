@@ -161,6 +161,32 @@ cards whose `for` line credited programs they never typed. Forty cards still
 credit three or more; some of that is honest (eleven DVI drivers do behave
 alike) and some is not.
 
+## 2026-08-30: `gcc` was never in the catalogue
+
+**Eighteen programs on the disk have never appeared in the web guide** --
+`gcc`, `gpp`, all the GCC 2 passes, `what`, `zipinfo`, `unpacklib.os9`, the
+two CPU32 gzips and the MM/1 mouse descriptor. They were on the disk and
+they were in `categories.psv`; the catalogue simply could not see them,
+because it enumerates programs from `DOC/INDEX` and the GCC section was
+prose with no names in it, `unpacklib.os9` had one space where the parser
+wants two, and the rest appeared only in a name grid that carries no prose.
+
+**No check could have failed on it.** `--check` said "every program has a
+category" and that was true: a program it cannot see has no category to be
+missing. It now reports what it could not gather, and found the eighteen on
+its first run. I wrote that check after an edit of my own to `DOC/INDEX`
+silently dropped three ADL programs out of the catalogue with everything
+still green.
+
+Catalogue is **936 programs now, 787 of them run by name on their own card**
+-- 918 and 579 the day before.
+
+**And a caution about my own work:** I wrote `what` an index entry saying it
+prints SCCS what-strings, purely from the name. The card disproved it within
+the hour -- it lists GEPARD expansion cards. Both the entry and the card say
+so now, including that I got it wrong, because this collection has a long
+history of entries written from names.
+
 ## Look at this
 
 `docs/index.html` -- the catalogue, with a photographed screen on 918 of the
