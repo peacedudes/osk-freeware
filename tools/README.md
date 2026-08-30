@@ -24,7 +24,8 @@
 
     tools/check_disk.py disk
 
-Nine invariants, each of which has been made to fail on purpose:
+Thirteen invariants, each of which has been made to fail on purpose --
+read the list the tool prints rather than trusting this one:
 
 - no text file contains LF -- OS-9 ends a line with CR alone, and an LF-ended
   file is read as one enormous line
@@ -54,6 +55,29 @@ Nine invariants, each of which has been made to fail on purpose:
   the NAME rule alone matches 212 files under `disk/SRC`, every `makefile` and
   `string.h` in the collection, and a check that cries wolf is one nobody
   reads
+- every binary starts with the bytes its format requires. Added 2026-08-29,
+  when ten files under `disk/SRC` -- two JPEGs, a GIF, a PPM, a `.zoo`, three
+  compress archives and GNU Chess's data and hash tables -- turned out to have
+  been through an `iconv //TRANSLIT` pass that replaced every byte over `0x7f`
+  with `?`. The tree's other checks are about TEXT being CR-only and ASCII,
+  and a mangled binary passes both easily. Its own first run reported nine
+  files and all nine were the CHECK being wrong: LZH keeps its `-lh` tag at
+  offset 2, and two netpbm makefiles are called `Makefile.pgm` and
+  `Makefile.ppm`
+- `howto.psv` and `categories.psv` name programs that are actually on the
+  disk. Added 2026-08-30: `howto.psv` still carried entries for `lac`, `main`,
+  `pow`, `scope` and `sin`, dropped from the collection on 2026-08-22, four of
+  them still saying "`q' quits -- tested"; and `MakeTeXPK`, which was never
+  here. Both files are read BY NAME, so an entry nobody looks up is an entry
+  nobody notices
+
+`gen_catalog.py --check` carries two more of its own. It reports programs on
+the disk it could not GATHER at all -- which is how `gcc`, `gpp` and sixteen
+others were found on 2026-08-30 to have never been in the guide, the
+catalogue being enumerated from `DOC/INDEX` and the GCC section being prose
+with no names in it. And it reports entry-shaped `DOC/ORIGINS` lines whose
+origin phrase it does not know; that one is a REPORT, not a failure, because
+the file is prose as well as data.
 
 CI runs this before it builds anything. Note the stamp check reads files in
 Python on purpose: `grep -r` on this machine is ugrep, which skips binary
