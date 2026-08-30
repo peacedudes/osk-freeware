@@ -31,6 +31,8 @@ run     pbmtext "netpbm" | pbmtoascii > /dd/tmp/art.txt
 wait    12
 run     asciitopgm 8 60 < /dd/tmp/art.txt | pnmfile
 wait    12
+run     pgmtoppm < /nil
+wait    8
 
 shot    ateri
 for     ppmtopi1 pi1toppm pbmtopi3 pi3topbm ppmtopict picttoppm
@@ -40,6 +42,10 @@ wait    8
 run     pi1toppm /dd/tmp/t.pi1 | pnmfile
 wait    8
 run     pbmtopi3 /dd/tmp/base.pbm | pi3topbm | pnmfile
+wait    10
+run     picttoppm < /nil
+wait    10
+run     ppmtopict < /nil
 wait    10
 
 shot    bmp
@@ -235,6 +241,10 @@ run     pgmtolispm /dd/tmp/base.pgm | lispmtopgm | pnmfile
 wait    10
 run     ppmtomap /dd/tmp/base.ppm | head -n 8
 wait    8
+run     pbmtopk < /nil
+wait    10
+run     pktopbm < /nil
+wait    10
 
 shot    pbmclean
 for     pbmclean pbmmask pbmtopgm pnmnoraw
@@ -327,7 +337,8 @@ run     pnmfile /dd/tmp/t64.pgm /dd/tmp/e64.pgm
 wait    8
 run     pgmenhance /dd/tmp/t64.pgm | pnmfile
 wait    10
-
+run     pgmnorm < /nil
+wait    8
 
 shot    pgmhist
 for     pgmhist pgmramp
@@ -349,6 +360,8 @@ run     pgmnoise 152 88 | pgmtopbm | pbmtoascii -2x4
 wait    20
 run     pnmsmooth /dd/tmp/base.pgm
 wait    10
+run     pnmconvol < /nil
+wait    8
 
 shot    pgmoil
 cap     pgmoil paints the photograph again as if in oils -- each pixel
@@ -374,6 +387,10 @@ run     pnmscale -xysize 60 40 /dd/tmp/gg2.pgm > /dd/tmp/gg3.pgm
 wait    20
 run     pgmtexture -d 2 /dd/tmp/gg3.pgm | head -n 14
 wait    60
+run     pgmkernel < /nil
+wait    10
+run     pnmhistmap < /nil
+wait    12
 
 shot    plotters
 for     pbmtoplot pbmtozinc pbmtobbnbg pbmtogo pbmtoln03 pbmtolps
@@ -409,7 +426,8 @@ run     pgmramp -tb 152 88 > /dd/tmp/r3.pgm
 wait    8
 run     pnmarith -multiply /dd/tmp/r2.pgm /dd/tmp/r3.pgm | pgmtopbm | pbmtoascii -2x4
 wait    20
-
+run     pnmdepth < /nil
+wait    8
 
 shot    pnmcat
 for     pnmcat pnminvert pnmscale
@@ -509,7 +527,8 @@ run     pnmscale -xysize 152 88 /dd/tmp/rot2.pgm > /dd/tmp/rot3.pgm
 wait    15
 run     pgmtopbm /dd/tmp/rot3.pgm | pbmtoascii -2x4
 wait    15
-
+run     pnmflip < /nil
+wait    8
 
 shot    pnmtile
 cap     pnmtile repeats a small image to fill a larger one; pbmpscale then
@@ -561,7 +580,8 @@ run     ppmquant 16 /dd/tmp/g16s.ppm > /dd/tmp/g16q.ppm
 wait    20
 run     ppmtopgm /dd/tmp/g16q.ppm | pgmtopbm | pbmtoascii -2x4
 wait    20
-
+run     ppmdither /dd/tmp/g16s.ppm | pnmfile
+wait    20
 
 shot    ppmforge
 cap     ppmforge invents a planet from a random seed: fractal terrain, an
@@ -638,6 +658,8 @@ run     pbmto10x /dd/tmp/base.pbm | wc
 wait    8
 run     pbmtoepsi /dd/tmp/base.pbm | head -n 10
 wait    8
+run     pbmtoptx < /nil
+wait    8
 
 shot    rawtopgm
 for     rawtopgm rawtoppm pgmtofs fstopgm
@@ -649,6 +671,8 @@ run     rawtopgm 48 24 < /dd/tmp/base.pgm | pnmfile
 wait    8
 run     pgmtofs /dd/tmp/base.pgm | fstopgm | pnmfile
 wait    10
+run     rawtoppm < /nil
+wait    8
 
 shot    rayshade
 for     rayshade rsconvert
@@ -666,6 +690,8 @@ run     cp /dd/CMDS/GCC139/gcc_cccp /dd/cccp
 wait    8
 run     rayshade -R 32 24 -O /dd/tmp/out.pic /dd/GAMES/rayshade/boxball.ray
 wait    45
+run     rsconvert < /nil
+wait    8
 
 shot    sphere
 size    36 80
@@ -706,6 +732,8 @@ run     pjtoppm /dd/tmp/t.pj | pnmfile
 wait    8
 run     ppmtopjxl /dd/tmp/base.ppm | wc
 wait    8
+run     ppmtoacad < /nil
+wait    8
 
 shot    workstations
 for     pbmtomgr mgrtopbm pbmtoatk atktopbm pbmtocmuwm cmuwmtopbm
@@ -741,6 +769,8 @@ run     head -n 12 /dd/tmp/t.xpm
 wait    5
 run     xpmtoppm /dd/tmp/t.xpm | pnmfile
 wait    8
+run     ppmtopuzz < /nil
+wait    8
 
 shot    yuv
 for     ppmtoyuv yuvtoppm ppmtoyuvsplit yuvsplittoppm ppmtorgb3 rgb3toppm
@@ -756,7 +786,10 @@ run     ls -l /dd/tmp/base.red /dd/tmp/base.grn /dd/tmp/base.blu
 wait    8
 run     rgb3toppm /dd/tmp/base.red /dd/tmp/base.grn /dd/tmp/base.blu | pnmfile
 wait    10
-
+run     ppmtoyuvsplit < /nil
+wait    10
+run     yuvsplittoppm < /nil
+wait    10
 
 shot    graphlib
 for     g graph graphdemo graphsave apfel showpic sine striche wgen
@@ -849,7 +882,8 @@ run     pnmtorast /dd/tmp/w.ppm > /dd/tmp/w.ras
 wait    10
 run     rasttopnm /dd/tmp/w.ras | pnmfile
 wait    12
-
+run     pnmtoddif < /nil
+wait    8
 
 shot    sir
 for     pnmtosir sirtopnm

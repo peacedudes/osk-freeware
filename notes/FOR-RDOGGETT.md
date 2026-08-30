@@ -6,7 +6,7 @@ Branch `release-pass-2026-08-21`. All thirteen `check_disk.py` checks green.
 
 ---
 
-## THREE THINGS ACTUALLY NEED YOU
+## FOUR THINGS ACTUALLY NEED YOU
 
 **1. Should a program called `shell` ship?** Five programs fail for want of
 one, and I measured exactly what a plain `copy sh shell` buys: `dm` (Disk
@@ -31,6 +31,20 @@ put four more files in the root beside `readme` and `startup`; leaving them
 where they are means the program looks broken to anyone who just types
 `orbit`. I have documented the copy in `DOC/INDEX` and `tools/howto.psv` and
 shipped nothing new, because root clutter is an editorial call.
+
+**4. Should the catalogue be keyed by PATH rather than by name?** Nine
+program names exist in two directories and eight of those are DIFFERENT
+programs, not copies: `gcc` and `gpp` (GCC139 and GCC2 are different
+compilers), `gnuchess` (CMDS and CMDS/GAMES), and `arc`, `compress`,
+`kermit`, `screen` and `wish` (the shipped build and the REBUILT one). The
+guide is keyed by name throughout -- `DOC/INDEX`, `categories.psv`,
+`howto.psv` -- so whichever directory is walked last supplies the size, the
+usage text and the directory, and the other program is not in the guide at
+all. CLAUDE.md already says a checker over this collection must compare per
+FILE and not per name; the catalogue does not. Fixing it changes the guide's
+shape -- two `screen` cards, two `gcc` cards -- so it is your call, not a
+tidy-up. `gen_catalog.py` names the eight on every run so it cannot be
+forgotten.
 
 Everything else below is a report, not a question. Nothing in it is waiting
 on you.

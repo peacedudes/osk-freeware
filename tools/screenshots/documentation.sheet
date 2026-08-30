@@ -19,6 +19,8 @@ run     helpindex -?
 wait    8
 run     lesskey -?
 wait    8
+run     lessecho < /nil
+wait    8
 
 shot    less
 cap     less, paging the disk's own documentation.  SYS/less.hlp is here,

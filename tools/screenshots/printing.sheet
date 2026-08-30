@@ -91,6 +91,8 @@ run     perr 1 2 3 4 5
 wait    6
 run     alps -?
 wait    6
+run     epson < /nil
+wait    8
 
 shot    perr-print
 for     perr
@@ -107,3 +109,7 @@ cap     Carl Kreider's spooler (splman, splprt, splstat) is named here too
 cap     because all three print NOTHING at all, with or without a queue.
 run     gs33 -h | head -n 14
 wait    12
+run     splman < /nil
+wait    8
+run     splprt < /nil
+wait    8

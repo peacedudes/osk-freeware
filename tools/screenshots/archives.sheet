@@ -49,6 +49,8 @@ run     arc v m.arc
 wait    8
 run     marc -?
 wait    6
+run     dearc < /nil
+wait    8
 
 shot    cat-combine
 size    36 80
@@ -134,6 +136,8 @@ run     lharc a /dd/tmp/l.lzh /dd/SYS/motd
 wait    10
 run     lharc l /dd/tmp/l.lzh
 wait    8
+run     xlharc < /nil
+wait    8
 
 shot    modbuster
 cap     modbuster splits a file of merged OS-9 modules back into separate
@@ -201,7 +205,8 @@ run     zoo_2.1 a /dd/tmp/z2.zoo /dd/SYS/motd
 wait    10
 run     booz -l /dd/tmp/z2.zoo
 wait    8
-
+run     fiz < /nil
+wait    8
 
 shot    zip
 cap     Info-ZIP's zip DEFLATES correctly and then cannot rename its

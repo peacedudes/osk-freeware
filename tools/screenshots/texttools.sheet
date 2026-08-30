@@ -11,6 +11,10 @@ cap     BibTeX, the bibliography processor, with the sample database that
 cap     ships beside it.
 run     bibtex
 wait    12
+run     afm2tfm < /nil
+wait    10
+run     maketexpk < /nil
+wait    10
 
 shot    bm
 cap     bm, a Boyer-Moore grep, and fgrep beside it -- both older and
@@ -65,6 +69,11 @@ wait    6
 # cookie DRAWS AT RANDOM.  Re-shooting this one changes what it says, and
 # the file has some sayings that do not want to be the face of the disk --
 # read what comes back before committing it.
+run     fortune
+wait    8
+run     unstr < /nil
+wait    8
+
 shot    cookie
 cap     cookie, the fortune-cookie program, reading the collection's own
 cap     sayings file.
@@ -144,6 +153,10 @@ run     virtex "&lplain" /dd/SYS/TEX/SAMPLES/small.tex
 wait    60
 send    \r
 wait    10
+run     latex < /nil
+wait    12
+run     slitex < /nil
+wait    12
 
 shot    dvitype
 for     dvitype dvips dvilj2 dvijet
@@ -185,6 +198,10 @@ wait    6
 run     unexpand -a < /dd/tmp/t3.txt > /dd/tmp/t4.txt
 wait    5
 run     dump /dd/tmp/t4.txt
+wait    8
+run     deton < /nil
+wait    8
+run     tabs < /nil
 wait    8
 
 shot    fcomp
@@ -234,6 +251,10 @@ run     lgrep -?
 wait    6
 run     ggrep -c chess /dd/DOC/INDEX
 wait    8
+run     bmgtest < /nil
+wait    8
+run     bmgtest2 < /nil
+wait    8
 
 shot    gothic
 cap     gothic sets a line in blackletter.  It asks where to write and
@@ -264,6 +285,10 @@ run     echo The quik brown foxx jmups over the lasy dog > /dd/tmp/sp.txt
 wait    5
 run     ispell -l /dd/tmp/sp.txt
 wait    10
+run     buildhash < /nil
+wait    10
+run     makelex < /nil
+wait    10
 
 shot    jargon
 cap     The Jargon File browser, looking up a word in its own database --
@@ -282,6 +307,10 @@ run     head -n 5 /dd/SYS/birthdays > /dd/tmp/j2
 wait    5
 run     paste /dd/tmp/j1 /dd/tmp/j2
 wait    8
+run     join < /nil
+wait    8
+run     field < /nil
+wait    8
 
 shot    kwic
 for     pagefraz pagekwic pageline
@@ -292,6 +321,10 @@ run     head -n 12 /dd/SYS/holidays > /dd/tmp/k.txt
 wait    6
 run     pageline /dd/tmp/k.txt | head -n 12
 wait    8
+run     pagefraz < /nil
+wait    10
+run     pagekwic < /nil
+wait    10
 
 shot    lout
 cap     Basser Lout 2.05, a document formatter in the TeX tradition, saying
@@ -340,6 +373,8 @@ wait    8
 run     nsort < /dd/tmp/n.txt
 wait    8
 run     sort -n /dd/tmp/n.txt
+wait    8
+run     uniq < /nil
 wait    8
 
 shot    qt
@@ -481,6 +516,8 @@ cap     either end of the same file.
 run     sum /dd/SYS/motd /dd/SYS/holidays
 wait    8
 run     tail -l=4 /dd/SYS/holidays
+wait    8
+run     head -n 3 /dd/SYS/motd
 wait    8
 
 shot    tac
@@ -628,6 +665,8 @@ run     tcmp /dd/SYS/motd /dd/SYS/motd
 wait    10
 run     wc.cio /dd/SYS/motd
 wait    10
+run     ediff < /nil
+wait    8
 
 shot    roff
 for     roff nroff proff
@@ -643,6 +682,8 @@ wait    5
 run     proff /dd/tmp/r.txt | head -n 10
 wait    10
 run     roff -?
+wait    8
+run     nroff -?
 wait    8
 
 shot    btop

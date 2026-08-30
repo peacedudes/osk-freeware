@@ -23,6 +23,8 @@ cap     line at the foot.
 run     emacs /dd/SYS/motd
 wait    10
 quit    \030\003
+run     emacs.mm1 < /nil
+wait    10
 
 shot    hexed
 cap     This hex editor cannot start: it writes its work file to /r0, the RAM
@@ -67,7 +69,8 @@ run     head -n 8 /dd/SYS/holidays > /dd/tmp/hol.txt
 wait    6
 run     sed "s/Day/DAY/g" /dd/tmp/hol.txt
 wait    8
-
+run     psc < /nil
+wait    8
 
 shot    vi
 for     vi view
@@ -83,6 +86,8 @@ wait    3
 send    1G
 wait    10
 quit    \033:q!\r
+run     view < /nil
+wait    10
 
 shot    elvis
 for     elvis vi.elvis input.elvis ctags.elvis

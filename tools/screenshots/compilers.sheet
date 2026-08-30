@@ -143,6 +143,8 @@ run     makeinfo --version
 wait    8
 run     gmake -v
 wait    8
+run     dmake -?
+wait    8
 
 shot    p2c
 for     p2c

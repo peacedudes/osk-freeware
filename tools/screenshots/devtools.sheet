@@ -137,6 +137,8 @@ run     unifdef -?
 wait    8
 run     ifdef -?
 wait    8
+run     cpr < /nil
+wait    8
 
 shot    rcs
 for     ci co rcs rlog rcsdiff rcsident rcsmerge
@@ -218,7 +220,8 @@ run     etags /dd/SRC/keep/keep.c
 wait    8
 run     head -n 6 TAGS
 wait    8
-
+run     ref < /nil
+wait    8
 
 shot    indent
 size    36 80

@@ -386,6 +386,36 @@ PROGRAM_DIRS = ("CMDS", "CMDS/GAMES", "CMDS/NETPBM", "CMDS/BROKEN", "CMDS/REBUIL
                 "CMDS/NEWS", "CMDS/TEXCMDS", "CMDS/WN")
 
 
+def shared_names(root):
+    """Program names that exist in more than one directory, with their sizes.
+
+    THE CATALOGUE CAN ONLY SHOW ONE OF EACH.  Everything here is keyed by
+    NAME -- DOC/INDEX, categories.psv, howto.psv and `progs' itself -- so
+    where two directories hold different programs under one name, whichever
+    `from_tree' walks last supplies the size, the usage text and the
+    directory, and the other is not in the guide at all.
+
+    As measured 2026-08-30 there are nine, eight of them different programs
+    rather than copies: `gcc' and `gpp' (GCC139 and GCC2 are different
+    compilers), `gnuchess' (CMDS and CMDS/GAMES), and `arc', `compress',
+    `kermit', `screen' and `wish' (the shipped build and the REBUILT one).
+    CLAUDE.md already says a checker over this collection must compare per
+    FILE and not per name; the catalogue does not, and fixing that means
+    keying it by path, which changes the guide's shape and is a decision for
+    rdoggett rather than a tidy-up.  Reported so it is not forgotten.
+    """
+    where = {}
+    for d in PROGRAM_DIRS:
+        full = os.path.join(root, d)
+        if not os.path.isdir(full):
+            continue
+        for f in sorted(os.listdir(full)):
+            path = os.path.join(full, f)
+            if os.path.isfile(path):
+                where.setdefault(f, []).append((d, os.path.getsize(path)))
+    return {k: v for k, v in where.items() if len(v) > 1}
+
+
 def unseen(root, progs):
     """Programs on the disk that DOC/INDEX never named, so gather cannot see them.
 
@@ -688,6 +718,15 @@ if __name__ == "__main__":
     root = args[0]
     here = os.path.dirname(os.path.abspath(__file__))
     progs, uncategorised, invisible = gather(root, os.path.join(here, "categories.psv"))
+
+    shared = shared_names(root)
+    if shared:
+        differ = {k: v for k, v in shared.items()
+                  if len({sz for _, sz in v}) > 1}
+        print("  %d program name(s) exist in more than one directory, %d of "
+              "them" % (len(shared), len(differ)))
+        print("  different programs -- the guide can show only one of each: %s"
+              % " ".join(sorted(differ)))
 
     stray = unmatched_origins(root)
     if stray:

@@ -182,6 +182,8 @@ run     load /dd/CMDS/math
 wait    4
 run     /dd/CMDS/trap
 wait    6
+run     setfont < /nil
+wait    8
 
 shot    drop
 for     drop keep kept
@@ -204,6 +206,10 @@ cap     mode line names the version and the file.
 run     em /dd/SYS/motd
 wait    8
 quit    \033
+run     new_e < /nil
+wait    10
+run     sedt < /nil
+wait    10
 
 shot    every
 for     every repeat cron bootlogger loglist
@@ -227,6 +233,10 @@ run     fastcc -?
 wait    6
 run     compiler -?
 wait    6
+run     assembler < /nil
+wait    8
+run     lfmaker < /nil
+wait    10
 
 shot    flink
 cap     flink lists a module's links -- what has it loaded and who holds it.
@@ -246,6 +256,8 @@ wait    4
 run     gen -p /dd/tmp/demo
 wait    6
 run     head -n 14 /dd/tmp/demo.c 2>/nil
+wait    8
+run     suse < /nil
 wait    8
 
 shot    getsys
@@ -388,6 +400,8 @@ run     lunisolar -?
 wait    8
 run     nasa -?
 wait    8
+run     ephem881 < /nil
+wait    10
 
 shot    makecrc
 for     makecrc
@@ -451,6 +465,10 @@ run     cat /dd/SYS/password
 wait    6
 run     passwd -?
 wait    6
+run     adduser -?
+wait    8
+run     who < /nil
+wait    8
 
 shot    phone
 cap     `phone' is not an address book: it connects two terminals over a
@@ -474,6 +492,10 @@ run     rndir /dd/tmp/rnd/olddir /dd/tmp/rnd/newdir
 wait    6
 run     dir /dd/tmp/rnd
 wait    6
+run     mvolformat < /nil
+wait    8
+run     rendsk < /nil
+wait    8
 
 shot    scsiutil
 for     scsiutil expreserve
@@ -602,6 +624,10 @@ run     fillup -n=200 -i=65 /dd/tmp/cut.txt
 wait    6
 run     ls -l /dd/tmp/cut.txt
 wait    6
+run     preset < /nil
+wait    8
+run     transfer < /nil
+wait    8
 
 shot    tty
 for     tty vecho clear lmargin
@@ -762,6 +788,8 @@ cap     Table eXtension Module, which `ptxminst' installs, and `wn.stb', the
 cap     symbol table that ships beside the WN web server.
 run     modinfo /dd/CMDS/ptxm | head -n 12
 wait    12
+run     modinfo /dd/CMDS/NETWORK/wn.stb | head -n 4
+wait    10
 
 shot    memtools
 for     loadmem savemem snap scriptmaster
@@ -776,6 +804,8 @@ wait    8
 run     savemem -?
 wait    8
 run     snap -?
+wait    8
+run     scriptmaster < /nil
 wait    8
 
 shot    mtst

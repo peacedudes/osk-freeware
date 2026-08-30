@@ -96,6 +96,8 @@ run     cat /dd/tmp/piece.1
 wait    6
 run     /dd/CMDS/fc -?
 wait    6
+run     chardef < /nil
+wait    8
 
 shot    md5
 cap     MD5 over three files on the disk.

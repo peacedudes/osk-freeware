@@ -135,6 +135,8 @@ run     mailx
 wait    8
 run     ls -l /dd/SPOOL/MAIL
 wait    6
+run     philmail < /nil
+wait    8
 
 shot    network
 size    36 80
@@ -335,6 +337,8 @@ run     uwho
 wait    6
 run     udate
 wait    6
+run     input < /nil
+wait    8
 
 shot    wn
 for     wn wndex authwn inetd inetdc

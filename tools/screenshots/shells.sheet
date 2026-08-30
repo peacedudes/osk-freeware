@@ -35,6 +35,8 @@ run     exist /dd/SYS/no-such-file; echo "exist says $?"
 wait    6
 run     checkenv TERM; echo "checkenv says $?"
 wait    6
+run     ynad < /nil
+wait    8
 
 shot    gshell
 for     gshell mshell
@@ -131,6 +133,8 @@ wait    6
 run     expr 355 / 113
 wait    6
 run     expr 7 \* 6
+wait    8
+run     bash --version < /nil
 wait    8
 
 shot    hist

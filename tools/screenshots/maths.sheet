@@ -76,3 +76,5 @@ cap     reference card for `sc', which is a document rather than a
 cap     program and prints itself.
 run     scqref | head -n 16
 wait    12
+run     gcl < /nil
+wait    10

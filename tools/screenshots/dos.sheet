@@ -103,7 +103,8 @@ run     msmove a:MOTD.TXT a:/
 wait    10
 send    q\r
 wait    6
-
+run     msren < /nil
+wait    8
 
 shot    dosmore
 for     mscheck msinfo mslabel msdeltree
@@ -113,4 +114,6 @@ cap     mformat line that would recreate it.
 run     msinfo a: | head -n 12
 wait    12
 run     mslabel a:FREEWARE
+wait    10
+run     mscheck < /nil
 wait    10
