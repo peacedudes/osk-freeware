@@ -24,25 +24,29 @@ run     emacs /dd/SYS/motd
 wait    10
 quit    \030\003
 
-shot    hexedit
-for     hexed hexedit
-cap     The hex editor cannot start: it writes its work file to /r0, the RAM
+shot    hexed
+cap     This hex editor cannot start: it writes its work file to /r0, the RAM
 cap     disk os9exec has no way to provide, and says so.  Twenty programs
-cap     here reach for /r0; DOC/STATUS lists them.  `beav' is the
-cap     binary editor that works.  `hexedit' below is a different program
-cap     with a similar name -- HEXPERT V2.4, which identifies itself under
-cap     -v and then gets no further: -d says `file not accessible' for a
-cap     file that exists and is readable, and the bare form prints the
-cap     terminal type and exits.
+cap     here reach for /r0; DOC/STATUS lists them.  `beav' is the binary
+cap     editor that needs nothing, and `hexedit' -- a different program with
+cap     a similar name -- works once TERMCAP is set as a capability string.
 run     hexed /dd/CMDS/today
 wait    6
 quit    q
-run     hexedit -v /dd/CMDS/today
-wait    6
-run     hexedit -d /dd/CMDS/today
-wait    6
+
+shot    hexedit
+cap     HEXPERT V2.4, viewing a module.  Like gnuchess it reads TERMCAP as
+cap     the capability string itself, so `. /dd/SYS/termcap.entry' comes
+cap     first; without it the bare form prints the terminal type and exits.
+cap     One 16-byte row and the mode is the whole display -- that is the
+cap     program, not a clipped photograph; arrows, `n' and space all leave
+cap     it where it is.  Its -d option is separately broken -- `file not
+cap     accessible' for a file that is readable, which this disproves.
+run     . /dd/SYS/termcap.entry
+wait    4
 run     hexedit /dd/CMDS/today
-wait    8
+wait    12
+kill
 
 shot    pbyte
 for     pbyte chbase

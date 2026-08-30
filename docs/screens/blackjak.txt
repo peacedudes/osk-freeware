@@ -3,9 +3,9 @@ Welcome to Las Vagas BlackJack
 
 
 Would you like to know the rules? no
-We'll start you off with 94 chips
+We'll start you off with 65 chips
 
 How much do you want to bet? 10
-You are dealt 10D 8S ; which adds up to 18, and the dealer shows 9C
+You are dealt KH 7C ; which adds up to 17, and the dealer shows QC
 
 Hit (H) or Stick (S)?

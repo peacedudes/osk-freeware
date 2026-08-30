@@ -1,9 +1,2 @@
-$ hexed /dd/CMDS/today
-Creating '/r0/today.hd' from '/dd/CMDS/today'.
-error: can't create '/r0/today.hd' !
-$ hexedit -v /dd/CMDS/today
-HEXPERT V2.4, Dominic Alston..
-$ hexedit -d /dd/CMDS/today
-/dd/CMDS/today: Errornumber 214 000:214 file not accessible
-$ hexedit /dd/CMDS/today
-vt100
+00 04 2D 49 8D 66 74 00 22 60 2E 09 67 0C D3 CD     ..-I.ft."`..g...^l>=Refresh
+                                    View                                       t

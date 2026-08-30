@@ -58,16 +58,24 @@ send    e2e4\r
 wait    10
 
 shot    gnuchess
-for     gnuchess gnuchessn gnuchessr
-cap     THIS build of GNU Chess will not start on this terminal: `'vt100':
-cap     Unknown terminal type'.  It wants a terminfo database, and what the
-cap     disk has is a termcap.  `nchess' and `gnuchessc' are the builds that
-cap     play -- both are here, and both have their own screen.
+for     gnuchess gnuchessn
+cap     GNU Chess, after 1. e4 e5.  It needs `. /dd/SYS/termcap.entry' first
+cap     -- its termcap library reads TERMCAP as the capability string itself
+cap     rather than as the name of a file, so the plain TERMCAP=/dd/SYS/termcap
+cap     that SYS/login sets gets it `'vt100': Unknown terminal type'.  With the
+cap     entry sourced it draws the board, keeps both clocks, and plays.
+run     . /dd/SYS/termcap.entry
+wait    4
 run     gnuchess
-wait    10
+wait    12
+send    1\r
+wait    12
+send    e2e4\r
+wait    22
+kill
 
 shot    gnuchess-builds
-for     gnuchessn gnuchessr infocom.tcap
+for     gnuchessr infocom.tcap
 cap     Two more GNU Chess builds -- ncurses and raw -- kept because they
 cap     do not behave the same on every terminal.
 run     gnuchessr
@@ -81,6 +89,20 @@ run     gnuchessc
 wait    6
 send    e2e4\r
 wait    10
+
+shot    crib
+cap     Cribbage, dealt and pegging -- the card fan on the left, the two
+cap     scoring tracks on the right.  It needs TERM, so it is run the way a
+cap     person meets it, from a login session; bare it says `Unknown
+cap     terminal type '''.  `cribbage' beside it is a different program.
+run     crib
+wait    6
+send    n\r
+wait    4
+send    S\r
+wait    4
+send    \r
+wait    8
 
 shot    hotel
 cap     hotel, a two-player board game played by coordinates.  It asks how
