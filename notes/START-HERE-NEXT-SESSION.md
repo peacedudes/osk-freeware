@@ -144,7 +144,22 @@ Do not stop between items to report; commit and start the next one.
    cyberwar (no change). Not yet tried: `vtxtcn`, `adlcomp`, the `emacs`
    family's `error.cmd`, and the Ghostscript set.
 
-**4. The ~180 short DOC/INDEX entries with no dated stamp.** The hit rate
+**4. The DOC/INDEX entries with no dated stamp -- 815 of 892, and a bulk
+   approach was TRIED AND DOES NOT WORK.** Every program now has a
+   photographed screen, so comparing each entry against its own card looked
+   like a way to check hundreds at once. It is not: a description and its
+   output naturally share no words -- `cal' prints "August 2026", `banner'
+   prints `@' signs -- so the flag fires on 208 entries and nearly all are
+   fine. Worse, the first cut compared against whatever card CARRIED the
+   program, so it read `as0''s usage line as `as1''s, `as4''s and `as5''s
+   and looked like a real finding until the card was opened: each names
+   itself correctly. Two genuine ones did come out of it -- `aprocs' does
+   not run under os9exec and its entry did not say so, and `as09''s card
+   assembled a file another card made, so when that card moved it
+   photographed two `can't open' messages. Both fixed. **Go program by
+   program, or find a sharper signal than word overlap.**
+
+   The old wording of this item: The hit rate
    has dropped a lot -- most of what is left is terse and correct -- but
    every pass so far has found something. `tools/fix_index.py` rewrites one
    entry safely; do not hand-edit the file.
