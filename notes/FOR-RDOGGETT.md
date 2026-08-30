@@ -128,8 +128,10 @@ same single deliberate failure.
 
 **That is one family of eight and I did not finish the rest.** Both suites
 were running at once and were contending badly, so I stopped the comparison
-to let the play-test suite finish; it is worth redoing properly. The builds
-are still in the scratch directory if you want them, and the recipe is
+to let the play-test suite finish; it is worth redoing properly. Both builds
+were in a scratch directory that does not survive the session, so build them
+again -- `git archive <ref> | tar -x -C <dir>` then `make`, which keeps your
+own os9exec working tree untouched -- and then
 `OS9EXEC=<binary> tools/datatest.py --all --image <a COPY of the image>`.
 **Bumping the pin is still your call** -- the workflow comment asks for that
 deliberately and I have not changed it.
