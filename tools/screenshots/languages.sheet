@@ -3,12 +3,20 @@
 
 shot    adlcomp
 for     adlcomp adldebug adltouch
-cap     The ADL adventure compiler and its debugger.  /dd/ADL holds the
-cap     AARD world, its source, and standard.adl -- so all three have
-cap     something to work on.
-run     adlcomp
+size    36 80
+cap     The ADL adventure compiler, COMPILING one -- ADL/DEMOS/tiny.adl,
+cap     which includes standard.adl by bare name, so `-i' says where that
+cap     lives.  Ross Cunniff's Adventure Definition Language, 1987.  This
+cap     card showed the usage message until 2026-08-30; the compiled world
+cap     is played on the `adlrun' screen beside it.  `adltouch' marks a
+cap     source as changed for the makefile and `adldebug' is the debugger.
+run     adlcomp /dd/ADL/DEMOS/tiny.adl -o /dd/tmp/tiny -i/dd/ADL
+wait    35
+run     ls -l /dd/tmp/tiny
 wait    8
 run     adltouch
+wait    8
+run     adldebug
 wait    8
 
 shot    adlrun

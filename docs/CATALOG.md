@@ -1,6 +1,6 @@
 # What is on this disk
 
-918 programs of OS-9/68K community software, gathered from the archives that kept it and made to run again. **553 of them need nothing but this disk**; the rest want Microware's `cio`, marked below with a star.
+915 programs of OS-9/68K community software, gathered from the archives that kept it and made to run again. **550 of them need nothing but this disk**; the rest want Microware's `cio`, marked below with a star.
 
 `DOC/INDEX` on the disk lists everything alphabetically. This is the same collection sorted by what each program is *for*, which is the more useful order when you do not yet know what you are looking for.
 
@@ -17,7 +17,7 @@
 | [Files & directories](#files--directories) | 37 | Listing, copying, finding, renaming, and knowing what you have. |
 | [Developer tools](#developer-tools) | 48 | Version control, tags, cross-reference, formatters, a debugger and benchmarks. |
 | [Compilers & build](#compilers--build) | 27 | C compilers and their passes, assemblers, linkers, make and parser generators. |
-| [Languages](#languages) | 10 | Interpreters and language systems beyond C. |
+| [Languages](#languages) | 7 | Interpreters and language systems beyond C. |
 | [Archives & compression](#archives--compression) | 35 | Pack, unpack and shrink -- lha, zip, tar, arc, zoo, and OS-9 module libraries. |
 | [Encoding & conversion](#encoding--conversion) | 24 | Between text encodings, line endings, Macintosh formats, ciphers and hashes. |
 | [Communications](#communications) | 95 | Kermit in several builds, terminal sessions, and networking. |
@@ -565,7 +565,7 @@
 
 *Interpreters and language systems beyond C.*
 
-<details><summary>10 programs</summary>
+<details><summary>7 programs</summary>
 
 **Interpreters**
 
@@ -582,10 +582,7 @@
 
 | | |
 |---|---|
-| `adlcomp` | compile an ADL world<br>**How:** Compiles an ADL world: `adlcomp /dd/ADL/DEMOS/tiny.adl -o /dd/tmp/tiny -i /dd/ADL'. The `-i' is where standard.adl lives and is required. Tested. |
-| `adldebug` | the same, with the debugger<br>**How:** adlrun with the debugger attached. |
-| `adlrun` | <file>        play it<br>**How:** Plays a compiled ADL world: `adlrun /dd/tmp/tiny'. Tested -- the tiny demo opens "You are in a small but comfortable room... There is a red pillow here." NOTE: play from an RBF disk, not a host-directory mount; reading a world off /hN under os9exec trips an assertion inside the emulator. |
-| `adltouch` | update a compiled world after editing<br>**How:** Refreshes a compiled world after you edit its source. |
+| `adlrun` | <world>                          play it<br>**How:** Plays a compiled ADL world: `adlrun /dd/tmp/tiny'. Tested -- the tiny demo opens "You are in a small but comfortable room... There is a red pillow here." NOTE: play from an RBF disk, not a host-directory mount; reading a world off /hN under os9exec trips an assertion inside the emulator. |
 
 </details>
 
@@ -1612,7 +1609,7 @@
 | | |
 |---|---|
 | `gs33` | Ghostscript 3.33 -- the older one, and it has never had the gs_init.ps and fonts it needs.  Use gs403 instead<br>`Usage: gs ... -%c file.ps arg1 ... argn` |
-| `gs403` | Aladdin Ghostscript 4.03 -- interprets PostScript, and this  It does NOT render: asked to rasterise a PostScript file to a PBM, with GS_LIB set, it prints its banner and stops -- no output file and no message.  Measured 2026-08-28 one is COMPLETE: its init files and fonts are in LIB/gs403.  Set GS_LIB to that directory first.  Runs with no trap handler -- built with GCC 2.5.8 by its porter<br>**How:** Aladdin Ghostscript 4.03. Set GS_LIB first -- `setenv GS_LIB /dd/LIB/gs403' -- or it cannot find gs_init.ps and stops. Everything it needs, fonts included, is in that directory. The older gs33 on this disk has never had its support files. |
+| `gs403` | Aladdin Ghostscript 4.03, and this one is COMPLETE: its init files and fonts are in LIB/gs403.  Point GS_LIB at that directory and it interprets -- `export GS_LIB=/dd/LIB/gs403' in bash, NOT `setenv', which is the OS-9 shell's and is not a bash command.  It then reads a PostScript file and drops to its own `GS>' prompt.  This entry said it does not render, on a measurement made with GS_LIB unset by a `setenv' that had failed.  Runs with no trap handler -- built with GCC 2.5.8 by its porter.  Corrected 2026-08-30<br>**How:** Aladdin Ghostscript 4.03. Point GS_LIB at its library first -- in bash that is `export GS_LIB=/dd/LIB/gs403`, NOT `setenv`, which is the OS-9 shell's command and gets "setenv: command not found" here; this line said setenv until 2026-08-30. Then `gs403 -q -dNOPAUSE -sDEVICE=nullpage <file>.ps` reads the file and gives you its GS> prompt. Everything it needs, fonts included, is in that directory. The older gs33 on this disk has never had its support files. |
 | `lwf` | ASCII to PostScript, like Unix enscript.  Reads its prologue from /dd/USR/LIB/lwf.prologue<br>**How:** Turns plain text into PostScript, the way Unix enscript does. It reads /dd/USR/LIB/lwf.prologue and stops without it. No PostScript printer here, so send the output to a file and take it elsewhere. |
 
 **Spooler**

@@ -1,17 +1,35 @@
-$ adlcomp
-Usage: adlcomp Infile (with any of the following)
-        -o Outfile              File for output
-        -i Dir                  Directory for INCLUDEs
-        -t Dir                  Directory for temp files
-        -d                      Output debugging info
-        -w                      Suppress warnings
-        -e N                    Max # of errors
-        -g N                    Max # of globals
-        -m N                    Max # of strings
-        -n N                    Max # of objects
-        -p N                    Max # of prep phrases
-        -r N                    Max # of routines
-        -s N                    Max # of verb phrases
-        -v N                    Max # of verbs
+$ adlcomp /dd/ADL/DEMOS/tiny.adl -o /dd/tmp/tiny -i/dd/ADL
+ADL compiler - Version 3.2 - June 7, 1987
+Copyright 1985, 1986, 1987 by Ross Cunniff
+All rights reserved
+Reading from file /dd/ADL/DEMOS/tiny.adl
+Reading from file standard.adl
+
+        standard.adl - version 3.1 - June 20, 1987
+        Copyright (c) 1986, 1987 by Ross Cunniff
+        Consult "The ADL Programmer's Reference Manual" for
+        information on using standard.adl
+
+Done with Standard Interface - proceeding to Utility Routines
+Done with Utility Routines.  Begin predefined verbs.
+Done initializing verb routines.  Starting Dwimmer.
+Done reading file standard.adl
+Done reading file /dd/ADL/DEMOS/tiny.adl
+WARNING: STRING undefined.
+WARNING: TELLER undefined.
+29 out of 64 VARs used
+85 out of 512 routines used
+20 out of 256 objects used
+47 out of 128 verbs used
+129 out of 1024 strings used
+0 out of 8 prep synonyms used
+5 out of 8 [verb prep] synonyms used
+adlcomp /dd/ADL/DEMOS/tiny.adl -o /dd/tmp/tiny -g 30 -r 86 -v 48 -n 21 -m 130 -L
+Writing 10548 bytes
+adlcomp complete. 0 errors, 2 warnings.
+$ ls -l /dd/tmp/tiny
+-rw-------   1 0        0           10548 Aug 30 04:47 /dd/tmp/tiny
 $ adltouch
 Usage: adltouch <file> <number>
+$ adldebug
+Usage: adldebug dungeon.

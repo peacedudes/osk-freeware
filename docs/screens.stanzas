@@ -8,7 +8,7 @@ PrintCards 60bc40dae4bf2bda
 VI c33e0143ea51d150
 about db9079da464bd349
 about-tar 714b649659dcdec1
-adlcomp 11f9702425fcb234
+adlcomp 16e90d58fb65b081
 adlrun 9169adfe510dffa7
 advint 6598d1a2cc695735
 alternates 3948f550cac9139a
@@ -154,7 +154,7 @@ graphlib 7428ccadb486cae4
 greg 156bc5341cc62477
 grep 88f73df993b21866
 gs-devices 358aadc81be97ac3
-gs403 3bbc4bb1fc2a9abb
+gs403 4837b5f1a109871e
 gshell 3be416a6f8c2f4cd
 gulls 2cd93e8b3e417940
 gulls-invert f27ffc1218b3eee3

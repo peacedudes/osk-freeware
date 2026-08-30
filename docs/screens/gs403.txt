@@ -1,3 +1,7 @@
+$ export GS_LIB=/dd/LIB/gs403
+$ echo $GS_LIB
+/dd/LIB/gs403
+$ gs403 -h | head -n 8
 Aladdin Ghostscript 4.03 (1996-9-23)
 Copyright (C) 1996 Aladdin Enterprises, Menlo Park, CA.  All rights reserved.
 Usage: gs [switches] [file1.ps file2.ps ...]
@@ -6,18 +10,6 @@ Most frequently used switches: (you can use # in place of =)
  -g<width>x<height>  page size in pixels   | -r<res>  pixels/inch resolution
  -sDEVICE=<devname>  select device         | -c quit  (as the last switch)
                                            |            exit after last file
- -sOutputFile=<file> select output file: - for stdout, |command for pipe,
-                                         embed %d or %ld for page #
-Input formats: PostScript PostScriptLevel1 PostScriptLevel2 PDF
-Available devices:
-   kwin vsc deskjet djet500 laserjet ljetplus ljet2p ljet3 ljet4 cdeskjet
-   cdjcolor cdjmono cdj550 pj pjxl pjxl300 bj10e bj200 bjc600 bjc800 mgrmono
-   mgrgray2 mgrgray4 mgrgray8 mgr4 mgr8 faxg3 faxg32d faxg4 pcxmono pcxgray
-   pcx16 pcx256 pcx24b pbm pbmraw pgm pgmraw pgnm pgnmraw pnm pnmraw ppm
-   ppmraw tiffcrle tiffg3 tiffg32d tiffg4 tifflzw tiffpack tiff12nc tiff24nc
-   psmono bit bitrgb bitcmyk pngmono pnggray png16 png256 png16m pdfwrite
-   nullpage
-Search path:
-   . : /dd/etc/lib/gs4
-For more information, see /use.txt.
-Report bugs to ghost@aladdin.com; use the form in new-user.txt.
+$ cat /dd/LIB/gs403/align.ps > /dd/a.ps
+$ gs403 -q -dNOPAUSE -sDEVICE=nullpage /dd/a.ps
+GS>

@@ -11,13 +11,24 @@ run     gs403 -h | tail -l=16
 wait    12
 
 shot    gs403
-cap     Aladdin Ghostscript 4.03 on an OS-9 disk: its banner, its switches
-cap     and the devices it can write.  It does NOT render here -- asked to
-cap     rasterise one of its own test files to a PBM, with GS_LIB pointing
-cap     at LIB/gs403, it prints the banner and stops without writing a file
-cap     or saying why.  Measured 2026-08-28.
-run     gs403 -h
-wait    10
+size    36 80
+cap     Aladdin Ghostscript 4.03 on an OS-9 disk, reading one of its own
+cap     test files and giving you its `GS>' prompt.  This card said it did
+cap     NOT render, on a measurement taken with GS_LIB unset -- because the
+cap     line that set it was `setenv GS_LIB ...', and `setenv' is the OS-9
+cap     shell's command, not bash's.  In bash it is `export NAME=value',
+cap     and the `echo' below is there to show the variable actually took.
+cap     Everything Ghostscript needs, fonts included, is in LIB/gs403.
+run     export GS_LIB=/dd/LIB/gs403
+wait    5
+run     echo $GS_LIB
+wait    5
+run     gs403 -h | head -n 8
+wait    12
+run     cat /dd/LIB/gs403/align.ps > /dd/a.ps
+wait    8
+run     gs403 -q -dNOPAUSE -sDEVICE=nullpage /dd/a.ps
+wait    45
 
 shot    lp
 size    36 80
