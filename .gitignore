@@ -1,5 +1,8 @@
 # Built artefacts -- the image is a release asset, not source.
 /osk-freeware.dd
+# The advisory lock tools/imagelock.py holds while a harness runs.  It
+# was committed once, by a `git add -A' during a run.
+*.dd.lock
 /dd
 /h0
 /hz
