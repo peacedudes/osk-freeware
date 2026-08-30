@@ -120,7 +120,7 @@ wanderer|Full-screen: it takes over the display. **`q' quits** -- tested.
 gnuchess|Full-screen chess. It will not read SYS/termcap -- it wants the entry in the variable itself. Do `. /dd/SYS/termcap.entry' first and it draws its time-control menu and plays. Tested.
 gnuchessn|As gnuchess: `. /dd/SYS/termcap.entry' first. Tested.
 jargon|A browser for the Jargon File, which is here: VH/jargon.txt, version 3.0.0 of 27 July 1993, with its index. It will not read SYS/termcap -- do `. /dd/SYS/termcap.entry' first, then `jargon -m'. Tested.
-sc|The spreadsheet, version 6.16. It will not read SYS/termcap: do `. /dd/SYS/termcap.entry' first, then `sc' opens and says "Type '?' for help". Tested.
+sc|The spreadsheet, version 6.16. `sc' opens and says "Type '?' for help". This line said it will not read SYS/termcap and needs `. /dd/SYS/termcap.entry' first; measured 2026-08-29, it does not -- it opens with TERMCAP as SYS/login sets it.
 vi_cio|PVic vi, the cio build. Needs `. /dd/SYS/termcap.entry' first, then it opens on an empty buffer. CMDS/vi_nocio is the same editor needing no module; DOC/README-VI compares all three vi editors here.
 hexedit|A hex editor -- Hexpert v2.4 by Dominic Alston. Takes a file: `hexedit <file>'. Needs `. /dd/SYS/termcap.entry' first or it will not draw.
 ispell|Interactive spelling checker. Takes a file: `ispell <file>'. `ispell -a' is the pipe interface programs use.
@@ -156,7 +156,7 @@ net|KA9Q net, Phil Karn's TCP/IP over SLIP or AX.25 -- the stack amateur radio r
 dbz|The news history database from C News: `dbz [-a] [-x] [-c] database [file]...'. Part of a news system, not useful alone.
 finger|Asks another machine who is logged in: `finger <userid>'. Needs a network.
 msntp|Sets the clock from a network time server.
-umacs|A small Emacs (uMacs 1.0). Full-screen: it takes the display and shows "== uMacs 1.0 == main ==" at the foot. Needs a terminal; source `. /dd/SYS/termcap.entry' first if it will not draw.
+umacs|A small Emacs (uMacs 1.0). Full-screen: it takes the display and shows "== uMacs 1.0 == main ==" at the foot. This line said it needs `. /dd/SYS/termcap.entry' sourced first; measured 2026-08-29, it does not.
 em|A screen editor. It stops with "Environment variable TERM not defined!" unless TERM is set -- SYS/login sets it, so run it from a login shell rather than bare.
 ask|Asks a yes/no question and sets the shell status, for scripts. On its own it says "No Wisecracks coming" -- it is the front half of the `wisecrack' pipe from EFFO forum 20.
 ggrep|GNU grep. `ggrep <expr> <files...>'; -E, -F, -i, -v, -w and the rest as you would expect.
