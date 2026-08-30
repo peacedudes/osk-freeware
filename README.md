@@ -120,7 +120,7 @@ than rendering them, so **download the repository and open that file** — it is
 self-contained, no server and nothing to install.
 
 **Every program has a picture beside it** — all 936 of them, as of
-2026-08-30 — and **787 of those pictures are of the program itself**. The
+2026-08-30 — and **864 of those pictures are of the program itself**. The
 rest share a card with programs that behave alike: eleven DVI drivers on one
 screen, a shelf of device descriptors on another, the netpbm readers with no
 file to read on a third. `tools/gen_screens.py` prints both numbers on every

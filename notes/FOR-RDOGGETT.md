@@ -192,7 +192,7 @@ its first run. I wrote that check after an edit of my own to `DOC/INDEX`
 silently dropped three ADL programs out of the catalogue with everything
 still green.
 
-Catalogue is **936 programs now, 787 of them run by name on their own card**
+Catalogue is **936 programs now, 864 of them run by name on their own card**
 -- 918 and 579 the day before.
 
 **And 242 programs showed no provenance at all.** `DOC/ORIGINS` records
@@ -216,7 +216,7 @@ history of entries written from names.
 
 `docs/index.html` -- the catalogue, with a photographed screen on 936 of the
 936 program cards. Every screen came from keystrokes fed to a running program
-on the disk image; 787 of them are of the program named on the card, and the
+on the disk image; 864 of them are of the program named on the card, and the
 rest share one with programs that behave alike (`gen_screens.py` prints both
 numbers). This line named `docs/screens.html` and "16 programs" until
 2026-08-29; that file has not existed for some time and the screens have been

@@ -125,12 +125,16 @@ Do not stop between items to report; commit and start the next one.
    --image <a COPY of the image>` -- a copy, so the lock does not collide
    with ordinary work.
 
-**2. Keep splitting the over-broad `for` lists.** "Run by name on its own
-   card" went 579 -> 787 of 936 over 2026-08-29/30 and about thirty cards still
-   credit three or more programs they never type. The one-line finder:
+**2. ~~Keep splitting the over-broad `for` lists.~~ DONE 2026-08-30.** "Run by name on its own
+   card" went 579 -> 864 of 936 over 2026-08-29/30. What is left is two
+   deliberate: `clear`, which would wipe the card it appears on, and
+   `gnuchessn`, which has a card of its own. The one-line finder:
    for each stanza, the `for` names with no `run` line naming them.
-   Some of what is left is honest grouping -- eleven DVI drivers, a shelf
-   of MM/1 device descriptors -- and some is not.
+   The honest groupings are kept and now RUN every program they credit --
+   eleven DVI drivers, sixteen netpbm readers with nothing to read, the
+   whole GCC pass list. `< /nil` is the trick that made it safe to add
+   them wholesale: a filter given the terminal as stdin sits there for
+   ever and takes the session with it, and `/nil` gives it EOF at once.
 
 **3. Try the rest of what `tools/bare_deps.py disk` names.** It lists
    programs that open a file BY BARE NAME where a file of that name is on
@@ -406,7 +410,7 @@ eighteen. It was written because an edit of mine that morning deleted a
 four-line list from the ADL section of `DOC/INDEX` and dropped `adlcomp`,
 `adldebug` and `adltouch` out of the catalogue with every check still green.
 
-Catalogue: **936 programs, 787 of them run by name on their own card** --
+Catalogue: **936 programs, 864 of them run by name on their own card** --
 918 and 579 the day before.
 
 **And 242 programs showed no provenance at all.** `DOC/ORIGINS` records
@@ -503,7 +507,7 @@ than when it was made, not weaker.
 **1. Coverage is done by one measure and not by another.**
    `docs/screens.js` covers 936 of 936 -- but as of 2026-08-29
    `gen_screens.py` also reports how many of those programs are RUN BY NAME
-   on the card that carries them, and that is **787** (579 before the
+   on the card that carries them, and that is **864** (579 before the
    over-broad `for` lists were split). The gap is a card's
    `for` line crediting a screen to several programs. Often right (eleven
    DVI drivers do behave alike); sometimes not (`scsiutil`'s card credited
