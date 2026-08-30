@@ -300,7 +300,8 @@ checkout before it was believed.
 **Coverage was measured by a number that cannot fail.** "918 of 918 have
 sample output" is satisfied by a card's `for` line CREDITING a program, and
 `gen_screens.py` now also reports how many are actually RUN BY NAME on their
-own card. That was **579**. Some grouping is right — eleven DVI drivers do
+own card. That was **579**, and splitting the worst cards took it to
+**668**. Some grouping is right — eleven DVI drivers do
 behave alike — and some was not: the `scsiutil` card credited `read_mail`
 and `add_errmsg`, which have nothing to do with SCSI and which it never
 typed. Splitting the worst offenders took it to 603. `README.md` says both
@@ -400,7 +401,8 @@ than when it was made, not weaker.
 **1. Coverage is done by one measure and not by another.**
    `docs/screens.js` covers 918 of 918 -- but as of 2026-08-29
    `gen_screens.py` also reports how many of those programs are RUN BY NAME
-   on the card that carries them, and that is **579**. The gap is a card's
+   on the card that carries them, and that is **668** (579 before the
+   over-broad `for` lists were split). The gap is a card's
    `for` line crediting a screen to several programs. Often right (eleven
    DVI drivers do behave alike); sometimes not (`scsiutil`'s card credited
    `read_mail` and `add_errmsg`, which have nothing to do with SCSI and
