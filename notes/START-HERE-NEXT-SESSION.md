@@ -1,6 +1,6 @@
-# Picking this up cold — updated 2026-08-28, end of session
+# Picking this up cold — updated 2026-08-29, end of session
 
-Branch `release-pass-2026-08-21`. **Tree clean, all eleven `check_disk.py`
+Branch `release-pass-2026-08-21`. **Tree clean, all twelve `check_disk.py`
 checks green, `osk-freeware.dd` current.** Nothing is half-finished; every
 change below is committed.
 
@@ -236,6 +236,54 @@ And the counterpart: a program the docs call broken deserves the same
 re-asking. `printf`, `shar` and `hexedit` were all described more harshly
 than the measurements justified, and rdoggett caught the first of them.
 
+## LATER ON 2026-08-29: three doc files that disagree, and ten corrupt files
+
+**Cross-check `tools/howto.psv` against `DOC/INDEX` and `DOC/STATUS`.**
+Nothing checks them against each other and they had drifted apart. In one
+pass:
+
+  - **`gnuchess`, `gnuchessn` and `hexedit` work.** All three were filed
+    as failing with `'vt100': Unknown terminal type`, diagnosed as wanting
+    a terminfo database. They want `TERMCAP` to hold the CAPABILITY STRING
+    rather than the name of a file, which is exactly what
+    `SYS/termcap.entry` is for — and `howto.psv` said so all along, as did
+    the header of `termcap.entry` itself. `. /dd/SYS/termcap.entry` and
+    GNU Chess draws a board, keeps both clocks and plays. `crib` has a
+    card now too.
+  - **`oleo` and `nroff` really are broken**, and there `howto.psv` was the
+    optimistic one. The check pays both ways.
+  - **`trap` really cannot install a handler**, and briefly looked as
+    though it could: run by bare name, *bash's builtin* answers, silently,
+    which is indistinguishable from success. Ask for it by path.
+
+**TEN BINARY FILES UNDER `disk/SRC/` WERE CORRUPT** and had been for as long
+as they had been in the repo — two JPEGs, a GIF, a PPM, a `.zoo`, three
+compress archives and GNU Chess's data and hash tables. An `iconv
+//TRANSLIT` pass had replaced every byte over `0x7f` with `?` (a `0xB0`
+became the three letters `deg`) and turned every LF into CR.
+`testimg.jpg` began `???a`. **No program ever misbehaved**, because the
+copies programs actually read — `GNUCHESS4.0/MISC/`, in the live tree —
+were untouched and are byte-identical to the archive. All ten were restored
+from the archives `DOC/ORIGINS` names, still in the pool. **`check_disk.py`
+has a twelfth check now**, `binaries start with their magic`; its first run
+reported nine files and all nine were the check being wrong (LZH keeps its
+`-lh` tag at offset 2, and two netpbm makefiles are called `Makefile.pgm`
+and `Makefile.ppm`).
+
+**THE JPEG TOOLS AND NETPBM BOTH WORK** — they just disagree about line
+endings, and each blames the other's data. `cjpeg`/`djpeg` separate PNM
+header fields with **LF**; the netpbm ports here use **CR**. So cjpeg says
+`Bogus data in PPM file` for a PPM netpbm just wrote, and `ppmtopgm` says
+`junk in file where an integer should be` for djpeg's output. Three bytes
+either way, patched in place with `pbyte`; `DOC/STATUS` has the offsets and
+`tools/datatests/netpbm.cases` holds seven cases down including a full
+round trip. The old claim that no JPEG could be made on this disk is gone.
+
+**`tools/screenshots.py` takes `--only name,name`** now — recapturing one
+card no longer means rerunning a sheet of sixty. And **`tools/fix_index.py`
+was writing every entry head one column left of its own continuations**;
+fixed, and the 28 entries it had already written were realigned.
+
 ## GENERATED FILES THAT WERE NOT GENERATING ENOUGH
 
 Two tools were quietly answering for less than they claimed, and both were
@@ -339,7 +387,7 @@ something that is worth not re-deriving.
                                      # `modules' family LOADS os9lib first,
                                      # with the disk's own CMDS/load
     tools/playtest.py --all          # Tier B: pty, screen read. SLOW, hours
-    tools/check_disk.py disk         # eleven invariants; read the OUTPUT
+    tools/check_disk.py disk         # twelve invariants; read the OUTPUT
 
 Current: **105 data cases, 102 passing** (`tools/datatest.py --all`, verified
 at end of session). The three failures are EXPECTED and are real defects in
@@ -391,7 +439,7 @@ longer needed for anything.
 
     tools/rebuild/make_overlay.sh            # the SDK build overlay
     tools/mkimage.sh $PWD/disk $PWD/osk-freeware.dd     # ~1 min
-    tools/check_disk.py disk                 # eleven checks
+    tools/check_disk.py disk                 # twelve checks
     OS9DISK=osk-freeware.dd os9exec -r bash /dd/SYS/login    # a shell on the disk
 
 **`osk-freeware.dd` is a build artefact and goes stale.** It cost a whole
