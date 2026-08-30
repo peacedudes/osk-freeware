@@ -144,6 +144,62 @@ def survey(root):
     return out
 
 
+BARE_HEADER = """
+--------------------------------------------------------------
+
+AND THE HALF A PATH SCAN CANNOT SEE
+-----------------------------------
+
+Everything above was found by looking for ABSOLUTE paths.  A program that
+opens `kepler.dat' rather than `/h0/kepler.dat' does not appear there at
+all -- and opening a data file by BARE NAME, relative to the process's
+DATA DIRECTORY, is the ordinary thing for a program of this era to do.
+
+Two programs were written up in DOC/STATUS as broken for want of exactly
+this.  `orbit' "wanted an element file no archive here carried"; it is in
+DOC/orbit, and orbit opens it by bare name.  `advcom' "needed a shell with
+a real chd"; it needs its include where the data directory already is,
+which is not the same thing.  Both work.
+
+So: below is every module that names a file with NO SLASH IN IT where a
+file of that name is somewhere on this disk.  To use one of these
+programs, put the file where your data directory is:
+
+    cat /dd/DOC/orbit/kepler.dat > /dd/kepler.dat
+    orbit
+
+THIS SECTION PROVES NOTHING.  A string in a binary may be a message, or a
+filename the compiler baked in; and a file of the right name elsewhere on
+the disk may not be the file the program wants.  Read it as a list of
+things to try.  It lists only names whose extension suggests DATA -- the
+full sweep, including source extensions, is `tools/bare_deps.py --all'.
+
+"""
+
+
+def render_bare(root):
+    """The bare-name section, or "" if the scanner is not importable."""
+    try:
+        sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
+        import bare_deps
+    except ImportError:
+        return ""
+    rows = bare_deps.scan(root)
+    if not rows:
+        return ""
+    body = BARE_HEADER.split("\n")
+    last = None
+    for prog, name, where in rows:
+        if prog != last:
+            body.append("  %s" % prog)
+            last = prog
+        line = "      %s" % name
+        line += " " * max(COLUMN - len(line) - 8, 1)
+        body.append(line + "-> " + where)
+    body.append("")
+    return "\r".join(body)
+
+
 def render(entries):
     termcap = sum(1 for _, _, ps in entries
                   for p, _ in ps if p.lower() == "/h0/sys/termcap")
@@ -173,7 +229,7 @@ if __name__ == "__main__":
         raise SystemExit("not a disk tree (no CMDS): %s" % root)
 
     entries = survey(root)
-    text    = render(entries)
+    text    = render(entries) + render_bare(root)
     target  = os.path.join(root, "DOC", "DEPENDS")
 
     if check:

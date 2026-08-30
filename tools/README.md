@@ -83,8 +83,10 @@ archive here carried" — it is in `DOC/orbit` — and `advcom` "needs a shell
 with a real chd" — it needs its include in the data directory, which is not
 the same thing. Both work, and both have a card and a test now.
 
-`bare_deps.py` lists every module that names a file with no slash where a file
-of that name is on the disk. It proves nothing: a string in a binary may be a
+`gen_depends.py` calls it, so those findings are now a second section of
+`DOC/DEPENDS` on the disk itself -- a user copying a program somewhere else
+can see them without the repository. `bare_deps.py` lists every module that
+names a file with no slash where a file of that name is on the disk. It proves nothing: a string in a binary may be a
 message or a `__FILE__` the compiler baked in, which is why hits on source
 extensions are held back behind `--all`. Read it as a list of things to go and
 try. As of 2026-08-29 it names 28 outside Ghostscript, of which `orbit`,
