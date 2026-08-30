@@ -181,6 +181,17 @@ still green.
 Catalogue is **936 programs now, 787 of them run by name on their own card**
 -- 918 and 579 the day before.
 
+**And 242 programs showed no provenance at all.** `DOC/ORIGINS` records
+where each added program came from, and `gen_catalog` read it with a
+regex that accepted four origin phrases -- matching 224 of the file's
+512 entry lines. The 242 whose origin is `Microware OS-9 archive`, the
+single largest source on the disk, had their `Came from` line silently
+left blank. Widened to the phrases actually in the file, and the tool
+now REPORTS entry-shaped lines it cannot parse rather than passing over
+them; 23 remain and most are the file's own prose. Programs with no
+origin: 716 before, 452 after, and that residue is programs ORIGINS
+never listed rather than ones it failed to parse.
+
 **And a caution about my own work:** I wrote `what` an index entry saying it
 prints SCCS what-strings, purely from the name. The card disproved it within
 the hour -- it lists GEPARD expansion cards. Both the entry and the card say
