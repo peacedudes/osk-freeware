@@ -3,6 +3,7 @@ r"""Photograph MANY programs in ONE emulator session, one screen each.
 
     tools/screenshots.py tools/screenshots/text.sheet [...]
     tools/screenshots.py --all [--image osk-freeware.dd]
+    tools/screenshots.py --all --only gnuchess,hexedit   # just those two
 
 Why this exists beside `tools/playtest.py'
 ------------------------------------------
@@ -439,9 +440,15 @@ def check_names(shots):
         seen[key] = shot["name"]
 
 
-def run_sheet(path, image):
+def run_sheet(path, image, only=None):
     shots = parse(path)
+    # check_names guards the WHOLE sheet, not just the subset -- a case
+    # collision between a kept stanza and a skipped one is still a collision.
     check_names(shots)
+    if only:
+        shots = [s for s in shots if s["name"] in only]
+        if not shots:
+            return 0
     os.makedirs(CAPS, exist_ok=True)
     print("== %s: %d shots" % (os.path.basename(path), len(shots)),
           flush=True)
@@ -491,11 +498,17 @@ def run_sheet(path, image):
 
 def main(argv):
     image = os.path.join(REPO, "osk-freeware.dd")
-    sheets, i = [], 0
+    sheets, only, i = [], None, 0
     while i < len(argv):
         if argv[i] == "--image":
             i += 1
             image = argv[i]
+        elif argv[i] == "--only":
+            # Recapture named stanzas and leave the rest of the sheet alone.
+            # Without this, correcting one card meant rerunning a sheet of
+            # sixty and waiting ten minutes for the fifty-nine that were fine.
+            i += 1
+            only = set(argv[i].split(","))
         elif argv[i] == "--all":
             sheets += sorted(os.path.join(SHEETS, f)
                              for f in os.listdir(SHEETS)
@@ -507,7 +520,7 @@ def main(argv):
         sys.exit(__doc__)
     if not os.path.exists(image):
         sys.exit("no image at %s -- run tools/mkimage.sh first" % image)
-    total = sum(run_sheet(s, image) for s in sheets)
+    total = sum(run_sheet(s, image, only) for s in sheets)
     print("%d screens in %s" % (total, CAPS))
 
 

@@ -55,16 +55,24 @@ def fix(name, newlines, path=INDEX):
     if len(real) != 1:
         return "SKIP %s (%d matches, %d of them prose)" % (name, len(hits),
                                                            len(real))
+    # Say so when a name appears more than once.  `gnuchess' has a prose entry
+    # in the main list and a terse one in the games list; editing the first and
+    # not knowing about the second is how the two came to disagree.
+    other = "" if len(hits) == 1 else "  (%d other entries for this name left alone)" % (len(hits) - 1)
     i = real[0]
     j = i + 1
     while j < len(lines) and lines[j].startswith("               "):
         j += 1
     star = pat.match(lines[i]).group(1) or " "
-    head = " %s%s%s" % (star, name, " " * max(1, 15 - len(star) - len(name)))
+    # 17, to match the continuation indent below and the column the file
+    # already keeps for 617 of its 748 entries.  This read 15 until
+    # 2026-08-29 and put every head it wrote one column left of its own
+    # continuations.
+    head = " %s%s%s" % (star, name, " " * max(1, 16 - len(star) - len(name)))
     lines[i:j] = [head + newlines[0]] + ["                 " + x
                                          for x in newlines[1:]]
     open(path, "wb").write("\r".join(lines).encode("latin-1"))
-    return "ok   %s" % name
+    return "ok   %s%s" % (name, other)
 
 
 if __name__ == "__main__":
