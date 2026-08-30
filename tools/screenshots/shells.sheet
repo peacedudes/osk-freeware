@@ -2,15 +2,26 @@
 # them.
 
 shot    env
+size    36 80
 for     env getenv printenv checkenv whoami logname su
-cap     env runs a command with the environment changed; getenv reads one
-cap     variable back, and wants -p before it will print rather than just
-cap     set a status.  It is DESIGNA's, and answers in German.
+cap     Seven small programs about the environment and who you are, each
+cap     asked for itself -- four of them were credited to this card and
+cap     never run on it until 2026-08-29.  `env' runs a command with the
+cap     environment changed; `getenv' reads one variable back and wants -p
+cap     before it will PRINT rather than just set a status (it is DESIGNA's
+cap     and answers in German); `checkenv' tests one; `whoami', `logname'
+cap     and `su' are about the user, and this session is 0.0.
 run     env FOO=bar printenv | grep FOO
 wait    8
 run     getenv -p TERM
 wait    5
-run     getenv -?
+run     checkenv TERM
+wait    5
+run     whoami
+wait    5
+run     logname
+wait    5
+run     su -?
 wait    6
 
 shot    exist

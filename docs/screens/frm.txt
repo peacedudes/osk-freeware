@@ -4,3 +4,17 @@ $ listalias
 Could not open user data file!
 Could not open system data file!
 $ checkalias root
+$ newmail -?
+newmail: illegal option -- ?
+Usage: newmail [-d] [-i interval] [-w] {folders}
+        arg                     Meaning
+
+         -d     turns on debugging output
+         -i D   sets the interval checking time to 'D' seconds
+         -w     forces 'window'-style output, and bypasses auto-background
+
+folders can be specified by relative or absolute path names, can be the name
+of a mailbox in the incoming mail directory to check, or can have one of the
+standard Elm mail directory prefix chars (e.g. '+', '=' or '%').
+Furthermore, any folder can have '=string' as a suffix to indicate a folder
+identifier other than the basename of the file

@@ -8,41 +8,83 @@ run     aterm
 wait    6
 
 shot    elm
-for     elm frm newmail readmsg printmail messages
+for     elm
 cap     Elm, the mail reader, opening on an empty mailbox -- which is the
 cap     honest state of a mail system with no network.  Fourteen programs
-cap     travel with it in CMDS/ELM.
+cap     travel with it in CMDS/ELM, and they are on the three cards that
+cap     follow.  Until 2026-08-29 those thirteen were spread across three
+cap     cards that between them typed five of the names.
 run     elm
 wait    10
 quit    q\r
 
 shot    elm-suite
-for     elm answer arepdaemon autoreply fastmail filter newalias printmail readmsg messages
-cap     The rest of the elm suite: the alias tools, the filter, the
-cap     auto-responder and the daemon that answers while you are away.
+size    36 80
+for     newalias printmail readmsg messages
+cap     Four of the elm helpers, each asked for itself: `newalias' rebuilds
+cap     the alias database, `printmail' prints a folder, `readmsg' picks
+cap     one message out of one, `messages' counts what is waiting.  With an
+cap     empty mailbox what they have to say is short and it is theirs.
 run     newalias
 wait    8
 run     printmail
 wait    8
+run     readmsg
+wait    8
+run     messages
+wait    8
+
+shot    elm-away
+size    36 80
+for     answer arepdaemon autoreply fastmail filter
+cap     The elm programs that act while you are not there: `autoreply' and
+cap     `answer' reply for you, `arepdaemon' is the daemon that runs them,
+cap     `filter' sorts arriving mail into folders, and `fastmail' is the
+cap     bulk sender.  All five were credited to the elm-suite card and none
+cap     was ever typed on it.
+run     autoreply -?
+wait    8
+run     answer -?
+wait    8
+run     arepdaemon -?
+wait    8
+run     filter -?
+wait    8
+run     fastmail -?
+wait    8
 
 shot    finger
-for     finger net osknet atp msntp infoxpress
-cap     The network set.  There is no interface configured here, so what
-cap     they show is what they would do if there were.
+size    36 80
+for     finger net osknet
+cap     Half the network set, each asked for itself.  There is no interface
+cap     configured here, so what they show is what they would do if there
+cap     were -- and all three want /dd/startup.net, which is a file you
+cap     write for your own network and no collection can ship.  The other
+cap     three are on the `network' card; until 2026-08-29 these two cards
+cap     credited the same six programs between them and ran four.
+cap     `osknet' is last: it takes the session down behind it, so anything
+cap     asked for after it would photograph nothing.
 run     finger
 wait    8
 run     net
 wait    8
+run     osknet
+wait    12
+kill
 
 shot    frm
-for     frm checkalias listalias newalias filter autoreply answer fastmail
-cap     The rest of the elm suite says what it wants: frm lists the from
-cap     lines of a folder, the alias tools read the alias files.
+size    36 80
+for     frm checkalias listalias newmail
+cap     `frm' lists the From lines of a folder and the alias tools read the
+cap     alias files; `newmail' watches for arriving mail.  With no network
+cap     and an empty mailbox, what each says about that is the card.
 run     frm
 wait    6
 run     listalias
 wait    6
 run     checkalias root
+wait    6
+run     newmail -?
 wait    6
 
 shot    kermit
@@ -72,7 +114,7 @@ run     smail -?
 wait    6
 
 shot    mailx
-for     mailx mail philmail dotilde makedb pathalias
+for     mailx philmail
 cap     mailx looks your mailbox up by USER NUMBER, not by $USER: this
 cap     session is 0.0, which SYS/password calls `su', and the mailbox that
 cap     ships belongs to `tester'.  So it says it cannot change to your
@@ -84,13 +126,18 @@ run     ls -l /dd/SPOOL/MAIL
 wait    6
 
 shot    network
-for     finger msntp atp osknet infoxpress net
-cap     The TCP/IP set: finger, an SNTP client, and OSKnet itself.  There
-cap     is no interface here, so what they print is what they would do.
+size    36 80
+for     msntp atp infoxpress
+cap     The other three of the network set: `msntp' sets the clock from a
+cap     time server, `atp' is AppleTalk, and `infoxpress' opens a serial
+cap     device and waits -- it was filed as mute until 2026-08-29 and is
+cap     not.  Same missing /dd/startup.net as the `finger' card.
 run     msntp -?
 wait    8
 run     atp
 wait    8
+run     infoxpress
+wait    10
 
 shot    news-tools
 for     rnews postnews subscribe unsubscribe expire uulog
@@ -111,12 +158,18 @@ run     bdecode
 wait    8
 
 shot    pathalias
-for     pathalias makedb nptx dotilde uuclean
-cap     pathalias computes mail routes from a map of who calls whom -- the
-cap     program that made a usenet address possible.
+size    36 80
+for     pathalias makedb dotilde
+cap     `pathalias' computes mail routes from a map of who calls whom --
+cap     the program that made a usenet address possible.  `makedb' builds
+cap     the database it writes into, and `dotilde' expands the ~-notation
+cap     a uucp path uses.  All three are asked for here; two of them were
+cap     only credited until 2026-08-29, on this card and on mailx's.
 run     pathalias -?
 wait    8
 run     makedb -?
+wait    6
+run     dotilde -?
 wait    6
 
 shot    screen
@@ -132,24 +185,79 @@ run     tsmon2 -?
 wait    8
 
 shot    sterm
-for     sterm tterm tsu k z blastem dld uld vmod_trap
-cap     The terminal programs: sterm and tterm open a serial line and give
-cap     you the far end.  With no line configured they say so.
+size    36 80
+for     sterm tterm tsu
+cap     The terminal programs: `sterm' and `tterm' open a serial line and
+cap     give you the far end, `tsu' switches user on one.  With no line
+cap     configured they say so.  Six more used to be credited here and
+cap     never typed; they are on the card below.
+run     sterm
+wait    8
 run     tterm
 wait    8
 run     tsu
 wait    8
 
+shot    sterm-tools
+size    36 80
+for     k z blastem dld uld vmod_trap
+cap     The six that travelled with sterm on its card without ever being
+cap     run there.  `k' and `z' are kermit and zmodem shorthands, `dld' and
+cap     `uld' download and upload, `blastem' drives a Blast link, and
+cap     `vmod_trap' is the modem trap handler the rest of them call.
+run     k -?
+wait    6
+run     z -?
+wait    6
+run     dld -?
+wait    6
+run     uld -?
+wait    6
+run     blastem -?
+wait    6
+run     vmod_trap
+wait    6
+
 shot    uuclean
-for     uuclean uupoll disable enable fileserv fixtext lcasep nptx pwparse
+size    36 80
+for     uuclean uupoll disable enable
 cap     The UUCP housekeeping: clean the spool, poll a site, take a device
-cap     out of service and put it back.
+cap     out of service and put it back.  `enable' has to be asked for by
+cap     PATH -- it is a bash builtin too, and the builtin answers first.
 run     uuclean -?
 wait    8
 run     uupoll -?
 wait    8
 run     /dd/CMDS/UUCP/enable -?
 wait    6
+run     /dd/CMDS/UUCP/disable -?
+wait    6
+
+shot    uucp-helpers
+size    36 80
+for     fileserv fixtext lcasep nptx pwparse
+cap     FIVE PROGRAMS THAT SAY NOTHING.  These are the UUCP helpers --
+cap     `fileserv' answers file requests, `fixtext' repairs a mangled text
+cap     transfer, `lcasep' lower-cases a name for mail, `nptx' expands a
+cap     full name into address candidates, `pwparse' reads the password
+cap     file for the rest.  Every one of them prints NOTHING: bare, with an
+cap     argument, with -? and with -x, measured 2026-08-29.  They are real
+cap     modules and they exit cleanly -- the listing below shows all five --
+cap     they simply have no UUCP spool to act on and do not say so.  Were
+cap     credited to the uuclean card and never typed there, so this blank
+cap     is the first honest look anyone has had at them.
+run     ls -l /dd/CMDS/UUCP/fileserv /dd/CMDS/UUCP/nptx
+wait    12
+run     fileserv
+wait    6
+run     fixtext
+wait    6
+run     lcasep Smith
+wait    6
+run     nptx "John Q Public"
+wait    6
+run     pwparse
+wait    8
 
 shot    uucp
 for     uucp uux uuxqt uucico
@@ -187,12 +295,23 @@ run     wndex -?
 wait    8
 
 shot    xmodem
+size    36 80
 for     xy xydown xyt txmod rxmod
 cap     The xmodem and ymodem set from CMDS/COMMS -- send, receive, and the
-cap     terminal side of a file transfer over a serial line.
+cap     terminal side of a file transfer over a serial line.  All five are
+cap     asked for here; two of them were only credited until 2026-08-29.
+cap     `xy' is asked for LAST and with -?: bare, it starts receiving and
+cap     waits for a sender that will never come, which takes the session
+cap     down and leaves nothing to photograph.
 run     xydown
 wait    8
+run     xyt
+wait    8
 run     txmod
+wait    8
+run     rxmod
+wait    8
+run     xy -?
 wait    8
 
 

@@ -1,23 +1,23 @@
-Output written on story.dvi (1 page, 668 bytes).
-Transcript written on story.log.
-$ dvieps story.dvi | wc
-[TeX82 DVI Translator Version 2.10 [experimental]]
-[Epson 9-pin family 240dpi x 216dpi dot matrix printer]
 [Input from DVI file story.dvi]
-[Output on file story.dvi_eps]
+[Output on file story.dvi_tos]
 [1 pages]
 [Log file [story.dvi_err] created]
 
-Font file [cmsl10 [240 dpi]] could not be opened; 0 font files are open
+Font file [cmsl10 [166 dpi]] could not be opened; 0 font files are open
 Proceeding with zero size characters for this font
 Current TeX page counters: [0]
 
-Font file [cmbx10 [240 dpi]] could not be opened; 0 font files are open
+Font file [cmbx10 [166 dpi]] could not be opened; 0 font files are open
 Proceeding with zero size characters for this font
 Current TeX page counters: [0]
 
-Font file [cmr10 [240 dpi]] could not be opened; 0 font files are open
+Font file [cmr10 [166 dpi]] could not be opened; 0 font files are open
 Proceeding with zero size characters for this font
 Current TeX page counters: [0]
 [1{1}]  [OK]
-      0      0      0
+$ dvips story.dvi
+This is dvipsk 5.495b Copyright 1986, 1992 Radical Eye Software
+dvips: ! Couldn't find header file tex.pro
+$ ls -l /dd/story.dvi_alw /dd/story.dvi_eps
+-rw-------   1 0        0            2670 Aug 29 22:20 /dd/story.dvi_alw
+-rw-------   1 0        0            7252 Aug 29 22:21 /dd/story.dvi_eps

@@ -2,10 +2,31 @@ $ mkdir /dd/tmp/sp
 $ split -l 6 /dd/SYS/holidays /dd/tmp/sp/part
 $ ls -l /dd/tmp/sp
 total 3584
--rw-------   1 0        0             104 Aug 28 04:56 partaa
--rw-------   1 0        0             138 Aug 28 04:56 partab
--rw-------   1 0        0              94 Aug 28 04:56 partac
--rw-------   1 0        0             116 Aug 28 04:56 partad
--rw-------   1 0        0             103 Aug 28 04:56 partae
--rw-------   1 0        0             136 Aug 28 04:56 partaf
--rw-------   1 0        0              26 Aug 28 04:56 partag
+-rw-------   1 0        0             104 Aug 29 22:03 partaa
+-rw-------   1 0        0             138 Aug 29 22:03 partab
+-rw-------   1 0        0              94 Aug 29 22:03 partac
+-rw-------   1 0        0             116 Aug 29 22:03 partad
+-rw-------   1 0        0             103 Aug 29 22:03 partae
+-rw-------   1 0        0             136 Aug 29 22:03 partaf
+-rw-------   1 0        0              26 Aug 29 22:03 partag
+$ sepwords < /dd/SYS/motd | head -n 6
+Welcome
+to
+os9exec
+--
+OS-9/68k
+emulator
+$ splitalf -?
+Syntax: splitalf <opts> [<in_path>] <opts>
+Function: split file alphabetically.
+Options:
+     -?        print usage
+$ fillup -?
+Syntax:   fillup [<options>] <file>
+Function: fill up file with constant data
+Options:  -?        : displays this text
+          -n=<num>  : append data until file is <num> bytes long
+          -i=<data> : fill data byte, default=255
+(c) 1992 by L.Zeller
+$ unp -?
+  Usage:  unp [-?] [file]

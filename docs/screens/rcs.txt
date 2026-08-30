@@ -1,23 +1,23 @@
-/dd/tmp/rcs/note_v  <--  /dd/tmp/rcs/note
-initial revision: 1.1
-enter description, terminated with <eof> or '.':
-NOTE: This is NOT the log message!
->> the motd, checked in
->> .
-done
-$ ls -l /dd/tmp/rcs
-total 512
--r--r--r--   1 0        0             276 Aug 28 06:15 note_v
-$ rlog /dd/tmp/rcs/note_v | head -n 12
-
-RCS file:        /dd/tmp/rcs/note_v;   Working file:    note
-head:            1.1
-branch:
-locks:           ;  strict
 access list:
 symbolic names:
 comment leader:  "# "
-total revisions: 1;    selected revisions: 1
-description:
-the motd, checked in
-----------------------------
+$ co /dd/tmp/rcs/note_v
+/dd/tmp/rcs/note_v  -->  note
+revision 1.1
+done
+$ rcsdiff /dd/tmp/rcs/note_v
+RCS file: /dd/tmp/rcs/note_v
+retrieving revision 1.1
+/dd/cmds/rcs/co -q -p1.1 /dd/tmp/rcs/note_v >-/dd/tmp/_RCSt1000003
+:  (E$FNA) This file was found but isn't accessible in the mode requested - che.
+
+rcsdiff error: co failed
+$ rcsident /dd/tmp/rcs/note_v
+/dd/tmp/rcs/note_v:
+ident warning: no id keywords in /dd/tmp/rcs/note_v
+$ rcsmerge
+rcsmerge error: No input file
+command format:
+    rcsmerge -p -rrev1 -rrev2 file
+    rcsmerge -p -rrev1 file
+rcsmerge aborted

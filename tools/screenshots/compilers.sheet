@@ -79,21 +79,24 @@ wait    8
 
 shot    make
 size    36 80
-cap     One rule, and the two makes on this disk trying to keep it.  The
-cap     rule is in the semicolon form because a TAB does not survive being
-cap     typed at this terminal -- SCF expands it -- and a Makefile without
-cap     its tab is a syntax error.  `make' does not understand that form at
-cap     all.  `gmake' does: it echoes the recipe and hands it to a shell
-cap     that has no PATH, so `cat' is `nowhere found' and the rule dies on
-cap     signal 75.  DOC/INDEX already says gmake was added because make is
-cap     the broken one; neither of them builds anything here.
-run     echo "hello: ; cat /dd/SYS/motd > /dd/tmp/hello" > /dd/tmp/Makefile
-wait    6
-run     cat /dd/tmp/Makefile
+cap     `make' keeping a rule, building the target and then saying it is
+cap     up to date -- which this card said it could not do until
+cap     2026-08-29.  TWO obstacles, neither of them make being broken.  A
+cap     command line in a makefile must begin with a TAB, and a tab does
+cap     not survive being typed at this terminal, so every makefile written
+cap     here by echoing at the shell was a syntax error; DOC/make/demo.mk
+cap     is one SHIPPED with its tabs intact.  And a recipe must contain no
+cap     shell metacharacter: where a line has none make forks the command
+cap     itself, but where it has a `>' it forks bash and hands it the whole
+cap     line AS A PATHNAME rather than with -c, so `cat a > b' answers
+cap     `That path name doesn't lead to a file' and `cp a b' works.
+run     rm -f /dd/tmp/greeting
 wait    5
-run     make -f /dd/tmp/Makefile hello
+run     make -f /dd/DOC/make/demo.mk greeting
+wait    12
+run     ls -l /dd/tmp/greeting
 wait    8
-run     gmake -f /dd/tmp/Makefile hello
+run     make -f /dd/DOC/make/demo.mk greeting
 wait    10
 
 

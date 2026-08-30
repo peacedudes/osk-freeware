@@ -730,11 +730,25 @@ cap     does not help: the library is entered and faults on its own `RTE',
 cap     a supervisor-only instruction -- it was written to run in
 cap     supervisor state.  Note the module is `graph' and the programs ask
 cap     for `Graph', which real OS-9 would not match either.
+cap     All eight programs are asked for below; three were until 2026-08-29
+cap     and the rest were credited to the card without being run.
 run     load /dd/CMDS/GAMES/graph
 wait    8
 run     g
 wait    10
 run     striche
+wait    10
+run     graphdemo
+wait    10
+run     graphsave
+wait    10
+run     apfel
+wait    10
+run     showpic
+wait    10
+run     sine
+wait    10
+run     wgen
 wait    10
 
 

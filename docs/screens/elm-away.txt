@@ -1,0 +1,22 @@
+$ autoreply -?
+Error: Can't read file '-?'
+$ answer -?
+** Fatal Error: Could not open /dd/.elm/aliases!
+$ arepdaemon -?
+Error 216 attempting fstat on /dd/USR/LIB/ELM/autoreply.data
+$ filter -?
+Usage: | filter [-nrvlq] [-f rules] [-o file]
+        or: filter [-c] -[s|S]
+$ fastmail -?
+Usage: fastmail {args} [ filename | - ] address(es)
+   where {args} can be;
+        -b bcc-list
+        -c cc-list
+        -d
+        -C comments
+        -f from-name
+        -F from-addr
+        -i msg-id
+        -r reply-to
+        -R references
+        -s subject

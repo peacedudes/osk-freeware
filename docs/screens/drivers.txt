@@ -1,13 +1,20 @@
-$ modinfo /dd/CMDS/MM1/keydrv.mm1 | head -n 12
+$ modinfo /dd/CMDS/MM1/keydrv.mm1 | head -n 4
 --------------------------- /dd/CMDS/MM1/keydrv.mm1  - - - - - - - - - - - - - -
 Module name           = keydrv
 System revision       = 1
 Module size           = 1474
-Owner Id              = 0.0
-Offset to module name = 000005b6H
-Access permission     = e-re-re-r
-Type/Language          = 0c01H  System                 68000 Object Code Module
-Attribute/Revision    = a000H   reentrant  execute in supervisor state
-Edition               = 46
-Comment string offset = 00000000H
-Symbol table offset   = 00000000H
+$ modinfo /dd/CMDS/MM1/msdrv.901_340 | head -n 4
+-------------------------- /dd/CMDS/MM1/msdrv.901_340  - - - - - - - - - - - - -
+Module name           = msdrv
+System revision       = 1
+Module size           = 656
+$ modinfo /dd/CMDS/MM1/rb37c65 | head -n 4
+----------------------------- /dd/CMDS/MM1/rb37c65  - - - - - - - - - - - - - --
+Module name           = rb37c65
+System revision       = 1
+Module size           = 2592
+$ modinfo /dd/CMDS/MM1/scsi_mm1a | head -n 4
+---------------------------- /dd/CMDS/MM1/scsi_mm1a  - - - - - - - - - - - - - -
+Module name           = scsi_mm1a
+System revision       = 1
+Module size           = 4218

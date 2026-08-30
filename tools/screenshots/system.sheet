@@ -435,12 +435,36 @@ run     dir /dd/tmp/rnd
 wait    6
 
 shot    scsiutil
-for     scsiutil dedit expreserve exrecover read_mail add_errmsg
+for     scsiutil expreserve
 cap     scsiutil talks to a SCSI device, and expreserve is vi's crash
 cap     recovery.  Neither has anything to work on here, and both say so.
+cap     This card credited four more programs until 2026-08-29 -- dedit,
+cap     exrecover, read_mail and add_errmsg -- and typed none of them, so
+cap     their "sample output" was scsiutil's usage message.  They are on
+cap     the card below now, which runs each of them.
 run     scsiutil -?
 wait    8
 run     expreserve -?
+wait    8
+
+shot    vi-recovery
+size    36 80
+for     dedit exrecover read_mail add_errmsg
+cap     The four programs that used to be credited to the scsiutil card
+cap     without ever being run.  `exrecover' brings back a vi buffer that
+cap     expreserve saved and there is none, so it says what it wanted.
+cap     `add_errmsg' builds vi's error-message file -- /dd/SYS/vi_errmsg is
+cap     already on the disk.  `read_mail' is NOT vi's helper despite
+cap     sitting beside these: it is a small mail reader of its own.
+cap     `dedit' is Carl Kreider's BASIC09 disk sector editor and needs
+cap     runb, like the other three BASIC09 programs here.
+run     exrecover
+wait    8
+run     add_errmsg -?
+wait    8
+run     read_mail
+wait    8
+run     dedit
 wait    8
 
 shot    sddemo
@@ -617,11 +641,21 @@ cap     The runtime modules the starred programs need.  They are not
 cap     programs -- you cannot run them -- so this is what they look like
 cap     to `modinfo': name, type, edition and CRC.  cio and math ship here
 cap     by Microware's permission; SOURCES.txt records the exchange.
-run     modinfo /dd/CMDS/cio | head -n 10
+cap     All seven are asked for below, one line each; three were until
+cap     2026-08-29 and the rest stood behind them.
+run     modinfo /dd/CMDS/cio | head -n 6
 wait    12
 run     modinfo /dd/CMDS/csl | grep -a "name\|Edition\|size"
 wait    12
+run     modinfo /dd/CMDS/csl020 | grep -a "name\|Edition\|size"
+wait    12
+run     modinfo /dd/CMDS/math | grep -a "name\|Edition\|size"
+wait    12
 run     modinfo /dd/CMDS/math881 | grep -a "name\|Edition\|size"
+wait    12
+run     modinfo /dd/CMDS/os9lib | grep -a "name\|Edition\|size"
+wait    12
+run     modinfo /dd/CMDS/rtfdat | grep -a "name\|Edition\|size"
 wait    12
 
 
@@ -631,7 +665,19 @@ cap     The MM/1 drivers -- keyboard, mouse, floppy, SCSI, sound and the
 cap     windowing terminal.  They are device drivers for hardware that is
 cap     not here, so again `modinfo' is what there is to show: type $C
 cap     (device driver) rather than $1 (program).
-run     modinfo /dd/CMDS/MM1/keydrv.mm1 | head -n 12
+cap     Each of the six is asked for, one line apiece, rather than one of
+cap     them standing for all six as it did until 2026-08-29.
+run     modinfo /dd/CMDS/MM1/keydrv.mm1 | head -n 4
+wait    12
+run     modinfo /dd/CMDS/MM1/msdrv.901_340 | head -n 4
+wait    12
+run     modinfo /dd/CMDS/MM1/rb37c65 | head -n 4
+wait    12
+run     modinfo /dd/CMDS/MM1/scsi_mm1a | head -n 4
+wait    12
+run     modinfo /dd/CMDS/MM1/snddrv | head -n 4
+wait    12
+run     modinfo /dd/CMDS/MM1/windio.52 | head -n 4
 wait    12
 
 shot    load

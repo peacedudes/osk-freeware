@@ -2,14 +2,36 @@
 # benchmarks and version control.
 
 shot    benchmarks
-for     sieve fibo float savage paranoia timid time
-cap     The other benchmarks: the sieve, Fibonacci, a floating-point loop
-cap     and Savage's accuracy test, which is about arithmetic rather than
-cap     speed.
+size    36 80
+for     sieve fibo float savage
+cap     Four benchmarks, each run: Eratosthenes' sieve, Fibonacci, a
+cap     floating-point loop, and Savage's accuracy test, which is about
+cap     arithmetic rather than speed.  Only two of them were typed on this
+cap     card until 2026-08-29; the other two were credited to it and their
+cap     "sample output" was somebody else's.
 run     sieve
 wait    10
+run     fibo
+wait    12
+run     float
+wait    12
 run     savage
 wait    15
+
+shot    benchmarks2
+size    36 80
+for     paranoia timid time
+cap     The three that stand apart from the speed benchmarks.  `paranoia'
+cap     is Kahan's floating-point torture test and reports on the
+cap     arithmetic rather than timing it; `timid' and `time' measure
+cap     something else's running time rather than their own.  All three
+cap     were credited to the benchmarks card and never run there.
+run     time /dd/CMDS/today
+wait    12
+run     timid -?
+wait    8
+run     paranoia
+wait    25
 
 shot    cb
 cap     cb, the C beautifier.  It reads standard input and writes standard
@@ -57,16 +79,38 @@ run     tail -l=2 /dd/tmp/d2.txt
 wait    8
 
 shot    dhry-all
+size    36 80
 for     dhry dhryO2 dhryGcc dhryGcc2 dhryGcc2o2 dhryGccin dhryGcc2in dhryGccmx dhryGcc2mx dhryGcco2 dhryshamu dhryshamu2
 cap     Dhrystone built twelve ways -- Microware cc, GCC 1.x and 2.x,
-cap     optimised, inlined and mixed.  Comparison is the whole point of the
-cap     directory, and here are three of the twelve on the same machine.
-run     dhry | tail -l=6
-wait    15
-run     dhryO2 | tail -l=6
-wait    15
-run     dhryGcc2o2 | tail -l=6
-wait    15
+cap     optimised, inlined and mixed -- and ALL TWELVE run here, one line
+cap     each, on the same machine in the same session.  Comparison is the
+cap     whole point of the directory and the card showed three of them
+cap     until 2026-08-29.  `echo' names each build because the grep line
+cap     that follows it does not.
+run     echo cc; dhry | grep Dhrystones
+wait    18
+run     echo cc -O2; dhryO2 | grep Dhrystones
+wait    18
+run     echo gcc1; dhryGcc | grep Dhrystones
+wait    18
+run     echo gcc1 -O2; dhryGcco2 | grep Dhrystones
+wait    18
+run     echo gcc1 inline; dhryGccin | grep Dhrystones
+wait    18
+run     echo gcc1 mixed; dhryGccmx | grep Dhrystones
+wait    18
+run     echo gcc2; dhryGcc2 | grep Dhrystones
+wait    18
+run     echo gcc2 -O2; dhryGcc2o2 | grep Dhrystones
+wait    18
+run     echo gcc2 inline; dhryGcc2in | grep Dhrystones
+wait    18
+run     echo gcc2 mixed; dhryGcc2mx | grep Dhrystones
+wait    18
+run     echo shamu; dhryshamu | grep Dhrystones
+wait    18
+run     echo shamu2; dhryshamu2 | grep Dhrystones
+wait    18
 
 shot    disktest
 for     disktest timid
@@ -113,8 +157,16 @@ send    .\r
 wait    8
 run     ls -l /dd/tmp/rcs
 wait    6
-run     rlog /dd/tmp/rcs/note_v | head -n 12
+run     rlog /dd/tmp/rcs/note_v | head -n 8
 wait    10
+run     co /dd/tmp/rcs/note_v
+wait    8
+run     rcsdiff /dd/tmp/rcs/note_v
+wait    8
+run     rcsident /dd/tmp/rcs/note_v
+wait    8
+run     rcsmerge
+wait    8
 
 shot    sdb
 for     sdb

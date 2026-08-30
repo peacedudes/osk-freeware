@@ -3,3 +3,7 @@ Updating your personal alias file...
 Couldn't open /dd/.ELM/aliases.text for input!
 $ printmail
 Usage: printmail [-p] [-r filename] <message list>
+$ readmsg
+Usage: readmsg [-anhp] [-f Folder] {MessageNum ... | pattern | *}
+$ messages
+There is 1 message in your mailbox

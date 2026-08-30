@@ -1,0 +1,31 @@
+$ lprm -?
+Syntax: lprm [-d=dev] [-] job..
+Function: delete job from spoolerqueue
+Options:
+       -          deletes all entries
+       -d=dev     take queue of printer dev
+$ lpshut -?
+Syntax: lpshut
+Function:  stops Printerspooler
+$ submit -?
+Syntax: submit [<opts>] [<submit file>] [{<parameter>)]
+Function: Executes commands from the submit file with textual replacement.
+          The submit file must have the suffix .sub.
+Options:
+     -?       displays this help message
+
+$ prjob -?
+prjob: Spooler not installed
+$ qp
+Syntax: qp <cmd> <arg1> ... <argn>
+Function: process back-quotes for command expansion
+no Options
+  Args enclosed in back quotes (`) are treated as a
+  command sequence; stdout of this sequence replaces
+  the command itself.
+  Nested qp's are possible: The innermost qp has to be
+  enclosed within a pair of single back quotes, the next
+  level must be enclosed with double back quotes, and
+  so on.
+  If quotes of two levels are at the same place, they
+  have to be separated by at least one blank.

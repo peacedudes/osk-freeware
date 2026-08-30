@@ -20,28 +20,44 @@ run     gs403 -h
 wait    10
 
 shot    lp
-for     lp lpq lprm lpsched lpshut submit prjob qp
-cap     The spooler set.  With no printer configured they say so, which is
-cap     the state a fresh disk arrives in.
+size    36 80
+for     lp lpq lpsched splstat
+cap     The print spooler with nothing configured, which is the state a
+cap     fresh disk arrives in: `lpq' says there is no spooler installed and
+cap     `lp' says what it would take.  Carl Kreider's `splstat' prints
+cap     nothing whatever, so its line here is just the command.
+cap     Until 2026-08-29 there were TWO cards for this, `lp' and `lpq',
+cap     crediting almost the same eight programs between them and running
+cap     three; the five that were never typed are on the card below.
 run     lp -?
 wait    6
 run     lpq
 wait    5
 run     lpsched -?
 wait    6
-
-shot    lpq
-for     lpq lp lprm lpsched lpshut submit prjob qp splstat
-cap     The print spooler with nothing configured: `lpq' says there is no
-cap     spooler installed, which is the honest state of a fresh disk, and
-cap     `lp' says what it would take.  Carl Kreider's `splstat' prints
-cap     nothing whatever, so the last line here is just its command.
-run     lpq
-wait    5
-run     lp -?
-wait    6
 run     splstat
 wait    5
+
+shot    spooler-rest
+size    36 80
+for     lprm lpshut submit prjob qp
+cap     The rest of the spooler set, each asked for itself.  `lprm' removes
+cap     a queued job, `lpshut' stops the scheduler, `submit' and `prjob'
+cap     queue work, and `qp' is the queue printer -- which is one of the
+cap     seven programs that fail for want of a program called `shell'
+cap     (DOC/STATUS names them all).  With no spooler installed none of
+cap     them has anything to act on, and what each says about that is the
+cap     point of the card.
+run     lprm -?
+wait    6
+run     lpshut -?
+wait    6
+run     submit -?
+wait    6
+run     prjob -?
+wait    6
+run     qp
+wait    8
 
 shot    lwf
 for     lwf

@@ -1,6 +1,6 @@
-$ xydown
-XYDOWN ver. 1.1
 XYDown:Can't open serial port. -- Error 240
+$ xyt
+Unable to determine MODEM port
 $ txmod
 TXMod Ed.1 Rv.2 - send Module via SCF to RXMod to link there
 Syntax: TXMod [<opts>] module(s) [<opts>]
@@ -9,3 +9,27 @@ Options:
   -l[=]<dev> : use dev for xmission
               else StdIn/StdOut/StdErr
   -r       :  send RXMOD to other, show 2 sec responses
+$ rxmod
+can't install Vmod Trap handler
+$ xy -?
+General Usage:
+   To send files:      XY <file1> <file2> <etc.>
+   To receive files:   XY
+
+By default, XY will automatically guess the type of each file.
+   To treat all files as a certain type:
+     -A   All files are ASCII      -B   All files are Binary
+By default, XY attempts to use the YModem protocol.
+   To influence xy's protocol determination:
+     -X XModem       -K XModem-K   -G YModem-G
+     -C XModem-CRC   -Y YModem
+   To get debugging information: -d, -dd, etc.
+
+XY uses the MODEM environment variable to determine the port
+to use.  If none is available, stdio paths will be used.
+The -p<port> option overrides the MODEM environment variable.
+Host mode: -h forces XY to use stdio paths and suppresses all
+progress and debug messages.  Equivalent to `unsetenv MODEM'.
+
+Based on "The Working Programmer's Guide to Serial Protocols"
+Copyright (C) 1995 Tim Kientzle and The Coriolis Group, Inc.

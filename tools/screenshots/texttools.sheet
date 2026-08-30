@@ -391,15 +391,27 @@ run     spiff /dd/tmp/s1 /dd/tmp/s2
 wait    5
 
 shot    split
+size    36 80
 for     split splitalf sepwords unp fillup
-cap     split cuts a file into pieces; here it splits the holidays file and
-cap     ls shows what it wrote.
+cap     Five ways of cutting a file up, each asked for itself.  `split'
+cap     cuts it into pieces of N lines and `ls' shows what it wrote;
+cap     `splitalf' splits on a form feed, `sepwords' one word to a line,
+cap     `fillup' pads out to a length, `unp' unpacks.  Four of the five
+cap     were credited to this card without being run until 2026-08-29.
 run     mkdir /dd/tmp/sp
 wait    5
 run     split -l 6 /dd/SYS/holidays /dd/tmp/sp/part
 wait    8
 run     ls -l /dd/tmp/sp
 wait    8
+run     sepwords < /dd/SYS/motd | head -n 6
+wait    8
+run     splitalf -?
+wait    6
+run     fillup -?
+wait    6
+run     unp -?
+wait    6
 
 shot    strfile
 for     strfile unstr cookhash
@@ -487,19 +499,47 @@ for     dvialw dvidjp dvieps dviimp dvijep dvijet dvilj2 dvimac dvioki dvitos dv
 cap     Eleven DVI drivers, one per printer that mattered in 1990:
 cap     Apple LaserWriter, DeskJet, Epson, Imagen, LaserJet, Macintosh,
 cap     Okidata, PostScript.  Each turns the same DVI into that machine's
-cap     own language, and `wc' shows what each one made of it.
+cap     own language, from one DVI, in one session.  Each names itself and
+cap     the printer it is for, and writes to a FILE beside the DVI rather
+cap     than to standard output -- which is why the `| wc' this card used
+cap     until 2026-08-29 counted only their chatter, and why the listing at
+cap     the end is the real measure.  They all warn that a font file could
+cap     not be opened: SYS/TEX/FONTS carries .tfm METRICS and no bitmaps,
+cap     so the glyphs come out zero-size.  The `texfonts-bitmap' screen
+cap     has the rest of that.  Two of the eleven were run here before
+cap     2026-08-29; the other nine were credited to the card.
 run     virtex "&plain" /dd/SYS/TEX/SAMPLES/story.tex
 wait    40
 send    \134end\r
 wait    15
-run     dvieps story.dvi | wc
+run     dvialw story.dvi
 wait    20
-run     dvialw story.dvi | wc
+run     dvidjp story.dvi
 wait    20
+run     dvieps story.dvi
+wait    20
+run     dviimp story.dvi
+wait    20
+run     dvijep story.dvi
+wait    20
+run     dvijet story.dvi
+wait    20
+run     dvilj2 story.dvi
+wait    20
+run     dvimac story.dvi
+wait    20
+run     dvioki story.dvi
+wait    20
+run     dvitos story.dvi
+wait    20
+run     dvips story.dvi
+wait    25
+run     ls -l /dd/story.dvi_alw /dd/story.dvi_eps
+wait    12
 
 
 shot    texfonts
-for     gftopk pktogf gftype pktype vftovp vptovf tftopl pltotf virmf inimf
+for     tftopl pltotf
 cap     TeX's font tools.  tftopl turns a binary font metric into readable
 cap     property lists and pltotf turns it back -- the round trip that lets
 cap     you edit a font's metrics by hand.
@@ -508,6 +548,33 @@ wait    20
 run     pltotf /dd/tmp/cmr10.pl /dd/tmp/cmr10.tfm
 wait    20
 run     ls -l /dd/SYS/TEX/FONTS/TFM/cmr10.tfm /dd/tmp/cmr10.tfm
+wait    10
+
+shot    texfonts-bitmap
+size    36 80
+for     gftopk pktogf gftype pktype vftovp vptovf virmf inimf
+cap     TeX's BITMAP font tools, each asked for itself.  None of them has
+cap     anything to work on: SYS/TEX/FONTS carries .tfm metrics and a
+cap     PK300 directory holding nothing but a Makefile, so there is no .pk,
+cap     no .gf and no .vf on the disk for these eight to read.  `virmf' and
+cap     `inimf' are Metafont, which is what would MAKE one.  All eight were
+cap     credited to the tftopl card until 2026-08-29 and none was typed
+cap     there, so their sample output was somebody else's round trip.
+run     gftopk
+wait    8
+run     pktogf
+wait    8
+run     gftype
+wait    8
+run     pktype
+wait    8
+run     vftovp
+wait    8
+run     vptovf
+wait    8
+run     virmf
+wait    10
+run     inimf
 wait    10
 
 

@@ -1,9 +1,6 @@
-$ echo "hello: ; cat /dd/SYS/motd > /dd/tmp/hello" > /dd/tmp/Makefile
-$ cat /dd/tmp/Makefile
-hello: ; cat /dd/SYS/motd > /dd/tmp/hello
-$ make -f /dd/tmp/Makefile hello
-make: Don't know how to make ;
-$ gmake -f /dd/tmp/Makefile hello
-cat /dd/SYS/motd > /dd/tmp/hello
-cat: nowhere found
-gmake: *** [hello] Signal 75 (core dumped)
+$ rm -f /dd/tmp/greeting
+$ make -f /dd/DOC/make/demo.mk greeting
+os9exec() : cp /dd/SYS/motd /dd/tmp/greeting
+$ ls -l /dd/tmp/greeting
+-rw-rw-rw-   1 0        0              40 Aug  3 19:00 /dd/tmp/greeting
+$ make -f /dd/DOC/make/demo.mk greeting

@@ -1,0 +1,18 @@
+$ gftopk
+Usage: gftopk [-v] <gf file> [pk file].
+$ pktogf
+Usage: pktogf [-v] <pk file> [gf file].
+$ gftype
+This is GFtype, C Version 3.1
+Usage: gftype [-m] [-i] <gf file>.
+$ pktype
+This is PKtype, C Version 2.3
+Usage: pktype <pk file>.
+$ vftovp
+Usage: <vfm file> <tfm file> <vpl file>.
+$ vptovf
+Usage: vptovf <vpl file> <vfm file> <tfm file>.
+$ virmf
+This is METAFONT, C Version 2.7
+**inimf
+I can't find the default base file!

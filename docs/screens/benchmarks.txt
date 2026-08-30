@@ -1,6 +1,13 @@
 $ sieve
 start
  100 sieves done
+$ fibo
+start
+10 loops done
+ Fibonacci( 24) = 46368
+$ float
+start
+7000 loops done
 $ savage
 start
 a = 7.48642602602958e+02

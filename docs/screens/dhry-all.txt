@@ -1,9 +1,19 @@
-$ dhry | tail -l=6
-dhryO2 | tail -l=6
-Str_2_Loc:           DHRYSTONE PROGRAM, 2'ND STRING
-        should be:   DHRYSTONE PROGRAM, 2'ND STRING
-
-Microseconds for one run through Dhrystone:   10.3
-Dhrystones per Second:                      96736.3
-
-$ dhryGcc2o2 | tail -l=6
+$ echo cc; dhry | grep Dhrystones
+cc
+echo cc -O2; dhryO2 | grep Dhrystones
+Dhrystones per Second:                      87540.3
+$ echo gcc1; dhryGcc | grep Dhrystones
+gcc1
+echo gcc1 -O2; dhryGcco2 | grep Dhrystones
+$ echo gcc1 inline; dhryGccin | grep Dhrystones
+gcc1 inline
+echo gcc1 mixed; dhryGccmx | grep Dhrystones
+$ echo gcc2; dhryGcc2 | grep Dhrystones
+gcc2
+echo gcc2 -O2; dhryGcc2o2 | grep Dhrystones
+$ echo gcc2 inline; dhryGcc2in | grep Dhrystones
+gcc2 inline
+echo gcc2 mixed; dhryGcc2mx | grep Dhrystones
+$ echo shamu; dhryshamu | grep Dhrystones
+shamu
+echo shamu2; dhryshamu2 | grep Dhrystones

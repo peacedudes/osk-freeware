@@ -189,7 +189,19 @@ for     diff_1.1 gtar m4_0.5 lharcs compress_4.0 sed_1.06 zoo_2.1
 cap     CMDS/REBUILT keeps a second build of several programs because they
 cap     do not all behave the same -- here diff 1.1 answers with its whole
 cap     option list, which is the difference you would be choosing between.
+cap     Each of the seven is asked for its own version; two were until
+cap     2026-08-29 and five were credited to this card unrun.
 run     diff_1.1 -v
 wait    10
 run     gtar --version
+wait    10
+run     m4_0.5 --version
+wait    10
+run     lharcs
+wait    10
+run     compress_4.0 -V
+wait    10
+run     sed_1.06 --version
+wait    10
+run     zoo_2.1
 wait    10

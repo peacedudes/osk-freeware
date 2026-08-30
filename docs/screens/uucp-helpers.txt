@@ -1,0 +1,8 @@
+$ ls -l /dd/CMDS/UUCP/fileserv /dd/CMDS/UUCP/nptx
+-r-xr-xr-x   1 0        0           21202 Aug  3 19:00 /dd/CMDS/UUCP/fileserv
+-r-xr-xr-x   1 0        0            6628 Aug  3 19:00 /dd/CMDS/UUCP/nptx
+$ fileserv
+fixtext
+lcasep Smith
+nptx "John Q Public"
+pwparse
