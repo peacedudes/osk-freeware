@@ -453,6 +453,72 @@ def check_src_screened(root):
     return not bad, "unreviewed Microware material under SRC"
 
 
+# Extension -> (offset, [signatures]).  Only formats with a fixed,
+# unambiguous signature are listed; a guess costs more than it catches.  LZH
+# is the reason this carries an offset at all: its first two bytes are a
+# header length and checksum that vary per archive, and the `-lh?-' method tag
+# sits at offset 2.  A first cut of this check assumed offset 0 and reported
+# all seven of the tree's .lzh files as damaged.
+MAGIC = {
+    ".jpg":  (0, [b"\xff\xd8\xff"]),
+    ".jpeg": (0, [b"\xff\xd8\xff"]),
+    ".gif":  (0, [b"GIF87a", b"GIF89a"]),
+    ".Z":    (0, [b"\x1f\x9d"]),
+    ".gz":   (0, [b"\x1f\x8b"]),
+    ".zip":  (0, [b"PK\x03\x04", b"PK\x05\x06"]),
+    ".zoo":  (0, [b"ZOO "]),
+    ".lzh":  (2, [b"-lh", b"-lz"]),
+    ".ppm":  (0, [b"P6", b"P3"]),
+    ".pgm":  (0, [b"P5", b"P2"]),
+    ".pbm":  (0, [b"P4", b"P1"]),
+}
+
+# `SRC/netpbm/PGM/Makefile.pgm' is a makefile, not a greymap.  Matching on the
+# extension alone called it damaged too.
+MAGIC_SKIP = ("makefile",)
+
+
+def check_binary_magic(root):
+    """Binary files still start with the bytes their format requires.
+
+    THIS EXISTS BECAUSE TEN FILES FAILED IT.  On 2026-08-29 every binary under
+    `disk/SRC' -- two JPEGs, a GIF, a PPM, a .zoo, three compress archives and
+    GNU Chess's data and hash tables -- was found to have been run through what
+    the byte pattern says was an `iconv ... //TRANSLIT' and a LF->CR pass:
+    every byte >= 0x80 had become `?', a `\xb0' had become the three letters
+    `deg', and every LF had become a CR.  `testimg.jpg' began `???a'.  Nothing
+    reported it, because the tree's own checks are about TEXT being CR-only
+    and ASCII, and a mangled binary passes both with room to spare.
+
+    All ten were restored from the archives they came from, which the pool
+    still had; the LIVE copies of the GNU Chess data (GNUCHESS4.0/MISC, the
+    ones gnuchessc actually reads) were byte-identical to the archive and had
+    never been touched, which is why no program ever misbehaved and why this
+    went unnoticed.
+
+    Extension-driven and therefore partial: it says nothing about a file whose
+    format has no signature, and nothing about content past the first bytes.
+    It would have caught all ten.
+    """
+    bad = []
+    for base, _, files in os.walk(root):
+        for f in files:
+            ext = os.path.splitext(f)[1]
+            if ext not in MAGIC or f.lower().startswith(MAGIC_SKIP):
+                continue
+            path = os.path.join(base, f)
+            off, sigs = MAGIC[ext]
+            head = open(path, "rb").read(off + 8)
+            if not any(head[off:].startswith(m) for m in sigs):
+                bad.append((os.path.relpath(path, root), head[:8]))
+    for rel, head in sorted(bad)[:12]:
+        print("    %s starts %s" % (rel, head.hex(" ")))
+    if len(bad) > 12:
+        print("    ... and %d more" % (len(bad) - 12))
+    return not bad, "%d file(s) do not start with their format's magic" % len(bad)
+
+
+
 CHECKS = [
     ("line endings are CR-only", check_line_endings),
     ("no UTF-8 on an 8-bit disk", check_no_utf8),
@@ -465,6 +531,7 @@ CHECKS = [
     ("every program has a category", check_categories),
     ("DOC/DEPENDS is up to date", check_depends),
     ("no unscreened Microware source", check_src_screened),
+    ("binaries start with their magic", check_binary_magic),
 ]
 
 if __name__ == "__main__":
