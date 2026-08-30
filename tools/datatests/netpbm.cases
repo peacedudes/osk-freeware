@@ -340,16 +340,83 @@ run     $P/pbmtopgm 3 3 /dd/tmp/pm.pbm > /dd/tmp/pm.pgm 2>/nil
 run     $P/pnmfile /dd/tmp/pm.pgm
 expect  16 by 4
 
-# `cjpeg' REFUSES EVERY PNM ON THIS DISK -- `Bogus data in PPM file' -- and it
-# is not the file: pnmfile reads the same bytes without complaint. Tried raw
-# and plain PPM, a PGM, an 8x8 solid colour, from a file and on stdin, all on
-# 2026-08-29. Asserted so that the day it reads one, this says so.
-case    cjpeg-still-refuses-every-pnm
+# `cjpeg' DOES NOT REFUSE EVERY PNM -- corrected 2026-08-29.  It refuses
+# every pnm THIS DISK'S NETPBM WRITES, and the reason is three bytes.  The
+# jpeg-5a tools separate the fields of a PNM header with LF; the netpbm ports
+# here use CR.  Neither will read the other's file, in either direction, and
+# both blame the data: cjpeg says `Bogus data in PPM file' and netpbm says
+# `junk in file where an integer should be'.
+#
+# Patch the separators and they interoperate.  In a P6/P5 header they sit
+# after the magic, after the dimensions, and after the maxval; the offsets
+# depend on how many digits the dimensions take, which is why each case below
+# names its own.
+case    cjpeg-refuses-a-netpbm-ppm-as-written
 run     $P/ppmmake red 8 8 > /dd/tmp/red.ppm 2>/nil
-run     /dd/CMDS/cjpeg /dd/tmp/red.ppm
+run     /dd/CMDS/cjpeg /dd/tmp/red.ppm > /dd/tmp/red1.jpg
 expect  Bogus data in PPM file
 
-case    cjpeg-refuses-a-pgm-the-same-way
-run     $P/pgmramp -lr 16 16 > /dd/tmp/t16.pgm 2>/nil
-run     /dd/CMDS/cjpeg /dd/tmp/t16.pgm
-expect  Bogus data in PPM file
+# Same file, three bytes changed: `P6' CR `8 8' CR `255' CR -> LF at 2, 6, a.
+case    cjpeg-accepts-the-same-ppm-with-LF-separators
+run     $P/ppmmake red 8 8 > /dd/tmp/red.ppm 2>/nil
+run     /dd/CMDS/pbyte /dd/tmp/red.ppm 2 0a
+run     /dd/CMDS/pbyte /dd/tmp/red.ppm 6 0a
+run     /dd/CMDS/pbyte /dd/tmp/red.ppm a 0a
+run     /dd/CMDS/cjpeg /dd/tmp/red.ppm > /dd/tmp/red2.jpg
+absent  Bogus data in PPM file
+run     /dd/CMDS/rdjpgcom.070 /dd/tmp/red2.jpg
+absent  Not a JPEG file
+
+# The whole way round: netpbm makes it, cjpeg compresses it, djpeg brings it
+# back, and netpbm reads the result -- four separator patches in all.
+case    cjpeg-and-djpeg-round-trip-an-8x8-image
+run     $P/ppmmake red 8 8 > /dd/tmp/rt.ppm 2>/nil
+run     /dd/CMDS/pbyte /dd/tmp/rt.ppm 2 0a
+run     /dd/CMDS/pbyte /dd/tmp/rt.ppm 6 0a
+run     /dd/CMDS/pbyte /dd/tmp/rt.ppm a 0a
+run     /dd/CMDS/cjpeg /dd/tmp/rt.ppm > /dd/tmp/rt.jpg
+run     /dd/CMDS/djpeg -pnm /dd/tmp/rt.jpg > /dd/tmp/rt2.ppm
+run     /dd/CMDS/pbyte /dd/tmp/rt2.ppm 2 0d
+run     /dd/CMDS/pbyte /dd/tmp/rt2.ppm 6 0d
+run     /dd/CMDS/pbyte /dd/tmp/rt2.ppm a 0d
+run     $P/pnmfile /dd/tmp/rt2.ppm
+expect  PPM raw, 8 by 8
+
+# ---- THE JPEG TOOLS ---------------------------------------------------
+# Added 2026-08-29, when SRC/jpeglib's test images turned out to have been
+# corrupted by an `iconv //TRANSLIT' pass -- every byte over 0x7f replaced by
+# `?' -- and djpeg had been recorded as untestable for want of a JPEG.  Every
+# case below failed before the files were restored from the archive.
+#
+# Full paths throughout: this harness gives the shell no PATH, and a bare
+# `djpeg' is `command not found', which reads exactly like a missing program.
+
+case    djpeg-decodes-the-librarys-own-test-image
+run     /dd/CMDS/djpeg -pnm /dd/SRC/jpeglib/JPEG_5A/testimg.jpg > /dd/tmp/dj.ppm
+run     /dd/CMDS/pbyte /dd/tmp/dj.ppm 2 0d
+run     /dd/CMDS/pbyte /dd/tmp/dj.ppm a 0d
+run     /dd/CMDS/pbyte /dd/tmp/dj.ppm e 0d
+run     $P/pnmfile /dd/tmp/dj.ppm
+expect  PPM raw, 227 by 149
+
+# The patches above are not cosmetic.  djpeg ends a PNM header line with LF
+# and every netpbm tool here wants CR; unpatched, they all stop dead.
+case    djpeg-output-will-not-pipe-until-its-separators-are-patched
+run     /dd/CMDS/djpeg -pnm /dd/SRC/jpeglib/JPEG_5A/testimg.jpg > /dd/tmp/dk.ppm
+run     $P/ppmtopgm /dd/tmp/dk.ppm > /dd/tmp/dk.pgm
+expect  junk in file where an integer should be
+
+# And patched, it produces the same greymap the archive's own reference PPM
+# produces -- so the three bytes were the whole of the difference.
+case    patched-djpeg-output-converts-like-the-reference-ppm
+run     /dd/CMDS/djpeg -pnm /dd/SRC/jpeglib/JPEG_5A/testimg.jpg > /dd/tmp/dm.ppm
+run     /dd/CMDS/pbyte /dd/tmp/dm.ppm 2 0d
+run     /dd/CMDS/pbyte /dd/tmp/dm.ppm a 0d
+run     /dd/CMDS/pbyte /dd/tmp/dm.ppm e 0d
+run     $P/ppmtopgm /dd/tmp/dm.ppm > /dd/tmp/dm.pgm
+run     $P/pnmfile /dd/tmp/dm.pgm
+expect  PGM raw, 227 by 149
+
+case    rdjpgcom-reads-a-real-jpeg
+run     /dd/CMDS/rdjpgcom.070 /dd/SRC/jpeglib/JPEG_5A/testimg.jpg
+absent  Not a JPEG file

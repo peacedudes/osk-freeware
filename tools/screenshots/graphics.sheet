@@ -191,21 +191,31 @@ run     sgitopnm /dd/tmp/t.sgi | pnmfile
 wait    8
 
 shot    jpeg
-for     cjpeg djpeg rdjpgcom wrjpgcom cjpeg.070 djpeg.070
-cap     The JPEG tools cannot read their input.  `cjpeg' is handed a PPM
-cap     that netpbm made and pnmfile identifies -- 192015 bytes of it -- and
-cap     answers `Bogus data in PPM file', writing zero bytes.  Everything
-cap     downstream then has no JPEG to work on.
+for     cjpeg rdjpgcom wrjpgcom cjpeg.070 djpeg.070
+cap     A JPEG made on the disk, commented, and read back.  This card said
+cap     until 2026-08-29 that the JPEG tools could not read their input:
+cap     cjpeg answered `Bogus data in PPM file' for a 192015-byte PPM that
+cap     netpbm had just written and pnmfile was happy with.  The file was
+cap     fine.  cjpeg wants LF between the fields of a PNM header and this
+cap     disk's netpbm writes CR, so the three `pbyte' calls below -- at
+cap     offsets 2, A and E of a `P6 320 200 255' header -- are the whole
+cap     of what was missing.  DOC/STATUS has it in both directions.
 run     giftopnm /dd/DEMO/gulls.gif > /dd/tmp/g.ppm
-wait    15
+wait    20
+run     pbyte /dd/tmp/g.ppm 2 0a
+wait    4
+run     pbyte /dd/tmp/g.ppm a 0a
+wait    4
+run     pbyte /dd/tmp/g.ppm e 0a
+wait    4
 run     cjpeg -quality 50 /dd/tmp/g.ppm > /dd/tmp/g.jpg
-wait    25
+wait    60
 run     wrjpgcom -comment "OS-9 freeware disk" /dd/tmp/g.jpg > /dd/tmp/gc.jpg
-wait    10
+wait    15
 run     rdjpgcom /dd/tmp/gc.jpg
-wait    8
-run     ls -l /dd/DEMO/gulls.gif /dd/tmp/g.ppm /dd/tmp/g.jpg
-wait    8
+wait    10
+run     ls -l /dd/DEMO/gulls.gif /dd/tmp/g.ppm /dd/tmp/gc.jpg
+wait    10
 
 shot    lispm
 for     pgmtolispm lispmtopgm pbmtopk pktopbm ppmtomap
