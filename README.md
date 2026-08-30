@@ -112,8 +112,13 @@ where it came from and on what terms. GitHub shows HTML files as source rather
 than rendering them, so **download the repository and open that file** — it is
 self-contained, no server and nothing to install.
 
-**Every program has had its picture taken** — all 918 of them, as of
-2026-08-29. Open one in the catalogue and, beside its own help, you get its
+**Every program has a picture beside it** — all 918 of them, as of
+2026-08-29 — and **579 of those pictures are of the program itself**. The
+rest share a card with programs that behave alike: eleven DVI drivers on one
+screen, a shelf of device descriptors on another, the netpbm readers with no
+file to read on a third. `tools/gen_screens.py` prints both numbers on every
+run, because the first one on its own cannot fail — grouping always satisfies
+it. Open one in the catalogue and, beside its own help, you get its
 **sample output**: photographed from that program running on the disk image,
 keystrokes fed to os9exec's console and the terminal stream rendered into the
 grid a vt100 would have shown. Nothing is mocked up, and where a program

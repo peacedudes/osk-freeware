@@ -38,12 +38,27 @@ run     marc -?
 wait    6
 
 shot    cat-combine
+size    36 80
 for     cat combine demerge modbuster
-cap     cat concatenates, combine merges files into one and demerge takes
-cap     them apart again -- the OS-9 way of shipping several files as one.
-run     combine /dd/SYS/motd /dd/SYS/holidays > /dd/tmp/comb
+cap     `combine' interleaves two files BYTE BY BYTE -- even bytes from the
+cap     first, odd from the second -- which is how a 16-bit EPROM image is
+cap     rebuilt from its two 8-bit halves.  Eight A's and eight B's come
+cap     back as ABABABAB, twice over, and that is the whole program.  Note
+cap     it takes the output as a THIRD ARGUMENT: the version of this card
+cap     before 2026-08-29 redirected instead, and the 284-byte file it
+cap     proudly listed was combine's own chatter.  `demerge' is unrelated
+cap     despite the names -- it splits a file of MERGED MODULES into one
+cap     file per module, named after the module, and nothing on this disk
+cap     makes such a file, so its usage is all there is to show.
+run     cat /dd/SYS/motd
+wait    6
+run     echo AAAAAAAA > /dd/tmp/even
+wait    5
+run     echo BBBBBBBB > /dd/tmp/odd
+wait    5
+run     combine /dd/tmp/even /dd/tmp/odd /dd/tmp/mix -q
 wait    8
-run     ls -l /dd/tmp/comb
+run     cat /dd/tmp/mix
 wait    6
 run     demerge -?
 wait    6

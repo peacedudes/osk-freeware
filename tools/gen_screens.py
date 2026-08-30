@@ -363,6 +363,12 @@ def sheet_shots():
             first = next((v for k, v in shot["acts"] if k == "run"), "")
             shots[shot["name"]] = {"hash": screenshots.stanza_hash(shot),
                                    "first": first,
+                                   # Everything the stanza actually typed, so
+                                   # `demonstrated' below can tell a program
+                                   # that was RUN from one merely credited.
+                                   "typed": " ".join(
+                                       v for k, v in shot["acts"]
+                                       if k in ("run", "send", "setup")),
                                    "cap": " ".join(shot["cap"]),
                                    "for": shot["for"] or [shot["name"]],
                                    "sheet": f[:-6],
@@ -487,7 +493,24 @@ def main():
         print("  %d captures are OLDER than the sheet that defines them: %s"
               % (len(stale), " ".join(stale[:8])))
 
-    print("  %d screens, %d programs" % (len(entries), len(screens)))
+    # HOW MANY OF THOSE PROGRAMS WERE ACTUALLY RUN.  A stanza's `for' line
+    # credits a screen to several programs, and that is right where they
+    # behave alike -- eleven dvi drivers, a shelf of device descriptors.  It
+    # is not right everywhere: the `scsiutil' card credited `read_mail' and
+    # `add_errmsg', which have nothing to do with SCSI and which it never
+    # typed.  "918 of 918 have sample output" cannot fail while grouping
+    # satisfies it, so say the number that can.
+    # DISTINCT programs, to be comparable with the total beside it: a
+    # program credited on two cards and run on one has been run.
+    shown = set()
+    for meta in sheet_shots().values():
+        typed = meta.get("typed", "")
+        for prog in meta["for"]:
+            if re.search(r"(^|[/ ])%s\b" % re.escape(prog), typed):
+                shown.add(prog)
+    shown = len(shown & set(screens))
+    print("  %d screens, %d programs (%d of them run by name on their own "
+          "card; the rest are credited to one)" % (len(entries), len(screens), shown))
     print("  %s" % os.path.join(DOCS, "screens.js"))
     print("  %s" % KEEP)
 

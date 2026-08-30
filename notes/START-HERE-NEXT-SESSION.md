@@ -307,7 +307,16 @@ than when it was made, not weaker.
 
 ## WHAT TO DO NEXT, then
 
-**1. Coverage is done: `docs/screens.js` covers 918 of 918.** The last
+**1. Coverage is done by one measure and not by another.**
+   `docs/screens.js` covers 918 of 918 -- but as of 2026-08-29
+   `gen_screens.py` also reports how many of those programs are RUN BY NAME
+   on the card that carries them, and that is **579**. The gap is a card's
+   `for` line crediting a screen to several programs. Often right (eleven
+   DVI drivers do behave alike); sometimes not (`scsiutil`'s card credited
+   `read_mail` and `add_errmsg`, which have nothing to do with SCSI and
+   which it never typed). **The 918 figure cannot fail** -- grouping always
+   satisfies it -- so read the second number. Improving it means splitting
+   over-broad `for` lists and giving the program its own two lines. The last
    forty-nine were closed on 2026-08-28 -- some with new cards (`roff`,
    `btop`, `memtools`, `mtst`, `tplot`, `ttyexp`, `mgif`, `fontgen`,
    `draw`, `lorenz3d`, `bush`), the rest by naming them on the card that
