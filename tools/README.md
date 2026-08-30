@@ -70,6 +70,27 @@ removing anything. It had drifted badly from hand-editing — it listed 110
 programs where 158 have dependencies, and attributed one `gnuchess`'s paths to
 the other.
 
+### The half DEPENDS cannot see
+
+    tools/bare_deps.py disk             # names with no slash, and where they are
+    tools/bare_deps.py disk --all       # including .c/.h, which are mostly noise
+
+A program that opens `kepler.dat` rather than `/h0/kepler.dat` is invisible to
+`gen_depends.py`, and opening a data file by bare name relative to the DATA
+DIRECTORY is the ordinary thing for a program of this era to do. Two were
+written up as broken for want of that: `orbit` "wants an element file no
+archive here carried" — it is in `DOC/orbit` — and `advcom` "needs a shell
+with a real chd" — it needs its include in the data directory, which is not
+the same thing. Both work, and both have a card and a test now.
+
+`bare_deps.py` lists every module that names a file with no slash where a file
+of that name is on the disk. It proves nothing: a string in a binary may be a
+message or a `__FILE__` the compiler baked in, which is why hits on source
+extensions are held back behind `--all`. Read it as a list of things to go and
+try. As of 2026-08-29 it names 28 outside Ghostscript, of which `orbit`,
+`nasa`, `cyberwar`, `sdb`, `rdoc`, `make`, `pdraw`, `adlcomp`/`adlrun` and
+`vtxtcn` have not all been tried.
+
 ## Building the image
 
     OS9EXEC_DIR=/path/to/os9exec  tools/mkimage.sh disk osk-freeware.dd
