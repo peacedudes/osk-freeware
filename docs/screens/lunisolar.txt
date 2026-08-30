@@ -1,5 +1,5 @@
 $ lunisolar
-The moon is full.
+The moon is waning and gibbous (97% of full).
 $ lunisolar -?
 Bad args: lunisolar -?
 Usage: lunisolar
@@ -10,9 +10,5 @@ Time zone may be one of:
 GMT     NST     AST     EST     CST
 MST     PST     YST     HST     BST
 JST
-$ orbit -?
-N3EMO Orbit Simulator  v3.7
-Available satellites:
-"kepler.dat" not found
 $ nasa -?
 "nasa.dat" not found

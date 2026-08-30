@@ -1,0 +1,39 @@
+name    orbit
+prog    orbit
+# RECORDED AS BROKEN UNTIL 2026-08-29 -- "wants an element file no archive
+# here carried".  All three files it wants are on the disk, in DOC/orbit; it
+# just opens them by BARE NAME in the DATA directory, and nothing put them
+# where it would look.  These three setup lines do.
+setup   cat /dd/DOC/orbit/kepler.dat > /dd/kepler.dat
+setup   cat /dd/DOC/orbit/mode.dat > /dd/mode.dat
+setup   cat /dd/DOC/orbit/pgh.sit > /dd/pgh.sit
+rate    0.6
+wait    10
+# AO-13, from Pittsburgh, one day from 10 March 1990, sampled every ten
+# minutes, output to the terminal.
+keys    d
+key     \r
+wait    5
+keys    pgh
+key     \r
+wait    5
+keys    3 10 90
+key     \r
+wait    5
+keys    0
+key     \r
+wait    4
+keys    1
+key     \r
+wait    4
+keys    10
+key     \r
+wait    4
+key     \r
+wait    25
+expect  AO-13 Element Set
+expect  W3VC  Pittsburgh
+expect  Doppler calculated for freq
+# The last column comes from mode.dat, so this proves all three files were
+# read, not just the first.
+expect  Apogee

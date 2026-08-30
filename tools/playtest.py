@@ -324,9 +324,17 @@ def playtest(path, image, outdir):
     best_label, best = max(screens, key=lambda p: own_ink(p[1]))
 
     alltext = "\n".join(s.text() for _, s in screens)
-    missing = [e for e in spec["expect"] if e not in alltext]
-    present = [a for a in spec["absent"]
-               if a in alltext or a in keyed.decode("latin-1", "replace")]
+    # SEARCH THE RAW STREAM TOO, both ways.  `screens' holds the snapshots
+    # taken at `snap' marks and the last screen, so anything a program
+    # scrolled past between them is not in `alltext' at all -- `orbit' prints
+    # a header and then eighty lines of satellite positions, and every line
+    # of that header had gone by the time the first snapshot was taken.  A
+    # thing the program demonstrably PRINTED satisfies `expect'; `absent' has
+    # consulted the raw stream since it was written, and this makes the pair
+    # symmetrical.
+    raw = keyed.decode("latin-1", "replace")
+    missing = [e for e in spec["expect"] if e not in alltext and e not in raw]
+    present = [a for a in spec["absent"] if a in alltext or a in raw]
     # ONLY DEMAND A RESPONSE IF WE ACTUALLY TYPED SOMETHING AT IT.
     # Most of this disk's "games" are not interactive at all -- valspeak,
     # wisecrack, colortest and dclock print and stop. A script for one of

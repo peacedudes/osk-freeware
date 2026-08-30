@@ -6,7 +6,7 @@ Branch `release-pass-2026-08-21`. All twelve `check_disk.py` checks green.
 
 ---
 
-## TWO THINGS ACTUALLY NEED YOU
+## THREE THINGS ACTUALLY NEED YOU
 
 **1. Should a program called `shell` ship?** Five programs fail for want of
 one, and I measured exactly what a plain `copy sh shell` buys: `dm` (Disk
@@ -20,6 +20,17 @@ ex/vi source, which is why it has the name -- paints two lines of a file and
 stops. `elvis`, `vi_nocio` and `REBUILT/VI` (PVIC) all work properly. I have
 documented it everywhere it bites and swapped nothing, because which name
 gets which program is an editorial decision, not a defect.
+
+**3. Should `orbit`'s three data files ship at the root?** `orbit` -- the
+N3EMO satellite tracker, which was recorded as broken and is not -- opens
+`kepler.dat`, `mode.dat` and a `<site>.sit` by BARE NAME in the data
+directory. All three are on the disk, in `DOC/orbit`, and it finds none of
+them. Copying them to `/dd` makes it work first try, and the card and the
+play-test both do that in their setup. Shipping them there permanently would
+put four more files in the root beside `readme` and `startup`; leaving them
+where they are means the program looks broken to anyone who just types
+`orbit`. I have documented the copy in `DOC/INDEX` and `tools/howto.psv` and
+shipped nothing new, because root clutter is an editorial call.
 
 Everything else below is a report, not a question. Nothing in it is waiting
 on you.
