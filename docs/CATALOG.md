@@ -19,15 +19,15 @@
 | [Compilers & build](#compilers--build) | 26 | C compilers and their passes, assemblers, linkers, make and parser generators. |
 | [Languages](#languages) | 10 | Interpreters and language systems beyond C. |
 | [Archives & compression](#archives--compression) | 35 | Pack, unpack and shrink -- lha, zip, tar, arc, zoo, and OS-9 module libraries. |
-| [Encoding & conversion](#encoding--conversion) | 25 | Between text encodings, line endings, number bases, ciphers and hashes. |
-| [Communications](#communications) | 96 | Kermit in several builds, terminal sessions, and networking. |
+| [Encoding & conversion](#encoding--conversion) | 24 | Between text encodings, line endings, Macintosh formats, ciphers and hashes. |
+| [Communications](#communications) | 95 | Kermit in several builds, terminal sessions, and networking. |
 | [Graphics & images](#graphics--images) | 202 | The netpbm toolkit, JPEG, a ray tracer, and things that draw. |
 | [Games](#games) | 66 | Adventures, board and card games, arcade ports, dungeon crawls and puzzles. |
 | [Screen toys](#screen-toys) | 7 | Things to watch rather than play. Start one and leave it going. |
-| [Amusements](#amusements) | 24 | Generators, simulators and diversions that are not quite games. |
+| [Amusements](#amusements) | 23 | Generators, simulators and diversions that are not quite games. |
 | [System & modules](#system--modules) | 126 | OS-9 module and process tools, devices, system state and scheduling. |
 | [Disk & DOS](#disk--dos) | 20 | Reading and writing MS-DOS media with the mtools set. |
-| [Time & calendar](#time--calendar) | 11 | Calendars, clocks and astronomy. |
+| [Time & calendar](#time--calendar) | 14 | Calendars, clocks and astronomy. |
 | [Maths & calculators](#maths--calculators) | 10 | Calculators, plotting, orbits and number theory. |
 | [Printing](#printing) | 14 | Spoolers, page formatting and PostScript. |
 | [Documentation](#documentation) | 5 | Pagers, readers and the help system. |
@@ -108,7 +108,7 @@
 |---|---|
 | `beav` | BEAV 1.40 -- Binary Editor And Viewer (needs TERM)<br>**How:** Full-screen: it takes over the display. **control-C gets you out** -- tested, and none of q, Q, control-D or ESC did. If it has a quit command of its own, its documentation in DOC/ will say. |
 | `hexed` | &#9733; hex editor via your text editor -- it writes its work file to /r0 and stops when it cannot.  See DOC/README-RUNNING  [no military use -- EFFO-INFO]<br>`Syntax: hexed [<opts>] <path> {[<opts>] \| [<path>]}` |
-| `hexedit` | HEXPERT V2.4 by Dominic Alston -- `hex [-vdr] <file>'.  It starts and identifies itself under -v, and neither of the other two paths gets to an editor: -d answers `file not accessible' (214) for a file that exists and is readable, and the bare form and -r print the terminal type and exit.  `beav' is the binary editor that works here, and `hexed' the one that would if there were a RAM disk. Measured 2026-08-29<br>**How:** A hex editor -- Hexpert v2.4 by Dominic Alston. Takes a file: `hexedit <file>'. Needs `. /dd/SYS/termcap.entry' first or it will not draw. |
+| `hexedit` | HEXPERT V2.4 by Dominic Alston -- `hexedit <file>'.  It reads TERMCAP as the CAPABILITY STRING itself, not as the name of a file, so source `. /dd/SYS/termcap.entry' first and it draws its viewer; without that it prints the terminal type and exits.  gnuchess wants the same.  Its -d option is separately broken -- `file not accessible' (214) for a file that is readable.  `beav' is the binary editor that needs nothing, and `hexed' the one that would work if there were a RAM disk.  Corrected 2026-08-29<br>**How:** A hex editor -- Hexpert v2.4 by Dominic Alston. Takes a file: `hexedit <file>'. Needs `. /dd/SYS/termcap.entry' first or it will not draw. |
 | `pbyte` | &#9733; patch bytes in a file at a hex offset<br>`Syntax: pbyte <path> <hex_offset> <hex_byte> [<hex_byte>]` |
 
 **emacs family**
@@ -177,6 +177,7 @@
 | `eo` | &#9733; eo - text utility |
 | `field` | &#9733; extract fields<br>`Syntax  : field [<opts>] <fields...> [<opts>]` |
 | `fillup` | &#9733; fill a file up to a given length with a constant byte<br>`Syntax:   fillup [<options>] <file>` |
+| `gawk` | &#9733; GNU awk 2.11 -- the pattern-and-action language.  It works, but it IGNORES A FILENAME ARGUMENT and reads standard input whatever it is given, so redirect: gawk '{...}' < file, never gawk '{...}' file.  Named a file, it sits waiting on the terminal, which is what the 2026-08-27 note here called "prints nothing at all".  Corrected 2026-08-28.<br>**How:** GNU awk 2.11, the first awk this disk has ever carried. Needs Microware's cio. `gawk "{print \$1}" file' -- and mind that the OS-9 shell, not gawk, is what mangles quoting. |
 | `gep` | &#9733; global expression parser - grep-like filter<br>`Syntax: gep [<opts>] [<srcpath>] [<opts>]` |
 | `paste` | merge lines of files<br>`USAGE: paste [-s] [-d<list>] files` |
 | `pep` | file 'detergent' - strip junk from files<br>`Usage: pep [options] [filename ...]` |
@@ -268,6 +269,17 @@
 | `strfile` | &#9733; build fortune's index file<br>`usage:  strfile [ - ] [ -cC ] [ -sv ] inputfile [ datafile ]` |
 | `unstr` | &#9733; reverse strfile - dump a fortune index.  It FLOODS `No more memory !!!' and dumps nothing<br>`usage: unstr datafile[.dat] [ outfile ]` |
 
+**Format & typeset**
+
+| | |
+|---|---|
+| `fmt` | Simple text formatter (elvis 1.7)<br>`usage: fmt [-width] [files]...` |
+| `lout` | Lout 2.05 document formatter (Basser Lout, Jeffrey Kingston)<br>`usage: -o<filename>` |
+| `nroff` | &#9733; nroff text formatter -- and it PRINTS NOTHING here, from a file or from standard input, with or without -man and with TMACDIR set.  Worse than that: given a file it does not come back at all, and the session has to be stopped. `roff' and `proff' beside it DO work -- the claim here that they fail the same way was wrong and is corrected 2026-08-29.  Use one of those<br>**How:** Formats man pages -- but it NEVER RETURNS on this disk, and prints nothing first. Measured 2026-08-29 both ways, `nroff -man /dd/DOC/netpbm/pnmscale.1' and the same file on stdin; each hung the session. The -man macros in LIB/tmac.an were extended for this collection because the originals defined only .TH .SH .SS .PP and .I, and LIB/orig.tmac.an is the untouched version -- neither has been shown to matter while the program will not finish. `roff' is the formatter that works. |
+| `proff` | proff - portable roff text formatter (macros in LIB/proff). IT WORKS: given a text file it justifies it to a measure, and takes page ranges and a statistics option.  The note here that said it prints nothing was wrong; corrected 2026-08-29.  `roff' works too; `nroff' wants a real macro package and answers `illegal switch' to -?<br>`usage: proff [+n] [-n] [-v] [-ifile] [-s] [-pon] [infile [outfile]]` |
+| `roff` | roff text formatter, and it works: `roff -?' gives its syntax and page-range options.  Corrected 2026-08-29<br>`Syntax: roff {[+00] [-00] [-s] -[h] file}` |
+| `tformat` | text formatter (SNOBOL4-in-C)<br>`Usage: tformat [width\|-?] [<infile] [>outfile]` |
+
 **Spelling & words**
 
 | | |
@@ -277,16 +289,6 @@
 | `jargon` | Jargon-file browser (needs its database files)<br>**How:** A browser for the Jargon File, which is here: VH/jargon.txt, version 3.0.0 of 27 July 1993, with its index. It will not read SYS/termcap -- do `. /dd/SYS/termcap.entry' first, then `jargon -m'. Tested. |
 | `makelex` | &#9733; compiles sonnet's lex.data word list into a C array |
 | `speech` | English-to-phoneme translation<br>`Usage: PHONEME [infile [outfile]]` |
-
-**Format & typeset**
-
-| | |
-|---|---|
-| `lout` | Lout 2.05 document formatter (Basser Lout, Jeffrey Kingston)<br>`usage: -o<filename>` |
-| `nroff` | &#9733; nroff text formatter -- and it PRINTS NOTHING here, from a file or from standard input, with or without -man and with TMACDIR set.  Worse than that: given a file it does not come back at all, and the session has to be stopped. `roff' and `proff' beside it DO work -- the claim here that they fail the same way was wrong and is corrected 2026-08-29.  Use one of those<br>**How:** Formats man pages. The -man macros in LIB/tmac.an were extended for this collection because the originals defined only .TH .SH .SS .PP and .I; LIB/orig.tmac.an is the untouched version. Try `nroff -man /dd/DOC/netpbm/pnmscale.1'. |
-| `proff` | proff - portable roff text formatter (macros in LIB/proff). IT WORKS: given a text file it justifies it to a measure, and takes page ranges and a statistics option.  The note here that said it prints nothing was wrong; corrected 2026-08-29.  `roff' works too; `nroff' wants a real macro package and answers `illegal switch' to -?<br>`usage: proff [+n] [-n] [-v] [-ifile] [-s] [-pon] [infile [outfile]]` |
-| `roff` | roff text formatter, and it works: `roff -?' gives its syntax and page-range options.  Corrected 2026-08-29<br>`Syntax: roff {[+00] [-00] [-s] -[h] file}` |
-| `tformat` | text formatter (SNOBOL4-in-C)<br>`Usage: tformat [width\|-?] [<infile] [>outfile]` |
 
 **Banners & text art**
 
@@ -310,18 +312,6 @@
 |---|---|
 | `sepwords` | split a file to one word per line<br>`Syntax: sepwords [<in_path> [<out_path>]]` |
 | `splitalf` | &#9733; split a file alphabetically<br>`Syntax: splitalf <opts> [<in_path>] <opts>` |
-
-**Formatting**
-
-| | |
-|---|---|
-| `fmt` | Simple text formatter (elvis 1.7)<br>`usage: fmt [-width] [files]...` |
-
-**Pattern processing**
-
-| | |
-|---|---|
-| `gawk` | &#9733; GNU awk 2.11 -- the pattern-and-action language.  It works, but it IGNORES A FILENAME ARGUMENT and reads standard input whatever it is given, so redirect: gawk '{...}' < file, never gawk '{...}' file.  Named a file, it sits waiting on the terminal, which is what the 2026-08-27 note here called "prints nothing at all".  Corrected 2026-08-28.<br>**How:** GNU awk 2.11, the first awk this disk has ever carried. Needs Microware's cio. `gawk "{print \$1}" file' -- and mind that the OS-9 shell, not gawk, is what mangles quoting. |
 
 </details>
 
@@ -494,7 +484,7 @@
 | | |
 |---|---|
 | `sdb` | SDB 2.0 - symbolic debugger |
-| `trap` | &#9733; system-state trap-handler example |
+| `trap` | &#9733; system-state trap-handler example -- it cannot install one from user state, and loading `math' does not change that. Ask for it by PATH: `trap' is a bash builtin too, and the builtin answers first and silently.  Measured 2026-08-29<br>**How:** The trap-handler example, and it does NOT work: it wants system state and says "Can't install trap handler" from user state, with or without `math' loaded. Ask for it BY PATH -- `/dd/CMDS/trap' -- because `trap' is also a bash builtin, and the builtin answers first, silently, which looks exactly like success. Measured 2026-08-29. |
 
 **Assembly**
 
@@ -611,6 +601,7 @@
 | `ar` | archive librarian (Carl Kreider) -- .ar files<br>`Usage:  Ar -<cmd>[<modifier>] [file .. ]` |
 | `arc` | third-party, no terms stated   -> /dd/CMDS/REBUILT (name was taken)<br>`Usage: arc -{amufdxeplvtc}[bswn][g<password>]` |
 | `cat` | &#9733; concatenate files (S.M. Ryger, 1987) |
+| `dearc` | &#9733; Extract an MS-DOS .ARC archive (Carl Kreider).  arc and marc handle the OS-9 side<br>`Usage: dearc [p] filename` |
 | `lha` | LHa 2.08 -- create/extract .lzh archives<br>`Syntax: LHa -{axelvudmcp}[qvnfodiszrgc012][w=<dir>] archive_file [file...]` |
 | `lharc` | LHarc archiver<br>`Usage: lharc {axevlufdmctp}[qnftv] archive_file [files or directories...]` |
 | `marc` | MARC, the archive MERGER -- `marc <target> <source> [names]' copies members from one .arc into another.  It is not an archiver and does not make one<br>`Usage: MARC <tgtarc> <srcarc> [<filename> . . .]` |
@@ -636,6 +627,16 @@
 | `lharcs` | C-LHarc 1.01, older than CMDS/lha 2.08<br>`Usage: lharcs {axevlufdmctp}[qnftv] archive_file [files or directories...]` |
 | `m4_0.5` | &#9733; another build of m4 -- and since 2026-08-28 it IS the build that ships as `m4', the earlier one having turned out to mangle what it expanded<br>`Usage: m4 [options] file ....` |
 | `sed_1.06` | &#9733; another build of sed -- and since 2026-08-28 it IS the build that ships as `sed', the earlier one having turned out to do nothing but exhaust memory<br>`Syntax   : sed [<opts>] [<file>]` |
+| `zoo_2.1` | zoo 2.1 (1991), newer than the 2.01 in CMDS.  Same OSK porters as pd-ksh.  Reads what 2.01 writes; CMDS/zoo is left in place because the pool tools here call it.<br>`Usage: zoo {acDeglLPTuUvx}[aAcCdEfInmMNoOpPqu1:/.@n] archive file` |
+
+**OS-9 module libraries**
+
+| | |
+|---|---|
+| `ar2` | &#9733; Ar V2.00 -- Carl Kreider's archiver, a later edition than the V1.2 included as `ar'.  Both are here; ar is unstarred<br>`Usage:  Ar -<cmd>[<modifier>] archive [file .. ]` |
+| `liborder` | &#9733; order the modules in an OS-9 library<br>`Usage: liborder <options> file1.r file2.r ...` |
+| `modbuster` | Split merged OS-9 module files<br>`Syntax: Modbuster [<opts>] <path> [<opts>]` |
+| `unpacklib` | &#9733; split an OS-9 library into its modules<br>`Usage: unpacklib <options> file1.l file2.l ...` |
 
 **Compress a file**
 
@@ -645,14 +646,6 @@
 | `compress` | compress/uncompress (LZW) -- ADDED<br>`Usage: compress [-dfvoV] [-b MaxBits] [file ...]` |
 | `gzip` | GNU gzip<br>`usage: gzip [-gzipcdfhlLngziptvV19] [-S suffix] [file ...]` |
 
-**OS-9 module libraries**
-
-| | |
-|---|---|
-| `liborder` | &#9733; order the modules in an OS-9 library<br>`Usage: liborder <options> file1.r file2.r ...` |
-| `modbuster` | Split merged OS-9 module files<br>`Syntax: Modbuster [<opts>] <path> [<opts>]` |
-| `unpacklib` | &#9733; split an OS-9 library into its modules<br>`Usage: unpacklib <options> file1.l file2.l ...` |
-
 **zoo**
 
 | | |
@@ -660,37 +653,19 @@
 | `booz` | &#9733; Extract or list a zoo archive.  Public domain, Rahul Dhesi<br>**How:** Extracts and lists zoo archives. `booz -l file.zoo' to look, `booz -x' to extract. fiz repairs a zoo archive that will not open. |
 | `fiz` | &#9733; Repair a damaged zoo archive.  Public domain<br>`Usage:  fiz archive[.zoo]  ("fiz -h" for help)` |
 
-**OS-9 archives**
-
-| | |
-|---|---|
-| `ar2` | &#9733; Ar V2.00 -- Carl Kreider's archiver, a later edition than the V1.2 included as `ar'.  Both are here; ar is unstarred<br>`Usage:  Ar -<cmd>[<modifier>] archive [file .. ]` |
-
-**MS-DOS**
-
-| | |
-|---|---|
-| `dearc` | &#9733; Extract an MS-DOS .ARC archive (Carl Kreider).  arc and marc handle the OS-9 side<br>`Usage: dearc [p] filename` |
-
 **zip**
 
 | | |
 |---|---|
 | `funzip` | &#9733; Unzip straight from a pipe -- funzip < file.zip<br>**How:** Unzips from a pipe rather than a file: `funzip < thing.zip > thing'. For a normal archive use unzip; zipinfo lists what is inside one. |
 
-**Archivers**
-
-| | |
-|---|---|
-| `zoo_2.1` | zoo 2.1 (1991), newer than the 2.01 in CMDS.  Same OSK porters as pd-ksh.  Reads what 2.01 writes; CMDS/zoo is left in place because the pool tools here call it.<br>`Usage: zoo {acDeglLPTuUvx}[aAcCdEfInmMNoOpPqu1:/.@n] archive file` |
-
 </details>
 
 ## Encoding & conversion
 
-*Between text encodings, line endings, number bases, ciphers and hashes.*
+*Between text encodings, line endings, Macintosh formats, ciphers and hashes.*
 
-<details><summary>25 programs</summary>
+<details><summary>24 programs</summary>
 
 **Macintosh**
 
@@ -730,12 +705,6 @@
 | `md5` | MD5 checksum<br>`Usage: MD%d <-opts> <filename>` |
 | `xcrypt` | &#9733; file encryption/decryption |
 
-**Number bases**
-
-| | |
-|---|---|
-| `cvtbase` | &#9733; convert a number between bases -- names them by KEY (b, d, h or x, o), and then FLOODS `No more memory !!!' without converting anything.  Its usage line prints fine, which is why it looked healthy |
-
 **Audio**
 
 | | |
@@ -748,7 +717,7 @@
 
 *Kermit in several builds, terminal sessions, and networking.*
 
-<details><summary>96 programs</summary>
+<details><summary>95 programs</summary>
 
 **Mail**
 
@@ -889,12 +858,6 @@
 |---|---|
 | `fileserv` | &#9733; serve files to remote sites on request |
 | `fixtext` | &#9733; repair the line endings of a received text batch<br>`Usage:  fixtext [infile] [outfile]` |
-
-**System administration**
-
-| | |
-|---|---|
-| `adduser` | &#9733; add a user to the system, for uucp logins<br>`Usage: adduser [opts] [<username> [<userid>] ]` |
 
 </details>
 
@@ -1108,9 +1071,9 @@
 
 | | |
 |---|---|
-| `cjpeg` | JPEG encoder (IJG) -- and it cannot read its input here: `Bogus data in PPM file' for every PNM tried, and the trying was thorough (2026-08-29): raw PPM and plain PPM, a PGM, an 8x8 solid colour, from a file and from standard input.  pnmfile reads the same files without complaint. cjpeg.070 fails the same way.  So no JPEG can be made here, and djpeg has nothing to decode<br>`usage: cjpeg [switches]` |
+| `cjpeg` | JPEG encoder (IJG).  It reads a PNM whose header fields are separated by LF; the netpbm ports here separate them with CR, so cjpeg answers `Bogus data in PPM file' for a file netpbm wrote and netpbm answers `junk in file where an integer should be' for a file cjpeg's djpeg wrote.  Three bytes either way, and `pbyte' patches them in place -- DOC/STATUS has the offsets, and a full round trip is in the data tests.  The entry here said until 2026-08-29 that no JPEG could be made on this disk; one can.  Corrected 2026-08-29<br>**How:** Makes a JPEG from a PNM -- but not straight from a netpbm PNM. cjpeg wants LF between the header fields and this disk's netpbm writes CR, so it says "Bogus data in PPM file". Patch the three separators with `pbyte` first: for `ppmmake red 8 8` they are at offsets 2, 6 and a. DOC/STATUS has the full recipe both ways. Measured 2026-08-29. |
 | `cjpeg.070` | JPEG compressor (68070 build)<br>`usage: cjpeg.070 [switches]` |
-| `djpeg` | JPEG decoder (IJG) -- ADDED<br>`usage: djpeg [switches]` |
+| `djpeg` | JPEG decompressor, jpeg-5a.  It works, and its output does NOT pipe into netpbm as it stands: djpeg ends a PNM header line with LF and every netpbm tool here wants CR, so ppmtopgm answers `junk in file where an integer should be'.  Patch the three separators with `pbyte' -- DOC/STATUS has the recipe -- and the pipeline runs.  Measured 2026-08-29<br>**How:** Decompresses a JPEG: `djpeg -pnm image.jpg > out.ppm`. The disk has one to try, SRC/jpeglib/JPEG_5A/testimg.jpg. Its output will NOT pipe into netpbm unpatched -- djpeg writes LF at the end of a PNM header line and netpbm here wants CR. `pbyte out.ppm 2 0d` and the same at the two later separators fixes it; DOC/STATUS has the offsets. Measured 2026-08-29. |
 | `djpeg.070` | JPEG decompressor (68070 build)<br>`usage: djpeg.070 [switches]` |
 | `rdjpgcom` | read the comment from a JPEG file<br>`Usage: rdjpgcom [switches] [inputfile]` |
 | `rdjpgcom.070` | read a JPEG's comment (IJG 0.70 build)<br>`Usage: rdjpgcom.070 [switches] [inputfile]` |
@@ -1202,9 +1165,9 @@
 | `crib` | cribbage.  Needs TERM set, so run it from a login session -- bare it says `Unknown terminal type'<br>**How:** Full-screen: it takes over the display. **control-C gets you out** -- tested, and none of q, Q, control-D or ESC did. If it has a quit command of its own, its documentation in DOC/ will say. |
 | `cribbage` | &#9733; cribbage -- offers instructions before it deals.  Needs TERM, so run it from a login session<br>**How:** Full-screen: it takes over the display. **control-C gets you out** -- tested, and none of q, Q, control-D or ESC did. If it has a quit command of its own, its documentation in DOC/ will say. |
 | `gnuan` | GNU Chess analyser -- annotates a saved game move by move |
-| `gnuchess` | &#9733; GNU Chess<br>**How:** Full-screen chess. It will not read SYS/termcap -- it wants the entry in the variable itself. Do `. /dd/SYS/termcap.entry' first and it draws its time-control menu and plays. Tested. |
+| `gnuchess` | &#9733; GNU Chess -- `. /dd/SYS/termcap.entry' first it draws the board and plays.  Measured 2026-08-29<br>**How:** Full-screen chess. It will not read SYS/termcap -- it wants the entry in the variable itself. Do `. /dd/SYS/termcap.entry' first and it draws its time-control menu and plays. Tested. |
 | `gnuchessc` | GNU Chess 4.0, curses display |
-| `gnuchessn` | &#9733; GNU Chess (ncurses)<br>**How:** As gnuchess: `. /dd/SYS/termcap.entry' first. Tested. |
+| `gnuchessn` | &#9733; GNU Chess (ncurses) -- termcap.entry first too<br>**How:** As gnuchess: `. /dd/SYS/termcap.entry' first. Tested. |
 | `gnuchessr` | &#9733; GNU Chess (raw)<br>`Usage: gnuchess [-a] [-h] [-x xwndw]` |
 | `mille` | &#9733; Mille Bornes -- the French car-racing card game<br>**How:** Full-screen: it takes over the display. **control-C gets you out** -- tested, and none of q, Q, control-D or ESC did. If it has a quit command of its own, its documentation in DOC/ will say. |
 | `nchess` | GNU Chess 4.0 (plain display) |
@@ -1230,9 +1193,9 @@
 
 | | |
 |---|---|
-| `advcom` | ADVSYS adventure COMPILER -- turns .adv source into a .adi world file.  Only useful if you are writing an adventure; no .adv source is here.<br>**How:** Compiles ADVSYS .adv source into a .adi world for advint. No .adv source ships here either -- this pair is for writing adventures, not playing them. |
+| `advcom` | ADVSYS adventure COMPILER -- turns .adv source into a world file (a .dat, not a .adi; the .adi is an INCLUDE).  The sample source IS here, in GAMES/ADVSYS, and this entry said it was not. Bring osample.adv and objects.adi to the data directory and `advcom osample' builds it -- bare name, because it holds a filename in 20 characters and appends `.adv'.  Corrected 2026-08-29<br>**How:** The ADVSYS compiler. It opens its `@objects.adi` include by BARE NAME in the data directory and holds a filename in 20 characters, so bring both files to where you are and use the short name: `cat /dd/GAMES/ADVSYS/osample.adv > /dd/osample.adv`, the same for objects.adi, then `advcom osample`. Writes osample.dat. Measured 2026-08-29. |
 | `advent` | Colossal Cave Adventure -- self-contained, reads /dd/GAMES/adv/glorkz.  Needs this disk as /dd; mounted only as /h0 it cannot find its data.  Unrelated to advcom/advint.<br>**How:** Colossal Cave. Needs this disk as /dd -- it opens /dd/GAMES/adv/glorkz by absolute path, so mounted only as /h0 it cannot find its data. |
-| `advint` | ADVSYS adventure INTERPRETER -- plays a world COMPILED by advcom.  The sample source is here (GAMES/ADVSYS), the compiled world is not, and advcom needs a real chd to build it -- GAMES/ADVSYS/README has the three lines.<br>**How:** Plays an ADVSYS .adi world file. THERE IS NO WORLD FILE ON THIS DISK, so it has nothing to do until you write one with advcom. |
+| `advint` | ADVSYS adventure INTERPRETER -- plays a world compiled by advcom, and there is one to play: build it as advcom's entry says and `advint osample' starts you in the livingroom.  This said until 2026-08-29 that building it needed a real chd; it does not, and bash on this disk can do the whole thing. GAMES/ADVSYS/README has the four lines<br>**How:** Plays an ADVSYS world. Build one first (see advcom), then `advint osample` -- you start in the livingroom, `n` goes to the hallway. Measured 2026-08-29. |
 | `infocom` | Infocom Z-MACHINE interpreter -- a third, unrelated adventure system.  Plays the .z3 files in GAMES/INFORM (dejavu, hellow, shell -- Inform demos, not the Infocom games).<br>**How:** A Z-machine. Plays the .z3 files in /dd/GAMES/INFORM, which are Inform demonstration programs (dejavu, hellow, shell), not the Infocom games. |
 | `infocom.tcap` | Infocom interpreter, TERMCAP build -- and it is the one to use here.  It puts a proper status line at the top of the screen (`Y2 Rock Room     Score: 0/2') where plain `infocom' fills the screen with brackets trying to. Measured 2026-08-28<br>**How:** Plays Infocom adventure game files -- it needs the game's data file as an argument, which this disk does not carry. |
 
@@ -1294,21 +1257,7 @@
 
 *Generators, simulators and diversions that are not quite games.*
 
-<details><summary>24 programs</summary>
-
-**Simulations**
-
-| | |
-|---|---|
-| `bio` | biorhythm chart (F. Kaefer 1987) -- BASIC09, needs runb<br>**How:** BASIC09 I-code, not 68000 code. `load runb` first, then run `bio` by BARE NAME. Giving runb a pathname instead raises BASIC09 error 43, which reads like a broken program and is not. |
-| `england` | &#9733; weather simulator - England (Gregorian/mid-Atlantic)<br>**How:** One of six weather simulators that differ only in climate and calendar: england, florida, georgia, minnesota, japan (Japanese calendar) and shire (Middle-earth). Each prints a day's weather and stops. |
-| `florida` | &#9733; weather simulator - Florida (Gregorian/Gulf) |
-| `georgia` | &#9733; weather simulator - Georgia (Gregorian/S-Atlantic) |
-| `japan` | &#9733; weather simulator - Japan (Japanese calendar/N-Pacific)<br>**How:** A weather simulator, not a calendar tool -- see `england'. It uses the Japanese calendar, which is the only reason it looks like one. |
-| `logisim` | &#9733; logic circuit simulator<br>**How:** Simulates a logic circuit described in a file. The format is in DOC/logisim/logisim.doc; there is no example circuit on the disk. |
-| `minnesota` | &#9733; weather simulator - Minnesota (Gregorian/N-Atlantic) |
-| `nasa` | &#9733; NASA orbital-element reader.  Wants `nasa.dat' in the CURRENT directory: NORAD two-line element sets -- a name line, then TLE line 1 and line 2 per satellite -- and writes kepler.dat. No element set ships here; supply a current one.  The format is parsed in SRC/eff_orbit/nasa.c and is column-sensitive<br>**How:** The program that FEEDS orbit. Give it NASA two-line elements in a file called nasa.dat in the current directory and it writes kepler.dat, which is what orbit reads. Neither file ships -- you supply nasa.dat. |
-| `shire` | weather simulator - the Shire (Middle-earth calendar)<br>**How:** A weather simulator using the Middle-earth calendar -- see `england'. |
+<details><summary>23 programs</summary>
 
 **Generators**
 
@@ -1323,6 +1272,19 @@
 | `rstory2` | &#9733; random story generator, second version (SNOBOL4-in-C) |
 | `scales` | &#9733; musical scale generator -- writes `scales.lst' in the current directory and prints nothing to the screen<br>`Usage: scales [-h] [-d] [-a] [-m] [-c] [outname]` |
 | `travesty` | make a travesty of the input -- Markov chains, DJB<br>`Usage: travesty [ -oord ] [ -nnum ] [ -rrand ] [ -sS ] [ -ACHUVW ]` |
+
+**Simulations**
+
+| | |
+|---|---|
+| `bio` | biorhythm chart (F. Kaefer 1987) -- BASIC09, needs runb<br>**How:** BASIC09 I-code, not 68000 code. `load runb` first, then run `bio` by BARE NAME. Giving runb a pathname instead raises BASIC09 error 43, which reads like a broken program and is not. |
+| `england` | &#9733; weather simulator - England (Gregorian/mid-Atlantic)<br>**How:** One of six weather simulators that differ only in climate and calendar: england, florida, georgia, minnesota, japan (Japanese calendar) and shire (Middle-earth). Each prints a day's weather and stops. |
+| `florida` | &#9733; weather simulator - Florida (Gregorian/Gulf) |
+| `georgia` | &#9733; weather simulator - Georgia (Gregorian/S-Atlantic) |
+| `japan` | &#9733; weather simulator - Japan (Japanese calendar/N-Pacific)<br>**How:** A weather simulator, not a calendar tool -- see `england'. It uses the Japanese calendar, which is the only reason it looks like one. |
+| `logisim` | &#9733; logic circuit simulator<br>**How:** Simulates a logic circuit described in a file. The format is in DOC/logisim/logisim.doc; there is no example circuit on the disk. |
+| `minnesota` | &#9733; weather simulator - Minnesota (Gregorian/N-Atlantic) |
+| `shire` | weather simulator - the Shire (Middle-earth calendar)<br>**How:** A weather simulator using the Middle-earth calendar -- see `england'. |
 
 **Curiosities**
 
@@ -1379,7 +1341,6 @@
 | `e` | SEDT editor, VT220 keys.  FIXED 2026-08-28: it wants sys/sedt.keys, sys/sedt.ruler0 and sys/sedt.help, none of which were here -- it stopped with `Could not open key definition file'.  All three are in SYS now, recovered from the EFFO forum 11 archive it came from |
 | `em` | a screen editor (EFFO forum 3)<br>**How:** A screen editor. It stops with "Environment variable TERM not defined!" unless TERM is set -- SYS/login sets it, so run it from a login shell rather than bare. |
 | `epson` | &#9733; spline output driver for an Epson printer<br>`usage: epson [<opts>]` |
-| `every` | &#9733; run a command at intervals<br>`Syntax: every <time> <progname> [<progopts>]` |
 | `expreserve` | &#9733; vi's crash-recovery helper: preserves an edit buffer when the editor dies.  Like ksh it reads the terminal asking for more bytes than you type (388), so it depends on the same emulator behaviour -- see DOC/README-KSH<br>**How:** Saves a vi buffer when the editor or the line dies; vi runs it for you rather than you running it. |
 | `exrecover` | &#9733; recover a vi buffer that expreserve saved<br>**How:** Recovers what expreserve saved. Again, vi's helper rather than a command you start. |
 | `fastcc` | &#9733; a faster front end for cc |
@@ -1395,7 +1356,6 @@
 | `lgrep` | &#9733; line grep<br>`Syntax: lgrep <arg1> ... <argn>` |
 | `liborder.os9` | report the order of modules in a library<br>`Usage: liborder <options> file1.r file2.r ...` |
 | `lpsched` | &#9733; the line-printer scheduler<br>`Syntax: lpsched [-r] {<devname>}` |
-| `lunisolar` | &#9733; lunar and solar position calculator |
 | `makecrc` | compute a CRC |
 | `map` | &#9733; NOT a memory map: `map <file>' shows the disk BLOCKS a file occupies, sector by sector.  `mfree' and `free' are the memory ones.  Corrected 2026-08-29<br>`Syntax: map [<opts>] <file> {<file>}` |
 | `modinfo` | report a module's header -- name, type, size, edition, CRC<br>`Syntax:   module [modulename]` |
@@ -1408,7 +1368,6 @@
 | `pri` | change a process's priority |
 | `ptob` | Gepard fat-font back to bitmap<br>`Syntax:   PtoB [<opts>] [<path1>] [<opts>] [<path2>] [<opts>]` |
 | `ptxminst` | install Ptxm.  NOT a pseudo-tty installer -- that is what this entry said until 2026-08-19 and it was wrong |
-| `repeat` | repeat an OS-9 command N times -- `repeat 3 <command>' -- and it cannot here.  It hands the command to whatever $SHELL names, in the form Microware's shell takes: `sh' answers `file not found' because it cannot fork an absolute pathname and `bash' answers `cannot execute binary file' because it treats the module as a script. It also prints `free() called with bad address' on the way out.  Measured 2026-08-29<br>`syntax: repeat [number of repetitions] [OS-9 command]` |
 | `rndir` | &#9733; rename a directory<br>`Syntax: rndir [<opt>]` |
 | `scsiutil` | SCSI device utility<br>`Usage: SCSIutil [/scsi_dev@] <command>` |
 | `setime2` | Y2K: set the system time, four-digit year<br>`Syntax:   setime2 [<opt>] [<setime2>] [<opt>]` |
@@ -1453,6 +1412,7 @@
 | | |
 |---|---|
 | `bootgen` | &#9733; generate an OS-9 boot file<br>`Syntax:   bootgen [<opts>] <device> {<path> [<opts>] }` |
+| `bsplt68` | Split a boot file into its component modules (Carl Kreider) |
 | `flink` | &#9733; list a module's links<br>`usage: flink [ -? \| filename { filename } ]` |
 | `gen` | generates the FRAME of a new C program -- header block, authorship and version lines and the sectioned comments a Microware example was laid out with.  IT APPENDS `.c' to whatever name you give it, which is why it looks as though it wrote nothing: `gen -p frame' leaves `frame.c'.  `-m' does a module frame, `-t' a type, `-f' a function declaration.  Clarified 2026-08-29<br>`Syntax: gen [<opt>] <pathname> [<opts>]` |
 | `load` | load a module into memory, so a program that LINKS a library MODULE can find it -- `load /dd/CMDS/os9lib' and the RTF Fortran set comes alive, where before it printed nothing.  A clean-room reimplementation of Microware's load, written from the published manuals and contributed by the os9exec project; maintained here now, source in SRC/load, built trap-free so it needs no cio<br>`Syntax:   load [<opts>] {<module> [<opts>]}` |
@@ -1471,6 +1431,17 @@
 | `oskversion` | &#9733; report the OS-9/OSK version<br>`Syntax:   OSKversion` |
 | `setime` | Set system time (prompts YYMMDDHHMMSS) |
 | `sysid` | &#9733; show system identification |
+
+**Devices & disks**
+
+| | |
+|---|---|
+| `dam` | &#9733; display the disk allocation map -- dam [<drive>] |
+| `dedit` | BASIC09 disk sector editor (Carl Kreider) -- read, edit and write raw sectors, decode a disk's identification sector.  I-CODE, not 68000 code: run it with runb and the bare module name, like bio and wysetime.  Nine modules in the one file. |
+| `dinfo` | &#9733; disk/device information<br>`Syntax:   dinfo [<opts>] {<device name> [<opts>]}` |
+| `dpark` | &#9733; park the DISK HEAD, not a process: `dpark [/device]' restores an RBF device's head to track 00, which is what you did before moving a drive.  Corrected 2026-08-29<br>`Syntax:   dpark [/device]` |
+| `shdev` | &#9733; show devices |
+| `ssl` | &#9733; show a file's segment list, sector by sector -- ssl <file> |
 
 **MM/1 drivers**
 
@@ -1493,16 +1464,6 @@
 | `math` | Microware's floating-point trap module (software) |
 | `math881` | the same, using a 68881/68882 coprocessor.  Both register as the module `math'; load whichever suits your machine. |
 
-**Devices & disks**
-
-| | |
-|---|---|
-| `dam` | &#9733; display the disk allocation map -- dam [<drive>] |
-| `dinfo` | &#9733; disk/device information<br>`Syntax:   dinfo [<opts>] {<device name> [<opts>]}` |
-| `dpark` | &#9733; park the DISK HEAD, not a process: `dpark [/device]' restores an RBF device's head to track 00, which is what you did before moving a drive.  Corrected 2026-08-29<br>`Syntax:   dpark [/device]` |
-| `shdev` | &#9733; show devices |
-| `ssl` | &#9733; show a file's segment list, sector by sector -- ssl <file> |
-
 **Vendor demos**
 
 | | |
@@ -1512,6 +1473,14 @@
 | `ub68020demo` | UniBasic 1.10 for the 68020 -- the same demonstration as `ub68kdemo' and it runs the same way, announcing `OS9/68020 Version' where the other says 68000.  It was filed as silent until 2026-08-29 and never was |
 | `ub68kdemo` | UniBasic 1.10 -- a BASIC compiler, same arrangement as OmniBasic.  Run it from /dd/DOC/unibasic<br>**How:** UniBasic 1.10, and it does compile -- the trick is that it runs its build through $SHELL. With SHELL unset it hunts for `/dd/bash' and dies with "Error Exit" and error 216. Do `setenv SHELL /dd/CMDS/sh', work in a directory holding basic.h and basic.l (DOC/unibasic has them), have your C toolchain reachable with CDEF and CLIB set, and give it memory. Verified end to end. DEMO VERSION: the symbol table is capped, nothing else is. |
 
+**Scheduling**
+
+| | |
+|---|---|
+| `cron` | run commands at specified times (daemon) |
+| `every` | &#9733; run a command at intervals<br>`Syntax: every <time> <progname> [<progopts>]` |
+| `repeat` | repeat an OS-9 command N times -- `repeat 3 <command>' -- and it cannot here.  It hands the command to whatever $SHELL names, in the form Microware's shell takes: `sh' answers `file not found' because it cannot fork an absolute pathname and `bash' answers `cannot execute binary file' because it treats the module as a script. It also prints `free() called with bad address' on the way out.  Measured 2026-08-29<br>`syntax: repeat [number of repetitions] [OS-9 command]` |
+
 **Keeping and dropping**
 
 | | |
@@ -1520,28 +1489,11 @@
 | `keep` | take a program off this collection onto your own disk -- copies it and whatever DOC/DEPENDS says it needs, and records every file written.  `keep -n' shows what it would do without doing it.  See DOC/README-KEEP.<br>`Usage: keep [-n] [-f] [-q] [-s] [-p <dir>] <program>...` |
 | `kept` | list what has been taken, and how much it came to<br>`Usage: keep [-n] [-f] [-q] [-s] [-p <dir>] <program>...` |
 
-**Modules**
-
-| | |
-|---|---|
-| `bsplt68` | Split a boot file into its component modules (Carl Kreider) |
-
-**Scheduling**
-
-| | |
-|---|---|
-| `cron` | run commands at specified times (daemon) |
-
-**Disks and devices**
-
-| | |
-|---|---|
-| `dedit` | BASIC09 disk sector editor (Carl Kreider) -- read, edit and write raw sectors, decode a disk's identification sector.  I-CODE, not 68000 code: run it with runb and the bare module name, like bio and wysetime.  Nine modules in the one file. |
-
 **Users and login**
 
 | | |
 |---|---|
+| `adduser` | &#9733; add a user to the system, for uucp logins<br>`Usage: adduser [opts] [<username> [<userid>] ]` |
 | `passwd` | change your own password in /dd/SYS/password.  Matches on the user NAME, and the name must be spelt exactly as the password file has it, capitals included.  Matthias Rosenthal's, EFFO forum disk 5; source in SRC/passwd.<br>`Syntax: passwd` |
 
 </details>
@@ -1581,7 +1533,7 @@
 
 *Calendars, clocks and astronomy.*
 
-<details><summary>11 programs</summary>
+<details><summary>14 programs</summary>
 
 **Calendars**
 
@@ -1603,6 +1555,9 @@
 |---|---|
 | `ephem` | &#9733; ephem - astronomical ephemeris<br>**How:** An astronomical ephemeris: it shows where the Sun, Moon and planets are, for a place and a moment. It starts LOOPING -- press any key to stop and enter command mode. CONTROL-D QUITS; `?' is help; control-L redraws. In command mode the arrow keys (or h/j/k/l) move between fields: RETURN opens the one under the cursor, type a value, RETURN accepts. `d' jumps to the date, `z' to the step size. The point of the program is that last pair: set StpSz to a day and NStep to 30, press `q', and it runs time forward and you watch the planets move. |
 | `ephem881` | &#9733; ephem, 68881 build<br>**How:** The same program built for a 68881 coprocessor -- see the note for `ephem'. CONTROL-D quits. |
+| `lunisolar` | &#9733; lunar and solar position calculator |
+| `nasa` | &#9733; NASA orbital-element reader.  Wants `nasa.dat' in the CURRENT directory: NORAD two-line element sets -- a name line, then TLE line 1 and line 2 per satellite -- and writes kepler.dat. No element set ships here; supply a current one.  The format is parsed in SRC/eff_orbit/nasa.c and is column-sensitive<br>**How:** The program that FEEDS orbit. Give it NASA two-line elements in a file called nasa.dat in the current directory and it writes kepler.dat, which is what orbit reads. Neither file ships -- you supply nasa.dat. |
+| `orbit` | &#9733; N3EMO satellite orbit simulator v3.7, and it RUNS -- it wants three data files that are all on this disk, in DOC/orbit, and it opens them by BARE NAME in the DATA directory, so they have to be put where it will look.  kepler.dat is the satellite database, <site>.sit the observing station (pgh, bern and zuerich all ship), mode.dat the transponder schedule.  It then prints bearing, elevation, doppler, range, height and the sub-satellite point per sample.  DOC/orbit/orbit.doc is the manual.  Measured 2026-08-29<br>**How:** The N3EMO satellite tracker, and it works. It opens its data files by bare name in the DATA directory, and they live in DOC/orbit -- so put them where it looks first: `cat /dd/DOC/orbit/kepler.dat > /dd/kepler.dat`, the same for mode.dat, and for a site file such as pgh.sit (bern.sit and zuerich.sit also ship). Then `orbit` and answer: satellite letter, site name without the .sit, month day year, hour, days, minutes per sample, RETURN for the terminal. Measured 2026-08-29. |
 
 </details>
 
@@ -1618,6 +1573,7 @@
 |---|---|
 | `cam` | &#9733; CAMSHAFT, not camera: it asks for the rocker ratio, the lift at a crank angle and the base circle, and plots the lift curve for an intake lobe.  The plot is Tektronix vectors, so on a vt100 it arrives as characters -- the dialogue above it is the readable part.  Corrected 2026-08-29 |
 | `chbase` | &#9733; converts a NUMBER from one base to another -- Philip Maechler's, and nothing to do with a module's base address.  `cvtbase' is the other one, and floods. Corrected 2026-08-29<br>`Syntax   : chbase <number> [ <base A> [ <base B> ] ]` |
+| `cvtbase` | &#9733; convert a number between bases -- names them by KEY (b, d, h or x, o), and then FLOODS `No more memory !!!' without converting anything.  Its usage line prints fine, which is why it looked healthy |
 | `hc` | hex calculator |
 | `loan` | &#9733; loan/amortisation calculator |
 | `rechne` | &#9733; calculator, German -- and it takes ONE expression with no spaces in it: `rechne 4095+1' answers 4096, $1000 and the binary.  Spaced out it evaluates each argument separately |
@@ -1628,14 +1584,8 @@
 
 | | |
 |---|---|
-| `oleo` | GNU Oleo 1.6 -- a spreadsheet, and it DOES NOT RUN: illegal instruction at 000465d2, process aborted.  `sc' is the spreadsheet that works<br>**How:** GNU Oleo, a spreadsheet. It needs a real terminal -- run it from a login so TERM is set, not from a bare shell. sc is the other spreadsheet on this disk; they are unrelated programs. |
+| `oleo` | GNU Oleo 1.6 -- a spreadsheet, and it DOES NOT RUN: illegal instruction at 000465d2, process aborted.  `sc' is the spreadsheet that works<br>**How:** GNU Oleo, a spreadsheet, and it DOES NOT RUN whatever you do: `Illegal instruction: 0009' and E_PRCABT, from a full login session with TERM set as much as from a bare shell. This line said the login was the answer until 2026-08-29; it was measured that day and it is not. Use `sc', the other spreadsheet here, which is an unrelated program and works. |
 | `scqref` | &#9733; Quick reference for sc, the spreadsheet on this disk |
-
-**Astronomy & orbits**
-
-| | |
-|---|---|
-| `orbit` | &#9733; satellite orbit calculator<br>**How:** Reads a bare "kepler.dat" from the CURRENT directory, so run it from where that file is: `chd /dd/DOC/orbit` first. Then it lists 21 satellites and asks which. |
 
 </details>
 

@@ -35,7 +35,7 @@ florida|Amusements|Simulations
 georgia|Amusements|Simulations
 logisim|Amusements|Simulations
 minnesota|Amusements|Simulations
-nasa|Amusements|Simulations
+nasa|Time & calendar|Astronomy
 
 # ---- Archives & compression ----
 compr|Archives & compression|Compress a file
@@ -183,7 +183,7 @@ crypto|Encoding & conversion|Ciphers & hashes
 des|Encoding & conversion|Ciphers & hashes
 md5|Encoding & conversion|Ciphers & hashes
 xcrypt|Encoding & conversion|Ciphers & hashes
-cvtbase|Encoding & conversion|Number bases
+cvtbase|Maths & calculators|Calculators
 divide|Files & directories|Copy, move, delete
 atob|Encoding & conversion|Text encodings
 btoa|Encoding & conversion|Text encodings
@@ -482,7 +482,7 @@ poker|Games|Board & card
 stone|Games|Other games
 
 # ---- Maths & calculators ----
-orbit|Maths & calculators|Astronomy & orbits
+orbit|Time & calendar|Astronomy
 gcl|Time & calendar|Calendars
 hc|Maths & calculators|Calculators
 loan|Maths & calculators|Calculators
@@ -669,7 +669,7 @@ Libr2Ascii|Files & directories|Home Librarian
 PrintCards|Files & directories|Home Librarian
 PrintLabels|Files & directories|Home Librarian
 gnuplot|Graphics & images|Plotting
-gawk|Text tools|Pattern processing
+gawk|Text tools|Transform & filter
 sox|Encoding & conversion|Audio
 p2c|Compilers & build|Translators
 ccheck|Developer tools|Source checking
@@ -711,7 +711,7 @@ funzip|Archives & compression|zip
 zipinfo|Archives & compression|zip
 lesskey|Documentation|Pagers
 lessecho|Documentation|Pagers
-bsplt68|System & modules|Modules
+bsplt68|System & modules|OS-9 modules
 charcnt|Text tools|Filters
 subber|Text tools|Filters
 tcmp|Text tools|Filters
@@ -729,7 +729,7 @@ macunpack|Encoding & conversion|Macintosh
 mcvert|Encoding & conversion|Macintosh
 UnMacpack|Encoding & conversion|Macintosh
 unsit|Encoding & conversion|Macintosh
-ar2|Archives & compression|OS-9 archives
+ar2|Archives & compression|OS-9 module libraries
 checkfile|Developer tools|Source checking
 fstat|Files & directories|Attributes
 mines|Games|Puzzles
@@ -756,18 +756,18 @@ scsi_mm1a|System & modules|MM/1 drivers
 snddrv|System & modules|MM/1 drivers
 windio.52|System & modules|MM/1 drivers
 mgif|Graphics & images|Viewers
-dearc|Archives & compression|MS-DOS
+dearc|Archives & compression|Create & extract
 tplot|Graphics & images|Plotting
 elvis|Editors|vi clones
 view|Editors|vi clones
 ref|Developer tools|Tags
 elvrec|Editors|vi clones
-fmt|Text tools|Formatting
+fmt|Text tools|Format & typeset
 elvprsv|Editors|vi clones
 vi.elvis|Editors|vi clones
 ctags.elvis|Developer tools|Tags
 input.elvis|Editors|vi clones
-adduser|Communications|System administration
+adduser|System & modules|Users and login
 dotilde|Communications|Mail
 expire|Communications|News
 fileserv|Communications|File transfer
@@ -850,7 +850,7 @@ adltouch|Languages|Adventure authoring
 modinfo|System & modules|Utilities
 btree|System & modules|Utilities
 clear|System & modules|Utilities
-repeat|System & modules|Utilities
+repeat|System & modules|Scheduling
 phone|System & modules|Utilities
 trunc|System & modules|Utilities
 getsys|System & modules|Utilities
@@ -908,13 +908,13 @@ dvips|Text tools|TeX
 afm2tfm|Text tools|TeX
 e|System & modules|Utilities
 new_e|System & modules|Utilities
-every|System & modules|Utilities
+every|System & modules|Scheduling
 greg|System & modules|Utilities
 isam|System & modules|Utilities
 lgrep|System & modules|Utilities
 liborder.os9|System & modules|Utilities
 lmargin|Printing|Spooling
-lunisolar|System & modules|Utilities
+lunisolar|Time & calendar|Astronomy
 map|System & modules|Utilities
 mshell|System & modules|Utilities
 names|System & modules|Utilities
@@ -989,8 +989,8 @@ ptxminst|System & modules|Utilities
 umusek|System & modules|Utilities
 ptxm|System & kernel|Modules
 vmod_trap|System & kernel|Modules
-dedit|System & modules|Disks and devices
-zoo_2.1|Archives & compression|Archivers
+dedit|System & modules|Devices & disks
+zoo_2.1|Archives & compression|Alternates
 passwd|System & modules|Users and login
 about|System & modules|Finding things
 about|System & modules|Utilities

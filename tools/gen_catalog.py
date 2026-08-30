@@ -389,7 +389,7 @@ BLURB = {
  "Compilers & build":"C compilers and their passes, assemblers, linkers, make and parser generators.",
  "Languages":"Interpreters and language systems beyond C.",
  "Archives & compression":"Pack, unpack and shrink -- lha, zip, tar, arc, zoo, and OS-9 module libraries.",
- "Encoding & conversion":"Between text encodings, line endings, number bases, ciphers and hashes.",
+ "Encoding & conversion":"Between text encodings, line endings, Macintosh formats, ciphers and hashes.",
  "Communications":"Kermit in several builds, terminal sessions, and networking.",
  "Graphics & images":"The netpbm toolkit, JPEG, a ray tracer, and things that draw.",
  "Games":"Adventures, board and card games, arcade ports, dungeon crawls and puzzles.",
