@@ -224,10 +224,44 @@ def usage_of(path, name, limit=1200):
     return text
 
 
-def from_origins(root, progs):
-    RX = re.compile(r"^  (\S+)\s+(\S+)\s+(usenet archive|EFFO forum|hc disk|PD disk)\b(.*)$")
+# The origin phrases DOC/ORIGINS actually uses, longest first so that
+# `EFFO public-domain disk' is not eaten by `EFFO forum'.  This listed four
+# of them until 2026-08-30 and matched 224 of the file's 512 entry lines:
+# 242 programs whose origin is `Microware OS-9 archive' -- the single largest
+# source on the disk -- showed no provenance at all in the guide, and nothing
+# said so.  `unmatched_origins' below is why it cannot go quiet again.
+ORIGIN_KINDS = ("Microware OS-9 archive", "EFFO public-domain disk",
+                "rdoggett's STUFF drop", "usenet archive", "EFFO forum",
+                "hc disk", "PD disk", "microware")
+ORIGIN_RX = re.compile(r"^  (\S+)\s+(\S+)\s+(%s)\b(.*)$"
+                       % "|".join(re.escape(k) for k in ORIGIN_KINDS))
+# An entry line is a name, a source-tree name, and something after them.
+ORIGIN_ENTRY = re.compile(r"^  (\S+)\s+(\S+)\s+(\S.*)$")
+
+
+def unmatched_origins(root):
+    """Entry-shaped ORIGINS lines whose origin phrase is not one we know.
+
+    REPORTED, NOT ENFORCED.  DOC/ORIGINS is prose as well as data -- its own
+    legend at the top, and paragraphs about the netpbm archives -- and plenty
+    of that is shaped like an entry.  What is worth a human eye is the
+    handful of REAL entries whose origin is phrased once and never again:
+    `cxref' and `delbak' (a note where the origin goes), `dmake' and `ksh'
+    (a bare archive filename), `makelex' ("same archive as sonnet"), `mines',
+    `sonnet' ("usenet/comp.sources.games") and `load' ("CONTRIBUTED by the
+    os9exec project").  Each would need its own phrase in ORIGIN_KINDS, and
+    that is a decision about the FILE, not about the parser.
+    """
+    out = []
     for line in read(root, "DOC/ORIGINS").split("\n"):
-        m = RX.match(line)
+        if ORIGIN_ENTRY.match(line) and not ORIGIN_RX.match(line):
+            out.append(line.strip())
+    return out
+
+
+def from_origins(root, progs):
+    for line in read(root, "DOC/ORIGINS").split("\n"):
+        m = ORIGIN_RX.match(line)
         if m and m.group(1) in progs:
             progs[m.group(1)].update(src=m.group(2), origin=m.group(3),
                                      archive=m.group(4).strip())
@@ -652,6 +686,12 @@ if __name__ == "__main__":
     root = args[0]
     here = os.path.dirname(os.path.abspath(__file__))
     progs, uncategorised, invisible = gather(root, os.path.join(here, "categories.psv"))
+
+    stray = unmatched_origins(root)
+    if stray:
+        print("  %d line(s) in DOC/ORIGINS look like entries and record an"
+              % len(stray))
+        print("  origin this parser does not know -- see unmatched_origins()")
 
     if invisible:
         print("  %d program(s) on the disk are NOT NAMED IN DOC/INDEX, so the"

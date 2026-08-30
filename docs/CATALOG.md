@@ -521,14 +521,14 @@
 | `gcc2` | &#9733; the GCC 2.x driver<br>`Usage: gcc2 {options} {files} {options}` |
 | `gcc_cc1` | GCC 1.39 C compiler pass |
 | `gcc_cc1plus` | GCC 1.39 C++ compiler pass |
-| `gcc_cc2` |  |
+| `gcc_cc2` | GCC 2.x compiler pass, under the name gcc2 forks |
 | `gcc_cccp` | GCC 1.39 preprocessor<br>`Usage: gcc_cccp [switches] input output` |
-| `gcc_cccp2` | &#9733; <br>`Usage: gcc_cccp2 [switches] input output` |
+| `gcc_cccp2` | &#9733; GCC 2.x preprocessor, under the name gcc2 forks<br>`Usage: gcc_cccp2 [switches] input output` |
 | `gcc_collect` | GCC 1.39 collect2<br>`Syntax   : collect [<opts>] {<file>} [<opts>]` |
 | `gpp` | the C++ driver<br>`Usage: gpp {options} {files} {options}` |
-| `gpp_cc1plus` |  |
-| `gpp_cccp` | &#9733; <br>`Usage: gpp_cccp [switches] input output` |
-| `gpp_collect` | <br>`Syntax   : collect [<opts>] {<file>} [<opts>]` |
+| `gpp_cc1plus` | GCC 2.x C++ pass, under the name gpp forks |
+| `gpp_cccp` | &#9733; GCC 2.x preprocessor, under the name gpp forks<br>`Usage: gpp_cccp [switches] input output` |
+| `gpp_collect` | GCC 2.x collect2, under the name gpp forks<br>`Syntax   : collect [<opts>] {<file>} [<opts>]` |
 
 **Make & generators**
 
