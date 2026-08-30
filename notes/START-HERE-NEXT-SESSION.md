@@ -116,13 +116,14 @@ So there are three now, and none of them replaces looking:
 Do not re-plan. `notes/PLAN-verification.md` is the plan and it is current.
 Do not stop between items to report; commit and start the next one.
 
-**1. Finish the os9exec comparison before anyone bumps the pin.** One data
-   family of eight was run under HEAD and matched. Run all eight, against a
-   COPY of the image so the lock does not collide with ordinary work:
-   `OS9EXEC=<binary> tools/datatest.py --all --image <copy>`. Both builds
-   are recipes, not artefacts: `git archive <ref> | tar -x -C <dir>` then
-   `make`. The pin is in `.github/workflows/build-image.yml` and bumping it
-   is rdoggett's call.
+**1. ~~Finish the os9exec comparison.~~ DONE 2026-08-30, in full.** Both
+   binaries give 172 of 175 with the same three failures and the same four
+   restarts. Nothing here can tell HEAD from the pin. Bumping
+   `.github/workflows/build-image.yml` is rdoggett's call and I have not
+   touched it. The recipe, if it needs redoing: `git archive <ref> | tar -x
+   -C <dir>` then `make`, then `OS9EXEC=<binary> tools/datatest.py --all
+   --image <a COPY of the image>` -- a copy, so the lock does not collide
+   with ordinary work.
 
 **2. Keep splitting the over-broad `for` lists.** "Run by name on its own
    card" went 579 -> 668 of 918 on 2026-08-29 and about forty cards still
@@ -360,15 +361,14 @@ being typed at this terminal, and every makefile written here by echoing at
 the shell was therefore a syntax error. `disk/DOC/make/demo.mk` is a small
 worked example shipped WITH its tabs, needing no compiler.
 
-**os9exec's pin looks safe to bump, on a PARTIAL check.** HEAD (`e8a3c81`)
-builds clean, still has the `mount -k -v=<name>` the build needs, and the pin
-is still an ancestor. Ninety commits, several touching `F$SRqMem` — but
-`etags`, the collection's own storm case, behaves identically under both, and
-the `archives` data family is 24 of 25 either way. **That is one family of
-eight**; the comparison was stopped so the play-test suite could have the
-machine to itself. Redo it before bumping anything, and run it against a COPY
-of the image (`OS9EXEC=<binary> tools/datatest.py --all --image <copy>`) so
-the lock does not collide with ordinary work.
+**os9exec's pin is safe to bump -- checked in full, 2026-08-30.** HEAD
+(`e8a3c81`) builds clean, still has the `mount -k -v=<name>` the build
+needs, and the pin is an ancestor. The whole data suite was run against a
+fresh copy of the image under both binaries and they are indistinguishable:
+**172 of 175 each**, the same three deliberate failures, and the same four
+cases that take the session down and get restarted. Ninety commits, several
+touching `F$SRqMem`, and nothing here can tell them apart. Bumping it is
+rdoggett's call; the workflow comment asks for that deliberately.
 
 ## AND LAST ON 2026-08-29: 47 programs were showing the wrong screen
 

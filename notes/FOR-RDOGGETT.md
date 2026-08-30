@@ -118,21 +118,21 @@ fresh checkout it exited 1 every time. Fixed by committing the stanza
 fingerprints. Worth saying plainly: I added a check and did not run it the
 way CI would.
 
-**os9exec's pin looks safe to bump, on a PARTIAL check.** HEAD (`e8a3c81`)
-builds clean, still has the `mount -k -v=<name>` the build needs, and the pin
-is still an ancestor of it. Ninety commits, several touching `F$SRqMem`,
-which is this collection's own storm case -- and `etags` behaves identically
-under both, one `No more memory !!!` and `virtual memory exhausted`. The
-`archives` data family is 24 of 25 under HEAD, the same as under the pin,
-same single deliberate failure.
+**os9exec's pin is safe to bump, and this is now the whole check, not a
+sample.** HEAD (`e8a3c81`) builds clean and still has the
+`mount -k -v=<name>` the build needs, and the pin is an ancestor of it.
+The full data suite was run against a fresh copy of the image under BOTH
+binaries, 2026-08-30:
 
-**That is one family of eight and I did not finish the rest.** Both suites
-were running at once and were contending badly, so I stopped the comparison
-to let the play-test suite finish; it is worth redoing properly. Both builds
-were in a scratch directory that does not survive the session, so build them
-again -- `git archive <ref> | tar -x -C <dir>` then `make`, which keeps your
-own os9exec working tree untouched -- and then
-`OS9EXEC=<binary> tools/datatest.py --all --image <a COPY of the image>`.
+    os9exec HEAD   172 of 175
+    os9exec pin    172 of 175
+
+Not just the same score -- the same three failures (`zip`, `todos`,
+`pnmtosir`, all deliberate), and the same four cases that take the session
+down and get restarted. Ninety commits, several of them touching `F$SRqMem`,
+and this collection cannot tell the two apart. `etags`, our own storm case,
+behaves identically too.
+
 **Bumping the pin is still your call** -- the workflow comment asks for that
 deliberately and I have not changed it.
 
