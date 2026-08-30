@@ -1,11 +1,13 @@
 $ ppmntsc 0.8 /dd/tmp/w.ppm | pnmfile
-stdin:  PPM raw, 71 by 44  maxval 255
+ppmntsc: /dd/tmp/w.ppm -
+pnmfile: EOF / read error reading magic number
 $ ppmqvga /dd/tmp/w.ppm | pnmfile
-stdin:  PPM raw, 71 by 44  maxval 255
+ppmqvga: /dd/tmp/w.ppm -
+pnmfile: EOF / read error reading magic number
 $ pnmtorast /dd/tmp/w.ppm > /dd/tmp/w.ras
-pnmtorast: computing colormap...
-pnmtorast: Too many colors - proceeding to write a 24-bit non-mapped
-pnmtorast: rasterfile.  If you want 8 bits, try doing a 'ppmquant 256'.
+pnmtorast: /dd/tmp/w.ppm -
 $ rasttopnm /dd/tmp/w.ras | pnmfile
-rasttopnm: writing PPM file
-stdin:  PPM raw, 71 by 44  maxval 255
+rasttopnm: unable to read in rasterfile header
+pnmfile: EOF / read error reading magic number
+$ pnmtoddif < /nil
+pnmtoddif: EOF / read error reading magic number

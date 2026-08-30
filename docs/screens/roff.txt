@@ -19,3 +19,5 @@ Options:
      -c        print tabel of contents
      -s        ????
      -h        use hardtabs
+$ nroff -?
+***nroff: illegal switch ?

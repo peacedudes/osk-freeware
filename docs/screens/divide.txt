@@ -1,9 +1,9 @@
 $ head -n 12 /dd/SYS/holidays > /dd/tmp/dv.txt 2>/nil
 $ divide -l=4 /dd/tmp/dv.txt /dd/tmp/piece
 $ ls -l /dd/tmp/piece.1 /dd/tmp/piece.2 /dd/tmp/piece.3
--rw-------   1 0        0              60 Aug 28 17:12 /dd/tmp/piece.1
--rw-------   1 0        0              91 Aug 28 17:12 /dd/tmp/piece.2
--rw-------   1 0        0              91 Aug 28 17:12 /dd/tmp/piece.3
+-rw-------   1 0        0              60 Aug 30 14:29 /dd/tmp/piece.1
+-rw-------   1 0        0              91 Aug 30 14:29 /dd/tmp/piece.2
+-rw-------   1 0        0              91 Aug 30 14:29 /dd/tmp/piece.3
 $ cat /dd/tmp/piece.1
 * Common Holidays
 
@@ -16,3 +16,5 @@ Function: Takes first 350,000 bytes of a file or stdin
           in another file for easily putting large files
           on 360k media.
 Options:  none
+
+$ chardef < /nil

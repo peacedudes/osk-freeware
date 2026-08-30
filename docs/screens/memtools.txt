@@ -16,3 +16,4 @@ options:
         -e[=]<num>  ending line number
         -l          list known terminal types (TERM)
         -n                      remove last character of long (80-char) lines
+$ scriptmaster < /nil

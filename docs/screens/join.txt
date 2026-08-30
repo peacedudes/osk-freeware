@@ -6,3 +6,9 @@ $ paste /dd/tmp/j1 /dd/tmp/j2
 1/1             New Year's Day  * cal's holidays file ends with `INCLUDE /dd/syu
 2/14 Valentine's Day    * put here is printed alongside the public holidays.  S:
 3/17 St. Patrick's Day  *
+$ join < /nil
+Usage: join [-a 1|2] [-v 1|2] [-e empty-string] [-o field-list...] [-t char]
+       [-j[1|2] field] [-1 field] [-2 field] file1 file2
+$ field < /nil
+
+field: no fields selected

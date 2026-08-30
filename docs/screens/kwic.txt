@@ -12,3 +12,7 @@ Valentine's 1
 Day 1
 3/17 1
 St. 1
+$ pagefraz < /nil
+pagefraz: word too long in line 0
+$ pagekwic < /nil
+pagekwic: word too long in line 0

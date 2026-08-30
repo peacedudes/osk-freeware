@@ -10,3 +10,4 @@ Note:     existing index files (".ndx") will be overwritten
 V1.0 (c) 1989 by L.Zeller
 $ lesskey -?
 usage: lesskey [-o output] [input]
+$ lessecho < /nil

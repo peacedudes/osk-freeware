@@ -11,5 +11,6 @@ Language interpreters:
         PostScript PostScriptLevel1 PostScriptLevel2 PDF
 Search path:
     .
-    /dd/LIB/gs403
     /dd/etc/lib/gs33
+Most frequently used switches: (you can use # in place of =)
+$ splman < /nil

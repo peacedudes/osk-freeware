@@ -1,6 +1,9 @@
 $ ppmtopj /dd/tmp/base.ppm > /dd/tmp/t.pj
+ppmtopj: /dd/tmp/base.ppm -
 $ pjtoppm /dd/tmp/t.pj | pnmfile
-stdin:  PPM raw, 48 by 24  maxval 255
+pnmfile: junk in file where an integer should be
 $ ppmtopjxl /dd/tmp/base.ppm | wc
-(Computing colormap...  Done.  6 colors found.)
-      0      1    442
+ppmtopjxl: /dd/tmp/base.ppm -
+      0      0      0
+$ ppmtoacad < /nil
+ppmtoacad: EOF / read error reading magic number

@@ -2,3 +2,6 @@ $ zoo_2.1 a /dd/tmp/z2.zoo /dd/SYS/motd
 Zoo:  /dd/SYS/motd --  ( 0%) added
 $ booz -l /dd/tmp/z2.zoo
 Usage:  booz {lxt} archive[.zoo] [ file ... ]
+$ fiz < /nil
+Fiz 2.0 (1987/02/01) public domain Zoo archive repair utility by Rahul Dhesi
+Usage:  fiz archive[.zoo]  ("fiz -h" for help)

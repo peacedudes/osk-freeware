@@ -1,14 +1,19 @@
-$ msinfo a: | head -n 12
-device information:
-===================
-sectors per track: 18
-heads: 2
-cylinders: 80
-
-mformat command line: mformat -t 80 -h 2 -s 18 a:
-
-bootsector information
-======================
 filename="/dd/DOS/a.img"
 banner:"BSD  4.4"
 $ mslabel a:FREEWARE
+$ mscheck < /nil
+F$SetSys: unimplemented 03D8 (size=80000004)
+        ... the same line 4 times over
+ Volume in drive A is FREEWARE
+ Volume Serial Number is 35D7-0A00
+ Directory for A:/
+
+readme   txt       139 08-02-2026   2:22a readme.txt
+        1 file(s)               139 bytes
+                          1 457 152 bytes free
+
+
+Verifying files on drive A:...
+F$SetSys: unimplemented 03D8 (size=80000004)
+        ... the same line 4 times over
+Disk in drive A: is OK.

@@ -4,3 +4,16 @@ lispmtopgm: bad id string in Lispm file
 pnmfile: EOF / read error reading magic number
 $ ppmtomap /dd/tmp/base.ppm | head -n 8
 ppmtomap: /dd/tmp/base.ppm -
+$ pbmtopk < /nil
+pbmtopk: This is PBMtoPK, version 2.4
+usage:  pbmtopk pkfile[.pk] tfmfile[.tfm] dpi [-s designsize] [-p num param...]
+        [-C codingscheme ] [-F family] [-c num | <char>]...
+   <char> is:
+        [-W tfmwidth] [-H tfmheight] [-D tfmdepth] [-I ital_corr] [-h horiz]
+        [-v vert] [-x xoffset] [-y yoffset] file
+    or:
+        -f optfile
+
+$ pktopbm < /nil
+pktopbm: This is PKtoPBM, version 2.4
+usage:  pktopbm pkfile[.pk] [[-x width] [-y height] [-c num] pbmfile]...

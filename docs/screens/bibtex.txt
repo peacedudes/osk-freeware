@@ -1,2 +1,6 @@
 $ bibtex
+Please type input file name (no extension)--afm2tfm < /nil
+I couldn't open file name `afm2tfm < /nil.aux'
+Please type input file name (no extension)--maketexpk < /nil
+I couldn't open file name `maketexpk < /nil.aux'
 Please type input file name (no extension)--

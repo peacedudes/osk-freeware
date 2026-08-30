@@ -17,3 +17,4 @@ $ sort -n /dd/tmp/n.txt
 4
 22
 111
+$ uniq < /nil

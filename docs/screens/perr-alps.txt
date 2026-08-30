@@ -10,3 +10,4 @@ Function: generate Alps ASP-1000 printer codes
 Options:
      -lq        letter quality mode
      -norm      normal mode
+$ epson < /nil

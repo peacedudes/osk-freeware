@@ -12,4 +12,8 @@ Syntax: lgrep <arg1> ... <argn>
 Function: same as 'grep -l', but prints filenames without comments
 Options: same as with 'grep'
 $ ggrep -c chess /dd/DOC/INDEX
-14
+15
+$ bmgtest < /nil
+bmgtest: pattern argument missing
+$ bmgtest2 < /nil
+bmgtest: pattern argument missing

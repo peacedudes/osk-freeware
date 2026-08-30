@@ -8,3 +8,4 @@ $ sed "s/Day/DAY/g" /dd/tmp/hol.txt
 easter Easter Sunday
 *easter-7 Palm Sunday
 *easter-46 Ash Wednesday
+$ psc < /nil

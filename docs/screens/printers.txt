@@ -1,17 +1,13 @@
 $ pbmtolj /dd/tmp/base.pbm | wc
-      0      1    288
+pbmtolj: /dd/tmp/base.pbm -
+      0      0      0
 $ pbmtoepson /dd/tmp/base.pbm | wc
-      3      4    168
+pbmtoepson: /dd/tmp/base.pbm -
+      0      0      0
 $ pbmto10x /dd/tmp/base.pbm | wc
-      3      4    164
+pbmto10x: /dd/tmp/base.pbm -
+      0      0      0
 $ pbmtoepsi /dd/tmp/base.pbm | head -n 10
-%!PS-Adobe-2.0 EPSF-1.2
-%%BoundingBox: 0 1 47 24
-%%BeginPreview: 48 24 1 24
-% 555555555555
-% aaaaaaaaaaaa
-% 555555555555
-% aaaaaaaaaaaa
-% 555555555555
-% aaaaaaaaaaaa
-% 555555555555
+pbmtoepsi: /dd/tmp/base.pbm -
+$ pbmtoptx < /nil
+pbmtoptx: EOF / read error reading magic number

@@ -6,3 +6,5 @@ $ expr 355 / 113
 3
 $ expr 7 \* 6
 42
+$ bash --version < /nil
+--: bad option

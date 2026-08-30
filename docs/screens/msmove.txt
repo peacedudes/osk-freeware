@@ -1,4 +1,8 @@
 $ msmove a:MOTD.TXT a:/
-Long file name "MOTD.TXT" already exists.
-a)utorename A)utorename-all r)ename R)ename-all
-s)kip S)kip-all q)uit (aArRsSq): q
+msmove: File "a:MOTD.TXT" not found
+$ q
+q: command not found
+$ msren < /nil
+Mtools version 3.6, dated 14 Apr 97
+Usage: msren [-itnmvV] file targetfile
+       msren [-itnmvV] file [files...] target_directory

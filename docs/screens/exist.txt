@@ -4,3 +4,5 @@ $ exist /dd/SYS/no-such-file; echo "exist says $?"
 exist says 1
 $ checkenv TERM; echo "checkenv says $?"
 checkenv says 1
+$ ynad < /nil
+.!YNAD - Yet Another Name & Address program "----------------------------------

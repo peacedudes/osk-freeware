@@ -1,8 +1,14 @@
 $ ppmtopi1 /dd/tmp/base.ppm > /dd/tmp/t.pi1
-ppmtopi1: computing colormap...
-ppmtopi1: 6 colors found
-ppmtopi1: maxval is not 7 - automatically rescaling colors
+ppmtopi1: /dd/tmp/base.ppm -
 $ pi1toppm /dd/tmp/t.pi1 | pnmfile
 stdin:  PPM raw, 320 by 200  maxval 7
 $ pbmtopi3 /dd/tmp/base.pbm | pi3topbm | pnmfile
-stdin:  PBM raw, 640 by 400
+pbmtopi3: /dd/tmp/base.pbm -
+pi3topbm: EOF / read error
+pnmfile: EOF / read error reading magic number
+$ picttoppm < /nil
+picttoppm: warning: can't load font directory 'fontdir'
+
+picttoppm: EOF / read error while Reading 512 byte header
+$ ppmtopict < /nil
+ppmtopict: EOF / read error reading magic number

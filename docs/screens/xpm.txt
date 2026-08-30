@@ -1,17 +1,8 @@
 $ ppmtoxpm /dd/tmp/base.ppm > /dd/tmp/t.xpm
-(Computing colormap...  Done.  6 colors found.)
+ppmtoxpm: /dd/tmp/base.ppm -
 $ head -n 12 /dd/tmp/t.xpm
-/* XPM */
-static char */dd/tmp/base[] = {
-/* width height ncolors chars_per_pixel */
-"48 24 6 1",
-/* colors */
-"  c #0C151C",
-". c #4F9CBB",
-"X c #412F7B",
-"o c #28EF9C",
-"O c #1A825C",
-"+ c #764ADB",
-/* pixels */
 $ xpmtoppm /dd/tmp/t.xpm | pnmfile
-stdin:  PPM raw, 48 by 24  maxval 255
+xpmtoppm: EOF / read error
+pnmfile: EOF / read error reading magic number
+$ ppmtopuzz < /nil
+ppmtopuzz: EOF / read error reading magic number

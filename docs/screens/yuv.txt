@@ -1,9 +1,16 @@
 $ ppmtoyuv /dd/tmp/base.ppm | yuvtoppm 48 24 | pnmfile
+ppmtoyuv: /dd/tmp/base.ppm -
 stdin:  PPM raw, 48 by 24  maxval 255
 $ ppmtorgb3 /dd/tmp/base.ppm
+ppmtorgb3: /dd/tmp/base.ppm -
 $ ls -l /dd/tmp/base.red /dd/tmp/base.grn /dd/tmp/base.blu
--rw-------   1 0        0            1165 Aug 28 17:30 /dd/tmp/base.blu
--rw-------   1 0        0            1165 Aug 28 17:30 /dd/tmp/base.grn
--rw-------   1 0        0            1165 Aug 28 17:30 /dd/tmp/base.red
+ls: %s: error 216
+ls: %s: error 216
+ls: %s: error 216
 $ rgb3toppm /dd/tmp/base.red /dd/tmp/base.grn /dd/tmp/base.blu | pnmfile
-stdin:  PPM raw, 48 by 24  maxval 255
+rgb3toppm: /dd/tmp/base.red -
+pnmfile: EOF / read error reading magic number
+$ ppmtoyuvsplit < /nil
+usage:  ppmtoyuvsplit basename [ppmfile]
+$ yuvsplittoppm < /nil
+usage:  yuvsplittoppm <basename> <width> <height> [-ccir601]
