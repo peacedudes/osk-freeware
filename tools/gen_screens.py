@@ -497,18 +497,36 @@ def main():
         shutil.rmtree(KEEP)
     os.makedirs(KEEP, exist_ok=True)
 
-    # A PROGRAM'S OWN CARD WINS.  These were assigned in one pass, first
-    # card to claim a name, which is alphabetical order and nothing more --
-    # so `rdoc', which has a card of its own showing it turn C source into a
-    # structure chart, published the `helpindex' card's usage message
-    # instead, purely because `helpindex' sorts first and lists rdoc in its
-    # `for' line.  Own stanza first, then everything else.
+    # WHICH CARD A PROGRAM'S SCREEN COMES FROM, in three tiers.  These were
+    # assigned in one pass, first card to claim a name -- which is
+    # alphabetical order and nothing more -- and it published the wrong
+    # screen twice over.  `rdoc' has a card of its own showing it turn C
+    # source into a structure chart and published the `helpindex' usage
+    # message, because helpindex sorts first and lists rdoc in its `for'
+    # line: 47 programs were affected.  Then `autolf' published the `expand'
+    # card, which never types it, while the `todos' card does: 13 more.
+    #
+    #   1. the card NAMED for the program
+    #   2. a card that actually RUNS it
+    #   3. anything that credits it
+    #
+    # Tier 3 is not a failure -- eleven DVI drivers sharing one screen is
+    # right -- it is just the weakest claim, and should lose to the other
+    # two rather than to the alphabet.
+    sheets_by_name = sheet_shots()
+
+    def types(card, prog):
+        meta = sheets_by_name.get(card)
+        return bool(meta) and bool(
+            re.search(r"(^|[/ ])%s\b" % re.escape(prog), meta.get("typed", "")))
+
     screens = {}
     ordered = sorted(entries, key=lambda x: x["name"].lower())
-    for own_first in (True, False):
+    for tier in (1, 2, 3):
         for e in ordered:
             for prog in e["for"]:
-                if (prog == e["name"]) == own_first:
+                rank = 1 if prog == e["name"] else 2 if types(e["name"], prog) else 3
+                if rank == tier:
                     screens.setdefault(prog, {"n": e["name"], "c": e["cap"],
                                               "s": e["screen"]})
     for e in ordered:
