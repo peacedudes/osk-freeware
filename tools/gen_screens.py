@@ -48,6 +48,7 @@ CAPS = os.path.join(REPO, "notes", "playtests")
 SHEETS = os.path.join(REPO, "tools", "screenshots")
 DOCS = os.path.join(REPO, "docs")
 KEEP = os.path.join(DOCS, "screens")
+PLAYTESTS = os.path.join(REPO, "tools", "playtests")
 
 # What a play-test capture is showing, and which of its snapshots to use.
 # The sheets carry their own captions; this covers tools/playtests/*.keys.
@@ -398,6 +399,25 @@ def collect():
     sheets = sheet_shots()
     names = sorted({f.split(".")[0] for f in os.listdir(CAPS)
                     if f.endswith(".txt")})
+    # A CAPTURE NO STANZA DEFINES IS NOT A SCREEN.  Probing a program means
+    # writing a throwaway sheet and capturing it, and those captures land in
+    # the same directory as the real ones -- `advprobe2' was published to
+    # docs/screens/ and committed on 2026-08-29 with no caption and no
+    # programs, purely because it had ink in it.  Say what is being skipped;
+    # a capture nobody meant to keep is a capture to delete.
+    # THREE THINGS DEFINE A SCREEN, not one: a stanza in a sheet, an entry in
+    # CAPTIONS, or a play-test -- `playtest.py' writes its screens into the
+    # same directory, and gnuchessn, pacman, maze and eight others are
+    # published from there.  A first cut of this check knew only about sheets
+    # and would have dropped all eleven.
+    played = {f[:-5] for f in os.listdir(PLAYTESTS)} if os.path.isdir(PLAYTESTS) else set()
+    orphans = [n for n in names
+               if n not in sheets and n not in CAPTIONS and n not in played]
+    if orphans:
+        print("  %d capture(s) belong to no stanza and are NOT published: %s"
+              % (len(orphans), " ".join(orphans[:8])))
+    names = [n for n in names if n not in orphans]
+
     out = []
     for name in names:
         meta = sheets.get(name)
