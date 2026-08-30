@@ -2,14 +2,30 @@
 # title screen.
 
 shot    advint
+size    36 80
 for     advint advcom
-cap     ADVSYS, David Betz's adventure system.  It plays a world COMPILED by
-cap     advcom, and no compiled world ships -- the sample .adv source does,
-cap     in GAMES/ADVSYS, and building it needs a shell with a real chd
-cap     because advcom opens its include relative to the DATA directory.
-cap     GAMES/ADVSYS/README has the three lines.  This is what asking for
-cap     one anyway looks like.
-run     advint /dd/GAMES/ADVSYS/objects
+cap     ADVSYS -- David Betz's adventure system -- compiled and then played,
+cap     both on this disk.  advcom builds a world from GAMES/ADVSYS/
+cap     osample.adv and advint runs it.  This card used to say that needed
+cap     a shell with a real chd, which bash has not got.  It does not: the
+cap     two limits are that advcom opens its `@objects.adi' include by bare
+cap     name in the DATA DIRECTORY, and that it holds a filename in 20
+cap     characters and appends `.adv' to it.  Put both files where the data
+cap     directory already is and give it a short name, and bash compiles it
+cap     -- `advcom osample', not `advcom /dd/GAMES/ADVSYS/osample'.
+run     cat /dd/GAMES/ADVSYS/osample.adv > /dd/osample.adv
+wait    8
+run     cat /dd/GAMES/ADVSYS/objects.adi > /dd/objects.adi
+wait    8
+run     advcom osample > /nil
+wait    35
+run     advint osample
+wait    12
+send    look\r
+wait    6
+send    n\r
+wait    6
+send    look\r
 wait    8
 
 shot    bincheckr
