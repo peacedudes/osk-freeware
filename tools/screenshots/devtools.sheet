@@ -60,15 +60,17 @@ run     cxref /dd/SRC/keep/about.c | head -n 20
 wait    8
 
 shot    dhry
-for     dhry dhryO2 dhryGcc dhryGcc2 dhryGcc2o2 dhryGcco2 dhryGccin dhryGccmx
-for     dhryGcc2in dhryGcc2mx dhryshamu dhryshamu2
+for     dhry dhryGcc2o2
 cap     Dhrystone, built twelve ways -- Microware cc, GCC 1.x and 2.x,
 cap     optimised and not -- which is what the DHRY directory is FOR.  It
 cap     asks how many runs, and it has to be asked for a lot: at the
 cap     default it finishes before the clock ticks and says the measured
 cap     time is too small.  Two million runs apiece gives the comparison,
 cap     and GCC 2 at -O2 is about 16% ahead of the Microware build.  The
-cap     numbers are the emulator's speed, not a 68000's.
+cap     numbers are the emulator's speed, not a 68000's.  The other ten
+cap     builds are on the `dhry-all' screen, which runs every one of them
+cap     at the default count for the shape of the comparison; this one
+cap     spends the time to get two of them measured properly.
 run     echo 2000000 | dhry > /dd/tmp/d1.txt
 wait    60
 run     tail -l=2 /dd/tmp/d1.txt
@@ -219,11 +221,20 @@ wait    8
 
 
 shot    indent
+size    36 80
 for     indent cb ccheck checkfile
-cap     indent reformatting C source to a house style -- the head of what
-cap     it made of the collection's own `about.c'.
-run     indent /dd/SRC/keep/about.c -st | head -n 16
+cap     `indent' reformatting C source to a house style -- the head of what
+cap     it made of the collection's own about.c -- and the three C checkers
+cap     that travelled on this card without ever being run.  `cb' is the
+cap     other beautifier, `ccheck' and `checkfile' look for mistakes.
+run     indent /dd/SRC/keep/about.c -st | head -n 12
 wait    15
+run     cb < /dd/SRC/keep/about.c | head -n 6
+wait    12
+run     ccheck /dd/SRC/keep/about.c
+wait    10
+run     checkfile /dd/SRC/keep/about.c
+wait    10
 
 shot    patch
 for     patch diff cdiff spiff

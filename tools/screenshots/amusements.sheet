@@ -48,6 +48,10 @@ run     georgia | head -n 10
 wait    10
 run     rndname 6
 wait    10
+run     minnesota | head -n 8
+wait    12
+run     rstory2 | head -n 8
+wait    12
 
 
 shot    textb

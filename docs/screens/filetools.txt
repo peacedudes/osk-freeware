@@ -1,23 +1,23 @@
-     -?      = report help
+ target directory (default = /d0)
 
-$ Libr2Ascii
+$ eunlink
+Syntax: eunlink {<event>}
+Function: unlink an event
+Options: none
+$ PrintLabels
 Missing parameter: infile
-Syntax: Libr2Ascii [opts]
-Convert a Librarian Card Catalog file to a plain ASCII text file.
-Output is sent to stdout.
+Syntax: PrintLabels [opts]
+Libraian Card Catalog card printer
+This program is used to print out cards
+Prints either large (5x8) or small cards (3x5)
+Prints "Shelf List" (by=Id), Title reference (by=Title),
+Author reference (by=Author), or Subject reference
+(by=Subject).  By default a "Shelf List" is printed.
 Options:
--infile String Required Input file
-
-        Version: V1.0Beta
-        Copyright (c) 1991,1992 Robert Heller D/B/A Deepwoods Software
-$ EditLibr
-Missing parameter: editfile
-Syntax: EditLibr [opts]
-Librarian Card Catalog file editor
-This program is used to edit and maintain Card Catalog Files
-Options:
--editfile       String Required The name of the file to edit
--minpages       Integer Optional The minimum # of pages to set aside when create
+-infile String Required The name of the file to print records from
+-templatefile   String Required The name of the template file
+-by     String Optional Should be one of {Id, Title, Author, Subject} - selects.
+-only   String Optional selection expression
 
         Version: V1.0Beta
         Copyright (c) 1991,1992 Robert Heller D/B/A Deepwoods Software

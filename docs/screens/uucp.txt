@@ -1,15 +1,3 @@
-$ uucico -?
-usage: uucico [opts] -r | sys [sys...]  [opts]
-
-      sys      -remote system to call as MASTER (default)
-
-opts: -r       -run as SLAVE
-      -u       -do not run UUXQT at all
-      -a       -run UUXQT after each call, default is after all calls
-                  are completed
-      -l       -use RAM disk for temporary "uulog"
-      -o       -orphan UUXQT
-      -pN      -fork UUXQT with a priority of N
       -q       -run quietly
       -wN      -use window size of N
       -xN      -set debug level to N (0-9), default is 0 (off), if N > 5
@@ -21,3 +9,15 @@ opts: -r       -run as SLAVE
 
 v2.1 (94Sep30) This is free software released under the GNU General Public
 License.  Please send suggestions/bug reports to:  bob@kc2wz.bubble.org
+$ uux -?
+Syntax: uux [<opts>] <host>!<prog> [<args>]
+Function: UUCP Executive
+Options:
+     -a=<user name>      user requesting the service
+     -b                  binary file transfer (default ascii)
+     -g<grade>           specify grade
+     -r                  queue request
+     -d,-x=<level>       debug level
+     -z                  input from standard input
+$ uuxqt
+uuxqt: isuuxqtrunning() can't load 'procs'...error 221

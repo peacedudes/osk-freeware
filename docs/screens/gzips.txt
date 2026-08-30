@@ -6,3 +6,11 @@ $ gzip020_nocsl -V
 gzip020_nocsl 1.2.4 (18 Aug 93)
 Compilation options:
 NO_DIR NO_UTIME
+$ gzip68k_csl -V
+gzip68k_csl 1.2.4 (18 Aug 93)
+Compilation options:
+NO_DIR NO_UTIME
+$ gzip020_csl -V
+gzip020_csl 1.2.4 (18 Aug 93)
+Compilation options:
+NO_DIR NO_UTIME

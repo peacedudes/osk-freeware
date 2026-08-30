@@ -63,6 +63,10 @@ run     advcom
 wait    8
 run     convert
 wait    8
+run     mkindex
+wait    8
+run     vtxtcn
+wait    10
 
 shot    fuddle
 cap     fuddle, a chess variant, one move in.

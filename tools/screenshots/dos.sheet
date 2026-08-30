@@ -50,6 +50,10 @@ run     mscopy /dd/SYS/motd a:/DOCS/README.TXT
 wait    10
 run     msdir a:/DOCS
 wait    10
+run     mscd a:/DOCS
+wait    8
+run     msrd a:/DOCS
+wait    8
 
 shot    msattrib
 for     msattrib
@@ -76,6 +80,10 @@ wait    12
 run     msread a:RAW.TXT /dd/tmp/raw.out
 wait    12
 run     chksum /dd/SYS/motd /dd/tmp/raw.out
+wait    10
+run     msbadblocks
+wait    8
+run     mstoolstest
 wait    10
 
 shot    mtools

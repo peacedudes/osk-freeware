@@ -4,3 +4,7 @@ $ as11
 Usage: as11 [files]
 $ as5
 Usage: as5 [files]
+$ as1
+Usage: as1 [files]
+$ as4
+Usage: as4 [files]

@@ -5,3 +5,15 @@ gcc version 1.39
  cccp -v -undef -D__GNUC__ -DOSK -Dmc68000 -D__OSK__ -D__mc68000__ /dd/SRC/loadp
 gcc: os9exec: module not found (/dd/SRC/load/load.c)
 gcc: cc.000003.cpp: file not found (/dd/SRC/load/load.c)
+$ gcc_cc1 -version
+GNU C version 1.39 (68k, Motorola syntax) compiled by GNU C version 1.39.
+default target switches: -mregparm -mstack-check
+gcc_cc2
+        psect   stdin_gc,0,0,0,0,0
+gcc_cccp2 -version
+stdin:2: parse error before `gcc_cccp2'
+gcc_collect
+gpp -v
+gpp_cc1plus -version
+gpp_cccp -version
+gpp_collect

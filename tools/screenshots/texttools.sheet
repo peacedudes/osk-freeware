@@ -120,11 +120,20 @@ cap     SYS/TEX/SAMPLES: it loads the plain format, sets the page and writes
 cap     a DVI file.  Note that it is `virtex' being run, not `tex' -- the
 cap     `tex' wrapper forks `virtex' by bare name, and OS-9 resolves a fork
 cap     against the EXECUTION directory rather than PATH, so from /dd/CMDS
-cap     it cannot find it.  Run virtex yourself, or copy it up.
+cap     it cannot find it.  Run virtex yourself, or copy it up.  `tex',
+cap     `initex' and `texidx' are asked for after it, so the wrapper's
+cap     failure is shown rather than described: all three were credited to
+cap     this card and never typed until 2026-08-30.
 run     virtex "&plain" /dd/SYS/TEX/SAMPLES/story.tex
 wait    40
 send    \134end\r
 wait    20
+run     tex /dd/SYS/TEX/SAMPLES/story.tex
+wait    15
+run     initex
+wait    12
+run     texidx
+wait    10
 
 shot    latex
 for     latex slitex
@@ -291,11 +300,23 @@ run     lout -V
 wait    6
 
 shot    pep
+size    36 80
 for     pep ape eo qt cuts
-cap     pep is a file `detergent' -- it strips the junk out of a file using
-cap     the character tables in SYS/PEP.
+cap     `pep' is a file `detergent' -- it strips the junk out of a file
+cap     using the character tables in SYS/PEP.  The four beside it were
+cap     credited to this card and never typed until 2026-08-30: `ape' and
+cap     `eo' are more filters, `cuts' cuts columns, and `qt' is the one
+cap     whose name says least about it -- it prints a QUARTER's calendar.
 run     pep -?
 wait    8
+run     ape -?
+wait    8
+run     eo -?
+wait    8
+run     cuts -?
+wait    8
+run     qt
+wait    10
 
 shot    qsort9
 for     qsort9 nsort shuffle uniq unip
@@ -459,13 +480,17 @@ run     head -n 8 /dd/SYS/holidays | tac
 wait    5
 
 shot    tangle
-for     tangle weave tftopl pltotf gftype pktype
+for     tangle weave
 cap     tangle and weave are the WEB tools TeX itself is written with: one
-cap     makes Pascal out of a .web file, the other makes TeX.
+cap     makes Pascal out of a .web file, the other makes TeX.  `tftopl' and
+cap     `pltotf' are the font-metric pair with their own card; `gftype' and
+cap     `pktype' are on the texfonts-bitmap card, which is where the ones
+cap     with no bitmap font to read belong.  This card credited all six and
+cap     typed two of them until 2026-08-30.
 run     tangle
 wait    10
-run     tftopl /dd/SYS/TEX/FONTS/TFM/cmr10.tfm | head -n 14
-wait    15
+run     weave
+wait    10
 
 shot    tformat
 cap     tformat, the SNOBOL4 text formatter.

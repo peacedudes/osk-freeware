@@ -1,18 +1,23 @@
-$ georgia | head -n 10
-                                                                  Snow
-Year   1    Weather        Sky   Temperature    Precip      Wind  Depth  Notes
-January
-   1          Clear      Clear    Fair ( 50)      None      Calm         New Ye)
+   1  Precipitation       Mist    Fair ( 50)  Sprinkle     Light         Rain -)
    2          Clear      Clear    Fair ( 50)      None      Calm
    3          Clear      Clear    Fair ( 50)      None      Calm
    4          Clear      Clear    Fair ( 50)      None      Calm
    5          Clear      Clear    Fair ( 50)      None      Calm
    6          Clear      Clear    Fair ( 50)      None      Calm         Twelftt
-   7          Clear      Clear    Fair ( 50)      None     Light
+   7          Clear      Clear    Fair ( 55)      None      Calm
 $ rndname 6
-Wevohad
-Ueminelu
-Obunumq
-Byqikog
-Tupug
-Ruo
+S'juvu
+Awaci
+Alijmyq
+Aboliyat
+Jujike
+Bohsul'c
+$ minnesota | head -n 8
+                                                                  Snow
+Year   1    Weather        Sky   Temperature    Precip      Wind  Depth  Notes
+January
+   1  Precipitation  Heavy Fog    Cold ( 20)    Steady      Calm  90.1"  Snow -)
+   2  Precipitation       Mist    Cold ( 10)    Steady  Blustery 114.1"  Blizza,
+   3  Precipitation  Heavy Fog    Cold ( 20)    Steady      Calm 124.1"  Snow -,
+   4  Precipitation  Light Fog    Cold ( 10)    Steady      Calm 129.1"  Snow -,
+   5          Clear      Clear    Cold ( 10)      None     Light 129.1"

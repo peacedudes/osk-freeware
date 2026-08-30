@@ -11,3 +11,9 @@ $ setyear -?
 Syntax:    setyear <YYYY>
 Function:  set system date to year YYYY
            (YYYY must be 1970 to 2050)
+$ date
+August 30, 2100 04:20:06
+$ setime -?
+YYMMDDHHMMSS
+
+fixyear -?

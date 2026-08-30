@@ -98,19 +98,30 @@ for     kermit2 kermit3 xkermit ckermit
 cap     Four more Kermits.  The collection keeps every build it found, and
 cap     they do not all take the same command line -- which is the reason
 cap     to keep them side by side.
+cap     All four are asked for; two were until 2026-08-30.
 run     kermit2
 wait    8
 run     xkermit
 wait    8
+run     kermit3
+wait    8
+run     ckermit
+wait    10
 
 shot    mail
 for     mail lmail rmail smail
 cap     The mail chain.  `mail' reaches for a scratch file at /r0 -- the RAM
 cap     disk os9exec cannot provide -- and stops; `smail', the router,
 cap     answers properly and shows what it takes.
+cap     `lmail' delivers locally and `rmail' takes what uucp brought; both
+cap     were credited here and never typed until 2026-08-30.
 run     mail -?
 wait    6
 run     smail -?
+wait    6
+run     lmail -?
+wait    6
+run     rmail -?
 wait    6
 
 shot    mailx
@@ -140,21 +151,45 @@ run     infoxpress
 wait    10
 
 shot    news-tools
+size    36 80
 for     rnews postnews subscribe unsubscribe expire uulog
-cap     What arrives from a news feed and what unpacks it: rnews takes a
-cap     batch, expire deletes what is past its date.
+cap     What arrives from a news feed and what handles it, each asked for
+cap     itself: `rnews' takes a batch, `postnews' sends one, `subscribe'
+cap     and `unsubscribe' edit your groups, `expire' deletes what is past
+cap     its date, `uulog' shows the transfer log.  Four of the six were
+cap     credited to this card and never typed on it until 2026-08-30.
 run     rnews -?
+wait    8
+run     postnews -?
 wait    8
 run     subscribe -?
 wait    8
+run     unsubscribe -?
+wait    8
+run     expire -?
+wait    8
+run     uulog -?
+wait    8
 
 shot    newshist
+size    36 80
 for     newshist bdecode byteflip c7decode dbz newslock
-cap     CMDS/NEWS: the pieces that unpack a usenet news batch -- decoders,
-cap     the history database and the lock.
+cap     CMDS/NEWS: the pieces that unpack a usenet news batch, each asked
+cap     for itself -- `bdecode' and `c7decode' are the decoders,
+cap     `byteflip' swaps endianness, `dbz' and `newshist' are the history
+cap     database, `newslock' the lock the rest take.  Four of the six were
+cap     credited here and never run until 2026-08-30.
 run     dbz
 wait    8
 run     bdecode
+wait    8
+run     c7decode
+wait    8
+run     byteflip
+wait    8
+run     newshist
+wait    8
+run     newslock
 wait    8
 
 shot    pathalias
@@ -179,9 +214,18 @@ cap     `screens', which picks a file at random from $HOME/.SCREENS and
 cap     shows it, and on OS-9 RUNS the file through system().  There is no
 cap     .SCREENS directory on this disk, so it says so.  tsmon2 beside it
 cap     is what watches a serial line for someone logging in.
+cap     `connect' dials out, `uwho' lists who is logged in and `wysetime'
+cap     sets a Wyse terminal's clock; all three were credited here and
+cap     never run until 2026-08-30.
 run     screen -v
 wait    8
 run     tsmon2 -?
+wait    8
+run     connect -?
+wait    8
+run     uwho
+wait    8
+run     wysetime
 wait    8
 
 shot    sterm
@@ -263,10 +307,17 @@ shot    uucp
 for     uucp uux uuxqt uucico
 cap     The transfer set: uucp queues a copy, uux queues a command, uuxqt
 cap     runs what a remote site queued here, uucico does the talking.
+cap     All four are asked for; two were until 2026-08-30.  `uuxqt' cannot
+cap     start -- it looks for a module called `procs' to see whether it is
+cap     already running, and this disk has none.
 run     uucp -?
 wait    6
 run     uucico -?
 wait    6
+run     uux -?
+wait    6
+run     uuxqt
+wait    8
 
 shot    uuname
 cap     uuname lists the UUCP sites this system could reach, out of the
@@ -289,9 +340,18 @@ shot    wn
 for     wn wndex authwn inetd inetdc
 cap     WN, a web server, and its indexer -- on a 68000 OS-9 disk.  It is
 cap     configured to be started by inetd, which is also here.
+cap     `authwn' is its authenticator and `inetd'/`inetdc' the superserver
+cap     and its control program; the three were credited here without ever
+cap     being typed until 2026-08-30.
 run     wn -V
 wait    8
 run     wndex -?
+wait    8
+run     authwn -?
+wait    8
+run     inetd -?
+wait    8
+run     inetdc -?
 wait    8
 
 shot    xmodem
@@ -328,4 +388,8 @@ wait    8
 run     wysecrack
 wait    8
 run     wysetime -?
+wait    8
+run     cls
+wait    6
+run     initvdu -?
 wait    8

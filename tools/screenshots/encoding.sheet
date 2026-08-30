@@ -148,14 +148,21 @@ run     uuencode /dd/SYS/motd | head -n 14
 wait    5
 
 shot    uuexpand
-for     uuexpand toos9 macbin mcvert hexbin
-cap     uuexpand pads a uuencoded file back out; the Macintosh set beside
-cap     it converts between the formats a Mac expected.
+size    36 80
+for     uuexpand toos9 mcvert
+cap     `uuexpand' pads a uuencoded file back out, `mcvert' converts
+cap     between the formats a Mac expected, and `toos9' turns host line
+cap     endings into OS-9's -- which is one of the two programs on this
+cap     disk that do nothing whatever to their input (DOC/STATUS says so
+cap     under ONE MISSING FUNCTION).  `macbin' and `hexbin' were credited
+cap     here as well as on the `macfiles' card; they are on that one now.
 run     uuencode /dd/SYS/motd > /dd/tmp/u.uue
 wait    6
 run     uuexpand < /dd/tmp/u.uue | head -n 8
 wait    8
 run     mcvert -?
+wait    6
+run     toos9 -?
 wait    6
 
 shot    xcrypt
@@ -172,9 +179,19 @@ shot    macfiles
 for     macsave macstream macunpack UnMacpack unsit hexbin macbin
 cap     The Macintosh set: StuffIt, MacBinary, BinHex and MacPack, from
 cap     when a Mac file had two forks and neither survived a plain copy.
+cap     All seven are asked for; three were until 2026-08-30 and the rest
+cap     stood behind them.
 run     unsit
 wait    8
 run     macunpack
 wait    8
 run     UnMacpack
+wait    8
+run     macsave
+wait    8
+run     macstream
+wait    8
+run     hexbin
+wait    8
+run     macbin
 wait    8

@@ -89,9 +89,21 @@ for     elvis vi.elvis input.elvis ctags.elvis
 cap     elvis, Steve Kirkendall's vi -- the one on this disk that paints a
 cap     full screen.  Opened on the collection's own README-CIO, twenty-two
 cap     lines of it at once, exactly as vi should.
+cap     `vi.elvis', `input.elvis' and `ctags.elvis' travel with it -- the
+cap     same editor under the name a Unix hand types, its input helper, and
+cap     its tags builder.  All three were credited here and never run until
+cap     2026-08-30; they are asked for after elvis has been left.
 run     elvis /dd/DOC/README-CIO
 wait    18
 quit    \033:q!\r
+run     ctags.elvis /dd/SRC/keep/about.c
+wait    10
+run     ls -l /dd/tags
+wait    8
+run     input.elvis
+wait    8
+run     vi.elvis -?
+wait    10
 
 shot    pvic
 for     VI

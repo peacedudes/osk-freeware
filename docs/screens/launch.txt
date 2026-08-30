@@ -10,12 +10,13 @@ Options : -d  debug mode
           -e  set up emacs bindings file from prototypes in /dd/sys
           -i  initialise the terminal using the 'is' capability
               for the terminal
-$ pri -?
-$ signal -?
-Syntax: signal <process-id> <signal-code> [<seconds>]
-Function: send signal to process after specified time.
-Parameters:
-     <process-id>    process identification
-     <signal-code>   code of signal to be sent
-     <seconds>       number of seconds to wait
-                     default is 0 seconds
+$ dpark -?
+Syntax:   dpark [/device]
+Function: restore RBF device head to TRK00
+Options:  none
+$ snd_sig -?
+Syntax:   snd_sig [-options] pid pid1...pidn
+Function: Wakeup a process with the wake signal
+Options:
+          -?              display synopsis
+          -(n)            signal number to send

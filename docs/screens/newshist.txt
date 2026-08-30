@@ -1,3 +1,7 @@
 $ dbz
 usage: dbz [-a] [-x] [-c] database [file] ...
 $ bdecode
+c7decode
+byteflip
+newshist
+newslock

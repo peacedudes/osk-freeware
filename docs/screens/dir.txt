@@ -1,11 +1,14 @@
 $ mkdir /dd/tmp/work
 $ cp /dd/SYS/motd /dd/tmp/work/one
 $ mv /dd/tmp/work/one /dd/tmp/work/two
+$ move /dd/tmp/work/two /dd/tmp/work/three
+$ remove /dd/tmp/work/three
 $ dir /dd/tmp/work
 
-Directory of "/dd/tmp/work" 05:00:22  08/28/126
+Directory of "/dd/tmp/work" 04:02:27  08/30/126
 
-two
+three
 
 Total of 1 files.
 $ rm /dd/tmp/work/two
+rm: /dd/tmp/work/two: 000:216 file not found

@@ -14,10 +14,21 @@ run     ar -t tmp/k2.ar
 wait    6
 
 shot    ar2
+size    36 80
 for     ar2 liborder libsplit unpacklib
 cap     Ar V2.00, a later edition than the V1.2 that ships as `ar', and the
-cap     tools that take an OS-9 module library apart.
+cap     three tools that take an OS-9 module LIBRARY apart -- `libsplit'
+cap     into its members, `unpacklib' the same job by another hand, and
+cap     `liborder' reporting the order they sit in.  Each is asked for
+cap     itself here; the three were credited to this card and never typed
+cap     on it until 2026-08-30.
 run     ar2
+wait    8
+run     liborder
+wait    8
+run     libsplit
+wait    8
+run     unpacklib
 wait    8
 
 shot    arc
@@ -92,9 +103,14 @@ for     gzip020_csl gzip020_nocsl gzip68k_csl gzip68k_nocsl compress_4.0
 cap     Four builds of gzip 1.2.4 -- 68000 and 68020, with and without the
 cap     csl trap library -- kept side by side so you can take the one your
 cap     machine wants.  Each says which it is.
+cap     All four are asked for; two were until 2026-08-30.
 run     gzip68k_nocsl -V
 wait    8
 run     gzip020_nocsl -V
+wait    8
+run     gzip68k_csl -V
+wait    8
+run     gzip020_csl -V
 wait    8
 
 shot    lha
@@ -145,11 +161,21 @@ run     tar tvf /dd/tmp/keep.tar
 wait    4
 
 shot    unzip
+size    36 80
 for     unzip zipnote zipsplit funzip
-cap     Info-ZIP's readers.  unzip lists an archive that zip on this disk
-cap     cannot write -- see the note against `zip'.
+cap     Info-ZIP's readers, each asked for itself.  `unzip' lists an
+cap     archive that `zip' on this disk cannot write -- see the note
+cap     against zip -- `zipnote' reads and writes an archive's comments,
+cap     `zipsplit' cuts one into pieces that fit a floppy, and `funzip'
+cap     unzips a stream.  The last three were credited here and never run.
 run     unzip -v
 wait    10
+run     zipnote
+wait    8
+run     zipsplit
+wait    8
+run     funzip
+wait    8
 
 shot    zoo
 cap     zoo, packing and then listing -- compression ratio per member.

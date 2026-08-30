@@ -93,6 +93,12 @@ run     setime2 -?
 wait    6
 run     setyear -?
 wait    6
+run     date
+wait    6
+run     setime -?
+wait    6
+run     fixyear -?
+wait    6
 
 shot    config
 cap     config reports this machine's C type properties as the #defines a
@@ -131,8 +137,17 @@ wait    6
 shot    devprc
 for     devprc ptxminst t t_trtest
 cap     devprc shows which device belongs to which process.  Rebuilt here:
-cap     the archived module had been patched and would not run.
+cap     the archived module had been patched and would not run.  `ptxminst'
+cap     installs Ptxm, and `t' and `t_trtest' are the trap-handler test
+cap     pair; the three were credited here and never typed until
+cap     2026-08-30.
 run     devprc -h
+wait    8
+run     ptxminst -?
+wait    8
+run     t
+wait    8
+run     t_trtest
 wait    8
 
 shot    dinfo
@@ -200,6 +215,10 @@ run     repeat -?
 wait    6
 run     cron -?
 wait    6
+run     bootlogger -?
+wait    6
+run     loglist -?
+wait    6
 
 shot    fastcc
 for     fastcc compiler assembler lfmaker
@@ -240,9 +259,22 @@ wait    6
 shot    hinterhalt
 for     hinterhalt testibc sqrtx bigsetter i_am_i
 cap     hinterhalt, a small game that came with EFFO forum 7 -- one of the
-cap     example programs the German OS-9 user group circulated.
+cap     example programs the German OS-9 user group circulated.  Four more
+cap     from the same shelf are asked for beside it -- `testibc' exercises
+cap     the inter-process bus, `sqrtx' takes a square root, `bigsetter'
+cap     demonstrates Modula-2 set operations and `i_am_i' reports its own
+cap     process.  All four were credited here and never typed until
+cap     2026-08-30.
 run     hinterhalt
 wait    10
+run     testibc
+wait    8
+run     sqrtx 144
+wait    8
+run     bigsetter
+wait    8
+run     i_am_i
+wait    8
 
 shot    i_am_i
 cap     i_am_i prints its own source: a Pascal quine.
@@ -287,7 +319,16 @@ cap     terminal type from SYS/config, optionally a default PATH and the
 cap     emacs bindings, then start the shell you name.  `pri' changes a
 cap     process's priority and answers nothing to -?; `signal' sends a
 cap     signal, after a delay if you ask.
+cap     `dpark' parks a disk's heads, `snd_sig' sends a signal by number
+cap     and `suspend' stops a process; the three were credited here and
+cap     never typed until 2026-08-30.
 run     launch -?
+wait    6
+run     dpark -?
+wait    6
+run     snd_sig -?
+wait    6
+run     suspend -?
 wait    6
 run     pri -?
 wait    6

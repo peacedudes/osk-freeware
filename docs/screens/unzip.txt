@@ -14,3 +14,20 @@ modifiers:
   -o  overwrite files WITHOUT prompting      -a  convert text (CR LF => LF)
   -j  junk paths (don't make directories)    -U  don't make names lowercase
   -q  quiet mode (-qq => quieter)
+
+$ zipnote
+Copyright (C) 1990-1992 Mark Adler, Richard B. Wales, Jean-loup Gailly
+and Kai Uwe Rommel. Type 'zipnote -L' for the software License.
+
+ZipNote 1.9 (Aug 20th 1992)
+Usage:  zipnote [-w] [-b path] zipfile
+  the default action is to write the comments in zipfile to stdout
+  -w   write the zipfile comments from stdin
+  -b   use "path" for the temporary zip file
+  -h   show this help               -L   show software license
+
+Example:
+     zipnote foo.zip > foo.tmp
+     ed foo.tmp
+     ... then you edit the comments, save, and exit ...
+     zipnote -w foo.zip < foo.tmp

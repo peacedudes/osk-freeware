@@ -77,6 +77,10 @@ run     pbyte /dd/tmp/dj.ppm e 0d
 wait    4
 run     ppmtopgm /dd/tmp/dj.ppm | pgmtopbm | pbmtoascii -2x4
 wait    35
+run     rdjpgcom.070 /dd/SRC/jpeglib/JPEG_5A/testimg.jpg
+wait    10
+run     wrjpgcom.070 -comment hello /dd/SRC/jpeglib/JPEG_5A/testimg.jpg > /nil
+wait    12
 shot    fits
 for     pnmtofits fitstopnm pnmtoxwd xwdtopnm
 cap     FITS, which astronomers still use, and the X window dump.
@@ -216,6 +220,10 @@ run     rdjpgcom /dd/tmp/gc.jpg
 wait    10
 run     ls -l /dd/DEMO/gulls.gif /dd/tmp/g.ppm /dd/tmp/gc.jpg
 wait    10
+run     cjpeg.070 /dd/tmp/g.ppm > /nil
+wait    20
+run     djpeg.070 -pnm /dd/tmp/gc.jpg > /nil
+wait    20
 
 shot    lispm
 for     pgmtolispm lispmtopgm pbmtopk pktopbm ppmtomap
@@ -231,11 +239,20 @@ wait    8
 shot    pbmclean
 for     pbmclean pbmmask pbmtopgm pnmnoraw
 cap     pbmclean removes lone pixels from a bitmap -- run here over dithered
-cap     noise, which is nothing but lone pixels.
+cap     noise, which is nothing but lone pixels.  `pbmmask' makes a mask
+cap     from a bitmap, `pbmtopgm' blurs one into greys and `pnmnoraw'
+cap     writes the plain-text form of any of them; the three were credited
+cap     to this card and never typed until 2026-08-30.
 run     pgmnoise 152 88 | pgmtopbm > /dd/tmp/n.pbm
 wait    15
 run     pbmclean /dd/tmp/n.pbm | pbmtoascii -2x4
 wait    20
+run     pbmmask /dd/tmp/n.pbm | pnmfile
+wait    15
+run     pbmtopgm 3 3 /dd/tmp/n.pbm | pnmfile
+wait    15
+run     pnmnoraw /dd/tmp/n.pbm | head -n 3
+wait    15
 
 shot    pbmlife
 cap     pbmlife runs Conway's Life one generation on a bitmap -- an image
@@ -362,12 +379,21 @@ shot    plotters
 for     pbmtoplot pbmtozinc pbmtobbnbg pbmtogo pbmtoln03 pbmtolps
 cap     Six more write-only drivers, for machines that are gone: a Unix
 cap     plotter, Zinc, a BBN bitgraph, GraphOn, DEC LN03 and LPS.
+cap     All six are asked for; three were until 2026-08-30.
+run     pbmmake -g 48 24 > /dd/tmp/base.pbm
+wait    12
 run     pbmtoplot /dd/tmp/base.pbm | wc
-wait    8
-run     pbmtozinc /dd/tmp/base.pbm | head -n 8
-wait    8
+wait    16
+run     pbmtozinc /dd/tmp/base.pbm | head -n 6
+wait    16
 run     pbmtoln03 /dd/tmp/base.pbm | wc
-wait    8
+wait    16
+run     pbmtobbnbg /dd/tmp/base.pbm | wc
+wait    16
+run     pbmtogo /dd/tmp/base.pbm | wc
+wait    16
+run     pbmtolps /dd/tmp/base.pbm | wc
+wait    16
 
 shot    pnmarith
 size    36 80
@@ -566,12 +592,21 @@ shot    ppmmake
 for     ppmmake ppmbrighten ppmdim ppmnorm ppmchange
 cap     ppmmake fills an image with one colour; ppmbrighten, ppmdim and
 cap     ppmnorm change what that colour is, and ppmhist counts the result.
+cap     `ppmdim', `ppmnorm' and `ppmchange' were credited here and never
+cap     typed until 2026-08-30; each is asked over the same flat colour, so
+cap     the histogram underneath says exactly what it did.
 run     ppmmake rgb:80/40/c0 40 20 > /dd/tmp/flat.ppm
-wait    8
+wait    16
 run     ppmhist /dd/tmp/flat.ppm
-wait    8
+wait    16
 run     ppmbrighten -v 50 /dd/tmp/flat.ppm | ppmhist
-wait    10
+wait    22
+run     ppmdim 0.5 /dd/tmp/flat.ppm | ppmhist
+wait    22
+run     ppmnorm /dd/tmp/flat.ppm | ppmhist
+wait    22
+run     ppmchange rgb:80/40/c0 red /dd/tmp/flat.ppm | ppmhist
+wait    22
 
 shot    ppmpat
 cap     ppmpat weaves a tartan, ppmtopgm greys it and the dither prints it.
@@ -761,15 +796,25 @@ cap     disk is in -- confocal microscopes, ray tracers, AutoCAD slides,
 cap     Atari Spectrum pictures, Photo CD, Amiga brushes, Gould scanners.
 cap     Handed something else, they say so rather than guessing, which is
 cap     the behaviour you want.  Three of the sixteen are shown; the rest
-cap     answer the same way.
+cap     answer the same way -- and the four that had never been asked at
+cap     all are asked below, added 2026-08-30, so that "the rest answer the
+cap     same way" is shown rather than assumed.
 run     ppmmake red 16 16 > /dd/tmp/nr.ppm
 wait    8
 run     hipstopgm /dd/tmp/nr.ppm
-wait    12
+wait    18
 run     qrttoppm /dd/tmp/nr.ppm | head -n 3
-wait    12
+wait    18
+run     spottopgm /dd/tmp/nr.ppm
+wait    16
+run     sputoppm /dd/tmp/nr.ppm
+wait    16
+run     ximtoppm /dd/tmp/nr.ppm
+wait    16
+run     xvminitoppm /dd/tmp/nr.ppm
+wait    16
 run     zeisstopnm /dd/tmp/nr.ppm
-wait    12
+wait    18
 
 
 shot    pnmfilters
@@ -785,6 +830,10 @@ run     ppmflash 0.4 /dd/tmp/w.ppm | pnmfile
 wait    15
 run     ppmquant 256 /dd/tmp/w.ppm | ppmdist | pnmfile
 wait    20
+run     pnmalias /dd/tmp/w.ppm | pnmfile
+wait    15
+run     pnmcomp /dd/tmp/w.ppm /dd/tmp/w.ppm | pnmfile
+wait    15
 
 
 shot    ppmntsc
@@ -822,12 +871,19 @@ cap     Six drivers with no reader here, for machines that are gone: an NCR
 cap     terminal, a Mitsubishi dye-sublimation printer, DEC sixel, Motif
 cap     UIL source, an AT&T 4425 and an X10 bitmap.  What each made of the
 cap     same picture, in bytes -- that is what a page cost.
+cap     All six are asked for; three were until 2026-08-30.
 run     ppmquant 256 /dd/tmp/w.ppm > /dd/tmp/q.ppm
 wait    20
 run     ppmtosixel /dd/tmp/q.ppm | wc
 wait    20
 run     ppmtomitsu /dd/tmp/q.ppm | wc
 wait    20
+run     ppmtoicr /dd/tmp/q.ppm | wc
+wait    20
+run     ppmtouil /dd/tmp/q.ppm | wc
+wait    20
+run     pbmmake -g 40 20 | pbmto4425 | wc
+wait    15
 run     pbmmake -g 40 20 | pbmtox10bm | head -n 6
 wait    15
 

@@ -75,6 +75,10 @@ run     cp /dd/SYS/motd /dd/tmp/work/one
 wait    5
 run     mv /dd/tmp/work/one /dd/tmp/work/two
 wait    5
+run     move /dd/tmp/work/two /dd/tmp/work/three
+wait    5
+run     remove /dd/tmp/work/three
+wait    5
 run     dir /dd/tmp/work
 wait    6
 run     rm /dd/tmp/work/two
@@ -181,11 +185,20 @@ for     dback delbak eunlink EditLibr Libr2Ascii PrintLabels
 cap     The last of the file shelf: delbak deletes the *_bak files a whole
 cap     tree has collected, and the Home Librarian pair get a catalogue in
 cap     and out of plain text.
+cap     `dback' backs a disk up, `eunlink' removes a file the hard way and
+cap     `PrintLabels' prints the catalogue's labels; those three were
+cap     credited here and never typed until 2026-08-30.
 run     delbak -?
 wait    8
 run     Libr2Ascii
 wait    8
 run     EditLibr
+wait    8
+run     dback -?
+wait    8
+run     eunlink
+wait    8
+run     PrintLabels
 wait    8
 
 shot    undel

@@ -6,5 +6,8 @@ qrttoppm: EOF / read error
 P6
 13904 12557
 255
-$ zeisstopnm /dd/tmp/nr.ppm
-zeisstopnm: Input file not in Zeiss format (too small)
+$ spottopgm /dd/tmp/nr.ppm
+$ sputoppm /dd/tmp/nr.ppm
+P6
+320 200
+7

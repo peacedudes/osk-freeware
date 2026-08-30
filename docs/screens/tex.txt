@@ -4,3 +4,13 @@ This is TeX, C Version 3.14
 *\end
 Output written on story.dvi (1 page, 668 bytes).
 Transcript written on story.log.
+$ tex /dd/SYS/TEX/SAMPLES/story.tex
+virtex "&plain" /dd/SYS/TEX/SAMPLES/story.tex:  (E$PNNF) That path name doesn't.
+
+$ initex
+This is TeX, C Version 3.14 (INITEX)
+**texidx
+! I can't find file `texidx'.
+<*> texidx
+
+Please type another input file name:

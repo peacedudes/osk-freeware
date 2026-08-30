@@ -1,6 +1,6 @@
 $ echo 2000000 | dhry > /dd/tmp/d1.txt
 $ tail -l=2 /dd/tmp/d1.txt
-Dhrystones per Second:                      90909.1
+Dhrystones per Second:                      83333.3
 
 $ echo 2000000 | dhryGcc2o2 > /dd/tmp/d2.txt
 $ tail -l=2 /dd/tmp/d2.txt

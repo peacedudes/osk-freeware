@@ -1,22 +1,6 @@
 $ ppmquant 256 /dd/tmp/w.ppm > /dd/tmp/q.ppm
-ppmquant: making histogram...
-ppmquant: 1578 colors found
-ppmquant: choosing 256 colors...
-ppmquant: mapping image to new colors...
-$ ppmtosixel /dd/tmp/q.ppm | wc
-ppmtosixel: maxval is not 100 - automatically rescaling colors
-ppmtosixel: computing colormap...
-ppmtosixel: 243 colors found
-ppmtosixel: delivering sixel image...
-     54     54  16910
-$ ppmtomitsu /dd/tmp/q.ppm | wc
-ppmtomitsu: found 243 colors - using the lookuptable-method
-ppmtomitsu: rotating image for output
-     14     48   4415
-$ pbmmake -g 40 20 | pbmtox10bm | head -n 6
-#define noname_width 40
-#define noname_height 20
-static short noname_bits[] = {
- 0xaaaa,0xaaaa,0x00aa,0x5555,0x5555,0x0055,0xaaaa,0xaaaa,0x00aa,0x5555,0x5555,
- 0x0055,0xaaaa,0xaaaa,0x00aa,0x5555,0x5555,0x0055,0xaaaa,0xaaaa,0x00aa,0x5555,
- 0x5555,0x0055,0xaaaa,0xaaaa,0x00aa,0x5555,0x5555,0x0055,0xaaaa,0xaaaa,0x00aa,
+$ ppmtosixel /dd/tmp/q.ppm | wcrs...
+$ ppmtomitsu /dd/tmp/q.ppm | wc..atically rescaling colors
+$ ppmtoicr /dd/tmp/q.ppm | wctputthe lookuptable-method
+$ ppmtouil /dd/tmp/q.ppm | wc. /dd/tmp/q.ppm ...
+ppmtouil: 243 colors foundap...

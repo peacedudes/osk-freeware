@@ -21,3 +21,9 @@ Valid options:
         -w+/-     -- convert to/from WS document mode
         -x        -- expand non printing chars
         -z        -- zero parity bit
+$ ape -?
+syntax: ape {opts}
+Function: write gibberish in the style of <stdin> to <stdout>
+Options:
+        -b[=]<num>[k]   maximum amount of source text to read (default 8k)
+        -l[=]<num>              length of pattern required to match (default 4)

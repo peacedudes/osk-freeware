@@ -51,10 +51,29 @@ cap     GCC 1.39 and its passes.  Asked to compile, the driver prints the
 cap     preprocessor command it wants to run and then cannot find `cccp':
 cap     the passes are installed under a prefix -- gcc2 wants gcc_, gpp
 cap     wants gpp_ -- and the driver does not look where they live.
+cap     The passes themselves are real programs and each says something
+cap     when asked -- eight of the nine were credited to this card and
+cap     never typed on it until 2026-08-30.
 run     gcc -v
 wait    4
 run     gcc -v -c /dd/SRC/load/load.c
 wait    12
+run     gcc_cc1 -version
+wait    8
+run     gcc_cc2
+wait    8
+run     gcc_cccp2 -version
+wait    8
+run     gcc_collect
+wait    8
+run     gpp -v
+wait    8
+run     gpp_cc1plus -version
+wait    8
+run     gpp_cccp -version
+wait    8
+run     gpp_collect
+wait    8
 
 shot    gmake
 cap     GNU make, and dmake beside it, both saying what they are.
@@ -127,6 +146,10 @@ run     as11
 wait    6
 run     as5
 wait    6
+run     as1
+wait    6
+run     as4
+wait    6
 
 shot    yacc
 for     yacc
@@ -170,4 +193,10 @@ wait    8
 run     /dd/CMDS/for /dd/SRC/rtf/div.f
 wait    10
 run     biory < /nil
+wait    10
+run     lnk
+wait    8
+run     lnk.org
+wait    8
+run     creadoc /dd/SRC/rtf/div.f
 wait    10
