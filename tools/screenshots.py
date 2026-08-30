@@ -62,6 +62,10 @@ import termios
 import threading
 import time
 
+# One writer at a time: all three harnesses write to the image itself.
+sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
+import imagelock                                    # noqa: E402
+
 REPO = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 sys.path.insert(0, os.path.join(REPO, "tools"))
 import ansiscreen                                        # noqa: E402
@@ -520,7 +524,8 @@ def main(argv):
         sys.exit(__doc__)
     if not os.path.exists(image):
         sys.exit("no image at %s -- run tools/mkimage.sh first" % image)
-    total = sum(run_sheet(s, image, only) for s in sheets)
+    with imagelock.held(image, "screenshots"):
+        total = sum(run_sheet(s, image, only) for s in sheets)
     print("%d screens in %s" % (total, CAPS))
 
 

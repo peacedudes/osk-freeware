@@ -68,6 +68,8 @@ import time
 REPO = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 sys.path.insert(0, os.path.join(REPO, "tools"))
 import ansiscreen                                        # noqa: E402
+# One writer at a time: all three harnesses write to the image itself.
+import imagelock                                         # noqa: E402
 
 OS9EXEC = os.environ.get("OS9EXEC",
                          os.path.join(REPO, "..", "os9exec", "os9exec"))
@@ -423,9 +425,10 @@ def main(argv):
         sys.exit("no image at %s -- run tools/mkimage.sh first" % image)
 
     bad = 0
-    for s in scripts:
-        ok, _, _ = playtest(s, image, outdir)
-        bad += 0 if ok else 1
+    with imagelock.held(image, "playtest"):
+        for s in scripts:
+            ok, _, _ = playtest(s, image, outdir)
+            bad += 0 if ok else 1
     print("\n%d of %d passed" % (len(scripts) - bad, len(scripts)))
     return 1 if bad else 0
 

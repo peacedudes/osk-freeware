@@ -58,6 +58,10 @@ import re
 import subprocess
 import sys
 
+# One writer at a time: all three harnesses write to the image itself.
+sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
+import imagelock                                    # noqa: E402
+
 REPO = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 OS9EXEC = os.environ.get("OS9EXEC", os.path.join(REPO, "..", "os9exec", "os9exec"))
 # THE COLLECTION'S OWN `load', which is on the disk as of 2026-08-27 -- a
@@ -243,13 +247,14 @@ def main(argv):
     os.makedirs(workdir, exist_ok=True)
 
     bad = total = 0
-    for f in files:
-        family, results = run_family(f, image, workdir)
-        for name, verdict, why in results:
-            total += 1
-            if verdict != "PASS":
-                bad += 1
-            print("%-12s %-26s %-5s %s" % (family, name, verdict, why))
+    with imagelock.held(image, "datatest"):
+        for f in files:
+            family, results = run_family(f, image, workdir)
+            for name, verdict, why in results:
+                total += 1
+                if verdict != "PASS":
+                    bad += 1
+                print("%-12s %-26s %-5s %s" % (family, name, verdict, why))
     print("\n%d of %d cases passed" % (total - bad, total))
     return 1 if bad else 0
 

@@ -153,8 +153,19 @@ step is skipped and the file is still readable locally.
 ## Photographing the programs
 
     tools/screenshots.py --all       # many programs per emulator session
+    tools/screenshots.py --all --only gnuchess,hexedit   # just those stanzas
     tools/playtest.py --all          # one interactive program per session, judged
     tools/gen_screens.py             # docs/screens.js and docs/screens/
+
+**ONE HARNESS AT A TIME.** `screenshots.py`, `playtest.py` and `datatest.py`
+all point os9exec at `osk-freeware.dd` ITSELF, and all three write to it --
+into `/dd/tmp`, with `pbyte`, with whole directories. Two of them at once are
+two OS-9 kernels writing one RBF image, each holding its own idea of the
+allocation map, and what that produces is not a wrong test result but a
+corrupt image found later. `tools/imagelock.py` now holds an advisory lock
+beside the image for the length of a run and the second harness stops with the
+name of the one that has it. A lock left behind by a killed run is reported by
+pid and never stolen silently; remove it on purpose.
 
 `screenshots.py` drives ONE bash session on a pseudo-terminal and runs stanza
 after stanza in it, clearing between and keeping the bytes each program wrote.
