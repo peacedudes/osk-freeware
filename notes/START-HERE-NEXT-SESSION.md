@@ -333,6 +333,42 @@ machine to itself. Redo it before bumping anything, and run it against a COPY
 of the image (`OS9EXEC=<binary> tools/datatest.py --all --image <copy>`) so
 the lock does not collide with ordinary work.
 
+## AND LAST ON 2026-08-29: 47 programs were showing the wrong screen
+
+**`gen_screens.py` assigned each program's screen to the FIRST card that
+claimed it, which is alphabetical order and nothing more.** A program with a
+card of its own could therefore publish somebody else's: `rdoc` has a card
+showing it turn C source into a structure chart and was publishing the
+`helpindex` usage message, because `helpindex` sorts first and lists `rdoc`
+in its `for` line. **47 programs were affected** — `VI`, `date`, `fortune`,
+`keep`, `modinfo`, `pnmfile` among them. Own card first now, then the rest.
+
+**Splitting the over-broad `for` lists took "actually run by name" from 579
+to 668 of 918.** The cards that changed are in one commit; the pattern to
+look for is a `for` line naming programs no `run` line types. What is left
+is mostly honest grouping (eleven DVI drivers, a shelf of MM/1 device
+descriptors) plus about forty cards that still credit three or more.
+
+**`make` works.** Two obstacles, neither of them make: a command line must
+begin with a TAB and a tab does not survive being typed at this terminal, so
+every makefile written here by echoing at the shell was a syntax error;
+and a recipe must contain no shell metacharacter, because where one appears
+make forks `/dd/CMDS/bash` and hands it the whole line AS A PATHNAME rather
+than with `-c`. So `cp a b` runs and `cat a > b` gets `That path name
+doesn't lead to a file`. **`disk/DOC/make/demo.mk` is now shipped** with its
+tabs intact — copy it rather than writing one at the shell.
+
+**Two corrections to `howto.psv`, measured:** `sc` and `umacs` do NOT need
+`. /dd/SYS/termcap.entry`; both open with TERMCAP as `SYS/login` sets it.
+The three that do are `gnuchess`, `gnuchessn` and `hexedit`. `jargon -m` and
+`vi_cio` are still only reported.
+
+**The five UUCP helpers print nothing at all** — `fileserv`, `fixtext`,
+`lcasep`, `nptx`, `pwparse`, bare, with an argument, with `-?` and with
+`-x`. They are real modules and exit cleanly; they have no spool to act on
+and do not say so. Their card shows exactly that, which is the first honest
+look anyone has had at them.
+
 **`tools/screenshots.py` takes `--only name,name`** now — recapturing one
 card no longer means rerunning a sheet of sixty. And **`tools/fix_index.py`
 was writing every entry head one column left of its own continuations**;

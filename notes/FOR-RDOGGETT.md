@@ -134,6 +134,31 @@ are still in the scratch directory if you want them, and the recipe is
 **Bumping the pin is still your call** -- the workflow comment asks for that
 deliberately and I have not changed it.
 
+## And at the end of 2026-08-29: the screens were partly of the wrong programs
+
+**47 programs in the catalogue were showing another program's screen.**
+`gen_screens.py` gave each program the FIRST card that claimed it, and
+"first" meant alphabetical. So `rdoc` -- which has a card of its own showing
+it turn C source into a structure chart -- published the `helpindex` usage
+message, because `helpindex` sorts earlier and lists rdoc in its `for` line.
+`VI`, `date`, `fortune`, `keep`, `modinfo` and `pnmfile` were among the 47.
+A program's own card wins now.
+
+**`make` works**, and this is the shape of most of today: the obstacle was
+real and it was not the program. A command line in a makefile must begin
+with a TAB, and a tab does not survive being typed at this terminal -- so
+every makefile written here by echoing at the shell was a syntax error, and
+`make' was written up as doing nothing. It also will not take a shell
+metacharacter in a recipe: `cp a b' runs, `cat a > b' does not, because make
+forks bash with the line as a PATHNAME rather than with -c. There is a
+`DOC/make/demo.mk` on the disk now, with its tabs intact, and the card shows
+make building a target and then saying it is up to date.
+
+**Coverage of the "actually run" kind went 579 -> 668 of 918**, by splitting
+cards whose `for` line credited programs they never typed. Forty cards still
+credit three or more; some of that is honest (eleven DVI drivers do behave
+alike) and some is not.
+
 ## Look at this
 
 `docs/index.html` -- the catalogue, with a photographed screen on 918 of the
