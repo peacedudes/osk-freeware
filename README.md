@@ -66,8 +66,15 @@ programs and it writes out `keep a b c` to paste.
 ### Two things worth knowing either way
 
 **`TERMCAP` matters.** A good many programs name `/h0/sys/termcap` outright,
-and every one measured so far reads the `TERMCAP` variable first — no
-exceptions — so they work with no `/h0` in sight. `SYS/login` sets it.
+and every one measured reads the `TERMCAP` variable first, so they work with
+no `/h0` in sight. `SYS/login` sets it to the PATH of the termcap file, which
+is what those programs want. Three want the opposite: `gnuchess`,
+`gnuchessn` and `hexedit` were built against a termcap library that reads
+`TERMCAP` as the terminal DESCRIPTION rather than as a filename, get the
+pathname where they expected a description, and stop with `'vt100': Unknown
+terminal type`. `SYS/termcap.entry` exists for them — source it in the shell
+where you want one of the three, and the rest of your session is unaffected.
+`DOC/README-RUNNING` has it.
 
 **bash's own `pwd` hangs the shell** here: its `getwd()` walks `..` looking for
 a single root, and OS-9 has one per device. Setting `HOME` is what makes bash
