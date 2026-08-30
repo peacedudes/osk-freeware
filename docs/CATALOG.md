@@ -517,7 +517,7 @@
 | `flex` | lexical analyzer generator -- see DOC/flex/README-FLEX FIRST<br>`Syntax   : flex [-bcdfinpstvFILT8 -C[efmF] -Sskeleton] [filename ...]` |
 | `gmake` | GNU make -- ADDED (the gnu.bin build of make is the broken one)<br>`Usage: gmake [options] [target] ...` |
 | `m4` | m4 macro processor.  SWAPPED 2026-08-28: what ships is now the CMDS/REBUILT/m4_0.5 build, because the one that used to be here MANGLED its output -- a one-line definition expanded to `i hr ' instead of `hi there'.  The one here now expands correctly, from a file or a pipe<br>`Usage: m4 [options] file ....` |
-| `make` | &#9733; make - maintain and regenerate groups of files (verified: -? works)<br>`Syntax :	make {[-f <makefile>] [-dDinrst] [<target>] [<macro>=<value>]}` |
+| `make` | &#9733; make -- and it DOES maintain a target, corrected 2026-08-29. Two rules catch people: a command line must begin with a TAB (which will not survive being typed at this terminal, so copy DOC/make/demo.mk rather than echoing one), and a recipe must have no shell metacharacter -- `cp a b' runs, `cat a > b' gets `That path name doesn't lead to a file'.  DOC/STATUS has both<br>**How:** It works. Copy `/dd/DOC/make/demo.mk` rather than writing a makefile at the shell -- a command line must begin with a TAB and a tab does not survive being typed at this terminal. And keep shell metacharacters out of a recipe: `cp a b` runs, `cat a > b` gets "That path name doesn't lead to a file", because make forks bash with the line as a PATHNAME rather than with -c. The default rules are in default.mk beside it, and make looks for that along your PATH. Measured 2026-08-29. |
 | `makeinfo` | GNU makeinfo -- Texinfo to info<br>`Usage: makeinfo [options] texinfo-file...` |
 | `yacc` | &#9733; yacc parser generator -- it HANGS on a two-rule grammar here: no output, no files written, and the run has to be killed.  `bison' reads the same grammar and reports its states and its conflicts<br>`Syntax   : yacc [-dltv] [-b <prefix>] filename` |
 
@@ -1383,7 +1383,7 @@
 | `transfer` | &#9733; copies files from GDOS DISKS to OS-9, and takes no options at all -- not a general device-to-device copier.  `cp', `copy' and `dsave' are those. Corrected 2026-08-29<br>`Syntax: transfer` |
 | `trunc` | &#9733; truncate a file to a given length<br>`Syntax: trunc <path> <num>` |
 | `tty` | &#9733; report the terminal's name |
-| `umacs` | &#9733; MicroEMACS -- a small Emacs, EFFO forum 1<br>**How:** A small Emacs (uMacs 1.0). Full-screen: it takes the display and shows "== uMacs 1.0 == main ==" at the foot. Needs a terminal; source `. /dd/SYS/termcap.entry' first if it will not draw. |
+| `umacs` | &#9733; MicroEMACS -- a small Emacs, EFFO forum 1<br>**How:** A small Emacs (uMacs 1.0). Full-screen: it takes the display and shows "== uMacs 1.0 == main ==" at the foot. This line said it needs `. /dd/SYS/termcap.entry' sourced first; measured 2026-08-29, it does not. |
 | `umusek` | UMusEK -- a music editor; wants a screen address |
 | `vc` | &#9733; a SPREADSHEET -- `Welcome to the Spreadsheet Calculator, type ? for help', with rows, columns and a formula line.  Not a visual compare, which is what this entry said until 2026-08-28 |
 | `vecho` | echo without a newline (from less) |
@@ -1578,7 +1578,7 @@
 | `loan` | &#9733; loan/amortisation calculator |
 | `rechne` | &#9733; calculator, German -- and it takes ONE expression with no spaces in it: `rechne 4095+1' answers 4096, $1000 and the binary.  Spaced out it evaluates each argument separately |
 | `rpn` | &#9733; RPN calculator -- and its `+' is wrong: 12, 34, + leaves a stack of three with 0 on top instead of one with 46. `rechne' is the calculator that answers correctly |
-| `sc` | sc -- spreadsheet calculator (needs TERM)<br>**How:** The spreadsheet, version 6.16. It will not read SYS/termcap: do `. /dd/SYS/termcap.entry' first, then `sc' opens and says "Type '?' for help". Tested. |
+| `sc` | sc -- spreadsheet calculator (needs TERM)<br>**How:** The spreadsheet, version 6.16. `sc' opens and says "Type '?' for help". This line said it will not read SYS/termcap and needs `. /dd/SYS/termcap.entry' first; measured 2026-08-29, it does not -- it opens with TERMCAP as SYS/login sets it. |
 
 **Spreadsheets**
 
