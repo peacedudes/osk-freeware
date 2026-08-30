@@ -151,15 +151,21 @@ cap     examples -- assembler ones from the forums, harmless here because
 cap     there is no serial line.  `break' has to be asked for by path: it
 cap     is a bash builtin too, and the builtin answers first.  It prints
 cap     nothing whatever it is given, which is why sbreak is shown as well.
-cap     `trap' -- also a bash builtin -- is the system-state trap-handler
-cap     example, and cannot install one from user state.
+cap     `trap' is the system-state trap-handler example and cannot install
+cap     one from user state.  It must be asked for BY PATH: `trap' is a bash
+cap     builtin, and the builtin answers first and silently -- which on
+cap     2026-08-29 was briefly mistaken here for the program succeeding.
+cap     Loading `math' first, which is the handler it names, does not
+cap     change the outcome; this card loads it to show that.
 run     dload -?
 wait    6
 run     /dd/CMDS/break -?
 wait    4
 run     sbreak -?
 wait    6
-run     /dd/CMDS/trap -?
+run     load /dd/CMDS/math
+wait    4
+run     /dd/CMDS/trap
 wait    6
 
 shot    drop

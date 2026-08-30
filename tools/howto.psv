@@ -44,7 +44,7 @@ sgitopnm|Cannot read a pipe -- same as pcxtoppm. Give it a filename or it report
 yuvtoppm|yuvtoppm <width> <height>. The dimensions are not stored in a YUV file, so you must supply the ones ppmtoyuv started from.
 lispmtopgm|This build handles at most 16 grey levels and says "depth is too large" otherwise. Run the image through `pnmdepth 15' before pgmtolispm.
 pbmtopk|A TeX font tool, not an image converter: it wants a pkfile, a .tfm metric file and a resolution. No .tfm ships on this disk.
-nroff|Formats man pages. The -man macros in LIB/tmac.an were extended for this collection because the originals defined only .TH .SH .SS .PP and .I; LIB/orig.tmac.an is the untouched version. Try `nroff -man /dd/DOC/netpbm/pnmscale.1'.
+nroff|Formats man pages -- but it NEVER RETURNS on this disk, and prints nothing first. Measured 2026-08-29 both ways, `nroff -man /dd/DOC/netpbm/pnmscale.1' and the same file on stdin; each hung the session. The -man macros in LIB/tmac.an were extended for this collection because the originals defined only .TH .SH .SS .PP and .I, and LIB/orig.tmac.an is the untouched version -- neither has been shown to matter while the program will not finish. `roff' is the formatter that works.
 lua|Lua 3.0, and it needs Microware's csl -- see DOC/README-CIO. Run a script with `lua file.lua'. NOTE: 3.0 has no numeric `for' loop; that arrived in Lua 3.1, so `for i=1,10 do' is a syntax error here and `while' is the idiom. Examples in DOC/lua/examples.
 luac|Compiles a Lua script to bytecode: `luac -o out in.lua'. Needs csl. runc then runs the result as an OS-9 command.
 gnuplot|Type `set term' first -- it lists every output device it knows, and refuses to plot until you choose one. Its whole manual is built in: type `help'. Demos and sample data are in DOC/gnuplot/demo. Needs Microware's cio.
@@ -63,7 +63,7 @@ dhry|Dhrystone 2.0. Twelve builds of the same source sit in CMDS/DHRY -- run sev
 head|First lines of a file. This GNU build wants `head -n 20 file' -- the older `head -20' form is rejected as an unrecognized option. Needs cio.
 tac|Prints a file backwards, last line first -- cat's mirror image. Needs cio.
 as0|A 6800 cross-assembler, not a 68000 one -- as1 is 6801, as4 is 6804, as5 is 6805, as11 is 68HC11 and as09 is 6809. DOC/xasm/asm.doc is their manual; source for all of them is in SRC/xasm.
-oleo|GNU Oleo, a spreadsheet. It needs a real terminal -- run it from a login so TERM is set, not from a bare shell. sc is the other spreadsheet on this disk; they are unrelated programs.
+oleo|GNU Oleo, a spreadsheet, and it DOES NOT RUN whatever you do: `Illegal instruction: 0009' and E_PRCABT, from a full login session with TERM set as much as from a bare shell. This line said the login was the answer until 2026-08-29; it was measured that day and it is not. Use `sc', the other spreadsheet here, which is an unrelated program and works.
 booz|Extracts and lists zoo archives. `booz -l file.zoo' to look, `booz -x' to extract. fiz repairs a zoo archive that will not open.
 funzip|Unzips from a pipe rather than a file: `funzip < thing.zip > thing'. For a normal archive use unzip; zipinfo lists what is inside one.
 gs403|Aladdin Ghostscript 4.03. Set GS_LIB first -- `setenv GS_LIB /dd/LIB/gs403' -- or it cannot find gs_init.ps and stops. Everything it needs, fonts included, is in that directory. The older gs33 on this disk has never had its support files.
@@ -167,3 +167,4 @@ dvips|DVI to PostScript. `dvips <file>.dvi'. Pair it with gs33 (ETC/LIB/GS33) to
 elm|The full-screen mail reader. On first run it offers to create a .elm directory in your home for its elmrc and aliases -- say y. Mail lives at /dd/SPOOL/MAIL/<user> and SYS/login points MAIL there; `readmsg 1' prints a message without opening the reader.
 uux|Runs a command on another UUCP site. This is BLARS uucp, which reads USR/LIB/UUCP/Config -- a different configuration from UUCPbb's SYS/UUCP. Both ship.
 uupoll|Polls a UUCP site for waiting work. Blars uucp; wants the `uucp' user, which SYS/password now has.
+trap|The trap-handler example, and it does NOT work: it wants system state and says "Can't install trap handler" from user state, with or without `math' loaded. Ask for it BY PATH -- `/dd/CMDS/trap' -- because `trap' is also a bash builtin, and the builtin answers first, silently, which looks exactly like success. Measured 2026-08-29.
