@@ -88,7 +88,7 @@ is no help until you already know the name you want.
 | **Text tools** | 112 | Search, sort, compare, reformat, split and spell-check. |
 | **Files & directories** | 37 | Listing, copying, finding, renaming, and knowing what you have. |
 | **Developer tools** | 48 | Version control, tags, cross-reference, formatters, a debugger and benchmarks. |
-| **Compilers & build** | 26 | C compilers and their passes, assemblers, linkers, make and parser generators. |
+| **Compilers & build** | 27 | C compilers and their passes, assemblers, linkers, make and parser generators. |
 | **Languages** | 10 | Interpreters and language systems beyond C. |
 | **Archives & compression** | 35 | Pack, unpack and shrink -- lha, zip, tar, arc, zoo, and OS-9 module libraries. |
 | **Encoding & conversion** | 24 | Between text encodings, line endings, Macintosh formats, ciphers and hashes. |
@@ -96,8 +96,8 @@ is no help until you already know the name you want.
 | **Graphics & images** | 202 | The netpbm toolkit, JPEG, a ray tracer, and things that draw. |
 | **Games** | 66 | Adventures, board and card games, arcade ports, dungeon crawls and puzzles. |
 | **Screen toys** | 7 | Things to watch rather than play. Start one and leave it going. |
-| **Amusements** | 23 | Generators, simulators and diversions that are not quite games. |
-| **System & modules** | 126 | OS-9 module and process tools, devices, system state and scheduling. |
+| **Amusements** | 24 | Generators, simulators and diversions that are not quite games. |
+| **System & modules** | 124 | OS-9 module and process tools, devices, system state and scheduling. |
 | **Disk & DOS** | 20 | Reading and writing MS-DOS media with the mtools set. |
 | **Time & calendar** | 14 | Calendars, clocks and astronomy. |
 | **Maths & calculators** | 10 | Calculators, plotting, orbits and number theory. |

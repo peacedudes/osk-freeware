@@ -96,9 +96,9 @@ gmake|Compilers & build|Make & generators
 m4|Compilers & build|Make & generators
 make|Compilers & build|Make & generators
 makeinfo|Compilers & build|Make & generators
-rtf|Compilers & build|Make & generators
+rtf|Compilers & build|Fortran
 yacc|Compilers & build|Make & generators
-for|Compilers & build|Other languages
+for|Compilers & build|Fortran
 
 # ---- Developer tools ----
 disktest|Developer tools|Benchmarks
@@ -889,10 +889,10 @@ osknet|Communications|TCP/IP
 add_errmsg|System & modules|Utilities
 argproc_demo|System & modules|Utilities
 ask|Games|Other games
-biory|System & modules|Utilities
+biory|Amusements|Simulations
 bigsetter|System & modules|Utilities
 config|System & modules|Utilities
-creadoc|System & modules|Utilities
+creadoc|Compilers & build|Fortran
 demerge|System & modules|Utilities
 devprc|System & modules|Utilities
 em|System & modules|Utilities
