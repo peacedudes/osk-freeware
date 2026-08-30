@@ -111,10 +111,46 @@ So there are three now, and none of them replaces looking:
 
 `tools/README.md` has the rest.
 
-## DO THIS FIRST — the next three actions, in order
+## DO THIS FIRST — the next actions, in order
 
 Do not re-plan. `notes/PLAN-verification.md` is the plan and it is current.
 Do not stop between items to report; commit and start the next one.
+
+**1. Finish the os9exec comparison before anyone bumps the pin.** One data
+   family of eight was run under HEAD and matched. Run all eight, against a
+   COPY of the image so the lock does not collide with ordinary work:
+   `OS9EXEC=<binary> tools/datatest.py --all --image <copy>`. Both builds
+   are recipes, not artefacts: `git archive <ref> | tar -x -C <dir>` then
+   `make`. The pin is in `.github/workflows/build-image.yml` and bumping it
+   is rdoggett's call.
+
+**2. Keep splitting the over-broad `for` lists.** "Run by name on its own
+   card" went 579 -> 668 of 918 on 2026-08-29 and about forty cards still
+   credit three or more programs they never type. The one-line finder:
+   for each stanza, the `for` names with no `run` line naming them.
+   Some of what is left is honest grouping -- eleven DVI drivers, a shelf
+   of MM/1 device descriptors -- and some is not.
+
+**3. Try the rest of what `tools/bare_deps.py disk` names.** It lists
+   programs that open a file BY BARE NAME where a file of that name is on
+   the disk, which is how `orbit` and `advcom` turned out not to be broken.
+   Tried and answered: orbit (works), advcom/advint (work), make (works),
+   rdoc (works), sdb (starts, its own commands are undocumented), pdraw and
+   cyberwar (no change). Not yet tried: `vtxtcn`, `adlcomp`, the `emacs`
+   family's `error.cmd`, and the Ghostscript set.
+
+**4. The ~180 short DOC/INDEX entries with no dated stamp.** The hit rate
+   has dropped a lot -- most of what is left is terse and correct -- but
+   every pass so far has found something. `tools/fix_index.py` rewrites one
+   entry safely; do not hand-edit the file.
+
+**5. CI has still never run.** The workflow triggers on `main`, on a PR to
+   `main`, and on a tag; this branch is `release-pass-2026-08-21`, so
+   nothing has ever fired. The `gen_screens.py --check` step was broken from
+   the day it was added until 2026-08-29 and is now proved against a clean
+   checkout, but the whole file is still untested on GitHub.
+
+**Done earlier, kept as a record:**
 
 **A. ~~Re-run stage 2 the loaded way.~~ DONE 2026-08-28, and stage 4 with
    it.** `tools/sweep_filters_loaded.sh` gave the 272 silent programs real
