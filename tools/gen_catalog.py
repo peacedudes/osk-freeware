@@ -320,10 +320,7 @@ def from_tree(root, progs, starred):
     # them, all present in DOC/INDEX and none of them in the guide.  Only
     # CMDS/archives stays out, and that holds .lzh source archives, not
     # programs.
-    for d in ("CMDS", "CMDS/GAMES", "CMDS/NETPBM", "CMDS/BROKEN", "CMDS/REBUILT",
-              "CMDS/GCC139", "CMDS/GCC2", "CMDS/DEMOS", "CMDS/DHRY", "CMDS/MM1",
-              "CMDS/UUCP", "CMDS/ADL", "CMDS/COMMS", "CMDS/ELM", "CMDS/NETWORK",
-              "CMDS/NEWS", "CMDS/TEXCMDS", "CMDS/WN"):
+    for d in PROGRAM_DIRS:
         full = os.path.join(root, d)
         if not os.path.isdir(full):
             continue
@@ -400,14 +397,19 @@ def unseen(root, progs):
     out of the catalogue while `--check' still said every program had a
     category.  A check that cannot fail is worse than no check.
     """
+    # WALK THE WHOLE OF CMDS, not PROGRAM_DIRS.  Checking only the listed
+    # directories would share the blind spot it is meant to catch: a new
+    # subdirectory nobody added to the list would be invisible to the
+    # catalogue AND to this.  CMDS/archives is the one exception and holds
+    # the original .lzh archives, not programs.
     missing = []
-    for d in PROGRAM_DIRS:
-        full = os.path.join(root, d)
-        if not os.path.isdir(full):
+    for base, _, files in os.walk(os.path.join(root, "CMDS")):
+        rel = os.path.relpath(base, root)
+        if os.path.basename(base) == "archives":
             continue
-        for n in sorted(os.listdir(full)):
-            if os.path.isfile(os.path.join(full, n)) and n not in progs:
-                missing.append("%s/%s" % (d, n))
+        for n in sorted(files):
+            if os.path.isfile(os.path.join(base, n)) and n not in progs:
+                missing.append("%s/%s" % (rel, n))
     return missing
 
 
