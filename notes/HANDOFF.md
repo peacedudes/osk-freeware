@@ -15,11 +15,15 @@
 > - **`elvis` "has full docs and source on the disk but no binary"** — it has a
 >   binary, 111,944 bytes, and it works.
 >
-> Read `notes/FOR-RDOGGETT.md` first, then `notes/SESSION-2026-08-21.md`.
+> Read `notes/START-HERE-NEXT-SESSION.md` first, then
+> `notes/FOR-RDOGGETT.md`.  (This pointed at `notes/SESSION-2026-08-21.md`,
+> (deleted in the 2026-08-27 notes prune; `git log --diff-filter=D --name-only -- notes/` finds it).)
 
 
-Read this, then `notes/SESSION-LOG.md` for the commit-by-commit record and
-`notes/WORK-QUEUE.md` for what is left. This supersedes the 2026-08-17
+Read this, then `git log` for the commit-by-commit record and
+`notes/START-HERE-NEXT-SESSION.md` for what is left.  (Those two jobs
+belonged to `notes/SESSION-LOG.md` and `notes/WORK-QUEUE.md`,
+(deleted in the 2026-08-27 notes prune; `git log --diff-filter=D --name-only -- notes/` finds it).) This supersedes the 2026-08-17
 handoff; every item on its "pick up here" list is done.
 
 ## The one thing that is not committed, and why

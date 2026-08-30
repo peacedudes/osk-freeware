@@ -14,7 +14,7 @@ The five absent categories -- DRIVERS, EFFO, GWINDOWS, NETWORK, TELECOM --
 were re-fetched from Microware's OS-9 Archive with `tools/refetch_archive.py`.
 **The pool is now complete at 432 files.** Everything below still describes
 the original 281. The 152 new archives hold 6508 members
-(`notes/pool-newcategories-members.txt`) and nothing in them has been
+(`pool-newcategories-members.txt`, (deleted in the 2026-08-27 notes prune; `git log --diff-filter=D --name-only -- notes/` finds it)) and nothing in them has been
 assessed -- including 36 EFFO forum and public-domain disks, which are where
 European OS-9 community software lived.
 
@@ -26,7 +26,7 @@ hobbyist archive. The pool directory holds 13. **DRIVERS (13 files), EFFO (36,
 12.8 MB), GWINDOWS (7), NETWORK (20, 8.3 MB) and TELECOM (77, 11.2 MB) are
 absent** -- 153 archives, about 34 MB, that nothing below has examined. The
 pool's own `download.log` covers only the surviving 13, so those five were
-fetched in another pass and not kept. See `notes/MGR.md`.
+fetched in another pass and not kept. (`notes/MGR.md` had the detail; (deleted in the 2026-08-27 notes prune; `git log --diff-filter=D --name-only -- notes/` finds it).)
 
 ## Where the pool is
 
@@ -182,7 +182,7 @@ never been looked at.
 Redone at the module level -- every archive extracted, every 4AFC module found,
 its name read from `M$Name` at header offset `0x0C` rather than from its
 filename. **278 distinct module names in the pool; 75 are not on this disk.**
-The full list is `notes/pool-modules-absent.txt`. The substantial ones:
+The full list was `pool-modules-absent.txt`, (deleted in the 2026-08-27 notes prune; `git log --diff-filter=D --name-only -- notes/` finds it). The substantial ones:
 
 | | |
 |---|---|
@@ -305,4 +305,4 @@ available for rebuilding modules. For 68k work that is false.
 
 - `tools/list_pool.py` — the lister, rerunnable
 - `notes/pool-members.tsv` — every archive and every member
-- `notes/pool-absent.txt` — the 101 with no program on the disk
+- `pool-absent.txt` — the 101 with no program on the disk; (deleted in the 2026-08-27 notes prune; `git log --diff-filter=D --name-only -- notes/` finds it)

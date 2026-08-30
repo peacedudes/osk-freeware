@@ -69,7 +69,7 @@ the ST.
 ## Excluded on the owner's terms -- from the 152 recovered archives
 
 Measured 2026-08-14 while working the newly-recovered pool categories; the
-whole haul is described in `notes/POOL-NEW-HAUL.md`.
+whole haul was described in `POOL-NEW-HAUL.md`, (deleted in the 2026-08-27 notes prune; `git log --diff-filter=D --name-only -- notes/` finds it).
 
 | | |
 |---|---|

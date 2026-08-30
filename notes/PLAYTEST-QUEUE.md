@@ -104,7 +104,7 @@ through `SYS/login` under a real pty, lets it draw, sends a candidate key, and
 watches for the shell prompt to come back -- with a control run that sends no
 key, so a program that exits on its own cannot be mistaken for one the key
 worked on. 37 of the 67 now have a tested quit key
-(`notes/quit-keys-verified.txt`), and those are in `tools/howto.psv`.
+(`quit-keys-verified.txt`, (deleted in the 2026-08-27 notes prune; `git log --diff-filter=D --name-only -- notes/` finds it)), and those are in `tools/howto.psv`.
 
 Two earlier approaches failed and are worth not repeating: piping to these
 proves nothing (with stdin not a terminal they exit at EOF, so every key
