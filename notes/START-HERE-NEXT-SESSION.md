@@ -380,10 +380,13 @@ than when it was made, not weaker.
    not coverage: `tools/audit_screens.py` flags eight, of which four are
    honest (a wall of plus signs is what `puzzle` draws).
 
-**2. Tier B has been played: 104 of 108 pass.** `tools/playtest.py --all`,
-   run 2026-08-28, about two and a quarter hours. Write-up in `DOC/STATUS`
-   under PLAYED, NOT JUST RUN. The four failures are kept failing on
-   purpose and each script says why -- pacman writes control bytes for a
+**2. Tier B has been played: 111 of 115 pass.** `tools/playtest.py --all`,
+   re-run in full 2026-08-29, about two and a half hours; it was 104 of 108
+   on 2026-08-28 and four scripts have been added since (`orbit`, `advint`,
+   `gnuchess`, and `gnuchessn` corrected from a deliberate failure to a
+   pass). Write-up in `DOC/STATUS` under PLAYED, NOT JUST RUN. The four
+   failures are the same four as before, kept failing on purpose, and each
+   script says why -- pacman writes control bytes for a
    terminal that is not a vt100, puzzle is G-Windows, valspeak exits at
    once, and **snake plays but scatters text over its own board**: 17
    cursor moves arrive as literal `[13;49H' instead of as motion. A fresh
