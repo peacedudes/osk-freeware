@@ -189,9 +189,9 @@ history of entries written from names.
 
 ## Look at this
 
-`docs/index.html` -- the catalogue, with a photographed screen on 918 of the
-918 program cards. Every screen came from keystrokes fed to a running program
-on the disk image; 668 of them are of the program named on the card, and the
+`docs/index.html` -- the catalogue, with a photographed screen on 936 of the
+936 program cards. Every screen came from keystrokes fed to a running program
+on the disk image; 787 of them are of the program named on the card, and the
 rest share one with programs that behave alike (`gen_screens.py` prints both
 numbers). This line named `docs/screens.html` and "16 programs" until
 2026-08-29; that file has not existed for some time and the screens have been
