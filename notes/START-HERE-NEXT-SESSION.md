@@ -323,11 +323,15 @@ being typed at this terminal, and every makefile written here by echoing at
 the shell was therefore a syntax error. `disk/DOC/make/demo.mk` is a small
 worked example shipped WITH its tabs, needing no compiler.
 
-**os9exec's pin can probably be bumped, and it was measured.** HEAD (`e8a3c81`)
+**os9exec's pin looks safe to bump, on a PARTIAL check.** HEAD (`e8a3c81`)
 builds clean, still has the `mount -k -v=<name>` the build needs, and the pin
 is still an ancestor. Ninety commits, several touching `F$SRqMem` — but
-`etags`, the collection's own storm case, behaves identically under both.
-See `notes/FOR-RDOGGETT.md` for the full-suite comparison.
+`etags`, the collection's own storm case, behaves identically under both, and
+the `archives` data family is 24 of 25 either way. **That is one family of
+eight**; the comparison was stopped so the play-test suite could have the
+machine to itself. Redo it before bumping anything, and run it against a COPY
+of the image (`OS9EXEC=<binary> tools/datatest.py --all --image <copy>`) so
+the lock does not collide with ordinary work.
 
 **`tools/screenshots.py` takes `--only name,name`** now — recapturing one
 card no longer means rerunning a sheet of sixty. And **`tools/fix_index.py`

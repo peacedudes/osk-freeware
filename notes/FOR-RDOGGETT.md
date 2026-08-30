@@ -118,18 +118,31 @@ fresh checkout it exited 1 every time. Fixed by committing the stanza
 fingerprints. Worth saying plainly: I added a check and did not run it the
 way CI would.
 
-**os9exec's pin can probably be bumped.** HEAD (`e8a3c81`) builds clean,
-still has the `mount -k -v=<name>` the build needs, and the pin is still an
-ancestor of it. Ninety commits, several touching `F$SRqMem` -- but `etags`,
-this collection's own storm case, behaves identically under both. A full
-data-suite run under HEAD was in flight when this was written; the result is
-in the handoff. **Bumping it is still your call** -- the workflow comment
-asks for that deliberately and I have not changed the pin.
+**os9exec's pin looks safe to bump, on a PARTIAL check.** HEAD (`e8a3c81`)
+builds clean, still has the `mount -k -v=<name>` the build needs, and the pin
+is still an ancestor of it. Ninety commits, several touching `F$SRqMem`,
+which is this collection's own storm case -- and `etags` behaves identically
+under both, one `No more memory !!!` and `virtual memory exhausted`. The
+`archives` data family is 24 of 25 under HEAD, the same as under the pin,
+same single deliberate failure.
+
+**That is one family of eight and I did not finish the rest.** Both suites
+were running at once and were contending badly, so I stopped the comparison
+to let the play-test suite finish; it is worth redoing properly. The builds
+are still in the scratch directory if you want them, and the recipe is
+`OS9EXEC=<binary> tools/datatest.py --all --image <a COPY of the image>`.
+**Bumping the pin is still your call** -- the workflow comment asks for that
+deliberately and I have not changed it.
 
 ## Look at this
 
-`docs/screens.html` -- 16 programs photographed while running, linked from the
-catalogue. Every screen came from keystrokes fed to a running program.
+`docs/index.html` -- the catalogue, with a photographed screen on 918 of the
+918 program cards. Every screen came from keystrokes fed to a running program
+on the disk image; 627 of them are of the program named on the card, and the
+rest share one with programs that behave alike (`gen_screens.py` prints both
+numbers). This line named `docs/screens.html` and "16 programs" until
+2026-08-29; that file has not existed for some time and the screens have been
+part of the catalogue itself since.
 
 ## 2026-08-27, second session
 
@@ -164,10 +177,11 @@ be quoted as "works" -- `zip` and `todos` are both inside the 870.
 
 ## 2026-08-27, third session -- the screens
 
-**You asked for pictures for the web pages. There are 400-odd now**, and
-taking them found more broken programs than any sweep has. `docs/screens.html`
-is the gallery; every program's own card in `docs/index.html` carries its
-screen. Nothing is mocked up -- keystrokes went into a running program on the
+**You asked for pictures for the web pages. There are 478 now**, and
+taking them found more broken programs than any sweep has. Every program's
+own card in `docs/index.html` carries one. (There was a separate
+`docs/screens.html` gallery when this was written; it is gone, and these two
+lines said otherwise until 2026-08-29.) Nothing is mocked up -- keystrokes went into a running program on the
 disk image and the terminal stream was rendered into the grid a vt100 would
 have shown, so where a program failed, the failure is the picture.
 
