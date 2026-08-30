@@ -1,6 +1,18 @@
+$ echo "        org  \0441000" > /dd/tmp/t.a
+$ echo "        lda  #\04442" >> /dd/tmp/t.a
+$ echo "        sta  \0442000" >> /dd/tmp/t.a
+$ echo "        rts" >> /dd/tmp/t.a
+$ echo "        end" >> /dd/tmp/t.a
 $ cat /dd/tmp/t.a
-cat: couldn't open '/dd/tmp/t.a' (Error #000:216)
+        org  $1000
+        lda  #$42
+        sta  $2000
+        rts
+        end
 $ as09 /dd/tmp/t.a
-as: can't open /dd/tmp/t.a
 $ cat /dd/tmp/t.s19
+S10910008642B72000390E
+S9030000FC
+$ cat /dd/tmp/t.s19
+S10910008642B72000390E
 S9030000FC

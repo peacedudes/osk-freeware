@@ -9,10 +9,25 @@ cap     instructions at $1000, in the format a ROM burner eats.  A 6809
 cap     cross-assembler running on a 68000; as0, as1, as4, as5 and as11 are
 cap     its cousins for the rest of the 6800 family, and not one of the six
 cap     assembles 68k code.
+cap     The source is written here rather than borrowed from another card:
+cap     it used to be, and when that card moved the file was not there and
+cap     this one photographed two `can't open' messages.
+run     echo "        org  \0441000" > /dd/tmp/t.a
+wait    6
+run     echo "        lda  #\04442" >> /dd/tmp/t.a
+wait    5
+run     echo "        sta  \0442000" >> /dd/tmp/t.a
+wait    5
+run     echo "        rts" >> /dd/tmp/t.a
+wait    5
+run     echo "        end" >> /dd/tmp/t.a
+wait    5
 run     cat /dd/tmp/t.a
 wait    6
 run     as09 /dd/tmp/t.a
-wait    10
+wait    12
+run     cat /dd/tmp/t.s19
+wait    8
 run     cat /dd/tmp/t.s19
 wait    8
 

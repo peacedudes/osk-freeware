@@ -1413,7 +1413,7 @@
 
 | | |
 |---|---|
-| `aprocs` | &#9733; process monitor<br>`Syntax: aprocs [<opts>]` |
+| `aprocs` | &#9733; process monitor -- and it does NOT run under os9exec: it calls F$SetSys twice, which the emulator does not implement, and is then aborted (E_PRCABT).  DOC/STATUS has had this since 2026-08; the entry here did not say it.  `procs', `top' and `sysmon' are the other process listers.  Added 2026-08-30<br>`Syntax: aprocs [<opts>]` |
 | `launch` | &#9733; NOT a background launcher.  M.C.Gregorie's login helper: sets the environment for the terminal type, optionally a default PATH and emacs bindings, from /dd/SYS/config, then starts the shell named on its command line.  Corrected 2026-08-28<br>**How:** Says "nothing to launch" until it is configured -- see its documentation. |
 | `signal` | &#9733; send a signal to a process<br>`Syntax: signal <process-id> <signal-code> [<seconds>]` |
 | `sysmax` | &#9733; shows the system's maximum process AGE, not its memory -- `system maximum age is 0' here, because os9exec does not implement the F$SetSys call it uses.  Corrected 2026-08-29 |
