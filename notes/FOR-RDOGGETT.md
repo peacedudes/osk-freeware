@@ -84,6 +84,48 @@ board in place. Nothing scrolls off, which is why it still looks like a board.
   - **netpbm** -- 152 of 168 build from source now, plus four libraries.
     Three genuine upstream bugs found doing it.
 
+## 2026-08-29, later: ten corrupt files, and a number that could not fail
+
+**Ten binaries under `disk/SRC/` were corrupt and had been all along** -- two
+JPEGs, a GIF, a PPM, a `.zoo`, three compress archives and GNU Chess's data
+and hash tables. Something had run an `iconv //TRANSLIT` over them: every
+byte over `0x7f` replaced by `?`, a `0xB0` turned into the three letters
+`deg`, every LF turned into CR. `testimg.jpg` began `???a`. **No program ever
+misbehaved**, because the copies programs actually read -- `GNUCHESS4.0/MISC`
+in the live tree -- were untouched and are byte-identical to the archive.
+All ten restored from the archives `DOC/ORIGINS` names, still in the pool.
+`check_disk.py` has a twelfth check now, and its first run reported nine
+files, all nine of which were the check being wrong.
+
+**The JPEG tools and netpbm both work; they disagree about line endings.**
+`cjpeg`/`djpeg` separate PNM header fields with LF, the netpbm ports here use
+CR, and each blames the other's data -- "Bogus data in PPM file" one way,
+"junk in file where an integer should be" the other. Three bytes, patched
+with `pbyte`. The claim that no JPEG could be made on this disk is gone, and
+there is a card showing a GIF turned into a commented JPEG and read back.
+
+**Coverage was being measured by a number that cannot fail.** "918 of 918
+have sample output" is satisfied by a card's `for` line CREDITING a program,
+whether or not the card ever runs it. Measured: **579** were actually run by
+name. Some grouping is honest -- eleven DVI drivers do behave alike -- and
+some was not: `scsiutil`'s card credited `read_mail` and `add_errmsg`.
+Splitting the worst offenders has it at 627 and `gen_screens.py` prints both
+numbers on every run now, so it cannot quietly go back.
+
+**A CI step I added that morning had never once passed.** `gen_screens.py
+--check` needs the captures, and `notes/playtests/` is gitignored, so on a
+fresh checkout it exited 1 every time. Fixed by committing the stanza
+fingerprints. Worth saying plainly: I added a check and did not run it the
+way CI would.
+
+**os9exec's pin can probably be bumped.** HEAD (`e8a3c81`) builds clean,
+still has the `mount -k -v=<name>` the build needs, and the pin is still an
+ancestor of it. Ninety commits, several touching `F$SRqMem` -- but `etags`,
+this collection's own storm case, behaves identically under both. A full
+data-suite run under HEAD was in flight when this was written; the result is
+in the handoff. **Bumping it is still your call** -- the workflow comment
+asks for that deliberately and I have not changed the pin.
+
 ## Look at this
 
 `docs/screens.html` -- 16 programs photographed while running, linked from the
