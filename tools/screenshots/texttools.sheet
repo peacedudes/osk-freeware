@@ -591,7 +591,10 @@ cap     TeX's BITMAP font tools, each asked for itself.  None of them has
 cap     anything to work on: SYS/TEX/FONTS carries .tfm metrics and a
 cap     PK300 directory holding nothing but a Makefile, so there is no .pk,
 cap     no .gf and no .vf on the disk for these eight to read.  `virmf' and
-cap     `inimf' are Metafont, which is what would MAKE one.  All eight were
+cap     `inimf' are Metafont, which is what would MAKE one -- and that is
+cap     the reason none ship: a .pk is rendered for a particular device at a
+cap     particular resolution, so TeX's own MakeTeXPK runs Metafont to
+cap     produce the one your printer wants rather than carrying a set.  All eight were
 cap     credited to the tftopl card until 2026-08-29 and none was typed
 cap     there, so their sample output was somebody else's round trip.
 run     gftopk

@@ -95,10 +95,8 @@ emacs.mm1|Full-screen editor, MicroEMACS key bindings. **control-X control-C qui
 gshell|Full-screen: it takes over the display. **control-C gets you out** -- tested, and none of q, Q, control-D or ESC did. If it has a quit command of its own, its documentation in DOC/ will say.
 hang|Full-screen: it takes over the display. **control-C gets you out** -- tested, and none of q, Q, control-D or ESC did. If it has a quit command of its own, its documentation in DOC/ will say.
 hotel|Full-screen: it takes over the display. **control-C gets you out** -- tested, and none of q, Q, control-D or ESC did. If it has a quit command of its own, its documentation in DOC/ will say.
-lac|Full-screen: it takes over the display. **`q' quits** -- tested.
 lander|Full-screen: it takes over the display. **`q' quits** -- tested.
 larn|Full-screen: it takes over the display. **control-C gets you out** -- tested, and none of q, Q, control-D or ESC did. If it has a quit command of its own, its documentation in DOC/ will say.
-main|Full-screen: it takes over the display. **`q' quits** -- tested.
 me|Full-screen editor, MicroEMACS key bindings. **control-X control-C quits** (exit-emacs) -- tested. Its macros and online help are in USR/LIB/EMACS.
 mg|Full-screen editor, MicroEMACS key bindings. **control-X control-C quits** (exit-emacs) -- tested. Its macros and online help are in USR/LIB/EMACS.
 mille|Full-screen: it takes over the display. **control-C gets you out** -- tested, and none of q, Q, control-D or ESC did. If it has a quit command of its own, its documentation in DOC/ will say.
@@ -107,10 +105,8 @@ nobs|Full-screen: it takes over the display. **control-C gets you out** -- teste
 puz15|Full-screen: it takes over the display. **control-C gets you out** -- tested, and none of q, Q, control-D or ESC did. If it has a quit command of its own, its documentation in DOC/ will say.
 puzzle15|Full-screen: it takes over the display. **control-C gets you out** -- tested, and none of q, Q, control-D or ESC did. If it has a quit command of its own, its documentation in DOC/ will say.
 rain|Full-screen: it takes over the display. **control-C gets you out** -- tested, and none of q, Q, control-D or ESC did. If it has a quit command of its own, its documentation in DOC/ will say.
-scope|Full-screen: it takes over the display. **`q' quits** -- tested.
 setterm|Full-screen: it takes over the display. **ESC quits** -- tested. (control-C also gets you out, but ESC is the program's own way.)
 shuffle|Full-screen: it takes over the display. **`q' quits** -- tested.
-sin|Full-screen: it takes over the display. **`q' quits** -- tested.
 snake|Full-screen: it takes over the display. **`x' quits** -- tested. (control-C also gets you out, but `x' is the program's own way.)
 sonnet|Full-screen: it takes over the display. **ESC quits** -- tested. (control-C also gets you out, but ESC is the program's own way.)
 touchtype|Full-screen: it takes over the display. **control-C gets you out** -- tested, and none of q, Q, control-D or ESC did. If it has a quit command of its own, its documentation in DOC/ will say.
@@ -128,7 +124,6 @@ spiff|Compares two files while ignoring differences that do not matter (whitespa
 infocom.tcap|Plays Infocom adventure game files -- it needs the game's data file as an argument, which this disk does not carry.
 EditLibr|Part of the HL10 librarian set. Wants an edit file as a parameter; `EditLibr' alone prints its syntax.
 crypto|File encryption. Takes files: `crypto [-cegnru] <file>...'; `crypto -h' is the help.
-pow|Wants a hardware controller at /x1 and cannot run without it.
 launch|Says "nothing to launch" until it is configured -- see its documentation.
 initvdu|Answers "is not defined for this terminal": it sets up specific VDU hardware, not a general terminal.
 hack|RUN IT BY ITS FULL PATH: `/dd/CMDS/GAMES/hack', not `hack'. It chdirs into its playground and then stats argv[0] to date-check saved levels, so a bare name cannot resolve and it stops with "Cannot get status of hack." Invoked in full it starts: "Are you an experienced player?". Its playground -- record, bones, rumors, help -- is in GAMES/HACK/PLAYGROUND.
@@ -138,7 +133,6 @@ latex|LaTeX. Its format is SYS/TEX/FORMATS/lplain.fmt, already built: `virtex "&
 slitex|LaTeX for slides; its format is SYS/TEX/FORMATS/splain.fmt, already built.
 dvitype|Shows what is inside a .dvi file as readable text. `dvitype <file>.dvi', then it asks for an output level -- 4 is a complete listing, 0 errors only.
 dvips|DVI to PostScript. Pair it with gs33 (ETC/LIB/GS33) to see the result without a printer.
-MakeTeXPK|Generates the bitmap font TeX asked for, at the size it wants, by running MetaFont. That is why the .pk fonts are not shipped -- they are made for your device.
 elm|The full-screen mail reader. It needs a password entry it can parse and currently stops with "You have no password entry!" -- its OSK library reads /DD/SYS/Password but does not accept this disk's entries. The rest of the suite works: `readmsg 1' prints a message, `messages' counts the folder. Mail lives at /dd/SPOOL/MAIL/<user>, and SYS/login points MAIL at it.
 readmsg|Prints messages from a mail folder: `readmsg 1' for the first. Tested -- it reads the welcome message in /dd/SPOOL/MAIL/tester.
 messages|Counts what is in your mail folder. Tested: "There is 1 message in your mailbox".

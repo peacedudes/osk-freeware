@@ -519,6 +519,42 @@ def check_binary_magic(root):
 
 
 
+def check_hand_files_name_real_programs(root):
+    """tools/howto.psv and tools/categories.psv must name programs that exist.
+
+    Both are hand-maintained, and a program removed from the disk leaves its
+    lines behind.  On 2026-08-30 `howto.psv' still carried six: `lac', `main',
+    `pow', `scope' and `sin' were deliberately dropped from the collection on
+    2026-08-22 and their entries were not, four of them still claiming
+    "`q' quits -- tested"; `MakeTeXPK' had never been on the disk at all.
+    Nothing pointed at them, because both files are read by NAME -- an entry
+    nobody looks up is an entry nobody notices.
+    """
+    import gen_catalog
+    ondisk = set()
+    for d in gen_catalog.PROGRAM_DIRS:
+        full = os.path.join(root, d)
+        if os.path.isdir(full):
+            ondisk |= {f for f in os.listdir(full)
+                       if os.path.isfile(os.path.join(full, f))}
+    here = os.path.dirname(os.path.abspath(__file__))
+    bad = []
+    for fname in ("howto.psv", "categories.psv"):
+        path = os.path.join(here, fname)
+        if not os.path.exists(path):
+            continue
+        for line in open(path):
+            if line.startswith("#") or "|" not in line:
+                continue
+            name = line.split("|")[0].strip()
+            if name and name not in ondisk:
+                bad.append("%s: %s" % (fname, name))
+    for b in bad[:12]:
+        print("    names a program that is not on the disk -- %s" % b)
+    return not bad, "%d stale line(s) in a hand-maintained file" % len(bad)
+
+
+
 CHECKS = [
     ("line endings are CR-only", check_line_endings),
     ("no UTF-8 on an 8-bit disk", check_no_utf8),
@@ -532,6 +568,7 @@ CHECKS = [
     ("DOC/DEPENDS is up to date", check_depends),
     ("no unscreened Microware source", check_src_screened),
     ("binaries start with their magic", check_binary_magic),
+    ("howto and categories are current", check_hand_files_name_real_programs),
 ]
 
 if __name__ == "__main__":
