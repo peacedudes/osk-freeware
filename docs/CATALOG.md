@@ -1404,7 +1404,7 @@
 | `vc` | &#9733; a SPREADSHEET -- `Welcome to the Spreadsheet Calculator, type ? for help', with rows, columns and a formula line.  Not a visual compare, which is what this entry said until 2026-08-28 |
 | `vecho` | echo without a newline (from less) |
 | `vlen` | &#9733; a VARIABLE-LENGTH RECORD demonstration, not a reporting tool: it ignores whatever you give it, creates a filesystem of its own, adds a hundred records of varying length and prints the minimum, the maximum and the mapper entries as it goes.  `isam' is the other demonstration of its kind here.  Corrected 2026-08-29 |
-| `what` | print the SCCS what-strings a binary carries |
+| `what` | NOT the SCCS `what' -- it does not read a binary at all.  It prints `What's where in the GEPARD:' and a table of I/O address, reference byte and card name: an inventory of the expansion cards in a GEPARD, the German 68k machine much of the EFFO material was written on.  The table is empty here, there being no GEPARD.  It ignores its arguments.  Added to this index 2026-08-30, having never been in it; the first entry written for it guessed SCCS from the name and was wrong within the hour<br>**How:** NOT the SCCS `what`. It prints "What's where in the GEPARD:" and a table of expansion cards -- an inventory tool for the GEPARD, the German 68k machine. Empty here, there being no GEPARD, and it ignores its arguments. Measured 2026-08-30. |
 | `xlharc` | extract LHarc archives<br>`Usage: xlharc {axevlufdmctp}[qnftv] archive_file [files or directories...]` |
 | `yagi` | Yagi antenna design calculator |
 | `ynad` | &#9733; YNAD -- Yet Another Name & Address program.  A contact database, not a yes/no dialogue.  Corrected 2026-08-28 |

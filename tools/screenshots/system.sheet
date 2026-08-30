@@ -701,7 +701,7 @@ wait    12
 
 
 shot    drivers
-for     keydrv.mm1 msdrv.901_340 rb37c65 scsi_mm1a snddrv windio.52
+for     keydrv.mm1 msdrv.901_340 msdrv_340.901.ms rb37c65 scsi_mm1a snddrv windio.52
 cap     The MM/1 drivers -- keyboard, mouse, floppy, SCSI, sound and the
 cap     windowing terminal.  They are device drivers for hardware that is
 cap     not here, so again `modinfo' is what there is to show: type $C
@@ -719,6 +719,8 @@ wait    12
 run     modinfo /dd/CMDS/MM1/snddrv | head -n 4
 wait    12
 run     modinfo /dd/CMDS/MM1/windio.52 | head -n 4
+wait    12
+run     modinfo /dd/CMDS/MM1/msdrv_340.901.ms | head -n 4
 wait    12
 
 shot    load

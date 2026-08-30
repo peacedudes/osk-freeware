@@ -450,10 +450,19 @@ run     ls -l /dd/tmp/f.dat*
 wait    6
 
 shot    strings
-cap     strings pulls the printable text out of a binary, each hit reported
-cap     with its offset.  Run here on an OS-9 module.
-run     strings /dd/CMDS/today | head -n 16
+size    36 80
+for     strings what
+cap     `strings' pulls the printable text out of a binary, each hit
+cap     reported with its offset.  `what' beside it is NOT the SCCS `what'
+cap     its name promises and does not read a binary at all: it lists the
+cap     expansion cards in a GEPARD, the German 68k machine much of the
+cap     EFFO material was written on, and the table is empty here because
+cap     there is no GEPARD.  It ignores whatever you give it.  The entry
+cap     written for it an hour earlier guessed SCCS from the name.
+run     strings /dd/CMDS/today | head -n 12
 wait    5
+run     what /dd/CMDS/today
+wait    8
 
 shot    subber
 cap     subber substitutes text in a stream, reading the substitutions from

@@ -14,7 +14,7 @@ advint 6598d1a2cc695735
 alternates 3948f550cac9139a
 aprocs 310bcd17d3d511a9
 ar 7f55b70f2020c383
-ar2 a24ede7a05e1c894
+ar2 9c83216dd0f008f5
 arc daa507775ef5d322
 areacode caf9b5644e1a72fa
 argproc_demo fa6a478485f7bf8c
@@ -92,7 +92,7 @@ dload 55e7fdd5b0f0501e
 dm 0b495a865a749a07
 dosmore 588865e8e6c30d8d
 draw 6d55de7aed4c6d86
-drivers 323f557bdf585cb7
+drivers e4d61411015bb801
 drop 27abc5125c34534b
 du 3d131c56625e6ccb
 du-tree 5199df9ab58c939a
@@ -136,7 +136,7 @@ fuddle 696f3c6f51af662c
 g3 9f193f4274b4783f
 game 1cb91b5cb8bdd5ac
 gawk f102e7f1b6361813
-gcc 28d9b2aca645ad04
+gcc 8c4a1bd68a4dd63f
 gcl eb0d69bfb7939d9d
 gen c93a08fe2c993684
 gep e5edc88d0fa8aa36
@@ -160,7 +160,7 @@ gulls 2cd93e8b3e417940
 gulls-invert f27ffc1218b3eee3
 gwindows-games 38b44ae1715b26bc
 gzip d8833a8aef2e50f1
-gzips c8ce6ccd4fc40a8f
+gzips f103bf8ffc6fe423
 hc a9818bba601a234f
 help 5771258769956ae6
 helpindex 90fb3849d9afb6a5
@@ -344,7 +344,7 @@ sterm bd905852846437cf
 sterm-tools 4d9a9e425721931d
 stone 23a7eb29c7d9490f
 strfile 7fe16be00794c5de
-strings 761d65b3f9cd6fcc
+strings e036ad06532b0ddc
 subber 96fe228f2e840f71
 suicide-variants ae491d3d41bafdb3
 sum a4982bbec4d00817
@@ -375,7 +375,7 @@ ub68kdemo 8e203878a05389b6
 umacs 5791a04f4d5a71be
 undel b26970e3710564c8
 unip 560560c9aff6752c
-unzip 1c5ddfaab53c8135
+unzip 2235addc03488d21
 upperdir 9929cea7521338c2
 uuclean f1521c6df7a7190e
 uucp e741ecf26248e294

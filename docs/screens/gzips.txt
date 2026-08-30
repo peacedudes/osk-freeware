@@ -1,4 +1,3 @@
-$ gzip68k_nocsl -V
 gzip68k_nocsl 1.2.4 (18 Aug 93)
 Compilation options:
 NO_DIR NO_UTIME
@@ -12,5 +11,13 @@ Compilation options:
 NO_DIR NO_UTIME
 $ gzip020_csl -V
 gzip020_csl 1.2.4 (18 Aug 93)
+Compilation options:
+NO_DIR NO_UTIME
+$ gzipcpu32k_csl -V
+gzipcpu32k_csl 1.2.4 (18 Aug 93)
+Compilation options:
+NO_DIR NO_UTIME
+$ gzipcpu32_nocsl -V
+gzipcpu32_nocsl 1.2.4 (18 Aug 93)
 Compilation options:
 NO_DIR NO_UTIME
