@@ -399,7 +399,7 @@ def pick(name, want, first=""):
 
 def collect():
     """One entry per photographed program, with what the catalogue knows."""
-    progs, _ = gen_catalog.gather(os.path.join(REPO, "disk"),
+    progs, _, _ = gen_catalog.gather(os.path.join(REPO, "disk"),
                                   os.path.join(REPO, "tools",
                                                "categories.psv"))
     bycat = {p["name"]: (p["cat"], p["sub"]) for p in progs}

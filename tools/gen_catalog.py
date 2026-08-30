@@ -347,6 +347,36 @@ def load_howto(path):
     return notes
 
 
+# The program directories from_tree walks; also used to check that nothing on
+# the disk is invisible to the catalogue.
+PROGRAM_DIRS = ("CMDS", "CMDS/GAMES", "CMDS/NETPBM", "CMDS/BROKEN", "CMDS/REBUILT",
+                "CMDS/GCC139", "CMDS/GCC2", "CMDS/DEMOS", "CMDS/DHRY", "CMDS/MM1",
+                "CMDS/UUCP", "CMDS/ADL", "CMDS/COMMS", "CMDS/ELM", "CMDS/NETWORK",
+                "CMDS/NEWS", "CMDS/TEXCMDS", "CMDS/WN")
+
+
+def unseen(root, progs):
+    """Programs on the disk that DOC/INDEX never named, so gather cannot see them.
+
+    `from_tree' only ANNOTATES entries that `from_index' already found, so a
+    program the index does not name in a shape from_index recognises is
+    silently absent from the guide -- no category to be missing, nothing to
+    report.  On 2026-08-30 an edit to the ADL section of DOC/INDEX deleted a
+    four-line list of names, and `adlcomp', `adldebug' and `adltouch' dropped
+    out of the catalogue while `--check' still said every program had a
+    category.  A check that cannot fail is worse than no check.
+    """
+    missing = []
+    for d in PROGRAM_DIRS:
+        full = os.path.join(root, d)
+        if not os.path.isdir(full):
+            continue
+        for n in sorted(os.listdir(full)):
+            if os.path.isfile(os.path.join(full, n)) and n not in progs:
+                missing.append("%s/%s" % (d, n))
+    return missing
+
+
 def gather(root, catfile):
     progs, starred = from_index(root)
     groups = netpbm_groups(root)
@@ -375,7 +405,7 @@ def gather(root, catfile):
             uncategorised.append(p["name"])
             p["cat"], p["sub"] = "Uncategorised", "Uncategorised"
         out.append(p)
-    return out, uncategorised
+    return out, uncategorised, unseen(root, progs)
 
 
 # ---------------------------------------------------------------- writing
@@ -621,7 +651,16 @@ if __name__ == "__main__":
         raise SystemExit("usage: gen_catalog.py <disk-tree> [<out.html>] [--check]")
     root = args[0]
     here = os.path.dirname(os.path.abspath(__file__))
-    progs, uncategorised = gather(root, os.path.join(here, "categories.psv"))
+    progs, uncategorised, invisible = gather(root, os.path.join(here, "categories.psv"))
+
+    if invisible:
+        print("  %d program(s) on the disk are NOT NAMED IN DOC/INDEX, so the"
+              % len(invisible))
+        print("  catalogue cannot see them at all:")
+        for n in invisible[:20]:
+            print("     %s" % n)
+        if check:
+            raise SystemExit(1)
 
     if uncategorised:
         print("  %d program(s) missing from tools/categories.psv:" % len(uncategorised))
@@ -630,7 +669,7 @@ if __name__ == "__main__":
         if check:
             raise SystemExit(1)
     elif check:
-        print("  every program on the disk has a category")
+        print("  every program on the disk is in the catalogue and has a category")
         raise SystemExit(0)
 
     repo = os.path.abspath(os.path.join(here, os.pardir))

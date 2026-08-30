@@ -1,6 +1,6 @@
 # What is on this disk
 
-915 programs of OS-9/68K community software, gathered from the archives that kept it and made to run again. **550 of them need nothing but this disk**; the rest want Microware's `cio`, marked below with a star.
+936 programs of OS-9/68K community software, gathered from the archives that kept it and made to run again. **566 of them need nothing but this disk**; the rest want Microware's `cio`, marked below with a star.
 
 `DOC/INDEX` on the disk lists everything alphabetically. This is the same collection sorted by what each program is *for*, which is the more useful order when you do not yet know what you are looking for.
 
@@ -16,16 +16,16 @@
 | [Text tools](#text-tools) | 112 | Search, sort, compare, reformat, split and spell-check. |
 | [Files & directories](#files--directories) | 37 | Listing, copying, finding, renaming, and knowing what you have. |
 | [Developer tools](#developer-tools) | 48 | Version control, tags, cross-reference, formatters, a debugger and benchmarks. |
-| [Compilers & build](#compilers--build) | 27 | C compilers and their passes, assemblers, linkers, make and parser generators. |
-| [Languages](#languages) | 7 | Interpreters and language systems beyond C. |
-| [Archives & compression](#archives--compression) | 35 | Pack, unpack and shrink -- lha, zip, tar, arc, zoo, and OS-9 module libraries. |
+| [Compilers & build](#compilers--build) | 39 | C compilers and their passes, assemblers, linkers, make and parser generators. |
+| [Languages](#languages) | 10 | Interpreters and language systems beyond C. |
+| [Archives & compression](#archives--compression) | 38 | Pack, unpack and shrink -- lha, zip, tar, arc, zoo, and OS-9 module libraries. |
 | [Encoding & conversion](#encoding--conversion) | 24 | Between text encodings, line endings, Macintosh formats, ciphers and hashes. |
 | [Communications](#communications) | 95 | Kermit in several builds, terminal sessions, and networking. |
 | [Graphics & images](#graphics--images) | 202 | The netpbm toolkit, JPEG, a ray tracer, and things that draw. |
 | [Games](#games) | 66 | Adventures, board and card games, arcade ports, dungeon crawls and puzzles. |
 | [Screen toys](#screen-toys) | 7 | Things to watch rather than play. Start one and leave it going. |
 | [Amusements](#amusements) | 24 | Generators, simulators and diversions that are not quite games. |
-| [System & modules](#system--modules) | 124 | OS-9 module and process tools, devices, system state and scheduling. |
+| [System & modules](#system--modules) | 127 | OS-9 module and process tools, devices, system state and scheduling. |
 | [Disk & DOS](#disk--dos) | 20 | Reading and writing MS-DOS media with the mtools set. |
 | [Time & calendar](#time--calendar) | 14 | Calendars, clocks and astronomy. |
 | [Maths & calculators](#maths--calculators) | 10 | Calculators, plotting, orbits and number theory. |
@@ -505,7 +505,30 @@
 
 *C compilers and their passes, assemblers, linkers, make and parser generators.*
 
-<details><summary>27 programs</summary>
+<details><summary>39 programs</summary>
+
+**C toolchain**
+
+| | |
+|---|---|
+| `cc1plus` | GCC 2.x C++ compiler pass, where it was built |
+| `cc2` | GCC 2.x C compiler pass, where it was built |
+| `cc2plus` | GCC 2.x C++ pass, second form |
+| `cccp2` | &#9733; GCC 2.x preprocessor, where it was built<br>`Usage: cccp2 [switches] input output` |
+| `collect` | GCC 2.x collect2, where it was built<br>`Syntax   : collect [<opts>] {<file>} [<opts>]` |
+| `compiler` | GSHELL front-end for the C compiler<br>**How:** Full-screen: it takes over the display. **control-C gets you out** -- tested, and none of q, Q, control-D or ESC did. If it has a quit command of its own, its documentation in DOC/ will say. |
+| `gcc` | &#9733; the GCC driver -- GCC139's and GCC2's share this name<br>`Usage: gcc {options} {files} {options}` |
+| `gcc2` | &#9733; the GCC 2.x driver<br>`Usage: gcc2 {options} {files} {options}` |
+| `gcc_cc1` | GCC 1.39 C compiler pass |
+| `gcc_cc1plus` | GCC 1.39 C++ compiler pass |
+| `gcc_cc2` |  |
+| `gcc_cccp` | GCC 1.39 preprocessor<br>`Usage: gcc_cccp [switches] input output` |
+| `gcc_cccp2` | &#9733; <br>`Usage: gcc_cccp2 [switches] input output` |
+| `gcc_collect` | GCC 1.39 collect2<br>`Syntax   : collect [<opts>] {<file>} [<opts>]` |
+| `gpp` | the C++ driver<br>`Usage: gpp {options} {files} {options}` |
+| `gpp_cc1plus` |  |
+| `gpp_cccp` | &#9733; <br>`Usage: gpp_cccp [switches] input output` |
+| `gpp_collect` | <br>`Syntax   : collect [<opts>] {<file>} [<opts>]` |
 
 **Make & generators**
 
@@ -534,17 +557,6 @@
 | `lnk` | RTF FORTRAN link driver; calls l68 with /h0/LIB/sys.l, which is Microware's and not here |
 | `lnk.org` | as lnk, the original build |
 
-**C toolchain**
-
-| | |
-|---|---|
-| `compiler` | GSHELL front-end for the C compiler<br>**How:** Full-screen: it takes over the display. **control-C gets you out** -- tested, and none of q, Q, control-D or ESC did. If it has a quit command of its own, its documentation in DOC/ will say. |
-| `gcc_cc2` |  |
-| `gcc_cccp2` | &#9733; <br>`Usage: gcc_cccp2 [switches] input output` |
-| `gpp_cc1plus` |  |
-| `gpp_cccp` | &#9733; <br>`Usage: gpp_cccp [switches] input output` |
-| `gpp_collect` | <br>`Syntax   : collect [<opts>] {<file>} [<opts>]` |
-
 **Fortran**
 
 | | |
@@ -565,7 +577,7 @@
 
 *Interpreters and language systems beyond C.*
 
-<details><summary>7 programs</summary>
+<details><summary>10 programs</summary>
 
 **Interpreters**
 
@@ -582,7 +594,10 @@
 
 | | |
 |---|---|
+| `adlcomp` | compile an ADL world<br>**How:** Compiles an ADL world: `adlcomp /dd/ADL/DEMOS/tiny.adl -o /dd/tmp/tiny -i /dd/ADL'. The `-i' is where standard.adl lives and is required. Tested. |
+| `adldebug` | play with the debugger attached<br>**How:** adlrun with the debugger attached. |
 | `adlrun` | <world>                          play it<br>**How:** Plays a compiled ADL world: `adlrun /dd/tmp/tiny'. Tested -- the tiny demo opens "You are in a small but comfortable room... There is a red pillow here." NOTE: play from an RBF disk, not a host-directory mount; reading a world off /hN under os9exec trips an assertion inside the emulator. |
+| `adltouch` | refresh a compiled world<br>**How:** Refreshes a compiled world after you edit its source. |
 
 </details>
 
@@ -590,7 +605,7 @@
 
 *Pack, unpack and shrink -- lha, zip, tar, arc, zoo, and OS-9 module libraries.*
 
-<details><summary>35 programs</summary>
+<details><summary>38 programs</summary>
 
 **Create & extract**
 
@@ -622,6 +637,8 @@
 | `gzip020_nocsl` | gzip 1.2.4, 68020, no csl needed<br>`usage: gzip020_nocsl [-gzip020_nocslcdfhlLnNgzip020_nocsltvV19] [-S suffix] [file ...]` |
 | `gzip68k_csl` | &#9733; gzip 1.2.4, 68000, needs csl<br>`usage: gzip68k_csl [-gzip68k_cslcdfhlLnNgzip68k_csltvV19] [-S suffix] [file ...]` |
 | `gzip68k_nocsl` | gzip 1.2.4, 68000, no csl needed<br>`usage: gzip68k_nocsl [-gzip68k_nocslcdfhlLnNgzip68k_nocsltvV19] [-S suffix] [file ...]` |
+| `gzipcpu32_nocsl` | gzip 1.2.4, CPU32, no csl needed<br>`usage: gzipcpu32_nocsl [-gzipcpu32_nocslcdfhlLnNgzipcpu32_nocsltvV19] [-S suffix] [file ...]` |
+| `gzipcpu32k_csl` | &#9733; gzip 1.2.4, CPU32, needs csl<br>`usage: gzipcpu32k_csl [-gzipcpu32k_cslcdfhlLnNgzipcpu32k_csltvV19] [-S suffix] [file ...]` |
 | `lharcs` | C-LHarc 1.01, older than CMDS/lha 2.08<br>`Usage: lharcs {axevlufdmctp}[qnftv] archive_file [files or directories...]` |
 | `m4_0.5` | &#9733; another build of m4 -- and since 2026-08-28 it IS the build that ships as `m4', the earlier one having turned out to mangle what it expanded<br>`Usage: m4 [options] file ....` |
 | `sed_1.06` | &#9733; another build of sed -- and since 2026-08-28 it IS the build that ships as `sed', the earlier one having turned out to do nothing but exhaust memory<br>`Syntax   : sed [<opts>] [<file>]` |
@@ -656,6 +673,7 @@
 | | |
 |---|---|
 | `funzip` | &#9733; Unzip straight from a pipe -- funzip < file.zip<br>**How:** Unzips from a pipe rather than a file: `funzip < thing.zip > thing'. For a normal archive use unzip; zipinfo lists what is inside one. |
+| `zipinfo` | &#9733; Info-ZIP zipinfo -- what is inside a zip archive<br>`Usage:  zipinfo [-1smlvht] file[.zip] [filespec...]` |
 
 </details>
 
@@ -1312,7 +1330,7 @@
 
 *OS-9 module and process tools, devices, system state and scheduling.*
 
-<details><summary>124 programs</summary>
+<details><summary>127 programs</summary>
 
 **Utilities**
 
@@ -1382,9 +1400,11 @@
 | `tty` | &#9733; report the terminal's name |
 | `umacs` | &#9733; MicroEMACS -- a small Emacs, EFFO forum 1<br>**How:** A small Emacs (uMacs 1.0). Full-screen: it takes the display and shows "== uMacs 1.0 == main ==" at the foot. This line said it needs `. /dd/SYS/termcap.entry' sourced first; measured 2026-08-29, it does not. |
 | `umusek` | UMusEK -- a music editor; wants a screen address |
+| `unpacklib.os9` | unpack a library into its object modules<br>`Usage: unpacklib <options> file1.l file2.l ...` |
 | `vc` | &#9733; a SPREADSHEET -- `Welcome to the Spreadsheet Calculator, type ? for help', with rows, columns and a formula line.  Not a visual compare, which is what this entry said until 2026-08-28 |
 | `vecho` | echo without a newline (from less) |
 | `vlen` | &#9733; a VARIABLE-LENGTH RECORD demonstration, not a reporting tool: it ignores whatever you give it, creates a filesystem of its own, adds a hundred records of varying length and prints the minimum, the maximum and the mapper entries as it goes.  `isam' is the other demonstration of its kind here.  Corrected 2026-08-29 |
+| `what` | print the SCCS what-strings a binary carries |
 | `xlharc` | extract LHarc archives<br>`Usage: xlharc {axevlufdmctp}[qnftv] archive_file [files or directories...]` |
 | `yagi` | Yagi antenna design calculator |
 | `ynad` | &#9733; YNAD -- Yet Another Name & Address program.  A contact database, not a yes/no dialogue.  Corrected 2026-08-28 |
@@ -1418,6 +1438,18 @@
 | `rtfdat` | RTF FORTRAN data module |
 | `version` | &#9733; prints ITS OWN version and nothing else -- `Dies ist das Program 'version', Version 7' -- whatever module you name. `ident' and `modinfo' show a module's edition.  Corrected 2026-08-29 |
 
+**MM/1 drivers**
+
+| | |
+|---|---|
+| `keydrv.mm1` | keyboard driver |
+| `msdrv.901_340` | mouse driver |
+| `msdrv_340.901.ms` | the mouse driver's device descriptor |
+| `rb37c65` | floppy driver (37C65 controller) |
+| `scsi_mm1a` | SCSI driver |
+| `snddrv` | sound driver |
+| `windio.52` | windowing terminal driver |
+
 **System state**
 
 | | |
@@ -1439,17 +1471,6 @@
 | `dpark` | &#9733; park the DISK HEAD, not a process: `dpark [/device]' restores an RBF device's head to track 00, which is what you did before moving a drive.  Corrected 2026-08-29<br>`Syntax:   dpark [/device]` |
 | `shdev` | &#9733; show devices |
 | `ssl` | &#9733; show a file's segment list, sector by sector -- ssl <file> |
-
-**MM/1 drivers**
-
-| | |
-|---|---|
-| `keydrv.mm1` | keyboard driver |
-| `msdrv.901_340` | mouse driver, and msdrv_340.901.ms its descriptor |
-| `rb37c65` | floppy driver (37C65 controller) |
-| `scsi_mm1a` | SCSI driver |
-| `snddrv` | sound driver |
-| `windio.52` | windowing terminal driver |
 
 **Microware runtime**
 
