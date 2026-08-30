@@ -370,6 +370,19 @@ cases that take the session down and get restarted. Ninety commits, several
 touching `F$SRqMem`, and nothing here can tell them apart. Bumping it is
 rdoggett's call; the workflow comment asks for that deliberately.
 
+## Checked and NOT a gap: SOURCES.txt against DOC/ORIGINS
+
+Recorded so nobody spends the hour again. `DOC/ORIGINS` names 181 distinct
+source trees; 123 of those names appear nowhere in `SOURCES.txt`, which
+looks alarming for a collection whose point is documented provenance. It is
+not a gap. **SOURCES.txt records terms by ORIGIN, not by tree** -- two
+archives, and the EFFO material is covered by one paragraph ("its EFFO
+section -- European Forum for OS-9 user-group disks, 10 'pd' disks and 21
+'forum' disks. Freely redistributed user-group material"), which is what
+covers `effo_snobol`, `eff_lp`, `forum15` and the rest of them. A per-tree
+check is the wrong shape for that file and will always report scores of
+false positives.
+
 ## 2026-08-30: eighteen programs the catalogue could not see at all
 
 **`gcc` has never been in the web guide.** Nor `gpp`, nor any of the GCC 2
