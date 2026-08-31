@@ -37,6 +37,21 @@ would take `gnuchess_h0', since wanting its data at /h0 is the one thing
 that actually distinguishes it. The measurement is recorded in DOC/INDEX
 either way.
 
+## ONE THING I SHIPPED THAT YOU MIGHT NOT WANT
+
+**An empty `disk/SYS/loglist`, added 2026-08-31.** `CMDS/loglist` is a login
+logger -- `-i` records a login, `-o` a logout, `-l` prints the table -- and it
+refuses to do anything at all without that file: *"Sorry, there is no
+/dd/sys/loglist"*. One empty file makes it work; the precedent is
+`SYS/birthdays`, which ships as a template for `cal`. Delete it if you would
+rather the disk shipped no writable log, and I will put the requirement in
+`DOC/DEPENDS` prose instead.
+
+Two faults of `loglist`'s own, both measured and **neither the emulator's**:
+every `-l` line after the first loses its leading character (`OGIN +` for
+`LOGIN +`) while the bytes it WROTE are correct, so the fault is in its
+display loop; and the year prints as `126`, years-since-1900 unwrapped.
+
 ## Answered earlier (kept for the record)
 
 **1. ~~Should a program called `shell` ship?~~ DECIDED 2026-08-30: NO.**
