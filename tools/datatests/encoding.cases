@@ -112,3 +112,28 @@ run     /dd/CMDS/cp /dd/SYS/motd /dd/tmp/td.txt
 # a pipe.  It is enough: it names the temporary todos could not rename.
 run     /dd/CMDS/todos /dd/tmp/td.txt 2>&1
 expect  todos.$$$
+
+# btop AND ptob ARE A PAIR, and DOC/INDEX described neither correctly until
+# 2026-08-31 ("bitmap to Gepard fat-font"). What they do is characters to bit
+# patterns and back, which is how a font or a bitmap crossed a mail system
+# that would carry only text. The round trip is the assertion worth having.
+case    btop-and-ptob-round-trip-exactly
+run     /dd/CMDS/rm -f /dd/tmp/b1 /dd/tmp/b2 /dd/tmp/b3
+run     /dd/CMDS/head -n 2 /dd/SYS/motd > /dd/tmp/b1
+run     /dd/CMDS/btop /dd/tmp/b1 > /dd/tmp/b2
+run     /dd/CMDS/wc -c /dd/tmp/b2
+expect  640
+run     /dd/CMDS/ptob /dd/tmp/b2 > /dd/tmp/b3
+run     /dd/CMDS/cmp /dd/tmp/b1 /dd/tmp/b3
+absent  differ
+run     /dd/CMDS/cat /dd/tmp/b3
+expect  Welcome to os9exec
+
+# ediff does not compare files -- it reformats diff's output. DOC/INDEX called
+# it a "visual file compare", which implies the opposite.
+case    ediff-reformats-diff-output-rather-than-comparing
+run     /dd/CMDS/head -n 3 /dd/SYS/holidays > /dd/tmp/e1
+run     /dd/CMDS/sed -e "s/Day/DAY/" /dd/tmp/e1 > /dd/tmp/e2
+run     /dd/CMDS/diff /dd/tmp/e1 /dd/tmp/e2 | /dd/CMDS/ediff
+expect  1 line changed at 3
+run     /dd/CMDS/rm -f /dd/tmp/e1 /dd/tmp/e2 /dd/tmp/b1 /dd/tmp/b2 /dd/tmp/b3

@@ -192,12 +192,36 @@ And 815 of 892 index entries carry no dated stamp, meaning nobody has run the
 program and checked that the entry describes it. This is where the collection
 is thinnest and where its errors have historically been.
 
-**Do not try to bulk-check this.** It was tried on 2026-08-30 by comparing
-each entry against its own card: a description and its output naturally share
-no words (`cal` prints "August 2026", `banner` prints `@` signs), so the flag
-fires on 208 entries and nearly all are fine. Worse, the first cut compared
-against whatever card *carried* the program and produced a confident wrong
-finding. Go program by program, or find a sharper signal than word overlap.
+**Do not compare an entry against its CARD.** Tried 2026-08-30: a description
+and a program's screen output naturally share no words (`cal` prints "August
+2026", `banner` prints `@` signs), so the flag fired on 208 entries and nearly
+all were fine.
+
+**A sharper signal exists, found 2026-08-31: compare the entry against the
+program's own `Function:` line.** Many OS-9 utilities print one, and
+`DOC/USAGE` already captured them — so this compares a description with a
+description rather than with a screenful of output. 78 programs print one, 68
+of those are in `DOC/INDEX`, and requiring no word in common flags **23**. Most
+of those are synonyms (`lpq`: "shows spoolerqueue" against "shows the spooler
+queue"), which is fine — 23 entries is a list a person can read in ten minutes,
+where 208 is not.
+
+Three real errors came out of the first pass, each confirmed by running the
+program:
+
+- `btop` "bitmap to Gepard fat-font" and `ptob` "Gepard fat-font back to
+  bitmap" — they convert characters to bit patterns and back. 40 bytes in, 640
+  out, 40 back, byte-identical. The Gepard font is an application of the pair,
+  not what either program does.
+- `ediff` "visual file compare" — it does not compare anything. It reformats
+  `diff`'s OUTPUT: `diff f1 f2 ! ediff` prints "-------- 1 line changed at 3
+  from: ... to: ...".
+
+All three are fixed and asserted in `tools/datatests/encoding.cases`. **The
+other 20 flagged entries have not been read yet** — that is the next batch, and
+it is small enough to do by hand. After that, the same trick has nothing left
+to say: the 274 programs with no `Function:` line still need running one at a
+time.
 
 ### 5. Housekeeping
 
