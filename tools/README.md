@@ -86,7 +86,24 @@ with no names in it. And it reports entry-shaped `DOC/ORIGINS` lines whose
 origin phrase it does not know; that one is a REPORT, not a failure, because
 the file is prose as well as data.
 
-CI runs this before it builds anything. Note the stamp check reads files in
+## Running the workflow without pushing
+
+    tools/ci/run_workflow_locally.sh /path/to/scratch
+
+Every step of `.github/workflows/build-image.yml`, in order, against a
+`git archive HEAD` export -- so it tests what a CLEAN CHECKOUT gets, not your
+working directory, which is the difference that matters (the screen captures
+are gitignored). It builds os9exec from the pinned commit into the scratch
+directory and leaves your own os9exec tree alone.
+
+**Its first run found a step that could never have passed.** `basename
+/a/b/c` answers `c` followed by a CR, because that is how OS-9 ends a line,
+and the step tested it with `grep -qx c`, which wants the whole line to
+match. The image was perfectly good. The workflow strips CR as well as NUL
+now. Nothing had ever exercised it: the workflow triggers on `main`, a PR to
+`main`, or a tag, and this branch has never been pushed.
+
+CI runs check_disk before it builds anything. Note the stamp check reads files in
 Python on purpose: `grep -r` on this machine is ugrep, which skips binary
 files and reports a confident zero.
 
