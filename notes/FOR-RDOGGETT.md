@@ -6,22 +6,40 @@ Branch `release-pass-2026-08-21`. All thirteen `check_disk.py` checks green.
 
 ---
 
-## FOUR THINGS ACTUALLY NEED YOU
+## ONE THING NEEDS YOU (three of the four are answered)
 
-**1. Should a program called `shell` ship?** Five programs fail for want of
+**1. ~~Should a program called `shell` ship?~~ DECIDED 2026-08-30: NO.**
+rdoggett: *"we can't call sh or ksh or bash shell. It will be too confusing.
+But we can assume that people who will want to use programs that require it
+will already have it, and in their path."* Done -- `rayshade`, `dm`, `for`,
+`qp` and `screen` each say REQUIRES MICROWARE'S `shell` in `DOC/INDEX`, and
+`DOC/STATUS` has the group. Original question: Five programs fail for want of
 one, and I measured exactly what a plain `copy sh shell` buys: `dm` (Disk
 Master 1.4) runs completely, `rayshade` renders, the Fortran driver `for`
 gets one step further, `qp` and `screen` are unaffected. It is a new program
 under a name OS-9 users associate with Microware's shell, so it is your call.
 Full table further down under "measured".
 
-**2. Which `vi` should be called `vi`?** The EFFO one -- the genuine Berkeley
+**2. ~~Which `vi` should be called `vi`?~~ DECIDED 2026-08-30: it keeps
+the name.** rdoggett uses it daily and it works for him; it is also the
+genuine Berkeley ex source, which is why it has the name. I could not
+reproduce his working case -- 24 lines and 36, TERMCAP both ways, ^L and ^R
+all gave the same two lines under the harness -- so the entry and the card
+now say the harness result is a fact about the harness until somebody
+explains it. I am not renaming a program that works for the person using it
+to satisfy a test rig. Original question: The EFFO one -- the genuine Berkeley
 ex/vi source, which is why it has the name -- paints two lines of a file and
 stops. `elvis`, `vi_nocio` and `REBUILT/VI` (PVIC) all work properly. I have
 documented it everywhere it bites and swapped nothing, because which name
 gets which program is an editorial decision, not a defect.
 
-**3. Should `orbit`'s three data files ship at the root?** `orbit` -- the
+**3. ~~Should `orbit`'s three data files ship at the root?~~ DECIDED
+2026-08-30: NO.** rdoggett: *"Don't put raw data files at root. It's just
+part of the instructions that the program requires a chd before it can
+run."* Done -- `chd /dd/DOC/orbit` is the recipe in `DOC/INDEX`, `howto.psv`
+and `DOC/STATUS`, with the bash workaround marked as a workaround. No helper
+scripts: *"we will end up with a dozen or more little scripts."* Original
+question: `orbit` -- the
 N3EMO satellite tracker, which was recorded as broken and is not -- opens
 `kepler.dat`, `mode.dat` and a `<site>.sit` by BARE NAME in the data
 directory. All three are on the disk, in `DOC/orbit`, and it finds none of
