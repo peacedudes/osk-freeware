@@ -54,6 +54,12 @@
     border:1px solid var(--rule);background:var(--card);color:var(--dim);white-space:nowrap}
   .chip:hover{color:var(--ink)}
   .chip[aria-pressed="true"]{background:var(--soft);border-color:var(--accent);color:var(--ink)}
+  .barlabel{font-family:var(--mono);font-size:11px;letter-spacing:.12em;
+            text-transform:uppercase;color:var(--faint)}
+  .seg{display:inline-flex;gap:0}
+  .seg .chip{border-radius:0}
+  .seg .chip:first-child{border-radius:999px 0 0 999px}
+  .seg .chip:last-child{border-radius:0 999px 999px 0;margin-left:-1px}
   .tally{font-family:var(--mono);font-size:12px;color:var(--faint);margin-left:auto;
          font-variant-numeric:tabular-nums}
 
@@ -154,22 +160,27 @@
 
 <header class="wrap">
   <div class="eyebrow">OS-9/68000 &middot; one disk image &middot; 1983&ndash;1998</div>
-  <h1>939 programs, sorted by what they are for.</h1>
-  <p class="lede">Three decades of OS-9/68K community software, gathered and
-    <b>made to run again</b>. The disk&rsquo;s own index is alphabetical, which is no use
-    when you do not yet know what you are looking for. Open a category, or click any
-    program to see what it needs and where it came from.</p>
+  <h1>939 programs on one OS-9/68K disk image.</h1>
+  <p class="lede">Community software for OS-9/68000, 1983&ndash;1998, catalogued.
+    Two ways in: <b>by category</b>, when you know the kind of thing you want, and
+    <b>A&ndash;Z</b>, when you know the name. Search matches names and descriptions.
+    Click any program for what it needs, where it came from, and how to run it.</p>
 </header>
 
 <div class="bar"><div class="wrap row">
   <input type="search" id="q" placeholder="Try: shell, chess, compress, screen&hellip;"
          aria-label="Search" autocomplete="off">
+  <span class="barlabel">View</span>
+  <span class="seg" role="group" aria-label="View">
+    <button class="chip" id="f-cat" aria-pressed="true">By category</button>
+    <button class="chip" id="f-az" aria-pressed="false">A&ndash;Z</button>
+  </span>
+  <span class="barlabel">Only</span>
   <button class="chip" id="f-nocio" aria-pressed="false">Runs without cio</button>
   <button class="chip" id="f-src" aria-pressed="false">Source on disk</button>
   <button class="chip" id="f-doc" aria-pressed="false">Has docs</button>
   <button class="chip" id="f-shot" aria-pressed="false">Photographed</button>
   <button class="chip" id="f-open" aria-pressed="false">Expand all</button>
-  <button class="chip" id="f-az" aria-pressed="false">A&ndash;Z</button>
   <span class="tally" id="tally"></span>
 </div></div>
 
@@ -272,7 +283,7 @@ function render(){
     out.push(`<details class="cat"${open?" open":""}><summary><div class="ct">${esc(cat)}`+
       `<span class="n">${total}</span><span class="cv">&#9656;</span></div>`+
       `<p class="blurb">${esc(BLURB[cat]||"")}</p></summary>`);
-    const names=Object.keys(subs).sort((a,b)=>subs[b].length-subs[a].length);
+    const names=Object.keys(subs).sort((a,b)=>a.localeCompare(b));
     const single = names.length===1;
     for(const s of names){
       const rows = subs[s].sort((a,b)=>a.name.localeCompare(b.name));
@@ -413,8 +424,16 @@ document.getElementById("cats").addEventListener("keydown",e=>{
   else if(e.key===" "){ e.preventDefault();
     const pb=li.querySelector("button.pick"); if(pb) pb.click(); } });
 document.getElementById("q").addEventListener("input",e=>{st.q=e.target.value;render();});
+for(const [id,v] of [["f-cat",false],["f-az",true]]){
+  document.getElementById(id).onclick=()=>{
+    st.az=v;
+    document.getElementById("f-cat").setAttribute("aria-pressed",String(!v));
+    document.getElementById("f-az").setAttribute("aria-pressed",String(v));
+    render();
+  };
+}
 for(const [id,k] of [["f-nocio","nocio"],["f-src","src"],["f-doc","doc"],
-                     ["f-shot","shot"],["f-open","open"],["f-az","az"]]){
+                     ["f-shot","shot"],["f-open","open"]]){
   const b=document.getElementById(id);
   b.onclick=()=>{ st[k]=!st[k]; b.setAttribute("aria-pressed",String(st[k])); render(); };
 }

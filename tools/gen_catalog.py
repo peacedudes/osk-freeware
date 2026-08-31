@@ -558,7 +558,7 @@ def render_markdown(progs):
         n = sum(len(v) for v in subs.values())
         L += ["## %s" % cat, "", "*%s*" % BLURB.get(cat, ""), "",
               "<details><summary>%d programs</summary>" % n, ""]
-        for sub in sorted(subs, key=lambda s: -len(subs[s])):
+        for sub in sorted(subs, key=str.lower):
             if len(subs) > 1:
                 L += ["**%s**" % sub, ""]
             L += ["| | |", "|---|---|"]
@@ -619,7 +619,7 @@ def render_disk_index(progs):
             L.append("  " + blurb[:cut])
             blurb = blurb[cut:].lstrip()
         L.append("")
-        for sub in sorted(subs, key=lambda s: -len(subs[s])):
+        for sub in sorted(subs, key=str.lower):
             if len(subs) > 1:
                 L.append("  %s:" % sub)
             for p in sorted(subs[sub], key=lambda x: x["name"].lower()):
