@@ -64,17 +64,19 @@ program's stdout. The os9exec session is raising it with you separately. It
 cost this collection a program's reputation and me a night, which is probably
 the strongest argument for changing it.
 
-**What it means for the disk: NINE programs, and they are named.** 353 modules
+**What it means for the disk: ELEVEN programs, and they are named.** 353 modules
 link `cio`; 41 carry the call; all 41 have been driven. Nine are broken, in two
 different ways:
 
     LOUD    cvtbase  logisim  unstr
             hundreds of `No more memory !!!', no work done
 
-    SILENT  cdiff  pagekwic  pagefraz  nroff  etags  cookhash
+    SILENT  cdiff  pagekwic  pagefraz  nroff  etags  cookhash  yacc  xrf
             opens your file, reads NOT ONE BYTE, reports on it anyway
 
-`yacc` and `loan` probably belong in the second list. The silent ones are the
+`loan` probably belongs there too. `dam`, `undel`, `snap`, `setfont` and `vis`
+are UNTESTED rather than clean -- each only ever printed a usage line at me,
+which proves nothing about the program. The silent ones are the
 dangerous ones -- `cdiff` says "MAXLINECOUNT exceeded" on a three-line file,
 `nroff` and `etags` print nothing -- and the same fault hands the C library's
 allocator the FILE structure itself to free, so the heap is corrupted too. A program fails this way only if it runs a `putc`/`getc`
