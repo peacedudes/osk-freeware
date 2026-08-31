@@ -122,8 +122,16 @@ layer the working builds never touch.
     broken. It IS a reason to distrust "it ran" for any cio program that
     produces sustained output.
   - **`-qixm` is the build driver's DEFAULT.** Nothing built by it is
-    installed today, so nothing shipped is affected -- but the next recipe
-    that installs a `-qixm` binary inherits this.
+    installed today -- but the next recipe that installs a `-qixm` binary
+    inherits this.
+
+  - **"so nothing shipped is affected" WAS WRONG, and is corrected in
+    `SRQMEM-SHIPPED.md` (2026-08-31).** `CMDS/logisim`, an archive binary
+    nobody here compiled, asks for `$9D228` bytes 335 times and produces 284
+    lines of `No more memory !!!` and no output at all. The request moves with
+    the heap and its low twelve bits do not, which is this defect's signature.
+    Not having installed a `-qixm` build is not the same as nothing shipped
+    going through the cio path: 368 shipped binaries are starred.
 
 ## The immediate consequence for the collection
 

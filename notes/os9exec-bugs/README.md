@@ -1,8 +1,14 @@
-# Three os9exec defects, found 2026-08-26 by running the collection
+# os9exec defects found by running the collection
 
-Each has a reproduction here that fails in seconds. All three were found by
-running programs from the osk-freeware disk, and none of them is a defect in
-the collection.
+Each has a reproduction here that fails in seconds. All were found by running
+programs from the osk-freeware disk, and none of them is a defect in the
+collection.
+
+**Read `SRQMEM-SHIPPED.md` before deciding what the F$SRqMem defect is worth.**
+The original report (`SRQMEM.md`, 2026-08-26) concluded that nothing shipped
+was affected because nothing installed is a `-qixm` build. That is wrong:
+`CMDS/logisim`, an archive binary, hits it and emits 284 lines of the
+emulator's own `No more memory !!!` in place of its output. Added 2026-08-31.
 
 Common setup. `$OS9CLEAN` is the SDK build overlay from
 `osk-freeware/tools/rebuild/make_overlay.sh`; `$IMG` is `osk-freeware.dd`.
