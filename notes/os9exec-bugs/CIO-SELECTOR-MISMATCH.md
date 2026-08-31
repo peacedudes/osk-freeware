@@ -153,6 +153,41 @@ would have been written up as contradicting that.
 different tests, and only one of them is the program's job. Some input is not
 enough.
 
+## A SECOND MANIFESTATION, silent -- strong correlation, not yet proven
+
+Selector `$41` (`_flshbuf`) lands on the raw ALLOCATOR, so the putc side
+storms and is loud. Selector `$42` (`_filbuf`) lands on the raw FREE --
+nothing is allocated, nothing floods, and `getc` simply never refills its
+buffer. **If that is right, every getc-side victim is invisible to
+flood-counting**, which is how everything above was detected.
+
+Ten of the 41 have `_filbuf` as their only call site. **Six of them
+demonstrably fail to read input**, on files a control reads perfectly:
+
+    cdiff <f> <f>            "MAXLINECOUNT exceeded" on a THREE-line file
+                             (its source is here; the limit is 8000)
+    pagekwic <f>             "word too long in line 0" on 18 bytes, longest word 5
+    pagefraz <f>             the same message on the same file
+    unpacklib /dd/LIB/alib.l "Wrong SYNC long word, found 0xB0000002" on a REAL library
+    cookhash < f             prints "000000"
+    loan                     prompts, echoes the numbers, computes nothing
+
+`cat` reads that same file correctly and has no macro call site at all.
+`liborder` works on a real library, so its seven sites are not reached there.
+
+**Not proven.** These could be six independent 1980s bugs; "reads garbage" is
+a common symptom. What argues against coincidence is that every error reports
+content that was not in the file, all six sit in the ten-program `_filbuf`
+group, and the obvious alternative explanation is ruled out: `cdiff`'s loop
+uses the classic `char ch = getc()` against `EOF`, which fails only where
+`char` is unsigned -- and **`char` is SIGNED in Microware C**, measured by
+compiling a test on the SDK, so `EOF` assigned to a `char` still compares
+equal. That was the first theory and measuring killed it.
+
+Referred to the os9exec session for disassembly. Until it comes back, the
+count of THREE above is the count of programs that STORM, and is not the count
+of programs this defect breaks.
+
 ## A single `No more memory` line is NOT this defect
 
 Sweeping with a 22 KB file flagged `etags`, `liborder` and `sedt` as well.
