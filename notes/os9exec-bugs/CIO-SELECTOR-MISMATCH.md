@@ -132,9 +132,47 @@ result, because "did not flood under X" is a statement about X:
 
 | | |
 |---|---|
-| storm | **2** -- `cvtbase` (`cvtbase d h`, number on stdin), `logisim` (`PORT`, `TERM`, `TERMCAP` and a circuit file) |
-| driven, no flood | **39** |
+| storm | **3** -- `cvtbase`, `logisim`, `unstr` |
+| driven, no storm | **38** |
 | not driven | none |
+
+    cvtbase   cvtbase d h, number on stdin              439,689 lines
+    logisim   PORT, TERM, TERMCAP and a circuit file        284 lines
+    unstr     unstr on the REAL fortune index               104 lines
+
+**`unstr` was missed twice before it was found, and how it was missed is the
+lesson.** Run bare it prints its usage. Run on a three-line file it prints
+nothing and does not storm. Run on `/dd/GAMES/FORTUNE/fortunes`, the 192 KB
+index it is actually for, it storms -- and the heap-shift test confirms it:
+295,424 bytes alone, 615,872 with three modules loaded. DOC/INDEX had said it
+floods since before this investigation started; the first two invocations
+would have been written up as contradicting that.
+
+So "driven with real input" has to mean input of the SHAPE AND SIZE the
+program is for. Some input is not enough.
+
+## A single `No more memory` line is NOT this defect
+
+Sweeping with a 22 KB file flagged `etags`, `liborder` and `sedt` as well.
+They are not the same thing, and the trace separates them in one look:
+
+    cvtbase    300 calls, 297,504 bytes each      the storm
+    unstr      196 calls, 295,424 bytes each      the storm
+    etags       27 calls, 4,096 and 6,416         ordinary sizes
+    sedt        32 calls, 4,096 and 5,016         ordinary sizes
+
+`etags` and `sedt` make perfectly reasonable requests and simply run out of
+room; their one and fifteen flood lines are REAL allocation failures. They
+look identical to the storm from outside only because os9exec announces every
+failed allocation on the console (`memstuff.c:782`) where real OS-9 returns
+`E$NORAM` silently. That single cosmetic difference is what makes ordinary
+memory pressure indistinguishable from an ABI fault.
+
+**The test is the repeated address-shaped request, never the message.**
+
+One oddity left open: `liborder` makes three calls, one of them for
+**2,284,850,400 bytes**. Once, not hundreds of times, so it is not the storm --
+but nothing legitimately asks for two gigabytes, and it is worth a look.
 
 Of the 38: 31 were run here with file arguments taken from their usage lines
 (`chksum`, `snap`, `spiff`, `unifdef`, `diff`, `nroff`, `ape`, `xrf`, `etags`,
