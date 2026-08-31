@@ -675,6 +675,51 @@ def check_module_names(root):
             % (len(bad), len(stale)))
 
 
+def check_cio_macro_population(root):
+    """DOC/README-CIO's count of putc/getc-macro programs must match the disk.
+
+    Those programs answer with hundreds of thousands of lines of the
+    EMULATOR's `No more memory !!!' and do their work not at all, because they
+    were linked against a `cio.l' whose trap-13 selector $41 is `_flshbuf'
+    where every `cio' module here has a memory routine -- so `putc' hands the
+    raw allocator a FILE pointer as a byte count.  Root cause and mechanism:
+    notes/os9exec-bugs/CIO-SELECTOR-MISMATCH.md.
+
+    README-CIO tells a reader how many programs can do this.  That number is
+    the sort this collection has watched drift over and over, so it is checked
+    rather than trusted.
+
+    Two guards travel with it, and both are the ones that catch the mistake
+    everyone makes here: `autolf' CARRIES the $41/$42 stubs and never calls
+    them, so it must NOT be listed -- counting stubs instead of calls to them
+    is the wrong measurement -- and `logisim' and `cvtbase', which have both
+    been watched storm, MUST be.
+    """
+    import cio_macro_scan
+    total, rows = cio_macro_scan.survey([root])
+    listed = {name.split("/")[-1] for name, _, _ in rows}
+    problems = []
+    for n in ("autolf", "cat", "detab"):
+        if n in listed:
+            problems.append("%s is listed and must not be (it never calls the stub)" % n)
+    for n in ("logisim", "cvtbase"):
+        if n not in listed:
+            problems.append("%s is NOT listed and must be (it is confirmed to storm)" % n)
+
+    doc = os.path.join(root, "DOC", "README-CIO")
+    if os.path.exists(doc):
+        text = open(doc, "rb").read().decode("latin-1").replace("\r", "\n")
+        m = re.search(r"(\d+) modules here link cio; (\d+) contain the call", text)
+        if not m:
+            problems.append("README-CIO no longer states the population")
+        elif (int(m.group(1)), int(m.group(2))) != (total, len(rows)):
+            problems.append("README-CIO says %s/%s; the disk has %d/%d"
+                            % (m.group(1), m.group(2), total, len(rows)))
+    for pr in problems:
+        print("    %s" % pr)
+    return not problems, "%d problem(s) with the cio-macro population" % len(problems)
+
+
 CHECKS = [
     ("line endings are CR-only", check_line_endings),
     ("no UTF-8 on an 8-bit disk", check_no_utf8),
@@ -689,6 +734,7 @@ CHECKS = [
     ("no unscreened Microware source", check_src_screened),
     ("binaries start with their magic", check_binary_magic),
     ("one module name, one file", check_module_names),
+    ("the cio-macro list is current", check_cio_macro_population),
     ("name lists point at real programs", check_hand_files_name_real_programs),
     ("the disk's documents are intact", check_docs_not_truncated),
 ]

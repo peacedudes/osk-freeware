@@ -40,8 +40,28 @@ program writes 8 and the module accepts anything up to 9.
 ## Which programs
 
 353 program modules on this disk link `cio`. **41 contain a branch to their
-own `$41` or `$42` stub** -- the full list is in the os9exec session's message
-and is reproduced by `tools/cio_selector_scan.py` when that lands here.
+own `$41` or `$42` stub.** `tools/cio_macro_scan.py` produces the list;
+`DOC/README-CIO` carries it for the reader, and `check_disk.py` fails if the
+two stop agreeing.
+
+**Reachability cannot tighten it, and that was tried.** A call site inside a
+function nothing calls cannot fire, so a call graph would separate the 41 into
+live and dead. It does not work here: `cstart` dispatches with an indexed
+PC-relative `jsr` (`4EBB 0800`), so a BFS from `M$Exec` is severed at the
+first hop and reports every site dead -- including `logisim`'s and
+`cvtbase`'s, which have both been watched storm. Widening the roots to "any
+function whose address is taken" makes nearly everything reachable and
+tightens nothing. The finding is in the script's header so nobody re-derives
+it.
+
+What does tighten it is running the 41 with realistic input and watching for
+an `F$SRqMem` whose `d0` is wildly larger than that module's own
+`M$Mem`+`M$Stack` -- `logisim` asks 643,624 against 39,236, about sixteen
+times. That request appears on the FIRST character, hundreds of thousands of
+lines before any flood, so a run can be stopped the moment it shows. Two
+hints from the disassembly: a site whose `FILE` operand is `lea fp@(-N),a0`
+with N near `$7FC6` is on `_iob` and fires in ordinary use; one whose operand
+arrives in a register needs the program to have opened a file first.
 
 **That is an upper bound, and the gap matters.** A call site only fires if it
 is reached. All 41 run bare with stdin closed print their usage and exit
