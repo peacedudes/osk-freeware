@@ -555,6 +555,44 @@ def check_hand_files_name_real_programs(root):
 
 
 
+# The disk's own documentation, with the size below which something has gone
+# wrong.  Deliberately generous -- this is a tripwire for truncation, not a
+# word count.
+KEY_DOCS = {
+    "DOC/INDEX": 40000, "DOC/STATUS": 30000, "DOC/DEPENDS": 20000,
+    "DOC/ORIGINS": 10000, "DOC/CATEGORIES": 10000, "SOURCES.txt": 20000,
+    "readme": 1000, "DOC/README-RUNNING": 3000,
+}
+
+
+def check_docs_not_truncated(root):
+    """The disk's main documents are still their proper size.
+
+    THIS EXISTS BECAUSE AN EMPTY FILE PASSES EVERYTHING ELSE.  On 2026-08-30
+    a rewrite of DOC/STATUS left it ZERO BYTES -- `open(path, "wb")' truncates
+    the moment it is evaluated, and the expression that was to be written
+    raised before it produced anything.  All thirteen checks then reported ok:
+    an empty file has no LF in it, no UTF-8, no leftovers and no bad magic.
+    Only `git diff' caught it.
+
+    A file that has legitimately grown past its floor should have the floor
+    raised, not the check removed.
+    """
+    bad = []
+    for rel, floor in sorted(KEY_DOCS.items()):
+        path = os.path.join(root, rel)
+        if not os.path.exists(path):
+            bad.append("%s is MISSING" % rel)
+            continue
+        size = os.path.getsize(path)
+        if size < floor:
+            bad.append("%s is %d bytes, expected at least %d" % (rel, size, floor))
+    for b in bad:
+        print("    %s" % b)
+    return not bad, "%d document(s) look truncated" % len(bad)
+
+
+
 CHECKS = [
     ("line endings are CR-only", check_line_endings),
     ("no UTF-8 on an 8-bit disk", check_no_utf8),
@@ -569,6 +607,7 @@ CHECKS = [
     ("no unscreened Microware source", check_src_screened),
     ("binaries start with their magic", check_binary_magic),
     ("howto and categories are current", check_hand_files_name_real_programs),
+    ("the disk's documents are intact", check_docs_not_truncated),
 ]
 
 if __name__ == "__main__":
