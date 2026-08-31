@@ -125,6 +125,11 @@ layer the working builds never touch.
     installed today -- but the next recipe that installs a `-qixm` binary
     inherits this.
 
+  - **NOTE 2026-08-31: this whole report's ATTRIBUTION is superseded by
+    `CIO-SELECTOR-MISMATCH.md` -- the address in `d0` is the program's own
+    `FILE *`, put there by a cio stub-table mismatch, not by os9exec. The
+    measurements below stand; the blame does not.**
+
   - **"so nothing shipped is affected" WAS WRONG, and is corrected in
     `SRQMEM-SHIPPED.md` (2026-08-31).** `CMDS/logisim`, an archive binary
     nobody here compiled, asks for `$9D228` bytes 335 times and produces 284

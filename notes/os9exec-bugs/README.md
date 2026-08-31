@@ -4,11 +4,22 @@ Each has a reproduction here that fails in seconds. All were found by running
 programs from the osk-freeware disk, and none of them is a defect in the
 collection.
 
-**Read `SRQMEM-SHIPPED.md` before deciding what the F$SRqMem defect is worth.**
-The original report (`SRQMEM.md`, 2026-08-26) concluded that nothing shipped
-was affected because nothing installed is a `-qixm` build. That is wrong:
-`CMDS/logisim`, an archive binary, hits it and emits 284 lines of the
-emulator's own `No more memory !!!` in place of its output. Added 2026-08-31.
+**`No more memory !!!` IS NOT AN os9exec DEFECT. Read
+`CIO-SELECTOR-MISMATCH.md` first.** The root cause was found 2026-08-31: the
+archives were linked against a `cio.l` whose stub table has `_flshbuf` at
+selector `$41`, while every `cio` MODULE here has a memory routine there, so
+`putc` lands on the raw allocator and hands it a `FILE *` as a byte count.
+os9exec passes `d0` through untouched.
+
+`SRQMEM.md` (2026-08-26) and `SRQMEM-SHIPPED.md` (2026-08-31) are the earlier
+reads of the same symptom. Both were right that `d0` carries an address and
+wrong about who put it there. They are kept for their reproductions and their
+measurements; their attributions are not to be quoted.
+
+The one genuine os9exec item is small and is in `CIO-SELECTOR-MISMATCH.md`:
+`memstuff.c:782` announces every failed allocation on the console, where real
+OS-9 returns `E$NORAM` silently -- which is why a fault inside a program reads
+as a fault in the emulator.
 
 Common setup. `$OS9CLEAN` is the SDK build overlay from
 `osk-freeware/tools/rebuild/make_overlay.sh`; `$IMG` is `osk-freeware.dd`.

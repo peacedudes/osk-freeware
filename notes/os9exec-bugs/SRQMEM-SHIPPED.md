@@ -1,3 +1,19 @@
+> **SUPERSEDED 2026-08-31, and the attribution in it was wrong.** The root
+> cause is an ABI mismatch, not an os9exec defect: the archives were linked
+> against a `cio.l` whose stub table ends `$41 _flshbuf, $42 _filbuf`, while
+> every `cio` MODULE on these disks has five memory routines at `$41..$45`
+> instead. Selector `$41` therefore lands on the raw allocator, which reads
+> `d0` -- holding the `FILE *` the program passed -- as a byte count. That is
+> why the "size" tracks the heap: it is an address, but the PROGRAM put it
+> there on purpose. os9exec passes `d0` through untouched and `F$SRqMem`
+> honours its contract.
+>
+> Found by the os9exec session, which disassembled both sides. See
+> `CIO-SELECTOR-MISMATCH.md`. What survives from this file is the evidence
+> that shipped archive binaries are affected, and the two reproductions.
+> What does not survive is the claim that os9exec is at fault, and the
+> section about `sed` -- see below.
+
 # The F$SRqMem defect reaches a SHIPPED archive binary, not just our builds
 
 **Found 2026-08-31.** `notes/os9exec-bugs/SRQMEM.md` established that a
@@ -94,16 +110,18 @@ for cvtbase since 2026-08-29, and the same for `lfmaker`, while SRQMEM.md said
 nothing shipped was affected. Two documents in one repository disagreeing, and
 the one with the reproduction was the one that was wrong.
 
-## The collection has ALREADY paid for this
+## The `sed` swap stands -- I got this wrong
 
-`CMDS/sed` was swapped on 2026-08-28. DOC/INDEX records why: the build that
-used to ship "answered every script -- from a file or a pipe, on a four-line
-input -- with `No more memory !!!' and `Couldn't re-allocate memory'". It was
-replaced by `REBUILT/sed_1.06`.
+This section used to argue that `CMDS/sed`, swapped on 2026-08-28 because it
+"answered every script ... with `No more memory !!!'", had been retired to work
+around an emulator fault and that the collection was a program poorer for it.
 
-If the defect is os9exec's, that program was not broken. A working archive
-binary was retired to work around an emulator fault, and the collection is
-one program poorer for it.
+**That was built on the wrong attribution and is withdrawn.** With the `cio`
+module this disk ships, that build genuinely cannot run: the mismatch is real
+and is in the binary's own linkage, not in the runtime under it. The swap was
+correct. Only the REASON recorded for it needs correcting, from "os9exec
+memory storm" to "linked against a cio.l whose module is on none of these
+disks".
 
 ## The population, measured
 
@@ -127,10 +145,12 @@ as soon as it is given an argument", measured 2026-08-29; run here as
 `lfmaker foo` and bare it produced no output and made no `F$SRqMem` call at
 all. Either the entry needs a condition it does not state, or it is wrong.
 
-## Why it matters for the os9exec release
+## What it means for the os9exec release
 
-Before this, the defect could be read as confined to builds the collection
-makes with a flag it no longer uses by default. It is not. It is reachable by
-software os9exec's users already have, and when it fires the program emits
-nothing but the emulator's own error text -- so it looks like a broken
-program, not a broken emulator.
+Not what this file first claimed. The mismatch is the archives', and no
+os9exec change fixes it. One small os9exec item is real and worth having:
+`memstuff.c:782` prints `No more memory !!!` to the console unconditionally on
+every failed allocation, where real OS-9 returns `E$NORAM` silently. That is
+why an ABI mismatch in a program reads as an emulator failure -- it is the
+emulator's voice on the program's stdout. It cost this collection a program's
+reputation, and a night of mine.
