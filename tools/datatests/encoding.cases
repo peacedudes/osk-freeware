@@ -124,8 +124,13 @@ run     /dd/CMDS/btop /dd/tmp/b1 > /dd/tmp/b2
 run     /dd/CMDS/wc -c /dd/tmp/b2
 expect  640
 run     /dd/CMDS/ptob /dd/tmp/b2 > /dd/tmp/b3
-run     /dd/CMDS/cmp /dd/tmp/b1 /dd/tmp/b3
-absent  differ
+# NOT `cmp' -- THERE IS NO cmp ON THIS DISK, so `absent differ' against it
+# passes whatever the files hold. `tcmp' exists and says so in words, and the
+# md5 is measured rather than assumed.
+run     /dd/CMDS/tcmp /dd/tmp/b1 /dd/tmp/b3
+expect  are identical
+run     /dd/CMDS/md5 /dd/tmp/b3
+expect  f2783580b7a4c5ef6a29ec5895e6ad95
 run     /dd/CMDS/cat /dd/tmp/b3
 expect  Welcome to os9exec
 

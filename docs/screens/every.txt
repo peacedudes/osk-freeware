@@ -1,10 +1,13 @@
-every -?
+$ loglist -i
+$ loglist -o
+$ loglist -l
+
+--------------------------------- LOGIN-LIST ---------------------------------
+LOGOUT- User: tester       Port: * no * Term: vt100  Time: 126/08/31  05:21:59
+OGIN + User: tester       Port: * no * Term: vt100  Time: 126/08/31  05:21:53
+OGOUT- User: tester       Port: * no * Term: vt100  Time: 126/08/31  05:20:06
+OGIN + User: tester       Port: * no * Term: vt100  Time: 126/08/31  05:20:00
+--------------------------------- End Of List --------------------------------
+$ every -?
 Syntax: every <time> <progname> [<progopts>]
 Function: repeat program every <time> seconds
-$ repeat -?
-repeat ver 1.2
-function: repeat an OS-9 command several times
-syntax: repeat [number of repetitions] [OS-9 command]
-options: -?     provide this explanation
-example: repeat 10 echo Hello
-$ cron -?

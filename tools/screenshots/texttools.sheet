@@ -702,7 +702,7 @@ run     btop /dd/tmp/b1 > /dd/tmp/b2
 wait    5
 run     ptob /dd/tmp/b2 > /dd/tmp/b3
 wait    5
-run     cmp /dd/tmp/b1 /dd/tmp/b3
+run     /dd/CMDS/cmp /dd/tmp/b1 /dd/tmp/b3
 wait    6
 run     cat /dd/tmp/b3
 wait    5

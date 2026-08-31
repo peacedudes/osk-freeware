@@ -39,8 +39,11 @@ run     /dd/CMDS/head -n 6 /dd/SYS/holidays > /dd/tmp/x1 2>/nil
 run     /dd/CMDS/sed -e "s/Day/DAY/" /dd/tmp/x1 > /dd/tmp/x2
 run     /dd/CMDS/diff /dd/tmp/x1 /dd/tmp/x2 > /dd/tmp/d1.out
 run     $R/diff_1.1 /dd/tmp/x1 /dd/tmp/x2 > /dd/tmp/d2.out
-run     /dd/CMDS/cmp /dd/tmp/d1.out /dd/tmp/d2.out
-absent  differ
+# `cmp' IS NOT ON THIS DISK, so the `absent differ' this line used to carry
+# passed no matter what the two files held -- a check that could not fail,
+# found 2026-08-31. `tcmp' is here and says so in words.
+run     /dd/CMDS/tcmp /dd/tmp/d1.out /dd/tmp/d2.out
+expect  are identical
 
 # REBUILT/arc_5.12 is version 5.12 and wants its command letter with a LEADING
 # DASH; the shipped 5.21 takes it bare. Handed 5.21's form the older one

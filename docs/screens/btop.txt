@@ -1,8 +1,22 @@
-btop -?
-Syntax:   BtoP [<opts>] [<path1>] [<opts>] [<path2>] [<opts>]
-Function: convert characters to bit patterns
-Options:  -o  use stdin for input, path1 for output
-$ ptob -?
-Syntax:   PtoB [<opts>] [<path1>] [<opts>] [<path2>] [<opts>]
-Function: convert bit patterns to chars
-Options:  -o  use stdin for input, path1 for output
+$ head -c 12 /dd/SYS/motd > /dd/tmp/b1
+$ btop /dd/tmp/b1
++ O + O + O O O
++ O O + + O + O
++ O O + O O + +
++ O O + + + O O
++ O O + O O O O
++ O O + O O + O
++ O O + + O + O
++ + O + + + + +
++ O O O + O + +
++ O O + O O O O
++ + O + + + + +
++ O O + O O O O
+$ btop /dd/tmp/b1 > /dd/tmp/b2
+$ ptob /dd/tmp/b2 > /dd/tmp/b3
+$ /dd/CMDS/cmp /dd/tmp/b1 /dd/tmp/b3
+/dd/CMDS/cmp:  (E$PNNF) That path name doesn't lead to anything - check the spe.
+
+$ cat /dd/tmp/b3
+Welcome to o
+$ rm -f /dd/tmp/b1 /dd/tmp/b2 /dd/tmp/b3
