@@ -1,0 +1,35 @@
+# rcs4 -- two hypotheses, tested.
+#
+#   1. `rcsdiff' and `rcsmerge' say "co failed" because they fork `co' out of
+#      /dd/cmds/rcs -- a string in both binaries -- and there is no such
+#      directory here.  Make it and see.
+#   2. `ci' says "diff failed" on a second revision.  It forks `diff' by bare
+#      name; if it does that through system(), it needs $SHELL, which
+#      SYS/login does not set -- the same trap that breaks `tex'.
+
+family  rcs4
+
+setup   W=/dd/tmp/RCS4
+setup   /dd/CMDS/mkdir /dd/tmp/RCS4
+setup   /dd/CMDS/cp /dd/SYS/motd $W/note.txt
+setup   /dd/CMDS/printf 'a first note\r.\r' > /dd/tmp/d1
+setup   /dd/CMDS/printf 'second revision\r.\r' > /dd/tmp/d2
+setup   echo 400000 > /dd/tmp/runs4
+
+drive   ci-with-SHELL-set
+run     export SHELL=/dd/CMDS/bash
+run     /dd/CMDS/ci $W/note.txt < /dd/tmp/d1
+run     /dd/CMDS/co -l $W/note.txt
+run     echo "a second line" >> $W/note.txt
+run     /dd/CMDS/DHRY/dhryO2 < /dd/tmp/runs4 > /nil
+run     /dd/CMDS/ci $W/note.txt < /dd/tmp/d2
+run     echo "--- rlog:"
+run     /dd/CMDS/rlog $W/note.txt
+
+drive   make-the-rcs-directory
+run     /dd/CMDS/mkdir /dd/CMDS/rcs
+run     /dd/CMDS/cp /dd/CMDS/co /dd/CMDS/rcs/co
+run     /dd/CMDS/cp /dd/CMDS/diff /dd/CMDS/rcs/diff
+run     /dd/CMDS/ls /dd/CMDS/rcs
+run     echo "--- rcsdiff now:"
+run     /dd/CMDS/rcsdiff -r1.1 -r1.2 $W/note.txt

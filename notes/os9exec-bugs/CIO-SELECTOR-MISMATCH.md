@@ -364,3 +364,33 @@ who put it there. The heap-shift test proves an address; it says nothing about
 whether the program or the runtime supplied it. Answering the second question
 needed the disassembly of both sides, and no amount of tracing from outside
 would have settled it.
+
+## Addendum, 2026-08-31: the message has a SECOND cause
+
+rdoggett relayed that the os9exec side attributes `No more memory !!!` to the
+cio mismatch. That is right for the 41 programs above, and it is **not the
+whole story** -- two programs flood the same message and are not cio-linked at
+all:
+
+| program | starred in DOC/INDEX | TRAP #13 stubs | behaviour |
+|---|---|---|---|
+| `lfmaker` (CMDS) | no | **none** | silent bare; floods `No more memory !!!` the moment it is given any argument |
+| `texidx` (CMDS/TEXCMDS) | no | **none** | `No more memory !!!` then `texi: virtual memory exhausted` on a one-line `.idx` |
+
+Counting `4E4D 00xx` byte triples across each module finds **zero** selectors
+in either -- against 69 in `cvtbase`, the storm's own example. They are static
+`-qm`-style builds that never enter `cio`, so the `$41`/`$42` stub-table
+mismatch cannot reach them.
+
+So `No more memory !!!` is the C runtime's allocator giving up, and the cio
+mismatch is one way to make that happen (a leak of one chunk per character),
+not the only one. Anything diagnosing this message should check first whether
+the program links `cio` at all; the check is one scan and it is decisive.
+
+What is NOT yet known about these two: whether they ask for something absurd
+(the mismatch's signature -- the same non-round value, repeated, moving with
+the heap) or simply ask for more than the arena has. `texidx` says
+`virtual memory exhausted` in its own words afterwards, which reads like an
+ordinary exhaustion rather than a storm. Both are asserted in
+`tools/datatests/` so they cannot quietly change: `texidx` in `tex.cases`, and
+`lfmaker`'s two-faced behaviour in `DOC/INDEX`.

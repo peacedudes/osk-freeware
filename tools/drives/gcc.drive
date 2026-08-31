@@ -1,0 +1,43 @@
+# gcc -- the two GCC installations and their passes.
+#
+# The collection ships GCC 1.39 (CMDS/GCC139) and GCC 2.x (CMDS/GCC2), plus
+# copies of the 2.x passes in CMDS under the names the drivers fork. Nothing
+# has ever tried a compile. The question is a plain one: given a hello.c,
+# does anything here produce a module that runs?
+
+family  gcc
+
+setup   /dd/CMDS/mkdir /dd/tmp/CC
+setup   echo "main(){printf(\"gcc-built hello\\n\");}" > /dd/tmp/CC/hello.c
+setup   /dd/CMDS/cat /dd/tmp/CC/hello.c
+
+drive   gcc2-driver
+run     /dd/CMDS/GCC2/gcc2 -v
+run     echo "--- and a compile:"
+run     /dd/CMDS/GCC2/gcc2 -o /dd/tmp/CC/hello /dd/tmp/CC/hello.c
+run     /dd/CMDS/ls /dd/tmp/CC
+
+drive   cccp2
+why     the preprocessor on its own -- that much needs no linker
+run     /dd/CMDS/GCC2/cccp2 /dd/tmp/CC/hello.c /dd/tmp/CC/hello.i
+run     /dd/CMDS/wc -l /dd/tmp/CC/hello.i
+run     /dd/CMDS/cat /dd/tmp/CC/hello.i
+
+drive   gcc_cccp
+why     the 1.39 preprocessor, same file
+run     /dd/CMDS/GCC139/gcc_cccp /dd/tmp/CC/hello.c /dd/tmp/CC/h139.i
+run     /dd/CMDS/wc -l /dd/tmp/CC/h139.i
+
+drive   cc1-passes
+run     /dd/CMDS/GCC139/gcc_cc1
+run     echo "--- 2.x cc2:"
+run     /dd/CMDS/GCC2/cc2
+run     echo "--- 2.x cc1plus:"
+run     /dd/CMDS/GCC2/cc1plus
+
+drive   collect
+run     /dd/CMDS/GCC2/collect
+run     /dd/CMDS/GCC139/gcc_collect
+
+drive   gpp
+run     /dd/CMDS/GCC2/gpp -v

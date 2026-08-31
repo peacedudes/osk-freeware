@@ -1,0 +1,24 @@
+# mac2 -- the Macintosh chain, in the order the formats actually nest.
+#
+# binhex answered "Short file" on a 40-byte text file, which is correct: a
+# BinHex encoder wants a MacBinary file, and MacBinary starts with a 128-byte
+# header. So the chain is macbin -> binhex -> hexbin, and each step has to be
+# given what the one before it makes.
+
+family  mac2
+
+setup   /dd/CMDS/mkdir /dd/tmp/MAC
+setup   /dd/CMDS/cp /dd/SYS/termcap /dd/tmp/MAC/note.txt
+
+drive   macbin
+why     what does macbin make, and where does it put it?
+run     /dd/CMDS/macbin /dd/tmp/MAC/note.txt
+run     /dd/CMDS/ls /dd/tmp/MAC
+run     echo "--- with its own -? :"
+run     /dd/CMDS/macbin -?
+
+drive   mcvert-encode
+why     mcvert -u makes a MacBinary from a plain file; -d takes one apart
+run     /dd/CMDS/mcvert -u /dd/tmp/MAC/note.txt
+run     /dd/CMDS/ls /dd/tmp/MAC
+run     /dd/CMDS/mcvert

@@ -1,0 +1,47 @@
+# mac -- the eight Macintosh format tools.
+#
+# `binhex' is on this disk as well, so the BinHex pair can be tested against
+# each other: encode, decode, compare. The rest read formats nothing here
+# produces -- StuffIt, MacBinary, MacTerminal streams -- and for those the
+# question is narrower: does the program start, and does it say something
+# useful about input it cannot use?
+
+family  mac
+
+setup   /dd/CMDS/cp /dd/SYS/motd /dd/tmp/mac.src
+
+drive   binhex-hexbin
+why     encode to BinHex and decode back -- the one round trip available
+run     /dd/CMDS/binhex /dd/tmp/mac.src > /dd/tmp/mac.hqx
+run     /dd/CMDS/wc -c /dd/tmp/mac.src /dd/tmp/mac.hqx
+run     /dd/CMDS/head -n 3 /dd/tmp/mac.hqx
+run     echo "--- and back:"
+run     /dd/CMDS/hexbin /dd/tmp/mac.hqx
+run     /dd/CMDS/ls /dd/tmp
+
+drive   mcvert
+why     "Convert between Macintosh file representations"
+run     /dd/CMDS/mcvert
+run     echo "--- on the binhex file:"
+run     /dd/CMDS/mcvert -d /dd/tmp/mac.hqx
+
+drive   macbin
+run     /dd/CMDS/macbin
+run     echo "--- encoding something:"
+run     /dd/CMDS/macbin /dd/tmp/mac.src
+
+drive   macstream
+run     /dd/CMDS/macstream /dd/tmp/mac.src
+
+drive   macunpack
+run     /dd/CMDS/macunpack /dd/tmp/mac.src
+
+drive   UnMacpack
+run     /dd/CMDS/UnMacpack /dd/tmp/mac.src
+
+drive   unsit
+run     /dd/CMDS/unsit /dd/tmp/mac.src
+
+drive   macsave
+run     /dd/CMDS/macsave
+run     /dd/CMDS/macsave /dd/tmp/mac.src

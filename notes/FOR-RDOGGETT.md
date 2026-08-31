@@ -15,7 +15,16 @@ recommendation is there.
 run without it. Delete it if you would rather the disk shipped no writable
 log; nothing else depends on it.
 
-**3. Nothing else.** The `cio` investigation is closed and does not block the
+**3. One line for the os9exec side, 2026-08-31.** You relayed that os9exec
+attributes `No more memory !!!` to the cio mismatch. That is right for the 41
+programs the scan names -- and there are **two more that are not cio-linked at
+all** and flood the same message: `lfmaker` (any argument) and `texidx` (any
+`.idx`). Counting `4E4D 00xx` triples finds ZERO trap-13 stubs in either,
+against 69 in `cvtbase`. So the message has a second cause, and a diagnosis
+that stops at "cio mismatch" will mis-file those two. Written up in
+`notes/os9exec-bugs/CIO-SELECTOR-MISMATCH.md`, addendum at the foot.
+
+**4. Nothing else.** The `cio` investigation is closed and does not block the
 os9exec release — the fault is in the archives' linkage, not the emulator. The
 one os9exec item worth considering is a single line, `memstuff.c:782`, which
 announces every failed allocation on the console where real OS-9 returns

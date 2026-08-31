@@ -1,0 +1,35 @@
+# gcc2 -- how far does GCC get on this disk, exactly?
+#
+# `gcc2 -o hello hello.c' stops with "Can't fork 'r68': module not found".
+# r68 is Microware's relocatable assembler and it is not here and cannot be.
+# So the question is where the chain breaks: preprocessing works, and the
+# next thing to try is -S, which stops after the compiler proper and writes
+# assembly.
+
+family  gcc2
+
+setup   /dd/CMDS/mkdir /dd/tmp/CC
+setup   echo "main(){printf(\"hello\\n\");}" > /dd/tmp/CC/hello.c
+
+drive   gcc2-S
+why     compile only, no assembler
+run     /dd/CMDS/rm /dd/tmp/CC/hello.a /dd/tmp/CC/hello.s
+run     /dd/CMDS/GCC2/gcc2 -S -o /dd/tmp/CC/hello.a /dd/tmp/CC/hello.c
+run     /dd/CMDS/ls /dd/tmp/CC
+run     /dd/CMDS/head -n 20 /dd/tmp/CC/hello.a
+
+drive   gcc139-S
+run     /dd/CMDS/GCC139/gcc -S -o /dd/tmp/CC/h139.a /dd/tmp/CC/hello.c
+run     /dd/CMDS/ls /dd/tmp/CC
+run     /dd/CMDS/head -n 12 /dd/tmp/CC/h139.a
+
+drive   gpp-version
+why     DOC/INDEX calls gpp the GCC 2.x C++ driver.  It says 1.40.3.
+run     /dd/CMDS/GCC2/gpp -v
+run     /dd/CMDS/GCC139/gpp -v
+run     /dd/CMDS/GCC2/gcc -v
+run     /dd/CMDS/GCC139/gcc -v
+
+drive   assembler
+why     is `assembler' a 68k assembler that could stand in for r68?
+run     /dd/CMDS/assembler

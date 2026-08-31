@@ -1,0 +1,139 @@
+family  devtools
+# RCS, the Macintosh format tools and the two GCC installations. Twenty-nine
+# programs, none of which had a card or a case before 2026-08-31.
+#
+# The honest summary of each family is in DOC/INDEX; what is asserted here is
+# the part that can fail again.
+
+setup   export TERM=vt100
+setup   export TERMCAP=/dd/SYS/termcap
+setup   export HOME=/dd
+
+# ---- RCS -------------------------------------------------------------
+# RCS names its archive <file>_v here, not <file>,v -- OS-9 has no comma in
+# a filename. ci and co both print the arrow that says which way the file
+# went, which is a better assertion than an exit code.
+
+case    rcs-checks-a-file-in
+run     /dd/CMDS/rm /dd/tmp/RCSA/note.txt /dd/tmp/RCSA/note.txt_v
+run     /dd/CMDS/mkdir /dd/tmp/RCSA
+run     /dd/CMDS/cp /dd/SYS/motd /dd/tmp/RCSA/note.txt
+run     /dd/CMDS/printf 'a first note\r.\r' > /dd/tmp/d1
+run     /dd/CMDS/ci /dd/tmp/RCSA/note.txt < /dd/tmp/d1
+run     /dd/CMDS/ls /dd/tmp/RCSA
+expect  /dd/tmp/RCSA/note.txt_v  <--  /dd/tmp/RCSA/note.txt
+expect  initial revision: 1.1
+expect  note.txt_v
+# `ci' MOVES the working file away -- the directory holds only note.txt_v
+# afterwards. An `absent note.txt' cannot say that, because note.txt_v
+# contains it; the count does.
+run     /dd/CMDS/ls /dd/tmp/RCSA > /dd/tmp/rcsa.list
+run     /dd/CMDS/wc -l /dd/tmp/rcsa.list
+expect  1 /dd/tmp/rcsa.list
+
+case    rcs-checks-it-out-again-byte-for-byte
+run     /dd/CMDS/co /dd/tmp/RCSA/note.txt
+run     /dd/CMDS/md5 /dd/tmp/RCSA/note.txt
+expect  /dd/tmp/RCSA/note.txt_v  -->  /dd/tmp/RCSA/note.txt
+expect  revision 1.1
+expect  f2783580b7a4c5ef6a29ec5895e6ad95
+
+case    rlog-reports-the-history
+run     /dd/CMDS/rlog /dd/tmp/RCSA/note.txt
+expect  RCS file:        /dd/tmp/RCSA/note.txt_v
+expect  total revisions: 1
+expect  Initial revision
+
+case    rcsident-looks-for-keywords-and-says-when-there-are-none
+run     /dd/CMDS/rcsident /dd/tmp/RCSA/note.txt
+expect  ident warning: no id keywords
+
+# KNOWN DEFECT, measured 2026-08-31. A SECOND revision never goes in. Inside
+# the same clock second ci refuses it -- "Date ... is not later than ..." --
+# and given a real gap it gets as far as calling diff and reports "diff
+# failed", though `diff' is on this disk and on PATH. So rcsdiff and
+# rcsmerge, which need two revisions to compare, cannot be exercised either.
+# RCS here is usable as a one-revision archive and no more.
+case    a-second-revision-does-not-go-in
+run     /dd/CMDS/co -l /dd/tmp/RCSA/note.txt
+run     echo "a second line" >> /dd/tmp/RCSA/note.txt
+run     /dd/CMDS/printf 'second revision\r.\r' > /dd/tmp/d2
+run     /dd/CMDS/ci /dd/tmp/RCSA/note.txt < /dd/tmp/d2
+run     /dd/CMDS/rlog /dd/tmp/RCSA/note.txt
+expect  new revision: 1.2; previous revision: 1.1
+expect  ci error:
+expect  total revisions: 1
+
+# ---- The Macintosh set -----------------------------------------------
+
+case    macbin-writes-a-macbinary-file-beside-the-original
+run     /dd/CMDS/rm /dd/tmp/MACA/note.txt /dd/tmp/MACA/note.txt.MAC
+run     /dd/CMDS/mkdir /dd/tmp/MACA
+run     /dd/CMDS/cp /dd/SYS/termcap /dd/tmp/MACA/note.txt
+run     /dd/CMDS/macbin /dd/tmp/MACA/note.txt
+run     /dd/CMDS/ls /dd/tmp/MACA
+expect  note.txt.MAC
+
+case    macbin-describes-itself
+run     /dd/CMDS/macbin -?
+expect  MacBinary file converter version 1.1
+expect  Syntax :   macbin [-vdtc?] <file 1> [<file 2>]
+expect  <type>=TEXT, <creator>=OS-9
+
+# binhex encodes a MACBINARY file, not a plain one -- 40 bytes of text gets
+# "Short file", correctly, because MacBinary starts with a 128-byte header.
+case    binhex-refuses-a-file-that-is-not-macbinary
+run     /dd/CMDS/binhex /dd/SYS/motd
+expect  Short file
+
+case    the-unpackers-reject-an-archive-that-is-not-theirs
+run     /dd/CMDS/macunpack /dd/SYS/motd
+run     /dd/CMDS/UnMacpack /dd/SYS/motd
+run     /dd/CMDS/unsit /dd/SYS/motd
+expect  Unrecognized archive type
+expect  Can't read file header
+
+# ---- GCC --------------------------------------------------------------
+# The whole GCC story on this disk, in three cases: it preprocesses, it
+# compiles to assembly, and it cannot assemble, because assembling wants
+# Microware's r68 and that is not here and cannot be.
+
+case    gcc-2.5.6-preprocesses
+run     /dd/CMDS/mkdir /dd/tmp/CCA
+run     echo "main(){printf(\"hello\");}" > /dd/tmp/CCA/hello.c
+run     /dd/CMDS/GCC2/cccp2 /dd/tmp/CCA/hello.c /dd/tmp/CCA/hello.i
+run     /dd/CMDS/cat /dd/tmp/CCA/hello.i
+expect  # 1 "/dd/tmp/CCA/hello.c"
+expect  main(){printf("hello");}
+
+case    gcc-compiles-to-68k-assembly
+run     /dd/CMDS/rm /dd/tmp/CCA/hello.a
+run     /dd/CMDS/GCC2/gcc2 -S -o /dd/tmp/CCA/hello.a /dd/tmp/CCA/hello.c
+run     /dd/CMDS/head -n 14 /dd/tmp/CCA/hello.a
+expect  psect hello_gc
+expect  link.w a5,#0
+expect  bsr _stkcheck
+
+case    but-it-cannot-assemble-because-r68-is-not-here
+run     /dd/CMDS/GCC2/gcc2 -o /dd/tmp/CCA/hello /dd/tmp/CCA/hello.c
+expect  Can't fork 'r68'
+expect  module not found
+
+# The version numbers, which DOC/INDEX had wrong: `gpp' is not a GCC 2.x
+# driver and CMDS/GCC2/gcc is not GCC 2 either.
+case    each-driver-names-its-own-version
+run     /dd/CMDS/GCC2/gcc2 -v
+run     /dd/CMDS/GCC2/gcc -v
+run     /dd/CMDS/GCC2/gpp -v
+run     /dd/CMDS/GCC139/gcc -v
+run     /dd/CMDS/GCC139/gpp -v
+expect  gcc version 2.5.6
+expect  gcc version 1.42
+expect  gpp version 1.40.3 (based on GCC 1.40)
+expect  gcc version 1.39
+expect  gpp version 1.37.1 (based on GCC 1.37)
+
+case    collect-is-the-g++-constructor-table-builder
+run     /dd/CMDS/GCC2/collect
+expect  Function : generate global con-/de-structor table for g++
+expect  Written 1991 by Stephan Paschedag
