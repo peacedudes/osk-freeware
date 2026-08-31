@@ -23,9 +23,9 @@
 | [Communications](#communications) | 96 | Kermit in several builds, terminal sessions, and networking. |
 | [Graphics & images](#graphics--images) | 202 | The netpbm toolkit, JPEG, a ray tracer, and things that draw. |
 | [Games](#games) | 66 | Adventures, board and card games, arcade ports, dungeon crawls and puzzles. |
-| [Screen toys](#screen-toys) | 8 | Things to watch rather than play. Start one and leave it going. |
-| [Amusements](#amusements) | 23 | Generators, simulators and diversions that are not quite games. |
-| [System & modules](#system--modules) | 127 | OS-9 module and process tools, devices, system state and scheduling. |
+| [Screen toys](#screen-toys) | 9 | Animations and screen effects -- they draw on the terminal rather than print to it. Some run until you stop them. |
+| [Amusements](#amusements) | 20 | Generators, simulators and diversions that are not quite games. |
+| [System & modules](#system--modules) | 131 | OS-9 module and process tools, devices, system state and scheduling. |
 | [Disk & DOS](#disk--dos) | 20 | Reading and writing MS-DOS media with the mtools set. |
 | [Time & calendar](#time--calendar) | 14 | Calendars, clocks and astronomy. |
 | [Maths & calculators](#maths--calculators) | 10 | Calculators, plotting, orbits and number theory. |
@@ -1256,19 +1256,20 @@
 
 ## Screen toys
 
-*Things to watch rather than play. Start one and leave it going.*
+*Animations and screen effects -- they draw on the terminal rather than print to it. Some run until you stop them.*
 
-<details><summary>8 programs</summary>
+<details><summary>9 programs</summary>
 
 | | |
 |---|---|
+| `card` | Towers of Hanoi whose twelve disks are the lines of a Christmas message; VT100, wants TERMCAP |
 | `life` | Conway's Game of Life<br>**How:** life [init-file]. The patterns are in /dd/GAMES/LIFE -- try `life /dd/GAMES/LIFE/glider`. It also wants more memory than the default; from the OS-9 shell that is `life #22k <file>`, and bash has no #size syntax at all. |
 | `rain` | raindrops screen effect<br>**How:** Full-screen: it takes over the display. **control-C gets you out** -- tested, and none of q, Q, control-D or ESC did. If it has a quit command of its own, its documentation in DOC/ will say. |
-| `screen` | &#9733; NOT the terminal multiplexer.  Russ Smith's `screens': picks a file at random from $HOME/.SCREENS and shows it. On OS-9 it runs the file rather than printing it, through system(), so it requires Microware's `shell' on your execution path.  Source in SRC/screen, man page in DOC/screen/screens.6.  Reworded 2026-08-30 |
-| `screen_nocio` | our source build, and the trap-free one: CMDS/screen stops without cio and this does not |
 | `suicide` | animation: a stick figure walks off a rooftop |
 | `suicide1` | suicide, variant |
 | `suicide2` | suicide, variant |
+| `textb` | &#9733; Mandelbrot set drawn in ASCII on an 80x25 terminal.  Start with X -2.3, Y -2.0, range 4.0, 32 iterations<br>**How:** An ASCII Mandelbrot viewer -- it asks four questions and draws. Try X_Coord -2.3, Y_Coord -2.0, RANGE 4.0, Max Iter 32. Needs Microware's cio. |
+| `ttyexp` | fireworks that clear the screen; VT100, wants TERMCAP<br>`Usage: ttyexp <parameters>` |
 | `worms` | worms screen effect<br>`usage: worms [-field] [-length #] [-number #] [-trail]` |
 
 </details>
@@ -1277,7 +1278,7 @@
 
 *Generators, simulators and diversions that are not quite games.*
 
-<details><summary>23 programs</summary>
+<details><summary>20 programs</summary>
 
 **Simulations**
 
@@ -1314,26 +1315,13 @@
 | `areacode` | &#9733; look up a US telephone area code<br>`Usage: areacode nnn nnn ...` |
 | `touchtype` | typing tutor<br>**How:** Full-screen: it takes over the display. **control-C gets you out** -- tested, and none of q, Q, control-D or ESC did. If it has a quit command of its own, its documentation in DOC/ will say. |
 
-**Screen toys**
-
-| | |
-|---|---|
-| `card` | Towers of Hanoi whose twelve disks are the lines of a Christmas message; VT100, wants TERMCAP |
-| `ttyexp` | fireworks that clear the screen; VT100, wants TERMCAP<br>`Usage: ttyexp <parameters>` |
-
-**Fractals**
-
-| | |
-|---|---|
-| `textb` | &#9733; Mandelbrot set drawn in ASCII on an 80x25 terminal.  Start with X -2.3, Y -2.0, range 4.0, 32 iterations<br>**How:** An ASCII Mandelbrot viewer -- it asks four questions and draws. Try X_Coord -2.3, Y_Coord -2.0, RANGE 4.0, Max Iter 32. Needs Microware's cio. |
-
 </details>
 
 ## System & modules
 
 *OS-9 module and process tools, devices, system state and scheduling.*
 
-<details><summary>127 programs</summary>
+<details><summary>131 programs</summary>
 
 **Utilities**
 
@@ -1387,6 +1375,8 @@
 | `ptob` | Gepard fat-font back to bitmap<br>`Syntax:   PtoB [<opts>] [<path1>] [<opts>] [<path2>] [<opts>]` |
 | `ptxminst` | install Ptxm.  NOT a pseudo-tty installer -- that is what this entry said until 2026-08-19 and it was wrong |
 | `rndir` | &#9733; rename a directory<br>`Syntax: rndir [<opt>]` |
+| `screen` | &#9733; NOT the terminal multiplexer.  Russ Smith's `screens': picks a file at random from $HOME/.SCREENS and shows it. On OS-9 it runs the file rather than printing it, through system(), so it requires Microware's `shell' on your execution path.  Source in SRC/screen, man page in DOC/screen/screens.6.  Reworded 2026-08-30 |
+| `screen_nocio` | our source build, and the trap-free one: CMDS/screen stops without cio and this does not |
 | `scsiutil` | SCSI device utility<br>`Usage: SCSIutil [/scsi_dev@] <command>` |
 | `setime2` | Y2K: set the system time, four-digit year<br>`Syntax:   setime2 [<opt>] [<setime2>] [<opt>]` |
 | `setyear` | Y2K: set the year directly<br>`Syntax:   setyear <YYYY>` |
@@ -1412,6 +1402,22 @@
 | `yagi` | Yagi antenna design calculator |
 | `ynad` | &#9733; YNAD -- Yet Another Name & Address program.  A contact database, not a yes/no dialogue.  Corrected 2026-08-28 |
 
+**OS-9 modules**
+
+| | |
+|---|---|
+| `bootgen` | &#9733; generate an OS-9 boot file<br>`Syntax:   bootgen [<opts>] <device> {<path> [<opts>] }` |
+| `bsplt68` | Split a boot file into its component modules (Carl Kreider) |
+| `flink` | &#9733; list a module's links<br>`usage: flink [ -? \| filename { filename } ]` |
+| `gen` | generates the FRAME of a new C program -- header block, authorship and version lines and the sectioned comments a Microware example was laid out with.  IT APPENDS `.c' to whatever name you give it, which is why it looks as though it wrote nothing: `gen -p frame' leaves `frame.c'.  `-m' does a module frame, `-t' a type, `-f' a function declaration.  Clarified 2026-08-29<br>`Syntax: gen [<opt>] <pathname> [<opts>]` |
+| `load` | load a module into memory, so a program that LINKS a library MODULE can find it -- `load /dd/CMDS/os9lib' and the RTF Fortran set comes alive, where before it printed nothing.  A clean-room reimplementation of Microware's load, written from the published manuals and contributed by the os9exec project; maintained here now, source in SRC/load, built trap-free so it needs no cio<br>`Syntax:   load [<opts>] {<module> [<opts>]}` |
+| `mexist` | &#9733; test module existence<br>`Usage: mexist [options] <Module>` |
+| `os9lib` | RTF/68K FORTRAN run-time LIBRARY.  Not a program: rtf, for, lnk, biory and creadoc all F$Link it, and every one of them fails E_MNF until it is in the module directory.  See DOC/README-FORTRAN.  Running it AS a program executes its floating-point code and stops -- that is not a fault. |
+| `ptxm` | Path Table eXtension Module (Nick Holgate, 1995): a KERNEL extension letting user-state processes open unlimited I/O paths.  Courtesyware, free.  Needs supervisor state, so it cannot install under os9exec.  DOC/ptxm/ptxm.txt |
+| `rtfdat` | RTF FORTRAN data module |
+| `version` | &#9733; prints ITS OWN version and nothing else -- `Dies ist das Program 'version', Version 7' -- whatever module you name. `ident' and `modinfo' show a module's edition.  Corrected 2026-08-29 |
+| `vmod_trap` | the VMod_trap trap library rxmod and txmod need.  Type-$0B, and it runs in SUPERVISOR state, so it installs here and then faults.  Renamed from lowercase `vmod_trap' -- rxmod asks for `VMod_trap' and real OS-9 matches exactly and it runs in SUPERVISOR state, so it installs here and then faults.  Renamed from lowercase `vmod_trap' -- rxmod asks for `VMod_trap' and real OS-9 matches exactly |
+
 **Processes & memory**
 
 | | |
@@ -1426,20 +1432,6 @@
 | `top` | &#9733; show the busiest processes -- prints its heading and then aborts (E_PRCABT).  `aprocs' aborts the same way<br>`Syntax: top [<opts>] [<num>]` |
 | `vis` | &#9733; NOT the Unix `vis': it repeatedly runs a command and refreshes the screen with the output, which is what `watch' does elsewhere -- `vis {opts} <command> <args>'.  Corrected 2026-08-29 |
 | `who` | 'who is logged in'.  Written in MICROWARE SHELL syntax ('!' pipes, `( )&' groups, `*' comments), not sh or bash, so no shell here can run it.  It wants `procs', `sleep', `qsort' and `tr', none of which are on this disk -- but `field' and `join', which it also uses, ARE here, and `qsort9' is that sort under another name.  Corrected 2026-08-29: field was listed among the missing and is not. |
-
-**OS-9 modules**
-
-| | |
-|---|---|
-| `bootgen` | &#9733; generate an OS-9 boot file<br>`Syntax:   bootgen [<opts>] <device> {<path> [<opts>] }` |
-| `bsplt68` | Split a boot file into its component modules (Carl Kreider) |
-| `flink` | &#9733; list a module's links<br>`usage: flink [ -? \| filename { filename } ]` |
-| `gen` | generates the FRAME of a new C program -- header block, authorship and version lines and the sectioned comments a Microware example was laid out with.  IT APPENDS `.c' to whatever name you give it, which is why it looks as though it wrote nothing: `gen -p frame' leaves `frame.c'.  `-m' does a module frame, `-t' a type, `-f' a function declaration.  Clarified 2026-08-29<br>`Syntax: gen [<opt>] <pathname> [<opts>]` |
-| `load` | load a module into memory, so a program that LINKS a library MODULE can find it -- `load /dd/CMDS/os9lib' and the RTF Fortran set comes alive, where before it printed nothing.  A clean-room reimplementation of Microware's load, written from the published manuals and contributed by the os9exec project; maintained here now, source in SRC/load, built trap-free so it needs no cio<br>`Syntax:   load [<opts>] {<module> [<opts>]}` |
-| `mexist` | &#9733; test module existence<br>`Usage: mexist [options] <Module>` |
-| `os9lib` | RTF/68K FORTRAN run-time LIBRARY.  Not a program: rtf, for, lnk, biory and creadoc all F$Link it, and every one of them fails E_MNF until it is in the module directory.  See DOC/README-FORTRAN.  Running it AS a program executes its floating-point code and stops -- that is not a fault. |
-| `rtfdat` | RTF FORTRAN data module |
-| `version` | &#9733; prints ITS OWN version and nothing else -- `Dies ist das Program 'version', Version 7' -- whatever module you name. `ident' and `modinfo' show a module's edition.  Corrected 2026-08-29 |
 
 **MM/1 drivers**
 

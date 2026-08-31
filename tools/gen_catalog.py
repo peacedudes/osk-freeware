@@ -489,7 +489,7 @@ BLURB = {
  "Communications":"Kermit in several builds, terminal sessions, and networking.",
  "Graphics & images":"The netpbm toolkit, JPEG, a ray tracer, and things that draw.",
  "Games":"Adventures, board and card games, arcade ports, dungeon crawls and puzzles.",
- "Screen toys":"Things to watch rather than play. Start one and leave it going.",
+ "Screen toys":"Animations and screen effects -- they draw on the terminal rather than print to it. Some run until you stop them.",
  "Amusements":"Generators, simulators and diversions that are not quite games.",
  "System & modules":"OS-9 module and process tools, devices, system state and scheduling.",
  "Disk & DOS":"Reading and writing MS-DOS media with the mtools set.",

@@ -16,12 +16,12 @@
 
 # ---- Amusements ----
 areacode|Amusements|Curiosities
-card|Amusements|Screen toys
+card|Screen toys|Screen toys
 dam|System & modules|Devices & disks
 setfont|Communications|Terminal & session
 ssl|System & modules|Devices & disks
 touchtype|Amusements|Curiosities
-ttyexp|Amusements|Screen toys
+ttyexp|Screen toys|Screen toys
 wysecrack|Communications|Terminal & session
 wysetime|Communications|Terminal & session
 name|Amusements|Generators
@@ -73,8 +73,8 @@ fkeys|Communications|Terminal & session
 initvdu|Communications|Terminal & session
 input|Communications|Terminal & session
 sbreak|Communications|Terminal & session
-screen|Screen toys|Screen toys
-screen_nocio|Screen toys|Screen toys
+screen|System & modules|Utilities
+screen_nocio|System & modules|Utilities
 setterm|Communications|Terminal & session
 tsmon2|Communications|Terminal & session
 udate|Communications|Terminal & session
@@ -677,7 +677,7 @@ ccheck|Developer tools|Source checking
 libsplit|Developer tools|Libraries
 lwf|Printing|PostScript
 tab|Developer tools|Assembly
-textb|Amusements|Fractals
+textb|Screen toys|Screen toys
 xlate|Developer tools|Assembly
 ub68kdemo|System & modules|Vendor demos
 ob68kdemo|System & modules|Vendor demos
@@ -990,8 +990,8 @@ read_mail|Communications|Mail
 vecho|System & modules|Utilities
 ptxminst|System & modules|Utilities
 umusek|System & modules|Utilities
-ptxm|System & kernel|Modules
-vmod_trap|System & kernel|Modules
+ptxm|System & modules|OS-9 modules
+vmod_trap|System & modules|OS-9 modules
 dedit|System & modules|Devices & disks
 zoo_2.1|Archives & compression|Alternates
 passwd|System & modules|Users and login
