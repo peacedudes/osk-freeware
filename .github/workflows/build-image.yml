@@ -83,10 +83,17 @@ jobs:
       # mkimage.sh fails if tar extracted the wrong number of files. This is
       # the other half: mount the finished image and use it. Both checks below
       # fail against a blank image, which is what makes them worth running.
+      #
+      # STRIP CR AS WELL AS NUL. OS-9 ends a line with CR, so `basename' answers
+      # "c\r" and the `grep -qx c' below never matched it -- this step would
+      # have failed on every run the workflow ever made, on a disk that was
+      # perfectly good. Found 2026-08-30 by running the whole workflow locally
+      # against a clean `git archive' export, which is the only way it had ever
+      # been exercised: the branch this lives on has never been pushed.
       - name: Read the image back
         run: |
           img="$PWD/osk-freeware.dd"
-          run() { OS9DISK="$img" ./os9exec/os9exec -r "$@" 2>&1 | tr -d '\000' | grep -v '^#'; }
+          run() { OS9DISK="$img" ./os9exec/os9exec -r "$@" 2>&1 | tr -d '\000\r' | grep -v '^#'; }
 
           run wc /dd/startup | grep -q '/dd/startup' || {
             echo "::error::cannot read /dd/startup from the image"; exit 1; }
