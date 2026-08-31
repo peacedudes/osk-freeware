@@ -42,7 +42,7 @@ run     $R/diff_1.1 /dd/tmp/x1 /dd/tmp/x2 > /dd/tmp/d2.out
 run     /dd/CMDS/cmp /dd/tmp/d1.out /dd/tmp/d2.out
 absent  differ
 
-# REBUILT/arc is version 5.12 and wants its command letter with a LEADING
+# REBUILT/arc_5.12 is version 5.12 and wants its command letter with a LEADING
 # DASH; the shipped 5.21 takes it bare. Handed 5.21's form the older one
 # prints its usage and does nothing, which is why 5.21 is what ships.
 case    the-shipped-arc-is-5.21-and-takes-a-bare-command-letter
@@ -52,7 +52,7 @@ expect  Creating new archive
 
 case    rebuilt-arc-is-5.12-and-refuses-the-same-line
 run     /dd/CMDS/rm -f /dd/a2.arc
-run     $R/arc a a2.arc $T
+run     $R/arc_5.12 a a2.arc $T
 expect  arc - Archive Utility, 5.12
 
 # C-LHarc: the shipped `lharc' is 1.00, REBUILT/lharcs is 1.01 -- newer, and
@@ -75,39 +75,65 @@ expect  1 file
 run     $R/lharcs l /dd/tmp/l1.lzh
 expect  1 file
 
-# REBUILT/screen is the trap-free build of the same program and stops at the
-# same place -- there is no $HOME/.SCREENS on this disk. It also still
-# reports its module name as `R_screen', which is the rebuild that forgot
-# -n=; see CLAUDE.md. Nothing to swap.
+# REBUILT/screen_nocio is the trap-free build of the same program and stops at
+# the same place -- there is no $HOME/.SCREENS on this disk. Nothing to swap;
+# the name records the one real difference, which is that CMDS/screen wants
+# cio and this does not.
 case    both-screens-want-a-.SCREENS-directory
 run     /dd/CMDS/screen
 expect  .screens directory
-run     $R/screen
+run     $R/screen_nocio
 expect  .screens directory
 
-# THE LAST TWO MIS-NAMED MODULES ARE GONE, 2026-08-28. `REBUILT/compress'
-# reported itself as `R_compress' and `REBUILT/screen' as `R_screen' -- both
-# from a rebuild pass that forgot -n=, so a program's own usage text named a
-# module nobody could ask for. Rebuilt with the current driver, which sets the
-# name from the recipe. The new compress is byte-compatible with the shipped
-# one: same 631-byte archive, and each reads the other's.
-case    rebuilt-compress-calls-itself-compress
-run     /dd/CMDS/modinfo $R/compress
-expect  Module name           = compress
+# EVERY MODULE IN HERE NOW ANSWERS TO ITS OWN FILENAME, 2026-08-30. Five of
+# these files used to carry the module name of the program in /dd/CMDS that
+# they sit beside, and OS-9 finds a program by MODULE name once it is
+# resident -- so loading one of them silently answered for the other. The
+# case below that loads arc_5.12 and then runs /dd/CMDS/arc is the one that
+# has to keep failing to come back.
+case    rebuilt-compress-calls-itself-compress_rebuilt
+run     /dd/CMDS/modinfo $R/compress_rebuilt
+expect  Module name           = compress_rebuilt
 
-case    rebuilt-screen-calls-itself-screen
-run     /dd/CMDS/modinfo $R/screen
-expect  Module name           = screen
+case    rebuilt-screen-calls-itself-screen_nocio
+run     /dd/CMDS/modinfo $R/screen_nocio
+expect  Module name           = screen_nocio
 
 case    the-two-compresses-agree-byte-for-byte
-run     $R/compress -c < /dd/SYS/termcap > /dd/tmp/rc.Z
+run     $R/compress_rebuilt -c < /dd/SYS/termcap > /dd/tmp/rc.Z
 run     /dd/CMDS/wc -c /dd/tmp/rc.Z
 expect  631
 run     /dd/CMDS/compress -dc < /dd/tmp/rc.Z > /dd/tmp/rc.out
 run     /dd/CMDS/md5 /dd/tmp/rc.out
 expect  ee2c20fa226fe6fc78feec7f123c7a99
 
+# The collision, asserted from both ends. Before the rename this second case
+# printed `arc - Archive Utility, 5.12' -- the alternate answering for the
+# program whose path was typed.
+case    loading-arc_5.12-no-longer-answers-for-CMDS-arc
+run     /dd/CMDS/load $R/arc_5.12
+run     /dd/CMDS/rm -f /dd/a3.arc
+run     /dd/CMDS/arc a a3.arc $T
+expect  Creating new archive
+absent  5.12
+
+case    the-renamed-kermit-still-runs
+run     $R/kermit_cio
+expect  Usage: kermit
+
+case    the-renamed-pvic-reports-its-own-name
+run     /dd/CMDS/modinfo $R/vi_1.0
+expect  Module name           = vi_1.0
+
+case    the-renamed-arc-reports-its-own-name
+run     /dd/CMDS/modinfo $R/arc_5.12
+expect  Module name           = arc_5.12
+
+case    the-renamed-kermit-reports-its-own-name
+run     /dd/CMDS/modinfo $R/kermit_cio
+expect  Module name           = kermit_cio
+
 case    the-scratch-archives-go-away
-run     /dd/CMDS/rm -f /dd/a1.arc /dd/a2.arc /dd/tags /dd/tmp/l1.lzh /dd/tmp/l2.lzh
+run     /dd/CMDS/rm -f /dd/a1.arc /dd/a2.arc /dd/a3.arc /dd/tags /dd/tmp/l1.lzh /dd/tmp/l2.lzh
 run     /dd/CMDS/ls /dd/a1.arc
 expect  error

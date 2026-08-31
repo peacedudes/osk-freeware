@@ -82,8 +82,8 @@ cap     a half-drawn rule and no more; on a real terminal it works fine and
 cap     is used daily.  Tried and did NOT explain it (2026-08-30): 24 lines
 cap     and 36, TERMCAP as a path and as an entry, ^L and ^R.  So this is a
 cap     fact about the harness until somebody explains it.  `elvis',
-cap     `vi_nocio' and REBUILT/VI fill the screen under both, each with its
-cap     own card.
+cap     `vi_nocio' and REBUILT/vi_1.0 fill the screen under both, each with
+cap     its own card.
 run     vi /dd/DOC/README-CIO
 wait    20
 send    \033
@@ -116,13 +116,14 @@ run     vi.elvis -?
 wait    10
 
 shot    pvic
-for     VI
-cap     PVIC, the Portable VI Clone, in CMDS/REBUILT because the name `vi'
-cap     was already taken by the EFFO one.  It is a working vi: tildes down
+for     vi_1.0
+cap     PVIC 1.0, the Portable VI Clone, in CMDS/REBUILT because the name
+cap     `vi' was already taken by the EFFO one; `vi_cio' and `vi_nocio' are
+cap     the 1.0a builds of the same program.  It is a working vi: tildes down
 cap     the left, the file painted a screenful at a time, and o-i-escape-:wq
 cap     writes the line you typed.  Asked for by path, since it is not on
 cap     the login PATH.
-run     /dd/CMDS/REBUILT/VI /dd/DOC/README-CIO
+run     /dd/CMDS/REBUILT/vi_1.0 /dd/DOC/README-CIO
 wait    18
 quit    \033:q!\r
 

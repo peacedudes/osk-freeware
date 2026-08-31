@@ -131,7 +131,7 @@ expect  archive merger
 # temporary over the target.  DOC/STATUS has the measurement, including the
 # way it first came out wrong.
 case    arc-cannot-write-its-archive
-run     /dd/CMDS/REBUILT/arc -a tmp/y.arc SYS/termcap
+run     /dd/CMDS/REBUILT/arc_5.12 -a tmp/y.arc SYS/termcap
 expect  Cannot rename
 
 # ONE BROKEN CHECK is all that stops `shar'. Its read-access test rejects

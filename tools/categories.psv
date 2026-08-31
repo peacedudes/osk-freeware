@@ -61,6 +61,7 @@ unpacklib|Archives & compression|OS-9 module libraries
 # ---- Communications ----
 ckermit|Communications|Kermit
 kermit|Communications|Kermit
+kermit_cio|Communications|Kermit
 kermit2|Communications|Kermit
 kermit3|Communications|Kermit
 xkermit|Communications|Kermit
@@ -73,6 +74,7 @@ initvdu|Communications|Terminal & session
 input|Communications|Terminal & session
 sbreak|Communications|Terminal & session
 screen|Screen toys|Screen toys
+screen_nocio|Screen toys|Screen toys
 setterm|Communications|Terminal & session
 tsmon2|Communications|Terminal & session
 udate|Communications|Terminal & session
@@ -170,7 +172,7 @@ emacs.mm1|Editors|emacs family
 me|Editors|emacs family
 mg|Editors|emacs family
 sedt|Editors|vi family
-VI|Editors|vi family
+vi_1.0|Editors|vi family
 vi|Editors|vi family
 vi_cio|Editors|vi family
 vi_nocio|Editors|vi family
@@ -282,7 +284,6 @@ hang|Games|Word & guessing
 
 # ---- Graphics & images ----
 banner|Text tools|Banners & text art
-bush|Amusements|Curiosities
 cursive|Text tools|Banners & text art
 draw|Graphics & images|Drawing & display
 loadmem|Graphics & images|Drawing & display
@@ -745,6 +746,8 @@ gtar|Archives & compression|Alternates
 lharcs|Archives & compression|Alternates
 diff_1.1|Archives & compression|Alternates
 compress_4.0|Archives & compression|Alternates
+compress_rebuilt|Archives & compression|Alternates
+arc_5.12|Archives & compression|Alternates
 m4_0.5|Archives & compression|Alternates
 sed_1.06|Archives & compression|Alternates
 ub68020demo|System & modules|Vendor demos

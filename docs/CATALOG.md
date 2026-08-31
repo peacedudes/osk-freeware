@@ -1,6 +1,6 @@
 # What is on this disk
 
-936 programs of OS-9/68K community software, gathered from the archives that kept it and made to run again. **566 of them need nothing but this disk**; the rest want Microware's `cio`, marked below with a star.
+939 programs of OS-9/68K community software, gathered from the archives that kept it and made to run again. **570 of them need nothing but this disk**; the rest want Microware's `cio`, marked below with a star.
 
 `DOC/INDEX` on the disk lists everything alphabetically. This is the same collection sorted by what each program is *for*, which is the more useful order when you do not yet know what you are looking for.
 
@@ -18,13 +18,13 @@
 | [Developer tools](#developer-tools) | 48 | Version control, tags, cross-reference, formatters, a debugger and benchmarks. |
 | [Compilers & build](#compilers--build) | 39 | C compilers and their passes, assemblers, linkers, make and parser generators. |
 | [Languages](#languages) | 10 | Interpreters and language systems beyond C. |
-| [Archives & compression](#archives--compression) | 38 | Pack, unpack and shrink -- lha, zip, tar, arc, zoo, and OS-9 module libraries. |
+| [Archives & compression](#archives--compression) | 40 | Pack, unpack and shrink -- lha, zip, tar, arc, zoo, and OS-9 module libraries. |
 | [Encoding & conversion](#encoding--conversion) | 24 | Between text encodings, line endings, Macintosh formats, ciphers and hashes. |
-| [Communications](#communications) | 95 | Kermit in several builds, terminal sessions, and networking. |
+| [Communications](#communications) | 96 | Kermit in several builds, terminal sessions, and networking. |
 | [Graphics & images](#graphics--images) | 202 | The netpbm toolkit, JPEG, a ray tracer, and things that draw. |
 | [Games](#games) | 66 | Adventures, board and card games, arcade ports, dungeon crawls and puzzles. |
-| [Screen toys](#screen-toys) | 7 | Things to watch rather than play. Start one and leave it going. |
-| [Amusements](#amusements) | 24 | Generators, simulators and diversions that are not quite games. |
+| [Screen toys](#screen-toys) | 8 | Things to watch rather than play. Start one and leave it going. |
+| [Amusements](#amusements) | 23 | Generators, simulators and diversions that are not quite games. |
 | [System & modules](#system--modules) | 127 | OS-9 module and process tools, devices, system state and scheduling. |
 | [Disk & DOS](#disk--dos) | 20 | Reading and writing MS-DOS media with the mtools set. |
 | [Time & calendar](#time--calendar) | 14 | Calendars, clocks and astronomy. |
@@ -49,7 +49,7 @@
 | `if` | conditional execution for shell scripts (varval/loaded/def)<br>`Syntax: if [not] <cond> {<arg>} {<cmd1>} [else` |
 | `printenv` | &#9733; print the environment<br>`Syntax:   printenv [<options>] [{<env var name}]` |
 | `printf` | &#9733; formatted print from the shell.  IT WORKS, with one flaw: the literal text BEFORE THE FIRST CONVERSION is dropped. Everything between and after conversions is right -- `printf "%d %s %d\n" 4 "is bigger than " 3' prints `4 is bigger than  3', and `"a%db%dc\n" 1 2' prints `1b2c', losing only the leading `a'.  So begin the format with a conversion and nothing is lost.  The degenerate case of the same flaw: a format with NO conversion is entirely `before the first conversion', so it prints nothing. Measured 2026-08-29; the earlier note here said it floods `No more memory !!!', and it does not<br>`Usage: printf <format-string> [ arg1 . . . ]` |
-| `qp` | &#9733; NOT a print helper: `qp <cmd> <args>' processes BACK-QUOTES for command expansion, which Microware's shell has no way to do. REQUIRES MICROWARE'S `shell' on your execution path -- it does the expansion by forking one, and produces nothing without it. Reworded 2026-08-30<br>`Syntax: qp <cmd> <arg1> ... <argn>` |
+| `qp` | &#9733; NOT a print helper: `qp <cmd> <args>' processes BACK-QUOTES for command expansion, which Microware's shell has no way to do. requires Microware's `shell' on your execution path -- it does the expansion by forking one, and produces nothing without it. Reworded 2026-08-30<br>`Syntax: qp <cmd> <arg1> ... <argn>` |
 | `run` | run a program with stdio rebound to the terminal (needs PORT)<br>`Syntax: run '<prgname> {<arg>}'` |
 | `xc` | execute commands from a file (needs a .xc) |
 
@@ -97,8 +97,8 @@
 | | |
 |---|---|
 | `sedt` | &#9733; SEDT screen editor -- the third build of the same editor, and it needs SYS/sedt.keys like the other two.  All three run now |
-| `VI` | PVIC, public domain            -> /dd/CMDS/REBUILT (name was taken)<br>`Usage: vi [file ...]` |
-| `vi` | &#9733; THE REAL vi/ex, and it KEEPS THE NAME -- its source in SRC/effo_vi is the Berkeley ex source itself, not a clone. `vi -x' is ex, `vi -d' is edit.  See DOC/README-VI.<br>**How:** One of three unrelated vi editors here, and the only one that is the genuine Berkeley ex/vi rather than a clone -- its source in SRC/effo_vi is the real ex_*.c files. `vi -x' becomes ex, `vi -d' becomes edit. DOC/README-VI compares all three. |
+| `vi` | &#9733; the real vi/ex, and it keeps the name -- its source in SRC/effo_vi is the Berkeley ex source itself, not a clone. `vi -x' is ex, `vi -d' is edit.  See DOC/README-VI.<br>**How:** One of three unrelated vi editors here, and the only one that is the genuine Berkeley ex/vi rather than a clone -- its source in SRC/effo_vi is the real ex_*.c files. `vi -x' becomes ex, `vi -d' becomes edit. DOC/README-VI compares all three. |
+| `vi_1.0` | PVIC 1.0, public domain      -> /dd/CMDS/REBUILT (name was taken) and CMDS/vi_nocio are PVIC 1.0a<br>`Usage: vi [file ...]` |
 | `vi_cio` | &#9733; PVic vi, cio build (use vi_nocio instead)<br>**How:** PVic vi, the cio build. Needs `. /dd/SYS/termcap.entry' first, then it opens on an empty buffer. CMDS/vi_nocio is the same editor needing no module; DOC/README-VI compares all three vi editors here. |
 | `vi_nocio` | PVIC 1.0a -- the smallest of this disk's three vi editors, public domain.  See DOC/README-VI to choose between them<br>**How:** PVIC 1.0a, the smallest of the three vi editors on this disk, public domain, no source or docs here. DOC/README-VI compares it with vi and elvis. |
 
@@ -108,7 +108,7 @@
 |---|---|
 | `beav` | BEAV 1.40 -- Binary Editor And Viewer (needs TERM)<br>**How:** Full-screen: it takes over the display. **control-C gets you out** -- tested, and none of q, Q, control-D or ESC did. If it has a quit command of its own, its documentation in DOC/ will say. |
 | `hexed` | &#9733; hex editor via your text editor -- it writes its work file to /r0 and stops when it cannot.  See DOC/README-RUNNING  [no military use -- EFFO-INFO]<br>`Syntax: hexed [<opts>] <path> {[<opts>] \| [<path>]}` |
-| `hexedit` | HEXPERT V2.4 by Dominic Alston -- `hexedit <file>'.  It reads TERMCAP as the CAPABILITY STRING itself, not as the name of a file, so source `. /dd/SYS/termcap.entry' first and it draws its viewer; without that it prints the terminal type and exits.  gnuchess wants the same.  Its -d option is separately broken -- `file not accessible' (214) for a file that is readable.  `beav' is the binary editor that needs nothing, and `hexed' the one that would work if there were a RAM disk.  Corrected 2026-08-29<br>**How:** A hex editor -- Hexpert v2.4 by Dominic Alston. Takes a file: `hexedit <file>'. Needs `. /dd/SYS/termcap.entry' first or it will not draw. |
+| `hexedit` | HEXPERT V2.4 by Dominic Alston -- `hexedit <file>'.  It reads TERMCAP as the capability string itself, not as the name of a file, so source `. /dd/SYS/termcap.entry' first and it draws its viewer; without that it prints the terminal type and exits.  gnuchess wants the same.  Its -d option is separately broken -- `file not accessible' (214) for a file that is readable.  `beav' is the binary editor that needs nothing, and `hexed' the one that would work if there were a RAM disk.  Corrected 2026-08-29<br>**How:** A hex editor -- Hexpert v2.4 by Dominic Alston. Takes a file: `hexedit <file>'. Needs `. /dd/SYS/termcap.entry' first or it will not draw. |
 | `pbyte` | &#9733; patch bytes in a file at a hex offset<br>`Syntax: pbyte <path> <hex_offset> <hex_byte> [<hex_byte>]` |
 
 **emacs family**
@@ -353,7 +353,7 @@
 | | |
 |---|---|
 | `dir` | &#9733; directory listing.  PATCHED HERE: its moveq #128 was sign-extended to -128; see DOC/STATUS<br>`Syntax: dir [<opts>] {<dir names> [<opts>]}` |
-| `dm` | &#9733; Disk Master 1.4, a full-screen disk and directory browser. REQUIRES MICROWARE'S `shell' on your execution path: it runs the commands it offers through system(), which forks a program of that name.  With one present it runs completely -- measured 2026-08-28.  Reworded 2026-08-30<br>**How:** Disk Master 1.4, a full-screen disk browser. REQUIRES MICROWARE'S `shell` on your execution path -- it runs the commands it offers through system(). With one present it runs completely. |
+| `dm` | &#9733; Disk Master 1.4, a full-screen disk and directory browser. requires Microware's `shell' on your execution path: it runs the commands it offers through system(), which forks a program of that name.  With one present it runs completely -- measured 2026-08-28.  Reworded 2026-08-30<br>**How:** Disk Master 1.4, a full-screen disk browser. REQUIRES MICROWARE'S `shell` on your execution path -- it runs the commands it offers through system(). With one present it runs completely. |
 | `edir` | &#9733; list the EVENT directory -- OS-9 events and their values. Nothing to do with `dir'<br>`Syntax: edir [<opts>]` |
 | `l` | &#9733; brief directory listing -- but it answers `not accessable, error: 214' for every directory tried here<br>`Usage: l [-options] [file] [file] [-options]` |
 | `ls` | GNU ls (fileutils 3.13) -- OUR OWN FIXED BUILD: real stat(), columns, -al<br>`Usage: ls [OPTION]... [FILE]...` |
@@ -562,7 +562,7 @@
 | | |
 |---|---|
 | `creadoc` | extract documentation comments from FORTRAN source.  IT ABORTS HERE -- E_PRCABT with os9lib loaded, with a source file or without, absolute path or relative.  It is the one piece of the RTF set that does not run; `rtf' itself compiles and `biory' runs.  DOC/rtf/biory.doc is the output it produced for biory.f on the machine it came from.  Measured 2026-08-29 |
-| `for` | the RTF/68K FORTRAN driver, and a bash KEYWORD -- ask for it by PATH (`/dd/CMDS/for') or bash swallows the name.  It REQUIRES MICROWARE'S `shell' on your execution path: it forks one to run each compiler pass.  Without it the driver prints the command and stops.  Call `rtf' directly instead and you need no shell at all -- see DOC/README-FORTRAN.  Reworded 2026-08-30 |
+| `for` | the RTF/68K FORTRAN driver, and a bash KEYWORD -- ask for it by PATH (`/dd/CMDS/for') or bash swallows the name.  It requires Microware's `shell' on your execution path: it forks one to run each compiler pass.  Without it the driver prints the command and stops.  Call `rtf' directly instead and you need no shell at all -- see DOC/README-FORTRAN.  Reworded 2026-08-30 |
 | `rtf` | RTF/68K Real-Time Fortran-77 compiler, v2.14 (CERN, 1987), AND IT COMPILES HERE.  `load /dd/CMDS/os9lib' first -- without its runtime library the whole set prints nothing -- then `rtf <file>.f' reads the Fortran and writes 68k ASSEMBLY beside the source: zero errors, `RTF normally completed'.  Assembling and linking that needs Microware's r68 and l68, which are not here.  CALL IT DIRECTLY: the `for' driver forks a program called `shell' to run rtf, and this disk has none, so it prints the command and stops.  Sources to try in SRC/rtf.  Manual: DOC/rtf/rtfman.txt.  Measured 2026-08-29 |
 
 **Translators**
@@ -605,32 +605,15 @@
 
 *Pack, unpack and shrink -- lha, zip, tar, arc, zoo, and OS-9 module libraries.*
 
-<details><summary>38 programs</summary>
-
-**Create & extract**
-
-| | |
-|---|---|
-| `ar` | archive librarian (Carl Kreider) -- .ar files<br>`Usage:  Ar -<cmd>[<modifier>] [file .. ]` |
-| `arc` | third-party, no terms stated   -> /dd/CMDS/REBUILT (name was taken)<br>`Usage: arc -{amufdxeplvtc}[bswn][g<password>]` |
-| `cat` | &#9733; concatenate files (S.M. Ryger, 1987) |
-| `dearc` | &#9733; Extract an MS-DOS .ARC archive (Carl Kreider).  arc and marc handle the OS-9 side<br>`Usage: dearc [p] filename` |
-| `lha` | LHa 2.08 -- create/extract .lzh archives<br>`Syntax: LHa -{axelvudmcp}[qvnfodiszrgc012][w=<dir>] archive_file [file...]` |
-| `lharc` | LHarc archiver<br>`Usage: lharc {axevlufdmctp}[qnftv] archive_file [files or directories...]` |
-| `marc` | MARC, the archive MERGER -- `marc <target> <source> [names]' copies members from one .arc into another.  It is not an archiver and does not make one<br>`Usage: MARC <tgtarc> <srcarc> [<filename> . . .]` |
-| `shar` | Shell-archive creator, and ONE BROKEN CHECK is all that stops it: its read-access test rejects every file that EXISTS -- `No read access for file: <name>' on its own standard output, for world-readable files that `cat' reads, absolute or relative, with -a or without.  Hand it a name that is NOT there and the check passes vacuously: it writes the whole shell-archive preamble, cut line and all, and only then fails at open.  So the archiver works and the gatekeeper does not.  Use tar, zoo or lha.  Measured 2026-08-29 |
-| `tar` | GNU tar 1.10<br>`Syntax : tar [ctx][mfv] tarfile [file(s)...]` |
-| `unzip` | &#9733; Info-ZIP unzip.  Nothing here can MAKE a zip for it to read -- see the `zip' entry -- so it is untested against a fresh archive.  It reads zips made elsewhere<br>`Usage: unzip [ -options[modifiers] ] file[.zip] [filespec...]` |
-| `zip` | Info-ZIP zip 1.9 DOES NOT WORK, measured 2026-08-27.  It deflates correctly and then cannot put the result anywhere: it writes a temporary (_Z000003), fails to rename it over the target, and reports `zip error: Could not create output file'.  Reproduced writing into /dd/tmp and into /dd, so it is not one bad directory. Use zoo, tar or gzip instead; all three round-trip exactly. tools/datatests/archives.cases keeps the failing case. |
-| `zipnote` | Info-ZIP zipnote -- view/edit zip comments<br>`Usage:  zipnote [-w] [-b path] zipfile` |
-| `zipsplit` | Info-ZIP zipsplit -- split a zip archive<br>`Usage:  zipsplit [-ti] [-n size] [-b path] zipfile` |
-| `zoo` | &#9733; zoo archiver<br>`Usage: zoo {acDeglLPTuUvx}[aAcCdEfInmMNoOpPqu1:/.@n] archive file` |
+<details><summary>40 programs</summary>
 
 **Alternates**
 
 | | |
 |---|---|
+| `arc_5.12` | ARC v5.12, third-party; /dd/CMDS/arc is 5.21.  5.12 wants its command letter with a leading dash<br>`Usage: arc -{amufdxeplvtc}[bswn][g<password>]` |
 | `compress_4.0` | compress 4.0, another edition of CMDS/compress<br>`Syntax   : compress [-cdfvV] [-b maxbits] [file ...]` |
+| `compress_rebuilt` | our source build of CMDS/compress, from the same hc_utils source.  Same program, and the two agree byte for byte on what they write<br>`Usage: compress [-dfvoV] [-b MaxBits] [file ...]` |
 | `diff_1.1` | another build of GNU diff 1.1<br>`Syntax   : diff [<options>] file1 file2` |
 | `gtar` | another GNU tar; CMDS/tar is the one the image build uses |
 | `gzip020_csl` | &#9733; gzip 1.2.4, 68020, needs csl<br>`usage: gzip020_csl [-gzip020_cslcdfhlLnNgzip020_csltvV19] [-S suffix] [file ...]` |
@@ -643,6 +626,25 @@
 | `m4_0.5` | &#9733; another build of m4 -- and since 2026-08-28 it IS the build that ships as `m4', the earlier one having turned out to mangle what it expanded<br>`Usage: m4 [options] file ....` |
 | `sed_1.06` | &#9733; another build of sed -- and since 2026-08-28 it IS the build that ships as `sed', the earlier one having turned out to do nothing but exhaust memory<br>`Syntax   : sed [<opts>] [<file>]` |
 | `zoo_2.1` | zoo 2.1 (1991), newer than the 2.01 in CMDS.  Same OSK porters as pd-ksh.  Reads what 2.01 writes; CMDS/zoo is left in place because the pool tools here call it.<br>`Usage: zoo {acDeglLPTuUvx}[aAcCdEfInmMNoOpPqu1:/.@n] archive file` |
+
+**Create & extract**
+
+| | |
+|---|---|
+| `ar` | archive librarian (Carl Kreider) -- .ar files<br>`Usage:  Ar -<cmd>[<modifier>] [file .. ]` |
+| `arc` | ARC 5.21 archive utility<br>`Usage: arc {amufdxerplvtc}[biswnoq][g<password>]` |
+| `cat` | &#9733; concatenate files (S.M. Ryger, 1987) |
+| `dearc` | &#9733; Extract an MS-DOS .ARC archive (Carl Kreider).  arc and marc handle the OS-9 side<br>`Usage: dearc [p] filename` |
+| `lha` | LHa 2.08 -- create/extract .lzh archives<br>`Syntax: LHa -{axelvudmcp}[qvnfodiszrgc012][w=<dir>] archive_file [file...]` |
+| `lharc` | LHarc archiver<br>`Usage: lharc {axevlufdmctp}[qnftv] archive_file [files or directories...]` |
+| `marc` | MARC, the archive MERGER -- `marc <target> <source> [names]' copies members from one .arc into another.  It is not an archiver and does not make one<br>`Usage: MARC <tgtarc> <srcarc> [<filename> . . .]` |
+| `shar` | Shell-archive creator, and ONE BROKEN CHECK is all that stops it: its read-access test rejects every file that EXISTS -- `No read access for file: <name>' on its own standard output, for world-readable files that `cat' reads, absolute or relative, with -a or without.  Hand it a name that is NOT there and the check passes vacuously: it writes the whole shell-archive preamble, cut line and all, and only then fails at open.  So the archiver works and the gatekeeper does not.  Use tar, zoo or lha.  Measured 2026-08-29 |
+| `tar` | GNU tar 1.10<br>`Syntax : tar [ctx][mfv] tarfile [file(s)...]` |
+| `unzip` | &#9733; Info-ZIP unzip.  Nothing here can MAKE a zip for it to read -- see the `zip' entry -- so it is untested against a fresh archive.  It reads zips made elsewhere<br>`Usage: unzip [ -options[modifiers] ] file[.zip] [filespec...]` |
+| `zip` | Info-ZIP zip 1.9 DOES NOT WORK, measured 2026-08-27.  It deflates correctly and then cannot put the result anywhere: it writes a temporary (_Z000003), fails to rename it over the target, and reports `zip error: Could not create output file'.  Reproduced writing into /dd/tmp and into /dd, so it is not one bad directory. Use zoo, tar or gzip instead; all three round-trip exactly. tools/datatests/archives.cases keeps the failing case. |
+| `zipnote` | Info-ZIP zipnote -- view/edit zip comments<br>`Usage:  zipnote [-w] [-b path] zipfile` |
+| `zipsplit` | Info-ZIP zipsplit -- split a zip archive<br>`Usage:  zipsplit [-ti] [-n size] [-b path] zipfile` |
+| `zoo` | &#9733; zoo archiver<br>`Usage: zoo {acDeglLPTuUvx}[aAcCdEfInmMNoOpPqu1:/.@n] archive file` |
 
 **OS-9 module libraries**
 
@@ -733,7 +735,7 @@
 
 *Kermit in several builds, terminal sessions, and networking.*
 
-<details><summary>95 programs</summary>
+<details><summary>96 programs</summary>
 
 **Mail**
 
@@ -847,6 +849,17 @@
 | `wn.stb` | WN's symbol table (a data module, not a program) |
 | `wndex` | build the index WN serves from; run it in each directory you publish<br>**How:** Builds the index WN serves from. Run it in a directory you want published; on its own it says "Can't open ./index -- skipping it", which means there is nothing there to index yet. |
 
+**Kermit**
+
+| | |
+|---|---|
+| `ckermit` | &#9733; C-Kermit 5A(190) BETA.14, 24 Jul 94 -- the cio build.  The version is the binary's own banner, read 2026-08-30 |
+| `kermit` | OS-9 Kermit Version 1 Release 5 -- serial file transfer and terminal emulation.  `ckermit' is the C-Kermit, and REBUILT/kermit_cio is our build of this one.  Corrected 2026-08-30: this entry said C-Kermit 5A(188) and starred the program; run with no cio present it starts and prints its banner, and the star belonged to the REBUILT build<br>`Usage: kermit c[le line esc.char]   (connect mode)` |
+| `kermit2` | Kermit file transfer (variant 2)<br>`Usage:   kermit c[le line esc.char]   (connect mode)` |
+| `kermit3` | Kermit file transfer (variant 3)<br>`Usage: kermit [-x arg [-x arg]...[-yyy]...]]` |
+| `kermit_cio` | &#9733; our source build; CMDS/kermit is the archive binary and needs no cio, where this one does<br>`Usage: kermit c[le line esc.char]   (connect mode)` |
+| `xkermit` | &#9733; Kermit variant<br>`Usage: kermit c[le line esc.char]   (connect mode)` |
+
 **UUCP**
 
 | | |
@@ -857,16 +870,6 @@
 | `uulog` | &#9733; show the transfer log<br>`Usage: uulog [-s<sysname> -u<username> -d<days>] [-f]` |
 | `uuname` | &#9733; list the sites you can reach<br>`Usage:  uuname [-l]` |
 | `uuxqt` | &#9733; run the jobs a remote site queued here -- and it cannot start: it looks for a module called `procs' to see whether it is already running, and `procs' is not on this disk (error 221).  Measured 2026-08-29<br>`Usage:  uuxqt [opts]  <sys> [<sys>...]  [opts]` |
-
-**Kermit**
-
-| | |
-|---|---|
-| `ckermit` | &#9733; C-Kermit (cio build) |
-| `kermit` | &#9733; C-Kermit 5A(188) -- serial file transfer + terminal emulation<br>`Usage: kermit c[le line esc.char]   (connect mode)` |
-| `kermit2` | Kermit file transfer (variant 2)<br>`Usage:   kermit c[le line esc.char]   (connect mode)` |
-| `kermit3` | Kermit file transfer (variant 3)<br>`Usage: kermit [-x arg [-x arg]...[-yyy]...]]` |
-| `xkermit` | &#9733; Kermit variant<br>`Usage: kermit c[le line esc.char]   (connect mode)` |
 
 **File transfer**
 
@@ -1119,7 +1122,7 @@
 | | |
 |---|---|
 | `mtst` | &#9733; spline curve fitting - test driver |
-| `rayshade` | ray tracer 4.0.  IT RENDERS, and REQUIRES MICROWARE'S `shell' on your execution path: it builds its scene through popen(), and OS-9's C library implements popen() by forking a program of exactly that name.  It also wants `cccp' in the DATA directory, which is where the forked shell looks.  With both, it renders and reports its statistics -- measured 2026-08-28. No `shell' ships here; anyone who runs OS-9 has one. DOC/rayshade has the two lines.  Reworded 2026-08-30<br>**How:** Ray tracer 4.0, and it renders. REQUIRES MICROWARE'S `shell` on your execution path -- it builds its scene through popen(), and OS-9's C library implements popen() by forking a program of exactly that name. It also wants `cccp` in the DATA directory. DOC/rayshade has the two lines. |
+| `rayshade` | ray tracer 4.0.  It renders, and requires Microware's `shell' on your execution path: it builds its scene through popen(), and OS-9's C library implements popen() by forking a program of exactly that name.  It also wants `cccp' in the DATA directory, which is where the forked shell looks.  With both, it renders and reports its statistics -- measured 2026-08-28. No `shell' ships here; anyone who runs OS-9 has one. DOC/rayshade has the two lines.  Reworded 2026-08-30<br>**How:** Ray tracer 4.0, and it renders. REQUIRES MICROWARE'S `shell` on your execution path -- it builds its scene through popen(), and OS-9's C library implements popen() by forking a program of exactly that name. It also wants `cccp` in the DATA directory. DOC/rayshade has the two lines. |
 | `rsconvert` | convert rayshade image output between formats<br>`usage: rsconvert [oldfile]` |
 
 **Plotting**
@@ -1255,13 +1258,14 @@
 
 *Things to watch rather than play. Start one and leave it going.*
 
-<details><summary>7 programs</summary>
+<details><summary>8 programs</summary>
 
 | | |
 |---|---|
 | `life` | Conway's Game of Life<br>**How:** life [init-file]. The patterns are in /dd/GAMES/LIFE -- try `life /dd/GAMES/LIFE/glider`. It also wants more memory than the default; from the OS-9 shell that is `life #22k <file>`, and bash has no #size syntax at all. |
 | `rain` | raindrops screen effect<br>**How:** Full-screen: it takes over the display. **control-C gets you out** -- tested, and none of q, Q, control-D or ESC did. If it has a quit command of its own, its documentation in DOC/ will say. |
-| `screen` | &#9733; NOT the terminal multiplexer.  Russ Smith's `screens': picks a file at random from $HOME/.SCREENS and shows it. On OS-9 it RUNS the file rather than printing it, through system(), so it REQUIRES MICROWARE'S `shell' on your execution path.  Source in SRC/screen, man page in DOC/screen/screens.6.  Reworded 2026-08-30 |
+| `screen` | &#9733; NOT the terminal multiplexer.  Russ Smith's `screens': picks a file at random from $HOME/.SCREENS and shows it. On OS-9 it runs the file rather than printing it, through system(), so it requires Microware's `shell' on your execution path.  Source in SRC/screen, man page in DOC/screen/screens.6.  Reworded 2026-08-30 |
+| `screen_nocio` | our source build, and the trap-free one: CMDS/screen stops without cio and this does not |
 | `suicide` | animation: a stick figure walks off a rooftop |
 | `suicide1` | suicide, variant |
 | `suicide2` | suicide, variant |
@@ -1273,7 +1277,7 @@
 
 *Generators, simulators and diversions that are not quite games.*
 
-<details><summary>24 programs</summary>
+<details><summary>23 programs</summary>
 
 **Simulations**
 
@@ -1308,7 +1312,6 @@
 | | |
 |---|---|
 | `areacode` | &#9733; look up a US telephone area code<br>`Usage: areacode nnn nnn ...` |
-| `bush` | &#9733; NOT a drawing, whatever the name suggests: a countdown program from its own moment, printing how many days are left of something.  The clock here dates to 19126, so the number comes out negative.  Corrected 2026-08-29 |
 | `touchtype` | typing tutor<br>**How:** Full-screen: it takes over the display. **control-C gets you out** -- tested, and none of q, Q, control-D or ESC did. If it has a quit command of its own, its documentation in DOC/ will say. |
 
 **Screen toys**
@@ -1404,7 +1407,7 @@
 | `vc` | &#9733; a SPREADSHEET -- `Welcome to the Spreadsheet Calculator, type ? for help', with rows, columns and a formula line.  Not a visual compare, which is what this entry said until 2026-08-28 |
 | `vecho` | echo without a newline (from less) |
 | `vlen` | &#9733; a VARIABLE-LENGTH RECORD demonstration, not a reporting tool: it ignores whatever you give it, creates a filesystem of its own, adds a hundred records of varying length and prints the minimum, the maximum and the mapper entries as it goes.  `isam' is the other demonstration of its kind here.  Corrected 2026-08-29 |
-| `what` | NOT the SCCS `what' -- it does not read a binary at all.  It prints `What's where in the GEPARD:' and a table of I/O address, reference byte and card name: an inventory of the expansion cards in a GEPARD, the German 68k machine much of the EFFO material was written on.  The table is empty here, there being no GEPARD.  It ignores its arguments.  Added to this index 2026-08-30, having never been in it; the first entry written for it guessed SCCS from the name and was wrong within the hour<br>**How:** NOT the SCCS `what`. It prints "What's where in the GEPARD:" and a table of expansion cards -- an inventory tool for the GEPARD, the German 68k machine. Empty here, there being no GEPARD, and it ignores its arguments. Measured 2026-08-30. |
+| `what` | Not the SCCS `what' -- it does not read a binary at all.  It prints `What's where in the GEPARD:' and a table of I/O address, reference byte and card name: an inventory of the expansion cards in a GEPARD, the German 68k machine much of the EFFO material was written on.  The table is empty here, there being no GEPARD.  It ignores its arguments.  Added to this index 2026-08-30, having never been in it; the first entry written for it guessed SCCS from the name and was wrong within the hour<br>**How:** NOT the SCCS `what`. It prints "What's where in the GEPARD:" and a table of expansion cards -- an inventory tool for the GEPARD, the German 68k machine. Empty here, there being no GEPARD, and it ignores its arguments. Measured 2026-08-30. |
 | `xlharc` | extract LHarc archives<br>`Usage: xlharc {axevlufdmctp}[qnftv] archive_file [files or directories...]` |
 | `yagi` | Yagi antenna design calculator |
 | `ynad` | &#9733; YNAD -- Yet Another Name & Address program.  A contact database, not a yes/no dialogue.  Corrected 2026-08-28 |
@@ -1575,7 +1578,7 @@
 | `ephem881` | &#9733; ephem, 68881 build<br>**How:** The same program built for a 68881 coprocessor -- see the note for `ephem'. CONTROL-D quits. |
 | `lunisolar` | &#9733; lunar and solar position calculator |
 | `nasa` | &#9733; NASA orbital-element reader.  Wants `nasa.dat' in the CURRENT directory: NORAD two-line element sets -- a name line, then TLE line 1 and line 2 per satellite -- and writes kepler.dat. No element set ships here; supply a current one.  The format is parsed in SRC/eff_orbit/nasa.c and is column-sensitive<br>**How:** The program that FEEDS orbit. Give it NASA two-line elements in a file called nasa.dat in the current directory and it writes kepler.dat, which is what orbit reads. Neither file ships -- you supply nasa.dat. |
-| `orbit` | &#9733; N3EMO satellite orbit simulator v3.7, and it RUNS.  IT NEEDS ITS DATA DIRECTORY SET TO WHERE ITS FILES ARE -- it opens them by BARE NAME, and they are in DOC/orbit: kepler.dat (the satellite database), <site>.sit (the observing station -- pgh, bern and zuerich all ship) and mode.dat (the transponder schedule).<br>**How:** The N3EMO satellite tracker, and it works. It opens kepler.dat, mode.dat and a <site>.sit BY BARE NAME in the DATA DIRECTORY, and they live in DOC/orbit -- so on your own OS-9 system it is `chd /dd/DOC/orbit` then `orbit`. Under os9exec neither shell will do that for you (bash's cd does not move the data directory; sh cannot launch a program here at all), so bring the three files to the directory you are in: `cat /dd/DOC/orbit/kepler.dat > kepler.dat` and so on. Then answer: satellite letter, site name without the .sit, month day year, hour, days, minutes per sample, RETURN for the terminal. Measured 2026-08-30. |
+| `orbit` | &#9733; N3EMO satellite orbit simulator v3.7, and it RUNS.  It needs its data directory set to where its files are -- it opens them by bare name, and they are in DOC/orbit: kepler.dat (the satellite database), <site>.sit (the observing station -- pgh, bern and zuerich all ship) and mode.dat (the transponder schedule).<br>**How:** The N3EMO satellite tracker, and it works. It opens kepler.dat, mode.dat and a <site>.sit BY BARE NAME in the DATA DIRECTORY, and they live in DOC/orbit -- so on your own OS-9 system it is `chd /dd/DOC/orbit` then `orbit`. Under os9exec neither shell will do that for you (bash's cd does not move the data directory; sh cannot launch a program here at all), so bring the three files to the directory you are in: `cat /dd/DOC/orbit/kepler.dat > kepler.dat` and so on. Then answer: satellite letter, site name without the .sit, month day year, hour, days, minutes per sample, RETURN for the terminal. Measured 2026-08-30. |
 
 </details>
 

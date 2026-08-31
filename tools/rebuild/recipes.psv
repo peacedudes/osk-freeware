@@ -12,7 +12,6 @@ blackjak|effo_snobol|blackjak.c cardpak.c genprim.c pattern.c pokev.c quest.c rp
 bmgtest|strsch|bmgtest.c bmgsubs.c ../unixlib/bcopy.c|BSD||
 bmgtest2|strsch|bmgtest2.c bmgsubs.c ../unixlib/bcopy.c|BSD||
 bootgen|bix|bootgen.c|||
-bush|misc|bush.c|||
 calen|hc_loose|calen.c|||
 calender|calender|calender.c|||
 # card draws a Towers of Hanoi whose twelve disks are the lines of a
@@ -46,7 +45,7 @@ chksum|chksum|chksum.c crc32.c||/dd/LIB/math.l|
 clock|misc|clock.c|||
 cls|bix|cls.c|||
 compiler|eff_gshell|compiler.c selectfile.c|||
-compress|hc_utils|compress.c|||
+compress_rebuilt|hc_utils|compress.c|||
 connect|bix|connect.c|||
 # world -- and the two generators its makefile runs before it.
 #
@@ -109,7 +108,11 @@ indent|indent|indent.c io.c lexi.c parse.c comment.c args.c|||
 input|effo_unaxcess|input.c|||
 japan|weather|weather.c|JAPAN N_PACIFIC|/dd/LIB/rand.r /dd/LIB/math.l|
 joke|toys|joke.c|||
-kermit|kermit|os9ker.c os9con.c os9get.c os9qui.c os9raw.c os9rec.c os9sen.c os9srv.c os9utl.c|||
+# THE SHIPPED kermit_cio IS AN OLDER -qixm BUILD and needs cio, where the
+# archive's own CMDS/kermit does not.  A rebuild through this recipe gets the
+# driver's -qm default and comes out trap-free -- at which point the file wants
+# renaming again, because `_cio' would no longer be true of it.
+kermit_cio|kermit|os9ker.c os9con.c os9get.c os9qui.c os9raw.c os9rec.c os9sen.c os9srv.c os9utl.c|||
 lander|lander|land.c screen.c move.c score.c|RAND_BSD HS_FILE BSD|/dd/LIB/curses.l /dd/LIB/termlib.l /dd/LIB/math.l /dd/LIB/unix.l|
 liborder|eff_libutils|liborder.c|||
 life|life|life.c|MEM=64k||
@@ -173,7 +176,7 @@ rstory2|effo_snobol|rstory2.c|||
 run|divutils|run.c misc.c|||
 savage|eff_bench|savage.c|||
 scales|hc_loose|scales.c|||
-screen|screen|scandir.c screens.c||/dd/LIB/rand.r /dd/LIB/strings.r /dd/LIB/math.l|
+screen_nocio|screen|scandir.c screens.c||/dd/LIB/rand.r /dd/LIB/strings.r /dd/LIB/math.l|
 sdb|effo_sdb|cmd.c com.c cre.c err.c iex.c int.c io.c mth.c pcjunk.c scn.c sdb.c sel.c srt.c tbl.c|||
 sed|eff_sed|alloca.c glob.c regex.c sed.c|||
 sedt|effo_sedt|sedt.c buf.c com.c com1.c edit.c ent.c key.c menu.c vdu.c|||
