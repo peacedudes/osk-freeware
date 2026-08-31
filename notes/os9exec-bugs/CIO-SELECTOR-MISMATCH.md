@@ -208,8 +208,17 @@ have seen.
       yacc      opens up to 7 files on a real grammar, reads none, no output
       xrf       reads its language table correctly and never reads the source
 
-    PROBABLE
-      loan   prompts, echoes its numbers and computes nothing
+    PROBABLE -- and the read-count rule CANNOT settle it
+      loan   Driven with real numbers on stdin its whole trace is one
+             `I$WritLn' (the prompt), one `I$ReadLn' of 256 bytes taking the
+             input in a single gulp, and exit. It DOES read -- through
+             `readln', selector $24, which lands on the real routine. Then it
+             prompts once, never again, computes nothing and exits.
+             Consistent with its four `_filbuf` sites failing on the parse
+             after the first line, and equally consistent with an ordinary bug
+             in a 1980s toy. The "opens and never reads" signature cannot fire
+             on a program whose input path is `readln`, so the rule returns NO
+             EVIDENCE here, not guilt. Settling it needs the disassembly.
 
 **`xrf` is the proof, and I had it in the excluded list.** I ruled it out
 because its open failed -- it looks for a table named from the source

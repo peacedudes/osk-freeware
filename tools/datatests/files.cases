@@ -1,4 +1,7 @@
 family  files
+setup   /dd/CMDS/rm -f /dd/tmp/c1 /dd/tmp/c2
+setup   /dd/CMDS/head -n 3 /dd/SYS/holidays > /dd/tmp/c1
+setup   /dd/CMDS/sed -e "s@1/1@9/9@" /dd/tmp/c1 > /dd/tmp/c2
 # FILES AND DIRECTORIES, proved by what is on the disk afterwards rather than
 # by what the program said.  Every case works in /dd/tmp/ft, which the first
 # one makes and the last one takes away, so the family can be run again and
@@ -125,21 +128,43 @@ expect  LOGIN-LIST
 # `os9exec -d1 0x0002': opens=1, reads=0) and report on it anyway. The day
 # someone supplies a matching cio module, or rebuilds them, these cases fail
 # and that is the point of them. DOC/README-CIO names all nine.
-case    cdiff-cannot-read-its-input-and-says-so-wrongly
-run     /dd/CMDS/rm -f /dd/tmp/c1
-run     /dd/CMDS/head -n 3 /dd/SYS/holidays > /dd/tmp/c1
-run     /dd/CMDS/cdiff /dd/tmp/c1 /dd/tmp/c1
-expect  MAXLINECOUNT exceeded
-
+# KEYED ON THE MECHANISM, NOT THE MESSAGE. A working context diff, given two
+# files differing in one line, prints that line. This one prints none of the
+# file's content because it never reads a byte of it -- so `absent' is the
+# assertion, and it survives the error text being reworded. The day a matching
+# cio module appears, cdiff prints the changed line and this case fails, which
+# is what it is for.
+# THREE TRAPS AVOIDED HERE, each of which produced a false failure first.
+# datatest captures the command LINES as well as their output, and it re-runs
+# the family's `setup' lines after a restart -- so any string named in a
+# command can appear inside a later case's transcript. The fixture therefore
+# differs by a DATE (1/1 -> 9/9) and the assertion is on a word that appears
+# in no command anywhere: `Year', which is only ever inside the file.
+#
+# A working context diff, given two files differing in one line, prints that
+# line -- and that line contains "New Year's Day". This cdiff prints none of
+# it, because it never reads a byte. So the day a matching cio module appears,
+# this case fails, which is what it is for.
+# And the ORDER matters: cdiff ends its output with a BEL and no newline, so
+# the NEXT case's marker does not land at line start and is not matched --
+# that case's output is then attributed to cdiff. The control is therefore
+# placed BEFORE it, and what follows cdiff must contain no `Year'.
 # The control that makes the case above mean something: a program with no
 # getc macro call site reads the very same file correctly.
-case    cat-reads-the-file-cdiff-could-not
+case    cat-reads-the-files-cdiff-could-not
 run     /dd/CMDS/cat /dd/tmp/c1
 expect  New Year
+run     /dd/CMDS/cat /dd/tmp/c2
+expect  9/9
 
 # nroff does not survive having its output redirected here, so this asserts
 # the absence directly: fed a file whose text `cat' prints above, it emits
 # none of it.
+
+case    cdiff-prints-none-of-the-content-it-was-given
+run     /dd/CMDS/cdiff /dd/tmp/c1 /dd/tmp/c2
+absent  Year
+
 case    nroff-opens-its-input-and-prints-none-of-it
 run     /dd/CMDS/nroff /dd/tmp/c1
 absent  New Year
