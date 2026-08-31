@@ -106,14 +106,21 @@ rdoggett, 2026-08-31: *"Sample output that does nothing more than show the
 help is only valuable if the help isn't shown some other way, and there is no
 more interesting output from the program to show."*
 
-Measured: 40 of 483 cards are a usage or syntax message and nothing else. Five
-are orphans — a card file with no stanza behind it, produced by a bare
-play-test run — and 35 come from a sheet stanza that chose `-?` on purpose.
+**Do not try to find these automatically — two detectors were tried and both
+lie.** The first flagged any card under 15 lines containing a `usage:`/`syntax:`
+line: 40 of 483, and `qt` was among them because the SECOND program on its card
+was asked for `-?` while `qt` itself printed "It's almost twenty-five past
+four". The second required *every* command on the card to have produced only
+help: 14 cards, and it flagged `bite` (a full-screen ASCII drawing with no `$`
+prompt to parse), `pbmclean` and `pnmfilters` (whose real output was
+misattributed to the next prompt line) and `spiff` (which prints nothing
+BECAUSE the two files match, which is the point of the card). This is the same
+trap as item 4 below, and it cost an hour twice.
 
-Four are fixed and `hc` is the one worth reading about (below). The remaining
-~30 need asking, per program: is there data on this disk it could be run on,
-and is its help already in `DOC/`? `logisim` was the pattern — two sample
-circuits ship in `DOC/logisim` and the card showed the usage line.
+Go program by program. The ones fixed so far were each found by reading the
+card and then running the program: `hc`, `join`, `pwgen`, `rndname`, and
+`pbyte`/`chbase`. `logisim` is the pattern to look for — two sample circuits
+ship in `DOC/logisim`, and the card showed the usage line.
 
 **`hc` was wrong in three places at once**, and is the shape to look for.
 `DOC/INDEX` called it a hex calculator, it was filed under Maths &
@@ -135,6 +142,21 @@ wants exactly one file.
 Families still needing one, roughly in order of how many people care:
 
 - **shells** — bash, sh, ksh, gshell, mshell. Which is the one to take?
+  **Settle one thing before writing this one.** `CLAUDE.md` records that
+  bash's `cd` does not move the OS-9 data directory, which is why a program
+  reading a bare filename cannot be tested from a script. On 2026-08-31, as a
+  bare boot program on a HOST-DIRECTORY /dd, `bash -c 'cd /dd/SYS; cat motd'`
+  and the same line under `ksh` BOTH found the file. That is a different
+  setup from the recorded one — no `.bashrc` shim loaded, and not an RBF
+  image — so it does not overturn anything, but the chooser document cannot
+  be written until it is resolved on the shipped image, both with and without
+  `/dd/.bashrc`. Do that first; the answer decides the recommendation.
+
+  Static facts already gathered: bash 242604 (no cio, module `bash`), sh 77306
+  (no cio), ksh 118554 (needs cio), gshell 23114 (no cio), mshell 7228 (needs
+  cio). Verified 2026-08-31: `ksh -c '<abs path> <args>'` runs the program,
+  and `sh -c` does NOT — "file not found" for a file that exists, which is the
+  fork-an-absolute-pathname failure already recorded for `sh`.
 - **archivers** — arc/marc/dearc, lha/lharc/xlharc, zoo/booz/fiz, tar/gtar,
   zip/unzip, compress/compr/gzip and its four builds.
 - **kermit** — kermit, kermit2, kermit3, xkermit, ckermit.
