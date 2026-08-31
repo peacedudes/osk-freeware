@@ -1,0 +1,98 @@
+# netpbm3 -- the eight converters that wrote ZERO BYTES, asked again with
+# input they can actually take.
+#
+# Every one of these is a PALETTED format: an Atari ST screen, an NCSA ICR
+# terminal, a DEC sixel, a Motif UIL icon, an X11 puzzle.  Handed a 24-bit
+# image with hundreds of colours they have nothing to say, and the netpbm way
+# to fix that is `ppmquant'.  "It produced no output" is the same wrong
+# conclusion as `hc' printing its usage line: the invocation was wrong, not
+# the program.
+#
+# The three PNM-to-PNM filters that produced unreadable output are asked
+# again too -- ppmmix was given two images of DIFFERENT SIZES, which is the
+# same kind of mistake.
+
+family  netpbm3
+
+setup   P=/dd/CMDS/NETPBM
+setup   $P/pgmramp -lr 32 8 > /dd/tmp/s.pgm
+setup   $P/pgmtopbm /dd/tmp/s.pgm > /dd/tmp/r.pbm
+setup   $P/giftopnm /dd/DEMO/gulls.gif > /dd/tmp/g.ppm 2>/nil
+setup   $P/pnmscale -xysize 32 20 /dd/tmp/g.ppm > /dd/tmp/c.ppm 2>/nil
+setup   $P/ppmquant 16 /dd/tmp/c.ppm > /dd/tmp/q.ppm 2>/nil
+setup   $P/ppmmake blue 32 20 > /dd/tmp/b2.ppm
+
+drive   quantised-source
+run     $P/pnmfile /dd/tmp/q.ppm
+run     $P/ppmhist /dd/tmp/q.ppm
+
+drive   ppmtoicr
+run     $P/ppmtoicr /dd/tmp/q.ppm > /dd/tmp/o.icr 2>/dd/tmp/e.icr
+run     /dd/CMDS/wc -c /dd/tmp/o.icr
+run     /dd/CMDS/cat /dd/tmp/e.icr
+
+drive   ppmtosixel
+run     $P/ppmtosixel /dd/tmp/q.ppm > /dd/tmp/o.six 2>/dd/tmp/e.six
+run     /dd/CMDS/wc -c /dd/tmp/o.six
+run     /dd/CMDS/cat /dd/tmp/e.six
+
+drive   ppmtouil
+run     $P/ppmtouil /dd/tmp/q.ppm > /dd/tmp/o.uil 2>/dd/tmp/e.uil
+run     /dd/CMDS/wc -c /dd/tmp/o.uil
+run     /dd/CMDS/head -n 4 /dd/tmp/o.uil
+run     /dd/CMDS/cat /dd/tmp/e.uil
+
+drive   ppmtopuzz
+run     $P/ppmtopuzz /dd/tmp/q.ppm > /dd/tmp/o.puz 2>/dd/tmp/e.puz
+run     /dd/CMDS/wc -c /dd/tmp/o.puz
+run     /dd/CMDS/cat /dd/tmp/e.puz
+
+drive   ppmtopi1
+why     the Atari ST low-resolution screen: 320x200 in 16 colours exactly
+run     $P/pnmscale -xysize 320 200 /dd/tmp/g.ppm > /dd/tmp/st.ppm 2>/nil
+run     $P/ppmquant 16 /dd/tmp/st.ppm > /dd/tmp/st16.ppm 2>/nil
+run     $P/ppmtopi1 /dd/tmp/st16.ppm > /dd/tmp/o.pi1 2>/dd/tmp/e.pi1
+run     /dd/CMDS/wc -c /dd/tmp/o.pi1
+run     /dd/CMDS/cat /dd/tmp/e.pi1
+run     $P/pi1toppm /dd/tmp/o.pi1 > /dd/tmp/back.ppm 2>/nil
+run     $P/pnmfile /dd/tmp/back.ppm
+
+drive   ppmtopict
+run     $P/ppmtopict /dd/tmp/q.ppm > /dd/tmp/o.pict 2>/dd/tmp/e.pict
+run     /dd/CMDS/wc -c /dd/tmp/o.pict
+run     /dd/CMDS/cat /dd/tmp/e.pict
+
+drive   pbmtopk
+why     a PK font, not an image -- its arguments are the tfm and the char code
+run     $P/pbmtopk /dd/tmp/r.pbm 2>/dd/tmp/e.pk
+run     /dd/CMDS/cat /dd/tmp/e.pk
+
+drive   pbmtobbnbg
+run     $P/pbmtobbnbg /dd/tmp/r.pbm > /dd/tmp/o.bg 2>/dd/tmp/e.bg
+run     /dd/CMDS/wc -c /dd/tmp/o.bg
+run     /dd/CMDS/cat /dd/tmp/e.bg
+
+drive   ppmmix
+why     the first attempt gave it two images of different sizes
+run     $P/ppmmix 0.5 /dd/tmp/b2.ppm /dd/tmp/c.ppm > /dd/tmp/o.ppm 2>/dd/tmp/e.mix
+run     $P/pnmfile /dd/tmp/o.ppm
+run     /dd/CMDS/cat /dd/tmp/e.mix
+
+drive   ppmdist
+run     $P/ppmdist /dd/tmp/q.ppm > /dd/tmp/o.pgm 2>/dd/tmp/e.dist
+run     $P/pnmfile /dd/tmp/o.pgm
+run     /dd/CMDS/cat /dd/tmp/e.dist
+
+drive   pnmsmooth
+run     $P/pnmsmooth /dd/tmp/s.pgm > /dd/tmp/o.pgm 2>/dd/tmp/e.sm
+run     $P/pnmfile /dd/tmp/o.pgm
+run     /dd/CMDS/cat /dd/tmp/e.sm
+
+drive   pgmtolispm
+why     lispmtopgm could not read what pgmtolispm wrote.  Which end is wrong?
+run     $P/pgmtolispm /dd/tmp/s.pgm > /dd/tmp/o.lispm 2>/dd/tmp/e.lispm
+run     /dd/CMDS/wc -c /dd/tmp/o.lispm
+run     /dd/CMDS/cat /dd/tmp/e.lispm
+run     $P/lispmtopgm /dd/tmp/o.lispm > /dd/tmp/back.pgm 2>/dd/tmp/e.l2
+run     /dd/CMDS/cat /dd/tmp/e.l2
+run     /dd/CMDS/wc -c /dd/tmp/back.pgm

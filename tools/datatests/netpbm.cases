@@ -18,6 +18,12 @@ family  netpbm
 # so that a line like "256 colors found" cannot supply the count the
 # assertion is looking for.
 setup   P=/dd/CMDS/NETPBM
+# NOTE, found 2026-08-31 while writing netpbm2.cases: `pgmtopbm' WITHOUT
+# -threshold dithers, and its dither is NOT reproducible -- the same pgm
+# gives a different pbm every run. The round trips below survive that
+# because they assert the DIFFERENCE is zero, which holds whatever the
+# source looks like. Any case that asserts a length or an md5 downstream
+# of pgmtopbm must pass -threshold.
 
 # ---- GENERATORS AND GEOMETRY -----------------------------------------
 # Here the DIMENSIONS are the property under test, so measuring them is the

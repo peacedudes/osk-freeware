@@ -1,0 +1,333 @@
+family  netpbm2
+# The rest of the netpbm set: the filters that alter an image, the converters
+# OUT of PNM into a printer or workstation format, and the ones that read
+# them back. `netpbm.cases' covers the generators, the geometry and the
+# bilevel round trips; between the two files the family is under test.
+#
+# EIGHT OF THESE LOOKED BROKEN AND ARE NOT. ppmtoicr, ppmtosixel, ppmtouil,
+# ppmtopuzz, ppmtopict, ppmtopi1 and the two beside them wrote ZERO BYTES
+# when handed the 24-bit image this file's first draft gave them, and every
+# one of them writes a correct file when handed a QUANTISED one -- which is
+# what a paletted format needs and what `ppmquant' is for. The wrong
+# invocation, not a broken program: the same mistake as photographing `hc'
+# printing its usage line and captioning it as a fault.
+#
+# So $Q below is the quantised source and it is not a convenience.
+
+setup   P=/dd/CMDS/NETPBM
+setup   $P/pgmramp -lr 32 8 > /dd/tmp/s.pgm
+# -threshold, AND IT IS NOT OPTIONAL. pgmtopbm's DEFAULT dither is not
+# reproducible: the same pgm gives a different pbm every run, and everything
+# downstream then has a different length. That cost this file two cases and an
+# hour, and the numbers below were nonsense until it was found. `-threshold'
+# is deterministic -- byte-identical over repeated runs, checked.
+setup   /dd/CMDS/rm /dd/tmp/r.pbm
+setup   $P/pgmtopbm -threshold /dd/tmp/s.pgm > /dd/tmp/r.pbm 2>/nil
+setup   $P/ppmmake blue 32 8 > /dd/tmp/b.ppm
+setup   $P/giftopnm /dd/DEMO/gulls.gif > /dd/tmp/g.ppm 2>/nil
+setup   $P/pnmscale -xysize 32 20 /dd/tmp/g.ppm > /dd/tmp/c.ppm 2>/nil
+setup   $P/ppmquant 16 /dd/tmp/c.ppm > /dd/tmp/q.ppm 2>/nil
+setup   Q=/dd/tmp/q.ppm
+
+case    the-sources-this-file-rests-on
+run     $P/pnmfile /dd/tmp/s.pgm /dd/tmp/r.pbm /dd/tmp/c.ppm $Q
+expect  s.pgm:	PGM raw, 32 by 8
+expect  r.pbm:	PBM raw, 32 by 8
+expect  c.ppm:	PPM raw, 32 by 20
+expect  q.ppm:	PPM raw, 32 by 20
+
+# ---- FILTERS: the size they produce is the thing under test ----------
+
+case    pbmreduce-halves
+run     $P/pbmreduce 2 /dd/tmp/r.pbm > /dd/tmp/o.pbm
+run     $P/pnmfile /dd/tmp/o.pbm
+expect  PBM raw, 16 by 4
+
+case    pbmpscale-triples
+run     $P/pbmpscale 3 /dd/tmp/r.pbm > /dd/tmp/o.pbm
+run     $P/pnmfile /dd/tmp/o.pbm
+expect  PBM raw, 96 by 24
+
+case    pbmmask-keeps-the-shape
+run     $P/pbmmask /dd/tmp/r.pbm > /dd/tmp/o.pbm
+run     $P/pnmfile /dd/tmp/o.pbm
+expect  PBM raw, 32 by 8
+
+case    pgmkernel-writes-the-convolution-matrix-pnmconvol-reads
+run     $P/pgmkernel 3 > /dd/tmp/k.pgm
+run     $P/pnmnoraw /dd/tmp/k.pgm
+expect  3 3
+expect  140 145 140
+expect  145 255 145
+
+case    pnmconvol-convolves-with-that-kernel
+run     $P/pnmconvol /dd/tmp/k.pgm /dd/tmp/s.pgm > /dd/tmp/o.pgm
+run     $P/pnmfile /dd/tmp/o.pgm
+expect  PGM raw, 32 by 8
+
+case    pgmenhance-keeps-the-shape
+run     $P/pgmenhance -3 /dd/tmp/s.pgm > /dd/tmp/o.pgm
+run     $P/pnmfile /dd/tmp/o.pgm
+expect  PGM raw, 32 by 8
+
+case    pnmalias-keeps-the-shape
+run     $P/pnmalias /dd/tmp/c.ppm > /dd/tmp/o.ppm
+run     $P/pnmfile /dd/tmp/o.ppm
+expect  PPM raw, 32 by 20
+
+case    pnmcomp-composites-onto-the-same-canvas
+run     $P/pnmcomp /dd/tmp/b.ppm /dd/tmp/c.ppm > /dd/tmp/o.ppm
+run     $P/pnmfile /dd/tmp/o.ppm
+expect  PPM raw, 32 by 20
+
+# pnmcrop takes the black border BACK OFF -- 40 wide padded, 31 after, and
+# the 31 rather than 32 is pgmramp's own leftmost black column going with it.
+case    pnmpad-adds-a-black-border-and-pnmcrop-removes-it
+run     $P/pnmpad -black -l4 -r4 /dd/tmp/s.pgm > /dd/tmp/p.pgm
+run     $P/pnmfile /dd/tmp/p.pgm
+run     $P/pnmcrop -black /dd/tmp/p.pgm > /dd/tmp/o.pgm 2>/nil
+run     $P/pnmfile /dd/tmp/o.pgm
+expect  PGM raw, 40 by 8
+expect  PGM raw, 31 by 8
+
+case    pnmhisteq-keeps-the-shape
+run     $P/pnmhisteq /dd/tmp/s.pgm > /dd/tmp/o.pgm 2>/nil
+run     $P/pnmfile /dd/tmp/o.pgm
+expect  PGM raw, 32 by 8
+
+case    pnmhistmap-draws-a-histogram-not-an-image
+run     $P/pnmhistmap /dd/tmp/s.pgm > /dd/tmp/o.pbm 2>/nil
+run     $P/pnmfile /dd/tmp/o.pbm
+expect  PBM raw, 256 by 200
+
+case    pnmnlfilt-keeps-the-shape
+run     $P/pnmnlfilt 1.0 0.5 /dd/tmp/c.ppm > /dd/tmp/o.ppm 2>/nil
+run     $P/pnmfile /dd/tmp/o.ppm
+expect  PPM raw, 32 by 20
+
+case    pnmpaste-pastes-into-the-canvas
+run     $P/pnmpaste /dd/tmp/r.pbm 0 0 /dd/tmp/s.pgm > /dd/tmp/o.pgm 2>/nil
+run     $P/pnmfile /dd/tmp/o.pgm
+expect  PGM raw, 32 by 8
+
+case    pnmshear-widens-by-the-angle
+run     $P/pnmshear 30 /dd/tmp/s.pgm > /dd/tmp/o.pgm 2>/nil
+run     $P/pnmfile /dd/tmp/o.pgm
+expect  PGM raw, 37 by 8
+
+# ---- COLOUR FILTERS: the PIXEL VALUES are the thing under test -------
+# A flat blue field makes every pixel the same, so one wrong number in the
+# whole image fails the case.
+
+case    ppmchange-changes-the-colour-it-is-told-to
+run     $P/ppmchange blue red /dd/tmp/b.ppm > /dd/tmp/o.ppm
+run     $P/pnmnoraw /dd/tmp/o.ppm
+expect  255 0 0
+absent  0 0 255
+
+case    ppmdim-halves-the-brightness
+run     $P/ppmdim 0.5 /dd/tmp/b.ppm > /dd/tmp/o.ppm
+run     $P/pnmnoraw /dd/tmp/o.ppm
+expect  0 0 127
+absent  0 0 255
+
+case    ppmflash-lifts-it-towards-white
+run     $P/ppmflash 0.4 /dd/tmp/b.ppm > /dd/tmp/o.ppm
+run     $P/pnmnoraw /dd/tmp/o.ppm
+expect  101 101 255
+
+case    ppmquant-reduces-to-the-number-of-colours-asked-for
+run     $P/ppmquant 4 /dd/tmp/c.ppm > /dd/tmp/o.ppm 2>/nil
+run     $P/ppmhist /dd/tmp/o.ppm
+expect  163 159 161	160	246
+expect  132 126 125	128	78
+
+case    ppmdist-maps-colours-onto-a-grey-index
+run     $P/ppmdist $Q > /dd/tmp/o.pgm 2>/nil
+run     $P/pnmfile /dd/tmp/o.pgm
+expect  PGM raw, 32 by 20  maxval 15
+
+# ppmmix wants both images the SAME SIZE. Given two that were not, it wrote a
+# file pnmfile could not read at all -- which reads exactly like a broken
+# program and is not one.
+case    ppmmix-blends-two-images-of-the-same-size
+run     $P/ppmmake blue 32 20 > /dd/tmp/b2.ppm
+run     $P/ppmmix 0.5 /dd/tmp/b2.ppm /dd/tmp/c.ppm > /dd/tmp/o.ppm 2>/nil
+run     $P/pnmfile /dd/tmp/o.ppm
+expect  PPM raw, 32 by 20
+
+case    ppmqvga-ppmshift-and-ppmspread-keep-the-shape
+run     $P/ppmqvga /dd/tmp/c.ppm > /dd/tmp/o1.ppm 2>/nil
+run     $P/ppmshift 3 /dd/tmp/c.ppm > /dd/tmp/o2.ppm 2>/nil
+run     $P/ppmspread 3 /dd/tmp/c.ppm > /dd/tmp/o3.ppm 2>/nil
+run     $P/pnmfile /dd/tmp/o1.ppm /dd/tmp/o2.ppm /dd/tmp/o3.ppm
+expect  o1.ppm:	PPM raw, 32 by 20
+expect  o2.ppm:	PPM raw, 32 by 20
+expect  o3.ppm:	PPM raw, 32 by 20
+
+# ---- ROUND TRIPS OUT OF PNM AND BACK ---------------------------------
+# The strong form: convert out, convert back, subtract, and require the
+# difference to be entirely zero. `pgmhist' on an all-zero image is a single
+# row at 100%.
+
+case    fits-round-trip-is-lossless
+run     $P/pnmtofits /dd/tmp/s.pgm > /dd/tmp/rt.fits 2>/nil
+run     $P/fitstopnm /dd/tmp/rt.fits > /dd/tmp/bk.pgm 2>/nil
+run     $P/pnmarith -difference /dd/tmp/s.pgm /dd/tmp/bk.pgm > /dd/tmp/df.pgm
+run     $P/pgmhist /dd/tmp/df.pgm
+expect  100%
+
+case    xwd-round-trip-is-lossless
+run     $P/pnmtoxwd /dd/tmp/s.pgm > /dd/tmp/rt.xwd 2>/nil
+run     $P/xwdtopnm /dd/tmp/rt.xwd > /dd/tmp/bk2.pgm 2>/nil
+run     $P/pnmarith -difference /dd/tmp/s.pgm /dd/tmp/bk2.pgm > /dd/tmp/df2.pgm
+run     $P/pgmhist /dd/tmp/df2.pgm
+expect  100%
+
+# pi3 is a FIXED-SIZE format -- the Atari ST high-resolution screen, 640x400
+# -- so what comes back is the original in the corner of a full screen. The
+# assertion is that it is the full screen and that the corner matches.
+case    pi3-round-trip-through-a-640x400-atari-screen
+run     $P/pbmtopi3 /dd/tmp/r.pbm > /dd/tmp/rt.pi3 2>/nil
+run     $P/pi3topbm /dd/tmp/rt.pi3 > /dd/tmp/bk.pbm 2>/nil
+run     $P/pnmfile /dd/tmp/bk.pbm
+run     $P/pnmcut 0 0 32 8 /dd/tmp/bk.pbm > /dd/tmp/bkc.pbm
+run     $P/pnmarith -difference /dd/tmp/r.pbm /dd/tmp/bkc.pbm > /dd/tmp/df3.pbm
+run     $P/pgmhist /dd/tmp/df3.pbm
+expect  PBM raw, 640 by 400
+expect  100%
+
+case    pi1-round-trip-through-a-320x200-16-colour-atari-screen
+run     $P/pnmscale -xysize 320 200 /dd/tmp/g.ppm > /dd/tmp/st.ppm 2>/nil
+run     $P/ppmquant 16 /dd/tmp/st.ppm > /dd/tmp/st16.ppm 2>/nil
+run     $P/ppmtopi1 /dd/tmp/st16.ppm > /dd/tmp/o.pi1 2>/nil
+run     /dd/CMDS/wc -c /dd/tmp/o.pi1
+run     $P/pi1toppm /dd/tmp/o.pi1 > /dd/tmp/bk.ppm 2>/nil
+run     $P/pnmfile /dd/tmp/bk.ppm
+expect  32034 /dd/tmp/o.pi1
+expect  PPM raw, 320 by 200  maxval 7
+
+case    pj-round-trip-through-a-paintjet
+run     $P/ppmtopj /dd/tmp/c.ppm > /dd/tmp/rt.pj 2>/nil
+run     $P/pjtoppm /dd/tmp/rt.pj > /dd/tmp/bk.ppm 2>/nil
+run     $P/pnmfile /dd/tmp/bk.ppm
+expect  PPM raw, 32 by 20
+
+# ---- ONE-WAY CONVERTERS ----------------------------------------------
+# No partner reads these back, so the assertion is the file's own signature
+# where it has one, and its exact length where it does not. A length is a
+# weak claim about correctness and a strong one about CHANGE: a rebuild that
+# alters one of these fails here.
+
+case    the-postscript-converters-write-postscript
+run     $P/pbmtoepsi /dd/tmp/r.pbm > /dd/tmp/o.epsi 2>/nil
+run     $P/pbmtolps /dd/tmp/r.pbm > /dd/tmp/o.lps 2>/nil
+run     /dd/CMDS/head -n 1 /dd/tmp/o.epsi
+run     /dd/CMDS/head -n 1 /dd/tmp/o.lps
+expect  %!PS-Adobe-2.0 EPSF-1.2
+expect  %!PS-Adobe-2.0 EPSF-2.0
+
+case    the-source-code-converters-write-declarations
+run     $P/pbmtox10bm /dd/tmp/r.pbm > /dd/tmp/o.x10 2>/nil
+run     $P/pbmtozinc /dd/tmp/r.pbm > /dd/tmp/o.zinc 2>/nil
+run     $P/ppmtouil $Q > /dd/tmp/o.uil 2>/nil
+run     /dd/CMDS/head -n 1 /dd/tmp/o.x10
+run     /dd/CMDS/head -n 1 /dd/tmp/o.zinc
+run     /dd/CMDS/head -n 4 /dd/tmp/o.uil
+expect  #define /dd/tmp/r_width 32
+expect  USHORT /dd/tmp/r[] = {
+expect  include file 'XmAppl.uil';
+
+case    ppmtoacad-writes-an-autocad-slide
+run     $P/ppmtoacad /dd/tmp/c.ppm > /dd/tmp/o.sld 2>/nil
+run     /dd/CMDS/head -n 1 /dd/tmp/o.sld
+expect  AutoCAD Slide
+
+case    ppmtomap-writes-the-colour-map-as-a-ppm
+run     $P/ppmtomap /dd/tmp/c.ppm > /dd/tmp/o.map 2>/nil
+run     $P/pnmfile /dd/tmp/o.map
+expect  PPM raw
+
+# md5 rather than length, because a length is satisfied by any file of the
+# right size. These are byte-identical over repeated runs -- checked, twice,
+# after the -threshold fix above made the source reproducible.
+case    the-printer-converters-write-what-they-always-wrote
+run     /dd/CMDS/rm /dd/tmp/a1 /dd/tmp/a2 /dd/tmp/a3 /dd/tmp/a4
+run     /dd/CMDS/rm /dd/tmp/a5 /dd/tmp/a6 /dd/tmp/a7 /dd/tmp/a8
+run     $P/pbmto10x /dd/tmp/r.pbm > /dd/tmp/a1 2>/nil
+run     $P/pbmto4425 /dd/tmp/r.pbm > /dd/tmp/a2 2>/nil
+run     $P/pbmtoepson /dd/tmp/r.pbm > /dd/tmp/a3 2>/nil
+run     $P/pbmtogo /dd/tmp/r.pbm > /dd/tmp/a4 2>/nil
+run     $P/pbmtolj /dd/tmp/r.pbm > /dd/tmp/a5 2>/nil
+run     $P/pbmtoln03 /dd/tmp/r.pbm > /dd/tmp/a6 2>/nil
+run     $P/pbmtoplot /dd/tmp/r.pbm > /dd/tmp/a7 2>/nil
+run     $P/pbmtoptx /dd/tmp/r.pbm > /dd/tmp/a8 2>/nil
+run     /dd/CMDS/md5 /dd/tmp/a1 /dd/tmp/a2 /dd/tmp/a3 /dd/tmp/a4
+run     /dd/CMDS/md5 /dd/tmp/a5 /dd/tmp/a6 /dd/tmp/a7 /dd/tmp/a8
+expect  (/dd/tmp/a1) = a8bacc034c92dd5a32cfb390808bbe2c
+expect  (/dd/tmp/a2) = 66e73ca7a91b9fdcced839756e410735
+expect  (/dd/tmp/a3) = b5f53468a9a418d02e8739d694aed8de
+expect  (/dd/tmp/a4) = cf846525661c3ada243a0bb151b09277
+expect  (/dd/tmp/a5) = e55d9f4f73bd06eb2f96249e52a5966e
+expect  (/dd/tmp/a6) = f8115b1dfeb50e82d7a9c161c6ac0bf7
+expect  (/dd/tmp/a7) = 9a51c3d9d244299ffe93c0695f7fb2a9
+expect  (/dd/tmp/a8) = 8140311ba090779cc4a407e521aeb3fa
+
+case    the-bilevel-source-is-reproducible
+run     /dd/CMDS/md5 /dd/tmp/r.pbm /dd/tmp/c.ppm /dd/tmp/q.ppm
+expect  (/dd/tmp/r.pbm) = 1392131b606dcfd52a6cdb58aecffa6b
+expect  (/dd/tmp/c.ppm) = 8b83fa83d5266f3367a3010fa94679d7
+expect  (/dd/tmp/q.ppm) = 657093ab1d73ff1ab1a757c301261ecf
+
+case    the-paletted-converters-write-what-they-always-wrote
+run     $P/ppmtoicr $Q > /dd/tmp/b1 2>/nil
+run     $P/ppmtosixel $Q > /dd/tmp/b2 2>/nil
+run     $P/ppmtopuzz $Q > /dd/tmp/b3 2>/nil
+run     $P/ppmtopict $Q > /dd/tmp/b4 2>/nil
+run     $P/ppmtomitsu /dd/tmp/c.ppm > /dd/tmp/b5 2>/nil
+run     $P/ppmtopjxl /dd/tmp/c.ppm > /dd/tmp/b6 2>/nil
+run     /dd/CMDS/wc -c /dd/tmp/b1 /dd/tmp/b2 /dd/tmp/b3
+run     /dd/CMDS/wc -c /dd/tmp/b4 /dd/tmp/b5 /dd/tmp/b6
+expect  3420 /dd/tmp/b1
+expect  1711 /dd/tmp/b2
+expect  697 /dd/tmp/b3
+expect  1342 /dd/tmp/b4
+expect  2013 /dd/tmp/b5
+expect  9751 /dd/tmp/b6
+
+case    pgmtofs-and-pnmtoddif-write-what-they-always-wrote
+run     $P/pgmtofs /dd/tmp/s.pgm > /dd/tmp/c1 2>/nil
+run     $P/pnmtoddif /dd/tmp/s.pgm > /dd/tmp/c2 2>/nil
+run     /dd/CMDS/wc -c /dd/tmp/c1 /dd/tmp/c2
+run     /dd/CMDS/head -n 1 /dd/tmp/c1
+expect  650 /dd/tmp/c1
+expect  535 /dd/tmp/c2
+expect  FirstName:
+
+# ---- WHAT DOES NOT WORK, PINNED SO IT CANNOT BE FORGOTTEN ------------
+
+# pbmtopk is not an image converter at all: it builds a TeX PK font, and it
+# wants a pkfile, a tfm and a resolution before it will do anything.
+case    pbmtopk-is-a-font-builder-and-says-so
+run     $P/pbmtopk /dd/tmp/r.pbm
+expect  This is PBMtoPK, version 2.4
+expect  usage:  pbmtopk pkfile[.pk] tfmfile[.tfm] dpi
+
+# KNOWN DEFECT, measured 2026-08-31. pgmtolispm writes its 293 bytes happily;
+# lispmtopgm will not read them back, and says why -- this build has
+# PGM_BIGGRAYS off, so the grey depth in the file is more than it can hold.
+case    lispm-round-trip-fails-in-this-build
+run     $P/pgmtolispm /dd/tmp/s.pgm > /dd/tmp/o.lispm 2>/nil
+run     /dd/CMDS/wc -c /dd/tmp/o.lispm
+run     $P/lispmtopgm /dd/tmp/o.lispm > /dd/tmp/bk.pgm
+expect  293 /dd/tmp/o.lispm
+expect  depth is too large - try reconfiguring with PGM_BIGGRAYS
+
+# KNOWN DEFECT. pnmsmooth is a WRAPPER: it builds a convolution matrix in a
+# temporary file and hands it to pnmconvol. The temporary file's path is
+# baked in as `/r0/smoothXXXXXX' -- a RAM disk this system does not have --
+# so it writes nothing and reports the path it could not open. `pnmconvol'
+# with a `pgmkernel' matrix does the same job and is asserted above.
+case    pnmsmooth-wants-a-ram-disk-at-slash-r0
+run     $P/pnmsmooth /dd/tmp/s.pgm > /dd/tmp/o.pgm
+expect  /r0/smooth

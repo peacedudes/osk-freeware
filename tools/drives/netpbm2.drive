@@ -1,0 +1,293 @@
+# netpbm2 -- the 80 netpbm programs that had no card and no case.
+#
+# The existing family (tools/datatests/netpbm.cases) covers the generators,
+# the geometry and the bilevel round trips.  What was left is the other
+# three quarters of the set: the filters that alter an image, the converters
+# OUT of PNM into a printer or workstation format, and the converters back.
+#
+# Each stanza's job here is only to show what the program does and what it
+# writes, so that a case in netpbm2.cases can assert it.  Sizes are printed
+# because a one-way converter with no partner to read it back has nothing
+# else that can fail.
+
+family  netpbm2
+
+setup   P=/dd/CMDS/NETPBM
+setup   $P/pgmramp -lr 32 8 > /dd/tmp/s.pgm
+setup   $P/pgmtopbm /dd/tmp/s.pgm > /dd/tmp/r.pbm
+setup   $P/ppmmake blue 32 8 > /dd/tmp/b.ppm
+setup   $P/giftopnm /dd/DEMO/gulls.gif > /dd/tmp/g.ppm 2>/nil
+setup   $P/pnmscale -xysize 32 24 /dd/tmp/g.ppm > /dd/tmp/c.ppm 2>/nil
+
+drive   sources
+run     $P/pnmfile /dd/tmp/s.pgm /dd/tmp/r.pbm /dd/tmp/b.ppm /dd/tmp/c.ppm
+
+drive   pbmreduce
+run     $P/pbmreduce 2 /dd/tmp/r.pbm > /dd/tmp/o.pbm
+run     $P/pnmfile /dd/tmp/o.pbm
+
+drive   pbmpscale
+run     $P/pbmpscale 3 /dd/tmp/r.pbm > /dd/tmp/o.pbm
+run     $P/pnmfile /dd/tmp/o.pbm
+
+drive   pbmmask
+run     $P/pbmmask /dd/tmp/r.pbm > /dd/tmp/o.pbm
+run     $P/pnmfile /dd/tmp/o.pbm
+
+drive   pgmenhance
+run     $P/pgmenhance -3 /dd/tmp/s.pgm > /dd/tmp/o.pgm
+run     $P/pnmfile /dd/tmp/o.pgm
+
+drive   pgmkernel
+run     $P/pgmkernel 3 > /dd/tmp/k.pgm
+run     $P/pnmfile /dd/tmp/k.pgm
+run     $P/pnmnoraw /dd/tmp/k.pgm
+
+drive   pnmalias
+run     $P/pnmalias /dd/tmp/c.ppm > /dd/tmp/o.ppm
+run     $P/pnmfile /dd/tmp/o.ppm
+
+drive   pnmcomp
+run     $P/pnmcomp /dd/tmp/b.ppm /dd/tmp/c.ppm > /dd/tmp/o.ppm
+run     $P/pnmfile /dd/tmp/o.ppm
+
+drive   pnmconvol
+run     $P/pnmconvol /dd/tmp/k.pgm /dd/tmp/s.pgm > /dd/tmp/o.pgm
+run     $P/pnmfile /dd/tmp/o.pgm
+
+drive   pnmcrop
+run     $P/pnmpad -black -l4 -r4 /dd/tmp/s.pgm > /dd/tmp/p.pgm
+run     $P/pnmfile /dd/tmp/p.pgm
+run     $P/pnmcrop -black /dd/tmp/p.pgm > /dd/tmp/o.pgm 2>/nil
+run     $P/pnmfile /dd/tmp/o.pgm
+
+drive   pnmhisteq
+run     $P/pnmhisteq /dd/tmp/s.pgm > /dd/tmp/o.pgm 2>/nil
+run     $P/pnmfile /dd/tmp/o.pgm
+
+drive   pnmhistmap
+run     $P/pnmhistmap /dd/tmp/s.pgm > /dd/tmp/o.pgm 2>/nil
+run     $P/pnmfile /dd/tmp/o.pgm
+
+drive   pnmnlfilt
+run     $P/pnmnlfilt 1.0 0.5 /dd/tmp/c.ppm > /dd/tmp/o.ppm 2>/nil
+run     $P/pnmfile /dd/tmp/o.ppm
+
+drive   pnmpaste
+run     $P/pnmpaste /dd/tmp/r.pbm 0 0 /dd/tmp/s.pgm > /dd/tmp/o.pgm 2>/nil
+run     $P/pnmfile /dd/tmp/o.pgm
+
+drive   pnmshear
+run     $P/pnmshear 30 /dd/tmp/s.pgm > /dd/tmp/o.pgm 2>/nil
+run     $P/pnmfile /dd/tmp/o.pgm
+
+drive   pnmsmooth
+run     $P/pnmsmooth /dd/tmp/s.pgm > /dd/tmp/o.pgm 2>/nil
+run     $P/pnmfile /dd/tmp/o.pgm
+
+drive   ppmchange
+run     $P/ppmchange blue red /dd/tmp/b.ppm > /dd/tmp/o.ppm
+run     $P/pnmnoraw /dd/tmp/o.ppm
+
+drive   ppmdim
+run     $P/ppmdim 0.5 /dd/tmp/b.ppm > /dd/tmp/o.ppm
+run     $P/pnmnoraw /dd/tmp/o.ppm
+
+drive   ppmdist
+run     $P/ppmdist /dd/tmp/c.ppm > /dd/tmp/o.pgm 2>/nil
+run     $P/pnmfile /dd/tmp/o.pgm
+
+drive   ppmflash
+run     $P/ppmflash 0.4 /dd/tmp/b.ppm > /dd/tmp/o.ppm
+run     $P/pnmnoraw /dd/tmp/o.ppm
+
+drive   ppmmix
+run     $P/ppmmix 0.5 /dd/tmp/b.ppm /dd/tmp/c.ppm > /dd/tmp/o.ppm 2>/nil
+run     $P/pnmfile /dd/tmp/o.ppm
+
+drive   ppmquant
+run     $P/ppmquant 4 /dd/tmp/c.ppm > /dd/tmp/o.ppm 2>/nil
+run     $P/ppmhist /dd/tmp/o.ppm
+
+drive   ppmqvga
+run     $P/ppmqvga /dd/tmp/c.ppm > /dd/tmp/o.ppm 2>/nil
+run     $P/pnmfile /dd/tmp/o.ppm
+
+drive   ppmshift
+run     $P/ppmshift 3 /dd/tmp/c.ppm > /dd/tmp/o.ppm 2>/nil
+run     $P/pnmfile /dd/tmp/o.ppm
+
+drive   ppmspread
+run     $P/ppmspread 3 /dd/tmp/c.ppm > /dd/tmp/o.ppm 2>/nil
+run     $P/pnmfile /dd/tmp/o.ppm
+
+drive   ppmtopi1
+why     round trip with pi1toppm
+run     $P/ppmtopi1 /dd/tmp/c.ppm > /dd/tmp/rt.pi1 2>/nil
+run     /dd/CMDS/wc -c /dd/tmp/rt.pi1
+run     $P/pi1toppm /dd/tmp/rt.pi1 > /dd/tmp/back.pi1 2>/nil
+run     $P/pnmfile /dd/tmp/back.pi1
+
+drive   pbmtopi3
+why     round trip with pi3topbm
+run     $P/pbmtopi3 /dd/tmp/r.pbm > /dd/tmp/rt.pi3 2>/nil
+run     /dd/CMDS/wc -c /dd/tmp/rt.pi3
+run     $P/pi3topbm /dd/tmp/rt.pi3 > /dd/tmp/back.pi3 2>/nil
+run     $P/pnmfile /dd/tmp/back.pi3
+
+drive   pgmtolispm
+why     round trip with lispmtopgm
+run     $P/pgmtolispm /dd/tmp/s.pgm > /dd/tmp/rt.lispm 2>/nil
+run     /dd/CMDS/wc -c /dd/tmp/rt.lispm
+run     $P/lispmtopgm /dd/tmp/rt.lispm > /dd/tmp/back.lispm 2>/nil
+run     $P/pnmfile /dd/tmp/back.lispm
+
+drive   pbmtopk
+why     round trip with pktopbm
+run     $P/pbmtopk /dd/tmp/r.pbm > /dd/tmp/rt.pk 2>/nil
+run     /dd/CMDS/wc -c /dd/tmp/rt.pk
+run     $P/pktopbm /dd/tmp/rt.pk > /dd/tmp/back.pk 2>/nil
+run     $P/pnmfile /dd/tmp/back.pk
+
+drive   pnmtofits
+why     round trip with fitstopnm
+run     $P/pnmtofits /dd/tmp/s.pgm > /dd/tmp/rt.fits 2>/nil
+run     /dd/CMDS/wc -c /dd/tmp/rt.fits
+run     $P/fitstopnm /dd/tmp/rt.fits > /dd/tmp/back.fits 2>/nil
+run     $P/pnmfile /dd/tmp/back.fits
+
+drive   pnmtoxwd
+why     round trip with xwdtopnm
+run     $P/pnmtoxwd /dd/tmp/s.pgm > /dd/tmp/rt.xwd 2>/nil
+run     /dd/CMDS/wc -c /dd/tmp/rt.xwd
+run     $P/xwdtopnm /dd/tmp/rt.xwd > /dd/tmp/back.xwd 2>/nil
+run     $P/pnmfile /dd/tmp/back.xwd
+
+drive   ppmtopict
+why     round trip with picttoppm
+run     $P/ppmtopict /dd/tmp/c.ppm > /dd/tmp/rt.pict 2>/nil
+run     /dd/CMDS/wc -c /dd/tmp/rt.pict
+run     $P/picttoppm /dd/tmp/rt.pict > /dd/tmp/back.pict 2>/nil
+run     $P/pnmfile /dd/tmp/back.pict
+
+drive   ppmtopj
+why     round trip with pjtoppm
+run     $P/ppmtopj /dd/tmp/c.ppm > /dd/tmp/rt.pj 2>/nil
+run     /dd/CMDS/wc -c /dd/tmp/rt.pj
+run     $P/pjtoppm /dd/tmp/rt.pj > /dd/tmp/back.pj 2>/nil
+run     $P/pnmfile /dd/tmp/back.pj
+
+drive   pbmto10x
+run     $P/pbmto10x /dd/tmp/r.pbm > /dd/tmp/ow.out 2>/nil
+run     /dd/CMDS/wc -c /dd/tmp/ow.out
+run     /dd/CMDS/head -n 1 /dd/tmp/ow.out
+
+drive   pbmto4425
+run     $P/pbmto4425 /dd/tmp/r.pbm > /dd/tmp/ow.out 2>/nil
+run     /dd/CMDS/wc -c /dd/tmp/ow.out
+run     /dd/CMDS/head -n 1 /dd/tmp/ow.out
+
+drive   pbmtobbnbg
+run     $P/pbmtobbnbg /dd/tmp/r.pbm > /dd/tmp/ow.out 2>/nil
+run     /dd/CMDS/wc -c /dd/tmp/ow.out
+run     /dd/CMDS/head -n 1 /dd/tmp/ow.out
+
+drive   pbmtoepsi
+run     $P/pbmtoepsi /dd/tmp/r.pbm > /dd/tmp/ow.out 2>/nil
+run     /dd/CMDS/wc -c /dd/tmp/ow.out
+run     /dd/CMDS/head -n 1 /dd/tmp/ow.out
+
+drive   pbmtoepson
+run     $P/pbmtoepson /dd/tmp/r.pbm > /dd/tmp/ow.out 2>/nil
+run     /dd/CMDS/wc -c /dd/tmp/ow.out
+run     /dd/CMDS/head -n 1 /dd/tmp/ow.out
+
+drive   pbmtogo
+run     $P/pbmtogo /dd/tmp/r.pbm > /dd/tmp/ow.out 2>/nil
+run     /dd/CMDS/wc -c /dd/tmp/ow.out
+run     /dd/CMDS/head -n 1 /dd/tmp/ow.out
+
+drive   pbmtolj
+run     $P/pbmtolj /dd/tmp/r.pbm > /dd/tmp/ow.out 2>/nil
+run     /dd/CMDS/wc -c /dd/tmp/ow.out
+run     /dd/CMDS/head -n 1 /dd/tmp/ow.out
+
+drive   pbmtoln03
+run     $P/pbmtoln03 /dd/tmp/r.pbm > /dd/tmp/ow.out 2>/nil
+run     /dd/CMDS/wc -c /dd/tmp/ow.out
+run     /dd/CMDS/head -n 1 /dd/tmp/ow.out
+
+drive   pbmtolps
+run     $P/pbmtolps /dd/tmp/r.pbm > /dd/tmp/ow.out 2>/nil
+run     /dd/CMDS/wc -c /dd/tmp/ow.out
+run     /dd/CMDS/head -n 1 /dd/tmp/ow.out
+
+drive   pbmtoplot
+run     $P/pbmtoplot /dd/tmp/r.pbm > /dd/tmp/ow.out 2>/nil
+run     /dd/CMDS/wc -c /dd/tmp/ow.out
+run     /dd/CMDS/head -n 1 /dd/tmp/ow.out
+
+drive   pbmtoptx
+run     $P/pbmtoptx /dd/tmp/r.pbm > /dd/tmp/ow.out 2>/nil
+run     /dd/CMDS/wc -c /dd/tmp/ow.out
+run     /dd/CMDS/head -n 1 /dd/tmp/ow.out
+
+drive   pbmtox10bm
+run     $P/pbmtox10bm /dd/tmp/r.pbm > /dd/tmp/ow.out 2>/nil
+run     /dd/CMDS/wc -c /dd/tmp/ow.out
+run     /dd/CMDS/head -n 1 /dd/tmp/ow.out
+
+drive   pbmtozinc
+run     $P/pbmtozinc /dd/tmp/r.pbm > /dd/tmp/ow.out 2>/nil
+run     /dd/CMDS/wc -c /dd/tmp/ow.out
+run     /dd/CMDS/head -n 1 /dd/tmp/ow.out
+
+drive   pgmtofs
+run     $P/pgmtofs /dd/tmp/s.pgm > /dd/tmp/ow.out 2>/nil
+run     /dd/CMDS/wc -c /dd/tmp/ow.out
+run     /dd/CMDS/head -n 1 /dd/tmp/ow.out
+
+drive   pnmtoddif
+run     $P/pnmtoddif /dd/tmp/s.pgm > /dd/tmp/ow.out 2>/nil
+run     /dd/CMDS/wc -c /dd/tmp/ow.out
+run     /dd/CMDS/head -n 1 /dd/tmp/ow.out
+
+drive   ppmtoacad
+run     $P/ppmtoacad /dd/tmp/c.ppm > /dd/tmp/ow.out 2>/nil
+run     /dd/CMDS/wc -c /dd/tmp/ow.out
+run     /dd/CMDS/head -n 1 /dd/tmp/ow.out
+
+drive   ppmtoicr
+run     $P/ppmtoicr /dd/tmp/c.ppm > /dd/tmp/ow.out 2>/nil
+run     /dd/CMDS/wc -c /dd/tmp/ow.out
+run     /dd/CMDS/head -n 1 /dd/tmp/ow.out
+
+drive   ppmtomap
+run     $P/ppmtomap /dd/tmp/c.ppm > /dd/tmp/ow.out 2>/nil
+run     /dd/CMDS/wc -c /dd/tmp/ow.out
+run     /dd/CMDS/head -n 1 /dd/tmp/ow.out
+
+drive   ppmtomitsu
+run     $P/ppmtomitsu /dd/tmp/c.ppm > /dd/tmp/ow.out 2>/nil
+run     /dd/CMDS/wc -c /dd/tmp/ow.out
+run     /dd/CMDS/head -n 1 /dd/tmp/ow.out
+
+drive   ppmtopjxl
+run     $P/ppmtopjxl /dd/tmp/c.ppm > /dd/tmp/ow.out 2>/nil
+run     /dd/CMDS/wc -c /dd/tmp/ow.out
+run     /dd/CMDS/head -n 1 /dd/tmp/ow.out
+
+drive   ppmtopuzz
+run     $P/ppmtopuzz /dd/tmp/c.ppm > /dd/tmp/ow.out 2>/nil
+run     /dd/CMDS/wc -c /dd/tmp/ow.out
+run     /dd/CMDS/head -n 1 /dd/tmp/ow.out
+
+drive   ppmtosixel
+run     $P/ppmtosixel /dd/tmp/c.ppm > /dd/tmp/ow.out 2>/nil
+run     /dd/CMDS/wc -c /dd/tmp/ow.out
+run     /dd/CMDS/head -n 1 /dd/tmp/ow.out
+
+drive   ppmtouil
+run     $P/ppmtouil /dd/tmp/c.ppm > /dd/tmp/ow.out 2>/nil
+run     /dd/CMDS/wc -c /dd/tmp/ow.out
+run     /dd/CMDS/head -n 1 /dd/tmp/ow.out
