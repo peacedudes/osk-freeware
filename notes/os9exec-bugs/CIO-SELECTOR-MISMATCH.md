@@ -133,8 +133,8 @@ result, because "did not flood under X" is a statement about X:
 | | |
 |---|---|
 | storm | **2** -- `cvtbase` (`cvtbase d h`, number on stdin), `logisim` (`PORT`, `TERM`, `TERMCAP` and a circuit file) |
-| driven, no flood | **38** |
-| not driven | **1** -- `REBUILT/kermit_cio`, which wants a serial line |
+| driven, no flood | **39** |
+| not driven | none |
 
 Of the 38: 31 were run here with file arguments taken from their usage lines
 (`chksum`, `snap`, `spiff`, `unifdef`, `diff`, `nroff`, `ape`, `xrf`, `etags`,
@@ -145,6 +145,12 @@ that pass their play-tests on a pseudo-terminal, which means they reach
 character output (`blackjak`, `poker`, `stone`, `tess`, `rpoem`, `newsgen`);
 and `valspeak` exits at once producing nothing at all, which is a fault of its
 own recorded since 2026-08-27 and not this one.
+
+`REBUILT/kermit_cio` was the last gap and is now closed. It rejects
+`kermit sl /t1 <file>` with its usage line whatever the spacing, but plain
+`kermit s <file>` runs send mode over the console -- 529 bytes out, no flood --
+and `kermit r` enters receive. os9exec will also give it a real serial line
+(`OS9T1=pty`, then `/t1`), which was not needed in the end.
 
 `ascii` is worth singling out: it prints its whole 66-line table correctly
 while carrying two `_flshbuf` call sites. Carrying the call is not the same as
