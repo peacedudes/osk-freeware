@@ -147,8 +147,16 @@ def script_for(fam, cases=None):
         lines.append("/dd/CMDS/load %s" % mod)
     lines += fam["setup"]
     for c in (fam["cases"] if cases is None else cases):
+        # A BLANK LINE BEFORE EVERY MARKER. Markers are matched at line
+        # start, and a program whose last write has no CR after it -- `date
+        # -t' is one -- leaves the NEXT marker sitting mid-line, invisible to
+        # the split. That case then reads as "never ran", which is a FAIL
+        # against a program that ran perfectly. Found 2026-08-31 in the
+        # sibling harness, where it cost three whole-session restarts.
+        lines.append('echo ""')
         lines.append('echo "%s%s"' % (MARK, c.name))
         lines += c.runs
+    lines.append('echo ""')
     lines.append('echo "%send"' % MARK)
     return "\r".join(lines) + "\r"
 

@@ -20,6 +20,32 @@
                         when it turned out to be gone
     gen_freeware_index.py
 
+    worklist.py         one row per program: what DOC/INDEX claims, what the
+                        binary's own usage line says, whether a card
+                        photographs it, whether any test asserts anything
+                        about it, and whether a drive sheet runs it. Every
+                        column is derived, so none of it can go stale
+    drive.py            RUN programs with real arguments -- a whole sheet of
+                        them in ONE emulator session -- and keep everything
+                        they said. The step before writing a datatest case:
+                        it asserts nothing, it shows you what happened
+    drives/             the sheets drive.py reads. Committed; the transcripts
+                        they produce are not
+    audit_cards.py      which gallery cards photograph a program WORKING and
+                        which photograph its help text or an error
+
+## Finding the next thing to do
+
+    tools/worklist.py --no-test --no-card      # nothing but an index line
+    tools/worklist.py --cat "Text tools"       # one category, with its usage
+    tools/audit_cards.py                       # cards not worth showing
+
+The work left on this collection is per-program: run it with real arguments,
+check that what it does matches what `DOC/INDEX` says, and leave behind
+something that can fail again. `worklist.py` says which programs still have
+nothing; `drive.py` runs a batch of them and shows what came back; a
+`datatests/*.cases` case is what turns that into a fact that can fail.
+
 ## Checking the tree
 
     tools/check_disk.py disk

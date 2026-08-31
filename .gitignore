@@ -52,3 +52,9 @@ notes/playtests/
 # so they turn up as a diff after any test and say nothing a reader wants.
 # The .cases files are the source; the verdicts are printed.
 notes/datatests/
+
+# Drive transcripts: what every program printed when it was run with real
+# arguments, written by tools/drive.py. Regenerated from the sheets in
+# tools/drives/, which are the source and ARE committed -- same arrangement
+# as the data tests and the play-test captures above.
+notes/drives/
