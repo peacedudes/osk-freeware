@@ -1,0 +1,143 @@
+family  system
+# The OS-9 system utilities, asserted rather than photographed.
+#
+# Every case here was written from a run in `notes/drives/system1.txt' and
+# `system2.txt', where each program was given real arguments and its output
+# read.  Four DOC/INDEX entries were corrected out of that pass -- `preset',
+# `vecho', `dotilde' and `lfmaker' -- and the facts that settled them are
+# asserted below so they cannot quietly stop being true.
+#
+# Where a program writes into the DATA DIRECTORY rather than a path you give
+# it, that directory is /dd: bash's `cd' does not move the OS-9 data
+# directory, so there is nowhere else to put the output. Those cases clean up
+# after themselves.
+
+setup   S=/dd/SYS/termcap
+# TERM AND TERMCAP ARE NOT OPTIONAL HERE. This harness does not read
+# SYS/login, so a program that consults the terminal database gets whatever
+# bash left behind -- and `clear' answered "TERM defined, but unknown
+# terminal type" and wrote nothing at all. That is `clear' behaving well, and
+# it is also the shape of a test that would have "proved" clear was broken.
+setup   export TERM=vt100
+setup   export TERMCAP=/dd/SYS/termcap
+setup   /dd/CMDS/rm /dd/tmp/mix.txt /dd/tmp/v1.bin /dd/tmp/v2.bin
+setup   echo abcdefgh > /dd/tmp/even.txt
+setup   echo 12345678 > /dd/tmp/odd.txt
+
+case    clear-emits-the-vt100-home-and-erase
+run     /dd/CMDS/clear > /dd/tmp/cl.bin
+run     /dd/CMDS/wc -c /dd/tmp/cl.bin
+run     /dd/CMDS/dump /dd/tmp/cl.bin
+expect  7 /dd/tmp/cl.bin
+expect  1B5B 481B 5B32 4A
+
+case    combine-interleaves-byte-by-byte
+run     /dd/CMDS/combine /dd/tmp/even.txt /dd/tmp/odd.txt /dd/tmp/mix.txt
+run     /dd/CMDS/cat /dd/tmp/mix.txt
+expect  a1b2c3d4e5f6g7h8
+expect  combine operation completed
+
+# NOT a defect, and worth an assertion so nobody "fixes" it: combine will not
+# write over a file that already exists. The first drive of it read as a
+# failure because an earlier attempt in the same run had made the target.
+case    combine-refuses-an-existing-target
+run     /dd/CMDS/combine /dd/tmp/even.txt /dd/tmp/odd.txt /dd/tmp/mix.txt
+expect  can't create file: /dd/tmp/mix.txt
+
+case    trunc-shortens-a-file-to-the-length-given
+run     /dd/CMDS/cp $S /dd/tmp/tr.txt
+run     /dd/CMDS/wc -c /dd/tmp/tr.txt
+run     /dd/CMDS/trunc /dd/tmp/tr.txt 100
+run     /dd/CMDS/wc -c /dd/tmp/tr.txt
+expect  963 /dd/tmp/tr.txt
+expect  100 /dd/tmp/tr.txt
+
+# `vecho one' writes one and a CR; `vecho one\c' writes one and stops. The
+# DOC/INDEX entry used to say the newline was suppressed by default, which is
+# the opposite way round, and only the bytes settle it.
+case    vecho-writes-a-CR-unless-the-argument-ends-in-backslash-c
+run     /dd/CMDS/vecho one > /dd/tmp/v1.bin
+run     /dd/CMDS/dump /dd/tmp/v1.bin
+expect  6F6E 650D
+case    vecho-backslash-c-suppresses-it
+run     /dd/CMDS/vecho 'one\c' > /dd/tmp/v2.bin
+run     /dd/CMDS/dump /dd/tmp/v2.bin
+run     /dd/CMDS/wc -c /dd/tmp/v2.bin
+expect  3 /dd/tmp/v2.bin
+absent  6F6E 650D
+
+case    ggrep-counts-lists-and-numbers-like-grep
+run     /dd/CMDS/ggrep -n TERMCAP /dd/SYS/login
+run     /dd/CMDS/ggrep -i -l termcap /dd/SYS/login /dd/SYS/motd
+expect  50:TERMCAP=$ROOT/SYS/termcap
+expect  /dd/SYS/login
+
+# lgrep is on this disk and produces NOTHING for a string that IS in the
+# file, where `grep -l' names it. Asserted so the claim in DOC/INDEX rests on
+# a test rather than on somebody's memory of a run.
+case    lgrep-is-silent-where-grep-l-answers
+run     /dd/CMDS/lgrep TERMCAP /dd/SYS/login > /dd/tmp/lg.out
+run     /dd/CMDS/wc -c /dd/tmp/lg.out
+run     /dd/CMDS/grep -l TERMCAP /dd/SYS/login
+expect  0 /dd/tmp/lg.out
+expect  /dd/SYS/login
+
+case    demerge-splits-a-concatenation-back-into-modules
+run     /dd/CMDS/rm /dd/wc /dd/head
+run     /dd/CMDS/cat /dd/CMDS/wc /dd/CMDS/head > /dd/tmp/merged
+run     /dd/CMDS/demerge /dd/tmp/merged
+run     /dd/CMDS/ls /dd/wc /dd/head
+run     /dd/CMDS/rm /dd/wc /dd/head
+expect  /dd/wc
+expect  /dd/head
+
+case    bsplt68-names-the-modules-in-a-merged-file
+run     /dd/CMDS/bsplt68 /dd/tmp/merged
+expect  wc
+expect  head
+
+case    unpacklib-unpacks-a-library-into-its-object-modules
+run     /dd/CMDS/rm /dd/libpbm1.r /dd/libpbm5.r
+run     /dd/CMDS/unpacklib.os9 /dd/LIB/pbm.l
+run     /dd/CMDS/ls /dd/libpbm1.r /dd/libpbm5.r
+run     /dd/CMDS/rm /dd/libpbm1.r /dd/libpbm2.r /dd/libpbm3.r
+run     /dd/CMDS/rm /dd/libpbm4.r /dd/libpbm5.r
+expect  /dd/libpbm1.r
+expect  /dd/libpbm5.r
+
+case    liborder-reports-what-a-library-was-built-from
+run     /dd/CMDS/liborder.os9 /dd/LIB/pbm.l
+run     /dd/CMDS/liborder /dd/LIB/ncurses.l
+expect  /dd/LIB/pbm.r
+expect  /dd/LIB/ncurses.r
+
+# Two archivers that have never met: lha writes it, xlharc reads it.
+case    xlharc-reads-what-lha-wrote
+run     /dd/CMDS/rm /dd/tmp/x.lzh
+run     /dd/CMDS/lha a /dd/tmp/x.lzh /dd/SYS/motd
+run     /dd/CMDS/xlharc v /dd/tmp/x.lzh
+expect  Frozen
+expect  motd
+
+case    upperdir-lowercases-files-and-uppercases-directories
+run     /dd/CMDS/rm /dd/tmp/UD/MixedCase.TXT /dd/tmp/UD/mixedcase.txt
+run     /dd/CMDS/mkdir /dd/tmp/UD
+run     /dd/CMDS/mkdir /dd/tmp/UD/subdir
+run     /dd/CMDS/cp $S /dd/tmp/UD/MixedCase.TXT
+run     /dd/CMDS/upperdir /dd/tmp/UD
+run     /dd/CMDS/ls /dd/tmp/UD
+expect  mixedcase.txt
+expect  SUBDIR
+
+case    snd_sig-says-so-when-there-is-no-such-process
+run     /dd/CMDS/snd_sig 250
+expect  can't wake 250
+
+# os9exec does not implement the F$SetSys calls these two make, and both
+# print zero as a result. That is the emulator, not the programs, and it is
+# what DOC/INDEX says -- asserted here so the entry cannot drift from it.
+case    sysmax-and-sysmin-report-zero-under-os9exec
+run     /dd/CMDS/sysmax
+run     /dd/CMDS/sysmin
+expect  system maximum age is 0
+expect  system minimun priority is 0

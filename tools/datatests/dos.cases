@@ -1,0 +1,76 @@
+family  dos
+# The mtools set, reading and writing the FAT12 floppy images that ship in
+# /dd/DOS.  Twenty programs and, until now, not one assertion: the family
+# rested entirely on a gallery card, and a card is a photograph -- if a
+# rebuild broke msread tomorrow nothing here would notice.
+#
+# What makes these real tests rather than "it printed something": the file
+# comes BACK OUT of the DOS filesystem and its md5 is compared with the one
+# that went in.  /dd/SYS/motd is 40 bytes and ships unchanged, so its md5 is
+# a fixed number this file can name.
+#
+# THE DELETES AT THE TOP OF EACH CASE ARE LOAD-BEARING.  mtools stops and
+# asks before it overwrites, and a utility that prompts inside a procedure
+# file devours the following lines as answers to the prompt -- so a second
+# run of this family would not merely fail, it would run the wrong commands.
+# On a fresh image the delete says the file is not there, and is right.
+
+setup   MOTD=/dd/SYS/motd
+setup   MD5=f2783580b7a4c5ef6a29ec5895e6ad95
+
+case    msinfo-reads-the-boot-sector
+run     /dd/CMDS/msinfo a:
+expect  sectors per track: 18
+expect  heads: 2
+expect  filename="/dd/DOS/a.img"
+
+case    mslabel-writes-a-label-msdir-reads-it
+run     /dd/CMDS/mslabel a:OS9FREE
+run     /dd/CMDS/msdir a:
+expect  OS9FREE
+
+case    mswrite-msread-round-trip-is-byte-exact
+run     /dd/CMDS/msdel a:RAW.TXT
+run     /dd/CMDS/rm /dd/tmp/raw.out
+run     /dd/CMDS/mswrite $MOTD a:RAW.TXT
+run     /dd/CMDS/msread a:RAW.TXT /dd/tmp/raw.out
+run     /dd/CMDS/md5 /dd/tmp/raw.out
+expect  f2783580b7a4c5ef6a29ec5895e6ad95
+
+case    the-file-really-reached-the-dos-disk
+run     /dd/CMDS/msdir a:
+expect  RAW      TXT
+
+case    mscopy-and-mstype
+run     /dd/CMDS/msdel a:MOTD.TXT
+run     /dd/CMDS/mscopy $MOTD a:MOTD.TXT
+run     /dd/CMDS/mstype a:MOTD.TXT
+expect  OS-9
+
+case    msmd-makes-a-directory-msrd-removes-it
+run     /dd/CMDS/msdeltree a:/DOCS
+run     /dd/CMDS/msmd a:/DOCS
+run     /dd/CMDS/mscopy $MOTD a:/DOCS/README.TXT
+run     /dd/CMDS/msdir a:/DOCS
+expect  README   TXT
+
+case    msattrib-sets-the-read-only-bit-and-msdir-shows-it
+run     /dd/CMDS/msattrib +r a:/DOCS/README.TXT
+run     /dd/CMDS/msattrib a:/DOCS/README.TXT
+expect  R
+
+case    msdel-really-deletes
+run     /dd/CMDS/msdel a:MOTD.TXT
+run     /dd/CMDS/msdir a:
+absent  MOTD     TXT
+
+case    msren-renames-on-the-dos-disk
+run     /dd/CMDS/msdel a:NEW.TXT
+run     /dd/CMDS/msren a:RAW.TXT a:NEW.TXT
+run     /dd/CMDS/msdir a:
+expect  NEW      TXT
+absent  RAW      TXT
+
+case    b-drive-is-the-720k-image
+run     /dd/CMDS/msinfo b:
+expect  filename="/dd/DOS/b.img"

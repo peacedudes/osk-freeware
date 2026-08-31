@@ -1,0 +1,167 @@
+# system1 -- OS-9 system utilities that had neither a card nor a test.
+#
+# Every stanza runs the program the way its OWN usage line says, on data that
+# is on the disk, and then MEASURES what it did where that is possible: a
+# file's length after `trunc', the bytes that come back out of `combine'.
+#
+# Deliberately absent: `break' reaches F$SysDbg and stops the emulator in its
+# own debugger waiting for an answer, which is a hang, not a test; `cron' is a
+# daemon; `setime' prompts and would eat the rest of the sheet.
+#
+# NOT ON THIS DISK, and worth knowing before writing a sheet: there is no
+# `echo' binary (bash's builtin is the only one), no `merge', no `ident' and
+# no `od'.  `dump' is the hex dump here, and OS-9's merge is concatenation,
+# so `cat a b > c' makes exactly the file `demerge' expects.
+
+family  system1
+
+setup   S=/dd/SYS/termcap
+setup   echo abcdefgh > /dd/tmp/even.txt
+setup   echo 12345678 > /dd/tmp/odd.txt
+setup   /dd/CMDS/cat /dd/CMDS/wc /dd/CMDS/head > /dd/tmp/merged
+
+drive   clear
+why     does it emit a real clear-screen sequence for TERM=vt100?
+run     /dd/CMDS/clear > /dd/tmp/cl.bin
+run     /dd/CMDS/wc -c /dd/tmp/cl.bin
+run     /dd/CMDS/dump /dd/tmp/cl.bin
+
+drive   combine
+why     interleaves two files byte by byte -- prove the interleave, not the exit code
+run     /dd/CMDS/combine /dd/tmp/even.txt /dd/tmp/odd.txt /dd/tmp/mix.txt
+run     /dd/CMDS/cat /dd/tmp/mix.txt
+run     /dd/CMDS/wc -c /dd/tmp/even.txt /dd/tmp/odd.txt /dd/tmp/mix.txt
+
+drive   demerge
+why     splits a merged file back into its parts.  OS-9 merge IS concatenation,
+why     so two modules cat'd together is the file this expects.
+run     /dd/CMDS/wc -c /dd/tmp/merged
+run     /dd/CMDS/demerge /dd/tmp/merged
+run     /dd/CMDS/modinfo /dd/tmp/merged
+
+drive   deton
+why     an alarm timing out an I/O read -- 2 seconds, with no input coming
+run     /dd/CMDS/deton 2
+
+drive   dpark
+why     restores an RBF head to track 00; /dd is an image, so what does it say?
+run     /dd/CMDS/dpark /dd
+
+drive   fixyear
+run     /dd/CMDS/fixyear
+run     /dd/CMDS/cp $S /dd/tmp/fy.txt
+run     /dd/CMDS/fixyear /dd/tmp/fy.txt
+
+drive   ggrep
+why     GNU grep -- does it do what grep does?
+run     /dd/CMDS/ggrep -n TERMCAP /dd/SYS/login
+run     /dd/CMDS/ggrep -c e /dd/SYS/motd
+run     /dd/CMDS/ggrep -i -l termcap /dd/SYS/login /dd/SYS/motd
+
+drive   lgrep
+why     "same as grep -l, but prints filenames without comments" -- with a
+why     string that IS in the files
+run     /dd/CMDS/lgrep TERMCAP /dd/SYS/login
+run     /dd/CMDS/lgrep TERMCAP /dd/SYS/login /dd/SYS/motd
+run     /dd/CMDS/grep -l TERMCAP /dd/SYS/login /dd/SYS/motd
+
+drive   liborder.os9
+why     reports the order of modules in a library -- give it one
+run     /dd/CMDS/liborder.os9 /dd/LIB/pbm.l
+
+drive   unpacklib.os9
+why     unpacks a library into its object modules
+run     /dd/CMDS/unpacklib.os9 /dd/LIB/pbm.l
+
+drive   preset
+run     /dd/CMDS/preset
+
+drive   suse
+why     "show a program's usage line" -- recorded as printing nothing for anything
+run     /dd/CMDS/suse /dd/CMDS/cat
+run     /dd/CMDS/suse cat
+
+drive   sysmax
+run     /dd/CMDS/sysmax
+
+drive   sysmin
+run     /dd/CMDS/sysmin
+
+drive   trunc
+why     truncate a file to a length -- measure the length afterwards
+run     /dd/CMDS/cp $S /dd/tmp/tr.txt
+run     /dd/CMDS/wc -c /dd/tmp/tr.txt
+run     /dd/CMDS/trunc /dd/tmp/tr.txt 100
+run     /dd/CMDS/wc -c /dd/tmp/tr.txt
+
+drive   vecho
+why     echo without a newline -- so two of them share a line
+run     /dd/CMDS/vecho one
+run     /dd/CMDS/vecho two
+run     /dd/CMDS/vecho .
+
+drive   signal
+why     send a signal to a process -- to one that does not exist
+run     /dd/CMDS/signal 250 2
+
+drive   snd_sig
+run     /dd/CMDS/snd_sig 250
+
+drive   setyear
+why     Y2K: set the year directly.  Read the clock either side of it.
+run     /dd/CMDS/date -t
+run     /dd/CMDS/setyear 1998
+run     /dd/CMDS/date -t
+run     /dd/CMDS/setyear 2026
+run     /dd/CMDS/date -t
+
+drive   setime2
+run     /dd/CMDS/setime2 -?
+run     /dd/CMDS/date -t
+
+drive   add_errmsg
+why     appends to /dd/SYS/vi_errmsg -- count the lines either side
+run     /dd/CMDS/wc -l /dd/SYS/vi_errmsg
+run     /dd/CMDS/add_errmsg "a test message"
+run     /dd/CMDS/wc -l /dd/SYS/vi_errmsg
+run     /dd/CMDS/tail -3 /dd/SYS/vi_errmsg
+
+drive   t_trtest
+run     /dd/CMDS/t_trtest
+
+drive   testibc
+run     /dd/CMDS/testibc
+
+drive   lfmaker
+why     a 2026-08-29 note said it floods "No more memory"; a 2026-08-31 re-run
+why     said it printed nothing at all.  Which is it, bare and with a name?
+run     /dd/CMDS/lfmaker
+run     /dd/CMDS/lfmaker test
+
+drive   bsplt68
+why     splits a boot file into its modules -- there is no OS9Boot here, so
+why     give it the merged file made above, which is the same shape
+run     /dd/CMDS/bsplt68 /dd/tmp/merged
+
+drive   epson
+run     /dd/CMDS/epson -?
+
+drive   lpsched
+run     /dd/CMDS/lpsched -?
+
+drive   submit
+run     /dd/CMDS/submit -?
+
+drive   ptxminst
+run     /dd/CMDS/ptxminst
+
+drive   adduser
+run     /dd/CMDS/UUCP/adduser -?
+
+drive   bootlogger
+run     /dd/CMDS/bootlogger -?
+
+drive   xlharc
+why     extract LHarc archives -- make one with lha and see if xlharc reads it
+run     /dd/CMDS/lha a /dd/tmp/x.lzh /dd/SYS/motd
+run     /dd/CMDS/xlharc v /dd/tmp/x.lzh

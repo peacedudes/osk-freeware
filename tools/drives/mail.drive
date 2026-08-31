@@ -1,0 +1,126 @@
+# mail -- the Elm suite and the UUCP mail helpers, driven against the real
+# folder that ships at /dd/SPOOL/MAIL/tester.
+#
+# The question for each one is the same: does it do its job on a machine with
+# no serial line?  Several of these are pure local text tools wearing a mail
+# name -- `lcasep' lower-cases, `nptx' expands a list, `dotilde' expands ~user
+# -- and those can be settled here completely.  The ones that dial a peer
+# cannot be, and that is a finding to write down, not a failure to hide.
+
+family  mail
+
+setup   M=/dd/SPOOL/MAIL/tester
+setup   export MAIL=$M
+
+drive   frm
+why     one line per message, who it is from
+run     /dd/CMDS/ELM/frm
+run     /dd/CMDS/ELM/frm $M
+
+drive   messages
+run     /dd/CMDS/ELM/messages
+run     /dd/CMDS/ELM/messages -f $M
+
+drive   readmsg
+why     print a message -- by number, and by pattern
+run     /dd/CMDS/ELM/readmsg 1
+run     /dd/CMDS/ELM/readmsg -f $M Welcome
+
+drive   printmail
+why     format a message for a printer -- to standard output, not to a printer
+run     /dd/CMDS/ELM/printmail -r $M 1
+
+drive   newalias
+why     the card shows it failing for want of /dd/.ELM/aliases.text.  Is that
+why     the whole story -- does it work once the file is there?
+run     /dd/CMDS/ELM/newalias
+run     /dd/CMDS/mkdir /dd/.ELM
+run     echo "os9: OS-9 Freeware: os9-freeware" > /dd/.ELM/aliases.text
+run     /dd/CMDS/ELM/newalias
+run     /dd/CMDS/ls /dd/.ELM
+
+drive   listalias
+run     /dd/CMDS/ELM/listalias
+run     /dd/CMDS/ELM/listalias -u
+
+drive   checkalias
+run     /dd/CMDS/ELM/checkalias os9
+run     /dd/CMDS/ELM/checkalias nobody
+
+drive   fastmail
+why     send a file as mail without opening the reader -- to a local user
+run     /dd/CMDS/ELM/fastmail /dd/SYS/motd tester
+run     /dd/CMDS/ELM/messages -f $M
+
+drive   answer
+run     /dd/CMDS/ELM/answer -?
+
+drive   autoreply
+run     /dd/CMDS/ELM/autoreply
+
+drive   arepdaemon
+run     /dd/CMDS/ELM/arepdaemon -?
+
+drive   newmail
+why     watches for mail arriving -- one pass, not the daemon
+run     /dd/CMDS/ELM/newmail -d
+
+drive   filter
+run     /dd/CMDS/ELM/filter -?
+
+drive   lcasep
+why     "lower-case a name for mail" -- give it a name and see
+run     echo "Some.Body@Example.COM" > /dd/tmp/name.txt
+run     /dd/CMDS/UUCP/lcasep -f /dd/tmp/name.txt
+
+drive   dotilde
+why     "expand ~user in a path, as the mailer does"
+run     /dd/CMDS/UUCP/dotilde ~tester/mbox
+run     /dd/CMDS/UUCP/dotilde
+
+drive   nptx
+why     "expand a mail alias list"
+run     echo "a@b, c@d, e@f" > /dd/tmp/list.txt
+run     /dd/CMDS/UUCP/nptx < /dd/tmp/list.txt
+
+drive   pwparse
+why     "parse the password file for the mailer"
+run     /dd/CMDS/UUCP/pwparse
+run     /dd/CMDS/UUCP/pwparse /dd/SYS/password
+
+drive   makedb
+run     /dd/CMDS/UUCP/makedb
+
+drive   smail
+run     /dd/CMDS/UUCP/smail -?
+
+drive   uulog
+run     /dd/CMDS/UUCP/uulog
+
+drive   uupoll
+run     /dd/CMDS/UUCP/uupoll nowhere
+
+drive   fixtext
+why     "repair the line endings of a received text batch"
+run     /dd/CMDS/cp /dd/SYS/motd /dd/tmp/ft.in
+run     /dd/CMDS/UUCP/fixtext /dd/tmp/ft.in /dd/tmp/ft.out
+run     /dd/CMDS/wc -c /dd/tmp/ft.in /dd/tmp/ft.out
+
+drive   newslock
+why     "the news system's lock" -- take one and look at it
+run     /dd/CMDS/NEWS/newslock /dd/tmp/lk.tmp /dd/tmp/lk.lock
+run     /dd/CMDS/ls /dd/tmp
+
+drive   bdecode
+why     decode a batched news article -- feed it an ordinary text file
+run     /dd/CMDS/NEWS/bdecode /dd/SYS/motd
+
+drive   c7decode
+run     /dd/CMDS/NEWS/c7decode < /dd/SYS/motd
+
+drive   byteflip
+run     /dd/CMDS/NEWS/byteflip
+
+drive   subscribe
+run     /dd/CMDS/UUCP/subscribe comp.os.os9
+run     /dd/CMDS/UUCP/unsubscribe comp.os.os9

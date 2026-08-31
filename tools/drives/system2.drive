@@ -1,0 +1,104 @@
+# system2 -- settle what the first pass left ambiguous, and take the next
+# batch of never-driven system utilities.
+#
+# The ambiguities are all the same shape: a stanza's several commands ran
+# together in one blob, so which command produced which line could not be
+# told.  Each is separated here, and each output is LABELLED by an echo of
+# its own, which is the only way to attribute a silent result.
+
+family  system2
+
+setup   S=/dd/SYS/termcap
+setup   /dd/CMDS/rm /dd/tmp/mix.txt
+setup   echo abcdefgh > /dd/tmp/even.txt
+setup   echo 12345678 > /dd/tmp/odd.txt
+
+drive   lgrep-one-file
+why     DOC/INDEX says lgrep produced NO output for a string that IS in the
+why     file.  The first drive appeared to show it printing the filename.
+run     echo "--- lgrep, one file, string present:"
+run     /dd/CMDS/lgrep TERMCAP /dd/SYS/login
+run     echo "--- lgrep, two files, string in one:"
+run     /dd/CMDS/lgrep TERMCAP /dd/SYS/login /dd/SYS/motd
+run     echo "--- lgrep, string in neither:"
+run     /dd/CMDS/lgrep zzznotpresent /dd/SYS/login
+run     echo "--- grep -l, the same three:"
+run     /dd/CMDS/grep -l TERMCAP /dd/SYS/login
+run     /dd/CMDS/grep -l TERMCAP /dd/SYS/login /dd/SYS/motd
+run     echo "--- end lgrep"
+
+drive   combine-fresh-target
+why     the first drive said "can't create /dd/tmp/mix.txt" -- but an earlier
+why     attempt in the same run had already made it.  Does it work on a name
+why     that does not yet exist, and is the refusal about an existing file?
+run     echo "--- combine onto a name that does not exist:"
+run     /dd/CMDS/combine /dd/tmp/even.txt /dd/tmp/odd.txt /dd/tmp/mix.txt
+run     /dd/CMDS/cat /dd/tmp/mix.txt
+run     /dd/CMDS/wc -c /dd/tmp/mix.txt
+run     echo "--- combine onto the same name a second time:"
+run     /dd/CMDS/combine /dd/tmp/even.txt /dd/tmp/odd.txt /dd/tmp/mix.txt
+
+drive   vecho-no-newline
+why     "echo without a newline" -- so two runs must SHARE a line.  Prove it
+why     by dumping the bytes rather than by looking at the screen.
+run     /dd/CMDS/vecho one > /dd/tmp/ve.bin
+run     /dd/CMDS/vecho two >> /dd/tmp/ve.bin
+run     /dd/CMDS/dump /dd/tmp/ve.bin
+run     echo "--- and what bash's own echo writes, for comparison:"
+run     echo one > /dd/tmp/be.bin
+run     /dd/CMDS/dump /dd/tmp/be.bin
+
+drive   dpark
+why     the first drive recorded this as silent AND as taking the session
+why     down.  Which is it?
+run     echo "--- before dpark"
+run     /dd/CMDS/dpark /dd
+run     echo "--- after dpark, still alive"
+
+drive   date-year-2100
+why     `date -t' answered "August 31, 2100" on a system whose own date is
+why     2026.  Is that date -t, or the clock?
+run     /dd/CMDS/date
+run     /dd/CMDS/date -t
+run     /dd/CMDS/date -y
+run     echo "--- setyear 1998, then read it three ways:"
+run     /dd/CMDS/setyear 1998
+run     /dd/CMDS/date
+run     /dd/CMDS/date -t
+run     /dd/CMDS/setyear 2026
+
+drive   demerge-really-splits
+why     the first drive proved nothing: demerge printed nothing and the file
+why     it was given was left whole.  Where do the parts go?
+run     /dd/CMDS/cat /dd/CMDS/wc /dd/CMDS/head > /dd/tmp/merged
+run     /dd/CMDS/demerge /dd/tmp/merged
+run     echo "--- what appeared in the data directory:"
+run     /dd/CMDS/ls /dd
+
+drive   unpacklib
+why     silent in the first drive.  Did it write anything?
+run     /dd/CMDS/unpacklib.os9 /dd/LIB/pbm.l
+run     echo "--- and in the data directory:"
+run     /dd/CMDS/ls /dd
+
+drive   preset
+why     "preset memory to a pattern" -- it printed a screenful of memory
+why     contents instead.  What are its arguments?
+run     /dd/CMDS/preset -?
+run     echo "--- bare:"
+run     /dd/CMDS/preset
+
+drive   liborder
+why     one line of output for a whole library is suspicious.  Compare the
+why     two builds against the same library, and against a bigger one.
+run     /dd/CMDS/liborder.os9 /dd/LIB/pbm.l
+run     echo "--- liborder (the other build):"
+run     /dd/CMDS/liborder /dd/LIB/pbm.l
+run     echo "--- against ncurses.l:"
+run     /dd/CMDS/liborder.os9 /dd/LIB/ncurses.l
+
+drive   lfmaker
+why     CONFIRM the memory flood, which DOC/INDEX currently calls unreproduced
+run     /dd/CMDS/lfmaker
+run     echo "--- with an argument:"
+run     /dd/CMDS/lfmaker test

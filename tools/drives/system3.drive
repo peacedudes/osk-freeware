@@ -1,0 +1,69 @@
+# system3 -- the last two questions from the system sweep, and the programs
+# whose cards photograph nothing but a usage line.
+
+family  system3
+
+setup   S=/dd/SYS/termcap
+
+drive   vecho-backslash-c
+why     SRC/less_v177/vecho.c is a System V `echo': the newline is suppressed
+why     by a trailing \c in the ARGUMENT, not by default.  DOC/INDEX calls it
+why     "echo without a newline", which is the opposite way round.
+run     /dd/CMDS/vecho one > /dd/tmp/v1.bin
+run     /dd/CMDS/dump /dd/tmp/v1.bin
+run     echo "--- now with the \\c escape:"
+run     /dd/CMDS/vecho 'one\c' > /dd/tmp/v2.bin
+run     /dd/CMDS/dump /dd/tmp/v2.bin
+run     echo "--- and several arguments, which it joins with a space:"
+run     /dd/CMDS/vecho a b c > /dd/tmp/v3.bin
+run     /dd/CMDS/dump /dd/tmp/v3.bin
+
+drive   preset-function-keys
+why     the module is called `vpreset' and its strings are `dir', `umacs',
+why     `r68', `l68' and "Funktionstasten belegt!" -- German for "function
+why     keys assigned".  It is a function-key loader, not a memory filler.
+run     /dd/CMDS/preset
+run     echo "--- does it take a file of its own definitions?"
+run     /dd/CMDS/preset /dd/SYS/motd
+run     echo "--- and what does the terminal hold afterwards?"
+run     /dd/CMDS/fkeys
+
+drive   upperdir
+why     its card photographs the usage line.  Give it a directory to work on:
+why     "changes filenames to lowercase, and directories to uppercase".
+run     /dd/CMDS/mkdir /dd/tmp/UD
+run     /dd/CMDS/mkdir /dd/tmp/UD/subdir
+run     /dd/CMDS/cp $S /dd/tmp/UD/MixedCase.TXT
+run     /dd/CMDS/ls /dd/tmp/UD
+run     echo "--- upperdir on it:"
+run     /dd/CMDS/upperdir /dd/tmp/UD
+run     /dd/CMDS/ls /dd/tmp/UD
+
+drive   disktest
+why     its card photographs the usage line.  "measure diskperformance" --
+why     so measure one.
+run     /dd/CMDS/disktest
+
+drive   zoo-booz-fiz
+why     the card shows booz and fiz answering with their usage, because both
+why     were given the wrong flag.  booz takes a bare letter, not -l.
+run     /dd/CMDS/rm /dd/tmp/z2.zoo
+run     /dd/CMDS/zoo a /dd/tmp/z2.zoo /dd/SYS/motd
+run     echo "--- booz l (a bare letter, no dash):"
+run     /dd/CMDS/booz l /dd/tmp/z2.zoo
+run     echo "--- fiz on the same archive:"
+run     /dd/CMDS/fiz /dd/tmp/z2.zoo
+
+drive   game-postscript
+why     its card shows only `Usage: game file [start [end]]'.  DOC/game/game.1
+why     says it reads a chess.lst written by gnuchess and writes PostScript.
+run     /dd/CMDS/ls /dd/GNUCHESS4.0
+run     echo "--- is there a listing anywhere for it to read?"
+run     /dd/CMDS/ls /dd/DOC/game
+
+drive   argproc_demo
+why     its card is a single line: **** Stack Overflow ****.  Does it need a
+why     bigger stack, or is it broken?
+run     /dd/CMDS/argproc_demo
+run     echo "--- with the arguments its name implies:"
+run     /dd/CMDS/argproc_demo -a -b=2 file
