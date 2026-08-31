@@ -32,19 +32,40 @@ where they are means the program looks broken to anyone who just types
 `orbit`. I have documented the copy in `DOC/INDEX` and `tools/howto.psv` and
 shipped nothing new, because root clutter is an editorial call.
 
-**4. Should the catalogue be keyed by PATH rather than by name?** Nine
-program names exist in two directories and eight of those are DIFFERENT
-programs, not copies: `gcc` and `gpp` (GCC139 and GCC2 are different
-compilers), `gnuchess` (CMDS and CMDS/GAMES), and `arc`, `compress`,
-`kermit`, `screen` and `wish` (the shipped build and the REBUILT one). The
-guide is keyed by name throughout -- `DOC/INDEX`, `categories.psv`,
-`howto.psv` -- so whichever directory is walked last supplies the size, the
-usage text and the directory, and the other program is not in the guide at
-all. CLAUDE.md already says a checker over this collection must compare per
-FILE and not per name; the catalogue does not. Fixing it changes the guide's
-shape -- two `screen` cards, two `gcc` cards -- so it is your call, not a
-tidy-up. `gen_catalog.py` names the eight on every run so it cannot be
-forgotten.
+**4. Duplicate names -- MY RECOMMENDATION, waiting on your yes.** You are
+right that OS-9 is not geared for it, and I measured how badly:
+`/dd/CMDS/REBUILT/VI` fills the screen, but after `load /dd/CMDS/vi` that
+SAME PATH gives the other program's two-line behaviour. The resident module
+wins and nothing warns you. Ten names exist twice; eight share a module name
+too. `DOC/STATUS` has the table.
+
+What I recommend, in order:
+
+1. **Rename OURS, never the archive's.** The five in `CMDS/REBUILT` that
+   collide -- `arc`, `compress`, `kermit`, `screen`, `VI` -- are builds we
+   made. The archive binary has the historical claim to the plain name.
+   This is also the convention REBUILT already half-follows: `compress_4.0`,
+   `diff_1.1`, `sed_1.06`, `zoo_2.1`, `gtar` and `lharcs` all sit in that
+   same directory under distinguishing names. Only these five broke it.
+2. **Rename the MODULE with the file** -- `MODNAME=` in the recipe. A rename
+   that leaves both modules called `screen` is worse than doing nothing,
+   because the filenames would then promise a distinction that is not there.
+3. **`makeinfo` is not a rename job**: `CMDS/makeinfo` and
+   `CMDS/GCC139/makeinfo` are BYTE-IDENTICAL. Delete the GCC139 copy.
+4. **Leave `gcc` and `gpp` alone** (GCC139 vs GCC2). Both are archive
+   material, they live in directories you choose between, and their own
+   README refers to them by the plain name. Document that you must not have
+   both loaded -- renaming here costs more than it buys.
+5. **`gnuchess`** (CMDS vs GAMES) shares a module name and is a real hazard;
+   a game belongs in GAMES, so I would drop or rename the CMDS copy.
+   **`wish`** does NOT collide as a module (`wish` vs `B_wish`) -- filename
+   only, lowest priority.
+
+For the five in (1) I would use the suffix that already means "the trap-free
+build we made", following `vi_nocio`. `vi_nocio` is taken by PVic, so
+REBUILT/VI needs a different one -- say `vi_effo`, since that is what it is.
+**Say the word and I will do it**: rename, rebuild with `MODNAME=`, and fix
+every reference in INDEX, CATEGORIES, howto, the sheets and the recipes.
 
 Everything else below is a report, not a question. Nothing in it is waiting
 on you.
