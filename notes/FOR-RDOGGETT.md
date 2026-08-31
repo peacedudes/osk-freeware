@@ -64,11 +64,24 @@ program's stdout. The os9exec session is raising it with you separately. It
 cost this collection a program's reputation and me a night, which is probably
 the strongest argument for changing it.
 
-**What it means for the disk.** 353 modules link `cio`; 41 carry a branch to a
-`$41`/`$42` stub; 2 are confirmed to reach it (`cvtbase`, `logisim`). A
-program fails this way only if it runs a `putc`/`getc` MACRO on a `FILE` --
-`printf`, `fwrite` and `read`/`write` are all fine, which is why all 368
-starred binaries passed 272,000 bytes of stdin with zero floods.
+**What it means for the disk: THREE programs, and they are named.** 353
+modules link `cio`; 41 carry the call; all 41 have now been driven and
+**`cvtbase`, `logisim` and `unstr`** are the ones actually broken. Everything
+else does its job. A program fails this way only if it runs a `putc`/`getc`
+MACRO on a `FILE`; `printf`, `fwrite` and `read`/`write` are all fine.
+
+Two things I got wrong on the way, both now corrected in place, because they
+are the shape of mistake this collection keeps making:
+
+- **I published 2 and it was 3.** `unstr` prints usage when run bare and stays
+  silent on a three-line file. It only storms on the 192 KB fortune index it
+  is actually for. `DOC/INDEX` had said so all along.
+- **I nearly published 5.** A sweep flagged `etags` and `sedt` too. They make
+  perfectly ordinary requests -- 4 KB, 6 KB -- and simply run out of room.
+  Their `No more memory` lines are REAL allocation failures. They are
+  indistinguishable from the defect from outside only because os9exec
+  announces every failed allocation on the console; the message carries no
+  information at all. That is the argument for changing `memstuff.c:782`.
 
 ## ONE THING I SHIPPED THAT YOU MIGHT NOT WANT
 
