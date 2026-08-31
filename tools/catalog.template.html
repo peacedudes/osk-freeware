@@ -47,6 +47,15 @@
     border:1px solid var(--rule);background:var(--card);color:var(--dim);white-space:nowrap}
   .chip:hover{color:var(--ink)}
   .chip[aria-pressed="true"]{background:var(--soft);border-color:var(--accent);color:var(--ink)}
+  .toc{display:flex;flex-wrap:wrap;gap:6px;padding:14px 0 2px;
+       border-bottom:1px solid var(--hair);margin-bottom:4px}
+  .toc a{display:inline-flex;gap:6px;align-items:baseline;text-decoration:none;
+         font-size:12.5px;padding:5px 10px;border-radius:999px;
+         border:1px solid var(--rule);background:var(--card);color:var(--dim)}
+  .toc a:hover{color:var(--ink);border-color:var(--accent)}
+  .toc a .n{font-family:var(--mono);font-size:11px;color:var(--faint);
+            font-variant-numeric:tabular-nums}
+  .toc.hide{display:none}
   .barlabel{font-family:var(--mono);font-size:11px;letter-spacing:.12em;
             text-transform:uppercase;color:var(--faint)}
   .seg{display:inline-flex;gap:0}
@@ -175,7 +184,10 @@
   <span class="tally" id="tally"></span>
 </div></div>
 
-<main class="wrap"><div class="cats" id="cats"></div></main>
+<main class="wrap">
+  <nav class="toc" id="toc" aria-label="Categories"></nav>
+  <div class="cats" id="cats"></div>
+</main>
 
 <div class="sheet" id="sheet" role="dialog" aria-modal="true" aria-labelledby="pn">
   <div class="panel" id="panel"></div>
@@ -212,6 +224,7 @@
 const DATA = __DATA__;
 const BLURB = __BLURB__;
 const ORDER = __ORDER__;
+const slug = s => String(s).toLowerCase().replace(/[^a-z0-9]+/g,"-").replace(/^-|-$/g,"");
 const esc = s => String(s==null?"":s).replace(/&/g,"&amp;").replace(/</g,"&lt;").replace(/>/g,"&gt;");
 const kb = n => n>=1024 ? Math.round(n/1024)+"K" : n+"B";
 const st = {q:"", nocio:false, src:false, doc:false, shot:false, open:false, az:false};
@@ -259,19 +272,27 @@ function render(){
   const hits=DATA.filter(ok);
   document.getElementById("tally").textContent =
     hits.length===DATA.length ? DATA.length+" programs" : hits.length+" of "+DATA.length;
+  const toc=document.getElementById("toc");
   if(st.az){
+    toc.className="toc hide"; toc.innerHTML="";
     document.getElementById("cats").innerHTML =
       renderAZ(hits).join("") || `<p class="empty">Nothing matches that.</p>`;
     return;
   }
+  toc.className="toc";
   const by={};
   for(const p of hits){ (by[p.cat] ||= {}); (by[p.cat][p.sub] ||= []).push(p); }
   const open = st.open || st.q.length>0;
   const out=[];
+  toc.innerHTML = ORDER.filter(c=>by[c]).map(c=>{
+    const n=Object.values(by[c]).reduce((a,b)=>a+b.length,0);
+    return `<a href="#cat-${slug(c)}">${esc(c)}<span class="n">${n}</span></a>`;
+  }).join("");
   for(const cat of ORDER){
     const subs=by[cat]; if(!subs) continue;
     const total=Object.values(subs).reduce((a,b)=>a+b.length,0);
-    out.push(`<details class="cat"${open?" open":""}><summary><div class="ct">${esc(cat)}`+
+    out.push(`<details class="cat" id="cat-${slug(cat)}"${open?" open":""}>`+
+      `<summary><div class="ct">${esc(cat)}`+
       `<span class="n">${total}</span><span class="cv">&#9656;</span></div>`+
       `<p class="blurb">${esc(BLURB[cat]||"")}</p></summary>`);
     const names=Object.keys(subs).sort((a,b)=>a.localeCompare(b));
@@ -415,6 +436,12 @@ document.getElementById("cats").addEventListener("keydown",e=>{
   else if(e.key===" "){ e.preventDefault();
     const pb=li.querySelector("button.pick"); if(pb) pb.click(); } });
 document.getElementById("q").addEventListener("input",e=>{st.q=e.target.value;render();});
+document.getElementById("toc").addEventListener("click", ev => {
+  const a = ev.target.closest("a[href^='#cat-']");
+  if(!a) return;
+  const d = document.getElementById(a.getAttribute("href").slice(1));
+  if(d) d.open = true;
+});
 for(const [id,v] of [["f-cat",false],["f-az",true]]){
   document.getElementById(id).onclick=()=>{
     st.az=v;
