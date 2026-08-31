@@ -1,0 +1,1 @@
+# .ELM/aliases.text -- YOUR OWN aliases, read from $HOME.## Same format as the system file: name = Full Name = address.  Yours are# searched first, so an alias here hides one of the same name in# /dd/USR/LIB/ELM/aliases.text.## Compile them with `newalias'; check one with `checkalias <name>'.home = This Collection = os9-freewareself = Me = tester

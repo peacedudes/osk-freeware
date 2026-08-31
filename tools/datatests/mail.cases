@@ -1,0 +1,93 @@
+family  mail
+# Elm and the UUCP mail helpers, against the folder that ships at
+# /dd/SPOOL/MAIL/tester.
+#
+# Two of these assert a DEFECT rather than a success, and they are the most
+# useful cases in the file: `frm' and `subscribe' do not do what their
+# DOC/INDEX lines said, and the entries now say what they do instead. A case
+# that pins a known defect is what stops the entry being "corrected" back to
+# the hopeful version by the next person who reads the manual instead of
+# running the program.
+#
+# The alias files this needs -- /dd/.ELM/aliases.text and
+# /dd/USR/LIB/ELM/aliases.text -- ship with the collection as of 2026-08-31.
+# Before that newalias, listalias and checkalias had nothing to read and the
+# gallery card for the Elm suite was a photograph of "Couldn't open
+# /dd/.ELM/aliases.text for input!".
+
+setup   M=/dd/SPOOL/MAIL/tester
+setup   export MAIL=$M
+setup   export TERM=vt100
+setup   export TERMCAP=/dd/SYS/termcap
+# HOME is what tells Elm where the personal alias file is. Without it
+# newalias looked for `/.ELM/aliases.text' and this file's first draft
+# tested nothing but that omission.
+setup   export HOME=/dd
+
+case    messages-counts-what-is-in-the-folder
+run     /dd/CMDS/ELM/messages
+expect  There is 1 message
+
+case    readmsg-prints-a-message-by-number
+run     /dd/CMDS/ELM/readmsg 1
+expect  Subject: Welcome -- this is a real mail folder
+expect  Elm reads mail from a folder
+
+case    readmsg-finds-a-message-by-pattern
+run     /dd/CMDS/ELM/readmsg -f $M Welcome
+expect  From: The OS-9 Freeware Collection
+
+# KNOWN DEFECT, measured 2026-08-31. frm opens the folder -- it names the
+# user rather than reporting that it could not -- and then counts no
+# messages in it, where `messages' counts one and `readmsg' prints it. It
+# says the same for -s new, -s old and a folder named on the command line.
+case    frm-sees-no-messages-in-a-folder-that-has-one
+run     /dd/CMDS/ELM/frm
+expect  tester has no mail
+absent  Welcome
+
+case    lcasep-lower-cases-an-address
+run     echo "Some.Body@Example.COM" > /dd/tmp/name.txt
+run     /dd/CMDS/UUCP/lcasep -f /dd/tmp/name.txt
+expect  some.body@example.com
+
+case    pwparse-lists-the-accounts-in-the-password-file
+run     /dd/CMDS/UUCP/pwparse /dd/SYS/password
+expect  tester
+expect  uucp
+
+case    listalias-reads-the-alias-tables-newalias-built
+run     /dd/CMDS/ELM/newalias
+run     /dd/CMDS/ELM/newalias -g
+run     /dd/CMDS/ELM/listalias
+expect  home                 os9-freeware (This Collection)
+expect  postmaster           tester (The Postmaster)
+
+# The alias machinery WORKS, and this is the case that says so: two personal
+# aliases, six system ones, and listalias reading both tables back.
+#
+# One thing seen and not reproduced, recorded so nobody re-discovers it as a
+# surprise: under `tools/drive.py' -- the same image, the same commands, but
+# a session that had run nothing else first -- newalias answered "** Error
+# writing alias '<the first one>'" and "** Not saving tables!" three times
+# out of three, on the personal file and on the system one, while still
+# leaving usable tables behind. Under this harness, where other Elm commands
+# have run first in the same session, it has never failed. If you meet the
+# error, run newalias a second time: the second run has always worked.
+case    newalias-compiles-both-alias-files
+run     /dd/CMDS/ELM/newalias
+run     /dd/CMDS/ELM/newalias -g
+expect  processed 2 aliases
+expect  processed 6 aliases
+
+# KNOWN DEFECT. subscribe and unsubscribe leave .newsrc exactly as they
+# found it -- the group is neither added nor removed.
+case    subscribe-does-not-change-newsrc
+run     /dd/CMDS/UUCP/subscribe comp.lang.c
+run     /dd/CMDS/cat /dd/.newsrc
+expect  comp.os.os9
+absent  comp.lang.c
+
+case    the-news-and-mail-commands-reject-input-that-is-not-theirs
+run     /dd/CMDS/NEWS/bdecode /dd/SYS/motd
+expect  Missing header

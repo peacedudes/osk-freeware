@@ -1,0 +1,58 @@
+family  printing
+# The two spooler families, the page filters and the error printer.
+#
+# Nothing here can actually print: there is no printer device under os9exec.
+# What CAN be asserted is that each program starts, finds (or honestly fails
+# to find) its queue, and produces the output it is for. Three of these had
+# no card and no test at all before 2026-08-31.
+#
+# There are two separate spoolers on this disk and they do not share a queue:
+# lp/lpq/lprm/lpsched/lpshut want a `spoolqueue' data module, and the SPL set
+# (splman, splprt, splstat, prjob) has its own under /dd/SPL.
+
+setup   export TERM=vt100
+setup   export TERMCAP=/dd/SYS/termcap
+
+# The whole point of these three is that they say so rather than dying, and
+# each says it in its own words.
+case    the-lp-spooler-says-plainly-that-it-is-not-running
+run     /dd/CMDS/lpq
+run     /dd/CMDS/lpshut
+run     /dd/CMDS/lprm -
+expect  lpq: no spooler installed
+expect  lpshut: no spooler active
+expect  lprm: can't link to 'spoolqueue'
+
+case    the-spl-spooler-says-so-too
+run     /dd/CMDS/prjob
+expect  prjob: Spooler not installed
+
+# perr is an error-message printer, so error text IS its output -- the one
+# card in the gallery whose every line reads like a failure and is not.
+case    perr-prints-the-text-of-an-os9-error-number
+run     /dd/CMDS/perr 216
+run     /dd/CMDS/perr 1 2 3
+expect  Error #000:216 (E_PNNF) Path Name Not Found
+expect  Error #000:001 (S_Wake) wake
+expect  Error #000:003 (S_Intrpt) User interrupt
+
+case    perr-answers-none-for-something-that-is-not-a-number
+run     /dd/CMDS/perr notanumber
+expect  Error #000:000 (<none>)
+
+# lwf had no usage line, no card, no test and a one-line index entry. It is
+# an ASCII-to-PostScript filter and it writes a complete document.
+case    lwf-writes-postscript
+run     /dd/CMDS/lwf < /dd/SYS/motd > /dd/tmp/lwf.ps
+run     /dd/CMDS/head -n 8 /dd/tmp/lwf.ps
+expect  %!PS-Adobe-2.0
+expect  %%DocumentFonts: Courier
+expect  ASCII to PostScript filter
+
+case    lwf-put-the-text-into-the-document
+run     /dd/CMDS/grep -c Welcome /dd/tmp/lwf.ps
+absent  0
+
+case    ghostscript-3.33-starts-and-names-its-version
+run     /dd/CMDS/gs33 -v
+expect  Aladdin Ghostscript 3.33

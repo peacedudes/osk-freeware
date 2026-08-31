@@ -1,0 +1,104 @@
+# mail2 -- does the Elm alias machinery work now that the two alias files
+# ship, and what is really wrong with the handful that answered oddly?
+#
+# Paths, read out of the binaries rather than guessed:
+#   newalias    /dd/USR/LIB/ELM/aliases.text -> aliases{,.dir,.pag}
+#               $HOME/.ELM/aliases.text      -> the same, personal
+#   listalias   reads those, and pipes through `egrep'
+#   arepdaemon  /dd/USR/LIB/ELM/autoreply.data
+#   subscribe   $HOME/.newsrc
+#   uulog       /DD/LOG/uulog
+
+family  mail2
+
+setup   M=/dd/SPOOL/MAIL/tester
+setup   export MAIL=$M
+
+drive   newalias
+why     both alias files now ship.  Does it compile them?
+run     /dd/CMDS/ELM/newalias
+run     echo "--- what it produced, system side:"
+run     /dd/CMDS/ls /dd/USR/LIB/ELM
+run     echo "--- and personal side:"
+run     /dd/CMDS/ls /dd/.ELM
+
+drive   checkalias
+why     "check an alias resolves before you rely on it"
+run     echo "--- a system alias:"
+run     /dd/CMDS/ELM/checkalias os9
+run     echo "--- a personal one:"
+run     /dd/CMDS/ELM/checkalias home
+run     echo "--- one that is not there:"
+run     /dd/CMDS/ELM/checkalias nobodyatall
+run     echo "--- end checkalias"
+
+drive   listalias
+why     it wants a pipe to `egrep', which is not on this disk.  Does the
+why     plain form work, and is `ggrep -E' the answer for the -u form?
+run     /dd/CMDS/ELM/listalias
+run     echo "--- system aliases only:"
+run     /dd/CMDS/ELM/listalias -s
+run     echo "--- user aliases only (this is the one that wants egrep):"
+run     /dd/CMDS/ELM/listalias -u
+
+drive   frm
+why     `messages' finds one message where `frm' says there is none.  Is frm
+why     asking about NEW mail rather than about mail?
+run     echo "--- frm on the folder as it ships:"
+run     /dd/CMDS/ELM/frm
+run     echo "--- now append to the folder and ask again:"
+run     /dd/CMDS/cat /dd/SPOOL/MAIL/tester > /dd/tmp/mbox.keep
+run     /dd/CMDS/cat /dd/tmp/mbox.keep /dd/tmp/mbox.keep > /dd/SPOOL/MAIL/tester
+run     /dd/CMDS/ELM/frm
+run     /dd/CMDS/ELM/messages
+run     echo "--- and frm -n, if it has one:"
+run     /dd/CMDS/ELM/frm -?
+
+drive   printmail
+why     silent with -r.  What does it do plainly?
+run     /dd/CMDS/ELM/printmail 1
+run     echo "--- with the folder named:"
+run     /dd/CMDS/ELM/printmail -r $M 1
+run     echo "--- end printmail"
+
+drive   subscribe
+why     .newsrc now ships.  Does subscribe edit it?
+run     /dd/CMDS/cat /dd/.newsrc
+run     echo "--- subscribe to a new group:"
+run     /dd/CMDS/UUCP/subscribe comp.lang.c
+run     /dd/CMDS/cat /dd/.newsrc
+run     echo "--- and unsubscribe from it:"
+run     /dd/CMDS/UUCP/unsubscribe comp.lang.c
+run     /dd/CMDS/cat /dd/.newsrc
+
+drive   nptx
+why     "format error" on a comma list.  What input does it want?  It is the
+why     smail helper that turns a name list into permuted index entries.
+run     echo "--- one address per line:"
+run     printf 'a@b\rc@d\r' > /dd/tmp/l1.txt
+run     /dd/CMDS/UUCP/nptx < /dd/tmp/l1.txt
+run     echo "--- a full name:"
+run     printf 'John Q Public\r' > /dd/tmp/l2.txt
+run     /dd/CMDS/UUCP/nptx < /dd/tmp/l2.txt
+run     echo "--- end nptx"
+
+drive   fixtext
+why     it left a CR-only file alone, which may be correct.  Give it one with
+why     DOS line endings and see whether it repairs them.
+run     /dd/CMDS/autolf -c -C -L < /dd/SYS/motd > /dd/tmp/crlf.txt
+run     /dd/CMDS/wc -c /dd/SYS/motd /dd/tmp/crlf.txt
+run     /dd/CMDS/UUCP/fixtext /dd/tmp/crlf.txt /dd/tmp/fixed.txt
+run     /dd/CMDS/wc -c /dd/tmp/fixed.txt
+run     /dd/CMDS/dump /dd/tmp/fixed.txt
+
+drive   disktest
+why     silent when run bare.  Its usage says [<opt>] -- what are they?
+run     /dd/CMDS/disktest -?
+run     echo "--- against a device:"
+run     /dd/CMDS/disktest /dd
+run     echo "--- end disktest"
+
+drive   uulog
+why     it wants /DD/LOG/uulog and the directory ships empty and says why.
+run     /dd/CMDS/UUCP/uulog
+run     /dd/CMDS/UUCP/uulog -f

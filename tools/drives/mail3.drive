@@ -1,0 +1,52 @@
+# mail3 -- the alias machinery, once more, with the system file compiled and
+# a .newsrc in the format the news commands actually parse.
+#
+# The first .newsrc shipped here carried explanatory comments. `.newsrc' has
+# no comment syntax: `subscribe' read every comment line as a group name and
+# rewrote the file with all of them duplicated. The explanation belongs in
+# DOC, not in the file.
+
+family  mail3
+
+drive   newalias-system
+why     newalias updated only the PERSONAL file.  Elm's has a -g for global.
+run     /dd/CMDS/ELM/newalias -g
+run     echo "--- what is in the system directory now:"
+run     /dd/CMDS/ls /dd/USR/LIB/ELM
+run     echo "--- and listalias, which needs it:"
+run     /dd/CMDS/ELM/listalias
+
+drive   newalias-personal-error
+why     it reported "** Error writing alias 'home'" and yet wrote the tables
+why     and listalias reads them.  Does the error repeat, and on which alias?
+run     /dd/CMDS/ELM/newalias
+run     echo "--- end newalias"
+
+drive   checkalias
+why     silent for a good alias AND for a bad one.  Does it answer anything?
+run     echo "--- good:"
+run     /dd/CMDS/ELM/checkalias home
+run     echo "--- bad:"
+run     /dd/CMDS/ELM/checkalias nosuchalias
+run     echo "--- several at once:"
+run     /dd/CMDS/ELM/checkalias home self nosuchalias
+run     echo "--- end checkalias"
+
+drive   subscribe
+why     with a .newsrc in the real format this time
+run     /dd/CMDS/cat /dd/.newsrc
+run     echo "--- subscribe comp.lang.c:"
+run     /dd/CMDS/UUCP/subscribe comp.lang.c
+run     /dd/CMDS/cat /dd/.newsrc
+run     echo "--- unsubscribe it again:"
+run     /dd/CMDS/UUCP/unsubscribe comp.lang.c
+run     /dd/CMDS/cat /dd/.newsrc
+run     echo "--- end subscribe"
+
+drive   frm
+why     frm counts zero messages in a folder that `messages' and `readmsg'
+why     both parse.  Try its own -s selector and a folder given by name.
+run     /dd/CMDS/ELM/frm -s new
+run     /dd/CMDS/ELM/frm -s old
+run     /dd/CMDS/ELM/frm -v /dd/SPOOL/MAIL/tester
+run     echo "--- end frm"

@@ -1,0 +1,108 @@
+# printing -- the two spooler families and the page formatters.
+#
+# There are TWO spoolers on this disk and they are not the same system:
+#
+#   lp, lpq, lprm, lpsched, lpshut   look for a `spoolqueue' data module and
+#                                    a queue under /dd/SPOOL
+#   splman, splprt, splstat, prjob   the SPL set, whose queue is /dd/SPL
+#
+# Neither can print here -- there is no printer device under os9exec -- so
+# the question each stanza asks is narrower and answerable: does it start,
+# does it find its queue, and does it say something a user can act on?
+
+family  printing
+
+drive   lpq
+why     "shows spoolerqueue" -- with no spooler running, what does it say?
+run     /dd/CMDS/lpq
+run     echo "--- with a device named:"
+run     /dd/CMDS/lpq -p=/dd
+run     echo "--- end lpq"
+
+drive   lpshut
+run     /dd/CMDS/lpshut
+
+drive   lprm
+run     /dd/CMDS/lprm -
+run     echo "--- end lprm"
+
+drive   lp
+why     it has a card already; check what it does with a real file
+run     /dd/CMDS/lp -?
+
+drive   splstat
+why     the SPL spooler's status command.  /dd/SPL ships with a README and
+why     an empty queue file called splq.
+run     /dd/CMDS/splstat
+run     echo "--- end splstat"
+
+drive   splman
+run     /dd/CMDS/splman
+run     echo "--- end splman"
+
+drive   splprt
+run     /dd/CMDS/splprt
+run     echo "--- end splprt"
+
+drive   prjob
+run     /dd/CMDS/prjob
+run     echo "--- end prjob"
+
+drive   alps
+why     "Syntax: alps [<opts>] >/<device>" -- an Atari-Laser page driver.
+why     Give it a text file and send its output to a file, not a device.
+run     /dd/CMDS/alps /dd/SYS/motd > /dd/tmp/alps.out
+run     /dd/CMDS/wc -c /dd/tmp/alps.out
+run     /dd/CMDS/alps -?
+
+drive   lmargin
+why     its usage line says `epson' -- it is an Epson printer control, and
+why     what it emits should be a short escape sequence, not text.
+run     /dd/CMDS/lmargin 10 > /dd/tmp/lm.out
+run     /dd/CMDS/wc -c /dd/tmp/lm.out
+run     /dd/CMDS/dump /dd/tmp/lm.out
+
+drive   lwf
+why     no usage line at all in the binary.  What is it?
+run     /dd/CMDS/lwf
+run     echo "--- end lwf"
+
+drive   perr
+why     its card is four error messages, which IS its output -- it prints the
+why     text of an OS-9 error number.  Check the range and a bad argument.
+run     /dd/CMDS/perr 216
+run     /dd/CMDS/perr 1 2 3
+run     /dd/CMDS/perr notanumber
+run     echo "--- end perr"
+
+drive   gs33
+why     Ghostscript 3.3 beside the 4.03 that has a card.  Does it start?
+run     /dd/CMDS/gs33 -v
+run     echo "--- end gs33"
+
+drive   adltouch
+why     "refresh a compiled world" -- adlcomp writes /dd/tmp/tiny, so give it
+why     that, and check the file changes.
+run     /dd/CMDS/ADL/adlcomp /dd/ADL/DEMOS/tiny.adl -o /dd/tmp/tiny -i/dd/ADL
+run     /dd/CMDS/ls /dd/tmp/tiny
+run     /dd/CMDS/ADL/adltouch /dd/tmp/tiny 1
+run     /dd/CMDS/ls /dd/tmp/tiny
+
+drive   adldebug
+why     "play with the debugger attached" -- it wants a compiled dungeon
+run     /dd/CMDS/ADL/adldebug /dd/tmp/tiny
+
+drive   wam.sbprolog
+why     the SB-Prolog WAM engine.  DOC/sbprolog says where its .pil files are.
+run     /dd/CMDS/ls /dd/SBPROLOG/MODLIB
+run     echo "--- and the engine, with one:"
+run     /dd/CMDS/wam.sbprolog /dd/SBPROLOG/MODLIB/warplt.pil
+
+drive   lua
+why     recorded as stopping with the csl edition mismatch.  Confirm it.
+run     /dd/CMDS/lua
+run     echo "--- end lua"
+
+drive   runc
+run     /dd/CMDS/runc
+run     echo "--- end runc"
