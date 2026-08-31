@@ -1,8 +1,9 @@
-$ pbyte
-pbyte: incomplete command line
-Syntax: pbyte <path> <hex_offset> <hex_byte> [<hex_byte>]
-Function: patch bytes on a path
-Options: none
-
-$ chbase
-chbase:  Error options !!!
+$ cat /dd/SYS/motd > /dd/tmp/pb
+$ cat /dd/tmp/pb
+Welcome to os9exec -- OS-9/68k emulator
+$ pbyte /dd/tmp/pb 0 41 42 43
+$ cat /dd/tmp/pb
+ABCcome to os9exec -- OS-9/68k emulator
+$ rm -f /dd/tmp/pb
+$ chbase 255 10 16
+255 [10] = FF [16]

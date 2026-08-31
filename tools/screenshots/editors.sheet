@@ -53,12 +53,22 @@ kill
 shot    pbyte
 for     pbyte chbase
 cap     pbyte patches bytes in a file at a hex offset -- the smallest
-cap     binary editor here.  `chbase' beside it is NOT a module-base
-cap     changer whatever DOC/INDEX said: it converts a NUMBER from one
-cap     base to another, which its own banner spells out.
-run     pbyte
-wait    8
-run     chbase
+cap     binary editor here.  Three bytes at offset 0 turn `Wel' into
+cap     `ABC'.  `chbase' beside it is NOT a module-base changer whatever
+cap     DOC/INDEX said: it converts a NUMBER from one base to another.
+cap     Both used to be photographed with no arguments, which showed
+cap     their usage lines and nothing either program can do.
+run     cat /dd/SYS/motd > /dd/tmp/pb
+wait    5
+run     cat /dd/tmp/pb
+wait    5
+run     pbyte /dd/tmp/pb 0 41 42 43
+wait    6
+run     cat /dd/tmp/pb
+wait    5
+run     rm -f /dd/tmp/pb
+wait    4
+run     chbase 255 10 16
 wait    8
 
 shot    sed
