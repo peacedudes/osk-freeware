@@ -148,8 +148,10 @@ index it is actually for, it storms -- and the heap-shift test confirms it:
 floods since before this investigation started; the first two invocations
 would have been written up as contradicting that.
 
-So "driven with real input" has to mean input of the SHAPE AND SIZE the
-program is for. Some input is not enough.
+**Real input has to mean input of the shape and size the program is for.**
+`unstr` on a three-line file and `unstr` on the 192 KB fortune index are
+different tests, and only one of them is the program's job. Some input is not
+enough.
 
 ## A single `No more memory` line is NOT this defect
 
@@ -170,9 +172,30 @@ memory pressure indistinguishable from an ABI fault.
 
 **The test is the repeated address-shaped request, never the message.**
 
-One oddity left open: `liborder` makes three calls, one of them for
-**2,284,850,400 bytes**. Once, not hundreds of times, so it is not the storm --
-but nothing legitimately asks for two gigabytes, and it is worth a look.
+`liborder`'s single two-gigabyte request looked like a candidate and is NOT
+this defect -- it is garbage-in. Given a file that is not an OS-9 library it
+reads a length out of what it assumes is a ROF header and trusts it, so the
+"size" tracks the FILE CONTENT rather than the heap:
+
+    liborder <non-library>                  $88300CE0
+    the same file, 64 bytes of env padding  $88300CE0   unchanged
+    liborder /dd/LIB/alib.l                 $1000       and it works
+
+Give it a real library and it asks for 4096 bytes and does its job; its
+`_filbuf` site is never reached. It wants an entry saying "give it a library",
+not an emulator note.
+
+## The cheap discriminator: pad the environment
+
+Loading three modules to move the heap works but needs a shell. Padding the
+environment does the same to one process in one run -- the parameter area
+grows and the process data base moves with it:
+
+    env -i OS9DISK=<disk> "@Z=<64 bytes>" os9exec -r -d1 0x0042 <prog> ...
+
+Validated so it can fail: `cvtbase` moves `$48A20` -> `$48A60`, exactly the 64
+bytes added, while `liborder` does not move at all. Two runs, one number, no
+trace-reading beyond that. **An address moves; a size does not.**
 
 Of the 38: 31 were run here with file arguments taken from their usage lines
 (`chksum`, `snap`, `spiff`, `unifdef`, `diff`, `nroff`, `ape`, `xrf`, `etags`,
