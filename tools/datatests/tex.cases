@@ -1,0 +1,143 @@
+family  tex
+# The TeX family: 33 programs, of which six had ever been driven.
+#
+# Everything here hangs off one artefact -- a real .dvi -- and getting one
+# took finding two things out:
+#
+#   * `tex' and `latex' ARE BROKEN, and they are the two everybody types.
+#     Each is a one-line wrapper that asks a shell to run `virtex "&plain"'
+#     or `virtex "&lplain"'; the quoted format name is never unquoted, so
+#     the shell gets one long path name and answers E$PNNF. Call `virtex'
+#     with the format yourself and the whole system works.
+#   * SAMPLES/small.tex is a LaTeX document and SAMPLES/story.tex is plain
+#     TeX with no \end. Running the wrong engine on the first gives
+#     "! Undefined control sequence \documentstyle"; running the second
+#     leaves TeX at its `*' prompt with a stub .dvi that every DVI driver
+#     then rejects -- which reads as ten broken drivers and is one bad file.
+#
+# THERE ARE NO FONT BITMAPS on this disk (FONTS/PK300 and PK144 hold a
+# Makefile each), so the drivers run, write their output and report zero-size
+# characters. That is asserted below rather than hidden: it is what a user
+# will see, and the day somebody generates the fonts these cases will fail
+# and want updating, which is the right way round.
+
+setup   T=/dd/CMDS/TEXCMDS
+setup   S=/dd/SYS/TEX
+setup   /dd/CMDS/rm /dd/small.dvi /dd/small.log /dd/small.aux
+
+case    latex-typesets-a-document-through-virtex
+run     $T/virtex '&lplain' $S/SAMPLES/small.tex
+expect  LaTeX Version 2.09
+expect  Document Style `article'
+expect  Output written on small.dvi (1 page, 1704 bytes)
+
+case    the-dvi-is-1704-bytes
+run     /dd/CMDS/wc -c /dd/small.dvi
+expect  1704 /dd/small.dvi
+
+case    dvitype-reads-the-dvi-back-and-names-its-fonts
+run     echo 0 > /dd/tmp/dt.in
+run     $T/dvitype /dd/small.dvi < /dd/tmp/dt.in
+expect  This is DVItype, C Version 3.4
+expect  numerator/denominator=25400000/473628672
+expect  beginning of page 1
+expect  Font 25: cmr10
+expect  totalpages=1
+
+case    plain-tex-rejects-a-latex-document-and-says-which-line
+run     $T/virtex '&plain' $S/SAMPLES/small.tex < /nil
+expect  ! Undefined control sequence
+expect  l.10 \documentstyle
+
+# The wrapper. Pinned as a defect so the DOC/INDEX entry telling people to
+# call virtex directly cannot be quietly "corrected" back.
+# WITHOUT $SHELL the wrapper says NOTHING AT ALL and returns 221 -- the
+# silent form, and the one a user meets, because SYS/login does not set
+# SHELL. With SHELL set it gets as far as handing the shell its command line
+# and the failure finally names itself. Both halves are asserted: a case that
+# only tested the loud form would pass while the quiet one went unnoticed.
+case    the-tex-wrapper-is-silent-with-no-SHELL-set
+run     $T/tex $S/SAMPLES/story.tex > /dd/tmp/w.out 2>/dd/tmp/w.err
+run     /dd/CMDS/wc -c /dd/tmp/w.out /dd/tmp/w.err
+expect  0 /dd/tmp/w.out
+expect  0 /dd/tmp/w.err
+
+case    and-with-SHELL-set-it-names-the-command-it-could-not-run
+run     export SHELL=/dd/CMDS/bash
+run     $T/tex $S/SAMPLES/story.tex
+expect  virtex "&plain" /dd/SYS/TEX/SAMPLES/story.tex
+expect  (E$PNNF)
+
+case    dvialw-writes-postscript-and-reports-the-missing-bitmaps
+run     /dd/CMDS/rm /dd/small.dvi_alw
+run     $T/dvialw /dd/small.dvi
+run     /dd/CMDS/wc -c /dd/small.dvi_alw
+expect  [PostScript [Apple LaserWriter laser printer]]
+expect  [1 pages]
+expect  could not be opened; 0 font files are open
+expect  Proceeding with zero size characters
+expect  2705 /dd/small.dvi_alw
+
+case    the-other-nine-drivers-each-read-it-and-write-their-own-file
+run     /dd/CMDS/rm /dd/small.dvi_jet /dd/small.dvi_lj2 /dd/small.dvi_tos
+run     $T/dvijet /dd/small.dvi
+run     $T/dvilj2 /dd/small.dvi
+run     $T/dvitos /dd/small.dvi
+run     /dd/CMDS/ls /dd/small.dvi_jet /dd/small.dvi_lj2 /dd/small.dvi_tos
+expect  [Hewlett-Packard 2686A Laser Jet laser printer]
+expect  [Hewlett-Packard LaserJet II laser printer]
+expect  /dd/small.dvi_jet
+expect  /dd/small.dvi_lj2
+expect  /dd/small.dvi_tos
+
+case    tftopl-turns-a-font-metric-into-a-readable-property-list
+run     $T/tftopl $S/FONTS/TFM/cmr10.tfm /dd/tmp/cmr10.pl
+run     /dd/CMDS/wc -l /dd/tmp/cmr10.pl
+run     /dd/CMDS/head -n 4 /dd/tmp/cmr10.pl
+expect  980 /dd/tmp/cmr10.pl
+expect  (FAMILY CMR)
+expect  (CODINGSCHEME TEX TEXT)
+expect  (DESIGNSIZE R 10.0)
+
+case    pltotf-turns-it-back-into-a-metric-of-the-same-size
+run     $T/pltotf /dd/tmp/cmr10.pl /dd/tmp/cmr10.tfm
+run     /dd/CMDS/wc -c $S/FONTS/TFM/cmr10.tfm /dd/tmp/cmr10.tfm
+expect  1296 /dd/SYS/TEX/FONTS/TFM/cmr10.tfm
+expect  1296 /dd/tmp/cmr10.tfm
+
+# NO BITMAPS, and the font tools say so plainly rather than dying.
+case    the-pk-directories-are-empty-and-the-font-tools-report-it
+run     /dd/CMDS/ls $S/FONTS/PK300
+run     $T/pktype $S/FONTS/PK300/cmr10.300pk
+run     $T/pktogf $S/FONTS/PK300/cmr10.300pk /dd/tmp/x.gf
+expect  Makefile
+expect  This is PKtype, C Version 2.3
+expect  PK file not found
+
+case    afm2tfm-vftovp-and-vptovf-answer-with-their-usage
+run     $T/afm2tfm
+run     $T/vftovp
+run     $T/vptovf
+expect  afm2tfm 7.0, Copyright 1990-92 by Radical Eye Software
+expect  Usage: <vfm file> <tfm file> <vpl file>.
+expect  Usage: vptovf <vpl file> <vfm file> <tfm file>.
+
+case    weave-and-tangle-answer-with-their-usage
+run     $T/weave
+run     $T/tangle
+expect  Usage: weave webfile[.web] [changefile[.ch]] [-x].
+expect  Usage: tangle webfile[.web] [changefile[.ch]].
+
+# KNOWN DEFECT. dvips wants its PostScript header files and none is here.
+case    dvips-cannot-find-its-header-files
+run     $T/dvips -o /dd/tmp/x.ps /dd/small.dvi
+expect  This is dvipsk 5.495b
+expect  Couldn't find header file tex.pro
+
+# KNOWN DEFECT. texidx floods the memory-request failure this collection
+# knows well and then gives up.
+case    texidx-runs-out-of-memory-on-any-input
+run     echo "\indexentry{alpha}{1}" > /dd/tmp/t.idx
+run     $T/texidx /dd/tmp/t.idx
+expect  No more memory !!!
+expect  virtual memory exhausted

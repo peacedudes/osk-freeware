@@ -1,0 +1,85 @@
+family  bench
+# The benchmarks: eleven Dhrystone builds, two floating-point loops, and one
+# program that turned out not to be a benchmark at all.
+#
+# THE DHRYSTONES READ A RUN COUNT FROM STANDARD INPUT and say so. Run bare
+# they print two lines and wait, which is how eleven working programs came to
+# be filed as never driven. The point of shipping eleven builds of one source
+# is the comparison between compilers, and the comparison needs the count.
+#
+# What each build DOES assert about itself is its own answer sheet: Dhrystone
+# 2.0 prints every global it touched next to the value it should have. That
+# is a real correctness check on the compiler that built it, and it is what
+# these cases key on -- not the rate, which under os9exec measures the host.
+
+setup   D=/dd/CMDS/DHRY
+setup   echo 20000 > /dd/tmp/runs
+
+case    the-microware-cc-build-runs-and-its-answers-are-right
+run     $D/dhryO2 < /dd/tmp/runs
+expect  Dhrystone Benchmark, Version 2.0 (Language: C)
+expect  Execution starts, 20000 runs through Dhrystone
+expect  Arr_2_Glob[8][7]:    20010
+expect  Str_1_Loc:           DHRYSTONE PROGRAM, 1'ST STRING
+
+case    both-gcc-1-builds-agree-with-it
+run     $D/dhryGcc < /dd/tmp/runs
+run     $D/dhryGcco2 < /dd/tmp/runs
+expect  Arr_2_Glob[8][7]:    20010
+expect  Int_3_Loc:           7
+
+case    both-gcc-2-builds-agree-with-it
+run     $D/dhryGcc2 < /dd/tmp/runs
+run     $D/dhryGcc2o2 < /dd/tmp/runs
+expect  Arr_2_Glob[8][7]:    20010
+expect  Enum_Loc:            1
+
+case    the-inlined-and-mixed-builds-agree-with-it
+run     $D/dhryGccin < /dd/tmp/runs
+run     $D/dhryGccmx < /dd/tmp/runs
+run     $D/dhryGcc2in < /dd/tmp/runs
+run     $D/dhryGcc2mx < /dd/tmp/runs
+expect  Arr_2_Glob[8][7]:    20010
+expect  Int_Comp:          17
+
+case    the-shamus-builds-agree-with-it
+run     $D/dhryshamu < /dd/tmp/runs
+run     $D/dhryshamu2 < /dd/tmp/runs
+expect  Arr_2_Glob[8][7]:    20010
+expect  Bool_Glob:           1
+
+# os9exec runs 20000 Dhrystones inside one tick of a one-second clock, so
+# every build ends with this rather than a rate. It is the emulator, not the
+# programs, and it is worth pinning: a rate here would be a measurement of
+# the host anyway.
+case    twenty-thousand-runs-is-too-fast-to-time-under-os9exec
+run     $D/dhryO2 < /dd/tmp/runs
+expect  Measured time too small to obtain meaningful results
+expect  Please increase number of runs
+
+case    float-and-savage-are-the-floating-point-benchmarks
+run     /dd/CMDS/float
+run     /dd/CMDS/savage
+expect  7000 loops done
+expect  a = 7.48642602602958e+02
+expect  1000 loops done
+
+# NOT a benchmark. DOC/INDEX called this "floating-point benchmark" until
+# 2026-08-31; it is the Paranoia text adventure, and it was categorised under
+# Developer tools/Benchmarks as well. Both are fixed and this pins it.
+case    paranoia-is-a-text-adventure-not-the-floating-point-torture-test
+# bash's own printf is not a builtin here -- `printf: command not found'.
+# /dd/CMDS/printf is the one that exists.
+run     /dd/CMDS/printf '\r\r\r' > /dd/tmp/p.in
+run     /dd/CMDS/paranoia < /dd/tmp/p.in
+expect  Welcome to Paranoia!
+expect  As Philo-R-DMD you will die at times during the adventure
+expect  Simply complete the mission before you expend all six clones
+absent  ULP
+
+case    timid-reports-itself-as-timit-and-times-nothing-you-give-it
+run     /dd/CMDS/timid -?
+run     /dd/CMDS/timid /dd/CMDS/wc -c /dd/SYS/termcap
+expect  Syntax: timit [<opts>]
+expect  Function: time something
+expect  timid: unknown option 'c'

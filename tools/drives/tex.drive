@@ -1,0 +1,113 @@
+# tex -- the TeX family: 27 programs, of which only `tex', `latex', `bibtex',
+# `dvitype', `virtex' and `tangle' had ever been driven.
+#
+# The whole set hangs off ONE artefact: a .dvi file.  Produce that and the
+# ten DVI drivers, dvips and dvitype all have something real to do.  The font
+# tools pair off among themselves -- gftopk/pktogf, pktype/gftype,
+# tftopl/pltotf, vftovp/vptovf -- and /dd/SYS/TEX/FONTS ships both TFM and PK.
+#
+# TeX writes its .dvi and .log into the DATA directory, which under either
+# shell here is /dd; bash's cd does not move it.
+
+family  tex
+
+setup   T=/dd/CMDS/TEXCMDS
+setup   S=/dd/SYS/TEX
+
+drive   tex
+why     typeset one of the samples that ship in SYS/TEX/SAMPLES
+run     /dd/CMDS/rm /dd/small.dvi /dd/small.log
+run     $T/tex $S/SAMPLES/small.tex
+run     /dd/CMDS/ls /dd/small.dvi /dd/small.log
+
+drive   dvitype
+why     the readable dump of a .dvi -- proof the file is a real one
+run     $T/dvitype /dd/small.dvi
+
+drive   dvips
+why     DVI to PostScript.  Pair it with gs33, which does start.
+run     $T/dvips -o /dd/tmp/small.ps /dd/small.dvi
+run     /dd/CMDS/wc -c /dd/tmp/small.ps
+run     /dd/CMDS/head -n 3 /dd/tmp/small.ps
+
+drive   dvi-drivers
+why     ten printer drivers, one .dvi, one line each
+run     $T/dvialw /dd/small.dvi > /dd/tmp/d.alw 2>/dd/tmp/e.alw
+run     $T/dvieps /dd/small.dvi > /dd/tmp/d.eps 2>/dd/tmp/e.eps
+run     $T/dvijet /dd/small.dvi > /dd/tmp/d.jet 2>/dd/tmp/e.jet
+run     /dd/CMDS/wc -c /dd/tmp/d.alw /dd/tmp/d.eps /dd/tmp/d.jet
+run     /dd/CMDS/cat /dd/tmp/e.alw
+run     /dd/CMDS/cat /dd/tmp/e.eps
+run     /dd/CMDS/cat /dd/tmp/e.jet
+
+drive   dvi-drivers-2
+run     $T/dvidjp /dd/small.dvi > /dd/tmp/d.djp 2>/dd/tmp/e.djp
+run     $T/dviimp /dd/small.dvi > /dd/tmp/d.imp 2>/dd/tmp/e.imp
+run     $T/dvijep /dd/small.dvi > /dd/tmp/d.jep 2>/dd/tmp/e.jep
+run     $T/dvilj2 /dd/small.dvi > /dd/tmp/d.lj2 2>/dd/tmp/e.lj2
+run     $T/dvimac /dd/small.dvi > /dd/tmp/d.mac 2>/dd/tmp/e.mac
+run     $T/dvioki /dd/small.dvi > /dd/tmp/d.oki 2>/dd/tmp/e.oki
+run     $T/dvitos /dd/small.dvi > /dd/tmp/d.tos 2>/dd/tmp/e.tos
+run     /dd/CMDS/wc -c /dd/tmp/d.djp /dd/tmp/d.imp /dd/tmp/d.jep /dd/tmp/d.lj2
+run     /dd/CMDS/wc -c /dd/tmp/d.mac /dd/tmp/d.oki /dd/tmp/d.tos
+run     /dd/CMDS/cat /dd/tmp/e.djp
+run     /dd/CMDS/cat /dd/tmp/e.mac
+
+drive   tftopl-pltotf
+why     TeX font metric to the readable property list and back
+run     /dd/CMDS/ls $S/FONTS/TFM/cmr10.tfm
+run     $T/tftopl $S/FONTS/TFM/cmr10.tfm /dd/tmp/cmr10.pl
+run     /dd/CMDS/wc -l /dd/tmp/cmr10.pl
+run     /dd/CMDS/head -n 6 /dd/tmp/cmr10.pl
+run     $T/pltotf /dd/tmp/cmr10.pl /dd/tmp/cmr10.tfm
+run     /dd/CMDS/md5 $S/FONTS/TFM/cmr10.tfm /dd/tmp/cmr10.tfm
+
+drive   pktype-gftype
+why     what is inside a packed font, and inside a generic one
+run     /dd/CMDS/ls $S/FONTS/PK300
+run     $T/pktype $S/FONTS/PK300/cmr10.300pk > /dd/tmp/pk.txt 2>/dd/tmp/e.pk
+run     /dd/CMDS/wc -l /dd/tmp/pk.txt
+run     /dd/CMDS/head -n 8 /dd/tmp/pk.txt
+run     /dd/CMDS/cat /dd/tmp/e.pk
+
+drive   pktogf-gftopk
+why     packed font to generic and back -- the round trip
+run     $T/pktogf $S/FONTS/PK300/cmr10.300pk /dd/tmp/cmr10.gf
+run     /dd/CMDS/wc -c /dd/tmp/cmr10.gf
+run     $T/gftype /dd/tmp/cmr10.gf > /dd/tmp/gf.txt 2>/dd/tmp/e.gf
+run     /dd/CMDS/head -n 6 /dd/tmp/gf.txt
+run     $T/gftopk /dd/tmp/cmr10.gf /dd/tmp/back.300pk
+run     /dd/CMDS/md5 $S/FONTS/PK300/cmr10.300pk /dd/tmp/back.300pk
+
+drive   vftovp-vptovf
+run     /dd/CMDS/ls $S/FONTS/VF
+run     $T/vftovp
+run     $T/vptovf
+
+drive   afm2tfm
+run     $T/afm2tfm
+
+drive   initex
+why     TeX with no format preloaded -- it is what BUILDS a .fmt
+run     $T/initex
+
+drive   inimf-virmf
+run     $T/virmf
+run     $T/inimf
+
+drive   slitex
+why     LaTeX for slides.  Its format is splain.fmt, which ships.
+run     /dd/CMDS/ls $S/FORMATS
+run     $T/slitex $S/SAMPLES/small.tex
+
+drive   texidx
+why     build an index from TeX's .idx output
+run     $T/texidx
+
+drive   maketexpk
+run     $T/maketexpk
+
+drive   weave-tangle
+why     WEB to TeX and WEB to Pascal.  Is there a .web anywhere to feed them?
+run     $T/weave
+run     $T/tangle

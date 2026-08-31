@@ -1,0 +1,44 @@
+# bench2 -- the Dhrystones want a run count on standard input.  Give them one
+# and the eleven builds finally answer the question they were shipped to ask.
+
+family  bench2
+
+setup   D=/dd/CMDS/DHRY
+setup   echo 20000 > /dd/tmp/runs
+
+drive   dhry-A
+run     echo "=== dhryO2"
+run     $D/dhryO2 < /dd/tmp/runs
+run     echo "=== dhryGcc"
+run     $D/dhryGcc < /dd/tmp/runs
+run     echo "=== dhryGcco2"
+run     $D/dhryGcco2 < /dd/tmp/runs
+
+drive   dhry-B
+run     echo "=== dhryGccin"
+run     $D/dhryGccin < /dd/tmp/runs
+run     echo "=== dhryGccmx"
+run     $D/dhryGccmx < /dd/tmp/runs
+run     echo "=== dhryGcc2"
+run     $D/dhryGcc2 < /dd/tmp/runs
+
+drive   dhry-C
+run     echo "=== dhryGcc2o2"
+run     $D/dhryGcc2o2 < /dd/tmp/runs
+run     echo "=== dhryGcc2in"
+run     $D/dhryGcc2in < /dd/tmp/runs
+run     echo "=== dhryGcc2mx"
+run     $D/dhryGcc2mx < /dd/tmp/runs
+
+drive   dhry-D
+run     echo "=== dhryshamu"
+run     $D/dhryshamu < /dd/tmp/runs
+run     echo "=== dhryshamu2"
+run     $D/dhryshamu2 < /dd/tmp/runs
+
+drive   paranoia
+why     DOC/INDEX calls this a floating-point benchmark.  It is the PARANOIA
+why     text adventure -- Philo-R-DMD, six clones, Alpha Complex.  Walk two
+why     screens of it to be sure.
+run     printf '\r\r\r' > /dd/tmp/p.in
+run     /dd/CMDS/paranoia < /dd/tmp/p.in

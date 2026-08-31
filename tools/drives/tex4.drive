@@ -1,0 +1,44 @@
+# tex4 -- the DVI drivers against a VALID .dvi.
+#
+# story.tex has no \end, so TeX stops at its `*' prompt and the .dvi it
+# leaves is a stub -- every driver then says "PRE doesn't occur first", which
+# reads as ten broken programs and is one bad input file. small.tex is LaTeX
+# and finishes: "Output written on small.dvi (1 page, 1704 bytes)".
+
+family  tex4
+
+setup   T=/dd/CMDS/TEXCMDS
+setup   S=/dd/SYS/TEX
+setup   /dd/CMDS/rm /dd/small.dvi
+setup   $T/virtex '&lplain' $S/SAMPLES/small.tex > /nil
+
+drive   the-dvi
+run     /dd/CMDS/wc -c /dd/small.dvi
+
+drive   dvitype
+run     echo 0 > /dd/tmp/dt.in
+run     $T/dvitype /dd/small.dvi < /dd/tmp/dt.in
+
+drive   dvialw
+run     $T/dvialw /dd/small.dvi 2>/dd/tmp/e.alw
+run     /dd/CMDS/cat /dd/tmp/e.alw
+run     /dd/CMDS/wc -c /dd/small.dvi_alw
+
+drive   dvijet
+run     $T/dvijet /dd/small.dvi 2>/dd/tmp/e.jet
+run     /dd/CMDS/cat /dd/tmp/e.jet
+run     /dd/CMDS/wc -c /dd/small.dvi_jet
+
+drive   the-other-eight
+run     $T/dvieps /dd/small.dvi 2>/dd/tmp/e1
+run     $T/dvidjp /dd/small.dvi 2>/dd/tmp/e2
+run     $T/dviimp /dd/small.dvi 2>/dd/tmp/e3
+run     $T/dvijep /dd/small.dvi 2>/dd/tmp/e4
+run     $T/dvilj2 /dd/small.dvi 2>/dd/tmp/e5
+run     $T/dvimac /dd/small.dvi 2>/dd/tmp/e6
+run     $T/dvioki /dd/small.dvi 2>/dd/tmp/e7
+run     $T/dvitos /dd/small.dvi 2>/dd/tmp/e8
+run     echo "--- what each produced:"
+run     /dd/CMDS/ls /dd
+run     echo "--- and one of their logs:"
+run     /dd/CMDS/cat /dd/tmp/e5

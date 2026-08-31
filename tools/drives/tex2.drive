@@ -1,0 +1,66 @@
+# tex2 -- why did `tex' print nothing and write no .dvi?
+#
+# `tex' is a one-line wrapper: its only string is `virtex "&plain"'. So the
+# question is whether the fork happens, whether virtex finds plain.fmt, and
+# where the .dvi lands -- TeX writes it in the DATA directory, and under bash
+# here that is /dd whatever `cd' says.
+
+family  tex2
+
+setup   T=/dd/CMDS/TEXCMDS
+setup   S=/dd/SYS/TEX
+
+drive   virtex-direct
+why     the engine, told its format and its file outright
+run     /dd/CMDS/rm /dd/small.dvi /dd/small.log
+run     $T/virtex '&plain' $S/SAMPLES/small.tex
+run     echo "--- what landed in /dd:"
+run     /dd/CMDS/ls /dd
+
+drive   tex-wrapper
+why     the same through the wrapper, and its exit
+run     $T/tex $S/SAMPLES/small.tex
+run     echo "--- rc was $?"
+run     /dd/CMDS/ls /dd
+
+drive   tex-from-stdin
+why     TeX's own prompt is `**'; feed it a file name and \end
+run     echo "\\\\input $S/SAMPLES/small \\\\end" > /dd/tmp/tex.in
+run     /dd/CMDS/cat /dd/tmp/tex.in
+run     $T/tex < /dd/tmp/tex.in
+run     /dd/CMDS/ls /dd
+
+drive   latex
+why     latex has a card and is said to work.  Does it write a .dvi here?
+run     $T/latex $S/SAMPLES/about_latex.tex
+run     /dd/CMDS/ls /dd
+
+drive   fonts-present
+why     the PK directories hold nothing but a Makefile.  Confirm, and see
+why     what the DVI drivers say they want.
+run     /dd/CMDS/ls $S/FONTS
+run     /dd/CMDS/ls $S/FONTS/PK300
+run     /dd/CMDS/ls $S/FONTS/PK144
+run     /dd/CMDS/ls $S/FONTS/TFM > /dd/tmp/tfm.list
+run     /dd/CMDS/wc -l /dd/tmp/tfm.list
+
+drive   dvips-headers
+why     "Couldn't find header file tex.pro" -- is tex.pro anywhere?
+run     /dd/CMDS/find /dd/SYS/TEX -name tex.pro -print
+run     /dd/CMDS/ls $S/DOCS
+run     /dd/CMDS/ls $S/POOLS
+
+drive   pltotf-round-trip
+why     pltotf's tfm did not match the one tftopl read.  Go round once more:
+why     tfm -> pl -> tfm -> pl, and compare the two PROPERTY LISTS.
+run     $T/tftopl $S/FONTS/TFM/cmr10.tfm /dd/tmp/a.pl
+run     $T/pltotf /dd/tmp/a.pl /dd/tmp/b.tfm
+run     $T/tftopl /dd/tmp/b.tfm /dd/tmp/b.pl
+run     /dd/CMDS/md5 /dd/tmp/a.pl /dd/tmp/b.pl
+run     /dd/CMDS/wc -c $S/FONTS/TFM/cmr10.tfm /dd/tmp/b.tfm
+
+drive   texidx
+why     silent bare -- give it a real .idx
+run     echo "\\indexentry{alpha}{1}" > /dd/tmp/t.idx
+run     $T/texidx /dd/tmp/t.idx
+run     /dd/CMDS/ls /dd/tmp/t.ind

@@ -1,0 +1,53 @@
+# tex3 -- `tex' and `latex' are WRAPPERS that fork a shell.  Their only two
+# interesting strings are `virtex "&plain"' / `virtex "&lplain"', SHELL and
+# PATH.  SYS/login does not set SHELL.  Does setting it make them work?
+
+family  tex3
+
+setup   T=/dd/CMDS/TEXCMDS
+setup   S=/dd/SYS/TEX
+
+drive   virtex-plain-story
+why     story.tex IS plain TeX, where small.tex is LaTeX.  Settle the engine
+why     first, with no wrapper in the way.
+run     /dd/CMDS/rm /dd/story.dvi /dd/story.log
+run     $T/virtex '&plain' $S/SAMPLES/story.tex
+run     echo "--- and in /dd:"
+run     /dd/CMDS/ls /dd/story.dvi /dd/story.log
+
+drive   virtex-lplain-latex
+run     /dd/CMDS/rm /dd/small.dvi
+run     $T/virtex '&lplain' $S/SAMPLES/small.tex
+run     /dd/CMDS/ls /dd/small.dvi
+
+drive   tex-with-SHELL-set
+why     SHELL unset, the wrapper returns 221 -- module not found
+run     $T/tex $S/SAMPLES/story.tex
+run     echo "--- rc $? with SHELL unset"
+run     export SHELL=/dd/CMDS/bash
+run     $T/tex $S/SAMPLES/story.tex
+run     echo "--- rc $? with SHELL=/dd/CMDS/bash"
+run     /dd/CMDS/ls /dd/story.dvi
+
+drive   latex-with-SHELL-set
+run     export SHELL=/dd/CMDS/bash
+run     $T/latex $S/SAMPLES/small.tex
+run     /dd/CMDS/ls /dd/small.dvi
+
+drive   dvitype-on-a-real-dvi
+run     echo 0 > /dd/tmp/dt.in
+run     $T/dvitype /dd/story.dvi < /dd/tmp/dt.in
+
+drive   dvi-drivers-on-a-real-dvi
+why     they will want PK fonts, and the PK directories are empty.  What
+why     exactly do they say?
+run     $T/dvialw /dd/story.dvi > /dd/tmp/d.alw 2>/dd/tmp/e.alw
+run     /dd/CMDS/wc -c /dd/tmp/d.alw
+run     /dd/CMDS/cat /dd/tmp/e.alw
+run     $T/dvijet /dd/story.dvi > /dd/tmp/d.jet 2>/dd/tmp/e.jet
+run     /dd/CMDS/wc -c /dd/tmp/d.jet
+run     /dd/CMDS/cat /dd/tmp/e.jet
+
+drive   dvips-on-a-real-dvi
+run     $T/dvips -o /dd/tmp/story.ps /dd/story.dvi
+run     /dd/CMDS/wc -c /dd/tmp/story.ps
