@@ -1,11 +1,19 @@
 name    view
 prog    view /dd/DOC/README-CIO
 # Editor: open a file, look at it, leave without saving.
+# ELVIS PICKS ITS PERSONALITY FROM THE LAST LETTER OF THE NAME IT WAS
+# CALLED BY -- alias.c maps `w' to -R, `t' to -i, anything else to plain
+# vi. `view' ends in w, so it opens READ-ONLY and says so, and that is
+# what the expect below holds. It is the control for the 2026-08-31
+# rename of `input.elvis' to `elvis_input': that name ended in `s', fell
+# through to plain vi, and its input personality never happened. Same
+# bytes, two names, two behaviours -- measured.
 allow   trap handler
 allow   Can't open
 rate    0.6
 wait    5
 snap    opened
+expect  READONLY
 wait    2
 key     q
 wait    2

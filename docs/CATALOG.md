@@ -112,9 +112,9 @@
 | | |
 |---|---|
 | `elvis` | Elvis 1.7 -- the best-documented of this disk's three vi editors, and the one with the most options.  BUILT HERE from the source in CMDS/archives.  Needs TERM and TERMCAP; runs with no program under its other personalities and need elvis present to run. IT ALSO NEEDS A /dd/tmp, and the path is compiled in: on a /dd without that directory it stops before drawing anything with `Can't create temp file... Does directory "/dd/tmp" exist?'.  This disk ships one, so it bites on the machine you copy elvis TO.  Either `makdir /dd/tmp' or, before starting it, `setenv EXINIT "set directory=<a dir you have>"' -- elvis reads EXINIT before creating the temp file.  `vi' has the same compiled-in /dd/tmp; the PVIC builds do not.  Measured 2026-08-31; DOC/README-VI has the table<br>**How:** A full vi/ex clone, built here from the archive that was always on this disk. Needs TERM and TERMCAP set -- `SYS/login' does both. `view' opens read-only, REBUILT/vi.elvis is the same program as vi, and all of them need CMDS/elvis present because they exec it. |
+| `elvis_input` | elvis under its `input' personality -- it opens already in insert mode.  RENAMED from `input.elvis' 2026-08-31, and the name is load-bearing: elvis's wrapper picks its personality from the LAST LETTER of the name it was invoked by, so under `input.elvis' it fell through to plain vi and the personality never happened.  Measured both ways with the same bytes. CMDS/input is a different program entirely |
 | `elvprsv` | Preserve an elvis session across a crash |
 | `elvrec` | Recover a preserved elvis session<br>`usage: elvrec [preserved_file [recovery_file]]` |
-| `input.elvis` | elvis under its `input' personality; CMDS/input is a different program entirely |
 | `vi.elvis` | elvis 1.7 as vi.  CMDS/vi is the EFFO build and CMDS/vi_nocio is PVic -- three unrelated vi clones |
 | `view` | elvis opened read-only |
 

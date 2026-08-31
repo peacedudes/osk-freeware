@@ -137,3 +137,21 @@ case    the-scratch-archives-go-away
 run     /dd/CMDS/rm -f /dd/a1.arc /dd/a2.arc /dd/a3.arc /dd/tags /dd/tmp/l1.lzh /dd/tmp/l2.lzh
 run     /dd/CMDS/ls /dd/a1.arc
 expect  error
+
+# EVERY MODULE UNDER CMDS/REBUILT ANSWERS TO ITS OWN FILENAME, 2026-08-31.
+# Before that these all reported the name of the program in /dd/CMDS they sit
+# beside: compress_4.0 said `compress', the six gzip builds all said `gzip',
+# and loading any of them answered for the shipped one.
+case    the-alternates-report-their-own-names
+run     /dd/CMDS/modinfo $R/compress_4.0
+expect  Module name           = compress_4.0
+run     /dd/CMDS/modinfo $R/gzip68k_nocsl
+expect  Module name           = gzip68k_nocsl
+run     /dd/CMDS/modinfo $R/zoo_2.1
+expect  Module name           = zoo_2.1
+run     /dd/CMDS/modinfo $R/vi.elvis
+expect  Module name           = vi.elvis
+run     /dd/CMDS/modinfo /dd/CMDS/vi_cio
+expect  Module name           = vi_cio
+run     /dd/CMDS/modinfo /dd/CMDS/kermit2
+expect  Module name           = kermit2

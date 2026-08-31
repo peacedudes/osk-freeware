@@ -1,0 +1,22 @@
+name    elvis_input
+prog    elvis_input /dd/tmp/ei
+# THE RENAME THAT MADE THIS PROGRAM WORK, 2026-08-31. elvis's wrapper picks
+# its personality from the LAST LETTER of the name it was invoked by --
+# alias.c maps `w' to -R, `t' to -i, anything else to plain vi. We had called
+# this file `input.elvis', which ends in `s', so it fell through to plain vi
+# and the input personality never happened. Same bytes under `elvis_input'
+# and it opens in insert mode.
+#
+# The assertion: from INSERT mode, Escape prints "Now in command mode! To
+# return to input mode, hit <i>". Plain vi prints nothing for that Escape,
+# so this line is exactly what the rename bought.
+allow   trap handler
+rate    0.6
+wait    6
+key     \033
+wait    2
+snap    escaped
+expect  return to input mode
+keys    :q!
+key     \r
+wait    2

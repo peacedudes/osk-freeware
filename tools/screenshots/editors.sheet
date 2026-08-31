@@ -1,7 +1,7 @@
 # Editors and pagers, each opened on a real file.
 
 shot    elvrec
-for     elvrec elvprsv vi.elvis input.elvis
+for     elvrec elvprsv vi.elvis elvis_input
 cap     elvis's crash-recovery pair: elvprsv preserves an interrupted
 cap     session, elvrec brings it back.  Nothing has been preserved on
 cap     this disk, so elvrec lists nothing at all and only names the file
@@ -95,11 +95,11 @@ run     view < /nil
 wait    10
 
 shot    elvis
-for     elvis vi.elvis input.elvis ctags.elvis
+for     elvis vi.elvis elvis_input ctags.elvis
 cap     elvis, Steve Kirkendall's vi -- the one on this disk that paints a
 cap     full screen.  Opened on the collection's own README-CIO, twenty-two
 cap     lines of it at once, exactly as vi should.
-cap     `vi.elvis', `input.elvis' and `ctags.elvis' travel with it -- the
+cap     `vi.elvis', `elvis_input' and `ctags.elvis' travel with it -- the
 cap     same editor under the name a Unix hand types, its input helper, and
 cap     its tags builder.  All three were credited here and never run until
 cap     2026-08-30; they are asked for after elvis has been left.
@@ -110,7 +110,7 @@ run     ctags.elvis /dd/SRC/keep/about.c
 wait    10
 run     ls -l /dd/tags
 wait    8
-run     input.elvis
+run     elvis_input /dd/tmp/ei
 wait    8
 run     vi.elvis -?
 wait    10
