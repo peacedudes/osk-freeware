@@ -520,15 +520,23 @@ def check_binary_magic(root):
 
 
 def check_hand_files_name_real_programs(root):
-    """tools/howto.psv and tools/categories.psv must name programs that exist.
+    """tools/howto.psv, tools/categories.psv and disk/DOC/USAGE must name
+    programs that exist.
 
-    Both are hand-maintained, and a program removed from the disk leaves its
-    lines behind.  On 2026-08-30 `howto.psv' still carried six: `lac', `main',
-    `pow', `scope' and `sin' were deliberately dropped from the collection on
-    2026-08-22 and their entries were not, four of them still claiming
-    "`q' quits -- tested"; `MakeTeXPK' had never been on the disk at all.
-    Nothing pointed at them, because both files are read by NAME -- an entry
-    nobody looks up is an entry nobody notices.
+    All three are hand-maintained or generated-then-kept, and a program removed
+    from the disk leaves its lines behind.  On 2026-08-30 `howto.psv' still
+    carried six: `lac', `main', `pow', `scope' and `sin' were deliberately
+    dropped from the collection on 2026-08-22 and their entries were not, four
+    of them still claiming "`q' quits -- tested"; `MakeTeXPK' had never been on
+    the disk at all.  Nothing pointed at them, because these files are read by
+    NAME -- an entry nobody looks up is an entry nobody notices.
+
+    DOC/USAGE was added to this check on 2026-08-31, having been found with
+    EIGHTEEN stale entries: eleven Microware-era utilities removed 2026-08-22,
+    four `.nocio' REBUILT builds that no longer exist, and `input.elvis',
+    renamed to `elvis_input' the same morning by the session that then found
+    this.  DOC/USAGE ships on the disk, so a stale entry there is a document
+    describing a program the reader does not have.
     """
     import gen_catalog
     ondisk = set()
@@ -537,6 +545,13 @@ def check_hand_files_name_real_programs(root):
         if os.path.isdir(full):
             ondisk |= {f for f in os.listdir(full)
                        if os.path.isfile(os.path.join(full, f))}
+    # DOC/USAGE names programs in every directory, not only PROGRAM_DIRS.
+    everywhere = set()
+    for base, _, files in os.walk(os.path.join(root, "CMDS")):
+        if os.path.basename(base) == "archives":
+            continue
+        everywhere |= set(files)
+
     here = os.path.dirname(os.path.abspath(__file__))
     bad = []
     for fname in ("howto.psv", "categories.psv"):
@@ -549,6 +564,13 @@ def check_hand_files_name_real_programs(root):
             name = line.split("|")[0].strip()
             if name and name not in ondisk:
                 bad.append("%s: %s" % (fname, name))
+
+    usage = os.path.join(root, "DOC", "USAGE")
+    if os.path.exists(usage):
+        text = open(usage, "rb").read().decode("latin-1").replace("\r", "\n")
+        for m in re.finditer(r"^  (\S+)\s+\((\S+)\)\s*$", text, re.M):
+            if m.group(1) not in everywhere:
+                bad.append("DOC/USAGE: %s" % m.group(1))
     for b in bad[:12]:
         print("    names a program that is not on the disk -- %s" % b)
     return not bad, "%d stale line(s) in a hand-maintained file" % len(bad)
@@ -667,7 +689,7 @@ CHECKS = [
     ("no unscreened Microware source", check_src_screened),
     ("binaries start with their magic", check_binary_magic),
     ("one module name, one file", check_module_names),
-    ("howto and categories are current", check_hand_files_name_real_programs),
+    ("name lists point at real programs", check_hand_files_name_real_programs),
     ("the disk's documents are intact", check_docs_not_truncated),
 ]
 
