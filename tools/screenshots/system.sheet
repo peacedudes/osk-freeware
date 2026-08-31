@@ -214,17 +214,32 @@ wait    10
 shot    every
 for     every repeat cron bootlogger loglist
 cap     every and repeat run a command again and again -- the two halves of
-cap     cron for a machine that is not left running.
+cap     cron for a machine that is not left running.  repeat takes a count,
+cap     so it can be shown finishing; every runs until stopped, so it is
+cap     asked to describe itself instead.  loglist is the login logger:
+cap     `-i' records an arrival, `-l' prints the table.  Its display drops
+cap     the leading character of every line after the first, which is its
+cap     own fault and not the emulator's -- the bytes it writes are right.
+cap     `bootlogger' answers nothing at all, even to `-?'; that blank is
+cap     what it does, measured, not a capture that failed.
+run     repeat 3 /dd/CMDS/date
+wait    8
 run     every -?
-wait    6
-run     repeat -?
 wait    6
 run     cron -?
 wait    6
 run     bootlogger -?
-wait    6
-run     loglist -?
-wait    6
+wait    5
+run     rm -f /dd/SYS/loglist
+wait    4
+run     tee </nil >/dd/SYS/loglist
+wait    4
+run     loglist -i
+wait    5
+run     loglist -o
+wait    5
+run     loglist -l
+wait    8
 
 shot    fastcc
 for     fastcc compiler assembler lfmaker

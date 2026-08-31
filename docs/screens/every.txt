@@ -1,4 +1,4 @@
-$ every -?
+every -?
 Syntax: every <time> <progname> [<progopts>]
 Function: repeat program every <time> seconds
 $ repeat -?

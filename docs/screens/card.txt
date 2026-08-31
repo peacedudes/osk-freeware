@@ -4,7 +4,7 @@
 
             *                           *                          *
             |                          may                         |
-            |                          may                         |
+            |                           |            [8            |
             |                           |                          |
             |                           |                          |
        bring peace                      |                          |

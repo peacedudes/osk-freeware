@@ -19,6 +19,6 @@
 
 
                                                                    SCREEN    1
-                         QUIT ?                                    ROBOTS   20
+                         QUIT ?                                    ROBOTS   18
 
-                            PJC                                SCORE         0
+                            PJC                                SCORE        40

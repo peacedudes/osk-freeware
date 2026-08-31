@@ -70,13 +70,62 @@ heap moves. An address does. This is the same signature as `$64E48` ->
   with **zero** floods and byte-exact output. Whatever triggers it, sustained
   output alone does not.
 
+## A second one, and it is worse: `CMDS/cvtbase`
+
+Also an archive binary. Invoked exactly as its own usage line says --
+`cvtbase <input base> <output base>`, with a number on standard input:
+
+    echo 255 | cvtbase d h
+
+**439,689 lines of `No more memory !!!`**, and no conversion. Same on a pipe
+and on a pseudo-terminal. The heap-shift test again:
+
+| run | most-repeated request |
+|---|---|
+| `cvtbase d h` alone | 297,504 bytes (`$48A20`), 300 times |
+| the same after `load cat wc grep` | 617,952 bytes (`$96DE0`), 203 times |
+
+The "size" did not merely shift -- it doubled, because the layout changed.
+Nothing that is a byte count behaves like that.
+
+**This was already written down and not connected to the defect.** DOC/INDEX
+has carried "and then FLOODS `No more memory !!!' without converting anything"
+for cvtbase since 2026-08-29, and the same for `lfmaker`, while SRQMEM.md said
+nothing shipped was affected. Two documents in one repository disagreeing, and
+the one with the reproduction was the one that was wrong.
+
+## The collection has ALREADY paid for this
+
+`CMDS/sed` was swapped on 2026-08-28. DOC/INDEX records why: the build that
+used to ship "answered every script -- from a file or a pipe, on a four-line
+input -- with `No more memory !!!' and `Couldn't re-allocate memory'". It was
+replaced by `REBUILT/sed_1.06`.
+
+If the defect is os9exec's, that program was not broken. A working archive
+binary was retired to work around an emulator fault, and the collection is
+one program poorer for it.
+
+## The population, measured
+
+**Counting floods does not find these.** All 368 starred binaries were run with
+272,000 bytes on standard input: **zero** flooded, and 72 passed more than
+200 KB through cleanly (`ckermit` moved 794 KB). That is a real negative for
+filters -- but it is not a clean bill of health, because 221 of the 368
+produced under 200 bytes, so the probe never exercised them. Neither logisim
+nor cvtbase is caught by it: neither reads stdin that way.
+
+What the two confirmed cases have in common is that they call `F$SRqMem`
+repeatedly from their own loop, where a filter never calls it at all. A trace
+sweep looking for an address-shaped request directly -- rather than waiting for
+the arena to exhaust -- is the measurement that would find the rest, and is the
+right next step.
+
 ## What is still open
 
-Which programs, and why these. The distinguishing feature of logisim seems to
-be that it calls `F$SRqMem` repeatedly in a loop where a filter never calls it
-at all -- but that is an observation about three programs, not a rule. A sweep
-of all 368 starred binaries counting floods is the obvious next measurement
-and had not been run when this was written.
+Whether `lfmaker` is a third. DOC/INDEX says it "FLOODS `No more memory !!!'
+as soon as it is given an argument", measured 2026-08-29; run here as
+`lfmaker foo` and bare it produced no output and made no `F$SRqMem` call at
+all. Either the entry needs a condition it does not state, or it is wrong.
 
 ## Why it matters for the os9exec release
 

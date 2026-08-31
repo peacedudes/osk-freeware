@@ -1,4 +1,4 @@
-$ btop -?
+btop -?
 Syntax:   BtoP [<opts>] [<path1>] [<opts>] [<path2>] [<opts>]
 Function: convert characters to bit patterns
 Options:  -o  use stdin for input, path1 for output

@@ -691,10 +691,23 @@ for     btop ptob
 cap     BtoP and PtoB, a pair: characters to bit patterns and back again.
 cap     They are how a font or a bitmap moved through a mail system that
 cap     would only carry text, long before uuencode was on this disk.
-run     btop -?
+cap     Forty bytes of text become 640 bytes of O and space; PtoB turns
+cap     those back into the same forty, byte for byte.  This card used to
+cap     be the two usage lines, which showed neither.
+run     head -c 12 /dd/SYS/motd > /dd/tmp/b1
+wait    5
+run     btop /dd/tmp/b1
 wait    8
-run     ptob -?
-wait    8
+run     btop /dd/tmp/b1 > /dd/tmp/b2
+wait    5
+run     ptob /dd/tmp/b2 > /dd/tmp/b3
+wait    5
+run     cmp /dd/tmp/b1 /dd/tmp/b3
+wait    6
+run     cat /dd/tmp/b3
+wait    5
+run     rm -f /dd/tmp/b1 /dd/tmp/b2 /dd/tmp/b3
+wait    4
 
 
 shot    hc

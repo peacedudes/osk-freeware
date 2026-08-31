@@ -11,8 +11,8 @@ Operator time= e2e4
  r n b q k b n r
 
 
-Your move is? 1. ... e7e5
-My move is: e7e5
+Your move is? 1. ... c7c5
+My move is: c7c5
 
 
 Your move is?

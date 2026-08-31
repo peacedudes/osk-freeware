@@ -1,3 +1,4 @@
 $ fortune
-The fortune program is supported, in part, by user contributions and by
-a major grant from the National Endowment for the Inanities.
+"You can't teach people to be lazy - either they have it, or they
+don't."
+                -- Dagwood Bumstead

@@ -1,4 +1,24 @@
-$ gnuchessn
-'vt100': Unknown terminal type.
-$ e2e4
-e2e4: command not found
+8                                       |
+  R    N    B    Q    K    B    N    R  |   Computer       5: 0
+                                        |
+7                                       |
+  P    P         P    P    P    P    P  |
+                                        |
+6                                       |
+                                        |
+                                        |
+5                                       |
+            P                           |
+                                        |
+4                                       |
+                      P                 |    2:   WHITE
+                                        |
+3                                       |
+                                        |   My move is: c7c5
+                                        |
+2                                       |   Your move is?
+  P    P    P    P         P    P    P  |
+                                        |
+1                                       |
+  R    N    B    Q    K    B    N    R  |   Human          4:48
+    a    b    c    d    e    f    g    h|

@@ -7,9 +7,9 @@ Unused Letters:
                                         ---------------------------
                                         |                         |
                                         |                         |
-a_ase                                   |                         |
+a_an_on                                 |                         |
                                         |                         |
         ... the same line 7 times over
                                         ---------------------------
-There are 5 letters in the word
-Sorry
+There are 7 letters in the word
+HIT

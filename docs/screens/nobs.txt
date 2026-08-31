@@ -11,7 +11,7 @@
 
 
 
-                               2d   6d   8s   Ac   8c   3h
+                               Ah   7h   3h   2s   5h   7s
                                 a    b    c    d    e    f
 
 

@@ -1,8 +1,10 @@
+Goodbye Cave-man tester...
+
 You quit on dungeon level 1 with 50 points,
 and 0 pieces of gold, after 2 moves.
-You were level 1 with a maximum of 12 hit points when you quit.
+You were level 1 with a maximum of 16 hit points when you quit.
 
-You didn't beat your previous score of 71 points.
+You reached the 14th place on the top 100 list.
 
 Number Points  Name                                                    Hp [max]
   1  18551   robert-W was killed on level 16 by an invisible umber hulk.- [89]
@@ -11,13 +13,8 @@ Number Points  Name                                                    Hp [max]
   4    828   robert-S was killed on level 5 by an imp.                  - [27]
   5    666    lcsys-W escaped the dungeon [max level 1].               15 [15]
 
-  8    111   tester-T quit on dungeon level 1.                         10 [10]
-  9    106     drew-F was killed on level 1 by a hobgoblin.             - [17]
- 10     95    grace-S quit on dungeon level 1.                          9 [12]
- 11     80     drew-K escaped the dungeon [max level 1].               12 [12]
- 12     71      sys-K quit on dungeon level 1.                         12 [12]
-        50   tester-K quit on dungeon level 1.                         12 [12]
- 13     58     drew-T was killed on level 1 by a bat.                   - [10]
- 14     58      dog-W quit on dungeon level 1.                         12 [15]
- 15     50   tester-S quit on dungeon level 1.                         12 [12]
- 16     50   tester-C quit on dungeon level 1.                         16 [16]
+ 10     80     drew-K escaped the dungeon [max level 1].               12 [12]
+ 11     71      sys-K quit on dungeon level 1.                         12 [12]
+ 12     58     drew-T was killed on level 1 by a bat.                   - [10]
+ 13     58      dog-W quit on dungeon level 1.                         12 [15]
+ 14     50   tester-C quit on dungeon level 1.                         16 [16]
