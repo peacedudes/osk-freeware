@@ -10,6 +10,15 @@ first is how sessions have historically lost an hour before touching anything.
 Branch `release-pass-2026-08-21`, never pushed. Tree clean, all fourteen
 `check_disk.py` checks green, `osk-freeware.dd` current.
 
+**What moved on 2026-08-31.** The maintainer's name and username came off the
+shipped disk and the published guide. `bush` left the collection. Module-name
+collisions went from 32 names over 76 files to 11, and every one left is
+either deliberate (`csl`/`csl020`, `math`/`math881`, the MM/1 drivers, the gcc
+passes) or the one open question, `gnuchess` — see `notes/FOR-RDOGGETT.md`.
+`DOC/README-KERMIT` and `DOC/README-GREP` joined `DOC/README-VI` as family
+chooser documents. Six index entries turned out to describe the wrong program
+once run: `hc`, `kermit`, `ckermit`, `kermit2`, `lgrep` and `gep`.
+
 ```sh
 OS9EXEC_DIR=~/Developer/os9/os9exec tools/mkimage.sh disk osk-freeware.dd
 tools/check_disk.py disk
