@@ -211,7 +211,7 @@ preserved, not rebuilt. That is why the binaries are committed.
 
 ## Working on this collection
 
-**`notes/START-HERE-NEXT-SESSION.md` is the cold-start handoff** — the
+**`notes/PLAN.md` is the cold-start handoff** — the
 two-minute setup, where the work stands, what is next in order, and the traps
 that have already cost real time. It is kept current, and it is the right
 first read whether you are a person coming back to this after a month or an
