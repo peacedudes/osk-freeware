@@ -197,7 +197,7 @@ reading -- opening for output, reading a directory, or an open that failed --
 which is why the rule requires the program to also REPORT on content it cannot
 have seen.
 
-## What is actually broken: 9 confirmed, 2 probable, of 41
+## What is actually broken: 11 confirmed, 1 probable, of 41
 
     STORM (the $41 half, loud)
       cvtbase   logisim   unstr
@@ -205,13 +205,32 @@ have seen.
     SILENT (the $42 half): opens the file, reads nothing, reports anyway
       cdiff   pagekwic   pagefraz   nroff   etags   cookhash
 
+      yacc      opens up to 7 files on a real grammar, reads none, no output
+      xrf       reads its language table correctly and never reads the source
+
     PROBABLE
-      yacc   opens 11 files and reads none, but was not given a real grammar
       loan   prompts, echoes its numbers and computes nothing
 
-Open-without-read with an innocent explanation, NOT counted: `xrf` (its
-language table `C.XRF` is in `DOC/xrf`, not the data directory), `dam`, `undel`,
-`wish`, `vis`.
+**`xrf` is the proof, and I had it in the excluded list.** I ruled it out
+because its open failed -- it looks for a table named from the source
+extension (`C.XRF` for a `.c`) in the DATA directory, and there was none there.
+Supply it and the program is a victim, and the cleanest one:
+
+    I$Open "cdiff.c"      the 30K source
+    I$Open "C.XRF"        the language table
+    I$Read the table      "Language table loaded"
+    ...cdiff.c is NEVER READ
+
+Same process, same run, two files: the table goes through `read()` and arrives
+intact, the source goes through the `getc` macro and never arrives. No second
+program, no assumption.
+
+**An exclusion is only valid for the invocation that produced it.** "Opens
+without reading for an innocent reason" needs the innocent reason to survive
+giving the program what it asked for. Still untested rather than cleared, and
+they should not be quoted as clean: `dam`, `undel`, `snap`, `setfont`, `vis`.
+`wish` IS clean -- it produces correct output, and separately turns out not to
+be the program `DOC/INDEX` said it was.
 
 **So the earlier figure of three was the count of programs that STORM.** It was
 never the count this defect breaks.

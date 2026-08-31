@@ -119,3 +119,28 @@ run     /dd/CMDS/head -c 8 /dd/SYS/loglist
 expect  +LOGIN +
 run     /dd/CMDS/loglist -l
 expect  LOGIN-LIST
+
+# THE SILENT HALF OF THE cio SELECTOR MISMATCH, asserted so a fix announces
+# itself. These programs open the file, read NOT ONE BYTE (measured with
+# `os9exec -d1 0x0002': opens=1, reads=0) and report on it anyway. The day
+# someone supplies a matching cio module, or rebuilds them, these cases fail
+# and that is the point of them. DOC/README-CIO names all nine.
+case    cdiff-cannot-read-its-input-and-says-so-wrongly
+run     /dd/CMDS/rm -f /dd/tmp/c1
+run     /dd/CMDS/head -n 3 /dd/SYS/holidays > /dd/tmp/c1
+run     /dd/CMDS/cdiff /dd/tmp/c1 /dd/tmp/c1
+expect  MAXLINECOUNT exceeded
+
+# The control that makes the case above mean something: a program with no
+# getc macro call site reads the very same file correctly.
+case    cat-reads-the-file-cdiff-could-not
+run     /dd/CMDS/cat /dd/tmp/c1
+expect  New Year
+
+# nroff does not survive having its output redirected here, so this asserts
+# the absence directly: fed a file whose text `cat' prints above, it emits
+# none of it.
+case    nroff-opens-its-input-and-prints-none-of-it
+run     /dd/CMDS/nroff /dd/tmp/c1
+absent  New Year
+run     /dd/CMDS/rm -f /dd/tmp/c1
