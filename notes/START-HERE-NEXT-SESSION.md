@@ -1,6 +1,6 @@
 # Picking this up cold — updated 2026-08-29, end of session
 
-Branch `release-pass-2026-08-21`. **Tree clean, all thirteen `check_disk.py`
+Branch `release-pass-2026-08-21`. **Tree clean, all fourteen `check_disk.py`
 checks green, `osk-freeware.dd` current.** Nothing is half-finished; every
 change below is committed.
 
@@ -612,7 +612,7 @@ something that is worth not re-deriving.
                                      # `modules' family LOADS os9lib first,
                                      # with the disk's own CMDS/load
     tools/playtest.py --all          # Tier B: pty, screen read. SLOW, hours
-    tools/check_disk.py disk         # thirteen invariants; read the OUTPUT
+    tools/check_disk.py disk         # fourteen invariants; read the OUTPUT
 
 Current: **105 data cases, 102 passing** (`tools/datatest.py --all`, verified
 at end of session). The three failures are EXPECTED and are real defects in
@@ -664,7 +664,7 @@ longer needed for anything.
 
     tools/rebuild/make_overlay.sh            # the SDK build overlay
     tools/mkimage.sh $PWD/disk $PWD/osk-freeware.dd     # ~1 min
-    tools/check_disk.py disk                 # thirteen checks
+    tools/check_disk.py disk                 # fourteen checks
     OS9DISK=osk-freeware.dd os9exec -r bash /dd/SYS/login    # a shell on the disk
 
 **`osk-freeware.dd` is a build artefact and goes stale.** It cost a whole

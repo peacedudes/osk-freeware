@@ -24,7 +24,7 @@
 
     tools/check_disk.py disk
 
-Thirteen invariants, each of which has been made to fail on purpose --
+Fourteen invariants, each of which has been made to fail on purpose --
 read the list the tool prints rather than trusting this one:
 
 - no text file contains LF -- OS-9 ends a line with CR alone, and an LF-ended
@@ -70,6 +70,13 @@ read the list the tool prints rather than trusting this one:
   them still saying "`q' quits -- tested"; and `MakeTeXPK`, which was never
   here. Both files are read BY NAME, so an entry nobody looks up is an entry
   nobody notices
+- the disk's own documents are still their proper size. Added 2026-08-30,
+  when a rewrite left `DOC/STATUS` at ZERO BYTES: `open(path, "wb")` truncates
+  the moment it is evaluated, and the expression to be written raised before
+  it produced anything. All thirteen other checks then said ok -- an empty
+  file has no LF in it, no UTF-8, no leftovers and no bad magic. Only
+  `git diff` caught it. A file that has legitimately grown past its floor
+  should have the floor raised, not the check removed
 
 `gen_catalog.py --check` carries two more of its own. It reports programs on
 the disk it could not GATHER at all -- which is how `gcc`, `gpp` and sixteen
