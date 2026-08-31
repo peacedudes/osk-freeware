@@ -124,9 +124,38 @@ Two hints from the disassembly, for anyone driving these by hand: a site whose
 in ordinary use; one whose operand arrives in a register needs the program to
 have opened a file first.
 
-**So the honest figure is the one this file states: 41 carry the call site, 2
-are confirmed to reach it** -- and it no longer rests on anyone having run
-them. The statement that carries its own reason is:
+## The 41 driven, one at a time -- 2 storm, 38 do not
+
+Done 2026-08-31, after the two sweeps above failed. Each program was given the
+arguments its OWN usage line asks for, and the invocation is recorded with the
+result, because "did not flood under X" is a statement about X:
+
+| | |
+|---|---|
+| storm | **2** -- `cvtbase` (`cvtbase d h`, number on stdin), `logisim` (`PORT`, `TERM`, `TERMCAP` and a circuit file) |
+| driven, no flood | **38** |
+| not driven | **1** -- `REBUILT/kermit_cio`, which wants a serial line |
+
+Of the 38: 31 were run here with file arguments taken from their usage lines
+(`chksum`, `snap`, `spiff`, `unifdef`, `diff`, `nroff`, `ape`, `xrf`, `etags`,
+`cookhash`, `lp`, `pagefraz`, `pagekwic`, `undel`, `dam`, `loan`, `printf`,
+`strfile`, `ascii`, `crypto`, `unstr`, `unpacklib`, `liborder`, `cdiff`,
+`makelex`, `hexed`, `vis`, `yacc`, `setfont`, `sedt`, `wish`); six are games
+that pass their play-tests on a pseudo-terminal, which means they reach
+character output (`blackjak`, `poker`, `stone`, `tess`, `rpoem`, `newsgen`);
+and `valspeak` exits at once producing nothing at all, which is a fault of its
+own recorded since 2026-08-27 and not this one.
+
+`ascii` is worth singling out: it prints its whole 66-line table correctly
+while carrying two `_flshbuf` call sites. Carrying the call is not the same as
+running it.
+
+**So two programs on this disk are actually broken by the mismatch**, out of
+353 that link `cio`. That is the number to quote.
+
+## The statement that carries its own reason
+
+Even so, the count above rests on the linkage rather than on the runs:
 
 > 41 programs were built against a `cio.l` whose `putc`/`getc` macros call
 > selectors `$41`/`$42`; every `cio` module we have implements those as
