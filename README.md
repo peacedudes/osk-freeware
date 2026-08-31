@@ -211,12 +211,16 @@ preserved, not rebuilt. That is why the binaries are committed.
 
 ## Working on this collection
 
-**`notes/PLAN.md` is the cold-start handoff** — the
-two-minute setup, where the work stands, what is next in order, and the traps
-that have already cost real time. It is kept current, and it is the right
-first read whether you are a person coming back to this after a month or an
-assistant opening the repository for the first time.
+**`notes/PLAN.md` is the one to read** — self-contained on purpose: what the
+collection is, how to build and test it in two minutes, where it stands
+measured, the work remaining in order with acceptance criteria, the rules that
+matter, and the things already tried that did not work. It is the right first
+read whether you are a person coming back after a month or an assistant
+opening the repository for the first time, and you should not need the rest of
+`notes/` unless it sends you there.
 
-`notes/FOR-RDOGGETT.md` is what needs a decision, newest first.
+`notes/HISTORY-2026-08.md` is why things are the way they are — background,
+not instructions. `notes/FOR-RDOGGETT.md` is what needs a decision, which is
+currently nothing.
 `notes/SESSION-<date>.md` files are history — read one when the handoff sends
 you there, not before.
