@@ -37,6 +37,46 @@ and `F$SRqMem` honours its documented contract.
 instead of storming. The `CIO_Cookie` handshake cannot catch any of this: a
 program writes 8 and the module accepts anything up to 9.
 
+## There are TWO cio.l vintages, and the binary shows which it linked
+
+Found by the os9exec session and verified here independently. Count the
+distinct trap-13 selectors a program's stub table carries; its maximum
+identifies the library it was linked against. Across the 353 cio-linked
+programs:
+
+| max selector | programs | with a `$41`/`$42` call site |
+|---|---|---|
+| `$45` -- the 70-entry library | 96 | **0** |
+| `$44` -- the 69-entry library | 116 | **41** |
+| `$2B`..`$40` -- partial tables | 139 | 0 |
+
+Not one program from the 70-entry library calls `$41`/`$42`, and every one of
+the 41 comes from the 69-entry one. Our `cio` modules dispatch `$00..$45`, so
+**the 70-entry library is the one that matches them and the 69-entry library
+is the mismatched one.**
+
+The difference is what `putc`/`getc` compile to. In the matched vintage they
+are ordinary FUNCTION calls -- selectors `$12` and `$09` -- and the buffering
+happens inside the module, where it is consistent. In the mismatched vintage
+the header inlines them and the slow path calls `_flshbuf`/`_filbuf` at
+`$41`/`$42`. That is the whole of it, and it explains `autolf`: it carries the
+stubs and never floods because it does not have the macro at all.
+
+**`ksh` is fine, and this is why.** It calls `$12`/`$09`, never `$41`/`$42`.
+Its 188 requests of 262,576 bytes come from `malloc` (`$3B`) reaching the
+module's own allocator -- one chunk, reused, which is that allocator working
+correctly, not a leak per character. Worth stating because 188 identical large
+requests look exactly like the fault from outside.
+
+`oskBoot` ships the 69-entry `LIB/cio.l` beside a module that wants the
+70-entry one, which is why anything built `-qixm` here is broken by
+construction rather than by choice.
+
+(Counting from this end gives 96 in the `$45` bucket where the os9exec session
+counted 98, and turns up one spurious "selector" of `$454E` -- the ASCII `EN`,
+a `4E4D` byte pair that is not a stub. Scanning noise at the edges; the
+separation itself is exact.)
+
 ## Which programs
 
 353 program modules on this disk link `cio`. **41 contain a branch to their
@@ -54,14 +94,50 @@ function whose address is taken" makes nearly everything reachable and
 tightens nothing. The finding is in the script's header so nobody re-derives
 it.
 
-What does tighten it is running the 41 with realistic input and watching for
-an `F$SRqMem` whose `d0` is wildly larger than that module's own
-`M$Mem`+`M$Stack` -- `logisim` asks 643,624 against 39,236, about sixteen
-times. That request appears on the FIRST character, hundreds of thousands of
-lines before any flood, so a run can be stopped the moment it shows. Two
-hints from the disassembly: a site whose `FILE` operand is `lea fp@(-N),a0`
-with N near `$7FC6` is on `_iob` and fires in ordinary use; one whose operand
-arrives in a register needs the program to have opened a file first.
+**Two ways of tightening it were tried and BOTH failed. Do not repeat them.**
+
+*A generic invocation sweep is vacuous.* Driving each program with a text file
+on stdin and as an argument, and watching its `F$SRqMem` traffic, reports
+`logisim` and `cvtbase` CLEAN -- the two programs that have been watched storm.
+Neither invocation reaches the macro: `logisim` exits at its `PORT` check and
+`cvtbase` prints its usage without arguments. A usage message goes through the
+module's own `printf` and never touches `putc`. So "did not flood under X" is
+scoped to X and is not a negative about the program, and a sweep that forgets
+that hardens into a false all-clear.
+
+*A 16x threshold on `M$Mem`+`M$Stack` does not separate them either.* The
+suggestion was to flag any `F$SRqMem` whose `d0` is wildly larger than the
+module's own requirement, 16x being generous:
+
+    logisim   needs 39,236   asks 643,624   16.4x   caught
+    cvtbase   needs 20,486   asks 297,504   14.5x   MISSED
+
+`cvtbase` slips under with the RIGHT invocation, so the threshold would have
+to come down to about 10x, and at that point it is a guess rather than a
+discriminator. What actually characterises the bad request is that it is an
+address: the SAME non-round value, repeated hundreds of times, never freed,
+and moving when the heap moves. Repetition and heap-dependence are the real
+signals; magnitude alone is not.
+
+Two hints from the disassembly, for anyone driving these by hand: a site whose
+`FILE` operand is `lea fp@(-N),a0` with N near `$7FC6` is on `_iob` and fires
+in ordinary use; one whose operand arrives in a register needs the program to
+have opened a file first.
+
+**So the honest figure is the one this file states: 41 carry the call site, 2
+are confirmed to reach it** -- and it no longer rests on anyone having run
+them. The statement that carries its own reason is:
+
+> 41 programs were built against a `cio.l` whose `putc`/`getc` macros call
+> selectors `$41`/`$42`; every `cio` module we have implements those as
+> memory routines.
+
+Tightening the 2 means driving each program the way it is meant to be used and
+recording the invocation beside every result. That is a per-program SETUP
+problem, not an endurance one: the slow path fires on the FIRST character
+through a `FILE`, so each program need only be made to produce one character
+of real output or consume one of real input. `logisim` needed `PORT`, `TERM`,
+`TERMCAP` and a circuit file; `cvtbase` needed two arguments and a number.
 
 **That is an upper bound, and the gap matters.** A call site only fires if it
 is reached. All 41 run bare with stdin closed print their usage and exit
