@@ -6,7 +6,38 @@ Branch `release-pass-2026-08-21`. All fourteen `check_disk.py` checks green.
 
 ---
 
-## ONE THING NEEDS YOU (three of the four are answered)
+## ONE THING NEEDS YOU: `gnuchess`, and the measurement changed it
+
+Everything else from the duplicate-names decision is done (2026-08-31): the
+five in CMDS/REBUILT renamed file and module together, 25 more alternates
+given module names that match their files, and the byte-identical second
+`makeinfo` deleted. Colliding module names are down from 32 to 11, and the
+eleven left are csl/csl020, math/math881, MM1/msdrv (all three deliberate --
+a program links those BY NAME), the gcc passes (forked by filename, so
+harmless, documented), and gnuchess.
+
+You said "drop or rename the CMDS copy". Before doing either I ran all four,
+on a pseudo-terminal, TERM=vt100, `. /dd/SYS/termcap.entry' sourced:
+
+    CMDS/gnuchess         nothing in 20 seconds
+    CMDS/gnuchessn        nothing in 20 seconds
+    CMDS/gnuchessr        prompts, takes a move, answers with its own
+    CMDS/GAMES/gnuchess   draws the board and plays
+
+DOC/DEPENDS suggests why: the CMDS build opens
+`/h0/usr/src/chess/gnuchess.book' by absolute path and that file is not on
+this disk; the GAMES build opens its book by bare name.
+
+So the CMDS copy may not be a duplicate worth renaming -- it may be a copy
+that does not run. **Drop it, or keep it renamed as a preserved binary?** I
+have not touched it, because every name I could think of was weak:
+`gnuchesst' would say "termcap" and gnuchessn is termcap too; `gnuchessx'
+would say "X windows" and all three carry that option. If you want it kept I
+would take `gnuchess_h0', since wanting its data at /h0 is the one thing
+that actually distinguishes it. The measurement is recorded in DOC/INDEX
+either way.
+
+## Answered earlier (kept for the record)
 
 **1. ~~Should a program called `shell` ship?~~ DECIDED 2026-08-30: NO.**
 rdoggett: *"we can't call sh or ksh or bash shell. It will be too confusing.
