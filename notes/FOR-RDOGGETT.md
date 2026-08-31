@@ -64,18 +64,32 @@ program's stdout. The os9exec session is raising it with you separately. It
 cost this collection a program's reputation and me a night, which is probably
 the strongest argument for changing it.
 
-**What it means for the disk: THREE programs, and they are named.** 353
-modules link `cio`; 41 carry the call; all 41 have now been driven and
-**`cvtbase`, `logisim` and `unstr`** are the ones actually broken. Everything
-else does its job. A program fails this way only if it runs a `putc`/`getc`
+**What it means for the disk: NINE programs, and they are named.** 353 modules
+link `cio`; 41 carry the call; all 41 have been driven. Nine are broken, in two
+different ways:
+
+    LOUD    cvtbase  logisim  unstr
+            hundreds of `No more memory !!!', no work done
+
+    SILENT  cdiff  pagekwic  pagefraz  nroff  etags  cookhash
+            opens your file, reads NOT ONE BYTE, reports on it anyway
+
+`yacc` and `loan` probably belong in the second list. The silent ones are the
+dangerous ones -- `cdiff` says "MAXLINECOUNT exceeded" on a three-line file,
+`nroff` and `etags` print nothing -- and the same fault hands the C library's
+allocator the FILE structure itself to free, so the heap is corrupted too. A program fails this way only if it runs a `putc`/`getc`
 MACRO on a `FILE`; `printf`, `fwrite` and `read`/`write` are all fine.
 
 Two things I got wrong on the way, both now corrected in place, because they
 are the shape of mistake this collection keeps making:
 
-- **I published 2 and it was 3.** `unstr` prints usage when run bare and stays
-  silent on a three-line file. It only storms on the 192 KB fortune index it
-  is actually for. `DOC/INDEX` had said so all along.
+- **I published 2, then 3, and it is 9.** Every count was too low because I
+  was looking for the wrong thing. `unstr` only storms on the 192 KB index it
+  is really for, not on a test file. And the whole SILENT half -- six more
+  programs -- makes no noise at all, so counting floods could never have found
+  it. The rule is now "count opens and reads", not "watch for the flood":
+  a program that opens a file, reads nothing, and reports on it anyway is a
+  victim. One trace answers both halves.
 - **I nearly published 5.** A sweep flagged `etags` and `sedt` too. They make
   perfectly ordinary requests -- 4 KB, 6 KB -- and simply run out of room.
   Their `No more memory` lines are REAL allocation failures. They are

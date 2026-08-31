@@ -153,40 +153,68 @@ would have been written up as contradicting that.
 different tests, and only one of them is the program's job. Some input is not
 enough.
 
-## A SECOND MANIFESTATION, silent -- strong correlation, not yet proven
+## The SILENT half -- confirmed, and it is worse than a misread
 
-Selector `$41` (`_flshbuf`) lands on the raw ALLOCATOR, so the putc side
-storms and is loud. Selector `$42` (`_filbuf`) lands on the raw FREE --
-nothing is allocated, nothing floods, and `getc` simply never refills its
-buffer. **If that is right, every getc-side victim is invisible to
-flood-counting**, which is how everything above was detected.
+Selector `$41` (`_flshbuf`) lands on the raw ALLOCATOR: the putc side storms,
+and it is loud. Selector `$42` (`_filbuf`) lands on the raw FREE. Confirmed by
+the os9exec session from cdiff's own disassembly -- `cdiff+0x3e0` is the getc
+macro, the exact mirror of the putc one, and the value the raw free returns is
+taken as the character and compared against `EOF`.
 
-Ten of the 41 have `_filbuf` as their only call site. **Six of them
-demonstrably fail to read input**, on files a control reads perfectly:
+**The program opens the file and never reads a byte of it.** Counting
+syscalls, and reproduced here:
 
-    cdiff <f> <f>            "MAXLINECOUNT exceeded" on a THREE-line file
-                             (its source is here; the limit is 8000)
-    pagekwic <f>             "word too long in line 0" on 18 bytes, longest word 5
-    pagefraz <f>             the same message on the same file
-    unpacklib /dd/LIB/alib.l "Wrong SYNC long word, found 0xB0000002" on a REAL library
-    cookhash < f             prints "000000"
-    loan                     prompts, echoes the numbers, computes nothing
+    cdiff c1 c2      opens=2  reads=0    "MAXLINECOUNT exceeded" on 3 lines
+    pagekwic w       opens=1  reads=0    "word too long in line 0" on 18 bytes
+    pagefraz w       opens=1  reads=0    the same
+    nroff w          opens=1  reads=0    prints nothing at all
+    etags about.c    opens=1  reads=0    prints nothing at all
+    cookhash < w     opens=0  reads=0    prints "000000"
+    cat w            opens=1  reads=2    correct output   <- control, no macro site
+    liborder alib.l  opens=1  reads=1    works            <- sites not reached
 
-`cat` reads that same file correctly and has no macro call site at all.
-`liborder` works on a real library, so its seven sites are not reached there.
+**And it corrupts the heap.** The module's `$42` is the raw free that the
+headered `free()` calls after validating its magic. `_filbuf(FILE *)` therefore
+hands cio's allocator THE FILE STRUCTURE ITSELF as a block to free, with
+whatever the caller left in `d1` as its size. The `FILE` goes on the free list
+as a bogus node and a later `malloc` can hand that memory out again. The quiet
+half is more dangerous than the loud one: the storm at least stops the program.
 
-**Not proven.** These could be six independent 1980s bugs; "reads garbage" is
-a common symptom. What argues against coincidence is that every error reports
-content that was not in the file, all six sit in the ten-program `_filbuf`
-group, and the obvious alternative explanation is ruled out: `cdiff`'s loop
-uses the classic `char ch = getc()` against `EOF`, which fails only where
-`char` is unsigned -- and **`char` is SIGNED in Microware C**, measured by
-compiling a test on the SDK, so `EOF` assigned to a `char` still compares
-equal. That was the first theory and measuring killed it.
+## The detection rule -- count opens and reads, not floods
 
-Referred to the os9exec session for disassembly. Until it comes back, the
-count of THREE above is the count of programs that STORM, and is not the count
-of programs this defect breaks.
+**"Watch for the flood" only ever found half of this.** One trace answers both
+questions:
+
+    os9exec -d1 0x0002 <program> <real arguments>
+
+- a program that opens a file and never reads it, or reads nothing from
+  standard input, while printing anything about the content, is a SILENT
+  victim;
+- a repeated address-shaped `F$SRqMem` is a LOUD one.
+
+Both appear in the same run. Watch for legitimate reasons to open without
+reading -- opening for output, reading a directory, or an open that failed --
+which is why the rule requires the program to also REPORT on content it cannot
+have seen.
+
+## What is actually broken: 9 confirmed, 2 probable, of 41
+
+    STORM (the $41 half, loud)
+      cvtbase   logisim   unstr
+
+    SILENT (the $42 half): opens the file, reads nothing, reports anyway
+      cdiff   pagekwic   pagefraz   nroff   etags   cookhash
+
+    PROBABLE
+      yacc   opens 11 files and reads none, but was not given a real grammar
+      loan   prompts, echoes its numbers and computes nothing
+
+Open-without-read with an innocent explanation, NOT counted: `xrf` (its
+language table `C.XRF` is in `DOC/xrf`, not the data directory), `dam`, `undel`,
+`wish`, `vis`.
+
+**So the earlier figure of three was the count of programs that STORM.** It was
+never the count this defect breaks.
 
 ## A single `No more memory` line is NOT this defect
 
