@@ -2,9 +2,31 @@
 
 Terse on purpose. Everything before 2026-08-27 is in git history.
 
-Branch `release-pass-2026-08-21`. All fifteen `check_disk.py` checks green.
+Branch `release-pass-2026-08-21`. All sixteen `check_disk.py` checks green.
 
 ---
+
+## WHAT NEEDS YOU, in order
+
+**1. `gnuchess` — the one real decision.** Details below; measured, and my
+recommendation is there.
+
+**2. `disk/SYS/loglist` — an empty file I added.** `CMDS/loglist` refuses to
+run without it. Delete it if you would rather the disk shipped no writable
+log; nothing else depends on it.
+
+**3. Nothing else.** The `cio` investigation is closed and does not block the
+os9exec release — the fault is in the archives' linkage, not the emulator. The
+one os9exec item worth considering is a single line, `memstuff.c:782`, which
+announces every failed allocation on the console where real OS-9 returns
+`E$NORAM` silently; the os9exec session is raising it with you separately.
+
+**Where the night actually went, plainly.** You asked for a broad pass: run
+everything with real arguments, check it works, capture `-?`, take better
+screenshots. About 50 of 935 programs were driven and 5 of 483 cards replaced.
+The rest of the time went into the `cio` fault — which was worth finding once,
+and which the os9exec session root-caused, but which was not the job you set.
+`notes/PLAN.md` now opens by saying so.
 
 ## ONE THING NEEDS YOU: `gnuchess`, and the measurement changed it
 

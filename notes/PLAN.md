@@ -19,7 +19,7 @@ own OS-9 media**. Keep that reader in mind; it decides most questions.
 
 ```sh
 OS9EXEC_DIR=~/Developer/os9/os9exec tools/mkimage.sh disk osk-freeware.dd
-tools/check_disk.py disk          # 15 invariants, all must be green
+tools/check_disk.py disk          # 16 invariants, all must be green
 tools/gen_catalog.py disk --check # every program catalogued and categorised
 tools/gen_screens.py --check      # no card has drifted from its stanza
 ```
@@ -27,13 +27,16 @@ tools/gen_screens.py --check      # no card has drifted from its stanza
 Longer, and worth running before you claim anything is finished:
 
 ```sh
-tools/datatest.py --all --image osk-freeware.dd   # 180 cases, 177 pass
-tools/playtest.py --all --image osk-freeware.dd   # 115 tests, 111 pass
+tools/datatest.py --all --image osk-freeware.dd   # 187 cases
+tools/playtest.py --all --image osk-freeware.dd   # 116 tests, 112 pass
 tools/ci/run_workflow_locally.sh /tmp/scratch     # the whole GitHub workflow
 ```
 
-The seven failures are deliberate and each says why in its own file. **One
-harness at a time** — they all write to the image and take a lock.
+The known failures are deliberate and each says why in its own file: three in
+`datatest` and four in `playtest` (pacman, puzzle, snake, valspeak). **One
+harness at a time** — they all write to the image and take a lock, and a run
+killed part-way leaves `osk-freeware.dd.lock` behind for the next one to
+clear.
 
 ## Where it stands, measured
 
@@ -56,6 +59,15 @@ than dying" — `rpn` gets its arithmetic wrong and clears that bar.
 ---
 
 ## The work, in order
+
+> **Read this first if you are new here.** On 2026-08-31 rdoggett asked for
+> one thing above all: *run the programs with real arguments and check they
+> actually work — not just that they do not die; capture `-?` and compare it
+> against the documentation; and take screenshots that show a program working
+> rather than its usage line.* About 50 of 935 programs were driven that way
+> and 5 cards were replaced. **That is the job, and it is barely begun.**
+> Items 1a and 4 below are the same loop and it is the loop that works.
+
 
 ### 1. Module-name collisions — the five in REBUILT are done, 27 names remain
 
