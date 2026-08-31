@@ -231,7 +231,7 @@ def usage_of(path, name, limit=1200):
 # source on the disk -- showed no provenance at all in the guide, and nothing
 # said so.  `unmatched_origins' below is why it cannot go quiet again.
 ORIGIN_KINDS = ("Microware OS-9 archive", "EFFO public-domain disk",
-                "rdoggett's STUFF drop", "usenet archive", "EFFO forum",
+                "usenet archive", "EFFO forum",
                 "hc disk", "PD disk", "microware")
 ORIGIN_RX = re.compile(r"^  (\S+)\s+(\S+)\s+(%s)\b(.*)$"
                        % "|".join(re.escape(k) for k in ORIGIN_KINDS))
@@ -397,8 +397,8 @@ def shared_names(root):
 
     As measured 2026-08-30 there are nine, eight of them different programs
     rather than copies: `gcc' and `gpp' (GCC139 and GCC2 are different
-    compilers), `gnuchess' (CMDS and CMDS/GAMES), and `arc', `compress',
-    `kermit', `screen' and `wish' (the shipped build and the REBUILT one).
+    compilers), `gnuchess' (CMDS and CMDS/GAMES), and `wish' (the shipped
+    build and the one in GAMES).
     CLAUDE.md already says a checker over this collection must compare per
     FILE and not per name; the catalogue does not, and fixing that means
     keying it by path, which changes the guide's shape and is a decision for
