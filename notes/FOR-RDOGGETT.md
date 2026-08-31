@@ -37,6 +37,36 @@ would take `gnuchess_h0', since wanting its data at /h0 is the one thing
 that actually distinguishes it. The measurement is recorded in DOC/INDEX
 either way.
 
+## FOR THE os9exec RELEASE -- F$SRqMem affects SHIPPED binaries
+
+You are holding the release until it is sound. This is the part that bears on
+that, and it contradicts what `notes/os9exec-bugs/SRQMEM.md` concluded.
+
+**Two archive binaries reproduce it, neither built by us.** The shortest:
+
+    echo 255 | cvtbase d h
+
+439,689 lines of `No more memory !!!` and no conversion -- invoked exactly as
+its own usage line documents, no environment to set up. `logisim` is the other
+(needs `setenv PORT /term` first). Both pass the heap-shift discriminator:
+cvtbase asks for 297,504 bytes alone and 617,952 after three modules are
+loaded, which is not something a byte count does.
+
+**It has already cost the collection a program.** `CMDS/sed` was swapped on
+2026-08-28 because the shipped build answered every script with `No more
+memory !!!'. If the fault is the emulator's, that binary was never broken.
+
+**It is not every cio program.** All 368 starred binaries fed 272,000 bytes on
+stdin: zero flooded, 72 pushed over 200 KB through cleanly. But that sweep
+proves less than it looks -- 221 of them produced under 200 bytes, so it never
+exercised them, and it catches neither confirmed case. A trace-based sweep is
+running.
+
+I have sent both reproductions to the os9exec session, with the caution that
+cost me twenty minutes: when tracing through bash, the shell is pid 2 and the
+program under test is pid 3, and bash's ordinary allocations look nothing like
+the defect.
+
 ## ONE THING I SHIPPED THAT YOU MIGHT NOT WANT
 
 **An empty `disk/SYS/loglist`, added 2026-08-31.** `CMDS/loglist` is a login
