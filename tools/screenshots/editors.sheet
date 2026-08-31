@@ -74,11 +74,16 @@ wait    8
 
 shot    vi
 for     vi view
-cap     The EFFO vi -- its source in SRC/effo_vi is the Berkeley ex source.
-cap     It opens the file and paints TWO LINES of it: the first line and a
-cap     half-drawn rule, and no more however long you wait or wherever you
-cap     move.  Three others here fill the screen properly: `elvis',
-cap     `vi_nocio' and REBUILT/VI, each with its own card.
+cap     The EFFO vi -- its source in SRC/effo_vi is the Berkeley ex source
+cap     itself, not a clone, which is why it has the name and keeps it.
+cap     WHAT YOU SEE HERE IS NOT WHAT ITS USERS SEE.  Under this harness --
+cap     a pseudo-terminal rendered as vt100 -- it paints the first line and
+cap     a half-drawn rule and no more; on a real terminal it works fine and
+cap     is used daily.  Tried and did NOT explain it (2026-08-30): 24 lines
+cap     and 36, TERMCAP as a path and as an entry, ^L and ^R.  So this is a
+cap     fact about the harness until somebody explains it.  `elvis',
+cap     `vi_nocio' and REBUILT/VI fill the screen under both, each with its
+cap     own card.
 run     vi /dd/DOC/README-CIO
 wait    20
 send    \033

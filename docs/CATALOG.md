@@ -49,7 +49,7 @@
 | `if` | conditional execution for shell scripts (varval/loaded/def)<br>`Syntax: if [not] <cond> {<arg>} {<cmd1>} [else` |
 | `printenv` | &#9733; print the environment<br>`Syntax:   printenv [<options>] [{<env var name}]` |
 | `printf` | &#9733; formatted print from the shell.  IT WORKS, with one flaw: the literal text BEFORE THE FIRST CONVERSION is dropped. Everything between and after conversions is right -- `printf "%d %s %d\n" 4 "is bigger than " 3' prints `4 is bigger than  3', and `"a%db%dc\n" 1 2' prints `1b2c', losing only the leading `a'.  So begin the format with a conversion and nothing is lost.  The degenerate case of the same flaw: a format with NO conversion is entirely `before the first conversion', so it prints nothing. Measured 2026-08-29; the earlier note here said it floods `No more memory !!!', and it does not<br>`Usage: printf <format-string> [ arg1 . . . ]` |
-| `qp` | &#9733; NOT a print helper: `qp <cmd> <args>' processes BACK-QUOTES for command expansion, which Microware's shell has no way to do.  It produces nothing here whatever it is given -- like everything else that forks a program called `shell', which this disk does not have.  Corrected 2026-08-29<br>`Syntax: qp <cmd> <arg1> ... <argn>` |
+| `qp` | &#9733; NOT a print helper: `qp <cmd> <args>' processes BACK-QUOTES for command expansion, which Microware's shell has no way to do. REQUIRES MICROWARE'S `shell' on your execution path -- it does the expansion by forking one, and produces nothing without it. Reworded 2026-08-30<br>`Syntax: qp <cmd> <arg1> ... <argn>` |
 | `run` | run a program with stdio rebound to the terminal (needs PORT)<br>`Syntax: run '<prgname> {<arg>}'` |
 | `xc` | execute commands from a file (needs a .xc) |
 
@@ -98,7 +98,7 @@
 |---|---|
 | `sedt` | &#9733; SEDT screen editor -- the third build of the same editor, and it needs SYS/sedt.keys like the other two.  All three run now |
 | `VI` | PVIC, public domain            -> /dd/CMDS/REBUILT (name was taken)<br>`Usage: vi [file ...]` |
-| `vi` | &#9733; THE REAL vi/ex -- its source in SRC/effo_vi is the Berkeley ex source itself, not a clone.  `vi -x' is ex, `vi -d' is edit.  See DOC/README-VI.  IT DOES NOT PAINT A FULL SCREEN here: it shows the first line and a half-drawn rule and no more, whatever you do.  `elvis', `vi_nocio' and REBUILT/VI all fill the screen properly.  Measured 2026-08-28<br>**How:** One of three unrelated vi editors here, and the only one that is the genuine Berkeley ex/vi rather than a clone -- its source in SRC/effo_vi is the real ex_*.c files. `vi -x' becomes ex, `vi -d' becomes edit. DOC/README-VI compares all three. |
+| `vi` | &#9733; THE REAL vi/ex, and it KEEPS THE NAME -- its source in SRC/effo_vi is the Berkeley ex source itself, not a clone. `vi -x' is ex, `vi -d' is edit.  See DOC/README-VI.<br>**How:** One of three unrelated vi editors here, and the only one that is the genuine Berkeley ex/vi rather than a clone -- its source in SRC/effo_vi is the real ex_*.c files. `vi -x' becomes ex, `vi -d' becomes edit. DOC/README-VI compares all three. |
 | `vi_cio` | &#9733; PVic vi, cio build (use vi_nocio instead)<br>**How:** PVic vi, the cio build. Needs `. /dd/SYS/termcap.entry' first, then it opens on an empty buffer. CMDS/vi_nocio is the same editor needing no module; DOC/README-VI compares all three vi editors here. |
 | `vi_nocio` | PVIC 1.0a -- the smallest of this disk's three vi editors, public domain.  See DOC/README-VI to choose between them<br>**How:** PVIC 1.0a, the smallest of the three vi editors on this disk, public domain, no source or docs here. DOC/README-VI compares it with vi and elvis. |
 
@@ -353,7 +353,7 @@
 | | |
 |---|---|
 | `dir` | &#9733; directory listing.  PATCHED HERE: its moveq #128 was sign-extended to -128; see DOC/STATUS<br>`Syntax: dir [<opts>] {<dir names> [<opts>]}` |
-| `dm` | &#9733; DiskMaster 1.4, a two-pane full-screen file browser.  It gets as far as its title box here: it asks the shell for the working directory through a named pipe and the open fails, because OS-9's system() forks a program called `shell' and this disk has none.  MEASURED 2026-08-29 -- with `sh' copied to `shell' it runs completely, directory list and file information panel and all.  Help file: SYS/dm.hlp<br>`Usage: DiskMaster [-c] [-d<dir name>]` |
+| `dm` | &#9733; Disk Master 1.4, a full-screen disk and directory browser. REQUIRES MICROWARE'S `shell' on your execution path: it runs the commands it offers through system(), which forks a program of that name.  With one present it runs completely -- measured 2026-08-28.  Reworded 2026-08-30<br>**How:** Disk Master 1.4, a full-screen disk browser. REQUIRES MICROWARE'S `shell` on your execution path -- it runs the commands it offers through system(). With one present it runs completely. |
 | `edir` | &#9733; list the EVENT directory -- OS-9 events and their values. Nothing to do with `dir'<br>`Syntax: edir [<opts>]` |
 | `l` | &#9733; brief directory listing -- but it answers `not accessable, error: 214' for every directory tried here<br>`Usage: l [-options] [file] [file] [-options]` |
 | `ls` | GNU ls (fileutils 3.13) -- OUR OWN FIXED BUILD: real stat(), columns, -al<br>`Usage: ls [OPTION]... [FILE]...` |
@@ -562,7 +562,7 @@
 | | |
 |---|---|
 | `creadoc` | extract documentation comments from FORTRAN source.  IT ABORTS HERE -- E_PRCABT with os9lib loaded, with a source file or without, absolute path or relative.  It is the one piece of the RTF set that does not run; `rtf' itself compiles and `biory' runs.  DOC/rtf/biory.doc is the output it produced for biory.f on the machine it came from.  Measured 2026-08-29 |
-| `for` | RTF/68K FORTRAN compiler driver.  Needs os9lib loaded |
+| `for` | the RTF/68K FORTRAN driver, and a bash KEYWORD -- ask for it by PATH (`/dd/CMDS/for') or bash swallows the name.  It REQUIRES MICROWARE'S `shell' on your execution path: it forks one to run each compiler pass.  Without it the driver prints the command and stops.  Call `rtf' directly instead and you need no shell at all -- see DOC/README-FORTRAN.  Reworded 2026-08-30 |
 | `rtf` | RTF/68K Real-Time Fortran-77 compiler, v2.14 (CERN, 1987), AND IT COMPILES HERE.  `load /dd/CMDS/os9lib' first -- without its runtime library the whole set prints nothing -- then `rtf <file>.f' reads the Fortran and writes 68k ASSEMBLY beside the source: zero errors, `RTF normally completed'.  Assembling and linking that needs Microware's r68 and l68, which are not here.  CALL IT DIRECTLY: the `for' driver forks a program called `shell' to run rtf, and this disk has none, so it prints the command and stops.  Sources to try in SRC/rtf.  Manual: DOC/rtf/rtfman.txt.  Measured 2026-08-29 |
 
 **Translators**
@@ -1119,7 +1119,7 @@
 | | |
 |---|---|
 | `mtst` | &#9733; spline curve fitting - test driver |
-| `rayshade` | ray tracer 4.0 -- RUNS but renders wrong; see DOC/rayshade  IT RENDERS, given two things: a program called `shell' (popen forks one and this disk has none -- `copy sh shell') and `cccp' in the DATA directory.  DOC/rayshade has the lines<br>`usage: rayshade [options] [filename]` |
+| `rayshade` | ray tracer 4.0.  IT RENDERS, and REQUIRES MICROWARE'S `shell' on your execution path: it builds its scene through popen(), and OS-9's C library implements popen() by forking a program of exactly that name.  It also wants `cccp' in the DATA directory, which is where the forked shell looks.  With both, it renders and reports its statistics -- measured 2026-08-28. No `shell' ships here; anyone who runs OS-9 has one. DOC/rayshade has the two lines.  Reworded 2026-08-30<br>**How:** Ray tracer 4.0, and it renders. REQUIRES MICROWARE'S `shell` on your execution path -- it builds its scene through popen(), and OS-9's C library implements popen() by forking a program of exactly that name. It also wants `cccp` in the DATA directory. DOC/rayshade has the two lines. |
 | `rsconvert` | convert rayshade image output between formats<br>`usage: rsconvert [oldfile]` |
 
 **Plotting**
@@ -1261,7 +1261,7 @@
 |---|---|
 | `life` | Conway's Game of Life<br>**How:** life [init-file]. The patterns are in /dd/GAMES/LIFE -- try `life /dd/GAMES/LIFE/glider`. It also wants more memory than the default; from the OS-9 shell that is `life #22k <file>`, and bash has no #size syntax at all. |
 | `rain` | raindrops screen effect<br>**How:** Full-screen: it takes over the display. **control-C gets you out** -- tested, and none of q, Q, control-D or ESC did. If it has a quit command of its own, its documentation in DOC/ will say. |
-| `screen` | &#9733; NOT the terminal multiplexer.  Russ Smith's `screens': picks a file at random from $HOME/.SCREENS and shows it. On OS-9 it RUNS the file rather than printing it, through system(), which forks a program called `shell' that this disk does not have.  Source in SRC/screen, man page in DOC/screen/screens.6.  Corrected 2026-08-28 |
+| `screen` | &#9733; NOT the terminal multiplexer.  Russ Smith's `screens': picks a file at random from $HOME/.SCREENS and shows it. On OS-9 it RUNS the file rather than printing it, through system(), so it REQUIRES MICROWARE'S `shell' on your execution path.  Source in SRC/screen, man page in DOC/screen/screens.6.  Reworded 2026-08-30 |
 | `suicide` | animation: a stick figure walks off a rooftop |
 | `suicide1` | suicide, variant |
 | `suicide2` | suicide, variant |
