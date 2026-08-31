@@ -2,7 +2,7 @@
 
 Terse on purpose. Everything before 2026-08-27 is in git history.
 
-Branch `release-pass-2026-08-21`. All fourteen `check_disk.py` checks green.
+Branch `release-pass-2026-08-21`. All fifteen `check_disk.py` checks green.
 
 ---
 

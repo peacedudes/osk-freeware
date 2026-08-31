@@ -593,6 +593,66 @@ def check_docs_not_truncated(root):
 
 
 
+def check_module_names(root):
+    """No two files under CMDS register the same MODULE name.
+
+    THE FILENAME IS NOT THE NAME.  OS-9 finds a program by the name in its
+    module header once that module is resident, whatever path you type, so two
+    files sharing one name are two paths to one program and the loser is
+    unreachable.  Measured 2026-08-30: after `load /dd/CMDS/REBUILT/arc',
+    running /dd/CMDS/arc gave ARC 5.12 rather than the 5.21 that lives at that
+    path, and nothing warned.
+
+    32 names over 76 files were like that when this was first counted. Renaming
+    the FILE alone does not fix it and makes it worse, because the filenames
+    then promise a distinction the modules do not have -- so this checks the
+    module header, not the directory listing.
+
+    A module name that merely DIFFERS from its filename is fine and common:
+    65 files here report the original author's own capitalisation (`ATerm',
+    `FStat', `wermit', `B_hc'). That is preserved deliberately. What is not
+    fine is two files answering to one name, and the ones that legitimately do
+    are listed in tools/module-name-duplicates.txt with a reason each.
+    """
+    accepted = {}
+    listing = os.path.join(os.path.dirname(os.path.abspath(__file__)),
+                           "module-name-duplicates.txt")
+    if os.path.exists(listing):
+        for line in open(listing):
+            line = line.rstrip()
+            if not line.strip() or line.lstrip().startswith("#") or line[:1] in " \t":
+                continue
+            name, _, why = line.partition(" ")
+            if not why.strip():
+                print("    %s: '%s' has no reason beside it" % (listing, name))
+                return False, "an accepted duplicate carries no reason"
+            accepted[name] = why.strip()
+
+    seen = {}
+    for base, _, files in os.walk(os.path.join(root, "CMDS")):
+        for f in sorted(files):
+            path = os.path.join(base, f)
+            head = open(path, "rb").read(0x30)
+            if head[:2] != b"\x4a\xfc":
+                continue
+            body = open(path, "rb").read()
+            off = int.from_bytes(body[0x0c:0x10], "big")
+            if off >= len(body) or b"\0" not in body[off:]:
+                continue
+            name = body[off:body.index(b"\0", off)].decode("latin-1")
+            seen.setdefault(name, []).append(os.path.relpath(path, root))
+
+    bad = {n: v for n, v in seen.items() if len(v) > 1 and n not in accepted}
+    for n in sorted(bad):
+        print("    module '%s' is registered by %s" % (n, ", ".join(sorted(bad[n]))))
+    stale = [n for n in accepted if len(seen.get(n, [])) < 2]
+    for n in sorted(stale):
+        print("    '%s' is listed as an accepted duplicate but no longer is one" % n)
+    return (not bad and not stale,
+            "%d module name(s) claimed by more than one file, %d stale exception(s)"
+            % (len(bad), len(stale)))
+
+
 CHECKS = [
     ("line endings are CR-only", check_line_endings),
     ("no UTF-8 on an 8-bit disk", check_no_utf8),
@@ -606,6 +666,7 @@ CHECKS = [
     ("DOC/DEPENDS is up to date", check_depends),
     ("no unscreened Microware source", check_src_screened),
     ("binaries start with their magic", check_binary_magic),
+    ("one module name, one file", check_module_names),
     ("howto and categories are current", check_hand_files_name_real_programs),
     ("the disk's documents are intact", check_docs_not_truncated),
 ]

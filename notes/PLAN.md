@@ -19,7 +19,7 @@ own OS-9 media**. Keep that reader in mind; it decides most questions.
 
 ```sh
 OS9EXEC_DIR=~/Developer/os9/os9exec tools/mkimage.sh disk osk-freeware.dd
-tools/check_disk.py disk          # 14 invariants, all must be green
+tools/check_disk.py disk          # 15 invariants, all must be green
 tools/gen_catalog.py disk --check # every program catalogued and categorised
 tools/gen_screens.py --check      # no card has drifted from its stanza
 ```

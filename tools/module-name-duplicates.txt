@@ -1,0 +1,31 @@
+# Module names that MORE THAN ONE FILE under disk/CMDS is allowed to register.
+#
+# OS-9 finds a program by MODULE name once it is resident, whatever path you
+# type, so two files sharing one is two paths to one program -- measured
+# 2026-08-30: after `load /dd/CMDS/REBUILT/arc', typing /dd/CMDS/arc ran ARC
+# 5.12 rather than the 5.21 that lives there, and nothing warned. 32 names over
+# 76 files were like that; the ones below are what is left, and each is here
+# for a reason.
+#
+# Format: <module name> <TAB or spaces> <reason>.  Anything else is a failure.
+
+csl       Microware trap library.  csl020 is the 68020 build and EXISTS to
+          answer to the name `csl' on that CPU; renaming it breaks every
+          program that links it.
+math      Same: math881 is the 68881 build of `math'.
+msdrv     Two editions of one MM/1 mouse driver, MM1/msdrv.901_340 and
+          MM1/msdrv_340.901.ms.  A device descriptor binds a driver BY NAME.
+gcc       GCC139/gcc and GCC2/gcc -- both archive material, in directories you
+          choose between, and their own README uses the plain name.  Do not
+          load both.
+gpp       GCC139/gpp and GCC2/gpp, same reason.
+cc1plus   A gcc compiler pass, present in each toolchain.  The drivers fork
+          their passes BY FILENAME (gcc_cc1plus, gpp_cc1plus), so a compile is
+          not misdirected by this; it is still a reason not to load both.
+cc2       Same.
+cccp2     Same.
+collect   Same.
+gnuchess  OPEN, not accepted -- CMDS/gnuchess and CMDS/GAMES/gnuchess are
+          different ports.  Measured 2026-08-31: the CMDS one prints nothing
+          and the GAMES one plays.  See notes/FOR-RDOGGETT.md; this line goes
+          when that is decided.

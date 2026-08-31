@@ -7,7 +7,7 @@ first is how sessions have historically lost an hour before touching anything.
 
 ## The two-minute version
 
-Branch `release-pass-2026-08-21`, never pushed. Tree clean, all fourteen
+Branch `release-pass-2026-08-21`, never pushed. Tree clean, all fifteen
 `check_disk.py` checks green, `osk-freeware.dd` current.
 
 **What moved on 2026-08-31.** The maintainer's name and username came off the
