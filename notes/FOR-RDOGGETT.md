@@ -37,35 +37,38 @@ would take `gnuchess_h0', since wanting its data at /h0 is the one thing
 that actually distinguishes it. The measurement is recorded in DOC/INDEX
 either way.
 
-## FOR THE os9exec RELEASE -- F$SRqMem affects SHIPPED binaries
+## THE os9exec RELEASE IS NOT BLOCKED BY THIS -- root cause found overnight
 
-You are holding the release until it is sound. This is the part that bears on
-that, and it contradicts what `notes/os9exec-bugs/SRQMEM.md` concluded.
+I spent much of the night building a case that `F$SRqMem` was an os9exec
+defect reaching shipped binaries. **The os9exec session found the actual root
+cause and it is not os9exec.** Recorded in
+`notes/os9exec-bugs/CIO-SELECTOR-MISMATCH.md`.
 
-**Two archive binaries reproduce it, neither built by us.** The shortest:
+The archives were linked against a `cio.l` whose stub table has `_flshbuf` at
+trap-13 selector `$41`. Every `cio` MODULE we have -- oskBoot's, ours, both
+SDK builds -- has a memory routine there instead. So `putc` lands on the raw
+allocator and hands it the `FILE *` as a byte count, and every character leaks
+a chunk until the arena is gone. I was right that `d0` held an address; I was
+wrong that os9exec put it there. The program did.
 
-    echo 255 | cvtbase d h
+**What I got wrong and have withdrawn:** I wrote that the `CMDS/sed` swap had
+retired a working binary to work around an emulator fault. It had not -- with
+the `cio` module we ship, that build genuinely cannot run. The swap stands;
+only the reason recorded for it needed fixing.
 
-439,689 lines of `No more memory !!!` and no conversion -- invoked exactly as
-its own usage line documents, no environment to set up. `logisim` is the other
-(needs `setenv PORT /term` first). Both pass the heap-shift discriminator:
-cvtbase asks for 297,504 bytes alone and 617,952 after three modules are
-loaded, which is not something a byte count does.
+**One genuine os9exec item, and it is small.** `memstuff.c:782` prints
+`No more memory !!!` to the console on every failed allocation, where real
+OS-9 returns `E$NORAM` silently. That is the whole reason an ABI fault inside
+a program reads as an emulator failure -- the emulator's voice arrives on the
+program's stdout. The os9exec session is raising it with you separately. It
+cost this collection a program's reputation and me a night, which is probably
+the strongest argument for changing it.
 
-**It has already cost the collection a program.** `CMDS/sed` was swapped on
-2026-08-28 because the shipped build answered every script with `No more
-memory !!!'. If the fault is the emulator's, that binary was never broken.
-
-**It is not every cio program.** All 368 starred binaries fed 272,000 bytes on
-stdin: zero flooded, 72 pushed over 200 KB through cleanly. But that sweep
-proves less than it looks -- 221 of them produced under 200 bytes, so it never
-exercised them, and it catches neither confirmed case. A trace-based sweep is
-running.
-
-I have sent both reproductions to the os9exec session, with the caution that
-cost me twenty minutes: when tracing through bash, the shell is pid 2 and the
-program under test is pid 3, and bash's ordinary allocations look nothing like
-the defect.
+**What it means for the disk.** 353 modules link `cio`; 41 carry a branch to a
+`$41`/`$42` stub; 2 are confirmed to reach it (`cvtbase`, `logisim`). A
+program fails this way only if it runs a `putc`/`getc` MACRO on a `FILE` --
+`printf`, `fwrite` and `read`/`write` are all fine, which is why all 368
+starred binaries passed 272,000 bytes of stdin with zero floods.
 
 ## ONE THING I SHIPPED THAT YOU MIGHT NOT WANT
 
