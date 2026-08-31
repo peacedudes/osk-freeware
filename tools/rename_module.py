@@ -44,7 +44,14 @@ HEADER_WORDS = 48          # the universal header, $00..$2F -- what parity cover
 M_SIZE = 0x04
 M_NAME = 0x0C
 CRC_BYTES = 3
-NAME_MAX = 29              # an OS-9 name addresses at most 29 characters
+# HOW LONG A NAME MAY BE IS NOT SETTLED.  CLAUDE.md records 29 measured
+# 2026-08-23 (29 works, 30 does not); the os9-dev skill records 27 measured
+# under os9exec, boundary tested, with 28 accepted at creation but only the
+# 27-character prefix addressable afterwards.  Both are about FILEnames; what a
+# MODULE name may be is a third question nobody here has measured.  The lower
+# figure is used until someone does, because a name that is too long fails
+# silently -- the file is written and only its prefix opens.
+NAME_MAX = 27
 
 
 def crc24(data):
@@ -91,8 +98,10 @@ def rename(path, newname, apply):
         return f"{path}: M$Size {size} exceeds the file ({len(d)})"
     if len(newname) > NAME_MAX:
         return f"{path}: '{newname}' is {len(newname)} characters, over the {NAME_MAX} limit"
-    if not newname.isascii() or any(c < " " for c in newname):
-        return f"{path}: '{newname}' is not printable ASCII"
+    if not newname.isascii() or any(c <= " " or c == "\x7f" for c in newname):
+        return f"{path}: '{newname}' is not printable ASCII without spaces"
+    if newname.startswith("-") or "/" in newname:
+        return f"{path}: '{newname}' would not be usable as a filename"
 
     stored = int.from_bytes(d[size - CRC_BYTES:size], "big")
     if crc24(bytes(d[:size - CRC_BYTES])) != stored:
