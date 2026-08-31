@@ -304,7 +304,7 @@
 | `field` | &#9733; extract fields<br>`Syntax  : field [<opts>] <fields...> [<opts>]` |
 | `fillup` | &#9733; fill a file up to a given length with a constant byte<br>`Syntax:   fillup [<options>] <file>` |
 | `gawk` | &#9733; GNU awk 2.11 -- the pattern-and-action language.  It works, but it IGNORES A FILENAME ARGUMENT and reads standard input whatever it is given, so redirect: gawk '{...}' < file, never gawk '{...}' file.  Named a file, it sits waiting on the terminal, which is what the 2026-08-27 note here called "prints nothing at all".  Corrected 2026-08-28.<br>**How:** GNU awk 2.11, the first awk this disk has ever carried. Needs Microware's cio. `gawk "{print \$1}" file' -- and mind that the OS-9 shell, not gawk, is what mangles quoting. |
-| `gep` | &#9733; global expression parser - grep-like filter<br>`Syntax: gep [<opts>] [<srcpath>] [<opts>]` |
+| `gep` | &#9733; global expression parser -- grep-like, but its `-e' takes the PATH OF A FILE holding the expressions, not an expression: `gep -e=/dd/tmp/patterns <file>'.  A file of patterns applied at once is what it is for and nothing else here does it. Measured 2026-08-31; see DOC/README-GREP<br>`Syntax: gep [<opts>] [<srcpath>] [<opts>]` |
 | `paste` | merge lines of files<br>`USAGE: paste [-s] [-d<list>] files` |
 | `pep` | file 'detergent' - strip junk from files<br>`Usage: pep [options] [filename ...]` |
 | `psc` | &#9733; sc's print/format filter<br>`Syntax: psc [-rkfLSPv?] [-s v] [-R i] [-C i] [-n i] [-d c] [<path1] [>path2]` |
@@ -1458,7 +1458,7 @@
 | `i_am_i` | prints its own source (Pascal) |
 | `isam` | &#9733; indexed-sequential file demonstration |
 | `lfmaker` | make a G-Windows launch file -- and it FLOODS `No more memory !!!' as soon as it is given an argument, which is the F$SRqMem storm DOC/STATUS lists.  Measured 2026-08-29 |
-| `lgrep` | &#9733; line grep<br>`Syntax: lgrep <arg1> ... <argn>` |
+| `lgrep` | &#9733; NOT `line grep': its own banner says "same as 'grep -l', but prints filenames without comments".  It produced no output at all when asked for a string that IS in the files, bare and from a shell with PATH set, and exited 0 both times. `grep -l' does the job.  Measured 2026-08-31; see DOC/README-GREP<br>`Syntax: lgrep <arg1> ... <argn>` |
 | `liborder.os9` | report the order of modules in a library<br>`Usage: liborder <options> file1.r file2.r ...` |
 | `lpsched` | &#9733; the line-printer scheduler<br>`Syntax: lpsched [-r] {<devname>}` |
 | `makecrc` | compute a CRC |
