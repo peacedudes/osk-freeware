@@ -751,10 +751,10 @@
 |---|---|
 | `ckermit` | &#9733; C-Kermit 5A(190) BETA.14, 24 Jul 94 -- the cio build.  The version is the binary's own banner, read 2026-08-30 |
 | `kermit` | OS-9 Kermit Version 1 Release 5 -- serial file transfer and terminal emulation.  `ckermit' is the C-Kermit, and REBUILT/kermit_cio is our build of this one.  Corrected 2026-08-30: this entry said C-Kermit 5A(188) and starred the program; run with no cio present it starts and prints its banner, and the star belonged to the REBUILT build<br>`Usage: kermit c[le line esc.char]   (connect mode)` |
-| `kermit2` | Kermit file transfer (variant 2)<br>`Usage:   kermit c[le line esc.char]   (connect mode)` |
-| `kermit3` | Kermit file transfer (variant 3)<br>`Usage: kermit [-x arg [-x arg]...[-yyy]...]]` |
+| `kermit2` | Kermit Program Version 1 Release 6 -- the same command letters as `kermit', 5K smaller.  DOC/README-KERMIT compares all six<br>`Usage:   kermit c[le line esc.char]   (connect mode)` |
+| `kermit3` | Kermit68K version 1.0.00, 01 July 1987 -- a DIFFERENT program from the other small ones: it puts up its own `Kermit68K>' prompt and reads a Kermit.ini, rather than taking command letters.  Banner read 2026-08-31<br>`Usage: kermit [-x arg [-x arg]...[-yyy]...]]` |
 | `kermit_cio` | &#9733; our source build; CMDS/kermit is the archive binary and needs no cio, where this one does<br>`Usage: kermit c[le line esc.char]   (connect mode)` |
-| `xkermit` | &#9733; Kermit variant<br>`Usage: kermit c[le line esc.char]   (connect mode)` |
+| `xkermit` | &#9733; the same version and banner as `kermit' -- OS-9 Kermit 1.5 -- in half the space, because it links cio rather than carrying stdio.  DOC/README-KERMIT<br>`Usage: kermit c[le line esc.char]   (connect mode)` |
 
 **Mail**
 
