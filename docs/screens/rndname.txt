@@ -1,2 +1,7 @@
-$ rndname
-Usage: name number-of-names
+$ rndname 6
+Azasepo
+Jisut's'
+Ou'
+Yyqufaba
+Otylexsi
+Y'hy

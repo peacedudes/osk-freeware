@@ -307,7 +307,7 @@ run     head -n 5 /dd/SYS/birthdays > /dd/tmp/j2
 wait    5
 run     paste /dd/tmp/j1 /dd/tmp/j2
 wait    8
-run     join < /nil
+run     join /dd/tmp/j1 /dd/tmp/j1
 wait    8
 run     field < /nil
 wait    8
@@ -696,3 +696,19 @@ wait    8
 run     ptob -?
 wait    8
 
+
+shot    hc
+cap     hc shifts text to a column, or labels every line -- and it is the
+cap     program this collection had most wrong: DOC/INDEX called it a hex
+cap     calculator until 2026-08-31, and its own card showed nothing but the
+cap     usage line, from an invocation the usage line does not describe.
+cap     `+8' indents to column 8, `-11' strips back to column 11, and
+cap     `-l' puts a string in front of every line.
+run     cat /dd/SYS/motd
+wait    5
+run     hc +8 /dd/SYS/motd
+wait    5
+run     hc -11 /dd/SYS/motd
+wait    5
+run     hc -l "> " /dd/SYS/motd
+wait    5

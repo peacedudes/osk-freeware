@@ -54,6 +54,13 @@ run     rstory2 | head -n 8
 wait    12
 
 
+shot    pwgen
+for     pwgen
+cap     pwgen makes pronounceable passwords -- length first, then how many.
+cap     Its card used to be the bare usage line, which is on this page anyway.
+run     pwgen 12 5
+wait    8
+
 shot    textb
 for     textb
 cap     The Mandelbrot set, drawn in ASCII.  It asks for a centre, a range

@@ -1,2 +1,6 @@
-$ pwgen
-usage: pwgen length [count]
+$ pwgen 12 5
+tingegungeng
+echivoophip
+boragicheep
+ibakeeatius
+fetoojooesu

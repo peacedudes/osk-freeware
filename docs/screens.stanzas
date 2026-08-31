@@ -5,7 +5,6 @@
 Ascii2Libr cf1e0ee18b2a46ec
 Librarian 18321074bd4a938a
 PrintCards 60bc40dae4bf2bda
-VI 003c1a7626741991
 about db9079da464bd349
 about-tar 714b649659dcdec1
 adlcomp 16e90d58fb65b081
@@ -160,7 +159,7 @@ gulls-invert f27ffc1218b3eee3
 gwindows-games 38b44ae1715b26bc
 gzip d8833a8aef2e50f1
 gzips f103bf8ffc6fe423
-hc a9818bba601a234f
+hc d3dbbb45d0b8e1f7
 help 5771258769956ae6
 helpindex b2c11c0c1dddca58
 hexed 823481002eca1035
@@ -180,7 +179,7 @@ isam 6a20cc62959cc34d
 ispell 4f695d409d020dc0
 japan dbe0b1dc64a613cc
 jargon a31e19860587e79c
-join 12ba99cc58d613b2
+join 1b458a58129e1919
 jpeg 4aca2122398702ff
 keep 48fa83ae52752c5e
 kept 7ac7820153074657
@@ -297,6 +296,7 @@ printenv 3883e91474915964
 printers b518517a50ed4c03
 printf 05aac1280a4e01e7
 pvic 56f6e72a6c3db8e6
+pwgen 5da9d27a06125f93
 qsort9 6d9fa592d6f5b5e3
 qt fea0e1319990d06c
 queens 0b7c01754b81c81b

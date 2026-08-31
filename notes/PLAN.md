@@ -27,7 +27,7 @@ tools/gen_screens.py --check      # no card has drifted from its stanza
 Longer, and worth running before you claim anything is finished:
 
 ```sh
-tools/datatest.py --all --image osk-freeware.dd   # 175 cases, 172 pass
+tools/datatest.py --all --image osk-freeware.dd   # 180 cases, 177 pass
 tools/playtest.py --all --image osk-freeware.dd   # 115 tests, 111 pass
 tools/ci/run_workflow_locally.sh /tmp/scratch     # the whole GitHub workflow
 ```
@@ -39,12 +39,16 @@ harness at a time** — they all write to the image and take a lock.
 
 | | |
 |---|---|
-| Programs | 936 catalogued |
+| Programs | 935 catalogued |
 | Demonstrated running | 871 of 922 — 94.5% (bar: it printed something) |
-| Screens | 936 have one; 864 are of the program itself |
-| **Tests that can fail again** | **277** — the other 659 rest on a photograph |
-| Source here | 627 of 945 (66%) |
-| Documented beyond one index line | 609 of 945 (64%) |
+| Screens | 484 cards; 864 programs run by name on one, the rest credited |
+| **Tests that can fail again** | **277** — the other 658 rest on a photograph |
+| Source here | 626 (66%) |
+| Documented beyond one index line | 603 (63%) |
+
+Re-measured 2026-08-31 after `bush` left the disk. The tools are the
+authority, not this table: `tools/gen_screens.py --check`,
+`tools/src_census.py disk`, `tools/doc_census.py disk`.
 
 Read the second column carefully. 94.5% only means "produced output rather
 than dying" — `rpn` gets its arithmetic wrong and clears that bar.
@@ -53,33 +57,71 @@ than dying" — `rpn` gets its arithmetic wrong and clears that bar.
 
 ## The work, in order
 
-### 1. Rename the colliding modules — decided, ready to execute
+### 1. Module-name collisions — the five in REBUILT are done, 27 names remain
 
-OS-9 finds a program by MODULE name once it is resident, whatever path you
-type. Ten names exist in two directories; eight share a module name too.
-Measured: `/dd/CMDS/REBUILT/VI` fills the screen, then `load /dd/CMDS/vi` and
-that same path gives the other editor. Nothing warns you.
+Done 2026-08-31: `CMDS/REBUILT/{arc,compress,kermit,screen,VI}` are now
+`arc_5.12`, `compress_rebuilt`, `kermit_cio`, `screen_nocio` and `vi_1.0`,
+file and module together, with `tools/rename_module.py`. `bush` also left the
+disk (a countdown to the end of a 1989 administration). `makeinfo` and
+`gnuchess` are NOT done.
 
-rdoggett decided: rename ours, never the archive's.
+**The measurement that mattered.** The plan used to say "ten names in two
+directories, eight sharing a module name". Measured per FILE rather than per
+name, it is **32 module names over 76 files**. The five above were the ones
+the decision covered; the rest fall into three groups:
 
-- `CMDS/REBUILT/{arc,compress,kermit,screen,VI}` — builds we made. The archive
-  binary keeps the plain name. REBUILT already half-follows this convention:
-  `compress_4.0`, `diff_1.1`, `sed_1.06`, `zoo_2.1`, `gtar`, `lharcs`.
-- **Rename the module with the file** (`MODNAME=` in `tools/rebuild/recipes.psv`).
-  A rename that leaves two modules called `screen` is worse than doing
-  nothing — the filenames would promise a distinction that is not there.
-- `makeinfo`: `CMDS/makeinfo` and `CMDS/GCC139/makeinfo` are byte-identical.
-  Delete the GCC139 copy; it is not a rename job.
-- Leave `gcc` and `gpp` (GCC139 vs GCC2): both archive material, in
-  directories you choose between, and their own README uses the plain name.
-  Document "do not load both".
-- `gnuchess` (CMDS vs GAMES) shares a module name — a game belongs in GAMES,
-  so drop or rename the CMDS copy. `wish` does not collide as a module
-  (`wish` vs `B_wish`); filename only, lowest priority.
+- **Must not be renamed.** `csl`/`csl020` and `math`/`math881` are Microware
+  trap libraries: a program links them BY NAME, and the second of each pair
+  exists to answer to that name on another CPU. `MM1/msdrv.901_340` and
+  `msdrv_340.901.ms` are two editions of one driver, bound by a descriptor.
+- **The gcc passes.** `gcc_cc1plus`, `gpp_cc1plus` and `GCC2/cc1plus` are all
+  module `cc1plus`, and the same for `cccp2`, `collect` and `cc2`. They are
+  forked by FILENAME, so a compiler run is not misdirected; it is still a
+  reason not to load both compilers. Documented in `DOC/STATUS`, not changed.
+- **Alternates whose filename is already distinct but whose module is not** —
+  about 25 files: `compress_4.0`, `diff_1.1`, `m4_0.5`, `sed_1.06`, `zoo_2.1`,
+  the six `gzip*`, `vi.elvis`, `ctags.elvis`, `input.elvis`, `wc.cio`,
+  `vi_cio`, `kermit2`, the four `*.070` jpeg tools, `emacs.mm1`, `ephem881`,
+  `infocom.tcap`, `lnk.org`. Making each module match the filename it already
+  has takes nothing away from the archive and is the obvious next batch.
 
-Done when: `tools/gen_catalog.py disk` reports no name in two directories
-except the ones deliberately left, every check is green, and the affected
-INDEX/CATEGORIES/howto entries and sheet stanzas name the new files.
+  **One hazard, found before it bit.** Elvis's wrappers pick their personality
+  from the LAST LETTER of `argv[0]` — `alias.c` maps `w`→`-R` (view),
+  `t`→`-i` (input), anything else→plain vi. If `argv[0]` comes from the module
+  name rather than the filename, renaming `input.elvis`'s module from `input`
+  to `input.elvis` ends the letter on `s` and turns it into plain vi. **Measure
+  which one OS-9 passes before renaming those three.** `input.elvis` is the
+  discriminating test: its file already ends in `s` and its module in `t`.
+
+Still open from the original decision: `makeinfo` (`CMDS` and `GCC139` are
+BYTE-IDENTICAL — delete the GCC139 copy) and `gnuchess` (`CMDS` and `GAMES`
+are different ports; the CMDS one has siblings `gnuchessn` and `gnuchessr` and
+shares their `-x xwndw` usage line, so `gnuchessx` would keep that family
+together while leaving GAMES the plain name). `wish` collides by filename
+only — `wish` against `B_wish` — and is lowest priority.
+
+### 1a. Gallery cards that photograph a usage line — 40 of them
+
+rdoggett, 2026-08-31: *"Sample output that does nothing more than show the
+help is only valuable if the help isn't shown some other way, and there is no
+more interesting output from the program to show."*
+
+Measured: 40 of 483 cards are a usage or syntax message and nothing else. Five
+are orphans — a card file with no stanza behind it, produced by a bare
+play-test run — and 35 come from a sheet stanza that chose `-?` on purpose.
+
+Four are fixed and `hc` is the one worth reading about (below). The remaining
+~30 need asking, per program: is there data on this disk it could be run on,
+and is its help already in `DOC/`? `logisim` was the pattern — two sample
+circuits ship in `DOC/logisim` and the card showed the usage line.
+
+**`hc` was wrong in three places at once**, and is the shape to look for.
+`DOC/INDEX` called it a hex calculator, it was filed under Maths &
+calculators, and its card ran `echo 1f * 3 + 7 | hc` and photographed the
+usage line the invocation earned. It is a text filter: `hc +8 f` indents to
+column 8, `hc -11 f` strips back to column 11, `hc -l "> " f` labels every
+line. All three are fixed. A card that shows a program failing, captioned as
+though the program were at fault, is worse than no card.
 
 ### 2. Family chooser documents — highest value for the stated purpose
 

@@ -92,7 +92,7 @@ is no help until you already know the name you want.
 |---|--:|---|
 | **Shells** | 20 | Unix shells to sit beside OS-9's own -- bash and ksh bring history, job control, and scripts that come across unchanged. |
 | **Editors** | 22 | vi and emacs in several flavours, line and stream editors, and editors for binary and hex. |
-| **Text tools** | 112 | Search, sort, compare, reformat, split and spell-check. |
+| **Text tools** | 113 | Search, sort, compare, reformat, split and spell-check. |
 | **Files & directories** | 37 | Listing, copying, finding, renaming, and knowing what you have. |
 | **Developer tools** | 48 | Version control, tags, cross-reference, formatters, a debugger and benchmarks. |
 | **Compilers & build** | 39 | C compilers and their passes, assemblers, linkers, make and parser generators. |
@@ -107,7 +107,7 @@ is no help until you already know the name you want.
 | **System & modules** | 131 | OS-9 module and process tools, devices, system state and scheduling. |
 | **Disk & DOS** | 20 | Reading and writing MS-DOS media with the mtools set. |
 | **Time & calendar** | 14 | Calendars, clocks and astronomy. |
-| **Maths & calculators** | 10 | Calculators, plotting, orbits and number theory. |
+| **Maths & calculators** | 9 | Calculators, plotting, orbits and number theory. |
 | **Printing** | 14 | Spoolers, page formatting and PostScript. |
 | **Documentation** | 5 | Pagers, readers and the help system. |
 

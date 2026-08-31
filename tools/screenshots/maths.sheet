@@ -1,11 +1,5 @@
 # Calculators and the spreadsheets.
 
-shot    hc
-cap     hc, the hex calculator -- and it answers with its usage line to
-cap     everything tried here, including the form that usage line names.
-run     echo 1f * 3 + 7 | hc
-wait    4
-
 shot    loan
 cap     The amortisation calculator.  Principal, term, rate and starting
 cap     month in; the payment, the total interest and a month-by-month

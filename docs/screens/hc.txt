@@ -1,2 +1,8 @@
-$ echo 1f * 3 + 7 | hc
-usage:  hc [-s] [+tab | -col | -l "str" | filename] ...
+$ cat /dd/SYS/motd
+Welcome to os9exec -- OS-9/68k emulator
+$ hc +8 /dd/SYS/motd
+       Welcome to os9exec -- OS-9/68k emulator
+$ hc -11 /dd/SYS/motd
+ os9exec -- OS-9/68k emulator
+$ hc -l "> " /dd/SYS/motd
+> Welcome to os9exec -- OS-9/68k emulator

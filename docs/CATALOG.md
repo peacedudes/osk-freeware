@@ -13,7 +13,7 @@
 |---|--:|---|
 | [Shells](#shells) | 20 | Unix shells to sit beside OS-9's own -- bash and ksh bring history, job control, and scripts that come across unchanged. |
 | [Editors](#editors) | 22 | vi and emacs in several flavours, line and stream editors, and editors for binary and hex. |
-| [Text tools](#text-tools) | 112 | Search, sort, compare, reformat, split and spell-check. |
+| [Text tools](#text-tools) | 113 | Search, sort, compare, reformat, split and spell-check. |
 | [Files & directories](#files--directories) | 37 | Listing, copying, finding, renaming, and knowing what you have. |
 | [Developer tools](#developer-tools) | 48 | Version control, tags, cross-reference, formatters, a debugger and benchmarks. |
 | [Compilers & build](#compilers--build) | 39 | C compilers and their passes, assemblers, linkers, make and parser generators. |
@@ -28,7 +28,7 @@
 | [System & modules](#system--modules) | 131 | OS-9 module and process tools, devices, system state and scheduling. |
 | [Disk & DOS](#disk--dos) | 20 | Reading and writing MS-DOS media with the mtools set. |
 | [Time & calendar](#time--calendar) | 14 | Calendars, clocks and astronomy. |
-| [Maths & calculators](#maths--calculators) | 10 | Calculators, plotting, orbits and number theory. |
+| [Maths & calculators](#maths--calculators) | 9 | Calculators, plotting, orbits and number theory. |
 | [Printing](#printing) | 14 | Spoolers, page formatting and PostScript. |
 | [Documentation](#documentation) | 5 | Pagers, readers and the help system. |
 
@@ -134,7 +134,7 @@
 
 *Search, sort, compare, reformat, split and spell-check.*
 
-<details><summary>112 programs</summary>
+<details><summary>113 programs</summary>
 
 **Banners & text art**
 
@@ -192,6 +192,7 @@
 | | |
 |---|---|
 | `fmt` | Simple text formatter (elvis 1.7)<br>`usage: fmt [-width] [files]...` |
+| `hc` | NOT a calculator, whatever the index said until 2026-08-31: it shifts text to a column, or labels every line.  `hc +8 f' indents f so the text starts at column 8, `hc -11 f' strips the leading columns so it starts at column 11, and `hc -l "> " f' puts that string in front of every line.  With no option it copies the file through.  Measured 2026-08-31; it evaluates nothing |
 | `lout` | Lout 2.05 document formatter (Basser Lout, Jeffrey Kingston)<br>`usage: -o<filename>` |
 | `nroff` | &#9733; nroff text formatter -- and it PRINTS NOTHING here, from a file or from standard input, with or without -man and with TMACDIR set.  Worse than that: given a file it does not come back at all, and the session has to be stopped. `roff' and `proff' beside it DO work -- the claim here that they fail the same way was wrong and is corrected 2026-08-29.  Use one of those<br>**How:** Formats man pages -- but it NEVER RETURNS on this disk, and prints nothing first. Measured 2026-08-29 both ways, `nroff -man /dd/DOC/netpbm/pnmscale.1' and the same file on stdin; each hung the session. The -man macros in LIB/tmac.an were extended for this collection because the originals defined only .TH .SH .SS .PP and .I, and LIB/orig.tmac.an is the untouched version -- neither has been shown to matter while the program will not finish. `roff' is the formatter that works. |
 | `proff` | proff - portable roff text formatter (macros in LIB/proff). IT WORKS: given a text file it justifies it to a measure, and takes page ranges and a statistics option.  The note here that said it prints nothing was wrong; corrected 2026-08-29.  `roff' works too; `nroff' wants a real macro package and answers `illegal switch' to -?<br>`usage: proff [+n] [-n] [-v] [-ifile] [-s] [-pon] [infile [outfile]]` |
@@ -1578,7 +1579,7 @@
 
 *Calculators, plotting, orbits and number theory.*
 
-<details><summary>10 programs</summary>
+<details><summary>9 programs</summary>
 
 **Calculators**
 
@@ -1587,7 +1588,6 @@
 | `cam` | &#9733; CAMSHAFT, not camera: it asks for the rocker ratio, the lift at a crank angle and the base circle, and plots the lift curve for an intake lobe.  The plot is Tektronix vectors, so on a vt100 it arrives as characters -- the dialogue above it is the readable part.  Corrected 2026-08-29 |
 | `chbase` | &#9733; converts a NUMBER from one base to another -- Philip Maechler's, and nothing to do with a module's base address.  `cvtbase' is the other one, and floods. Corrected 2026-08-29<br>`Syntax   : chbase <number> [ <base A> [ <base B> ] ]` |
 | `cvtbase` | &#9733; convert a number between bases -- names them by KEY (b, d, h or x, o), and then FLOODS `No more memory !!!' without converting anything.  Its usage line prints fine, which is why it looked healthy |
-| `hc` | hex calculator |
 | `loan` | &#9733; loan/amortisation calculator |
 | `rechne` | &#9733; calculator, German -- and it takes ONE expression with no spaces in it: `rechne 4095+1' answers 4096, $1000 and the binary.  Spaced out it evaluates each argument separately |
 | `rpn` | &#9733; RPN calculator -- and its `+' is wrong: 12, 34, + leaves a stack of three with 0 on top instead of one with 46. `rechne' is the calculator that answers correctly |
