@@ -355,13 +355,19 @@ cap     in March 1990 -- bearing and elevation, doppler shift, range,
 cap     height, the sub-satellite point, and the operating mode the
 cap     satellite is in at each sample.  It was recorded here as wanting an
 cap     element file no archive carried.  All three files it wants are on
-cap     the disk, in DOC/orbit, and it looks for them by BARE NAME in the
-cap     DATA directory -- so they have to be put where it will look, which
-cap     is what the three `cat' lines do.  kepler.dat is the satellite
-cap     database, pgh.sit the observing site, mode.dat the transponder
-cap     schedule that fills the last column.  bern.sit and zuerich.sit are
-cap     there too.  `nasa' is the one whose data really is user-supplied:
-cap     it converts NASA two-line elements, which come from usenet.
+cap     the disk, in DOC/orbit, and it opens them by BARE NAME in the DATA
+cap     DIRECTORY.  ON YOUR OWN OS-9 SYSTEM THAT IS TWO LINES -- `chd
+cap     /dd/DOC/orbit' and `orbit' -- and nothing needs copying anywhere.
+cap     Under os9exec neither shell will do it: bash's `cd' tracks a string
+cap     and never moves the data directory, and `sh' cannot launch a
+cap     program here at all.  So this card brings the three files to the
+cap     directory it is already in, which is the bash workaround and not
+cap     the recipe.  kepler.dat is the satellite database, pgh.sit the
+cap     observing site, mode.dat the transponder schedule that fills the
+cap     last column; bern.sit and zuerich.sit ship too.  Nothing is shipped
+cap     at the disk root for this -- raw data files do not belong there.
+cap     `nasa' is the one whose data really is user-supplied: it converts
+cap     NASA two-line elements, which come from usenet.
 run     cat /dd/DOC/orbit/kepler.dat > /dd/kepler.dat
 wait    8
 run     cat /dd/DOC/orbit/mode.dat > /dd/mode.dat

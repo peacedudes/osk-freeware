@@ -2,8 +2,15 @@ name    orbit
 prog    orbit
 # RECORDED AS BROKEN UNTIL 2026-08-29 -- "wants an element file no archive
 # here carried".  All three files it wants are on the disk, in DOC/orbit; it
-# just opens them by BARE NAME in the DATA directory, and nothing put them
-# where it would look.  These three setup lines do.
+# just opens them by BARE NAME in the DATA directory.
+#
+# THE RECIPE IS `chd /dd/DOC/orbit' AND NOTHING ELSE, on a system whose shell
+# has a working chd.  Neither shell here has: bash's cd tracks a string, and
+# sh cannot launch a program under os9exec at all (measured 2026-08-30 --
+# `today: nowhere found' bare, `file not found' by absolute path, with PATH
+# set and chx done).  So this test copies the files to the data directory
+# instead: the bash workaround, not the recipe.  Nothing is shipped at the
+# disk root for this.
 setup   cat /dd/DOC/orbit/kepler.dat > /dd/kepler.dat
 setup   cat /dd/DOC/orbit/mode.dat > /dd/mode.dat
 setup   cat /dd/DOC/orbit/pgh.sit > /dd/pgh.sit
