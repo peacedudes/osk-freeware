@@ -1,0 +1,117 @@
+family  cio5
+# The FIVE programs the cio selector mismatch broke, found on 2026-08-31 by
+# running all twenty-nine that `tools/cio_macro_scan.py' named and seeing
+# which of them actually misbehaved.  TWENTY-FOUR DID NOT.  These five did,
+# and each was rebuilt trap-free from the source and recipe already in this
+# repository (`cc <src> -qm=16k -DOSK -n=<name>') and installed over the
+# broken binary, exactly as the eleven in `cio11.cases' were earlier the
+# same day.
+#
+# EVERY CASE HERE ASSERTS WORK DONE ON A FILE, and that is the point.  The
+# broken builds all started, and four of the six printed their own usage
+# text perfectly -- a usage line goes through printf, which lives inside the
+# module and never crosses the broken selector.  What failed was every
+# character written or read through the putc/getc MACRO, which is what a
+# real file costs.  A case that only checked "it started" would have passed
+# against all six.
+#
+# HOW THEY FAILED, measured before the rebuild:
+#   printf    literal text before the first conversion vanished; a format
+#             with no conversion wrote a ZERO-BYTE file
+#   valspeak  read a 40-byte file and wrote 0 bytes
+#   setfont   0 bytes for a real font file, while `usage: setfont <path>'
+#             with no argument came out perfectly (22 bytes)
+#   unifdef   `-dOSK <file>' produced nothing and took the session down
+#   ape       `-l=3 < file' produced nothing and took the session down
+#   hexed     stopped after "Creating '<file>.hd' from '<file>'."
+
+setup   export TERM=vt100
+setup   export TERMCAP=/dd/SYS/termcap
+setup   C5=/dd/tmp/C5
+setup   /dd/CMDS/mkdir -p $C5 > /nil 2>/nil
+setup   /dd/CMDS/cp /dd/SYS/motd $C5/a.txt
+
+# valspeak read its input and wrote NOTHING. The assertion is the byte
+# count of the output file, not the presence of a word: a filter that
+# writes a newline and stops would satisfy any grep.
+# `absent 0 /dd/tmp/C5/v.txt' was the first draft of this and it FAILED
+# against a working program: `40 /dd/tmp/C5/v.txt' contains `0 /dd/...' as a
+# substring. An `absent' on a number is almost always wrong for that reason.
+# Assert the number you want instead.
+case    valspeak-writes-a-file-where-it-used-to-write-nothing
+run     /dd/CMDS/GAMES/valspeak < $C5/a.txt > $C5/v.txt
+run     /dd/CMDS/wc -c $C5/a.txt $C5/v.txt
+expect  40 /dd/tmp/C5/a.txt
+expect  40 /dd/tmp/C5/v.txt
+
+# setfont copies a downloadable font to the terminal. Redirected, that is a
+# byte-for-byte copy of the file -- which is exactly what it did not do.
+# unifdef's option is -d<sym>, lower case and no equals. -DOSK is refused
+# with its own help, which is how the first attempt at this measurement
+# concluded unifdef was fine.
+case    unifdef-keeps-the-defined-arm-and-drops-the-other
+run     echo "#ifdef OSK" > $C5/u.c
+run     echo "int kept;" >> $C5/u.c
+run     echo "#else" >> $C5/u.c
+run     echo "int dropped;" >> $C5/u.c
+run     echo "#endif" >> $C5/u.c
+run     /dd/CMDS/unifdef -dOSK $C5/u.c
+expect  int kept;
+absent  int dropped;
+
+case    unifdef-undefined-takes-the-other-arm
+run     /dd/CMDS/unifdef -uOSK $C5/u.c
+expect  int dropped;
+absent  int kept;
+
+# ape is a travesty generator: it reads source text and builds new text in
+# ITS STYLE. Two things have to be asserted and neither is a byte count.
+#
+#   IT RETURNS.  The broken build did not -- `-l=3 < file' produced nothing
+#   and took the emulator session with it. `echo' after it is the test: if
+#   ape hangs, the marker never arrives and the case fails.
+#
+#   IT WROTE SOMETHING.  `dump' prints its `Addr' header for an empty file
+#   and a line beginning `0000' only when there is a first byte, so `0000'
+#   is "at least one byte came out". A `wc -c' count cannot be asserted
+#   here: the length is random, and an `absent' on a number is nearly
+#   always wrong anyway -- `absent 0 /dd/tmp/C5/v.txt' was the first draft
+#   of valspeak's case below and it FAILED against a working program,
+#   because `40 /dd/tmp/C5/v.txt' contains it as a substring.
+#
+# THE INPUT MATTERS. Feeding it one word repeated makes it generate for
+# ever -- every position matches every other, so there is nothing to end
+# on. That is ape being a Markov chain, not ape being broken, and it cost
+# a session here. `SYS/termcap' is varied and terminates.
+case    ape-writes-gibberish-instead-of-nothing
+run     /dd/CMDS/ape -l=3 < /dd/SYS/termcap > $C5/ape.out
+run     echo "ape returned"
+run     /dd/CMDS/dump $C5/ape.out
+expect  ape returned
+expect  0000
+
+# It used to stop after the "Creating" line. The "Generating" line is the
+# round trip closing -- it read the dump back and rebuilt the file from it --
+# and that is the assertion, not any particular byte of the dump.
+case    hexed-finishes-the-dump-it-announces
+run     /dd/CMDS/hexed -t=$C5 -e=/dd/CMDS/cat $C5/a.txt
+expect  Creating '/dd/tmp/C5/a.txt.hd' from '/dd/tmp/C5/a.txt'.
+expect  Generating '/dd/tmp/C5/a.txt' from '/dd/tmp/C5/a.txt.hd'.
+
+# SETFONT, AND WHY IT IS NOT ONE OF THE FIVE. It answers with its usage and
+# then does nothing at all for a real file -- no bytes to /term, none to
+# $PORT, none to a file $PORT names, and not even its own "Can't open"
+# for a path that is not there. A `-qm' rebuild does exactly the same, so
+# whatever this is, it is not the selector mismatch. Pinned so that nobody
+# rebuilds it again on the strength of the silence.
+case    setfont-answers-with-its-usage
+run     /dd/CMDS/setfont > $C5/font2.out 2>&1
+run     /dd/CMDS/cat $C5/font2.out
+run     /dd/CMDS/wc -c $C5/font2.out
+expect  usage: setfont <path>
+expect  22 /dd/tmp/C5/font2.out
+
+case    setfont-writes-nothing-for-a-real-file-and-that-is-not-the-mismatch
+run     /dd/CMDS/setfont $C5/a.txt > $C5/font.out
+run     /dd/CMDS/wc -c $C5/font.out
+expect  0 /dd/tmp/C5/font.out

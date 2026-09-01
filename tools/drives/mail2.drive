@@ -74,11 +74,19 @@ run     /dd/CMDS/cat /dd/.newsrc
 drive   nptx
 why     "format error" on a comma list.  What input does it want?  It is the
 why     smail helper that turns a name list into permuted index entries.
+# CORRECTED 2026-08-31: these two files were written with `printf' and a
+# format containing NO conversion, which on this disk writes ZERO BYTES --
+# so the silence recorded here was the setup's, not nptx's. bash's `echo'
+# writes a CR-terminated line and is the right tool. `mail4.drive' asks the
+# question properly; this is left here only so the sheet cannot mislead
+# somebody re-running it.
 run     echo "--- one address per line:"
-run     printf 'a@b\rc@d\r' > /dd/tmp/l1.txt
+run     echo "a@b" > /dd/tmp/l1.txt
+run     echo "c@d" >> /dd/tmp/l1.txt
+run     /dd/CMDS/wc -c /dd/tmp/l1.txt
 run     /dd/CMDS/UUCP/nptx < /dd/tmp/l1.txt
 run     echo "--- a full name:"
-run     printf 'John Q Public\r' > /dd/tmp/l2.txt
+run     echo "John Q Public" > /dd/tmp/l2.txt
 run     /dd/CMDS/UUCP/nptx < /dd/tmp/l2.txt
 run     echo "--- end nptx"
 

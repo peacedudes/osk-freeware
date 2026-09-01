@@ -1,0 +1,44 @@
+# setfont1 -- is setfont's silence the cio selector mismatch, or something
+# else?  The rebuilt `-qm' build behaves exactly like the archive binary, so
+# on the face of it it is NOT the mismatch -- but "wrote nothing to a
+# redirected stdout" is a weak measurement for a program that opens /term
+# and $PORT by name.  Settle it: missing file, real file, PORT set.
+#
+# The archive binary is kept beside the rebuilt one as /dd/tmp/sf/setfont_old
+# so both answer the same questions in the same session.
+
+family  setfont1
+
+setup   W=/dd/tmp/sf
+setup   /dd/CMDS/mkdir -p $W > /nil 2>/nil
+setup   /dd/CMDS/cp /dd/SYS/motd $W/a.txt
+
+drive   rebuilt-missing-file
+why     the binary carries "%s: Can't open '%s' !".  Does the rebuilt one
+why     reach it for a file that is not there?
+run     /dd/CMDS/setfont /dd/nosuchfontfile
+run     echo "--- exit status was $?"
+run     echo "--- end"
+
+drive   rebuilt-real-file-to-the-console
+why     it opens /term (or $PORT) and copies the font there.  On this
+why     session /term IS the console, so the bytes should appear here.
+run     echo "--- forty bytes are about to be sent to /term:"
+run     /dd/CMDS/setfont $W/a.txt
+run     echo "--- that was it"
+run     echo "--- and with PORT naming the console explicitly:"
+run     export PORT=/term
+run     /dd/CMDS/setfont $W/a.txt
+run     echo "--- end"
+
+drive   rebuilt-port-elsewhere
+why     point PORT at a FILE rather than a device, so whatever it writes
+why     can be counted rather than looked for on a terminal.
+run     export PORT=$W/out.bin
+run     /dd/CMDS/setfont $W/a.txt
+run     /dd/CMDS/ls -l $W
+run     echo "--- and PORT at /nil:"
+run     export PORT=/nil
+run     /dd/CMDS/setfont $W/a.txt
+run     echo "--- exit status was $?"
+run     echo "--- end"

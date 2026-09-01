@@ -1,0 +1,235 @@
+# cio29 -- the twenty-nine programs `tools/cio_macro_scan.py' still names,
+# run in a way that would MAKE the call site fire.
+#
+# WHY.  The scan finds a BSR from a program's own code to cio's $41/$42
+# stubs -- the putc/getc macro slow path, where this cio's selectors mean
+# "allocate memory" instead.  It is an UPPER bound: a site only storms if it
+# is reached.  Eleven programs were rebuilt on 2026-08-31 because they were
+# measured broken; these twenty-nine have never been measured at all, and
+# `DOC/INDEX' already records two of them misbehaving in exactly this shape
+# -- `printf' "IT WORKS, with one flaw" and `valspeak' "prints nothing".
+#
+# WHAT TO LOOK FOR in the transcript, in order of certainty:
+#   * `No more memory !!!' repeated -- the storm, unambiguous
+#   * output that stops part-way, or is empty where a file was written
+#   * literal text missing while formatted text survives -- printf's shape,
+#     because a conversion goes through the module's own code and a literal
+#     character goes through the macro
+#
+# Every one of these has a recipe in tools/rebuild/recipes.psv and has been
+# built `-qm' into built/.  This sheet decides which of them SHOULD be
+# replaced; a working archive binary stays, because preserving it is the
+# point of the collection.
+
+family  cio29
+
+setup   export TERM=vt100
+setup   export TERMCAP=/dd/SYS/termcap
+setup   export HOME=/dd
+setup   W=/dd/tmp/c29
+setup   /dd/CMDS/mkdir -p $W > /nil 2>/nil
+setup   /dd/CMDS/cp /dd/SYS/motd $W/a.txt
+setup   /dd/CMDS/cp /dd/SYS/motd $W/b.txt
+setup   echo "a changed line" >> $W/b.txt
+
+drive   printf
+why     the known one, and the clearest shape of the fault: literal text
+why     before the first conversion goes through the putc macro, the
+why     conversion itself does not.
+run     /dd/CMDS/printf 'literal only, no conversion\r' > $W/p1.txt
+run     /dd/CMDS/wc -c $W/p1.txt
+run     /dd/CMDS/printf 'before %s after\r' MIDDLE > $W/p2.txt
+run     /dd/CMDS/dump $W/p2.txt
+run     echo "--- end printf"
+
+drive   valspeak
+why     DOC/INDEX says it "prints nothing, from a file or a pipe", and it is
+why     one of the four deliberate playtest failures.
+run     /dd/CMDS/GAMES/valspeak < $W/a.txt
+run     echo "--- and to a file:"
+run     /dd/CMDS/GAMES/valspeak < $W/a.txt > $W/v.txt
+run     /dd/CMDS/wc -c $W/a.txt $W/v.txt
+run     echo "--- end valspeak"
+
+drive   ascii
+why     "ASCII character table" -- a table is written one character at a
+why     time, which is the putc macro's whole job.
+run     /dd/CMDS/ascii
+run     echo "--- to a file:"
+run     /dd/CMDS/ascii > $W/asc.txt
+run     /dd/CMDS/wc -c $W/asc.txt
+run     echo "--- end ascii"
+
+drive   diff
+why     GNU diff 1.1.  Two files that differ by one line; the output is
+why     written character by character by some diff builds.
+run     /dd/CMDS/diff $W/a.txt $W/b.txt
+run     echo "--- to a file:"
+run     /dd/CMDS/diff $W/a.txt $W/b.txt > $W/d.txt
+run     /dd/CMDS/wc -c $W/d.txt
+run     echo "--- end diff"
+
+drive   spiff
+why     "tolerant diff - ignores formatting noise", the same job.
+run     /dd/CMDS/spiff $W/a.txt $W/b.txt
+run     echo "--- end spiff"
+
+drive   chksum
+why     it reads a whole file, which is getc's path.
+run     /dd/CMDS/chksum $W/a.txt
+run     /dd/CMDS/chksum $W/a.txt $W/b.txt
+run     echo "--- end chksum"
+
+drive   unifdef
+why     "remove #ifdef sections from C source" -- a character filter over a
+why     real file.
+run     echo "#ifdef OSK" > $W/u.c
+run     echo "int kept;" >> $W/u.c
+run     echo "#else" >> $W/u.c
+run     echo "int dropped;" >> $W/u.c
+run     echo "#endif" >> $W/u.c
+run     /dd/CMDS/unifdef -DOSK $W/u.c
+run     echo "--- end unifdef"
+
+drive   ape
+why     "write gibberish in the style of <stdin> to <stdout>" -- a pure
+why     character filter, both directions through the macros.
+run     /dd/CMDS/ape -n=200 < /dd/SYS/motd
+run     echo "--- end ape"
+
+drive   strfile
+why     "build fortune's index file" -- it reads one file and writes another.
+run     echo "first fortune" > $W/f.txt
+run     echo "%" >> $W/f.txt
+run     echo "second fortune" >> $W/f.txt
+run     echo "%" >> $W/f.txt
+run     /dd/CMDS/strfile $W/f.txt
+run     /dd/CMDS/ls -l $W
+run     echo "--- end strfile"
+
+drive   makelex
+why     "compiles sonnet's lex.data word list into a C array" -- reads a
+why     word list, writes C.
+run     echo "alpha" > $W/lex.data
+run     echo "bravo" >> $W/lex.data
+run     /dd/CMDS/makelex $W/lex.data
+run     /dd/CMDS/ls -l $W
+run     echo "--- end makelex"
+
+drive   liborder
+why     "order the modules in an OS-9 library -- and GIVE IT ONE."  There
+why     are real libraries in /dd/LIB.
+run     /dd/CMDS/liborder /dd/LIB/os9lib.l
+run     echo "--- end liborder"
+
+drive   unpacklib
+why     "split an OS-9 library into its modules" -- it WRITES a file per
+why     module, so a storm here loses files rather than characters.
+run     /dd/CMDS/cp /dd/LIB/os9lib.l $W/lib.l
+run     /dd/CMDS/unpacklib $W/lib.l
+run     /dd/CMDS/ls $W
+run     echo "--- end unpacklib"
+
+drive   hexed
+why     "hex editor via your text editor -- it writes its work".
+run     /dd/CMDS/hexed $W/a.txt < /nil
+run     echo "--- end hexed"
+
+drive   crypto
+why     a cryptogram solver.  -h is its help; give it a puzzle file too.
+run     /dd/CMDS/crypto -h < /nil
+run     echo "--- with a file:"
+run     /dd/CMDS/crypto -i < $W/a.txt
+run     echo "--- end crypto"
+
+drive   snap
+why     "snapshot the screen to a file".
+run     /dd/CMDS/snap $W/snap.txt < /nil
+run     /dd/CMDS/ls -l $W
+run     echo "--- end snap"
+
+drive   vis
+why     "repeatedly execute command, refreshing screen with its output" --
+why     it forks through a pipe, which is where its getc lives.
+run     /dd/CMDS/vis -d=1 < /nil
+run     echo "--- end vis"
+
+drive   loan
+why     a loan/amortisation calculator -- it prompts, so give it answers.
+run     echo "10000" > $W/loan.in
+run     echo "10" >> $W/loan.in
+run     echo "12" >> $W/loan.in
+run     echo "" >> $W/loan.in
+run     /dd/CMDS/loan < $W/loan.in
+run     echo "--- end loan"
+
+drive   lp
+why     "line printer spooler - submit a job".  There is no spooler, so the
+why     honest answer is its message about that.
+run     /dd/CMDS/lp $W/a.txt < /nil
+run     echo "--- end lp"
+
+drive   setfont
+why     "load a downloadable terminal font -- setfont <path>".
+run     /dd/CMDS/setfont $W/a.txt < /nil
+run     echo "--- end setfont"
+
+drive   undel
+why     "undelete a file" -- it prompts for a directory and forks pd.
+run     echo "" > $W/undel.in
+run     /dd/CMDS/undel < $W/undel.in
+run     echo "--- end undel"
+
+drive   dam
+why     a disk-allocation map ("| = cluster (%d Bytes) allocated").
+run     /dd/CMDS/dam /dd < /nil
+run     echo "--- end dam"
+
+drive   sedt
+why     SEDT, the third build of the same editor -- a full-screen program,
+why     so the question is whether it gets as far as drawing anything.
+run     echo "Y" > $W/sedt.in
+run     /dd/CMDS/sedt $W/a.txt < $W/sedt.in
+run     echo "--- did it leave the file alone?"
+run     /dd/CMDS/wc -c $W/a.txt
+run     echo "--- end sedt"
+
+drive   rpoem
+why     a poem generator -- pure output.
+run     /dd/CMDS/GAMES/rpoem < /nil
+run     echo "--- end rpoem"
+
+drive   newsgen
+why     a news generator -- pure output.
+run     /dd/CMDS/GAMES/newsgen < /nil
+run     echo "--- end newsgen"
+
+drive   blackjak
+why     a card game; it prompts.  Give it a quit and see whether it drew a
+why     hand first.
+run     echo "q" > $W/q.in
+run     /dd/CMDS/GAMES/blackjak < $W/q.in
+run     echo "--- end blackjak"
+
+drive   poker
+why     Cold-hand Poker, SNOBOL4-in-C.  Data lives in GAMES/SNOBOL.
+run     /dd/CMDS/GAMES/poker < $W/q.in
+run     echo "--- end poker"
+
+drive   stone
+why     the stones game, the same SNOBOL4 build.
+run     /dd/CMDS/GAMES/stone < $W/q.in
+run     echo "--- end stone"
+
+drive   tess
+why     a tesselation puzzle -- full screen.
+run     /dd/CMDS/GAMES/tess < $W/q.in
+run     echo "--- end tess"
+
+drive   wish
+why     the hack/nethack wishing helper: "Wishing for: %s", and it writes
+why     on a pipe.
+run     /dd/CMDS/wish < /nil
+run     echo "--- with something to wish for:"
+run     /dd/CMDS/wish "a magic lamp" < /nil
+run     echo "--- end wish"

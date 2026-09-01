@@ -1,0 +1,117 @@
+# cio29b -- the follow-ups from cio29.  That sheet answered the question it
+# was asked (only `printf' and `valspeak' of the twenty-nine are actually
+# broken by the cio selector mismatch; the other twenty-seven carry a call
+# site that never fires) and left seven programs whose ANSWER WAS THE
+# SHEET'S FAULT rather than the program's:
+#
+#   setfont     silent -- but silence into /term proves nothing.  Redirect.
+#   liborder    "Cannot open /dd/LIB/os9lib.l" -- there is no os9lib.l in
+#   unpacklib   /dd/LIB.  alib.l and blarslib.l are real and are there.
+#   hexed       "can't create /r0/a.txt.hd" -- and it has -t=<dir> for
+#               exactly that, which DOC/INDEX does not mention.
+#   unifdef     given -DOSK; its option is -d<sym>, no equals, no capital.
+#   ape         given -n; its options are -b and -l.
+#   makelex     given a bare word list; the format is
+#               word:foot_type:vowel_sound:consonant_sound (SRC/sonnet/lex.data)
+#   blackjak    answered "q" at "Would you like to know the rules?", which
+#   poker       wants yes|YES|no|NO -- and at end of input they ask again
+#   stone       without bound.  Four million bytes of insults is not a storm.
+
+family  cio29b
+
+setup   export TERM=vt100
+setup   export TERMCAP=/dd/SYS/termcap
+setup   W=/dd/tmp/c29b
+setup   /dd/CMDS/mkdir -p $W > /nil 2>/nil
+setup   /dd/CMDS/cp /dd/SYS/motd $W/a.txt
+
+drive   setfont
+why     silent when pointed at a file.  A font goes to the TERMINAL, so
+why     redirect and measure the bytes -- silence to /term and zero bytes
+why     to a file are very different answers.
+run     /dd/CMDS/setfont $W/a.txt > $W/font.out 2>&1 < /nil
+run     /dd/CMDS/wc -c $W/font.out
+run     echo "--- with no argument:"
+run     /dd/CMDS/setfont > $W/font2.out 2>&1 < /nil
+run     /dd/CMDS/wc -c $W/font2.out
+run     /dd/CMDS/dump $W/font2.out
+run     echo "--- with a file that is not there:"
+run     /dd/CMDS/setfont /dd/nosuchfont < /nil
+run     echo "--- end setfont"
+
+drive   liborder
+why     given a library that does not exist.  /dd/LIB has alib.l,
+why     blarslib.l, unix.l and the four netpbm libraries.
+run     /dd/CMDS/ls /dd/LIB
+run     echo "--- order a real one:"
+run     /dd/CMDS/liborder /dd/LIB/alib.l
+run     echo "--- end liborder"
+
+drive   unpacklib
+why     the same: give it a real library and see the modules come out.
+run     /dd/CMDS/cp /dd/LIB/alib.l $W/alib.l
+run     /dd/CMDS/wc -c $W/alib.l
+run     /dd/CMDS/unpacklib $W/alib.l
+run     echo "--- what came out:"
+run     /dd/CMDS/ls $W
+run     echo "--- end unpacklib"
+
+drive   hexed
+why     it writes its work file to /r0 and DOC/INDEX says it "stops when it
+why     cannot".  It has -t=<dir>.  Use it, and edit a real file.
+run     /dd/CMDS/hexed -? < /nil
+run     echo "--- with -t= pointing somewhere that exists:"
+run     /dd/CMDS/hexed -t=$W -e=/dd/CMDS/cat $W/a.txt < /nil
+run     /dd/CMDS/ls $W
+run     echo "--- and the dump it made:"
+run     /dd/CMDS/cat $W/a.txt.hd
+run     echo "--- end hexed"
+
+drive   unifdef
+why     its option is -d<sym>, not -D<sym>.
+run     echo "#ifdef OSK" > $W/u.c
+run     echo "int kept;" >> $W/u.c
+run     echo "#else" >> $W/u.c
+run     echo "int dropped;" >> $W/u.c
+run     echo "#endif" >> $W/u.c
+run     /dd/CMDS/unifdef -dOSK $W/u.c
+run     echo "--- and the other way round:"
+run     /dd/CMDS/unifdef -uOSK $W/u.c
+run     echo "--- end unifdef"
+
+drive   ape
+why     its options are -b (source size) and -l (pattern length), not -n.
+run     /dd/CMDS/ape -l=3 < /dd/DOC/README
+run     echo "--- end ape"
+
+drive   makelex
+why     the format is word:foot_type:vowel_sound:consonant_sound.  There is
+why     a real one at SRC/sonnet/lex.data.
+run     /dd/CMDS/head -n 12 /dd/SRC/sonnet/lex.data > $W/lex.data
+run     /dd/CMDS/cat $W/lex.data
+run     echo "--- compiled:"
+run     /dd/CMDS/makelex $W/lex.data
+run     echo "--- end makelex"
+
+drive   blackjak
+why     it wants yes|YES|no|NO.  Answer properly and it should deal a hand.
+run     echo "no" > $W/bj.in
+run     echo "10" >> $W/bj.in
+run     echo "no" >> $W/bj.in
+run     echo "no" >> $W/bj.in
+run     echo "no" >> $W/bj.in
+run     /dd/CMDS/GAMES/blackjak < $W/bj.in
+run     echo "--- end blackjak"
+
+drive   poker
+why     Cold-hand Poker, the SNOBOL4-in-C build.  Same shape of prompt.
+run     echo "no" > $W/pk.in
+run     echo "no" >> $W/pk.in
+run     echo "no" >> $W/pk.in
+run     /dd/CMDS/GAMES/poker < $W/pk.in
+run     echo "--- end poker"
+
+drive   stone
+why     the stones game, the same build.
+run     /dd/CMDS/GAMES/stone < $W/pk.in
+run     echo "--- end stone"

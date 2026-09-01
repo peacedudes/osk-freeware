@@ -1,7 +1,7 @@
 family  text
 # THE TEXT TOOLS, proved on data rather than on whether they printed.
 #
-# Most of these came out of photographing the disk on 2026-08-27/28: several
+# Most of these came out of capturing the disk on 2026-08-27/28: several
 # of the programs here answer a form of invocation nobody would guess, and
 # three of them do not work at all.  A case that asserts a program's ERROR is
 # not a joke -- it passes today and fails the day the program is fixed, which
@@ -140,23 +140,39 @@ expect  3
 # cases fix the rule from both sides, because the first version of this note
 # read as though printf were simply broken and it is not.  DOC/INDEX said it
 # floods `No more memory !!!' until 2026-08-29; it does not.
+# THESE FOUR PINNED A DEFECT AND NOW PIN ITS ABSENCE.  Until 2026-08-31
+# printf dropped every literal character before the first conversion, and a
+# format with no conversion at all wrote nothing -- the cio selector
+# mismatch, reaching printf through the putc macro.  It was rebuilt
+# trap-free that evening.  The old assertions were `absent [X]' and
+# `absent hello'; if the broken binary ever comes back these four fail, and
+# they fail on the leading text rather than on some downstream symptom.
+case    printf-keeps-the-literal-before-the-first-conversion
+run     /dd/CMDS/printf "[%s]\n" X
+expect  [X]
+
+case    printf-keeps-every-literal-around-the-conversions
+run     /dd/CMDS/printf "a%db%dc\n" 1 2
+expect  a1b2c
+
 case    printf-is-right-when-the-format-starts-with-a-conversion
 run     /dd/CMDS/printf "%d %s %d\n" 4 "is bigger than " 3
 expect  4 is bigger than  3
 
-case    printf-keeps-every-literal-after-the-first-conversion
-run     /dd/CMDS/printf "a%db%dc\n" 1 2
-expect  1b2c
-absent  a1b2c
-
-case    printf-drops-what-comes-before-the-first-conversion
-run     /dd/CMDS/printf "[%s]\n" X
-expect  X]
-absent  [X]
-
-case    printf-prints-nothing-without-a-conversion
+# A format with NO conversion was the degenerate case of the same fault, and
+# the one that cost the most: `printf 'a\rb\rc\r' > f' left f at ZERO BYTES,
+# and four committed drive sheets fed programs that file and recorded the
+# resulting silence as the PROGRAM's. The byte count is asserted, not just
+# the text, because a case that only greps for `hello' would pass on a
+# trailing newline alone.
+case    printf-prints-a-format-that-has-no-conversion-at-all
 run     /dd/CMDS/printf "hello\n" x
-absent  hello
+expect  hello
+
+case    printf-writes-those-bytes-to-a-file-too
+run     /dd/CMDS/printf "abcde\n" > /dd/tmp/pf.txt
+run     /dd/CMDS/wc -c /dd/tmp/pf.txt
+expect  6 /dd/tmp/pf.txt
 
 # The build that shipped as `m4' until 2026-08-28 expanded this as `i hr ';
 # the alternate build, now shipping, gets it right.
