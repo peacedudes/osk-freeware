@@ -1,0 +1,135 @@
+family  dev
+# Developer tools, shell helpers and interpreters that a card credited and
+# nothing had typed.  Surfaced 2026-09-01 by the `worklist.py' carded() fix.
+#
+# THE TRAP THAT COST THIS FILE A WHOLE RUN, and it is worth more than any
+# case in it: `/dd/tmp' IS SHARED BY EVERY SHEET AND EVERY CASE FILE, and
+# the image is NOT reset between runs.  `dev2.drive' took `/dd/tmp/d2' for
+# its work directory; `devtools.cases' and three rcs sheets write a
+# two-byte FILE at that exact path as a `ci' description.  `mkdir -p'
+# cannot turn a file into a directory, so every file the sheet then created
+# failed with E$FNA -- "found but isn't accessible in the mode requested" --
+# and ELEVEN PROGRAMS WERE RECORDED AS BROKEN when nothing had been handed
+# to them.  bcheck, ccheck, indent, cxref, rdoc, patch and luac all work.
+#
+# Give a work directory a name nothing else uses, and `rm -f' it first.
+
+setup   export TERM=vt100
+setup   export TERMCAP=/dd/SYS/termcap
+setup   export USER=tester
+setup   W=/dd/tmp/DEVC
+setup   /dd/CMDS/rm -f $W > /nil 2>/nil
+setup   /dd/CMDS/mkdir -p $W > /nil 2>/nil
+setup   echo "int main(argc,argv)" > $W/t.c
+setup   echo "int argc; char **argv;" >> $W/t.c
+setup   echo "{ if (argc>1) { return 1; } return 0; }" >> $W/t.c
+setup   echo "int main() { return 0;" > $W/bad.c
+
+case    printenv-reads-the-environment-login-set
+run     /dd/CMDS/printenv TERM
+run     /dd/CMDS/printenv USER
+expect  vt100
+expect  tester
+
+case    env-adds-a-variable-for-one-command
+run     /dd/CMDS/env MARKER=set /dd/CMDS/printenv MARKER
+expect  MARKER=set
+
+case    exist-answers-in-its-exit-status
+run     /dd/CMDS/exist /dd/SYS/motd
+run     echo "present $?"
+run     /dd/CMDS/exist /dd/nosuchfile
+run     echo "absent $?"
+expect  present 0
+expect  absent 1
+
+case    if-tests-a-condition-for-a-shell-script
+run     /dd/CMDS/if -?
+expect  Function: if the [negated] condition <cond> depending on the arguments
+expect  loaded <mod>              true, if module <mod> is already loaded
+expect  varval <var> <val>        true, if envir. variable <var> has value <val>
+
+# bcheck counts brackets and reports the depth line by line; ccheck says
+# which brace was left open and on what line. Two answers to one question,
+# and the pair is the point.
+case    bcheck-counts-brackets-and-notices-one-left-open
+run     /dd/CMDS/bcheck $W/t.c
+run     /dd/CMDS/bcheck $W/bad.c
+expect  00003: 00  { if (argc>1) { return 1; } return 0; }
+expect  WARNING !!! 1 brackets still open !
+
+case    ccheck-names-the-brace-and-the-line-it-was-opened-on
+run     /dd/CMDS/ccheck $W/t.c
+run     /dd/CMDS/ccheck $W/bad.c
+expect  t.c:  OK
+expect  *Unclosed brak at EOF: } opened on line 1.
+expect  1 too few closing braces.
+
+# indent reformats; cb is the older beautifier and takes its input on
+# STANDARD INPUT rather than as an argument, which is the only thing it
+# will tell you if you give it a filename.
+case    indent-reformats-a-c-program
+run     /dd/CMDS/indent -st $W/t.c
+expect  main(argc, argv)
+expect  	int             argc;
+expect  	char          **argv;
+
+case    cb-wants-its-input-redirected-not-named
+run     /dd/CMDS/cb $W/t.c
+expect  Usage:  cb <input.fil >output.fil
+
+case    cxref-cross-references-the-identifiers
+run     /dd/CMDS/cxref $W/t.c
+expect  ****end-of-file****
+expect  argc                           1    2    3
+expect  main                           1
+
+case    rdoc-reduces-a-function-to-its-structure
+run     /dd/CMDS/rdoc $W/t.c
+expect  main
+expect  {  if  {  return  }  return  }
+
+# patch recognises the diff and gets as far as Plan B, then cannot read
+# back its own temporary. Pinned as the defect it is -- the recognition is
+# real and so is the failure.
+case    patch-recognises-a-diff-and-then-cannot-read-its-own-temporary
+run     /dd/CMDS/cp $W/t.c $W/t2.c
+run     echo "/* a new comment */" >> $W/t2.c
+run     /dd/CMDS/diff $W/t.c $W/t2.c > $W/t.diff
+run     /dd/CMDS/patch $W/t.c < $W/t.diff
+expect  Hmm...  Looks like a normal diff to me...
+expect  using Plan B...
+expect  Error reading tmp file
+
+case    fibo-and-sieve-run-their-benchmarks
+run     /dd/CMDS/fibo
+run     /dd/CMDS/sieve
+expect  Fibonacci( 24) = 46368
+expect  10 loops done
+expect  100 sieves done
+
+case    luac-compiles-lua-to-bytecode
+run     echo 'print("hello from lua")' > $W/h.lua
+run     /dd/CMDS/luac -o $W/h.luac $W/h.lua
+run     /dd/CMDS/wc -c $W/h.luac
+expect  83 /dd/tmp/DEVC/h.luac
+
+case    xlisp-evaluates-an-expression
+run     echo "(+ 2 3)" > $W/x.lsp
+run     echo "(exit)" >> $W/x.lsp
+run     /dd/CMDS/xlisp < $W/x.lsp
+expect  XLISP version 2.1, Copyright (c) 1989, by David Betz
+expect  > (+ 2 3)
+expect  5
+
+case    forth-evaluates-a-stack-expression
+run     echo "2 3 + . cr" > $W/f.fth
+run     echo "bye" >> $W/f.fth
+run     /dd/CMDS/forth < $W/f.fth
+expect  TILE Forth version 2.48, Copyright (c) 1989, by Mikael Patel
+expect  5
+
+# `hist' IS NOT A CASE. It says nothing to `-?' and does not return -- it
+# is a wrapper that gives a shell C-shell-style history, and with no shell
+# under it there is neither output to assert nor a return to wait for.
+# Measured twice, 2026-09-01.

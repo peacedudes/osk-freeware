@@ -7,7 +7,17 @@ family  dev2
 setup   export TERM=vt100
 setup   export TERMCAP=/dd/SYS/termcap
 setup   export USER=tester
-setup   W=/dd/tmp/d2
+# `/dd/tmp/d2' WAS ALREADY TAKEN -- `devtools.cases' and three rcs sheets
+# write a two-byte FILE there as a `ci' description, and the image is not
+# reset between runs.  `mkdir -p' could not turn a file into a directory,
+# so every file this sheet then tried to create under it failed with E$FNA
+# ("found but isn't accessible in the mode requested") and eleven programs
+# were recorded as broken when nothing had been given to them.
+#
+# A work directory must have a name nothing else uses, and the `rm -f'
+# below makes the sheet survive finding one anyway.
+setup   W=/dd/tmp/DEV2
+setup   /dd/CMDS/rm -f $W > /nil 2>/nil
 setup   /dd/CMDS/mkdir -p $W > /nil 2>/nil
 setup   echo "int main(argc,argv)" > $W/t.c
 setup   echo "int argc; char **argv;" >> $W/t.c
