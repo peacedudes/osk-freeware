@@ -1,15 +1,15 @@
-Updating your personal alias file...processed 2 aliases.
+Updating your personal alias file...
+** Error writing alias 'home'.
+
+** Not saving tables!  Please fix and re-run!
 $ newalias -g
-Updating the system alias file...processed 6 aliases.
+Updating the system alias file...
+** Error writing alias 'os9'.
+
+** Not saving tables!  Please fix and re-run!
 $ listalias
 home                 os9-freeware (This Collection)
-self                 tester (Me)
 os9                  os9-freeware (The OS-9 Freeware Collection)
-tester               tester (The Test Account)
-me                   tester (The Test Account)
-postmaster           tester (The Postmaster)
-root                 tester (The Postmaster)
-everyone             tester,os9 (Everybody On This Machine)
 $ messages
 There is 1 message in your mailbox
 $ readmsg 1

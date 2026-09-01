@@ -1,7 +1,6 @@
-$ msntp -?
-**** csl traphandler mismatch ****
 $ atp
 Reading Configuration file...
 
 Unable to open configuration file /dd/atprc or .atprc !
-$ # /t3 is /dev/ttys004   (attach with: screen /dev/ttys004)
+$ **** csl traphandler mismatch ****
+$ # /t3 is /dev/ttys013   (attach with: screen /dev/ttys013)

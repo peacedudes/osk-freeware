@@ -1,9 +1,19 @@
-$ exrecover
- Wrong number of arguments to exrecover
-$ add_errmsg -?
+$ exrecover -r /dd/tmp/nothing
+ File not found
+$ head -n 7 /dd/SPOOL/MAIL/tester > /dd/MAIL/mail_tester
+$ echo "N" > /dd/tmp/rm.in
+$ read_mail < /dd/tmp/rm.in
+
+> From os9-freeware Sat Aug 16 00:00:00 1986
+> From: The OS-9 Freeware Collection <os9-freeware>
+> To: tester
+> Subject: Welcome -- this is a real mail folder
+> Date: Sat, 16 Aug 1986 00:00:00
+>
+> This message exists so that Elm has something to show you.
+
+[L]ist again ,  e[X]it & delete mail ,  exit & [N]ot delete   ?
+$ add_errm?
 usage: add_errmsg "msg1" ... "msgN"
     appends messages at the end of /dd/SYS/vi_errmsg
     and reports seek positions
-$ read_mail
-$ dedit
-/dd/CMDS/dedit: cannot execute binary file

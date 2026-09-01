@@ -549,20 +549,23 @@ cap     answer on a disk where vi has not crashed.  `add_errmsg' builds
 cap     vi's error-message file -- /dd/SYS/vi_errmsg is already here.
 cap     `dedit' is Carl Kreider's BASIC09 disk sector editor and needs
 cap     runb, like the other three BASIC09 programs here.
+cap     The folder is cut to seven lines so the whole exchange fits on one
+cap     screen.  read_mail must be given its answer ON STANDARD INPUT --
+cap     `N' from a file returns, and so does `n', while read_mail with NO
+cap     input at all re-prompts without bound and fills a capture with
+cap     four megabytes of the same question.
 cap     This card showed nothing but `Wrong number of arguments to
 cap     exrecover' until 2026-09-01.
-run     cat /dd/SPOOL/MAIL/tester > /dd/MAIL/mail_tester
+run     exrecover -r /dd/tmp/nothing
+wait    8
+run     head -n 7 /dd/SPOOL/MAIL/tester > /dd/MAIL/mail_tester
 wait    5
 run     echo "N" > /dd/tmp/rm.in
 wait    4
 run     read_mail < /dd/tmp/rm.in
 wait    10
-run     exrecover -r /dd/tmp/nothing
-wait    8
-run     read_mail
-wait    8
-run     dedit
-wait    8
+run     add_errmsg -?
+wait    6
 
 shot    sddemo
 cap     White's Speedisk 2.10, a disk defragmenter, drawing the map of a

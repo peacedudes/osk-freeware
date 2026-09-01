@@ -369,10 +369,13 @@ cap     collection as /h0 as well as /dd.  `wndex' builds the index.cache
 cap     that WN will not serve without; it works on the CURRENT directory
 cap     and ignores a directory argument, which is why it is run through
 cap     ksh, whose `cd' moves the OS-9 data directory.
+cap     The response is cut at eighteen lines so the card ends cleanly;
+cap     `Content-length: 838' is the whole page, and the head of the HTML
+cap     under it is the page itself arriving.
 cap     Until 2026-09-01 this card ran `wn -V' and showed `Unknown option
 cap     given to server' -- `-V' takes a virtual-host file -- and the four
 cap     programs asked for after it never ran at all.
-run     ksh -c "cd /h0/c/unid/wn_1.14.3/osk; wndex"
+run     ksh -c "cd /h0/c/unid/wn_1.14.3/osk; wndex" 2>/nil
 wait    8
 run     echo "GET /index.html HTTP/1.0" > /dd/tmp/rq
 wait    4
@@ -380,7 +383,7 @@ run     echo "" >> /dd/tmp/rq
 wait    4
 run     autolf -c -C -L < /dd/tmp/rq > /dd/tmp/rq.crlf
 wait    5
-run     wn -L /nil -l /nil < /dd/tmp/rq.crlf
+run     wn -L /nil -l /nil < /dd/tmp/rq.crlf | head -n 18
 wait    10
 
 shot    wn-helpers
