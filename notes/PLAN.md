@@ -50,8 +50,18 @@ step before a `datatest` case: it asserts nothing and shows you what came
 back, forty programs to an emulator start.
 
 The known failures are deliberate and each says why in its own file: three in
-`datatest` and four in `playtest` (pacman, puzzle, snake, valspeak). **One
-harness at a time** — they all write to the image and take a lock, and a run
+`datatest` -- `zip-cannot-write-its-archive`, `todos-must-change-the-file`,
+`sir-round-trip-is-lossy` -- and four in `playtest` (pacman, puzzle, snake,
+valspeak). A full `datatest --all` run is **420 of 423**, measured
+2026-08-31.
+
+**FOUR CASES RESTART THE FAMILY THEY ARE IN, and that is expected.**
+`paranoia` pauses for a key, `checkfile` is full-screen, and `cookhash` and
+`sqrtx` end the emulator session outright. The harness restarts from where the
+output stopped, so each costs one restart and not the rest of its family. A
+run that reports no restarts at all has probably not run those four.
+
+**One harness at a time** — they all write to the image and take a lock, and a run
 killed part-way leaves `osk-freeware.dd.lock` behind for the next one to
 clear.
 
