@@ -1,0 +1,151 @@
+family  netpbm3
+# The converters INTO PNM, and the JPEG and gzip alternates.
+#
+# EIGHTEEN OF THESE READ A FORMAT NOTHING ON THIS DISK PRODUCES -- a Biorad
+# confocal file, an AutoCAD slide, an Atari Spectrum picture, a Zeiss scan.
+# There is no way to hand them a real one here, so what is asserted is the
+# next best and not nothing: each one RECOGNISES that what it was given is
+# not its format, and says which format it wanted. A converter that read a
+# PGM as if it were a Zeiss scan and produced garbage would fail this.
+#
+# `rawtoppm' is the exception in the group: raw bytes and the dimensions are
+# all it needs, so it can be exercised properly.
+
+setup   P=/dd/CMDS/NETPBM
+setup   /dd/CMDS/mkdir /dd/tmp/N3
+setup   $P/pgmramp -lr 32 8 > /dd/tmp/N3/s.pgm
+setup   S=/dd/tmp/N3/s.pgm
+
+case    rawtoppm-builds-an-image-from-raw-bytes
+run     $P/rawtoppm 8 8 < /dd/SYS/termcap > /dd/tmp/N3/raw.ppm
+run     $P/pnmfile /dd/tmp/N3/raw.ppm
+expect  PPM raw, 8 by 8  maxval 255
+
+case    the-into-pnm-converters-each-name-the-format-they-wanted
+run     $P/brushtopbm $S
+run     $P/gouldtoppm $S
+run     $P/mtvtoppm $S
+run     $P/sldtoppm $S
+expect  brushtopbm: bad magic number
+expect  gouldtoppm: cannot read gould header
+expect  mtvtoppm: unable to parse MTV file header
+expect  sldtoppm: this is not an AutoCAD slide file.
+
+case    and-so-do-the-rest-of-them
+run     $P/spctoppm $S
+run     $P/ximtoppm $S
+run     $P/zeisstopnm $S
+run     $P/qrttoppm $S
+expect  spctoppm: not a Spectrum picture
+expect  ximtoppm: ReadXimHeader: unable to read file header
+expect  zeisstopnm: Input file not in Zeiss format (too small)
+expect  qrttoppm: EOF / read error
+
+case    psidtopgm-spottopgm-and-hpcdtoppm-state-their-arguments
+run     $P/psidtopgm 8 8 $S
+run     $P/spottopgm
+run     $P/hpcdtoppm
+expect  usage:  psidtopgm <width> <height> <bits/sample> [imagedata]
+expect  Usage: spottopgm [-1|2|3] [Firstcol Firstline Lastcol Lastline]
+expect  Overskip mode (tries to improve color quality.)
+
+# The four gzip builds in REBUILT are for three different CPUs and two of
+# them want csl. What can be proved on a 68000 is that the no-csl CPU32 build
+# writes a stream the shipped 68000 gzip reads back byte for byte -- one
+# archiver's output through another's decompressor.
+case    the-cpu32-gzip-writes-what-the-68000-gzip-reads
+run     /dd/CMDS/cp /dd/SYS/termcap /dd/tmp/N3/g1
+run     /dd/CMDS/REBUILT/gzipcpu32_nocsl -c /dd/tmp/N3/g1 > /dd/tmp/N3/g1.gz
+run     /dd/CMDS/gzip -d -c /dd/tmp/N3/g1.gz > /dd/tmp/N3/g1.back
+run     /dd/CMDS/wc -c /dd/tmp/N3/g1 /dd/tmp/N3/g1.gz
+run     /dd/CMDS/md5 /dd/tmp/N3/g1.back
+expect  963 /dd/tmp/N3/g1
+expect  556 /dd/tmp/N3/g1.gz
+expect  ee2c20fa226fe6fc78feec7f123c7a99
+
+case    the-three-csl-gzip-builds-all-start-and-name-their-version
+run     /dd/CMDS/REBUILT/gzip68k_csl -h
+run     /dd/CMDS/REBUILT/gzip020_csl -h
+run     /dd/CMDS/REBUILT/gzipcpu32k_csl -h
+expect  gzip68k_csl 1.2.4 (18 Aug 93)
+expect  gzip020_csl 1.2.4 (18 Aug 93)
+expect  gzipcpu32k_csl 1.2.4 (18 Aug 93)
+
+case    the-m4-and-sed-alternates-agree-with-the-shipped-ones
+run     echo "define(X,42)X" > /dd/tmp/N3/m.in
+run     /dd/CMDS/REBUILT/m4_0.5 /dd/tmp/N3/m.in
+run     /dd/CMDS/m4 /dd/tmp/N3/m.in
+run     /dd/CMDS/REBUILT/sed_1.06 -e "s/Welcome/Hello/" /dd/SYS/motd
+run     /dd/CMDS/sed -e "s/Welcome/Hello/" /dd/SYS/motd
+expect  42
+expect  Hello to os9exec -- OS-9/68k emulator
+
+case    savemem-and-loadmem-want-hex-addresses-and-the-super-user
+run     /dd/CMDS/savemem
+run     /dd/CMDS/loadmem
+expect  Syntax   : SAVEMEM <from address> <to address> <path>
+expect  Syntax   : LOADMEM <destinati address> <upper limit address> <path>
+expect  You must be super user
+
+case    snap-and-pdraw-name-themselves-and-their-defaults
+run     /dd/CMDS/snap
+run     /dd/CMDS/pdraw
+expect  function: write terminal screen snapshot to <file> (default "polaroid")
+expect  Pdraw V1.4  9/4/90
+expect  Default Printer           = -Plp550M
+
+# THE JPEG TOOLS CANNOT READ THIS DISK'S OWN PNM FILES until the header is
+# patched, and that is the single most surprising thing in the graphics set.
+# cjpeg wants LF between the fields of a PNM header; netpbm here writes CR,
+# because CR is what ends a line on OS-9. So a file netpbm has just written
+# and `pnmfile' is perfectly happy with gets `Bogus data in PPM file'.
+#
+# `pbyte <file> <offset> 0a' patches one byte, and for a `P6<CR>32 24<CR>255
+# <CR>' header the three separators are at offsets 2, 8 and c. The gallery
+# card for this has shown the trick since 2026-08-29; this makes it a fact
+# that can fail again rather than a photograph.
+case    cjpeg-refuses-a-pnm-header-with-CR-separators
+run     $P/ppmmake blue 32 24 > /dd/tmp/N3/j.ppm
+run     $P/pnmfile /dd/tmp/N3/j.ppm
+run     /dd/CMDS/cjpeg /dd/tmp/N3/j.ppm > /dd/tmp/N3/j.jpg
+run     /dd/CMDS/wc -c /dd/tmp/N3/j.jpg
+expect  PPM raw, 32 by 24  maxval 255
+expect  Bogus data in PPM file
+expect  0 /dd/tmp/N3/j.jpg
+
+case    and-reads-it-once-the-three-separators-are-LF
+run     /dd/CMDS/pbyte /dd/tmp/N3/j.ppm 2 0a
+run     /dd/CMDS/pbyte /dd/tmp/N3/j.ppm 8 0a
+run     /dd/CMDS/pbyte /dd/tmp/N3/j.ppm c 0a
+run     /dd/CMDS/cjpeg /dd/tmp/N3/j.ppm > /dd/tmp/N3/j.jpg
+run     /dd/CMDS/wc -c /dd/tmp/N3/j.jpg
+run     /dd/CMDS/wrjpgcom -comment "os9 freeware" /dd/tmp/N3/j.jpg > /dd/tmp/N3/jc.jpg
+run     /dd/CMDS/rdjpgcom /dd/tmp/N3/jc.jpg
+expect  os9 freeware
+absent  Bogus data
+absent  0 /dd/tmp/N3/j.jpg
+
+# AND IT GOES THE OTHER WAY TOO. `djpeg' writes a PNM with LF separators --
+# correct for the IJG library it came from -- and this disk's netpbm cannot
+# read that either: `pnmfile: junk in file where an integer should be'. The
+# two halves of the graphics set disagree about what ends a line, and the
+# patch has to be applied in whichever direction you are going.
+case    djpeg-writes-a-header-this-disks-netpbm-cannot-read
+run     /dd/CMDS/djpeg -pnm /dd/tmp/N3/j.jpg > /dd/tmp/N3/j.back
+run     $P/pnmfile /dd/tmp/N3/j.back
+run     /dd/CMDS/wc -c /dd/tmp/N3/j.back
+expect  junk in file where an integer should be
+absent  0 /dd/tmp/N3/j.back
+
+# KNOWN DEFECT, measured 2026-08-31. The 68070 build will not read the very
+# file the ordinary build has just encoded from -- same bytes, same run.
+# `cjpeg' produces a JPEG from it; `cjpeg.070' answers "Premature end of
+# input file" and writes nothing. The 070 builds are alternates for another
+# processor and this is the evidence that they are not drop-in equivalents.
+case    the-68070-cjpeg-refuses-what-the-68000-cjpeg-accepts
+run     /dd/CMDS/rm /dd/tmp/N3/j70.jpg
+run     /dd/CMDS/cjpeg.070 /dd/tmp/N3/j.ppm > /dd/tmp/N3/j70.jpg
+run     /dd/CMDS/wc -c /dd/tmp/N3/j.jpg /dd/tmp/N3/j70.jpg
+expect  Premature end of input file
+expect  0 /dd/tmp/N3/j70.jpg
+absent  0 /dd/tmp/N3/j.jpg

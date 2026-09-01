@@ -1,0 +1,39 @@
+# jpeg -- the first attempt fed cjpeg a PPM that `pgmtoppm red-blue' had
+# written and it answered "Bogus data in PPM file".  Use one from the netpbm
+# family's own generator instead.
+
+family  jpeg
+
+setup   P=/dd/CMDS/NETPBM
+setup   /dd/CMDS/mkdir /dd/tmp/J
+
+drive   a-source-jpeg-can-read
+run     $P/ppmmake blue 32 24 > /dd/tmp/J/s.ppm
+run     $P/pnmfile /dd/tmp/J/s.ppm
+run     echo "--- and the gulls, scaled:"
+run     $P/giftopnm /dd/DEMO/gulls.gif > /dd/tmp/J/g.ppm 2>/nil
+run     $P/pnmscale -xysize 64 48 /dd/tmp/J/g.ppm > /dd/tmp/J/c.ppm 2>/nil
+run     $P/pnmfile /dd/tmp/J/c.ppm
+
+drive   cjpeg-djpeg
+run     /dd/CMDS/cjpeg /dd/tmp/J/c.ppm > /dd/tmp/J/a.jpg
+run     /dd/CMDS/wc -c /dd/tmp/J/a.jpg
+run     /dd/CMDS/djpeg /dd/tmp/J/a.jpg > /dd/tmp/J/a.ppm
+run     $P/pnmfile /dd/tmp/J/a.ppm
+
+drive   the-070-builds
+why     do they agree with the ordinary ones byte for byte?
+run     /dd/CMDS/cjpeg.070 /dd/tmp/J/c.ppm > /dd/tmp/J/b.jpg
+run     /dd/CMDS/md5 /dd/tmp/J/a.jpg /dd/tmp/J/b.jpg
+run     /dd/CMDS/djpeg.070 /dd/tmp/J/b.jpg > /dd/tmp/J/b.ppm
+run     /dd/CMDS/md5 /dd/tmp/J/a.ppm /dd/tmp/J/b.ppm
+
+drive   comments
+run     /dd/CMDS/wrjpgcom -comment "os9 freeware" /dd/tmp/J/a.jpg > /dd/tmp/J/c.jpg
+run     /dd/CMDS/rdjpgcom /dd/tmp/J/c.jpg
+run     echo "--- the 070 pair:"
+run     /dd/CMDS/wrjpgcom.070 -comment "070 build" /dd/tmp/J/a.jpg > /dd/tmp/J/d.jpg
+run     /dd/CMDS/rdjpgcom.070 /dd/tmp/J/d.jpg
+run     echo "--- and the ordinary reader on the 070 writer's file:"
+run     /dd/CMDS/rdjpgcom /dd/tmp/J/d.jpg
+run     echo "--- end"

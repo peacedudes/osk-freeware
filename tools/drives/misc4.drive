@@ -1,0 +1,99 @@
+# misc4 -- the JPEG pair's 68070 builds, the gzip alternates, the memory and
+# drawing tools, and the netpbm converters INTO PNM that have no source file
+# of their own format anywhere on this disk.
+
+family  misc4
+
+setup   P=/dd/CMDS/NETPBM
+setup   /dd/CMDS/mkdir /dd/tmp/M4
+setup   $P/pgmramp -lr 32 8 > /dd/tmp/M4/s.pgm
+setup   $P/pgmtoppm red-blue /dd/tmp/M4/s.pgm > /dd/tmp/M4/s.ppm
+
+drive   jpeg-070-builds
+why     do the 68070 builds agree with the ordinary ones, byte for byte?
+run     /dd/CMDS/cjpeg /dd/tmp/M4/s.ppm > /dd/tmp/M4/a.jpg
+run     /dd/CMDS/cjpeg.070 /dd/tmp/M4/s.ppm > /dd/tmp/M4/b.jpg
+run     /dd/CMDS/md5 /dd/tmp/M4/a.jpg /dd/tmp/M4/b.jpg
+run     echo "--- and decoded back:"
+run     /dd/CMDS/djpeg /dd/tmp/M4/a.jpg > /dd/tmp/M4/a.ppm
+run     /dd/CMDS/djpeg.070 /dd/tmp/M4/b.jpg > /dd/tmp/M4/b.ppm
+run     /dd/CMDS/md5 /dd/tmp/M4/a.ppm /dd/tmp/M4/b.ppm
+run     $P/pnmfile /dd/tmp/M4/a.ppm
+
+drive   jpeg-comments
+run     /dd/CMDS/wrjpgcom -comment "os9 freeware" /dd/tmp/M4/a.jpg > /dd/tmp/M4/c.jpg
+run     /dd/CMDS/rdjpgcom /dd/tmp/M4/c.jpg
+run     echo "--- the 070 pair:"
+run     /dd/CMDS/wrjpgcom.070 -comment "070 build" /dd/tmp/M4/a.jpg > /dd/tmp/M4/d.jpg
+run     /dd/CMDS/rdjpgcom.070 /dd/tmp/M4/d.jpg
+run     echo "--- end"
+
+drive   gzip-alternates
+why     four builds for three CPUs, two of them wanting csl
+run     /dd/CMDS/cp /dd/SYS/termcap /dd/tmp/M4/g1
+run     /dd/CMDS/REBUILT/gzipcpu32_nocsl -c /dd/tmp/M4/g1 > /dd/tmp/M4/g1.gz
+run     /dd/CMDS/wc -c /dd/tmp/M4/g1 /dd/tmp/M4/g1.gz
+run     /dd/CMDS/gzip -d -c /dd/tmp/M4/g1.gz > /dd/tmp/M4/g1.back
+run     /dd/CMDS/md5 /dd/tmp/M4/g1 /dd/tmp/M4/g1.back
+run     echo "--- the csl builds:"
+run     /dd/CMDS/REBUILT/gzip68k_csl -h
+run     /dd/CMDS/REBUILT/gzip020_csl -h
+run     /dd/CMDS/REBUILT/gzipcpu32k_csl -h
+run     echo "--- end"
+
+drive   m4-and-sed-alternates
+run     echo "define(X,42)X" > /dd/tmp/M4/m.in
+run     /dd/CMDS/REBUILT/m4_0.5 /dd/tmp/M4/m.in
+run     echo "--- and the shipped m4:"
+run     /dd/CMDS/m4 /dd/tmp/M4/m.in
+run     echo "--- sed_1.06:"
+run     /dd/CMDS/REBUILT/sed_1.06 -e "s/Welcome/Hello/" /dd/SYS/motd
+run     /dd/CMDS/sed -e "s/Welcome/Hello/" /dd/SYS/motd
+run     echo "--- end"
+
+drive   savemem-loadmem
+why     "save memory image" / "load memory image" -- with addresses
+run     /dd/CMDS/savemem
+run     /dd/CMDS/loadmem
+run     echo "--- end"
+
+drive   snap
+run     /dd/CMDS/snap
+run     echo "--- end snap"
+
+drive   pdraw
+why     "2D/3D data plotting, PostScript output"
+run     /dd/CMDS/pdraw
+run     echo "--- end pdraw"
+
+drive   into-pnm-converters
+why     eighteen converters whose input formats nothing here produces.  What
+why     does each one say when it is handed something that is not its format?
+run     $P/bioradtopgm /dd/tmp/M4/s.pgm > /nil 2>/dd/tmp/M4/e1
+run     $P/brushtopbm /dd/tmp/M4/s.pgm > /nil 2>/dd/tmp/M4/e2
+run     $P/gouldtoppm /dd/tmp/M4/s.pgm > /nil 2>/dd/tmp/M4/e3
+run     $P/imgtoppm /dd/tmp/M4/s.pgm > /nil 2>/dd/tmp/M4/e4
+run     $P/mtvtoppm /dd/tmp/M4/s.pgm > /nil 2>/dd/tmp/M4/e5
+run     /dd/CMDS/cat /dd/tmp/M4/e1 /dd/tmp/M4/e2 /dd/tmp/M4/e3
+run     /dd/CMDS/cat /dd/tmp/M4/e4 /dd/tmp/M4/e5
+
+drive   into-pnm-more
+run     $P/psidtopgm 8 8 /dd/tmp/M4/s.pgm > /nil 2>/dd/tmp/M4/f1
+run     $P/qrttoppm /dd/tmp/M4/s.pgm > /nil 2>/dd/tmp/M4/f2
+run     $P/sldtoppm /dd/tmp/M4/s.pgm > /nil 2>/dd/tmp/M4/f3
+run     $P/spctoppm /dd/tmp/M4/s.pgm > /nil 2>/dd/tmp/M4/f4
+run     $P/sputoppm /dd/tmp/M4/s.pgm > /nil 2>/dd/tmp/M4/f5
+run     $P/ximtoppm /dd/tmp/M4/s.pgm > /nil 2>/dd/tmp/M4/f6
+run     $P/zeisstopnm /dd/tmp/M4/s.pgm > /nil 2>/dd/tmp/M4/f7
+run     /dd/CMDS/cat /dd/tmp/M4/f1 /dd/tmp/M4/f2 /dd/tmp/M4/f3 /dd/tmp/M4/f4
+run     /dd/CMDS/cat /dd/tmp/M4/f5 /dd/tmp/M4/f6 /dd/tmp/M4/f7
+
+drive   rawtoppm
+why     the one that CAN be fed here: raw bytes with the size given
+run     $P/rawtoppm 8 8 < /dd/SYS/termcap > /dd/tmp/M4/raw.ppm 2>/dd/tmp/M4/raw.err
+run     $P/pnmfile /dd/tmp/M4/raw.ppm
+run     /dd/CMDS/cat /dd/tmp/M4/raw.err
+run     echo "--- and spottopgm and hpcdtoppm, which have usage lines:"
+run     $P/spottopgm
+run     $P/hpcdtoppm
+run     echo "--- end"
