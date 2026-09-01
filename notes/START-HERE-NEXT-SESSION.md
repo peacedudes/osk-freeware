@@ -14,9 +14,18 @@ Branch `release-pass-2026-08-21`, never pushed. Tree clean, all seventeen
 
 | | 2026-08-31 evening | now |
 |---|---|---|
-| Programs with neither a test nor a card | 97 | **70** |
-| `datatest` families | 24 | **29** |
+| `datatest` cases | 423 | **502** |
+| `datatest` families | 24 | **33** |
 | Star grid (programs needing `cio`) | 354 | **349** |
+| Gallery cards flagged as help- or error-only | 22 | **17** |
+| **Programs under no test at all** | (mismeasured) | **209** |
+
+**DO NOT QUOTE "programs with neither a test nor a card" -- IT WAS A BROKEN
+MEASUREMENT.** `worklist.py`'s `carded()` read `for'-credited names out of the
+wrong key and never matched one, so every program credited on a shared card
+counted as uncarded. The 421/97/42 sequence was that bug shrinking, not the
+work. Fixed 2026-09-01; `carded()` now means "a card runs it by name", as
+`gen_screens` already did. **The backlog to work from is `--no-test`: 209.**
 
 ### What this session settled, in one screen
 
@@ -50,6 +59,23 @@ Branch `release-pass-2026-08-21`, never pushed. Tree clean, all seventeen
 7. **`/h0` is now mounted by `datatest.py` and `screenshots.py`** as well as
    `drive.py`. It is the arrangement `notes/DECISION-placement.md` settles
    on, and three of the four harnesses were not doing it.
+8. **AN `OS9Hx` DEVICE PATH MUST BE ABSOLUTE.** With `--image
+   osk-freeware.dd` -- a bare relative name, which is what `--all` was
+   documented to take -- the device mounts, MODULE LOADING WORKS, and
+   ordinary file opens on it silently fail. The whole WN family went 200 to
+   404 on that difference and nothing said why. All four harnesses now
+   `abspath` the image.
+9. **Three more programs fixed by `load`**, all the same shape as
+   `printmail`: `rxmod` wants `vmod_trap`, `wgen` wants the `Graph` user
+   trap, and both modules were sitting in the same directory as the program
+   all along. **Reach for `load` before believing a program cannot find its
+   helper.**
+10. **The RCS set is stopped by the CLOCK, not by itself.** `date -t` reads
+    2100 and does not advance, so two check-ins land in the same second and
+    `ci` refuses the second; `rcsdiff` then has one revision to compare with
+    itself. `ci`, `co` and `rlog` work singly.
+11. **Two cases asserted TODAY'S DATE** and passed for exactly one day.
+    Fixed. If a case names a weekday or a month, it is broken.
 
 **Older, still true:**
 

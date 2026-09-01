@@ -45,6 +45,26 @@ divides archived binaries".
      produced nothing for a real file. It is still a fine *loads-and-starts*
      test; it just needs a sentence saying that is all it is.
 
+  c. **A RELATIVE `OS9Hx` PATH BREAKS ORDINARY FILE OPENS while module
+     loading still works** -- measured here 2026-09-01, and it cost an
+     hour. The skill's os9exec page warns about a leading `./' on
+     `OS9DISK' in exactly those words and then says "Bare or absolute
+     paths both work". For an `OS9Hx` device a BARE relative name is not
+     safe either: `OS9H0=osk-freeware.dd` mounts the device, `wn' loads
+     and runs from it, and the file it wants to serve cannot be opened --
+     every request came back 404 and nothing said why. Absolute fixed it.
+     Same symptom shape as the `./' trap, so it probably belongs in the
+     same paragraph.
+
+  d. **`F$SysDbg` HAS NOW BEEN EXERCISED LIVE**, which the skill says has
+     never happened ("Neither has been exercised live for that reason").
+     OS-9's own `break' utility calls it, and under os9exec it lands in the
+     EMULATOR's meta-debugger with the prompt
+     `# Pid=3: dbgmsk=$0001,$0000,$0000 stop=$0000 trigger='' (type
+     ?<Enter> for hlp)` -- and hangs the script, exactly as predicted.
+     Asserted in `tools/datatests/last2.cases`, last case in the family
+     because nothing after it runs.
+
 What the skill got RIGHT and saved time on, for the record: `break' is
 documented as "halt into the ROM debugger (superuser, console)", and
 `setime' as taking six separate fields `y m d h m s' rather than the packed

@@ -55,11 +55,18 @@ The known failures are deliberate and each says why in its own file: three in
 valspeak). A full `datatest --all` run is **420 of 423**, measured
 2026-08-31.
 
-**FOUR CASES RESTART THE FAMILY THEY ARE IN, and that is expected.**
-`paranoia` pauses for a key, `checkfile` is full-screen, and `cookhash` and
-`sqrtx` end the emulator session outright. The harness restarts from where the
-output stopped, so each costs one restart and not the rest of its family. A
-run that reports no restarts at all has probably not run those four.
+**SEVEN CASES RESTART THE FAMILY THEY ARE IN, and that is expected.**
+`paranoia` pauses for a key, `checkfile` is full-screen, and `cookhash`,
+`sqrtx`, `chardef`, `xy` and `break` end the emulator session outright. The
+harness restarts from where the output stopped, so each costs one restart and
+not the rest of its family. A run that reports no restarts at all has probably
+not run those seven.
+
+**Each restart costs up to the 300-second per-attempt timeout**, so a full
+`--all` run is dominated by them: seven session-enders is up to thirty-five
+minutes of the hour it takes. `xy` and `break` are both in `last2.cases` and
+are its LAST TWO CASES for that reason -- a session-ender must be last in its
+family or everything after it pays for a restart it did not need.
 
 **One harness at a time** — they all write to the image and take a lock, and a run
 killed part-way leaves `osk-freeware.dd.lock` behind for the next one to
@@ -71,11 +78,30 @@ clear.
 |---|---|
 | Programs catalogued | 939 |
 | Of those, RUNNABLE (a type-$01 module) | 915 -- the rest are drivers, descriptors and trap libraries |
-| **Under a test that can fail again** | **534** |
-| Neither a test nor a gallery card | **97** — was 421 on 2026-08-31 morning |
-| Driven with real arguments (a `tools/drives` sheet runs it) | 448 |
-| `datatest` cases | 423 in 24 families, 3 deliberate failures |
-| Screens | 484 cards, 20 still flagged by `audit_cards.py` |
+| **Under no test at all** | **209** — this is the backlog that matters |
+| No gallery card runs it by name | **81** |
+| Neither a test nor a card | **1** (`cron`, a daemon, which cannot be a case) |
+| Not driven by any `tools/drives` sheet | 399 |
+| `datatest` cases | **502 in 33 families**, 3 deliberate failures |
+| `tools/drives` sheets | **58** |
+| Screens | 485 cards, **17** still flagged by `audit_cards.py` (3 of those excepted by name) |
+
+> **THE FIGURE THIS TABLE USED TO LEAD WITH WAS WRONG, and the correction is
+> worth more than the number.** "Programs with neither a test nor a card" ran
+> 421 → 97 → 42 over two days and it was measured by a filter that could not
+> do its job: `worklist.py`'s `carded()` looked for `for'-credited names in
+> `shot["acts"]`, and `screenshots.parse` puts them in `shot["for"]`. The loop
+> never matched. Every program credited on a shared card -- and cards here
+> routinely credit three to five -- counted as having no card.
+>
+> Fixing it literally counted `for' and the answer went to **zero**, which is
+> the trap `gen_screens` already names: *"918 of 918 have sample output"
+> cannot fail while grouping satisfies it.* So `carded()` now means what
+> `gen_screens` means by it -- **a card RUNS the program BY NAME** -- and the
+> honest backlog is the first row above: **209 programs under no test**.
+>
+> The work done under the old figure was real: 79 cases, five rebuilds, four
+> cards. The number describing what was left was not.
 | Source here | 625 (66%) |
 | Documented beyond one index line | 602 (63%) |
 
@@ -424,13 +450,21 @@ Nothing. The four questions on `notes/FOR-RDOGGETT.md` were answered on
 
 ### What is left, in the order it is worth doing
 
-1. **97 runnable programs with neither a test nor a card.**
+1. **42 runnable programs with neither a test nor a card.**
    `tools/worklist.py --programs --no-test --no-card` prints them. Most are
    already driven -- their transcripts are reproducible from the sheets in
-   `tools/drives/` -- and only need a case written.
-2. **20 gallery cards still flagged.** `tools/audit_cards.py`. Two of them,
-   `perr` and `perr-print`, are false positives and should stay: error text
-   IS their output.
+   `tools/drives/` -- and only need a case written. The ones left are the
+   awkward ones: the seven gcc PASSES (forked by the driver, not run by
+   hand), the three Atari GRAPH demos that want a display, and a handful
+   that end the emulator session and so cannot be a `datatest` case at all
+   (`pbmtobbnbg`, `wysecrack`, `cron`, `byteflip`). **A program that ends
+   the session belongs in DOC/INDEX and in a drive transcript, not in a
+   case** -- datatest fails any case whose session took an exception, and
+   that rule is right.
+2. **17 gallery cards still flagged.** `tools/audit_cards.py`. THREE are
+   excepted by name and should stay: `perr` and `perr-print` print the text
+   of an error number, so error text IS their output, and `csl-mismatch`'s
+   whole subject is the edition skew.
 3. **The family chooser documents.** `DOC/README-SHELLS` was written this
    session as the second one after `DOC/README-VI`. Archivers, kermit,
    editors and grep-likes are still to do, and everything they need is

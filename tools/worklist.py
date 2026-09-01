@@ -71,16 +71,42 @@ def modtype(root, rel):
 
 
 def carded():
-    """Every program name a gallery card is hung on -- `shot' and `for'."""
+    """Every program name a gallery card is hung on -- `shot' and `for'.
+
+    THIS READ `shot["acts"]' FOR THE `for' NAMES AND THEY ARE NOT THERE.
+    `screenshots.parse' puts `run', `kill', `wait', `send' and `keys' into
+    `acts' and `for' into `shot["for"]' -- so the loop below could never
+    match, and EVERY program credited on a card by `for' rather than by
+    being the card's own name counted as having no card at all.  Cards here
+    routinely credit three to five programs that way, so the figure this
+    feeds -- "programs with neither a test nor a card" -- was inflated for
+    as long as the function existed.  Found 2026-09-01.
+
+    The docstring was right and the code was wrong, which is the harder
+    kind to notice: nothing failed, a number was just bigger than the truth.
+
+    AND FIXING IT LITERALLY MADE THE FILTER USELESS -- with `for' counted,
+    "programs with neither a test nor a card" went to ZERO, because every
+    program on this disk is credited on some card.  That is the same trap
+    `gen_screens' already names: "918 of 918 have sample output" cannot
+    fail while grouping satisfies it.
+    
+    So what is counted here is what gen_screens counts: a program is carded
+    when a card RUNS IT BY NAME -- it is the card's own name, or it appears
+    as a command in one of that card's `run' lines.  Being credited by
+    `for' and never typed is exactly the state this whole pass exists to
+    find, so it must not count.
+    """
     names = set()
     for f in sorted(os.listdir(SHEETS)):
         if not f.endswith(".sheet"):
             continue
         for shot in screenshots.parse(os.path.join(SHEETS, f)):
             names.add(shot["name"])
-            for key, val in shot["acts"]:
-                if key == "for":
-                    names.update(val.split())
+            typed = " ".join(v for k, v in shot["acts"] if k == "run")
+            for prog in shot.get("for", []):
+                if re.search(r"(^|[/ ])%s\b" % re.escape(prog), typed):
+                    names.add(prog)
     return names
 
 
