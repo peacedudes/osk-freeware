@@ -1,0 +1,48 @@
+# netpbm5b -- the four netpbm5 cases whose first draft asked the wrong
+# question.  One program per stanza for the two that may end the session.
+
+family  netpbm5b
+
+setup   P=/dd/CMDS/NETPBM
+setup   W=/dd/tmp/n5b
+setup   /dd/CMDS/mkdir -p $W > /nil 2>/nil
+setup   $P/ppmpat -madras 32 16 > $W/base.ppm
+setup   $P/pgmramp -lr 32 16 > $W/ramp.pgm
+
+drive   pnmrotate-90
+why     it does NOT refuse a right angle -- it rotated and wrote the image
+why     to the terminal.  What size does it give back?
+run     $P/pnmrotate 90 $W/base.ppm > $W/r90.ppm
+run     $P/pnmfile $W/base.ppm $W/r90.ppm
+run     echo "--- and 30 degrees, for comparison:"
+run     $P/pnmrotate 30 $W/base.ppm > $W/r30.ppm
+run     $P/pnmfile $W/r30.ppm
+run     echo "--- end pnmrotate"
+
+drive   ppmntsc
+why     it wants a DIMFACTOR first: "0.0 = total blackness, 1.0 = original
+why     picture".
+run     $P/ppmntsc 1.0 $W/base.ppm > $W/n1.ppm
+run     $P/pnmfile $W/n1.ppm
+run     echo "--- and dimmed by half:"
+run     $P/ppmntsc 0.5 $W/base.ppm > $W/n5.ppm
+run     $P/pnmfile $W/n5.ppm
+run     echo "--- end ppmntsc"
+
+drive   ppmforge
+why     it ignored -width/-height and made 256x256.  What are its real
+why     options?
+run     $P/ppmforge -help
+run     echo "--- end ppmforge-help"
+
+drive   pgmnoise
+why     one of pgmnoise/pgmcrater ends the session; find out which.
+run     $P/pgmnoise 24 12 > $W/noise.pgm
+run     $P/pnmfile $W/noise.pgm
+run     echo "--- end pgmnoise"
+
+drive   pgmcrater
+why     the other one.
+run     $P/pgmcrater -width 24 -height 12 > $W/crater.pgm
+run     $P/pnmfile $W/crater.pgm
+run     echo "--- end pgmcrater"

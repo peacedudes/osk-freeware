@@ -63,9 +63,15 @@ run     $P/pnmfile $W/base.ppm $W/rot.ppm
 expect  PPM raw, 32 by 16  maxval 255
 absent  32 by 16  maxval 255	32 by 16
 
-case    pnmrotate-refuses-a-right-angle-and-names-pnmflip
-run     $P/pnmrotate 90 $W/base.ppm
-expect  pnmflip
+# It does NOT refuse a right angle -- the first draft of this asserted that
+# it names `pnmflip' and it simply rotated, writing the image to the
+# terminal because there was no redirect. A quarter turn of a 32x16 gives
+# 18x32, not 16x32: the extra two columns are the same rounding that makes
+# 30 degrees give 38x31.
+case    pnmrotate-turns-a-right-angle-too
+run     $P/pnmrotate 90 $W/base.ppm > $W/r90.ppm
+run     $P/pnmfile $W/r90.ppm
+expect  PPM raw, 18 by 32  maxval 255
 
 # ppmrelief embosses: it is a fixed convolution, so the size is preserved
 # exactly and the answer is repeatable.
@@ -74,10 +80,15 @@ run     $P/ppmrelief $W/base.ppm > $W/rel.ppm
 run     $P/pnmfile $W/rel.ppm
 expect  PPM raw, 32 by 16  maxval 255
 
-case    ppmntsc-restricts-an-image-to-broadcast-safe-colours
-run     $P/ppmntsc $W/base.ppm > $W/ntsc.ppm
-run     $P/pnmfile $W/ntsc.ppm
-expect  PPM raw, 32 by 16  maxval 255
+# ppmntsc takes a DIMFACTOR first -- "0.0 = total blackness, 1.0 = original
+# picture" -- and without it prints its usage. Both ends of the range keep
+# the size.
+case    ppmntsc-dims-an-image-by-a-factor-and-keeps-its-size
+run     $P/ppmntsc 1.0 $W/base.ppm > $W/ntsc1.ppm
+run     $P/ppmntsc 0.5 $W/base.ppm > $W/ntsc5.ppm
+run     $P/pnmfile $W/ntsc1.ppm $W/ntsc5.ppm
+expect  ntsc1.ppm:	PPM raw, 32 by 16  maxval 255
+expect  ntsc5.ppm:	PPM raw, 32 by 16  maxval 255
 
 # pgmoil paints in oils with a radius; pgmbentley is Bentley's effect.
 # Both take a PGM and give a PGM of the same size.
@@ -99,16 +110,28 @@ expect  Entropy
 # THE RANDOM ONES. pgmnoise invents noise, pgmcrater invents a cratered
 # landscape and ppmforge invents a planet or a cloud -- no two runs agree,
 # so the SIZE they were asked for is the whole contract.
-case    pgmnoise-and-pgmcrater-make-an-image-of-the-size-asked-for
+# THESE TWO CANNOT SHARE A CASE: `pgmcrater' ends the emulator session --
+# silently, with nothing written -- and took `pgmnoise' with it when they
+# were run together. pgmnoise on its own is fine.
+case    pgmnoise-makes-an-image-of-the-size-asked-for
 run     $P/pgmnoise 24 12 > $W/noise.pgm
-run     $P/pgmcrater -width 24 -height 12 > $W/crater.pgm
-run     $P/pnmfile $W/noise.pgm $W/crater.pgm
-expect  noise.pgm:	PGM raw, 24 by 12
-expect  crater.pgm:	PGM raw, 24 by 12
+run     $P/pnmfile $W/noise.pgm
+expect  PGM raw, 24 by 12
 
-case    ppmforge-invents-a-planet-of-the-size-asked-for
-run     $P/ppmforge -night 0 -width 32 -height 16 > $W/forge.ppm
+# TWO MISTAKES IN ONE CASE, both worth keeping. `-night' TAKES NO ARGUMENT:
+# the first draft wrote `-night 0' and the 0 swallowed the parse, so -width
+# and -height were ignored and ppmforge made its default 256x256 -- which
+# looked like a program ignoring its options and was the case writing them
+# wrongly. The second draft dropped `-night' altogether and ppmforge then
+# tried to build a PLANET at its default `-mesh 256', which ENDS THE
+# EMULATOR SESSION after printing its parameters.
+#
+# `-night' asks for a starfield instead of a planet, which is cheap. So the
+# flag is needed, with no argument after it.
+case    ppmforge-invents-a-starfield-of-the-size-asked-for
+run     $P/ppmforge -night -width 32 -height 16 > $W/forge.ppm
 run     $P/pnmfile $W/forge.ppm
+expect  ppmforge: night:
 expect  PPM raw, 32 by 16  maxval 255
 
 # pbmlife runs one generation of Conway's Life over a bitmap; pbmclean
@@ -126,3 +149,8 @@ case    pbmupc-draws-a-barcode-of-the-one-size-a-barcode-has
 run     $P/pbmupc -s1 0 72890 00011 > $W/upc.pbm
 run     $P/pnmfile $W/upc.pbm
 expect  PBM raw, 230 by 175
+
+# `pgmcrater' IS NOT A CASE. It ends the emulator session with nothing
+# written and nothing said, given the same `-width'/`-height' ppmforge
+# accepts. Measured 2026-09-01, on its own stanza so nothing else is
+# blamed for it. DOC/INDEX carries the finding.
