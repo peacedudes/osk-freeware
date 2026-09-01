@@ -1,0 +1,198 @@
+# tail1 -- the CMDS programs that no sheet has ever run.
+#
+# Absent on purpose: `break' (reaches F$SysDbg and stops the emulator in its
+# own debugger), `cron' (a daemon), `setime' (prompts, and a prompt in a
+# procedure file eats the rest of the sheet), `suspend' (removes a process
+# from the system and could take this one).
+
+family  tail1
+
+setup   /dd/CMDS/mkdir /dd/tmp/T1
+setup   /dd/CMDS/cp /dd/SYS/termcap /dd/tmp/T1/t.txt
+setup   /dd/CMDS/cp /dd/SYS/motd /dd/tmp/T1/m.txt
+
+drive   today
+run     /dd/CMDS/today
+
+drive   chbase-and-cvtbase
+why     chbase is the other base converter
+run     /dd/CMDS/chbase 255 10 16
+run     /dd/CMDS/chbase
+
+drive   unexpand-and-unp
+run     /dd/CMDS/printf '%s\r' "a	b	c" > /dd/tmp/T1/tabs.txt
+run     /dd/CMDS/expand /dd/tmp/T1/tabs.txt
+run     echo "--- unexpand:"
+run     /dd/CMDS/unexpand /dd/tmp/T1/t.txt > /dd/tmp/T1/ue.txt
+run     /dd/CMDS/wc -c /dd/tmp/T1/t.txt /dd/tmp/T1/ue.txt
+run     echo "--- unp:"
+run     /dd/CMDS/unp /dd/tmp/T1/t.txt > /dd/tmp/T1/unp.txt
+run     /dd/CMDS/wc -c /dd/tmp/T1/unp.txt
+
+drive   unifdef
+run     echo "#ifdef FOO" > /dd/tmp/T1/u.c
+run     echo "yes" >> /dd/tmp/T1/u.c
+run     echo "#else" >> /dd/tmp/T1/u.c
+run     echo "no" >> /dd/tmp/T1/u.c
+run     echo "#endif" >> /dd/tmp/T1/u.c
+run     /dd/CMDS/unifdef -DFOO /dd/tmp/T1/u.c
+run     echo "--- and -UFOO:"
+run     /dd/CMDS/unifdef -UFOO /dd/tmp/T1/u.c
+
+drive   xlate
+why     "Translate 6809 assembly source to 68000"
+run     /dd/CMDS/xlate /dd/DOC/xasm/sample.a09
+run     echo "--- end xlate"
+
+drive   proff
+why     a text formatter beside nroff and roff
+run     /dd/CMDS/proff /dd/SYS/motd
+run     echo "--- end proff"
+
+drive   splitalf
+run     /dd/CMDS/splitalf
+run     echo "--- end"
+
+drive   libsplit-and-librarians
+run     /dd/CMDS/libsplit
+run     echo "--- EditLibr:"
+run     /dd/CMDS/EditLibr
+run     echo "--- Libr2Ascii:"
+run     /dd/CMDS/Libr2Ascii
+run     echo "--- Ascii2Libr:"
+run     /dd/CMDS/Ascii2Libr
+run     echo "--- end"
+
+drive   zip-helpers
+run     /dd/CMDS/zipinfo
+run     echo "--- zipnote:"
+run     /dd/CMDS/zipnote
+run     echo "--- zipsplit:"
+run     /dd/CMDS/zipsplit
+run     echo "--- end"
+
+drive   dearc
+run     /dd/CMDS/dearc
+run     echo "--- end dearc"
+
+drive   dmake
+run     /dd/CMDS/dmake -?
+run     echo "--- end dmake"
+
+drive   makelex
+run     /dd/CMDS/makelex
+run     echo "--- end"
+
+drive   ref-and-elvprsv
+why     two of elvis's family
+run     /dd/CMDS/ref
+run     echo "--- elvprsv:"
+run     /dd/CMDS/elvprsv
+run     echo "--- elvrec:"
+run     /dd/CMDS/elvrec
+run     echo "--- end"
+
+drive   less-helpers
+run     /dd/CMDS/lessecho hello world
+run     echo "--- lesskey:"
+run     /dd/CMDS/lesskey
+run     echo "--- end"
+
+drive   ownership
+run     /dd/CMDS/owner /dd/tmp/T1/t.txt
+run     echo "--- chown:"
+run     /dd/CMDS/chown
+run     echo "--- logname:"
+run     /dd/CMDS/logname
+run     echo "--- su:"
+run     /dd/CMDS/su -?
+run     echo "--- end"
+
+drive   eset-and-gdd
+run     /dd/CMDS/eset
+run     echo "--- gdd:"
+run     /dd/CMDS/gdd
+run     echo "--- end"
+
+drive   checkfile-and-cpr
+run     /dd/CMDS/checkfile /dd/SRC/misc/cvtbase.c
+run     echo "--- cpr:"
+run     /dd/CMDS/cpr /dd/SYS/motd
+run     echo "--- end"
+
+drive   buildhash-and-chardef
+run     /dd/CMDS/buildhash
+run     echo "--- chardef:"
+run     /dd/CMDS/chardef
+run     echo "--- end"
+
+drive   georgia-minnesota
+why     two of the state-named programs -- what are they?
+run     /dd/CMDS/georgia
+run     echo "--- minnesota:"
+run     /dd/CMDS/minnesota
+run     echo "--- end"
+
+drive   bmgtest
+run     /dd/CMDS/bmgtest
+run     echo "--- bmgtest2:"
+run     /dd/CMDS/bmgtest2
+run     echo "--- end"
+
+drive   mtools-remaining
+run     /dd/CMDS/msbadblocks a:
+run     echo "--- mscd:"
+run     /dd/CMDS/mscd a:/
+run     echo "--- mstoolstest:"
+run     /dd/CMDS/mstoolstest
+run     echo "--- msformat:"
+run     /dd/CMDS/msformat a:
+run     echo "--- end"
+
+drive   pri-and-rendsk
+run     /dd/CMDS/pri
+run     echo "--- rendsk:"
+run     /dd/CMDS/rendsk
+run     echo "--- end"
+
+drive   creadoc-and-rsconvert
+run     /dd/CMDS/creadoc
+run     echo "--- rsconvert:"
+run     /dd/CMDS/rsconvert
+run     echo "--- end"
+
+drive   scqref-and-PrintLabels
+run     /dd/CMDS/scqref
+run     echo "--- PrintLabels:"
+run     /dd/CMDS/PrintLabels
+run     echo "--- PrintCards:"
+run     /dd/CMDS/PrintCards
+run     echo "--- end"
+
+drive   ephem881-and-infocom
+run     /dd/CMDS/ephem881 < /nil
+run     echo "--- infocom.tcap:"
+run     /dd/CMDS/infocom.tcap
+run     echo "--- end"
+
+drive   lnk-org-and-emacs-mm1
+run     /dd/CMDS/lnk.org
+run     echo "--- emacs.mm1:"
+run     /dd/CMDS/emacs.mm1
+run     echo "--- end"
+
+drive   yuvsplit-pair
+run     /dd/CMDS/NETPBM/ppmmake blue 16 16 > /dd/tmp/T1/y.ppm
+run     /dd/CMDS/NETPBM/ppmtoyuvsplit yv /dd/tmp/T1/y.ppm
+run     /dd/CMDS/ls /dd
+run     echo "--- end"
+
+drive   mkindex-and-vtxtcn
+run     /dd/CMDS/GAMES/mkindex
+run     echo "--- vtxtcn:"
+run     /dd/CMDS/GAMES/vtxtcn
+run     echo "--- end"
+
+drive   ub68020demo
+run     /dd/CMDS/DEMOS/ub68020demo < /nil
+run     echo "--- end"
