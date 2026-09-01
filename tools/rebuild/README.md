@@ -15,6 +15,24 @@ export OS9CLEAN=/path/to/clean-dd-overlay          # see Prerequisites
 program's sources and a results table; you decide what gets copied onto the
 disk, after `verify.sh` has run each one.
 
+## relink_cio.sh has a gate, and it is the point of the script now
+
+`-qixm` links the SDK's `LIB/cio.l`, and that library is the **$44 vintage** —
+the one whose `putc`/`getc` are macros calling trap-13 selectors `$41`/`$42`,
+where every `cio` *module* anyone has puts a memory routine. A relinked
+program is therefore a $44 program: if it ever runs one of those macros on a
+`FILE` it opens your file, reads not one byte, and reports on it anyway.
+
+Eleven programs shipped broken that way and were rebuilt `-qm` on 2026-08-31
+to fix them. `relink_cio.sh` now asks `tools/cio_macro_scan.py` first and
+**refuses** any program the scan names, rather than reporting it and leaving
+the judgement to whoever reads the results — which is what shipped
+`CMDS/REBUILT/kermit_cio`, a relink carrying the call sites and the one build
+of kermit here that could only be driven in send mode.
+
+It also refuses to run at all if the scan names nothing, because a scan that
+has stopped working leaves the gate open and looks exactly like a clean disk.
+
 ## recipes.psv
 
 One line per program, `|`-separated:

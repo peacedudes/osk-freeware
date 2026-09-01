@@ -13,6 +13,27 @@
 # Nothing is installed. Each result is reported and left in <outdir> for
 # tools/rebuild/verify.sh and a human to judge.
 #
+# A GATE, ADDED 2026-08-31, AND IT IS NOT OPTIONAL.
+#
+# `-qixm' links the SDK's `LIB/cio.l', and that library is the $44 VINTAGE --
+# the one whose `putc'/`getc' are MACROS whose slow path calls trap-13
+# selectors $41/$42, where every `cio' MODULE anyone has puts a memory
+# routine. So a relinked program is a $44 program, and if it ever runs one of
+# those macros on a FILE it breaks exactly like the thirty in DOC/README-CIO:
+# it opens your file, reads not one byte, and reports on it anyway.
+#
+# Eleven programs were shipped broken this way and had to be rebuilt `-qm' on
+# 2026-08-31 to fix them. Relinking is not size-for-free; it is size in
+# exchange for that risk, and the risk is only acceptable where the program
+# has no such call site.
+#
+# `tools/cio_macro_scan.py' IS THE GATE. Relink where it is silent about a
+# program; build `-qm' where it is not. This script now refuses a program the
+# scan names, rather than leaving the judgement to whoever reads the results.
+# `CMDS/REBUILT/kermit_cio' is what that judgement cost last time: a relink
+# this repository made, carrying the call sites, and the one build of kermit
+# here that could only be driven in send mode.
+#
 # Two flags are not optional and the reasons are old and expensive:
 #   -qixm  links cio (this is the point; -qm is what we are undoing)
 #   -n=    names the module. WITHOUT IT the module name comes from the -f
@@ -39,11 +60,29 @@ compat=${OS9COMPAT:-$here/disk/SRC/COMPAT}
 [ -d "$compat" ] || { echo "no COMPAT headers at $compat" >&2; exit 2; }
 mkdir -p "$out"
 
+# The gate. A program with a putc/getc macro call site must not be relinked.
+# ONE SPACE-SEPARATED LINE, not the newline-separated one awk emits: the
+# `case' below matches on " $prog ", and against a newline-separated list that
+# pattern never matches and the gate is silently open. It was, first time.
+unsafe=$("$here/tools/cio_macro_scan.py" "$here/disk" 2>/dev/null \
+         | awk '/_flshbuf=/ {n=split($1,p,"/"); print p[n]}' | tr '\n' ' ')
+[ -n "$unsafe" ] || { echo "cio_macro_scan.py named nothing -- the gate would" \
+                           "be open; refusing to relink anything" >&2; exit 2; }
+
 printf 'program\ttree\told\tnew\tdelta\tverdict\n'
 n=0
 while IFS=$'\t' read -r prog path oldsize recipe; do
   n=$((n+1)); [ "$n" -gt "$max" ] && break
   IFS='|' read -r rprog tree sources defines libs flags <<< "$recipe"
+  # THE GATE. See the header: -qixm links the $44 cio.l, so a program with a
+  # putc/getc macro call site comes out broken. Refused rather than reported,
+  # because the last time this was a judgement call it shipped kermit_cio.
+  case " $unsafe " in
+    *" $prog "*)
+      printf '%s\t%s\t%s\t-\t-\tREFUSED: has a putc/getc macro call site\n' \
+             "$prog" "$tree" "$oldsize"
+      continue ;;
+  esac
   [ -d "$src/$tree" ] || { printf '%s\t%s\t%s\t-\t-\tNO SOURCE TREE\n' "$prog" "$tree" "$oldsize"; continue; }
 
   work=$out/$prog
