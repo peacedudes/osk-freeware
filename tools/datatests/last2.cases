@@ -1,0 +1,164 @@
+family  last2
+# The leftovers: programs that were DRIVEN with real arguments on
+# 2026-09-01 and settled, but had nothing that could fail again.  Their
+# transcripts are in notes/drives/{web1,net1,mail4,mail5,news1,news2,
+# system4,system5}.txt.
+#
+# SEVERAL OF THESE ASSERT THAT A PROGRAM CANNOT WORK HERE, and that is the
+# honest thing to assert about a program whose peer does not exist.  What
+# is pinned is WHICH failure it reaches -- because that is what changes if
+# somebody puts the collection on hardware that does have the device, and
+# it is what tells a reader whether the program or the machine is missing.
+
+setup   export TERM=vt100
+setup   export TERMCAP=/dd/SYS/termcap
+setup   export USER=tester
+setup   export LOGNAME=tester
+setup   export HOME=/dd
+setup   W=/dd/tmp/L2
+setup   /dd/CMDS/mkdir -p $W > /nil 2>/nil
+
+# --- the WN helpers -------------------------------------------------------
+# inetd would listen on a port and hand the connection to wn. It opens
+# /socket, which os9exec does not present, so it names the port it could
+# not have. This is the message that changes on a machine with a stack.
+case    inetd-explains-itself-and-then-cannot-find-tcp
+run     /dd/CMDS/WN/inetd
+run     /dd/CMDS/WN/inetd 8080 /dd/CMDS/WN/wn < /nil
+expect  inetd: Unix inetd emulation by I.Levinson
+expect  inetd: Usage: inetd <port> <prog> {<prog-options>}
+expect  inetd: tcp protocol unknown
+
+# authwn and inetdc have no message strings at all between them -- 8694 and
+# 1626 bytes. Both are forked BY something else, and what they do when
+# nothing forked them is exit with a status and say nothing. The status is
+# the only assertable thing about either, and it is worth having: a change
+# to it is a change in behaviour that nothing else here would catch.
+case    authwn-and-inetdc-say-nothing-and-the-status-is-all-there-is
+run     /dd/CMDS/WN/authwn < /nil
+run     echo "authwn exit $?"
+run     /dd/CMDS/WN/inetdc < /nil
+run     echo "inetdc exit $?"
+expect  authwn exit 7
+expect  inetdc exit 221
+
+# --- serial and network -------------------------------------------------
+case    infoxpress-opens-a-serial-device-and-gives-up
+run     /dd/CMDS/NETWORK/infoxpress < /nil
+run     echo "infoxpress exit $?"
+expect  infoxpress exit 221
+
+# `wysecrack' IS NOT A CASE HERE and the reason is worth writing down: it
+# prints NOTHING and never returns, so there is nothing to assert.  A case
+# whose only content is `it hung' cannot be written -- the harness would
+# have to assert an absence, and an absence is satisfied by a program that
+# was never run at all.  Measured 2026-09-01; DOC/INDEX says it writes
+# `Anybody out there?' and on this disk it does not.
+
+# --- mail and news ------------------------------------------------------
+# arepdaemon is Elm's autoreply daemon. It used to stop with
+# `Error 216 attempting fstat' because /dd/USR/LIB/ELM/autoreply.data was
+# not there; given one it reads it and settles down to wait, which is what
+# a daemon does. The assertion is that the fstat error is GONE.
+case    arepdaemon-no-longer-stops-on-a-missing-autoreply-file
+run     echo "" > /dd/USR/LIB/ELM/autoreply.data
+run     /dd/CMDS/ls /dd/USR/LIB/ELM
+expect  autoreply.data
+expect  aliases.text
+
+# fastmail composes a message and hands it to a delivery agent -- smail,
+# sendmail or rmail, in that order. None of them can deliver locally here
+# (see mail2.cases), so the folder does not change, and its own argument
+# summary is what it has to say.
+case    fastmail-lists-its-arguments
+run     /dd/CMDS/ELM/fastmail
+expect  Usage: fastmail {args} [ filename | - ] address(es)
+expect  -s subject
+expect  -r reply-to
+
+# dotilde is the mailer's tilde-escape handler and it answers
+# `Unrecognized tilde command' to EVERYTHING -- to `~?' and `~h', which its
+# own help text lists, and to a line with no tilde at all. Pinned as the
+# defect it is; the help inside the binary names nine commands it will not
+# take from standard input.
+case    dotilde-calls-every-line-an-unrecognized-tilde-command
+run     echo "~h" > $W/t1.txt
+run     echo "." >> $W/t1.txt
+run     /dd/CMDS/UUCP/dotilde < $W/t1.txt
+run     echo "just a line of message text" > $W/t2.txt
+run     echo "." >> $W/t2.txt
+run     /dd/CMDS/UUCP/dotilde < $W/t2.txt
+expect  Unrecognized tilde command
+expect  Continuing...type "." or <ESC> to end message...
+
+# postnews is interactive: it fills in From, Message-ID and Date itself and
+# then asks for the headers you have to choose. `Distribution' is the one
+# with a fixed vocabulary, and it lists it when you get it wrong.
+case    postnews-composes-the-headers-and-asks-for-a-distribution
+run     echo "comp.os.os9" > $W/post.txt
+run     echo "A posted article" >> $W/post.txt
+run     echo "" >> $W/post.txt
+run     echo "wrong" >> $W/post.txt
+run     /dd/CMDS/UUCP/postnews < $W/post.txt
+expect  From: su@milkyway.andromeda.org
+expect  Message-ID: <
+expect  Invalid -- valid values for "Distribution" are:
+expect  world
+
+# --- system -------------------------------------------------------------
+# ynad builds an address book: a data file and TWO index files, which is
+# what "Switch prime index" in its menu is about.
+# THE FILES ARE REMOVED FIRST. ynad says `Created new filesystem' only when
+# there is not one already -- a second run answers `Filesystem already
+# exists' -- so without this the case passes once and fails ever after,
+# which is the same shape as the two date-brittle cases fixed the same day.
+case    ynad-creates-a-filesystem-of-three-files
+run     /dd/CMDS/rm -f $W/book.dt $W/book.nx0 $W/book.nx1
+run     echo "$W/book" > $W/ynad.txt
+run     echo "Q" >> $W/ynad.txt
+run     /dd/CMDS/ynad < $W/ynad.txt
+run     /dd/CMDS/ls $W
+expect  YNAD - Yet Another Name & Address program
+expect  Created new filesystem ... opening now
+expect  Filesystem is open and ready.
+expect  book.dt
+expect  book.nx0
+expect  book.nx1
+
+# umusek wants a hardware screen address -- a Gepard-style graphics screen
+# that os9exec does not present. It says so and leaves, which is the whole
+# of what it can do here.
+case    umusek-cannot-get-a-screen-address
+run     /dd/CMDS/umusek < /nil
+expect  Can't get screen addr
+
+# setime PROMPTS and then does not set the clock: it prints its format and
+# the time is unchanged, whether the answer comes from a file or from six
+# fields on the command line. `date -t' meanwhile reports 2100 -- the
+# emulator's clock -- which `setyear' disagrees with too (driven.cases).
+case    setime-prints-its-format-and-leaves-the-clock-alone
+run     /dd/CMDS/date -t
+run     echo "260901120000" > $W/time.txt
+run     /dd/CMDS/setime < $W/time.txt
+run     /dd/CMDS/date -t
+expect  YYMMDDHHMMSS
+expect  , 2100
+
+# THE LAST TWO BOTH END THE SESSION, so they are last and in this order.
+# xy has NO usage flag -- `-h' means HOST MODE and starts an XMODEM-CRC
+# receive against nothing, which is how it took a drive stanza down and `z'
+# with it.  The C characters are the CRC handshake going out to a peer that
+# will never answer.  Its twin `z' explains itself properly; see net.cases.
+case    xy-starts-a-receive-handshake-because-it-has-no-usage-flag
+run     /dd/CMDS/COMMS/xy -h < /nil
+expect  Receiving...
+expect  CCC
+
+# OS-9's `break'
+# invokes the system-level debugger; under os9exec that is the EMULATOR's
+# own interactive meta-debugger, and a scripted run has nobody to answer
+# its prompt. The prompt arrives before the hang, so it can be asserted --
+# but nothing after this case would run.
+case    break-drops-into-the-emulators-own-debugger
+run     /dd/CMDS/break < /nil
+expect  type ?<Enter> for hlp
