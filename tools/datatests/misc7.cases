@@ -34,3 +34,54 @@ case    dam-reports-the-cluster-size-and-draws-the-allocation-map
 run     /dd/CMDS/dam /dd < /nil
 expect  | = cluster (1024 Bytes) allocated or defective
 expect  #000000 ////////////////////////////////////////////////////////////////
+
+case    unzip-lists-what-it-can-do-with-a-zip-archive
+run     /dd/CMDS/unzip
+expect  UnZip:  Zipfile Extract v5.0 of 21 August 1992;  (c) 1989 S.H.Smith and others
+expect  OSK Version 1.1 By Ricky Beam 10/16/93
+expect    -t  test archive integrity
+expect    -a  convert text (CR LF => LF)
+
+# des takes FILES and nothing else -- no -e/-d, no -k. `-e' earns
+# `Can't read -e.' because it is read as a filename, and `-?' the same.
+case    des-takes-files-and-has-no-option-flags-at-all
+run     /dd/CMDS/des
+run     /dd/CMDS/des -?
+expect  Usage: des file ...
+expect  Can't read -?.
+
+# lout runs and gets as far as its own package system: `@SysInclude { doc }'
+# needs the `doc' package, which is not on this disk. It names the file,
+# the line and the column, which is a working formatter failing honestly.
+case    lout-runs-and-names-the-package-it-cannot-find
+run     /dd/CMDS/rm -f $W/d.lt > /nil 2>/nil
+run     echo "@SysInclude { doc }" > $W/d.lt
+run     /dd/CMDS/lout $W/d.lt
+expect  cannot open doc
+expect  fatal error: Exiting now
+
+case    gs403-reports-its-version-and-wants-its-initialisation-file
+run     /dd/CMDS/gs403 -v
+run     echo "quit" > $W/q.ps
+run     /dd/CMDS/gs403 -q -dNOPAUSE -sDEVICE=nullpage $W/q.ps
+expect  Aladdin Ghostscript 4.03 (1996-9-23)
+expect  Copyright (C) 1996 Aladdin Enterprises, Menlo Park, CA.
+expect  Can't find initialization file gs_init.ps.
+
+case    wam-sbprolog-states-the-arguments-of-its-wam-engine
+run     /dd/CMDS/wam.sbprolog < /nil
+expect  Usage: sim [-Ttdns] [-m s_size] [-p p_size] [-b tr_size] [-ui num] pil_file_name ...
+
+case    disktest-explains-that-it-has-one-option
+run     /dd/CMDS/disktest -?
+expect  Function : measure diskperformance
+expect  Options  : -?  show this text
+expect    V1.0, written by Stephan Paschedag
+
+# undel scans a directory for entries RBF has marked deleted and offers to
+# bring each back. On a directory with nothing deleted it says where it
+# looked and stops.
+case    undel-scans-the-directory-it-is-given
+run     /dd/CMDS/undel $W < /nil
+expect  U N D E L E T E    V1.1   by  Stephan Enzler
+expect  Undeleting in Directory: /dd/tmp/MS7
