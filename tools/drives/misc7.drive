@@ -1,0 +1,116 @@
+# misc7 -- what is left that might still work with a better invocation.
+# The residue after this is genuinely awkward: full-screen editors, Atari
+# GRAPH demos with no display, and programs that end the session.
+
+family  misc7
+
+setup   export TERM=vt100
+setup   export TERMCAP=/dd/SYS/termcap
+setup   export USER=tester
+setup   export HOME=/dd
+setup   W=/dd/tmp/MSC7
+setup   /dd/CMDS/rm -f $W > /nil 2>/nil
+setup   /dd/CMDS/mkdir -p $W > /nil 2>/nil
+setup   /dd/CMDS/cp /dd/SYS/motd $W/plain.txt
+
+drive   des
+why     "-e"/"-d" earned `Can't read -e.' so those are not its flags.
+why     Ask it what they are.
+run     /dd/CMDS/des
+run     echo "--- and -?:"
+run     /dd/CMDS/des -?
+run     echo "--- end des"
+
+drive   crypto
+why     it went silent with -r13.  Its own help lists -e (encode with a
+why     random cypher) and says the output must be REDIRECTED to filter.
+run     /dd/CMDS/crypto -e $W/plain.txt > $W/crypt.out
+run     /dd/CMDS/wc -c $W/plain.txt $W/crypt.out
+run     /dd/CMDS/cat $W/crypt.out
+run     echo "--- end crypto"
+
+drive   unzip
+why     Info-ZIP unzip.  Its version banner lists what it can read.
+run     /dd/CMDS/unzip -v
+run     echo "--- end unzip"
+
+drive   hexedit
+why     HEXPERT V2.4 -- `hexedit <file>'
+run     /dd/CMDS/hexedit $W/plain.txt < /nil
+run     echo "--- end hexedit"
+
+drive   disktest-and-dfiles
+why     a disk benchmark and a duplicate finder.
+run     /dd/CMDS/disktest -?
+run     echo "--- dfiles with two identical files:"
+run     /dd/CMDS/cp $W/plain.txt $W/copy1.txt
+run     /dd/CMDS/cp $W/plain.txt $W/copy2.txt
+run     /dd/CMDS/ksh -c "cd $W; /dd/CMDS/dfiles ."
+run     echo "--- end disktest-and-dfiles"
+
+drive   lout
+why     "Lout 2.05 document formatter".  Its usage line is `-o<filename>'.
+run     echo "@SysInclude { doc }" > $W/d.lt
+run     /dd/CMDS/lout -o$W/d.ps $W/d.lt
+run     echo "--- and bare with an argument:"
+run     /dd/CMDS/lout $W/d.lt
+run     echo "--- end lout"
+
+drive   creadoc
+why     "extract documentation comments from FORTRAN source".  Give it
+why     real FORTRAN with a comment block.
+run     echo "C@ This is a documentation comment" > $W/f.for
+run     echo "      PROGRAM MAIN" >> $W/f.for
+run     echo "      END" >> $W/f.for
+run     /dd/CMDS/creadoc $W/f.for
+run     echo "--- and with the bare name from its directory:"
+run     /dd/CMDS/ksh -c "cd $W; /dd/CMDS/creadoc f.for"
+run     echo "--- end creadoc"
+
+drive   macsave-and-PrintLabels
+why     both answered nothing.  Give each an argument and a -? .
+run     /dd/CMDS/macsave -?
+run     echo "--- PrintLabels:"
+run     /dd/CMDS/PrintLabels -?
+run     echo "--- end"
+
+drive   wam.sbprolog
+why     "SB-Prolog 2.2 WAM engine -- see DOC/sbprolog/README-SBPROLOG"
+run     /dd/CMDS/wam.sbprolog < /nil
+run     echo "--- end wam"
+
+drive   gs403
+why     "Aladdin Ghostscript 4.03, and this one is COMPLETE"
+run     echo "quit" > $W/q.ps
+run     /dd/CMDS/gs403 -v
+run     echo "--- and rendering nothing to nowhere:"
+run     /dd/CMDS/gs403 -q -dNOPAUSE -sDEVICE=nullpage $W/q.ps
+run     echo "--- end gs403"
+
+drive   mkdict-and-mkindex
+why     "bog - build the dictionary" and its index.  They may want the
+why     word list in the data directory under a fixed name.
+run     /dd/CMDS/ls /dd/CMDS/GAMES
+run     /dd/CMDS/GAMES/mkdict -?
+run     echo "--- mkindex:"
+run     /dd/CMDS/GAMES/mkindex -?
+run     echo "--- end bog"
+
+drive   adlrun
+why     "<world> play it" -- and /dd/tmp/tiny is a compiled world.
+run     /dd/CMDS/ADL/adlcomp /dd/ADL/DEMOS/tiny.adl -o $W/tiny -i/dd/ADL
+run     echo "quit" > $W/q.txt
+run     echo "y" >> $W/q.txt
+run     /dd/CMDS/ADL/adlrun $W/tiny < $W/q.txt
+run     echo "--- end adlrun"
+
+drive   bincheckr
+why     it reported the book and then aborted.  Try it on its own.
+run     /dd/CMDS/GAMES/bincheckr /dd/USR/src/chess/gnuchess.book
+run     echo "--- end bincheckr"
+
+drive   undel
+why     it found a deleted file and prompted.  Answer no.
+run     echo "n" > $W/n.txt
+run     /dd/CMDS/undel $W < $W/n.txt
+run     echo "--- end undel"

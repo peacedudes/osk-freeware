@@ -14,11 +14,31 @@ Branch `release-pass-2026-08-21`, never pushed. Tree clean, all seventeen
 
 | | 2026-08-31 evening | now |
 |---|---|---|
-| `datatest` cases | 423 | **502** |
-| `datatest` families | 24 | **33** |
+| `datatest` cases | 423 | **633** |
+| `datatest` families | 24 | **44** |
+| `tools/drives` sheets | 41 | **72** |
 | Star grid (programs needing `cio`) | 354 | **349** |
 | Gallery cards flagged as help- or error-only | 22 | **17** |
-| **Programs under no test at all** | (mismeasured) | **209** |
+| **Programs under no test at all** | 209 | **75** |
+
+### What to do next
+
+**Work from `tools/worklist.py --programs --no-test`.** The 75 left are the
+awkward residue and they divide into three kinds, so decide which one you
+have before spending time on it:
+
+1. **Wrong invocation** -- still the commonest, still worth trying first.
+   `dev2`'s eleven "broken" programs were a work-directory collision;
+   `calender` "refusing to be redirected" was a corrupted image; `uuencode`
+   took four readings of its own usage line and still has none.
+2. **Ends the emulator session.** `pgmcrater`, `pbmtobbnbg`, `wysecrack`,
+   `cron`, `byteflip`, `top`, `devprc`, `config`, `hist`, `ephem`. A case
+   whose session took an exception FAILS by the harness's own rule, and
+   that rule is right -- put the finding in `DOC/INDEX` and a drive
+   transcript instead.
+3. **Wants hardware that is not here** -- the Atari GRAPH demos, the X11
+   clients (stopped by the csl skew before they even miss a server), SCSI,
+   a Gepard screen. Say which, and stop.
 
 **DO NOT QUOTE "programs with neither a test nor a card" -- IT WAS A BROKEN
 MEASUREMENT.** `worklist.py`'s `carded()` read `for'-credited names out of the

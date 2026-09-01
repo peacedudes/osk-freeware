@@ -1,0 +1,36 @@
+family  misc7
+# Two programs already driven in `cio29.drive' that never got a case: the
+# loan calculator and the disk allocation map.  Both produce a lot of
+# output and both are exactly reproducible.
+
+setup   export TERM=vt100
+setup   export TERMCAP=/dd/SYS/termcap
+setup   W=/dd/tmp/MS7
+setup   /dd/CMDS/rm -f $W > /nil 2>/nil
+setup   /dd/CMDS/mkdir -p $W > /nil 2>/nil
+
+# loan asks five questions and then prints a full amortisation schedule.
+# Every number in it is arithmetic, so the whole thing is checkable -- and
+# the first payment splitting 143.47 into 43.47 of principal and 100.00 of
+# interest on a 10,000 loan at 12% is the arithmetic being right.
+case    loan-prints-an-amortisation-schedule-that-adds-up
+run     echo "10000" > $W/loan.in
+run     echo "10" >> $W/loan.in
+run     echo "12" >> $W/loan.in
+run     echo "" >> $W/loan.in
+run     echo "s" >> $W/loan.in
+run     /dd/CMDS/loan < $W/loan.in
+expect  Principal:  10000.00
+expect  Future value:  17216.52
+expect  Total Interest Charge:  7216.52
+expect  Payment:  143.47
+expect  1	 43.47		 100.00		 9956.53
+expect  		Interest paid for year 1 is 1264.82
+
+# dam draws the disk allocation map, one character per cluster. On a 253 MB
+# image that is a great many lines, so what is asserted is the header --
+# which names the cluster size RBF actually formatted the disk with.
+case    dam-reports-the-cluster-size-and-draws-the-allocation-map
+run     /dd/CMDS/dam /dd < /nil
+expect  | = cluster (1024 Bytes) allocated or defective
+expect  #000000 ////////////////////////////////////////////////////////////////
