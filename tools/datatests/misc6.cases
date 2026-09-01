@@ -1,0 +1,108 @@
+family  misc6
+# The next spread of programs that a card credited and nothing had typed.
+
+setup   export TERM=vt100
+setup   export TERMCAP=/dd/SYS/termcap
+setup   export USER=tester
+setup   export HOME=/dd
+setup   W=/dd/tmp/MS6
+setup   /dd/CMDS/rm -f $W > /nil 2>/nil
+setup   /dd/CMDS/mkdir -p $W > /nil 2>/nil
+setup   /dd/CMDS/cp /dd/SYS/motd $W/plain.txt
+
+# tty and whoami are one line each, and the pair says who and where you
+# are: `su' because a bare session is group 0, `term' because that is the
+# only device os9exec presents.
+case    tty-and-whoami-report-the-terminal-and-the-user
+run     /dd/CMDS/tty
+run     /dd/CMDS/whoami
+expect  term
+expect  su
+
+# sysid asks the kernel for a system identification and os9exec has no
+# F$SysID at all -- the emulator says so in its own voice, which is the
+# clearest possible answer and worth pinning.
+case    sysid-calls-a-syscall-os9exec-does-not-implement
+run     /dd/CMDS/sysid
+expect  unimplemented F$SysID called by pid=3
+
+# vlen builds a variable-length record store and reports the mapper as it
+# grows -- one of the few programs here that demonstrates a data structure
+# and shows its own bookkeeping. Its store PERSISTS, so a second run says
+# `Filesystem already exists.' where the first says `Created new
+# filesystem'; neither line is asserted for that reason.
+case    vlen-builds-a-variable-length-record-store-and-reports-its-mapper
+run     /dd/CMDS/vlen < /nil
+expect  Creating...
+expect  Opening the file...
+expect  Adding record #1, length == 50.
+expect  minRecl == 10, maxRecl == 300
+expect  mapper entries == 11, deleted mapper entries == 0
+
+# mgif -i inspects a GIF and prints its whole header: this is gulls.gif,
+# the photograph that ships in /dd/DEMO and that the netpbm cards use.
+case    mgif-inspects-a-gif-and-reports-its-header
+run     /dd/CMDS/mgif -i /dd/DEMO/gulls.gif
+expect  Open file:                           /dd/DEMO/gulls.gif
+expect       Screen width (s_dx)       = 320
+expect       Screen height (s_dy)      = 200
+expect       Num colors (s_colors)     = 256
+expect       Interlace    = 0
+
+# The help system: SYS/HELP ships twelve topics, each a .hlp and a .ndx.
+case    help-lists-the-topics-it-has-and-asks-for-one
+run     echo "q" > $W/q.txt
+run     /dd/CMDS/help < $W/q.txt
+expect  Advanced HELP system for OS-9 68k, (c) 1989 by Lukas Zeller
+expect   - Type "?" at any prompt to get a list of available topics
+expect   bm             dinfo          effo           help           indent
+expect  Topic ?
+
+case    uuclean-explains-how-it-ages-the-spool
+run     /dd/CMDS/UUCP/uuclean -?
+expect  uuclean: removed old UUCP files, rotate UUCP and FileServ log files
+expect          -nX     Remove those files over X days old (default is 7)
+expect          -x      Set debug option on (files are not touched)
+
+case    ispell-lists-its-options-and-names-the-personal-dictionary
+run     /dd/CMDS/ispell
+expect  Function: interactive spelling checker
+expect  	-l         produce a list of misspelled words in file(s)
+expect  note: your personal dictionary is kept in HOME/ispell.words
+expect  no input files specified
+
+case    jargon-states-its-arguments
+run     /dd/CMDS/jargon -?
+expect  usage: jargon [-cigmr] [-b key] [srcname] [indexname]
+
+case    finger-and-uwho-each-name-what-they-cannot-reach
+run     /dd/CMDS/NETWORK/finger
+run     /dd/CMDS/uwho
+expect  Function: display real world info on user.
+expect  can't open /etc/utmp
+
+# The two X11 demos stop at the csl EDITION SKEW, not at the missing X
+# server -- they never reach their own code. Same as msntp; DOC/STATUS has
+# the measurement.
+case    the-x11-demos-stop-at-the-csl-skew-before-they-miss-an-x-server
+run     /dd/CMDS/basicwin
+run     /dd/CMDS/xengine
+expect  csl traphandler mismatch
+absent  Display
+
+# gnuplot runs and reads a script; `dumb' is not one of the terminals this
+# build was compiled with, and it says so with the offending column marked.
+case    gnuplot-reads-a-script-and-names-the-terminal-it-does-not-have
+run     echo "set terminal dumb" > $W/g.gp
+run     echo "quit" >> $W/g.gp
+run     /dd/CMDS/gnuplot $W/g.gp
+expect  gnuplot> set terminal dumb
+expect  unknown terminal type; type just 'set terminal' fo
+
+# `uuencode' IS NOT A CASE HERE. DOC/INDEX already records that its usage
+# line is wrong and that it wants ONE argument -- and four further forms
+# were tried on 2026-09-01, all producing nothing: an absolute path, a bare
+# name under `ksh -c "cd ..."', a name with the data on standard input, and
+# two arguments (which earns the usage line). Only a bare call reading
+# standard input ever emitted a `begin' line. It has a test elsewhere;
+# `uuexpand', its partner, is still untested and needs a session of its own.

@@ -1,0 +1,150 @@
+# misc6 -- the next spread.  Ordered safest first; the ones that take the
+# screen or want hardware go last.
+
+family  misc6
+
+setup   export TERM=vt100
+setup   export TERMCAP=/dd/SYS/termcap
+setup   export USER=tester
+setup   export HOME=/dd
+setup   W=/dd/tmp/MSC6
+setup   /dd/CMDS/rm -f $W > /nil 2>/nil
+setup   /dd/CMDS/mkdir -p $W > /nil 2>/nil
+setup   /dd/CMDS/cp /dd/SYS/motd $W/plain.txt
+
+drive   sysid-and-tty-and-whoami
+why     three one-line reporters.
+run     /dd/CMDS/sysid
+run     echo "--- tty:"
+run     /dd/CMDS/tty
+run     echo "--- whoami:"
+run     /dd/CMDS/whoami
+run     echo "--- end"
+
+drive   yagi
+why     "Yagi antenna design calculator" -- it will want numbers.
+run     echo "144" > $W/y.in
+run     echo "3" >> $W/y.in
+run     echo "" >> $W/y.in
+run     /dd/CMDS/yagi < $W/y.in
+run     echo "--- end yagi"
+
+drive   spline
+why     "fit a spline through points, output PostScript"
+run     echo "0 0" > $W/pts
+run     echo "1 2" >> $W/pts
+run     echo "2 1" >> $W/pts
+run     echo "3 3" >> $W/pts
+run     /dd/CMDS/spline $W/pts > $W/spline.out
+run     /dd/CMDS/wc -c $W/spline.out
+run     /dd/CMDS/head -n 5 $W/spline.out
+run     echo "--- end spline"
+
+drive   vlen-and-vc
+why     "a VARIABLE-LENGTH RECORD demonstration" and a spreadsheet.
+run     /dd/CMDS/vlen < /nil
+run     echo "--- vc:"
+run     echo "q" > $W/q.txt
+run     /dd/CMDS/vc < $W/q.txt
+run     echo "--- end vlen-and-vc"
+
+drive   uuexpand
+why     "expand uuencoded text".  Make a uuencoded file with uuencode.
+run     /dd/CMDS/uuencode $W/plain.txt plain.txt > $W/plain.uu
+run     /dd/CMDS/wc -c $W/plain.uu
+run     /dd/CMDS/head -n 2 $W/plain.uu
+run     echo "--- uuexpand on it:"
+run     /dd/CMDS/uuexpand $W/plain.uu
+run     echo "--- end uuexpand"
+
+drive   casefix
+why     "normalise letter case in a text file"
+run     echo "MixedCase Text HERE" > $W/mixed.txt
+run     /dd/CMDS/casefix $W/mixed.txt
+run     /dd/CMDS/ls $W
+run     echo "--- end casefix"
+
+drive   uuclean
+why     "remove stale jobs from the spool" -- the spool is /dd/SPOOL/uucp
+why     and there are jobs in it now.
+run     /dd/CMDS/ls /dd/SPOOL/uucp
+run     /dd/CMDS/UUCP/uuclean -?
+run     echo "--- end uuclean"
+
+drive   helpindex-and-help
+why     "build the help index" and "help system".  SYS/HELP ships.
+run     /dd/CMDS/ls /dd/SYS/HELP
+run     /dd/CMDS/help
+run     echo "--- helpindex:"
+run     /dd/CMDS/helpindex
+run     echo "--- end help"
+
+drive   jargon-and-ispell
+why     a Jargon-file browser and the spelling checker.
+run     /dd/CMDS/jargon -?
+run     echo "--- ispell:"
+run     echo "hello wrold" > $W/sp.txt
+run     /dd/CMDS/ispell -l < $W/sp.txt
+run     echo "--- end jargon-and-ispell"
+
+drive   biory-and-florida
+why     two FORTRAN simulations; both prompt.
+run     echo "1" > $W/b.in
+run     echo "1" >> $W/b.in
+run     echo "1960" >> $W/b.in
+run     /dd/CMDS/biory < $W/b.in
+run     echo "--- florida:"
+run     /dd/CMDS/GAMES/florida < /nil
+run     echo "--- end simulations"
+
+drive   splman-splprt-lmargin
+why     three printing programs that all answered nothing.  Redirect so
+why     silence can be told from no output, and give lmargin a file.
+run     /dd/CMDS/splman > $W/splman.out 2>&1
+run     /dd/CMDS/wc -c $W/splman.out
+run     echo "--- splprt:"
+run     /dd/CMDS/splprt > $W/splprt.out 2>&1
+run     /dd/CMDS/wc -c $W/splprt.out
+run     echo "--- lmargin:"
+run     /dd/CMDS/lmargin 10 < $W/plain.txt > $W/lm.out
+run     /dd/CMDS/wc -c $W/plain.txt $W/lm.out
+run     /dd/CMDS/dump $W/lm.out
+run     echo "--- end printing"
+
+drive   mgif
+why     "GIF inspector and viewer.  `mgif -i file.gif' reports a GIF"
+run     /dd/CMDS/mgif -i /dd/DEMO/gulls.gif
+run     echo "--- end mgif"
+
+drive   elvrec
+why     "Recover a preserved elvis session"
+run     /dd/CMDS/elvrec
+run     echo "--- end elvrec"
+
+drive   bibtex
+why     BibTeX -- bibliography formatter
+run     /dd/CMDS/TEXCMDS/bibtex
+run     echo "--- end bibtex"
+
+drive   finger-and-uwho
+why     two "who is logged in" programs, neither with anything to ask.
+run     /dd/CMDS/NETWORK/finger
+run     echo "--- uwho:"
+run     /dd/CMDS/uwho
+run     echo "--- end"
+
+drive   basicwin-and-xengine
+why     two X11 demos.  DOC/STATUS blames the csl edition skew, and the
+why     csl-mismatch card shows all four together; confirm which message.
+run     /dd/CMDS/basicwin
+run     echo "--- xengine:"
+run     /dd/CMDS/xengine
+run     echo "--- end x11"
+
+drive   gnuplot
+why     "gnuplot 2.0 -- plots functions and data files"
+run     echo "set terminal dumb" > $W/g.gp
+run     echo "plot sin(x)" >> $W/g.gp
+run     echo "quit" >> $W/g.gp
+run     /dd/CMDS/gnuplot $W/g.gp
+run     echo "--- end gnuplot"
