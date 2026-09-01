@@ -61,7 +61,7 @@ INSIDE the error message `No read access for file: /dd/SYS/motd`.
 ## WHAT HAPPENED 2026-08-27 (third session): the screens
 
 **Every program's card in `docs/index.html` carries its own SAMPLE OUTPUT**,
-photographed while running -- ALL 918 of them as of 2026-08-28, from
+captured while running -- ALL 918 of them as of 2026-08-28, from
 471 distinct captures (one card can cover a family). `tools/screenshots.py`
 takes the pictures: ONE bash session on a pty, many programs per session,
 the bytes each one wrote rendered by `ansiscreen.py`. A sheet
@@ -82,12 +82,12 @@ excess noise, right?"* It is. `SYS/login` puts every program directory on
 PATH, and the sheets use bare names; a path in a screen now means a FILE
 being operated on, which is real.
 
-**Photographing the disk found more than any sweep has.** Twelve programs the
+**Capturing the disk found more than any sweep has.** Twelve programs the
 four-stage sweep scored OK do not work -- `gawk` reads no input at all, `m4`
 mangles its output, `oleo` aborts, `date` says 2100, `cpu` answers and then
 traps -- and two DOC/INDEX entries described the wrong program (`rot`
 transposes a file, `edir` lists OS-9 events). All in `DOC/STATUS` under
-WHAT PHOTOGRAPHING THEM FOUND.
+WHAT CAPTURING THEM FOUND.
 
 **83 programs were invisible in the web guide.** `gen_catalog` scanned eleven
 of the eighteen program directories under CMDS, so TeX and LaTeX, elm, the WN
@@ -156,7 +156,7 @@ Do not stop between items to report; commit and start the next one.
 
 **4. The DOC/INDEX entries with no dated stamp -- 815 of 892, and a bulk
    approach was TRIED AND DOES NOT WORK.** Every program now has a
-   photographed screen, so comparing each entry against its own card looked
+   captured screen, so comparing each entry against its own card looked
    like a way to check hundreds at once. It is not: a description and its
    output naturally share no words -- `cal' prints "August 2026", `banner'
    prints `@' signs -- so the flag fires on 208 entries and nearly all are
@@ -166,7 +166,7 @@ Do not stop between items to report; commit and start the next one.
    itself correctly. Two genuine ones did come out of it -- `aprocs' does
    not run under os9exec and its entry did not say so, and `as09''s card
    assembled a file another card made, so when that card moved it
-   photographed two `can't open' messages. Both fixed. **Go program by
+   showed two `can't open' messages. Both fixed. **Go program by
    program, or find a sharper signal than word overlap.**
 
    The old wording of this item: The hit rate
@@ -453,7 +453,7 @@ never listed rather than ones it failed to parse.
 `what` is NOT the SCCS `what`: it prints "What's where in the GEPARD:" and
 lists expansion cards. I wrote it an index entry saying SCCS, from the name,
 and the card disproved it within the hour -- which is the whole argument for
-photographing them. And `gs403` DOES interpret PostScript; the measurement
+capturing them. And `gs403` DOES interpret PostScript; the measurement
 that said otherwise had set GS_LIB with `setenv`, which is the OS-9 shell's
 command and not bash's, so the variable was never set. `DOC/README-DOCS` and
 the UniBasic steps in `DOC/INDEX` gave `setenv` to bash readers too, and now

@@ -1,7 +1,7 @@
 family  dos
 # The mtools set, reading and writing the FAT12 floppy images that ship in
 # /dd/DOS.  Twenty programs and, until now, not one assertion: the family
-# rested entirely on a gallery card, and a card is a photograph -- if a
+# rested entirely on a gallery card, and a card is a capture -- if a
 # rebuild broke msread tomorrow nothing here would notice.
 #
 # What makes these real tests rather than "it printed something": the file

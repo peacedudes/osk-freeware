@@ -22,7 +22,7 @@
 
     worklist.py         one row per program: what DOC/INDEX claims, what the
                         binary's own usage line says, whether a card
-                        photographs it, whether any test asserts anything
+                        captures it, whether any test asserts anything
                         about it, and whether a drive sheet runs it. Every
                         column is derived, so none of it can go stale
     drive.py            RUN programs with real arguments -- a whole sheet of
@@ -31,8 +31,8 @@
                         it asserts nothing, it shows you what happened
     drives/             the sheets drive.py reads. Committed; the transcripts
                         they produce are not
-    audit_cards.py      which gallery cards photograph a program WORKING and
-                        which photograph its help text or an error
+    audit_cards.py      which gallery cards show a program WORKING and
+                        which show only its help text or an error
 
 ## Finding the next thing to do
 
@@ -247,7 +247,7 @@ shows its source. The workflow publishes `docs/` to GitHub Pages, which needs
 Pages enabled for the repo with "GitHub Actions" as the source. Until then that
 step is skipped and the file is still readable locally.
 
-## Photographing the programs
+## Capturing the programs
 
     tools/screenshots.py --all       # many programs per emulator session
     tools/screenshots.py --all --only gnuchess,hexedit   # just those stanzas

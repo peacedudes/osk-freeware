@@ -1,5 +1,5 @@
 # system3 -- the last two questions from the system sweep, and the programs
-# whose cards photograph nothing but a usage line.
+# whose cards show nothing but a usage line.
 
 family  system3
 
@@ -29,7 +29,7 @@ run     echo "--- and what does the terminal hold afterwards?"
 run     /dd/CMDS/fkeys
 
 drive   upperdir
-why     its card photographs the usage line.  Give it a directory to work on:
+why     its card shows the usage line.  Give it a directory to work on:
 why     "changes filenames to lowercase, and directories to uppercase".
 run     /dd/CMDS/mkdir /dd/tmp/UD
 run     /dd/CMDS/mkdir /dd/tmp/UD/subdir
@@ -40,7 +40,7 @@ run     /dd/CMDS/upperdir /dd/tmp/UD
 run     /dd/CMDS/ls /dd/tmp/UD
 
 drive   disktest
-why     its card photographs the usage line.  "measure diskperformance" --
+why     its card shows the usage line.  "measure diskperformance" --
 why     so measure one.
 run     /dd/CMDS/disktest
 

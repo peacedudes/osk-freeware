@@ -1,5 +1,5 @@
 family  system
-# The OS-9 system utilities, asserted rather than photographed.
+# The OS-9 system utilities, asserted rather than captured.
 #
 # Every case here was written from a run in `notes/drives/system1.txt' and
 # `system2.txt', where each program was given real arguments and its output

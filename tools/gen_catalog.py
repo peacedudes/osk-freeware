@@ -315,7 +315,7 @@ def from_tree(root, progs, starred):
     # invisible in the guide -- which is where people actually go looking.
     # CMDS/DEMOS, CMDS/DHRY and CMDS/MM1 were added in 2026-08 and were absent
     # from the catalogue until someone noticed the gap.  Seven more were found
-    # the same way on 2026-08-27, while photographing the disk: ADL, COMMS,
+    # the same way on 2026-08-27, while capturing the disk: ADL, COMMS,
     # ELM, NETWORK, NEWS, TEXCMDS and WN -- 83 programs, TeX and elm among
     # them, all present in DOC/INDEX and none of them in the guide.  Only
     # CMDS/archives stays out, and that holds .lzh source archives, not
@@ -533,7 +533,7 @@ def render_markdown(progs):
          "order when you do not yet know what you are looking for.",
          "",
          "> Open a program in `docs/index.html` for its **sample output** --\n"
-         "> photographed from that program running on the disk image.\n"
+         "> captured from that program running on the disk image.\n"
          ">\n"
          "> Prefer to click around? `docs/index.html` is a searchable version with "
          "per-program detail — what it needs, where it came from, on what terms. "

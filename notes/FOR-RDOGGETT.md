@@ -27,7 +27,7 @@ rather than stopping every two tasks. Here is where it got to.
 **The tooling came first, because the bottleneck was never judgement.**
 `tools/drive.py` runs forty programs with real arguments in ONE emulator
 session and writes a transcript; `tools/worklist.py` says which program still
-has nothing; `tools/audit_cards.py` finds the cards that photograph a usage
+has nothing; `tools/audit_cards.py` finds the cards that show a usage
 line or an error. The old card auditor flagged 2 of 407 -- its rule required
 every line to be an error, and the typed command never is.
 
@@ -419,7 +419,7 @@ history of entries written from names.
 
 ## Look at this
 
-`docs/index.html` -- the catalogue, with a photographed screen on 936 of the
+`docs/index.html` -- the catalogue, with a captured screen on 936 of the
 936 program cards. Every screen came from keystrokes fed to a running program
 on the disk image; 864 of them are of the program named on the card, and the
 rest share one with programs that behave alike (`gen_screens.py` prints both

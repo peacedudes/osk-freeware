@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-r"""Photograph MANY programs in ONE emulator session, one screen each.
+r"""Capture MANY programs in ONE emulator session, one screen each.
 
     tools/screenshots.py tools/screenshots/text.sheet [...]
     tools/screenshots.py --all [--image osk-freeware.dd]
@@ -11,7 +11,7 @@ Why this exists beside `tools/playtest.py'
 and it pays for that answer: a fresh emulator per program, a control pass to
 compare against, and a verdict. That is the right price for `tet' and it is
 the wrong price for `today', which prints four lines and stops. At ~35
-seconds a program, photographing the collection that way is a day of wall
+seconds a program, capturing the collection that way is a day of wall
 clock for pictures nobody judged.
 
 This drives a SINGLE bash session on a pseudo-terminal and runs stanza after
@@ -37,7 +37,7 @@ Sheet format (blank lines and `#' comments ignored):
     send    y\r                    keys, all at once (\r \e \s \t \003 ...)
     keys    hjkl                   keys one at a time, `rate' apart
     kill                           Ctrl-E now, BEFORE the screen is taken --
-                                   how to photograph the FIRST page of a
+                                   how to capture the FIRST page of a
                                    program that prints for pages
     rate    0.4                    seconds between `keys' characters
     size    24 80                  window size for the stanzas that follow
@@ -97,7 +97,7 @@ LOGIN = ("export TERM=vt100",
          # SHELL MUST BE ksh, and this list said bash until 2026-08-31.
          # Programs that shell out reach system(), which forks $SHELL with the
          # whole command line as ONE ARGUMENT; ksh parses that and bash reads
-         # it as a script filename. The `latex' card was a photograph of
+         # it as a script filename. The `latex' card showed
          # E$PNNF because of this one word. SYS/login is the authority and
          # check_disk.py now fails if the two disagree.
          "export SHELL=/dd/CMDS/ksh")
@@ -228,7 +228,7 @@ class Session:
         # Counting occurrences did not work: `vc', the spreadsheet, survived
         # Ctrl-E and ECHOED what was typed at it -- twice, in its own error
         # line -- so the check passed and the next five stanzas were
-        # photographed inside a spreadsheet, complete with `Unintelligible
+        # captured inside a spreadsheet, complete with `Unintelligible
         # word: let r0c0 = cho'. Only a shell that RUNS the command can join
         # the halves.
         typed = 'echo %s"%s"\r' % (self.READY[:3], self.READY[3:])
@@ -307,7 +307,7 @@ def capture(sess, shot):
     A program CAN take os9exec down with it -- `cpu' does, reliably -- and
     when it does every write to the pty fails with EIO. Losing the rest of a
     sheet to that would be the harness deciding which programs get
-    photographed, so the death is caught, the bytes that arrived before it
+    captured, so the death is caught, the bytes that arrived before it
     are rendered anyway (they are the most interesting part), and the caller
     starts a fresh session for the next stanza.
     """

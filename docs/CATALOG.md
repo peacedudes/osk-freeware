@@ -1,11 +1,11 @@
 # What is on this disk
 
-939 programs of OS-9/68K community software, gathered from the archives that kept it and made to run again. **581 of them need nothing but this disk**; the rest want Microware's `cio`, marked below with a star.
+939 programs of OS-9/68K community software, gathered from the archives that kept it and made to run again. **586 of them need nothing but this disk**; the rest want Microware's `cio`, marked below with a star.
 
 `DOC/INDEX` on the disk lists everything alphabetically. This is the same collection sorted by what each program is *for*, which is the more useful order when you do not yet know what you are looking for.
 
 > Open a program in `docs/index.html` for its **sample output** --
-> photographed from that program running on the disk image.
+> captured from that program running on the disk image.
 >
 > Prefer to click around? `docs/index.html` is a searchable version with per-program detail — what it needs, where it came from, on what terms. GitHub will not render it here; download the repository and open it, or enable Pages.
 
@@ -48,7 +48,7 @@
 | `hist` | C-shell history + commandline editing  [no military use -- EFFO-INFO] |
 | `if` | conditional execution for shell scripts (varval/loaded/def)<br>`Syntax: if [not] <cond> {<arg>} {<cmd1>} [else` |
 | `printenv` | &#9733; print the environment<br>`Syntax:   printenv [<options>] [{<env var name}]` |
-| `printf` | &#9733; formatted print from the shell.  IT WORKS, with one flaw: the literal text BEFORE THE FIRST CONVERSION is dropped. Everything between and after conversions is right -- `printf "%d %s %d\n" 4 "is bigger than " 3' prints `4 is bigger than  3', and `"a%db%dc\n" 1 2' prints `1b2c', losing only the leading `a'.  So begin the format with a conversion and nothing is lost.  The degenerate case of the same flaw: a format with NO conversion is entirely `before the first conversion', so it prints nothing. Measured 2026-08-29; the earlier note here said it floods `No more memory !!!', and it does not<br>`Usage: printf <format-string> [ arg1 . . . ]` |
+| `printf` | formatted print from the shell, and it is RIGHT NOW.  It used to drop the literal text before the first conversion, so `printf "[%s]\n" X' printed `X]' and a format with no conversion at all printed nothing -- which is why several drive sheets here fed programs a zero-byte file and read the silence as the program's.  That was the cio selector mismatch; rebuilt trap-free 2026-08-31 and every literal now arrives.  DOC/README-CIO<br>`Usage: printf <format-string> [ arg1 . . . ]` |
 | `qp` | &#9733; NOT a print helper: `qp <cmd> <args>' processes BACK-QUOTES for command expansion, which Microware's shell has no way to do. requires Microware's `shell' on your execution path -- it does the expansion by forking one, and produces nothing without it. Reworded 2026-08-30<br>`Syntax: qp <cmd> <arg1> ... <argn>` |
 | `run` | run a program with stdio rebound to the terminal (needs PORT)<br>`Syntax: run '<prgname> {<arg>}'` |
 | `xc` | execute commands from a file (needs a .xc) |
@@ -86,7 +86,7 @@
 | | |
 |---|---|
 | `beav` | BEAV 1.40 -- Binary Editor And Viewer (needs TERM)<br>**How:** Full-screen: it takes over the display. **control-C gets you out** -- tested, and none of q, Q, control-D or ESC did. If it has a quit command of its own, its documentation in DOC/ will say. |
-| `hexed` | &#9733; hex editor via your text editor -- it writes its work file to /r0 and stops when it cannot.  See DOC/README-RUNNING  [no military use -- EFFO-INFO]<br>`Syntax: hexed [<opts>] <path> {[<opts>] \| [<path>]}` |
+| `hexed` | hex editor via your text editor.  Its work file goes to /r0 unless you say otherwise, and `-t=<dir>' is how you say otherwise -- `hexed -t=/dd/tmp <file>'.  `-e=<editor>' picks the editor (default vi).  Rebuilt trap-free 2026-08-31; before that it stopped mid-dump.  See DOC/README-RUNNING  [no military use -- EFFO-INFO]<br>`Syntax: hexed [<opts>] <path> {[<opts>] \| [<path>]}` |
 | `hexedit` | HEXPERT V2.4 by Dominic Alston -- `hexedit <file>'.  It reads TERMCAP as the capability string itself, not as the name of a file, so source `. /dd/SYS/termcap.entry' first and it draws its viewer; without that it prints the terminal type and exits.  gnuchess wants the same.  Its -d option is separately broken -- `file not accessible' (214) for a file that is readable.  `beav' is the binary editor that needs nothing, and `hexed' the one that would work if there were a RAM disk.  Corrected 2026-08-29<br>**How:** A hex editor -- Hexpert v2.4 by Dominic Alston. Takes a file: `hexedit <file>'. Needs `. /dd/SYS/termcap.entry' first or it will not draw. |
 | `pbyte` | &#9733; patch bytes in a file at a hex offset<br>`Syntax: pbyte <path> <hex_offset> <hex_byte> [<hex_byte>]` |
 
@@ -294,7 +294,7 @@
 
 | | |
 |---|---|
-| `ape` | &#9733; writes GIBBERISH in the style of whatever it is given -- a travesty generator, not a text filter.  `travesty' and `newsgen' are the others of its kind here.  Clarified 2026-08-29 |
+| `ape` | writes GIBBERISH in the style of whatever it is given -- a travesty generator, not a text filter.  `travesty' and `newsgen' are the others of its kind here.  Its options are `-b' (how much source to read) and `-l' (pattern length). Clarified 2026-08-29; rebuilt trap-free 2026-08-31, having produced nothing for a real file before that |
 | `autolf` | &#9733; Mike Tozer's line-ending converter, 1995, and THE ONE THAT WORKS: it turns CR into CRLF or LF and back, expands tabs, and handles ^Z.  Use it as a FILTER -- `autolf -c -C -L < in > out' makes DOS text out of OS-9 text, 40 bytes in and 41 out with 0D 0A at the end.  Given a FILENAME it converts in place through a temporary and then cannot rename it back -- this C library has no rename(), the same wall zip and arc hit.  `-H' explains the conversions.  It is what `todos' and `toos9' were supposed to be.  Measured 2026-08-29<br>`Usage:   autolf [<opts>] {<file names> [<opts>]}` |
 | `casefix` | normalise letter case in a text file |
 | `cut` | cut selected fields from each line |
@@ -312,7 +312,7 @@
 | `shuffle` | shuffle lines/cards<br>**How:** Full-screen: it takes over the display. **`q' quits** -- tested. |
 | `tabs` | tab/space conversion filter<br>`Syntax   : tabs [<opts>] [<input_redirection>] [<output_redirection>]` |
 | `upperdir` | Normalise case: files lowercase, dirs uppercase<br>`Usage: UpperDir [directory name]` |
-| `valspeak` | &#9733; Valley-speak text filter -- prints nothing, from a file or from a pipe |
+| `valspeak` | Valley-speak text filter.  It printed NOTHING until 2026-08-31 -- it read the file and wrote no byte of output -- which was the cio selector mismatch; rebuilt trap-free and it filters |
 
 </details>
 
@@ -467,7 +467,7 @@
 | `ifdef` | resolve #ifdefs in C source<br>`Syntax: ifdef [<opts>] [<file>] [<opts>]` |
 | `indent` | reformat a C source program for readability<br>`Syntax: indent [<opts>] [<inpath> [<outpath>]] [<opts>]` |
 | `patch` | Larry Wall's patch - apply a diff -- it recognises a diff and then CANNOT FINISH: `Error reading tmp file /dd/tmp/patchi000003'.  The file it was patching is left alone.  `diff' itself works |
-| `unifdef` | &#9733; remove #ifdef sections from C source<br>`syntax: unifdef {<opts>} [<file>]` |
+| `unifdef` | remove #ifdef sections from C source.  Its option is `-d<sym>' -- lower case, no equals -- and `-u<sym>' for the other side; `-D<sym>' is refused.  Rebuilt trap-free 2026-08-31: given a real file and the right option it used to produce nothing at all<br>`syntax: unifdef {<opts>} [<file>]` |
 
 **Source navigation**
 
@@ -829,7 +829,7 @@
 | `initvdu` | &#9733; init video display<br>**How:** Answers "is not defined for this terminal": it sets up specific VDU hardware, not a general terminal. |
 | `input` | UNAXCESS BBS - input helper |
 | `sbreak` | Send/clear an SS_Break signal on a serial path<br>`Syntax:   sbreak [/device]` |
-| `setfont` | &#9733; load a downloadable terminal font -- setfont <path><br>`usage: setfont <path>` |
+| `setfont` | &#9733; load a downloadable terminal font -- setfont <path>.  IT DOES NOTHING VISIBLE HERE, and that is measured rather than assumed: given a real file it writes no byte to /term, to $PORT, or to a file $PORT names, and it does not reach its own `Can't open' message even for a path that is not there.  Exit status 0 every time.  It answers `usage: setfont <path>' with no argument.  This is NOT the cio selector mismatch -- a `-qm' rebuild from the same source behaves identically, which is what rules that out -- so the archive binary is what ships.  Measured 2026-08-31<br>`usage: setfont <path>` |
 | `setterm` | &#9733; set terminal type<br>**How:** Full-screen: it takes over the display. **ESC quits** -- tested. (control-C also gets you out, but ESC is the program's own way.) |
 | `tsmon2` | tsmon replacement - terminal monitor<br>`Syntax:   tsmon2 [<options>] <device name>` |
 | `udate` | &#9733; UNAXCESS BBS date display -- and it gets the YEAR wrong: `Monday, August 31, 19126'.  A two-digit year (126, meaning 2026) written into a four-digit field behind a literal `19'.  `date' is wrong differently, answering 2100. Measured 2026-08-31 |

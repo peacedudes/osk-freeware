@@ -15,7 +15,7 @@ The work left on this collection is per-program: run it with real arguments,
 check that what it does matches what DOC/INDEX says it does, and leave behind
 something that can fail again.  Deciding which program to pick up next means
 knowing, for each one: what the index claims, what its own usage line says,
-whether a card photographs it, whether any test asserts anything about it,
+whether a card captures it, whether any test asserts anything about it,
 and whether anybody has driven it yet.  That was five greps per program.
 
 EVERYTHING HERE IS DERIVED, including "has this been driven": that comes

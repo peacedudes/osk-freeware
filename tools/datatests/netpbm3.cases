@@ -103,7 +103,7 @@ expect  Default Printer           = -Plp550M
 # `pbyte <file> <offset> 0a' patches one byte, and for a `P6<CR>32 24<CR>255
 # <CR>' header the three separators are at offsets 2, 8 and c. The gallery
 # card for this has shown the trick since 2026-08-29; this makes it a fact
-# that can fail again rather than a photograph.
+# that can fail again rather than a capture.
 case    cjpeg-refuses-a-pnm-header-with-CR-separators
 run     $P/ppmmake blue 32 24 > /dd/tmp/N3/j.ppm
 run     $P/pnmfile /dd/tmp/N3/j.ppm

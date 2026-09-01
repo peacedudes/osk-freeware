@@ -9,7 +9,7 @@ family  netpbm2
 # when handed the 24-bit image this file's first draft gave them, and every
 # one of them writes a correct file when handed a QUANTISED one -- which is
 # what a paletted format needs and what `ppmquant' is for. The wrong
-# invocation, not a broken program: the same mistake as photographing `hc'
+# invocation, not a broken program: the same mistake as capturing `hc'
 # printing its usage line and captioning it as a fault.
 #
 # So $Q below is the quantised source and it is not a convenience.

@@ -39,12 +39,12 @@ tools/ci/run_workflow_locally.sh /tmp/scratch     # the whole GitHub workflow
 tools/worklist.py --no-test --no-card    # what still has nothing at all
 tools/drive.py <sheet>                   # run a sheet of programs, one
                                          # emulator session, transcript out
-tools/audit_cards.py                     # cards that photograph help or an error
+tools/audit_cards.py                     # cards that show help or an error
 ```
 
 `worklist.py` prints one row per program with everything needed to pick the
 next one: the `DOC/INDEX` claim, the binary's own usage line, whether a card
-photographs it, whether any test asserts anything, and which drive sheet runs
+captures it, whether any test asserts anything, and which drive sheet runs
 it. Every column is derived, so none of it can go stale. `drive.py` is the
 step before a `datatest` case: it asserts nothing and shows you what came
 back, forty programs to an emulator start.
@@ -164,7 +164,7 @@ shares their `-x xwndw` usage line, so `gnuchessx` would keep that family
 together while leaving GAMES the plain name). `wish` collides by filename
 only — `wish` against `B_wish` — and is lowest priority.
 
-### 1a. Gallery cards that photograph a usage line — 27 left of 31 found
+### 1a. Gallery cards that show nothing but a usage line — 27 left of 31 found
 
 rdoggett, 2026-08-31: *"Sample output that does nothing more than show the
 help is only valuable if the help isn't shown some other way, and there is no
@@ -196,7 +196,7 @@ Earlier the same day: `hc`, `join`, `pwgen`, `rndname`, `pbyte`/`chbase`.
 
 **`hc` is still the shape to look for.** `DOC/INDEX` called it a hex
 calculator, it was filed under Maths & calculators, and its card ran
-`echo 1f * 3 + 7 | hc` and photographed the usage line the invocation earned.
+`echo 1f * 3 + 7 | hc` and captured the usage line the invocation earned.
 It is a text filter. A card that shows a program failing, captioned as though
 the program were at fault, is worse than no card.
 
@@ -250,7 +250,7 @@ without installing anything.
 
 ### 3. Tests that can fail again — 659 programs have none
 
-277 of 936 have a data case or a play-test. The rest rest on a photograph
+277 of 936 have a data case or a play-test. The rest rest on a capture
 nobody re-checks: if a rebuild broke one tomorrow, only the 277 would notice.
 
 The gap is not uniform. The netpbm set is covered densely as a family (a

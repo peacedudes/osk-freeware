@@ -12,7 +12,7 @@ family  mail
 # The alias files this needs -- /dd/.ELM/aliases.text and
 # /dd/USR/LIB/ELM/aliases.text -- ship with the collection as of 2026-08-31.
 # Before that newalias, listalias and checkalias had nothing to read and the
-# gallery card for the Elm suite was a photograph of "Couldn't open
+# gallery card for the Elm suite was a capture of "Couldn't open
 # /dd/.ELM/aliases.text for input!".
 
 setup   M=/dd/SPOOL/MAIL/tester

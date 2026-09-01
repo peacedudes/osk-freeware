@@ -20,7 +20,7 @@ judgement:
 |---|---|
 | `tools/drive.py` | run a SHEET of 40 programs with real arguments in ONE emulator session; transcript out. It asserts nothing -- it shows you what came back. The step before a test. |
 | `tools/worklist.py` | one row per program: what `DOC/INDEX` claims, the binary's own usage line, card?, test?, driven?, and what KIND of module it is. Every column derived; nothing can go stale. |
-| `tools/audit_cards.py` | which gallery cards photograph a program WORKING and which photograph its help text or an error. The old `audit_screens.py` flagged 2 of 407 because its rule could not fire. |
+| `tools/audit_cards.py` | which gallery cards show a program WORKING and which show only its help text or an error. The old `audit_screens.py` flagged 2 of 407 because its rule could not fire. |
 
 What moved, measured:
 

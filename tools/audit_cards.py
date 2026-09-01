@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Which gallery cards photograph a program WORKING, and which do not.
+"""Which gallery cards show a program WORKING, and which do not.
 
     tools/audit_cards.py                # the flagged ones, worst first
     tools/audit_cards.py --all          # every card and its score
@@ -15,7 +15,7 @@ check that cannot fail, which is this collection's oldest recurring defect.
 rdoggett, 2026-08-31: *"Sample output that does nothing more than show the
 help is only valuable if the help isn't shown some other way, and there is no
 more interesting output from the program to show."*  And, of `hc': a card
-that photographs a FAILED invocation, captioned as though the program were at
+that shows a FAILED invocation, captioned as though the program were at
 fault, is worse than no card.
 
 So this scores each card by what its lines ARE, per command run:
