@@ -152,19 +152,21 @@ run     /dd/CMDS/passwd -?
 expect  Syntax: passwd
 expect  Function: get new password
 
-# WHAT flink ACTUALLY DOES: it makes a HARD LINK to the file, in the
-# CURRENT DIRECTORY, under the file's own name. Run from /dd it leaves a
-# `/dd/cat', and run a second time it stops with `Filename cat already
-# exists in current directory !' and waits for RETURN -- which is what
-# ended the session the first two times this case was written, and looked
-# like flink being fatal when it was flink being careful.
+# `flink' IS NOT A CASE, AND IT DAMAGED THE IMAGE BEFORE THAT WAS UNDERSTOOD.
 #
-# So: link into the work directory (ksh's cd moves the OS-9 data directory,
-# which is the whole reason that fact was worth pinning in web.cases), and
-# remove the link first so the case can run twice.
-case    flink-makes-a-hard-link-in-the-current-directory
-run     /dd/CMDS/rm -f $W/cat
-run     /dd/CMDS/ksh -c "cd $W; /dd/CMDS/flink /dd/CMDS/cat"
-run     /dd/CMDS/ls $W
-expect  linking to file cat in directory /dd/CMDS
-expect  cat
+# It makes a directory entry aliasing a file's FD, in the CURRENT directory,
+# under the file's own name. Run as `flink /dd/CMDS/cat' from a work
+# directory -- and then having that entry removed -- it left `/dd/CMDS/cat'
+# pointing at a DIRECTORY: `ls /dd/CMDS/cat' listed the work directory's
+# files, `cat' anything answered `/dd/CMDS/cat: is a directory', and ksh
+# said `not found'. RBF has no hard links; whatever flink builds, `rm'
+# unbuilds wrongly.
+#
+# THAT MESSAGE WAS TRUE AND WAS DISBELIEVED FOR AN HOUR. `cat: is a
+# directory' appeared in three unrelated case files and each time it was
+# read as cat being broken, because `wc -c' could still measure the file
+# being catted -- `wc' opens by path and never noticed. A rebuild of the
+# image put everything back.
+#
+# So flink is exercised here only by its usage line. If it is ever driven
+# again, link a DISPOSABLE COPY and never a shipped module.

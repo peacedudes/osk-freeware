@@ -1,0 +1,28 @@
+# redir1 -- which of calender / ephem / ephem881 survives having standard
+# output redirected, and what does each say?  One per stanza: on a clean
+# image `calender > file' ended the session with nothing said at all.
+
+family  redir1
+
+setup   W=/dd/tmp/RD1
+setup   /dd/CMDS/rm -f $W > /nil 2>/nil
+setup   /dd/CMDS/mkdir -p $W > /nil 2>/nil
+
+drive   calender-redirected
+run     /dd/CMDS/calender 2026 > $W/cal.txt
+run     echo "calender returned"
+run     /dd/CMDS/wc -c $W/cal.txt
+
+drive   calender-to-the-terminal
+why     with no redirect at all it may simply work.
+run     /dd/CMDS/calender 2026
+run     echo "calender returned"
+
+drive   ephem-redirected
+run     /dd/CMDS/ephem > $W/eph.txt
+run     echo "ephem returned"
+run     /dd/CMDS/wc -c $W/eph.txt
+
+drive   ephem881-redirected
+run     /dd/CMDS/ephem881 > $W/eph8.txt
+run     echo "ephem881 returned"

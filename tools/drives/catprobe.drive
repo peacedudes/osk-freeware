@@ -1,0 +1,33 @@
+# catprobe -- `/dd/CMDS/cat: is a directory' keeps appearing for files that
+# `wc -c' has just measured.  Settle what it means.
+
+family  catprobe
+
+setup   W=/dd/tmp/CATP
+setup   /dd/CMDS/rm -f $W > /nil 2>/nil
+setup   /dd/CMDS/mkdir -p $W > /nil 2>/nil
+
+drive   cat-a-file-just-written
+run     echo "one line" > $W/f.txt
+run     /dd/CMDS/wc -c $W/f.txt
+run     echo "--- now cat it:"
+run     /dd/CMDS/cat $W/f.txt
+run     echo "--- and with head:"
+run     /dd/CMDS/head -n 1 $W/f.txt
+run     echo "--- end"
+
+drive   cat-with-no-argument-at-all
+why     if the argument were somehow lost, this is what cat would see.
+run     /dd/CMDS/cat < /nil
+run     echo "--- end"
+
+drive   cat-a-directory
+why     the message names a directory, so make it say it deliberately.
+run     /dd/CMDS/cat $W
+run     echo "--- end"
+
+drive   cat-many-files-in-one-call
+why     several of the failures had cat as the LAST command of a case.
+run     echo "two" > $W/g.txt
+run     /dd/CMDS/cat $W/f.txt $W/g.txt
+run     echo "--- end"

@@ -1,0 +1,90 @@
+family  cal
+# Calendars and astronomy that a card credited and nothing had typed.
+# Surfaced 2026-09-01 by the `worklist.py' carded() fix.
+#
+# EVERY PROGRAM HERE READS A CLOCK, and on this disk `date -t' says 2100
+# and does not advance -- so NOT ONE of these cases may assert today's
+# date. Two cases elsewhere did and passed for exactly one day. What is
+# asserted instead is either a pure function of an argument (`greg', and
+# the Easter table) or the SHAPE of the answer.
+#
+# `ephem' AND `ephem881' END THE SESSION when standard output is not a
+# terminal -- silently, with nothing written. They are full-screen and can
+# only be run to a screen, which is what a gallery card is for, so they are
+# not here. `calender' was accused of the same and is innocent; see its
+# case below.
+
+setup   export TERM=vt100
+setup   export TERMCAP=/dd/SYS/termcap
+setup   W=/dd/tmp/CAL
+setup   /dd/CMDS/rm -f $W > /nil 2>/nil
+setup   /dd/CMDS/mkdir -p $W > /nil 2>/nil
+
+# easter IGNORES ITS ARGUMENT. It is not a calculator you can ask about a
+# year -- it prints a fixed table of thirteen years, 1988 to 2000, whatever
+# you give it or if you give it nothing. The table is checkable: Easter
+# 2000 really was 23 April and 1999 really was 4 April.
+case    easter-prints-a-fixed-table-of-thirteen-years
+run     /dd/CMDS/easter
+expect  easter 1988 is 4/3
+expect  easter 1999 is 4/4
+expect  easter 2000 is 4/23
+
+case    easter-ignores-the-year-you-give-it
+run     /dd/CMDS/easter 2026 > $W/e1.txt
+run     /dd/CMDS/easter > $W/e2.txt
+run     /dd/CMDS/wc -c $W/e1.txt $W/e2.txt
+run     /dd/CMDS/cat $W/e1.txt
+expect  easter 2000 is 4/23
+absent  easter 2026
+
+# qt tells the time the way a person says it. The hour changes, so what is
+# asserted is the shape -- "It's" and one of the words a spoken time is
+# built from.
+case    qt-tells-the-time-in-words
+run     /dd/CMDS/qt
+expect  It's
+
+# lunisolar reports the moon's phase in words and a percentage.
+case    lunisolar-reports-the-phase-of-the-moon
+run     /dd/CMDS/lunisolar
+expect  The moon is
+expect  of full).
+
+# setimex reads the HOST clock, and this is the case that explains the 2100
+# that puzzles everything else on this disk: setimex reports the real date
+# while OS-9's own clock, which `date -t' reads, stays at 2100. The two
+# disagree in the same breath and neither is corrected by the other.
+case    setimex-reads-the-host-clock-and-os9s-own-stays-at-2100
+run     /dd/CMDS/date -t
+run     /dd/CMDS/setimex
+run     /dd/CMDS/date -t
+expect  , 2100
+expect  Time now:
+expect  2026
+
+case    digclk-and-gcl-are-clocks-and-say-how-to-run-them
+run     /dd/CMDS/digclk -? < /nil
+run     /dd/CMDS/gcl -? < /nil
+expect  Usage: /dd/CMDS/digclk [refresh_rate]
+expect  Function: display grand digital clock
+expect  -n[=]<num>	run continuously for <num> seconds (default forever)
+
+# calen wants its three numbers on standard input, not on the command line.
+case    calen-asks-for-its-specification-on-standard-input
+run     echo "9 2026 1" > $W/c.in
+run     /dd/CMDS/calen < $W/c.in
+expect  Enter calendar specs (month year length):
+
+# `calender' PRINTS A WHOLE YEAR IN GERMAN and redirects perfectly well.
+# The first draft of this case asserted that it "refuses to be redirected"
+# and answers `cannot redirect' -- which it had, once, on an image whose
+# /dd/tmp had been corrupted by `flink' (see system4.cases). Every odd
+# answer that hour was that corruption, and it was read as five separate
+# broken programs. REBUILD THE IMAGE BEFORE BELIEVING A STRANGE ANSWER.
+case    calender-prints-a-whole-year-in-german
+run     /dd/CMDS/calender 2026 > $W/cal.txt
+run     /dd/CMDS/wc -c $W/cal.txt
+run     /dd/CMDS/head -n 3 $W/cal.txt
+expect  2986 /dd/tmp/CAL/cal.txt
+expect  Jahreskalender   2026

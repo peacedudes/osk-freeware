@@ -1,0 +1,42 @@
+# catprobe2 -- `cat' answered `is a directory' for a file `wc' had just
+# measured, for no argument, for a real directory and for several files.
+# One message for every case, so the message means nothing.  But `cat'
+# demonstrably WORKS elsewhere: `cat /dd/.newsrc' prints it.
+#
+# The difference to test: a file that ALREADY EXISTED on the image against
+# one CREATED THIS SESSION.
+
+family  catprobe2
+
+setup   W=/dd/tmp/CATP2
+setup   /dd/CMDS/rm -f $W > /nil 2>/nil
+setup   /dd/CMDS/mkdir -p $W > /nil 2>/nil
+
+drive   a-file-that-shipped-on-the-image
+run     /dd/CMDS/cat /dd/SYS/motd
+run     echo "--- end"
+
+drive   a-file-created-this-session
+run     echo "one line" > $W/new.txt
+run     /dd/CMDS/cat $W/new.txt
+run     echo "--- end"
+
+drive   a-shipped-file-overwritten-this-session
+why     /dd/.newsrc ships and news.cases rewrites it with echo, then cats
+why     it successfully -- so overwriting may be the difference.
+run     echo "rewritten" > /dd/tmp/marker.txt
+run     /dd/CMDS/cat /dd/tmp/marker.txt
+run     echo "--- end"
+
+drive   the-same-new-file-in-a-later-session
+why     the file made in stanza two is still there.  A NEW emulator
+why     session may see it differently.
+run     /dd/CMDS/wc -c $W/new.txt
+run     /dd/CMDS/cat $W/new.txt
+run     echo "--- end"
+
+drive   cat-under-ksh-rather-than-bash
+why     bash redirects with its own open; ksh may leave a different FD
+why     state behind.
+run     /dd/CMDS/ksh -c "echo ksh-made > $W/k.txt; /dd/CMDS/cat $W/k.txt"
+run     echo "--- end"
