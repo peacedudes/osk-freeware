@@ -1,0 +1,111 @@
+# mail5 -- the questions mail4 opened.
+#
+# WHAT mail4 SETTLED, so it is not asked again:
+#   makedb     WORKS -- writes pal.dir and pal.pag from the shipped palias
+#   uupoll     WORKS -- `uupoll nowhere' creates
+#              /dd/SPOOL/uucp/nowhere/C.nowhereAPOLL, and -gZ makes ...ZPOLL
+#   read_mail  WORKS -- quotes the message and offers [L]/[X]/[N]
+#   philmail   WORKS -- "Successfully opened mail.19 for reply"
+#   nptx       WORKS, and its format is <full name>TAB<login>: it answers
+#              `tester<TAB>John Q Public'.  Anything else is `format error'
+#   printmail  FORKS `readmsg' BY BARE NAME -- copying readmsg into /dd/CMDS
+#              made it work at once.  That is chx, not PATH.
+#   checkalias prints nothing for a good alias and nothing for a bad one;
+#              usage with no argument at all
+#
+# WHAT IS ASKED HERE:
+#   printmail  `load' is the clean answer to a bare-name fork -- a resident
+#              module is found by name with no directory search.  If it
+#              works, that is what DOC/INDEX should tell people.
+#   lmail      took the emulator session down.  $MAIL was set to a FILE and
+#              rmail proved the UUCP tools want the mail DIRECTORY.
+#   rmail      "can't change to mailbox: /dd/SPOOL/MAIL/tester/tester" --
+#              it appended the user to $MAIL.  Unset MAIL and it should
+#              use `maildir' from Config instead.
+#   remote     rmail and postnews both stop with "can't change to spool
+#              directory: seabass" -- the smart-host queue named in
+#              /dd/SYS/UUCP/Parameters, which does not exist.  Make it.
+#   dotilde    `~?' is "Unrecognized" although the help lists it.  Try `~h'.
+
+family  mail5
+
+setup   export USER=tester
+setup   export HOME=/dd
+setup   export LOGDIR=/dd/LOG
+setup   W=/dd/tmp/m5
+setup   /dd/CMDS/mkdir -p $W > /nil 2>/nil
+setup   echo "Subject: a test message" > $W/msg.txt
+setup   echo "" >> $W/msg.txt
+setup   echo "Body of the message." >> $W/msg.txt
+
+drive   printmail-with-readmsg-loaded
+why     a resident module is forked BY NAME with no directory search, so
+why     `load' should fix a bare-name fork without copying any file.
+run     /dd/CMDS/load /dd/CMDS/ELM/readmsg
+run     /dd/CMDS/mdir
+run     echo "--- printmail now:"
+run     /dd/CMDS/ELM/printmail 1
+run     echo "--- end printmail-with-readmsg-loaded"
+
+drive   rmail-without-MAIL-set
+why     with MAIL naming a FILE, rmail appended the user name to it and
+why     got a not-a-directory error.  Config's `maildir' is /dd/SPOOL/MAIL,
+why     which is the directory it wants.
+run     echo "--- MAIL is deliberately not set here:"
+run     /dd/CMDS/wc -c /dd/SPOOL/MAIL/tester
+run     /dd/CMDS/UUCP/rmail tester < $W/msg.txt
+run     echo "--- folder after:"
+run     /dd/CMDS/wc -c /dd/SPOOL/MAIL/tester
+run     /dd/CMDS/ELM/messages -f /dd/SPOOL/MAIL/tester
+run     echo "--- end rmail-without-MAIL-set"
+
+drive   remote-with-the-smart-host-queue-made
+why     rmail and postnews both want <spooldir>/<newshost>, which
+why     Parameters calls `seabass' and which is not on the disk.  Make it
+why     and ask again.
+run     /dd/CMDS/mkdir -p /dd/SPOOL/uucp/seabass > /nil 2>/nil
+run     /dd/CMDS/ls /dd/SPOOL/uucp
+run     echo "--- rmail to a remote address:"
+run     /dd/CMDS/UUCP/rmail "nowhere!somebody" < $W/msg.txt
+run     echo "--- what is queued now:"
+run     /dd/CMDS/ls -l /dd/SPOOL/uucp/seabass
+run     echo "--- end remote-with-the-smart-host-queue-made"
+
+drive   postnews-with-the-queue-made
+why     the same directory is what postnews could not change to.
+run     echo "comp.os.os9" > $W/post.txt
+run     echo "A posted article" >> $W/post.txt
+run     echo "" >> $W/post.txt
+run     echo "Posted by postnews." >> $W/post.txt
+run     echo "." >> $W/post.txt
+run     /dd/CMDS/UUCP/postnews < $W/post.txt
+run     echo "--- queue and spool:"
+run     /dd/CMDS/ls -l /dd/SPOOL/uucp/seabass
+run     /dd/CMDS/ls /dd/SPOOL/news/comp.os.os9
+run     echo "--- end postnews-with-the-queue-made"
+
+drive   dotilde
+why     `~?' answered "Unrecognized tilde command" although the help lists
+why     `~h, ~?'.  Try ~h, and a bare ~ with nothing after it.
+run     echo "~h" > $W/t1.txt
+run     echo "." >> $W/t1.txt
+run     /dd/CMDS/UUCP/dotilde < $W/t1.txt
+run     echo "--- and ~r with a file:"
+run     echo "~r /dd/SYS/motd" > $W/t2.txt
+run     echo "." >> $W/t2.txt
+run     /dd/CMDS/UUCP/dotilde < $W/t2.txt
+run     echo "--- and ordinary text with no tilde at all:"
+run     echo "just a line of message text" > $W/t3.txt
+run     echo "." >> $W/t3.txt
+run     /dd/CMDS/UUCP/dotilde < $W/t3.txt
+run     echo "--- end dotilde"
+
+# LAST: it took the session down in mail4.
+drive   lmail
+why     it ended the session with MAIL naming a file.  Try it with MAIL
+why     unset, which is what rmail turned out to want.
+run     /dd/CMDS/wc -c /dd/SPOOL/MAIL/tester
+run     /dd/CMDS/UUCP/lmail tester < $W/msg.txt
+run     echo "--- folder after:"
+run     /dd/CMDS/wc -c /dd/SPOOL/MAIL/tester
+run     echo "--- end lmail"

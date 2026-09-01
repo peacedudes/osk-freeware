@@ -573,7 +573,7 @@ for     upperdir casefix
 cap     upperdir normalises case across a directory: files lower,
 cap     directories upper.  On a scratch copy, not on the disk -- and this
 cap     card now shows the rename happening rather than the usage line it
-cap     photographed until 2026-08-31.  MixedCase.TXT becomes
+cap     captured until 2026-08-31.  MixedCase.TXT becomes
 cap     mixedcase.txt; subdir becomes SUBDIR.
 run     mkdir /dd/tmp/UD
 wait    6

@@ -10,8 +10,48 @@ first is how sessions have historically lost an hour before touching anything.
 Branch `release-pass-2026-08-21`, never pushed. Tree clean, all seventeen
 `check_disk.py` checks green, `osk-freeware.dd` current.
 
-**2026-08-31, second session. The per-program pass rdoggett asked for is now
-the thing that is happening, and it has a shape you can continue.**
+**2026-09-01. Third session. Read the next two sections and you are current.**
+
+| | 2026-08-31 evening | now |
+|---|---|---|
+| Programs with neither a test nor a card | 97 | **70** |
+| `datatest` families | 24 | **29** |
+| Star grid (programs needing `cio`) | 354 | **349** |
+
+### What this session settled, in one screen
+
+1. **Five more cio casualties rebuilt** -- `printf`, `valspeak`, `unifdef`,
+   `ape`, `hexed`. **But the headline is the other twenty-four**: all
+   twenty-nine programs the scan named were RUN with real arguments, and
+   twenty-four of them were fine. Carrying the call site is not making the
+   call. `setfont` looked like a sixth and is not -- a `-qm` rebuild of it
+   behaves identically, which is what rules the mismatch out, so the archive
+   binary was put back. **A rebuild that changes nothing is the cheap way to
+   tell "broken by cio" from "does nothing".**
+2. **`printf` was the expensive one.** It dropped every literal before the
+   first conversion, so a format with no conversion wrote a ZERO-BYTE file --
+   and `misc1`, `misc2`, `misc3` and the four `rcs` sheets all built their
+   input that way. Those sheets were measuring their own setup; `nptx` was
+   written off as silent on the strength of one. Re-run them.
+3. **`ksh -c "cd <dir>; <prog>"` moves the OS-9 data directory.** bash's does
+   not, interactively; `sh`'s `chd` does but `sh` cannot fork an absolute
+   path. This unblocks the shells chooser and any program reading a bare
+   filename.
+4. **A bare-name fork resolves against `chx`, and `load` is the fix.**
+   `printmail` forks `readmsg` by bare name and was silent everywhere except
+   `/dd/CMDS/ELM`; one `load` and it works from anywhere.
+5. **WN serves a page.** It is an inetd-style server -- one request in on
+   stdin, one response out -- its document root is compiled in as
+   `/h0/c/unid/wn_1.14.3/osk` (which is on this disk), and the one thing it
+   was missing was an `index.cache`. That now ships. `HTTP/1.0 200 OK`.
+6. **`subscribe` and `unsubscribe` both work** and `DOC/INDEX` said neither
+   did -- the old measurement used a group that was not in `.newsrc`, which
+   both silently leave alone.
+7. **`/h0` is now mounted by `datatest.py` and `screenshots.py`** as well as
+   `drive.py`. It is the arrangement `notes/DECISION-placement.md` settles
+   on, and three of the four harnesses were not doing it.
+
+**Older, still true:**
 
 Three tools were built first, because the bottleneck was throughput and not
 judgement:

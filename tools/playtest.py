@@ -425,6 +425,11 @@ def main(argv):
         sys.exit("no image at %s -- run tools/mkimage.sh first" % image)
 
     bad = 0
+    # AN OS9Hx/OS9DISK PATH MUST BE ABSOLUTE -- see the same line in
+    # datatest.py. A bare relative name mounts the device and lets module
+    # loading work while ordinary file opens on it silently fail.
+    image = os.path.abspath(image)
+
     with imagelock.held(image, "playtest"):
         for s in scripts:
             ok, _, _ = playtest(s, image, outdir)

@@ -1,0 +1,24 @@
+# system5 -- the two System & modules programs that are EXPECTED to end the
+# session, one stanza each so the restart costs one timeout apiece.
+#
+#   break   "invokes the system level debugger (You must be the super
+#           user). (breakpoints stop timesharing.)"  Under os9exec that is
+#           the emulator's own interactive meta-debugger, and a scripted
+#           run has nobody to answer its prompt.
+#   cron    a daemon.  It reads /dd/usr/lib/crontab -- which ships empty on
+#           purpose -- and then waits for a minute that never interests it.
+#
+# Run this one with a SHORT timeout:  tools/drive.py system5 --seconds 40
+
+family  system5
+
+drive   break
+why     does it reach the debugger, and does anything come back?
+run     /dd/CMDS/break < /nil
+run     echo "--- end break"
+
+drive   cron
+why     with an empty crontab, does it say anything before settling in?
+run     /dd/CMDS/cat /dd/USR/LIB/crontab
+run     /dd/CMDS/cron < /nil
+run     echo "--- end cron"

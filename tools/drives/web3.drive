@@ -1,0 +1,82 @@
+# web3 -- serve the site that ALREADY SHIPS.
+#
+# web2b settled two things and missed the obvious one.
+#
+# SETTLED: `ksh -c "cd <dir>; <prog>"' MOVES THE OS-9 DATA DIRECTORY.  wndex
+# ran there and wrote its cache.  bash's cd does not (a .bashrc shim tracks
+# the path as a string), and sh's chd does but sh cannot fork an absolute
+# pathname -- `load' the module first and sh can fork it by name, which also
+# worked.  Two answers to a problem that had none.
+#
+# MISSED: WN's document root is COMPILED IN as /h0/c/unid/wn_1.14.3/osk, and
+# `WN_ROOT' is a variable it SETS for CGI, not one it reads -- which is why
+# every request came back 404 however the cache was built.  And that
+# directory IS ON THIS DISK, with an `index.html' and an `index' file that
+# have been waiting since 2026-08-16 for somebody to run wndex over them.
+#
+# So: build the cache where the server actually looks, and ask it for the
+# page.  /h0 is this disk in every arrangement the collection documents.
+
+family  web3
+
+setup   R=/dd/c/unid/wn_1.14.3/osk
+setup   W=/dd/tmp/wn3
+setup   /dd/CMDS/mkdir -p $W > /nil 2>/nil
+
+drive   wndex-on-the-shipped-site
+why     the site ships with `index' and `index.html' and no index.cache,
+why     which is the one thing WN will not serve without.
+run     /dd/CMDS/ls -l $R
+run     /dd/CMDS/cat $R/index
+run     echo "--- build the cache where the server looks:"
+run     /dd/CMDS/ksh -c "cd $R; /dd/CMDS/WN/wndex"
+run     /dd/CMDS/ls -l $R
+run     echo "--- what wndex wrote:"
+run     /dd/CMDS/cat $R/index.cache
+run     echo "--- end wndex-on-the-shipped-site"
+
+drive   wn-serves-the-page
+why     the compiled-in root is /h0/..., and /h0 is this disk here.  Ask
+why     for the default document and for index.html by name.
+run     echo "GET /index.html HTTP/1.0" > $W/req.cr
+run     echo "" >> $W/req.cr
+run     /dd/CMDS/autolf -c -C -L < $W/req.cr > $W/req.crlf
+run     /dd/CMDS/WN/wn -L /nil -l /nil < $W/req.crlf
+run     echo "--- end wn-serves-the-page"
+
+drive   wn-serves-the-default-document
+why     a request for `/' alone should give DEFAULT_URI, which config.h
+why     sets to /index.html.
+run     echo "GET / HTTP/1.0" > $W/req2.cr
+run     echo "" >> $W/req2.cr
+run     /dd/CMDS/autolf -c -C -L < $W/req2.cr > $W/req2.crlf
+run     /dd/CMDS/WN/wn -L /nil -l /nil < $W/req2.crlf
+run     echo "--- end wn-serves-the-default-document"
+
+drive   wn-refuses-what-is-not-in-the-cache
+why     the security model, now that there is a cache to be in or out of:
+why     `index' itself is not a File= line, so it must be refused.
+run     echo "GET /index HTTP/1.0" > $W/req3.cr
+run     echo "" >> $W/req3.cr
+run     /dd/CMDS/autolf -c -C -L < $W/req3.cr > $W/req3.crlf
+run     /dd/CMDS/WN/wn -L /nil -l /nil < $W/req3.crlf
+run     echo "--- and a file that is not there at all:"
+run     echo "GET /nosuchfile.html HTTP/1.0" > $W/req4.cr
+run     echo "" >> $W/req4.cr
+run     /dd/CMDS/autolf -c -C -L < $W/req4.cr > $W/req4.crlf
+run     /dd/CMDS/WN/wn -L /nil -l /nil < $W/req4.crlf
+run     echo "--- end wn-refuses-what-is-not-in-the-cache"
+
+drive   ksh-cd-moves-the-data-directory
+why     pin the general fact on its own, because it is worth far more than
+why     this one program: it is how you give ANY program on this disk a
+why     different data directory, and several read a file by bare name.
+run     echo "the marker" > $W/marker.txt
+run     echo "--- bash cd, then read it by bare name:"
+run     cd $W
+run     /dd/CMDS/cat marker.txt
+run     echo "--- ksh cd, then the same:"
+run     /dd/CMDS/ksh -c "cd $W; /dd/CMDS/cat marker.txt"
+run     echo "--- sh chd, then the same:"
+run     /dd/CMDS/sh -c "chd $W; /dd/CMDS/cat marker.txt"
+run     echo "--- end ksh-cd-moves-the-data-directory"

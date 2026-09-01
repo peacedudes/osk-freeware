@@ -41,7 +41,7 @@ cap     HEXPERT V2.4, viewing a module.  Like gnuchess it reads TERMCAP as
 cap     the capability string itself, so `. /dd/SYS/termcap.entry' comes
 cap     first; without it the bare form prints the terminal type and exits.
 cap     One 16-byte row and the mode is the whole display -- that is the
-cap     program, not a clipped photograph; arrows, `n' and space all leave
+cap     program, not a clipped capture; arrows, `n' and space all leave
 cap     it where it is.  Its -d option is separately broken -- `file not
 cap     accessible' for a file that is readable, which this disproves.
 run     . /dd/SYS/termcap.entry
@@ -56,7 +56,7 @@ cap     pbyte patches bytes in a file at a hex offset -- the smallest
 cap     binary editor here.  Three bytes at offset 0 turn `Wel' into
 cap     `ABC'.  `chbase' beside it is NOT a module-base changer whatever
 cap     DOC/INDEX said: it converts a NUMBER from one base to another.
-cap     Both used to be photographed with no arguments, which showed
+cap     Both used to be captured with no arguments, which showed
 cap     their usage lines and nothing either program can do.
 run     cat /dd/SYS/motd > /dd/tmp/pb
 wait    5

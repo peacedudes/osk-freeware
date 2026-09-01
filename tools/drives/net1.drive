@@ -1,0 +1,135 @@
+# net1 -- the TCP/IP, terminal-transfer and file-transfer programs that
+# still have neither a test nor a card.  ONE PROGRAM PER STANZA, because
+# every one of them can sit waiting for a peer that is not there.
+#
+# WHY THIS SHEET EXISTS.  `comms.drive' put osknet, net, msntp, atp and
+# infoxpress in a single `tcpip' stanza; the transcript stops after
+# osknet's banner, so the other four were never run.  The same happened to
+# `xy-and-z': xy answered "Receiving... CCCC" and z never ran.  Four
+# programs are recorded as driven on the strength of a stanza that died
+# before reaching them.
+#
+# NONE OF THESE CAN TALK TO ANYTHING.  os9exec presents no network and no
+# second serial line, so the honest thing to record is what each program
+# says about the device it cannot have -- not that it works.
+#
+# Read out of the binaries:
+#   rxmod   "can't install Vmod Trap handler" -- vmod_trap is on the disk,
+#           in CMDS/COMMS, and has never been loaded before asking
+#   xy, z   Tim Kientzle's, version 1.1 (Sep 5 1995); $MODEM names the device
+#   msntp   /ip0#1/route0, /ip0#1/local0
+#   net     KA9Q: "Main commands:", "attach <hardware> ...", interactive
+#   fileserv  silent bare AND with -?; Parameters says `server = no'
+
+family  net1
+
+setup   W=/dd/tmp/n1
+setup   /dd/CMDS/mkdir -p $W > /nil 2>/nil
+setup   echo "a short file to move over a wire that is not here" > $W/small.txt
+
+drive   rxmod-with-its-trap-handler
+why     it stops with "can't install Vmod Trap handler" -- and vmod_trap is
+why     right beside it in CMDS/COMMS and has never been loaded.  Load it
+why     and ask again.
+run     /dd/CMDS/COMMS/rxmod -? < /nil
+run     echo "--- now load the trap handler it names:"
+run     /dd/CMDS/load /dd/CMDS/COMMS/vmod_trap
+run     /dd/CMDS/mdir
+run     echo "--- and ask again:"
+run     /dd/CMDS/COMMS/rxmod -? < /nil
+run     echo "--- end rxmod"
+
+drive   xy
+why     bare it answers "Receiving... CCCC" -- an XMODEM-CRC handshake to a
+why     terminal, which nothing will answer.  Ask for the usage instead,
+why     which is what a person needs.
+run     /dd/CMDS/COMMS/xy -h < /nil
+run     echo "--- and -? :"
+run     /dd/CMDS/COMMS/xy -? < /nil
+run     echo "--- end xy"
+
+drive   z
+why     the ZMODEM half of the same pair, never run because xy took the
+why     stanza down.
+run     /dd/CMDS/COMMS/z -h < /nil
+run     echo "--- and -? :"
+run     /dd/CMDS/COMMS/z -? < /nil
+run     echo "--- end z"
+
+drive   msntp
+why     "set the clock from a network time server".  It names /ip0#1/route0
+why     and /ip0#1/local0, neither of which exists.  Which failure does it
+why     reach -- the device, or the csl mismatch DOC/STATUS blames?
+run     /dd/CMDS/NETWORK/msntp < /nil
+run     echo "--- with a server named:"
+run     /dd/CMDS/NETWORK/msntp -c 1 pool.ntp.org < /nil
+run     echo "--- end msntp"
+
+drive   net
+why     KA9Q net.  It is interactive -- "Main commands:" -- so give it an
+why     exit command rather than letting it wait.
+run     echo "exit" > $W/net.in
+run     /dd/CMDS/NETWORK/net < $W/net.in
+run     echo "--- end net"
+
+drive   atp
+why     AX.25 transport from the KA9Q package, 62 KB with vt100 line-drawing
+why     in it.  Never run: the stanza that claimed it died at osknet.
+run     /dd/CMDS/NETWORK/atp -? < /nil
+run     echo "--- bare:"
+run     /dd/CMDS/NETWORK/atp < /nil
+run     echo "--- end atp"
+
+drive   infoxpress
+why     8058 bytes with no message strings at all, filed as an InfoXpress
+why     client.  Never run either.
+run     /dd/CMDS/NETWORK/infoxpress < /nil
+run     echo "--- exit status was $?"
+run     echo "--- with an argument:"
+run     /dd/CMDS/NETWORK/infoxpress -? < /nil
+run     echo "--- end infoxpress"
+
+drive   fileserv
+why     silent bare and silent with -?.  /dd/SYS/UUCP/Parameters answers
+why     `server' TWICE -- `yes' near the top and `no' further down -- and
+why     names /dd/SPOOL/files as the served directory.  Find out whether the
+why     silence is the second answer winning.
+run     /dd/CMDS/grep -n "^server" /dd/SYS/UUCP/Parameters
+run     /dd/CMDS/grep -n "^fileserver" /dd/SYS/UUCP/Parameters
+run     echo "--- bare:"
+run     /dd/CMDS/UUCP/fileserv < /nil
+run     echo "--- exit status was $?"
+run     echo "--- with a request on standard input, which is how uuxqt calls it:"
+run     echo "help" > $W/fs.in
+run     /dd/CMDS/UUCP/fileserv tester < $W/fs.in
+run     echo "--- what is in the served directory:"
+run     /dd/CMDS/ls /dd/SPOOL/files
+run     echo "--- end fileserv"
+
+drive   fixtext
+why     "repair the line endings of a received text batch".  mail2 showed it
+why     leaving a CR-only file alone, which may be right.  Give it a DOS
+why     file and count the bytes on both sides.
+run     /dd/CMDS/autolf -c -C -L < /dd/SYS/motd > $W/crlf.txt
+run     /dd/CMDS/wc -c /dd/SYS/motd $W/crlf.txt
+run     /dd/CMDS/UUCP/fixtext $W/crlf.txt $W/fixed.txt
+run     /dd/CMDS/wc -c $W/fixed.txt
+run     echo "--- first bytes of each:"
+run     /dd/CMDS/dump $W/crlf.txt
+run     /dd/CMDS/dump $W/fixed.txt
+run     echo "--- end fixtext"
+
+drive   ckermit
+why     C-Kermit 5A(190) BETA.14.  It has a command prompt of its own, so
+why     ask it its version and quit rather than leaving it waiting.
+run     echo "show version" > $W/k.in
+run     echo "exit" >> $W/k.in
+run     /dd/CMDS/ckermit < $W/k.in
+run     echo "--- end ckermit"
+
+# LAST: it writes one line and waits for a terminal to answer.
+drive   wysecrack
+why     "Wyse terminal baud detect -- it writes `Anybody out there?' and
+why     waits".  Confirm that is all it does before the session ends.
+run     /dd/CMDS/BROKEN/wysecrack < /nil
+run     echo "--- end wysecrack"

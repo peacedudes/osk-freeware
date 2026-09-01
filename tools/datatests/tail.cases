@@ -14,10 +14,15 @@ setup   export HOME=/dd
 setup   /dd/CMDS/mkdir /dd/tmp/TA
 setup   /dd/CMDS/cp /dd/SYS/termcap /dd/tmp/TA/t.txt
 
+# `day of August, two thousand and' was the third line here and it passed
+# for one day: written 2026-08-31, failed 2026-09-01. What `today' does is
+# spell the date out in words and name the moon's phase, and that is what
+# can be asserted -- `two thousand and' is the year in words and holds
+# until 2100; the month name does not hold until next month.
 case    today-tells-you-the-date-in-words-and-the-phase-of-the-moon
 run     /dd/CMDS/today
 expect  Today is
-expect  day of August, two thousand and
+expect  two thousand and
 expect  The moon is
 
 case    chbase-converts-and-shows-both-bases

@@ -1,0 +1,114 @@
+# web1 -- the WN web server set, ONE PROGRAM PER STANZA.
+#
+# WHY THIS SHEET EXISTS.  The `wn-webserver' stanza in `comms.drive' put all
+# five programs in one stanza, and the transcript stops dead after the
+# second line: `wn' with no arguments took the session down and wndex,
+# authwn, inetd and inetdc never ran at all.  Four programs recorded as
+# driven were not.  A program that can end the session gets its own stanza.
+#
+# WHAT WN ACTUALLY IS.  It is an inetd-style server: it reads ONE HTTP
+# request on standard input and writes the response to standard output.
+# That is why running it bare hangs -- it is waiting for a request.  So the
+# real test is to build a small site, run `wndex' over it to make the
+# index.cache that WN's security model requires, and then hand `wn' a
+# request and read the response.  DOC/wn/index_desc.html has the index
+# format; DOC/wn/appendixa.html has the options.
+#
+# The binary carries a compiled-in ROOT_DIR of /h0/c/unid/wn_1.14.3/osk,
+# which is the porter's machine.  WN_ROOT overrides it.
+
+family  web1
+
+setup   W=/dd/tmp/wnsite
+setup   /dd/CMDS/mkdir -p $W > /nil 2>/nil
+
+drive   wndex
+why     build index.cache from an `index' file.  It is documented as
+why     working on the CURRENT directory, and bash's cd does not move the
+why     OS-9 data directory -- so find out whether it takes a path.
+run     echo "Owner=mailto:nobody@example.org" > $W/index
+run     echo "Title=A small WN site" >> $W/index
+run     echo "" >> $W/index
+run     echo "File=hello.html" >> $W/index
+run     echo "Title=Hello from WN" >> $W/index
+run     echo "" >> $W/index
+run     echo "File=plain.txt" >> $W/index
+run     echo "Title=A plain text file" >> $W/index
+run     echo "<html><head><title>Hello from WN</title></head>" > $W/hello.html
+run     echo "<body><h1>It serves</h1></body></html>" >> $W/hello.html
+run     echo "a plain text file served by WN" > $W/plain.txt
+run     /dd/CMDS/ls -l $W
+run     echo "--- wndex with the directory as an argument:"
+run     /dd/CMDS/WN/wndex $W
+run     /dd/CMDS/ls -l $W
+run     echo "--- did it write index.cache?"
+run     /dd/CMDS/cat $W/index.cache
+run     echo "--- end wndex"
+
+drive   wn-serves-a-request
+why     hand the server one HTTP request on standard input and read the
+why     response.  echo writes CR only, so autolf makes the CRLF that HTTP
+why     asks for; try both, because a server that accepts CR alone is worth
+why     knowing about.
+run     export WN_ROOT=$W
+run     echo "GET /hello.html HTTP/1.0" > $W/req.cr
+run     echo "" >> $W/req.cr
+run     /dd/CMDS/autolf -c -C -L < $W/req.cr > $W/req.crlf
+run     /dd/CMDS/dump $W/req.crlf
+run     echo "--- with CRLF:"
+run     /dd/CMDS/WN/wn -L /nil -l /nil < $W/req.crlf
+run     echo "--- end wn-serves-a-request"
+
+drive   wn-serves-http09
+why     the same request without a version, which is HTTP/0.9 and needs no
+why     blank line -- the shortest thing a server can be asked.
+run     export WN_ROOT=$W
+run     echo "GET /plain.txt" > $W/req09.cr
+run     /dd/CMDS/autolf -c -C -L < $W/req09.cr > $W/req09.crlf
+run     /dd/CMDS/WN/wn -L /nil -l /nil < $W/req09.crlf
+run     echo "--- end wn-serves-http09"
+
+drive   wn-refuses-what-is-not-indexed
+why     WN's whole security model is that a file not named in index.cache
+why     is not served.  plain.txt IS named; ask for the index file itself,
+why     which is not.
+run     export WN_ROOT=$W
+run     echo "GET /index HTTP/1.0" > $W/req2.cr
+run     echo "" >> $W/req2.cr
+run     /dd/CMDS/autolf -c -C -L < $W/req2.cr > $W/req2.crlf
+run     /dd/CMDS/WN/wn -L /nil -l /nil < $W/req2.crlf
+run     echo "--- and a file that does not exist at all:"
+run     echo "GET /nosuchfile.html HTTP/1.0" > $W/req3.cr
+run     echo "" >> $W/req3.cr
+run     /dd/CMDS/autolf -c -C -L < $W/req3.cr > $W/req3.crlf
+run     /dd/CMDS/WN/wn -L /nil -l /nil < $W/req3.crlf
+run     echo "--- end wn-refuses-what-is-not-indexed"
+
+drive   authwn
+why     the authentication helper for a protected area.  It reads
+why     WN_DIR_PATH, so give it one and see what it wants next.
+run     /dd/CMDS/WN/authwn < /nil
+run     echo "--- exit status was $?"
+run     echo "--- with WN_DIR_PATH pointing at the site:"
+run     export WN_DIR_PATH=$W
+run     /dd/CMDS/WN/authwn < /nil
+run     echo "--- exit status was $?"
+run     echo "--- end authwn"
+
+drive   inetd
+why     "Usage: inetd <port> <prog> {<prog-options>}", and it opens
+why     /socket.  os9exec presents no network, so the useful answer is
+why     WHICH of its five failure messages it reaches.
+run     /dd/CMDS/WN/inetd
+run     echo "--- with a port and a program:"
+run     /dd/CMDS/WN/inetd 8080 /dd/CMDS/WN/wn < /nil
+run     echo "--- with a port that cannot be one:"
+run     /dd/CMDS/WN/inetd 99999 /dd/CMDS/WN/wn < /nil
+run     echo "--- end inetd"
+
+drive   inetdc
+why     1626 bytes and no message strings at all.  inetd forks it, so the
+why     question is what it does when nothing forked it.
+run     /dd/CMDS/WN/inetdc < /nil
+run     echo "--- exit status was $?"
+run     echo "--- end inetdc"

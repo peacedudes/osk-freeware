@@ -263,6 +263,17 @@ def main(argv):
         sys.exit("no image at %s -- run tools/mkimage.sh first" % image)
     os.makedirs(OUT, exist_ok=True)
 
+# AN OS9Hx DEVICE PATH MUST BE ABSOLUTE.  Measured 2026-09-01: with
+# `--image osk-freeware.dd' -- a bare relative name, which is what
+# `datatest.py --all' was documented to take -- os9exec mounts the device
+# and MODULE LOADING WORKS, while ordinary file opens on it silently fail.
+# The whole WN web-server family went from 200 to 404 on that difference and
+# nothing said why: `wn' itself loaded and ran, and only the file it wanted
+# to serve could not be opened.  os9exec's own note about a leading `./'
+# breaking every ordinary open is the same shape.  So the path is made
+# absolute here rather than trusting the caller to type one.
+    image = os.path.abspath(image)
+
     with imagelock.held(image, "drive"):
         for f in files:
             fam, per, raw = run_sheet(f, image, seconds)

@@ -1,0 +1,95 @@
+family  system3
+# The System & modules programs that had neither a test nor a card, plus
+# vi's two crash-recovery helpers.
+#
+# `system.cases' and `system2.cases' cover the OS-9 utilities proper.  What
+# is here is the leftovers: a bus-test program, a multi-floppy formatter
+# with no floppy, a process killer, and the pair vi calls when it dies.
+
+setup   export USER=tester
+setup   export TERM=vt100
+setup   export TERMCAP=/dd/SYS/termcap
+setup   W=/dd/tmp/S3
+setup   /dd/CMDS/mkdir -p $W > /nil 2>/nil
+
+# DOC/INDEX called testibc an "IEEE binary-coded test (Pascal) -- and it
+# CRASHES". It is neither. It is a B&K Denmark IEEE-488 (GPIB) bus test
+# program, it runs, and it draws a full command menu. What it cannot do is
+# find an IEEE-488 bus, which is why every command answers error 9.
+case    testibc-is-an-ieee-488-bus-tester-and-it-draws-its-menu
+run     echo "10" > $W/ibc.txt
+run     echo "Q" >> $W/ibc.txt
+run     /dd/CMDS/testibc < $W/ibc.txt
+expect  TestIbc: Running ...
+expect  Using "/dd/sys/errmsg.ibc" as Error message file.
+expect  IEEE test program.   B & K  Denmark
+expect  I)fc            Interface Clear.       (bus command)
+expect  Q)uit           Exit 'testibc'-program.
+
+# mvolformat formats a SET of floppies with sequential volume names. There
+# is no floppy device here and no `format' either, so what it can show is
+# the command line it BUILDS -- which is the interesting half, because it
+# is what tells you the naming scheme it applies.
+case    mvolformat-shows-the-format-command-it-builds
+run     /dd/CMDS/mvolformat /d0 SET 2 < /nil
+expect  format /d0 "-v=SET Vol 1" -r
+expect  Hit RETURN when drive ready:
+expect  mvolformat: cannot fork format
+
+case    mvolformat-explains-its-parameters
+run     /dd/CMDS/mvolformat
+expect  Syntax: mvolformat drive volname volcount [format options]
+expect  Function: format multiple floppies with sequential volume #s
+expect  Base volume name. 'Volnn' gets appended (nn = vol num)
+
+case    suspend-explains-itself
+run     /dd/CMDS/suspend -?
+expect  SUSPEND V1.1 (C.) 1989 by F.R.Schmitt
+expect  Function: removes the process from the system
+expect  -s       remove also system programs
+
+# KNOWN DEFECT, measured 2026-09-01 and DELIBERATELY NOT A CASE HERE.
+# Given a process name that is not running, suspend does not report it --
+# it ABORTS in F$GPrDsc and the emulator prints the whole process
+# descriptor.  datatest fails any case its session took an exception
+# against, however clean the text ("An exception against this case is a
+# failure however clean the text"), and that rule is right and should not
+# be bent for one program.  So the defect lives in DOC/INDEX and in
+# notes/drives/system4.txt, and what is asserted here is only the half
+# that can be: that suspend explains itself.
+
+# exrecover is the half of vi's crash recovery that gives a buffer back.
+# With no arguments it says so; asked for a file nobody saved it says so
+# too. /dd/PRESERVE, where expreserve would put one, is not on this disk.
+case    exrecover-wants-arguments-and-says-when-there-is-nothing-saved
+run     /dd/CMDS/exrecover
+run     echo "---"
+run     /dd/CMDS/exrecover -r /dd/tmp/nothing
+expect  Wrong number of arguments to exrecover
+expect  File not found
+
+# expreserve is the other half, and it cannot be driven by hand: it takes
+# vi's own temporary buffer, not text. Given a text file it says exactly
+# that, which is the useful thing to record -- it is not broken and it is
+# not for you.
+case    expreserve-wants-an-editor-buffer-not-a-text-file
+run     echo "one line of an editor buffer" > $W/buf.txt
+run     /dd/CMDS/expreserve < $W/buf.txt
+expect  Buffer format error
+
+case    ub68020demo-prints-the-unibasic-demo-banner
+run     /dd/CMDS/DEMOS/ub68020demo < /nil
+expect  UniBasic Version 1.10
+expect  OS9/68020 Version
+expect  DEMO VERSION
+expect  Modification expressly forbidden!!!
+
+# t_trtest is a binary-tree search test, not a general trap-handler test:
+# it prompts for lines, reports the tree root, and asks whether to add.
+case    t_trtest-prompts-for-lines-and-reports-the-tree
+run     echo "first line" > $W/t.txt
+run     echo "." >> $W/t.txt
+run     /dd/CMDS/t_trtest < $W/t.txt
+expect  line (or .):
+expect  tree_srch=
+expect  add?

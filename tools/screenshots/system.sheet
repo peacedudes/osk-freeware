@@ -24,10 +24,21 @@ wait    5
 kill
 
 shot    argproc_demo
-cap     argproc_demo shows RICO's command-line parser.  It is starred: with
-cap     no cio it stops before it starts, and this is what that looks like.
-run     argproc_demo -a -b=2 file
+cap     argproc_demo PARSING A COMMAND LINE, which is the whole point of
+cap     it: RICO's argproc() takes the switches, fills in the defaults for
+cap     the ones you left out, and hands back the filename.  Switches take
+cap     their arguments with NO SPACE -- `-x99', never `-x 99'.
+cap     Until 2026-09-01 this card showed `**** Stack Overflow ****' and
+cap     the caption blamed a missing cio, which it was not: the program is
+cap     not starred and a Stack Overflow is not that message.  It wanted
+cap     STACK.  Rebuilt with MEM=64k from the source in SRC/argproc and it
+cap     runs -- the recipe carries the flag now.
+run     argproc_demo readme
 wait    6
+run     argproc_demo -x99 -sHello readme
+wait    6
+run     argproc_demo -help
+wait    8
 
 shot    ask
 for     ask ynad wisecrack
@@ -526,19 +537,27 @@ run     expreserve -?
 wait    8
 
 shot    vi-recovery
-size    36 80
+size    40 80
 for     dedit exrecover read_mail add_errmsg
-cap     The four programs that used to be credited to the scsiutil card
-cap     without ever being run.  `exrecover' brings back a vi buffer that
-cap     expreserve saved and there is none, so it says what it wanted.
-cap     `add_errmsg' builds vi's error-message file -- /dd/SYS/vi_errmsg is
-cap     already on the disk.  `read_mail' is NOT vi's helper despite
-cap     sitting beside these: it is a small mail reader of its own.
+cap     `read_mail' READING A FOLDER, and the vi recovery pair beside it.
+cap     read_mail is not vi's helper despite sitting among them: it is a
+cap     small mail reader with a mail directory of its own, /dd/MAIL, and
+cap     it quotes what it finds and offers to delete it.  `exrecover'
+cap     brings back a buffer that `expreserve' saved when vi died; asked
+cap     for one nobody saved it says `File not found', which is the honest
+cap     answer on a disk where vi has not crashed.  `add_errmsg' builds
+cap     vi's error-message file -- /dd/SYS/vi_errmsg is already here.
 cap     `dedit' is Carl Kreider's BASIC09 disk sector editor and needs
 cap     runb, like the other three BASIC09 programs here.
-run     exrecover
-wait    8
-run     add_errmsg -?
+cap     This card showed nothing but `Wrong number of arguments to
+cap     exrecover' until 2026-09-01.
+run     cat /dd/SPOOL/MAIL/tester > /dd/MAIL/mail_tester
+wait    5
+run     echo "N" > /dd/tmp/rm.in
+wait    4
+run     read_mail < /dd/tmp/rm.in
+wait    10
+run     exrecover -r /dd/tmp/nothing
 wait    8
 run     read_mail
 wait    8
@@ -820,7 +839,7 @@ for     loadmem savemem snap scriptmaster
 cap     Three that read or write something the shell cannot reach.  loadmem
 cap     puts a file into memory at an address and savemem writes a block of
 cap     memory out; both say plainly that you must be the super user and
-cap     that the addresses are hex.  `snap' photographs the terminal into a
+cap     that the addresses are hex.  `snap' captures the terminal into a
 cap     file -- called `polaroid' if you do not name one.  `scriptmaster'
 cap     prints nothing whatever it is given.
 run     loadmem -?

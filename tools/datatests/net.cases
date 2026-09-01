@@ -1,0 +1,105 @@
+family  net
+# The communications programs that talk to a peer this emulator does not
+# have: TCP/IP, packet radio, serial transfer.  NONE OF THEM CAN WORK HERE
+# and that is not a defect -- os9exec presents no network and no second
+# serial line.  So each case asserts what the program says about the device
+# it cannot have, which is the only honest thing to assert and is exactly
+# what somebody moving this onto real hardware needs to recognise.
+#
+# WHY THESE WERE UNTESTED FOR SO LONG.  `comms.drive' ran osknet, net,
+# msntp, atp and infoxpress in ONE stanza, and osknet ends the session --
+# so the transcript stopped after its banner and the other four never ran
+# at all, while being recorded as driven.  Same for `xy-and-z': xy answers
+# a receive handshake and waits, and z never ran.  One program per stanza.
+
+# `atp' stops with "Unknown terminal type 'dumb'!" without these --
+# datatest.py does not set SYS/login's environment, drive.py does.
+setup   export TERM=vt100
+setup   export TERMCAP=/dd/SYS/termcap
+setup   W=/dd/tmp/NET
+setup   /dd/CMDS/mkdir -p $W > /nil 2>/nil
+
+# KA9Q net -- the packet-radio TCP/IP suite. It names every file it wants
+# and then says where the manual is, which is the most useful thing it can
+# do here. The two it calls Errors are /usr/spool paths, and OS-9 cannot
+# have a /usr at all: a leading /name is a DEVICE.
+case    net-names-the-files-it-cannot-find-and-stops
+run     echo "exit" > $W/net.in
+run     /dd/CMDS/NETWORK/net < $W/net.in
+expect  Internet Protocol Package, (C) 1988 by Phil Karn, KA9Q
+expect  startup.net not found
+expect  hosts.net not found
+expect  Error: Directory /usr/spool/mail not found
+expect  Sorry, Chapter 2 will help you set up correctly.
+
+case    atp-wants-a-configuration-file-and-says-which
+run     /dd/CMDS/NETWORK/atp < /nil
+expect  Reading Configuration file...
+expect  Unable to open configuration file /dd/atprc or .atprc !
+
+# msntp is the one program here stopped by the csl EDITION SKEW rather than
+# by the missing network: we ship csl edition 16 and it wants 25. It never
+# reaches its own code, so it never gets as far as complaining about
+# /ip0#1/route0.
+case    msntp-stops-at-the-csl-edition-skew-not-at-the-network
+run     /dd/CMDS/NETWORK/msntp < /nil
+expect  csl traphandler mismatch
+absent  route0
+
+case    ckermit-reports-its-version-and-its-os9-modules
+run     echo "show version" > $W/k.in
+run     echo "exit" >> $W/k.in
+run     /dd/CMDS/ckermit < $W/k.in
+expect  C-Kermit 5A(190) BETA.14, 24 Jul 94
+expect  OS-9 Communications I/O
+expect  OS-9 file support
+expect  C-Kermit Protocol Module
+
+# z is Tim Kientzle's ZMODEM. `-?' prints the usage; bare it starts a
+# receive handshake against nothing and gives up. `xy', its XMODEM/YMODEM
+# twin, has NO usage flag -- `-h' means host mode there and starts the
+# handshake, which is how it took a drive stanza down.
+case    z-explains-itself-and-names-the-MODEM-variable
+run     /dd/CMDS/COMMS/z -? < /nil
+expect  To send files:      Z <file1> <file2> <etc.>
+expect  Z uses the MODEM environment variable to determine the port
+expect  Copyright (C) 1995 Tim Kientzle
+
+# fixtext repairs the line endings of a received text batch, and what it
+# actually does is map LF to CR -- so a DOS file's CRLF becomes CR CR and
+# the length does not change. Worth pinning exactly, because "repair"
+# suggests the pair would collapse to one and it does not.
+case    fixtext-maps-LF-to-CR-and-leaves-the-length-alone
+run     /dd/CMDS/autolf -c -C -L < /dd/SYS/motd > $W/crlf.txt
+run     /dd/CMDS/UUCP/fixtext $W/crlf.txt $W/fixed.txt
+run     /dd/CMDS/wc -c /dd/SYS/motd $W/crlf.txt $W/fixed.txt
+run     /dd/CMDS/dump $W/fixed.txt
+expect  40 /dd/SYS/motd
+expect  41 /dd/tmp/NET/crlf.txt
+expect  41 /dd/tmp/NET/fixed.txt
+expect  6D75 6C61 746F 720D 0D
+
+# rxmod loads a module sent over a serial line by txmod, and its trap
+# handler IS on this disk beside it -- `load' installs it and the message
+# changes. What happens next is a fault inside the trap, not a missing
+# module, and the two are worth telling apart.
+case    rxmod-says-so-when-its-trap-handler-is-not-loaded
+run     /dd/CMDS/COMMS/rxmod -? < /nil
+expect  can't install Vmod Trap handler
+
+case    txmod-explains-the-other-half-of-the-pair
+run     /dd/CMDS/COMMS/txmod -? < /nil
+expect  TXMod Ed.1 Rv.2 - send Module via SCF to RXMod to link there
+expect  Syntax: TXMod [<opts>] module(s) [<opts>]
+expect  -l[=]<dev> : use dev for xmission
+
+# fileserv serves files to remote sites on request and exits 0 in silence.
+# /dd/SYS/UUCP/Parameters answers `server' TWICE -- yes at line 85, no at
+# line 101 -- which is a copy-paste in the UUCPbb sample the file came from.
+# The duplicate is asserted so that fixing it is a deliberate act.
+case    the-Parameters-file-answers-server-twice
+run     /dd/CMDS/grep -n "^server" /dd/SYS/UUCP/Parameters
+run     /dd/CMDS/grep -n "^fileserver" /dd/SYS/UUCP/Parameters
+expect  85:server = yes
+expect  101:server = no
+expect  104:fileserver = /dd/SPOOL/files

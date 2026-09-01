@@ -15,7 +15,42 @@ recommendation is there.
 run without it. Delete it if you would rather the disk shipped no writable
 log; nothing else depends on it.
 
-**3. Nothing else is waiting on you.**
+**3. Two gaps in the `os9-dev` SKILL, noted not fixed.** The skill repo is
+`~/Developer/os9/os9-dev-skill` and its tree is clean; say the word and I
+will write these in. Both are in
+`references/common/using-os9exec-repl.md`, section "The cio trap handler
+divides archived binaries".
+
+  a. **The cio SELECTOR MISMATCH is not in the skill at all.** The section
+     says the failure is `**** Can't install trap handler ****' and that you
+     classify a binary by searching for the module name `cio\0'. That covers
+     the program which cannot FIND cio. It says nothing about the program
+     that finds it and is silently broken anyway: the era's `LIB/cio.l' puts
+     `_flshbuf'/`_filbuf' at trap-13 selectors $41/$42, where every `cio'
+     MODULE has raw memory allocate/free, so the inline putc/getc macro
+     hands the allocator a `FILE *' as a byte count. Nothing is written,
+     nothing is read, a block leaks per character. On current os9exec, which
+     counts refused allocations rather than printing them, the program simply
+     never returns. The answer is `-qm', not `-qixm'. We have the whole
+     mechanism measured in `DOC/README-CIO' and
+     `notes/os9exec-bugs/CIO-SELECTOR-MISMATCH.md`.
+
+  b. **"a usage message is a pass" is unsafe, and the same section says it.**
+     Under "Batch-testing binaries": *"This tests 'loads and starts' (a usage
+     message is a pass)"*. For this whole class it is exactly the wrong
+     signal -- a usage line goes through `printf' inside the module and never
+     crosses the broken selector, so the program prints its help perfectly
+     and then does no work at all. Measured here on 2026-08-31: `unifdef',
+     `ape' and `hexed' each printed their complete option list and then
+     produced nothing for a real file. It is still a fine *loads-and-starts*
+     test; it just needs a sentence saying that is all it is.
+
+What the skill got RIGHT and saved time on, for the record: `break' is
+documented as "halt into the ROM debugger (superuser, console)", and
+`setime' as taking six separate fields `y m d h m s' rather than the packed
+string `DOC/INDEX' describes. Both were about to be driven wrong.
+
+**4. Nothing else is waiting on you.**
 
 ---
 

@@ -178,7 +178,8 @@ class Session:
                     struct.pack("HHHH", rows, cols, 0, 0))
         self.proc = subprocess.Popen([OS9EXEC, "bash"], stdin=slave,
                                      stdout=slave, stderr=slave,
-                                     env=dict(os.environ, OS9DISK=image),
+                                     env=dict(os.environ, OS9DISK=image,
+                                              OS9H0=image),
                                      close_fds=True)
         os.close(slave)
         threading.Thread(target=self._drain, daemon=True).start()
@@ -530,6 +531,11 @@ def main(argv):
         sys.exit(__doc__)
     if not os.path.exists(image):
         sys.exit("no image at %s -- run tools/mkimage.sh first" % image)
+    # AN OS9Hx/OS9DISK PATH MUST BE ABSOLUTE -- see the same line in
+    # datatest.py. A bare relative name mounts the device and lets module
+    # loading work while ordinary file opens on it silently fail.
+    image = os.path.abspath(image)
+
     with imagelock.held(image, "screenshots"):
         total = sum(run_sheet(s, image, only) for s in sheets)
     print("%d screens in %s" % (total, CAPS))

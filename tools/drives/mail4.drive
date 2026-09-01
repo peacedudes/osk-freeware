@@ -1,0 +1,197 @@
+# mail4 -- the twelve mail programs that still have neither a test nor a
+# card, driven with the invocation each one's OWN STRINGS ask for rather
+# than a guess.  Where an earlier sheet recorded silence, the question here
+# is what the program wanted, not whether it is broken.
+#
+# EVERY INPUT FILE HERE IS WRITTEN WITH bash's `echo'.  `/dd/CMDS/printf'
+# drops everything before the first conversion, so `printf 'a@b\rc@d\r''
+# writes a ZERO-BYTE FILE -- which is exactly what `mail2.drive' fed nptx
+# before deciding nptx was silent.  A sheet that writes its own input with
+# printf and no `%' is measuring its own setup.
+#
+# Paths read out of the binaries:
+#   lmail       /DD/USR/LIB/UUCP/Config, /DD/TMP/lmail.tmpXXXXXX,
+#               /DD/SYS/.LOCKS/MAIL.LOCKS, /DD/SPOOL/MAIL
+#   rmail       /DD/SYS/UUCP/Systems, $LOGDIR, .forward
+#   makedb      /dd/usr/lib/smail/palias  ->  <name>.dir + <name>.pag
+#   uupoll      /DD/USR/LIB/UUCP/Config -> <spool>/<sys>/C.<sys>NPOLL
+#   read_mail   $USER, then /dd/MAIL/mail_<user>
+#   arepdaemon  /dd/USR/LIB/ELM/autoreply.data
+#   dotilde     ~h and ~? print its whole tilde-command help
+#   printmail   forks `readmsg' -- the question is HOW it forks it
+#   fastmail    hands off to smail, sendmail or rmail, in that order
+
+family  mail4
+
+setup   M=/dd/SPOOL/MAIL/tester
+setup   export MAIL=$M
+setup   export HOME=/dd
+setup   export USER=tester
+setup   export LOGDIR=/dd/LOG
+setup   W=/dd/tmp/m4
+setup   /dd/CMDS/mkdir -p $W > /nil 2>/nil
+
+drive   dotilde
+why     it has a ~h/~? help with nine commands in it.  Ask for the help,
+why     then give it a real ~r <file> to append.
+run     echo "~?" > $W/tilde1.txt
+run     echo "." >> $W/tilde1.txt
+run     /dd/CMDS/dump $W/tilde1.txt
+run     /dd/CMDS/UUCP/dotilde < $W/tilde1.txt
+run     echo "--- now ~r on a real file:"
+run     echo "~r /dd/SYS/motd" > $W/tilde2.txt
+run     echo "." >> $W/tilde2.txt
+run     /dd/CMDS/UUCP/dotilde < $W/tilde2.txt
+run     echo "--- end dotilde"
+
+drive   makedb
+why     smail's path-alias dbm builder.  Give it the palias that ships and
+why     name the output, then look for the .dir/.pag pair it should write.
+run     /dd/CMDS/UUCP/makedb -o $W/pal /dd/USR/LIB/SMAIL/palias
+run     echo "--- what it wrote:"
+run     /dd/CMDS/ls -l $W
+run     echo "--- and with -a (append), which announces the output name:"
+run     /dd/CMDS/UUCP/makedb -a -o $W/pal /dd/USR/LIB/SMAIL/palias
+run     echo "--- end makedb"
+
+drive   uupoll
+why     silent for `uupoll nowhere'.  Silence here may be SUCCESS: it should
+why     have created a POLL file under the spool directory Config names.
+run     echo "--- spool before:"
+run     /dd/CMDS/ls /dd/SPOOL/uucp
+run     /dd/CMDS/UUCP/uupoll nowhere
+run     echo "--- spool after:"
+run     /dd/CMDS/ls /dd/SPOOL/uucp
+run     /dd/CMDS/ls -l /dd/SPOOL/uucp/nowhere
+run     echo "--- and with a grade:"
+run     /dd/CMDS/UUCP/uupoll -gZ nowhere
+run     /dd/CMDS/ls /dd/SPOOL/uucp/nowhere
+run     echo "--- end uupoll"
+
+drive   lmail
+why     "Function: sends local mail to <user name(s)>" -- so hand it a
+why     message on standard input and see whether the folder grows.
+run     echo "--- folder before:"
+run     /dd/CMDS/wc -c $M
+run     echo "Subject: lmail test" > $W/msg.txt
+run     echo "" >> $W/msg.txt
+run     echo "Delivered by lmail." >> $W/msg.txt
+run     /dd/CMDS/wc -c $W/msg.txt
+run     /dd/CMDS/UUCP/lmail tester < $W/msg.txt
+run     echo "--- folder after:"
+run     /dd/CMDS/wc -c $M
+run     /dd/CMDS/ELM/messages
+run     echo "--- and to a user who does not exist:"
+run     /dd/CMDS/UUCP/lmail nosuchperson < $W/msg.txt
+run     echo "--- end lmail"
+
+drive   rmail
+why     "deliver incoming mail (invoked by uuxqt, not by you)".  It reads
+why     /DD/SYS/UUCP/Systems, which ships.  Give it a message and a local
+why     address and see where it puts it.
+run     echo "--- folder before:"
+run     /dd/CMDS/wc -c $M
+run     /dd/CMDS/UUCP/rmail tester < $W/msg.txt
+run     echo "--- folder after:"
+run     /dd/CMDS/wc -c $M
+run     echo "--- a bang path to a site we do not have:"
+run     /dd/CMDS/UUCP/rmail "nowhere!somebody" < $W/msg.txt
+run     echo "--- end rmail"
+
+drive   fastmail
+why     it hands off to smail, sendmail or rmail and prints
+why     "Mailing to ... [via ...]".  Ask for that line with -s and an
+why     address, and check whether the folder actually grew.
+run     echo "--- folder before:"
+run     /dd/CMDS/wc -c $M
+run     /dd/CMDS/ELM/fastmail -s "fastmail test" /dd/SYS/motd tester
+run     echo "--- folder after:"
+run     /dd/CMDS/wc -c $M
+run     echo "--- its own argument summary:"
+run     /dd/CMDS/ELM/fastmail
+run     echo "--- end fastmail"
+
+drive   printmail
+why     silent both bare and with -r, and the only other string in it is
+why     "readmsg" -- so it FORKS readmsg by bare name, and a bare-name fork
+why     resolves against the EXECUTION directory, not PATH.  Put a copy of
+why     readmsg where chx would find it and see whether printmail wakes up.
+run     echo "--- readmsg itself, which is known to work:"
+run     /dd/CMDS/ELM/readmsg 1
+run     echo "--- printmail, same message:"
+run     /dd/CMDS/ELM/printmail 1
+run     echo "--- printmail -p:"
+run     /dd/CMDS/ELM/printmail -p 1
+run     echo "--- now with readmsg copied into /dd/CMDS:"
+run     /dd/CMDS/cp /dd/CMDS/ELM/readmsg /dd/CMDS/readmsg
+run     /dd/CMDS/ELM/printmail 1
+run     echo "--- end printmail"
+
+drive   read_mail
+why     it opens /dd/MAIL/mail_$USER and offers L/X/N.  The directory ships
+why     with an empty `mail_' in it; give it a real mail_tester and answer.
+run     /dd/CMDS/cat /dd/SPOOL/MAIL/tester > /dd/MAIL/mail_tester
+run     /dd/CMDS/ls -l /dd/MAIL
+run     echo "--- run it and answer N (do not delete):"
+run     echo "N" > $W/n.txt
+run     /dd/CMDS/read_mail < $W/n.txt
+run     echo "--- is the file still there?"
+run     /dd/CMDS/wc -c /dd/MAIL/mail_tester
+run     echo "--- end read_mail"
+
+drive   philmail
+why     an off-line reader for a UNIX spool file.  It prints a paragraph of
+why     instructions when it cannot read one, and reads $MAIL otherwise.
+run     /dd/CMDS/UUCP/philmail -?
+run     echo "--- on the real folder, answering n to every prompt:"
+run     echo "n" > $W/no.txt
+run     echo "n" >> $W/no.txt
+run     echo "n" >> $W/no.txt
+run     echo "q" >> $W/no.txt
+run     /dd/CMDS/UUCP/philmail $M < $W/no.txt
+run     echo "--- end philmail"
+
+drive   nptx
+why     smail 2.5.  It answers "format error: %s", so it has a format in
+why     mind.  The earlier sheet fed it a ZERO-BYTE file and read the
+why     silence as the program's.  Give it real bytes this time.
+run     echo "--- one address per line, which is what mail2 MEANT to send:"
+run     echo "a@b" > $W/n0.txt
+run     echo "c@d" >> $W/n0.txt
+run     /dd/CMDS/wc -c $W/n0.txt
+run     /dd/CMDS/UUCP/nptx < $W/n0.txt
+run     echo "--- tab-separated name and login:"
+run     /dd/CMDS/printf '%s\r' "John Q Public	tester" > $W/n1.txt
+run     /dd/CMDS/UUCP/nptx < $W/n1.txt
+run     echo "--- a bare full name:"
+run     echo "John Q Public" > $W/n3.txt
+run     /dd/CMDS/UUCP/nptx < $W/n3.txt
+run     echo "--- the password file, whose name is in the binary:"
+run     /dd/CMDS/UUCP/nptx < /dd/SYS/password
+run     echo "--- end nptx"
+
+drive   checkalias
+why     recorded as printing NOTHING for every alias, good or bad.  Pin
+why     that against `listalias', which answers the same question and does
+why     print, and check the exit status too.
+run     echo "--- listalias, which answers:"
+run     /dd/CMDS/ELM/listalias
+run     echo "--- checkalias on the same alias:"
+run     /dd/CMDS/ELM/checkalias os9
+run     echo "--- checkalias on one that does not exist:"
+run     /dd/CMDS/ELM/checkalias nosuchalias
+run     echo "--- and with no argument at all:"
+run     /dd/CMDS/ELM/checkalias
+run     echo "--- end checkalias"
+
+# LAST ON PURPOSE: this one is a daemon and may not return.  A stanza that
+# never ends costs the whole timeout, and the harness restarts from where
+# the output stopped -- so anything after it would be run twice.
+drive   arepdaemon
+why     it stops with `Error 216 attempting fstat' because
+why     /dd/USR/LIB/ELM/autoreply.data is not there.  Give it an empty one
+why     and see what it says with nobody using autoreply.
+run     echo "" > /dd/USR/LIB/ELM/autoreply.data
+run     /dd/CMDS/ls -l /dd/USR/LIB/ELM
+run     /dd/CMDS/ELM/arepdaemon
+run     echo "--- end arepdaemon"

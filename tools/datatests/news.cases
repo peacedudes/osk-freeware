@@ -1,0 +1,109 @@
+family  news
+# The Usenet set, against a news spool that has something in it.
+#
+# WHAT THIS CORRECTS.  `DOC/INDEX' said `subscribe' "does NOT" add a group
+# and `unsubscribe' "does not" drop one.  BOTH WORK.  The measurement that
+# said otherwise used `comp.lang.c', which is not in `.newsrc' at all -- and
+# a group that is not there is silently left alone, which looks exactly like
+# a program that does nothing. Given a group that IS there, each says so and
+# edits the file.
+#
+# .newsrc IS REWRITTEN IN SETUP, on purpose. These cases change it, and a
+# second run of the family would otherwise be measuring the first run's
+# leftovers rather than the programs. `:' means subscribed, `!' unsubscribed.
+
+# TERM AND TERMCAP, and they are not decoration: `readnews' and `atp'
+# both stop with "Unknown terminal type 'dumb'" without them.  drive.py
+# runs every sheet under SYS/login's whole environment and datatest.py
+# does not, so a case written from a drive transcript has to set for
+# itself whatever the program read out of that environment.
+setup   export TERM=vt100
+setup   export TERMCAP=/dd/SYS/termcap
+setup   export USER=tester
+setup   export LOGNAME=tester
+setup   export HOME=/dd
+setup   export LOGDIR=/dd/LOG
+setup   N=/dd/SPOOL/news
+setup   W=/dd/tmp/NEWS
+setup   /dd/CMDS/mkdir -p $W > /nil 2>/nil
+setup   echo "comp.os.os9: 1" > /dd/.newsrc
+setup   echo "comp.sys.m68k: 1" >> /dd/.newsrc
+setup   echo "news.announce.newusers! 1" >> /dd/.newsrc
+
+case    unsubscribe-turns-a-subscribed-group-off
+run     /dd/CMDS/UUCP/unsubscribe comp.os.os9
+run     /dd/CMDS/cat /dd/.newsrc
+expect  Newsgroup comp.os.os9 is now unsubscribed.
+expect  comp.os.os9! 1
+absent  comp.os.os9: 1
+
+case    subscribe-turns-it-back-on
+run     /dd/CMDS/UUCP/subscribe comp.os.os9
+run     /dd/CMDS/cat /dd/.newsrc
+expect  Newsgroup comp.os.os9 is now subscribed.
+expect  comp.os.os9: 1
+absent  comp.os.os9! 1
+
+# THE MEASUREMENT THAT MISLED, kept so it cannot mislead again: a group that
+# is not in .newsrc is left alone in silence. Read on its own that is
+# indistinguishable from a broken program, and it was read that way.
+case    a-group-that-is-not-in-newsrc-is-silently-left-alone
+run     /dd/CMDS/UUCP/unsubscribe comp.lang.c
+run     /dd/CMDS/cat /dd/.newsrc
+expect  comp.os.os9: 1
+absent  comp.lang.c
+
+# A BUG IN THE PROGRAM, pinned. The string in the binary is
+# "Newsgroup % is already unsubscribed." -- a `%' with no conversion letter,
+# so the group name is consumed as a number and a pointer is printed in its
+# place. The number differs every run, so only the tail can be asserted.
+case    unsubscribe-has-a-format-bug-for-a-group-already-off
+run     /dd/CMDS/UUCP/unsubscribe news.announce.newusers
+expect  s already unsubscribed.
+absent  Newsgroup news.announce.newusers is already
+
+case    subscribe-and-unsubscribe-print-a-usage-with-no-argument
+run     /dd/CMDS/UUCP/subscribe
+run     /dd/CMDS/UUCP/unsubscribe
+expect  usage: subscribe <newsgroup> [newsgroup...]
+expect  usage: unsubscribe <newsgroup> [newsgroup...]
+expect  if <newsgroup> is 'all', all newsgroups will be unsubscribed
+
+# readnews takes NO options -- `-l' and `-n' both earn its usage line. Bare,
+# it reads /dd/SYS/UUCP/active and offers every group that is not yet in
+# .newsrc, then updates the file.
+# WHAT IS ASSERTED AND WHAT IS NOT.  readnews walks `active' and offers
+# every group that is not already in .newsrc -- that is the behaviour, and
+# it is what these three lines pin, including the negative: comp.os.os9 IS
+# in .newsrc, so it must NOT be offered.
+#
+# `updating newsrc...' is NOT asserted, and it was, twice.  It comes after
+# a final `**** End of newsgroups [yq]' prompt, and whether readnews gets
+# that far depends on how the input runs out: one `q' leaves it walking the
+# list to the end of file, and three `q's make it end the emulator session
+# outright.  A line that needs the input to run out in exactly one way is
+# not an assertion about the program.
+case    readnews-offers-the-groups-in-active-that-are-not-in-newsrc
+run     echo "q" > $W/q.txt
+run     /dd/CMDS/UUCP/readnews < $W/q.txt
+expect  New newsgroup: alt.folklore.computers--Subscribe? [yn]
+expect  New newsgroup: comp.lang.c--Subscribe? [yn]
+expect  New newsgroup: news.announce.important--Subscribe? [yn]
+absent  New newsgroup: comp.os.os9
+
+case    readnews-takes-no-options
+run     /dd/CMDS/UUCP/readnews -l < $W/q.txt
+expect  readnews: read Usenet news articles
+expect  Usage: readnews
+
+case    expire-explains-itself-when-given-an-illegal-option
+run     /dd/CMDS/UUCP/expire -?
+expect  expire: illegal option -- ?
+expect  news article expire utility
+expect  -e<days>   expire articles older than specified number of days
+expect  expires all articles older than 14 days
+
+# newslock wants TWO names, a temporary and the lock itself, and says so.
+case    newslock-wants-a-tempname-and-a-lockname
+run     /dd/CMDS/NEWS/newslock $W/one
+expect  Usage: /dd/CMDS/NEWS/newslock tempname lockname

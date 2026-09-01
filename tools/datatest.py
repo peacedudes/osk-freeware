@@ -214,7 +214,16 @@ def run_family(path, image, workdir):
     fam = parse(path)
     os.makedirs(os.path.join(workdir, "h1"), exist_ok=True)
     sh = os.path.join(workdir, "h1", "%s.sh" % fam["family"])
-    env = dict(os.environ, LC_ALL="C", OS9DISK=image,
+    # /h0 IS THIS DISK TOO, and that is not a convenience -- it is the
+    # arrangement notes/DECISION-placement.md settles on and DOC/README-CIO
+    # documents: mount the collection as /dd and hard-link it as /h0, so the
+    # 139 programs carrying a hardcoded /h0 path find what they are looking
+    # for. `drive.py' has always done this and the other three harnesses did
+    # not, which meant a program could pass under one and fail under another
+    # for a reason that had nothing to do with the program. WN is the clear
+    # case: its document root is compiled in as /h0/c/unid/wn_1.14.3/osk, so
+    # without this every request it is given comes back 404.
+    env = dict(os.environ, LC_ALL="C", OS9DISK=image, OS9H0=image,
                OS9H1=os.path.join(workdir, "h1"))
 
     # RESTART WHERE THE OUTPUT STOPPED.  A case whose program takes the
@@ -286,6 +295,17 @@ def main(argv):
     os.makedirs(workdir, exist_ok=True)
 
     bad = total = 0
+# AN OS9Hx DEVICE PATH MUST BE ABSOLUTE.  Measured 2026-09-01: with
+# `--image osk-freeware.dd' -- a bare relative name, which is what
+# `datatest.py --all' was documented to take -- os9exec mounts the device
+# and MODULE LOADING WORKS, while ordinary file opens on it silently fail.
+# The whole WN web-server family went from 200 to 404 on that difference and
+# nothing said why: `wn' itself loaded and ran, and only the file it wanted
+# to serve could not be opened.  os9exec's own note about a leading `./'
+# breaking every ordinary open is the same shape.  So the path is made
+# absolute here rather than trusting the caller to type one.
+    image = os.path.abspath(image)
+
     with imagelock.held(image, "datatest"):
         for f in files:
             family, results = run_family(f, image, workdir)

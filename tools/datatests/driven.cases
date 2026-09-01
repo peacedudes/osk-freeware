@@ -112,11 +112,19 @@ run     /dd/CMDS/eo /dd/tmp/DR/list /dd/CMDS/wc -c @
 expect  40 /dd/SYS/motd
 expect  963 /dd/SYS/termcap
 
+# A CASE MUST NOT ASSERT TODAY'S DATE. This one said `Date: Monday' and
+# passed for exactly as long as it was Monday -- it failed on 2026-09-01
+# having been written on 2026-08-31, and the failure says nothing about
+# setyear. What the pair is actually for is the DISAGREEMENT: setyear
+# reports the year you gave it and `date -t' answers 2100 in the same
+# breath. BOTH years are asserted, because either alone is satisfied by one
+# of the two lines and proves nothing about the disagreement.
 case    setyear-reports-the-date-and-date-disagrees-with-it
 run     /dd/CMDS/setyear 2026
 run     /dd/CMDS/date -t
-expect  Date: Monday
-expect  August 31, 2100
+expect  Date:
+expect  , 2026
+expect  , 2100
 
 # ONE PER CASE, and deliberately so: run together, something in this group
 # took the emulator session down and cost every case after it. Split, a fatal

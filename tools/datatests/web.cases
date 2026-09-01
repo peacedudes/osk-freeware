@@ -1,0 +1,104 @@
+family  web
+# THE WN WEB SERVER SERVES A PAGE.  Every one of these is a real HTTP
+# request in and a real HTTP response out, and until 2026-09-01 the gallery
+# card for the whole set showed `Unknown option given to server' -- which is
+# what `wn -V' earns, `-V' being the virtual-host-file option.
+#
+# THREE THINGS HAD TO BE UNDERSTOOD FIRST, and each one cost a run:
+#
+#   1. `wn' IS AN inetd-STYLE SERVER.  It reads ONE request on standard
+#      input and writes the response to standard output. Run bare it waits
+#      for that request, which is why it took a whole drive stanza down and
+#      four other programs with it.
+#
+#   2. ITS DOCUMENT ROOT IS COMPILED IN as /h0/c/unid/wn_1.14.3/osk -- the
+#      porter's own source directory. `WN_ROOT' is a variable wn SETS for
+#      CGI scripts, NOT one it reads, so setting it changes nothing. That
+#      directory is on this disk and /h0 is this disk, so the path resolves.
+#
+#   3. WN SERVES NOTHING THAT IS NOT IN AN `index.cache'.  That is its whole
+#      security model. `wndex' builds one from an `index' file -- IN THE
+#      CURRENT DIRECTORY, ignoring any directory given as an argument. The
+#      site had shipped since 2026-08-16 with `index' and `index.html' and
+#      no cache, so every request was a 404. The cache now ships too.
+#
+# HTTP WANTS CRLF and this disk's `echo' writes CR alone, so `autolf -c -C
+# -L' makes the request. A server that accepted bare CR would hide the
+# mistake; this one does not.
+
+setup   R=/dd/c/unid/wn_1.14.3/osk
+setup   W=/dd/tmp/WEB
+setup   /dd/CMDS/mkdir -p $W > /nil 2>/nil
+
+case    wn-serves-the-page-with-a-200
+run     echo "GET /index.html HTTP/1.0" > $W/req.cr
+run     echo "" >> $W/req.cr
+run     /dd/CMDS/autolf -c -C -L < $W/req.cr > $W/req.crlf
+run     /dd/CMDS/WN/wn -L /nil -l /nil < $W/req.crlf
+expect  HTTP/1.0 200 OK
+expect  Server: WN/1.14.4 OS-9 Version
+expect  Content-type: text/html
+expect  Content-length: 838
+expect  Title: Served by OS-9
+expect  <h1>Served by OS-9</h1>
+absent  404
+
+# A bare `/' is DEFAULT_URI, which config.h sets to /index.html.
+case    wn-serves-the-default-document-for-a-bare-slash
+run     echo "GET / HTTP/1.0" > $W/req2.cr
+run     echo "" >> $W/req2.cr
+run     /dd/CMDS/autolf -c -C -L < $W/req2.cr > $W/req2.crlf
+run     /dd/CMDS/WN/wn -L /nil -l /nil < $W/req2.crlf
+expect  HTTP/1.0 200 OK
+expect  <h1>Served by OS-9</h1>
+absent  404
+
+# The security model, and it is the half worth testing: `index' EXISTS in
+# that directory and is readable, and must still be refused, because no
+# `File=' line names it.
+case    wn-refuses-a-file-that-exists-but-is-not-in-the-cache
+run     echo "GET /index HTTP/1.0" > $W/req3.cr
+run     echo "" >> $W/req3.cr
+run     /dd/CMDS/autolf -c -C -L < $W/req3.cr > $W/req3.crlf
+run     /dd/CMDS/WN/wn -L /nil -l /nil < $W/req3.crlf
+expect  HTTP/1.0 404 Access denied, or file does not exist
+absent  Served by OS-9
+
+case    wn-answers-404-for-a-file-that-is-not-there
+run     echo "GET /nosuchfile.html HTTP/1.0" > $W/req4.cr
+run     echo "" >> $W/req4.cr
+run     /dd/CMDS/autolf -c -C -L < $W/req4.cr > $W/req4.crlf
+run     /dd/CMDS/WN/wn -L /nil -l /nil < $W/req4.crlf
+expect  HTTP/1.0 404
+expect  Error code 404
+
+# wndex rebuilding the cache that ships. It must produce the same file, so
+# a reader who edits `index' can regenerate it -- and this is the case that
+# proves the shipped cache is the tool's own output and not handwritten.
+case    wndex-rebuilds-the-cache-that-ships
+run     /dd/CMDS/cp $R/index.cache $W/cache.keep
+run     /dd/CMDS/ksh -c "cd $R; /dd/CMDS/WN/wndex"
+run     /dd/CMDS/wc -c $R/index.cache $W/cache.keep
+run     /dd/CMDS/cat $R/index.cache
+expect  Wrote cache file ./index.cache
+expect  file=index.html&title=Served by OS-9&content=text/html
+expect  74 /dd/c/unid/wn_1.14.3/osk/index.cache
+expect  74 /dd/tmp/WEB/cache.keep
+expect  148 total
+
+# THE GENERAL FACT UNDER ALL OF THIS, and it is worth more than WN.
+# `wndex' works on the CURRENT directory and this disk had no way to give a
+# program one -- bash's cd is replaced by a string-tracking shim in
+# /dd/.bashrc, and sh's chd is real but sh cannot fork an absolute pathname.
+# ksh's cd is a real chdir(). That is the answer for every program here that
+# reads a file by bare name.
+case    ksh-cd-moves-the-os9-data-directory
+run     echo "the marker" > $W/marker.txt
+run     /dd/CMDS/ksh -c "cd $W; /dd/CMDS/cat marker.txt"
+expect  the marker
+
+# ...and sh's chd moves it too, but sh then cannot fork the program that
+# would use it. Both halves in one case, because either alone misleads.
+case    sh-chd-moves-it-too-but-sh-cannot-fork-an-absolute-path
+run     /dd/CMDS/sh -c "chd $W; /dd/CMDS/cat marker.txt"
+expect  file not found

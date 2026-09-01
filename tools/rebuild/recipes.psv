@@ -250,7 +250,7 @@ shuffle|shuffle|game.c main.c switch.c visual.c xrand.c ../unixlib/getopt.c|||
 
 # Added 2026-08-22. Each needs one source from SRC/unixlib copied in
 # beside the tree's own: the functions did not exist here until then.
-argproc_demo|argproc|argproc.c demo.c lose.c makeargv.c varargs.c ../unixlib/vsprintf.c ../unixlib/bcopy.c|||
+argproc_demo|argproc|argproc.c demo.c lose.c makeargv.c varargs.c ../unixlib/vsprintf.c ../unixlib/bcopy.c|MEM=64k||
 nobs|nobs|deal.c gamescore.c globs.c human.c logaux.c logglobs.c nobs.c os9rand48.c pegs.c play.c playscore.c progaux.c program.c show.c shuf.c version.c wglobs.c window.c ../unixlib/ctype.c|||
 hist|hist|h_edit.c h_expand.c h_main.c h_rw.c h_term.c|MCTERM||-V=/h6/hist
 

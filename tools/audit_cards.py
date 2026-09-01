@@ -125,7 +125,10 @@ def main(argv):
     # Listing them here rather than weakening the rule: a rule that stopped
     # noticing error-only screens would stop finding the ones that matter.
     fine = {"perr": "perr PRINTS error messages -- error text is its output",
-            "perr-print": "the same program, printing a wider range"}
+            "perr-print": "the same program, printing a wider range",
+            "csl-mismatch": "the card's SUBJECT is the csl edition skew -- "
+                            "four programs that stop before they start, and "
+                            "the message is the whole finding"}
     for f in sorted(os.listdir(CAPS)):
         if not f.endswith(".shot.txt"):
             continue

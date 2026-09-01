@@ -26,7 +26,7 @@ cap     as of 2026-08-31 -- /dd/USR/LIB/ELM/aliases.text and
 cap     /dd/.ELM/aliases.text -- so `newalias' compiles them (`-g' does the
 cap     system one) and `listalias' reads them back.  `messages' counts the
 cap     folder at /dd/SPOOL/MAIL/tester and `readmsg 1' prints the message
-cap     in it.  Until those files were here this card was a photograph of
+cap     in it.  Until those files were here this card showed only
 cap     `Couldn't open /dd/.ELM/aliases.text for input!'.
 cap     The `Error writing alias' the first newalias reports is real and it
 cap     is not fatal: the tables ARE written -- listalias reads both back on
@@ -72,7 +72,7 @@ cap     write for your own network and no collection can ship.  The other
 cap     three are on the `network' card; until 2026-08-29 these two cards
 cap     credited the same six programs between them and ran four.
 cap     `osknet' is last: it takes the session down behind it, so anything
-cap     asked for after it would photograph nothing.
+cap     asked for after it would capture nothing.
 run     finger
 wait    8
 run     net
@@ -150,13 +150,18 @@ wait    8
 shot    network
 size    36 80
 for     msntp atp infoxpress
-cap     The other three of the network set: `msntp' sets the clock from a
-cap     time server, `atp' is AppleTalk, and `infoxpress' opens a serial
-cap     device and waits -- it was filed as mute until 2026-08-29 and is
-cap     not.  Same missing /dd/startup.net as the `finger' card.
-run     msntp -?
-wait    8
+cap     The other three of the network set, each stopped by a different
+cap     thing.  `atp' is the AX.25 transport from the KA9Q packet-radio
+cap     package -- NOT AppleTalk, which this caption called it until
+cap     2026-09-01 -- and it names the configuration file it wants.
+cap     `msntp' would set the clock from a time server and never reaches
+cap     its own code: it was built against a later `csl' than the edition
+cap     16 this disk ships, so the runtime stops it first.  `infoxpress'
+cap     opens a serial device and waits; it was filed as mute until
+cap     2026-08-29 and is not.
 run     atp
+wait    8
+run     msntp
 wait    8
 run     infoxpress
 wait    10
@@ -350,22 +355,50 @@ run     input < /nil
 wait    8
 
 shot    wn
+size    40 80
 for     wn wndex authwn inetd inetdc
-cap     WN, a web server, and its indexer -- on a 68000 OS-9 disk.  It is
-cap     configured to be started by inetd, which is also here.
-cap     `authwn' is its authenticator and `inetd'/`inetdc' the superserver
-cap     and its control program; the three were credited here without ever
-cap     being typed until 2026-08-30.
-run     wn -V
+cap     WN SERVING A PAGE, on a 68000 OS-9 disk.  It is an inetd-style
+cap     server: one HTTP request on standard input, one response on
+cap     standard output -- so the request is built with `echo' and passed
+cap     through `autolf', because HTTP wants CRLF and this disk's echo
+cap     writes CR alone.  What comes back is a complete HTTP/1.0 200 with
+cap     Last-modified, Content-length and the page itself.
+cap     The site is /h0/c/unid/wn_1.14.3/osk, a path compiled into the
+cap     binary by whoever ported it, and it is on this disk -- so mount the
+cap     collection as /h0 as well as /dd.  `wndex' builds the index.cache
+cap     that WN will not serve without; it works on the CURRENT directory
+cap     and ignores a directory argument, which is why it is run through
+cap     ksh, whose `cd' moves the OS-9 data directory.
+cap     Until 2026-09-01 this card ran `wn -V' and showed `Unknown option
+cap     given to server' -- `-V' takes a virtual-host file -- and the four
+cap     programs asked for after it never ran at all.
+run     ksh -c "cd /h0/c/unid/wn_1.14.3/osk; wndex"
 wait    8
-run     wndex -?
+run     echo "GET /index.html HTTP/1.0" > /dd/tmp/rq
+wait    4
+run     echo "" >> /dd/tmp/rq
+wait    4
+run     autolf -c -C -L < /dd/tmp/rq > /dd/tmp/rq.crlf
+wait    5
+run     wn -L /nil -l /nil < /dd/tmp/rq.crlf
+wait    10
+
+shot    wn-helpers
+for     authwn inetd inetdc
+cap     The three programs that stand around WN.  `inetd' is the
+cap     superserver that would listen on a port and hand the connection to
+cap     it -- it opens /socket, which os9exec does not present, so it gets
+cap     as far as its own usage and no further.  `inetdc' is what inetd
+cap     forks per connection and `authwn' the authenticator for a
+cap     password-protected directory; neither has a word to say when
+cap     nothing called it.  All three were credited on the WN card for
+cap     months without ever being typed.
+run     inetd
 wait    8
-run     authwn -?
-wait    8
-run     inetd -?
-wait    8
-run     inetdc -?
-wait    8
+run     inetdc < /nil
+wait    6
+run     authwn < /nil
+wait    6
 
 shot    xmodem
 size    36 80
@@ -375,7 +408,7 @@ cap     terminal side of a file transfer over a serial line.  All five are
 cap     asked for here; two of them were only credited until 2026-08-29.
 cap     `xy' is asked for LAST and with -?: bare, it starts receiving and
 cap     waits for a sender that will never come, which takes the session
-cap     down and leaves nothing to photograph.
+cap     down and leaves nothing to capture.
 run     xydown
 wait    8
 run     xyt

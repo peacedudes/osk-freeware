@@ -1,0 +1,101 @@
+# news2 -- the questions news1 opened.
+#
+# WHAT news1 SETTLED:
+#   unsubscribe  WORKS.  `unsubscribe comp.os.os9' answers "Newsgroup
+#                comp.os.os9 is now unsubscribed." and turns `comp.os.os9: 1'
+#                into `comp.os.os9! 1' in .newsrc.  DOC/INDEX says it does
+#                NOT, and DOC/INDEX is wrong -- the earlier measurement used
+#                `comp.lang.c', which is not in .newsrc at all, and a group
+#                that is not there is silently left alone.
+#   AND IT HAS A FORMAT BUG OF ITS OWN.  For a group already unsubscribed it
+#                prints "Newsgroup  698140s already unsubscribed." -- the
+#                string in the binary is "Newsgroup % is already
+#                unsubscribed.", a `%' with no conversion letter, so the
+#                group name is consumed as a number.  That is the program's
+#                bug and it is worth pinning.
+#   expire       WORKS -- prints a full option list for an illegal option
+#   readnews     takes NO options: -l and -n both earn "Usage: readnews"
+#   newslock     wants TWO arguments, "tempname lockname"
+#
+# ASKED HERE: subscribe against a group that IS in .newsrc; rnews with the
+# byte count its own batch header needs; readnews bare; newslock with two
+# arguments; byteflip, whose stanza was cut short.
+
+family  news2
+
+setup   export USER=tester
+setup   export HOME=/dd
+setup   export LOGDIR=/dd/LOG
+setup   N=/dd/SPOOL/news
+setup   W=/dd/tmp/nw2
+setup   /dd/CMDS/mkdir -p $W > /nil 2>/nil
+
+drive   subscribe
+why     the pair of unsubscribe.  news1 left `comp.os.os9! 1' in .newsrc,
+why     so there is now a group to subscribe BACK.
+run     /dd/CMDS/cat /dd/.newsrc
+run     echo "--- subscribe the one news1 turned off:"
+run     /dd/CMDS/UUCP/subscribe comp.os.os9
+run     /dd/CMDS/cat /dd/.newsrc
+run     echo "--- and one that is not in .newsrc at all:"
+run     /dd/CMDS/UUCP/subscribe comp.lang.c
+run     /dd/CMDS/cat /dd/.newsrc
+run     echo "--- no argument:"
+run     /dd/CMDS/UUCP/subscribe
+run     echo "--- end subscribe"
+
+drive   unsubscribe-format-bug
+why     pin the `%' with no conversion letter: a group already unsubscribed
+why     produces a number where its name should be.
+run     /dd/CMDS/cat /dd/.newsrc
+run     echo "--- news.announce.newusers is already off:"
+run     /dd/CMDS/UUCP/unsubscribe news.announce.newusers
+run     echo "--- end unsubscribe-format-bug"
+
+drive   rnews
+why     news1 gave the batch header a byte count of 190 for a 176-byte
+why     article and nothing happened.  Use the real count.
+run     echo "Path: milkyway!seabass!batched" > $W/art.txt
+run     echo "From: batched@example.org (Batched)" >> $W/art.txt
+run     echo "Newsgroups: comp.os.os9" >> $W/art.txt
+run     echo "Subject: arrived by rnews" >> $W/art.txt
+run     echo "Message-ID: <3@example.org>" >> $W/art.txt
+run     echo "" >> $W/art.txt
+run     echo "This one came out of a batch." >> $W/art.txt
+run     /dd/CMDS/wc -c $W/art.txt
+run     echo "#! rnews 176" > $W/batch.txt
+run     /dd/CMDS/cat $W/batch.txt $W/art.txt > $W/feed.txt
+run     /dd/CMDS/UUCP/rnews < $W/feed.txt
+run     echo "--- spool now:"
+run     /dd/CMDS/ls $N/comp.os.os9
+run     echo "--- and with no batch header at all, a bare article:"
+run     /dd/CMDS/UUCP/rnews < $W/art.txt
+run     /dd/CMDS/ls $N/comp.os.os9
+run     echo "--- end rnews"
+
+drive   readnews
+why     it takes no options.  Bare, then, with a q to leave.
+run     echo "q" > $W/q.txt
+run     /dd/CMDS/UUCP/readnews < $W/q.txt
+run     echo "--- end readnews"
+
+drive   newslock
+why     "Usage: newslock tempname lockname" -- give it both, twice, and see
+why     whether the second call finds the lock taken.
+run     /dd/CMDS/NEWS/newslock $W/tmp.lk $W/news.lk
+run     echo "--- exit status was $?"
+run     /dd/CMDS/ls -l $W
+run     echo "--- ask again while it is held:"
+run     /dd/CMDS/NEWS/newslock $W/tmp2.lk $W/news.lk
+run     echo "--- exit status was $?"
+run     echo "--- end newslock"
+
+drive   byteflip
+why     its news1 stanza was cut short.  1882 bytes, no messages at all.
+run     echo "abcdefgh" > $W/flip.in
+run     /dd/CMDS/dump $W/flip.in
+run     echo "--- through it as a filter:"
+run     /dd/CMDS/NEWS/byteflip < $W/flip.in > $W/flip.out
+run     /dd/CMDS/wc -c $W/flip.out
+run     /dd/CMDS/dump $W/flip.out
+run     echo "--- end byteflip"

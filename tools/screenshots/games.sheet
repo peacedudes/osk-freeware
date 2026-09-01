@@ -249,7 +249,7 @@ cap     parameter: the time step, the z magnification and offset, then
 cap     Lorenz's own a, b and c -- 10, 28 and 8/3 here, the values that
 cap     make the butterfly.  What it draws with is TEKTRONIX vector codes,
 cap     so on a vt100 the picture arrives as characters; the dialogue is
-cap     the part worth photographing.
+cap     the part worth capturing.
 run     lorenz3d
 wait    4
 send    0.01\r

@@ -1,0 +1,136 @@
+family  mail2
+# The mail programs that had neither a test nor a card before 2026-09-01.
+# `mail.cases' covers Elm's readers; this covers the delivery and helper
+# side -- UUCP's, and the three Elm tools that are not readers.
+#
+# TWO THINGS HERE ARE DISK FIXES, not just measurements:
+#
+#   /dd/SPOOL/uucp/seabass NOW SHIPS.  Every UUCP tool queues work in
+#   <spooldir>/<sitename>, and /dd/SYS/UUCP/Parameters names the smart host
+#   `seabass' three times over (uucphost, inhost, newshost). The directory
+#   was not there, so `rmail nowhere!somebody' and `postnews' both stopped
+#   with "can't change to spool directory: seabass...error #216". With it,
+#   rmail queues a complete UUCP job.
+#
+#   `load' IS THE ANSWER TO A BARE-NAME FORK.  `printmail' forks `readmsg'
+#   by bare name, and OS-9 resolves a bare-name fork against the EXECUTION
+#   directory, never against PATH -- so printmail was silent from anywhere
+#   but /dd/CMDS/ELM. A RESIDENT module is found by name with no directory
+#   search at all, so one `load' fixes it wherever you are.
+
+setup   export USER=tester
+setup   export LOGNAME=tester
+setup   export HOME=/dd
+setup   export LOGDIR=/dd/LOG
+setup   M=/dd/SPOOL/MAIL/tester
+setup   export MAIL=$M
+setup   W=/dd/tmp/M2
+setup   /dd/CMDS/mkdir -p $W > /nil 2>/nil
+setup   echo "Subject: a test message" > $W/msg.txt
+setup   echo "" >> $W/msg.txt
+setup   echo "Body of the message." >> $W/msg.txt
+
+# THE CASE THAT MATTERS MOST HERE. Without the `load' it prints nothing at
+# all, and printing nothing is what its DOC/INDEX line used to record.
+case    printmail-works-once-readmsg-is-resident
+run     /dd/CMDS/load /dd/CMDS/ELM/readmsg
+run     /dd/CMDS/ELM/printmail 1
+expect  Subject: Welcome -- this is a real mail folder
+expect  Elm reads mail from a folder
+
+# rmail queues a real UUCP job for a remote address: a C. command file, a
+# D. data file, and a D. file carrying the local system's name. The
+# trailing digits are a sequence number, so only the stems are asserted.
+case    rmail-queues-a-uucp-job-for-a-remote-address
+run     /dd/CMDS/UUCP/rmail "nowhere!somebody" < $W/msg.txt
+run     /dd/CMDS/ls /dd/SPOOL/uucp/seabass
+expect  C.seabass
+expect  D.seabass
+expect  D.milkywa
+
+# KNOWN DEFECT, measured 2026-09-01 and pinned so it is not "fixed" back to
+# the hopeful version. rmail cannot deliver LOCALLY here: it builds
+# <mailbox>/<user> and the mailbox is a file, so it gets a not-a-directory
+# error. It does this with MAIL set and with MAIL unset alike, so it is not
+# the environment. The folder is untouched, which is the half that matters.
+case    rmail-cannot-deliver-locally-and-leaves-the-folder-alone
+run     /dd/CMDS/wc -c $M
+run     /dd/CMDS/UUCP/rmail tester < $W/msg.txt
+run     /dd/CMDS/wc -c $M
+expect  can't change to mailbox: /dd/SPOOL/MAIL/tester/tester
+expect  804 /dd/SPOOL/MAIL/tester
+
+# uupoll's whole job is to leave a POLL file in the queue for a site, and
+# it does it in silence -- which is why it read as broken. The grade letter
+# goes into the name: no -g is `A', `-gZ' is `Z'.
+case    uupoll-queues-a-poll-file-and-the-grade-is-in-its-name
+run     /dd/CMDS/UUCP/uupoll nowhere
+run     /dd/CMDS/UUCP/uupoll -gZ nowhere
+run     /dd/CMDS/ls /dd/SPOOL/uucp/nowhere
+expect  C.nowhereAPOLL
+expect  C.nowhereZPOLL
+
+# makedb builds smail's path-alias dbm from the palias that ships. A dbm is
+# a .dir/.pag pair and the .dir of a small table is legitimately empty, so
+# the .pag is what proves work was done.
+case    makedb-builds-a-dbm-pair-from-the-shipped-palias
+run     /dd/CMDS/UUCP/makedb -o $W/pal /dd/USR/LIB/SMAIL/palias
+run     /dd/CMDS/ls $W
+run     /dd/CMDS/wc -c $W/pal.pag
+expect  pal.dir
+expect  pal.pag
+expect  1024 /dd/tmp/M2/pal.pag
+
+# nptx is smail's full-name permuter and its input format was unknown until
+# 2026-09-01: <full name> TAB <login>, one per line. It answers with the
+# pair reversed. ANY other shape earns `format error: <the line>' -- which
+# is what an address list, a bare name and the password file all get, and
+# is how it came to be described as "expand a mail alias list".
+case    nptx-takes-a-name-and-a-login-separated-by-a-tab
+run     /dd/CMDS/printf '%s\r' "John Q Public	tester" > $W/n1.txt
+run     /dd/CMDS/UUCP/nptx < $W/n1.txt
+expect  tester	John Q Public
+
+case    nptx-calls-anything-else-a-format-error
+run     echo "a@b" > $W/n2.txt
+run     echo "John Q Public" >> $W/n2.txt
+run     /dd/CMDS/UUCP/nptx < $W/n2.txt
+expect  format error: a@b
+expect  format error: John Q Public
+
+# read_mail is not vi's helper and not part of Elm: it has a mail directory
+# of its own, /dd/MAIL/mail_<user>, and quotes what it finds.
+case    read_mail-quotes-the-folder-and-N-leaves-it-alone
+run     /dd/CMDS/cat $M > /dd/MAIL/mail_tester
+run     echo "N" > $W/n.txt
+run     /dd/CMDS/read_mail < $W/n.txt
+run     /dd/CMDS/wc -c /dd/MAIL/mail_tester
+expect  > Subject: Welcome -- this is a real mail folder
+expect  [L]ist again ,  e[X]it & delete mail ,  exit & [N]ot delete
+expect  804 /dd/MAIL/mail_tester
+
+# Given a folder it can read, philmail goes straight to composing a reply
+# and names the file it opened. The paragraph of instructions is what `-?'
+# earns, and asserting both in one case fails against a working program.
+case    philmail-opens-a-reply-file-for-the-folder-it-is-given
+run     echo "n" > $W/no.txt
+run     echo "q" >> $W/no.txt
+run     /dd/CMDS/UUCP/philmail $M < $W/no.txt
+expect  Successfully opened
+expect  for reply
+expect  Input body of message now.
+
+case    philmail-explains-itself-when-asked
+run     /dd/CMDS/UUCP/philmail -?
+expect  is an off-line mail reader for UNIX mail
+expect  this version can only handle 50 messages
+
+# checkalias answers NOTHING for an alias that exists and nothing for one
+# that does not -- `listalias' is the tool that answers. Pinned as a defect,
+# with the usage line proving the program ran at all.
+case    checkalias-prints-nothing-either-way
+run     /dd/CMDS/ELM/checkalias os9
+run     /dd/CMDS/ELM/checkalias nosuchalias
+run     /dd/CMDS/ELM/checkalias
+expect  Usage: checkalias alias [alias ...]
+absent  os9-freeware

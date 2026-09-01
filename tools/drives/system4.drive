@@ -1,0 +1,148 @@
+# system4 -- the System & modules programs that still have neither a test
+# nor a card, plus the two vi crash-recovery helpers, driven with the
+# arguments their own strings ask for.
+#
+# Ordered SAFEST FIRST.  The last four take over the screen or change the
+# system clock, and a stanza that wedges costs the whole timeout.
+# `break' and `cron' are NOT here: break invokes the system-level debugger
+# and cron is a daemon.  They are in `system5.drive', two stanzas and a
+# short timeout, because each is expected to end the session.
+#
+# Paths read out of the binaries:
+#   expreserve  /dd/PRESERVE/Exaa..., and mails the owner at /dd/MAIL/mail_<user>
+#   exrecover   /dd/PRESERVE
+#   testibc     /dd/sys/errmsg.ibc
+#   mvolformat  forks `format'; prompts "Hit RETURN when drive ready:"
+#   suspend     refuses unless super-user AND not run from a terminal path
+#   new_e       SEDT: SedtKeys/SedtHelp/SedtRuler0 -> sys/sedt.*
+
+family  system4
+
+setup   export USER=tester
+setup   W=/dd/tmp/s4
+setup   /dd/CMDS/mkdir -p $W > /nil 2>/nil
+
+drive   exrecover
+why     vi's "recover a saved buffer" half.  It reads /dd/PRESERVE, which
+why     is NOT on this disk -- so find out whether it says so.
+run     /dd/CMDS/exrecover
+run     echo "--- named, with no PRESERVE directory:"
+run     /dd/CMDS/exrecover -r /dd/tmp/nothing
+run     echo "--- now make the directory it wants and ask again:"
+run     /dd/CMDS/mkdir -p /dd/PRESERVE > /nil 2>/nil
+run     /dd/CMDS/ls /dd/PRESERVE
+run     /dd/CMDS/exrecover -r /dd/tmp/nothing
+run     echo "--- end exrecover"
+
+drive   expreserve
+why     the other half: it saves an editor buffer into /dd/PRESERVE and
+why     mails the owner about it.  Feed it a buffer on standard input.
+run     echo "one line of an editor buffer" > $W/buf.txt
+run     /dd/CMDS/expreserve < $W/buf.txt
+run     echo "--- what landed in PRESERVE:"
+run     /dd/CMDS/ls -l /dd/PRESERVE
+run     echo "--- and what exrecover makes of it:"
+run     /dd/CMDS/exrecover
+run     echo "--- end expreserve"
+
+drive   t_trtest
+why     the RICO trap-handler test.  It prompts `line (or .):' -- so it
+why     wants lines, and a bare `.' to stop.  Give it three.
+run     echo "first line" > $W/t.txt
+run     echo "second line" >> $W/t.txt
+run     echo "." >> $W/t.txt
+run     /dd/CMDS/t_trtest < $W/t.txt
+run     echo "--- end t_trtest"
+
+drive   testibc
+why     it wants /dd/sys/errmsg.ibc, reports E_??? for error 9, then asks
+why     `Timeout time (1/10 Sec)?'.  Answer it and see how far it gets.
+run     echo "10" > $W/ibc.txt
+run     echo "" >> $W/ibc.txt
+run     echo "" >> $W/ibc.txt
+run     /dd/CMDS/testibc < $W/ibc.txt
+run     echo "--- end testibc"
+
+drive   ub68020demo
+why     it prints a UniBasic banner and then wants a program.  Confirm the
+why     banner, which is the only thing this demo build will ever do.
+run     /dd/CMDS/DEMOS/ub68020demo < /nil
+run     echo "--- end ub68020demo"
+
+drive   pri
+why     "change a process's priority".  Ask procs for a real ID first, then
+why     change it and ask again, so the change is visible rather than assumed.
+run     /dd/CMDS/procs
+run     echo "--- raise process 2 to 200:"
+run     /dd/CMDS/pri 2 200
+run     /dd/CMDS/procs
+run     echo "--- and an ID that does not exist:"
+run     /dd/CMDS/pri 99 200
+run     echo "--- and no arguments at all:"
+run     /dd/CMDS/pri
+run     echo "--- end pri"
+
+drive   mvolformat
+why     it formats a SET of floppies by forking `format'.  There is no
+why     floppy device here, so the honest question is what it says when the
+why     drive it is given does not exist.
+run     /dd/CMDS/mvolformat
+run     echo "--- with a drive that is not here:"
+run     /dd/CMDS/mvolformat /d0 SET 2 < /nil
+run     echo "--- end mvolformat"
+
+drive   suspend
+why     "removes the process from the system", super-user only, and it
+why     refuses to run from certain paths.  Ask for its explanation and
+why     give it a process name that does not exist.
+run     /dd/CMDS/suspend -?
+run     echo "--- a process name that is not running:"
+run     /dd/CMDS/suspend nosuchprocess
+run     echo "--- end suspend"
+
+drive   setime
+why     "Set system time (prompts YYMMDDHHMMSS)".  Show the clock, set it,
+why     show it again.  LATE IN THE SHEET on purpose: everything written
+why     after this carries the new date.
+run     /dd/CMDS/date -t
+run     echo "--- set it to 1 September 2026, 12:00:00:"
+run     echo "260901120000" > $W/time.txt
+run     /dd/CMDS/setime < $W/time.txt
+run     /dd/CMDS/date -t
+run     echo "--- and on the command line.  The OS-9 utility takes six"
+run     echo "--- separate fields, y m d h m s -- not the packed string:"
+run     /dd/CMDS/setime 26 09 01 13 00 00
+run     /dd/CMDS/date -t
+run     echo "--- the packed form on the command line, for comparison:"
+run     /dd/CMDS/setime 260901140000
+run     /dd/CMDS/date -t
+run     echo "--- end setime"
+
+drive   new_e
+why     SEDT for a generic terminal.  It takes over the screen, so the
+why     useful question is what it does with a file and an immediate
+why     abort -- and whether it finds sys/sedt.ruler0 and sedt.keys.
+run     /dd/CMDS/cat /dd/SYS/motd > $W/edit.txt
+run     echo "Y" > $W/quit.txt
+run     /dd/CMDS/new_e $W/edit.txt < $W/quit.txt
+run     echo "--- did it change the file?"
+run     /dd/CMDS/wc -c $W/edit.txt /dd/SYS/motd
+run     echo "--- end new_e"
+
+drive   ynad
+why     Yet Another Name & Address.  It asks for a filesystem name, then
+why     draws a form.  Give it a name and quit straight away, and see
+why     whether it creates the files it says it will.
+run     echo "$W/book" > $W/ynad.txt
+run     echo "Q" >> $W/ynad.txt
+run     /dd/CMDS/ynad < $W/ynad.txt
+run     echo "--- what it created:"
+run     /dd/CMDS/ls -l $W
+run     echo "--- end ynad"
+
+drive   umusek
+why     a music editor that wants a screen address.  Bare, and with -?.
+run     /dd/CMDS/umusek -? < /nil
+run     echo "--- bare:"
+run     /dd/CMDS/umusek < /nil
+run     echo "--- end umusek"

@@ -1,0 +1,100 @@
+# web2b -- get WN to serve a 200 instead of a 404, and settle how `wndex'
+# is supposed to be run at all.
+#
+# WHAT web1 SETTLED.  `wn' IS A WORKING HTTP SERVER.  Handed one request on
+# standard input it returns a complete, well-formed HTTP/1.0 response --
+# status line, Server, Date, Content-length, Content-type, and an HTML body.
+# The card for it currently shows `Unknown option given to server', which is
+# what `wn -V' earns; this is a great deal better.
+#
+# WHY IT WAS A 404.  WN serves nothing that is not named in an `index.cache'
+# file, and `wndex' builds that from an `index' file -- IN THE CURRENT
+# DIRECTORY.  Given a directory as an argument it ignored it and reported
+# `Can't open ./index -- skipping it'.  So the whole question is how to give
+# a program a different DATA directory on this disk, where bash's `cd' does
+# not move it.
+#
+# THREE CANDIDATES, in the order they are worth trying:
+#   1. ksh's `cd'.  bash's is replaced by a string-tracking shim in
+#      /dd/.bashrc; ksh has no such shim, so its cd should reach chdir()
+#      and I$ChgDir.  If this works it is the answer to a whole class of
+#      problem here, not just this one.
+#   2. `load' the module, then `sh -c "chd <dir>; wndex"'.  sh has a real
+#      chd and cannot fork an absolute pathname -- but a RESIDENT module is
+#      found by name with no directory search at all, which is exactly the
+#      hole in sh that `load' fills.
+#   3. Put the site at the data directory that already exists.
+
+family  web2b
+
+setup   W=/dd/tmp/wn2
+setup   /dd/CMDS/mkdir -p $W > /nil 2>/nil
+setup   echo "Owner=mailto:nobody@example.org" > $W/index
+setup   echo "" >> $W/index
+setup   echo "File=hello.html" >> $W/index
+setup   echo "Title=Hello from WN" >> $W/index
+setup   echo "" >> $W/index
+setup   echo "File=plain.txt" >> $W/index
+setup   echo "Title=A plain text file" >> $W/index
+setup   echo "<html><head><title>Hello from WN</title></head>" > $W/hello.html
+setup   echo "<body><h1>It serves</h1></body></html>" >> $W/hello.html
+setup   echo "a plain text file served by WN" > $W/plain.txt
+
+drive   wndex-under-ksh
+why     ksh has no .bashrc shim over its cd, so its cd should be a real
+why     chdir() and move the OS-9 data directory.  If it does, wndex runs
+why     where it needs to and index.cache appears.
+run     /dd/CMDS/ksh -c "cd $W; /dd/CMDS/WN/wndex"
+run     echo "--- is index.cache there?"
+run     /dd/CMDS/ls -l $W
+run     echo "--- end wndex-under-ksh"
+
+drive   wndex-loaded-then-sh
+why     the other route: a RESIDENT module is forked by name with no
+why     directory search, which is the one thing sh can do.
+run     /dd/CMDS/load /dd/CMDS/WN/wndex
+run     /dd/CMDS/mdir
+run     /dd/CMDS/sh -c "chd $W; wndex"
+run     echo "--- is index.cache there now?"
+run     /dd/CMDS/ls -l $W
+run     echo "--- end wndex-loaded-then-sh"
+
+drive   wn-serves-two-hundred
+why     with index.cache built, the same request that gave 404 should give
+why     200 and the file itself.
+run     export WN_ROOT=$W
+run     echo "GET /hello.html HTTP/1.0" > $W/req.cr
+run     echo "" >> $W/req.cr
+run     /dd/CMDS/autolf -c -C -L < $W/req.cr > $W/req.crlf
+run     /dd/CMDS/WN/wn -L /nil -l /nil < $W/req.crlf
+run     echo "--- and the plain text file:"
+run     echo "GET /plain.txt HTTP/1.0" > $W/req2.cr
+run     echo "" >> $W/req2.cr
+run     /dd/CMDS/autolf -c -C -L < $W/req2.cr > $W/req2.crlf
+run     /dd/CMDS/WN/wn -L /nil -l /nil < $W/req2.crlf
+run     echo "--- end wn-serves-two-hundred"
+
+drive   wn-still-refuses-the-index-file
+why     the security model: `index' itself is not named in index.cache, so
+why     it must still be refused even now that the cache exists.
+run     export WN_ROOT=$W
+run     echo "GET /index HTTP/1.0" > $W/req3.cr
+run     echo "" >> $W/req3.cr
+run     /dd/CMDS/autolf -c -C -L < $W/req3.cr > $W/req3.crlf
+run     /dd/CMDS/WN/wn -L /nil -l /nil < $W/req3.crlf
+run     echo "--- end wn-still-refuses-the-index-file"
+
+drive   ksh-cd-moves-the-data-directory
+why     if stanza one worked this is why, and it is worth pinning on its
+why     own: it would be the answer for every program on this disk that
+why     reads a file by BARE NAME.
+run     echo "--- a file only reachable by bare name from $W:"
+run     echo "the marker" > $W/marker.txt
+run     echo "--- bash cd, then cat by bare name:"
+run     cd $W
+run     /dd/CMDS/cat marker.txt
+run     echo "--- ksh cd, then cat by bare name:"
+run     /dd/CMDS/ksh -c "cd $W; /dd/CMDS/cat marker.txt"
+run     echo "--- sh chd, then cat by bare name:"
+run     /dd/CMDS/sh -c "chd $W; /dd/CMDS/cat marker.txt"
+run     echo "--- end ksh-cd-moves-the-data-directory"

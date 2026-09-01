@@ -1,0 +1,156 @@
+# news1 -- the news set, against a news spool that has something in it.
+#
+# THE POINT OF THIS SHEET.  Every one of these programs reads `newsdir'
+# out of /dd/SYS/UUCP/Parameters, which says /dd/SPOOL/news -- and that
+# directory ships with nothing but a README.  So "readnews says there is no
+# news" has never been a measurement of readnews; it is a measurement of an
+# empty spool.  This builds a real one first, two articles in a group that
+# is already in `active' and in `.newsrc', and only then asks.
+#
+# If the answers are good the spool itself should ship, the way the Elm
+# alias files now do.
+#
+# Read out of the binaries:
+#   readnews    newsdir, .newsrc, .oldnewsrc, /DD/SYS/UUCP/newshelp,
+#               "Unread news in %-25s %4d articles", forks `mailx'
+#   postnews    newsdir, spooldir, /DD/SYS/UUCP/sequence.news, <active>
+#   rnews       newsdir, LOGDIR, "#! cunbatch", forks `compress'
+#   expire      newsdir, "you are not the superuser!", <spooldir>/uulog
+#   unsubscribe $HOME/.newsrc, "Newsgroup %s is now unsubscribed."
+#   newslock    no message strings at all -- 4756 bytes of lock helper
+#   byteflip    no message strings at all -- 1882 bytes
+
+family  news1
+
+setup   export USER=tester
+setup   export LOGNAME=tester
+setup   export HOME=/dd
+setup   export LOGDIR=/dd/LOG
+setup   N=/dd/SPOOL/news
+setup   W=/dd/tmp/nw
+setup   /dd/CMDS/mkdir -p $W > /nil 2>/nil
+setup   /dd/CMDS/mkdir -p $N/comp.os.os9 > /nil 2>/nil
+
+drive   spool-setup
+why     build two real articles first, so every stanza after this one is
+why     asking about the programs and not about an empty directory.
+run     echo "Path: milkyway!seabass!poster" > $N/comp.os.os9/1
+run     echo "From: poster@example.org (A Poster)" >> $N/comp.os.os9/1
+run     echo "Newsgroups: comp.os.os9" >> $N/comp.os.os9/1
+run     echo "Subject: OS-9 freeware collection" >> $N/comp.os.os9/1
+run     echo "Message-ID: <1@example.org>" >> $N/comp.os.os9/1
+run     echo "Date: 1 Sep 2026 12:00:00 GMT" >> $N/comp.os.os9/1
+run     echo "" >> $N/comp.os.os9/1
+run     echo "The first article in this spool." >> $N/comp.os.os9/1
+run     echo "Path: milkyway!seabass!other" > $N/comp.os.os9/2
+run     echo "From: other@example.org (Another Poster)" >> $N/comp.os.os9/2
+run     echo "Newsgroups: comp.os.os9" >> $N/comp.os.os9/2
+run     echo "Subject: Re: OS-9 freeware collection" >> $N/comp.os.os9/2
+run     echo "Message-ID: <2@example.org>" >> $N/comp.os.os9/2
+run     echo "Date: 1 Sep 2026 13:00:00 GMT" >> $N/comp.os.os9/2
+run     echo "" >> $N/comp.os.os9/2
+run     echo "The second article, a follow-up." >> $N/comp.os.os9/2
+run     /dd/CMDS/ls -l $N/comp.os.os9
+run     /dd/CMDS/cat $N/comp.os.os9/1
+
+drive   readnews
+why     with two articles in a subscribed group, does it find them?  The
+why     .newsrc that ships says `comp.os.os9: 1', so article 2 is unread.
+run     /dd/CMDS/cat /dd/.newsrc
+run     echo "--- what is unread (-l lists groups, if it has one):"
+run     echo "q" > $W/q.txt
+run     /dd/CMDS/UUCP/readnews -l < $W/q.txt
+run     echo "--- and reading, quitting at the first prompt:"
+run     /dd/CMDS/UUCP/readnews -n comp.os.os9 < $W/q.txt
+run     echo "--- end readnews"
+
+drive   rnews
+why     unpack an incoming batch.  A plain batch is `#! rnews <count>'
+why     followed by that many bytes of article.  Give it one and see
+why     whether an article appears in the spool.
+run     echo "Path: milkyway!seabass!batched" > $W/art.txt
+run     echo "From: batched@example.org (Batched)" >> $W/art.txt
+run     echo "Newsgroups: comp.os.os9" >> $W/art.txt
+run     echo "Subject: arrived by rnews" >> $W/art.txt
+run     echo "Message-ID: <3@example.org>" >> $W/art.txt
+run     echo "" >> $W/art.txt
+run     echo "This one came out of a batch." >> $W/art.txt
+run     /dd/CMDS/wc -c $W/art.txt
+run     echo "--- build the batch header from that size, then feed it in:"
+run     echo "#! rnews 190" > $W/batch.txt
+run     /dd/CMDS/cat $W/batch.txt $W/art.txt > $W/feed.txt
+run     /dd/CMDS/UUCP/rnews < $W/feed.txt
+run     echo "--- spool now:"
+run     /dd/CMDS/ls $N/comp.os.os9
+run     echo "--- end rnews"
+
+drive   postnews
+why     post an article.  It wants a user in the password file (tester is
+why     there), a newsgroup in `active' (comp.os.os9 is), and it keeps a
+why     counter in /DD/SYS/UUCP/sequence.news.
+run     echo "comp.os.os9" > $W/post.txt
+run     echo "A posted article" >> $W/post.txt
+run     echo "" >> $W/post.txt
+run     echo "Posted by postnews." >> $W/post.txt
+run     echo "." >> $W/post.txt
+run     /dd/CMDS/UUCP/postnews < $W/post.txt
+run     echo "--- spool and sequence file:"
+run     /dd/CMDS/ls $N/comp.os.os9
+run     /dd/CMDS/ls /dd/SPOOL/uucp
+run     echo "--- end postnews"
+
+drive   expire
+why     "expiring articles over %d days old", superuser only.  With two
+why     articles dated today, -n should report rather than delete; ask it
+why     for a huge age and then for zero.
+run     /dd/CMDS/UUCP/expire -n comp.os.os9
+run     echo "--- everything older than 1000 days (nothing):"
+run     /dd/CMDS/UUCP/expire -e 1000 comp.os.os9
+run     /dd/CMDS/ls $N/comp.os.os9
+run     echo "--- and its own usage:"
+run     /dd/CMDS/UUCP/expire -?
+run     echo "--- end expire"
+
+drive   unsubscribe
+why     it prints "Newsgroup %s is now unsubscribed." and "%s is already
+why     unsubscribed".  Neither has ever been seen.  Try a group that IS in
+why     .newsrc, one that is already off, and one that is not there at all.
+run     /dd/CMDS/cat /dd/.newsrc
+run     echo "--- one that is subscribed:"
+run     /dd/CMDS/UUCP/unsubscribe comp.os.os9
+run     /dd/CMDS/cat /dd/.newsrc
+run     echo "--- one that is already unsubscribed:"
+run     /dd/CMDS/UUCP/unsubscribe news.announce.newusers
+run     echo "--- one that is not in .newsrc at all:"
+run     /dd/CMDS/UUCP/unsubscribe comp.lang.c
+run     /dd/CMDS/cat /dd/.newsrc
+run     echo "--- no argument, which should give the usage:"
+run     /dd/CMDS/UUCP/unsubscribe
+run     echo "--- end unsubscribe"
+
+drive   newslock
+why     4756 bytes with no message strings.  It is the news system's lock,
+why     so the question is what file it makes and whether a second call
+why     finds it taken.
+run     /dd/CMDS/NEWS/newslock $W/lock1
+run     echo "--- exit status was $?"
+run     /dd/CMDS/ls -l $W
+run     echo "--- ask for the same lock again:"
+run     /dd/CMDS/NEWS/newslock $W/lock1
+run     echo "--- exit status was $?"
+run     echo "--- with no argument:"
+run     /dd/CMDS/NEWS/newslock
+run     echo "--- end newslock"
+
+drive   byteflip
+why     1882 bytes with no message strings, in the news directory.  Give it
+why     a known run of bytes and dump what comes back -- the name says the
+why     answer should be visible in the dump.
+run     echo "abcdefgh" > $W/flip.in
+run     /dd/CMDS/dump $W/flip.in
+run     echo "--- through byteflip, to a file:"
+run     /dd/CMDS/NEWS/byteflip < $W/flip.in > $W/flip.out
+run     /dd/CMDS/dump $W/flip.out
+run     echo "--- and as an argument rather than a filter:"
+run     /dd/CMDS/NEWS/byteflip $W/flip.in
+run     echo "--- end byteflip"

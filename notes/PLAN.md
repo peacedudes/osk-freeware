@@ -217,16 +217,18 @@ wants exactly one file.
 
 Families still needing one, roughly in order of how many people care:
 
-- **shells** — bash, sh, ksh, gshell, mshell. Which is the one to take?
-  **Settle one thing before writing this one.** `CLAUDE.md` records that
-  bash's `cd` does not move the OS-9 data directory, which is why a program
-  reading a bare filename cannot be tested from a script. On 2026-08-31, as a
-  bare boot program on a HOST-DIRECTORY /dd, `bash -c 'cd /dd/SYS; cat motd'`
-  and the same line under `ksh` BOTH found the file. That is a different
-  setup from the recorded one — no `.bashrc` shim loaded, and not an RBF
-  image — so it does not overturn anything, but the chooser document cannot
-  be written until it is resolved on the shipped image, both with and without
-  `/dd/.bashrc`. Do that first; the answer decides the recommendation.
+- **shells** — bash, sh, ksh, gshell, mshell. `DOC/README-SHELLS` exists;
+  what was blocking it is now SETTLED (2026-09-01, on the shipped RBF image):
+
+  **`ksh -c "cd <dir>; <prog>"` moves the OS-9 data directory.** That is the
+  recommendation for anyone who needs to run a program somewhere — and there
+  are real programs that need it, `wndex` being the clear one, since it works
+  on the current directory and ignores a directory argument. `sh`'s `chd`
+  moves it too but `sh` cannot fork an absolute pathname, so `sh` needs the
+  program `load`ed first. bash's `cd` is real in a SCRIPT (a non-interactive
+  bash never reads `.bashrc`) and a string-tracking shim INTERACTIVELY, which
+  is why this looked settled both ways for a fortnight. Asserted in
+  `tools/datatests/web.cases`, both halves.
 
   Static facts already gathered: bash 242604 (no cio, module `bash`), sh 77306
   (no cio), ksh 118554 (needs cio), gshell 23114 (no cio), mshell 7228 (needs
@@ -365,6 +367,44 @@ Nothing. The four questions on `notes/FOR-RDOGGETT.md` were answered on
   `pagekwic`, `pagefraz`. All trap-free, all unstarred, all asserted in
   `tools/datatests/cio11.cases`. `relink_cio.sh` now refuses a program with a
   putc/getc call site rather than reporting one.
+
+- **AND THEN THE OTHER TWENTY-NINE WERE RUN, and twenty-four were fine.**
+  This is the more useful half. `cio_macro_scan.py` still named twenty-nine
+  programs after the eleven left, every one of them with a recipe already in
+  `tools/rebuild/recipes.psv`. All twenty-nine were rebuilt `-qm` — and then,
+  before installing any of them, all twenty-nine of the SHIPPED binaries were
+  run with real arguments against real files (`tools/drives/cio29.drive`,
+  then `cio29b.drive` for the seven whose first answer was the sheet's fault
+  rather than the program's).
+
+  **Five were broken and are now replaced**: `printf`, `valspeak`, `unifdef`,
+  `ape`, `hexed` — asserted in `tools/datatests/cio5.cases`, each case made
+  to fail against the binary it replaced before it was believed. The star
+  grid went 354 to 349.
+
+  **`setfont` looked like a sixth and is not.** It writes no byte for a real
+  font file — to `/term`, to `$PORT`, or to a file `$PORT` names — and never
+  reaches its own `Can't open` message. It was rebuilt, installed, and then
+  TAKEN BACK OUT, because the `-qm` build does exactly the same thing. **A
+  rebuild that changes nothing is the cheap way to rule the mismatch out**,
+  and it is worth doing before replacing an archive binary with one of ours.
+
+  **The other twenty-three do their work correctly** — `ascii` writes its
+  whole 4,290-byte table, `loan` prints a full amortisation schedule, `diff`
+  and `spiff` both diff, `strfile`, `makelex`, `crypto`, `snap`, `vis`, `lp`,
+  `undel`, `dam`, `sedt`, `wish`, `rpoem`, `newsgen`, `blackjak`, `poker`,
+  `stone`, `tess`, `liborder`, `unpacklib`, `chksum`. **Carrying the call
+  site is not making the call**, and the scan's own header says so; this is
+  the measurement that shows how loose the upper bound is.
+
+- **`printf` mattered more than its own entry.** It dropped every literal
+  character before the first conversion, so a format with NO conversion wrote
+  a **zero-byte file** — and seven committed drive sheets built their input
+  that way (`misc1`, `misc2`, `misc3`, `rcs`, `rcs2`, `rcs3`, `rcs4`, and
+  `mail2`, which is how `nptx` came to be recorded as silent). Those sheets
+  were measuring their own setup. `mail2.drive` is corrected; the rest are
+  worth re-running now that printf works. **Write a sheet's input with bash's
+  `echo`, or with `printf '%s\r'` — never with a format that has no `%`.**
 - **`No more memory` has three causes, not one.** The cio selector mismatch
   (41, now 30); an ADDRESS used as a length (`lfmaker`, proved by the request
   moving with an environment pad, and only once the module is resident); and
