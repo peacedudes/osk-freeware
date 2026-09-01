@@ -1,0 +1,12 @@
+# xrf -- with its language table where it looks for it.
+
+family  xrf
+
+drive   with-the-table
+run     /dd/CMDS/cp /dd/DOC/xrf/c.xrf /dd/C.XRF
+run     /dd/CMDS/cp /dd/SRC/misc/cvtbase.c /dd/x.c
+run     /dd/CMDS/xrf x.c
+run     echo "--- what it wrote:"
+run     /dd/CMDS/ls /dd/x.xrf
+run     /dd/CMDS/head -n 12 /dd/x.xrf
+run     echo "--- end"

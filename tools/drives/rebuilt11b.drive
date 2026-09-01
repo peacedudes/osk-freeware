@@ -1,0 +1,31 @@
+# rebuilt11b -- the four of the eleven whose first drive did not settle them.
+
+family  rebuilt11b
+
+setup   N=/dd/tmp/NEW
+
+drive   cvtbase
+why     its arguments are BASE NAMES and the number comes on standard input
+run     $N/cvtbase
+run     echo "--- 255 decimal to hex, on stdin:"
+run     echo 255 > /dd/tmp/n.in
+run     $N/cvtbase d h < /dd/tmp/n.in
+run     echo "--- and to binary:"
+run     $N/cvtbase d b < /dd/tmp/n.in
+run     echo "--- end"
+
+drive   nroff
+why     silent on a one-line file.  Give it a real roff source.
+run     $N/nroff /dd/DOC/mtools/mdel.1
+run     echo "--- end nroff"
+
+drive   xrf
+why     "Cannot open Language Table file: C.XRF" -- is it anywhere?
+run     /dd/CMDS/find /dd/SRC/eff_xrf -print
+run     echo "--- end"
+
+drive   logisim
+why     the second watched storm.  Run it on a circuit that ships.
+run     /dd/CMDS/cp /dd/DOC/logisim/counter.lsi /dd/counter.lsi
+run     $N/logisim counter.lsi
+run     echo "--- end logisim"

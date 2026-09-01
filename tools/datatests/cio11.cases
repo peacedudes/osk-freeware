@@ -1,0 +1,109 @@
+family  cio11
+# The eleven programs the cio selector mismatch broke, rebuilt trap-free on
+# 2026-08-31 and installed over the broken binaries.
+#
+# EVERY CASE HERE ASSERTS WORK DONE, not a message. That is the point: the
+# broken versions all started, all printed their usage lines perfectly, and
+# all failed the moment they touched a FILE through the putc/getc macro. A
+# case that only checked "it started" would have passed against the binaries
+# these replaced, and that is exactly how the fault survived for months.
+#
+# Root cause: notes/os9exec-bugs/CIO-SELECTOR-MISMATCH.md. What was done:
+# `cc <src> -qm=16k -DOSK -n=<name>' from tools/rebuild/recipes.psv, sources
+# already on the disk under SRC.
+
+setup   export TERM=vt100
+setup   export TERMCAP=/dd/SYS/termcap
+setup   export HOME=/dd
+setup   /dd/CMDS/mkdir /dd/tmp/C11
+setup   /dd/CMDS/cp /dd/SYS/motd /dd/tmp/C11/a.txt
+setup   /dd/CMDS/cp /dd/SYS/motd /dd/tmp/C11/b.txt
+setup   echo "a changed line" >> /dd/tmp/C11/b.txt
+
+case    cvtbase-converts-between-bases
+run     echo 255 > /dd/tmp/C11/n
+run     /dd/CMDS/cvtbase d h < /dd/tmp/C11/n
+run     /dd/CMDS/cvtbase d b < /dd/tmp/C11/n
+run     /dd/CMDS/cvtbase d o < /dd/tmp/C11/n
+expect  ff
+expect  11111111
+expect  377
+absent  No more memory
+
+case    cdiff-produces-a-context-diff
+run     /dd/CMDS/cdiff /dd/tmp/C11/a.txt /dd/tmp/C11/b.txt
+expect  >>>> INSERT BEFORE 2
+expect  a changed line
+absent  MAXLINECOUNT
+
+case    pagekwic-and-pagefraz-build-a-keyword-in-context-index
+run     /dd/CMDS/pagekwic /dd/SYS/motd /dd/tmp/C11/k2.txt
+run     /dd/CMDS/cat /dd/tmp/C11/k2.txt
+expect  Welcome to os9exec --
+expect  -- Welcome to os9exec
+absent  word too long
+
+case    etags-writes-a-tags-file-with-real-tags
+run     /dd/CMDS/rm /dd/tags
+run     /dd/CMDS/etags /dd/SRC/misc/cvtbase.c
+run     /dd/CMDS/head -n 4 /dd/tags
+expect  get_base
+expect  /dd/SRC/misc/cvtbase.c
+
+case    yacc-writes-a-parser
+run     /dd/CMDS/rm /dd/y.tab.c
+run     echo "%token NUM" > /dd/tmp/C11/g.y
+run     echo "%%" >> /dd/tmp/C11/g.y
+run     echo "e : NUM ;" >> /dd/tmp/C11/g.y
+run     /dd/CMDS/yacc /dd/tmp/C11/g.y
+run     /dd/CMDS/ls /dd/y.tab.c
+expect  /dd/y.tab.c
+
+case    nroff-formats-rather-than-printing-nothing
+run     /dd/CMDS/nroff /dd/DOC/mtools/mdel.1
+expect  mdel - delete an MSDOS file
+
+case    unstr-prints-its-usage-instead-of-flooding
+run     /dd/CMDS/unstr
+expect  usage: /dd/CMDS/unstr datafile[.dat]
+absent  No more memory
+
+case    cookhash-runs
+run     /dd/CMDS/cookhash
+expect  000000
+absent  No more memory
+
+# xrf reads its LANGUAGE TABLE by the bare name `C.XRF' from the data
+# directory, and the source by the name it is given -- also from the data
+# directory. Both have to be there. The disk carries the table as
+# DOC/xrf/c.xrf; copying it to /dd is the whole setup. Given both, xrf
+# cross-references to standard output: every identifier with the lines it
+# appears on. Before the rebuild it read the table correctly through read()
+# and never read one byte of the source, which went through the getc macro --
+# the clearest single demonstration of the cio selector fault there is.
+case    xrf-cross-references-a-c-source
+run     /dd/CMDS/cp /dd/DOC/xrf/c.xrf /dd/C.XRF
+run     /dd/CMDS/cp /dd/SRC/misc/cvtbase.c /dd/x.c
+run     /dd/CMDS/xrf x.c
+expect  Language table loaded
+expect  symbol table for file - X.C
+expect  GET_BASE        (3)
+expect  PUT_NUMBER      (2)
+absent  No more memory
+
+# logisim wants PORT set to a terminal path -- its own message, and nothing
+# on this disk sets it. That is a different thing from the storm it used to
+# produce, and it is as far as a script can take it.
+case    logisim-asks-for-PORT-rather-than-flooding
+run     /dd/CMDS/cp /dd/DOC/logisim/counter.lsi /dd/counter.lsi
+run     /dd/CMDS/logisim counter.lsi
+expect  Environment variable PORT not defined
+absent  No more memory
+
+# None of the eleven links cio any more, which is the whole of the fix and
+# the thing that would silently come undone if one were rebuilt `-qixm'.
+case    none-of-the-eleven-needs-cio-now
+run     /dd/CMDS/grep -c cvtbase /dd/DOC/INDEX
+run     /dd/CMDS/grep " \*cvtbase" /dd/DOC/INDEX > /dd/tmp/C11/star 2>&1
+run     /dd/CMDS/wc -c /dd/tmp/C11/star
+expect  0 /dd/tmp/C11/star

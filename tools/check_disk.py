@@ -690,10 +690,18 @@ def check_cio_macro_population(root):
     rather than trusted.
 
     Two guards travel with it, and both are the ones that catch the mistake
-    everyone makes here: `autolf' CARRIES the $41/$42 stubs and never calls
+    everyone makes here.  `autolf' CARRIES the $41/$42 stubs and never calls
     them, so it must NOT be listed -- counting stubs instead of calls to them
-    is the wrong measurement -- and `logisim' and `cvtbase', which have both
-    been watched storm, MUST be.
+    is the wrong measurement.  And the scan must still FIND something: it is
+    an easy scan to break into silence, and a silent scan agrees with any
+    number in README-CIO.
+
+    The positive guard used to name `logisim' and `cvtbase', the two watched
+    to storm.  BOTH WERE REBUILT `-qm' ON 2026-08-31 and no longer link cio at
+    all, so naming them would fail for the right reason and the wrong one at
+    once.  `hexed' carries the most call sites of anything left and is the
+    guard now; if it is ever rebuilt too, move the guard rather than deleting
+    it.
     """
     import cio_macro_scan
     total, rows = cio_macro_scan.survey([root])
@@ -702,9 +710,14 @@ def check_cio_macro_population(root):
     for n in ("autolf", "cat", "detab"):
         if n in listed:
             problems.append("%s is listed and must not be (it never calls the stub)" % n)
-    for n in ("logisim", "cvtbase"):
-        if n not in listed:
-            problems.append("%s is NOT listed and must be (it is confirmed to storm)" % n)
+    if "hexed" not in listed:
+        problems.append("hexed is NOT listed and must be -- it carries the most "
+                        "call sites of anything left, so a scan that misses it "
+                        "has stopped working")
+    if len(rows) < 5:
+        problems.append("the scan found only %d programs; it has probably "
+                        "stopped scanning rather than the disk having changed"
+                        % len(rows))
 
     doc = os.path.join(root, "DOC", "README-CIO")
     if os.path.exists(doc):

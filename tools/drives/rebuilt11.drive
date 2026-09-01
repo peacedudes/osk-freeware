@@ -1,0 +1,71 @@
+# rebuilt11 -- the eleven programs the cio selector mismatch breaks, rebuilt
+# `-qm' from the sources and recipes this repo already carries.
+#
+# EVERY STANZA RUNS THE NEW BINARY ONLY. OS-9 answers by MODULE NAME once a
+# module is resident, and these carry the same names as the shipped ones, so
+# a session that touched /dd/CMDS/cvtbase first would run that one whatever
+# path was typed afterwards. The staging directory is loaded from and the
+# shipped copies are left alone.
+
+family  rebuilt11
+
+setup   N=/dd/tmp/NEW
+setup   /dd/CMDS/cp /dd/SYS/termcap /dd/tmp/t.txt
+setup   /dd/CMDS/cp /dd/SYS/motd /dd/tmp/a.txt
+setup   /dd/CMDS/cp /dd/SYS/motd /dd/tmp/b.txt
+setup   echo "a changed line" >> /dd/tmp/b.txt
+
+drive   cvtbase
+why     the storm's own example: shipped it floods, rebuilt it should convert
+run     $N/cvtbase 255 16
+run     $N/cvtbase
+run     echo "--- end cvtbase"
+
+drive   cdiff
+why     shipped it answers "MAXLINECOUNT exceeded"
+run     $N/cdiff /dd/tmp/a.txt /dd/tmp/b.txt
+run     echo "--- end cdiff"
+
+drive   unstr
+run     $N/unstr
+run     echo "--- end unstr"
+
+drive   pagekwic-pagefraz
+run     $N/pagekwic /dd/SYS/motd /dd/tmp/k2.txt
+run     /dd/CMDS/cat /dd/tmp/k2.txt
+run     echo "--- pagefraz:"
+run     $N/pagefraz /dd/tmp/k2.txt /dd/tmp/k3.txt
+run     /dd/CMDS/cat /dd/tmp/k3.txt
+run     echo "--- end"
+
+drive   nroff
+run     $N/nroff /dd/SYS/motd
+run     echo "--- end nroff"
+
+drive   etags
+run     $N/etags /dd/SRC/misc/cvtbase.c
+run     /dd/CMDS/ls /dd/tags
+run     /dd/CMDS/head -n 4 /dd/tags
+run     echo "--- end etags"
+
+drive   cookhash
+run     $N/cookhash
+run     echo "--- end cookhash"
+
+drive   xrf
+run     $N/xrf /dd/SRC/misc/cvtbase.c
+run     echo "--- end xrf"
+
+drive   yacc
+run     /dd/CMDS/cp /dd/SRC/effo_yacc/skeleton.c /dd/tmp/sk.c
+run     echo "%token NUM" > /dd/tmp/g.y
+run     echo "%%" >> /dd/tmp/g.y
+run     echo "e : NUM ;" >> /dd/tmp/g.y
+run     $N/yacc /dd/tmp/g.y
+run     /dd/CMDS/ls /dd/y.tab.c
+run     echo "--- end yacc"
+
+drive   logisim
+why     the other watched storm.  DOC/logisim ships two sample circuits.
+run     /dd/CMDS/ls /dd/DOC/logisim
+run     echo "--- end logisim"

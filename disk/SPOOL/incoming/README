@@ -1,0 +1,1 @@
+Where files submitted by a remote site are put.  `incoming' inSYS/UUCP/Parameters.  Empty on purpose; if the parameter ismissing or off, submissions are refused instead.

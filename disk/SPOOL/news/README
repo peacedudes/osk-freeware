@@ -1,0 +1,1 @@
+Usenet news articles land here.  UUCPbb's Parameters names itas `newsdir'.  Nothing fills it under os9exec -- there is noserial line to receive a feed over -- and the directory has toexist before `rnews' or `readnews' will start.

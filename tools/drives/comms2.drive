@@ -1,0 +1,56 @@
+# comms2 -- does the UUCP set find its directories now that SYS/UUCP's
+# Parameters points at the ones this disk actually has?
+#
+# The shipped Parameters named /dd/usr/spool/uucp, /dd/usr/spool/news and
+# three more that do not exist here, plus a scratch directory on /r0 and a
+# maildir on /h1. All eight are repointed at /dd/SPOOL and /dd/tmp as of
+# 2026-08-31, and the four missing directories now ship.
+
+family  comms2
+
+drive   uuclean
+run     /dd/CMDS/UUCP/uuclean
+run     echo "--- end uuclean"
+
+drive   uuname-and-uulog
+run     /dd/CMDS/UUCP/uuname
+run     echo "--- uulog:"
+run     /dd/CMDS/UUCP/uulog
+run     echo "--- end"
+
+drive   fileserv
+run     /dd/CMDS/UUCP/fileserv
+run     echo "--- end fileserv"
+
+drive   readnews
+why     it opens the reader and answers "End of newsgroups" -- with a news
+why     directory now present, does it say anything different?
+run     /dd/CMDS/UUCP/readnews < /nil
+run     echo "--- end readnews"
+
+drive   arepdaemon
+why     its lock goes in /dd/SPOOL/uucp; it also wants
+why     /dd/USR/LIB/ELM/autoreply.data
+run     /dd/CMDS/ELM/arepdaemon
+run     echo "--- end"
+
+drive   udate-y2k
+why     it printed `Monday, August 31, 19126' -- a two-digit year printed
+why     into a four-digit field
+run     /dd/CMDS/udate
+run     echo "--- and what date says:"
+run     /dd/CMDS/date
+run     /dd/CMDS/date -t
+
+drive   wysetime
+why     "cannot execute binary file" from bash.  It is a TYPE $02 SUBROUTINE
+why     module, not a program -- so bash is right and DOC/INDEX is not.
+run     /dd/CMDS/wysetime
+run     /dd/CMDS/ident -m wysetime
+run     echo "--- end"
+
+drive   cls-and-clear
+why     are they the same seven bytes?
+run     /dd/CMDS/cls > /dd/tmp/c1.bin
+run     /dd/CMDS/clear > /dd/tmp/c2.bin
+run     /dd/CMDS/md5 /dd/tmp/c1.bin /dd/tmp/c2.bin

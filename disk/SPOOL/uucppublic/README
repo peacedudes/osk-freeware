@@ -1,0 +1,1 @@
+UUCP's public directory, the one a remote site can read andwrite.  `pubdir' in SYS/UUCP/Parameters.  Empty on purpose.

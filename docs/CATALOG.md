@@ -1,6 +1,6 @@
 # What is on this disk
 
-939 programs of OS-9/68K community software, gathered from the archives that kept it and made to run again. **570 of them need nothing but this disk**; the rest want Microware's `cio`, marked below with a star.
+939 programs of OS-9/68K community software, gathered from the archives that kept it and made to run again. **581 of them need nothing but this disk**; the rest want Microware's `cio`, marked below with a star.
 
 `DOC/INDEX` on the disk lists everything alphabetically. This is the same collection sorted by what each program is *for*, which is the more useful order when you do not yet know what you are looking for.
 
@@ -194,7 +194,7 @@
 | `fmt` | Simple text formatter (elvis 1.7)<br>`usage: fmt [-width] [files]...` |
 | `hc` | NOT a calculator, whatever the index said until 2026-08-31: it shifts text to a column, or labels every line.  `hc +8 f' indents f so the text starts at column 8, `hc -11 f' strips the leading columns so it starts at column 11, and `hc -l "> " f' puts that string in front of every line.  With no option it copies the file through.  Measured 2026-08-31; it evaluates nothing |
 | `lout` | Lout 2.05 document formatter (Basser Lout, Jeffrey Kingston)<br>`usage: -o<filename>` |
-| `nroff` | &#9733; nroff -- BROKEN HERE: it opens the file, reads nothing, and prints nothing.  A getc-side casualty of the cio selector mismatch -- see DOC/README-CIO.  Measured 2026-08-31 text formatter -- and it PRINTS NOTHING here, from a file or from standard input, with or without -man and with TMACDIR set.  Worse than that: given a file it does not come back at all, and the session has to be stopped. `roff' and `proff' beside it DO work -- the claim here that they fail the same way was wrong and is corrected 2026-08-29.  Use one of those<br>**How:** Formats man pages -- but it NEVER RETURNS on this disk, and prints nothing first. Measured 2026-08-29 both ways, `nroff -man /dd/DOC/netpbm/pnmscale.1' and the same file on stdin; each hung the session. The -man macros in LIB/tmac.an were extended for this collection because the originals defined only .TH .SH .SS .PP and .I, and LIB/orig.tmac.an is the untouched version -- neither has been shown to matter while the program will not finish. `roff' is the formatter that works. |
+| `nroff` | nroff text formatter -- and it WORKS, since 2026-08-31. Rebuilt `-qm' from SRC/nroff, it formats: given a man page it sets the text and names the macros it does not know (`unrecognized command .TH'), which is a plain nroff without the man package rather than a fault.  Until then it opened the file, read nothing and printed nothing -- the silent half of the cio selector mismatch. DOC/README-CIO<br>**How:** Formats man pages -- but it NEVER RETURNS on this disk, and prints nothing first. Measured 2026-08-29 both ways, `nroff -man /dd/DOC/netpbm/pnmscale.1' and the same file on stdin; each hung the session. The -man macros in LIB/tmac.an were extended for this collection because the originals defined only .TH .SH .SS .PP and .I, and LIB/orig.tmac.an is the untouched version -- neither has been shown to matter while the program will not finish. `roff' is the formatter that works. |
 | `proff` | proff - portable roff text formatter (macros in LIB/proff). IT WORKS: given a text file it justifies it to a measure, and takes page ranges and a statistics option.  The note here that said it prints nothing was wrong; corrected 2026-08-29.  `roff' works too; `nroff' wants a real macro package and answers `illegal switch' to -?<br>`usage: proff [+n] [-n] [-v] [-ifile] [-s] [-pon] [infile [outfile]]` |
 | `roff` | roff text formatter, and it works: `roff -?' gives its syntax and page-range options.  Corrected 2026-08-29<br>`Syntax: roff {[+00] [-00] [-s] -[h] file}` |
 | `tformat` | text formatter (SNOBOL4-in-C)<br>`Usage: tformat [width\|-?] [<infile] [>outfile]` |
@@ -203,19 +203,19 @@
 
 | | |
 |---|---|
-| `cookhash` | &#9733; build the hash file cookie(1) needs, from a sayings file<br>`usage: cookhash <cookiefile >hashfile` |
+| `cookhash` | build the hash file cookie(1) needs, from a sayings file<br>`usage: cookhash <cookiefile >hashfile` |
 | `cookie` | print a random fortune cookie<br>`usage: cookie cookiefile hashfile` |
 | `fortune` | print a random quotation<br>`usage:  fortune [ - ] [ -wsloa ] [ file ]` |
 | `sonnet` | writes (bad) sonnets in iambic pentameter, curses-based<br>**How:** Full-screen: it takes over the display. **ESC quits** -- tested. (control-C also gets you out, but ESC is the program's own way.) |
 | `strfile` | &#9733; build fortune's index file<br>`usage:  strfile [ - ] [ -cC ] [ -sv ] inputfile [ datafile ]` |
-| `unstr` | &#9733; reverse strfile - dump a fortune index.  It FLOODS `No more memory !!!' and dumps nothing -- confirmed 2026-08-31, and the CAUSE is now known: it is one of three programs here built against a cio.l whose putc/getc macros call a selector every cio module implements as a memory routine.  See DOC/README-CIO.  It takes the index BASE name, appending `.dat' itself: `unstr /dd/GAMES/FORTUNE/fortunes'.  On a small hand-made index it neither dumps nor floods, which is how it reads as merely quiet<br>`usage: unstr datafile[.dat] [ outfile ]` |
+| `unstr` | reverse strfile - dump a fortune index.  Rebuilt `-qm' on 2026-08-31 and no longer floods: it takes the index BASE name, appending `.dat' itself, so `unstr /dd/GAMES/FORTUNE/fortunes' is the invocation and bare it prints its own usage.  Before the rebuild it was one of three programs here that flooded `No more memory !!!' and dumped nothing.  DOC/README-CIO<br>`usage: unstr datafile[.dat] [ outfile ]` |
 
 **KWIC index**
 
 | | |
 |---|---|
-| `pagefraz` | &#9733; KWIC suite - phrase extractor<br>`Syntax: pagefraz <opts> [<in_path> [<out_path>]] <opts>` |
-| `pagekwic` | &#9733; KWIC suite - split a Stylo file to one phrase per line with page no.<br>`Syntax: pagekwic <opts> [<in_path> [<out_path>]] <opts>` |
+| `pagefraz` | KWIC suite - phrase extractor<br>`Syntax: pagefraz <opts> [<in_path> [<out_path>]] <opts>` |
+| `pagekwic` | KWIC suite - split a Stylo file to one phrase per line with page no.<br>`Syntax: pagekwic <opts> [<in_path> [<out_path>]] <opts>` |
 | `pageline` | KWIC suite - line/page numbering<br>`Syntax: pageline <opts> [<in_path> [<out_path>]] <opts>` |
 
 **Search & match**
@@ -233,7 +233,7 @@
 
 | | |
 |---|---|
-| `cdiff` | &#9733; context diff -- BROKEN HERE, and quietly.  It OPENS both files, reads not one byte of either, and then reports `MAXLINECOUNT exceeded, must stop.' on a three-line file against its own limit of 8000.  One of the getc-side casualties of the cio selector mismatch; DOC/README-CIO names them all.  Use `diff'.  Measured 2026-08-31 |
+| `cdiff` | context diff -- and it WORKS, since 2026-08-31.  Rebuilt `-qm' from SRC/v_misc/cdiff.c, it produces a real context diff: `>>>> INSERT BEFORE 2'.  Until then it opened both files, read not one byte of either, and answered `MAXLINECOUNT exceeded' -- the silent half of the cio selector mismatch.  DOC/README-CIO |
 | `diff` | &#9733; GNU diff 1.1 -- ADDED; the disk had no diff at all.  Verified on CR files<br>`Usage: diff [-options] file1 file2` |
 | `ediff` | NOT a file comparer: it reformats `diff' OUTPUT in plain English.  Its own syntax line is `ediff <file' or `diff <f1> <f2> ! ediff', and fed a one-line change it prints `-------- 1 line changed at 3 from: ... to: ...'. Measured 2026-08-31; this entry said `visual file compare', which implies it does the comparing<br>`Syntax   : 'ediff <file'  or  'diff <f1> <f2> ! ediff'` |
 | `fcomp` | &#9733; compare two text files<br>`Syntax: fcomp <file_1> <file_2>` |
@@ -476,9 +476,9 @@
 |---|---|
 | `ctags` | generate a vi tags file from C source (BSD)<br>`usage: ctags [-BFadtuwvx] [-f tagsfile] file ...` |
 | `cxref` | &#9733; C cross-reference lister -- numbered listing + symbol table<br>`Syntax:		cxref [-opts] [path]` |
-| `etags` | &#9733; generate an emacs TAGS file<br>`Syntax: etags { [<opts>] <path> }` |
+| `etags` | generate an emacs TAGS file<br>`Syntax: etags { [<opts>] <path> }` |
 | `rdoc` | &#9733; reverse documentation: C source in, structure chart out |
-| `xrf` | &#9733; C cross-reference generator -- it wants its language table, `C.XRF', in the CURRENT DATA DIRECTORY.  The disk has it as DOC/xrf/c.xrf; copy that beside your source or it stops with `Cannot open Language Table file' |
+| `xrf` | C cross-reference generator -- it wants its language table, `C.XRF', in the CURRENT DATA DIRECTORY.  The disk has it as DOC/xrf/c.xrf; copy that beside your source or it stops with `Cannot open Language Table file' |
 
 **Tags**
 
@@ -563,7 +563,7 @@
 | `m4` | m4 macro processor.  SWAPPED 2026-08-28: what ships is now the CMDS/REBUILT/m4_0.5 build, because the one that used to be here MANGLED its output -- a one-line definition expanded to `i hr ' instead of `hi there'.  The one here now expands correctly, from a file or a pipe<br>`Usage: m4 [options] file ....` |
 | `make` | &#9733; make -- and it DOES maintain a target, corrected 2026-08-29. Two rules catch people: a command line must begin with a TAB (which will not survive being typed at this terminal, so copy DOC/make/demo.mk rather than echoing one), and a recipe must have no shell metacharacter -- `cp a b' runs, `cat a > b' gets `That path name doesn't lead to a file'.  DOC/STATUS has both<br>**How:** It works. Copy `/dd/DOC/make/demo.mk` rather than writing a makefile at the shell -- a command line must begin with a TAB and a tab does not survive being typed at this terminal. And keep shell metacharacters out of a recipe: `cp a b` runs, `cat a > b` gets "That path name doesn't lead to a file", because make forks bash with the line as a PATHNAME rather than with -c. The default rules are in default.mk beside it, and make looks for that along your PATH. Measured 2026-08-29. |
 | `makeinfo` | GNU makeinfo -- Texinfo to info.  GCC139 shipped a byte-identical second copy until 2026-08-31; this is the only one now<br>`Usage: makeinfo [options] texinfo-file...` |
-| `yacc` | &#9733; yacc parser generator -- it HANGS on a two-rule grammar here: no output, no files written, and the run has to be killed.  `bison' reads the same grammar and reports its states and its conflicts<br>`Syntax   : yacc [-dltv] [-b <prefix>] filename` |
+| `yacc` | yacc parser generator -- and it WORKS, since 2026-08-31. Rebuilt `-qm' from SRC/effo_yacc, it reads a grammar and writes y.tab.c into the data directory.  Until then it hung on a two-rule grammar and the run had to be killed: the cio selector mismatch again.  `bison' is the other parser generator here and reports states and conflicts<br>`Syntax   : yacc [-dltv] [-b <prefix>] filename` |
 
 **Translators**
 
@@ -1312,7 +1312,7 @@
 | `florida` | &#9733; weather simulator - Florida (Gregorian/Gulf) |
 | `georgia` | &#9733; weather simulator - Georgia (Gregorian/S-Atlantic) |
 | `japan` | &#9733; weather simulator - Japan (Japanese calendar/N-Pacific)<br>**How:** A weather simulator, not a calendar tool -- see `england'. It uses the Japanese calendar, which is the only reason it looks like one. |
-| `logisim` | &#9733; logic circuit simulator -- draws a pulse diagram from a circuit written as text.  Two sample circuits ship with it, DOC/logisim/flipflop.lsi and counter.lsi, and its notes are DOC/logisim/logisim.doc, in German.  IT NEEDS `PORT' SET to a terminal path -- it reopens the keyboard through it -- and nothing on this disk sets it: `setenv PORT /term' first, or it stops with `Environment variable PORT not defined'.  Past that check it floods `No more memory !!!' under this collection's capture harness and has not been seen to draw.  Measured 2026-08-31<br>**How:** Simulates a logic circuit described in a file. The format is in DOC/logisim/logisim.doc; there is no example circuit on the disk. |
+| `logisim` | logic circuit simulator -- draws a pulse diagram from a circuit written as text.  Two sample circuits ship with it, DOC/logisim/flipflop.lsi and counter.lsi, and its notes are DOC/logisim/logisim.doc, in German.  IT NEEDS `PORT' SET to a terminal path -- it reopens the keyboard through it -- and nothing on this disk sets it: `setenv PORT /term' first, or it stops with `Environment variable PORT not defined'.  Past that check it floods `No more memory !!!' under this collection's capture harness and has not been seen to draw.  Measured 2026-08-31<br>**How:** Simulates a logic circuit described in a file. The format is in DOC/logisim/logisim.doc; there is no example circuit on the disk. |
 | `minnesota` | &#9733; weather simulator - Minnesota (Gregorian/N-Atlantic) |
 | `shire` | weather simulator - the Shire (Middle-earth calendar)<br>**How:** A weather simulator using the Middle-earth calendar -- see `england'. |
 
@@ -1587,7 +1587,7 @@
 |---|---|
 | `cam` | &#9733; CAMSHAFT, not camera: it asks for the rocker ratio, the lift at a crank angle and the base circle, and plots the lift curve for an intake lobe.  The plot is Tektronix vectors, so on a vt100 it arrives as characters -- the dialogue above it is the readable part.  Corrected 2026-08-29 |
 | `chbase` | &#9733; converts a NUMBER from one base to another -- Philip Maechler's, and nothing to do with a module's base address.  `cvtbase' is the other one, and floods. Corrected 2026-08-29<br>`Syntax   : chbase <number> [ <base A> [ <base B> ] ]` |
-| `cvtbase` | &#9733; convert a number between bases -- names them by KEY (b, d, h or x, o), and then FLOODS `No more memory !!!' without converting anything.  Its usage line prints fine, which is why it looked healthy.  ROOT CAUSE FOUND 2026-08-31, and it is the program's linkage, not the emulator: it was linked against a `cio.l' whose trap-13 selector $41 is `_flshbuf', where every `cio' module we have puts a memory routine.  So its `putc' hands the raw allocator a FILE pointer as a byte count and leaks a chunk per character.  It works through `printf', which is why the usage line is fine.  DOC/README-CIO and notes/os9exec-bugs/CIO-SELECTOR-MISMATCH.md |
+| `cvtbase` | convert a number between bases -- and it WORKS, since 2026-08-31.  The bases are named by KEY (b, d, h or x, o) and the NUMBER COMES ON STANDARD INPUT: `echo 255 ! cvtbase d h' answers `ff', `cvtbase d b' answers `11111111'.  Rebuilt `-qm' from SRC/misc/cvtbase.c; before that it was the loudest victim of the cio selector mismatch, flooding `No more memory !!!' and converting nothing.  DOC/README-CIO |
 | `loan` | &#9733; loan/amortisation calculator |
 | `rechne` | &#9733; calculator, German -- and it takes ONE expression with no spaces in it: `rechne 4095+1' answers 4096, $1000 and the binary.  Spaced out it evaluates each argument separately |
 | `rpn` | &#9733; RPN calculator -- and its `+' is wrong: 12, 34, + leaves a stack of three with 0 on top instead of one with 46. `rechne' is the calculator that answers correctly |
