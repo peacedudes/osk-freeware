@@ -1,0 +1,73 @@
+family  gcc3
+# THE SEVEN GCC PASSES, and they all work.
+#
+# These are not programs you run: `gcc' and `gpp' fork them.  A pass reads
+# PREPROCESSED C and writes assembly, so it can be given a real job by hand
+# -- run the preprocessor first and hand the result over -- and that is
+# what these cases do.  Nothing had ever typed one of them.
+#
+# THE SIZES ARE THE INTERESTING PART.  There are three C++ passes here
+# under three names, and handed the same input `cc1plus' and `gpp_cc1plus'
+# write the SAME 246 bytes while `gcc_cc1plus' writes 216: two distinct
+# compilers under three names, which is exactly what the naming scheme is
+# for.  `gcc2' forks the `gcc_' prefix and `gpp' forks the `gpp_' prefix;
+# neither looks where the passes were built.
+
+setup   W=/dd/tmp/GCC3
+setup   /dd/CMDS/rm -f $W > /nil 2>/nil
+setup   /dd/CMDS/mkdir -p $W > /nil 2>/nil
+setup   echo "int main(){return 42;}" > $W/t.c
+setup   /dd/CMDS/GCC139/gcc_cccp $W/t.c > $W/t.i
+
+case    the-preprocessor-expands-a-source-for-the-passes-to-read
+run     /dd/CMDS/wc -c $W/t.c $W/t.i
+expect  23 /dd/tmp/GCC3/t.c
+expect  46 /dd/tmp/GCC3/t.i
+
+# A pass names the function it is compiling and then reports where its time
+# went, phase by phase. The phase list IS the compiler's shape: gcc 1.39
+# has no cse2, sched or shorten-branch and gcc 2.x has all three.
+case    gcc_cc1-compiles-preprocessed-c-to-assembly
+run     /dd/CMDS/GCC139/gcc_cc1 $W/t.i -o $W/t.s
+run     /dd/CMDS/wc -c $W/t.s
+expect   main
+expect  time in parse:
+expect  time in local-alloc:
+expect  166 /dd/tmp/GCC3/t.s
+
+case    gcc_cc2-is-the-later-compiler-and-has-more-phases
+run     /dd/CMDS/gcc_cc2 $W/t.i -o $W/t2.s
+run     /dd/CMDS/wc -c $W/t2.s
+expect  time in cse2:
+expect  time in sched:
+expect  time in shorten-branch:
+expect  191 /dd/tmp/GCC3/t2.s
+
+case    the-three-cplusplus-passes-are-two-compilers-under-three-names
+run     /dd/CMDS/GCC2/cc1plus $W/t.i -o $W/p1.s
+run     /dd/CMDS/GCC139/gcc_cc1plus $W/t.i -o $W/p2.s
+run     /dd/CMDS/gpp_cc1plus $W/t.i -o $W/p3.s
+run     /dd/CMDS/wc -c $W/p1.s $W/p2.s $W/p3.s
+expect   int main ()
+expect  246 /dd/tmp/GCC3/p1.s
+expect  216 /dd/tmp/GCC3/p2.s
+expect  246 /dd/tmp/GCC3/p3.s
+
+# collect2 is the link wrapper, not a compiler pass: it builds the global
+# constructor/destructor table g++ needs.
+case    gcc_collect-is-the-constructor-table-builder-not-a-pass
+run     /dd/CMDS/GCC139/gcc_collect
+run     /dd/CMDS/GCC139/gcc_collect $W/nosuch.o
+expect  Function : generate global con-/de-structor table for g++
+expect  -l=<file>    process library
+expect  Written 1991 by Stephan Paschedag
+expect  collect: Can't open '/dd/tmp/GCC3/nosuch.o'.
+
+# cc2plus prints ` int main()' with NO SPACE before the parenthesis where
+# the other three print ` int main ()' -- a different front end, and the
+# one-character difference is the cheapest evidence of it there is.
+case    cc2plus-is-a-fourth-front-end-and-spells-the-name-differently
+run     /dd/CMDS/GCC2/cc2plus $W/t.i -o $W/p4.s
+run     /dd/CMDS/wc -c $W/p4.s
+expect   int main()
+expect  /dd/tmp/GCC3/p4.s

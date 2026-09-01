@@ -1,0 +1,83 @@
+family  games2
+# Game utilities and build tools that a card credited and nothing had
+# typed.  Surfaced 2026-09-01 by the `worklist.py' carded() fix.
+#
+# ONE REAL CORRECTION: `convert' is not a data-table builder.  DOC/INDEX
+# says "world - build its data tables" and running it STARTS THE GAME --
+# the WORLD banner, the opening paragraph and a `>' prompt.
+
+setup   export TERM=vt100
+setup   export TERMCAP=/dd/SYS/termcap
+setup   W=/dd/tmp/GM2C
+setup   /dd/CMDS/rm -f $W > /nil 2>/nil
+setup   /dd/CMDS/mkdir -p $W > /nil 2>/nil
+
+# bison, flex and p2c all WRITE something, which is what makes them
+# testable: a grammar becomes a parser, a scanner becomes lex.yy.c, and a
+# Pascal program becomes C.
+case    bison-turns-a-grammar-into-a-parser
+run     echo "%%" > $W/g.y
+run     echo "s: 'a' ;" >> $W/g.y
+run     /dd/CMDS/ksh -c "cd $W; /dd/CMDS/bison g.y"
+run     /dd/CMDS/ls $W
+run     /dd/CMDS/bison -V
+expect  g.tab.c
+expect  GNU Bison version 1.19
+
+case    flex-turns-a-scanner-into-lex-yy-c
+run     echo "%%" > $W/s.l
+run     echo ". ;" >> $W/s.l
+run     /dd/CMDS/ksh -c "cd $W; /dd/CMDS/flex s.l"
+run     /dd/CMDS/ls $W
+expect  lex.yy.c
+
+case    p2c-translates-pascal-into-c
+run     echo "program hello; begin writeln('hi') end." > $W/h.pas
+run     /dd/CMDS/ksh -c "cd $W; /dd/CMDS/p2c h.pas"
+run     /dd/CMDS/ls $W
+expect  Translation completed.
+expect  h.c
+
+# gmake runs, and what stops it is this disk and not gmake: there is no
+# `echo' BINARY here, only the shell builtin, so a makefile recipe that
+# says `echo' has nothing to fork.
+case    gmake-runs-and-cannot-fork-an-echo-that-is-not-there
+run     echo "all:" > $W/Makefile
+run     /dd/CMDS/printf '%s\r' "	echo made-it" >> $W/Makefile
+run     /dd/CMDS/ksh -c "cd $W; /dd/CMDS/gmake all"
+run     /dd/CMDS/gmake -v
+expect  echo made-it
+expect  gmake: echo: Command not found
+expect  GNU Make version 3.67, by Richard Stallman and Roland McGrath.
+
+# makeinfo takes `+option', not `--option' -- the GNU convention of its
+# day -- which is why `--version' earns `unrecognized option'.
+case    makeinfo-takes-plus-options-not-double-dashes
+run     /dd/CMDS/makeinfo --version
+expect  unrecognized option `--'
+expect  `+no-validate' to suppress node cross reference validation.
+expect  `+version' to print the version number of Makeinfo.
+
+# postprint writes PostScript for a chess position, and the first line of
+# it is the page setup.
+case    postprint-writes-postscript-for-a-chess-position
+run     /dd/CMDS/GAMES/postprint < /nil
+expect  /V 11 72 mul def /L 60 def
+
+# `game' and `checkgame' are ONE program under two names -- checkgame
+# reports itself as `game' in its own usage line.
+case    game-and-checkgame-are-one-program-under-two-names
+run     /dd/CMDS/GAMES/game
+run     /dd/CMDS/GAMES/checkgame
+expect  Usage: game file [start [end] ]
+
+case    infocom-tcap-lists-its-flags-and-wants-a-story-file
+run     /dd/CMDS/infocom.tcap
+expect  Usage: /dd/CMDS/infocom.tcap [-aehlnoprstvx] <filename>
+
+# THE CORRECTION. `convert' starts WORLD; it does not build anything.
+case    convert-starts-the-world-adventure-rather-than-building-tables
+run     echo "quit" > $W/q.txt
+run     /dd/CMDS/GAMES/convert < $W/q.txt
+expect  WORLD. Amiga C  Version 1.02 Copyright 1987 J.D. McDonald  GOOD LUCK!
+expect  You are standing on a steeply climbing trail nearing the top of

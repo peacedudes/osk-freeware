@@ -1,0 +1,109 @@
+# games2 -- the game utilities and build tools a card credits and nothing
+# has typed.  `world' and `bog' each have data builders that go with them,
+# and those are the interesting ones: they WRITE something.
+
+family  games2
+
+setup   export TERM=vt100
+setup   export TERMCAP=/dd/SYS/termcap
+setup   W=/dd/tmp/GM2
+setup   /dd/CMDS/rm -f $W > /nil 2>/nil
+setup   /dd/CMDS/mkdir -p $W > /nil 2>/nil
+
+drive   bog-builders
+why     "bog - build the dictionary" and "build the dictionary index".
+why     They belong to the boggle game; find what each wants.
+run     /dd/CMDS/GAMES/mkdict
+run     echo "--- mkindex:"
+run     /dd/CMDS/GAMES/mkindex
+run     echo "--- with a word list of our own:"
+run     echo "alpha" > $W/words
+run     echo "bravo" >> $W/words
+run     /dd/CMDS/GAMES/mkdict < $W/words
+run     echo "--- end bog-builders"
+
+drive   world-builders
+why     "world - build its data tables" and "build its text tables".
+run     /dd/CMDS/GAMES/convert
+run     echo "--- vtxtcn:"
+run     /dd/CMDS/GAMES/vtxtcn
+run     echo "--- end world-builders"
+
+drive   chess-helpers
+why     bincheckr checks an opening book; game and checkgame replay a
+why     saved game; postprint prints a position as PostScript.
+run     /dd/CMDS/GAMES/bincheckr /dd/USR/src/chess/gnuchess.book
+run     echo "--- game:"
+run     /dd/CMDS/GAMES/game
+run     echo "--- checkgame:"
+run     /dd/CMDS/GAMES/checkgame
+run     echo "--- end chess-helpers"
+
+drive   postprint
+why     "print a chess position as PostScript (GNU Chess)" -- on its own,
+why     because bincheckr aborted beside it once.
+run     /dd/CMDS/GAMES/postprint < /nil
+run     echo "--- end postprint"
+
+drive   gmake
+why     GNU make.  Give it a real makefile and a target.
+run     echo "all:" > $W/Makefile
+run     /dd/CMDS/printf '%s\r' "	echo made-it" >> $W/Makefile
+run     /dd/CMDS/cat $W/Makefile
+run     /dd/CMDS/ksh -c "cd $W; /dd/CMDS/gmake all"
+run     echo "--- and its version:"
+run     /dd/CMDS/gmake -v
+run     echo "--- end gmake"
+
+drive   bison
+why     GNU bison 1.19.  Give it a tiny grammar.
+run     echo "%%" > $W/g.y
+run     echo "s: 'a' ;" >> $W/g.y
+run     /dd/CMDS/ksh -c "cd $W; /dd/CMDS/bison g.y"
+run     /dd/CMDS/ls $W
+run     echo "--- and its version:"
+run     /dd/CMDS/bison -V
+run     echo "--- end bison"
+
+drive   flex
+why     "lexical analyzer generator -- see DOC/flex/README-FLEX FIRST"
+run     /dd/CMDS/flex -V
+run     echo "--- on a tiny scanner:"
+run     echo "%%" > $W/s.l
+run     echo ". ;" >> $W/s.l
+run     /dd/CMDS/ksh -c "cd $W; /dd/CMDS/flex s.l"
+run     /dd/CMDS/ls $W
+run     echo "--- end flex"
+
+drive   makeinfo
+why     GNU makeinfo -- Texinfo to info.
+run     /dd/CMDS/makeinfo --version
+run     echo "--- with no file:"
+run     /dd/CMDS/makeinfo
+run     echo "--- end makeinfo"
+
+drive   p2c
+why     "Pascal to C translator (GPL).  Reads LIB/p2c/p2crc"
+run     echo "program hello; begin writeln('hi') end." > $W/h.pas
+run     /dd/CMDS/ksh -c "cd $W; /dd/CMDS/p2c h.pas"
+run     /dd/CMDS/ls $W
+run     echo "--- end p2c"
+
+drive   lnk.org
+why     "as lnk, the original build"
+run     /dd/CMDS/lnk.org
+run     echo "--- end lnk.org"
+
+drive   creadoc
+why     "extract documentation comments from FORTRAN source"
+run     echo "C     a comment" > $W/f.for
+run     echo "      program main" >> $W/f.for
+run     echo "      end" >> $W/f.for
+run     /dd/CMDS/creadoc $W/f.for
+run     echo "--- end creadoc"
+
+drive   infocom.tcap
+why     "Infocom interpreter, TERMCAP build -- the one to use".  It wants
+why     a story file; there may be none here.
+run     /dd/CMDS/infocom.tcap
+run     echo "--- end infocom.tcap"
