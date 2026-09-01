@@ -1,0 +1,65 @@
+family  misc8
+# What is left that CAN be asserted, from the residue.
+#
+# Several of these pin a program that does NOT work, and each says which of
+# the three kinds of not-working it is: wrong invocation, wants hardware
+# that is not here, or a defect of its own.  That distinction is the whole
+# value -- a reader deciding whether to take a program onto real hardware
+# needs to know which.
+
+setup   export TERM=vt100
+setup   export TERMCAP=/dd/SYS/termcap
+setup   export USER=tester
+setup   W=/dd/tmp/MS8
+setup   /dd/CMDS/rm -f $W > /nil 2>/nil
+setup   /dd/CMDS/mkdir -p $W > /nil 2>/nil
+setup   /dd/CMDS/cp /dd/SYS/motd $W/plain.txt
+
+# argproc_demo was rebuilt with MEM=64k on 2026-09-01 and now parses.
+# Switches take their argument with NO SPACE.
+case    argproc_demo-parses-a-command-line-and-fills-in-its-defaults
+run     /dd/CMDS/argproc_demo readme
+run     /dd/CMDS/argproc_demo -x99 -sHello readme
+expect  arg=readme, b=0, c=0, sGiven=0, s=this is a test, x=32, pi=3.144500
+expect  arg=readme, b=0, c=0, sGiven=1, s=Hello, x=99, pi=3.144500
+
+case    argproc_demo-explains-that-a-switch-takes-no-space
+run     /dd/CMDS/argproc_demo -help
+expect  Demonstration program for argproc().  Note that no spaces are allowed
+expect  between a switch and its arguments (i.e. -x3 is okay, -x 3 is not allowed).
+expect      -piFLOAT Set double pi [default: 0.000000]
+
+# `oleo' IS NOT A CASE. It stops with `Illegal instruction: 0009 at
+# 000465d2' -- not a missing terminal and not a missing file, a genuinely
+# bad instruction -- and an illegal instruction raises vector $04, which
+# fails any case by the harness's own rule. DOC/INDEX carries it.
+
+# sysmon refuses on a VERSION CHECK -- it decides the kernel is too old and
+# stops before doing anything, which no arrangement of this disk changes.
+case    sysmon-refuses-because-it-thinks-the-kernel-is-too-old
+run     /dd/CMDS/sysmon < /nil
+expect  too old
+
+# The UniBasic pair: the 68000 build beside the 68020 one already tested.
+case    ub68kdemo-prints-the-unibasic-banner-for-the-68000
+run     /dd/CMDS/DEMOS/ub68kdemo < /nil
+expect  UniBasic Version 1.10
+expect  DEMO VERSION
+expect  Modification expressly forbidden!!!
+
+case    aterm-reads-its-configuration-and-names-it
+run     /dd/CMDS/aterm -? < /nil
+expect  ATerm
+
+# mtst drives the spline fitter and prints the coefficients it computed.
+case    mtst-drives-the-spline-fitter-and-prints-its-coefficients
+run     /dd/CMDS/mtst < /nil
+expect  a: 1.000000		b: 1.000000		c: 1.000000
+expect  i: 1			j: 1			k: 1
+
+# `splman', `splprt' and `lmargin' ARE NOT CASES. All three END THE
+# EMULATOR SESSION saying nothing at all -- splman and splprt are the two
+# halves of Carl Kreider's spooler and there is no spooler device for
+# either to attach to, and lmargin sets a margin on an Epson printer that
+# is not there. Measured 2026-09-01, one to a stanza. A case whose session
+# took an exception fails by the harness's own rule.
