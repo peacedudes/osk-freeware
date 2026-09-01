@@ -40,6 +40,23 @@ have before spending time on it:
    clients (stopped by the csl skew before they even miss a server), SCSI,
    a Gepard screen. Say which, and stop.
 
+**THE 62 LEFT, ALREADY SORTED, so nobody re-derives it.** All were driven
+on 2026-09-01; the transcripts are in `notes/drives/`.
+
+| Why it has no case | Programs |
+|---|---|
+| **Ends the emulator session** — a case whose session took an exception fails by the harness's own rule, and that rule is right | `splman` `splprt` `lmargin` `pgmcrater` `pbmtobbnbg` `wysecrack` `cron` `byteflip` `top` `devprc` `config` `hist` `ephem` `ephem881` `bincheckr` `oleo` `sdb` `tplot` `yagi` `hexedit` `dfiles` |
+| **Full-screen, so it belongs on a card** | `dm` `draw` `emacs.mm1` `umacs` `new_e` `vc` `shuffle` `hinterhalt` `sterm` `adlrun` `scriptmaster` |
+| **Wants hardware or a peer that is not here** | `graphsave` `showpic` `aprocs` `sddemo` `rayshade` `msbadblocks` `fileserv` `mailx` `lmail` `rnews` |
+| **Silent for every invocation tried** — the honest state is "nothing to assert", and each was tried at least twice | `casefix` `macsave` `mkdict` `mkindex` `vtxtcn` `creadoc` `lnk.org` `makecrc` `crypto` `elvrec` `helpindex` `PrintLabels` `uuexpand` `biory` `florida` `bibtex` |
+| **Blocked by the stopped clock, not by itself** | `rcsdiff` `rcsmerge` |
+| **No way to see the change** — there is no `procs` on this disk | `pri` |
+
+The first row is the one to be careful with: several of those programs
+produce GOOD OUTPUT and then die (`config` prints its whole table, `top`
+its heading, `bincheckr` the book's counts). They are not broken in the way
+the row title suggests, and `DOC/INDEX` says so for each.
+
 **DO NOT QUOTE "programs with neither a test nor a card" -- IT WAS A BROKEN
 MEASUREMENT.** `worklist.py`'s `carded()` read `for'-credited names out of the
 wrong key and never matched one, so every program credited on a shared card
