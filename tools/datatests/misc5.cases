@@ -1,0 +1,129 @@
+family  misc5
+# A spread of remaining programs that a card credited and nothing had
+# typed.  Every one of these writes or reports something measurable.
+
+setup   export TERM=vt100
+setup   export TERMCAP=/dd/SYS/termcap
+setup   export USER=tester
+setup   W=/dd/tmp/MS5
+setup   /dd/CMDS/rm -f $W > /nil 2>/nil
+setup   /dd/CMDS/mkdir -p $W > /nil 2>/nil
+setup   /dd/CMDS/cp /dd/SYS/motd $W/plain.txt
+
+# strings reports each run of printable characters with the hex OFFSET it
+# was found at, which is what makes it useful on a module.
+case    strings-reports-each-run-with-its-offset
+run     /dd/CMDS/strings $W/plain.txt
+expect  $000000: <Welcome to os>
+expect  $00001D: <k emulator>
+
+case    strings-lists-its-match-options
+run     /dd/CMDS/strings -?
+expect  searches named binary files for strings
+expect  -l=n set match length to 'n'
+expect  -z   get file names from std in
+
+# gdd is GNU dd and behaves like it: as a plain filter it copies and
+# reports the block counts, and `bs=1 count=7' takes exactly seven bytes.
+case    gdd-copies-a-stream-and-reports-its-block-counts
+run     /dd/CMDS/gdd < $W/plain.txt > $W/dd.out
+run     /dd/CMDS/gdd bs=1 count=7 < $W/plain.txt > $W/dd7.out
+run     /dd/CMDS/wc -c $W/plain.txt $W/dd.out $W/dd7.out
+expect  0+1 records in
+expect  7+0 records out
+expect  40 /dd/tmp/MS5/dd.out
+expect  7 /dd/tmp/MS5/dd7.out
+
+case    ssl-shows-a-files-segment-list
+run     /dd/CMDS/ssl $W/plain.txt
+expect  File descriptor sector /dd/tmp/MS5/plain.txt:
+expect   Seg#     start    lenght
+
+case    compr-compresses-a-file-to-a-dot-Z
+run     /dd/CMDS/rm -f $W/plain.txt.Z > /nil 2>/nil
+run     /dd/CMDS/compr $W/plain.txt
+run     /dd/CMDS/ls $W
+expect  plain.txt.Z
+
+case    xcrypt-states-the-two-files-it-wants
+run     /dd/CMDS/xcrypt
+expect  en/decrypt <input-file> <output-file>
+
+# modbuster splits a file holding SEVERAL modules into one file each, and
+# `cyberwar' is a real module group: two programs and two window
+# descriptors in one file.
+case    modbuster-splits-a-module-group-into-one-file-each
+run     /dd/CMDS/cp /dd/CMDS/GAMES/cyberwar $W/group
+run     /dd/CMDS/ksh -c "cd $W; /dd/CMDS/modbuster group"
+run     /dd/CMDS/ls $W
+expect  CyberWar
+expect  cyber_game
+expect  cyber_start_win
+expect  cyber_retry_win
+
+case    newshist-and-dbz-state-what-they-want
+run     /dd/CMDS/NEWS/newshist
+run     /dd/CMDS/NEWS/dbz
+expect  usage: /dd/CMDS/NEWS/newshist [-df file] msgid ...
+expect  usage: /dd/CMDS/NEWS/dbz [-a] [-x] [-c] database [file] ...
+
+# asciitopgm reads ASCII ART as greyscale -- the character decides the
+# grey -- and rawtopgm reads raw bytes with the dimensions named. Both
+# need to be TOLD the size, which is why neither had been driven.
+case    asciitopgm-and-rawtopgm-build-an-image-from-what-they-are-given
+run     echo "  ..::" > $W/art.txt
+run     echo "  ..::" >> $W/art.txt
+run     /dd/CMDS/NETPBM/asciitopgm 2 5 < $W/art.txt > $W/art.pgm
+run     /dd/CMDS/NETPBM/rawtopgm 8 5 < /dd/SYS/motd > $W/raw.pgm
+run     /dd/CMDS/NETPBM/pnmfile $W/art.pgm $W/raw.pgm
+expect  art.pgm:	PGM raw, 5 by 2  maxval 127
+expect  raw.pgm:	PGM raw, 8 by 5  maxval 255
+
+# THE BYTE COUNT DEPENDS ON THE PATH. pnmtops writes the output filename
+# into its `%%Title:' line, so moving the work directory by one character
+# moves the size by one -- this was 673 when it was driven from
+# /dd/tmp/MSC5 and is 672 from /dd/tmp/MS5. Fine to assert, worth knowing
+# before wondering why it changed.
+case    pnmtops-writes-encapsulated-postscript
+run     /dd/CMDS/NETPBM/pgmramp -lr 16 8 > $W/r.pgm
+run     /dd/CMDS/NETPBM/pnmtops $W/r.pgm > $W/r.ps
+run     /dd/CMDS/wc -c $W/r.ps
+run     /dd/CMDS/head -n 4 $W/r.ps
+expect  672 /dd/tmp/MS5/r.ps
+expect  %!PS-Adobe-2.0 EPSF-2.0
+expect  %%Creator: pnmtops
+
+# The IJG 0.70 builds, kept beside the later ones. Their option lists are
+# what distinguishes them, and neither had been typed.
+case    djpeg070-lists-the-output-formats-of-its-vintage
+run     /dd/CMDS/djpeg.070 -?
+expect  usage: /dd/CMDS/djpeg.070 [switches] [inputfile]
+expect    -os2           Select BMP output format (OS/2 style)
+expect    -dct float     Use floating-point DCT method
+
+case    wrjpgcom070-explains-how-to-put-a-comment-in-a-jpeg
+run     /dd/CMDS/wrjpgcom.070 -?
+expect  wrjpgcom inserts a textual comment in a JPEG file.
+expect    -cfile name      Read comment from named file
+expect  It can be multiple lines, up to 65000 characters total.
+
+# dhry is the Dhrystone benchmark and it READS ITS RUN COUNT FROM STANDARD
+# INPUT -- which is why every sweep that ran it bare scored it silent.
+case    dhry-runs-the-dhrystone-benchmark-and-checks-its-own-variables
+run     /dd/CMDS/DHRY/dhry < /nil
+expect  Dhrystone Benchmark, Version 2.0 (Language: C)
+expect  Please give the number of runs through the benchmark:
+expect  Execution ends
+expect  Int_Glob:            5
+expect          should be:   5
+
+# pathalias computes mail routes from a map of links. Given a map naming
+# two sites and no local name, it picks one and says which -- and then
+# says there is no route, which is true.
+case    pathalias-computes-routes-and-says-when-there-are-none
+run     echo "milkyway seabass(DEMAND)" > $W/map
+run     /dd/CMDS/UUCP/pathalias $W/map
+expect  using "lostinspace" for local name
+expect  You can't get there from here:
+expect  	seabass
+expect  	milkyway

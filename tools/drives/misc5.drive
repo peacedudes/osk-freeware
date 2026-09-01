@@ -1,0 +1,134 @@
+# misc5 -- a spread of remaining programs that a card credits and nothing
+# has typed.  Every one of these WRITES something or reports something
+# measurable, which is what makes them worth a case.
+
+family  misc5
+
+setup   export TERM=vt100
+setup   export TERMCAP=/dd/SYS/termcap
+setup   export USER=tester
+setup   W=/dd/tmp/MSC5
+setup   /dd/CMDS/rm -f $W > /nil 2>/nil
+setup   /dd/CMDS/mkdir -p $W > /nil 2>/nil
+setup   /dd/CMDS/cp /dd/SYS/motd $W/plain.txt
+
+drive   strings
+why     "extract printable strings, reported as $offset: <text>".  It could
+why     not open /dd/CMDS/cat; try a data file and its own options.
+run     /dd/CMDS/strings $W/plain.txt
+run     echo "--- with -?:"
+run     /dd/CMDS/strings -?
+run     echo "--- end strings"
+
+drive   gdd
+why     GNU dd.  `if=' and `of=' did not produce a file; try the plain
+why     filter form with a redirect instead.
+run     /dd/CMDS/gdd -?
+run     echo "--- as a filter:"
+run     /dd/CMDS/gdd < $W/plain.txt > $W/dd.out
+run     /dd/CMDS/wc -c $W/plain.txt $W/dd.out
+run     echo "--- with a count:"
+run     /dd/CMDS/gdd bs=1 count=7 < $W/plain.txt > $W/dd7.out
+run     /dd/CMDS/wc -c $W/dd7.out
+run     echo "--- end gdd"
+
+drive   ssl
+why     "show a file's segment list, sector by sector"
+run     /dd/CMDS/ssl $W/plain.txt
+run     echo "--- end ssl"
+
+drive   compr-and-xcrypt
+why     a file compressor and a file encryptor -- both round-trippable.
+run     /dd/CMDS/compr $W/plain.txt
+run     /dd/CMDS/ls $W
+run     echo "--- xcrypt:"
+run     /dd/CMDS/xcrypt
+run     echo "--- end compr-and-xcrypt"
+
+drive   undel
+why     "undelete a file" -- it wanted a FULL directory pathname.
+run     /dd/CMDS/undel $W
+run     echo "--- end undel"
+
+drive   modbuster
+why     "Split merged OS-9 module files".  /dd/CMDS/cyberwar is a module
+why     GROUP -- four modules in one file -- so it has real work here.
+run     /dd/CMDS/cp /dd/CMDS/GAMES/cyberwar $W/group
+run     /dd/CMDS/ksh -c "cd $W; /dd/CMDS/modbuster group"
+run     /dd/CMDS/ls $W
+run     echo "--- end modbuster"
+
+drive   newshist
+why     "rebuild the history file" -- it printed dbz's usage before.
+run     /dd/CMDS/NEWS/newshist
+run     echo "--- and dbz, which it uses:"
+run     /dd/CMDS/NEWS/dbz
+run     echo "--- end newshist"
+
+drive   asciitopgm-and-rawtopgm
+why     two netpbm converters INTO PNM that can be given real input:
+why     ascii art, and raw bytes with the dimensions named.
+run     echo "  ..::" > $W/art.txt
+run     echo "  ..::" >> $W/art.txt
+run     /dd/CMDS/NETPBM/asciitopgm 2 5 < $W/art.txt > $W/art.pgm
+run     /dd/CMDS/NETPBM/pnmfile $W/art.pgm
+run     echo "--- rawtopgm:"
+run     /dd/CMDS/NETPBM/rawtopgm 8 5 < /dd/SYS/motd > $W/raw.pgm
+run     /dd/CMDS/NETPBM/pnmfile $W/raw.pgm
+run     echo "--- end asciitopgm-and-rawtopgm"
+
+drive   pnmtops
+why     "PNM to PostScript"
+run     /dd/CMDS/NETPBM/pgmramp -lr 16 8 > $W/r.pgm
+run     /dd/CMDS/NETPBM/pnmtops $W/r.pgm > $W/r.ps
+run     /dd/CMDS/wc -c $W/r.ps
+run     /dd/CMDS/head -n 4 $W/r.ps
+run     echo "--- end pnmtops"
+
+drive   djpeg070-and-wrjpgcom070
+why     the IJG 0.70 builds.  cjpeg makes a JPEG the .070 pair can read.
+run     /dd/CMDS/NETPBM/ppmpat -madras 16 16 > $W/p.ppm
+run     /dd/CMDS/NETPBM/ppmquant 16 $W/p.ppm > $W/q.ppm
+run     /dd/CMDS/djpeg.070 -?
+run     echo "--- wrjpgcom.070:"
+run     /dd/CMDS/wrjpgcom.070 -?
+run     echo "--- end jpeg070"
+
+drive   top-and-aprocs
+why     two process monitors.  `top' prints a heading; aprocs is recorded
+why     as not running under os9exec.
+run     /dd/CMDS/top < /nil
+run     echo "--- aprocs:"
+run     /dd/CMDS/aprocs -?
+run     echo "--- end top-and-aprocs"
+
+drive   dhry-and-disktest
+why     two benchmarks that were never typed.
+run     /dd/CMDS/DHRY/dhry < /nil
+run     echo "--- disktest:"
+run     /dd/CMDS/disktest -?
+run     echo "--- end benchmarks"
+
+drive   tplot
+why     "Plot data to a plotter.  Asks for an interval and a..."
+run     echo "1" > $W/t.in
+run     echo "10" >> $W/t.in
+run     echo "" >> $W/t.in
+run     /dd/CMDS/tplot < $W/t.in
+run     echo "--- end tplot"
+
+drive   mtst
+why     "spline curve fitting - test driver"
+run     /dd/CMDS/mtst < /nil
+run     echo "--- end mtst"
+
+drive   pathalias
+why     "compute mail routes from a map"
+run     echo "milkyway seabass(DEMAND)" > $W/map
+run     /dd/CMDS/UUCP/pathalias $W/map
+run     echo "--- end pathalias"
+
+drive   lout
+why     "Lout 2.05 document formatter"
+run     /dd/CMDS/lout
+run     echo "--- end lout"
