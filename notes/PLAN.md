@@ -19,7 +19,8 @@ own OS-9 media**. Keep that reader in mind; it decides most questions.
 
 ```sh
 OS9EXEC_DIR=~/Developer/os9/os9exec tools/mkimage.sh disk osk-freeware.dd
-tools/check_disk.py disk          # 16 invariants, all must be green
+tools/check_disk.py disk          # 17 invariants -- read the list it prints,
+                                  # never a number typed anywhere else
 tools/gen_catalog.py disk --check # every program catalogued and categorised
 tools/gen_screens.py --check      # no card has drifted from its stanza
 ```
@@ -58,21 +59,25 @@ clear.
 
 | | |
 |---|---|
-| Programs | 939 catalogued |
-| **Under a test that can fail again** | **492** — was 277 on 2026-08-31 morning |
-| Neither a test nor a gallery card | 263 — was 421 |
-| Driven with real arguments (a `tools/drives` sheet runs it) | 306 |
-| Screens | 484 cards |
+| Programs catalogued | 939 |
+| Of those, RUNNABLE (a type-$01 module) | 915 -- the rest are drivers, descriptors and trap libraries |
+| **Under a test that can fail again** | **534** |
+| Neither a test nor a gallery card | **97** — was 421 on 2026-08-31 morning |
+| Driven with real arguments (a `tools/drives` sheet runs it) | 448 |
+| `datatest` cases | 423 in 24 families, 3 deliberate failures |
+| Screens | 484 cards, 20 still flagged by `audit_cards.py` |
 | Source here | 625 (66%) |
 | Documented beyond one index line | 602 (63%) |
-| `datatest` cases | 324 in 17 families |
 
 Re-measured 2026-08-31 evening. The tools are the authority, not this table:
-`tools/worklist.py --no-test --no-card`, `tools/src_census.py disk`,
-`tools/doc_census.py disk`, `tools/audit_cards.py`.
+`tools/worklist.py --programs --no-test --no-card`, `tools/audit_cards.py`,
+`tools/src_census.py disk`, `tools/doc_census.py disk`.
 
-Read the second column carefully. 94.5% only means "produced output rather
-than dying" — `rpn` gets its arithmetic wrong and clears that bar.
+Read those two middle rows together. "Driven" means somebody typed a real
+invocation and looked at the answer; "under a test" means a machine will
+notice if it stops being true. The gap between them is programs whose
+behaviour was read once and not written down, and it is the cheapest work
+left.
 
 ---
 
@@ -82,10 +87,29 @@ than dying" — `rpn` gets its arithmetic wrong and clears that bar.
 > one thing above all: *run the programs with real arguments and check they
 > actually work — not just that they do not die; capture `-?` and compare it
 > against the documentation; and take screenshots that show a program working
-> rather than its usage line.* About 50 of 935 programs were driven that way
-> and 5 cards were replaced. **That is the job, and it is barely begun.**
-> Items 1a and 4 below are the same loop and it is the loop that works.
-
+> rather than its usage line.*
+>
+> **That is now the thing being done, and it has a shape.** 448 programs are
+> driven by a committed sheet in `tools/drives/`, 534 are under a test that
+> can fail again, and 97 runnable programs have neither. The loop is:
+>
+> ```sh
+> tools/worklist.py --programs --no-test --no-card    # pick a batch
+> # write tools/drives/<name>.drive with REAL invocations
+> tools/drive.py <name>                               # one emulator session
+> # read the transcript, fix DOC/INDEX where it disagrees,
+> # write tools/datatests/<family>.cases for what the run settled
+> tools/datatest.py tools/datatests/<family>.cases
+> ```
+>
+> **A program that looks broken usually has the wrong invocation.** That is
+> the single most useful thing this pass has learnt, and it has been true
+> more often than not: eight netpbm converters wrote zero bytes until they
+> were given a quantised image; eleven Dhrystone builds looked mute because
+> they were waiting for a run count on stdin; `tangle` could not open a
+> `.web` because the file it could not open was the absent CHANGE file;
+> `booz` wanted a bare letter and not `-l`. Check the invocation before you
+> write the program off, and write down what the right one is.
 
 ### 1. Module-name collisions — the five in REBUILT are done, 27 names remain
 
@@ -279,7 +303,8 @@ time.
 ## Rules that matter
 
 - **Commit your own work.** rdoggett does not approve commits. The gate is all
-  14 `check_disk.py` checks green and the tree left clean. Group related
+  `check_disk.py` checks green -- read the list the tool prints rather than a
+  number typed here -- and the tree left clean. Group related
   changes; no mixed-bag commits. `git add -A` will sweep in unrelated work —
   stage deliberately.
 - **OS-9 text files are CR-terminated (0x0D), never LF.** Write with
@@ -314,3 +339,49 @@ time.
 
 Nothing. The four questions on `notes/FOR-RDOGGETT.md` were answered on
 2026-08-30; item 1 above is his decision, waiting only on execution.
+
+---
+
+## Settled on 2026-08-31 (evening), so nobody re-derives it
+
+- **`SYS/login` sets `SHELL=$ROOT/CMDS/ksh`.** This C library's `system()`
+  forks `$SHELL` with the whole command line as ONE argument, and only `ksh`
+  parses it that way. `tex`, `latex`, `eo` and `maketexpk` went from doing
+  nothing at all to working. `DOC/README-SHELLS` compares all five shells;
+  `check_disk.py` now fails if `screenshots.py`'s copy of the login
+  environment disagrees with `SYS/login`, because it already had.
+- **The eleven cio casualties are rebuilt and installed.** `cvtbase`,
+  `cdiff`, `nroff`, `etags`, `yacc`, `xrf`, `unstr`, `cookhash`, `logisim`,
+  `pagekwic`, `pagefraz`. All trap-free, all unstarred, all asserted in
+  `tools/datatests/cio11.cases`. `relink_cio.sh` now refuses a program with a
+  putc/getc call site rather than reporting one.
+- **`No more memory` has three causes, not one.** The cio selector mismatch
+  (41, now 30); an ADDRESS used as a length (`lfmaker`, proved by the request
+  moving with an environment pad, and only once the module is resident); and
+  an honest fixed request for the whole arena (`texidx`, 0x2000040 every
+  time). Addendum in `notes/os9exec-bugs/CIO-SELECTOR-MISMATCH.md`.
+- **Both halves of the JPEG/PNM header disagreement.** `cjpeg` wants LF
+  between PNM header fields and this disk's netpbm writes CR; `djpeg` writes
+  LF and this disk's `pnmfile` cannot read it. `pbyte <file> <offset> 0a` is
+  the patch, in whichever direction you are going.
+- **`pgmtopbm` without `-threshold` is NOT reproducible** -- its dither
+  differs every run, and anything asserting a length or an md5 downstream of
+  it will flap. Both netpbm case files say so now.
+- **Twelve `DOC/INDEX` entries described a different program** and are fixed:
+  `checkfile` (a cheque-book program), `paranoia` (a text adventure),
+  `remove` (modules, not files), `preset` (terminal function keys), `eo`,
+  `dotilde`, `vecho`, `lfmaker`, `timid`, `udate`, `wysetime`, `gpp`.
+
+### What is left, in the order it is worth doing
+
+1. **97 runnable programs with neither a test nor a card.**
+   `tools/worklist.py --programs --no-test --no-card` prints them. Most are
+   already driven -- their transcripts are reproducible from the sheets in
+   `tools/drives/` -- and only need a case written.
+2. **20 gallery cards still flagged.** `tools/audit_cards.py`. Two of them,
+   `perr` and `perr-print`, are false positives and should stay: error text
+   IS their output.
+3. **The family chooser documents.** `DOC/README-SHELLS` was written this
+   session as the second one after `DOC/README-VI`. Archivers, kermit,
+   editors and grep-likes are still to do, and everything they need is
+   derivable without running anything.

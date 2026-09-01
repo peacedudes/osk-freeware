@@ -157,15 +157,20 @@ expect  New Year
 run     /dd/CMDS/cat /dd/tmp/c2
 expect  9/9
 
-# nroff does not survive having its output redirected here, so this asserts
-# the absence directly: fed a file whose text `cat' prints above, it emits
-# none of it.
-
-case    cdiff-prints-none-of-the-content-it-was-given
+# THESE TWO CASES HAVE TURNED OVER, 2026-08-31. They used to assert that
+# `cdiff' and `nroff' printed NONE of the content they were given -- the
+# silent half of the cio selector mismatch -- and they said so in the comment
+# above: "the day a matching cio module appears, this case fails, which is
+# what it is for". No matching module appeared; the two programs were REBUILT
+# trap-free instead, and now they read their input. The assertions are
+# reversed rather than deleted, so the file that proved the fault also proves
+# the fix. tools/datatests/cio11.cases has all eleven.
+case    cdiff-now-prints-the-line-that-differs
 run     /dd/CMDS/cdiff /dd/tmp/c1 /dd/tmp/c2
-absent  Year
+expect  Year
+expect  Difference of file
 
-case    nroff-opens-its-input-and-prints-none-of-it
+case    nroff-now-prints-the-text-it-was-given
 run     /dd/CMDS/nroff /dd/tmp/c1
-absent  New Year
+expect  New Year
 run     /dd/CMDS/rm -f /dd/tmp/c1

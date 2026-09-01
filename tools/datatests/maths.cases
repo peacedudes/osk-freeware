@@ -43,14 +43,21 @@ case    divide-splits-a-file-and-is-not-arithmetic
 run     /dd/CMDS/divide
 expect  Divide file into pieces
 
-# `cvtbase' NAMES ITS BASES BY KEY -- b, d, h or x, o -- not by number, and
-# with a correct invocation it does not convert anything: it floods `No more
-# memory !!!' without stopping.  That is the F$SRqMem storm that
-# notes/os9exec-bugs records, and `unstr' does the same.  Asserted so that
-# the day either is fixed, this says so.
-case    cvtbase-still-floods-no-more-memory
-run     echo 255 | /dd/CMDS/cvtbase d b
-expect  No more memory
+# `cvtbase' NAMES ITS BASES BY KEY -- b, d, h or x, o -- not by number.
+#
+# THIS CASE USED TO ASSERT THAT IT FLOODED, and that day came: it was
+# rebuilt trap-free on 2026-08-31 and it converts. The old case said
+# "asserted so that the day either is fixed, this says so", and this is what
+# that looks like -- the assertion turned over rather than deleted, so the
+# history of the fix is in the file that proves it. `unstr' went the same way;
+# tools/datatests/cio11.cases has all eleven.
+case    cvtbase-converts-now-that-it-is-rebuilt
+run     echo 255 > /dd/tmp/mt/cb.in
+run     /dd/CMDS/cvtbase d b < /dd/tmp/mt/cb.in
+run     /dd/CMDS/cvtbase d h < /dd/tmp/mt/cb.in
+expect  11111111
+expect  ff
+absent  No more memory
 
 case    cvtbase-prints-its-bases-when-asked
 run     /dd/CMDS/cvtbase

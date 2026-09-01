@@ -1,5 +1,15 @@
  SYSMON-ERROR:  OS9/68k V4.0 is too old for SYSMON V6.1
-$ mfree
-mfree: command not found
-$ free
-free: command not found
+$ dinfo /dd
+Device name   : /dd
+Volume name   : "OSK-Freeware"
+Creation date : 2026-8-31 19:19
+Capacity      : 259072 KBytes (1036288 sectors, 100.00%)
+Free          : 140444 KBytes (561776 sectors, 54.21%) in 1 Blocks
+Used          : 118628 KBytes (474512 sectors, 45.79%)
+Largest block : 140444 KBytes (561776 sectors, 54.21%)
+$ map /dd/SYS/motd
+                Blockmap of /dd/SYS/motd 19:27:39
+
+Segment List:
+  Sector  Blocks
+07256D    0003

@@ -119,6 +119,13 @@ def main(argv):
 
     sheets = sheet_commands()
     rows = []
+    # TWO CARDS ARE FLAGGED CORRECTLY BY THE RULE AND WRONGLY BY THE POINT.
+    # `perr' turns an OS-9 error number into its message, so error text IS
+    # its output and a screen full of `Error #000:216' is exactly right.
+    # Listing them here rather than weakening the rule: a rule that stopped
+    # noticing error-only screens would stop finding the ones that matter.
+    fine = {"perr": "perr PRINTS error messages -- error text is its output",
+            "perr-print": "the same program, printing a wider range"}
     for f in sorted(os.listdir(CAPS)):
         if not f.endswith(".shot.txt"):
             continue
@@ -136,6 +143,8 @@ def main(argv):
                # whether there is MORE INTERESTING OUTPUT to show, and a
                # near-empty screen carrying a syntax line says there is not.
                "THIN-HELP" if usage and work <= 3 else "")
+        if name in fine:
+            why = ""
         rows.append((name, why, usage, err, work, body))
 
     flagged = [r for r in rows if r[1]]
@@ -147,6 +156,8 @@ def main(argv):
         print("%-20s %-12s help=%-3d err=%-3d work=%-4d %s"
               % (name, why or "ok", u, e, w, first[:44]))
     print("\n%d of %d cards flagged" % (len(flagged), len(rows)))
+    for name, why in sorted(fine.items()):
+        print("  (not flagged, by name: %-12s %s)" % (name, why))
     return 0
 
 

@@ -575,9 +575,9 @@ cap     directories upper.  On a scratch copy, not on the disk -- and this
 cap     card now shows the rename happening rather than the usage line it
 cap     photographed until 2026-08-31.  MixedCase.TXT becomes
 cap     mixedcase.txt; subdir becomes SUBDIR.
-run     makdir /dd/tmp/UD
+run     mkdir /dd/tmp/UD
 wait    6
-run     makdir /dd/tmp/UD/subdir
+run     mkdir /dd/tmp/UD/subdir
 wait    6
 run     cp /dd/SYS/motd /dd/tmp/UD/MixedCase.TXT
 wait    6

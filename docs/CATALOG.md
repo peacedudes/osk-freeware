@@ -15,7 +15,7 @@
 | [Editors](#editors) | 22 | vi and emacs in several flavours, line and stream editors, and editors for binary and hex. |
 | [Text tools](#text-tools) | 113 | Search, sort, compare, reformat, split and spell-check. |
 | [Files & directories](#files--directories) | 37 | Listing, copying, finding, renaming, and knowing what you have. |
-| [Developer tools](#developer-tools) | 47 | Version control, tags, cross-reference, formatters, a debugger and benchmarks. |
+| [Developer tools](#developer-tools) | 46 | Version control, tags, cross-reference, formatters, a debugger and benchmarks. |
 | [Compilers & build](#compilers--build) | 39 | C compilers and their passes, assemblers, linkers, make and parser generators. |
 | [Languages](#languages) | 10 | Interpreters and language systems beyond C. |
 | [Archives & compression](#archives--compression) | 40 | Pack, unpack and shrink -- lha, zip, tar, arc, zoo, and OS-9 module libraries. |
@@ -28,7 +28,7 @@
 | [System & modules](#system--modules) | 131 | OS-9 module and process tools, devices, system state and scheduling. |
 | [Disk & DOS](#disk--dos) | 20 | Reading and writing MS-DOS media with the mtools set. |
 | [Time & calendar](#time--calendar) | 14 | Calendars, clocks and astronomy. |
-| [Maths & calculators](#maths--calculators) | 9 | Calculators, plotting, orbits and number theory. |
+| [Maths & calculators](#maths--calculators) | 10 | Calculators, plotting, orbits and number theory. |
 | [Printing](#printing) | 14 | Spoolers, page formatting and PostScript. |
 | [Documentation](#documentation) | 5 | Pagers, readers and the help system. |
 
@@ -151,7 +151,7 @@
 | `ascii` | &#9733; ASCII character table |
 | `dump` | hex dump of a file or module<br>`Syntax: dump [<opts>] <path/module> [<opts>] [<starting byte>] [<opts>]` |
 | `file` | Identify file types.  SYS/magic is now here, so it names real formats -- "GIF picture ver. 87a 320 x 200, interlaced, 256 colors" -- and not just OS-9 modules<br>**How:** Names real formats now that SYS/magic is here: `file /dd/DEMO/gulls.gif' reports the GIF version, size and colour count. Before the magic file arrived it could only recognise OS-9 modules. |
-| `gdd` | &#9733; GNU dd -- `gdd if=<file> of=<file> bs=<n> skip= seek= count=' -- a block copier and converter, not a dump.  `dump' and `od' are the dumps here.  Corrected 2026-08-29<br>**How:** A data dump -- like `od', with GNU-style long options. Needs Microware's cio. |
+| `gdd` | &#9733; GNU dd -- `gdd if=<file> of=<file> bs=<n> skip= seek= count='. RUN BARE IT ENDS THE SESSION: no message, no output, and the emulator goes with it.  Give it arguments.  Measured 2026-08-31 -- a block copier and converter, not a dump.  `dump' and `od' are the dumps here.  Corrected 2026-08-29<br>**How:** A data dump -- like `od', with GNU-style long options. Needs Microware's cio. |
 | `strings` | &#9733; extract printable strings, reported as $offset: <text><br>`Usage: strings [-anpl=n] [file [file]]` |
 | `tail` | &#9733; last lines of a file -- DESIGNA's, and it takes `-l=<n>', not GNU's `-n <n>', which it rejects as an unknown option.  `head' on this disk IS the GNU one and takes -n: two conventions, one disk |
 | `wc` | count lines/words/chars; counts CR or LF lines.  Where this build came from is NOT established -- it was long listed as ours, built with gcc2, and the evidence is against that: it is starred, and a gcc2 build here links clibn and needs no cio.  The three commands listed beside it turned out to be archive binaries.  No source and no second copy has been found in this repo or the archive pool |
@@ -405,7 +405,7 @@
 
 *Version control, tags, cross-reference, formatters, a debugger and benchmarks.*
 
-<details><summary>47 programs</summary>
+<details><summary>46 programs</summary>
 
 **Assembly**
 
@@ -457,14 +457,13 @@
 |---|---|
 | `bcheck` | &#9733; count brackets in a source file and report a mismatch -- it is not a boot-file checker.  Corrected 2026-08-28<br>`Syntax: bcheck [<opt>] [<filename>]` |
 | `ccheck` | &#9733; C program checker -- matching brackets, quotes, comment brackets, and indentation that disagrees with them<br>**How:** Checks C source for mismatched brackets, quotes and comment markers, and for indentation that disagrees with the nesting. Needs cio. |
-| `checkfile` | &#9733; Check a C source file for structural mistakes.  Wants TERM<br>**How:** Full-screen: it takes over the display. **`q' quits** -- tested. |
 
 **Source formatting**
 
 | | |
 |---|---|
 | `cb` | &#9733; C beautifier<br>`Usage:  cb <input.fil >output.fil` |
-| `cpr` | print/pretty-list C source files<br>`Usage: cpr [-cCnNsS] [-T title] [-t tabwidth] [-p[num]] [-r[num]] [-l pagelength] [[-f] file] ...` |
+| `cpr` | print/pretty-list C source files -- and it expands what it is given rather than passing it through: 40 bytes of /dd/SYS/motd come out as 404, paginated.  Measured 2026-08-31<br>`Usage: cpr [-cCnNsS] [-T title] [-t tabwidth] [-p[num]] [-r[num]] [-l pagelength] [[-f] file] ...` |
 | `ifdef` | resolve #ifdefs in C source<br>`Syntax: ifdef [<opts>] [<file>] [<opts>]` |
 | `indent` | reformat a C source program for readability<br>`Syntax: indent [<opts>] [<inpath> [<outpath>]] [<opts>]` |
 | `patch` | Larry Wall's patch - apply a diff -- it recognises a diff and then CANNOT FINISH: `Error reading tmp file /dd/tmp/patchi000003'.  The file it was patching is left alone.  `diff' itself works |
@@ -722,7 +721,7 @@
 |---|---|
 | `atob` | ASCII-to-binary decode<br>`Usage: atob <filein >fileout` |
 | `btoa` | Binary-to-ASCII encode<br>`Usage : btoa <filein >fileout` |
-| `chardef` | define a character set<br>`Syntax: defchar [<path>]` |
+| `chardef` | define a character set -- and run bare it ENDS THE SESSION, silently, taking the emulator with it.  Measured 2026-08-31<br>`Syntax: defchar [<path>]` |
 | `todos` | &#9733; OS-9 to DOS line endings -- BUT SEE BELOW, it does nothing. `autolf -c -C -L' does the job and is on this disk |
 | `toos9` | &#9733; DOS to OS-9 line endings -- the same, and the same answer: `autolf -l -C' converts the other way DO NOT RELY ON THESE TWO.  Measured 2026-08-27: both are NO-OPS.  Each takes a FILENAME (not a pipe) and rewrites it in place through a `todos.$$$.N' temporary, and the file that comes out is byte-identical to the one that went in -- same length, same md5 -- on CR-only OS-9 text, which is exactly what todos says it converts.  A real DOS conversion must ADD a linefeed per line and cannot leave the length alone.  Tested on /dd/SYS/termcap (963 bytes) and DOC/README-CIO (3886); neither moved. Use `flip' host-side, or `tr', until this is understood. tools/datatests/encoding.cases keeps the failing case. |
 | `uudecode` | &#9733; uudecode<br>`USAGE: uudecode [infile]` |
@@ -917,9 +916,9 @@
 | | |
 |---|---|
 | `cjpeg` | JPEG encoder (IJG).  It reads a PNM whose header fields are separated by LF; the netpbm ports here separate them with CR, so cjpeg answers `Bogus data in PPM file' for a file netpbm wrote and netpbm answers `junk in file where an integer should be' for a file cjpeg's djpeg wrote.  Three bytes either way, and `pbyte' patches them in place -- DOC/STATUS has the offsets, and a full round trip is in the data tests.  The entry here said until 2026-08-29 that no JPEG could be made on this disk; one can.  Corrected 2026-08-29<br>**How:** Makes a JPEG from a PNM -- but not straight from a netpbm PNM. cjpeg wants LF between the header fields and this disk's netpbm writes CR, so it says "Bogus data in PPM file". Patch the three separators with `pbyte` first: for `ppmmake red 8 8` they are at offsets 2, 6 and a. DOC/STATUS has the full recipe both ways. Measured 2026-08-29. |
-| `cjpeg.070` | JPEG compressor (68070 build)<br>`usage: cjpeg.070 [switches]` |
+| `cjpeg.070` | JPEG compressor (68070 build) -- and NOT a drop-in for `cjpeg'.  Measured 2026-08-31: handed the very PPM the 68000 build has just encoded successfully, it answers `Premature end of input file' and writes nothing.  These four .070 files are alternates for another processor, not second copies<br>`usage: cjpeg.070 [switches]` |
 | `djpeg` | JPEG decompressor, jpeg-5a.  It works, and its output does NOT pipe into netpbm as it stands: djpeg ends a PNM header line with LF and every netpbm tool here wants CR, so ppmtopgm answers `junk in file where an integer should be'.  Patch the three separators with `pbyte' -- DOC/STATUS has the recipe -- and the pipeline runs.  Measured 2026-08-29<br>**How:** Decompresses a JPEG: `djpeg -pnm image.jpg > out.ppm`. The disk has one to try, SRC/jpeglib/JPEG_5A/testimg.jpg. Its output will NOT pipe into netpbm unpatched -- djpeg writes LF at the end of a PNM header line and netpbm here wants CR. `pbyte out.ppm 2 0d` and the same at the two later separators fixes it; DOC/STATUS has the offsets. Measured 2026-08-29. |
-| `djpeg.070` | JPEG decompressor (68070 build)<br>`usage: djpeg.070 [switches]` |
+| `djpeg.070` | JPEG decompressor (68070 build).  See `cjpeg.070': the .070 set is for another processor and does not read what the 68000 set writes<br>`usage: djpeg.070 [switches]` |
 | `rdjpgcom` | read the comment from a JPEG file<br>`Usage: rdjpgcom [switches] [inputfile]` |
 | `rdjpgcom.070` | read a JPEG's comment (IJG 0.70 build)<br>`Usage: rdjpgcom.070 [switches] [inputfile]` |
 | `wrjpgcom` | write a comment into a JPEG file<br>`Usage: wrjpgcom [switches]` |
@@ -1122,7 +1121,7 @@
 |---|---|
 | `mtst` | &#9733; spline curve fitting - test driver |
 | `rayshade` | ray tracer 4.0.  It renders, and requires Microware's `shell' on your execution path: it builds its scene through popen(), and OS-9's C library implements popen() by forking a program of exactly that name.  It also wants `cccp' in the DATA directory, which is where the forked shell looks.  With both, it renders and reports its statistics -- measured 2026-08-28. No `shell' ships here; anyone who runs OS-9 has one. DOC/rayshade has the two lines.  Reworded 2026-08-30<br>**How:** Ray tracer 4.0, and it renders. REQUIRES MICROWARE'S `shell` on your execution path -- it builds its scene through popen(), and OS-9's C library implements popen() by forking a program of exactly that name. It also wants `cccp` in the DATA directory. DOC/rayshade has the two lines. |
-| `rsconvert` | convert rayshade image output between formats<br>`usage: rsconvert [oldfile]` |
+| `rsconvert` | convert rayshade image output between formats -- and it CRASHES: it prints `/* Converted by rsconvert */' and then takes a Stack Overflow, with no arguments and with a file. Measured 2026-08-31<br>`usage: rsconvert [oldfile]` |
 
 **Viewers**
 
@@ -1390,7 +1389,7 @@
 | `signal` | &#9733; send a signal to a process<br>`Syntax: signal <process-id> <signal-code> [<seconds>]` |
 | `sysmax` | &#9733; shows the system's maximum process AGE, not its memory -- `system maximum age is 0' here, because os9exec does not implement the F$SetSys call it uses.  Corrected 2026-08-29 |
 | `sysmin` | &#9733; shows the system's minimum process PRIORITY, not its memory -- `system minimun priority is 0' here, same unimplemented F$SetSys.  Corrected 2026-08-29 |
-| `sysmon` | &#9733; system monitor -- refuses to start: `OS9/68k V4.0 is too old for SYSMON V6.1'<br>`Syntax: sysmon [<opt>]` |
+| `sysmon` | &#9733; system monitor -- refuses to start: `OS9/68k V4.0 is too old for SYSMON V6.1'.  `dinfo' reports a device's capacity and free space, `map' shows the blocks a file occupies, and `space' totals a tree -- those are the questions it would have answered, and they ARE here. `mfree' and `free' are not: they are Microware's, and this entry's card named them for a year without anybody checking.  Corrected 2026-08-31<br>`Syntax: sysmon [<opt>]` |
 | `t` | tiny test/stub binary |
 | `top` | &#9733; show the busiest processes -- prints its heading and then aborts (E_PRCABT).  `aprocs' aborts the same way<br>`Syntax: top [<opts>] [<num>]` |
 | `vis` | &#9733; NOT the Unix `vis': it repeatedly runs a command and refreshes the screen with the output, which is what `watch' does elsewhere -- `vis {opts} <command> <args>'.  Corrected 2026-08-29 |
@@ -1457,7 +1456,7 @@
 | `hinterhalt` | &#9733; a small game (EFFO forum 7) |
 | `i_am_i` | prints its own source (Pascal) |
 | `isam` | &#9733; indexed-sequential file demonstration |
-| `lfmaker` | make a G-Windows launch file -- and it FLOODS `No more memory !!!' the moment it is given an argument. Bare it prints nothing and returns.  A 2026-08-31 re-run called the flood unreproduced; that re-run was wrong, and the difference is the argument.  Re-measured both ways the same day: `lfmaker' silent, `lfmaker test' floods |
+| `lfmaker` | make a G-Windows launch file -- and it asks the allocator for an ADDRESS as if it were a length, so the request is refused: `2470464192-byte request refused, 32682944 bytes free'.  The number MOVES with the environment, which is what identifies it as an address.  It happens only once the module is already resident: run bare first (silent), then with an argument.  Not the cio fault -- lfmaker carries no trap-13 stubs at all. Bare it prints nothing and returns.  A 2026-08-31 re-run called the flood unreproduced; that re-run was wrong, and the difference is the argument.  Re-measured both ways the same day: `lfmaker' silent, `lfmaker test' floods |
 | `lgrep` | &#9733; NOT `line grep': its own banner says "same as 'grep -l', but prints filenames without comments".  It produced no output at all when asked for a string that IS in the files, bare and from a shell with PATH set, and exited 0 both times. `grep -l' does the job.  Measured 2026-08-31; see DOC/README-GREP<br>`Syntax: lgrep <arg1> ... <argn>` |
 | `liborder.os9` | report the order of modules in a library<br>`Usage: liborder <options> file1.r file2.r ...` |
 | `lpsched` | &#9733; the line-printer scheduler<br>`Syntax: lpsched [-r] {<devname>}` |
@@ -1579,7 +1578,7 @@
 
 *Calculators, plotting, orbits and number theory.*
 
-<details><summary>9 programs</summary>
+<details><summary>10 programs</summary>
 
 **Calculators**
 
@@ -1597,6 +1596,7 @@
 
 | | |
 |---|---|
+| `checkfile` | &#9733; NOT a C source checker: it is a CHEQUE-BOOK PROGRAM, a full-screen account-file manager.  `CHECKFILE, Copyright (c) 1992 by John R. Wainwright', with fields for Date, Type, Description, Account and Amount and a menu of A - Add Records, B - Print Balance, R - Report, F - Select File, V - View/Edit, Q - Quit.  Its default file is `testfile.dat'.  Wants TERM.  `ccheck' is the C source checker on this disk.  Corrected 2026-08-31<br>**How:** Full-screen: it takes over the display. **`q' quits** -- tested. |
 | `oleo` | GNU Oleo 1.6 -- a spreadsheet, and it DOES NOT RUN: illegal instruction at 000465d2, process aborted.  `sc' is the spreadsheet that works<br>**How:** GNU Oleo, a spreadsheet, and it DOES NOT RUN whatever you do: `Illegal instruction: 0009' and E_PRCABT, from a full login session with TERM set as much as from a bare shell. This line said the login was the answer until 2026-08-29; it was measured that day and it is not. Use `sc', the other spreadsheet here, which is an unrelated program and works. |
 | `scqref` | &#9733; Quick reference for sc, the spreadsheet on this disk |
 

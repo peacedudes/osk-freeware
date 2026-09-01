@@ -1,16 +1,10 @@
-$ makdir /dd/tmp/UD
-makdir: command not found
-$ makdir /dd/tmp/UD/subdir
-makdir: command not found
+$ mkdir /dd/tmp/UD
+$ mkdir /dd/tmp/UD/subdir
 $ cp /dd/SYS/motd /dd/tmp/UD/MixedCase.TXT
-cp: create error 216 on /dd/tmp/UD/MixedCase.TXT
 $ ls /dd/tmp/UD
-ls: %s: error 216
+MixedCase.TXT  subdir
 $ upperdir /dd/tmp/UD
 
-Can't open that directory.
-Usage: UpperDir [directory name]
-       Changes filenames to lowercase,
-       and directories to uppercase.
+SUBDIR          mixedcase.txt
 $ ls /dd/tmp/UD
-ls: %s: error 216
+SUBDIR         mixedcase.txt

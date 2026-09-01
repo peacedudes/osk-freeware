@@ -603,14 +603,17 @@ cap     sysmon draws memory and process state on a real machine, and it
 cap     will not start here: it reads the system's version number and
 cap     refuses anything older than it was built for.  os9exec reports
 cap     V4.0, which sysmon 6.1 considers too old.  `mfree', `map' and
-cap     `free' are what answer the same questions on this disk -- and they
-cap     are run here, because a card of a program that prints nothing is a
-cap     blank screen and tells a reader nothing at all.
+cap     `free' are what answer the same questions -- except that NEITHER OF
+cap     THOSE TWO IS ON THIS DISK.  `mfree' and `free' are Microware's and
+cap     were named in this caption without anybody looking; `dinfo', `map' and
+cap     `space' are what is actually here, and `dinfo' and `map' are run
+cap     below, because a card of a program that prints nothing is a blank
+cap     screen and tells a reader nothing at all.
 run     sysmon
 wait    8
-run     mfree
-wait    8
-run     free
+run     dinfo /dd
+wait    10
+run     map /dd/SYS/motd
 wait    8
 
 shot    top

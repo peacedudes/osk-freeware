@@ -2,7 +2,7 @@
 
 Terse on purpose. Everything before 2026-08-27 is in git history.
 
-Branch `release-pass-2026-08-21`. All sixteen `check_disk.py` checks green.
+Branch `release-pass-2026-08-21`. All seventeen `check_disk.py` checks green.
 
 ---
 
@@ -15,37 +15,54 @@ recommendation is there.
 run without it. Delete it if you would rather the disk shipped no writable
 log; nothing else depends on it.
 
-**3. One line for the os9exec side, 2026-08-31.** You relayed that os9exec
-attributes `No more memory !!!` to the cio mismatch. That is right for the 41
-programs the scan names -- and there are **two more that are not cio-linked at
-all** and flood the same message: `lfmaker` (any argument) and `texidx` (any
-`.idx`). Counting `4E4D 00xx` triples finds ZERO trap-13 stubs in either,
-against 69 in `cvtbase`. So the message has a second cause, and a diagnosis
-that stops at "cio mismatch" will mis-file those two. Written up in
-`notes/os9exec-bugs/CIO-SELECTOR-MISMATCH.md`, addendum at the foot.
+**3. Nothing else is waiting on you.**
 
-**4. A consequence of the os9exec change of 2026-08-31, for whoever made it.**
-`ac018e3` -- allocation failures speaking in os9exec's voice, a few times and
-then counted -- is right, and it has one side effect worth knowing. The flood
-was the ONLY visible signal that a program was in the cio storm. With it
-counted instead of printed, a storming program is silent and never returns:
-`cvtbase d b` went from a 207 MB capture in five minutes to a five-minute
-hang with four lines of output. Both are five minutes; only one of them looks
-like a fault. If the counter's total were printed when the process ends, the
-signal would come back at no cost in noise.
+---
 
-**5. Nothing else.** The `cio` investigation is closed and does not block the
-os9exec release — the fault is in the archives' linkage, not the emulator. The
-one os9exec item worth considering is a single line, `memstuff.c:782`, which
-announces every failed allocation on the console where real OS-9 returns
-`E$NORAM` silently; the os9exec session is raising it with you separately.
+## What happened on 2026-08-31, evening, in one page
 
-**Where the night actually went, plainly.** You asked for a broad pass: run
-everything with real arguments, check it works, capture `-?`, take better
-screenshots. About 50 of 935 programs were driven and 5 of 483 cards replaced.
-The rest of the time went into the `cio` fault — which was worth finding once,
-and which the os9exec session root-caused, but which was not the job you set.
-`notes/PLAN.md` now opens by saying so.
+You asked for the programs to be RUN and checked, and for that to keep going
+rather than stopping every two tasks. Here is where it got to.
+
+**The tooling came first, because the bottleneck was never judgement.**
+`tools/drive.py` runs forty programs with real arguments in ONE emulator
+session and writes a transcript; `tools/worklist.py` says which program still
+has nothing; `tools/audit_cards.py` finds the cards that photograph a usage
+line or an error. The old card auditor flagged 2 of 407 -- its rule required
+every line to be an error, and the typed command never is.
+
+| | morning | now |
+|---|---|---|
+| Programs with neither a test nor a card | 421 | **97** |
+| `datatest` cases | 187 | **423** |
+| Cards flagged as help-only or error-only | undetectable | 31 found, 11 fixed |
+
+**The single biggest find: `SYS/login` never set `SHELL`.** Programs that
+shell out reach the C library's `system()`, which forks `$SHELL` with the
+whole command line as one argument -- and of the five shells here only `ksh`
+parses that. One line, and `tex`, `latex`, `eo` and `maketexpk` went from
+doing nothing at all to working. `DOC/STATUS` had blamed a fork resolved
+against the execution directory; that was wrong and is corrected.
+
+**The eleven cio casualties are fixed.** The os9exec session pointed out that
+every one had source and a recipe here already; rebuilt `-qm` they all work,
+and they are installed, unstarred and asserted. `cvtbase` converts, `cdiff`
+diffs, `xrf` prints a full cross-reference. `relink_cio.sh` now refuses to
+relink a program that would come out broken, which is what produced
+`kermit_cio`.
+
+**Twelve index entries described a different program.** The one to see is
+`checkfile`: the entry said "check a C source file for structural mistakes"
+and it is a CHEQUE-BOOK program -- Add Records, Print Balance, Account,
+Amount. `paranoia` was filed as a floating-point benchmark and is a text
+adventure. Every one was found by running the program.
+
+**And a card that lied.** `dhry-all` was captioned "ALL TWELVE run here" and
+its capture showed one line: the other eleven Dhrystone builds were sitting at
+a prompt waiting for a run count. It shows twelve now.
+
+**Nothing here is waiting on a decision from you.** The loop has 97 programs
+left in it and `notes/PLAN.md` says how to run it.
 
 ## ONE THING NEEDS YOU: `gnuchess`, and the measurement changed it
 

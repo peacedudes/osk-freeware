@@ -36,10 +36,16 @@ expect  print mapped addresses.  don't invoke mailers.
 expect  -a aliasfile    aliases filename (not used with SENDMAIL)
 absent  No more memory
 
-case    uulog-names-the-log-it-cannot-find
+# uulog READS A LOG ONCE THERE IS ONE, which there now is: SYS/UUCP's
+# Parameters was repointed at directories this disk actually has on
+# 2026-08-31, and `uuxqt' can write its failure into /DD/LOG/uulog. The
+# fileserv log is still absent and uulog says so, which is the other half.
+case    uulog-reads-the-log-uuxqt-writes
+run     /dd/CMDS/UUCP/uuxqt -?
 run     /dd/CMDS/UUCP/uulog
 run     /dd/CMDS/UUCP/uulog -f
-expect  unable to open '/DD/LOG/uulog'
+expect  uuxqt
+expect  can't load 'procs'
 expect  unable to open '/DD/LOG/fileserv'
 
 case    alps-takes-no-filename-and-says-what-it-is-for
