@@ -1,0 +1,93 @@
+# last3 -- two groups that look like the SAME problem printmail had, and a
+# handful of stragglers.
+#
+# THE PATTERN.  A bare-name fork resolves against the EXECUTION directory,
+# never against PATH, and `load' makes a module resident so the fork finds
+# it with no directory search at all.  That is what fixed `printmail'
+# (it forks `readmsg').  Two more here have the shape:
+#
+#   rcsdiff, rcsmerge   "rcsdiff error: co failed" -- they fork `co', which
+#                       is in /dd/CMDS and works when run by hand
+#   wgen, showpic,      "aborted due to unintialized User Trap #5, err=#227"
+#   graphsave           -- an uninstalled USER TRAP, and `graph' is a
+#                       trap-library module sitting in CMDS/GAMES beside them
+#
+# and `striche', in the same group, says `Can't install trap handler ****
+# Graph' outright, which names it.
+
+family  last3
+
+setup   export TERM=vt100
+setup   export TERMCAP=/dd/SYS/termcap
+setup   W=/dd/tmp/l3
+setup   /dd/CMDS/mkdir -p $W > /nil 2>/nil
+
+drive   rcs-with-co-loaded
+why     "rcsdiff error: co failed" -- rcsdiff forks `co' by bare name.
+why     Build a two-revision file first, then try it both ways round.
+run     echo "a first line" > $W/note.txt
+run     echo "a description" > $W/desc
+run     echo "." >> $W/desc
+run     /dd/CMDS/ci $W/note.txt < $W/desc
+run     /dd/CMDS/co -l $W/note.txt
+run     echo "a second line" >> $W/note.txt
+run     echo "second revision" > $W/desc2
+run     echo "." >> $W/desc2
+run     /dd/CMDS/ci $W/note.txt < $W/desc2
+run     echo "--- rcsdiff BEFORE loading co:"
+run     /dd/CMDS/rcsdiff -r1.1 -r1.2 $W/note.txt
+run     echo "--- now load co and ask again:"
+run     /dd/CMDS/load /dd/CMDS/co
+run     /dd/CMDS/rcsdiff -r1.1 -r1.2 $W/note.txt
+run     echo "--- and rcsmerge:"
+run     /dd/CMDS/rcsmerge -r1.1 -r1.2 $W/note.txt
+run     echo "--- end rcs-with-co-loaded"
+
+drive   graph-demos-with-graph-loaded
+why     "unintialized User Trap #5" is a trap the program expected to be
+why     installed.  `graph' is a trap library in the same directory.
+run     /dd/CMDS/GAMES/wgen < /nil
+run     echo "--- now load the trap library beside them:"
+run     /dd/CMDS/load /dd/CMDS/GAMES/graph
+run     echo "--- wgen again:"
+run     /dd/CMDS/GAMES/wgen < /nil
+run     echo "--- end graph-demos"
+
+drive   showpic-with-graph-loaded
+why     the same, on its own so one failure does not hide the other.
+run     /dd/CMDS/load /dd/CMDS/GAMES/graph
+run     /dd/CMDS/GAMES/showpic < /nil
+run     echo "--- end showpic"
+
+drive   graphsave-with-graph-loaded
+why     and the third of the group.
+run     /dd/CMDS/load /dd/CMDS/GAMES/graph
+run     /dd/CMDS/GAMES/graphsave < /nil
+run     echo "--- end graphsave"
+
+drive   buildhash
+why     "No dictionary (dict.191)".  buildhash BUILDS ispell's hash from a
+why     word list; /dd/LIB/ispell.hash is the built one and ships.  What
+why     does it want, and does naming the file help?
+run     /dd/CMDS/ls -l /dd/LIB/ispell.hash
+run     /dd/CMDS/buildhash
+run     echo "--- with a word list of our own:"
+run     echo "alpha" > $W/words
+run     echo "bravo" >> $W/words
+run     /dd/CMDS/buildhash $W/words $W/out.hash
+run     /dd/CMDS/ls -l $W
+run     echo "--- end buildhash"
+
+drive   splman-splprt-lmargin
+why     three printing programs that all answer nothing.  Give each an
+why     argument and redirect, so silence can be told from no output.
+run     /dd/CMDS/splman > $W/splman.out 2>&1
+run     /dd/CMDS/wc -c $W/splman.out
+run     echo "--- splprt:"
+run     /dd/CMDS/splprt > $W/splprt.out 2>&1
+run     /dd/CMDS/wc -c $W/splprt.out
+run     echo "--- lmargin, which is a filter:"
+run     /dd/CMDS/lmargin 10 < /dd/SYS/motd > $W/lm.out
+run     /dd/CMDS/wc -c /dd/SYS/motd $W/lm.out
+run     /dd/CMDS/dump $W/lm.out
+run     echo "--- end printing-three"

@@ -1,0 +1,116 @@
+family  last3
+# More of the driven-but-untested, and one more program fixed by `load'.
+#
+# THE `load' PATTERN, now three deep.  A bare-name fork resolves against the
+# EXECUTION directory and never against PATH; a RESIDENT module is found by
+# name with no directory search at all.  `printmail' forks `readmsg'
+# (mail2.cases), `rxmod' wants `vmod_trap' (net.cases), and `wgen' wants the
+# `Graph' USER TRAP -- which is a module called `graph' sitting in the same
+# directory it is.  One `load' and it runs.
+#
+# It does NOT fix everything in that group: `showpic' and `graphsave' still
+# abort with the trap library resident, so they want a graphics screen and
+# not just the library. Neither can be a case -- datatest fails any case
+# whose session took an exception, and an abort is one.
+
+setup   export TERM=vt100
+setup   export TERMCAP=/dd/SYS/termcap
+setup   export USER=tester
+setup   W=/dd/tmp/L3
+setup   /dd/CMDS/mkdir -p $W > /nil 2>/nil
+
+# wgen is a waveform generator: it asks for the intensity of each harmonic
+# and draws the result. Before the load it aborts before asking anything.
+case    wgen-runs-once-the-graph-trap-library-is-resident
+run     /dd/CMDS/load /dd/CMDS/GAMES/graph
+run     /dd/CMDS/GAMES/wgen < /nil
+expect  Fundamental harmonic intensity (0-200):
+expect  Sixteenth   harmonic intensity (0-200):
+absent  unintialized User Trap
+
+# `-?' is not one of su's options and it says so in GNU's words -- this is
+# the fileutils su, not OS-9's. (`No such user' comes from the same drive
+# stanza but from `logname', not from this.)
+case    su-is-the-gnu-one-and-refuses-an-option-it-does-not-know
+run     /dd/CMDS/su -?
+expect  su: illegal option -- ?
+expect  Try `/dd/CMDS/su --help' for more information.
+
+case    unexpand-turns-spaces-back-into-tabs-without-changing-the-length
+run     /dd/CMDS/cp /dd/SYS/termcap $W/t.txt
+run     /dd/CMDS/unexpand $W/t.txt > $W/ue.txt
+run     /dd/CMDS/wc -c $W/t.txt $W/ue.txt
+expect  963 /dd/tmp/L3/t.txt
+expect  963 /dd/tmp/L3/ue.txt
+
+# The ADL pair -- Ross Cunniff's adventure language. adltouch recompiles a
+# world and adldebug attaches to a compiled one.
+# THE WORLD HAS TO BE COMPILED FIRST. `adlcomp' writes /dd/tmp/tiny from
+# the source in /dd/ADL/DEMOS, and both of these read that. A case that
+# assumed a previous sheet had left it there passed only while that was
+# true.
+case    adltouch-recompiles-an-adl-world
+run     /dd/CMDS/ADL/adlcomp /dd/ADL/DEMOS/tiny.adl -o /dd/tmp/tiny -i/dd/ADL
+run     /dd/CMDS/ADL/adltouch /dd/tmp/tiny 1
+expect  ADL compiler - Version 3.2 - June 7, 1987
+expect  Reading from file /dd/ADL/DEMOS/tiny.adl
+expect  Reading from file /dd/ADL/standard.adl
+
+case    adldebug-attaches-to-a-compiled-world
+run     echo "q" > $W/q.txt
+run     /dd/CMDS/ADL/adldebug /dd/tmp/tiny < $W/q.txt
+expect  ADL debugger - Version 2.1 - April 28, 1987
+expect  Sorting routines...Done.
+expect  Decoding symbol table...Done.
+expect  Type ? for help.
+
+# `assembler' assembles nothing: it is a GSHELL-style full-screen file
+# picker with `Assembler-SHELL' at the top, and the assemblers it would
+# pick for are as0/as09/as11 and their siblings -- none of them 68000.
+case    assembler-is-a-full-screen-menu-and-not-an-assembler
+run     echo "!" > $W/bang.txt
+run     /dd/CMDS/assembler < $W/bang.txt
+expect  Assembler-SHELL  V1.0           Uwe Simon  1988
+expect  A..Z select file
+expect  !  exit Menue
+
+# buildhash and chardef are ispell's, and both want a word list called
+# `dict.191' which is not on this disk -- /dd/LIB/ispell.hash is the BUILT
+# hash, which is what ispell itself reads. Naming a word list of your own
+# does not change the answer: the name is compiled in.
+case    buildhash-and-chardef-both-want-a-dictionary-that-is-not-here
+# The `ls' comes FIRST: the second buildhash ends the emulator session, so
+# anything after it would never run.
+# `wc -c', not `ls -l': ls puts a date between the size and the name, so
+# `490186 /dd/LIB/ispell.hash' is not a substring of its output and the
+# first draft of this failed against a perfectly good listing.
+run     /dd/CMDS/wc -c /dd/LIB/ispell.hash
+run     /dd/CMDS/buildhash
+run     /dd/CMDS/chardef
+expect  490186 /dd/LIB/ispell.hash
+expect  No dictionary (dict.191)
+
+case    macstream-measures-the-file-before-it-reads-it
+run     echo "not a macbinary file" > $W/mac.src
+run     /dd/CMDS/macstream $W/mac.src
+expect  Short file /dd/tmp/L3/mac.src
+
+# RCS: THE CLOCK STOPS IT, and that is worth pinning because it looks like
+# a broken program. `date -t' reads 2100 here and does not advance, so two
+# check-ins land in the same second and `ci' refuses the second one --
+# "Date ... is not later than ... in existing revision 1.1". Everything
+# downstream then compares 1.1 with 1.1.
+# THE RCS FILE IS REMOVED FIRST, or the second run of this family measures
+# the first run's history instead of the clock.
+case    ci-refuses-a-second-revision-because-the-clock-does-not-advance
+run     /dd/CMDS/rm -f $W/note.txt_v $W/note.txt
+run     echo "a first line" > $W/note.txt
+run     echo "a description" > $W/desc
+run     echo "." >> $W/desc
+run     /dd/CMDS/ci $W/note.txt < $W/desc
+run     /dd/CMDS/co -l $W/note.txt
+run     echo "a second line" >> $W/note.txt
+run     /dd/CMDS/ci $W/note.txt < $W/desc
+expect  initial revision: 1.1
+expect  ci error: Date
+expect  is not later than
