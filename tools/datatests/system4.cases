@@ -1,0 +1,170 @@
+family  system4
+# The System & modules programs that a gallery card CREDITS and nothing had
+# ever typed.  They surfaced on 2026-09-01 when `worklist.py's `carded()'
+# was corrected -- it had been counting a `for'-credited program as
+# uncarded, so this whole set was hidden behind a number that was too big
+# for the wrong reason.
+#
+# THREE OF THEM ABORT AND SO CANNOT BE CASES, and each is worth naming
+# because the abort comes AFTER a perfectly good answer, which is the shape
+# that reads like a working program to a sweep and like a broken one to a
+# person:
+#   config   prints its whole table of C type properties, then aborts in
+#            I$WritLn on the way out (vector $0B)
+#   devprc   aborts before saying anything -- and DOC/INDEX says this build
+#            was REBUILT here to fix exactly that
+#   hinterhalt  asks its first question in German and re-asks it without
+#            bound at end of input
+# datatest fails any case whose session took an exception, so those live in
+# DOC/INDEX and in notes/drives/system6.txt.
+
+setup   export TERM=vt100
+setup   export TERMCAP=/dd/SYS/termcap
+setup   export USER=tester
+setup   W=/dd/tmp/S4
+setup   /dd/CMDS/mkdir -p $W > /nil 2>/nil
+
+# oskversion asks the kernel what it is. Under os9exec the answers are the
+# emulator's own, and that is the useful thing about the card: it is how you
+# find out what your programs think they are running on.
+case    oskversion-reports-what-the-kernel-says-it-is
+run     /dd/CMDS/oskversion
+expect  OSK level : 1
+expect  OSK version : 4
+expect  CPU type (from init module) : 68040
+expect  OS9 revision string : OS-9/68k Emu UAE
+
+# getsys walks the System Globals. Under os9exec many of them are not
+# implemented and the emulator says so as it goes -- which makes this the
+# clearest inventory on the disk of what os9exec does and does not keep.
+case    getsys-walks-the-system-globals-and-os9exec-answers-what-it-has
+run     /dd/CMDS/getsys
+expect  System global variables (OS-9/680x0 V2.3):
+expect  number of ticks per second .................. 100
+expect  MPU type (68000/10/20/30/70) ................ 68040
+expect  system minimum allocatable block size ....... 2048
+expect  F$SetSys: unimplemented
+
+case    dinfo-reports-a-real-rbf-device
+run     /dd/CMDS/dinfo /dd
+expect  Device name   : /dd
+expect  Volume name   : "OSK-Freeware"
+expect  Capacity      : 259072 KBytes
+
+case    dinfo-explains-itself
+run     /dd/CMDS/dinfo -?
+expect  Function: Show information about a RBF Disk Device
+expect  (Substitute for OS9 "free" utility)
+expect  V2.1 Ed#4 (c) 1990 by L.Zeller
+
+case    flink-explains-itself
+run     /dd/CMDS/flink -?
+expect  usage: flink [ -? | filename { filename } ]
+expect  option: -? displays this message
+
+# greg converts a Julian day number to a Gregorian date -- a pure function
+# of its argument, so unlike everything else with a date in it here, this
+# one has an answer that does not depend on the clock.
+case    greg-converts-a-julian-day-number-to-a-gregorian-date
+run     /dd/CMDS/greg 2460000
+run     /dd/CMDS/greg 2461000
+run     /dd/CMDS/greg
+expect  2023 2 25
+expect  2025 11 21
+expect  Usage /dd/CMDS/greg <julian_date>
+
+# i_am_i prints its own source, and the source is a Pascal program whose
+# whole body is the table of its own lines. A quine.
+case    i_am_i-prints-its-own-source
+run     /dd/CMDS/i_am_i
+expect  PROGRAM I_AM_I(output);
+expect  FUNCTION tabelle(x : integer) : string;
+expect  END. (* of I_AM_I *)
+
+# dload puts a data FILE into a data MODULE -- not a serial download, which
+# is what its name suggests and what DOC/INDEX used to say.
+case    dload-loads-a-file-into-a-data-module
+run     /dd/CMDS/dload /dd/SYS/motd
+expect  size of file is 40 bytes
+expect  datamodule created at address
+expect  done
+
+case    dload-says-what-it-wants-when-given-nothing
+run     /dd/CMDS/dload
+expect  Syntax: dload <filename>
+expect  Function: loads datafile into datamodule
+expect  dload: need fileargument to work
+
+# gen writes the FRAME of a new C program and wants exactly one of four
+# options saying which kind of frame.
+case    gen-wants-exactly-one-kind-of-frame
+run     /dd/CMDS/gen $W/newprog.c
+expect  Function: generate a program frame
+expect  Note: there must be exactly one option selected
+expect  gen: illegal arguments
+
+case    gen-writes-a-program-frame-when-told-which
+run     /dd/CMDS/gen -p $W/frame.c
+run     /dd/CMDS/ls $W
+expect  frame.c
+
+# The two data-structure demonstrations. btree builds a real index and data
+# file and reports every step; bigsetter is Modula-2 set operations.
+case    btree-builds-an-index-and-inserts-keys
+run     /dd/CMDS/btree < /nil
+expect  SoftFocus BTree Library
+expect  1. Index & data file created okay.
+expect  2. Data file opened okay.
+expect  3. Inserting key 00000.
+
+case    bigsetter-demonstrates-modula-2-set-operations
+run     /dd/CMDS/bigsetter < /nil
+expect  Test fuer BigSet mit 36 Elementen
+expect  include 16 in Set A
+expect  exclude 23 in Set A
+
+# fontgen writes ASSEMBLER SOURCE for a font -- a psect and a wall of
+# dc.w -- rather than a font file.
+case    fontgen-writes-assembler-source-for-a-font
+run     /dd/CMDS/fontgen < /nil
+expect  nam      text80z.font
+expect  Character-Font fuer 80-Zeichen-Karte
+expect  psect    text80z.font
+
+case    fastcc-is-a-front-end-and-says-so-when-given-no-files
+run     /dd/CMDS/fastcc
+expect  No Files !!!!!!!!
+
+case    em-is-microemacs-and-lists-its-options
+run     /dd/CMDS/em -? < /nil
+expect  Function: MicroEMACS screen editor
+expect  -v        view file
+expect  -sSTRING  initial search string
+
+# launch is M.C.Gregorie's login helper, not a background launcher: with
+# no shell named there is nothing for it to do and it says so.
+case    launch-wants-a-shell-to-launch
+run     /dd/CMDS/launch
+expect  nothing to launch
+
+case    passwd-states-its-syntax
+run     /dd/CMDS/passwd -?
+expect  Syntax: passwd
+expect  Function: get new password
+
+# WHAT flink ACTUALLY DOES: it makes a HARD LINK to the file, in the
+# CURRENT DIRECTORY, under the file's own name. Run from /dd it leaves a
+# `/dd/cat', and run a second time it stops with `Filename cat already
+# exists in current directory !' and waits for RETURN -- which is what
+# ended the session the first two times this case was written, and looked
+# like flink being fatal when it was flink being careful.
+#
+# So: link into the work directory (ksh's cd moves the OS-9 data directory,
+# which is the whole reason that fact was worth pinning in web.cases), and
+# remove the link first so the case can run twice.
+case    flink-makes-a-hard-link-in-the-current-directory
+run     /dd/CMDS/rm -f $W/cat
+run     /dd/CMDS/ksh -c "cd $W; /dd/CMDS/flink /dd/CMDS/cat"
+run     /dd/CMDS/ls $W
+expect  linking to file cat in directory /dd/CMDS
+expect  cat
