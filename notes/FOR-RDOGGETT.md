@@ -70,7 +70,16 @@ documented as "halt into the ROM debugger (superuser, console)", and
 `setime' as taking six separate fields `y m d h m s' rather than the packed
 string `DOC/INDEX' describes. Both were about to be driven wrong.
 
-**4. Nothing else is waiting on you.**
+**4. `tools/screenshots.py` now mounts `/h0` too, and I have not re-shot the
+gallery on it.** The four harnesses disagreed about whether the collection
+is also `/h0`; `notes/DECISION-placement.md` says it should be, and
+`drive.py` always did it. I made `datatest.py` and `screenshots.py` match.
+The DATATESTS are all green on that (629 cases), but the 485 gallery cards
+were captured under the old arrangement and only five have been re-shot.
+Nothing looks wrong — `/h0` only ADDS a device — but a full re-shoot is a
+couple of hours and is the honest way to be sure. Say if you want it run.
+
+**5. Nothing else is waiting on you.**
 
 ---
 
