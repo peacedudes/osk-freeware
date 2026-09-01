@@ -1,0 +1,129 @@
+# last1 -- the Atari GRAPH group, the GCC passes run directly, the remaining
+# DVI drivers and TeX pieces, and the mail helpers that are left.
+
+family  last1
+
+setup   T=/dd/CMDS/TEXCMDS
+setup   /dd/CMDS/mkdir /dd/tmp/L1
+setup   /dd/CMDS/rm /dd/small.dvi
+setup   $T/virtex '&lplain' /dd/SYS/TEX/SAMPLES/small.tex > /nil
+
+drive   graph-group
+why     seven programs for an Atari GRAPH display that no emulator has.  Do
+why     they say so, or do they just die?
+run     /dd/CMDS/GAMES/apfel
+run     echo "--- graphdemo:"
+run     /dd/CMDS/GAMES/graphdemo
+run     echo "--- end"
+
+drive   graph-group-2
+run     /dd/CMDS/GAMES/sine
+run     echo "--- striche:"
+run     /dd/CMDS/GAMES/striche
+run     echo "--- graphsave:"
+run     /dd/CMDS/GAMES/graphsave
+run     echo "--- showpic:"
+run     /dd/CMDS/GAMES/showpic
+run     echo "--- wgen:"
+run     /dd/CMDS/GAMES/wgen
+run     echo "--- end"
+
+drive   gcc-passes-direct
+why     the compiler passes forked by name -- what does each say alone?
+run     /dd/CMDS/GCC2/cc2
+run     echo "--- cc1plus:"
+run     /dd/CMDS/GCC2/cc1plus
+run     echo "--- cc2plus:"
+run     /dd/CMDS/GCC2/cc2plus
+run     echo "--- gcc_cc1:"
+run     /dd/CMDS/GCC139/gcc_cc1
+run     echo "--- gcc_cc1plus:"
+run     /dd/CMDS/GCC139/gcc_cc1plus
+run     echo "--- end"
+
+drive   gcc-passes-with-work
+why     a pass given a real file: cc2 takes preprocessed C and writes assembly
+run     echo "main(){return 0;}" > /dd/tmp/L1/h.c
+run     /dd/CMDS/GCC2/cccp2 /dd/tmp/L1/h.c /dd/tmp/L1/h.i
+run     /dd/CMDS/wc -l /dd/tmp/L1/h.i
+run     /dd/CMDS/GCC2/cc2 /dd/tmp/L1/h.i -o /dd/tmp/L1/h.a
+run     /dd/CMDS/ls /dd/tmp/L1
+run     /dd/CMDS/head -n 8 /dd/tmp/L1/h.a
+run     echo "--- and the copies gcc2 forks by name:"
+run     /dd/CMDS/gcc_cccp2 /dd/tmp/L1/h.c /dd/tmp/L1/h2.i
+run     /dd/CMDS/wc -l /dd/tmp/L1/h2.i
+run     /dd/CMDS/gcc_cc2
+run     echo "--- gpp copies:"
+run     /dd/CMDS/gpp_cccp /dd/tmp/L1/h.c /dd/tmp/L1/h3.i
+run     /dd/CMDS/wc -l /dd/tmp/L1/h3.i
+run     /dd/CMDS/gpp_collect
+run     echo "--- end"
+
+drive   dvi-remaining-six
+run     $T/dvidjp /dd/small.dvi 2>/dd/tmp/L1/d1
+run     $T/dvieps /dd/small.dvi 2>/dd/tmp/L1/d2
+run     $T/dviimp /dd/small.dvi 2>/dd/tmp/L1/d3
+run     $T/dvijep /dd/small.dvi 2>/dd/tmp/L1/d4
+run     $T/dvimac /dd/small.dvi 2>/dd/tmp/L1/d5
+run     $T/dvioki /dd/small.dvi 2>/dd/tmp/L1/d6
+run     /dd/CMDS/grep -h "Translator\|printer\|pages" /dd/tmp/L1/d1 /dd/tmp/L1/d2 /dd/tmp/L1/d3
+run     /dd/CMDS/grep -h "Translator\|printer\|pages" /dd/tmp/L1/d4 /dd/tmp/L1/d5 /dd/tmp/L1/d6
+run     /dd/CMDS/ls /dd/small.dvi_djc /dd/small.dvi_eps /dd/small.dvi_imp
+
+drive   tex-remaining
+run     $T/initex < /nil
+run     echo "--- virmf:"
+run     $T/virmf < /nil
+run     echo "--- inimf:"
+run     $T/inimf < /nil
+run     echo "--- slitex:"
+run     $T/virtex '&splain' /dd/SYS/TEX/SAMPLES/small.tex < /nil
+run     echo "--- maketexpk:"
+run     $T/maketexpk cmr10 300 300 300/300
+run     echo "--- gftype and gftopk with nothing to read:"
+run     $T/gftype /dd/tmp/L1/none.gf
+run     $T/gftopk /dd/tmp/L1/none.gf /dd/tmp/L1/none.pk
+run     echo "--- end"
+
+drive   mail-helpers
+run     /dd/CMDS/ELM/autoreply
+run     echo "--- newmail -d:"
+run     /dd/CMDS/ELM/newmail -d
+run     echo "--- printmail 1:"
+run     /dd/CMDS/ELM/printmail 1
+run     echo "--- fastmail:"
+run     /dd/CMDS/ELM/fastmail /dd/SYS/motd tester
+run     echo "--- checkalias:"
+run     /dd/CMDS/ELM/checkalias home
+run     echo "--- end"
+
+drive   uucp-mail-helpers
+run     /dd/CMDS/UUCP/enable
+run     echo "--- disable:"
+run     /dd/CMDS/UUCP/disable
+run     echo "--- lmail:"
+run     /dd/CMDS/UUCP/lmail
+run     echo "--- rmail:"
+run     /dd/CMDS/UUCP/rmail
+run     echo "--- smail -A:"
+run     /dd/CMDS/UUCP/smail -A tester
+run     echo "--- makedb:"
+run     /dd/CMDS/UUCP/makedb
+run     echo "--- philmail:"
+run     /dd/CMDS/UUCP/philmail
+run     echo "--- uupoll:"
+run     /dd/CMDS/UUCP/uupoll
+run     echo "--- read_mail:"
+run     /dd/CMDS/read_mail < /nil
+run     echo "--- end"
+
+drive   news-remaining
+run     /dd/CMDS/UUCP/expire
+run     echo "--- rnews:"
+run     /dd/CMDS/UUCP/rnews < /dd/SYS/motd
+run     echo "--- postnews:"
+run     /dd/CMDS/UUCP/postnews
+run     echo "--- newslock:"
+run     /dd/CMDS/NEWS/newslock /dd/tmp/L1/lk /dd/tmp/L1/lock
+run     /dd/CMDS/ls /dd/tmp/L1
+run     echo "--- end"

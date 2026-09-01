@@ -1,0 +1,119 @@
+family  last
+# The stragglers: the Atari GRAPH group, the GCC passes run directly, the six
+# DVI drivers `tex.cases' does not name, the rest of the TeX engines, and the
+# mail helpers.
+#
+# Several of these can only be asserted NEGATIVELY -- an Atari GRAPH program
+# on a machine with no Atari GRAPH board has nothing to draw. Saying so
+# precisely is still worth doing: it is the difference between "seven
+# programs nobody has ever run" and "seven programs that abort in a known way
+# for a known reason", and only one of those two is a finished piece of work.
+
+setup   T=/dd/CMDS/TEXCMDS
+setup   export TERM=vt100
+setup   export TERMCAP=/dd/SYS/termcap
+setup   export HOME=/dd
+setup   export SHELL=/dd/CMDS/ksh
+setup   /dd/CMDS/mkdir /dd/tmp/LA
+
+# The GRAPH set calls into a trap library (`graph', a type $0B module) that
+# talks to hardware. Five of the seven abort on an uninitialised User Trap #5
+# -- the trap slot the library would have filled -- and `striche' gets one
+# step further and names the library it wanted.
+case    the-atari-graph-programs-abort-on-the-trap-their-library-would-fill
+run     /dd/CMDS/GAMES/apfel
+run     /dd/CMDS/GAMES/graphdemo
+run     /dd/CMDS/GAMES/sine
+expect  unintialized User Trap #5
+expect  err=#227
+
+case    striche-names-the-graph-library-it-cannot-install
+run     /dd/CMDS/GAMES/striche
+expect  Can't install trap handler
+expect  Graph
+
+# The six DVI drivers tex.cases does not cover. Each reads the same .dvi and
+# names the printer it is for.
+case    the-other-six-dvi-drivers-each-read-the-dvi
+run     /dd/CMDS/rm /dd/small.dvi
+run     $T/virtex '&lplain' /dd/SYS/TEX/SAMPLES/small.tex
+run     $T/dvieps /dd/small.dvi
+run     $T/dviimp /dd/small.dvi
+run     $T/dvijep /dd/small.dvi
+expect  Epson 9-pin family 240dpi x 216dpi dot matrix printer
+expect  imPRESS [Imagen laser printer family]
+expect  Hewlett-Packard LaserJet Plus laser printer
+
+case    and-the-last-three-of-them
+run     $T/dvimac /dd/small.dvi
+run     $T/dvioki /dd/small.dvi
+run     $T/dvidjp /dd/small.dvi
+expect  Apple ImageWriter 144 dpi dot matrix printer
+expect  OKIDATA 192 dot matrix printer at 144dpi
+expect  Hewlett-Packard Desk Jet plus (from LaserJet)
+
+# initex, virmf and inimf are ENGINES: they prompt with `**' and read the
+# terminal, which is correct and is what every sweep scored as silence.
+case    the-three-tex-engines-start-and-ask-for-input
+run     $T/initex < /nil
+run     $T/virmf < /nil
+run     $T/inimf < /nil
+expect  This is TeX, C Version 3.14 (INITEX)
+expect  This is METAFONT, C Version 2.7
+expect  This is METAFONT, C Version 2.7 (INIMF)
+expect  ! End of file on the terminal
+
+case    slitex-loads-its-own-format
+run     $T/virtex '&splain' /dd/SYS/TEX/SAMPLES/small.tex < /nil
+expect  SliTeX Version 2.09 <8 Jun 1988>
+
+# maketexpk shells out to virmf, so it needs SHELL set -- which SYS/login now
+# does. Without it, `MakeTeXPK: Too few parameters' was as far as it got.
+case    maketexpk-builds-the-metafont-command-line-and-runs-it
+run     $T/maketexpk cmr10 300 300 300/300
+expect  virmf '&plain \scrollmode; \mode:=CanonCX; \mag:=300/300; \input cmr10; \end'
+
+case    gftype-and-gftopk-say-so-when-there-is-no-font-to-read
+run     $T/gftype /dd/tmp/LA/none.gf
+run     $T/gftopk /dd/tmp/LA/none.gf /dd/tmp/LA/none.pk
+expect  This is GFtype, C Version 3.1
+expect  GF file not found
+
+# The GCC passes: cccp2 preprocesses and cc2 compiles, both driven directly
+# rather than through the driver, and the copies installed in CMDS under the
+# names gcc2 and gpp fork are the same programs.
+case    the-gcc-passes-work-when-driven-directly
+run     echo "main(){return 0;}" > /dd/tmp/LA/h.c
+run     /dd/CMDS/GCC2/cccp2 /dd/tmp/LA/h.c /dd/tmp/LA/h.i
+run     /dd/CMDS/GCC2/cc2 /dd/tmp/LA/h.i -o /dd/tmp/LA/h.a
+run     /dd/CMDS/wc -l /dd/tmp/LA/h.i
+run     /dd/CMDS/head -n 4 /dd/tmp/LA/h.a
+expect  2 /dd/tmp/LA/h.i
+expect  time in parse:
+
+case    the-copies-gcc2-and-gpp-fork-by-name-are-the-same-programs
+run     /dd/CMDS/gcc_cccp2 /dd/tmp/LA/h.c /dd/tmp/LA/h2.i
+run     /dd/CMDS/gpp_cccp /dd/tmp/LA/h.c /dd/tmp/LA/h3.i
+run     /dd/CMDS/md5 /dd/tmp/LA/h.i /dd/tmp/LA/h2.i /dd/tmp/LA/h3.i
+run     /dd/CMDS/gpp_collect
+expect  Function : generate global con-/de-structor table for g++
+
+case    the-elm-helpers-that-report-rather-than-act
+run     /dd/CMDS/ELM/autoreply
+expect  You're not currently autoreplying to mail.
+
+# newmail WANTS $USER, and this cases file deliberately does not set it in
+# `setup' so that both halves can be shown. Without it, `Newmail: I can't get
+# username!' -- which reads exactly like a broken program and is a missing
+# environment variable. SYS/login sets USER for this reason; several programs
+# here stop dead without it.
+case    newmail-cannot-find-you-without-USER
+run     /dd/CMDS/ELM/newmail -d
+expect  Newmail: I can't get username!
+absent  default folder
+
+case    enable-and-disable-are-the-uucp-port-monitors
+run     /dd/CMDS/UUCP/enable
+run     /dd/CMDS/UUCP/disable
+expect  Function: Turn ON MTSMon on <port>
+expect  Function: Turn OFF MTSMon on <port>

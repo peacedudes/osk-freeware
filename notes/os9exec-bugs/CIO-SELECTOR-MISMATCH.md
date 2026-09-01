@@ -387,10 +387,38 @@ mismatch is one way to make that happen (a leak of one chunk per character),
 not the only one. Anything diagnosing this message should check first whether
 the program links `cio` at all; the check is one scan and it is decisive.
 
-What is NOT yet known about these two: whether they ask for something absurd
-(the mismatch's signature -- the same non-round value, repeated, moving with
-the heap) or simply ask for more than the arena has. `texidx` says
-`virtual memory exhausted` in its own words afterwards, which reads like an
-ordinary exhaustion rather than a storm. Both are asserted in
-`tools/datatests/` so they cannot quietly change: `texidx` in `tex.cases`, and
-`lfmaker`'s two-faced behaviour in `DOC/INDEX`.
+**Both are now classified**, using os9exec's new message (`6b4d149`, which
+prints the size asked for and the arena state) and the heap-shift
+discriminator. They are two different faults and NEITHER is the cio one.
+
+### `lfmaker` — an ADDRESS used as a length
+
+    pad=0    2470464192-byte request refused, 32682944 free in a 33554432 arena
+    pad=64   2470464256-byte request refused, 32680896 free in a 33554432 arena
+
+The size moves by exactly the size of the environment pad. That is the
+signature: it is an address, not a number the program computed. The arena is
+almost entirely free, so this is not exhaustion. Same shape as the cio storm
+and a different cause, because lfmaker carries no trap-13 stubs at all -- the
+fault is in the program or the static library it was built with.
+
+**IT NEEDS THE MODULE ALREADY RESIDENT**, which is why it could not be
+reproduced elsewhere. As a fresh boot program, `lfmaker test` says nothing.
+Run `lfmaker` bare FIRST -- which is silent, and leaves the module in memory
+-- and then `lfmaker test` storms. One process, one fork: the difference is
+whether the module was already loaded.
+
+### `texidx` — a fixed request for the whole arena
+
+    pad=0    33554496-byte request refused, 21672704 free in a 33554432 arena
+    pad=64   33554496-byte request refused, 21670656 free in a 33554432 arena
+
+The size does NOT move; the free space does. 33554496 is 0x2000040 -- the
+arena size exactly, plus 64. It asks for that before reading anything: an
+empty `.idx` gives the identical message. A compiled-in buffer that cannot
+fit in this arena, and ordinary exhaustion rather than corruption. Its own
+`texi: virtual memory exhausted` afterwards is accurate.
+
+Both are asserted in `tools/datatests/` so they cannot quietly change:
+`texidx` in `tex.cases`, `lfmaker` in `system2.cases`, and both entries in
+`DOC/INDEX` say which fault they are.

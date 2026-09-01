@@ -1,0 +1,46 @@
+# nomem -- classify `lfmaker' and `texidx', the two programs that produce the
+# allocator's refusal and are NOT cio-linked (zero trap-13 stubs, against 69
+# in cvtbase).
+#
+# os9exec now prints the SIZE ASKED FOR and the arena state, which separates
+# the two possible causes without any analysis:
+#   an absurd size with the arena mostly FREE  -> a bad computation inside the
+#                                                 program, a length read out
+#                                                 of data
+#   a modest size with the arena nearly EMPTY  -> ordinary exhaustion
+#
+# The invocations matter and are the whole reason this could not be
+# reproduced elsewhere: lfmaker needs ANY argument (bare it is silent), and
+# texidx needs a file that looks like TeX's .idx output.
+
+family  nomem
+
+setup   /dd/CMDS/mkdir /dd/tmp/NM
+
+drive   lfmaker-bare
+run     /dd/CMDS/lfmaker
+run     echo "--- end"
+
+drive   lfmaker-with-an-argument
+run     /dd/CMDS/lfmaker test
+run     echo "--- end"
+
+drive   lfmaker-with-a-longer-argument
+why     if the size follows the argument it is a length read from the argument
+run     /dd/CMDS/lfmaker averyMuchLongerArgumentThanTest
+run     echo "--- end"
+
+drive   texidx
+run     echo "\indexentry{alpha}{1}" > /dd/tmp/NM/t.idx
+run     /dd/CMDS/cat /dd/tmp/NM/t.idx
+run     /dd/CMDS/TEXCMDS/texidx /dd/tmp/NM/t.idx
+run     echo "--- end"
+
+drive   texidx-empty
+run     echo "" > /dd/tmp/NM/e.idx
+run     /dd/CMDS/TEXCMDS/texidx /dd/tmp/NM/e.idx
+run     echo "--- end"
+
+drive   texidx-bare
+run     /dd/CMDS/TEXCMDS/texidx
+run     echo "--- end"
