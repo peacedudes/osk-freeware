@@ -1,0 +1,114 @@
+family  comms
+# The terminal, transfer and news programs. Most of them talk to something at
+# the other end of a serial line and there is no serial line under os9exec,
+# so what can be asserted is narrower and still worth having: each one starts,
+# names itself, and says something a user can act on. A program that reports
+# "no such device" is working; one that dies silently is not, and that is the
+# distinction these cases keep.
+#
+# `break' is deliberately absent from every harness here: it reaches F$SysDbg
+# and stops the EMULATOR in its own debugger waiting for an answer.
+
+setup   export TERM=vt100
+setup   export TERMCAP=/dd/SYS/termcap
+setup   export HOME=/dd
+setup   export USER=tester
+
+# cls and clear are two programs and one output: both emit the vt100 home and
+# erase, seven bytes, byte for byte the same.
+case    cls-and-clear-emit-the-same-seven-bytes
+run     /dd/CMDS/cls > /dd/tmp/c1.bin
+run     /dd/CMDS/clear > /dd/tmp/c2.bin
+run     /dd/CMDS/md5 /dd/tmp/c1.bin /dd/tmp/c2.bin
+run     /dd/CMDS/wc -c /dd/tmp/c1.bin
+expect  (/dd/tmp/c1.bin) = 42068dfb3d35231a02f710e09792043b
+expect  (/dd/tmp/c2.bin) = 42068dfb3d35231a02f710e09792043b
+expect  7 /dd/tmp/c1.bin
+
+case    the-terminal-setup-programs-name-themselves
+run     /dd/CMDS/setterm -?
+run     /dd/CMDS/initvdu -?
+run     /dd/CMDS/fkeys -?
+expect  setterm v2.0 (c) 1991, 1995 by Dynamic Software Systems
+expect  initvdu v1.4 (c) M.C.Gregorie, 1994
+expect  Function:set User-Defined Keys on VT220 Terminals
+
+case    tsmon2-and-connect-describe-what-they-would-do
+run     /dd/CMDS/tsmon2 -?
+run     /dd/CMDS/connect -?
+expect  de-luxe version of the timesharing monitor
+expect  Monitor terminal device to initiate the login procedure
+expect  Enable local echo to selected path
+
+case    the-xmodem-family-each-names-its-author-and-its-protocols
+run     /dd/CMDS/COMMS/xydown -?
+run     /dd/CMDS/COMMS/xyt -?
+run     /dd/CMDS/COMMS/blastem -?
+expect  XYDown ver. 1.1: XModem/YModem/YBatch download utility
+expect  Author: Tim Kientzle, 1990.
+expect  Copyright 1995 by Stephen Carville
+expect  Function: Xmodem/Ymodem file transfer utility
+
+case    dld-and-uld-say-what-they-are-missing
+run     /dd/CMDS/COMMS/dld
+run     /dd/CMDS/COMMS/uld
+expect  dld version 1.4   (c) 1986 FHL
+expect  dld: no filename specified
+expect  uld: no filename specified
+
+# tsu is tterm's setup program and it DOES something: it checks for the
+# directories tterm needs and makes the ones that are missing.
+case    tsu-creates-the-directories-tterm-needs
+run     /dd/CMDS/deldir /dd/USR/TTERM
+run     /dd/CMDS/COMMS/tsu
+run     /dd/CMDS/ls /dd/USR/TTERM
+expect  Checking /dd/USR/TTERM
+expect  Directory and File structure is correct
+expect  tester.dial
+
+case    uuname-lists-the-sites-the-sample-configuration-names
+run     /dd/CMDS/UUCP/uuname
+expect  pirsqrd
+expect  phoenix
+expect  seabass
+
+case    the-uucp-transfer-programs-describe-their-options
+run     /dd/CMDS/UUCP/uucico -?
+run     /dd/CMDS/UUCP/uux -?
+run     /dd/CMDS/UUCP/uucp -?
+expect  remote system to call as MASTER
+expect  Function: UUCP Executive
+expect  uucp:  unix to unix copy program
+
+# KNOWN LIMIT. uuxqt looks for a module called `procs' to find out whether
+# another copy of itself is running, and `procs' is Microware's and is not
+# here. So it cannot start at all, and says so precisely.
+case    uuxqt-cannot-start-without-a-procs-module
+run     /dd/CMDS/UUCP/uuxqt -?
+expect  isuuxqtrunning() can't load 'procs'
+
+# KNOWN DEFECT, measured 2026-08-31. udate prints the year as `19126':
+# a two-digit year (126, meaning 2026) written into a four-digit field
+# behind a literal `19'. `date' gets it wrong differently, answering 2100.
+case    udate-and-date-both-get-the-year-wrong-and-differently
+run     /dd/CMDS/udate
+run     /dd/CMDS/date
+expect  19126
+expect  2100
+
+# wysetime is a TYPE $02 SUBROUTINE MODULE, not a program: bash refuses to
+# execute it and is right to. DOC/INDEX lists it among the commands.
+case    wysetime-is-a-subroutine-module-and-cannot-be-run
+run     /dd/CMDS/wysetime
+expect  cannot execute binary file
+
+case    the-news-decoders-reject-input-that-is-not-news
+run     /dd/CMDS/NEWS/dbz
+run     /dd/CMDS/NEWS/c7decode < /dd/SYS/motd
+expect  usage: /dd/CMDS/NEWS/dbz [-a] [-x] [-c] database
+expect  c7decode: Bad data
+
+case    osknet-names-its-authors-and-its-lineage
+run     /dd/CMDS/NETWORK/osknet < /nil
+expect  Internet Protocol Package, (C) 1988 by Phil Karn, KA9Q
+expect  OSKNET port by:

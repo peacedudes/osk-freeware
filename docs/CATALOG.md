@@ -478,7 +478,7 @@
 | `cxref` | &#9733; C cross-reference lister -- numbered listing + symbol table<br>`Syntax:		cxref [-opts] [path]` |
 | `etags` | generate an emacs TAGS file<br>`Syntax: etags { [<opts>] <path> }` |
 | `rdoc` | &#9733; reverse documentation: C source in, structure chart out |
-| `xrf` | C cross-reference generator -- it wants its language table, `C.XRF', in the CURRENT DATA DIRECTORY.  The disk has it as DOC/xrf/c.xrf; copy that beside your source or it stops with `Cannot open Language Table file' |
+| `xrf` | C cross-reference generator -- it wants its language table, `C.XRF', in the CURRENT DATA DIRECTORY.  The disk has it as DOC/xrf/c.xrf; copy that beside your source or it stops with `Cannot open Language Table file'<br>**How:** Wants TWO files in the DATA directory, not on the command line: its language table as `C.XRF' (the disk has it as DOC/xrf/c.xrf -- copy it) and the source you name. Given both it prints a full cross-reference: every identifier with the lines it appears on. Rebuilt 2026-08-31; before that it read the table and never read one byte of the source, which is the clearest demonstration of the cio selector fault on this disk. |
 
 **Tags**
 
@@ -833,10 +833,10 @@
 | `setfont` | &#9733; load a downloadable terminal font -- setfont <path><br>`usage: setfont <path>` |
 | `setterm` | &#9733; set terminal type<br>**How:** Full-screen: it takes over the display. **ESC quits** -- tested. (control-C also gets you out, but ESC is the program's own way.) |
 | `tsmon2` | tsmon replacement - terminal monitor<br>`Syntax:   tsmon2 [<options>] <device name>` |
-| `udate` | &#9733; UNAXCESS BBS - date display |
+| `udate` | &#9733; UNAXCESS BBS date display -- and it gets the YEAR wrong: `Monday, August 31, 19126'.  A two-digit year (126, meaning 2026) written into a four-digit field behind a literal `19'.  `date' is wrong differently, answering 2100. Measured 2026-08-31 |
 | `uwho` | &#9733; UNAXCESS BBS -- who is online.  Opens `/etc/utmp', and in OS-9 a leading /etc names a DEVICE, not a directory, so this cannot work here whatever is placed under /dd.  A Unix-ism left in the port; the BBS itself would have to supply an /etc device |
 | `wysecrack` | &#9733; Wyse terminal baud detect -- it writes `Anybody out there?' to the terminal and waits for a Wyse to answer, which nothing here is.  That one line is all it ever prints.  Measured 2026-08-29 |
-| `wysetime` | Wyse terminal time utility |
+| `wysetime` | Wyse terminal time utility -- and it is a TYPE $02 SUBROUTINE MODULE, not a program.  bash answers `cannot execute binary file' and is right: there is nothing here to run, only something to be called.  Measured 2026-08-31 |
 
 **Terminal & transfer**
 
@@ -861,7 +861,7 @@
 | | |
 |---|---|
 | `uucico` | &#9733; the transfer program itself -- dials, talks UUCP<br>`usage: uucico [opts] -r \| sys [sys...]  [opts]` |
-| `uuclean` | &#9733; remove stale jobs from the spool<br>`Usage: uuclean [opts]` |
+| `uuclean` | &#9733; remove stale jobs from the spool.  The spool is /dd/SPOOL/uucp, and SYS/UUCP/Parameters names it as of 2026-08-31 -- it used to say /dd/usr/spool/uucp, which does not exist here, and every UUCP program that consults it failed to find its directory.  uuclean walks every ENTRY in the spool as if it were a directory, so the README that keeps the directory in the repository trips it: `can't change to directory .../README'.  Harmless, and it is why the message is not a sign of a broken spool<br>`Usage: uuclean [opts]` |
 | `uucp` | &#9733; queue a file copy to or from another site |
 | `uulog` | &#9733; show the transfer log<br>`Usage: uulog [-s<sysname> -u<username> -d<days>] [-f]` |
 | `uuname` | &#9733; list the sites you can reach<br>`Usage:  uuname [-l]` |
@@ -1312,7 +1312,7 @@
 | `florida` | &#9733; weather simulator - Florida (Gregorian/Gulf) |
 | `georgia` | &#9733; weather simulator - Georgia (Gregorian/S-Atlantic) |
 | `japan` | &#9733; weather simulator - Japan (Japanese calendar/N-Pacific)<br>**How:** A weather simulator, not a calendar tool -- see `england'. It uses the Japanese calendar, which is the only reason it looks like one. |
-| `logisim` | logic circuit simulator -- draws a pulse diagram from a circuit written as text.  Two sample circuits ship with it, DOC/logisim/flipflop.lsi and counter.lsi, and its notes are DOC/logisim/logisim.doc, in German.  IT NEEDS `PORT' SET to a terminal path -- it reopens the keyboard through it -- and nothing on this disk sets it: `setenv PORT /term' first, or it stops with `Environment variable PORT not defined'.  Past that check it floods `No more memory !!!' under this collection's capture harness and has not been seen to draw.  Measured 2026-08-31<br>**How:** Simulates a logic circuit described in a file. The format is in DOC/logisim/logisim.doc; there is no example circuit on the disk. |
+| `logisim` | logic circuit simulator -- draws a pulse diagram from a circuit written as text.  Two sample circuits ship with it, DOC/logisim/flipflop.lsi and counter.lsi, and its notes are DOC/logisim/logisim.doc, in German.  IT NEEDS `PORT' SET to a terminal path -- it reopens the keyboard through it -- and nothing on this disk sets it: `setenv PORT /term' first, or it stops with `Environment variable PORT not defined'.  Past that check it floods `No more memory !!!' under this collection's capture harness and has not been seen to draw.  Measured 2026-08-31<br>**How:** Set PORT first: `setenv PORT /term'. Without it, `logisim: Environment variable PORT not defined' -- it reopens the keyboard through that path. Two sample circuits ship in DOC/logisim (counter.lsi, flipflop.lsi) and its notes are there too, in German. Rebuilt 2026-08-31. |
 | `minnesota` | &#9733; weather simulator - Minnesota (Gregorian/N-Atlantic) |
 | `shire` | weather simulator - the Shire (Middle-earth calendar)<br>**How:** A weather simulator using the Middle-earth calendar -- see `england'. |
 
@@ -1587,7 +1587,7 @@
 |---|---|
 | `cam` | &#9733; CAMSHAFT, not camera: it asks for the rocker ratio, the lift at a crank angle and the base circle, and plots the lift curve for an intake lobe.  The plot is Tektronix vectors, so on a vt100 it arrives as characters -- the dialogue above it is the readable part.  Corrected 2026-08-29 |
 | `chbase` | &#9733; converts a NUMBER from one base to another -- Philip Maechler's, and nothing to do with a module's base address.  `cvtbase' is the other one, and floods. Corrected 2026-08-29<br>`Syntax   : chbase <number> [ <base A> [ <base B> ] ]` |
-| `cvtbase` | convert a number between bases -- and it WORKS, since 2026-08-31.  The bases are named by KEY (b, d, h or x, o) and the NUMBER COMES ON STANDARD INPUT: `echo 255 ! cvtbase d h' answers `ff', `cvtbase d b' answers `11111111'.  Rebuilt `-qm' from SRC/misc/cvtbase.c; before that it was the loudest victim of the cio selector mismatch, flooding `No more memory !!!' and converting nothing.  DOC/README-CIO |
+| `cvtbase` | convert a number between bases -- and it WORKS, since 2026-08-31.  The bases are named by KEY (b, d, h or x, o) and the NUMBER COMES ON STANDARD INPUT: `echo 255 ! cvtbase d h' answers `ff', `cvtbase d b' answers `11111111'.  Rebuilt `-qm' from SRC/misc/cvtbase.c; before that it was the loudest victim of the cio selector mismatch, flooding `No more memory !!!' and converting nothing.  DOC/README-CIO<br>**How:** The BASES are the arguments and the NUMBER comes on standard input: `echo 255 ! cvtbase d h' answers ff, `cvtbase d b' answers 11111111. Bases are named b, d, h or x, o -- or by their actual digit characters. Rebuilt 2026-08-31; before that it flooded and converted nothing. |
 | `loan` | &#9733; loan/amortisation calculator |
 | `rechne` | &#9733; calculator, German -- and it takes ONE expression with no spaces in it: `rechne 4095+1' answers 4096, $1000 and the binary.  Spaced out it evaluates each argument separately |
 | `rpn` | &#9733; RPN calculator -- and its `+' is wrong: 12, 34, + leaves a stack of three with 0 on top instead of one with 46. `rechne' is the calculator that answers correctly |
