@@ -1,0 +1,150 @@
+# system7 -- the next batch of System, Files, Encoding and DOS programs
+# that a card credits and nothing has typed.
+#
+# WORK DIRECTORY: a name nothing else uses, removed first.  `/dd/tmp' is
+# shared by every sheet and every case file and the image is not reset
+# between runs -- `dev2' lost eleven programs to a collision on 2026-09-01.
+
+family  system7
+
+setup   export TERM=vt100
+setup   export TERMCAP=/dd/SYS/termcap
+setup   export USER=tester
+setup   W=/dd/tmp/SYS7
+setup   /dd/CMDS/rm -f $W > /nil 2>/nil
+setup   /dd/CMDS/mkdir -p $W > /nil 2>/nil
+setup   /dd/CMDS/cp /dd/SYS/motd $W/plain.txt
+
+drive   shdev-and-edir
+why     "show devices" and "list the EVENT directory".  Both ask the
+why     kernel what it has.
+run     /dd/CMDS/shdev
+run     echo "--- edir:"
+run     /dd/CMDS/edir
+run     echo "--- end shdev-and-edir"
+
+drive   chgrp
+why     "change group".  Change one on a file of our own and read it back.
+run     /dd/CMDS/ls -l $W/plain.txt
+run     /dd/CMDS/chgrp 3 $W/plain.txt
+run     /dd/CMDS/ls -l $W/plain.txt
+run     echo "--- and its usage:"
+run     /dd/CMDS/chgrp
+run     echo "--- end chgrp"
+
+drive   rndir
+why     "rename a directory" -- the one thing OS-9's own `rename' will not
+why     do.  Make one, rename it, list the result.
+run     /dd/CMDS/mkdir -p $W/before > /nil 2>/nil
+run     /dd/CMDS/ls $W
+run     /dd/CMDS/rndir $W/before $W/after
+run     /dd/CMDS/ls $W
+run     echo "--- end rndir"
+
+drive   des
+why     "DES file encryption -- it writes `<file>.n', removes the original"
+why     -- so encrypt a COPY, then decrypt and compare.
+run     /dd/CMDS/cp $W/plain.txt $W/secret.txt
+run     /dd/CMDS/des -e -k mykey $W/secret.txt
+run     /dd/CMDS/ls $W
+run     echo "--- and back again:"
+run     /dd/CMDS/des -d -k mykey $W/secret.txt.n
+run     /dd/CMDS/ls $W
+run     /dd/CMDS/cat $W/secret.txt
+run     echo "--- end des"
+
+drive   crypto
+why     the cryptogram assistant.  Encode a file with a rot cypher, which
+why     is the one mode that needs no terminal.
+run     /dd/CMDS/crypto -r13 $W/plain.txt
+run     echo "--- end crypto"
+
+drive   makecrc
+why     "compute a CRC" -- it said nothing for a file and nothing for a
+why     module.  Try standard input, which is how a filter is fed.
+run     /dd/CMDS/makecrc < $W/plain.txt
+run     echo "--- with the file named:"
+run     /dd/CMDS/makecrc $W/plain.txt
+run     echo "--- and -?:"
+run     /dd/CMDS/makecrc -?
+run     echo "--- end makecrc"
+
+drive   dfiles
+why     "find duplicate files on disk and issue the cmp commands".  Make
+why     two identical files and point it at the directory.
+run     /dd/CMDS/cp $W/plain.txt $W/copy1.txt
+run     /dd/CMDS/cp $W/plain.txt $W/copy2.txt
+run     /dd/CMDS/dfiles $W
+run     echo "--- end dfiles"
+
+drive   mtools-remaining
+why     mscd, msbadblocks and msmove against the DOS images that ship.
+run     /dd/CMDS/mscd
+run     echo "--- msbadblocks on drive a:"
+run     /dd/CMDS/msbadblocks a:
+run     echo "--- msmove:"
+run     /dd/CMDS/msmove
+run     echo "--- end mtools"
+
+drive   Librarian-suite
+why     Home Librarian: six programs travel together.  Ask each what it
+why     wants rather than feeding it a catalogue it has not got.
+run     /dd/CMDS/Librarian -?
+run     echo "--- PrintCards:"
+run     /dd/CMDS/PrintCards -?
+run     echo "--- PrintLabels:"
+run     /dd/CMDS/PrintLabels -?
+run     echo "--- end Librarian"
+
+drive   scsiutil-and-sddemo
+why     a SCSI utility and Speedisk, neither of which has its hardware.
+run     /dd/CMDS/scsiutil -?
+run     echo "--- sddemo:"
+run     /dd/CMDS/sddemo -?
+run     echo "--- end scsiutil-and-sddemo"
+
+drive   sox
+why     "Sound eXchange -- audio format converter"
+run     /dd/CMDS/sox
+run     echo "--- end sox"
+
+drive   drop
+why     "put back exactly what keep wrote.  It refuses to remove any file
+why     whose checksum has changed".
+run     /dd/CMDS/drop
+run     echo "--- end drop"
+
+drive   bootgen
+why     "generate an OS-9 boot file".  There is no boot file here and
+why     os9exec needs none, so the question is what it says.
+run     /dd/CMDS/bootgen
+run     echo "--- end bootgen"
+
+drive   mshell
+why     "a MENU shell: it takes a menu file as its argument"
+run     /dd/CMDS/mshell
+run     echo "--- with a menu file that is not there:"
+run     /dd/CMDS/mshell $W/nomenu
+run     echo "--- end mshell"
+
+drive   phone
+why     "connect two terminals -- NOT an address book"
+run     /dd/CMDS/phone
+run     echo "--- end phone"
+
+drive   isam
+why     "indexed-sequential file demonstration"
+run     /dd/CMDS/isam < /nil
+run     echo "--- end isam"
+
+drive   ob68kdemo
+why     OmniBasic 1.16 -- it is in CMDS/DEMOS, not CMDS.
+run     /dd/CMDS/DEMOS/ob68kdemo < /nil
+run     echo "--- end ob68kdemo"
+
+drive   macsave
+why     "Save a Macintosh file with its resource fork intact"
+run     /dd/CMDS/macsave
+run     echo "--- with a file:"
+run     /dd/CMDS/macsave $W/plain.txt
+run     echo "--- end macsave"

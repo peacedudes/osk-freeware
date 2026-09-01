@@ -1,0 +1,112 @@
+family  system5
+# The next batch of System, Files, Encoding and DOS programs that a card
+# credited and nothing had typed.  Surfaced 2026-09-01 by the
+# `worklist.py' carded() fix.
+#
+# WORK DIRECTORY: a name nothing else uses, `rm -f' first.  `/dd/tmp' is
+# shared by every sheet and case file and the image is not reset between
+# runs; a collision there cost eleven programs a wrong verdict.
+
+setup   export TERM=vt100
+setup   export TERMCAP=/dd/SYS/termcap
+setup   export USER=tester
+setup   W=/dd/tmp/SY5
+setup   /dd/CMDS/rm -f $W > /nil 2>/nil
+setup   /dd/CMDS/mkdir -p $W > /nil 2>/nil
+setup   /dd/CMDS/cp /dd/SYS/motd $W/plain.txt
+
+# isam and btree are the two data-structure demonstrations that build real
+# files and report every step. isam is the indexed-sequential one.
+case    isam-builds-an-indexed-file-and-reads-it-back-in-order
+run     /dd/CMDS/isam < /nil
+expect  ISAM Test driver: here we go
+expect  1. Create filesystem ok
+expect  Part Code: 000001 - This is part #1 Bin: A029
+expect  Part Code: 000015 - This is part #15 Bin: A015
+expect  Part Code: 000001 - Second part #1 Bin: A029
+
+case    ob68kdemo-prints-the-omnibasic-demo-banner
+run     /dd/CMDS/DEMOS/ob68kdemo < /nil
+expect  OmniBasic Version 1.16
+expect  DEMO VERSION
+expect  Copyright  1995, 1996 Computer Design Lab
+expect  No input file
+
+# scsiutil is a CD-ROM and SCSI tool with no SCSI bus here, and its option
+# list is a small manual for what such a bus could be asked.
+case    scsiutil-lists-what-it-would-ask-a-scsi-device
+run     /dd/CMDS/scsiutil -?
+expect  SCSIutil V2.02
+expect  Usage: SCSIutil [/scsi_dev@] <command>
+expect   -t[r|l]               : Display TOC of an audio CD [raw|long]
+expect       5: to park heads, try sec_no of -1
+
+case    sox-names-its-format-options-and-wants-an-input-file
+run     /dd/CMDS/sox
+expect  Usage: [ -V -S ] [ fopts ] ifile [ fopts ] ofile [ effect [ effopts ] ]
+expect  fopts: -r rate -v volume -c channels
+expect  Failed at: No input file?
+
+# The Home Librarian set: a catalogue query and two printers, each of
+# which states what it needs.
+case    Librarian-and-its-two-printers-state-what-they-need
+run     /dd/CMDS/Librarian -?
+run     /dd/CMDS/PrintCards -?
+expect  Librarian Card Catalog query program
+expect  -infile	String Required The name of the file to search
+expect  Copyright (c) 1991,1992 Robert Heller D/B/A Deepwoods Software
+expect  Libraian Card Catalog card printer
+
+# drop is one of the three keep/drop/kept programs written for this
+# collection, and they share one usage text.
+case    drop-shares-keeps-usage-and-explains-the-three
+run     /dd/CMDS/drop
+expect  keep 1.0 -- OS-9 freeware collection
+expect  drop   remove exactly what keep wrote, and NOTHING whose
+expect  kept   list what has been taken, and how much it came to.
+
+case    bootgen-wants-a-device-to-write-a-boot-file-to
+run     /dd/CMDS/bootgen
+expect  bootgen: device name must be specified
+
+case    mshell-is-a-menu-shell-and-names-the-menu-file-it-cannot-open
+run     /dd/CMDS/mshell $W/nomenu
+expect  Could not open /dd/tmp/SY5/nomenu (menufile)
+
+case    phone-connects-two-terminals-and-wants-the-path-to-the-other
+run     /dd/CMDS/phone
+expect  Function: communication between two terminals
+expect  phone: communication-path required
+
+# rndir does NOT rename a directory to a name you choose: it converts
+# directory names between upper and lower case, which is what
+# "rename directory names in big/small characters" means.
+case    rndir-converts-directory-names-between-cases
+run     /dd/CMDS/rndir -?
+expect  Function: rename directory names in big/small characters
+expect  -l   rename directories in small characters
+expect  -q   quiet mode [no prints to terminal screen]
+
+case    chgrp-states-its-usage
+run     /dd/CMDS/chgrp
+expect  Usage:  chgrp [-z] {numerical-gid | username} [file [... file]]
+
+# shdev asks the kernel for its device table; under os9exec the table is
+# empty and the header is all there is, which is the honest answer.
+case    shdev-prints-the-device-table-header-and-os9exec-has-no-devices-in-it
+run     /dd/CMDS/shdev
+expect  Device       Fmgr      Driver      Capabilities
+
+case    edir-lists-the-event-directory-and-there-are-no-events
+run     /dd/CMDS/edir
+expect  Event Directory at
+
+case    msmove-states-its-two-forms
+run     /dd/CMDS/msmove
+expect  Mtools version 3.6, dated 14 Apr 97
+expect  Usage: msmove [-itnmvV] file targetfile
+expect         msmove [-itnmvV] file [files...] target_directory
+
+case    mscd-answers-with-the-current-dos-directory
+run     /dd/CMDS/mscd
+expect  A:/
