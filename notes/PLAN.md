@@ -78,12 +78,10 @@ clear.
 |---|---|
 | Programs catalogued | 939 |
 | Of those, RUNNABLE (a type-$01 module) | 915 -- the rest are drivers, descriptors and trap libraries |
-| **Under no test at all** | **209** — this is the backlog that matters |
+| **Under no test at all** | **75** — was 209 when the measurement was fixed |
 | No gallery card runs it by name | **81** |
-| Neither a test nor a card | **1** (`cron`, a daemon, which cannot be a case) |
-| Not driven by any `tools/drives` sheet | 399 |
-| `datatest` cases | **502 in 33 families**, 3 deliberate failures |
-| `tools/drives` sheets | **58** |
+| `datatest` cases | **633 in 44 families**, 3 deliberate failures |
+| `tools/drives` sheets | **72** |
 | Screens | 485 cards, **17** still flagged by `audit_cards.py` (3 of those excepted by name) |
 
 > **THE FIGURE THIS TABLE USED TO LEAD WITH WAS WRONG, and the correction is
@@ -450,7 +448,20 @@ Nothing. The four questions on `notes/FOR-RDOGGETT.md` were answered on
 
 ### What is left, in the order it is worth doing
 
-1. **42 runnable programs with neither a test nor a card.**
+1. **75 runnable programs under no test.** They are the awkward residue and
+   they divide into three kinds -- wrong invocation, ends-the-session, and
+   wants-hardware -- which `notes/START-HERE-NEXT-SESSION.md` lists. Decide
+   which one you have before spending time on it.
+
+   **The three hazards this pass found are worth more than any of the
+   cases.** A work directory collision under the shared `/dd/tmp` cost
+   eleven programs a wrong verdict; `flink` corrupted `/dd/CMDS/cat` into a
+   DIRECTORY and produced five more apparently-broken programs in an hour;
+   and a relative `--image` path broke every file open on `/h0` while
+   module loading kept working. **Rebuild the image before believing a
+   strange answer** -- it takes four seconds.
+
+1a. **(historical) 42 runnable programs with neither a test nor a card.**
    `tools/worklist.py --programs --no-test --no-card` prints them. Most are
    already driven -- their transcripts are reproducible from the sheets in
    `tools/drives/` -- and only need a case written. The ones left are the
