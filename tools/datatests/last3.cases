@@ -19,11 +19,29 @@ setup   export USER=tester
 setup   W=/dd/tmp/L3
 setup   /dd/CMDS/mkdir -p $W > /nil 2>/nil
 
-# wgen is a waveform generator: it asks for the intensity of each harmonic
-# and draws the result. Before the load it aborts before asking anything.
+# wgen is a waveform generator: it asks for a step and then the intensity
+# of nine harmonics, and draws the result in Tektronix plotting codes.
+# Before the `load' it aborts before asking anything.
+#
+# IT MUST BE GIVEN ANSWERS. With `< /nil' it reaches end of input and emits
+# ONE LINE OF 3.6 MEGABYTES -- the plot, unterminated -- which the harness
+# caps at four and then has to restart the family around. That is most of
+# what a full `--all' run was spending on this file. Ten numbers and it
+# finishes; `head' keeps the plot itself out of the capture, since a
+# Tektronix drawing is not something to assert on anyway.
 case    wgen-runs-once-the-graph-trap-library-is-resident
 run     /dd/CMDS/load /dd/CMDS/GAMES/graph
-run     /dd/CMDS/GAMES/wgen < /nil
+run     echo "10" > $W/w.in
+run     echo "100" >> $W/w.in
+run     echo "50" >> $W/w.in
+run     echo "0" >> $W/w.in
+run     echo "0" >> $W/w.in
+run     echo "0" >> $W/w.in
+run     echo "0" >> $W/w.in
+run     echo "0" >> $W/w.in
+run     echo "0" >> $W/w.in
+run     echo "0" >> $W/w.in
+run     /dd/CMDS/GAMES/wgen < $W/w.in | /dd/CMDS/head -n 2
 expect  Fundamental harmonic intensity (0-200):
 expect  Sixteenth   harmonic intensity (0-200):
 absent  unintialized User Trap
@@ -74,22 +92,6 @@ expect  Assembler-SHELL  V1.0           Uwe Simon  1988
 expect  A..Z select file
 expect  !  exit Menue
 
-# buildhash and chardef are ispell's, and both want a word list called
-# `dict.191' which is not on this disk -- /dd/LIB/ispell.hash is the BUILT
-# hash, which is what ispell itself reads. Naming a word list of your own
-# does not change the answer: the name is compiled in.
-case    buildhash-and-chardef-both-want-a-dictionary-that-is-not-here
-# The `ls' comes FIRST: the second buildhash ends the emulator session, so
-# anything after it would never run.
-# `wc -c', not `ls -l': ls puts a date between the size and the name, so
-# `490186 /dd/LIB/ispell.hash' is not a substring of its output and the
-# first draft of this failed against a perfectly good listing.
-run     /dd/CMDS/wc -c /dd/LIB/ispell.hash
-run     /dd/CMDS/buildhash
-run     /dd/CMDS/chardef
-expect  490186 /dd/LIB/ispell.hash
-expect  No dictionary (dict.191)
-
 case    macstream-measures-the-file-before-it-reads-it
 run     echo "not a macbinary file" > $W/mac.src
 run     /dd/CMDS/macstream $W/mac.src
@@ -114,3 +116,21 @@ run     /dd/CMDS/ci $W/note.txt < $W/desc
 expect  initial revision: 1.1
 expect  ci error: Date
 expect  is not later than
+
+# LAST IN THE FAMILY, because `chardef' ENDS THE EMULATOR SESSION -- and a
+# session-ender must be last or every case after it pays for a restart it
+# did not need.  (`wgen' above used to be the other half of that bill.)
+# `dict.191' which is not on this disk -- /dd/LIB/ispell.hash is the BUILT
+# hash, which is what ispell itself reads. Naming a word list of your own
+# does not change the answer: the name is compiled in.
+case    buildhash-and-chardef-both-want-a-dictionary-that-is-not-here
+# The `ls' comes FIRST: the second buildhash ends the emulator session, so
+# anything after it would never run.
+# `wc -c', not `ls -l': ls puts a date between the size and the name, so
+# `490186 /dd/LIB/ispell.hash' is not a substring of its output and the
+# first draft of this failed against a perfectly good listing.
+run     /dd/CMDS/wc -c /dd/LIB/ispell.hash
+run     /dd/CMDS/buildhash
+run     /dd/CMDS/chardef
+expect  490186 /dd/LIB/ispell.hash
+expect  No dictionary (dict.191)

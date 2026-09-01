@@ -1,0 +1,72 @@
+# gcc3 -- the seven GCC PASSES that still have neither a test nor a card.
+#
+# THESE ARE NOT PROGRAMS YOU RUN.  `gcc' and `gpp' fork them: a compiler
+# pass takes a preprocessed source and writes assembly, and `collect2' is
+# the link wrapper.  DOC/INDEX describes each by its role and nothing has
+# ever typed one, which is why they are on the worklist -- so the question
+# is what each says when it IS typed, and whether it can be given a real
+# job by hand.
+#
+# There are three generations of them on this disk under three naming
+# schemes, and the names are the whole point:
+#   cc1plus, cc2plus     GCC 2.x, under the names IT was built with
+#   gcc_cc1, gcc_cc2,    the same passes renamed with the prefix `gcc'
+#   gcc_cc1plus,         and `gpp' forks -- see the `gcc driver prefixes'
+#   gcc_collect          rule: gcc2 wants gcc_, gpp wants gpp_
+#   gpp_cc1plus
+#
+# A pass reads preprocessed C and writes assembly, so it can be given a
+# real job: run the preprocessor first and hand the result over.
+
+family  gcc3
+
+setup   W=/dd/tmp/g3
+setup   /dd/CMDS/mkdir -p $W > /nil 2>/nil
+setup   echo "int main(){return 42;}" > $W/t.c
+
+drive   the-passes-run-by-hand
+why     what does each say with no argument at all?  A pass usually wants
+why     an input file and says so.
+run     /dd/CMDS/GCC2/cc1plus
+run     echo "--- cc2plus:"
+run     /dd/CMDS/GCC2/cc2plus
+run     echo "--- gcc_cc1:"
+run     /dd/CMDS/GCC139/gcc_cc1
+run     echo "--- end the-passes"
+
+drive   gcc_cc1-on-preprocessed-source
+why     a C pass reads preprocessed source and writes assembly.  Give it
+why     one and see whether assembly comes out.
+run     /dd/CMDS/GCC139/gcc_cccp $W/t.c > $W/t.i
+run     /dd/CMDS/wc -c $W/t.c $W/t.i
+run     echo "--- now the pass itself:"
+run     /dd/CMDS/GCC139/gcc_cc1 $W/t.i -o $W/t.s
+run     /dd/CMDS/ls -l $W
+run     echo "--- what it wrote:"
+run     /dd/CMDS/cat $W/t.s
+run     echo "--- end gcc_cc1"
+
+drive   gcc_cc2
+why     the GCC 2.x C pass under the name gcc2 forks.
+run     /dd/CMDS/gcc_cc2 $W/t.i -o $W/t2.s
+run     /dd/CMDS/ls -l $W
+run     echo "--- end gcc_cc2"
+
+drive   the-cplusplus-passes
+why     cc1plus, gcc_cc1plus and gpp_cc1plus are the same pass under three
+why     names.  Give each the same preprocessed C and compare.
+run     /dd/CMDS/GCC2/cc1plus $W/t.i -o $W/p1.s
+run     echo "--- gcc_cc1plus:"
+run     /dd/CMDS/GCC139/gcc_cc1plus $W/t.i -o $W/p2.s
+run     echo "--- gpp_cc1plus:"
+run     /dd/CMDS/gpp_cc1plus $W/t.i -o $W/p3.s
+run     /dd/CMDS/ls -l $W
+run     echo "--- end the-cplusplus-passes"
+
+drive   gcc_collect
+why     collect2 is the link wrapper, not a compiler pass.  It forks the
+why     real linker; with nothing to link it should say what it wanted.
+run     /dd/CMDS/GCC139/gcc_collect
+run     echo "--- with an object that does not exist:"
+run     /dd/CMDS/GCC139/gcc_collect $W/nosuch.o
+run     echo "--- end gcc_collect"

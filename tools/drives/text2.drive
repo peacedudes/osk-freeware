@@ -1,0 +1,160 @@
+# text2 -- the text tools that a card credits but nothing has typed.
+# Surfaced by the `worklist.py' carded() fix on 2026-09-01.
+#
+# These are ordinary filters, which means they can be tested properly:
+# known input, measurable output.  Drive them first, assert afterwards.
+
+family  text2
+
+setup   export TERM=vt100
+setup   export TERMCAP=/dd/SYS/termcap
+setup   W=/dd/tmp/t2
+setup   /dd/CMDS/mkdir -p $W > /nil 2>/nil
+setup   echo "banana" > $W/a.txt
+setup   echo "apple" >> $W/a.txt
+setup   echo "cherry" >> $W/a.txt
+setup   echo "apple" >> $W/a.txt
+setup   echo "MixedCase Text Here" > $W/mixed.txt
+
+drive   ascii
+why     "ASCII character table" -- it works; this is for the case file.
+run     /dd/CMDS/ascii > $W/asc.txt
+run     /dd/CMDS/wc -c $W/asc.txt
+run     /dd/CMDS/head -n 4 $W/asc.txt
+run     echo "--- end ascii"
+
+drive   bm
+why     "fast grep utility (Boyer-Moore)".  Same job as grep.
+run     /dd/CMDS/bm apple $W/a.txt
+run     echo "--- and a pattern that is not there:"
+run     /dd/CMDS/bm zebra $W/a.txt
+run     echo "--- exit status was $?"
+run     echo "--- end bm"
+
+drive   casefix
+why     "normalise letter case in a text file"
+run     /dd/CMDS/cat $W/mixed.txt
+run     /dd/CMDS/casefix $W/mixed.txt
+run     echo "--- end casefix"
+
+drive   expand-and-unexpand
+why     GNU expand turns tabs into spaces; unexpand goes back.
+run     /dd/CMDS/printf '%s\r' "a	b	c" > $W/tabs.txt
+run     /dd/CMDS/wc -c $W/tabs.txt
+run     /dd/CMDS/expand $W/tabs.txt > $W/exp.txt
+run     /dd/CMDS/wc -c $W/exp.txt
+run     /dd/CMDS/dump $W/exp.txt
+run     echo "--- end expand"
+
+drive   fcomp
+why     "compare two text files"
+run     /dd/CMDS/cp $W/a.txt $W/b.txt
+run     echo "durian" >> $W/b.txt
+run     /dd/CMDS/fcomp $W/a.txt $W/b.txt
+run     echo "--- and a file against itself:"
+run     /dd/CMDS/fcomp $W/a.txt $W/a.txt
+run     echo "--- end fcomp"
+
+drive   fmt
+why     "Simple text formatter (elvis 1.7)"
+run     /dd/CMDS/fmt -30 /dd/SYS/motd
+run     echo "--- end fmt"
+
+drive   gdd
+why     GNU dd.  Copy a known number of bytes.
+run     /dd/CMDS/gdd if=/dd/SYS/motd of=$W/dd.out bs=1 count=7
+run     /dd/CMDS/wc -c $W/dd.out
+run     /dd/CMDS/cat $W/dd.out
+run     echo "--- end gdd"
+
+drive   gep
+why     "global expression parser -- grep-like, but its -e takes the
+why     expression".  Find out what it takes.
+run     /dd/CMDS/gep -?
+run     echo "--- looking for apple:"
+run     /dd/CMDS/gep apple $W/a.txt
+run     echo "--- end gep"
+
+drive   join
+why     GNU join -- a relational join of two SORTED files.
+run     echo "1 alpha" > $W/j1.txt
+run     echo "2 bravo" >> $W/j1.txt
+run     echo "1 one" > $W/j2.txt
+run     echo "2 two" >> $W/j2.txt
+run     /dd/CMDS/join $W/j1.txt $W/j2.txt
+run     echo "--- end join"
+
+drive   pep
+why     "file 'detergent' -- strip junk from files".  PEP names its
+why     character tables and SYS/PEP ships them.
+run     /dd/CMDS/pep -?
+run     echo "--- on a file with a tab and a high byte:"
+run     /dd/CMDS/pep $W/tabs.txt
+run     echo "--- end pep"
+
+drive   qsort9-and-unip
+why     a sort filter and "unique lines with page numbers".
+run     /dd/CMDS/qsort9 $W/a.txt
+run     echo "--- unip on the sorted output:"
+run     /dd/CMDS/qsort9 $W/a.txt > $W/sorted.txt
+run     /dd/CMDS/unip $W/sorted.txt
+run     echo "--- end qsort9-and-unip"
+
+drive   shuffle
+why     "shuffle lines/cards" -- random, so only the line count can hold.
+run     /dd/CMDS/shuffle $W/a.txt
+run     /dd/CMDS/shuffle $W/a.txt > $W/sh.txt
+run     /dd/CMDS/wc -l $W/a.txt $W/sh.txt
+run     echo "--- end shuffle"
+
+drive   split
+why     GNU split -- break a file into pieces.
+run     /dd/CMDS/ksh -c "cd $W; /dd/CMDS/split -2 a.txt"
+run     /dd/CMDS/ls $W
+run     echo "--- end split"
+
+drive   strings
+why     "extract printable strings, reported as \$offset: <text>"
+run     /dd/CMDS/strings /dd/CMDS/cat > $W/str.txt
+run     /dd/CMDS/wc -l $W/str.txt
+run     /dd/CMDS/head -n 4 $W/str.txt
+run     echo "--- end strings"
+
+drive   cookie
+why     "print a random fortune cookie" -- it wants a cookie file, and
+why     `strfile' builds the index for one.
+run     /dd/CMDS/cookie -?
+run     echo "--- build a cookie file and its index:"
+run     echo "the first fortune" > $W/ck
+run     echo "%" >> $W/ck
+run     echo "the second fortune" >> $W/ck
+run     echo "%" >> $W/ck
+run     /dd/CMDS/strfile $W/ck
+run     /dd/CMDS/ls $W
+run     /dd/CMDS/cookie $W/ck
+run     echo "--- end cookie"
+
+drive   cursive-and-gothic
+why     two banner programs.
+run     /dd/CMDS/cursive HI
+run     echo "--- gothic:"
+run     /dd/CMDS/gothic HI
+run     echo "--- end banners"
+
+drive   roff
+why     "roff text formatter, and it works"
+run     /dd/CMDS/roff -? < /nil
+run     echo "--- on a real file:"
+run     /dd/CMDS/roff /dd/SYS/motd
+run     echo "--- end roff"
+
+drive   spiff
+why     "tolerant diff - ignores formatting noise"
+run     /dd/CMDS/spiff $W/a.txt $W/b.txt
+run     echo "--- end spiff"
+
+drive   speech
+why     "English-to-phoneme translation"
+run     echo "hello there" > $W/sp.txt
+run     /dd/CMDS/speech $W/sp.txt
+run     echo "--- end speech"

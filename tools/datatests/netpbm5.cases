@@ -1,0 +1,128 @@
+family  netpbm5
+# The netpbm EDIT-AND-ANALYSE filters -- the ones that take an image and
+# give back another image (or a number), rather than converting between
+# formats.  Fourteen of them had a gallery card and no test.
+#
+# WHAT CAN BE ASSERTED ABOUT A FILTER.  Not the pixels: `pgmoil' paints in
+# oils and `ppmforge' invents a planet, and neither has a right answer that
+# can be written down.  What CAN be asserted is the shape of the contract --
+# the size and type of what comes out for a given input, which is what every
+# one of these promises and what a broken build would get wrong.  Where a
+# filter DOES have an exact answer (`pnmgamma 1.0' is the identity; two
+# `ppm3d' shifts of zero are the original) that is asserted instead, because
+# it is stronger.
+#
+# `pgmtexture' is the odd one: it returns NUMBERS about an image rather than
+# an image, so its output is the assertion.
+#
+# NOTE ON pgmnoise, pgmcrater, ppmforge AND pbmclean's dither: several of
+# these are RANDOM. Their output differs run to run, so nothing about their
+# content can be asserted -- only that the image they produce has the size
+# and type asked for. `pgmtopbm' without -threshold is the same trap and
+# both netpbm case files already say so.
+
+setup   P=/dd/CMDS/NETPBM
+setup   W=/dd/tmp/N5
+setup   /dd/CMDS/mkdir -p $W > /nil 2>/nil
+setup   $P/ppmpat -madras 32 16 > $W/base.ppm
+setup   $P/pgmramp -lr 32 16 > $W/ramp.pgm
+setup   $P/pgmtopbm -threshold $W/ramp.pgm > $W/ramp.pbm
+
+# pnmgamma 1.0 IS THE IDENTITY -- gamma correction by a factor of one
+# changes nothing -- so this one has an exact answer and gets it: the
+# difference image is entirely black, and ppmhist prints one row for it.
+case    pnmgamma-of-one-is-the-identity
+run     $P/pnmgamma 1.0 $W/base.ppm > $W/g1.ppm
+run     $P/pnmarith -difference $W/base.ppm $W/g1.ppm > $W/gd.ppm
+run     $P/ppmhist $W/gd.ppm
+expect    0   0   0	0	512
+
+case    pnmgamma-of-something-else-does-not
+run     $P/pnmgamma 2.2 $W/base.ppm > $W/g2.ppm
+run     $P/pnmfile $W/g2.ppm
+run     $P/pnmarith -difference $W/base.ppm $W/g2.ppm > $W/gd2.ppm
+run     $P/ppmhist $W/gd2.ppm
+expect  PPM raw, 32 by 16  maxval 255
+absent    0   0   0	0	512
+
+# ppm3d makes a red/blue anaglyph from two copies of an image. With both
+# offsets zero the two eyes see the same thing, so the result is the
+# original turned to greys through the red/blue filter -- same size, and
+# still a PPM.
+case    ppm3d-makes-an-anaglyph-the-size-of-its-input
+run     $P/ppm3d $W/base.ppm $W/base.ppm 0 > $W/3d.ppm
+run     $P/pnmfile $W/3d.ppm
+expect  PPM raw, 32 by 16  maxval 255
+
+# pnmrotate turns an image by an angle, so the result is BIGGER than the
+# input -- the corners need somewhere to go. 90 degrees is refused: the
+# manual sends you to pnmflip for the right angles, and it says so.
+case    pnmrotate-grows-the-image-to-fit-the-corners
+run     $P/pnmrotate 30 $W/base.ppm > $W/rot.ppm
+run     $P/pnmfile $W/base.ppm $W/rot.ppm
+expect  PPM raw, 32 by 16  maxval 255
+absent  32 by 16  maxval 255	32 by 16
+
+case    pnmrotate-refuses-a-right-angle-and-names-pnmflip
+run     $P/pnmrotate 90 $W/base.ppm
+expect  pnmflip
+
+# ppmrelief embosses: it is a fixed convolution, so the size is preserved
+# exactly and the answer is repeatable.
+case    ppmrelief-embosses-without-changing-the-size
+run     $P/ppmrelief $W/base.ppm > $W/rel.ppm
+run     $P/pnmfile $W/rel.ppm
+expect  PPM raw, 32 by 16  maxval 255
+
+case    ppmntsc-restricts-an-image-to-broadcast-safe-colours
+run     $P/ppmntsc $W/base.ppm > $W/ntsc.ppm
+run     $P/pnmfile $W/ntsc.ppm
+expect  PPM raw, 32 by 16  maxval 255
+
+# pgmoil paints in oils with a radius; pgmbentley is Bentley's effect.
+# Both take a PGM and give a PGM of the same size.
+case    pgmoil-and-pgmbentley-keep-the-size-of-a-pgm
+run     $P/pgmoil -n 3 $W/ramp.pgm > $W/oil.pgm
+run     $P/pgmbentley $W/ramp.pgm > $W/bent.pgm
+run     $P/pnmfile $W/oil.pgm $W/bent.pgm
+expect  oil.pgm:	PGM raw, 32 by 16  maxval 255
+expect  bent.pgm:	PGM raw, 32 by 16  maxval 255
+
+# pgmtexture is the analyser of the group: it returns Haralick's texture
+# measures as numbers rather than an image.
+case    pgmtexture-returns-numbers-about-an-image-not-an-image
+run     $P/pgmtexture $W/ramp.pgm
+expect  Angular Second Moment
+expect  Contrast
+expect  Entropy
+
+# THE RANDOM ONES. pgmnoise invents noise, pgmcrater invents a cratered
+# landscape and ppmforge invents a planet or a cloud -- no two runs agree,
+# so the SIZE they were asked for is the whole contract.
+case    pgmnoise-and-pgmcrater-make-an-image-of-the-size-asked-for
+run     $P/pgmnoise 24 12 > $W/noise.pgm
+run     $P/pgmcrater -width 24 -height 12 > $W/crater.pgm
+run     $P/pnmfile $W/noise.pgm $W/crater.pgm
+expect  noise.pgm:	PGM raw, 24 by 12
+expect  crater.pgm:	PGM raw, 24 by 12
+
+case    ppmforge-invents-a-planet-of-the-size-asked-for
+run     $P/ppmforge -night 0 -width 32 -height 16 > $W/forge.ppm
+run     $P/pnmfile $W/forge.ppm
+expect  PPM raw, 32 by 16  maxval 255
+
+# pbmlife runs one generation of Conway's Life over a bitmap; pbmclean
+# removes isolated pixels. Both are PBM in, PBM out, same size.
+case    pbmlife-and-pbmclean-keep-the-size-of-a-pbm
+run     $P/pbmlife $W/ramp.pbm > $W/life.pbm
+run     $P/pbmclean $W/ramp.pbm > $W/clean.pbm
+run     $P/pnmfile $W/life.pbm $W/clean.pbm
+expect  life.pbm:	PBM raw, 32 by 16
+expect  clean.pbm:	PBM raw, 32 by 16
+
+# pbmupc draws a UPC barcode from a product code -- a fixed size, because
+# a barcode has one.
+case    pbmupc-draws-a-barcode-of-the-one-size-a-barcode-has
+run     $P/pbmupc -s1 0 72890 00011 > $W/upc.pbm
+run     $P/pnmfile $W/upc.pbm
+expect  PBM raw, 230 by 175

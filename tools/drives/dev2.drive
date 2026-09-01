@@ -1,0 +1,130 @@
+# dev2 -- developer tools, shell helpers and interpreters that a card
+# credits but nothing has typed.  Surfaced by the `worklist.py' carded()
+# fix, 2026-09-01.
+
+family  dev2
+
+setup   export TERM=vt100
+setup   export TERMCAP=/dd/SYS/termcap
+setup   export USER=tester
+setup   W=/dd/tmp/d2
+setup   /dd/CMDS/mkdir -p $W > /nil 2>/nil
+setup   echo "int main(argc,argv)" > $W/t.c
+setup   echo "int argc; char **argv;" >> $W/t.c
+setup   echo "{ if (argc>1) { return 1; } return 0; }" >> $W/t.c
+
+drive   printenv-and-env
+why     two GNU environment programs.  SYS/login sets a known environment,
+why     so both should show the same names.
+run     /dd/CMDS/printenv TERM
+run     /dd/CMDS/printenv USER
+run     echo "--- env, running a command with a variable added:"
+run     /dd/CMDS/env MARKER=set /dd/CMDS/printenv MARKER
+run     echo "--- end printenv-and-env"
+
+drive   whoami
+why     "Print who you are logged in as (GNU)"
+run     /dd/CMDS/whoami
+run     echo "--- end whoami"
+
+drive   exist
+why     "test file existence" -- and `-f'/`-d' are unusable on a host
+why     mount, so a program that answers the question is worth having.
+run     /dd/CMDS/exist /dd/SYS/motd
+run     echo "--- exit status was $?"
+run     /dd/CMDS/exist /dd/nosuchfile
+run     echo "--- exit status was $?"
+run     echo "--- end exist"
+
+drive   if
+why     "conditional execution for shell scripts (varval/loaded/def)"
+run     /dd/CMDS/if -?
+run     echo "--- is a module loaded?"
+run     /dd/CMDS/if loaded cat
+run     echo "--- exit status was $?"
+run     echo "--- end if"
+
+drive   bcheck-and-ccheck
+why     "count brackets in a source file and report a mismatch" and the
+why     fuller C program checker.  Give each a good file and a bad one.
+run     /dd/CMDS/bcheck $W/t.c
+run     echo "--- now one with a bracket missing:"
+run     echo "int main() { return 0;" > $W/bad.c
+run     /dd/CMDS/bcheck $W/bad.c
+run     echo "--- ccheck on the same two:"
+run     /dd/CMDS/ccheck $W/t.c
+run     /dd/CMDS/ccheck $W/bad.c
+run     echo "--- end bcheck-and-ccheck"
+
+drive   cb-and-indent
+why     two C beautifiers.  Same input, so the two can be compared.
+run     /dd/CMDS/cb $W/t.c
+run     echo "--- indent:"
+run     /dd/CMDS/indent -st $W/t.c
+run     echo "--- end cb-and-indent"
+
+drive   cxref-and-rdoc
+why     "source navigation": a cross-reference and a structure chart.
+run     /dd/CMDS/cxref $W/t.c
+run     echo "--- rdoc:"
+run     /dd/CMDS/rdoc $W/t.c
+run     echo "--- end cxref-and-rdoc"
+
+drive   patch
+why     "Larry Wall's patch - apply a diff".  Make a real diff and apply it.
+run     /dd/CMDS/cp $W/t.c $W/t2.c
+run     echo "/* a new comment */" >> $W/t2.c
+run     /dd/CMDS/diff $W/t.c $W/t2.c > $W/t.diff
+run     /dd/CMDS/cat $W/t.diff
+run     echo "--- apply it:"
+run     /dd/CMDS/patch $W/t.c < $W/t.diff
+run     /dd/CMDS/cat $W/t.c
+run     echo "--- end patch"
+
+drive   fibo-and-sieve
+why     two benchmarks.  They print a time, which is a property of the
+why     host, so only the shape of the answer can be asserted.
+run     /dd/CMDS/fibo
+run     echo "--- sieve:"
+run     /dd/CMDS/sieve
+run     echo "--- end benchmarks"
+
+drive   luac
+why     "Lua bytecode compiler -- luac -o out in.lua"
+run     echo 'print("hello from lua")' > $W/h.lua
+run     /dd/CMDS/luac -o $W/h.luac $W/h.lua
+run     /dd/CMDS/ls -l $W
+run     echo "--- end luac"
+
+drive   xlisp
+why     "XLISP 2.1 Lisp interpreter" -- give it an expression and quit.
+run     echo "(+ 2 3)" > $W/x.lsp
+run     echo "(exit)" >> $W/x.lsp
+run     /dd/CMDS/xlisp < $W/x.lsp
+run     echo "--- end xlisp"
+
+drive   forth
+why     "Forth interpreter"
+run     echo "2 3 + . cr" > $W/f.fth
+run     echo "bye" >> $W/f.fth
+run     /dd/CMDS/forth < $W/f.fth
+run     echo "--- end forth"
+
+drive   sdb
+why     "SDB 2.0 - symbolic debugger".  Ask it to quit at once.
+run     echo "q" > $W/q.txt
+run     /dd/CMDS/sdb /dd/CMDS/cat < $W/q.txt
+run     echo "--- end sdb"
+
+drive   bincheckr-and-postprint
+why     two GNU Chess helpers: check an opening book, and print a position
+why     as PostScript.
+run     /dd/CMDS/GAMES/bincheckr /dd/USR/src/chess/gnuchess.book
+run     echo "--- postprint:"
+run     /dd/CMDS/GAMES/postprint < /nil
+run     echo "--- end chess-helpers"
+
+drive   hist
+why     "C-shell history + commandline editing"
+run     /dd/CMDS/hist -? < /nil
+run     echo "--- end hist"

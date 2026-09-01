@@ -1,0 +1,80 @@
+# cal2 -- the calendar and astronomy programs a card credits but nothing
+# has typed.  Surfaced by the `worklist.py' carded() fix, 2026-09-01.
+#
+# TWO OF THESE ARE CLOCKS THAT NEVER STOP -- `digclk' and `gcl' redraw for
+# ever -- so they are last and one to a stanza.  And every one of them
+# reads THE SYSTEM CLOCK, which on this disk says 2100 and does not
+# advance: a case over any of them must not assert today's date, which is
+# the mistake two other cases made and paid for on 2026-09-01.
+
+family  cal2
+
+setup   export TERM=vt100
+setup   export TERMCAP=/dd/SYS/termcap
+setup   W=/dd/tmp/c2
+setup   /dd/CMDS/mkdir -p $W > /nil 2>/nil
+
+drive   easter
+why     "compute the date of Easter" -- a pure function of the year, so
+why     the answer is checkable against arithmetic rather than the clock.
+run     /dd/CMDS/easter 2026
+run     echo "--- a year whose answer is well known (2000: April 23):"
+run     /dd/CMDS/easter 2000
+run     echo "--- with no argument:"
+run     /dd/CMDS/easter
+run     echo "--- end easter"
+
+drive   qt
+why     "tells the time IN WORDS, the way a person would say it"
+run     /dd/CMDS/qt
+run     echo "--- end qt"
+
+drive   calen
+why     "calendar printer (v_misc)"
+run     /dd/CMDS/calen
+run     echo "--- with a month and year:"
+run     /dd/CMDS/calen 9 2026
+run     echo "--- end calen"
+
+drive   calender
+why     "print a whole year's calendar (German)"
+run     /dd/CMDS/calender 2026 > $W/cal.txt
+run     /dd/CMDS/wc -l $W/cal.txt
+run     /dd/CMDS/head -n 12 $W/cal.txt
+run     echo "--- end calender"
+
+drive   setimex
+why     "set time from hardware clock".  There is no hardware clock here,
+why     so the question is what it says about that.
+run     /dd/CMDS/date -t
+run     /dd/CMDS/setimex
+run     /dd/CMDS/date -t
+run     echo "--- end setimex"
+
+drive   lunisolar
+why     "lunar and solar position calculator"
+run     /dd/CMDS/lunisolar < /nil
+run     echo "--- end lunisolar"
+
+drive   ephem
+why     "ephem - astronomical ephemeris".  It is full-screen and it floods
+why     when it reaches end of input, so give it a quit.
+run     echo "q" > $W/q.txt
+run     /dd/CMDS/ephem < $W/q.txt | /dd/CMDS/head -n 6
+run     echo "--- end ephem"
+
+drive   ephem881
+why     the 68881 build of the same program.
+run     /dd/CMDS/ephem881 < $W/q.txt | /dd/CMDS/head -n 6
+run     echo "--- end ephem881"
+
+# LAST: clocks that redraw for ever.
+drive   digclk
+why     "digital clock with hostname" -- it never stops.
+run     /dd/CMDS/digclk -? < /nil
+run     echo "--- end digclk"
+
+drive   gcl
+why     "displays a GRAND DIGITAL CLOCK" -- the same.
+run     /dd/CMDS/gcl -? < /nil
+run     echo "--- end gcl"

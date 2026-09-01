@@ -1,0 +1,155 @@
+# system6 -- the System & modules programs that a gallery card CREDITS but
+# nothing has ever typed.
+#
+# They surfaced when `worklist.py's `carded()' was fixed on 2026-09-01: it
+# had been counting a `for'-credited program as uncarded, and the moment
+# that was corrected to mean "a card RUNS it by name", these came out of the
+# other side -- carded, never driven, no test.
+#
+# Ordered SAFEST FIRST.  Anything that takes over the screen, forks a shell
+# or is a demonstration of a data structure goes last.
+
+family  system6
+
+setup   export TERM=vt100
+setup   export TERMCAP=/dd/SYS/termcap
+setup   export USER=tester
+setup   W=/dd/tmp/s6
+setup   /dd/CMDS/mkdir -p $W > /nil 2>/nil
+
+drive   oskversion
+why     "report the OS-9/OSK version" -- what does the emulator claim?
+run     /dd/CMDS/oskversion
+run     echo "--- end oskversion"
+
+drive   getsys
+why     "report the system's globals -- what OS-9 thinks it is running on"
+run     /dd/CMDS/getsys
+run     echo "--- end getsys"
+
+drive   config
+why     "report this machine's C type properties as #defines" -- char,
+why     short, int, long, pointer.  This is a fact about the compiler that
+why     built it, and worth having written down.
+run     /dd/CMDS/config
+run     echo "--- end config"
+
+drive   makecrc
+why     "compute a CRC" -- of what, and in what form?
+run     /dd/CMDS/makecrc
+run     echo "--- with a file:"
+run     /dd/CMDS/makecrc /dd/SYS/motd
+run     echo "--- and a module, which is what OS-9 CRCs are for:"
+run     /dd/CMDS/makecrc /dd/CMDS/cat
+run     echo "--- end makecrc"
+
+drive   flink
+why     "list a module's links".  Give it a module.
+run     /dd/CMDS/flink -?
+run     echo "--- on a module:"
+run     /dd/CMDS/flink /dd/CMDS/cat
+run     echo "--- end flink"
+
+drive   dinfo
+why     "disk/device information".  /dd is a real RBF device here.
+run     /dd/CMDS/dinfo -?
+run     echo "--- on /dd:"
+run     /dd/CMDS/dinfo /dd
+run     echo "--- end dinfo"
+
+drive   greg
+why     NOT a regular-expression anything: it converts a JULIAN DAY NUMBER
+why     to a Gregorian date.  2460000 is 24 February 2023.
+run     /dd/CMDS/greg 2460000
+run     echo "--- and today-ish:"
+run     /dd/CMDS/greg 2461000
+run     echo "--- with no argument:"
+run     /dd/CMDS/greg
+run     echo "--- end greg"
+
+drive   i_am_i
+why     "prints its own source (Pascal)" -- a quine of sorts.
+run     /dd/CMDS/i_am_i
+run     echo "--- end i_am_i"
+
+drive   cpu
+why     "CPU speed test -- draws its bar chart and its answer".  The answer
+why     is a property of the host, so only the shape can be asserted.
+run     /dd/CMDS/cpu
+run     echo "--- end cpu"
+
+drive   gen
+why     "generates the FRAME of a new C program".  Give it a pathname and
+why     see what it writes.
+run     /dd/CMDS/gen $W/newprog.c
+run     /dd/CMDS/ls -l $W
+run     /dd/CMDS/cat $W/newprog.c
+run     echo "--- end gen"
+
+drive   btree-and-isam
+why     two data-structure demonstrations.  They should run and report.
+run     /dd/CMDS/btree < /nil
+run     echo "--- isam:"
+run     /dd/CMDS/isam < /nil
+run     echo "--- end btree-and-isam"
+
+drive   bigsetter
+why     "Modula-2 set-operations demonstration"
+run     /dd/CMDS/bigsetter < /nil
+run     echo "--- end bigsetter"
+
+drive   devprc
+why     "show which device belongs to which process.  REBUILT HERE"
+run     /dd/CMDS/devprc
+run     echo "--- end devprc"
+
+drive   dload
+why     NOT a serial download: it LOADS A DATA FILE INTO A DATA MODULE.
+run     /dd/CMDS/dload
+run     echo "--- with a real file:"
+run     /dd/CMDS/dload /dd/SYS/motd
+run     echo "--- end dload"
+
+drive   fastcc
+why     "a faster front end for cc".  There is no Microware cc on this
+why     disk, so the question is what it says about that.
+run     /dd/CMDS/fastcc
+run     echo "--- with a source file:"
+run     echo "int main(){return 0;}" > $W/t.c
+run     /dd/CMDS/fastcc $W/t.c
+run     echo "--- end fastcc"
+
+drive   fontgen
+why     "generate a font for the Gepard display"
+run     /dd/CMDS/fontgen < /nil
+run     echo "--- end fontgen"
+
+drive   ob68kdemo
+why     OmniBasic 1.16, a BASIC compiler -- a demonstration build.
+run     /dd/CMDS/ob68kdemo < /nil
+run     echo "--- end ob68kdemo"
+
+drive   hinterhalt
+why     "a small game (EFFO forum 7)"
+run     echo "q" > $W/q.txt
+run     /dd/CMDS/hinterhalt < $W/q.txt
+run     echo "--- end hinterhalt"
+
+# LATE: these take the screen or fork something.
+drive   em
+why     "a screen editor (EFFO forum 3)".  Open a file and leave.
+run     /dd/CMDS/cp /dd/SYS/motd $W/edit.txt
+run     /dd/CMDS/em -? < /nil
+run     echo "--- end em"
+
+drive   launch
+why     NOT a background launcher: M.C.Gregorie's login helper, which sets
+why     the environment and forks a shell.
+run     /dd/CMDS/launch
+run     echo "--- end launch"
+
+drive   passwd
+why     it edits /dd/SYS/password.  Ask for its syntax only -- this must
+why     NOT be allowed to change the shipped password file.
+run     /dd/CMDS/passwd -?
+run     echo "--- end passwd"
