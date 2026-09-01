@@ -1,0 +1,146 @@
+family  driven
+# Programs already driven by a sheet in tools/drives but with nothing yet
+# asserting what they did. Several of them are SILENT, and silence is
+# asserted by measuring the bytes rather than by looking at a screen --
+# "it printed nothing" and "the capture was lost" look identical otherwise,
+# and this collection has mistaken the second for the first before.
+
+setup   export TERM=vt100
+setup   export TERMCAP=/dd/SYS/termcap
+setup   export HOME=/dd
+setup   export USER=tester
+setup   export SHELL=/dd/CMDS/ksh
+setup   /dd/CMDS/mkdir /dd/tmp/DR
+setup   /dd/CMDS/cp /dd/SYS/motd /dd/tmp/DR/m.txt
+
+case    the-kermits-name-their-versions
+run     /dd/CMDS/xkermit -?
+run     /dd/CMDS/kermit3 -?
+expect  OS-9 Kermit Version 1 Release 5
+expect  ?Invalid argument, type 'kermit -h' for help
+
+case    setfont-and-sbreak-state-their-arguments
+run     /dd/CMDS/setfont
+run     /dd/CMDS/sbreak -?
+expect  usage: setfont <path>
+expect  Function: send break on SCF device
+
+case    the-serial-module-transfer-pair
+run     /dd/CMDS/COMMS/txmod -?
+expect  TXMod Ed.1 Rv.2 - send Module via SCF to RXMod to link there
+expect  all modules in EXE dir
+
+case    smail-lists-its-routing-options
+run     /dd/CMDS/UUCP/smail -?
+expect  print mapped addresses.  don't invoke mailers.
+expect  -a aliasfile    aliases filename (not used with SENDMAIL)
+absent  No more memory
+
+case    uulog-names-the-log-it-cannot-find
+run     /dd/CMDS/UUCP/uulog
+run     /dd/CMDS/UUCP/uulog -f
+expect  unable to open '/DD/LOG/uulog'
+expect  unable to open '/DD/LOG/fileserv'
+
+case    alps-takes-no-filename-and-says-what-it-is-for
+run     /dd/CMDS/alps /dd/SYS/motd
+run     /dd/CMDS/alps -?
+expect  unrecognized arg '/dd/SYS/motd'
+expect  Function: generate Alps ASP-1000 printer codes
+expect  letter quality mode
+
+# lua and runc were both built against a later csl than the edition 16 that
+# ships here, and stop at the handshake. The message is the trap library's,
+# not the program's, and it is the same one the SDK's `load' gives.
+case    lua-and-runc-stop-at-the-csl-handshake
+run     /dd/CMDS/lua
+run     /dd/CMDS/runc
+expect  csl traphandler mismatch
+
+# `splstat' ONLY. `splman' and `splprt' are DAEMONS -- they do not come back,
+# and running them here took the emulator session down with them and cost the
+# two cases after this one as well. Their entries in DOC/INDEX say what they
+# are; a test suite is not the place to start a daemon.
+case    splstat-is-silent-with-no-queue-to-report-on
+run     /dd/CMDS/splstat > /dd/tmp/DR/s3 2>&1
+run     /dd/CMDS/wc -c /dd/tmp/DR/s3
+expect  0 /dd/tmp/DR/s3
+
+case    owner-reads-its-argument-as-a-user-name
+run     /dd/CMDS/owner /dd/tmp/DR/m.txt
+expect  No such user
+
+# xlate echoes the source it was given: a 6809-to-68000 translator handed
+# something with no instructions in it has nothing to translate.
+case    xlate-passes-through-what-it-cannot-translate
+run     /dd/CMDS/xlate /dd/DOC/xasm/sample.a09
+expect  sample.a09 -- a 6809 program for as09
+
+case    the-macintosh-decoders-reject-what-is-not-theirs
+run     /dd/CMDS/hexbin /dd/SYS/motd
+run     /dd/CMDS/mcvert -d /dd/SYS/motd
+expect  unexpected EOF
+expect  Cannot open
+
+case    fiz-walks-a-zoo-archive
+run     /dd/CMDS/rm /dd/tmp/DR/z.zoo
+run     /dd/CMDS/zoo a /dd/tmp/DR/z.zoo /dd/SYS/motd
+run     /dd/CMDS/fiz /dd/tmp/DR/z.zoo
+expect  DATA
+expect  motd
+
+case    ape-writes-gibberish-in-the-style-of-what-it-reads
+run     /dd/CMDS/ape -?
+expect  Function: write gibberish in the style of <stdin> to <stdout>
+expect  length of pattern required to match
+
+case    xc-finds-and-runs-a-command-marked-with-its-key
+run     echo "%g /dd/CMDS/wc -c /dd/SYS/motd" > /dd/tmp/DR/r.xc
+run     /dd/CMDS/xc -c g /dd/tmp/DR/r.xc
+expect  /dd/CMDS/wc -c /dd/SYS/motd
+
+case    eo-runs-a-command-on-every-line-of-a-file
+run     echo /dd/SYS/motd > /dd/tmp/DR/list
+run     echo /dd/SYS/termcap >> /dd/tmp/DR/list
+run     /dd/CMDS/eo /dd/tmp/DR/list /dd/CMDS/wc -c @
+expect  40 /dd/SYS/motd
+expect  963 /dd/SYS/termcap
+
+case    setyear-reports-the-date-and-date-disagrees-with-it
+run     /dd/CMDS/setyear 2026
+run     /dd/CMDS/date -t
+expect  Date: Monday
+expect  August 31, 2100
+
+# ONE PER CASE, and deliberately so: run together, something in this group
+# took the emulator session down and cost every case after it. Split, a fatal
+# one costs itself alone -- which is also how you find out which. Two of the
+# four turned out to be fatal and one was not silent at all.
+#
+# `gdd' AND `chardef' END THE SESSION. Each was tried in a case of its own and
+# each took the emulator with it, so neither is here: a case that crashes the
+# emulator costs a whole-family restart on every run and asserts nothing the
+# crash does not already say. DOC/INDEX records them instead.
+case    cpr-is-not-silent-it-expands
+run     /dd/CMDS/cpr /dd/SYS/motd > /dd/tmp/DR/c1 2>&1
+run     /dd/CMDS/wc -c /dd/SYS/motd /dd/tmp/DR/c1
+expect  40 /dd/SYS/motd
+expect  404 /dd/tmp/DR/c1
+
+case    elvprsv-is-silent
+run     /dd/CMDS/elvprsv > /dd/tmp/DR/c4 2>&1
+run     /dd/CMDS/wc -c /dd/tmp/DR/c4
+expect  0 /dd/tmp/DR/c4
+
+case    the-gcc-passes-in-CMDS-are-the-ones-the-drivers-fork
+run     echo "main(){return 0;}" > /dd/tmp/DR/h.c
+run     /dd/CMDS/gcc_cccp2 /dd/tmp/DR/h.c /dd/tmp/DR/h1.i
+run     /dd/CMDS/GCC2/cccp2 /dd/tmp/DR/h.c /dd/tmp/DR/h2.i
+run     /dd/CMDS/md5 /dd/tmp/DR/h1.i /dd/tmp/DR/h2.i
+run     /dd/CMDS/GCC139/gcc_cccp /dd/tmp/DR/h.c /dd/tmp/DR/h3.i
+run     /dd/CMDS/wc -l /dd/tmp/DR/h3.i
+expect  2 /dd/tmp/DR/h3.i
+
+case    pktopbm-says-so-when-there-is-no-packed-font
+run     /dd/CMDS/NETPBM/pktopbm /dd/SYS/TEX/FONTS/PK300/cmr10.300pk /dd/tmp/DR/x.pbm
+expect  pktopbm: This is PKtoPBM, version 2.4
