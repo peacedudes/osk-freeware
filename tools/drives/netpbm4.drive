@@ -1,0 +1,75 @@
+# netpbm4 -- the seven netpbm converters that still have neither a test nor
+# a card.  Three of them have a ROUND-TRIP PARTNER on this disk, which is
+# the strongest thing that can be asserted about a converter: take a known
+# image out of PNM and back, and require the difference to be all zero.
+#
+#   ppmtoyuvsplit  ->  yuvsplittoppm     (three files: .Y .U .V)
+#   ppmtopict      ->  picttoppm         (Macintosh PICT)
+#   pbmtobbnbg                            one way only -- no bbnbgtopbm here
+#
+# The other three read a format nothing here produces -- a Bio-Rad confocal
+# file, an Img-whatnot, an Atari Spectrum 512 picture -- so the question for
+# them is the one netpbm3.cases already asks of eighteen others: does each
+# RECOGNISE that what it was given is not its format, and say which format
+# it wanted?
+
+family  netpbm4
+
+setup   P=/dd/CMDS/NETPBM
+setup   W=/dd/tmp/n4
+setup   /dd/CMDS/mkdir -p $W > /nil 2>/nil
+setup   $P/ppmpat -madras 32 16 > $W/base.ppm
+setup   $P/pgmramp -lr 32 8 > $W/s.pgm
+
+drive   yuvsplit-round-trip
+why     ppmtoyuvsplit writes THREE files -- .Y, .U and .V -- and names them
+why     from a basename rather than writing to standard output.  Find out
+why     what it makes, then bring them back.
+run     $P/pnmfile $W/base.ppm
+run     echo "--- split it:"
+run     $P/ppmtoyuvsplit yuvtest < $W/base.ppm
+run     /dd/CMDS/ls -l
+run     echo "--- and in the work directory:"
+run     /dd/CMDS/ls -l $W
+run     echo "--- bring it back:"
+run     $P/yuvsplittoppm yuvtest 32 16 > $W/back.ppm
+run     $P/pnmfile $W/back.ppm
+run     echo "--- the difference, which should be black:"
+run     $P/pnmarith -difference $W/base.ppm $W/back.ppm > $W/diff.ppm
+run     $P/ppmhist $W/diff.ppm
+run     echo "--- end yuvsplit"
+
+drive   pict-round-trip
+why     ppmtopict and picttoppm are a pair.  Out and back, with the
+why     difference to prove it.
+run     $P/ppmtopict $W/base.ppm > $W/base.pict
+run     /dd/CMDS/wc -c $W/base.ppm $W/base.pict
+run     $P/picttoppm $W/base.pict > $W/pict.ppm
+run     $P/pnmfile $W/pict.ppm
+run     $P/pnmarith -difference $W/base.ppm $W/pict.ppm > $W/pdiff.ppm
+run     $P/ppmhist $W/pdiff.ppm
+run     echo "--- end pict"
+
+drive   pbmtobbnbg
+why     BBN BitGraph -- a terminal that took a bitmap over the wire.  One
+why     way only; there is no bbnbgtopbm here.  What does it write?
+run     $P/pgmtopbm -threshold $W/s.pgm > $W/s.pbm
+run     $P/pnmfile $W/s.pbm
+run     $P/pbmtobbnbg $W/s.pbm > $W/s.bbn
+run     /dd/CMDS/wc -c $W/s.pbm $W/s.bbn
+run     /dd/CMDS/dump $W/s.bbn
+run     echo "--- end pbmtobbnbg"
+
+drive   the-three-with-no-sample-here
+why     bioradtopgm, imgtoppm and sputoppm read formats nothing on this
+why     disk produces.  Hand each a PGM and see whether it NOTICES.
+run     $P/bioradtopgm $W/s.pgm
+run     echo "--- imgtoppm:"
+run     $P/imgtoppm $W/s.pgm
+run     echo "--- sputoppm:"
+run     $P/sputoppm $W/s.pgm
+run     echo "--- and each with no argument at all:"
+run     $P/bioradtopgm < /nil
+run     $P/imgtoppm < /nil
+run     $P/sputoppm < /nil
+run     echo "--- end the-three"

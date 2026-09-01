@@ -1,0 +1,47 @@
+# netpbm4b -- the four from netpbm4 that need one stanza each, because
+# three of them end the emulator session.
+#
+# SETTLED IN netpbm4:
+#   ppmtopict -> picttoppm is LOSSLESS -- the difference is 512 pixels of
+#     pure black.  (picttoppm warns it cannot load a font directory and
+#     converts anyway.)
+#   ppmtoyuvsplit -> yuvsplittoppm round-trips the DIMENSIONS but not the
+#     pixels, which is what 4:2:0 chroma subsampling means -- .Y is one
+#     byte per pixel and .U and .V are one per 2x2 block.  It writes to a
+#     BASENAME in the data directory, not to standard output.
+#   bioradtopgm says `Not a Biorad file'.
+#
+# ASKED HERE, one per stanza: pbmtobbnbg, imgtoppm and sputoppm each took
+# the session down in a shared stanza and none of them was reached.
+
+family  netpbm4b
+
+setup   P=/dd/CMDS/NETPBM
+setup   W=/dd/tmp/n4b
+setup   /dd/CMDS/mkdir -p $W > /nil 2>/nil
+setup   $P/pgmramp -lr 32 8 > $W/s.pgm
+setup   $P/pgmtopbm -threshold $W/s.pgm > $W/s.pbm
+
+drive   pbmtobbnbg
+why     it took the session down after `pnmfile' reported the PBM, so
+why     nothing is known about it at all.  Redirect and count.
+run     $P/pnmfile $W/s.pbm
+run     $P/pbmtobbnbg $W/s.pbm > $W/s.bbn
+run     /dd/CMDS/wc -c $W/s.pbm $W/s.bbn
+run     /dd/CMDS/dump $W/s.bbn
+run     echo "--- end pbmtobbnbg"
+
+drive   imgtoppm
+why     never reached.  Hand it a PGM and see whether it says so.
+run     $P/imgtoppm $W/s.pgm
+run     echo "--- end imgtoppm"
+
+drive   sputoppm
+why     never reached either.  Spectrum 512, an Atari ST format.
+run     $P/sputoppm $W/s.pgm
+run     echo "--- end sputoppm"
+
+drive   bioradtopgm-with-no-input
+why     it names the format for a PGM.  What about nothing at all?
+run     $P/bioradtopgm < /nil
+run     echo "--- end bioradtopgm"

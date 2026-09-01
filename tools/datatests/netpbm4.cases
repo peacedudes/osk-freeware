@@ -1,0 +1,86 @@
+family  netpbm4
+# The last seven netpbm converters, and three of them have a ROUND-TRIP
+# PARTNER on this disk -- which is the strongest assertion there is about a
+# converter and the one `netpbm.cases' already uses: take a known image out
+# of PNM and back, and measure the difference.
+
+setup   P=/dd/CMDS/NETPBM
+setup   W=/dd/tmp/N4
+setup   /dd/CMDS/mkdir -p $W > /nil 2>/nil
+setup   $P/ppmpat -madras 32 16 > $W/base.ppm
+setup   $P/pgmramp -lr 32 8 > $W/s.pgm
+setup   $P/pgmtopbm -threshold $W/s.pgm > $W/s.pbm
+
+# PICT IS LOSSLESS. The difference image is 512 pixels of pure black and
+# ppmhist prints exactly one row for it -- which is the whole assertion:
+# one row means one colour in the difference, and `0 0 0' names it.
+# picttoppm warns that it cannot load a font directory and converts anyway;
+# that warning is expected and is asserted so it is not mistaken for a
+# failure by the next person to read this output.
+case    ppmtopict-and-picttoppm-round-trip-without-losing-a-pixel
+run     $P/ppmtopict $W/base.ppm > $W/base.pict
+run     $P/picttoppm $W/base.pict > $W/pict.ppm
+run     $P/pnmfile $W/pict.ppm
+run     $P/pnmarith -difference $W/base.ppm $W/pict.ppm > $W/pdiff.ppm
+run     $P/ppmhist $W/pdiff.ppm
+expect  ppmtopict: 5 colors found
+expect  picttoppm: warning: can't load font directory 'fontdir'
+expect  PPM raw, 32 by 16  maxval 255
+expect    0   0   0	0	512
+
+# YUV IS NOT LOSSLESS AND MUST NOT BE ASSERTED AS IF IT WERE. 4:2:0 chroma
+# subsampling is the format: one luma byte per pixel and one chroma pair
+# per 2x2 block, so a 32x16 image gives .Y = 512 bytes and .U = .V = 128.
+# Those three numbers ARE the format, and they are what this asserts --
+# along with the dimensions surviving the trip, which is what the pair is
+# for. A `-difference' here would be a picture of the subsampling.
+#
+# ppmtoyuvsplit takes a BASENAME and writes beside the DATA directory, not
+# to standard output -- so it is run through ksh, whose `cd' moves the OS-9
+# data directory where bash's does not (web.cases pins that on its own).
+case    ppmtoyuvsplit-writes-a-luma-file-and-two-half-size-chroma-files
+run     /dd/CMDS/ksh -c "cd $W; $P/ppmtoyuvsplit yuvtest < base.ppm"
+run     /dd/CMDS/wc -c $W/yuvtest.Y $W/yuvtest.U $W/yuvtest.V
+expect  512 /dd/tmp/N4/yuvtest.Y
+expect  128 /dd/tmp/N4/yuvtest.U
+expect  128 /dd/tmp/N4/yuvtest.V
+
+case    yuvsplittoppm-brings-the-three-back-to-one-image
+run     /dd/CMDS/ksh -c "cd $W; $P/yuvsplittoppm yuvtest 32 16 > back.ppm"
+run     $P/pnmfile $W/back.ppm
+expect  PPM raw, 32 by 16  maxval 255
+
+# bioradtopgm is the well-behaved one of the three whose format nothing
+# here produces: given a PGM it says which format it wanted, and given
+# nothing it says it ran out of input. Same shape as the eighteen in
+# netpbm3.cases.
+case    bioradtopgm-notices-that-a-pgm-is-not-a-biorad-file
+run     $P/bioradtopgm $W/s.pgm
+run     $P/bioradtopgm < /nil
+expect  bioradtopgm: Not a Biorad file
+expect  bioradtopgm: EOF / read error
+
+# AND sputoppm IS THE ONE THAT DOES NOT NOTICE. Handed a 32x8 PGM it does
+# not complain -- it reads the bytes as an Atari Spectrum 512 picture and
+# writes a 320x200 PPM, because that is the fixed size of the format. It
+# is not a defect in the converter so much as a format with no magic
+# number to check, but it is the exception to the rule the other nineteen
+# follow and somebody comparing them should be told which.
+case    sputoppm-does-not-notice-and-writes-320x200-from-anything
+run     $P/sputoppm $W/s.pgm > $W/spu.ppm
+run     $P/pnmfile $W/spu.ppm
+expect  PPM raw, 320 by 200  maxval 7
+absent  not a
+
+case    imgtoppm-says-nothing-at-all-about-a-pgm
+run     $P/imgtoppm $W/s.pgm > $W/img.out
+run     /dd/CMDS/wc -c $W/img.out
+run     echo "imgtoppm returned"
+expect  imgtoppm returned
+expect  0 /dd/tmp/N4/img.out
+
+# `pbmtobbnbg' IS NOT A CASE HERE.  Given a valid 32x8 PBM -- one this
+# disk's own pgmtopbm made -- it ends the emulator session with nothing
+# written and nothing said.  There is no text to assert and an exception
+# fails a case anyway, so the finding lives in DOC/INDEX.  Measured
+# 2026-09-01, twice, one program to a stanza.
