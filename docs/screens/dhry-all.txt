@@ -1,19 +1,34 @@
-$ echo cc; dhry | grep Dhrystones
+$ echo 500000 > /dd/tmp/runs
+$ echo cc; dhry < /dd/tmp/runs | grep Dhrystones
 cc
-echo cc -O2; dhryO2 | grep Dhrystones
-Dhrystones per Second:                      87540.3
-$ echo gcc1; dhryGcc | grep Dhrystones
+Dhrystones per Second:                      83333.3
+$ echo cc -O2; dhryO2 < /dd/tmp/runs | grep Dhrystones
+cc -O2
+Dhrystones per Second:                      83333.3
+$ echo gcc1; dhryGcc < /dd/tmp/runs | grep Dhrystones
 gcc1
-echo gcc1 -O2; dhryGcco2 | grep Dhrystones
-$ echo gcc1 inline; dhryGccin | grep Dhrystones
+Dhrystones per Second:                      83333.3
+$ echo gcc1 -O2; dhryGcco2 < /dd/tmp/runs | grep Dhrystones
+gcc1 -O2
+Dhrystones per Second:                      100000.0
+$ echo gcc1 inline; dhryGccin < /dd/tmp/runs | grep Dhrystones
 gcc1 inline
-echo gcc1 mixed; dhryGccmx | grep Dhrystones
-$ echo gcc2; dhryGcc2 | grep Dhrystones
+Dhrystones per Second:                      100000.0
+$ echo gcc1 mixed; dhryGccmx < /dd/tmp/runs | grep Dhrystones
+gcc1 mixed
+Dhrystones per Second:                      100000.0
+$ echo gcc2; dhryGcc2 < /dd/tmp/runs | grep Dhrystones
 gcc2
-echo gcc2 -O2; dhryGcc2o2 | grep Dhrystones
-$ echo gcc2 inline; dhryGcc2in | grep Dhrystones
+Dhrystones per Second:                      100000.0
+$ echo gcc2 -O2; dhryGcc2o2 < /dd/tmp/runs | grep Dhrystones
+gcc2 -O2
+Dhrystones per Second:                      100000.0
+$ echo gcc2 inline; dhryGcc2in < /dd/tmp/runs | grep Dhrystones
 gcc2 inline
-echo gcc2 mixed; dhryGcc2mx | grep Dhrystones
-$ echo shamu; dhryshamu | grep Dhrystones
+Dhrystones per Second:                      100000.0
+$ echo gcc2 mixed; dhryGcc2mx < /dd/tmp/runs | grep Dhrystones
+gcc2 mixed
+Dhrystones per Second:                      125000.0
+$ echo shamu; dhryshamu < /dd/tmp/runs | grep Dhrystones
 shamu
-echo shamu2; dhryshamu2 | grep Dhrystones
+Dhrystones per Second:                      125000.0

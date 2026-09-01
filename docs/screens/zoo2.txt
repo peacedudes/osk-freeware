@@ -1,7 +1,14 @@
 $ zoo_2.1 a /dd/tmp/z2.zoo /dd/SYS/motd
 Zoo:  /dd/SYS/motd --  ( 0%) added
-$ booz -l /dd/tmp/z2.zoo
-Usage:  booz {lxt} archive[.zoo] [ file ... ]
-$ fiz < /nil
-Fiz 2.0 (1987/02/01) public domain Zoo archive repair utility by Rahul Dhesi
-Usage:  fiz archive[.zoo]  ("fiz -h" for help)
+$ booz l /dd/tmp/z2.zoo
+Length    CF  Size Now  Date      Time
+--------  --- --------  --------- --------
+      40   0%       40   3 Aug 26 19:00:00  motd
+$ fiz /dd/tmp/z2.zoo
+****************
+      20: DIR  [] ==> 196607
+****************
+      42: DIR [/dd/SYS] [motd] ==>  121
+     121: DATA
+****************
+     161: DIR  [] ==>    0

@@ -24,7 +24,17 @@ against 69 in `cvtbase`. So the message has a second cause, and a diagnosis
 that stops at "cio mismatch" will mis-file those two. Written up in
 `notes/os9exec-bugs/CIO-SELECTOR-MISMATCH.md`, addendum at the foot.
 
-**4. Nothing else.** The `cio` investigation is closed and does not block the
+**4. A consequence of the os9exec change of 2026-08-31, for whoever made it.**
+`ac018e3` -- allocation failures speaking in os9exec's voice, a few times and
+then counted -- is right, and it has one side effect worth knowing. The flood
+was the ONLY visible signal that a program was in the cio storm. With it
+counted instead of printed, a storming program is silent and never returns:
+`cvtbase d b` went from a 207 MB capture in five minutes to a five-minute
+hang with four lines of output. Both are five minutes; only one of them looks
+like a fault. If the counter's total were printed when the process ends, the
+signal would come back at no cost in noise.
+
+**5. Nothing else.** The `cio` investigation is closed and does not block the
 os9exec release — the fault is in the archives' linkage, not the emulator. The
 one os9exec item worth considering is a single line, `memstuff.c:782`, which
 announces every failed allocation on the console where real OS-9 returns

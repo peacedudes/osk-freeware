@@ -1,0 +1,23 @@
+# web -- tangle and weave cannot open a .web given by absolute path.  Which
+# form do they take?
+
+family  web
+
+setup   /dd/CMDS/cp /dd/DOC/tex/sample.web /dd/sample.web
+
+drive   tangle-forms
+run     echo "--- absolute, with extension:"
+run     /dd/CMDS/TEXCMDS/tangle /dd/DOC/tex/sample.web
+run     echo "--- absolute, without:"
+run     /dd/CMDS/TEXCMDS/tangle /dd/DOC/tex/sample
+run     echo "--- bare name in the data directory, with extension:"
+run     /dd/CMDS/TEXCMDS/tangle sample.web
+run     echo "--- bare name, without:"
+run     /dd/CMDS/TEXCMDS/tangle sample
+run     echo "--- what is in /dd now:"
+run     /dd/CMDS/ls /dd/sample.p /dd/sample.tex
+
+drive   weave-bare
+run     /dd/CMDS/TEXCMDS/weave sample
+run     /dd/CMDS/ls /dd/sample.tex
+run     /dd/CMDS/head -n 6 /dd/sample.p

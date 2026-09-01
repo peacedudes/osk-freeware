@@ -85,9 +85,21 @@ run     /dd/CMDS/checksum $T
 run     /dd/CMDS/chksum $T
 expect  46801
 
-case    cvtbase-converts
-run     /dd/CMDS/cvtbase 255 16
-absent  usage
+# cvtbase's STORM lives in maths.cases, which is where the arithmetic
+# programs are. It used to be here as well -- `run cvtbase 255 16' with
+# `absent usage' and nothing else -- and it passed for the wrong reason: the
+# storm contains no `usage', so a case whose only assertion is the absence of
+# a word was satisfied by a program that had caught fire. The capture it
+# passed on was 207 MEGABYTES, and after os9exec started COUNTING refused
+# allocations instead of printing them (2026-08-31) the same case became a
+# silent five-minute hang instead.
+#
+# What is kept here is the cheap half: bare, cvtbase prints the bases it
+# knows and does not storm.
+case    cvtbase-names-its-bases
+run     /dd/CMDS/cvtbase
+expect  binary
+absent  No more memory
 
 # `autolf' IS THE LINE-ENDING CONVERTER THAT WORKS, found 2026-08-29 while
 # checking DOC/INDEX entries nobody had ever run. As a FILTER it turns the

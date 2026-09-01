@@ -1,0 +1,1 @@
+* sample.a5 -- a 6805 program for as5.  Bit set, bit test and branch are* what the 6805 is for, so it uses them.*        org     $0100porta   equ     $00ddra    equ     $04start   lda     #$ff        sta     ddra        bset    0,porta        bclr    1,portaloop    brset   2,porta,loop        lda     #$41        sta     porta        bra     loop        end

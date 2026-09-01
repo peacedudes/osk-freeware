@@ -1,0 +1,45 @@
+# shellvar3 -- SHELL=/dd/CMDS/ksh made `eo' work.  Does it fix the others?
+#
+# ksh is the one shell here that takes a whole command line as a single
+# argument, which is what this C library's system() sends.  bash wants -c and
+# never gets it; sh cannot fork an absolute pathname; gshell and mshell are
+# menu programs.
+
+family  shellvar3
+
+setup   export SHELL=/dd/CMDS/ksh
+setup   /dd/CMDS/mkdir /dd/tmp/SV3
+
+drive   tex
+run     /dd/CMDS/rm /dd/story.dvi
+run     /dd/CMDS/TEXCMDS/tex /dd/SYS/TEX/SAMPLES/story.tex < /nil
+run     /dd/CMDS/ls /dd/story.dvi
+
+drive   latex
+run     /dd/CMDS/rm /dd/small.dvi
+run     /dd/CMDS/TEXCMDS/latex /dd/SYS/TEX/SAMPLES/small.tex
+run     /dd/CMDS/ls /dd/small.dvi
+
+drive   ci-second-revision
+run     /dd/CMDS/cp /dd/SYS/motd /dd/tmp/SV3/n.txt
+run     echo . > /dd/tmp/SV3/d
+run     /dd/CMDS/ci /dd/tmp/SV3/n.txt < /dd/tmp/SV3/d
+run     /dd/CMDS/co -l /dd/tmp/SV3/n.txt
+run     echo "a second line" >> /dd/tmp/SV3/n.txt
+run     echo 400000 > /dd/tmp/SV3/runs
+run     /dd/CMDS/DHRY/dhryO2 < /dd/tmp/SV3/runs > /nil
+run     /dd/CMDS/ci /dd/tmp/SV3/n.txt < /dd/tmp/SV3/d
+run     echo "--- rlog:"
+run     /dd/CMDS/rlog /dd/tmp/SV3/n.txt
+
+drive   rcsdiff
+run     /dd/CMDS/rcsdiff -r1.1 -r1.2 /dd/tmp/SV3/n.txt
+
+drive   dvips
+why     dvips wanted tex.pro.  Unrelated to SHELL, but confirm it is still so.
+run     /dd/CMDS/TEXCMDS/dvips -o /dd/tmp/SV3/x.ps /dd/small.dvi
+
+drive   eo-again
+run     echo /dd/SYS/motd > /dd/tmp/SV3/l
+run     echo /dd/SYS/termcap >> /dd/tmp/SV3/l
+run     /dd/CMDS/eo /dd/tmp/SV3/l /dd/CMDS/wc -c @

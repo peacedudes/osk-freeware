@@ -1,0 +1,115 @@
+# misc2 -- the same batch, invoked the way each program actually asks for.
+#
+# The first pass got several of these wrong, and every one is the same shape
+# as `hc': the program was fine and the command line was not. `fillup' takes
+# -n= and not -l=; `move' wants a destination FILENAME; the assemblers were
+# reading a sample that had not been built into the image yet.
+
+family  misc2
+
+setup   X=/dd/DOC/xasm
+setup   /dd/CMDS/mkdir /dd/tmp/M2
+setup   /dd/CMDS/cp /dd/SYS/termcap /dd/tmp/M2/t.txt
+
+drive   as0
+run     /dd/CMDS/as0 $X/sample.a0 - l s
+run     echo "--- the S-record it wrote:"
+run     /dd/CMDS/cat /dd/sample.a0.S19
+
+drive   as1
+run     /dd/CMDS/as1 $X/sample.a1 - l s
+run     /dd/CMDS/cat /dd/sample.a1.S19
+
+drive   as5
+run     /dd/CMDS/as5 $X/sample.a5 - l s
+run     /dd/CMDS/cat /dd/sample.a5.S19
+
+drive   as11
+run     /dd/CMDS/as11 $X/sample.a11 - l s
+run     /dd/CMDS/cat /dd/sample.a11.S19
+
+drive   as4
+run     /dd/CMDS/as4 $X/sample.a4 - l s
+run     /dd/CMDS/cat /dd/sample.a4.S19
+
+drive   as09
+why     the 6809 assembler on the 6800 source -- 6809 is a superset
+run     /dd/CMDS/as09 $X/sample.a0 - l s
+
+drive   getenv
+why     silent for TERM, HOME and a missing name alike.  Try its own options.
+run     /dd/CMDS/getenv -?
+run     echo "--- -p TERM:"
+run     /dd/CMDS/getenv -p TERM
+run     echo "--- -l:"
+run     /dd/CMDS/getenv -l
+run     echo "--- end getenv"
+
+drive   checkenv
+why     it printed its usage for `TERM , vt100'.  Try it without the spaces.
+run     /dd/CMDS/checkenv TERM,vt100
+run     echo "--- rc $?"
+run     /dd/CMDS/checkenv TERM,wrong
+run     echo "--- rc $?"
+
+drive   qp
+why     silent.  Its syntax is `qp <cmd> <arg1>...' -- try a back-quote.
+run     /dd/CMDS/qp -?
+run     /dd/CMDS/qp /dd/CMDS/echo hello
+run     echo "--- end qp"
+
+drive   xc
+why     "no commands ... for key ' '" -- so it takes a KEY as well
+run     /dd/CMDS/xc -?
+run     /dd/CMDS/printf 'go /dd/CMDS/wc -c /dd/SYS/motd\r' > /dd/tmp/M2/r.xc
+run     /dd/CMDS/cat /dd/tmp/M2/r.xc
+run     /dd/CMDS/xc /dd/tmp/M2/r go
+run     echo "--- end xc"
+
+drive   fillup
+why     -n=, not -l=
+run     /dd/CMDS/cp /dd/SYS/motd /dd/tmp/M2/f.txt
+run     /dd/CMDS/wc -c /dd/tmp/M2/f.txt
+run     /dd/CMDS/fillup -n=64 -i=65 /dd/tmp/M2/f.txt
+run     /dd/CMDS/wc -c /dd/tmp/M2/f.txt
+run     /dd/CMDS/dump /dd/tmp/M2/f.txt
+
+drive   move
+why     `move <from> <to>' wants a destination NAME, not a directory
+run     /dd/CMDS/cp /dd/SYS/motd /dd/tmp/M2/mv1
+run     /dd/CMDS/move /dd/tmp/M2/mv1 /dd/tmp/M2/mv2
+run     /dd/CMDS/ls /dd/tmp/M2
+run     /dd/CMDS/move -?
+
+drive   paste
+why     silent on two CR-terminated files.  Try it the way its usage reads.
+run     /dd/CMDS/printf 'a\rb\rc\r' > /dd/tmp/M2/p1
+run     /dd/CMDS/printf '1\r2\r3\r' > /dd/tmp/M2/p2
+run     /dd/CMDS/wc -c /dd/tmp/M2/p1 /dd/tmp/M2/p2
+run     /dd/CMDS/paste /dd/tmp/M2/p1 /dd/tmp/M2/p2 > /dd/tmp/M2/pout
+run     /dd/CMDS/wc -c /dd/tmp/M2/pout
+run     /dd/CMDS/dump /dd/tmp/M2/pout
+run     /dd/CMDS/paste -d: /dd/tmp/M2/p1 /dd/tmp/M2/p2
+
+drive   ape
+why     "unknown arg" for a filename -- so how is it fed?
+run     /dd/CMDS/ape -?
+run     /dd/CMDS/ape < /dd/SYS/termcap
+run     echo "--- end ape"
+
+drive   psc
+why     silent on a tab-separated table.  What does it want?
+run     /dd/CMDS/psc -?
+run     echo "--- end psc"
+
+drive   eo
+why     execute a command on every line of a file -- an xargs, not a text tool
+run     /dd/CMDS/printf '/dd/SYS/motd\r/dd/SYS/termcap\r' > /dd/tmp/M2/list
+run     /dd/CMDS/eo /dd/tmp/M2/list /dd/CMDS/wc -c @
+
+drive   remove
+why     it removes MODULES from memory, not files.  DOC/INDEX says files.
+run     /dd/CMDS/load /dd/CMDS/wc
+run     /dd/CMDS/mdir
+run     /dd/CMDS/remove wc
+run     /dd/CMDS/mdir

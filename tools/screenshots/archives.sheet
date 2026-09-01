@@ -199,14 +199,17 @@ wait    4
 
 shot    zoo2
 for     zoo_2.1 fiz booz
-cap     zoo 2.1, newer than the 2.01 in CMDS, and booz -- the extract-only
-cap     zoo that fits anywhere.
+cap     zoo 2.1 writes an archive, booz lists it, and fiz walks its
+cap     structure directory by directory.  booz takes a BARE LETTER, not a
+cap     dash-letter, and fiz takes the archive as an argument -- given `-l'
+cap     and nothing, as this card did until 2026-08-31, both answer with
+cap     their usage and the card showed no zoo at all.
 run     zoo_2.1 a /dd/tmp/z2.zoo /dd/SYS/motd
 wait    10
-run     booz -l /dd/tmp/z2.zoo
+run     booz l /dd/tmp/z2.zoo
 wait    8
-run     fiz < /nil
-wait    8
+run     fiz /dd/tmp/z2.zoo
+wait    10
 
 shot    zip
 cap     Info-ZIP's zip DEFLATES correctly and then cannot rename its

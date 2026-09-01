@@ -47,7 +47,13 @@ run     /dd/CMDS/mscopy $MOTD a:MOTD.TXT
 run     /dd/CMDS/mstype a:MOTD.TXT
 expect  OS-9
 
+# THE msattrib -r IS LOAD-BEARING. The case below this one sets README.TXT
+# read only, and msdeltree then STOPS TO ASK -- `"README.TXT" is read only,
+# erase anyway (y/n) ?' -- which in a procedure file eats the following lines
+# as answers and costs the rest of the family. Clearing the bit first is the
+# only way this family survives a second run.
 case    msmd-makes-a-directory-msrd-removes-it
+run     /dd/CMDS/msattrib -r a:/DOCS/README.TXT
 run     /dd/CMDS/msdeltree a:/DOCS
 run     /dd/CMDS/msmd a:/DOCS
 run     /dd/CMDS/mscopy $MOTD a:/DOCS/README.TXT

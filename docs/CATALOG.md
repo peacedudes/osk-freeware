@@ -15,14 +15,14 @@
 | [Editors](#editors) | 22 | vi and emacs in several flavours, line and stream editors, and editors for binary and hex. |
 | [Text tools](#text-tools) | 113 | Search, sort, compare, reformat, split and spell-check. |
 | [Files & directories](#files--directories) | 37 | Listing, copying, finding, renaming, and knowing what you have. |
-| [Developer tools](#developer-tools) | 48 | Version control, tags, cross-reference, formatters, a debugger and benchmarks. |
+| [Developer tools](#developer-tools) | 47 | Version control, tags, cross-reference, formatters, a debugger and benchmarks. |
 | [Compilers & build](#compilers--build) | 39 | C compilers and their passes, assemblers, linkers, make and parser generators. |
 | [Languages](#languages) | 10 | Interpreters and language systems beyond C. |
 | [Archives & compression](#archives--compression) | 40 | Pack, unpack and shrink -- lha, zip, tar, arc, zoo, and OS-9 module libraries. |
 | [Encoding & conversion](#encoding--conversion) | 24 | Between text encodings, line endings, Macintosh formats, ciphers and hashes. |
 | [Communications](#communications) | 96 | Kermit in several builds, terminal sessions, and networking. |
 | [Graphics & images](#graphics--images) | 202 | The netpbm toolkit, JPEG, a ray tracer, and things that draw. |
-| [Games](#games) | 66 | Adventures, board and card games, arcade ports, dungeon crawls and puzzles. |
+| [Games](#games) | 67 | Adventures, board and card games, arcade ports, dungeon crawls and puzzles. |
 | [Screen toys](#screen-toys) | 9 | Animations and screen effects -- they draw on the terminal rather than print to it. Some run until you stop them. |
 | [Amusements](#amusements) | 20 | Generators, simulators and diversions that are not quite games. |
 | [System & modules](#system--modules) | 131 | OS-9 module and process tools, devices, system state and scheduling. |
@@ -42,9 +42,9 @@
 
 | | |
 |---|---|
-| `checkenv` | &#9733; check env var<br>`Syntax: checkenv <eparam> , <evalue>` |
+| `checkenv` | &#9733; check an environment variable against a value: `checkenv <name> , <value>', and the spaces around the comma are part of the syntax.  It sets a return code rather than printing -- but measured 2026-08-31 it answers 0 for a value that matches AND for one that does not, so the return code cannot be relied on.  `getenv -p <name>' prints the value and is the one to use<br>`Syntax: checkenv <eparam> , <evalue>` |
 | `exist` | &#9733; test file existence |
-| `getenv` | &#9733; print an environment variable<br>`USAGE: getenv [-n\|-p\|-l\|-x] <Environment> [<Wert>]` |
+| `getenv` | &#9733; print or test an environment variable.  German prompts: `getenv -p TERM' prints the value with a newline, -l without one, -x exits with it, -n inverts the test.  Bare, or with a name and no option, it prints its own usage.  DESIGNA VLT, version UTIL 2.40<br>`USAGE: getenv [-n\|-p\|-l\|-x] <Environment> [<Wert>]` |
 | `hist` | C-shell history + commandline editing  [no military use -- EFFO-INFO] |
 | `if` | conditional execution for shell scripts (varval/loaded/def)<br>`Syntax: if [not] <cond> {<arg>} {<cmd1>} [else` |
 | `printenv` | &#9733; print the environment<br>`Syntax:   printenv [<options>] [{<env var name}]` |
@@ -67,11 +67,11 @@
 
 | | |
 |---|---|
-| `bash` | GNU Bourne-Again Shell 1.12 -- this disk's shell; reads .bashrc<br>`usage: fc [-e ename] [-nlr] [first] [last] or fc -s [pat=rep] [command]` |
-| `gshell` | GSHELL - a shell<br>**How:** Full-screen: it takes over the display. **control-C gets you out** -- tested, and none of q, Q, control-D or ESC did. If it has a quit command of its own, its documentation in DOC/ will say. |
+| `bash` | GNU Bourne-Again Shell 1.12 -- this disk's shell; reads .bashrc. It CANNOT serve as $SHELL for a program that shells out: it reads system()'s command line as a script filename.  `ksh' is the one that can, and SYS/login sets SHELL to it. DOC/README-SHELLS compares all five<br>`usage: fc [-e ename] [-nlr] [first] [last] or fc -s [pat=rep] [command]` |
+| `gshell` | GSHELL V1.1 (Uwe Simon, 1988) -- a full-screen MENU, not a command shell: a lettered list of the directory, `+' and `-' to page, `.' to change directory, a letter to run a file. `assembler', `compiler' and `editor' are the same engine pointed at one job each.  DOC/README-SHELLS<br>**How:** Full-screen: it takes over the display. **control-C gets you out** -- tested, and none of q, Q, control-D or ESC did. If it has a quit command of its own, its documentation in DOC/ will say. |
 | `ksh` | &#9733; Korn shell.  `ksh -c '<commands>'` works completely.  Its INTERACTIVE loop depends on the EMULATOR: it reads the command line with read(fd,buf,256), and os9exec's I$Read returned only when the full count arrived rather than at the end-of-record character, so no typed command ever reached it.  With that corrected, ksh is a full shell -- prompt, for loops, variables, forking.  DOC/README-KSH<br>`Syntax: 'setpr <prior>' or 'setpr <pid> [<pid>..] <prior>'` |
-| `sh` | Bourne shell v7.5 -- what the startup script runs |
-| `wish` | &#9733; WiSH - full-screen windowing shell over the OS-9 shell |
+| `sh` | Bourne shell v7.5 -- what the startup script runs.  It has a REAL `chd' where bash does not, and it cannot fork a program by absolute pathname here, which is the trade. DOC/README-SHELLS |
+| `wish` | &#9733; NOT the WiSH windowing shell, whatever this entry said until 2026-08-31.  Run, it prints `Wishing for: 3 potions of gain level' and `what happened to "hack"' -- it is the hack wish toy, the same program as CMDS/GAMES/wish.  Both binaries carry the string `Wishing for: %s' and neither carries any windowing code.  DOC/ORIGINS lists a `wish' from EFFO disk 17 (WiSH_src.lzh, Hellmuth Michaelis, GPL) as well as one from the `toys' archive; the EFFO one is not the binary that is here, under either name |
 
 </details>
 
@@ -105,7 +105,7 @@
 |---|---|
 | `ed` | &#9733; GNU ed 0.2 line editor -- it makes its temporary file at /r0, which os9exec cannot provide, and stops at once with `module not found'.  DOC/README-RUNNING lists the seventeen programs that reach for /r0<br>`Usage: ed [OPTION]... [FILE]` |
 | `editor` | GSHELL front-end for the editor<br>**How:** Full-screen: it takes over the display. **control-C gets you out** -- tested, and none of q, Q, control-D or ESC did. If it has a quit command of its own, its documentation in DOC/ will say. |
-| `sed` | &#9733; sed - stream editor.  SWAPPED 2026-08-28: what ships here is now the CMDS/REBUILT/sed_1.06 build, because the one that used to be here answered every script -- from a file or a pipe, on a four-line input -- with `No more memory !!!' and `Couldn't re-allocate memory'.  The one here now substitutes, deletes and prints with -n<br>`Syntax   : sed [<opts>] [<file>]` |
+| `sed` | &#9733; sed - stream editor.  SWAPPED 2026-08-28: what ships here is now the CMDS/REBUILT/sed_1.06 build, because the one that used to be here answered every script -- from a file or a pipe, on a four-line input -- with `No more memory !!!' and `Couldn't re-allocate memory'.  The one here now substitutes, deletes and prints with -n.  The swap was right, and 2026-08-31 explains it: that build wanted a `cio' module none of these disks has -- see DOC/README-CIO.  It was not the emulator<br>`Syntax   : sed [<opts>] [<file>]` |
 
 **vi clones**
 
@@ -161,7 +161,7 @@
 
 | | |
 |---|---|
-| `dvialw` | DVI to Apple LaserWriter<br>`Usage: dvialw [opts] dvifiles` |
+| `dvialw` | DVI to Apple LaserWriter<br>**How:** Works, and so do the other nine dvi* drivers -- but there are NO FONT BITMAPS on this disk, so each one says "Font file [cmr10 [300 dpi]] could not be opened ... Proceeding with zero size characters" once per font and writes a page with the right layout and no glyphs. FONTS/PK300 and PK144 hold a Makefile each; the MetaFont sources to generate the bitmaps from are in SYS/TEX/MFINPUTS. Output goes to <dvifile>_alw beside the input, not to standard output. |
 | `dvidjp` | DVI to HP DeskJet Plus<br>`Usage: dvidjp [opts] dvifiles` |
 | `dvieps` | DVI to Epson<br>`Usage: dvieps [opts] dvifiles` |
 | `dviimp` | DVI to Imagen<br>`Usage: dviimp [opts] dvifiles` |
@@ -194,7 +194,7 @@
 | `fmt` | Simple text formatter (elvis 1.7)<br>`usage: fmt [-width] [files]...` |
 | `hc` | NOT a calculator, whatever the index said until 2026-08-31: it shifts text to a column, or labels every line.  `hc +8 f' indents f so the text starts at column 8, `hc -11 f' strips the leading columns so it starts at column 11, and `hc -l "> " f' puts that string in front of every line.  With no option it copies the file through.  Measured 2026-08-31; it evaluates nothing |
 | `lout` | Lout 2.05 document formatter (Basser Lout, Jeffrey Kingston)<br>`usage: -o<filename>` |
-| `nroff` | &#9733; nroff text formatter -- and it PRINTS NOTHING here, from a file or from standard input, with or without -man and with TMACDIR set.  Worse than that: given a file it does not come back at all, and the session has to be stopped. `roff' and `proff' beside it DO work -- the claim here that they fail the same way was wrong and is corrected 2026-08-29.  Use one of those<br>**How:** Formats man pages -- but it NEVER RETURNS on this disk, and prints nothing first. Measured 2026-08-29 both ways, `nroff -man /dd/DOC/netpbm/pnmscale.1' and the same file on stdin; each hung the session. The -man macros in LIB/tmac.an were extended for this collection because the originals defined only .TH .SH .SS .PP and .I, and LIB/orig.tmac.an is the untouched version -- neither has been shown to matter while the program will not finish. `roff' is the formatter that works. |
+| `nroff` | &#9733; nroff -- BROKEN HERE: it opens the file, reads nothing, and prints nothing.  A getc-side casualty of the cio selector mismatch -- see DOC/README-CIO.  Measured 2026-08-31 text formatter -- and it PRINTS NOTHING here, from a file or from standard input, with or without -man and with TMACDIR set.  Worse than that: given a file it does not come back at all, and the session has to be stopped. `roff' and `proff' beside it DO work -- the claim here that they fail the same way was wrong and is corrected 2026-08-29.  Use one of those<br>**How:** Formats man pages -- but it NEVER RETURNS on this disk, and prints nothing first. Measured 2026-08-29 both ways, `nroff -man /dd/DOC/netpbm/pnmscale.1' and the same file on stdin; each hung the session. The -man macros in LIB/tmac.an were extended for this collection because the originals defined only .TH .SH .SS .PP and .I, and LIB/orig.tmac.an is the untouched version -- neither has been shown to matter while the program will not finish. `roff' is the formatter that works. |
 | `proff` | proff - portable roff text formatter (macros in LIB/proff). IT WORKS: given a text file it justifies it to a measure, and takes page ranges and a statistics option.  The note here that said it prints nothing was wrong; corrected 2026-08-29.  `roff' works too; `nroff' wants a real macro package and answers `illegal switch' to -?<br>`usage: proff [+n] [-n] [-v] [-ifile] [-s] [-pon] [infile [outfile]]` |
 | `roff` | roff text formatter, and it works: `roff -?' gives its syntax and page-range options.  Corrected 2026-08-29<br>`Syntax: roff {[+00] [-00] [-s] -[h] file}` |
 | `tformat` | text formatter (SNOBOL4-in-C)<br>`Usage: tformat [width\|-?] [<infile] [>outfile]` |
@@ -208,7 +208,7 @@
 | `fortune` | print a random quotation<br>`usage:  fortune [ - ] [ -wsloa ] [ file ]` |
 | `sonnet` | writes (bad) sonnets in iambic pentameter, curses-based<br>**How:** Full-screen: it takes over the display. **ESC quits** -- tested. (control-C also gets you out, but ESC is the program's own way.) |
 | `strfile` | &#9733; build fortune's index file<br>`usage:  strfile [ - ] [ -cC ] [ -sv ] inputfile [ datafile ]` |
-| `unstr` | &#9733; reverse strfile - dump a fortune index.  It FLOODS `No more memory !!!' and dumps nothing<br>`usage: unstr datafile[.dat] [ outfile ]` |
+| `unstr` | &#9733; reverse strfile - dump a fortune index.  It FLOODS `No more memory !!!' and dumps nothing -- confirmed 2026-08-31, and the CAUSE is now known: it is one of three programs here built against a cio.l whose putc/getc macros call a selector every cio module implements as a memory routine.  See DOC/README-CIO.  It takes the index BASE name, appending `.dat' itself: `unstr /dd/GAMES/FORTUNE/fortunes'.  On a small hand-made index it neither dumps nor floods, which is how it reads as merely quiet<br>`usage: unstr datafile[.dat] [ outfile ]` |
 
 **KWIC index**
 
@@ -233,9 +233,9 @@
 
 | | |
 |---|---|
-| `cdiff` | &#9733; context diff |
+| `cdiff` | &#9733; context diff -- BROKEN HERE, and quietly.  It OPENS both files, reads not one byte of either, and then reports `MAXLINECOUNT exceeded, must stop.' on a three-line file against its own limit of 8000.  One of the getc-side casualties of the cio selector mismatch; DOC/README-CIO names them all.  Use `diff'.  Measured 2026-08-31 |
 | `diff` | &#9733; GNU diff 1.1 -- ADDED; the disk had no diff at all.  Verified on CR files<br>`Usage: diff [-options] file1 file2` |
-| `ediff` | visual file compare<br>`Syntax   : 'ediff <file'  or  'diff <f1> <f2> ! ediff'` |
+| `ediff` | NOT a file comparer: it reformats `diff' OUTPUT in plain English.  Its own syntax line is `ediff <file' or `diff <f1> <f2> ! ediff', and fed a one-line change it prints `-------- 1 line changed at 3 from: ... to: ...'. Measured 2026-08-31; this entry said `visual file compare', which implies it does the comparing<br>`Syntax   : 'ediff <file'  or  'diff <f1> <f2> ! ediff'` |
 | `fcomp` | &#9733; compare two text files<br>`Syntax: fcomp <file_1> <file_2>` |
 | `join` | GNU join -- relational join of two sorted files<br>`Usage: join [-a 1\|2] [-v 1\|2] [-e empty-string] [-o field-list...] [-t char]` |
 | `nsort` | NOT a numeric sort, whatever the name says: given 3, 22, 111 and 4 it answers 111, 22, 3, 4 -- the same lexical order GNU `sort' gives with no options.  `sort -n' is the numeric sort here and gets it right.  It reads standard input only.  Corrected 2026-08-29<br>`Usage: nsort <unordered >sorted` |
@@ -268,27 +268,27 @@
 |---|---|
 | `afm2tfm` | Adobe font metrics to TeX font metrics<br>`Usage: afm2tfm foo[.afm] [-O] [-v\|-V bar[.vpl]]` |
 | `bibtex` | BibTeX -- bibliography formatter |
-| `dvips` | DVI to PostScript -- pair it with gs33<br>**How:** DVI to PostScript. `dvips <file>.dvi'. Pair it with gs33 (ETC/LIB/GS33) to see the result without a printer. |
+| `dvips` | DVI to PostScript -- pair it with gs33<br>**How:** Does not work here: "Couldn't find header file tex.pro", and no tex.pro is on this disk. Use `dvialw', which also writes PostScript. |
 | `dvitype` | show what is inside a .dvi file, as text<br>**How:** Shows what is inside a .dvi file as readable text. `dvitype <file>.dvi', then it asks for an output level -- 4 is a complete listing, 0 errors only. |
 | `gftopk` | MetaFont generic font to packed font<br>`Usage: gftopk [-v] <gf file> [pk file].` |
 | `gftype` | show what is inside a .gf file<br>`Usage: gftype [-m] [-i] <gf file>.` |
 | `inimf` | MetaFont with no base preloaded |
 | `initex` | TeX with no format preloaded, for building .fmt files<br>**How:** TeX with no format preloaded -- this is what BUILDS the .fmt files. `initex "plain \dump"'. The three formats already ship in SYS/TEX/FORMATS, built this way, so you only need this to make your own. |
-| `latex` | LaTeX -- Lamport's document preparation system on top of TeX<br>**How:** LaTeX. Its format is SYS/TEX/FORMATS/lplain.fmt, already built: `virtex "&/dd/SYS/TEX/FORMATS/lplain <file>.tex"'. |
+| `latex` | LaTeX -- Lamport's document preparation system on top of TeX<br>**How:** See `tex'. The wrapper cannot reach the engine; run `virtex '&lplain' yourfile.tex'. That does work: SAMPLES/small.tex gives "Output written on small.dvi (1 page, 1704 bytes)". The .dvi and .log land in your DATA directory. |
 | `maketexpk` | generate a .pk font at the size TeX asked for |
 | `pktogf` | packed font back to generic font<br>`Usage: pktogf [-v] <pk file> [gf file].` |
 | `pktype` | show what is inside a .pk file<br>`Usage: pktype <pk file>.` |
 | `pltotf` | property list to TeX font metric<br>`Usage: pltotf [-verbose] <property list file> <tfm file>.` |
 | `slitex` | SliTeX -- LaTeX for slides<br>**How:** LaTeX for slides; its format is SYS/TEX/FORMATS/splain.fmt, already built. |
-| `tangle` | WEB to Pascal -- Knuth's literate programming tool<br>`Usage: tangle webfile[.web] [changefile[.ch]].` |
-| `tex` | TeX itself -- the typesetting program (a driver; virtex does the work) |
+| `tangle` | WEB to Pascal -- Knuth's literate programming tool.  IT NEEDS A CHANGE FILE NAMED, always: given only a .web it answers `Error: `Can't open file.'' and the absent CHANGE file is what it could not open, not your source.  DOC/tex ships `sample.web' and `none.ch' (an empty change file) as of 2026-08-31: copy both to your data directory and run `tangle sample none'.  It reads and writes there, not where you typed from.  Measured 2026-08-31<br>**How:** Needs a CHANGE FILE named, always. `tangle yourfile.web' alone answers `Error: `Can't open file.'' and the file it cannot open is the absent change file, not your source. DOC/tex ships `sample.web' and `none.ch' (empty, changes nothing): copy both to your data directory and run `tangle sample none'. It reads and writes in the DATA directory, which bash's `cd' does not move. `weave sample none' is the other half. Measured 2026-08-31. |
+| `tex` | TeX itself -- the typesetting program (a driver; virtex does the work)<br>**How:** BROKEN as a wrapper -- call the engine. `tex' is one line: it asks a shell to run `virtex "&plain" yourfile', the quoted format name is never unquoted, and the shell answers E$PNNF for the whole line (rc 221 with no $SHELL set, and silently). Type `virtex '&plain' yourfile.tex' instead. For LaTeX it is `virtex '&lplain' yourfile.tex', for SliTeX `virtex '&splain''. Measured 2026-08-31; SYS/TEX/SAMPLES/small.tex is a LaTeX document and story.tex is plain TeX with no \end. |
 | `texidx` | build an index from TeX's .idx output |
 | `tftopl` | TeX font metric to property list (the readable form)<br>`Usage: tftopl [-verbose] <tfm file> [<property list file>].` |
 | `vftovp` | virtual font to virtual property list<br>`Usage: <vfm file> <tfm file> <vpl file>.` |
 | `virmf` | the real MetaFont engine -- generates fonts from .mf sources |
-| `virtex` | the real TeX engine, loaded with a format<br>**How:** The real TeX engine. It needs a FORMAT: `virtex "&/dd/SYS/TEX/FORMATS/plain <file>.tex"'. Tested end to end -- it typesets and reports "Output written on <file>.dvi". `tex' is a small driver in front of it. |
+| `virtex` | the real TeX engine, loaded with a format<br>**How:** The real TeX engine, and the one to use -- see `tex'. It wants the format first: `virtex '&plain' file.tex' or `virtex '&lplain' file.tex'. The formats that ship are plain, lplain and splain, in SYS/TEX/FORMATS. |
 | `vptovf` | virtual property list to virtual font<br>`Usage: vptovf <vpl file> <vfm file> <tfm file>.` |
-| `weave` | WEB to TeX -- the other half of literate programming<br>`Usage: weave webfile[.web] [changefile[.ch]] [-x].` |
+| `weave` | WEB to TeX -- the other half of literate programming, and it needs a change file for the same reason `tangle' does: `weave sample none'<br>`Usage: weave webfile[.web] [changefile[.ch]] [-x].` |
 
 **Transform & filter**
 
@@ -300,14 +300,14 @@
 | `cut` | cut selected fields from each line |
 | `cuts` | &#9733; Coco Usenet Transfer Utility<br>`Usage: cuts <-d> [-o name] <file>...` |
 | `detab` | &#9733; tabs to spaces<br>`Usage: detab [-tn] [infile] or [<infile]` |
-| `eo` | &#9733; eo - text utility |
+| `eo` | &#9733; EXECUTE A COMMAND ON EVERY LINE OF A FILE -- an xargs, not a text tool.  `eo <file> <command> @' runs <command> once per line with `@' replaced by the line; -p takes the lines from a pipe, -q runs quietly, -e stops on the first error.  Marc Balmer, version 1.8.  It shells out, so it needs SHELL set, which SYS/login now does.  This entry said `text utility' and told you nothing; corrected 2026-08-31<br>**How:** Runs a command on every line of a file, with `@' standing for the line: `eo <file> <command> @'. It shells out, so it needs SHELL set to a shell that takes a command line as one argument -- SYS/login sets `SHELL=/dd/CMDS/ksh' and that is what makes it work. Without it, `can't execute /dd/bash'. `-p' takes the lines from a pipe instead of a file. Measured 2026-08-31. |
 | `field` | &#9733; extract fields<br>`Syntax  : field [<opts>] <fields...> [<opts>]` |
-| `fillup` | &#9733; fill a file up to a given length with a constant byte<br>`Syntax:   fillup [<options>] <file>` |
+| `fillup` | &#9733; fill a file up to a given length with a constant byte: `fillup -n=64 -i=65 f' pads f to 64 bytes with `A' and says `24 bytes (value=65) appended'.  The length option is -n=, not -l=.  L. Zeller, 1992<br>`Syntax:   fillup [<options>] <file>` |
 | `gawk` | &#9733; GNU awk 2.11 -- the pattern-and-action language.  It works, but it IGNORES A FILENAME ARGUMENT and reads standard input whatever it is given, so redirect: gawk '{...}' < file, never gawk '{...}' file.  Named a file, it sits waiting on the terminal, which is what the 2026-08-27 note here called "prints nothing at all".  Corrected 2026-08-28.<br>**How:** GNU awk 2.11, the first awk this disk has ever carried. Needs Microware's cio. `gawk "{print \$1}" file' -- and mind that the OS-9 shell, not gawk, is what mangles quoting. |
 | `gep` | &#9733; global expression parser -- grep-like, but its `-e' takes the PATH OF A FILE holding the expressions, not an expression: `gep -e=/dd/tmp/patterns <file>'.  A file of patterns applied at once is what it is for and nothing else here does it. Measured 2026-08-31; see DOC/README-GREP<br>`Syntax: gep [<opts>] [<srcpath>] [<opts>]` |
-| `paste` | merge lines of files<br>`USAGE: paste [-s] [-d<list>] files` |
+| `paste` | merge lines of files<br>**How:** Joins lines side by side, tab-separated by default: `paste f1 f2'. `-d:' picks another separator; `-s' puts one file's lines on a single line. Build its input with the shell's `echo' -- /dd/CMDS/printf drops everything before the first conversion and can leave you a zero-byte file. |
 | `pep` | file 'detergent' - strip junk from files<br>`Usage: pep [options] [filename ...]` |
-| `psc` | &#9733; sc's print/format filter<br>`Syntax: psc [-rkfLSPv?] [-s v] [-R i] [-C i] [-n i] [-d c] [<path1] [>path2]` |
+| `psc` | &#9733; turn an ASCII table into commands for `sc', the spreadsheet: `psc -d' ' < table' answers `let A0 = 1', `let B0 = 2' and a `format' line per column.  -d sets the field delimiter, -r assembles rows first, -s names the top-left cell.  Robert Bond's, and it works<br>**How:** Feeds `sc', the spreadsheet: `psc -d' ' < table' turns rows of numbers into `let A0 = 1' commands sc can read. -r assembles rows first, -s names the top-left cell, -d sets the delimiter. |
 | `rot` | turn a text file on its side -- line one becomes column one.  NOT a rot-13 cipher, whatever the name suggests |
 | `shuffle` | shuffle lines/cards<br>**How:** Full-screen: it takes over the display. **`q' quits** -- tested. |
 | `tabs` | tab/space conversion filter<br>`Syntax   : tabs [<opts>] [<input_redirection>] [<output_redirection>]` |
@@ -347,9 +347,9 @@
 | `divide` | &#9733; SPLIT A FILE into pieces -- Farside Systems 1992, `divide -l=<lines> <infile> [<outfile>]'.  Not integer division, whatever the name suggests |
 | `eunlink` | &#9733; extended unlink<br>`Syntax: eunlink {<event>}` |
 | `fc` | &#9733; split a big file in two, to carry it on 360k disks<br>`Syntax:   fc [<file>]` |
-| `move` | &#9733; move files between directories<br>`Syntax:   move [<options>] <from> [<to>] [<options>]` |
+| `move` | &#9733; move files between directories WITHOUT COPYING THE CONTENTS -- it relinks them, which is why it is quick and why its own help warns never to kill it mid-run.  `move <from> <to>' wants a destination NAME; -w=<dir> is the wildcard form that takes a directory.  L. Zeller, V2.1<br>`Syntax:   move [<options>] <from> [<to>] [<options>]` |
 | `mv` | &#9733; move/rename<br>`Usage: mv [-bfiuv] [-S backup-suffix] [-V {numbered,existing,simple}]` |
-| `remove` | &#9733; remove files, with confirmation<br>`Syntax   : remove [<opt>] [<modules>] [<opt>] [<modules>] [<opt>]` |
+| `remove` | &#9733; REMOVE MODULES FROM MEMORY, not files -- its own Function line says so.  `remove <module>...', -q for quiet.  `del', `rm' and `deldir' are what remove files.  This entry said `remove files, with confirmation'; corrected 2026-08-31<br>**How:** Removes MODULES FROM MEMORY, not files. `del', `rm' and `deldir' are the file ones. |
 | `rm` | &#9733; remove files<br>`Usage: rm [-dfirvPR] [+directory] [+force] [+interactive] [+recursive]` |
 | `undel` | &#9733; undelete a file<br>`Usage: attr <file> -d` |
 
@@ -405,7 +405,7 @@
 
 *Version control, tags, cross-reference, formatters, a debugger and benchmarks.*
 
-<details><summary>48 programs</summary>
+<details><summary>47 programs</summary>
 
 **Assembly**
 
@@ -427,17 +427,16 @@
 | `dhryGccin` | &#9733; GCC 1.x, inlined |
 | `dhryGccmx` | &#9733; GCC 1.x, mixed |
 | `dhryGcco2` | &#9733; GCC 1.x, optimised |
-| `dhryO2` | Microware cc, optimised |
+| `dhryO2` | Microware cc, optimised<br>**How:** All eleven Dhrystone builds READ A RUN COUNT FROM STANDARD INPUT before they start -- run bare they print two lines and wait, which is why they were long recorded as doing nothing. `echo 200000 \| dhryO2'. Under os9exec even 20000 runs finish inside one tick of the clock, so it answers "Measured time too small ... Please increase number of runs" rather than a rate; the comparison between builds is what they are here for, and on real hardware it works as intended. |
 | `dhryshamu` | &#9733; Shamus build |
 | `dhryshamu2` | &#9733; Shamus build, second variant |
 | `disktest` | measure disk performance  [no military use -- DOC/EFFO-INFO]<br>`Syntax   : disktest [<opt>]` |
 | `fibo` | &#9733; Fibonacci benchmark |
 | `float` | &#9733; floating-point benchmark |
-| `paranoia` | &#9733; floating-point benchmark |
 | `savage` | &#9733; Savage floating-point accuracy benchmark |
 | `sieve` | &#9733; sieve of Eratosthenes benchmark |
 | `time` | &#9733; time a command |
-| `timid` | timing utility<br>`Syntax: timit [<opts>]` |
+| `timid` | timing utility -- and it reports itself as `timit', which is the name in its own usage line.  It takes NO command to time: `timid wc -c file' answers `timid: unknown option c'.  `time' is the one that times a command.  Measured 2026-08-31<br>`Syntax: timit [<opts>]` |
 
 **Debugging**
 
@@ -512,12 +511,12 @@
 
 | | |
 |---|---|
-| `as0` | 6800/6802 cross-assembler (xasm).  NOT a 68000 assembler -- see the note below this list<br>**How:** A 6800 cross-assembler, not a 68000 one -- as1 is 6801, as4 is 6804, as5 is 6805, as11 is 68HC11 and as09 is 6809. DOC/xasm/asm.doc is their manual; source for all of them is in SRC/xasm. |
-| `as09` | &#9733; 6809 assembler<br>`Usage: as09 [files]` |
-| `as1` | 6801/6803 cross-assembler (xasm)<br>`Usage: as1 [files]` |
-| `as11` | 68HC11 cross-assembler (xasm)<br>`Usage: as11 [files]` |
-| `as4` | 6804 cross-assembler (xasm)<br>`Usage: as4 [files]` |
-| `as5` | 6805/68HC05 cross-assembler (xasm)<br>`Usage: as5 [files]` |
+| `as0` | 6800/6802 cross-assembler (xasm).  NOT a 68000 assembler -- see the note below this list.  A sample source for each of the six ships in DOC/xasm as of 2026-08-31, so they can be seen doing their job rather than printing their usage line: `as0 /dd/DOC/xasm/sample.a0 - l s' lists the assembly with addresses, opcodes and a symbol table. The options come after a lone `-', and as11 is the one exception -- it takes them without it<br>**How:** Assemble the sample that ships with it: `as0 /dd/DOC/xasm/sample.a0 - l s' -- the options come after a lone `-', `l' for the listing and `s' for the symbol table. There is a sample for each of the six (sample.a0, .a1, .a4, .a5, .a09, .a11) and each is written for its own processor: as09 rejects the 6800 one, correctly. as11 is the one that takes its options without the `-'. None of these is a 68000 assembler. |
+| `as09` | &#9733; 6809 assembler -- and the only one of the six that is NOT a cross-assembler for an 8-bit relative of the 6809's. It rejects 6800 source outright (`ldaa' is not a 6809 mnemonic) and is right to; DOC/xasm/sample.a09 is written for it<br>`Usage: as09 [files]` |
+| `as1` | 6801/6803 cross-assembler (xasm).  DOC/xasm/sample.a1<br>`Usage: as1 [files]` |
+| `as11` | 68HC11 cross-assembler (xasm).  DOC/xasm/sample.a11<br>`Usage: as11 [files]` |
+| `as4` | 6804 cross-assembler (xasm).  DOC/xasm/sample.a4<br>`Usage: as4 [files]` |
+| `as5` | 6805/68HC05 cross-assembler (xasm).  DOC/xasm/sample.a5<br>`Usage: as5 [files]` |
 | `lnk` | RTF FORTRAN link driver; calls l68 with /h0/LIB/sys.l, which is Microware's and not here |
 | `lnk.org` | as lnk, the original build |
 
@@ -531,15 +530,15 @@
 | `cccp2` | &#9733; GCC 2.x preprocessor, where it was built<br>`Usage: cccp2 [switches] input output` |
 | `collect` | GCC 2.x collect2, where it was built<br>`Syntax   : collect [<opts>] {<file>} [<opts>]` |
 | `compiler` | GSHELL front-end for the C compiler<br>**How:** Full-screen: it takes over the display. **control-C gets you out** -- tested, and none of q, Q, control-D or ESC did. If it has a quit command of its own, its documentation in DOC/ will say. |
-| `gcc` | &#9733; the GCC driver -- GCC139's and GCC2's share this name<br>`Usage: gcc {options} {files} {options}` |
-| `gcc2` | &#9733; the GCC 2.x driver<br>`Usage: gcc2 {options} {files} {options}` |
+| `gcc` | &#9733; the GCC driver -- GCC139's and GCC2's share this name. They are NOT the same version, and neither is 2.x: GCC139/gcc answers `gcc version 1.39' and GCC2/gcc answers `gcc version 1.42'.  Read 2026-08-31 out of `gcc -v'<br>`Usage: gcc {options} {files} {options}` |
+| `gcc2` | &#9733; the GCC 2.x driver, and the only one that is: `gcc version 2.5.6'<br>`Usage: gcc2 {options} {files} {options}` |
 | `gcc_cc1` | GCC 1.39 C compiler pass |
 | `gcc_cc1plus` | GCC 1.39 C++ compiler pass |
 | `gcc_cc2` | GCC 2.x compiler pass, under the name gcc2 forks |
 | `gcc_cccp` | GCC 1.39 preprocessor<br>`Usage: gcc_cccp [switches] input output` |
 | `gcc_cccp2` | &#9733; GCC 2.x preprocessor, under the name gcc2 forks<br>`Usage: gcc_cccp2 [switches] input output` |
 | `gcc_collect` | GCC 1.39 collect2<br>`Syntax   : collect [<opts>] {<file>} [<opts>]` |
-| `gpp` | the C++ driver<br>`Usage: gpp {options} {files} {options}` |
+| `gpp` | the C++ driver -- and it is a GCC 1.x one.  GCC2/gpp says `gpp version 1.40.3 (based on GCC 1.40)' and GCC139/gpp says 1.37.1.  This entry called it the GCC 2.x C++ driver; corrected 2026-08-31<br>`Usage: gpp {options} {files} {options}` |
 | `gpp_cc1plus` | GCC 2.x C++ pass, under the name gpp forks |
 | `gpp_cccp` | &#9733; GCC 2.x preprocessor, under the name gpp forks<br>`Usage: gpp_cccp [switches] input output` |
 | `gpp_collect` | GCC 2.x collect2, under the name gpp forks<br>`Syntax   : collect [<opts>] {<file>} [<opts>]` |
@@ -556,7 +555,7 @@
 
 | | |
 |---|---|
-| `assembler` | GSHELL front-end for the assembler<br>**How:** Full-screen: it takes over the display. **control-C gets you out** -- tested, and none of q, Q, control-D or ESC did. If it has a quit command of its own, its documentation in DOC/ will say. |
+| `assembler` | GSHELL front-end for the assembler -- the same full-screen menu as `gshell', headed `Assembler-SHELL V1.0'.  It does not assemble anything itself; `as0' and its five siblings are the assemblers, and none of them is for the 68000<br>**How:** Full-screen: it takes over the display. **control-C gets you out** -- tested, and none of q, Q, control-D or ESC did. If it has a quit command of its own, its documentation in DOC/ will say. |
 | `bison` | GNU bison 1.19 parser generator -- ADDED; skeletons in /dd/LIB<br>`Usage: bison [-dltvyV] [-b file-prefix] [-o outfile] [-p name-prefix]` |
 | `dmake` | &#9733; dmake 3.70 - parallel make with its own makefile dialect |
 | `flex` | lexical analyzer generator -- see DOC/flex/README-FLEX FIRST<br>`Syntax   : flex [-bcdfinpstvFILT8 -C[efmF] -Sskeleton] [filename ...]` |
@@ -660,7 +659,7 @@
 | | |
 |---|---|
 | `ar2` | &#9733; Ar V2.00 -- Carl Kreider's archiver, a later edition than the V1.2 included as `ar'.  Both are here; ar is unstarred<br>`Usage:  Ar -<cmd>[<modifier>] archive [file .. ]` |
-| `liborder` | &#9733; order the modules in an OS-9 library<br>`Usage: liborder <options> file1.r file2.r ...` |
+| `liborder` | &#9733; order the modules in an OS-9 library -- and GIVE IT ONE. Handed anything else it reads a length out of what it assumes is a ROF header and asks the system for it: on a plain text file it requested 2,284,850,400 bytes and then said `No more memory !!!'.  That is the file's bytes read as a number, not a fault in the program's plumbing -- the request changes with the file and not with anything else. On /dd/LIB/alib.l and the other libraries here it asks for 4096 bytes and works.  Measured 2026-08-31<br>`Usage: liborder <options> file1.r file2.r ...` |
 | `modbuster` | Split merged OS-9 module files<br>`Syntax: Modbuster [<opts>] <path> [<opts>]` |
 | `unpacklib` | &#9733; split an OS-9 library into its modules<br>`Usage: unpacklib <options> file1.l file2.l ...` |
 
@@ -760,33 +759,33 @@
 
 | | |
 |---|---|
-| `answer` | &#9733; reply to messages in a folder in turn |
-| `arepdaemon` | &#9733; the daemon autoreply relies on |
-| `autoreply` | &#9733; send an automatic reply while you are away<br>`Usage: autoreply <filename>	to start autoreply,` |
-| `checkalias` | &#9733; check an alias resolves before you rely on it<br>`Usage: checkalias alias [alias ...]` |
+| `answer` | &#9733; reply to messages in a folder in turn.  Interactive: it clears the screen and asks `Message to:' |
+| `arepdaemon` | &#9733; the daemon autoreply relies on.  Wants /dd/USR/LIB/ELM/autoreply.data, which is not here, and says so: `Error 216 attempting fstat' |
+| `autoreply` | &#9733; send an automatic reply while you are away.  Bare it reports `You're not currently autoreplying to mail.'<br>`Usage: autoreply <filename>	to start autoreply,` |
+| `checkalias` | &#9733; check an alias resolves before you rely on it -- and it prints NOTHING, for an alias that exists, one that does not, and several at once.  `listalias' answers the same question and does print.  Measured 2026-08-31<br>`Usage: checkalias alias [alias ...]` |
 | `disable` | &#9733; disable a UUCP device<br>`Syntax: disable <port>` |
-| `dotilde` | &#9733; expand ~user in a path, as the mailer does |
+| `dotilde` | &#9733; the mailer's TILDE-ESCAPE handler, not a path expander: it reads a message from standard input and acts on the `~' commands in it, answering `Unrecognized tilde command' and `Continuing...type "." or <ESC> to end message...'. Corrected 2026-08-31 |
 | `elm` | &#9733; the Elm mail reader itself -- full-screen, menu-driven<br>**How:** The full-screen mail reader. On first run it offers to create a .elm directory in your home for its elmrc and aliases -- say y. Mail lives at /dd/SPOOL/MAIL/<user> and SYS/login points MAIL there; `readmsg 1' prints a message without opening the reader. |
 | `enable` | &#9733; re-enable a UUCP device<br>`Syntax: enable [<opts>] <port> [<opts>]` |
-| `fastmail` | &#9733; send a file as mail without opening the reader<br>`Usage: fastmail {args} [ filename \| - ] address(es)` |
-| `filter` | sort incoming mail into folders by rule<br>`Usage: \| filter [-nrvlq] [-f rules] [-o file]` |
-| `frm` | &#9733; list who your mail is from, one line each<br>**How:** Lists who your mail is from, one line each. Reads $MAIL, which SYS/login sets. |
+| `fastmail` | &#9733; send a file as mail without opening the reader.  It needs a delivery agent; on this disk the folder is unchanged afterwards<br>`Usage: fastmail {args} [ filename \| - ] address(es)` |
+| `filter` | sort incoming mail into folders by rule.  A PIPE stage: its own usage line begins `\| filter'<br>`Usage: \| filter [-nrvlq] [-f rules] [-o file]` |
+| `frm` | &#9733; list who your mail is from, one line each -- and on this port it finds NO messages in a folder that `messages' counts and `readmsg' prints.  It opens the folder (it names you rather than failing) and then answers `tester has no mail', with -s new, with -s old, and with the folder named outright.  Use `messages' and `readmsg'. Measured 2026-08-31<br>**How:** Lists who your mail is from, one line each. Reads $MAIL, which SYS/login sets. |
 | `lcasep` | &#9733; lower-case a name for mail<br>`usage: lcasep [-f file] [-o outfile]` |
-| `listalias` | &#9733; list the aliases you have<br>`Usage: listalias [ -s \| -u ] <optional-regular-expression>` |
+| `listalias` | &#9733; list the aliases you have -- and it does, once newalias has compiled them: `home  os9-freeware (This Collection)'.  Its -s and -u forms pipe through `egrep', which is not on this disk, and report that; the plain form needs no such thing<br>`Usage: listalias [ -s \| -u ] <optional-regular-expression>` |
 | `lmail` | &#9733; local mail delivery<br>`Syntax: lmail <user name> {<user name>}` |
 | `mail` | &#9733; a simple mail sender<br>`Syntax: mail [<opts>] [<user>]` |
 | `mailx` | &#9733; the mail reader and sender |
 | `makedb` | build the alias database |
-| `messages` | &#9733; count and list what is in a folder<br>**How:** Counts what is in your mail folder. Tested: "There is 1 message in your mailbox". |
-| `newalias` | &#9733; rebuild the alias database -- run it after editing aliases<br>**How:** Rebuilds the Elm alias database from USR/LIB/ELM/aliases.text after you edit it. |
-| `newmail` | &#9733; watch for mail arriving and say so<br>`Usage: newmail [-d] [-i interval] [-w] {folders}` |
+| `messages` | &#9733; count and list what is in a folder.  Works<br>**How:** Counts what is in your mail folder. Tested: "There is 1 message in your mailbox". |
+| `newalias` | &#9733; rebuild the alias database -- run it after editing aliases, and add -g for the system file.  `processed 2 aliases', `processed 6 aliases'<br>**How:** Rebuilds the Elm alias database from USR/LIB/ELM/aliases.text after you edit it. |
+| `newmail` | &#9733; watch for mail arriving and say so.  -d reports the folder it is watching and its size<br>`Usage: newmail [-d] [-i interval] [-w] {folders}` |
 | `nptx` | &#9733; expand a mail alias list |
 | `pathalias` | compute mail routes from a map<br>`usage: pathalias [-vciDfI] [-l localname] [-d deadlink] [-t tracelink] [-g edgeout] [-s treeout] [-a avoid] [files ...]` |
 | `philmail` | the philmail mailer |
-| `printmail` | &#9733; format a message for a printer<br>`Usage: printmail [-p] [-r filename] <message list>` |
+| `printmail` | &#9733; format a message for a printer.  Silent to a terminal<br>`Usage: printmail [-p] [-r filename] <message list>` |
 | `pwparse` | &#9733; parse the password file for the mailer |
 | `read_mail` | &#9733; a small mail reader of its own, not vi's helper: it opens /dd/MAIL/mail_<user> and offers `[L]ist again, e[X]it & delete mail, exit & [N]ot delete'.  Corrected 2026-08-29 |
-| `readmsg` | &#9733; print selected messages from a folder<br>**How:** Prints messages from a mail folder: `readmsg 1' for the first. Tested -- it reads the welcome message in /dd/SPOOL/MAIL/tester. |
+| `readmsg` | &#9733; print selected messages from a folder, by number or by pattern.  Works<br>**How:** Prints messages from a mail folder: `readmsg 1' for the first. Tested -- it reads the welcome message in /dd/SPOOL/MAIL/tester. |
 | `rmail` | &#9733; deliver incoming mail (invoked by uuxqt, not by you)<br>`usage: rmail [file] "site!user[@site]"` |
 | `smail` | &#9733; smart mail router<br>`Usage:   smail [<options>] address...` |
 | `uupoll` | &#9733; poll a site for waiting work<br>**How:** Polls a UUCP site for waiting work. Blars uucp; wants the `uucp' user, which SYS/password now has. |
@@ -806,8 +805,8 @@
 | `postnews` | &#9733; post an article to a newsgroup<br>`Usage: postnews [options]` |
 | `readnews` | &#9733; read Usenet news articles -- and it RUNS: it opens the reader and answers `**** End of newsgroups', which is the truth on a disk with no news spool.  Every sweep scored it mute because it asks its question and waits. Corrected 2026-08-29 |
 | `rnews` | &#9733; unpack an incoming news batch |
-| `subscribe` | &#9733; add a newsgroup to your subscription list<br>`usage: subscribe <newsgroup> [newsgroup...]` |
-| `unsubscribe` | &#9733; drop one<br>`usage: unsubscribe <newsgroup> [newsgroup...]` |
+| `subscribe` | &#9733; add a newsgroup to your subscription list -- and on this port it does NOT: `subscribe comp.lang.c' leaves .newsrc byte for byte as it found it, and so does unsubscribe. A .newsrc ships at /dd/.newsrc so that both at least start; edit it by hand.  Measured 2026-08-31<br>`usage: subscribe <newsgroup> [newsgroup...]` |
+| `unsubscribe` | &#9733; drop one -- and it does not, see `subscribe'<br>`usage: unsubscribe <newsgroup> [newsgroup...]` |
 
 **TCP/IP**
 
@@ -1145,7 +1144,7 @@
 
 *Adventures, board and card games, arcade ports, dungeon crawls and puzzles.*
 
-<details><summary>66 programs</summary>
+<details><summary>67 programs</summary>
 
 **Adventure & fiction**
 
@@ -1156,6 +1155,7 @@
 | `advint` | ADVSYS adventure INTERPRETER -- plays a world compiled by advcom, and there is one to play: build it as advcom's entry says and `advint osample' starts you in the livingroom.  This said until 2026-08-29 that building it needed a real chd; it does not, and bash on this disk can do the whole thing. GAMES/ADVSYS/README has the four lines<br>**How:** Plays an ADVSYS world. Build one first (see advcom), then `advint osample` -- you start in the livingroom, `n` goes to the hallway. Measured 2026-08-29. |
 | `infocom` | Infocom Z-MACHINE interpreter -- a third, unrelated adventure system.  Plays the .z3 files in GAMES/INFORM (dejavu, hellow, shell -- Inform demos, not the Infocom games).<br>**How:** A Z-machine. Plays the .z3 files in /dd/GAMES/INFORM, which are Inform demonstration programs (dejavu, hellow, shell), not the Infocom games. |
 | `infocom.tcap` | Infocom interpreter, TERMCAP build -- and it is the one to use here.  It puts a proper status line at the top of the screen (`Y2 Rock Room     Score: 0/2') where plain `infocom' fills the screen with brackets trying to. Measured 2026-08-28<br>**How:** Plays Infocom adventure game files -- it needs the game's data file as an argument, which this disk does not carry. |
+| `paranoia` | &#9733; NOT the floating-point torture test of that name: this is the PARANOIA text adventure.  `Welcome to Paranoia!  As Philo-R-DMD you will die at times during the adventure... you will be given a new clone'.  Six clones, one mission, RETURN to go on.  `float' and `savage' are the floating-point benchmarks here.  Corrected 2026-08-31<br>**How:** Not a benchmark: it is the PARANOIA text adventure. RETURN to go on, a letter to choose, `p' for your statistics, six clones. `float' and `savage' are the floating-point benchmarks on this disk. |
 
 **Arcade & action**
 
@@ -1410,7 +1410,7 @@
 |---|---|
 | `clock` | display a clock |
 | `date` | Print date and time -- it prints the YEAR AS 2100.  `today' gets it right; setime2, setyear and fixyear are the Y2K repairs beside it |
-| `loglist` | &#9733; log listing<br>`Syntax   : loglist [-option(s)]` |
+| `loglist` | &#9733; A LOGIN LOGGER, not just a listing: `loglist -i' records a login, `-o' a logout, `-l' prints the table.  Philip Maechler, 1988, V2.0.  It writes /dd/SYS/loglist and refuses without it -- `Sorry, there is no /dd/sys/loglist' -- so an empty one ships, the same courtesy SYS/birthdays does for `cal'.  Two faults of its own, measured 2026-08-31 and NEITHER the emulator's: every `-l' line after the first loses its leading character (`OGIN +' for `LOGIN +') while the bytes it WROTE are correct, so the fault is in its display loop; and the year prints as 126, being years-since-1900 left unwrapped<br>`Syntax   : loglist [-option(s)]` |
 | `oskversion` | &#9733; report the OS-9/OSK version<br>`Syntax:   OSKversion` |
 | `setime` | Set system time (prompts YYMMDDHHMMSS) |
 | `sysid` | &#9733; show system identification |
@@ -1432,7 +1432,7 @@
 | `bigsetter` | Modula-2 set-operations demonstration |
 | `bootlogger` | &#9733; log what happens during boot |
 | `break` | send a BREAK on a serial line (assembler example) -- and under os9exec it reaches F$SysDbg and stops the EMULATOR in its own debugger, waiting for an answer.  In a script that is a hang<br>`Syntax: break` |
-| `btop` | bitmap to Gepard fat-font<br>`Syntax:   BtoP [<opts>] [<path1>] [<opts>] [<path2>] [<opts>]` |
+| `btop` | convert characters to bit patterns -- its own Function: line, and what it does: `btop <file>' prints each character as a grid of O and space.  Measured 2026-08-31: 40 bytes in, 640 out, and `ptob' turns those 640 back into the same 40.  This entry said `bitmap to Gepard fat-font', which is an application of the pair, not what the program does<br>`Syntax:   BtoP [<opts>] [<path1>] [<opts>] [<path2>] [<opts>]` |
 | `btree` | &#9733; B-tree file handling demonstration and test |
 | `clear` | &#9733; clear the screen<br>`Syntax:   clear` |
 | `combine` | &#9733; interleave two files BYTE BY BYTE, one supplying the even bytes and the other the odd -- how a 16-bit EPROM image is put back together from two 8-bit halves.  F.R.Schmitt, 1989.  Clarified 2026-08-29<br>`Syntax: combine [<file1>] [<file2>] [<outfile>] [<opt>]` |
@@ -1457,7 +1457,7 @@
 | `hinterhalt` | &#9733; a small game (EFFO forum 7) |
 | `i_am_i` | prints its own source (Pascal) |
 | `isam` | &#9733; indexed-sequential file demonstration |
-| `lfmaker` | make a G-Windows launch file -- and it FLOODS `No more memory !!!' as soon as it is given an argument, which is the F$SRqMem storm DOC/STATUS lists.  Measured 2026-08-29 |
+| `lfmaker` | make a G-Windows launch file -- and it FLOODS `No more memory !!!' the moment it is given an argument. Bare it prints nothing and returns.  A 2026-08-31 re-run called the flood unreproduced; that re-run was wrong, and the difference is the argument.  Re-measured both ways the same day: `lfmaker' silent, `lfmaker test' floods |
 | `lgrep` | &#9733; NOT `line grep': its own banner says "same as 'grep -l', but prints filenames without comments".  It produced no output at all when asked for a string that IS in the files, bare and from a shell with PATH set, and exited 0 both times. `grep -l' does the job.  Measured 2026-08-31; see DOC/README-GREP<br>`Syntax: lgrep <arg1> ... <argn>` |
 | `liborder.os9` | report the order of modules in a library<br>`Usage: liborder <options> file1.r file2.r ...` |
 | `lpsched` | &#9733; the line-printer scheduler<br>`Syntax: lpsched [-r] {<devname>}` |
@@ -1469,9 +1469,9 @@
 | `names` | &#9733; list the names of modules in a file -- and it DOES NOT COME BACK: given a module it prints nothing and never returns, with a file on its standard input or without. `ident', `modinfo' and `module_census' all answer the same question.  Measured 2026-08-29 |
 | `new_e` | SEDT editor, generic terminal -- it picks vt100 or vt220 by TERM.  Needs the same three SYS/sedt.* files as `e' |
 | `phone` | connect two terminals -- NOT an address book<br>`Syntax: phone <communication-path>` |
-| `preset` | preset memory to a pattern |
+| `preset` | LOAD THE TERMINAL'S FUNCTION KEYS, not memory: it writes a fixed set of definitions -- `dir', `umacs', `r68', `l68', `dsave -ieb128k' and so on -- and answers `Funktionstasten belegt!'.  German, from forum3.  It takes no arguments and ignores any given.  Corrected 2026-08-31 from `preset memory to a pattern' |
 | `pri` | change a process's priority |
-| `ptob` | Gepard fat-font back to bitmap<br>`Syntax:   PtoB [<opts>] [<path1>] [<opts>] [<path2>] [<opts>]` |
+| `ptob` | convert bit patterns back to characters -- the other half of `btop', and the round trip is exact.  Corrected 2026-08-31 from `Gepard fat-font back to bitmap'<br>`Syntax:   PtoB [<opts>] [<path1>] [<opts>] [<path2>] [<opts>]` |
 | `ptxminst` | install Ptxm.  NOT a pseudo-tty installer -- that is what this entry said until 2026-08-19 and it was wrong |
 | `rndir` | &#9733; rename a directory<br>`Syntax: rndir [<opt>]` |
 | `screen` | &#9733; NOT the terminal multiplexer.  Russ Smith's `screens': picks a file at random from $HOME/.SCREENS and shows it. On OS-9 it runs the file rather than printing it, through system(), so it requires Microware's `shell' on your execution path.  Source in SRC/screen, man page in DOC/screen/screens.6.  Reworded 2026-08-30 |
@@ -1486,7 +1486,7 @@
 | `suse` | show a program's usage line -- it prints nothing, for any module tried, by name or by path, and nothing for -? either. Re-measured 2026-08-29 and still true |
 | `suspend` | &#9733; REMOVES a process from the system -- its own usage line says so -- rather than suspending it.  F.R.Schmitt, 1989.  Clarified 2026-08-29<br>`Syntax  : suspend  [<processname>]  [<opt>]` |
 | `t_trtest` | RICO trap-handler test |
-| `testibc` | IEEE binary-coded test (Pascal) |
+| `testibc` | IEEE binary-coded test (Pascal) -- and it CRASHES.  It prints its banner, reports `Error #000:009' opening /dd/sys/errmsg.ibc (which is not here), asks `Timeout time (1/10 Sec)?' and then takes an illegal instruction at 00099e64 that ends the session.  Measured 2026-08-31 |
 | `transfer` | &#9733; copies files from GDOS DISKS to OS-9, and takes no options at all -- not a general device-to-device copier.  `cp', `copy' and `dsave' are those. Corrected 2026-08-29<br>`Syntax: transfer` |
 | `trunc` | &#9733; truncate a file to a given length<br>`Syntax: trunc <path> <num>` |
 | `tty` | &#9733; report the terminal's name |
@@ -1494,7 +1494,7 @@
 | `umusek` | UMusEK -- a music editor; wants a screen address |
 | `unpacklib.os9` | unpack a library into its object modules<br>`Usage: unpacklib <options> file1.l file2.l ...` |
 | `vc` | &#9733; a SPREADSHEET -- `Welcome to the Spreadsheet Calculator, type ? for help', with rows, columns and a formula line.  Not a visual compare, which is what this entry said until 2026-08-28 |
-| `vecho` | echo without a newline (from less) |
+| `vecho` | System V `echo': the newline is suppressed by a trailing \c IN THE ARGUMENT, not by default.  `vecho one' writes `one' and a CR; `vecho one\c' writes `one' and stops. Several arguments are joined with a space.  This entry said `echo without a newline', which is the opposite way round.  Measured, byte by byte, 2026-08-31.  SRC/less_v177 |
 | `vlen` | &#9733; a VARIABLE-LENGTH RECORD demonstration, not a reporting tool: it ignores whatever you give it, creates a filesystem of its own, adds a hundred records of varying length and prints the minimum, the maximum and the mapper entries as it goes.  `isam' is the other demonstration of its kind here.  Corrected 2026-08-29 |
 | `what` | Not the SCCS `what' -- it does not read a binary at all.  It prints `What's where in the GEPARD:' and a table of I/O address, reference byte and card name: an inventory of the expansion cards in a GEPARD, the German 68k machine much of the EFFO material was written on.  The table is empty here, there being no GEPARD.  It ignores its arguments.  Added to this index 2026-08-30, having never been in it; the first entry written for it guessed SCCS from the name and was wrong within the hour<br>**How:** NOT the SCCS `what`. It prints "What's where in the GEPARD:" and a table of expansion cards -- an inventory tool for the GEPARD, the German 68k machine. Empty here, there being no GEPARD, and it ignores its arguments. Measured 2026-08-30. |
 | `xlharc` | extract LHarc archives<br>`Usage: xlharc {axevlufdmctp}[qnftv] archive_file [files or directories...]` |
@@ -1587,7 +1587,7 @@
 |---|---|
 | `cam` | &#9733; CAMSHAFT, not camera: it asks for the rocker ratio, the lift at a crank angle and the base circle, and plots the lift curve for an intake lobe.  The plot is Tektronix vectors, so on a vt100 it arrives as characters -- the dialogue above it is the readable part.  Corrected 2026-08-29 |
 | `chbase` | &#9733; converts a NUMBER from one base to another -- Philip Maechler's, and nothing to do with a module's base address.  `cvtbase' is the other one, and floods. Corrected 2026-08-29<br>`Syntax   : chbase <number> [ <base A> [ <base B> ] ]` |
-| `cvtbase` | &#9733; convert a number between bases -- names them by KEY (b, d, h or x, o), and then FLOODS `No more memory !!!' without converting anything.  Its usage line prints fine, which is why it looked healthy |
+| `cvtbase` | &#9733; convert a number between bases -- names them by KEY (b, d, h or x, o), and then FLOODS `No more memory !!!' without converting anything.  Its usage line prints fine, which is why it looked healthy.  ROOT CAUSE FOUND 2026-08-31, and it is the program's linkage, not the emulator: it was linked against a `cio.l' whose trap-13 selector $41 is `_flshbuf', where every `cio' module we have puts a memory routine.  So its `putc' hands the raw allocator a FILE pointer as a byte count and leaks a chunk per character.  It works through `printf', which is why the usage line is fine.  DOC/README-CIO and notes/os9exec-bugs/CIO-SELECTOR-MISMATCH.md |
 | `loan` | &#9733; loan/amortisation calculator |
 | `rechne` | &#9733; calculator, German -- and it takes ONE expression with no spaces in it: `rechne 4095+1' answers 4096, $1000 and the binary.  Spaced out it evaluates each argument separately |
 | `rpn` | &#9733; RPN calculator -- and its `+' is wrong: 12, 34, + leaves a stack of three with 0 on top instead of one with 46. `rechne' is the calculator that answers correctly |
@@ -1626,9 +1626,9 @@
 
 | | |
 |---|---|
-| `splman` | &#9733; OS-9 print spooler: manager (Carl Kreider) |
-| `splprt` | &#9733; OS-9 print spooler: printer process |
-| `splstat` | &#9733; OS-9 print spooler: queue status.  Needs a queue to look at |
+| `splman` | &#9733; OS-9 print spooler: manager (Carl Kreider).  Silent here -- there is no printer device under os9exec for it to manage |
+| `splprt` | &#9733; OS-9 print spooler: printer process.  Silent here, same reason |
+| `splstat` | &#9733; OS-9 print spooler: queue status.  Needs a queue to look at, and with none it prints nothing at all -- where the OTHER spooler on this disk says so out loud: `lpq: no spooler installed', `lpshut: no spooler active', `prjob: Spooler not installed'.  All measured 2026-08-31 |
 
 **Spooling**
 

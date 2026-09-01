@@ -1,10 +1,39 @@
-$ as0
-Usage: as0 [files]
-$ as11
-Usage: as11 [files]
-$ as5
-Usage: as5 [files]
-$ as1
-Usage: as1 [files]
-$ as4
-Usage: as4 [files]
+0002                         *
+0003                         * It is here so that `as0' can be shown doing its job ratherg
+0004                         * its usage line.  Assemble it with:   as0 /dd/DOC/xasm/samps
+0005                         * and the S-record object lands in sample.a0.S19 in your dat.
+0006                         *
+0007 0100                            org     $0100
+0008 0100 86 41              start   ldaa    #$41            load an 'A'
+0009 0102 b7 80 00                   staa    $8000           write it to the port
+0010 0105 f6 01 0f                   ldab    count
+0011 0108 5a                         decb
+0012 0109 f7 01 0f                   stab    count
+0013 010c 26 f2                      bne     start
+0014 010e 3f                         swi
+0015 010f 05                 count   fcb     $05
+0016 0110 36 38 30 30        msg     fcc     "6800"
+0017                                 end
+count      010f
+msg        0110
+start      0100
+$ as5 /dd/DOC/xasm/sample.a5 - l s
+0001                         * sample.a5 -- a 6805 program for as5.  Bit set, bit test ane
+0002                         * what the 6805 is for, so it uses them.
+0003                         *
+0004 0100                            org     $0100
+0005 0000                    porta   equ     $00
+0006 0004                    ddra    equ     $04
+0007 0100 a6 ff              start   lda     #$ff
+0008 0102 b7 04                      sta     ddra
+0009 0104 10 00                      bset    0,porta
+0010 0106 13 00                      bclr    1,porta
+0011 0108 04 00 fd           loop    brset   2,porta,loop
+0012 010b a6 41                      lda     #$41
+0013 010d b7 00                      sta     porta
+0014 010f 20 f7                      bra     loop
+0015                                 end
+ddra       0004
+loop       0108
+porta      0000
+start      0100

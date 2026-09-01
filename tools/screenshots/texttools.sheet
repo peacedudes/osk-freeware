@@ -531,11 +531,27 @@ cap     tangle and weave are the WEB tools TeX itself is written with: one
 cap     makes Pascal out of a .web file, the other makes TeX.  `tftopl' and
 cap     `pltotf' are the font-metric pair with their own card; `gftype' and
 cap     `pktype' are on the texfonts-bitmap card, which is where the ones
-cap     with no bitmap font to read belong.  This card credited all six and
-cap     typed two of them until 2026-08-30.
-run     tangle
-wait    10
-run     weave
+cap     with no bitmap font to read belong.
+cap     BOTH NEED A CHANGE FILE NAMED, and that is the whole reason this
+cap     card used to be two usage lines.  Given only a .web they answer
+cap     `Error: `Can't open file.'' -- the absent change file is what they
+cap     cannot open, not the source.  DOC/tex ships sample.web and none.ch,
+cap     an empty change file that changes nothing, as of 2026-08-31.  Both
+cap     read the .web from the DATA directory and write there too.
+cap     The copies go to /dd because that is the data directory: bash's
+cap     `cd' does not move it, so a bare filename is looked up there
+cap     whatever the prompt says.
+run     cp /dd/DOC/tex/sample.web /dd/sample.web
+wait    6
+run     cp /dd/DOC/tex/none.ch /dd/none.ch
+wait    6
+run     tangle /dd/DOC/tex/sample.web
+wait    12
+run     tangle sample none
+wait    14
+run     weave sample none
+wait    14
+run     cat /dd/sample.p
 wait    10
 
 shot    tformat
@@ -555,15 +571,46 @@ wait    10
 shot    upperdir
 for     upperdir casefix
 cap     upperdir normalises case across a directory: files lower,
-cap     directories upper.  Shown here on a scratch copy, not on the disk.
-run     upperdir -?
+cap     directories upper.  On a scratch copy, not on the disk -- and this
+cap     card now shows the rename happening rather than the usage line it
+cap     photographed until 2026-08-31.  MixedCase.TXT becomes
+cap     mixedcase.txt; subdir becomes SUBDIR.
+run     makdir /dd/tmp/UD
+wait    6
+run     makdir /dd/tmp/UD/subdir
+wait    6
+run     cp /dd/SYS/motd /dd/tmp/UD/MixedCase.TXT
+wait    6
+run     ls /dd/tmp/UD
+wait    6
+run     upperdir /dd/tmp/UD
 wait    8
+run     ls /dd/tmp/UD
+wait    6
 
 shot    wc
 cap     wc over the collection's own documents.
 run     wc /dd/DOC/INDEX /dd/DOC/ORIGINS /dd/DOC/DEPENDS /dd/SOURCES.txt
 wait    6
 
+
+shot    latex-wrapper
+for     latex tex virtex
+cap     LaTeX typesetting one of the documents that ship in
+cap     SYS/TEX/SAMPLES, through the `latex' command itself.  That command
+cap     is a one-line wrapper that hands `virtex "&lplain" yourfile' to a
+cap     shell, and until 2026-08-31 it did NOTHING AT ALL and returned 221:
+cap     SYS/login did not set SHELL, and this C library's system() forks
+cap     $SHELL with the whole command line as one argument.  Of the five
+cap     shells here only ksh parses an argument that way, so login now sets
+cap     SHELL to it -- and tex and latex work.  The four `F$SetSys:
+cap     unimplemented' lines are os9exec noise as ksh starts.
+run     rm -f small.dvi small.log small.aux
+wait    8
+run     latex /dd/SYS/TEX/SAMPLES/small.tex
+wait    45
+run     ls -l small.dvi small.log
+wait    8
 
 shot    dvidrivers
 for     dvialw dvidjp dvieps dviimp dvijep dvijet dvilj2 dvimac dvioki dvitos dvips

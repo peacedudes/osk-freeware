@@ -1,0 +1,109 @@
+family  system2
+# The rest of the OS-9 system utilities driven on 2026-08-31: the ones whose
+# answer is a message rather than a file. A usage line is a weak assertion
+# about a program and a strong one about the DISK -- it catches a binary that
+# has been replaced, truncated or built with the wrong name, which is what
+# happened to 203 modules before `-n=' was added to the rebuild driver.
+#
+# Four of these are pinned as defects and two as emulator limits. Each says
+# which it is.
+
+setup   export TERM=vt100
+setup   export TERMCAP=/dd/SYS/termcap
+setup   S=/dd/SYS/termcap
+
+case    preset-loads-terminal-function-keys-not-memory
+run     /dd/CMDS/preset
+expect  Funktionstasten belegt!
+expect  dsave -ieb128k
+
+case    deton-demonstrates-an-alarm-timing-out-a-read
+run     /dd/CMDS/deton 2 < /nil
+expect  You have 2 seconds to terminate self-destruct
+
+case    fixyear-explains-itself-and-then-does-its-job-silently
+run     /dd/CMDS/fixyear
+run     /dd/CMDS/cp $S /dd/tmp/fy.txt
+run     /dd/CMDS/fixyear /dd/tmp/fy.txt
+expect  Fix modification year if less than 1970
+expect  -z=<file>  read file names from <file>
+
+# NO ABSOLUTE LINE COUNT HERE. add_errmsg APPENDS, so the count and the seek
+# position both move every time the family is run against an image that has
+# not been rebuilt -- a case keyed on `278' passes once and then never again.
+# What does not move is that it reports the offset it wrote at and the text
+# it wrote.
+case    add_errmsg-appends-a-line-to-vi_errmsg
+run     /dd/CMDS/add_errmsg "a test message"
+run     /dd/CMDS/tail -n 1 /dd/SYS/vi_errmsg
+expect  seek position
+expect  for 'a test message'
+
+case    epson-lpsched-and-submit-name-themselves-and-their-options
+run     /dd/CMDS/epson -?
+run     /dd/CMDS/lpsched -?
+run     /dd/CMDS/submit -?
+expect  number of characters per line
+expect  Function:  starts Printerspooler
+expect  The submit file must have the suffix .sub
+
+case    the-uucp-adduser-can-remove-as-well-as-add
+run     /dd/CMDS/UUCP/adduser -?
+expect  ADDUSER: add a user to or remove a user from the system
+expect  adduser -r <username>
+
+# suse's own entry says it prints nothing for anything. Asserted by measuring
+# the bytes rather than by looking at a screen, because "it printed nothing"
+# and "the capture was lost" look identical otherwise.
+case    suse-prints-nothing-for-a-path-or-a-name
+run     /dd/CMDS/suse /dd/CMDS/cat > /dd/tmp/su1 2>&1
+run     /dd/CMDS/suse cat > /dd/tmp/su2 2>&1
+run     /dd/CMDS/wc -c /dd/tmp/su1 /dd/tmp/su2
+expect  0 /dd/tmp/su1
+expect  0 /dd/tmp/su2
+
+case    ptxminst-and-bootlogger-are-silent-too
+run     /dd/CMDS/ptxminst > /dd/tmp/pt1 2>&1
+run     /dd/CMDS/bootlogger -? > /dd/tmp/pt2 2>&1
+run     /dd/CMDS/wc -c /dd/tmp/pt1 /dd/tmp/pt2
+expect  0 /dd/tmp/pt1
+expect  0 /dd/tmp/pt2
+
+# lfmaker: silent bare, and a refused allocation the moment it is given an
+# argument. It carries NO trap-13 stubs at all, so this is NOT the cio
+# selector mismatch that produces the same symptom in 41 other programs --
+# see notes/os9exec-bugs/CIO-SELECTOR-MISMATCH.md, addendum.
+case    lfmaker-is-silent-bare-and-cannot-allocate-with-an-argument
+run     /dd/CMDS/lfmaker > /dd/tmp/lf1 2>&1
+run     /dd/CMDS/wc -c /dd/tmp/lf1
+run     /dd/CMDS/lfmaker test
+expect  0 /dd/tmp/lf1
+expect  No more memory
+
+# `testibc' IS NOT HERE ON PURPOSE. It prints its banner, reports
+# `Error #000:009' opening /dd/sys/errmsg.ibc, asks `Timeout time (1/10
+# Sec)?' and then takes an ILLEGAL INSTRUCTION at 00099e64 which ends the
+# emulator session. A case for it costs a whole-family restart on every run
+# and asserts nothing the crash does not already say. It is recorded in
+# DOC/INDEX and DOC/STATUS instead.
+
+case    setime2-sets-the-clock-with-a-four-digit-year
+run     /dd/CMDS/setime2 -?
+expect  Function:  set system date and time
+expect  'YYY' is number of years after 1900
+
+# The two that ask os9exec something it does not implement. Their answers are
+# the emulator's, not theirs, and DOC/INDEX says so.
+case    snd_sig-and-signal-differ-on-a-process-that-is-not-there
+run     /dd/CMDS/signal 250 2 > /dd/tmp/sg1 2>&1
+run     /dd/CMDS/wc -c /dd/tmp/sg1
+run     /dd/CMDS/snd_sig 250
+expect  0 /dd/tmp/sg1
+expect  can't wake 250
+
+case    dpark-is-silent-on-an-image-and-does-not-take-the-session-with-it
+run     /dd/CMDS/dpark /dd > /dd/tmp/dp1 2>&1
+run     /dd/CMDS/wc -c /dd/tmp/dp1
+run     echo still-here
+expect  0 /dd/tmp/dp1
+expect  still-here

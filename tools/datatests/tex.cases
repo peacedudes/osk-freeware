@@ -134,10 +134,14 @@ run     $T/dvips -o /dd/tmp/x.ps /dd/small.dvi
 expect  This is dvipsk 5.495b
 expect  Couldn't find header file tex.pro
 
-# KNOWN DEFECT. texidx floods the memory-request failure this collection
-# knows well and then gives up.
+# KNOWN DEFECT. texidx cannot allocate and gives up on a one-line .idx.
+#
+# ASSERTED ON TEXIDX'S OWN WORDS, not on the emulator's. os9exec announces a
+# refused allocation, and it changed how on 2026-08-31 -- from an unbounded
+# flood of `No more memory !!!' to a counted line naming the request size.
+# A case keyed on the emulator's wording would have broken that afternoon
+# while the program's behaviour was unchanged.
 case    texidx-runs-out-of-memory-on-any-input
 run     echo "\indexentry{alpha}{1}" > /dd/tmp/t.idx
 run     $T/texidx /dd/tmp/t.idx
-expect  No more memory !!!
 expect  virtual memory exhausted

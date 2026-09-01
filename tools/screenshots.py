@@ -94,7 +94,13 @@ LOGIN = ("export TERM=vt100",
          "export HELPDIR=/dd/SYS/HELP",
          "export SIMPATH=/dd/SBPROLOG/MODLIB",
          "export PEP=/dd/SYS/PEP",
-         "export SHELL=/dd/CMDS/bash")
+         # SHELL MUST BE ksh, and this list said bash until 2026-08-31.
+         # Programs that shell out reach system(), which forks $SHELL with the
+         # whole command line as ONE ARGUMENT; ksh parses that and bash reads
+         # it as a script filename. The `latex' card was a photograph of
+         # E$PNNF because of this one word. SYS/login is the authority and
+         # check_disk.py now fails if the two disagree.
+         "export SHELL=/dd/CMDS/ksh")
 
 ESCAPES = {"\\r": "\r", "\\n": "\n", "\\e": "\033", "\\s": " ", "\\t": "\t"}
 

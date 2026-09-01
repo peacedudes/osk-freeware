@@ -1,0 +1,83 @@
+# misc3 -- printf wrote a ZERO-BYTE file, and several stanzas rested on it.
+# Settle that first; then the two assembler samples that were wrong.
+
+family  misc3
+
+setup   /dd/CMDS/mkdir /dd/tmp/M3
+
+drive   printf
+why     `/dd/CMDS/printf 'a\rb\rc\r' > f' left f at 0 bytes.  What does it do?
+run     /dd/CMDS/printf -?
+run     echo "--- plain text, no escapes:"
+run     /dd/CMDS/printf hello > /dd/tmp/M3/p0
+run     /dd/CMDS/wc -c /dd/tmp/M3/p0
+run     echo "--- with a backslash-r:"
+run     /dd/CMDS/printf 'a\rb\r' > /dd/tmp/M3/p1
+run     /dd/CMDS/wc -c /dd/tmp/M3/p1
+run     /dd/CMDS/dump /dd/tmp/M3/p1
+run     echo "--- what bash's own echo does instead:"
+run     echo "a" > /dd/tmp/M3/p2
+run     /dd/CMDS/dump /dd/tmp/M3/p2
+
+drive   paste-with-real-files
+why     paste needs real input; build it with cat and echo instead
+run     echo a > /dd/tmp/M3/q1
+run     echo b >> /dd/tmp/M3/q1
+run     echo c >> /dd/tmp/M3/q1
+run     echo 1 > /dd/tmp/M3/q2
+run     echo 2 >> /dd/tmp/M3/q2
+run     echo 3 >> /dd/tmp/M3/q2
+run     /dd/CMDS/wc -c /dd/tmp/M3/q1 /dd/tmp/M3/q2
+run     /dd/CMDS/paste /dd/tmp/M3/q1 /dd/tmp/M3/q2
+run     echo "--- with -d:"
+run     /dd/CMDS/paste -d: /dd/tmp/M3/q1 /dd/tmp/M3/q2
+run     echo "--- -s on one file:"
+run     /dd/CMDS/paste -s /dd/tmp/M3/q1
+
+drive   as4
+run     /dd/CMDS/as4 /dd/DOC/xasm/sample.a4 - l s
+
+drive   as09
+run     /dd/CMDS/as09 /dd/DOC/xasm/sample.a09 - l s
+
+drive   where-is-the-S19
+why     the doc says the object goes to <filename>.S19.  Which directory?
+run     /dd/CMDS/as0 /dd/DOC/xasm/sample.a0
+run     /dd/CMDS/ls /dd
+run     /dd/CMDS/ls /dd/DOC/xasm
+
+drive   eo
+why     silent.  Its help says the command comes after the file, with @ for
+why     the line -- try it with the shell's own echo and with a real command.
+run     echo /dd/SYS/motd > /dd/tmp/M3/list
+run     echo /dd/SYS/termcap >> /dd/tmp/M3/list
+run     /dd/CMDS/cat /dd/tmp/M3/list
+run     /dd/CMDS/eo /dd/tmp/M3/list /dd/CMDS/wc -c @
+run     echo "--- and with -p from a pipe:"
+run     /dd/CMDS/cat /dd/tmp/M3/list | /dd/CMDS/eo -p /dd/CMDS/wc -c @
+run     echo "--- end eo"
+
+drive   ape
+run     /dd/CMDS/ape -l=3 < /dd/SYS/termcap
+run     echo "--- end ape"
+
+drive   xc
+why     command lines start with % or $ and a key character
+run     echo "%g /dd/CMDS/wc -c /dd/SYS/motd" > /dd/tmp/M3/r.xc
+run     /dd/CMDS/cat /dd/tmp/M3/r.xc
+run     /dd/CMDS/xc -c g /dd/tmp/M3/r.xc
+run     echo "--- end xc"
+
+drive   psc
+why     "filter to prepare ASCII data for the Spreadsheet Calculator"
+run     echo "1 2 3" > /dd/tmp/M3/tab
+run     echo "4 5 6" >> /dd/tmp/M3/tab
+run     /dd/CMDS/psc -d' ' < /dd/tmp/M3/tab
+run     echo "--- end psc"
+
+drive   remove
+run     /dd/CMDS/mdir
+run     echo "--- remove wc after loading it:"
+run     /dd/CMDS/load /dd/CMDS/wc
+run     /dd/CMDS/remove wc
+run     echo "--- end remove"

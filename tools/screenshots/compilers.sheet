@@ -170,20 +170,19 @@ wait    10
 
 shot    xasm
 for     as0 as1 as4 as5 as11
-cap     The xasm family: cross-assemblers for the 6800, 6801, 6804, 6805
-cap     and 68HC11.  NOT for the 68000, whatever DOC/INDEX said until
-cap     2026-08-13 -- and there has never been a 68050.  Each one names its
-cap     own processor when it starts.
-run     as0
-wait    6
-run     as11
-wait    6
-run     as5
-wait    6
-run     as1
-wait    6
-run     as4
-wait    6
+size    40 90
+cap     The xasm family assembling, rather than printing its usage: as0 on
+cap     6800 source and as5 on 6805.  Address, opcode bytes and the original
+cap     line, then the symbol table -- `l' asks for the listing and `s' for
+cap     the symbols, after a lone `-'.  A sample for each of the six ships
+cap     in DOC/xasm, added 2026-08-31 because this card used to be five
+cap     copies of `Usage: as0 [files]' and showed nothing about the
+cap     programs.  These are 8-BIT cross-assemblers: no 68000 among them,
+cap     and there has never been a 68050.
+run     as0 /dd/DOC/xasm/sample.a0 - l s
+wait    14
+run     as5 /dd/DOC/xasm/sample.a5 - l s
+wait    14
 
 shot    yacc
 for     yacc

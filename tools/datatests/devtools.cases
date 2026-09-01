@@ -18,7 +18,9 @@ case    rcs-checks-a-file-in
 run     /dd/CMDS/rm /dd/tmp/RCSA/note.txt /dd/tmp/RCSA/note.txt_v
 run     /dd/CMDS/mkdir /dd/tmp/RCSA
 run     /dd/CMDS/cp /dd/SYS/motd /dd/tmp/RCSA/note.txt
-run     /dd/CMDS/printf 'a first note\r.\r' > /dd/tmp/d1
+# /dd/CMDS/printf drops everything before the first conversion, so a
+# format with no conversion writes NOTHING. echo is the one to use.
+run     echo "." > /dd/tmp/d1
 run     /dd/CMDS/ci /dd/tmp/RCSA/note.txt < /dd/tmp/d1
 run     /dd/CMDS/ls /dd/tmp/RCSA
 expect  /dd/tmp/RCSA/note.txt_v  <--  /dd/tmp/RCSA/note.txt
@@ -57,7 +59,7 @@ expect  ident warning: no id keywords
 case    a-second-revision-does-not-go-in
 run     /dd/CMDS/co -l /dd/tmp/RCSA/note.txt
 run     echo "a second line" >> /dd/tmp/RCSA/note.txt
-run     /dd/CMDS/printf 'second revision\r.\r' > /dd/tmp/d2
+run     echo "." > /dd/tmp/d2
 run     /dd/CMDS/ci /dd/tmp/RCSA/note.txt < /dd/tmp/d2
 run     /dd/CMDS/rlog /dd/tmp/RCSA/note.txt
 expect  new revision: 1.2; previous revision: 1.1

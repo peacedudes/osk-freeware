@@ -1,0 +1,139 @@
+# misc1 -- a broad batch: the five cross-assemblers with real sources, the
+# KWIC suite, the shell helpers, the file utilities, the JPEG pair and the
+# text filters.  All of them had a one-line index entry and nothing else.
+
+family  misc1
+
+setup   X=/dd/DOC/xasm
+setup   /dd/CMDS/mkdir /dd/tmp/M
+setup   /dd/CMDS/cp /dd/SYS/termcap /dd/tmp/M/t.txt
+
+drive   as0
+why     the sample sources now ship in DOC/xasm.  Assemble one.
+run     /dd/CMDS/as0 $X/sample.a0 - l s
+run     echo "--- and what it wrote:"
+run     /dd/CMDS/ls /dd
+
+drive   as1
+run     /dd/CMDS/as1 $X/sample.a1 - l s
+
+drive   as5
+run     /dd/CMDS/as5 $X/sample.a5 - l s
+
+drive   as11
+run     /dd/CMDS/as11 $X/sample.a11 - l s
+
+drive   as4
+run     /dd/CMDS/as4 $X/sample.a4 - l s
+
+drive   as09
+why     the 6809 one, which has always been correctly described
+run     /dd/CMDS/as09 $X/sample.a0 - l s
+
+drive   kwic
+why     three programs that make a keyword-in-context index together
+run     /dd/CMDS/pageline /dd/SYS/motd /dd/tmp/M/k1.txt
+run     /dd/CMDS/cat /dd/tmp/M/k1.txt
+run     echo "--- pagekwic:"
+run     /dd/CMDS/pagekwic /dd/tmp/M/k1.txt /dd/tmp/M/k2.txt
+run     /dd/CMDS/cat /dd/tmp/M/k2.txt
+run     echo "--- pagefraz:"
+run     /dd/CMDS/pagefraz /dd/tmp/M/k2.txt /dd/tmp/M/k3.txt
+run     /dd/CMDS/cat /dd/tmp/M/k3.txt
+
+drive   getenv
+run     /dd/CMDS/getenv TERM
+run     /dd/CMDS/getenv HOME
+run     /dd/CMDS/getenv NOSUCHVAR
+
+drive   checkenv
+run     /dd/CMDS/checkenv TERM , vt100
+run     echo "--- rc $?"
+run     /dd/CMDS/checkenv TERM , wrongvalue
+run     echo "--- rc $?"
+
+drive   qp
+why     "processes BACK-QUOTES for command expansion"
+run     /dd/CMDS/qp /dd/CMDS/wc -c /dd/SYS/motd
+
+drive   xc
+why     "execute commands from a file (needs a .xc)"
+run     echo "/dd/CMDS/wc -c /dd/SYS/motd" > /dd/tmp/M/run.xc
+run     /dd/CMDS/xc /dd/tmp/M/run
+run     /dd/CMDS/xc /dd/tmp/M/run.xc
+
+drive   fillup
+why     "fill a file up to a given length with a constant byte"
+run     /dd/CMDS/cp /dd/SYS/motd /dd/tmp/M/f.txt
+run     /dd/CMDS/wc -c /dd/tmp/M/f.txt
+run     /dd/CMDS/fillup -l=64 /dd/tmp/M/f.txt
+run     /dd/CMDS/wc -c /dd/tmp/M/f.txt
+run     /dd/CMDS/fillup -?
+
+drive   paste
+run     /dd/CMDS/printf 'a\rb\rc\r' > /dd/tmp/M/p1
+run     /dd/CMDS/printf '1\r2\r3\r' > /dd/tmp/M/p2
+run     /dd/CMDS/paste /dd/tmp/M/p1 /dd/tmp/M/p2
+run     echo "--- -s:"
+run     /dd/CMDS/paste -s /dd/tmp/M/p1
+
+drive   eo
+why     "eo - text utility", and nothing more is recorded
+run     /dd/CMDS/eo
+run     /dd/CMDS/eo /dd/SYS/motd
+run     /dd/CMDS/eo -?
+
+drive   ape
+why     "writes GIBBERISH in the style of whatever it is given"
+run     /dd/CMDS/ape /dd/SYS/termcap
+
+drive   cuts
+run     /dd/CMDS/cuts -?
+run     /dd/CMDS/cuts -d /dd/tmp/M/t.txt
+
+drive   psc
+why     "sc's print/format filter" -- give it a text table
+run     /dd/CMDS/printf 'a\tb\tc\r1\t2\t3\r' > /dd/tmp/M/tab.txt
+run     /dd/CMDS/psc < /dd/tmp/M/tab.txt
+
+drive   move
+run     /dd/CMDS/cp /dd/SYS/motd /dd/tmp/M/mv1
+run     /dd/CMDS/mkdir /dd/tmp/M/D
+run     /dd/CMDS/move /dd/tmp/M/mv1 /dd/tmp/M/D
+run     /dd/CMDS/ls /dd/tmp/M /dd/tmp/M/D
+
+drive   delbak
+run     /dd/CMDS/cp /dd/SYS/motd /dd/tmp/M/old_bak
+run     /dd/CMDS/ls /dd/tmp/M
+run     /dd/CMDS/delbak /dd/tmp/M
+run     /dd/CMDS/ls /dd/tmp/M
+
+drive   fc
+why     "split a big file in two, to carry it on 360k disks"
+run     /dd/CMDS/fc /dd/tmp/M/t.txt
+run     /dd/CMDS/ls /dd/tmp/M
+
+drive   remove
+run     /dd/CMDS/remove -?
+
+drive   eunlink
+run     /dd/CMDS/eunlink -?
+
+drive   dback
+run     /dd/CMDS/dback -?
+
+drive   jpeg
+why     the 68070 builds beside the ordinary ones -- do they agree?
+run     /dd/CMDS/NETPBM/pgmramp -lr 32 8 > /dd/tmp/M/s.pgm
+run     /dd/CMDS/NETPBM/pgmtoppm red-blue /dd/tmp/M/s.pgm > /dd/tmp/M/s.ppm
+run     /dd/CMDS/cjpeg /dd/tmp/M/s.ppm > /dd/tmp/M/a.jpg
+run     /dd/CMDS/cjpeg.070 /dd/tmp/M/s.ppm > /dd/tmp/M/b.jpg
+run     /dd/CMDS/md5 /dd/tmp/M/a.jpg /dd/tmp/M/b.jpg
+run     /dd/CMDS/djpeg.070 /dd/tmp/M/b.jpg > /dd/tmp/M/b.ppm
+run     /dd/CMDS/NETPBM/pnmfile /dd/tmp/M/b.ppm
+
+drive   jpegcom
+run     /dd/CMDS/wrjpgcom -comment "os9 freeware" /dd/tmp/M/a.jpg > /dd/tmp/M/c.jpg
+run     /dd/CMDS/rdjpgcom /dd/tmp/M/c.jpg
+run     /dd/CMDS/wrjpgcom.070 -comment "070 build" /dd/tmp/M/a.jpg > /dd/tmp/M/d.jpg
+run     /dd/CMDS/rdjpgcom.070 /dd/tmp/M/d.jpg

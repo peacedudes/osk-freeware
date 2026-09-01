@@ -84,35 +84,44 @@ shot    dhry-all
 size    36 80
 for     dhry dhryO2 dhryGcc dhryGcc2 dhryGcc2o2 dhryGccin dhryGcc2in dhryGccmx dhryGcc2mx dhryGcco2 dhryshamu dhryshamu2
 cap     Dhrystone built twelve ways -- Microware cc, GCC 1.x and 2.x,
-cap     optimised, inlined and mixed -- and ALL TWELVE run here, one line
-cap     each, on the same machine in the same session.  Comparison is the
-cap     whole point of the directory and the card showed three of them
-cap     until 2026-08-29.  `echo' names each build because the grep line
-cap     that follows it does not.
-run     echo cc; dhry | grep Dhrystones
-wait    18
-run     echo cc -O2; dhryO2 | grep Dhrystones
-wait    18
-run     echo gcc1; dhryGcc | grep Dhrystones
-wait    18
-run     echo gcc1 -O2; dhryGcco2 | grep Dhrystones
-wait    18
-run     echo gcc1 inline; dhryGccin | grep Dhrystones
-wait    18
-run     echo gcc1 mixed; dhryGccmx | grep Dhrystones
-wait    18
-run     echo gcc2; dhryGcc2 | grep Dhrystones
-wait    18
-run     echo gcc2 -O2; dhryGcc2o2 | grep Dhrystones
-wait    18
-run     echo gcc2 inline; dhryGcc2in | grep Dhrystones
-wait    18
-run     echo gcc2 mixed; dhryGcc2mx | grep Dhrystones
-wait    18
-run     echo shamu; dhryshamu | grep Dhrystones
-wait    18
-run     echo shamu2; dhryshamu2 | grep Dhrystones
-wait    18
+cap     optimised, inlined and mixed -- on the same machine in the same
+cap     session.  Comparison is the whole point of the directory.
+cap     EVERY BUILD READS A RUN COUNT FROM STANDARD INPUT before it starts.
+cap     This card used to pipe each one straight into grep and claimed all
+cap     twelve ran; the capture showed ONE line, because the other eleven
+cap     were sitting at their prompt waiting for a number.  Feeding them one
+cap     is the whole fix, and 500000 is enough for os9exec's one-second
+cap     clock to measure.  THE RATES ARE QUANTISED, and that is os9exec:
+cap     its clock ticks once a second, so 500000 runs divide into a whole
+cap     number of seconds and every build lands on 100000 or 125000. On real
+cap     hardware the figures separate; here read them as `four seconds' and
+cap     `five seconds' and compare the builds by which group they fall in.
+run     echo 500000 > /dd/tmp/runs
+wait    6
+run     echo cc; dhry < /dd/tmp/runs | grep Dhrystones
+wait    20
+run     echo cc -O2; dhryO2 < /dd/tmp/runs | grep Dhrystones
+wait    20
+run     echo gcc1; dhryGcc < /dd/tmp/runs | grep Dhrystones
+wait    20
+run     echo gcc1 -O2; dhryGcco2 < /dd/tmp/runs | grep Dhrystones
+wait    20
+run     echo gcc1 inline; dhryGccin < /dd/tmp/runs | grep Dhrystones
+wait    20
+run     echo gcc1 mixed; dhryGccmx < /dd/tmp/runs | grep Dhrystones
+wait    20
+run     echo gcc2; dhryGcc2 < /dd/tmp/runs | grep Dhrystones
+wait    20
+run     echo gcc2 -O2; dhryGcc2o2 < /dd/tmp/runs | grep Dhrystones
+wait    20
+run     echo gcc2 inline; dhryGcc2in < /dd/tmp/runs | grep Dhrystones
+wait    20
+run     echo gcc2 mixed; dhryGcc2mx < /dd/tmp/runs | grep Dhrystones
+wait    20
+run     echo shamu; dhryshamu < /dd/tmp/runs | grep Dhrystones
+wait    20
+run     echo shamu2; dhryshamu2 < /dd/tmp/runs | grep Dhrystones
+wait    20
 
 shot    disktest
 for     disktest timid
@@ -147,6 +156,11 @@ cap     way it always has, and `rlog' reads the history back.  The archive
 cap     it writes is `note_v', not the `note,v' a Unix hand expects -- OS-9
 cap     has no comma in a filename.  None of these take `-?'; RCS is older
 cap     than that convention.
+cap     rcsdiff and rcsmerge fail here and the screen shows why: they shell
+cap     out to `/dd/cmds/rcs/co ... >-tempfile', which wants RCS installed
+cap     in a DIRECTORY called rcs (this disk has a PROGRAM of that name) and
+cap     uses Microware shell redirection no shell here understands.  RCS on
+cap     this disk is a one-revision archive: ci, co, rlog and rcsident.
 run     rm -rf /dd/tmp/rcs
 wait    5
 run     mkdir /dd/tmp/rcs

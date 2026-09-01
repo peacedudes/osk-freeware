@@ -1,0 +1,42 @@
+# shellvar -- how many programs are broken only because $SHELL is not set?
+#
+# SYS/login exports HOME, TERM, PATH, TMACDIR, HELPDIR, SIMPATH, TERMCAP,
+# PEP, USER, LOGNAME and MAIL.  It does NOT export SHELL.  Three programs met
+# so far reach for a shell and fail: `tex' and `latex' hand their command
+# line to one, `eo' forks `$HOME/bash', and `ci' calls diff.
+#
+# If setting SHELL fixes them, that is a one-line change to a shipped file
+# that repairs several programs at once.
+
+family  shellvar
+
+setup   /dd/CMDS/mkdir /dd/tmp/SV
+setup   echo /dd/SYS/motd > /dd/tmp/SV/list
+setup   echo /dd/SYS/termcap >> /dd/tmp/SV/list
+
+drive   eo-without-SHELL
+run     /dd/CMDS/eo /dd/tmp/SV/list /dd/CMDS/wc -c @
+
+drive   eo-with-SHELL
+run     export SHELL=/dd/CMDS/bash
+run     /dd/CMDS/eo /dd/tmp/SV/list /dd/CMDS/wc -c @
+run     echo "--- end eo"
+
+drive   ci-with-SHELL
+why     ci said "diff failed" on a second revision.  Does SHELL help?
+run     export SHELL=/dd/CMDS/bash
+run     /dd/CMDS/mkdir /dd/tmp/SV/R
+run     /dd/CMDS/cp /dd/SYS/motd /dd/tmp/SV/R/n.txt
+run     echo . > /dd/tmp/SV/d1
+run     /dd/CMDS/ci /dd/tmp/SV/R/n.txt < /dd/tmp/SV/d1
+run     /dd/CMDS/co -l /dd/tmp/SV/R/n.txt
+run     echo "second line" >> /dd/tmp/SV/R/n.txt
+run     echo 400000 > /dd/tmp/SV/runs
+run     /dd/CMDS/DHRY/dhryO2 < /dd/tmp/SV/runs > /nil
+run     /dd/CMDS/ci /dd/tmp/SV/R/n.txt < /dd/tmp/SV/d1
+run     /dd/CMDS/rlog /dd/tmp/SV/R/n.txt
+
+drive   what-else-reads-SHELL
+why     which programs on this disk carry the string at all
+run     /dd/CMDS/grep -l SHELL /dd/CMDS/tex /dd/CMDS/TEXCMDS/tex /dd/CMDS/eo /dd/CMDS/ci
+run     echo "--- end"

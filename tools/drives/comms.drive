@@ -1,0 +1,165 @@
+# comms -- the terminal, transfer and news programs.
+#
+# Most of these talk to something at the other end of a serial line, and
+# under os9exec there is no serial line. That is a fact about the emulator,
+# not about the programs, and the useful question is narrower: does each one
+# start, and does it say something a user can act on? A program that reports
+# "no such device" is working; one that dies silently is not.
+#
+# `break' is deliberately absent: it reaches F$SysDbg and stops the EMULATOR
+# in its own debugger waiting for an answer, which is a hang.
+
+family  comms
+
+setup   /dd/CMDS/mkdir /dd/tmp/C
+setup   /dd/CMDS/cp /dd/SYS/motd /dd/tmp/C/send.txt
+
+drive   cls
+why     "clear the screen (termcap)" -- beside `clear', which is measured
+run     /dd/CMDS/cls > /dd/tmp/C/cls.bin
+run     /dd/CMDS/wc -c /dd/tmp/C/cls.bin
+run     /dd/CMDS/dump /dd/tmp/C/cls.bin
+
+drive   setterm
+run     /dd/CMDS/setterm -?
+run     /dd/CMDS/setterm vt100
+
+drive   initvdu
+run     /dd/CMDS/initvdu -?
+
+drive   fkeys
+run     /dd/CMDS/fkeys -?
+run     /dd/CMDS/fkeys
+
+drive   setfont
+run     /dd/CMDS/setfont
+run     /dd/CMDS/setfont /dd/SYS/termcap
+
+drive   udate
+why     "UNAXCESS BBS - date display"
+run     /dd/CMDS/udate
+
+drive   wysetime
+run     /dd/CMDS/wysetime
+
+drive   tsmon2
+run     /dd/CMDS/tsmon2 -?
+
+drive   sbreak
+run     /dd/CMDS/sbreak -?
+
+drive   connect
+run     /dd/CMDS/connect -?
+
+drive   phone
+run     /dd/CMDS/phone
+
+drive   xy-and-z
+why     Tim Kientzle's XMODEM/YMODEM and ZMODEM
+run     /dd/CMDS/COMMS/xy
+run     echo "--- z:"
+run     /dd/CMDS/COMMS/z
+run     echo "--- end"
+
+drive   xydown
+run     /dd/CMDS/COMMS/xydown -?
+
+drive   xyt
+run     /dd/CMDS/COMMS/xyt -?
+
+drive   blastem
+run     /dd/CMDS/COMMS/blastem -?
+
+drive   dld-uld
+run     /dd/CMDS/COMMS/dld
+run     echo "--- uld:"
+run     /dd/CMDS/COMMS/uld
+run     echo "--- end"
+
+drive   tterm-tsu
+run     /dd/CMDS/COMMS/tterm -?
+run     echo "--- tsu:"
+run     /dd/CMDS/COMMS/tsu
+run     echo "--- end"
+
+drive   rxmod-txmod
+why     send and receive an OS-9 MODULE over a serial line
+run     /dd/CMDS/COMMS/txmod -?
+run     echo "--- rxmod:"
+run     /dd/CMDS/COMMS/rxmod -?
+run     echo "--- end"
+
+drive   kermit3
+why     "Kermit68K version 1.0.00 -- puts up its own Kermit68K> prompt"
+run     /dd/CMDS/kermit3 -?
+
+drive   xkermit
+run     /dd/CMDS/xkermit -?
+
+drive   news-tools
+run     /dd/CMDS/NEWS/dbz
+run     echo "--- c7decode with real input:"
+run     /dd/CMDS/NEWS/c7decode < /dd/SYS/motd
+run     echo "--- byteflip:"
+run     /dd/CMDS/NEWS/byteflip
+run     echo "--- end"
+
+drive   uucp-tools
+run     /dd/CMDS/UUCP/uuname
+run     echo "--- uuclean:"
+run     /dd/CMDS/UUCP/uuclean
+run     echo "--- uucico:"
+run     /dd/CMDS/UUCP/uucico -?
+run     echo "--- uuxqt:"
+run     /dd/CMDS/UUCP/uuxqt -?
+run     echo "--- end"
+
+drive   uux-and-uucp
+run     /dd/CMDS/UUCP/uux -?
+run     echo "--- uucp:"
+run     /dd/CMDS/UUCP/uucp -?
+run     echo "--- end"
+
+drive   enable-disable
+run     /dd/CMDS/UUCP/enable -?
+run     /dd/CMDS/UUCP/disable -?
+
+drive   fileserv-expire
+run     /dd/CMDS/UUCP/fileserv -?
+run     echo "--- expire:"
+run     /dd/CMDS/UUCP/expire -?
+run     echo "--- end"
+
+drive   postnews-rnews
+run     /dd/CMDS/UUCP/postnews -?
+run     echo "--- rnews:"
+run     /dd/CMDS/UUCP/rnews < /dd/SYS/motd
+run     echo "--- end"
+
+drive   wn-webserver
+why     the card for this shows `Unknown option given to server' and three
+why     programs that printed nothing
+run     /dd/CMDS/WN/wn -V
+run     echo "--- wn with no arguments:"
+run     /dd/CMDS/WN/wn
+run     echo "--- wndex:"
+run     /dd/CMDS/WN/wndex -?
+run     echo "--- authwn:"
+run     /dd/CMDS/WN/authwn
+run     echo "--- inetd:"
+run     /dd/CMDS/WN/inetd
+run     echo "--- inetdc:"
+run     /dd/CMDS/WN/inetdc
+run     echo "--- end"
+
+drive   tcpip
+run     /dd/CMDS/NETWORK/osknet
+run     echo "--- net:"
+run     /dd/CMDS/NETWORK/net
+run     echo "--- msntp:"
+run     /dd/CMDS/NETWORK/msntp -v
+run     echo "--- atp:"
+run     /dd/CMDS/NETWORK/atp
+run     echo "--- infoxpress:"
+run     /dd/CMDS/NETWORK/infoxpress
+run     echo "--- end"

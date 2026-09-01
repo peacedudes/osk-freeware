@@ -78,7 +78,7 @@ detab 229feb3a04fc81f8
 devprc 22f30844e021857d
 dfiles d9c502b44de2ea18
 dhry 2fa558df35ecc2a0
-dhry-all 3c1f6607d11f77ea
+dhry-all 731179d07619a914
 diff ce1ea6da24b6a382
 digclk a022eb7a142d5de2
 dinfo e8cf3cb181fe2f48
@@ -102,7 +102,7 @@ easter 4e721b0e3081714b
 edir 0688471ac06d5e3b
 elm 0e1d6593a99612a9
 elm-away 7e8fe811bfd72369
-elm-suite 0e8516c036ac169f
+elm-suite d32056b42cd89a02
 elvis c9992c779c5e3636
 elvrec 633dc8be757a735d
 em c762141bfd3928ab
@@ -189,6 +189,7 @@ ksh 4ebdd8a487bbba94
 kwic 72b47f773ec29a07
 l d507140023345c68
 latex 40a0e8036c7348ad
+latex-wrapper 8c917ee11d002237
 launch c76af582b7318dc3
 less 25392bbbf9f25a3b
 lha 6052652b4f343a8d
@@ -226,7 +227,7 @@ mscopy f240548b78197d90
 mshell abc7736bbe48796f
 msinfo 35636be27e785f37
 msmd ed84ca240a22d83a
-msmove 751873d569f208a1
+msmove 829a997b790a19bc
 msread 6461ba0f1ea84368
 mtools aa307b400940bb95
 mtst 0a46c7f70798e218
@@ -302,7 +303,7 @@ qt fea0e1319990d06c
 queens 0b7c01754b81c81b
 rawtopgm f777ac55b4911ef0
 rayshade 783813b1fe7c7b41
-rcs ac1c72f1474bc252
+rcs f698a583e67780e8
 rdoc 3ed73a5ad1ebdc22
 rechne 4120e63a6d4f2866
 rndir 140832662c7a6385
@@ -348,10 +349,10 @@ subber 96fe228f2e840f71
 suicide-variants ee06d5bf089b4663
 sum f8846ccaae746a5d
 sysid eecad86bd43ae12a
-sysmon 55337be307a766cc
+sysmon 6fcc9207778b246a
 tab 106fe354cfae7cfb
 tac d7d897b83e8ce5af
-tangle e0df0fea8bcb7b00
+tangle 39e251a773aebd99
 tar 1cf8cc83ca801d5f
 terminals e3c493abd4f2481c
 tex 23052c1482b87e07
@@ -375,7 +376,7 @@ umacs 5791a04f4d5a71be
 undel b26970e3710564c8
 unip 560560c9aff6752c
 unzip 2235addc03488d21
-upperdir 9929cea7521338c2
+upperdir bdd7ff1716332e3e
 uuclean f1521c6df7a7190e
 uucp e741ecf26248e294
 uucp-helpers 72af909072a18302
@@ -395,7 +396,7 @@ whoami 124334c07efbf727
 wn 5c950bad0edf9476
 workstations 9adb65fc6a549e13
 writeonly 4a750179a03e336d
-xasm 0c5ab0a6d80e5c3c
+xasm 83f7c9daea19688f
 xbm 790c27dca1b78673
 xcrypt e793a2b2ba0ee8af
 xlisp 1ebdf01ca685e4f7
@@ -407,4 +408,4 @@ yagi 48944a134124b5a7
 yuv 7fa8e91e6521bcfb
 zip da6102e9ec3d1dc9
 zoo 6fac055a4d9513fc
-zoo2 a52c003d817ee9c5
+zoo2 c52f26c62af94118

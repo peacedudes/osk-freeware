@@ -64,6 +64,9 @@ OS9EXEC = os.environ.get("OS9EXEC", os.path.join(REPO, "..", "os9exec",
 SHEETS = os.path.join(REPO, "tools", "drives")
 OUT = os.path.join(REPO, "notes", "drives")
 MARK = "@@DRIVE@@"
+# See the same constant in datatest.py: a storming program must not cost
+# 200 MB of transcript.
+CAP = 4 << 20
 
 
 def login_preamble():
@@ -189,11 +192,32 @@ def run_sheet(path, image, seconds):
     for _attempt in range(len(fam["stanzas"]) + 1):
         open(sh, "w", newline="").write(script_for(fam, todo))
         with open(live, "ab") as fh:
-            subprocess.run(
+            # CAPPED. A program caught in the cio storm writes `No more
+            # memory !!!' without bound -- one datatest case of `cvtbase'
+            # produced a 207 MB capture on 2026-08-31 before this was here.
+            # Nothing downstream reads past the first few megabytes.
+            proc = subprocess.Popen(
                 ["gtimeout", str(seconds), OS9EXEC, "-r", "bash",
                  "/h1/%s.sh" % fam["family"]],
-                env=env, stdin=subprocess.DEVNULL, stdout=fh,
-                stderr=subprocess.STDOUT)
+                env=env, stdin=subprocess.DEVNULL,
+                stdout=subprocess.PIPE, stderr=subprocess.STDOUT)
+            total = 0
+            while True:
+                blk = proc.stdout.read(65536)
+                if not blk:
+                    break
+                fh.write(blk)
+                total += len(blk)
+                if total >= CAP:
+                    fh.write(b"\n@@CAPPED@@ output passed %d bytes\n" % CAP)
+                    proc.terminate()
+                    try:
+                        proc.wait(timeout=10)
+                    except subprocess.TimeoutExpired:
+                        proc.kill()
+                    break
+            proc.stdout.close()
+            proc.wait()
         with open(live, "rb") as fh:
             fh.seek(seen)
             chunk = fh.read().decode("latin-1")

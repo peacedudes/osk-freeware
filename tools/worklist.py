@@ -5,6 +5,8 @@
     tools/worklist.py --cat Games           # one category
     tools/worklist.py --undriven            # no tools/drives sheet runs it
     tools/worklist.py --no-test             # no datatest case and no play-test
+    tools/worklist.py --programs            # type-$01 modules only: the ones
+                                            # you can actually RUN
     tools/worklist.py --brief               # name, dir, desc only
 
 Why this exists
@@ -41,6 +43,31 @@ PLAYTESTS = os.path.join(REPO, "tools", "playtests")
 SHEETS = os.path.join(REPO, "tools", "screenshots")
 
 WORD = re.compile(r"[A-Za-z_][A-Za-z0-9_.]*")
+
+
+# WHAT KIND OF MODULE IT IS, read from the header rather than guessed. Only a
+# TYPE $01 module is a program you run. The rest are on this disk to be
+# LOADED and answered to, and counting them in "programs with no test" makes
+# a gap look worse than it is and never shrinks: a device driver has nothing
+# to demonstrate under an emulator with no such device.
+#
+#   $01 program   $02 subroutine   $04 data
+#   $0B trap library   $0C device descriptor   $0E device driver
+#
+# `mscheck' and `who' are shell scripts, not modules at all, and get "".
+MODTYPE = {0x01: "prog", 0x02: "subr", 0x04: "data",
+           0x0b: "traplib", 0x0c: "descr", 0x0e: "driver"}
+
+
+def modtype(root, rel):
+    """`prog', or what the module is instead, or "" if it is not a module."""
+    try:
+        head = open(os.path.join(root, rel), "rb").read(0x14)
+    except OSError:
+        return ""
+    if len(head) < 0x14 or head[:2] != b"\x4a\xfc":
+        return ""
+    return MODTYPE.get(head[0x12], "type$%02X" % head[0x12])
 
 
 def carded():
@@ -139,17 +166,20 @@ def rows():
             "card": "card" if p["name"] in cards else "",
             "test": "test" if p["name"] in tests else "",
             "driven": done.get(p["name"], ""),
+            "kind": modtype(os.path.join(REPO, "disk"),
+                            os.path.join(p.get("dir", ""), p["name"])),
             "usage": usage, "desc": desc,
         }
 
 
 COLS = ("name", "dir", "star", "cat", "sub", "size", "src", "doc", "howto",
-        "card", "test", "driven", "usage", "desc")
+        "card", "test", "driven", "kind", "usage", "desc")
 
 
 def main(argv):
     want_cat = want_sub = None
     brief = only_undriven = only_untested = only_uncarded = False
+    only_programs = False
     i = 0
     while i < len(argv):
         a = argv[i]
@@ -167,6 +197,8 @@ def main(argv):
             only_untested = True
         elif a == "--no-card":
             only_uncarded = True
+        elif a == "--programs":
+            only_programs = True
         else:
             sys.exit(__doc__)
         i += 1
@@ -183,6 +215,8 @@ def main(argv):
         if only_untested and r["test"]:
             continue
         if only_uncarded and r["card"]:
+            continue
+        if only_programs and r["kind"] != "prog":
             continue
         n += 1
         print("\t".join(r[c] for c in cols))

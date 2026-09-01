@@ -20,19 +20,28 @@ quit    q\r
 
 shot    elm-suite
 size    36 80
-for     newalias printmail readmsg messages
-cap     Four of the elm helpers, each asked for itself: `newalias' rebuilds
-cap     the alias database, `printmail' prints a folder, `readmsg' picks
-cap     one message out of one, `messages' counts what is waiting.  With an
-cap     empty mailbox what they have to say is short and it is theirs.
+for     newalias listalias readmsg messages
+cap     The elm helpers with something to work on.  Both alias files ship
+cap     as of 2026-08-31 -- /dd/USR/LIB/ELM/aliases.text and
+cap     /dd/.ELM/aliases.text -- so `newalias' compiles them (`-g' does the
+cap     system one) and `listalias' reads them back.  `messages' counts the
+cap     folder at /dd/SPOOL/MAIL/tester and `readmsg 1' prints the message
+cap     in it.  Until those files were here this card was a photograph of
+cap     `Couldn't open /dd/.ELM/aliases.text for input!'.
+cap     The `Error writing alias' the first newalias reports is real and it
+cap     is not fatal: the tables ARE written -- listalias reads both back on
+cap     the next line -- and a second newalias in the same session says
+cap     `processed 2 aliases.' and means it. Run it twice the first time.
 run     newalias
-wait    8
-run     printmail
-wait    8
-run     readmsg
+wait    10
+run     newalias -g
+wait    10
+run     listalias
 wait    8
 run     messages
 wait    8
+run     readmsg 1
+wait    10
 
 shot    elm-away
 size    36 80

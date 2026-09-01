@@ -1,4 +1,20 @@
-$ tangle
-Usage: tangle webfile[.web] [changefile[.ch]].
-$ weave
-Usage: weave webfile[.web] [changefile[.ch]] [-x].
+$ cp /dd/DOC/tex/sample.web /dd/sample.web
+$ cp /dd/DOC/tex/none.ch /dd/none.ch
+$ tangle /dd/DOC/tex/sample.web
+Error: `Can't open file.'
+Error: `'
+$ tangle sample none
+This is TANGLE, C Version 4.2
+*1*2
+Writing the output file
+Done.
+(No errors were found.)
+$ weave sample none
+This is WEAVE, C Version 4.2
+*1*2
+Writing the output file...*1*2
+Writing the index...Done.
+(No errors were found.)
+$ cat /dd/sample.p
+{1:}program sample(output);begin write('hello from WEB');writeln;
+end.{:1}

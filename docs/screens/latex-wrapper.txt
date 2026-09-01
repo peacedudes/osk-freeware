@@ -1,0 +1,17 @@
+$ rm -f small.dvi small.log small.aux
+$ latex /dd/SYS/TEX/SAMPLES/small.tex
+F$SetSys: unimplemented 03D8 (size=80000004)
+        ... the same line 4 times over
+This is TeX, C Version 3.14
+(/dd/SYS/TEX/SAMPLES/small.tex
+LaTeX Version 2.09 <7 Dec 1989>
+(/DD/SYS/TEX/INPUTS/article.sty
+Document Style `article' <16 Mar 88>.
+(/DD/SYS/TEX/INPUTS/art10.sty))
+No file small.aux.
+[1] (small.aux) )
+Output written on small.dvi (1 page, 1704 bytes).
+Transcript written on small.log.
+$ ls -l small.dvi small.log
+-rw-------   1 0        0            1704 Aug 31 17:09 small.dvi
+-rw-------   1 0        0             896 Aug 31 17:09 small.log

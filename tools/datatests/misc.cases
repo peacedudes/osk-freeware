@@ -1,0 +1,156 @@
+family  misc
+# The odds and ends: the six cross-assemblers, the KWIC pieces, the shell
+# helpers, the file utilities and the text filters. Nineteen programs that
+# had a one-line index entry and nothing else.
+#
+# Four of those entries were wrong and are corrected: `remove' removes
+# MODULES from memory rather than files, `eo' runs a command on every line of
+# a file rather than being a "text utility", `psc' feeds the spreadsheet, and
+# `move' relinks rather than copies.
+#
+# WATCH `/dd/CMDS/printf' IN A CASE FILE. Its documented flaw is that the
+# literal text before the FIRST CONVERSION is dropped, so `printf 'a\r''
+# writes nothing at all -- a zero-byte file that looks like a working setup
+# line. Use bash's `echo', which writes a CR like every other OS-9 program.
+
+setup   export TERM=vt100
+setup   export TERMCAP=/dd/SYS/termcap
+setup   export HOME=/dd
+setup   X=/dd/DOC/xasm
+
+# ---- The cross-assemblers, on the samples that now ship ---------------
+
+case    as0-assembles-6800
+run     /dd/CMDS/as0 $X/sample.a0 - l s
+expect  0100 86 41              start   ldaa    #$41
+expect  010e 3f
+expect  0110 36 38 30 30        msg     fcc     "6800"
+expect  start      0100
+
+case    as1-assembles-6801-including-mul-and-addd
+run     /dd/CMDS/as1 $X/sample.a1 - l s
+expect  0100 cc 12 34           start   ldd     #$1234
+expect  010d 3d                         mul
+expect  product    0116
+
+case    as5-assembles-6805-bit-instructions
+run     /dd/CMDS/as5 $X/sample.a5 - l s
+expect  0104 10 00                      bset    0,porta
+expect  0108 04 00 fd           loop    brset   2,porta,loop
+expect  ddra       0004
+
+case    as11-assembles-68hc11
+run     /dd/CMDS/as11 $X/sample.a11 - l s
+expect  c000 86 41              start   ldaa    #$41
+expect  c015 48 43 31 31        table   fcc     "HC11"
+expect  Errors: 0
+
+case    as4-assembles-6804
+run     /dd/CMDS/as4 $X/sample.a4 - l s
+expect  0020 e8 05              start   lda     #$05
+expect  0026 a9                 loop    inc     $81
+expect  loop       0026
+
+case    as09-assembles-6809
+run     /dd/CMDS/as09 $X/sample.a09 - l s
+expect  0108 e6 80              loop    ldb     ,x+
+expect  0111 10 8e 01 1d        done    ldy     #count
+expect  table      0118
+
+# as09 is a 6809 assembler and 6800 source is not 6809 source: it says so
+# per line rather than producing wrong code, which is the behaviour worth
+# having.
+case    as09-rejects-6800-source
+run     /dd/CMDS/as09 $X/sample.a0 - l s
+expect  Unrecognized Mnemonic
+
+# ---- Text and file utilities ------------------------------------------
+
+case    paste-joins-lines-side-by-side
+run     /dd/CMDS/rm /dd/tmp/q1 /dd/tmp/q2
+run     echo a > /dd/tmp/q1
+run     echo b >> /dd/tmp/q1
+run     echo 1 > /dd/tmp/q2
+run     echo 2 >> /dd/tmp/q2
+run     /dd/CMDS/paste -d: /dd/tmp/q1 /dd/tmp/q2
+run     /dd/CMDS/paste -s /dd/tmp/q1
+expect  a:1
+expect  b:2
+expect  a	b
+
+case    fillup-pads-a-file-to-a-length-with-a-byte-you-choose
+run     /dd/CMDS/rm /dd/tmp/f.txt
+run     /dd/CMDS/cp /dd/SYS/motd /dd/tmp/f.txt
+run     /dd/CMDS/fillup -n=64 -i=65 /dd/tmp/f.txt
+run     /dd/CMDS/wc -c /dd/tmp/f.txt
+run     /dd/CMDS/dump /dd/tmp/f.txt
+expect  24 bytes (value=65) appended: total file size is now 64
+expect  64 /dd/tmp/f.txt
+expect  4141 4141 4141 4141 4141 4141 4141 4141
+
+# The proof that the file MOVED rather than being copied is that moving it a
+# second time fails: `ls' is not the witness to use, because this `ls' prints
+# the path it was given whether or not the file is there.
+case    move-relinks-a-file-rather-than-copying-it
+run     /dd/CMDS/rm /dd/tmp/mv1 /dd/tmp/mv2
+run     /dd/CMDS/cp /dd/SYS/motd /dd/tmp/mv1
+run     /dd/CMDS/move /dd/tmp/mv1 /dd/tmp/mv2
+run     /dd/CMDS/md5 /dd/tmp/mv2
+run     /dd/CMDS/move /dd/tmp/mv1 /dd/tmp/mv3
+expect  f2783580b7a4c5ef6a29ec5895e6ad95
+expect  /dd/tmp/mv1
+
+case    delbak-deletes-the-backup-files-in-a-directory
+run     /dd/CMDS/mkdir /dd/tmp/BK
+run     /dd/CMDS/cp /dd/SYS/motd /dd/tmp/BK/old_bak
+run     /dd/CMDS/delbak /dd/tmp/BK
+run     /dd/CMDS/ls /dd/tmp/BK
+expect  /dd/tmp/BK/old_bak deleted
+
+case    fc-says-so-when-a-file-is-too-small-to-need-splitting
+run     /dd/CMDS/rm /dd/tmp/fcin /dd/tmp/fcin_1
+run     /dd/CMDS/cp /dd/SYS/termcap /dd/tmp/fcin
+run     /dd/CMDS/fc /dd/tmp/fcin
+run     /dd/CMDS/ls /dd/tmp/fcin_1
+expect  File was already less than 350,000 bytes
+expect  /dd/tmp/fcin_1
+
+case    psc-turns-a-table-into-spreadsheet-commands
+run     /dd/CMDS/rm /dd/tmp/tab
+run     echo "1 2 3" > /dd/tmp/tab
+run     echo "4 5 6" >> /dd/tmp/tab
+run     /dd/CMDS/psc -d' ' < /dd/tmp/tab
+expect  let A0 = 1
+expect  let C0 = 3
+expect  let A1 = 4
+expect  format C 2 0
+
+case    getenv-prints-a-variable-and-checkenv-does-not
+run     /dd/CMDS/getenv -p TERM
+run     /dd/CMDS/checkenv TERM , vt100
+expect  vt100
+expect  Function: check environment variable value
+
+case    qp-and-remove-describe-themselves-correctly
+run     /dd/CMDS/qp -?
+run     /dd/CMDS/remove -?
+expect  Function: process back-quotes for command expansion
+expect  Function : remove modules from memory
+
+case    cuts-decodes-a-coco-usenet-transfer
+run     /dd/CMDS/cuts -d /dd/SYS/motd
+expect  >>>Welcome to os9exec
+
+case    the-kwic-numbering-pass-numbers-every-word
+run     /dd/CMDS/rm /dd/tmp/k1.txt
+run     /dd/CMDS/pageline /dd/SYS/motd /dd/tmp/k1.txt
+run     /dd/CMDS/cat /dd/tmp/k1.txt
+expect  Welcome 1
+expect  emulator
+
+case    eunlink-and-dback-describe-themselves
+run     /dd/CMDS/eunlink -?
+run     /dd/CMDS/dback -?
+expect  Function: unlink an event
+expect  Usage: Dback [-options] <fromdir> <todir> [-options]
+expect  target directory (default = /d0)

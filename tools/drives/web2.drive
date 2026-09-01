@@ -1,0 +1,22 @@
+# web2 -- tangle CREATES its output and then says "Can't open file".  WEB
+# tools open a CHANGE FILE as well as the web file, and on Unix an absent one
+# is /dev/null.  There is no /dev/null here; the bit bucket is /nil.
+
+family  web2
+
+setup   /dd/CMDS/cp /dd/DOC/tex/sample.web /dd/sample.web
+
+drive   with-an-explicit-change-file
+run     /dd/CMDS/TEXCMDS/tangle sample /nil
+run     /dd/CMDS/wc -c /dd/sample.p
+run     /dd/CMDS/cat /dd/sample.p
+
+drive   weave-the-same-way
+run     /dd/CMDS/TEXCMDS/weave sample /nil
+run     /dd/CMDS/wc -c /dd/sample.tex
+run     /dd/CMDS/head -n 8 /dd/sample.tex
+
+drive   an-empty-change-file-instead
+run     echo "" > /dd/empty.ch
+run     /dd/CMDS/TEXCMDS/tangle sample empty
+run     /dd/CMDS/wc -c /dd/sample.p

@@ -72,6 +72,40 @@ OS9EXEC = os.environ.get("OS9EXEC", os.path.join(REPO, "..", "os9exec", "os9exec
 MARK = "@@CASE@@"
 
 
+# A STORMING PROGRAM MUST NOT COST 200 MEGABYTES. `cvtbase' with real
+# arguments is the cio selector mismatch's canonical victim: it floods
+# `No more memory !!!' without bound, and on 2026-08-31 one case of it wrote
+# a 207 MB capture and took minutes doing it. Nothing downstream wants more
+# than the first few megabytes, and a family that has produced this much has
+# already told you everything it is going to.
+CAP = 4 << 20
+
+
+def capped(argv, env):
+    """Run it, keep at most CAP bytes, and stop it politely once past that."""
+    proc = subprocess.Popen(argv, env=env, stdin=subprocess.DEVNULL,
+                            stdout=subprocess.PIPE, stderr=subprocess.STDOUT)
+    out, total = [], 0
+    while True:
+        blk = proc.stdout.read(65536)
+        if not blk:
+            break
+        out.append(blk)
+        total += len(blk)
+        if total >= CAP:
+            out.append(b"\n@@CAPPED@@ output passed %d bytes and was cut\n"
+                       % CAP)
+            proc.terminate()          # gtimeout passes it on to the emulator
+            try:
+                proc.wait(timeout=10)
+            except subprocess.TimeoutExpired:
+                proc.kill()
+            break
+    proc.stdout.close()
+    proc.wait()
+    return b"".join(out).decode("latin-1")
+
+
 class Case:
     def __init__(self, name):
         self.name = name
@@ -191,12 +225,9 @@ def run_family(path, image, workdir):
     per, todo, text = {}, list(fam["cases"]), ""
     for _attempt in range(len(fam["cases"]) + 1):
         open(sh, "w", newline="").write(script_for(fam, todo))
-        proc = subprocess.run(
+        chunk = capped(
             ["gtimeout", "300", OS9EXEC, "-r", "bash",
-             "/h1/%s.sh" % fam["family"]],
-            env=env, stdin=subprocess.DEVNULL, stdout=subprocess.PIPE,
-            stderr=subprocess.STDOUT)
-        chunk = proc.stdout.decode("latin-1")
+             "/h1/%s.sh" % fam["family"]], env)
         text += chunk
         got = split_output(chunk, fam)
         for k, v in got.items():

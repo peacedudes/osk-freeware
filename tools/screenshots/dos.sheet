@@ -95,15 +95,25 @@ wait    10
 
 shot    msmove
 for     msmove msren
-cap     msmove asks before it overwrites, and there is no flag that stops it
-cap     asking.  That is why this stanza is LAST in the sheet: a program
-cap     that stops to ask reads the next commands as answers, and the rest
-cap     of the sheet is gone.  Answered `q' here.
-run     msmove a:MOTD.TXT a:/
+cap     msmove moves a file inside the DOS disk and msren renames one.  The
+cap     copy and the deletes at the top are what make the screen the same
+cap     every time: msmove asks before it overwrites and there is no flag
+cap     that stops it asking, so the destination is cleared first rather
+cap     than the question being answered afterwards.  This card used to
+cap     photograph `File "a:MOTD.TXT" not found' and a stray `q'.
+run     mscopy /dd/SYS/motd a:MOTD.TXT
 wait    10
-send    q\r
-wait    6
-run     msren < /nil
+run     msdeltree a:/MOVED
+wait    8
+run     msmd a:/MOVED
+wait    8
+run     msmove a:MOTD.TXT a:/MOVED/MOTD.TXT
+wait    10
+run     msdir a:/MOVED
+wait    8
+run     msren a:/MOVED/MOTD.TXT a:/MOVED/RENAMED.TXT
+wait    8
+run     msdir a:/MOVED
 wait    8
 
 shot    dosmore

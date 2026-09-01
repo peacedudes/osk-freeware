@@ -720,6 +720,66 @@ def check_cio_macro_population(root):
     return not problems, "%d problem(s) with the cio-macro population" % len(problems)
 
 
+def check_harness_env_matches_login(root):
+    """The harnesses' idea of the login environment must match SYS/login's.
+
+    `tools/screenshots.py' carries a hand-written copy of what SYS/login
+    exports, because it types commands at a shell rather than sourcing a
+    file.  A copy drifts, and on 2026-08-31 it did: login was changed to set
+    `SHELL=$ROOT/CMDS/ksh' -- the one shell here that can serve system() --
+    and the copy still said bash, so the `latex' card was a photograph of
+    E$PNNF while the program itself worked.
+
+    This compares the two on every variable BOTH of them set, which is the
+    part that has to agree.  A variable only one of them sets is fine:
+    login has PWD and a `builtin cd' that no harness needs.
+    """
+    login = os.path.join(root, "SYS", "login")
+    harness = os.path.join(os.path.dirname(os.path.abspath(__file__)),
+                           "screenshots.py")
+    if not (os.path.exists(login) and os.path.exists(harness)):
+        return True, ""
+
+    def assignments(text, prefix=""):
+        found = {}
+        for line in text.replace("\r", "\n").split("\n"):
+            line = line.strip()
+            if prefix:
+                if not line.startswith(prefix):
+                    continue
+                line = line[len(prefix):].strip().strip('",')
+            if line.startswith("export "):
+                line = line[len("export "):]
+            m = re.match(r"^([A-Z][A-Z0-9_]*)=(\S*)$", line)
+            if m:
+                found.setdefault(m.group(1), m.group(2))
+        return found
+
+    def resolve(value):
+        """The few shell expansions login uses, as the harness would see them.
+
+        login is written to work for whoever runs it -- `${USER:-tester}',
+        `$ROOT', `$USER' -- and the harness writes the value those come out
+        as. Resolving them here is what keeps the check from crying wolf on
+        three variables that agree perfectly.
+        """
+        value = re.sub(r"\$\{[A-Z_]+:-([^}]*)\}", r"\1", value)
+        value = value.replace("$ROOT", "/dd").replace("$USER", "tester")
+        return value.rstrip('")')
+
+    want = assignments(open(login, "rb").read().decode("latin-1"))
+    got = assignments(open(harness).read(), prefix='"export ')
+    bad = []
+    for name, value in sorted(got.items()):
+        if name not in want:
+            continue
+        expect, value = resolve(want[name]), resolve(value)
+        if expect != value:
+            bad.append("%s: SYS/login says %s, screenshots.py says %s"
+                       % (name, expect or "(empty)", value or "(empty)"))
+    return (not bad), "; ".join(bad)
+
+
 CHECKS = [
     ("line endings are CR-only", check_line_endings),
     ("no UTF-8 on an 8-bit disk", check_no_utf8),
@@ -737,6 +797,7 @@ CHECKS = [
     ("the cio-macro list is current", check_cio_macro_population),
     ("name lists point at real programs", check_hand_files_name_real_programs),
     ("the disk's documents are intact", check_docs_not_truncated),
+    ("harness env matches SYS/login", check_harness_env_matches_login),
 ]
 
 if __name__ == "__main__":

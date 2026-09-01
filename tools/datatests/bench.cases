@@ -68,9 +68,19 @@ expect  1000 loops done
 # 2026-08-31; it is the Paranoia text adventure, and it was categorised under
 # Developer tools/Benchmarks as well. Both are fixed and this pins it.
 case    paranoia-is-a-text-adventure-not-the-floating-point-torture-test
-# bash's own printf is not a builtin here -- `printf: command not found'.
-# /dd/CMDS/printf is the one that exists.
-run     /dd/CMDS/printf '\r\r\r' > /dd/tmp/p.in
+# STDIN MATTERS HERE, TWICE OVER. paranoia pauses at `---------- More ----'
+# and waits for a key, and if nothing ever arrives the case costs the whole
+# 300-second timeout and a restart. It needs REAL newlines to page through --
+# and /dd/CMDS/printf cannot supply them: its documented flaw is that
+# everything before the first conversion is dropped, so `printf '\r\r\r''
+# writes a ZERO-BYTE FILE that looks like a working setup line. bash's echo
+# is what writes a CR here.
+run     /dd/CMDS/rm /dd/tmp/p.in
+run     echo "" > /dd/tmp/p.in
+run     echo "" >> /dd/tmp/p.in
+run     echo "" >> /dd/tmp/p.in
+run     echo "" >> /dd/tmp/p.in
+run     echo "" >> /dd/tmp/p.in
 run     /dd/CMDS/paranoia < /dd/tmp/p.in
 expect  Welcome to Paranoia!
 expect  As Philo-R-DMD you will die at times during the adventure

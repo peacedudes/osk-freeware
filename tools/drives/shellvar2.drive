@@ -1,0 +1,49 @@
+# shellvar2 -- ROOT CAUSE, and the question that decides the fix.
+#
+# `tex', `eo' and `ci' all fail the same way, and setting SHELL only moves
+# the failure: this C library's system() forks $SHELL with the WHOLE command
+# line as ONE ARGUMENT. Microware's own shell parses its argument that way --
+# it is how os9exec is normally started. bash treats it as a script filename
+# and answers "cannot execute binary file"; anything else answers E$PNNF.
+#
+# So: is there a shell ON THIS DISK that takes a command line as an argument?
+# If there is, SYS/login can export SHELL and four programs start working.
+
+family  shellvar2
+
+drive   sh
+run     /dd/CMDS/sh '/dd/CMDS/wc -c /dd/SYS/motd'
+run     echo "--- end sh"
+
+drive   ksh
+run     /dd/CMDS/ksh '/dd/CMDS/wc -c /dd/SYS/motd'
+run     echo "--- end ksh"
+
+drive   gshell
+run     /dd/CMDS/gshell '/dd/CMDS/wc -c /dd/SYS/motd'
+run     echo "--- end gshell"
+
+drive   mshell
+run     /dd/CMDS/mshell '/dd/CMDS/wc -c /dd/SYS/motd'
+run     echo "--- end mshell"
+
+drive   bash-dash-c
+why     for comparison: bash DOES take -c, it is just not what system() sends
+run     /dd/CMDS/bash -c '/dd/CMDS/wc -c /dd/SYS/motd'
+run     echo "--- end bash -c"
+
+drive   eo-with-each
+why     if one of them works as SHELL, eo is the cheapest thing to prove it on
+run     echo /dd/SYS/motd > /dd/tmp/l1
+run     export SHELL=/dd/CMDS/sh
+run     /dd/CMDS/eo /dd/tmp/l1 /dd/CMDS/wc -c @
+run     echo "--- now ksh:"
+run     export SHELL=/dd/CMDS/ksh
+run     /dd/CMDS/eo /dd/tmp/l1 /dd/CMDS/wc -c @
+run     echo "--- now gshell:"
+run     export SHELL=/dd/CMDS/gshell
+run     /dd/CMDS/eo /dd/tmp/l1 /dd/CMDS/wc -c @
+run     echo "--- now mshell:"
+run     export SHELL=/dd/CMDS/mshell
+run     /dd/CMDS/eo /dd/tmp/l1 /dd/CMDS/wc -c @
+run     echo "--- end"

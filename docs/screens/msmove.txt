@@ -1,8 +1,17 @@
-$ msmove a:MOTD.TXT a:/
-msmove: File "a:MOTD.TXT" not found
-$ q
-q: command not found
-$ msren < /nil
-Mtools version 3.6, dated 14 Apr 97
-Usage: msren [-itnmvV] file targetfile
-       msren [-itnmvV] file [files...] target_directory
+$ mscopy /dd/SYS/motd a:MOTD.TXT
+$ msdeltree a:/MOVED
+msdeltree: File "a:/MOVED" not found
+$ msmd a:/MOVED
+$ msmove a:MOTD.TXT a:/MOVED/MOTD.TXT
+$ msdir a:/MOVED
+ Volume in drive A is OS9FREE
+ Volume Serial Number is 35D7-0A00
+ Directory for A:/MOVED
+
+.            <DIR>     08-31-2026   4:54p
+..           <DIR>     08-31-2026   4:54p
+MOTD     TXT        40 08-31-2026   4:54p
+        3 file(s)                40 bytes
+                          1 454 592 bytes free
+
+$ msren a:/MOVED/MOTD.TXT a:/MOVED/RENAMED.TXT

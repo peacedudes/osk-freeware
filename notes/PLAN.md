@@ -27,10 +27,26 @@ tools/gen_screens.py --check      # no card has drifted from its stanza
 Longer, and worth running before you claim anything is finished:
 
 ```sh
-tools/datatest.py --all --image osk-freeware.dd   # 187 cases
+tools/datatest.py --all --image osk-freeware.dd   # 324 cases
 tools/playtest.py --all --image osk-freeware.dd   # 116 tests, 112 pass
 tools/ci/run_workflow_locally.sh /tmp/scratch     # the whole GitHub workflow
 ```
+
+**The two tools the per-program loop runs on**, both added 2026-08-31:
+
+```sh
+tools/worklist.py --no-test --no-card    # what still has nothing at all
+tools/drive.py <sheet>                   # run a sheet of programs, one
+                                         # emulator session, transcript out
+tools/audit_cards.py                     # cards that photograph help or an error
+```
+
+`worklist.py` prints one row per program with everything needed to pick the
+next one: the `DOC/INDEX` claim, the binary's own usage line, whether a card
+photographs it, whether any test asserts anything, and which drive sheet runs
+it. Every column is derived, so none of it can go stale. `drive.py` is the
+step before a `datatest` case: it asserts nothing and shows you what came
+back, forty programs to an emulator start.
 
 The known failures are deliberate and each says why in its own file: three in
 `datatest` and four in `playtest` (pacman, puzzle, snake, valspeak). **One
@@ -42,16 +58,18 @@ clear.
 
 | | |
 |---|---|
-| Programs | 935 catalogued |
-| Demonstrated running | 871 of 922 — 94.5% (bar: it printed something) |
-| Screens | 484 cards; 864 programs run by name on one, the rest credited |
-| **Tests that can fail again** | **277** — the other 658 rest on a photograph |
-| Source here | 626 (66%) |
-| Documented beyond one index line | 603 (63%) |
+| Programs | 939 catalogued |
+| **Under a test that can fail again** | **492** — was 277 on 2026-08-31 morning |
+| Neither a test nor a gallery card | 263 — was 421 |
+| Driven with real arguments (a `tools/drives` sheet runs it) | 306 |
+| Screens | 484 cards |
+| Source here | 625 (66%) |
+| Documented beyond one index line | 602 (63%) |
+| `datatest` cases | 324 in 17 families |
 
-Re-measured 2026-08-31 after `bush` left the disk. The tools are the
-authority, not this table: `tools/gen_screens.py --check`,
-`tools/src_census.py disk`, `tools/doc_census.py disk`.
+Re-measured 2026-08-31 evening. The tools are the authority, not this table:
+`tools/worklist.py --no-test --no-card`, `tools/src_census.py disk`,
+`tools/doc_census.py disk`, `tools/audit_cards.py`.
 
 Read the second column carefully. 94.5% only means "produced output rather
 than dying" — `rpn` gets its arithmetic wrong and clears that bar.
@@ -112,35 +130,47 @@ shares their `-x xwndw` usage line, so `gnuchessx` would keep that family
 together while leaving GAMES the plain name). `wish` collides by filename
 only — `wish` against `B_wish` — and is lowest priority.
 
-### 1a. Gallery cards that photograph a usage line — 40 of them
+### 1a. Gallery cards that photograph a usage line — 27 left of 31 found
 
 rdoggett, 2026-08-31: *"Sample output that does nothing more than show the
 help is only valuable if the help isn't shown some other way, and there is no
 more interesting output from the program to show."*
 
-**Do not try to find these automatically — two detectors were tried and both
-lie.** The first flagged any card under 15 lines containing a `usage:`/`syntax:`
-line: 40 of 483, and `qt` was among them because the SECOND program on its card
-was asked for `-?` while `qt` itself printed "It's almost twenty-five past
-four". The second required *every* command on the card to have produced only
-help: 14 cards, and it flagged `bite` (a full-screen ASCII drawing with no `$`
-prompt to parse), `pbmclean` and `pnmfilters` (whose real output was
-misattributed to the next prompt line) and `spiff` (which prints nothing
-BECAUSE the two files match, which is the point of the card). This is the same
-trap as item 4 below, and it cost an hour twice.
+**There is a detector now and it works: `tools/audit_cards.py`.** It scores
+each card's lines as USAGE, ERROR or WORK and flags a card with no WORK, or
+with more error than work, or with a usage line and almost nothing else. It
+reports 31 of 407. Two earlier attempts lied and are described in the tool's
+own header; the thing that made this one honest is reading the card's SHEET to
+find out which lines were commands, because a capture does not reliably prefix
+an echoed command with a prompt and those echoes were being scored as the
+program's own output.
 
-Go program by program. The ones fixed so far were each found by reading the
-card and then running the program: `hc`, `join`, `pwgen`, `rndname`, and
-`pbyte`/`chbase`. `logisim` is the pattern to look for — two sample circuits
-ship in `DOC/logisim`, and the card showed the usage line.
+**Two of the 31 are false positives and stay.** `perr` and `perr-print` print
+the text of an OS-9 error number, so error text IS their output — the one
+place in the gallery where a screen full of `Error #000:216` is exactly right.
 
-**`hc` was wrong in three places at once**, and is the shape to look for.
-`DOC/INDEX` called it a hex calculator, it was filed under Maths &
-calculators, and its card ran `echo 1f * 3 + 7 | hc` and photographed the
-usage line the invocation earned. It is a text filter: `hc +8 f` indents to
-column 8, `hc -11 f` strips back to column 11, `hc -l "> " f` labels every
-line. All three are fixed. A card that shows a program failing, captioned as
-though the program were at fault, is worse than no card.
+Fixed 2026-08-31 evening, each by running the program and finding the
+invocation was wrong rather than the program: `xasm` (five assemblers that
+now assemble the samples shipped in `DOC/xasm`), `zoo2` (`booz` takes a bare
+letter, not `-l`; `fiz` takes the archive), `upperdir` (now shows the rename),
+`elm-suite` (the alias files ship now), `msmove`, `sysmon` (a blank screen
+plus the alternatives that do answer), `tangle`/`weave` (a `sample.web` ships
+now) and `dhry-all` — that last one **claimed twelve builds and showed one**,
+because eleven of them were waiting at a prompt for a run count.
+
+Earlier the same day: `hc`, `join`, `pwgen`, `rndname`, `pbyte`/`chbase`.
+
+**`hc` is still the shape to look for.** `DOC/INDEX` called it a hex
+calculator, it was filed under Maths & calculators, and its card ran
+`echo 1f * 3 + 7 | hc` and photographed the usage line the invocation earned.
+It is a text filter. A card that shows a program failing, captioned as though
+the program were at fault, is worse than no card.
+
+Still flagged and not yet looked at: `pbmclean`, `pnmfilters`, `argproc_demo`
+(a genuine Stack Overflow, whatever it is given), `csl-mismatch`, `wn`,
+`game` (wants a `chess.lst` from gnuchess), `newshist`, `p2c`, `ateri`,
+`network`, `perr-alps`, `ppmntsc`, `xpm`, `dload`, `texfonts-bitmap`,
+`asciitopgm`, `aterm`, `disktest`, `phone`, `silent`, `vi-recovery`.
 
 ### 2. Family chooser documents — highest value for the stated purpose
 
