@@ -56,9 +56,27 @@ memory, not files. `preset` loads terminal function keys. `eo` runs a command
 on every line of a file. `dotilde` is the mailer's tilde-escape handler. Each
 was found the same way: run the program and read what it says.
 
-## What to do next
+## What to do next -- start here, no deliberation needed
 
-`notes/PLAN.md`, and the loop is:
+**The next batch is Communications/Mail (12) and System & modules/Utilities
+(11).** Nine of those twelve mail programs are ALREADY DRIVEN by
+`tools/drives/mail.drive`, `mail2` and `mail3`, and eight of the eleven
+utilities by `system1` and `system2` -- so re-run the sheet, read the
+transcript, and write the cases. That needs no new invocations and no
+thinking about what a program is for:
+
+```sh
+tools/drive.py mail mail2 mail3          # ~3 minutes, transcripts in notes/drives
+tools/worklist.py --programs --no-test --no-card --sub Mail
+# then write tools/datatests/mail2.cases from what the transcripts show
+```
+
+After that the ones that need real thought are Communications/News (7),
+Web server (4) and TCP/IP (4) -- all of which talk to a peer that does not
+exist here, so the honest assertion is what each says about its absent
+device, not that it works.
+
+`notes/PLAN.md` has the whole picture, and the loop is:
 
 ```sh
 tools/worklist.py --programs --no-test --no-card   # 97 left
