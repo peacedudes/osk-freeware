@@ -28,12 +28,17 @@ expect  unimplemented F$SysID called by pid=3
 
 # vlen builds a variable-length record store and reports the mapper as it
 # grows -- one of the few programs here that demonstrates a data structure
-# and shows its own bookkeeping. Its store PERSISTS, so a second run says
-# `Filesystem already exists.' where the first says `Created new
-# filesystem'; neither line is asserted for that reason.
+# and shows its own bookkeeping.
+#
+# ITS STORE PERSISTS, IN THE DATA DIRECTORY, AS `test.mp' AND `test.st'.
+# A second run finds them, says `Filesystem already exists.' and adds
+# nothing -- so the case removes them first, or it passes once and never
+# again. (It also means a bare `vlen' leaves two files at the root of
+# whatever disk you run it from.)
 case    vlen-builds-a-variable-length-record-store-and-reports-its-mapper
+run     /dd/CMDS/rm -f /dd/test.mp /dd/test.st > /nil 2>/nil
 run     /dd/CMDS/vlen < /nil
-expect  Creating...
+expect  Created new filesystem
 expect  Opening the file...
 expect  Adding record #1, length == 50.
 expect  minRecl == 10, maxRecl == 300
