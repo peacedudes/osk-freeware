@@ -20,11 +20,20 @@ expect  1 lines, 6 words, 40 chars
 
 # The shipped ctags finds the statics as well as main; elvis's finds main
 # and nothing else. That is why the bigger one ships.
+#
+# THE NAMES, NOT THE COUNT.  This read `absent 1 /dd/tags' against a
+# `wc -l', which is a substring test: it passed while about.c had ten
+# functions and failed the day it had ELEVEN, because "11 /dd/tags" contains
+# "1 /dd/tags". The same shape cost an hour on 2026-09-01 with `40' and `0'.
+# A count of a file somebody may edit is the wrong assertion anyway.
 case    ctags-finds-the-static-functions
 run     /dd/CMDS/rm -f /dd/tags
 run     /dd/CMDS/ctags /dd/SRC/keep/about.c
-run     /dd/CMDS/wc -l /dd/tags
-absent  1 /dd/tags
+run     /dd/CMDS/cat /dd/tags
+expect  main
+expect  entry_for
+expect  from_depends
+expect  find_collection
 
 case    ctags.elvis-finds-only-main
 run     /dd/CMDS/rm -f /dd/tags

@@ -642,22 +642,30 @@ run     sysmin
 wait    5
 
 shot    sysmon
-cap     sysmon draws memory and process state on a real machine, and it
-cap     will not start here: it reads the system's version number and
-cap     refuses anything older than it was built for.  os9exec reports
-cap     V4.0, which sysmon 6.1 considers too old.  `mfree', `map' and
-cap     `free' are what answer the same questions -- except that NEITHER OF
-cap     THOSE TWO IS ON THIS DISK.  `mfree' and `free' are Microware's and
-cap     were named in this caption without anybody looking; `dinfo', `map' and
-cap     `space' are what is actually here, and `dinfo' and `map' are run
-cap     below, because a card of a program that prints nothing is a blank
-cap     screen and tells a reader nothing at all.
-run     sysmon
-wait    8
-run     dinfo /dd
-wait    10
-run     map /dd/SYS/motd
-wait    8
+size    28 80
+cap     sysmon draws memory and process state, and IT NOW STARTS.  It used
+cap     to refuse on a version check -- `OS9/68k V4.0 is too old for SYSMON
+cap     V6.1' -- and this card was a capture of that refusal.  On 2026-09-02
+cap     os9exec began reporting V4.10 instead of V4.0 and sysmon accepted
+cap     it, so what is here now is the program itself: it asks whether to
+cap     create `/dd/sys/nodedef', times out on the keyboard, and draws its
+cap     Process Monitor -- the task table, the two percentage rules, the
+cap     CPU it thinks it is on.  Then it takes a bus error at F$GPrDsc,
+cap     the get-process-descriptor call, which is the same os9exec gap
+cap     `devprc -a' and `top' meet at F$GPrDBT.
+cap     `dinfo', `map' and `space' answer the questions it would have
+cap     answered and are all here; `mfree' and `free' are Microware's and
+cap     were named in this caption for a while without anybody looking.
+cap     `dinfo' has its own card (`shdev') and `map' has one of its own;
+cap     they are not run here, because sysmon clears the screen and anything
+cap     above it would be a program credited to a card that cannot show it.
+cap     Its table is drawn with the DEC line-drawing character set,
+cap     which tools/ansiscreen.py learned on 2026-09-02 -- until then the
+cap     escape was skipped and the letters printed as text, so this card was
+cap     forty lines of `(0x       (0x'.  sysmon is the only program here
+cap     that had ever got far enough to use it.
+run     sysmon < /nil
+wait    45
 
 shot    top
 cap     top prints its column headings and then aborts -- every time, with

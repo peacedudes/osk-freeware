@@ -16,10 +16,14 @@ the tail as text and the screen fills with `[8;13H'. Measured on tet,
 2026-08-27: 9 such sequences while playing, 1 while idle, 0 once the program
 turned echo off.
 
-Deliberately a SUBSET of vt100: the cursor moves, erases, and the two
-alternate-keypad toggles this collection's curses actually emits. Anything
-else is skipped rather than guessed at -- a renderer that invents behaviour
-would hide exactly the defects this exists to find.
+Deliberately a SUBSET of vt100: the cursor moves, erases, the two
+alternate-keypad toggles this collection's curses actually emits, and the
+DEC Special Graphics character set. Anything else is skipped rather than
+guessed at -- a renderer that invents behaviour would hide exactly the
+defects this exists to find.
+
+The line-drawing set is mapped to ASCII (`+', `-', `|'), not to the Unicode
+box characters: nothing in this repository may carry a byte over 0x7f.
 """
 import re
 import sys
@@ -29,6 +33,31 @@ ROWS, COLS = 24, 80
 # ESC [ <params> <final>, plus the bare two-character escapes curses emits.
 CSI = re.compile(rb"\x1b\[([0-9;?]*)([@-~])")
 ESC2 = re.compile(rb"\x1b([=>78MDEHc])")
+
+# ESC ( <c> and ESC ) <c> designate a character set for G0 and G1.  `0' is
+# DEC Special Graphics -- the box-drawing set -- and `B' is US ASCII.
+CHARSET = re.compile(rb"\x1b([()])([0-9A-B])")
+
+# DEC Special Graphics, MAPPED TO ASCII rather than to the Unicode box
+# characters, because nothing in this repository is allowed to carry a byte
+# over 0x7f.  A corner is a `+', a horizontal a `-', a vertical a `|'; that
+# is what a line-drawing terminal looked like to anyone without the font,
+# and it reads correctly in a gallery card.
+#
+# WITHOUT THIS THE ESCAPE WAS SKIPPED AND THE LETTERS PRINTED AS TEXT.
+# `sysmon' draws its process table with this set and its card came out as
+# forty lines of `(0x       (0x       (0x' on 2026-09-02 -- which looks
+# like a corrupt capture and is a renderer that stopped one branch short.
+# It is the only program here that had ever got far enough to use it.
+DEC_GRAPHICS = {
+    "j": "+", "k": "+", "l": "+", "m": "+", "n": "+",
+    "t": "+", "u": "+", "v": "+", "w": "+",
+    "q": "-", "x": "|",
+    "a": ":", "h": "#", "0": "#", "~": ".",
+    "`": "+", "f": "o", "g": "+", "i": "+",
+    "o": "-", "p": "-", "r": "-", "s": "-",
+    "y": "<", "z": ">", "{": "*", "|": "!", "}": "#",
+}
 
 
 class Screen:
@@ -40,6 +69,7 @@ class Screen:
         self.row = self.col = 0
         self.orphans = []          # escape sequences that arrived without ESC
         self.unknown = set()       # finals we chose not to implement
+        self.graphics = False      # G0 is DEC Special Graphics
 
     # -- cursor -----------------------------------------------------------
     def _clamp(self):
@@ -47,6 +77,8 @@ class Screen:
         self.col = max(0, min(self.cols - 1, self.col))
 
     def put(self, ch):
+        if self.graphics and ch >= " " and ch in DEC_GRAPHICS:
+            ch = DEC_GRAPHICS[ch]
         if ch == "\r":
             self.col = 0
         elif ch == "\n":
@@ -100,9 +132,15 @@ class Screen:
                     self._csi(m.group(1), m.group(2))
                     i = m.end()
                     continue
+                m = CHARSET.match(data, i)
+                if m:
+                    if m.group(1) == b"(":     # G0 only; nothing here uses G1
+                        self.graphics = m.group(2) == b"0"
+                    i = m.end()
+                    continue
                 m = ESC2.match(data, i)
                 if m:
-                    i = m.end()               # keypad/charset toggles: ignore
+                    i = m.end()               # keypad toggles: ignore
                     continue
                 i += 1
                 continue

@@ -1,15 +1,11 @@
- SYSMON-ERROR:  OS9/68k V4.0 is too old for SYSMON V6.1
-$ dinfo /dd
-Device name   : /dd
-Volume name   : "OSK-Freeware"
-Creation date : 2026-8-31 19:19
-Capacity      : 259072 KBytes (1036288 sectors, 100.00%)
-Free          : 140444 KBytes (561776 sectors, 54.21%) in 1 Blocks
-Used          : 118628 KBytes (474512 sectors, 45.79%)
-Largest block : 140444 KBytes (561776 sectors, 54.21%)
-$ map /dd/SYS/motd
-                Blockmap of /dd/SYS/motd 19:29:50
+                       OS9/68k V4.16 Process Monitor V6.1
+F$SetSys: unimpl  04:48:12  02-Sep-19126  TASKS: 001  CPU: 68040
+F$SeMinage: 00000  Maxage: 00000  ActiveTasks: 000  Delay: 04s  Port: /NIL
+                                    0        25        50        75        100 %
+Id  Username   Processname          +---------+---------+---------+----------+
+                                    |         |         |         |          |
+        ... the same line 16 times over
+                                    +---------+---------+---------+----------+
+ SYSMON:  Can't open '/dd/sys/nodedef' [Node-definition file]
 
-Segment List:
-  Sector  Blocks
-07256D    0003
+Process
