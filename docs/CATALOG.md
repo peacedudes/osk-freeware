@@ -48,7 +48,7 @@
 | `hist` | C-shell history + commandline editing  [no military use -- EFFO-INFO] |
 | `if` | conditional execution for shell scripts (varval/loaded/def)<br>`Syntax: if [not] <cond> {<arg>} {<cmd1>} [else` |
 | `printenv` | &#9733; print the environment<br>`Syntax:   printenv [<options>] [{<env var name}]` |
-| `printf` | formatted print from the shell, and it is RIGHT NOW.  It used to drop the literal text before the first conversion, so `printf "[%s]\n" X' printed `X]' and a format with no conversion at all printed nothing -- which is why several drive sheets here fed programs a zero-byte file and read the silence as the program's.  That was the cio selector mismatch; rebuilt trap-free 2026-08-31 and every literal now arrives.  DOC/README-CIO<br>`Usage: printf <format-string> [ arg1 . . . ]` |
+| `printf` | formatted print from the shell, and it is RIGHT NOW.  It used to drop the literal text before the first conversion, so `printf "[%s]\n" X' printed `X]' and a format with no conversion at all printed nothing -- which is why several drive sheets here fed programs a zero-byte file and read the silence as the program's.  That was the cio selector mismatch; rebuilt trap-free 2026-08-31 and every literal now arrives.  DOC/README-CIO<br>**How:** /dd/CMDS/printf DROPPED EVERYTHING BEFORE THE FIRST CONVERSION until it was rebuilt `-qm' on 2026-09-01: a format with no `%' in it wrote a ZERO-BYTE file that looked like a working setup line, and seven committed drive sheets had fed programs nothing on the strength of it. The build here now keeps every literal. bash's `echo' is still the simpler way to write a line, and it writes a CR. |
 | `qp` | &#9733; NOT a print helper: `qp <cmd> <args>' processes BACK-QUOTES for command expansion, which Microware's shell has no way to do. requires Microware's `shell' on your execution path -- it does the expansion by forking one, and produces nothing without it. Reworded 2026-08-30<br>`Syntax: qp <cmd> <arg1> ... <argn>` |
 | `run` | run a program with stdio rebound to the terminal (needs PORT)<br>`Syntax: run '<prgname> {<arg>}'` |
 | `xc` | execute commands from a file (needs a .xc) |
@@ -114,7 +114,7 @@
 | `elvis` | Elvis 1.7 -- the best-documented of this disk's three vi editors, and the one with the most options.  BUILT HERE from the source in CMDS/archives.  Needs TERM and TERMCAP; runs with no program under its other personalities and need elvis present to run. IT ALSO NEEDS A /dd/tmp, and the path is compiled in: on a /dd without that directory it stops before drawing anything with `Can't create temp file... Does directory "/dd/tmp" exist?'.  This disk ships one, so it bites on the machine you copy elvis TO.  Either `makdir /dd/tmp' or, before starting it, `setenv EXINIT "set directory=<a dir you have>"' -- elvis reads EXINIT before creating the temp file.  `vi' has the same compiled-in /dd/tmp; the PVIC builds do not.  Measured 2026-08-31; DOC/README-VI has the table<br>**How:** A full vi/ex clone, built here from the archive that was always on this disk. Needs TERM and TERMCAP set -- `SYS/login' does both. `view' opens read-only, REBUILT/vi.elvis is the same program as vi, and all of them need CMDS/elvis present because they exec it. |
 | `elvis_input` | elvis under its `input' personality -- it opens already in insert mode.  RENAMED from `input.elvis' 2026-08-31, and the name is load-bearing: elvis's wrapper picks its personality from the LAST LETTER of the name it was invoked by, so under `input.elvis' it fell through to plain vi and the personality never happened.  Measured both ways with the same bytes. CMDS/input is a different program entirely |
 | `elvprsv` | Preserve an elvis session across a crash |
-| `elvrec` | recover an elvis buffer preserved when elvis died.  Run with NO ARGUMENTS it lists what is recoverable -- so its silence here means there is nothing, which is true.  It reads `/usr/preserve/Index', and OS-9 cannot have a /usr at all: a leading /name is a DEVICE, not a directory.  So on this machine it can never find anything, whatever is placed under /dd.  `expreserve' is the half that saves. DOC/elvrec/elvrec.doc.  Clarified 2026-09-01<br>`usage: elvrec [preserved_file [recovery_file]]` |
+| `elvrec` | recover an elvis buffer preserved when elvis died.  Run with NO ARGUMENTS it lists what is recoverable -- so its silence here means there is nothing, which is true.  It reads `/usr/preserve/Index', and OS-9 cannot have a /usr at all: a leading /name is a DEVICE, not a directory.  So on this machine it can never find anything, whatever is placed under /dd.  `expreserve' is the half that saves. DOC/elvrec/elvrec.doc.  Clarified 2026-09-01<br>**How:** Bare, it LISTS what is recoverable -- so saying nothing means there is nothing. It reads `/usr/preserve/Index', and in OS-9 a leading /name is a DEVICE, not a directory, so that path cannot exist here. |
 | `vi.elvis` | elvis 1.7 as vi.  CMDS/vi is the EFFO build and CMDS/vi_nocio is PVic -- three unrelated vi clones |
 | `view` | elvis opened read-only |
 
@@ -149,7 +149,7 @@
 | | |
 |---|---|
 | `ascii` | &#9733; ASCII character table |
-| `dump` | hex dump of a file or module<br>`Syntax: dump [<opts>] <path/module> [<opts>] [<starting byte>] [<opts>]` |
+| `dump` | hex dump of a file or module<br>**How:** This is the hex dump on this disk. There is no `od'. |
 | `file` | Identify file types.  SYS/magic is now here, so it names real formats -- "GIF picture ver. 87a 320 x 200, interlaced, 256 colors" -- and not just OS-9 modules<br>**How:** Names real formats now that SYS/magic is here: `file /dd/DEMO/gulls.gif' reports the GIF version, size and colour count. Before the magic file arrived it could only recognise OS-9 modules. |
 | `gdd` | &#9733; GNU dd -- `gdd if=<file> of=<file> bs=<n> skip= seek= count='. RUN BARE IT ENDS THE SESSION: no message, no output, and the emulator goes with it.  Give it arguments.  Measured 2026-08-31 -- a block copier and converter, not a dump.  `dump' and `od' are the dumps here.  Corrected 2026-08-29<br>**How:** A data dump -- like `od', with GNU-style long options. Needs Microware's cio. |
 | `strings` | &#9733; extract printable strings, reported as $offset: <text><br>`Usage: strings [-anpl=n] [file [file]]` |
@@ -275,7 +275,7 @@
 | `inimf` | MetaFont with no base preloaded<br>**How:** It builds a Metafont base, which SYS/TEX/MFBASES now ships. To rebuild: `echo "plain; \input modes; dump" > mf.in' then `ksh -c "cd /dd/tmp; inimf < mf.in"'. About a minute. DOC/README-METAFONT has the rest. |
 | `initex` | TeX with no format preloaded, for building .fmt files<br>**How:** TeX with no format preloaded -- this is what BUILDS the .fmt files. `initex "plain \dump"'. The three formats already ship in SYS/TEX/FORMATS, built this way, so you only need this to make your own. |
 | `latex` | LaTeX -- Lamport's document preparation system on top of TeX<br>**How:** See `tex'. The wrapper cannot reach the engine; run `virtex '&lplain' yourfile.tex'. That does work: SAMPLES/small.tex gives "Output written on small.dvi (1 page, 1704 bytes)". The .dvi and .log land in your DATA directory. |
-| `maketexpk` | generate a .pk font at the size TeX asked for |
+| `maketexpk` | generate a .pk font at the size TeX asked for<br>**How:** It carries the RIGHT Metafont line in its own strings and then reaches for `makdir', `del' and `attr' to file the result -- three Microware utilities that are not here. Run the virmf line yourself: DOC/README-METAFONT has it, and `gftopk' is all maketexpk was going to do afterwards. |
 | `pktogf` | packed font back to generic font<br>**How:** Unpacks a .pk. The result is longer than the .gf it came from -- pktogf rewrites the preamble comment -- and the bitmap is unchanged. |
 | `pktype` | show what is inside a .pk file<br>**How:** `pktype <font>.<dpi>pk' prints the packed font back, glyphs included. PKFONTS must name the directory. |
 | `pltotf` | property list to TeX font metric<br>`Usage: pltotf [-verbose] <property list file> <tfm file>.` |
@@ -288,7 +288,7 @@
 | `virmf` | the real MetaFont engine -- generates fonts from .mf sources<br>**How:** Metafont. `virmf '&cmbase' '\scrollmode; \mode:=epsonlo; \input cmr10; \end'' renders all 128 characters of cmr10. THE JOB NAME COMES FROM THE COMMAND LINE: the same line fed on standard input renders the same font and calls it `mfput'. |
 | `virtex` | the real TeX engine, loaded with a format<br>**How:** The real TeX engine, and the one to use -- see `tex'. It wants the format first: `virtex '&plain' file.tex' or `virtex '&lplain' file.tex'. The formats that ship are plain, lplain and splain, in SYS/TEX/FORMATS. |
 | `vptovf` | virtual property list to virtual font<br>**How:** `vptovf /dd/DOC/tex/sample.vpl s.vf s.tfm'. sample.vpl is a one-character virtual font written for this, mapping `A' onto cmr10's. |
-| `weave` | WEB to TeX -- the other half of literate programming, and it needs a change file for the same reason `tangle' does: `weave sample none'<br>`Usage: weave webfile[.web] [changefile[.ch]] [-x].` |
+| `weave` | WEB to TeX -- the other half of literate programming, and it needs a change file for the same reason `tangle' does: `weave sample none'<br>**How:** The other half of `tangle', and it NEEDS A CHANGE FILE NAMED just as tangle does: `weave sample none', never `weave sample.web'. Given only a .web it answers `Error: `Can't open file.'' and the file it cannot open is the absent change file. DOC/tex ships sample.web and none.ch. |
 
 **Transform & filter**
 
@@ -516,7 +516,7 @@
 | `as4` | 6804 cross-assembler (xasm).  DOC/xasm/sample.a4<br>`Usage: as4 [files]` |
 | `as5` | 6805/68HC05 cross-assembler (xasm).  DOC/xasm/sample.a5<br>`Usage: as5 [files]` |
 | `lnk` | RTF FORTRAN link driver; calls l68 with /h0/LIB/sys.l, which is Microware's and not here |
-| `lnk.org` | as lnk, the original build |
+| `lnk.org` | as lnk, the original build<br>**How:** `load /dd/CMDS/os9lib' first. Without it this calls F$Link for os9lib, gets E_MNF and exits printing nothing. DOC/README-RUNNING names the four programs that do this. |
 
 **C toolchain**
 
@@ -707,7 +707,7 @@
 | `binhex` | Encode a file as Macintosh BinHex 4.0<br>`Usage: binhex [-binhex] [files]` |
 | `hexbin` | Decode BinHex back to a Macintosh file<br>**How:** Decodes Macintosh BinHex (.hqx) files, which is how Mac software travelled by mail and BBS. binhex goes the other way; unsit opens StuffIt archives and macunpack opens PackIt ones. All trap-free. DOC/macutils has the package readme. |
 | `macbin` | MacBinary encode/decode<br>`Usage  :   Converts files to MacBinary format` |
-| `macsave` | unpack MacBinary files FROM STANDARD INPUT, and its SILENCE IS CORRECT: its own manual page says it "reads standard input and silently writes the file(s) it contains", giving them `.bin' names in the current directory and making subdirectories for embedded folders. `macbin' is the translator that MAKES one. DOC/macsave/macsave.1.  Clarified 2026-09-01 |
+| `macsave` | unpack MacBinary files FROM STANDARD INPUT, and its SILENCE IS CORRECT: its own manual page says it "reads standard input and silently writes the file(s) it contains", giving them `.bin' names in the current directory and making subdirectories for embedded folders. `macbin' is the translator that MAKES one. DOC/macsave/macsave.1.  Clarified 2026-09-01<br>**How:** Its silence is CORRECT and documented: DOC/macsave/macsave.1 says it "reads standard input and silently writes the file(s) it contains". `macbin' makes the MacBinary it wants, and the pair round-trips. |
 | `macstream` | Read a MacTerminal file stream.  It measures the file before it reads it and answers `Short file <name>' for anything too small to be one<br>`Usage: macstream [-macstream] files` |
 | `macunpack` | Unpack a packed Macintosh archive<br>`Usage: macunpack [-macunpack] [filename]` |
 | `mcvert` | Convert between Macintosh file representations<br>`Usage: Mcvert [-rduxh] [DUpqsv] filename(s)` |
@@ -984,7 +984,7 @@
 | `ppmnorm` | netpbm image tool |
 | `ppmntsc` | netpbm image tool<br>**How:** It takes a DIMFACTOR first -- 0.0 is black, 1.0 the original -- then the file. Without it you get its usage. |
 | `ppmpat` | netpbm image tool |
-| `ppmquant` | netpbm image tool |
+| `ppmquant` | netpbm image tool<br>**How:** A PALETTED CONVERTER NEEDS A QUANTISED IMAGE, and this is what quantises: `ppmquant 16 in.ppm > out.ppm'. Eight netpbm writers -- ppmtoicr, ppmtosixel, ppmtouil, ppmtopuzz, ppmtopict, ppmtopi1 and two more -- write ZERO BYTES for a 24-bit PPM and correct files after it. |
 | `ppmqvga` | netpbm image tool |
 | `ppmrelief` | netpbm image tool |
 | `ppmshift` | netpbm image tool |
@@ -1076,7 +1076,7 @@
 | `pbmtozinc` | PBM (bitmap) to zinc |
 | `pgmtofs` | PGM (greyscale) to Usenix FaceSaver |
 | `pgmtolispm` | PGM (greyscale) to Lisp machine |
-| `pgmtopbm` | PGM (greyscale) to PBM (bitmap) |
+| `pgmtopbm` | PGM (greyscale) to PBM (bitmap)<br>**How:** WITHOUT -threshold IT IS NOT REPRODUCIBLE: its dither differs every run, so any assertion on a length or a checksum downstream of it flaps. `pgmtopbm -threshold' when you need the same answer twice. |
 | `pgmtoppm` | PGM (greyscale) to PPM (colour) |
 | `pnmtoddif` | PNM to ddif |
 | `pnmtofits` | PNM to FITS |
@@ -1437,7 +1437,7 @@
 | `combine` | &#9733; interleave two files BYTE BY BYTE, one supplying the even bytes and the other the odd -- how a 16-bit EPROM image is put back together from two 8-bit halves.  F.R.Schmitt, 1989.  Clarified 2026-08-29<br>`Syntax: combine [<file1>] [<file2>] [<outfile>] [<opt>]` |
 | `config` | report this machine's C type properties as #defines -- char, short, int, long, pointer and float all come out; it then aborts where `double' begins, because that needs a 68881 or Microware's fpu.  See DOC/README-BUSERR |
 | `cpu` | &#9733; CPU speed test -- draws its bar chart and its answer (156 MHz, which is the emulator), then traps on vector $07 and takes the session down with it |
-| `demerge` | split a merged file back into its parts<br>`Syntax:   demerge <path>` |
+| `demerge` | split a merged file back into its parts<br>**How:** OS-9's `merge' is concatenation and there is no `merge' binary here, so `cat a b > c' makes the file demerge takes apart. There is no `od' either -- `dump' is the hex dump. |
 | `demo` | egetopt option-parsing demonstration |
 | `deton` | &#9733; NOT a detab: `deton [seconds]' demonstrates using an alarm to TIME OUT an I/O read.  `detab' and `expand' are what convert tabs.  Corrected 2026-08-29<br>`syntax: deton [seconds]` |
 | `devprc` | show which device belongs to which process.  REBUILT HERE: the archived module has a bad CRC and a corrupt initialised- data descriptor, and does not load.  -h works; -a stops at F$GPrDBT (0x1f), the get-process-descriptor-block-table call, with a bus error -- os9exec answers it without a real table. `top' stops in the same place, after printing its heading. Measured 2026-09-02 |
