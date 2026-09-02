@@ -1,0 +1,35 @@
+# untested8 -- a backslash cannot be typed at this shell: bash's echo eats
+# `\c' whatever the quoting, so `\citation' arrives as `itation'.  `pbyte'
+# patches the byte back, which is what it is for.
+#
+# And uuencode with one argument.
+
+family  untested8
+
+setup   export TERM=vt100
+setup   W=/dd/tmp/UT8
+setup   /dd/CMDS/rm -f $W/* > /nil 2>/nil
+setup   /dd/CMDS/mkdir -p $W > /nil 2>/nil
+
+drive   an-aux-file-with-real-backslashes
+run     echo "Xcitation{knuth}" > $W/j.aux
+run     echo "Xbibdata{refs}" >> $W/j.aux
+run     echo "Xbibstyle{plain}" >> $W/j.aux
+run     /dd/CMDS/wc -c $W/j.aux
+run     /dd/CMDS/pbyte $W/j.aux 0 5c
+run     /dd/CMDS/pbyte $W/j.aux 11 5c
+run     /dd/CMDS/pbyte $W/j.aux 20 5c
+run     /dd/CMDS/cat $W/j.aux
+run     echo "--- end aux"
+
+drive   bibtex-on-it
+run     echo "@book{knuth, author={D. E. Knuth}, title={The TeXbook}, year=1984}" > $W/refs.bib
+run     echo "j" > $W/b.in
+run     /dd/CMDS/ksh -c "cd $W; /dd/CMDS/TEXCMDS/bibtex < b.in"
+run     /dd/CMDS/ls -l $W
+run     echo "--- end bibtex"
+
+drive   uuencode-with-one-argument
+run     /dd/CMDS/uuencode /dd/SYS/motd > $W/u.uu 2>&1
+run     /dd/CMDS/head -n 3 $W/u.uu
+run     echo "--- end"

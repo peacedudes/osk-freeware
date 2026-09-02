@@ -267,7 +267,7 @@
 | | |
 |---|---|
 | `afm2tfm` | Adobe font metrics to TeX font metrics<br>`Usage: afm2tfm foo[.afm] [-O] [-v\|-V bar[.vpl]]` |
-| `bibtex` | BibTeX -- bibliography formatter |
+| `bibtex` | BibTeX -- bibliography formatter, and it WORKS.  It reads the job name from STANDARD INPUT (`Please type input file name (no extension)--' is a prompt, not silence), and the .bst styles are in SYS/TEX/INPUTS -- plain, unsrt, abbrv and alpha -- not in SYS/TEX/BIB, which holds a read.me |
 | `dvips` | DVI to PostScript -- pair it with gs33<br>**How:** Does not work here: "Couldn't find header file tex.pro", and no tex.pro is on this disk. Use `dvialw', which also writes PostScript. |
 | `dvitype` | show what is inside a .dvi file, as text<br>**How:** Shows what is inside a .dvi file as readable text. `dvitype <file>.dvi', then it asks for an output level -- 4 is a complete listing, 0 errors only. |
 | `gftopk` | MetaFont generic font to packed font<br>`Usage: gftopk [-v] <gf file> [pk file].` |
@@ -296,7 +296,7 @@
 |---|---|
 | `ape` | writes GIBBERISH in the style of whatever it is given -- a travesty generator, not a text filter.  `travesty' and `newsgen' are the others of its kind here.  Its options are `-b' (how much source to read) and `-l' (pattern length). Clarified 2026-08-29; rebuilt trap-free 2026-08-31, having produced nothing for a real file before that<br>**How:** A travesty generator, not a filter: `-b' is how much source to read and `-l' the pattern length. Feed it VARIED text -- one word repeated makes it generate without end, because every position matches every other. |
 | `autolf` | &#9733; Mike Tozer's line-ending converter, 1995, and THE ONE THAT WORKS: it turns CR into CRLF or LF and back, expands tabs, and handles ^Z.  Use it as a FILTER -- `autolf -c -C -L < in > out' makes DOS text out of OS-9 text, 40 bytes in and 41 out with 0D 0A at the end.  Given a FILENAME it converts in place through a temporary and then cannot rename it back -- this C library has no rename(), the same wall zip and arc hit.  `-H' explains the conversions.  It is what `todos' and `toos9' were supposed to be.  Measured 2026-08-29<br>`Usage:   autolf [<opts>] {<file names> [<opts>]}` |
-| `casefix` | normalise letter case in a text file |
+| `casefix` | normalise letter case -- A FILTER, and it reads STANDARD INPUT.  Given a file as an argument it says nothing at all, which is how it was recorded as broken twice. `casefix < file' sentence-cases it.  Measured 2026-09-02 |
 | `cut` | cut selected fields from each line |
 | `cuts` | &#9733; Coco Usenet Transfer Utility<br>`Usage: cuts <-d> [-o name] <file>...` |
 | `detab` | &#9733; tabs to spaces<br>`Usage: detab [-tn] [infile] or [<infile]` |
@@ -725,7 +725,7 @@
 | `toos9` | &#9733; DOS to OS-9 line endings -- the same, and the same answer: `autolf -l -C' converts the other way DO NOT RELY ON THESE TWO.  Measured 2026-08-27: both are NO-OPS.  Each takes a FILENAME (not a pipe) and rewrites it in place through a `todos.$$$.N' temporary, and the file that comes out is byte-identical to the one that went in -- same length, same md5 -- on CR-only OS-9 text, which is exactly what todos says it converts.  A real DOS conversion must ADD a linefeed per line and cannot leave the length alone.  Tested on /dd/SYS/termcap (963 bytes) and DOC/README-CIO (3886); neither moved. Use `flip' host-side, or `tr', until this is understood. tools/datatests/encoding.cases keeps the failing case. |
 | `uudecode` | &#9733; uudecode<br>`USAGE: uudecode [infile]` |
 | `uuencode` | &#9733; uuencode.  ITS OWN USAGE LINE IS WRONG: it prints `uuencode >outfile [infile] name' and then fails with two arguments.  Give it ONE -- the input file -- and redirect: `uuencode myfile > myfile.uu'.  Measured 2026-08-27<br>`USAGE: uuencode >outfile [infile] name` |
-| `uuexpand` | expand uuencoded text<br>`Usage: uuexpand [opts]` |
+| `uuexpand` | NOT a uudecoder, whatever this line said until 2026-09-02: its own usage is `uuexpand [opts] / or: uuunexpand [opts]' with -8 and -16 for byte portability. `uudecode' is what undoes `uuencode', and it is here<br>`Usage: uuexpand [opts]` |
 
 </details>
 
@@ -1497,7 +1497,7 @@
 | `vlen` | &#9733; a VARIABLE-LENGTH RECORD demonstration, not a reporting tool: it ignores whatever you give it, creates a filesystem of its own, adds a hundred records of varying length and prints the minimum, the maximum and the mapper entries as it goes.  `isam' is the other demonstration of its kind here.  Corrected 2026-08-29.  IT LEAVES ITS STORE BEHIND, in the DATA directory, as `test.mp' and `test.st' -- run it twice and the second run answers `Filesystem already exists.' and adds nothing.  Delete those two to run it again.  Measured 2026-09-01<br>**How:** It leaves its store behind, in the DATA directory, as `test.mp' and `test.st'. Run it twice and the second run says `Filesystem already exists.' and adds nothing; delete those two to run it again. |
 | `what` | Not the SCCS `what' -- it does not read a binary at all.  It prints `What's where in the GEPARD:' and a table of I/O address, reference byte and card name: an inventory of the expansion cards in a GEPARD, the German 68k machine much of the EFFO material was written on.  The table is empty here, there being no GEPARD.  It ignores its arguments.  Added to this index 2026-08-30, having never been in it; the first entry written for it guessed SCCS from the name and was wrong within the hour<br>**How:** NOT the SCCS `what`. It prints "What's where in the GEPARD:" and a table of expansion cards -- an inventory tool for the GEPARD, the German 68k machine. Empty here, there being no GEPARD, and it ignores its arguments. Measured 2026-08-30. |
 | `xlharc` | extract LHarc archives<br>`Usage: xlharc {axevlufdmctp}[qnftv] archive_file [files or directories...]` |
-| `yagi` | Yagi antenna design calculator |
+| `yagi` | Yagi antenna design calculator, to DL6WU's method.  It asks FIVE questions on standard input -- frequency, element count, boom diameter, insulated from the boom Y/N, and a tubing size off its own list -- and prints element lengths and spacings.  Answer four and it loops on the fifth |
 | `ynad` | &#9733; YNAD -- Yet Another Name & Address program.  A contact database, not a yes/no dialogue.  Corrected 2026-08-28 |
 
 **Vendor demos**

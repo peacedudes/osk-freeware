@@ -77,3 +77,51 @@ expect  /dd/CMDS/GAMES/bincheckr
 expect  /dd/CMDS/GAMES/mkdict
 expect  /dd/CMDS/GAMES/mkindex
 expect  /dd/CMDS/NEWS/byteflip
+
+case    casefix-normalises-sentence-case-on-STANDARD-INPUT
+# Recorded as silent for two sweeps because it was handed a FILE.  It is a
+# filter: `hELLo THERE. this IS a TEST.' comes back sentence-cased.
+run     echo "hELLo THERE. this IS a TEST." > $W/case.txt
+run     /dd/CMDS/casefix < $W/case.txt
+expect  Hello there. This is a test.
+
+case    uuencode-takes-ONE-argument-and-uuexpand-is-not-its-inverse
+# `USAGE: uuencode >outfile [infile] name' reads as though it wants two, and
+# with two it prints that line and stops.  One argument -- the file -- works.
+# `uuexpand' is NOT a uudecoder whatever DOC/INDEX said: its own usage is
+# `uuexpand [opts] / or: uuunexpand [opts]' with -8 and -16 for byte
+# portability.  `uudecode' is the inverse, and it is on the disk.
+run     /dd/CMDS/uuencode /dd/SYS/motd
+run     /dd/CMDS/uuencode /dd/SYS/motd motd.out
+expect  begin 644 /dd/SYS/motd
+expect  USAGE: uuencode >outfile [infile] name
+
+case    bibtex-formats-a-bibliography
+# It reads the job name from STANDARD INPUT -- `Please type input file name
+# (no extension)--' is a prompt, not silence -- and SYS/TEX/INPUTS carries
+# plain, unsrt, abbrv and alpha .bst, which SYS/TEX/BIB (holding one read.me)
+# suggests it does not.
+#
+# A BACKSLASH CANNOT BE TYPED AT THIS SHELL.  bash's echo eats `\c' whatever
+# the quoting, so `\citation' arrives as `itation' and bibtex correctly
+# reports finding no commands.  `pbyte <file> <hex offset> 5c' puts them
+# back, which is what pbyte is for.
+run     echo "Xcitation{knuth}" > $W/j.aux
+run     echo "Xbibdata{refs}" >> $W/j.aux
+run     echo "Xbibstyle{plain}" >> $W/j.aux
+run     /dd/CMDS/pbyte $W/j.aux 0 5c
+run     /dd/CMDS/pbyte $W/j.aux 11 5c
+run     /dd/CMDS/pbyte $W/j.aux 20 5c
+run     /dd/CMDS/cat $W/j.aux
+run     echo "@book{knuth, author={D. E. Knuth}, title={The TeXbook}, year=1984}" > $W/refs.bib
+run     echo "j" > $W/b.in
+run     /dd/CMDS/ksh -c "cd $W; /dd/CMDS/TEXCMDS/bibtex < b.in"
+run     /dd/CMDS/cat $W/j.bbl
+expect  \citation{knuth}
+expect  This is BibTeX, C Version 0.99c
+expect  The style file: plain.bst
+expect  Database file #1: refs.bib
+expect  Warning--empty publisher in knuth
+expect  D.~E. Knuth.
+expect  {\em The TeXbook}.
+absent  I found no

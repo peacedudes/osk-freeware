@@ -1,0 +1,29 @@
+# untested7 -- the backslashes were eaten by bash's echo, not by bibtex, and
+# uuencode's argument order needs settling.
+
+family  untested7
+
+setup   export TERM=vt100
+setup   W=/dd/tmp/UT7
+setup   /dd/CMDS/rm -f $W/* > /nil 2>/nil
+setup   /dd/CMDS/mkdir -p $W > /nil 2>/nil
+
+drive   bibtex-with-the-backslashes-intact
+run     echo '\citation{knuth}' > $W/j.aux
+run     echo '\bibdata{refs}' >> $W/j.aux
+run     echo '\bibstyle{plain}' >> $W/j.aux
+run     /dd/CMDS/cat $W/j.aux
+run     echo "@book{knuth, author={D. E. Knuth}, title={The TeXbook}, year=1984}" > $W/refs.bib
+run     echo "j" > $W/b.in
+run     /dd/CMDS/ksh -c "cd $W; /dd/CMDS/TEXCMDS/bibtex < b.in"
+run     /dd/CMDS/cat $W/j.blg
+run     echo "--- end bibtex"
+
+drive   uuencode-argument-order
+run     /dd/CMDS/uuencode /dd/SYS/motd motd.out
+run     echo "--- one"
+run     /dd/CMDS/uuencode motd.out
+run     echo "--- two"
+run     /dd/CMDS/ksh -c "cd /dd/SYS; /dd/CMDS/uuencode motd motd.out" > $W/u.uu 2>&1
+run     /dd/CMDS/head -n 3 $W/u.uu
+run     echo "--- end"
