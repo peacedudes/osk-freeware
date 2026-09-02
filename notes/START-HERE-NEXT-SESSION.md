@@ -15,15 +15,15 @@ number typed here -- and `osk-freeware.dd` current.
 
 | | 2026-08-31 evening | now |
 |---|---|---|
-| `datatest` cases | 423 | **695** |
-| `datatest` families | 24 | **53** |
-| `tools/drives` sheets | 41 | **103** |
+| `datatest` cases | 423 | **697**, 3 deliberate failures |
+| `datatest` families | 24 | **54** |
+| `tools/drives` sheets | 41 | **98** |
 | `check_disk.py` checks | 17 | **20**, and **19 provably fail on demand** |
 | Star grid (programs needing `cio`) | 354 | **349** |
 | Gallery cards flagged as help- or error-only | 22 | **0 of 409** |
 | Cards excepted BY NAME in `audit_cards.py` | 1 | **7**, each with a measured reason |
 | Programs with NEITHER a test nor a card | 42 | **1** (`cron`, a daemon) |
-| **Programs under no test at all** | 209 | **45** |
+| **Programs under no test at all** | 209 | **46** |
 
 ### The pattern that paid best: read the disk's own documentation first
 
@@ -49,7 +49,7 @@ looked:
 
 ### What to do next
 
-**Work from `tools/worklist.py --programs --no-test`.** 45 left as of
+**Work from `tools/worklist.py --programs --no-test`.** 46 left as of
 2026-09-02, and they divide into three kinds, so decide which one you have
 before spending time on it:
 
