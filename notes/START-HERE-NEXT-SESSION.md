@@ -14,12 +14,35 @@ Branch `release-pass-2026-08-21`, never pushed. Tree clean, all seventeen
 
 | | 2026-08-31 evening | now |
 |---|---|---|
-| `datatest` cases | 423 | **633** |
-| `datatest` families | 24 | **44** |
-| `tools/drives` sheets | 41 | **72** |
+| `datatest` cases | 423 | **661** |
+| `datatest` families | 24 | **48** |
+| `tools/drives` sheets | 41 | **79** |
+| `check_disk.py` checks | 17 | **20**, and 14 provably fail on demand |
 | Star grid (programs needing `cio`) | 354 | **349** |
-| Gallery cards flagged as help- or error-only | 22 | **17** |
-| **Programs under no test at all** | 209 | **75** |
+| Gallery cards flagged as help- or error-only | 22 | **9** |
+| **Programs under no test at all** | 209 | **58** |
+
+### The pattern that paid best: read the disk's own documentation first
+
+Four of the five programs still on the "silent for every invocation" list on
+2026-09-01 were explained by a file already on the disk, and nobody had
+looked:
+
+- `DOC/README-RUNNING` says `lnk.org`, `for`, `creadoc` and `biory` call
+  `F$Link` for `os9lib`, get `E_MNF` and exit printing nothing. **`load
+  /dd/CMDS/os9lib` and they work** -- `lnk.org` prints its command line and
+  `biory` prompts in German.
+- `DOC/macsave/macsave.1` says macsave "reads standard input and silently
+  writes the file(s) it contains". Its silence is CORRECT. `macbin` makes the
+  MacBinary it wants, and the pair round-trips.
+- `DOC/elvrec/elvrec.doc` says a bare `elvrec` lists what is recoverable --
+  so its silence means "nothing", and it reads `/usr/preserve/Index`, which
+  OS-9 cannot have because a leading `/name` is a DEVICE.
+- `DOC/STATUS` already recorded that `mkdict` takes a bus error on its own
+  word list.
+
+**`load` is now the answer FOUR times over** -- `readmsg` for printmail,
+`vmod_trap` for rxmod, `Graph` for wgen, `os9lib` for the Fortran set.
 
 ### What to do next
 
