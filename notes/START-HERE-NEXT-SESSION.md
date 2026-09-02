@@ -128,6 +128,39 @@ counted as uncarded. The 421/97/42 sequence was that bug shrinking, not the
 work. Fixed 2026-09-01; `carded()` now means "a card runs it by name", as
 `gen_screens` already did. **The backlog to work from is `--no-test`: 209 then, 48 now.**
 
+### 2026-09-02: an assertion about the EMULATOR is an assertion about a moving target
+
+**os9exec was rebuilt under us mid-session** -- 04:20, `Core: report V4.10,
+the work since the v4.0.0 tag` -- and began reporting **V4.10** where it had
+reported V4.0. `sysmon` compares that number against what it was built for,
+had been refusing outright (`OS9/68k V4.0 is too old for SYSMON V6.1`), and
+now STARTS. A `datatest` case asserting the refusal failed for the best
+possible reason.
+
+It cannot be a case in the new state either: sysmon asks about
+`/dd/sys/nodedef`, times out, draws its whole Process Monitor, and takes a
+BUS ERROR at `F$GPrDsc` -- the same os9exec gap `devprc -a` and `top` meet at
+`F$GPrDBT`. So it went to its card, and its `DOC/INDEX` entry was corrected.
+
+**That was the only assertion about the emulator's own version anywhere here.
+Do not write another.** `tools/datatests/misc8.cases` carries the reasoning
+where the case used to be.
+
+Two things came out of it worth keeping:
+
+- **`tools/ansiscreen.py` did not know the DEC line-drawing character set.**
+  `ESC ( 0` was skipped and the letters printed as text, so sysmon's process
+  table rendered as forty lines of `(0x       (0x`. It is mapped to `+ - |`
+  now -- ASCII, not the Unicode box characters, because nothing here may
+  carry a byte over 0x7f. sysmon is the only program on the disk that had
+  ever got far enough to use it, which is why the gap survived this long.
+- **`absent <n> <path>` against a `wc -l` is a substring test.** The `ctags`
+  case read `absent 1 /dd/tags` and passed while `about.c` had ten functions;
+  the day it had ELEVEN, "11 /dd/tags" contained "1 /dd/tags" and it failed.
+  Assert the NAMES ctags found, not the count. This is the second time this
+  exact shape has cost time -- `40` containing `0` was the first, a day
+  earlier.
+
 ### 2026-09-02: METAFONT, and the last thin card
 
 **`SYS/TEX/MFBASES` held its Makefile and nothing else**, so `virmf` answered
