@@ -33,13 +33,19 @@ expect  as the one specified in the control file.
 
 case    newshist-ignores-df-and-reads-h0-lib-news-history
 # One of the two `--' entries under newshist in DOC/DEPENDS.  /h0 IS this
-# disk, so the path is makeable -- and until it exists newshist cannot get
-# as far as saying anything about the id it was asked for.
+# disk, so the path is makeable.
+#
+# ONLY THE PATH IS ASSERTED, not the wording around it, because the wording
+# depends on whether /dd/lib/news exists as a DIRECTORY: absent, newshist
+# says `can't open ... (file not found)'; present but empty, `database files
+# ... incomprehensible or unavailable'.  The case passed alone and failed in
+# `--all' on exactly that difference, since the family before it had left
+# the directory behind.
 run     /dd/CMDS/rm -f /dd/lib/news/history > /nil 2>/nil
 run     /dd/CMDS/rm -f /dd/lib/news/history.dir > /nil 2>/nil
 run     /dd/CMDS/rm -f /dd/lib/news/history.pag > /nil 2>/nil
 run     /dd/CMDS/NEWS/newshist -df $W/history "<one@site.uucp>"
-expect  database files for `/h0/lib/news/history' incomprehensible or unavailable
+expect  /h0/lib/news/history
 expect  no history entry for <one@site.uucp>
 absent  /dd/tmp/FLC/history
 
