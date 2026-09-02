@@ -3,17 +3,27 @@
 # own -- where they do, the screen says so.
 
 shot    about
+size    30 80
 cap     The collection's own guide: `about hack' answers what a program is,
-cap     where it came from, what it opens and whether its source survived.
+cap     where it came from, what it opens and whether its source survived --
+cap     out of the four files the web catalogue is built from, read at the
+cap     moment you ask, so it cannot drift from what shipped.
 run     about hack
-wait    4
+wait    5
 
 shot    about-tar
 for     about
-cap     about answers for any program on the disk, out of the same four
-cap     files the web catalogue is built from.
-run     about elvis
-wait    5
+size    36 80
+cap     about answers for any program on the disk.  `virmf' is the one that
+cap     shows both of the fixes made on 2026-09-02: it now prints the
+cap     `how' line -- the measured invocation, which it read for the
+cap     category and then threw away -- and it reports the UPPERCASE paths
+cap     these TeX binaries carry as `here' rather than `not here'.  It used
+cap     to say twenty-one of Metafont's own directories were missing,
+cap     because its probe was built only for a lowercase `/dd/'.
+cap     DOC/DEPENDS had them right the whole time.
+run     about virmf
+wait    6
 
 shot    aprocs
 cap     A process monitor -- and it cannot run here.  It reads the system
