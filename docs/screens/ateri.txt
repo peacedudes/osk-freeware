@@ -1,14 +1,23 @@
-$ ppmtopi1 /dd/tmp/base.ppm > /dd/tmp/t.pi1
-ppmtopi1: /dd/tmp/base.ppm -
+$ ppmpat -gingham3 48 24 > /dd/tmp/at.ppm
+$ pbmmake -g 48 24 > /dd/tmp/at.pbm
+$ ppmquant 16 /dd/tmp/at.ppm > /dd/tmp/q16.ppm
+ppmquant: making histogram...
+ppmquant: 6 colors found
+ppmquant: choosing 16 colors...
+ppmquant: mapping image to new colors...
+$ ppmtopi1 /dd/tmp/q16.ppm > /dd/tmp/t.pi1
+ppmtopi1: computing colormap...
+ppmtopi1: 6 colors found
+ppmtopi1: maxval is not 7 - automatically rescaling colors
 $ pi1toppm /dd/tmp/t.pi1 | pnmfile
 stdin:  PPM raw, 320 by 200  maxval 7
-$ pbmtopi3 /dd/tmp/base.pbm | pi3topbm | pnmfile
-pbmtopi3: /dd/tmp/base.pbm -
-pi3topbm: EOF / read error
-pnmfile: EOF / read error reading magic number
-$ picttoppm < /nil
+$ ppmtopict /dd/tmp/q16.ppm > /dd/tmp/t.pict
+ppmtopict: computing colormap...
+ppmtopict: 6 colors found
+$ picttoppm /dd/tmp/t.pict | pnmfile
 picttoppm: warning: can't load font directory 'fontdir'
 
-picttoppm: EOF / read error while Reading 512 byte header
-$ ppmtopict < /nil
-ppmtopict: EOF / read error reading magic number
+stdin:  PPM raw, 48 by 24  maxval 255
+$ pbmtopi3 /dd/tmp/at.pbm > /dd/tmp/t.pi3
+$ pi3topbm /dd/tmp/t.pi3 | pnmfile
+stdin:  PBM raw, 640 by 400

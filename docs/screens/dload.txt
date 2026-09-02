@@ -1,6 +1,10 @@
 $ dload -?
 Syntax: dload <filename>
 Function: loads datafile into datamodule
+$ dload /dd/SYS/motd
+size of file is 40 bytes
+datamodule created at address $   a4ff4
+done
 $ /dd/CMDS/break -?
 $ sbreak -?
 Syntax:   sbreak [/device]

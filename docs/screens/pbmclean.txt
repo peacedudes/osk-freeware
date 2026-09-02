@@ -1,6 +1,22 @@
-$ pgmnoise 152 88 | pgmtopbm > /dd/tmp/n.pbm
+$ pgmnoise 96 48 | pgmtopbm -threshold > /dd/tmp/n.pbm
 $ pbmclean /dd/tmp/n.pbm | pbmtoascii -2x4
-$ pbmmask /dd/tmp/n.pbm | pnmfile<c?$$?Zd|$:/:?'|)$:%/&?<?|:\`T\$:$/$k$:
+SP??':Ho:\:&dS\?r/;kH/*:)?"R>"D~:H+:?$&?:):&<+"
+]:\;~-\?`'M?S$??>\:d[?*?o:/:_|d^`<?/?+~$?c?\?\Hq
+"?;Hb>$??/??$THRd`$q<\?&R>?|R&`>$|ii$[&//&)\H&\/
+i?:LdF-\:!T?\:\??$/&\?$:?&H!>$D6|-7#~|:~{S|S$?:
+H?:-b$\:~:+?$!?\H$J?i$M?o:??d\>:|D>&.|./S#\bH|:S
+$/>|.`^$>$~$H:*:\_$/H|T/?&?T:?H&>\#H9k?k?~?\ZT$H
+:$?b>?\&?$,?`<d::\S:\,&Dd|:&?M`bT$b$Hb:./?Hv+SSd
+?"!-/?\``&&Ld??H: D7\H:&:i$-?&$?:i|}",$?'\\|&&/|
+.:"|S?'-:1&<\&i$|$+<$?<\&:&$Sv\|:>|6\<M&\&/:\>}H
+>9|:/?./:|}^>\$|S1?&*?|?\?'|?'S?|?L$? H}&F$H??b\
+?`?//,$+%$.,=H:)&&::b:?<SM|?:P~?/!}>b&<&R<1D:'?\
+/>:>)$$c!-H|$?&?R&_*/L$?-\/~?|\$*9\?&#&/?$?L1|HH
+$ pbmmask /dd/tmp/n.pbm | pnmfile
+stdin:  PBM raw, 96 by 48
 $ pbmtopgm 3 3 /dd/tmp/n.pbm | pnmfile
+stdin:  PGM raw, 96 by 48  maxval 9
 $ pnmnoraw /dd/tmp/n.pbm | head -n 3
-$ 1010000111101010101100101001100001011001101101100010100101110111
+P1
+96 48
+1111001110010100001000110011100100000110110111011010111110111000011100

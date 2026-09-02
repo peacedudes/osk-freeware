@@ -44,8 +44,14 @@ cap     24-bit PPM outright -- `ppmtopi1: <file> -' and nothing written.
 cap     `ppmquant 16' first, and both work.  Until 2026-09-01 this card
 cap     showed five error lines for that reason and none of it was the
 cap     converters' fault.
-run     ppmquant 16 /dd/tmp/base.ppm > /dd/tmp/q16.ppm
-wait    12
+cap     It makes its own source image rather than reading `setup-image's,
+cap     so that re-shooting this card alone with --only still works.
+run     ppmpat -gingham3 48 24 > /dd/tmp/at.ppm
+wait    8
+run     pbmmake -g 48 24 > /dd/tmp/at.pbm
+wait    8
+run     ppmquant 16 /dd/tmp/at.ppm > /dd/tmp/q16.ppm
+wait    14
 run     ppmtopi1 /dd/tmp/q16.ppm > /dd/tmp/t.pi1
 wait    8
 run     pi1toppm /dd/tmp/t.pi1 | pnmfile
@@ -54,7 +60,7 @@ run     ppmtopict /dd/tmp/q16.ppm > /dd/tmp/t.pict
 wait    8
 run     picttoppm /dd/tmp/t.pict | pnmfile
 wait    10
-run     pbmtopi3 /dd/tmp/base.pbm > /dd/tmp/t.pi3
+run     pbmtopi3 /dd/tmp/at.pbm > /dd/tmp/t.pi3
 wait    8
 run     pi3topbm /dd/tmp/t.pi3 | pnmfile
 wait    10
@@ -787,15 +793,17 @@ cap     one this disk just wrote, and the round trip back.
 cap     Both `ppmtoxpm' and `ppmtopuzz' are PALETTED and refuse a 24-bit
 cap     PPM, writing nothing; `ppmquant 16' first is what they want.  This
 cap     card showed three error lines until 2026-09-01 for want of that.
-run     ppmquant 16 /dd/tmp/base.ppm > /dd/tmp/q16.ppm
-wait    12
-run     ppmtoxpm /dd/tmp/q16.ppm > /dd/tmp/t.xpm
+run     ppmpat -gingham3 48 24 > /dd/tmp/xp.ppm
+wait    8
+run     ppmquant 16 /dd/tmp/xp.ppm > /dd/tmp/qx.ppm
+wait    14
+run     ppmtoxpm /dd/tmp/qx.ppm > /dd/tmp/t.xpm
 wait    8
 run     head -n 10 /dd/tmp/t.xpm
 wait    5
 run     xpmtoppm /dd/tmp/t.xpm | pnmfile
 wait    8
-run     ppmtopuzz /dd/tmp/q16.ppm > /dd/tmp/t.puzz
+run     ppmtopuzz /dd/tmp/qx.ppm > /dd/tmp/t.puzz
 wait    8
 run     wc -c /dd/tmp/t.puzz
 wait    6

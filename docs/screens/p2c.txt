@@ -1,2 +1,23 @@
-$ p2c -?
-usage: p2c [options] file [modulename] [-h file.h] [-o file.c]
+$ mkdir -p /dd/tmp/P2C
+$ echo "program hello; begin writeln('hi') end." > /dd/tmp/P2C/h.pas
+$ cat /dd/tmp/P2C/h.pas
+program hello; begin writeln('hi') end.
+$ ksh -c "cd /dd/tmp/P2C; p2c h.pas" 2>/nil
+hello
+h.pas, line 1: Warning: Symbol 'WRITELN' is not defined [221]
+
+$ ls /dd/tmp/P2C
+h.c    h.pas
+$ head -n 12 /dd/tmp/P2C/h.c
+/* Output from p2c, the Pascal-to-C translator */
+/* From input file "h.pas" */
+
+
+#include <p2c/p2c.h>
+
+
+main(argc, argv)
+int argc;
+Char *argv[];
+{
+  PASCAL_MAIN(argc, argv);

@@ -3,4 +3,4 @@ Reading Configuration file...
 
 Unable to open configuration file /dd/atprc or .atprc !
 $ **** csl traphandler mismatch ****
-$ # /t3 is /dev/ttys013   (attach with: screen /dev/ttys013)
+$ # /t3 is /dev/ttys010   (attach with: screen /dev/ttys010)

@@ -1,8 +1,11 @@
+$ rtf
+$ load /dd/CMDS/os9lib
+$ rtf /dd/SRC/rtf/div.f
  RTF/68K Version 2.14 (19-May-1987)
  Total Errors   0   Warnings   0
  RTF normally completed
 $ ls -l /dd/SRC/rtf/div.a
--rw-------   1 0        0            1008 Aug 30 03:50 /dd/SRC/rtf/div.a
+-rw-------   1 0        0            1008 Sep  1 19:52 /dd/SRC/rtf/div.a
 $ /dd/CMDS/for /dd/SRC/rtf/div.f
 rtf /dd/SRC/rtf/div.f
  STOP: compilation aborted
@@ -11,12 +14,3 @@ $ biory < /nil
   Name Vorname (RETURN=Ende)  :
 $ lnk
 command: lnk file{,file} [-l68opts]
-$ lnk.org
-command: lnk file{,file} [-l68opts]
-$ creadoc /dd/SRC/rtf/div.f
-
-Process   Pid: 3, creadoc, edition 1
-    Exit code: E_PRCABT(228) Process Aborted
-  Directories: Current   - /dd
-               Execution - /dd/CMDS
-        Files: 00 fCons /term

@@ -1,5 +1,5 @@
 $ time sieve
 start
  100 sieves done
-'sieve' ticks(sys/usr tot): 0/1 1,  elapsed secs: 1
+'sieve' ticks(sys/usr tot): 0/1 1,  elapsed secs: 0
    fcalls/icalls: 5/6   bytes r/w: 0/25

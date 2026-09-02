@@ -29,7 +29,7 @@ why     macsave reads MacBinary on STANDARD INPUT and writes `.bin' files
 why     into the current directory, silently.  Give it what macbin made.
 run     /dd/CMDS/ls -l $W
 run     echo "--- feed the MacBinary to macsave:"
-run     /dd/CMDS/ksh -c "cd $W; /dd/CMDS/macsave < plain.txt.bin"
+run     /dd/CMDS/ksh -c "cd $W; /dd/CMDS/macsave < plain.txt.MAC"
 run     /dd/CMDS/ls -l $W
 run     echo "--- end macsave"
 
@@ -53,6 +53,8 @@ why     DOC/README-RUNNING: `creadoc', `biory' and `lnk.org' call F$Link for
 why     a module named `os9lib', get E_MNF and exit WITHOUT PRINTING
 why     ANYTHING -- which reads like three broken programs and is not.
 why     `CMDS/os9lib' is the RTF Fortran run-time library.  Load it.
+why     ONE PROGRAM PER STANZA: creadoc aborts once os9lib is resident and
+why     took biory and lnk.org with it the first time.
 run     /dd/CMDS/creadoc
 run     echo "--- that was creadoc with nothing loaded.  Now load os9lib:"
 run     /dd/CMDS/load /dd/CMDS/os9lib
@@ -61,9 +63,15 @@ run     echo "C@ a documentation comment" > $W/f.for
 run     echo "      PROGRAM MAIN" >> $W/f.for
 run     echo "      END" >> $W/f.for
 run     /dd/CMDS/creadoc $W/f.for
-run     echo "--- lnk.org:"
+run     echo "--- end creadoc-with-os9lib"
+
+drive   lnk-org-with-os9lib-loaded
+why     the linker half of the same set, on its own stanza.
+run     /dd/CMDS/load /dd/CMDS/os9lib
 run     /dd/CMDS/lnk.org
-run     echo "--- end fortran-set"
+run     echo "--- and `for', which README-RUNNING names beside it:"
+run     /dd/CMDS/for
+run     echo "--- end lnk-org"
 
 drive   biory-with-os9lib-loaded
 why     "biory prompts for a name and a birth date in German" once os9lib

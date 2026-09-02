@@ -3,4 +3,5 @@ pirsqrd
 phoenix
 seabass
 $ uulog
-uulog: unable to open '/DD/LOG/uulog'
+
+uuxqt  (Sep 1-19:31:18) ERROR--isuuxqtrunning() can't load 'procs'

@@ -1,23 +1,23 @@
-   1  Precipitation       Mist    Fair ( 50)  Sprinkle     Light         Rain -)
-   2          Clear      Clear    Fair ( 50)      None      Calm
-   3          Clear      Clear    Fair ( 50)      None      Calm
-   4          Clear      Clear    Fair ( 50)      None      Calm
+   1          Clear      Clear    Fair ( 50)      None      Calm         New Ye)
+   2          Clear      Clear  Chilly ( 30)      None     Light
+   3          Clear      Clear    Fair ( 55)      None      Calm
+   4          Clear      Clear    Fair ( 50)      None     Light
    5          Clear      Clear    Fair ( 50)      None      Calm
    6          Clear      Clear    Fair ( 50)      None      Calm         Twelftt
-   7          Clear      Clear    Fair ( 55)      None      Calm
+   7          Clear      Clear    Fair ( 50)      None      Calm
 $ rndname 6
-S'juvu
-Awaci
-Alijmyq
-Aboliyat
-Jujike
-Bohsul'c
+Egimoh
+Lajo
+Oyagasyc
+Iwuku'
+Gezur
+Iloba
 $ minnesota | head -n 8
                                                                   Snow
 Year   1    Weather        Sky   Temperature    Precip      Wind  Depth  Notes
 January
-   1  Precipitation  Heavy Fog    Cold ( 20)    Steady      Calm  90.1"  Snow -)
-   2  Precipitation       Mist    Cold ( 10)    Steady  Blustery 114.1"  Blizza,
-   3  Precipitation  Heavy Fog    Cold ( 20)    Steady      Calm 124.1"  Snow -,
-   4  Precipitation  Light Fog    Cold ( 10)    Steady      Calm 129.1"  Snow -,
-   5          Clear      Clear    Cold ( 10)      None     Light 129.1"
+   1  Precipitation     Cloudy    Cold ( 10)     Heavy     Light 215.5"  Snow -)
+   2  Precipitation       Mist    Cold (  0)  Sprinkle      Calm 215.6"  Snow -,
+   3  Precipitation       Mist    Cold ( 10)    Steady     Brisk 225.6"  Snow -,
+   4       Overcast       Mist    Cold ( 10)      None  Blustery 225.6"
+   5          Clear      Clear    Cold ( 10)      None     Brisk 225.6"

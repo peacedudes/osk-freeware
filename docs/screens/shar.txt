@@ -1,5 +1,5 @@
 $ ls -l /dd/readme
--rw-rw-rw-   1 0        0            6432 Aug  3 19:00 /dd/readme
+-rw-rw-rw-   1 0        0            6940 Aug  3 19:00 /dd/readme
 $ shar readme
 No read access for file: readme
 $ shar not-a-file-here | head -n 9

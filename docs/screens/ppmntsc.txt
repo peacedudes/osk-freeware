@@ -1,13 +1,13 @@
-$ ppmntsc 0.8 /dd/tmp/w.ppm | pnmfile
-ppmntsc: /dd/tmp/w.ppm -
-pnmfile: EOF / read error reading magic number
-$ ppmqvga /dd/tmp/w.ppm | pnmfile
-ppmqvga: /dd/tmp/w.ppm -
-pnmfile: EOF / read error reading magic number
-$ pnmtorast /dd/tmp/w.ppm > /dd/tmp/w.ras
-pnmtorast: /dd/tmp/w.ppm -
+$ ppmpat -madras 64 40 > /dd/tmp/n.ppm
+$ ppmntsc 0.8 /dd/tmp/n.ppm | pnmfile
+stdin:  PPM raw, 64 by 40  maxval 255
+$ ppmqvga /dd/tmp/n.ppm | pnmfile
+stdin:  PPM raw, 64 by 40  maxval 255
+$ pnmtorast /dd/tmp/n.ppm > /dd/tmp/w.ras
+pnmtorast: computing colormap...
+pnmtorast: 6 colors found
 $ rasttopnm /dd/tmp/w.ras | pnmfile
-rasttopnm: unable to read in rasterfile header
-pnmfile: EOF / read error reading magic number
+rasttopnm: writing PPM file
+stdin:  PPM raw, 64 by 40  maxval 255
 $ pnmtoddif < /nil
 pnmtoddif: EOF / read error reading magic number

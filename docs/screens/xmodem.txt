@@ -1,16 +1,15 @@
-XYDown:Can't open serial port. -- Error 240
-$ xyt
-Unable to determine MODEM port
-$ txmod
-TXMod Ed.1 Rv.2 - send Module via SCF to RXMod to link there
-Syntax: TXMod [<opts>] module(s) [<opts>]
-Options:
   -x       :  all modules in EXE dir
   -l[=]<dev> : use dev for xmission
               else StdIn/StdOut/StdErr
   -r       :  send RXMOD to other, show 2 sec responses
 $ rxmod
-can't install Vmod Trap handler
+
+Process   Pid: 3, rxmod, edition 4
+    Exit code: E_PRCABT(228) Process Aborted
+  Directories: Current   - /dd
+               Execution - /dd/CMDS
+        Files: 00 fCons /term
+
 $ xy -?
 General Usage:
    To send files:      XY <file1> <file2> <etc.>

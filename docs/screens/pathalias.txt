@@ -1,5 +1,9 @@
+$ pathalias -?
 usage: pathalias [-vciDfI] [-l localname] [-d deadlink] [-t tracelink] [-g edge]
+$ makedb -?
 makedb [-o dbmname] [-a] [file ...]
+$ dotilde -?
+
 ================= Tilde Help =================
  ~h, ~?       this help message
  ~m[c]        append message being replied to

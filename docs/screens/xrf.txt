@@ -7,10 +7,13 @@ total 3584
 -rw-rw-rw-   1 0        0             325 Aug  3 19:00 pas.xrf
 -rw-rw-rw-   1 0        0            1645 Aug  3 19:00 xrf.doc
 $ etags /dd/SRC/keep/keep.c
-No more memory !!!
-etags: virtual memory exhausted.
 $ head -n 6 TAGS
-head: TAGS: 000:216 file not found
+Mkeep   /dd/SRC/keep/keep.c     /^main(argc, argv)$/
+copy_file       /dd/SRC/keep/keep.c     /^static int copy_file(from, to, execut/
+crc_of  /dd/SRC/keep/keep.c     /^static unsigned long crc_of(path, sizep)$/
+depends_for     /dd/SRC/keep/keep.c     /^static void depends_for(prog, dirout,/
+drop_one        /dd/SRC/keep/keep.c     /^static void drop_one(prog)$/
+exists  /dd/SRC/keep/keep.c     /^static int exists(path)$/
 $ ref < /nil
 usage: ref [-t] [-c class] [-f file] tag
    -t        output tag info, instead of the function header

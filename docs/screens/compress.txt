@@ -1,3 +1,3 @@
 $ cat /dd/DOC/INDEX > /dd/tmp/index.txt
 $ compress -v /dd/tmp/index.txt
-/dd/tmp/index.txt: Compression: 50.79% -- replaced with /dd/tmp/index.txt.Z
+/dd/tmp/index.txt: Compression: 51.20% -- replaced with /dd/tmp/index.txt.Z

@@ -298,6 +298,6 @@ run     game
 wait    6
 run     checkgame
 wait    6
-run     bincheckr /dd/USR/src/chess/gnuchess.book
+run     bincheckr /dd/USR/src/chess/gnuchess.book 2>/nil | head -n 4
 wait    8
 

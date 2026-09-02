@@ -1,5 +1,5 @@
 $ uwho
 uwho: can't open /etc/utmp
 $ udate
-Sunday, August 30, 19126 - 2:22 PM
+Tuesday, September 1, 19126 - 7:31 PM
 $ input < /nil

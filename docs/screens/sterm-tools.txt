@@ -1,4 +1,3 @@
-General Usage:
    To send files:      K <file1> <file2> <etc.>
    To receive files:   K
 
@@ -15,7 +14,8 @@ progress and debug messages.  Equivalent to `unsetenv MODEM'.
 
 Based on "The Working Programmer's Guide to Serial Protocols"
 Copyright (C) 1995 Tim Kientzle and The Coriolis Group, Inc.
-$ General Usage:
+$ z -?
+General Usage:
    To send files:      Z <file1> <file2> <etc.>
    To receive files:   Z
 

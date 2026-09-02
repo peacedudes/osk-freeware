@@ -1,8 +1,8 @@
 $ frm
 tester has no mail.
 $ listalias
-Could not open user data file!
-Could not open system data file!
+home                 os9-freeware (This Collection)
+os9                  os9-freeware (The OS-9 Freeware Collection)
 $ checkalias root
 $ newmail -?
 newmail: illegal option -- ?

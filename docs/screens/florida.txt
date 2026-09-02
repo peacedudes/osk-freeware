@@ -2,21 +2,21 @@ $ florida | head -n 21
                                                                   Snow
 Year   1    Weather        Sky   Temperature    Precip      Wind  Depth  Notes
 January
-   1  Precipitation     Cloudy    Warm ( 65)    Shower      Calm         Storm )
-   2          Clear      Clear    Warm ( 70)      None     Light
-   3          Clear      Clear    Warm ( 65)      None      Calm
-   4          Clear      Clear    Warm ( 65)      None      Calm
-   5          Clear      Clear    Fair ( 60)      None      Calm
-   6          Clear      Clear    Warm ( 65)      None      Calm         Twelftt
-   7          Clear      Clear    Warm ( 65)      None      Calm
+   1          Clear      Clear    Fair ( 55)      None      Calm         New Ye)
+   2          Clear      Clear    Fair ( 45)      None      Calm
+   3          Clear      Clear     Hot ( 80)      None      Calm
+   4       Overcast       Mist    Warm ( 65)      None     Light
+   5          Clear      Clear    Warm ( 65)      None      Calm
+   6          Clear      Clear    Fair ( 55)      None      Calm         Twelftt
+   7          Clear      Clear    Fair ( 55)      None      Calm
    8          Clear      Clear    Warm ( 65)      None      Calm
-   9          Clear      Clear    Warm ( 70)      None      Calm
-  10          Clear      Clear    Warm ( 65)      None      Calm
+   9          Clear      Clear    Fair ( 50)      None      Calm
+  10          Clear      Clear    Fair ( 50)      None      Calm
   11          Clear      Clear    Warm ( 65)      None      Calm
-  12          Clear      Clear    Warm ( 75)      None      Calm
-  13          Clear      Clear    Warm ( 65)      None      Calm
+  12          Clear      Clear    Warm ( 65)      None      Calm
+  13          Clear      Clear    Fair ( 50)      None      Calm
   14          Clear      Clear    Warm ( 65)      None      Calm
   15          Clear      Clear    Warm ( 65)      None      Calm
   16          Clear      Clear    Warm ( 65)      None      Calm
-  17          Clear      Clear    Fair ( 45)      None      Calm
-  18          Clear      Clear    Fair ( 50)      None      Calm
+  17          Clear      Clear    Fair ( 50)      None      Calm
+  18          Clear      Clear    Warm ( 65)      None     Light

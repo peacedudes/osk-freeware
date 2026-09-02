@@ -1,13 +1,13 @@
-$ unsubscribe -?
-unsubscribe: unsubscribe from Usenet newsgroup(s)
+v2.1 (94Sep30) This is free software released under the GNU General Public
+License.  Please send suggestions/bug reports to:  bob@kc2wz.bubble.org
+$ unsubscribe: unsubscribe from Usenet newsgroup(s)
 
 usage: unsubscribe <newsgroup> [newsgroup...]
        if <newsgroup> is 'all', all newsgroups will be unsubscribed
 
 v2.1 (94Sep30) This is free software released under the GNU General Public
 License.  Please send suggestions/bug reports to:  bob@kc2wz.bubble.org
-$ expire -?
-expire: illegal option -- ?
+$ expire: illegal option -- ?
  expire        news article expire utility
 
      -t         test (don't actually delete articles)
@@ -20,8 +20,7 @@ expire: illegal option -- ?
 
 v2.1 (94Sep30) This is free software released under the GNU General Public
 License.  Please send suggestions/bug reports to:  bob@kc2wz.bubble.org
-$ uulog -?
-uulog: examine uucp or fileserver log files
+$ uulog: examine uucp or fileserver log files
 
 Usage: uulog [-s<sysname> -u<username> -d<days>] [-f]
 

@@ -1,2 +1,11 @@
+$ postprint < /nil
+/V 11 72 mul def /L 60 def
 $ game
 Usage: game file [start [end] ]
+$ checkgame
+Usage: game file [start [end] ]
+$ bincheckr /dd/USR/src/chess/gnuchess.book 2>/nil | head -n 4
+entrysize 16
+booksize 0
+bookpocket 0
+bookcount 0

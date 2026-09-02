@@ -1,18 +1,16 @@
-access list:
-symbolic names:
-comment leader:  "# "
-$ co /dd/tmp/rcs/note_v
-/dd/tmp/rcs/note_v  -->  note
-revision 1.1
-done
-$ rcsdiff /dd/tmp/rcs/note_v
 RCS file: /dd/tmp/rcs/note_v
 retrieving revision 1.1
-/dd/cmds/rcs/co -q -p1.1 /dd/tmp/rcs/note_v >-/dd/tmp/_RCSt1000003
-:  (E$FNA) This file was found but isn't accessible in the mode requested - che.
+-/dd/tmp/_RCSt1000005: cannot create
+diff -r1.1 note
+F$SetSys: unimplemented 03D8 (size=80000004)
+        ... the same line 4 times over
+/dd/CMDS/diff: /dd/tmp/_RCSt1000005: diff: Error 216
 
-rcsdiff error: co failed
-$ rcsident /dd/tmp/rcs/note_v
+RCS: cleaning up
+
+$ Error #000:002 (S_Abort) User abort (Cmd-'.')
+%1       7 Quit (2)             /dd/CMDS/diff /dd/tmp/_RCSt1000005 note
+rcsident /dd/tmp/rcs/note_v
 /dd/tmp/rcs/note_v:
 ident warning: no id keywords in /dd/tmp/rcs/note_v
 $ rcsmerge

@@ -195,17 +195,20 @@ cap     for itself -- `bdecode' and `c7decode' are the decoders,
 cap     `byteflip' swaps endianness, `dbz' and `newshist' are the history
 cap     database, `newslock' the lock the rest take.  Four of the six were
 cap     credited here and never run until 2026-08-30.
+cap     `byteflip' IS LAST AND SAYS NOTHING: it ends the emulator session,
+cap     so anything after it never ran -- which is why this card was blank
+cap     but for dbz's usage line until 2026-09-01.
 run     dbz
+wait    8
+run     newshist
+wait    8
+run     newslock a b
 wait    8
 run     bdecode
 wait    8
 run     c7decode
 wait    8
 run     byteflip
-wait    8
-run     newshist
-wait    8
-run     newslock
 wait    8
 
 shot    pathalias

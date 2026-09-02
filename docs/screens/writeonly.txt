@@ -1,6 +1,23 @@
-$ ppmquant 256 /dd/tmp/w.ppm > /dd/tmp/q.ppm
-$ ppmtosixel /dd/tmp/q.ppm | wcrs...
-$ ppmtomitsu /dd/tmp/q.ppm | wc..atically rescaling colors
-$ ppmtoicr /dd/tmp/q.ppm | wctputthe lookuptable-method
-$ ppmtouil /dd/tmp/q.ppm | wc. /dd/tmp/q.ppm ...
-ppmtouil: 243 colors foundap...
+ppmtomitsu: found 6 colors - using the lookuptable-method
+ppmtomitsu: rotating image for output
+      0      4   2666
+$ ppmtoicr /dd/tmp/q.ppm | wc
+ppmtoicr: computing colormap...
+ppmtoicr: 6 colors found
+ppmtoicr: creating window /dd/tmp/q.ppm ...
+ppmtoicr: downloading colormap for /dd/tmp/q.ppm ...
+ppmtoicr: sending picture data ...
+      0    967   7814
+$ ppmtouil /dd/tmp/q.ppm | wc
+ppmtouil: computing colormap...
+ppmtouil: 6 colors found
+     67    116   3429
+$ pbmmake -g 40 20 | pbmto4425 | wc
+     23      8    182
+$ pbmmake -g 40 20 | pbmtox10bm | head -n 6
+#define noname_width 40
+#define noname_height 20
+static short noname_bits[] = {
+ 0xaaaa,0xaaaa,0x00aa,0x5555,0x5555,0x0055,0xaaaa,0xaaaa,0x00aa,0x5555,0x5555,
+ 0x0055,0xaaaa,0xaaaa,0x00aa,0x5555,0x5555,0x0055,0xaaaa,0xaaaa,0x00aa,0x5555,
+ 0x5555,0x0055,0xaaaa,0xaaaa,0x00aa,0x5555,0x5555,0x0055,0xaaaa,0xaaaa,0x00aa,

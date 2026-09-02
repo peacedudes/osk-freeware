@@ -1,3 +1,5 @@
+$ uuclean -?
+
 uuclean: removed old UUCP files, rotate UUCP and FileServ log files
 Usage: uuclean [opts]
 
@@ -9,11 +11,14 @@ Opts:   -nX     Remove those files over X days old (default is 7)
 
 v2.1 (94Sep30) This is free software released under the GNU General Public
 License.  Please send suggestions/bug reports to:  bob@kc2wz.bubble.org
-$ Usage: uupoll [-g<grade>] system
-$ Syntax: enable [<opts>] <port> [<opts>]
+$ uupoll -?
+Usage: uupoll [-g<grade>] system
+$ /dd/CMDS/UUCP/enable -?
+Syntax: enable [<opts>] <port> [<opts>]
 Function: Turn ON MTSMon on <port>
 Options:
   -p  no prompt till signal
 
-$ Syntax: disable <port>
+$ /dd/CMDS/UUCP/disable -?
+Syntax: disable <port>
 Function: Turn OFF MTSMon on <port>

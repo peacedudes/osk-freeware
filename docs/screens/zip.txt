@@ -7,7 +7,7 @@ zip error: file not found
 zip error: Could not create output file (was replacing the original zip file)
 $ dir /dd/tmp/zt
 
-Directory of "/dd/tmp/zt" 04:56:24  08/28/126
+Directory of "/dd/tmp/zt" 19:20:18  09/01/126
 
 _Z000003        motd
 

@@ -1,0 +1,55 @@
+family  mac
+# The Macintosh pair and the RTF Fortran set -- five programs that every
+# sweep scored as SILENT, and the disk's own documentation says why for
+# all five.  Reading DOC before running would have saved the sweeps.
+
+setup   export TERM=vt100
+setup   export TERMCAP=/dd/SYS/termcap
+setup   W=/dd/tmp/MACC
+setup   /dd/CMDS/rm -f $W > /nil 2>/nil
+setup   /dd/CMDS/mkdir -p $W > /nil 2>/nil
+setup   /dd/CMDS/cp /dd/SYS/motd $W/plain.txt
+
+# macbin wraps an OS-9 file in a 128-byte MacBinary header and names the
+# result `.MAC'; macsave reads MacBinary FROM STANDARD INPUT and writes
+# what it finds as `.bin' in the current directory, SILENTLY -- which its
+# own manual page says and which is why it read as broken.
+# DOC/macbin/macbin.doc and DOC/macsave/macsave.1.
+case    macbin-wraps-a-file-and-macsave-unwraps-it-again
+run     /dd/CMDS/ksh -c "cd $W; /dd/CMDS/macbin plain.txt"
+run     /dd/CMDS/ksh -c "cd $W; /dd/CMDS/macsave < plain.txt.MAC"
+run     /dd/CMDS/wc -c $W/plain.txt $W/plain.txt.MAC $W/plain.txt.bin
+expect  40 /dd/tmp/MACC/plain.txt
+expect  256 /dd/tmp/MACC/plain.txt.MAC
+expect  256 /dd/tmp/MACC/plain.txt.bin
+
+# elvrec given a NAME says whether that name was preserved, which is more
+# than the silence a bare call gives. It reads /usr/preserve/Index and OS-9
+# cannot have a /usr at all -- a leading /name is a DEVICE -- so nothing
+# here can ever be recovered.
+case    elvrec-says-when-a-name-was-never-preserved
+run     /dd/CMDS/elvrec $W/plain.txt
+expect  no recovered file has that exact name
+
+# THE RTF FORTRAN SET IS NOT BROKEN, IT IS UNLINKED. `lnk.org', `for',
+# `creadoc' and `biory' call F$Link for a module named `os9lib', get E_MNF
+# and exit WITHOUT PRINTING ANYTHING. CMDS/os9lib is the RTF run-time
+# library, not a program. DOC/README-RUNNING and DOC/README-FORTRAN say so;
+# this measures it both ways round in one case, which is the point.
+case    lnk-org-is-silent-until-os9lib-is-resident-and-then-speaks
+run     /dd/CMDS/lnk.org
+run     echo "--- nothing above this line; now load os9lib:"
+run     /dd/CMDS/load /dd/CMDS/os9lib
+run     /dd/CMDS/lnk.org
+expect  --- nothing above this line; now load os9lib:
+expect  command: lnk file{,file} [-l68opts]
+
+# biory is the Biorhythm example and it prompts IN GERMAN once os9lib is
+# there. With no input it gets as far as the first prompt and stops; the
+# birth-date prompt after it needs a name typed first, so only the two
+# lines that always arrive are asserted.
+case    biory-prompts-in-german-once-os9lib-is-resident
+run     /dd/CMDS/load /dd/CMDS/os9lib
+run     /dd/CMDS/biory < /nil
+expect  Ausgabe im Listingfile 'Biory.Lis'
+expect  Name Vorname (RETURN=Ende)
