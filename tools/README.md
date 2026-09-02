@@ -3,6 +3,9 @@
     mkimage.sh          build the disk image from disk/
     mktar.py            write disk/ as a ustar archive (used by mkimage.sh)
     check_disk.py       check the disk tree's invariants
+    check_the_checks.py make every one of those checks FAIL once --
+                        copies the tree, breaks one thing, and requires
+                        the check meant to catch it to say so
     gen_depends.py      regenerate disk/DOC/DEPENDS
     gen_catalog.py      build docs/index.html, the browsable guide
     measure_layout.py   where the programs expect their files -- /dd or /h0

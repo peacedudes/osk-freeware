@@ -651,6 +651,45 @@ def check_readme_cross_references(root):
     return not problems, "%d README cross-reference(s) wrong" % len(problems)
 
 
+def check_modules_start_with_4afc(root):
+    """Every program under CMDS still begins with OS-9's module sync bytes.
+
+    `binaries start with their magic' is EXTENSION-DRIVEN and says so in its
+    own docstring -- it looks at `.jpg', `.gif', `.zoo' and the rest, and an
+    OS-9 module has no extension, so nothing checked the 900-odd files that
+    ARE the collection.  Found 2026-09-01 by `tools/check_the_checks.py',
+    which blanked `CMDS/cat's first byte and watched every check stay green
+    except one that noticed by accident.
+
+    A module whose $4AFC is gone is not a program any more: `F$Load' rejects
+    it and the shell says `module not found'. Nothing else here would say
+    which file.
+
+    `mscheck' and `who' are SHELL SCRIPTS, not modules, and are the only two
+    exceptions -- the same two `module_census.py' reports as not-a-module.
+    `wn.stb' and `rtfdat' are type-$04 DATA modules and still carry $4AFC,
+    so they need no exception.
+    """
+    import gen_catalog
+    SCRIPTS = {"mscheck", "who"}
+    bad = []
+    for d in gen_catalog.PROGRAM_DIRS:
+        full = os.path.join(root, d)
+        if not os.path.isdir(full):
+            continue
+        for f in sorted(os.listdir(full)):
+            if f in SCRIPTS:
+                continue
+            path = os.path.join(full, f)
+            if not os.path.isfile(path):
+                continue
+            if open(path, "rb").read(2) != b"\x4a\xfc":
+                bad.append("%s/%s does not start with $4AFC" % (d, f))
+    for b in bad[:10]:
+        print("    %s" % b)
+    return not bad, "%d file(s) under CMDS are not modules" % len(bad)
+
+
 def check_module_names(root):
     """No two files under CMDS register the same MODULE name.
 
@@ -854,6 +893,7 @@ CHECKS = [
     ("DOC/DEPENDS is up to date", check_depends),
     ("no unscreened Microware source", check_src_screened),
     ("binaries start with their magic", check_binary_magic),
+    ("every command is a real module", check_modules_start_with_4afc),
     ("one module name, one file", check_module_names),
     ("the cio-macro list is current", check_cio_macro_population),
     ("name lists point at real programs", check_hand_files_name_real_programs),
