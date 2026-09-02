@@ -1,0 +1,33 @@
+# mfbase -- rebuild SYS/TEX/MFBASES/plain.base and hand it out through /h1.
+#
+# This is the recorded procedure for the one BUILT file in the TeX tree that
+# is not a program.  Metafont needs a preloaded base the way TeX needs a
+# format; SYS/TEX/FORMATS shipped plain.fmt from the start and MFBASES held
+# only its Makefile, so `virmf' stopped at `I can't find the default base
+# file!' and the eight bitmap-font tools had nothing to read.
+#
+# The line below is what SYS/TEX/MFBASES/install.script asks for, verbatim.
+# It takes about a minute and writes 80144 bytes.  /h1 is a HOST directory
+# under notes/drives/work, so the result can be copied into disk/ and shipped
+# -- which it now is.  Re-run this only to rebuild the base (a new modes.mf,
+# say); nothing on the disk needs it at run time.
+#
+# It is REPRODUCIBLE: a second run against the same sources differs from the
+# shipped file in exactly TWO BYTES, the time Metafont stamps into the dump.
+#
+# `ksh -c "cd ..."' and not a bare `cd': Metafont names its own output files
+# and writes them into the DATA directory, and bash's `cd' does not move
+# that.  DOC/README-SHELLS has the measurement.
+
+family  mfbase
+
+setup   W=/dd/tmp/MFB
+setup   /dd/CMDS/rm -f $W/* > /nil 2>/nil
+setup   /dd/CMDS/mkdir -p $W > /nil 2>/nil
+
+drive   dump-and-hand-out
+run     echo "plain; \\input modes; dump" > $W/mf.in
+run     /dd/CMDS/ksh -c "cd $W; /dd/CMDS/TEXCMDS/inimf < mf.in"
+run     /dd/CMDS/cp $W/plain.base /h1/plain.base
+run     /dd/CMDS/ls -l $W/plain.base
+run     echo "--- now: cp notes/drives/work/h1/plain.base disk/SYS/TEX/MFBASES/"

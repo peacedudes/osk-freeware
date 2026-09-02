@@ -677,34 +677,61 @@ run     ls -l /dd/SYS/TEX/FONTS/TFM/cmr10.tfm /dd/tmp/cmr10.tfm
 wait    10
 
 shot    texfonts-bitmap
-size    36 80
+size    58 82
 for     gftopk pktogf gftype pktype vftovp vptovf virmf inimf
-cap     TeX's BITMAP font tools, each asked for itself.  None of them has
-cap     anything to work on: SYS/TEX/FONTS carries .tfm metrics and a
-cap     PK300 directory holding nothing but a Makefile, so there is no .pk,
-cap     no .gf and no .vf on the disk for these eight to read.  `virmf' and
-cap     `inimf' are Metafont, which is what would MAKE one -- and that is
-cap     the reason none ship: a .pk is rendered for a particular device at a
-cap     particular resolution, so TeX's own MakeTeXPK runs Metafont to
-cap     produce the one your printer wants rather than carrying a set.  All eight were
-cap     credited to the tftopl card until 2026-08-29 and none was typed
-cap     there, so their sample output was somebody else's round trip.
-run     gftopk
-wait    8
-run     pktogf
-wait    8
-run     gftype
-wait    8
-run     pktype
-wait    8
-run     vftovp
-wait    8
-run     vptovf
-wait    8
-run     virmf
+cap     TeX's BITMAP font tools, running a font from Metafont source to
+cap     pixels and back.  Until 2026-09-01 this card was eight usage lines,
+cap     because there was no .gf, .pk or .vf anywhere on the disk for them to
+cap     read -- SYS/TEX/MFBASES held its Makefile and nothing else, so
+cap     Metafont answered `I can't find the default base file!'.  `inimf'
+cap     builds that base out of MFINPUTS/plain.mf in about a minute, and it
+cap     is now built and shipped, the way SYS/TEX/FORMATS already shipped
+cap     plain.fmt for TeX.
+cap     So: virmf renders logo10.mf -- the METAFONT logo font, seven
+cap     characters -- at a low-resolution mode; gftype draws the M as
+cap     pixels; gftopk packs 608 bytes down to 364; pktype reads the packed
+cap     form back; pktogf unpacks it.  vptovf and vftovp are the virtual
+cap     pair: DOC/tex/sample.vpl maps one character onto cmr10 and compiles
+cap     to a .vf, which vftovp reads back to the text it came from.
+cap     GFFONTS, PKFONTS, VFFONTS and TEXFONTS have to name the working
+cap     directory: the FONTS search paths compiled into these binaries do
+cap     NOT begin with `.' the way MFINPUTS does, so a file beside you is
+cap     invisible to them.  That is the one thing here that reads like a
+cap     fault and is not -- and it is also what lets the seven readers run
+cap     with no `cd' at all.  Only Metafont needs one, because it writes its
+cap     three outputs into the data directory and names them itself; the
+cap     four `F$SetSys: unimplemented' lines are ksh starting up, not
+cap     anything Metafont did.
+run     rm -f /dd/tmp/GF/*
+wait    6
+run     mkdir -p /dd/tmp/GF
+wait    6
+run     export GFFONTS=/dd/tmp/GF; export PKFONTS=/dd/tmp/GF
+wait    4
+run     export VFFONTS=/dd/tmp/GF; export TEXFONTS=/dd/tmp/GF:/dd/SYS/TEX/FONTS/TFM
+wait    4
+run     echo "\\mode=epsonlo; mode_setup; input logo10" > /dd/tmp/GF/run.mf
+wait    6
+run     ksh -c "cd /dd/tmp/GF; virmf < run.mf"
+wait    50
+run     gftype -i logo10.120gf > /dd/tmp/GF/gt.txt
+wait    25
+run     sed -n 4,16p /dd/tmp/GF/gt.txt
 wait    10
-run     inimf
+run     gftopk logo10.120gf /dd/tmp/GF/logo10.120pk
+wait    20
+run     pktype logo10.120pk > /dd/tmp/GF/pt.txt
+wait    20
+run     sed -n 2,8p /dd/tmp/GF/pt.txt
 wait    10
+run     pktogf logo10.120pk /dd/tmp/GF/back.120gf
+wait    20
+run     vptovf /dd/DOC/tex/sample.vpl /dd/tmp/GF/s.vf /dd/tmp/GF/s.tfm
+wait    20
+run     vftovp s.vf s.tfm /dd/tmp/GF/back.vpl
+wait    20
+run     ls -l /dd/tmp/GF
+wait    12
 
 
 shot    misc-text

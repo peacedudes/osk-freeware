@@ -227,8 +227,31 @@ the program were at fault, is worse than no card.
 Still flagged and not yet looked at: `pbmclean`, `pnmfilters`, `argproc_demo`
 (a genuine Stack Overflow, whatever it is given), `csl-mismatch`, `wn`,
 `game` (wants a `chess.lst` from gnuchess), `newshist`, `p2c`, `ateri`,
-`network`, `perr-alps`, `ppmntsc`, `xpm`, `dload`, `texfonts-bitmap`,
+`network`, `perr-alps`, `ppmntsc`, `xpm`, `dload`,
 `asciitopgm`, `aterm`, `disktest`, `phone`, `silent`, `vi-recovery`.
+
+**`texfonts-bitmap` came off that list on 2026-09-01 and is worth reading as
+the model.** It was eight usage lines, excepted BY NAME in `audit_cards.py`
+on the grounds that there was no `.gf`, `.pk` or `.vf` anywhere for its
+programs to read -- which was true, and was still an assumption nobody had
+tried to break. The disk carries Metafont. `SYS/TEX/MFBASES` held its
+`Makefile` and `install.script` and nothing else, so `virmf` stopped at
+`I can't find the default base file!`; `inimf` builds that base out of the
+disk's own `MFINPUTS` in about a minute, exactly as `install.script` says.
+It is now built and shipped, the way `SYS/TEX/FORMATS` always shipped
+`plain.fmt`. With it in place `virmf` renders `logo10.mf` and the other
+seven tools have real input: `gftype` draws the M as asterisks, `gftopk`
+packs 608 bytes to 364, `pktype` reads it back, `pktogf` unpacks it.
+`DOC/tex/sample.vpl` -- a one-character virtual font written for this, what
+`none.ch` is to `tangle` -- gives `vptovf` and `vftovp` theirs.
+`tools/datatests/metafont.cases` and `virtualfont.cases` assert the whole
+chain; `DOC/README-METAFONT` is the reader-facing account, including the
+one thing that reads like a fault and is not: **the compiled-in FONTS search
+paths do not begin with `.`**, so these programs cannot see a file beside
+them until `GFFONTS`/`PKFONTS`/`VFFONTS`/`TEXFONTS` name the directory.
+`tools/drives/mfbase.drive` rebuilds the base; two runs differ in two bytes,
+the timestamp. **An exception by name is a debt, not a verdict** -- this one
+stood for three days and the thing it excused took an evening to fix.
 
 ### 2. Family chooser documents — highest value for the stated purpose
 

@@ -1,0 +1,50 @@
+# virtualfont -- vptovf and vftovp, the last two of the eight TeX bitmap-font
+# tools that had nothing to read.
+#
+# A VIRTUAL font has no glyphs.  Each character is a short program saying what
+# to set from some REAL font, so one .vf can gather characters from several
+# fonts, shift them, or draw rules between them.  vptovf compiles the text
+# .vpl into the binary .vf/.tfm pair and vftovp reads that pair back.
+#
+# `DOC/tex/sample.vpl' is a one-character font written for this, mapping `A'
+# onto cmr10's `A'; it is to these two what `DOC/tex/none.ch' is to tangle.
+# VFFONTS and TEXFONTS must name where the .vf and .tfm are: the compiled-in
+# FONTS paths do NOT begin with `.', so a file in the current directory is
+# invisible to them.
+
+family  virtualfont
+
+setup   export TERM=vt100
+setup   W=/dd/tmp/VF
+setup   /dd/CMDS/rm -f $W > /nil 2>/nil
+setup   /dd/CMDS/mkdir -p $W > /nil 2>/nil
+setup   export VFFONTS=$W
+setup   export TEXFONTS=$W:/dd/SYS/TEX/FONTS/TFM
+
+case    vptovf-compiles-the-sample-into-a-font
+run     /dd/CMDS/ksh -c "cd $W; /dd/CMDS/TEXCMDS/vptovf /dd/DOC/tex/sample.vpl s.vf s.tfm"
+run     /dd/CMDS/wc -c $W/s.vf $W/s.tfm
+expect  This is VPtoVF, C Version 1.3
+expect  104 /dd/tmp/VF/s.vf
+expect  152 /dd/tmp/VF/s.tfm
+
+case    vftovp-reads-the-binary-pair-back-to-text
+# and finds cmr10's real checksum while it is there, which the hand-written
+# source left at zero.
+run     /dd/CMDS/ksh -c "cd $W; /dd/CMDS/TEXCMDS/vftovp s.vf s.tfm back.vpl"
+run     /dd/CMDS/cat $W/back.vpl
+expect  This is VFtoVP, C Version 1.2
+expect  MAPFONT 0: cmr10 at 10.00pt
+expect  (FAMILY SAMPLEVF)
+expect  (FONTCHECKSUM O 11374260171)
+expect  (SETCHAR C A)
+
+case    the-round-trip-keeps-every-metric
+run     /dd/CMDS/ksh -c "cd $W; /dd/CMDS/TEXCMDS/vptovf /dd/DOC/tex/sample.vpl s.vf s.tfm" > /nil 2>/nil
+run     /dd/CMDS/ksh -c "cd $W; /dd/CMDS/TEXCMDS/vftovp s.vf s.tfm back.vpl" > /nil 2>/nil
+run     /dd/CMDS/grep -c "" $W/back.vpl
+run     /dd/CMDS/grep "CHARWD\|CHARHT\|QUAD\|XHEIGHT" $W/back.vpl
+expect  (CHARWD R 0.75)
+expect  (CHARHT R 0.683332)
+expect  (QUAD R 1.000003)
+expect  (XHEIGHT R 0.430555)

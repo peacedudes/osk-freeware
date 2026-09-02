@@ -1,0 +1,74 @@
+# metafont -- the bitmap font pipeline, end to end.
+#
+# Until 2026-09-01 there was no .gf, .pk or .tfm anywhere on this disk and no
+# way to make one: SYS/TEX/MFBASES held its Makefile and install.script and
+# nothing else, so `virmf' answered `I can't find the default base file!' and
+# six programs -- gftype, gftopk, pktype, pktogf, tftopl and virmf itself --
+# had no possible input.  `inimf' builds the base from MFINPUTS/plain.mf in
+# about a minute; it is now built and installed, exactly as SYS/TEX/FORMATS
+# already shipped plain.fmt, lplain.fmt and splain.fmt.
+#
+# The search paths are compiled into the binaries and MFINPUTS begins with
+# `.' where FONTS does not, so a .gf in the current directory is NOT found by
+# gftype or gftopk unless GFFONTS/PKFONTS name it.  That is not damage; it is
+# what the strings in the binary say.
+
+family  metafont
+
+setup   export TERM=vt100
+setup   export TERMCAP=/dd/SYS/termcap
+setup   W=/dd/tmp/MFT
+setup   /dd/CMDS/rm -f $W > /nil 2>/nil
+setup   /dd/CMDS/mkdir -p $W > /nil 2>/nil
+setup   export GFFONTS=$W
+setup   export PKFONTS=$W
+
+case    virmf-finds-the-installed-base
+# with nothing set at all.  This is what installing plain.base bought.
+run     echo "\\mode=epsonlo; mode_setup; input logo10" > $W/run.mf
+run     /dd/CMDS/ksh -c "cd $W; /dd/CMDS/TEXCMDS/virmf < run.mf"
+expect  This is METAFONT, C Version 2.7
+expect  Font metrics written on logo10.tfm.
+expect  (7 characters, 608 bytes)
+absent  I can't find the default base file
+
+case    gftype-draws-the-M-as-pixels
+# seven characters of the METAFONT logo font; 77 is `M'.
+run     /dd/CMDS/ksh -c "cd $W; /dd/CMDS/TEXCMDS/gftype -m -i logo10.120gf"
+expect  This is GFtype, C Version 3.1
+expect  beginning of char 77: 1<=m<=12 0<=n<=9
+expect  *   * *   *
+expect  beginning of char 84: 
+expect  beginning of char 78: 
+
+case    gftopk-packs-the-bitmap-smaller
+run     /dd/CMDS/ksh -c "cd $W; /dd/CMDS/TEXCMDS/gftopk logo10.120gf logo10.120pk"
+run     /dd/CMDS/wc -c $W/logo10.120gf $W/logo10.120pk
+expect  608 /dd/tmp/MFT/logo10.120gf
+expect  364 /dd/tmp/MFT/logo10.120pk
+
+case    pktype-reads-the-packed-font-back
+run     /dd/CMDS/ksh -c "cd $W; /dd/CMDS/TEXCMDS/pktype logo10.120pk"
+expect  This is PKtype, C Version 2.3
+expect  Resolution: horizontal = 108819  vertical = 108819  (120 dpi)
+expect  Flag byte = 232  Character = 77  Packet length = 25
+expect  Height = 10  Width = 11  X-offset = -1  Y-offset = 9
+
+case    pktogf-unpacks-it-again
+# NOT back to 608 bytes.  pktogf rewrites the preamble comment as
+# `GFtoPK 2.3 output from METAFONT output <date>' where Metafont wrote
+# `METAFONT output <date>', which is 23 characters more and 24 after the
+# byte-count field -- so the round trip is faithful in the bitmap and
+# longer in the header.  Asserted at 632 because that is what it is.
+run     /dd/CMDS/ksh -c "cd $W; /dd/CMDS/TEXCMDS/pktogf logo10.120pk back.120gf"
+run     /dd/CMDS/wc -c $W/back.120gf
+expect  632 /dd/tmp/MFT/back.120gf
+
+case    tftopl-reads-the-metrics-virmf-wrote
+# the .tfm is what TeX itself reads; the .gf is only for the printer.
+run     /dd/CMDS/ksh -c "cd $W; /dd/CMDS/TEXCMDS/tftopl logo10.tfm logo10.pl"
+run     /dd/CMDS/cat $W/logo10.pl
+expect  (FAMILY MFLOGO)
+expect  (CODINGSCHEME AEFMNOT ONLY)
+expect  (DESIGNSIZE R 10.0)
+expect  (KRN C A R -0.0222225)

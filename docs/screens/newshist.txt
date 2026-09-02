@@ -1,1 +1,8 @@
+$ dbz
 usage: dbz [-a] [-x] [-c] database [file] ...
+$ newshist
+usage: newshist [-df file] msgid ...
+$ newslock a b
+$ bdecode
+c7decode
+byteflip

@@ -136,11 +136,13 @@ def main(argv):
                       "why. `cannot execute binary file' for a BASIC09 "
                       "subroutine and for a trap library is the finding: "
                       "running a non-program proves nothing",
-            "texfonts-bitmap": "eight TeX bitmap-font tools with nothing to "
-                               "read. There is no .pk, .gf or .vf on this "
-                               "disk and that is DELIBERATE -- a .pk is "
-                               "rendered per device by MakeTeXPK rather than "
-                               "shipped. The caption says so at length"}
+            }
+    # `texfonts-bitmap' was excepted here until 2026-09-01, on the grounds
+    # that there was no .pk, .gf or .vf for its eight tools to read.  There
+    # is now: `inimf' builds plain.base out of the disk's own MFINPUTS, and
+    # with the base installed `virmf' renders a font that the other seven
+    # read.  The exception is gone because the card is no longer a usage
+    # line -- which is the outcome an exception should always be aiming at.
     for f in sorted(os.listdir(CAPS)):
         if not f.endswith(".shot.txt"):
             continue
