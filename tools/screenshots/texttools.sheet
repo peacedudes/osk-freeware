@@ -206,7 +206,15 @@ wait    8
 
 shot    fcomp
 cap     fcomp compares two text files line by line.
-run     fcomp /dd/tmp/h1 /dd/tmp/h2
+run     echo "alpha" > /dd/tmp/fc1
+wait    4
+run     echo "bravo" >> /dd/tmp/fc1
+wait    4
+run     cp /dd/tmp/fc1 /dd/tmp/fc2
+wait    4
+run     echo "charlie" >> /dd/tmp/fc2
+wait    4
+run     fcomp /dd/tmp/fc1 /dd/tmp/fc2
 wait    6
 
 shot    file

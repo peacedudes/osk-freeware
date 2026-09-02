@@ -477,7 +477,9 @@ wait    10
 shot    pnmfile
 cap     pnmfile identifies what each intermediate in a pipeline actually is
 cap     -- format, dimensions and whether it is raw or plain.
-run     pgmtopbm /dd/tmp/ramp.pgm > /dd/tmp/ramp.pbm
+run     pgmramp -lr 40 20 > /dd/tmp/ramp.pgm
+wait    6
+run     pgmtopbm -threshold /dd/tmp/ramp.pgm > /dd/tmp/ramp.pbm
 wait    3
 run     ppmpat -gingham2 40 20 > /dd/tmp/ging.ppm
 wait    3
@@ -558,6 +560,8 @@ shot    pnmtops
 for     pnmtops
 cap     pnmtops writes PostScript around a bitmap -- how an image reached a
 cap     printer in 1990.  The head of what it produced.
+run     pgmramp -lr 40 20 > /dd/tmp/ramp.pgm
+wait    6
 run     pnmtops /dd/tmp/ramp.pgm | head -n 18
 wait    10
 
@@ -943,7 +947,9 @@ cap     terminal, a Mitsubishi dye-sublimation printer, DEC sixel, Motif
 cap     UIL source, an AT&T 4425 and an X10 bitmap.  What each made of the
 cap     same picture, in bytes -- that is what a page cost.
 cap     All six are asked for; three were until 2026-08-30.
-run     ppmquant 256 /dd/tmp/w.ppm > /dd/tmp/q.ppm
+run     ppmpat -madras 64 40 > /dd/tmp/wo.ppm
+wait    8
+run     ppmquant 256 /dd/tmp/wo.ppm > /dd/tmp/q.ppm
 wait    20
 run     ppmtosixel /dd/tmp/q.ppm | wc
 wait    20

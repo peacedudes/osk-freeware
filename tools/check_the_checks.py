@@ -148,6 +148,17 @@ def break_readme_refs(root):
     return "DOC/README made to name README-NOSUCHTHING"
 
 
+def break_card_dependency(root):
+    """A card made to read a file only another card writes.
+
+    This one edits `tools/screenshots', not the disk tree -- the check reads
+    the sheets, not `disk/'. The tool restores it from the pristine copy
+    like everything else, but the copy is of `disk/', so this break is
+    undone by hand below.
+    """
+    return None
+
+
 def break_hand_files(root):
     """DOC/USAGE, not DOC/STATUS.
 
@@ -177,6 +188,13 @@ BREAKS = [
     ("docs intact", "the disk's documents are intact", break_docs),
     ("readme refs", "README names documents that exist", break_readme_refs),
     ("name lists", "name lists point at real programs", break_hand_files),
+    # `cards do not depend on each other' is NOT probed here: its input is
+    # tools/screenshots, not the disk tree this tool copies, so a break
+    # would edit the live sheets. It was made to fail by hand on
+    # 2026-09-01 -- put `fcomp' back on `cdiff's leftovers and it reports
+    # two cards -- and that is recorded rather than automated, because a
+    # prober that edits files outside its own copy is a worse idea than an
+    # unprobed check.
 ]
 
 

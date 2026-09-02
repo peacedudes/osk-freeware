@@ -690,6 +690,68 @@ def check_modules_start_with_4afc(root):
     return not bad, "%d file(s) under CMDS are not modules" % len(bad)
 
 
+def check_cards_do_not_depend_on_each_other(root):
+    """A gallery card may build on `setup-image' and on nothing else.
+
+    THE FAILURE THIS CATCHES COST FIVE CARDS AT ONCE.  `ppmntsc' read
+    `/dd/tmp/w.ppm', which the `pnmfilters' card writes -- and pnmfilters
+    allowed 25 seconds for a `giftopnm | pnmscale' that needs most of a
+    minute, so the capture was taken before the write finished and w.ppm was
+    left unwritten.  Every line of ppmntsc's card then failed with
+    `ppmntsc: /dd/tmp/w.ppm -', and `audit_cards' scored FIVE CONVERTERS as
+    broken when none of them is.  Found 2026-09-01.
+
+    A card that depends on another card's leftovers is one card's timing
+    away from lying, and nothing about the failure points at the card that
+    caused it.
+
+    `setup-image' is the ONE sanctioned exception: it is the first stanza of
+    graphics.sheet, it exists to make the two test images that twenty round
+    trips start from, and saying so once is better than twenty cards each
+    generating their own gingham.  Everything else must make what it reads.
+
+    Approximate on purpose: only a `>' or `>>' redirect counts as writing,
+    so a card whose program writes a file WITHOUT a redirect (`lha a k.lzh',
+    `des d.txt') reads as not writing it -- which is why the check asks
+    "does another CARD write this" rather than "does this card write this".
+    A path nobody redirects into is nobody's dependency and is ignored.
+    """
+    import screenshots
+    sheets = os.path.join(os.path.dirname(os.path.abspath(__file__)),
+                          "screenshots")
+    if not os.path.isdir(sheets):
+        return True, ""
+    SETUP = "setup-image"
+    cards, writers = {}, {}
+    for f in sorted(os.listdir(sheets)):
+        if not f.endswith(".sheet"):
+            continue
+        for shot in screenshots.parse(os.path.join(sheets, f)):
+            runs = [v for k, v in shot["acts"] if k == "run"]
+            wrote, read = set(), set()
+            for r in runs:
+                wrote |= set(re.findall(r">>?\s*(/dd/tmp/[\w./-]+)", r))
+                read |= set(re.findall(r"(/dd/tmp/[\w./-]+)", r))
+            cards[shot["name"]] = (wrote, read)
+            for path in wrote:
+                writers.setdefault(path, set()).add(shot["name"])
+    # A path `setup-image' writes is sanctioned however many other cards
+    # also write it: `plotters' regenerates base.pbm with setup-image's own
+    # command before using it, which is belt-and-braces and made this check
+    # fire on six innocent cards the first time it ran.
+    sanctioned = cards.get(SETUP, (set(), set()))[0]
+    bad = []
+    for name, (wrote, read) in sorted(cards.items()):
+        for path in sorted(read - wrote - sanctioned):
+            owners = writers.get(path, set()) - {name, SETUP}
+            if owners:
+                bad.append("card `%s' reads %s, which only `%s' writes"
+                           % (name, path, "/".join(sorted(owners))))
+    for b in bad:
+        print("    %s" % b)
+    return not bad, "%d card(s) depend on another card" % len(bad)
+
+
 def check_module_names(root):
     """No two files under CMDS register the same MODULE name.
 
@@ -899,6 +961,7 @@ CHECKS = [
     ("name lists point at real programs", check_hand_files_name_real_programs),
     ("the disk's documents are intact", check_docs_not_truncated),
     ("README names documents that exist", check_readme_cross_references),
+    ("cards do not depend on each other", check_cards_do_not_depend_on_each_other),
     ("harness env matches SYS/login", check_harness_env_matches_login),
 ]
 
