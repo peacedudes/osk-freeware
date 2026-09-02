@@ -1,0 +1,56 @@
+# about -- the program a person on this disk uses to ask what something is
+# and how to run it.  Two defects were found in it on 2026-09-02 and both
+# are asserted here.
+#
+# 1. IT PRINTED NO HOW-TO LINE AT ALL.  `tools/howto.psv' has carried
+#    measured invocations for months and gen_catalog wraps each one under
+#    the program's entry in DOC/CATEGORIES -- and `about' read that file for
+#    the CATEGORY and stopped.  So the single most useful thing the
+#    collection knows about a program never reached the person asking.
+#
+# 2. IT SAID `not here' FOR PATHS THAT ARE HERE.  It re-derived the answer
+#    rather than trusting DOC/DEPENDS, and its probe was built only for a
+#    lowercase `/dd/' or `/h0/' prefix.  The TeX binaries carry their paths
+#    in UPPER CASE, so `about virmf' reported twenty-one directories missing
+#    -- including SYS/TEX/MFINPUTS and the two Metafont bases that now ship.
+#    DOC/DEPENDS had them right the whole time.
+
+family  about
+
+setup   export TERM=vt100
+
+case    about-prints-the-how-to-line
+run     /dd/CMDS/about yagi
+expect  Yagi antenna design calculator, to DL6WU's method
+expect  for        SYSTEM & MODULES -- Utilities
+expect  how        It asks FIVE questions on standard input
+expect  run it     yagi
+expect  take it    keep yagi
+
+case    about-reports-an-UPPERCASE-path-that-is-here-as-here
+run     /dd/CMDS/about virmf
+expect  /DD/SYS/TEX/FONTS                      here
+expect  /DD/SYS/TEX/MFBASES                    here
+expect  /DD/SYS/TEX/MFINPUTS                   here
+expect  /DD/USR/TEX/MFBASES                    not here
+
+case    about-still-says-not-here-for-what-is-genuinely-absent
+# The fix must not turn the column into a rubber stamp: /DD/USR/... is not
+# on this disk and must still read `not here'.
+run     /dd/CMDS/about virmf
+expect  /DD/USR/TEX/FONTS                      not here
+expect  /DD/USR/TEX/BIB                        not here
+expect  /DD/SYS/TEX/MFINPUTS/LOCAL             not here
+
+case    about-on-a-program-with-source-and-documentation
+run     /dd/CMDS/about fortune
+expect  fortune        print a random quotation
+expect  for        TEXT TOOLS -- Fortune & sayings
+expect  from       usenet archive  fortune.ar
+expect  needs      /dd/GAMES/FORTUNE/fortunes.dat         here
+expect  source     SRC/fortune
+expect  run it     fortune
+
+case    about-says-so-when-it-does-not-know-the-name
+run     /dd/CMDS/about zzznosuchprogram
+expect  zzznosuchprogram: not in DOC/INDEX on /dd
