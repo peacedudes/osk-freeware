@@ -26,12 +26,6 @@ cap     it.  It redraws until you stop it.
 run     digclk
 wait    6
 
-shot    easter
-cap     easter computes the date of Easter for a run of years -- the
-cap     computus, in one small program.
-run     easter
-wait    3
-
 shot    ephem
 for     ephem
 cap     ephem, the astronomical ephemeris, with the configuration and

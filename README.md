@@ -106,7 +106,7 @@ is no help until you already know the name you want.
 | **Amusements** | 20 | Generators, simulators and diversions that are not quite games. |
 | **System & modules** | 130 | OS-9 module and process tools, devices, system state and scheduling. |
 | **Disk & DOS** | 20 | Reading and writing MS-DOS media with the mtools set. |
-| **Time & calendar** | 14 | Calendars, clocks and astronomy. |
+| **Time & calendar** | 13 | Calendars, clocks and astronomy. |
 | **Maths & calculators** | 10 | Calculators, plotting, orbits and number theory. |
 | **Printing** | 14 | Spoolers, page formatting and PostScript. |
 | **Documentation** | 5 | Pagers, readers and the help system. |

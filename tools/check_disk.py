@@ -519,6 +519,45 @@ def check_binary_magic(root):
 
 
 
+def check_hand_lists_have_no_duplicate_keys(root):
+    """One line per program in `tools/howto.psv' and `tools/categories.psv'.
+
+    Added 2026-09-02, having found FIFTEEN duplicated names in howto.psv --
+    four of them added the same evening. `gen_catalog' builds a dict, so the
+    LAST line silently wins and the other is dead text nobody will ever see
+    again, including the one somebody carefully measured. `orbit' had two,
+    and the losing one still said neither shell could move the OS-9 data
+    directory, which stopped being true when `ksh -c "cd X; prog"' was
+    measured on 2026-09-01.
+
+    Nothing about a duplicate is visible in the output, which is what makes
+    it worth a check rather than a habit.
+    """
+    here = os.path.dirname(os.path.abspath(__file__))
+    problems = []
+    for fname in ("howto.psv", "categories.psv"):
+        path = os.path.join(here, fname)
+        if not os.path.exists(path):
+            continue
+        seen = {}
+        for n, line in enumerate(open(path, encoding="utf-8"), 1):
+            line = line.strip()
+            if not line or line.startswith("#") or "|" not in line:
+                continue
+            name = line.split("|", 1)[0]
+            if name in seen:
+                problems.append("%s: `%s' on lines %d and %d -- the later "
+                                "wins and the earlier is dead text"
+                                % (fname, name, seen[name], n))
+            else:
+                seen[name] = n
+    for p in problems[:10]:
+        print("    " + p)
+    if problems:
+        return False, "%d duplicated name(s) in the hand lists" % len(problems)
+    return True, ""
+
+
 def check_hand_files_name_real_programs(root):
     """tools/howto.psv, tools/categories.psv and disk/DOC/USAGE must name
     programs that exist.
@@ -959,6 +998,8 @@ CHECKS = [
     ("one module name, one file", check_module_names),
     ("the cio-macro list is current", check_cio_macro_population),
     ("name lists point at real programs", check_hand_files_name_real_programs),
+    ("one line per name in the hand lists",
+     check_hand_lists_have_no_duplicate_keys),
     ("the disk's documents are intact", check_docs_not_truncated),
     ("README names documents that exist", check_readme_cross_references),
     ("cards do not depend on each other", check_cards_do_not_depend_on_each_other),

@@ -33,6 +33,7 @@ The copy is made once, mutated and restored in place per check, and removed
 at the end.  Nothing under `disk/' is touched.
 """
 import os
+import re
 import shutil
 import subprocess
 import sys
@@ -80,12 +81,23 @@ def break_index_names(root):
 
 
 def break_star_grid(root):
-    """Put a name in the grid that is not a program."""
+    """Move the grid's stated count by one.
+
+    THE COUNT IS READ, NOT TYPED.  This said `All 349,' until 2026-09-02,
+    when dropping two programs made it 347 and the break silently stopped
+    breaking anything -- the tool reported the check BLIND, which is the
+    right answer to the wrong question. A prober that hardcodes a figure
+    from the tree it probes rots the first time the tree moves.
+    """
     p = os.path.join(root, "DOC", "INDEX")
     t = open(p, "rb").read().decode("latin-1")
-    t = t.replace("All 349,", "All 350,", 1)
+    m = re.search(r"All (\d+),", t)
+    if not m:
+        return None
+    n = int(m.group(1))
+    t = t.replace("All %d," % n, "All %d," % (n + 1), 1)
     w(p, t.encode("latin-1"))
-    return "the star grid's stated count moved by one"
+    return "the star grid's stated count moved by one (%d -> %d)" % (n, n + 1)
 
 
 def break_categories(root):
@@ -281,6 +293,13 @@ BREAKS = [
      break_screened_source),
     ("login env", "harness env matches SYS/login", break_login_env),
     ("cio macro", "the cio-macro list is current", break_cio_scan),
+    # `one line per name in the hand lists' is NOT probed here: its input is
+    # tools/howto.psv and tools/categories.psv, not the disk tree this tool
+    # copies, so a break would edit the live lists. It was made to fail by
+    # hand on the day it was written -- it found `about' twice in
+    # categories.psv and fifteen names twice in howto.psv, which is how it
+    # earned its place -- and that is recorded rather than automated, for
+    # the same reason as the card-dependency check above.
     # NINETEEN of the twenty checks are probed above, as of 2026-09-01.
     # Five of them were added that day, and every one fired first time --
     # which is the boring outcome and the one worth recording, because the

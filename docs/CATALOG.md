@@ -1,6 +1,6 @@
 # What is on this disk
 
-938 programs of OS-9/68K community software, gathered from the archives that kept it and made to run again. **586 of them need nothing but this disk**; the rest want Microware's `cio`, marked below with a star.
+937 programs of OS-9/68K community software, gathered from the archives that kept it and made to run again. **586 of them need nothing but this disk**; the rest want Microware's `cio`, marked below with a star.
 
 `DOC/INDEX` on the disk lists everything alphabetically. This is the same collection sorted by what each program is *for*, which is the more useful order when you do not yet know what you are looking for.
 
@@ -27,7 +27,7 @@
 | [Amusements](#amusements) | 20 | Generators, simulators and diversions that are not quite games. |
 | [System & modules](#system--modules) | 130 | OS-9 module and process tools, devices, system state and scheduling. |
 | [Disk & DOS](#disk--dos) | 20 | Reading and writing MS-DOS media with the mtools set. |
-| [Time & calendar](#time--calendar) | 14 | Calendars, clocks and astronomy. |
+| [Time & calendar](#time--calendar) | 13 | Calendars, clocks and astronomy. |
 | [Maths & calculators](#maths--calculators) | 10 | Calculators, plotting, orbits and number theory. |
 | [Printing](#printing) | 14 | Spoolers, page formatting and PostScript. |
 | [Documentation](#documentation) | 5 | Pagers, readers and the help system. |
@@ -86,7 +86,7 @@
 | | |
 |---|---|
 | `beav` | BEAV 1.40 -- Binary Editor And Viewer (needs TERM)<br>**How:** Full-screen: it takes over the display. **control-C gets you out** -- tested, and none of q, Q, control-D or ESC did. If it has a quit command of its own, its documentation in DOC/ will say. |
-| `hexed` | hex editor via your text editor.  Its work file goes to /r0 unless you say otherwise, and `-t=<dir>' is how you say otherwise -- `hexed -t=/dd/tmp <file>'.  `-e=<editor>' picks the editor (default vi).  Rebuilt trap-free 2026-08-31; before that it stopped mid-dump.  See DOC/README-RUNNING  [no military use -- EFFO-INFO]<br>**How:** Its work file goes to /r0 unless you say otherwise, and os9exec has no /r0: `hexed -t=/dd/tmp <file>'. `-e=<editor>' picks the editor. |
+| `hexed` | hex editor via your text editor.  Its work file goes to /r0 unless you say otherwise, and `-t=<dir>' is how you say otherwise -- `hexed -t=/dd/tmp <file>'.  `-e=<editor>' picks the editor (default vi).  Rebuilt trap-free 2026-08-31; before that it stopped mid-dump.  See DOC/README-RUNNING  [no military use -- EFFO-INFO]<br>**How:** Its work file goes to /r0 unless you say otherwise, so unless your system has a RAM disk there: `hexed -t=/dd/tmp <file>'. `-e=<editor>' picks the editor. |
 | `hexedit` | HEXPERT V2.4 by Dominic Alston -- `hexedit <file>'.  It reads TERMCAP as the capability string itself, not as the name of a file, so source `. /dd/SYS/termcap.entry' first and it draws its viewer; without that it prints the terminal type and exits.  gnuchess wants the same.  Its -d option is separately broken -- `file not accessible' (214) for a file that is readable.  `beav' is the binary editor that needs nothing, and `hexed' the one that would work if there were a RAM disk.  Corrected 2026-08-29<br>**How:** A hex editor -- Hexpert v2.4 by Dominic Alston. Takes a file: `hexedit <file>'. Needs `. /dd/SYS/termcap.entry' first or it will not draw. |
 | `pbyte` | &#9733; patch bytes in a file at a hex offset<br>`Syntax: pbyte <path> <hex_offset> <hex_byte> [<hex_byte>]` |
 
@@ -103,7 +103,7 @@
 
 | | |
 |---|---|
-| `ed` | &#9733; GNU ed 0.2 line editor -- it makes its temporary file at /r0, which os9exec cannot provide, and stops at once with `module not found'.  DOC/README-RUNNING lists the seventeen programs that reach for /r0<br>`Usage: ed [OPTION]... [FILE]` |
+| `ed` | &#9733; GNU ed 0.2 line editor -- it makes its temporary file on /r0, a RAM disk, and stops at once with `module not found' if there is none.  DOC/README-RUNNING lists the seventeen programs that reach for /r0 and how to give them one<br>`Usage: ed [OPTION]... [FILE]` |
 | `editor` | GSHELL front-end for `umacs' SPECIFICALLY -- its own Function line says "a menue driven umacs shell", not a front end for whichever editor you prefer.  It is the same full-screen file picker as `gshell' and `assembler'. Corrected 2026-09-01<br>**How:** Full-screen: it takes over the display. **control-C gets you out** -- tested, and none of q, Q, control-D or ESC did. If it has a quit command of its own, its documentation in DOC/ will say. |
 | `sed` | &#9733; sed - stream editor.  SWAPPED 2026-08-28: what ships here is now the CMDS/REBUILT/sed_1.06 build, because the one that used to be here answered every script -- from a file or a pipe, on a four-line input -- with `No more memory !!!' and `Couldn't re-allocate memory'.  The one here now substitutes, deletes and prints with -n.  The swap was right, and 2026-08-31 explains it: that build wanted a `cio' module none of these disks has -- see DOC/README-CIO.  It was not the emulator<br>`Syntax   : sed [<opts>] [<file>]` |
 
@@ -417,7 +417,7 @@
 
 | | |
 |---|---|
-| `dhry` | Microware cc<br>**How:** Dhrystone 2.0. Twelve builds of the same source sit in CMDS/DHRY -- run several and compare, which is what tells you the compiler's cost. Under os9exec the number describes the host machine, not a 68000. |
+| `dhry` | Microware cc<br>**How:** Dhrystone 2.0. Twelve builds of the same source sit in CMDS/DHRY -- run several and compare, which is what tells you the compiler's cost. Run under an emulator the number describes the host machine, not a 68000. |
 | `dhryGcc` | &#9733; GCC 1.x |
 | `dhryGcc2` | &#9733; GCC 2.x |
 | `dhryGcc2in` | &#9733; GCC 2.x, inlined |
@@ -763,7 +763,7 @@
 | `checkalias` | &#9733; check an alias resolves before you rely on it -- and it prints NOTHING, for an alias that exists, one that does not, and several at once.  `listalias' answers the same question and does print.  Measured 2026-08-31<br>`Usage: checkalias alias [alias ...]` |
 | `disable` | &#9733; disable a UUCP device<br>`Syntax: disable <port>` |
 | `dotilde` | &#9733; the mailer's TILDE-ESCAPE handler, not a path expander: it reads a message from standard input and acts on the `~' commands in it, answering `Unrecognized tilde command' and `Continuing...type "." or <ESC> to end message...'. Corrected 2026-08-31 |
-| `elm` | &#9733; the Elm mail reader itself -- full-screen, menu-driven<br>**How:** The full-screen mail reader. On first run it offers to create a .elm directory in your home for its elmrc and aliases -- say y. Mail lives at /dd/SPOOL/MAIL/<user> and SYS/login points MAIL there; `readmsg 1' prints a message without opening the reader. |
+| `elm` | &#9733; the Elm mail reader itself -- full-screen, menu-driven<br>**How:** The full-screen mail reader. It needs a password entry it can parse and currently stops with "You have no password entry!" -- its OSK library reads /DD/SYS/Password but does not accept this disk's entries. The rest of the suite works: `readmsg 1' prints a message, `messages' counts the folder. Mail lives at /dd/SPOOL/MAIL/<user>, and SYS/login points MAIL at it. |
 | `enable` | &#9733; re-enable a UUCP device<br>`Syntax: enable [<opts>] <port> [<opts>]` |
 | `fastmail` | &#9733; send a file as mail without opening the reader.  It needs a delivery agent; on this disk the folder is unchanged afterwards<br>`Usage: fastmail {args} [ filename \| - ] address(es)` |
 | `filter` | sort incoming mail into folders by rule.  A PIPE stage: its own usage line begins `\| filter'<br>`Usage: \| filter [-nrvlq] [-f rules] [-o file]` |
@@ -815,13 +815,13 @@
 | `infoxpress` | InfoXpress client |
 | `msntp` | set the clock from a network time server -- stops with a csl traphandler mismatch; see DOC/STATUS<br>**How:** Sets the clock from a network time server. |
 | `net` | KA9Q net -- TCP/IP over SLIP or AX.25: telnet, ftp, smtp<br>**How:** KA9Q net, Phil Karn's TCP/IP over SLIP or AX.25 -- the stack amateur radio ran on. Needs NETHOME, NETSPOOL and TMPDIR set and a real interface; see DOC/ka9q. |
-| `osknet` | OSKNET -- TCP/IP for OS-9, Telnet, FTP, Ping and SMTP<br>**How:** Charles Hedrick's TCP/IP for OS-9 -- Telnet, FTP, Ping and SMTP. It needs a network interface, which os9exec does not present, so it starts and does nothing here. Its own documentation is nine files in DOC/osknet: start with howto.doc and useguide.doc. |
+| `osknet` | OSKNET -- TCP/IP for OS-9, Telnet, FTP, Ping and SMTP<br>**How:** Charles Hedrick's TCP/IP for OS-9 -- Telnet, FTP, Ping and SMTP. It needs a network interface; without one it starts and does nothing. Its own documentation is nine files in DOC/osknet: start with howto.doc and useguide.doc. |
 
 **Terminal & session**
 
 | | |
 |---|---|
-| `aterm` | ATerm 2.6 terminal emulator.  WORKS -- config is in SYS/ATERM; run it from a login session, not as os9exec's first process, or its terminal library bus errors.  `aterm /t1' for a real serial port.  Manual DOC/aterm, source SRC/aterm<br>`Syntax  : ATerm /serial_path` |
+| `aterm` | ATerm 2.6 terminal emulator.  WORKS -- config is in SYS/ATERM; run it from a login session rather than as the machine's first process, or its terminal library bus errors.  `aterm /t1' for a real serial port.  Manual DOC/aterm, source SRC/aterm<br>`Syntax  : ATerm /serial_path` |
 | `cls` | clear the screen (termcap)<br>`Syntax: cls` |
 | `connect` | &#9733; connect to a serial line<br>`Usage: connect [<switches>] [<path1>] [<switches>] [<path2>]` |
 | `fkeys` | define terminal function keys<br>`Syntax: fkeys [<path>]` |
@@ -870,9 +870,9 @@
 | | |
 |---|---|
 | `authwn` | authentication helper for protected areas |
-| `inetd` | &#9733; the internet daemon that would listen on a port and hand the connection to `wn'.  It opens /socket, which os9exec does not present, so it gets as far as `tcp protocol unknown'.  `inetd' alone prints its usage<br>**How:** The listener that hands incoming connections to wn. Needs a network. |
+| `inetd` | &#9733; the internet daemon: it listens on a port and hands the connection to `wn'.  It opens `/socket', so it needs a TCP/IP stack presenting that device; without one it gets as far as `tcp protocol unknown'.  `inetd' alone prints its usage<br>**How:** The listener that hands incoming connections to wn. Needs a network. |
 | `inetdc` | &#9733; what inetd forks for each connection.  1626 bytes with no message strings at all: run by hand it exits 221 in silence, and there is nothing else it can do |
-| `wn` | the web server itself, and it SERVES.  It is an inetd-style server: one HTTP request on standard input, one response on standard output, so run bare it waits.  Its document root is compiled in as /h0/c/unid/wn_1.14.3/osk -- which is on this disk, so mount the collection as /h0 as well as /dd and it answers `HTTP/1.0 200 OK' with the page. It serves nothing that is not named in that directory's index.cache; see wndex.  Measured 2026-09-01<br>**How:** A real HTTP server (WN 1.14.3, GPL). It starts and opens its log -- the path /h0/c/unid/wn_1.14.3/osk/logs is compiled into the binary, and that directory is on this disk so it can. What it cannot do here is serve: os9exec has no network. On a machine with TCP/IP it is the real thing. Its manual is 30 HTML files in DOC/wn. |
+| `wn` | the web server itself, and it SERVES.  It is an inetd-style server: one HTTP request on standard input, one response on standard output, so run bare it waits.  Its document root is compiled in as /h0/c/unid/wn_1.14.3/osk -- which is on this disk, so mount the collection as /h0 as well as /dd and it answers `HTTP/1.0 200 OK' with the page. It serves nothing that is not named in that directory's index.cache; see wndex.  Measured 2026-09-01<br>**How:** A real HTTP server (WN 1.14.3, GPL). It starts and opens its log -- the path /h0/c/unid/wn_1.14.3/osk/logs is compiled into the binary, and that directory is on this disk so it can. To serve, it needs TCP/IP under it (KA9Q or osknet, in CMDS/NET). It is an inetd-style server -- one request in on standard input, one response out -- so you can hand it a request by hand and read the reply. Its manual is 30 HTML files in DOC/wn. |
 | `wn.stb` | WN's symbol table (a data module, not a program) |
 | `wndex` | build the index.cache WN serves from.  It works on the CURRENT directory and IGNORES a directory given as an argument, so on this disk run it as `ksh -c "cd <dir>; /dd/CMDS/WN/wndex"' -- ksh's cd moves the OS-9 data directory where bash's does not<br>**How:** Builds the index.cache WN will not serve without. It works on the CURRENT directory and IGNORES a directory given as an argument -- on this disk that means ksh, whose `cd' is a real chdir where bash's is not: `ksh -c "cd <dir>; /dd/CMDS/WN/wndex"'. On its own it says "Can't open ./index -- skipping it", which means you are not where you think you are. The site that ships at /dd/c/unid/wn_1.14.3/osk already has its cache built; that is WN's compiled-in document root. 2026-09-01. |
 
@@ -1334,6 +1334,12 @@
 | `shdev` | &#9733; show devices |
 | `ssl` | &#9733; show a file's segment list, sector by sector -- ssl <file> |
 
+**Finding things**
+
+| | |
+|---|---|
+| `about` | what this collection knows about one program: what it is, what it is for, where it came from, the files it opens and whether they are here, and whether its source survived. Reads DOC/INDEX, CATEGORIES, ORIGINS and DEPENDS for you. what it is for, where it came from, the files it opens and whether they are here, and whether its source and documentation survived.  One card per program -- `about hack'.  DOC/CATEGORIES browses; this answers.<br>`Usage: about <program>...` |
+
 **Keeping and dropping**
 
 | | |
@@ -1375,7 +1381,7 @@
 | `load` | load a module into memory, so a program that LINKS a library MODULE can find it -- `load /dd/CMDS/os9lib' and the RTF Fortran set comes alive, where before it printed nothing.  A clean-room reimplementation of Microware's load, written from the published manuals and contributed by the os9exec project; maintained here now, source in SRC/load, built trap-free so it needs no cio<br>`Syntax:   load [<opts>] {<module> [<opts>]}` |
 | `mexist` | &#9733; test module existence<br>`Usage: mexist [options] <Module>` |
 | `os9lib` | RTF/68K FORTRAN run-time LIBRARY.  Not a program: rtf, for, lnk, biory and creadoc all F$Link it, and every one of them fails E_MNF until it is in the module directory.  See DOC/README-FORTRAN.  Running it AS a program executes its floating-point code and stops -- that is not a fault. |
-| `ptxm` | Path Table eXtension Module (Nick Holgate, 1995): a KERNEL extension letting user-state processes open unlimited I/O paths.  Courtesyware, free.  Needs supervisor state, so it cannot install under os9exec.  DOC/ptxm/ptxm.txt |
+| `ptxm` | Path Table eXtension Module (Nick Holgate, 1995): a KERNEL extension letting user-state processes open unlimited I/O paths.  Courtesyware, free.  It installs into the kernel and so needs supervisor state.  DOC/ptxm/ptxm.txt |
 | `rtfdat` | RTF FORTRAN data module |
 | `version` | &#9733; prints ITS OWN version and nothing else -- `Dies ist das Program 'version', Version 7' -- whatever module you name. `ident' and `modinfo' show a module's edition.  Corrected 2026-08-29 |
 | `vmod_trap` | the VMod_trap trap library rxmod and txmod need.  Type-$0B, and it runs in SUPERVISOR state, so it installs here and then faults.  Renamed from lowercase `vmod_trap' -- rxmod asks for `VMod_trap' and real OS-9 matches exactly and it runs in SUPERVISOR state, so it installs here and then faults.  Renamed from lowercase `vmod_trap' -- rxmod asks for `VMod_trap' and real OS-9 matches exactly |
@@ -1384,12 +1390,12 @@
 
 | | |
 |---|---|
-| `aprocs` | &#9733; process monitor -- and it does NOT run under os9exec: it calls F$SetSys twice, which the emulator does not implement, and is then aborted (E_PRCABT).  DOC/STATUS has had this since 2026-08; the entry here did not say it.  `procs', `top' and `sysmon' are the other process listers.  Added 2026-08-30<br>`Syntax: aprocs [<opts>]` |
+| `aprocs` | &#9733; process monitor.  It calls F$SetSys twice and is aborted (E_PRCABT) where that call is not implemented.  DOC/STATUS has had this since 2026-08; the entry here did not say it.  `procs', `top' and `sysmon' are the other process listers.  Added 2026-08-30<br>`Syntax: aprocs [<opts>]` |
 | `launch` | &#9733; NOT a background launcher.  M.C.Gregorie's login helper: sets the environment for the terminal type, optionally a default PATH and emacs bindings, from /dd/SYS/config, then starts the shell named on its command line.  Corrected 2026-08-28<br>**How:** Says "nothing to launch" until it is configured -- see its documentation. |
 | `signal` | &#9733; send a signal to a process<br>`Syntax: signal <process-id> <signal-code> [<seconds>]` |
-| `sysmax` | &#9733; shows the system's maximum process AGE, not its memory -- `system maximum age is 0' here, because os9exec does not implement the F$SetSys call it uses.  Corrected 2026-08-29 |
+| `sysmax` | &#9733; shows the system's maximum process AGE, not its memory -- `system maximum age is 0' unless the kernel answers the F$SetSys call it uses.  Corrected 2026-08-29 |
 | `sysmin` | &#9733; shows the system's minimum process PRIORITY, not its memory -- `system minimun priority is 0' here, same unimplemented F$SetSys.  Corrected 2026-08-29 |
-| `sysmon` | &#9733; system monitor, and IT NOW STARTS.  It used to refuse on a version check -- `OS9/68k V4.0 is too old for SYSMON V6.1' -- and on 2026-09-02 os9exec began reporting V4.10, which sysmon accepts.  It asks whether to create /dd/sys/nodedef, times out on the keyboard, draws its whole Process Monitor, and then takes a BUS ERROR at F$GPrDsc -- the same gap `devprc -a' and `top' meet at F$GPrDBT.  `dinfo' reports a device's capacity and free space, `map' shows the blocks a file occupies, and `space' totals a tree -- those are the questions it would have answered, and they ARE here. `mfree' and `free' are not: they are Microware's, and this entry's card named them for a year without anybody checking.  Corrected 2026-08-31<br>`Syntax: sysmon [<opt>]` |
+| `sysmon` | &#9733; system monitor, and IT NOW STARTS.  It used to refuse on a version check -- `OS9/68k V4.0 is too old for SYSMON V6.1' -- and it accepts V4.10, which is what it now gets.  It asks whether to create /dd/sys/nodedef, times out on the keyboard, draws its whole Process Monitor, and then takes a BUS ERROR at F$GPrDsc -- the same gap `devprc -a' and `top' meet at F$GPrDBT.  `dinfo' reports a device's capacity and free space, `map' shows the blocks a file occupies, and `space' totals a tree -- those are the questions it would have answered, and they ARE here. `mfree' and `free' are not: they are Microware's, and this entry's card named them for a year without anybody checking.  Corrected 2026-08-31<br>`Syntax: sysmon [<opt>]` |
 | `t` | tiny test/stub binary |
 | `top` | &#9733; show the busiest processes -- prints its heading and then aborts (E_PRCABT).  `aprocs' aborts the same way<br>`Syntax: top [<opts>] [<num>]` |
 | `vis` | &#9733; NOT the Unix `vis': it repeatedly runs a command and refreshes the screen with the output, which is what `watch' does elsewhere -- `vis {opts} <command> <args>'.  Corrected 2026-08-29 |
@@ -1424,12 +1430,11 @@
 
 | | |
 |---|---|
-| `about` | what this collection knows about one program: what it is, what it is for, where it came from, the files it opens and whether they are here, and whether its source survived. Reads DOC/INDEX, CATEGORIES, ORIGINS and DEPENDS for you. what it is for, where it came from, the files it opens and whether they are here, and whether its source and documentation survived.  One card per program -- `about hack'.  DOC/CATEGORIES browses; this answers.<br>`Usage: about <program>...` |
 | `add_errmsg` | &#9733; build vi's error-message file -- it wants /dd/SYS/vi_errmsg, which is here |
 | `argproc_demo` | demonstration of argproc(), RICO's command-line argument parser, AND IT RUNS NOW.  It used to stop with `**** Stack Overflow ****' whatever it was given, and that is exactly what it wanted: rebuilt from SRC/argproc with MEM=64k it parses the line and prints what it made of it -- `argproc_demo readme' answers `arg=readme, b=0, c=0, sGiven=0, s=this is a test, x=32, pi=3.144500'. A switch takes its argument with NO SPACE (`-x99', not `-x 99'), which the program says itself under -help. The argproc library manual is here too: DOC/argproc_demo/man.argproc, from EFFO forum 7. Rebuilt 2026-09-01<br>**How:** A switch takes its argument with NO SPACE: `-x99', never `-x 99'. `argproc_demo readme' prints what it made of the line. It used to stop with `Stack Overflow' and was rebuilt with MEM=64k on 2026-09-01. |
 | `bigsetter` | Modula-2 set-operations demonstration |
 | `bootlogger` | &#9733; log what happens during boot |
-| `break` | send a BREAK on a serial line (assembler example) -- and under os9exec it reaches F$SysDbg and stops the EMULATOR in its own debugger, waiting for an answer.  In a script that is a hang<br>`Syntax: break` |
+| `break` | send a BREAK on a serial line -- an assembler example, and it calls F$SysDbg, the system-debugger trap, on its way there.  On a machine with a debugger attached that drops you into it and waits for an answer, which in a script is a hang<br>`Syntax: break` |
 | `btop` | convert characters to bit patterns -- its own Function: line, and what it does: `btop <file>' prints each character as a grid of O and space.  Measured 2026-08-31: 40 bytes in, 640 out, and `ptob' turns those 640 back into the same 40.  This entry said `bitmap to Gepard fat-font', which is an application of the pair, not what the program does<br>`Syntax:   BtoP [<opts>] [<path1>] [<opts>] [<path2>] [<opts>]` |
 | `btree` | &#9733; B-tree file handling demonstration and test |
 | `clear` | &#9733; clear the screen<br>`Syntax:   clear` |
@@ -1439,7 +1444,7 @@
 | `demerge` | split a merged file back into its parts<br>**How:** OS-9's `merge' is concatenation and there is no `merge' binary here, so `cat a b > c' makes the file demerge takes apart. There is no `od' either -- `dump' is the hex dump. |
 | `demo` | egetopt option-parsing demonstration |
 | `deton` | &#9733; NOT a detab: `deton [seconds]' demonstrates using an alarm to TIME OUT an I/O read.  `detab' and `expand' are what convert tabs.  Corrected 2026-08-29<br>`syntax: deton [seconds]` |
-| `devprc` | show which device belongs to which process.  REBUILT HERE: the archived module has a bad CRC and a corrupt initialised- data descriptor, and does not load.  -h works; -a stops at F$GPrDBT (0x1f), the get-process-descriptor-block-table call, with a bus error -- os9exec answers it without a real table. `top' stops in the same place, after printing its heading. Measured 2026-09-02 |
+| `devprc` | show which device belongs to which process.  REBUILT HERE: the archived module has a bad CRC and a corrupt initialised- data descriptor, and does not load.  -h works; -a stops at F$GPrDBT (0x1f), the get-process-descriptor-block-table call, and needs a kernel that keeps one; where the call is answered without a table it is a bus error.  `top' stops in the same place, after printing its heading. Measured 2026-09-02 |
 | `dload` | &#9733; NOT a serial download: `dload <filename>' LOADS A DATA FILE INTO A DATA MODULE, which is its own usage line. `sbreak' and `break' are the serial-line examples here. Corrected 2026-08-29<br>`Syntax: dload <filename>` |
 | `e` | SEDT editor, VT220 keys.  FIXED 2026-08-28: it wants sys/sedt.keys, sys/sedt.ruler0 and sys/sedt.help, none of which were here -- it stopped with `Could not open key definition file'.  All three are in SYS now, recovered from the EFFO forum 11 archive it came from |
 | `em` | a screen editor (EFFO forum 3)<br>**How:** A screen editor. It stops with "Environment variable TERM not defined!" unless TERM is set -- SYS/login sets it, so run it from a login shell rather than bare. |
@@ -1489,7 +1494,7 @@
 | `trunc` | &#9733; truncate a file to a given length<br>`Syntax: trunc <path> <num>` |
 | `tty` | &#9733; report the terminal's name |
 | `umacs` | &#9733; MicroEMACS -- a small Emacs, EFFO forum 1<br>**How:** A small Emacs (uMacs 1.0). Full-screen: it takes the display and shows "== uMacs 1.0 == main ==" at the foot. This line said it needs `. /dd/SYS/termcap.entry' sourced first; measured 2026-08-29, it does not. |
-| `umusek` | UMusEK -- a music editor.  It wants a HARDWARE screen address and says so: `***DS_ScAdd Error 208.' then `Fran: Can't get screen addr, 'bye!'.  os9exec presents a terminal and no graphics screen, so that is as far as it goes here.  Measured 2026-09-01 |
+| `umusek` | UMusEK -- a music editor.  It wants a HARDWARE screen address and says so: `***DS_ScAdd Error 208.' then `Fran: Can't get screen addr, 'bye!'.  Without a graphics screen that is as far as it goes.  Measured 2026-09-01 |
 | `unpacklib.os9` | unpack a library into its object modules<br>`Usage: unpacklib <options> file1.l file2.l ...` |
 | `vc` | &#9733; a SPREADSHEET -- `Welcome to the Spreadsheet Calculator, type ? for help', with rows, columns and a formula line.  Not a visual compare, which is what this entry said until 2026-08-28 |
 | `vecho` | System V `echo': the newline is suppressed by a trailing \c IN THE ARGUMENT, not by default.  `vecho one' writes `one' and a CR; `vecho one\c' writes `one' and stops. Several arguments are joined with a space.  This entry said `echo without a newline', which is the opposite way round.  Measured, byte by byte, 2026-08-31.  SRC/less_v177 |
@@ -1545,7 +1550,7 @@
 
 *Calendars, clocks and astronomy.*
 
-<details><summary>14 programs</summary>
+<details><summary>13 programs</summary>
 
 **Astronomy**
 
@@ -1555,7 +1560,7 @@
 | `ephem881` | &#9733; ephem, 68881 build<br>**How:** The same program built for a 68881 coprocessor -- see the note for `ephem'. CONTROL-D quits. |
 | `lunisolar` | &#9733; lunar and solar position calculator |
 | `nasa` | &#9733; NASA orbital-element reader.  Wants `nasa.dat' in the CURRENT directory: NORAD two-line element sets -- a name line, then TLE line 1 and line 2 per satellite -- and writes kepler.dat. No element set ships here; supply a current one.  The format is parsed in SRC/eff_orbit/nasa.c and is column-sensitive<br>**How:** The program that FEEDS orbit. Give it NASA two-line elements in a file called nasa.dat in the current directory and it writes kepler.dat, which is what orbit reads. Neither file ships -- you supply nasa.dat. |
-| `orbit` | &#9733; N3EMO satellite orbit simulator v3.7, and it RUNS.  It needs its data directory set to where its files are -- it opens them by bare name, and they are in DOC/orbit: kepler.dat (the satellite database), <site>.sit (the observing station -- pgh, bern and zuerich all ship) and mode.dat (the transponder schedule).<br>**How:** The N3EMO satellite tracker, and it works. It opens kepler.dat, mode.dat and a <site>.sit BY BARE NAME in the DATA DIRECTORY, and they live in DOC/orbit -- so on your own OS-9 system it is `chd /dd/DOC/orbit` then `orbit`. Under os9exec neither shell will do that for you (bash's cd does not move the data directory; sh cannot launch a program here at all), so bring the three files to the directory you are in: `cat /dd/DOC/orbit/kepler.dat > kepler.dat` and so on. Then answer: satellite letter, site name without the .sit, month day year, hour, days, minutes per sample, RETURN for the terminal. Measured 2026-08-30. |
+| `orbit` | &#9733; N3EMO satellite orbit simulator v3.7, and it RUNS.  It needs its data directory set to where its files are -- it opens them by bare name, and they are in DOC/orbit: kepler.dat (the satellite database), <site>.sit (the observing station -- pgh, bern and zuerich all ship) and mode.dat (the transponder schedule).<br>**How:** The N3EMO satellite tracker, and it works. It opens kepler.dat, mode.dat and a <site>.sit BY BARE NAME in the DATA DIRECTORY, and they live in DOC/orbit -- so it is `ksh -c "cd /dd/DOC/orbit; orbit"', or `chd /dd/DOC/orbit' then `orbit' on a shell with a real chd. (bash's `cd' tracks a string and does not move the data directory, so under bash bring the three files to where you are instead: `cat /dd/DOC/orbit/kepler.dat > kepler.dat' and so on.) Then answer: satellite letter, site name without the .sit, month day year, hour, days, minutes per sample, RETURN for the terminal. Measured 2026-08-30, invocation corrected 2026-09-02. |
 
 **Calendars**
 
@@ -1565,7 +1570,6 @@
 | `calen` | calendar printer (v_misc) |
 | `calender` | &#9733; print a whole year's calendar (German)<br>**How:** Prints the year in GERMAN. Not a typo of `calendar' -- a different program by a different author. |
 | `digclk` | &#9733; digital clock with hostname<br>`Usage: digclk [refresh_rate]` |
-| `easter` | &#9733; print the date of Easter for 1988 to 2000 -- a FIXED TABLE, not a calculator: it ignores any year you give it and prints the same thirteen lines whether you name one or not.  1999 is 4 April and 2000 is 23 April, both correct. Corrected 2026-09-01<br>**How:** Prints Easter dates for 1988 to 2000 and nothing else. The range is compiled in. |
 | `gcl` | &#9733; displays a GRAND DIGITAL CLOCK, not a calculator: `gcl {opts} [bkgnd]'.  `digclk' is the other clock of its kind here.  Corrected 2026-08-29 |
 | `qt` | &#9733; tells the time IN WORDS, the way a person would say it: `It's just gone ten past four.'  Not a text utility. `today' is the other one of its kind here.  Corrected 2026-08-29 |
 | `setimex` | &#9733; set time from hardware clock<br>`Usage:` |
@@ -1625,8 +1629,8 @@
 
 | | |
 |---|---|
-| `splman` | &#9733; OS-9 print spooler: manager (Carl Kreider).  Silent here -- there is no printer device under os9exec for it to manage |
-| `splprt` | &#9733; OS-9 print spooler: printer process.  Silent here, same reason |
+| `splman` | &#9733; OS-9 print spooler: the manager (Carl Kreider).  It wants a printer on an SCF device to spool to, and says nothing at all without one.  `splprt' is the process that drives the printer and `splstat' shows the queue; the three go together |
+| `splprt` | &#9733; OS-9 print spooler: the printer process, one per printer. It wants an SCF device to write to and is silent without one |
 | `splstat` | &#9733; OS-9 print spooler: queue status.  Needs a queue to look at, and with none it prints nothing at all -- where the OTHER spooler on this disk says so out loud: `lpq: no spooler installed', `lpshut: no spooler active', `prjob: Spooler not installed'.  All measured 2026-08-31 |
 
 **Spooling**

@@ -633,7 +633,6 @@ cal|Time & calendar|Calendars
 calen|Time & calendar|Calendars
 calender|Time & calendar|Calendars
 digclk|Time & calendar|Calendars
-easter|Time & calendar|Calendars
 japan|Amusements|Simulations
 setimex|Time & calendar|Calendars
 shire|Amusements|Simulations
@@ -732,7 +731,6 @@ unsit|Encoding & conversion|Macintosh
 ar2|Archives & compression|OS-9 module libraries
 checkfile|Maths & calculators|Spreadsheets
 fstat|Files & directories|Attributes
-mines|Games|Puzzles
 scqref|Maths & calculators|Spreadsheets
 alps|Printing|Printers
 gzip020_csl|Archives & compression|Alternates
@@ -995,4 +993,3 @@ dedit|System & modules|Devices & disks
 zoo_2.1|Archives & compression|Alternates
 passwd|System & modules|Users and login
 about|System & modules|Finding things
-about|System & modules|Utilities

@@ -20,27 +20,6 @@ setup   W=/dd/tmp/CAL
 setup   /dd/CMDS/rm -f $W > /nil 2>/nil
 setup   /dd/CMDS/mkdir -p $W > /nil 2>/nil
 
-# easter IGNORES ITS ARGUMENT. It is not a calculator you can ask about a
-# year -- it prints a fixed table of thirteen years, 1988 to 2000, whatever
-# you give it or if you give it nothing. The table is checkable: Easter
-# 2000 really was 23 April and 1999 really was 4 April.
-case    easter-prints-a-fixed-table-of-thirteen-years
-run     /dd/CMDS/easter
-expect  easter 1988 is 4/3
-expect  easter 1999 is 4/4
-expect  easter 2000 is 4/23
-
-case    easter-ignores-the-year-you-give-it
-run     /dd/CMDS/easter 2026 > $W/e1.txt
-run     /dd/CMDS/easter > $W/e2.txt
-run     /dd/CMDS/wc -c $W/e1.txt $W/e2.txt
-run     /dd/CMDS/cat $W/e1.txt
-expect  easter 2000 is 4/23
-absent  easter 2026
-
-# qt tells the time the way a person says it. The hour changes, so what is
-# asserted is the shape -- "It's" and one of the words a spoken time is
-# built from.
 case    qt-tells-the-time-in-words
 run     /dd/CMDS/qt
 expect  It's
