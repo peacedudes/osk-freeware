@@ -45,12 +45,23 @@ wait    3
 quit    bye\r
 
 shot    luac
-cap     The Lua 3.0 bytecode compiler, listing what it compiled.  The Lua
-cap     interpreter itself wants a matching csl and stops; luac does not.
-run     echo 'function sq(x) return x*x end print(sq(7))' > /dd/tmp/sq.lua
-wait    1
-run     luac -l -o /dd/tmp/sq.lc /dd/tmp/sq.lua
-wait    3
+for     luac lua
+size    32 80
+cap     The Lua 3.0 bytecode compiler, on one of the eight example scripts
+cap     that came with the package -- a temperature table, in DOC/lua/examples
+cap     along with a quicksort, a bisection root-finder and four more.  `-l'
+cap     lists what it compiled, instruction by instruction.
+cap     `lua' ITSELF RUNS, but not as the disk stands: it was built against a
+cap     later `csl' than the edition 16 that ships here, so it stops at
+cap     `csl traphandler mismatch'.  `load' a later csl -- anyone with a
+cap     Microware SDK has one -- and `lua hello.lua' prints `hello world,
+cap     from Lua!'.  Measured 2026-09-02.  luac needs none of that.
+run     head -n 8 /dd/DOC/lua/examples/cf.lua
+wait    8
+run     luac -l -o /dd/tmp/cf.lc /dd/DOC/lua/examples/cf.lua | head -n 14
+wait    10
+run     lua /dd/DOC/lua/examples/hello.lua
+wait    6
 
 shot    sbprolog
 for     wam.sbprolog

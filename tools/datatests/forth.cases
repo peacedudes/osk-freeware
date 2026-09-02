@@ -1,0 +1,80 @@
+# forth -- TILE Forth 2.48, and the library it shipped with.
+#
+# The library and the twenty-two test programs were in the same archive as
+# the binary (EFFO pd7) and had never been installed, so `forth' had a
+# one-line index entry saying "Forth interpreter" and the catalogue told a
+# reader to go and fetch the package's own data files. They were four
+# directories away in the archive we already had.
+#
+# A SOURCE FILE IS A COMMAND-LINE ARGUMENT. `include' is not a kernel word;
+# it is defined in the library, so it works only after the library is
+# loaded. That is what makes `forth fibonacci.tst' the right invocation and
+# `include fibonacci.tst' answer `include ??'.
+
+family  forth
+
+setup   export TERM=vt100
+setup   export TILEPATH=.:/dd/lib/tile:/dd/lib/tile/TST
+setup   W=/dd/tmp/FTC
+setup   /dd/CMDS/rm -f $W/* > /nil 2>/nil
+setup   /dd/CMDS/mkdir -p $W > /nil 2>/nil
+setup   echo "bye" > $W/b.f
+
+case    forth-evaluates-and-defines
+run     echo "2 3 + . cr" > $W/a.f
+run     echo ": squares 10 1 do i dup * . loop cr ;" >> $W/a.f
+run     echo "squares" >> $W/a.f
+run     echo "bye" >> $W/a.f
+run     /dd/CMDS/forth < $W/a.f
+expect  TILE Forth version 2.48, Copyright (c) 1989, by Mikael Patel
+expect  5
+expect  1 4 9 16 25 36 49 64 81
+
+case    the-library-loads-and-pulls-in-what-it-depends-on
+run     /dd/CMDS/ksh -c "cd /dd/lib/tile; /dd/CMDS/forth forth.f83 < $W/b.f"
+expect  Loading Forth definitions...
+expect  Loading Enumeration definitions...
+expect  Loading Bit Field definitions...
+expect  Loading Structure definitions...
+
+case    include-is-not-a-kernel-word
+# It answers `include ??' -- Forth for "I do not know that word" -- because
+# `include' is defined in the library, not in the kernel.
+run     echo "include fibonacci.tst" > $W/i.f
+run     echo "bye" >> $W/i.f
+run     /dd/CMDS/ksh -c "cd /dd/lib/tile/TST; /dd/CMDS/forth < $W/i.f"
+expect  include ??
+
+case    the-fibonacci-benchmark-answers-6765
+# The .tst files abort with a message if the answer is wrong, so reaching
+# the end is the benchmark passing.
+run     echo "20 fib . cr" > $W/f.f
+run     echo "recursive-fib .( recursive-fib ok) cr" >> $W/f.f
+run     echo "tail-recursive-fib .( tail-recursive-fib ok) cr" >> $W/f.f
+run     echo "bye" >> $W/f.f
+run     /dd/CMDS/ksh -c "cd /dd/lib/tile/TST; /dd/CMDS/forth fibonacci.tst < $W/f.f"
+expect  Loading Fibonacci benchmark...
+expect  6765
+expect  recursive-fib ok
+expect  tail-recursive-fib ok
+absent  wrong result
+
+case    towers-of-hanoi-moves-fourteen-discs-in-16383-moves
+run     echo "towers-of-hanoi .( towers-of-hanoi ok) cr" > $W/h.f
+run     echo "moves @ . .( moves) cr" >> $W/h.f
+run     echo "bye" >> $W/h.f
+run     /dd/CMDS/ksh -c "cd /dd/lib/tile/TST; /dd/CMDS/forth towers_of_hanoi.tst < $W/h.f"
+expect  Loading Towers of Hanoi benchmark...
+expect  towers-of-hanoi ok
+expect  16383 moves
+absent  wrong result
+
+case    the-library-and-its-tests-are-on-the-disk
+run     /dd/CMDS/ls /dd/lib/tile
+run     /dd/CMDS/ls /dd/lib/tile/TST
+expect  forth.f83
+expect  multi_tasking.f83
+expect  structures.f83
+expect  fibonacci.tst
+expect  towers_of_hanoi.tst
+expect  tree_sort.tst

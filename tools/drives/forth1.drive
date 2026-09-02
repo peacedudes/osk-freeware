@@ -1,0 +1,25 @@
+# forth1 -- TILE Forth 2.48 wants its source library, which came in the same
+# archive and was never installed.  `$TILEPATH' or /dd/lib/tile.
+
+family  forth1
+setup   export TERM=vt100
+setup   W=/dd/tmp/FTH
+setup   /dd/CMDS/rm -f $W/* > /nil 2>/nil
+setup   /dd/CMDS/mkdir -p $W > /nil 2>/nil
+
+drive   forth-bare
+run     /dd/CMDS/ls /dd/lib/tile
+run     echo "bye" > $W/b.f
+run     /dd/CMDS/forth < $W/b.f
+run     echo "--- end bare"
+
+drive   forth-does-arithmetic
+run     echo "2 3 + . cr" > $W/a.f
+run     echo "bye" >> $W/a.f
+run     /dd/CMDS/forth < $W/a.f
+run     echo "--- end arithmetic"
+
+drive   forth-with-tilepath-set
+run     export TILEPATH=/dd/lib/tile
+run     /dd/CMDS/forth < $W/a.f
+run     echo "--- end"

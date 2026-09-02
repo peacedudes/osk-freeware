@@ -1,0 +1,58 @@
+# lua -- what runs, what does not, and exactly what the difference is.
+#
+# `lua' was written off as "does not run".  It runs: it was built against a
+# later `csl' than the edition 16 this disk ships by permission, and with a
+# later one loaded it prints its banner and executes a script.  That is a
+# thing a reader can act on -- anyone with a Microware SDK has one -- where
+# "does not run" is not.  Measured 2026-09-02.
+#
+# The eight example scripts came in the same archive as the binary and had
+# never been installed, which is the second time in one evening that the
+# missing piece was four directories away in an archive we already had.
+
+family  lua
+
+setup   export TERM=vt100
+setup   W=/dd/tmp/LUC
+setup   /dd/CMDS/rm -f $W/* > /nil 2>/nil
+setup   /dd/CMDS/mkdir -p $W > /nil 2>/nil
+
+case    lua-stops-on-the-csl-edition-and-says-so
+run     /dd/CMDS/lua /dd/DOC/lua/examples/hello.lua
+expect  **** csl traphandler mismatch ****
+
+case    luac-compiles-a-real-script-and-lists-its-bytecode
+# cf.lua is the temperature table, one of the eight.
+run     /dd/CMDS/luac -l -o $W/cf.lc /dd/DOC/lua/examples/cf.lua
+run     /dd/CMDS/wc -c $W/cf.lc
+expect  main of "/dd/DOC/lua/examples/cf.lua"
+expect  STOREGLOBAL	26	; c0
+expect  PUSHGLOBAL	28	; write
+expect  /dd/tmp/LUC/cf.lc
+
+case    the-examples-that-came-with-the-package
+run     /dd/CMDS/ls /dd/DOC/lua/examples
+expect  array.lua
+expect  bisect.lua
+expect  cf.lua
+expect  hello.lua
+expect  sort.lua
+
+case    luac-compiles-every-one-of-them
+# NOT a shell loop: `$f' is expanded by the shell the harness types at,
+# before ksh ever sees it, and every name arrives empty.
+run     /dd/CMDS/luac -o $W/array.lc /dd/DOC/lua/examples/array.lua
+run     /dd/CMDS/luac -o $W/bisect.lc /dd/DOC/lua/examples/bisect.lua
+run     /dd/CMDS/luac -o $W/cf.lc /dd/DOC/lua/examples/cf.lua
+run     /dd/CMDS/luac -o $W/dump.lc /dd/DOC/lua/examples/dump.lua
+run     /dd/CMDS/luac -o $W/hello.lc /dd/DOC/lua/examples/hello.lua
+run     /dd/CMDS/luac -o $W/save.lc /dd/DOC/lua/examples/save.lua
+run     /dd/CMDS/luac -o $W/sort.lc /dd/DOC/lua/examples/sort.lua
+run     /dd/CMDS/ls $W
+expect  array.lc
+expect  bisect.lc
+expect  cf.lc
+expect  dump.lc
+expect  hello.lc
+expect  save.lc
+expect  sort.lc

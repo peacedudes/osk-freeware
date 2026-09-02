@@ -1,0 +1,25 @@
+# forth2 -- the library and the test programs that came in the same archive.
+family  forth2
+setup   export TERM=vt100
+setup   export TILEPATH=.:/dd/lib/tile:/dd/lib/tile/TST
+setup   W=/dd/tmp/FT2
+setup   /dd/CMDS/rm -f $W/* > /nil 2>/nil
+setup   /dd/CMDS/mkdir -p $W > /nil 2>/nil
+
+drive   fibonacci-benchmark
+run     echo "include fibonacci.tst" > $W/f.f
+run     echo "bye" >> $W/f.f
+run     /dd/CMDS/ksh -c "cd /dd/lib/tile/TST; /dd/CMDS/forth < $W/f.f"
+run     echo "--- end fib"
+
+drive   towers-of-hanoi
+run     echo "include towers_of_hanoi.tst" > $W/h.f
+run     echo "bye" >> $W/h.f
+run     /dd/CMDS/ksh -c "cd /dd/lib/tile/TST; /dd/CMDS/forth < $W/h.f"
+run     echo "--- end hanoi"
+
+drive   the-structures-library
+run     echo "include structures.f83" > $W/s.f
+run     echo "bye" >> $W/s.f
+run     /dd/CMDS/ksh -c "cd /dd/lib/tile; /dd/CMDS/forth < $W/s.f"
+run     echo "--- end"

@@ -1,20 +1,26 @@
-$ echo 'function sq(x) return x*x end print(sq(7))' > /dd/tmp/sq.lua
-$ luac -l -o /dd/tmp/sq.lc /dd/tmp/sq.lua
+$ head -n 8 /dd/DOC/lua/examples/cf.lua
+-- temperature conversion table
 
-main of "/dd/tmp/sq.lua" (23 bytes at c77a8)
-     0  PUSHFUNCTION    c7348   ; "/dd/tmp/sq.lua":1
-     5  STOREGLOBAL     26      ; sq
-     8  PUSHGLOBAL      10      ; print
-    11  PUSHGLOBAL      26      ; sq
-    14  PUSHBYTE        7
-    16  CALLFUNC        1 1
-    19  CALLFUNC        1 0
-    22  RETCODE0
+-- celsius to farenheit
 
-function sq defined at "/dd/tmp/sq.lua":1 (9 bytes at c7348); used at main+1
-     0  ADJUST  1
-     2  PUSHLOCAL0
-     3  PUSHLOCAL0
-     4  MULTOP
-     5  RETCODE 1
-     7  RETCODE 1
+c0=-20
+while c0<50 do
+
+        c1=c0+10
+$ luac -l -o /dd/tmp/cf.lc /dd/DOC/lua/examples/cf.lua | head -n 14
+
+main of "/dd/DOC/lua/examples/cf.lua" (175 bytes at 9d618)
+     0  PUSHBYTE        20
+     2  MINUSOP
+     3  STOREGLOBAL     26      ; c0
+     6  PUSHGLOBAL      26      ; c0
+     9  PUSHBYTE        50
+    11  LTOP
+    12  IFFJMP  159             ; to 174
+    15  PUSHGLOBAL      26      ; c0
+    18  PUSHBYTE        10
+    20  ADDOP
+    21  STOREGLOBAL     27      ; c1
+    24  PUSHGLOBAL      28      ; write
+$ lua /dd/DOC/lua/examples/hello.lua
+**** csl traphandler mismatch ****

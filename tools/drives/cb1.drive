@@ -1,0 +1,12 @@
+family  cb1
+setup   export TERM=vt100
+setup   W=/dd/tmp/CB1
+setup   /dd/CMDS/rm -f $W/* > /nil 2>/nil
+setup   /dd/CMDS/mkdir -p $W > /nil 2>/nil
+
+drive   cb-on-something-that-needs-beautifying
+run     echo 'int main(){int i;for(i=0;i<3;i++){if(i)printf("%d ",i);else puts("zero");}return 0;}' > $W/ugly.c
+run     /dd/CMDS/cat $W/ugly.c
+run     echo "--- and after cb:"
+run     /dd/CMDS/cb < $W/ugly.c
+run     echo "--- end"

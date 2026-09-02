@@ -1,0 +1,1 @@
+/*  C BASED FORTH-83 MULTI-TASKING KERNEL MEMORY MANAGEMENT DEFINITIONS  Copyright (c) 1989 by Mikael R.K. Patel*//* INCLUDED FILES: SYSTEM MEMORY ALLOCATION */#ifdef LINT#include <malloc.h>#endif/* EXPORTED MACROS, FUNCTIONS, AND PROCEDURES */void memory_initiate();void memory_finish();
