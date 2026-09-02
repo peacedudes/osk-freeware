@@ -213,3 +213,28 @@ argproc_demo|A switch takes its argument with NO SPACE: `-x99', never `-x 99'. `
 greg|It converts a JULIAN DAY NUMBER to a Gregorian date and is nothing to do with regular expressions: `greg 2460000' answers `2023 2 25'.
 convert|It STARTS the `world' adventure. It does not build data tables.
 modbuster|Give it a file holding SEVERAL modules and it writes one file per module in the CURRENT directory -- `/dd/CMDS/GAMES/cyberwar' is a real group of four. Use ksh to put yourself somewhere writable first.
+yagi|It asks FIVE questions on standard input -- centre frequency in MHz, element count, boom diameter, whether the elements are insulated from the boom (Y/N), and a tubing size off its own list of six. Answer four and it loops on the fifth forever, because EOF on a numeric read returns the same thing every time.
+casefix|It is a FILTER and reads STANDARD INPUT: `casefix < file'. Handed the file as an argument it prints nothing at all, which is how it was written off twice.
+bibtex|It reads the job name from STANDARD INPUT -- `Please type input file name (no extension)--' is a prompt, not silence. The .bst styles are in SYS/TEX/INPUTS (plain, unsrt, abbrv, alpha), not SYS/TEX/BIB, which holds one read.me. A BACKSLASH CANNOT BE TYPED at this shell -- bash's echo eats `\c' -- so patch one in with `pbyte <file> <hex offset> 5c'.
+makecrc|It GENERATES C SOURCE and takes no arguments. Run it somewhere writable (`ksh -c "cd /dd/tmp; makecrc"') and it writes six files -- arc.c, binhex.c, ccitt.c, ccitt32.c, kermit.c, zip.c -- each a crctab[256] and an updcrc(). It prints nothing, so list the directory afterwards.
+uuencode|ONE argument, the file: `uuencode /dd/SYS/motd > out.uu'. Its usage line reads as though it wants two and with two it prints that line and stops. `uudecode' is what undoes it.
+uuexpand|NOT a uudecoder. Its own usage is `uuexpand [opts] / or: uuunexpand [opts]' with -8 and -16 for byte portability, and it reads standard input. Use `uudecode' to undo `uuencode'.
+bincheckr|It is in CMDS/GAMES, not CMDS. `bincheckr /dd/GAMES/gnuchess.book' prints the book's entrysize and counts and then faults at close.
+mkdict|It is in CMDS/GAMES, not CMDS.
+mkindex|It is in CMDS/GAMES, not CMDS.
+byteflip|It is in CMDS/NEWS, not CMDS -- and running it ends the emulator session.
+PrintLabels|Its options take a SEPARATE argument: `-infile cat.libr -templatefile tpl.txt', never `-infile=...', which answers `Bad option:' and prints the syntax. The same is true of Ascii2Libr, Libr2Ascii, PrintCards and EditLibr.
+Ascii2Libr|`-outfile cat.libr' with a space, and it reads the ASCII on standard input. It builds a catalogue only from the text Libr2Ascii writes: a hand-written record parses to zero cards.
+Libr2Ascii|`-infile cat.libr' with a space. It writes the catalogue to standard output as text, and a page count and four index-key counts at the end -- all zero means the catalogue is empty.
+inimf|It builds a Metafont base, which SYS/TEX/MFBASES now ships. To rebuild: `echo "plain; \input modes; dump" > mf.in' then `ksh -c "cd /dd/tmp; inimf < mf.in"'. About a minute. DOC/README-METAFONT has the rest.
+virmf|Metafont. `virmf '&cmbase' '\scrollmode; \mode:=epsonlo; \input cmr10; \end'' renders all 128 characters of cmr10. THE JOB NAME COMES FROM THE COMMAND LINE: the same line fed on standard input renders the same font and calls it `mfput'.
+gftype|`gftype -i <font>.<dpi>gf' draws the glyphs as asterisks; -m adds the opcodes. GFFONTS must NAME THE DIRECTORY -- the compiled-in FONTS paths do not begin with `.', so a file beside you is invisible.
+gftopk|`gftopk cmr10.120gf /dd/tmp/cmr10.120pk'. GFFONTS must name where the input is; the OUTPUT path is never searched for, so an absolute one works with nothing set.
+pktype|`pktype <font>.<dpi>pk' prints the packed font back, glyphs included. PKFONTS must name the directory.
+pktogf|Unpacks a .pk. The result is longer than the .gf it came from -- pktogf rewrites the preamble comment -- and the bitmap is unchanged.
+vptovf|`vptovf /dd/DOC/tex/sample.vpl s.vf s.tfm'. sample.vpl is a one-character virtual font written for this, mapping `A' onto cmr10's.
+vftovp|`vftovp s.vf s.tfm back.vpl' reads the binary pair back to text. VFFONTS and TEXFONTS must name where the .vf and .tfm are.
+dvitype|`dvitype <file>.dvi < /nil'. It asks five questions -- output level, starting page, page count, device resolution, magnification -- and takes the default for each at end of file. Without the redirect it prints nothing from a script and waits.
+helpindex|Bare it says `Missing names of files to create index for.' Given files it does not want, it names them.
+florida|`florida < /nil'. It simulates a year of Florida weather day by day, with the calendar notes.
+crypto|`crypto -h' is the real option list and `-i' the interactive commands; its bare answer is two lines naming those. As a FILTER it ends the emulator session here, so read the help rather than piping through it.

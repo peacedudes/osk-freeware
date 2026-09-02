@@ -289,16 +289,27 @@ answer the question.
 Done when: each family has a `DOC/README-<family>` that a stranger can act on
 without installing anything.
 
-### 3. Tests that can fail again — 659 programs have none
+### 3. Tests that can fail again — 45 programs have none
 
-277 of 936 have a data case or a play-test. The rest rest on a capture
-nobody re-checks: if a rebuild broke one tomorrow, only the 277 would notice.
+**870 of 915 have a data case or a play-test as of 2026-09-02** — it was 277
+of 936 when this section was written, and 209 were untested as recently as
+2026-09-01. Do not trust either figure typed here: run
+`tools/worklist.py --programs --no-test`.
+
+**The 45 left are the hard residue and they are sorted in
+`notes/START-HERE-NEXT-SESSION.md`** — full-screen programs that belong on a
+card, programs that end the emulator session, programs wanting hardware or a
+peer that is not here, and two blocked by the stopped clock. Ten names came
+off that list on 2026-09-01/02 and **every one of them had a wrong invocation
+behind it, not a broken program**: a filter handed a file, a program asked
+four of the five questions it wanted, four run from `CMDS` when they live in
+`CMDS/GAMES` and `CMDS/NEWS`, an option written `-opt=value` where the
+program wants `-opt value`. Read that section before deciding a program
+cannot be tested.
 
 The gap is not uniform. The netpbm set is covered densely as a family (a
 round trip through `pnmarith -difference` requiring an all-zero result is a
-strong assertion). The games have play-tests. **The thin part is the ordinary
-utilities** — text filters, file tools, system commands — where a case costs
-about four lines and would catch a real regression.
+strong assertion). The games have play-tests.
 
 Write them into the existing families in `tools/datatests/`. Make each new
 case fail once before believing it.
