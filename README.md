@@ -148,6 +148,22 @@ that runs. (The same screens are in `docs/screens/` as plain text.)
 | `disk/SOURCES.txt` | licence terms, per program |
 | `disk/DOC/README-CIO` | the starred programs, and what they need |
 
+**Several of a thing? There is a chooser for it.** The collection carries
+five vi-ish editors, six kermits, twenty archivers — and if you are copying
+part of it onto your own media you want *one*, without installing several to
+find out how they differ. Each of these is a table of hard facts, a "take
+this if" per candidate, and a one-line answer for somebody who wants exactly
+one file:
+
+| | |
+|---|---|
+| `disk/DOC/README-VI` | seven files, three editors — which vi |
+| `disk/DOC/README-EDITORS` | the ten editors that are *not* vi |
+| `disk/DOC/README-ARCHIVERS` | twenty archivers in seven formats |
+| `disk/DOC/README-KERMIT` | six kermits, and the two flags that decide whether a transfer works |
+| `disk/DOC/README-GREP` | six ways to search a file |
+| `disk/DOC/README-SHELLS` | the five shells, and why `SYS/login` names ksh |
+
 ## Licensing
 
 Everything under `disk/` was written by other people and gathered from public

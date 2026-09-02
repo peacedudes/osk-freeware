@@ -27,6 +27,12 @@ exists so nobody has to take this note's word for it.
 The two figures that decide it are in bold. **429 programs want the
 collection at `/dd`. 54 want data at `/h0`.** Ratio 7.9 to 1.
 
+Re-run 2026-09-01: **431 and 54**, ratio 8.0 to 1 — two more programs' data
+resolved here when `SPOOL/uucp/seabass` and the WN `index.cache` were added.
+The decision does not move and the shape has been stable for eleven days.
+`CLAUDE.md` was still quoting 258 and 53 until that day, which is exactly the
+drift this file exists to stop; it now says to run the tool.
+
 THE SHIFT SINCE AUGUST IS THE DISK GETTING BETTER, not the tool changing.
 A program counts as "wants this collection" when the `/dd` path it carries
 RESOLVES here, so every data file recovered into the tree since -- the SEDT
