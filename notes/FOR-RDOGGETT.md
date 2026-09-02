@@ -79,7 +79,22 @@ were captured under the old arrangement and only five have been re-shot.
 Nothing looks wrong — `/h0` only ADDS a device — but a full re-shoot is a
 couple of hours and is the honest way to be sure. Say if you want it run.
 
-**5. Nothing else is waiting on you.**
+**5. I stopped the full gallery re-shoot part-way, deliberately.** It was
+running at about 0.6 minutes a card -- five hours for 485 -- and it held the
+image lock the whole time, which blocked everything else. I shot the twelve
+cards I had changed instead, plus the seventy the full run got through before
+I stopped it, and nothing in those seventy looked different under `/h0`. The
+629 datatest cases all pass with `/h0` mounted, which is the stronger
+evidence anyway. If you want the full sweep run for completeness it is
+`tools/screenshots.py --all` and about five hours.
+
+  One thing to know if you do: **`--only` skips `setup-image`**, so a card
+  that reads its shared test images comes out blank. Six cards were made
+  self-contained for that reason; twenty still depend on it, which
+  `check_disk`'s new `cards do not depend on each other` check explicitly
+  sanctions.
+
+**6. Nothing else is waiting on you.**
 
 ---
 
