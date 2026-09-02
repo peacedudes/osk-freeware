@@ -109,20 +109,6 @@ case    a-bare-command-name-is-found-on-the-image
 run     /dd/CMDS/ksh -c "PATH=/dd/CMDS; export PATH; chksum /dd/SYS/motd"
 expect  4b68af85
 
-# loglist RECORDS logins; DOC/INDEX called it "log listing", which is only its
-# -l option. It refuses to do anything without /dd/SYS/loglist, so an empty one
-# ships. Both facts are asserted here: that it writes, and that what it writes
-# is right -- because its DISPLAY drops the leading character of every line
-# after the first, and that must not be mistaken for a storage fault.
-case    loglist-records-a-login-and-writes-it-correctly
-run     /dd/CMDS/rm -f /dd/tmp/ll
-run     /dd/CMDS/loglist -i
-run     /dd/CMDS/loglist -o
-run     /dd/CMDS/head -c 8 /dd/SYS/loglist
-expect  +LOGIN +
-run     /dd/CMDS/loglist -l
-expect  LOGIN-LIST
-
 # THE SILENT HALF OF THE cio SELECTOR MISMATCH, asserted so a fix announces
 # itself. These programs open the file, read NOT ONE BYTE (measured with
 # `os9exec -d1 0x0002': opens=1, reads=0) and report on it anyway. The day

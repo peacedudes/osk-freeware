@@ -1,6 +1,6 @@
 # What is on this disk
 
-939 programs of OS-9/68K community software, gathered from the archives that kept it and made to run again. **586 of them need nothing but this disk**; the rest want Microware's `cio`, marked below with a star.
+938 programs of OS-9/68K community software, gathered from the archives that kept it and made to run again. **586 of them need nothing but this disk**; the rest want Microware's `cio`, marked below with a star.
 
 `DOC/INDEX` on the disk lists everything alphabetically. This is the same collection sorted by what each program is *for*, which is the more useful order when you do not yet know what you are looking for.
 
@@ -25,7 +25,7 @@
 | [Games](#games) | 68 | Adventures, board and card games, arcade ports, dungeon crawls and puzzles. |
 | [Screen toys](#screen-toys) | 9 | Animations and screen effects -- they draw on the terminal rather than print to it. Some run until you stop them. |
 | [Amusements](#amusements) | 20 | Generators, simulators and diversions that are not quite games. |
-| [System & modules](#system--modules) | 131 | OS-9 module and process tools, devices, system state and scheduling. |
+| [System & modules](#system--modules) | 130 | OS-9 module and process tools, devices, system state and scheduling. |
 | [Disk & DOS](#disk--dos) | 20 | Reading and writing MS-DOS media with the mtools set. |
 | [Time & calendar](#time--calendar) | 14 | Calendars, clocks and astronomy. |
 | [Maths & calculators](#maths--calculators) | 10 | Calculators, plotting, orbits and number theory. |
@@ -1321,7 +1321,7 @@
 
 *OS-9 module and process tools, devices, system state and scheduling.*
 
-<details><summary>131 programs</summary>
+<details><summary>130 programs</summary>
 
 **Devices & disks**
 
@@ -1409,7 +1409,6 @@
 |---|---|
 | `clock` | display a clock |
 | `date` | Print date and time -- it prints the YEAR AS 2100.  `today' gets it right; setime2, setyear and fixyear are the Y2K repairs beside it |
-| `loglist` | &#9733; A LOGIN LOGGER, not just a listing: `loglist -i' records a login, `-o' a logout, `-l' prints the table.  Philip Maechler, 1988, V2.0.  It writes /dd/SYS/loglist and refuses without it -- `Sorry, there is no /dd/sys/loglist' -- so an empty one ships, the same courtesy SYS/birthdays does for `cal'.  Two faults of its own, measured 2026-08-31 and NEITHER the emulator's: every `-l' line after the first loses its leading character (`OGIN +' for `LOGIN +') while the bytes it WROTE are correct, so the fault is in its display loop; and the year prints as 126, being years-since-1900 left unwrapped<br>`Syntax   : loglist [-option(s)]` |
 | `oskversion` | &#9733; report the OS-9/OSK version<br>`Syntax:   OSKversion` |
 | `setime` | Set system time.  It PROMPTS with `YYMMDDHHMMSS' and then does not set it: the clock is unchanged whether the answer comes from standard input or from six fields on the command line.  `date -t' reads 2100 here whatever you do, which `setyear' disagrees with too.  Measured 2026-09-01 |
 | `sysid` | &#9733; show system identification |

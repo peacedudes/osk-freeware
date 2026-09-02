@@ -13,9 +13,13 @@ are twenty now, and nineteen of them are proved able to FAIL by
 **1. `gnuchess` — the one real decision.** Details below; measured, and my
 recommendation is there.
 
-**2. `disk/SYS/loglist` — an empty file I added.** `CMDS/loglist` refuses to
-run without it. Delete it if you would rather the disk shipped no writable
-log; nothing else depends on it.
+**2. ~~`disk/SYS/loglist`~~ — SETTLED 2026-09-02: `loglist` IS GONE, program
+and file both, at your word. You went looking for it because of that note,
+read its catalogue entry, and the entry was the problem: it opened `A LOGIN
+LOGGER, not just a listing' -- shouting a correction at a mistake only a
+previous session had made, in the middle of a page a stranger reads -- and
+its card ran straight on into `every -?', so the sample output under
+`loglist' was another program's help. Dropped rather than patched.
 
 **3. Two gaps in the `os9-dev` SKILL, noted not fixed.** The skill repo is
 `~/Developer/os9/os9-dev-skill` and its tree is clean; say the word and I

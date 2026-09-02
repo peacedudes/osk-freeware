@@ -237,28 +237,19 @@ run     sedt < /nil
 wait    10
 
 shot    every
-for     every repeat cron bootlogger loglist
-cap     every and repeat run a command again and again -- the two halves of
-cap     cron for a machine that is not left running.  Neither can be shown
-cap     working: `every' runs until stopped, and `repeat' cannot execute
-cap     anything on this disk under either shell -- DOC/INDEX has the
-cap     reason and it is the program's, not the emulator's.  So the card
-cap     shows the one of the three that does work.  loglist is the login
-cap     logger:
-cap     `-i' records an arrival, `-l' prints the table.  Its display drops
-cap     the leading character of every line after the first, which is its
-cap     own fault and not the emulator's -- the bytes it writes are right.
-cap     `bootlogger' answers nothing at all, even to `-?', and `cron' left
-cap     the capture session unusable, so neither is shown here.  The disk
-cap     ships an empty SYS/loglist, so `-i' has somewhere to write.
-run     loglist -i
-wait    5
-run     loglist -o
-wait    5
-run     loglist -l
-wait    8
-run     every -?
-wait    6
+for     every repeat cron bootlogger
+cap     every runs a command again and again: `every 2 oskversion' asks the
+cap     kernel its version every two seconds until you stop it, which is
+cap     what the card shows.  `date' is the obvious thing to repeat and reads badly here,
+cap     because this disk's `date' writes no trailing newline and the
+cap     repeats run together on one line.
+cap     It is the closest thing here to cron for a machine nobody leaves
+cap     running.  `repeat' is its sibling and cannot execute anything on
+cap     this disk under either shell; `bootlogger' answers nothing at all,
+cap     even to `-?'; `cron' is a daemon and leaves the session unusable.
+run     every 2 oskversion
+wait    14
+kill
 
 shot    fastcc
 for     fastcc compiler assembler lfmaker
