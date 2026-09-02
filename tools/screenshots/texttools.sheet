@@ -25,10 +25,10 @@ run     fgrep cribbage /dd/DOC/INDEX
 wait    4
 
 shot    casefix
-cap     casefix normalises letter case -- one capital at the front, the
-cap     rest down.  It is a FILTER and takes no filename: given one it
-cap     ignores it and reads the terminal, which is a good way to lose a
-cap     script.  `upperdir' does the same job to a directory's names.
+cap     casefix normalises letter case -- one capital at the front, the rest
+cap     down.  It is a FILTER and takes no filename: given one it ignores it
+cap     and reads the terminal, which is a good way to lose a script.
+cap     `upperdir' does the same job to a directory's names.
 run     echo "tHE qUICK bROWN fOX" | casefix
 wait    5
 run     echo "hello THERE from OS-9" | casefix
@@ -47,9 +47,9 @@ run     cdiff /dd/tmp/h1 /dd/tmp/h2
 wait    6
 
 shot    charcnt
-cap     charcnt counts characters -- and it wants FILENAMES, not a
-cap     redirect, and says so when it gets one.  `tcmp' compares two text
-cap     files and says where they first differ.
+cap     charcnt counts characters -- and it wants FILENAMES, not a redirect,
+cap     and says so when it gets one.  `tcmp' compares two text files and
+cap     says where they first differ.
 run     charcnt < /dd/SYS/motd
 wait    5
 run     charcnt /dd/SYS/motd /dd/SYS/password
@@ -177,13 +177,13 @@ wait    20
 shot    expand
 for     expand unexpand deton tabs autolf
 cap     Tabs to spaces and back again, with dump showing the bytes so the
-cap     change is visible rather than asserted: one line of SYS/holidays,
-cap     09 09 becoming a run of 20s and then coming back byte for byte.
+cap     change is visible rather than asserted: one line of SYS/holidays, 09
+cap     09 becoming a run of 20s and then coming back byte for byte.
 cap     `unexpand' needs -a to do it: without it, like every unexpand, it
-cap     only touches whitespace at the START of a line and these tabs are
-cap     in the middle.  `dump' wants a PATH -- it prints its usage for
-cap     anything handed to it on standard input -- so each stage is
-cap     written to a file first.
+cap     only touches whitespace at the START of a line and these tabs are in
+cap     the middle.  `dump' wants a PATH -- it prints its usage for anything
+cap     handed to it on standard input -- so each stage is written to a file
+cap     first.
 run     head -n 3 /dd/SYS/holidays 2>/nil | tail -l=1 > /dd/tmp/t2.txt
 wait    5
 run     dump /dd/tmp/t2.txt
@@ -243,11 +243,11 @@ wait    10
 
 shot    gep
 for     gep lgrep ggrep bmgtest bmgtest2
-cap     More pattern matchers, each from a different decade.  `ggrep' is
-cap     GNU grep out of sh_utils and counts what it finds.  `lgrep' is
-cap     meant to print the NAMES of files that match, the way grep -l
-cap     does, and prints nothing at all here whatever it is given -- its
-cap     usage line is the only output anyone has got out of it.
+cap     More pattern matchers, each from a different decade.  `ggrep' is GNU
+cap     grep out of sh_utils and counts what it finds.  `lgrep' is meant to
+cap     print the NAMES of files that match, the way grep -l does, and
+cap     prints nothing at all here whatever it is given -- its usage line is
+cap     the only output anyone has got out of it.
 run     gep -?
 wait    6
 run     lgrep chess /dd/DOC/INDEX /dd/DOC/STATUS /dd/SYS/motd
@@ -320,7 +320,7 @@ wait    8
 shot    kwic
 for     pagefraz pagekwic pageline
 cap     The KWIC suite: a key-word-in-context index, the way a printed
-cap     concordance was made.  pageline numbers the lines, pagekwic splits
+cap     concordance was made. pageline numbers the lines, pagekwic splits
 cap     them to one phrase each, pagefraz pulls the phrases out.
 run     head -n 12 /dd/SYS/holidays > /dd/tmp/k.txt
 wait    6
@@ -358,11 +358,11 @@ shot    qsort9
 for     qsort9 nsort uniq unip
 cap     Three sorts on the same four numbers, and only one of them is a
 cap     numeric sort.  `qsort9' compares text, which is what it is for.
-cap     `nsort' answers exactly the same -- 111 before 22 before 3 --
-cap     so it is NOT the numeric sort its name and DOC/INDEX promised,
-cap     and the index is corrected.  `sort -n' is the one that gets it
-cap     right.  The file is built with echo because this disk's printf
-cap     prints nothing at all for a format with no conversion in it.
+cap     `nsort' answers exactly the same -- 111 before 22 before 3 -- so it
+cap     is NOT the numeric sort its name and DOC/INDEX promised, and the
+cap     index is corrected.  `sort -n' is the one that gets it right.  The
+cap     file is built with echo because this disk's printf prints nothing at
+cap     all for a format with no conversion in it.
 run     echo 3 > /dd/tmp/n.txt
 wait    3
 run     echo 22 >> /dd/tmp/n.txt
@@ -501,10 +501,10 @@ for     strings what
 cap     `strings' pulls the printable text out of a binary, each hit
 cap     reported with its offset.  `what' beside it is NOT the SCCS `what'
 cap     its name promises and does not read a binary at all: it lists the
-cap     expansion cards in a GEPARD, the German 68k machine much of the
-cap     EFFO material was written on, and the table is empty here because
-cap     there is no GEPARD.  It ignores whatever you give it.  The entry
-cap     written for it an hour earlier guessed SCCS from the name.
+cap     expansion cards in a GEPARD, the German 68k machine much of the EFFO
+cap     material was written on, and the table is empty here because there
+cap     is no GEPARD.  It ignores whatever you give it.  The entry written
+cap     for it an hour earlier guessed SCCS from the name.
 run     strings /dd/CMDS/today | head -n 12
 wait    5
 run     what /dd/CMDS/today
@@ -542,16 +542,15 @@ cap     tangle and weave are the WEB tools TeX itself is written with: one
 cap     makes Pascal out of a .web file, the other makes TeX.  `tftopl' and
 cap     `pltotf' are the font-metric pair with their own card; `gftype' and
 cap     `pktype' are on the texfonts-bitmap card, which is where the ones
-cap     with no bitmap font to read belong.
-cap     BOTH NEED A CHANGE FILE NAMED, and that is the whole reason this
-cap     card used to be two usage lines.  Given only a .web they answer
-cap     `Error: `Can't open file.'' -- the absent change file is what they
-cap     cannot open, not the source.  DOC/tex ships sample.web and none.ch,
-cap     an empty change file that changes nothing, as of 2026-08-31.  Both
-cap     read the .web from the DATA directory and write there too.
-cap     The copies go to /dd because that is the data directory: bash's
-cap     `cd' does not move it, so a bare filename is looked up there
-cap     whatever the prompt says.
+cap     with no bitmap font to read belong.  BOTH NEED A CHANGE FILE NAMED,
+cap     and that is the whole reason this card used to be two usage lines.
+cap     Given only a .web they answer `Error: `Can't open file.'' -- the
+cap     absent change file is what they cannot open, not the source.
+cap     DOC/tex ships sample.web and none.ch, an empty change file that
+cap     changes nothing, as of 2026-08-31.  Both read the .web from the DATA
+cap     directory and write there too.  The copies go to /dd because that is
+cap     the data directory: bash's `cd' does not move it, so a bare filename
+cap     is looked up there whatever the prompt says.
 run     cp /dd/DOC/tex/sample.web /dd/sample.web
 wait    6
 run     cp /dd/DOC/tex/none.ch /dd/none.ch
@@ -635,8 +634,8 @@ cap     the `texfonts-bitmap' screen is where it is shown.  Metafont has its
 cap     bases; render cmr10 at the resolution a driver asks for -- dvijet
 cap     wants 120 dpi and `epsonlo' in modes.mf is 120 dpi -- pack it with
 cap     gftopk, point TEXFONTS and FONTLIST at it, and dvijet's page goes
-cap     from 3138 bytes of nothing to 7350 bytes of real glyph rasters.  A
-cap     .pk still does not ship, because a .pk is made for ONE printer at
+cap     from 3138 bytes of nothing to 7350 bytes of real glyph rasters.
+cap     A.pk still does not ship, because a .pk is made for ONE printer at
 cap     ONE resolution; what ships is the means.  `dvips' is the one
 cap     exception and its trouble is not fonts: it stops at `Couldn't find
 cap     header file tex.pro' and no .pro file is on this disk.  Two of the
@@ -673,7 +672,7 @@ wait    12
 
 shot    texfonts
 for     tftopl pltotf
-cap     TeX's font tools.  tftopl turns a binary font metric into readable
+cap     TeX's font tools. tftopl turns a binary font metric into readable
 cap     property lists and pltotf turns it back -- the round trip that lets
 cap     you edit a font's metrics by hand.
 run     tftopl /dd/SYS/TEX/FONTS/TFM/cmr10.tfm > /dd/tmp/cmr10.pl
@@ -696,16 +695,16 @@ cap     METAFONT logo font, seven characters -- at a low-resolution mode;
 cap     gftype draws the M as pixels; gftopk packs 608 bytes down to 364;
 cap     pktype reads the packed form back; pktogf unpacks it. vptovf and
 cap     vftovp are the virtual pair: DOC/tex/sample.vpl maps one character
-cap     onto cmr10 and compiles to a .vf, which vftovp reads back to the
-cap     text it came from.  GFFONTS, PKFONTS, VFFONTS and TEXFONTS have to
-cap     name the working directory: the FONTS search paths compiled into
-cap     these binaries do NOT begin with `.' the way MFINPUTS does, so a
-cap     file beside you is invisible to them.  That is the one thing here
-cap     that reads like a fault and is not -- and it is also what lets the
-cap     seven readers run with no `cd' at all.  Only Metafont needs one,
-cap     because it writes its three outputs into the data directory and
-cap     names them itself; the four `F$SetSys: unimplemented' lines are ksh
-cap     starting up, not anything Metafont did.
+cap     onto cmr10 and compiles to a .vf, which vftovp reads back to the text
+cap     it came from.  GFFONTS, PKFONTS, VFFONTS and TEXFONTS have to name
+cap     the working directory: the FONTS search paths compiled into these
+cap     binaries do NOT begin with `.' the way MFINPUTS does, so a file
+cap     beside you is invisible to them.  That is the one thing here that
+cap     reads like a fault and is not -- and it is also what lets the seven
+cap     readers run with no `cd' at all.  Only Metafont needs one, because
+cap     it writes its three outputs into the data directory and names them
+cap     itself; the four `F$SetSys: unimplemented' lines are ksh starting
+cap     up, not anything Metafont did.
 run     rm -f /dd/tmp/GF/*
 wait    6
 run     mkdir -p /dd/tmp/GF
@@ -756,13 +755,13 @@ wait    8
 
 shot    roff
 for     roff nroff proff
-cap     Three roffs, none of them GNU.  `proff' justifies text to a
-cap     measure -- the spread-out words below are it filling the line --
-cap     and takes page ranges and a statistics option.  `roff' is the
-cap     small one with the same job.  `nroff' is the one to avoid: it
-cap     answers `illegal switch' to -?, prints nothing for a file, and
-cap     does not come back at all -- the session has to be stopped.
-cap     `lout' and `tex' are what typeset properly here.
+cap     Three roffs, none of them GNU.  `proff' justifies text to a measure
+cap     -- the spread-out words below are it filling the line -- and takes
+cap     page ranges and a statistics option.  `roff' is the small one with
+cap     the same job.  `nroff' is the one to avoid: it answers `illegal
+cap     switch' to -?, prints nothing for a file, and does not come back at
+cap     all -- the session has to be stopped.  `lout' and `tex' are what
+cap     typeset properly here.
 run     head -n 12 /dd/DOC/README-KEEP > /dd/tmp/r.txt 2>/nil
 wait    5
 run     proff /dd/tmp/r.txt | head -n 10

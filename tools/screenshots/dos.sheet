@@ -10,7 +10,7 @@
 shot    msinfo
 for     msinfo mslabel msformat
 cap     What the DOS floppy image is, read out of its own boot sector, and
-cap     the label put on it.  msformat will NOT make one: bare it refuses
+cap     the label put on it. msformat will NOT make one: bare it refuses
 cap     non-removable media, and given the geometry it aborts on an illegal
 cap     instruction.  The image that ships is the one you get.
 run     mslabel a:OS9FREEWARE

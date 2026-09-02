@@ -3,10 +3,10 @@
 shot    elvrec
 for     elvrec elvprsv vi.elvis elvis_input
 cap     elvis's crash-recovery pair: elvprsv preserves an interrupted
-cap     session, elvrec brings it back.  Nothing has been preserved on
-cap     this disk, so elvrec lists nothing at all and only names the file
-cap     when you ask for one by name.  `exrecover' is the same job for the
-cap     other vi here, and says what it wants.
+cap     session, elvrec brings it back.  Nothing has been preserved on this
+cap     disk, so elvrec lists nothing at all and only names the file when
+cap     you ask for one by name.  `exrecover' is the same job for the other
+cap     vi here, and says what it wants.
 run     elvrec
 wait    6
 run     elvrec /dd/tmp/none
@@ -27,11 +27,12 @@ run     emacs.mm1 < /nil
 wait    10
 
 shot    hexed
-cap     This hex editor cannot start: it writes its work file to /r0, the RAM
-cap     disk os9exec has no way to provide, and says so.  Twenty programs
-cap     here reach for /r0; DOC/STATUS lists them.  `beav' is the binary
-cap     editor that needs nothing, and `hexedit' -- a different program with
-cap     a similar name -- works once TERMCAP is set as a capability string.
+cap     This hex editor cannot start: it writes its work file to /r0, the
+cap     RAM disk os9exec has no way to provide, and says so.  Twenty
+cap     programs here reach for /r0; DOC/STATUS lists them.  `beav' is the
+cap     binary editor that needs nothing, and `hexedit' -- a different
+cap     program with a similar name -- works once TERMCAP is set as a
+cap     capability string.
 run     hexed /dd/CMDS/today
 wait    6
 quit    q
@@ -52,12 +53,12 @@ kill
 
 shot    pbyte
 for     pbyte chbase
-cap     pbyte patches bytes in a file at a hex offset -- the smallest
-cap     binary editor here.  Three bytes at offset 0 turn `Wel' into
-cap     `ABC'.  `chbase' beside it is NOT a module-base changer whatever
-cap     DOC/INDEX said: it converts a NUMBER from one base to another.
-cap     Both used to be captured with no arguments, which showed
-cap     their usage lines and nothing either program can do.
+cap     pbyte patches bytes in a file at a hex offset -- the smallest binary
+cap     editor here.  Three bytes at offset 0 turn `Wel' into `ABC'.
+cap     `chbase' beside it is NOT a module-base changer whatever DOC/INDEX
+cap     said: it converts a NUMBER from one base to another.  Both used to
+cap     be captured with no arguments, which showed their usage lines and
+cap     nothing either program can do.
 run     cat /dd/SYS/motd > /dd/tmp/pb
 wait    5
 run     cat /dd/tmp/pb
@@ -89,11 +90,11 @@ cap     itself, not a clone, which is why it has the name and keeps it.
 cap     WHAT YOU SEE HERE IS NOT WHAT ITS USERS SEE.  Under this harness --
 cap     a pseudo-terminal rendered as vt100 -- it paints the first line and
 cap     a half-drawn rule and no more; on a real terminal it works fine and
-cap     is used daily.  Tried and did NOT explain it (2026-08-30): 24 lines
-cap     and 36, TERMCAP as a path and as an entry, ^L and ^R.  So this is a
-cap     fact about the harness until somebody explains it.  `elvis',
-cap     `vi_nocio' and REBUILT/vi_1.0 fill the screen under both, each with
-cap     its own card.
+cap     is used daily.  Tried and did NOT explain it: 24 lines and 36,
+cap     TERMCAP as a path and as an entry, ^L and ^R.  So this is a fact
+cap     about the harness until somebody explains it.  `elvis', `vi_nocio'
+cap     and REBUILT/vi_1.0 fill the screen under both, each with its own
+cap     card.
 run     vi /dd/DOC/README-CIO
 wait    20
 send    \033

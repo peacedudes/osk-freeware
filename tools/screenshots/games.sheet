@@ -5,14 +5,14 @@ shot    advint
 size    36 80
 for     advint advcom
 cap     ADVSYS -- David Betz's adventure system -- compiled and then played,
-cap     both on this disk.  advcom builds a world from GAMES/ADVSYS/
-cap     osample.adv and advint runs it.  This card used to say that needed
-cap     a shell with a real chd, which bash has not got.  It does not: the
-cap     two limits are that advcom opens its `@objects.adi' include by bare
-cap     name in the DATA DIRECTORY, and that it holds a filename in 20
-cap     characters and appends `.adv' to it.  Put both files where the data
-cap     directory already is and give it a short name, and bash compiles it
-cap     -- `advcom osample', not `advcom /dd/GAMES/ADVSYS/osample'.
+cap     both on this disk. advcom builds a world from GAMES/ADVSYS/
+cap     osample.adv and advint runs it.  This card used to say that needed a
+cap     shell with a real chd, which bash has not got.  It does not: the two
+cap     limits are that advcom opens its `@objects.adi' include by bare name
+cap     in the DATA DIRECTORY, and that it holds a filename in 20 characters
+cap     and appends `.adv' to it.  Put both files where the data directory
+cap     already is and give it a short name, and bash compiles it -- `advcom
+cap     osample', not `advcom /dd/GAMES/ADVSYS/osample'.
 run     cat /dd/GAMES/ADVSYS/osample.adv > /dd/osample.adv
 wait    8
 run     cat /dd/GAMES/ADVSYS/objects.adi > /dd/objects.adi
@@ -270,10 +270,10 @@ shot    gwindows-games
 for     cyberwar pacman puzzle
 cap     Three that draw through G-Windows, the graphics system this disk
 cap     does not carry.  `cyberwar' and `pacman' write nothing at all and
-cap     exit; `puzzle' gets as far as one rule of plus signs -- the top
-cap     edge of the tile frame -- and stops there.  They are here because
-cap     they are part of what the archives held, not because they can be
-cap     played on a terminal.
+cap     exit; `puzzle' gets as far as one rule of plus signs -- the top edge
+cap     of the tile frame -- and stops there.  They are here because they
+cap     are part of what the archives held, not because they can be played
+cap     on a terminal.
 run     cyberwar
 wait    6
 run     pacman

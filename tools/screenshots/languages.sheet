@@ -48,14 +48,14 @@ shot    luac
 for     luac lua
 size    32 80
 cap     The Lua 3.0 bytecode compiler, on one of the eight example scripts
-cap     that came with the package -- a temperature table, in DOC/lua/examples
-cap     along with a quicksort, a bisection root-finder and four more.  `-l'
-cap     lists what it compiled, instruction by instruction.
-cap     `lua' ITSELF RUNS, but not as the disk stands: it was built against a
-cap     later `csl' than the edition 16 that ships here, so it stops at
+cap     that came with the package -- a temperature table, in
+cap     DOC/lua/examples along with a quicksort, a bisection root-finder and
+cap     four more.  `-l' lists what it compiled, instruction by instruction.
+cap     `lua' ITSELF RUNS, but not as the disk stands: it was built against
+cap     a later `csl' than the edition 16 that ships here, so it stops at
 cap     `csl traphandler mismatch'.  `load' a later csl -- anyone with a
 cap     Microware SDK has one -- and `lua hello.lua' prints `hello world,
-cap     from Lua!'.  Measured 2026-09-02.  luac needs none of that.
+cap     from Lua!'. luac needs none of that.
 run     head -n 8 /dd/DOC/lua/examples/cf.lua
 wait    8
 run     luac -l -o /dd/tmp/cf.lc /dd/DOC/lua/examples/cf.lua | head -n 14
@@ -93,11 +93,11 @@ quit    (exit)\r
 shot    csl-mismatch
 for     lua runc xengine basicwin
 cap     FOUR programs built against a LATER csl than the edition 16 this
-cap     disk ships.  They stop before they start, and no amount of
-cap     arranging the disk will change it -- see DOC/STATUS.  `xengine'
-cap     and `basicwin', the two X11 clients that get this far, answer the
-cap     same way, so it is the runtime and not the missing X server that
-cap     stops them.
+cap     disk ships.  They stop before they start, and no amount of arranging
+cap     the disk will change it -- see DOC/STATUS.  `xengine' and
+cap     `basicwin', the two X11 clients that get this far, answer the same
+cap     way, so it is the runtime and not the missing X server that stops
+cap     them.
 run     lua
 wait    8
 run     runc

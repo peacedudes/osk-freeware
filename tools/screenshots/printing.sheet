@@ -15,9 +15,9 @@ size    36 80
 cap     Aladdin Ghostscript 4.03 on an OS-9 disk, reading one of its own
 cap     test files and giving you its `GS>' prompt.  This card said it did
 cap     NOT render, on a measurement taken with GS_LIB unset -- because the
-cap     line that set it was `setenv GS_LIB ...', and `setenv' is the OS-9
-cap     shell's command, not bash's.  In bash it is `export NAME=value',
-cap     and the `echo' below is there to show the variable actually took.
+cap     line that set it was `setenv GS_LIB..', and `setenv' is the OS-9
+cap     shell's command, not bash's.  In bash it is `export NAME=value', and
+cap     the `echo' below is there to show the variable actually took.
 cap     Everything Ghostscript needs, fonts included, is in LIB/gs403.
 run     export GS_LIB=/dd/LIB/gs403
 wait    5
@@ -55,9 +55,9 @@ cap     The rest of the spooler set, each asked for itself.  `lprm' removes
 cap     a queued job, `lpshut' stops the scheduler, `submit' and `prjob'
 cap     queue work, and `qp' is the queue printer -- which is one of the
 cap     seven programs that fail for want of a program called `shell'
-cap     (DOC/STATUS names them all).  With no spooler installed none of
-cap     them has anything to act on, and what each says about that is the
-cap     point of the card.
+cap     (DOC/STATUS names them all).  With no spooler installed none of them
+cap     has anything to act on, and what each says about that is the point
+cap     of the card.
 run     lprm -?
 wait    6
 run     lpshut -?

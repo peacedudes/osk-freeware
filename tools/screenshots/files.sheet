@@ -86,13 +86,13 @@ wait    5
 
 shot    dm
 cap     dm, DiskMaster 1.4 -- a two-pane full-screen file browser, and it
-cap     gets as far as its title box before stopping.  It asks the shell
-cap     for the working directory through a named pipe, /pipe/getcwdpipe,
-cap     and the open fails with error 216: OS-9's system() forks a program
-cap     called `shell' and this disk has none.  MEASURED 2026-08-29 -- with
-cap     `sh' copied to `shell' it runs completely, directory list and file
-cap     information panel and all.  Its help file is SYS/dm.hlp; `edir',
-cap     `dir' and `tree' are what browse here as things stand.
+cap     gets as far as its title box before stopping.  It asks the shell for
+cap     the working directory through a named pipe, /pipe/getcwdpipe, and
+cap     the open fails with error 216: OS-9's system() forks a program
+cap     called `shell' and this disk has none. -- with `sh' copied to
+cap     `shell' it runs completely, directory list and file information
+cap     panel and all.  Its help file is SYS/dm.hlp; `edir', `dir' and
+cap     `tree' are what browse here as things stand.
 run     dm /dd/SYS
 wait    5
 
@@ -111,10 +111,10 @@ wait    10
 shot    edir
 for     edir eset
 cap     edir lists the EVENT directory -- OS-9 events, their values and
-cap     their wait queues, not files.  There are no events set here, so
-cap     what it prints is the heading and the time.  `eset' can only
-cap     change an event that already exists, and nothing on this disk
-cap     creates one, so it has nothing to link to.
+cap     their wait queues, not files.  There are no events set here, so what
+cap     it prints is the heading and the time.  `eset' can only change an
+cap     event that already exists, and nothing on this disk creates one, so
+cap     it has nothing to link to.
 run     edir
 wait    8
 run     eset -?
@@ -124,12 +124,12 @@ wait    8
 
 shot    ff
 for     ff
-cap     `ff' -- find file -- asks in German dialect what to look for when
-cap     it is given nothing: `Was soll'n gesucht wer'n ey ???', and then
-cap     exits without waiting for an answer.  Told what to look for on the
-cap     command line it forks `dir' and cannot find it -- it looks in its
-cap     own execution directory, the way OS-9 does, and that is not where
-cap     bash found ff.  `find', `tree' and `dir' all work.
+cap     `ff' -- find file -- asks in German dialect what to look for when it
+cap     is given nothing: `Was soll'n gesucht wer'n ey ???', and then exits
+cap     without waiting for an answer.  Told what to look for on the command
+cap     line it forks `dir' and cannot find it -- it looks in its own
+cap     execution directory, the way OS-9 does, and that is not where bash
+cap     found ff.  `find', `tree' and `dir' all work.
 run     ff
 wait    8
 run     ff termcap

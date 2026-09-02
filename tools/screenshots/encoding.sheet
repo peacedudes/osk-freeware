@@ -83,9 +83,9 @@ for     divide chardef fc
 cap     divide SPLITS A FILE into pieces -- Farside Systems, 1992.  Twelve
 cap     lines in, four to a piece, three pieces out.  It is not integer
 cap     division, whatever the name suggests, and DOC/INDEX said it was
-cap     until this screen was taken.  `fc' below is the other splitter
-cap     here, cutting at 350,000 bytes to fit a 360k floppy; it needs its
-cap     path because bash has an `fc' builtin.
+cap     until this screen was taken.  `fc' below is the other splitter here,
+cap     cutting at 350,000 bytes to fit a 360k floppy; it needs its path
+cap     because bash has an `fc' builtin.
 run     head -n 12 /dd/SYS/holidays > /dd/tmp/dv.txt 2>/nil
 wait    6
 run     divide -l=4 /dd/tmp/dv.txt /dd/tmp/piece
@@ -116,11 +116,11 @@ shot    todos
 for     todos toos9 autolf
 cap     todos and toos9 claim to convert line endings between OS-9 and DOS.
 cap     They do NOT, and the screen says why: todos converts into
-cap     `todos.$$$.3' and then cannot RENAME it back, so the file comes
-cap     back byte-identical.  That is the same missing rename() that stops
-cap     zip and arc.  `autolf' below is the program that does the job --
-cap     40 bytes in, 41 out, the 0D at the end of the line now 0D 0A --
-cap     because as a FILTER it never has to rename anything.
+cap     `todos.$$$.3' and then cannot RENAME it back, so the file comes back
+cap     byte-identical.  That is the same missing rename() that stops zip
+cap     and arc.  `autolf' below is the program that does the job -- 40
+cap     bytes in, 41 out, the 0D at the end of the line now 0D 0A -- because
+cap     as a FILTER it never has to rename anything.
 run     cat /dd/SYS/motd > /dd/tmp/le.txt
 wait    3
 run     chksum /dd/tmp/le.txt
@@ -152,12 +152,12 @@ wait    5
 shot    uuexpand
 size    36 80
 for     uuexpand toos9 mcvert
-cap     `uuexpand' pads a uuencoded file back out, `mcvert' converts
-cap     between the formats a Mac expected, and `toos9' turns host line
-cap     endings into OS-9's -- which is one of the two programs on this
-cap     disk that do nothing whatever to their input (DOC/STATUS says so
-cap     under ONE MISSING FUNCTION).  `macbin' and `hexbin' were credited
-cap     here as well as on the `macfiles' card; they are on that one now.
+cap     `uuexpand' pads a uuencoded file back out, `mcvert' converts between
+cap     the formats a Mac expected, and `toos9' turns host line endings into
+cap     OS-9's -- which is one of the two programs on this disk that do
+cap     nothing whatever to their input (DOC/STATUS says so under ONE
+cap     MISSING FUNCTION).  `macbin' and `hexbin' were credited here as well
+cap     as on the `macfiles' card; they are on that one now.
 run     uuencode /dd/SYS/motd > /dd/tmp/u.uue
 wait    6
 run     uuexpand < /dd/tmp/u.uue | head -n 8
@@ -179,10 +179,9 @@ wait    5
 
 shot    macfiles
 for     macsave macstream macunpack UnMacpack unsit hexbin macbin
-cap     The Macintosh set: StuffIt, MacBinary, BinHex and MacPack, from
-cap     when a Mac file had two forks and neither survived a plain copy.
-cap     All seven are asked for; three were until 2026-08-30 and the rest
-cap     stood behind them.
+cap     The Macintosh set: StuffIt, MacBinary, BinHex and MacPack, from when
+cap     a Mac file had two forks and neither survived a plain copy.  All
+cap     seven are asked for
 run     unsit
 wait    8
 run     macunpack

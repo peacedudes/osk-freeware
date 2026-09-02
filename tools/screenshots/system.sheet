@@ -15,13 +15,13 @@ shot    about-tar
 for     about
 size    36 80
 cap     about answers for any program on the disk.  `virmf' is the one that
-cap     shows both of the fixes made on 2026-09-02: it now prints the
-cap     `how' line -- the measured invocation, which it read for the
-cap     category and then threw away -- and it reports the UPPERCASE paths
-cap     these TeX binaries carry as `here' rather than `not here'.  It used
-cap     to say twenty-one of Metafont's own directories were missing,
-cap     because its probe was built only for a lowercase `/dd/'.
-cap     DOC/DEPENDS had them right the whole time.
+cap     shows both of the fixes made on 2026-09-02: it now prints the `how'
+cap     line -- the measured invocation, which it read for the category and
+cap     then threw away -- and it reports the UPPERCASE paths these TeX
+cap     binaries carry as `here' rather than `not here'.  It used to say
+cap     twenty-one of Metafont's own directories were missing, because its
+cap     probe was built only for a lowercase `/dd/'.  DOC/DEPENDS had them
+cap     right the whole time.
 run     about virmf
 wait    6
 
@@ -50,12 +50,12 @@ wait    8
 shot    ask
 for     ask ynad wisecrack
 cap     `ask' is not the shell-script prompt its name suggests: it is the
-cap     CLIENT half of a pair.  `wisecrack' is the server -- start it in
-cap     the background and every `ask' pulls one line out of it through
+cap     CLIENT half of a pair.  `wisecrack' is the server -- start it in the
+cap     background and every `ask' pulls one line out of it through
 cap     /PIPE/txtpipe.  Alone, either one is silent, which is why every
 cap     sweep of this disk scored BOTH as mute.  The slogans are from a
-cap     German OS-9 seminar in 1992.  `ynad' beside it is YNAD, Yet
-cap     Another Name & Address program, also not a dialogue.
+cap     German OS-9 seminar in 1992.  `ynad' beside it is YNAD, Yet Another
+cap     Name & Address program, also not a dialogue.
 run     ask "nothing is feeding the pipe yet"
 wait    5
 run     wisecrack &
@@ -177,20 +177,20 @@ wait    3
 shot    dload
 for     dload break sbreak setfont trap
 cap     `dload' does NOT send a file down a serial line, whatever the name
-cap     and DOC/INDEX said: it loads a data file INTO A DATA MODULE, and
-cap     the card shows it doing that -- `dload /dd/SYS/motd' answers with
-cap     the size it read and the address the module went to.  Until
-cap     2026-09-01 only its usage line was here.  `break' and `sbreak' are the serial-line
-cap     examples -- assembler ones from the forums, harmless here because
-cap     there is no serial line.  `break' has to be asked for by path: it
-cap     is a bash builtin too, and the builtin answers first.  It prints
-cap     nothing whatever it is given, which is why sbreak is shown as well.
-cap     `trap' is the system-state trap-handler example and cannot install
-cap     one from user state.  It must be asked for BY PATH: `trap' is a bash
-cap     builtin, and the builtin answers first and silently -- which on
-cap     2026-08-29 was briefly mistaken here for the program succeeding.
-cap     Loading `math' first, which is the handler it names, does not
-cap     change the outcome; this card loads it to show that.
+cap     and DOC/INDEX said: it loads a data file INTO A DATA MODULE, and the
+cap     card shows it doing that -- `dload /dd/SYS/motd' answers with the
+cap     size it read and the address the module went to.  Until 2026-09-01
+cap     only its usage line was here.  `break' and `sbreak' are the
+cap     serial-line examples -- assembler ones from the forums, harmless
+cap     here because there is no serial line.  `break' has to be asked for
+cap     by path: it is a bash builtin too, and the builtin answers first.
+cap     It prints nothing whatever it is given, which is why sbreak is shown
+cap     as well.  `trap' is the system-state trap-handler example and cannot
+cap     install one from user state.  It must be asked for BY PATH: `trap'
+cap     is a bash builtin, and the builtin answers first and silently --
+cap     which on 2026-08-29 was briefly mistaken here for the program
+cap     succeeding.  Loading `math' first, which is the handler it names,
+cap     does not change the outcome; this card loads it to show that.
 run     dload -?
 wait    6
 run     dload /dd/SYS/motd
@@ -236,13 +236,13 @@ shot    every
 for     every repeat cron bootlogger
 cap     every runs a command again and again: `every 2 oskversion' asks the
 cap     kernel its version every two seconds until you stop it, which is
-cap     what the card shows.  `date' is the obvious thing to repeat and reads badly here,
-cap     because this disk's `date' writes no trailing newline and the
-cap     repeats run together on one line.
-cap     It is the closest thing here to cron for a machine nobody leaves
-cap     running.  `repeat' is its sibling and cannot execute anything on
-cap     this disk under either shell; `bootlogger' answers nothing at all,
-cap     even to `-?'; `cron' is a daemon and leaves the session unusable.
+cap     what the card shows.  `date' is the obvious thing to repeat and
+cap     reads badly here, because this disk's `date' writes no trailing
+cap     newline and the repeats run together on one line.  It is the closest
+cap     thing here to cron for a machine nobody leaves running.  `repeat' is
+cap     its sibling and cannot execute anything on this disk under either
+cap     shell; `bootlogger' answers nothing at all, even to `-?'; `cron' is
+cap     a daemon and leaves the session unusable.
 run     every 2 oskversion
 wait    14
 kill
@@ -377,15 +377,15 @@ cap     the disk, in DOC/orbit, and it opens them by BARE NAME in the DATA
 cap     DIRECTORY.  ON YOUR OWN OS-9 SYSTEM THAT IS TWO LINES -- `chd
 cap     /dd/DOC/orbit' and `orbit' -- and nothing needs copying anywhere.
 cap     Under os9exec neither shell will do it: bash's `cd' tracks a string
-cap     and never moves the data directory, and `sh' cannot launch a
-cap     program here at all.  So this card brings the three files to the
-cap     directory it is already in, which is the bash workaround and not
-cap     the recipe.  kepler.dat is the satellite database, pgh.sit the
-cap     observing site, mode.dat the transponder schedule that fills the
-cap     last column; bern.sit and zuerich.sit ship too.  Nothing is shipped
-cap     at the disk root for this -- raw data files do not belong there.
-cap     `nasa' is the one whose data really is user-supplied: it converts
-cap     NASA two-line elements, which come from usenet.
+cap     and never moves the data directory, and `sh' cannot launch a program
+cap     here at all.  So this card brings the three files to the directory
+cap     it is already in, which is the bash workaround and not the recipe.
+cap     kepler.dat is the satellite database, pgh.sit the observing site,
+cap     mode.dat the transponder schedule that fills the last column;
+cap     bern.sit and zuerich.sit ship too.  Nothing is shipped at the disk
+cap     root for this -- raw data files do not belong there.  `nasa' is the
+cap     one whose data really is user-supplied: it converts NASA two-line
+cap     elements, which come from usenet.
 run     cat /dd/DOC/orbit/kepler.dat > /dd/kepler.dat
 wait    8
 run     cat /dd/DOC/orbit/mode.dat > /dd/mode.dat
@@ -412,12 +412,12 @@ wait    25
 shot    lunisolar
 for     lunisolar ephem881 nasa
 cap     The rest of the astronomy set.  `lunisolar' gives the phase of the
-cap     moon in one line, or a whole lunisolar calendar as LaTeX if you
-cap     give it a year and a time zone.  `nasa' converts NASA two-line
-cap     keplerians into the format `orbit' reads, and wants a nasa.dat of
-cap     your own -- those are posted to usenet, not shipped.  `ephem'
-cap     proper is the one with its database on the disk, and has its own
-cap     card; `orbit' has one now too.
+cap     moon in one line, or a whole lunisolar calendar as LaTeX if you give
+cap     it a year and a time zone.  `nasa' converts NASA two-line keplerians
+cap     into the format `orbit' reads, and wants a nasa.dat of your own --
+cap     those are posted to usenet, not shipped.  `ephem' proper is the one
+cap     with its database on the disk, and has its own card; `orbit' has one
+cap     now too.
 run     lunisolar
 wait    8
 run     lunisolar -?
@@ -459,7 +459,7 @@ send    echo mshell is running\r
 wait    3
 
 shot    names
-cap     names lists the modules inside a file.  os9lib is the FORTRAN
+cap     names lists the modules inside a file. os9lib is the FORTRAN
 cap     runtime, and it holds many.
 run     names /dd/CMDS/os9lib
 wait    5
@@ -471,7 +471,7 @@ run     ob68kdemo
 wait    8
 
 shot    oskversion
-cap     What the system says it is.  getsys walks the whole global page, and
+cap     What the system says it is. getsys walks the whole global page, and
 cap     every field os9exec does not keep answers `F$SetSys: unimplemented'
 cap     -- so this screen is a picture of the emulator's edges.
 run     oskversion
@@ -576,7 +576,7 @@ wait    10
 shot    shdev
 for     shdev dinfo ssl dam
 cap     shdev prints its heading and no devices: os9exec keeps no OS-9
-cap     device table for it to walk.  dinfo, underneath, asks the device
+cap     device table for it to walk. dinfo, underneath, asks the device
 cap     itself and answers properly -- 259 MB, 46% used.
 run     shdev
 wait    8
@@ -628,21 +628,20 @@ cap     V6.1' -- and this card was a capture of that refusal.  On 2026-09-02
 cap     os9exec began reporting V4.10 instead of V4.0 and sysmon accepted
 cap     it, so what is here now is the program itself: it asks whether to
 cap     create `/dd/sys/nodedef', times out on the keyboard, and draws its
-cap     Process Monitor -- the task table, the two percentage rules, the
-cap     CPU it thinks it is on.  Then it takes a bus error at F$GPrDsc,
-cap     the get-process-descriptor call, which is the same os9exec gap
-cap     `devprc -a' and `top' meet at F$GPrDBT.
-cap     `dinfo', `map' and `space' answer the questions it would have
-cap     answered and are all here; `mfree' and `free' are Microware's and
-cap     were named in this caption for a while without anybody looking.
-cap     `dinfo' has its own card (`shdev') and `map' has one of its own;
-cap     they are not run here, because sysmon clears the screen and anything
-cap     above it would be a program credited to a card that cannot show it.
-cap     Its table is drawn with the DEC line-drawing character set,
-cap     which tools/ansiscreen.py learned on 2026-09-02 -- until then the
-cap     escape was skipped and the letters printed as text, so this card was
-cap     forty lines of `(0x       (0x'.  sysmon is the only program here
-cap     that had ever got far enough to use it.
+cap     Process Monitor -- the task table, the two percentage rules, the CPU
+cap     it thinks it is on.  Then it takes a bus error at F$GPrDsc, the
+cap     get-process-descriptor call, which is the same os9exec gap `devprc
+cap     -a' and `top' meet at F$GPrDBT.  `dinfo', `map' and `space' answer
+cap     the questions it would have answered and are all here; `mfree' and
+cap     `free' are Microware's and were named in this caption for a while
+cap     without anybody looking.  `dinfo' has its own card (`shdev') and
+cap     `map' has one of its own; they are not run here, because sysmon
+cap     clears the screen and anything above it would be a program credited
+cap     to a card that cannot show it.  Its table is drawn with the DEC
+cap     line-drawing character set, which tools/ansiscreen.py learned on
+cap     2026-09-02 -- until then the escape was skipped and the letters
+cap     printed as text, so this card was forty lines of `(0x (0x'. sysmon
+cap     is the only program here that had ever got far enough to use it.
 run     sysmon < /nil
 wait    45
 
@@ -657,15 +656,15 @@ wait    6
 shot    transfer
 for     transfer trunc preset fillup vlen
 cap     `trunc' cuts a file short and the listing either side of it is the
-cap     whole demonstration.  `transfer', which names this card, copies
-cap     from GDOS DISKS to OS-9 and takes no options at all -- not the
-cap     general device-to-device copier DOC/INDEX called it; `cp' and
-cap     `dsave' are those.  `vlen' in this group is
-cap     this group is NOT a reporting tool whatever DOC/INDEX said: it is
-cap     a variable-length-record demonstration that builds a filesystem of
-cap     its own and fills it.  `fillup' pads a file out to a length with a
-cap     constant byte -- `-n=' the length and `-i=' the byte -- and says
-cap     how many it added, which is the last two lines here.
+cap     whole demonstration.  `transfer', which names this card, copies from
+cap     GDOS DISKS to OS-9 and takes no options at all -- not the general
+cap     device-to-device copier DOC/INDEX called it; `cp' and `dsave' are
+cap     those.  `vlen' in this group is this group is NOT a reporting tool
+cap     whatever DOC/INDEX said: it is a variable-length-record
+cap     demonstration that builds a filesystem of its own and fills it.
+cap     `fillup' pads a file out to a length with a constant byte -- `-n='
+cap     the length and `-i=' the byte -- and says how many it added, which
+cap     is the last two lines here.
 run     cp /dd/SYS/holidays /dd/tmp/cut.txt
 wait    6
 run     ls -l /dd/tmp/cut.txt
@@ -759,11 +758,10 @@ wait    10
 shot    modules
 for     cio csl csl020 math math881 os9lib rtfdat
 cap     The runtime modules the starred programs need.  They are not
-cap     programs -- you cannot run them -- so this is what they look like
-cap     to `modinfo': name, type, edition and CRC.  cio and math ship here
-cap     by Microware's permission; SOURCES.txt records the exchange.
-cap     All seven are asked for below, one line each; three were until
-cap     2026-08-29 and the rest stood behind them.
+cap     programs -- you cannot run them -- so this is what they look like to
+cap     `modinfo': name, type, edition and CRC. cio and math ship here by
+cap     Microware's permission; SOURCES.txt records the exchange.  All seven
+cap     are asked for below, one line each
 run     modinfo /dd/CMDS/cio | head -n 6
 wait    12
 run     modinfo /dd/CMDS/csl | grep -a "name\|Edition\|size"
@@ -808,10 +806,9 @@ cap     load puts a MODULE in the module directory so that a program which
 cap     LINKS it can find it.  `for', the RTF Fortran driver, prints nothing
 cap     at all until os9lib is loaded -- and then it says what it takes.  It
 cap     is called by its full path because `for' is a bash keyword and the
-cap     shell would answer first.
-cap     That silence is the whole symptom, and this is the cure: a
-cap     clean-room load, contributed by the os9exec project and built here,
-cap     with its source in SRC/load.
+cap     shell would answer first.  That silence is the whole symptom, and
+cap     this is the cure: a clean-room load, contributed by the os9exec
+cap     project and built here, with its source in SRC/load.
 run     /dd/CMDS/for
 wait    6
 run     load /dd/CMDS/os9lib
@@ -825,7 +822,7 @@ wait    8
 shot    biory
 for     biory creadoc
 cap     biory is the RTF Fortran example: a biorhythm program that prompts
-cap     in German, once os9lib is loaded.  creadoc, beside it, pulls the
+cap     in German, once os9lib is loaded. creadoc, beside it, pulls the
 cap     documentation comments out of Fortran source.
 run     load /dd/CMDS/os9lib
 wait    8
@@ -847,7 +844,7 @@ wait    10
 
 shot    memtools
 for     loadmem savemem snap scriptmaster
-cap     Three that read or write something the shell cannot reach.  loadmem
+cap     Three that read or write something the shell cannot reach. loadmem
 cap     puts a file into memory at an address and savemem writes a block of
 cap     memory out; both say plainly that you must be the super user and
 cap     that the addresses are hex.  `snap' captures the terminal into a
@@ -888,10 +885,10 @@ cap     reader and says there are no newsgroups, which is the truth on a
 cap     disk with no spool.  `pdraw' prints its configuration before it
 cap     looks for an X server.  `blackjack' is one of the three BASIC09
 cap     programs here: it lives in CMDS/BROKEN, off the login PATH, and
-cap     wants `runb'.  `X11R6shl' is not a program at all, and bash says
-cap     so.  `readnews' goes last here because it does not stop asking:
-cap     with nothing on its standard input it puts the same question over
-cap     and over, so the card takes one answer and ends it.
+cap     wants `runb'.  `X11R6shl' is not a program at all, and bash says so.
+cap     `readnews' goes last here because it does not stop asking: with
+cap     nothing on its standard input it puts the same question over and
+cap     over, so the card takes one answer and ends it.
 run     pdraw < /nil | head -n 4
 wait    8
 run     /dd/CMDS/BROKEN/blackjack

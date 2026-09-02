@@ -35,11 +35,11 @@ wait    8
 shot    arc
 for     arc marc dearc
 cap     ARC, the format that came before zip -- Stephan Paschedag's OS-9
-cap     port of System Enhancement Associates' 5.21.  `a' adds and `v'
-cap     lists with the compression column.  The archive name has to be
-cap     RELATIVE: arc builds it under a temporary name and then moves it,
-cap     and the move fails on an absolute target -- this C library has no
-cap     rename().  `marc' merges two archives; `dearc' reads them.
+cap     port of System Enhancement Associates' 5.21.  `a' adds and `v' lists
+cap     with the compression column.  The archive name has to be RELATIVE:
+cap     arc builds it under a temporary name and then moves it, and the move
+cap     fails on an absolute target -- this C library has no rename().
+cap     `marc' merges two archives; `dearc' reads them.
 run     rm -f m.arc
 wait    4
 run     arc a m.arc /dd/SYS/motd /dd/SYS/termcap
@@ -104,8 +104,7 @@ for     gzip020_csl gzip020_nocsl gzip68k_csl gzip68k_nocsl compress_4.0
 for     gzipcpu32k_csl gzipcpu32_nocsl
 cap     Four builds of gzip 1.2.4 -- 68000 and 68020, with and without the
 cap     csl trap library -- kept side by side so you can take the one your
-cap     machine wants.  Each says which it is.
-cap     All four are asked for; two were until 2026-08-30.
+cap     machine wants.  Each says which it is.  All four are asked for
 run     gzip68k_nocsl -V
 wait    8
 run     gzip020_nocsl -V
@@ -171,11 +170,11 @@ wait    4
 shot    unzip
 size    36 80
 for     unzip zipnote zipsplit funzip zipinfo
-cap     Info-ZIP's readers, each asked for itself.  `unzip' lists an
-cap     archive that `zip' on this disk cannot write -- see the note
-cap     against zip -- `zipnote' reads and writes an archive's comments,
-cap     `zipsplit' cuts one into pieces that fit a floppy, and `funzip'
-cap     unzips a stream.  The last three were credited here and never run.
+cap     Info-ZIP's readers, each asked for itself.  `unzip' lists an archive
+cap     that `zip' on this disk cannot write -- see the note against zip --
+cap     `zipnote' reads and writes an archive's comments, `zipsplit' cuts
+cap     one into pieces that fit a floppy, and `funzip' unzips a stream.
+cap     The last three were credited here and never run.
 run     unzip -v
 wait    10
 run     zipnote

@@ -1,11 +1,11 @@
 # The help system and the pagers.
 
 shot    help
-cap     The help system answering a topic.  It keeps a .hlp file and an
-cap     index per subject in SYS/HELP, offers what it has at the `Topic ?'
-cap     prompt, and pages the article.  It is asked for by path because
-cap     bash has a `help' builtin of its own, and the builtin wins: typing
-cap     `help' alone never reaches this program.
+cap     The help system answering a topic.  It keeps a .hlp file and an index
+cap     per subject in SYS/HELP, offers what it has at the `Topic ?' prompt,
+cap     and pages the article.  It is asked for by path because bash has a
+cap     `help' builtin of its own, and the builtin wins: typing `help' alone
+cap     never reaches this program.
 run     /dd/CMDS/help
 wait    5
 send    space\r

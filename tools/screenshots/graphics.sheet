@@ -252,9 +252,9 @@ wait    20
 shot    lispm
 for     pgmtolispm lispmtopgm pbmtopk pktopbm ppmtomap
 cap     A Lisp machine's bitmap format, written and then read back -- and
-cap     lispmtopgm refuses what pgmtolispm just wrote: `depth is too large
-cap     - try reconfiguring with PGM_BIGGRAYS'.  The pair do not agree with
-cap     each other in this build.  ppmtomap, underneath, works.
+cap     lispmtopgm refuses what pgmtolispm just wrote: `depth is too large -
+cap     try reconfiguring with PGM_BIGGRAYS'.  The pair do not agree with
+cap     each other in this build. ppmtomap, underneath, works.
 run     pgmtolispm /dd/tmp/base.pgm | lispmtopgm | pnmfile
 wait    10
 run     ppmtomap /dd/tmp/base.ppm | head -n 8
@@ -273,8 +273,7 @@ cap     the plain-text form of any of them.  THE WAITS WERE TOO SHORT AND
 cap     THE IMAGE TOO BIG: at 152x88 and 15 seconds the capture was taken
 cap     before anything answered, so the card showed five bare prompts and
 cap     `audit_cards' scored it NOTHING. 96x48 and a `-threshold' dither --
-cap     which is also the reproducible one -- and it all arrives.  Fixed
-cap     2026-09-01.
+cap     which is also the reproducible one -- and it all arrives.
 run     pgmnoise 96 48 | pgmtopbm -threshold > /dd/tmp/n.pbm
 wait    40
 run     pbmclean /dd/tmp/n.pbm | pbmtoascii -2x4
@@ -348,9 +347,9 @@ for     pgmedge pgmenhance pgmnorm
 cap     pgmedge keeps only where the brightness changes.  It works on a
 cap     gradient and HANGS on a photograph: given the scaled gulls or the
 cap     demo sphere it produces no output, no error and never returns, and
-cap     the emulator has to be stopped.  Measured 2026-08-28 -- a ramp of
-cap     64x36 goes through in a second, the same-sized sphere never does.
-cap     pgmenhance and pgmnorm both handle either.
+cap     the emulator has to be stopped. -- a ramp of 64x36 goes through in a
+cap     second, the same-sized sphere never does. pgmenhance and pgmnorm
+cap     both handle either.
 run     pgmramp -lr 64 36 > /dd/tmp/t64.pgm
 wait    8
 run     pgmedge /dd/tmp/t64.pgm > /dd/tmp/e64.pgm
@@ -374,10 +373,10 @@ wait    8
 shot    pgmnoise
 for     pgmnoise pnmsmooth pnmconvol
 cap     pgmnoise makes white noise -- every pixel an independent random
-cap     grey, thresholded here to black and white.  pnmsmooth would blur
-cap     it into cloud, but it is a script that scratches in /r0 and this
-cap     disk has no RAM disk; pnmconvol, which does the actual work, is
-cap     here and takes a kernel file.
+cap     grey, thresholded here to black and white. pnmsmooth would blur it
+cap     into cloud, but it is a script that scratches in /r0 and this disk
+cap     has no RAM disk; pnmconvol, which does the actual work, is here and
+cap     takes a kernel file.
 run     pgmnoise 152 88 | pgmtopbm | pbmtoascii -2x4
 wait    20
 run     pnmsmooth /dd/tmp/base.pgm
@@ -417,8 +416,8 @@ wait    12
 shot    plotters
 for     pbmtoplot pbmtozinc pbmtobbnbg pbmtogo pbmtoln03 pbmtolps
 cap     Six more write-only drivers, for machines that are gone: a Unix
-cap     plotter, Zinc, a BBN bitgraph, GraphOn, DEC LN03 and LPS.
-cap     All six are asked for; three were until 2026-08-30.
+cap     plotter, Zinc, a BBN bitgraph, GraphOn, DEC LN03 and LPS.  All six
+cap     are asked for
 run     pbmmake -g 48 24 > /dd/tmp/base.pbm
 wait    12
 run     pbmtoplot /dd/tmp/base.pbm | wc
@@ -576,8 +575,8 @@ size    36 80
 for     ppm3d ppmspread ppmshift ppmmix
 cap     ppmspread scatters every pixel up to eight places from where it
 cap     belongs -- the photograph is still there underneath, which is the
-cap     point of the filter.  ppm3d, ppmshift and ppmmix run first, over
-cap     the same image.
+cap     point of the filter. ppm3d, ppmshift and ppmmix run first, over the
+cap     same image.
 run     giftopnm /dd/DEMO/gulls.gif | pnmscale -xysize 76 44 > /dd/tmp/s1.ppm
 wait    20
 run     ppmshift 6 /dd/tmp/s1.ppm > /dd/tmp/sh.ppm
@@ -857,14 +856,14 @@ shot    noreader
 for     bioradtopgm hipstopgm qrttoppm sldtoppm spctoppm zeisstopnm
 for     brushtopbm gouldtoppm hpcdtoppm imgtoppm mtvtoppm psidtopgm
 for     spottopgm sputoppm ximtoppm xvminitoppm
-cap     Sixteen of the readers here decode formats that no file on this
-cap     disk is in -- confocal microscopes, ray tracers, AutoCAD slides,
-cap     Atari Spectrum pictures, Photo CD, Amiga brushes, Gould scanners.
-cap     Handed something else, they say so rather than guessing, which is
-cap     the behaviour you want.  Three of the sixteen are shown; the rest
-cap     answer the same way -- and the four that had never been asked at
-cap     all are asked below, added 2026-08-30, so that "the rest answer the
-cap     same way" is shown rather than assumed.
+cap     Sixteen of the readers here decode formats that no file on this disk
+cap     is in -- confocal microscopes, ray tracers, AutoCAD slides, Atari
+cap     Spectrum pictures, Photo CD, Amiga brushes, Gould scanners.  Handed
+cap     something else, they say so rather than guessing, which is the
+cap     behaviour you want.  Three of the sixteen are shown; the rest answer
+cap     the same way -- and the four that had never been asked at all are
+cap     asked below so that "the rest answer the same way" is shown rather
+cap     than assumed.
 run     ppmmake red 16 16 > /dd/tmp/nr.ppm
 wait    8
 run     hipstopgm /dd/tmp/nr.ppm
@@ -887,12 +886,12 @@ shot    pnmfilters
 for     pnmalias pnmcomp pnmnlfilt ppmdist ppmflash
 cap     Five more netpbm filters run over the same photograph, with pnmfile
 cap     confirming each one produced an image: antialiasing, compositing, a
-cap     non-linear filter, a distance transform and a flash.
-cap     THE WAITS HERE ARE LONG ON PURPOSE.  Decoding gulls.gif and scaling
-cap     it takes most of a minute under the emulator, and when this card
-cap     allowed 25 seconds the capture was taken before the answers arrived
-cap     -- so the card showed five bare prompts AND left /dd/tmp/w.ppm
-cap     unwritten, which five later cards read.  Found 2026-09-01.
+cap     non-linear filter, a distance transform and a flash.  THE WAITS HERE
+cap     ARE LONG ON PURPOSE.  Decoding gulls.gif and scaling it takes most
+cap     of a minute under the emulator, and when this card allowed 25
+cap     seconds the capture was taken before the answers arrived -- so the
+cap     card showed five bare prompts AND left /dd/tmp/w.ppm unwritten,
+cap     which five later cards read.
 run     giftopnm /dd/DEMO/gulls.gif | pnmscale -xysize 76 44 > /dd/tmp/w.ppm
 wait    75
 run     pnmnlfilt 1.0 0.5 /dd/tmp/w.ppm | pnmfile
@@ -911,13 +910,12 @@ shot    ppmntsc
 for     ppmntsc ppmqvga pnmtorast rasttopnm pnmtoddif
 cap     ppmntsc clamps an image to what NTSC could actually transmit and
 cap     ppmqvga to a 320x240 palette; Sun raster goes out and comes back,
-cap     which is the check that the pair agree.
-cap     THIS CARD MAKES ITS OWN IMAGE.  It used to read /dd/tmp/w.ppm,
-cap     which the `pnmfilters' card writes -- and when that card's waits
-cap     were too short to finish writing it, every line here failed with
-cap     `ppmntsc: /dd/tmp/w.ppm -' and the card read as five broken
-cap     converters.  A card that depends on another card's leftovers is
-cap     one card's timing away from lying.  Fixed 2026-09-01.
+cap     which is the check that the pair agree.  THIS CARD MAKES ITS OWN
+cap     IMAGE.  It used to read /dd/tmp/w.ppm, which the `pnmfilters' card
+cap     writes -- and when that card's waits were too short to finish
+cap     writing it, every line here failed with `ppmntsc: /dd/tmp/w.ppm -'
+cap     and the card read as five broken converters.  A card that depends on
+cap     another card's leftovers is one card's timing away from lying.
 run     ppmpat -madras 64 40 > /dd/tmp/n.ppm
 wait    10
 run     ppmntsc 0.8 /dd/tmp/n.ppm | pnmfile
@@ -948,10 +946,10 @@ wait    12
 shot    writeonly
 for     ppmtoicr ppmtomitsu ppmtosixel ppmtouil pbmto4425 pbmtox10bm
 cap     Six drivers with no reader here, for machines that are gone: an NCR
-cap     terminal, a Mitsubishi dye-sublimation printer, DEC sixel, Motif
-cap     UIL source, an AT&T 4425 and an X10 bitmap.  What each made of the
-cap     same picture, in bytes -- that is what a page cost.
-cap     All six are asked for; three were until 2026-08-30.
+cap     terminal, a Mitsubishi dye-sublimation printer, DEC sixel, Motif UIL
+cap     source, an AT&T 4425 and an X10 bitmap.  What each made of the same
+cap     picture, in bytes -- that is what a page cost.  All six are asked
+cap     for
 run     ppmpat -madras 64 40 > /dd/tmp/wo.ppm
 wait    8
 run     ppmquant 256 /dd/tmp/wo.ppm > /dd/tmp/q.ppm

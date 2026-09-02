@@ -20,11 +20,11 @@ wait    15
 shot    benchmarks2
 size    36 80
 for     paranoia timid time
-cap     The three that stand apart from the speed benchmarks.  `paranoia'
-cap     is Kahan's floating-point torture test and reports on the
-cap     arithmetic rather than timing it; `timid' and `time' measure
-cap     something else's running time rather than their own.  All three
-cap     were credited to the benchmarks card and never run there.
+cap     The three that stand apart from the speed benchmarks.  `paranoia' is
+cap     Kahan's floating-point torture test and reports on the arithmetic
+cap     rather than timing it; `timid' and `time' measure something else's
+cap     running time rather than their own.  All three were credited to the
+cap     benchmarks card and never run there.
 run     time /dd/CMDS/today
 wait    12
 run     timid -?
@@ -159,12 +159,12 @@ cap     RCS keeping a file: `ci' checks it in, asking for a description the
 cap     way it always has, and `rlog' reads the history back.  The archive
 cap     it writes is `note_v', not the `note,v' a Unix hand expects -- OS-9
 cap     has no comma in a filename.  None of these take `-?'; RCS is older
-cap     than that convention.
-cap     rcsdiff and rcsmerge fail here and the screen shows why: they shell
-cap     out to `/dd/cmds/rcs/co ... >-tempfile', which wants RCS installed
-cap     in a DIRECTORY called rcs (this disk has a PROGRAM of that name) and
-cap     uses Microware shell redirection no shell here understands.  RCS on
-cap     this disk is a one-revision archive: ci, co, rlog and rcsident.
+cap     than that convention. rcsdiff and rcsmerge fail here and the screen
+cap     shows why: they shell out to `/dd/cmds/rcs/co.. >-tempfile', which
+cap     wants RCS installed in a DIRECTORY called rcs (this disk has a
+cap     PROGRAM of that name) and uses Microware shell redirection no shell
+cap     here understands.  RCS on this disk is a one-revision archive: ci,
+cap     co, rlog and rcsident.
 run     rm -rf /dd/tmp/rcs
 wait    5
 run     mkdir /dd/tmp/rcs
@@ -262,7 +262,7 @@ for     patch diff cdiff spiff
 cap     `diff' works: it says exactly what changed.  `patch' then recognises
 cap     the diff -- "Looks like a normal diff to me" -- and CANNOT FINISH:
 cap     it writes a temporary file into /dd/tmp and then cannot read it
-cap     back.  The file it was patching is left alone.  Measured 2026-08-28.
+cap     back.  The file it was patching is left alone.
 run     head -n 6 /dd/SYS/holidays > /dd/tmp/p1
 wait    6
 run     sed "s/Day/DAY/g" /dd/tmp/p1 > /dd/tmp/p2
