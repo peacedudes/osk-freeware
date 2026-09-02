@@ -378,7 +378,7 @@
 | `Libr2Ascii` | Home Librarian: dump a catalogue to plain text<br>`Syntax: Libr2Ascii [opts]` |
 | `Librarian` | Home Librarian: search a catalogue.  SIX PROGRAMS AND THEIR DOCS TRAVEL TOGETHER -- its licence requires it<br>**How:** One of six Home Librarian programs that must stay together -- its licence says so. Start here to search a catalogue; EditLibr edits one, Ascii2Libr builds one from text, Libr2Ascii dumps it back, PrintCards and PrintLabels print it. Manual in DOC/homelibr. |
 | `PrintCards` | Home Librarian: print catalogue cards<br>`Syntax: PrintCards [opts]` |
-| `PrintLabels` | Home Librarian: print labels<br>`Syntax: PrintLabels [opts]` |
+| `PrintLabels` | Home Librarian: print labels.  ITS OPTIONS TAKE A SEPARATE ARGUMENT -- `-infile cat.libr -templatefile tpl.txt', not `-infile=...', which answers `Bad option:' and prints the syntax.  The same is true of Ascii2Libr, Libr2Ascii, PrintCards and EditLibr.  A catalogue is built by Ascii2Libr from the text Libr2Ascii writes, and only from that: a hand-written record does not parse.  Measured 2026-09-02<br>`Syntax: PrintLabels [opts]` |
 
 **List & navigate**
 

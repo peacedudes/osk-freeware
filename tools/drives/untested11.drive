@@ -1,0 +1,24 @@
+# untested11 -- does the catalogue actually hold the record?  Libr2Ascii
+# reads a .libr back to the text it came from, which settles it.
+
+family  untested11
+
+setup   export TERM=vt100
+setup   W=/dd/tmp/UTB
+setup   /dd/CMDS/rm -f $W/* > /nil 2>/nil
+setup   /dd/CMDS/mkdir -p $W > /nil 2>/nil
+
+drive   round-trip-the-catalogue
+run     echo "TEX01 #C(:TYPE Book :AUTHOR Knuth, D. E. :TITLE The TeXbook :PUBLISHER Addison-Wesley :CITY Reading :VOLUME 1 :YEAR 1984 :DESCRIPTION" > $W/cards.txt
+run     echo "typesetting)" >> $W/cards.txt
+run     /dd/CMDS/ksh -c "cd $W; /dd/CMDS/Ascii2Libr -outfile cat.libr < cards.txt"
+run     /dd/CMDS/wc -c $W/cat.libr
+run     /dd/CMDS/ksh -c "cd $W; /dd/CMDS/Libr2Ascii -infile cat.libr"
+run     echo "--- end round trip"
+
+drive   printcards-and-printlabels-on-it
+run     echo "%ID %AUTHOR %TITLE %YEAR" > $W/tpl.txt
+run     /dd/CMDS/ksh -c "cd $W; /dd/CMDS/PrintLabels -infile cat.libr -templatefile tpl.txt -by Id"
+run     echo "--- labels done"
+run     /dd/CMDS/ksh -c "cd $W; /dd/CMDS/PrintCards -infile cat.libr"
+run     echo "--- end"

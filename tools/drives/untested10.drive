@@ -1,0 +1,54 @@
+# untested10 -- the Home Librarian chain, and tplot's three questions.
+#
+# `PrintLabels' wants -infile (a vBTree card-catalogue file) and
+# -templatefile.  The catalogue is BUILT by `Ascii2Libr' from the text
+# `Libr2Ascii' writes, and that format is in SRC/homelibr: a record is
+#     ID #C(:TYPE t :AUTHOR a :TITLE t :PUBLISHER p :CITY c :VOLUME v
+#            :YEAR y :DESCRIPTION)
+# and a template is plain text with %FIELD substitutions -- TYPE, AUTHOR,
+# TITLE, PUBLISHER, CITY, VOLUME, YEAR, ID, DESCRIPTION.
+#
+# THE OPTIONS TAKE A SEPARATE ARGUMENT, `-outfile cat.libr', not
+# `-outfile=cat.libr'.  With an `=' every one of these five programs answers
+# `Bad option:' and prints its syntax -- which reads exactly like a program
+# that does not work, and is the shape this whole pass keeps meeting.
+#
+# `tplot' asks `x interval ?', `y interval ?' and `x, y divisions ?' on
+# standard input, the way yagi does.
+
+family  untested10
+
+setup   export TERM=vt100
+setup   export TERMCAP=/dd/SYS/termcap
+setup   W=/dd/tmp/UTA
+setup   /dd/CMDS/rm -f $W/* > /nil 2>/nil
+setup   /dd/CMDS/mkdir -p $W > /nil 2>/nil
+
+drive   what-the-librarian-set-says
+run     /dd/CMDS/Ascii2Libr -?
+run     /dd/CMDS/Libr2Ascii -?
+run     echo "--- end"
+
+drive   build-a-catalogue-and-print-a-label
+run     echo "TEX01 #C(:TYPE Book :AUTHOR Knuth, D. E. :TITLE The TeXbook :PUBLISHER Addison-Wesley :CITY Reading :VOLUME 1 :YEAR 1984 :DESCRIPTION" > $W/cards.txt
+run     echo "typesetting)" >> $W/cards.txt
+run     /dd/CMDS/cat $W/cards.txt
+run     /dd/CMDS/ksh -c "cd $W; /dd/CMDS/Ascii2Libr -outfile cat.libr < cards.txt"
+run     /dd/CMDS/ls -l $W
+run     echo "%ID  %AUTHOR" > $W/tpl.txt
+run     echo "%TITLE (%YEAR)" >> $W/tpl.txt
+run     /dd/CMDS/ksh -c "cd $W; /dd/CMDS/PrintLabels -infile cat.libr -templatefile tpl.txt"
+run     echo "--- end librarian"
+
+drive   tplot-answers-three-questions
+run     echo "0 0" > $W/d.txt
+run     echo "1 1" >> $W/d.txt
+run     echo "2 4" >> $W/d.txt
+run     echo "3 9" >> $W/d.txt
+run     echo "1" > $W/t.in
+run     echo "1" >> $W/t.in
+run     echo "4 4" >> $W/t.in
+run     /dd/CMDS/tplot $W/d.txt < $W/t.in > $W/t.out 2>&1
+run     /dd/CMDS/wc -c $W/t.out
+run     /dd/CMDS/head -n 20 $W/t.out
+run     echo "--- end tplot"
