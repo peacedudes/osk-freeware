@@ -125,3 +125,35 @@ expect  Warning--empty publisher in knuth
 expect  D.~E. Knuth.
 expect  {\em The TeXbook}.
 absent  I found no
+
+case    makecrc-writes-six-C-source-files-and-says-nothing
+# `compute a CRC' is what DOC/INDEX called it, and it prints nothing at all,
+# so two sweeps recorded it as silent.  It is a GENERATOR: run it and it
+# writes six C source files into the data directory -- a crctab[256] and an
+# updcrc() for each of six polynomials -- and takes no arguments to do it.
+# Nobody had looked at the directory afterwards.
+run     /dd/CMDS/rm -f $W/ccitt.c > /nil 2>/nil
+run     /dd/CMDS/ksh -c "cd $W; /dd/CMDS/makecrc"
+run     /dd/CMDS/ls $W
+run     /dd/CMDS/head -n 4 $W/ccitt.c
+expect  arc.c
+expect  binhex.c
+expect  ccitt.c
+expect  ccitt32.c
+expect  kermit.c
+expect  zip.c
+expect  static unsigned short crctab[256] = {
+
+case    florida-simulates-a-year-of-weather
+# Its card has always shown this; there was no case.  The VALUES are random
+# per run -- that is what a simulator is -- so the structure is what can be
+# asserted: the column headings, the months in order, and the calendar note
+# on the first of January.
+run     /dd/CMDS/florida < /nil > $W/f.txt 2>&1
+run     /dd/CMDS/head -n 4 $W/f.txt
+run     /dd/CMDS/grep "^January\|^February\|^March\|^December" $W/f.txt
+expect  Year   1    Weather        Sky   Temperature    Precip      Wind  Depth  Notes
+expect  January
+expect  February
+expect  December
+expect  New Years

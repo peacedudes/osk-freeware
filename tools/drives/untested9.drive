@@ -1,0 +1,50 @@
+# untested9 -- the last of the "silent for every invocation" row, each with
+# the invocation its own strings imply.
+#
+#   makecrc   emits C SOURCE -- a crctab[256] and an updcrc() -- and says
+#             `Cannot open %s for writing', so it wants an output name.
+#   vtxtcn    reads vtext.dat and q1text.dat and writes qtext.inc and
+#             objdes.inc: it is the WORLD game's table builder, and
+#             GAMES/WORLD is where those live.
+#   mkdict    bog's dictionary builder; GAMES/words and GAMES/BOG/dict.
+#   dfiles    says `can't get device name' and `cannot chd to %s', so it
+#             wants to be run somewhere it can walk.
+#   florida   a weather simulator with month names and conditions inside.
+
+family  untested9
+
+setup   export TERM=vt100
+setup   export TERMCAP=/dd/SYS/termcap
+setup   W=/dd/tmp/UT9
+setup   /dd/CMDS/rm -f $W/* > /nil 2>/nil
+setup   /dd/CMDS/mkdir -p $W > /nil 2>/nil
+
+drive   makecrc-emits-c-source
+run     /dd/CMDS/ksh -c "cd $W; /dd/CMDS/makecrc ccitt"
+run     /dd/CMDS/ls -l $W
+run     /dd/CMDS/ksh -c "cd $W; /dd/CMDS/makecrc ccitt crctab.c"
+run     /dd/CMDS/ls -l $W
+run     echo "--- end makecrc"
+
+drive   vtxtcn-in-the-world-directory
+run     /dd/CMDS/ls /dd/GAMES/WORLD
+run     /dd/CMDS/ksh -c "cd /dd/GAMES/WORLD; /dd/CMDS/GAMES/vtxtcn"
+run     /dd/CMDS/ls -l /dd/GAMES/WORLD
+run     echo "--- end vtxtcn"
+
+drive   mkdict-where-bogs-words-are
+run     /dd/CMDS/ls -l /dd/GAMES/words
+run     /dd/CMDS/ksh -c "cd /dd/GAMES/BOG; /dd/CMDS/GAMES/mkdict"
+run     echo "--- end mkdict"
+
+drive   dfiles-run-from-inside-a-tree
+run     /dd/CMDS/mkdir -p $W/a > /nil 2>/nil
+run     /dd/CMDS/cp /dd/SYS/motd $W/a/one
+run     /dd/CMDS/cp /dd/SYS/motd $W/a/two
+run     /dd/CMDS/ksh -c "cd $W; /dd/CMDS/dfiles ."
+run     /dd/CMDS/ksh -c "cd $W; /dd/CMDS/dfiles a"
+run     echo "--- end dfiles"
+
+drive   florida-last-because-it-may-take-the-session
+run     /dd/CMDS/florida < /nil
+run     echo "--- end"

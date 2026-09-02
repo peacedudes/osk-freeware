@@ -1460,7 +1460,7 @@
 | `lgrep` | &#9733; NOT `line grep': its own banner says "same as 'grep -l', but prints filenames without comments".  It produced no output at all when asked for a string that IS in the files, bare and from a shell with PATH set, and exited 0 both times. `grep -l' does the job.  Measured 2026-08-31; see DOC/README-GREP<br>`Syntax: lgrep <arg1> ... <argn>` |
 | `liborder.os9` | report the order of modules in a library<br>`Usage: liborder <options> file1.r file2.r ...` |
 | `lpsched` | &#9733; the line-printer scheduler<br>`Syntax: lpsched [-r] {<devname>}` |
-| `makecrc` | compute a CRC |
+| `makecrc` | NOT a CRC calculator -- it GENERATES C SOURCE, and it takes no arguments to do it.  Run it and it writes six files into the data directory -- arc.c, binhex.c, ccitt.c, ccitt32.c, kermit.c, zip.c -- each a crctab[256] and an updcrc() for one polynomial.  It prints NOTHING, which is why it was recorded as silent twice.  Corrected 2026-09-02 |
 | `map` | &#9733; NOT a memory map: `map <file>' shows the disk BLOCKS a file occupies, sector by sector.  `mfree' and `free' are the memory ones.  Corrected 2026-08-29<br>`Syntax: map [<opts>] <file> {<file>}` |
 | `modinfo` | report a module's header -- name, type, size, edition, CRC<br>`Syntax:   module [modulename]` |
 | `mshell` | &#9733; a MENU shell: it takes a menu file as its argument and says `Could not open <name> (menufile)' without one.  It also needs TERM set, as every full-screen program here does.  Corrected 2026-08-29; an earlier note said only that it wanted a terminal, which was an artefact of probing it with no TERM in the environment |
