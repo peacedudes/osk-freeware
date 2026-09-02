@@ -15,15 +15,15 @@ number typed here -- and `osk-freeware.dd` current.
 
 | | 2026-08-31 evening | now |
 |---|---|---|
-| `datatest` cases | 423 | **661** |
-| `datatest` families | 24 | **48** |
-| `tools/drives` sheets | 41 | **79** |
+| `datatest` cases | 423 | **684** |
+| `datatest` families | 24 | **53** |
+| `tools/drives` sheets | 41 | **95** |
 | `check_disk.py` checks | 17 | **20**, and **19 provably fail on demand** |
 | Star grid (programs needing `cio`) | 354 | **349** |
-| Gallery cards flagged as help- or error-only | 22 | **6** |
-| Cards excepted BY NAME in `audit_cards.py` | 1 | **5** |
+| Gallery cards flagged as help- or error-only | 22 | **0 of 409** |
+| Cards excepted BY NAME in `audit_cards.py` | 1 | **7**, each with a measured reason |
 | Programs with NEITHER a test nor a card | 42 | **1** (`cron`, a daemon) |
-| **Programs under no test at all** | 209 | **58** |
+| **Programs under no test at all** | 209 | **48** |
 
 ### The pattern that paid best: read the disk's own documentation first
 
@@ -49,9 +49,9 @@ looked:
 
 ### What to do next
 
-**Work from `tools/worklist.py --programs --no-test`.** The 75 left are the
-awkward residue and they divide into three kinds, so decide which one you
-have before spending time on it:
+**Work from `tools/worklist.py --programs --no-test`.** 48 left as of
+2026-09-02, and they divide into three kinds, so decide which one you have
+before spending time on it:
 
 1. **Wrong invocation** -- still the commonest, still worth trying first.
    `dev2`'s eleven "broken" programs were a work-directory collision;
@@ -66,8 +66,36 @@ have before spending time on it:
    clients (stopped by the csl skew before they even miss a server), SCSI,
    a Gepard screen. Say which, and stop.
 
-**THE 62 LEFT, ALREADY SORTED, so nobody re-derives it.** All were driven
-on 2026-09-01; the transcripts are in `notes/drives/`.
+**THE SORTED LIST BELOW IS FROM 2026-09-01 AND TEN OF ITS NAMES HAVE SINCE
+COME OFF IT** -- `yagi`, `bibtex`, `casefix`, `crypto`, `helpindex`,
+`shuffle`, `bincheckr`, `mkdict`, `mkindex` and `uuexpand`. Every one was in
+the "silent for every invocation" or "ends the session" row, and every one
+had a **wrong invocation** behind it, which is row 1 of the three kinds above
+and remains the answer more often than not:
+
+- `yagi` asks FIVE questions on standard input; given four it loops on the
+  fifth forever, because EOF on a numeric read returns the same thing every
+  time. Given five it designs the antenna.
+- `casefix` is a FILTER. Handed a file as an argument it says nothing;
+  `casefix < file` sentence-cases it.
+- `bibtex` reads its job name from standard input, and the `.bst` styles are
+  in `SYS/TEX/INPUTS`, not the `SYS/TEX/BIB` that holds one `read.me`.
+  **A BACKSLASH CANNOT BE TYPED AT THIS SHELL** -- bash's `echo` eats `\c`
+  whatever the quoting, so `\citation` arrives as `itation`; `pbyte <file>
+  <hex offset> 5c` puts them back.
+- `bincheckr`, `mkdict` and `mkindex` are in **`CMDS/GAMES`** and `byteflip`
+  in **`CMDS/NEWS`**. Run as `/dd/CMDS/<name>` all four answer E$PNNF, which
+  reads exactly like a program that cannot find its data. Nothing was wrong
+  with any of them. **Check the path before believing E$PNNF.**
+- `uuencode` takes ONE argument. Its usage line reads as though it wants two
+  and with two it prints that line and stops. `uuexpand` is not its inverse
+  and never was -- `uudecode` is.
+- `shuffle` is a full-screen SWITCH PUZZLE, not a line shuffler; it is
+  recategorised from Text tools to Games.
+
+`tools/datatests/untested.cases` and `flagged.cases` hold all of it. The rest
+of the table stands. All were driven on 2026-09-01; transcripts in
+`notes/drives/`.
 
 | Why it has no case | Programs |
 |---|---|
@@ -88,9 +116,49 @@ MEASUREMENT.** `worklist.py`'s `carded()` read `for'-credited names out of the
 wrong key and never matched one, so every program credited on a shared card
 counted as uncarded. The 421/97/42 sequence was that bug shrinking, not the
 work. Fixed 2026-09-01; `carded()` now means "a card runs it by name", as
-`gen_screens` already did. **The backlog to work from is `--no-test`: 209.**
+`gen_screens` already did. **The backlog to work from is `--no-test`: 209 then, 48 now.**
 
-### What this session settled, in one screen
+### 2026-09-02: METAFONT, and the last thin card
+
+**`SYS/TEX/MFBASES` held its Makefile and nothing else**, so `virmf` answered
+`I can't find the default base file!`, the eight bitmap-font tools had nothing
+to read, and every DVI driver warned it could not open a font. `inimf` builds
+both bases the disk's own `install.script` asks for -- `plain.base` in about a
+minute, `cmbase.base` on top of it -- and **both now ship**, exactly as
+`SYS/TEX/FORMATS` always shipped `plain.fmt`. `tools/drives/mfbase.drive`
+rebuilds them; two runs differ in two bytes, the timestamp.
+
+With them in place, measured and asserted in `metafont.cases`,
+`virtualfont.cases`, `cmfont.cases` and `dvifont.cases`:
+
+- `virmf` renders `logo10` and all 128 characters of **`cmr10`**, from the
+  117 Computer Modern sources that were here all along.
+- `gftype -i` draws a glyph as asterisks; `gftopk` packs 608 bytes to 364;
+  `pktype` reads it back; `pktogf` unpacks it (to 632, because the preamble
+  comment grew).
+- `DOC/tex/sample.vpl` -- a one-character virtual font, what `none.ch` is to
+  `tangle` -- gives `vptovf` and `vftovp` real input.
+- **`dvijet`'s page goes from 3138 bytes of nothing to 7350 of real glyph
+  rasters** once `cmr10` is rendered at the 120 dpi it asks for and
+  `TEXFONTS`/`FONTLIST` name it. A `.pk` still does not ship, because a `.pk`
+  is made for ONE printer at ONE resolution; what ships is the means.
+  `dvips` is the exception and its trouble is not fonts: it stops at
+  `Couldn't find header file tex.pro` and no `.pro` is on this disk.
+
+**Two traps, both measured.** Metafont takes its **job name from the COMMAND
+LINE**: the same line fed on standard input renders the same font and calls
+it `mfput`. And the compiled-in **FONTS search paths do not begin with `.`**
+where MFINPUTS does, so `gftype` cannot see a `.gf` beside it until
+`GFFONTS`/`PKFONTS`/`VFFONTS`/`TEXFONTS` name the directory.
+`DOC/README-METAFONT` is the reader-facing account.
+
+**`texfonts-bitmap` was excepted by name in `audit_cards.py`** on the grounds
+that there was nothing for its programs to read. That was true, and nobody
+had tried to break it. **An exception by name is a debt, not a verdict.**
+The gallery is now **0 of 409 flagged**, with seven exceptions each carrying
+a measured reason.
+
+### What the 2026-09-01 session settled, in one screen
 
 1. **Five more cio casualties rebuilt** -- `printf`, `valspeak`, `unifdef`,
    `ape`, `hexed`. **But the headline is the other twenty-four**: all
