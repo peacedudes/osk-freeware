@@ -7,8 +7,9 @@ first is how sessions have historically lost an hour before touching anything.
 
 ## The two-minute version
 
-Branch `release-pass-2026-08-21`, never pushed. Tree clean, all seventeen
-`check_disk.py` checks green, `osk-freeware.dd` current.
+Branch `release-pass-2026-08-21`, never pushed. Tree clean, every
+`check_disk.py` check green -- read the list the tool prints, do not trust a
+number typed here -- and `osk-freeware.dd` current.
 
 **2026-09-01. Third session. Read the next two sections and you are current.**
 
@@ -17,9 +18,11 @@ Branch `release-pass-2026-08-21`, never pushed. Tree clean, all seventeen
 | `datatest` cases | 423 | **661** |
 | `datatest` families | 24 | **48** |
 | `tools/drives` sheets | 41 | **79** |
-| `check_disk.py` checks | 17 | **20**, and 14 provably fail on demand |
+| `check_disk.py` checks | 17 | **20**, and **19 provably fail on demand** |
 | Star grid (programs needing `cio`) | 354 | **349** |
-| Gallery cards flagged as help- or error-only | 22 | **9** |
+| Gallery cards flagged as help- or error-only | 22 | **6** |
+| Cards excepted BY NAME in `audit_cards.py` | 1 | **5** |
+| Programs with NEITHER a test nor a card | 42 | **1** (`cron`, a daemon) |
 | **Programs under no test at all** | 209 | **58** |
 
 ### The pattern that paid best: read the disk's own documentation first

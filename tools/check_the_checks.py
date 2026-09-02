@@ -173,6 +173,93 @@ def break_hand_files(root):
     return "DOC/USAGE made to name a program that is not there"
 
 
+def break_author_stamp(root):
+    """The SDK author stamp, put back into a module.
+
+    `no new SDK author stamps' has a threshold of ZERO and searches every
+    file in the tree for one byte string, so the smallest honest break is to
+    append it to a module. The module is left invalid by that (its CRC no
+    longer covers the tail) which does not matter here: the stamp check runs
+    on bytes and this tool restores the file straight after.
+    """
+    p = os.path.join(root, "CMDS", "cat")
+    w(p, open(p, "rb").read() + b"from the disk of somebody or other")
+    return "CMDS/cat given the SDK author stamp"
+
+
+def break_recipe_tree(root):
+    """A source tree a recipe names, renamed out from under it.
+
+    This is the exact shape the check was written for: a program removed and
+    its recipe left behind, which `rebuild.sh' then reports as a FAILED
+    BUILD rather than as the leftover it is. Any tree named by a recipe will
+    do, so the first one is taken from the recipe file itself rather than
+    typed here -- a name typed here would rot the day that program moved.
+    """
+    recipes = os.path.join(REPO, "tools", "rebuild", "recipes.psv")
+    src = os.path.join(root, "SRC")
+    for line in open(recipes):
+        if line.startswith("#") or "|" not in line:
+            continue
+        tree = line.split("|")[1].strip().split("/")[0]
+        if tree and os.path.isdir(os.path.join(src, tree)):
+            os.rename(os.path.join(src, tree),
+                      os.path.join(src, "zzz" + tree))
+            return "SRC/%s renamed, leaving its recipes pointing nowhere" % tree
+    return None
+
+
+def break_screened_source(root):
+    """A file under SRC that names OS-9 system internals.
+
+    `no unscreened Microware source' only acts on the STRONG rules, and
+    SYSTEM SOURCE wants TWO distinct system symbols in one source file --
+    which is what `disk/SRC/msfm' had, and what shipped for months. Two
+    system-globals offsets in a .c file is the smallest thing that is
+    honestly that.
+    """
+    p = os.path.join(root, "SRC", "zzzsysglob.c")
+    w(p, b"/* offsets into the OS-9 system globals */\r"
+         b"#define SYSGLOB_MODDIR  D_ModDir\r"
+         b"#define SYSGLOB_PRCDBT  D_PrcDBT\r"
+         b"#define SYSGLOB_BLKMAP  D_BlkMap\r")
+    return "SRC/zzzsysglob.c added, naming three system globals"
+
+
+def break_login_env(root):
+    """SYS/login made to disagree with the harness's copy of it.
+
+    The drift this catches actually happened: login was changed to
+    `SHELL=$ROOT/CMDS/ksh' -- the one shell here whose invocation serves
+    system() -- and `tools/screenshots.py's hand-written copy still said
+    bash, so the `latex' card was a capture of E$PNNF while the program
+    worked. Putting bash back is that drift exactly.
+    """
+    p = os.path.join(root, "SYS", "login")
+    t = open(p, "rb").read()
+    if b"CMDS/ksh" not in t:
+        return None
+    w(p, t.replace(b"CMDS/ksh", b"CMDS/bash", 1))
+    return "SYS/login made to export SHELL=bash again"
+
+
+def break_cio_scan(root):
+    """The one name the cio-macro scan is required to find, removed.
+
+    The check's positive guard is `kermit_cio', and the reason it is that
+    name and not another is in the check's own docstring: every other
+    program on the list is a candidate for rebuilding `-qm', where
+    CMDS/REBUILT/kermit_cio is DELIBERATELY the cio build. Taking it away is
+    the "scan has stopped working" case, which is the failure this guard
+    exists for -- a silent scan agrees with any number in README-CIO.
+    """
+    p = os.path.join(root, "CMDS", "REBUILT", "kermit_cio")
+    if not os.path.exists(p):
+        return None
+    os.remove(p)
+    return "CMDS/REBUILT/kermit_cio removed, so the scan's guard is gone"
+
+
 BREAKS = [
     ("line endings", "line endings are CR-only", add_line_ending),
     ("utf8", "no UTF-8 on an 8-bit disk", add_utf8),
@@ -188,6 +275,17 @@ BREAKS = [
     ("docs intact", "the disk's documents are intact", break_docs),
     ("readme refs", "README names documents that exist", break_readme_refs),
     ("name lists", "name lists point at real programs", break_hand_files),
+    ("author stamps", "no new SDK author stamps", break_author_stamp),
+    ("recipes", "every recipe names a real tree", break_recipe_tree),
+    ("screened src", "no unscreened Microware source",
+     break_screened_source),
+    ("login env", "harness env matches SYS/login", break_login_env),
+    ("cio macro", "the cio-macro list is current", break_cio_scan),
+    # NINETEEN of the twenty checks are probed above, as of 2026-09-01.
+    # Five of them were added that day, and every one fired first time --
+    # which is the boring outcome and the one worth recording, because the
+    # five that came before had all needed a second try.
+    #
     # `cards do not depend on each other' is NOT probed here: its input is
     # tools/screenshots, not the disk tree this tool copies, so a break
     # would edit the live sheets. It was made to fail by hand on
