@@ -10,6 +10,46 @@ are twenty now, and nineteen of them are proved able to FAIL by
 
 ## WHAT NEEDS YOU, in order
 
+**0. "Is os9exec ready for 4.10? Have you been through them all?" -- NO, and
+this collection cannot answer that question on its own.** Asked 2026-09-02;
+here is what it can and cannot say.
+
+**What it covers, and covers well.** 913 programs, 704 datatest cases in 56
+families, 408 gallery cards. Every case and card runs against os9exec on
+every full pass; the last one was **694 of 697**, the three failures
+deliberate. That is real evidence for **RBF, SCF, pipes, module load and
+link, F$Fork by bare name and by path, the C library, the cio/csl trap
+handlers and all five shells** -- the paths a working disk uses constantly.
+
+**What it does not exercise AT ALL.** No test here has ever touched:
+
+- **Networking.** No `/socket`, so `inetd`, `wn`, `osknet`, KA9Q and uucp
+  over TCP are all preserved rather than exercised.
+- **Serial.** Every terminal emulator, modem dialer and XModem/ZModem
+  program, plus `phone` and `ATerm /t1` and `break`.
+- **Graphics.** Atari GRAPH, the MM/1 drivers, G-Windows, `umusek`.
+- **Supervisor state.** `ptxm` installs into the kernel and cannot here.
+- **Real timing.** The twelve Dhrystones measure the host.
+
+**The one hole I would want looked at before calling 4.10 done** is
+**F$GPrDBT (0x1f) and F$GPrDsc (0x18)**, the process-descriptor calls.
+THREE shipped programs reach them and all three take a **bus error** rather
+than a clean `E_UNKSVC`: `devprc -a`, `top` (after printing its heading) and
+`sysmon` (after drawing its entire Process Monitor). `sysmon` only got that
+far because of your V4.10 version bump, so this is a hole the release itself
+opened up to view. A refusal would be survivable; a bus error is not.
+`F$SetSys` is the same shape one step milder -- `aprocs`, `getsys`, `sysmax`
+and `sysmin` -- and there it aborts cleanly.
+
+Beyond that, `notes/os9exec-bugs/README.md` says the only genuine item left
+is small: `memstuff.c:782` announcing every failed allocation on the console.
+
+**46 programs still have no test of any kind**, sorted by reason in
+`notes/START-HERE-NEXT-SESSION.md`. Most want hardware or end the session;
+none of them is hiding a kernel defect that I can see, but I have not proved
+that and should not pretend otherwise.
+
+
 **1. `gnuchess` — the one real decision.** Details below; measured, and my
 recommendation is there.
 
