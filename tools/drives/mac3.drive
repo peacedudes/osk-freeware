@@ -1,0 +1,49 @@
+# mac3 -- the Macintosh set, driven from what the manuals on this disk say
+# rather than from guesses.
+#
+# `macsave' reads MacBinary FROM STANDARD INPUT and writes silently -- its
+# own manual page (DOC/macsave/macsave.1) says so, which is why every sweep
+# that ran it bare and scored it mute was measuring the documentation.
+# `macbin' is the translator that MAKES a MacBinary file, so the pair can be
+# round-tripped without anything from a real Macintosh.
+
+family  mac3
+
+setup   export TERM=vt100
+setup   W=/dd/tmp/MAC3
+setup   /dd/CMDS/rm -f $W > /nil 2>/nil
+setup   /dd/CMDS/mkdir -p $W > /nil 2>/nil
+setup   /dd/CMDS/cp /dd/SYS/motd $W/plain.txt
+
+drive   macbin
+why     the MacBinary translator, v1.1 -- "writes a 128 byte header".
+why     What does it want?
+run     /dd/CMDS/macbin
+run     echo "--- with a file:"
+run     /dd/CMDS/ksh -c "cd $W; /dd/CMDS/macbin plain.txt"
+run     /dd/CMDS/ls -l $W
+run     echo "--- end macbin"
+
+drive   macsave-round-trip
+why     macsave reads MacBinary on STANDARD INPUT and writes `.bin' files
+why     into the current directory, silently.  Give it what macbin made.
+run     /dd/CMDS/ls -l $W
+run     echo "--- feed the MacBinary to macsave:"
+run     /dd/CMDS/ksh -c "cd $W; /dd/CMDS/macsave < plain.txt.bin"
+run     /dd/CMDS/ls -l $W
+run     echo "--- end macsave"
+
+drive   elvrec
+why     "run elvrec with no arguments to see a list of all recoverable
+why     files".  It wants /usr/preserve/Index and OS-9 has no /usr device.
+run     /dd/CMDS/elvrec
+run     echo "--- named:"
+run     /dd/CMDS/elvrec $W/plain.txt
+run     echo "--- end elvrec"
+
+drive   mcvert-and-macunpack
+why     the other two of the macutils set, for comparison.
+run     /dd/CMDS/mcvert
+run     echo "--- macunpack:"
+run     /dd/CMDS/macunpack
+run     echo "--- end"
