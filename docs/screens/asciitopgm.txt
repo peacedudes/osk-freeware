@@ -1,7 +1,7 @@
 $ pbmtext "netpbm" | pbmtoascii > /dd/tmp/art.txt
-$ asciitopgm 8 60 < /dd/tmp/art.txt | pnmfile
-stdin:  PGM raw, 60 by 8  maxval 127
-$ pgmtoppm < /nil
-usage:  pgmtoppm <colorspec> [pgmfile]
-                 <colorspec1>,<colorspec2> [pgmfile]
-                 -map mapfile [pgmfile]
+$ asciitopgm 8 60 < /dd/tmp/art.txt > /dd/tmp/art.pgm
+$ pnmfile /dd/tmp/art.pgm
+/dd/tmp/art.pgm:        PGM raw, 60 by 8  maxval 127
+$ pgmtoppm red-blue /dd/tmp/art.pgm > /dd/tmp/art.ppm
+$ pnmfile /dd/tmp/art.ppm
+/dd/tmp/art.ppm:        PPM raw, 60 by 8  maxval 127

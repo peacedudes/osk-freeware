@@ -1,0 +1,28 @@
+# flagged4 -- dbz's `-c' is CHECK, not build.  Build the index and look
+# a message-id up for real.
+
+family  flagged4
+
+setup   export TERM=vt100
+setup   N=/dd/lib/news
+setup   /dd/CMDS/mkdir -p $N > /nil 2>/nil
+
+drive   build-the-index
+run     /dd/CMDS/rm -f $N/history.dir $N/history.pag > /nil 2>/nil
+run     echo "<one@site.uucp>	9999999	1" > $N/history
+run     echo "<two@site.uucp>	9999999	2" >> $N/history
+run     echo -n "" > $N/history.dir
+run     echo -n "" > $N/history.pag
+run     /dd/CMDS/ksh -c "cd $N; /dd/CMDS/NEWS/dbz history"
+run     /dd/CMDS/ls -l $N
+run     echo "--- end build"
+
+drive   and-look-one-up
+run     /dd/CMDS/NEWS/newshist "<one@site.uucp>"
+run     /dd/CMDS/NEWS/newshist "<two@site.uucp>"
+run     /dd/CMDS/NEWS/newshist "<nope@site.uucp>"
+run     echo "--- end"
+
+drive   dbz-c-now-agrees
+run     /dd/CMDS/ksh -c "cd $N; /dd/CMDS/NEWS/dbz -c history"
+run     echo "--- end"

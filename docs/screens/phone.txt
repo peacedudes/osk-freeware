@@ -1,5 +1,24 @@
-$ phone
-Syntax: phone <communication-path>
-Function: communication between two terminals
+                             OS9/68K PHONE FACILITY
 
-phone: communication-path required
+
+-------------------------------------------------------------------------------
+                                 /term::TESTER
+
+
+
+
+
+
+
+
+-------------------------------------------------------------------------------
+
+
+
+
+
+
+
+
+
+                             (C) by M.Rosenthal, CH# /t1 is

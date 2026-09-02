@@ -26,13 +26,21 @@ for     asciitopgm ppmtopgm pgmtoppm
 cap     asciitopgm goes the other way -- characters IN, a greyscale image
 cap     out, each character weighted by how much ink it has.  Here it reads
 cap     back the ASCII art pbmtoascii just wrote, and pnmfile confirms a
-cap     60x8 PGM came out of it.
+cap     60x8 PGM came out of it.  `pgmtoppm' then colours that greyscale:
+cap     it takes a colour or a PAIR -- `red-blue' ramps between them -- and
+cap     the same 60x8 comes out as a PPM.  Until 2026-09-01 this card ended
+cap     `pgmtoppm < /nil' and captured the usage line that earned, with a
+cap     PGM sitting two lines above it.
 run     pbmtext "netpbm" | pbmtoascii > /dd/tmp/art.txt
 wait    12
-run     asciitopgm 8 60 < /dd/tmp/art.txt | pnmfile
+run     asciitopgm 8 60 < /dd/tmp/art.txt > /dd/tmp/art.pgm
 wait    12
-run     pgmtoppm < /nil
-wait    8
+run     pnmfile /dd/tmp/art.pgm
+wait    10
+run     pgmtoppm red-blue /dd/tmp/art.pgm > /dd/tmp/art.ppm
+wait    12
+run     pnmfile /dd/tmp/art.ppm
+wait    10
 
 shot    ateri
 size    30 80

@@ -136,6 +136,16 @@ def main(argv):
                       "why. `cannot execute binary file' for a BASIC09 "
                       "subroutine and for a trap library is the finding: "
                       "running a non-program proves nothing",
+            "disktest": "measures disk performance and CANNOT here: bare "
+                        "it prints nothing and `disktest /dd' ends the "
+                        "emulator session outright, both measured "
+                        "2026-09-01 in tools/drives/flagged1.drive. Its "
+                        "option list has one option and it is -?",
+            "edir": "the event directory IS empty, and that is the finding: "
+                    "nothing on this disk CREATES an event -- OS-9's own "
+                    "`event' utility is Microware's and is not here -- so "
+                    "`eset' can only link to one that already exists, which "
+                    "is what its `can't link to' says",
             }
     # `texfonts-bitmap' was excepted here until 2026-09-01, on the grounds
     # that there was no .pk, .gf or .vf for its eight tools to read.  There

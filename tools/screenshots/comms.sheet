@@ -2,10 +2,15 @@
 # is their own face: the prompt, the settings, the log.
 
 shot    aterm
-cap     ATerm 2.6, the terminal emulator, reading its configuration from
-cap     SYS/ATERM.
+cap     ATerm 2.6, the terminal emulator.  Its own Example line says
+cap     `ATerm /t1', so that is what is typed here -- and the answer is the
+cap     useful part: it wants an SCF device driven by the same driver as the
+cap     one in its control file, and os9exec's /t1 is not that.  A card that
+cap     shows only the syntax block says nothing the INDEX line does not.
 run     aterm
 wait    6
+run     aterm /t1
+wait    10
 
 shot    elm
 for     elm
@@ -198,6 +203,27 @@ cap     credited here and never run until 2026-08-30.
 cap     `byteflip' IS LAST AND SAYS NOTHING: it ends the emulator session,
 cap     so anything after it never ran -- which is why this card was blank
 cap     but for dbz's usage line until 2026-09-01.
+cap     The history half is worked here rather than asked.  `newshist'
+cap     IGNORES ITS OWN -df AND READS /h0/lib/news/history -- one of the two
+cap     `--' entries under it in DOC/DEPENDS, and /h0 is this disk, so the
+cap     path is makeable.  `dbz history' then builds the .dir/.pag pair
+cap     beside it and newshist reads the database cleanly.
+cap     It still answers `no history entry' for an id that IS in the file,
+cap     because dbz says `store failed' on the first line and indexes
+cap     nothing.  So the database is built, read and empty, and that is as
+cap     far as this pair goes here.  The separator is not what stops it:
+cap     tools/drives/flagged4.drive writes the line with real tabs and gets
+cap     the same answer.
+run     mkdir -p /dd/lib/news
+wait    6
+run     echo "<one@site.uucp> 9999999 1" > /dd/lib/news/history
+wait    6
+run     ksh -c "cd /dd/lib/news; dbz history"
+wait    12
+run     ls /dd/lib/news
+wait    8
+run     newshist "<one@site.uucp>"
+wait    10
 run     dbz
 wait    8
 run     newshist

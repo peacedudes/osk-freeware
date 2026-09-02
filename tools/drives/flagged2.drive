@@ -1,0 +1,30 @@
+# flagged2 -- newshist and dbz with the right paths (both are in CMDS/NEWS,
+# not CMDS), and disktest asked once more before it is written off.
+
+family  flagged2
+
+setup   export TERM=vt100
+setup   W=/dd/tmp/FL2
+setup   /dd/CMDS/rm -f $W/* > /nil 2>/nil
+setup   /dd/CMDS/mkdir -p $W > /nil 2>/nil
+
+drive   dbz-builds-a-history-database
+why     dbz makes the .pag/.dir pair newshist looks a message-id up in.
+run     /dd/CMDS/NEWS/dbz
+run     echo "<one@site.uucp>	9999999	1" > $W/history
+run     echo "<two@site.uucp>	9999999	2" >> $W/history
+run     /dd/CMDS/cat $W/history
+run     /dd/CMDS/ksh -c "cd $W; /dd/CMDS/NEWS/dbz -c history"
+run     /dd/CMDS/ls -l $W
+run     echo "--- end dbz"
+
+drive   newshist-looks-one-up
+run     /dd/CMDS/ksh -c "cd $W; /dd/CMDS/NEWS/newshist -df history '<one@site.uucp>'"
+run     /dd/CMDS/ksh -c "cd $W; /dd/CMDS/NEWS/newshist -df history '<nope@site.uucp>'"
+run     echo "--- end newshist"
+
+drive   disktest-once-more
+why     bare it is silent and `/dd' ends the session.  Try its own -? list
+why     for an option that does something.
+run     /dd/CMDS/disktest -?
+run     echo "--- end"

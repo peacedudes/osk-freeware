@@ -501,11 +501,18 @@ run     who < /nil
 wait    8
 
 shot    phone
+size    24 80
 cap     `phone' is not an address book: it connects two terminals over a
-cap     communication path, and with none named it says so.  DOC/INDEX
-cap     called it a phone-number book until this screen was taken.
-run     phone
-wait    5
+cap     communication path.  DOC/INDEX called it a phone-number book until
+cap     this screen was taken.  Given a path it DRAWS ITS FACE and starts
+cap     ringing -- OS9/68K PHONE FACILITY, the terminal it is calling, the
+cap     try count -- and control-E is how you leave, which is what the card
+cap     does.  With no path it prints its syntax, which is all this card
+cap     showed until 2026-09-01 -- so the syntax run is dropped here and the
+cap     screen is given to the program.  The tail of the bottom line is the
+cap     echoed command that was on that row when phone painted over it.
+run     phone /t1
+wait    28
 
 shot    rndir
 for     rndir mvolformat rendsk
