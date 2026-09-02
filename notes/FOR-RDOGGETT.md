@@ -81,6 +81,12 @@ were captured under the old arrangement and only five have been re-shot.
 Nothing looks wrong — `/h0` only ADDS a device — but a full re-shoot is a
 couple of hours and is the honest way to be sure. Say if you want it run.
 
+**4a. UPDATE 2026-09-02: 115 of the 409 cards have now been shot under the
+`/h0` arrangement**, not the five that stood when item 4 was written -- they
+went through as their programs were corrected. Nothing in them looked
+different for `/h0`'s sake. The remaining 294 are still on the old captures
+and the question below is unchanged.
+
 **5. I stopped the full gallery re-shoot part-way, deliberately.** It was
 running at about 0.6 minutes a card -- five hours for 485 -- and it held the
 image lock the whole time, which blocked everything else. I shot the twelve
