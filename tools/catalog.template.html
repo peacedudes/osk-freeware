@@ -49,6 +49,14 @@
   .chip[aria-pressed="true"]{background:var(--soft);border-color:var(--accent);color:var(--ink)}
   .toc{display:flex;flex-wrap:wrap;gap:6px;padding:14px 0 2px;
        border-bottom:1px solid var(--hair);margin-bottom:4px}
+  .cats.az{grid-template-columns:1fr}
+  .toc.az{gap:2px}
+  .toc.az a{min-width:2.1em;justify-content:center;font-family:var(--mono);
+       font-size:12px;padding:5px 7px;border-radius:7px}
+  .toc.az a:hover{background:var(--soft)}
+  .toc.az a .n{font-size:9.5px}
+  .toc.az .none{min-width:2.1em;text-align:center;font-family:var(--mono);
+       font-size:12px;padding:5px 7px;color:var(--faint);opacity:.45}
   .toc a{display:inline-flex;gap:6px;align-items:baseline;text-decoration:none;
          font-size:12.5px;padding:5px 10px;border-radius:999px;
          border:1px solid var(--rule);background:var(--card);color:var(--dim)}
@@ -252,9 +260,15 @@ function renderAZ(hits){
   const by={};
   for(const p of hits){ const k=p.name[0].toUpperCase(); (by[k] ||= []).push(p); }
   const out=[];
+  // COLLAPSED BY DEFAULT.  Every letter used to be `open', so choosing A-Z
+  // opened all 900 entries at once and finding a name meant scrolling past
+  // every other one.  The letter bar above jumps to a letter and opens it.
+  const open = st.open || st.q.length>0;
   for(const k of Object.keys(by).sort()){
-    out.push(`<details class="cat" open><summary><div class="ct">${k}`+
-      `<span class="n">${by[k].length}</span></div></summary><ul>`+
+    out.push(`<details class="cat" id="az-${k}"${open?" open":""}>`+
+      `<summary><div class="ct">${k}`+
+      `<span class="n">${by[k].length}</span>`+
+      `<span class="cv">&#9656;</span></div></summary><ul>`+
       by[k].sort((a,b)=>a.name.localeCompare(b.name)).map(p=>
         `<li class="p${picked.has(p.name)?" picked":""}" tabindex="0" `+
         `data-n="${esc(p.name)}">`+
@@ -274,12 +288,22 @@ function render(){
     hits.length===DATA.length ? DATA.length+" programs" : hits.length+" of "+DATA.length;
   const toc=document.getElementById("toc");
   if(st.az){
-    toc.className="toc hide"; toc.innerHTML="";
+    // The letter bar, in the place the category bar occupies otherwise.
+    const byl={};
+    for(const p of hits){ (byl[p.name[0].toUpperCase()] ||= []).push(p); }
+    const letters = "ABCDEFGHIJKLMNOPQRSTUVWXYZ".split("");
+    for(const k of Object.keys(byl)) if(!letters.includes(k)) letters.push(k);
+    toc.className="toc az";
+    document.getElementById("cats").className="cats az";
+    toc.innerHTML = letters.map(k => byl[k]
+        ? `<a href="#az-${k}">${k}<span class="n">${byl[k].length}</span></a>`
+        : `<span class="none">${k}</span>`).join("");
     document.getElementById("cats").innerHTML =
       renderAZ(hits).join("") || `<p class="empty">Nothing matches that.</p>`;
     return;
   }
   toc.className="toc";
+  document.getElementById("cats").className="cats";
   const by={};
   for(const p of hits){ (by[p.cat] ||= {}); (by[p.cat][p.sub] ||= []).push(p); }
   const open = st.open || st.q.length>0;
@@ -437,10 +461,16 @@ document.getElementById("cats").addEventListener("keydown",e=>{
     const pb=li.querySelector("button.pick"); if(pb) pb.click(); } });
 document.getElementById("q").addEventListener("input",e=>{st.q=e.target.value;render();});
 document.getElementById("toc").addEventListener("click", ev => {
-  const a = ev.target.closest("a[href^='#cat-']");
+  const a = ev.target.closest("a[href^='#cat-'],a[href^='#az-']");
   if(!a) return;
   const d = document.getElementById(a.getAttribute("href").slice(1));
-  if(d) d.open = true;
+  if(!d) return;
+  d.open = true;
+  // In A-Z, close the others: the point of picking a letter is to see that
+  // letter, not to add it to a growing pile.
+  if(a.getAttribute("href").startsWith("#az-"))
+    for(const o of document.querySelectorAll("details.cat[id^='az-']"))
+      if(o!==d) o.open = false;
 });
 for(const [id,v] of [["f-cat",false],["f-az",true]]){
   document.getElementById(id).onclick=()=>{
