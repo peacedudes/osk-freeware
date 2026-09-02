@@ -6,8 +6,15 @@
 # only its Makefile, so `virmf' stopped at `I can't find the default base
 # file!' and the eight bitmap-font tools had nothing to read.
 #
-# The line below is what SYS/TEX/MFBASES/install.script asks for, verbatim.
-# It takes about a minute and writes 80144 bytes.  /h1 is a HOST directory
+# The two lines below are what SYS/TEX/MFBASES/install.script asks for,
+# verbatim.  plain.base takes about a minute and is 80144 bytes; cmbase.base
+# is built ON TOP of it -- `&plain cmbase dump' -- and is 128312.  cmbase is
+# what the 117 Computer Modern sources under MFINPUTS/CM are written against,
+# so without it `cmr10' cannot be rendered and every DVI driver on this disk
+# is stuck warning that it cannot open a font file.
+#
+# cmbase.mf is in MFINPUTS/CM and the compiled-in MFINPUTS path does not go
+# into CM, so that one line has to name it.  /h1 is a HOST directory
 # under notes/drives/work, so the result can be copied into disk/ and shipped
 # -- which it now is.  Re-run this only to rebuild the base (a new modes.mf,
 # say); nothing on the disk needs it at run time.
@@ -26,8 +33,22 @@ setup   /dd/CMDS/rm -f $W/* > /nil 2>/nil
 setup   /dd/CMDS/mkdir -p $W > /nil 2>/nil
 
 drive   dump-and-hand-out
+run     export MFINPUTS=.:/dd/SYS/TEX/MFINPUTS/CM:/dd/SYS/TEX/MFINPUTS
 run     echo "plain; \\input modes; dump" > $W/mf.in
 run     /dd/CMDS/ksh -c "cd $W; /dd/CMDS/TEXCMDS/inimf < mf.in"
+run     export MFBASES=$W
+run     echo "&plain cmbase dump" > $W/cm.in
+run     /dd/CMDS/ksh -c "cd $W; /dd/CMDS/TEXCMDS/inimf < cm.in"
 run     /dd/CMDS/cp $W/plain.base /h1/plain.base
-run     /dd/CMDS/ls -l $W/plain.base
-run     echo "--- now: cp notes/drives/work/h1/plain.base disk/SYS/TEX/MFBASES/"
+run     /dd/CMDS/cp $W/cmbase.base /h1/cmbase.base
+run     /dd/CMDS/ls -l $W
+run     echo "--- now: cp notes/drives/work/h1/*.base disk/SYS/TEX/MFBASES/"
+
+drive   what-the-job-name-comes-from
+why     the render writes mfput.120gf, not cmr10.120gf: Metafont takes the
+why     job name from a file named on the COMMAND LINE, and a line that
+why     begins with a backslash names none.  Try it the other way.
+run     echo "\\mode=epsonlo; mode_setup; input cmr10" > $W/a.mf
+run     /dd/CMDS/ksh -c "cd $W; /dd/CMDS/TEXCMDS/virmf '&cmbase' < a.mf"
+run     /dd/CMDS/ls $W/mfput.120gf $W/cmr10.120gf
+run     echo "--- end"

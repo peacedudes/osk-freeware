@@ -1,0 +1,74 @@
+# cmfont -- Computer Modern, rendered here.
+#
+# `cmbase.base' is the SECOND base SYS/TEX/MFBASES/install.script asks for and
+# it now ships beside plain.base.  It is what the 117 Computer Modern sources
+# under MFINPUTS/CM are written against, so without it cmr10 cannot be
+# rendered and every DVI driver on this disk is stuck warning that it cannot
+# open a font file.
+#
+# THE JOB NAME COMES FROM THE COMMAND LINE, NOT FROM STANDARD INPUT, and that
+# is the one thing here that will waste an hour.  The same Metafont line fed
+# on stdin writes `mfput.120gf' whatever font it just rendered; passed as an
+# ARGUMENT it writes `cmr10.120gf'.  `maketexpk' on this disk carries the
+# right form in its own strings --
+#     virmf '&plain \scrollmode; \mode:=%s; \mag:=%s; \input %s; \end'
+# -- though maketexpk itself then calls `makdir', `del' and `attr', which are
+# Microware's and are not here, so run the virmf line rather than the script.
+
+family  cmfont
+
+setup   export TERM=vt100
+setup   W=/dd/tmp/CMF
+setup   /dd/CMDS/rm -f $W/* > /nil 2>/nil
+setup   /dd/CMDS/mkdir -p $W > /nil 2>/nil
+setup   export MFINPUTS=.:/dd/SYS/TEX/MFINPUTS/CM:/dd/SYS/TEX/MFINPUTS
+setup   export GFFONTS=$W
+setup   export PKFONTS=$W
+
+case    both-bases-ship
+run     /dd/CMDS/wc -c /dd/SYS/TEX/MFBASES/plain.base /dd/SYS/TEX/MFBASES/cmbase.base
+expect  80144 /dd/SYS/TEX/MFBASES/plain.base
+expect  128312 /dd/SYS/TEX/MFBASES/cmbase.base
+
+case    cmr10-renders-all-128-characters
+# and the job name is the font's, because the line is an ARGUMENT.
+run     /dd/CMDS/ksh -c "cd $W; /dd/CMDS/TEXCMDS/virmf '&cmbase' '\\scrollmode; \\mode:=epsonlo; \\input cmr10; \\end'"
+run     /dd/CMDS/ls $W
+expect  This is METAFONT, C Version 2.7
+expect  Output written on cmr10.120gf (128 characters, 7392 bytes)
+expect  Font metrics written on cmr10.tfm
+absent  mfput
+
+case    the-same-line-on-standard-input-names-the-job-mfput
+# NOT a defect -- Metafont takes its job name from the command line.  It is
+# asserted because it looks like one, and because it is what makes
+# maketexpk's own `gftopk ./%s' unable to find what Metafont just wrote.
+run     /dd/CMDS/rm -f $W/mfput.120gf > /nil 2>/nil
+run     echo "\\scrollmode; \\mode:=epsonlo; \\input cmr10; \\end" > $W/r.mf
+run     /dd/CMDS/ksh -c "cd $W; /dd/CMDS/TEXCMDS/virmf '&cmbase' < r.mf"
+expect  Output written on mfput.120gf (128 characters, 7392 bytes)
+
+case    gftopk-packs-computer-modern-to-a-real-pk
+run     /dd/CMDS/ksh -c "cd $W; /dd/CMDS/TEXCMDS/virmf '&cmbase' '\\scrollmode; \\mode:=epsonlo; \\input cmr10; \\end'" > /nil 2>/nil
+run     /dd/CMDS/TEXCMDS/gftopk cmr10.120gf $W/cmr10.120pk
+run     /dd/CMDS/wc -c $W/cmr10.120gf $W/cmr10.120pk
+expect  7392 /dd/tmp/CMF/cmr10.120gf
+expect  2900 /dd/tmp/CMF/cmr10.120pk
+
+case    pktype-reads-the-capital-A-back-out-of-it
+# epsonlo is not a square-pixel mode, and pktype says so.
+run     /dd/CMDS/ksh -c "cd $W; /dd/CMDS/TEXCMDS/virmf '&cmbase' '\\scrollmode; \\mode:=epsonlo; \\input cmr10; \\end'" > /nil 2>/nil
+run     /dd/CMDS/TEXCMDS/gftopk cmr10.120gf $W/cmr10.120pk > /nil 2>/nil
+run     /dd/CMDS/TEXCMDS/pktype cmr10.120pk
+expect  Resolution: horizontal = 108819  vertical = 130582  (120 dpi)
+expect  Warning:  aspect ratio not 1:1!
+expect  Flag byte = 208  Character = 65  Packet length = 26
+expect  Height = 14  Width = 11  X-offset = 0  Y-offset = 13
+
+case    tftopl-reads-the-computer-modern-metrics-metafont-just-made
+run     /dd/CMDS/ksh -c "cd $W; /dd/CMDS/TEXCMDS/virmf '&cmbase' '\\scrollmode; \\mode:=epsonlo; \\input cmr10; \\end'" > /nil 2>/nil
+run     /dd/CMDS/ksh -c "cd $W; /dd/CMDS/TEXCMDS/tftopl cmr10.tfm mine.pl"
+run     /dd/CMDS/grep "FAMILY\|CODINGSCHEME\|DESIGNSIZE R" $W/mine.pl
+expect  (FAMILY CMR)
+expect  (CODINGSCHEME TEX TEXT)
+expect  (DESIGNSIZE R 10.0)
