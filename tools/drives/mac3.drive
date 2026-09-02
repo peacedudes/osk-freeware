@@ -47,3 +47,31 @@ run     /dd/CMDS/mcvert
 run     echo "--- macunpack:"
 run     /dd/CMDS/macunpack
 run     echo "--- end"
+
+drive   fortran-set-with-os9lib-loaded
+why     DOC/README-RUNNING: `creadoc', `biory' and `lnk.org' call F$Link for
+why     a module named `os9lib', get E_MNF and exit WITHOUT PRINTING
+why     ANYTHING -- which reads like three broken programs and is not.
+why     `CMDS/os9lib' is the RTF Fortran run-time library.  Load it.
+run     /dd/CMDS/creadoc
+run     echo "--- that was creadoc with nothing loaded.  Now load os9lib:"
+run     /dd/CMDS/load /dd/CMDS/os9lib
+run     echo "--- creadoc again:"
+run     echo "C@ a documentation comment" > $W/f.for
+run     echo "      PROGRAM MAIN" >> $W/f.for
+run     echo "      END" >> $W/f.for
+run     /dd/CMDS/creadoc $W/f.for
+run     echo "--- lnk.org:"
+run     /dd/CMDS/lnk.org
+run     echo "--- end fortran-set"
+
+drive   biory-with-os9lib-loaded
+why     "biory prompts for a name and a birth date in German" once os9lib
+why     is resident.  On its own stanza because it prompts.
+run     /dd/CMDS/load /dd/CMDS/os9lib
+run     echo "Tester" > $W/b.in
+run     echo "1" >> $W/b.in
+run     echo "1" >> $W/b.in
+run     echo "1960" >> $W/b.in
+run     /dd/CMDS/biory < $W/b.in
+run     echo "--- end biory"
