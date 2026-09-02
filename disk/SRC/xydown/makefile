@@ -1,0 +1,1 @@
+CFLAGS = -T=/tmpxydown: crc.r xydown.r serial.r term.r disk.r xyprot.r   cc crc.r xydown.r xyprot.r serial.r term.r disk.r -f=xydown
