@@ -1,0 +1,23 @@
+# setterm -- and the configuration file that came in its own archive.
+#
+# `/dd/sys/setterm' is the file setterm falls back on when TERM names a
+# terminal it does not know.  DOC/DEPENDS has listed it as absent since the
+# day DEPENDS was generated, and it was in setterm2.lzh all along, four
+# files away from the binary somebody extracted.  `tools/archive_gaps.py'
+# is what found it.
+
+family  setterm
+
+setup   export TERMCAP=/dd/SYS/termcap
+
+case    setterm-reports-the-terminal-it-was-given
+run     export TERM=vt100
+run     /dd/CMDS/setterm
+expect  TERM = (vt100)
+
+case    the-configuration-file-it-falls-back-on-is-here
+run     /dd/CMDS/wc -c /dd/SYS/setterm
+run     /dd/CMDS/head -n 4 /dd/SYS/setterm
+expect  2540 /dd/SYS/setterm
+expect  /DD/SYS/SetTerm v2.0  -- By Brian C. White
+expect  This file contains default information for SetTerm.

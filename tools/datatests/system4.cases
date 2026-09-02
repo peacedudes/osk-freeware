@@ -46,10 +46,19 @@ expect  system minimum allocatable block size ....... 2048
 expect  F$SetSys: unimplemented
 
 case    dinfo-reports-a-real-rbf-device
+# NOT THE CAPACITY.  This asserted `259072 KBytes' and broke the day the
+# disk grew -- adding Forth's library and Lua's examples was enough. The
+# figure describes the image, not the program, and `mkimage.sh' sizes the
+# image to fit what it holds. What is worth asserting is that dinfo reads
+# a real RBF device and reports its parts.
 run     /dd/CMDS/dinfo /dd
 expect  Device name   : /dd
 expect  Volume name   : "OSK-Freeware"
-expect  Capacity      : 259072 KBytes
+expect  Capacity      :
+expect  Free          :
+expect  Used          :
+expect  Largest block :
+absent  error
 
 case    dinfo-explains-itself
 run     /dd/CMDS/dinfo -?
