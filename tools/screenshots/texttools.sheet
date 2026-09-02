@@ -630,9 +630,19 @@ cap     the printer it is for, and writes to a FILE beside the DVI rather
 cap     than to standard output -- which is why the `| wc' this card used
 cap     until 2026-08-29 counted only their chatter, and why the listing at
 cap     the end is the real measure.  They all warn that a font file could
-cap     not be opened: SYS/TEX/FONTS carries .tfm METRICS and no bitmaps,
-cap     so the glyphs come out zero-size.  The `texfonts-bitmap' screen
-cap     has the rest of that.  Two of the eleven were run here before
+cap     not be opened and set the text at zero size: SYS/TEX/FONTS carries
+cap     .tfm METRICS and no bitmaps.
+cap     THAT IS NOW FIXABLE, as of 2026-09-01, and the `texfonts-bitmap'
+cap     screen is where it is shown.  Metafont has its bases; render cmr10
+cap     at the resolution a driver asks for -- dvijet wants 120 dpi and
+cap     `epsonlo' in modes.mf is 120 dpi -- pack it with gftopk, point
+cap     TEXFONTS and FONTLIST at it, and dvijet's page goes from 3138 bytes
+cap     of nothing to 7350 bytes of real glyph rasters.  A .pk still does
+cap     not ship, because a .pk is made for ONE printer at ONE resolution;
+cap     what ships is the means.  `dvips' is the one exception and its
+cap     trouble is not fonts: it stops at `Couldn't find header file
+cap     tex.pro' and no .pro file is on this disk.
+cap     Two of the eleven were run here before
 cap     2026-08-29; the other nine were credited to the card.
 run     virtex "&plain" /dd/SYS/TEX/SAMPLES/story.tex
 wait    40

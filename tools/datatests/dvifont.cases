@@ -1,0 +1,65 @@
+# dvifont -- a DVI driver given a font it can actually use.
+#
+# Every DVI driver here warns that it cannot open a font file and sets the
+# text at zero size, and the gallery card said so for months.  That was true
+# because SYS/TEX/FONTS carried .tfm METRICS and no bitmaps -- and it stayed
+# true because Metafont had no base and could not make one.  Both bases ship
+# now, so the claim is testable, and it comes apart: render cmr10 at the
+# resolution the driver asks for and the driver uses it.
+#
+# `dvips' is the one that cannot be rescued this way: it stops at
+# `Couldn't find header file tex.pro', and there is no .pro on this disk, so
+# its PostScript prologue is missing and no font would help.
+#
+# dvijet asks for 120 dpi for this DVI and `epsonlo' in modes.mf IS 120 dpi,
+# so the match is exact -- the 300dpi CanonCX render takes twenty-four
+# minutes and buys a nearest-neighbour substitution instead.
+#
+# THE STATE CARRIES BETWEEN CASES: each one below builds on the last.
+
+family  dvifont
+
+setup   export TERM=vt100
+setup   W=/dd/tmp/DVFC
+setup   /dd/CMDS/mkdir -p $W > /nil 2>/nil
+setup   export MFINPUTS=.:/dd/SYS/TEX/MFINPUTS/CM:/dd/SYS/TEX/MFINPUTS
+setup   export GFFONTS=$W
+setup   export PKFONTS=$W
+setup   export TEXFONTS=$W
+setup   export FONTLIST=pk
+
+case    with-no-font-the-driver-sets-zero-size-characters
+run     /dd/CMDS/rm -f $W/cmr10.120pk > /nil 2>/nil
+run     /dd/CMDS/ksh -c "cd $W; /dd/CMDS/TEXCMDS/virtex '&plain' /dd/SYS/TEX/SAMPLES/story.tex < /nil"
+run     /dd/CMDS/ksh -c "cd $W; /dd/CMDS/TEXCMDS/dvijet story.dvi"
+run     /dd/CMDS/cp $W/story.dvi_jet $W/nofont.jet
+run     /dd/CMDS/wc -c $W/nofont.jet
+expect  Output written on story.dvi (1 page, 668 bytes)
+expect  [Hewlett-Packard 2686A Laser Jet laser printer]
+expect  Font file [cmr10 [120 dpi]] could not be opened; 0 font files are open
+expect  Proceeding with zero size characters for this font
+expect  3138 /dd/tmp/DVFC/nofont.jet
+
+case    metafont-renders-cmr10-at-the-resolution-the-driver-wants
+run     /dd/CMDS/ksh -c "cd $W; /dd/CMDS/TEXCMDS/virmf '&cmbase' '\\scrollmode; \\mode:=epsonlo; \\input cmr10; \\end'"
+run     /dd/CMDS/TEXCMDS/gftopk cmr10.120gf $W/cmr10.120pk
+run     /dd/CMDS/wc -c $W/cmr10.120pk
+expect  Output written on cmr10.120gf (128 characters, 7392 bytes)
+expect  2900 /dd/tmp/DVFC/cmr10.120pk
+
+case    and-then-the-same-driver-uses-it
+# The `nearest neighbor' wording appears even when the match is exact -- it
+# is how dvijet reports finding a font by the second of its two filename
+# forms, not a complaint about the resolution.  cmsl10 and cmbx10 are still
+# missing because only cmr10 was rendered; the page more than doubles anyway.
+run     /dd/CMDS/ksh -c "cd $W; /dd/CMDS/TEXCMDS/dvijet story.dvi"
+run     /dd/CMDS/wc -c $W/nofont.jet $W/story.dvi_jet
+expect  ---using nearest neighbor [/dd/tmp/DVFC/cmr10.120pk [120 dpi]] instead.
+expect  3138 /dd/tmp/DVFC/nofont.jet
+expect  7350 /dd/tmp/DVFC/story.dvi_jet
+
+case    dvips-cannot-be-rescued-this-way
+# Its prologue, not its fonts.  There is no .pro file anywhere on the disk.
+run     /dd/CMDS/ksh -c "cd $W; /dd/CMDS/TEXCMDS/dvips story.dvi"
+expect  This is dvipsk 5.495b
+expect  Couldn't find header file tex.pro

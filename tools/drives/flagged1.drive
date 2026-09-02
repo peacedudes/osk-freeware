@@ -1,0 +1,58 @@
+# flagged1 -- the six cards audit_cards.py still calls THIN-HELP, probed for
+# a real invocation.  Today's lesson, four times over: a card that shows a
+# usage line usually means the invocation was wrong, not that the program has
+# nothing to show.
+
+family  flagged1
+
+setup   export TERM=vt100
+setup   export TERMCAP=/dd/SYS/termcap
+setup   W=/dd/tmp/FL1
+setup   /dd/CMDS/rm -f $W/* > /nil 2>/nil
+setup   /dd/CMDS/mkdir -p $W > /nil 2>/nil
+
+drive   disktest-bare
+why     its card runs `disktest -?' and shows the syntax.  It MEASURES DISK
+why     PERFORMANCE -- there is a disk right here.
+run     /dd/CMDS/disktest
+run     echo "--- end disktest-bare"
+
+drive   disktest-on-a-named-device
+run     /dd/CMDS/disktest /dd
+run     echo "--- end disktest-named"
+
+drive   pgmtoppm-with-real-input
+why     the asciitopgm card ends `pgmtoppm < /nil' and captures the usage.
+why     asciitopgm has just made a PGM two lines above it.
+run     /dd/CMDS/NETPBM/pbmtext "netpbm" > $W/t.pbm 2>/nil
+run     /dd/CMDS/NETPBM/pbmtoascii $W/t.pbm > $W/art.txt
+run     /dd/CMDS/NETPBM/asciitopgm 8 60 < $W/art.txt > $W/a.pgm
+run     /dd/CMDS/NETPBM/pnmfile $W/a.pgm
+run     /dd/CMDS/NETPBM/pgmtoppm red-blue $W/a.pgm > $W/a.ppm
+run     /dd/CMDS/NETPBM/pnmfile $W/a.ppm
+run     echo "--- end pgmtoppm"
+
+drive   aterm-and-phone-want-a-serial-path
+why     both take a communication path.  What is here to give them?
+run     /dd/CMDS/ls /dd/SYS/termcap.entry
+run     /dd/CMDS/ATerm /t1
+run     /dd/CMDS/phone /t1
+run     echo "--- end aterm-phone"
+
+drive   edir-has-nothing-to-list-and-why
+why     nothing on this disk CREATES an event -- OS-9's own `event' utility
+why     is Microware's and is not here -- so eset can only link to one that
+why     already exists.  Establish that rather than leaving it looking broken.
+run     /dd/CMDS/edir -?
+run     /dd/CMDS/edir
+run     /dd/CMDS/eset -?
+run     /dd/CMDS/eunlink -?
+run     echo "--- end edir"
+
+drive   newshist-with-a-database
+why     dbz builds the database newshist looks in.  Make one.
+run     echo "<a@b.uucp>	0	1" > $W/history
+run     /dd/CMDS/ksh -c "cd $W; /dd/CMDS/dbz -c history"
+run     /dd/CMDS/ls -l $W
+run     /dd/CMDS/ksh -c "cd $W; /dd/CMDS/newshist -df history '<a@b.uucp>'"
+run     echo "--- end newshist"

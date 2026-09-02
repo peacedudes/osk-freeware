@@ -1,0 +1,46 @@
+# dvifont2 -- continue from dvifont WITHOUT clearing /dd/tmp/DVF, which still
+# holds the 300dpi cmr10.300gf that took twenty-four minutes to render.
+#
+# dvips is out: it stops at `Couldn't find header file tex.pro' and there is
+# no .pro anywhere on this disk, so its PostScript prologue is missing and no
+# font would help.  dvijet is the 300dpi LaserJet driver and reads TEXFONTS
+# and FONTLIST; it builds a filename two ways --
+#     %s%s.%d%s          path + name + . + dpi + kind
+#     %s%s%d/%s.%d%s     path + prefix + dpi + / + name + . + dpi + kind
+# -- and the second is exactly the empty SYS/TEX/FONTS/PK300 directory shape.
+
+family  dvifont2
+
+setup   export TERM=vt100
+setup   W=/dd/tmp/DVF
+setup   export GFFONTS=$W
+setup   export PKFONTS=$W
+
+drive   what-survived
+run     /dd/CMDS/ls -l $W
+run     echo "--- end"
+
+drive   pack-the-300dpi-font
+why     dvifont failed here for a plain reason: it set PKFONTS and TEXPKS
+why     and not GFFONTS, so gftopk could not find its INPUT.
+run     /dd/CMDS/TEXCMDS/gftopk cmr10.300gf $W/cmr10.300pk
+run     /dd/CMDS/wc -c $W/cmr10.300gf $W/cmr10.300pk
+run     echo "--- end pack"
+
+drive   dvijet-help
+run     /dd/CMDS/TEXCMDS/dvijet > $W/h.txt 2>&1
+run     /dd/CMDS/head -n 30 $W/h.txt
+run     echo "--- end help"
+
+drive   dvijet-with-the-font-beside-it
+why     story.dvi has to be made again: drive.py re-runs a sheet's setup
+why     after a session restart, and dvifont's setup cleared the directory.
+run     /dd/CMDS/ksh -c "cd $W; /dd/CMDS/TEXCMDS/virtex '&plain' /dd/SYS/TEX/SAMPLES/story.tex < /nil"
+run     /dd/CMDS/mkdir -p $W/PK300 > /nil 2>/nil
+run     /dd/CMDS/cp $W/cmr10.300pk $W/PK300/cmr10.300pk
+run     export TEXFONTS=$W
+run     export FONTLIST=pk
+run     /dd/CMDS/ksh -c "cd $W; /dd/CMDS/TEXCMDS/dvijet story.dvi" > $W/j.txt 2>&1
+run     /dd/CMDS/cat $W/j.txt
+run     /dd/CMDS/ls -l $W
+run     echo "--- end dvijet"

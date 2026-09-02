@@ -1,0 +1,102 @@
+# untested1 -- the deterministic half of what worklist still calls untested.
+#
+# Every program here writes a file or prints a fixed answer, so a case can be
+# written from the transcript.  The interactive ones (dm, draw, vc, ephem,
+# sterm, top) and the ones that need hardware are not in this sheet.
+
+family  untested1
+
+setup   export TERM=vt100
+setup   export TERMCAP=/dd/SYS/termcap
+setup   W=/dd/tmp/UT1
+setup   /dd/CMDS/rm -f $W/* > /nil 2>/nil
+setup   /dd/CMDS/mkdir -p $W > /nil 2>/nil
+
+drive   casefix
+why     `normalise letter case in a text file' -- which case, and does it
+why     write in place or to standard output?
+run     echo "hELLo THERE. this IS a TEST." > $W/case.txt
+run     /dd/CMDS/casefix
+run     /dd/CMDS/casefix $W/case.txt
+run     /dd/CMDS/cat $W/case.txt
+run     echo "--- end casefix"
+
+drive   config
+why     reports the C type properties as #defines.  Fixed output for a
+why     fixed machine, so it is assertable exactly.
+run     /dd/CMDS/config
+run     echo "--- end config"
+
+drive   makecrc
+why     the OS-9 module CRC, presumably -- over what?
+run     /dd/CMDS/makecrc
+run     /dd/CMDS/makecrc /dd/SYS/motd
+run     /dd/CMDS/makecrc /dd/CMDS/casefix
+run     echo "--- end makecrc"
+
+drive   uuexpand
+why     expand uuencoded text.  uuencode is on the disk, so this is a round
+why     trip that can be checked against the original bytes.
+run     /dd/CMDS/uuexpand
+run     /dd/CMDS/uuencode /dd/SYS/motd motd.out > $W/u.uu
+run     /dd/CMDS/wc -c $W/u.uu
+run     /dd/CMDS/uuexpand $W/u.uu
+run     echo "--- end uuexpand"
+
+drive   shuffle
+why     INDEX says it is NOT a line shuffler.  What is it?
+run     /dd/CMDS/shuffle
+run     /dd/CMDS/head -n 5 /dd/SYS/holidays > $W/h.txt
+run     /dd/CMDS/shuffle $W/h.txt
+run     echo "--- end shuffle"
+
+drive   creadoc
+why     extract documentation comments from FORTRAN source.  SRC has
+why     Fortran; find some.
+run     /dd/CMDS/creadoc
+run     echo "--- end creadoc"
+
+drive   bincheckr
+why     checks a GNU Chess opening book.  gnuchess ships one.
+run     /dd/CMDS/ls /dd/GAMES/gnuchess
+run     /dd/CMDS/bincheckr
+run     echo "--- end bincheckr"
+
+drive   byteflip
+why     byte-swap a dbz database.  dbz is on the news card.
+run     /dd/CMDS/byteflip
+run     echo "--- end byteflip"
+
+drive   helpindex
+why     builds the help index -- for which help?
+run     /dd/CMDS/helpindex
+run     echo "--- end helpindex"
+
+drive   dfiles
+why     find duplicate files and issue cmp commands.
+run     /dd/CMDS/dfiles
+run     /dd/CMDS/dfiles /dd/DOC/tex
+run     echo "--- end dfiles"
+
+drive   crypto
+why     a cryptogram solver's assistant -- interactive or a filter?
+run     /dd/CMDS/crypto
+run     echo "--- end crypto"
+
+drive   mkdict-and-mkindex
+why     bog's dictionary builders.  Where does bog keep its words?
+run     /dd/CMDS/ls /dd/GAMES/bog
+run     /dd/CMDS/mkdict
+run     /dd/CMDS/mkindex
+run     echo "--- end bog builders"
+
+drive   yagi
+why     antenna design calculator -- reads numbers from where?
+run     /dd/CMDS/yagi < /nil
+run     echo "--- end yagi"
+
+drive   uuexpand-vs-uudecode
+why     the disk has uudecode too; do they agree?
+run     /dd/CMDS/uudecode $W/u.uu
+run     /dd/CMDS/ls -l $W
+run     echo "--- end"

@@ -2,7 +2,9 @@
 
 Terse on purpose. Everything before 2026-08-27 is in git history.
 
-Branch `release-pass-2026-08-21`. All seventeen `check_disk.py` checks green.
+Branch `release-pass-2026-08-21`. Every `check_disk.py` check green -- there
+are twenty now, and nineteen of them are proved able to FAIL by
+`tools/check_the_checks.py`.
 
 ---
 
@@ -94,7 +96,13 @@ evidence anyway. If you want the full sweep run for completeness it is
   `check_disk`'s new `cards do not depend on each other` check explicitly
   sanctions.
 
-**6. Nothing else is waiting on you.**
+**6. Nothing else is waiting on you.** For the record, and needing nothing
+from you: Metafont works. `SYS/TEX/MFBASES` held only its Makefile, so
+`virmf` had no base and the eight bitmap-font tools had nothing to read --
+which is why their gallery card was eight usage lines and why every DVI
+driver warns it cannot open a font. `inimf` builds both bases the disk's own
+`install.script` asks for; they now ship, and `cmr10` renders from the 117
+Computer Modern sources that were here all along. 15 new cases assert it.
 
 ---
 

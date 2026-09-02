@@ -19,5 +19,5 @@ $ dvips story.dvi
 This is dvipsk 5.495b Copyright 1986, 1992 Radical Eye Software
 dvips: ! Couldn't find header file tex.pro
 $ ls -l /dd/story.dvi_alw /dd/story.dvi_eps
--rw-------   1 0        0            2670 Aug 29 22:20 /dd/story.dvi_alw
--rw-------   1 0        0            7252 Aug 29 22:21 /dd/story.dvi_eps
+-rw-------   1 0        0            2670 Sep  1 23:19 /dd/story.dvi_alw
+-rw-------   1 0        0            7252 Sep  1 23:19 /dd/story.dvi_eps
