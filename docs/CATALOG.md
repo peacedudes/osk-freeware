@@ -1440,7 +1440,7 @@
 | `demerge` | split a merged file back into its parts<br>`Syntax:   demerge <path>` |
 | `demo` | egetopt option-parsing demonstration |
 | `deton` | &#9733; NOT a detab: `deton [seconds]' demonstrates using an alarm to TIME OUT an I/O read.  `detab' and `expand' are what convert tabs.  Corrected 2026-08-29<br>`syntax: deton [seconds]` |
-| `devprc` | show which device belongs to which process.  REBUILT HERE: the archived module has a bad CRC and a corrupt initialised- data descriptor, and does not load.  -h works; -a needs the kernel process table, which os9exec answers without real data |
+| `devprc` | show which device belongs to which process.  REBUILT HERE: the archived module has a bad CRC and a corrupt initialised- data descriptor, and does not load.  -h works; -a stops at F$GPrDBT (0x1f), the get-process-descriptor-block-table call, with a bus error -- os9exec answers it without a real table. `top' stops in the same place, after printing its heading. Measured 2026-09-02 |
 | `dload` | &#9733; NOT a serial download: `dload <filename>' LOADS A DATA FILE INTO A DATA MODULE, which is its own usage line. `sbreak' and `break' are the serial-line examples here. Corrected 2026-08-29<br>`Syntax: dload <filename>` |
 | `e` | SEDT editor, VT220 keys.  FIXED 2026-08-28: it wants sys/sedt.keys, sys/sedt.ruler0 and sys/sedt.help, none of which were here -- it stopped with `Could not open key definition file'.  All three are in SYS now, recovered from the EFFO forum 11 archive it came from |
 | `em` | a screen editor (EFFO forum 3)<br>**How:** A screen editor. It stops with "Environment variable TERM not defined!" unless TERM is set -- SYS/login sets it, so run it from a login shell rather than bare. |
