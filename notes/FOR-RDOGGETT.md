@@ -684,7 +684,8 @@ said another. DOC/INDEX is corrected in each case and the card re-shot.
     second, the same-sized sphere never returns. `etags` cannot build a TAGS
     file at all: the F$SRqMem storm, on any input. `cdiff` cannot finish a
     diff of three lines. `lgrep` prints nothing whatever it is given.
-    `sysmon` refuses os9exec's V4.0 as too old. `ssl` gets an empty segment
+    `sysmon` refused os9exec's V4.0 as too old -- NO LONGER, see item 5a;
+    it now starts and dies at `F$GPrDsc`. `ssl` gets an empty segment
     list because os9exec's RBF does not hand back the file descriptor.
   - **Dhrystone had to be asked properly**: at the default run count every
     build finishes before the clock ticks. Two million runs apiece, and GCC
