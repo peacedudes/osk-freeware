@@ -138,6 +138,10 @@
   dd pre.shot{font-family:var(--mono);font-size:9.5px;line-height:1.15;margin:0;
     white-space:pre;overflow-x:auto;background:#0E1113;color:#CFE3CF;
     border-radius:6px;padding:9px 11px}
+  dd .shotfrom{margin:0 0 .5rem;font-size:12px;line-height:1.4;color:var(--dim);
+     padding:6px 9px;border-left:2px solid var(--accent);background:var(--soft);
+     border-radius:0 6px 6px 0}
+  dd .shotfrom b{color:var(--ink);font-family:var(--mono);font-weight:600}
   dd .shotcap{margin:.4rem 0 0;color:var(--dim);font-size:12px;line-height:1.4}
   dd .shotcap a{color:var(--accent);text-decoration:none}
   dd.advice{color:var(--dim);font-size:12.5px;line-height:1.45}
@@ -444,9 +448,21 @@ function detail(name){
   // image, never composed. This is ONE catalogue -- there is no separate
   // gallery page, because a second page listing the same programs is a
   // second catalogue to keep true.
+  // WHOSE CARD IS THIS?  Many cards cover several programs, and the page
+  // used to show the whole card -- screen and caption -- under whichever
+  // program you had opened, with nothing to say the output belonged to a
+  // neighbour.  `loglist' showed `every -?' and a caption about four other
+  // programs, and read as gibberish.  Say it plainly instead.
   const shot=SHOTS[p.name];
-  if(shot) D.push(`<dt>Sample output</dt><dd><pre class="shot">${esc(shot.s)}</pre>`+
+  if(shot){
+    const own = shot.n === p.name;
+    D.push(`<dt>Sample output</dt><dd>`+
+      (own ? "" : `<p class="shotfrom">Shared card &mdash; this is the `+
+                  `<b>${esc(shot.n)}</b> card, which runs several programs `+
+                  `together. ${esc(p.name)} appears on it.</p>`)+
+      `<pre class="shot">${esc(shot.s)}</pre>`+
       `<p class="shotcap">${esc(shot.c)}</p></dd>`);
+  }
   add("Restrictions", esc(i.restrictions));
   add("Hardware",     esc(i.hardware));
 
