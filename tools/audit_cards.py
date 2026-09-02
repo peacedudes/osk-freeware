@@ -128,7 +128,19 @@ def main(argv):
             "perr-print": "the same program, printing a wider range",
             "csl-mismatch": "the card's SUBJECT is the csl edition skew -- "
                             "four programs that stop before they start, and "
-                            "the message is the whole finding"}
+                            "the message is the whole finding",
+            "perr-alps": "perr again, beside alps and epson -- the five "
+                         "`Error #000:00n' lines ARE perr's output, exactly "
+                         "as on the perr card",
+            "silent": "the card's SUBJECT is programs that say nothing and "
+                      "why. `cannot execute binary file' for a BASIC09 "
+                      "subroutine and for a trap library is the finding: "
+                      "running a non-program proves nothing",
+            "texfonts-bitmap": "eight TeX bitmap-font tools with nothing to "
+                               "read. There is no .pk, .gf or .vf on this "
+                               "disk and that is DELIBERATE -- a .pk is "
+                               "rendered per device by MakeTeXPK rather than "
+                               "shipped. The caption says so at length"}
     for f in sorted(os.listdir(CAPS)):
         if not f.endswith(".shot.txt"):
             continue
