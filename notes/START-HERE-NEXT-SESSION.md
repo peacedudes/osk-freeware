@@ -15,15 +15,15 @@ number typed here -- and `osk-freeware.dd` current.
 
 | | 2026-08-31 evening | now |
 |---|---|---|
-| `datatest` cases | 423 | **684** |
+| `datatest` cases | 423 | **695** |
 | `datatest` families | 24 | **53** |
-| `tools/drives` sheets | 41 | **95** |
+| `tools/drives` sheets | 41 | **103** |
 | `check_disk.py` checks | 17 | **20**, and **19 provably fail on demand** |
 | Star grid (programs needing `cio`) | 354 | **349** |
 | Gallery cards flagged as help- or error-only | 22 | **0 of 409** |
 | Cards excepted BY NAME in `audit_cards.py` | 1 | **7**, each with a measured reason |
 | Programs with NEITHER a test nor a card | 42 | **1** (`cron`, a daemon) |
-| **Programs under no test at all** | 209 | **48** |
+| **Programs under no test at all** | 209 | **45** |
 
 ### The pattern that paid best: read the disk's own documentation first
 
@@ -49,7 +49,7 @@ looked:
 
 ### What to do next
 
-**Work from `tools/worklist.py --programs --no-test`.** 48 left as of
+**Work from `tools/worklist.py --programs --no-test`.** 45 left as of
 2026-09-02, and they divide into three kinds, so decide which one you have
 before spending time on it:
 
@@ -92,6 +92,16 @@ and remains the answer more often than not:
   and never was -- `uudecode` is.
 - `shuffle` is a full-screen SWITCH PUZZLE, not a line shuffler; it is
   recategorised from Text tools to Games.
+- `makecrc` is not a CRC calculator: it GENERATES C SOURCE, six files of it,
+  into the data directory, and takes no arguments. It prints nothing, which
+  is the whole reason it was written off -- **nobody listed the directory
+  afterwards.**
+- `florida` simulates a year of Florida weather, day by day, and always did.
+- The five **Home Librarian** programs take `-opt value`, never
+  `-opt=value`; with an `=` each answers `Bad option:` and prints its
+  syntax. `Ascii2Libr` then builds a catalogue only from the text
+  `Libr2Ascii` writes -- a hand-written record parses to zero cards, which
+  is why `PrintLabels` prints nothing for one.
 
 `tools/datatests/untested.cases` and `flagged.cases` hold all of it. The rest
 of the table stands. All were driven on 2026-09-01; transcripts in
