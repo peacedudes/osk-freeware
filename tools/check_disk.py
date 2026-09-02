@@ -615,6 +615,42 @@ def check_docs_not_truncated(root):
 
 
 
+def check_readme_cross_references(root):
+    """Every DOC/README-* that DOC/README names is actually on the disk.
+
+    THIS EXISTS BECAUSE TWO OF THEM WERE NOT.  On 2026-09-01 `DOC/README'
+    advertised `README-KERMIT' ("six kermits -- which one to take") and
+    `README-GREP' ("six ways to search a file") in the same voice as the
+    fifteen that were there, and neither file had ever been written.  Every
+    check passed: a document that does not exist has no LF in it, no UTF-8,
+    no leftovers and no bad magic, and `check_docs_not_truncated' only knows
+    about the documents somebody remembered to put in KEY_DOCS.
+
+    The failure mode is the worst kind for a collection whose whole purpose
+    is helping somebody choose what to take: the index promises the help and
+    the help is not there.
+
+    Both directions are checked.  A README-* on the disk that DOC/README does
+    NOT name is also reported, because a chooser nobody can find is the same
+    problem seen from the other end.
+    """
+    docdir = os.path.join(root, "DOC")
+    index = os.path.join(docdir, "README")
+    if not os.path.exists(index):
+        return False, "DOC/README is missing"
+    text = open(index, "rb").read().decode("latin-1").replace("\r", "\n")
+    named = set(re.findall(r"\bREADME-[A-Z0-9-]+", text))
+    present = {f for f in os.listdir(docdir) if f.startswith("README-")}
+    problems = []
+    for n in sorted(named - present):
+        problems.append("DOC/README names %s and it is not on the disk" % n)
+    for n in sorted(present - named):
+        problems.append("DOC/%s is on the disk and DOC/README does not name it" % n)
+    for b in problems:
+        print("    %s" % b)
+    return not problems, "%d README cross-reference(s) wrong" % len(problems)
+
+
 def check_module_names(root):
     """No two files under CMDS register the same MODULE name.
 
@@ -822,6 +858,7 @@ CHECKS = [
     ("the cio-macro list is current", check_cio_macro_population),
     ("name lists point at real programs", check_hand_files_name_real_programs),
     ("the disk's documents are intact", check_docs_not_truncated),
+    ("README names documents that exist", check_readme_cross_references),
     ("harness env matches SYS/login", check_harness_env_matches_login),
 ]
 
