@@ -254,12 +254,53 @@ function ok(p){
       || p.cat.toLowerCase().includes(q) || p.sub.toLowerCase().includes(q);
 }
 
+// How well `p' answers the query: 3 exact name, 2 name starts with it,
+// 1 name contains it, 0 only the prose does.  Typing `ls' should put the
+// program `ls' first, not thirty descriptions that happen to contain those
+// two letters.
+function rank(p, q){
+  if(!q) return 0;
+  const n = p.name.toLowerCase();
+  if(n === q) return 3;
+  if(n.startsWith(q)) return 2;
+  if(n.includes(q)) return 1;
+  return 0;
+}
+
+function byRank(q){
+  return (a,b) => rank(b,q) - rank(a,q) || a.name.localeCompare(b.name);
+}
+
+// One entry in a list, shared by the letter view and the search results.
+function row(p){
+  return `<li class="p${picked.has(p.name)?" picked":""}" tabindex="0" `+
+    `data-n="${esc(p.name)}">`+
+    `<button class="pick" data-pick="${esc(p.name)}" tabindex="-1" `+
+    `aria-label="pick ${esc(p.name)}">${picked.has(p.name)?"&#10003;":"+"}`+
+    `</button><span class="nm">`+
+    `${p.star?'<span class="st" title="needs cio">&#9733;</span>':''}${esc(p.name)}</span>`+
+    `<span class="ds">${esc(p.desc)} <span style="color:var(--faint)">&middot; `+
+    `${esc(p.cat)}</span></span></li>`;
+}
+
 function renderAZ(hits){
   // One list, initial-letter headings, category shown alongside. The same
   // order DOC/INDEX uses, for when you already know the name you want.
   const by={};
   for(const p of hits){ const k=p.name[0].toUpperCase(); (by[k] ||= []).push(p); }
   const out=[];
+  // SEARCHING IS NOT BROWSING.  With a query the answer is a ranked list,
+  // not twenty-six letter cards to open one at a time: `chess' lives under
+  // C and G and `gnuchess' under G alone, and a reader who typed it wants
+  // both together, best first.
+  const q = st.q.toLowerCase();
+  if(q){
+    const rows = hits.slice().sort(byRank(q));
+    return [`<details class="cat" open><summary><div class="ct">Matches`+
+      `<span class="n">${rows.length}</span></div></summary><ul>`+
+      rows.map(row).join("")+"</ul></details>"];
+  }
+
   // COLLAPSED BY DEFAULT.  Every letter used to be `open', so choosing A-Z
   // opened all 900 entries at once and finding a name meant scrolling past
   // every other one.  The letter bar above jumps to a letter and opens it.
@@ -269,15 +310,8 @@ function renderAZ(hits){
       `<summary><div class="ct">${k}`+
       `<span class="n">${by[k].length}</span>`+
       `<span class="cv">&#9656;</span></div></summary><ul>`+
-      by[k].sort((a,b)=>a.name.localeCompare(b.name)).map(p=>
-        `<li class="p${picked.has(p.name)?" picked":""}" tabindex="0" `+
-        `data-n="${esc(p.name)}">`+
-        `<button class="pick" data-pick="${esc(p.name)}" tabindex="-1" `+
-        `aria-label="pick ${esc(p.name)}">${picked.has(p.name)?"&#10003;":"+"}`+
-        `</button><span class="nm">`+
-        `${p.star?'<span class="st" title="needs cio">&#9733;</span>':''}${esc(p.name)}</span>`+
-        `<span class="ds">${esc(p.desc)} <span style="color:var(--faint)">&middot; `+
-        `${esc(p.cat)}</span></span></li>`).join("")+"</ul></details>");
+      by[k].sort((a,b)=>a.name.localeCompare(b.name)).map(row).join("")+
+      "</ul></details>");
   }
   return out;
 }
