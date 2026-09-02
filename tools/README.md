@@ -267,6 +267,16 @@ beside the image for the length of a run and the second harness stops with the
 name of the one that has it. A lock left behind by a killed run is reported by
 pid and never stolen silently; remove it on purpose.
 
+**`mkimage.sh` takes it too, since 2026-09-02** -- and it is the one that
+matters most, because it REPLACES the image rather than writing inside it.
+A rebuild while a half-hour `datatest --all` was reading the same file would
+swap the disk out from under a live OS-9 kernel and the results would be
+wrong in ways nothing afterwards could explain. It is bash and `imagelock.py`
+is Python, so it takes the lock by hand in the same format (`<pid> <who>` in
+a file beside the image) and reports a stale one the same way. Proved by
+running it against a live `datatest`: *"osk-freeware.dd is in use by 81907
+datatest -- wait for it to finish."*
+
 `screenshots.py` drives ONE bash session on a pseudo-terminal and runs stanza
 after stanza in it, clearing between and keeping the bytes each program wrote.
 Eight programs cost about ninety seconds where `playtest.py` costs five

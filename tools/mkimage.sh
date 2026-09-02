@@ -102,11 +102,36 @@ if [ "${SKIP_CHECKS:-0}" != "1" ]; then
   }
 fi
 
+# THE IMAGE LOCK. `screenshots.py', `playtest.py', `datatest.py' and
+# `drive.py' all take it before pointing os9exec at the image; this did not,
+# and it is the one thing here that REPLACES the image rather than writing
+# inside it. A rebuild while a half-hour datatest run was reading the same
+# file would swap the disk out from under a live OS-9 kernel, and the
+# results would be wrong in ways nothing would explain afterwards.
+#
+# `tools/imagelock.py' is Python and this is bash, so the lock is taken by
+# hand in the same format: the file beside the image holds `<pid> <who>'.
+# Advisory, never stolen -- a stale lock is reported by name, exactly as the
+# Python side does, because a lock that breaks itself is not a lock.
+LOCK="$OUT.lock"
+if ! ( set -o noclobber; echo "$$ mkimage" > "$LOCK" ) 2>/dev/null; then
+  owner=$(cat "$LOCK" 2>/dev/null || echo "an unreadable lock file")
+  pid=${owner%% *}
+  if [ -n "$pid" ] && ! kill -0 "$pid" 2>/dev/null; then
+    echo "mkimage: $(basename "$OUT") is locked by $owner, which is no longer running."
+    echo "   Remove $LOCK if you are sure nothing else is using it."
+  else
+    echo "mkimage: $(basename "$OUT") is in use by $owner -- wait for it to finish."
+    echo "   Rebuilding under a running harness swaps the disk out from under it."
+  fi
+  exit 1
+fi
+
 TMP=$(mktemp -d)
 # $WORK is removed too. A failed run that left its half-built image behind
 # would make the NEXT run refuse with "already exists", which reads like a
 # second, different fault. On success the mv has already taken it away.
-trap 'rm -rf "$TMP"; rm -f "$WORK"' EXIT
+trap 'rm -rf "$TMP"; rm -f "$WORK"; rm -f "$LOCK"' EXIT
 
 # ---- 1. the archive, host-side
 python3 "$HERE/mktar.py" "$SRC" "$TMP/collection.tar" || exit 1
