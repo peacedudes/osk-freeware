@@ -162,11 +162,28 @@ run     dmake -?
 wait    8
 
 shot    p2c
+size    36 80
 for     p2c
-cap     p2c, the Pascal-to-C translator, saying what it is and where its
-cap     configuration lives.
-run     p2c -?
-wait    10
+cap     p2c TRANSLATING PASCAL INTO C, which is the thing it is for.  It
+cap     works on the CURRENT directory, so it is run through ksh -- whose
+cap     `cd' moves the OS-9 data directory where bash's does not -- and it
+cap     writes `h.c' beside the source.  The warning is p2c's own and
+cap     correct: nothing has told it what `writeln' is, because the Pascal
+cap     runtime declarations live in LIB/p2c and this one-line program does
+cap     not ask for them.
+cap     Until 2026-09-01 this card showed `p2c -?' and nothing else.
+run     mkdir -p /dd/tmp/P2C
+wait    4
+run     echo "program hello; begin writeln('hi') end." > /dd/tmp/P2C/h.pas
+wait    4
+run     cat /dd/tmp/P2C/h.pas
+wait    4
+run     ksh -c "cd /dd/tmp/P2C; p2c h.pas" 2>/nil
+wait    12
+run     ls /dd/tmp/P2C
+wait    6
+run     head -n 12 /dd/tmp/P2C/h.c
+wait    8
 
 shot    xasm
 for     as0 as1 as4 as5 as11

@@ -282,10 +282,22 @@ run     puzzle
 wait    6
 
 shot    game
-for     game
-cap     `game' replays a saved chess game.  Asked with no arguments it
-cap     says what it takes; given the opening book that ships here it
-cap     aborts, which is the `checkgame' card beside this one.
+size    30 80
+for     game checkgame postprint bincheckr
+cap     The four GNU Chess helpers, and the one of them with something to
+cap     show.  `postprint' WRITES POSTSCRIPT for a chess position and that
+cap     is the head of it, page setup first.  `game' and `checkgame' are
+cap     ONE PROGRAM UNDER TWO NAMES -- checkgame's own usage line calls
+cap     itself `game' -- and both replay a saved game, of which there is
+cap     none here.  `bincheckr' reads the opening book that does ship,
+cap     reports its four counts and then aborts.
+cap     Until 2026-09-01 this card was `game' alone, printing its usage.
+run     postprint < /nil
+wait    8
 run     game
+wait    6
+run     checkgame
+wait    6
+run     bincheckr /dd/USR/src/chess/gnuchess.book
 wait    8
 

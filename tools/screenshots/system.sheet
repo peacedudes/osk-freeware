@@ -171,8 +171,10 @@ wait    3
 shot    dload
 for     dload break sbreak setfont trap
 cap     `dload' does NOT send a file down a serial line, whatever the name
-cap     and DOC/INDEX said: its own usage line, below, says it loads a data
-cap     file INTO A DATA MODULE.  `break' and `sbreak' are the serial-line
+cap     and DOC/INDEX said: it loads a data file INTO A DATA MODULE, and
+cap     the card shows it doing that -- `dload /dd/SYS/motd' answers with
+cap     the size it read and the address the module went to.  Until
+cap     2026-09-01 only its usage line was here.  `break' and `sbreak' are the serial-line
 cap     examples -- assembler ones from the forums, harmless here because
 cap     there is no serial line.  `break' has to be asked for by path: it
 cap     is a bash builtin too, and the builtin answers first.  It prints
@@ -185,6 +187,8 @@ cap     Loading `math' first, which is the handler it names, does not
 cap     change the outcome; this card loads it to show that.
 run     dload -?
 wait    6
+run     dload /dd/SYS/motd
+wait    8
 run     /dd/CMDS/break -?
 wait    4
 run     sbreak -?

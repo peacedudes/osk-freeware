@@ -35,17 +35,28 @@ run     pgmtoppm < /nil
 wait    8
 
 shot    ateri
+size    30 80
 for     ppmtopi1 pi1toppm pbmtopi3 pi3topbm ppmtopict picttoppm
-cap     Atari ST Degas pictures, and the Macintosh PICT, out and back.
-run     ppmtopi1 /dd/tmp/base.ppm > /dd/tmp/t.pi1
+cap     Atari ST Degas pictures and the Macintosh PICT, out and back.
+cap     A PALETTED FORMAT NEEDS A QUANTISED IMAGE: Degas PI1 holds sixteen
+cap     colours and PICT is written from a colour map, so both refuse a
+cap     24-bit PPM outright -- `ppmtopi1: <file> -' and nothing written.
+cap     `ppmquant 16' first, and both work.  Until 2026-09-01 this card
+cap     showed five error lines for that reason and none of it was the
+cap     converters' fault.
+run     ppmquant 16 /dd/tmp/base.ppm > /dd/tmp/q16.ppm
+wait    12
+run     ppmtopi1 /dd/tmp/q16.ppm > /dd/tmp/t.pi1
 wait    8
 run     pi1toppm /dd/tmp/t.pi1 | pnmfile
 wait    8
-run     pbmtopi3 /dd/tmp/base.pbm | pi3topbm | pnmfile
+run     ppmtopict /dd/tmp/q16.ppm > /dd/tmp/t.pict
+wait    8
+run     picttoppm /dd/tmp/t.pict | pnmfile
 wait    10
-run     picttoppm < /nil
-wait    10
-run     ppmtopict < /nil
+run     pbmtopi3 /dd/tmp/base.pbm > /dd/tmp/t.pi3
+wait    8
+run     pi3topbm /dd/tmp/t.pi3 | pnmfile
 wait    10
 
 shot    bmp
@@ -253,16 +264,21 @@ cap     noise, which is nothing but lone pixels.  `pbmmask' makes a mask
 cap     from a bitmap, `pbmtopgm' blurs one into greys and `pnmnoraw'
 cap     writes the plain-text form of any of them; the three were credited
 cap     to this card and never typed until 2026-08-30.
-run     pgmnoise 152 88 | pgmtopbm > /dd/tmp/n.pbm
-wait    15
+cap     THE WAITS WERE TOO SHORT AND THE IMAGE TOO BIG: at 152x88 and 15
+cap     seconds the capture was taken before anything answered, so the card
+cap     showed five bare prompts and `audit_cards' scored it NOTHING.
+cap     96x48 and a `-threshold' dither -- which is also the reproducible
+cap     one -- and it all arrives.  Fixed 2026-09-01.
+run     pgmnoise 96 48 | pgmtopbm -threshold > /dd/tmp/n.pbm
+wait    40
 run     pbmclean /dd/tmp/n.pbm | pbmtoascii -2x4
-wait    20
+wait    45
 run     pbmmask /dd/tmp/n.pbm | pnmfile
-wait    15
+wait    30
 run     pbmtopgm 3 3 /dd/tmp/n.pbm | pnmfile
-wait    15
+wait    30
 run     pnmnoraw /dd/tmp/n.pbm | head -n 3
-wait    15
+wait    30
 
 shot    pbmlife
 cap     pbmlife runs Conway's Life one generation on a bitmap -- an image
@@ -760,17 +776,25 @@ run     pbmtoybm /dd/tmp/base.pbm | ybmtopbm | pnmfile
 wait    8
 
 shot    xpm
+size    30 80
 for     ppmtoxpm xpmtoppm ppmtopuzz
 cap     The X pixmap is C source with the image in it -- here is the head of
-cap     one this disk just wrote.
-run     ppmtoxpm /dd/tmp/base.ppm > /dd/tmp/t.xpm
+cap     one this disk just wrote, and the round trip back.
+cap     Both `ppmtoxpm' and `ppmtopuzz' are PALETTED and refuse a 24-bit
+cap     PPM, writing nothing; `ppmquant 16' first is what they want.  This
+cap     card showed three error lines until 2026-09-01 for want of that.
+run     ppmquant 16 /dd/tmp/base.ppm > /dd/tmp/q16.ppm
+wait    12
+run     ppmtoxpm /dd/tmp/q16.ppm > /dd/tmp/t.xpm
 wait    8
-run     head -n 12 /dd/tmp/t.xpm
+run     head -n 10 /dd/tmp/t.xpm
 wait    5
 run     xpmtoppm /dd/tmp/t.xpm | pnmfile
 wait    8
-run     ppmtopuzz < /nil
+run     ppmtopuzz /dd/tmp/q16.ppm > /dd/tmp/t.puzz
 wait    8
+run     wc -c /dd/tmp/t.puzz
+wait    6
 
 shot    yuv
 for     ppmtoyuv yuvtoppm ppmtoyuvsplit yuvsplittoppm ppmtorgb3 rgb3toppm
@@ -855,18 +879,23 @@ for     pnmalias pnmcomp pnmnlfilt ppmdist ppmflash
 cap     Five more netpbm filters run over the same photograph, with pnmfile
 cap     confirming each one produced an image: antialiasing, compositing, a
 cap     non-linear filter, a distance transform and a flash.
+cap     THE WAITS HERE ARE LONG ON PURPOSE.  Decoding gulls.gif and scaling
+cap     it takes most of a minute under the emulator, and when this card
+cap     allowed 25 seconds the capture was taken before the answers arrived
+cap     -- so the card showed five bare prompts AND left /dd/tmp/w.ppm
+cap     unwritten, which five later cards read.  Found 2026-09-01.
 run     giftopnm /dd/DEMO/gulls.gif | pnmscale -xysize 76 44 > /dd/tmp/w.ppm
-wait    25
+wait    75
 run     pnmnlfilt 1.0 0.5 /dd/tmp/w.ppm | pnmfile
-wait    20
+wait    45
 run     ppmflash 0.4 /dd/tmp/w.ppm | pnmfile
-wait    15
+wait    35
 run     ppmquant 256 /dd/tmp/w.ppm | ppmdist | pnmfile
-wait    20
+wait    45
 run     pnmalias /dd/tmp/w.ppm | pnmfile
-wait    15
+wait    35
 run     pnmcomp /dd/tmp/w.ppm /dd/tmp/w.ppm | pnmfile
-wait    15
+wait    35
 
 
 shot    ppmntsc
@@ -874,11 +903,19 @@ for     ppmntsc ppmqvga pnmtorast rasttopnm pnmtoddif
 cap     ppmntsc clamps an image to what NTSC could actually transmit and
 cap     ppmqvga to a 320x240 palette; Sun raster goes out and comes back,
 cap     which is the check that the pair agree.
-run     ppmntsc 0.8 /dd/tmp/w.ppm | pnmfile
+cap     THIS CARD MAKES ITS OWN IMAGE.  It used to read /dd/tmp/w.ppm,
+cap     which the `pnmfilters' card writes -- and when that card's waits
+cap     were too short to finish writing it, every line here failed with
+cap     `ppmntsc: /dd/tmp/w.ppm -' and the card read as five broken
+cap     converters.  A card that depends on another card's leftovers is
+cap     one card's timing away from lying.  Fixed 2026-09-01.
+run     ppmpat -madras 64 40 > /dd/tmp/n.ppm
+wait    10
+run     ppmntsc 0.8 /dd/tmp/n.ppm | pnmfile
 wait    15
-run     ppmqvga /dd/tmp/w.ppm | pnmfile
+run     ppmqvga /dd/tmp/n.ppm | pnmfile
 wait    15
-run     pnmtorast /dd/tmp/w.ppm > /dd/tmp/w.ras
+run     pnmtorast /dd/tmp/n.ppm > /dd/tmp/w.ras
 wait    10
 run     rasttopnm /dd/tmp/w.ras | pnmfile
 wait    12
