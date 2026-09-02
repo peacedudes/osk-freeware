@@ -20,8 +20,7 @@ cap     Ar V2.00, a later edition than the V1.2 that ships as `ar', and the
 cap     three tools that take an OS-9 module LIBRARY apart -- `libsplit'
 cap     into its members, `unpacklib' the same job by another hand, and
 cap     `liborder' reporting the order they sit in.  Each is asked for
-cap     itself here; the three were credited to this card and never typed
-cap     on it until 2026-08-30.
+cap     itself here.
 run     ar2
 wait    8
 run     liborder
@@ -58,13 +57,11 @@ for     cat combine demerge modbuster
 cap     `combine' interleaves two files BYTE BY BYTE -- even bytes from the
 cap     first, odd from the second -- which is how a 16-bit EPROM image is
 cap     rebuilt from its two 8-bit halves.  Eight A's and eight B's come
-cap     back as ABABABAB, twice over, and that is the whole program.  Note
-cap     it takes the output as a THIRD ARGUMENT: the version of this card
-cap     before 2026-08-29 redirected instead, and the 284-byte file it
-cap     proudly listed was combine's own chatter.  `demerge' is unrelated
-cap     despite the names -- it splits a file of MERGED MODULES into one
-cap     file per module, named after the module, and nothing on this disk
-cap     makes such a file, so its usage is all there is to show.
+cap     back as ABABABAB, twice over, and that is the whole program.
+cap     `demerge' is unrelated despite the names -- it splits a file of
+cap     MERGED MODULES into one file per module, named after the module, and
+cap     nothing on this disk makes such a file, so its usage is all there is
+cap     to show.
 run     cat /dd/SYS/motd
 wait    6
 run     echo AAAAAAAA > /dd/tmp/even
@@ -200,10 +197,8 @@ wait    4
 shot    zoo2
 for     zoo_2.1 fiz booz
 cap     zoo 2.1 writes an archive, booz lists it, and fiz walks its
-cap     structure directory by directory.  booz takes a BARE LETTER, not a
-cap     dash-letter, and fiz takes the archive as an argument -- given `-l'
-cap     and nothing, as this card did until 2026-08-31, both answer with
-cap     their usage and the card showed no zoo at all.
+cap     structure directory by directory. booz takes a BARE LETTER, not a
+cap     dash-letter, and fiz takes the archive as an argument.
 run     zoo_2.1 a /dd/tmp/z2.zoo /dd/SYS/motd
 wait    10
 run     booz l /dd/tmp/z2.zoo
@@ -232,8 +227,7 @@ for     diff_1.1 gtar m4_0.5 lharcs compress_4.0 sed_1.06 zoo_2.1
 cap     CMDS/REBUILT keeps a second build of several programs because they
 cap     do not all behave the same -- here diff 1.1 answers with its whole
 cap     option list, which is the difference you would be choosing between.
-cap     Each of the seven is asked for its own version; two were until
-cap     2026-08-29 and five were credited to this card unrun.
+cap     Each of the seven is asked for its own version.
 run     diff_1.1 -v
 wait    10
 run     gtar --version

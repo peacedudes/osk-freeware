@@ -184,10 +184,8 @@ shot    filetools
 for     dback delbak eunlink EditLibr Libr2Ascii PrintLabels
 cap     The last of the file shelf: delbak deletes the *_bak files a whole
 cap     tree has collected, and the Home Librarian pair get a catalogue in
-cap     and out of plain text.
-cap     `dback' backs a disk up, `eunlink' removes a file the hard way and
-cap     `PrintLabels' prints the catalogue's labels; those three were
-cap     credited here and never typed until 2026-08-30.
+cap     and out of plain text.  `dback' backs a disk up, `eunlink' removes a
+cap     file the hard way and `PrintLabels' prints the catalogue's labels.
 run     delbak -?
 wait    8
 run     Libr2Ascii

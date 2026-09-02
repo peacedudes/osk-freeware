@@ -6,9 +6,8 @@ size    36 80
 for     sieve fibo float savage
 cap     Four benchmarks, each run: Eratosthenes' sieve, Fibonacci, a
 cap     floating-point loop, and Savage's accuracy test, which is about
-cap     arithmetic rather than speed.  Only two of them were typed on this
-cap     card until 2026-08-29; the other two were credited to it and their
-cap     "sample output" was somebody else's.
+cap     arithmetic rather than speed. the other two were credited to it and
+cap     their "sample output" was somebody else's.
 run     sieve
 wait    10
 run     fibo
@@ -37,9 +36,6 @@ shot    cb
 cap     cb, the C beautifier: it indents C that has none.  It reads standard
 cap     input and writes standard output -- no filenames, which is what its
 cap     usage line says.
-cap     Until 2026-09-02 this card fed it the first eighteen lines of a
-cap     source file on the disk, which are a comment block, so the output
-cap     was identical to the input and the card showed nothing happening.
 run     echo 'int main(){int i;for(i=0;i<3;i++){if(i)printf("%d ",i);else puts("zero");}return 0;}' > /dd/tmp/ugly.c
 wait    6
 run     cat /dd/tmp/ugly.c

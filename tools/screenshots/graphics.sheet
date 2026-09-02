@@ -26,11 +26,9 @@ for     asciitopgm ppmtopgm pgmtoppm
 cap     asciitopgm goes the other way -- characters IN, a greyscale image
 cap     out, each character weighted by how much ink it has.  Here it reads
 cap     back the ASCII art pbmtoascii just wrote, and pnmfile confirms a
-cap     60x8 PGM came out of it.  `pgmtoppm' then colours that greyscale:
-cap     it takes a colour or a PAIR -- `red-blue' ramps between them -- and
-cap     the same 60x8 comes out as a PPM.  Until 2026-09-01 this card ended
-cap     `pgmtoppm < /nil' and captured the usage line that earned, with a
-cap     PGM sitting two lines above it.
+cap     60x8 PGM came out of it.  `pgmtoppm' then colours that greyscale: it
+cap     takes a colour or a PAIR -- `red-blue' ramps between them -- and the
+cap     same 60x8 comes out as a PPM.
 run     pbmtext "netpbm" | pbmtoascii > /dd/tmp/art.txt
 wait    12
 run     asciitopgm 8 60 < /dd/tmp/art.txt > /dd/tmp/art.pgm
@@ -45,15 +43,13 @@ wait    10
 shot    ateri
 size    30 80
 for     ppmtopi1 pi1toppm pbmtopi3 pi3topbm ppmtopict picttoppm
-cap     Atari ST Degas pictures and the Macintosh PICT, out and back.
-cap     A PALETTED FORMAT NEEDS A QUANTISED IMAGE: Degas PI1 holds sixteen
+cap     Atari ST Degas pictures and the Macintosh PICT, out and back.  A
+cap     PALETTED FORMAT NEEDS A QUANTISED IMAGE: Degas PI1 holds sixteen
 cap     colours and PICT is written from a colour map, so both refuse a
 cap     24-bit PPM outright -- `ppmtopi1: <file> -' and nothing written.
-cap     `ppmquant 16' first, and both work.  Until 2026-09-01 this card
-cap     showed five error lines for that reason and none of it was the
-cap     converters' fault.
-cap     It makes its own source image rather than reading `setup-image's,
-cap     so that re-shooting this card alone with --only still works.
+cap     `ppmquant 16' first, and both work.  It makes its own source image
+cap     rather than reading `setup-image's, so that re-shooting this card
+cap     alone with --only still works.
 run     ppmpat -gingham3 48 24 > /dd/tmp/at.ppm
 wait    8
 run     pbmmake -g 48 24 > /dd/tmp/at.pbm
@@ -227,14 +223,11 @@ wait    8
 
 shot    jpeg
 for     cjpeg rdjpgcom wrjpgcom cjpeg.070 djpeg.070
-cap     A JPEG made on the disk, commented, and read back.  This card said
-cap     until 2026-08-29 that the JPEG tools could not read their input:
-cap     cjpeg answered `Bogus data in PPM file' for a 192015-byte PPM that
-cap     netpbm had just written and pnmfile was happy with.  The file was
-cap     fine.  cjpeg wants LF between the fields of a PNM header and this
+cap     A JPEG made on the disk, commented, and read back.  The file was
+cap     fine. cjpeg wants LF between the fields of a PNM header and this
 cap     disk's netpbm writes CR, so the three `pbyte' calls below -- at
-cap     offsets 2, A and E of a `P6 320 200 255' header -- are the whole
-cap     of what was missing.  DOC/STATUS has it in both directions.
+cap     offsets 2, A and E of a `P6 320 200 255' header -- are the whole of
+cap     what was missing.  DOC/STATUS has it in both directions.
 run     giftopnm /dd/DEMO/gulls.gif > /dd/tmp/g.ppm
 wait    20
 run     pbyte /dd/tmp/g.ppm 2 0a
@@ -275,14 +268,13 @@ shot    pbmclean
 for     pbmclean pbmmask pbmtopgm pnmnoraw
 cap     pbmclean removes lone pixels from a bitmap -- run here over dithered
 cap     noise, which is nothing but lone pixels.  `pbmmask' makes a mask
-cap     from a bitmap, `pbmtopgm' blurs one into greys and `pnmnoraw'
-cap     writes the plain-text form of any of them; the three were credited
-cap     to this card and never typed until 2026-08-30.
-cap     THE WAITS WERE TOO SHORT AND THE IMAGE TOO BIG: at 152x88 and 15
-cap     seconds the capture was taken before anything answered, so the card
-cap     showed five bare prompts and `audit_cards' scored it NOTHING.
-cap     96x48 and a `-threshold' dither -- which is also the reproducible
-cap     one -- and it all arrives.  Fixed 2026-09-01.
+cap     from a bitmap, `pbmtopgm' blurs one into greys and `pnmnoraw' writes
+cap     the plain-text form of any of them.  THE WAITS WERE TOO SHORT AND
+cap     THE IMAGE TOO BIG: at 152x88 and 15 seconds the capture was taken
+cap     before anything answered, so the card showed five bare prompts and
+cap     `audit_cards' scored it NOTHING. 96x48 and a `-threshold' dither --
+cap     which is also the reproducible one -- and it all arrives.  Fixed
+cap     2026-09-01.
 run     pgmnoise 96 48 | pgmtopbm -threshold > /dd/tmp/n.pbm
 wait    40
 run     pbmclean /dd/tmp/n.pbm | pbmtoascii -2x4
@@ -646,9 +638,8 @@ shot    ppmmake
 for     ppmmake ppmbrighten ppmdim ppmnorm ppmchange
 cap     ppmmake fills an image with one colour; ppmbrighten, ppmdim and
 cap     ppmnorm change what that colour is, and ppmhist counts the result.
-cap     `ppmdim', `ppmnorm' and `ppmchange' were credited here and never
-cap     typed until 2026-08-30; each is asked over the same flat colour, so
-cap     the histogram underneath says exactly what it did.
+cap     each is asked over the same flat colour, so the histogram underneath
+cap     says exactly what it did.
 run     ppmmake rgb:80/40/c0 40 20 > /dd/tmp/flat.ppm
 wait    16
 run     ppmhist /dd/tmp/flat.ppm
@@ -797,10 +788,9 @@ shot    xpm
 size    30 80
 for     ppmtoxpm xpmtoppm ppmtopuzz
 cap     The X pixmap is C source with the image in it -- here is the head of
-cap     one this disk just wrote, and the round trip back.
-cap     Both `ppmtoxpm' and `ppmtopuzz' are PALETTED and refuse a 24-bit
-cap     PPM, writing nothing; `ppmquant 16' first is what they want.  This
-cap     card showed three error lines until 2026-09-01 for want of that.
+cap     one this disk just wrote, and the round trip back.  Both `ppmtoxpm'
+cap     and `ppmtopuzz' are PALETTED and refuse a 24-bit PPM, writing
+cap     nothing; `ppmquant 16' first is what they want.
 run     ppmpat -gingham3 48 24 > /dd/tmp/xp.ppm
 wait    8
 run     ppmquant 16 /dd/tmp/xp.ppm > /dd/tmp/qx.ppm
@@ -838,12 +828,11 @@ wait    10
 shot    graphlib
 for     g graph graphdemo graphsave apfel showpic sine striche wgen
 cap     The Atari `Graph' library set.  These do not run here and loading
-cap     does not help: the library is entered and faults on its own `RTE',
-cap     a supervisor-only instruction -- it was written to run in
-cap     supervisor state.  Note the module is `graph' and the programs ask
-cap     for `Graph', which real OS-9 would not match either.
-cap     All eight programs are asked for below; three were until 2026-08-29
-cap     and the rest were credited to the card without being run.
+cap     does not help: the library is entered and faults on its own `RTE', a
+cap     supervisor-only instruction -- it was written to run in supervisor
+cap     state.  Note the module is `graph' and the programs ask for `Graph',
+cap     which real OS-9 would not match either.  All eight programs are
+cap     asked for below.
 run     load /dd/CMDS/GAMES/graph
 wait    8
 run     g

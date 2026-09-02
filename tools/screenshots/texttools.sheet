@@ -129,10 +129,7 @@ cap     SYS/TEX/SAMPLES: it loads the plain format, sets the page and writes
 cap     a DVI file.  Note that it is `virtex' being run, not `tex' -- the
 cap     `tex' wrapper forks `virtex' by bare name, and OS-9 resolves a fork
 cap     against the EXECUTION directory rather than PATH, so from /dd/CMDS
-cap     it cannot find it.  Run virtex yourself, or copy it up.  `tex',
-cap     `initex' and `texidx' are asked for after it, so the wrapper's
-cap     failure is shown rather than described: all three were credited to
-cap     this card and never typed until 2026-08-30.
+cap     it cannot find it.  Run virtex yourself, or copy it up.
 run     virtex "&plain" /dd/SYS/TEX/SAMPLES/story.tex
 wait    40
 send    \134end\r
@@ -344,10 +341,8 @@ shot    pep
 size    36 80
 for     pep ape eo qt cuts
 cap     `pep' is a file `detergent' -- it strips the junk out of a file
-cap     using the character tables in SYS/PEP.  The four beside it were
-cap     credited to this card and never typed until 2026-08-30: `ape' and
-cap     `eo' are more filters, `cuts' cuts columns, and `qt' is the one
-cap     whose name says least about it -- it prints a QUARTER's calendar.
+cap     using the character tables in SYS/PEP. it prints a QUARTER's
+cap     calendar.
 run     pep -?
 wait    8
 run     ape -?
@@ -419,14 +414,13 @@ wait    6
 
 shot    shuffle
 size    24 80
-cap     `shuffle' IS NOT A LINE SHUFFLER, whatever the name and this card
-cap     said until 2026-09-01.  It is a full-screen SWITCH PUZZLE: a row of
-cap     numbered switches, `LEVEL: 1', `Wich switch ?' and a move counter,
-cap     and flipping one flips its neighbours.  The card used to pipe eight
-cap     lines of SYS/holidays into it and capture `Unknown terminal type',
-cap     which is what a game says when TERM is not set -- and the caption
-cap     described a program that does not exist.  DOC/INDEX was corrected
-cap     the same day; so is the category, from Text tools to Games.
+cap     It is a full-screen SWITCH PUZZLE: a row of numbered switches,
+cap     `LEVEL: 1', `Wich switch ?' and a move counter, and flipping one
+cap     flips its neighbours.  The card used to pipe eight lines of
+cap     SYS/holidays into it and capture `Unknown terminal type', which is
+cap     what a game says when TERM is not set -- and the caption described a
+cap     program that does not exist.  DOC/INDEX was corrected the same day;
+cap     so is the category, from Text tools to Games.
 run     export TERM=vt100
 wait    4
 run     shuffle
@@ -467,11 +461,10 @@ wait    5
 shot    split
 size    36 80
 for     split splitalf sepwords unp fillup
-cap     Five ways of cutting a file up, each asked for itself.  `split'
-cap     cuts it into pieces of N lines and `ls' shows what it wrote;
-cap     `splitalf' splits on a form feed, `sepwords' one word to a line,
-cap     `fillup' pads out to a length, `unp' unpacks.  Four of the five
-cap     were credited to this card without being run until 2026-08-29.
+cap     Five ways of cutting a file up, each asked for itself.  `split' cuts
+cap     it into pieces of N lines and `ls' shows what it wrote; `splitalf'
+cap     splits on a form feed, `sepwords' one word to a line, `fillup' pads
+cap     out to a length, `unp' unpacks.
 run     mkdir /dd/tmp/sp
 wait    5
 run     split -l 6 /dd/SYS/holidays /dd/tmp/sp/part
@@ -589,10 +582,8 @@ wait    10
 shot    upperdir
 for     upperdir casefix
 cap     upperdir normalises case across a directory: files lower,
-cap     directories upper.  On a scratch copy, not on the disk -- and this
-cap     card now shows the rename happening rather than the usage line it
-cap     captured until 2026-08-31.  MixedCase.TXT becomes
-cap     mixedcase.txt; subdir becomes SUBDIR.
+cap     directories upper.  On a scratch copy, not on the disk.
+cap     MixedCase.TXT becomes mixedcase.txt; subdir becomes SUBDIR.
 run     mkdir /dd/tmp/UD
 wait    6
 run     mkdir /dd/tmp/UD/subdir
@@ -632,28 +623,24 @@ wait    8
 
 shot    dvidrivers
 for     dvialw dvidjp dvieps dviimp dvijep dvijet dvilj2 dvimac dvioki dvitos dvips
-cap     Eleven DVI drivers, one per printer that mattered in 1990:
-cap     Apple LaserWriter, DeskJet, Epson, Imagen, LaserJet, Macintosh,
-cap     Okidata, PostScript.  Each turns the same DVI into that machine's
-cap     own language, from one DVI, in one session.  Each names itself and
-cap     the printer it is for, and writes to a FILE beside the DVI rather
-cap     than to standard output -- which is why the `| wc' this card used
-cap     until 2026-08-29 counted only their chatter, and why the listing at
-cap     the end is the real measure.  They all warn that a font file could
-cap     not be opened and set the text at zero size: SYS/TEX/FONTS carries
-cap     .tfm METRICS and no bitmaps.
-cap     THAT IS NOW FIXABLE, as of 2026-09-01, and the `texfonts-bitmap'
-cap     screen is where it is shown.  Metafont has its bases; render cmr10
-cap     at the resolution a driver asks for -- dvijet wants 120 dpi and
-cap     `epsonlo' in modes.mf is 120 dpi -- pack it with gftopk, point
-cap     TEXFONTS and FONTLIST at it, and dvijet's page goes from 3138 bytes
-cap     of nothing to 7350 bytes of real glyph rasters.  A .pk still does
-cap     not ship, because a .pk is made for ONE printer at ONE resolution;
-cap     what ships is the means.  `dvips' is the one exception and its
-cap     trouble is not fonts: it stops at `Couldn't find header file
-cap     tex.pro' and no .pro file is on this disk.
-cap     Two of the eleven were run here before
-cap     2026-08-29; the other nine were credited to the card.
+cap     Eleven DVI drivers, one per printer that mattered in 1990: Apple
+cap     LaserWriter, DeskJet, Epson, Imagen, LaserJet, Macintosh, Okidata,
+cap     PostScript.  Each turns the same DVI into that machine's own
+cap     language, from one DVI, in one session.  Each names itself and the
+cap     printer it is for, and writes to a FILE beside the DVI rather than
+cap     to standard output.  They all warn that a font file could not be
+cap     opened and set the text at zero size: SYS/TEX/FONTS carries .tfm
+cap     METRICS and no bitmaps.  THAT IS NOW FIXABLE, as of 2026-09-01, and
+cap     the `texfonts-bitmap' screen is where it is shown.  Metafont has its
+cap     bases; render cmr10 at the resolution a driver asks for -- dvijet
+cap     wants 120 dpi and `epsonlo' in modes.mf is 120 dpi -- pack it with
+cap     gftopk, point TEXFONTS and FONTLIST at it, and dvijet's page goes
+cap     from 3138 bytes of nothing to 7350 bytes of real glyph rasters.  A
+cap     .pk still does not ship, because a .pk is made for ONE printer at
+cap     ONE resolution; what ships is the means.  `dvips' is the one
+cap     exception and its trouble is not fonts: it stops at `Couldn't find
+cap     header file tex.pro' and no .pro file is on this disk.  Two of the
+cap     eleven were run here before 2026-08-29.
 run     virtex "&plain" /dd/SYS/TEX/SAMPLES/story.tex
 wait    40
 send    \134end\r
@@ -700,28 +687,25 @@ shot    texfonts-bitmap
 size    58 82
 for     gftopk pktogf gftype pktype vftovp vptovf virmf inimf
 cap     TeX's BITMAP font tools, running a font from Metafont source to
-cap     pixels and back.  Until 2026-09-01 this card was eight usage lines,
-cap     because there was no .gf, .pk or .vf anywhere on the disk for them to
-cap     read -- SYS/TEX/MFBASES held its Makefile and nothing else, so
-cap     Metafont answered `I can't find the default base file!'.  `inimf'
-cap     builds that base out of MFINPUTS/plain.mf in about a minute, and it
-cap     is now built and shipped, the way SYS/TEX/FORMATS already shipped
-cap     plain.fmt for TeX.
-cap     So: virmf renders logo10.mf -- the METAFONT logo font, seven
-cap     characters -- at a low-resolution mode; gftype draws the M as
-cap     pixels; gftopk packs 608 bytes down to 364; pktype reads the packed
-cap     form back; pktogf unpacks it.  vptovf and vftovp are the virtual
-cap     pair: DOC/tex/sample.vpl maps one character onto cmr10 and compiles
-cap     to a .vf, which vftovp reads back to the text it came from.
-cap     GFFONTS, PKFONTS, VFFONTS and TEXFONTS have to name the working
-cap     directory: the FONTS search paths compiled into these binaries do
-cap     NOT begin with `.' the way MFINPUTS does, so a file beside you is
-cap     invisible to them.  That is the one thing here that reads like a
-cap     fault and is not -- and it is also what lets the seven readers run
-cap     with no `cd' at all.  Only Metafont needs one, because it writes its
-cap     three outputs into the data directory and names them itself; the
-cap     four `F$SetSys: unimplemented' lines are ksh starting up, not
-cap     anything Metafont did.
+cap     pixels and back.  SYS/TEX/MFBASES held its Makefile and nothing
+cap     else, so Metafont answered `I can't find the default base file!'.
+cap     `inimf' builds that base out of MFINPUTS/plain.mf in about a minute,
+cap     and it is now built and shipped, the way SYS/TEX/FORMATS already
+cap     shipped plain.fmt for TeX.  So: virmf renders logo10.mf -- the
+cap     METAFONT logo font, seven characters -- at a low-resolution mode;
+cap     gftype draws the M as pixels; gftopk packs 608 bytes down to 364;
+cap     pktype reads the packed form back; pktogf unpacks it. vptovf and
+cap     vftovp are the virtual pair: DOC/tex/sample.vpl maps one character
+cap     onto cmr10 and compiles to a .vf, which vftovp reads back to the
+cap     text it came from.  GFFONTS, PKFONTS, VFFONTS and TEXFONTS have to
+cap     name the working directory: the FONTS search paths compiled into
+cap     these binaries do NOT begin with `.' the way MFINPUTS does, so a
+cap     file beside you is invisible to them.  That is the one thing here
+cap     that reads like a fault and is not -- and it is also what lets the
+cap     seven readers run with no `cd' at all.  Only Metafont needs one,
+cap     because it writes its three outputs into the data directory and
+cap     names them itself; the four `F$SetSys: unimplemented' lines are ksh
+cap     starting up, not anything Metafont did.
 run     rm -f /dd/tmp/GF/*
 wait    6
 run     mkdir -p /dd/tmp/GF

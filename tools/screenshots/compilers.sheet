@@ -66,10 +66,9 @@ for     gpp gpp_cc1plus gpp_cccp gpp_collect cc1plus cc2 cc2plus cccp2 collect
 cap     GCC 1.39 and its passes.  Asked to compile, the driver prints the
 cap     preprocessor command it wants to run and then cannot find `cccp':
 cap     the passes are installed under a prefix -- gcc2 wants gcc_, gpp
-cap     wants gpp_ -- and the driver does not look where they live.
-cap     The passes themselves are real programs and each says something
-cap     when asked -- eight of the nine were credited to this card and
-cap     never typed on it until 2026-08-30.
+cap     wants gpp_ -- and the driver does not look where they live.  The
+cap     passes themselves are real programs and each says something when
+cap     asked.
 run     gcc -v
 wait    4
 run     gcc -v -c /dd/SRC/load/load.c
@@ -116,9 +115,7 @@ wait    5
 
 shot    m4
 for     m4 m4_0.5
-cap     m4, the macro processor, expanding a macro from a file.  What ships
-cap     as `m4' from 2026-08-28 is the CMDS/REBUILT/m4_0.5 build: the one
-cap     that used to be here expanded this same file as `i hr '.
+cap     m4, the macro processor, expanding a macro from a file.
 run     echo "define(GREET,Hello \$1 from OS-9)" > /dd/tmp/m.m4
 wait    5
 run     echo "GREET(reader)" >> /dd/tmp/m.m4
@@ -130,17 +127,16 @@ wait    8
 
 shot    make
 size    36 80
-cap     `make' keeping a rule, building the target and then saying it is
-cap     up to date -- which this card said it could not do until
-cap     2026-08-29.  TWO obstacles, neither of them make being broken.  A
-cap     command line in a makefile must begin with a TAB, and a tab does
-cap     not survive being typed at this terminal, so every makefile written
-cap     here by echoing at the shell was a syntax error; DOC/make/demo.mk
-cap     is one SHIPPED with its tabs intact.  And a recipe must contain no
-cap     shell metacharacter: where a line has none make forks the command
-cap     itself, but where it has a `>' it forks bash and hands it the whole
-cap     line AS A PATHNAME rather than with -c, so `cat a > b' answers
-cap     `That path name doesn't lead to a file' and `cp a b' works.
+cap     `make' keeping a rule, building the target and then saying it is up
+cap     to date.  TWO obstacles, neither of them make being broken.  A
+cap     command line in a makefile must begin with a TAB, and a tab does not
+cap     survive being typed at this terminal, so every makefile written here
+cap     by echoing at the shell was a syntax error; DOC/make/demo.mk is one
+cap     SHIPPED with its tabs intact.  And a recipe must contain no shell
+cap     metacharacter: where a line has none make forks the command itself,
+cap     but where it has a `>' it forks bash and hands it the whole line AS
+cap     A PATHNAME rather than with -c, so `cat a > b' answers `That path
+cap     name doesn't lead to a file' and `cp a b' works.
 run     rm -f /dd/tmp/greeting
 wait    5
 run     make -f /dd/DOC/make/demo.mk greeting
@@ -171,7 +167,6 @@ cap     writes `h.c' beside the source.  The warning is p2c's own and
 cap     correct: nothing has told it what `writeln' is, because the Pascal
 cap     runtime declarations live in LIB/p2c and this one-line program does
 cap     not ask for them.
-cap     Until 2026-09-01 this card showed `p2c -?' and nothing else.
 run     mkdir -p /dd/tmp/P2C
 wait    4
 run     echo "program hello; begin writeln('hi') end." > /dd/tmp/P2C/h.pas
@@ -191,11 +186,8 @@ size    40 90
 cap     The xasm family assembling, rather than printing its usage: as0 on
 cap     6800 source and as5 on 6805.  Address, opcode bytes and the original
 cap     line, then the symbol table -- `l' asks for the listing and `s' for
-cap     the symbols, after a lone `-'.  A sample for each of the six ships
-cap     in DOC/xasm, added 2026-08-31 because this card used to be five
-cap     copies of `Usage: as0 [files]' and showed nothing about the
-cap     programs.  These are 8-BIT cross-assemblers: no 68000 among them,
-cap     and there has never been a 68050.
+cap     the symbols, after a lone `-'.  These are 8-BIT cross-assemblers: no
+cap     68000 among them, and there has never been a 68050.
 run     as0 /dd/DOC/xasm/sample.a0 - l s
 wait    14
 run     as5 /dd/DOC/xasm/sample.a5 - l s

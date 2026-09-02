@@ -286,12 +286,11 @@ size    30 80
 for     game checkgame postprint bincheckr
 cap     The four GNU Chess helpers, and the one of them with something to
 cap     show.  `postprint' WRITES POSTSCRIPT for a chess position and that
-cap     is the head of it, page setup first.  `game' and `checkgame' are
-cap     ONE PROGRAM UNDER TWO NAMES -- checkgame's own usage line calls
-cap     itself `game' -- and both replay a saved game, of which there is
-cap     none here.  `bincheckr' reads the opening book that does ship,
-cap     reports its four counts and then aborts.
-cap     Until 2026-09-01 this card was `game' alone, printing its usage.
+cap     is the head of it, page setup first.  `game' and `checkgame' are ONE
+cap     PROGRAM UNDER TWO NAMES -- checkgame's own usage line calls itself
+cap     `game' -- and both replay a saved game, of which there is none here.
+cap     `bincheckr' reads the opening book that does ship, reports its four
+cap     counts and then aborts.
 run     postprint < /nil
 wait    8
 run     game

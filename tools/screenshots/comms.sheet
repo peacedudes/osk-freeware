@@ -74,10 +74,9 @@ cap     Half the network set, each asked for itself.  There is no interface
 cap     configured here, so what they show is what they would do if there
 cap     were -- and all three want /dd/startup.net, which is a file you
 cap     write for your own network and no collection can ship.  The other
-cap     three are on the `network' card; until 2026-08-29 these two cards
-cap     credited the same six programs between them and ran four.
-cap     `osknet' is last: it takes the session down behind it, so anything
-cap     asked for after it would capture nothing.
+cap     three are on the `network' card.  `osknet' is last: it takes the
+cap     session down behind it, so anything asked for after it would capture
+cap     nothing.
 run     finger
 wait    8
 run     net
@@ -126,9 +125,8 @@ shot    mail
 for     mail lmail rmail smail
 cap     The mail chain.  `mail' reaches for a scratch file at /r0 -- the RAM
 cap     disk os9exec cannot provide -- and stops; `smail', the router,
-cap     answers properly and shows what it takes.
-cap     `lmail' delivers locally and `rmail' takes what uucp brought; both
-cap     were credited here and never typed until 2026-08-30.
+cap     answers properly and shows what it takes.  `lmail' delivers locally
+cap     and `rmail' takes what uucp brought.
 run     mail -?
 wait    6
 run     smail -?
@@ -175,10 +173,9 @@ shot    news-tools
 size    36 80
 for     rnews postnews subscribe unsubscribe expire uulog
 cap     What arrives from a news feed and what handles it, each asked for
-cap     itself: `rnews' takes a batch, `postnews' sends one, `subscribe'
-cap     and `unsubscribe' edit your groups, `expire' deletes what is past
-cap     its date, `uulog' shows the transfer log.  Four of the six were
-cap     credited to this card and never typed on it until 2026-08-30.
+cap     itself: `rnews' takes a batch, `postnews' sends one, `subscribe' and
+cap     `unsubscribe' edit your groups, `expire' deletes what is past its
+cap     date, `uulog' shows the transfer log.
 run     rnews -?
 wait    8
 run     postnews -?
@@ -196,22 +193,19 @@ shot    newshist
 size    36 80
 for     newshist bdecode byteflip c7decode dbz newslock
 cap     CMDS/NEWS: the pieces that unpack a usenet news batch, each asked
-cap     for itself -- `bdecode' and `c7decode' are the decoders,
-cap     `byteflip' swaps endianness, `dbz' and `newshist' are the history
-cap     database, `newslock' the lock the rest take.  Four of the six were
-cap     credited here and never run until 2026-08-30.
-cap     `byteflip' IS LAST AND SAYS NOTHING: it ends the emulator session,
-cap     so anything after it never ran -- which is why this card was blank
-cap     but for dbz's usage line until 2026-09-01.
-cap     The history half is worked here rather than asked.  `newshist'
+cap     for itself -- `bdecode' and `c7decode' are the decoders, `byteflip'
+cap     swaps endianness, `dbz' and `newshist' are the history database,
+cap     `newslock' the lock the rest take.  `byteflip' IS LAST AND SAYS
+cap     NOTHING: it ends the emulator session, so anything after it never
+cap     ran.  The history half is worked here rather than asked.  `newshist'
 cap     IGNORES ITS OWN -df AND READS /h0/lib/news/history -- one of the two
 cap     `--' entries under it in DOC/DEPENDS, and /h0 is this disk, so the
 cap     path is makeable.  `dbz history' then builds the .dir/.pag pair
-cap     beside it and newshist reads the database cleanly.
-cap     It still answers `no history entry' for an id that IS in the file,
-cap     because dbz says `store failed' on the first line and indexes
-cap     nothing.  So the database is built, read and empty, and that is as
-cap     far as this pair goes here.  The separator is not what stops it:
+cap     beside it and newshist reads the database cleanly.  It still answers
+cap     `no history entry' for an id that IS in the file, because dbz says
+cap     `store failed' on the first line and indexes nothing.  So the
+cap     database is built, read and empty, and that is as far as this pair
+cap     goes here.  The separator is not what stops it:
 cap     tools/drives/flagged4.drive writes the line with real tabs and gets
 cap     the same answer.
 run     mkdir -p /dd/lib/news
@@ -240,11 +234,10 @@ wait    8
 shot    pathalias
 size    36 80
 for     pathalias makedb dotilde
-cap     `pathalias' computes mail routes from a map of who calls whom --
-cap     the program that made a usenet address possible.  `makedb' builds
-cap     the database it writes into, and `dotilde' expands the ~-notation
-cap     a uucp path uses.  All three are asked for here; two of them were
-cap     only credited until 2026-08-29, on this card and on mailx's.
+cap     `pathalias' computes mail routes from a map of who calls whom -- the
+cap     program that made a usenet address possible.  `makedb' builds the
+cap     database it writes into, and `dotilde' expands the ~-notation a uucp
+cap     path uses.  All three are asked for here.
 run     pathalias -?
 wait    8
 run     makedb -?
@@ -257,11 +250,10 @@ for     screen tsmon2 connect uwho wysetime
 cap     `screen' here is NOT the terminal multiplexer -- it is Russ Smith's
 cap     `screens', which picks a file at random from $HOME/.SCREENS and
 cap     shows it, and on OS-9 RUNS the file through system().  There is no
-cap     .SCREENS directory on this disk, so it says so.  tsmon2 beside it
-cap     is what watches a serial line for someone logging in.
-cap     `connect' dials out, `uwho' lists who is logged in and `wysetime'
-cap     sets a Wyse terminal's clock; all three were credited here and
-cap     never run until 2026-08-30.
+cap     .SCREENS directory on this disk, so it says so. tsmon2 beside it is
+cap     what watches a serial line for someone logging in.  `connect' dials
+cap     out, `uwho' lists who is logged in and `wysetime' sets a Wyse
+cap     terminal's clock.
 run     screen -v
 wait    8
 run     tsmon2 -?
@@ -387,23 +379,21 @@ shot    wn
 size    40 80
 for     wn wndex authwn inetd inetdc
 cap     WN SERVING A PAGE, on a 68000 OS-9 disk.  It is an inetd-style
-cap     server: one HTTP request on standard input, one response on
-cap     standard output -- so the request is built with `echo' and passed
-cap     through `autolf', because HTTP wants CRLF and this disk's echo
-cap     writes CR alone.  What comes back is a complete HTTP/1.0 200 with
-cap     Last-modified, Content-length and the page itself.
-cap     The site is /h0/c/unid/wn_1.14.3/osk, a path compiled into the
-cap     binary by whoever ported it, and it is on this disk -- so mount the
-cap     collection as /h0 as well as /dd.  `wndex' builds the index.cache
-cap     that WN will not serve without; it works on the CURRENT directory
-cap     and ignores a directory argument, which is why it is run through
-cap     ksh, whose `cd' moves the OS-9 data directory.
-cap     The response is cut at eighteen lines so the card ends cleanly;
-cap     `Content-length: 838' is the whole page, and the head of the HTML
-cap     under it is the page itself arriving.
-cap     Until 2026-09-01 this card ran `wn -V' and showed `Unknown option
-cap     given to server' -- `-V' takes a virtual-host file -- and the four
-cap     programs asked for after it never ran at all.
+cap     server: one HTTP request on standard input, one response on standard
+cap     output -- so the request is built with `echo' and passed through
+cap     `autolf', because HTTP wants CRLF and this disk's echo writes CR
+cap     alone.  What comes back is a complete HTTP/1.0 200 with
+cap     Last-modified, Content-length and the page itself.  The site is
+cap     /h0/c/unid/wn_1.14.3/osk, a path compiled into the binary by whoever
+cap     ported it, and it is on this disk -- so mount the collection as /h0
+cap     as well as /dd.  `wndex' builds the index.cache that WN will not
+cap     serve without; it works on the CURRENT directory and ignores a
+cap     directory argument, which is why it is run through ksh, whose `cd'
+cap     moves the OS-9 data directory.  The response is cut at eighteen
+cap     lines so the card ends cleanly; `Content-length: 838' is the whole
+cap     page, and the head of the HTML under it is the page itself arriving.
+cap     `-V' takes a virtual-host file -- and the four programs asked for
+cap     after it never ran at all.
 run     ksh -c "cd /h0/c/unid/wn_1.14.3/osk; wndex" 2>/nil
 wait    8
 run     echo "GET /index.html HTTP/1.0" > /dd/tmp/rq
@@ -437,10 +427,9 @@ size    36 80
 for     xy xydown xyt txmod rxmod
 cap     The xmodem and ymodem set from CMDS/COMMS -- send, receive, and the
 cap     terminal side of a file transfer over a serial line.  All five are
-cap     asked for here; two of them were only credited until 2026-08-29.
-cap     `xy' is asked for LAST and with -?: bare, it starts receiving and
-cap     waits for a sender that will never come, which takes the session
-cap     down and leaves nothing to capture.
+cap     asked for here.  `xy' is asked for LAST and with -?: bare, it starts
+cap     receiving and waits for a sender that will never come, which takes
+cap     the session down and leaves nothing to capture.
 run     xydown
 wait    8
 run     xyt

@@ -34,15 +34,12 @@ wait    5
 kill
 
 shot    argproc_demo
-cap     argproc_demo PARSING A COMMAND LINE, which is the whole point of
-cap     it: RICO's argproc() takes the switches, fills in the defaults for
-cap     the ones you left out, and hands back the filename.  Switches take
-cap     their arguments with NO SPACE -- `-x99', never `-x 99'.
-cap     Until 2026-09-01 this card showed `**** Stack Overflow ****' and
-cap     the caption blamed a missing cio, which it was not: the program is
-cap     not starred and a Stack Overflow is not that message.  It wanted
-cap     STACK.  Rebuilt with MEM=64k from the source in SRC/argproc and it
-cap     runs -- the recipe carries the flag now.
+cap     argproc_demo PARSING A COMMAND LINE, which is the whole point of it:
+cap     RICO's argproc() takes the switches, fills in the defaults for the
+cap     ones you left out, and hands back the filename.  Switches take their
+cap     arguments with NO SPACE -- `-x99', never `-x 99'.  It wanted STACK.
+cap     Rebuilt with MEM=64k from the source in SRC/argproc and it runs --
+cap     the recipe carries the flag now.
 run     argproc_demo readme
 wait    6
 run     argproc_demo -x99 -sHello readme
@@ -160,8 +157,7 @@ for     devprc ptxminst t t_trtest
 cap     devprc shows which device belongs to which process.  Rebuilt here:
 cap     the archived module had been patched and would not run.  `ptxminst'
 cap     installs Ptxm, and `t' and `t_trtest' are the trap-handler test
-cap     pair; the three were credited here and never typed until
-cap     2026-08-30.
+cap     pair.
 run     devprc -h
 wait    8
 run     ptxminst -?
@@ -300,8 +296,7 @@ cap     example programs the German OS-9 user group circulated.  Four more
 cap     from the same shelf are asked for beside it -- `testibc' exercises
 cap     the inter-process bus, `sqrtx' takes a square root, `bigsetter'
 cap     demonstrates Modula-2 set operations and `i_am_i' reports its own
-cap     process.  All four were credited here and never typed until
-cap     2026-08-30.
+cap     process.
 run     hinterhalt
 wait    10
 run     testibc
@@ -355,10 +350,8 @@ cap     suggested: it is a LOGIN helper -- set the environment for the
 cap     terminal type from SYS/config, optionally a default PATH and the
 cap     emacs bindings, then start the shell you name.  `pri' changes a
 cap     process's priority and answers nothing to -?; `signal' sends a
-cap     signal, after a delay if you ask.
-cap     `dpark' parks a disk's heads, `snd_sig' sends a signal by number
-cap     and `suspend' stops a process; the three were credited here and
-cap     never typed until 2026-08-30.
+cap     signal, after a delay if you ask.  `dpark' parks a disk's heads,
+cap     `snd_sig' sends a signal by number and `suspend' stops a process.
 run     launch -?
 wait    6
 run     dpark -?
@@ -508,10 +501,9 @@ cap     communication path.  DOC/INDEX called it a phone-number book until
 cap     this screen was taken.  Given a path it DRAWS ITS FACE and starts
 cap     ringing -- OS9/68K PHONE FACILITY, the terminal it is calling, the
 cap     try count -- and control-E is how you leave, which is what the card
-cap     does.  With no path it prints its syntax, which is all this card
-cap     showed until 2026-09-01 -- so the syntax run is dropped here and the
-cap     screen is given to the program.  The tail of the bottom line is the
-cap     echoed command that was on that row when phone painted over it.
+cap     does. so the syntax run is dropped here and the screen is given to
+cap     the program.  The tail of the bottom line is the echoed command that
+cap     was on that row when phone painted over it.
 run     phone /t1
 wait    28
 
@@ -539,10 +531,9 @@ shot    scsiutil
 for     scsiutil expreserve
 cap     scsiutil talks to a SCSI device, and expreserve is vi's crash
 cap     recovery.  Neither has anything to work on here, and both say so.
-cap     This card credited four more programs until 2026-08-29 -- dedit,
-cap     exrecover, read_mail and add_errmsg -- and typed none of them, so
-cap     their "sample output" was scsiutil's usage message.  They are on
-cap     the card below now, which runs each of them.
+cap     dedit, exrecover, read_mail and add_errmsg -- and typed none of
+cap     them, so their "sample output" was scsiutil's usage message.  They
+cap     are on the card below now, which runs each of them.
 run     scsiutil -?
 wait    8
 run     expreserve -?
@@ -553,21 +544,18 @@ size    40 80
 for     dedit exrecover read_mail add_errmsg
 cap     `read_mail' READING A FOLDER, and the vi recovery pair beside it.
 cap     read_mail is not vi's helper despite sitting among them: it is a
-cap     small mail reader with a mail directory of its own, /dd/MAIL, and
-cap     it quotes what it finds and offers to delete it.  `exrecover'
-cap     brings back a buffer that `expreserve' saved when vi died; asked
-cap     for one nobody saved it says `File not found', which is the honest
-cap     answer on a disk where vi has not crashed.  `add_errmsg' builds
-cap     vi's error-message file -- /dd/SYS/vi_errmsg is already here.
-cap     `dedit' is Carl Kreider's BASIC09 disk sector editor and needs
-cap     runb, like the other three BASIC09 programs here.
-cap     The folder is cut to seven lines so the whole exchange fits on one
-cap     screen.  read_mail must be given its answer ON STANDARD INPUT --
-cap     `N' from a file returns, and so does `n', while read_mail with NO
-cap     input at all re-prompts without bound and fills a capture with
-cap     four megabytes of the same question.
-cap     This card showed nothing but `Wrong number of arguments to
-cap     exrecover' until 2026-09-01.
+cap     small mail reader with a mail directory of its own, /dd/MAIL, and it
+cap     quotes what it finds and offers to delete it.  `exrecover' brings
+cap     back a buffer that `expreserve' saved when vi died; asked for one
+cap     nobody saved it says `File not found', which is the honest answer on
+cap     a disk where vi has not crashed.  `add_errmsg' builds vi's
+cap     error-message file -- /dd/SYS/vi_errmsg is already here.  `dedit' is
+cap     Carl Kreider's BASIC09 disk sector editor and needs runb, like the
+cap     other three BASIC09 programs here.  The folder is cut to seven lines
+cap     so the whole exchange fits on one screen. read_mail must be given
+cap     its answer ON STANDARD INPUT -- `N' from a file returns, and so does
+cap     `n', while read_mail with NO input at all re-prompts without bound
+cap     and fills a capture with four megabytes of the same question.
 run     exrecover -r /dd/tmp/nothing
 wait    8
 run     head -n 7 /dd/SPOOL/MAIL/tester > /dd/MAIL/mail_tester

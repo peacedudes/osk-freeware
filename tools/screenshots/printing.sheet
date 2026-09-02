@@ -36,10 +36,9 @@ for     lp lpq lpsched splstat
 cap     The print spooler with nothing configured, which is the state a
 cap     fresh disk arrives in: `lpq' says there is no spooler installed and
 cap     `lp' says what it would take.  Carl Kreider's `splstat' prints
-cap     nothing whatever, so its line here is just the command.
-cap     Until 2026-08-29 there were TWO cards for this, `lp' and `lpq',
-cap     crediting almost the same eight programs between them and running
-cap     three; the five that were never typed are on the card below.
+cap     nothing whatever, so its line here is just the command.  Until
+cap     2026-08-29 there were TWO cards for this, `lp' and `lpq', crediting
+cap     almost the same eight programs between them and running three.
 run     lp -?
 wait    6
 run     lpq

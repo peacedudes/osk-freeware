@@ -6,10 +6,10 @@ for     adlcomp adldebug adltouch
 size    36 80
 cap     The ADL adventure compiler, COMPILING one -- ADL/DEMOS/tiny.adl,
 cap     which includes standard.adl by bare name, so `-i' says where that
-cap     lives.  Ross Cunniff's Adventure Definition Language, 1987.  This
-cap     card showed the usage message until 2026-08-30; the compiled world
-cap     is played on the `adlrun' screen beside it.  `adltouch' marks a
-cap     source as changed for the makefile and `adldebug' is the debugger.
+cap     lives.  Ross Cunniff's Adventure Definition Language, 1987. the
+cap     compiled world is played on the `adlrun' screen beside it.
+cap     `adltouch' marks a source as changed for the makefile and `adldebug'
+cap     is the debugger.
 run     adlcomp /dd/ADL/DEMOS/tiny.adl -o /dd/tmp/tiny -i/dd/ADL
 wait    35
 run     ls -l /dd/tmp/tiny
