@@ -1,0 +1,12 @@
+# dvi2 -- the resolution each of the remaining drivers asks for.
+family  dvi2
+setup   export TERM=vt100
+setup   W=/dd/tmp/DVI
+drive   the-rest
+run     /dd/CMDS/ksh -c "cd $W; /dd/CMDS/TEXCMDS/dvidjp story.dvi" > $W/s.txt 2>&1
+run     /dd/CMDS/ksh -c "cd $W; /dd/CMDS/TEXCMDS/dviimp story.dvi" >> $W/s.txt 2>&1
+run     /dd/CMDS/ksh -c "cd $W; /dd/CMDS/TEXCMDS/dvijep story.dvi" >> $W/s.txt 2>&1
+run     /dd/CMDS/ksh -c "cd $W; /dd/CMDS/TEXCMDS/dvijet story.dvi" >> $W/s.txt 2>&1
+run     /dd/CMDS/ksh -c "cd $W; /dd/CMDS/TEXCMDS/dvilj2 story.dvi" >> $W/s.txt 2>&1
+run     /dd/CMDS/grep "cmr10\|printer\|Laser\|Desk\|imPRESS" $W/s.txt
+run     echo "--- end"

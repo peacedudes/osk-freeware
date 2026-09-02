@@ -1,0 +1,39 @@
+# dvi -- every DVI driver, twice: with no font and with cmr10 rendered at the
+# resolution each one asks for.  The output filenames and sizes are what
+# DOC/README-DVI needs and what the dvidrivers card claims.
+
+family  dvi
+
+setup   export TERM=vt100
+setup   W=/dd/tmp/DVI
+setup   /dd/CMDS/rm -f $W/* > /nil 2>/nil
+setup   /dd/CMDS/mkdir -p $W > /nil 2>/nil
+setup   export MFINPUTS=.:/dd/SYS/TEX/MFINPUTS/CM:/dd/SYS/TEX/MFINPUTS
+setup   export GFFONTS=$W
+setup   export PKFONTS=$W
+setup   export TEXFONTS=$W
+setup   export FONTLIST=pk
+
+drive   all-eleven-with-no-font
+run     /dd/CMDS/ksh -c "cd $W; /dd/CMDS/TEXCMDS/virtex '&plain' /dd/SYS/TEX/SAMPLES/story.tex < /nil" > /nil 2>&1
+run     /dd/CMDS/ksh -c "cd $W; /dd/CMDS/TEXCMDS/dvialw story.dvi" > /nil 2>&1
+run     /dd/CMDS/ksh -c "cd $W; /dd/CMDS/TEXCMDS/dvidjp story.dvi" > /nil 2>&1
+run     /dd/CMDS/ksh -c "cd $W; /dd/CMDS/TEXCMDS/dvieps story.dvi" > /nil 2>&1
+run     /dd/CMDS/ksh -c "cd $W; /dd/CMDS/TEXCMDS/dviimp story.dvi" > /nil 2>&1
+run     /dd/CMDS/ksh -c "cd $W; /dd/CMDS/TEXCMDS/dvijep story.dvi" > /nil 2>&1
+run     /dd/CMDS/ksh -c "cd $W; /dd/CMDS/TEXCMDS/dvijet story.dvi" > /nil 2>&1
+run     /dd/CMDS/ksh -c "cd $W; /dd/CMDS/TEXCMDS/dvilj2 story.dvi" > /nil 2>&1
+run     /dd/CMDS/ksh -c "cd $W; /dd/CMDS/TEXCMDS/dvimac story.dvi" > /nil 2>&1
+run     /dd/CMDS/ksh -c "cd $W; /dd/CMDS/TEXCMDS/dvioki story.dvi" > /nil 2>&1
+run     /dd/CMDS/ksh -c "cd $W; /dd/CMDS/TEXCMDS/dvitos story.dvi" > /nil 2>&1
+run     /dd/CMDS/ls -l $W
+run     echo "--- end no-font"
+
+drive   what-resolution-each-one-asked-for
+run     /dd/CMDS/ksh -c "cd $W; /dd/CMDS/TEXCMDS/dvialw story.dvi" > $W/r.txt 2>&1
+run     /dd/CMDS/ksh -c "cd $W; /dd/CMDS/TEXCMDS/dvieps story.dvi" >> $W/r.txt 2>&1
+run     /dd/CMDS/ksh -c "cd $W; /dd/CMDS/TEXCMDS/dvimac story.dvi" >> $W/r.txt 2>&1
+run     /dd/CMDS/ksh -c "cd $W; /dd/CMDS/TEXCMDS/dvioki story.dvi" >> $W/r.txt 2>&1
+run     /dd/CMDS/ksh -c "cd $W; /dd/CMDS/TEXCMDS/dvitos story.dvi" >> $W/r.txt 2>&1
+run     /dd/CMDS/grep "dpi" $W/r.txt
+run     echo "--- end resolutions"

@@ -1,0 +1,82 @@
+# dvidrivers -- the table in DOC/README-DVI, asserted so it cannot drift.
+#
+# Eleven drivers, all the same program with a different back end, so what
+# separates them is the machine, the resolution and the output suffix.  Two
+# of those look like typing errors and are not: `dvidjp' writes `_djc' (it is
+# the DeskJet driver built from the LaserJet one and kept its suffix letter)
+# and `dvijet' asks for 120 dpi where every other laser driver asks for 300
+# (it is the 2686A, the first LaserJet).
+
+family  dvidrivers
+
+setup   export TERM=vt100
+setup   W=/dd/tmp/DVX
+setup   /dd/CMDS/rm -f $W/* > /nil 2>/nil
+setup   /dd/CMDS/mkdir -p $W > /nil 2>/nil
+setup   /dd/CMDS/ksh -c "cd $W; /dd/CMDS/TEXCMDS/virtex '&plain' /dd/SYS/TEX/SAMPLES/story.tex < /nil" > /nil 2>/nil
+
+case    each-driver-names-its-printer-and-its-resolution
+run     /dd/CMDS/ksh -c "cd $W; /dd/CMDS/TEXCMDS/dvialw story.dvi"
+run     /dd/CMDS/ksh -c "cd $W; /dd/CMDS/TEXCMDS/dvieps story.dvi"
+run     /dd/CMDS/ksh -c "cd $W; /dd/CMDS/TEXCMDS/dvimac story.dvi"
+run     /dd/CMDS/ksh -c "cd $W; /dd/CMDS/TEXCMDS/dvioki story.dvi"
+run     /dd/CMDS/ksh -c "cd $W; /dd/CMDS/TEXCMDS/dvitos story.dvi"
+expect  [PostScript [Apple LaserWriter laser printer]]
+expect  [Epson 9-pin family 240dpi x 216dpi dot matrix printer]
+expect  [Apple ImageWriter 144 dpi dot matrix printer]
+expect  [OKIDATA 192 dot matrix printer at 144dpi]
+expect  [Toshiba P-1351 180h x 180v dpi dot matrix printer]
+expect  Font file [cmr10 [240 dpi]] could not be opened
+expect  Font file [cmr10 [166 dpi]] could not be opened
+
+case    the-five-laser-drivers-and-the-one-that-is-not-300-dpi
+run     /dd/CMDS/ksh -c "cd $W; /dd/CMDS/TEXCMDS/dvidjp story.dvi"
+run     /dd/CMDS/ksh -c "cd $W; /dd/CMDS/TEXCMDS/dviimp story.dvi"
+run     /dd/CMDS/ksh -c "cd $W; /dd/CMDS/TEXCMDS/dvijep story.dvi"
+run     /dd/CMDS/ksh -c "cd $W; /dd/CMDS/TEXCMDS/dvijet story.dvi"
+run     /dd/CMDS/ksh -c "cd $W; /dd/CMDS/TEXCMDS/dvilj2 story.dvi"
+expect  [Hewlett-Packard Desk Jet plus (from LaserJet)
+expect  [imPRESS [Imagen laser printer family]]
+expect  [Hewlett-Packard LaserJet Plus laser printer]
+expect  [Hewlett-Packard 2686A Laser Jet laser printer]
+expect  [Hewlett-Packard LaserJet II laser printer]
+expect  Font file [cmr10 [300 dpi]] could not be opened
+expect  Font file [cmr10 [120 dpi]] could not be opened
+
+case    each-writes-beside-the-dvi-under-its-own-suffix
+# NOT an argument: no driver here takes an output filename.  `_djc' is
+# dvidjp's, and it is the one that reads like a mistake.
+run     /dd/CMDS/ls $W
+expect  story.dvi_alw
+expect  story.dvi_djc
+expect  story.dvi_eps
+expect  story.dvi_imp
+expect  story.dvi_jep
+expect  story.dvi_jet
+expect  story.dvi_lj2
+expect  story.dvi_mac
+expect  story.dvi_oki
+expect  story.dvi_tos
+expect  story.dvi_err
+absent  story.dvi_djp
+
+case    dvips-stops-at-its-prologue-not-at-a-font
+run     /dd/CMDS/ksh -c "cd $W; /dd/CMDS/TEXCMDS/dvips story.dvi"
+expect  This is dvipsk 5.495b
+expect  Couldn't find header file tex.pro
+absent  Font file
+
+case    dvitype-needs-no-printer-but-it-does-need-standard-input
+# It asks FIVE questions -- output level, starting page, page count, device
+# resolution, magnification -- and takes the default for each on EOF.  Run
+# without `< /nil' from a script it prints nothing at all and waits.
+run     /dd/CMDS/TEXCMDS/dvitype
+run     /dd/CMDS/ksh -c "cd $W; /dd/CMDS/TEXCMDS/dvitype story.dvi < /nil" > $W/t.txt 2>&1
+run     /dd/CMDS/head -n 20 $W/t.txt
+expect  Usage: dvitype <dvi file>.
+expect  This is DVItype, C Version 3.4
+expect  Output level (default=4, ? for help)
+expect  numerator/denominator=25400000/473628672
+expect  maxstackdepth=3, totalpages=1
+expect  Font 33: cmsl10---loaded at size 655360 DVI units
+expect  Font 0: cmr10---loaded at size 655360 DVI units

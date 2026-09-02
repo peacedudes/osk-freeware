@@ -262,31 +262,23 @@ a table of hard facts, the reason you cannot keep several (module names), a
 short "take this if" per candidate, and a one-line answer for someone who
 wants exactly one file.
 
-Families still needing one, roughly in order of how many people care:
+**ALL FIVE FAMILIES THAT WERE LISTED HERE NOW HAVE ONE**, written
+2026-08-31 and 2026-09-01: `DOC/README-SHELLS`, `README-ARCHIVERS`,
+`README-KERMIT`, `README-EDITORS` and `README-GREP`, beside the
+`README-VI` that is the model and `README-NETPBM`. `check_disk.py`'s
+`README names documents that exist` check keeps `DOC/README`'s index and the
+directory honest in both directions, so a chooser cannot be advertised and
+missing (two were) or present and unindexed (five were).
 
-- **shells** — bash, sh, ksh, gshell, mshell. `DOC/README-SHELLS` exists;
-  what was blocking it is now SETTLED (2026-09-01, on the shipped RBF image):
+`DOC/README-METAFONT` was added 2026-09-02 and is a chooser of a different
+kind -- not "which of these five", but "here is how to make the thing this
+collection deliberately does not ship".
 
-  **`ksh -c "cd <dir>; <prog>"` moves the OS-9 data directory.** That is the
-  recommendation for anyone who needs to run a program somewhere — and there
-  are real programs that need it, `wndex` being the clear one, since it works
-  on the current directory and ignores a directory argument. `sh`'s `chd`
-  moves it too but `sh` cannot fork an absolute pathname, so `sh` needs the
-  program `load`ed first. bash's `cd` is real in a SCRIPT (a non-interactive
-  bash never reads `.bashrc`) and a string-tracking shim INTERACTIVELY, which
-  is why this looked settled both ways for a fortnight. Asserted in
-  `tools/datatests/web.cases`, both halves.
-
-  Static facts already gathered: bash 242604 (no cio, module `bash`), sh 77306
-  (no cio), ksh 118554 (needs cio), gshell 23114 (no cio), mshell 7228 (needs
-  cio). Verified 2026-08-31: `ksh -c '<abs path> <args>'` runs the program,
-  and `sh -c` does NOT — "file not found" for a file that exists, which is the
-  fork-an-absolute-pathname failure already recorded for `sh`.
-- **archivers** — arc/marc/dearc, lha/lharc/xlharc, zoo/booz/fiz, tar/gtar,
-  zip/unzip, compress/compr/gzip and its four builds.
-- **kermit** — kermit, kermit2, kermit3, xkermit, ckermit.
-- **editors beyond vi** — ed, em, me, emacs, umacs, mg, sedt, new_e, beav.
-- **grep-likes** — grep, ggrep, fgrep, lgrep, bm, gep.
+**What still has no chooser**, if somebody wants the next one: the eleven DVI
+drivers (one per printer, and the caption on the `dvidrivers` card is
+currently doing that job), the five spelling tools, and the compression
+family's four `compress` builds -- though `README-ARCHIVERS` covers most of
+that ground already. None is as clearly wanted as the five that are done.
 
 Everything you need is derivable without running them: size, whether it needs
 `cio` (the star in `DOC/INDEX`), module name (collisions), source present
