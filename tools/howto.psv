@@ -102,7 +102,7 @@ nobs|Full-screen: it takes over the display. **control-C gets you out** -- teste
 puz15|Full-screen: it takes over the display. **control-C gets you out** -- tested, and none of q, Q, control-D or ESC did. If it has a quit command of its own, its documentation in DOC/ will say.
 puzzle15|Full-screen: it takes over the display. **control-C gets you out** -- tested, and none of q, Q, control-D or ESC did. If it has a quit command of its own, its documentation in DOC/ will say.
 rain|Full-screen: it takes over the display. **control-C gets you out** -- tested, and none of q, Q, control-D or ESC did. If it has a quit command of its own, its documentation in DOC/ will say.
-setterm|Full-screen: it takes over the display. **ESC quits** -- tested. (control-C also gets you out, but ESC is the program's own way.)
+setterm|`setterm' alone reports what TERM says; give it a terminal name to change it. Run with no arguments and a terminal it wants to configure it goes FULL-SCREEN -- **ESC quits**, tested (control-C also works, but ESC is the program's own way). SYS/setterm is the defaults file it falls back on when TERM names something it does not know, and DOC/setterm/termcap.extra has further entries you can add to SYS/termcap.
 shuffle|Full-screen: it takes over the display. **`q' quits** -- tested.
 snake|Full-screen: it takes over the display. **`x' quits** -- tested. (control-C also gets you out, but `x' is the program's own way.)
 sonnet|Full-screen: it takes over the display. **ESC quits** -- tested. (control-C also gets you out, but ESC is the program's own way.)
@@ -234,4 +234,3 @@ demerge|OS-9's `merge' is concatenation and there is no `merge' binary here, so 
 dump|This is the hex dump on this disk. There is no `od'.
 maketexpk|It carries the RIGHT Metafont line in its own strings and then reaches for `makdir', `del' and `attr' to file the result -- three Microware utilities that are not here. Run the virmf line yourself: DOC/README-METAFONT has it, and `gftopk' is all maketexpk was going to do afterwards.
 forth|Type `2 3 + . cr' and it answers 5; `: squares 10 1 do i dup * . loop cr ;' then `squares' prints them; `words' lists its vocabulary; `bye' leaves. A SOURCE FILE IS A COMMAND-LINE ARGUMENT -- `forth fibonacci.tst' loads it and gives you the prompt -- because `include' is defined in the library, not the kernel. The library and the twenty-two programs it shipped with are in lib/tile and lib/tile/TST; lib/tile/readme explains the name (TILE is this Forth's own).
-setterm|`setterm' alone reports what TERM says; give it a terminal name to change it. SYS/setterm is the defaults file it falls back on when TERM names something it does not know, and DOC/setterm/termcap.extra has further entries you can add to SYS/termcap.
