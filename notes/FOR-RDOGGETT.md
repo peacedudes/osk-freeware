@@ -102,6 +102,24 @@ evidence anyway. If you want the full sweep run for completeness it is
   `check_disk`'s new `cards do not depend on each other` check explicitly
   sanctions.
 
+**5a. YOUR os9exec CHANGE REACHED US, and it was a good one.** The binary at
+`~/Developer/os9/os9exec` was rebuilt at 04:20 on 2026-09-02 and now reports
+**V4.10** where it reported V4.0 (`Core: report V4.10, the work since the
+v4.0.0 tag`). `sysmon` compares that against what it was built for, and it
+had been refusing outright -- `OS9/68k V4.0 is too old for SYSMON V6.1'. It
+now STARTS: it asks about `/dd/sys/nodedef`, times out, draws its whole
+Process Monitor, and takes a bus error at `F$GPrDsc`, the same gap
+`devprc -a` and `top` meet at `F$GPrDBT`. Its card, its `DOC/INDEX` entry and
+its datatest case all recorded the refusal and are corrected. Nothing needed
+from you; you may just like knowing which program noticed.
+
+  One thing I would not have found otherwise: `tools/ansiscreen.py` did not
+  know the **DEC line-drawing character set**, so sysmon's table came out as
+  forty lines of `(0x       (0x`. It does now, mapped to `+ - |` rather than
+  the Unicode box characters, because nothing here may carry a byte over
+  0x7f. sysmon is the only program on the disk that had ever got far enough
+  to use it.
+
 **6. Nothing else is waiting on you.** For the record, and needing nothing
 from you: Metafont works. `SYS/TEX/MFBASES` held only its Makefile, so
 `virmf` had no base and the eight bitmap-font tools had nothing to read --
