@@ -1,0 +1,79 @@
+# untested -- programs that had neither a card that ran them nor a case,
+# worked out on 2026-09-01/02.
+#
+# THE FIRST SWEEP GOT FOUR OF THEM WRONG BY TYPING THE WRONG PATH.
+# `bincheckr', `mkdict' and `mkindex' are in CMDS/GAMES and `byteflip' is in
+# CMDS/NEWS; run as `/dd/CMDS/<name>' all four answer E$PNNF, and it reads
+# exactly like a program that cannot find its data.  Nothing was wrong with
+# any of them.  That is the same mistake this collection keeps making and it
+# is recorded here rather than quietly fixed.
+#
+# Not assertable here, and why: `config' prints a genuine table of this
+# machine's C type properties and then takes an ILLEGAL instruction in its
+# floating-point section; `bincheckr' reads the book header and then faults
+# at close; `crypto' as a FILTER ends the session even with its output
+# redirected.  datatest fails any case whose session took an exception, which
+# is right, so those three live on gallery cards instead.
+
+family  untested
+
+setup   export TERM=vt100
+setup   export TERMCAP=/dd/SYS/termcap
+setup   W=/dd/tmp/UTC
+setup   /dd/CMDS/rm -f $W/* > /nil 2>/nil
+setup   /dd/CMDS/mkdir -p $W > /nil 2>/nil
+
+case    yagi-designs-a-twelve-element-two-metre-beam
+# It READS FROM STANDARD INPUT and asks FIVE questions: centre frequency,
+# element count, boom diameter, whether the elements are insulated from the
+# boom, and a tubing size off its own list.  Given four answers it loops on
+# the fifth forever -- EOF on a numeric read returns the same thing every
+# time -- which is how it came to be recorded as silent.
+run     echo "144" > $W/y.in
+run     echo "12" >> $W/y.in
+run     echo "3" >> $W/y.in
+run     echo "N" >> $W/y.in
+run     echo "3" >> $W/y.in
+run     /dd/CMDS/yagi < $W/y.in
+expect  This program designs UHF/VHF yagi antennas based on designs by DL6WU.
+expect  Frequency: 144.00 MHz
+expect  Wavelength: 2.082m
+expect  # of elements: 12
+expect  Maximum practical gain: 12.8 dBD
+expect  Element tubing diameter: 8.7mm
+expect  reflector      1017.2                  0.0
+expect  director #6     875.5               3206.1
+
+case    crypto-is-a-cryptogram-solver-with-a-real-option-list
+# Its bare answer is two lines of usage naming -h and -i; -h is the rest.
+run     /dd/CMDS/crypto -h
+expect  This program allows you to interactively solve cryptogram puzzles
+expect  -e	Encode the input stream with a random cypher.
+expect  -cSTR	encode using the Code STR as the encryption cypher.
+expect  -i	output the Interactive commands.
+expect  fortune -l | crypto -r
+
+case    helpindex-says-what-it-cannot-index
+# `helpindex' bare says `Missing names of files to create index for.'  Given
+# files it does not want, it names them -- which is more than most programs
+# here manage.
+run     /dd/CMDS/helpindex
+run     /dd/CMDS/helpindex /dd/DOC/README-KSH /dd/DOC/README-CIO
+expect  helpindex: Missing names of files to create index for.
+expect  ** No index created for file "/dd/DOC/README-KSH".
+expect  ** No index created for file "/dd/DOC/README-CIO".
+
+case    the-four-that-are-not-in-CMDS
+# The correction, asserted so it cannot be made a third time: at the wrong
+# path they answer E$PNNF, at the right one they are there.  `byteflip' is
+# only LISTED and not run -- running it ends the emulator session, which the
+# newshist card records.
+run     /dd/CMDS/bincheckr
+run     /dd/CMDS/mkdict
+run     /dd/CMDS/ls /dd/CMDS/GAMES/bincheckr /dd/CMDS/GAMES/mkdict /dd/CMDS/GAMES/mkindex /dd/CMDS/NEWS/byteflip
+expect  /dd/CMDS/bincheckr:  (E$PNNF)
+expect  /dd/CMDS/mkdict:  (E$PNNF)
+expect  /dd/CMDS/GAMES/bincheckr
+expect  /dd/CMDS/GAMES/mkdict
+expect  /dd/CMDS/GAMES/mkindex
+expect  /dd/CMDS/NEWS/byteflip

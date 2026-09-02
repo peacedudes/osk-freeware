@@ -13,7 +13,7 @@
 |---|--:|---|
 | [Shells](#shells) | 20 | Unix shells to sit beside OS-9's own -- bash and ksh bring history, job control, and scripts that come across unchanged. |
 | [Editors](#editors) | 22 | vi and emacs in several flavours, line and stream editors, and editors for binary and hex. |
-| [Text tools](#text-tools) | 113 | Search, sort, compare, reformat, split and spell-check. |
+| [Text tools](#text-tools) | 112 | Search, sort, compare, reformat, split and spell-check. |
 | [Files & directories](#files--directories) | 37 | Listing, copying, finding, renaming, and knowing what you have. |
 | [Developer tools](#developer-tools) | 46 | Version control, tags, cross-reference, formatters, a debugger and benchmarks. |
 | [Compilers & build](#compilers--build) | 39 | C compilers and their passes, assemblers, linkers, make and parser generators. |
@@ -22,7 +22,7 @@
 | [Encoding & conversion](#encoding--conversion) | 24 | Between text encodings, line endings, Macintosh formats, ciphers and hashes. |
 | [Communications](#communications) | 96 | Kermit in several builds, terminal sessions, and networking. |
 | [Graphics & images](#graphics--images) | 202 | The netpbm toolkit, JPEG, a ray tracer, and things that draw. |
-| [Games](#games) | 67 | Adventures, board and card games, arcade ports, dungeon crawls and puzzles. |
+| [Games](#games) | 68 | Adventures, board and card games, arcade ports, dungeon crawls and puzzles. |
 | [Screen toys](#screen-toys) | 9 | Animations and screen effects -- they draw on the terminal rather than print to it. Some run until you stop them. |
 | [Amusements](#amusements) | 20 | Generators, simulators and diversions that are not quite games. |
 | [System & modules](#system--modules) | 131 | OS-9 module and process tools, devices, system state and scheduling. |
@@ -134,7 +134,7 @@
 
 *Search, sort, compare, reformat, split and spell-check.*
 
-<details><summary>113 programs</summary>
+<details><summary>112 programs</summary>
 
 **Banners & text art**
 
@@ -309,7 +309,6 @@
 | `pep` | file 'detergent' - strip junk from files<br>`Usage: pep [options] [filename ...]` |
 | `psc` | &#9733; turn an ASCII table into commands for `sc', the spreadsheet: `psc -d' ' < table' answers `let A0 = 1', `let B0 = 2' and a `format' line per column.  -d sets the field delimiter, -r assembles rows first, -s names the top-left cell.  Robert Bond's, and it works<br>**How:** Feeds `sc', the spreadsheet: `psc -d' ' < table' turns rows of numbers into `let A0 = 1' commands sc can read. -r assembles rows first, -s names the top-left cell, -d sets the delimiter. |
 | `rot` | turn a text file on its side -- line one becomes column one.  NOT a rot-13 cipher, whatever the name suggests |
-| `shuffle` | NOT a line shuffler whatever the name says: it is a FULL-SCREEN SWITCH PUZZLE -- `LEVEL: 1', `Wich switch ?', `moves:' and a row of switches to flip.  Corrected 2026-09-01<br>**How:** Full-screen: it takes over the display. **`q' quits** -- tested. |
 | `tabs` | tab/space conversion filter<br>`Syntax   : tabs [<opts>] [<input_redirection>] [<output_redirection>]` |
 | `upperdir` | Normalise case: files lowercase, dirs uppercase<br>`Usage: UpperDir [directory name]` |
 | `valspeak` | Valley-speak text filter.  It printed NOTHING until 2026-08-31 -- it read the file and wrote no byte of output -- which was the cio selector mismatch; rebuilt trap-free and it filters |
@@ -1143,7 +1142,7 @@
 
 *Adventures, board and card games, arcade ports, dungeon crawls and puzzles.*
 
-<details><summary>67 programs</summary>
+<details><summary>68 programs</summary>
 
 **Adventure & fiction**
 
@@ -1226,6 +1225,7 @@
 | `piano` | &#9733; play notes -- piano <base note> <note duration><br>`syntax: piano <base note> <note duration>` |
 | `puzzle` | &#9733; sliding-tile puzzle for G-Windows -- it draws through a windowing system that is not here, so at a terminal it gets one rule of plus signs out, the top edge of the tile frame, and stops.  For a 15-puzzle you can play, use puzzle15 or GAMES/puz15; both work |
 | `scriptmaster` | &#9733; G-Windows scripting tool<br>`Usage: scriptmaster -t=<title> -d=<directory>.` |
+| `shuffle` | NOT a line shuffler whatever the name says: it is a FULL-SCREEN SWITCH PUZZLE -- `LEVEL: 1', `Wich switch ?', `moves:' and a row of switches to flip.  Corrected 2026-09-01<br>**How:** Full-screen: it takes over the display. **`q' quits** -- tested. |
 | `stone` | &#9733; the stones game (SNOBOL4-in-C).  Data: GAMES/SNOBOL |
 | `teachgammon` | &#9733; backgammon that teaches you the game as you play<br>`Usage:  backgammon [-] [n r w b pr pw pb t3a]` |
 | `tess` | &#9733; tesselation puzzle |

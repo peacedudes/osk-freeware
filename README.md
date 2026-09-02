@@ -92,7 +92,7 @@ is no help until you already know the name you want.
 |---|--:|---|
 | **Shells** | 20 | Unix shells to sit beside OS-9's own -- bash and ksh bring history, job control, and scripts that come across unchanged. |
 | **Editors** | 22 | vi and emacs in several flavours, line and stream editors, and editors for binary and hex. |
-| **Text tools** | 113 | Search, sort, compare, reformat, split and spell-check. |
+| **Text tools** | 112 | Search, sort, compare, reformat, split and spell-check. |
 | **Files & directories** | 37 | Listing, copying, finding, renaming, and knowing what you have. |
 | **Developer tools** | 46 | Version control, tags, cross-reference, formatters, a debugger and benchmarks. |
 | **Compilers & build** | 39 | C compilers and their passes, assemblers, linkers, make and parser generators. |
@@ -101,7 +101,7 @@ is no help until you already know the name you want.
 | **Encoding & conversion** | 24 | Between text encodings, line endings, Macintosh formats, ciphers and hashes. |
 | **Communications** | 96 | Kermit in several builds, terminal sessions, and networking. |
 | **Graphics & images** | 202 | The netpbm toolkit, JPEG, a ray tracer, and things that draw. |
-| **Games** | 67 | Adventures, board and card games, arcade ports, dungeon crawls and puzzles. |
+| **Games** | 68 | Adventures, board and card games, arcade ports, dungeon crawls and puzzles. |
 | **Screen toys** | 9 | Animations and screen effects -- they draw on the terminal rather than print to it. Some run until you stop them. |
 | **Amusements** | 20 | Generators, simulators and diversions that are not quite games. |
 | **System & modules** | 131 | OS-9 module and process tools, devices, system state and scheduling. |

@@ -360,7 +360,7 @@ run     qt
 wait    10
 
 shot    qsort9
-for     qsort9 nsort shuffle uniq unip
+for     qsort9 nsort uniq unip
 cap     Three sorts on the same four numbers, and only one of them is a
 cap     numeric sort.  `qsort9' compares text, which is what it is for.
 cap     `nsort' answers exactly the same -- 111 before 22 before 3 --
@@ -418,10 +418,20 @@ run     head -n 4 /dd/SYS/motd | sepwords
 wait    6
 
 shot    shuffle
-cap     shuffle puts the lines of a file in a random order; nsort sorts
-cap     numerically where an ordinary sort would not.
-run     head -n 8 /dd/SYS/holidays | shuffle
-wait    6
+size    24 80
+cap     `shuffle' IS NOT A LINE SHUFFLER, whatever the name and this card
+cap     said until 2026-09-01.  It is a full-screen SWITCH PUZZLE: a row of
+cap     numbered switches, `LEVEL: 1', `Wich switch ?' and a move counter,
+cap     and flipping one flips its neighbours.  The card used to pipe eight
+cap     lines of SYS/holidays into it and capture `Unknown terminal type',
+cap     which is what a game says when TERM is not set -- and the caption
+cap     described a program that does not exist.  DOC/INDEX was corrected
+cap     the same day; so is the category, from Text tools to Games.
+run     export TERM=vt100
+wait    4
+run     shuffle
+wait    14
+quit    q
 
 shot    sort
 cap     sort and uniq counting the commonest words in the disk's own
