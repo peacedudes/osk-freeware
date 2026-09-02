@@ -319,11 +319,28 @@ program:
   `diff`'s OUTPUT: `diff f1 f2 ! ediff` prints "-------- 1 line changed at 3
   from: ... to: ...".
 
-All three are fixed and asserted in `tools/datatests/encoding.cases`. **The
-other 20 flagged entries have not been read yet** — that is the next batch, and
-it is small enough to do by hand. After that, the same trick has nothing left
-to say: the 274 programs with no `Function:` line still need running one at a
-time.
+All three are fixed and asserted in `tools/datatests/encoding.cases`.
+
+**THE OTHER FLAGGED ENTRIES HAVE NOW BEEN READ (2026-09-01) and the trick is
+spent.** Re-run over the 65 programs whose capture carries a `Function:`
+line, 22 flag and NINETEEN ARE FINE — synonyms (`bcheck`: "check sourcefile
+for correct bracketcount" against "count brackets in a source file"),
+entries that describe a program's PLACE rather than its job (`diff_1.1`,
+`m4_0.5`, `sed_1.06` are all "another build of"), and four artefacts where
+the parser matched a name in the star grid rather than an entry.
+
+Three were real and are corrected:
+
+- `editor` "GSHELL front-end for the editor" — it is a front end for
+  `umacs' SPECIFICALLY; its own line says "a menue driven umacs shell".
+- `fstat` "Report a file's status and attributes" — it displays the RBF
+  FILE DESCRIPTOR sector, which is not the attribute bits `attr` shows.
+- `fc` "split a big file in two" — the cut is at exactly 350,000 BYTES,
+  not at the halfway point.
+
+**There is nothing more this comparison can find.** The 274 programs with no
+`Function:` line still need running one at a time, and that is what the
+per-program pass has been doing.
 
 ### 5. Housekeeping
 
