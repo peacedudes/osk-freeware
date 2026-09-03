@@ -15,12 +15,12 @@ number typed here -- and `osk-freeware.dd` current.
 
 | | 2026-08-31 evening | now |
 |---|---|---|
-| `datatest` cases | 423 | **697**, 3 deliberate failures |
-| `datatest` families | 24 | **54** |
-| `tools/drives` sheets | 41 | **98** |
-| `check_disk.py` checks | 17 | **20**, and **19 provably fail on demand** |
-| Star grid (programs needing `cio`) | 354 | **349** |
-| Gallery cards flagged as help- or error-only | 22 | **0 of 409** |
+| `datatest` cases | 423 | **706**, 3 deliberate failures |
+| `datatest` families | 24 | **57** |
+| `tools/drives` sheets | 41 | **76** |
+| `check_disk.py` checks | 17 | **21**, and **19 provably fail on demand** |
+| Star grid (programs needing `cio`) | 354 | **347** |
+| Gallery cards flagged as help- or error-only | 22 | **0 of 408** |
 | Cards excepted BY NAME in `audit_cards.py` | 1 | **7**, each with a measured reason |
 | Programs with NEITHER a test nor a card | 42 | **1** (`cron`, a daemon) |
 | **Programs under no test at all** | 209 | **46** |
@@ -127,6 +127,64 @@ wrong key and never matched one, so every program credited on a shared card
 counted as uncarded. The 421/97/42 sequence was that bug shrinking, not the
 work. Fixed 2026-09-01; `carded()` now means "a card runs it by name", as
 `gen_screens` already did. **The backlog to work from is `--no-test`: 209 then, 48 now.**
+
+### 2026-09-02, later: rdoggett spot-checked the catalogue and it did not go well
+
+**Read this before writing another entry or caption.** He opened `loglist`,
+`cb`, `splman`, `forth` and the A-Z page and found something wrong with each.
+They were five instances of four classes, and the classes are what matter:
+
+1. **A card whose output does not show the job.** `cb`, the C beautifier, was
+   fed eighteen lines of a comment block -- so its output was identical to
+   its input and the card showed nothing happening. Feed a program input that
+   makes its work visible. The Forth card is the model he named as good:
+   `: squares 10 1 do i dup * . loop cr ;` then `squares`, and you see
+   `1 4 9 16 25 36 49 64 81`. Small, concrete, copyable.
+
+2. **Describing a program by what OUR emulator lacks.** `splman` said "Silent
+   here -- there is no printer device under os9exec". The reader may be on
+   real hardware with a printer on `/t1`. **Say what the program needs, not
+   what we happen to be missing.** 26 mentions of os9exec in `DOC/INDEX` are
+   now 10, and those ten are where the emulator genuinely is the subject.
+
+3. **Scaffolding left in the reader's face.** `DOC/ORIGINS` said "binary
+   byte-identical" on 53 of 900 lines -- a verification note that means
+   nothing to a reader and implies something untrue about the other 880.
+   Captions carried 151 sentences of our own coverage bookkeeping ("All four
+   are asked for; two were until 2026-08-30"). Entries argued with earlier
+   versions of themselves in capitals: *"A LOGIN LOGGER, not just a
+   listing"* -- shouting a correction at a mistake only a previous session
+   had made. All swept.
+
+4. **A shared card shown as though it were the program's own.** `loglist`'s
+   page ran straight on into `every -?` and a caption about four other
+   programs. **539 of 932 pages are in that position** and every one now says
+   which card it is looking at.
+
+**Two programs were fixed by looking in an archive we already had**, which is
+now a tool: `tools/archive_gaps.py`. `forth` is TILE Forth and its whole
+Forth-83 library, twenty-two test programs, C source and sixteen manuals were
+in EFFO pd7.lzh beside the binary somebody extracted -- the catalogue was
+telling readers to go and fetch the package's data files themselves. `lua`
+runs, given a `csl` of the edition it was built against; its eight example
+scripts were in its own zip. The tool also found `xydown` shipping ONE of its
+six source files, and `setterm`'s `/dd/sys/setterm` -- listed as absent in
+`DOC/DEPENDS` since the day DEPENDS existed, four files from the binary.
+
+**`loglist` and `easter` were dropped at his word.** Removing a program means
+the binary, `DOC/INDEX`'s entry AND its name in the star grid (re-flow the
+grid, do not patch one line -- `tools/check_the_checks.py` now reads the
+count rather than hardcoding it), `DOC/ORIGINS`, `DOC/USAGE`,
+`tools/categories.psv`, `tools/howto.psv`, any case, any card, and
+`README-CIO`'s starred count.
+
+**TWICE I BROKE PROSE WITH A REGEX AND HAD TO REVERT.** A sweep over
+`DOC/INDEX` flattened the file's two-space sentence style across 29 entries
+and mangled a header sentence; the same shape in the captions glued `the
+.web` into `the.web`. **Entries and captions are WRAPPED PROSE.** Unwrap the
+whole entry, edit, re-wrap -- and never `re.sub(r"\s+([.;,])", ...)`, which
+eats the space before `.web`, `.pk`, `.tfm`. When there are fewer than about
+twenty, do them by hand.
 
 ### 2026-09-02: an assertion about the EMULATOR is an assertion about a moving target
 
@@ -297,6 +355,25 @@ on every line of a file. `dotilde` is the mailer's tilde-escape handler. Each
 was found the same way: run the program and read what it says.
 
 ## What to do next -- start here, no deliberation needed
+
+**FIRST, if you do nothing else: keep spot-checking the catalogue the way
+rdoggett did.** Open a program's page at random and ask whether a stranger
+gets something useful. That found more real defects in an hour than the
+coverage metrics found in a day, and the four classes are listed above.
+`tools/archive_gaps.py` is the one that pays best mechanically -- it asks
+what came in an archive that we never took out, and it found four things
+in its first run.
+
+Known and not yet done:
+
+- **17 captions still carry a date** inside a substantive sentence, so they
+  need hand editing, not a regex. `grep -h "^cap " tools/screenshots/*.sheet
+  | grep -E "20[0-9][0-9]-"`.
+- **`cowen_tools.lzh` holds a program we never took** -- `hex`, with source.
+  Adding a program is rdoggett's call, not yours.
+- **`philmail.lzh` and `uucp.lzh` are partly extracted** -- 15 and 13 source
+  members absent. The programs work; this is completeness, not repair.
+
 
 **The next batch is Communications/Mail (12) and System & modules/Utilities
 (11).** Nine of those twelve mail programs are ALREADY DRIVEN by
