@@ -130,6 +130,11 @@ def typed_here(line, runs):
     for r in runs:
         if line == r or (len(line) >= 60 and r.startswith(line)):
             return r
+        # bash 1.12 scrolls a line longer than the window sideways and
+        # marks it with a leading `<': the echo is then the TAIL of what
+        # was typed.
+        if line.startswith("<") and len(line) >= 40 and r.endswith(line[1:]):
+            return r
     return None
 
 
