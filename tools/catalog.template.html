@@ -3,210 +3,200 @@
   :root{
     --paper:#F4F5F3; --card:#FFF; --ink:#191D21; --dim:#5A646B; --faint:#8A949B;
     --rule:#DDE1DE; --hair:#EBEEEB; --accent:#B26A00; --soft:#F7E8D2;
-    --warn:#8C2F1E; --ok:#2E6A4F;
-    --shadow:0 1px 2px rgba(20,25,30,.05),0 12px 28px -20px rgba(20,25,30,.45);
+    --warn:#8C2F1E; --ok:#2E6A4F; --screen:#0E1113; --phosphor:#CFE3CF;
     --mono:ui-monospace,SFMono-Regular,"SF Mono",Menlo,Consolas,monospace;
     --sans:system-ui,-apple-system,"Segoe UI",Roboto,sans-serif;
     --serif:ui-serif,Charter,"Iowan Old Style",Georgia,serif;
   }
-  @media (prefers-color-scheme:dark){:root{
+  @media (prefers-color-scheme:dark){:root:not([data-theme="light"]){
     --paper:#131619; --card:#1A1E22; --ink:#E3E7EA; --dim:#98A4AC; --faint:#6B777E;
     --rule:#282E34; --hair:#20252A; --accent:#F0A93C; --soft:#372B16;
-    --warn:#E08064; --ok:#6FBF97;
-    --shadow:0 1px 2px rgba(0,0,0,.4),0 12px 30px -20px #000;}}
+    --warn:#E08064; --ok:#6FBF97;}}
   :root[data-theme="dark"]{
     --paper:#131619; --card:#1A1E22; --ink:#E3E7EA; --dim:#98A4AC; --faint:#6B777E;
     --rule:#282E34; --hair:#20252A; --accent:#F0A93C; --soft:#372B16;
-    --warn:#E08064; --ok:#6FBF97;
-    --shadow:0 1px 2px rgba(0,0,0,.4),0 12px 30px -20px #000;}
-  :root[data-theme="light"]{
-    --paper:#F4F5F3; --card:#FFF; --ink:#191D21; --dim:#5A646B; --faint:#8A949B;
-    --rule:#DDE1DE; --hair:#EBEEEB; --accent:#B26A00; --soft:#F7E8D2;
-    --warn:#8C2F1E; --ok:#2E6A4F;
-    --shadow:0 1px 2px rgba(20,25,30,.05),0 12px 28px -20px rgba(20,25,30,.45);}
+    --warn:#E08064; --ok:#6FBF97;}
 
   *{box-sizing:border-box}
+  html,body{height:100%}
   body{margin:0;background:var(--paper);color:var(--ink);font-family:var(--sans);
-       line-height:1.5;-webkit-font-smoothing:antialiased}
-  .wrap{max-width:1180px;margin:0 auto;padding:0 22px}
-  header{padding:46px 0 22px}
-  .eyebrow{font-family:var(--mono);font-size:11px;letter-spacing:.15em;
-           text-transform:uppercase;color:var(--dim)}
-  h1{font-family:var(--serif);font-size:clamp(28px,3.6vw,42px);font-weight:600;
-     margin:12px 0 0;line-height:1.09;letter-spacing:-.015em;max-width:22ch;text-wrap:balance}
-  .lede{max-width:62ch;color:var(--dim);font-size:16.5px;margin:12px 0 0}
-  .lede b{color:var(--ink);font-weight:600}
+       line-height:1.45;-webkit-font-smoothing:antialiased;overflow:hidden}
+  :focus-visible{outline:2px solid var(--accent);outline-offset:1px}
 
-  .bar{position:sticky;top:0;z-index:30;background:var(--paper);padding:12px 0;
-       border-bottom:1px solid var(--rule)}
-  .row{display:flex;flex-wrap:wrap;gap:9px;align-items:center}
-  input[type=search]{flex:1 1 250px;min-width:0;font:inherit;font-size:15px;padding:9px 12px;
+  /* THE PAGE IS THREE COLUMNS: what kinds of thing there are, the programs
+     of one kind, and one program.  Choosing in a column fills the next one
+     and never covers the one you chose in -- the reader keeps their place. */
+  .app{display:grid;grid-template-rows:auto 1fr;height:100%}
+  .top{display:grid;grid-template-columns:auto 1fr auto;gap:14px 22px;align-items:center;
+       padding:12px 20px 10px;border-bottom:1px solid var(--rule);background:var(--paper)}
+  .top h1{font-family:var(--serif);font-size:19px;font-weight:600;margin:0;letter-spacing:-.01em;
+          white-space:nowrap}
+  .top h1 small{display:block;font-family:var(--sans);font-size:12px;font-weight:400;
+                color:var(--dim);letter-spacing:0}
+  .top input[type=search]{width:100%;max-width:520px;font:inherit;font-size:15px;padding:8px 12px;
     border:1px solid var(--rule);border-radius:8px;background:var(--card);color:var(--ink)}
-  :focus-visible{outline:2px solid var(--accent);outline-offset:2px}
-  .chip{font:inherit;font-size:12.5px;padding:7px 12px;border-radius:999px;cursor:pointer;
+  .only{display:flex;gap:6px;flex-wrap:wrap;justify-content:flex-end}
+  .chip{font:inherit;font-size:12.5px;padding:6px 11px;border-radius:999px;cursor:pointer;
     border:1px solid var(--rule);background:var(--card);color:var(--dim);white-space:nowrap}
   .chip:hover{color:var(--ink)}
   .chip[aria-pressed="true"]{background:var(--soft);border-color:var(--accent);color:var(--ink)}
-  .toc{display:flex;flex-wrap:wrap;gap:6px;padding:14px 0 2px;
-       border-bottom:1px solid var(--hair);margin-bottom:4px}
-  .cats.az{grid-template-columns:1fr}
-  .toc.az{gap:2px}
-  .toc.az a{min-width:2.1em;justify-content:center;font-family:var(--mono);
-       font-size:12px;padding:5px 7px;border-radius:7px}
-  .toc.az a:hover{background:var(--soft)}
-  .toc.az a .n{font-size:9.5px}
-  .toc.az .none{min-width:2.1em;text-align:center;font-family:var(--mono);
-       font-size:12px;padding:5px 7px;color:var(--faint);opacity:.45}
-  .toc a{display:inline-flex;gap:6px;align-items:baseline;text-decoration:none;
-         font-size:12.5px;padding:5px 10px;border-radius:999px;
-         border:1px solid var(--rule);background:var(--card);color:var(--dim)}
-  .toc a:hover{color:var(--ink);border-color:var(--accent)}
-  .toc a .n{font-family:var(--mono);font-size:11px;color:var(--faint);
-            font-variant-numeric:tabular-nums}
-  .toc.hide{display:none}
-  .barlabel{font-family:var(--mono);font-size:11px;letter-spacing:.12em;
-            text-transform:uppercase;color:var(--faint)}
-  .seg{display:inline-flex;gap:0}
-  .seg .chip{border-radius:0}
-  .seg .chip:first-child{border-radius:999px 0 0 999px}
-  .seg .chip:last-child{border-radius:0 999px 999px 0;margin-left:-1px}
-  .tally{font-family:var(--mono);font-size:12px;color:var(--faint);margin-left:auto;
-         font-variant-numeric:tabular-nums}
 
-  main{display:grid;grid-template-columns:1fr;gap:16px;padding:14px 0 70px}
-  .cats{display:grid;grid-template-columns:repeat(auto-fill,minmax(320px,1fr));gap:14px;
-        align-items:start}
-  details.cat{background:var(--card);border:1px solid var(--rule);border-radius:11px;
-    box-shadow:var(--shadow);overflow:hidden}
-  details.cat>summary{list-style:none;cursor:pointer;padding:14px 16px}
-  details.cat>summary::-webkit-details-marker{display:none}
-  .ct{font-family:var(--serif);font-size:18px;font-weight:600;display:flex;
-      align-items:baseline;gap:8px}
-  .ct .n{font-family:var(--mono);font-size:11.5px;color:var(--faint);font-weight:400;
-         font-variant-numeric:tabular-nums}
-  .ct .cv{margin-left:auto;color:var(--faint);font-size:12px;transition:transform .12s}
-  details[open] .ct .cv{transform:rotate(90deg)}
-  .blurb{margin:5px 0 0;font-size:13px;color:var(--dim);max-width:48ch}
-  details.sub{border-top:1px solid var(--hair)}
-  details.sub>summary{list-style:none;cursor:pointer}
-  details.sub>summary::-webkit-details-marker{display:none}
-  details.sub>summary .subh{display:flex;align-items:center;gap:6px;border-top:0}
-  details.sub>summary:hover .subh{color:var(--dim)}
-  details.sub .cv{color:var(--faint);transition:transform .12s;display:inline-block}
-  details.sub[open]>summary .cv{transform:rotate(90deg)}
-  .subh{font-family:var(--mono);font-size:10.5px;letter-spacing:.09em;text-transform:uppercase;
-        color:var(--faint);padding:11px 16px 3px;border-top:1px solid var(--hair)}
-  ul{list-style:none;margin:0;padding:0 0 8px}
-  li.p{display:grid;grid-template-columns:minmax(92px,128px) 1fr;gap:10px;padding:4px 16px;
-     align-items:baseline;cursor:pointer}
-  li.p:hover,li.p:focus-visible{background:var(--soft)}
+  .cols{display:grid;grid-template-columns:230px minmax(300px,1fr) minmax(380px,1.5fr);
+        min-height:0;height:100%}
+  .col{min-height:0;overflow-y:auto;overscroll-behavior:contain;border-right:1px solid var(--rule)}
+  .col:last-child{border-right:0}
+  .col > h2{font-family:var(--mono);font-size:11px;font-weight:500;letter-spacing:.08em;
+          text-transform:uppercase;color:var(--faint);margin:0;padding:14px 16px 6px}
+
+  /* column one: categories, then the alphabet */
+  .kinds{list-style:none;margin:0;padding:0 8px 8px}
+  .kinds li{display:flex;align-items:baseline;gap:8px;padding:6px 10px;border-radius:7px;
+            cursor:pointer;font-size:14px}
+  .kinds li .n{margin-left:auto;font-family:var(--mono);font-size:11px;color:var(--faint);
+               font-variant-numeric:tabular-nums}
+  .kinds li:hover{background:var(--hair)}
+  .kinds li[aria-current="true"]{background:var(--soft);color:var(--ink)}
+  .kinds li[aria-current="true"] .n{color:var(--accent)}
+  .abc{display:grid;grid-template-columns:repeat(6,1fr);gap:3px;padding:0 12px 20px}
+  .abc button{font:500 12px/1 var(--mono);padding:7px 0;border:1px solid transparent;
+              border-radius:6px;background:none;color:var(--dim);cursor:pointer}
+  .abc button:hover{border-color:var(--rule);color:var(--ink)}
+  .abc button[aria-current="true"]{background:var(--soft);border-color:var(--accent);color:var(--ink)}
+  .abc button:disabled{color:var(--faint);opacity:.4;cursor:default}
+
+  /* column two: the programs of one kind */
+  .lede{padding:0 18px 12px;font-size:13.5px;color:var(--dim);max-width:52ch}
+  .subh{font-family:var(--mono);font-size:10.5px;letter-spacing:.08em;text-transform:uppercase;
+        color:var(--faint);padding:14px 18px 4px;border-top:1px solid var(--hair)}
+  .subh:first-of-type{border-top:0}
+  .progs{list-style:none;margin:0;padding:0 8px 8px}
+  li.p{display:grid;grid-template-columns:auto minmax(88px,120px) 1fr;gap:9px;padding:5px 10px;
+       align-items:baseline;cursor:pointer;border-radius:7px}
+  li.p:hover{background:var(--hair)}
+  li.p[aria-current="true"]{background:var(--soft)}
   .nm{font-family:var(--mono);font-size:13px;font-weight:600;overflow-wrap:anywhere}
   .nm .st{color:var(--accent)}
   .ds{font-size:13px;color:var(--dim);overflow-wrap:anywhere}
+  .ds .where{color:var(--faint)}
+  li.p .pick{width:18px;height:18px;align-self:start;margin-top:2px;border:1px solid var(--rule);border-radius:4px;
+    background:var(--card);color:var(--faint);font:600 12px/16px var(--mono);text-align:center;
+    cursor:pointer;padding:0}
+  li.p .pick:hover{border-color:var(--accent);color:var(--accent)}
+  li.p.picked .pick{background:var(--accent);border-color:var(--accent);color:#fff}
+  .overview{padding:4px 8px 12px}
+  .overview li{display:block;padding:9px 10px;border-radius:7px;cursor:pointer}
+  .overview li:hover{background:var(--hair)}
+  .overview .ct{font-family:var(--serif);font-size:16px;font-weight:600}
+  .overview .ct .n{font-family:var(--mono);font-size:11px;color:var(--faint);font-weight:400;
+                   margin-left:6px}
+  .overview .blurb{font-size:12.5px;color:var(--dim);margin:2px 0 0}
+  .empty{padding:40px 18px;color:var(--dim);font-size:14px;max-width:48ch}
 
-  /* detail panel */
-  .sheet{position:fixed;inset:0;z-index:60;background:rgba(10,14,18,.42);
-         display:none;align-items:flex-end;justify-content:center}
-  .sheet[open],.sheet.on{display:flex}
-  .panel{background:var(--card);width:min(660px,100%);max-height:86vh;overflow-y:auto;
-    border-radius:14px 14px 0 0;box-shadow:0 -8px 40px -12px rgba(0,0,0,.5);padding:22px 24px 30px}
-  @media (min-width:700px){.sheet{align-items:center}.panel{border-radius:14px}}
-  .pn{font-family:var(--mono);font-size:21px;font-weight:600;margin:0}
-  .pd{color:var(--dim);margin:5px 0 0;font-size:15px}
-  .flags{display:flex;flex-wrap:wrap;gap:6px;margin:13px 0 0}
+  /* column three: one program */
+  .panel{padding:18px 22px 40px}
+  .pn{font-family:var(--mono);font-size:22px;font-weight:600;margin:0}
+  .pd{color:var(--dim);margin:5px 0 0;font-size:15px;max-width:60ch}
+  .flags{display:flex;flex-wrap:wrap;gap:6px;margin:12px 0 0}
   .flag{font-size:11.5px;padding:3px 9px;border-radius:999px;border:1px solid var(--rule);
         color:var(--dim)}
   .flag.cio{border-color:var(--accent);color:var(--accent)}
   .flag.mil{border-color:var(--warn);color:var(--warn)}
   .flag.ok{border-color:var(--ok);color:var(--ok)}
-  dl{display:grid;grid-template-columns:130px 1fr;gap:7px 14px;margin:18px 0 0;font-size:13.5px}
+  dl{display:grid;grid-template-columns:118px 1fr;gap:8px 14px;margin:18px 0 0;font-size:13.5px}
   dt{color:var(--faint);font-family:var(--mono);font-size:11px;letter-spacing:.06em;
      text-transform:uppercase;padding-top:2px}
-  dd{margin:0;color:var(--ink);overflow-wrap:anywhere}
+  dd{margin:0;color:var(--ink);overflow-wrap:anywhere;min-width:0}
   dd code{font-family:var(--mono);font-size:12.5px;color:var(--dim)}
   dd .miss{color:var(--warn)}
   dd pre.usage{font-family:var(--mono);font-size:12px;line-height:1.45;margin:0;
     white-space:pre-wrap;overflow-wrap:anywhere;background:var(--paper);
     border:1px solid var(--rule);border-radius:6px;padding:9px 11px;color:var(--ink)}
-  dd pre.shot{font-family:var(--mono);font-size:9.5px;line-height:1.15;margin:0;
-    white-space:pre;overflow-x:auto;background:#0E1113;color:#CFE3CF;
-    border-radius:6px;padding:9px 11px}
-  dd .shotfrom{margin:0 0 .5rem;font-size:12px;line-height:1.4;color:var(--dim);
-     padding:6px 9px;border-left:2px solid var(--accent);background:var(--soft);
-     border-radius:0 6px 6px 0}
-  dd .shotfrom b{color:var(--ink);font-family:var(--mono);font-weight:600}
-  dd .shotcap{margin:.4rem 0 0;color:var(--dim);font-size:12px;line-height:1.4}
-  dd .shotcap a{color:var(--accent);text-decoration:none}
+  dd pre.shot{font-family:var(--mono);font-size:11px;line-height:1.2;margin:0;
+    white-space:pre;overflow-x:auto;background:var(--screen);color:var(--phosphor);
+    border-radius:6px;padding:10px 12px}
+  dd .shotcap{margin:.5rem 0 0;color:var(--dim);font-size:12.5px;line-height:1.45;max-width:64ch}
+  dd .howto{font-size:13px;line-height:1.45;max-width:64ch}
   dd.advice{color:var(--dim);font-size:12.5px;line-height:1.45}
   dd .okk{color:var(--ok);font-size:11.5px}
   dd a.kin{color:var(--accent);text-decoration:none}
   dd a.kin:hover{text-decoration:underline}
-  .close{position:absolute;right:0;top:0}
-  .xbtn{float:right;font:inherit;font-size:20px;line-height:1;background:none;border:0;
-        color:var(--faint);cursor:pointer;padding:0 2px}
-  .xbtn:hover{color:var(--ink)}
-  .empty{padding:52px 0;text-align:center;color:var(--dim)}
-  footer{border-top:1px solid var(--rule);padding:20px 0 56px;color:var(--faint);font-size:12.5px}
-  footer code{font-family:var(--mono);color:var(--dim)}
-  /* The chooser. PLAN-keep-drop asked for this: choosing happens somewhere
-     pleasant, and the OS-9 side stays a plain command you paste. What it
-     builds is what DOC/README-KEEP documents. */
-  li.p .pick{margin-left:10px;width:20px;height:20px;flex:0 0 20px;
-    border:1px solid var(--rule);border-radius:5px;background:var(--paper);
-    color:var(--faint);font:600 13px/18px var(--mono);text-align:center;
-    cursor:pointer;padding:0;transition:.12s;order:9}
-  li.p .pick:hover{border-color:var(--accent);color:var(--accent)}
-  li.p.picked .pick{background:var(--accent);border-color:var(--accent);color:#fff}
+  .back{display:none;font:inherit;font-size:13px;background:none;border:0;color:var(--accent);
+        cursor:pointer;padding:0;margin:0 0 10px}
+  .about{padding:24px 18px;color:var(--dim);font-size:13px;max-width:52ch;line-height:1.5}
+  .about code{font-family:var(--mono);color:var(--ink)}
+  .about p{margin:0 0 12px}
+
+  /* the tray: programs ticked for `keep' */
   .tray{position:fixed;left:0;right:0;bottom:0;z-index:60;background:var(--card);
     border-top:1px solid var(--rule);box-shadow:0 -6px 24px rgba(0,0,0,.10);
     transform:translateY(110%);transition:transform .18s ease}
   .tray.on{transform:none}
-  .tray .row2{display:flex;gap:12px;align-items:center;padding:12px 0 14px;
-    flex-wrap:wrap}
+  .tray .row2{display:flex;gap:12px;align-items:center;padding:12px 20px 14px;flex-wrap:wrap}
   .tray code{flex:1 1 320px;font-family:var(--mono);font-size:13px;
     background:var(--paper);border:1px solid var(--rule);border-radius:6px;
     padding:9px 11px;color:var(--ink);overflow-x:auto;white-space:nowrap}
   .tray .meta{color:var(--faint);font-size:12px;font-family:var(--mono)}
+
+  /* TWO COLUMNS on a tablet held upright: the kinds become a strip across
+     the top of the program column, and the program column and the panel
+     stand side by side. */
+  @media (max-width:1100px){
+    .cols{grid-template-columns:minmax(280px,1fr) minmax(340px,1.4fr)}
+    .col.kinds-col{grid-column:1;grid-row:1;border-right:0;border-bottom:1px solid var(--rule);
+                   overflow-x:auto;overflow-y:hidden;max-height:none;height:auto}
+    .cols{grid-template-rows:auto 1fr}
+    .col.progs-col{grid-column:1;grid-row:2}
+    .col.panel-col{grid-column:2;grid-row:1 / span 2}
+    .kinds-col h2{display:none}
+    .kinds{display:flex;gap:4px;padding:8px 10px;white-space:nowrap}
+    .kinds li{padding:5px 9px;font-size:13px}
+    .abc{display:flex;gap:2px;padding:0 10px 8px;overflow-x:auto}
+    .abc button{padding:5px 6px}
+    .top{grid-template-columns:auto 1fr;gap:8px 16px}
+    .only{grid-column:1 / -1;justify-content:flex-start}
+  }
+  /* ONE COLUMN on a phone: the list, then the panel over it with a way back. */
+  @media (max-width:700px){
+    .cols{grid-template-columns:1fr;grid-template-rows:auto 1fr}
+    .col.panel-col{display:none;grid-column:1;grid-row:1 / span 2}
+    .app[data-stage="panel"] .col.panel-col{display:block}
+    .app[data-stage="panel"] .col.progs-col,.app[data-stage="panel"] .col.kinds-col{display:none}
+    .back{display:inline-block}
+    .top h1 small{display:none}
+    .panel{padding:14px 16px 40px}
+    dl{grid-template-columns:1fr;gap:2px 0}
+    dt{padding-top:10px}
+  }
   @media (prefers-reduced-motion:reduce){*{transition:none!important}}
 </style>
 
-<header class="wrap">
-  <div class="eyebrow">OS-9/68000 &middot; one disk image &middot; 1983&ndash;1998</div>
-  <h1>__TOTAL__ programs on one OS-9/68K disk image.</h1>
-  <p class="lede">Community software for OS-9/68000, 1983&ndash;1998, catalogued.
-    Two ways in: <b>by category</b>, when you know the kind of thing you want, and
-    <b>A&ndash;Z</b>, when you know the name. Search matches names and descriptions.
-    Click any program for what it needs, where it came from, and how to run it.</p>
-</header>
+<div class="app" id="app" data-stage="list">
+  <header class="top">
+    <h1>OS-9/68000 freeware<small>__TOTAL__ programs on one disk image, 1983&ndash;1998</small></h1>
+    <input type="search" id="q" placeholder="Search names and descriptions"
+           aria-label="Search programs" autocomplete="off">
+    <div class="only" role="group" aria-label="Show only">
+      <button class="chip" id="f-nocio" aria-pressed="false">Runs without cio</button>
+      <button class="chip" id="f-src" aria-pressed="false">Source on disk</button>
+      <button class="chip" id="f-doc" aria-pressed="false">Has docs</button>
+      <button class="chip" id="f-shot" aria-pressed="false">Sample output</button>
+    </div>
+  </header>
 
-<div class="bar"><div class="wrap row">
-  <input type="search" id="q" placeholder="Try: shell, chess, compress, screen&hellip;"
-         aria-label="Search" autocomplete="off">
-  <span class="barlabel">View</span>
-  <span class="seg" role="group" aria-label="View">
-    <button class="chip" id="f-cat" aria-pressed="true">By category</button>
-    <button class="chip" id="f-az" aria-pressed="false">A&ndash;Z</button>
-  </span>
-  <span class="barlabel">Only</span>
-  <button class="chip" id="f-nocio" aria-pressed="false">Runs without cio</button>
-  <button class="chip" id="f-src" aria-pressed="false">Source on disk</button>
-  <button class="chip" id="f-doc" aria-pressed="false">Has docs</button>
-  <button class="chip" id="f-shot" aria-pressed="false">Sample output</button>
-  <button class="chip" id="f-open" aria-pressed="false">Expand all</button>
-  <span class="tally" id="tally"></span>
-</div></div>
-
-<main class="wrap">
-  <nav class="toc" id="toc" aria-label="Categories"></nav>
-  <div class="cats" id="cats"></div>
-</main>
-
-<div class="sheet" id="sheet" role="dialog" aria-modal="true" aria-labelledby="pn">
-  <div class="panel" id="panel"></div>
+  <div class="cols">
+    <nav class="col kinds-col" aria-label="Kinds of program">
+      <h2>Kinds</h2>
+      <ul class="kinds" id="kinds"></ul>
+      <h2>By name</h2>
+      <div class="abc" id="abc"></div>
+    </nav>
+    <section class="col progs-col" id="progs-col" aria-label="Programs"></section>
+    <section class="col panel-col" id="panel-col" aria-label="Program"></section>
+  </div>
 </div>
 
 <div class="tray" id="tray" role="region" aria-label="Programs picked to keep">
-  <div class="wrap row2">
+  <div class="row2">
     <code id="traycmd">keep</code>
     <span class="meta" id="traysize"></span>
     <button class="chip" id="traycopy">Copy</button>
@@ -214,175 +204,111 @@
   </div>
 </div>
 
-<footer class="wrap">
-  Tick programs with <b>+</b> (or the space bar) to build a <code>keep</code>
-  command you can paste at an OS-9 shell &mdash; see <code>DOC/README-KEEP</code>.
-  <br><br>
-  <b>Sample output</b> on a program&rsquo;s card was captured from that
-  program running on the disk image &mdash; keystrokes into os9exec&rsquo;s
-  console, and the terminal stream rendered into the grid a vt100 would have
-  shown. Nothing is mocked up, and where a program failed, its failure is
-  what you see.
-  <br><br>
-  <span style="color:var(--accent)">&#9733;</span> needs Microware&rsquo;s <code>cio</code>
-  &mdash; see <code>DOC/README-CIO</code>. Built from <code>DOC/INDEX</code>,
-  <code>DOC/ORIGINS</code>, <code>DOC/DEPENDS</code>, the EFFO <code>info_</code> files
-  and the tree itself, so it cannot drift from what ships.
-</footer>
-
 <script src="screens.js"></script>
 
 <script>
 const DATA = __DATA__;
 const BLURB = __BLURB__;
 const ORDER = __ORDER__;
-const slug = s => String(s).toLowerCase().replace(/[^a-z0-9]+/g,"-").replace(/^-|-$/g,"");
 const esc = s => String(s==null?"":s).replace(/&/g,"&amp;").replace(/</g,"&lt;").replace(/>/g,"&gt;");
 const kb = n => n>=1024 ? Math.round(n/1024)+"K" : n+"B";
-const st = {q:"", nocio:false, src:false, doc:false, shot:false, open:false, az:false};
 // Screens captured from the running programs, keyed by program name.
 // docs/screens.js is generated by tools/gen_screens.py; if it is missing
 // the catalogue simply shows no pictures.
 const SHOTS = window.SCREENS || {};
+const BY = Object.fromEntries(DATA.map(p=>[p.name,p]));
 const picked = new Set();
-const BIG = 12;   // fold a subcategory longer than this
+// What the reader has chosen: a kind OR a letter, a query, and a program.
+const st = {q:"", cat:null, letter:null, sel:null, nocio:false, src:false, doc:false, shot:false};
 
 function ok(p){
   if(st.nocio && p.star) return false;
   if(st.src && !p.hassrc) return false;
   if(st.doc && !p.docs) return false;
   if(st.shot && !SHOTS[p.name]) return false;
-  if(!st.q) return true;
-  const q=st.q.toLowerCase();
+  return true;
+}
+function matches(p, q){
   return p.name.toLowerCase().includes(q) || (p.desc||"").toLowerCase().includes(q)
       || p.cat.toLowerCase().includes(q) || p.sub.toLowerCase().includes(q);
 }
-
 // How well `p' answers the query: 3 exact name, 2 name starts with it,
 // 1 name contains it, 0 only the prose does.  Typing `ls' should put the
 // program `ls' first, not thirty descriptions that happen to contain those
 // two letters.
 function rank(p, q){
-  if(!q) return 0;
   const n = p.name.toLowerCase();
-  if(n === q) return 3;
-  if(n.startsWith(q)) return 2;
-  if(n.includes(q)) return 1;
-  return 0;
+  return n === q ? 3 : n.startsWith(q) ? 2 : n.includes(q) ? 1 : 0;
 }
 
-function byRank(q){
-  return (a,b) => rank(b,q) - rank(a,q) || a.name.localeCompare(b.name);
+// The list gives each program one line: the first sentence of its entry.
+// The whole entry is on its page.
+function brief(d){
+  const m = /^(.*?)(\.\s|\s--\s|;\s|$)/.exec(d||"");
+  return m ? m[1] : d;
 }
-
-// One entry in a list, shared by the letter view and the search results.
-function row(p){
-  return `<li class="p${picked.has(p.name)?" picked":""}" tabindex="0" `+
-    `data-n="${esc(p.name)}">`+
+function row(p, where){
+  const on = picked.has(p.name);
+  return `<li class="p${on?" picked":""}" tabindex="0" data-n="${esc(p.name)}"`+
+    `${st.sel===p.name?' aria-current="true"':''}>`+
     `<button class="pick" data-pick="${esc(p.name)}" tabindex="-1" `+
-    `aria-label="pick ${esc(p.name)}">${picked.has(p.name)?"&#10003;":"+"}`+
-    `</button><span class="nm">`+
-    `${p.star?'<span class="st" title="needs cio">&#9733;</span>':''}${esc(p.name)}</span>`+
-    `<span class="ds">${esc(p.desc)} <span style="color:var(--faint)">&middot; `+
-    `${esc(p.cat)}</span></span></li>`;
+    `aria-label="pick ${esc(p.name)}">${on?"&#10003;":"+"}</button>`+
+    `<span class="nm">${p.star?'<span class="st" title="needs cio">&#9733;</span>':''}${esc(p.name)}</span>`+
+    `<span class="ds">${esc(brief(p.desc))}${where?` <span class="where">&middot; ${esc(where)}</span>`:""}</span></li>`;
 }
 
-function renderAZ(hits){
-  // One list, initial-letter headings, category shown alongside. The same
-  // order DOC/INDEX uses, for when you already know the name you want.
-  const by={};
-  for(const p of hits){ const k=p.name[0].toUpperCase(); (by[k] ||= []).push(p); }
-  const out=[];
-  // SEARCHING IS NOT BROWSING.  With a query the answer is a ranked list,
-  // not twenty-six letter cards to open one at a time: `chess' lives under
-  // C and G and `gnuchess' under G alone, and a reader who typed it wants
-  // both together, best first.
-  const q = st.q.toLowerCase();
+function renderKinds(){
+  const hits = DATA.filter(ok);
+  const count = {};
+  for(const p of hits) count[p.cat] = (count[p.cat]||0)+1;
+  document.getElementById("kinds").innerHTML = ORDER.filter(c=>count[c]).map(c=>
+    `<li data-cat="${esc(c)}" tabindex="0"${st.cat===c?' aria-current="true"':''}>`+
+    `${esc(c)}<span class="n">${count[c]}</span></li>`).join("");
+  const byl = {};
+  for(const p of hits) byl[p.name[0].toUpperCase()] = (byl[p.name[0].toUpperCase()]||0)+1;
+  const letters = "ABCDEFGHIJKLMNOPQRSTUVWXYZ".split("");
+  for(const k of Object.keys(byl)) if(!letters.includes(k)) letters.push(k);
+  document.getElementById("abc").innerHTML = letters.map(k =>
+    `<button data-letter="${k}"${byl[k]?"":" disabled"}${st.letter===k?' aria-current="true"':''}`+
+    ` title="${byl[k]||0} programs">${k}</button>`).join("");
+}
+
+function renderProgs(){
+  const col = document.getElementById("progs-col");
+  const hits = DATA.filter(ok);
+  const q = st.q.trim().toLowerCase();
   if(q){
-    const rows = hits.slice().sort(byRank(q));
-    return [`<details class="cat" open><summary><div class="ct">Matches`+
-      `<span class="n">${rows.length}</span></div></summary><ul>`+
-      rows.map(row).join("")+"</ul></details>"];
-  }
-
-  // COLLAPSED BY DEFAULT.  Every letter used to be `open', so choosing A-Z
-  // opened all 900 entries at once and finding a name meant scrolling past
-  // every other one.  The letter bar above jumps to a letter and opens it.
-  const open = st.open || st.q.length>0;
-  for(const k of Object.keys(by).sort()){
-    out.push(`<details class="cat" id="az-${k}"${open?" open":""}>`+
-      `<summary><div class="ct">${k}`+
-      `<span class="n">${by[k].length}</span>`+
-      `<span class="cv">&#9656;</span></div></summary><ul>`+
-      by[k].sort((a,b)=>a.name.localeCompare(b.name)).map(row).join("")+
-      "</ul></details>");
-  }
-  return out;
-}
-
-function render(){
-  const hits=DATA.filter(ok);
-  document.getElementById("tally").textContent =
-    hits.length===DATA.length ? DATA.length+" programs" : hits.length+" of "+DATA.length;
-  const toc=document.getElementById("toc");
-  if(st.az){
-    // The letter bar, in the place the category bar occupies otherwise.
-    const byl={};
-    for(const p of hits){ (byl[p.name[0].toUpperCase()] ||= []).push(p); }
-    const letters = "ABCDEFGHIJKLMNOPQRSTUVWXYZ".split("");
-    for(const k of Object.keys(byl)) if(!letters.includes(k)) letters.push(k);
-    toc.className="toc az";
-    document.getElementById("cats").className="cats az";
-    toc.innerHTML = letters.map(k => byl[k]
-        ? `<a href="#az-${k}">${k}<span class="n">${byl[k].length}</span></a>`
-        : `<span class="none">${k}</span>`).join("");
-    document.getElementById("cats").innerHTML =
-      renderAZ(hits).join("") || `<p class="empty">Nothing matches that.</p>`;
+    // SEARCHING IS NOT BROWSING: the answer is a ranked list, best first.
+    const rows = hits.filter(p=>matches(p,q)).sort((a,b)=>rank(b,q)-rank(a,q)||a.name.localeCompare(b.name));
+    col.innerHTML = `<h2>${rows.length} match${rows.length===1?"":"es"}</h2>`+
+      (rows.length ? `<ul class="progs">${rows.map(p=>row(p,p.cat)).join("")}</ul>`
+                   : `<p class="empty">Nothing matches that. Names, descriptions and kinds are searched.</p>`);
     return;
   }
-  toc.className="toc";
-  document.getElementById("cats").className="cats";
-  const by={};
-  for(const p of hits){ (by[p.cat] ||= {}); (by[p.cat][p.sub] ||= []).push(p); }
-  const open = st.open || st.q.length>0;
-  const out=[];
-  toc.innerHTML = ORDER.filter(c=>by[c]).map(c=>{
-    const n=Object.values(by[c]).reduce((a,b)=>a+b.length,0);
-    return `<a href="#cat-${slug(c)}">${esc(c)}<span class="n">${n}</span></a>`;
-  }).join("");
-  for(const cat of ORDER){
-    const subs=by[cat]; if(!subs) continue;
-    const total=Object.values(subs).reduce((a,b)=>a+b.length,0);
-    out.push(`<details class="cat" id="cat-${slug(cat)}"${open?" open":""}>`+
-      `<summary><div class="ct">${esc(cat)}`+
-      `<span class="n">${total}</span><span class="cv">&#9656;</span></div>`+
-      `<p class="blurb">${esc(BLURB[cat]||"")}</p></summary>`);
-    const names=Object.keys(subs).sort((a,b)=>a.localeCompare(b));
-    const single = names.length===1;
-    for(const s of names){
-      const rows = subs[s].sort((a,b)=>a.name.localeCompare(b.name));
-      const list = "<ul>"+rows.map(p=>
-        `<li class="p${picked.has(p.name)?" picked":""}" tabindex="0" `+
-        `data-n="${esc(p.name)}">`+
-        `<button class="pick" data-pick="${esc(p.name)}" tabindex="-1" `+
-        `aria-label="pick ${esc(p.name)}">${picked.has(p.name)?"&#10003;":"+"}`+
-        `</button><span class="nm">`+
-        `${p.star?'<span class="st" title="needs cio">&#9733;</span>':''}${esc(p.name)}</span>`+
-        `<span class="ds">${esc(p.desc)}</span></li>`).join("")+"</ul>";
-      // Long runs fold away. netpbm's 62 converters otherwise push every
-      // other category off the bottom of the page.
-      if(rows.length > BIG && !st.q){
-        out.push(`<details class="sub"><summary><span class="subh">${esc(s)} `+
-          `&middot; ${rows.length}<span class="cv">&#9656;</span></span></summary>${list}</details>`);
-      } else {
-        if(!single) out.push(`<div class="subh">${esc(s)} &middot; ${rows.length}</div>`);
-        out.push(list);
-      }
-    }
-    out.push("</details>");
+  if(st.letter){
+    const rows = hits.filter(p=>p.name[0].toUpperCase()===st.letter).sort((a,b)=>a.name.localeCompare(b.name));
+    col.innerHTML = `<h2>${st.letter} &middot; ${rows.length}</h2><ul class="progs">${rows.map(p=>row(p,p.cat)).join("")}</ul>`;
+    return;
   }
-  document.getElementById("cats").innerHTML = out.join("") ||
-    `<p class="empty">Nothing matches that.</p>`;
+  if(st.cat){
+    const subs = {};
+    for(const p of hits) if(p.cat===st.cat) (subs[p.sub] ||= []).push(p);
+    const names = Object.keys(subs).sort((a,b)=>a.localeCompare(b));
+    const total = names.reduce((n,s)=>n+subs[s].length,0);
+    let out = `<h2>${esc(st.cat)} &middot; ${total}</h2><p class="lede">${esc(BLURB[st.cat]||"")}</p>`;
+    for(const s of names){
+      if(names.length>1) out += `<div class="subh">${esc(s)} &middot; ${subs[s].length}</div>`;
+      out += `<ul class="progs">${subs[s].sort((a,b)=>a.name.localeCompare(b.name)).map(p=>row(p)).join("")}</ul>`;
+    }
+    col.innerHTML = out;
+    return;
+  }
+  // Nothing chosen yet: every kind, with what it holds, as the way in.
+  const count = {};
+  for(const p of hits) count[p.cat] = (count[p.cat]||0)+1;
+  col.innerHTML = `<h2>${hits.length} programs</h2><ul class="overview kinds">`+
+    ORDER.filter(c=>count[c]).map(c=>`<li data-cat="${esc(c)}" tabindex="0"><div class="ct">${esc(c)}`+
+    `<span class="n">${count[c]}</span></div><p class="blurb">${esc(BLURB[c]||"")}</p></li>`).join("")+"</ul>";
 }
 
 function advice(p, gone){
@@ -390,20 +316,37 @@ function advice(p, gone){
   // and "not on this disk" on its own leaves the reader stuck.
   const paths = gone.map(g=>g.path.toLowerCase());
   if(paths.some(x=>x.endsWith("/sys/termcap")))
-    return "termcap is on this disk at <code>SYS/termcap</code> — arrange the disk as "+
+    return "termcap is on this disk at <code>SYS/termcap</code>; arrange the disk as "+
            "<code>/h0</code> as well as <code>/dd</code> and it resolves. "+
            "<code>DOC/README-RUNNING</code> shows all three arrangements.";
   if(paths.some(x=>x.includes("/etc/")||x.includes("/lib/")))
     return "This wants a support library the collection does not carry. You would have "+
-           "to fetch the package's own data files and put them where it looks — the "+
+           "to fetch the package's own data files and put them where it looks; the "+
            "path above is exactly where.";
   return "Nothing here provides that path. If the program creates it itself, make the "+
          "directory and it will; if it reads it, the data was never collected. "+
          "<code>DOC/DEPENDS</code> lists this for every program.";
 }
 
-function detail(name){
-  const p=DATA.find(x=>x.name===name); if(!p) return;
+function renderPanel(){
+  const col = document.getElementById("panel-col");
+  const p = st.sel && BY[st.sel];
+  if(!p){
+    col.innerHTML = `<div class="about">`+
+      `<p>Choose a kind of program, or a letter, then a program. Its page says what it is, `+
+      `what it needs, where it came from, how to run it, and shows it running.</p>`+
+      `<p><b>Sample output</b> was captured from the program running on the disk image: `+
+      `keystrokes into os9exec&rsquo;s console, and the terminal stream rendered into the `+
+      `grid a vt100 would have shown. Nothing is mocked up.</p>`+
+      `<p><span style="color:var(--accent)">&#9733;</span> marks a program that needs `+
+      `Microware&rsquo;s <code>cio</code>, which ships on the disk; see <code>DOC/README-CIO</code>.</p>`+
+      `<p>Tick programs with <b>+</b> (or the space bar) to build a <code>keep</code> command `+
+      `you can paste at an OS-9 shell; see <code>DOC/README-KEEP</code>.</p>`+
+      `<p>Built from <code>DOC/INDEX</code>, <code>DOC/ORIGINS</code>, <code>DOC/DEPENDS</code>, `+
+      `the EFFO <code>info_</code> files and the tree itself, so it cannot drift from what ships.</p>`+
+      `</div>`;
+    return;
+  }
   const F=[];
   if(p.star)     F.push('<span class="flag cio">&#9733; needs cio</span>');
   if(p.basic09)  F.push('<span class="flag cio">BASIC09 &mdash; needs runb</span>');
@@ -411,20 +354,17 @@ function detail(name){
   if(!p.star && !p.basic09) F.push('<span class="flag ok">runs on the bare disk</span>');
   if(p.hassrc)   F.push('<span class="flag">source on disk</span>');
   if(p.docs)     F.push('<span class="flag">documented</span>');
-  if(SHOTS[p.name]) F.push('<span class="flag">sample output</span>');
 
   const D=[];
   const add=(k,v)=>{ if(v) D.push(`<dt>${k}</dt><dd>${v}</dd>`); };
-  add("Category", esc(p.cat)+" &middot; "+esc(p.sub));
-  add("On the disk", `<code>/dd/${esc(p.dir)}/${esc(p.name)}</code>`+
-      (p.size?` &middot; ${kb(p.size)}`:""));
+  add("Kind", esc(p.cat)+" &middot; "+esc(p.sub));
+  add("On the disk", `<code>/dd/${esc(p.dir)}/${esc(p.name)}</code>`+(p.size?` &middot; ${kb(p.size)}`:""));
   const i=p.info||{};
   add("Version",   esc(i.version));
   add("Author",    esc(i.author));
   add("Copyright", esc(i.copyright));
   add("Terms",     esc(i.availability||i.conditions));
   add("Language",  esc(i.language));
-  add("Status",    esc(i.status));
   add("Came from", p.origin ? esc(p.origin)+(p.archive?` &mdash; ${esc(p.archive)}`:"") : "");
   add("Source",    p.src ? `<code>SRC/${esc(p.src)}</code>` : (p.hassrc?`<code>SRC/${esc(p.name)}</code>`:""));
   add("Docs",      p.docs ? `<code>DOC/${esc(p.name)}/</code>` : "");
@@ -434,65 +374,87 @@ function detail(name){
     const gone=p.needs.filter(n=>n.missing);
     if(gone.length) D.push(`<dt></dt><dd class="advice">${advice(p,gone)}</dd>`);
   }
+  if(p.howto) add("How to run it", `<div class="howto">${esc(p.howto)}</div>`);
   if(p.usage) D.push(`<dt>Its own help</dt><dd><pre class="usage">${esc(p.usage)}</pre></dd>`);
-  // THE PROGRAM RUNNING, beside its own help: captured from the disk
-  // image, never composed. This is ONE catalogue -- there is no separate
-  // gallery page, because a second page listing the same programs is a
-  // second catalogue to keep true.
-  // WHOSE CARD IS THIS?  Many cards cover several programs, and the page
-  // used to show the whole card -- screen and caption -- under whichever
-  // program you had opened, with nothing to say the output belonged to a
-  // neighbour.  `loglist' showed `every -?' and a caption about four other
-  // programs, and read as gibberish.  Say it plainly instead.
+  // THE PROGRAM RUNNING, beside its own help: captured from the disk image,
+  // never composed.  A card belongs to one program; where a family shares
+  // one, the caption says so.
   const shot=SHOTS[p.name];
   if(shot){
-    const own = shot.n === p.name;
-    D.push(`<dt>Sample output</dt><dd>`+
-      (own ? "" : `<p class="shotfrom">Shared card &mdash; this is the `+
-                  `<b>${esc(shot.n)}</b> card, which runs several programs `+
-                  `together. ${esc(p.name)} appears on it.</p>`)+
-      `<pre class="shot">${esc(shot.s)}</pre>`+
+    D.push(`<dt>Sample output</dt><dd><pre class="shot">${esc(shot.s)}</pre>`+
       `<p class="shotcap">${esc(shot.c)}</p></dd>`);
   }
   add("Restrictions", esc(i.restrictions));
   add("Hardware",     esc(i.hardware));
-
-  // Siblings: the answer to "is there anything else like this?", which is
-  // the question that sent someone looking for a category in the first place.
-  const kin=DATA.filter(x=>x.sub===p.sub && x.name!==p.name)
-                .sort((a,b)=>a.name.localeCompare(b.name));
+  // Siblings: the answer to "is there anything else like this?"
+  const kin=DATA.filter(x=>x.sub===p.sub && x.name!==p.name).sort((a,b)=>a.name.localeCompare(b.name));
   if(kin.length) add("See also", kin.slice(0,14).map(x=>
-      `<a href="#" class="kin" data-n="${esc(x.name)}"><code>${esc(x.name)}</code></a>`)
+      `<a href="#p=${encodeURIComponent(x.name)}" class="kin" data-n="${esc(x.name)}"><code>${esc(x.name)}</code></a>`)
       .join(", ") + (kin.length>14?` &hellip; and ${kin.length-14} more`:""));
 
-  document.getElementById("panel").innerHTML =
-    `<button class="xbtn" id="x" aria-label="Close">&times;</button>`+
-    `<h2 class="pn" id="pn">${esc(p.name)}</h2>`+
+  col.innerHTML = `<div class="panel">`+
+    `<button class="back" id="back">&larr; Back to the list</button>`+
+    `<h2 class="pn">${esc(p.name)}</h2>`+
     `<p class="pd">${esc(i.purpose||p.desc)}</p>`+
     (F.length?`<div class="flags">${F.join("")}</div>`:"")+
-    (D.length?`<dl>${D.join("")}</dl>`:"");
-  document.getElementById("sheet").classList.add("on");
-  document.getElementById("x").onclick=close;
-  for(const a of document.querySelectorAll(".kin"))
-    a.onclick=e=>{ e.preventDefault(); detail(a.dataset.n); };
+    (D.length?`<dl>${D.join("")}</dl>`:"")+`</div>`;
+  col.scrollTop = 0;
 }
-function close(){ document.getElementById("sheet").classList.remove("on"); }
 
-document.getElementById("sheet").addEventListener("click",e=>{
-  if(e.target.id==="sheet") close(); });
-document.addEventListener("keydown",e=>{ if(e.key==="Escape") close(); });
+function render(){ renderKinds(); renderProgs(); renderPanel(); }
+
+// The address bar follows the reader, so a page can be linked to and the
+// back button works: #k=Games, #a=G, #p=gnuchess, #q=chess.
+function toHash(){
+  const h = st.sel ? "p="+encodeURIComponent(st.sel)
+        : st.q ? "q="+encodeURIComponent(st.q)
+        : st.cat ? "k="+encodeURIComponent(st.cat)
+        : st.letter ? "a="+st.letter : "";
+  if(location.hash.slice(1)!==h) history.pushState(null,"","#"+h);
+}
+function fromHash(){
+  const [k,v] = location.hash.slice(1).split("=");
+  const val = v ? decodeURIComponent(v) : "";
+  if(k==="p" && BY[val]){ st.sel = val; if(!st.cat && !st.letter && !st.q) st.cat = BY[val].cat; }
+  else if(k==="k"){ st.cat = val; st.letter=null; st.q=""; }
+  else if(k==="a"){ st.letter = val; st.cat=null; st.q=""; }
+  else if(k==="q"){ st.q = val; }
+  document.getElementById("q").value = st.q;
+  document.getElementById("app").dataset.stage = st.sel ? "panel" : "list";
+}
+
+function choose(name){
+  st.sel = name;
+  document.getElementById("app").dataset.stage = "panel";
+  toHash(); renderProgs(); renderPanel();
+}
+function chooseKind(c){
+  st.cat = c; st.letter = null; st.q = ""; document.getElementById("q").value = "";
+  document.getElementById("app").dataset.stage = "list";
+  toHash(); render();
+}
+function chooseLetter(k){
+  st.letter = k; st.cat = null; st.q = ""; document.getElementById("q").value = "";
+  document.getElementById("app").dataset.stage = "list";
+  toHash(); render();
+}
+
 function tray(){
   const names=[...picked].sort();
   document.getElementById("tray").classList.toggle("on", names.length>0);
-  document.getElementById("traycmd").textContent =
-    names.length ? "keep " + names.join(" ") : "keep";
-  const by=Object.fromEntries(DATA.map(p=>[p.name,p]));
-  const bytes=names.reduce((n,x)=>n+((by[x]&&by[x].size)||0),0);
+  document.getElementById("traycmd").textContent = names.length ? "keep " + names.join(" ") : "keep";
+  const bytes=names.reduce((n,x)=>n+((BY[x]&&BY[x].size)||0),0);
   document.getElementById("traysize").textContent =
-    names.length + (names.length===1?" program, ":" programs, ")
-    + kb(bytes) + " of binaries";
+    names.length + (names.length===1?" program, ":" programs, ") + kb(bytes) + " of binaries";
 }
-document.getElementById("cats").addEventListener("click",e=>{
+
+document.getElementById("kinds").addEventListener("click",e=>{
+  const li=e.target.closest("li[data-cat]"); if(li) chooseKind(li.dataset.cat); });
+document.getElementById("kinds").addEventListener("keydown",e=>{
+  const li=e.target.closest("li[data-cat]"); if(li && e.key==="Enter") chooseKind(li.dataset.cat); });
+document.getElementById("abc").addEventListener("click",e=>{
+  const b=e.target.closest("button[data-letter]"); if(b) chooseLetter(b.dataset.letter); });
+document.getElementById("progs-col").addEventListener("click",e=>{
   const pb=e.target.closest("button.pick");
   if(pb){                       // picking, not opening
     e.stopPropagation();
@@ -503,35 +465,29 @@ document.getElementById("cats").addEventListener("click",e=>{
     tray();
     return;
   }
-  const li=e.target.closest("li.p"); if(li) detail(li.dataset.n); });
-document.getElementById("cats").addEventListener("keydown",e=>{
-  const li=e.target.closest("li.p"); if(!li) return;
-  if(e.key==="Enter"){ e.preventDefault(); detail(li.dataset.n); }
-  else if(e.key===" "){ e.preventDefault();
-    const pb=li.querySelector("button.pick"); if(pb) pb.click(); } });
-document.getElementById("q").addEventListener("input",e=>{st.q=e.target.value;render();});
-document.getElementById("toc").addEventListener("click", ev => {
-  const a = ev.target.closest("a[href^='#cat-'],a[href^='#az-']");
-  if(!a) return;
-  const d = document.getElementById(a.getAttribute("href").slice(1));
-  if(!d) return;
-  d.open = true;
-  // In A-Z, close the others: the point of picking a letter is to see that
-  // letter, not to add it to a growing pile.
-  if(a.getAttribute("href").startsWith("#az-"))
-    for(const o of document.querySelectorAll("details.cat[id^='az-']"))
-      if(o!==d) o.open = false;
+  const li=e.target.closest("li.p"); if(li){ choose(li.dataset.n); return; }
+  const k=e.target.closest("li[data-cat]"); if(k) chooseKind(k.dataset.cat);
 });
-for(const [id,v] of [["f-cat",false],["f-az",true]]){
-  document.getElementById(id).onclick=()=>{
-    st.az=v;
-    document.getElementById("f-cat").setAttribute("aria-pressed",String(!v));
-    document.getElementById("f-az").setAttribute("aria-pressed",String(v));
-    render();
-  };
-}
-for(const [id,k] of [["f-nocio","nocio"],["f-src","src"],["f-doc","doc"],
-                     ["f-shot","shot"],["f-open","open"]]){
+document.getElementById("progs-col").addEventListener("keydown",e=>{
+  const li=e.target.closest("li.p");
+  if(li){
+    if(e.key==="Enter"){ e.preventDefault(); choose(li.dataset.n); }
+    else if(e.key===" "){ e.preventDefault(); const pb=li.querySelector("button.pick"); if(pb) pb.click(); }
+    return;
+  }
+  const k=e.target.closest("li[data-cat]"); if(k && e.key==="Enter") chooseKind(k.dataset.cat);
+});
+document.getElementById("panel-col").addEventListener("click",e=>{
+  const a=e.target.closest("a.kin");
+  if(a){ e.preventDefault(); choose(a.dataset.n); return; }
+  if(e.target.id==="back"){
+    st.sel=null; document.getElementById("app").dataset.stage="list"; toHash(); renderProgs(); renderPanel();
+  }
+});
+document.getElementById("q").addEventListener("input",e=>{
+  st.q=e.target.value; if(st.q){ st.cat=null; st.letter=null; }
+  document.getElementById("app").dataset.stage="list"; toHash(); render(); });
+for(const [id,k] of [["f-nocio","nocio"],["f-src","src"],["f-doc","doc"],["f-shot","shot"]]){
   const b=document.getElementById(id);
   b.onclick=()=>{ st[k]=!st[k]; b.setAttribute("aria-pressed",String(st[k])); render(); };
 }
@@ -548,6 +504,10 @@ document.getElementById("traycopy").onclick=()=>{
     navigator.clipboard.writeText(el.textContent).then(done, selectIt);
   else selectIt();
 };
-document.getElementById("trayclear").onclick=()=>{ picked.clear(); render(); tray(); };
-render(); tray();
+document.getElementById("trayclear").onclick=()=>{ picked.clear(); renderProgs(); tray(); };
+window.addEventListener("popstate", ()=>{ st.sel=null; st.cat=null; st.letter=null; st.q=""; fromHash(); render(); });
+document.addEventListener("keydown",e=>{
+  if(e.key==="Escape" && st.sel){ st.sel=null; document.getElementById("app").dataset.stage="list"; toHash(); renderProgs(); renderPanel(); }
+});
+fromHash(); render(); tray();
 </script>
