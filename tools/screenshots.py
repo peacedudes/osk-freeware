@@ -385,9 +385,23 @@ def trim_partial(data):
 
 
 def stanza_hash(shot):
-    """What this stanza SAYS -- what it runs and what it claims to show."""
-    parts = [shot["name"], " ".join(shot["cap"]), " ".join(shot["for"]),
-             repr(shot["acts"]), str(shot["quit"]), str(shot["size"])]
+    """What this stanza DOES -- everything that decides the capture.
+
+    THE CAPTION IS NOT IN HERE, and was until 2026-09-02.  A caption says
+    what the screen means; it cannot change what the screen shows.  With it
+    in the hash, fixing the wording of 151 captions marked NINETY-FOUR
+    captures stale, and clearing that would have meant re-shooting them all
+    to produce byte-identical screens -- hours, for nothing, which is the
+    sort of chore that simply does not get done and leaves a drift report
+    nobody believes.  The `for' list is out for the same reason: it credits
+    a screen to more programs, it does not alter one.
+
+    What remains is the name, the keystrokes, the quit sequence and the
+    screen size -- change any of those and the capture really is out of
+    date.
+    """
+    parts = [shot["name"], repr(shot["acts"]), str(shot["quit"]),
+             str(shot["size"])]
     return hashlib.sha1("\n".join(parts).encode("utf-8")).hexdigest()[:16]
 
 

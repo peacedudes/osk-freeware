@@ -85,6 +85,14 @@ while [ $(( MB * SECTORS_PER_MB / CLUSTER )) -gt $MAX_SECTORS ]; do
   CLUSTER=$(( CLUSTER * 2 ))
 done
 
+# .DS_Store IS NOT A DECISION.  macOS's Finder writes one into any directory
+# it looks at, including this one, and it reappears between a `rm' and the
+# next command.  It is gitignored, it can never belong on an OS-9 disk, and
+# leaving it to `check_disk' means a build that fails at random depending on
+# whether somebody opened a window.  Removed here, quietly, before anything
+# looks at the tree -- every other leftover the check names is a real one.
+find "$SRC" -name .DS_Store -delete 2>/dev/null || true
+
 nfiles=$(find "$SRC" -type f | wc -l | tr -d ' ')
 ndirs=$(find "$SRC" -mindepth 1 -type d | wc -l | tr -d ' ')
 echo "  $SRC ($(du -sh "$SRC" | cut -f1)) -> ${MB}M image, cluster $CLUSTER, volume '$VOL'"

@@ -49,13 +49,12 @@ wait    8
 
 shot    ask
 for     ask ynad wisecrack
-cap     `ask' is not the shell-script prompt its name suggests: it is the
-cap     CLIENT half of a pair.  `wisecrack' is the server -- start it in the
-cap     background and every `ask' pulls one line out of it through
-cap     /PIPE/txtpipe.  Alone, either one is silent, which is why every
-cap     sweep of this disk scored BOTH as mute.  The slogans are from a
-cap     German OS-9 seminar in 1992.  `ynad' beside it is YNAD, Yet Another
-cap     Name & Address program, also not a dialogue.
+cap     `ask' is the CLIENT half of a pair: `wisecrack' is the server, so
+cap     start that in the background and every `ask' pulls one slogan out of
+cap     it through /PIPE/txtpipe.  Run either one alone and it is silent.
+cap     The slogans come from a German OS-9 seminar in 1992.  `ynad' beside
+cap     it is YNAD, Yet Another Name & Address program -- a contact
+cap     database.
 run     ask "nothing is feeding the pipe yet"
 wait    5
 run     wisecrack &
@@ -345,13 +344,13 @@ wait    5
 
 shot    launch
 for     launch dpark pri signal snd_sig suspend
-cap     `launch' is NOT the background launcher its name and DOC/INDEX
-cap     suggested: it is a LOGIN helper -- set the environment for the
-cap     terminal type from SYS/config, optionally a default PATH and the
-cap     emacs bindings, then start the shell you name.  `pri' changes a
-cap     process's priority and answers nothing to -?; `signal' sends a
-cap     signal, after a delay if you ask.  `dpark' parks a disk's heads,
-cap     `snd_sig' sends a signal by number and `suspend' stops a process.
+cap     `launch' is a LOGIN helper: it reads SYS/config, sets the
+cap     environment for your terminal type -- and optionally a default PATH
+cap     and the emacs bindings -- then starts the shell you name.  Beside it,
+cap     `pri' changes a process's priority and answers nothing to -?;
+cap     `signal' sends a signal, after a delay if you ask; `dpark' parks a
+cap     disk's heads; `snd_sig' sends a signal by number; `suspend' stops a
+cap     process.
 run     launch -?
 wait    6
 run     dpark -?
@@ -496,14 +495,13 @@ wait    8
 
 shot    phone
 size    24 80
-cap     `phone' is not an address book: it connects two terminals over a
-cap     communication path.  DOC/INDEX called it a phone-number book until
-cap     this screen was taken.  Given a path it DRAWS ITS FACE and starts
-cap     ringing -- OS9/68K PHONE FACILITY, the terminal it is calling, the
-cap     try count -- and control-E is how you leave, which is what the card
-cap     does. so the syntax run is dropped here and the screen is given to
-cap     the program.  The tail of the bottom line is the echoed command that
-cap     was on that row when phone painted over it.
+cap     `phone' connects two terminals over a communication path, so you
+cap     can type to somebody on another terminal.  Give it one -- `phone
+cap     /t1' -- and it draws its face and starts ringing: OS9/68K PHONE
+cap     FACILITY, the terminal it is calling, the try count.  Control-E
+cap     leaves.  With no path it prints its syntax.  The tail of the bottom
+cap     line is the echoed command that was on that row when phone painted
+cap     over it.
 run     phone /t1
 wait    28
 
@@ -714,11 +712,10 @@ quit    \030\003
 
 shot    vc
 for     vc
-cap     `vc' is not a visual compare at all: it is a SPREADSHEET -- "Welcome
-cap     to the Spreadsheet Calculator, type ? for help" -- with rows and
-cap     columns and a formula line.  DOC/INDEX called it "visual compare of
-cap     two files" until this screen was taken.  It also does not answer
-cap     Ctrl-E, so it is quit properly here with `q'.
+cap     `vc' is a SPREADSHEET -- "Welcome to the Spreadsheet Calculator,
+cap     type ? for help" -- with rows, columns and a formula line.  `?' is
+cap     the help key and `q' quits; it does not answer Ctrl-E, so this card
+cap     leaves it the way the program expects.
 run     vc
 wait    8
 quit    q\r
