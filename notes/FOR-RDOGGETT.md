@@ -26,6 +26,23 @@ found 2026-09-03 by the Text tools batch, written up in
 OS-9/68000 call, so this is os9exec's to fix, and subber's card says what
 stops it.
 
+**Candidates for "best forgotten", from the Games and Text tools batches
+(2026-09-03):**
+
+- `pacman` is a G-Windows program and draws nothing without one.
+- `blackjack` is BASIC09 I-code with no `runb` on the disk (`blackjak`, the
+  C one, plays).
+- `game` and `postprint` are chess-diagram printers that emit only a
+  PostScript page-setup line here; `postprint` wants gnuchess's persistent
+  hash file, which is absent.
+- `CMDS/gnuchess` collides by module name with `CMDS/GAMES/gnuchess`, wants
+  a book at `/h0/usr/src/chess/`, and prints nothing; the GAMES build plays.
+- `splitalf` makes `<name>_0` and stops; `cuts`' encoder asks for four
+  gigabytes and writes empty lines; `subber` is stopped by the F$Mem gap.
+- Duplicates worth one decision each: `puz15`/`puzzle15` are one program
+  built twice; there are five GNU Chess builds; `wc.cio` is an archived
+  duplicate of `wc`.
+
 **Candidates for "best forgotten", from the Amusements batch:**
 
 - `rstory2` asks five questions and forks Microware's `shell` to run

@@ -1,0 +1,12 @@
+mscd a:/DOCS
+$ mscd
+A:/DOCS
+$ msdir
+ Volume in drive A is FREEWARE
+ Volume Serial Number is 35D7-0A00
+ Directory for A:/DOCS
+
+.            <DIR>     09-03-2026   5:36a
+..           <DIR>     09-03-2026   5:36a
+        2 file(s)                 0 bytes
+                          1 456 640 bytes free

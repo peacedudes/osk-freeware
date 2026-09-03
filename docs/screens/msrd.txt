@@ -1,0 +1,6 @@
+msdir a: | grep EMPTY
+EMPTY        <DIR>     09-03-2026   5:37a
+$ msrd a:/EMPTY
+Removing EMPTY
+$ msdir a: | grep -c EMPTY
+0

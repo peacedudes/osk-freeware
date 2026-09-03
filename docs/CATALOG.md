@@ -13,8 +13,8 @@
 |---|--:|---|
 | [Shells](#shells) | 21 | Unix shells to sit beside OS-9's own -- bash and ksh bring history, job control, and scripts that come across unchanged. |
 | [Editors](#editors) | 26 | vi and emacs in several flavours, line and stream editors, and editors for binary and hex. |
-| [Text tools](#text-tools) | 111 | Search, sort, compare, reformat, split and spell-check. |
-| [Files & directories](#files--directories) | 37 | Listing, copying, finding, renaming, and knowing what you have. |
+| [Text tools](#text-tools) | 112 | Search, sort, compare, reformat, split and spell-check. |
+| [Files & directories](#files--directories) | 32 | Listing, copying, finding, renaming, and knowing what you have. |
 | [Developer tools](#developer-tools) | 46 | Version control, tags, cross-reference, formatters, a debugger and benchmarks. |
 | [Compilers & build](#compilers--build) | 39 | C compilers and their passes, assemblers, linkers, make and parser generators. |
 | [Languages](#languages) | 10 | Interpreters and language systems beyond C. |
@@ -25,7 +25,7 @@
 | [Games](#games) | 68 | Adventures, board and card games, arcade ports, dungeon crawls and puzzles. |
 | [Screen toys](#screen-toys) | 10 | Animations and screen effects -- they draw on the terminal rather than print to it. Some run until you stop them. |
 | [Amusements](#amusements) | 19 | Generators, simulators and diversions that are not quite games. |
-| [System & modules](#system--modules) | 124 | OS-9 module and process tools, devices, system state and scheduling. |
+| [System & modules](#system--modules) | 128 | OS-9 module and process tools, devices, system state and scheduling. |
 | [Disk & DOS](#disk--dos) | 20 | Reading and writing MS-DOS media with the mtools set. |
 | [Time & calendar](#time--calendar) | 13 | Calendars, clocks and astronomy. |
 | [Maths & calculators](#maths--calculators) | 11 | Calculators, plotting, orbits and number theory. |
@@ -144,7 +144,7 @@
 
 *Search, sort, compare, reformat, split and spell-check.*
 
-<details><summary>111 programs</summary>
+<details><summary>112 programs</summary>
 
 **Banners & text art**
 
@@ -305,6 +305,7 @@
 | `gdd` | &#9733; GNU dd -- a block copier and converter, not a dump; `dump' is the hex dump here. `gdd if=<file> bs=<n> skip= seek= count=', and `conv=ucase' converts to upper case on the way through. `of=' can only name a file that already exists, so send the output through `>' instead. RUN BARE IT ENDS THE SESSION: no message and no output. Give it arguments.<br>**How:** GNU dd -- a block copier and converter, not a dump; `dump' is the hex dump here. `gdd if=<file> bs=8 count=1' copies eight bytes, `conv=ucase' converts on the way through. `of=' can only name a file that already exists, so send the output through `>'. Run bare it ends the session. Needs Microware's cio. |
 | `gep` | &#9733; global expression parser -- grep-like, but its `-e' takes the PATH OF A FILE holding the expressions, not an expression: `gep -e=/dd/tmp/patterns <file>'. A file of patterns applied at once is what it is for and nothing else here does it. See DOC/README-GREP<br>**How:** Its expressions come from a FILE named with `-e', which its own option list marks `(required)': `gep -e=<patterns> <source>'. Handing it a pattern and a file the way you would grep earns `more than one path specified'. |
 | `head` | First lines of a file -- `head -n 20 file'.  These GNU builds want -n 20, not -20<br>**How:** First lines of a file. This GNU build wants `head -n 20 file' -- the older `head -20' form is rejected as an unrecognized option. Needs cio. |
+| `l` | &#9733; list a TEXT FILE with word wrap and a carriage return at the end of every line -- `l -<width> <file>', 79 columns by default.  Written for Stylo documents and other long-line files.  It takes files, not directories<br>`Usage: l [-options] [file] [file] [-options]` |
 | `paste` | merge lines of files<br>**How:** Joins lines side by side, tab-separated by default: `paste f1 f2'. `-d:' picks another separator; `-s' puts one file's lines on a single line. |
 | `pep` | file 'detergent' - strip junk from files<br>`Usage: pep [options] [filename ...]` |
 | `psc` | &#9733; turn an ASCII table into commands for `sc', the spreadsheet: `psc -d' ' < table' answers `let A0 = 1', `let B0 = 2' and a `format' line per column.  -d sets the field delimiter, -r assembles rows first, -s names the top-left cell.  Robert Bond's, and it works<br>**How:** Feeds `sc', the spreadsheet: `psc -d' ' < table' turns rows of numbers into `let A0 = 1' commands sc can read. -r assembles rows first, -s names the top-left cell, -d sets the delimiter. |
@@ -323,13 +324,13 @@
 
 *Listing, copying, finding, renaming, and knowing what you have.*
 
-<details><summary>37 programs</summary>
+<details><summary>32 programs</summary>
 
 **Attributes**
 
 | | |
 |---|---|
-| `fstat` | display a file's FILE DESCRIPTOR -- the RBF FD sector, not the attribute bits `attr' shows you.  Its own Function line says "Display file descriptor information" and it reports itself as `FStat'.  `ssl' shows the segment list from the same sector.  Corrected 2026-09-01<br>`Syntax: FStat [<opts>] <file1> [<opts>]` |
+| `fstat` | display a file's FILE DESCRIPTOR -- the RBF FD sector, not the attribute bits `attr' shows you.  Its own Function line says "Display file descriptor information" and it reports itself as `FStat'.  `-s' adds the segment list, and `ssl' shows the same list from the same sector<br>`Syntax: FStat [<opts>] <file1> [<opts>]` |
 
 **Attributes & ownership**
 
@@ -337,22 +338,19 @@
 |---|---|
 | `chgrp` | &#9733; change group<br>`Usage:  chgrp [-z] {numerical-gid \| username} [file [... file]]` |
 | `chown` | &#9733; change owner<br>`Usage:  chown [-z] {numerical-uid \| username} [file [... file]]` |
-| `eset` | &#9733; set an OS-9 event to a value -- eset <event> <num><br>`Syntax: eset <event> <num> [<opts>]` |
-| `owner` | &#9733; CHANGE a file's owner, not show it -- `owner <user> <file> ...', super user only.  Run with a file it prints its usage; run as `owner <file>' it reads the filename as a user name and answers `No such user'.  `fstat' and `ls -l' are what SHOW an owner.  Corrected 2026-08-29<br>`Usage: owner user file file ...` |
+| `owner` | &#9733; CHANGE a file's owner, not show it -- `owner <user> <file> ...', super user only.  Run with a file it prints its usage; run as `owner <file>' it reads the filename as a user name and answers `No such user'.  `fstat' and `ls -l' are what SHOW an owner<br>`Usage: owner user file file ...` |
 
 **Copy, move, delete**
 
 | | |
 |---|---|
-| `cp` | &#9733; copy files -- and it WORKS: the bytes come back byte for byte.  Run with NO arguments it prints its usage and then takes a bus error inside I$Open, which is how it comes to sit in DOC/STATUS's crash list<br>`Usage: cp file1 file2` |
-| `dback` | Directory backup utility (wants a /d0 device)<br>`Usage: Dback [-options] <fromdir> <todir> [-options]` |
+| `cp` | &#9733; copy files -- `cp <from> <to>' copies the bytes across.  Run with no arguments it prints its usage and then stops on a bus error<br>`Usage: cp file1 file2` |
+| `dback` | directory backup: walks a directory and issues an OS-9 `copy' for every file that has changed.  `copy' is not on this disk, so what you see is the list of copies it wants<br>`Usage: Dback [-options] <fromdir> <todir> [-options]` |
 | `delbak` | &#9733; delete backup files (*_bak) in a directory tree<br>`Usage: delbak [-options] [directory] [-options]` |
 | `divide` | &#9733; SPLIT A FILE into pieces -- Farside Systems 1992, `divide -l=<lines> <infile> [<outfile>]'.  Not integer division, whatever the name suggests |
-| `eunlink` | &#9733; extended unlink<br>`Syntax: eunlink {<event>}` |
-| `fc` | &#9733; split a big file in two, to carry it on 360k disks -- and the cut is at exactly 350,000 BYTES, not at the halfway point: its own Function line says "Takes first 350,000 bytes of a file or stdin and puts in one file and puts remaining bytes" in the other.  Measured 2026-09-01<br>`Syntax:   fc [<file>]` |
+| `fc` | &#9733; split a big file in two, to carry it on 360k disks -- and the cut is at exactly 350,000 BYTES, not at the halfway point: its own Function line says "Takes first 350,000 bytes of a file or stdin and puts in one file and puts remaining bytes" in the other<br>`Syntax:   fc [<file>]` |
 | `move` | &#9733; move files between directories WITHOUT COPYING THE CONTENTS -- it relinks them, which is why it is quick and why its own help warns never to kill it mid-run.  `move <from> <to>' wants a destination NAME; -w=<dir> is the wildcard form that takes a directory.  L. Zeller, V2.1<br>`Syntax:   move [<options>] <from> [<to>] [<options>]` |
-| `mv` | &#9733; move/rename<br>`Usage: mv [-bfiuv] [-S backup-suffix] [-V {numbered,existing,simple}]` |
-| `remove` | &#9733; REMOVE MODULES FROM MEMORY, not files -- its own Function line says so.  `remove <module>...', -q for quiet.  `del', `rm' and `deldir' are what remove files.  This entry said `remove files, with confirmation'; corrected 2026-08-31<br>**How:** Removes MODULES FROM MEMORY, not files. `del', `rm' and `deldir' are the file ones. |
+| `mv` | &#9733; GNU mv (fileutils 3.13) -- rename a file or move it into a directory; `-i' asks before overwriting, `-b' keeps a backup, `-v' names what it moved<br>`Usage: mv [-bfiuv] [-S backup-suffix] [-V {numbered,existing,simple}]` |
 | `rm` | &#9733; remove files<br>`Usage: rm [-dfirvPR] [+directory] [+force] [+interactive] [+recursive]` |
 | `undel` | &#9733; undelete a file<br>`Usage: attr <file> -d` |
 
@@ -367,33 +365,31 @@
 
 | | |
 |---|---|
-| `dfiles` | &#9733; find duplicate files on disk and issue the cmp commands |
+| `dfiles` | &#9733; find duplicate files under a directory and write out the `cmp' commands that would prove them identical.  No `cmp' ships here, so the list itself is the answer |
 | `du` | &#9733; disk usage, by directory<br>`Syntax: du <directory>` |
-| `ff` | &#9733; find files by name -- ff [<opts>] <name>... |
-| `find` | &#9733; find 1.1.5 -- search a directory tree, and NOT with the Unix syntax: `-n=<name>' matches, `-o' prints what it found, and `find <dir> -name x -print' answers `only one parameter allowed'<br>`Syntax: find {<opts>} [<path>]` |
+| `ff` | &#9733; find files by name -- `ff <name>'.  It builds the command `dir -ausr ! grep <name>' and hands it to a program called `shell', which this disk does not carry, so it prints nothing.  `find' does the same job |
+| `find` | &#9733; find 1.1.5 -- search a directory tree, and NOT with the Unix syntax: `-n=<name>' matches, `-o' prints what it found, and `find <dir> -name x -print' answers `only one parameter allowed'.  The manual in DOC/find is for a different find and does not describe this one<br>`Syntax: find {<opts>} [<path>]` |
 | `space` | &#9733; effective disk usage  [conditions apply -- run `help space`]<br>`Syntax:   space [<opts>] {<dir/file path>} [<opts>]` |
 
 **Home Librarian**
 
 | | |
 |---|---|
-| `Ascii2Libr` | Home Librarian: rebuild a catalogue from a plain-text file<br>**How:** `-outfile cat.libr' with a space, and it reads the ASCII on standard input. It builds a catalogue only from the text Libr2Ascii writes: a hand-written record parses to zero cards. |
+| `Ascii2Libr` | Home Librarian: build a catalogue from plain text -- `Ascii2Libr -outfile cat.libr', with the text on standard input, in the form Libr2Ascii writes<br>**How:** `-outfile cat.libr' with a space, and it reads the ASCII on standard input. The text is the form Libr2Ascii writes: a page count, then a card count and the cards, then the title, author and subject index sections. |
 | `EditLibr` | Home Librarian: edit a catalogue<br>**How:** Part of the HL10 librarian set. Wants an edit file as a parameter; `EditLibr' alone prints its syntax. |
 | `Libr2Ascii` | Home Librarian: dump a catalogue to plain text<br>**How:** `-infile cat.libr' with a space. It writes the catalogue to standard output as text, and a page count and four index-key counts at the end -- all zero means the catalogue is empty. |
 | `Librarian` | Home Librarian: search a catalogue.  SIX PROGRAMS AND THEIR DOCS TRAVEL TOGETHER -- its licence requires it<br>**How:** One of six Home Librarian programs that must stay together -- its licence says so. Start here to search a catalogue; EditLibr edits one, Ascii2Libr builds one from text, Libr2Ascii dumps it back, PrintCards and PrintLabels print it. Manual in DOC/homelibr. |
 | `PrintCards` | Home Librarian: print catalogue cards<br>`Syntax: PrintCards [opts]` |
-| `PrintLabels` | Home Librarian: print labels.  ITS OPTIONS TAKE A SEPARATE ARGUMENT -- `-infile cat.libr -templatefile tpl.txt', not `-infile=...', which answers `Bad option:' and prints the syntax.  The same is true of Ascii2Libr, Libr2Ascii, PrintCards and EditLibr.  A catalogue is built by Ascii2Libr from the text Libr2Ascii writes, and only from that: a hand-written record does not parse.  Measured 2026-09-02<br>**How:** Its options take a SEPARATE argument: `-infile cat.libr -templatefile tpl.txt', never `-infile=...', which answers `Bad option:' and prints the syntax. The same is true of Ascii2Libr, Libr2Ascii, PrintCards and EditLibr. |
+| `PrintLabels` | Home Librarian: print labels.  ITS OPTIONS TAKE A SEPARATE ARGUMENT -- `-infile cat.libr -templatefile tpl.txt', not `-infile=...', which answers `Bad option:' and prints the syntax.  The same is true of Ascii2Libr, Libr2Ascii, PrintCards and EditLibr.  The template is a text file copied out once per card, with %title, %author, %year and the other field names replaced<br>**How:** Its options take a SEPARATE argument: `-infile cat.libr -templatefile tpl.txt', never `-infile=...', which answers `Bad option:' and prints the syntax. The same is true of Ascii2Libr, Libr2Ascii, PrintCards and EditLibr. The template is a text file copied out once per card with %title, %author, %year and the other field names replaced. |
 
 **List & navigate**
 
 | | |
 |---|---|
-| `dir` | &#9733; directory listing.  PATCHED HERE: its moveq #128 was sign-extended to -128; see DOC/STATUS<br>`Syntax: dir [<opts>] {<dir names> [<opts>]}` |
-| `dm` | &#9733; Disk Master 1.4, a full-screen disk and directory browser. requires Microware's `shell' on your execution path: it runs the commands it offers through system(), which forks a program of that name.  With one present it runs completely -- measured 2026-08-28.  Reworded 2026-08-30<br>**How:** Disk Master 1.4, a full-screen disk browser. REQUIRES MICROWARE'S `shell` on your execution path -- it runs the commands it offers through system(). With one present it runs completely. |
-| `edir` | &#9733; list the EVENT directory -- OS-9 events and their values. Nothing to do with `dir'<br>`Syntax: edir [<opts>]` |
-| `l` | &#9733; brief directory listing -- but it answers `not accessable, error: 214' for every directory tried here<br>`Usage: l [-options] [file] [file] [-options]` |
-| `ls` | GNU ls (fileutils 3.13) -- OUR OWN FIXED BUILD: real stat(), columns, -al<br>`Usage: ls [OPTION]... [FILE]...` |
-| `tree` | Print a directory tree -- BUT fails on this disk: it opens the raw device (/dd@), which a host-native disk has no equivalent for<br>`Syntax: tree [<directory>] [<opts>]` |
+| `dir` | &#9733; directory listing -- `dir [<opts>] <directory>'; `-e' adds owner, dates, attributes and size<br>`Syntax: dir [<opts>] {<dir names> [<opts>]}` |
+| `dm` | &#9733; Disk Master 1.4, a full-screen two-pane disk and directory browser with a file-information panel beside the listing.  It runs the commands on its bottom line through system(), so SHELL must name a shell that can carry them out: with SHELL=/dd/CMDS/sh it runs completely.  Its help file is SYS/dm.hlp<br>**How:** Disk Master 1.4, a full-screen disk browser. It runs the commands on its bottom line through system(), so SHELL must name a shell that can carry them out; with SHELL=/dd/CMDS/sh it runs completely, listing and file-information panel and all. |
+| `ls` | GNU ls (fileutils 3.13) -- a real stat(), columns, and `-al'<br>`Usage: ls [OPTION]... [FILE]...` |
+| `tree` | print a directory tree, drawn with line graphics -- directories only, sorted, from the directory you name<br>`Syntax: tree [<directory>] [<opts>]` |
 
 **Paths**
 
@@ -1152,11 +1148,11 @@
 
 | | |
 |---|---|
-| `advcom` | ADVSYS adventure COMPILER -- turns .adv source into a world file (a .dat, not a .adi; the .adi is an INCLUDE).  The sample source is here, in GAMES/ADVSYS.  Copy osample.adv and objects.adi to a directory, make it the data directory (`load' advcom, then `sh -c "chd <dir>; advcom osample"') and it writes osample.dat -- bare name, because it holds a filename in 20 characters and appends `.adv'<br>**How:** The ADVSYS compiler. It opens its `@objects.adi` include by BARE NAME in the data directory and holds a filename in 20 characters, so copy osample.adv and objects.adi from GAMES/ADVSYS to a directory of your own, `load /dd/CMDS/GAMES/advcom`, then `sh -c "chd /dd/tmp/adv; advcom osample"`. It lists every object it compiles and writes osample.dat. (ksh's `cd` moves the data directory too, but prints an F$SetSys complaint four times on the way.) |
+| `advcom` | ADVSYS adventure COMPILER -- turns .adv source into a world file (a .dat, not a .adi; the .adi is an INCLUDE).  The sample source is here, in GAMES/ADVSYS.  Copy osample.adv and objects.adi to a directory, make it the data directory (`load' advcom, then `sh -c "chd <dir>; advcom osample"') and it writes osample.dat -- bare name, because it holds a filename in 20 characters and appends `.adv'<br>**How:** The ADVSYS compiler. It opens its `@objects.adi' include by BARE NAME in the data directory and keeps a filename in 20 characters, so copy osample.adv and objects.adi from GAMES/ADVSYS to a directory of your own, `load /dd/CMDS/GAMES/advcom', then `sh -c "chd /dd/tmp/adv; advcom osample"'. It names every object it compiles and writes osample.dat. |
 | `advent` | Colossal Cave Adventure -- self-contained, reads /dd/GAMES/adv/glorkz.  Needs this disk as /dd; mounted only as /h0 it cannot find its data.  Unrelated to advcom/advint.<br>**How:** Colossal Cave. Needs this disk as /dd -- it opens /dd/GAMES/adv/glorkz by absolute path, so mounted only as /h0 it cannot find its data. |
-| `advint` | ADVSYS adventure INTERPRETER -- plays a world compiled by advcom, and there is one to play: build it as advcom's entry says and `advint osample' starts you in the livingroom. Both open their files by bare name in the data directory, so run them where the files are: `load' the module, then `sh -c "chd /dd/tmp/adv; advint osample"'. GAMES/ADVSYS/README has the details<br>**How:** Plays an ADVSYS world. Build one first (see advcom), then run it where the .dat is: `load /dd/CMDS/GAMES/advint`, then `sh -c "chd /dd/tmp/adv; advint osample"` -- you start in the livingroom, `n` goes to the hallway, `e` to a storage room with a key. |
+| `advint` | ADVSYS adventure INTERPRETER -- plays a world compiled by advcom, and there is one to play: build it as advcom's entry says and `advint osample' starts you in the livingroom. Both open their files by bare name in the data directory, so run them where the files are: `load' the module, then `sh -c "chd /dd/tmp/adv; advint osample"'. GAMES/ADVSYS/README has the details<br>**How:** Plays an ADVSYS world. Build one first (see advcom), then run it where the .dat is: `load /dd/CMDS/GAMES/advint', then `sh -c "chd /dd/tmp/adv; advint osample"' -- you start in the livingroom, `n' goes to the hallway, `e' to a storage room with a key. |
 | `infocom` | Infocom Z-MACHINE interpreter -- a third, unrelated adventure system.  Plays the .z3 files in GAMES/INFORM (dejavu, hellow, shell -- Inform demos, not the Infocom games).<br>**How:** A Z-machine. Plays the .z3 files in /dd/GAMES/INFORM, which are Inform demonstration programs (dejavu, hellow, shell), not the Infocom games. |
-| `infocom.tcap` | Infocom interpreter, TERMCAP build -- and it is the one to use here.  It puts a proper status line at the top of the screen (`Y2 Rock Room     Score: 0/2') where plain `infocom' fills the screen with brackets trying to. Measured 2026-08-28<br>**How:** The termcap build of the Z-machine, and the one to use at a terminal: `infocom.tcap /dd/GAMES/INFORM/dejavu.z3' keeps a status line (room and score) across the top. Three Inform story files ship in GAMES/INFORM: dejavu, hellow, shell. |
+| `infocom.tcap` | Infocom interpreter, TERMCAP build -- and it is the one to use at a terminal.  It puts a proper status line at the top of the screen (`Y2 Rock Room     Score: 0/2') where plain `infocom' writes the cursor codes for that line as literal text down the left margin<br>**How:** The termcap build of the Z-machine, and the one to use at a terminal: `infocom.tcap /dd/GAMES/INFORM/dejavu.z3' keeps a status line (room and score) across the top. Three Inform story files ship in GAMES/INFORM: dejavu, hellow, shell. |
 | `paranoia` | &#9733; the PARANOIA text adventure.  `Welcome to Paranoia!  As Philo-R-DMD you will die at times during the adventure... you will be given a new clone' -- six clones, one mission, RETURN to go on.  Not the floating-point torture test of the same name; those are `float' and `savage'<br>**How:** Not a benchmark: it is the PARANOIA text adventure. RETURN to go on, a letter to choose, `p' for your statistics, six clones. `float' and `savage' are the floating-point benchmarks on this disk. |
 
 **Arcade & action**
@@ -1164,50 +1160,49 @@
 | | |
 |---|---|
 | `greed` | Greed - grid game<br>`Usage: greed [-p] [-s]` |
-| `lander` | lunar lander -- space starts a game, a digit sets the power, x or k is vertical thrust, z/j and c/l the side retros.  Its score file is GAMES/lander.hs, looked for under /h0, so mount the disk there as well<br>**How:** Full-screen: it takes over the display. **`q' quits** -- tested. |
-| `pacman` | Pac-Man -- it draws nothing and exits at once, keyed or not |
-| `robots` | &#9733; robots -- outrun them until they crash into each other. REBUILT HERE from source, in SRC/rob.  The archive binary drew cursor-up as a bare ^K, which a terminal reads as index -- DOWN -- so the screen scrolled and the board was left with characters that were not really there. USE -m: without it the game is effectively unplayable.<br>**How:** Play with `robots -m' -- manual mode, where the robots take one step per move you make. Keys are the numeric keypad 1-9 (5 stands still), `s' for last stand, `t' to teleport. Needs Microware's math module and a real TERM. |
-| `snake` | snake arcade game.  Draws its board and takes h/j/k/l in a login session; run bare, with no TERMCAP, it bus errors instead -- see DOC/README-BUSERR.  IT SCATTERS TEXT ACROSS THE BOARD as you play: 17 cursor moves in a played game arrive as literal `[13;49H' rather than as motion, one in an untouched one.  Playable, untidy.  Measured 2026-08-28<br>**How:** Full-screen: it takes over the display. **`x' quits** -- tested. (control-C also gets you out, but `x' is the program's own way.) |
+| `lander` | lunar lander -- space starts a game, a digit sets the power, x or k is vertical thrust, z/j and c/l the side retros.  Its score file is GAMES/lander.hs, looked for under /h0, so mount the disk there as well<br>**How:** Full-screen. Space starts a descent, a digit sets the engine power, `x' or `k' fires the main thruster and z/j and c/l the side retros. `q' quits. |
+| `pacman` | Pac-Man written for G-Windows, the graphics system this disk does not carry.  At a terminal it draws nothing and returns to the shell at once.  Its maze and score file are in GAMES/PACMAN<br>**How:** Written for G-Windows. At a terminal it draws nothing and returns to the shell at once. |
+| `robots` | &#9733; robots -- outrun them until they crash into each other. You are the `I', the robots are the `#' and a wreck is an `@'.  USE -m: manual mode, one robot step per move of yours; without it the game is effectively unplayable. The keys are the numeric keypad 1-9 with 5 to stand still, `t' to teleport and `s' for a last stand.<br>**How:** Play with `robots -m' -- manual mode, where the robots take one step per move you make. Keys are the numeric keypad 1-9 (5 stands still), `s' for last stand, `t' to teleport. Needs Microware's math module and a real TERM. |
+| `snake` | snake arcade game.  You are the `I', the money is the `$' and the snake chases you; h/j/k/l move, `x' quits. Run it from a login session -- bare, with no TERMCAP, it bus errors instead; see DOC/README-BUSERR.  Some of its cursor moves arrive as literal text, so the board picks up stray characters as you play.  Playable, untidy<br>**How:** Full-screen. h/j/k/l move; reach the `$' before the snake reaches you. `x' quits. |
 | `sokoban` | &#9733; Sokoban puzzle<br>**How:** Wants a username, so run it from a login rather than a bare shell, or it stops with "cannot get your username". |
 | `tet` | Tetris -- `p' plays; s/j and f/l move a piece, d/k turns it, space drops it, q quits to the high-score table it keeps in GAMES/tet.hs.  Needs a terminal, not a pipe<br>**How:** Tetris. `p' plays from the menu; s or j moves the piece left, f or l right, d or k turns it, space drops it, ESC pauses and q quits to the high-score table, kept in GAMES/tet.hs. Give it a real terminal: it does no terminal setup of its own (the raw-mode code in SRC/tet/tet.c is inside `#ifndef OSK'), so from a pipe it draws its board and reads nothing. |
-| `wanderer` | Boulderdash-style maze game.  Screens ARE here, in GAMES/WAND/screens; needs this disk as /dd to find them.<br>**How:** Full-screen: it takes over the display. **`q' quits** -- tested. |
+| `wanderer` | Boulderdash-style maze game.  Screens ARE here, in GAMES/WAND/screens; needs this disk as /dd to find them.<br>**How:** Full-screen. Dig through the earth for diamonds, forty-five on the first screen. `q' quits. Its thirty screens are in GAMES/WAND. |
 
 **Board & card**
 
 | | |
 |---|---|
-| `back` | &#9733; backgammon -- '?' gives the built-in help |
-| `blackjack` | Las Vegas blackjack (M. Theys) -- BASIC09; stops at line 8 with error 56, 'Parameter error'.  See the BASIC09 note below -- this one is a real fault, not the invocation. |
+| `back` | &#9733; backgammon on a full board, points numbered 1 to 24, with the dice cup and the doubling status beside it. Single letters are the commands: R rolls, D doubles, H is the help, N starts a new game, Q quits<br>**How:** Single letters are the commands: R rolls, D doubles, H is the help, N starts a new game, Q quits. |
+| `blackjack` | Las Vegas blackjack (M. Theys) -- BASIC09; stops at line 8 with error 56, 'Parameter error'.  See the BASIC09 note below -- this one is a real fault, not the invocation.<br>**How:** BASIC09 I-code rather than 68000 code, and it needs Microware's `runb' to interpret it. There is no runb here, so the shell answers `cannot execute binary file'. For blackjack you can play, use `blackjak'. |
 | `blackjak` | &#9733; Las Vegas BlackJack (SNOBOL4-in-C).  Data: GAMES/SNOBOL |
-| `chess` | chess - 68k port (three engine versions built)<br>`Syntax: chess [<opts>] <name> [<opts>]` |
-| `crib` | cribbage.  Needs TERM set, so run it from a login session -- bare it says `Unknown terminal type'<br>**How:** Full-screen: it takes over the display. **control-C gets you out** -- tested, and none of q, Q, control-D or ESC did. If it has a quit command of its own, its documentation in DOC/ will say. |
-| `cribbage` | &#9733; cribbage -- offers instructions before it deals.  Needs TERM, so run it from a login session<br>**How:** Full-screen: it takes over the display. **control-C gets you out** -- tested, and none of q, Q, control-D or ESC did. If it has a quit command of its own, its documentation in DOC/ will say. |
-| `gnuan` | GNU Chess analyser -- annotates a saved game move by move |
-| `gnuchess` | &#9733; GNU Chess.  ITS MODULE NAME COLLIDES with CMDS/GAMES/gnuchess, which is a different port, so whichever loads first answers for both.  Re-measured 2026-08-31 on a pseudo-terminal with TERM=vt100 and `. /dd/SYS/termcap.entry' sourced: this one and gnuchessn printed NOTHING in twenty seconds, where gnuchessr and GAMES/gnuchess both played.  DOC/DEPENDS has the likely reason -- this build opens /h0/usr/src/chess/gnuchess.book by absolute path and that file is not here, where the GAMES build opens its book by bare name.  Take GAMES/gnuchess it draws the board and plays.  Measured 2026-08-29<br>**How:** Full-screen chess. It will not read SYS/termcap -- it wants the entry in the variable itself. Do `. /dd/SYS/termcap.entry' first and it draws its time-control menu and plays. Tested. |
-| `gnuchessc` | GNU Chess 4.0, curses display |
-| `gnuchessn` | &#9733; GNU Chess (ncurses) -- termcap.entry first too; printed nothing in the same test<br>**How:** As gnuchess: `. /dd/SYS/termcap.entry' first. Tested. |
-| `gnuchessr` | &#9733; GNU Chess (raw) -- and the one of the three in CMDS that answered: it prompts `Enter #moves #minutes', takes a move and replies with its own<br>`Usage: gnuchess [-a] [-h] [-x xwndw]` |
-| `mille` | &#9733; Mille Bornes -- the French car-racing card game<br>**How:** Full-screen: it takes over the display. **control-C gets you out** -- tested, and none of q, Q, control-D or ESC did. If it has a quit command of its own, its documentation in DOC/ will say. |
+| `chess` | chess against the machine on a shaded board.  It asks for your colour, your name and a long or short game, then takes a move as two squares -- `e2' then `e4', two keystrokes each with no RETURN.  68k port, three engine versions built<br>**How:** It asks for your colour, your name and a long or short game, then takes a move as two squares -- `e2' for the piece and `e4' for where it goes. Each square is two keystrokes and needs no RETURN. |
+| `crib` | cribbage.  Needs TERM set, so run it from a login session -- bare it says `Unknown terminal type'<br>**How:** Full-screen cribbage, and it wants TERM -- run it from a login session. Answer the instructions question, choose a long or short game, and discard by naming a card, `7H'. Control-C gets you out. |
+| `cribbage` | &#9733; cribbage -- offers instructions before it deals.  Needs TERM, so run it from a login session<br>**How:** The other cribbage, the same shape: TERM must be set, it offers the rules first, then cuts for the crib. Control-C gets you out. |
+| `gnuchess` | &#9733; GNU Chess.  ITS MODULE NAME COLLIDES with CMDS/GAMES/gnuchess, which is a different port, so whichever loads first answers for both.  This build opens its opening book at /h0/usr/src/chess/gnuchess.book, which is not on this disk, and prints nothing; the GAMES build opens its book by bare name and draws a board.  Run /dd/CMDS/GAMES/gnuchess reads TERMCAP as the description itself rather than as a filename -- and it draws the board, keeps both clocks and plays.  The build in CMDS/GAMES is the one that draws a board; the CMDS build wants its opening book at a path that is not here<br>**How:** Full-screen chess. It reads TERMCAP as the terminal description itself rather than as a filename, so do `. /dd/SYS/termcap.entry' first; then it draws its time-control menu and plays. The build in CMDS/GAMES is the one that draws a board. |
+| `gnuchessc` | GNU Chess 4.0 built for a curses display.  Its display files are compiled to a path this disk does not carry, so it draws no board; it still takes a move as `e2e4' and answers with its own<br>**How:** It draws no board here -- its display files are compiled to a path this disk does not carry -- but it still takes a move as `e2e4' and answers with its own. |
+| `gnuchessn` | &#9733; GNU Chess with the 1989 display, which draws the squares as blocks of hashes so light and dark can be told apart on a terminal with no highlighting.  Source `. /dd/SYS/termcap.entry' first; moves go in as `e2e4'<br>**How:** As gnuchess: `. /dd/SYS/termcap.entry' first, then moves as `e2e4'. |
+| `gnuchessr` | &#9733; GNU Chess with the plainest display -- pieces as letters, capitals for one side and lower case for the other, nothing that needs a terminal to draw.  It prompts `Enter #moves #minutes', takes a move and replies with its own<br>`Usage: gnuchess [-a] [-h] [-x xwndw]` |
+| `mille` | &#9733; Mille Bornes -- the French car-racing card game<br>**How:** Full-screen Mille Bornes. `p' picks a card, `u #' plays one, `d #' discards, `s' saves the game and `q' quits. |
 | `nchess` | GNU Chess 4.0 (plain display) |
 | `poker` | &#9733; Cold-hand Poker (SNOBOL4-in-C).  Data: GAMES/SNOBOL |
-| `queens` | &#9733; N-queens solver -- IOCCC entry by M. Baruch.  It reads the board size on stdin as a NUMBER: `echo 5 \| queens' draws its boards.  Every sweep here fed it prose and scored it silent |
-| `tttt` | tic-tac-toe<br>**How:** Full-screen: it takes over the display. **`q' quits** -- tested. |
+| `tttt` | tic-tac-toe<br>**How:** Full-screen tic-tac-toe on a four-by-four board. Name a square as a column letter and a row digit, `b1'. `q' quits. |
 
 **Chess utilities**
 
 | | |
 |---|---|
 | `bincheckr` | check a GNU Chess opening-book file -- it reports booksize 0 for the 145 KB book that ships here, then aborts<br>**How:** It is in CMDS/GAMES, not CMDS. `bincheckr /dd/GAMES/gnuchess.book' prints the book's entrysize and counts and then faults at close. |
-| `checkgame` | replay a saved chess game -- prints two lines of PostScript and then aborts (E_PRCABT).  2nd build; `game' is the same<br>`Usage: game file [start [end] ]` |
-| `game` | replay a saved chess game -- prints two lines of PostScript and then aborts (E_PRCABT)<br>`Usage: game file [start [end] ]` |
-| `postprint` | print a chess position as PostScript (GNU Chess) |
+| `checkgame` | check a saved GNU Chess game for illegal moves and print the board it finishes on.  It reads the `chess.lst' that gnuchess writes when you type `list'.  A different program from `game', which makes PostScript<br>**How:** It reads the `chess.lst' that gnuchess writes when you type `list'. Play in a directory of your own -- `ksh -c "cd /dd/tmp/mine; gnuchess"' -- type `list' then `quit', and then `checkgame /dd/tmp/mine/chess.lst'. |
+| `game` | draw a saved GNU Chess game board by board as PostScript, one page a move, for printing with the ChessFont file DOC/game names.  Given a game it writes the first line of the page setup and stops there<br>**How:** Same input as checkgame, a gnuchess `chess.lst', and it writes PostScript on standard output: `game chess.lst > out.ps'. Here it gets as far as the page setup and stops. |
+| `gnuan` | GNU Chess analyser -- annotates a saved game move by move<br>**How:** Give it a file of moves like `e2e4 e7e5 g1f3', then a search depth and a minutes-per-move limit, and it annotates the game move by move. At the end of the file it prints the position and stops with `Bad move'. |
+| `postprint` | print the positions in GNU Chess's saved hash file as PostScript, a board to a page with the best move and the search depth.  That hash file is not on this disk, so it writes the first line of the page setup and stops<br>**How:** It wants gnuchess's persistent hash file, which is not on this disk. |
 
 **Dungeon crawl**
 
 | | |
 |---|---|
 | `hack` | hack -- the original dungeon crawl NetHack grew out of<br>**How:** RUN IT BY ITS FULL PATH: `/dd/CMDS/GAMES/hack', not `hack'. It chdirs into its playground and then stats argv[0] to date-check saved levels, so a bare name cannot resolve and it stops with "Cannot get status of hack." Invoked in full it starts: "Are you an experienced player?". Its playground -- record, bones, rumors, help -- is in GAMES/HACK/PLAYGROUND. |
-| `larn` | &#9733; larn -- dungeon crawl; see the PLAYGROUND note above<br>**How:** Full-screen: it takes over the display. **control-C gets you out** -- tested, and none of q, Q, control-D or ESC did. If it has a quit command of its own, its documentation in DOC/ will say. |
+| `larn` | &#9733; larn -- dungeon crawl; see the PLAYGROUND note above<br>**How:** Full-screen dungeon crawl. RETURN gets past the opening text. Control-C gets you out; its playground is GAMES/LARN/PLAYGROUND. |
 | `ularn` | ULarn -- the larn variant, and its data is complete |
 | `wish` | &#9733; the `hack' wish toy: run it and it prints `Wishing for: 3 potions of gain level' and `what happened to "hack"'.  The same program as CMDS/GAMES/wish.  Not the WiSH windowing shell -- both binaries carry `Wishing for: %s' and neither carries any windowing code.  DOC/ORIGINS lists a `wish' from EFFO disk 17 (WiSH_src.lzh, Hellmuth Michaelis, GPL) as well as one from the `toys' archive; the EFFO one is not the binary that is here, under either name |
 
@@ -1243,18 +1238,19 @@
 
 | | |
 |---|---|
-| `maze` | maze generator -- KNOWN BROKEN: goes dead |
-| `mines` | &#9733; minesweeper<br>**How:** Full-screen: it takes over the display. **`q' quits** -- tested. |
-| `puz15` | the 15-puzzle -- same program as CMDS/puzzle15, built twice<br>**How:** Full-screen: it takes over the display. **control-C gets you out** -- tested, and none of q, Q, control-D or ESC did. If it has a quit command of its own, its documentation in DOC/ will say. |
-| `puzzle15` | the 15-puzzle -- same program as GAMES/puz15, built twice<br>**How:** Full-screen: it takes over the display. **control-C gets you out** -- tested, and none of q, Q, control-D or ESC did. If it has a quit command of its own, its documentation in DOC/ will say. |
+| `maze` | maze generator, small enough to have won an obfuscated-C contest.  It reads the number of rows on standard input and draws a maze that wide: `echo 11 \| maze'<br>**How:** Reads the number of rows on standard input: `echo 11 \| maze' draws a maze eleven rows deep. |
+| `mines` | &#9733; minesweeper<br>**How:** Full-screen minesweeper. Name a square by its row letter and then its column letter, and answer `Mark?' with Y to flag it rather than open it. `q' quits. |
+| `puz15` | the 15-puzzle -- same program as CMDS/puzzle15, built twice<br>**How:** Full-screen fifteen puzzle. Slide the tiles into the gap; `puz15 5x5' plays a bigger board. Control-C gets you out. |
+| `puzzle15` | the 15-puzzle -- same program as GAMES/puz15, built twice<br>**How:** The same fifteen puzzle, in CMDS. Slide the tiles into the gap; `puzzle15 5x5' plays a bigger board. Control-C gets you out. |
+| `queens` | &#9733; N-queens solver -- IOCCC entry by M. Baruch.  It reads the board size on standard input as a NUMBER and draws every arrangement it finds with no two queens attacking: `echo 6 \| queens'<br>**How:** Reads the board size on standard input as a number: `echo 6 \| queens'. |
 
 **Word & guessing**
 
 | | |
 |---|---|
-| `animal` | guess-the-animal learning game<br>**How:** Full-screen: it takes over the display. **control-C gets you out** -- tested, and none of q, Q, control-D or ESC did. If it has a quit command of its own, its documentation in DOC/ will say. |
-| `bog` | Boggle word game<br>**How:** Full-screen: it takes over the display. **control-C gets you out** -- tested, and none of q, Q, control-D or ESC did. If it has a quit command of its own, its documentation in DOC/ will say. |
-| `hang` | &#9733; hangman<br>**How:** Full-screen: it takes over the display. **control-C gets you out** -- tested, and none of q, Q, control-D or ESC did. If it has a quit command of its own, its documentation in DOC/ will say. |
+| `animal` | guess-the-animal learning game<br>**How:** The file it learns from is one you name: `animal /dd/DOC/animal/example'. Answer y or n to each question; when its final guess is wrong it asks what you were thinking of and what question tells the two apart, and writes that back into the file. Control-C leaves it. |
+| `bog` | Boggle word game<br>**How:** Boggle. Space starts the three-minute round, `?' shows the rules, and you type every word you can trace through adjoining letters. Control-C leaves it. Its word list, index and help are in GAMES/BOG. |
+| `hang` | &#9733; hangman<br>**How:** Hangman. Type a letter to guess it; the letters still unused are along the top. Control-C gets you out. Its word list is GAMES/dict. |
 
 </details>
 
@@ -1330,7 +1326,7 @@
 
 *OS-9 module and process tools, devices, system state and scheduling.*
 
-<details><summary>124 programs</summary>
+<details><summary>128 programs</summary>
 
 **Devices & disks**
 
@@ -1391,6 +1387,7 @@
 | `mexist` | &#9733; test module existence<br>`Usage: mexist [options] <Module>` |
 | `os9lib` | RTF/68K FORTRAN run-time LIBRARY.  Not a program: rtf, for, lnk, biory and creadoc all F$Link it, and every one of them fails E_MNF until it is in the module directory.  See DOC/README-FORTRAN.  Running it AS a program executes its floating-point code and stops -- that is not a fault. |
 | `ptxm` | Path Table eXtension Module (Nick Holgate, 1995): a KERNEL extension letting user-state processes open unlimited I/O paths.  Courtesyware, free.  It installs into the kernel and so needs supervisor state.  DOC/ptxm/ptxm.txt |
+| `remove` | &#9733; REMOVE MODULES FROM MEMORY, not files -- its own Function line says so.  `remove <module>...', -q for quiet.  `rm' is what removes files here<br>**How:** Removes MODULES FROM MEMORY, not files. `del', `rm' and `deldir' are the file ones. |
 | `rtfdat` | RTF FORTRAN data module |
 | `version` | &#9733; prints ITS OWN version and nothing else -- `Dies ist das Program 'version', Version 7' -- whatever module you name. `ident' and `modinfo' show a module's edition.  Corrected 2026-08-29 |
 | `vmod_trap` | the VMod_trap trap library rxmod and txmod need.  Type-$0B, and it runs in SUPERVISOR state, so it installs here and then faults.  Renamed from lowercase `vmod_trap' -- rxmod asks for `VMod_trap' and real OS-9 matches exactly and it runs in SUPERVISOR state, so it installs here and then faults.  Renamed from lowercase `vmod_trap' -- rxmod asks for `VMod_trap' and real OS-9 matches exactly |
@@ -1400,6 +1397,9 @@
 | | |
 |---|---|
 | `aprocs` | &#9733; process monitor.  It calls F$SetSys twice and is aborted (E_PRCABT) where that call is not implemented.  DOC/STATUS has had this since 2026-08; the entry here did not say it.  `procs', `top' and `sysmon' are the other process listers.  Added 2026-08-30<br>`Syntax: aprocs [<opts>]` |
+| `edir` | &#9733; list the EVENT directory -- OS-9 events and their values. Nothing to do with `dir'<br>`Syntax: edir [<opts>]` |
+| `eset` | &#9733; set an OS-9 event to a value -- eset <event> <num><br>`Syntax: eset <event> <num> [<opts>]` |
+| `eunlink` | &#9733; unlink an OS-9 EVENT by name -- `eunlink <event>'.  Nothing to do with files: `edir' lists the events and `eset' sets one<br>`Syntax: eunlink {<event>}` |
 | `launch` | &#9733; M.C.Gregorie's login helper: reads /dd/SYS/config, sets the environment for your terminal type -- and optionally a default PATH and emacs bindings -- then starts the shell you name on its command line.  It does not put anything in the background<br>**How:** Says "nothing to launch" until it is configured -- see its documentation. |
 | `signal` | &#9733; send a signal to a process<br>`Syntax: signal <process-id> <signal-code> [<seconds>]` |
 | `sysmax` | &#9733; shows the system's maximum process AGE, not its memory -- `system maximum age is 0' unless the kernel answers the F$SetSys call it uses.  Corrected 2026-08-29 |

@@ -1,210 +1,650 @@
-# Listing, finding and measuring what is on the disk.
-
-shot    Ascii2Libr
-cap     The pair that get data in and out: Ascii2Libr rebuilds a catalogue
-cap     from plain text, Libr2Ascii dumps one back to text.
-run     Ascii2Libr
-wait    5
-run     Libr2Ascii
-wait    5
-
-shot    Librarian
-cap     Home Librarian searching a catalogue -- the program the other five
-cap     exist to feed.
-run     Librarian
-wait    8
-
-shot    PrintCards
-cap     PrintCards and PrintLabels, the output half of the same suite.
-run     PrintCards
-wait    5
-run     PrintLabels
-wait    5
+# Files and directories -- listing, finding, copying, and the Home
+# Librarian card catalogue.  One stanza per program; each makes the files
+# it reads under /dd/tmp/FILESA, and the picture is what follows `clear'.
 
 shot    basename
-for     basename dirname owner fstat
-cap     basename and dirname take a path apart -- neither prints a newline
-cap     after its answer, which is why they run into what follows.  `owner'
-cap     CHANGES an owner rather than showing one, super user only, so given
-cap     a filename alone it reads that as a user name and answers `No such
-cap     user'.  DOC/INDEX called it `show file owner' until this card was
-cap     read.  `fstat' below is what shows an owner, and does.
-run     basename /dd/CMDS/GAMES/hack
+size    24 80
+cap     basename prints the last part of a path -- the filename with every
+cap     directory in front of it dropped.  Give it a suffix as a second
+cap     argument and that comes off too.  It prints no newline of its own,
+cap     so `; echo' is there to end the line.
+run     clear
+wait    1
+run     basename /dd/CMDS/GAMES/hack ; echo
 wait    4
-run     dirname /dd/CMDS/GAMES/hack
+run     basename /dd/DOC/tex/none.ch .ch ; echo
 wait    4
-run     owner /dd/CMDS/GAMES/hack
-wait    5
-run     fstat /dd/CMDS/GAMES/hack
-wait    6
+snap
 
-shot    chgrp
-for     chgrp chown eset
-cap     chown and chgrp on a scratch file, with fstat either side to show
-cap     the owner change.  An OS-9 owner is GROUP.USER and the two halves
-cap     are set by different commands: chown moves the user, chgrp the
-cap     group, and each takes a number or a name out of SYS/password.
-cap     `chown 1.7' -- the pair written the way fstat prints it -- is not
-cap     accepted by either.  Everything on this disk ships owned 0.0.
-run     cp /dd/SYS/motd /dd/tmp/own.txt
-wait    5
-run     fstat /dd/tmp/own.txt
-wait    6
-run     chown tester /dd/tmp/own.txt
-wait    5
-run     chgrp 1 /dd/tmp/own.txt
-wait    5
-run     fstat /dd/tmp/own.txt
-wait    6
+shot    dirname
+size    24 80
+cap     dirname prints the other half of a path: everything up to the last
+cap     slash, with the filename dropped.  A name with no directory in it
+cap     leaves nothing to print.  It writes no newline, so `; echo' ends
+cap     the line.
+run     clear
+wait    1
+run     dirname /dd/CMDS/GAMES/hack ; echo
+wait    4
+run     dirname /dd/SYS/termcap ; echo
+wait    4
+run     dirname /dd ; echo
+wait    4
+snap
 
-shot    dfiles
-cap     dfiles hunts for duplicate files and writes the cmp commands that
-cap     would prove them identical.
-run     dfiles /dd/SYS
+shot    mkdir
+size    24 80
+cap     mkdir makes a directory, and `-p' makes every directory on the way
+cap     to it, so one command builds a whole chain.
+run     rm -rf /dd/tmp/FILESA/mk > /nil 2>/nil
+wait    3
+run     clear
+wait    1
+run     mkdir -p /dd/tmp/FILESA/mk/notes/1992/june
+wait    5
+run     ls -l /dd/tmp/FILESA/mk/notes/1992
+wait    5
+snap
+
+shot    cp
+size    24 80
+cap     cp copies a file: `cp <from> <to>'.  The listing after it shows the
+cap     copy alongside the original, the same length, and its contents are
+cap     the same bytes.
+run     mkdir -p /dd/tmp/FILESA > /nil 2>/nil; rm -f /dd/tmp/FILESA/motd.copy > /nil 2>/nil
+wait    4
+run     clear
+wait    1
+run     cp /dd/SYS/motd /dd/tmp/FILESA/motd.copy
+wait    5
+run     ls -l /dd/SYS/motd /dd/tmp/FILESA/motd.copy
+wait    5
+run     cat /dd/tmp/FILESA/motd.copy
+wait    4
+snap
+
+shot    mv
+size    24 80
+cap     GNU mv renaming a file, `-v' naming what it moved.  The listing
+cap     before and after shows `one' becoming `two'.  It is called by its
+cap     full path here because `mv' on its own reaches a built-in command
+cap     of the same name.
+run     rm -rf /dd/tmp/FILESA/mvd > /nil 2>/nil; mkdir -p /dd/tmp/FILESA/mvd > /nil 2>/nil; cp /dd/SYS/motd /dd/tmp/FILESA/mvd/one
+wait    5
+run     clear
+wait    1
+run     ls -l /dd/tmp/FILESA/mvd
+wait    5
+run     /dd/CMDS/mv -v /dd/tmp/FILESA/mvd/one /dd/tmp/FILESA/mvd/two
+wait    5
+run     ls -l /dd/tmp/FILESA/mvd
+wait    5
+snap
+
+shot    move
+size    26 80
+cap     move takes a file from one directory to another WITHOUT copying the
+cap     contents: it unhooks the file from the first directory and hooks it
+cap     into the second, so a large file moves as fast as a small one.  The
+cap     two listings before and after show `note' leaving one directory and
+cap     arriving in the other.  Its own help warns never to stop it in the
+cap     middle.  It is called by its full path because `move' on its own
+cap     reaches a built-in command of the same name.
+run     rm -rf /dd/tmp/FILESA/mfrom /dd/tmp/FILESA/mto > /nil 2>/nil
+wait    3
+run     mkdir -p /dd/tmp/FILESA/mfrom /dd/tmp/FILESA/mto > /nil 2>/nil; cp /dd/SYS/motd /dd/tmp/FILESA/mfrom/note
+wait    5
+run     clear
+wait    1
+run     dir /dd/tmp/FILESA/mfrom /dd/tmp/FILESA/mto
+wait    6
+run     /dd/CMDS/move /dd/tmp/FILESA/mfrom/note /dd/tmp/FILESA/mto/note
+wait    6
+run     dir /dd/tmp/FILESA/mfrom /dd/tmp/FILESA/mto
+wait    6
+snap
+
+shot    rm
+size    26 80
+cap     rm removing a small tree: `-r' goes down into directories, `-v'
+cap     names each thing as it goes.  The listing before it shows what was
+cap     there; asking for the directory afterwards gets an error, because
+cap     it is gone.
+run     rm -rf /dd/tmp/FILESA/rmd > /nil 2>/nil
+wait    3
+run     mkdir -p /dd/tmp/FILESA/rmd/sub > /nil 2>/nil; cp /dd/SYS/motd /dd/tmp/FILESA/rmd/a; cp /dd/SYS/motd /dd/tmp/FILESA/rmd/sub/b
+wait    6
+run     clear
+wait    1
+run     ls -lR /dd/tmp/FILESA/rmd
+wait    5
+run     rm -rv /dd/tmp/FILESA/rmd
+wait    6
+run     ls /dd/tmp/FILESA/rmd
+wait    5
+snap
+
+shot    delbak
+size    26 80
+cap     delbak walks a directory tree and deletes every backup file -- the
+cap     ones whose names end in `_bak' -- naming each as it goes.  The
+cap     listings either side show what went and what stayed.
+run     rm -rf /dd/tmp/FILESA/bk > /nil 2>/nil; mkdir -p /dd/tmp/FILESA/bk/sub > /nil 2>/nil
+wait    5
+run     cp /dd/SYS/motd /dd/tmp/FILESA/bk/notes.txt; cp /dd/SYS/motd /dd/tmp/FILESA/bk/notes.txt_bak; cp /dd/SYS/motd /dd/tmp/FILESA/bk/sub/old.c_bak
+wait    6
+run     clear
+wait    1
+run     ls -lR /dd/tmp/FILESA/bk
+wait    5
+run     delbak /dd/tmp/FILESA/bk
+wait    6
+run     ls -lR /dd/tmp/FILESA/bk
+wait    5
+snap
+
+shot    dback
+size    26 80
+cap     dback compares a directory against a backup directory and issues an
+cap     OS-9 `copy' for every file that has changed.  It names the pair of
+cap     directories it is working on and then prints the copy it wants.
+cap     There is no `copy' program on this disk, so nothing is copied and
+cap     the backup directory stays empty.
+run     rm -rf /dd/tmp/FILESA/db /dd/tmp/FILESA/dbk > /nil 2>/nil
+wait    3
+run     mkdir -p /dd/tmp/FILESA/db /dd/tmp/FILESA/dbk > /nil 2>/nil; cp /dd/SYS/motd /dd/tmp/FILESA/db/one
+wait    6
+run     clear
+wait    1
+run     dback /dd/tmp/FILESA/db /dd/tmp/FILESA/dbk
 wait    10
-kill
+run     ls -l /dd/tmp/FILESA/dbk
+wait    5
+snap
+
+shot    undel
+size    28 80
+cap     undel brings back a deleted file.  RBF leaves the directory entry
+cap     in place with its first letter overwritten, which is why the name
+cap     comes up as `?otes.txt'; undel asks for the directory, offers each
+cap     deleted name it finds, and asks twice before writing.  Answered
+cap     `y' and `y' here.
+run     rm -rf /dd/tmp/FILESA/ud > /nil 2>/nil; mkdir -p /dd/tmp/FILESA/ud > /nil 2>/nil; cp /dd/SYS/motd /dd/tmp/FILESA/ud/notes.txt
+wait    6
+run     rm /dd/tmp/FILESA/ud/notes.txt
+wait    4
+run     clear
+wait    1
+run     undel
+wait    6
+send    /dd/tmp/FILESA/ud\r
+wait    8
+send    y\r
+wait    6
+send    y\r
+wait    8
+snap
+
+shot    remove
+size    26 80
+cap     remove takes a MODULE out of memory -- it does not touch files.
+cap     `load' puts a program's module in the module directory, where it
+cap     can be started by name from anywhere; after `remove' the same name
+cap     is not found.  `rm' is what deletes files.
+run     clear
+wait    1
+run     load /dd/CMDS/ELM/readmsg
+wait    4
+run     sh -c "readmsg -\?"
+wait    6
+run     remove readmsg
+wait    4
+run     sh -c "readmsg -\?"
+wait    6
+snap
 
 shot    dir
-for     dir mkdir cp mv rm move remove
-cap     The everyday file commands, in one sitting: make a directory, copy
-cap     into it, rename, list, remove.  `dir' here is the patched build --
-cap     its moveq #128 was sign-extended before it was fixed.
-run     mkdir /dd/tmp/work
-wait    5
-run     cp /dd/SYS/motd /dd/tmp/work/one
-wait    5
-run     mv /dd/tmp/work/one /dd/tmp/work/two
-wait    5
-run     move /dd/tmp/work/two /dd/tmp/work/three
-wait    5
-run     remove /dd/tmp/work/three
-wait    5
-run     dir /dd/tmp/work
-wait    6
-run     rm /dd/tmp/work/two
-wait    5
+size    26 80
+cap     dir lists a directory.  `-e' is the long form: owner, date and time,
+cap     the attribute letters, the sector the file descriptor sits on, and
+cap     the length in bytes.
+run     clear
+wait    1
+run     dir -e /dd/SYS/ksh
+wait    8
+snap
 
-shot    dm
-cap     dm, DiskMaster 1.4 -- a two-pane full-screen file browser, and it
-cap     gets as far as its title box before stopping.  It asks the shell for
-cap     the working directory through a named pipe, /pipe/getcwdpipe, and
-cap     the open fails with error 216: OS-9's system() forks a program
-cap     called `shell' and this disk has none. -- with `sh' copied to
-cap     `shell' it runs completely, directory list and file information
-cap     panel and all.  Its help file is SYS/dm.hlp; `edir', `dir' and
-cap     `tree' are what browse here as things stand.
-run     dm /dd/SYS
-wait    5
+shot    ls
+size    26 80
+cap     GNU ls with `-al': one line a file, with the OS-9 attributes shown
+cap     as the mode letters ls prints, the owner, the length and the date.
+run     clear
+wait    1
+run     ls -al /dd/SYS | head -n 18
+wait    8
+snap
+
+shot    l
+size    26 80
+cap     `l' lists a TEXT FILE, folding it at a width you choose and ending
+cap     every line with a carriage return -- written for long-line
+cap     documents that would otherwise run off the screen.  `-40' sets the
+cap     width; 79 columns is the default.  It takes files, not directories.
+run     mkdir -p /dd/tmp/FILESA > /nil 2>/nil; rm -f /dd/tmp/FILESA/long.txt > /nil 2>/nil
+wait    4
+run     echo "Home Librarian is a computerised library card catalogue for OS-9, written by Robert Heller of Deepwoods Software and released in 1992." > /dd/tmp/FILESA/long.txt
+wait    4
+run     clear
+wait    1
+run     l -40 /dd/tmp/FILESA/long.txt
+wait    6
+snap
+
+shot    tree
+size    30 80
+cap     tree draws the shape of a directory tree with line graphics --
+cap     directories only, sorted, from the one you name.
+run     clear
+wait    1
+run     tree /dd/SYS
+wait    10
+snap
 
 shot    du
-cap     Disk usage by directory: bytes, kilobytes, sectors and file count
-cap     for every directory under the one named, and a total.
+size    26 80
+cap     du adds up what a directory tree holds: bytes, kilobytes, sectors
+cap     and the number of files, one line per directory, with a total.
+run     clear
+wait    1
 run     du /dd/DOC/gnuplot
 wait    12
+snap
 
-shot    du-tree
-for     du
-cap     du walking a directory tree and adding it up.
-run     du /dd/CMDS/GAMES | head -n 21
+shot    space
+size    26 80
+cap     space measures what a tree costs on the disk rather than what it
+cap     contains: the file contents, the sectors actually allocated, and
+cap     the smallest number of sectors the same files could occupy.
+run     clear
+wait    1
+run     space /dd/DOC/gnuplot
+wait    12
+snap
+
+shot    dfiles
+size    26 80
+cap     dfiles hunts a tree for files with identical contents and writes
+cap     out the `cmp' commands that would prove each pair equal.  The list
+cap     is the answer; no `cmp' program ships here to run it through.
+run     clear
+wait    1
+run     dfiles /dd/SYS
+wait    12
+kill
+snap
+
+shot    find
+size    26 80
+cap     find walks a directory tree looking for what you describe and
+cap     prints what it matched.  `-n=' gives the name, wildcards allowed,
+cap     and `-o' asks for the pathnames.  Its other tests are on size,
+cap     owner, group, permissions and depth.
+run     clear
+wait    1
+run     find /dd/SYS "-n=cal*" -o
 wait    10
-
-shot    edir
-for     edir eset
-cap     edir lists the EVENT directory -- OS-9 events, their values and
-cap     their wait queues, not files.  There are no events set here, so what
-cap     it prints is the heading and the time.  `eset' can only change an
-cap     event that already exists, and nothing on this disk creates one, so
-cap     it has nothing to link to.
-run     edir
-wait    8
-run     eset -?
-wait    8
-run     eset testevent 1
-wait    8
+snap
 
 shot    ff
-for     ff
-cap     `ff' -- find file -- asks in German dialect what to look for when it
-cap     is given nothing: `Was soll'n gesucht wer'n ey ???', and then exits
-cap     without waiting for an answer.  Told what to look for on the command
-cap     line it forks `dir' and cannot find it -- it looks in its own
-cap     execution directory, the way OS-9 does, and that is not where bash
-cap     found ff.  `find', `tree' and `dir' all work.
+size    26 80
+cap     ff -- find file -- asks in dialect what to look for when it is
+cap     given nothing: `Was soll'n gesucht wer'n ey ???', and exits without
+cap     waiting for the answer.  Given a name it builds the command
+cap     `dir -ausr ! grep <name>' and hands it to a program called `shell',
+cap     which is not on this disk, so nothing comes back.  `find' searches
+cap     a tree by name and works.
+run     clear
+wait    1
 run     ff
 wait    8
 run     ff termcap
-wait    8
+wait    10
+snap
 
-shot    find
-cap     GNU find 1.1.5, walking this disk.
-run     find /dd/SYS -name "cal*" -print
-wait    5
-
-shot    fstat
-cap     fstat reports a file's status and attributes as RBF holds them.
-run     fstat /dd/CMDS/tar
-wait    3
-
-shot    l
-cap     `l' should list a directory briefly.  It answers `not accessable,
-cap     error: 214' for every directory tried here -- which is what it does,
-cap     and why DOC/INDEX says so.  `ls', `dir' and `edir' all work.
-run     l /dd/CMDS/GAMES
-wait    4
-
-shot    ls
-cap     GNU ls, our own fixed build -- a real stat(), columns and -al.
-run     ls -al /dd/SYS | head -n 18
-wait    4
-
-shot    ls-long
-for     ls
-cap     GNU ls with -al on the collection's own root: the OS-9 attributes
-cap     mapped onto the mode bits ls knows how to print.
-run     ls -al /dd | head -n 21
-wait    8
-
-shot    space
-cap     space measures what a directory tree really costs on the disk,
-cap     directory by directory.
-run     space /dd/SYS
-wait    6
+shot    dm
+size    30 80
+cap     dm, Disk Master 1.4: a two-pane browser with the directory on the
+cap     left and a file-information panel on the right, and its commands
+cap     along the foot.  It carries those out through system(), so SHELL
+cap     has to name a shell that can run them -- /dd/CMDS/sh here.
+cap     Arrow keys move; the letter in each word on the bottom line picks
+cap     that command.
+run     clear
+wait    1
+run     SHELL=/dd/CMDS/sh dm /dd/SYS
+wait    12
+snap
 kill
 
-shot    tree
-for     tree
-cap     tree fails on this disk, and the reason is worth keeping: it opens
-cap     the RAW DEVICE (/dd@) to walk the directory structure itself, and
-cap     os9exec does not offer the raw device of a host directory.
-run     tree /dd/SYS
-wait    8
+shot    fstat
+size    26 80
+cap     fstat reads a file's RBF file descriptor -- the sector RBF keeps
+cap     about the file: owner as group.user, the attribute letters, the
+cap     dates and the length.  `-s' adds the segment list, which is where
+cap     on the disk the file's data actually lies.
+run     clear
+wait    1
+run     fstat /dd/CMDS/tar
+wait    6
+run     fstat -s /dd/CMDS/tar
+wait    6
+snap
 
+shot    owner
+size    26 80
+cap     owner CHANGES a file's owner; it does not show one.  `owner tester
+cap     <file>' looks the name up in SYS/password, reports the number it
+cap     found, and writes it into the file descriptor -- fstat either side
+cap     shows the owner going from 0.0 to 1.7.
+run     mkdir -p /dd/tmp/FILESA > /nil 2>/nil; cp /dd/SYS/motd /dd/tmp/FILESA/own.txt
+wait    5
+run     clear
+wait    1
+run     fstat /dd/tmp/FILESA/own.txt
+wait    6
+run     owner tester /dd/tmp/FILESA/own.txt
+wait    6
+run     fstat /dd/tmp/FILESA/own.txt
+wait    6
+snap
 
-shot    filetools
-for     dback delbak eunlink EditLibr Libr2Ascii PrintLabels
-cap     The last of the file shelf: delbak deletes the *_bak files a whole
-cap     tree has collected, and the Home Librarian pair get a catalogue in
-cap     and out of plain text.  `dback' backs a disk up, `eunlink' removes a
-cap     file the hard way and `PrintLabels' prints the catalogue's labels.
-run     delbak -?
+shot    chown
+size    26 80
+cap     An OS-9 owner is a pair, group.user.  chown sets the user half:
+cap     fstat before and after shows 0.0 becoming 0.5.  It takes a number
+cap     or a name out of SYS/password.
+run     mkdir -p /dd/tmp/FILESA > /nil 2>/nil; cp /dd/SYS/motd /dd/tmp/FILESA/usr.txt
+wait    5
+run     clear
+wait    1
+run     fstat /dd/tmp/FILESA/usr.txt
+wait    6
+run     chown 5 /dd/tmp/FILESA/usr.txt
+wait    6
+run     fstat /dd/tmp/FILESA/usr.txt
+wait    6
+snap
+
+shot    chgrp
+size    26 80
+cap     chgrp sets the other half of the pair, the group: fstat before and
+cap     after shows 0.0 becoming 3.0.  Everything on this disk arrives
+cap     owned 0.0.
+run     mkdir -p /dd/tmp/FILESA > /nil 2>/nil; cp /dd/SYS/motd /dd/tmp/FILESA/grp.txt
+wait    5
+run     clear
+wait    1
+run     fstat /dd/tmp/FILESA/grp.txt
+wait    6
+run     chgrp 3 /dd/tmp/FILESA/grp.txt
+wait    6
+run     fstat /dd/tmp/FILESA/grp.txt
+wait    6
+snap
+
+shot    rendsk
+size    26 80
+cap     rendsk changes the VOLUME name of a disk -- the name written in the
+cap     identification sector, not any file on it.  `dinfo' either side
+cap     shows the volume going from one name to the other.  Only the super
+cap     user may do it.
+run     rendsk /dd OSK-FREEWARE
+wait    5
+run     clear
+wait    1
+run     dinfo /dd
 wait    8
-run     Libr2Ascii
+run     rendsk /dd CARD-CATALOGUE
+wait    5
+run     dinfo /dd
 wait    8
-run     EditLibr
+snap
+
+shot    edir
+size    24 80
+cap     edir lists the EVENT directory.  An OS-9 event is a counter that
+cap     processes wait on to take turns; edir prints one line per event
+cap     with its value and the processes queued on it.  Nothing on this
+cap     disk creates one, so the heading and the time are all there is.
+run     clear
+wait    1
+run     edir
 wait    8
-run     dback -?
-wait    8
+snap
+
+shot    eset
+size    24 80
+cap     eset changes the value of an existing event, and `-a' releases
+cap     every process waiting on it.  It can only reach an event that has
+cap     already been created; asked for a name that does not exist, it
+cap     cannot link to it.
+run     clear
+wait    1
+run     eset -?
+wait    6
+run     eset testevent 1
+wait    6
+snap
+
+shot    eunlink
+size    24 80
+cap     eunlink is the other end of the same pair: it drops a process's
+cap     link to an event, so the event can go away when the last user lets
+cap     go.  It takes an event name, not a filename, and answers E_EVNF
+cap     when there is no event of that name.
+run     clear
+wait    1
 run     eunlink
-wait    8
-run     PrintLabels
-wait    8
+wait    6
+run     eunlink testevent
+wait    6
+snap
 
-shot    undel
-for     undel
-cap     undel asks for a directory and lists what can be brought back --
-cap     it PROMPTS, so it is on its own here: a program that stops to ask
-cap     reads the next command as its answer.
-run     undel
-wait    8
-send    /dd/tmp\r
+shot    Ascii2Libr
+size    30 80
+cap     Ascii2Libr builds a Home Librarian catalogue from plain text.  The
+cap     text is the form Libr2Ascii writes: a page count, a card count, then
+cap     one record per book, then the title, author and subject indexes.
+cap     `-outfile' names the catalogue to create and the text arrives on
+cap     standard input.  Two books go in; a 17K catalogue comes out, and
+cap     Libr2Ascii reads it straight back.
+run     mkdir -p /dd/tmp/FILESA > /nil 2>/nil; rm -f /dd/tmp/FILESA/cat.libr /dd/tmp/FILESA/cat.txt > /nil 2>/nil
+wait    4
+run     echo "16" > /dd/tmp/FILESA/cat.txt; echo "2" >> /dd/tmp/FILESA/cat.txt
+wait    3
+run     echo '"B0001" #C( :type Book :author "Kernighan and Ritchie" :title "The C Programming Language" :publisher "Prentice-Hall" :city "Englewood Cliffs" :description "The white book." :volume 0 :year 1978 )' >> /dd/tmp/FILESA/cat.txt
+wait    3
+run     echo '"B0002" #C( :type Book :author "Kelly and Pohl" :title "A Book on C" :publisher "Benjamin-Cummings" :city "Menlo Park" :description "A teaching text." :volume 0 :year 1984 )' >> /dd/tmp/FILESA/cat.txt
+wait    3
+run     echo "2" >> /dd/tmp/FILESA/cat.txt; echo '"A Book on C" #( "B0002" )' >> /dd/tmp/FILESA/cat.txt; echo '"The C Programming Language" #( "B0001" )' >> /dd/tmp/FILESA/cat.txt
+wait    3
+run     echo "2" >> /dd/tmp/FILESA/cat.txt; echo '"Kelly and Pohl" #( "B0002" )' >> /dd/tmp/FILESA/cat.txt; echo '"Kernighan and Ritchie" #( "B0001" )' >> /dd/tmp/FILESA/cat.txt
+wait    3
+run     echo "1" >> /dd/tmp/FILESA/cat.txt; echo '"Programming" #( "B0001" "B0002" )' >> /dd/tmp/FILESA/cat.txt
+wait    3
+run     Ascii2Libr -outfile /dd/tmp/FILESA/cat.libr < /dd/tmp/FILESA/cat.txt
 wait    10
+run     clear
+wait    1
+run     cat /dd/tmp/FILESA/cat.txt | head -n 4
+wait    5
+run     rm -f /dd/tmp/FILESA/cat.libr > /nil 2>/nil; Ascii2Libr -outfile /dd/tmp/FILESA/cat.libr < /dd/tmp/FILESA/cat.txt
+wait    10
+run     ls -l /dd/tmp/FILESA/cat.libr
+wait    5
+run     Libr2Ascii -infile /dd/tmp/FILESA/cat.libr | head -n 6
+wait    10
+snap
+
+shot    Libr2Ascii
+size    30 80
+cap     Libr2Ascii dumps a catalogue back to plain text on standard output
+cap     -- the whole of a two-book catalogue here.  It is how a catalogue
+cap     is carried to another machine, and how it is tidied up: the text is
+cap     read back by Ascii2Libr, which leaves out records deleted along the
+cap     way.
+run     mkdir -p /dd/tmp/FILESA > /nil 2>/nil; rm -f /dd/tmp/FILESA/cat.libr /dd/tmp/FILESA/cat.txt > /nil 2>/nil
+wait    4
+run     echo "16" > /dd/tmp/FILESA/cat.txt; echo "2" >> /dd/tmp/FILESA/cat.txt
+wait    3
+run     echo '"B0001" #C( :type Book :author "Kernighan and Ritchie" :title "The C Programming Language" :publisher "Prentice-Hall" :city "Englewood Cliffs" :description "The white book." :volume 0 :year 1978 )' >> /dd/tmp/FILESA/cat.txt
+wait    3
+run     echo '"B0002" #C( :type Book :author "Kelly and Pohl" :title "A Book on C" :publisher "Benjamin-Cummings" :city "Menlo Park" :description "A teaching text." :volume 0 :year 1984 )' >> /dd/tmp/FILESA/cat.txt
+wait    3
+run     echo "2" >> /dd/tmp/FILESA/cat.txt; echo '"A Book on C" #( "B0002" )' >> /dd/tmp/FILESA/cat.txt; echo '"The C Programming Language" #( "B0001" )' >> /dd/tmp/FILESA/cat.txt
+wait    3
+run     echo "2" >> /dd/tmp/FILESA/cat.txt; echo '"Kelly and Pohl" #( "B0002" )' >> /dd/tmp/FILESA/cat.txt; echo '"Kernighan and Ritchie" #( "B0001" )' >> /dd/tmp/FILESA/cat.txt
+wait    3
+run     echo "1" >> /dd/tmp/FILESA/cat.txt; echo '"Programming" #( "B0001" "B0002" )' >> /dd/tmp/FILESA/cat.txt
+wait    3
+run     Ascii2Libr -outfile /dd/tmp/FILESA/cat.libr < /dd/tmp/FILESA/cat.txt
+wait    10
+run     clear
+wait    1
+run     Libr2Ascii -infile /dd/tmp/FILESA/cat.libr | head -n 22
+wait    12
+snap
+
+shot    Librarian
+size    30 80
+cap     Librarian searches a catalogue.  Its main menu offers the cards and
+cap     the three indexes; `List Titles' was chosen and RETURN taken for
+cap     the empty search prefix, so every title is listed.  Typing a
+cap     reference number brings up that card.
+run     mkdir -p /dd/tmp/FILESA > /nil 2>/nil; rm -f /dd/tmp/FILESA/cat.libr /dd/tmp/FILESA/cat.txt > /nil 2>/nil
+wait    4
+run     echo "16" > /dd/tmp/FILESA/cat.txt; echo "2" >> /dd/tmp/FILESA/cat.txt
+wait    3
+run     echo '"B0001" #C( :type Book :author "Kernighan and Ritchie" :title "The C Programming Language" :publisher "Prentice-Hall" :city "Englewood Cliffs" :description "The white book." :volume 0 :year 1978 )' >> /dd/tmp/FILESA/cat.txt
+wait    3
+run     echo '"B0002" #C( :type Book :author "Kelly and Pohl" :title "A Book on C" :publisher "Benjamin-Cummings" :city "Menlo Park" :description "A teaching text." :volume 0 :year 1984 )' >> /dd/tmp/FILESA/cat.txt
+wait    3
+run     echo "2" >> /dd/tmp/FILESA/cat.txt; echo '"A Book on C" #( "B0002" )' >> /dd/tmp/FILESA/cat.txt; echo '"The C Programming Language" #( "B0001" )' >> /dd/tmp/FILESA/cat.txt
+wait    3
+run     echo "2" >> /dd/tmp/FILESA/cat.txt; echo '"Kelly and Pohl" #( "B0002" )' >> /dd/tmp/FILESA/cat.txt; echo '"Kernighan and Ritchie" #( "B0001" )' >> /dd/tmp/FILESA/cat.txt
+wait    3
+run     echo "1" >> /dd/tmp/FILESA/cat.txt; echo '"Programming" #( "B0001" "B0002" )' >> /dd/tmp/FILESA/cat.txt
+wait    3
+run     Ascii2Libr -outfile /dd/tmp/FILESA/cat.libr < /dd/tmp/FILESA/cat.txt
+wait    10
+run     clear
+wait    1
+run     Librarian -infile /dd/tmp/FILESA/cat.libr
+wait    8
+keys    \016\016
+wait    3
+send    \r
+wait    5
+send    \r
+wait    8
+snap
+kill
+
+shot    EditLibr
+size    30 80
+cap     EditLibr is where a catalogue is built and maintained: add a card,
+cap     edit one, delete by author, title or subject.  `List Cards' was
+cap     chosen from the menu and RETURN taken for the empty prefix, which
+cap     lists the shelf by its id numbers with the title beside each.
+run     mkdir -p /dd/tmp/FILESA > /nil 2>/nil; rm -f /dd/tmp/FILESA/cat.libr /dd/tmp/FILESA/cat.txt > /nil 2>/nil
+wait    4
+run     echo "16" > /dd/tmp/FILESA/cat.txt; echo "2" >> /dd/tmp/FILESA/cat.txt
+wait    3
+run     echo '"B0001" #C( :type Book :author "Kernighan and Ritchie" :title "The C Programming Language" :publisher "Prentice-Hall" :city "Englewood Cliffs" :description "The white book." :volume 0 :year 1978 )' >> /dd/tmp/FILESA/cat.txt
+wait    3
+run     echo '"B0002" #C( :type Book :author "Kelly and Pohl" :title "A Book on C" :publisher "Benjamin-Cummings" :city "Menlo Park" :description "A teaching text." :volume 0 :year 1984 )' >> /dd/tmp/FILESA/cat.txt
+wait    3
+run     echo "2" >> /dd/tmp/FILESA/cat.txt; echo '"A Book on C" #( "B0002" )' >> /dd/tmp/FILESA/cat.txt; echo '"The C Programming Language" #( "B0001" )' >> /dd/tmp/FILESA/cat.txt
+wait    3
+run     echo "2" >> /dd/tmp/FILESA/cat.txt; echo '"Kelly and Pohl" #( "B0002" )' >> /dd/tmp/FILESA/cat.txt; echo '"Kernighan and Ritchie" #( "B0001" )' >> /dd/tmp/FILESA/cat.txt
+wait    3
+run     echo "1" >> /dd/tmp/FILESA/cat.txt; echo '"Programming" #( "B0001" "B0002" )' >> /dd/tmp/FILESA/cat.txt
+wait    3
+run     Ascii2Libr -outfile /dd/tmp/FILESA/cat.libr < /dd/tmp/FILESA/cat.txt
+wait    10
+run     clear
+wait    1
+run     EditLibr -editfile /dd/tmp/FILESA/cat.libr
+wait    8
+keys    \016\016\016\016\016\016
+wait    3
+send    \r
+wait    5
+send    \r
+wait    8
+snap
+kill
+
+shot    PrintCards
+size    30 80
+cap     PrintCards sets the catalogue out as index cards, one card per
+cap     record, spaced for continuous pin-fed card stock: id and the kind of
+cap     card at the top, then author and year, title, type, publisher and
+cap     the description.  `-by Title', `-by Author' or `-by Subject' print
+cap     the reference cards instead of the shelf list.
+run     mkdir -p /dd/tmp/FILESA > /nil 2>/nil; rm -f /dd/tmp/FILESA/cat.libr /dd/tmp/FILESA/cat.txt > /nil 2>/nil
+wait    4
+run     echo "16" > /dd/tmp/FILESA/cat.txt; echo "2" >> /dd/tmp/FILESA/cat.txt
+wait    3
+run     echo '"B0001" #C( :type Book :author "Kernighan and Ritchie" :title "The C Programming Language" :publisher "Prentice-Hall" :city "Englewood Cliffs" :description "The white book." :volume 0 :year 1978 )' >> /dd/tmp/FILESA/cat.txt
+wait    3
+run     echo '"B0002" #C( :type Book :author "Kelly and Pohl" :title "A Book on C" :publisher "Benjamin-Cummings" :city "Menlo Park" :description "A teaching text." :volume 0 :year 1984 )' >> /dd/tmp/FILESA/cat.txt
+wait    3
+run     echo "2" >> /dd/tmp/FILESA/cat.txt; echo '"A Book on C" #( "B0002" )' >> /dd/tmp/FILESA/cat.txt; echo '"The C Programming Language" #( "B0001" )' >> /dd/tmp/FILESA/cat.txt
+wait    3
+run     echo "2" >> /dd/tmp/FILESA/cat.txt; echo '"Kelly and Pohl" #( "B0002" )' >> /dd/tmp/FILESA/cat.txt; echo '"Kernighan and Ritchie" #( "B0001" )' >> /dd/tmp/FILESA/cat.txt
+wait    3
+run     echo "1" >> /dd/tmp/FILESA/cat.txt; echo '"Programming" #( "B0001" "B0002" )' >> /dd/tmp/FILESA/cat.txt
+wait    3
+run     Ascii2Libr -outfile /dd/tmp/FILESA/cat.libr < /dd/tmp/FILESA/cat.txt
+wait    10
+run     clear
+wait    1
+run     PrintCards -infile /dd/tmp/FILESA/cat.libr | head -n 22
+wait    12
+snap
+
+shot    PrintLabels
+size    30 80
+cap     PrintLabels copies a template file out once per card, replacing
+cap     %title, %author, %publisher, %city, %year and %id with that card's
+cap     fields -- so it prints labels, or any listing you can describe in a
+cap     template.  The three-line template made above gives the two books
+cap     below it.  Its options each take a separate argument.
+run     mkdir -p /dd/tmp/FILESA > /nil 2>/nil; rm -f /dd/tmp/FILESA/cat.libr /dd/tmp/FILESA/cat.txt > /nil 2>/nil
+wait    4
+run     echo "16" > /dd/tmp/FILESA/cat.txt; echo "2" >> /dd/tmp/FILESA/cat.txt
+wait    3
+run     echo '"B0001" #C( :type Book :author "Kernighan and Ritchie" :title "The C Programming Language" :publisher "Prentice-Hall" :city "Englewood Cliffs" :description "The white book." :volume 0 :year 1978 )' >> /dd/tmp/FILESA/cat.txt
+wait    3
+run     echo '"B0002" #C( :type Book :author "Kelly and Pohl" :title "A Book on C" :publisher "Benjamin-Cummings" :city "Menlo Park" :description "A teaching text." :volume 0 :year 1984 )' >> /dd/tmp/FILESA/cat.txt
+wait    3
+run     echo "2" >> /dd/tmp/FILESA/cat.txt; echo '"A Book on C" #( "B0002" )' >> /dd/tmp/FILESA/cat.txt; echo '"The C Programming Language" #( "B0001" )' >> /dd/tmp/FILESA/cat.txt
+wait    3
+run     echo "2" >> /dd/tmp/FILESA/cat.txt; echo '"Kelly and Pohl" #( "B0002" )' >> /dd/tmp/FILESA/cat.txt; echo '"Kernighan and Ritchie" #( "B0001" )' >> /dd/tmp/FILESA/cat.txt
+wait    3
+run     echo "1" >> /dd/tmp/FILESA/cat.txt; echo '"Programming" #( "B0001" "B0002" )' >> /dd/tmp/FILESA/cat.txt
+wait    3
+run     Ascii2Libr -outfile /dd/tmp/FILESA/cat.libr < /dd/tmp/FILESA/cat.txt
+wait    10
+run     rm -f /dd/tmp/FILESA/label.tpl > /nil 2>/nil
+wait    3
+run     echo '%title' > /dd/tmp/FILESA/label.tpl; echo '  by %author' >> /dd/tmp/FILESA/label.tpl; echo '  %publisher, %city, %year   [%id]' >> /dd/tmp/FILESA/label.tpl
+wait    5
+run     clear
+wait    1
+run     cat /dd/tmp/FILESA/label.tpl
+wait    5
+run     PrintLabels -infile /dd/tmp/FILESA/cat.libr -templatefile /dd/tmp/FILESA/label.tpl
+wait    12
+snap

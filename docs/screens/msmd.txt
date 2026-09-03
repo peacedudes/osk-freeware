@@ -1,18 +1,10 @@
-$ msdeltree a:/DOCS
-msdeltree: File "a:/DOCS" not found
-$ msmd a:/DOCS
-$ mscopy /dd/SYS/motd a:/DOCS/README.TXT
-$ msdir a:/DOCS
+msmd a:/DOCS
+$ msdir a:
  Volume in drive A is FREEWARE
  Volume Serial Number is 35D7-0A00
- Directory for A:/DOCS
+ Directory for A:/
 
-.            <DIR>     08-30-2026   3:56a
-..           <DIR>     08-30-2026   3:56a
-README   TXT        40 08-30-2026   3:56a
-        3 file(s)                40 bytes
-                          1 456 128 bytes free
-
-$ mscd a:/DOCS
-$ msrd a:/DOCS
-Directory DOCS non empty
+readme   txt       139 08-02-2026   2:22a readme.txt
+DOCS         <DIR>     09-03-2026   5:36a
+        2 file(s)               139 bytes
+                          1 456 640 bytes free

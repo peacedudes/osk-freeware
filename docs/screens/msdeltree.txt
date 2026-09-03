@@ -1,0 +1,16 @@
+msdir a:/DOCS
+ Volume in drive A is FREEWARE
+ Volume Serial Number is 35D7-0A00
+ Directory for A:/DOCS
+
+.            <DIR>     09-03-2026   5:38a
+..           <DIR>     09-03-2026   5:38a
+README   TXT        40 09-03-2026   5:38a
+        3 file(s)                40 bytes
+                          1 456 128 bytes free
+
+$ msdeltree a:/DOCS
+Removing README.TXT
+Removing DOCS
+$ msdir a: | grep -c DOCS
+0

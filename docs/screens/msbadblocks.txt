@@ -1,0 +1,2 @@
+$ msbadblocks a:; echo "status $?"
+status 0

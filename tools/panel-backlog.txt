@@ -35,7 +35,6 @@ cc2
 cc2plus
 cccp2
 checkalias
-chgrp
 chown
 ci
 cjpeg
@@ -58,9 +57,7 @@ cpr
 creadoc
 cron
 ctags
-dback
 dearc
-delbak
 demerge
 detab
 dhry
@@ -84,11 +81,9 @@ dvimac
 dvioki
 dvitos
 ediff
-EditLibr
 enable
 eset
 etags
-eunlink
 expand
 fastmail
 filter
@@ -130,7 +125,6 @@ initvdu
 input
 k
 kermit_cio
-l
 latex
 lcasep
 lesskey
@@ -138,7 +132,6 @@ lgrep
 lharc
 lharcs
 liborder
-Libr2Ascii
 libsplit
 lispmtopgm
 lmail
@@ -157,15 +150,7 @@ mkdir
 mkindex
 modbuster
 move
-mscd
-mscopy
-msdel
-msdeltree
-mslabel
-msmd
-msmove
 msntp
-msren
 mtvtoppm
 mv
 mvolformat
@@ -174,7 +159,6 @@ newslock
 nroff
 os9lib
 owner
-pacman
 passwd
 pathalias
 pbmmake
@@ -222,7 +206,6 @@ ppmtomitsu
 ppmtosixel
 ppmtoyuvsplit
 pri
-PrintCards
 printmail
 psidtopgm
 ptob
@@ -232,7 +215,6 @@ rawtopgm
 rawtoppm
 rcs
 rcsdiff
-readnews
 ref
 remove
 rendsk
@@ -317,3 +299,4 @@ zot
 ynad
 vis
 pnmpaste
+dirname

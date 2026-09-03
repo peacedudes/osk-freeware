@@ -1,13 +1,4 @@
-$ msattrib +r a:/DOCS/README.TXT
-$ msattrib a:/DOCS/README.TXT
-  A    R     A:/DOCS/README.TXT
-$ msdir a:/DOCS
- Volume in drive A is OS9FREEWARE
- Volume Serial Number is 35D7-0A00
- Directory for A:/DOCS
-
-.            <DIR>     08-28-2026   4:59a
-..           <DIR>     08-28-2026   4:59a
-README   TXT        40 08-28-2026   5:00a
-        3 file(s)                40 bytes
-                          1 455 616 bytes free
+msattrib +r a:MOTD.TXT
+$ msattrib a:MOTD.TXT
+  A    R     A:/MOTD.TXT
+$ msattrib -r a:MOTD.TXT

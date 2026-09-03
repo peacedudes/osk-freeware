@@ -1,36 +1,12 @@
+$ time /dd/CMDS/today
+Today is Thursday, the third day of September, two thousand and
+twenty-six. In forty-three seconds, the time will be twenty-nine minutes
+before six AM, Daylight Savings Time. The moon is waning gibbous.
+
 '/dd/CMDS/today' ticks(sys/usr tot): 0/0 0,  elapsed secs: 0
-   fcalls/icalls: 3/8   bytes r/w: 0/194
+   fcalls/icalls: 3/8   bytes r/w: 0/204
 $ timid -?
 Syntax: timit [<opts>]
 Function: time something
 Options:
      (none available)
-$ paranoia
-
-
-
-
-Welcome to Paranoia!
-
-HOW TO PLAY:
-
-  Just press <RETURN> until you are asked to make a choice.
-  Select 'a' or 'b' or whatever for your choice, then press <RETURN>.
-  You may select 'p' at any time to get a display of your statistics.
-  Always choose the least dangerous option.  Continue doing this until you win.
-  At times you will use a skill or engage in combat and and will be informed of
-  the outcome.  These sections will be self explanatory.
-
-HOW TO DIE:
-
-  As Philo-R-DMD you will die at times during the adventure.
-  When this happens you will be given an new clone at a particular location.
-  The new Philo-R will usually have to retrace some of the old Philo-R's path;
-  hopefully he won't make the same mistake as his predecessor.
-
-HOW TO WIN:
-
-  Simply complete the mission before you expend all six clones.
-  If you make it, congratulations.
-  If not, you can try again later.
----------- More ----------

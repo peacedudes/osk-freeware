@@ -199,15 +199,15 @@ uuexpand|Encoding & conversion|Text encodings
 # ---- Files & directories ----
 chgrp|Files & directories|Attributes & ownership
 chown|Files & directories|Attributes & ownership
-eset|Files & directories|Attributes & ownership
+eset|System & modules|Processes & memory
 owner|Files & directories|Attributes & ownership
 cp|Files & directories|Copy, move, delete
 dback|Files & directories|Copy, move, delete
 delbak|Files & directories|Copy, move, delete
-eunlink|Files & directories|Copy, move, delete
+eunlink|System & modules|Processes & memory
 move|Files & directories|Copy, move, delete
 mv|Files & directories|Copy, move, delete
-remove|Files & directories|Copy, move, delete
+remove|System & modules|OS-9 modules
 rm|Files & directories|Copy, move, delete
 undel|Files & directories|Copy, move, delete
 mkdir|Files & directories|Create & rename
@@ -219,8 +219,8 @@ find|Files & directories|Find & compare
 space|Files & directories|Find & compare
 dir|Files & directories|List & navigate
 dm|Files & directories|List & navigate
-edir|Files & directories|List & navigate
-l|Files & directories|List & navigate
+edir|System & modules|Processes & memory
+l|Text tools|Transform & filter
 ls|Files & directories|List & navigate
 tree|Files & directories|List & navigate
 basename|Files & directories|Paths
@@ -246,14 +246,14 @@ blackjack|Games|Board & card
 chess|Games|Board & card
 crib|Games|Board & card
 cribbage|Games|Board & card
-gnuan|Games|Board & card
+gnuan|Games|Chess utilities
 gnuchess|Games|Board & card
 gnuchessc|Games|Board & card
 gnuchessn|Games|Board & card
 gnuchessr|Games|Board & card
 mille|Games|Board & card
 nchess|Games|Board & card
-queens|Games|Board & card
+queens|Games|Puzzles
 tttt|Games|Board & card
 bincheckr|Games|Chess utilities
 checkgame|Games|Chess utilities

@@ -3,10 +3,7 @@ usage: pdraw [-v vx vy vz] [-o options-file] [-Pprinter] [-s scale] [-e] [-h] [.
 Pdraw V1.4  9/4/90
    Terminal Type             = vt100
    Default Printer           = -Plp550M
-$ /dd/CMDS/BROKEN/blackjack
-/dd/CMDS/BROKEN/blackjack: cannot execute binary file
 $ X11R6shl
 /dd/CMDS/X11R6shl: cannot execute binary file
 $ readnews < /nil | head -n 2
-
-**** End of newsgroups [yq]
+New newsgroup: alt.folklore.computers--Subscribe? [yn]

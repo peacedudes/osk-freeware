@@ -31,8 +31,8 @@ japan|A weather simulator, not a calendar tool -- see `england'. It uses the Jap
 shire|A weather simulator using the Middle-earth calendar -- see `england'.
 sokoban|Wants a username, so run it from a login rather than a bare shell, or it stops with "cannot get your username".
 robots|Play with `robots -m' -- manual mode, where the robots take one step per move you make. Keys are the numeric keypad 1-9 (5 stands still), `s' for last stand, `t' to teleport. Needs Microware's math module and a real TERM.
-advint|Plays an ADVSYS world. Build one first (see advcom), then run it where the .dat is: `load /dd/CMDS/GAMES/advint`, then `sh -c "chd /dd/tmp/adv; advint osample"` -- you start in the livingroom, `n` goes to the hallway, `e` to a storage room with a key.
-advcom|The ADVSYS compiler. It opens its `@objects.adi` include by BARE NAME in the data directory and holds a filename in 20 characters, so copy osample.adv and objects.adi from GAMES/ADVSYS to a directory of your own, `load /dd/CMDS/GAMES/advcom`, then `sh -c "chd /dd/tmp/adv; advcom osample"`. It lists every object it compiles and writes osample.dat. (ksh's `cd` moves the data directory too, but prints an F$SetSys complaint four times on the way.)
+advint|Plays an ADVSYS world. Build one first (see advcom), then run it where the .dat is: `load /dd/CMDS/GAMES/advint', then `sh -c "chd /dd/tmp/adv; advint osample"' -- you start in the livingroom, `n' goes to the hallway, `e' to a storage room with a key.
+advcom|The ADVSYS compiler. It opens its `@objects.adi' include by BARE NAME in the data directory and keeps a filename in 20 characters, so copy osample.adv and objects.adi from GAMES/ADVSYS to a directory of your own, `load /dd/CMDS/GAMES/advcom', then `sh -c "chd /dd/tmp/adv; advcom osample"'. It names every object it compiles and writes osample.dat.
 infocom|A Z-machine. Plays the .z3 files in /dd/GAMES/INFORM, which are Inform demonstration programs (dejavu, hellow, shell), not the Infocom games.
 advent|Colossal Cave. Needs this disk as /dd -- it opens /dd/GAMES/adv/glorkz by absolute path, so mounted only as /h0 it cannot find its data.
 pbmtext|pbmtext <word> draws it as an image. `pbmtext os9 | pbmtoascii' prints it on the terminal and needs no file at all -- the shortest demonstration of the 169 NETPBM programs. See DOC/README-NETPBM.
@@ -77,41 +77,41 @@ cal|`cal -m=<month> -y=<year>', with flags, not bare numbers; -h marks the holid
 file|Names real formats now that SYS/magic is here: `file /dd/DEMO/gulls.gif' reports the GIF version, size and colour count.
 ephem|An astronomical ephemeris: `ephem -c /dd/SYS/ephem.cfg -d /dd/SYS/ephem.db'. RETURN passes the opening page; any key stops the loop; ? is help; control-D quits.
 ephem881|The same as ephem, built for a 68881 coprocessor. Control-D quits.
-animal|Full-screen: it takes over the display. **control-C gets you out** -- tested, and none of q, Q, control-D or ESC did. If it has a quit command of its own, its documentation in DOC/ will say.
+animal|The file it learns from is one you name: `animal /dd/DOC/animal/example'. Answer y or n to each question; when its final guess is wrong it asks what you were thinking of and what question tells the two apart, and writes that back into the file. Control-C leaves it.
 assembler|Full-screen: it takes over the display. **control-C gets you out** -- tested, and none of q, Q, control-D or ESC did. If it has a quit command of its own, its documentation in DOC/ will say.
 beav|Full-screen binary editor: `beav <file>'. Control-C leaves it.
 bite|Full-screen: it takes over the display. **`q' quits** -- tested.
-bog|Full-screen: it takes over the display. **control-C gets you out** -- tested, and none of q, Q, control-D or ESC did. If it has a quit command of its own, its documentation in DOC/ will say.
+bog|Boggle. Space starts the three-minute round, `?' shows the rules, and you type every word you can trace through adjoining letters. Control-C leaves it. Its word list, index and help are in GAMES/BOG.
 checkfile|Full-screen: it takes over the display. **`q' quits** -- tested.
 compiler|Full-screen: it takes over the display. **control-C gets you out** -- tested, and none of q, Q, control-D or ESC did. If it has a quit command of its own, its documentation in DOC/ will say.
-crib|Full-screen: it takes over the display. **control-C gets you out** -- tested, and none of q, Q, control-D or ESC did. If it has a quit command of its own, its documentation in DOC/ will say.
-cribbage|Full-screen: it takes over the display. **control-C gets you out** -- tested, and none of q, Q, control-D or ESC did. If it has a quit command of its own, its documentation in DOC/ will say.
+crib|Full-screen cribbage, and it wants TERM -- run it from a login session. Answer the instructions question, choose a long or short game, and discard by naming a card, `7H'. Control-C gets you out.
+cribbage|The other cribbage, the same shape: TERM must be set, it offers the rules first, then cuts for the crib. Control-C gets you out.
 editor|Run it bare: a full-screen file picker for umacs. Given a file on the command line it stops on an illegal instruction. Control-C leaves the menu.
 emacs|Full-screen editor, MicroEMACS keys. Control-X control-C quits. Its macros and help are in USR/LIB/EMACS.
 emacs.mm1|The MM/1 build of `emacs'; the same keys, control-X control-C quits.
 gshell|A full-screen menu of the current directory: + and - page, . changes directory, a letter runs that file. Control-C leaves it.
-hang|Full-screen: it takes over the display. **control-C gets you out** -- tested, and none of q, Q, control-D or ESC did. If it has a quit command of its own, its documentation in DOC/ will say.
+hang|Hangman. Type a letter to guess it; the letters still unused are along the top. Control-C gets you out. Its word list is GAMES/dict.
 hotel|Full-screen: it takes over the display. **control-C gets you out** -- tested, and none of q, Q, control-D or ESC did. If it has a quit command of its own, its documentation in DOC/ will say.
-lander|Full-screen: it takes over the display. **`q' quits** -- tested.
-larn|Full-screen: it takes over the display. **control-C gets you out** -- tested, and none of q, Q, control-D or ESC did. If it has a quit command of its own, its documentation in DOC/ will say.
+lander|Full-screen. Space starts a descent, a digit sets the engine power, `x' or `k' fires the main thruster and z/j and c/l the side retros. `q' quits.
+larn|Full-screen dungeon crawl. RETURN gets past the opening text. Control-C gets you out; its playground is GAMES/LARN/PLAYGROUND.
 me|Full-screen editor, MicroEMACS keys, German messages. Control-X control-C quits.
 mg|Full-screen editor, Emacs keys. Control-X control-C quits.
-mille|Full-screen: it takes over the display. **control-C gets you out** -- tested, and none of q, Q, control-D or ESC did. If it has a quit command of its own, its documentation in DOC/ will say.
-mines|Full-screen: it takes over the display. **`q' quits** -- tested.
+mille|Full-screen Mille Bornes. `p' picks a card, `u #' plays one, `d #' discards, `s' saves the game and `q' quits.
+mines|Full-screen minesweeper. Name a square by its row letter and then its column letter, and answer `Mark?' with Y to flag it rather than open it. `q' quits.
 nobs|Full-screen: it takes over the display. **control-C gets you out** -- tested, and none of q, Q, control-D or ESC did. If it has a quit command of its own, its documentation in DOC/ will say.
-puz15|Full-screen: it takes over the display. **control-C gets you out** -- tested, and none of q, Q, control-D or ESC did. If it has a quit command of its own, its documentation in DOC/ will say.
-puzzle15|Full-screen: it takes over the display. **control-C gets you out** -- tested, and none of q, Q, control-D or ESC did. If it has a quit command of its own, its documentation in DOC/ will say.
+puz15|Full-screen fifteen puzzle. Slide the tiles into the gap; `puz15 5x5' plays a bigger board. Control-C gets you out.
+puzzle15|The same fifteen puzzle, in CMDS. Slide the tiles into the gap; `puzzle15 5x5' plays a bigger board. Control-C gets you out.
 rain|Full-screen: it takes over the display. **control-C gets you out** -- tested, and none of q, Q, control-D or ESC did. If it has a quit command of its own, its documentation in DOC/ will say.
 setterm|`setterm' alone reports what TERM says; give it a terminal name to change it. Run with no arguments and a terminal it wants to configure it goes FULL-SCREEN -- **ESC quits**, tested (control-C also works, but ESC is the program's own way). SYS/setterm is the defaults file it falls back on when TERM names something it does not know, and DOC/setterm/termcap.extra has further entries you can add to SYS/termcap.
 shuffle|Full-screen: it takes over the display. **`q' quits** -- tested.
-snake|Full-screen: it takes over the display. **`x' quits** -- tested. (control-C also gets you out, but `x' is the program's own way.)
+snake|Full-screen. h/j/k/l move; reach the `$' before the snake reaches you. `x' quits.
 sonnet|Full-screen: it takes over the display. **ESC quits** -- tested. (control-C also gets you out, but ESC is the program's own way.)
 touchtype|Full-screen typing game. Answer `n' to the instructions question, pick a level 1-3 (q quits there), type each falling word followed by SPACE or RETURN. ESC ends the game and prints the words-per-minute score.
 tt|Full-screen: it takes over the display. **`q' quits** -- tested.
-tttt|Full-screen: it takes over the display. **`q' quits** -- tested.
-wanderer|Full-screen: it takes over the display. **`q' quits** -- tested.
-gnuchess|Full-screen chess. It will not read SYS/termcap -- it wants the entry in the variable itself. Do `. /dd/SYS/termcap.entry' first and it draws its time-control menu and plays. Tested.
-gnuchessn|As gnuchess: `. /dd/SYS/termcap.entry' first. Tested.
+tttt|Full-screen tic-tac-toe on a four-by-four board. Name a square as a column letter and a row digit, `b1'. `q' quits.
+wanderer|Full-screen. Dig through the earth for diamonds, forty-five on the first screen. `q' quits. Its thirty screens are in GAMES/WAND.
+gnuchess|Full-screen chess. It reads TERMCAP as the terminal description itself rather than as a filename, so do `. /dd/SYS/termcap.entry' first; then it draws its time-control menu and plays. The build in CMDS/GAMES is the one that draws a board.
+gnuchessn|As gnuchess: `. /dd/SYS/termcap.entry' first, then moves as `e2e4'.
 jargon|A browser for the Jargon File, which is here: VH/jargon.txt, version 3.0.0 of 27 July 1993, with its index. It will not read SYS/termcap -- do `. /dd/SYS/termcap.entry' first, then `jargon -m'. Tested.
 sc|The spreadsheet, version 6.16. `sc' opens and says "Type '?' for help". This line said it will not read SYS/termcap and needs `. /dd/SYS/termcap.entry' first; measured 2026-08-29, it does not -- it opens with TERMCAP as SYS/login sets it.
 vi_cio|PVIC 1.0a built with cio. Put the termcap entry in TERMCAP first (`. /dd/SYS/termcap.entry'), then `vi_cio <file>'. CMDS/vi_nocio is the same editor needing no module.
@@ -162,7 +162,7 @@ cjpeg|Makes a JPEG from a PNM -- but not straight from a netpbm PNM. cjpeg wants
 make|It works. Copy `/dd/DOC/make/demo.mk` rather than writing a makefile at the shell -- a command line must begin with a TAB and a tab does not survive being typed at this terminal. And keep shell metacharacters out of a recipe: `cp a b` runs, `cat a > b` gets "That path name doesn't lead to a file", because make forks bash with the line as a PATHNAME rather than with -c. The default rules are in default.mk beside it, and make looks for that along your PATH. Measured 2026-08-29.
 what|NOT the SCCS `what`. It prints "What's where in the GEPARD:" and a table of expansion cards -- an inventory tool for the GEPARD, the German 68k machine. Empty here, there being no GEPARD, and it ignores its arguments. Measured 2026-08-30.
 rayshade|Ray tracer 4.0, and it renders. REQUIRES MICROWARE'S `shell` on your execution path -- it builds its scene through popen(), and OS-9's C library implements popen() by forking a program of exactly that name. It also wants `cccp` in the DATA directory. DOC/rayshade has the two lines.
-dm|Disk Master 1.4, a full-screen disk browser. REQUIRES MICROWARE'S `shell` on your execution path -- it runs the commands it offers through system(). With one present it runs completely.
+dm|Disk Master 1.4, a full-screen disk browser. It runs the commands on its bottom line through system(), so SHELL must name a shell that can carry them out; with SHELL=/dd/CMDS/sh it runs completely, listing and file-information panel and all.
 
 tex|BROKEN as a wrapper -- call the engine. `tex' is one line: it asks a shell to run `virtex "&plain" yourfile', the quoted format name is never unquoted, and the shell answers E$PNNF for the whole line (rc 221 with no $SHELL set, and silently). Type `virtex '&plain' yourfile.tex' instead. For LaTeX it is `virtex '&lplain' yourfile.tex', for SliTeX `virtex '&splain''. Measured 2026-08-31; SYS/TEX/SAMPLES/small.tex is a LaTeX document and story.tex is plain TeX with no \end.
 dvialw|Works, and so do the other nine dvi* drivers -- but there are NO FONT BITMAPS on this disk, so each one says "Font file [cmr10 [300 dpi]] could not be opened ... Proceeding with zero size characters" once per font and writes a page with the right layout and no glyphs. FONTS/PK300 and PK144 hold a Makefile each; the MetaFont sources to generate the bitmaps from are in SYS/TEX/MFINPUTS. Output goes to <dvifile>_alw beside the input, not to standard output.
@@ -210,8 +210,8 @@ bincheckr|It is in CMDS/GAMES, not CMDS. `bincheckr /dd/GAMES/gnuchess.book' pri
 mkdict|It is in CMDS/GAMES, not CMDS.
 mkindex|It is in CMDS/GAMES, not CMDS.
 byteflip|It is in CMDS/NEWS, not CMDS -- and running it ends the emulator session.
-PrintLabels|Its options take a SEPARATE argument: `-infile cat.libr -templatefile tpl.txt', never `-infile=...', which answers `Bad option:' and prints the syntax. The same is true of Ascii2Libr, Libr2Ascii, PrintCards and EditLibr.
-Ascii2Libr|`-outfile cat.libr' with a space, and it reads the ASCII on standard input. It builds a catalogue only from the text Libr2Ascii writes: a hand-written record parses to zero cards.
+PrintLabels|Its options take a SEPARATE argument: `-infile cat.libr -templatefile tpl.txt', never `-infile=...', which answers `Bad option:' and prints the syntax. The same is true of Ascii2Libr, Libr2Ascii, PrintCards and EditLibr. The template is a text file copied out once per card with %title, %author, %year and the other field names replaced.
+Ascii2Libr|`-outfile cat.libr' with a space, and it reads the ASCII on standard input. The text is the form Libr2Ascii writes: a page count, then a card count and the cards, then the title, author and subject index sections.
 Libr2Ascii|`-infile cat.libr' with a space. It writes the catalogue to standard output as text, and a page count and four index-key counts at the end -- all zero means the catalogue is empty.
 inimf|It builds a Metafont base, which SYS/TEX/MFBASES now ships. To rebuild: `echo "plain; \input modes; dump" > mf.in' then `ksh -c "cd /dd/tmp; inimf < mf.in"'. About a minute. DOC/README-METAFONT has the rest.
 virmf|Metafont. `virmf '&cmbase' '\scrollmode; \mode:=epsonlo; \input cmr10; \end'' renders all 128 characters of cmr10. THE JOB NAME COMES FROM THE COMMAND LINE: the same line fed on standard input renders the same font and calls it `mfput'.
@@ -247,3 +247,14 @@ cuts|Its ENCODER does not work: `cuts -e <file>' asks for four gigabytes of memo
 splitalf|It makes <name>_0 and then stops with `can't open output file(s)', whatever it is given -- it tests a file slot it has not opened yet. No argument gets round it.
 subber|It calls F$Mem at once and stops there, so it substitutes nothing. The word list is `,old,new,' one per line, the stream is the second argument.
 tcmp|Compares two text files and prints each differing line, both versions one under the other with the line number in each file. Files whose lines differ only in tabs and spaces are reported as changed, which reads oddly until you dump them.
+back|Single letters are the commands: R rolls, D doubles, H is the help, N starts a new game, Q quits.
+blackjack|BASIC09 I-code rather than 68000 code, and it needs Microware's `runb' to interpret it. There is no runb here, so the shell answers `cannot execute binary file'. For blackjack you can play, use `blackjak'.
+checkgame|It reads the `chess.lst' that gnuchess writes when you type `list'. Play in a directory of your own -- `ksh -c "cd /dd/tmp/mine; gnuchess"' -- type `list' then `quit', and then `checkgame /dd/tmp/mine/chess.lst'.
+chess|It asks for your colour, your name and a long or short game, then takes a move as two squares -- `e2' for the piece and `e4' for where it goes. Each square is two keystrokes and needs no RETURN.
+game|Same input as checkgame, a gnuchess `chess.lst', and it writes PostScript on standard output: `game chess.lst > out.ps'. Here it gets as far as the page setup and stops.
+gnuan|Give it a file of moves like `e2e4 e7e5 g1f3', then a search depth and a minutes-per-move limit, and it annotates the game move by move. At the end of the file it prints the position and stops with `Bad move'.
+gnuchessc|It draws no board here -- its display files are compiled to a path this disk does not carry -- but it still takes a move as `e2e4' and answers with its own.
+maze|Reads the number of rows on standard input: `echo 11 | maze' draws a maze eleven rows deep.
+pacman|Written for G-Windows. At a terminal it draws nothing and returns to the shell at once.
+postprint|It wants gnuchess's persistent hash file, which is not on this disk.
+queens|Reads the board size on standard input as a number: `echo 6 | queens'.

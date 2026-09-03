@@ -54,25 +54,8 @@ PLAYTESTS = os.path.join(REPO, "tools", "playtests")
 # What a play-test capture is showing, and which of its snapshots to use.
 # The sheets carry their own captions; this covers tools/playtests/*.keys.
 CAPTIONS = {
-    "tet":      ("Tetris. Pieces stack, rows score, and the high-score table "
-                 "at the right is written to /dd/GAMES/tet.hs.", "final"),
-    "tet-speed": ("The same board captured 3 seconds into a game. Pieces "
-                  "fall at about 1.5 seconds a cell.", "t03"),
-    "greed":    ("Greed: eat digits, each one moves you that far. The whole "
-                 "board is generated at random on startup.", "opening"),
-    "hang":     ("Hangman, after guessing a e i o u r s t l n -- the guessed "
-                 "letters are struck from the alphabet and the gallows grows.",
-                 "more"),
-    "cribbage": ("Cribbage dealing a hand.", "play"),
-    "mille":    ("Mille Bornes, the card game.", "final"),
-    "robots":   ("Robots. They chase you; you teleport.", "final"),
-    "lander":   ("Lunar lander, with its instrument panel.", "final"),
-    "puzzle15": ("The fifteen puzzle.", "final"),
-    "bog":      ("Boggle, with its letter grid.", "board"),
     "life":     ("Conway's Life. It detects the oscillator period and says so "
                  "-- this pattern cycles every 8 generations.", "final"),
-    "snake":    ("Snake: steer with h j k l, collect the treasure, reach the "
-                 "goal without being caught.", "final"),
     "bite":     ("Bite, a snake variant.", "final"),
     "worms":    ("Worms, a screen toy.", "final"),
     "rain":     ("Rain, a screen toy.", "final"),
@@ -88,11 +71,6 @@ CAPTIONS = {
                  "prompt over it.", "entered"),
     "elvis":    ("Elvis 1.7 -- the best documented of this disk's three vi "
                  "editors -- displaying DOC/README-CIO.", "final"),
-    "advent":   ("Colossal Cave Adventure, at the well house where every "
-                 "player of it starts.", "final"),
-    "animal":   ("The guess-the-animal game, which learns a new question "
-                 "every time it loses.", "final"),
-    "back":     ("Backgammon, with the board drawn in characters.", "final"),
     "backgammon": ("The OTHER backgammon -- it asks three questions a single "
                    "key at a time (rules, instructions, colour) and then "
                    "draws its board frame. The points and the pieces do not "
@@ -108,12 +86,9 @@ CAPTIONS = {
                  "ratio for an engine you describe to it.", "final"),
     "card":     ("A Towers of Hanoi whose twelve disks spell out a Christmas "
                  "message.", "final"),
-    "chess":    ("The 68k chess port asking how you want to play before it "
-                 "sets the board.", "final"),
     "colortest": ("colortest wants G-Windows, which is not here, and says so "
                   "rather than drawing anything: `Not a G-Windows sytem???' "
                   "-- its own spelling.", "final"),
-    "crib":     ("Cribbage, offering its instructions first.", "final"),
     "dclock":   ("dclock is another G-Windows program: it says so and stops. "
                  "`digclk' is the clock that works on a terminal.", "final"),
     "editor":   ("The GSHELL editor front end aborts on startup (E_PRCABT).",
@@ -122,35 +97,24 @@ CAPTIONS = {
                  "raining.", "final"),
     "fortune":  ("fortune, reading the collection's own quotation file.",
                  "final"),
-    "gnuan":    ("gnuan annotates a saved chess game move by move, using GNU "
-                 "Chess's opening book -- 9585 of its 12000 entries.",
-                 "final"),
-    "larn":     ("Larn: your daughter has a strange disease and the dungeon "
-                 "has the cure.  Fixed here -- its help, fortune and maze "
-                 "files were recovered from the 12.2p4 sources.", "final"),
     "lissaj":   ("A Lissajous figure generator, drawing the curve two "
                  "oscillators trace against each other.", "final"),
     "logisim":  ("A logic-circuit simulator.  It wants a file describing the "
                  "circuit; with none it prints its own syntax.", "final"),
     "me":       ("me, a screen editor, showing DOC/README-CIO.", "final"),
     "mg":       ("mg, the small emacs, showing the same file.", "final"),
-    "mines":    ("Minesweeper on a sixteen-by-sixteen board.", "final"),
     "netpbm-convert": ("A netpbm session at the shell: a ramp made, cut down "
                        "with pnmcut, and identified at each step.",
                        "final"),
     "nobs":     ("nobs, a cribbage variant, dealing its cards.", "final"),
     "piano":    ("piano plays notes through the terminal bell; with no "
                  "arguments it prints what it wants.", "final"),
-    "puz15":    ("The fifteen puzzle, drawn in a box.", "final"),
     "pwgen":    ("A random password generator; its usage line is what it "
                  "prints when given no length.", "final"),
     "rpoem":    ("A random poem generator -- one of four SNOBOL4 programs "
                  "here, with their data in GAMES/SNOBOL.", "final"),
     "rstory":   ("A random story generator from the same SNOBOL4 shelf, "
                  "writing roff input.", "final"),
-    "sokoban":  ("Sokoban: push the boxes onto the marks.  Without USER set "
-                 "it stops with `cannot get your username', which is why "
-                 "SYS/login sets it.", "final"),
     "suicide":  ("An animation: a stick figure walks off a rooftop.",
                  "final"),
     "teachgammon": ("The backgammon tutor, which explains the rules and then "
@@ -167,8 +131,6 @@ CAPTIONS = {
                  "text from it.", "final"),
     "tt":       ("Tetris for Terminals, a second Tetris beside `tet'.",
                  "final"),
-    "ularn":    ("Ularn, the other Larn, choosing a character class.",
-                 "final"),
     "VI":       ("The EFFO vi -- its source in SRC/effo_vi is the Berkeley "
                  "ex source.", "final"),
     "vi_cio":   ("vi as built against cio, showing DOC/README-CIO.", "final"),
@@ -177,17 +139,12 @@ CAPTIONS = {
     "view":     ("view, the read-only vi.", "final"),
     "vis":      ("vis, a visual editor with its command line at the top.",
                  "final"),
-    "wanderer": ("Wanderer: collect the diamonds, do not be crushed.",
-                 "final"),
     "wish":     ("wish tells you what you would have wished for in hack.",
                  "final"),
     "world":    ("WORLD, a wilderness adventure -- its data tables are built "
                  "by `convert' and `vtxtcn', both here.", "final"),
     "zot":      ("zot echoes text `in interesting ways'; with no text it "
                  "prints its options.", "final"),
-    "hack":     ("hack, with the inventory open: a fighter starts with a two "
-                 "handed sword in hand and ring mail worn. @ is you, d your "
-                 "dog, G a gnome, $ gold, + a door.", "inventory"),
 }
 
 # A play-test whose script is named for the SESSION rather than for one
@@ -196,7 +153,6 @@ CAPTIONS = {
 PLAYTEST_FOR = {
     "netpbm":         ["pgmramp", "pgmtopbm", "pbmtoascii", "pnmfile"],
     "netpbm-convert": ["pnmcut", "pnmfile", "pgmramp"],
-    "tet-speed":      ["tet"],
 }
 
 # The line drawing, folded to what a plain ASCII file can hold.

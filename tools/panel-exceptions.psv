@@ -35,3 +35,10 @@ UnMacpack|opens PackIt archives and none is on the disk; its options are what th
 uudecode|writes the decoded file silently; the ls and cat that follow on its card show it back
 lua|built against a later csl edition than the disk ships; the mismatch banner is where it stops, and the card says so
 runc|built against a later csl edition than the disk ships; the mismatch banner is where it stops, and the card says so
+mscopy|copies onto the DOS disk silently; the msdir that follows on its card shows the file there
+mslabel|labels the DOS disk silently; the msdir that follows on its card shows the label
+msmd|makes the directory silently; the msdir that follows on its card shows it
+msmove|moves the file silently; the msdir that follows on its card shows it moved
+msren|renames silently; the msdir that follows on its card shows the new name
+mswrite|writes onto the DOS disk silently; the msread and checksums that follow on its card show the file came back unchanged
+pacman|a G-Windows program: at a terminal it draws nothing and returns, and its card says so

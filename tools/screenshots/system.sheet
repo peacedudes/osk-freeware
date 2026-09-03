@@ -417,7 +417,7 @@ run     phone /t1
 wait    28
 
 shot    rndir
-for     rndir mvolformat rendsk
+for     rndir mvolformat
 cap     rndir renames a directory -- OS-9's `rename' would not touch one,
 cap     so this existed.  Made, renamed and listed in a scratch directory
 cap     of its own.
@@ -432,8 +432,6 @@ wait    6
 run     dir /dd/tmp/rnd
 wait    6
 run     mvolformat < /nil
-wait    8
-run     rendsk < /nil
 wait    8
 
 shot    scsiutil
