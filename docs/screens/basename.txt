@@ -1,14 +1,4 @@
-$ basename /dd/CMDS/GAMES/hack
+basename /dd/CMDS/GAMES/hack ; echo
 hack
-$ dirname /dd/CMDS/GAMES/hack
-/dd/CMDS/GAMES
-$ owner /dd/CMDS/GAMES/hack
-No such user
-$ fstat /dd/CMDS/GAMES/hack
-
-Filename:     /dd/CMDS/GAMES/hack
-Owner:        0.0
-Attributes:   --e-re-r
-Created:      08/29/2026
-Modified:     08/03/2026 07:00 pm
-File Length:  198584 $(307B8)
+$ basename /dd/DOC/tex/none.ch .ch ; echo
+none

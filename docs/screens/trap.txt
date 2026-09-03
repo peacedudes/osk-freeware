@@ -1,0 +1,4 @@
+$ /dd/CMDS/trap
+tlink: -1
+**** Can't install trap handler ****
+ **** +-*/&|^<>@? ****

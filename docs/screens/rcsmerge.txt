@@ -1,0 +1,6 @@
+$ rcsmerge
+rcsmerge error: No input file
+command format:
+    rcsmerge -p -rrev1 -rrev2 file
+    rcsmerge -p -rrev1 file
+rcsmerge aborted

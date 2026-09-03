@@ -1,0 +1,4 @@
+$ float; echo "float returned $?"
+start
+7000 loops done
+float returned 0

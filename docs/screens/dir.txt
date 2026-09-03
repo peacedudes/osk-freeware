@@ -1,14 +1,11 @@
-$ mkdir /dd/tmp/work
-$ cp /dd/SYS/motd /dd/tmp/work/one
-$ mv /dd/tmp/work/one /dd/tmp/work/two
-$ move /dd/tmp/work/two /dd/tmp/work/three
-$ remove /dd/tmp/work/three
-$ dir /dd/tmp/work
+dir -e /dd/SYS/ksh
 
-Directory of "/dd/tmp/work" 04:02:27  08/30/126
+Directory of "/dd/SYS/ksh" 05:52:17  09/03/126
 
-three
+ Owner   Last modified  Attributes Sector Bytecount Name
+-------  -------------  ---------- ------ --------- -----
+  0.0    126/08/03 1900   ---wr-wr   730A8       528 envi.ksh
+  0.0    126/08/03 1900   ---wr-wr   730AC      1159 mark
+  0.0    126/08/03 1900   ---wr-wr   730B4      1160 profile.ksh
 
-Total of 1 files.
-$ rm /dd/tmp/work/two
-rm: /dd/tmp/work/two: 000:216 file not found
+Total of 3 files containing 2847 bytes.

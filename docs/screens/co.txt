@@ -1,0 +1,8 @@
+co /dd/tmp/DEV/rcs/note_v
+/dd/tmp/DEV/rcs/note_v  -->  note
+revision 1.1
+done
+$ ls -l /dd/tmp/DEV/rcs; cat /dd/tmp/DEV/rcs/note
+total 512
+-r--r--r--   1 0        0             250 Sep  3 06:05 note_v
+cat: couldn't open '/dd/tmp/DEV/rcs/note' (Error #000:216)

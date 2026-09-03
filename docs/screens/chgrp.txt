@@ -1,19 +1,17 @@
-$ cp /dd/SYS/motd /dd/tmp/own.txt
-$ fstat /dd/tmp/own.txt
+fstat /dd/tmp/FILESA/grp.txt
 
-Filename:     /dd/tmp/own.txt
+Filename:     /dd/tmp/FILESA/grp.txt
 Owner:        0.0
 Attributes:   ---wr-wr
-Created:      08/28/2026
+Created:      09/03/2026
 Modified:     08/03/2026 07:00 pm
 File Length:  40 $(28)
-$ chown tester /dd/tmp/own.txt
-$ chgrp 1 /dd/tmp/own.txt
-$ fstat /dd/tmp/own.txt
+$ chgrp 3 /dd/tmp/FILESA/grp.txt
+$ fstat /dd/tmp/FILESA/grp.txt
 
-Filename:     /dd/tmp/own.txt
-Owner:        1.7
+Filename:     /dd/tmp/FILESA/grp.txt
+Owner:        3.0
 Attributes:   ---wr-wr
-Created:      08/28/2026
-Modified:     08/28/2026 07:07 pm
+Created:      09/03/2026
+Modified:     09/03/2026 05:56 am
 File Length:  40 $(28)

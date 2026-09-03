@@ -55,11 +55,3 @@ wait    4
 run     ls -l /dd/tmp/DOCB/lesskeys
 wait    3
 
-shot    rdoc
-cap     rdoc is Rueckdokumentation -- reverse documentation, from c't in
-cap     1988.  Hand it C source and it prints the control structure as an
-cap     indented skeleton: every if, else, for, switch and case in place,
-cap     with the code between them taken away.  This is the tail of what it
-cap     makes of keep.c.
-run     rdoc /dd/SRC/keep/keep.c | tail -l=20
-wait    90

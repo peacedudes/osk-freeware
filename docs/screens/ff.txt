@@ -1,5 +1,4 @@
-$ ff
+ff
 
 Was soll'n gesucht wer'n ey ???
 $ ff termcap
-dir: nowhere found

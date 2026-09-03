@@ -1,0 +1,11 @@
+ci /dd/tmp/DEV/rcs/note
+/dd/tmp/DEV/rcs/note_v  <--  /dd/tmp/DEV/rcs/note
+initial revision: 1.1
+enter description, terminated with <eof> or '.':
+NOTE: This is NOT the log message!
+>> first draft
+>> .
+done
+$ ls -l /dd/tmp/DEV/rcs
+total 512
+-r--r--r--   1 0        0             262 Sep  3 06:13 note_v

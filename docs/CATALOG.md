@@ -326,18 +326,13 @@
 
 <details><summary>32 programs</summary>
 
-**Attributes**
-
-| | |
-|---|---|
-| `fstat` | display a file's FILE DESCRIPTOR -- the RBF FD sector, not the attribute bits `attr' shows you.  Its own Function line says "Display file descriptor information" and it reports itself as `FStat'.  `-s' adds the segment list, and `ssl' shows the same list from the same sector<br>`Syntax: FStat [<opts>] <file1> [<opts>]` |
-
 **Attributes & ownership**
 
 | | |
 |---|---|
 | `chgrp` | &#9733; change group<br>`Usage:  chgrp [-z] {numerical-gid \| username} [file [... file]]` |
 | `chown` | &#9733; change owner<br>`Usage:  chown [-z] {numerical-uid \| username} [file [... file]]` |
+| `fstat` | display a file's FILE DESCRIPTOR -- the RBF FD sector, not the attribute bits `attr' shows you.  Its own Function line says "Display file descriptor information" and it reports itself as `FStat'.  `-s' adds the segment list, and `ssl' shows the same list from the same sector<br>`Syntax: FStat [<opts>] <file1> [<opts>]` |
 | `owner` | &#9733; CHANGE a file's owner, not show it -- `owner <user> <file> ...', super user only.  Run with a file it prints its usage; run as `owner <file>' it reads the filename as a user name and answers `No such user'.  `fstat' and `ls -l' are what SHOW an owner<br>`Usage: owner user file file ...` |
 
 **Copy, move, delete**
@@ -347,8 +342,6 @@
 | `cp` | &#9733; copy files -- `cp <from> <to>' copies the bytes across.  Run with no arguments it prints its usage and then stops on a bus error<br>`Usage: cp file1 file2` |
 | `dback` | directory backup: walks a directory and issues an OS-9 `copy' for every file that has changed.  `copy' is not on this disk, so what you see is the list of copies it wants<br>`Usage: Dback [-options] <fromdir> <todir> [-options]` |
 | `delbak` | &#9733; delete backup files (*_bak) in a directory tree<br>`Usage: delbak [-options] [directory] [-options]` |
-| `divide` | &#9733; SPLIT A FILE into pieces -- Farside Systems 1992, `divide -l=<lines> <infile> [<outfile>]'.  Not integer division, whatever the name suggests |
-| `fc` | &#9733; split a big file in two, to carry it on 360k disks -- and the cut is at exactly 350,000 BYTES, not at the halfway point: its own Function line says "Takes first 350,000 bytes of a file or stdin and puts in one file and puts remaining bytes" in the other<br>`Syntax:   fc [<file>]` |
 | `move` | &#9733; move files between directories WITHOUT COPYING THE CONTENTS -- it relinks them, which is why it is quick and why its own help warns never to kill it mid-run.  `move <from> <to>' wants a destination NAME; -w=<dir> is the wildcard form that takes a directory.  L. Zeller, V2.1<br>`Syntax:   move [<options>] <from> [<to>] [<options>]` |
 | `mv` | &#9733; GNU mv (fileutils 3.13) -- rename a file or move it into a directory; `-i' asks before overwriting, `-b' keeps a backup, `-v' names what it moved<br>`Usage: mv [-bfiuv] [-S backup-suffix] [-V {numbered,existing,simple}]` |
 | `rm` | &#9733; remove files<br>`Usage: rm [-dfirvPR] [+directory] [+force] [+interactive] [+recursive]` |
@@ -397,6 +390,13 @@
 |---|---|
 | `basename` | &#9733; strip directory from a pathname (M.C. Gregorie, 1994)<br>`Syntax:   basename <path> [<suffix>]` |
 | `dirname` | &#9733; strip filename from a pathname (M.C. Gregorie, 1994)<br>`Syntax:   dirname <path>` |
+
+**Split & join**
+
+| | |
+|---|---|
+| `divide` | &#9733; SPLIT A FILE into pieces -- Farside Systems 1992, `divide -l=<lines> <infile> [<outfile>]'.  Not integer division, whatever the name suggests |
+| `fc` | &#9733; split a big file in two, to carry it on 360k disks -- and the cut is at exactly 350,000 BYTES, not at the halfway point: its own Function line says "Takes first 350,000 bytes of a file or stdin and puts in one file and puts remaining bytes" in the other<br>`Syntax:   fc [<file>]` |
 
 </details>
 

@@ -1,2 +1,4 @@
-$ find /dd/SYS -name "cal*" -print
-find: only one parameter allowed
+find /dd/SYS "-n=cal*" -o
+/dd/SYS/TEX/MFINPUTS/CM/calu.mf
+/dd/SYS/cal.holidays
+/dd/SYS/cal.init

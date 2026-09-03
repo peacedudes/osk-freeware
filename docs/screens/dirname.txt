@@ -1,0 +1,5 @@
+dirname /dd/CMDS/GAMES/hack ; echo
+/dd/CMDS/GAMES
+$ dirname /dd/SYS/termcap ; echo
+/dd/SYS
+$ dirname /dd ; echo

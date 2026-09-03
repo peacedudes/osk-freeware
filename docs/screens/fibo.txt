@@ -2,6 +2,3 @@ $ fibo
 start
 10 loops done
  Fibonacci( 24) = 46368
-$ float
-start
-7000 loops done

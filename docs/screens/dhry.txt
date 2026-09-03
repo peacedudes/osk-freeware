@@ -1,7 +1,8 @@
-$ echo 2000000 | dhry > /dd/tmp/d1.txt
-$ tail -l=2 /dd/tmp/d1.txt
-Dhrystones per Second:                      86956.5
+$ echo 500000 | dhry | tail -l=8
+Str_1_Loc:           DHRYSTONE PROGRAM, 1'ST STRING
+        should be:   DHRYSTONE PROGRAM, 1'ST STRING
+Str_2_Loc:           DHRYSTONE PROGRAM, 2'ND STRING
+        should be:   DHRYSTONE PROGRAM, 2'ND STRING
 
-$ echo 2000000 | dhryGcc2o2 > /dd/tmp/d2.txt
-$ tail -l=2 /dd/tmp/d2.txt
-Dhrystones per Second:                      100000.0
+Microseconds for one run through Dhrystone:   12.0
+Dhrystones per Second:                      83333.3

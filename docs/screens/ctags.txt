@@ -1,5 +1,5 @@
-$ ctags /dd/SRC/keep/keep.c
-$ head -n 12 tags
+ksh -c "cd /dd/tmp/DEV; ctags /dd/SRC/keep/keep.c"
+$ cat /dd/tmp/DEV/tags | head -n 8
 Mkeep   /dd/SRC/keep/keep.c     /^main(argc, argv)$/
 copy_file       /dd/SRC/keep/keep.c     /^static int copy_file(from, to, execut/
 crc_of  /dd/SRC/keep/keep.c     /^static unsigned long crc_of(path, sizep)$/
@@ -8,7 +8,3 @@ drop_one        /dd/SRC/keep/keep.c     /^static void drop_one(prog)$/
 exists  /dd/SRC/keep/keep.c     /^static int exists(path)$/
 find_collection /dd/SRC/keep/keep.c     /^static int find_collection()$/
 is_dir  /dd/SRC/keep/keep.c     /^static int is_dir(path)$/
-keep_one        /dd/SRC/keep/keep.c     /^static void keep_one(prog)$/
-keep_source     /dd/SRC/keep/keep.c     /^static void keep_source(prog)$/
-kept_list       /dd/SRC/keep/keep.c     /^static void kept_list()$/
-makepath        /dd/SRC/keep/keep.c     /^static void makepath(path)$/

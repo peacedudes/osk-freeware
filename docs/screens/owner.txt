@@ -1,0 +1,19 @@
+fstat /dd/tmp/FILESA/own.txt
+
+Filename:     /dd/tmp/FILESA/own.txt
+Owner:        0.0
+Attributes:   ---wr-wr
+Created:      09/03/2026
+Modified:     08/03/2026 07:00 pm
+File Length:  40 $(28)
+$ owner tester /dd/tmp/FILESA/own.txt
+User 001.007 : tester
+Owner changed for file : /dd/tmp/FILESA/own.txt
+$ fstat /dd/tmp/FILESA/own.txt
+
+Filename:     /dd/tmp/FILESA/own.txt
+Owner:        1.7
+Attributes:   ---wr-wr
+Created:      09/03/2026
+Modified:     09/03/2026 05:55 am
+File Length:  40 $(28)

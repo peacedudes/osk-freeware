@@ -1,4 +1,4 @@
-$ indent /dd/SRC/keep/about.c -st | head -n 12
+$ indent /dd/SRC/keep/about.c -st | head -n 20
 /*
  * about -- everything this collection knows about one program, on one
  * screen.
@@ -11,20 +11,11 @@ $ indent /dd/SRC/keep/about.c -st | head -n 12
  * FOR (DOC/CATEGORIES), where it came from (DOC/ORIGINS), what files it
  * opens (DOC/DEPENDS), whether its source survived (SRC/) and whether anyone
  * documented it (DOC/<name>/). All of that is here, on the disk, in plain
-$ cb < /dd/SRC/keep/about.c | head -n 6
-/* about -- everything this collection knows about one program, on one screen.
+ * text -- and to use it you had to know those five places existed and go and
+ * read each one.
  *
- * Written for the OS-9 freeware collection, 2026-08-22. Microware C (K&R).
+ * That is a card catalogue with no cards. This prints the card:
  *
- * WHY
+ * $ about fortune fortune        print a random quotation
  *
-$ ccheck /dd/SRC/keep/about.c
-/dd/SRC/keep/about.c: Mismatched indent on closing ) lines 189, 191; indents 6,.
-/dd/SRC/keep/about.c: Indent jumps backwards line 192.
-/dd/SRC/keep/about.c: Indent jumps backwards line 193.
-/dd/SRC/keep/about.c: Mismatched indent on closing } lines 191, 195; indents 10.
-/dd/SRC/keep/about.c: Mismatched indent on closing ) lines 272, 273; indents 6,.
-/dd/SRC/keep/about.c: Mismatched indent on closing ) lines 287, 288; indents 3,.
-/dd/SRC/keep/about.c: Indent jumps backwards line 289.
-/dd/SRC/keep/about.c: Mismatched indent on closing } lines 288, 294; indents 7,.
-/dd/SRC/keep/about.c:  OK
+ * for        Games -- Fortune & sayings from       usenet archive  fortune.ar

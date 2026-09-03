@@ -1,23 +1,6 @@
-        -c                      operation of unifdef is complemented
-        -d<sym>         define a symbol
-        -id<sym>        ignore lines within defined symbol
-        -iu<sym>        ignore lines within undefined symbol
-        -l                      blank out removed lines instead of deleting them
-        -t                      text file, ignore comments and quotes
-        -u<sym>         undefine a symbol
-
-Exit status: 0=output is exact copy of input, 1 if not, 2 if trouble.
-This is public domain software (newsnet), not for sale.
-
-At least one arg from [-d -u -id -iu] is required
-$ ifdef -?
-Syntax: ifdef [<opts>] [<file>] [<opts>]
-Function: read C-source from <file> or stdin, remove #ifdefs and write
-    to stdout.
-Options:
-    -t           print #define / #undef table
-    -Dsymbol     define symbol
-    -dsymbol     define symbol, can't be undefined
-    -Usymbol     undefine symbol
-    -Isymbol     ignore symbol
-Adapted to OS-9/68k by Hubert Nehring
+ifdef -DOSK /dd/tmp/DEV/ifd.c
+int on_os9 = 1;
+int always = 2;
+$ ifdef -UOSK /dd/tmp/DEV/ifd.c
+int on_os9 = 0;
+int always = 2;

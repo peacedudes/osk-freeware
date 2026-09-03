@@ -1,0 +1,4 @@
+ksh -c "cd /dd/tmp/DEV; etags /dd/SRC/keep/about.c"; echo "status $?"
+status 0
+$ ls -l /dd/tmp/DEV/TAGS
+-rw-------   1 0        0             708 Sep  3 06:18 /dd/tmp/DEV/TAGS

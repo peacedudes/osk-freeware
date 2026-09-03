@@ -1,0 +1,13 @@
+C=/dd/tmp/FILESA
+$ cat $C/tpl
+%title
+  by %author
+  %publisher, %city, %year   [%id]
+$ PrintLabels -infile $C/cat.libr -templatefile $C/tpl
+The C Programming Language
+  by Kernighan and Ritchie
+  Prentice-Hall, Englewood Cliffs, 1978   [B0001]
+
+A Book on C
+  by Kelly and Pohl
+  Benjamin-Cummings, Menlo Park, 1984   [B0002]

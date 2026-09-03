@@ -297,6 +297,14 @@ works through the harness -- rpoem froze mid-word. Use it where `kill`
 would end the program before the interesting part, or where `head` would
 change what the program does.
 
+**"TOOK THE EMULATOR DOWN" is usually the harness, not the program.**
+Every stanza ends with Ctrl-E, aimed at the terminal's last writer; when
+the program has already exited, the last writer is the shell, and killing
+it ends os9exec. `mshell` and `xlate` were both reported that way on
+2026-09-03 and both run fine standalone. Reproduce on a pty of your own
+(a ten-line python script that spawns `os9exec bash /dd/SYS/login`)
+before calling anything an emulator crash.
+
 Things that bit on the first batch: a `size` line between stanzas attaches
 to the one BEFORE it; the fullest-moment picker prefers a menu to a playing
 field, which `snap` overrides; `head -n N file` prints `head: file` as a

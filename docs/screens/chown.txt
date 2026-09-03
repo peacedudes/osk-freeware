@@ -1,0 +1,17 @@
+fstat /dd/tmp/FILESA/usr.txt
+
+Filename:     /dd/tmp/FILESA/usr.txt
+Owner:        0.0
+Attributes:   ---wr-wr
+Created:      09/03/2026
+Modified:     08/03/2026 07:00 pm
+File Length:  40 $(28)
+$ chown 5 /dd/tmp/FILESA/usr.txt
+$ fstat /dd/tmp/FILESA/usr.txt
+
+Filename:     /dd/tmp/FILESA/usr.txt
+Owner:        0.5
+Attributes:   ---wr-wr
+Created:      09/03/2026
+Modified:     09/03/2026 05:56 am
+File Length:  40 $(28)

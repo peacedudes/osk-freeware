@@ -1,15 +1,24 @@
-                             +===================+
-                             |  DiskMaster v1.4  |
-                             | Copyright(c) 1995 |
-                             |  by Bob Devries   |
-                             |  Mouse  Detected  |
-                             +===================+
-
-
-
-
-
-
-
-
-ERROR 216: Can't open /pipe/getcwdpipe
+                               Disk Master v1.4
++==============================================+===============================+
+| 32==PARENT==23                               |       2File Information       |
+| -?23                                         |                               |
+| 2.ELM23                                      |           Filename            |
+| .bashrc23                                    |              ..               |
+| .newsrc23                                    |          Attributes           |
+| .pdksh_hist23                                |           d-ewrewr            |
+| .sh_history23                                |      2Length:2 1120 bytes     |
+| .xc23                                        |        Creation date          |
+| 2ADL23                                       |           00/00/00            |
+| 2CMDS23                                      |        Last modified2         |
+| 2DEFS23                                      |        126/09/03 05:59        |
+| 2DEMO23                                      |                               |
+| 2DOC23                                       +===============================+
+| 2DOS23                                       |                               |
+| 2ETC23                                       |       Current disk info       |
+| 2GAMES23                                     |                               |
+| 2GNUCHESS4.023                               |      Can't get size of /dd    |
+| 2GNULIB23                                    |                               |
+| 2LIB23                                       |                               |
+| 2LOG23                                       |                               |
++= /dd ========================================+===============================+
+2Attr Copy Rename Del Newdir Makdir mOve Tag/untag List Unarc Help Quit Shell2

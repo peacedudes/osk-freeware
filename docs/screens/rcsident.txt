@@ -1,0 +1,3 @@
+rcsident /dd/tmp/DEV/rcs/note_v
+/dd/tmp/DEV/rcs/note_v:
+ident warning: no id keywords in /dd/tmp/DEV/rcs/note_v

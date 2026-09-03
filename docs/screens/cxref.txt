@@ -1,4 +1,4 @@
-$ cxref /dd/SRC/keep/about.c | head -n 20
+$ cxref /dd/SRC/keep/about.c | head -n 24
 
    1 /* about -- everything this collection knows about one program, on one scr.
    2  *
@@ -19,3 +19,7 @@ $ cxref /dd/SRC/keep/about.c | head -n 20
   17  *     fortune        print a random quotation
   18  *
   19  *       for        Games -- Fortune & sayings
+  20  *       from       usenet archive  fortune.ar
+  21  *       needs      /dd/GAMES/FORTUNE/fortunes.dat        here
+  22  *       source     SRC/fortune
+  23  *       docs       DOC/fortune

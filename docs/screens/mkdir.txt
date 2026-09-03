@@ -1,0 +1,4 @@
+mkdir -p /dd/tmp/FILESA/mk/notes/1992/june
+$ ls -l /dd/tmp/FILESA/mk/notes/1992
+total 512
+drwxrwxrwx   1 0        0              64 Sep  3 05:46 june

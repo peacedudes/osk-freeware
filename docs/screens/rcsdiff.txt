@@ -1,0 +1,11 @@
+rcsdiff /dd/tmp/DEV/rcs/note_v
+RCS file: /dd/tmp/DEV/rcs/note_v
+retrieving revision 1.1
+-/dd/tmp/_RCSt1000003: cannot create
+diff -r1.1 note
+/dd/CMDS/diff: /dd/tmp/_RCSt1000003: diff: Error 216
+
+RCS: cleaning up
+
+$ Error #000:002 (S_Abort) User abort (Cmd-'.')
+%1       5 Quit (2)             /dd/CMDS/diff /dd/tmp/_RCSt1000003 note

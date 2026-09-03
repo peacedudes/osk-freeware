@@ -1,10 +1,4 @@
-Syntax: bcheck [<opt>] [<filename>]
-Function: check sourcefile for correct bracketcount
-Options:
-     -q      quiet mode
-     -?      show this explanation
-
-$ bcheck /dd/SRC/keep/about.c | head -n 10
+$ bcheck /dd/SRC/keep/about.c | head -n 16
 00001: 00  /* about -- everything this collection knows about one program, on o.
 00002: 00   *
 00003: 00   * Written for the OS-9 freeware collection, 2026-08-22. Microware C.
@@ -15,3 +9,9 @@ $ bcheck /dd/SRC/keep/about.c | head -n 10
 00008: 00   * is FOR (DOC/CATEGORIES), where it came from (DOC/ORIGINS), what ft
 00009: 00   * opens (DOC/DEPENDS), whether its source survived (SRC/) and whethe
 00010: 00   * documented it (DOC/<name>/). All of that is here, on the disk, inn
+00011: 00   * text -- and to use it you had to know those five places existed ad
+00012: 00   * read each one.
+00013: 00   *
+00014: 00   * That is a card catalogue with no cards. This prints the card:
+00015: 00   *
+00016: 00   *     $ about fortune

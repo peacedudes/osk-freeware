@@ -1,7 +1,4 @@
-$ edir
-   Event Directory at 17:45:18
-
-$ eset -?
+eset -?
 Syntax: eset <event> <num> [<opts>]
 Function: set event to a new value
 Options:

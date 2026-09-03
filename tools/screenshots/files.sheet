@@ -82,7 +82,7 @@ wait    5
 snap
 
 shot    move
-size    26 80
+size    34 80
 cap     move takes a file from one directory to another WITHOUT copying the
 cap     contents: it unhooks the file from the first directory and hooks it
 cap     into the second, so a large file moves as fast as a small one.  The
@@ -182,7 +182,11 @@ wait    8
 send    y\r
 wait    6
 send    y\r
+wait    6
+send    n\r
 wait    8
+run     ls -l /dd/tmp/FILESA/ud
+wait    6
 snap
 
 shot    remove
@@ -246,7 +250,7 @@ cap     tree draws the shape of a directory tree with line graphics --
 cap     directories only, sorted, from the one you name.
 run     clear
 wait    1
-run     tree /dd/SYS
+run     tree /dd/CMDS
 wait    10
 snap
 
@@ -458,7 +462,7 @@ cap     one record per book, then the title, author and subject indexes.
 cap     `-outfile' names the catalogue to create and the text arrives on
 cap     standard input.  Two books go in; a 17K catalogue comes out, and
 cap     Libr2Ascii reads it straight back.
-run     mkdir -p /dd/tmp/FILESA > /nil 2>/nil; rm -f /dd/tmp/FILESA/cat.libr /dd/tmp/FILESA/cat.txt > /nil 2>/nil
+run     mkdir -p /dd/tmp/FILESA > /nil 2>/nil; rm -f /dd/tmp/FILESA/cat.libr /dd/tmp/FILESA/cat2.libr /dd/tmp/FILESA/cat.txt > /nil 2>/nil
 wait    4
 run     echo "16" > /dd/tmp/FILESA/cat.txt; echo "2" >> /dd/tmp/FILESA/cat.txt
 wait    3
@@ -478,11 +482,11 @@ run     clear
 wait    1
 run     cat /dd/tmp/FILESA/cat.txt | head -n 4
 wait    5
-run     rm -f /dd/tmp/FILESA/cat.libr > /nil 2>/nil; Ascii2Libr -outfile /dd/tmp/FILESA/cat.libr < /dd/tmp/FILESA/cat.txt
+run     Ascii2Libr -outfile /dd/tmp/FILESA/cat2.libr < /dd/tmp/FILESA/cat.txt
 wait    10
-run     ls -l /dd/tmp/FILESA/cat.libr
+run     ls -l /dd/tmp/FILESA/cat2.libr
 wait    5
-run     Libr2Ascii -infile /dd/tmp/FILESA/cat.libr | head -n 6
+run     Libr2Ascii -infile /dd/tmp/FILESA/cat2.libr | head -n 6
 wait    10
 snap
 
@@ -619,8 +623,9 @@ size    30 80
 cap     PrintLabels copies a template file out once per card, replacing
 cap     %title, %author, %publisher, %city, %year and %id with that card's
 cap     fields -- so it prints labels, or any listing you can describe in a
-cap     template.  The three-line template made above gives the two books
-cap     below it.  Its options each take a separate argument.
+cap     template.  The three-line template is shown first, then the two
+cap     books it produced.  Its options each take a separate argument, and
+cap     `C' is just a shorthand for the directory the two files are in.
 run     mkdir -p /dd/tmp/FILESA > /nil 2>/nil; rm -f /dd/tmp/FILESA/cat.libr /dd/tmp/FILESA/cat.txt > /nil 2>/nil
 wait    4
 run     echo "16" > /dd/tmp/FILESA/cat.txt; echo "2" >> /dd/tmp/FILESA/cat.txt
@@ -637,14 +642,16 @@ run     echo "1" >> /dd/tmp/FILESA/cat.txt; echo '"Programming" #( "B0001" "B000
 wait    3
 run     Ascii2Libr -outfile /dd/tmp/FILESA/cat.libr < /dd/tmp/FILESA/cat.txt
 wait    10
-run     rm -f /dd/tmp/FILESA/label.tpl > /nil 2>/nil
+run     rm -f /dd/tmp/FILESA/tpl > /nil 2>/nil
 wait    3
-run     echo '%title' > /dd/tmp/FILESA/label.tpl; echo '  by %author' >> /dd/tmp/FILESA/label.tpl; echo '  %publisher, %city, %year   [%id]' >> /dd/tmp/FILESA/label.tpl
+run     echo '%title' > /dd/tmp/FILESA/tpl; echo '  by %author' >> /dd/tmp/FILESA/tpl; echo '  %publisher, %city, %year   [%id]' >> /dd/tmp/FILESA/tpl
 wait    5
 run     clear
 wait    1
-run     cat /dd/tmp/FILESA/label.tpl
+run     C=/dd/tmp/FILESA
+wait    2
+run     cat $C/tpl
 wait    5
-run     PrintLabels -infile /dd/tmp/FILESA/cat.libr -templatefile /dd/tmp/FILESA/label.tpl
+run     PrintLabels -infile $C/cat.libr -templatefile $C/tpl
 wait    12
 snap

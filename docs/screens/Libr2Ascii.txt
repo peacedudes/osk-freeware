@@ -1,0 +1,19 @@
+Libr2Ascii -infile /dd/tmp/FILESA/cat.libr | head -n 22
+4
+2
+"B0001" #C(:TYPE Book :AUTHOR "Kernighan and Ritchie"
+           :TITLE "The C Programming Language" :PUBLISHER "Prentice-Hall"
+           :CITY "Englewood Cliffs" :VOLUME 0 :YEAR 1978 :DESCRIPTION
+"The white book.")
+"B0002" #C(:TYPE Book :AUTHOR "Kelly and Pohl" :TITLE "A Book on C"
+           :PUBLISHER "Benjamin-Cummings" :CITY "Menlo Park" :VOLUME 0
+           :YEAR 1984 :DESCRIPTION
+"A teaching text.")
+2
+"A BOOK ON C" #("B0002")
+"THE C PROGRAMMING LANGUAGE" #("B0001")
+2
+"KELLY AND POHL" #("B0002")
+"KERNIGHAN AND RITCHIE" #("B0001")
+1
+"PROGRAMMING" #("B0001", "B0002")

@@ -66,17 +66,6 @@ wait    5
 run     ask "once more"
 wait    6
 
-shot    bcheck
-cap     bcheck COUNTS BRACKETS in a source file and reports a mismatch --
-cap     it is not the boot-file checker DOC/INDEX called it, which is what
-cap     its own usage line says when you ask.  Run over a file it says
-cap     nothing at all when the brackets balance.  Given a file it numbers
-cap     every line with the nesting depth it is at.
-run     bcheck -?
-wait    5
-run     bcheck /dd/SRC/keep/about.c | head -n 10
-wait    10
-
 shot    bigsetter
 cap     A Modula-2 set-operations demonstration -- proof the Modula
 cap     compiler's output runs here.

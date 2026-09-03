@@ -1,8 +1,22 @@
-$ fstat /dd/CMDS/tar
+fstat /dd/CMDS/tar
 
 Filename:     /dd/CMDS/tar
 Owner:        0.0
 Attributes:   --e-re-r
-Created:      08/28/2026
+Created:      09/03/2026
 Modified:     08/03/2026 07:00 pm
 File Length:  22966 $(59B6)
+$ fstat -s /dd/CMDS/tar
+
+Filename:     /dd/CMDS/tar
+Owner:        0.0
+Attributes:   --e-re-r
+Created:      09/03/2026
+Modified:     08/03/2026 07:00 pm
+File Length:  22966 $(59B6)
+
+Seg  Sector   Seg Len
+---  -------  -------
+001  $2EF2D   91
+---  -------  -------
+Num Segments: 1

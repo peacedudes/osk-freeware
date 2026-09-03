@@ -1,21 +1,25 @@
-$ xrf /dd/SRC/keep/about.c
-ERROR: Cannot open Language Table file: C.XRF
-$ ls -l /dd/DOC/xrf
-total 3584
--rw-rw-rw-   1 0        0             380 Aug  3 19:00 c.xrf
--rw-rw-rw-   1 0        0              62 Aug  3 19:00 makefile
--rw-rw-rw-   1 0        0             325 Aug  3 19:00 pas.xrf
--rw-rw-rw-   1 0        0            1645 Aug  3 19:00 xrf.doc
-$ etags /dd/SRC/keep/keep.c
-$ head -n 6 TAGS
-Mkeep   /dd/SRC/keep/keep.c     /^main(argc, argv)$/
-copy_file       /dd/SRC/keep/keep.c     /^static int copy_file(from, to, execut/
-crc_of  /dd/SRC/keep/keep.c     /^static unsigned long crc_of(path, sizep)$/
-depends_for     /dd/SRC/keep/keep.c     /^static void depends_for(prog, dirout,/
-drop_one        /dd/SRC/keep/keep.c     /^static void drop_one(prog)$/
-exists  /dd/SRC/keep/keep.c     /^static int exists(path)$/
-$ ref < /nil
-usage: ref [-t] [-c class] [-f file] tag
-   -t        output tag info, instead of the function header
-   -f File   tag might be a static function in File
-   -c Class  tag might be a member of class Class
+ksh -c "cd /dd/tmp/DEV/xrf; xrf about.c" | head -n 24
+Language table loaded
+/
+
+#include <stdio.h>
+#include <modes.h>
+
+#define MAXPATH 256
+#define MAXLINE 512
+#define MAXDEPS 24
+#define DEPLEN  128
+
+extern char *getenv();
+
+static char collection[MAXPATH];
+
+/
+static char *roots[] = { ", ", ", ", 0 };
+
+static int exists(path)
+char *path;
+{
+   FILE *f;
+
+   if ((f = fopen(path, ")) == NULL)
