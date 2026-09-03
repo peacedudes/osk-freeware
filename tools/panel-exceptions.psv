@@ -54,3 +54,7 @@ dclock|a G-Windows program, and it says so; the card shows that
 mkdict|takes a bus error on the word list that ships; the card shows the stop
 vtxtcn|writes its tables silently; the ls that follows on its card is the evidence
 zot|its fourteen styles are terminal attributes the page cannot show; the card says so
+unstr|asks for 75 megabytes before it reads a byte and is refused; the stop is the whole of what it does, and the card says so
+bmgtest|a Boyer-Moore test program that prints nothing when satisfied; the status line on its card is the evidence
+bmgtest2|a Boyer-Moore test program that prints nothing when satisfied; the status line on its card is the evidence
+buildhash|wants ispell's word list, which the disk does not carry, and says which; the card says so

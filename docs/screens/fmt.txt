@@ -1,23 +1,13 @@
-    -f <name>...   overwrite files already there (otherwise refused)
-    keep -s <name>...   take the SOURCE tree as well, where there is one
-    keep -p <dir> ...   put it all under <dir> instead of /dd kept
-    what has been taken, and how much it came to drop <name>...      put
-    back exactly what keep wrote drop -n <name>...   dry run
-
-FIRST: YOU MAY NOT NEED THIS AT ALL -----------------------------------
-
-If you mount this collection as /dd -- the recommended arrangement, and
-what DOC/README-RUNNING is about -- then nothing needs keeping.  Every
-program is already where it expects to be, and 258 of them read data
-from /dd that is right here.  Run them in place and be done.
-
-`keep' is for the other case: you ALREADY RUN OS-9, /dd is YOUR system,
-and this collection is mounted alongside as another drive.  Then a
-program that reads /dd/GAMES/adv/glorkz will look on your disk and not
-find it.  `keep' is what puts it there -- the program, and the files it
-reads, in the places it looks for them.
-
-That is the whole job: make a program that expects the collection at /dd
-work on a /dd that is not the collection.
-
-Where it copies from and to
+cat /dd/tmp/TXT/rag.txt
+Twas brillig,
+and the slithy
+toves did gyre and gimble in the wabe: all mimsy were the borogoves, and the mo.
+$ fmt /dd/tmp/TXT/rag.txt
+Twas brillig, and the slithy toves did gyre and gimble in the wabe: all
+mimsy were the borogoves, and the mome raths outgrabe.
+$ fmt -30 /dd/tmp/TXT/rag.txt
+Twas brillig, and the slithy
+toves did gyre and gimble in
+the wabe: all mimsy were the
+borogoves, and the mome raths
+outgrabe.

@@ -1,24 +1,24 @@
                                Disk Master v1.4
-+==============================================+===============================+
++----------------------------------------------+-------------------------------+
 | 32==PARENT==23                               |       2File Information       |
 | -?23                                         |                               |
 | 2.ELM23                                      |           Filename            |
 | .bashrc23                                    |              ..               |
-| .newsrc23                                    |          Attributes           |
-| .pdksh_hist23                                |           d-ewrewr            |
-| .sh_history23                                |      2Length:2 1120 bytes     |
-| .xc23                                        |        Creation date          |
-| 2ADL23                                       |           00/00/00            |
-| 2CMDS23                                      |        Last modified2         |
-| 2DEFS23                                      |        126/09/03 05:59        |
-| 2DEMO23                                      |                               |
-| 2DOC23                                       +===============================+
-| 2DOS23                                       |                               |
-| 2ETC23                                       |       Current disk info       |
-| 2GAMES23                                     |                               |
-| 2GNUCHESS4.023                               |      Can't get size of /dd    |
+| .mcwd23                                      |          Attributes           |
+| .newsrc23                                    |           d-ewrewr            |
+| .pdksh_hist23                                |      2Length:2 1280 bytes     |
+| .sh_history23                                |        Creation date          |
+| .xc23                                        |           00/00/00            |
+| 2ADL23                                       |        Last modified2         |
+| 2CMDS23                                      |        126/09/03 06:58        |
+| 2DEFS23                                      |                               |
+| 2DEMO23                                      +-------------------------------+
+| 2DOC23                                       |                               |
+| 2DOS23                                       |       Current disk info       |
+| 2ETC23                                       |                               |
+| 2GAMES23                                     |      Can't get size of /dd    |
+| 2GNUCHESS4.023                               |                               |
 | 2GNULIB23                                    |                               |
 | 2LIB23                                       |                               |
-| 2LOG23                                       |                               |
-+= /dd ========================================+===============================+
++- /dd ----------------------------------------+-------------------------------+
 2Attr Copy Rename Del Newdir Makdir mOve Tag/untag List Unarc Help Quit Shell2

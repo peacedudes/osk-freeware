@@ -1,3 +1,7 @@
-$ head -n 8 /dd/SYS/motd > /dd/tmp/s1
-$ detab /dd/tmp/s1 > /dd/tmp/s2
-$ spiff /dd/tmp/s1 /dd/tmp/s2
+spiff /dd/tmp/TXT/a /dd/tmp/TXT/b
+2c2
+< banana
+---
+> blueberry
+4a5
+> elder

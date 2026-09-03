@@ -90,8 +90,6 @@ CAPTIONS = {
                  "final"),
     "england":  ("The weather simulator set in England -- mid-Atlantic, and "
                  "raining.", "final"),
-    "fortune":  ("fortune, reading the collection's own quotation file.",
-                 "final"),
     "lissaj":   ("A Lissajous figure generator, drawing the curve two "
                  "oscillators trace against each other.", "final"),
     "logisim":  ("A logic-circuit simulator.  It wants a file describing the "

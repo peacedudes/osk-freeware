@@ -287,5 +287,5 @@ run     /dd/CMDS/fc -?
 wait    4
 run     ksh -c "cd /dd/tmp/ENC; /dd/CMDS/fc fc.txt"
 wait    6
-run     ls -l /dd/tmp/ENC
+run     ls -l /dd/tmp/ENC/fc.txt /dd/tmp/ENC/fc.txt_1
 wait    5

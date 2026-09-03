@@ -1,20 +1,8 @@
-$ echo 3 > /dd/tmp/n.txt
-$ echo 22 >> /dd/tmp/n.txt
-$ echo 111 >> /dd/tmp/n.txt
-$ echo 4 >> /dd/tmp/n.txt
-$ qsort9 < /dd/tmp/n.txt
-111
-22
-3
-4
-$ nsort < /dd/tmp/n.txt
-111
-22
-3
-4
-$ sort -n /dd/tmp/n.txt
-3
-4
-22
-111
-$ uniq < /nil
+qsort9 < /dd/tmp/TXT/dups
+apple
+apple
+fig
+fig
+fig
+pear
+pear

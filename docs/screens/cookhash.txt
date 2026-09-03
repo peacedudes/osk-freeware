@@ -1,16 +1,2 @@
-$ cookhash -?
-usage: cookhash <cookiefile >hashfile
-$ cookie
-Each team building another component has been using the most recent tested
-version of the integrated system as a test bed for debugging its piece.  Their
-work will be set back by having that test bed change under them.  Of course it
-must.  But the changes need to be quantized.  Then each user has periods of
-productive stability, interrupted by bursts of test-bed change.  This seems
-to be much less disruptive than a constant rippling and trembling.
-- Frederick Brooks Jr., "The Mythical Man Month"
-$ fortune
-Paranoids are people, too; they have their own problems.  It's easy to
-criticize, but if everybody hated you, you'd be paranoid too.
-                -- D. J. Hicks
-$ unstr < /nil
-usage: unstr datafile[.dat] [ outfile ]
+<T/say > /dd/tmp/TXT/say.hash; ls -l /dd/tmp/TXT/say.hash
+-rw-rw-rw-   1 0        0              21 Sep  3 07:01 /dd/tmp/TXT/say.hash

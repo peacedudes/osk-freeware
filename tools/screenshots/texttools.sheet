@@ -31,23 +31,6 @@ wait    4
 run     cdiff /dd/tmp/h1 /dd/tmp/h2
 wait    6
 
-shot    cookhash
-for     cookhash cookie strfile unstr fortune
-cap     The fortune machinery, both halves: cookhash builds the hash a
-cap     sayings file needs, and cookie reads one out of it.
-run     cookhash -?
-wait    6
-run     cookie
-wait    6
-
-# cookie DRAWS AT RANDOM.  Re-shooting this one changes what it says, and
-# the file has some sayings that do not want to be the face of the disk --
-# read what comes back before committing it.
-run     fortune
-wait    8
-run     unstr < /nil
-wait    8
-
 shot    cookie
 cap     cookie, the fortune-cookie program, reading the collection's own
 cap     sayings file.
@@ -144,29 +127,6 @@ wait    4
 run     fcomp /dd/tmp/fc1 /dd/tmp/fc2
 wait    6
 
-shot    fmt
-cap     fmt folding a long text to the terminal width.
-run     head -n 30 /dd/DOC/README-KEEP | fmt
-wait    6
-
-shot    lgrep
-for     lgrep ggrep bmgtest bmgtest2
-cap     More pattern matchers, each from a different decade.  `ggrep' is GNU
-cap     grep out of sh_utils and counts what it finds.  `lgrep' is meant to
-cap     print the NAMES of files that match, the way grep -l does, and
-cap     prints nothing at all here whatever it is given -- its usage line is
-cap     the only output anyone has got out of it.
-run     lgrep chess /dd/DOC/INDEX /dd/DOC/STATUS /dd/SYS/motd
-wait    6
-run     lgrep -?
-wait    6
-run     ggrep -c chess /dd/DOC/INDEX
-wait    8
-run     bmgtest < /nil
-wait    8
-run     bmgtest2 < /nil
-wait    8
-
 shot    gothic
 cap     gothic sets a line in blackletter.  It asks where to write and
 cap     whether to halve the size before it draws.
@@ -187,20 +147,6 @@ wait    6
 run     grep -c "" /dd/DOC/INDEX
 wait    4
 
-shot    ispell
-for     ispell buildhash makelex
-cap     ispell listing the words it does not know out of a line of
-cap     deliberately bad spelling -- the -l form, which is what a script
-cap     uses.
-run     echo The quik brown foxx jmups over the lasy dog > /dd/tmp/sp.txt
-wait    5
-run     ispell -l /dd/tmp/sp.txt
-wait    10
-run     buildhash < /nil
-wait    10
-run     makelex < /nil
-wait    10
-
 shot    jargon
 cap     The Jargon File browser, looking up a word in its own database --
 cap     jargon.txt and jargon.idx in /dd/VH.  The database is named by its
@@ -208,64 +154,11 @@ cap     BASE name and nothing else: given a path it says it cannot find it.
 run     jargon -b kluge jargon
 wait    10
 
-shot    join
-for     join
-cap     paste puts two files side by side and join matches them on a common
-cap     first field -- the relational pair.
-run     head -n 5 /dd/SYS/holidays > /dd/tmp/j1
-wait    5
-run     head -n 5 /dd/SYS/birthdays > /dd/tmp/j2
-wait    5
-run     paste /dd/tmp/j1 /dd/tmp/j2
-wait    8
-run     join /dd/tmp/j1 /dd/tmp/j1
-wait    8
-
-shot    kwic
-for     pagefraz pagekwic pageline
-cap     The KWIC suite: a key-word-in-context index, the way a printed
-cap     concordance was made. pageline numbers the lines, pagekwic splits
-cap     them to one phrase each, pagefraz pulls the phrases out.
-run     head -n 12 /dd/SYS/holidays > /dd/tmp/k.txt
-wait    6
-run     pageline /dd/tmp/k.txt | head -n 12
-wait    8
-run     pagefraz < /nil
-wait    10
-run     pagekwic < /nil
-wait    10
-
 shot    lout
 cap     Basser Lout 2.05, a document formatter in the TeX tradition, saying
 cap     what it is.
 run     lout -V
 wait    6
-
-shot    qsort9
-for     qsort9 nsort uniq unip
-cap     Three sorts on the same four numbers, and only one of them is a
-cap     numeric sort.  `qsort9' compares text, which is what it is for.
-cap     `nsort' answers exactly the same -- 111 before 22 before 3 -- so it
-cap     is NOT the numeric sort its name and DOC/INDEX promised, and the
-cap     index is corrected.  `sort -n' is the one that gets it right.  The
-cap     file is built with echo because this disk's printf prints nothing at
-cap     all for a format with no conversion in it.
-run     echo 3 > /dd/tmp/n.txt
-wait    3
-run     echo 22 >> /dd/tmp/n.txt
-wait    3
-run     echo 111 >> /dd/tmp/n.txt
-wait    3
-run     echo 4 >> /dd/tmp/n.txt
-wait    4
-run     qsort9 < /dd/tmp/n.txt
-wait    8
-run     nsort < /dd/tmp/n.txt
-wait    8
-run     sort -n /dd/tmp/n.txt
-wait    8
-run     uniq < /nil
-wait    8
 
 shot    vis
 cap     Runs a command over and over and refreshes the screen with its
@@ -294,31 +187,6 @@ run     speech
 wait    3
 send    OS-9 is a real time operating system\r
 wait    5
-
-shot    spiff
-cap     spiff is a tolerant diff: it ignores the formatting differences an
-cap     ordinary diff would report.
-run     head -n 8 /dd/SYS/motd > /dd/tmp/s1
-wait    2
-run     detab /dd/tmp/s1 > /dd/tmp/s2
-wait    3
-run     spiff /dd/tmp/s1 /dd/tmp/s2
-wait    5
-
-shot    strfile
-for     strfile unstr cookhash
-cap     strfile builds the index `fortune' reads.  Here it converts the
-cap     collection's own sayings file and reports what it found -- ONE
-cap     string, because this file separates its quotations with a character
-cap     strfile does not take as a delimiter, which is worth knowing before
-cap     you rebuild an index over it.  (Its opposite number `unstr' floods
-cap     `No more memory !!!' instead of dumping one; DOC/INDEX says so.)
-run     cp /dd/GAMES/FORTUNE/fortunes.dat /dd/tmp/f.dat
-wait    5
-run     strfile /dd/tmp/f.dat
-wait    8
-run     ls -l /dd/tmp/f.dat*
-wait    6
 
 shot    what
 cap     what prints the expansion cards fitted to a GEPARD, the German 68k
@@ -506,34 +374,6 @@ wait    20
 run     ls -l /dd/tmp/GF
 wait    12
 
-shot    misc-text
-for     ediff fgrep
-cap     Two more text tools: `fgrep' searching the index for a word, and
-cap     `ediff', which turns a diff into plain English and prints its
-cap     syntax when it is given nothing.
-run     fgrep chess /dd/DOC/INDEX | head -n 5
-wait    10
-run     ediff < /nil
-wait    8
-
-shot    roff
-for     roff nroff proff
-cap     Three roffs, none of them GNU.  `proff' justifies text to a measure
-cap     -- the spread-out words below are it filling the line -- and takes
-cap     page ranges and a statistics option.  `roff' is the small one with
-cap     the same job.  `nroff' is the one to avoid: it answers `illegal
-cap     switch' to -?, prints nothing for a file, and does not come back at
-cap     all -- the session has to be stopped.  `lout' and `tex' are what
-cap     typeset properly here.
-run     head -n 12 /dd/DOC/README-KEEP > /dd/tmp/r.txt 2>/nil
-wait    5
-run     proff /dd/tmp/r.txt | head -n 10
-wait    10
-run     roff -?
-wait    8
-run     nroff -?
-wait    8
-
 shot    btop
 for     btop ptob
 cap     BtoP and PtoB, a pair: characters to bit patterns and back again.
@@ -572,3 +412,238 @@ run     hc -11 /dd/SYS/motd
 wait    5
 run     hc -l "> " /dd/SYS/motd
 wait    5
+
+# Formatters, fortune tools, comparers, sorters, searchers and the KWIC
+# indexers, one stanza per program; each makes what it reads under
+# /dd/tmp/TXT.
+
+shot    nroff
+size    30 80
+cap     nroff setting a short text: a centred title, then paragraphs
+cap     filled and justified to the measure.  Its macro sets are in LIB.
+run     mkdir -p /dd/tmp/TXT > /nil 2>/nil; printf ".ce\rJABBERWOCKY\r.sp\rTwas brillig, and the slithy toves did gyre and gimble in the wabe: all mimsy were the borogoves, and the mome raths outgrabe.\r.sp\rBeware the Jabberwock, my son -- the jaws that bite, the claws that catch.\r" > /dd/tmp/TXT/jab.r
+wait    3
+run     clear
+wait    1
+run     nroff /dd/tmp/TXT/jab.r | head -n 14
+wait    10
+
+shot    roff
+size    30 80
+cap     roff, the older formatter, on the same text: title centred, the
+cap     paragraph filled and justified to a narrower measure.
+run     mkdir -p /dd/tmp/TXT > /nil 2>/nil; printf ".ce\rJABBERWOCKY\r.sp\rTwas brillig, and the slithy toves did gyre and gimble in the wabe: all mimsy were the borogoves, and the mome raths outgrabe.\r.sp\rBeware the Jabberwock, my son -- the jaws that bite, the claws that catch.\r" > /dd/tmp/TXT/jab.r
+wait    3
+run     clear
+wait    1
+run     roff /dd/tmp/TXT/jab.r | head -n 14
+wait    10
+
+shot    proff
+size    30 80
+cap     proff, a portable roff, on the same text; its macros are in
+cap     LIB/proff.
+run     mkdir -p /dd/tmp/TXT > /nil 2>/nil; printf ".ce\rJABBERWOCKY\r.sp\rTwas brillig, and the slithy toves did gyre and gimble in the wabe: all mimsy were the borogoves, and the mome raths outgrabe.\r.sp\rBeware the Jabberwock, my son -- the jaws that bite, the claws that catch.\r" > /dd/tmp/TXT/jab.r
+wait    3
+run     clear
+wait    1
+run     proff /dd/tmp/TXT/jab.r | head -n 14
+wait    10
+
+shot    fmt
+cap     Refills ragged text into even lines, to 72 columns or to a width
+cap     given as -<n>.
+run     mkdir -p /dd/tmp/TXT > /nil 2>/nil; printf "Twas brillig,\rand the slithy\rtoves did gyre and gimble in the wabe: all mimsy were the borogoves, and the mome raths outgrabe.\r" > /dd/tmp/TXT/rag.txt
+wait    3
+run     clear
+wait    1
+run     cat /dd/tmp/TXT/rag.txt
+wait    2
+run     fmt /dd/tmp/TXT/rag.txt
+wait    5
+run     fmt -30 /dd/tmp/TXT/rag.txt
+wait    5
+
+shot    strfile
+cap     Turns a file of sayings separated by %% lines into the indexed
+cap     .dat file fortune reads, and reports what it found.
+run     mkdir -p /dd/tmp/TXT > /nil 2>/nil; rm -f /dd/tmp/TXT/say.dat; printf "A closed mouth gathers no feet.\r%%%%\rThe second mouse gets the cheese.\r%%%%\rNever test for an error you do not know how to handle.\r%%%%\r" > /dd/tmp/TXT/say
+wait    3
+run     clear
+wait    1
+run     cat /dd/tmp/TXT/say
+wait    3
+run     strfile /dd/tmp/TXT/say
+wait    5
+
+shot    unstr
+cap     Meant to be the other way, printing the sayings back out of the
+cap     .dat file strfile made.  It asks for 75 megabytes of memory
+cap     before it reads a byte, is refused, and stops.
+run     mkdir -p /dd/tmp/TXT > /nil 2>/nil; rm -f /dd/tmp/TXT/say.dat; printf "A closed mouth gathers no feet.\r%%%%\rThe second mouse gets the cheese.\r%%%%\r" > /dd/tmp/TXT/say; strfile /dd/tmp/TXT/say > /nil
+wait    4
+run     clear
+wait    1
+run     unstr /dd/tmp/TXT/say
+wait    5
+
+shot    cookhash
+cap     Builds the hash file the cookie program uses to pick a saying
+cap     at random from a file of them.
+run     mkdir -p /dd/tmp/TXT > /nil 2>/nil; printf "A closed mouth gathers no feet.\r%%%%\rThe second mouse gets the cheese.\r%%%%\r" > /dd/tmp/TXT/say
+wait    3
+run     clear
+wait    1
+run     cookhash < /dd/tmp/TXT/say > /dd/tmp/TXT/say.hash; ls -l /dd/tmp/TXT/say.hash
+wait    5
+
+shot    fortune
+cap     A fortune at random from the collection in GAMES/FORTUNE, twice.
+run     fortune
+wait    5
+run     fortune
+wait    5
+
+shot    ediff
+cap     Puts diff's output into plain English: which lines changed, from
+cap     what to what, and what was added.
+run     mkdir -p /dd/tmp/TXT > /nil 2>/nil; printf "apple\rbanana\rcherry\rdate\r" > /dd/tmp/TXT/a; printf "apple\rblueberry\rcherry\rdate\relder\r" > /dd/tmp/TXT/b
+wait    3
+run     clear
+wait    1
+run     diff /dd/tmp/TXT/a /dd/tmp/TXT/b | ediff
+wait    6
+
+shot    spiff
+cap     spiff compares two files and reports the differences in diff's
+cap     shape: a changed line and an added one.
+run     mkdir -p /dd/tmp/TXT > /nil 2>/nil; printf "apple\rbanana\rcherry\rdate\r" > /dd/tmp/TXT/a; printf "apple\rblueberry\rcherry\rdate\relder\r" > /dd/tmp/TXT/b
+wait    3
+run     clear
+wait    1
+run     spiff /dd/tmp/TXT/a /dd/tmp/TXT/b
+wait    6
+
+shot    uniq
+cap     Drops repeated adjacent lines; after a sort, -c counts each.
+run     mkdir -p /dd/tmp/TXT > /nil 2>/nil; printf "pear\rapple\rpear\rfig\rfig\rfig\rapple\r" > /dd/tmp/TXT/dups
+wait    3
+run     clear
+wait    1
+run     uniq < /dd/tmp/TXT/dups
+wait    4
+run     sort /dd/tmp/TXT/dups | uniq -c
+wait    5
+
+shot    nsort
+cap     A sort filter: the same seven lines, in order.
+run     mkdir -p /dd/tmp/TXT > /nil 2>/nil; printf "pear\rapple\rpear\rfig\rfig\rfig\rapple\r" > /dd/tmp/TXT/dups
+wait    3
+run     clear
+wait    1
+run     cat /dd/tmp/TXT/dups; echo ---; nsort < /dd/tmp/TXT/dups
+wait    5
+
+shot    qsort9
+cap     Another sort filter, by quicksort.
+run     mkdir -p /dd/tmp/TXT > /nil 2>/nil; printf "pear\rapple\rpear\rfig\rfig\rfig\rapple\r" > /dd/tmp/TXT/dups
+wait    3
+run     clear
+wait    1
+run     qsort9 < /dd/tmp/TXT/dups
+wait    5
+
+shot    join
+cap     Joins two files on a common first field, the way a database
+cap     joins tables: name and colour from one, name and count from the
+cap     other.
+run     mkdir -p /dd/tmp/TXT > /nil 2>/nil; printf "apple red\rfig purple\rpear green\r" > /dd/tmp/TXT/j1; printf "apple 3\rfig 12\rpear 7\r" > /dd/tmp/TXT/j2
+wait    3
+run     clear
+wait    1
+run     join /dd/tmp/TXT/j1 /dd/tmp/TXT/j2
+wait    5
+
+shot    lgrep
+cap     A grep with its own option letters, finding the lines of the
+cap     password file that mention a shell.
+run     lgrep -?
+wait    4
+run     lgrep ksh /dd/SYS/password
+wait    5
+
+shot    ggrep
+cap     GNU grep, with line numbers.
+run     ggrep -n USR /dd/SYS/password
+wait    5
+
+shot    bmgtest
+cap     A test program for the Boyer-Moore search in bm: given a pattern
+cap     and a file it searches and prints nothing when it is satisfied.
+run     bmgtest the /dd/SYS/motd; echo "status $?"
+wait    5
+
+shot    bmgtest2
+cap     The second Boyer-Moore test program, the same shape.
+run     bmgtest2 the /dd/SYS/motd; echo "status $?"
+wait    5
+
+shot    pagekwic
+size    36 80
+cap     A keyword-in-context index: every rotation of every title, one
+cap     line each, the way a KWIC index is built before sorting.
+run     mkdir -p /dd/tmp/TXT > /nil 2>/nil; printf "The Art of Computer Programming\rStructured Programming\rThe C Programming Language\rThe Mythical Man-Month\r" > /dd/tmp/TXT/titles
+wait    3
+run     clear
+wait    1
+run     cat /dd/tmp/TXT/titles
+wait    2
+run     pagekwic < /dd/tmp/TXT/titles
+wait    8
+
+shot    pagefraz
+size    36 80
+cap     The phrase index of the same set: each title broken into the
+cap     phrases an index would list.
+run     mkdir -p /dd/tmp/TXT > /nil 2>/nil; printf "The Art of Computer Programming\rStructured Programming\rThe C Programming Language\rThe Mythical Man-Month\r" > /dd/tmp/TXT/titles
+wait    3
+run     clear
+wait    1
+run     pagefraz < /dd/tmp/TXT/titles
+wait    8
+
+shot    pageline
+cap     Numbers the lines of the same set for the index to refer to.
+run     mkdir -p /dd/tmp/TXT > /nil 2>/nil; printf "The Art of Computer Programming\rStructured Programming\rThe C Programming Language\rThe Mythical Man-Month\r" > /dd/tmp/TXT/titles
+wait    3
+run     clear
+wait    1
+run     pageline < /dd/tmp/TXT/titles
+wait    8
+
+shot    ispell
+cap     ispell listing the words it does not know in a file: -l gives
+cap     the list instead of the interactive session.
+run     mkdir -p /dd/tmp/TXT > /nil 2>/nil; printf "Twas brilig and the slithy tovs did gyre and gimble in the wabe.\r" > /dd/tmp/TXT/spell.txt
+wait    3
+run     clear
+wait    1
+run     ispell -l /dd/tmp/TXT/spell.txt
+wait    12
+
+shot    buildhash
+cap     Builds ispell's hashed dictionary from a word list and an affix
+cap     file; without the word list it says which one it wants.
+run     buildhash
+wait    6
+
+shot    makelex
+cap     Turns a word list into C source for a dictionary table, one
+cap     entry per line; given no list it shows the shape of what it
+cap     writes.
+run     mkdir -p /dd/tmp/TXT > /nil 2>/nil; printf "apple 1\rfig 2\rpear 3\r" > /dd/tmp/TXT/wl
+wait    3
+run     clear
+wait    1
+run     makelex < /dd/tmp/TXT/wl
+wait    6

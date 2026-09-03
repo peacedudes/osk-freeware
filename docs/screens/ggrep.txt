@@ -1,0 +1,4 @@
+$ ggrep -n USR /dd/SYS/password
+2:tester,,1.7,128,/dd/CMDS,/dd/USR/TESTER,shell
+3:,,1.99,128,/dd/CMDS,/dd/USR/ANON,shell -p="anon: "
+4:uucp,,3.1,128,/dd/CMDS/UUCP,/dd/USR/LIB/UUCP,shell

@@ -1,23 +1,13 @@
-$ head -n 12 /dd/DOC/README-KEEP > /dd/tmp/r.txt 2>/nil
-$ proff /dd/tmp/r.txt | head -n 10
+roff /dd/tmp/TXT/jab.r | head -n 14
 
 
 
 
 
-README-KEEP    --    taking    things    off    this   collection
-================================================
+                           JABBERWOCKY
 
-    keep <name>...      the program, and whatever it needs
-    keep -n  <name>...    dry  run:  say  what  would be written,
-$ roff -?
-Syntax: roff {[+00] [-00] [-s] -[h] file}
-Function: format textfiles
-Options:
-     +00       start at page 00
-     -00       end at page 00
-     -c        print tabel of contents
-     -s        ????
-     -h        use hardtabs
-$ nroff -?
-***nroff: illegal switch ?
+  Twas  brillig,  and  the  slithy toves did gyre and gimble in the
+wabe: all mimsy were the borogoves, and the mome raths outgrabe.
+
+Beware the Jabberwock, my son -- the jaws that  bite,  the  claws
+that catch.

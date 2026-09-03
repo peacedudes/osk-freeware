@@ -1,0 +1,16 @@
+cat /dd/tmp/TXT/dups; echo ---; nsort < /dd/tmp/TXT/dups
+pear
+apple
+pear
+fig
+fig
+fig
+apple
+---
+apple
+apple
+fig
+fig
+fig
+pear
+pear

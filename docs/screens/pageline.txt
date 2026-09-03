@@ -1,0 +1,15 @@
+pageline < /dd/tmp/TXT/titles
+The 1
+Art 1
+of 1
+Computer 1
+Programming 1
+Structured 1
+Programming 1
+The 1
+C 1
+Programming 1
+Language 1
+The 1
+Mythical 1
+Man-Month

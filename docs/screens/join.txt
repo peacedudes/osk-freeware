@@ -1,17 +1,4 @@
-$ head -n 5 /dd/SYS/holidays > /dd/tmp/j1
-$ head -n 5 /dd/SYS/birthdays > /dd/tmp/j2
-$ paste /dd/tmp/j1 /dd/tmp/j2
-* Common Holidays       * birthdays -- yours to fill in.
-        *
-1/1             New Year's Day  * cal's holidays file ends with `INCLUDE /dd/syu
-2/14 Valentine's Day    * put here is printed alongside the public holidays.  S:
-3/17 St. Patrick's Day  *
-$ join /dd/tmp/j1 /dd/tmp/j1
-* Common Holidays Common Holidays
-
-1/1 New Year's Day New Year's Day
-2/14 Valentine's Day Valentine's Day
-3/17 St. Patrick's Day St. Patrick's Day
-$ field < /nil
-
-field: no fields selected
+join /dd/tmp/TXT/j1 /dd/tmp/TXT/j2
+apple red 3
+fig purple 12
+pear green 7

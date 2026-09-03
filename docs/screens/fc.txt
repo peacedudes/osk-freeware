@@ -1,23 +1,15 @@
--rw-------   1 0        0              40 Sep  3 05:08 d.txt.n
-drwxrwxrwx   1 0        0              96 Sep  3 05:15 dec
--rw-rw-rw-   1 0        0              36 Sep  3 05:09 dos.txt
--rw-rw-rw-   1 0        0             242 Sep  3 05:13 dv.txt
--rw-rw-rw-   1 0        0             242 Sep  3 05:15 fc.txt
--rw-------   1 0        0             242 Sep  3 05:15 fc.txt_1
-drwxrwxrwx   1 0        0              96 Sep  3 05:11 hb
--rw-rw-rw-   1 0        0              98 Sep  3 05:06 j.btoa
--rw-rw-rw-   1 0        0              35 Sep  3 05:15 j.txt
--rw-------   1 0        0             256 Sep  3 05:11 j.txt.MAC
--rw-------   1 0        0             135 Sep  3 05:11 j.txt01.hqx
--rw-rw-rw-   1 0        0              83 Sep  3 05:15 j.uue
--rw-rw-rw-   1 0        0              35 Sep  3 05:03 jabber.txt
--rw-------   1 0        0             256 Sep  3 05:03 jabber.txt.MAC
--rw-------   1 0        0             142 Sep  3 05:03 jabber.txt01.hqx
--rw-rw-rw-   1 0        0              35 Sep  3 05:09 le.txt
-drwxrwxrwx   1 0        0              96 Sep  3 05:11 ms
--rw-------   1 0        0           16915 Sep  3 05:12 oz.au
--rw-------   1 0        0              60 Sep  3 05:13 piece.1
--rw-------   1 0        0              91 Sep  3 05:13 piece.2
--rw-------   1 0        0              91 Sep  3 05:13 piece.3
-drwxrwxrwx   1 0        0              96 Sep  3 05:02 save
--rw-rw-rw-   1 0        0              35 Sep  3 05:08 x.txt
+/dd/CMDS/fc -?
+Syntax:   fc [<file>]
+Function: Takes first 350,000 bytes of a file or stdin
+          and puts in one file and puts remaining bytes
+          in another file for easily putting large files
+          on 360k media.
+Options:  none
+
+$ ksh -c "cd /dd/tmp/ENC; /dd/CMDS/fc fc.txt"
+Oops! File was already less than 350,000 bytes!
+That's ok. Now you have two copies of the same
+file.
+$ ls -l /dd/tmp/ENC/fc.txt /dd/tmp/ENC/fc.txt_1
+-rw-rw-rw-   1 0        0             242 Sep  3 07:02 /dd/tmp/ENC/fc.txt
+-rw-------   1 0        0             242 Sep  3 07:02 /dd/tmp/ENC/fc.txt_1

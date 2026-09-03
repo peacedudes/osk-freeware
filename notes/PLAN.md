@@ -320,6 +320,11 @@ it ends os9exec. `mshell` and `xlate` were both reported that way on
 (a ten-line python script that spawns `os9exec bash /dd/SYS/login`)
 before calling anything an emulator crash.
 
+**No `!` in anything typed at bash.** History expansion is on, so a
+`!` inside double quotes -- "my son! The jaws" -- makes bash answer
+`Event not found` and run nothing; single quotes protect it, or leave it
+out. (The Text tools probe lost a whole sheet to one exclamation mark.)
+
 Things that bit on the first batch: a `size` line between stanzas attaches
 to the one BEFORE it; the fullest-moment picker prefers a menu to a playing
 field, which `snap` overrides; `head -n N file` prints `head: file` as a
