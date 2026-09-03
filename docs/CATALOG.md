@@ -12,13 +12,13 @@
 | Category | Programs | |
 |---|--:|---|
 | [Shells](#shells) | 21 | Unix shells to sit beside OS-9's own -- bash and ksh bring history, job control, and scripts that come across unchanged. |
-| [Editors](#editors) | 26 | vi and emacs in several flavours, line and stream editors, and editors for binary and hex. |
-| [Text tools](#text-tools) | 113 | Search, sort, compare, reformat, split and spell-check. |
+| [Editors](#editors) | 27 | vi and emacs in several flavours, line and stream editors, and editors for binary and hex. |
+| [Text tools](#text-tools) | 114 | Search, sort, compare, reformat, split and spell-check. |
 | [Files & directories](#files--directories) | 32 | Listing, copying, finding, renaming, and knowing what you have. |
 | [Developer tools](#developer-tools) | 46 | Version control, tags, cross-reference, formatters, a debugger and benchmarks. |
-| [Compilers & build](#compilers--build) | 39 | C compilers and their passes, assemblers, linkers, make and parser generators. |
+| [Compilers & build](#compilers--build) | 40 | C compilers and their passes, assemblers, linkers, make and parser generators. |
 | [Languages](#languages) | 10 | Interpreters and language systems beyond C. |
-| [Archives & compression](#archives--compression) | 40 | Pack, unpack and shrink -- lha, zip, tar, arc, zoo, and OS-9 module libraries. |
+| [Archives & compression](#archives--compression) | 37 | Pack, unpack and shrink -- lha, zip, tar, arc, zoo, and OS-9 module libraries. |
 | [Encoding & conversion](#encoding--conversion) | 24 | Between text encodings, line endings, Macintosh formats, ciphers and hashes. |
 | [Communications](#communications) | 96 | Kermit in several builds, terminal sessions, and networking. |
 | [Graphics & images](#graphics--images) | 202 | The netpbm toolkit, JPEG, a ray tracer, and things that draw. |
@@ -80,7 +80,13 @@
 
 *vi and emacs in several flavours, line and stream editors, and editors for binary and hex.*
 
-<details><summary>26 programs</summary>
+<details><summary>27 programs</summary>
+
+**Alternates**
+
+| | |
+|---|---|
+| `sed_1.06` | &#9733; another build of sed -- and since 2026-08-28 it IS the build that ships as `sed', the earlier one having turned out to do nothing but exhaust memory<br>`Syntax   : sed [<opts>] [<file>]` |
 
 **Binary & hex**
 
@@ -144,7 +150,13 @@
 
 *Search, sort, compare, reformat, split and spell-check.*
 
-<details><summary>113 programs</summary>
+<details><summary>114 programs</summary>
+
+**Alternates**
+
+| | |
+|---|---|
+| `diff_1.1` | another build of GNU diff 1.1<br>`Syntax   : diff [<options>] file1 file2` |
 
 **Banners & text art**
 
@@ -504,18 +516,25 @@
 
 *C compilers and their passes, assemblers, linkers, make and parser generators.*
 
-<details><summary>39 programs</summary>
+<details><summary>40 programs</summary>
+
+**Alternates**
+
+| | |
+|---|---|
+| `m4_0.5` | &#9733; another build of m4 -- and since 2026-08-28 it IS the build that ships as `m4', the earlier one having turned out to mangle what it expanded<br>`Usage: m4 [options] file ....` |
 
 **Assemblers & linkers**
 
 | | |
 |---|---|
-| `as0` | 6800/6802 cross-assembler (xasm).  NOT a 68000 assembler -- see the note below this list.  A sample source for each of the six ships in DOC/xasm as of 2026-08-31, so they can be seen doing their job rather than printing their usage line: `as0 /dd/DOC/xasm/sample.a0 - l s' lists the assembly with addresses, opcodes and a symbol table. The options come after a lone `-', and as11 is the one exception -- it takes them without it<br>**How:** Assemble the sample that ships with it: `as0 /dd/DOC/xasm/sample.a0 - l s' -- the options come after a lone `-', `l' for the listing and `s' for the symbol table. There is a sample for each of the six (sample.a0, .a1, .a4, .a5, .a09, .a11) and each is written for its own processor: as09 rejects the 6800 one, correctly. as11 is the one that takes its options without the `-'. None of these is a 68000 assembler. |
+| `as0` | 6800/6802 cross-assembler (xasm).  NOT a 68000 assembler -- see the note below this list.  A sample source for each of the six ships in DOC/xasm, so they can be seen doing their job rather than printing their usage line: `as0 /dd/DOC/xasm/sample.a0 - l s' lists the assembly with addresses, opcodes and a symbol table. The options come after a lone `-', and as11 is the one exception -- it takes them without it<br>**How:** Assemble the sample that ships with it: `as0 /dd/DOC/xasm/sample.a0 - l s' -- the options come after a lone `-', `l' for the listing and `s' for the symbol table. There is a sample for each of the six (sample.a0, .a1, .a4, .a5, .a09, .a11) and each is written for its own processor: as09 rejects the 6800 one, correctly. as11 is the one that takes its options without the `-'. None of these is a 68000 assembler. |
 | `as09` | &#9733; 6809 assembler -- and the only one of the six that is NOT a cross-assembler for an 8-bit relative of the 6809's. It rejects 6800 source outright (`ldaa' is not a 6809 mnemonic) and is right to; DOC/xasm/sample.a09 is written for it<br>`Usage: as09 [files]` |
 | `as1` | 6801/6803 cross-assembler (xasm).  DOC/xasm/sample.a1<br>`Usage: as1 [files]` |
 | `as11` | 68HC11 cross-assembler (xasm).  DOC/xasm/sample.a11<br>`Usage: as11 [files]` |
 | `as4` | 6804 cross-assembler (xasm).  DOC/xasm/sample.a4<br>`Usage: as4 [files]` |
 | `as5` | 6805/68HC05 cross-assembler (xasm).  DOC/xasm/sample.a5<br>`Usage: as5 [files]` |
+| `assembler` | GSHELL front-end for the assembler -- the same full-screen menu as `gshell', headed `Assembler-SHELL V1.0'.  It does not assemble anything itself; `as0' and its five siblings are the assemblers, and none of them is for the 68000<br>**How:** Full-screen: it takes over the display. **control-C gets you out**; none of q, Q, control-D or ESC do. |
 | `lnk` | RTF FORTRAN link driver; calls l68 with /h0/LIB/sys.l, which is Microware's and not here |
 | `lnk.org` | as lnk, the original build<br>**How:** `load /dd/CMDS/os9lib' first. Without it this calls F$Link for os9lib, gets E_MNF and exits printing nothing. DOC/README-RUNNING names the four programs that do this. |
 
@@ -528,8 +547,8 @@
 | `cc2plus` | GCC 2.x C++ pass, second form |
 | `cccp2` | &#9733; GCC 2.x preprocessor, where it was built<br>`Usage: cccp2 [switches] input output` |
 | `collect` | GCC 2.x collect2, where it was built<br>`Syntax   : collect [<opts>] {<file>} [<opts>]` |
-| `compiler` | GSHELL front-end for the C compiler<br>**How:** Full-screen: it takes over the display. **control-C gets you out** -- tested, and none of q, Q, control-D or ESC did. If it has a quit command of its own, its documentation in DOC/ will say. |
-| `gcc` | &#9733; the GCC driver -- GCC139's and GCC2's share this name. They are NOT the same version, and neither is 2.x: GCC139/gcc answers `gcc version 1.39' and GCC2/gcc answers `gcc version 1.42'.  Read 2026-08-31 out of `gcc -v'<br>`Usage: gcc {options} {files} {options}` |
+| `compiler` | GSHELL front-end for the C compiler<br>**How:** Full-screen: it takes over the display. **control-C gets you out**; none of q, Q, control-D or ESC do. |
+| `gcc` | &#9733; the GCC driver -- GCC139's and GCC2's share this name. They are NOT the same version, and neither is 2.x: GCC139/gcc answers `gcc version 1.39' and GCC2/gcc answers `gcc version 1.42', read out of `gcc -v'<br>`Usage: gcc {options} {files} {options}` |
 | `gcc2` | &#9733; the GCC 2.x driver, and the only one that is: `gcc version 2.5.6'<br>`Usage: gcc2 {options} {files} {options}` |
 | `gcc_cc1` | GCC 1.39 C compiler pass |
 | `gcc_cc1plus` | GCC 1.39 C++ compiler pass |
@@ -537,7 +556,7 @@
 | `gcc_cccp` | GCC 1.39 preprocessor<br>`Usage: gcc_cccp [switches] input output` |
 | `gcc_cccp2` | &#9733; GCC 2.x preprocessor, under the name gcc2 forks<br>`Usage: gcc_cccp2 [switches] input output` |
 | `gcc_collect` | GCC 1.39 collect2<br>`Syntax   : collect [<opts>] {<file>} [<opts>]` |
-| `gpp` | the C++ driver -- and it is a GCC 1.x one.  GCC2/gpp says `gpp version 1.40.3 (based on GCC 1.40)' and GCC139/gpp says 1.37.1.  This entry called it the GCC 2.x C++ driver; corrected 2026-08-31<br>`Usage: gpp {options} {files} {options}` |
+| `gpp` | the C++ driver -- and it is a GCC 1.x one.  GCC2/gpp says `gpp version 1.40.3 (based on GCC 1.40)' and GCC139/gpp says 1.37.1<br>`Usage: gpp {options} {files} {options}` |
 | `gpp_cc1plus` | GCC 2.x C++ pass, under the name gpp forks |
 | `gpp_cccp` | &#9733; GCC 2.x preprocessor, under the name gpp forks<br>`Usage: gpp_cccp [switches] input output` |
 | `gpp_collect` | GCC 2.x collect2, under the name gpp forks<br>`Syntax   : collect [<opts>] {<file>} [<opts>]` |
@@ -546,23 +565,22 @@
 
 | | |
 |---|---|
-| `creadoc` | extract documentation comments from FORTRAN source.  IT ABORTS HERE -- E_PRCABT with os9lib loaded, with a source file or without, absolute path or relative.  It is the one piece of the RTF set that does not run; `rtf' itself compiles and `biory' runs.  DOC/rtf/biory.doc is the output it produced for biory.f on the machine it came from.  Measured 2026-08-29 |
-| `for` | the RTF/68K FORTRAN driver, and a bash KEYWORD -- ask for it by PATH (`/dd/CMDS/for') or bash swallows the name.  It requires Microware's `shell' on your execution path: it forks one to run each compiler pass.  Without it the driver prints the command and stops.  Call `rtf' directly instead and you need no shell at all -- see DOC/README-FORTRAN.  Reworded 2026-08-30 |
-| `rtf` | RTF/68K Real-Time Fortran-77 compiler, v2.14 (CERN, 1987), AND IT COMPILES HERE.  `load /dd/CMDS/os9lib' first -- without its runtime library the whole set prints nothing -- then `rtf <file>.f' reads the Fortran and writes 68k ASSEMBLY beside the source: zero errors, `RTF normally completed'.  Assembling and linking that needs Microware's r68 and l68, which are not here.  CALL IT DIRECTLY: the `for' driver forks a program called `shell' to run rtf, and this disk has none, so it prints the command and stops.  Sources to try in SRC/rtf.  Manual: DOC/rtf/rtfman.txt.  Measured 2026-08-29 |
+| `creadoc` | extract documentation comments from FORTRAN source.  IT ABORTS HERE with a privilege violation, on an instruction (MOVE SR,D0) a 68000 allows and a real 68000 is what it needs -- with os9lib loaded, with a source file or without, absolute path or relative.  It is the one piece of the RTF set that does not run; `rtf' itself compiles and `biory' runs.  DOC/rtf/biory.doc is the output it produced for biory.f |
+| `for` | the RTF/68K FORTRAN driver, and a bash KEYWORD -- ask for it by PATH (`/dd/CMDS/for') or bash swallows the name.  It requires Microware's `shell' on your execution path: it forks one to run each compiler pass.  Without it the driver prints the command and stops.  Call `rtf' directly instead and you need no shell at all -- see DOC/README-FORTRAN |
+| `rtf` | RTF/68K Real-Time Fortran-77 compiler, v2.14 (CERN, 1987), AND IT COMPILES HERE.  `load /dd/CMDS/os9lib' first -- without its runtime library the whole set prints nothing -- then `rtf <file>.f' reads the Fortran and writes 68k ASSEMBLY beside the source: zero errors, `RTF normally completed'.  Assembling and linking that needs Microware's r68 and l68, which are not here.  CALL IT DIRECTLY: the `for' driver forks a program called `shell' to run rtf, and this disk has none, so it prints the command and stops.  Sources to try in SRC/rtf.  Manual: DOC/rtf/rtfman.txt |
 
 **Make & generators**
 
 | | |
 |---|---|
-| `assembler` | GSHELL front-end for the assembler -- the same full-screen menu as `gshell', headed `Assembler-SHELL V1.0'.  It does not assemble anything itself; `as0' and its five siblings are the assemblers, and none of them is for the 68000<br>**How:** Full-screen: it takes over the display. **control-C gets you out** -- tested, and none of q, Q, control-D or ESC did. If it has a quit command of its own, its documentation in DOC/ will say. |
 | `bison` | GNU bison 1.19 parser generator -- ADDED; skeletons in /dd/LIB<br>`Usage: bison [-dltvyV] [-b file-prefix] [-o outfile] [-p name-prefix]` |
 | `dmake` | &#9733; dmake 3.70 - parallel make with its own makefile dialect |
 | `flex` | lexical analyzer generator -- see DOC/flex/README-FLEX FIRST<br>`Syntax   : flex [-bcdfinpstvFILT8 -C[efmF] -Sskeleton] [filename ...]` |
 | `gmake` | GNU make -- ADDED (the gnu.bin build of make is the broken one)<br>`Usage: gmake [options] [target] ...` |
-| `m4` | m4 macro processor.  SWAPPED 2026-08-28: what ships is now the CMDS/REBUILT/m4_0.5 build, because the one that used to be here MANGLED its output -- a one-line definition expanded to `i hr ' instead of `hi there'.  The one here now expands correctly, from a file or a pipe<br>`Usage: m4 [options] file ....` |
-| `make` | &#9733; make -- and it DOES maintain a target, corrected 2026-08-29. Two rules catch people: a command line must begin with a TAB (which will not survive being typed at this terminal, so copy DOC/make/demo.mk rather than echoing one), and a recipe must have no shell metacharacter -- `cp a b' runs, `cat a > b' gets `That path name doesn't lead to a file'.  DOC/STATUS has both<br>**How:** It works. Copy `/dd/DOC/make/demo.mk` rather than writing a makefile at the shell -- a command line must begin with a TAB and a tab does not survive being typed at this terminal. And keep shell metacharacters out of a recipe: `cp a b` runs, `cat a > b` gets "That path name doesn't lead to a file", because make forks bash with the line as a PATHNAME rather than with -c. The default rules are in default.mk beside it, and make looks for that along your PATH. Measured 2026-08-29. |
-| `makeinfo` | GNU makeinfo -- Texinfo to info.  GCC139 shipped a byte-identical second copy until 2026-08-31; this is the only one now<br>`Usage: makeinfo [options] texinfo-file...` |
-| `yacc` | yacc parser generator -- and it WORKS, since 2026-08-31. Rebuilt `-qm' from SRC/effo_yacc, it reads a grammar and writes y.tab.c into the data directory.  Until then it hung on a two-rule grammar and the run had to be killed: the cio selector mismatch again.  `bison' is the other parser generator here and reports states and conflicts<br>`Syntax   : yacc [-dltv] [-b <prefix>] filename` |
+| `m4` | m4 macro processor.  It expands macros correctly, from a file or a pipe<br>`Usage: m4 [options] file ....` |
+| `make` | &#9733; make -- and it DOES maintain a target, corrected 2026-08-29. Two rules catch people: a command line must begin with a TAB (which will not survive being typed at this terminal, so copy DOC/make/demo.mk rather than echoing one), and a recipe must have no shell metacharacter -- `cp a b' runs, `cat a > b' gets `That path name doesn't lead to a file'.  DOC/STATUS has both<br>**How:** It works. Copy `/dd/DOC/make/demo.mk` rather than writing a makefile at the shell -- a command line must begin with a TAB and a tab does not survive being typed at this terminal. And keep shell metacharacters out of a recipe: `cp a b` runs, `cat a > b` gets "That path name doesn't lead to a file", because make forks bash with the line as a PATHNAME rather than with -c. The default rules are in default.mk beside it, and make looks for that along your PATH. |
+| `makeinfo` | GNU makeinfo -- Texinfo to info<br>`Usage: makeinfo [options] texinfo-file...` |
+| `yacc` | yacc parser generator, rebuilt `-qm' from SRC/effo_yacc. It reads a grammar and writes y.tab.c into the data directory.  `bison' is the other parser generator here and reports states and conflicts<br>`Syntax   : yacc [-dltv] [-b <prefix>] filename` |
 
 **Translators**
 
@@ -604,16 +622,15 @@
 
 *Pack, unpack and shrink -- lha, zip, tar, arc, zoo, and OS-9 module libraries.*
 
-<details><summary>40 programs</summary>
+<details><summary>37 programs</summary>
 
 **Alternates**
 
 | | |
 |---|---|
-| `arc_5.12` | ARC v5.12, third-party; /dd/CMDS/arc is 5.21.  5.12 wants its command letter with a leading dash<br>`Usage: arc -{amufdxeplvtc}[bswn][g<password>]` |
+| `arc_5.12` | ARC v5.12, third-party; /dd/CMDS/arc is 5.21.  5.12 wants its command letter with a leading dash, and cannot write an archive on this disk: the rename of its temporary file into place fails every time, with `No Children'<br>`Usage: arc -{amufdxeplvtc}[bswn][g<password>]` |
 | `compress_4.0` | compress 4.0, another edition of CMDS/compress<br>`Syntax   : compress [-cdfvV] [-b maxbits] [file ...]` |
 | `compress_rebuilt` | our source build of CMDS/compress, from the same hc_utils source.  Same program, and the two agree byte for byte on what they write<br>`Usage: compress [-dfvoV] [-b MaxBits] [file ...]` |
-| `diff_1.1` | another build of GNU diff 1.1<br>`Syntax   : diff [<options>] file1 file2` |
 | `gtar` | another GNU tar; CMDS/tar is the one the image build uses |
 | `gzip020_csl` | &#9733; gzip 1.2.4, 68020, needs csl<br>`usage: gzip020_csl [-gzip020_cslcdfhlLnNgzip020_csltvV19] [-S suffix] [file ...]` |
 | `gzip020_nocsl` | gzip 1.2.4, 68020, no csl needed<br>`usage: gzip020_nocsl [-gzip020_nocslcdfhlLnNgzip020_nocsltvV19] [-S suffix] [file ...]` |
@@ -622,8 +639,6 @@
 | `gzipcpu32_nocsl` | gzip 1.2.4, CPU32, no csl needed<br>`usage: gzipcpu32_nocsl [-gzipcpu32_nocslcdfhlLnNgzipcpu32_nocsltvV19] [-S suffix] [file ...]` |
 | `gzipcpu32k_csl` | &#9733; gzip 1.2.4, CPU32, needs csl<br>`usage: gzipcpu32k_csl [-gzipcpu32k_cslcdfhlLnNgzipcpu32k_csltvV19] [-S suffix] [file ...]` |
 | `lharcs` | C-LHarc 1.01, older than CMDS/lha 2.08<br>`Usage: lharcs {axevlufdmctp}[qnftv] archive_file [files or directories...]` |
-| `m4_0.5` | &#9733; another build of m4 -- and since 2026-08-28 it IS the build that ships as `m4', the earlier one having turned out to mangle what it expanded<br>`Usage: m4 [options] file ....` |
-| `sed_1.06` | &#9733; another build of sed -- and since 2026-08-28 it IS the build that ships as `sed', the earlier one having turned out to do nothing but exhaust memory<br>`Syntax   : sed [<opts>] [<file>]` |
 | `zoo_2.1` | zoo 2.1 (1991), newer than the 2.01 in CMDS.  Same OSK porters as pd-ksh.  Reads what 2.01 writes; CMDS/zoo is left in place because the pool tools here call it.<br>`Usage: zoo {acDeglLPTuUvx}[aAcCdEfInmMNoOpPqu1:/.@n] archive file` |
 
 **Compress a file**
@@ -645,10 +660,10 @@
 | `lha` | LHa 2.08 -- create/extract .lzh archives<br>`Syntax: LHa -{axelvudmcp}[qvnfodiszrgc012][w=<dir>] archive_file [file...]` |
 | `lharc` | LHarc archiver<br>`Usage: lharc {axevlufdmctp}[qnftv] archive_file [files or directories...]` |
 | `marc` | MARC, the archive MERGER -- `marc <target> <source> [names]' copies members from one .arc into another.  It is not an archiver and does not make one<br>`Usage: MARC <tgtarc> <srcarc> [<filename> . . .]` |
-| `shar` | Shell-archive creator, and ONE BROKEN CHECK is all that stops it: its read-access test rejects every file that EXISTS -- `No read access for file: <name>' on its own standard output, for world-readable files that `cat' reads, absolute or relative, with -a or without.  Hand it a name that is NOT there and the check passes vacuously: it writes the whole shell-archive preamble, cut line and all, and only then fails at open.  So the archiver works and the gatekeeper does not.  Use tar, zoo or lha.  Measured 2026-08-29 |
+| `shar` | Shell-archive creator, and ONE BROKEN CHECK is all that stops it: its read-access test rejects every file that EXISTS -- `No read access for file: <name>' on its own standard output, for world-readable files that `cat' reads, absolute or relative, with -a or without.  Hand it a name that is NOT there and the check passes vacuously: it writes the whole shell-archive preamble, cut line and all, and only then fails at open.  So the archiver works and the gatekeeper does not.  Use tar, zoo or lha. |
 | `tar` | GNU tar 1.10<br>`Syntax : tar [ctx][mfv] tarfile [file(s)...]` |
 | `unzip` | &#9733; Info-ZIP unzip.  Nothing here can MAKE a zip for it to read -- see the `zip' entry -- so it is untested against a fresh archive.  It reads zips made elsewhere<br>`Usage: unzip [ -options[modifiers] ] file[.zip] [filespec...]` |
-| `zip` | Info-ZIP zip 1.9 DOES NOT WORK, measured 2026-08-27.  It deflates correctly and then cannot put the result anywhere: it writes a temporary (_Z000003), fails to rename it over the target, and reports `zip error: Could not create output file'.  Reproduced writing into /dd/tmp and into /dd, so it is not one bad directory. Use zoo, tar or gzip instead; all three round-trip exactly. tools/datatests/archives.cases keeps the failing case. |
+| `zip` | Info-ZIP zip 1.9 does not work: it deflates correctly and then cannot put the result anywhere.  It writes a temporary file (_Z000003), fails to rename it over the target, and reports `zip error: Could not create output file', in /dd/tmp and in /dd alike.  Use zoo, tar or gzip instead; all three round-trip exactly. |
 | `zipnote` | Info-ZIP zipnote -- view/edit zip comments<br>`Usage:  zipnote [-w] [-b path] zipfile` |
 | `zipsplit` | Info-ZIP zipsplit -- split a zip archive<br>`Usage:  zipsplit [-ti] [-n size] [-b path] zipfile` |
 | `zoo` | &#9733; zoo archiver<br>`Usage: zoo {acDeglLPTuUvx}[aAcCdEfInmMNoOpPqu1:/.@n] archive file` |
@@ -658,8 +673,8 @@
 | | |
 |---|---|
 | `ar2` | &#9733; Ar V2.00 -- Carl Kreider's archiver, a later edition than the V1.2 included as `ar'.  Both are here; ar is unstarred<br>`Usage:  Ar -<cmd>[<modifier>] archive [file .. ]` |
-| `liborder` | &#9733; order the modules in an OS-9 library -- and GIVE IT ONE. Handed anything else it reads a length out of what it assumes is a ROF header and asks the system for it: on a plain text file it requested 2,284,850,400 bytes and then said `No more memory !!!'.  That is the file's bytes read as a number, not a fault in the program's plumbing -- the request changes with the file and not with anything else. On /dd/LIB/alib.l and the other libraries here it asks for 4096 bytes and works.  Measured 2026-08-31<br>`Usage: liborder <options> file1.r file2.r ...` |
-| `modbuster` | Split merged OS-9 module files<br>**How:** Give it a file holding SEVERAL modules and it writes one file per module in the CURRENT directory -- `/dd/CMDS/GAMES/cyberwar' is a real group of four. Use ksh to put yourself somewhere writable first. |
+| `liborder` | &#9733; order the modules in an OS-9 library -- and GIVE IT ONE. Handed anything else it reads a length out of what it assumes is a ROF header and asks the system for it: on a plain text file it requested 2,284,850,400 bytes and then said `No more memory !!!'.  That is the file's bytes read as a number, not a fault in the program's plumbing -- the request changes with the file and not with anything else. On /dd/LIB/alib.l and the other libraries here it asks for 4096 bytes and works.<br>`Usage: liborder <options> file1.r file2.r ...` |
+| `modbuster` | Split merged OS-9 module files<br>**How:** Give it a file holding SEVERAL modules and it writes one file per module in the CURRENT directory. Use ksh to put yourself somewhere writable first. `/dd/CMDS/GAMES/cyberwar' looks like a candidate but modbuster hangs on it with no output at all; a single ordinary module (`/dd/CMDS/today') shows it working. |
 | `unpacklib` | &#9733; split an OS-9 library into its modules<br>`Usage: unpacklib <options> file1.l file2.l ...` |
 
 **zip**

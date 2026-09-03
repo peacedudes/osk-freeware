@@ -1,0 +1,4 @@
+pltotf /dd/tmp/TEX/cmr10.pl /dd/tmp/TEX/cmr10.tfm
+$ ls -l /dd/SYS/TEX/FONTS/TFM/cmr10.tfm /dd/tmp/TEX/cmr10.tfm
+-rw-rw-rw-   1 0        0            1296 Aug  3 19:00 /dd/SYS/TEX/FONTS/TFM/cmm
+-rw-------   1 0        0            1296 Sep  3 07:36 /dd/tmp/TEX/cmr10.tfm

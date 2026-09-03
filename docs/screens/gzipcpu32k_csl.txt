@@ -1,0 +1,2 @@
+gzipcpu32k_csl -v /dd/tmp/ARC/g7
+/dd/tmp/ARC/g7:          64.1% -- replaced with /dd/tmp/ARC/g7.gz

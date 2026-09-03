@@ -1,35 +1,7 @@
-         d   delete file(s) from the archive
-         m   move file(s) to archive (add and delete)
-         p   print file(s) from the archive
-         t   show table of contents for archive
-         u   update/add file(s) to the archive
-         x   extract file(s) from the archive
-      <modifier> is one of the following:
-         a   all versions (for extract)
-         bnn set max bits to 'nn' (12 default)
-         d   incrment debug level
-         o   default to 'old' archives
-         s   once, suppress binary; twice, suppress all file compression
-         z   read names for <cmd> from std in
-
-      File names can include the meta chars * and ?, or path lists.
-$ liborder
-
-Usage: liborder <options> file1.r file2.r ...
-Produces an ordered list of the input modules to build OS-9 libraries.
- Where options are:
-   '-modinfo':  print info about each module (PUBLIC and EXTERNAL)
-   '-public':   list all PUBLIC functions
-   '-external': list all EXTERNAL functions
-   '-preced':   list precedences between modules
-   '-precsymb': list cross referenced symbols
-   '-lump':     print the set of fundamental cycles (need to be grouped)
-   '-exit':     do not perform ordering, print info only
-Copyright by CERN, written by CN/CE/MS (Vers.2.1 - 13 July 90)
-$ libsplit
-Syntax   : [<opts>] {<library>} [<opts>]
-Function : Splits a new Type Library into ROF files.
-           Each psect is written to a ROF file.
-Options  : -@  turn on Debug output
-           -r  overwrite an existing ROF file
-(C) 1998 by Michael Lamparth
+ar2 -u tmp/k3.ar SRC/keep/keep.c
+archiving <SRC/keep/keep.c>
+$ ar2 -t tmp/k3.ar
+                                                  file    file   stored
+  file name                   ver    file date    attr    size    size
+----------------------------- --- -------------- ------   -----   -----
+SRC/keep/keep.c                0  126/08/03 19:00 -wr-wr   20473    9454

@@ -1,35 +1,16 @@
-  -b   use "path" for the temporary zip file
-  -h   show this help               -L   show software license
+unzip
+UnZip:  Zipfile Extract v5.0 of 21 August 1992;  (c) 1989 S.H.Smith and others
+Versions 3.0 and later by Info-ZIP.  Bug reports ONLY to zip-bugs@cs.ucla.edu
 
-Example:
-     zipnote foo.zip > foo.tmp
-     ed foo.tmp
-     ... then you edit the comments, save, and exit ...
-     zipnote -w foo.zip < foo.tmp
-$ zipsplit
-Copyright (C) 1990-1992 Mark Adler, Richard B. Wales, Jean-loup Gailly
-and Kai Uwe Rommel. Type 'zipsplit -L' for the software License.
-
-ZipSplit 1.9 (Aug 20th 1992)
-Usage:  zipsplit [-ti] [-n size] [-b path] zipfile
-  -t   report how many files it will take, but don't make them
-  -i   make index (zipsplit.idx) and count its size against first zip file
-  -n   make zip files no larger than "size" (default = 36000)
-  -b   use "path" for the output zip files
-  -s   do a sequential split even if it takes more zip files
-  -h   show this help               -L   show software license
-$ funzip
-usage: funzip < infile.zip > outfile
-       extracts to stdout the first zip entry of stdin.
-$ zipinfo
-   ZipInfo:  Zipfile Information Utility v1.0 of 21 August 92
-   (brought to you by Newtware, Inc., and the fine folks at Info-ZIP)
-
-   Usage:  zipinfo [-1smlvht] file[.zip] [filespec...]
-     -1  list filenames only, one per line (useful for pipes)
-     -s  list zipfile info in short Unix "ls -l" format:  default
-     -m  list zipfile info in medium Unix "ls -l" format
-     -l  list zipfile info in long Unix "ls -l" format
-     -v  list zipfile information in verbose, multi-page format
-     -h  list header line
-     -t  list totals for files listed or for all files
+OSK Version 1.1 By Ricky Beam 10/16/93
+Usage: unzip [ -options[modifiers] ] file[.zip] [filespec...]
+  -x  extract files (default)                -l  list files (short format)
+  -c  extract files to stdout/screen (CRT)   -v  list files (verbose format)
+  -f  freshen existing files, create none    -p  extract to pipe, no messages
+  -u  update files, create if necessary      -t  test archive integrity
+                                             -z  display archive comment
+modifiers:
+  -n  never overwrite existing files
+  -o  overwrite files WITHOUT prompting      -a  convert text (CR LF => LF)
+  -j  junk paths (don't make directories)    -U  don't make names lowercase
+  -q  quiet mode (-qq => quieter)

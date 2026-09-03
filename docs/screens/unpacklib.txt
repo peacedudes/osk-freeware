@@ -1,0 +1,6 @@
+unpacklib -verbose /dd/LIB/blarslib.l
+Unpacking alarm.r ...
+          size: 295 bytes
+Unpacking atan2.r ...
+          size: 260 bytes
+Wrong SYNC long word, found 0x925F54

@@ -1,0 +1,2 @@
+compress_rebuilt -v /dd/tmp/ARC/idx6
+/dd/tmp/ARC/idx6: Compression: 51.34% -- replaced with /dd/tmp/ARC/idx6.Z

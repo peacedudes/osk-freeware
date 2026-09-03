@@ -90,7 +90,7 @@ as5|Compilers & build|Assemblers & linkers
 lnk|Compilers & build|Assemblers & linkers
 lnk.org|Compilers & build|Assemblers & linkers
 compiler|Compilers & build|C toolchain
-assembler|Compilers & build|Make & generators
+assembler|Compilers & build|Assemblers & linkers
 bison|Compilers & build|Make & generators
 dmake|Compilers & build|Make & generators
 flex|Compilers & build|Make & generators
@@ -741,12 +741,12 @@ gzipcpu32_nocsl|Archives & compression|Alternates
 gzipcpu32k_csl|Archives & compression|Alternates
 gtar|Archives & compression|Alternates
 lharcs|Archives & compression|Alternates
-diff_1.1|Archives & compression|Alternates
+diff_1.1|Text tools|Alternates
 compress_4.0|Archives & compression|Alternates
 compress_rebuilt|Archives & compression|Alternates
 arc_5.12|Archives & compression|Alternates
-m4_0.5|Archives & compression|Alternates
-sed_1.06|Archives & compression|Alternates
+m4_0.5|Compilers & build|Alternates
+sed_1.06|Editors|Alternates
 ub68020demo|System & modules|Vendor demos
 keydrv.mm1|System & modules|MM/1 drivers
 msdrv.901_340|System & modules|MM/1 drivers

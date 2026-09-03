@@ -1,0 +1,17 @@
+pktype logo10.120pk | head -n 16
+This is PKtype, C Version 2.3
+'GFtoPK 2.3 output from METAFONT output 2026.09.03:0747'
+Design size = 10485760
+Checksum = -925365712
+Resolution: horizontal = 108819  vertical = 108819  (120 dpi)
+73:  Flag byte = 232  Character = 77  Packet length = 25
+  Dynamic packing variable = 14
+  TFM width = 838858  dx = 851968
+  Height = 10  Width = 11  X-offset = -1  Y-offset = 9
+  *.........*
+  **.......**
+  **.......**
+  *.*.....*.*
+  *.*....*..*
+  *..*...*..*
+  *...*.*...*

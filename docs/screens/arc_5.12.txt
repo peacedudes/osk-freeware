@@ -1,0 +1,10 @@
+arc_5.12 -a /dd/tmp/o5.arc /dd/SYS/motd
+Creating new archive: /dd/tmp/.arc
+Adding file:   motd           analyzing, storing, done.
+arc: Cannot rename .Arc3.arc to /dd/tmp/.arc
+arc system: Error #000:226 (E_NOCHLD) No Children
+$ arc_5.12 -v /dd/tmp/o5.arc
+Name          Length    Stowage    SF   Size now  Date       Time    CRC
+============  ========  ========  ====  ========  =========  ======  ====
+arc: Cannot read archive: /dd/tmp/.arc
+arc system: Error #000:216 (E_PNNF) Path Name Not Found

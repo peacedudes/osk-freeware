@@ -325,6 +325,9 @@ before calling anything an emulator crash.
 `Event not found` and run nothing; single quotes protect it, or leave it
 out. (The Text tools probe lost a whole sheet to one exclamation mark.)
 
+**`\e` in a `send` line is ESCAPE, so `\end` arrives as ESC-n-d.** Type a
+backslash as octal, `\134`: `send \134end\r`.
+
 Things that bit on the first batch: a `size` line between stanzas attaches
 to the one BEFORE it; the fullest-moment picker prefers a menu to a playing
 field, which `snap` overrides; `head -n N file` prints `head: file` as a

@@ -1,0 +1,2 @@
+gzipcpu32_nocsl -v /dd/tmp/ARC/g6
+/dd/tmp/ARC/g6:          64.1% -- replaced with /dd/tmp/ARC/g6.gz

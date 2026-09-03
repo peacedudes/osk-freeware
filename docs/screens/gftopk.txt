@@ -1,0 +1,4 @@
+gftopk logo10.120gf /dd/tmp/MF/logo10.120pk
+$ ls -l /dd/tmp/MF/logo10.120gf /dd/tmp/MF/logo10.120pk
+-rw-------   1 0        0             608 Sep  3 07:38 /dd/tmp/MF/logo10.120gf
+-rw-------   1 0        0             364 Sep  3 07:39 /dd/tmp/MF/logo10.120pk

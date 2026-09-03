@@ -1,0 +1,25 @@
+ksh -c "cd /dd/tmp/TEX; dvidjp story.dvi"
+[TeX82 DVI Translator Version 2.10]
+[Hewlett-Packard Desk Jet plus (from LaserJet)
+        WITH Data Compaction for faster I/O]
+[Input from DVI file story.dvi]
+[Output on file story.dvi_djc]
+[1 pages]
+[Log file [story.dvi_err] created]
+
+Font file [cmsl10 [300 dpi]] could not be opened; 0 font files are open
+Proceeding with zero size characters for this font
+Current TeX page counters: [0]
+
+Font file [cmbx10 [300 dpi]] could not be opened; 0 font files are open
+Proceeding with zero size characters for this font
+Current TeX page counters: [0]
+
+Font file [cmr10 [300 dpi]] could not be opened; 0 font files are open
+Proceeding with zero size characters for this font
+Current TeX page counters: [0]
+[1{1}]  [OK]
+$ ls -l /dd/tmp/TEX | grep story.dvi_
+-rw-------   1 0        0            2670 Sep  3 07:50 story.dvi_alw
+-rw-------   1 0        0             129 Sep  3 07:52 story.dvi_djc
+-rw-------   1 0        0             464 Sep  3 07:52 story.dvi_err

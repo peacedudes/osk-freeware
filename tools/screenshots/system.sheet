@@ -54,7 +54,7 @@ run     bigsetter
 wait    8
 
 shot    bootgen
-for     bootgen bcheck bsplt68 modbuster
+for     bootgen bcheck bsplt68
 cap     The boot-file tools: bootgen makes an OS9Boot, bcheck checks one
 cap     and bsplt68 takes one apart.  There is no boot file here -- os9exec
 cap     IS the kernel -- so these are for your own hardware.

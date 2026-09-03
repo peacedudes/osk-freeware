@@ -1,16 +1,14 @@
-$ virtex "&plain" /dd/SYS/TEX/SAMPLES/story.tex
+cat /dd/tmp/TEX/story.tex | head -n 6
+\hrule
+\vskip 1in
+\centerline{\bf A SHORT STORY}
+\vskip 6pt
+\centerline{\sl    by A. U. Thor} % !`?`?! (modified)
+\vskip .5cm
+$ ksh -c "cd /dd/tmp/TEX; tex story.tex"
 This is TeX, C Version 3.14
-(/dd/SYS/TEX/SAMPLES/story.tex [1])
-*\end
+(story.tex [1] )
 Output written on story.dvi (1 page, 668 bytes).
 Transcript written on story.log.
-$ tex /dd/SYS/TEX/SAMPLES/story.tex
-virtex "&plain" /dd/SYS/TEX/SAMPLES/story.tex:  (E$PNNF) That path name doesn't.
-
-$ initex
-This is TeX, C Version 3.14 (INITEX)
-**texidx
-! I can't find file `texidx'.
-<*> texidx
-
-Please type another input file name:
+$ ls -l /dd/tmp/TEX/story.dvi
+-rw-------   1 0        0             668 Sep  3 07:41 /dd/tmp/TEX/story.dvi

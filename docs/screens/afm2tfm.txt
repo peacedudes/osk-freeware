@@ -1,0 +1,4 @@
+$ afm2tfm
+afm2tfm 7.0, Copyright 1990-92 by Radical Eye Software
+Usage: afm2tfm foo[.afm] [-O] [-v|-V bar[.vpl]]
+                 [-p|-t|-T encodingfile] [foo[.tfm]]

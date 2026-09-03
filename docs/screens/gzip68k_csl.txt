@@ -1,0 +1,2 @@
+gzip68k_csl -v /dd/tmp/ARC/g3
+/dd/tmp/ARC/g3:          64.1% -- replaced with /dd/tmp/ARC/g3.gz

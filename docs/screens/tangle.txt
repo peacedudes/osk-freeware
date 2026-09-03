@@ -1,20 +1,9 @@
-$ cp /dd/DOC/tex/sample.web /dd/sample.web
-$ cp /dd/DOC/tex/none.ch /dd/none.ch
-$ tangle /dd/DOC/tex/sample.web
-Error: `Can't open file.'
-Error: `'
-$ tangle sample none
+ksh -c "cd /dd/tmp/TEX; tangle sample none"
 This is TANGLE, C Version 4.2
 *1*2
 Writing the output file
 Done.
 (No errors were found.)
-$ weave sample none
-This is WEAVE, C Version 4.2
-*1*2
-Writing the output file...*1*2
-Writing the index...Done.
-(No errors were found.)
-$ cat /dd/sample.p
+$ cat /dd/tmp/TEX/sample.p
 {1:}program sample(output);begin write('hello from WEB');writeln;
 end.{:1}

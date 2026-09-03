@@ -1,0 +1,3 @@
+combine /dd/tmp/ARC/even /dd/tmp/ARC/odd /dd/tmp/ARC/mix -q
+$ cat /dd/tmp/ARC/mix
+ABABABABABABABAB

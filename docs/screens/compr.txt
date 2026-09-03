@@ -1,4 +1,3 @@
-$ cp /dd/DOC/INDEX /dd/tmp/idx3
-$ compr /dd/tmp/idx3
-$ ls -l /dd/tmp/idx3*
--rw-------   1 0        0           66515 Sep  1 19:15 /dd/tmp/idx3.Z
+compr /dd/tmp/ARC/idx3
+$ ls -l /dd/tmp/ARC/idx3*
+-rw-------   1 0        0           68727 Sep  3 07:56 /dd/tmp/ARC/idx3.Z

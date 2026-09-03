@@ -1,0 +1,5 @@
+$ initex
+This is TeX, C Version 3.14 (INITEX)
+**\end
+No pages of output.
+Transcript written on texput.log.

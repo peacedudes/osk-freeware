@@ -1,0 +1,4 @@
+$ inimf
+This is METAFONT, C Version 2.7 (INIMF)
+**\end
+Transcript written on mfput.log.

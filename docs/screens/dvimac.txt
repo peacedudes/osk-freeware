@@ -1,0 +1,30 @@
+ksh -c "cd /dd/tmp/TEX; dvimac story.dvi"
+[TeX82 DVI Translator Version 2.10]
+[Apple ImageWriter 144 dpi dot matrix printer]
+[Input from DVI file story.dvi]
+[Output on file story.dvi_mac]
+[1 pages]
+[Log file [story.dvi_err] created]
+
+Font file [cmsl10 [120 dpi]] could not be opened; 0 font files are open
+Proceeding with zero size characters for this font
+Current TeX page counters: [0]
+
+Font file [cmbx10 [120 dpi]] could not be opened; 0 font files are open
+Proceeding with zero size characters for this font
+Current TeX page counters: [0]
+
+Font file [cmr10 [120 dpi]] could not be opened; 0 font files are open
+Proceeding with zero size characters for this font
+Current TeX page counters: [0]
+[1{1}]  [OK]
+$ ls -l /dd/tmp/TEX | grep story.dvi_
+-rw-------   1 0        0            2670 Sep  3 07:50 story.dvi_alw
+-rw-------   1 0        0             129 Sep  3 07:52 story.dvi_djc
+-rw-------   1 0        0            7252 Sep  3 07:53 story.dvi_eps
+-rw-------   1 0        0             464 Sep  3 08:00 story.dvi_err
+-rw-------   1 0        0             140 Sep  3 07:54 story.dvi_imp
+-rw-------   1 0        0              76 Sep  3 07:56 story.dvi_jep
+-rw-------   1 0        0            3138 Sep  3 07:57 story.dvi_jet
+-rw-------   1 0        0              76 Sep  3 07:58 story.dvi_lj2
+-rw-------   1 0        0            2781 Sep  3 08:00 story.dvi_mac

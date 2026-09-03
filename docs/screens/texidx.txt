@@ -1,0 +1,2 @@
+$ texidx -?
+texi: invalid command switch ?

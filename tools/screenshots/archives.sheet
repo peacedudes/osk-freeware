@@ -1,5 +1,5 @@
-# Archivers, each one making an archive and then reading it
-# back -- a round trip, not a usage line.
+# Archivers, module-library tools and compressors, one stanza per
+# program.  Every stanza makes what it reads under /dd/tmp/ARC.
 
 shot    ar
 cap     Carl Kreider's ar, the OS-9 archive librarian: -u to add, -t for
@@ -8,236 +8,397 @@ cap     handed an absolute one it answers `absolute path illegal' -- so
 cap     these are written from the data directory, which is /dd.
 run     rm -f tmp/k2.ar
 wait    4
+run     clear
+wait    1
 run     ar -u tmp/k2.ar SRC/keep/keep.c
 wait    8
 run     ar -t tmp/k2.ar
 wait    6
 
 shot    ar2
-size    36 80
-for     ar2 liborder libsplit unpacklib unpacklib.os9
-cap     Ar V2.00, a later edition than the V1.2 that ships as `ar', and the
-cap     three tools that take an OS-9 module LIBRARY apart -- `libsplit'
-cap     into its members, `unpacklib' the same job by another hand, and
-cap     `liborder' reporting the order they sit in.  Each is asked for
-cap     itself here.
-run     ar2
+cap     Ar V2.00, a later edition than the V1.2 that ships as `ar', doing
+cap     the same job: -u to add, -t for the table of contents.
+run     rm -f tmp/k3.ar
+wait    3
+run     clear
+wait    1
+run     ar2 -u tmp/k3.ar SRC/keep/keep.c
 wait    8
-run     liborder
-wait    8
-run     libsplit
-wait    8
-run     unpacklib
-wait    8
-run     unpacklib.os9
-wait    8
+run     ar2 -t tmp/k3.ar
+wait    6
 
 shot    arc
-for     arc marc dearc
 cap     ARC, the format that came before zip -- Stephan Paschedag's OS-9
-cap     port of System Enhancement Associates' 5.21.  `a' adds and `v' lists
-cap     with the compression column.  The archive name has to be RELATIVE:
-cap     arc builds it under a temporary name and then moves it, and the move
-cap     fails on an absolute target -- this C library has no rename().
-cap     `marc' merges two archives; `dearc' reads them.
+cap     port of System Enhancement Associates' 5.21.  `a' adds and `v'
+cap     lists with the compression column.  The archive name has to be a
+cap     bare filename in the current directory: arc builds it under a
+cap     temporary name and then renames it into place, and that rename
+cap     fails as soon as the target names a subdirectory.
 run     rm -f m.arc
 wait    4
+run     clear
+wait    1
 run     arc a m.arc /dd/SYS/motd /dd/SYS/termcap
 wait    12
 run     arc v m.arc
 wait    8
-run     marc -?
-wait    6
-run     dearc < /nil
-wait    8
 
-shot    cat-combine
-size    36 80
-for     cat combine demerge modbuster
-cap     `combine' interleaves two files BYTE BY BYTE -- even bytes from the
-cap     first, odd from the second -- which is how a 16-bit EPROM image is
-cap     rebuilt from its two 8-bit halves.  Eight A's and eight B's come
-cap     back as ABABABAB, twice over, and that is the whole program.
-cap     `demerge' is unrelated despite the names -- it splits a file of
-cap     MERGED MODULES into one file per module, named after the module, and
-cap     nothing on this disk makes such a file, so its usage is all there is
-cap     to show.
-run     cat /dd/SYS/motd
+shot    dearc
+cap     dearc is built to extract archives from the MS-DOS ARC program,
+cap     not this disk's own `arc' -- and the difference is real: reading
+cap     back what `arc' just wrote here, dearc reports a CRC failure and
+cap     the extracted file does not match the original.
+run     rm -f /dd/m.arc /dd/motd; arc a m.arc /dd/SYS/motd
 wait    6
-run     echo AAAAAAAA > /dd/tmp/even
+run     clear
+wait    1
+run     dearc m.arc
+wait    6
+run     chksum /dd/SYS/motd /dd/motd
 wait    5
-run     echo BBBBBBBB > /dd/tmp/odd
-wait    5
-run     combine /dd/tmp/even /dd/tmp/odd /dd/tmp/mix -q
+
+shot    marc
+cap     marc merges a named member from one arc archive into another --
+cap     it does not create archives of its own.
+run     rm -f a1.arc a2.arc; arc a a1.arc /dd/SYS/motd; arc a a2.arc /dd/SYS/termcap
 wait    8
-run     cat /dd/tmp/mix
+run     clear
+wait    1
+run     marc a1.arc a2.arc termcap
 wait    6
-run     demerge -?
+run     arc v a1.arc
 wait    6
+
+shot    cat
+cap     cat, concatenating two files to standard output.
+run     mkdir -p /dd/tmp/ARC > /nil 2>/nil; printf "one\r" > /dd/tmp/ARC/one; printf "two\r" > /dd/tmp/ARC/two
+wait    3
+run     clear
+wait    1
+run     cat /dd/tmp/ARC/one /dd/tmp/ARC/two
+wait    5
+
+shot    combine
+cap     combine interleaves two files BYTE BY BYTE -- even bytes from the
+cap     first, odd from the second -- which is how a 16-bit EPROM image is
+cap     rebuilt from its two 8-bit halves.
+run     mkdir -p /dd/tmp/ARC > /nil 2>/nil; printf "AAAAAAAA\r" > /dd/tmp/ARC/even; printf "BBBBBBBB\r" > /dd/tmp/ARC/odd
+wait    3
+run     clear
+wait    1
+run     combine /dd/tmp/ARC/even /dd/tmp/ARC/odd /dd/tmp/ARC/mix -q
+wait    6
+run     cat /dd/tmp/ARC/mix
+wait    5
+
+shot    modbuster
+cap     modbuster splits a file of several merged OS-9 modules into one
+cap     file per module, in the current directory -- shown here on a
+cap     single ordinary module.  A larger merged file, such as the
+cap     CyberWar game's own binary, makes it hang with no output at all.
+run     rm -f /dd/today2; cp /dd/CMDS/today /dd/today2
+wait    3
+run     clear
+wait    1
+run     modbuster today2
+wait    6
+
+shot    demerge
+cap     demerge does the same job as modbuster by another hand, and
+cap     refuses anything over 64000 bytes outright -- shown here against
+cap     the CyberWar game's binary, which is bigger than that.
+run     rm -f /dd/cyberwar2; cp /dd/CMDS/GAMES/cyberwar /dd/cyberwar2
+wait    4
+run     clear
+wait    1
+run     demerge cyberwar2
+wait    8
 
 shot    compr
-for     compr
-cap     compr, an OS-9 file compressor of its own, on the disk's index.
-run     cp /dd/DOC/INDEX /dd/tmp/idx3
-wait    8
-run     compr /dd/tmp/idx3
-wait    12
-run     ls -l /dd/tmp/idx3*
-wait    6
+cap     compr, a second OS-9 file compressor, on the disk's index.
+run     rm -f /dd/tmp/ARC/idx3*; mkdir -p /dd/tmp/ARC > /nil 2>/nil; cp /dd/DOC/INDEX /dd/tmp/ARC/idx3
+wait    4
+run     clear
+wait    1
+run     compr /dd/tmp/ARC/idx3
+wait    10
+run     ls -l /dd/tmp/ARC/idx3*
+wait    5
 
 shot    compress
 cap     compress, the LZW one, reporting what it saved.
-run     cat /dd/DOC/INDEX > /dd/tmp/index.txt
+run     rm -f /dd/tmp/ARC/idx4*; cat /dd/DOC/INDEX > /dd/tmp/ARC/idx4
 wait    3
-run     compress -v /dd/tmp/index.txt
+run     clear
+wait    1
+run     compress -v /dd/tmp/ARC/idx4
+wait    8
+
+shot    compress_4.0
+cap     compress 4.0, another edition of CMDS/compress, on the same file.
+run     rm -f /dd/tmp/ARC/idx5*; cat /dd/DOC/INDEX > /dd/tmp/ARC/idx5
+wait    3
+run     clear
+wait    1
+run     compress_4.0 -v /dd/tmp/ARC/idx5
+wait    8
+
+shot    compress_rebuilt
+cap     Our own source build of compress, from the same source as
+cap     CMDS/compress -- and it writes byte for byte what that one does.
+run     rm -f /dd/tmp/ARC/idx6*; cat /dd/DOC/INDEX > /dd/tmp/ARC/idx6
+wait    3
+run     clear
+wait    1
+run     compress_rebuilt -v /dd/tmp/ARC/idx6
 wait    8
 
 shot    gzip
 cap     GNU gzip on the same file, for comparison with compress.
-run     cat /dd/DOC/INDEX > /dd/tmp/index2.txt
+run     rm -f /dd/tmp/ARC/g1*; cat /dd/DOC/INDEX > /dd/tmp/ARC/g1
 wait    3
-run     gzip -v /dd/tmp/index2.txt
+run     clear
+wait    1
+run     gzip -v /dd/tmp/ARC/g1
 wait    8
 
-shot    gzips
-for     gzip020_csl gzip020_nocsl gzip68k_csl gzip68k_nocsl compress_4.0
-for     gzipcpu32k_csl gzipcpu32_nocsl
-cap     Four builds of gzip 1.2.4 -- 68000 and 68020, with and without the
-cap     csl trap library -- kept side by side so you can take the one your
-cap     machine wants.  Each says which it is.  All four are asked for
-run     gzip68k_nocsl -V
+shot    gzip68k_nocsl
+cap     gzip 1.2.4 built for the 68000, without the csl trap library.
+run     rm -f /dd/tmp/ARC/g2*; cat /dd/DOC/INDEX > /dd/tmp/ARC/g2
+wait    3
+run     clear
+wait    1
+run     gzip68k_nocsl -v /dd/tmp/ARC/g2
 wait    8
-run     gzip020_nocsl -V
+
+shot    gzip68k_csl
+cap     The same 68000 build of gzip 1.2.4, linked against csl instead.
+run     rm -f /dd/tmp/ARC/g3*; cat /dd/DOC/INDEX > /dd/tmp/ARC/g3
+wait    3
+run     clear
+wait    1
+run     gzip68k_csl -v /dd/tmp/ARC/g3
 wait    8
-run     gzip68k_csl -V
+
+shot    gzip020_nocsl
+cap     gzip 1.2.4 built for the 68020, without csl.
+run     rm -f /dd/tmp/ARC/g4*; cat /dd/DOC/INDEX > /dd/tmp/ARC/g4
+wait    3
+run     clear
+wait    1
+run     gzip020_nocsl -v /dd/tmp/ARC/g4
 wait    8
-run     gzip020_csl -V
+
+shot    gzip020_csl
+cap     The 68020 build of gzip 1.2.4, linked against csl.
+run     rm -f /dd/tmp/ARC/g5*; cat /dd/DOC/INDEX > /dd/tmp/ARC/g5
+wait    3
+run     clear
+wait    1
+run     gzip020_csl -v /dd/tmp/ARC/g5
 wait    8
-run     gzipcpu32k_csl -V
+
+shot    gzipcpu32_nocsl
+cap     gzip 1.2.4 built for the CPU32, without csl.
+run     rm -f /dd/tmp/ARC/g6*; cat /dd/DOC/INDEX > /dd/tmp/ARC/g6
+wait    3
+run     clear
+wait    1
+run     gzipcpu32_nocsl -v /dd/tmp/ARC/g6
 wait    8
-run     gzipcpu32_nocsl -V
+
+shot    gzipcpu32k_csl
+cap     The CPU32 build of gzip 1.2.4, linked against csl.
+run     rm -f /dd/tmp/ARC/g7*; cat /dd/DOC/INDEX > /dd/tmp/ARC/g7
+wait    3
+run     clear
+wait    1
+run     gzipcpu32k_csl -v /dd/tmp/ARC/g7
 wait    8
 
 shot    lha
-cap     LHa 2.08 on the same file: pack, then list with the ratio.
-run     lha a /dd/tmp/k.lzh /dd/SRC/keep/keep.c
-wait    6
-run     lha l /dd/tmp/k.lzh
-wait    4
+cap     LHa 2.08: pack, then list with the ratio.
+run     rm -f /dd/tmp/ARC/k.lzh; mkdir -p /dd/tmp/ARC > /nil 2>/nil
+wait    2
+run     clear
+wait    1
+run     lha a /dd/tmp/ARC/k.lzh /dd/SRC/keep/keep.c
+wait    8
+run     lha l /dd/tmp/ARC/k.lzh
+wait    5
 
 shot    lharc
-for     lharc lharcs xlharc
-cap     LHarc, the older sibling of lha: pack, then list.
-run     lharc a /dd/tmp/l.lzh /dd/SYS/motd
+for     lharc xlharc
+cap     LHarc, the older sibling of lha: pack, then list.  xlharc, a
+cap     third build of the same reader, lists the same archive.
+run     rm -f /dd/tmp/ARC/l.lzh
+wait    2
+run     clear
+wait    1
+run     lharc a /dd/tmp/ARC/l.lzh /dd/SYS/motd
 wait    10
-run     lharc l /dd/tmp/l.lzh
-wait    8
-run     xlharc < /nil
-wait    8
-
-shot    modbuster
-cap     modbuster splits a file of merged OS-9 modules back into separate
-cap     ones; unpacklib does the same for a linker library.
-run     modbuster -?
-wait    4
-run     unpacklib -?
-wait    4
-
-shot    shar
-for     shar
-cap     shar wraps files as a shell archive -- how source travelled over
-cap     usenet, and how most of this collection arrived.  ONE BROKEN CHECK
-cap     stops it: its read-access test rejects every file that EXISTS, and
-cap     the file below is world-readable with `cat' reading it happily.
-cap     Give it a name that is NOT there and the check passes vacuously --
-cap     and out comes the whole preamble, cut line and all.  The archiver
-cap     works; the gatekeeper does not.
-run     ls -l /dd/readme
-wait    5
-run     shar readme
+run     lharc l /dd/tmp/ARC/l.lzh
 wait    6
-run     shar not-a-file-here | head -n 9
+run     xlharc l /dd/tmp/ARC/l.lzh
 wait    8
 
-shot    tar
-cap     GNU tar 1.10 packing a directory off this disk and listing what it
-cap     wrote -- the same tar the image build uses to populate the disk.
-run     tar cvf /dd/tmp/keep.tar /dd/SRC/keep
-wait    5
-run     tar tvf /dd/tmp/keep.tar
-wait    4
-
-shot    unzip
-size    36 80
-for     unzip zipnote zipsplit funzip zipinfo
-cap     Info-ZIP's readers, each asked for itself.  `unzip' lists an archive
-cap     that `zip' on this disk cannot write -- see the note against zip --
-cap     `zipnote' reads and writes an archive's comments, `zipsplit' cuts
-cap     one into pieces that fit a floppy, and `funzip' unzips a stream.
-cap     The last three were credited here and never run.
-run     unzip -v
+shot    lharcs
+cap     C-LHarc 1.01, an older build than lha 2.08, on the same job.
+run     rm -f /dd/tmp/ARC/ls.lzh
+wait    2
+run     clear
+wait    1
+run     lharcs a /dd/tmp/ARC/ls.lzh /dd/SYS/motd
 wait    10
-run     zipnote
-wait    8
-run     zipsplit
-wait    8
-run     funzip
-wait    8
-run     zipinfo
-wait    8
+run     lharcs l /dd/tmp/ARC/ls.lzh
+wait    6
 
 shot    zoo
 cap     zoo, packing and then listing -- compression ratio per member.
-run     zoo a /dd/tmp/k.zoo /dd/SRC/keep/keep.c
+run     rm -f /dd/tmp/ARC/k.zoo
+wait    2
+run     clear
+wait    1
+run     zoo a /dd/tmp/ARC/k.zoo /dd/SRC/keep/keep.c
+wait    6
+run     zoo l /dd/tmp/ARC/k.zoo
 wait    5
-run     zoo l /dd/tmp/k.zoo
-wait    4
 
-shot    zoo2
-for     zoo_2.1 fiz booz
-cap     zoo 2.1 writes an archive, booz lists it, and fiz walks its
-cap     structure directory by directory. booz takes a BARE LETTER, not a
-cap     dash-letter, and fiz takes the archive as an argument.
-run     zoo_2.1 a /dd/tmp/z2.zoo /dd/SYS/motd
+shot    zoo_2.1
+for     zoo_2.1 booz fiz
+cap     zoo 2.1, newer than the 2.01 that ships as `zoo', writes an
+cap     archive; booz lists it with a BARE LETTER, not a dash-letter; fiz
+cap     walks its internal directory structure.
+run     rm -f /dd/tmp/ARC/z2.zoo
+wait    2
+run     clear
+wait    1
+run     zoo_2.1 a /dd/tmp/ARC/z2.zoo /dd/SYS/motd
 wait    10
-run     booz l /dd/tmp/z2.zoo
+run     booz l /dd/tmp/ARC/z2.zoo
 wait    8
-run     fiz /dd/tmp/z2.zoo
+run     fiz /dd/tmp/ARC/z2.zoo
 wait    10
 
 shot    zip
 cap     Info-ZIP's zip DEFLATES correctly and then cannot rename its
-cap     temporary file over the target -- `_Z000003' is left behind and
-cap     the archive is never written.  Two directories were tried.  This
-cap     is one of the three failures the data tests keep failing on
-cap     purpose; `unzip' reads other people's archives perfectly well.
-run     mkdir /dd/tmp/zt
+cap     temporary file over the target -- the archive is never written.
+cap     unzip reads other people's archives perfectly well.
+run     rm -rf /dd/tmp/ARC/zt; mkdir /dd/tmp/ARC/zt > /nil 2>/nil; cp /dd/SYS/motd /dd/tmp/ARC/zt/motd
+wait    5
+run     clear
+wait    1
+run     zip /dd/tmp/ARC/zt/test.zip /dd/tmp/ARC/zt/motd
+wait    12
+run     dir /dd/tmp/ARC/zt
 wait    6
-run     cp /dd/SYS/motd /dd/tmp/zt/motd
+
+shot    unzip
+cap     unzip's own banner and options.  Nothing on this disk can WRITE a
+cap     zip archive for it to open -- see `zip' -- so this is as far as
+cap     it goes here.
+run     clear
+wait    1
+run     unzip
+wait    8
+
+shot    zipinfo
+cap     zipinfo's own options.  As with unzip, there is no zip archive on
+cap     this disk to report on.
+run     clear
+wait    1
+run     zipinfo
 wait    6
-run     zip /dd/tmp/zt/test.zip /dd/tmp/zt/motd
-wait    15
-run     dir /dd/tmp/zt
+
+shot    zipnote
+cap     zipnote reads and writes a zip archive's comments; its own
+cap     options, for want of a zip archive to try it on.
+run     clear
+wait    1
+run     zipnote
+wait    6
+
+shot    zipsplit
+cap     zipsplit cuts a zip archive into pieces that fit a floppy; its
+cap     own options, for want of a zip archive to try it on.
+run     clear
+wait    1
+run     zipsplit
+wait    6
+
+shot    funzip
+cap     funzip unzips the first entry of a zip stream straight through a
+cap     pipe; its usage line, for want of a zip archive to try it on.
+run     clear
+wait    1
+run     funzip
+wait    6
+
+shot    shar
+cap     shar wraps files as a shell archive -- how source travelled over
+cap     usenet.  ONE BROKEN CHECK stops it: its read-access test rejects
+cap     every file that EXISTS, even one `cat' and `ls' both show as
+cap     world-readable.
+run     rm -f /dd/tmp/ARC/readme; mkdir -p /dd/tmp/ARC > /nil 2>/nil; cp /dd/readme /dd/tmp/ARC/readme
+wait    3
+run     clear
+wait    1
+run     ls -l /dd/tmp/ARC/readme
+wait    4
+run     shar /dd/tmp/ARC/readme
+wait    6
+
+shot    tar
+cap     GNU tar 1.10 packing a directory off this disk and listing what it
+cap     wrote -- the same tar the image build uses to populate the disk.
+run     rm -f /dd/tmp/ARC/keep.tar; mkdir -p /dd/tmp/ARC > /nil 2>/nil
+wait    2
+run     clear
+wait    1
+run     tar cvf /dd/tmp/ARC/keep.tar /dd/SRC/keep
+wait    6
+run     tar tvf /dd/tmp/ARC/keep.tar
+wait    5
+
+shot    gtar
+cap     Another build of GNU tar, on the same directory -- it strips the
+cap     leading slash from absolute names going into the archive.
+run     rm -f /dd/tmp/ARC/keep2.tar
+wait    2
+run     clear
+wait    1
+run     gtar cvf /dd/tmp/ARC/keep2.tar /dd/SRC/keep
+wait    6
+run     gtar tvf /dd/tmp/ARC/keep2.tar
+wait    5
+
+shot    arc_5.12
+cap     ARC v5.12, an earlier edition than CMDS/arc's 5.21.  It never gets
+cap     past writing its own temporary file: the rename into place fails
+cap     every time, with `No Children' -- so it cannot write an archive on
+cap     this disk at all.
+run     rm -f /dd/tmp/o5.arc
+wait    2
+run     clear
+wait    1
+run     arc_5.12 -a /dd/tmp/o5.arc /dd/SYS/motd
+wait    8
+run     arc_5.12 -v /dd/tmp/o5.arc
+wait    6
+
+shot    liborder
+cap     Reports the order to concatenate OS-9 modules in a library, read
+cap     from an OS-9 ROF file.
+run     clear
+wait    1
+run     liborder /dd/LIB/alib.l
 wait    10
 
-
-shot    alternates
-for     diff_1.1 gtar m4_0.5 lharcs compress_4.0 sed_1.06 zoo_2.1
-cap     CMDS/REBUILT keeps a second build of several programs because they
-cap     do not all behave the same -- here diff 1.1 answers with its whole
-cap     option list, which is the difference you would be choosing between.
-cap     Each of the seven is asked for its own version.
-run     diff_1.1 -v
-wait    10
-run     gtar --version
-wait    10
-run     m4_0.5 --version
-wait    10
-run     lharcs
-wait    10
-run     compress_4.0 -V
-wait    10
-run     sed_1.06 --version
-wait    10
-run     zoo_2.1
+shot    unpacklib
+cap     Splits an OS-9 library apart into its member modules -- it gets
+cap     the first two out of this one and then stops on a bad sync word
+cap     partway through.
+run     clear
+wait    1
+run     unpacklib -verbose /dd/LIB/blarslib.l
 wait    10

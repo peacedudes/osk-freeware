@@ -1,0 +1,2 @@
+gzip020_csl -v /dd/tmp/ARC/g5
+/dd/tmp/ARC/g5:          64.1% -- replaced with /dd/tmp/ARC/g5.gz

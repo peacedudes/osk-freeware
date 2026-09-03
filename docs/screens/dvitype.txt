@@ -1,24 +1,31 @@
-345: setchar97 h:=19083752+327681=19411433, hh:=1230
-346: w0 218453 h:=19411433+218453=19629886, hh:=1243
-347: setchar99 h:=19629886+291271=19921157, hh:=1261
-348: setchar111 h:=19921157+327681=20248838, hh:=1282
-349: setchar109 h:=20248838+546135=20794973, hh:=1317
-350: setchar112 h:=20794973+364090=21159063, hh:=1340
-351: setchar117 h:=21159063+364090=21523153, hh:=1363
-352: setchar116 h:=21523153+254863=21778016, hh:=1379
-353: setchar101 h:=21778016+291271=22069287, hh:=1397
-354: setchar114 h:=22069287+256683=22325970, hh:=1413
-355: w0 218453 h:=22325970+218453=22544423, hh:=1428
-356: setchar110 h:=22544423+364090=22908513, hh:=1451
-357: setchar97 h:=22908513+327681=23236194, hh:=1472
-358: setchar109 h:=23236194+546135=23782329, hh:=1507
-359: setchar101 h:=23782329+291271=24073600, hh:=1525
-360: setchar100 h:=24073600+364090=24437690, hh:=1548
-361: w0 218453 h:=24437690+218453=24656143, hh:=1562
-362: setchar82 h:=24656143+482418=25138561, hh:=1593
-363: setchar46 h:=25138561+182045=25320606, hh:=1605
-364: w0 218453 h:=25320606+218453=25539059, hh:=1618
-365: setchar74 h:=25539059+336783=25875842, hh:=1639
-366: setchar46 h:=25875842+182045=26057887, hh:=1651
-367: w0 218453 h:=26057887+218453=26276340, hh:=1664
-368: setchar68
+This is DVItype, C Version 3.4
+Output level (default=4, ? for help): Starting page (default=*): Maximum number:
+  Starting page = *
+  Maximum number of pages = 1000000
+  Output level = 4 (the works)
+  Resolution = 300.00000000 pixels per inch
+numerator/denominator=25400000/473628672
+magnification=1000;       0.00006334 pixels per DVI unit
+' TeX output 2026.09.03:0748'
+Postamble starts at byte 564.
+maxv=43725786, maxh=30785863, maxstackdepth=3, totalpages=1
+Font 33: cmsl10---loaded at size 655360 DVI units
+Font 23: cmbx10---loaded at size 655360 DVI units
+Font 0: cmr10---loaded at size 655360 DVI units
+
+42: beginning of page 1
+87: push
+level 0:(h=0,v=0,w=0,x=0,y=0,z=0,hh=0,vv=0)
+88: down3 -917504 v:=0-917504=-917504, vv:=-58
+92: pop
+level 0:(h=0,v=0,w=0,x=0,y=0,z=0,hh=0,vv=0)
+93: down4 42152922 v:=0+42152922=42152922, vv:=2670
+98: push
+level 0:(h=0,v=42152922,w=0,x=0,y=0,z=0,hh=0,vv=2670)
+99: down4 -41497562 v:=42152922-41497562=655360, vv:=42
+104: putrule height 26214, width 30785863 (2x1950 pixels)
+113: down3 5185936 v:=655360+5185936=5841296, vv:=370
+117: push
+level 1:(h=0,v=5841296,w=0,x=0,y=0,z=0,hh=0,vv=370)
+118: right4 12265425 h:=0+12265425=12265425, hh:=777
+[ ]

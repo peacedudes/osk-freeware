@@ -1,10 +1,10 @@
-$ zoo_2.1 a /dd/tmp/z2.zoo /dd/SYS/motd
+zoo_2.1 a /dd/tmp/ARC/z2.zoo /dd/SYS/motd
 Zoo:  /dd/SYS/motd --  ( 0%) added
-$ booz l /dd/tmp/z2.zoo
+$ booz l /dd/tmp/ARC/z2.zoo
 Length    CF  Size Now  Date      Time
 --------  --- --------  --------- --------
       40   0%       40   3 Aug 26 19:00:00  motd
-$ fiz /dd/tmp/z2.zoo
+$ fiz /dd/tmp/ARC/z2.zoo
 ****************
       20: DIR  [] ==> 196607
 ****************

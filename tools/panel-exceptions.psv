@@ -58,3 +58,10 @@ unstr|asks for 75 megabytes before it reads a byte and is refused; the stop is t
 bmgtest|a Boyer-Moore test program that prints nothing when satisfied; the status line on its card is the evidence
 bmgtest2|a Boyer-Moore test program that prints nothing when satisfied; the status line on its card is the evidence
 buildhash|wants ispell's word list, which the disk does not carry, and says which; the card says so
+compr|compresses in place silently; the ls that follows on its card shows the .Z it made
+modbuster|prints only the name of the module it split out; the card shows that
+funzip|unzips from a pipe, and nothing on the disk can write a zip for it to read; its usage is what there is to show
+texidx|builds an index from a TeX run's entries; with none to read its usage is what there is to show
+gftopk|packs the font silently; the ls that follows on its card shows both sizes
+pktogf|unpacks silently; the ls that follows on its card shows the result
+pltotf|writes the .tfm silently; the ls that follows on its card shows the round trip

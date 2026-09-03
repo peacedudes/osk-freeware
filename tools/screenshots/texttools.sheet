@@ -1,16 +1,5 @@
 # The filters, each one on real text off this disk.
 
-shot    bibtex
-for     bibtex afm2tfm maketexpk
-cap     BibTeX, the bibliography processor, with the sample database that
-cap     ships beside it.
-run     bibtex
-wait    12
-run     afm2tfm < /nil
-wait    10
-run     maketexpk < /nil
-wait    10
-
 shot    bm
 cap     bm, a Boyer-Moore grep, and fgrep beside it -- both older and
 cap     faster than the GNU one, and both still here.
@@ -54,58 +43,6 @@ run     sed -e "s/OS-9/OS-Nine/" /dd/tmp/a.txt > /dd/tmp/b.txt
 wait    3
 run     diff -c /dd/tmp/a.txt /dd/tmp/b.txt
 wait    5
-
-shot    tex
-for     tex virtex initex texidx
-cap     TeX itself, typesetting Knuth's own sample story out of
-cap     SYS/TEX/SAMPLES: it loads the plain format, sets the page and writes
-cap     a DVI file.  Note that it is `virtex' being run, not `tex' -- the
-cap     `tex' wrapper forks `virtex' by bare name, and OS-9 resolves a fork
-cap     against the EXECUTION directory rather than PATH, so from /dd/CMDS
-cap     it cannot find it.  Run virtex yourself, or copy it up.
-run     virtex "&plain" /dd/SYS/TEX/SAMPLES/story.tex
-wait    40
-send    \134end\r
-wait    20
-run     tex /dd/SYS/TEX/SAMPLES/story.tex
-wait    15
-run     initex
-wait    12
-run     texidx
-wait    10
-
-shot    latex
-for     latex slitex
-cap     LaTeX is the same program with a different format loaded: `&lplain'
-cap     rather than `&plain'.  Here it sets the sample LaTeX document that
-cap     ships with it, and reports the pages as it writes them.
-run     virtex "&lplain" /dd/SYS/TEX/SAMPLES/small.tex
-wait    60
-send    \r
-wait    10
-run     latex < /nil
-wait    12
-run     slitex < /nil
-wait    12
-
-shot    dvitype
-for     dvitype dvips dvilj2 dvijet
-cap     dvitype reads the DVI file back and prints what is in it: page by
-cap     page, the font changes and the character positions TeX computed.
-run     dvitype story.dvi
-wait    10
-send    4\r
-wait    4
-send    \r
-wait    4
-send    \r
-wait    4
-send    \r
-wait    4
-send    \r
-wait    4
-send    \r
-wait    20
 
 shot    deton
 cap     deton counts down three seconds and blows the machine up, which it
@@ -199,34 +136,6 @@ wait    8
 run     what /dd/CMDS/today
 wait    8
 
-shot    tangle
-for     tangle weave
-cap     tangle and weave are the WEB tools TeX itself is written with: one
-cap     makes Pascal out of a .web file, the other makes TeX.  `tftopl' and
-cap     `pltotf' are the font-metric pair with their own card; `gftype' and
-cap     `pktype' are on the texfonts-bitmap card, which is where the ones
-cap     with no bitmap font to read belong.  BOTH NEED A CHANGE FILE NAMED,
-cap     and that is the whole reason this card used to be two usage lines.
-cap     Given only a .web they answer `Error: `Can't open file.'' -- the
-cap     absent change file is what they cannot open, not the source.
-cap     DOC/tex ships sample.web and none.ch, an empty change file that
-cap     changes nothing, as of 2026-08-31.  Both read the .web from the DATA
-cap     directory and write there too.  The copies go to /dd because that is
-cap     the data directory: bash's `cd' does not move it, so a bare filename
-cap     is looked up there whatever the prompt says.
-run     cp /dd/DOC/tex/sample.web /dd/sample.web
-wait    6
-run     cp /dd/DOC/tex/none.ch /dd/none.ch
-wait    6
-run     tangle /dd/DOC/tex/sample.web
-wait    12
-run     tangle sample none
-wait    14
-run     weave sample none
-wait    14
-run     cat /dd/sample.p
-wait    10
-
 shot    tformat
 cap     tformat, the SNOBOL4 text formatter.
 run     head -n 24 /dd/DOC/README-KEEP | tformat
@@ -240,139 +149,6 @@ cap     page column is empty here because nothing upstream paginated the
 cap     text; what is left is the vocabulary of the file, in order.
 run     sepwords < /dd/DOC/README-CIO | sort | unip | head -n 18
 wait    10
-
-shot    latex-wrapper
-for     latex tex virtex
-cap     LaTeX typesetting one of the documents that ship in
-cap     SYS/TEX/SAMPLES, through the `latex' command itself.  That command
-cap     is a one-line wrapper that hands `virtex "&lplain" yourfile' to a
-cap     shell, and until 2026-08-31 it did NOTHING AT ALL and returned 221:
-cap     SYS/login did not set SHELL, and this C library's system() forks
-cap     $SHELL with the whole command line as one argument.  Of the five
-cap     shells here only ksh parses an argument that way, so login now sets
-cap     SHELL to it -- and tex and latex work.  The four `F$SetSys:
-cap     unimplemented' lines are os9exec noise as ksh starts.
-run     rm -f small.dvi small.log small.aux
-wait    8
-run     latex /dd/SYS/TEX/SAMPLES/small.tex
-wait    45
-run     ls -l small.dvi small.log
-wait    8
-
-shot    dvidrivers
-for     dvialw dvidjp dvieps dviimp dvijep dvijet dvilj2 dvimac dvioki dvitos dvips
-cap     Eleven DVI drivers, one per printer that mattered in 1990: Apple
-cap     LaserWriter, DeskJet, Epson, Imagen, LaserJet, Macintosh, Okidata,
-cap     PostScript.  Each turns the same DVI into that machine's own
-cap     language, from one DVI, in one session.  Each names itself and the
-cap     printer it is for, and writes to a FILE beside the DVI rather than
-cap     to standard output.  They all warn that a font file could not be
-cap     opened and set the text at zero size: SYS/TEX/FONTS carries .tfm
-cap     METRICS and no bitmaps.  THAT IS NOW FIXABLE, as of 2026-09-01, and
-cap     the `texfonts-bitmap' screen is where it is shown.  Metafont has its
-cap     bases; render cmr10 at the resolution a driver asks for -- dvijet
-cap     wants 120 dpi and `epsonlo' in modes.mf is 120 dpi -- pack it with
-cap     gftopk, point TEXFONTS and FONTLIST at it, and dvijet's page goes
-cap     from 3138 bytes of nothing to 7350 bytes of real glyph rasters.
-cap     A.pk still does not ship, because a .pk is made for ONE printer at
-cap     ONE resolution; what ships is the means.  `dvips' is the one
-cap     exception and its trouble is not fonts: it stops at `Couldn't find
-cap     header file tex.pro' and no .pro file is on this disk.  Two of the
-cap     eleven were run here before 2026-08-29.
-run     virtex "&plain" /dd/SYS/TEX/SAMPLES/story.tex
-wait    40
-send    \134end\r
-wait    15
-run     dvialw story.dvi
-wait    20
-run     dvidjp story.dvi
-wait    20
-run     dvieps story.dvi
-wait    20
-run     dviimp story.dvi
-wait    20
-run     dvijep story.dvi
-wait    20
-run     dvijet story.dvi
-wait    20
-run     dvilj2 story.dvi
-wait    20
-run     dvimac story.dvi
-wait    20
-run     dvioki story.dvi
-wait    20
-run     dvitos story.dvi
-wait    20
-run     dvips story.dvi
-wait    25
-run     ls -l /dd/story.dvi_alw /dd/story.dvi_eps
-wait    12
-
-shot    texfonts
-for     tftopl pltotf
-cap     TeX's font tools. tftopl turns a binary font metric into readable
-cap     property lists and pltotf turns it back -- the round trip that lets
-cap     you edit a font's metrics by hand.
-run     tftopl /dd/SYS/TEX/FONTS/TFM/cmr10.tfm > /dd/tmp/cmr10.pl
-wait    20
-run     pltotf /dd/tmp/cmr10.pl /dd/tmp/cmr10.tfm
-wait    20
-run     ls -l /dd/SYS/TEX/FONTS/TFM/cmr10.tfm /dd/tmp/cmr10.tfm
-wait    10
-
-shot    texfonts-bitmap
-size    58 82
-for     gftopk pktogf gftype pktype vftovp vptovf virmf inimf
-cap     TeX's BITMAP font tools, running a font from Metafont source to
-cap     pixels and back.  SYS/TEX/MFBASES held its Makefile and nothing
-cap     else, so Metafont answered `I can't find the default base file!'.
-cap     `inimf' builds that base out of MFINPUTS/plain.mf in about a minute,
-cap     and it is now built and shipped, the way SYS/TEX/FORMATS already
-cap     shipped plain.fmt for TeX.  So: virmf renders logo10.mf -- the
-cap     METAFONT logo font, seven characters -- at a low-resolution mode;
-cap     gftype draws the M as pixels; gftopk packs 608 bytes down to 364;
-cap     pktype reads the packed form back; pktogf unpacks it. vptovf and
-cap     vftovp are the virtual pair: DOC/tex/sample.vpl maps one character
-cap     onto cmr10 and compiles to a .vf, which vftovp reads back to the text
-cap     it came from.  GFFONTS, PKFONTS, VFFONTS and TEXFONTS have to name
-cap     the working directory: the FONTS search paths compiled into these
-cap     binaries do NOT begin with `.' the way MFINPUTS does, so a file
-cap     beside you is invisible to them.  That is the one thing here that
-cap     reads like a fault and is not -- and it is also what lets the seven
-cap     readers run with no `cd' at all.  Only Metafont needs one, because
-cap     it writes its three outputs into the data directory and names them
-cap     itself; the four `F$SetSys: unimplemented' lines are ksh starting
-cap     up, not anything Metafont did.
-run     rm -f /dd/tmp/GF/*
-wait    6
-run     mkdir -p /dd/tmp/GF
-wait    6
-run     export GFFONTS=/dd/tmp/GF; export PKFONTS=/dd/tmp/GF
-wait    4
-run     export VFFONTS=/dd/tmp/GF; export TEXFONTS=/dd/tmp/GF:/dd/SYS/TEX/FONTS/TFM
-wait    4
-run     echo "\\mode=epsonlo; mode_setup; input logo10" > /dd/tmp/GF/run.mf
-wait    6
-run     ksh -c "cd /dd/tmp/GF; virmf < run.mf"
-wait    50
-run     gftype -i logo10.120gf > /dd/tmp/GF/gt.txt
-wait    25
-run     sed -n 4,16p /dd/tmp/GF/gt.txt
-wait    10
-run     gftopk logo10.120gf /dd/tmp/GF/logo10.120pk
-wait    20
-run     pktype logo10.120pk > /dd/tmp/GF/pt.txt
-wait    20
-run     sed -n 2,8p /dd/tmp/GF/pt.txt
-wait    10
-run     pktogf logo10.120pk /dd/tmp/GF/back.120gf
-wait    20
-run     vptovf /dd/DOC/tex/sample.vpl /dd/tmp/GF/s.vf /dd/tmp/GF/s.tfm
-wait    20
-run     vftovp s.vf s.tfm /dd/tmp/GF/back.vpl
-wait    20
-run     ls -l /dd/tmp/GF
-wait    12
 
 shot    btop
 for     btop ptob

@@ -1,0 +1,3 @@
+funzip
+usage: funzip < infile.zip > outfile
+       extracts to stdout the first zip entry of stdin.

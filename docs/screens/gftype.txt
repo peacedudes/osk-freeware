@@ -1,0 +1,20 @@
+gftype -i logo10.120gf | sed -n 4,22p
+
+35: beginning of char 77
+.<--This pixel's lower left corner is at (1,10) in METAFONT coordinates
+*         *
+**       **
+**       **
+* *     * *
+* *    *  *
+*  *   *  *
+*   * *   *
+*   * *   *
+*    *    *
+*         *
+.<--This pixel's upper left corner is at (1,0) in METAFONT coordinates
+
+104: beginning of char 69
+.<--This pixel's lower left corner is at (1,10) in METAFONT coordinates
+********
+*

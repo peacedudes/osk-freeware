@@ -1,3 +1,2 @@
-$ cat /dd/DOC/INDEX > /dd/tmp/index2.txt
-$ gzip -v /dd/tmp/index2.txt
-/dd/tmp/index2.txt:      64.1% -- replaced with /dd/tmp/index2.txt.gz
+gzip -v /dd/tmp/ARC/g1
+/dd/tmp/ARC/g1:          64.0% -- replaced with /dd/tmp/ARC/g1.gz

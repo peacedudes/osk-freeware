@@ -1,0 +1,7 @@
+$ slitex
+This is TeX, C Version 3.14
+SliTeX Version 2.09 <8 Jun 1988>
+
+*\end
+
+*

@@ -1,13 +1,11 @@
-$ mkdir /dd/tmp/zt
-$ cp /dd/SYS/motd /dd/tmp/zt/motd
-$ zip /dd/tmp/zt/test.zip /dd/tmp/zt/motd
-adding dd/tmp/zt/motd (stored 0%)
-zip warning: new zip file left as: /dd/tmp/zt/_Z000003
+zip /dd/tmp/ARC/zt/test.zip /dd/tmp/ARC/zt/motd
+adding dd/tmp/ARC/zt/motd (stored 0%)
+zip warning: new zip file left as: /dd/tmp/ARC/zt/_Z000003
 zip error: file not found
 zip error: Could not create output file (was replacing the original zip file)
-$ dir /dd/tmp/zt
+$ dir /dd/tmp/ARC/zt
 
-Directory of "/dd/tmp/zt" 19:20:18  09/01/126
+Directory of "/dd/tmp/ARC/zt" 08:02:54  09/03/126
 
 _Z000003        motd
 

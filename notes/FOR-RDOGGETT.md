@@ -26,6 +26,16 @@ found 2026-09-03 by the Text tools batch, written up in
 OS-9/68000 call, so this is os9exec's to fix, and subber's card says what
 stops it.
 
+**A decision on TeX's bitmap fonts (2026-09-03).** `tex`, `latex` and the
+ten DVI drivers all run, and `dvialw` writes PostScript that gs403 can
+rasterise -- so the typeset sample story could be shown on its card as
+ASCII art, the way the Ghostscript card shows a line of Helvetica. What
+stops it is that `SYS/TEX/FONTS/PK300` holds a Makefile and no fonts:
+every driver sets the text at zero size. Metafont is on the disk and
+`virmf` can render cmr10, cmbx10 and cmsl10 at 300 dpi in a few minutes
+each. Shipping those three .pk files (a few hundred KB) is a content
+decision; say the word and the card gets made.
+
 **Candidates for "best forgotten", from the Games and Text tools batches
 (2026-09-03):**
 
@@ -39,6 +49,12 @@ stops it.
   a book at `/h0/usr/src/chess/`, and prints nothing; the GAMES build plays.
 - `splitalf` makes `<name>_0` and stops; `cuts`' encoder asks for four
   gigabytes and writes empty lines; `subber` is stopped by the F$Mem gap.
+- `arc_5.12` cannot write an archive at all here: its temporary-file
+  rename fails every time with E_NOCHLD. `arc` 5.21 does the job.
+- `dearc` reads MS-DOS ARC files and corrupts what this disk's own `arc`
+  writes (a CRC failure); `unzip`, `zipinfo`, `zipnote`, `zipsplit` and
+  `funzip` have nothing to read because `zip` cannot write its archive.
+
 - Duplicates worth one decision each: `puz15`/`puzzle15` are one program
   built twice; there are five GNU Chess builds; `wc.cio` is an archived
   duplicate of `wc`.

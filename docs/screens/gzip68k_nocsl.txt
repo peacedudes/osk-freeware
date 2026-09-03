@@ -1,0 +1,2 @@
+gzip68k_nocsl -v /dd/tmp/ARC/g2
+/dd/tmp/ARC/g2:          64.1% -- replaced with /dd/tmp/ARC/g2.gz
