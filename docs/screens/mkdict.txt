@@ -1,7 +1,2 @@
-$ head -n 400 /dd/GAMES/BOG/dict > /dd/tmp/words
-$ mkdict < /dd/tmp/words > /dd/tmp/newdict
-# # Exception: pid=3 vector=$02 err=#000:102 ... process will be killed (x to c)
-$ wc /dd/tmp/words /dd/tmp/newdict
-      4    274  80520 /dd/tmp/words
-     21    102    924 /dd/tmp/newdict
-     25    376  81444 total
+$ ksh -c "cd /dd/GAMES/BOG; mkdict" < /nil; echo "status $?"
+status 0

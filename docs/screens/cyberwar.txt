@@ -1,0 +1,2 @@
+$ cyberwar; echo "status $?"
+status 221

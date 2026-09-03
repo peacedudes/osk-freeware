@@ -13,7 +13,7 @@
 |---|--:|---|
 | [Shells](#shells) | 21 | Unix shells to sit beside OS-9's own -- bash and ksh bring history, job control, and scripts that come across unchanged. |
 | [Editors](#editors) | 26 | vi and emacs in several flavours, line and stream editors, and editors for binary and hex. |
-| [Text tools](#text-tools) | 112 | Search, sort, compare, reformat, split and spell-check. |
+| [Text tools](#text-tools) | 113 | Search, sort, compare, reformat, split and spell-check. |
 | [Files & directories](#files--directories) | 32 | Listing, copying, finding, renaming, and knowing what you have. |
 | [Developer tools](#developer-tools) | 46 | Version control, tags, cross-reference, formatters, a debugger and benchmarks. |
 | [Compilers & build](#compilers--build) | 39 | C compilers and their passes, assemblers, linkers, make and parser generators. |
@@ -22,7 +22,7 @@
 | [Encoding & conversion](#encoding--conversion) | 24 | Between text encodings, line endings, Macintosh formats, ciphers and hashes. |
 | [Communications](#communications) | 96 | Kermit in several builds, terminal sessions, and networking. |
 | [Graphics & images](#graphics--images) | 202 | The netpbm toolkit, JPEG, a ray tracer, and things that draw. |
-| [Games](#games) | 68 | Adventures, board and card games, arcade ports, dungeon crawls and puzzles. |
+| [Games](#games) | 67 | Adventures, board and card games, arcade ports, dungeon crawls and puzzles. |
 | [Screen toys](#screen-toys) | 10 | Animations and screen effects -- they draw on the terminal rather than print to it. Some run until you stop them. |
 | [Amusements](#amusements) | 19 | Generators, simulators and diversions that are not quite games. |
 | [System & modules](#system--modules) | 128 | OS-9 module and process tools, devices, system state and scheduling. |
@@ -144,7 +144,7 @@
 
 *Search, sort, compare, reformat, split and spell-check.*
 
-<details><summary>112 programs</summary>
+<details><summary>113 programs</summary>
 
 **Banners & text art**
 
@@ -153,6 +153,7 @@
 | `banner` | &#9733; print large banner text |
 | `cursive` | generate a horizontal cursive banner<br>`usage: cursive [-tn] [-in] message` |
 | `gothic` | &#9733; print text as a gothic/blackletter banner |
+| `zot` | &#9733; prints a line of text in one of fourteen decorative styles: `zot -s=3 "text"'; -d shows them all<br>**How:** `zot -s=<1-14> "text"' prints the text in that style; `zot -d "text"' shows every style in turn. |
 
 **Count & inspect**
 
@@ -1142,7 +1143,7 @@
 
 *Adventures, board and card games, arcade ports, dungeon crawls and puzzles.*
 
-<details><summary>68 programs</summary>
+<details><summary>67 programs</summary>
 
 **Adventure & fiction**
 
@@ -1166,6 +1167,7 @@
 | `snake` | snake arcade game.  You are the `I', the money is the `$' and the snake chases you; h/j/k/l move, `x' quits. Run it from a login session -- bare, with no TERMCAP, it bus errors instead; see DOC/README-BUSERR.  Some of its cursor moves arrive as literal text, so the board picks up stray characters as you play.  Playable, untidy<br>**How:** Full-screen. h/j/k/l move; reach the `$' before the snake reaches you. `x' quits. |
 | `sokoban` | &#9733; Sokoban puzzle<br>**How:** Wants a username, so run it from a login rather than a bare shell, or it stops with "cannot get your username". |
 | `tet` | Tetris -- `p' plays; s/j and f/l move a piece, d/k turns it, space drops it, q quits to the high-score table it keeps in GAMES/tet.hs.  Needs a terminal, not a pipe<br>**How:** Tetris. `p' plays from the menu; s or j moves the piece left, f or l right, d or k turns it, space drops it, ESC pauses and q quits to the high-score table, kept in GAMES/tet.hs. Give it a real terminal: it does no terminal setup of its own (the raw-mode code in SRC/tet/tet.c is inside `#ifndef OSK'), so from a pipe it draws its board and reads nothing. |
+| `tt` | Tetris for terminals: , and / move, . rotates, space drops, s pauses, q quits<br>**How:** Tetris for terminals, full-screen: , and / move the piece, . rotates, space drops, s pauses, q quits. |
 | `wanderer` | Boulderdash-style maze game.  Screens ARE here, in GAMES/WAND/screens; needs this disk as /dd to find them.<br>**How:** Full-screen. Dig through the earth for diamonds, forty-five on the first screen. `q' quits. Its thirty screens are in GAMES/WAND. |
 
 **Board & card**
@@ -1218,8 +1220,8 @@
 | `dclock` | &#9733; a digital clock for G-Windows<br>`Usage: dclock [options]` |
 | `fuddle` | chess - fuddle variant |
 | `hotel` | &#9733; hotel -- two-player board game, played by coordinates<br>**How:** Full-screen: it takes over the display. **control-C gets you out** -- tested, and none of q, Q, control-D or ESC did. If it has a quit command of its own, its documentation in DOC/ will say. |
-| `mkdict` | bog - build the dictionary<br>**How:** It is in CMDS/GAMES, not CMDS. |
-| `mkindex` | bog - build the dictionary index<br>**How:** It is in CMDS/GAMES, not CMDS. |
+| `mkdict` | builds bog's dictionary from a word list in the current directory<br>**How:** Run it in /dd/GAMES/BOG, where bog's word list is; it is in CMDS/GAMES. |
+| `mkindex` | builds the index bog reads its dictionary through, from the dictionary in the current directory<br>**How:** Run it in /dd/GAMES/BOG after mkdict; it is in CMDS/GAMES. |
 | `nobs` | cribbage (Colonel's program)<br>**How:** Full-screen: it takes over the display. **control-C gets you out** -- tested, and none of q, Q, control-D or ESC did. If it has a quit command of its own, its documentation in DOC/ will say. |
 | `piano` | &#9733; play notes -- piano <base note> <note duration><br>`syntax: piano <base note> <note duration>` |
 | `puzzle` | &#9733; sliding-tile puzzle for G-Windows -- it draws through a windowing system that is not here, so at a terminal it gets one rule of plus signs out, the top edge of the tile frame, and stops.  For a 15-puzzle you can play, use puzzle15 or GAMES/puz15; both work |
@@ -1228,11 +1230,9 @@
 | `stone` | &#9733; the stones game (SNOBOL4-in-C).  Data: GAMES/SNOBOL |
 | `teachgammon` | &#9733; backgammon that teaches you the game as you play<br>`Usage:  backgammon [-] [n r w b pr pw pb t3a]` |
 | `tess` | &#9733; tesselation puzzle |
-| `tt` | typing/terminal game<br>**How:** Full-screen: it takes over the display. **`q' quits** -- tested. |
 | `vtxtcn` | world - build its text tables.  Writes .inc files and prints nothing; needs world's .dat files in the current directory |
 | `wisecrack` | a SERVER, and `ask' is its client.  Run it in the background and every `ask' pulls one line out of it through /PIPE/txtpipe -- slogans from a German OS-9 seminar, 1992-93.  Alone it prints nothing at all, which is why every sweep here called both programs mute.  `wisecrack & ask "anything"'.  Measured 2026-08-29 |
 | `world` | World - text adventure |
-| `zot` | &#9733; Zot - arcade game |
 
 **Puzzles**
 

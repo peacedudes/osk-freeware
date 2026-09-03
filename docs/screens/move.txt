@@ -1,28 +1,28 @@
-dir /dd/tmp/FILESA/mfrom /dd/tmp/FILESA/mto
+C=/dd/tmp/FILESA
+$ dir $C/mfrom $C/mto
 
-Directory of "/dd/tmp/FILESA/mfrom" 06:15:19  09/03/126
+Directory of "/dd/tmp/FILESA/mfrom" 06:25:59  09/03/126
 
 note
 
 Total of 1 files.
 
 
-Directory of "/dd/tmp/FILESA/mto" 06:15:19  09/03/126
+Directory of "/dd/tmp/FILESA/mto" 06:25:59  09/03/126
 
 
 Total of 0 files.
 
 Grand Total of 1 files in 2 directories.
-$ /dd/CMDS/move /dd/tmp/FILESA/mfrom/note /dd/tmp/FILESA/mto/note
-$ dir /dd/tmp/FILESA/mfrom /dd/tmp/FILESA/mto
+$ /dd/CMDS/move $C/mfrom/note $C/mto/note; dir $C/mfrom $C/mto
 
-Directory of "/dd/tmp/FILESA/mfrom" 06:15:33  09/03/126
+Directory of "/dd/tmp/FILESA/mfrom" 06:26:06  09/03/126
 
 
 Total of 0 files.
 
 
-Directory of "/dd/tmp/FILESA/mto" 06:15:33  09/03/126
+Directory of "/dd/tmp/FILESA/mto" 06:26:06  09/03/126
 
 note
 

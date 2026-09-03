@@ -45,3 +45,12 @@ pacman|a G-Windows program: at a terminal it draws nothing and returns, and its 
 ctags|writes the tags file silently; the cat that follows on its card shows it
 disktest|measures the disk and, run on one, ends the session; its syntax is what there is to show, and the card says so
 trap|an example trap handler that cannot be installed from user state; the refusal is the whole of what it does here, and the card says so
+convert|starts WORLD, whose opening shows only its MORE prompt here; the card says so
+puzzle|a G-Windows program: at a terminal one line of its tile frame is all it draws, and the card says so
+cyberwar|a G-Windows program: at a terminal it exits without a word, and the card says so
+scriptmaster|a G-Windows program: at a terminal it exits without a word, and the card says so
+colortest|a G-Windows program: it looks for the /win device and says it cannot, and the card says so
+dclock|a G-Windows program, and it says so; the card shows that
+mkdict|takes a bus error on the word list that ships; the card shows the stop
+vtxtcn|writes its tables silently; the ls that follows on its card is the evidence
+zot|its fourteen styles are terminal attributes the page cannot show; the card says so

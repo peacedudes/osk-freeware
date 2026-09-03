@@ -6,12 +6,11 @@ Attributes:   ---wr-wr
 Created:      09/03/2026
 Modified:     08/03/2026 07:00 pm
 File Length:  40 $(28)
-$ chgrp 3 /dd/tmp/FILESA/grp.txt
-$ fstat /dd/tmp/FILESA/grp.txt
+$ chgrp 3 /dd/tmp/FILESA/grp.txt; fstat /dd/tmp/FILESA/grp.txt
 
 Filename:     /dd/tmp/FILESA/grp.txt
 Owner:        3.0
 Attributes:   ---wr-wr
 Created:      09/03/2026
-Modified:     09/03/2026 05:56 am
+Modified:     09/03/2026 06:23 am
 File Length:  40 $(28)

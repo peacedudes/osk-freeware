@@ -1,0 +1,3 @@
+$ ksh -c "cd /dd/GAMES/BOG; mkindex" < /nil; echo "status $?"
+      0     -1
+status 0

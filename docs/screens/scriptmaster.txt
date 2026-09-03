@@ -1,0 +1,2 @@
+$ scriptmaster; echo "status $?"
+status 208

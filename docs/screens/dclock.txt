@@ -1,2 +1,3 @@
-$ dclock
+$ dclock; echo "status $?"
 dclock only runs under G-Windows
+status 208

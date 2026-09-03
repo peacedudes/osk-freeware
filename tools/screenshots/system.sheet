@@ -47,25 +47,6 @@ wait    6
 run     argproc_demo -help
 wait    8
 
-shot    ask
-for     ask ynad wisecrack
-cap     `ask' is the CLIENT half of a pair: `wisecrack' is the server, so
-cap     start that in the background and every `ask' pulls one slogan out of
-cap     it through /PIPE/txtpipe.  Run either one alone and it is silent.
-cap     The slogans come from a German OS-9 seminar in 1992.  `ynad' beside
-cap     it is YNAD, Yet Another Name & Address program -- a contact
-cap     database.
-run     ask "nothing is feeding the pipe yet"
-wait    5
-run     wisecrack &
-wait    5
-run     ask "and now?"
-wait    5
-run     ask "again"
-wait    5
-run     ask "once more"
-wait    6
-
 shot    bigsetter
 cap     A Modula-2 set-operations demonstration -- proof the Modula
 cap     compiler's output runs here.
@@ -718,7 +699,7 @@ run     modinfo /dd/CMDS/NETWORK/wn.stb | head -n 4
 wait    10
 
 shot    memtools
-for     loadmem savemem snap scriptmaster
+for     loadmem savemem snap
 cap     Three that read or write something the shell cannot reach. loadmem
 cap     puts a file into memory at an address and savemem writes a block of
 cap     memory out; both say plainly that you must be the super user and

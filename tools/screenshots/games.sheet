@@ -660,18 +660,6 @@ wait    2
 
 # -------------------------------------------------------------- other games
 
-shot    convert
-for     convert vtxtcn mkindex
-cap     The data builders for the WORLD adventure: `convert' and `vtxtcn'
-cap     make its tables and `mkindex' its index.  They write files and print
-cap     little.
-run     convert
-wait    8
-run     mkindex
-wait    8
-run     vtxtcn
-wait    10
-
 shot    fuddle
 cap     fuddle, a chess variant, one move in.
 run     fuddle
@@ -693,18 +681,6 @@ wait    5
 send    Alice\r
 wait    4
 send    Bob\r
-wait    8
-
-shot    mkdict
-cap     Builds the dictionary Boggle plays from, out of a sorted word list.
-cap     It takes a bus error on the list that ships with the game, after
-cap     writing 924 bytes of the 80 KB it was given.  The built dictionary
-cap     is already in GAMES/BOG, so nothing is missing.
-run     head -n 400 /dd/GAMES/BOG/dict > /dd/tmp/words
-wait    8
-run     mkdict < /dd/tmp/words > /dd/tmp/newdict
-wait    10
-run     wc /dd/tmp/words /dd/tmp/newdict
 wait    8
 
 shot    stone
@@ -760,14 +736,114 @@ send    2.667\r
 wait    2
 kill
 
-shot    gwindows-games
-for     cyberwar puzzle
-cap     Two that draw through G-Windows, the graphics system this disk does
-cap     not carry.  `cyberwar' writes nothing at all and exits; `puzzle'
-cap     gets as far as one rule of plus signs -- the top edge of the tile
-cap     frame -- and stops there.  For a fifteen puzzle you can play, use
-cap     puzzle15 or GAMES/puz15.
-run     cyberwar
+
+# The rest of "Other games", one stanza each.
+
+shot    tt
+cap     Tetris for terminals, a few pieces in: , and / move a piece, .
+cap     rotates it, space drops it, s pauses and q quits.
+run     tt
+wait    4
+keys    ,,.
+wait    2
+send    \s
+wait    3
+keys    //
+wait    2
+send    \s
+wait    3
+snap
+send    q
+wait    2
+
+shot    zot
+cap     Prints a line of text in one of fourteen decorative styles; -d
+cap     shows them all in turn.  The styles are terminal attributes --
+cap     bold, underline, blink -- so on this page they all look alike.
+run     zot -d "OS-9 freeware"
+wait    8
+
+shot    convert
+cap     Starts the WORLD text adventure: its opening screen, waiting for
+cap     a key at MORE.
+run     convert
+wait    5
+send    \r
 wait    6
+snap
+send    \r
+wait    4
+snap
+send    quit\r
+wait    3
+
+shot    vtxtcn
+cap     Builds WORLD's text tables from the .dat files in the current
+cap     directory, writing .inc files and printing nothing.
+run     ksh -c "cd /dd/GAMES/WORLD; vtxtcn" < /nil; echo "status $?"
+wait    12
+run     ls /dd/GAMES/WORLD
+wait    4
+
+shot    mkindex
+cap     Builds the index bog reads its dictionary through, in the
+cap     directory holding the dictionary; it reports two counts.
+run     ksh -c "cd /dd/GAMES/BOG; mkindex" < /nil; echo "status $?"
+wait    12
+
+shot    mkdict
+cap     Builds bog's dictionary from a word list.  On the list that ships
+cap     it takes a bus error and stops.
+run     ksh -c "cd /dd/GAMES/BOG; mkdict" < /nil; echo "status $?"
+wait    12
+
+shot    ask
+cap     Reads the next message from the pipe wisecrack writes to and
+cap     prints it, one a call; with wisecrack running behind it the
+cap     messages come out one at a time.
+run     wisecrack &
+wait    3
+run     clear
+wait    1
+run     ask
+wait    5
+run     ask
+wait    5
+
+shot    shuffle
+cap     A switch puzzle: a row of numbered switches where flipping one
+cap     flips its neighbours, a level and a move counter.  q quits.
+run     shuffle
+wait    6
+snap
+send    q
+wait    2
+
+shot    cyberwar
+cap     A game written for G-Windows, the graphics system this disk does
+cap     not carry: at a terminal it exits without a word.
+run     cyberwar; echo "status $?"
+wait    6
+
+shot    puzzle
+cap     A sliding-tile puzzle for G-Windows: at a terminal it gets one
+cap     line of the tile frame out and stops.  puzzle15 is the one to play.
 run     puzzle
 wait    6
+
+shot    scriptmaster
+cap     A scripting tool for G-Windows: at a terminal it exits without a
+cap     word.
+run     scriptmaster; echo "status $?"
+wait    5
+
+shot    colortest
+cap     A colour chart for G-Windows: it looks for the /win device and
+cap     says it cannot.
+run     colortest
+wait    6
+
+shot    dclock
+cap     A digital clock for G-Windows, and it says so.
+run     dclock; echo "status $?"
+wait    5

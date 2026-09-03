@@ -274,21 +274,6 @@ cap     Its options.
 run     vis -?
 wait    8
 
-shot    shuffle
-size    24 80
-cap     It is a full-screen SWITCH PUZZLE: a row of numbered switches,
-cap     `LEVEL: 1', `Wich switch ?' and a move counter, and flipping one
-cap     flips its neighbours.  The card used to pipe eight lines of
-cap     SYS/holidays into it and capture `Unknown terminal type', which is
-cap     what a game says when TERM is not set -- and the caption described a
-cap     program that does not exist.  DOC/INDEX was corrected the same day;
-cap     so is the category, from Text tools to Games.
-run     export TERM=vt100
-wait    4
-run     shuffle
-wait    14
-quit    q
-
 shot    sort
 cap     sort and uniq counting the commonest words in the disk's own
 cap     documentation -- a pipeline of five programs, all of them here.

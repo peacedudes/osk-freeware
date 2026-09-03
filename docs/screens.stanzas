@@ -2,7 +2,7 @@
 # <stanza> <sha1 of the stanza the published screen came
 # from>.  `--check' compares these against the sheets, which
 # is the only way to detect drift where the captures are not.
-Ascii2Libr 315b5c62c62cc889
+Ascii2Libr 15e2351772fba44e
 EditLibr 21d9a662610df20a
 Libr2Ascii 4fdb4e0908957406
 Librarian 37c8fa958aa4f223
@@ -31,7 +31,7 @@ argproc_demo 58b09c3f5ce797ca
 as09 bcf207a8f82025ec
 ascii 71a1f702a9db128e
 asciitopgm 8eedec24ace868c5
-ask fa108054529bfb0f
+ask ab3766668bb7dd5f
 ateri b53a5d107876b6c8
 aterm b592f62627fbfff1
 atob 13b822006b57ceaa
@@ -71,19 +71,19 @@ checkfile 6e26d4ddd9eed805
 checkgame 0c6b8a724f909b89
 checksum 32d675085690b372
 chess 24ca8addeb091c9c
-chgrp 14c7415789e14d01
+chgrp 6f07f8b4a0a4eb85
 chksum a44a83d86c3755b1
-chown 917ac509566c2ba2
+chown 02fa8adbe8f6d480
 ci 76384e06a4fd66ca
 clock c2334f717f7f8459
 co a4b175270c7299ce
+colortest 5c2330766a9f14e5
 compr b4d9819815b706b0
 compress dca25f0ea66c5b08
 config f6e67a27e95bc933
-convert 1828707ab76baaeb
 cookhash 2c144a8328b420e3
 cookie 56260c431cc004e7
-cp 78d73a1292f1ed16
+cp 2f22522d48ffeb04
 cpr 2c7a04b3b35e4e61
 cpu 098e41d6e2631e71
 crib 4db82a065a15e79a
@@ -97,9 +97,11 @@ cut a5fa24627e045eee
 cuts 1aa3acac94fe05ca
 cvtbase 22e68e7c868991de
 cxref da844bb04f50e6b2
+cyberwar 217de83f79ad4776
 dam c30b7cc7269589c3
 date 1da124d27fc8b625
 dback a541ed8a4bc417b3
+dclock 9081125499f001ad
 delbak c27e91aba1726cbf
 demo 56e8d37beec6bcf8
 des d2615004eb68d4c3
@@ -214,7 +216,6 @@ gs403 f49ac147b97e7f38
 gshell 33ecf84de9211522
 gulls db35839832229cfc
 gulls-invert abcd3794072d430b
-gwindows-games d4e8c4a92feb6de9
 gzip f738a6d4fc9d9c46
 gzips 917f039288d61727
 hack 0fa0a0ab8bfee9d5
@@ -302,13 +303,14 @@ mille 2b0f47ef4c18ff16
 mines d60bd064f0a8be59
 minnesota 0bbeae4ac2dd551d
 misc-text b7661f5791151c6b
-mkdict 7749b306e4d55def
-mkdir 265d41951f54f076
+mkdict da1546c1ab60e07b
+mkdir 60af890af110ecb7
+mkindex 99e6f6bd957e38d1
 modbuster aabd55fe0b31cc69
 modinfo 514cebb9a81d995b
 modules da777f51e2474336
 modules2 112f319239759ddf
-move adb59b97b44aad00
+move 14d8ac1f13f1a760
 msattrib 4d8fed91801e461e
 msbadblocks feb44f7316ace773
 mscd 5f2a90b651ca0918
@@ -418,8 +420,8 @@ rcsmerge a92b1543203e194c
 rdoc 4a99e79815211169
 rechne 59c965a157f88843
 ref 832a8361d38d58b9
-remove 27892b7b3dba1ce7
-rendsk 03348a5625823e59
+remove ae6c313cfc68e63d
+rendsk a2b8a5173c3a3a45
 rlog 8424d653c8d9b882
 rm 236bd0557bf6faad
 rndir 55898b053073bed7
@@ -437,6 +439,7 @@ savage bf3933988e4e3dd1
 scales 22dd734b9cb49bdf
 scqref 212b299642ae763b
 screen 6cbad9bb27ec2dde
+scriptmaster c2480f44f645d209
 scsiutil 24cd2d532328b474
 sdb 6ca5f5ca7811dcbd
 sddemo c472fc5dc89bc5e1
@@ -450,7 +453,7 @@ sh 1050ea4d5b07cd6b
 shar 48336b6ea0fed390
 shdev 9c9ea69135b6b5f6
 shire bc72f45cc9a5540b
-shuffle bf750878d3978e3d
+shuffle df56b0a91782f830
 sieve 71dec5535d838ebd
 silent fe08458748ee5bc6
 sir a5e60d3077b27728
@@ -509,6 +512,7 @@ transfer daeb81e653c23c87
 trap 8031068bed0a8327
 travesty ee7c30ca56b23eff
 tree 2a6592d60800bbe2
+tt 24e254dfe016e84b
 tttt a8619cf88deee7dd
 tty b7e538ffeb67cd7e
 ttyexp d493bf0e5002c44c
@@ -543,6 +547,7 @@ vi_nocio 7b0fe8db73c1929e
 view 31e2853f634035da
 vis c11287cb03766373
 vlen 88f94a8849530252
+vtxtcn 531083198516eafc
 wam.sbprolog fa0747085d0fcca9
 wanderer 8e76bdfa9c03d380
 wc 2c40381787584b00
@@ -568,3 +573,4 @@ yuv 7bc729e24271bbd0
 zip 7e864eea7804eaf9
 zoo 53188dac9c74b9a4
 zoo2 b92434cc02582329
+zot 82be4a319601a9ad

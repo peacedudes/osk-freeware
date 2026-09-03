@@ -1,13 +1,3 @@
-$ zot
-syntax: zot [<opts>] {<text> [<opts>]}
-Function: echo text line(s) to stdout in interesting ways
-Options:
-        -d          display text line in all styles, one at a time
-        -s          help with styles  :-)
-        -s[=]<num>  use style <num>
-        -z[=<file>] get text from <file> (or stdin)
-
-By: Marc Kriguer (kriguer@ernie.berkeley.edu) and
-    Roger Murray (ucla-an!remsit!rem@ee.ucla.edu)
-
-error: either <text> or -z must be specified
+$ zot -d "OS-9 freeware"
+OS-9 freeware
+        ... the same line 14 times over

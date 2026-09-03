@@ -35,7 +35,6 @@ cc2
 cc2plus
 cccp2
 checkalias
-chown
 cjpeg
 cjpeg.070
 ckermit
@@ -43,14 +42,12 @@ clear
 clock
 cls
 collect
-colortest
 combine
 compr
 compress_4.0
 compress_rebuilt
 connect
 cookhash
-cp
 creadoc
 cron
 dearc
@@ -134,11 +131,7 @@ makecrc
 makeinfo
 maketexpk
 mexist
-mkdict
-mkdir
-mkindex
 modbuster
-move
 msntp
 mtvtoppm
 mvolformat
@@ -200,8 +193,6 @@ ptxminst
 pwparse
 rawtopgm
 rawtoppm
-remove
-rendsk
 repeat
 rmail
 rndir
@@ -209,7 +200,6 @@ roff
 savemem
 sbreak
 screen_nocio
-scriptmaster
 setfont
 setime2
 setterm
@@ -238,7 +228,6 @@ tgatoppm
 tplot
 transfer
 trunc
-tt
 tterm
 txmod
 uld
@@ -256,7 +245,6 @@ uux
 uuxqt
 uwho
 virmf
-vtxtcn
 wgen
 wrjpgcom
 wysecrack
@@ -272,12 +260,9 @@ yuvsplittoppm
 zeisstopnm
 zipnote
 zoo_2.1
-zot
 ynad
 vis
 pnmpaste
 tplot
-Ascii2Libr
-chgrp
 edir
 eunlink

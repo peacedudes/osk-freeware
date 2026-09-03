@@ -40,10 +40,8 @@ run     rm -rf /dd/tmp/FILESA/mk > /nil 2>/nil
 wait    3
 run     clear
 wait    1
-run     mkdir -p /dd/tmp/FILESA/mk/notes/1992/june
-wait    5
-run     ls -l /dd/tmp/FILESA/mk/notes/1992
-wait    5
+run     mkdir -p /dd/tmp/FILESA/mk/notes/june; ls -l /dd/tmp/FILESA/mk/notes
+wait    6
 snap
 
 shot    cp
@@ -55,10 +53,10 @@ run     mkdir -p /dd/tmp/FILESA > /nil 2>/nil; rm -f /dd/tmp/FILESA/motd.copy > 
 wait    4
 run     clear
 wait    1
-run     cp /dd/SYS/motd /dd/tmp/FILESA/motd.copy
+run     ls -l /dd/SYS/motd
 wait    5
-run     ls -l /dd/SYS/motd /dd/tmp/FILESA/motd.copy
-wait    5
+run     cp /dd/SYS/motd /dd/tmp/FILESA/motd.copy; ls -l /dd/tmp/FILESA/motd.copy
+wait    6
 run     cat /dd/tmp/FILESA/motd.copy
 wait    4
 snap
@@ -89,19 +87,20 @@ cap     into the second, so a large file moves as fast as a small one.  The
 cap     two listings before and after show `note' leaving one directory and
 cap     arriving in the other.  Its own help warns never to stop it in the
 cap     middle.  It is called by its full path because `move' on its own
-cap     reaches a built-in command of the same name.
+cap     reaches a built-in command of the same name, and `C' is a shorthand
+cap     for the directory the two are in.
 run     rm -rf /dd/tmp/FILESA/mfrom /dd/tmp/FILESA/mto > /nil 2>/nil
 wait    3
 run     mkdir -p /dd/tmp/FILESA/mfrom /dd/tmp/FILESA/mto > /nil 2>/nil; cp /dd/SYS/motd /dd/tmp/FILESA/mfrom/note
 wait    5
 run     clear
 wait    1
-run     dir /dd/tmp/FILESA/mfrom /dd/tmp/FILESA/mto
+run     C=/dd/tmp/FILESA
+wait    2
+run     dir $C/mfrom $C/mto
 wait    6
-run     /dd/CMDS/move /dd/tmp/FILESA/mfrom/note /dd/tmp/FILESA/mto/note
-wait    6
-run     dir /dd/tmp/FILESA/mfrom /dd/tmp/FILESA/mto
-wait    6
+run     /dd/CMDS/move $C/mfrom/note $C/mto/note; dir $C/mfrom $C/mto
+wait    8
 snap
 
 shot    rm
@@ -201,10 +200,8 @@ run     load /dd/CMDS/ELM/readmsg
 wait    4
 run     sh -c "readmsg -\?"
 wait    6
-run     remove readmsg
-wait    4
-run     sh -c "readmsg -\?"
-wait    6
+run     remove readmsg; sh -c "readmsg -\?"
+wait    8
 snap
 
 shot    dir
@@ -373,10 +370,8 @@ run     clear
 wait    1
 run     fstat /dd/tmp/FILESA/usr.txt
 wait    6
-run     chown 5 /dd/tmp/FILESA/usr.txt
-wait    6
-run     fstat /dd/tmp/FILESA/usr.txt
-wait    6
+run     chown 5 /dd/tmp/FILESA/usr.txt; fstat /dd/tmp/FILESA/usr.txt
+wait    8
 snap
 
 shot    chgrp
@@ -390,10 +385,8 @@ run     clear
 wait    1
 run     fstat /dd/tmp/FILESA/grp.txt
 wait    6
-run     chgrp 3 /dd/tmp/FILESA/grp.txt
-wait    6
-run     fstat /dd/tmp/FILESA/grp.txt
-wait    6
+run     chgrp 3 /dd/tmp/FILESA/grp.txt; fstat /dd/tmp/FILESA/grp.txt
+wait    8
 snap
 
 shot    rendsk
@@ -408,10 +401,8 @@ run     clear
 wait    1
 run     dinfo /dd
 wait    8
-run     rendsk /dd CARD-CATALOGUE
-wait    5
-run     dinfo /dd
-wait    8
+run     rendsk /dd CARD-CATALOGUE; dinfo /dd
+wait    10
 snap
 
 shot    edir
@@ -460,8 +451,9 @@ cap     Ascii2Libr builds a Home Librarian catalogue from plain text.  The
 cap     text is the form Libr2Ascii writes: a page count, a card count, then
 cap     one record per book, then the title, author and subject indexes.
 cap     `-outfile' names the catalogue to create and the text arrives on
-cap     standard input.  Two books go in; a 17K catalogue comes out, and
-cap     Libr2Ascii reads it straight back.
+cap     standard input, with `C' a shorthand for the directory in use.  Two
+cap     books go in, a 17K catalogue comes out, and Libr2Ascii reads it
+cap     straight back.
 run     mkdir -p /dd/tmp/FILESA > /nil 2>/nil; rm -f /dd/tmp/FILESA/cat.libr /dd/tmp/FILESA/cat2.libr /dd/tmp/FILESA/cat.txt > /nil 2>/nil
 wait    4
 run     echo "16" > /dd/tmp/FILESA/cat.txt; echo "2" >> /dd/tmp/FILESA/cat.txt
@@ -482,11 +474,11 @@ run     clear
 wait    1
 run     cat /dd/tmp/FILESA/cat.txt | head -n 4
 wait    5
-run     Ascii2Libr -outfile /dd/tmp/FILESA/cat2.libr < /dd/tmp/FILESA/cat.txt
-wait    10
-run     ls -l /dd/tmp/FILESA/cat2.libr
-wait    5
-run     Libr2Ascii -infile /dd/tmp/FILESA/cat2.libr | head -n 6
+run     C=/dd/tmp/FILESA
+wait    2
+run     Ascii2Libr -outfile $C/cat2.libr < $C/cat.txt; ls -l $C/cat2.libr
+wait    12
+run     Libr2Ascii -infile $C/cat2.libr | head -n 6
 wait    10
 snap
 

@@ -1,0 +1,1 @@
+$ ksh -c "cd /dd/GAMES/WORLD; vtxtcn" < /nil; echo "status $?"

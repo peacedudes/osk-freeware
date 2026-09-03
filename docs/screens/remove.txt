@@ -1,6 +1,5 @@
 load /dd/CMDS/ELM/readmsg
 $ sh -c "readmsg -\?"
 Usage: readmsg [-anhp] [-f Folder] {MessageNum ... | pattern | *}
-$ remove readmsg
-$ sh -c "readmsg -\?"
+$ remove readmsg; sh -c "readmsg -\?"
 readmsg: nowhere found

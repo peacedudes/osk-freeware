@@ -186,7 +186,7 @@ des|Encoding & conversion|Ciphers & hashes
 md5|Encoding & conversion|Ciphers & hashes
 xcrypt|Encoding & conversion|Ciphers & hashes
 cvtbase|Maths & calculators|Calculators
-divide|Files & directories|Copy, move, delete
+divide|Files & directories|Split & join
 atob|Encoding & conversion|Text encodings
 btoa|Encoding & conversion|Text encodings
 chardef|System & modules|Utilities
@@ -270,10 +270,10 @@ mkindex|Games|Other games
 nobs|Games|Other games
 piano|Games|Other games
 tess|Games|Other games
-tt|Games|Other games
+tt|Games|Arcade & action
 vtxtcn|Games|Other games
 world|Games|Other games
-zot|Games|Other games
+zot|Text tools|Banners & text art
 maze|Games|Puzzles
 mines|Games|Puzzles
 puz15|Games|Puzzles
@@ -513,7 +513,7 @@ worms|Screen toys|Screen toys
 # ---- Shells ----
 checkenv|Shells|Shell helpers
 exist|Shells|Shell helpers
-fc|Files & directories|Copy, move, delete
+fc|Files & directories|Split & join
 getenv|Shells|Shell helpers
 hist|Shells|Shell helpers
 if|Shells|Shell helpers
@@ -730,7 +730,7 @@ UnMacpack|Encoding & conversion|Macintosh
 unsit|Encoding & conversion|Macintosh
 ar2|Archives & compression|OS-9 module libraries
 checkfile|Maths & calculators|Spreadsheets
-fstat|Files & directories|Attributes
+fstat|Files & directories|Attributes & ownership
 scqref|Maths & calculators|Spreadsheets
 alps|Printing|Printers
 gzip020_csl|Archives & compression|Alternates

@@ -86,11 +86,6 @@ CAPTIONS = {
                  "ratio for an engine you describe to it.", "final"),
     "card":     ("A Towers of Hanoi whose twelve disks spell out a Christmas "
                  "message.", "final"),
-    "colortest": ("colortest wants G-Windows, which is not here, and says so "
-                  "rather than drawing anything: `Not a G-Windows sytem???' "
-                  "-- its own spelling.", "final"),
-    "dclock":   ("dclock is another G-Windows program: it says so and stops. "
-                 "`digclk' is the clock that works on a terminal.", "final"),
     "editor":   ("The GSHELL editor front end aborts on startup (E_PRCABT).",
                  "final"),
     "england":  ("The weather simulator set in England -- mid-Atlantic, and "
@@ -129,8 +124,6 @@ CAPTIONS = {
     "touchtype": ("A typing tutor.", "final"),
     "travesty": ("travesty makes a Markov chain of its input and writes new "
                  "text from it.", "final"),
-    "tt":       ("Tetris for Terminals, a second Tetris beside `tet'.",
-                 "final"),
     "VI":       ("The EFFO vi -- its source in SRC/effo_vi is the Berkeley "
                  "ex source.", "final"),
     "vi_cio":   ("vi as built against cio, showing DOC/README-CIO.", "final"),
@@ -143,8 +136,6 @@ CAPTIONS = {
                  "final"),
     "world":    ("WORLD, a wilderness adventure -- its data tables are built "
                  "by `convert' and `vtxtcn', both here.", "final"),
-    "zot":      ("zot echoes text `in interesting ways'; with no text it "
-                 "prints its options.", "final"),
 }
 
 # A play-test whose script is named for the SESSION rather than for one

@@ -1,12 +1,5 @@
-$ ask "nothing is feeding the pipe yet"
-No Wisecracks coming
-$ wisecrack &
-<3>
-$ ask "and now?"
-OSK_92 - SEMINAR
+ask
++ COVE IST SPITZE +
 
-$ ask "again"
-AUF WIEDERSEHEN 1993
-
-$ ask "once more"
-+ WERDE  MITGLIED +
+$ ask
+GRUSS VON FILE HUGO
