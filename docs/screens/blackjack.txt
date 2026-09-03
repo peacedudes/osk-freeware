@@ -1,0 +1,2 @@
+$ /dd/CMDS/BROKEN/blackjack
+/dd/CMDS/BROKEN/blackjack: cannot execute binary file

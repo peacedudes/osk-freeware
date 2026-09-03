@@ -5,7 +5,6 @@
 add_errmsg
 adldebug
 adltouch
-advcom
 afm2tfm
 alps
 apfel
@@ -37,7 +36,6 @@ cc1plus
 cc2
 cc2plus
 cccp2
-chardef
 checkalias
 chgrp
 chown
@@ -73,7 +71,6 @@ dhryshamu2
 diff_1.1
 disable
 disktest
-divide
 djpeg.070
 dld
 dmake
@@ -96,7 +93,6 @@ etags
 eunlink
 expand
 fastmail
-fc
 filter
 finger
 fixtext
@@ -125,7 +121,6 @@ gpp_collect
 graphdemo
 graphsave
 gzip68k_nocsl
-hexbin
 hipstopgm
 hpcdtoppm
 ifdef
@@ -154,9 +149,6 @@ load
 loadmem
 lua
 m4_0.5
-macbin
-macsave
-macunpack
 mail
 mailx
 makecrc
@@ -207,7 +199,6 @@ pgmtoppm
 pktogf
 pktype
 pltotf
-pnmarith
 pnmconvol
 pnmcrop
 pnmcut
@@ -221,7 +212,6 @@ pnmrotate
 pnmscale
 pnmshear
 pnmsmooth
-pnmtile
 pnmtoddif
 pnmtofits
 pnmtosgi
@@ -230,7 +220,6 @@ ppmforge
 ppmmake
 ppmmix
 ppmshift
-ppmspread
 ppmtoacad
 ppmtomitsu
 ppmtosixel
@@ -273,7 +262,6 @@ slitex
 smail
 snap
 snd_sig
-sox
 spctoppm
 spiff
 split
@@ -289,8 +277,6 @@ texidx
 tftopl
 tgatoppm
 timid
-todos
-toos9
 tplot
 transfer
 trap
@@ -305,12 +291,10 @@ unifdef
 uniq
 unpacklib
 unpacklib.os9
-unsit
 unstr
 unzip
 uucico
 uucp
-uudecode
 uupoll
 uux
 uuxqt
@@ -336,4 +320,4 @@ zoo_2.1
 zot
 ynad
 vis
-infocom.tcap
+pnmpaste

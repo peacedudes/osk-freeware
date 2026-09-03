@@ -1,0 +1,9 @@
+chksum /dd/tmp/ENC/dos.txt
+9c00f4e8
+$ toos9 /dd/tmp/ENC/dos.txt
+del: not found
+rename: can't rename to "/dd/tmp/enc/dos.txt"Error #000:215 (E_BPNAM) Bad Path e
+%1       5 Error  215           rename toos9.${$}$.3 /dd/tmp/enc/dos.txt
+Src: '/dd/tmp/ENC/dos.txt', Dest: 'toos9.$$$.3'   Rename 'toos9.$$$.3' -> '/dd/'
+$ chksum /dd/tmp/ENC/dos.txt
+9c00f4e8

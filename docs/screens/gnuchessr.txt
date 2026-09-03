@@ -1,8 +1,7 @@
 $ gnuchessr
 
-Enter #moves #minutes: 40 5
-Operator time= e2e4
-
+Enter #moves #minutes: e2e4
+Operator time=
  R N B Q K B N R
  P P P P P P P P
  - - - - - - - -

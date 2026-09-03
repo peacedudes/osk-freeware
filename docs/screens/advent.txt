@@ -1,13 +1,16 @@
+Section 10
+Section 11
+Section 12
 Section 0
 Advent is ready.
 
      Welcome to adventure!!  Would you like instructions?
-n
+no
 
       You are standing at the end of a road before a small brick building.
       Around you is a forest.  A small stream flows out of the building and
       down a gully.
-enter
+in
 
       You are inside a building, a well house for a large spring.
 
@@ -18,6 +21,3 @@ enter
     There is food here.
 
     There is a bottle of water here.
-get lamp
-
-     OK

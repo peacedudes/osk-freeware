@@ -1,7 +1,4 @@
-cat /dd/GAMES/ADVSYS/osample.adv > /dd/osample.adv
-$ cat /dd/GAMES/ADVSYS/objects.adi > /dd/objects.adi
-$ advcom osample > /nil
-$ advint osample
+sh -c "chd /dd/tmp/GAMESA; advint osample"
 ADVINT v1.2 - Copyright (c) 1986, by David Betz
 Welcome to the sample adventure.
 This appears to be the livingroom. There is a hallway to the north and a closet
@@ -12,7 +9,7 @@ to the west.
 :n
 You are in a long narrow hallway. There is a door to the east into a small dark
 room. There are also exits on both the north and south ends of the hall.
-:look
-You are in a long narrow hallway. There is a door to the east into a small dark
-room. There are also exits on both the north and south ends of the hall.
+:e
+You are in a small storage room with many empty shelves. The only exit is a
+door to the west. There is a rusty key here.
 :

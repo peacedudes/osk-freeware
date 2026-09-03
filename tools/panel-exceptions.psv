@@ -25,3 +25,11 @@ lprm|there is no spooler running on this disk; its option list is what there is 
 lpsched|there is no printer device on this disk to start the spooler on; its option list is what there is to show
 submit|a batch-file runner; its option list is what a card can show without a .sub job to run
 oleo|GNU Oleo stops on an illegal instruction before it draws a cell; the abort is the whole of what it does here, and the card says so
+divide|prints nothing itself; the ls and cat that follow on its card show the pieces it made
+sox|prints nothing itself; the file line that follows on its card shows the converted sound
+todos|it cannot rename its temporary file over the original and says so; the unchanged checksums on its card are the finding
+toos9|it cannot rename its temporary file over the original and says so; the unchanged checksums on its card are the finding
+chardef|loads a VT220 character set from a definition file, and no terminal here to load; its syntax is what there is to show
+macunpack|opens PackIt archives and none is on the disk; its options are what there is to show
+UnMacpack|opens PackIt archives and none is on the disk; its options are what there is to show
+uudecode|writes the decoded file silently; the ls and cat that follow on its card show it back

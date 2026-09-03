@@ -1,12 +1,7 @@
-$ rm -f /dd/tmp/d.txt.n
-$ cp /dd/SYS/motd /dd/tmp/d.txt
-$ chksum /dd/tmp/d.txt
-4b68af85
-$ des /dd/tmp/d.txt
-Type password for /dd/tmp/d.txt: freeware
-Verify password for /dd/tmp/d.txt: freeware
-$ des /dd/tmp/d.txt.n
-Type password for /dd/tmp/d.txt.n: freeware
-Verify password for /dd/tmp/d.txt.n: freeware
-$ chksum /dd/tmp/d.txt.n.n
-00000000
+ls -l /dd/tmp/ENC/d.txt
+-rw-rw-rw-   1 0        0              35 Sep  3 05:08 /dd/tmp/ENC/d.txt
+$ des /dd/tmp/ENC/d.txt
+Type password for /dd/tmp/ENC/d.txt: freeware
+Verify password for /dd/tmp/ENC/d.txt: freeware
+$ ls -l /dd/tmp/ENC/d.txt.n
+-rw-------   1 0        0              40 Sep  3 05:08 /dd/tmp/ENC/d.txt.n

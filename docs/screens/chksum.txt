@@ -1,0 +1,5 @@
+chksum /dd/tmp/ENC/j.txt /dd/SYS/motd
+09f241c9
+4b68af85
+========
+3e861588

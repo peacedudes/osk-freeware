@@ -1,24 +1,24 @@
-                           ROBOTS                                 MOVE      V3.
-                                                  Automatic
-                         TOP TEN                       Fire         8
-                                                                   7 9
-         1.  your name   201,520     8-29-87   11                 4   6
-         2.  your name   180,620     8-30-87   11                  1 3
-         3.  your name   179,740     8-30-87   11                   2
-         4.  your name   172,040     8-30-87   11
-         5.  your name   160,160      9-3-87   11
-         6.  your name   147,000     8-29-87   10
-         7.  your name   139,400     9-16-88   10
-         8.  your name   129,400     9-28-87   10
-         9.  your name   113,640      9-8-87    9
-        10.  your name   112,380    10-27-87    9
-                                                                      KEY
-                                                                   I -you
-                                                                   # -robot
-                                                                   @ -junk heep
-
-
-                                                                   SCREEN    1
-                         QUIT ?                                    ROBOTS   18
-
-                            PJC                                SCORE        40
+###########################ROBOTS###########################      MOVE      V3.#
+                        I #                            #   #
+#                     #                                    #        8
+#                                                          #       7 9
+#                                                          #      4   6
+#                                                          #       1 3
+#            #                                             #        2
+#                #            #            #               #
+#                                                          #
+#                              #                           #
+#                       #                                  #     COMMANDS
+#                                                          #   s - last stand
+#     #                                                    #   t - teleport
+#     #                 #   #                #             #
+#            #                                        #    #          KEY
+#                    #                                 #   #       I -you
+#                       #                                  #       # -robot
+#                          #                               #       @ -junk heep
+#                                                          #
+#                                                          #
+#                                                          #       SCREEN    1
+#                                                          #       ROBOTS   20
+#                                                          #
+############################PJC#############################   SCORE         0

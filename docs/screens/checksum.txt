@@ -1,4 +1,2 @@
-$ checksum /dd/SYS/motd
-File '/dd/SYS/motd': bytes=40, checksum=$0CEF (3311)
-$ chksum /dd/SYS/motd
-4b68af85
+checksum /dd/tmp/ENC/j.txt
+File '/dd/tmp/ENC/j.txt': bytes=35, checksum=$0C9F (3231)

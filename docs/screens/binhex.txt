@@ -1,2 +1,5 @@
-$ binhex /dd/DOC/INDEX
-File is not MacBinary: /dd/DOC/INDEX
+binhex /dd/tmp/ENC/j.txt.MAC
+(This file must be converted with BinHex 4.0)
+
+:"@SZG(Kd!&4&@&428bdj!*!&)`!!!!#qc&4hBA-JBR*TE'aTCb`JB@jN)(4SC5"
+cE'PdD(NJG'pfCA-0qkN!!!:

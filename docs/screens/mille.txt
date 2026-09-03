@@ -8,8 +8,7 @@ P                     89                |        Hand Total     0     0
 1 100               --DISCARD--         |                   -----  -----
 2 75                                    |     Overall Total     0     0
 3 Go                                    |              Games    0     0
-4 Speed Limit       >>:Move:
-$      |
+4 Speed Limit       >>:Move:            |
 5 75                                    | p: pick            q: quit
 6 Go                                    | u: use #           o: order hand
 --BATTLE--          --BATTLE--          | d: discard #       s: save

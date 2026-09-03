@@ -1,9 +1,9 @@
-$ xcrypt -k=freeware /dd/SYS/motd /dd/tmp/x.enc
+xcrypt -k=freeware /dd/tmp/ENC/x.txt /dd/tmp/ENC/x.enc
 en/decrypt <input-file> <output-file>
-$ xcrypt -k=freeware /dd/tmp/x.enc /dd/tmp/x.dec
+$ xcrypt -k=freeware /dd/tmp/ENC/x.enc /dd/tmp/ENC/x.dec
 en/decrypt <input-file> <output-file>
-$ chksum /dd/SYS/motd /dd/tmp/x.dec
-4b68af85
+$ chksum /dd/tmp/ENC/x.txt /dd/tmp/ENC/x.dec
+09f241c9
 00000000
 ========
-4b68af85
+09f241c9

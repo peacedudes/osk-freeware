@@ -1,22 +1,22 @@
 +-----+                               +---------------------------------------+
-|AH   |                               |  Score:   0     YOU                   |
+|3H   |                               |  Score:   0     YOU                   |
 |+-----+                              | *.....:.....:.....:.....:.....:.....  |
-||3S   |                              | *.....:.....:.....:.....:.....:.....  |
+||5S   |                              | *.....:.....:.....:.....:.....:.....  |
 +|+-----+                             |                                       |
- ||5H   |                             | *.....:.....:.....:.....:.....:.....  |
+ ||7D   |                             | *.....:.....:.....:.....:.....:.....  |
  +|+-----+                            | *.....:.....:.....:.....:.....:.....  |
-  ||6S   |                            |  Score:   0      ME                   |
+  ||TH   |                            |  Score:   0      ME                   |
   +|+-----+                           +---------------------------------------+
-   ||JH   |
+   ||QH   |
    +|+-----+                           Do you need instructions for cribbage? N
-    ||QC   |                           Long (to 121) or Short (to 61)?
+    ||KH   |                           Long (to 121) or Short (to 61)?
     +|     |                           Cut to see whose crib it is -- low card
-     |   QC|                            wins? S
-     +-----+                           You cut the NINE of CLUBS
-                                       I cut the KING of HEARTS
-                                       Discard a card -->
- CRIB                                  Sorry, I missed that
-+-----+                               *Discard a card -->
+     |   KH|                            wins? S
+     +-----+                           You cut the THREE of HEARTS
+                                       I cut the JACK of SPADES
+                                      *Discard a card -->
+ CRIB
++-----+
 |     |
 |     |
 |     |

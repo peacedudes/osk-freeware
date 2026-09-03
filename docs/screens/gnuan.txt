@@ -1,4 +1,30 @@
-$ gnuan
+Input the search depth you want to use.  (1 to 29)(- for depth from file)
+2
 
-Book used 9585 of 12000 entries.
-Input the file with the algebraic moves of the game.
+Input the maximum number of minutes per move you want to use.
+1
+
+You will search to 2 half moves
+
+With no search taking more than 1 minutes
+
+
+Move White Black      Score Depth     Best Line
+------------------------------------------------------------------
+  1   e2e4              -     -    book
+            e7e5        -     -    book
+Ambiguous Move!
+
+Bad move.    Board position is:
+
+ R N B Q K B N R
+ P P P P - P P P
+ - - - - - - - -
+ - - - - P - - -
+ - - - - p - - -
+ - - - - - - - -
+ p p p p - p p p
+ r n b q k b n r
+
+
+Process   Pid: 3, gnuan, e

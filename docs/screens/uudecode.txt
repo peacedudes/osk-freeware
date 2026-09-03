@@ -1,6 +1,12 @@
-$ uuencode /dd/SYS/motd > /dd/tmp/m.uue
-$ head -n 3 /dd/tmp/m.uue
+cat /dd/tmp/ENC/j.uue
 
-begin 644 /dd/SYS/motd
-H5V5L8V]M92!T;R!O<SEE>&5C("TM($]3+3DO-CAK(&5M=6QA=&]R#0`*Y
-$ uudecode /dd/tmp/m.uue
+begin 644 j.txt
+C5'=A<R!B<FEL;&EG+"!A;F0@=&AE('-L:71H>2!T;W9E<PU`?
+``
+end
+size 35
+$ ksh -c "cd /dd/tmp/ENC/dec; uudecode ../j.uue"
+$ ls -l /dd/tmp/ENC/dec; cat /dd/tmp/ENC/dec/j.txt
+total 512
+-rw-------   1 0        0              35 Sep  3 05:17 j.txt
+Twas brillig, and the slithy toves

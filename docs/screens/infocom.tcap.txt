@@ -1,0 +1,24 @@
+#Y2#Rock#Room###############################################Score:#0/1##########
+
+
+
+What a horrid dream, all about compiling something. Thank heavens you've
+finally woken up, even if you seem to have been sleep-walking. As you dizzily
+shake your head, you can't help feeling this place is somehow familiar...
+
+DEJA VU
+An Interactive Demonstration
+Copyright (c) 1993 by Graham Nelson. All rights given away.
+Release 2 / Serial number 931203  (Compiled by Inform v798)
+
+Y2 Rock Room
+You are in a large room, veined with quartz, with a passage to the south, a
+passage to the west, and a wall of broken rock to the east. There is a large
+"Y2" on a rock in the room's centre.
+
+On the Y2 rock is a featureless white cube.
+
+[MORE]
+A little red car is parked here.
+
+>

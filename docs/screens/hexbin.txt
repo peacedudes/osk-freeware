@@ -1,0 +1,3 @@
+ksh -c "cd /dd/tmp/ENC/hb; hexbin ../j.txt01.hqx"; ls -l /dd/tmp/ENC/hb
+total 512
+-rw-------   1 0        0             256 Sep  3 05:11 j.txt.bin

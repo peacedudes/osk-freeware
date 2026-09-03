@@ -1,0 +1,3 @@
+<C/ms; macsave < ../j.txt.MAC"; ls -l /dd/tmp/ENC/ms
+total 512
+-rw-------   1 0        0             256 Sep  3 05:11 j.txt.bin

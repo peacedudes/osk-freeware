@@ -1,0 +1,3 @@
+$ macunpack -?
+Usage: macunpack [-bsf3rduUailvqVH] [filename]
+Use "macunpack -H" for help.

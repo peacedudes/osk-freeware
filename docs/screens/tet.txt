@@ -1,22 +1,22 @@
               .----------.                .----------.
-              |          |                |  .58...  |
-              |    BBB   |                `----------'
-              |      B   |
-              |    BBB   |         .---------------------------.
-              |      B   |         |     Hit 'm' for menu      |
-              |     OO   |         |                           |
-              |     OO   |         |        HIGH SCORES        |
-              |     OO   |         | 1.               64       |
-              |     OO   |         | 2.               58       |
-              |    GG    |         | 3.                        |
-              |     GG   |         | 4.                        |
-              |    GG    |         | 5.                        |
-              |     GG   |         | 6.                        |
-              |    RRR   |         | 7.                        |
-              |    R     |         | 8.                        |
-              |    RRR   |         | 9.                        |
-              |    R     |         |10.                        |
-              |    BBB   |         |                           |
-              |      BR  |         |                           |
-              |     RRR  |         |                           |
+              |          |                |  .65...  |
+              |          |                `----------'
+              |          |
+              |          |         .---------------------------.
+              |    RRR   |         |                           |
+              |    R     |         |      ..   Menu   ..       |
+              |          |         |                           |
+              |          |         |   h     .... high scores  |
+              |          |         |   b     .... toggle beep  |
+              |          |         |   p     .... play         |
+              |          |         |   q     .... quit         |
+              |          |         |                           |
+              |          |         | s or j  .... move left    |
+              |          |         | d or k  .... rotate piece |
+              |          |         | f or l  .... move right   |
+              |    BBB   |         |  spc    .... fall piece   |
+              |    GGB   |         |  esc    .... pause        |
+              |     GG   |         |                           |
+              |     OO   |         | LATEST: allow concurrent  |
+              |     OO   |         |    high score setting     |
               `----------'         `---------------------------'

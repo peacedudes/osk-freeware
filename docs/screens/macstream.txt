@@ -1,0 +1,4 @@
+$ macstream -?
+macstream: unknown option -?
+Usage: macstream [-rduUc:t:ilqVH] files
+Use "macstream -H" for help.

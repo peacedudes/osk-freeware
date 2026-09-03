@@ -1,189 +1,291 @@
-# Encoders, hashes and conversions, with a round trip wherever
-# one is possible.
-
-shot    binhex
-for     binhex hexbin
-cap     binhex encodes a file the way a Macintosh expected to receive it --
-cap     but it will only take MACBINARY in, not a plain file, and no
-cap     MacBinary file ships here.  So what it does is refuse, politely and
-cap     by name, which is the useful thing to know before you feed it
-cap     something.
-run     binhex /dd/DOC/INDEX
-wait    8
+# Encoders, hashes, ciphers and the Macintosh set, one stanza per
+# program.  Every stanza makes what it reads under /dd/tmp/ENC.
 
 shot    btoa
-cap     btoa, the denser alternative to uuencode: five ASCII characters per
-cap     four binary bytes, with a checksum line at the end.
-run     btoa < /dd/SYS/motd | head -n 14
+cap     Encodes a file as printable text, five characters for every four
+cap     bytes, with a checksum on the last line -- denser than uuencode.
+run     mkdir -p /dd/tmp/ENC > /nil 2>/nil; printf "Twas brillig, and the slithy toves\r" > /dd/tmp/ENC/j.txt
+wait    2
+run     clear
+wait    1
+run     cat /dd/tmp/ENC/j.txt
+wait    2
+run     btoa < /dd/tmp/ENC/j.txt
 wait    5
 
-shot    btoa-round
-for     btoa atob
-cap     btoa encodes a file as printable text and atob decodes it again.
-cap     Five characters for four bytes, with a checksum on the end line.
-run     btoa < /dd/SYS/motd > /dd/tmp/m.btoa
+shot    atob
+cap     Decodes what btoa encoded: the text comes back exactly.
+run     mkdir -p /dd/tmp/ENC > /nil 2>/nil; printf "Twas brillig, and the slithy toves\r" > /dd/tmp/ENC/j.txt; btoa < /dd/tmp/ENC/j.txt > /dd/tmp/ENC/j.btoa
+wait    3
+run     clear
+wait    1
+run     cat /dd/tmp/ENC/j.btoa
+wait    3
+run     atob < /dd/tmp/ENC/j.btoa
+wait    5
+
+shot    uuencode
+cap     Wraps a file as printable text, the way binaries crossed mail and
+cap     news before attachments: a begin line with the file's mode and
+cap     name, the data, an end line.
+run     mkdir -p /dd/tmp/ENC > /nil 2>/nil; printf "Twas brillig, and the slithy toves\r" > /dd/tmp/ENC/j.txt
+wait    2
+run     clear
+wait    1
+run     uuencode /dd/tmp/ENC/j.txt
+wait    5
+
+shot    uudecode
+cap     Undoes uuencode: the file named on the begin line is written back
+cap     into the current directory.
+run     mkdir -p /dd/tmp/ENC/dec > /nil 2>/nil; rm -f /dd/tmp/ENC/dec/j.txt; printf "Twas brillig, and the slithy toves\r" > /dd/tmp/ENC/j.txt; ksh -c "cd /dd/tmp/ENC; uuencode j.txt" > /dd/tmp/ENC/j.uue
+wait    3
+run     clear
+wait    1
+run     cat /dd/tmp/ENC/j.uue
+wait    3
+run     ksh -c "cd /dd/tmp/ENC/dec; uudecode ../j.uue"
+wait    5
+run     ls -l /dd/tmp/ENC/dec; cat /dd/tmp/ENC/dec/j.txt
 wait    4
-run     cat /dd/tmp/m.btoa
-wait    4
-run     atob < /dd/tmp/m.btoa | md5
-wait    6
+
+shot    uuexpand
+cap     Pads a uuencoded file's lines out to a fixed width, for a link
+cap     that strips trailing spaces; uuunexpand takes them back.  It is
+cap     not a decoder -- uudecode is.
+run     mkdir -p /dd/tmp/ENC > /nil 2>/nil; printf "Twas brillig, and the slithy toves\r" > /dd/tmp/ENC/j.txt; uuencode /dd/tmp/ENC/j.txt > /dd/tmp/ENC/j.uue
+wait    3
+run     clear
+wait    1
+run     uuexpand < /dd/tmp/ENC/j.uue
+wait    5
 
 shot    checksum
-for     checksum chksum
-cap     Two older checksums beside each other on the same file.
-run     checksum /dd/SYS/motd
-wait    3
-run     chksum /dd/SYS/motd
-wait    3
+cap     A 16-bit checksum of a file.
+run     mkdir -p /dd/tmp/ENC > /nil 2>/nil; printf "Twas brillig, and the slithy toves\r" > /dd/tmp/ENC/j.txt
+wait    2
+run     clear
+wait    1
+run     checksum /dd/tmp/ENC/j.txt
+wait    4
+
+shot    chksum
+cap     A 32-bit checksum of a file.
+run     mkdir -p /dd/tmp/ENC > /nil 2>/nil; printf "Twas brillig, and the slithy toves\r" > /dd/tmp/ENC/j.txt
+wait    2
+run     clear
+wait    1
+run     chksum /dd/tmp/ENC/j.txt /dd/SYS/motd
+wait    4
+
+shot    md5
+cap     MD5 digests of three files on the disk.
+run     md5 /dd/SYS/motd /dd/SYS/password /dd/DOC/INDEX
+wait    5
 
 shot    crypto
-cap     crypto, the cryptogram solver's assistant, showing what it offers.
+cap     An assistant for solving cryptograms: it takes a substitution
+cap     cipher text and lets you try letter assignments and see the
+cap     result.  These are its options; its interactive commands are
+cap     listed by -i.
 run     crypto -h
 wait    6
 
 shot    des
-for     des
-cap     DES asks for the key twice, writes its output as `<file>.n' and
-cap     REMOVES the original.  It encrypts: 40 bytes in, 40 bytes out.  It
-cap     does NOT come back -- run over its own output with the same key, the
-cap     file it writes checksums 00000000 rather than the 4b68af85 it
-cap     started from.  `xcrypt' is the cipher here that round-trips.
-run     rm -f /dd/tmp/d.txt.n
-wait    4
-run     cp /dd/SYS/motd /dd/tmp/d.txt
-wait    5
-run     chksum /dd/tmp/d.txt
-wait    5
-run     des /dd/tmp/d.txt
+cap     DES file encryption.  It asks for the key twice, writes the result
+cap     as the file's name with .n on the end, and removes the original:
+cap     35 bytes in, 40 out.  Run over its own output with the same key
+cap     it does not restore the original.
+run     mkdir -p /dd/tmp/ENC > /nil 2>/nil; rm -f /dd/tmp/ENC/d.txt.n; printf "Twas brillig, and the slithy toves\r" > /dd/tmp/ENC/d.txt
+wait    3
+run     clear
+wait    1
+run     ls -l /dd/tmp/ENC/d.txt
+wait    3
+run     des /dd/tmp/ENC/d.txt
 wait    4
 send    freeware\r
 wait    3
 send    freeware\r
 wait    6
-run     des /dd/tmp/d.txt.n
+run     ls -l /dd/tmp/ENC/d.txt.n
 wait    4
-send    freeware\r
+
+shot    xcrypt
+cap     A simple file cipher with a key, and it round-trips: encrypt,
+cap     decrypt, and the checksums match.
+run     mkdir -p /dd/tmp/ENC > /nil 2>/nil; printf "Twas brillig, and the slithy toves\r" > /dd/tmp/ENC/x.txt
+wait    2
+run     clear
+wait    1
+run     xcrypt -k=freeware /dd/tmp/ENC/x.txt /dd/tmp/ENC/x.enc
+wait    5
+run     xcrypt -k=freeware /dd/tmp/ENC/x.enc /dd/tmp/ENC/x.dec
+wait    5
+run     chksum /dd/tmp/ENC/x.txt /dd/tmp/ENC/x.dec
+wait    5
+
+shot    todos
+cap     Meant to turn OS-9 line endings into DOS ones in place.  It
+cap     converts into a temporary file and then cannot rename it back
+cap     over the original, so the file comes out unchanged, as the
+cap     checksums show.  autolf does the job as a filter.
+run     mkdir -p /dd/tmp/ENC > /nil 2>/nil; printf "Twas brillig, and the slithy toves\r" > /dd/tmp/ENC/le.txt
+wait    2
+run     clear
+wait    1
+run     chksum /dd/tmp/ENC/le.txt
 wait    3
-send    freeware\r
-wait    6
-run     chksum /dd/tmp/d.txt.n.n
-wait    8
+run     todos /dd/tmp/ENC/le.txt
+wait    4
+run     chksum /dd/tmp/ENC/le.txt
+wait    4
 
-shot    divide
-for     divide chardef fc
-cap     divide SPLITS A FILE into pieces -- Farside Systems, 1992.  Twelve
-cap     lines in, four to a piece, three pieces out.  It is not integer
-cap     division, whatever the name suggests, and DOC/INDEX said it was
-cap     until this screen was taken.  `fc' below is the other splitter here,
-cap     cutting at 350,000 bytes to fit a 360k floppy; it needs its path
-cap     because bash has an `fc' builtin.
-run     head -n 12 /dd/SYS/holidays > /dd/tmp/dv.txt 2>/nil
-wait    6
-run     divide -l=4 /dd/tmp/dv.txt /dd/tmp/piece
-wait    8
-run     ls -l /dd/tmp/piece.1 /dd/tmp/piece.2 /dd/tmp/piece.3
-wait    6
-run     cat /dd/tmp/piece.1
-wait    6
-run     /dd/CMDS/fc -?
-wait    6
-run     chardef < /nil
-wait    8
+shot    toos9
+cap     The other direction, DOS line endings to OS-9, and the same
+cap     story: the temporary file cannot be renamed over the original,
+cap     so nothing changes.  autolf does the job as a filter.
+run     mkdir -p /dd/tmp/ENC > /nil 2>/nil; printf "Twas brillig, and the slithy toves\r\n" > /dd/tmp/ENC/dos.txt
+wait    2
+run     clear
+wait    1
+run     chksum /dd/tmp/ENC/dos.txt
+wait    3
+run     toos9 /dd/tmp/ENC/dos.txt
+wait    4
+run     chksum /dd/tmp/ENC/dos.txt
+wait    4
 
-shot    md5
-cap     MD5 over three files on the disk.
-run     md5 /dd/SYS/motd /dd/SYS/password /dd/DOC/INDEX
+shot    macbin
+cap     Wraps a file in MacBinary, the form a Macintosh file with two
+cap     forks travels in: a 128-byte header naming the file, its type and
+cap     its creator, then the data padded to 128 bytes.
+run     mkdir -p /dd/tmp/ENC > /nil 2>/nil; rm -f /dd/tmp/ENC/j.txt.MAC; printf "Twas brillig, and the slithy toves\r" > /dd/tmp/ENC/j.txt
+wait    2
+run     clear
+wait    1
+run     ksh -c "cd /dd/tmp/ENC; macbin j.txt"; ls -l /dd/tmp/ENC/j.txt /dd/tmp/ENC/j.txt.MAC
+wait    5
+run     dump /dd/tmp/ENC/j.txt.MAC | head -n 12
+wait    5
+
+shot    binhex
+cap     Encodes a MacBinary file as BinHex 4.0, the text form Macintosh
+cap     software was posted in: a banner line, then the file in a
+cap     64-character alphabet between colons.
+run     mkdir -p /dd/tmp/ENC > /nil 2>/nil; rm -f /dd/tmp/ENC/j.txt.MAC; printf "Twas brillig, and the slithy toves\r" > /dd/tmp/ENC/j.txt; ksh -c "cd /dd/tmp/ENC; macbin j.txt"
+wait    4
+run     clear
+wait    1
+run     binhex /dd/tmp/ENC/j.txt.MAC
+wait    6
+
+shot    mcvert
+cap     Converts between MacBinary and BinHex either way: -U makes the
+cap     BinHex for uploading, -D takes it back to MacBinary for
+cap     downloading.  Here a MacBinary file becomes a .hqx.
+run     mkdir -p /dd/tmp/ENC > /nil 2>/nil; rm -f /dd/tmp/ENC/j.txt.MAC /dd/tmp/ENC/j.txt01.hqx; printf "Twas brillig, and the slithy toves\r" > /dd/tmp/ENC/j.txt; ksh -c "cd /dd/tmp/ENC; macbin j.txt"
+wait    4
+run     clear
+wait    1
+run     ksh -c "cd /dd/tmp/ENC; mcvert -U j.txt.MAC"
+wait    6
+run     ls -l /dd/tmp/ENC/j.txt.MAC /dd/tmp/ENC/j.txt01.hqx
+wait    4
+run     cat /dd/tmp/ENC/j.txt01.hqx
+wait    4
+
+shot    hexbin
+cap     Decodes a BinHex file back into the Macintosh file it carried,
+cap     written into the current directory.
+run     mkdir -p /dd/tmp/ENC/hb > /nil 2>/nil; rm -f /dd/tmp/ENC/j.txt.MAC /dd/tmp/ENC/j.txt01.hqx /dd/tmp/ENC/hb/*; printf "Twas brillig, and the slithy toves\r" > /dd/tmp/ENC/j.txt; ksh -c "cd /dd/tmp/ENC; macbin j.txt; mcvert -U j.txt.MAC"
+wait    5
+run     clear
+wait    1
+run     ksh -c "cd /dd/tmp/ENC/hb; hexbin ../j.txt01.hqx"; ls -l /dd/tmp/ENC/hb
+wait    6
+
+shot    macsave
+cap     Reads MacBinary from its input and writes the file it carries
+cap     into the current directory, silently.
+run     mkdir -p /dd/tmp/ENC/ms > /nil 2>/nil; rm -f /dd/tmp/ENC/j.txt.MAC /dd/tmp/ENC/ms/*; printf "Twas brillig, and the slithy toves\r" > /dd/tmp/ENC/j.txt; ksh -c "cd /dd/tmp/ENC; macbin j.txt"
+wait    4
+run     clear
+wait    1
+run     ksh -c "cd /dd/tmp/ENC/ms; macsave < ../j.txt.MAC"; ls -l /dd/tmp/ENC/ms
+wait    6
+
+shot    macstream
+cap     Reads a MacBinary stream and lists or extracts the files in it:
+cap     its options.
+run     macstream -?
+wait    5
+
+shot    macunpack
+cap     Opens PackIt archives from a Macintosh: its options.  No PackIt
+cap     archive is on this disk to open.
+run     macunpack -?
+wait    5
+
+shot    UnMacpack
+cap     Another PackIt extractor: its options.  No PackIt archive is on
+cap     this disk to open.
+run     UnMacpack -?
+wait    5
+
+shot    unsit
+cap     Opens StuffIt archives from a Macintosh: its options.  No StuffIt
+cap     archive is on this disk to open.
+run     unsit -?
 wait    5
 
 shot    sox
-cap     Sound eXchange reading one of the sample sounds in DOC/sox and
-cap     reporting what is in it -- an IFF/8SVX sample from an Amiga.
-run     sox /dd/DOC/sox/great_oz.iff -t au /dd/tmp/oz.au
+cap     Sound eXchange converting one of the sample sounds in DOC/sox,
+cap     an Amiga 8SVX, to Sun .au, and `file' reporting both.  There is
+cap     no sound device here, so it converts rather than plays.
+run     mkdir -p /dd/tmp/ENC > /nil 2>/nil; rm -f /dd/tmp/ENC/oz.au
+wait    2
+run     clear
+wait    1
+run     sox /dd/DOC/sox/great_oz.iff -t au /dd/tmp/ENC/oz.au
 wait    10
-run     file /dd/DOC/sox/great_oz.iff /dd/tmp/oz.au
+run     file /dd/DOC/sox/great_oz.iff /dd/tmp/ENC/oz.au
 wait    6
 
-shot    todos
-for     todos toos9
-cap     todos and toos9 claim to convert line endings between OS-9 and DOS.
-cap     They do NOT, and the screen says why: todos converts into
-cap     `todos.$$$.3' and then cannot RENAME it back, so the file comes back
-cap     byte-identical.  That is the same missing rename() that stops zip
-cap     and arc.  `autolf' below is the program that does the job -- 40
-cap     bytes in, 41 out, the 0D at the end of the line now 0D 0A -- because
-cap     as a FILTER it never has to rename anything.
-run     cat /dd/SYS/motd > /dd/tmp/le.txt
+shot    chardef
+cap     Loads a character set into a VT220 terminal from a definition
+cap     file: its syntax.  It calls itself defchar.
+run     chardef -?
+wait    5
+
+# Two splitters that used to share a card here.
+
+shot    divide
+cap     Splits a file into pieces of so many lines: twelve lines in,
+cap     four to a piece, three pieces out, named piece.1, .2 and .3.
+run     mkdir -p /dd/tmp/ENC > /nil 2>/nil; rm -f /dd/tmp/ENC/piece.*; cat /dd/SYS/holidays | head -n 12 > /dd/tmp/ENC/dv.txt
 wait    3
-run     chksum /dd/tmp/le.txt
+run     clear
+wait    1
+run     divide -l=4 /dd/tmp/ENC/dv.txt /dd/tmp/ENC/piece
+wait    6
+run     ls -l /dd/tmp/ENC/piece.1 /dd/tmp/ENC/piece.2 /dd/tmp/ENC/piece.3
+wait    4
+run     cat /dd/tmp/ENC/piece.2
+wait    4
+
+shot    fc
+cap     Cuts a big file in two at exactly 350,000 bytes, to carry it on
+cap     360K floppies.  Asked for by path because bash has an fc of its
+cap     own.  This file is shorter than the cut, so the first piece is
+cap     the whole of it.
+run     mkdir -p /dd/tmp/ENC > /nil 2>/nil; rm -f /dd/tmp/ENC/fc.*; cat /dd/SYS/holidays | head -n 12 > /dd/tmp/ENC/fc.txt
 wait    3
-run     todos /dd/tmp/le.txt
+run     clear
+wait    1
+run     /dd/CMDS/fc -?
 wait    4
-run     chksum /dd/tmp/le.txt
-wait    4
-run     autolf -c -C -L < /dd/SYS/motd > /dd/tmp/le2.txt
+run     ksh -c "cd /dd/tmp/ENC; /dd/CMDS/fc fc.txt"
+wait    6
+run     ls -l /dd/tmp/ENC
 wait    5
-run     wc -c /dd/SYS/motd /dd/tmp/le2.txt
-wait    6
-
-shot    uudecode
-cap     uuencode and uudecode, the pair that carried binaries through mail.
-run     uuencode /dd/SYS/motd > /dd/tmp/m.uue
-wait    4
-run     head -n 3 /dd/tmp/m.uue
-wait    4
-run     uudecode /dd/tmp/m.uue
-wait    6
-
-shot    uuencode
-cap     uuencode wrapping a binary as printable text -- how files crossed
-cap     mail and usenet before attachments existed.
-run     uuencode /dd/SYS/motd | head -n 14
-wait    5
-
-shot    uuexpand
-size    36 80
-for     uuexpand toos9 mcvert
-cap     `uuexpand' pads a uuencoded file back out, `mcvert' converts between
-cap     the formats a Mac expected, and `toos9' turns host line endings into
-cap     OS-9's -- which is one of the two programs on this disk that do
-cap     nothing whatever to their input (DOC/STATUS says so under ONE
-cap     MISSING FUNCTION).  `macbin' and `hexbin' were credited here as well
-cap     as on the `macfiles' card; they are on that one now.
-run     uuencode /dd/SYS/motd > /dd/tmp/u.uue
-wait    6
-run     uuexpand < /dd/tmp/u.uue | head -n 8
-wait    8
-run     mcvert -?
-wait    6
-run     toos9 -?
-wait    6
-
-shot    xcrypt
-cap     xcrypt, a simpler file cipher, and the checksum round trip again.
-run     xcrypt -k=freeware /dd/SYS/motd /dd/tmp/x.enc
-wait    6
-run     xcrypt -k=freeware /dd/tmp/x.enc /dd/tmp/x.dec
-wait    6
-run     chksum /dd/SYS/motd /dd/tmp/x.dec
-wait    5
-
-
-shot    macfiles
-for     macsave macstream macunpack UnMacpack unsit hexbin macbin
-cap     The Macintosh set: StuffIt, MacBinary, BinHex and MacPack, from when
-cap     a Mac file had two forks and neither survived a plain copy.  All
-cap     seven are asked for
-run     unsit
-wait    8
-run     macunpack
-wait    8
-run     UnMacpack
-wait    8
-run     macsave
-wait    8
-run     macstream
-wait    8
-run     hexbin
-wait    8
-run     macbin
-wait    8
