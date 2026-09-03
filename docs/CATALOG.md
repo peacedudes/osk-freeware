@@ -24,11 +24,11 @@
 | [Graphics & images](#graphics--images) | 202 | The netpbm toolkit, JPEG, a ray tracer, and things that draw. |
 | [Games](#games) | 68 | Adventures, board and card games, arcade ports, dungeon crawls and puzzles. |
 | [Screen toys](#screen-toys) | 9 | Animations and screen effects -- they draw on the terminal rather than print to it. Some run until you stop them. |
-| [Amusements](#amusements) | 20 | Generators, simulators and diversions that are not quite games. |
+| [Amusements](#amusements) | 19 | Generators, simulators and diversions that are not quite games. |
 | [System & modules](#system--modules) | 130 | OS-9 module and process tools, devices, system state and scheduling. |
 | [Disk & DOS](#disk--dos) | 20 | Reading and writing MS-DOS media with the mtools set. |
 | [Time & calendar](#time--calendar) | 13 | Calendars, clocks and astronomy. |
-| [Maths & calculators](#maths--calculators) | 10 | Calculators, plotting, orbits and number theory. |
+| [Maths & calculators](#maths--calculators) | 11 | Calculators, plotting, orbits and number theory. |
 | [Printing](#printing) | 14 | Spoolers, page formatting and PostScript. |
 | [Documentation](#documentation) | 5 | Pagers, readers and the help system. |
 
@@ -1278,42 +1278,46 @@
 
 *Generators, simulators and diversions that are not quite games.*
 
-<details><summary>20 programs</summary>
+<details><summary>19 programs</summary>
+
+**Biorhythms**
+
+| | |
+|---|---|
+| `bio` | biorhythm chart (F. Kaefer 1987) -- BASIC09 I-code, which needs runb, and this disk carries no runb<br>**How:** BASIC09 I-code, not a 68000 module, and this disk carries no `runb' to run it under. Under a BASIC09 system: `runb bio' by bare name from its directory. |
+| `biory` | biorhythm chart, in German: asks a name, a birth date and a span of years and writes the chart to Biory.Lis.  Needs `load /dd/CMDS/os9lib' first.  Under os9exec it stops after the third answer on a MOVE SR instruction that a 68000 allows and the emulated 68020 does not; on a 68000 it writes the chart.  Source: SRC/rtf/biory.f |
 
 **Curiosities**
 
 | | |
 |---|---|
 | `areacode` | &#9733; look up a US telephone area code<br>`Usage: areacode nnn nnn ...` |
-| `touchtype` | typing tutor<br>**How:** Full-screen: it takes over the display. **control-C gets you out** -- tested, and none of q, Q, control-D or ESC did. If it has a quit command of its own, its documentation in DOC/ will say. |
+| `touchtype` | TYPEFAST, a typing game: words fall down the screen and you type each one before it lands.  ESC ends the game and scores you in words per minute<br>**How:** Full-screen typing game. Answer `n' to the instructions question, pick a level 1-3 (q quits there), type each falling word followed by SPACE or RETURN. ESC ends the game and prints the words-per-minute score. |
 
 **Generators**
 
 | | |
 |---|---|
-| `name` | &#9733; random name generator<br>`Usage: name number-of-names` |
+| `name` | &#9733; invents pronounceable names, as many as you ask for<br>`Usage: name number-of-names` |
 | `newsgen` | &#9733; generate a fake news bulletin |
-| `pwgen` | &#9733; random password generator<br>**How:** pwgen <length> [count]. With no arguments it prints nothing and exits, which reads as a hang and is not one. |
-| `rndname` | &#9733; random name generator<br>`Usage: name number-of-names` |
+| `pwgen` | &#9733; pronounceable passwords: `pwgen <length> [how many]'<br>**How:** pwgen <length> [count]. With no arguments it prints nothing and exits, which reads as a hang and is not one. |
+| `rndname` | &#9733; invents pronounceable names, as many as you ask for -- a second program of the same idea as `name'<br>`Usage: name number-of-names` |
 | `rpoem` | &#9733; random poem generator (SNOBOL4-in-C).  Data: GAMES/SNOBOL |
 | `rstory` | random story generator, roff output.  Data: GAMES/SNOBOL |
-| `rstory2` | &#9733; random story generator, second version (SNOBOL4-in-C) |
+| `rstory2` | &#9733; asks your name, sex, favourite animal and colour and a setting, then hands them to a story program (rstory_W, rstory_S, rstory_C or rstory_G) that did not come with it, so no story follows |
 | `scales` | &#9733; musical scale generator -- writes `scales.lst' in the current directory and prints nothing to the screen<br>`Usage: scales [-h] [-d] [-a] [-m] [-c] [outname]` |
-| `travesty` | make a travesty of the input -- Markov chains, DJB<br>`Usage: travesty [ -oord ] [ -nnum ] [ -rrand ] [ -sS ] [ -ACHUVW ]` |
+| `travesty` | rewrites its input as plausible nonsense, by Markov chains: `travesty -n400 < file' for 400 characters of it<br>`Usage: travesty [ -oord ] [ -nnum ] [ -rrand ] [ -sS ] [ -ACHUVW ]` |
 
-**Simulations**
+**Simulated weather**
 
 | | |
 |---|---|
-| `bio` | biorhythm chart (F. Kaefer 1987) -- BASIC09, needs runb<br>**How:** BASIC09 I-code, not 68000 code. `load runb` first, then run `bio` by BARE NAME. Giving runb a pathname instead raises BASIC09 error 43, which reads like a broken program and is not. |
-| `biory` | FORTRAN example: Biorhythm.  Runs and prompts (in German) once os9lib is loaded.  Source: SRC/rtf/biory.f |
-| `england` | &#9733; weather simulator - England (Gregorian/mid-Atlantic)<br>**How:** One of six weather simulators that differ only in climate and calendar: england, florida, georgia, minnesota, japan (Japanese calendar) and shire (Middle-earth). Each prints a day's weather and stops. |
-| `florida` | &#9733; weather simulator - Florida (Gregorian/Gulf)<br>**How:** `florida < /nil'. It simulates a year of Florida weather day by day, with the calendar notes. |
-| `georgia` | &#9733; weather simulator - Georgia (Gregorian/S-Atlantic) |
-| `japan` | &#9733; weather simulator - Japan (Japanese calendar/N-Pacific)<br>**How:** A weather simulator, not a calendar tool -- see `england'. It uses the Japanese calendar, which is the only reason it looks like one. |
-| `logisim` | logic circuit simulator -- draws a pulse diagram from a circuit written as text.  Two sample circuits ship with it, DOC/logisim/flipflop.lsi and counter.lsi, and its notes are DOC/logisim/logisim.doc, in German.  IT NEEDS `PORT' SET to a terminal path -- it reopens the keyboard through it -- and nothing on this disk sets it: `setenv PORT /term' first, or it stops with `Environment variable PORT not defined'.  Past that check it floods `No more memory !!!' under this collection's capture harness and has not been seen to draw.  Measured 2026-08-31<br>**How:** Set PORT first: `setenv PORT /term'. Without it, `logisim: Environment variable PORT not defined' -- it reopens the keyboard through that path. Two sample circuits ship in DOC/logisim (counter.lsi, flipflop.lsi) and its notes are there too, in German. Rebuilt 2026-08-31. |
-| `minnesota` | &#9733; weather simulator - Minnesota (Gregorian/N-Atlantic) |
-| `shire` | weather simulator - the Shire (Middle-earth calendar)<br>**How:** A weather simulator using the Middle-earth calendar -- see `england'. |
+| `england` | &#9733; a year of random weather, day by day, for a tabletop game: the mid-Atlantic climate profile on the Gregorian calendar. `england 2' does two years.  Six builds of one program differ only in climate and calendar: england, florida (Gulf coast), georgia (south Atlantic), minnesota (north Atlantic), japan (north Pacific, Japanese calendar) and shire (mid-Atlantic, Middle-earth calendar)<br>**How:** One of six weather simulators that differ only in climate and calendar: england, florida, georgia, minnesota, japan (Japanese calendar) and shire (Middle-earth). Each prints a day's weather and stops. |
+| `florida` | &#9733; the weather program on its Gulf-coast profile; see england<br>**How:** `florida < /nil'. It simulates a year of Florida weather day by day, with the calendar notes. |
+| `georgia` | &#9733; the weather program on its south-Atlantic profile; see england |
+| `japan` | &#9733; the weather program on its north-Pacific profile, with the months of the Japanese calendar; see england<br>**How:** A weather simulator, not a calendar tool -- see `england'. It uses the Japanese calendar, which is the only reason it looks like one. |
+| `minnesota` | &#9733; the weather program on its north-Atlantic profile; see england |
+| `shire` | the weather program on its mid-Atlantic profile, with the months of Tolkien's Shire calendar; see england<br>**How:** A weather simulator using the Middle-earth calendar -- see `england'. |
 
 </details>
 
@@ -1581,7 +1585,7 @@
 
 *Calculators, plotting, orbits and number theory.*
 
-<details><summary>10 programs</summary>
+<details><summary>11 programs</summary>
 
 **Calculators**
 
@@ -1594,6 +1598,12 @@
 | `rechne` | &#9733; calculator, German -- and it takes ONE expression with no spaces in it: `rechne 4095+1' answers 4096, $1000 and the binary.  Spaced out it evaluates each argument separately |
 | `rpn` | &#9733; RPN calculator -- and its `+' is wrong: 12, 34, + leaves a stack of three with 0 on top instead of one with 46. `rechne' is the calculator that answers correctly |
 | `sc` | sc -- spreadsheet calculator (needs TERM)<br>**How:** The spreadsheet, version 6.16. `sc' opens and says "Type '?' for help". This line said it will not read SYS/termcap and needs `. /dd/SYS/termcap.entry' first; measured 2026-08-29, it does not -- it opens with TERMCAP as SYS/login sets it. |
+
+**Simulators**
+
+| | |
+|---|---|
+| `logisim` | logic circuit simulator -- draws a pulse diagram from a circuit written as text.  Two sample circuits ship with it, DOC/logisim/flipflop.lsi and counter.lsi, and its notes are DOC/logisim/logisim.doc, in German.  IT NEEDS `PORT' SET to a terminal path -- it reopens the keyboard through it -- and nothing on this disk sets it: `setenv PORT /term' first, or it stops with `Environment variable PORT not defined'.  Past that check it floods `No more memory !!!' under this collection's capture harness and has not been seen to draw.  Measured 2026-08-31<br>**How:** Set PORT first: `setenv PORT /term'. Without it, `logisim: Environment variable PORT not defined' -- it reopens the keyboard through that path. Two sample circuits ship in DOC/logisim (counter.lsi, flipflop.lsi) and its notes are there too, in German. Rebuilt 2026-08-31. |
 
 **Spreadsheets**
 

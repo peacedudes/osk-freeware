@@ -1,16 +1,5 @@
-<><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><
-
-
-
-
-                              The TYPEFAST Game
-
-
-
-
-
-
-          Do you need instructions?  Press y or n (no RETURN)
+                                   **TYPEFAST**
+                              Hits: 0     Misses: 0
 
 
 
@@ -18,6 +7,17 @@
 
 
 
+                                      afford
 
 
-Fatal Game Error - Unexpected signal received
+                   entire
+
+                                   reliably
+
+
+
+
+
+
+
+ <><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><>

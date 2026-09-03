@@ -1,65 +1,192 @@
-# Generators and simulators that are not quite games.
+# Amusements: generators, simulators and diversions that are not quite
+# games.  One stanza per program.  The two Screen toys at the end (textb,
+# ttyexp) have lived here since the sheet was written and stay.
 
 shot    areacode
-cap     Looks up US telephone area codes.
-run     areacode 212 415 816 314
+cap     Looks up North American telephone area codes, as many as you give
+cap     it, from a table of the late 1980s.
+run     areacode 212 415 314 617
+wait    4
+
+shot    biory
+cap     A biorhythm chart, in German.  It asks for a name (Name Vorname),
+cap     a birth date as day-month-year (Geburtsdatum, TTMMJJ) and the span
+cap     of years to chart (Gueltigkeitsbereich, JJ-JJ), and writes the chart
+cap     to Biory.Lis in the current directory.  It needs the Fortran run-time
+cap     loaded first.  After the third answer it stops on an instruction a
+cap     68000 allows and the 68020 os9exec emulates does not, so the chart
+cap     is written only on a 68000.
+run     load /dd/CMDS/os9lib
+wait    2
+run     rm -f /dd/tmp/BIO; mkdir -p /dd/tmp/BIO
+wait    2
+run     clear
+wait    1
+run     ksh -c "cd /dd/tmp/BIO; biory"
+wait    5
+send    Anna Bergmann\r
 wait    3
+send    140365\r
+wait    3
+send    88-88\r
+wait    6
+
+shot    england
+size    40 100
+cap     A year of weather, one line a day, for a tabletop game: sky,
+cap     temperature, precipitation, wind, snow on the ground and the day's
+cap     notes.  The month ends with its high, low and average.  This is the
+cap     mid-Atlantic profile; the same program is built five more times for
+cap     other climates and calendars.
+run     england | head -n 37
+wait    10
 
 shot    florida
-cap     The same simulator on the Gulf coast -- Gregorian calendar, and a
-cap     January that never freezes.
+size    24 100
+cap     The weather program on its Gulf-coast profile: a mild January with
+cap     rain in it.
 run     florida | head -n 21
 wait    8
 
+shot    georgia
+size    24 100
+cap     The weather program on its south-Atlantic profile.
+run     georgia | head -n 21
+wait    8
+
+shot    minnesota
+size    24 100
+cap     The weather program on its north-Atlantic profile, where January
+cap     is snow.
+run     minnesota | head -n 21
+wait    8
+
 shot    japan
-cap     The simulator on the Japanese calendar and the North Pacific.
+size    24 100
+cap     The weather program on its north-Pacific profile, with the months
+cap     of the Japanese calendar.
 run     japan | head -n 21
 wait    8
 
-shot    name
-cap     A random name generator -- ten at a time.
-run     name 10
-wait    3
-
-shot    newsgen
-cap     A fake news bulletin, assembled from parts.
-run     newsgen
-wait    4
-
-shot    scales
-cap     A musical scale generator -- and it writes its scales to
-cap     `scales.lst' in the current directory rather than to the screen,
-cap     which is why there is nothing here but its progress.
-run     scales -a
-wait    4
-
 shot    shire
-cap     A weather simulator for the Shire, on the Middle-earth calendar:
-cap     Afteryule, Solmath, Rethe.  One of six regions here.
+size    24 100
+cap     The weather program on the Shire calendar from the appendices of
+cap     The Lord of the Rings -- Afteryule is the first month -- over the
+cap     mid-Atlantic climate.
 run     shire | head -n 21
 wait    8
 
-
-shot    weather2
-for     georgia minnesota rndname rstory2
-cap     Two more regions for the weather simulator, and the second random
-cap     story generator.
-run     georgia | head -n 10
+shot    logisim
+size    30 100
+cap     A logic simulator.  It reads a circuit written as text -- gates
+cap     named by type, each with its input nodes and its output -- and
+cap     draws a pulse diagram: one column per node on the circuit's VIEW
+cap     line, a row per step, # for high and _ for low.  This is the
+cap     16-bit counter shipped with it as DOC/logisim/counter.lsi; the
+cap     other sample is a master-slave flip-flop.  PORT must name the
+cap     terminal, because it reopens the keyboard through that path.
+run     export PORT=/term
+wait    1
+run     clear
+wait    1
+run     logisim /dd/DOC/logisim/counter.lsi
 wait    10
+snap
+send    \r
+wait    3
+
+shot    name
+cap     Invents pronounceable names, as many as you ask for.
+run     name 8
+wait    4
+
+shot    rndname
+cap     Invents pronounceable names -- a second program of the same idea
+cap     as `name', from a different author.
 run     rndname 6
-wait    10
-run     minnesota | head -n 8
-wait    12
-run     rstory2 | head -n 8
-wait    12
+wait    5
 
+shot    newsgen
+cap     A news bulletin assembled at random from parts: a top story, the
+cap     weather, and more below.
+run     newsgen
+wait    6
 
 shot    pwgen
-for     pwgen
-cap     pwgen makes pronounceable passwords -- length first, then how many.
-cap     Its card used to be the bare usage line, which is on this page anyway.
-run     pwgen 12 5
+cap     Pronounceable passwords: how long, then how many.
+run     pwgen 10 4
+wait    20
+
+shot    rpoem
+cap     Writes verses at random from a grammar and a word list, and keeps
+cap     going until stopped; these are the first three.
+run     rpoem | head -n 20
 wait    8
+
+shot    rstory
+size    40 80
+cap     A cumulative tale in the shape of The Old Woman and Her Pig, with
+cap     the animal, the obstacle and every helper drawn at random.  A
+cap     different story each run.
+run     rstory
+wait    10
+
+shot    rstory2
+size    24 80
+cap     Asks five questions and hands the answers to a story program --
+cap     rstory_W, rstory_S, rstory_C or rstory_G by the setting chosen --
+cap     that did not come with it.  So the questions are all it does here.
+run     rstory2
+wait    4
+send    Frodo\r
+wait    3
+send    B\r
+wait    3
+send    dragon\r
+wait    3
+send    green\r
+wait    3
+send    W\r
+wait    8
+
+shot    scales
+cap     Musical scales and chords, shuffled into a practice order with a
+cap     tick-box each, written to scales.lst in the current directory.
+cap     `-a' asks for all 90 of them.
+run     rm -f /dd/tmp/SCL; mkdir -p /dd/tmp/SCL
+wait    2
+run     clear
+wait    1
+run     ksh -c "cd /dd/tmp/SCL; /dd/CMDS/scales -a"
+wait    6
+run     cat /dd/tmp/SCL/scales.lst | head -n 12
+wait    4
+
+shot    touchtype
+cap     TYPEFAST, a typing game.  Words fall down the screen and each has
+cap     to be typed, followed by a space or RETURN, before it reaches the
+cap     bottom.  This is level 2 a few seconds in; ESC ends the game and
+cap     scores it in words per minute.
+run     touchtype
+wait    3
+send    n
+wait    2
+send    2
+wait    6
+keys    the
+wait    2
+snap
+wait    1
+send    \033
+wait    3
+
+shot    travesty
+size    30 80
+cap     Rewrites its input as plausible nonsense -- a Markov chain over
+cap     the text, here the weather program's own README, asked for 400
+cap     characters.
+run     travesty -n400 < /dd/DOC/weather/README
+wait    10
 
 shot    textb
 for     textb
@@ -85,4 +212,3 @@ cap     and how long to wait, and answers with all of that when the option
 cap     it is given is not one of them.
 run     ttyexp -?
 wait    8
-

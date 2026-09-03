@@ -1,6 +1,19 @@
-$ scales -a
+$ ksh -c "cd /dd/tmp/SCL; /dd/CMDS/scales -a"
 Initializing...
 Building deck...90 cards made
 Shuffling list...
 Writing list to scales.lst
 Done!
+$ cat /dd/tmp/SCL/scales.lst | head -n 12
+Random Order of 90 Possible Scales or Chords
+
+___   1 D# Harmonic Minor       (6 sharps:  F# C# G# D# A# E#)
+        Spelling:       D# E# F# G# A# B C##
+___   2 G# Harmonic Minor       (5 sharps:  F# C# G# D# A#)
+        Spelling:       G# A# B C# D# E F##
+___   3 E Harmonic Minor        (1 sharp :  F#)
+        Spelling:       E F# G A B C D#
+___   4 A Miles Davis           (1  flat :  Bb)
+        Spelling:       A Bb C C# D E F G
+___   5 D Diminished            (1  flat :  Bb)
+        Spelling:       D E F G Ab Bb Bn C#

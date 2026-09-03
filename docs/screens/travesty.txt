@@ -1,3 +1,12 @@
-$ travesty
-the quick brown fox jumps over the lazy dog and the quick red fox
-runs over the lazy brown dog while the quick dog naps
+$ travesty -n400 < /dd/DOC/weather/README
+tes.  Several example
+climate profiles, new calendars are included: Gregorian, medieval
+Japanese, and the GM
+can determine what kind of the Rings.
+
+The details of the current calendar details of the appendices of
+Tolkien's The Lord of weather is occuring.  This program generates are includedh
+pacific.
+
+In adds some realism if the user can create his or her own
+climate provided so that the Mi

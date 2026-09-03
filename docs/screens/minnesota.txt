@@ -1,0 +1,22 @@
+$ minnesota | head -n 21
+                                                                  Snow
+Year   1    Weather        Sky   Temperature    Precip      Wind  Depth  Notes
+January
+   1          Clear      Clear    Cold ( 10)      None      Calm 122.1"  New Years (s)
+   2          Clear      Clear    Cold ( 15)      None      Calm 122.1"
+   3          Clear      Clear    Cold ( 10)      None      Calm 122.1"
+   4          Clear      Clear    Cold ( 10)      None     Light 122.1"
+   5          Clear      Clear    Cold ( 10)      None      Calm 122.1"
+   6          Clear      Clear    Cold ( 15)      None      Calm 122.1"  Twelfth Night
+   7          Clear      Clear  Chilly ( 25)      None      Calm 122.1"
+   8          Clear      Clear    Cold (  0)      None      Calm 122.1"
+   9          Clear      Clear    Cold ( 10)      None      Calm 122.1"
+  10  Precipitation       Mist    Cold ( 10)    Shower     Light 122.1"  Snow - 40 minutes,
+  11  Precipitation     Cloudy    Cold ( 20)    Shower  Blustery 123.1"  Snow - 100 minutes,
+  12          Clear      Clear    Cold ( 10)      None  Blustery 123.1"
+  13          Clear      Clear    Cold ( 10)      None      Calm 123.1"
+  14          Clear      Clear    Cold ( 10)      None      Calm 123.1"
+  15       Overcast     Cloudy    Cold ( 15)      None      Calm 123.1"
+  16  Precipitation       Mist    Cold (  0)  Sprinkle     Light 123.2"  Snow - 30 minutes,
+  17  Precipitation     Cloudy    Cold (  5)    Steady      Calm 126.2"  Snow - 24 hours,
+  18  Precipitation       Mist    Cold ( 10)    Steady     Brisk 131.2"  Snow - 24 hours,

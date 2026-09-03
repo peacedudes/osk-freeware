@@ -2,8 +2,6 @@ filename="/dd/DOS/a.img"
 banner:"BSD  4.4"
 $ mslabel a:FREEWARE
 $ mscheck < /nil
-F$SetSys: unimplemented 03D8 (size=80000004)
-        ... the same line 4 times over
  Volume in drive A is FREEWARE
  Volume Serial Number is 35D7-0A00
  Directory for A:/
@@ -14,6 +12,4 @@ readme   txt       139 08-02-2026   2:22a readme.txt
 
 
 Verifying files on drive A:...
-F$SetSys: unimplemented 03D8 (size=80000004)
-        ... the same line 4 times over
 Disk in drive A: is OK.

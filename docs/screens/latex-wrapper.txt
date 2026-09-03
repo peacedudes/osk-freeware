@@ -1,7 +1,5 @@
 $ rm -f small.dvi small.log small.aux
 $ latex /dd/SYS/TEX/SAMPLES/small.tex
-F$SetSys: unimplemented 03D8 (size=80000004)
-        ... the same line 4 times over
 This is TeX, C Version 3.14
 (/dd/SYS/TEX/SAMPLES/small.tex
 LaTeX Version 2.09 <7 Dec 1989>

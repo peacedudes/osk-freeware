@@ -1,0 +1,22 @@
+$ georgia | head -n 21
+                                                                  Snow
+Year   1    Weather        Sky   Temperature    Precip      Wind  Depth  Notes
+January
+   1          Clear      Clear    Fair ( 40)      None     Light         New Years (s)
+   2          Clear      Clear    Warm ( 65)      None      Calm
+   3          Clear      Clear    Warm ( 65)      None      Calm
+   4          Clear      Clear    Fair ( 40)      None      Calm
+   5  Precipitation       Mist    Fair ( 45)    Steady      Calm         Rain - 24 hours,
+   6  Precipitation     Cloudy    Fair ( 50)     Heavy     Brisk         Rain -  7 hours, Twelfth Nt
+   7  Precipitation  Light Fog    Fair ( 55)    Shower  Blustery         Rain - 60 minutes,
+   8          Clear      Clear    Fair ( 55)      None      Calm
+   9          Clear      Clear  Chilly ( 30)      None      Calm
+  10          Clear      Clear    Warm ( 65)      None      Calm
+  11  Precipitation       Mist    Fair ( 50)  Sprinkle  Blustery         Rain - 30 minutes,
+  12          Clear      Clear    Fair ( 50)      None      Calm
+  13  Precipitation       Mist    Fair ( 50)    Steady  Blustery         Rain - 24 hours,
+  14  Precipitation       Mist  Chilly ( 30)    Steady  Blustery  10.0"  Blizzard - 24 hours,
+  15  Precipitation     Cloudy    Fair ( 60)    Steady  Blustery         Rain - 24 hours,
+  16  Precipitation     Cloudy    Fair ( 40)    Steady      Calm         Rain - 24 hours,
+  17  Precipitation       Mist    Warm ( 65)    Steady      Calm         Rain - 24 hours,
+  18          Clear      Clear    Fair ( 40)      None     Light

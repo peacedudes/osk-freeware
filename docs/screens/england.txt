@@ -1,23 +1,38 @@
-  20          Clear      Clear    Fair ( 60)      None      Calm
-  21          Clear      Clear    Warm ( 75)      None      Calm         Fall Ex
-  22          Clear      Clear    Fair ( 50)      None      Calm
-  23          Clear      Clear    Warm ( 65)      None     Light
-  24          Clear      Clear    Warm ( 65)      None      Calm
-  25          Clear      Clear    Warm ( 65)      None      Calm
-  26          Clear      Clear    Warm ( 65)      None      Calm
-  27       Overcast       Mist    Warm ( 65)      None      Calm
-  28       Overcast       Mist    Warm ( 65)      None      Calm
-  29       Overcast     Cloudy    Warm ( 70)      None     Brisk
-  30       Overcast       Mist    Fair ( 60)      None      Calm
-High Temp =  80, Low Temp =  50, Average Temp =  65
+$ england | head -n 37
+                                                                  Snow
+Year   1    Weather        Sky   Temperature    Precip      Wind  Depth  Notes
+January
+   1       Overcast  Heavy Fog    Cold ( 20)      None     Light  21.3"  New Years (s)
+   2          Clear      Clear    Cold ( 15)      None     Light  21.3"
+   3          Clear      Clear    Cold ( 10)      None      Calm  21.3"
+   4          Clear      Clear    Cold ( 20)      None      Calm  21.3"
+   5          Clear      Clear  Chilly ( 25)      None      Calm  21.3"
+   6          Clear      Clear    Cold ( 15)      None      Calm  21.3"  Twelfth Night
+   7          Clear      Clear    Cold ( 15)      None     Light  21.3"
+   8          Clear      Clear  Chilly ( 35)      None      Calm  20.3"
+   9  Precipitation       Mist    Cold ( 20)     Heavy  Blustery  32.3"  Blizzard -  5 hours,
+  10          Clear      Clear    Cold ( 20)      None      Calm  32.3"
+  11          Clear      Clear    Cold ( 10)      None     Light  32.3"
+  12          Clear      Clear    Cold ( 10)      None      Calm  32.3"
+  13  Precipitation       Mist  Chilly ( 25)    Shower     Brisk  32.3"  Snow - 70 minutes,
+  14  Precipitation       Mist    Cold ( 20)  Sprinkle      Calm  32.4"  Snow - 20 minutes,
+  15          Clear      Clear  Chilly ( 30)      None      Calm  32.4"
+  16          Clear      Clear    Cold ( 20)      None      Calm  32.4"
+  17          Clear      Clear    Cold ( 10)      None      Calm  32.4"
+  18          Clear      Clear  Chilly ( 30)      None      Calm  32.4"
+  19          Clear      Clear    Cold ( 20)      None      Calm  32.4"
+  20          Clear      Clear    Cold (  0)      None      Calm  32.4"
+  21          Clear      Clear    Cold ( 20)      None      Calm  32.4"
+  22          Clear      Clear    Cold ( 10)      None      Calm  32.4"
+  23          Clear      Clear    Cold ( 20)      None      Calm  32.4"
+  24          Clear      Clear    Cold ( 20)      None      Calm  32.4"
+  25          Clear      Clear    Cold ( 20)      None      Calm  32.4"
+  26          Clear      Clear    Cold ( 20)      None      Calm  32.4"
+  27          Clear      Clear    Cold (  5)      None     Light  32.4"
+  28          Clear      Clear    Cold ( 20)      None      Calm  32.4"
+  29          Clear      Clear    Cold ( 20)      None      Calm  32.4"
+  30  Precipitation     Cloudy    Cold ( 20)    Shower  Blustery  33.4"  Snow - 110 minutes,
+  31  Precipitation       Mist    Cold ( 20)    Shower     Brisk  33.4"  Snow - 70 minutes,
+High Temp =  35, Low Temp =   0, Average Temp =  18
 
-October
-   1       Overcast  Heavy Fog    Fair ( 50)      None      Calm
-   2          Clear      Clear    Fair ( 45)      None      Calm
-   3          Clear      Clear    Fair ( 45)      None      Calm
-   4  Precipitation       Mist    Fair ( 50)  Sprinkle     Brisk         Rain -,
-   5          Clear      Clear    Fair ( 50)      None      Calm
-   6  Precipitation       Mist    Fair ( 45)    Shower     Light         Rain -,
-   7          Clear      Clear    Fair ( 45)      None      Calm
-   8          Clear      Clear    Fair ( 50)      None     Light
-   9          Clear      Clear    Fair ( 50)              Clear      Clear    F
+February

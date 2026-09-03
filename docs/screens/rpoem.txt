@@ -1,23 +1,21 @@
-A rusty petal may dance within hope on hope
-And provoke the movement of a drop.
-But a pensive trap beseechs the flower beside a gentle dog
-While hope on hope heals the rusty petal.
+$ rpoem | head -n 20
 ------------------------------------------
-Verse 28
-A timid book must gurgle beside the duration of a tooth
-And becalm a gentle petal.
-But a mournful dog reveres a lark of war
-While the duration of a tooth reveres the timid book.
+Verse 1
+A timorous shovel should sing of land over love
+And revere gentle age.
+But the flower over the wagon wheel beside a lark of strength reveres a face ofe
+While land over love controls the timorous shovel.
 ------------------------------------------
-Verse 29
-A timorous gate should sing over wisdom on nature
-And worship a dove of thought.
-But the dish of the activity of a pond reveres the age of a dish
-While wisdom on nature reveres the timorous gate.
+Verse 2
+A mournful dish must sing over the cloud up a wanton dish
+And kill a frolicking spoon.
+But a sorrowful dish provokes gentle war
+While the cloud up a wanton dish understands the mournful dish.
 ------------------------------------------
-Verse 30
-A lustful dove shall tumble over a timorous goat
-And understand rusty age.
-But timorous power heals a timorous wagon wheel
-While a timorous goat becalms the lustful dove.
+Verse 3
+A rusty tree must bend beside lustful time
+And revere a timid brain.
+But a flower of strength reveres night's activity
+While lustful time worships the rusty tree.
 ------------------------------------------
+Verse 4

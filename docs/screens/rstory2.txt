@@ -1,0 +1,7 @@
+$ rstory2
+What is your name? Frodo
+Are you a boy(B) or a girl(G)?B
+What is your favorite type of animal? dragon
+What is your favorite color? green
+What kind of story would you like:
+  Wild West(W), Space(S), Big city(C), or Ghost(G)?W

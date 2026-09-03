@@ -15,7 +15,7 @@ aprocs 4f66ab5a787fc644
 ar cba336f0aba59623
 ar2 a0592141a56036ca
 arc 198aacafb7cdfe50
-areacode 140843c0a2b9b7aa
+areacode c1465c13732198ab
 argproc_demo 58b09c3f5ce797ca
 as09 bcf207a8f82025ec
 ascii b50903b770fdbdcb
@@ -32,7 +32,7 @@ bibtex cc0db6537b3485a1
 bigsetter a65afaeb5077cfad
 bincheckr ffc58cc26575b148
 binhex f68005c388a50b9d
-biory 25db68c6df8a930c
+biory 4d3d4e013550da95
 bison 64235b18086410da
 blackjak 953cdb5ba8fa1de4
 bm 5b237767a602a2c0
@@ -106,6 +106,7 @@ elvis f890bb0def3b8fc3
 elvrec 53234717ade3ae37
 em 63765b721a1395e3
 emacs 06decd47efce3ef7
+england d6027b06875145fc
 env d155a0fdb78532e5
 ephem 87c886f63cc30e0b
 every 1a87d90bcd248316
@@ -122,7 +123,7 @@ finger 116fec4bce12768c
 fits 1a124e808de20f53
 flex 1ac9042c75429771
 flink b0a5693204a3872d
-florida 9c7469b903a5be9c
+florida 218de360eafe3b86
 fmt e975ff3c45c339fa
 fontgen 60e1c7f5b6cdba8d
 forth 5e964bdb499cf385
@@ -136,8 +137,8 @@ gawk ee3160fe2bcdd65f
 gcc 8c81297596f3ba47
 gcl 2da5b2a4a20fc3ff
 gen f4cb238a2f543a1d
+georgia 8b32ea38e01e4a9e
 gep 2bf971d41ab4ac03
-getsys 312d1b90f0e93c58
 gif f92f7b11da4a9504
 gif2 b5c0592108bf2c41
 giftopnm 2f3769f6c8c49b2a
@@ -176,7 +177,7 @@ indent 66c17b603cb44d1d
 infocom 2fe9b39a3faa8aac
 isam 9fa60597ccc34dc8
 ispell ff6b04cc2718e7f5
-japan f4ff4bd88df522a4
+japan 790f2e46378c900e
 jargon 5d03fb56e069502a
 join a0b406517f256e71
 jpeg 95a072cc2580e5ac
@@ -196,6 +197,7 @@ lharc 3b1aef240e32f8eb
 lispm 647b692409bfc1b3
 load ed88e752e89868aa
 loan 779df2c59eb353ae
+logisim 8750fcbd1e017e8e
 lorenz3d 7adc33fafa9ee955
 lout c0ebd5f69b37c4fd
 lp ba79ff2588ff0293
@@ -215,6 +217,7 @@ map 32a0218d8c724b9e
 md5 5ddd40c0bc7b28bd
 memtools 2784444a29ce9452
 mgif 180a05b1af6b852e
+minnesota 0bbeae4ac2dd551d
 misc-text b7661f5791151c6b
 mkdict 7749b306e4d55def
 modbuster aabd55fe0b31cc69
@@ -230,12 +233,12 @@ msmove 59ff04c28b8af7fa
 msread e6586a61c43f7705
 mtools 0ca7321e28cae63e
 mtst 85c98c0c717f9312
-name 0c01a18f0c2cc444
+name fdfd42ee83c7c2ea
 names cbe426f08cb9f07a
 nchess 7109b80b62f43c5c
 network 0959739a69dc5558
 news-tools 02548694d3d68d98
-newsgen 282f6ec575f3033a
+newsgen 99c44fee16b57b16
 newshist d5cce1fa88d355a3
 noreader 1e83096eac6dba80
 ob68kdemo f3ecd32662b190e2
@@ -296,7 +299,7 @@ printenv 4bb7417e54260c06
 printers ab23dd1594c27679
 printf b939bb79959ca7f1
 pvic 9d66c349a907572b
-pwgen 93e33a4be9b67466
+pwgen bf28b70252d5753d
 qsort9 000aa18d69574e71
 qt 7f143f25b32a7f55
 queens 620aaa05515f3571
@@ -306,11 +309,15 @@ rcs 99686cd664c0ec4c
 rdoc cf70bdc81dab5cf4
 rechne 59c965a157f88843
 rndir 55898b053073bed7
+rndname 41a53ac034e446fe
 roff 5da0484c9b69c2c3
 rot 1e87715cbe20ad9c
 rpn 7b97fd1b7d4a4c35
+rpoem 4b4f474ef4ac92fb
+rstory 6df798d4e6d9be3c
+rstory2 160ef4cc0d9c09a9
 sbprolog b8cc4cb02d55206c
-scales 03da189c90a9bca7
+scales 22dd734b9cb49bdf
 screen 6cbad9bb27ec2dde
 scsiutil 24cd2d532328b474
 sdb 3d1638dcf3775c0b
@@ -322,7 +329,7 @@ setup-image d9b72e4419405893
 sh 7d460bbed60164da
 shar 48336b6ea0fed390
 shdev 9c9ea69135b6b5f6
-shire c3598c6c3ef6124b
+shire bc72f45cc9a5540b
 shuffle bf750878d3978e3d
 silent 77f2a30663487a7a
 sir a5e60d3077b27728
@@ -364,8 +371,10 @@ tiffish 402f3d0ac1e908de
 time d8d9e7225db49980
 todos 0d17152d38920da1
 top 252a98dc53f88e25
+touchtype 9609742a1b462edc
 tplot c91d282b8b962a86
 transfer daeb81e653c23c87
+travesty ee7c30ca56b23eff
 tree 30d3f77b10b5edc7
 tttt 2620b18852a3e865
 tty b7e538ffeb67cd7e
@@ -390,7 +399,6 @@ vi 3d499b8e589e81f9
 vi-recovery e758bff7744f37d0
 vlen 88f94a8849530252
 wc 2c40381787584b00
-weather2 950019780b1624d3
 whoami 9ff3948bb089de3f
 wn 952f4a66dca1eadf
 wn-helpers f7238d88c83ccad8

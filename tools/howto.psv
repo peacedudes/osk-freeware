@@ -22,7 +22,7 @@ nasa|The program that FEEDS orbit. Give it NASA two-line elements in a file call
 pwgen|pwgen <length> [count]. With no arguments it prints nothing and exits, which reads as a hang and is not one.
 bmgtest|bmgtest [-i] [-n] <pattern> [file ...]. A demonstration of Boyer-Moore-Gosper searching, not a tool you would use.
 life|life [init-file]. The patterns are in /dd/GAMES/LIFE -- try `life /dd/GAMES/LIFE/glider`. It also wants more memory than the default; from the OS-9 shell that is `life #22k <file>`, and bash has no #size syntax at all.
-bio|BASIC09 I-code, not 68000 code. `load runb` first, then run `bio` by BARE NAME. Giving runb a pathname instead raises BASIC09 error 43, which reads like a broken program and is not.
+bio|BASIC09 I-code, not a 68000 module, and this disk carries no `runb' to run it under. Under a BASIC09 system: `runb bio' by bare name from its directory.
 logisim|Set PORT first: `setenv PORT /term'. Without it, `logisim: Environment variable PORT not defined' -- it reopens the keyboard through that path. Two sample circuits ship in DOC/logisim (counter.lsi, flipflop.lsi) and its notes are there too, in German. Rebuilt 2026-08-31.
 calender|Prints the year in GERMAN. Not a typo of `calendar' -- a different program by a different author.
 gdd|A data dump -- like `od', with GNU-style long options. Needs Microware's cio.
@@ -106,7 +106,7 @@ setterm|`setterm' alone reports what TERM says; give it a terminal name to chang
 shuffle|Full-screen: it takes over the display. **`q' quits** -- tested.
 snake|Full-screen: it takes over the display. **`x' quits** -- tested. (control-C also gets you out, but `x' is the program's own way.)
 sonnet|Full-screen: it takes over the display. **ESC quits** -- tested. (control-C also gets you out, but ESC is the program's own way.)
-touchtype|Full-screen: it takes over the display. **control-C gets you out** -- tested, and none of q, Q, control-D or ESC did. If it has a quit command of its own, its documentation in DOC/ will say.
+touchtype|Full-screen typing game. Answer `n' to the instructions question, pick a level 1-3 (q quits there), type each falling word followed by SPACE or RETURN. ESC ends the game and prints the words-per-minute score.
 tt|Full-screen: it takes over the display. **`q' quits** -- tested.
 tttt|Full-screen: it takes over the display. **`q' quits** -- tested.
 wanderer|Full-screen: it takes over the display. **`q' quits** -- tested.

@@ -1,5 +1,13 @@
-$ load /dd/CMDS/os9lib
-$ biory
+$ ksh -c "cd /dd/tmp/BIO; biory"
   Ausgabe im Listingfile 'Biory.Lis'
-  Name Vorname (RETURN=Ende)  : Tester
-  Geburtsdatum (TTMMJJ)       :
+  Name Vorname (RETURN=Ende)  : Anna Bergmann
+  Geburtsdatum (TTMMJJ)       : 140365
+  Gueltigkeitsbereich (JJ-JJ) : 88-88
+
+Process   Pid: 4, biory, edition 1
+    Exit code: E_PRCABT(228) Process Aborted
+  Directories: Current   - /dd/tmp/BIO
+               Execution - /dd/CMDS
+        Files: 00 fCons /term
+  Error #000:108 (E_VIOLAT) privelage violation TRAP 8 occurred
+%1       4 Error  108           biory

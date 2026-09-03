@@ -29,12 +29,12 @@ pwgen|Amusements|Generators
 travesty|Amusements|Generators
 rndname|Amusements|Generators
 scales|Amusements|Generators
-bio|Amusements|Simulations
-england|Amusements|Simulations
-florida|Amusements|Simulations
-georgia|Amusements|Simulations
-logisim|Amusements|Simulations
-minnesota|Amusements|Simulations
+bio|Amusements|Biorhythms
+england|Amusements|Simulated weather
+florida|Amusements|Simulated weather
+georgia|Amusements|Simulated weather
+logisim|Maths & calculators|Simulators
+minnesota|Amusements|Simulated weather
 nasa|Time & calendar|Astronomy
 
 # ---- Archives & compression ----
@@ -633,9 +633,9 @@ cal|Time & calendar|Calendars
 calen|Time & calendar|Calendars
 calender|Time & calendar|Calendars
 digclk|Time & calendar|Calendars
-japan|Amusements|Simulations
+japan|Amusements|Simulated weather
 setimex|Time & calendar|Calendars
-shire|Amusements|Simulations
+shire|Amusements|Simulated weather
 today|Time & calendar|Calendars
 
 # ---- newly visible once the INDEX parser stopped losing them ----
@@ -889,7 +889,7 @@ osknet|Communications|TCP/IP
 add_errmsg|System & modules|Utilities
 argproc_demo|System & modules|Utilities
 ask|Games|Other games
-biory|Amusements|Simulations
+biory|Amusements|Biorhythms
 bigsetter|System & modules|Utilities
 config|System & modules|Utilities
 creadoc|Compilers & build|Fortran

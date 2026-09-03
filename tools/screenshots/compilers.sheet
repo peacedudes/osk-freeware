@@ -213,7 +213,7 @@ wait    20
 kill
 
 shot    fortran
-for     rtf for lnk lnk.org biory creadoc os9lib
+for     rtf for lnk lnk.org creadoc os9lib
 cap     RTF/68K 2.14, 1987 -- and IT COMPILES.  Load its runtime library
 cap     first (`load /dd/CMDS/os9lib'; without it the whole set prints
 cap     nothing at all) and `rtf <file>.f' reads Fortran-77 and writes 68k

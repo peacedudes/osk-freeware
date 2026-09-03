@@ -1,6 +1,5 @@
-$ pwgen 12 5
-moonakochof
-evisushathe
-nitejaebima
-shukieminon
-mueebijeefa
+$ pwgen 10 4
+soquemike
+roookeroj
+echigiena
+shiquakog
