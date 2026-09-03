@@ -1,6 +1,3 @@
 $ elvrec
-$ elvrec /dd/tmp/none
-/dd/tmp/none: no recovered file has that exact name
-$ exrecover
- Wrong number of arguments to exrecover
-$ elvprsv /dd/tmp/none
+$ elvrec jabber.txt
+/dd/jabber.txt: no recovered file has that exact name

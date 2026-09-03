@@ -96,13 +96,8 @@ dvilj2
 dvimac
 dvioki
 dvitos
-ed
 ediff
 EditLibr
-editor
-elvprsv
-em
-emacs
 enable
 eo
 epson
@@ -110,7 +105,6 @@ eset
 etags
 eunlink
 expand
-exrecover
 fastmail
 fc
 fillup
@@ -145,7 +139,6 @@ gpp_collect
 graphdemo
 graphsave
 gzip68k_nocsl
-helpindex
 hexbin
 hipstopgm
 hist
@@ -165,7 +158,6 @@ l
 lander
 latex
 lcasep
-lessecho
 lesskey
 lgrep
 lharc
@@ -194,9 +186,7 @@ mailx
 makecrc
 makeinfo
 maketexpk
-me
 mexist
-mg
 mkdict
 mkdir
 mkindex
@@ -215,7 +205,6 @@ mtvtoppm
 mv
 mvolformat
 net
-new_e
 newslock
 nroff
 os9lib
@@ -232,7 +221,6 @@ pbmtomacp
 pbmtopi3
 pbmtoptx
 pbmtoxbm
-pbyte
 pdraw
 pgmedge
 pgmkernel
@@ -301,8 +289,6 @@ sbreak
 scqref
 screen_nocio
 scriptmaster
-sed_1.06
-sedt
 setfont
 setime2
 setterm
@@ -363,9 +349,6 @@ uux
 uuxqt
 uwho
 valspeak
-vi_cio
-vi_nocio
-view
 virmf
 vtxtcn
 wc.cio

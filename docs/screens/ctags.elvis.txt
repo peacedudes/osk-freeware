@@ -1,0 +1,1 @@
+$ main      /dd/SRC/keep/about.c    /^main(argc, argv)$/

@@ -1,3 +1,10 @@
-$ ed /dd/DOC/README-CIO
-/r0/ed.000003: 000:221 module not found
-$ q
+ed /dd/tmp/EDIT/jabber.txt
+137
+1,4p
+Twas brillig, and the slithy toves
+     Did gyre and gimble in the wabe:
+All mimsy were the borogoves,
+     And the mome raths outgrabe.
+3s/mimsy/MIMSY/p
+All MIMSY were the borogoves,
+Q

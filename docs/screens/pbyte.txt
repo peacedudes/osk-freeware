@@ -1,9 +1,5 @@
-$ cat /dd/SYS/motd > /dd/tmp/pb
-$ cat /dd/tmp/pb
-Welcome to os9exec -- OS-9/68k emulator
-$ pbyte /dd/tmp/pb 0 41 42 43
-$ cat /dd/tmp/pb
-ABCcome to os9exec -- OS-9/68k emulator
-$ rm -f /dd/tmp/pb
-$ chbase 255 10 16
-255 [10] = FF [16]
+cat /dd/tmp/EDIT/pb.txt
+Twas brillig, and the slithy toves
+$ pbyte /dd/tmp/EDIT/pb.txt 0 41 42 43
+$ cat /dd/tmp/EDIT/pb.txt
+ABCs brillig, and the slithy toves

@@ -1,23 +1,23 @@
-README-CIO -- the starred programs, and the five modules that serve them
-=======================================================================
+Twas brillig, and the slithy toves
+     Did gyre and gimble in the wabe:
+All mimsy were the borogoves,
+     And the mome raths outgrabe.
 
-Some of the names in DOC/INDEX carry a star.  A star means the program needs
-one of Microware's runtime trap modules: `cio` for nearly all of them, and
-for some `math`, `math881`, `csl` or `csl020`.
 
-THEY RUN HERE.  All five modules are on this disk, in CMDS, included with
-Microware's permission -- SOURCES.txt records the exchange.  You need do
-nothing, supply nothing, and fetch nothing.  The star tells you what a
-program depends on, not what it lacks.
 
-This file explains what the star means, and what to do in the two cases
-where you might want a different arrangement.
 
-Why so many programs need it
-----------------------------
 
-`cc -qixm` -- the C library in a shared trap handler rather than linked into
-every binary -- was the normal way to build for OS-9, and it is why a starred
-program is often a fraction of the size of a trap-free one.  Much of this
-collection was rebuilt trap-free (`-qm`) so it would run with nothing loaded
-==== MicroEMACS 3.11 BETA () == README-CIO == Datei: /dd/DOC/README-CIO ========
+
+
+
+
+
+
+
+
+
+
+
+
+
+==== MicroEMACS 3.11 BETA () == jabber.txt == Datei: /dd/tmp/EDIT/jabber.txt ===

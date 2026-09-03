@@ -1,24 +1,24 @@
-Topic ? space
+$ /dd/CMDS/help dinfo
 
 
-SPACE
+DINFO
 -----
 
-SPACE - Show effective space requirement of files and directories
+DINFO - Display disk information
 
 Important:    This   program    is  public    domain  and  may  be  used  and
               distributed freely as long as the "Distribution_Rules" are  met
               (see subtopic in this help file).
 
-Syntax:       SPACE [<opts>] {<dir/file path>} [<opts>]
+Syntax:       DINFO [<options>] {<device name> [<options>]}
 
-Function:     Shows effective  space  requirements  of  directory  trees  and
-              single files on a given disk. "Effective" space means that  not
-              only the number of bytes *contained* in the files, but also all
-              space  consumed  by  the  file  system  itself  such  as   file
-              descriptors, directory files and  partially  used  clusters  is
-              taken into account (unlike "du" or "dir -e").
-              SPACE completely replaces the "du" (disk usage) utility and  is
-              about 3 to 4 times faster than "du"  because  it  is  specially
-              designed for OSK.
+              Note: The syntax is identical to that of the OS9  free  utility
+              (except for the additional options -l -e -f).
+
+Function:     Displays information about one ore multiple disk devices. If no
+              device name is specified, the current working directory's  disk
+              will be used. The main advantage of DINFO over FREE is that  it
+              displays disk spaces not only in terms of sectors but  also  in
+              kilobytes and percentage of total disk capacity. Three options,
+              -e,-f and -l allow more  information  (general,  fragmentation,
 [More...]

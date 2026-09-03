@@ -1,0 +1,2 @@
+$ lessecho /dd/SYS/motd "two words" it*s
+/dd/SYS/motd "two words" it*s

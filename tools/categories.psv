@@ -171,7 +171,7 @@ emacs|Editors|emacs family
 emacs.mm1|Editors|emacs family
 me|Editors|emacs family
 mg|Editors|emacs family
-sedt|Editors|vi family
+sedt|Editors|SEDT family
 vi_1.0|Editors|vi family
 vi|Editors|vi family
 vi_cio|Editors|vi family
@@ -232,7 +232,7 @@ advent|Games|Adventure & fiction
 advint|Games|Adventure & fiction
 infocom|Games|Adventure & fiction
 infocom.tcap|Games|Adventure & fiction
-bite|Games|Arcade & action
+bite|Screen toys|Screen toys
 greed|Games|Arcade & action
 lander|Games|Arcade & action
 pacman|Games|Arcade & action
@@ -848,7 +848,7 @@ adldebug|Languages|Adventure authoring
 adlrun|Languages|Adventure authoring
 adltouch|Languages|Adventure authoring
 modinfo|System & modules|Utilities
-btree|System & modules|Utilities
+btree|Editors|SEDT family
 clear|System & modules|Utilities
 repeat|System & modules|Scheduling
 phone|System & modules|Utilities
@@ -895,19 +895,19 @@ config|System & modules|Utilities
 creadoc|Compilers & build|Fortran
 demerge|System & modules|Utilities
 devprc|System & modules|Utilities
-em|System & modules|Utilities
+em|Editors|emacs family
 expreserve|System & modules|Utilities
 exrecover|System & modules|Utilities
 fontgen|System & modules|Utilities
 ggrep|System & modules|Utilities
-umacs|System & modules|Utilities
+umacs|Editors|emacs family
 colortest|Games|Other games
 cyberwar|Games|Other games
 dclock|Games|Other games
 dvips|Text tools|TeX
 afm2tfm|Text tools|TeX
 e|System & modules|Utilities
-new_e|System & modules|Utilities
+new_e|Editors|SEDT family
 every|System & modules|Scheduling
 greg|System & modules|Utilities
 isam|System & modules|Utilities

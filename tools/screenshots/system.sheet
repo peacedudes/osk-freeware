@@ -213,24 +213,6 @@ cap     which is what it says.
 run     drop -n hack
 wait    8
 
-shot    e
-cap     SEDT, the VMS-style editor, with VT220 keys.
-run     e /dd/SRC/keep/about.c
-wait    6
-quit    \033\033
-
-shot    em
-for     em new_e e sedt
-cap     em is MicroEMACS 3.8b, from EFFO forum 3, opened on a file -- the
-cap     mode line names the version and the file.
-run     em /dd/SYS/motd
-wait    8
-quit    \033
-run     new_e < /nil
-wait    10
-run     sedt < /nil
-wait    10
-
 shot    every
 for     every repeat cron bootlogger
 cap     every runs a command again and again: `every 2 oskversion' asks the
@@ -702,13 +684,6 @@ run     ub68kdemo | head -n 3
 wait    8
 run     ub68020demo | head -n 3
 wait    8
-
-shot    umacs
-cap     MicroEMACS, editing the collection's own C source.  The mode line
-cap     at the foot is emacs's, and the keys are emacs's.
-run     umacs /dd/SRC/keep/keep.c
-wait    6
-quit    \030\003
 
 shot    vc
 for     vc

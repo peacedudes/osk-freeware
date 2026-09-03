@@ -12,7 +12,7 @@
 | Category | Programs | |
 |---|--:|---|
 | [Shells](#shells) | 20 | Unix shells to sit beside OS-9's own -- bash and ksh bring history, job control, and scripts that come across unchanged. |
-| [Editors](#editors) | 22 | vi and emacs in several flavours, line and stream editors, and editors for binary and hex. |
+| [Editors](#editors) | 26 | vi and emacs in several flavours, line and stream editors, and editors for binary and hex. |
 | [Text tools](#text-tools) | 112 | Search, sort, compare, reformat, split and spell-check. |
 | [Files & directories](#files--directories) | 37 | Listing, copying, finding, renaming, and knowing what you have. |
 | [Developer tools](#developer-tools) | 46 | Version control, tags, cross-reference, formatters, a debugger and benchmarks. |
@@ -22,10 +22,10 @@
 | [Encoding & conversion](#encoding--conversion) | 24 | Between text encodings, line endings, Macintosh formats, ciphers and hashes. |
 | [Communications](#communications) | 96 | Kermit in several builds, terminal sessions, and networking. |
 | [Graphics & images](#graphics--images) | 202 | The netpbm toolkit, JPEG, a ray tracer, and things that draw. |
-| [Games](#games) | 68 | Adventures, board and card games, arcade ports, dungeon crawls and puzzles. |
-| [Screen toys](#screen-toys) | 9 | Animations and screen effects -- they draw on the terminal rather than print to it. Some run until you stop them. |
+| [Games](#games) | 67 | Adventures, board and card games, arcade ports, dungeon crawls and puzzles. |
+| [Screen toys](#screen-toys) | 10 | Animations and screen effects -- they draw on the terminal rather than print to it. Some run until you stop them. |
 | [Amusements](#amusements) | 19 | Generators, simulators and diversions that are not quite games. |
-| [System & modules](#system--modules) | 130 | OS-9 module and process tools, devices, system state and scheduling. |
+| [System & modules](#system--modules) | 126 | OS-9 module and process tools, devices, system state and scheduling. |
 | [Disk & DOS](#disk--dos) | 20 | Reading and writing MS-DOS media with the mtools set. |
 | [Time & calendar](#time--calendar) | 13 | Calendars, clocks and astronomy. |
 | [Maths & calculators](#maths--calculators) | 11 | Calculators, plotting, orbits and number theory. |
@@ -79,33 +79,43 @@
 
 *vi and emacs in several flavours, line and stream editors, and editors for binary and hex.*
 
-<details><summary>22 programs</summary>
+<details><summary>26 programs</summary>
 
 **Binary & hex**
 
 | | |
 |---|---|
-| `beav` | BEAV 1.40 -- Binary Editor And Viewer (needs TERM)<br>**How:** Full-screen: it takes over the display. **control-C gets you out** -- tested, and none of q, Q, control-D or ESC did. If it has a quit command of its own, its documentation in DOC/ will say. |
-| `hexed` | hex editor via your text editor.  Its work file goes to /r0 unless you say otherwise, and `-t=<dir>' is how you say otherwise -- `hexed -t=/dd/tmp <file>'.  `-e=<editor>' picks the editor (default vi).  Rebuilt trap-free 2026-08-31; before that it stopped mid-dump.  See DOC/README-RUNNING  [no military use -- EFFO-INFO]<br>**How:** Its work file goes to /r0 unless you say otherwise, so unless your system has a RAM disk there: `hexed -t=/dd/tmp <file>'. `-e=<editor>' picks the editor. |
-| `hexedit` | HEXPERT V2.4 by Dominic Alston -- `hexedit <file>'.  It reads TERMCAP as the capability string itself, not as the name of a file, so source `. /dd/SYS/termcap.entry' first and it draws its viewer; without that it prints the terminal type and exits.  gnuchess wants the same.  Its -d option is separately broken -- `file not accessible' (214) for a file that is readable.  `beav' is the binary editor that needs nothing, and `hexed' the one that would work if there were a RAM disk.  Corrected 2026-08-29<br>**How:** A hex editor -- Hexpert v2.4 by Dominic Alston. Takes a file: `hexedit <file>'. Needs `. /dd/SYS/termcap.entry' first or it will not draw. |
+| `beav` | BEAV 1.40 -- Binary Editor And Viewer (needs TERM)<br>**How:** Full-screen binary editor: `beav <file>'. Control-C leaves it. |
+| `hexed` | a hex editor made of your text editor: it writes the file out as a hex dump, opens that in the editor `-e=' names (default vi), and writes the file back when you leave. `-t=<dir>' says where the dump goes; without it, /r0 [no military use -- EFFO-INFO]<br>**How:** `hexed -t=<dir> -e=<editor> <file>': the file goes out as a hex dump into <dir>, the editor opens it, and leaving the editor writes the file back. Without -t it uses /r0. |
+| `hexedit` | HEXPERT V2.4 by Dominic Alston -- `hexedit <file>'.  It reads TERMCAP as the capability string itself, not as the name of a file, so source `. /dd/SYS/termcap.entry' first and it draws its viewer; without that it prints the terminal type and exits.  gnuchess wants the same.  Its -d option is separately broken -- `file not accessible' (214) for a file that is readable.  `beav' is the binary editor that needs nothing, and `hexed' the one that would work if there were a RAM disk.  Corrected 2026-08-29<br>**How:** `hexedit <file>'. Put the termcap entry in TERMCAP first (`. /dd/SYS/termcap.entry') or it will not draw. |
 | `pbyte` | &#9733; patch bytes in a file at a hex offset<br>`Syntax: pbyte <path> <hex_offset> <hex_byte> [<hex_byte>]` |
 
 **emacs family**
 
 | | |
 |---|---|
-| `emacs` | &#9733; MicroEmacs 4.00<br>**How:** Full-screen editor, MicroEMACS key bindings. **control-X control-C quits** (exit-emacs) -- tested. Its macros and online help are in USR/LIB/EMACS. |
-| `emacs.mm1` | &#9733; MicroEmacs macro module<br>**How:** Full-screen editor, MicroEMACS key bindings. **control-X control-C quits** (exit-emacs) -- tested. Its macros and online help are in USR/LIB/EMACS. |
-| `me` | MicroEmacs 3.11 -- ADDED; needs TERM.  (memacs400 `emacs` needs cio)<br>**How:** Full-screen editor, MicroEMACS key bindings. **control-X control-C quits** (exit-emacs) -- tested. Its macros and online help are in USR/LIB/EMACS. |
-| `mg` | &#9733; MicroGnuEmacs<br>**How:** Full-screen editor, MicroEMACS key bindings. **control-X control-C quits** (exit-emacs) -- tested. Its macros and online help are in USR/LIB/EMACS. |
+| `em` | MicroEMACS 3.8b, a screen editor with Emacs keys<br>**How:** A screen editor. It stops with "Environment variable TERM not defined!" unless TERM is set -- SYS/login sets it, so run it from a login shell rather than bare. |
+| `emacs` | &#9733; MicroEmacs 4.00<br>**How:** Full-screen editor, MicroEMACS keys. Control-X control-C quits. Its macros and help are in USR/LIB/EMACS. |
+| `emacs.mm1` | &#9733; MicroEMACS 4.00 built for the MM/1 -- the same editor as `emacs'<br>**How:** The MM/1 build of `emacs'; the same keys, control-X control-C quits. |
+| `me` | MicroEmacs 3.11 -- ADDED; needs TERM.  (memacs400 `emacs` needs cio)<br>**How:** Full-screen editor, MicroEMACS keys, German messages. Control-X control-C quits. |
+| `mg` | &#9733; MicroGnuEmacs<br>**How:** Full-screen editor, Emacs keys. Control-X control-C quits. |
+| `umacs` | &#9733; uMacs 1.0, MicroEMACS in 45K -- the same keys, no macro language<br>**How:** A small Emacs (uMacs 1.0). Full-screen: it takes the display and shows "== uMacs 1.0 == main ==" at the foot. This line said it needs `. /dd/SYS/termcap.entry' sourced first; measured 2026-08-29, it does not. |
 
 **Line & stream**
 
 | | |
 |---|---|
-| `ed` | &#9733; GNU ed 0.2 line editor -- it makes its temporary file on /r0, a RAM disk, and stops at once with `module not found' if there is none.  DOC/README-RUNNING lists the seventeen programs that reach for /r0 and how to give them one<br>`Usage: ed [OPTION]... [FILE]` |
-| `editor` | GSHELL front-end for `umacs' SPECIFICALLY -- its own Function line says "a menue driven umacs shell", not a front end for whichever editor you prefer.  It is the same full-screen file picker as `gshell' and `assembler'. Corrected 2026-09-01<br>**How:** Full-screen: it takes over the display. **control-C gets you out** -- tested, and none of q, Q, control-D or ESC did. If it has a quit command of its own, its documentation in DOC/ will say. |
+| `ed` | &#9733; GNU ed 0.2, the line editor.  It keeps its scratch file on /r0, a RAM disk, and stops with `module not found' where there is none; DOC/README-RUNNING says how to provide one<br>**How:** Needs a /r0 RAM disk for its scratch file; under os9exec `mount -r=256k /r0' provides one. Then `ed <file>', with ed's usual commands: 1,4p prints, s/a/b/ substitutes, w writes, q quits. |
+| `editor` | a full-screen file picker that hands the file you choose to `umacs': a lettered list of the directory, `+' and `-' to page, `.' to change directory.  Run it bare; given a path on the command line it stops on an illegal instruction.  `gshell' and `assembler' are the same menu in front of other programs Corrected 2026-09-01<br>**How:** Run it bare: a full-screen file picker for umacs. Given a file on the command line it stops on an illegal instruction. Control-C leaves the menu. |
 | `sed` | &#9733; sed - stream editor.  SWAPPED 2026-08-28: what ships here is now the CMDS/REBUILT/sed_1.06 build, because the one that used to be here answered every script -- from a file or a pipe, on a four-line input -- with `No more memory !!!' and `Couldn't re-allocate memory'.  The one here now substitutes, deletes and prints with -n.  The swap was right, and 2026-08-31 explains it: that build wanted a `cio' module none of these disks has -- see DOC/README-CIO.  It was not the emulator<br>`Syntax   : sed [<opts>] [<file>]` |
+
+**SEDT family**
+
+| | |
+|---|---|
+| `btree` | &#9733; B-tree file handling demonstration and test |
+| `new_e` | SEDT editor, generic terminal -- it picks vt100 or vt220 by TERM.  Needs the same three SYS/sedt.* files as `e' |
+| `sedt` | &#9733; SEDT 2.6 screen editor, the VT100 build: a DEC-style keypad editor.  `new_e' and `e' are two more builds of it; all three read SYS/sedt.keys, sedt.ruler0 and sedt.help |
 
 **vi clones**
 
@@ -114,7 +124,7 @@
 | `elvis` | Elvis 1.7 -- the best-documented of this disk's three vi editors, and the one with the most options.  BUILT HERE from the source in CMDS/archives.  Needs TERM and TERMCAP; runs with no program under its other personalities and need elvis present to run. IT ALSO NEEDS A /dd/tmp, and the path is compiled in: on a /dd without that directory it stops before drawing anything with `Can't create temp file... Does directory "/dd/tmp" exist?'.  This disk ships one, so it bites on the machine you copy elvis TO.  Either `makdir /dd/tmp' or, before starting it, `setenv EXINIT "set directory=<a dir you have>"' -- elvis reads EXINIT before creating the temp file.  `vi' has the same compiled-in /dd/tmp; the PVIC builds do not.  Measured 2026-08-31; DOC/README-VI has the table<br>**How:** A full vi/ex clone, built here from the archive that was always on this disk. Needs TERM and TERMCAP set -- `SYS/login' does both. `view' opens read-only, REBUILT/vi.elvis is the same program as vi, and all of them need CMDS/elvis present because they exec it. |
 | `elvis_input` | elvis under its `input' personality -- it opens already in insert mode.  RENAMED from `input.elvis' 2026-08-31, and the name is load-bearing: elvis's wrapper picks its personality from the LAST LETTER of the name it was invoked by, so under `input.elvis' it fell through to plain vi and the personality never happened.  Measured both ways with the same bytes. CMDS/input is a different program entirely |
 | `elvprsv` | Preserve an elvis session across a crash |
-| `elvrec` | recover an elvis buffer preserved when elvis died.  Run with NO ARGUMENTS it lists what is recoverable -- so its silence here means there is nothing, which is true.  It reads `/usr/preserve/Index', and OS-9 cannot have a /usr at all: a leading /name is a DEVICE, not a directory.  So on this machine it can never find anything, whatever is placed under /dd.  `expreserve' is the half that saves. DOC/elvrec/elvrec.doc.  Clarified 2026-09-01<br>**How:** Bare, it LISTS what is recoverable -- so saying nothing means there is nothing. It reads `/usr/preserve/Index', and in OS-9 a leading /name is a DEVICE, not a directory, so that path cannot exist here. |
+| `elvrec` | recover an elvis buffer preserved when elvis died.  Run with NO ARGUMENTS it lists what is recoverable -- so its silence here means there is nothing, which is true.  It reads `/usr/preserve/Index', and OS-9 cannot have a /usr at all: a leading /name is a DEVICE, not a directory.  So on this machine it can never find anything, whatever is placed under /dd.  `expreserve' is the half that saves. DOC/elvrec/elvrec.doc.  Clarified 2026-09-01<br>**How:** Bare, it lists what elvis preserved; nothing listed means nothing was preserved. |
 | `vi.elvis` | elvis 1.7 as vi.  CMDS/vi is the EFFO build and CMDS/vi_nocio is PVic -- three unrelated vi clones |
 | `view` | elvis opened read-only |
 
@@ -122,10 +132,9 @@
 
 | | |
 |---|---|
-| `sedt` | &#9733; SEDT screen editor -- the third build of the same editor, and it needs SYS/sedt.keys like the other two.  All three run now |
 | `vi` | &#9733; the real vi/ex, and it keeps the name -- its source in SRC/effo_vi is the Berkeley ex source itself, not a clone. `vi -x' is ex, `vi -d' is edit.  See DOC/README-VI.<br>**How:** One of three unrelated vi editors here, and the only one that is the genuine Berkeley ex/vi rather than a clone -- its source in SRC/effo_vi is the real ex_*.c files. `vi -x' becomes ex, `vi -d' becomes edit. DOC/README-VI compares all three. |
 | `vi_1.0` | PVIC 1.0, public domain      -> /dd/CMDS/REBUILT (name was taken) and CMDS/vi_nocio are PVIC 1.0a<br>`Usage: vi [file ...]` |
-| `vi_cio` | &#9733; PVic vi, cio build (use vi_nocio instead)<br>**How:** PVic vi, the cio build. Needs `. /dd/SYS/termcap.entry' first, then it opens on an empty buffer. CMDS/vi_nocio is the same editor needing no module; DOC/README-VI compares all three vi editors here. |
+| `vi_cio` | &#9733; PVic vi, cio build (use vi_nocio instead)<br>**How:** PVIC 1.0a built with cio. Put the termcap entry in TERMCAP first (`. /dd/SYS/termcap.entry'), then `vi_cio <file>'. CMDS/vi_nocio is the same editor needing no module. |
 | `vi_nocio` | PVIC 1.0a -- the smallest of this disk's three vi editors, public domain.  See DOC/README-VI to choose between them<br>**How:** PVIC 1.0a, the smallest of the three vi editors on this disk, public domain, no source or docs here. DOC/README-VI compares it with vi and elvis. |
 
 </details>
@@ -1142,31 +1151,30 @@
 
 *Adventures, board and card games, arcade ports, dungeon crawls and puzzles.*
 
-<details><summary>68 programs</summary>
+<details><summary>67 programs</summary>
 
 **Adventure & fiction**
 
 | | |
 |---|---|
-| `advcom` | ADVSYS adventure COMPILER -- turns .adv source into a world file (a .dat, not a .adi; the .adi is an INCLUDE).  The sample source is here, in GAMES/ADVSYS.  Bring osample.adv and objects.adi to the data directory and `advcom osample' builds it -- bare name, because it holds a filename in 20 characters and appends `.adv'.  Corrected 2026-08-29<br>**How:** The ADVSYS compiler. It opens its `@objects.adi` include by BARE NAME in the data directory and holds a filename in 20 characters, so bring both files to where you are and use the short name: `cat /dd/GAMES/ADVSYS/osample.adv > /dd/osample.adv`, the same for objects.adi, then `advcom osample`. Writes osample.dat. Measured 2026-08-29. |
+| `advcom` | ADVSYS adventure COMPILER -- turns .adv source into a world file (a .dat, not a .adi; the .adi is an INCLUDE).  The sample source is here, in GAMES/ADVSYS.  Copy osample.adv and objects.adi to a directory, make it the data directory (`load' advcom, then `sh -c "chd <dir>; advcom osample"') and it writes osample.dat -- bare name, because it holds a filename in 20 characters and appends `.adv'<br>**How:** The ADVSYS compiler. It opens its `@objects.adi` include by BARE NAME in the data directory and holds a filename in 20 characters, so copy osample.adv and objects.adi from GAMES/ADVSYS to a directory of your own, `load /dd/CMDS/GAMES/advcom`, then `sh -c "chd /dd/tmp/adv; advcom osample"`. It lists every object it compiles and writes osample.dat. (ksh's `cd` moves the data directory too, but prints an F$SetSys complaint four times on the way.) |
 | `advent` | Colossal Cave Adventure -- self-contained, reads /dd/GAMES/adv/glorkz.  Needs this disk as /dd; mounted only as /h0 it cannot find its data.  Unrelated to advcom/advint.<br>**How:** Colossal Cave. Needs this disk as /dd -- it opens /dd/GAMES/adv/glorkz by absolute path, so mounted only as /h0 it cannot find its data. |
-| `advint` | ADVSYS adventure INTERPRETER -- plays a world compiled by advcom, and there is one to play: build it as advcom's entry says and `advint osample' starts you in the livingroom.  This said until 2026-08-29 that building it needed a real chd; it does not, and bash on this disk can do the whole thing. GAMES/ADVSYS/README has the four lines<br>**How:** Plays an ADVSYS world. Build one first (see advcom), then `advint osample` -- you start in the livingroom, `n` goes to the hallway. Measured 2026-08-29. |
+| `advint` | ADVSYS adventure INTERPRETER -- plays a world compiled by advcom, and there is one to play: build it as advcom's entry says and `advint osample' starts you in the livingroom. Both open their files by bare name in the data directory, so run them where the files are: `load' the module, then `sh -c "chd /dd/tmp/adv; advint osample"'. GAMES/ADVSYS/README has the details<br>**How:** Plays an ADVSYS world. Build one first (see advcom), then run it where the .dat is: `load /dd/CMDS/GAMES/advint`, then `sh -c "chd /dd/tmp/adv; advint osample"` -- you start in the livingroom, `n` goes to the hallway, `e` to a storage room with a key. |
 | `infocom` | Infocom Z-MACHINE interpreter -- a third, unrelated adventure system.  Plays the .z3 files in GAMES/INFORM (dejavu, hellow, shell -- Inform demos, not the Infocom games).<br>**How:** A Z-machine. Plays the .z3 files in /dd/GAMES/INFORM, which are Inform demonstration programs (dejavu, hellow, shell), not the Infocom games. |
-| `infocom.tcap` | Infocom interpreter, TERMCAP build -- and it is the one to use here.  It puts a proper status line at the top of the screen (`Y2 Rock Room     Score: 0/2') where plain `infocom' fills the screen with brackets trying to. Measured 2026-08-28<br>**How:** Plays Infocom adventure game files -- it needs the game's data file as an argument, which this disk does not carry. |
+| `infocom.tcap` | Infocom interpreter, TERMCAP build -- and it is the one to use here.  It puts a proper status line at the top of the screen (`Y2 Rock Room     Score: 0/2') where plain `infocom' fills the screen with brackets trying to. Measured 2026-08-28<br>**How:** The termcap build of the Z-machine, and the one to use at a terminal: `infocom.tcap /dd/GAMES/INFORM/dejavu.z3' keeps a status line (room and score) across the top. Three Inform story files ship in GAMES/INFORM: dejavu, hellow, shell. |
 | `paranoia` | &#9733; the PARANOIA text adventure.  `Welcome to Paranoia!  As Philo-R-DMD you will die at times during the adventure... you will be given a new clone' -- six clones, one mission, RETURN to go on.  Not the floating-point torture test of the same name; those are `float' and `savage'<br>**How:** Not a benchmark: it is the PARANOIA text adventure. RETURN to go on, a letter to choose, `p' for your statistics, six clones. `float' and `savage' are the floating-point benchmarks on this disk. |
 
 **Arcade & action**
 
 | | |
 |---|---|
-| `bite` | a skull animation, not a game you play<br>**How:** Full-screen: it takes over the display. **`q' quits** -- tested. |
 | `greed` | Greed - grid game<br>`Usage: greed [-p] [-s]` |
-| `lander` | lunar lander -- KNOWN BROKEN: takes no input, and the post-crash screen is corrupt.  Wants SysV curses line drawing that vt100 termcap does not give it.<br>**How:** Full-screen: it takes over the display. **`q' quits** -- tested. |
+| `lander` | lunar lander -- space starts a game, a digit sets the power, x or k is vertical thrust, z/j and c/l the side retros.  Its score file is GAMES/lander.hs, looked for under /h0, so mount the disk there as well<br>**How:** Full-screen: it takes over the display. **`q' quits** -- tested. |
 | `pacman` | Pac-Man -- it draws nothing and exits at once, keyed or not |
 | `robots` | &#9733; robots -- outrun them until they crash into each other. REBUILT HERE from source, in SRC/rob.  The archive binary drew cursor-up as a bare ^K, which a terminal reads as index -- DOWN -- so the screen scrolled and the board was left with characters that were not really there. USE -m: without it the game is effectively unplayable.<br>**How:** Play with `robots -m' -- manual mode, where the robots take one step per move you make. Keys are the numeric keypad 1-9 (5 stands still), `s' for last stand, `t' to teleport. Needs Microware's math module and a real TERM. |
 | `snake` | snake arcade game.  Draws its board and takes h/j/k/l in a login session; run bare, with no TERMCAP, it bus errors instead -- see DOC/README-BUSERR.  IT SCATTERS TEXT ACROSS THE BOARD as you play: 17 cursor moves in a played game arrive as literal `[13;49H' rather than as motion, one in an untouched one.  Playable, untidy.  Measured 2026-08-28<br>**How:** Full-screen: it takes over the display. **`x' quits** -- tested. (control-C also gets you out, but `x' is the program's own way.) |
 | `sokoban` | &#9733; Sokoban puzzle<br>**How:** Wants a username, so run it from a login rather than a bare shell, or it stops with "cannot get your username". |
-| `tet` | Tetris -- KNOWN BROKEN: draws its board and takes no input<br>**How:** Draws the board and ignores the keyboard, and the reason is in its source: tet.c puts the terminal in raw mode inside `#ifndef OSK', so the OS-9 build has no terminal setup at all. Set the mode from outside before starting it (Microware's tmode), or rebuild with an OSK branch using _ss_opt -- LIB/alib.l provides both that and ioctl. Source in SRC/tet. |
+| `tet` | Tetris -- `p' plays; s/j and f/l move a piece, d/k turns it, space drops it, q quits to the high-score table it keeps in GAMES/tet.hs.  Needs a terminal, not a pipe<br>**How:** Tetris. `p' plays from the menu; s or j moves the piece left, f or l right, d or k turns it, space drops it, ESC pauses and q quits to the high-score table, kept in GAMES/tet.hs. Give it a real terminal: it does no terminal setup of its own (the raw-mode code in SRC/tet/tet.c is inside `#ifndef OSK'), so from a pipe it draws its board and reads nothing. |
 | `wanderer` | Boulderdash-style maze game.  Screens ARE here, in GAMES/WAND/screens; needs this disk as /dd to find them.<br>**How:** Full-screen: it takes over the display. **`q' quits** -- tested. |
 
 **Board & card**
@@ -1258,10 +1266,11 @@
 
 *Animations and screen effects -- they draw on the terminal rather than print to it. Some run until you stop them.*
 
-<details><summary>9 programs</summary>
+<details><summary>10 programs</summary>
 
 | | |
 |---|---|
+| `bite` | a skull animation, not a game you play<br>**How:** Full-screen: it takes over the display. **`q' quits** -- tested. |
 | `card` | Towers of Hanoi whose twelve disks are the lines of a Christmas message; VT100, wants TERMCAP |
 | `life` | Conway's Game of Life<br>**How:** life [init-file]. The patterns are in /dd/GAMES/LIFE -- try `life /dd/GAMES/LIFE/glider`. It also wants more memory than the default; from the OS-9 shell that is `life #22k <file>`, and bash has no #size syntax at all. |
 | `rain` | raindrops screen effect<br>**How:** Full-screen: it takes over the display. **control-C gets you out** -- tested, and none of q, Q, control-D or ESC did. If it has a quit command of its own, its documentation in DOC/ will say. |
@@ -1325,7 +1334,7 @@
 
 *OS-9 module and process tools, devices, system state and scheduling.*
 
-<details><summary>130 programs</summary>
+<details><summary>126 programs</summary>
 
 **Devices & disks**
 
@@ -1440,7 +1449,6 @@
 | `bootlogger` | &#9733; log what happens during boot |
 | `break` | send a BREAK on a serial line -- an assembler example, and it calls F$SysDbg, the system-debugger trap, on its way there.  On a machine with a debugger attached that drops you into it and waits for an answer, which in a script is a hang<br>`Syntax: break` |
 | `btop` | convert characters to bit patterns -- its own Function: line, and what it does: `btop <file>' prints each character as a grid of O and space.  Measured 2026-08-31: 40 bytes in, 640 out, and `ptob' turns those 640 back into the same 40.  This entry said `bitmap to Gepard fat-font', which is an application of the pair, not what the program does<br>`Syntax:   BtoP [<opts>] [<path1>] [<opts>] [<path2>] [<opts>]` |
-| `btree` | &#9733; B-tree file handling demonstration and test |
 | `clear` | &#9733; clear the screen<br>`Syntax:   clear` |
 | `combine` | &#9733; interleave two files BYTE BY BYTE, one supplying the even bytes and the other the odd -- how a 16-bit EPROM image is put back together from two 8-bit halves.  F.R.Schmitt, 1989.  Clarified 2026-08-29<br>`Syntax: combine [<file1>] [<file2>] [<outfile>] [<opt>]` |
 | `config` | report this machine's C type properties as #defines -- char, short, int, long, pointer and float all come out; it then aborts where `double' begins, because that needs a 68881 or Microware's fpu.  See DOC/README-BUSERR |
@@ -1450,8 +1458,7 @@
 | `deton` | &#9733; time out an I/O read using an alarm: `deton [seconds]', an example rather than a tool.  For converting tabs, see `detab' and `expand'<br>`syntax: deton [seconds]` |
 | `devprc` | show which device belongs to which process.  REBUILT HERE: the archived module has a bad CRC and a corrupt initialised- data descriptor, and does not load.  -h works; -a stops at F$GPrDBT (0x1f), the get-process-descriptor-block-table call, and needs a kernel that keeps one; where the call is answered without a table it is a bus error.  `top' stops in the same place, after printing its heading. Measured 2026-09-02 |
 | `dload` | &#9733; load a data file into a data module: `dload <filename>'. Nothing to do with serial downloads -- `sbreak' and `break' are the serial-line examples here<br>`Syntax: dload <filename>` |
-| `e` | SEDT editor, VT220 keys.  FIXED 2026-08-28: it wants sys/sedt.keys, sys/sedt.ruler0 and sys/sedt.help, none of which were here -- it stopped with `Could not open key definition file'.  All three are in SYS now, recovered from the EFFO forum 11 archive it came from |
-| `em` | a screen editor (EFFO forum 3)<br>**How:** A screen editor. It stops with "Environment variable TERM not defined!" unless TERM is set -- SYS/login sets it, so run it from a login shell rather than bare. |
+| `e` | SEDT screen editor, the small VT220 build.  Reads SYS/sedt.keys, sedt.ruler0 and sedt.help, which ship |
 | `epson` | &#9733; spline output driver for an Epson printer<br>`usage: epson [<opts>]` |
 | `expreserve` | &#9733; vi's crash-recovery helper: preserves an edit buffer when the editor dies.  Like ksh it reads the terminal asking for more bytes than you type (388), so it depends on the same emulator behaviour -- see DOC/README-KSH<br>**How:** Saves a vi buffer when the editor or the line dies; vi runs it for you rather than you running it. |
 | `exrecover` | &#9733; recover a vi buffer that expreserve saved<br>**How:** Recovers what expreserve saved. Again, vi's helper rather than a command you start. |
@@ -1474,7 +1481,6 @@
 | `mshell` | &#9733; a MENU shell: it takes a menu file as its argument and says `Could not open <name> (menufile)' without one.  It also needs TERM set, as every full-screen program here does.  Corrected 2026-08-29; an earlier note said only that it wanted a terminal, which was an artefact of probing it with no TERM in the environment |
 | `mvolformat` | format a multi-volume set<br>`Syntax: mvolformat drive volname volcount [format options]` |
 | `names` | &#9733; list the names of modules in a file -- and it DOES NOT COME BACK: given a module it prints nothing and never returns, with a file on its standard input or without. `ident', `modinfo' and `module_census' all answer the same question.  Measured 2026-08-29 |
-| `new_e` | SEDT editor, generic terminal -- it picks vt100 or vt220 by TERM.  Needs the same three SYS/sedt.* files as `e' |
 | `phone` | connect two terminals -- NOT an address book<br>`Syntax: phone <communication-path>` |
 | `preset` | LOAD THE TERMINAL'S FUNCTION KEYS, not memory: it writes a fixed set of definitions -- `dir', `umacs', `r68', `l68', `dsave -ieb128k' and so on -- and answers `Funktionstasten belegt!'.  German, from forum3.  It takes no arguments and ignores any given.  Corrected 2026-08-31 from `preset memory to a pattern' |
 | `pri` | change a process's priority.  There is no `procs' on this disk to show you the change, so it can only be taken on trust here; it says nothing whether the process exists or not |
@@ -1497,7 +1503,6 @@
 | `transfer` | &#9733; copies files from GDOS DISKS to OS-9, and takes no options at all -- not a general device-to-device copier.  `cp', `copy' and `dsave' are those. Corrected 2026-08-29<br>`Syntax: transfer` |
 | `trunc` | &#9733; truncate a file to a given length<br>`Syntax: trunc <path> <num>` |
 | `tty` | &#9733; report the terminal's name |
-| `umacs` | &#9733; MicroEMACS -- a small Emacs, EFFO forum 1<br>**How:** A small Emacs (uMacs 1.0). Full-screen: it takes the display and shows "== uMacs 1.0 == main ==" at the foot. This line said it needs `. /dd/SYS/termcap.entry' sourced first; measured 2026-08-29, it does not. |
 | `umusek` | UMusEK -- a music editor.  It wants a HARDWARE screen address and says so: `***DS_ScAdd Error 208.' then `Fran: Can't get screen addr, 'bye!'.  Without a graphics screen that is as far as it goes.  Measured 2026-09-01 |
 | `unpacklib.os9` | unpack a library into its object modules<br>`Usage: unpacklib <options> file1.l file2.l ...` |
 | `vc` | &#9733; a SPREADSHEET -- `Welcome to the Spreadsheet Calculator, type ? for help', with rows, columns and a formula line |
@@ -1592,7 +1597,7 @@
 | | |
 |---|---|
 | `cam` | &#9733; CAMSHAFT, not camera: it asks for the rocker ratio, the lift at a crank angle and the base circle, and plots the lift curve for an intake lobe.  The plot is Tektronix vectors, so on a vt100 it arrives as characters -- the dialogue above it is the readable part.  Corrected 2026-08-29 |
-| `chbase` | &#9733; converts a NUMBER from one base to another -- Philip Maechler's, and nothing to do with a module's base address.  `cvtbase' is the other one, and floods. Corrected 2026-08-29<br>`Syntax   : chbase <number> [ <base A> [ <base B> ] ]` |
+| `chbase` | &#9733; converts a number from one base to another: `chbase 255 10 16' prints FF, and a target base of 0 prints every base from 2 to 36<br>`Syntax   : chbase <number> [ <base A> [ <base B> ] ]` |
 | `cvtbase` | convert a number between bases -- and it WORKS, since 2026-08-31.  The bases are named by KEY (b, d, h or x, o) and the NUMBER COMES ON STANDARD INPUT: `echo 255 ! cvtbase d h' answers `ff', `cvtbase d b' answers `11111111'.  Rebuilt `-qm' from SRC/misc/cvtbase.c; before that it was the loudest victim of the cio selector mismatch, flooding `No more memory !!!' and converting nothing.  DOC/README-CIO<br>**How:** The BASES are the arguments and the NUMBER comes on standard input: `echo 255 ! cvtbase d h' answers ff, `cvtbase d b' answers 11111111. Bases are named b, d, h or x, o -- or by their actual digit characters. Rebuilt 2026-08-31; before that it flooded and converted nothing. |
 | `loan` | &#9733; loan/amortisation calculator |
 | `rechne` | &#9733; calculator, German -- and it takes ONE expression with no spaces in it: `rechne 4095+1' answers 4096, $1000 and the binary.  Spaced out it evaluates each argument separately |
@@ -1663,20 +1668,13 @@
 
 <details><summary>5 programs</summary>
 
-**Pagers**
-
-| | |
-|---|---|
-| `lessecho` | &#9733; Helper for less<br>`usage: lessecho [-ox] [-cx] [-pn] [-dn] [-a] file ...` |
-| `lesskey` | Compile a key-binding file for less<br>`usage: lesskey [-o output] [input]` |
-
-**Readers & pagers**
-
 | | |
 |---|---|
 | `help` | help system<br>`Syntax:   help [<opts>] [<topic> {<subtopic>}] [<opts>]` |
-| `helpindex` | &#9733; build the help index<br>**How:** Bare it says `Missing names of files to create index for.' Given files it does not want, it names them. |
+| `helpindex` | &#9733; builds the .ndx index a .hlp help file needs: `helpindex dinfo.hlp' writes dinfo.ndx beside it<br>**How:** `helpindex dinfo.hlp' writes dinfo.ndx beside it. Only names ending .hlp or .hlib are accepted unless -a is given; with no name it asks for one. |
 | `less` | Pager (wants a real TERM).  Its help screen works now: SYS/less.hlp is on the disk |
+| `lessecho` | &#9733; prints its arguments back quoted for a shell -- the helper less uses to hand file names on<br>`usage: lessecho [-ox] [-cx] [-pn] [-dn] [-a] file ...` |
+| `lesskey` | turns a key-binding file into the binary less reads: a `#command' section, then one key and one command per line<br>`usage: lesskey [-o output] [input]` |
 
 </details>
 

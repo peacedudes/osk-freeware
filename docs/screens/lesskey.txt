@@ -1,0 +1,7 @@
+$ cat /dd/tmp/DOCB/keys
+#command
+z forw-screen
+Z back-screen
+$ lesskey -o /dd/tmp/DOCB/lesskeys /dd/tmp/DOCB/keys
+$ ls -l /dd/tmp/DOCB/lesskeys
+-rw-------   1 0        0              20 Sep  3 01:22 /dd/tmp/DOCB/lesskeys

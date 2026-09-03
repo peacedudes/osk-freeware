@@ -1,24 +1,24 @@
-/* keep, drop, kept -- take programs off this collection onto your own disk.
- *
- * Written for the OS-9 freeware collection, 2026-08-21.  Microware C (K&R):
- * no prototypes, no const, no ANSI library beyond what OS-9 v2.4 ships.
- *
- * WHY THIS EXISTS, which is the whole design
- *
- * A 900-program disk offers everyone the same bad choice: take all of it, or
- * work out for yourself which pieces you want and how to get them.  The fix
- * is not a better installer.  It is not an installer at all -- "install"
- * means all-or-nothing, unknown extent, and no way back, which is the dread
- * itself.  The verb is `keep': you run things in place from the collection,
- * and when one earns its place you keep it.  Test drive, then take.
- *
- * WHO IT IS FOR
- *
- * Not everybody.  If you mount this collection as /dd -- the recommended
- * arrangement, see DOC/README-RUNNING -- then nothing needs keeping, because
- * everything is already where it expects to be.  `keep' is for the person who
- * ALREADY HAS an OS-9 system on /dd and wants some of this collection on it.
- * For them /dd is theirs and the collection is another drive, so a program
- * that reads /dd/GAMES/adv/glorkz will look on their disk and not find it.
-== uMacs 1.0 (CMODE) == keep.c == File: /dd/SRC/keep/keep.c ====================
-[Read 659 lines]
+Twas brillig, and the slithy toves
+     Did gyre and gimble in the wabe:
+All mimsy were the borogoves,
+     And the mome raths outgrabe.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+== uMacs 1.0 () == jabber.txt == File: /dd/tmp/EDIT/jabber.txt =================
+[Read 4 lines]

@@ -1,5 +1,24 @@
-Process   Pid: 3, editor, edition 7
-    Exit code: E_PRCABT(228) Process Aborted
-  Directories: Current   - /dd
-               Execution - /dd/CMDS
-        Files: 00 fCons /term
+                   UMACS-SHELL  V1.0           Uwe Simon  1988
+
+Directory : .
+
+   +  show next page   -  show first page    A..Z select file
+   !  exit Menue       .  change directory
+
+===== Edit what File ?                                                  =====
+A  ADL                             B  CMDS
+C  DEFS                            D  DEMO
+E  DOC                             F  DOS
+G  ETC                             H  GAMES
+I  GNUCHESS4.0                     J  GNULIB
+K  LIB                             L  LOG
+M  MAIL                            N  SBPROLOG
+O  SOURCES.txt                     P  SPL
+Q  SPOOL                           R  SRC
+S  SYS                             T  USR
+U  VH                              V  c
+W  local                           X  readme
+Y  startup                         Z  tmp
+
+
+Select file :

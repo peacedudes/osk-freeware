@@ -1,13 +1,8 @@
-$ helpindex -?
-Syntax:   helpindex [<opts>] {<help file>} [<opts>]
-Function: Creates index file for specified help files
-          Without the -a option, only files with names ending
-          in ".hlp" and ".hlib" will be processed. The index
-          file name will have the ".hlp"/".hlib" replaced by
-          ".ndx".
-Options:  -a  : Process all files with no name restrictions.
-Note:     existing index files (".ndx") will be overwritten
-V1.0 (c) 1989 by L.Zeller
-$ lesskey -?
-usage: lesskey [-o output] [input]
-$ lessecho < /nil
+$ ksh -c "cd /dd/tmp/DOCB; helpindex dinfo.hlp"
+Writing index for "dinfo.hlp" to "dinfo.ndx" ..done (4 pages).
+$ ls -l /dd/tmp/DOCB
+total 5120
+-rw-rw-rw-   1 0        0            3569 Aug  3 19:00 dinfo.hlp
+-rw-------   1 0        0              24 Sep  3 01:22 dinfo.ndx
+-rw-rw-rw-   1 0        0              37 Sep  3 01:20 keys
+-rw-------   1 0        0              20 Sep  3 01:20 lesskeys

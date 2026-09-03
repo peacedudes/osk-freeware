@@ -1,3 +1,3 @@
-$ hexed /dd/CMDS/today
-Creating '/r0/today.hd' from '/dd/CMDS/today'.
-error: can't create '/r0/today.hd' !
+hexed -t=/dd/tmp/EDIT -e=vi_nocio /dd/tmp/EDIT/jabber.txt
+Creating '/dd/tmp/EDIT/jabber.txt.hd' from '/dd/tmp/EDIT/jabber.txt'.
+Generating '/dd/tmp/EDIT/jabber.txt' from '/dd/tmp/EDIT/jabber.txt.hd'.

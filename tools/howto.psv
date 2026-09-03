@@ -31,8 +31,8 @@ japan|A weather simulator, not a calendar tool -- see `england'. It uses the Jap
 shire|A weather simulator using the Middle-earth calendar -- see `england'.
 sokoban|Wants a username, so run it from a login rather than a bare shell, or it stops with "cannot get your username".
 robots|Play with `robots -m' -- manual mode, where the robots take one step per move you make. Keys are the numeric keypad 1-9 (5 stands still), `s' for last stand, `t' to teleport. Needs Microware's math module and a real TERM.
-advint|Plays an ADVSYS world. Build one first (see advcom), then `advint osample` -- you start in the livingroom, `n` goes to the hallway. Measured 2026-08-29.
-advcom|The ADVSYS compiler. It opens its `@objects.adi` include by BARE NAME in the data directory and holds a filename in 20 characters, so bring both files to where you are and use the short name: `cat /dd/GAMES/ADVSYS/osample.adv > /dd/osample.adv`, the same for objects.adi, then `advcom osample`. Writes osample.dat. Measured 2026-08-29.
+advint|Plays an ADVSYS world. Build one first (see advcom), then run it where the .dat is: `load /dd/CMDS/GAMES/advint`, then `sh -c "chd /dd/tmp/adv; advint osample"` -- you start in the livingroom, `n` goes to the hallway, `e` to a storage room with a key.
+advcom|The ADVSYS compiler. It opens its `@objects.adi` include by BARE NAME in the data directory and holds a filename in 20 characters, so copy osample.adv and objects.adi from GAMES/ADVSYS to a directory of your own, `load /dd/CMDS/GAMES/advcom`, then `sh -c "chd /dd/tmp/adv; advcom osample"`. It lists every object it compiles and writes osample.dat. (ksh's `cd` moves the data directory too, but prints an F$SetSys complaint four times on the way.)
 infocom|A Z-machine. Plays the .z3 files in /dd/GAMES/INFORM, which are Inform demonstration programs (dejavu, hellow, shell), not the Infocom games.
 advent|Colossal Cave. Needs this disk as /dd -- it opens /dd/GAMES/adv/glorkz by absolute path, so mounted only as /h0 it cannot find its data.
 pbmtext|pbmtext <word> draws it as an image. `pbmtext os9 | pbmtoascii' prints it on the terminal and needs no file at all -- the shortest demonstration of the 169 NETPBM programs. See DOC/README-NETPBM.
@@ -68,7 +68,7 @@ funzip|Unzips from a pipe rather than a file: `funzip < thing.zip > thing'. For 
 gs403|Aladdin Ghostscript 4.03. Point GS_LIB at its library first -- in bash that is `export GS_LIB=/dd/LIB/gs403`, NOT `setenv`, which is the OS-9 shell's command and gets "setenv: command not found" here; this line said setenv until 2026-08-30. Then `gs403 -q -dNOPAUSE -sDEVICE=nullpage <file>.ps` reads the file and gives you its GS> prompt. Everything it needs, fonts included, is in that directory. The older gs33 on this disk has never had its support files.
 hexbin|Decodes Macintosh BinHex (.hqx) files, which is how Mac software travelled by mail and BBS. binhex goes the other way; unsit opens StuffIt archives and macunpack opens PackIt ones. All trap-free. DOC/macutils has the package readme.
 mgif|`mgif -i file.gif' inspects a GIF and prints its structure -- that works on any terminal. Displaying an image does not: it writes straight to Atari ST graphics memory. Try it on /dd/DEMO/gulls.gif.
-tet|Draws the board and ignores the keyboard, and the reason is in its source: tet.c puts the terminal in raw mode inside `#ifndef OSK', so the OS-9 build has no terminal setup at all. Set the mode from outside before starting it (Microware's tmode), or rebuild with an OSK branch using _ss_opt -- LIB/alib.l provides both that and ioctl. Source in SRC/tet.
+tet|Tetris. `p' plays from the menu; s or j moves the piece left, f or l right, d or k turns it, space drops it, ESC pauses and q quits to the high-score table, kept in GAMES/tet.hs. Give it a real terminal: it does no terminal setup of its own (the raw-mode code in SRC/tet/tet.c is inside `#ifndef OSK'), so from a pipe it draws its board and reads nothing.
 elvis|A full vi/ex clone, built here from the archive that was always on this disk. Needs TERM and TERMCAP set -- `SYS/login' does both. `view' opens read-only, REBUILT/vi.elvis is the same program as vi, and all of them need CMDS/elvis present because they exec it.
 vi|One of three unrelated vi editors here, and the only one that is the genuine Berkeley ex/vi rather than a clone -- its source in SRC/effo_vi is the real ex_*.c files. `vi -x' becomes ex, `vi -d' becomes edit. DOC/README-VI compares all three.
 vi_nocio|PVIC 1.0a, the smallest of the three vi editors on this disk, public domain, no source or docs here. DOC/README-VI compares it with vi and elvis.
@@ -79,23 +79,23 @@ ephem|An astronomical ephemeris: it shows where the Sun, Moon and planets are, f
 ephem881|The same program built for a 68881 coprocessor -- see the note for `ephem'. CONTROL-D quits.
 animal|Full-screen: it takes over the display. **control-C gets you out** -- tested, and none of q, Q, control-D or ESC did. If it has a quit command of its own, its documentation in DOC/ will say.
 assembler|Full-screen: it takes over the display. **control-C gets you out** -- tested, and none of q, Q, control-D or ESC did. If it has a quit command of its own, its documentation in DOC/ will say.
-beav|Full-screen: it takes over the display. **control-C gets you out** -- tested, and none of q, Q, control-D or ESC did. If it has a quit command of its own, its documentation in DOC/ will say.
+beav|Full-screen binary editor: `beav <file>'. Control-C leaves it.
 bite|Full-screen: it takes over the display. **`q' quits** -- tested.
 bog|Full-screen: it takes over the display. **control-C gets you out** -- tested, and none of q, Q, control-D or ESC did. If it has a quit command of its own, its documentation in DOC/ will say.
 checkfile|Full-screen: it takes over the display. **`q' quits** -- tested.
 compiler|Full-screen: it takes over the display. **control-C gets you out** -- tested, and none of q, Q, control-D or ESC did. If it has a quit command of its own, its documentation in DOC/ will say.
 crib|Full-screen: it takes over the display. **control-C gets you out** -- tested, and none of q, Q, control-D or ESC did. If it has a quit command of its own, its documentation in DOC/ will say.
 cribbage|Full-screen: it takes over the display. **control-C gets you out** -- tested, and none of q, Q, control-D or ESC did. If it has a quit command of its own, its documentation in DOC/ will say.
-editor|Full-screen: it takes over the display. **control-C gets you out** -- tested, and none of q, Q, control-D or ESC did. If it has a quit command of its own, its documentation in DOC/ will say.
-emacs|Full-screen editor, MicroEMACS key bindings. **control-X control-C quits** (exit-emacs) -- tested. Its macros and online help are in USR/LIB/EMACS.
-emacs.mm1|Full-screen editor, MicroEMACS key bindings. **control-X control-C quits** (exit-emacs) -- tested. Its macros and online help are in USR/LIB/EMACS.
+editor|Run it bare: a full-screen file picker for umacs. Given a file on the command line it stops on an illegal instruction. Control-C leaves the menu.
+emacs|Full-screen editor, MicroEMACS keys. Control-X control-C quits. Its macros and help are in USR/LIB/EMACS.
+emacs.mm1|The MM/1 build of `emacs'; the same keys, control-X control-C quits.
 gshell|Full-screen: it takes over the display. **control-C gets you out** -- tested, and none of q, Q, control-D or ESC did. If it has a quit command of its own, its documentation in DOC/ will say.
 hang|Full-screen: it takes over the display. **control-C gets you out** -- tested, and none of q, Q, control-D or ESC did. If it has a quit command of its own, its documentation in DOC/ will say.
 hotel|Full-screen: it takes over the display. **control-C gets you out** -- tested, and none of q, Q, control-D or ESC did. If it has a quit command of its own, its documentation in DOC/ will say.
 lander|Full-screen: it takes over the display. **`q' quits** -- tested.
 larn|Full-screen: it takes over the display. **control-C gets you out** -- tested, and none of q, Q, control-D or ESC did. If it has a quit command of its own, its documentation in DOC/ will say.
-me|Full-screen editor, MicroEMACS key bindings. **control-X control-C quits** (exit-emacs) -- tested. Its macros and online help are in USR/LIB/EMACS.
-mg|Full-screen editor, MicroEMACS key bindings. **control-X control-C quits** (exit-emacs) -- tested. Its macros and online help are in USR/LIB/EMACS.
+me|Full-screen editor, MicroEMACS keys, German messages. Control-X control-C quits.
+mg|Full-screen editor, Emacs keys. Control-X control-C quits.
 mille|Full-screen: it takes over the display. **control-C gets you out** -- tested, and none of q, Q, control-D or ESC did. If it has a quit command of its own, its documentation in DOC/ will say.
 mines|Full-screen: it takes over the display. **`q' quits** -- tested.
 nobs|Full-screen: it takes over the display. **control-C gets you out** -- tested, and none of q, Q, control-D or ESC did. If it has a quit command of its own, its documentation in DOC/ will say.
@@ -114,8 +114,8 @@ gnuchess|Full-screen chess. It will not read SYS/termcap -- it wants the entry i
 gnuchessn|As gnuchess: `. /dd/SYS/termcap.entry' first. Tested.
 jargon|A browser for the Jargon File, which is here: VH/jargon.txt, version 3.0.0 of 27 July 1993, with its index. It will not read SYS/termcap -- do `. /dd/SYS/termcap.entry' first, then `jargon -m'. Tested.
 sc|The spreadsheet, version 6.16. `sc' opens and says "Type '?' for help". This line said it will not read SYS/termcap and needs `. /dd/SYS/termcap.entry' first; measured 2026-08-29, it does not -- it opens with TERMCAP as SYS/login sets it.
-vi_cio|PVic vi, the cio build. Needs `. /dd/SYS/termcap.entry' first, then it opens on an empty buffer. CMDS/vi_nocio is the same editor needing no module; DOC/README-VI compares all three vi editors here.
-hexedit|A hex editor -- Hexpert v2.4 by Dominic Alston. Takes a file: `hexedit <file>'. Needs `. /dd/SYS/termcap.entry' first or it will not draw.
+vi_cio|PVIC 1.0a built with cio. Put the termcap entry in TERMCAP first (`. /dd/SYS/termcap.entry'), then `vi_cio <file>'. CMDS/vi_nocio is the same editor needing no module.
+hexedit|`hexedit <file>'. Put the termcap entry in TERMCAP first (`. /dd/SYS/termcap.entry') or it will not draw.
 ispell|Interactive spelling checker. Takes a file: `ispell <file>'. `ispell -a' is the pipe interface programs use.
 spiff|Compares two files while ignoring differences that do not matter (whitespace, number formatting). Takes TWO filenames.
 infocom.tcap|The termcap build of the Z-machine, and the one to use at a terminal: `infocom.tcap /dd/GAMES/INFORM/dejavu.z3' keeps a status line (room and score) across the top. Three Inform story files ship in GAMES/INFORM: dejavu, hellow, shell.
@@ -190,7 +190,7 @@ ppmforge|`-night' takes NO ARGUMENT. Written `-night 0' the 0 swallows the parse
 ppmntsc|It takes a DIMFACTOR first -- 0.0 is black, 1.0 the original -- then the file. Without it you get its usage.
 ppmtoyuvsplit|It takes a BASENAME and writes THREE files beside the DATA directory, not to standard output: <name>.Y, .U and .V. 4:2:0 subsampling, so a 32x16 image gives .Y = 512 bytes and .U = .V = 128. `yuvsplittoppm <name> <w> <h>' brings them back.
 des|It takes FILES and has no option flags at all -- `des file ...'. `-e' and `-?' are read as filenames and earn `Can't read -e.'
-hexed|Its work file goes to /r0 unless you say otherwise, so unless your system has a RAM disk there: `hexed -t=/dd/tmp <file>'. `-e=<editor>' picks the editor.
+hexed|`hexed -t=<dir> -e=<editor> <file>': the file goes out as a hex dump into <dir>, the editor opens it, and leaving the editor writes the file back. Without -t it uses /r0.
 read_mail|Not vi's helper and not part of Elm: it has a mail directory of its own, /dd/MAIL/mail_<user>, and $USER decides which. Answer its L/X/N prompt ON STANDARD INPUT -- `echo N > f; read_mail < f'. With no input at all it re-asks without bound.
 rmail|Remote works and local does not. `rmail "site!user"' queues a real UUCP job in /dd/SPOOL/uucp/seabass -- a C. command file and two D. data files. Local delivery builds <mailbox>/<user> and stops, because the mailbox is a file. 2026-09-01.
 subscribe|It works, and so does `unsubscribe' -- give it a group that IS in /dd/.newsrc. A group that is not there is silently left alone, which is what made both look broken.
@@ -228,9 +228,10 @@ printf|/dd/CMDS/printf DROPPED EVERYTHING BEFORE THE FIRST CONVERSION until it w
 ppmquant|A PALETTED CONVERTER NEEDS A QUANTISED IMAGE, and this is what quantises: `ppmquant 16 in.ppm > out.ppm'. Eight netpbm writers -- ppmtoicr, ppmtosixel, ppmtouil, ppmtopuzz, ppmtopict, ppmtopi1 and two more -- write ZERO BYTES for a 24-bit PPM and correct files after it.
 pgmtopbm|WITHOUT -threshold IT IS NOT REPRODUCIBLE: its dither differs every run, so any assertion on a length or a checksum downstream of it flaps. `pgmtopbm -threshold' when you need the same answer twice.
 macsave|Its silence is CORRECT and documented: DOC/macsave/macsave.1 says it "reads standard input and silently writes the file(s) it contains". `macbin' makes the MacBinary it wants, and the pair round-trips.
-elvrec|Bare, it LISTS what is recoverable -- so saying nothing means there is nothing. It reads `/usr/preserve/Index', and in OS-9 a leading /name is a DEVICE, not a directory, so that path cannot exist here.
+elvrec|Bare, it lists what elvis preserved; nothing listed means nothing was preserved.
 lnk.org|`load /dd/CMDS/os9lib' first. Without it this calls F$Link for os9lib, gets E_MNF and exits printing nothing. DOC/README-RUNNING names the four programs that do this.
 demerge|OS-9's `merge' is concatenation and there is no `merge' binary here, so `cat a b > c' makes the file demerge takes apart. There is no `od' either -- `dump' is the hex dump.
 dump|This is the hex dump on this disk. There is no `od'.
 maketexpk|It carries the RIGHT Metafont line in its own strings and then reaches for `makdir', `del' and `attr' to file the result -- three Microware utilities that are not here. Run the virmf line yourself: DOC/README-METAFONT has it, and `gftopk' is all maketexpk was going to do afterwards.
 forth|Type `2 3 + . cr' and it answers 5; `: squares 10 1 do i dup * . loop cr ;' then `squares' prints them; `words' lists its vocabulary; `bye' leaves. A SOURCE FILE IS A COMMAND-LINE ARGUMENT -- `forth fibonacci.tst' loads it and gives you the prompt -- because `include' is defined in the library, not the kernel. The library and the twenty-two programs it shipped with are in lib/tile and lib/tile/TST; lib/tile/readme explains the name (TILE is this Forth's own).
+ed|Needs a /r0 RAM disk for its scratch file; under os9exec `mount -r=256k /r0' provides one. Then `ed <file>', with ed's usual commands: 1,4p prints, s/a/b/ substitutes, w writes, q quits.

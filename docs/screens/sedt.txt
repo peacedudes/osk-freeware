@@ -1,4 +1,4 @@
-*File: /dd/SYS/motd                              insert ; Line=2       ; Buf=0
+ File: /dd/tmp/EDIT/jabber.txt                   insert ; Line=1       ; Buf=0
 L       T       T       T       T       T       T       T       T       T      R
 
 
@@ -9,5 +9,16 @@ L       T       T       T       T       T       T       T       T       T      R
 
 
 
-jjQ
-Welcome to os9exec -- OS-9/68k emulator
+Twas brillig, and the slithy toves
+     Did gyre and gimble in the wabe:
+All mimsy were the borogoves,
+     And the mome raths outgrabe.
+
+
+
+
+
+
+
+
+Sedt (Screen EDiTor) Version  2.6 12.09.87 for VT100 under OS9

@@ -1,139 +1,363 @@
-# Editors and pagers, each opened on a real file.
+# Editors, each opened on the same four lines of Jabberwocky, one stanza
+# per program.  Every stanza writes the demo file itself and clears the
+# screen before the editor starts, so no card leans on another.
+
+shot    ed
+cap     GNU ed, the line editor, on a four-line file: print lines 1 to 4,
+cap     change one word on line 3 and print the result, then Q to leave
+cap     without writing.  It keeps its scratch file on /r0, the RAM disk
+cap     most OS-9 systems have, so one is mounted first.
+run     mkdir -p /dd/tmp/EDIT > /nil 2>/nil; printf "Twas brillig, and the slithy toves\r     Did gyre and gimble in the wabe:\rAll mimsy were the borogoves,\r     And the mome raths outgrabe.\r" > /dd/tmp/EDIT/jabber.txt
+wait    2
+run     mount -r=256k /r0
+wait    3
+run     clear
+wait    1
+run     ed /dd/tmp/EDIT/jabber.txt
+wait    4
+send    1,4p\r
+wait    3
+send    3s/mimsy/MIMSY/p\r
+wait    3
+send    Q\r
+wait    2
+
+shot    editor
+cap     A full-screen file picker in front of the umacs editor: the
+cap     directory as a lettered list, + and - to page, . to change
+cap     directory, a letter to open that file.  Run it bare.
+run     editor
+wait    6
+snap
+send    \003
+wait    2
+
+shot    elvis
+cap     Elvis, a vi with ex mode, its manual on the disk under DOC/elvis,
+cap     opened on a four-line file.  Tildes mark the lines past the end.
+run     mkdir -p /dd/tmp/EDIT > /nil 2>/nil; printf "Twas brillig, and the slithy toves\r     Did gyre and gimble in the wabe:\rAll mimsy were the borogoves,\r     And the mome raths outgrabe.\r" > /dd/tmp/EDIT/jabber.txt
+wait    2
+run     clear
+wait    1
+run     elvis /dd/tmp/EDIT/jabber.txt
+wait    8
+snap
+send    \033:q!\r
+wait    3
+
+shot    elvis_input
+cap     Elvis opened already in insert mode, on a new file: what you type
+cap     goes straight in, and ESC gets you to the : prompt to write it.
+run     rm -f /dd/tmp/EDIT/new.txt
+wait    2
+run     clear
+wait    1
+run     /dd/CMDS/REBUILT/elvis_input /dd/tmp/EDIT/new.txt
+wait    8
+keys    Callooh! Callay!
+wait    3
+snap
+send    \033:q!\r
+wait    3
+
+shot    elvprsv
+cap     Elvis runs this itself when it dies with a file open, to keep the
+cap     buffer for elvrec.  Run by hand with nothing to preserve it says
+cap     nothing, and that is all there is to see of it.
+run     elvprsv
+wait    5
 
 shot    elvrec
-for     elvrec elvprsv vi.elvis elvis_input
-cap     elvis's crash-recovery pair: elvprsv preserves an interrupted
-cap     session, elvrec brings it back.  Nothing has been preserved on this
-cap     disk, so elvrec lists nothing at all and only names the file when
-cap     you ask for one by name.  `exrecover' is the same job for the other
-cap     vi here, and says what it wants.
+cap     Lists the elvis buffers that were preserved by a crash, and brings
+cap     one back by name.  With nothing preserved it lists nothing; asked
+cap     for a file it names what it looked for.
 run     elvrec
+wait    5
+run     elvrec jabber.txt
+wait    5
+
+shot    exrecover
+cap     The same job for the Berkeley vi: given a user and a file name it
+cap     recovers the buffer expreserve kept when vi died.  With nothing
+cap     preserved it says so.
+run     exrecover tester jabber.txt
 wait    6
-run     elvrec /dd/tmp/none
-wait    6
-run     exrecover
-wait    6
-run     elvprsv /dd/tmp/none
-wait    6
+
+shot    em
+cap     MicroEMACS 3.8b on a four-line file, with its mode line at the
+cap     foot.  Control-X control-C leaves it.
+run     mkdir -p /dd/tmp/EDIT > /nil 2>/nil; printf "Twas brillig, and the slithy toves\r     Did gyre and gimble in the wabe:\rAll mimsy were the borogoves,\r     And the mome raths outgrabe.\r" > /dd/tmp/EDIT/jabber.txt
+wait    2
+run     clear
+wait    1
+run     em /dd/tmp/EDIT/jabber.txt
+wait    8
+snap
+send    \030\003
+wait    3
 
 shot    emacs
-for     emacs emacs.mm1 umacs
-cap     MicroEmacs 4.00 editing a file from the disk, with its own mode
-cap     line at the foot.
-run     emacs /dd/SYS/motd
-wait    10
-quit    \030\003
-run     emacs.mm1 < /nil
-wait    10
+cap     MicroEMACS 4.00, the full one with the macro language; its macros
+cap     and help are in USR/LIB/EMACS.  Control-X control-C leaves it.
+run     mkdir -p /dd/tmp/EDIT > /nil 2>/nil; printf "Twas brillig, and the slithy toves\r     Did gyre and gimble in the wabe:\rAll mimsy were the borogoves,\r     And the mome raths outgrabe.\r" > /dd/tmp/EDIT/jabber.txt
+wait    2
+run     clear
+wait    1
+run     emacs /dd/tmp/EDIT/jabber.txt
+wait    8
+snap
+send    \030\003
+wait    3
+
+shot    emacs.mm1
+cap     MicroEMACS 4.00 as built for the MM/1 -- the same editor as
+cap     `emacs', on the same file.
+run     mkdir -p /dd/tmp/EDIT > /nil 2>/nil; printf "Twas brillig, and the slithy toves\r     Did gyre and gimble in the wabe:\rAll mimsy were the borogoves,\r     And the mome raths outgrabe.\r" > /dd/tmp/EDIT/jabber.txt
+wait    2
+run     clear
+wait    1
+run     emacs.mm1 /dd/tmp/EDIT/jabber.txt
+wait    8
+snap
+send    \030\003
+wait    3
+
+shot    umacs
+cap     uMacs, MicroEMACS in 45K: the same keys, no macro language.
+run     mkdir -p /dd/tmp/EDIT > /nil 2>/nil; printf "Twas brillig, and the slithy toves\r     Did gyre and gimble in the wabe:\rAll mimsy were the borogoves,\r     And the mome raths outgrabe.\r" > /dd/tmp/EDIT/jabber.txt
+wait    2
+run     clear
+wait    1
+run     umacs /dd/tmp/EDIT/jabber.txt
+wait    8
+snap
+send    \030\003
+wait    3
+
+shot    me
+cap     MicroEMACS 3.11 with German messages -- Datei for File.
+cap     Control-X control-C leaves it.
+run     mkdir -p /dd/tmp/EDIT > /nil 2>/nil; printf "Twas brillig, and the slithy toves\r     Did gyre and gimble in the wabe:\rAll mimsy were the borogoves,\r     And the mome raths outgrabe.\r" > /dd/tmp/EDIT/jabber.txt
+wait    2
+run     clear
+wait    1
+run     me /dd/tmp/EDIT/jabber.txt
+wait    8
+snap
+send    \030\003
+wait    3
+
+shot    mg
+cap     Mg, MicroGnuEmacs: Emacs keys in 79K, its documentation under
+cap     DOC/mg.  Control-X control-C leaves it.
+run     mkdir -p /dd/tmp/EDIT > /nil 2>/nil; printf "Twas brillig, and the slithy toves\r     Did gyre and gimble in the wabe:\rAll mimsy were the borogoves,\r     And the mome raths outgrabe.\r" > /dd/tmp/EDIT/jabber.txt
+wait    2
+run     clear
+wait    1
+run     mg /dd/tmp/EDIT/jabber.txt
+wait    8
+snap
+send    \030\003
+wait    3
+
+shot    sedt
+cap     SEDT 2.6, a DEC-style keypad editor for a VT100: the ruler at the
+cap     top, the file below it, and its key bindings read from
+cap     SYS/sedt.keys.
+run     mkdir -p /dd/tmp/EDIT > /nil 2>/nil; printf "Twas brillig, and the slithy toves\r     Did gyre and gimble in the wabe:\rAll mimsy were the borogoves,\r     And the mome raths outgrabe.\r" > /dd/tmp/EDIT/jabber.txt
+wait    2
+run     clear
+wait    1
+run     sedt /dd/tmp/EDIT/jabber.txt
+wait    8
+snap
+send    \003
+wait    3
+
+shot    new_e
+cap     SEDT again, the build that picks VT100 or VT220 keys from TERM.
+run     mkdir -p /dd/tmp/EDIT > /nil 2>/nil; printf "Twas brillig, and the slithy toves\r     Did gyre and gimble in the wabe:\rAll mimsy were the borogoves,\r     And the mome raths outgrabe.\r" > /dd/tmp/EDIT/jabber.txt
+wait    2
+run     clear
+wait    1
+run     new_e /dd/tmp/EDIT/jabber.txt
+wait    8
+snap
+send    \003
+wait    3
+
+shot    e
+cap     SEDT a third time, the small VT220 build.  All three read the
+cap     same three files in SYS: sedt.keys, sedt.ruler0 and sedt.help.
+run     mkdir -p /dd/tmp/EDIT > /nil 2>/nil; printf "Twas brillig, and the slithy toves\r     Did gyre and gimble in the wabe:\rAll mimsy were the borogoves,\r     And the mome raths outgrabe.\r" > /dd/tmp/EDIT/jabber.txt
+wait    2
+run     clear
+wait    1
+run     e /dd/tmp/EDIT/jabber.txt
+wait    8
+snap
+send    \003
+wait    3
 
 shot    hexed
-cap     This hex editor cannot start: it writes its work file to /r0, the
-cap     RAM disk os9exec has no way to provide, and says so.  Twenty
-cap     programs here reach for /r0; DOC/STATUS lists them.  `beav' is the
-cap     binary editor that needs nothing, and `hexedit' -- a different
-cap     program with a similar name -- works once TERMCAP is set as a
-cap     capability string.
-run     hexed /dd/CMDS/today
-wait    6
-quit    q
+cap     A hex editor made of your text editor: it writes the file out as
+cap     a hex dump, opens that in the editor named by -e, and when you
+cap     leave it turns the dump back into the file.  -t names the
+cap     directory for the dump.
+run     mkdir -p /dd/tmp/EDIT > /nil 2>/nil; printf "Twas brillig, and the slithy toves\r     Did gyre and gimble in the wabe:\rAll mimsy were the borogoves,\r     And the mome raths outgrabe.\r" > /dd/tmp/EDIT/jabber.txt
+wait    2
+run     clear
+wait    1
+run     hexed -t=/dd/tmp/EDIT -e=vi_nocio /dd/tmp/EDIT/jabber.txt
+wait    10
 
 shot    hexedit
-cap     HEXPERT V2.4, viewing a module.  Like gnuchess it reads TERMCAP as
-cap     the capability string itself, so `. /dd/SYS/termcap.entry' comes
-cap     first; without it the bare form prints the terminal type and exits.
-cap     One 16-byte row and the mode is the whole display -- that is the
-cap     program, not a clipped capture; arrows, `n' and space all leave
-cap     it where it is.  Its -d option is separately broken -- `file not
-cap     accessible' for a file that is readable, which this disproves.
+cap     HEXPERT, a hex viewer and editor, on a module from the disk: one
+cap     16-byte row and the mode is its whole display.  It reads the
+cap     terminal description from TERMCAP as text rather than as a file
+cap     name, so the entry is put in the variable first.
 run     . /dd/SYS/termcap.entry
-wait    4
+wait    3
+run     clear
+wait    1
 run     hexedit /dd/CMDS/today
 wait    12
 kill
 
 shot    pbyte
-for     pbyte chbase
-cap     pbyte patches bytes in a file at a hex offset -- the smallest binary
-cap     editor here.  Three bytes at offset 0 turn `Wel' into `ABC'.
-cap     `chbase' beside it is NOT a module-base changer whatever DOC/INDEX
-cap     said: it converts a NUMBER from one base to another.  Both used to
-cap     be captured with no arguments, which showed their usage lines and
-cap     nothing either program can do.
-run     cat /dd/SYS/motd > /dd/tmp/pb
+cap     Patches bytes in a file at a hex offset -- the smallest binary
+cap     editor here.  Three bytes at offset 0 turn `Twas' into `ABCs'.
+run     mkdir -p /dd/tmp/EDIT > /nil 2>/nil; printf "Twas brillig, and the slithy toves\r" > /dd/tmp/EDIT/pb.txt
+wait    2
+run     clear
+wait    3
+run     cat /dd/tmp/EDIT/pb.txt
+wait    3
+run     pbyte /dd/tmp/EDIT/pb.txt 0 41 42 43
 wait    5
-run     cat /dd/tmp/pb
-wait    5
-run     pbyte /dd/tmp/pb 0 41 42 43
-wait    6
-run     cat /dd/tmp/pb
-wait    5
-run     rm -f /dd/tmp/pb
-wait    4
+run     cat /dd/tmp/EDIT/pb.txt
+wait    3
+
+shot    chbase
+size    40 80
+cap     Converts a number between bases: 255 from base 10 to 16 is FF,
+cap     and a target base of 0 prints every base from 2 to 36.
 run     chbase 255 10 16
-wait    8
+wait    4
+run     chbase 255 10 0
+wait    6
 
 shot    sed
-for     sed sed_1.06 psc
-cap     sed doing what a stream editor does, twice over, on the disk's own
-cap     documentation.
-run     head -n 8 /dd/SYS/holidays > /dd/tmp/hol.txt
+cap     sed, the stream editor, substituting on every line of a file.
+run     mkdir -p /dd/tmp/EDIT > /nil 2>/nil; printf "Twas brillig, and the slithy toves\r     Did gyre and gimble in the wabe:\rAll mimsy were the borogoves,\r     And the mome raths outgrabe.\r" > /dd/tmp/EDIT/jabber.txt
+wait    2
+run     clear
+wait    1
+run     sed "s/the/THE/g" /dd/tmp/EDIT/jabber.txt
 wait    6
-run     sed "s/Day/DAY/g" /dd/tmp/hol.txt
-wait    8
-run     psc < /nil
-wait    8
+
+shot    sed_1.06
+cap     A second build of sed, kept under its version number, doing the
+cap     same substitution.
+run     mkdir -p /dd/tmp/EDIT > /nil 2>/nil; printf "Twas brillig, and the slithy toves\r     Did gyre and gimble in the wabe:\rAll mimsy were the borogoves,\r     And the mome raths outgrabe.\r" > /dd/tmp/EDIT/jabber.txt
+wait    2
+run     clear
+wait    1
+run     /dd/CMDS/REBUILT/sed_1.06 "s/the/THE/g" /dd/tmp/EDIT/jabber.txt
+wait    6
 
 shot    vi
-for     vi view
-cap     The EFFO vi -- its source in SRC/effo_vi is the Berkeley ex source
-cap     itself, not a clone, which is why it has the name and keeps it.
-cap     WHAT YOU SEE HERE IS NOT WHAT ITS USERS SEE.  Under this harness --
-cap     a pseudo-terminal rendered as vt100 -- it paints the first line and
-cap     a half-drawn rule and no more; on a real terminal it works fine and
-cap     is used daily.  Tried and did NOT explain it: 24 lines and 36,
-cap     TERMCAP as a path and as an entry, ^L and ^R.  So this is a fact
-cap     about the harness until somebody explains it.  `elvis', `vi_nocio'
-cap     and REBUILT/vi_1.0 fill the screen under both, each with its own
-cap     card.
-run     vi /dd/DOC/README-CIO
-wait    20
+cap     The Berkeley vi and ex -- `vi -x' is ex, `vi -d' is edit.  On a
+cap     vt100 rendered by this harness it paints the first line and a rule
+cap     and stops there; on a terminal it fills the screen.  Its source is
+cap     in SRC/effo_vi.
+run     mkdir -p /dd/tmp/EDIT > /nil 2>/nil; printf "Twas brillig, and the slithy toves\r     Did gyre and gimble in the wabe:\rAll mimsy were the borogoves,\r     And the mome raths outgrabe.\r" > /dd/tmp/EDIT/jabber.txt
+wait    2
+run     clear
+wait    1
+run     vi /dd/tmp/EDIT/jabber.txt
+wait    15
+snap
 send    \033
+wait    2
+quit    \033:q!\r
+
+shot    view
+cap     Elvis opened read-only, which is what the name `view' asks of it:
+cap     the status line says READONLY.
+run     mkdir -p /dd/tmp/EDIT > /nil 2>/nil; printf "Twas brillig, and the slithy toves\r     Did gyre and gimble in the wabe:\rAll mimsy were the borogoves,\r     And the mome raths outgrabe.\r" > /dd/tmp/EDIT/jabber.txt
+wait    2
+run     clear
+wait    1
+run     view /dd/tmp/EDIT/jabber.txt
+wait    8
+snap
+send    :q!\r
 wait    3
-send    1G
-wait    10
-quit    \033:q!\r
-run     view < /nil
-wait    10
 
-shot    elvis
-for     elvis vi.elvis elvis_input ctags.elvis
-cap     elvis, Steve Kirkendall's vi -- the one on this disk that paints a
-cap     full screen.  Opened on the collection's own README-CIO, twenty-two
-cap     lines of it at once, exactly as vi should.  `vi.elvis',
-cap     `elvis_input' and `ctags.elvis' travel with it -- the same editor
-cap     under the name a Unix hand types, its input helper, and its tags
-cap     builder. they are asked for after elvis has been left.
-run     elvis /dd/DOC/README-CIO
-wait    18
-quit    \033:q!\r
-run     ctags.elvis /dd/SRC/keep/about.c
-wait    10
-run     ls -l /dd/tags
+shot    vi.elvis
+cap     Elvis under the name a Unix hand types.  Kept in CMDS/REBUILT
+cap     because CMDS/vi is the Berkeley one.
+run     mkdir -p /dd/tmp/EDIT > /nil 2>/nil; printf "Twas brillig, and the slithy toves\r     Did gyre and gimble in the wabe:\rAll mimsy were the borogoves,\r     And the mome raths outgrabe.\r" > /dd/tmp/EDIT/jabber.txt
+wait    2
+run     clear
+wait    1
+run     /dd/CMDS/REBUILT/vi.elvis /dd/tmp/EDIT/jabber.txt
 wait    8
-run     elvis_input /dd/tmp/ei
-wait    8
-run     vi.elvis -?
-wait    10
+snap
+send    :q!\r
+wait    3
 
-shot    pvic
-for     vi_1.0
+shot    vi_1.0
 cap     PVIC 1.0, the Portable VI Clone, in CMDS/REBUILT because the name
-cap     `vi' was already taken by the EFFO one; `vi_cio' and `vi_nocio' are
-cap     the 1.0a builds of the same program.  It is a working vi: tildes down
-cap     the left, the file painted a screenful at a time, and o-i-escape-:wq
-cap     writes the line you typed.  Asked for by path, since it is not on
-cap     the login PATH.
-run     /dd/CMDS/REBUILT/vi_1.0 /dd/DOC/README-CIO
-wait    18
-quit    \033:q!\r
+cap     `vi' was taken.
+run     mkdir -p /dd/tmp/EDIT > /nil 2>/nil; printf "Twas brillig, and the slithy toves\r     Did gyre and gimble in the wabe:\rAll mimsy were the borogoves,\r     And the mome raths outgrabe.\r" > /dd/tmp/EDIT/jabber.txt
+wait    2
+run     clear
+wait    1
+run     /dd/CMDS/REBUILT/vi_1.0 /dd/tmp/EDIT/jabber.txt
+wait    8
+snap
+send    :q!\r
+wait    3
 
+shot    vi_cio
+cap     PVIC 1.0a, the build that uses Microware's cio.  It reads the
+cap     terminal description from TERMCAP as text, so the entry is put in
+cap     the variable first.
+run     mkdir -p /dd/tmp/EDIT > /nil 2>/nil; printf "Twas brillig, and the slithy toves\r     Did gyre and gimble in the wabe:\rAll mimsy were the borogoves,\r     And the mome raths outgrabe.\r" > /dd/tmp/EDIT/jabber.txt
+wait    2
+run     . /dd/SYS/termcap.entry
+wait    2
+run     clear
+wait    1
+run     vi_cio /dd/tmp/EDIT/jabber.txt
+wait    8
+snap
+send    :q!\r
+wait    3
+
+shot    vi_nocio
+cap     PVIC 1.0a, the build that needs no Microware module: the smallest
+cap     vi on the disk.
+run     mkdir -p /dd/tmp/EDIT > /nil 2>/nil; printf "Twas brillig, and the slithy toves\r     Did gyre and gimble in the wabe:\rAll mimsy were the borogoves,\r     And the mome raths outgrabe.\r" > /dd/tmp/EDIT/jabber.txt
+wait    2
+run     clear
+wait    1
+run     vi_nocio /dd/tmp/EDIT/jabber.txt
+wait    8
+snap
+send    :q!\r
+wait    3
+
+shot    ctags.elvis
+cap     Builds a tags file for elvis from C source: one line per function,
+cap     with the file and a search pattern that finds it.
+run     mkdir -p /dd/tmp/EDIT > /nil 2>/nil; rm -f /dd/tmp/EDIT/tags
+wait    2
+run     clear
+wait    1
+run     ksh -c "cd /dd/tmp/EDIT; ctags.elvis /dd/SRC/keep/about.c"
+wait    8
+run     cat /dd/tmp/EDIT/tags | head -n 8
+wait    4
