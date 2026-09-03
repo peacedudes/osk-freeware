@@ -39,6 +39,10 @@ Sheet format (blank lines and `#' comments ignored):
     kill                           Ctrl-E now, BEFORE the screen is taken --
                                    how to capture the FIRST page of a
                                    program that prints for pages
+    send    \023                   Ctrl-S: XOFF, the terminal stops where it
+                                   is; `snap' then takes a still page of a
+                                   program that scrolls, and `send \021'
+                                   (Ctrl-Q) lets it go on.  rdoggett's tip.
     snap                           TAKE THE PICTURE HERE.  Without it the
                                    fullest moment of the stanza is kept,
                                    which is right for a program that prints

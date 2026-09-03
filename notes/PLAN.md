@@ -290,6 +290,13 @@ backlog and commits. Report what was changed and what was found.
 6. **Report**, per program: verdict (works / works with `X` / stops
    because `Y` / best forgotten), what was corrected, what needs a decision.
 
+**Freezing a program that scrolls, to take its picture:** `send \023`
+(Ctrl-S, XOFF) stops the terminal where it is, `snap` takes the screen,
+`send \021` (Ctrl-Q) lets it go on. rdoggett's tip, 2026-09-03, and it
+works through the harness -- rpoem froze mid-word. Use it where `kill`
+would end the program before the interesting part, or where `head` would
+change what the program does.
+
 Things that bit on the first batch: a `size` line between stanzas attaches
 to the one BEFORE it; the fullest-moment picker prefers a menu to a playing
 field, which `snap` overrides; `head -n N file` prints `head: file` as a
