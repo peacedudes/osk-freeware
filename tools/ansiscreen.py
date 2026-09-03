@@ -38,6 +38,16 @@ ESC2 = re.compile(rb"\x1b([=>78MDEHc])")
 # DEC Special Graphics -- the box-drawing set -- and `B' is US ASCII.
 CHARSET = re.compile(rb"\x1b([()])([0-9A-B])")
 
+# TeleVideo / ADM-3A cursor addressing: ESC = <row+32> <col+32>.  `gcl', the
+# grand digital clock, is written for that terminal and nothing else, and
+# without this its digits came out as a column of `!', `"', `#' -- the row
+# bytes -- because ESC = was read as the VT100 keypad toggle and the two
+# bytes after it as text.  A VT100 keypad toggle is followed by another
+# escape or a control; two printable bytes that fit the grid are a move.
+# ESC G <digit> is the TeleVideo attribute (G0 plain, G4 reverse): dropped.
+TVI_CUP = re.compile(rb"\x1b=([\x20-\x7e])([\x20-\x7e])")
+TVI_ATTR = re.compile(rb"\x1bG[0-9]")
+
 # DEC Special Graphics, MAPPED TO ASCII rather than to the Unicode box
 # characters, because nothing in this repository is allowed to carry a byte
 # over 0x7f.  A corner is a `+', a horizontal a `-', a vertical a `|'; that
@@ -70,6 +80,11 @@ class Screen:
         self.orphans = []          # escape sequences that arrived without ESC
         self.unknown = set()       # finals we chose not to implement
         self.graphics = False      # G0 is DEC Special Graphics
+        # REVERSE VIDEO IS INK.  gcl draws its digits as blanks in reverse
+        # video, so a grid of characters alone showed nothing at all: a
+        # space put down while reverse is on is shown as `#', the way the
+        # DEC graphics blocks are.
+        self.reverse = False
 
     # -- cursor -----------------------------------------------------------
     def _clamp(self):
@@ -79,6 +94,8 @@ class Screen:
     def put(self, ch):
         if self.graphics and ch >= " " and ch in DEC_GRAPHICS:
             ch = DEC_GRAPHICS[ch]
+        if self.reverse and ch == " ":
+            ch = "#"
         if ch == "\r":
             self.col = 0
         elif ch == "\n":
@@ -138,6 +155,17 @@ class Screen:
                         self.graphics = m.group(2) == b"0"
                     i = m.end()
                     continue
+                m = TVI_CUP.match(data, i)
+                if m and (m.group(1)[0] - 0x20) < self.rows \
+                        and (m.group(2)[0] - 0x20) < self.cols:
+                    self.row, self.col = m.group(1)[0] - 0x20, m.group(2)[0] - 0x20
+                    i = m.end()
+                    continue
+                m = TVI_ATTR.match(data, i)
+                if m:
+                    self.reverse = m.group(0)[-1:] == b"4"
+                    i = m.end()
+                    continue
                 m = ESC2.match(data, i)
                 if m:
                     i = m.end()               # keypad toggles: ignore
@@ -180,8 +208,13 @@ class Screen:
             self.erase_display(one)
         elif f == "K":
             self.erase_line(one)
-        elif f in "mhlrsu":
-            pass                              # attributes/modes: not rendered
+        elif f == "m":
+            if 7 in ps:
+                self.reverse = True
+            if 0 in ps or 27 in ps or not ps:
+                self.reverse = False
+        elif f in "hlrsu":
+            pass                              # modes: not rendered
         else:
             self.unknown.add(f)
         self._clamp()
