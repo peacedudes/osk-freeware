@@ -134,6 +134,17 @@ work. Fixed 2026-09-01; `carded()` now means "a card runs it by name", as
 `cb`, `splman`, `forth` and the A-Z page and found something wrong with each.
 They were five instances of four classes, and the classes are what matter:
 
+0. **NEVER OPEN BY SAYING WHAT A THING IS NOT.** rdoggett, 2026-09-02:
+   *"I don't come here to find out what it is NOT, I come to find out what
+   it is. I don't give a rat's anything about what you may have guessed
+   wrong about it... I just want to know what it can do for me, and how I
+   make it work."* Nineteen `DOC/INDEX` entries and five captions opened
+   `NOT a ...` -- each one a previous session's wrong guess, published.
+   Lead with the job and the invocation; if the NAME genuinely misleads,
+   say so in a clause at the END (`as0` really is a 6800 assembler, and
+   that is worth a reader's attention -- after you have told them what it
+   is).
+
 1. **A card whose output does not show the job.** `cb`, the C beautifier, was
    fed eighteen lines of a comment block -- so its output was identical to
    its input and the card showed nothing happening. Feed a program input that
