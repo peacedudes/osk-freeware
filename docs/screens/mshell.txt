@@ -1,5 +1,22 @@
-$ mshell
-Error #255:255 (E_???) <<unknown error code>>
-Could not open  (menufile)
-$ echo mshell is running
-mshell is running
+ 1: Who am I,whoami
+
+ 2: The date,date
+
+ 3: List SYS,ls /dd/SYS
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    Enter choise (1- 3) or ^C for normal shell:

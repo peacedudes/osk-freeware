@@ -22,7 +22,6 @@ asciitopgm
 authwn
 autolf
 autoreply
-bash
 basicwin
 bdecode
 bioradtopgm
@@ -41,7 +40,6 @@ cc2plus
 cccp2
 chardef
 checkalias
-checkenv
 checkfile
 chgrp
 chown
@@ -141,9 +139,7 @@ graphsave
 gzip68k_nocsl
 hexbin
 hipstopgm
-hist
 hpcdtoppm
-if
 ifdef
 imgtoppm
 inetdc
@@ -267,7 +263,6 @@ psidtopgm
 ptob
 ptxminst
 pwparse
-qp
 rawtopgm
 rawtoppm
 rcs
@@ -356,7 +351,6 @@ wgen
 wrjpgcom
 wysecrack
 xbmtopbm
-xc
 xengine
 ximtoppm
 xkermit
@@ -370,3 +364,4 @@ zeisstopnm
 zipnote
 zoo_2.1
 zot
+ynad

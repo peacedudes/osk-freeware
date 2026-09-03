@@ -24,7 +24,7 @@ ask fa108054529bfb0f
 ateri b53a5d107876b6c8
 aterm b592f62627fbfff1
 basename 21bc7c0629dfb2f0
-bash 29cbd27dd274f783
+bash 6e45fc01c6b3701f
 bcheck 12d6a8e2f4dd9ddf
 benchmarks f6c1126510ac16b8
 benchmarks2 05ec3283ddb6d244
@@ -52,6 +52,7 @@ ccheck a407d8b75ebdd2ad
 cdiff c20874fb713cd0fc
 charcnt 5b1b8f605f037624
 chbase 19a911b330380a09
+checkenv af7526fb1be42dde
 checkgame 98db5b38165874f0
 checksum c3e321b3cec2886f
 chgrp b2331ff98f6da1dd
@@ -113,11 +114,12 @@ em 1f1786404c72ef7d
 emacs e177dd39205a181a
 emacs.mm1 d797a5a3c4cf3f5c
 england d6027b06875145fc
-env d155a0fdb78532e5
+env b204bde44766916f
 ephem 87c886f63cc30e0b
 every 1a87d90bcd248316
-exist 069f9c1f869f8fda
+exist da02724f0cf612c6
 expand ffbe89cbe9ed14a4
+expr 93380e70a1308318
 exrecover 7e7b5298a953fdb1
 fastcc f6a40a161dd28431
 fcomp 7aecd893e0f4fe60
@@ -146,6 +148,7 @@ gcl 2da5b2a4a20fc3ff
 gen f4cb238a2f543a1d
 georgia 8b32ea38e01e4a9e
 gep 2bf971d41ab4ac03
+getenv f80c67660f97119e
 gif f92f7b11da4a9504
 gif2 b5c0592108bf2c41
 giftopnm 2f3769f6c8c49b2a
@@ -160,7 +163,7 @@ greg c13117e41be3c5b4
 grep e1f0983ebbfbc0d8
 gs-devices 0e2010a7fbe38d8a
 gs403 a70b382fa705bde4
-gshell d9fcbead352db04d
+gshell 33ecf84de9211522
 gulls db35839832229cfc
 gulls-invert abcd3794072d430b
 gwindows-games d4e8c4a92feb6de9
@@ -172,12 +175,11 @@ helpindex 058ac3b26282ba45
 hexed 090b96018fd0130b
 hexedit 630fe5d8875d5824
 hinterhalt 5b3a02628f05e653
-hist e473cec2ed0198d1
 hotel 41cf8b374b076d33
 i_am_i 65844e506a55c3e6
 icon f745c5ef17db1241
 ident 078ed7cce5974ed2
-if 23dc9b5400a07a69
+if 8b8e84cc03804931
 ifdef 9303118acb778983
 ilbm 9ff0c509a4e4bb7c
 indent 66c17b603cb44d1d
@@ -192,7 +194,7 @@ keep 35404240d8c90d2e
 kept 52c7a1c013ef8056
 kermit c06a7e1b74448564
 kermit-family da2f3febfdcaf7d5
-ksh cf27d025e31e62ca
+ksh 0db783e908941acf
 kwic 849599dd16d63134
 l b47fa0690d259b4f
 latex ca5a4fc8ec7365df
@@ -207,6 +209,7 @@ lispm 647b692409bfc1b3
 load ed88e752e89868aa
 loan 779df2c59eb353ae
 logisim 8750fcbd1e017e8e
+logname 8f17510b2cfc5411
 lorenz3d 7adc33fafa9ee955
 lout c0ebd5f69b37c4fd
 lp ba79ff2588ff0293
@@ -237,7 +240,7 @@ modules da777f51e2474336
 modules2 112f319239759ddf
 msattrib 176b525dc08f83df
 mscopy 6c7db5f0819f6ca9
-mshell abc3293c51bd4330
+mshell 694cbd13e8796428
 msinfo 62ddcc34ff3d7258
 msmd d3965b49157743e0
 msmove 59ff04c28b8af7fa
@@ -307,10 +310,11 @@ ppmntsc 6126a0662b8ff756
 ppmpat 59551434201fdbb7
 ppmpat-madras 786dc9d0282816d7
 ppmrelief 0dffe89da022c80e
-printenv 4bb7417e54260c06
+printenv a557b5b8c28a798e
 printers ab23dd1594c27679
-printf b939bb79959ca7f1
+printf 046d0cf3de983021
 pwgen bf28b70252d5753d
+qp 159fb95fa4e549d8
 qsort9 000aa18d69574e71
 qt 7f143f25b32a7f55
 queens 620aaa05515f3571
@@ -327,6 +331,7 @@ rpn 7b97fd1b7d4a4c35
 rpoem 4b4f474ef4ac92fb
 rstory 6df798d4e6d9be3c
 rstory2 160ef4cc0d9c09a9
+run c11d6dbde30fe3a8
 sbprolog b8cc4cb02d55206c
 scales 22dd734b9cb49bdf
 screen 6cbad9bb27ec2dde
@@ -339,7 +344,7 @@ sedt 6b8bc53c857780f8
 sepwords 6986f763077d3aee
 setimex a902607b2fa9a4dd
 setup-image d9b72e4419405893
-sh 7d460bbed60164da
+sh 1050ea4d5b07cd6b
 shar 48336b6ea0fed390
 shdev 9c9ea69135b6b5f6
 shire bc72f45cc9a5540b
@@ -364,6 +369,7 @@ sterm-tools 330047dc5ebe2402
 stone 1a340282f3de4054
 strfile fafd58f5bd4ee70b
 strings abbf4bf31eee1f30
+su a6743cd58fbaac7c
 subber 127eb1d8e3397eb5
 suicide-variants aac2ac793c53597b
 sum 734d1d2c82b7b865
@@ -417,13 +423,14 @@ vi_nocio 7b0fe8db73c1929e
 view 31e2853f634035da
 vlen 88f94a8849530252
 wc 2c40381787584b00
-whoami 9ff3948bb089de3f
+whoami ac172d53bcf13294
 wn 952f4a66dca1eadf
 wn-helpers f7238d88c83ccad8
 workstations e4b6598d2606da9b
 writeonly 304e6fedbd14aba1
 xasm 7172b5f2532a5c45
 xbm 63ce52063e439546
+xc c2bc5883e0a69df2
 xcrypt 5173825ca51c868b
 xlisp 0b7422cb632e67fb
 xmodem 03c7d002316b77ad

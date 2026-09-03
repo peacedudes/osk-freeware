@@ -9,5 +9,4 @@ Conditions available:
     varval <var> <val>        true, if envir. variable <var> has value <val>
 Options:
      (none)
-$ exist /dd/SYS/motd
-$ exist /dd/SYS/nothing-here
+$ /dd/CMDS/if def TERM echo TERM is set endif

@@ -1,0 +1,14 @@
+$ su --help
+Usage: su [OPTION]... [-] [USER [ARG]...]
+
+  -l, --login                  make the shell a login shell
+  -c, --commmand=COMMAND       pass a single COMMAND to the shell with -c
+  -f, --fast                   pass -f to the shell (for csh or tcsh)
+  -m, --preserve-environment   do not reset environment variables
+  -p                           same as -m
+  -s, --shell=SHELL            run SHELL if /etc/shells allows it
+      --help                   display this help and exit
+      --version                output version information and exit
+
+A mere - implies -l.   If USER not given, assume root.
+$ su tester

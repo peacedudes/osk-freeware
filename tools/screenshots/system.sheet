@@ -430,15 +430,6 @@ cap     Every program on this disk is a module like this one.
 run     modinfo /dd/CMDS/today
 wait    3
 
-shot    mshell
-cap     mshell wants a menu file, cannot find one, says so twice and runs
-cap     anyway.  The error it reports for that failure is #255:255, which
-cap     is not an OS-9 error code at all.
-run     mshell
-wait    4
-send    echo mshell is running\r
-wait    3
-
 shot    names
 cap     names lists the modules inside a file. os9lib is the FORTRAN
 cap     runtime, and it holds many.

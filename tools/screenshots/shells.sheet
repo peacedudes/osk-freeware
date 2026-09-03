@@ -1,155 +1,196 @@
-# Shells, and the small utilities that exist to be used from
-# them.
-
-shot    env
-size    36 80
-for     env getenv printenv checkenv whoami logname su
-cap     Seven small programs about the environment and who you are, each
-cap     asked for itself.  `env' runs a command with the environment
-cap     changed; `getenv' reads one variable back and wants -p before it
-cap     will PRINT rather than just set a status (it is DESIGNA's and
-cap     answers in German); `checkenv' tests one; `whoami', `logname' and
-cap     `su' are about the user, and this session is 0.0.
-run     env FOO=bar printenv | grep FOO
-wait    8
-run     getenv -p TERM
-wait    5
-run     checkenv TERM
-wait    5
-run     whoami
-wait    5
-run     logname
-wait    5
-run     su -?
-wait    6
-
-shot    exist
-for     exist checkenv ask ynad
-cap     exist answers in its STATUS rather than on the screen -- 0 for a
-cap     file that is there, 1 for one that is not -- which is what a shell
-cap     script wants and why it looks silent when you run it by hand.
-run     exist /dd/SYS/motd; echo "exist says $?"
-wait    6
-run     exist /dd/SYS/no-such-file; echo "exist says $?"
-wait    6
-run     checkenv TERM; echo "checkenv says $?"
-wait    6
-run     ynad < /nil
-wait    8
-
-shot    gshell
-for     gshell mshell
-cap     GSHELL, a shell with a menu, and the other three small shells this
-cap     disk keeps beside bash.
-run     gshell
-wait    8
-
-shot    if
-for     if exist ask ynad
-cap     if, exist and ask are the pieces a shell script tests with -- OS-9
-cap     had no `test' and these are what stood in for it.  This one is
-cap     asked for by path because `if' is also a bash KEYWORD, and the
-cap     keyword wins: typing `if' alone never reaches the program.
-run     /dd/CMDS/if -?
-wait    6
-run     exist /dd/SYS/motd
-wait    5
-run     exist /dd/SYS/nothing-here
-wait    6
-
-shot    ksh
-cap     pd-ksh, the Korn shell, running as a program under bash: its own
-cap     prompt, its own builtins.
-run     ksh
-wait    4
-send    \r
-wait    1
-send    echo; for i in 1 2 3; do echo line $i; done\r
-wait    4
-send    exit\r
-wait    2
-
-shot    printenv
-cap     The environment a login on this disk actually arrives with.
-run     printenv
-wait    4
-
-shot    printf
-cap     printf formats rather than echoes, and it WORKS -- with one flaw:
-cap     the literal text before the FIRST conversion is dropped.  Between
-cap     and after conversions everything is right, which is why the first
-cap     two lines below are perfect and the third loses only its leading
-cap     `a'.  Begin the format with a conversion and nothing is lost.  A
-cap     format with no conversion at all is entirely "before the first
-cap     conversion", so it prints nothing -- the last line here.
-run     printf "%d %s %d\n" 4 "is bigger than " 3
-wait    5
-run     printf "%dab\n" 7
-wait    4
-run     printf "a%db%dc\n" 1 2
-wait    4
-run     printf "hello\n" x
-wait    4
-run     echo "echo has no such flaw"
-wait    5
-
-shot    sh
-cap     sh, a small Bourne shell -- and the one with a real OS-9 chd, so
-cap     pwd moves when you ask it to.
-run     sh
-wait    4
-send    echo hello from sh; pwd\r
-wait    4
-send    exit\r
-wait    2
-
-shot    whoami
-for     whoami logname tty su
-cap     Who you are, twice, and it is worth reading closely: `whoami' and
-cap     `logname' answer `su' because they look you up by USER NUMBER in
-cap     SYS/password -- everything here is owned 0.0 -- while $USER, which
-cap     SYS/login set, says tester.  `tty' asks the path itself and answers
-cap     `term', the name of the console device.
-run     whoami
-wait    4
-run     logname
-wait    4
-run     echo "USER is $USER, and the terminal is:"
-wait    4
-run     tty
-wait    5
-
+# Shells and the small programs written for shell scripts, one stanza
+# per program.
 
 shot    bash
-for     bash expr
-cap     The shell this disk hands you, answering for itself: its version,
-cap     an arithmetic expansion, and `expr' beside it doing the same sum
-cap     the way a script written for OS-9's own shell would have to.
-run     echo $BASH_VERSION
-wait    6
+cap     The shell a login on this disk hands you: GNU bash 1.12.  Its
+cap     version, an arithmetic expansion, a loop.
+run     bash -c "echo bash $BASH_VERSION, running a one-line script"
+wait    4
 run     echo $((355/113)) $((7*6))
+wait    3
+run     for f in one two three; do echo "item $f"; done
+wait    4
+
+shot    sh
+cap     A small Bourne shell, version 7.5, running as a program under
+cap     bash: its own # prompt, and a real chd that moves the data
+cap     directory, as pwd shows.
+run     sh
+wait    4
+send    echo hello from sh\r
+wait    3
+send    chd /dd/SYS; pwd\r
+wait    3
+send    exit\r
+wait    3
+
+shot    ksh
+cap     pd-ksh, the Korn shell, running a three-line script and a one-line
+cap     command.  It is the shell programs on this disk shell out through.
+run     mkdir -p /dd/tmp/SHL > /nil 2>/nil; printf "print hello from a ksh script\rfor f in a b c; do print item \$f; done\r" > /dd/tmp/SHL/script.ksh
+wait    2
+run     clear
+wait    1
+run     cat /dd/tmp/SHL/script.ksh
+wait    2
+run     ksh /dd/tmp/SHL/script.ksh
+wait    5
+run     ksh -c "print the date is; date"
+wait    5
+
+shot    gshell
+cap     GSHELL, a menu in place of a command line: the directory as a
+cap     lettered list, + and - to page, . to change directory, a letter
+cap     to run that file.
+run     gshell
 wait    6
+snap
+send    \003
+wait    2
+
+shot    mshell
+cap     A menu shell: it reads a file of `label,command' lines and shows
+cap     them numbered, and a number runs that command -- through a program
+cap     called `shell', Microware's, which is not on this disk, so here the
+cap     menu is as far as it goes.
+run     mkdir -p /dd/tmp/SHL > /nil 2>/nil; printf "Who am I,whoami\rThe date,date\rList SYS,ls /dd/SYS\r" > /dd/tmp/SHL/menu
+wait    2
+run     clear
+wait    1
+run     mshell /dd/tmp/SHL/menu
+wait    5
+snap
+send    \003
+wait    2
+
+shot    env
+cap     Runs a command with a variable added to its environment: here
+cap     printenv, which shows the variable arriving.
+run     env FOO=bar printenv | grep FOO
+wait    5
+
+shot    printenv
+cap     The environment a login on this disk arrives with.
+run     printenv
+wait    5
+
+shot    getenv
+cap     Reads one environment variable back: -p prints it with a newline,
+cap     -l without one, -x makes it the exit status.  Its messages are in
+cap     German.
+run     getenv -p TERM
+wait    3
+run     getenv -p HOME
+wait    3
+
+shot    checkenv
+cap     Compares an environment variable with a value, for a script to
+cap     branch on: `checkenv <name> , <value>', spaces round the comma.
+cap     It is meant to return an error when they differ; here it returns
+cap     0 either way, and prints its syntax line every time.
+run     checkenv TERM , vt100; echo "status $?"
+wait    4
+run     checkenv TERM , ansi; echo "status $?"
+wait    4
+
+shot    exist
+cap     Tests whether a file exists and answers in its exit status, 0 for
+cap     yes and 1 for no, which is what a script wants.
+run     exist /dd/SYS/motd; echo "exist says $?"
+wait    4
+run     exist /dd/SYS/no-such-file; echo "exist says $?"
+wait    4
+
+shot    expr
+cap     GNU expr, evaluating an expression for a script.
 run     expr 355 / 113
-wait    6
-run     expr 7 \* 6
-wait    8
-run     bash --version < /nil
-wait    8
+wait    3
+run     expr 6 \* 7 + 1
+wait    3
+run     expr length "OS-9/68000"
+wait    3
+
+shot    if
+cap     Conditional execution for a script: `if def <var>', `if loaded
+cap     <module>' or `if varval <var> <value>', then the commands to run,
+cap     else, endif.  It hands the chosen branch to a program called
+cap     `shell', Microware's, which is not on this disk -- so here the
+cap     branch never runs.  Ask for it by path: bash has an `if' of its own.
+run     /dd/CMDS/if -?
+wait    4
+run     /dd/CMDS/if def TERM echo TERM is set endif
+wait    5
+
+shot    qp
+cap     Expands back-quotes in a command line for a shell that cannot:
+cap     the output of the quoted command replaces it.  It runs the result
+cap     through a program called `shell', Microware's, which is not on
+cap     this disk, so here nothing comes back.
+run     qp -?
+wait    4
+run     qp echo `whoami`
+wait    5
+
+shot    xc
+cap     Runs the commands marked in a file and leaves the rest alone: a
+cap     line starting `% ' is a command, anything else is notes.  The
+cap     first command is echoed and then it stops with an exit status,
+cap     because it forks the commands through a program called `shell',
+cap     Microware's, which is not on this disk.
+run     mkdir -p /dd/tmp/SHL > /nil 2>/nil; printf "notes to myself\r%% echo one\r%% whoami\rmore notes\r" > /dd/tmp/SHL/cmds.txt
+wait    2
+run     clear
+wait    1
+run     cat /dd/tmp/SHL/cmds.txt
+wait    2
+run     xc /dd/tmp/SHL/cmds.txt
+wait    5
+
+shot    run
+cap     Runs a program with its input and output rebound to the terminal
+cap     that PORT names, for a program started somewhere else.  Here the
+cap     console is that terminal already, and nothing comes back from it.
+run     run
+wait    4
+run     export PORT=/term; run 'whoami'
+wait    5
 
 shot    hist
-for     hist xc run su
-cap     Four small shell helpers, each wanting something the shell does not
-cap     hand it.  `hist' is meant to be C-shell history and line editing and
-cap     prints a rule of asterisks and exits.  `xc' runs the commands marked
-cap     in a file and refuses to start without HOME.  `run' rebinds a
-cap     program's stdio to a terminal named by PORT and says so when there
-cap     is none.  `su' is GNU su, and answers --help rather than -?.
-run     xc -?
-wait    6
-run     run -?
-wait    6
-run     su --help | head -n 5
-wait    10
+cap     A command-line editor and history in front of the shell.  On this
+cap     console it prints a row of asterisks and returns at once.
 run     hist
-wait    6
+wait    5
 
+shot    printf
+cap     printf for the shell: widths, numbers, floating point.
+run     printf "%-8s|%5d|%6.2f\n" apples 12 3.14159
+wait    4
+run     printf "hello, %s\n" world
+wait    3
+run     printf "plain text, no conversion\n"
+wait    3
+
+shot    whoami
+cap     Who you are, by user number in SYS/password.  Everything on this
+cap     disk is owned 0.0, whose name there is su, while $USER, which the
+cap     login set, says tester.
+run     whoami
+wait    3
+run     echo "USER is $USER"
+wait    3
+
+shot    logname
+cap     Your login name, looked up the same way as whoami.
+run     logname
+wait    3
+run     echo "logged in as $(logname), user $USER"
+wait    3
+
+shot    su
+cap     GNU su.  Its options, and an attempt to become tester, which on a
+cap     disk where every file is owned 0.0 has no one to become and
+cap     returns without a word.
+run     su --help
+wait    5
+run     su tester
+wait    4

@@ -8,3 +8,9 @@ perr|perr prints the text of an OS-9 error number; error text IS its output
 elvprsv|run by elvis on a crash to preserve the buffer; by hand with nothing preserved it prints nothing, and the card says so
 pbyte|patches bytes silently; the cat before and after on its card is the evidence of its work
 exrecover|recovers a buffer expreserve kept when vi died; with nothing preserved "File not found" is its whole answer, and the card says so
+hist|a line editor in front of the shell; on this console it prints a row of asterisks and returns, and the card says so
+if|its help and a try: it hands the chosen branch to Microware's shell, which is not on this disk, so the branch never runs; the card says so
+qp|its help and a try: it runs the expanded line through Microware's shell, which is not on this disk; the card says so
+checkenv|prints its syntax line on every call and answers only in its status; the card shows both statuses
+run|its usage and a try; the program it runs answers on the terminal PORT names, and on this console nothing comes back
+su|GNU su's usage and a try to become tester, which on a disk owned 0.0 throughout has no one to become

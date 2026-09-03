@@ -1,6 +1,8 @@
-$ ksh
-# echo; for i in 1 2 3; do echo line $i; done
-line 1
-line 2
-line 3
-#
+cat /dd/tmp/SHL/script.ksh
+print hello from a ksh script
+for f in a b c; do print item $f; done
+$ ksh /dd/tmp/SHL/script.ksh
+/dd/tmp/SHL/script.ksh: cannot execute
+$ ksh -c "print the date is; date"
+the date is
+September 03, 2100 03:57:30

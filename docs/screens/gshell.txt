@@ -6,19 +6,19 @@ Directory : .
    !  exit Menue       .  change directory   a..z  file with parameter
 
 ===== Execute what Command ?                                            =====
-A  ADL                             B  CMDS
-C  DEFS                            D  DEMO
-E  DOC                             F  DOS
-G  ETC                             H  GAMES
-I  GNUCHESS4.0                     J  GNULIB
-K  LIB                             L  LOG
-M  MAIL                            N  SBPROLOG
-O  SOURCES.txt                     P  SPL
-Q  SPOOL                           R  SRC
-S  SYS                             T  USR
-U  VH                              V  c
-W  local                           X  readme
-Y  startup                         Z  tmp
+A  -?                              B  ADL
+C  CMDS                            D  DEFS
+E  DEMO                            F  DOC
+G  DOS                             H  ETC
+I  GAMES                           J  GNUCHESS4.0
+K  GNULIB                          L  LIB
+M  LOG                             N  MAIL
+O  SBPROLOG                        P  SOURCES.txt
+Q  SPL                             R  SPOOL
+S  SRC                             T  SYS
+U  USR                             V  VH
+W  c                               X  local
+Y  readme                          Z  startup
 
 
 Select file :

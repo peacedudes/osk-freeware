@@ -1,8 +1,4 @@
 $ whoami
 su
-$ logname
-su
-$ echo "USER is $USER, and the terminal is:"
-USER is tester, and the terminal is:
-$ tty
-term
+$ echo "USER is $USER"
+USER is tester

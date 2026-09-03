@@ -1,0 +1,14 @@
+$ qp -?
+Syntax: qp <cmd> <arg1> ... <argn>
+Function: process back-quotes for command expansion
+no Options
+  Args enclosed in back quotes (`) are treated as a
+  command sequence; stdout of this sequence replaces
+  the command itself.
+  Nested qp's are possible: The innermost qp has to be
+  enclosed within a pair of single back quotes, the next
+  level must be enclosed with double back quotes, and
+  so on.
+  If quotes of two levels are at the same place, they
+  have to be separated by at least one blank.
+$ qp echo `whoami`

@@ -1,5 +1,6 @@
 $ sh
-# echo hello from sh; pwd
+# echo hello from sh
 hello from sh
-/dd
+# chd /dd/SYS; pwd
+/dd/SYS
 # exit

@@ -89,7 +89,7 @@ cribbage|Full-screen: it takes over the display. **control-C gets you out** -- t
 editor|Run it bare: a full-screen file picker for umacs. Given a file on the command line it stops on an illegal instruction. Control-C leaves the menu.
 emacs|Full-screen editor, MicroEMACS keys. Control-X control-C quits. Its macros and help are in USR/LIB/EMACS.
 emacs.mm1|The MM/1 build of `emacs'; the same keys, control-X control-C quits.
-gshell|Full-screen: it takes over the display. **control-C gets you out** -- tested, and none of q, Q, control-D or ESC did. If it has a quit command of its own, its documentation in DOC/ will say.
+gshell|A full-screen menu of the current directory: + and - page, . changes directory, a letter runs that file. Control-C leaves it.
 hang|Full-screen: it takes over the display. **control-C gets you out** -- tested, and none of q, Q, control-D or ESC did. If it has a quit command of its own, its documentation in DOC/ will say.
 hotel|Full-screen: it takes over the display. **control-C gets you out** -- tested, and none of q, Q, control-D or ESC did. If it has a quit command of its own, its documentation in DOC/ will say.
 lander|Full-screen: it takes over the display. **`q' quits** -- tested.
@@ -224,7 +224,7 @@ vftovp|`vftovp s.vf s.tfm back.vpl' reads the binary pair back to text. VFFONTS 
 helpindex|`helpindex dinfo.hlp' writes dinfo.ndx beside it. Only names ending .hlp or .hlib are accepted unless -a is given; with no name it asks for one.
 florida|`florida < /nil'. It simulates a year of Florida weather day by day, with the calendar notes.
 weave|The other half of `tangle', and it NEEDS A CHANGE FILE NAMED just as tangle does: `weave sample none', never `weave sample.web'. Given only a .web it answers `Error: `Can't open file.'' and the file it cannot open is the absent change file. DOC/tex ships sample.web and none.ch.
-printf|/dd/CMDS/printf DROPPED EVERYTHING BEFORE THE FIRST CONVERSION until it was rebuilt `-qm' on 2026-09-01: a format with no `%' in it wrote a ZERO-BYTE file that looked like a working setup line, and seven committed drive sheets had fed programs nothing on the strength of it. The build here now keeps every literal. bash's `echo' is still the simpler way to write a line, and it writes a CR.
+printf|printf as on Unix: `printf "%-8s|%5d\n" name 12'. Widths, numbers and floating point all work.
 ppmquant|A PALETTED CONVERTER NEEDS A QUANTISED IMAGE, and this is what quantises: `ppmquant 16 in.ppm > out.ppm'. Eight netpbm writers -- ppmtoicr, ppmtosixel, ppmtouil, ppmtopuzz, ppmtopict, ppmtopi1 and two more -- write ZERO BYTES for a 24-bit PPM and correct files after it.
 pgmtopbm|WITHOUT -threshold IT IS NOT REPRODUCIBLE: its dither differs every run, so any assertion on a length or a checksum downstream of it flaps. `pgmtopbm -threshold' when you need the same answer twice.
 macsave|Its silence is CORRECT and documented: DOC/macsave/macsave.1 says it "reads standard input and silently writes the file(s) it contains". `macbin' makes the MacBinary it wants, and the pair round-trips.
@@ -235,3 +235,10 @@ dump|This is the hex dump on this disk. There is no `od'.
 maketexpk|It carries the RIGHT Metafont line in its own strings and then reaches for `makdir', `del' and `attr' to file the result -- three Microware utilities that are not here. Run the virmf line yourself: DOC/README-METAFONT has it, and `gftopk' is all maketexpk was going to do afterwards.
 forth|Type `2 3 + . cr' and it answers 5; `: squares 10 1 do i dup * . loop cr ;' then `squares' prints them; `words' lists its vocabulary; `bye' leaves. A SOURCE FILE IS A COMMAND-LINE ARGUMENT -- `forth fibonacci.tst' loads it and gives you the prompt -- because `include' is defined in the library, not the kernel. The library and the twenty-two programs it shipped with are in lib/tile and lib/tile/TST; lib/tile/readme explains the name (TILE is this Forth's own).
 ed|Needs a /r0 RAM disk for its scratch file; under os9exec `mount -r=256k /r0' provides one. Then `ed <file>', with ed's usual commands: 1,4p prints, s/a/b/ substitutes, w writes, q quits.
+mshell|`mshell <menufile>': one `label,command' per line. A number picks an entry; it hands the command to Microware's `shell', which is not on this disk, so nothing runs here. Control-C leaves it.
+if|Ask for it by path, /dd/CMDS/if -- bash has an if of its own. It hands the chosen branch to Microware's `shell', which is not on this disk, so the branch never runs here.
+qp|Runs its expanded command through Microware's `shell', which is not on this disk, so nothing comes back here.
+xc|`xc <file>': lines beginning `% ' are commands, the rest is notes. It forks them through Microware's `shell', which is not on this disk, so it echoes the first and stops.
+checkenv|`checkenv <name> , <value>' with spaces round the comma. Meant to return an error when they differ; it returns 0 either way.
+hist|A command-line editor with history in front of the shell. On this console it prints a row of asterisks and returns at once.
+run|`run '<program> <args>'' with PORT naming a terminal: the program runs with its input and output on that terminal.

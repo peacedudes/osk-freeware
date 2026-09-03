@@ -22,10 +22,10 @@
 | [Encoding & conversion](#encoding--conversion) | 24 | Between text encodings, line endings, Macintosh formats, ciphers and hashes. |
 | [Communications](#communications) | 96 | Kermit in several builds, terminal sessions, and networking. |
 | [Graphics & images](#graphics--images) | 202 | The netpbm toolkit, JPEG, a ray tracer, and things that draw. |
-| [Games](#games) | 67 | Adventures, board and card games, arcade ports, dungeon crawls and puzzles. |
+| [Games](#games) | 68 | Adventures, board and card games, arcade ports, dungeon crawls and puzzles. |
 | [Screen toys](#screen-toys) | 10 | Animations and screen effects -- they draw on the terminal rather than print to it. Some run until you stop them. |
 | [Amusements](#amusements) | 19 | Generators, simulators and diversions that are not quite games. |
-| [System & modules](#system--modules) | 126 | OS-9 module and process tools, devices, system state and scheduling. |
+| [System & modules](#system--modules) | 125 | OS-9 module and process tools, devices, system state and scheduling. |
 | [Disk & DOS](#disk--dos) | 20 | Reading and writing MS-DOS media with the mtools set. |
 | [Time & calendar](#time--calendar) | 13 | Calendars, clocks and astronomy. |
 | [Maths & calculators](#maths--calculators) | 11 | Calculators, plotting, orbits and number theory. |
@@ -42,16 +42,16 @@
 
 | | |
 |---|---|
-| `checkenv` | &#9733; check an environment variable against a value: `checkenv <name> , <value>', and the spaces around the comma are part of the syntax.  It sets a return code rather than printing -- but measured 2026-08-31 it answers 0 for a value that matches AND for one that does not, so the return code cannot be relied on.  `getenv -p <name>' prints the value and is the one to use<br>`Syntax: checkenv <eparam> , <evalue>` |
+| `checkenv` | &#9733; compares an environment variable with a value for a script to branch on: `checkenv <name> , <value>', spaces round the comma.  Meant to return an error when they differ; it returns 0 either way that matches AND for one that does not, so the return code cannot be relied on.  `getenv -p <name>' prints the value and is the one to use<br>**How:** `checkenv <name> , <value>' with spaces round the comma. Meant to return an error when they differ; it returns 0 either way. |
 | `exist` | &#9733; test file existence |
 | `getenv` | &#9733; print or test an environment variable.  German prompts: `getenv -p TERM' prints the value with a newline, -l without one, -x exits with it, -n inverts the test.  Bare, or with a name and no option, it prints its own usage.  DESIGNA VLT, version UTIL 2.40<br>`USAGE: getenv [-n\|-p\|-l\|-x] <Environment> [<Wert>]` |
-| `hist` | C-shell history + commandline editing  [no military use -- EFFO-INFO] |
-| `if` | conditional execution for shell scripts (varval/loaded/def)<br>`Syntax: if [not] <cond> {<arg>} {<cmd1>} [else` |
+| `hist` | a command-line editor with history, in front of the shell  [no military use -- EFFO-INFO]<br>**How:** A command-line editor with history in front of the shell. On this console it prints a row of asterisks and returns at once. |
+| `if` | conditional execution for a shell script: `if def <var>', `if loaded <module>' or `if varval <var> <value>', the commands, `else', `endif'.  It hands the branch to Microware's `shell', which is not on this disk<br>**How:** Ask for it by path, /dd/CMDS/if -- bash has an if of its own. It hands the chosen branch to Microware's `shell', which is not on this disk, so the branch never runs here. |
 | `printenv` | &#9733; print the environment<br>`Syntax:   printenv [<options>] [{<env var name}]` |
-| `printf` | formatted print from the shell, and it is RIGHT NOW.  It used to drop the literal text before the first conversion, so `printf "[%s]\n" X' printed `X]' and a format with no conversion at all printed nothing -- which is why several drive sheets here fed programs a zero-byte file and read the silence as the program's.  That was the cio selector mismatch; rebuilt trap-free 2026-08-31 and every literal now arrives.  DOC/README-CIO<br>**How:** /dd/CMDS/printf DROPPED EVERYTHING BEFORE THE FIRST CONVERSION until it was rebuilt `-qm' on 2026-09-01: a format with no `%' in it wrote a ZERO-BYTE file that looked like a working setup line, and seven committed drive sheets had fed programs nothing on the strength of it. The build here now keeps every literal. bash's `echo' is still the simpler way to write a line, and it writes a CR. |
-| `qp` | &#9733; expand BACK-QUOTES in a command line, which Microware's shell cannot do for itself: `qp <cmd> <args>'.  It forks a `shell' to do the expansion, so it wants Microware's on your execution path and produces nothing without one.  Nothing to do with printing<br>`Syntax: qp <cmd> <arg1> ... <argn>` |
-| `run` | run a program with stdio rebound to the terminal (needs PORT)<br>`Syntax: run '<prgname> {<arg>}'` |
-| `xc` | execute commands from a file (needs a .xc) |
+| `printf` | formatted print from the shell, as on Unix: widths, numbers and floating point<br>**How:** printf as on Unix: `printf "%-8s\|%5d\n" name 12'. Widths, numbers and floating point all work. |
+| `qp` | &#9733; expand BACK-QUOTES in a command line, which Microware's shell cannot do for itself: `qp <cmd> <args>'.  It forks a `shell' to do the expansion, so it wants Microware's on your execution path and produces nothing without one.  Nothing to do with printing<br>**How:** Runs its expanded command through Microware's `shell', which is not on this disk, so nothing comes back here. |
+| `run` | runs a program with its input and output on the terminal PORT names: `run '<program> <args>''<br>**How:** `run '<program> <args>'' with PORT naming a terminal: the program runs with its input and output on that terminal. |
+| `xc` | runs the commands marked in a file -- a line beginning `% ' -- and leaves the rest as notes.  Forks them through Microware's `shell', which is not on this disk<br>**How:** `xc <file>': lines beginning `% ' are commands, the rest is notes. It forks them through Microware's `shell', which is not on this disk, so it echoes the first and stops. |
 
 **Shell utilities**
 
@@ -68,10 +68,10 @@
 | | |
 |---|---|
 | `bash` | GNU Bourne-Again Shell 1.12 -- this disk's shell; reads .bashrc. It CANNOT serve as $SHELL for a program that shells out: it reads system()'s command line as a script filename.  `ksh' is the one that can, and SYS/login sets SHELL to it. DOC/README-SHELLS compares all five<br>`usage: fc [-e ename] [-nlr] [first] [last] or fc -s [pat=rep] [command]` |
-| `gshell` | GSHELL V1.1 (Uwe Simon, 1988) -- a full-screen MENU, not a command shell: a lettered list of the directory, `+' and `-' to page, `.' to change directory, a letter to run a file. `assembler', `compiler' and `editor' are the same engine pointed at one job each.  DOC/README-SHELLS<br>**How:** Full-screen: it takes over the display. **control-C gets you out** -- tested, and none of q, Q, control-D or ESC did. If it has a quit command of its own, its documentation in DOC/ will say. |
+| `gshell` | GSHELL V1.1 (Uwe Simon, 1988) -- a full-screen MENU, not a command shell: a lettered list of the directory, `+' and `-' to page, `.' to change directory, a letter to run a file. `assembler', `compiler' and `editor' are the same engine pointed at one job each.  DOC/README-SHELLS<br>**How:** A full-screen menu of the current directory: + and - page, . changes directory, a letter runs that file. Control-C leaves it. |
 | `ksh` | &#9733; Korn shell.  `ksh -c '<commands>'` works completely.  Its INTERACTIVE loop depends on the EMULATOR: it reads the command line with read(fd,buf,256), and os9exec's I$Read returned only when the full count arrived rather than at the end-of-record character, so no typed command ever reached it.  With that corrected, ksh is a full shell -- prompt, for loops, variables, forking.  DOC/README-KSH<br>`Syntax: 'setpr <prior>' or 'setpr <pid> [<pid>..] <prior>'` |
+| `mshell` | &#9733; a menu shell: `mshell <menufile>' shows one numbered entry per `label,command' line and a number runs that command -- through Microware's `shell', which is not on this disk<br>**How:** `mshell <menufile>': one `label,command' per line. A number picks an entry; it hands the command to Microware's `shell', which is not on this disk, so nothing runs here. Control-C leaves it. |
 | `sh` | Bourne shell v7.5 -- what the startup script runs.  It has a REAL `chd' where bash does not, and it cannot fork a program by absolute pathname here, which is the trade. DOC/README-SHELLS |
-| `wish` | &#9733; the `hack' wish toy: run it and it prints `Wishing for: 3 potions of gain level' and `what happened to "hack"'.  The same program as CMDS/GAMES/wish.  Not the WiSH windowing shell -- both binaries carry `Wishing for: %s' and neither carries any windowing code.  DOC/ORIGINS lists a `wish' from EFFO disk 17 (WiSH_src.lzh, Hellmuth Michaelis, GPL) as well as one from the `toys' archive; the EFFO one is not the binary that is here, under either name |
 
 </details>
 
@@ -1151,7 +1151,7 @@
 
 *Adventures, board and card games, arcade ports, dungeon crawls and puzzles.*
 
-<details><summary>67 programs</summary>
+<details><summary>68 programs</summary>
 
 **Adventure & fiction**
 
@@ -1214,6 +1214,7 @@
 | `hack` | hack -- the original dungeon crawl NetHack grew out of<br>**How:** RUN IT BY ITS FULL PATH: `/dd/CMDS/GAMES/hack', not `hack'. It chdirs into its playground and then stats argv[0] to date-check saved levels, so a bare name cannot resolve and it stops with "Cannot get status of hack." Invoked in full it starts: "Are you an experienced player?". Its playground -- record, bones, rumors, help -- is in GAMES/HACK/PLAYGROUND. |
 | `larn` | &#9733; larn -- dungeon crawl; see the PLAYGROUND note above<br>**How:** Full-screen: it takes over the display. **control-C gets you out** -- tested, and none of q, Q, control-D or ESC did. If it has a quit command of its own, its documentation in DOC/ will say. |
 | `ularn` | ULarn -- the larn variant, and its data is complete |
+| `wish` | &#9733; the `hack' wish toy: run it and it prints `Wishing for: 3 potions of gain level' and `what happened to "hack"'.  The same program as CMDS/GAMES/wish.  Not the WiSH windowing shell -- both binaries carry `Wishing for: %s' and neither carries any windowing code.  DOC/ORIGINS lists a `wish' from EFFO disk 17 (WiSH_src.lzh, Hellmuth Michaelis, GPL) as well as one from the `toys' archive; the EFFO one is not the binary that is here, under either name |
 
 **Other games**
 
@@ -1334,7 +1335,7 @@
 
 *OS-9 module and process tools, devices, system state and scheduling.*
 
-<details><summary>126 programs</summary>
+<details><summary>125 programs</summary>
 
 **Devices & disks**
 
@@ -1478,7 +1479,6 @@
 | `makecrc` | GENERATE C SOURCE for CRC tables.  It takes no arguments: run it somewhere writable and it writes six files into the data directory -- arc.c, binhex.c, ccitt.c, ccitt32.c, kermit.c and zip.c -- each holding a crctab[256] and an updcrc() for one polynomial.  It prints nothing, so list the directory afterwards.  It does not compute a CRC for you; `chksum' does that<br>**How:** It GENERATES C SOURCE and takes no arguments. Run it somewhere writable (`ksh -c "cd /dd/tmp; makecrc"') and it writes six files -- arc.c, binhex.c, ccitt.c, ccitt32.c, kermit.c, zip.c -- each a crctab[256] and an updcrc(). It prints nothing, so list the directory afterwards. |
 | `map` | &#9733; show the disk blocks a file occupies, sector by sector: `map <file>', or `map -e <file>' for the extended form. For memory rather than disk, see `mfree' and `free'<br>`Syntax: map [<opts>] <file> {<file>}` |
 | `modinfo` | report a module's header -- name, type, size, edition, CRC<br>`Syntax:   module [modulename]` |
-| `mshell` | &#9733; a MENU shell: it takes a menu file as its argument and says `Could not open <name> (menufile)' without one.  It also needs TERM set, as every full-screen program here does.  Corrected 2026-08-29; an earlier note said only that it wanted a terminal, which was an artefact of probing it with no TERM in the environment |
 | `mvolformat` | format a multi-volume set<br>`Syntax: mvolformat drive volname volcount [format options]` |
 | `names` | &#9733; list the names of modules in a file -- and it DOES NOT COME BACK: given a module it prints nothing and never returns, with a file on its standard input or without. `ident', `modinfo' and `module_census' all answer the same question.  Measured 2026-08-29 |
 | `phone` | connect two terminals -- NOT an address book<br>`Syntax: phone <communication-path>` |

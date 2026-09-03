@@ -1,0 +1,8 @@
+cat /dd/tmp/SHL/cmds.txt
+notes to myself
+% echo one
+% whoami
+more notes
+$ xc /dd/tmp/SHL/cmds.txt
+ echo one
+xc:  ** Exit status 2727:184 **

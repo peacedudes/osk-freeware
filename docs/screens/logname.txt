@@ -1,0 +1,4 @@
+$ logname
+su
+$ echo "logged in as $(logname), user $USER"
+logged in as su, user tester

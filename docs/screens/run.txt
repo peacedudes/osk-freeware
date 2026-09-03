@@ -1,0 +1,7 @@
+$ run
+Syntax: run '<prgname> {<arg>}'
+Function: execute the program <prgname> with stdio rebound to the terminal
+          (be sure the argument is quoted)
+Options:
+     (none)
+$ export PORT=/term; run 'whoami'

@@ -1,0 +1,4 @@
+$ getenv -p TERM
+vt100
+$ getenv -p HOME
+/dd

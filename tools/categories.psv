@@ -525,7 +525,7 @@ bash|Shells|Shells
 gshell|Shells|Shells
 ksh|Shells|Shells
 sh|Shells|Shells
-wish|Shells|Shells
+wish|Games|Dungeon crawl
 
 # ---- System & modules ----
 dinfo|System & modules|Devices & disks
@@ -916,7 +916,7 @@ liborder.os9|System & modules|Utilities
 lmargin|Printing|Spooling
 lunisolar|Time & calendar|Astronomy
 map|System & modules|Utilities
-mshell|System & modules|Utilities
+mshell|Shells|Shells
 names|System & modules|Utilities
 preset|System & modules|Utilities
 pri|System & modules|Utilities

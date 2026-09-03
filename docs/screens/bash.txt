@@ -1,10 +1,8 @@
-$ echo $BASH_VERSION
-1.12.12
+$ bash -c "echo bash $BASH_VERSION, running a one-line script"
+bash 1.12.12, running a one-line script
 $ echo $((355/113)) $((7*6))
 3 42
-$ expr 355 / 113
-3
-$ expr 7 \* 6
-42
-$ bash --version < /nil
---: bad option
+$ for f in one two three; do echo "item $f"; done
+item one
+item two
+item three

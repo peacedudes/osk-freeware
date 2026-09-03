@@ -1,6 +1,6 @@
 $ printenv
 PEP=/dd/SYS/PEP
-SHELL=/dd/CMDS/bash
+SHELL=/dd/CMDS/ksh
 SHLVL=1
 BASH=/dd/bash
 MAIL=/dd/SPOOL/MAIL/tester
