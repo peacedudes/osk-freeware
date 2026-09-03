@@ -89,3 +89,34 @@ Fortran programs sat in it for weeks.
 A verification pass that means anything has to `load` first. That is now
 possible without OS9MDIR, which was an os9exec environment variable being
 documented to users as though it were OS-9.
+
+## Addendum 2026-09-03: `biory` is the second casualty, and it is a card that cannot be made
+
+`biory`, the RTF Fortran biorhythm program, takes its three answers and
+then stops the same way, inside the run-time rather than the program:
+
+    PC=00077DE2 SR=0005
+    Executing: -->00077de2: 40c0 4880 0c40 0005 6704 MVSR2.W D0
+                  00077de4: 4880 ...                  EXT.W D0
+    Exception: pid=3 vector=$08 err=#000:108
+
+`MOVE SR,D0; EXT.W D0; CMP.W #5,D0; BEQ` -- the run-time reading the
+status register before it writes the first line of the chart.  rdoggett
+named biory on 2026-09-03 as the model card (German prompts, translated,
+answered, and the chart shown), and the chart cannot be shown on os9exec as
+built.  A 68000 CPU mode -- or emulating `MOVE SR,<ea>` in user state the
+way a 68010+ OS-9 kernel's privilege-violation handler can -- would make
+both biory and creadoc run.  Whether Microware's kernel does that emulation
+is not settled by anything in the os9-dev skill; it is a question for the
+manuals.
+
+## Seen alongside, not a fault: `F$SetSys: unimplemented 03D8 (size=80000004)`
+
+Printed to the console four to eight times at start-up by biory and also by
+`scales`, a plain C program, so it is the run-time reading a 4-byte system
+global at offset $3D8 that os9exec does not model; os9exec answers 0 and
+both programs go on.  `getsys` reads a page of them ($076C-$08EC).  The
+message is os9exec's dbgAnomaly diagnostic, on by default, and it lands
+on every card the program is on, so `gen_screens.py` now leaves those
+lines off the published screen.  Which global $3D8 is has not been looked
+up.

@@ -34,6 +34,9 @@
                         it asserts nothing, it shows you what happened
     drives/             the sheets drive.py reads. Committed; the transcripts
                         they produce are not
+    probe_sheet.py      run a scratch sheet through the capture harness and
+                        PRINT the screens, saving nothing -- the step before
+                        a stanza goes into a real sheet
     audit_panels.py     what each PROGRAM's panel shows OF THAT PROGRAM --
                         the per-program audit; its --gate is the ratchet
                         check_disk runs against tools/panel-backlog.txt

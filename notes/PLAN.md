@@ -229,6 +229,72 @@ for the maintainer, which is why `lessecho`'s panel explains `helpindex`.
   the list. Data and generator stay; this is template-only.
 - **Phase 4 -- release.** Run the CI workflow once for real, tag, publish.
 
+### How to do a batch -- the protocol, as run on Amusements 2026-09-03
+
+One batch is one category or a few sub-categories, twenty to forty
+programs. Work on a COPY of the image so two batches can run at once:
+`cp osk-freeware.dd <scratch>/<batch>.dd` and pass `--image` to every
+harness. Do not commit; do not run `gen_screens.py` or `gen_catalog.py` --
+the session that dispatched the batch regenerates, audits, prunes the
+backlog and commits. Report what was changed and what was found.
+
+**For each program, in order, and write nothing until you have looked:**
+
+1. **What the disk already says.** `tools/worklist.py --cat "<category>"`
+   for the index line, the usage line and which sheet already runs it;
+   `tools/howto.psv` (often right where `DOC/INDEX` is wrong); the
+   program's own `DOC/<name>/` and any `README-*` that names it;
+   `DOC/DEPENDS` for what it opens; `DOC/STATUS` for what was found before;
+   `disk/SRC/` for its source when the prompts or the exit path are
+   unclear (`grep printf`, `grep FORMAT`).
+2. **Run it with real arguments and do what it does.** Write a scratch
+   sheet and `tools/probe_sheet.py scratch.sheet --image <copy>`; it prints
+   exactly what a card would show and saves nothing. A prompter gets its
+   prompts answered with a plausible choice; a filter gets a real file
+   (`/dd/SYS/motd`, `/dd/DOC/README-RUNNING`, a file you make under
+   `/dd/tmp/<BATCH>/`); a game gets played a few moves; a full-screen
+   program gets `snap` at the moment worth seeing. `size` goes right after
+   `shot`; wide output gets a wide window; a program whose interesting
+   part is later gets captured later. A work directory gets a name only
+   this batch uses, `rm -f`'d and `mkdir -p`'d first. `load` the helper a
+   program forks by bare name, or the trap library it wants.
+3. **Decide what it is**, from what it did: does the index line describe
+   this program, is it in the right sub-category, is the sub-category
+   itself right, does it need something (and does `DOC/DEPENDS` list it),
+   is there a better invocation, and is there anything its own
+   documentation adds that a stranger needs. Fix `DOC/INDEX` (CR-only --
+   write bytes, `\r` for every newline), `tools/howto.psv` and
+   `tools/categories.psv` where they are wrong. A program that cannot do
+   its job here -- wants hardware, a peer, a helper that never came, a
+   68000 -- gets a card that shows it as far as it goes and a caption that
+   says plainly what stops it; and its name goes in the batch report as a
+   candidate for rdoggett's "best forgotten" list.
+4. **Write the stanza**: one `shot` per program, named for it; `for` only
+   where members of a real family are each run on the card. Caption for
+   a stranger: what they are looking at, what was typed, what the program
+   is for. No dates, no history, no "used to", no "this collection", no
+   "the card", no "it turns out", no os9exec unless the program's stop is
+   its subject. `clear` before the run that is the picture when setup
+   lines came first. Probe it, look at it, and only then move it into
+   the sheet under `tools/screenshots/` (the category's sheet, or a new
+   one named for the batch).
+5. **Shoot for real**: `tools/screenshots.py tools/screenshots/<sheet>
+   --image <copy>` (or `--only a,b,c`). Read every `<-- LOOK AT THIS ONE`.
+   Then `tools/audit_panels.py --all | grep -E "^(a|b|c) "` -- the verdict
+   is computed from the LAST published `docs/screens.js`, so it lags until
+   the dispatcher regenerates; use it to check that your typed line names
+   the program the way the audit matches it.
+6. **Report**, per program: verdict (works / works with `X` / stops
+   because `Y` / best forgotten), what was corrected, what needs a decision.
+
+Things that bit on the first batch: a `size` line between stanzas attaches
+to the one BEFORE it; the fullest-moment picker prefers a menu to a playing
+field, which `snap` overrides; `head -n N file` prints `head: file` as a
+trailer, so pipe `cat file | head -n N`; `pwgen` needs twenty seconds;
+`echo ====` fails in zsh because a leading `=` is a path expansion; a
+program that reads its answers from a pipe may not read them at all --
+the harness gives it a pty, and that is the one to believe.
+
 ### Rules for this pass
 
 - **An os9exec bug stops the work.** rdoggett, 2026-09-03: *"If you discover

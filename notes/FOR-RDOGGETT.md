@@ -8,6 +8,26 @@ twenty-one now, nineteen of them proved able to FAIL by
 
 ---
 
+## 2026-09-03: an os9exec item, said loudly as asked
+
+**`biory` cannot draw its chart on os9exec.** After its three answers it
+takes a privilege violation on `MOVE SR,D0` inside the Fortran run-time --
+the same 68000-legal, 68010-privileged instruction that stops `creadoc`,
+recorded in `notes/os9exec-bugs/PRIVILEGED-INSTRUCTIONS.md` on 2026-08-27
+and now with biory's dump as an addendum. Its card shows the prompts
+answered and the stop. If os9exec grew a 68000 mode, or emulated
+`MOVE SR,<ea>` for user programs, the biory card you asked for becomes
+possible; nothing on this side can make it.
+
+**Candidates for "best forgotten", from the Amusements batch:**
+
+- `rstory2` asks five questions and forks Microware's `shell` to run
+  `rstory_W`/`_S`/`_C`/`_G` piped into `tformat` -- and the four story
+  programs never came with it (forum9.lzh has rstory, rstory2 and tformat
+  only). It can never produce a story here. Its card says so.
+- `bio` is BASIC09 I-code and this disk carries no `runb`. Kept as data for
+  someone with BASIC09; it has no card.
+
 ## WHAT NEEDS YOU, in order
 
 **0. "Is os9exec ready for 4.10? Have you been through them all?" -- NO, and
