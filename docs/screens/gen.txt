@@ -1,9 +1,8 @@
-$ rm -f /dd/tmp/demo.c
-$ gen -p /dd/tmp/demo
-$ head -n 14 /dd/tmp/demo.c 2>/nil
+gen -p /dd/tmp/SYSB/demo
+$ cat /dd/tmp/SYSB/demo.c | head -n 16
 /*********************************************************************
 file name and type:
-  /dd/tmp/demo.c, program file
+  /dd/tmp/SYSB/demo.c, program file
 ----------------------------------------------------------------------
 description:
 
@@ -12,7 +11,7 @@ shorthand, name and address of authors:
   MM       M. Moser, Jakob-Brucker-Str. 15, 8950 Kaufbeuren
 ----------------------------------------------------------------------
 version, author, date and report:
-  1.0    MM      30.08.126 first version
-----------------------------------------------------------------------
+  1.0    MM      03.09.126------------------------------------------------------
 pecularities:
-$ suse < /nil
+  none
+*********************************************************************/

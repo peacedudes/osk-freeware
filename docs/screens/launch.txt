@@ -10,13 +10,3 @@ Options : -d  debug mode
           -e  set up emacs bindings file from prototypes in /dd/sys
           -i  initialise the terminal using the 'is' capability
               for the terminal
-$ dpark -?
-Syntax:   dpark [/device]
-Function: restore RBF device head to TRK00
-Options:  none
-$ snd_sig -?
-Syntax:   snd_sig [-options] pid pid1...pidn
-Function: Wakeup a process with the wake signal
-Options:
-          -?              display synopsis
-          -(n)            signal number to send

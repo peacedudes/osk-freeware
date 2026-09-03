@@ -1,0 +1,4 @@
+$ mexist bash; echo "status $?"
+status 0
+$ mexist nosuchmodule; echo "status $?"
+status 1

@@ -26,11 +26,9 @@ cjpeg
 cjpeg.070
 ckermit
 clear
-clock
 cls
 combine
 connect
-cron
 demerge
 detab
 diff_1.1
@@ -39,7 +37,6 @@ djpeg.070
 dld
 dpark
 enable
-eset
 expand
 fastmail
 filter
@@ -48,7 +45,6 @@ fixtext
 fixyear
 fkeys
 fstopgm
-gen
 getsys
 gouldtoppm
 graphdemo
@@ -73,7 +69,6 @@ m4_0.5
 mail
 mailx
 makecrc
-mexist
 msntp
 mtvtoppm
 mvolformat
@@ -127,11 +122,9 @@ pri
 printmail
 psidtopgm
 ptob
-ptxminst
 pwparse
 rawtopgm
 rawtoppm
-repeat
 rmail
 rndir
 savemem
@@ -154,7 +147,6 @@ splitalf
 spottopgm
 suse
 suspend
-t
 tabs
 tgatoppm
 tplot
@@ -189,5 +181,6 @@ vis
 pnmpaste
 tplot
 edir
-eunlink
 preset
+setime
+sysmax

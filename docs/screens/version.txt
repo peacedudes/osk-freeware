@@ -1,4 +1,3 @@
--> let r0c0 = cho S9READYclearversion /dd/CMDS/todaymexist bash
-Unintelligible word: let r0c0 = cho<= S9READYclearversion /dd/CMDS/todaymexist h
-
-              <
+$ version /dd/CMDS/today
+Dies ist das Program 'version', Version 7
+... oder in anderer Notation, version 0.7

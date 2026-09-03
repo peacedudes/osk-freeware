@@ -1,10 +1,7 @@
-$ keep -n hack
-collection at /h0, keeping into /dd
+keep -p /dd/tmp/SYSB/kp greg
+collection at /h0, keeping into /dd/tmp/SYSB/kp
 
-hack:
-  !! /dd/CMDS/GAMES/hack exists -- refusing to overwrite (use -f)
-  -- /h0/games/hack/playground is a directory, left for you to decide about
-  -- wants termcap; SYS/login sets TERMCAP, nothing to do
+greg:
+  /dd/tmp/SYSB/kp/CMDS/greg
 
-0 files would be written, 1 skipped, 1 REFUSED.
-Nothing was overwritten.  Use -f if that is what you want.
+1 file written.

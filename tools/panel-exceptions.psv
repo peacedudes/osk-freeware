@@ -74,3 +74,11 @@ collect|a g++ linker-helper pass; with nothing to link its usage is what there i
 gcc_collect|a g++ linker-helper pass; with nothing to link its usage is what there is to show
 gpp_collect|a g++ linker-helper pass; with nothing to link its usage is what there is to show
 lnk.org|the RTF Fortran linker; it aborts for want of Microware's l68, and the card shows that
+cron|a scheduling daemon; its card shows the crontab it reads rather than running it
+clock|wants a pipe it cannot open here and says so; the stop is the whole of what it does
+sysid|asks the kernel to identify itself through a call os9exec does not implement; that reply is its output
+t|a stub that returns success and prints nothing; the status line on its card is the evidence
+gen|writes a C program frame to a file; the listing that follows on its card shows it
+mexist|answers only in its exit status; the two statuses on its card are the evidence
+eset|the event directory is empty and nothing here creates an event, so it can only report that
+eunlink|the event directory is empty, so it reports the event is not found

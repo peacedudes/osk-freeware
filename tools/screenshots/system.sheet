@@ -11,20 +11,6 @@ cap     moment you ask, so it cannot drift from what shipped.
 run     about hack
 wait    5
 
-shot    about-tar
-for     about
-size    36 80
-cap     about answers for any program on the disk.  `virmf' is the one that
-cap     shows both of the fixes made on 2026-09-02: it now prints the `how'
-cap     line -- the measured invocation, which it read for the category and
-cap     then threw away -- and it reports the UPPERCASE paths these TeX
-cap     binaries carry as `here' rather than `not here'.  It used to say
-cap     twenty-one of Metafont's own directories were missing, because its
-cap     probe was built only for a lowercase `/dd/'.  DOC/DEPENDS had them
-cap     right the whole time.
-run     about virmf
-wait    6
-
 shot    aprocs
 cap     A process monitor -- and it cannot run here.  It reads the system
 cap     globals through F$SetSys, which os9exec does not implement, and
@@ -54,13 +40,10 @@ run     bigsetter
 wait    8
 
 shot    bootgen
-for     bootgen bcheck bsplt68
-cap     The boot-file tools: bootgen makes an OS9Boot, bcheck checks one
-cap     and bsplt68 takes one apart.  There is no boot file here -- os9exec
-cap     IS the kernel -- so these are for your own hardware.
+cap     bootgen builds an OS9Boot file for a machine to start from -- you
+cap     name the device and the modules to put in it.  There is no boot
+cap     file to build here, so it answers with its command format.
 run     bootgen -?
-wait    8
-run     bsplt68 -?
 wait    8
 
 shot    btree
@@ -69,22 +52,10 @@ run     btree
 wait    8
 
 shot    clock
-for     clock date setime setime2 setyear fixyear
-cap     `clock' does not run here -- `Popen error 216', it wants a pipe it
-cap     cannot open.  What follows is the pair that DO work: setime2 and
-cap     setyear, two of the three Y2K repairs on this disk, which exist
-cap     because `date' answers 2100.
-run     clock
-wait    6
-run     setime2 -?
-wait    6
-run     setyear -?
-wait    6
-run     date
-wait    6
-run     setime -?
-wait    6
-run     fixyear -?
+cap     clock displays a running clock, and cannot here: it opens a pipe
+cap     to feed its display and answers `Popen error 216' when that pipe
+cap     cannot be made.
+run     clock; echo "clock returned $?"
 wait    6
 
 shot    config
@@ -106,14 +77,13 @@ run     dam /dd | head -n 21
 wait    10
 
 shot    date
-cap     date, and the Y2K repairs beside it.  It prints the year 2100 for
-cap     2026 -- one of the reasons setyear and fixyear are on this disk.
+cap     date prints the date and time.  It reads the year as 2100, which is
+cap     why the disk carries the setyear and fixyear repairs; `date -t'
+cap     shows the same clock in the format setime prompts for.
 run     date
 wait    4
 run     date -t
 wait    4
-run     today
-wait    5
 
 shot    demo
 cap     demo, the egetopt option-parsing example, showing how it read the
@@ -122,26 +92,23 @@ run     demo -a -b -c=7 one two
 wait    6
 
 shot    devprc
-for     devprc ptxminst t t_trtest
+for     devprc ptxminst t_trtest
 cap     devprc shows which device belongs to which process.  Rebuilt here:
 cap     the archived module had been patched and would not run.  `ptxminst'
-cap     installs Ptxm, and `t' and `t_trtest' are the trap-handler test
-cap     pair.
+cap     installs Ptxm, and `t_trtest' exercises a trap handler.
 run     devprc -h
 wait    8
 run     ptxminst -?
-wait    8
-run     t
 wait    8
 run     t_trtest
 wait    8
 
 shot    dinfo
-cap     Device information for the volume this collection is mounted as.
+cap     dinfo reports a device's geometry and free space -- here the volume
+cap     the collection is mounted as: its size, sector size and how much of
+cap     it is in use.
 run     dinfo /dd
-wait    3
-run     shdev
-wait    3
+wait    5
 
 shot    dload
 for     dload break sbreak setfont trap
@@ -176,24 +143,22 @@ run     setfont < /nil
 wait    8
 
 shot    drop
-for     drop keep kept
-cap     drop puts back exactly what keep wrote, and refuses to remove any
-cap     file whose checksum has changed since.  Nothing has been kept here,
-cap     which is what it says.
-run     drop -n hack
-wait    8
+size    30 80
+cap     drop puts back exactly what keep wrote.  A program is kept first,
+cap     then dropped: drop reads the receipt in SYS/kept and removes each
+cap     file, refusing any whose checksum has changed since it was kept, so
+cap     your saves and scores are safe from it.
+run     rm -f /dd/SYS/kept; rm -f /dd/tmp/SYSB/kp/CMDS/greg > /nil 2>/nil; keep -p /dd/tmp/SYSB/kp greg > /nil
+wait    5
+run     clear
+wait    1
+run     drop greg
+wait    5
 
 shot    every
-for     every repeat cron bootlogger
-cap     every runs a command again and again: `every 2 oskversion' asks the
-cap     kernel its version every two seconds until you stop it, which is
-cap     what the card shows.  `date' is the obvious thing to repeat and
-cap     reads badly here, because this disk's `date' writes no trailing
-cap     newline and the repeats run together on one line.  It is the closest
-cap     thing here to cron for a machine nobody leaves running.  `repeat' is
-cap     its sibling and cannot execute anything on this disk under either
-cap     shell; `bootlogger' answers nothing at all, even to `-?'; `cron' is
-cap     a daemon and leaves the session unusable.
+cap     every runs a command again and again at a fixed interval:
+cap     `every 2 oskversion' asks the kernel its version every two seconds
+cap     until you stop it.  The first two answers are on the screen.
 run     every 2 oskversion
 wait    14
 kill
@@ -207,29 +172,27 @@ run     lfmaker < /nil
 wait    10
 
 shot    flink
-cap     flink makes a second directory entry for a file under a name you
-cap     give, an RBF hard link.  It is shown by its usage rather than run:
-cap     RBF has no true hard links, and removing such an entry can leave
-cap     the original pointing at the wrong place.
-run     flink
+cap     flink makes a second directory entry for a file, under a name you
+cap     give -- an RBF hard link.  It is shown by its usage: RBF has no true
+cap     hard links, and removing such an entry can leave the original
+cap     pointing at the wrong place, so it is not run on the disk here.
+run     flink -?
 wait    5
 
 shot    gen
-for     gen suse about
+size    30 80
 cap     gen writes the FRAME of a new C program -- header block, authorship
-cap     and version lines, and the sectioned comments a Microware example
-cap     was laid out with.  It appends `.c' to whatever name you give it,
-cap     which is why it looks as though it wrote nothing: `gen -p frame'
-cap     leaves `frame.c'.  `-m' does a module frame, `-t' a type, `-f' a
-cap     function declaration.
-run     rm -f /dd/tmp/demo.c
-wait    4
-run     gen -p /dd/tmp/demo
+cap     and version lines and sectioned comments.  It appends `.c' to the
+cap     name you give, which is why it looks as though it wrote nothing:
+cap     `gen -p demo' leaves demo.c, whose head is shown here.
+run     rm -f /dd/tmp/SYSB/demo.c > /nil 2>/nil; mkdir -p /dd/tmp/SYSB > /nil 2>/nil
+wait    3
+run     clear
+wait    1
+run     gen -p /dd/tmp/SYSB/demo
+wait    5
+run     cat /dd/tmp/SYSB/demo.c | head -n 16
 wait    6
-run     head -n 14 /dd/tmp/demo.c 2>/nil
-wait    8
-run     suse < /nil
-wait    8
 
 shot    getsys
 cap     getsys walks OS-9's whole global page, field by field -- and under
@@ -264,15 +227,10 @@ run     i_am_i
 wait    5
 
 shot    ident
-for     modinfo version mexist flink names liborder.os9
-cap     Four ways of asking about a MODULE rather than a file: its header,
-cap     its edition, whether it is loaded, and what is inside a library.
-run     version /dd/CMDS/tar
-wait    5
-run     mexist bash
-wait    5
-run     mexist nosuchmodule
-wait    5
+for     liborder.os9
+cap     liborder.os9 lists the object modules inside an OS-9 library and the
+cap     order they are linked in.  version, mexist, modinfo and names each
+cap     ask their own question about a module and have cards of their own.
 run     liborder.os9 -?
 wait    6
 
@@ -282,37 +240,36 @@ run     isam
 wait    8
 
 shot    keep
-cap     keep is how a program leaves this disk for your own: it copies the
-cap     binary AND whatever it needs.  Dry run first, which is what -n is
-cap     for -- nothing is written here.
-run     keep -n hack
+size    30 80
+cap     keep takes a program off the collection onto your own /dd, copying
+cap     the binary and the files DOC/DEPENDS says it reads.  Here greg goes
+cap     into a scratch directory, and keep names each file it wrote and
+cap     records it so drop can put it back.
+run     rm -f /dd/SYS/kept; rm -f /dd/tmp/SYSB/kp/CMDS/greg > /nil 2>/nil; mkdir -p /dd/tmp/SYSB > /nil 2>/nil
+wait    3
+run     clear
+wait    1
+run     keep -p /dd/tmp/SYSB/kp greg
 wait    6
 
 shot    kept
-cap     kept lists what has been taken and what it came to.
+size    30 80
+cap     kept lists what keep has taken from the collection and what it came
+cap     to.  A program is kept first, then listed: each file, its size, and
+cap     the total.
+run     rm -f /dd/SYS/kept; rm -f /dd/tmp/SYSB/kp/CMDS/greg > /nil 2>/nil; keep -p /dd/tmp/SYSB/kp greg > /nil
+wait    5
+run     clear
+wait    1
 run     kept
 wait    5
 
 shot    launch
-for     launch dpark pri signal snd_sig suspend
-cap     `launch' is a LOGIN helper: it reads SYS/config, sets the
-cap     environment for your terminal type -- and optionally a default PATH
-cap     and the emacs bindings -- then starts the shell you name.  Beside it,
-cap     `pri' changes a process's priority and answers nothing to -?;
-cap     `signal' sends a signal, after a delay if you ask; `dpark' parks a
-cap     disk's heads; `snd_sig' sends a signal by number; `suspend' stops a
-cap     process.
+cap     launch is a login helper: it reads SYS/config, sets the environment
+cap     for your terminal type -- and optionally a default PATH and the emacs
+cap     bindings -- then starts the shell you name.  It answers a bare -?
+cap     with its command format.
 run     launch -?
-wait    6
-run     dpark -?
-wait    6
-run     snd_sig -?
-wait    6
-run     suspend -?
-wait    6
-run     pri -?
-wait    6
-run     signal -?
 wait    6
 
 shot    makecrc
@@ -350,28 +307,19 @@ run     ob68kdemo
 wait    8
 
 shot    oskversion
-cap     What the system says it is. getsys walks the whole global page, and
-cap     every field os9exec does not keep answers `F$SetSys: unimplemented'
-cap     -- so this screen is a picture of the emulator's edges.
+cap     oskversion prints the OS-9 version the system reports -- the number,
+cap     the CPU it thinks it is on, and the edition.
 run     oskversion
-wait    2
-run     sysid
-wait    2
-run     getsys
-wait    4
+wait    3
 
 shot    passwd
-for     passwd who adduser
-cap     passwd changes a password in SYS/password.  It matches on the user
-cap     NAME, and the file is plain text you can read here.
+cap     passwd changes a login password in SYS/password.  It matches on the
+cap     user name, and the file it edits is plain text you can read here --
+cap     the card shows the file, then passwd's command format.
 run     cat /dd/SYS/password
-wait    6
+wait    5
 run     passwd -?
 wait    6
-run     adduser -?
-wait    8
-run     who < /nil
-wait    8
 
 shot    phone
 size    24 80
@@ -450,14 +398,12 @@ run     sddemo
 wait    10
 
 shot    shdev
-for     shdev dinfo ssl dam
-cap     shdev prints its heading and no devices: os9exec keeps no OS-9
-cap     device table for it to walk. dinfo, underneath, asks the device
-cap     itself and answers properly -- 259 MB, 46% used.
+cap     shdev lists the system's device table -- what is mounted and the
+cap     driver behind each one.  It prints its heading and no rows: there is
+cap     no OS-9 device table here for it to walk.  dinfo asks a named device
+cap     directly and does answer; it has its own card.
 run     shdev
-wait    8
-run     dinfo /dd
-wait    8
+wait    6
 
 shot    spline
 cap     spline fits a curve through points and writes PostScript -- the
@@ -485,47 +431,28 @@ run     ssl /dd/DOC/INDEX
 wait    4
 
 shot    sysid
-for     sysid sysmax sysmin oskversion
-cap     sysid asks the kernel to identify itself with F$SysID, which
-cap     os9exec does not implement -- so what comes back is the emulator
-cap     saying so, field by field.  The numbers below it are real.
+cap     sysid asks the kernel to identify itself through F$SysID.  That call
+cap     is not implemented here, so the line that comes back reports it as
+cap     unimplemented -- which is what sysid has to show on this system.
 run     sysid
-wait    6
-run     sysmax
-wait    5
-run     sysmin
 wait    5
 
 shot    sysmon
 size    28 80
-cap     sysmon draws memory and process state, and IT NOW STARTS.  It used
-cap     to refuse on a version check -- `OS9/68k V4.0 is too old for SYSMON
-cap     V6.1' -- and this card was a capture of that refusal.  On 2026-09-02
-cap     os9exec began reporting V4.10 instead of V4.0 and sysmon accepted
-cap     it, so what is here now is the program itself: it asks whether to
-cap     create `/dd/sys/nodedef', times out on the keyboard, and draws its
-cap     Process Monitor -- the task table, the two percentage rules, the CPU
-cap     it thinks it is on.  Then it takes a bus error at F$GPrDsc, the
-cap     get-process-descriptor call, which is the same os9exec gap `devprc
-cap     -a' and `top' meet at F$GPrDBT.  `dinfo', `map' and `space' answer
-cap     the questions it would have answered and are all here; `mfree' and
-cap     `free' are Microware's and were named in this caption for a while
-cap     without anybody looking.  `dinfo' has its own card (`shdev') and
-cap     `map' has one of its own; they are not run here, because sysmon
-cap     clears the screen and anything above it would be a program credited
-cap     to a card that cannot show it.  Its table is drawn with the DEC
-cap     line-drawing character set, which tools/ansiscreen.py learned on
-cap     2026-09-02 -- until then the escape was skipped and the letters
-cap     printed as text, so this card was forty lines of `(0x (0x'. sysmon
-cap     is the only program here that had ever got far enough to use it.
+cap     sysmon draws memory and process state.  It asks whether to create
+cap     SYS/nodedef, times out on the keyboard, and draws its Process
+cap     Monitor -- the task table, the two percentage rules and the CPU it
+cap     thinks it is on -- before it takes a bus error at F$GPrDsc, the
+cap     get-process-descriptor call this system does not answer.  dinfo, map
+cap     and space answer the questions it would have and have cards of their
+cap     own.
 run     sysmon < /nil
 wait    45
 
 shot    top
-cap     top prints its column headings and then aborts -- every time, with
-cap     no invocation that gets past them.  It is one of the eighteen
-cap     crashes in DOC/STATUS.  `procs' is not on this disk and `aprocs'
-cap     aborts the same way; `map' and `free' are what is left.
+cap     top lists processes by their share of the CPU.  It prints its column
+cap     headings and then stops at F$GPrDBT, the process-table call this
+cap     system does not answer; aprocs, its neighbour, stops the same way.
 run     top
 wait    6
 
@@ -570,14 +497,15 @@ run     lmargin -?
 wait    6
 
 shot    ub68kdemo
-for     ub68kdemo ub68020demo
-cap     UniBasic 1.10 -- the other BASIC compiler here, same arrangement.
-cap     It ships twice, once for the 68000 and once for the 68020, and
-cap     BOTH run: each announces its own processor, which is the only line
-cap     that differs.  The 020 build was filed as saying nothing until
-cap     2026-08-29, and it never did.
+cap     UniBasic 1.10, a BASIC compiler, in its demonstration build for the
+cap     68000 -- its opening banner, which names the processor it was built
+cap     for.  The symbol table is capped in the demo; nothing else is.
 run     ub68kdemo | head -n 3
 wait    8
+
+shot    ub68020demo
+cap     The same UniBasic 1.10 demonstration built for the 68020 -- the one
+cap     line that differs is the processor it announces.
 run     ub68020demo | head -n 3
 wait    8
 
@@ -592,11 +520,11 @@ wait    8
 quit    q\r
 
 shot    version
-cap     version and mexist ask about a module rather than a file.
+cap     version prints a module's own edition number -- `version <module>'
+cap     reads the edition byte from the module header, whatever the file is
+cap     named.
 run     version /dd/CMDS/today
-wait    3
-run     mexist bash
-wait    3
+wait    4
 
 shot    vlen
 cap     vlen reports a file's record length; trunc cuts a file to size.
@@ -650,10 +578,8 @@ shot    drivers
 for     keydrv.mm1 msdrv.901_340 msdrv_340.901.ms rb37c65 scsi_mm1a snddrv windio.52
 cap     The MM/1 drivers -- keyboard, mouse, floppy, SCSI, sound and the
 cap     windowing terminal.  They are device drivers for hardware that is
-cap     not here, so again `modinfo' is what there is to show: type $C
-cap     (device driver) rather than $1 (program).
-cap     Each of the six is asked for, one line apiece, rather than one of
-cap     them standing for all six as it did until 2026-08-29.
+cap     not here, so `modinfo' is what there is to show: type $C (device
+cap     driver) rather than $1 (program).  Each is asked for, one line apiece.
 run     modinfo /dd/CMDS/MM1/keydrv.mm1 | head -n 4
 wait    12
 run     modinfo /dd/CMDS/MM1/msdrv.901_340 | head -n 4
@@ -749,3 +675,97 @@ run     readnews < /nil | head -n 2
 wait    8
 kill
 
+
+shot    dpark
+cap     dpark restores an RBF disk's head to track 00 -- what you did before
+cap     moving a drive.  With no disk head to park here it answers with its
+cap     command format.
+run     dpark -?
+wait    5
+
+shot    bsplt68
+cap     bsplt68 takes an OS9Boot file apart into the modules inside it.
+cap     There is no boot file here, so it answers with its usage line.
+run     bsplt68
+wait    5
+
+shot    signal
+cap     signal sends an OS-9 signal to a process, after a delay if you ask
+cap     for one.  With no process named it prints its syntax: the process
+cap     id, the signal code and the seconds to wait.
+run     signal -?
+wait    5
+
+shot    sysmax
+cap     sysmax reports the system's maximum process age -- the scheduler
+cap     setting that bounds how far a waiting process's priority can climb.
+cap     The setting is not kept here, so it reads back as zero.
+run     sysmax
+wait    5
+
+shot    sysmin
+cap     sysmin reports the system's minimum process priority, the floor the
+cap     scheduler ages processes up from.  The setting is not kept here, so
+cap     it reads back as zero.
+run     sysmin
+wait    5
+
+shot    t
+cap     t is a minimal trap-handler test stub: it installs, returns cleanly
+cap     and prints nothing, so a zero exit status is the whole of what it
+cap     has to show.
+run     t; echo "status $?"
+wait    4
+
+shot    mexist
+cap     mexist tests whether a MODULE is in memory and sets its exit status
+cap     -- zero when the module is there, one when it is not.  bash is
+cap     resident; nosuchmodule is not.
+run     mexist bash; echo "status $?"
+wait    4
+run     mexist nosuchmodule; echo "status $?"
+wait    4
+
+shot    vis
+size    24 80
+cap     vis runs a command over and over and redraws the screen with its
+cap     output, the way `watch' does elsewhere.  Its header names the
+cap     command, the delay between runs and the number of runs so far.
+run     vis -d=1 date
+wait    4
+send    \023
+wait    1
+snap
+send    \021
+send    \003
+wait    2
+
+shot    repeat
+size    24 80
+cap     repeat runs a command a number of times -- `repeat 2 date' runs date
+cap     twice.  It hands the line to $SHELL, which SYS/login sets to ksh;
+cap     date writes no trailing newline, so the two runs abut.
+run     repeat 2 date
+wait    4
+
+shot    cron
+cap     cron is a scheduling daemon: it reads SYS/crontab, then forks each
+cap     command at its minute, hour and day and runs until it is stopped.
+cap     It is not run here -- there is no screen for a daemon that waits --
+cap     so the card shows the crontab it would act on.
+run     cat /dd/usr/lib/crontab
+wait    5
+
+shot    setime
+cap     setime sets the system clock.  It prompts with the field order it
+cap     wants, YYMMDDHHMMSS -- year, month, day, hour, minute, second.
+run     setime -?
+wait    5
+
+shot    adduser
+size    30 80
+cap     adduser adds a login to the system, or removes one with -r.  With no
+cap     name given it prints its usage: the options and the command forms it
+cap     accepts.
+run     adduser -?
+wait    6

@@ -10,7 +10,7 @@ PrintCards fa204df1f2dd82e6
 PrintLabels 273f43fecd92e44f
 UnMacpack 6ddb41751817bf06
 about 253c97e879e0105e
-about-tar d96101945b2e8d7e
+adduser aeb299e88a914c4d
 adlcomp 51d54f57dc01332a
 adldebug af45090c63cd8854
 adlrun fb4a6d57642bf409
@@ -60,7 +60,7 @@ bmgtest 965a6b9bced55c20
 bmgtest2 852057c98d7fdcde
 bmp 8f04355f44b686f8
 bog 6a559c9a353d94f5
-bootgen df935025d97a3126
+bootgen a84da7013b341aa3
 btoa 998f80a6d2262798
 btop e3524b4838824199
 btree d2d82344ac802011
@@ -89,7 +89,7 @@ chgrp 6f07f8b4a0a4eb85
 chksum a44a83d86c3755b1
 chown 02fa8adbe8f6d480
 ci 76384e06a4fd66ca
-clock c2334f717f7f8459
+clock f694aa1ec8a552c8
 co a4b175270c7299ce
 collect 5a00f9a3ae087b18
 colortest 5c2330766a9f14e5
@@ -108,6 +108,7 @@ cpu 098e41d6e2631e71
 creadoc 488d554aeee5356a
 crib 4db82a065a15e79a
 cribbage 236f40fb817c182c
+cron fac2b8018af8f39f
 crypto ee96bdb3042ce625
 csl-mismatch 1ce6a445b7b767ad
 ctags a08576ed58e9d0e5
@@ -119,7 +120,7 @@ cvtbase 22e68e7c868991de
 cxref da844bb04f50e6b2
 cyberwar 217de83f79ad4776
 dam c30b7cc7269589c3
-date 1da124d27fc8b625
+date c40e5f58ef22f94f
 dback a541ed8a4bc417b3
 dclock 9081125499f001ad
 dearc ab00d24ce2751569
@@ -145,7 +146,7 @@ dhryshamu 5e5747f5569ace77
 dhryshamu2 fa53101f8a6f23fa
 diff f72994c1e4161a8f
 digclk fbfa25c19b06608e
-dinfo 9d76fb13edae5dc9
+dinfo 0051d35cb9088d43
 dir 1854f7f147d2183c
 dirname d61dfe1d96b81180
 disktest cef9b1c52f746013
@@ -154,9 +155,10 @@ djpeg c5c6c1b3303b35a6
 dload 5fd6036f2b91e1c9
 dm 0489d0b6490d54c4
 dmake 7695714abde9ca2c
+dpark 89795f37105e6574
 draw 644ffd4bed768159
 drivers 8f394b974b7d5e3b
-drop 0da75fc30e1f750c
+drop 6d619a49e2c69fb2
 du 6146d1b1233d74be
 dump 5e08cda06f83cf9b
 dvialw a0a0a02a3521d4d0
@@ -211,7 +213,7 @@ find 06acf4770bd7e1bf
 finger 116fec4bce12768c
 fits 1a124e808de20f53
 flex 1ac9042c75429771
-flink b0a5693204a3872d
+flink 13b93a9700f18093
 float 42fdb2dcc2573738
 florida 218de360eafe3b86
 fmt e2053bfcbdd8aefd
@@ -236,7 +238,7 @@ gcc_cccp2 ad7159988ced5821
 gcc_collect 83873bb774430001
 gcl 98547f63e11b0c43
 gdd 87b88fd06097bb17
-gen f4cb238a2f543a1d
+gen 5e89dc2eed74aaca
 georgia 8b32ea38e01e4a9e
 gep b957bb6cf7809265
 getenv f80c67660f97119e
@@ -288,7 +290,7 @@ hinterhalt 5b3a02628f05e653
 hotel 41cf8b374b076d33
 i_am_i 65844e506a55c3e6
 icon f745c5ef17db1241
-ident 078ed7cce5974ed2
+ident d24209e786b1ac02
 if 8b8e84cc03804931
 ifdef 34823568d37e49dd
 ilbm 9ff0c509a4e4bb7c
@@ -303,8 +305,8 @@ japan 790f2e46378c900e
 jargon 5d03fb56e069502a
 join 800ed8c48dafb1d9
 jpeg 95a072cc2580e5ac
-keep 35404240d8c90d2e
-kept 52c7a1c013ef8056
+keep 2bb9b04f32fb8fcf
+kept 9b453bb88a4a3d88
 kermit c06a7e1b74448564
 kermit-family da2f3febfdcaf7d5
 ksh 0db783e908941acf
@@ -312,7 +314,7 @@ l e7db441b84fa8a74
 lander 0a0fc53a8fb1341a
 larn 1d392eb91a869f4c
 latex ddd911e879e6428e
-launch 3f36264bb07439b1
+launch f4feaadc8120ed98
 less b8696ce43f4dfe22
 lessecho 6713786ec0850e0a
 lesskey 01943ebdce034e1b
@@ -361,6 +363,7 @@ mcvert 42614dc92af426b3
 md5 5ddd40c0bc7b28bd
 me 8c5d6411df074c86
 memtools 2784444a29ce9452
+mexist ce07f4f61b5f4f22
 mg 320231c02b99af85
 mgif 180a05b1af6b852e
 mille 2b0f47ef4c18ff16
@@ -411,14 +414,14 @@ nsort 07c7365be3ab6c5b
 ob68kdemo f3ecd32662b190e2
 oleo d3bd071d889f55f3
 orbit 22eac90acb825dda
-oskversion bb9a008afce471c7
+oskversion 2263e37034171b78
 owner d68ccf49414f4993
 p2c 0547b3a700db114e
 pagefraz 28098c7bfc506a77
 pagekwic a87da4b184b1bb17
 pageline 96204acfb4ccb6b0
 paranoia 0a60d6a2260427f6
-passwd a8049f7d2f07137e
+passwd 80bb42d2e96f7a0e
 paste d2243f0ddb449c8a
 patch df1f681e1f48c636
 pathalias 609457393b7586ff
@@ -493,6 +496,7 @@ rechne 59c965a157f88843
 ref 832a8361d38d58b9
 remove ae6c313cfc68e63d
 rendsk a2b8a5173c3a3a45
+repeat e9f8f6a00172082f
 rlog 8424d653c8d9b882
 rm 236bd0557bf6faad
 rndir 55898b053073bed7
@@ -523,10 +527,11 @@ setimex c0f3cf92c42028ee
 setup-image d9b72e4419405893
 sh 1050ea4d5b07cd6b
 shar fbb2b0124f025475
-shdev 9c9ea69135b6b5f6
+shdev 2bff145e6db657b6
 shire bc72f45cc9a5540b
 shuffle df56b0a91782f830
 sieve 71dec5535d838ebd
+signal cd58109a61af0db6
 silent fe08458748ee5bc6
 sir a5e60d3077b27728
 slitex 9d5c592edccfeb5c
@@ -556,7 +561,8 @@ submit f61226d5d1a9c152
 suicide1 a37ab53f9d172b16
 suicide2 500125cf5d1d0c04
 sum 18c837a48c130a64
-sysid 252d3ecab7e21ffd
+sysid 5c038a5fdcf0eb2b
+sysmin 4d4569d97afa466d
 sysmon 08c4379a5c8f7531
 tab c41a3bde1c5d4433
 tabs 34b994a85fbb5c75
@@ -589,7 +595,8 @@ tt 24e254dfe016e84b
 tttt a8619cf88deee7dd
 tty b7e538ffeb67cd7e
 ttyexp d493bf0e5002c44c
-ub68kdemo 331c4f7d940124da
+ub68020demo dd6614e0b6b7d065
+ub68kdemo a23d32c97b7c0679
 ularn d1f0b86a94761e8a
 umacs 5975efe2b8b7f28e
 undel 24f9e81296ecc7f5
@@ -612,7 +619,7 @@ uuname f5ae870e53349cb9
 uwho a79e58cbe2bc1745
 valspeak 470cc90f8df81a1e
 vc 184340ae7a592513
-version 2106191d9e86002b
+version 401a7905fbe4b4f8
 vftovp e1b63a38c02a1a5f
 vi 0d12b4ee38f677a4
 vi-recovery e758bff7744f37d0
@@ -623,7 +630,6 @@ vi_nocio 7b0fe8db73c1929e
 view 31e2853f634035da
 virmf 9a2022512aac2a1b
 virtex c4a68001a272b60b
-vis c11287cb03766373
 vlen 88f94a8849530252
 vptovf aa06d95176e88cdd
 vtxtcn 531083198516eafc

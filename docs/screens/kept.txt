@@ -1,2 +1,6 @@
-$ kept
-Nothing has been kept from this collection.
+kept
+
+greg
+    /dd/tmp/SYSB/kp/CMDS/greg                         2226
+
+1 files, 2226 bytes.

@@ -1,23 +1,10 @@
+$ cat /dd/SYS/password
+su, ,0.0,128,/dd/cmds,/dd/sys,shell -p="su: "
+tester,,1.7,128,/dd/CMDS,/dd/USR/TESTER,shell
+,,1.99,128,/dd/CMDS,/dd/USR/ANON,shell -p="anon: "
 uucp,,3.1,128,/dd/CMDS/UUCP,/dd/USR/LIB/UUCP,shell
 os9,,0.0,128,/dd/CMDS,/dd,shell
 $ passwd -?
 Syntax: passwd
 Function: get new password
 Options: none
-$ adduser -?
- ADDUSER: add a user to or remove a user from the system
- Usage: adduser [opts] [<username> [<userid>] ]
-
- opts: -r <username>  - remove <username> from the system
-       -s  - allow the creation of super users
-       -?             - this message
-
-       acceptable command lines are:
-          adduser
-          adduser <username>
-          adduser <username> <userid>
-          adduser -r <username>
-          adduser -s <username>
-
-v2.1 (94Sep30) This is free software released under the GNU General Public
-License.  Please send suggestions/bug reports to:  bob@kc2wz.bubble.org

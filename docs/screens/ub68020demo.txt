@@ -1,0 +1,6 @@
+$ ub68020demo | head -n 3
+
+
+UniBasic Version 1.10
+
+OS9/68020 Version

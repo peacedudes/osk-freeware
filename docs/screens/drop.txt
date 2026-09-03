@@ -1,4 +1,5 @@
-$ drop -n hack
-drop: nothing has been kept -- no /dd/SYS/kept
+drop greg
+greg:
+  removed /dd/tmp/SYSB/kp/CMDS/greg
 
-0 removed, 0 left alone.
+1 removed, 0 left alone.

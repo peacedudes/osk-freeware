@@ -1,11 +1,8 @@
 $ dinfo /dd
 Device name   : /dd
 Volume name   : "OSK-Freeware"
-Creation date : 2026-8-28 4:36
-Capacity      : 259072 KBytes (1036288 sectors, 100.00%)
-Free          : 140581 KBytes (562324 sectors, 54.26%) in 3 Blocks
-Used          : 118491 KBytes (473964 sectors, 45.74%)
-Largest block : 140573 KBytes (562292 sectors, 54.26%)
-$ shdev
-Device       Fmgr      Driver      Capabilities
------------------------------------------------
+Creation date : 2026-9-3 0:24
+Capacity      : 261120 KBytes (1044480 sectors, 100.00%)
+Free          : 138470 KBytes (553880 sectors, 53.03%) in 10 Blocks
+Used          : 122650 KBytes (490600 sectors, 46.97%)
+Largest block : 138440 KBytes (553760 sectors, 53.02%)

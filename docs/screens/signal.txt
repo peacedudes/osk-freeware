@@ -1,0 +1,8 @@
+$ signal -?
+Syntax: signal <process-id> <signal-code> [<seconds>]
+Function: send signal to process after specified time.
+Parameters:
+     <process-id>    process identification
+     <signal-code>   code of signal to be sent
+     <seconds>       number of seconds to wait
+                     default is 0 seconds

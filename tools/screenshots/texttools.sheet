@@ -97,13 +97,6 @@ cap     what it is.
 run     lout -V
 wait    6
 
-shot    vis
-cap     Runs a command over and over and refreshes the screen with its
-cap     output, the way `watch' does elsewhere: `vis {opts} <command>'.
-cap     Its options.
-run     vis -?
-wait    8
-
 shot    sort
 cap     sort and uniq counting the commonest words in the disk's own
 cap     documentation -- a pipeline of five programs, all of them here.

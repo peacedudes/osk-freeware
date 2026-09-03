@@ -1,8 +1,3 @@
-$ version /dd/CMDS/tar
-Dies ist das Program 'version', Version 7
-... oder in anderer Notation, version 0.7
-$ mexist bash
-$ mexist nosuchmodule
 $ liborder.os9 -?
 liborder: Unimplemented option '-?'.
 

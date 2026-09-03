@@ -1,8 +1,4 @@
 $ date
-August 28, 2100 04:45:27
+September 03, 2100 13:35:05
 $ date -t
-August 28, 2100 04:45:32
-$ today
-Today is Friday, the twenty-eighth day of August, two thousand and
-twenty-six. In twenty-three seconds, the time will be fourteen minutes
-before five AM, Daylight Savings Time. The moon is full.
+September 03, 2100 13:35:10

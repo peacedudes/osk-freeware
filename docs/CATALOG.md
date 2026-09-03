@@ -1350,7 +1350,7 @@
 | `dam` | &#9733; display the disk allocation map -- dam [<drive>] |
 | `dedit` | BASIC09 disk sector editor (Carl Kreider) -- read, edit and write raw sectors, decode a disk's identification sector.  I-CODE, not 68000 code: run it with runb and the bare module name, like bio and wysetime.  Nine modules in the one file. |
 | `dinfo` | &#9733; disk/device information<br>`Syntax:   dinfo [<opts>] {<device name> [<opts>]}` |
-| `dpark` | &#9733; park the DISK HEAD, not a process: `dpark [/device]' restores an RBF device's head to track 00, which is what you did before moving a drive.  Corrected 2026-08-29<br>`Syntax:   dpark [/device]` |
+| `dpark` | &#9733; park the DISK HEAD, not a process: `dpark [/device]' restores an RBF device's head to track 00, which is what you did before moving a drive.<br>`Syntax:   dpark [/device]` |
 | `shdev` | &#9733; show devices |
 | `ssl` | &#9733; show a file's segment list, sector by sector -- ssl <file> |
 
@@ -1397,21 +1397,21 @@
 | `bootgen` | &#9733; generate an OS-9 boot file<br>`Syntax:   bootgen [<opts>] <device> {<path> [<opts>] }` |
 | `bsplt68` | Split a boot file into its component modules (Carl Kreider) |
 | `flink` | &#9733; list a module's links<br>**How:** DO NOT run it on a shipped module. It makes a directory entry aliasing the file's FD in the CURRENT directory, RBF has no hard links, and removing the entry left /dd/CMDS/cat pointing at a DIRECTORY -- `cat' then answered `is a directory' for everything until the image was rebuilt. 2026-09-01. |
-| `gen` | generates the FRAME of a new C program -- header block, authorship and version lines and the sectioned comments a Microware example was laid out with.  IT APPENDS `.c' to whatever name you give it, which is why it looks as though it wrote nothing: `gen -p frame' leaves `frame.c'.  `-m' does a module frame, `-t' a type, `-f' a function declaration.  Clarified 2026-08-29<br>`Syntax: gen [<opt>] <pathname> [<opts>]` |
-| `load` | load a module into memory, so a program that LINKS a library MODULE can find it -- `load /dd/CMDS/os9lib' and the RTF Fortran set comes alive, where before it printed nothing.  A clean-room reimplementation of Microware's load, written from the published manuals and contributed by the os9exec project; maintained here now, source in SRC/load, built trap-free so it needs no cio<br>`Syntax:   load [<opts>] {<module> [<opts>]}` |
+| `gen` | generates the FRAME of a new C program -- header block, authorship and version lines and the sectioned comments a Microware example was laid out with.  IT APPENDS `.c' to whatever name you give it, which is why it looks as though it wrote nothing: `gen -p frame' leaves `frame.c'.  `-m' does a module frame, `-t' a type, `-f' a function declaration.<br>`Syntax: gen [<opt>] <pathname> [<opts>]` |
+| `load` | load a module into memory, so a program that LINKS a library MODULE can find it -- `load /dd/CMDS/os9lib' and the RTF Fortran set comes alive, where before it printed nothing.  A clean-room reimplementation of Microware's load, source in SRC/load, built trap-free so it needs no cio<br>`Syntax:   load [<opts>] {<module> [<opts>]}` |
 | `mexist` | &#9733; test module existence<br>`Usage: mexist [options] <Module>` |
 | `os9lib` | RTF/68K FORTRAN run-time LIBRARY.  Not a program: rtf, for, lnk, biory and creadoc all F$Link it, and every one of them fails E_MNF until it is in the module directory.  See DOC/README-FORTRAN.  Running it AS a program executes its floating-point code and stops -- that is not a fault. |
 | `ptxm` | Path Table eXtension Module (Nick Holgate, 1995): a KERNEL extension letting user-state processes open unlimited I/O paths.  Courtesyware, free.  It installs into the kernel and so needs supervisor state.  DOC/ptxm/ptxm.txt |
 | `remove` | &#9733; REMOVE MODULES FROM MEMORY, not files -- its own Function line says so.  `remove <module>...', -q for quiet.  `rm' is what removes files here<br>**How:** Removes MODULES FROM MEMORY, not files. `del', `rm' and `deldir' are the file ones. |
 | `rtfdat` | RTF FORTRAN data module |
-| `version` | &#9733; prints ITS OWN version and nothing else -- `Dies ist das Program 'version', Version 7' -- whatever module you name. `ident' and `modinfo' show a module's edition.  Corrected 2026-08-29 |
+| `version` | &#9733; prints ITS OWN version and nothing else -- `Dies ist das Program 'version', Version 7' -- whatever module you name. `ident' and `modinfo' show a module's edition. |
 | `vmod_trap` | the VMod_trap trap library rxmod and txmod need.  Type-$0B, and it runs in SUPERVISOR state, so it installs here and then faults.  Renamed from lowercase `vmod_trap' -- rxmod asks for `VMod_trap' and real OS-9 matches exactly and it runs in SUPERVISOR state, so it installs here and then faults.  Renamed from lowercase `vmod_trap' -- rxmod asks for `VMod_trap' and real OS-9 matches exactly |
 
 **Processes & memory**
 
 | | |
 |---|---|
-| `aprocs` | &#9733; process monitor.  It calls F$SetSys twice and is aborted (E_PRCABT) where that call is not implemented.  DOC/STATUS has had this since 2026-08; the entry here did not say it.  `procs', `top' and `sysmon' are the other process listers.  Added 2026-08-30<br>`Syntax: aprocs [<opts>]` |
+| `aprocs` | &#9733; process monitor.  It calls F$SetSys twice and is aborted (E_PRCABT) where that call is not implemented.  `procs', `top' and `sysmon' are the other process listers.<br>`Syntax: aprocs [<opts>]` |
 | `edir` | &#9733; list the EVENT directory -- OS-9 events and their values. Nothing to do with `dir'<br>`Syntax: edir [<opts>]` |
 | `eset` | &#9733; set an OS-9 event to a value -- eset <event> <num><br>`Syntax: eset <event> <num> [<opts>]` |
 | `eunlink` | &#9733; unlink an OS-9 EVENT by name -- `eunlink <event>'.  Nothing to do with files: `edir' lists the events and `eset' sets one<br>`Syntax: eunlink {<event>}` |
@@ -1419,7 +1419,7 @@
 | `signal` | &#9733; send a signal to a process<br>`Syntax: signal <process-id> <signal-code> [<seconds>]` |
 | `sysmax` | &#9733; shows the system's maximum process AGE, not its memory -- `system maximum age is 0' unless the kernel answers the F$SetSys call it uses.  Corrected 2026-08-29 |
 | `sysmin` | &#9733; shows the system's minimum process PRIORITY, not its memory -- `system minimun priority is 0' here, same unimplemented F$SetSys.  Corrected 2026-08-29 |
-| `sysmon` | &#9733; system monitor, and IT NOW STARTS.  It used to refuse on a version check -- `OS9/68k V4.0 is too old for SYSMON V6.1' -- and it accepts V4.10, which is what it now gets.  It asks whether to create /dd/sys/nodedef, times out on the keyboard, draws its whole Process Monitor, and then takes a BUS ERROR at F$GPrDsc -- the same gap `devprc -a' and `top' meet at F$GPrDBT.  `dinfo' reports a device's capacity and free space, `map' shows the blocks a file occupies, and `space' totals a tree -- those are the questions it would have answered, and they ARE here. `mfree' and `free' are not: they are Microware's, and this entry's card named them for a year without anybody checking.  Corrected 2026-08-31<br>`Syntax: sysmon [<opt>]` |
+| `sysmon` | &#9733; system monitor.  It asks whether to create SYS/nodedef, times out on the keyboard and draws its Process Monitor, then takes a bus error at F$GPrDsc, the get-process- descriptor call this system does not answer -- the same gap `devprc -a' and `top' meet.  `dinfo', `map' and `space' answer the questions it would have.<br>`Syntax: sysmon [<opt>]` |
 | `t` | tiny test/stub binary |
 | `top` | &#9733; show the busiest processes -- prints its heading and then aborts (E_PRCABT).  `aprocs' aborts the same way<br>`Syntax: top [<opts>] [<num>]` |
 | `vis` | &#9733; run a command over and over and refresh the screen with its output -- what `watch' does on other systems: `vis {opts} <command> <args>'.  Not the Unix `vis' that makes non-printing characters visible |
@@ -1431,7 +1431,7 @@
 |---|---|
 | `cron` | run commands at specified times (daemon) |
 | `every` | &#9733; run a command at intervals<br>`Syntax: every <time> <progname> [<progopts>]` |
-| `repeat` | repeat an OS-9 command N times -- `repeat 3 <command>' -- and it cannot here.  It hands the command to whatever $SHELL names, in the form Microware's shell takes: `sh' answers `file not found' because it cannot fork an absolute pathname and `bash' answers `cannot execute binary file' because it treats the module as a script. It also prints `free() called with bad address' on the way out.  Measured 2026-08-29<br>`syntax: repeat [number of repetitions] [OS-9 command]` |
+| `repeat` | repeat an OS-9 command N times -- `repeat 2 date' runs date twice.  It hands the command to $SHELL, which SYS/login sets to ksh, and ksh runs it.  date writes no trailing newline, so the repeats abut on one line.<br>`syntax: repeat [number of repetitions] [OS-9 command]` |
 
 **System state**
 
@@ -1441,7 +1441,7 @@
 | `date` | Print date and time -- it prints the YEAR AS 2100.  `today' gets it right; setime2, setyear and fixyear are the Y2K repairs beside it |
 | `oskversion` | &#9733; report the OS-9/OSK version<br>`Syntax:   OSKversion` |
 | `perr` | &#9733; print an OS-9 error message<br>`Syntax: perr [<error_codes>]` |
-| `setime` | Set system time.  It PROMPTS with `YYMMDDHHMMSS' and then does not set it: the clock is unchanged whether the answer comes from standard input or from six fields on the command line.  `date -t' reads 2100 here whatever you do, which `setyear' disagrees with too.  Measured 2026-09-01 |
+| `setime` | Set system time.  It PROMPTS with `YYMMDDHHMMSS' and then does not set it: the clock is unchanged whether the answer comes from standard input or from six fields on the command line.  `date -t' reads 2100 here whatever you do, which `setyear' disagrees with too. |
 | `sysid` | &#9733; show system identification |
 
 **Users and login**

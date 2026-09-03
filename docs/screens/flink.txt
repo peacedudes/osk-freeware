@@ -1,2 +1,3 @@
-flink /dd/CMDS/today
-linking to file today in directory /dd/CMDS
+$ flink -?
+flink: link to file     usage: flink [ -? | filename { filename } ]
+                        option: -? displays this message

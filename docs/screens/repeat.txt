@@ -1,0 +1,3 @@
+$ repeat 2 date
+September 03, 2100 13:51:53F$SetSys: unimplemented 03D8 (size=80000004)
+September 03, 2100 13:51:53

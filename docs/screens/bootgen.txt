@@ -10,5 +10,3 @@ Options:  [<n> is 'dd' or '$hh']
     -v         don't read-verify boot file
     -x         pathlists starts from execution dir
     -z[=<path>]  get list of module names from <path> (stdin)
-$ bsplt68 -?
-cannot open bootfile
