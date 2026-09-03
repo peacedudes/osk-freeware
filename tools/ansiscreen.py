@@ -69,6 +69,23 @@ DEC_GRAPHICS = {
     "y": "<", "z": ">", "{": "*", "|": "!", "}": "#",
 }
 
+# `dm' (Disk Master) draws its panels with raw CODE PAGE 437 box-drawing
+# BYTES -- no escape sequence switches to them and none switches back, it
+# just assumes an IBM-compatible screen.  Read as latin-1 those bytes are
+# printable Western-European letters (0xC9 is `\xc9', printed as `É'
+# and encoded as two UTF-8 bytes), which is how a two-pane browser's frame
+# turned into `\xc9\xcd\xcd...' -- a repository file carrying bytes over
+# 0x7f.  Same ASCII convention as DEC_GRAPHICS: corner or tee is `+',
+# double horizontal `-', double vertical `|'.
+CP437_BOX = {
+    "\xba": "|", "\xb9": "+", "\xbb": "+", "\xbc": "+",
+    "\xc8": "+", "\xc9": "+", "\xca": "+", "\xcb": "+",
+    "\xcc": "+", "\xcd": "-", "\xce": "+",
+    "\xb3": "|", "\xb4": "+", "\xbf": "+",
+    "\xc0": "+", "\xc1": "+", "\xc2": "+", "\xc3": "+",
+    "\xc4": "-", "\xc5": "+", "\xd9": "+", "\xda": "+",
+}
+
 
 class Screen:
     """An 80x24 character grid with a cursor, fed a byte stream."""
@@ -79,7 +96,14 @@ class Screen:
         self.row = self.col = 0
         self.orphans = []          # escape sequences that arrived without ESC
         self.unknown = set()       # finals we chose not to implement
-        self.graphics = False      # G0 is DEC Special Graphics
+        # A vt100 keeps TWO designated sets, G0 and G1, and SO/SI (0x0E/0x0F)
+        # pick which one is active -- `tree' designates G1 as DEC Special
+        # Graphics with ESC )0 and wraps each line-drawing character in
+        # SO...SI, never touching G0 at all.  Without tracking G1 and the
+        # shift its `q', `t', `m', `w' came through as the literal letters.
+        self.g0_graphics = False
+        self.g1_graphics = False
+        self.shifted = False       # SO active: G1 is the set in use
         # REVERSE VIDEO IS INK.  gcl draws its digits as blanks in reverse
         # video, so a grid of characters alone showed nothing at all: a
         # space put down while reverse is on is shown as `#', the way the
@@ -92,8 +116,11 @@ class Screen:
         self.col = max(0, min(self.cols - 1, self.col))
 
     def put(self, ch):
-        if self.graphics and ch >= " " and ch in DEC_GRAPHICS:
+        active = self.g1_graphics if self.shifted else self.g0_graphics
+        if active and ch >= " " and ch in DEC_GRAPHICS:
             ch = DEC_GRAPHICS[ch]
+        elif ch in CP437_BOX:
+            ch = CP437_BOX[ch]
         if self.reverse and ch == " ":
             ch = "#"
         if ch == "\r":
@@ -143,6 +170,14 @@ class Screen:
         i, n = 0, len(data)
         while i < n:
             b = data[i:i + 1]
+            if b == b"\x0e":                  # SO: shift to G1
+                self.shifted = True
+                i += 1
+                continue
+            if b == b"\x0f":                  # SI: shift to G0
+                self.shifted = False
+                i += 1
+                continue
             if b == b"\x1b":
                 m = CSI.match(data, i)
                 if m:
@@ -151,8 +186,10 @@ class Screen:
                     continue
                 m = CHARSET.match(data, i)
                 if m:
-                    if m.group(1) == b"(":     # G0 only; nothing here uses G1
-                        self.graphics = m.group(2) == b"0"
+                    if m.group(1) == b"(":
+                        self.g0_graphics = m.group(2) == b"0"
+                    else:                       # b")": designates G1
+                        self.g1_graphics = m.group(2) == b"0"
                     i = m.end()
                     continue
                 m = TVI_CUP.match(data, i)
