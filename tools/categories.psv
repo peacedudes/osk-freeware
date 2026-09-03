@@ -153,9 +153,9 @@ mswrite|Disk & DOS|MS-DOS media (mtools)
 mtools|Disk & DOS|MS-DOS media (mtools)
 
 # ---- Documentation ----
-help|Documentation|Readers & pagers
-helpindex|Documentation|Readers & pagers
-less|Documentation|Readers & pagers
+help|Documentation|Help & pagers
+helpindex|Documentation|Help & pagers
+less|Documentation|Help & pagers
 rdoc|Developer tools|Source navigation
 
 # ---- Editors ----
@@ -708,8 +708,8 @@ booz|Archives & compression|zoo
 fiz|Archives & compression|zoo
 funzip|Archives & compression|zip
 zipinfo|Archives & compression|zip
-lesskey|Documentation|Pagers
-lessecho|Documentation|Pagers
+lesskey|Documentation|Help & pagers
+lessecho|Documentation|Help & pagers
 bsplt68|System & modules|OS-9 modules
 charcnt|Text tools|Filters
 subber|Text tools|Filters

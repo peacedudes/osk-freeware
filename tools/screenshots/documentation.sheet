@@ -1,34 +1,59 @@
 # The help system and the pagers.
 
 shot    help
-cap     The help system answering a topic.  It keeps a .hlp file and an index
-cap     per subject in SYS/HELP, offers what it has at the `Topic ?' prompt,
-cap     and pages the article.  It is asked for by path because bash has a
-cap     `help' builtin of its own, and the builtin wins: typing `help' alone
-cap     never reaches this program.
-run     /dd/CMDS/help
-wait    5
-send    space\r
+cap     The help system on a topic.  Each subject is a .hlp file with an
+cap     index beside it in SYS/HELP; `help dinfo' pages the dinfo article
+cap     and then offers its subtopics.  Ask for it by path: bash has a
+cap     `help' builtin of its own that answers first.
+run     /dd/CMDS/help dinfo
 wait    6
-
-shot    helpindex
-for     helpindex lessecho lesskey rdoc
-cap     helpindex builds the index the help system reads; lesskey compiles
-cap     a key-binding file for less.
-run     helpindex -?
-wait    8
-run     lesskey -?
-wait    8
-run     lessecho < /nil
-wait    8
-
-shot    less
-cap     less, paging the disk's own documentation.  SYS/less.hlp is here,
-cap     so its help screen works.
-run     less /dd/DOC/README-RUNNING
-wait    5
+snap
 send    q
 wait    2
+
+shot    helpindex
+cap     Builds the index a help file needs.  Given dinfo.hlp it writes
+cap     dinfo.ndx beside it, one entry per page, and says how many pages
+cap     it found.
+run     rm -f /dd/tmp/DOCB; mkdir -p /dd/tmp/DOCB; cp /dd/SYS/HELP/dinfo.hlp /dd/tmp/DOCB/dinfo.hlp
+wait    3
+run     clear
+wait    1
+run     ksh -c "cd /dd/tmp/DOCB; helpindex dinfo.hlp"
+wait    5
+run     ls -l /dd/tmp/DOCB
+wait    4
+
+shot    less
+cap     less, paging a file.  It reads the terminal from TERM and TERMCAP,
+cap     and its own help screen (h) is on the disk as SYS/less.hlp.
+run     less /dd/DOC/README-RUNNING
+wait    5
+snap
+send    q
+wait    2
+
+shot    lessecho
+cap     Prints its arguments back, one line, the way less hands file
+cap     names to a shell -- a name containing spaces or a wildcard comes
+cap     back quoted so the shell leaves it alone.
+run     lessecho /dd/SYS/motd "two words" it*s
+wait    4
+
+shot    lesskey
+cap     Turns a key-binding file into the binary less reads from
+cap     $HOME/.less.  The input names a section and then one key and one
+cap     command per line; here z and Z are made to page forward and back.
+run     echo "#command" > /dd/tmp/DOCB/keys; echo "z forw-screen" >> /dd/tmp/DOCB/keys; echo "Z back-screen" >> /dd/tmp/DOCB/keys
+wait    2
+run     clear
+wait    1
+run     cat /dd/tmp/DOCB/keys
+wait    2
+run     lesskey -o /dd/tmp/DOCB/lesskeys /dd/tmp/DOCB/keys
+wait    4
+run     ls -l /dd/tmp/DOCB/lesskeys
+wait    3
 
 shot    rdoc
 cap     rdoc is Rueckdokumentation -- reverse documentation, from c't in

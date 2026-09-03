@@ -118,7 +118,7 @@ vi_cio|PVic vi, the cio build. Needs `. /dd/SYS/termcap.entry' first, then it op
 hexedit|A hex editor -- Hexpert v2.4 by Dominic Alston. Takes a file: `hexedit <file>'. Needs `. /dd/SYS/termcap.entry' first or it will not draw.
 ispell|Interactive spelling checker. Takes a file: `ispell <file>'. `ispell -a' is the pipe interface programs use.
 spiff|Compares two files while ignoring differences that do not matter (whitespace, number formatting). Takes TWO filenames.
-infocom.tcap|Plays Infocom adventure game files -- it needs the game's data file as an argument, which this disk does not carry.
+infocom.tcap|The termcap build of the Z-machine, and the one to use at a terminal: `infocom.tcap /dd/GAMES/INFORM/dejavu.z3' keeps a status line (room and score) across the top. Three Inform story files ship in GAMES/INFORM: dejavu, hellow, shell.
 EditLibr|Part of the HL10 librarian set. Wants an edit file as a parameter; `EditLibr' alone prints its syntax.
 crypto|`crypto -h' is the real option list and `-i' the interactive commands; its bare answer is two lines naming those. As a FILTER it ends the emulator session here, so read the help rather than piping through it.
 launch|Says "nothing to launch" until it is configured -- see its documentation.
@@ -221,7 +221,7 @@ pktype|`pktype <font>.<dpi>pk' prints the packed font back, glyphs included. PKF
 pktogf|Unpacks a .pk. The result is longer than the .gf it came from -- pktogf rewrites the preamble comment -- and the bitmap is unchanged.
 vptovf|`vptovf /dd/DOC/tex/sample.vpl s.vf s.tfm'. sample.vpl is a one-character virtual font written for this, mapping `A' onto cmr10's.
 vftovp|`vftovp s.vf s.tfm back.vpl' reads the binary pair back to text. VFFONTS and TEXFONTS must name where the .vf and .tfm are.
-helpindex|Bare it says `Missing names of files to create index for.' Given files it does not want, it names them.
+helpindex|`helpindex dinfo.hlp' writes dinfo.ndx beside it. Only names ending .hlp or .hlib are accepted unless -a is given; with no name it asks for one.
 florida|`florida < /nil'. It simulates a year of Florida weather day by day, with the calendar notes.
 weave|The other half of `tangle', and it NEEDS A CHANGE FILE NAMED just as tangle does: `weave sample none', never `weave sample.web'. Given only a .web it answers `Error: `Can't open file.'' and the file it cannot open is the absent change file. DOC/tex ships sample.web and none.ch.
 printf|/dd/CMDS/printf DROPPED EVERYTHING BEFORE THE FIRST CONVERSION until it was rebuilt `-qm' on 2026-09-01: a format with no `%' in it wrote a ZERO-BYTE file that looked like a working setup line, and seven committed drive sheets had fed programs nothing on the strength of it. The build here now keeps every literal. bash's `echo' is still the simpler way to write a line, and it writes a CR.
