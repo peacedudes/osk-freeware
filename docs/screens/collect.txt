@@ -1,0 +1,6 @@
+$ /dd/CMDS/GCC2/collect
+Syntax   : collect [<opts>] {<file>} [<opts>]
+Function : generate global con-/de-structor table for g++
+Options  : -o <outfile> write output to <outfile>
+           -l=<file>    process library
+  Written 1991 by Stephan Paschedag

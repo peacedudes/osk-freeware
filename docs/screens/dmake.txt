@@ -1,0 +1,14 @@
+$ rm -f /dd/tmp/greeting
+$ dmake -V
+dmake - Copyright (c) 1990,1991 by Dennis Vadura, Version 3.70, PL 2
+
+Default Configuration:
+        MAXPROCESSLIMIT := 10
+        MAXLINELENGTH := 8190
+        .MAKEFILES : dmakefile makefile.mk makefile
+        .SOURCE    : .NULL
+        MAKESTARTUP := $(ROOTDIR)/h0/SYS/startup.mk
+$ dmake -f /dd/DOC/make/demo.mk greeting
+cp /dd/SYS/motd /dd/tmp/greeting
+$ ls -l /dd/tmp/greeting
+-rw-rw-rw-   1 0        0              40 Aug  3 19:00 /dd/tmp/greeting

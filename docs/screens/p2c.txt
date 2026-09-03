@@ -1,4 +1,5 @@
 $ mkdir -p /dd/tmp/P2C
+mkdir: cannot change mode of `/dd/tmp/P2C': 000:214 file not accessible
 $ echo "program hello; begin writeln('hi') end." > /dd/tmp/P2C/h.pas
 $ cat /dd/tmp/P2C/h.pas
 program hello; begin writeln('hi') end.

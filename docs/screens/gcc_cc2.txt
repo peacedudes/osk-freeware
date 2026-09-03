@@ -1,0 +1,4 @@
+$ /dd/CMDS/gcc_cc2 -version
+GNU C version 2.5.6 (68k, Motorola/OSK syntax, srcdbg support) compiled by GNU .
+enabled: -fpeephole -ffunction-cse -fpcc-struct-return -fcommon -mregparm
+         -mstack-check -mcom

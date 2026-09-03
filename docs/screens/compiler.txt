@@ -1,0 +1,24 @@
+                    CC-SHELL  V1.0           Uwe Simon  1988
+
+Directory : .
+
+   +  show next page   -  show first page    A..Z select file
+   !  exit Menue       .  change directory   a..z  file with parameter
+
+===== Compile what File ?                                               =====
+A  lex.yy.c
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Select file :

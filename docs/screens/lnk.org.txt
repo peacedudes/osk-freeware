@@ -1,0 +1,4 @@
+< > /nil 2>/nil; cp /dd/SRC/rtf/div.f /dd/tmp/CMPA/div.f
+$ load /dd/CMDS/os9lib
+$ lnk.org /dd/tmp/CMPA/div.f
+ STOP: linking aborted

@@ -29,10 +29,16 @@ arc 6f4b8ea5736eee91
 arc_5.12 5e0b7449d11f0f57
 areacode c1465c13732198ab
 argproc_demo 58b09c3f5ce797ca
-as09 bcf207a8f82025ec
+as0 bdeb69ea5f2ec168
+as09 09e55897947feaef
+as1 19688e29e29742a4
+as11 cad4da85df1d4b1b
+as4 abe72d653a5fca77
+as5 341cc35b1bbe57a3
 ascii 71a1f702a9db128e
 asciitopgm 8eedec24ace868c5
 ask ab3766668bb7dd5f
+assembler 3a47d5c44d338908
 ateri b53a5d107876b6c8
 aterm b592f62627fbfff1
 atob 13b822006b57ceaa
@@ -65,6 +71,10 @@ calender 30e2052f8d39bf1b
 casefix 5cf7aca805fd289d
 cat 7f41063c3b2434e3
 cb e3c2a6d4034171b8
+cc1plus 5dea465729d10e1f
+cc2 31f5e623e96de99f
+cc2plus 4a8cbbf676b895d6
+cccp2 7cadf12bab8fb1e4
 ccheck fc8039768a5bc757
 cdiff c20874fb713cd0fc
 charcnt cd15a3a9da7c09c1
@@ -81,8 +91,10 @@ chown 02fa8adbe8f6d480
 ci 76384e06a4fd66ca
 clock c2334f717f7f8459
 co a4b175270c7299ce
+collect 5a00f9a3ae087b18
 colortest 5c2330766a9f14e5
 combine ef1f773963bbe8d7
+compiler a1cfa4c684d609b5
 compr 911582dd79a8ef3a
 compress 6c2a8fd8ccaface2
 compress_4.0 810163114937af9a
@@ -93,6 +105,7 @@ cookie 56260c431cc004e7
 cp 2f22522d48ffeb04
 cpr 2c7a04b3b35e4e61
 cpu 098e41d6e2631e71
+creadoc 488d554aeee5356a
 crib 4db82a065a15e79a
 cribbage 236f40fb817c182c
 crypto ee96bdb3042ce625
@@ -140,6 +153,7 @@ divide d349c04fa6c2a9e6
 djpeg c5c6c1b3303b35a6
 dload 5fd6036f2b91e1c9
 dm 0489d0b6490d54c4
+dmake 7695714abde9ca2c
 draw 644ffd4bed768159
 drivers 8f394b974b7d5e3b
 drop 0da75fc30e1f750c
@@ -202,8 +216,8 @@ float 42fdb2dcc2573738
 florida 218de360eafe3b86
 fmt e2053bfcbdd8aefd
 fontgen 60e1c7f5b6cdba8d
+for 9869efd04fdb698f
 forth 5e964bdb499cf385
-fortran e2fc9fc37c12f51b
 fortune 9ecfa07b45d3dc28
 frm 7d32003d0791d3f2
 fstat 69d2c7c7cc391f1b
@@ -212,7 +226,14 @@ funzip 336d89a0b2f524c4
 g3 fa43d048ddbf5c4f
 game 2324f0be3ac484eb
 gawk b0b0c083352f65be
-gcc 8c81297596f3ba47
+gcc 5dc6547034a1e133
+gcc2 16db721523ff1e5f
+gcc_cc1 4d5a90952d4116b3
+gcc_cc1plus 0c0b6340fa59c403
+gcc_cc2 dd5d40de3ec37ec0
+gcc_cccp a3c963af1459c6d2
+gcc_cccp2 ad7159988ced5821
+gcc_collect 83873bb774430001
 gcl 98547f63e11b0c43
 gdd 87b88fd06097bb17
 gen f4cb238a2f543a1d
@@ -225,7 +246,7 @@ ggrep cfe53104d19a39e2
 gif f92f7b11da4a9504
 gif2 b5c0592108bf2c41
 giftopnm 2f3769f6c8c49b2a
-gmake 399558e7ab6522b1
+gmake 9d19b8f28999f2f6
 gnuan 84173a584eb8e326
 gnuchess 53e47e283e8fafb9
 gnuchessc 5806c55639b127da
@@ -233,6 +254,10 @@ gnuchessn f615cfce488e555f
 gnuchessr ae3a70f182754a2d
 gnuplot 3d186d7b99a2206f
 gothic e1ee3fedd700a651
+gpp 212dcf169451eb2a
+gpp_cc1plus cfc2ab82300eb74a
+gpp_cccp 7005cec700702e44
+gpp_collect 83ab97b74ab01eb7
 graphlib b21e42fb356d441a
 greed 158e714fe4950b0c
 greg 76f1f9ff303cd722
@@ -299,6 +324,8 @@ liborder 87e0ceb0cee99186
 libsplit 17b253158605dd58
 lispm 647b692409bfc1b3
 lmargin 0e7377b686da6c46
+lnk 0f35a471076878d2
+lnk.org 84e04675d6008e12
 load ed88e752e89868aa
 loan 47110aee19a3b1dc
 logisim 8750fcbd1e017e8e
@@ -324,7 +351,7 @@ mail 8a45e31f9d0430fa
 mailx 1efd8b5be9e83c9c
 make 03039c7b0a491527
 makecrc f73c4147db1833d7
-makeinfo 9e34bf2df6be3dbc
+makeinfo 3172d405e40f894a
 makelex fee9f3fd0e48c89e
 maketexpk eb25a36d250f989a
 map 32a0218d8c724b9e
@@ -477,6 +504,7 @@ rpn a1fd3ce7d1a49dad
 rpoem 4b4f474ef4ac92fb
 rstory 6df798d4e6d9be3c
 rstory2 160ef4cc0d9c09a9
+rtf 19fd157e8be2a5d2
 run c11d6dbde30fe3a8
 runc 3473be17a470f35f
 savage bf3933988e4e3dd1
@@ -610,7 +638,6 @@ wn 952f4a66dca1eadf
 wn-helpers f7238d88c83ccad8
 workstations e4b6598d2606da9b
 writeonly 304e6fedbd14aba1
-xasm 7172b5f2532a5c45
 xbm 63ce52063e439546
 xc c2bc5883e0a69df2
 xcrypt 6bc406d1e385fbaf
@@ -619,7 +646,7 @@ xlisp 0b7422cb632e67fb
 xmodem 03c7d002316b77ad
 xpm 968f0fed29aea840
 xrf 1ef6a5c3930bacc9
-yacc f7179e9ea160d48d
+yacc 537ee7f7be555240
 yagi 469ad661c6ada1aa
 yuv 7bc729e24271bbd0
 zip 7b56ca75e06c9a1a

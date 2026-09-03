@@ -1,35 +1,91 @@
-# Compilers and build tools, each one actually building
-# something.
+# Compilers and build tools, each one actually building something.
+# Every stanza makes what it reads under /dd/tmp/CMPA.
+
+shot    as0
+size    30 90
+cap     as0, the 6800/6802 cross-assembler: address, opcode bytes and the
+cap     source line, then the symbol table -- `l' for the listing and `s'
+cap     for the symbols, after a lone `-'.
+run     as0 /dd/DOC/xasm/sample.a0 - l s
+wait    14
 
 shot    as09
-for     as09
-cap     as09 assembling 6809 source.  It says nothing and writes Motorola
-cap     S-records beside the source -- so the proof is the file: four
-cap     instructions at $1000, in the format a ROM burner eats.  A 6809
-cap     cross-assembler running on a 68000; as0, as1, as4, as5 and as11 are
-cap     its cousins for the rest of the 6800 family, and not one of the six
-cap     assembles 68k code.
-cap     The source is written here rather than borrowed from another card:
-cap     it used to be, and when that card moved the file was not there and
-cap     this one showed two `can't open' messages.
-run     echo "        org  \0441000" > /dd/tmp/t.a
+size    30 90
+cap     as09, the 6809 assembler and the only one of the six xasm programs
+cap     that is not a cross-assembler for an 8-bit relative of the 6809 --
+cap     none of the six assembles 68000 code.  It says nothing and writes
+cap     Motorola S-records beside the source: four instructions at $1000,
+cap     in the format a ROM burner reads.  Run through ksh, whose `cd'
+cap     moves the OS-9 data directory where bash's does not -- given the
+cap     source by its full path instead, as09 cannot create its own
+cap     temporary file.
+run     mkdir -p /dd/tmp/CMPA > /nil 2>/nil; rm -f /dd/tmp/CMPA/t.a /dd/tmp/CMPA/t.s19
+wait    3
+run     echo "        org  \0441000" > /dd/tmp/CMPA/t.a
+wait    5
+run     echo "        lda  #\04442" >> /dd/tmp/CMPA/t.a
+wait    5
+run     echo "        sta  \0442000" >> /dd/tmp/CMPA/t.a
+wait    5
+run     echo "        rts" >> /dd/tmp/CMPA/t.a
+wait    5
+run     echo "        end" >> /dd/tmp/CMPA/t.a
+wait    5
+run     cat /dd/tmp/CMPA/t.a
 wait    6
-run     echo "        lda  #\04442" >> /dd/tmp/t.a
-wait    5
-run     echo "        sta  \0442000" >> /dd/tmp/t.a
-wait    5
-run     echo "        rts" >> /dd/tmp/t.a
-wait    5
-run     echo "        end" >> /dd/tmp/t.a
-wait    5
-run     cat /dd/tmp/t.a
-wait    6
-run     as09 /dd/tmp/t.a
+run     ksh -c "cd /dd/tmp/CMPA; as09 t.a"
 wait    12
-run     cat /dd/tmp/t.s19
+run     cat /dd/tmp/CMPA/t.s19
 wait    8
-run     cat /dd/tmp/t.s19
+
+shot    as1
+size    30 90
+cap     as1, the 6801/6803 cross-assembler.  The 6801 adds MUL, ADDD and
+cap     the D register over the 6800, and the sample uses all three.
+run     as1 /dd/DOC/xasm/sample.a1 - l s
+wait    14
+
+shot    as4
+size    30 90
+cap     as4, the 6804 cross-assembler.  Its instruction set is small: no
+cap     CLR on the pseudo-registers, no immediate CMP.
+run     as4 /dd/DOC/xasm/sample.a4 - l s
+wait    14
+
+shot    as5
+size    30 90
+cap     as5, the 6805/68HC05 cross-assembler, on bit set, bit test and
+cap     branch -- what the 6805 is for.
+run     as5 /dd/DOC/xasm/sample.a5 - l s
+wait    14
+
+shot    as11
+size    30 90
+cap     as11, the 68HC11 cross-assembler.  It lists by default -- no `-l'
+cap     needed -- and reads any word after the file name as one more
+cap     source file rather than as an option, so the `- l s' its siblings
+cap     take is not for this one.
+run     as11 /dd/DOC/xasm/sample.a11
+wait    14
+
+shot    assembler
+cap     The GSHELL front-end for the assembler family: a full-screen file
+cap     picker, not an assembler itself.  Control-C leaves it; none of q,
+cap     Q, control-D or ESC do.
+run     assembler
 wait    8
+snap
+send    \003
+wait    3
+
+shot    compiler
+cap     The GSHELL front-end for the C compiler: the same file-picker
+cap     menu, headed for cc.  Control-C leaves it.
+run     compiler
+wait    8
+snap
+send    \003
+wait    3
 
 shot    bison
 cap     GNU bison 1.19 on a two-rule grammar it writes for itself, then
@@ -61,60 +117,157 @@ run     head -n 10 lex.yy.c
 wait    5
 
 shot    gcc
-for     gcc gcc2 gcc_cc1 gcc_cc1plus gcc_cccp gcc_cccp2 gcc_cc2 gcc_collect
-for     gpp gpp_cc1plus gpp_cccp gpp_collect cc1plus cc2 cc2plus cccp2 collect
-cap     GCC 1.39 and its passes.  Asked to compile, the driver prints the
-cap     preprocessor command it wants to run and then cannot find `cccp':
-cap     the passes are installed under a prefix -- gcc2 wants gcc_, gpp
-cap     wants gpp_ -- and the driver does not look where they live.  The
-cap     passes themselves are real programs and each says something when
-cap     asked.
-run     gcc -v
+cap     The GCC139 and GCC2 drivers share the name `gcc'; this is GCC2's
+cap     copy, `gcc version 1.42'.  Asked to compile it prints the
+cap     preprocessor command it wants and then cannot find `cccp' -- the
+cap     pass lives under a prefix here (gcc_cccp, gcc_cccp2), not under
+cap     its own name.
+run     mkdir -p /dd/tmp/CMPA > /nil 2>/nil; printf "int main() {\r  return 0;\r}\r" > /dd/tmp/CMPA/hello.c
 wait    4
-run     gcc -v -c /dd/SRC/load/load.c
+run     /dd/CMDS/GCC2/gcc -v
+wait    6
+run     /dd/CMDS/GCC2/gcc -v -c /dd/tmp/CMPA/hello.c
+wait    10
+
+shot    gcc2
+cap     The GCC 2.x driver, `gcc version 2.5.6'.  Asked to stop at
+cap     assembly it succeeds -- Microware's own syntax, `psect', `link.w
+cap     a5,#0' -- and asked to go all the way it looks for Microware's
+cap     `r68' assembler, which is not on this disk.
+run     mkdir -p /dd/tmp/CMPA > /nil 2>/nil; printf "int main() {\r  return 0;\r}\r" > /dd/tmp/CMPA/hello.c
+wait    4
+run     /dd/CMDS/GCC2/gcc2 -v
+wait    5
+run     /dd/CMDS/GCC2/gcc2 -S -o /dd/tmp/CMPA/hello.a /dd/tmp/CMPA/hello.c
 wait    12
-run     gcc_cc1 -version
+run     cat /dd/tmp/CMPA/hello.a | head -n 8
+wait    5
+run     /dd/CMDS/GCC2/gcc2 -o /dd/tmp/CMPA/hello /dd/tmp/CMPA/hello.c
+wait    10
+
+shot    gpp
+cap     The C++ driver, GCC2's copy -- `gpp version 1.40.3 (based on GCC
+cap     1.40)'.  Asked to compile, it runs its whole pipeline: gpp_cccp
+cap     preprocesses, gpp_cc1plus compiles to assembly, and then it looks
+cap     for Microware's `r68' assembler, which is not on this disk.
+run     mkdir -p /dd/tmp/CMPA > /nil 2>/nil; printf "int main() {\r  return 0;\r}\r" > /dd/tmp/CMPA/hello.c
+wait    4
+run     /dd/CMDS/GCC2/gpp -v -c /dd/tmp/CMPA/hello.c
+wait    16
+
+shot    cccp2
+cap     GCC 2.x's preprocessor pass, expanding a small C file -- the
+cap     `# 1 "..."' line is the marker it adds; there are no macros here
+cap     to expand.
+run     mkdir -p /dd/tmp/CMPA > /nil 2>/nil; printf "int main() {\r  return 0;\r}\r" > /dd/tmp/CMPA/hello.c
+wait    4
+run     /dd/CMDS/GCC2/cccp2 /dd/tmp/CMPA/hello.c /dd/tmp/CMPA/hello.i
 wait    8
-run     gcc_cc2
+run     cat /dd/tmp/CMPA/hello.i
+wait    5
+
+shot    cc2
+cap     GCC 2.x's C compiler pass, saying what it is.
+run     /dd/CMDS/GCC2/cc2 -version
 wait    8
-run     gcc_cccp2 -version
-wait    8
-run     gcc_collect
-wait    8
-run     gpp -v
-wait    8
-run     gpp_cc1plus -version
-wait    8
-run     gpp_cccp -version
-wait    8
-run     gpp_collect
-wait    8
-run     gcc2 -v
-wait    8
-run     gcc_cc1plus -version
-wait    8
-run     gcc_cccp -version
-wait    8
+
+shot    cc1plus
+cap     GCC 2.x's C++ compiler pass, saying what it is.
 run     /dd/CMDS/GCC2/cc1plus -version
 wait    8
-run     /dd/CMDS/GCC2/cc2
-wait    8
+
+shot    cc2plus
+cap     GCC 2.x's other C++ pass, saying what it is.
 run     /dd/CMDS/GCC2/cc2plus -version
 wait    8
-run     /dd/CMDS/GCC2/cccp2 -version
-wait    8
+
+shot    collect
+cap     GCC 2.x's collect2, which builds the global constructor/destructor
+cap     table a C++ program needs -- its own syntax, since it takes no -?.
 run     /dd/CMDS/GCC2/collect
 wait    8
 
-shot    gmake
-cap     GNU make, and dmake beside it, both saying what they are.
-run     gmake -v
-wait    5
-run     dmake -V
+shot    gcc_cc1
+cap     GCC 1.39's C compiler pass, saying what it is.
+run     /dd/CMDS/GCC139/gcc_cc1 -version
+wait    8
+
+shot    gcc_cc1plus
+cap     GCC 1.39's C++ compiler pass, saying what it is.
+run     /dd/CMDS/GCC139/gcc_cc1plus -version
+wait    8
+
+shot    gcc_cccp
+cap     GCC 1.39's preprocessor pass, expanding the same small C file.
+run     mkdir -p /dd/tmp/CMPA > /nil 2>/nil; printf "int main() {\r  return 0;\r}\r" > /dd/tmp/CMPA/hello.c
+wait    4
+run     /dd/CMDS/GCC139/gcc_cccp /dd/tmp/CMPA/hello.c /dd/tmp/CMPA/hello.i
+wait    8
+run     cat /dd/tmp/CMPA/hello.i
 wait    5
 
+shot    gcc_collect
+cap     GCC 1.39's collect2, the same program as GCC 2.x's.
+run     /dd/CMDS/GCC139/gcc_collect
+wait    8
+
+shot    gcc_cc2
+cap     GCC 2.x's C compiler pass, installed under the name gcc2's driver
+cap     forks it by.
+run     /dd/CMDS/gcc_cc2 -version
+wait    8
+
+shot    gcc_cccp2
+cap     GCC 2.x's preprocessor, installed under the name gcc2's driver
+cap     forks it by: its own version banner and the two directories it
+cap     searches for headers.
+run     /dd/CMDS/gcc_cccp2 -version
+wait    8
+
+shot    gpp_cc1plus
+cap     GCC 2.x's C++ compiler pass, installed under the name gpp's
+cap     driver forks it by.
+run     /dd/CMDS/gpp_cc1plus -version
+wait    8
+
+shot    gpp_cccp
+cap     GCC 2.x's preprocessor, installed under the name gpp's driver
+cap     forks it by -- the same program as gcc_cccp2.
+run     /dd/CMDS/gpp_cccp -version
+wait    8
+
+shot    gpp_collect
+cap     GCC 2.x's collect2, installed under the name gpp's driver forks
+cap     it by.
+run     /dd/CMDS/gpp_collect
+wait    8
+
+shot    gmake
+cap     GNU make 3.67, running a rule from DOC/make/demo.mk: copies
+cap     /dd/SYS/motd to /dd/tmp/greeting and reports the file it made.
+run     rm -f /dd/tmp/greeting
+wait    4
+run     gmake -v
+wait    5
+run     gmake -f /dd/DOC/make/demo.mk greeting
+wait    10
+run     ls -l /dd/tmp/greeting
+wait    6
+
+shot    dmake
+cap     dmake 3.70, Dennis Vadura's parallel make, on the same rule --
+cap     its own makefile dialect still reads DOC/make/demo.mk and builds
+cap     the target.
+run     rm -f /dd/tmp/greeting
+wait    4
+run     dmake -V
+wait    5
+run     dmake -f /dd/DOC/make/demo.mk greeting
+wait    10
+run     ls -l /dd/tmp/greeting
+wait    6
+
 shot    m4
-for     m4 m4_0.5
 cap     m4, the macro processor, expanding a macro from a file.
 run     echo "define(GREET,Hello \$1 from OS-9)" > /dd/tmp/m.m4
 wait    5
@@ -127,8 +280,9 @@ wait    8
 
 shot    make
 size    36 80
-cap     `make' keeping a rule, building the target and then saying it is up
-cap     to date.  TWO obstacles, neither of them make being broken.  A
+cap     `make' building the target, then running the same rule again with
+cap     nothing to do -- it says nothing once a target is up to date.
+cap     TWO obstacles along the way, neither of them make being broken.  A
 cap     command line in a makefile must begin with a TAB, and a tab does not
 cap     survive being typed at this terminal, so every makefile written here
 cap     by echoing at the shell was a syntax error; DOC/make/demo.mk is one
@@ -146,20 +300,14 @@ wait    8
 run     make -f /dd/DOC/make/demo.mk greeting
 wait    10
 
-
 shot    makeinfo
-for     makeinfo dmake gmake
-cap     makeinfo turns Texinfo source into the info files emacs reads.
-run     makeinfo --version
-wait    8
-run     gmake -v
-wait    8
-run     dmake -?
-wait    8
+cap     GNU makeinfo, Texinfo to Info -- it takes `+' options, not `--':
+cap     `+version' answers, GNU-style `--version' does not.
+run     makeinfo +version
+wait    6
 
 shot    p2c
 size    36 80
-for     p2c
 cap     p2c TRANSLATING PASCAL INTO C, which is the thing it is for.  It
 cap     works on the CURRENT directory, so it is run through ksh -- whose
 cap     `cd' moves the OS-9 data directory where bash's does not -- and it
@@ -180,65 +328,81 @@ wait    6
 run     head -n 12 /dd/tmp/P2C/h.c
 wait    8
 
-shot    xasm
-for     as0 as1 as4 as5 as11
-size    40 90
-cap     The xasm family assembling, rather than printing its usage: as0 on
-cap     6800 source and as5 on 6805.  Address, opcode bytes and the original
-cap     line, then the symbol table -- `l' asks for the listing and `s' for
-cap     the symbols, after a lone `-'.  These are 8-BIT cross-assemblers: no
-cap     68000 among them, and there has never been a 68050.
-run     as0 /dd/DOC/xasm/sample.a0 - l s
-wait    14
-run     as5 /dd/DOC/xasm/sample.a5 - l s
-wait    14
-
 shot    yacc
-for     yacc
-cap     yacc DOES NOT COME BACK.  Given the three-line grammar built above
-cap     -- the same one `bison' reads and reports on in a second -- it
-cap     prints nothing and never returns, and the session has to be stopped.
-cap     `bison' is the parser generator that works here, and has its own
-cap     card.
-run     echo "%token NUM" > /dd/tmp/g.y
-wait    3
-run     echo "%%" >> /dd/tmp/g.y
-wait    3
-run     echo "expr : expr NUM | NUM ;" >> /dd/tmp/g.y
-wait    3
-run     cat /dd/tmp/g.y
-wait    5
-run     yacc -v /dd/tmp/g.y
-wait    20
-kill
-
-shot    fortran
-for     rtf for lnk lnk.org creadoc os9lib
-cap     RTF/68K 2.14, 1987 -- and IT COMPILES.  Load its runtime library
-cap     first (`load /dd/CMDS/os9lib'; without it the whole set prints
-cap     nothing at all) and `rtf <file>.f' reads Fortran-77 and writes 68k
-cap     assembly beside the source: zero errors, zero warnings, `RTF
-cap     normally completed', 1008 bytes of div.a.  Assembling and linking
-cap     that needs Microware's r68 and l68, which are not here.  Call `rtf'
-cap     DIRECTLY: the `for' driver forks a program called `shell' to run it
-cap     and this disk has none, so it prints the command and stops.  The
-cap     last line is `biory', a Fortran PROGRAM from the same set, running
-cap     off the same loaded library and asking for a name in German.
-run     rtf
+cap     yacc reading a grammar and writing y.tab.c, the parser table,
+cap     into the data directory -- the two-rule grammar above.  The four
+cap     `F$SetSys' lines are a harmless system-call notice, not an error:
+cap     status 0 and the file both confirm it finished.
+run     rm -f /dd/tmp/CMPA/g.y /dd/tmp/CMPA/y.tab.c; mkdir -p /dd/tmp/CMPA > /nil 2>/nil
+wait    4
+run     printf "%%token NUM\r%%%%\rexpr : expr NUM | NUM ;\r" > /dd/tmp/CMPA/g.y
+wait    4
+run     cat /dd/tmp/CMPA/g.y
+wait    4
+run     clear
+wait    1
+run     ksh -c "cd /dd/tmp/CMPA; yacc g.y"; echo "status $?"
+wait    15
+run     ls -l /dd/tmp/CMPA/y.tab.c
 wait    6
+
+shot    rtf
+cap     RTF/68K 2.14 (1987) compiling real Fortran-77: `load os9lib' first
+cap     -- without its runtime library the whole set prints nothing at
+cap     all -- then `rtf' reads the source and writes 68k assembly beside
+cap     it.  Assembling and linking that needs Microware's r68 and l68,
+cap     which is not on this disk.
+run     rm -f /dd/tmp/CMPA/div.f /dd/tmp/CMPA/div.a; mkdir -p /dd/tmp/CMPA > /nil 2>/nil
+wait    4
+run     cp /dd/SRC/rtf/div.f /dd/tmp/CMPA/div.f
+wait    4
 run     load /dd/CMDS/os9lib
-wait    8
-run     rtf /dd/SRC/rtf/div.f
-wait    30
-run     ls -l /dd/SRC/rtf/div.a
-wait    8
-run     /dd/CMDS/for /dd/SRC/rtf/div.f
+wait    6
+run     rtf /dd/tmp/CMPA/div.f
+wait    20
+run     ls -l /dd/tmp/CMPA/div.a
+wait    6
+
+shot    for
+cap     the RTF/68K FORTRAN driver: it prints the `rtf' command it wants
+cap     to run and then cannot, because it forks a program called `shell'
+cap     that this disk does not carry.  Call `rtf' directly instead --
+cap     it needs no shell at all.
+run     mkdir -p /dd/tmp/CMPA > /nil 2>/nil; cp /dd/SRC/rtf/div.f /dd/tmp/CMPA/div.f
+wait    4
+run     load /dd/CMDS/os9lib
+wait    6
+run     /dd/CMDS/for /dd/tmp/CMPA/div.f
 wait    10
-run     biory < /nil
+
+shot    lnk
+cap     the RTF FORTRAN link driver: it prints the `l68' command it wants
+cap     -- Microware's linker, with Microware's library -- and stops the
+cap     same way `for' does, forking a shell this disk does not carry.
+run     mkdir -p /dd/tmp/CMPA > /nil 2>/nil; cp /dd/SRC/rtf/div.f /dd/tmp/CMPA/div.f
+wait    4
+run     load /dd/CMDS/os9lib
+wait    6
+run     lnk /dd/tmp/CMPA/div.f
 wait    10
-run     lnk
-wait    8
-run     lnk.org
-wait    8
-run     creadoc /dd/SRC/rtf/div.f
+
+shot    lnk.org
+cap     the original build of `lnk', the same program and the same stop.
+run     mkdir -p /dd/tmp/CMPA > /nil 2>/nil; cp /dd/SRC/rtf/div.f /dd/tmp/CMPA/div.f
+wait    4
+run     load /dd/CMDS/os9lib
+wait    6
+run     lnk.org /dd/tmp/CMPA/div.f
+wait    10
+
+shot    creadoc
+cap     extracts documentation comments from FORTRAN source -- and aborts
+cap     here with a privilege violation, on an instruction (MOVE SR,D0) a
+cap     68000 allows and a real 68000 is what it needs.  `rtf' itself
+cap     compiles and `biory', the other RTF program on this disk, runs.
+run     mkdir -p /dd/tmp/CMPA > /nil 2>/nil; cp /dd/SRC/rtf/div.f /dd/tmp/CMPA/div.f
+wait    4
+run     load /dd/CMDS/os9lib
+wait    6
+run     creadoc /dd/tmp/CMPA/div.f
 wait    10

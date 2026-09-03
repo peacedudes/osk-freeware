@@ -1,3 +1,4 @@
+$ rm -f /dd/tmp/greeting
 $ gmake -v
 GNU Make version 3.67, by Richard Stallman and Roland McGrath.
 Copyright (C) 1988, 89, 90, 91, 92, 93 Free Software Foundation, Inc.
@@ -5,12 +6,7 @@ This is free software; see the source for copying conditions.
 There is NO warranty; not even for MERCHANTABILITY or FITNESS FOR A
 PARTICULAR PURPOSE.
 
-$ dmake -V
-dmake - Copyright (c) 1990,1991 by Dennis Vadura, Version 3.70, PL 2
-
-Default Configuration:
-        MAXPROCESSLIMIT := 10
-        MAXLINELENGTH := 8190
-        .MAKEFILES : dmakefile makefile.mk makefile
-        .SOURCE    : .NULL
-        MAKESTARTUP := $(ROOTDIR)/h0/SYS/startup.mk
+$ gmake -f /dd/DOC/make/demo.mk greeting
+cp /dd/SYS/motd /dd/tmp/greeting
+$ ls -l /dd/tmp/greeting
+-rw-rw-rw-   1 0        0              40 Aug  3 19:00 /dd/tmp/greeting

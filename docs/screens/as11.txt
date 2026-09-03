@@ -1,0 +1,19 @@
+$ as11 /dd/DOC/xasm/sample.a11
+                        * sample.a11 -- a 68HC11 program for as11.  Bit manipulation opern
+                        * the 'HC11 are separated by BLANKS, not commas -- see DOC/xasm/a.
+                        *
+c000                            org     $c000
+1004                    portb   equ     $1004
+c000 86 41              start   ldaa    #$41
+c002 b7 10 04                   staa    portb
+c005 ce c0 15                   ldx     #table
+c008 c6 04                      ldab    #4
+c00a a6 00              loop    ldaa    0,x
+c00c b7 10 04                   staa    portb
+c00f 08                         inx
+c010 5a                         decb
+c011 26 f7                      bne     loop
+c013 20 eb                      bra     start
+c015 48 43 31 31        table   fcc     "HC11"
+                                end
+Errors: 0

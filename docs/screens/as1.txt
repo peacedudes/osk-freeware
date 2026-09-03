@@ -1,0 +1,21 @@
+$ as1 /dd/DOC/xasm/sample.a1 - l s
+0001                         * sample.a1 -- a 6801 program for as1.  The 6801 adds MUL, Ae
+0002                         * D register to the 6800, so this uses them: as0 would rejec.
+0003                         *
+0004 0100                            org     $0100
+0005 0100 cc 12 34           start   ldd     #$1234
+0006 0103 f3 01 12                   addd    delta
+0007 0106 fd 01 14                   std     result
+0008 0109 86 07                      ldaa    #$07
+0009 010b c6 06                      ldab    #$06
+0010 010d 3d                         mul
+0011 010e fd 01 16                   std     product
+0012 0111 3f                         swi
+0013 0112 01 00              delta   fdb     $0100
+0014 0114                    result  rmb     2
+0015 0116                    product rmb     2
+0016                                 end
+delta      0112
+product    0116
+result     0114
+start      0100

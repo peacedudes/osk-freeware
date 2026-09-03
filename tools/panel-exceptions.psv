@@ -65,3 +65,12 @@ texidx|builds an index from a TeX run's entries; with none to read its usage is 
 gftopk|packs the font silently; the ls that follows on its card shows both sizes
 pktogf|unpacks silently; the ls that follows on its card shows the result
 pltotf|writes the .tfm silently; the ls that follows on its card shows the round trip
+as09|assembles silently to an S-record file; the listing that follows on its card shows the result
+bison|writes its parser tables silently; the file shown after on its card is the result
+flex|writes lex.yy.c silently; the file shown after on its card is the result
+cccp2|preprocesses to a file; the cat that follows on its card shows the expanded source
+gcc_cccp|preprocesses to a file; the cat that follows on its card shows the expanded source
+collect|a g++ linker-helper pass; with nothing to link its usage is what there is to show
+gcc_collect|a g++ linker-helper pass; with nothing to link its usage is what there is to show
+gpp_collect|a g++ linker-helper pass; with nothing to link its usage is what there is to show
+lnk.org|the RTF Fortran linker; it aborts for want of Microware's l68, and the card shows that

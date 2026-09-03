@@ -1,0 +1,9 @@
+< > /nil 2>/nil; cp /dd/SRC/rtf/div.f /dd/tmp/CMPA/div.f
+$ load /dd/CMDS/os9lib
+$ creadoc /dd/tmp/CMPA/div.f
+
+Process   Pid: 3, creadoc, edition 1
+    Exit code: E_PRCABT(228) Process Aborted
+  Directories: Current   - /dd
+               Execution - /dd/CMDS
+        Files: 00 fCons /term

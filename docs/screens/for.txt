@@ -1,0 +1,5 @@
+< > /nil 2>/nil; cp /dd/SRC/rtf/div.f /dd/tmp/CMPA/div.f
+$ load /dd/CMDS/os9lib
+$ /dd/CMDS/for /dd/tmp/CMPA/div.f
+rtf /dd/tmp/CMPA/div.f
+ STOP: compilation aborted

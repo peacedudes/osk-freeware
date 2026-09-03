@@ -1,0 +1,9 @@
+<v.f /dd/tmp/CMPA/div.a; mkdir -p /dd/tmp/CMPA > /nil 2>/nil
+$ cp /dd/SRC/rtf/div.f /dd/tmp/CMPA/div.f
+$ load /dd/CMDS/os9lib
+$ rtf /dd/tmp/CMPA/div.f
+ RTF/68K Version 2.14 (19-May-1987)
+ Total Errors   0   Warnings   0
+ RTF normally completed
+$ ls -l /dd/tmp/CMPA/div.a
+-rw-------   1 0        0            1008 Sep  3 08:24 /dd/tmp/CMPA/div.a
