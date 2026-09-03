@@ -1,11 +1,3 @@
-(c.) 1989 by F.R.Schmitt MPI Kernphysik Heidelberg
-
-Syntax: combine [<file1>] [<file2>] [<outfile>] [<opt>]
-Function: combine files with even and odd bytes
-Options:
-     -q      quiet mode [no prints]
-     -?      show this explanation
-
 $ greg 2461281
 2026 8 29
 $ greg 2440588

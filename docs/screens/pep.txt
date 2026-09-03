@@ -1,29 +1,19 @@
-$ pep -?
+dump /dd/tmp/TEXTA/ctl.txt
+
+Addr   0 1  2 3  4 5  6 7  8 9  A B  C D  E F 0 2 4 6 8 A C E
+----  ---- ---- ---- ---- ---- ---- ---- ---- ----------------
+0000  6265 6C6C 0761 6E64 0862 6163 6B73 7061 bell.and.backspa
+0010  6365 2068 6572 650D                     ce here.
+$ pep -b -u13 /dd/tmp/TEXTA/ctl.txt > /dd/tmp/TEXTA/clean.txt
 pep  ver. 2.1; Copyright (c) 1989 Gisle Hannemyr
-Usage: pep [options] [filename ...]
-Valid options:
-        -a        -- about pep
-        -b        -- remove non ASCII-codes
-        -c[size]  -- compress spaces to tabs
-        -d+/-     -- convert to/from DEC 8 bit charset
-        -e[guard] -- interprete ANSI escape sequences
-        -g<file>  -- get conversion table from file
-        -h        -- print this quick summary
-        -i+/-     -- convert to/from IBM-PC charset
-        -k+/-     -- convert to/from "Kman" charset
-        -m+/-     -- convert to/from Macintosh charset
-        -o[b]     -- write output to named files
-        -p        -- display transformations and pause
-        -s[size]  -- extract strings
-        -t[size]  -- expand tabstops
-        -u<term>  -- use special line terminator
-        -v        -- terminate only paragraphs
-        -w+/-     -- convert to/from WS document mode
-        -x        -- expand non printing chars
-        -z        -- zero parity bit
-$ ape -?
-syntax: ape {opts}
-Function: write gibberish in the style of <stdin> to <stdout>
-Options:
-        -b[=]<num>[k]   maximum amount of source text to read (default 8k)
-        -l[=]<num>              length of pattern required to match (default 4)
+Transformations:
+ * stripping all trailing spaces;
+ * removing non ASCII-codes;
+ * terminating lines with CR;
+ * removing control characters.
+$ dump /dd/tmp/TEXTA/clean.txt
+
+Addr   0 1  2 3  4 5  6 7  8 9  A B  C D  E F 0 2 4 6 8 A C E
+----  ---- ---- ---- ---- ---- ---- ---- ---- ----------------
+0000  6265 6C6C 0D61 6E62 6163 6B73 7061 6365 bell.anbackspace
+0010  2068 6572 650D                           here.

@@ -484,7 +484,7 @@ stone|Games|Other games
 
 # ---- Maths & calculators ----
 orbit|Time & calendar|Astronomy
-gcl|Time & calendar|Calendars
+gcl|Time & calendar|Clocks
 hc|Text tools|Format & typeset
 loan|Maths & calculators|Calculators
 rechne|Maths & calculators|Calculators
@@ -498,7 +498,7 @@ lp|Printing|Spooling
 lpq|Printing|Spooling
 lprm|Printing|Spooling
 lpshut|Printing|Spooling
-perr|Printing|Spooling
+perr|System & modules|System state
 prjob|Printing|Spooling
 qp|Shells|Shell helpers
 
@@ -559,7 +559,7 @@ sysid|System & modules|System state
 ascii|Text tools|Count & inspect
 dump|Text tools|Count & inspect
 file|Text tools|Count & inspect
-gdd|Text tools|Count & inspect
+gdd|Text tools|Transform & filter
 strings|Text tools|Count & inspect
 tail|Text tools|Count & inspect
 wc|Text tools|Count & inspect
@@ -609,7 +609,7 @@ ape|Text tools|Transform & filter
 autolf|Text tools|Transform & filter
 casefix|Text tools|Transform & filter
 cut|Text tools|Transform & filter
-cuts|Text tools|Transform & filter
+cuts|Encoding & conversion|Text encodings
 detab|Text tools|Transform & filter
 deton|System & modules|Utilities
 eo|Text tools|Transform & filter
@@ -632,7 +632,7 @@ ephem881|Time & calendar|Astronomy
 cal|Time & calendar|Calendars
 calen|Time & calendar|Calendars
 calender|Time & calendar|Calendars
-digclk|Time & calendar|Calendars
+digclk|Time & calendar|Clocks
 japan|Amusements|Simulated weather
 setimex|Time & calendar|Calendars
 shire|Amusements|Simulated weather
@@ -692,12 +692,12 @@ dhryGccmx|Developer tools|Benchmarks
 dhryGcc2mx|Developer tools|Benchmarks
 dhryshamu|Developer tools|Benchmarks
 dhryshamu2|Developer tools|Benchmarks
-expand|Text tools|Filters
-head|Text tools|Filters
-split|Text tools|Filters
-sum|Text tools|Filters
-tac|Text tools|Filters
-unexpand|Text tools|Filters
+expand|Text tools|Transform & filter
+head|Text tools|Transform & filter
+split|Text tools|Split & join
+sum|Text tools|Count & inspect
+tac|Text tools|Transform & filter
+unexpand|Text tools|Transform & filter
 oleo|Maths & calculators|Spreadsheets
 env|Shells|Shell utilities
 expr|Shells|Shell utilities
@@ -711,13 +711,13 @@ zipinfo|Archives & compression|zip
 lesskey|Documentation|Help & pagers
 lessecho|Documentation|Help & pagers
 bsplt68|System & modules|OS-9 modules
-charcnt|Text tools|Filters
-subber|Text tools|Filters
-tcmp|Text tools|Filters
-unp|Text tools|Filters
-splman|Printing|Spooler
-splprt|Printing|Spooler
-splstat|Printing|Spooler
+charcnt|Text tools|Count & inspect
+subber|Text tools|Transform & filter
+tcmp|Text tools|Sort, compare & merge
+unp|Text tools|Transform & filter
+splman|Printing|Spooling
+splprt|Printing|Spooling
+splstat|Printing|Spooling
 gs403|Printing|PostScript
 binhex|Encoding & conversion|Macintosh
 hexbin|Encoding & conversion|Macintosh
@@ -913,7 +913,7 @@ greg|System & modules|Utilities
 isam|System & modules|Utilities
 lgrep|System & modules|Utilities
 liborder.os9|System & modules|Utilities
-lmargin|Printing|Spooling
+lmargin|Printing|Printers
 lunisolar|Time & calendar|Astronomy
 map|System & modules|Utilities
 mshell|Shells|Shells
@@ -922,7 +922,7 @@ preset|System & modules|Utilities
 pri|System & modules|Utilities
 rndir|System & modules|Utilities
 sqrtx|System & modules|Utilities
-submit|System & modules|Utilities
+submit|Shells|Shell helpers
 suse|System & modules|Utilities
 suspend|System & modules|Utilities
 t_trtest|System & modules|Utilities
@@ -942,7 +942,7 @@ makecrc|System & modules|Utilities
 scsiutil|System & modules|Utilities
 spline|System & modules|Utilities
 demo|System & modules|Utilities
-lpsched|System & modules|Utilities
+lpsched|Printing|Spooling
 dload|System & modules|Utilities
 snd_sig|System & modules|Utilities
 hinterhalt|System & modules|Utilities
@@ -982,7 +982,7 @@ wgen|Graphics & images|Hardware demos
 btop|System & modules|Utilities
 ptob|System & modules|Utilities
 break|System & modules|Utilities
-epson|System & modules|Utilities
+epson|Printing|Printers
 read_mail|Communications|Mail
 vecho|System & modules|Utilities
 ptxminst|System & modules|Utilities

@@ -11,32 +11,32 @@
 
 | Category | Programs | |
 |---|--:|---|
-| [Shells](#shells) | 20 | Unix shells to sit beside OS-9's own -- bash and ksh bring history, job control, and scripts that come across unchanged. |
+| [Shells](#shells) | 21 | Unix shells to sit beside OS-9's own -- bash and ksh bring history, job control, and scripts that come across unchanged. |
 | [Editors](#editors) | 26 | vi and emacs in several flavours, line and stream editors, and editors for binary and hex. |
-| [Text tools](#text-tools) | 112 | Search, sort, compare, reformat, split and spell-check. |
+| [Text tools](#text-tools) | 111 | Search, sort, compare, reformat, split and spell-check. |
 | [Files & directories](#files--directories) | 37 | Listing, copying, finding, renaming, and knowing what you have. |
 | [Developer tools](#developer-tools) | 46 | Version control, tags, cross-reference, formatters, a debugger and benchmarks. |
 | [Compilers & build](#compilers--build) | 39 | C compilers and their passes, assemblers, linkers, make and parser generators. |
 | [Languages](#languages) | 10 | Interpreters and language systems beyond C. |
 | [Archives & compression](#archives--compression) | 40 | Pack, unpack and shrink -- lha, zip, tar, arc, zoo, and OS-9 module libraries. |
-| [Encoding & conversion](#encoding--conversion) | 24 | Between text encodings, line endings, Macintosh formats, ciphers and hashes. |
+| [Encoding & conversion](#encoding--conversion) | 25 | Between text encodings, line endings, Macintosh formats, ciphers and hashes. |
 | [Communications](#communications) | 96 | Kermit in several builds, terminal sessions, and networking. |
 | [Graphics & images](#graphics--images) | 202 | The netpbm toolkit, JPEG, a ray tracer, and things that draw. |
 | [Games](#games) | 68 | Adventures, board and card games, arcade ports, dungeon crawls and puzzles. |
 | [Screen toys](#screen-toys) | 10 | Animations and screen effects -- they draw on the terminal rather than print to it. Some run until you stop them. |
 | [Amusements](#amusements) | 19 | Generators, simulators and diversions that are not quite games. |
-| [System & modules](#system--modules) | 125 | OS-9 module and process tools, devices, system state and scheduling. |
+| [System & modules](#system--modules) | 123 | OS-9 module and process tools, devices, system state and scheduling. |
 | [Disk & DOS](#disk--dos) | 20 | Reading and writing MS-DOS media with the mtools set. |
 | [Time & calendar](#time--calendar) | 13 | Calendars, clocks and astronomy. |
 | [Maths & calculators](#maths--calculators) | 11 | Calculators, plotting, orbits and number theory. |
-| [Printing](#printing) | 14 | Spoolers, page formatting and PostScript. |
+| [Printing](#printing) | 15 | Spoolers, page formatting and PostScript. |
 | [Documentation](#documentation) | 5 | Pagers, readers and the help system. |
 
 ## Shells
 
 *Unix shells to sit beside OS-9's own -- bash and ksh bring history, job control, and scripts that come across unchanged.*
 
-<details><summary>20 programs</summary>
+<details><summary>21 programs</summary>
 
 **Shell helpers**
 
@@ -51,6 +51,7 @@
 | `printf` | formatted print from the shell, as on Unix: widths, numbers and floating point<br>**How:** printf as on Unix: `printf "%-8s\|%5d\n" name 12'. Widths, numbers and floating point all work. |
 | `qp` | &#9733; expand BACK-QUOTES in a command line, which Microware's shell cannot do for itself: `qp <cmd> <args>'.  It forks a `shell' to do the expansion, so it wants Microware's on your execution path and produces nothing without one.  Nothing to do with printing<br>**How:** Runs its expanded command through Microware's `shell', which is not on this disk, so nothing comes back here. |
 | `run` | runs a program with its input and output on the terminal PORT names: `run '<program> <args>''<br>**How:** `run '<program> <args>'' with PORT naming a terminal: the program runs with its input and output on that terminal. |
+| `submit` | &#9733; submit a job to the print spooler<br>`Syntax: submit [<opts>] [<submit file>] [{<parameter>)]` |
 | `xc` | runs the commands marked in a file -- a line beginning `% ' -- and leaves the rest as notes.  Forks them through Microware's `shell', which is not on this disk<br>**How:** `xc <file>': lines beginning `% ' are commands, the rest is notes. It forks them through Microware's `shell', which is not on this disk, so it echoes the first and stops. |
 
 **Shell utilities**
@@ -143,7 +144,7 @@
 
 *Search, sort, compare, reformat, split and spell-check.*
 
-<details><summary>112 programs</summary>
+<details><summary>111 programs</summary>
 
 **Banners & text art**
 
@@ -158,13 +159,14 @@
 | | |
 |---|---|
 | `ascii` | &#9733; ASCII character table |
+| `charcnt` | &#9733; Count characters in a file (Carl Kreider) |
 | `dump` | hex dump of a file or module<br>**How:** This is the hex dump on this disk. There is no `od'. |
-| `file` | Identify file types.  SYS/magic is now here, so it names real formats -- "GIF picture ver. 87a 320 x 200, interlaced, 256 colors" -- and not just OS-9 modules<br>**How:** Names real formats now that SYS/magic is here: `file /dd/DEMO/gulls.gif' reports the GIF version, size and colour count. Before the magic file arrived it could only recognise OS-9 modules. |
-| `gdd` | &#9733; GNU dd -- `gdd if=<file> of=<file> bs=<n> skip= seek= count='. RUN BARE IT ENDS THE SESSION: no message, no output, and the emulator goes with it.  Give it arguments.  Measured 2026-08-31 -- a block copier and converter, not a dump.  `dump' and `od' are the dumps here.  Corrected 2026-08-29<br>**How:** A data dump -- like `od', with GNU-style long options. Needs Microware's cio. |
+| `file` | Identify file types.  SYS/magic is now here, so it names real formats -- "GIF picture ver. 87a 320 x 200, interlaced, 256 colors" -- and not just OS-9 modules<br>**How:** Names real formats now that SYS/magic is here: `file /dd/DEMO/gulls.gif' reports the GIF version, size and colour count. |
 | `strings` | &#9733; extract printable strings, reported as $offset: <text><br>`Usage: strings [-anpl=n] [file [file]]` |
+| `sum` | Checksum and block count (GNU) |
 | `tail` | &#9733; last lines of a file -- DESIGNA's, and it takes `-l=<n>', not GNU's `-n <n>', which it rejects as an unknown option.  `head' on this disk IS the GNU one and takes -n: two conventions, one disk |
-| `wc` | count lines/words/chars; counts CR or LF lines.  Where this build came from is NOT established -- it was long listed as ours, built with gcc2, and the evidence is against that: it is starred, and a gcc2 build here links clibn and needs no cio.  The three commands listed beside it turned out to be archive binaries.  No source and no second copy has been found in this repo or the archive pool |
-| `wc.cio` | &#9733; archived build.  It COUNTS CORRECTLY -- `1 lines, 6 words, 40 chars' where `wc' says `1 6 40' -- but only on standard input: it prints nothing for a file argument, which is why `wc' is still the gcc2 build.  Refined 2026-08-29 |
+| `wc` | count lines, words and characters for each file named, and print a total; it counts CR-terminated lines as well as LF. |
+| `wc.cio` | &#9733; archived build of wc. It COUNTS CORRECTLY -- `1 lines, 6 words, 40 chars' where `wc' says `1 6 40' -- but only on standard input: it prints nothing for a file argument, which is why `wc' is still the other build. |
 
 **DVI drivers**
 
@@ -180,21 +182,6 @@
 | `dvimac` | DVI to Macintosh<br>`Usage: dvimac [opts] dvifiles` |
 | `dvioki` | DVI to Okidata<br>`Usage: dvioki [opts] dvifiles` |
 | `dvitos` | DVI to Toshiba<br>`Usage: dvitos [opts] dvifiles` |
-
-**Filters**
-
-| | |
-|---|---|
-| `charcnt` | &#9733; Count characters in a file (Carl Kreider) |
-| `expand` | Turn tabs into spaces (GNU)<br>`Usage: expand [-tab1[,tab2[,...]]] [-t tab1[,tab2[,...]]] [-i]` |
-| `head` | First lines of a file -- `head -n 20 file'.  These GNU builds want -n 20, not -20<br>**How:** First lines of a file. This GNU build wants `head -n 20 file' -- the older `head -20' form is rejected as an unrecognized option. Needs cio. |
-| `split` | Split a file into pieces (GNU)<br>`Usage: split [-lines] [-l lines] [-b bytes[km]] [-C bytes[km]] [+lines=lines]` |
-| `subber` | &#9733; Substitute text in a stream, ,old,new style (Carl Kreider)<br>`Usage : subber <opts> wordlist <filename>` |
-| `sum` | Checksum and block count (GNU) |
-| `tac` | Print a file backwards, last line first (GNU)<br>**How:** Prints a file backwards, last line first -- cat's mirror image. Needs cio. |
-| `tcmp` | &#9733; Compare two text files (Carl Kreider)<br>`Usage:  tcmp [options] file1 file2` |
-| `unexpand` | Turn leading spaces back into tabs (GNU)<br>`Usage: unexpand [-tab1[,tab2[,...]]] [-t tab1[,tab2[,...]]] [-a]` |
-| `unp` | &#9733; Strip unprintable characters from a stream (Carl Kreider)<br>`Usage:  unp [-?] [file]` |
 
 **Format & typeset**
 
@@ -251,6 +238,7 @@
 | `qsort9` | &#9733; sort filter<br>`Syntax: qsort9 [<opts>] [<srcpath>] [<opts>]` |
 | `sort` | GNU sort<br>`Usage: sort [-cmus] [-t separator] [-o output-file] [-bdfiMnr] [+POS1 [-POS2]]` |
 | `spiff` | &#9733; tolerant diff - ignores formatting noise<br>**How:** Compares two files while ignoring differences that do not matter (whitespace, number formatting). Takes TWO filenames. |
+| `tcmp` | &#9733; Compare two text files (Carl Kreider)<br>**How:** Compares two text files and prints each differing line, both versions one under the other with the line number in each file. Files whose lines differ only in tabs and spaces are reported as changed, which reads oddly until you dump them. |
 | `unip` | unique lines with page numbers<br>`Syntax: unip [<opts>] [<srcpath>] [<opts>]` |
 | `uniq` | &#9733; drop duplicate lines<br>`Usage: UNIQ [-u][-d][-c] [-n] [^n] input [>output]` |
 
@@ -269,7 +257,8 @@
 | | |
 |---|---|
 | `sepwords` | split a file to one word per line<br>`Syntax: sepwords [<in_path> [<out_path>]]` |
-| `splitalf` | &#9733; split a file alphabetically<br>`Syntax: splitalf <opts> [<in_path>] <opts>` |
+| `split` | Split a file into pieces (GNU)<br>`Usage: split [-lines] [-l lines] [-b bytes[km]] [-C bytes[km]] [+lines=lines]` |
+| `splitalf` | &#9733; split a file into <name>_A to <name>_Z by the first letter of each line, and <name>_0 for the rest. IT GETS NO FURTHER THAN THE FIRST: having opened <name>_0 it tests a file slot it has not opened yet, finds nothing in it, and stops with `can't open output file(s)'. No argument gets round that.<br>**How:** It makes <name>_0 and then stops with `can't open output file(s)', whatever it is given -- it tests a file slot it has not opened yet. No argument gets round it. |
 
 **TeX**
 
@@ -289,7 +278,7 @@
 | `pktype` | show what is inside a .pk file<br>**How:** `pktype <font>.<dpi>pk' prints the packed font back, glyphs included. PKFONTS must name the directory. |
 | `pltotf` | property list to TeX font metric<br>`Usage: pltotf [-verbose] <property list file> <tfm file>.` |
 | `slitex` | SliTeX -- LaTeX for slides<br>**How:** LaTeX for slides; its format is SYS/TEX/FORMATS/splain.fmt, already built. |
-| `tangle` | WEB to Pascal -- Knuth's literate programming tool.  IT NEEDS A CHANGE FILE NAMED, always: given only a .web it answers `Error: `Can't open file.'' and the absent CHANGE file is what it could not open, not your source.  DOC/tex ships `sample.web' and `none.ch' (an empty change file) as of 2026-08-31: copy both to your data directory and run `tangle sample none'.  It reads and writes there, not where you typed from.  Measured 2026-08-31<br>**How:** Needs a CHANGE FILE named, always. `tangle yourfile.web' alone answers `Error: `Can't open file.'' and the file it cannot open is the absent change file, not your source. DOC/tex ships `sample.web' and `none.ch' (empty, changes nothing): copy both to your data directory and run `tangle sample none'. It reads and writes in the DATA directory, which bash's `cd' does not move. `weave sample none' is the other half. Measured 2026-08-31. |
+| `tangle` | WEB to Pascal -- Knuth's literate programming tool.  IT NEEDS A CHANGE FILE NAMED, always: given only a .web it answers `Error: `Can't open file.'' and the absent CHANGE file is what it could not open, not your source.  DOC/tex ships `sample.web' and `none.ch' (an empty change file) as of 2026-08-31: copy both to your data directory and run `tangle sample none'.  It reads and writes there, not where you typed from.  Measured 2026-08-31<br>**How:** Needs a CHANGE FILE named, always. `tangle yourfile.web' alone answers `Error: `Can't open file.'' and the file it cannot open is the absent change file, not your source. DOC/tex ships `sample.web' and `none.ch' (empty, changes nothing): copy both to your data directory and run `tangle sample none'. It reads and writes in the DATA directory, which bash's `cd' does not move. `weave sample none' is the other half. |
 | `tex` | TeX itself -- the typesetting program (a driver; virtex does the work)<br>**How:** BROKEN as a wrapper -- call the engine. `tex' is one line: it asks a shell to run `virtex "&plain" yourfile', the quoted format name is never unquoted, and the shell answers E$PNNF for the whole line (rc 221 with no $SHELL set, and silently). Type `virtex '&plain' yourfile.tex' instead. For LaTeX it is `virtex '&lplain' yourfile.tex', for SliTeX `virtex '&splain''. Measured 2026-08-31; SYS/TEX/SAMPLES/small.tex is a LaTeX document and story.tex is plain TeX with no \end. |
 | `texidx` | build an index from TeX's .idx output |
 | `tftopl` | TeX font metric to property list (the readable form)<br>`Usage: tftopl [-verbose] <tfm file> [<property list file>].` |
@@ -303,24 +292,30 @@
 
 | | |
 |---|---|
-| `ape` | writes GIBBERISH in the style of whatever it is given -- a travesty generator, not a text filter.  `travesty' and `newsgen' are the others of its kind here.  Its options are `-b' (how much source to read) and `-l' (pattern length). Clarified 2026-08-29; rebuilt trap-free 2026-08-31, having produced nothing for a real file before that<br>**How:** A travesty generator, not a filter: `-b' is how much source to read and `-l' the pattern length. Feed it VARIED text -- one word repeated makes it generate without end, because every position matches every other. |
-| `autolf` | &#9733; Mike Tozer's line-ending converter, 1995, and THE ONE THAT WORKS: it turns CR into CRLF or LF and back, expands tabs, and handles ^Z.  Use it as a FILTER -- `autolf -c -C -L < in > out' makes DOS text out of OS-9 text, 40 bytes in and 41 out with 0D 0A at the end.  Given a FILENAME it converts in place through a temporary and then cannot rename it back -- this C library has no rename(), the same wall zip and arc hit.  `-H' explains the conversions.  It is what `todos' and `toos9' were supposed to be.  Measured 2026-08-29<br>`Usage:   autolf [<opts>] {<file names> [<opts>]}` |
-| `casefix` | normalise letter case -- A FILTER, and it reads STANDARD INPUT.  Given a file as an argument it says nothing at all; `casefix < file' sentence-cases it<br>**How:** It is a FILTER and reads STANDARD INPUT: `casefix < file'. Handed the file as an argument it prints nothing at all, which is how it was written off twice. |
+| `ape` | writes GIBBERISH in the style of whatever it is given -- a travesty generator, not a text filter. `travesty' and `newsgen' are the others of its kind here. Its options are `-b' (how much source to read) and `-l' (how many characters must match before it follows the source).<br>**How:** A travesty generator, not a filter: `-b' is how much source to read and `-l' the pattern length. Feed it VARIED text -- one word repeated makes it generate without end, because every position matches every other. |
+| `autolf` | &#9733; Mike Tozer's line-ending converter, 1995, and THE ONE THAT WORKS: it turns CR into CRLF or LF and back, expands tabs, and handles ^Z. Use it as a FILTER -- `autolf -c -C -L < in > out' makes DOS text out of OS-9 text. Given a FILENAME it converts in place through a temporary and then cannot rename it back -- this C library has no rename(), the same wall zip and arc hit. `-H' explains the conversions. It is what `todos' and `toos9' were supposed to be.<br>`Usage:   autolf [<opts>] {<file names> [<opts>]}` |
+| `casefix` | normalise letter case -- A FILTER, and it reads STANDARD INPUT.  Given a file as an argument it says nothing at all; `casefix < file' sentence-cases it<br>**How:** It is a FILTER and reads STANDARD INPUT: `casefix < file'. Handed the file as an argument it prints nothing at all. |
 | `cut` | cut selected fields from each line |
-| `cuts` | &#9733; Coco Usenet Transfer Utility<br>`Usage: cuts <-d> [-o name] <file>...` |
 | `detab` | &#9733; tabs to spaces<br>`Usage: detab [-tn] [infile] or [<infile]` |
-| `eo` | &#9733; EXECUTE A COMMAND ON EVERY LINE OF A FILE -- an xargs, not a text tool.  `eo <file> <command> @' runs <command> once per line with `@' replaced by the line; -p takes the lines from a pipe, -q runs quietly, -e stops on the first error.  Marc Balmer, version 1.8.  It shells out, so it needs SHELL set, which SYS/login now does.  This entry said `text utility' and told you nothing; corrected 2026-08-31<br>**How:** Runs a command on every line of a file, with `@' standing for the line: `eo <file> <command> @'. It shells out, so it needs SHELL set to a shell that takes a command line as one argument -- SYS/login sets `SHELL=/dd/CMDS/ksh' and that is what makes it work. Without it, `can't execute /dd/bash'. `-p' takes the lines from a pipe instead of a file. Measured 2026-08-31. |
-| `field` | &#9733; extract fields<br>`Syntax  : field [<opts>] <fields...> [<opts>]` |
+| `eo` | &#9733; EXECUTE A COMMAND ON EVERY LINE OF A FILE -- an xargs, not a text tool. `eo <file> <command> @' runs <command> once per line with `@' replaced by the line; -p takes the lines from a pipe, -q runs quietly, -e stops on the first error. Marc Balmer, version 1.8. It shells out, so it needs SHELL set, which SYS/login does.<br>**How:** Runs a command on every line of a file, with `@' standing for the line: `eo <file> <command> @'. It shells out, so it needs SHELL set to a shell that takes a command line as one argument -- SYS/login sets `SHELL=/dd/CMDS/ksh' and that is what makes it work. Without it, `can't execute /dd/bash'. `-p' takes the lines from a pipe instead of a file. |
+| `expand` | Turn tabs into spaces (GNU)<br>`Usage: expand [-tab1[,tab2[,...]]] [-t tab1[,tab2[,...]]] [-i]` |
+| `field` | &#9733; select whitespace-separated fields from standard input by number, in the order asked for and tab-separated on output: `field 2 4 1' prints the second, fourth and first word of each line. `-i=c' names another input separator.<br>`Syntax  : field [<opts>] <fields...> [<opts>]` |
 | `fillup` | &#9733; fill a file up to a given length with a constant byte: `fillup -n=64 -i=65 f' pads f to 64 bytes with `A' and says `24 bytes (value=65) appended'.  The length option is -n=, not -l=.  L. Zeller, 1992<br>`Syntax:   fillup [<options>] <file>` |
-| `gawk` | &#9733; GNU awk 2.11 -- the pattern-and-action language.  It works, but it IGNORES A FILENAME ARGUMENT and reads standard input whatever it is given, so redirect: gawk '{...}' < file, never gawk '{...}' file.  Named a file, it sits waiting on the terminal, which looks exactly like a program that prints nothing.<br>**How:** GNU awk 2.11, the first awk this disk has ever carried. Needs Microware's cio. `gawk "{print \$1}" file' -- and mind that the OS-9 shell, not gawk, is what mangles quoting. |
-| `gep` | &#9733; global expression parser -- grep-like, but its `-e' takes the PATH OF A FILE holding the expressions, not an expression: `gep -e=/dd/tmp/patterns <file>'.  A file of patterns applied at once is what it is for and nothing else here does it. Measured 2026-08-31; see DOC/README-GREP<br>**How:** Its expressions come from a FILE named with `-e', which its own option list marks `(required)': `gep -e=<patterns> <source>'. Handing it a pattern and a file the way you would grep earns `more than one path specified'. |
-| `paste` | merge lines of files<br>**How:** Joins lines side by side, tab-separated by default: `paste f1 f2'. `-d:' picks another separator; `-s' puts one file's lines on a single line. Build its input with the shell's `echo' -- /dd/CMDS/printf drops everything before the first conversion and can leave you a zero-byte file. |
+| `gawk` | &#9733; GNU awk 2.11 -- the pattern-and-action language.  It works, but it IGNORES A FILENAME ARGUMENT and reads standard input whatever it is given, so redirect: gawk '{...}' < file, never gawk '{...}' file.  Named a file, it sits waiting on the terminal, which looks exactly like a program that prints nothing.<br>**How:** GNU awk 2.11. IT IGNORES A FILENAME ARGUMENT and reads standard input whatever it is given, so redirect: `gawk "{print \$1}" < file', never `gawk "{print \$1}" file' -- named a file it sits waiting on the terminal. Keep the program text short: a command line wider than the window scrolls under bash and is hard to read back. Needs Microware's cio. |
+| `gdd` | &#9733; GNU dd -- a block copier and converter, not a dump; `dump' is the hex dump here. `gdd if=<file> bs=<n> skip= seek= count=', and `conv=ucase' converts to upper case on the way through. `of=' can only name a file that already exists, so send the output through `>' instead. RUN BARE IT ENDS THE SESSION: no message and no output. Give it arguments.<br>**How:** GNU dd -- a block copier and converter, not a dump; `dump' is the hex dump here. `gdd if=<file> bs=8 count=1' copies eight bytes, `conv=ucase' converts on the way through. `of=' can only name a file that already exists, so send the output through `>'. Run bare it ends the session. Needs Microware's cio. |
+| `gep` | &#9733; global expression parser -- grep-like, but its `-e' takes the PATH OF A FILE holding the expressions, not an expression: `gep -e=/dd/tmp/patterns <file>'. A file of patterns applied at once is what it is for and nothing else here does it. See DOC/README-GREP<br>**How:** Its expressions come from a FILE named with `-e', which its own option list marks `(required)': `gep -e=<patterns> <source>'. Handing it a pattern and a file the way you would grep earns `more than one path specified'. |
+| `head` | First lines of a file -- `head -n 20 file'.  These GNU builds want -n 20, not -20<br>**How:** First lines of a file. This GNU build wants `head -n 20 file' -- the older `head -20' form is rejected as an unrecognized option. Needs cio. |
+| `paste` | merge lines of files<br>**How:** Joins lines side by side, tab-separated by default: `paste f1 f2'. `-d:' picks another separator; `-s' puts one file's lines on a single line. |
 | `pep` | file 'detergent' - strip junk from files<br>`Usage: pep [options] [filename ...]` |
 | `psc` | &#9733; turn an ASCII table into commands for `sc', the spreadsheet: `psc -d' ' < table' answers `let A0 = 1', `let B0 = 2' and a `format' line per column.  -d sets the field delimiter, -r assembles rows first, -s names the top-left cell.  Robert Bond's, and it works<br>**How:** Feeds `sc', the spreadsheet: `psc -d' ' < table' turns rows of numbers into `let A0 = 1' commands sc can read. -r assembles rows first, -s names the top-left cell, -d sets the delimiter. |
 | `rot` | turn a text file on its side -- line one becomes column one.  NOT a rot-13 cipher, whatever the name suggests |
-| `tabs` | tab/space conversion filter<br>`Syntax   : tabs [<opts>] [<input_redirection>] [<output_redirection>]` |
+| `subber` | &#9733; Substitute text in a stream, ,old,new style (Carl Kreider). It calls F$Mem and stops where that call is not implemented.<br>**How:** It calls F$Mem at once and stops there, so it substitutes nothing. The word list is `,old,new,' one per line, the stream is the second argument. |
+| `tabs` | re-space a file, standard input to standard output: `-i8' says the input's tab stops are every 8 columns, `-o0' asks for spaces on output and `-o4' for tabs every 4.<br>`Syntax   : tabs [<opts>] [<input_redirection>] [<output_redirection>]` |
+| `tac` | Print a file backwards, last line first (GNU)<br>**How:** Prints a file backwards, last line first -- cat's mirror image. Needs cio. |
+| `unexpand` | Turn leading spaces back into tabs (GNU)<br>`Usage: unexpand [-tab1[,tab2[,...]]] [-t tab1[,tab2[,...]]] [-a]` |
+| `unp` | &#9733; Strip unprintable characters from a stream (Carl Kreider)<br>`Usage:  unp [-?] [file]` |
 | `upperdir` | Normalise case: files lowercase, dirs uppercase<br>`Usage: UpperDir [directory name]` |
-| `valspeak` | Valley-speak text filter.  It printed NOTHING until 2026-08-31 -- it read the file and wrote no byte of output -- which was the cio selector mismatch; rebuilt trap-free and it filters |
+| `valspeak` | Valley-speak text filter: standard input in, the rewritten text out. `I think this operating system is really good' comes back as `I think this operatin' system is like wow! really bitchin''. |
 
 </details>
 
@@ -690,7 +685,7 @@
 
 *Between text encodings, line endings, Macintosh formats, ciphers and hashes.*
 
-<details><summary>24 programs</summary>
+<details><summary>25 programs</summary>
 
 **Audio**
 
@@ -730,6 +725,7 @@
 | `atob` | ASCII-to-binary decode<br>`Usage: atob <filein >fileout` |
 | `btoa` | Binary-to-ASCII encode<br>`Usage : btoa <filein >fileout` |
 | `chardef` | define a character set -- and run bare it ENDS THE SESSION, silently, taking the emulator with it.  Measured 2026-08-31<br>`Syntax: defchar [<path>]` |
+| `cuts` | &#9733; Coco Usenet Transfer Utility -- encodes a binary as text that will pass through electronic mail, in a form that survives gateways between ASCII and EBCDIC machines; `-d' decodes. THE ENCODER DOES NOT WORK: asked for a 20-byte file it demands billions of bytes of memory, is refused, and goes on writing empty data lines until it is stopped.<br>**How:** Its ENCODER does not work: `cuts -e <file>' asks for four gigabytes of memory, is refused, and goes on writing empty data lines until it is stopped. `-d' decodes a cuts file, which is the half worth having. |
 | `todos` | &#9733; OS-9 to DOS line endings -- BUT SEE BELOW, it does nothing. `autolf -c -C -L' does the job and is on this disk |
 | `toos9` | &#9733; DOS to OS-9 line endings -- the same, and the same answer: `autolf -l -C' converts the other way DO NOT RELY ON THESE TWO.  Measured 2026-08-27: both are NO-OPS.  Each takes a FILENAME (not a pipe) and rewrites it in place through a `todos.$$$.N' temporary, and the file that comes out is byte-identical to the one that went in -- same length, same md5 -- on CR-only OS-9 text, which is exactly what todos says it converts.  A real DOS conversion must ADD a linefeed per line and cannot leave the length alone.  Tested on /dd/SYS/termcap (963 bytes) and DOC/README-CIO (3886); neither moved. Use `flip' host-side, or `tr', until this is understood. tools/datatests/encoding.cases keeps the failing case. |
 | `uudecode` | &#9733; uudecode<br>`USAGE: uudecode [infile]` |
@@ -1335,7 +1331,7 @@
 
 *OS-9 module and process tools, devices, system state and scheduling.*
 
-<details><summary>125 programs</summary>
+<details><summary>123 programs</summary>
 
 **Devices & disks**
 
@@ -1430,6 +1426,7 @@
 | `clock` | display a clock |
 | `date` | Print date and time -- it prints the YEAR AS 2100.  `today' gets it right; setime2, setyear and fixyear are the Y2K repairs beside it |
 | `oskversion` | &#9733; report the OS-9/OSK version<br>`Syntax:   OSKversion` |
+| `perr` | &#9733; print an OS-9 error message<br>`Syntax: perr [<error_codes>]` |
 | `setime` | Set system time.  It PROMPTS with `YYMMDDHHMMSS' and then does not set it: the clock is unchanged whether the answer comes from standard input or from six fields on the command line.  `date -t' reads 2100 here whatever you do, which `setyear' disagrees with too.  Measured 2026-09-01 |
 | `sysid` | &#9733; show system identification |
 
@@ -1460,7 +1457,6 @@
 | `devprc` | show which device belongs to which process.  REBUILT HERE: the archived module has a bad CRC and a corrupt initialised- data descriptor, and does not load.  -h works; -a stops at F$GPrDBT (0x1f), the get-process-descriptor-block-table call, and needs a kernel that keeps one; where the call is answered without a table it is a bus error.  `top' stops in the same place, after printing its heading. Measured 2026-09-02 |
 | `dload` | &#9733; load a data file into a data module: `dload <filename>'. Nothing to do with serial downloads -- `sbreak' and `break' are the serial-line examples here<br>`Syntax: dload <filename>` |
 | `e` | SEDT screen editor, the small VT220 build.  Reads SYS/sedt.keys, sedt.ruler0 and sedt.help, which ship |
-| `epson` | &#9733; spline output driver for an Epson printer<br>`usage: epson [<opts>]` |
 | `expreserve` | &#9733; vi's crash-recovery helper: preserves an edit buffer when the editor dies.  Like ksh it reads the terminal asking for more bytes than you type (388), so it depends on the same emulator behaviour -- see DOC/README-KSH<br>**How:** Saves a vi buffer when the editor or the line dies; vi runs it for you rather than you running it. |
 | `exrecover` | &#9733; recover a vi buffer that expreserve saved<br>**How:** Recovers what expreserve saved. Again, vi's helper rather than a command you start. |
 | `fastcc` | &#9733; a faster front end for cc |
@@ -1468,14 +1464,13 @@
 | `fontgen` | generate a font for the Gepard display<br>**How:** Generates a character font for the Gepard display -- it prints the assembler source of an 80-column font on stdout. |
 | `getsys` | &#9733; report the system's globals -- what OS-9 thinks it is running on<br>`Syntax: getsys [<opts>]` |
 | `ggrep` | &#9733; GNU grep, from the sh_utils collection<br>**How:** GNU grep. `ggrep <expr> <files...>'; -E, -F, -i, -v, -w and the rest as you would expect. |
-| `greg` | &#9733; convert a Julian day number to a Gregorian date: `greg 2461281' answers `2026 8 29'<br>**How:** It converts a JULIAN DAY NUMBER to a Gregorian date and is nothing to do with regular expressions: `greg 2460000' answers `2023 2 25'. |
+| `greg` | &#9733; converts a Julian day number to a Gregorian date: `greg 2461281' is the 29th of August 2026<br>**How:** It converts a JULIAN DAY NUMBER to a Gregorian date and is nothing to do with regular expressions: `greg 2460000' answers `2023 2 25'. |
 | `hinterhalt` | &#9733; a small game (EFFO forum 7) |
 | `i_am_i` | prints its own source (Pascal) |
 | `isam` | &#9733; indexed-sequential file demonstration |
 | `lfmaker` | make a G-Windows launch file -- and it asks the allocator for an ADDRESS as if it were a length, so the request is refused: `2470464192-byte request refused, 32682944 bytes free'.  The number MOVES with the environment, which is what identifies it as an address.  It happens only once the module is already resident: run bare first (silent), then with an argument.  Not the cio fault -- lfmaker carries no trap-13 stubs at all. Bare it prints nothing and returns.  A 2026-08-31 re-run called the flood unreproduced; that re-run was wrong, and the difference is the argument.  Re-measured both ways the same day: `lfmaker' silent, `lfmaker test' floods |
 | `lgrep` | &#9733; list the files a pattern appears in -- its banner says "same as 'grep -l', but prints filenames without comments". It prints nothing here even for a string that IS in the files, and exits 0, so use `grep -l'.  DOC/README-GREP compares the six searchers<br>`Syntax: lgrep <arg1> ... <argn>` |
 | `liborder.os9` | report the order of modules in a library<br>`Usage: liborder <options> file1.r file2.r ...` |
-| `lpsched` | &#9733; the line-printer scheduler<br>`Syntax: lpsched [-r] {<devname>}` |
 | `makecrc` | GENERATE C SOURCE for CRC tables.  It takes no arguments: run it somewhere writable and it writes six files into the data directory -- arc.c, binhex.c, ccitt.c, ccitt32.c, kermit.c and zip.c -- each holding a crctab[256] and an updcrc() for one polynomial.  It prints nothing, so list the directory afterwards.  It does not compute a CRC for you; `chksum' does that<br>**How:** It GENERATES C SOURCE and takes no arguments. Run it somewhere writable (`ksh -c "cd /dd/tmp; makecrc"') and it writes six files -- arc.c, binhex.c, ccitt.c, ccitt32.c, kermit.c, zip.c -- each a crctab[256] and an updcrc(). It prints nothing, so list the directory afterwards. |
 | `map` | &#9733; show the disk blocks a file occupies, sector by sector: `map <file>', or `map -e <file>' for the extended form. For memory rather than disk, see `mfree' and `free'<br>`Syntax: map [<opts>] <file> {<file>}` |
 | `modinfo` | report a module's header -- name, type, size, edition, CRC<br>`Syntax:   module [modulename]` |
@@ -1495,7 +1490,6 @@
 | `snd_sig` | &#9733; send a signal to a process<br>`Syntax:   snd_sig [-options] pid pid1...pidn` |
 | `spline` | &#9733; fit a spline through points, output PostScript |
 | `sqrtx` | square-root demonstration |
-| `submit` | &#9733; submit a job to the print spooler<br>`Syntax: submit [<opts>] [<submit file>] [{<parameter>)]` |
 | `suse` | show a program's usage line -- it prints nothing, for any module tried, by name or by path, and nothing for -? either. Re-measured 2026-08-29 and still true |
 | `suspend` | &#9733; REMOVES a process from the system -- its own usage line says so -- rather than suspending it.  F.R.Schmitt, 1989.  Clarified 2026-08-29<br>`Syntax  : suspend  [<processname>]  [<opt>]` |
 | `t_trtest` | RICO trap-handler test |
@@ -1565,24 +1559,29 @@
 
 | | |
 |---|---|
-| `ephem` | &#9733; ephem - astronomical ephemeris<br>**How:** An astronomical ephemeris: it shows where the Sun, Moon and planets are, for a place and a moment. It starts LOOPING -- press any key to stop and enter command mode. CONTROL-D QUITS; `?' is help; control-L redraws. In command mode the arrow keys (or h/j/k/l) move between fields: RETURN opens the one under the cursor, type a value, RETURN accepts. `d' jumps to the date, `z' to the step size. The point of the program is that last pair: set StpSz to a day and NStep to 30, press `q', and it runs time forward and you watch the planets move. |
-| `ephem881` | &#9733; ephem, 68881 build<br>**How:** The same program built for a 68881 coprocessor -- see the note for `ephem'. CONTROL-D quits. |
+| `ephem` | &#9733; ephem - astronomical ephemeris<br>**How:** An astronomical ephemeris: `ephem -c /dd/SYS/ephem.cfg -d /dd/SYS/ephem.db'. RETURN passes the opening page; any key stops the loop; ? is help; control-D quits. |
+| `ephem881` | &#9733; ephem, 68881 build<br>**How:** The same as ephem, built for a 68881 coprocessor. Control-D quits. |
 | `lunisolar` | &#9733; lunar and solar position calculator |
-| `nasa` | &#9733; NASA orbital-element reader.  Wants `nasa.dat' in the CURRENT directory: NORAD two-line element sets -- a name line, then TLE line 1 and line 2 per satellite -- and writes kepler.dat. No element set ships here; supply a current one.  The format is parsed in SRC/eff_orbit/nasa.c and is column-sensitive<br>**How:** The program that FEEDS orbit. Give it NASA two-line elements in a file called nasa.dat in the current directory and it writes kepler.dat, which is what orbit reads. Neither file ships -- you supply nasa.dat. |
-| `orbit` | &#9733; N3EMO satellite orbit simulator v3.7, and it RUNS.  It needs its data directory set to where its files are -- it opens them by bare name, and they are in DOC/orbit: kepler.dat (the satellite database), <site>.sit (the observing station -- pgh, bern and zuerich all ship) and mode.dat (the transponder schedule).<br>**How:** The N3EMO satellite tracker, and it works. It opens kepler.dat, mode.dat and a <site>.sit BY BARE NAME in the DATA DIRECTORY, and they live in DOC/orbit -- so it is `ksh -c "cd /dd/DOC/orbit; orbit"', or `chd /dd/DOC/orbit' then `orbit' on a shell with a real chd. (bash's `cd' tracks a string and does not move the data directory, so under bash bring the three files to where you are instead: `cat /dd/DOC/orbit/kepler.dat > kepler.dat' and so on.) Then answer: satellite letter, site name without the .sit, month day year, hour, days, minutes per sample, RETURN for the terminal. Measured 2026-08-30, invocation corrected 2026-09-02. |
+| `nasa` | &#9733; NASA orbital-element reader.  Wants `nasa.dat' in the CURRENT directory: NORAD two-line element sets -- a name line, then TLE line 1 and line 2 per satellite -- and writes kepler.dat. No element set ships here; supply a current one.  The format is parsed in SRC/eff_orbit/nasa.c and is column-sensitive<br>**How:** Put NASA two-line elements in nasa.dat in the current directory and run `nasa'; it writes kepler.dat, which `orbit' reads. No element set ships; they are published for every satellite. |
+| `orbit` | &#9733; the N3EMO satellite tracker, version 3.7: where a satellite is from a site, hour by hour -- azimuth, elevation, doppler, range and transponder mode.  It opens kepler.dat, mode.dat and a <site>.sit by bare name from the current directory, and DOC/orbit holds them (pgh, bern and zuerich sites), so run it from there: `chd /dd/DOC/orbit' and `orbit', or under bash `ksh -c "cd /dd/DOC/orbit; orbit"'.  `nasa' makes a kepler.dat from published two-line elements<br>**How:** It reads kepler.dat, mode.dat and a <site>.sit by bare name from the current directory, and DOC/orbit holds them: `ksh -c "cd /dd/DOC/orbit; orbit"'. Answer d for a day's table, then the site (pgh), the date, the start hour, the step and the length. |
 
 **Calendars**
 
 | | |
 |---|---|
-| `cal` | &#9733; Calendar, Bob van der Poel.  `cal -h' prints holidays with it -- SYS/holidays is here, and SYS/birthdays is an empty template for your own dates.  SYS/cal.init is a printer setup for a laser<br>**How:** `cal -h' prints holidays alongside the calendar -- SYS/holidays is on the disk now, and SYS/birthdays is an empty template the holidays file INCLUDEs, so anything you add there shows up too. Add `-g' if the rule under the day names comes out as garbage on your terminal. |
+| `cal` | &#9733; Calendar, Bob van der Poel.  `cal -h' prints holidays with it -- SYS/holidays is here, and SYS/birthdays is an empty template for your own dates.  SYS/cal.init is a printer setup for a laser<br>**How:** `cal -m=<month> -y=<year>', with flags, not bare numbers; -h marks the holidays in SYS/holidays and anything you add to SYS/birthdays, which it includes. |
 | `calen` | calendar printer (v_misc) |
-| `calender` | &#9733; print a whole year's calendar (German)<br>**How:** Prints the year in GERMAN. Not a typo of `calendar' -- a different program by a different author. |
-| `digclk` | &#9733; digital clock with hostname<br>`Usage: digclk [refresh_rate]` |
-| `gcl` | &#9733; displays a GRAND DIGITAL CLOCK, not a calculator: `gcl {opts} [bkgnd]'.  `digclk' is the other clock of its kind here.  Corrected 2026-08-29 |
-| `qt` | &#9733; tells the time IN WORDS, the way a person would say it: `It's just gone ten past four.'  Not a text utility. `today' is the other one of its kind here.  Corrected 2026-08-29 |
+| `calender` | &#9733; print a whole year's calendar (German)<br>**How:** A whole year at once, in German. It asks `Fuer welches Jahr?' (which year); RETURN at the question ends it. |
+| `qt` | &#9733; tells the time in words, the way a person would say it: `It's just gone ten past four.' |
 | `setimex` | &#9733; set time from hardware clock<br>`Usage:` |
 | `today` | date, moon phase and this-day-in-history |
+
+**Clocks**
+
+| | |
+|---|---|
+| `digclk` | &#9733; digital clock with hostname<br>`Usage: digclk [refresh_rate]` |
+| `gcl` | &#9733; a grand digital clock: the time drawn large across the terminal and redrawn as it runs.  `-n=<seconds>' runs it for that long; -s scrolls the digits, -i inverts the video<br>**How:** A full-screen digital clock: `gcl' runs until stopped, `gcl -n=10' for ten seconds; -s scrolls the digits, -i inverts the video. |
 
 </details>
 
@@ -1624,7 +1623,7 @@
 
 *Spoolers, page formatting and PostScript.*
 
-<details><summary>14 programs</summary>
+<details><summary>15 programs</summary>
 
 **PostScript**
 
@@ -1639,26 +1638,22 @@
 | | |
 |---|---|
 | `alps` | &#9733; Switch an ALPS ASP-1000 printer between draft and NLQ<br>`Syntax: alps [<opts>] >/<device>` |
-
-**Spooler**
-
-| | |
-|---|---|
-| `splman` | &#9733; OS-9 print spooler: the manager (Carl Kreider).  It wants a printer on an SCF device to spool to, and says nothing at all without one.  `splprt' is the process that drives the printer and `splstat' shows the queue; the three go together |
-| `splprt` | &#9733; OS-9 print spooler: the printer process, one per printer. It wants an SCF device to write to and is silent without one |
-| `splstat` | &#9733; OS-9 print spooler: queue status.  Needs a queue to look at, and with none it prints nothing at all -- where the OTHER spooler on this disk says so out loud: `lpq: no spooler installed', `lpshut: no spooler active', `prjob: Spooler not installed'.  All measured 2026-08-31 |
+| `epson` | &#9733; spline output driver for an Epson printer<br>`usage: epson [<opts>]` |
+| `lmargin` | &#9733; set the left margin ON AN EPSON PRINTER -- its own usage line says `epson'.  It is a printer control, not a text filter; `fmt', `proff' and `pep' are what indent text.  Clarified 2026-08-29<br>`usage: epson [<opts>]` |
 
 **Spooling**
 
 | | |
 |---|---|
-| `lmargin` | &#9733; set the left margin ON AN EPSON PRINTER -- its own usage line says `epson'.  It is a printer control, not a text filter; `fmt', `proff' and `pep' are what indent text.  Clarified 2026-08-29<br>`usage: epson [<opts>]` |
 | `lp` | &#9733; line printer spooler - submit a job<br>`Syntax: lp [<opts>] {<path>}` |
 | `lpq` | &#9733; shows the spooler queue -- and answers `no spooler installed' here.  It looks for a DATA MODULE called `spoolqueue' in memory, not for SPL/splq; starting `splman' does not create it and nothing on this disk does.  Same for `prjob' and `lp'.  Measured 2026-08-29<br>`Syntax: lpq [-p=dev] [user]` |
 | `lprm` | &#9733; remove a job from the print queue<br>`Syntax: lprm [-d=dev] [-] job..` |
+| `lpsched` | &#9733; the line-printer scheduler<br>`Syntax: lpsched [-r] {<devname>}` |
 | `lpshut` | &#9733; shut down the printer scheduler<br>`Syntax: lpshut` |
-| `perr` | &#9733; print an OS-9 error message<br>`Syntax: perr [<error_codes>]` |
 | `prjob` | &#9733; print a job |
+| `splman` | &#9733; OS-9 print spooler: the manager (Carl Kreider).  It wants a printer on an SCF device to spool to, and says nothing at all without one.  `splprt' is the process that drives the printer and `splstat' shows the queue; the three go together |
+| `splprt` | &#9733; OS-9 print spooler: the printer process, one per printer. It wants an SCF device to write to and is silent without one |
+| `splstat` | &#9733; OS-9 print spooler: queue status.  Needs a queue to look at, and with none it prints nothing at all -- where the OTHER spooler on this disk says so out loud: `lpq: no spooler installed', `lpshut: no spooler active', `prjob: Spooler not installed'.  All measured 2026-08-31 |
 
 </details>
 

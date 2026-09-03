@@ -13,4 +13,3 @@ Search path:
     .
     /dd/etc/lib/gs33
 Most frequently used switches: (you can use # in place of =)
-$ splman < /nil

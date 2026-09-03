@@ -1,0 +1,17 @@
+$ scqref | head -n 16
+sc Quick Reference
+
+$Revision: 6.16 $
+
+ Overview:
+
+ A:   This overview
+ B:   Options
+ C:   Cursor movement commands
+ D:   Cell entry and editing commands
+ E:   Line Editing
+ F:   File commands
+ G:   Row and column commands
+ H:   Range commands
+ I:   Miscellaneous commands
+ J:   Variable names/Expressions

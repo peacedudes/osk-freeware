@@ -1,0 +1,4 @@
+$ splstat; echo "splstat said nothing, status $?"
+splstat said nothing, status 0
+$ lpq
+lpq: no spooler installed

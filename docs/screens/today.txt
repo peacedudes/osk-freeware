@@ -1,0 +1,4 @@
+$ today
+Today is Thursday, the third day of September, two thousand and
+twenty-six. The time is thirteen minutes and fifty-six seconds after
+four AM, Daylight Savings Time. The moon is waning gibbous.

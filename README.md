@@ -90,25 +90,25 @@ is no help until you already know the name you want.
 
 | Category | | |
 |---|--:|---|
-| **Shells** | 20 | Unix shells to sit beside OS-9's own -- bash and ksh bring history, job control, and scripts that come across unchanged. |
+| **Shells** | 21 | Unix shells to sit beside OS-9's own -- bash and ksh bring history, job control, and scripts that come across unchanged. |
 | **Editors** | 26 | vi and emacs in several flavours, line and stream editors, and editors for binary and hex. |
-| **Text tools** | 112 | Search, sort, compare, reformat, split and spell-check. |
+| **Text tools** | 111 | Search, sort, compare, reformat, split and spell-check. |
 | **Files & directories** | 37 | Listing, copying, finding, renaming, and knowing what you have. |
 | **Developer tools** | 46 | Version control, tags, cross-reference, formatters, a debugger and benchmarks. |
 | **Compilers & build** | 39 | C compilers and their passes, assemblers, linkers, make and parser generators. |
 | **Languages** | 10 | Interpreters and language systems beyond C. |
 | **Archives & compression** | 40 | Pack, unpack and shrink -- lha, zip, tar, arc, zoo, and OS-9 module libraries. |
-| **Encoding & conversion** | 24 | Between text encodings, line endings, Macintosh formats, ciphers and hashes. |
+| **Encoding & conversion** | 25 | Between text encodings, line endings, Macintosh formats, ciphers and hashes. |
 | **Communications** | 96 | Kermit in several builds, terminal sessions, and networking. |
 | **Graphics & images** | 202 | The netpbm toolkit, JPEG, a ray tracer, and things that draw. |
 | **Games** | 68 | Adventures, board and card games, arcade ports, dungeon crawls and puzzles. |
 | **Screen toys** | 10 | Animations and screen effects -- they draw on the terminal rather than print to it. Some run until you stop them. |
 | **Amusements** | 19 | Generators, simulators and diversions that are not quite games. |
-| **System & modules** | 125 | OS-9 module and process tools, devices, system state and scheduling. |
+| **System & modules** | 123 | OS-9 module and process tools, devices, system state and scheduling. |
 | **Disk & DOS** | 20 | Reading and writing MS-DOS media with the mtools set. |
 | **Time & calendar** | 13 | Calendars, clocks and astronomy. |
 | **Maths & calculators** | 11 | Calculators, plotting, orbits and number theory. |
-| **Printing** | 14 | Spoolers, page formatting and PostScript. |
+| **Printing** | 15 | Spoolers, page formatting and PostScript. |
 | **Documentation** | 5 | Pagers, readers and the help system. |
 
 <!-- CATEGORIES:END -->

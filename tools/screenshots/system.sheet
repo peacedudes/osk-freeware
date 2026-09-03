@@ -346,68 +346,6 @@ wait    6
 run     signal -?
 wait    6
 
-shot    orbit
-size    36 80
-for     orbit
-cap     The N3EMO orbit simulator tracking AO-13 over Pittsburgh for a day
-cap     in March 1990 -- bearing and elevation, doppler shift, range,
-cap     height, the sub-satellite point, and the operating mode the
-cap     satellite is in at each sample.  It was recorded here as wanting an
-cap     element file no archive carried.  All three files it wants are on
-cap     the disk, in DOC/orbit, and it opens them by BARE NAME in the DATA
-cap     DIRECTORY.  ON YOUR OWN OS-9 SYSTEM THAT IS TWO LINES -- `chd
-cap     /dd/DOC/orbit' and `orbit' -- and nothing needs copying anywhere.
-cap     Under os9exec neither shell will do it: bash's `cd' tracks a string
-cap     and never moves the data directory, and `sh' cannot launch a program
-cap     here at all.  So this card brings the three files to the directory
-cap     it is already in, which is the bash workaround and not the recipe.
-cap     kepler.dat is the satellite database, pgh.sit the observing site,
-cap     mode.dat the transponder schedule that fills the last column;
-cap     bern.sit and zuerich.sit ship too.  Nothing is shipped at the disk
-cap     root for this -- raw data files do not belong there.  `nasa' is the
-cap     one whose data really is user-supplied: it converts NASA two-line
-cap     elements, which come from usenet.
-run     cat /dd/DOC/orbit/kepler.dat > /dd/kepler.dat
-wait    8
-run     cat /dd/DOC/orbit/mode.dat > /dd/mode.dat
-wait    8
-run     cat /dd/DOC/orbit/pgh.sit > /dd/pgh.sit
-wait    8
-run     orbit
-wait    12
-send    d\r
-wait    5
-send    pgh\r
-wait    5
-send    3 10 90\r
-wait    5
-send    0\r
-wait    5
-send    1\r
-wait    5
-send    10\r
-wait    5
-send    \r
-wait    25
-
-shot    lunisolar
-for     lunisolar ephem881 nasa
-cap     The rest of the astronomy set.  `lunisolar' gives the phase of the
-cap     moon in one line, or a whole lunisolar calendar as LaTeX if you give
-cap     it a year and a time zone.  `nasa' converts NASA two-line keplerians
-cap     into the format `orbit' reads, and wants a nasa.dat of your own --
-cap     those are posted to usenet, not shipped.  `ephem' proper is the one
-cap     with its database on the disk, and has its own card; `orbit' has one
-cap     now too.
-run     lunisolar
-wait    8
-run     lunisolar -?
-wait    8
-run     nasa -?
-wait    8
-run     ephem881 < /nil
-wait    10
-
 shot    makecrc
 for     makecrc
 cap     makecrc is a GENERATOR: it writes CRC table source for six
@@ -625,7 +563,7 @@ run     top
 wait    6
 
 shot    transfer
-for     transfer trunc preset fillup vlen
+for     transfer trunc preset vlen
 cap     `trunc' cuts a file short and the listing either side of it is the
 cap     whole demonstration.  `transfer', which names this card, copies from
 cap     GDOS DISKS to OS-9 and takes no options at all -- not the general

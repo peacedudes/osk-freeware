@@ -1,6 +1,7 @@
-$ tar cf /dd/tmp/f.tar /dd/SYS/motd
-$ file /dd/CMDS/today /dd/DOC/INDEX /dd/DEMO/gulls.gif /dd/tmp/f.tar
+file /dd/CMDS/today /dd/DOC/INDEX /dd/DEMO/gulls.gif
 /dd/CMDS/today          OS-9 Program Module "today"
 /dd/DOC/INDEX           unidentified text file
 /dd/DEMO/gulls.gif      GIF picture ver. 87a 320 x 200, interlaced, 256 colors
-/dd/tmp/f.tar           tar file
+$ file /dd/DEMO/sphere.pgm /dd/tmp/TEXTA/f.tar
+/dd/DEMO/sphere.pgm     PGM file
+/dd/tmp/TEXTA/f.tar     tar file

@@ -1,0 +1,5 @@
+$ lpshut -?
+Syntax: lpshut
+Function:  stops Printerspooler
+$ lpshut
+lpshut: no spooler active

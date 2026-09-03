@@ -1,3 +1,6 @@
-$ valspeak
-$ this is a totally excellent computer
-this: command not found
+cat /dd/tmp/TEXTA/val.txt
+I think this operating system is really good.
+The manual is excellent and the games are enjoyable.
+$ valspeak < /dd/tmp/TEXTA/val.txt
+I think this operatin' system is ya know, like, really bitchin'.
+The manual is like, ya know, excellent and thuh games are enjoyable.

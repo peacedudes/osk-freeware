@@ -1,0 +1,15 @@
+autolf -c -C -L < /dd/tmp/TEXTA/fox.txt > /dd/tmp/TEXTA/dos.txt
+$ dump /dd/tmp/TEXTA/fox.txt
+
+Addr   0 1  2 3  4 5  6 7  8 9  A B  C D  E F 0 2 4 6 8 A C E
+----  ---- ---- ---- ---- ---- ---- ---- ---- ----------------
+0000  7468 6520 7175 6963 6B20 6272 6F77 6E20 the quick brown
+0010  666F 780D 6A75 6D70 7320 6F76 6572 2074 fox.jumps over t
+0020  6865 206C 617A 7920 646F 670D           he lazy dog.
+$ dump /dd/tmp/TEXTA/dos.txt
+
+Addr   0 1  2 3  4 5  6 7  8 9  A B  C D  E F 0 2 4 6 8 A C E
+----  ---- ---- ---- ---- ---- ---- ---- ---- ----------------
+0000  7468 6520 7175 6963 6B20 6272 6F77 6E20 the quick brown
+0010  666F 780D 0A6A 756D 7073 206F 7665 7220 fox..jumps over
+0020  7468 6520 6C61 7A79 2064 6F67 0D0A      the lazy dog..

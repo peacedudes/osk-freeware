@@ -1,3 +1,4 @@
-$ echo ",os9exec,OS-9," > /dd/tmp/words.sub
-$ subber /dd/tmp/words.sub /dd/SYS/motd
+cat /dd/tmp/TEXTA/subs
+,quick,slow,
+$ subber /dd/tmp/TEXTA/subs /dd/tmp/TEXTA/fox.txt
 # unimplemented F$Mem called by pid=3

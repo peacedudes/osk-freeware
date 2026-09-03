@@ -19,6 +19,13 @@ answered and the stop. If os9exec grew a 68000 mode, or emulated
 `MOVE SR,<ea>` for user programs, the biory card you asked for becomes
 possible; nothing on this side can make it.
 
+**`F$Mem` is not implemented in os9exec, and `subber` stops on it** --
+found 2026-09-03 by the Text tools batch, written up in
+`notes/os9exec-bugs/F-MEM-UNIMPLEMENTED.md`. The console says
+`# unimplemented F$Mem called by pid=3` and the program exits. It is a real
+OS-9/68000 call, so this is os9exec's to fix, and subber's card says what
+stops it.
+
 **Candidates for "best forgotten", from the Amusements batch:**
 
 - `rstory2` asks five questions and forks Microware's `shell` to run

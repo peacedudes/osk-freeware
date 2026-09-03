@@ -1,0 +1,10 @@
+$ what
+
+What's where in the GEPARD:
+IO-Address  Ref-Byte  Name of the card
+-----------------------------------------------------------------
+$ what /dd/CMDS/today
+
+What's where in the GEPARD:
+IO-Address  Ref-Byte  Name of the card
+-----------------------------------------------------------------

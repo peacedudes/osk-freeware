@@ -1,0 +1,4 @@
+$ prjob -?
+prjob: Spooler not installed
+$ prjob
+prjob: Spooler not installed

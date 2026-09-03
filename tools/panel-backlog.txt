@@ -8,7 +8,6 @@ adltouch
 advcom
 afm2tfm
 alps
-ape
 apfel
 ar2
 arc_5.12
@@ -64,7 +63,6 @@ cpr
 creadoc
 cron
 ctags
-cuts
 cvtbase
 cyberwar
 dback
@@ -72,7 +70,6 @@ dearc
 delbak
 demerge
 detab
-deton
 dhry
 dhryGcc2o2
 dhryshamu2
@@ -97,15 +94,12 @@ dvitos
 ediff
 EditLibr
 enable
-eo
-epson
 eset
 etags
 eunlink
 expand
 fastmail
 fc
-fillup
 filter
 finger
 fixtext
@@ -117,7 +111,6 @@ fortune
 fstopgm
 funzip
 game
-gawk
 gcc
 gcc_cc1plus
 gcc_cccp
@@ -125,7 +118,6 @@ gcc_cccp2
 gcc_collect
 gcc2
 gen
-gep
 getsys
 gftopk
 gftype
@@ -163,15 +155,10 @@ Libr2Ascii
 libsplit
 lispmtopgm
 lmail
-lmargin
 lnk.org
 load
 loadmem
 loan
-lp
-lprm
-lpsched
-lpshut
 lua
 m4_0.5
 macbin
@@ -258,7 +245,6 @@ ppmtoyuvsplit
 pri
 PrintCards
 printmail
-psc
 psidtopgm
 ptob
 ptxminst
@@ -277,11 +263,9 @@ rm
 rmail
 rndir
 roff
-rot
 runc
 savemem
 sbreak
-scqref
 screen_nocio
 scriptmaster
 setfont
@@ -301,11 +285,7 @@ spctoppm
 spiff
 split
 splitalf
-splman
-splprt
-splstat
 spottopgm
-submit
 suse
 suspend
 t
@@ -330,7 +310,6 @@ umusek
 unexpand
 unifdef
 uniq
-unp
 unpacklib
 unpacklib.os9
 unsit
@@ -343,10 +322,8 @@ uupoll
 uux
 uuxqt
 uwho
-valspeak
 virmf
 vtxtcn
-wc.cio
 wgen
 wrjpgcom
 wysecrack
@@ -365,3 +342,4 @@ zipnote
 zoo_2.1
 zot
 ynad
+vis

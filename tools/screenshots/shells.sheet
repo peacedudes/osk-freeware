@@ -194,3 +194,9 @@ run     su --help
 wait    5
 run     su tester
 wait    4
+
+shot    submit
+cap     Runs the commands in a .sub file with its parameters substituted
+cap     into them -- a batch job: its options.
+run     submit -?
+wait    5

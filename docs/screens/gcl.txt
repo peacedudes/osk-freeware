@@ -1,23 +1,5 @@
-sc Quick Reference
-
-$Revision: 6.16 $
-
- Overview:
-
- A:   This overview
- B:   Options
- C:   Cursor movement commands
- D:   Cell entry and editing commands
- E:   Line Editing
- F:   File commands
- G:   Row and column commands
- H:   Range commands
- I:   Miscellaneous commands
- J:   Variable names/Expressions
-$ gcl < /nil
-G0
-!
-"
-#
-%
-G4         (       4   8   <       H       P      G0G4!   !$  !,  !0  !4  !8  !
+######  ##  ##          ##  ######      ##  ##  ######
+##  ##  ##  ##  ##      ##  ##  ##  ##  ##  ##  ##
+##  ##  ######          ##  ######      ######  ######
+##  ##      ##  ##      ##  ##  ##  ##      ##  ##  ##
+######      ##          ##  ######          ##  ######

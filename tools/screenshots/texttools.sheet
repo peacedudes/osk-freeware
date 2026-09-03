@@ -1,10 +1,5 @@
 # The filters, each one on real text off this disk.
 
-shot    ascii
-cap     The ASCII table, four columns, control names and all.
-run     ascii | head -n 20
-wait    5
-
 shot    bibtex
 for     bibtex afm2tfm maketexpk
 cap     BibTeX, the bibliography processor, with the sample database that
@@ -24,16 +19,6 @@ wait    4
 run     fgrep cribbage /dd/DOC/INDEX
 wait    4
 
-shot    casefix
-cap     casefix normalises letter case -- one capital at the front, the rest
-cap     down.  It is a FILTER and takes no filename: given one it ignores it
-cap     and reads the terminal, which is a good way to lose a script.
-cap     `upperdir' does the same job to a directory's names.
-run     echo "tHE qUICK bROWN fOX" | casefix
-wait    5
-run     echo "hello THERE from OS-9" | casefix
-wait    5
-
 shot    cdiff
 cap     cdiff is a context diff and it cannot finish one: `MAXLINECOUNT
 cap     exceeded, must stop' on any pair of files given it here, down to
@@ -44,17 +29,6 @@ wait    3
 run     sed -e "s/Day/DAY/" /dd/tmp/h1 > /dd/tmp/h2
 wait    4
 run     cdiff /dd/tmp/h1 /dd/tmp/h2
-wait    6
-
-shot    charcnt
-cap     charcnt counts characters -- and it wants FILENAMES, not a redirect,
-cap     and says so when it gets one.  `tcmp' compares two text files and
-cap     says where they first differ.
-run     charcnt < /dd/SYS/motd
-wait    5
-run     charcnt /dd/SYS/motd /dd/SYS/password
-wait    6
-run     tcmp /dd/SYS/motd /dd/SYS/holidays
 wait    6
 
 shot    cookhash
@@ -88,24 +62,6 @@ run     echo Freeware | cursive
 wait    6
 kill
 
-shot    cut
-cap     cut taking fields out of the password file, and paste putting two
-cap     streams back together.
-run     cut -d, -f1,3 /dd/SYS/password
-wait    5
-
-shot    detab
-cap     detab turns tabs into spaces; unexpand puts leading spaces back as
-cap     tabs.  Shown here with dump, so the bytes are visible.
-run     head -n 3 /dd/SYS/holidays > /dd/tmp/tabs.txt 2>/nil
-wait    4
-run     dump /dd/tmp/tabs.txt
-wait    6
-run     detab /dd/tmp/tabs.txt > /dd/tmp/notabs.txt
-wait    5
-run     dump /dd/tmp/notabs.txt
-wait    8
-
 shot    diff
 cap     GNU diff 1.1 on two versions of the same file -- the disk had no
 cap     diff at all before this one was added.
@@ -114,12 +70,6 @@ wait    2
 run     sed -e "s/OS-9/OS-Nine/" /dd/tmp/a.txt > /dd/tmp/b.txt
 wait    3
 run     diff -c /dd/tmp/a.txt /dd/tmp/b.txt
-wait    5
-
-shot    dump
-cap     dump, the hex dump: an OS-9 module header, byte by byte.  The first
-cap     four bytes are the sync $4AFC and the module's size.
-run     dump /dd/CMDS/today | head -n 16
 wait    5
 
 shot    tex
@@ -174,31 +124,11 @@ wait    4
 send    \r
 wait    20
 
-shot    expand
-for     expand unexpand deton tabs autolf
-cap     Tabs to spaces and back again, with dump showing the bytes so the
-cap     change is visible rather than asserted: one line of SYS/holidays, 09
-cap     09 becoming a run of 20s and then coming back byte for byte.
-cap     `unexpand' needs -a to do it: without it, like every unexpand, it
-cap     only touches whitespace at the START of a line and these tabs are in
-cap     the middle.  `dump' wants a PATH -- it prints its usage for anything
-cap     handed to it on standard input -- so each stage is written to a file
-cap     first.
-run     head -n 3 /dd/SYS/holidays 2>/nil | tail -l=1 > /dd/tmp/t2.txt
-wait    5
-run     dump /dd/tmp/t2.txt
-wait    6
-run     expand /dd/tmp/t2.txt > /dd/tmp/t3.txt
-wait    5
-run     dump /dd/tmp/t3.txt
-wait    6
-run     unexpand -a < /dd/tmp/t3.txt > /dd/tmp/t4.txt
-wait    5
-run     dump /dd/tmp/t4.txt
-wait    8
+shot    deton
+cap     deton counts down three seconds and blows the machine up, which it
+cap     announces and does not do.  Run it with nothing on standard input
+cap     and it goes off by itself.
 run     deton < /nil
-wait    8
-run     tabs < /nil
 wait    8
 
 shot    fcomp
@@ -214,42 +144,18 @@ wait    4
 run     fcomp /dd/tmp/fc1 /dd/tmp/fc2
 wait    6
 
-shot    file
-for     file
-cap     file identifying what things are, out of SYS/magic: an OS-9 module,
-cap     a text file, a GIF and a tar archive it makes for itself first.
-run     tar cf /dd/tmp/f.tar /dd/SYS/motd
-wait    8
-run     file /dd/CMDS/today /dd/DOC/INDEX /dd/DEMO/gulls.gif /dd/tmp/f.tar
-wait    8
-
 shot    fmt
 cap     fmt folding a long text to the terminal width.
 run     head -n 30 /dd/DOC/README-KEEP | fmt
 wait    6
 
-shot    gawk
-size    36 80
-cap     GNU awk 2.11 over the disk's own index: count the programs by the
-cap     letter they start with, then sort by that count.  It is fed on
-cap     STDIN because this build ignores a filename argument and reads
-cap     standard input whatever it is given -- name a file and it sits
-cap     waiting for the terminal instead.
-run     gawk "{print substr(\$1,1,1)}" < /dd/DOC/INDEX > /dd/tmp/1st
-wait    12
-run     sort /dd/tmp/1st | uniq -c | sort -nr | head -n 12
-wait    10
-
-
-shot    gep
-for     gep lgrep ggrep bmgtest bmgtest2
+shot    lgrep
+for     lgrep ggrep bmgtest bmgtest2
 cap     More pattern matchers, each from a different decade.  `ggrep' is GNU
 cap     grep out of sh_utils and counts what it finds.  `lgrep' is meant to
 cap     print the NAMES of files that match, the way grep -l does, and
 cap     prints nothing at all here whatever it is given -- its usage line is
 cap     the only output anyone has got out of it.
-run     gep -?
-wait    6
 run     lgrep chess /dd/DOC/INDEX /dd/DOC/STATUS /dd/SYS/motd
 wait    6
 run     lgrep -?
@@ -303,7 +209,7 @@ run     jargon -b kluge jargon
 wait    10
 
 shot    join
-for     join paste cut field
+for     join
 cap     paste puts two files side by side and join matches them on a common
 cap     first field -- the relational pair.
 run     head -n 5 /dd/SYS/holidays > /dd/tmp/j1
@@ -313,8 +219,6 @@ wait    5
 run     paste /dd/tmp/j1 /dd/tmp/j2
 wait    8
 run     join /dd/tmp/j1 /dd/tmp/j1
-wait    8
-run     field < /nil
 wait    8
 
 shot    kwic
@@ -336,23 +240,6 @@ cap     Basser Lout 2.05, a document formatter in the TeX tradition, saying
 cap     what it is.
 run     lout -V
 wait    6
-
-shot    pep
-size    36 80
-for     pep ape eo qt cuts
-cap     `pep' is a file `detergent' -- it strips the junk out of a file
-cap     using the character tables in SYS/PEP. it prints a QUARTER's
-cap     calendar.
-run     pep -?
-wait    8
-run     ape -?
-wait    8
-run     eo -?
-wait    8
-run     cuts -?
-wait    8
-run     qt
-wait    10
 
 shot    qsort9
 for     qsort9 nsort uniq unip
@@ -380,37 +267,12 @@ wait    8
 run     uniq < /nil
 wait    8
 
-shot    qt
-for     qt vis
-cap     `qt' tells the time the way a person says it out loud -- `just gone
-cap     ten past four', `nearly a quarter past', and it says whatever the
-cap     clock says when the picture is taken.  DOC/INDEX called it a quick
-cap     text utility,
-cap     which is what put it in this file; it is corrected there now.
-cap     `vis' beside it is not the Unix `vis' either: it runs a command
-cap     over and over and refreshes the screen with the output, which is
-cap     what `watch' does on other systems.
-run     qt
-wait    6
+shot    vis
+cap     Runs a command over and over and refreshes the screen with its
+cap     output, the way `watch' does elsewhere: `vis {opts} <command>'.
+cap     Its options.
 run     vis -?
 wait    8
-
-shot    rot
-cap     rot turns a file on its side -- the first line becomes the first
-cap     column.  It is NOT a rot-13 cipher, whatever the name suggests;
-cap     DOC/INDEX said so until this screen was taken.
-run     head -n 6 /dd/SYS/holidays > /dd/tmp/h.txt
-wait    3
-run     cat /dd/tmp/h.txt
-wait    3
-run     rot /dd/tmp/h.txt
-wait    5
-
-shot    sepwords
-cap     sepwords splits text to one word a line, splitalf splits a file
-cap     alphabetically -- the two halves of preparing a word list.
-run     head -n 4 /dd/SYS/motd | sepwords
-wait    6
 
 shot    shuffle
 size    24 80
@@ -458,28 +320,6 @@ wait    3
 run     spiff /dd/tmp/s1 /dd/tmp/s2
 wait    5
 
-shot    split
-size    36 80
-for     split splitalf sepwords unp fillup
-cap     Five ways of cutting a file up, each asked for itself.  `split' cuts
-cap     it into pieces of N lines and `ls' shows what it wrote; `splitalf'
-cap     splits on a form feed, `sepwords' one word to a line, `fillup' pads
-cap     out to a length, `unp' unpacks.
-run     mkdir /dd/tmp/sp
-wait    5
-run     split -l 6 /dd/SYS/holidays /dd/tmp/sp/part
-wait    8
-run     ls -l /dd/tmp/sp
-wait    8
-run     sepwords < /dd/SYS/motd | head -n 6
-wait    8
-run     splitalf -?
-wait    6
-run     fillup -?
-wait    6
-run     unp -?
-wait    6
-
 shot    strfile
 for     strfile unstr cookhash
 cap     strfile builds the index `fortune' reads.  Here it converts the
@@ -495,46 +335,16 @@ wait    8
 run     ls -l /dd/tmp/f.dat*
 wait    6
 
-shot    strings
-size    36 80
-for     strings what
-cap     `strings' pulls the printable text out of a binary, each hit
-cap     reported with its offset.  `what' beside it is NOT the SCCS `what'
-cap     its name promises and does not read a binary at all: it lists the
-cap     expansion cards in a GEPARD, the German 68k machine much of the EFFO
-cap     material was written on, and the table is empty here because there
-cap     is no GEPARD.  It ignores whatever you give it.  The entry written
-cap     for it an hour earlier guessed SCCS from the name.
-run     strings /dd/CMDS/today | head -n 12
-wait    5
+shot    what
+cap     what prints the expansion cards fitted to a GEPARD, the German 68k
+cap     machine much of the EFFO material was written for: address,
+cap     reference byte and name.  With no GEPARD underneath it the table
+cap     comes out empty, and it ignores anything given to it on the command
+cap     line.
+run     what
+wait    8
 run     what /dd/CMDS/today
 wait    8
-
-shot    subber
-cap     subber substitutes text in a stream, reading the substitutions from
-cap     a wordlist FILE rather than the command line.  It cannot run here:
-cap     it calls F$Mem, an OS-9 system call os9exec does not implement, and
-cap     the emulator says so and kills it.
-run     echo ",os9exec,OS-9," > /dd/tmp/words.sub
-wait    6
-run     subber /dd/tmp/words.sub /dd/SYS/motd
-wait    8
-
-shot    sum
-for     sum tail head tac
-cap     sum, the checksum every Unix had before md5, and head and tail
-cap     either end of the same file.
-run     sum /dd/SYS/motd /dd/SYS/holidays
-wait    8
-run     tail -l=4 /dd/SYS/holidays
-wait    8
-run     head -n 3 /dd/SYS/motd
-wait    8
-
-shot    tac
-cap     tac prints a file backwards, last line first.
-run     head -n 8 /dd/SYS/holidays | tac
-wait    5
 
 shot    tangle
 for     tangle weave
@@ -577,30 +387,6 @@ cap     page column is empty here because nothing upstream paginated the
 cap     text; what is left is the vocabulary of the file, in order.
 run     sepwords < /dd/DOC/README-CIO | sort | unip | head -n 18
 wait    10
-
-shot    upperdir
-for     upperdir casefix
-cap     upperdir normalises case across a directory: files lower,
-cap     directories upper.  On a scratch copy, not on the disk.
-cap     MixedCase.TXT becomes mixedcase.txt; subdir becomes SUBDIR.
-run     mkdir /dd/tmp/UD
-wait    6
-run     mkdir /dd/tmp/UD/subdir
-wait    6
-run     cp /dd/SYS/motd /dd/tmp/UD/MixedCase.TXT
-wait    6
-run     ls /dd/tmp/UD
-wait    6
-run     upperdir /dd/tmp/UD
-wait    8
-run     ls /dd/tmp/UD
-wait    6
-
-shot    wc
-cap     wc over the collection's own documents.
-run     wc /dd/DOC/INDEX /dd/DOC/ORIGINS /dd/DOC/DEPENDS /dd/SOURCES.txt
-wait    6
-
 
 shot    latex-wrapper
 for     latex tex virtex
@@ -669,7 +455,6 @@ wait    25
 run     ls -l /dd/story.dvi_alw /dd/story.dvi_eps
 wait    12
 
-
 shot    texfonts
 for     tftopl pltotf
 cap     TeX's font tools. tftopl turns a binary font metric into readable
@@ -736,19 +521,12 @@ wait    20
 run     ls -l /dd/tmp/GF
 wait    12
 
-
 shot    misc-text
-for     ediff fgrep gdd tcmp wc.cio
-cap     Four more text tools, and `wc.cio' -- the archived build of wc,
-cap     kept because it does NOT work: it prints nothing for a file
-cap     argument, which is why CMDS/wc is a different binary.
+for     ediff fgrep
+cap     Two more text tools: `fgrep' searching the index for a word, and
+cap     `ediff', which turns a diff into plain English and prints its
+cap     syntax when it is given nothing.
 run     fgrep chess /dd/DOC/INDEX | head -n 5
-wait    10
-run     gdd if=/dd/SYS/motd bs=8 count=3
-wait    10
-run     tcmp /dd/SYS/motd /dd/SYS/motd
-wait    10
-run     wc.cio /dd/SYS/motd
 wait    10
 run     ediff < /nil
 wait    8
@@ -793,7 +571,6 @@ run     cat /dd/tmp/b3
 wait    5
 run     rm -f /dd/tmp/b1 /dd/tmp/b2 /dd/tmp/b3
 wait    4
-
 
 shot    hc
 cap     hc shifts text to a column, or labels every line -- and it is the

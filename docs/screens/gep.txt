@@ -1,19 +1,7 @@
-$ gep -?
-Syntax: gep [<opts>] [<srcpath>] [<opts>]
-Function: global expression(s) parser
-Options:
-     -b[=]<n>[K]  use specified expression buffer size (4096)
-     -e[=]<path>  use <path> for expressions (required)
-     -v        print non-matches
-     -?        print usage
-$ lgrep chess /dd/DOC/INDEX /dd/DOC/STATUS /dd/SYS/motd
-$ lgrep -?
-Syntax: lgrep <arg1> ... <argn>
-Function: same as 'grep -l', but prints filenames without comments
-Options: same as with 'grep'
-$ ggrep -c chess /dd/DOC/INDEX
-15
-$ bmgtest < /nil
-bmgtest: pattern argument missing
-$ bmgtest2 < /nil
-bmgtest: pattern argument missing
+cat /dd/tmp/TEXTA/pats
+Easter
+Valentine
+$ gep -e=/dd/tmp/TEXTA/pats /dd/SYS/holidays
+2/14 Valentine's Day
+easter Easter Sunday
+*easter+1 Easter Monday

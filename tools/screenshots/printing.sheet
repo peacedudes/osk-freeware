@@ -1,114 +1,133 @@
-# Printing: the spooler, the PostScript path, and what a
-# printer driver actually receives.
-
-shot    gs-devices
-for     gs403 gs33
-cap     Ghostscript's device list -- what this build can rasterise to.  Both
-cap     Ghostscripts are here; only 4.03 has its initialisation files.
-run     export GS_LIB=/dd/LIB/gs403
-wait    2
-run     gs403 -h | tail -l=16
-wait    12
+# Printing: PostScript, printer control codes, and two print spoolers,
+# one stanza per program.
 
 shot    gs403
-size    36 80
-cap     Aladdin Ghostscript 4.03 on an OS-9 disk, reading one of its own
-cap     test files and giving you its `GS>' prompt.  This card said it did
-cap     NOT render, on a measurement taken with GS_LIB unset -- because the
-cap     line that set it was `setenv GS_LIB..', and `setenv' is the OS-9
-cap     shell's command, not bash's.  In bash it is `export NAME=value', and
-cap     the `echo' below is there to show the variable actually took.
-cap     Everything Ghostscript needs, fonts included, is in LIB/gs403.
-run     export GS_LIB=/dd/LIB/gs403
-wait    5
-run     echo $GS_LIB
-wait    5
-run     gs403 -h | head -n 8
-wait    12
-run     cat /dd/LIB/gs403/align.ps > /dd/a.ps
-wait    8
-run     gs403 -q -dNOPAUSE -sDEVICE=nullpage /dd/a.ps
-wait    45
-
-shot    lp
-size    36 80
-for     lp lpq lpsched splstat
-cap     The print spooler with nothing configured, which is the state a
-cap     fresh disk arrives in: `lpq' says there is no spooler installed and
-cap     `lp' says what it would take.  Carl Kreider's `splstat' prints
-cap     nothing whatever, so its line here is just the command.  Until
-cap     2026-08-29 there were TWO cards for this, `lp' and `lpq', crediting
-cap     almost the same eight programs between them and running three.
-run     lp -?
-wait    6
-run     lpq
-wait    5
-run     lpsched -?
-wait    6
-run     splstat
-wait    5
-
-shot    spooler-rest
-size    36 80
-for     lprm lpshut submit prjob qp
-cap     The rest of the spooler set, each asked for itself.  `lprm' removes
-cap     a queued job, `lpshut' stops the scheduler, `submit' and `prjob'
-cap     queue work, and `qp' is the queue printer -- which is one of the
-cap     seven programs that fail for want of a program called `shell'
-cap     (DOC/STATUS names them all).  With no spooler installed none of them
-cap     has anything to act on, and what each says about that is the point
-cap     of the card.
-run     lprm -?
-wait    6
-run     lpshut -?
-wait    6
-run     submit -?
-wait    6
-run     prjob -?
-wait    6
-run     qp
-wait    8
-
-shot    lwf
-for     lwf
-cap     lwf turns plain text into PostScript, the way enscript does.  Its
-cap     prologue comes from USR/LIB; here is the head of a page it set.
-run     lwf /dd/SYS/motd | head -n 18
+size    30 100
+cap     Ghostscript 4.03 rendering a line of PostScript.  The page is
+cap     rasterised to a bitmap at 48 dots per inch, and pbmtoascii shows
+cap     that bitmap as text.  GS_LIB names its fonts and initialisation
+cap     files, in LIB/gs403.
+run     mkdir -p /dd/tmp/PRT > /nil 2>/nil; printf "/Helvetica-Bold findfont 40 scalefont setfont\r8 14 moveto (OS-9/68000) show\rshowpage\r" > /dd/tmp/PRT/hello.ps; export GS_LIB=/dd/LIB/gs403
+wait    2
+run     clear
+wait    1
+run     cat /dd/tmp/PRT/hello.ps
+wait    2
+run     gs403 -q -dNOPAUSE -sDEVICE=pbm -r48 -g200x60 -sOutputFile=/dd/tmp/PRT/hello.pbm /dd/tmp/PRT/hello.ps -c quit
+wait    60
+run     pbmtoascii /dd/tmp/PRT/hello.pbm
 wait    10
 
-shot    perr
-cap     perr turns an OS-9 error number into its message.  216 is the one
-cap     this collection meets most.
-run     perr 214 216 218 221
-wait    4
-
-shot    perr-alps
-for     perr alps epson
-cap     perr names an OS-9 error; alps switches an ALPS printer between
-cap     draft and letter quality; epson drives an Epson from spline output.
-run     perr 1 2 3 4 5
-wait    6
-run     alps -?
-wait    6
-run     epson < /nil
-wait    8
-
-shot    perr-print
-for     perr
-cap     perr turns an OS-9 error number into its message -- the errors this
-cap     collection meets most.
-run     perr 214 216 218 221 237
-wait    4
-
-shot    spooler
-for     splman splprt splstat gs33
-cap     Ghostscript 3.33, the older of the two -- it lists its devices and
-cap     then says what it is missing, which is its initialisation files.
-cap     Carl Kreider's spooler (splman, splprt, splstat) is named here too
-cap     because all three print NOTHING at all, with or without a queue.
+shot    gs33
+cap     Ghostscript 3.33, the older build: its device list, and the
+cap     search path where its initialisation files and fonts would be.
+cap     They are not on the disk, so it can list devices and no more;
+cap     gs403 is the one that renders.
 run     gs33 -h | head -n 14
 wait    12
-run     splman < /nil
+
+shot    lwf
+cap     Plain text to PostScript, the way enscript does it: the head of
+cap     the page it sets, with its prologue from USR/LIB.
+run     mkdir -p /dd/tmp/PRT > /nil 2>/nil; printf "Twas brillig, and the slithy toves\r" > /dd/tmp/PRT/j.txt
+wait    2
+run     clear
+wait    1
+run     lwf /dd/tmp/PRT/j.txt | head -n 14
 wait    8
-run     splprt < /nil
-wait    8
+
+shot    alps
+cap     Writes the control sequence that switches an ALPS ASP-1000
+cap     printer to letter quality (-lq) or back (-norm): three bytes,
+cap     meant to be sent to the printer device.  Shown here as a dump.
+run     mkdir -p /dd/tmp/PRT > /nil 2>/nil; alps -lq > /dd/tmp/PRT/alps.out
+wait    3
+run     clear
+wait    1
+run     alps
+wait    3
+run     dump /dd/tmp/PRT/alps.out
+wait    5
+
+shot    epson
+cap     Sets up an Epson printer: characters per inch, the German or
+cap     ASCII character set, a form feed.  It writes to the printer
+cap     itself, so with no printer on this disk its options are what
+cap     there is to see.
+run     epson -?
+wait    5
+
+shot    lmargin
+cap     Sets the left margin on an Epson printer, in characters.  It is
+cap     a build of the same program as epson and writes to the printer
+cap     itself.
+run     lmargin -?
+wait    5
+
+shot    lp
+cap     Submits a file to the print spooler: its options.  There is no
+cap     printer and no spooler running on this disk, so a submission has
+cap     nowhere to go.
+run     lp -?
+wait    5
+
+shot    lpq
+cap     Shows the spooler's queue.  With no spooler started it says so.
+run     lpq -?
+wait    4
+run     lpq
+wait    4
+
+shot    lprm
+cap     Removes a job from the spooler's queue: its options.
+run     lprm -?
+wait    4
+
+shot    lpshut
+cap     Stops the spooler.  With none running it says so.
+run     lpshut -?
+wait    4
+run     lpshut
+wait    4
+
+shot    prjob
+cap     Prints a queued job.  With no spooler installed it says so.
+run     prjob -?
+wait    4
+run     prjob
+wait    4
+
+shot    lpsched
+cap     Starts the spooler for a printer device: its options.  There is
+cap     no printer device on this disk to start it on.
+run     lpsched -?
+wait    4
+
+shot    splman
+cap     The manager of the other spooler on the disk, Carl Kreider's: it
+cap     spools to a printer on a serial device.  With no such device it
+cap     prints nothing and returns.
+run     splman; echo "status $?"
+wait    5
+
+shot    splprt
+cap     The printer process of Carl Kreider's spooler, one per printer.
+cap     With no printer device it prints nothing and returns.
+run     splprt; echo "status $?"
+wait    5
+
+shot    splstat
+cap     The queue status of Carl Kreider's spooler.  With no queue it
+cap     prints nothing and returns; lpq, the other spooler's, says so in
+cap     words.
+run     splstat; echo "splstat said nothing, status $?"
+wait    5
+run     lpq
+wait    4
+
+shot    perr
+cap     Prints the text of an OS-9 error number.  These are the ones met
+cap     most often: file not accessible, path name not found, path name
+cap     already exists, module not found, and permission.
+run     perr 214 216 218 221 237
+wait    5

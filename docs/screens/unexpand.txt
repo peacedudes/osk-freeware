@@ -1,0 +1,13 @@
+dump /dd/tmp/TEXTA/sp.txt
+
+Addr   0 1  2 3  4 5  6 7  8 9  A B  C D  E F 0 2 4 6 8 A C E
+----  ---- ---- ---- ---- ---- ---- ---- ---- ----------------
+0000  312F 3120 2020 2020 2020 2020 2020 2020 1/1
+0010  4E65 7720 5965 6172 2773 2044 6179 0D   New Year's Day.
+$ unexpand -a /dd/tmp/TEXTA/sp.txt > /dd/tmp/TEXTA/back.txt
+$ dump /dd/tmp/TEXTA/back.txt
+
+Addr   0 1  2 3  4 5  6 7  8 9  A B  C D  E F 0 2 4 6 8 A C E
+----  ---- ---- ---- ---- ---- ---- ---- ---- ----------------
+0000  312F 3109 094E 6577 2059 6561 7227 7320 1/1..New Year's
+0010  4461 790D                               Day.

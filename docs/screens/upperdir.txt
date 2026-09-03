@@ -1,10 +1,7 @@
-$ mkdir /dd/tmp/UD
-$ mkdir /dd/tmp/UD/subdir
-$ cp /dd/SYS/motd /dd/tmp/UD/MixedCase.TXT
-$ ls /dd/tmp/UD
+ls /dd/tmp/TEXTA/UD
 MixedCase.TXT  subdir
-$ upperdir /dd/tmp/UD
+$ upperdir /dd/tmp/TEXTA/UD
 
 SUBDIR          mixedcase.txt
-$ ls /dd/tmp/UD
+$ ls /dd/tmp/TEXTA/UD
 SUBDIR         mixedcase.txt

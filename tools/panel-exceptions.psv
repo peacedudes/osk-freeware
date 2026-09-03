@@ -14,3 +14,13 @@ qp|its help and a try: it runs the expanded line through Microware's shell, whic
 checkenv|prints its syntax line on every call and answers only in its status; the card shows both statuses
 run|its usage and a try; the program it runs answers on the terminal PORT names, and on this console nothing comes back
 su|GNU su's usage and a try to become tester, which on a disk owned 0.0 throughout has no one to become
+epson|writes its control codes to the printer itself; with no printer on the disk its option list is what there is to show, and the card says so
+lmargin|writes its control codes to the printer itself; with no printer on the disk its option list is what there is to show, and the card says so
+splman|Carl Kreider's spooler manager wants a printer on a serial device; without one it prints nothing and returns, and the card says so
+splprt|the spooler's printer process wants a printer device; without one it prints nothing and returns, and the card says so
+splstat|the spooler's queue status; with no queue it prints nothing and returns, and the card says so
+gs33|Ghostscript 3.33 without its initialisation files: its device list is as far as it goes, and the card says so
+lp|there is no spooler running on this disk; its option list is what there is to show, and the card says so
+lprm|there is no spooler running on this disk; its option list is what there is to show, and the card says so
+lpsched|there is no printer device on this disk to start the spooler on; its option list is what there is to show
+submit|a batch-file runner; its option list is what a card can show without a .sub job to run

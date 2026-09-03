@@ -1,3 +1,30 @@
+$ calender
+
+Fuer welches Jahr? 2026
+Jahreskalender   2026
+
+              Januar               Februar              Maerz
+Montag           5 12 19 26           2  9 16 23           2  9 16 23 30
+Dienstag         6 13 20 27           3 10 17 24           3 10 17 24 31
+Mittwoch         7 14 21 28           4 11 18 25           4 11 18 25
+Donnerstag    1  8 15 22 29           5 12 19 26           5 12 19 26
+Freitag       2  9 16 23 30           6 13 20 27           6 13 20 27
+Samstag       3 10 17 24 31           7 14 21 28           7 14 21 28
+Sonntag       4 11 18 25           1  8 15 22           1  8 15 22 29
+
+              April                Mai                  Juni
+Montag           6 13 20 27           4 11 18 25        1  8 15 22 29
+Dienstag         7 14 21 28           5 12 19 26        2  9 16 23 30
+Mittwoch      1  8 15 22 29           6 13 20 27        3 10 17 24
+Donnerstag    2  9 16 23 30           7 14 21 28        4 11 18 25
+Freitag       3 10 17 24           1  8 15 22 29        5 12 19 26
+Samstag       4 11 18 25           2  9 16 23 30        6 13 20 27
+Sonntag       5 12 19 26           3 10 17 24 31        7 14 21 28
+
+              Juli                 August               September
+Montag           6 13 20 27           3 10 17 24 31        7 14 21 28
+Dienstag         7 14 21 28           4 11 18 25        1  8 15 22 29
+Mittwoch      1  8 15 22 29           5 12 19 26        2  9 16 23 30
 Donnerstag    2  9 16 23 30           6 13 20 27        3 10 17 24
 Freitag       3 10 17 24 31           7 14 21 28        4 11 18 25
 Samstag       4 11 18 25           1  8 15 22 29        5 12 19 26

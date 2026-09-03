@@ -1,7 +1,7 @@
-$ lwf /dd/SYS/motd | head -n 18
+lwf /dd/tmp/PRT/j.txt | head -n 14
 %!PS-Adobe-2.0
 %%Creator: lwf on evtech
-%%CreationDate: Fri Aug 28 06:09:25 2026
+%%CreationDate: Thu Sep  3 04:36:46 2026
 %%For: su
 %%DocumentFonts: Courier
 %%Pages: (atend)
@@ -13,7 +13,3 @@ $ lwf /dd/SYS/motd | head -n 18
 /B {NW 0 rmoveto}bind def
 /EP {SV restore /#copies exch def showpage}bind def
 /L /lineto load def
-/M /moveto load def
-/NP /newpath load def
-/S /show load def
-/SHP {SP 2 setlinewidth}bind def

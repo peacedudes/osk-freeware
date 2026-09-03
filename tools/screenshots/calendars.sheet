@@ -1,66 +1,140 @@
-# Calendars, clocks and the computus.
+# Calendars, clocks and astronomy, one stanza per program.
 
-shot    cal-holidays
-for     cal
-cap     cal with -h: the holidays in SYS/holidays are marked on the month.
-run     cal -m=12 -y=2026 -h
+shot    cal
+cap     A month with the holidays from SYS/holidays marked on it.  This
+cap     cal takes flags, -m for the month and -y for the year, and -h asks
+cap     for the holidays.
+run     cal -m=9 -y=2026 -h
 wait    4
 
 shot    calen
-cap     calen prints a month as a diary page, ruled for appointments -- it
-cap     asks for month, year and how many months to print.
-run     echo 8 2026 1 | calen | head -n 21
+cap     A month as a diary page, ruled for appointments.  It reads the
+cap     month, the year and how many months to print from its input.
+run     echo 9 2026 1 | calen | head -n 21
 wait    6
 
 shot    calender
-cap     A whole year on one screen, in German -- `Fuer welches Jahr?'
+size    58 100
+cap     A whole year at once, in German, with the German public holidays
+cap     listed under it.  It asks `Fuer welches Jahr?' -- for which year --
+cap     and then asks again for the next.
 run     calender
 wait    2
 send    2026\r
-wait    3
-kill
+wait    6
+snap
+send    \r
+wait    2
 
 shot    digclk
-cap     A digital clock drawn in block characters, with the hostname under
-cap     it.  It redraws until you stop it.
+cap     A digital clock in block characters, with the machine's name under
+cap     it, redrawn every second until stopped.
 run     digclk
-wait    6
+wait    5
+snap
+wait    1
+
+shot    gcl
+cap     A grand digital clock: the time drawn large across the terminal,
+cap     redrawn as it runs.  -n says how many seconds to run; without it
+cap     it runs until stopped.
+run     gcl -n=6
+wait    4
+snap
+wait    4
 
 shot    ephem
-for     ephem
-cap     ephem, the astronomical ephemeris, with the configuration and
-cap     database that ship in SYS.  Past the copyright page it draws its
-cap     table: the sun, the moon and the planets for the date it is set to,
-cap     with rise, transit and set down the side.
+cap     An astronomical ephemeris: the sun, the moon and the planets for
+cap     the moment it is set to, with rise, transit and set down the side,
+cap     from the configuration and star database in SYS.  RETURN passes
+cap     its opening page; control-D leaves it.
 run     ephem -c /dd/SYS/ephem.cfg -d /dd/SYS/ephem.db
 wait    8
 send    \r
 wait    10
-quit    q
+snap
+quit    \004
 
+shot    ephem881
+cap     The same ephemeris built for a 68881 floating-point coprocessor.
+run     ephem881 -c /dd/SYS/ephem.cfg -d /dd/SYS/ephem.db
+wait    8
+send    \r
+wait    10
+snap
+quit    \004
+
+shot    lunisolar
+cap     The phase of the moon in one line.  Given a year and a time zone
+cap     it writes a whole lunisolar calendar as LaTeX instead.
+run     lunisolar
+wait    6
+run     lunisolar -?
+wait    6
+
+shot    nasa
+cap     Converts NASA two-line orbital elements, the form satellite
+cap     elements are published in, into the kepler.dat that `orbit'
+cap     reads.  It takes nasa.dat from the current directory and writes
+cap     kepler.dat beside it; this is one satellite in and out.
+run     mkdir -p /dd/tmp/CAL > /nil 2>/nil; printf "ISS (ZARYA)\r1 25544U 98067A   26246.50000000  .00016717  00000-0  10270-3 0  9005\r2 25544  51.6416 247.4627 0006703 130.5360 325.0288 15.72125391563537\r" > /dd/tmp/CAL/nasa.dat
+wait    2
+run     clear
+wait    1
+run     cat /dd/tmp/CAL/nasa.dat
+wait    2
+run     ksh -c "cd /dd/tmp/CAL; nasa"
+wait    8
+run     cat /dd/tmp/CAL/kepler.dat
+wait    4
+
+shot    orbit
+size    50 80
+cap     A satellite tracker: AO-13 over Pittsburgh through a morning in
+cap     March 1990, ten minutes a line -- azimuth and elevation, doppler
+cap     shift, range, height, the point beneath the satellite and the
+cap     transponder mode it is in.  It reads kepler.dat, mode.dat and a
+cap     site file by name from the current directory, and DOC/orbit holds
+cap     them, so it is run from there.
+run     ksh -c "cd /dd/DOC/orbit; orbit"
+wait    10
+send    d\r
+wait    4
+send    pgh\r
+wait    4
+send    3 10 90\r
+wait    4
+send    0\r
+wait    4
+send    1\r
+wait    4
+send    10\r
+wait    4
+send    \r
+wait    20
+
+shot    qt
+cap     The time the way a person says it: `just gone ten past four',
+cap     `nearly a quarter past'.  It says whatever the clock says.
+run     qt
+wait    5
 
 shot    setimex
-for     setimex today
-cap     setimex sets the clock from a hardware clock and reports what it
-cap     found; `today' beside it prints the date in words.
+cap     Sets the system clock from a hardware clock, and reports the time
+cap     it found.
 run     setimex
 wait    8
+
+shot    today
+cap     The date in words.
 run     today
-wait    10
+wait    6
 
 shot    greg
-for     greg combine
-cap     `greg' converts a JULIAN DAY NUMBER to a Gregorian date -- 2461281
-cap     is the 29th of August 2026.  It is not the regular-expression demo
-cap     DOC/INDEX called it until this card was made.  `combine' beside it
-cap     is the other program here whose name says less than it does: it
-cap     interleaves two files byte by byte, even bytes from one and odd from
-cap     the other, which is how a 16-bit EPROM image is put back together
-cap     from its two 8-bit halves.  It clears the screen before it speaks,
-cap     which is why it goes first here.
-run     combine -?
-wait    8
+cap     A Julian day number to a Gregorian date.  Its count runs one day
+cap     ahead of the astronomers' convention: 2440588, which they call
+cap     the first of January 1970, comes out as the second.
 run     greg 2461281
 wait    6
 run     greg 2440588
-wait    8
+wait    6

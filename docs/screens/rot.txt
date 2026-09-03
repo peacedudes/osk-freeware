@@ -1,8 +1,24 @@
-$ head -n 6 /dd/SYS/holidays > /dd/tmp/h.txt
-$ cat /dd/tmp/h.txt
-* Common Holidays
+cat /dd/tmp/TEXTA/r.txt
+the quick brown fox
+jumps over the
+lazy dog
+$ rot /dd/tmp/TEXTA/r.txt
+ljt
+auh
+zme
+yp
+ sq
+d u
+ooi
+gvc
+ ek
+ r
+  b
+ tr
+ ho
+ ew
+  n
 
-1/1             New Year's Day
-2/14 Valentine's Day
-3/17 St. Patrick's Day
-easter Easter Sunday
+  f
+  o
+  x

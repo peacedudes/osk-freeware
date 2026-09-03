@@ -1,6 +1,0 @@
-$ perr 214 216 218 221 237
-Error #000:214 (E_FNA) File Not Accessible
-Error #000:216 (E_PNNF) Path Name Not Found
-Error #000:218 (E_CEF) Creating Existing File
-Error #000:221 (E_MNF) Module Not Found
-Error #000:237 (E_NORAM) No Ram Available

@@ -1,4 +1,2 @@
-$ echo "tHE qUICK bROWN fOX" | casefix
-The quick brown fox
-$ echo "hello THERE from OS-9" | casefix
-Hello there from os-9
+$ echo "tHE qUICK bROWN fOX. jUMPS oVER the LAZY dog." | casefix
+The quick brown fox. Jumps over the lazy dog.

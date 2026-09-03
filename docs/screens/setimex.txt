@@ -1,7 +1,2 @@
 $ setimex
-Time now: Tue Sep  1 19:26:20 2026
-
-$ today
-Today is Tuesday, the first day of September, two thousand and
-twenty-six. The time is twenty-six minutes and twenty-nine seconds after
-seven PM, Daylight Savings Time. The moon is waning gibbous.
+Time now: Thu Sep  3 04:13:43 2026

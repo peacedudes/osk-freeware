@@ -1,6 +1,24 @@
-$ cut -d, -f1,3 /dd/SYS/password
-su
-tester
-
+$ cat /dd/SYS/password
+su, ,0.0,128,/dd/cmds,/dd/sys,shell -p="su: "
+tester,,1.7,128,/dd/CMDS,/dd/USR/TESTER,shell
+,,1.99,128,/dd/CMDS,/dd/USR/ANON,shell -p="anon: "
+uucp,,3.1,128,/dd/CMDS/UUCP,/dd/USR/LIB/UUCP,shell
+os9,,0.0,128,/dd/CMDS,/dd,shell
+$ cut -d, -f3 /dd/SYS/password
+0.0
+1.7
+1.99
+3.1
+0.0
+$ cut -d, -f1-3 /dd/SYS/password
+su, ,0.0
+tester,,1.7
+,,1.99
+uucp,,3.1
+os9,,0.0
+$ cut -c1-4 /dd/SYS/password
+su,
+test
+,,1.
 uucp
-os9
+os9,

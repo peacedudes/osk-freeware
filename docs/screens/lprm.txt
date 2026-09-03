@@ -1,0 +1,6 @@
+$ lprm -?
+Syntax: lprm [-d=dev] [-] job..
+Function: delete job from spoolerqueue
+Options:
+       -          deletes all entries
+       -d=dev     take queue of printer dev

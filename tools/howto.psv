@@ -17,15 +17,15 @@
 # Keep each line to one sentence or two. It is read at an OS-9 prompt, in 80
 # columns, by someone who has just been disappointed.
 
-orbit|The N3EMO satellite tracker, and it works. It opens kepler.dat, mode.dat and a <site>.sit BY BARE NAME in the DATA DIRECTORY, and they live in DOC/orbit -- so it is `ksh -c "cd /dd/DOC/orbit; orbit"', or `chd /dd/DOC/orbit' then `orbit' on a shell with a real chd. (bash's `cd' tracks a string and does not move the data directory, so under bash bring the three files to where you are instead: `cat /dd/DOC/orbit/kepler.dat > kepler.dat' and so on.) Then answer: satellite letter, site name without the .sit, month day year, hour, days, minutes per sample, RETURN for the terminal. Measured 2026-08-30, invocation corrected 2026-09-02.
-nasa|The program that FEEDS orbit. Give it NASA two-line elements in a file called nasa.dat in the current directory and it writes kepler.dat, which is what orbit reads. Neither file ships -- you supply nasa.dat.
+orbit|It reads kepler.dat, mode.dat and a <site>.sit by bare name from the current directory, and DOC/orbit holds them: `ksh -c "cd /dd/DOC/orbit; orbit"'. Answer d for a day's table, then the site (pgh), the date, the start hour, the step and the length.
+nasa|Put NASA two-line elements in nasa.dat in the current directory and run `nasa'; it writes kepler.dat, which `orbit' reads. No element set ships; they are published for every satellite.
 pwgen|pwgen <length> [count]. With no arguments it prints nothing and exits, which reads as a hang and is not one.
 bmgtest|bmgtest [-i] [-n] <pattern> [file ...]. A demonstration of Boyer-Moore-Gosper searching, not a tool you would use.
 life|life [init-file]. The patterns are in /dd/GAMES/LIFE -- try `life /dd/GAMES/LIFE/glider`. It also wants more memory than the default; from the OS-9 shell that is `life #22k <file>`, and bash has no #size syntax at all.
 bio|BASIC09 I-code, not a 68000 module, and this disk carries no `runb' to run it under. Under a BASIC09 system: `runb bio' by bare name from its directory.
 logisim|Set PORT first: `setenv PORT /term'. Without it, `logisim: Environment variable PORT not defined' -- it reopens the keyboard through that path. Two sample circuits ship in DOC/logisim (counter.lsi, flipflop.lsi) and its notes are there too, in German. Rebuilt 2026-08-31.
-calender|Prints the year in GERMAN. Not a typo of `calendar' -- a different program by a different author.
-gdd|A data dump -- like `od', with GNU-style long options. Needs Microware's cio.
+calender|A whole year at once, in German. It asks `Fuer welches Jahr?' (which year); RETURN at the question ends it.
+gdd|GNU dd -- a block copier and converter, not a dump; `dump' is the hex dump here. `gdd if=<file> bs=8 count=1' copies eight bytes, `conv=ucase' converts on the way through. `of=' can only name a file that already exists, so send the output through `>'. Run bare it ends the session. Needs Microware's cio.
 england|One of six weather simulators that differ only in climate and calendar: england, florida, georgia, minnesota, japan (Japanese calendar) and shire (Middle-earth). Each prints a day's weather and stops.
 japan|A weather simulator, not a calendar tool -- see `england'. It uses the Japanese calendar, which is the only reason it looks like one.
 shire|A weather simulator using the Middle-earth calendar -- see `england'.
@@ -47,7 +47,7 @@ nroff|Formats man pages -- but it NEVER RETURNS on this disk, and prints nothing
 lua|It stops at `**** csl traphandler mismatch ****' because it was built against a LATER csl than the edition 16 this disk ships. `load' a later csl module first -- anyone with a Microware SDK has one -- and it runs: `lua DOC/lua/examples/hello.lua' prints `hello world, from Lua!'. `luac' needs none of that. Eight example scripts are in DOC/lua/examples.
 luac|`luac -l -o out.lc in.lua' compiles and lists the bytecode instruction by instruction. It needs no csl and works as the disk stands. DOC/lua/examples has eight scripts that came with the package.
 gnuplot|Type `set term' first -- it lists every output device it knows, and refuses to plot until you choose one. Its whole manual is built in: type `help'. Demos and sample data are in DOC/gnuplot/demo. Needs Microware's cio.
-gawk|GNU awk 2.11, the first awk this disk has ever carried. Needs Microware's cio. `gawk "{print \$1}" file' -- and mind that the OS-9 shell, not gawk, is what mangles quoting.
+gawk|GNU awk 2.11. IT IGNORES A FILENAME ARGUMENT and reads standard input whatever it is given, so redirect: `gawk "{print \$1}" < file', never `gawk "{print \$1}" file' -- named a file it sits waiting on the terminal. Keep the program text short: a command line wider than the window scrolls under bash and is hard to read back. Needs Microware's cio.
 Librarian|One of six Home Librarian programs that must stay together -- its licence says so. Start here to search a catalogue; EditLibr edits one, Ascii2Libr builds one from text, Libr2Ascii dumps it back, PrintCards and PrintLabels print it. Manual in DOC/homelibr.
 sox|Converts between audio formats. There is no sound device here, so it converts files rather than plays them. Sample .iff sounds are in DOC/sox. Needs Microware's cio.
 p2c|Translates Pascal to C. It reads LIB/p2c/p2crc at startup and stops with "file not found" if that is missing; programs it emits must be linked against LIB/libp2c.l.
@@ -73,10 +73,10 @@ elvis|A full vi/ex clone, built here from the archive that was always on this di
 vi|One of three unrelated vi editors here, and the only one that is the genuine Berkeley ex/vi rather than a clone -- its source in SRC/effo_vi is the real ex_*.c files. `vi -x' becomes ex, `vi -d' becomes edit. DOC/README-VI compares all three.
 vi_nocio|PVIC 1.0a, the smallest of the three vi editors on this disk, public domain, no source or docs here. DOC/README-VI compares it with vi and elvis.
 giftopnm|Reads a GIF into the PNM formats the other 168 converters work on -- try `giftopnm /dd/DEMO/gulls.gif | pnmfile'. IMPORTANT for anyone piping images out of the emulator: os9exec turns CR into CRLF on the way to the host, so a raw image containing byte 13 arrives corrupted. Keep binary inside OS-9 and convert with pnmnoraw before taking a picture anywhere else. DOC/README-NETPBM has the details.
-cal|`cal -h' prints holidays alongside the calendar -- SYS/holidays is on the disk now, and SYS/birthdays is an empty template the holidays file INCLUDEs, so anything you add there shows up too. Add `-g' if the rule under the day names comes out as garbage on your terminal.
-file|Names real formats now that SYS/magic is here: `file /dd/DEMO/gulls.gif' reports the GIF version, size and colour count. Before the magic file arrived it could only recognise OS-9 modules.
-ephem|An astronomical ephemeris: it shows where the Sun, Moon and planets are, for a place and a moment. It starts LOOPING -- press any key to stop and enter command mode. CONTROL-D QUITS; `?' is help; control-L redraws. In command mode the arrow keys (or h/j/k/l) move between fields: RETURN opens the one under the cursor, type a value, RETURN accepts. `d' jumps to the date, `z' to the step size. The point of the program is that last pair: set StpSz to a day and NStep to 30, press `q', and it runs time forward and you watch the planets move.
-ephem881|The same program built for a 68881 coprocessor -- see the note for `ephem'. CONTROL-D quits.
+cal|`cal -m=<month> -y=<year>', with flags, not bare numbers; -h marks the holidays in SYS/holidays and anything you add to SYS/birthdays, which it includes.
+file|Names real formats now that SYS/magic is here: `file /dd/DEMO/gulls.gif' reports the GIF version, size and colour count.
+ephem|An astronomical ephemeris: `ephem -c /dd/SYS/ephem.cfg -d /dd/SYS/ephem.db'. RETURN passes the opening page; any key stops the loop; ? is help; control-D quits.
+ephem881|The same as ephem, built for a 68881 coprocessor. Control-D quits.
 animal|Full-screen: it takes over the display. **control-C gets you out** -- tested, and none of q, Q, control-D or ESC did. If it has a quit command of its own, its documentation in DOC/ will say.
 assembler|Full-screen: it takes over the display. **control-C gets you out** -- tested, and none of q, Q, control-D or ESC did. If it has a quit command of its own, its documentation in DOC/ will say.
 beav|Full-screen binary editor: `beav <file>'. Control-C leaves it.
@@ -169,12 +169,12 @@ dvialw|Works, and so do the other nine dvi* drivers -- but there are NO FONT BIT
 dhryO2|All eleven Dhrystone builds READ A RUN COUNT FROM STANDARD INPUT before they start -- run bare they print two lines and wait, which is why they were long recorded as doing nothing. `echo 200000 | dhryO2'. Under os9exec even 20000 runs finish inside one tick of the clock, so it answers "Measured time too small ... Please increase number of runs" rather than a rate; the comparison between builds is what they are here for, and on real hardware it works as intended.
 paranoia|Not a benchmark: it is the PARANOIA text adventure. RETURN to go on, a letter to choose, `p' for your statistics, six clones. `float' and `savage' are the floating-point benchmarks on this disk.
 
-eo|Runs a command on every line of a file, with `@' standing for the line: `eo <file> <command> @'. It shells out, so it needs SHELL set to a shell that takes a command line as one argument -- SYS/login sets `SHELL=/dd/CMDS/ksh' and that is what makes it work. Without it, `can't execute /dd/bash'. `-p' takes the lines from a pipe instead of a file. Measured 2026-08-31.
+eo|Runs a command on every line of a file, with `@' standing for the line: `eo <file> <command> @'. It shells out, so it needs SHELL set to a shell that takes a command line as one argument -- SYS/login sets `SHELL=/dd/CMDS/ksh' and that is what makes it work. Without it, `can't execute /dd/bash'. `-p' takes the lines from a pipe instead of a file.
 psc|Feeds `sc', the spreadsheet: `psc -d' ' < table' turns rows of numbers into `let A0 = 1' commands sc can read. -r assembles rows first, -s names the top-left cell, -d sets the delimiter.
 remove|Removes MODULES FROM MEMORY, not files. `del', `rm' and `deldir' are the file ones.
-paste|Joins lines side by side, tab-separated by default: `paste f1 f2'. `-d:' picks another separator; `-s' puts one file's lines on a single line. Build its input with the shell's `echo' -- /dd/CMDS/printf drops everything before the first conversion and can leave you a zero-byte file.
+paste|Joins lines side by side, tab-separated by default: `paste f1 f2'. `-d:' picks another separator; `-s' puts one file's lines on a single line.
 
-tangle|Needs a CHANGE FILE named, always. `tangle yourfile.web' alone answers `Error: `Can't open file.'' and the file it cannot open is the absent change file, not your source. DOC/tex ships `sample.web' and `none.ch' (empty, changes nothing): copy both to your data directory and run `tangle sample none'. It reads and writes in the DATA directory, which bash's `cd' does not move. `weave sample none' is the other half. Measured 2026-08-31.
+tangle|Needs a CHANGE FILE named, always. `tangle yourfile.web' alone answers `Error: `Can't open file.'' and the file it cannot open is the absent change file, not your source. DOC/tex ships `sample.web' and `none.ch' (empty, changes nothing): copy both to your data directory and run `tangle sample none'. It reads and writes in the DATA directory, which bash's `cd' does not move. `weave sample none' is the other half.
 
 xrf|Wants TWO files in the DATA directory, not on the command line: its language table as `C.XRF' (the disk has it as DOC/xrf/c.xrf -- copy it) and the source you name. Given both it prints a full cross-reference: every identifier with the lines it appears on. Rebuilt 2026-08-31; before that it read the table and never read one byte of the source, which is the clearest demonstration of the cio selector fault on this disk.
 cvtbase|The BASES are the arguments and the NUMBER comes on standard input: `echo 255 ! cvtbase d h' answers ff, `cvtbase d b' answers 11111111. Bases are named b, d, h or x, o -- or by their actual digit characters. Rebuilt 2026-08-31; before that it flooded and converted nothing.
@@ -201,7 +201,7 @@ greg|It converts a JULIAN DAY NUMBER to a Gregorian date and is nothing to do wi
 convert|It STARTS the `world' adventure. It does not build data tables.
 modbuster|Give it a file holding SEVERAL modules and it writes one file per module in the CURRENT directory -- `/dd/CMDS/GAMES/cyberwar' is a real group of four. Use ksh to put yourself somewhere writable first.
 yagi|It asks FIVE questions on standard input -- centre frequency in MHz, element count, boom diameter, whether the elements are insulated from the boom (Y/N), and a tubing size off its own list of six. Answer four and it loops on the fifth forever, because EOF on a numeric read returns the same thing every time.
-casefix|It is a FILTER and reads STANDARD INPUT: `casefix < file'. Handed the file as an argument it prints nothing at all, which is how it was written off twice.
+casefix|It is a FILTER and reads STANDARD INPUT: `casefix < file'. Handed the file as an argument it prints nothing at all.
 bibtex|It reads the job name from STANDARD INPUT -- `Please type input file name (no extension)--' is a prompt, not silence. The .bst styles are in SYS/TEX/INPUTS (plain, unsrt, abbrv, alpha), not SYS/TEX/BIB, which holds one read.me. A BACKSLASH CANNOT BE TYPED at this shell -- bash's echo eats `\c' -- so patch one in with `pbyte <file> <hex offset> 5c'.
 makecrc|It GENERATES C SOURCE and takes no arguments. Run it somewhere writable (`ksh -c "cd /dd/tmp; makecrc"') and it writes six files -- arc.c, binhex.c, ccitt.c, ccitt32.c, kermit.c, zip.c -- each a crctab[256] and an updcrc(). It prints nothing, so list the directory afterwards.
 uuencode|ONE argument, the file: `uuencode /dd/SYS/motd > out.uu'. Its usage line reads as though it wants two and with two it prints that line and stops. `uudecode' is what undoes it.
@@ -242,3 +242,8 @@ xc|`xc <file>': lines beginning `% ' are commands, the rest is notes. It forks t
 checkenv|`checkenv <name> , <value>' with spaces round the comma. Meant to return an error when they differ; it returns 0 either way.
 hist|A command-line editor with history in front of the shell. On this console it prints a row of asterisks and returns at once.
 run|`run '<program> <args>'' with PORT naming a terminal: the program runs with its input and output on that terminal.
+gcl|A full-screen digital clock: `gcl' runs until stopped, `gcl -n=10' for ten seconds; -s scrolls the digits, -i inverts the video.
+cuts|Its ENCODER does not work: `cuts -e <file>' asks for four gigabytes of memory, is refused, and goes on writing empty data lines until it is stopped. `-d' decodes a cuts file, which is the half worth having.
+splitalf|It makes <name>_0 and then stops with `can't open output file(s)', whatever it is given -- it tests a file slot it has not opened yet. No argument gets round it.
+subber|It calls F$Mem at once and stops there, so it substitutes nothing. The word list is `,old,new,' one per line, the stream is the second argument.
+tcmp|Compares two text files and prints each differing line, both versions one under the other with the line number in each file. Files whose lines differ only in tabs and spaces are reported as changed, which reads oddly until you dump them.

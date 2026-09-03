@@ -1,21 +1,20 @@
-$ head -n 3 /dd/SYS/holidays 2>/nil | tail -l=1 > /dd/tmp/t2.txt
-$ dump /dd/tmp/t2.txt
+dump /dd/tmp/TEXTA/tab.txt
 
 Addr   0 1  2 3  4 5  6 7  8 9  A B  C D  E F 0 2 4 6 8 A C E
 ----  ---- ---- ---- ---- ---- ---- ---- ---- ----------------
 0000  312F 3109 094E 6577 2059 6561 7227 7320 1/1..New Year's
 0010  4461 790D                               Day.
-$ expand /dd/tmp/t2.txt > /dd/tmp/t3.txt
-$ dump /dd/tmp/t3.txt
+$ expand /dd/tmp/TEXTA/tab.txt > /dd/tmp/TEXTA/sp.txt
+$ dump /dd/tmp/TEXTA/sp.txt
 
 Addr   0 1  2 3  4 5  6 7  8 9  A B  C D  E F 0 2 4 6 8 A C E
 ----  ---- ---- ---- ---- ---- ---- ---- ---- ----------------
 0000  312F 3120 2020 2020 2020 2020 2020 2020 1/1
 0010  4E65 7720 5965 6172 2773 2044 6179 0D   New Year's Day.
-$ unexpand -a < /dd/tmp/t3.txt > /dd/tmp/t4.txt
-$ dump /dd/tmp/t4.txt
+$ expand -t 4 /dd/tmp/TEXTA/tab.txt > /dd/tmp/TEXTA/sp4.txt
+$ dump /dd/tmp/TEXTA/sp4.txt
 
 Addr   0 1  2 3  4 5  6 7  8 9  A B  C D  E F 0 2 4 6 8 A C E
 ----  ---- ---- ---- ---- ---- ---- ---- ---- ----------------
-0000  312F 3109 094E 6577 2059 6561 7227 7320 1/1..New Year's
-0010  4461 790D                               Day.
+0000  312F 3120 2020 2020 4E65 7720 5965 6172 1/1     New Year
+0010  2773 2044 6179 0D                       's Day.

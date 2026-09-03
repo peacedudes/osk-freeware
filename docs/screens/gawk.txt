@@ -1,14 +1,14 @@
-$ gawk "{print substr(\$1,1,1)}" < /dd/DOC/INDEX > /dd/tmp/1st
-$ sort /dd/tmp/1st | uniq -c | sort -nr | head -n 12
-371 *
-130
-97 a
-84 s
-81 p
-76 t
-69 m
-63 c
-56 d
-55 -
-46 b
-46 w
+$ cat /dd/SYS/password
+su, ,0.0,128,/dd/cmds,/dd/sys,shell -p="su: "
+tester,,1.7,128,/dd/CMDS,/dd/USR/TESTER,shell
+,,1.99,128,/dd/CMDS,/dd/USR/ANON,shell -p="anon: "
+uucp,,3.1,128,/dd/CMDS/UUCP,/dd/USR/LIB/UUCP,shell
+os9,,0.0,128,/dd/CMDS,/dd,shell
+$ gawk -F, "{printf \"%-8s %s\n\", \$1, \$6}" < /dd/SYS/password
+su       /dd/sys
+tester   /dd/USR/TESTER
+         /dd/USR/ANON
+uucp     /dd/USR/LIB/UUCP
+os9      /dd
+$ gawk "{w+=NF} END {print NR, w}" < /dd/SYS/holidays
+37 103

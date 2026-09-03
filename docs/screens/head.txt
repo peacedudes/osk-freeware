@@ -1,0 +1,17 @@
+cat /dd/tmp/TEXTA/hol.txt
+* Common Holidays
+
+1/1             New Year's Day
+2/14 Valentine's Day
+3/17 St. Patrick's Day
+easter Easter Sunday
+*easter-7 Palm Sunday
+*easter-46 Ash Wednesday
+$ head -n 3 /dd/tmp/TEXTA/hol.txt
+* Common Holidays
+
+1/1             New Year's Day
+$ cat /dd/tmp/TEXTA/hol.txt | head -n 3
+* Common Holidays
+
+1/1             New Year's Day

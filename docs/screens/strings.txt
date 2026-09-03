@@ -1,18 +1,15 @@
-$ strings /dd/CMDS/today | head -n 12
-$000048: <today>
-$000052: <                                                                >
-$00023A: < Stack Overflow >
-$000254: < Can>
-$000259: <t install trap handler >
-$00027D: <math>
-$0002D0: <NuNU>
-$0003DC: <NuNU>
-$000472: <NuSunday>
-$00047B: <Monday>
-$000482: <Tuesday>
-$00048A: <Wednesday>
-$ what /dd/CMDS/today
-
-What's where in the GEPARD:
-IO-Address  Ref-Byte  Name of the card
------------------------------------------------------------------
+$ strings -l=12 /dd/CMDS/file | head -n 14
+$00017F: <t install math trap handler >
+$0002DC: <File Manager >
+$0002EA: <Trap Library >
+$0002F8: <File Manager >
+$000306: <Trap Library >
+$000314: <Device Driver >
+$000334: <Device Driver >
+$000388: <Device Descriptor >
+$00039C: <Device Descriptor >
+$0003B6: <C Header file>
+$0003CC: <C Source file>
+$0003E2: <POSIX tar file>
+$0003F8: <file not found>
+$00040E: <unknown file type>

@@ -1,10 +1,5 @@
-$ sum /dd/SYS/motd /dd/SYS/holidays
+$ sum /dd/SYS/motd /dd/SYS/holidays /dd/SYS/birthdays /dd/DOC/INDEX
 34333     1 /dd/SYS/motd
 11804     1 /dd/SYS/holidays
-$ tail -l=4 /dd/SYS/holidays
-*11/11 Veteran's Day (US)
-*11/4thur Thanksgiving (US)
-
-INCLUDE /dd/sys/birthdays
-$ head -n 3 /dd/SYS/motd
-Welcome to os9exec -- OS-9/68k emulator
+21283     1 /dd/SYS/birthdays
+59734   162 /dd/DOC/INDEX
