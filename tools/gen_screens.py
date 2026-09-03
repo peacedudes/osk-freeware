@@ -404,8 +404,16 @@ def collect():
                                                "categories.psv"))
     bycat = {p["name"]: (p["cat"], p["sub"]) for p in progs}
     sheets = sheet_shots()
-    names = sorted({f.split(".")[0] for f in os.listdir(CAPS)
-                    if f.endswith(".txt")})
+    files = [f for f in os.listdir(CAPS) if f.endswith(".txt")]
+    # A STANZA'S NAME CAN CONTAIN A DOT -- emacs.mm1, vi.elvis, sed_1.06 --
+    # so the name is not "the file name up to the first dot": that read
+    # emacs.mm1.shot.txt as a capture of `emacs' and published nothing for
+    # emacs.mm1, vi.elvis or vi_1.0 (2026-09-03).  Start from the names
+    # that DEFINE a screen and ask which of them have a capture.
+    played = {f[:-5] for f in os.listdir(PLAYTESTS)} if os.path.isdir(PLAYTESTS) else set()
+    known = set(sheets) | set(CAPTIONS) | played
+    names = sorted(n for n in known
+                   if any(f.startswith(n + ".") for f in files))
     # A CAPTURE NO STANZA DEFINES IS NOT A SCREEN.  Probing a program means
     # writing a throwaway sheet and capturing it, and those captures land in
     # the same directory as the real ones -- `advprobe2' was published to
@@ -417,13 +425,11 @@ def collect():
     # same directory, and gnuchessn, pacman, maze and eight others are
     # published from there.  A first cut of this check knew only about sheets
     # and would have dropped all eleven.
-    played = {f[:-5] for f in os.listdir(PLAYTESTS)} if os.path.isdir(PLAYTESTS) else set()
-    orphans = [n for n in names
-               if n not in sheets and n not in CAPTIONS and n not in played]
+    orphans = sorted({f.split(".")[0] for f in files
+                      if not any(f.startswith(n + ".") for n in known)})
     if orphans:
         print("  %d capture(s) belong to no stanza and are NOT published: %s"
               % (len(orphans), " ".join(orphans[:8])))
-    names = [n for n in names if n not in orphans]
 
     out = []
     for name in names:

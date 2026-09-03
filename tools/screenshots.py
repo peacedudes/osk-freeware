@@ -342,6 +342,18 @@ def capture(sess, shot):
 
 
 def _drive(sess, shot):
+    # EVERY STANZA STARTS WITH THE LOGIN ENVIRONMENT.  A stanza that sources
+    # /dd/SYS/termcap.entry -- hexedit, vi_cio -- leaves TERMCAP holding the
+    # entry text for the rest of the session, and vi_1.0, which wants a
+    # file name there, then published `Cannot open termcap file vt100|dec
+    # vt100...'.  One joined line, typed before the clear, so it is never
+    # in the picture.
+    # Two lines, not one: joined, the exports run to 592 bytes and SCF
+    # delivers at most 512 of a line.
+    half = len(LOGIN) // 2
+    for part in (LOGIN[:half], LOGIN[half:]):
+        sess.write("; ".join(part) + "\r")
+        time.sleep(0.6)
     sess.write("clear\r")
     time.sleep(1.2)
     shot["_start"] = sess.mark()
