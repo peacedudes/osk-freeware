@@ -1,8 +1,9 @@
 cuts -e /dd/tmp/TEXTA/fox.txt | head -n 4
-# No more memory: 2092901184-byte request refused, 31679616 bytes free in a 335a
+# No more memory: 3997533632-byte request refused, 32803264 bytes free in a 335a
 .0000.I.A.1260903.BIN."fox.txt"...............................................=
-# No more memory: 10166016-byte request refused, 9895296 bytes free in a 335544a
-# No more memory: 11618304-byte request refused, 9895296 bytes free in a 335530)
-.0001.D!0.@@.8!0!0!0!0!0!0!0!0!0!0!0!0!0!0!0!0!0!0!0!0!0!0!0!0!0!0!0!0!0!0!0#K
-.0002.D!05@!0!0!0!0!0!0!0!0!0!0!0!0!0!0!0!0!0!0!0!0!0!0!0!0!0!0!0!0!0!0!0!0!0#L
+# No more memory: 10769408-byte request refused, 3187392 bytes free in a 335544a
+# No more memory: 12115584-byte request refused, 3187392 bytes free in a 335544a
+# No more memory: 1000 allocation failures so far, still failing (latest 215388)
+.0001.D!0+@#@+8+8!0!0!0!0!0!0!0!0!0!0!0!0!0!0!0!0!0!0!0!0!0!0!0!0!0!0!0!0!0!0#O
+.0002.D!0!0!0!0!0!0!0!0!0!0!0!0!0!0!0!0!0!0!0!0!0!0!0!0!0!0!0!0!0!0!0!0!0!0!0#H
 .0003.D!0!0!0!0!0!0!0!0!0!0!0!0!0!0!0!0!0!0!0!0!0!0!0!0!0!0!0!0!0!0!0!0!0!0!0#I

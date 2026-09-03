@@ -647,3 +647,9 @@ run     clear
 wait    1
 run     makelex < /dd/tmp/TXT/wl
 wait    6
+
+shot    fgrep
+cap     Searches for a fixed string rather than a pattern: the lines of
+cap     the password file naming a home under USR.
+run     fgrep -n USR /dd/SYS/password
+wait    5

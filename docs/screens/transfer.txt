@@ -1,12 +1,6 @@
-$ cp /dd/SYS/holidays /dd/tmp/cut.txt
-$ ls -l /dd/tmp/cut.txt
--rw-rw-rw-   1 0        0             717 Aug  3 19:00 /dd/tmp/cut.txt
-$ trunc /dd/tmp/cut.txt 100
-$ ls -l /dd/tmp/cut.txt
--rw-rw-rw-   1 0        0             100 Aug 30 14:57 /dd/tmp/cut.txt
-$ fillup -n=200 -i=65 /dd/tmp/cut.txt
-100 bytes (value=65) appended: total file size is now 200
-$ ls -l /dd/tmp/cut.txt
--rw-rw-rw-   1 0        0             200 Aug 30 14:57 /dd/tmp/cut.txt
-$ preset < /nil
-.dir .umacs .work.a .r68 .l68 .-l=usr.l .-o=.work.r .dsave -ieb128k ./d0./d1./`!
+Can't load device descriptor 'DGDOS0' !
+
+
+*** ERROR # 221
+
+Press any key to continue ...

@@ -258,4 +258,4 @@ pnmpaste
 tplot
 edir
 eunlink
-fgrep
+preset
