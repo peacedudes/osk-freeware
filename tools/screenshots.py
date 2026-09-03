@@ -39,6 +39,13 @@ Sheet format (blank lines and `#' comments ignored):
     kill                           Ctrl-E now, BEFORE the screen is taken --
                                    how to capture the FIRST page of a
                                    program that prints for pages
+    snap                           TAKE THE PICTURE HERE.  Without it the
+                                   fullest moment of the stanza is kept,
+                                   which is right for a program that prints
+                                   and wrong for a game: touchtype's level
+                                   menu has more ink than its playing field,
+                                   so the menu was published.  With one or
+                                   more `snap's, only those moments compete.
     rate    0.4                    seconds between `keys' characters
     size    24 80                  window size for the stanzas that follow
     quit    \033:q!\r              keys to leave the program politely, sent
@@ -154,6 +161,8 @@ def parse(path):
             cur["acts"].append(("run", rest))
         elif word == "kill":
             cur["acts"].append(("kill", ""))
+        elif word == "snap":
+            cur["acts"].append(("snap", ""))
         elif word == "wait":
             cur["acts"].append(("wait", float(rest)))
         elif word == "send":
@@ -285,7 +294,9 @@ def moments(sess, shot, start, end):
     rows, cols = shot["size"]
     best, best_worth = None, -1
     fallback, fallback_worth = None, -1
-    for at in list(shot.get("_marks", [])) + [end]:
+    # A stanza that said WHERE to look is not asking for the fullest moment.
+    snaps = shot.get("_snaps") or []
+    for at in snaps or (list(shot.get("_marks", [])) + [end]):
         if at <= start:
             continue
         scr = ansiscreen.render(trim_partial(sess.slice(start, at)), rows, cols)
@@ -328,6 +339,7 @@ def _drive(sess, shot):
     time.sleep(1.2)
     shot["_start"] = sess.mark()
     shot["_marks"] = []
+    shot["_snaps"] = []
     for kind, val in shot["acts"]:
         if kind == "run":
             sess.write(val + "\r")
@@ -350,6 +362,8 @@ def _drive(sess, shot):
             for ch in val:
                 sess.write(ch)
                 time.sleep(shot["rate"])
+        elif kind == "snap":
+            shot["_snaps"].append(sess.mark())
         elif kind == "kill":
             # STOP IT WHILE ITS FIRST PAGE IS STILL ON SCREEN. `shire' prints
             # a year of weather and `calender' a year of dates; rendering the

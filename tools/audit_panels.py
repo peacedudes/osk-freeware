@@ -117,7 +117,7 @@ def played():
 
 def names_it(prog, line):
     """Does this command line run `prog' -- by bare name or by path?"""
-    return re.search(r"(^|[\s/|;=(])%s(?=$|[\s|;<>)])" % re.escape(prog),
+    return re.search(r"(^|[\s/|;=(\"'])%s(?=$|[\s|;<>)\"'])" % re.escape(prog),
                      line) is not None
 
 
@@ -179,7 +179,15 @@ def verdict_for(prog, panel, cards, plays):
         mine = [r for r in runs if names_it(prog, r)]
         if not mine:
             return "not-run", "on the `%s' card" % card
-        seen = [b for b in blocks(panel["s"], runs) if b[0] in mine]
+        found = blocks(panel["s"], runs)
+        seen = [b for b in found if b[0] in mine]
+        if not found:
+            # A FULL-SCREEN PROGRAM CLEARS THE COMMAND THAT STARTED IT.  No
+            # typed command is on the screen at all, the card runs this
+            # program, so the whole screen is its own: touchtype's playing
+            # field, rstory's page, logisim's pulse diagram.
+            seen = [("", [l.strip() for l in panel["s"].split("\n")
+                          if l.strip()])]
         if not seen:
             return "scrolled-off", "on the `%s' card" % card
         usage, err, work = map(sum, zip(*[score(b[1]) for b in seen]))

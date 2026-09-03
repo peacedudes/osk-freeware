@@ -102,9 +102,6 @@ CAPTIONS = {
     "beav":     ("beav, the binary editor, on a file of this disk's own "
                  "documentation: hex on the left, characters on the right.",
                  "final"),
-    "bio":      ("bio is BASIC09 I-code, not a 68000 module, and there is no "
-                 "runb on this disk -- so the shell says `cannot execute "
-                 "binary file'.", "final"),
     "cal":      ("cal printing a month.  It wants flags -- -m for the months "
                  "and -y for the year -- not two bare numbers.", "output"),
     "cam":      ("cam computes camshaft timing: lift, duration and rocker "
@@ -298,6 +295,13 @@ def trim(text, first=""):
             if ln.strip() == "$":
                 continue
             lines.append(ln.rstrip())
+    # THE EMULATOR'S OWN DIAGNOSTICS ARE NOT THE PROGRAM'S OUTPUT.  os9exec
+    # prints `F$SetSys: unimplemented 03D8' to the console when a program
+    # reads a system global it does not model, and the C run-time of
+    # several programs here reads that one four times at start-up.  It is
+    # noise about os9exec on a card about the program; recorded in
+    # notes/os9exec-bugs, and left off the picture.
+    lines = [ln for ln in lines if not ln.startswith("F$SetSys: unimplemented")]
     while lines and not lines[0].strip():
         lines.pop(0)
     while lines and not lines[-1].strip():
