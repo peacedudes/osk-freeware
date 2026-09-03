@@ -1,8 +1,0 @@
-family  dvi3
-setup   export TERM=vt100
-setup   W=/dd/tmp/DVX
-drive   dvitype-bare-and-fed
-run     /dd/CMDS/TEXCMDS/dvitype
-run     echo "--- bare done"
-run     /dd/CMDS/ksh -c "cd $W; /dd/CMDS/TEXCMDS/dvitype story.dvi < /nil"
-run     echo "--- end"

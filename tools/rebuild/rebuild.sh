@@ -46,7 +46,12 @@ EXE=${OS9EXEC:-$REPO/../os9exec/os9exec}
 [ -d "$OS9COMPAT" ] || { echo "no COMPAT headers at $OS9COMPAT" >&2; exit 2; }
 WORK=${TMPDIR:-/tmp}/os9rebuild.$$
 mkdir -p "$WORK"
-trap 'rm -rf "$WORK"' EXIT
+# KEEPWORK=1 leaves $WORK behind, build.log and all.  A failed build says
+# `FAIL=1' and nothing else; the log is the only place the compiler's own
+# words survive, and it goes with the work directory.  Chasing the lua build
+# on 2026-09-02 meant copying this script and editing this line, which left
+# a near-duplicate of the driver in the tree.
+trap '[ "${KEEPWORK:-0}" = 1 ] && echo "  kept $WORK" || rm -rf "$WORK"' EXIT
 
 OUT=${OUT:-$WORK/results.tsv}; : > "$OUT"
 LOG=${LOG:-$WORK/build.log};   : > "$LOG"
