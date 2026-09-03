@@ -262,7 +262,10 @@ backlog and commits. Report what was changed and what was found.
    this program, is it in the right sub-category, is the sub-category
    itself right, does it need something (and does `DOC/DEPENDS` list it),
    is there a better invocation, and is there anything its own
-   documentation adds that a stranger needs. Fix `DOC/INDEX` (CR-only --
+   documentation adds that a stranger needs. `tools/audit_craft.py --show
+   INDEX` (and `--show howto`, `--show captions`) lists the entries that
+   carry dates, "measured", "used to", "this collection", "the card" or
+   os9exec: rewrite every one of yours for a stranger. Fix `DOC/INDEX` (CR-only --
    write bytes, `\r` for every newline), `tools/howto.psv` and
    `tools/categories.psv` where they are wrong. A program that cannot do
    its job here -- wants hardware, a peer, a helper that never came, a

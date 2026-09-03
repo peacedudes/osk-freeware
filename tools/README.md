@@ -37,6 +37,9 @@
     probe_sheet.py      run a scratch sheet through the capture harness and
                         PRINT the screens, saving nothing -- the step before
                         a stanza goes into a real sheet
+    audit_craft.py      reader-facing text -- captions, INDEX entries, howto
+                        notes -- that carries dates, "measured", "used to",
+                        "this collection" or os9exec: craft, not content
     audit_panels.py     what each PROGRAM's panel shows OF THAT PROGRAM --
                         the per-program audit; its --gate is the ratchet
                         check_disk runs against tools/panel-backlog.txt
