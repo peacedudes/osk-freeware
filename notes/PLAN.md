@@ -115,6 +115,131 @@ left.
 
 ---
 
+## The release pass, from 2026-09-03 -- read this before the numbered sections
+
+rdoggett spot-checked a random card (`lessecho`) on 2026-09-02 and it showed
+`helpindex`'s help text, `lesskey`'s usage line, a bare `lessecho < /nil`,
+and a caption about the other two programs. He asked for a plan from here to
+a minimal acceptable release. This section is that plan; the numbered
+sections below it are still true in detail and are where the per-program
+mechanics live.
+
+### What is actually wrong, measured
+
+The gallery is built and audited PER CARD but read PER PROGRAM. 408 cards
+credit 932 programs; 539 of those programs borrow another program's card.
+A capture is one final screen, so on a card that runs five programs the
+first three have scrolled off before the picture is taken. `audit_cards.py`
+scores the whole card, so a program rides on its neighbour's output and the
+tool reports 0 of 408 flagged. That is this collection's oldest defect: a
+check that cannot fail.
+
+Scored per program, by what its own panel shows OF THAT PROGRAM (same
+USAGE/ERROR/WORK rules, applied to the lines after its own command):
+
+| the panel shows | programs |
+|---|---|
+| the program doing its job | 441 |
+| its command scrolled off before the capture | 217 |
+| it ran and printed nothing | 127 |
+| a play-test capture, not yet reviewed one by one | 71 |
+| only an error, only a help line, or mostly error | 56 |
+| never run on the card it is credited to | 20 |
+
+About half. A random sample of six agreed: two good, one blank board frame
+(`backgammon`), one "cannot open bootfile" (`bsplt68`), two whose own
+output had scrolled away. `touchtype` is a second class: the play-test
+never answered its y/n prompt, then sent Ctrl-C, and the card shows the
+game reporting that signal as a fatal error -- while the clean pre-kill
+snapshot sits unused because `gen_screens.py` asks for the post-kill one by
+name. Captions are a third class: 64 caption lines carry dates,
+`DOC/INDEX`, "until", "used to" or "this collection" -- changelog written
+for the maintainer, which is why `lessecho`'s panel explains `helpindex`.
+
+### Minimal acceptable release, defined
+
+1. **Every program's panel shows THAT program's own output doing its job**,
+   or a one-line honest statement of why there is none (needs hardware, a
+   peer, or ends the session). Nothing shows a neighbour's output in place
+   of its own.
+2. **Every caption describes what a stranger is looking at and what to
+   type.** No history, no dates, no maintainer voice, nothing about how the
+   card was made or what the collection used to think. Nothing on a card
+   that is unrelated to the card.
+3. **Every description line is that program's**, and the untested residue
+   is documented as such.
+4. **A per-program panel check is in `check_disk.py`**, proven able to fail
+   by `check_the_checks.py`, with named exceptions carrying reasons.
+5. **The page lets a reader find a program and read its panel without
+   losing their place.**
+
+### The card rules, from rdoggett 2026-09-03
+
+- **One card, one program.** `for' stays only for a genuine family whose
+  members behave alike and are each run on the card (the DVI drivers, a
+  shelf of descriptors). A program credited on a card it is not run on
+  fails the audit, and that is right.
+- **`clear` before the capture run.** The harness already clears at the
+  start of a stanza; a stanza with setup lines should `clear` again before
+  the run that is the picture.
+- **Not only 24x80, and not only the first 24 lines.** `size` is per
+  stanza; give a program that needs 40 lines 40 lines. The first page is
+  usually the right one and `kill` takes it; where the interesting part is
+  later, capture later.
+- **Run each program and do with it what it does.** A prompter gets its
+  prompts answered with a plausible choice and the result shown; `biory`
+  is the model: German prompts, answered, with the prompts translated in
+  the caption and a real chart on the card.
+- **Per program, in this order:** what is it; can it run here and what
+  does it need (and does `DOC/DEPENDS`, which is what `keep` reads, list
+  that); what does it do; how do I show that; does it make sense; is it
+  useful; does it need explanation that its own `DOC/` can supply; or is it
+  best forgotten. Read the disk's own documentation before running anything.
+- **Is it in the right group, and is the group right?** Every pass over a
+  category asks both. First change: the simulated-weather programs get a
+  sub-category of their own.
+- **No craft on the card.** Nothing that reveals how the library was made:
+  no "it turns out", no "this collection had it wrong", no "until
+  2026-08-31", no "the card used to". The reader is a stranger in 2040.
+
+### The plan, in order
+
+- **Phase 0 -- measure and gate (one session).** `tools/audit_panels.py`
+  scores each program by what its own panel shows of it, and
+  `tools/panel-backlog.txt` is the ratchet: `check_disk.py` fails on a
+  program that fails the audit and is not on the backlog, and on a backlog
+  entry that now passes (remove it). `check_the_checks.py` breaks it both
+  ways. Named exceptions with reasons live in `tools/panel-exceptions.psv`.
+  This turns "0 flagged" into an honest backlog of about 490 and makes every
+  card fixed after it a line removed from a file.
+- **Phase 1 -- the per-program pass (the long one).** Category by category,
+  each program gets the eight questions above and its own stanza, caption
+  and size. Batches can run in parallel against separate copies of the
+  image (every harness takes `--image`), two at a time. Programs that are
+  best forgotten go on a list for rdoggett in `notes/FOR-RDOGGETT.md`;
+  removing a program is his decision.
+- **Phase 2 -- captions and play-tests.** The caption rule goes into
+  `screenshots.py`'s sheet-format header and a mechanical check flags the
+  words that reveal craft; the 71 play-tests are reviewed as a set, each
+  one made to reach the program actually doing its thing.
+- **Phase 3 -- the page.** Master-detail in columns: three on a wide screen
+  (categories, programs, panel), two on iPad portrait (list, panel) with
+  the category as a picker above, and the current bottom sheet on a phone.
+  Selecting a program fills the next column instead of opening a modal over
+  the list. Data and generator stay; this is template-only.
+- **Phase 4 -- release.** Run the CI workflow once for real, tag, publish.
+
+### Rules for this pass
+
+- **An os9exec bug stops the work.** rdoggett, 2026-09-03: *"If you discover
+  any bugs in os9exec's implementation, you should stop and tell me loudly."*
+  Everything else: keep going as long as there is work.
+- **At most two subagents at once.**
+- **Skill errors go to `~/Developer/os9/os9-dev-skill/maintainer/FIELD-REPORT-osk-freeware.md`**
+  (gitignored there, on purpose) so the skill's own sessions can act on them.
+
+---
+
 ## The work, in order
 
 > **Read this first if you are new here.** On 2026-08-31 rdoggett asked for
