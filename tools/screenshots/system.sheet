@@ -199,20 +199,19 @@ wait    14
 kill
 
 shot    fastcc
-for     fastcc compiler assembler lfmaker
-cap     The GSHELL front ends, and fastcc -- a quicker driver for cc.
+for     fastcc lfmaker
+cap     fastcc, a quicker driver for cc, and lfmaker.
 run     fastcc -?
 wait    6
-run     compiler -?
-wait    6
-run     assembler < /nil
-wait    8
 run     lfmaker < /nil
 wait    10
 
 shot    flink
-cap     flink lists a module's links -- what has it loaded and who holds it.
-run     flink /dd/CMDS/today
+cap     flink makes a second directory entry for a file under a name you
+cap     give, an RBF hard link.  It is shown by its usage rather than run:
+cap     RBF has no true hard links, and removing such an entry can leave
+cap     the original pointing at the wrong place.
+run     flink
 wait    5
 
 shot    gen
