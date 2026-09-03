@@ -1,0 +1,5 @@
+messages
+There is 1 message in your mailbox
+$ fastmail /dd/tmp/MAILA/fm.txt tester
+$ messages
+There is 1 message in your mailbox

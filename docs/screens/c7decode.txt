@@ -1,0 +1,3 @@
+c7decode < /dd/tmp/MAILA/c7.txt
+c7decode: Bad data
++.#.X .+

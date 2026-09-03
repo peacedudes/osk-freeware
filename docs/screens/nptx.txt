@@ -1,0 +1,2 @@
+nptx < /dd/tmp/MAILA/np.txt
+jqpublic        John Q Public

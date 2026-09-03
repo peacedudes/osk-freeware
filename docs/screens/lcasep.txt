@@ -1,0 +1,2 @@
+lcasep < /dd/tmp/MAILA/lc.txt
+robert smith

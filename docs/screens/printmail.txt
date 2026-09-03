@@ -1,18 +1,4 @@
-Updating your personal alias file...
-** Error writing alias 'home'.
-
-** Not saving tables!  Please fix and re-run!
-$ newalias -g
-Updating the system alias file...
-** Error writing alias 'os9'.
-
-** Not saving tables!  Please fix and re-run!
-$ listalias
-home                 os9-freeware (This Collection)
-os9                  os9-freeware (The OS-9 Freeware Collection)
-$ messages
-There is 1 message in your mailbox
-$ readmsg 1
+printmail 1
 From: The OS-9 Freeware Collection <os9-freeware>
 To: tester
 Subject: Welcome -- this is a real mail folder

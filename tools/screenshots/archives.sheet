@@ -78,19 +78,6 @@ wait    1
 run     cat /dd/tmp/ARC/one /dd/tmp/ARC/two
 wait    5
 
-shot    combine
-cap     combine interleaves two files BYTE BY BYTE -- even bytes from the
-cap     first, odd from the second -- which is how a 16-bit EPROM image is
-cap     rebuilt from its two 8-bit halves.
-run     mkdir -p /dd/tmp/ARC > /nil 2>/nil; printf "AAAAAAAA\r" > /dd/tmp/ARC/even; printf "BBBBBBBB\r" > /dd/tmp/ARC/odd
-wait    3
-run     clear
-wait    1
-run     combine /dd/tmp/ARC/even /dd/tmp/ARC/odd /dd/tmp/ARC/mix -q
-wait    6
-run     cat /dd/tmp/ARC/mix
-wait    5
-
 shot    modbuster
 cap     modbuster splits a file of several merged OS-9 modules into one
 cap     file per module, in the current directory -- shown here on a
@@ -102,17 +89,6 @@ run     clear
 wait    1
 run     modbuster today2
 wait    6
-
-shot    demerge
-cap     demerge does the same job as modbuster by another hand, and
-cap     refuses anything over 64000 bytes outright -- shown here against
-cap     the CyberWar game's binary, which is bigger than that.
-run     rm -f /dd/cyberwar2; cp /dd/CMDS/GAMES/cyberwar /dd/cyberwar2
-wait    4
-run     clear
-wait    1
-run     demerge cyberwar2
-wait    8
 
 shot    compr
 cap     compr, a second OS-9 file compressor, on the disk's index.

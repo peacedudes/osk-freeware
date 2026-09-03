@@ -1,0 +1,2 @@
+$ ynad
+.!YNAD - Yet Another Name & Address program "----------------------------------

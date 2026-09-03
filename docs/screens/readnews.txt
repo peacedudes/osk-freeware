@@ -1,0 +1,8 @@
+$ readnews
+New newsgroup: alt.folklore.computers--Subscribe? [yn] n
+New newsgroup: alt.folklore.urban--Subscribe? [yn]
+New newsgroup: alt.magic--Subscribe? [yn] n
+New newsgroup: comp.lang.c--Subscribe? [yn]
+New newsgroup: comp.os.linux--Subscribe? [yn] n
+New newsgroup: comp.sys.m6809--Subscribe? [yn]
+New newsgroup: junk--Subscribe? [yn]

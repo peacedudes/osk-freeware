@@ -1,17 +1,3 @@
 $ mailx
 
 mailx: can't change to your mailbox directory: 'su'...error 214
-
-$ ls -l /dd/SPOOL/MAIL
-total 1024
--rw-rw-rw-   1 0        0             814 Aug  4 00:00 tester
-$ philmail < /nil
-Welcome to philmail. Checking out file.....
-successfully opened /dd/SPOOL/MAIL/tester
-File seems to be okay
-
-Hit enter to start reading, 'h' to show headings, '?' for help
- [ hit enter after each command]
->  EOF encoutered. presuming exit desired
- quitting philmail.
-Don't forget to delete mailfile manually if ya don't want it no mo.

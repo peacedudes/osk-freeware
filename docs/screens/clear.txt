@@ -1,0 +1,2 @@
+echo "the listing above was wiped by clear"
+the listing above was wiped by clear

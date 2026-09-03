@@ -1,7 +1,7 @@
    Mailbox is '~/SPOOL/MAIL/tester' with 1 message [ELM 2.4 (OS-9 2.0) PL21]
 
 
-  N  1   Aug 16 The OS-9 Freeware  (22)   Welcome -- this is a real mail folde
+##N##1###Aug#16#The#OS-9#Freeware##(22)###Welcome#--#this#is#a#real#mail#folde
 
 
 

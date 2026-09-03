@@ -1,0 +1,4 @@
+checkalias os9; echo "exit: $?"
+exit: 221
+$ checkalias nosuchalias; echo "exit: $?"
+exit: 221

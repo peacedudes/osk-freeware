@@ -3,9 +3,8 @@ Syntax: dload <filename>
 Function: loads datafile into datamodule
 $ dload /dd/SYS/motd
 size of file is 40 bytes
-datamodule created at address $   a4ff4
+datamodule created at address $   a6034
 done
-$ /dd/CMDS/break -?
 $ sbreak -?
 Syntax:   sbreak [/device]
 Function: send break on SCF device

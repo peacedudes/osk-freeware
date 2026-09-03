@@ -1,0 +1,10 @@
+$ umusek; echo "status $?"
+ )
+
+***DS_ScAdd Error 208.
+
+
+
+Fran: Can't get screen addr, 'bye!
+
+status 37

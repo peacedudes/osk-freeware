@@ -1,0 +1,17 @@
+listalias
+home                 os9-freeware (This Collection)
+self                 tester (Me)
+os9                  os9-freeware (The OS-9 Freeware Collection)
+tester               tester (The Test Account)
+me                   tester (The Test Account)
+postmaster           tester (The Postmaster)
+root                 tester (The Postmaster)
+everyone             tester,os9 (Everybody On This Machine)
+$ listalias -s
+cannot open pipe to egrep program for expressions!
+os9                  os9-freeware (The OS-9 Freeware Collection)
+tester               tester (The Test Account)
+me                   tester (The Test Account)
+postmaster           tester (The Postmaster)
+root                 tester (The Postmaster)
+everyone             tester,os9 (Everybody On This Machine)

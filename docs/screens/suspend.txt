@@ -1,0 +1,6 @@
+SUSPEND V1.1 (C.) 1989 by F.R.Schmitt
+Syntax  : suspend  [<processname>]  [<opt>]
+Function: removes the process from the system
+Options:
+     -?       show this explanation
+     -s       remove also system programs

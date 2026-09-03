@@ -1,0 +1,8 @@
+/dd/CMDS/REBUILT/screen_nocio; echo "st $?"
+
+Process   Pid: 3, screen_nocio, edition 7
+    Exit code: E_PRCABT(228) Process Aborted
+  Directories: Current   - /dd/tmp/UTILA/home/.SCREENS
+               Execution - /dd/CMDS
+        Files: 00 fCons /term
+          st 102

@@ -1,4 +1,17 @@
--> let r0c0 = cho S9READYclearversion /dd/CMDS/todaymexist bashecho S9READYclea
-Unintelligible word: let r0c0 = cho<= S9READYclearversion /dd/CMDS/todaymexist y
+ksh -c "cd /dd/tmp/UTILA/vl; vlen" 2>/nil | tail -l=16
+deleted bytes in store == 2000, store size == 7081
 
-              <
+Read record #91; length==50
+Read record #92; length==100
+Deleted this record (100 bytes)
+Read record #93; length==50
+Read record #94; length==75
+Read record #95; length==50
+Read record #96; length==100
+Deleted this record (100 bytes)
+Read record #97; length==50
+Read record #98; length==100
+Read record #99; length==50
+
+
+vlTest completed successfully

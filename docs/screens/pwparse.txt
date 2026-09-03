@@ -1,0 +1,6 @@
+$ pwparse < /dd/SYS/password
+        os9
+        uucp
+
+        tester
+        su

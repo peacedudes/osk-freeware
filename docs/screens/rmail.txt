@@ -1,0 +1,2 @@
+$ rmail tester
+rmail: dolocal: can't change to mailbox: /dd/SPOOL/MAIL/tester/tester...error #4

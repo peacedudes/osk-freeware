@@ -1,0 +1,23 @@
+Subject: Welcome -- this is a real mail folder
+      ---------------------------------------
+This message exists so that Elm has something to show you.
+
+Elm reads mail from a folder; this is one, at /dd/SPOOL/MAIL/<user>.
+Try:
+
+    frm             who your mail is from, one line each
+    messages        what is in the folder
+    elm             the full-screen reader.  `q' quits it.
+
+Nothing here delivers mail to you -- that is a separate job, and
+/dd/CMDS/UUCP is what does it, over a serial line, to another machine
+that also speaks UUCP.  On this disk, under an emulator, there is no
+serial line, so this folder is as far as the story goes.
+
+Delete this message whenever you like; it is an ordinary file.
+
+
+[end of message 0]
+> q
+ quitting philmail.
+Don't forget to delete mailfile manually if ya don't want it no mo.

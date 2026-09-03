@@ -1,17 +1,5 @@
-$ mkdir -p /dd/lib/news
-$ echo "<one@site.uucp> 9999999 1" > /dd/lib/news/history
-$ ksh -c "cd /dd/lib/news; dbz history"
-dbz: (file `history', line 1) store failed on `<one@site.uucp> 9999999 1
+ksh -c "cd /dd/lib/news; dbz history"
+dbz: (file `history', line 1) store failed on `<one@site.uucp> 9999999999 1
 ...'
-$ ls /dd/lib/news
-history      history.dir  history.pag
 $ newshist "<one@site.uucp>"
 newshist: no history entry for <one@site.uucp> nor <<one@site.uucp>>
-$ dbz
-usage: dbz [-a] [-x] [-c] database [file] ...
-$ newshist
-usage: newshist [-df file] msgid ...
-$ newslock a b
-$ bdecode
-c7decode
-byteflip

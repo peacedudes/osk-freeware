@@ -1,0 +1,2 @@
+$ preset
+.dir .umacs .work.a .r68 .l68 .-l=usr.l .-o=.work.r .dsave -ieb128k ./d0./d1./`!

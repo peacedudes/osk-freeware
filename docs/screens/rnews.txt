@@ -1,0 +1,19 @@
+<ch.txt; cat /dd/tmp/MAILA/art.txt >> /dd/tmp/MAILA/batch.txt
+$ rnews /dd/tmp/MAILA/batch.txt
+$ ls -laR /dd/SPOOL/news/COMP
+total 1536
+drwxrwxrwx   1 0        0              96 Sep  3 14:18 .
+drwxrwxrwx   1 0        0             256 Sep  3 14:18 ..
+drwxrwxrwx   1 0        0              96 Sep  3 14:18 OS
+
+/dd/SPOOL/news/COMP/OS:
+total 1536
+drwxrwxrwx   1 0        0              96 Sep  3 14:18 .
+drwxrwxrwx   1 0        0              96 Sep  3 14:18 ..
+drwxrwxrwx   1 0        0              96 Sep  3 14:18 OS9
+
+/dd/SPOOL/news/COMP/OS/OS9:
+total 1536
+drwxrwxrwx   1 0        0              96 Sep  3 14:18 .
+drwxrwxrwx   1 0        0              96 Sep  3 14:18 ..
+-rw-------   1 0        0              59 Sep  3 14:18 a1

@@ -1,0 +1,6 @@
+wc -c /dd/SYS/vi_errmsg
+   7915 /dd/SYS/vi_errmsg
+$ add_errmsg "disk full -- delete something"
+seek position 7915 (decimal) for 'disk full -- delete something'
+$ wc -c /dd/SYS/vi_errmsg
+   7946 /dd/SYS/vi_errmsg

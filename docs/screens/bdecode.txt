@@ -1,0 +1,2 @@
+bdecode /dd/tmp/MAILA/bd.txt
+bdecode: /dd/tmp/MAILA/bd.txt: Missing header

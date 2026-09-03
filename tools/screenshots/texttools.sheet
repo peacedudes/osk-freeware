@@ -144,13 +144,10 @@ run     sepwords < /dd/DOC/README-CIO | sort | unip | head -n 18
 wait    10
 
 shot    btop
-for     btop ptob
-cap     BtoP and PtoB, a pair: characters to bit patterns and back again.
-cap     They are how a font or a bitmap moved through a mail system that
-cap     would only carry text, long before uuencode was on this disk.
-cap     Forty bytes of text become 640 bytes of O and space; PtoB turns
-cap     those back into the same forty, byte for byte.  This card used to
-cap     be the two usage lines, which showed neither.
+cap     btop turns each character of a file into a grid of O and space --
+cap     how a font or a bitmap moved through a mail system that would only
+cap     carry text, long before uuencode.  Twelve bytes of text become
+cap     rows of O and space; `ptob' turns them back, byte for byte.
 run     head -c 12 /dd/SYS/motd > /dd/tmp/b1
 wait    5
 run     btop /dd/tmp/b1
@@ -331,14 +328,6 @@ wait    3
 run     clear
 wait    1
 run     join /dd/tmp/TXT/j1 /dd/tmp/TXT/j2
-wait    5
-
-shot    lgrep
-cap     A grep with its own option letters, finding the lines of the
-cap     password file that mention a shell.
-run     lgrep -?
-wait    4
-run     lgrep ksh /dd/SYS/password
 wait    5
 
 shot    ggrep

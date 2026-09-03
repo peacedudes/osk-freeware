@@ -1,3 +1,11 @@
-combine /dd/tmp/ARC/even /dd/tmp/ARC/odd /dd/tmp/ARC/mix -q
-$ cat /dd/tmp/ARC/mix
-ABABABABABABABAB
+</cmb/even /dd/tmp/UTILA/cmb/odd /dd/tmp/UTILA/cmb/mix
+
+file: /dd/tmp/UTILA/cmb/even  opened for input
+file: /dd/tmp/UTILA/cmb/odd  opened for input
+file: /dd/tmp/UTILA/cmb/mix  opened for output
+
+combine operation completed !
+total bytes processed: 16
+
+$ cat /dd/tmp/UTILA/cmb/mix; echo
+ABABABABABABABABAB

@@ -1,0 +1,4 @@
+$ messages
+There is 1 message in your mailbox
+$ messages -f /dd/SPOOL/MAIL/tester
+There is 1 message

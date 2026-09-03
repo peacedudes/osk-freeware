@@ -1,23 +1,12 @@
+$ rndir -?
+
+Syntax: rndir [<opt>]
+Version:  V1.0  13.02.1990
+Function: rename directory names in big/small characters
+Options:
      -?   show valid options
      -d   temp-files allways on current working directory !
      -h   help user
      -l   rename directories in small characters
      -n   don't erase temp-files after completition of work
      -q   quiet mode [no prints to terminal screen]
-
-
-$ dir /dd/tmp/rnd
-
-Directory of "/dd/tmp/rnd" 14:56:41  08/30/126
-
-olddir
-
-Total of 1 files.
-$ mvolformat < /nil
-Syntax: mvolformat drive volname volcount [format options]
-Function: format multiple floppies with sequential volume #s
-Parameters:
-        drive           Drive name (i.e. /d0)
-        volname         Base volume name. 'Volnn' gets appended (nn = vol num)
-        volcount                Volume count. 1-99
-        format options  Any options legal for format, except -r and -v

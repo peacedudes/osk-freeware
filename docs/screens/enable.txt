@@ -1,0 +1,2 @@
+/dd/CMDS/UUCP/enable /t1
+enable: Can't find '/t1' in memory

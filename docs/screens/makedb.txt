@@ -1,0 +1,5 @@
+mkdir -p /dd/tmp/MAILA > /nil 2>/nil
+$ makedb -o /dd/tmp/MAILA/palias /dd/USR/LIB/SMAIL/palias
+$ ls -l /dd/tmp/MAILA/palias.dir /dd/tmp/MAILA/palias.pag
+-rw-------   1 0        0               0 Sep  3 14:08 /dd/tmp/MAILA/palias.dir
+-rw-------   1 0        0            1024 Sep  3 14:08 /dd/tmp/MAILA/palias.pag

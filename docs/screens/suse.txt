@@ -1,0 +1,4 @@
+$ suse cat; echo "status $?"
+status 0
+$ suse /dd/CMDS/today; echo "status $?"
+status 0

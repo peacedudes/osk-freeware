@@ -13,59 +13,485 @@ run     aterm /t1
 wait    10
 
 shot    elm
-for     elm
-cap     Elm, the mail reader, opening on an empty mailbox -- which is the
-cap     honest state of a mail system with no network.  Fourteen programs
-cap     travel with it in CMDS/ELM, and they are on the three cards that
-cap     follow.  Until 2026-08-29 those thirteen were spread across three
-cap     cards that between them typed five of the names.
+cap     The full-screen mail reader, opening on the folder that ships for
+cap     this account: one message.  `d' deletes, `r' replies, `q' quits.
 run     elm
 wait    10
 quit    q\r
 
-shot    elm-suite
-size    36 80
-for     newalias listalias readmsg messages
-cap     The elm helpers with something to work on.  Both alias files ship as
-cap     of 2026-08-31 -- /dd/USR/LIB/ELM/aliases.text and
-cap     /dd/.ELM/aliases.text -- so `newalias' compiles them (`-g' does the
-cap     system one) and `listalias' reads them back.  `messages' counts the
-cap     folder at /dd/SPOOL/MAIL/tester and `readmsg 1' prints the message
-cap     in it.  Until those files were here this card showed only `Couldn't
-cap     open /dd/.ELM/aliases.text for input!'.  The `Error writing alias'
-cap     the first newalias reports is real and it is not fatal: the tables
-cap     ARE written -- listalias reads both back on the next line -- and a
-cap     second newalias in the same session says `processed 2 aliases.' and
-cap     means it.  Run it twice the first time.
+shot    answer
+cap     Replies to messages in a folder one at a time, prompting `Message
+cap     to:' for a recipient it checks against the alias table.  Anything
+cap     else gets `Sorry, could not find ... in list!' and it asks again.
 run     newalias
-wait    10
-run     newalias -g
-wait    10
-run     listalias
 wait    8
-run     messages
-wait    8
-run     readmsg 1
-wait    10
+run     clear
+wait    1
+run     answer
+wait    6
+send    tester\r
+wait    5
 
-shot    elm-away
-size    36 80
-for     answer arepdaemon autoreply fastmail filter
-cap     The elm programs that act while you are not there: `autoreply' and
-cap     `answer' reply for you, `arepdaemon' is the daemon that runs them,
-cap     `filter' sorts arriving mail into folders, and `fastmail' is the
-cap     bulk sender.  All five were credited to the elm-suite card and none
-cap     was ever typed on it.
+shot    arepdaemon
+cap     The daemon autoreply relies on.  Wants
+cap     /dd/USR/LIB/ELM/autoreply.data, which is not here, and says so:
+cap     `Error 216 attempting fstat' -- though it still touches
+cap     autoreply.log on its way there.
+run     rm -f /dd/USR/LIB/ELM/autoreply.data /dd/USR/LIB/ELM/autoreply.log
+wait    3
+run     clear
+wait    1
+run     ls -l /dd/USR/LIB/ELM
+wait    4
+run     arepdaemon
+wait    5
+run     ls -l /dd/USR/LIB/ELM
+wait    5
+
+shot    autoreply
+cap     Sends an automatic reply while you are away.  It resolves your
+cap     mailbox by the session's numeric owner rather than $USER, so
+cap     under this identity it reaches for a mailbox named `su' and
+cap     stops there; turning autoreplying off does not need the mailbox
+cap     and answers for real.
 run     autoreply -?
+wait    6
+run     clear
+wait    1
+run     autoreply off
+wait    6
+
+shot    checkalias
+cap     Checks that an alias resolves, after `newalias' compiles the
+cap     table.  It prints nothing either way and returns the same status
+cap     for an alias that exists and one that does not -- `listalias' is
+cap     what actually answers the question.
+run     newalias
 wait    8
-run     answer -?
-wait    8
-run     arepdaemon -?
-wait    8
+run     clear
+wait    1
+run     checkalias os9; echo "exit: $?"
+wait    5
+run     checkalias nosuchalias; echo "exit: $?"
+wait    5
+
+shot    disable
+cap     Turns MTSMon off on a serial port.  It wants the port's device
+cap     driver module resident in memory to find it by name; none is
+cap     loaded here, so it gets no further than looking.
+run     disable -?
+wait    5
+run     clear
+wait    1
+run     disable /t1
+wait    5
+
+shot    enable
+cap     The other half of `disable', with an extra option to hold its
+cap     prompt until a signal comes in.  Asked for by full path -- bash
+cap     has its own builtin of the same name, which answers first.  Same
+cap     story as disable: it wants the /t1 module resident and none is.
+run     /dd/CMDS/UUCP/enable -?
+wait    5
+run     clear
+wait    1
+run     /dd/CMDS/UUCP/enable /t1
+wait    5
+
+shot    dotilde
+cap     The mailer's tilde-escape handler: it reads a message from
+cap     standard input and acts on the `~' commands inside it.  An
+cap     unrecognized one gets `Unrecognized tilde command' and it keeps
+cap     reading.
+run     mkdir -p /dd/tmp/MAILA > /nil 2>/nil; printf "hello\r~x\rmore text\r" > /dd/tmp/MAILA/dt.txt
+wait    3
+run     clear
+wait    1
+run     dotilde < /dd/tmp/MAILA/dt.txt
+wait    6
+
+shot    fastmail
+cap     Sends a file as mail without opening the reader.  It needs a
+cap     delivery agent to actually hand the message off; there is none
+cap     here, so the folder is unchanged and it returns in silence.
+run     mkdir -p /dd/tmp/MAILA > /nil 2>/nil; printf "hello from fastmail\r" > /dd/tmp/MAILA/fm.txt
+wait    3
+run     clear
+wait    1
+run     messages
+wait    4
+run     fastmail /dd/tmp/MAILA/fm.txt tester
+wait    6
+run     messages
+wait    5
+
+shot    filter
+cap     A pipe stage that sorts incoming mail into folders by rule -- its
+cap     own usage line begins with the pipe.  Piping it a message here
+cap     reaches for a scratch file at /r0, the RAM disk this disk has no
+cap     device for.
 run     filter -?
+wait    5
+run     clear
+wait    1
+run     mkdir -p /dd/tmp/MAILA > /nil 2>/nil; printf "From tester\rSubject: test\r\rbody\r" > /dd/tmp/MAILA/msg.txt
+wait    3
+run     filter -v < /dd/tmp/MAILA/msg.txt
+wait    6
+
+shot    frm
+cap     Lists who your mail is from, one line each.  On this disk it
+cap     opens the folder, names you, and answers that there is no mail --
+cap     even though `messages' and `readmsg' both find the one message
+cap     that is there.
+run     frm
+wait    6
+
+shot    lcasep
+cap     Lower-cases a name for the mailer, reading it from standard
+cap     input.
+run     mkdir -p /dd/tmp/MAILA > /nil 2>/nil; printf "Robert Smith\r" > /dd/tmp/MAILA/lc.txt
+wait    3
+run     clear
+wait    1
+run     lcasep < /dd/tmp/MAILA/lc.txt
+wait    5
+
+shot    listalias
+cap     Lists the aliases you have, once `newalias' has compiled them:
+cap     your own file first, then the system one.  Its -s and -u forms
+cap     try to pipe through `egrep', which is not on this disk, and say
+cap     so -- but list the aliases anyway.
+run     newalias
 wait    8
-run     fastmail -?
+run     newalias -g
 wait    8
+run     clear
+wait    1
+run     listalias
+wait    6
+run     listalias -s
+wait    6
+
+shot    lmail
+cap     Local mail delivery.  Its usage line is safe to ask for; giving
+cap     it a real recipient does not return here -- it hangs and has to
+cap     be broken out of.
+run     lmail -?
+wait    6
+
+shot    mail
+cap     A simple mail sender.  It reaches for a scratch file at /r0, the
+cap     RAM disk this disk has no device for, and stops there.
+run     mkdir -p /dd/tmp/MAILA > /nil 2>/nil
+wait    2
+run     clear
+wait    1
+run     printf "hi\r.\r" | mail tester
+wait    6
+
+shot    mailx
+cap     The mail reader and sender.  It looks your mailbox up by USER
+cap     NUMBER, not by $USER -- logged in as the super user, which has no
+cap     mailbox of its own, so it says it cannot change to it.
+run     mailx
+wait    8
+
+shot    makedb
+cap     Builds smail's path-alias database from a text source, two files
+cap     beside it: a .dir and a .pag.
+run     makedb -?
+wait    5
+run     clear
+wait    1
+run     mkdir -p /dd/tmp/MAILA > /nil 2>/nil
+wait    2
+run     makedb -o /dd/tmp/MAILA/palias /dd/USR/LIB/SMAIL/palias
+wait    6
+run     ls -l /dd/tmp/MAILA/palias.dir /dd/tmp/MAILA/palias.pag
+wait    5
+
+shot    messages
+cap     Counts and lists what is in a folder.
+run     messages
+wait    5
+run     messages -f /dd/SPOOL/MAIL/tester
+wait    5
+
+shot    newalias
+cap     Rebuilds the alias database after you edit the alias files: your
+cap     own first, then the system one with -g.
+run     newalias
+wait    8
+run     newalias -g
+wait    8
+run     newalias -g
+wait    8
+
+shot    newmail
+cap     Watches for mail arriving and says so; -d also reports the
+cap     folder it is watching and its size.
+run     newmail -?
+wait    6
+run     clear
+wait    1
+run     newmail -d tester
+wait    8
+
+shot    nptx
+cap     smail's full-name permuter: give it a line of `<full name>' TAB
+cap     `<login>' and it answers with the pair reversed.
+run     mkdir -p /dd/tmp/MAILA > /nil 2>/nil; printf "John Q Public\tjqpublic\r" > /dd/tmp/MAILA/np.txt
+wait    3
+run     clear
+wait    1
+run     nptx < /dd/tmp/MAILA/np.txt
+wait    6
+
+shot    pathalias
+cap     Computes mail routes from a map of who calls whom -- its options,
+cap     since no map ships here.
+run     pathalias -?
+wait    6
+
+shot    philmail
+cap     An off-line mail reader: it opens $MAIL, confirms the file is
+cap     well formed, and lets you step through messages with return;
+cap     `q' quits.
+run     philmail
+wait    6
+send    \r
+wait    5
+send    q\r
+wait    5
+
+shot    printmail
+cap     Formats a message for a printer.  It forks `readmsg' by bare
+cap     name, so load it first; then printmail prints the message the
+cap     same way `readmsg' would.
+run     load /dd/CMDS/ELM/readmsg
+wait    3
+run     clear
+wait    1
+run     printmail 1
+wait    6
+
+shot    pwparse
+cap     Parses a password file into the login names the mailer wants,
+cap     one per line.
+run     pwparse < /dd/SYS/password
+wait    6
+
+shot    read_mail
+cap     vi/elvis's own mail-reading helper, not part of Elm: it opens
+cap     /dd/MAIL/mail_<user> and quotes what it finds.  The file that
+cap     ships is empty, so it reads to end and has nothing to quote.
+run     ls -l /dd/MAIL
+wait    4
+run     clear
+wait    1
+run     mkdir -p /dd/tmp/MAILA > /nil 2>/nil; echo N > /dd/tmp/MAILA/ans
+wait    3
+run     read_mail < /dd/tmp/MAILA/ans; echo "exit: $?"
+wait    6
+
+shot    readmsg
+cap     Prints a message from a folder by number.
+run     readmsg 1
+wait    6
+
+shot    rmail
+cap     Delivers incoming mail -- invoked by uuxqt, not typed by hand.
+cap     Local delivery expects a mailbox directory; the one that ships
+cap     is a plain file, so it stops there.
+run     rmail tester
+wait    6
+
+shot    smail
+cap     The smart mail router: its options.
+run     smail -?
+wait    8
+
+shot    uupoll
+cap     Polls a UUCP site for waiting work.  It works in silence -- the
+cap     only sign is the poll file it leaves in the site's spool
+cap     directory.
+run     ls -l /dd/SPOOL/uucp/seabass
+wait    4
+run     clear
+wait    1
+run     uupoll seabass
+wait    6
+run     ls -l /dd/SPOOL/uucp/seabass
+wait    5
+
+shot    uux
+cap     Runs a command on another UUCP site: its options.  This is a
+cap     different UUCP package from the one whose Systems file names
+cap     `seabass', so asking for it that way answers `Unknown Host'.
+run     uux -?
+wait    6
+run     clear
+wait    1
+run     uux seabass\!rnews
+wait    6
+
+shot    bdecode
+cap     Decodes a batched news article.  Handed a file with no batch
+cap     header, it says so plainly.
+run     mkdir -p /dd/tmp/MAILA > /nil 2>/nil; printf "not a batch\r" > /dd/tmp/MAILA/bd.txt
+wait    3
+run     clear
+wait    1
+run     bdecode /dd/tmp/MAILA/bd.txt
+wait    6
+
+shot    byteflip
+cap     Byte-swaps a dbz database between architectures.  Run with
+cap     nothing to swap, it ends the shell outright rather than printing
+cap     anything.
+run     byteflip
+wait    6
+
+shot    c7decode
+cap     Decodes 7-bit-safe encoded news.  Handed text that is not
+cap     encoded that way, it says so.
+run     mkdir -p /dd/tmp/MAILA > /nil 2>/nil; printf "not encoded\r" > /dd/tmp/MAILA/c7.txt
+wait    3
+run     clear
+wait    1
+run     c7decode < /dd/tmp/MAILA/c7.txt
+wait    6
+
+shot    dbz
+cap     The news history database from C News: builds a .dir/.pag pair
+cap     from a text history file.
+run     mkdir -p /dd/tmp/MAILA > /nil 2>/nil; printf "<one@site.uucp> 999999999 1\r" > /dd/tmp/MAILA/history
+wait    3
+run     clear
+wait    1
+run     ksh -c "cd /dd/tmp/MAILA; dbz history"
+wait    8
+run     ls -l /dd/tmp/MAILA/history.dir /dd/tmp/MAILA/history.pag
+wait    5
+
+shot    expire
+cap     Deletes news articles past their expiry date.  -t previews
+cap     without deleting, walking every newsgroup in the active file.
+run     expire -t
+wait    8
+
+shot    newshist
+cap     Rebuilds the news history file.  dbz's own store on this disk
+cap     fails on the entry it is given here -- see dbz -- so what
+cap     newshist can say about an id that really is in the file is that
+cap     it has no entry for it.
+run     mkdir -p /dd/lib/news > /nil 2>/nil; printf "<one@site.uucp> 9999999999 1\r" > /dd/lib/news/history
+wait    3
+run     clear
+wait    1
+run     ksh -c "cd /dd/lib/news; dbz history"
+wait    8
+run     newshist "<one@site.uucp>"
+wait    6
+
+shot    newslock
+cap     The news system's lock, given a temporary name and the real
+cap     lock name.  It leaves no trace here -- no file at either name,
+cap     nothing printed.
+run     mkdir -p /dd/tmp/MAILA > /nil 2>/nil
+wait    2
+run     clear
+wait    1
+run     newslock /dd/tmp/MAILA/tmplock /dd/tmp/MAILA/reallock
+wait    6
+run     ls /dd/tmp/MAILA/tmplock /dd/tmp/MAILA/reallock
+wait    5
+
+shot    postnews
+size    30 80
+cap     Composes a Usenet article, prompting for newsgroup, subject,
+cap     keywords, distribution and summary, then reads the body until a
+cap     line with just a dot.  It builds the whole header correctly and
+cap     then tries to file the article by running `rnews' as a
+cap     subprocess -- which it cannot start, so that is as far as it
+cap     goes.
+run     postnews
+wait    6
+send    comp.os.os9\r
+wait    3
+send    a test posting\r
+wait    3
+send    \r
+wait    3
+send    world\r
+wait    3
+send    testing postnews\r
+wait    4
+send    This is only a test.\r.\r
+wait    6
+
+shot    readnews
+size    30 80
+cap     Reads Usenet news articles.  With nothing in .newsrc matching
+cap     most of the active groups, it asks about each one in turn before
+cap     it would start showing articles.
+run     readnews
+wait    6
+send    n\r
+wait    3
+send    n\r
+wait    3
+send    n\r
+wait    4
+
+shot    rnews
+size    30 80
+cap     Unpacks an incoming news batch.  Given one real article with a
+cap     `Newsgroups:' header, it files it under the matching directory
+cap     tree in the news spool.
+run     mkdir -p /dd/tmp/MAILA > /nil 2>/nil; rm -rf /dd/SPOOL/news/COMP
+wait    3
+run     printf "Newsgroups: comp.os.os9\rSubject: test article\r\rhello there\r" > /dd/tmp/MAILA/art.txt
+wait    3
+run     LEN=$(cat /dd/tmp/MAILA/art.txt | wc -c)
+wait    2
+run     clear
+wait    1
+run     printf "#! rnews %s\r" $LEN > /dd/tmp/MAILA/batch.txt; cat /dd/tmp/MAILA/art.txt >> /dd/tmp/MAILA/batch.txt
+wait    4
+run     rnews /dd/tmp/MAILA/batch.txt
+wait    6
+run     ls -laR /dd/SPOOL/news/COMP
+wait    6
+
+shot    subscribe
+cap     Adds a newsgroup to your subscription list -- if it is already
+cap     listed in .newsrc but turned off, this turns it back on.  A
+cap     group that is not in .newsrc at all is silently left alone.
+run     unsubscribe news.announce.newusers
+wait    5
+run     clear
+wait    1
+run     cat /dd/.newsrc
+wait    4
+run     subscribe news.announce.newusers
+wait    6
+run     cat /dd/.newsrc
+wait    5
+
+shot    unsubscribe
+cap     Drops a newsgroup from your subscription list.
+run     subscribe comp.sys.m68k
+wait    5
+run     clear
+wait    1
+run     cat /dd/.newsrc
+wait    4
+run     unsubscribe comp.sys.m68k
+wait    6
+run     cat /dd/.newsrc
+wait    5
 
 shot    finger
 size    36 80
@@ -84,21 +510,6 @@ wait    8
 run     osknet
 wait    12
 kill
-
-shot    frm
-size    36 80
-for     frm checkalias listalias newmail
-cap     `frm' lists the From lines of a folder and the alias tools read the
-cap     alias files; `newmail' watches for arriving mail.  With no network
-cap     and an empty mailbox, what each says about that is the card.
-run     frm
-wait    6
-run     listalias
-wait    6
-run     checkalias root
-wait    6
-run     newmail -?
-wait    6
 
 shot    kermit
 cap     Kermit, the file-transfer program.  With no serial line to talk to
@@ -120,35 +531,6 @@ wait    8
 run     ckermit
 wait    10
 
-shot    mail
-for     mail lmail rmail smail
-cap     The mail chain.  `mail' reaches for a scratch file at /r0 -- the RAM
-cap     disk os9exec cannot provide -- and stops; `smail', the router,
-cap     answers properly and shows what it takes.  `lmail' delivers locally
-cap     and `rmail' takes what uucp brought.
-run     mail -?
-wait    6
-run     smail -?
-wait    6
-run     lmail -?
-wait    6
-run     rmail -?
-wait    6
-
-shot    mailx
-for     mailx philmail
-cap     mailx looks your mailbox up by USER NUMBER, not by $USER: this
-cap     session is 0.0, which SYS/password calls `su', and the mailbox that
-cap     ships belongs to `tester'.  So it says it cannot change to your
-cap     mailbox directory, and the listing underneath shows the one that is
-cap     there.  Log in as tester and it finds it.
-run     mailx
-wait    8
-run     ls -l /dd/SPOOL/MAIL
-wait    6
-run     philmail < /nil
-wait    8
-
 shot    network
 size    36 80
 for     msntp atp infoxpress
@@ -167,82 +549,6 @@ run     msntp
 wait    8
 run     infoxpress
 wait    10
-
-shot    news-tools
-size    36 80
-for     rnews postnews subscribe unsubscribe expire uulog
-cap     What arrives from a news feed and what handles it, each asked for
-cap     itself: `rnews' takes a batch, `postnews' sends one, `subscribe' and
-cap     `unsubscribe' edit your groups, `expire' deletes what is past its
-cap     date, `uulog' shows the transfer log.
-run     rnews -?
-wait    8
-run     postnews -?
-wait    8
-run     subscribe -?
-wait    8
-run     unsubscribe -?
-wait    8
-run     expire -?
-wait    8
-run     uulog -?
-wait    8
-
-shot    newshist
-size    36 80
-for     newshist bdecode byteflip c7decode dbz newslock
-cap     CMDS/NEWS: the pieces that unpack a usenet news batch, each asked
-cap     for itself -- `bdecode' and `c7decode' are the decoders, `byteflip'
-cap     swaps endianness, `dbz' and `newshist' are the history database,
-cap     `newslock' the lock the rest take.  `byteflip' IS LAST AND SAYS
-cap     NOTHING: it ends the emulator session, so anything after it never
-cap     ran.  The history half is worked here rather than asked.  `newshist'
-cap     IGNORES ITS OWN -df AND READS /h0/lib/news/history -- one of the two
-cap     `--' entries under it in DOC/DEPENDS, and /h0 is this disk, so the
-cap     path is makeable.  `dbz history' then builds the .dir/.pag pair
-cap     beside it and newshist reads the database cleanly.  It still answers
-cap     `no history entry' for an id that IS in the file, because dbz says
-cap     `store failed' on the first line and indexes nothing.  So the
-cap     database is built, read and empty, and that is as far as this pair
-cap     goes here.  The separator is not what stops it:
-cap     tools/drives/flagged4.drive writes the line with real tabs and gets
-cap     the same answer.
-run     mkdir -p /dd/lib/news
-wait    6
-run     echo "<one@site.uucp> 9999999 1" > /dd/lib/news/history
-wait    6
-run     ksh -c "cd /dd/lib/news; dbz history"
-wait    12
-run     ls /dd/lib/news
-wait    8
-run     newshist "<one@site.uucp>"
-wait    10
-run     dbz
-wait    8
-run     newshist
-wait    8
-run     newslock a b
-wait    8
-run     bdecode
-wait    8
-run     c7decode
-wait    8
-run     byteflip
-wait    8
-
-shot    pathalias
-size    36 80
-for     pathalias makedb dotilde
-cap     `pathalias' computes mail routes from a map of who calls whom -- the
-cap     program that made a usenet address possible.  `makedb' builds the
-cap     database it writes into, and `dotilde' expands the ~-notation a uucp
-cap     path uses.  All three are asked for here.
-run     pathalias -?
-wait    8
-run     makedb -?
-wait    6
-run     dotilde -?
-wait    6
 
 shot    screen
 for     screen tsmon2 connect uwho wysetime
@@ -299,58 +605,33 @@ run     vmod_trap
 wait    6
 
 shot    uuclean
-size    36 80
-for     uuclean uupoll disable enable
-cap     The UUCP housekeeping: clean the spool, poll a site, take a device
-cap     out of service and put it back.  `enable' has to be asked for by
-cap     PATH -- it is a bash builtin too, and the builtin answers first.
+cap     Removes stale jobs from the spool.
 run     uuclean -?
 wait    8
-run     uupoll -?
-wait    8
-run     /dd/CMDS/UUCP/enable -?
-wait    6
-run     /dd/CMDS/UUCP/disable -?
-wait    6
 
 shot    uucp-helpers
 size    36 80
-for     fileserv fixtext lcasep nptx pwparse
-cap     FIVE PROGRAMS THAT SAY NOTHING.  These are the UUCP helpers --
-cap     `fileserv' answers file requests, `fixtext' repairs a mangled text
-cap     transfer, `lcasep' lower-cases a name for mail, `nptx' expands a
-cap     full name into address candidates, `pwparse' reads the password file
-cap     for the rest.  Every one of them prints NOTHING: bare, with an
-cap     argument, with -? and with -x, They are real modules and they exit
-cap     cleanly -- the listing below shows all five -- they simply have no
-cap     UUCP spool to act on and do not say so.  Were credited to the
-cap     uuclean card and never typed there, so this blank is the first
-cap     honest look anyone has had at them.
-run     ls -l /dd/CMDS/UUCP/fileserv /dd/CMDS/UUCP/nptx
-wait    12
+for     fileserv fixtext
+cap     Two UUCP helpers that print nothing here: `fileserv' answers file
+cap     requests and `fixtext' repairs a mangled text transfer.  Both are
+cap     real modules that exit cleanly -- they simply have no UUCP spool
+cap     traffic to act on and do not say so.
+run     ls -l /dd/CMDS/UUCP/fileserv /dd/CMDS/UUCP/fixtext
+wait    10
 run     fileserv
 wait    6
 run     fixtext
 wait    6
-run     lcasep Smith
-wait    6
-run     nptx "John Q Public"
-wait    6
-run     pwparse
-wait    8
 
 shot    uucp
-for     uucp uux uuxqt uucico
-cap     The transfer set: uucp queues a copy, uux queues a command, uuxqt
-cap     runs what a remote site queued here, uucico does the talking.  All
-cap     four are asked for `uuxqt' cannot start -- it looks for a module
-cap     called `procs' to see whether it is already running, and this disk
-cap     has none.
+for     uucp uuxqt uucico
+cap     The transfer set: uucp queues a copy, uuxqt runs what a remote
+cap     site queued here, uucico does the talking.  `uuxqt' cannot start
+cap     -- it looks for a module called `procs' to see whether it is
+cap     already running, and this disk has none.
 run     uucp -?
 wait    6
 run     uucico -?
-wait    6
-run     uux -?
 wait    6
 run     uuxqt
 wait    8

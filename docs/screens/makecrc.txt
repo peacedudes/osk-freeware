@@ -1,7 +1,3 @@
-$ makecrc
-$ ls -l arc.c binhex.c ccitt.c kermit.c zip.c
--rw-------   1 0        0            2570 Aug 28 04:52 arc.c
--rw-------   1 0        0            2580 Aug 28 04:52 binhex.c
--rw-------   1 0        0            2582 Aug 28 04:52 ccitt.c
--rw-------   1 0        0            2576 Aug 28 04:52 kermit.c
--rw-------   1 0        0            3726 Aug 28 04:52 zip.c
+ksh -c "cd /dd/tmp/UTILA/mc; makecrc" 2>/nil
+$ ls /dd/tmp/UTILA/mc
+arc.c      binhex.c   ccitt.c    ccitt32.c  kermit.c   zip.c

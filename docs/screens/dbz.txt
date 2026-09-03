@@ -1,0 +1,6 @@
+ksh -c "cd /dd/tmp/MAILA; dbz history"
+dbz: (file `history', line 1) store failed on `<one@site.uucp> 999999999 1
+...'
+$ ls -l /dd/tmp/MAILA/history.dir /dd/tmp/MAILA/history.pag
+-rw-------   1 0        0              60 Sep  3 14:14 /dd/tmp/MAILA/history.dir
+-rw-------   1 0        0          147960 Sep  3 14:14 /dd/tmp/MAILA/history.pag

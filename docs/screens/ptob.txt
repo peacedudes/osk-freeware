@@ -1,0 +1,6 @@
+cat /dd/tmp/UTILA/pb/bits
++ O + + O + + +
++ O O + O + + O
+$ ptob /dd/tmp/UTILA/pb/bits > /dd/tmp/UTILA/pb/back
+$ cat /dd/tmp/UTILA/pb/back; echo
+Hi

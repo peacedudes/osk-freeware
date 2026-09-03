@@ -111,28 +111,19 @@ run     dinfo /dd
 wait    5
 
 shot    dload
-for     dload break sbreak setfont trap
+for     dload sbreak setfont trap
 cap     `dload' does NOT send a file down a serial line, whatever the name
-cap     and DOC/INDEX said: it loads a data file INTO A DATA MODULE, and the
-cap     card shows it doing that -- `dload /dd/SYS/motd' answers with the
-cap     size it read and the address the module went to.  Until 2026-09-01
-cap     only its usage line was here.  `break' and `sbreak' are the
-cap     serial-line examples -- assembler ones from the forums, harmless
-cap     here because there is no serial line.  `break' has to be asked for
-cap     by path: it is a bash builtin too, and the builtin answers first.
-cap     It prints nothing whatever it is given, which is why sbreak is shown
-cap     as well.  `trap' is the system-state trap-handler example and cannot
-cap     install one from user state.  It must be asked for BY PATH: `trap'
-cap     is a bash builtin, and the builtin answers first and silently --
-cap     which on 2026-08-29 was briefly mistaken here for the program
-cap     succeeding.  Loading `math' first, which is the handler it names,
-cap     does not change the outcome; this card loads it to show that.
+cap     suggests: it loads a data file INTO A DATA MODULE -- `dload
+cap     /dd/SYS/motd' answers with the size it read and the address the
+cap     module went to.  `sbreak' is the serial-line example, harmless
+cap     here because there is no serial line.  `trap' is the system-state
+cap     trap-handler example and cannot
+cap     install one from user state; it is asked for by path because bash
+cap     has a trap of its own.
 run     dload -?
 wait    6
 run     dload /dd/SYS/motd
 wait    8
-run     /dd/CMDS/break -?
-wait    4
 run     sbreak -?
 wait    6
 run     load /dd/CMDS/math
@@ -195,10 +186,9 @@ run     cat /dd/tmp/SYSB/demo.c | head -n 16
 wait    6
 
 shot    getsys
-cap     getsys walks OS-9's whole global page, field by field -- and under
-cap     os9exec most of those fields are not kept, so what comes back is the
-cap     emulator saying `unimplemented' for each one.  This is a picture of
-cap     where the emulation stops, not of a broken program.
+cap     getsys reports OS-9's system globals, reading the global page
+cap     field by field -- the count of forked processes, the memory
+cap     limits, the priority range and the system debugger's pointers.
 run     getsys | head -n 21
 wait    6
 
@@ -273,14 +263,17 @@ run     launch -?
 wait    6
 
 shot    makecrc
-for     makecrc
-cap     makecrc is a GENERATOR: it writes CRC table source for six
-cap     polynomials into the current directory and says nothing at all.
-cap     The files it left are the output.
-run     makecrc
-wait    10
-run     ls -l arc.c binhex.c ccitt.c kermit.c zip.c
-wait    8
+cap     makecrc generates C source for six CRC polynomials, one file each,
+cap     and says nothing -- the files it leaves are the output.  Run in a
+cap     writable directory, then listed.
+run     rm -rf /dd/tmp/UTILA/mc > /nil 2>/nil
+run     mkdir -p /dd/tmp/UTILA/mc > /nil 2>/nil
+run     clear
+wait    1
+run     ksh -c "cd /dd/tmp/UTILA/mc; makecrc" 2>/nil
+wait    4
+run     ls /dd/tmp/UTILA/mc
+wait    3
 
 shot    map
 cap     map shows the blocks a file occupies -- not a memory map, whatever
@@ -333,31 +326,11 @@ cap     over it.
 run     phone /t1
 wait    28
 
-shot    rndir
-for     rndir mvolformat
-cap     rndir renames a directory -- OS-9's `rename' would not touch one,
-cap     so this existed.  Made, renamed and listed in a scratch directory
-cap     of its own.
-run     mkdir /dd/tmp/rnd
-wait    5
-run     mkdir /dd/tmp/rnd/olddir
-wait    5
-run     dir /dd/tmp/rnd
-wait    6
-run     rndir /dd/tmp/rnd/olddir /dd/tmp/rnd/newdir
-wait    6
-run     dir /dd/tmp/rnd
-wait    6
-run     mvolformat < /nil
-wait    8
-
 shot    scsiutil
 for     scsiutil expreserve
-cap     scsiutil talks to a SCSI device, and expreserve is vi's crash
-cap     recovery.  Neither has anything to work on here, and both say so.
-cap     dedit, exrecover, read_mail and add_errmsg -- and typed none of
-cap     them, so their "sample output" was scsiutil's usage message.  They
-cap     are on the card below now, which runs each of them.
+cap     scsiutil talks to a SCSI device; expreserve is vi's crash
+cap     recovery, preserving an edit buffer when the editor dies.  Neither
+cap     has anything to work on here, and each answers with its usage.
 run     scsiutil -?
 wait    8
 run     expreserve -?
@@ -365,15 +338,14 @@ wait    8
 
 shot    vi-recovery
 size    40 80
-for     dedit exrecover read_mail add_errmsg
-cap     `read_mail' READING A FOLDER, and the vi recovery pair beside it.
+for     dedit exrecover read_mail
+cap     `read_mail' READING A FOLDER, and the vi recovery helper beside it.
 cap     read_mail is not vi's helper despite sitting among them: it is a
 cap     small mail reader with a mail directory of its own, /dd/MAIL, and it
 cap     quotes what it finds and offers to delete it.  `exrecover' brings
 cap     back a buffer that `expreserve' saved when vi died; asked for one
 cap     nobody saved it says `File not found', which is the honest answer on
-cap     a disk where vi has not crashed.  `add_errmsg' builds vi's
-cap     error-message file -- /dd/SYS/vi_errmsg is already here.  `dedit' is
+cap     a disk where vi has not crashed.  `dedit' is
 cap     Carl Kreider's BASIC09 disk sector editor and needs runb, like the
 cap     other three BASIC09 programs here.  The folder is cut to seven lines
 cap     so the whole exchange fits on one screen. read_mail must be given
@@ -388,8 +360,6 @@ run     echo "N" > /dd/tmp/rm.in
 wait    4
 run     read_mail < /dd/tmp/rm.in
 wait    10
-run     add_errmsg -?
-wait    6
 
 shot    sddemo
 cap     White's Speedisk 2.10, a disk defragmenter, drawing the map of a
@@ -456,37 +426,8 @@ cap     system does not answer; aprocs, its neighbour, stops the same way.
 run     top
 wait    6
 
-shot    transfer
-for     transfer trunc preset vlen
-cap     `trunc' cuts a file short and the listing either side of it is the
-cap     whole demonstration.  `transfer', which names this card, copies from
-cap     GDOS DISKS to OS-9 and takes no options at all -- not the general
-cap     device-to-device copier DOC/INDEX called it; `cp' and `dsave' are
-cap     those.  `vlen' in this group is this group is NOT a reporting tool
-cap     whatever DOC/INDEX said: it is a variable-length-record
-cap     demonstration that builds a filesystem of its own and fills it.
-cap     `fillup' pads a file out to a length with a constant byte -- `-n='
-cap     the length and `-i=' the byte -- and says how many it added, which
-cap     is the last two lines here.
-run     cp /dd/SYS/holidays /dd/tmp/cut.txt
-wait    6
-run     ls -l /dd/tmp/cut.txt
-wait    5
-run     trunc /dd/tmp/cut.txt 100
-wait    6
-run     ls -l /dd/tmp/cut.txt
-wait    6
-run     fillup -n=200 -i=65 /dd/tmp/cut.txt
-wait    6
-run     ls -l /dd/tmp/cut.txt
-wait    6
-run     preset < /nil
-wait    8
-run     transfer < /nil
-wait    8
-
 shot    tty
-for     tty vecho clear lmargin
+for     tty vecho lmargin
 cap     tty names the terminal; vecho writes without a newline; lmargin
 cap     sets a left margin on what follows.
 run     tty
@@ -524,13 +465,6 @@ cap     version prints a module's own edition number -- `version <module>'
 cap     reads the edition byte from the module header, whatever the file is
 cap     named.
 run     version /dd/CMDS/today
-wait    4
-
-shot    vlen
-cap     vlen reports a file's record length; trunc cuts a file to size.
-run     vlen /dd/DOC/INDEX
-wait    4
-run     vlen /dd/CMDS/today
 wait    4
 
 shot    yagi
@@ -659,20 +593,14 @@ run     fontgen < /nil | head -n 10
 wait    12
 
 shot    silent
-for     X11R6shl pdraw readnews
-cap     Three with little to show.  `readnews' opens the news reader and
-cap     says there are no newsgroups, which is the truth on a disk with no
-cap     spool.  `pdraw' prints its configuration before it looks for an X
-cap     server.  `X11R6shl' is not a program at all, and bash says so.
-cap     `readnews' goes last because it does not stop asking: with nothing
-cap     on its standard input it puts the same question over and over, so
-cap     the card takes one answer and ends it.
+for     X11R6shl pdraw
+cap     Two with little to show.  `pdraw' prints its configuration before
+cap     it looks for an X server.  `X11R6shl' is not a program at all,
+cap     and bash says so.
 run     pdraw < /nil | head -n 4
 wait    8
 run     X11R6shl
 wait    6
-run     readnews < /nil | head -n 2
-wait    8
 kill
 
 
@@ -769,3 +697,248 @@ cap     name given it prints its usage: the options and the command forms it
 cap     accepts.
 run     adduser -?
 wait    6
+
+shot    combine
+cap     combine interleaves two files BYTE BY BYTE -- the even bytes from
+cap     one, the odd bytes from the other -- which is how a 16-bit EPROM
+cap     image is rebuilt from its two 8-bit halves.  Eight A's and eight
+cap     B's go in; the interleaved result comes out.
+run     rm -rf /dd/tmp/UTILA/cmb > /nil 2>/nil
+run     mkdir -p /dd/tmp/UTILA/cmb > /nil 2>/nil
+run     printf 'AAAAAAAA' > /dd/tmp/UTILA/cmb/even
+run     printf 'BBBBBBBB' > /dd/tmp/UTILA/cmb/odd
+run     clear
+wait    1
+run     combine /dd/tmp/UTILA/cmb/even /dd/tmp/UTILA/cmb/odd /dd/tmp/UTILA/cmb/mix
+wait    3
+run     cat /dd/tmp/UTILA/cmb/mix; echo
+wait    3
+
+shot    demerge
+cap     demerge splits a file of several OS-9 modules back into one file
+cap     per module.  OS-9's `merge' is concatenation, so `cat' makes the
+cap     input: today and tty joined into one file, then taken apart into
+cap     today and tty again.
+run     rm -rf /dd/tmp/UTILA/dm > /nil 2>/nil
+run     mkdir -p /dd/tmp/UTILA/dm > /nil 2>/nil
+run     cat /dd/CMDS/today /dd/CMDS/tty > /dd/tmp/UTILA/dm/both
+run     clear
+wait    1
+run     ksh -c "cd /dd/tmp/UTILA/dm; demerge both" 2>/nil
+wait    4
+run     ls -l /dd/tmp/UTILA/dm
+wait    3
+
+shot    ptob
+cap     ptob turns a file of bit patterns back into characters, the other
+cap     half of `btop': `Hi' becomes rows of dots and O's, and ptob reads
+cap     those back to `Hi'.
+run     mkdir -p /dd/tmp/UTILA/pb > /nil 2>/nil
+run     printf 'Hi' > /dd/tmp/UTILA/pb/t
+run     btop /dd/tmp/UTILA/pb/t > /dd/tmp/UTILA/pb/bits
+run     clear
+wait    1
+run     cat /dd/tmp/UTILA/pb/bits
+wait    2
+run     ptob /dd/tmp/UTILA/pb/bits > /dd/tmp/UTILA/pb/back
+wait    2
+run     cat /dd/tmp/UTILA/pb/back; echo
+wait    2
+
+shot    trunc
+cap     trunc cuts a file to a given length: `trunc <path> <num>'.  A
+cap     sixteen-byte file is cut to eight, and the listing either side of
+cap     it is the whole demonstration.
+run     mkdir -p /dd/tmp/UTILA/tr > /nil 2>/nil
+run     printf '0123456789ABCDEF' > /dd/tmp/UTILA/tr/f
+run     clear
+wait    1
+run     ls -l /dd/tmp/UTILA/tr/f
+wait    2
+run     trunc /dd/tmp/UTILA/tr/f 8
+wait    2
+run     ls -l /dd/tmp/UTILA/tr/f; cat /dd/tmp/UTILA/tr/f; echo
+wait    3
+
+shot    add_errmsg
+cap     add_errmsg appends error messages to vi's message file,
+cap     /dd/SYS/vi_errmsg, one per quoted argument.  It seeks to the end
+cap     and writes, and the file grows by the message.
+run     clear
+wait    1
+run     wc -c /dd/SYS/vi_errmsg
+wait    2
+run     add_errmsg "disk full -- delete something"
+wait    3
+run     wc -c /dd/SYS/vi_errmsg
+wait    2
+
+shot    clear
+cap     clear clears the terminal screen.  A directory listing is printed
+cap     and then wiped by clear -- only the line typed after it is left.
+run     dir /dd/CMDS
+wait    2
+run     clear
+wait    1
+run     echo "the listing above was wiped by clear"
+wait    2
+
+shot    lgrep
+cap     lgrep lists the files a pattern appears in; its banner claims the
+cap     same result as `grep -l'.  It prints nothing even for a string
+cap     that is present, so `grep -l' is the one to reach for.
+cap     DOC/README-GREP compares the searchers.
+run     lgrep -?
+wait    3
+run     lgrep ksh /dd/SYS/password; echo "found nothing, status $?"
+wait    3
+
+shot    suse
+cap     suse is meant to print a program's usage line.  It prints nothing
+cap     for any module tried, by name or by full path, and returns
+cap     success.
+run     suse cat; echo "status $?"
+wait    3
+run     suse /dd/CMDS/today; echo "status $?"
+wait    3
+
+shot    pri
+cap     pri changes a process's priority: `pri <pid> <priority>'.  There
+cap     is no process listing on this disk to show the change, and it
+cap     reports nothing whether the process exists or not.
+run     pri 2 128; echo "status $?"
+wait    3
+
+shot    snd_sig
+cap     snd_sig sends a signal to one or more processes named by pid;
+cap     `-(n)' is the signal number, and with none it sends the wake
+cap     signal.  Its synopsis, there being no process here to signal.
+run     snd_sig -?
+wait    3
+
+shot    setime2
+cap     setime2 sets the system date and time from the fields
+cap     `yyy mm dd hh mm ss' at its prompt -- yyy counts years from 1900,
+cap     so 126 is 2026 -- and prints the date it set.
+run     clear
+wait    1
+run     setime2
+wait    2
+send    126 9 3 14 30 0\r
+wait    3
+
+shot    setyear
+cap     setyear sets the year directly and prints the date it made:
+cap     `setyear 2026'.
+run     setyear 2026
+wait    3
+
+shot    suspend
+cap     suspend REMOVES a process from the system, as its own Function
+cap     line says, rather than pausing it; `-s' reaches system programs
+cap     too.  Its syntax, there being no process here to remove.
+run     suspend
+wait    3
+
+shot    umusek
+cap     umusek is a music editor.  It wants a hardware screen address and
+cap     stops without one: `DS_ScAdd Error 208', then `Can't get screen
+cap     addr, bye'.
+run     umusek; echo "status $?"
+wait    5
+
+shot    unpacklib.os9
+cap     unpacklib extracts the object modules from an OS-9 library into
+cap     separate .r files.  Run on the C library it writes them into the
+cap     current directory, stopping at the first record that is not a
+cap     module.
+run     rm -rf /dd/tmp/UTILA/ul > /nil 2>/nil
+run     mkdir -p /dd/tmp/UTILA/ul > /nil 2>/nil
+run     clear
+wait    1
+run     ksh -c "cd /dd/tmp/UTILA/ul; unpacklib /dd/LIB/alib.l" 2>/nil
+wait    5
+run     ls /dd/tmp/UTILA/ul
+wait    3
+
+shot    ynad
+size    24 80
+cap     YNAD -- Yet Another Name & Address program, a full-screen contact
+cap     database.  Its title bar on opening; there is no address file yet.
+run     ynad
+wait    8
+snap
+send    q
+wait    2
+
+shot    bootlogger
+cap     bootlogger records what happens during system start-up to a log.
+cap     Run by hand, outside boot, it has nothing to record and returns
+cap     silently.
+run     bootlogger; echo "status $?"
+wait    3
+
+shot    screen_nocio
+cap     screen_nocio is the trap-free build of `screen', a login greeting
+cap     that picks a file at random from $HOME/.SCREENS and RUNS it
+cap     through the shell.  It reaches the lookup where the cio build will
+cap     not start; running the greeting needs Microware's shell, and
+cap     without one the child is aborted.
+run     rm -rf /dd/tmp/UTILA/home > /nil 2>/nil
+run     mkdir -p /dd/tmp/UTILA/home/.screens > /nil 2>/nil
+run     printf 'today\r' > /dd/tmp/UTILA/home/.screens/hi
+run     export HOME=/dd/tmp/UTILA/home
+run     clear
+wait    1
+run     /dd/CMDS/REBUILT/screen_nocio; echo "st $?"
+wait    5
+
+shot    break
+cap     break sends a BREAK on a serial line, an assembler example from
+cap     the forums.  Run bare it calls the system-debugger trap and, with
+cap     no debugger attached, does not return; asked with `-?' it exits at
+cap     once.  Asked for by path, because bash has a break of its own.
+run     /dd/CMDS/break -?; echo "returned $?"
+wait    4
+
+shot    transfer
+cap     transfer copies files from GDOS DISKS to OS-9 and takes no options
+cap     -- not a general device-to-device copier; `cp' and `dsave' are
+cap     those.  It wants the GDOS device DGDOS0, which is not present.
+run     transfer
+wait    4
+send    \r
+wait    2
+
+shot    preset
+cap     preset programs the terminal's function keys with a fixed set of
+cap     definitions -- dir, umacs, r68, l68, dsave and so on.  It takes no
+cap     arguments and ignores any given.
+run     preset
+wait    4
+
+shot    vlen
+cap     vlen is a variable-length-record demonstration: it builds a small
+cap     filesystem of its own, writes a hundred records of differing
+cap     length, and reads them back deleting some as it goes.  The tail of
+cap     the run, ending `vlTest completed successfully'.
+run     rm -rf /dd/tmp/UTILA/vl > /nil 2>/nil
+run     mkdir -p /dd/tmp/UTILA/vl > /nil 2>/nil
+run     clear
+wait    1
+run     ksh -c "cd /dd/tmp/UTILA/vl; vlen" 2>/nil | tail -l=16
+wait    6
+
+shot    mvolformat
+cap     mvolformat formats a set of floppies with sequential volume
+cap     numbers.  With no drive here, its syntax and options are what
+cap     there is to show.
+run     mvolformat
+wait    3
+
+shot    rndir
+cap     rndir converts the NAMES of the subdirectories in a directory to
+cap     upper or lower case; `-l' makes them lower case, `-q' works
+cap     quietly.  Its options.
+run     rndir -?
+wait    4
