@@ -2,8 +2,8 @@
 
 Terse on purpose. Everything before 2026-08-27 is in git history.
 
-Branch `release-pass-2026-08-21`. Every `check_disk.py` check green -- there
-are twenty now, and nineteen of them are proved able to FAIL by
+Branch `release-pass-2026-08-21`. Every `check_disk.py` check green --
+twenty-one now, nineteen of them proved able to FAIL by
 `tools/check_the_checks.py`.
 
 ---
@@ -163,6 +163,13 @@ from you; you may just like knowing which program noticed.
   the Unicode box characters, because nothing here may carry a byte over
   0x7f. sysmon is the only program on the disk that had ever got far enough
   to use it.
+
+**5b. `hex` -- a program in an archive we already have, not taken.**
+`cowen_tools.lzh` gave us `delbak`, `l` and `owner`; it also holds `hex`
+(1,916-byte binary, 1,612 bytes of C) which nobody extracted. `dump` is the
+hex dump on the disk already. Adding a program is your call -- say and I
+will, or say no and I will note it in ORIGINS so the next person does not
+re-find it.
 
 **6. Nothing else is waiting on you.** For the record, and needing nothing
 from you: Metafont works. `SYS/TEX/MFBASES` held only its Makefile, so
