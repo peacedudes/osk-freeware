@@ -34,6 +34,9 @@
                         it asserts nothing, it shows you what happened
     drives/             the sheets drive.py reads. Committed; the transcripts
                         they produce are not
+    audit_panels.py     what each PROGRAM's panel shows OF THAT PROGRAM --
+                        the per-program audit; its --gate is the ratchet
+                        check_disk runs against tools/panel-backlog.txt
     audit_cards.py      which gallery cards show a program WORKING and
                         which show only its help text or an error
 
@@ -42,6 +45,7 @@
     tools/worklist.py --no-test --no-card      # nothing but an index line
     tools/worklist.py --cat "Text tools"       # one category, with its usage
     tools/audit_cards.py                       # cards not worth showing
+    tools/audit_panels.py                      # programs whose panel is not theirs
 
 The work left on this collection is per-program: run it with real arguments,
 check that what it does matches what `DOC/INDEX` says, and leave behind

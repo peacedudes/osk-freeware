@@ -1,0 +1,7 @@
+# panel-exceptions.psv -- programs whose panel is RIGHT as it stands, though
+# tools/audit_panels.py would score it as failing.  name | why
+#
+# An exception is a debt with a reason attached.  Every line here should be
+# one that a stranger reading the card would agree with; the moment a
+# better card is possible, the line comes out.
+perr|perr prints the text of an OS-9 error number; error text IS its output

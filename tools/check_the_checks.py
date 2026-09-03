@@ -40,6 +40,7 @@ import sys
 import tempfile
 
 REPO = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+sys.path.insert(0, os.path.join(REPO, "tools"))
 CHECKER = os.path.join(REPO, "tools", "check_disk.py")
 
 
@@ -272,6 +273,30 @@ def break_cio_scan(root):
     return "CMDS/REBUILT/kermit_cio removed, so the scan's guard is gone"
 
 
+
+def break_panel_backlog_forgets(root):
+    """A failing program taken OFF the backlog: the gate must miss it."""
+    import audit_panels
+    src = os.path.join(REPO, "tools", "panel-backlog.txt")
+    names = [l.strip() for l in open(src) if l.strip() and not l.startswith("#")]
+    keep = names[1:]
+    copy = os.path.join(os.path.dirname(root), "panel-backlog.txt")
+    open(copy, "w").write("\n".join(keep) + "\n")
+    os.environ["OSK_PANEL_BACKLOG"] = copy
+    return "`%s' dropped from a COPY of panel-backlog.txt" % names[0]
+
+
+def break_panel_backlog_stale(root):
+    """A passing program ADDED to the backlog: the ratchet must object."""
+    import audit_panels
+    src = os.path.join(REPO, "tools", "panel-backlog.txt")
+    passing = next(p for p, v, _ in audit_panels.audit() if v == "work")
+    copy = os.path.join(os.path.dirname(root), "panel-backlog.txt")
+    open(copy, "w").write(open(src).read() + passing + "\n")
+    os.environ["OSK_PANEL_BACKLOG"] = copy
+    return "`%s' (which passes) added to a COPY of panel-backlog.txt" % passing
+
+
 BREAKS = [
     ("line endings", "line endings are CR-only", add_line_ending),
     ("utf8", "no UTF-8 on an 8-bit disk", add_utf8),
@@ -293,6 +318,10 @@ BREAKS = [
      break_screened_source),
     ("login env", "harness env matches SYS/login", break_login_env),
     ("cio macro", "the cio-macro list is current", break_cio_scan),
+    # Both directions of the ratchet, through a COPY of the backlog that
+    # OSK_PANEL_BACKLOG points the gate at -- the live file is never edited.
+    ("panel forgets", "panels show their own program", break_panel_backlog_forgets),
+    ("panel stale", "panels show their own program", break_panel_backlog_stale),
     # `one line per name in the hand lists' is NOT probed here: its input is
     # tools/howto.psv and tools/categories.psv, not the disk tree this tool
     # copies, so a break would edit the live lists. It was made to fail by
@@ -370,6 +399,7 @@ def main(argv):
             blind.append((label, what, sorted(failing)))
         shutil.rmtree(root)
         shutil.move(pristine, root)
+        os.environ.pop("OSK_PANEL_BACKLOG", None)
 
     shutil.rmtree(work, ignore_errors=True)
     print("\n%d of %d breaks were caught by the check meant to catch them"

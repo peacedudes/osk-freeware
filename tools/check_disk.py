@@ -981,6 +981,33 @@ def check_harness_env_matches_login(root):
     return (not bad), "; ".join(bad)
 
 
+
+def check_panels_show_their_program(root):
+    """Every runnable program's panel shows THAT program working -- ratcheted.
+
+    The gallery is built per CARD and read per PROGRAM, and `audit_cards'
+    scoring the card as a whole is how `lessecho' came to publish
+    `helpindex's help text with a bare `lessecho < /nil' under it and 0 of
+    408 flagged.  `tools/audit_panels.py' scores what the reader sees of
+    the program itself.  474 programs failed it on 2026-09-03, so the gate
+    is a ratchet: `tools/panel-backlog.txt' names the known failures, a
+    NEW failure fails the build, and a listed program that now passes fails
+    it too until its line comes out.  `tools/panel-exceptions.psv' holds the
+    few that are right as they stand, each with its reason.
+
+    The audit reads docs/screens.js and the sheets, not the disk tree, so
+    `root' is unused here; the prober points the gate at a mutated copy of
+    the backlog through OSK_PANEL_BACKLOG rather than editing the live file.
+    """
+    import audit_panels
+    ok, bad = audit_panels.gate()
+    for b in bad[:12]:
+        print("    %s" % b)
+    if len(bad) > 12:
+        print("    ... and %d more" % (len(bad) - 12))
+    return ok, "%d problem(s); run tools/audit_panels.py --gate" % len(bad)
+
+
 CHECKS = [
     ("line endings are CR-only", check_line_endings),
     ("no UTF-8 on an 8-bit disk", check_no_utf8),
@@ -1004,6 +1031,7 @@ CHECKS = [
     ("README names documents that exist", check_readme_cross_references),
     ("cards do not depend on each other", check_cards_do_not_depend_on_each_other),
     ("harness env matches SYS/login", check_harness_env_matches_login),
+    ("panels show their own program", check_panels_show_their_program),
 ]
 
 if __name__ == "__main__":
