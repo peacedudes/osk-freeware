@@ -1,16 +1,6 @@
-$ cvtbase
-syntax: cvtbase <input base> <output base>
-function: convert numbers in <stdin> from one base to another.
-options: (none)
-<base> is specified by one of the following:
-        b       binary
-        d       decimal
-        h or x  hexadecimal
-        o       octal
-        or the actual digit characters (eg. 012 would be ternary notation).
-These may be preceded by a - sign to indicate the base is negative.
-A base may be preceded by m<char>, to use a different minus sign char.
-Bases -1, 0, and 1 are disallowed.
-
-Copyright 1988 by Mike Parker.  All rights reserved.  Non-profit
-redistribution permitted.
+$ echo 255 | cvtbase d h
+ff
+$ echo 255 | cvtbase d b
+11111111
+$ echo ff | cvtbase h d
+255

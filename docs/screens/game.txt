@@ -1,4 +1,4 @@
-$ postprint < /nil
+postprint < /nil
 /V 11 72 mul def /L 60 def
 $ game
 Usage: game file [start [end] ]

@@ -11,8 +11,3 @@ WELCOME TO RPN!!! (Rpn version 1) by Nils McCarthy
 +
                 stack top: 0
                         stacksize: 3
-2
-                stack top: 2
-                        stacksize: 4
-q
-Bye Bye, now! Please try rpn again!

@@ -56,6 +56,7 @@ cdiff c20874fb713cd0fc
 charcnt cd15a3a9da7c09c1
 chbase 19a911b330380a09
 checkenv af7526fb1be42dde
+checkfile 6e26d4ddd9eed805
 checkgame 98db5b38165874f0
 checksum c3e321b3cec2886f
 chgrp b2331ff98f6da1dd
@@ -75,7 +76,7 @@ ctags.elvis ecd0ed2eb20e7485
 cursive 97b454155c3401de
 cut a5fa24627e045eee
 cuts 1aa3acac94fe05ca
-cvtbase f3e44708c76edceb
+cvtbase 22e68e7c868991de
 cxref 7354edc1b14381b9
 dam c30b7cc7269589c3
 date 1da124d27fc8b625
@@ -165,7 +166,6 @@ gif2 b5c0592108bf2c41
 giftopnm 2f3769f6c8c49b2a
 gmake 399558e7ab6522b1
 gnuchess 47186d1254820eb5
-gnuchess-builds d666ef7d16943127
 gnuchessc 5abdc6b443af281d
 gnuplot 3d186d7b99a2206f
 gothic e1ee3fedd700a651
@@ -221,7 +221,7 @@ lharc 3b1aef240e32f8eb
 lispm 647b692409bfc1b3
 lmargin 0e7377b686da6c46
 load ed88e752e89868aa
-loan 779df2c59eb353ae
+loan 47110aee19a3b1dc
 logisim 8750fcbd1e017e8e
 logname 8f17510b2cfc5411
 lorenz3d 7adc33fafa9ee955
@@ -276,7 +276,7 @@ newsgen 99c44fee16b57b16
 newshist d5cce1fa88d355a3
 noreader 1e83096eac6dba80
 ob68kdemo f3ecd32662b190e2
-oleo 4fb98748af951b06
+oleo d3bd071d889f55f3
 orbit 22eac90acb825dda
 oskversion bb9a008afce471c7
 p2c 0547b3a700db114e
@@ -347,7 +347,7 @@ rndir 55898b053073bed7
 rndname 41a53ac034e446fe
 roff 5da0484c9b69c2c3
 rot 4cb4e35aad357d67
-rpn 7b97fd1b7d4a4c35
+rpn a1fd3ce7d1a49dad
 rpoem 4b4f474ef4ac92fb
 rstory 6df798d4e6d9be3c
 rstory2 160ef4cc0d9c09a9
@@ -393,7 +393,8 @@ strings b36450fe0c9d5b9e
 su a6743cd58fbaac7c
 subber ba4c5c95533aae40
 submit f61226d5d1a9c152
-suicide-variants aac2ac793c53597b
+suicide1 a37ab53f9d172b16
+suicide2 500125cf5d1d0c04
 sum 18c837a48c130a64
 sysid 252d3ecab7e21ffd
 sysmon 08c4379a5c8f7531
@@ -423,7 +424,7 @@ travesty ee7c30ca56b23eff
 tree 30d3f77b10b5edc7
 tttt 2620b18852a3e865
 tty b7e538ffeb67cd7e
-ttyexp 982db7859647bae8
+ttyexp d493bf0e5002c44c
 ub68kdemo 331c4f7d940124da
 umacs 5975efe2b8b7f28e
 undel e2e23162ac014bdb

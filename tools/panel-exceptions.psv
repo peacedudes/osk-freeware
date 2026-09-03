@@ -24,3 +24,4 @@ lp|there is no spooler running on this disk; its option list is what there is to
 lprm|there is no spooler running on this disk; its option list is what there is to show, and the card says so
 lpsched|there is no printer device on this disk to start the spooler on; its option list is what there is to show
 submit|a batch-file runner; its option list is what a card can show without a .sub job to run
+oleo|GNU Oleo stops on an illegal instruction before it draws a cell; the abort is the whole of what it does here, and the card says so

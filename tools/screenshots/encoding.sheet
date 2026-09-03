@@ -41,15 +41,6 @@ cap     crypto, the cryptogram solver's assistant, showing what it offers.
 run     crypto -h
 wait    6
 
-shot    cvtbase
-cap     cvtbase names its bases by KEY -- b, d, h or x, o, or the digits of
-cap     any base you like -- and this is it saying so.  Asked to convert
-cap     anything it floods `No more memory !!!' instead, which is in
-cap     DOC/INDEX and in the data tests; a wall of that message is not a
-cap     picture of what the program is for.
-run     cvtbase
-wait    6
-
 shot    des
 for     des
 cap     DES asks for the key twice, writes its output as `<file>.n' and

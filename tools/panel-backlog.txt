@@ -39,7 +39,6 @@ cc2plus
 cccp2
 chardef
 checkalias
-checkfile
 chgrp
 chown
 ci
@@ -63,8 +62,6 @@ cpr
 creadoc
 cron
 ctags
-cvtbase
-cyberwar
 dback
 dearc
 delbak
@@ -110,7 +107,6 @@ for
 fortune
 fstopgm
 funzip
-game
 gcc
 gcc_cc1plus
 gcc_cccp
@@ -135,7 +131,6 @@ hpcdtoppm
 ifdef
 imgtoppm
 inetdc
-infocom
 infoxpress
 inimf
 initvdu
@@ -143,7 +138,6 @@ input
 k
 kermit_cio
 l
-lander
 latex
 lcasep
 lesskey
@@ -158,7 +152,6 @@ lmail
 lnk.org
 load
 loadmem
-loan
 lua
 m4_0.5
 macbin
@@ -343,3 +336,4 @@ zoo_2.1
 zot
 ynad
 vis
+infocom.tcap

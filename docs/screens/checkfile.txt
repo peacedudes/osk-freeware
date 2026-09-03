@@ -1,0 +1,23 @@
+      ==========================CHECKFILE=================================
+      ===========Copyright#(c)#1992#by#John#R.#Wainwright#================
+
+            Current Active File:          testfile.dat
+
+            Nr of Recs in File            0
+
+      =========================CURRENT#RECORD=============================
+
+      1.  Record Nr.                    2.  Item Nr.
+
+      3.  Date                          4.  Type
+
+      5.  Description
+
+      6.  Account                       7.  Amount
+
+      ============================ACTION==================================
+
+      A - Add Records      B - Print Balance       V - View/Edit
+      R - Report           F - Select File         Q - Quit
+
+      Select

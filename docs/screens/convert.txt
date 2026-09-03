@@ -1,4 +1,4 @@
-$ advcom
+advcom
 ADVCOM v1.2 - Copyright (c) 1986, by David Betz
 usage: advcom <file> [ <ofile> ]
 $ convert

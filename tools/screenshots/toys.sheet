@@ -1,9 +1,30 @@
+# Screen toys: animations and effects, one stanza per program.  The
+# play-tests in tools/playtests cover bite, card, life, rain, suicide and
+# worms.
 
-
-shot    suicide-variants
-for     suicide1 suicide2
-cap     Two variants of the rooftop animation, caught mid-fall.
+shot    suicide1
+cap     A rooftop animation, one of three variants: the figure has
+cap     jumped, and the scream runs along the top of the building.
 run     suicide1
-wait    12
-run     suicide2 < /nil
-wait    10
+wait    6
+snap
+wait    2
+
+shot    suicide2
+cap     The rooftop animation's other variant, with a car.
+run     suicide2
+wait    6
+snap
+wait    2
+
+shot    ttyexp
+cap     Fireworks for a VT100: explosions of characters thrown out from
+cap     a point and falling back, with options for how many at once,
+cap     their size and their shape.  On this console it returns at once
+cap     without drawing.
+run     ttyexp -s2 -p50
+wait    4
+snap
+wait    2
+run     ttyexp -h
+wait    4
