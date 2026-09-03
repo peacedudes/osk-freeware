@@ -40,8 +40,9 @@ CRAFT = re.compile(
     r"(?i)\b20[0-9]{2}-[01][0-9](-[0-3][0-9])?\b"
     r"|\b(re-?measured|measured|verified|tested|corrected|re-?checked)\b"
     r"|\brebuilt here\b|\bthis said\b|\bused to\b|\buntil 20|\bit turns out\b"
-    r"|\b(the|its|this) card\b|\bthis collection\b|\bDOC/INDEX (called|said|had)"
-    r"|\bos9exec\b|\bthe emulator\b|\bthe sweep\b|\bsession\b")
+    r"|\b(the|its|this) card\b(?! game)|\bthis collection\b"
+    r"|\bDOC/INDEX (called|said|had)"
+    r"|\bos9exec\b|\bthe emulator\b|\bthe sweep\b|\bthis session\b")
 
 
 def why(text):

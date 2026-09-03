@@ -116,8 +116,6 @@ CAPTIONS = {
     "crib":     ("Cribbage, offering its instructions first.", "final"),
     "dclock":   ("dclock is another G-Windows program: it says so and stops. "
                  "`digclk' is the clock that works on a terminal.", "final"),
-    "ed":       ("GNU ed cannot start here: it makes its temporary file at "
-                 "/r0, the RAM disk os9exec has no way to provide.", "final"),
     "editor":   ("The GSHELL editor front end aborts on startup (E_PRCABT).",
                  "final"),
     "england":  ("The weather simulator set in England -- mid-Atlantic, and "
@@ -127,8 +125,6 @@ CAPTIONS = {
     "gnuan":    ("gnuan annotates a saved chess game move by move, using GNU "
                  "Chess's opening book -- 9585 of its 12000 entries.",
                  "final"),
-    "hexed":    ("hexed writes its work file to /r0 and stops when it cannot "
-                 "-- the RAM disk os9exec has no way to provide.", "final"),
     "larn":     ("Larn: your daughter has a strange disease and the dungeon "
                  "has the cure.  Fixed here -- its help, fortune and maze "
                  "files were recovered from the 12.2p4 sources.", "final"),

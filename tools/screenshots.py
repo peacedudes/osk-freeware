@@ -43,6 +43,9 @@ Sheet format (blank lines and `#' comments ignored):
                                    is; `snap' then takes a still page of a
                                    program that scrolls, and `send \021'
                                    (Ctrl-Q) lets it go on.  rdoggett's tip.
+    run     clear                  a `clear' inside the stanza starts the
+                                   picture over -- setup lines typed before
+                                   it are left out of it
     snap                           TAKE THE PICTURE HERE.  Without it the
                                    fullest moment of the stanza is kept,
                                    which is right for a program that prints
@@ -345,7 +348,16 @@ def _drive(sess, shot):
     shot["_marks"] = []
     shot["_snaps"] = []
     for kind, val in shot["acts"]:
-        if kind == "run":
+        if kind == "run" and val.strip() == "clear":
+            # A `clear' IN the stanza starts the picture over: the setup
+            # lines before it are not the program, and the fullest-moment
+            # picker was choosing them over the program's own screen.
+            sess.write("clear\r")
+            time.sleep(1.2)
+            shot["_start"] = sess.mark()
+            shot["_marks"] = []
+            shot["_snaps"] = []
+        elif kind == "run":
             sess.write(val + "\r")
             time.sleep(1.0)
         elif kind == "wait":

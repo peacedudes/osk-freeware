@@ -5,3 +5,5 @@
 # one that a stranger reading the card would agree with; the moment a
 # better card is possible, the line comes out.
 perr|perr prints the text of an OS-9 error number; error text IS its output
+elvprsv|run by elvis on a crash to preserve the buffer; by hand with nothing preserved it prints nothing, and the card says so
+pbyte|patches bytes silently; the cat before and after on its card is the evidence of its work
