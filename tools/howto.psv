@@ -259,3 +259,5 @@ pacman|Written for G-Windows. At a terminal it draws nothing and returns to the 
 postprint|It wants gnuchess's persistent hash file, which is not on this disk.
 queens|Reads the board size on standard input as a number: `echo 6 | queens'.
 zot|`zot -s=<1-14> "text"' prints the text in that style; `zot -d "text"' shows every style in turn.
+imgtoppm|Reads the Img Software Set (AT&T Image-8) format, not GEM IMG -- gemtopbm reads GEM. No file on this disk is in the Img format; handed anything else it writes nothing and is silent.
+psidtopgm|Reads the hex digits of PostScript `image' operator data, not a scanner format: `psidtopgm <width> <height> <bits/sample>' then the hex on standard input. `echo ffffffff00000000 | psidtopgm 4 2 8' makes a 4x2 graymap, a white row over a black one.

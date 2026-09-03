@@ -1,0 +1,4 @@
+pbmtoxbm /dd/tmp/NPIB/b.pbm > /dd/tmp/NPIB/t.xbm
+$ xbmtopbm /dd/tmp/NPIB/t.xbm > /dd/tmp/NPIB/back.pbm
+$ pnmfile /dd/tmp/NPIB/back.pbm
+/dd/tmp/NPIB/back.pbm:  PBM raw, 48 by 24

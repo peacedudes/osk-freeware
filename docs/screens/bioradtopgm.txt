@@ -1,0 +1,2 @@
+bioradtopgm /dd/tmp/NPIB/nr.ppm
+bioradtopgm: Not a Biorad file

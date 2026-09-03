@@ -1,0 +1,4 @@
+pgmtolispm /dd/tmp/NPIB/g15.pgm > /dd/tmp/NPIB/l.lispm
+$ lispmtopgm /dd/tmp/NPIB/l.lispm > /dd/tmp/NPIB/back.pgm
+$ pnmfile /dd/tmp/NPIB/back.pgm
+/dd/tmp/NPIB/back.pgm:  PGM raw, 48 by 24  maxval 16

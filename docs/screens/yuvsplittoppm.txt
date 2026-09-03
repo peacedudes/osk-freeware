@@ -1,0 +1,4 @@
+ppmtoyuvsplit /dd/tmp/NPIB/y /dd/tmp/NPIB/c.ppm
+$ yuvsplittoppm /dd/tmp/NPIB/y 48 24 > /dd/tmp/NPIB/back.ppm
+$ pnmfile /dd/tmp/NPIB/back.ppm
+/dd/tmp/NPIB/back.ppm:  PPM raw, 48 by 24  maxval 255

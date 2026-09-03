@@ -1,0 +1,2 @@
+brushtopbm /dd/tmp/NPIB/nr.ppm
+brushtopbm: bad magic number 1

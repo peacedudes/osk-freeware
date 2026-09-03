@@ -1,0 +1,8 @@
+echo ffffffffffffffff0000000000000000 > /dd/tmp/NPIB/i.ps
+$ psidtopgm 8 2 8 < /dd/tmp/NPIB/i.ps > /dd/tmp/NPIB/p.pgm
+$ pnmnoraw /dd/tmp/NPIB/p.pgm
+P2
+8 2
+255
+255 255 255 255 255 255 255 255
+0 0 0 0 0 0 0 0

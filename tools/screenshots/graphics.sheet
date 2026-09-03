@@ -22,26 +22,6 @@ run     pnmfile /dd/tmp/base.pgm /dd/tmp/base.ppm /dd/tmp/base.pbm
 wait    5
 
 
-shot    asciitopgm
-for     asciitopgm ppmtopgm
-cap     asciitopgm goes the other way -- characters IN, a greyscale image
-cap     out, each character weighted by how much ink it has.  Here it reads
-cap     back the ASCII art pbmtoascii just wrote, and pnmfile confirms a
-cap     60x8 PGM came out of it.  `pgmtoppm' then colours that greyscale: it
-cap     takes a colour or a PAIR -- `red-blue' ramps between them -- and the
-cap     same 60x8 comes out as a PPM.
-run     pbmtext "netpbm" | pbmtoascii > /dd/tmp/art.txt
-wait    12
-run     asciitopgm 8 60 < /dd/tmp/art.txt > /dd/tmp/art.pgm
-wait    12
-run     pnmfile /dd/tmp/art.pgm
-wait    10
-run     pgmtoppm red-blue /dd/tmp/art.pgm > /dd/tmp/art.ppm
-wait    12
-run     pnmfile /dd/tmp/art.ppm
-wait    10
-
-
 shot    ateri
 size    30 80
 for     ppmtopi1 pi1toppm pi3topbm ppmtopict picttoppm
@@ -678,20 +658,6 @@ wait    8
 run     pbmtoepsi /dd/tmp/base.pbm | head -n 10
 wait    8
 run     pbmtoptx < /nil
-wait    8
-
-
-shot    rawtopgm
-for     rawtopgm rawtoppm fstopgm
-cap     rawtopgm reads headerless bytes as an image -- how you got a picture
-cap     out of a machine that wrote no header at all.
-run     pgmnoise 40 20 | pnmnoraw | head -n 3
-wait    8
-run     rawtopgm 48 24 < /dd/tmp/base.pgm | pnmfile
-wait    8
-run     pgmtofs /dd/tmp/base.pgm | fstopgm | pnmfile
-wait    10
-run     rawtoppm < /nil
 wait    8
 
 

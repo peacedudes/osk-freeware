@@ -41,7 +41,7 @@ as11 cad4da85df1d4b1b
 as4 abe72d653a5fca77
 as5 341cc35b1bbe57a3
 ascii 71a1f702a9db128e
-asciitopgm 8eedec24ace868c5
+asciitopgm 57f9a3bca51ee769
 ask ab3766668bb7dd5f
 assembler 3a47d5c44d338908
 ateri b53a5d107876b6c8
@@ -59,6 +59,7 @@ bibtex 04eb3adefae94c24
 bigsetter a65afaeb5077cfad
 bincheckr e6e962522d8397eb
 binhex 31bd24cdb7d247f9
+bioradtopgm 646cd466aff9d089
 biory 4d3d4e013550da95
 bison 64235b18086410da
 blackjack cec1db00d38ca72b
@@ -71,6 +72,7 @@ bog 6a559c9a353d94f5
 bootgen a84da7013b341aa3
 bootlogger ae62a47371b479e9
 break d645f3c6ab3e24bc
+brushtopbm 67c169f571de5acb
 btoa 998f80a6d2262798
 btop e3524b4838824199
 btree d2d82344ac802011
@@ -242,6 +244,7 @@ for 9869efd04fdb698f
 forth 5e964bdb499cf385
 fortune 9ecfa07b45d3dc28
 fstat 69d2c7c7cc391f1b
+fstopgm 559908327f76f834
 fuddle 95d0107b8e92bdc1
 funzip 336d89a0b2f524c4
 g fe668ad88d2c5a40
@@ -276,6 +279,7 @@ gnuchessn f615cfce488e555f
 gnuchessr ae3a70f182754a2d
 gnuplot 3d186d7b99a2206f
 gothic e1ee3fedd700a651
+gouldtoppm 509e6af2b0a16c13
 gpp 212dcf169451eb2a
 gpp_cc1plus cfc2ab82300eb74a
 gpp_cccp 7005cec700702e44
@@ -309,13 +313,16 @@ hexbin 78a1ad442dbe8973
 hexed 090b96018fd0130b
 hexedit 630fe5d8875d5824
 hinterhalt 5b3a02628f05e653
+hipstopgm a16df303c40242ad
 hotel 41cf8b374b076d33
+hpcdtoppm 61ad4c3c27fd35c8
 i_am_i 65844e506a55c3e6
 icon f745c5ef17db1241
 ident d24209e786b1ac02
 if 8b8e84cc03804931
 ifdef 34823568d37e49dd
 ilbm 9ff0c509a4e4bb7c
+imgtoppm d470780ecb9212af
 indent 75633da3e2f7dfe0
 infocom eca7cef40c53b726
 infocom.tcap db426b35f72bd1f3
@@ -347,6 +354,7 @@ lharcs 9614ec352deebb4c
 liborder 87e0ceb0cee99186
 libsplit 17b253158605dd58
 lispm 647b692409bfc1b3
+lispmtopgm a20ab92f20d50316
 listalias ffbfbb9557a63301
 lmail 1edf6257d9bedd78
 lmargin 0e7377b686da6c46
@@ -424,6 +432,7 @@ mstype 18a97666cc8aef6f
 mswrite d915e5c9eac03ea5
 mtools 0ca7321e28cae63e
 mtst 85c98c0c717f9312
+mtvtoppm a7ad87d1ccf3439c
 mv 12d95932c04fa1ab
 mvolformat 6a48f614886d1373
 name fdfd42ee83c7c2ea
@@ -532,6 +541,7 @@ printmail 25f7441eb0ab9b5c
 prjob 5d31d13e051d89d7
 proff 0689b103c3eb6448
 psc ae44645c27acf2e0
+psidtopgm dc661c98ec92279b
 ptob 729e6ac61b044c64
 puz15 f4446639e39ed1e6
 puzzle15 681b23b46819725d
@@ -541,7 +551,8 @@ qp 159fb95fa4e549d8
 qsort9 ed92b7818b8897ae
 qt 6e09112db03ccdd9
 queens 620aaa05515f3571
-rawtopgm 5fd59b0eea18a741
+rawtopgm c74f1a128c4b8d41
+rawtoppm 05f22e2bcc862f2c
 rayshade 470c65861d867b60
 rcs 0a7ef2bf484960ec
 rcsdiff 768579d4e22338b1
@@ -603,6 +614,7 @@ sieve 71dec5535d838ebd
 signal cd58109a61af0db6
 sine 0cece66040b0292a
 sir a5e60d3077b27728
+sldtoppm e9d47d2dc84338d0
 slitex 9d5c592edccfeb5c
 smail e63faf3593c3b34d
 snake 57a3a2d0ae531c69
@@ -613,6 +625,7 @@ sort 544167d9cab7833a
 soundex 6e7f0535ecb373d6
 sox 746ef4e063bce83c
 space 3bf203b7ccb9bbff
+spctoppm 8403370b6afe004d
 speech f88a9038e6143955
 sphere 2917ec621d651288
 spiff 38479b35211de551
@@ -620,6 +633,7 @@ spline a16608e489be25e7
 split 06267a022e2ea346
 splitalf 8307ccfd651b397e
 splstat e96bdd073ebd30c7
+spottopgm f14a2c92ed428c34
 sqrtx 27e19ff0d5f65f07
 ssl 8022f4aed55da366
 sterm cecd9152aff6c1f0
@@ -655,6 +669,7 @@ textb d6014e1b09af8d07
 tformat 404181fc0a48bb61
 tftopl 00dbe2aa2c796222
 tga c91a8a2ae50951af
+tgatoppm dc22165c51a7be86
 tiffish 402f3d0ac1e908de
 time a3ba286af1dfe84f
 timid ca56aed1daa6c68c
@@ -731,18 +746,23 @@ writeonly 304e6fedbd14aba1
 wrjpgcom 39e3cf5ee5f6d222
 wrjpgcom.070 f64a498963b9a248
 xbm 63ce52063e439546
+xbmtopbm f0db6552c87c3b61
 xc c2bc5883e0a69df2
 xcrypt 6bc406d1e385fbaf
 xengine 5722aee171787384
+ximtoppm 98f88c0a013b3aa8
 xlate 11ca801650ea8534
 xlisp 0b7422cb632e67fb
 xmodem 03c7d002316b77ad
 xpm 968f0fed29aea840
 xrf 1ef6a5c3930bacc9
+xvminitoppm 01468f3ca9439281
 yacc 537ee7f7be555240
 yagi 469ad661c6ada1aa
 ynad 4e45aa6ac750eb7c
 yuv 7bc729e24271bbd0
+yuvsplittoppm ae67a7dfaab110c0
+zeisstopnm 6a472c42b5ee9648
 zip 7b56ca75e06c9a1a
 zipinfo 2b3b9c7af11d7768
 zipnote 78f5735a325c0c8b

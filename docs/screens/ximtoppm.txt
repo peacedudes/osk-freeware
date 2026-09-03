@@ -1,0 +1,4 @@
+ximtoppm /dd/tmp/NPIB/nr.ppm
+ximtoppm: ReadXimHeader: unable to read file header
+ximtoppm: can't read xim header
+ximtoppm: can't read Xim file

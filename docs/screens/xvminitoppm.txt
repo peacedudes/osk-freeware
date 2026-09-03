@@ -1,0 +1,2 @@
+xvminitoppm /dd/tmp/NPIB/nr.ppm
+xvminitoppm: bad magic number - not a XV thumbnail picture

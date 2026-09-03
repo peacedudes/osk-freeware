@@ -1,0 +1,2 @@
+spctoppm /dd/tmp/NPIB/nr.ppm
+spctoppm: not a Spectrum picture

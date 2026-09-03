@@ -141,12 +141,13 @@ FORMATS = {
  "xbm":"X bitmap","xpm":"XPM","sgi":"SGI","sun":"Sun raster","rast":"Sun raster",
  "macp":"MacPaint","pi1":"Atari PI1","pi3":"Atari PI3","pict":"PICT","tga":"Targa",
  "ilbm":"IFF/ILBM","icon":"Sun icon","g3":"Group 3 fax","hips":"HIPS","mgr":"MGR",
- "img":"GEM IMG","gem":"GEM","cmuwm":"CMU window manager","atk":"Andrew toolkit",
+ "img":"AT&T Image-8","gem":"GEM","cmuwm":"CMU window manager","atk":"Andrew toolkit",
  "brush":"Xerox brush","fs":"Usenix FaceSaver","gould":"Gould scanner",
  "mtv":"MTV ray tracer","qrt":"QRT ray tracer","raw":"raw bytes","spc":"Atari Spectrum",
  "spu":"Atari Spectrum","yuv":"Abekas YUV","zeiss":"Zeiss confocal",
  "biorad":"Bio-Rad confocal","lispm":"Lisp machine","pj":"HP PaintJet",
  "pk":"packed font","pcd":"PhotoCD","hpcd":"PhotoCD","sld":"AutoCAD slide",
+ "psid":"PostScript image",
 }
 
 def derive_netpbm_desc(name):

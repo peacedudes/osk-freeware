@@ -82,3 +82,15 @@ gen|writes a C program frame to a file; the listing that follows on its card sho
 mexist|answers only in its exit status; the two statuses on its card are the evidence
 eset|the event directory is empty and nothing here creates an event, so it can only report that
 eunlink|the event directory is empty, so it reports the event is not found
+bioradtopgm|reads a Bio-Rad confocal image, a format no sample ships for; its card shows it naming what it wants
+brushtopbm|reads a Xerox brush file, no sample ships; its card shows it naming what it wants
+gouldtoppm|reads a Gould scanner file, no sample ships; its card shows it naming what it wants
+hipstopgm|reads a HIPS image, no sample ships; its card shows it naming what it wants
+hpcdtoppm|reads a PhotoCD image, no sample ships; its card shows it naming what it wants
+imgtoppm|reads an Img-Software-Set image, no sample ships; its card shows it naming what it wants
+mtvtoppm|reads an MTV/PRT ray-tracer image, no sample ships; its card shows it naming what it wants
+spctoppm|reads an Atari Spectrum image, no sample ships; its card shows it naming what it wants
+spottopgm|reads a SPOT satellite image, no sample ships; its card shows its usage
+ximtoppm|reads an Xim image, no sample ships; its card shows it naming what it wants
+xvminitoppm|reads an XV thumbnail image, no sample ships; its card shows it naming what it wants
+zeisstopnm|reads a Zeiss confocal image, no sample ships; its card shows it naming what it wants

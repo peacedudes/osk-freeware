@@ -1026,7 +1026,7 @@
 | `hpcdtoppm` | PhotoCD to PPM (colour)<br>`Usage: hpcdtoppm [options] pcd-file [ppm-file]` |
 | `icontopbm` | Sun icon to PBM (bitmap) |
 | `ilbmtoppm` | IFF/ILBM to PPM (colour) |
-| `imgtoppm` | GEM IMG to PPM (colour) |
+| `imgtoppm` | AT&T Image-8 to PPM (colour)<br>**How:** Reads the Img Software Set (AT&T Image-8) format, not GEM IMG -- gemtopbm reads GEM. No file on this disk is in the Img format; handed anything else it writes nothing and is silent. |
 | `lispmtopgm` | Lisp machine to PGM (greyscale)<br>**How:** This build handles at most 16 grey levels and says "depth is too large" otherwise. Run the image through `pnmdepth 15' before pgmtolispm. |
 | `macptopbm` | MacPaint to PBM (bitmap) |
 | `mgrtopbm` | MGR to PBM (bitmap) |
@@ -1037,7 +1037,7 @@
 | `picttoppm` | PICT to PPM (colour) |
 | `pjtoppm` | HP PaintJet to PPM (colour) |
 | `pktopbm` | packed font to PBM (bitmap) |
-| `psidtopgm` | psid to PGM (greyscale) |
+| `psidtopgm` | PostScript image to PGM (greyscale)<br>**How:** Reads the hex digits of PostScript `image' operator data, not a scanner format: `psidtopgm <width> <height> <bits/sample>' then the hex on standard input. `echo ffffffff00000000 \| psidtopgm 4 2 8' makes a 4x2 graymap, a white row over a black one. |
 | `qrttoppm` | QRT ray tracer to PPM (colour) |
 | `rasttopnm` | Sun raster to PNM |
 | `rawtopgm` | raw bytes to PGM (greyscale) |

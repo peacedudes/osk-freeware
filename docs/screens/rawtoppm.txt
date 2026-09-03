@@ -1,0 +1,3 @@
+rawtoppm 48 24 < /dd/tmp/NPIB/c.ppm > /dd/tmp/NPIB/r.ppm
+$ pnmfile /dd/tmp/NPIB/r.ppm
+/dd/tmp/NPIB/r.ppm:     PPM raw, 48 by 24  maxval 255
