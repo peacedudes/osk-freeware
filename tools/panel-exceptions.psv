@@ -33,3 +33,5 @@ chardef|loads a VT220 character set from a definition file, and no terminal here
 macunpack|opens PackIt archives and none is on the disk; its options are what there is to show
 UnMacpack|opens PackIt archives and none is on the disk; its options are what there is to show
 uudecode|writes the decoded file silently; the ls and cat that follow on its card show it back
+lua|built against a later csl edition than the disk ships; the mismatch banner is where it stops, and the card says so
+runc|built against a later csl edition than the disk ships; the mismatch banner is where it stops, and the card says so

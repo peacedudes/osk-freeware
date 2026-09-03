@@ -19,18 +19,13 @@ wait    15
 
 shot    benchmarks2
 size    36 80
-for     paranoia timid time
-cap     The three that stand apart from the speed benchmarks.  `paranoia' is
-cap     Kahan's floating-point torture test and reports on the arithmetic
-cap     rather than timing it; `timid' and `time' measure something else's
-cap     running time rather than their own.  All three were credited to the
-cap     benchmarks card and never run there.
+for     timid time
+cap     Two that stand apart from the speed benchmarks: `timid' and `time'
+cap     measure something else's running time rather than their own.
 run     time /dd/CMDS/today
 wait    12
 run     timid -?
 wait    8
-run     paranoia
-wait    25
 
 shot    cb
 cap     cb, the C beautifier: it indents C that has none.  It reads standard

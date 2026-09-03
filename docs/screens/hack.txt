@@ -1,24 +1,24 @@
-                                             a - a dead lizard.
-                                             b - a pancake.
-                                             c - 2 tripe rations.
-                                             d - a fortune cookie.
-                                             e - a tin.
-                                             f - an egg.
-                                             g - 3 food rations.
-                                             h - 2 purple-red potions.
-                                             i - an expensive camera.
-                                             j - 30 +2 darts (weapon in hand).
-                                            --More--
+Hello tester, welcome to hack!  The little dog misses the acid blob.
 
 
 
 
-          -+-------------
-          |.............+
-          |.............|
-          +@B.d...?.....+
-          |.<...........|
-          ---------------
 
 
-Level 1    Hp  10(10)   Ac 10   Str 8       Exp  1
+
+
+
+
+
+
+
+                                  -+-----
+                                  |.@d..|
+                                  +..a..|
+                                  |.....|
+                                  |.....|
+                                  |...$.|
+                                  -------
+
+
+Level 1    Hp  14(14)   Ac 7    Str 17      Exp  1

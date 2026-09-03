@@ -1,0 +1,26 @@
+adldebug /dd/tmp/LNG/tiny
+ADL debugger - Version 2.1 - April 28, 1987
+Copyright 1985, 1986, 1987 by Ross Cunniff
+All rights reserved.
+Sorting routines...Done.
+Decoding symbol table...Done.
+Type ? for help.
+> ?
+Commands available:
+  a       -- print out all adjectives
+  d       -- print out debugging information
+  g RANGE -- print out globals in RANGE
+  i RANGE -- print out instructions in RANGE
+  m RANGE -- print out virtual strings in RANGE
+  n RANGE -- print out nouns in RANGE
+  o RANGE -- print out objects in RANGE
+  q       -- quit adldebug
+  r RANGE -- print out routines in RANGE
+  s RANGE -- print out symbols in RANGE
+  v RANGE -- print out verbs in RANGE
+  ?       -- print out this list
+
+RANGE is either NUMBER, or NUMBER-NUMBER, where NUMBER
+is either a number or the character '$' (representing the
+largest possible value).
+>

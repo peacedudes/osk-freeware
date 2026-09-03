@@ -8,13 +8,16 @@ PrintCards 4e8c9673185ec390
 UnMacpack 6ddb41751817bf06
 about 253c97e879e0105e
 about-tar d96101945b2e8d7e
-adlcomp 8701bf13e83beac8
+adlcomp 51d54f57dc01332a
+adldebug af45090c63cd8854
 adlrun fb4a6d57642bf409
+adltouch 37f98f350163ad0d
 advcom 9ae540c60a6292e0
 advent 9075b262893d053c
 advint 26d631e81235a8a2
 alps 3a28ea3743d43d11
 alternates 321becc1bb01c66c
+animal 8d6dde8ad9d818e0
 ape ff2ea3d1aec5fd5a
 aprocs 4f66ab5a787fc644
 ar cba336f0aba59623
@@ -38,7 +41,7 @@ benchmarks f6c1126510ac16b8
 benchmarks2 05ec3283ddb6d244
 bibtex cc0db6537b3485a1
 bigsetter a65afaeb5077cfad
-bincheckr ffc58cc26575b148
+bincheckr e6e962522d8397eb
 binhex 31bd24cdb7d247f9
 biory 4d3d4e013550da95
 bison 64235b18086410da
@@ -46,6 +49,7 @@ blackjack cec1db00d38ca72b
 blackjak af801185feddb977
 bm 5b237767a602a2c0
 bmp 8f04355f44b686f8
+bog 6a559c9a353d94f5
 bootgen df935025d97a3126
 btoa 998f80a6d2262798
 btop e3524b4838824199
@@ -63,7 +67,7 @@ chardef d4caa2e6337cc9d2
 chbase 19a911b330380a09
 checkenv af7526fb1be42dde
 checkfile 6e26d4ddd9eed805
-checkgame 98db5b38165874f0
+checkgame 0c6b8a724f909b89
 checksum 32d675085690b372
 chess 24ca8addeb091c9c
 chgrp b2331ff98f6da1dd
@@ -79,7 +83,7 @@ cpu 098e41d6e2631e71
 crib 4db82a065a15e79a
 cribbage 236f40fb817c182c
 crypto ee96bdb3042ce625
-csl-mismatch f4de4538f300039a
+csl-mismatch 1ce6a445b7b767ad
 ctags 0464e8459c811592
 ctags.elvis ecd0ed2eb20e7485
 cursive 97b454155c3401de
@@ -162,7 +166,7 @@ frm 7d32003d0791d3f2
 fstat c3b2bb8cb8c7eb16
 fuddle 95d0107b8e92bdc1
 g3 fa43d048ddbf5c4f
-game a476a42abe25de2a
+game 2324f0be3ac484eb
 gawk b0b0c083352f65be
 gcc 8c81297596f3ba47
 gcl 98547f63e11b0c43
@@ -194,6 +198,8 @@ gulls-invert abcd3794072d430b
 gwindows-games d4e8c4a92feb6de9
 gzip f738a6d4fc9d9c46
 gzips 917f039288d61727
+hack 0fa0a0ab8bfee9d5
+hang 087e991e81c527f9
 hc 84fb1986a4e666b8
 head 851a182fada2e62b
 help f3582562e66c29aa
@@ -226,6 +232,7 @@ ksh 0db783e908941acf
 kwic 849599dd16d63134
 l b47fa0690d259b4f
 lander 0a0fc53a8fb1341a
+larn 1d392eb91a869f4c
 latex ca5a4fc8ec7365df
 latex-wrapper accc509420998a12
 launch 3f36264bb07439b1
@@ -250,7 +257,8 @@ lpsched 3e994fe2a3db2a4d
 lpshut 1a2217774748cd7f
 ls 7f961485afce3a80
 ls-long 12120605a889e23c
-luac 3a1e9d412c3a8a54
+lua 8e876caed9e01701
+luac e2ea42f12587de6c
 lunisolar d63d5ea17ef7647f
 lwf bf97ed782b46f95d
 m4 378850f6d59d1404
@@ -264,6 +272,7 @@ make 03039c7b0a491527
 makecrc f73c4147db1833d7
 makeinfo 9e34bf2df6be3dbc
 map 32a0218d8c724b9e
+maze 9de8ac4cb12ee6fd
 mcvert 42614dc92af426b3
 md5 5ddd40c0bc7b28bd
 me 8c5d6411df074c86
@@ -271,6 +280,7 @@ memtools 2784444a29ce9452
 mg 320231c02b99af85
 mgif 180a05b1af6b852e
 mille 2b0f47ef4c18ff16
+mines d60bd064f0a8be59
 minnesota 0bbeae4ac2dd551d
 misc-text b7661f5791151c6b
 mkdict 7749b306e4d55def
@@ -340,7 +350,7 @@ pnmrotate 20bb27e9caa9bb2e
 pnmtile 221e98da048c6dee
 pnmtops 4a9b69fa3ddddc7d
 poker 82d2300aa146e42d
-postprint 230f8f35d8d33b52
+postprint a58d11a7c2dbd6fd
 ppm3d 29a67f318effb244
 ppmdither d18894ea323bbfc9
 ppmforge 75738ca68081aa95
@@ -356,6 +366,8 @@ printers ab23dd1594c27679
 printf 046d0cf3de983021
 prjob 5d31d13e051d89d7
 psc ae44645c27acf2e0
+puz15 f4446639e39ed1e6
+puzzle15 681b23b46819725d
 pwgen bf28b70252d5753d
 qp 159fb95fa4e549d8
 qsort9 000aa18d69574e71
@@ -376,7 +388,7 @@ rpoem 4b4f474ef4ac92fb
 rstory 6df798d4e6d9be3c
 rstory2 160ef4cc0d9c09a9
 run c11d6dbde30fe3a8
-sbprolog b8cc4cb02d55206c
+runc 3473be17a470f35f
 scales 22dd734b9cb49bdf
 scqref 212b299642ae763b
 screen 6cbad9bb27ec2dde
@@ -450,10 +462,11 @@ tplot c91d282b8b962a86
 transfer daeb81e653c23c87
 travesty ee7c30ca56b23eff
 tree 30d3f77b10b5edc7
-tttt 2620b18852a3e865
+tttt a8619cf88deee7dd
 tty b7e538ffeb67cd7e
 ttyexp d493bf0e5002c44c
 ub68kdemo 331c4f7d940124da
+ularn d1f0b86a94761e8a
 umacs 5975efe2b8b7f28e
 undel e2e23162ac014bdb
 unexpand 4ea13987ef2614b3
@@ -482,6 +495,7 @@ vi_nocio 7b0fe8db73c1929e
 view 31e2853f634035da
 vis c11287cb03766373
 vlen 88f94a8849530252
+wam.sbprolog fa0747085d0fcca9
 wanderer 8e76bdfa9c03d380
 wc 2c40381787584b00
 wc.cio 22a5ae89dfe127f5

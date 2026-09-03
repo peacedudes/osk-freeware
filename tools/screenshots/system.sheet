@@ -766,21 +766,16 @@ run     fontgen < /nil | head -n 10
 wait    12
 
 shot    silent
-for     blackjack X11R6shl pdraw readnews
-cap     The last few with nothing much to show, and two of them turned out
-cap     to have something after all.  `readnews' RUNS -- it opens the news
-cap     reader and says there are no newsgroups, which is the truth on a
-cap     disk with no spool.  `pdraw' prints its configuration before it
-cap     looks for an X server.  `blackjack' is one of the three BASIC09
-cap     programs here: it lives in CMDS/BROKEN, off the login PATH, and
-cap     wants `runb'.  `X11R6shl' is not a program at all, and bash says so.
-cap     `readnews' goes last here because it does not stop asking: with
-cap     nothing on its standard input it puts the same question over and
-cap     over, so the card takes one answer and ends it.
+for     X11R6shl pdraw readnews
+cap     Three with little to show.  `readnews' opens the news reader and
+cap     says there are no newsgroups, which is the truth on a disk with no
+cap     spool.  `pdraw' prints its configuration before it looks for an X
+cap     server.  `X11R6shl' is not a program at all, and bash says so.
+cap     `readnews' goes last because it does not stop asking: with nothing
+cap     on its standard input it puts the same question over and over, so
+cap     the card takes one answer and ends it.
 run     pdraw < /nil | head -n 4
 wait    8
-run     /dd/CMDS/BROKEN/blackjack
-wait    6
 run     X11R6shl
 wait    6
 run     readnews < /nil | head -n 2

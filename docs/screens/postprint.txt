@@ -1,2 +1,2 @@
-postprint | head -n 20
+$ postprint /dd/GAMES/gnuchess.book
 /V 11 72 mul def /L 60 def

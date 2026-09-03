@@ -3,8 +3,6 @@
 # fails and is not here, and on a name here that now passes: fixing a card
 # is a line removed from this file.  Written 2026-09-03 from the first run.
 add_errmsg
-adldebug
-adltouch
 afm2tfm
 alps
 apfel
@@ -147,7 +145,6 @@ lmail
 lnk.org
 load
 loadmem
-lua
 m4_0.5
 mail
 mailx
@@ -245,7 +242,6 @@ rm
 rmail
 rndir
 roff
-runc
 savemem
 sbreak
 screen_nocio

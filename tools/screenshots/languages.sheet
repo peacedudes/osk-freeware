@@ -1,37 +1,65 @@
-# Interpreters, each one captured AT WORK rather than at
-# its banner.
+# Interpreters and the ADL adventure-authoring set, one stanza per
+# program, each caught at work rather than at its banner.
 
 shot    adlcomp
-for     adlcomp adldebug adltouch
 size    36 80
-cap     The ADL adventure compiler, COMPILING one -- ADL/DEMOS/tiny.adl,
-cap     which includes standard.adl by bare name, so `-i' says where that
-cap     lives.  Ross Cunniff's Adventure Definition Language, 1987. the
-cap     compiled world is played on the `adlrun' screen beside it.
-cap     `adltouch' marks a source as changed for the makefile and `adldebug'
-cap     is the debugger.
-run     adlcomp /dd/ADL/DEMOS/tiny.adl -o /dd/tmp/tiny -i/dd/ADL
+cap     The ADL compiler turning a world written in Ross Cunniff's
+cap     Adventure Definition Language into a file adlrun can play.  The
+cap     source is the tiny demo shipped in ADL/DEMOS; it includes
+cap     standard.adl by bare name, which is what -i points at.
+run     mkdir -p /dd/tmp/LNG > /nil 2>/nil; rm -f /dd/tmp/LNG/tiny
+wait    2
+run     clear
+wait    1
+run     adlcomp /dd/ADL/DEMOS/tiny.adl -o /dd/tmp/LNG/tiny -i/dd/ADL
 wait    35
-run     ls -l /dd/tmp/tiny
-wait    8
-run     adltouch
-wait    8
-run     adldebug
-wait    8
+run     ls -l /dd/tmp/LNG/tiny
+wait    4
 
 shot    adlrun
-cap     ADL, a third: Adventure Definition Language, with the AARD world
-cap     compiled and ready in /dd/ADL/AARD.
+cap     Playing a compiled ADL world: AARD, which ships ready to run in
+cap     ADL/AARD, opening with its first room and answering `look'.
 run     adlrun /dd/ADL/AARD/aard
 wait    8
 send    look\r
 wait    5
 
+shot    adldebug
+size    36 80
+cap     The ADL debugger on a freshly compiled world: it loads the symbol
+cap     table and gives a > prompt where ? lists its commands.
+run     mkdir -p /dd/tmp/LNG > /nil 2>/nil; rm -f /dd/tmp/LNG/tiny; adlcomp /dd/ADL/DEMOS/tiny.adl -o /dd/tmp/LNG/tiny -i/dd/ADL > /nil
+wait    35
+run     clear
+wait    1
+run     adldebug /dd/tmp/LNG/tiny
+wait    8
+send    ?\r
+wait    5
+snap
+send    quit\r
+wait    3
+send    y\r
+wait    2
+
+shot    adltouch
+cap     Marks a compiled world as changed, so a makefile rebuilds what
+cap     depends on it: the file and a version number.
+run     mkdir -p /dd/tmp/LNG > /nil 2>/nil; rm -f /dd/tmp/LNG/tiny; adlcomp /dd/ADL/DEMOS/tiny.adl -o /dd/tmp/LNG/tiny -i/dd/ADL > /nil
+wait    35
+run     clear
+wait    1
+run     ls -l /dd/tmp/LNG/tiny
+wait    3
+run     adltouch /dd/tmp/LNG/tiny 1; echo "status $?"
+wait    5
+run     ls -l /dd/tmp/LNG/tiny
+wait    3
+
 shot    forth
-cap     TILE Forth 2.48: two numbers added, then a word DEFINED and run --
-cap     the squares of 1 to 10, printed by the definition itself -- and then
-cap     `words', which is Forth showing you its whole vocabulary with the
-cap     one you just made at the head of it.
+cap     TILE Forth: two numbers added, a word defined and run -- the
+cap     squares of 1 to 10 -- and then `words', the whole vocabulary with
+cap     the new word at its head.
 run     forth
 wait    3
 send    2 3 + . cr\r
@@ -45,40 +73,44 @@ wait    3
 quit    bye\r
 
 shot    luac
-for     luac lua
 size    32 80
-cap     The Lua 3.0 bytecode compiler, on one of the eight example scripts
-cap     that came with the package -- a temperature table, in
-cap     DOC/lua/examples along with a quicksort, a bisection root-finder and
-cap     four more.  `-l' lists what it compiled, instruction by instruction.
-cap     `lua' ITSELF RUNS, but not as the disk stands: it was built against
-cap     a later `csl' than the edition 16 that ships here, so it stops at
-cap     `csl traphandler mismatch'.  `load' a later csl -- anyone with a
-cap     Microware SDK has one -- and `lua hello.lua' prints `hello world,
-cap     from Lua!'. luac needs none of that.
-run     head -n 8 /dd/DOC/lua/examples/cf.lua
-wait    8
+cap     The Lua 3.0 bytecode compiler on one of the example scripts in
+cap     DOC/lua/examples, a temperature table: -l lists what it compiled,
+cap     instruction by instruction.
+run     cat /dd/DOC/lua/examples/cf.lua | head -n 8
+wait    6
 run     luac -l -o /dd/tmp/cf.lc /dd/DOC/lua/examples/cf.lua | head -n 14
 wait    10
+
+shot    lua
+cap     Lua 3.0, the interpreter.  It was built against a later edition
+cap     of Microware's csl than the one on this disk and stops at the
+cap     mismatch before it runs; with a matching csl loaded it runs the
+cap     examples.  luac, the compiler, needs no csl.
 run     lua /dd/DOC/lua/examples/hello.lua
 wait    6
 
-shot    sbprolog
-for     wam.sbprolog
-cap     SB-Prolog 2.2 at its prompt, answering a query.  SIMPATH has to
-cap     point at the module library or it exits silently -- which is what
-cap     DOC/sbprolog warns about, and it is right.
+shot    runc
+cap     Runs a compiled Lua chunk as a command.  It stops at the same csl
+cap     edition mismatch as lua.
+run     runc -?
+wait    6
+
+shot    wam.sbprolog
+cap     SB-Prolog 2.2 at its prompt, answering a query.  SIMPATH names
+cap     the module library it loads from.
 run     export SIMPATH=/dd/SBPROLOG/MODLIB
 wait    2
+run     clear
+wait    1
 run     wam.sbprolog /dd/SBPROLOG/MODLIB/\$readloop
 wait    10
 send    X is 6*7, write(X), nl.\r
 wait    6
 
 shot    xlisp
-cap     XLISP 2.1, David Betz's Lisp: factorial defined recursively, mapped
-cap     over ten numbers, and a dolist walking a list of symbols.  Three
-cap     forms typed at its prompt, three answers.
+cap     XLISP 2.1: factorial defined recursively, mapped over ten
+cap     numbers, and a dolist walking a list of symbols.
 run     xlisp
 wait    2
 send    (defun fact (n) (if (< n 2) 1 (* n (fact (1- n)))))\r
@@ -89,19 +121,11 @@ send    (dolist (x '(alpha beta gamma)) (print (list x (length (symbol-name x)))
 wait    3
 quit    (exit)\r
 
-
 shot    csl-mismatch
-for     lua runc xengine basicwin
-cap     FOUR programs built against a LATER csl than the edition 16 this
-cap     disk ships.  They stop before they start, and no amount of arranging
-cap     the disk will change it -- see DOC/STATUS.  `xengine' and
-cap     `basicwin', the two X11 clients that get this far, answer the same
-cap     way, so it is the runtime and not the missing X server that stops
-cap     them.
-run     lua
-wait    8
-run     runc
-wait    8
+for     xengine basicwin
+cap     Two X11 clients built against a later edition of Microware's csl
+cap     than the one on this disk.  They stop at the mismatch before they
+cap     could look for an X server.
 run     xengine
 wait    8
 run     basicwin

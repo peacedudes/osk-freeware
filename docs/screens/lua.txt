@@ -1,0 +1,2 @@
+$ lua /dd/DOC/lua/examples/hello.lua
+**** csl traphandler mismatch ****

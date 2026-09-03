@@ -1,0 +1,6 @@
+ls -l /dd/tmp/LNG/tiny
+-rw-------   1 0        0           10548 Sep  3 05:23 /dd/tmp/LNG/tiny
+$ adltouch /dd/tmp/LNG/tiny 1; echo "status $?"
+status 0
+$ ls -l /dd/tmp/LNG/tiny
+-rw-------   1 0        0           10548 Sep  3 05:24 /dd/tmp/LNG/tiny

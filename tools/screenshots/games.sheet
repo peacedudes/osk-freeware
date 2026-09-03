@@ -470,8 +470,8 @@ wait    10
 shot    checkgame
 size    30 80
 cap     Reads a saved GNU Chess game -- the `chess.lst' that gnuchess writes
-cap     when you type `list' -- replays it looking for illegal moves, and
-cap     prints the position it ends on.  A game is made here first by
+cap     when you type `list' -- replays it looking for illegal moves and
+cap     prints the board it finishes on.  A game is made here first by
 cap     playing one move against gnuchess and listing it.
 run     mkdir -p /dd/tmp/GAMESA > /nil 2>/nil; rm -f /dd/tmp/GAMESA/chess.lst
 wait    3
@@ -542,9 +542,9 @@ cap     it, and the two lines at the foot are your spells, armour class,
 cap     level and the six attributes.  RETURN gets past the opening text.
 cap     Its saved games and score file are in GAMES/LARN/PLAYGROUND.
 run     larn
-wait    10
+wait    12
 send    \r
-wait    6
+wait    10
 snap
 send    \003
 wait    3

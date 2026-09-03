@@ -1,24 +1,17 @@
-                The Addiction of Ularn
-
-Pick a character class...
-
-
-                    Character
-
-                a)  Ogre
-                b)  Wizard
-                c)  Klingon
-                d)  Elf
-                e)  Rogue
-                f)  Geek
-                g)  Dwarf
-                h)  Rambo
+                                  H
 
 
 
+         S
+                                               E        V
+
+
+                                                               =
+              L
 
 
 
+                           +
 
-
-So, what are ya?
+Spells:  1( 1)  AC: 2    WC: 3    Level 1  Exp: 0           novice explorer
+HP:  12( 12) STR=8  INT=12 WIS=8  CON=10 DEX=14 CHA=6  LV: H  Gold: 0

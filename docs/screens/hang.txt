@@ -1,15 +1,17 @@
 Unused Letters:
- bcd fgh jk m  pq    vwxyz                   ------------
-                                             |           |
-                                             |           |
-                                             |
-        ... the same line 4 times over
+ bcd fgh jklmn pq s uvwxyz
+
+
+
+
+
+
                                         ---------------------------
                                         |                         |
                                         |                         |
-a_an_on                                 |                         |
+a_a__o_                                 |                         |
                                         |                         |
         ... the same line 7 times over
                                         ---------------------------
 There are 7 letters in the word
-HIT
+Sorry

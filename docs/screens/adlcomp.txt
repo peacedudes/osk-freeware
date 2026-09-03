@@ -1,9 +1,9 @@
-$ adlcomp /dd/ADL/DEMOS/tiny.adl -o /dd/tmp/tiny -i/dd/ADL
+adlcomp /dd/ADL/DEMOS/tiny.adl -o /dd/tmp/LNG/tiny -i/dd/ADL
 ADL compiler - Version 3.2 - June 7, 1987
 Copyright 1985, 1986, 1987 by Ross Cunniff
 All rights reserved
 Reading from file /dd/ADL/DEMOS/tiny.adl
-Reading from file standard.adl
+Reading from file /dd/ADL/standard.adl
 
         standard.adl - version 3.1 - June 20, 1987
         Copyright (c) 1986, 1987 by Ross Cunniff
@@ -13,7 +13,7 @@ Reading from file standard.adl
 Done with Standard Interface - proceeding to Utility Routines
 Done with Utility Routines.  Begin predefined verbs.
 Done initializing verb routines.  Starting Dwimmer.
-Done reading file standard.adl
+Done reading file /dd/ADL/standard.adl
 Done reading file /dd/ADL/DEMOS/tiny.adl
 WARNING: STRING undefined.
 WARNING: TELLER undefined.
@@ -24,12 +24,8 @@ WARNING: TELLER undefined.
 129 out of 1024 strings used
 0 out of 8 prep synonyms used
 5 out of 8 [verb prep] synonyms used
-adlcomp /dd/ADL/DEMOS/tiny.adl -o /dd/tmp/tiny -g 30 -r 86 -v 48 -n 21 -m 130 -L
+adlcomp /dd/ADL/DEMOS/tiny.adl -o /dd/tmp/LNG/tiny -g 30 -r 86 -v 48 -n 21 -m 1L
 Writing 10548 bytes
 adlcomp complete. 0 errors, 2 warnings.
-$ ls -l /dd/tmp/tiny
--rw-------   1 0        0           10548 Aug 30 04:47 /dd/tmp/tiny
-$ adltouch
-Usage: adltouch <file> <number>
-$ adldebug
-Usage: adldebug dungeon.
+$ ls -l /dd/tmp/LNG/tiny
+-rw-------   1 0        0           10548 Sep  3 05:27 /dd/tmp/LNG/tiny

@@ -21,4 +21,4 @@ ascii          u.             .              bye            execute
 ?number        #>             sign           hold           #s
 #              <#             convert        hex            decimal
 octal          binary         base           -trailing      count
-fill           cm
+fill           cmove>         cmove          +!

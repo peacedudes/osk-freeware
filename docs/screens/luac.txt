@@ -1,4 +1,4 @@
-$ head -n 8 /dd/DOC/lua/examples/cf.lua
+$ cat /dd/DOC/lua/examples/cf.lua | head -n 8
 -- temperature conversion table
 
 -- celsius to farenheit
@@ -9,7 +9,7 @@ while c0<50 do
         c1=c0+10
 $ luac -l -o /dd/tmp/cf.lc /dd/DOC/lua/examples/cf.lua | head -n 14
 
-main of "/dd/DOC/lua/examples/cf.lua" (175 bytes at 9d618)
+main of "/dd/DOC/lua/examples/cf.lua" (175 bytes at 9ee58)
      0  PUSHBYTE        20
      2  MINUSOP
      3  STOREGLOBAL     26      ; c0
@@ -22,5 +22,3 @@ main of "/dd/DOC/lua/examples/cf.lua" (175 bytes at 9d618)
     20  ADDOP
     21  STOREGLOBAL     27      ; c1
     24  PUSHGLOBAL      28      ; write
-$ lua /dd/DOC/lua/examples/hello.lua
-**** csl traphandler mismatch ****
