@@ -202,6 +202,21 @@ for the maintainer, which is why `lessecho`'s panel explains `helpindex`.
   no "it turns out", no "this collection had it wrong", no "until
   2026-08-31", no "the card used to". The reader is a stranger in 2040.
 
+### Where the pass stands (kept current; re-measure with `tools/audit_panels.py --summary`)
+
+| date | panels showing their own program | batches landed |
+|---|---|---|
+| 2026-09-03 morning | 438 of 913 | none -- the audit's first honest count |
+| 2026-09-03 evening | 598 of 913 | Amusements, Documentation, Editors, Shells, Time & calendar, Printing, Maths, Screen toys, Encoding, Languages, Text tools (filters), Games (interactive half), Disk & DOS, Developer tools |
+
+Still to do, in the order worth doing: Files & directories and Archives
+(in flight), Compilers & build (the GCC passes live under
+`/dd/CMDS/GCC2/` and `/dd/CMDS/GCC139/` and are not on PATH -- call them
+by full path; `gcc_cccp -version` answers, the others want a file), Text
+tools (the rest: TeX, DVI drivers, search, sort, spelling, fortune),
+Games (Other games), Graphics & images (netpbm is a real family), System
+& modules, Communications.
+
 ### The plan, in order
 
 - **Phase 0 -- measure and gate (one session).** `tools/audit_panels.py`
