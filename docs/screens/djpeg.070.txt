@@ -1,0 +1,6 @@
+djpeg.070 -pnm /dd/tmp/GFXA/j.jpg > /dd/tmp/GFXA/d70.ppm
+  95%
+
+$ ls -l /dd/tmp/GFXA/j.jpg /dd/tmp/GFXA/d70.ppm
+-rw-rw-rw-   1 0        0            3469 Sep  3 15:08 /dd/tmp/GFXA/d70.ppm
+-rw-rw-rw-   1 0        0             815 Sep  3 15:08 /dd/tmp/GFXA/j.jpg

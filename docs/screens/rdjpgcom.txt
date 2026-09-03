@@ -1,0 +1,2 @@
+rdjpgcom /dd/tmp/GFXA/jc.jpg; echo ""
+OS-9 freeware disk

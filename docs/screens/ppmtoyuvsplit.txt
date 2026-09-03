@@ -1,0 +1,5 @@
+ppmtoyuvsplit /dd/tmp/NPMB/y /dd/tmp/NPMB/c.ppm
+$ ls -l /dd/tmp/NPMB/y.Y /dd/tmp/NPMB/y.U /dd/tmp/NPMB/y.V
+-rw-------   1 0        0             288 Sep  3 15:17 /dd/tmp/NPMB/y.U
+-rw-------   1 0        0             288 Sep  3 15:17 /dd/tmp/NPMB/y.V
+-rw-------   1 0        0            1152 Sep  3 15:17 /dd/tmp/NPMB/y.Y

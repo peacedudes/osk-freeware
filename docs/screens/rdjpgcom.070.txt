@@ -1,0 +1,2 @@
+rdjpgcom.070 /dd/tmp/GFXA/jc7.jpg; echo ""
+IJG 0.70 build

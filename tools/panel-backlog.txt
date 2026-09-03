@@ -3,7 +3,6 @@
 # fails and is not here, and on a name here that now passes: fixing a card
 # is a line removed from this file.  Written 2026-09-03 from the first run.
 alps
-apfel
 asciitopgm
 authwn
 autolf
@@ -15,7 +14,6 @@ brushtopbm
 bsplt68
 byteflip
 cjpeg
-cjpeg.070
 ckermit
 cls
 connect
@@ -23,7 +21,6 @@ demerge
 detab
 diff_1.1
 disable
-djpeg.070
 dld
 dpark
 enable
@@ -36,8 +33,6 @@ fkeys
 fstopgm
 getsys
 gouldtoppm
-graphdemo
-graphsave
 hipstopgm
 hpcdtoppm
 imgtoppm
@@ -73,7 +68,6 @@ pbmtomacp
 pbmtopi3
 pbmtoptx
 pbmtoxbm
-pdraw
 pgmedge
 pgmkernel
 pgmnorm
@@ -101,9 +95,6 @@ ppmforge
 ppmmake
 ppmmix
 ppmshift
-ppmtoacad
-ppmtomitsu
-ppmtosixel
 ppmtoyuvsplit
 psidtopgm
 ptob
@@ -115,12 +106,9 @@ savemem
 sbreak
 setfont
 setterm
-showpic
 signal
-sine
 sldtoppm
 smail
-snap
 snd_sig
 spctoppm
 split
@@ -128,7 +116,6 @@ splitalf
 spottopgm
 tabs
 tgatoppm
-tplot
 transfer
 trunc
 tterm
@@ -141,7 +128,6 @@ uucp
 uupoll
 uuxqt
 uwho
-wgen
 wrjpgcom
 wysecrack
 xbmtopbm
@@ -155,7 +141,6 @@ yuvsplittoppm
 zeisstopnm
 vis
 pnmpaste
-tplot
 edir
 setime
 sysmax
@@ -163,3 +148,4 @@ frm
 makedb
 rnews
 uulog
+wrjpgcom.070

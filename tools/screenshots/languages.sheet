@@ -15,7 +15,6 @@ run     adlcomp /dd/ADL/DEMOS/tiny.adl -o /dd/tmp/LNG/tiny -i/dd/ADL
 wait    35
 run     ls -l /dd/tmp/LNG/tiny
 wait    4
-
 shot    adlrun
 cap     Playing a compiled ADL world: AARD, which ships ready to run in
 cap     ADL/AARD, opening with its first room and answering `look'.
@@ -23,7 +22,6 @@ run     adlrun /dd/ADL/AARD/aard
 wait    8
 send    look\r
 wait    5
-
 shot    adldebug
 size    36 80
 cap     The ADL debugger on a freshly compiled world: it loads the symbol
@@ -41,7 +39,6 @@ send    quit\r
 wait    3
 send    y\r
 wait    2
-
 shot    adltouch
 cap     Marks a compiled world as changed, so a makefile rebuilds what
 cap     depends on it: the file and a version number.
@@ -55,7 +52,6 @@ run     adltouch /dd/tmp/LNG/tiny 1; echo "status $?"
 wait    5
 run     ls -l /dd/tmp/LNG/tiny
 wait    3
-
 shot    forth
 cap     TILE Forth: two numbers added, a word defined and run -- the
 cap     squares of 1 to 10 -- and then `words', the whole vocabulary with
@@ -71,7 +67,6 @@ wait    4
 send    words\r
 wait    3
 quit    bye\r
-
 shot    luac
 size    32 80
 cap     The Lua 3.0 bytecode compiler on one of the example scripts in
@@ -81,7 +76,6 @@ run     cat /dd/DOC/lua/examples/cf.lua | head -n 8
 wait    6
 run     luac -l -o /dd/tmp/cf.lc /dd/DOC/lua/examples/cf.lua | head -n 14
 wait    10
-
 shot    lua
 cap     Lua 3.0, the interpreter.  It was built against a later edition
 cap     of Microware's csl than the one on this disk and stops at the
@@ -89,13 +83,11 @@ cap     mismatch before it runs; with a matching csl loaded it runs the
 cap     examples.  luac, the compiler, needs no csl.
 run     lua /dd/DOC/lua/examples/hello.lua
 wait    6
-
 shot    runc
 cap     Runs a compiled Lua chunk as a command.  It stops at the same csl
 cap     edition mismatch as lua.
 run     runc -?
 wait    6
-
 shot    wam.sbprolog
 cap     SB-Prolog 2.2 at its prompt, answering a query.  SIMPATH names
 cap     the module library it loads from.
@@ -107,7 +99,6 @@ run     wam.sbprolog /dd/SBPROLOG/MODLIB/\$readloop
 wait    10
 send    X is 6*7, write(X), nl.\r
 wait    6
-
 shot    xlisp
 cap     XLISP 2.1: factorial defined recursively, mapped over ten
 cap     numbers, and a dolist walking a list of symbols.
@@ -120,13 +111,3 @@ wait    2
 send    (dolist (x '(alpha beta gamma)) (print (list x (length (symbol-name x)))))\r
 wait    3
 quit    (exit)\r
-
-shot    csl-mismatch
-for     xengine basicwin
-cap     Two X11 clients built against a later edition of Microware's csl
-cap     than the one on this disk.  They stop at the mismatch before they
-cap     could look for an X server.
-run     xengine
-wait    8
-run     basicwin
-wait    8

@@ -1,0 +1,15 @@
+$ pdraw -o /dd/DOC/pdraw/options /dd/DOC/pdraw/curves.plot
+Pdraw V1.4  9/4/90
+   Terminal Type             = vt100
+   Default Printer           = -Plp550M
+   Commands: options-file    = "/dd/DOC/pdraw/options"
+   Options : Xlabel          = X-AXIS
+   Options : Ylabel          = Y-AXIS
+   Options : Zlabel          = Z-AXIS
+   Options : Top label       = 3D LINE PLOT
+   Options : postscript      = on
+   Options : printplot       = off
+   Options : marker          = on
+   Options : markerchange    = on
+   Options : hiddenline      = on
+Type return (or n/q) to send the plot to the -Plp550M printer :

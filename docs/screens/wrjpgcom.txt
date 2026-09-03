@@ -1,0 +1,3 @@
+<-9 freeware disk" /dd/tmp/GFXA/j.jpg > /dd/tmp/GFXA/jc.jpg
+$ rdjpgcom /dd/tmp/GFXA/jc.jpg; echo ""
+OS-9 freeware disk

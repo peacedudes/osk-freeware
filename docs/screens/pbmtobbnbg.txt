@@ -1,0 +1,3 @@
+pbmtobbnbg /dd/tmp/NPMB/b.pbm > /dd/tmp/NPMB/o.bg
+ls -l /dd/tmp/NPMB/o.bg
+pbmtobbnbg: bad magic number - not a pbm file

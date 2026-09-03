@@ -1,0 +1,2 @@
+$ X11R6shl; echo ""
+/dd/CMDS/X11R6shl: cannot execute binary file

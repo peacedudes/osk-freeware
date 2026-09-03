@@ -21,8 +21,9 @@ wait    5
 run     pnmfile /dd/tmp/base.pgm /dd/tmp/base.ppm /dd/tmp/base.pbm
 wait    5
 
+
 shot    asciitopgm
-for     asciitopgm ppmtopgm pgmtoppm
+for     asciitopgm ppmtopgm
 cap     asciitopgm goes the other way -- characters IN, a greyscale image
 cap     out, each character weighted by how much ink it has.  Here it reads
 cap     back the ASCII art pbmtoascii just wrote, and pnmfile confirms a
@@ -40,9 +41,10 @@ wait    12
 run     pnmfile /dd/tmp/art.ppm
 wait    10
 
+
 shot    ateri
 size    30 80
-for     ppmtopi1 pi1toppm pbmtopi3 pi3topbm ppmtopict picttoppm
+for     ppmtopi1 pi1toppm pi3topbm ppmtopict picttoppm
 cap     Atari ST Degas pictures and the Macintosh PICT, out and back.  A
 cap     PALETTED FORMAT NEEDS A QUANTISED IMAGE: Degas PI1 holds sixteen
 cap     colours and PICT is written from a colour map, so both refuse a
@@ -69,6 +71,7 @@ wait    8
 run     pi3topbm /dd/tmp/t.pi3 | pnmfile
 wait    10
 
+
 shot    bmp
 for     ppmtobmp bmptoppm
 cap     Windows BMP, the same way round.
@@ -81,35 +84,9 @@ wait    3
 run     pnmfile /dd/tmp/back2.ppm
 wait    6
 
-shot    djpeg
-size    36 80
-for     djpeg rdjpgcom.070 wrjpgcom.070
-cap     The JPEG library's own test image, decoded by djpeg and drawn as
-cap     ASCII by netpbm.  TWO things had to be fixed to get this picture.
-cap     The JPEG on the disk was corrupt -- an `iconv //TRANSLIT' pass had
-cap     turned every byte over 0x7f into `?' -- and djpeg rightly said `Not
-cap     a JPEG file'; it and nine other binaries were restored from the
-cap     archives they came from.  Then djpeg's output would not pipe:
-cap     djpeg ends its PNM header lines with LF, and every netpbm tool
-cap     here wants CR, so ppmtopgm answered `junk in file where an integer
-cap     should be'.  The three `pbyte' calls below patch those three bytes
-cap     -- offsets 2, A and E of a P6 header -- and the pipeline runs.
-run     djpeg -pnm /dd/SRC/jpeglib/JPEG_5A/testimg.jpg > /dd/tmp/dj.ppm
-wait    50
-run     pbyte /dd/tmp/dj.ppm 2 0d
-wait    4
-run     pbyte /dd/tmp/dj.ppm a 0d
-wait    4
-run     pbyte /dd/tmp/dj.ppm e 0d
-wait    4
-run     ppmtopgm /dd/tmp/dj.ppm | pgmtopbm | pbmtoascii -2x4
-wait    35
-run     rdjpgcom.070 /dd/SRC/jpeglib/JPEG_5A/testimg.jpg
-wait    10
-run     wrjpgcom.070 -comment hello /dd/SRC/jpeglib/JPEG_5A/testimg.jpg > /nil
-wait    12
+
 shot    fits
-for     pnmtofits fitstopnm pnmtoxwd xwdtopnm
+for     fitstopnm pnmtoxwd xwdtopnm
 cap     FITS, which astronomers still use, and the X window dump.
 run     pnmtofits /dd/tmp/base.pgm > /dd/tmp/t.fits
 wait    6
@@ -120,8 +97,9 @@ wait    6
 run     xwdtopnm /dd/tmp/t.xwd | pnmfile
 wait    8
 
+
 shot    g3
-for     pbmtog3 g3topbm pbmtogem gemtopbm
+for     g3topbm gemtopbm
 cap     Group 3 fax encoding, and the GEM bitmap.
 run     pbmtog3 /dd/tmp/base.pbm > /dd/tmp/t.g3
 wait    6
@@ -131,6 +109,7 @@ run     pbmtogem /dd/tmp/base.pbm > /dd/tmp/t.gem
 wait    6
 run     gemtopbm /dd/tmp/t.gem | pnmfile
 wait    8
+
 
 shot    gif
 for     ppmtogif giftopnm
@@ -145,6 +124,7 @@ wait    3
 run     pnmfile /dd/tmp/base.ppm /dd/tmp/back.ppm
 wait    6
 
+
 shot    gif2
 for     ppmtogif giftopnm ppmquant
 cap     GIF written and read back: what `file' makes of the GIF, and what
@@ -158,12 +138,14 @@ wait    5
 run     pnmfile /dd/tmp/back.ppm
 wait    6
 
+
 shot    giftopnm
 cap     A real photograph off the disk -- DEMO/gulls.gif -- decoded by
 cap     giftopnm, reduced, dithered and printed as characters.  Every stage
 cap     is a separate netpbm program, which is the whole design.
 run     giftopnm /dd/DEMO/gulls.gif | ppmtopgm | pnmscale -width 152 | pgmtopbm | pbmtoascii
 wait    25
+
 
 shot    gnuplot
 cap     gnuplot 2.0, and the terminals this build knows about -- there is no
@@ -182,6 +164,7 @@ send    plot [-6:6] sin(x)/x\r
 wait    8
 quit    quit\r
 
+
 shot    gulls
 for     giftopnm pbmtoascii ppmtopgm
 cap     DEMO/gulls.gif, a real photograph, decoded by giftopnm and carried
@@ -190,14 +173,16 @@ cap     scaled, normalised, dithered, and mapped two-by-four to a screen.
 run     giftopnm /dd/DEMO/gulls.gif | ppmtopgm | pnmscale -xysize 152 88 | pgmnorm | pgmtopbm | pbmtoascii -2x4
 wait    30
 
+
 shot    gulls-invert
 for     pnminvert
 cap     The photograph inverted -- a negative, made by pnminvert.
 run     giftopnm /dd/DEMO/gulls.gif | ppmtopgm | pnmscale -xysize 152 88 | pgmnorm | pnminvert | pgmtopbm | pbmtoascii -2x4
 wait    30
 
+
 shot    icon
-for     pbmtoicon icontopbm pbmtomacp macptopbm
+for     icontopbm macptopbm
 cap     Sun icon format and MacPaint, out and back.
 run     pbmtoicon /dd/tmp/base.pbm > /dd/tmp/t.icon
 wait    6
@@ -208,8 +193,9 @@ wait    6
 run     macptopbm /dd/tmp/t.macp | pnmfile
 wait    8
 
+
 shot    ilbm
-for     ppmtoilbm ilbmtoppm pnmtosgi sgitopnm
+for     ppmtoilbm ilbmtoppm sgitopnm
 cap     Amiga IFF/ILBM and SGI RGB -- two more machines that had their own
 cap     idea of a picture file.
 run     ppmtoilbm /dd/tmp/base.ppm > /dd/tmp/t.ilbm
@@ -221,36 +207,9 @@ wait    6
 run     sgitopnm /dd/tmp/t.sgi | pnmfile
 wait    8
 
-shot    jpeg
-for     cjpeg rdjpgcom wrjpgcom cjpeg.070 djpeg.070
-cap     A JPEG made on the disk, commented, and read back.  The file was
-cap     fine. cjpeg wants LF between the fields of a PNM header and this
-cap     disk's netpbm writes CR, so the three `pbyte' calls below -- at
-cap     offsets 2, A and E of a `P6 320 200 255' header -- are the whole of
-cap     what was missing.  DOC/STATUS has it in both directions.
-run     giftopnm /dd/DEMO/gulls.gif > /dd/tmp/g.ppm
-wait    20
-run     pbyte /dd/tmp/g.ppm 2 0a
-wait    4
-run     pbyte /dd/tmp/g.ppm a 0a
-wait    4
-run     pbyte /dd/tmp/g.ppm e 0a
-wait    4
-run     cjpeg -quality 50 /dd/tmp/g.ppm > /dd/tmp/g.jpg
-wait    60
-run     wrjpgcom -comment "OS-9 freeware disk" /dd/tmp/g.jpg > /dd/tmp/gc.jpg
-wait    15
-run     rdjpgcom /dd/tmp/gc.jpg
-wait    10
-run     ls -l /dd/DEMO/gulls.gif /dd/tmp/g.ppm /dd/tmp/gc.jpg
-wait    10
-run     cjpeg.070 /dd/tmp/g.ppm > /nil
-wait    20
-run     djpeg.070 -pnm /dd/tmp/gc.jpg > /nil
-wait    20
 
 shot    lispm
-for     pgmtolispm lispmtopgm pbmtopk pktopbm ppmtomap
+for     lispmtopgm pbmtopk pktopbm ppmtomap
 cap     A Lisp machine's bitmap format, written and then read back -- and
 cap     lispmtopgm refuses what pgmtolispm just wrote: `depth is too large -
 cap     try reconfiguring with PGM_BIGGRAYS'.  The pair do not agree with
@@ -263,6 +222,7 @@ run     pbmtopk < /nil
 wait    10
 run     pktopbm < /nil
 wait    10
+
 
 shot    pbmclean
 for     pbmclean pbmmask pbmtopgm pnmnoraw
@@ -285,11 +245,13 @@ wait    30
 run     pnmnoraw /dd/tmp/n.pbm | head -n 3
 wait    30
 
+
 shot    pbmlife
 cap     pbmlife runs Conway's Life one generation on a bitmap -- an image
 cap     tool that is also a cellular automaton.
 run     pgmnoise 60 30 | pgmtopbm | pbmlife | pbmtoascii
 wait    10
+
 
 shot    pbmmake
 for     pbmmake pbmupc pbmreduce
@@ -300,11 +262,13 @@ wait    8
 run     pbmupc 0 72890 00011 | pbmreduce 2 | pbmtoascii -2x4
 wait    15
 
+
 shot    pbmtext
 cap     pbmtext sets a line of type as a bitmap; pbmtoascii renders that
 cap     bitmap back as characters.  Nothing is drawn by hand.
 run     pbmtext "OS-9/68K" | pbmtoascii
 wait    6
+
 
 shot    pbmtext-big
 for     pbmtext pbmpscale pbmreduce
@@ -313,11 +277,13 @@ cap     the staircase an ordinary scale would give.
 run     pbmtext "netpbm" | pbmpscale 2 | pbmtoascii -2x4
 wait    12
 
+
 shot    pbmupc
 cap     pbmupc draws a real UPC-A barcode from its digits.  Rendered here
 cap     through pbmtoascii, the bar widths are the code.
 run     pbmupc 0 72890 00011 | pbmreduce 3 | pbmtoascii
 wait    8
+
 
 shot    pcx
 for     ppmtopcx pcxtoppm
@@ -331,16 +297,19 @@ wait    3
 run     pnmfile /dd/tmp/back3.ppm
 wait    6
 
+
 shot    pgmbentley
 cap     The Bentley effect: brightness carried by how tall each pixel is.
 run     pnmscale -width 150 /dd/DEMO/sphere.pgm | pgmbentley | pgmtopbm | pbmtoascii
 wait    15
+
 
 shot    pgmcrater
 cap     pgmcrater drops craters at random and shades them -- a whole moon
 cap     out of a random number generator.
 run     pgmcrater -number 80 -xsize 152 -ysize 88 | pgmtopbm | pbmtoascii -2x4
 wait    30
+
 
 shot    pgmedge
 for     pgmedge pgmenhance pgmnorm
@@ -361,6 +330,7 @@ wait    10
 run     pgmnorm < /nil
 wait    8
 
+
 shot    pgmhist
 for     pgmhist pgmramp
 cap     pgmramp makes a greyscale ramp and pgmhist counts what is in it --
@@ -369,6 +339,7 @@ run     pgmramp -lr 64 16 > /dd/tmp/ramp.pgm
 wait    6
 run     pgmhist /dd/tmp/ramp.pgm | head -n 18
 wait    8
+
 
 shot    pgmnoise
 for     pgmnoise pnmsmooth pnmconvol
@@ -384,17 +355,20 @@ wait    10
 run     pnmconvol < /nil
 wait    8
 
+
 shot    pgmoil
 cap     pgmoil paints the photograph again as if in oils -- each pixel
 cap     becomes the commonest value around it.
 run     giftopnm /dd/DEMO/gulls.gif | ppmtopgm | pnmscale -xysize 152 88 | pgmoil | pgmnorm | pgmtopbm | pbmtoascii -2x4
 wait    35
 
+
 shot    pgmramp
 cap     A greyscale ramp dithered to a bitmap: the gradient survives as the
 cap     density of the characters.
 run     pgmramp -lr 152 44 | pgmtopbm | pbmtoascii
 wait    8
+
 
 shot    pgmtexture
 for     pgmtexture pgmkernel pnmhistmap
@@ -413,8 +387,9 @@ wait    10
 run     pnmhistmap < /nil
 wait    12
 
+
 shot    plotters
-for     pbmtoplot pbmtozinc pbmtobbnbg pbmtogo pbmtoln03 pbmtolps
+for     pbmtoplot pbmtozinc pbmtogo pbmtoln03 pbmtolps
 cap     Six more write-only drivers, for machines that are gone: a Unix
 cap     plotter, Zinc, a BBN bitgraph, GraphOn, DEC LN03 and LPS.  All six
 cap     are asked for
@@ -433,6 +408,7 @@ wait    16
 run     pbmtolps /dd/tmp/base.pbm | wc
 wait    16
 
+
 shot    pnmarith
 size    36 80
 for     pnmarith pnmdepth
@@ -450,6 +426,7 @@ wait    20
 run     pnmdepth < /nil
 wait    8
 
+
 shot    pnmcat
 for     pnmcat pnminvert pnmscale
 cap     pnmcat puts two images side by side -- the sphere beside its own
@@ -460,6 +437,7 @@ run     pnminvert /dd/tmp/s.pgm > /dd/tmp/si.pgm
 wait    6
 run     pnmcat -lr /dd/tmp/s.pgm /dd/tmp/si.pgm | pgmtopbm | pbmtoascii -2x4
 wait    12
+
 
 shot    pnmcut
 for     pnmcut pnmpaste pnmenlarge pnmshear pnmpad
@@ -479,6 +457,7 @@ wait    10
 run     pnmfile /dd/tmp/r.pgm /dd/tmp/cut.pgm /dd/tmp/big.pgm /dd/tmp/shr.pgm /dd/tmp/pst.pgm
 wait    10
 
+
 shot    pnmfile
 cap     pnmfile identifies what each intermediate in a pipeline actually is
 cap     -- format, dimensions and whether it is raw or plain.
@@ -491,6 +470,7 @@ wait    3
 run     pnmfile /dd/tmp/ramp.pgm /dd/tmp/ramp.pbm /dd/tmp/ging.ppm
 wait    4
 
+
 shot    pnmfile-gulls
 for     pnmfile
 cap     What each stage of that pipeline actually produced, according to
@@ -501,6 +481,7 @@ run     pnmscale -width 300 /dd/tmp/gulls.ppm > /dd/tmp/small.ppm
 wait    12
 run     pnmfile /dd/tmp/gulls.ppm /dd/tmp/small.ppm
 wait    5
+
 
 shot    pnmfile-set
 for     pnmfile pnmtile pnmpad
@@ -518,6 +499,7 @@ wait    10
 run     pnmfile /dd/tmp/ramp2.pgm /dd/tmp/tile2.pgm /dd/tmp/pad2.pgm
 wait    8
 
+
 shot    pnmgamma
 for     pnmgamma pnmhisteq
 cap     pnmhisteq equalises the histogram of the gulls photograph -- it
@@ -531,11 +513,13 @@ wait    15
 run     pnmhisteq /dd/tmp/gg.pgm | pgmtopbm | pbmtoascii -2x4
 wait    20
 
+
 shot    pnminvert
 cap     The sphere that ships in DEMO, inverted, so the light comes from
 cap     the other side.
 run     pnmscale -width 152 /dd/DEMO/sphere.pgm | pnminvert | pgmtopbm | pbmtoascii
 wait    15
+
 
 shot    pnmrotate
 size    36 80
@@ -553,6 +537,7 @@ wait    15
 run     pnmflip < /nil
 wait    8
 
+
 shot    pnmtile
 cap     pnmtile repeats a small image to fill a larger one; pbmpscale then
 cap     enlarges a bitmap without the staircase.
@@ -560,6 +545,7 @@ run     pnmscale -width 30 /dd/DEMO/sphere.pgm > /dd/tmp/t.pgm
 wait    8
 run     pnmtile 150 40 /dd/tmp/t.pgm | pgmtopbm -threshold -value 0.4 | pbmtoascii
 wait    12
+
 
 shot    pnmtops
 for     pnmtops
@@ -569,6 +555,7 @@ run     pgmramp -lr 40 20 > /dd/tmp/ramp.pgm
 wait    6
 run     pnmtops /dd/tmp/ramp.pgm | head -n 18
 wait    10
+
 
 shot    ppm3d
 size    36 80
@@ -608,6 +595,7 @@ wait    20
 run     ppmdither /dd/tmp/g16s.ppm | pnmfile
 wait    20
 
+
 shot    ppmforge
 cap     ppmforge invents a planet from a random seed: fractal terrain, an
 cap     atmosphere and a star field, none of it drawn by anybody.
@@ -615,6 +603,7 @@ run     ppmforge -width 152 -height 88 -seed 7 > /dd/tmp/planet.ppm
 wait    300
 run     ppmtopgm /dd/tmp/planet.ppm | pgmtopbm | pbmtoascii -2x4
 wait    60
+
 
 shot    ppmforge-clouds
 for     ppmforge ppmdim ppmbrighten
@@ -624,6 +613,7 @@ wait    300
 run     ppmtopgm /dd/tmp/clouds.ppm | pgmtopbm | pbmtoascii -2x4
 wait    60
 
+
 shot    ppmhist
 for     ppmhist ppmpat
 cap     ppmpat weaves a pattern and ppmhist counts the colours in it, the
@@ -632,6 +622,7 @@ run     ppmpat -tartan 80 40 > /dd/tmp/t.ppm
 wait    8
 run     ppmhist /dd/tmp/t.ppm | head -n 18
 wait    8
+
 
 shot    ppmmake
 for     ppmmake ppmbrighten ppmdim ppmnorm ppmchange
@@ -652,10 +643,12 @@ wait    22
 run     ppmchange rgb:80/40/c0 red /dd/tmp/flat.ppm | ppmhist
 wait    22
 
+
 shot    ppmpat
 cap     ppmpat weaves a tartan, ppmtopgm greys it and the dither prints it.
 run     ppmpat -tartan 152 88 | ppmtopgm | pgmtopbm | pbmtoascii -2x4
 wait    15
+
 
 shot    ppmpat-madras
 for     ppmpat
@@ -663,14 +656,16 @@ cap     ppmpat weaves a madras pattern; the same dither renders it.
 run     ppmpat -madras 150 44 | ppmtopgm | pgmtopbm | pbmtoascii
 wait    12
 
+
 shot    ppmrelief
 cap     ppmrelief embosses an image -- the same sphere lit from the side by
 cap     arithmetic rather than by a renderer.
 run     pgmtoppm white /dd/DEMO/sphere.pgm | ppmrelief | ppmtopgm | pnmscale -width 150 | pgmtopbm | pbmtoascii
 wait    20
 
+
 shot    printers
-for     pbmtolj pbmtoepson pbmto10x pbmtoptx pbmtoepsi
+for     pbmtolj pbmtoepson pbmto10x pbmtoepsi
 cap     The printer drivers: LaserJet, Epson, Star 10x and Printronix, each
 cap     turning the same bitmap into that printer's own language.  Their
 cap     sizes are the interesting part -- this is what a page cost.
@@ -685,8 +680,9 @@ wait    8
 run     pbmtoptx < /nil
 wait    8
 
+
 shot    rawtopgm
-for     rawtopgm rawtoppm pgmtofs fstopgm
+for     rawtopgm rawtoppm fstopgm
 cap     rawtopgm reads headerless bytes as an image -- how you got a picture
 cap     out of a machine that wrote no header at all.
 run     pgmnoise 40 20 | pnmnoraw | head -n 3
@@ -698,24 +694,20 @@ wait    10
 run     rawtoppm < /nil
 wait    8
 
+
 shot    rayshade
-for     rayshade rsconvert
-cap     Rayshade 4.0 RENDERING -- a full ray tracer on a 68000, reporting
-cap     what it did: primitives, eye rays, shadow rays, cache hits, time.
-cap     Two things have to be in place first and neither is obvious.  It
-cap     preprocesses every scene through `cccp', and it does that with
-cap     popen(), which forks a program called `shell' -- this disk has bash
-cap     and sh and no `shell', so the fork fails.  And the shell it forks
-cap     finds a command in the DATA directory, so cccp has to be at /dd,
-cap     not in CMDS.  Two copies, and the tracer runs.
+cap     Rayshade 4.0 rendering a scene on a 68000 and reporting what it
+cap     did -- primitives, eye and shadow rays, cache hits, and the time
+cap     it took.  It preprocesses each scene through cccp by way of
+cap     popen(), which forks a program named `shell', so a shell under
+cap     that name and cccp in the data directory are put in place first.
 run     cp /dd/CMDS/sh /dd/CMDS/shell
 wait    8
 run     cp /dd/CMDS/GCC139/gcc_cccp /dd/cccp
 wait    8
 run     rayshade -R 32 24 -O /dd/tmp/out.pic /dd/GAMES/rayshade/boxball.ray
 wait    45
-run     rsconvert < /nil
-wait    8
+
 
 shot    sphere
 size    36 80
@@ -726,7 +718,6 @@ run     pnmscale -xysize 152 88 /dd/DEMO/sphere.pgm > /dd/tmp/sph.pgm
 wait    10
 run     pgmtopbm /dd/tmp/sph.pgm | pbmtoascii -2x4
 wait    15
-
 
 
 shot    tga
@@ -745,8 +736,9 @@ wait    3
 run     pnmfile /dd/tmp/back4.ppm /dd/tmp/back5.ppm
 wait    6
 
+
 shot    tiffish
-for     ppmtopj pjtoppm ppmtopjxl ppmtoacad
+for     ppmtopj pjtoppm ppmtopjxl
 cap     HP PaintJet, out and back, and two write-only drivers beside it --
 cap     ppmtopjxl and ppmtoacad have no reader here, which is the shape of
 cap     half this toolkit: it was written to FEED devices.
@@ -759,6 +751,7 @@ wait    8
 run     ppmtoacad < /nil
 wait    8
 
+
 shot    workstations
 for     pbmtomgr mgrtopbm pbmtoatk atktopbm pbmtocmuwm cmuwmtopbm
 cap     Three workstation bitmap formats of the late eighties -- MGR, the
@@ -770,8 +763,9 @@ wait    10
 run     pbmtocmuwm /dd/tmp/base.pbm | cmuwmtopbm | pnmfile
 wait    10
 
+
 shot    xbm
-for     pbmtoxbm xbmtopbm pbmtoybm ybmtopbm
+for     xbmtopbm pbmtoybm ybmtopbm
 cap     X bitmaps and Bennet Yee bitmaps: two of the eleven bitmap formats
 cap     this toolkit reads.
 run     pbmtoxbm /dd/tmp/base.pbm > /dd/tmp/t.xbm
@@ -782,6 +776,7 @@ run     xbmtopbm /dd/tmp/t.xbm > /dd/tmp/back6.pbm
 wait    6
 run     pbmtoybm /dd/tmp/base.pbm | ybmtopbm | pnmfile
 wait    8
+
 
 shot    xpm
 size    30 80
@@ -805,8 +800,9 @@ wait    8
 run     wc -c /dd/tmp/t.puzz
 wait    6
 
+
 shot    yuv
-for     ppmtoyuv yuvtoppm ppmtoyuvsplit yuvsplittoppm ppmtorgb3 rgb3toppm
+for     ppmtoyuv yuvtoppm yuvsplittoppm ppmtorgb3 rgb3toppm
 cap     Video colour spaces: YUV as one stream and as three planes, and
 cap     RGB split into three files -- ppmtorgb3 names them after the input
 cap     and writes them beside it, so base.ppm becomes base.red, base.grn
@@ -822,33 +818,6 @@ wait    10
 run     ppmtoyuvsplit < /nil
 wait    10
 run     yuvsplittoppm < /nil
-wait    10
-
-shot    graphlib
-for     g graph graphdemo graphsave apfel showpic sine striche wgen
-cap     The Atari `Graph' library set.  These do not run here and loading
-cap     does not help: the library is entered and faults on its own `RTE', a
-cap     supervisor-only instruction -- it was written to run in supervisor
-cap     state.  Note the module is `graph' and the programs ask for `Graph',
-cap     which real OS-9 would not match either.  All eight programs are
-cap     asked for below.
-run     load /dd/CMDS/GAMES/graph
-wait    8
-run     g
-wait    10
-run     striche
-wait    10
-run     graphdemo
-wait    10
-run     graphsave
-wait    10
-run     apfel
-wait    10
-run     showpic
-wait    10
-run     sine
-wait    10
-run     wgen
 wait    10
 
 
@@ -907,7 +876,7 @@ wait    35
 
 
 shot    ppmntsc
-for     ppmntsc ppmqvga pnmtorast rasttopnm pnmtoddif
+for     ppmntsc ppmqvga pnmtorast rasttopnm
 cap     ppmntsc clamps an image to what NTSC could actually transmit and
 cap     ppmqvga to a 320x240 palette; Sun raster goes out and comes back,
 cap     which is the check that the pair agree.  THIS CARD MAKES ITS OWN
@@ -929,6 +898,7 @@ wait    12
 run     pnmtoddif < /nil
 wait    8
 
+
 shot    sir
 for     pnmtosir sirtopnm
 cap     Solitaire Image Recorder format, out and back -- and it does NOT
@@ -944,7 +914,7 @@ wait    12
 
 
 shot    writeonly
-for     ppmtoicr ppmtomitsu ppmtosixel ppmtouil pbmto4425 pbmtox10bm
+for     ppmtoicr ppmtouil pbmto4425 pbmtox10bm
 cap     Six drivers with no reader here, for machines that are gone: an NCR
 cap     terminal, a Mitsubishi dye-sublimation printer, DEC sixel, Motif UIL
 cap     source, an AT&T 4425 and an X10 bitmap.  What each made of the same
@@ -967,14 +937,351 @@ wait    15
 run     pbmmake -g 40 20 | pbmtox10bm | head -n 6
 wait    15
 
+# ---- JPEG: the IJG codec and its comment tools, one card each.  The .070
+# ---- files are alternate-processor builds, run beside their 68000 twins.
+
+
+shot    cjpeg
+size    24 80
+cap     Makes a JPEG from a PNM.  cjpeg wants LF between the fields of a
+cap     PNM header where the netpbm here writes CR, so the three `pbyte'
+cap     calls patch those separators first; then a 3,469-byte image
+cap     compresses to under a kilobyte.
+run     mkdir -p /dd/tmp/GFXA > /nil 2>/nil; ppmpat -gingham3 48 24 > /dd/tmp/GFXA/j.ppm; pbyte /dd/tmp/GFXA/j.ppm 2 0a; pbyte /dd/tmp/GFXA/j.ppm 8 0a; pbyte /dd/tmp/GFXA/j.ppm c 0a
+wait    6
+run     clear
+wait    1
+run     cjpeg -quality 50 /dd/tmp/GFXA/j.ppm > /dd/tmp/GFXA/j.jpg
+wait    15
+run     ls -l /dd/tmp/GFXA/j.ppm /dd/tmp/GFXA/j.jpg
+wait    5
+
+
+shot    djpeg
+size    36 80
+cap     The JPEG library's own test image, decoded by djpeg and drawn as
+cap     ASCII by netpbm.  djpeg ends its PNM header lines with LF and the
+cap     netpbm here wants CR, so the three `pbyte' calls patch those
+cap     separators before the picture is piped on.
+run     djpeg -pnm /dd/SRC/jpeglib/JPEG_5A/testimg.jpg > /dd/tmp/dj.ppm
+wait    50
+run     pbyte /dd/tmp/dj.ppm 2 0d
+wait    4
+run     pbyte /dd/tmp/dj.ppm a 0d
+wait    4
+run     pbyte /dd/tmp/dj.ppm e 0d
+wait    4
+run     ppmtopgm /dd/tmp/dj.ppm | pgmtopbm | pbmtoascii -2x4
+wait    35
+
+
+shot    djpeg.070
+size    24 80
+cap     djpeg.070, a build for another processor, decoding the JPEG the
+cap     68000 cjpeg has just written -- a 767-byte JPEG back to the full
+cap     3,469-byte PNM it came from.
+run     mkdir -p /dd/tmp/GFXA > /nil 2>/nil; ppmpat -gingham3 48 24 > /dd/tmp/GFXA/j.ppm; pbyte /dd/tmp/GFXA/j.ppm 2 0a; pbyte /dd/tmp/GFXA/j.ppm 8 0a; pbyte /dd/tmp/GFXA/j.ppm c 0a; cjpeg -quality 50 /dd/tmp/GFXA/j.ppm > /dd/tmp/GFXA/j.jpg
+wait    15
+run     clear
+wait    1
+run     djpeg.070 -pnm /dd/tmp/GFXA/j.jpg > /dd/tmp/GFXA/d70.ppm
+wait    12
+run     ls -l /dd/tmp/GFXA/j.jpg /dd/tmp/GFXA/d70.ppm
+wait    5
+
+
+shot    cjpeg.070
+cap     cjpeg.070 is the encoder from that other-processor set, and it
+cap     does not run here: handed the same PNM its 68000 twin compresses,
+cap     it answers `Premature end of input file' and writes nothing.
+run     mkdir -p /dd/tmp/GFXA > /nil 2>/nil; ppmpat -gingham3 48 24 > /dd/tmp/GFXA/j.ppm; pbyte /dd/tmp/GFXA/j.ppm 2 0a; pbyte /dd/tmp/GFXA/j.ppm 8 0a; pbyte /dd/tmp/GFXA/j.ppm c 0a
+wait    6
+run     clear
+wait    1
+run     cjpeg.070 -quality 50 /dd/tmp/GFXA/j.ppm > /dd/tmp/GFXA/x.jpg
+wait    10
+
+
+shot    rdjpgcom
+cap     Prints the comment stored in a JPEG.  A comment is written into a
+cap     JPEG with wrjpgcom and rdjpgcom reads it back.
+run     mkdir -p /dd/tmp/GFXA > /nil 2>/nil; ppmpat -gingham3 48 24 > /dd/tmp/GFXA/j.ppm; pbyte /dd/tmp/GFXA/j.ppm 2 0a; pbyte /dd/tmp/GFXA/j.ppm 8 0a; pbyte /dd/tmp/GFXA/j.ppm c 0a; cjpeg -quality 50 /dd/tmp/GFXA/j.ppm > /dd/tmp/GFXA/j.jpg; wrjpgcom -comment "OS-9 freeware disk" /dd/tmp/GFXA/j.jpg > /dd/tmp/GFXA/jc.jpg
+wait    16
+run     clear
+wait    1
+run     rdjpgcom /dd/tmp/GFXA/jc.jpg; echo ""
+wait    6
+snap
+
+
+shot    wrjpgcom
+cap     Writes a comment into a JPEG.  The comment is written into a copy,
+cap     then rdjpgcom reads it back to show it is there.
+run     mkdir -p /dd/tmp/GFXA > /nil 2>/nil; ppmpat -gingham3 48 24 > /dd/tmp/GFXA/j.ppm; pbyte /dd/tmp/GFXA/j.ppm 2 0a; pbyte /dd/tmp/GFXA/j.ppm 8 0a; pbyte /dd/tmp/GFXA/j.ppm c 0a; cjpeg -quality 50 /dd/tmp/GFXA/j.ppm > /dd/tmp/GFXA/j.jpg
+wait    16
+run     clear
+wait    1
+run     wrjpgcom -comment "OS-9 freeware disk" /dd/tmp/GFXA/j.jpg > /dd/tmp/GFXA/jc.jpg
+wait    8
+run     rdjpgcom /dd/tmp/GFXA/jc.jpg; echo ""
+wait    6
+snap
+
+
+shot    wrjpgcom.070
+cap     wrjpgcom.070, the comment writer from the other-processor set,
+cap     works here: it writes a comment into a JPEG and rdjpgcom.070
+cap     reads it back.
+run     mkdir -p /dd/tmp/GFXA > /nil 2>/nil; ppmpat -gingham3 48 24 > /dd/tmp/GFXA/j.ppm; pbyte /dd/tmp/GFXA/j.ppm 2 0a; pbyte /dd/tmp/GFXA/j.ppm 8 0a; pbyte /dd/tmp/GFXA/j.ppm c 0a; cjpeg -quality 50 /dd/tmp/GFXA/j.ppm > /dd/tmp/GFXA/j.jpg
+wait    16
+run     clear
+wait    1
+run     wrjpgcom.070 -comment "IJG 0.70 build" /dd/tmp/GFXA/j.jpg > /dd/tmp/GFXA/jc7.jpg
+wait    8
+run     rdjpgcom.070 /dd/tmp/GFXA/jc7.jpg; echo ""
+wait    6
+snap
+
+
+shot    rdjpgcom.070
+cap     rdjpgcom.070 reads a JPEG's comment, the reader from the
+cap     other-processor set; the comment is written with wrjpgcom.070 and
+cap     read back here.
+run     mkdir -p /dd/tmp/GFXA > /nil 2>/nil; ppmpat -gingham3 48 24 > /dd/tmp/GFXA/j.ppm; pbyte /dd/tmp/GFXA/j.ppm 2 0a; pbyte /dd/tmp/GFXA/j.ppm 8 0a; pbyte /dd/tmp/GFXA/j.ppm c 0a; cjpeg -quality 50 /dd/tmp/GFXA/j.ppm > /dd/tmp/GFXA/j.jpg; wrjpgcom.070 -comment "IJG 0.70 build" /dd/tmp/GFXA/j.jpg > /dd/tmp/GFXA/jc7.jpg
+wait    16
+run     clear
+wait    1
+run     rdjpgcom.070 /dd/tmp/GFXA/jc7.jpg; echo ""
+wait    6
+
+# ---- The Atari GRAPH library set.  Each program calls the Graph trap
+# ---- library, which executes in supervisor state; started from the shell
+# ---- it is entered and aborts.  wgen is the one that runs interactively.
+snap
+
+
+shot    graph
+cap     The Graph trap library itself -- a type-$0B module, not a program.
+cap     It is what g, striche, apfel, sine, showpic, graphdemo, graphsave
+cap     and wgen all call.  modinfo shows what it is: a trap handler
+cap     library marked to execute in supervisor state.
+run     modinfo /dd/CMDS/GAMES/graph | head -n 14
+wait    8
+snap
+
+
+shot    g
+cap     An Atari GRAPH demo, paired with striche.  With the Graph trap
+cap     library resident it is entered and aborts on a supervisor-only
+cap     instruction: it was written to run in supervisor state, which a
+cap     program started from the shell is not.
+run     load /dd/CMDS/GAMES/graph
+wait    4
+run     clear
+wait    1
+run     g
+wait    6
+snap
+
+
+shot    striche
+cap     Line drawing for the Atari GRAPH display.  With the Graph trap
+cap     library resident it is entered and aborts on a supervisor-only
+cap     instruction: it was written to run in supervisor state.
+run     load /dd/CMDS/GAMES/graph
+wait    4
+run     clear
+wait    1
+run     striche
+wait    6
+snap
+
+
+shot    apfel
+cap     The Mandelbrot set for the Atari GRAPH display.  With the Graph
+cap     trap library resident it is entered and aborts on a supervisor-only
+cap     instruction: it was written to run in supervisor state.
+run     load /dd/CMDS/GAMES/graph
+wait    4
+run     clear
+wait    1
+run     apfel
+wait    6
+snap
+
+
+shot    sine
+cap     A sine plot for the Atari GRAPH display.  With the Graph trap
+cap     library resident it is entered and aborts on a supervisor-only
+cap     instruction: it was written to run in supervisor state.
+run     load /dd/CMDS/GAMES/graph
+wait    4
+run     clear
+wait    1
+run     sine
+wait    6
+snap
+
+
+shot    graphdemo
+cap     An Atari GRAPH demonstration.  With the Graph trap library
+cap     resident it is entered and aborts on a supervisor-only
+cap     instruction: it was written to run in supervisor state.
+run     load /dd/CMDS/GAMES/graph
+wait    4
+run     clear
+wait    1
+run     graphdemo
+wait    6
+snap
+
+
+shot    graphsave
+cap     Saves an Atari GRAPH screen.  With the Graph trap library resident
+cap     it is entered and aborts on a supervisor-only instruction: it was
+cap     written to run in supervisor state, and it wants the display.
+run     load /dd/CMDS/GAMES/graph
+wait    4
+run     clear
+wait    1
+run     graphsave
+wait    6
+snap
+
+
+shot    showpic
+cap     Shows a picture on the Atari GRAPH display.  With the Graph trap
+cap     library resident it is entered and aborts on a supervisor-only
+cap     instruction: it wants the display, not just the library.
+run     load /dd/CMDS/GAMES/graph
+wait    4
+run     clear
+wait    1
+run     showpic
+wait    6
+snap
+
+
+shot    wgen
+cap     A Tektronix waveform generator.  With the Graph trap library
+cap     resident it runs and asks for a resolution and then the intensity
+cap     of each harmonic; given those it emits Tektronix plotting codes,
+cap     for which there is no Tektronix terminal here.
+run     load /dd/CMDS/GAMES/graph
+wait    4
+run     clear
+wait    1
+run     wgen
+wait    5
+send    256\r
+wait    2
+send    150\r75\r40\r20\r10\r
+wait    6
+
+# ---- Drawing & display
+snap
+
+
+shot    loadmem
+cap     Loads a file into memory at a given address.  It must be run by
+cap     the super user and takes hex addresses; run without them it prints
+cap     its syntax.
+run     loadmem
+wait    5
+snap
+
+
+shot    savemem
+cap     Writes a block of memory out to a file, the counterpart to loadmem.
+cap     It too wants the super user and hex addresses, and prints its
+cap     syntax when run without them.
+run     savemem
+wait    5
+snap
+
+
+shot    snap
+cap     Writes a snapshot of the terminal screen to a file (polaroid if
+cap     none is named).  It drives a set of specific hardware terminals,
+cap     listed by -l, and does not recognise this console.
+run     snap
+wait    5
+run     snap -l
+wait    5
+snap
+
+
+shot    pdraw
+cap     Pdraw 1.4 reads 3D x-y-z data and draws it, to an X11 window or as
+cap     PostScript.  Given a sample dataset and an options file it builds
+cap     the plot and asks whether to send it to the printer named in the
+cap     options.
+run     pdraw -o /dd/DOC/pdraw/options /dd/DOC/pdraw/curves.plot
+wait    12
+
+# ---- X11 clients
+snap
+
+
+shot    basicwin
+cap     An X11 client, the classic basic-window demo.  It is built against
+cap     a later edition of Microware's csl than the one here and stops at
+cap     the mismatch before it looks for an X server.
+run     basicwin; echo ""
+wait    8
+snap
+
+shot    xengine
+cap     An X11 client that animates a running engine.  Built against a
+cap     later edition of Microware's csl than the one here, it stops at
+cap     the mismatch before it looks for an X server.
+run     xengine; echo ""
+wait    8
+snap
+
+shot    X11R6shl
+cap     The X11R6 shared-library loader -- a library, not a program.  Run
+cap     as a command, the shell reports it cannot execute it.
+run     X11R6shl; echo ""
+wait    6
+
+# ---- Plotting
+snap
+
+shot    tplot
+cap     Plots columns of numbers to a plotter, written for an Atari ST.  It
+cap     prompts for x intervals and drives the plotter directly; with no
+cap     plotter here it goes on asking for the next interval.
+run     tplot
+wait    5
+send    1\r
+wait    2
+send    2\r
+wait    2
+send    3\r
+wait    2
+send    4\r
+wait    3
+
+# ---- Ray tracing helper
+snap
+
+
+shot    rsconvert
+cap     Converts rayshade image output between formats.  Run here it prints
+cap     its banner line and then stops with a stack overflow, with or
+cap     without a file named.
+run     rsconvert; echo ""
+wait    6
+
+# ---- Viewers
+snap
+
 shot    mgif
-for     mgif umusek
-cap     mgif reads a GIF and can be asked to inquire rather than display --
-cap     there is no screen here to display on, and it says what it takes.
-cap     `umusek' beside it wants a G-Windows screen address and stops with
-cap     `Can't get screen addr' where there is no G-Windows.
-run     mgif -?
+cap     Inspects a GIF and reports its structure -- image geometry, bit
+cap     depth, colour-map size and layout.  Displaying a GIF needs Atari
+cap     ST graphics hardware; -i inspects on any terminal.
+run     mgif -i /dd/DEMO/gulls.gif
 wait    8
-run     umusek
-wait    8
+snap
 

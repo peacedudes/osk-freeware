@@ -1,0 +1,10 @@
+pgmtofs /dd/tmp/NPMB/g.pgm > /dd/tmp/NPMB/o.fs
+$ cat /dd/tmp/NPMB/o.fs | head -8
+FirstName:
+LastName:
+E-mail:
+Telephone:
+Company:
+Address1:
+Address2:
+CityStateZip:

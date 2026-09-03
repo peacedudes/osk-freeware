@@ -1,0 +1,7 @@
+graphsave
+
+Process   Pid: 3, graphsave, edition 1
+    Exit code: E_PRCABT(228) Process Aborted
+  Directories: Current   - /dd
+               Execution - /dd/CMDS
+        Files: 00 fCons /term
