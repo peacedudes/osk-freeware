@@ -253,7 +253,7 @@ function row(p, where){
     `${st.sel===p.name?' aria-current="true"':''}>`+
     `<button class="pick" data-pick="${esc(p.name)}" tabindex="-1" `+
     `aria-label="pick ${esc(p.name)}">${on?"&#10003;":"+"}</button>`+
-    `<span class="nm">${p.star?'<span class="st" title="needs cio">&#9733;</span>':''}${esc(p.name)}</span>`+
+    `<span class="nm">${p.star?'<span class="st" title="uses cio">&#9733;</span>':''}${esc(p.name)}</span>`+
     `<span class="ds">${esc(brief(p.desc))}${where?` <span class="where">&middot; ${esc(where)}</span>`:""}</span></li>`;
 }
 
@@ -342,8 +342,8 @@ function renderPanel(){
     return;
   }
   const F=[];
-  if(p.star)     F.push('<span class="flag cio">&#9733; needs cio</span>');
-  if(p.basic09)  F.push('<span class="flag cio">BASIC09 &mdash; needs runb</span>');
+  if(p.star)     F.push('<span class="flag cio">&#9733; uses cio</span>');
+  if(p.basic09)  F.push('<span class="flag cio">BASIC09 &mdash; runs with runb</span>');
   if(p.military) F.push('<span class="flag mil">author asks: no military use</span>');
   if(!p.star && !p.basic09) F.push('<span class="flag ok">runs on the bare disk</span>');
   if(p.hassrc)   F.push('<span class="flag">source on disk</span>');
