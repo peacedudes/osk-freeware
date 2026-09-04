@@ -1129,3 +1129,23 @@ a camshaft calculator filed under Hardware demos is as good as missing.
 
 (kept for the record; the two open questions are at the top of this file)
 
+
+## 2026-09-04: the date binary, and a TERM question
+
+**`date' prints the year as 2100, and it is the collection's own
+`/dd/CMDS/date', not os9exec.** Proven on the shipped image under one
+os9exec: `/dd/CMDS/date' says "September 04, 2100" while the SDK's
+`/h0/CMDS/date' says "September 4, 2026" from the same clock -- F$Time is
+right, this 442-byte binary decodes the year wrong. It came in the first
+import with no ORIGINS, nothing on the disk depends on it, and it shadows
+the correct `date' every reader brings. Remove it? (Your call.) If it goes,
+the year-2100 mentions in the `date', `setime', `rcsdiff' and `udate' INDEX
+entries go with it. The old `notes/os9exec-bugs/DATE-YEAR-2100.md' blamed an
+os9exec regression and repeated the bio-2100 theory; both were wrong (bio's
+`.19' century hardcode is bio's own), so it is deleted.
+
+**`SYS/login' sets `TERM=vt100', which you questioned.** The active
+`SYS/termcap' resolves it -- its first entry is `xterm-256color|xterm|vt100'
+-- so vt100 gets xterm-256color capabilities, which works but is a mislabel.
+Set login to `TERM=xterm-256color' to match what you type by hand? Small
+change; your call on whether it is worth making.
