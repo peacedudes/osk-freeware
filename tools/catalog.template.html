@@ -311,21 +311,15 @@ function renderProgs(){
     `<span class="n">${count[c]}</span></div><p class="blurb">${esc(BLURB[c]||"")}</p></li>`).join("")+"</ul>";
 }
 
-function advice(p, gone){
-  // A missing path is not one problem. Which one it is decides what to do,
-  // and "not on this disk" on its own leaves the reader stuck.
-  const paths = gone.map(g=>g.path.toLowerCase());
-  if(paths.some(x=>x.endsWith("/sys/termcap")))
-    return "termcap is on this disk at <code>SYS/termcap</code>; arrange the disk as "+
-           "<code>/h0</code> as well as <code>/dd</code> and it resolves. "+
-           "<code>DOC/README-RUNNING</code> shows all three arrangements.";
-  if(paths.some(x=>x.includes("/etc/")||x.includes("/lib/")))
-    return "This wants a support library the collection does not carry. You would have "+
-           "to fetch the package's own data files and put them where it looks; the "+
-           "path above is exactly where.";
-  return "Nothing here provides that path. If the program creates it itself, make the "+
-         "directory and it will; if it reads it, the data was never collected. "+
-         "<code>DOC/DEPENDS</code> lists this for every program.";
+// Extra data files a program reads that ARE on the disk -- a reassurance,
+// not a warning.  Scratch and universal paths are not worth listing, and a
+// path the scan marked absent is dropped entirely: it is usually a
+// compiled-in fallback the program never opens, and "what it needs and how
+// to run it" is the job of the How to run it line, in plain words.
+const NOISE = /\/tmp(\/|$)|\/sys\/termcap|tmp\.|\/nil$/i;
+function alsoReads(p){
+  if(!p.needs) return [];
+  return p.needs.filter(n => !n.missing && !NOISE.test(n.path)).map(n => n.path);
 }
 
 function renderPanel(){
@@ -368,12 +362,10 @@ function renderPanel(){
   add("Came from", p.origin ? esc(p.origin)+(p.archive?` &mdash; ${esc(p.archive)}`:"") : "");
   add("Source",    p.src ? `<code>SRC/${esc(p.src)}</code>` : (p.hassrc?`<code>SRC/${esc(p.name)}</code>`:""));
   add("Docs",      p.docs ? `<code>DOC/${esc(p.name)}/</code>` : "");
-  if(p.needs && p.needs.length){
-    add("Also needs", p.needs.map(n=>`<code>${esc(n.path)}</code>`+
-        (n.missing?' <span class="miss">not on this disk</span>':' <span class="okk">present</span>')).join("<br>"));
-    const gone=p.needs.filter(n=>n.missing);
-    if(gone.length) D.push(`<dt></dt><dd class="advice">${advice(p,gone)}</dd>`);
-  }
+  const reads=alsoReads(p);
+  if(reads.length)
+    add("Also reads", reads.map(x=>`<code>${esc(x)}</code>`).join("<br>")+
+        `<span class="okk"> &middot; on the disk</span>`);
   if(p.howto) add("How to run it", `<div class="howto">${esc(p.howto)}</div>`);
   if(p.usage) D.push(`<dt>Its own help</dt><dd><pre class="usage">${esc(p.usage)}</pre></dd>`);
   // THE PROGRAM RUNNING, beside its own help: captured from the disk image,
