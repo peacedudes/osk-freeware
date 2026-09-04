@@ -115,6 +115,23 @@ left.
 
 ---
 
+## The voice: a tribute to Microware OS-9 (rdoggett, 2026-09-04)
+
+Every reader-facing word -- cards, `DOC/INDEX`, `tools/howto.psv`, the
+`README-*` choosers, the web page -- is written for someone running
+Microware's OS-9. They brought their own OS-9, or they would not have found
+this. os9exec is only the convenience for squeezing by. The collection is a
+tribute; it supports Microware and respects their IP fully.
+
+So: **lead with what a program is and does. Name what it needs plainly and
+positively -- `run it with runb`, `it uses Microware's shell`, `assemble
+with r68` -- as ordinary things the reader has, never "not on this disk /
+we don't provide / good luck / the data was never collected", and never
+"not a 68000 module" or any definition-by-negation. Never adversarial
+toward Microware.** Where we can run a thing (we have runb, the SDK), run
+it and show what it does. os9exec is mentioned only where a program's
+behaviour under it is genuinely the subject, and then neutrally.
+
 ## The release pass, from 2026-09-03 -- read this before the numbered sections
 
 rdoggett spot-checked a random card (`lessecho`) on 2026-09-02 and it showed
