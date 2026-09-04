@@ -208,6 +208,7 @@ for the maintainer, which is why `lessecho`'s panel explains `helpindex`.
 |---|---|---|
 | 2026-09-03 morning | 438 of 913 | none -- the audit's first honest count |
 | 2026-09-03 evening | 598 of 913 | Amusements, Documentation, Editors, Shells, Time & calendar, Printing, Maths, Screen toys, Encoding, Languages, Text tools (filters), Games (interactive half), Disk & DOS, Developer tools |
+| 2026-09-04 | **797 of 913** | every category passed once: + Compilers, System (all), Communications (all), TeX/DVI, Archives, Graphics (all incl. 169 netpbm). Backlog 69, exceptions 47. |
 
 Still to do, in the order worth doing: Files & directories and Archives
 (in flight), Compilers & build (the GCC passes live under

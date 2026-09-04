@@ -68,6 +68,31 @@ decision; say the word and the card gets made.
 - `bio` is BASIC09 I-code and this disk carries no `runb`. Kept as data for
   someone with BASIC09; it has no card.
 
+## Where the card pass landed (2026-09-04)
+
+Every one of the 20 categories has had the per-program pass. **797 of 913
+runnable programs now show their own output on their own card** (was 438
+when the per-program audit was first honest). `tools/audit_panels.py
+--summary` is the live figure; `tools/check_disk.py disk` gates it.
+
+What is left is a bounded punch-list of **69 programs on
+`tools/panel-backlog.txt`**, none of them silent regressions -- each is a
+card that shows only a usage line, only an error, or has no stanza yet:
+
+- **25 no-panel**: mostly netpbm alternates that lost a shared card when
+  the shared cards were split (pgmenhance, pnmhisteq, ppmchange, ppmnorm,
+  ppmspread, pbmreduce, ppmbrighten, ppmdim), plus a dozen honest-limited
+  ones (byteflip, authwn, inetdc, cls, frm, edir, setime, sysmax, vis,
+  getsys, bsplt68, diff_1.1, m4_0.5, setfont, fixyear). Each needs one
+  small stanza or a one-line exception.
+- **26 help-only / 13 error-only / 4 not-run**: cards that still show a
+  usage line or an error; a later pass gives each a real invocation or an
+  exception with a reason.
+
+`tools/panel-exceptions.psv` (47 entries) holds the cards that are right as
+they stand -- honest stops for absent hardware, a peer, or a silent writer
+confirmed by a following command.
+
 ## WHAT NEEDS YOU, in order
 
 **0. "Is os9exec ready for 4.10? Have you been through them all?" -- NO, and
