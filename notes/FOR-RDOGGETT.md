@@ -1149,3 +1149,12 @@ os9exec regression and repeated the bio-2100 theory; both were wrong (bio's
 -- so vt100 gets xterm-256color capabilities, which works but is a mislabel.
 Set login to `TERM=xterm-256color' to match what you type by hand? Small
 change; your call on whether it is worth making.
+
+**`DOC/README-RUNNING' still describes the old swap arrangement.** Its
+opening no longer calls the disk a boot disk (fixed 2026-09-04, it now leads
+with "os9exec is the kernel"), but its three numbered "arrangements" predate
+the /h1 decision: arrangement 1 puts your OS-9 on /dd and the collection on
+/h0, the swap you moved away from tonight. Now that SYS/login assumes the
+collection on /dd (+ hard-link /h0) and your own system on /h1, the
+arrangements want rewriting to lead with that. Left for you -- it is your
+call how the setup is framed.
