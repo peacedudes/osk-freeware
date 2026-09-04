@@ -192,11 +192,18 @@ class Session:
         self.master, slave = pty.openpty()
         fcntl.ioctl(slave, termios.TIOCSWINSZ,
                     struct.pack("HHHH", rows, cols, 0, 0))
+        env = dict(os.environ, OS9DISK=image, OS9H0=image)
+        # Mount the reader's OS-9 system (locally, the SDK) as /h1 when OS9SDK
+        # points at it, so the runb-only programs (bio, blackjack) capture
+        # exactly as a reader with their own system runs them: `load
+        # /h1/CMDS/runb; runb <name>'. Unset -- as in CI, which never
+        # re-captures -- /h1 is simply absent and that load fails gracefully.
+        sdk = os.environ.get("OS9SDK")
+        if sdk:
+            env["OS9H1"] = sdk
         self.proc = subprocess.Popen([OS9EXEC, "bash"], stdin=slave,
                                      stdout=slave, stderr=slave,
-                                     env=dict(os.environ, OS9DISK=image,
-                                              OS9H0=image),
-                                     close_fds=True)
+                                     env=env, close_fds=True)
         os.close(slave)
         threading.Thread(target=self._drain, daemon=True).start()
         # LET os9exec COME UP FIRST. On a pty the terminal echoes anything
