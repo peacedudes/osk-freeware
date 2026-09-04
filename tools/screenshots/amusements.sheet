@@ -31,6 +31,24 @@ wait    3
 send    88-88\r
 wait    6
 
+shot    bio
+cap     F. Kaefer's Biorhythm V2.2e, a BASIC09 program: give it a date and a
+cap     birthday as DD.MM.YYYY, then `v' for the day's numbers, and it prints
+cap     the physical, emotional and mental percentages for that day.  At your
+cap     own OS-9 shell you just type `bio' and it runs through runb.
+run     load /h1/CMDS/runb
+wait    2
+run     clear
+wait    1
+run     runb bio
+wait    3
+send    01.06.2025\r
+wait    2
+send    15.06.1970\r
+wait    2
+send    v\r
+wait    3
+
 shot    england
 size    40 100
 cap     A year of weather, one line a day, for a tabletop game: sky,

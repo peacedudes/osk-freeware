@@ -1,0 +1,19 @@
+runb bio
+
+Biorhythm (c) 1987 by F.Kaefer V2.2e
+
+Date [<RETURN> for Systemdate] (DD.MM.YYYY) : ? 01.06.2025
+Birthday (DD.MM.YYYY) : ? 15.06.1970
+Values of today or Graph (v/g) ? v
+
+                               BIORHYTHM
+                               =========
+
+                      (c) 1987,1988 by F.Kaefer
+
+The birthday 15.6.1970. is a Monday
+Age in days: 20075.
+Biorhythm 1.6.2025.
+Physical:  5.%
+Emotional: 38.%
+Mental:   93.%
