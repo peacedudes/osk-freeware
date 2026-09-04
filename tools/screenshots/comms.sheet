@@ -757,9 +757,9 @@ run     osknet
 wait    8
 
 shot    msntp
-cap     Sets the system clock from a network time server.  It needs a newer
-cap     edition of the shared csl runtime library than this disk carries,
-cap     so the runtime stops it before its own code runs.
+cap     Sets the system clock from a network time server (SNTP).  There is no
+cap     network here, so it cannot open an NTP socket and says so; with a
+cap     network it reaches a server and sets the clock.
 run     msntp
 wait    6
 

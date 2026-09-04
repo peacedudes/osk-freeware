@@ -77,17 +77,16 @@ wait    6
 run     luac -l -o /dd/tmp/cf.lc /dd/DOC/lua/examples/cf.lua | head -n 14
 wait    10
 shot    lua
-cap     Lua 3.0, the interpreter.  It was built against a later edition
-cap     of Microware's csl than the one on this disk and stops at the
-cap     mismatch before it runs; with a matching csl loaded it runs the
-cap     examples.  luac, the compiler, needs no csl.
-run     lua /dd/DOC/lua/examples/hello.lua
+cap     Lua 3.0, the interpreter, running the temperature-table example from
+cap     DOC/lua/examples: a Celsius-to-Fahrenheit chart printed row by row.
+run     lua /dd/DOC/lua/examples/cf.lua
 wait    6
 shot    runc
-cap     Runs a compiled Lua chunk as a command.  It stops at the same csl
-cap     edition mismatch as lua.
-run     runc -?
-wait    6
+cap     runc is the Lua runtime engine: a chunk compiled with `luac -x' runs
+cap     through it by its own name at an OS-9 shell, the way runb runs a
+cap     BASIC09 module.  On its own it has no chunk to interpret.
+run     runc
+wait    5
 shot    wam.sbprolog
 cap     SB-Prolog 2.2 at its prompt, answering a query.  SIMPATH names
 cap     the module library it loads from.

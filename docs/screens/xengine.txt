@@ -1,2 +1,2 @@
 $ xengine; echo ""
-**** csl traphandler mismatch ****
+XT:Error: Can't open display:

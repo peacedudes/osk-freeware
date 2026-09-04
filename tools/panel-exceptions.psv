@@ -23,8 +23,7 @@ lpsched|there is no printer device on this disk to start the spooler on; its opt
 submit|a batch-file runner; its option list is what a card can show without a .sub job to run
 chardef|loads a VT220 character set from a definition file, and no terminal here to load; its syntax is what there is to show
 macunpack|opens PackIt archives and none is on the disk; its options are what there is to show
-lua|built against a later csl edition than the disk ships; the mismatch banner is where it stops, and the card says so
-runc|built against a later csl edition than the disk ships; the mismatch banner is where it stops, and the card says so
+runc|the Lua runtime engine; a `luac -x' chunk runs through it by name at an OS-9 shell (like runb for BASIC09), so on its own it has no chunk to interpret
 pacman|a G-Windows program: at a terminal it draws nothing and returns, and its card says so
 disktest|measures the disk and, run on one, ends the session; its syntax is what there is to show, and the card says so
 trap|an example trap handler that cannot be installed from user state; the refusal is the whole of what it does here, and the card says so
@@ -61,7 +60,7 @@ uucico|the UUCP transfer program; it dials or answers a UUCP peer over a serial 
 uuxqt|runs the commands a remote UUCP site queued here; it needs a queue and a peer to fill it, finds neither, and stops at once
 uulog|shows the UUCP transfer log; no UUCP traffic has been logged on this disk, so there is nothing to print
 finger|asks another machine who is logged in; it needs a network to reach, and prints its usage without one
-msntp|sets the clock from a network time server; built against a later csl edition than the disk ships, it stops at the mismatch banner
+msntp|sets the system clock from a network time server; with no network here it cannot open an NTP socket
 blastem|XMODEM and YMODEM file transfer for the MM/1; it needs a modem on a serial path, and its help is what there is to show without one
 byteflip|byte-swaps a dbz database between architectures; with no database to swap it ends the shell rather than printing anything
 newslock|the news system's file lock; it belongs to a news spool this configuration does not run, and leaves no trace here
@@ -76,8 +75,8 @@ wysecrack|probes for a Wyse terminal by asking it to identify itself; nothing he
 uwho|lists who is logged in from the UNAXCESS bulletin board; it opens /etc/utmp, and a leading /etc names a device in OS-9, so it cannot find that file
 authwn|WN's authenticator for a password-protected area; inetd and wn invoke it per request, and run alone it has nothing to authenticate
 inetdc|what inetd forks to handle each connection; run by hand with nothing to serve it exits in silence
-basicwin|an X11 basic-window demo; built against a later csl edition than the disk ships, it stops at the mismatch banner before it looks for an X server
-xengine|an X11 demo that animates an engine; built against a later csl edition than the disk ships, it stops at the mismatch banner before it looks for an X server
+basicwin|an X11 basic-window demo; with no X server here it stops at "cannot connect to X server"
+xengine|an X11 demo animating an engine; with no X display here it stops at "Can't open display"
 loadmem|loads a file into memory at a hex address; it must run as the super user with addresses given, and prints its syntax without them
 savemem|writes a block of memory out to a file; it must run as the super user with addresses given, and prints its syntax without them
 snap|writes a snapshot of the screen on specific hardware terminals; it does not recognize this console, which is not one of them

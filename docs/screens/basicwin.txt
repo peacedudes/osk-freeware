@@ -1,2 +1,2 @@
 $ basicwin; echo ""
-**** csl traphandler mismatch ****
+basicwin: cannot connect to X server

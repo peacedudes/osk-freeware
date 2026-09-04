@@ -1042,17 +1042,17 @@ snap
 
 
 shot    basicwin
-cap     An X11 client, the classic basic-window demo.  It is built against
-cap     a later edition of Microware's csl than the one here and stops at
-cap     the mismatch before it looks for an X server.
+cap     The classic X11 basic-window demo.  There is no X server here, so it
+cap     stops at "cannot connect to X server"; with an X display it opens a
+cap     window and draws into it.
 run     basicwin; echo ""
 wait    8
 snap
 
 shot    xengine
-cap     An X11 client that animates a running engine.  Built against a
-cap     later edition of Microware's csl than the one here, it stops at
-cap     the mismatch before it looks for an X server.
+cap     An X11 demo that animates a running engine.  There is no X display
+cap     here, so it stops at "Can't open display"; with one it draws the
+cap     engine and runs it.
 run     xengine; echo ""
 wait    8
 snap

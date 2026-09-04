@@ -390,7 +390,7 @@ lprm 13057b9a20d916c5
 lpsched 3e994fe2a3db2a4d
 lpshut 1a2217774748cd7f
 ls bd383da484c1491d
-lua 8e876caed9e01701
+lua 7ad79a71378a7c87
 luac e2ea42f12587de6c
 lunisolar d63d5ea17ef7647f
 lwf bf97ed782b46f95d
@@ -628,7 +628,6 @@ rstory 6df798d4e6d9be3c
 rstory2 160ef4cc0d9c09a9
 rtf 19fd157e8be2a5d2
 run c11d6dbde30fe3a8
-runc 3473be17a470f35f
 rxmod 7653c9295e274a56
 savage bf3933988e4e3dd1
 savemem e4a93e37477e19cd
