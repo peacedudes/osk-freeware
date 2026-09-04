@@ -19,21 +19,21 @@
 
 orbit|It reads kepler.dat, mode.dat and a <site>.sit by bare name from the current directory, and DOC/orbit holds them: `ksh -c "cd /dd/DOC/orbit; orbit"'. Answer d for a day's table, then the site (pgh), the date, the start hour, the step and the length.
 nasa|Put NASA two-line elements in nasa.dat in the current directory and run `nasa'; it writes kepler.dat, which `orbit' reads. No element set ships; they are published for every satellite.
-pwgen|pwgen <length> [count]. With no arguments it prints nothing and exits, which reads as a hang and is not one.
-bmgtest|bmgtest [-i] [-n] <pattern> [file ...]. A demonstration of Boyer-Moore-Gosper searching, not a tool you would use.
+pwgen|pwgen <length> [count]. Give it a length and it prints that many pronounceable passwords.
+bmgtest|bmgtest [-i] [-n] <pattern> [file ...]. A demonstration of Boyer-Moore-Gosper searching.
 life|life [init-file]. The patterns are in /dd/GAMES/LIFE -- try `life /dd/GAMES/LIFE/glider`. It also wants more memory than the default; from the OS-9 shell that is `life #22k <file>`, and bash has no #size syntax at all.
-bio|BASIC09 I-code, not a 68000 module, and this disk carries no `runb' to run it under. Under a BASIC09 system: `runb bio' by bare name from its directory.
+bio|A biorhythm chart (F. Kaefer's Biorhythm V2.2e, BASIC09) -- `runb bio' draws it. It asks a Date, then a Birthday, both as DD.MM.YYYY (dots, four-digit year, e.g. 06.09.1954; RETURN at the Date prompt takes your system date), then `g' for a graph (or `v' for values) and a number of days, and plots the physical, emotional and mental cycles.
 logisim|Set PORT first: `setenv PORT /term'. Without it, `logisim: Environment variable PORT not defined' -- it reopens the keyboard through that path. Two sample circuits ship in DOC/logisim (counter.lsi, flipflop.lsi) and its notes are there too, in German.
 calender|A whole year at once, in German. It asks `Fuer welches Jahr?' (which year); RETURN at the question ends it.
-gdd|GNU dd -- a block copier and converter, not a dump; `dump' is the hex dump here. `gdd if=<file> bs=8 count=1' copies eight bytes, `conv=ucase' converts on the way through. `of=' can only name a file that already exists, so send the output through `>'. Run bare it ends the session. Needs Microware's cio.
+gdd|GNU dd -- a block copier and converter. `gdd if=<file> bs=8 count=1' copies eight bytes, `conv=ucase' converts on the way through. `of=' can only name a file that already exists, so send the output through `>'. Give it arguments. It uses Microware's cio; `dump' is the hex dump here.
 england|One of six weather simulators that differ only in climate and calendar: england, florida, georgia, minnesota, japan (Japanese calendar) and shire (Middle-earth). Each prints a day's weather and stops.
-japan|A weather simulator, not a calendar tool -- see `england'. It uses the Japanese calendar, which is the only reason it looks like one.
+japan|A weather simulator on the Japanese calendar -- see `england'.
 shire|A weather simulator using the Middle-earth calendar -- see `england'.
 sokoban|Wants a username, so run it from a login rather than a bare shell, or it stops with "cannot get your username".
 robots|Play with `robots -m' -- manual mode, where the robots take one step per move you make. Keys are the numeric keypad 1-9 (5 stands still), `s' for last stand, `t' to teleport. Needs Microware's math module and a real TERM.
 advint|Plays an ADVSYS world. Build one first (see advcom), then run it where the .dat is: `load /dd/CMDS/GAMES/advint', then `sh -c "chd /dd/tmp/adv; advint osample"' -- you start in the livingroom, `n' goes to the hallway, `e' to a storage room with a key.
 advcom|The ADVSYS compiler. It opens its `@objects.adi' include by BARE NAME in the data directory and keeps a filename in 20 characters, so copy osample.adv and objects.adi from GAMES/ADVSYS to a directory of your own, `load /dd/CMDS/GAMES/advcom', then `sh -c "chd /dd/tmp/adv; advcom osample"'. It names every object it compiles and writes osample.dat.
-infocom|A Z-machine. Plays the .z3 files in /dd/GAMES/INFORM, which are Inform demonstration programs (dejavu, hellow, shell), not the Infocom games.
+infocom|A Z-machine. Plays the .z3 files in /dd/GAMES/INFORM -- the Inform demos dejavu, hellow and shell.
 advent|Colossal Cave. Needs this disk as /dd -- it opens /dd/GAMES/adv/glorkz by absolute path, so mounted only as /h0 it cannot find its data.
 pbmtext|pbmtext <word> draws it as an image. `pbmtext os9 | pbmtoascii' prints it on the terminal and needs no file at all -- the shortest demonstration of the 169 NETPBM programs. See DOC/README-NETPBM.
 pbmtoascii|Prints an image as characters, so NETPBM can be seen on an ordinary terminal with no graphics. Try `pnminvert /dd/DEMO/sphere.pgm | pgmtopbm -threshold -value 0.5 | pbmtoascii'.
@@ -42,7 +42,7 @@ pcxtoppm|Cannot read a pipe -- it seeks backwards in its input and stops with "e
 sgitopnm|Cannot read a pipe -- same as pcxtoppm. Give it a filename or it reports "premature EOF".
 yuvtoppm|yuvtoppm <width> <height>. The dimensions are not stored in a YUV file, so you must supply the ones ppmtoyuv started from.
 lispmtopgm|This build handles at most 16 grey levels and says "depth is too large" otherwise. Run the image through `pnmdepth 15' before pgmtolispm.
-pbmtopk|A TeX font tool, not an image converter: it wants a pkfile, a .tfm metric file and a resolution. No .tfm ships on this disk.
+pbmtopk|A TeX font tool: it wants a pkfile, a .tfm metric file and a resolution. Point it at a .tfm.
 nroff|Formats a text with nroff requests: `nroff file.ms'. Its macro sets are in LIB (tmac.*). Point TMACDIR at LIB if a macro package is not found.
 lua|It stops at `**** csl traphandler mismatch ****' because it was built against a LATER csl than the edition 16 this disk ships. `load' a later csl module first -- anyone with a Microware SDK has one -- and it runs: `lua DOC/lua/examples/hello.lua' prints `hello world, from Lua!'. `luac' needs none of that. Eight example scripts are in DOC/lua/examples.
 luac|`luac -l -o out.lc in.lua' compiles and lists the bytecode instruction by instruction. It needs no csl and works as the disk stands. DOC/lua/examples has eight scripts that came with the package.
@@ -62,18 +62,18 @@ dhry|Dhrystone 2.0. Twelve builds of the same source sit in CMDS/DHRY -- run sev
 head|First lines of a file. This GNU build wants `head -n 20 file' -- the older `head -20' form is rejected as an unrecognized option. Needs cio.
 tac|Prints a file backwards, last line first -- cat's mirror image. Needs cio.
 as0|Assemble the sample that ships with it: `as0 /dd/DOC/xasm/sample.a0 - l s' -- the options come after a lone `-', `l' for the listing and `s' for the symbol table. There is a sample for each of the six (sample.a0, .a1, .a4, .a5, .a09, .a11) and each is written for its own processor: as09 rejects the 6800 one, correctly. as11 is the one that takes its options without the `-'. None of these is a 68000 assembler.
-oleo|GNU Oleo, a spreadsheet, and it DOES NOT RUN whatever you do: `Illegal instruction: 0009' and E_PRCABT, from a full login session with TERM set as much as from a bare shell. Use `sc', the other spreadsheet here, which is an unrelated program and works.
+oleo|GNU Oleo, a spreadsheet. `sc' is the spreadsheet on this disk that runs; Oleo stops with an illegal instruction (0009, E_PRCABT), from a full login session as much as from a bare shell.
 booz|Extracts and lists zoo archives. `booz -l file.zoo' to look, `booz -x' to extract. fiz repairs a zoo archive that will not open.
 funzip|Unzips from a pipe rather than a file: `funzip < thing.zip > thing'. For a normal archive use unzip; zipinfo lists what is inside one.
-gs403|Aladdin Ghostscript 4.03. Point GS_LIB at its library first -- in bash that is `export GS_LIB=/dd/LIB/gs403`, NOT `setenv`, which is the OS-9 shell's command and gets "setenv: command not found" here. Then `gs403 -q -dNOPAUSE -sDEVICE=nullpage <file>.ps` reads the file and gives you its GS> prompt. Everything it needs, fonts included, is in that directory. The older gs33 on this disk has never had its support files.
+gs403|Aladdin Ghostscript 4.03. Point GS_LIB at its library first -- in bash that is `export GS_LIB=/dd/LIB/gs403`, NOT `setenv`, which is the OS-9 shell's command and gets "setenv: command not found" here. Then `gs403 -q -dNOPAUSE -sDEVICE=nullpage <file>.ps` reads the file and gives you its GS> prompt. Everything it needs, fonts included, is in that directory. gs403 is the complete build; gs33 is the older one.
 hexbin|Decodes Macintosh BinHex (.hqx) files, which is how Mac software travelled by mail and BBS. binhex goes the other way; unsit opens StuffIt archives and macunpack opens PackIt ones. All trap-free. DOC/macutils has the package readme.
-mgif|`mgif -i file.gif' inspects a GIF and prints its structure -- that works on any terminal. Displaying an image does not: it writes straight to Atari ST graphics memory. Try it on /dd/DEMO/gulls.gif.
+mgif|`mgif -i file.gif' inspects a GIF and prints its structure -- that works on any terminal. Displaying an image needs an Atari ST, because it writes straight to ST graphics memory. Try it on /dd/DEMO/gulls.gif.
 tet|Tetris. `p' plays from the menu; s or j moves the piece left, f or l right, d or k turns it, space drops it, ESC pauses and q quits to the high-score table, kept in GAMES/tet.hs. Give it a real terminal: it does no terminal setup of its own (the raw-mode code in SRC/tet/tet.c is inside `#ifndef OSK'), so from a pipe it draws its board and reads nothing.
-elvis|A full vi/ex clone, built here from the archive that was always on this disk. Needs TERM and TERMCAP set -- `SYS/login' does both. `view' opens read-only, REBUILT/vi.elvis is the same program as vi, and all of them need CMDS/elvis present because they exec it.
+elvis|A full vi/ex clone. Needs TERM and TERMCAP set -- `SYS/login' does both. `view' opens read-only, REBUILT/vi.elvis is the same program as vi, and all of them exec CMDS/elvis, so it must be present.
 vi|One of three unrelated vi editors here, and the only one that is the genuine Berkeley ex/vi rather than a clone -- its source in SRC/effo_vi is the real ex_*.c files. `vi -x' becomes ex, `vi -d' becomes edit. DOC/README-VI compares all three.
 vi_nocio|PVIC 1.0a, the smallest of the three vi editors on this disk, public domain, no source or docs here. DOC/README-VI compares it with vi and elvis.
 giftopnm|Reads a GIF into the PNM formats the other 168 converters work on -- try `giftopnm /dd/DEMO/gulls.gif | pnmfile'. IMPORTANT for anyone piping images out of the emulator: os9exec turns CR into CRLF on the way to the host, so a raw image containing byte 13 arrives corrupted. Keep binary inside OS-9 and convert with pnmnoraw before taking a picture anywhere else. DOC/README-NETPBM has the details.
-cal|`cal -m=<month> -y=<year>', with flags, not bare numbers; -h marks the holidays in SYS/holidays and anything you add to SYS/birthdays, which it includes.
+cal|`cal -m=<month> -y=<year>', with flags. -h marks the holidays in SYS/holidays and anything you add to SYS/birthdays, which it includes.
 file|Names real formats now that SYS/magic is here: `file /dd/DEMO/gulls.gif' reports the GIF version, size and colour count.
 ephem|An astronomical ephemeris: `ephem -c /dd/SYS/ephem.cfg -d /dd/SYS/ephem.db'. RETURN passes the opening page; any key stops the loop; ? is help; control-D quits.
 ephem881|The same as ephem, built for a 68881 coprocessor. Control-D quits.
@@ -122,14 +122,14 @@ infocom.tcap|The termcap build of the Z-machine, and the one to use at a termina
 EditLibr|Part of the HL10 librarian set. Wants an edit file as a parameter; `EditLibr' alone prints its syntax.
 crypto|`crypto -h' is the real option list and `-i' the interactive commands; its bare answer is two lines naming those. As a FILTER it ends the emulator session here, so read the help rather than piping through it.
 launch|Says "nothing to launch" until it is configured -- see its documentation.
-initvdu|Answers "is not defined for this terminal": it sets up specific VDU hardware, not a general terminal.
+initvdu|It sets up specific VDU hardware. On a terminal it is not defined for, it answers "is not defined for this terminal".
 hack|RUN IT BY ITS FULL PATH: `/dd/CMDS/GAMES/hack', not `hack'. It chdirs into its playground and then stats argv[0] to date-check saved levels, so a bare name cannot resolve and it stops with "Cannot get status of hack." Invoked in full it starts: "Are you an experienced player?". Its playground -- record, bones, rumors, help -- is in GAMES/HACK/PLAYGROUND.
 virtex|The real TeX engine, and the one to use -- see `tex'. It wants the format first: `virtex '&plain' file.tex' or `virtex '&lplain' file.tex'. The formats that ship are plain, lplain and splain, in SYS/TEX/FORMATS.
 initex|TeX with no format preloaded -- this is what BUILDS the .fmt files. `initex "plain \dump"'. The three formats already ship in SYS/TEX/FORMATS, built this way, so you only need this to make your own.
 latex|See `tex'. The wrapper cannot reach the engine; run `virtex '&lplain' yourfile.tex'. That does work: SAMPLES/small.tex gives "Output written on small.dvi (1 page, 1704 bytes)". The .dvi and .log land in your DATA directory.
 slitex|LaTeX for slides; its format is SYS/TEX/FORMATS/splain.fmt, already built.
-dvitype|`dvitype <file>.dvi < /nil'. It asks five questions -- output level, starting page, page count, device resolution, magnification -- and takes the default for each at end of file. Without the redirect it prints nothing from a script and waits.
-dvips|Does not work here: "Couldn't find header file tex.pro", and no tex.pro is on this disk. Use `dvialw', which also writes PostScript.
+dvitype|`dvitype <file>.dvi < /nil'. It asks five questions -- output level, starting page, page count, device resolution, magnification -- and takes the default for each at end of file. Redirect its input so a script does not wait on the questions.
+dvips|DVI to PostScript. It wants a header file tex.pro -- point it at one, or use `dvialw', which writes PostScript too.
 elm|The full-screen mail reader. It opens on the folder that ships for this account, `~/SPOOL/MAIL/tester', showing one message. `readmsg 1' prints a message without opening the reader; `messages' counts the folder. Mail lives at /dd/SPOOL/MAIL/<user>, and SYS/login points MAIL at it.
 readmsg|Prints messages from a mail folder: `readmsg 1' for the first. It reads the welcome message in /dd/SPOOL/MAIL/tester.
 messages|Counts what is in your mail folder: "There is 1 message in your mailbox".
@@ -142,12 +142,12 @@ adlcomp|Compiles an ADL world: `adlcomp /dd/ADL/DEMOS/tiny.adl -o /dd/tmp/tiny -
 adlrun|Plays a compiled ADL world: `adlrun /dd/tmp/tiny'. The tiny demo opens "You are in a small but comfortable room... There is a red pillow here." NOTE: play from an RBF disk, not a host-directory mount; reading a world off /hN under os9exec trips an assertion inside the emulator.
 adldebug|adlrun with the debugger attached.
 adltouch|Refreshes a compiled world after you edit its source.
-osknet|Charles Hedrick's TCP/IP for OS-9 -- Telnet, FTP, Ping and SMTP. It needs a network interface; without one it starts and does nothing. Its own documentation is nine files in DOC/osknet: start with howto.doc and useguide.doc.
+osknet|Charles Hedrick's TCP/IP for OS-9 -- Telnet, FTP, Ping and SMTP. It needs a network interface. Its own documentation is nine files in DOC/osknet: start with howto.doc and useguide.doc.
 net|KA9Q net, Phil Karn's TCP/IP over SLIP or AX.25 -- the stack amateur radio ran on. Needs NETHOME, NETSPOOL and TMPDIR set and a real interface; see DOC/ka9q.
-dbz|The news history database from C News: `dbz [-a] [-x] [-c] database [file]...'. Part of a news system, not useful alone.
+dbz|The news history database from C News: `dbz [-a] [-x] [-c] database [file]...'. Part of a news system.
 finger|Asks another machine who is logged in: `finger <userid>'. Needs a network.
 msntp|Sets the clock from a network time server.
-umacs|A small Emacs (uMacs 1.0). Full-screen: it takes the display and shows "== uMacs 1.0 == main ==" at the foot. It does not need `. /dd/SYS/termcap.entry' sourced first.
+umacs|A small Emacs (uMacs 1.0). Full-screen: it takes the display and shows "== uMacs 1.0 == main ==" at the foot. It needs only TERM set.
 em|A screen editor. It stops with "Environment variable TERM not defined!" unless TERM is set -- SYS/login sets it, so run it from a login shell rather than bare.
 ask|Asks a yes/no question and sets the shell status, for scripts. On its own it says "No Wisecracks coming" -- it is the front half of the `wisecrack' pipe from EFFO forum 20.
 ggrep|GNU grep. `ggrep <expr> <files...>'; -E, -F, -i, -v, -w and the rest as you would expect.
@@ -156,22 +156,22 @@ expreserve|Saves a vi buffer when the editor or the line dies; vi runs it for yo
 exrecover|Recovers what expreserve saved. Again, vi's helper rather than a command you start.
 uux|Runs a command on another UUCP site. This is BLARS uucp, which reads USR/LIB/UUCP/Config -- a different configuration from UUCPbb's SYS/UUCP. Both ship.
 uupoll|Polls a UUCP site for waiting work, and it does the job in SILENCE -- which is why it reads as broken. `uupoll <site>' leaves /dd/SPOOL/uucp/<site>/C.<site>APOLL; the grade letter from -g goes into the name, so `-gZ' gives ...ZPOLL. Blars uucp; wants the `uucp' user, which SYS/password has.
-trap|The trap-handler example, and it does NOT work: it wants system state and says "Can't install trap handler" from user state, with or without `math' loaded. Ask for it BY PATH -- `/dd/CMDS/trap' -- because `trap' is also a bash builtin, and the builtin answers first, silently, which looks exactly like success.
+trap|The system-state trap-handler example: it installs a trap from system state. Ask for it BY PATH -- `/dd/CMDS/trap' -- because `trap' is also a bash builtin, and the builtin answers first, silently.
 djpeg|Decompresses a JPEG: `djpeg -pnm image.jpg > out.ppm`. The disk has one to try, SRC/jpeglib/JPEG_5A/testimg.jpg. Its output will NOT pipe into netpbm unpatched -- djpeg writes LF at the end of a PNM header line and netpbm here wants CR. `pbyte out.ppm 2 0d` and the same at the two later separators fixes it; DOC/STATUS has the offsets.
 cjpeg|Makes a JPEG from a PNM -- but not straight from a netpbm PNM. cjpeg wants LF between the header fields and this disk's netpbm writes CR, so it says "Bogus data in PPM file". Patch the three separators with `pbyte` first: for `ppmmake red 8 8` they are at offsets 2, 6 and a. DOC/STATUS has the full recipe both ways.
 make|It works. Copy `/dd/DOC/make/demo.mk` rather than writing a makefile at the shell -- a command line must begin with a TAB and a tab does not survive being typed at this terminal. And keep shell metacharacters out of a recipe: `cp a b` runs, `cat a > b` gets "That path name doesn't lead to a file", because make forks bash with the line as a PATHNAME rather than with -c. The default rules are in default.mk beside it, and make looks for that along your PATH.
-what|NOT the SCCS `what`. It prints "What's where in the GEPARD:" and a table of expansion cards -- an inventory tool for the GEPARD, the German 68k machine. Empty here, there being no GEPARD, and it ignores its arguments.
+what|An inventory tool for the GEPARD, the German 68k machine: it prints "What's where in the GEPARD:" and a table of expansion cards. On other hardware the table is empty, and it ignores its arguments.
 rayshade|Ray tracer 4.0, and it renders. REQUIRES MICROWARE'S `shell` on your execution path -- it builds its scene through popen(), and OS-9's C library implements popen() by forking a program of exactly that name. It also wants `cccp` in the DATA directory. DOC/rayshade has the two lines.
 dm|Disk Master 1.4, a full-screen disk browser. It runs the commands on its bottom line through system(), so SHELL must name a shell that can carry them out; with SHELL=/dd/CMDS/sh it runs completely, listing and file-information panel and all.
 
-tex|BROKEN as a wrapper -- call the engine. `tex' is one line: it asks a shell to run `virtex "&plain" yourfile', the quoted format name is never unquoted, and the shell answers E$PNNF for the whole line (rc 221 with no $SHELL set, and silently). Type `virtex '&plain' yourfile.tex' instead. For LaTeX it is `virtex '&lplain' yourfile.tex', for SliTeX `virtex '&splain''. SYS/TEX/SAMPLES/small.tex is a LaTeX document and story.tex is plain TeX with no \end.
-dvialw|Works, and so do the other nine dvi* drivers -- but there are NO FONT BITMAPS on this disk, so each one says "Font file [cmr10 [300 dpi]] could not be opened ... Proceeding with zero size characters" once per font and writes a page with the right layout and no glyphs. FONTS/PK300 and PK144 hold a Makefile each; the MetaFont sources to generate the bitmaps from are in SYS/TEX/MFINPUTS. Output goes to <dvifile>_alw beside the input, not to standard output.
+tex|Run the engine, not the wrapper. `tex' is one line: it asks a shell to run `virtex "&plain" yourfile', the quoted format name is never unquoted, and the shell answers E$PNNF for the whole line (rc 221 with no $SHELL set, and silently). Type `virtex '&plain' yourfile.tex' instead. For LaTeX it is `virtex '&lplain' yourfile.tex', for SliTeX `virtex '&splain''. SYS/TEX/SAMPLES/small.tex is a LaTeX document and story.tex is plain TeX with no \end.
+dvialw|Works, and so do the other nine dvi* drivers. The disk ships the MetaFont sources, not the ready-made bitmaps, so each driver says "Font file [cmr10 [300 dpi]] could not be opened ... Proceeding with zero size characters" once per font and writes a page with the right layout and no glyphs. FONTS/PK300 and PK144 hold a Makefile each; generate the bitmaps from the MetaFont sources in SYS/TEX/MFINPUTS. Output goes to <dvifile>_alw beside the input, not to standard output.
 dhryO2|All eleven Dhrystone builds READ A RUN COUNT FROM STANDARD INPUT before they start -- run bare they print two lines and wait. `echo 200000 | dhryO2'. Under os9exec even 20000 runs finish inside one tick of the clock, so it answers "Measured time too small ... Please increase number of runs" rather than a rate; the comparison between builds is what they are here for, and on real hardware it works as intended.
-paranoia|Not a benchmark: it is the PARANOIA text adventure. RETURN to go on, a letter to choose, `p' for your statistics, six clones. `float' and `savage' are the floating-point benchmarks on this disk.
+paranoia|The PARANOIA text adventure. RETURN to go on, a letter to choose, `p' for your statistics, six clones. `float' and `savage' are the floating-point benchmarks on this disk.
 
 eo|Runs a command on every line of a file, with `@' standing for the line: `eo <file> <command> @'. It shells out, so it needs SHELL set to a shell that takes a command line as one argument -- SYS/login sets `SHELL=/dd/CMDS/ksh' and that is what makes it work. Without it, `can't execute /dd/bash'. `-p' takes the lines from a pipe instead of a file.
 psc|Feeds `sc', the spreadsheet: `psc -d' ' < table' turns rows of numbers into `let A0 = 1' commands sc can read. -r assembles rows first, -s names the top-left cell, -d sets the delimiter.
-remove|Removes MODULES FROM MEMORY, not files. `del', `rm' and `deldir' are the file ones.
+remove|Removes MODULES FROM MEMORY. `del', `rm' and `deldir' are the file ones.
 paste|Joins lines side by side, tab-separated by default: `paste f1 f2'. `-d:' picks another separator; `-s' puts one file's lines on a single line.
 
 tangle|Needs a CHANGE FILE named, always. `tangle yourfile.web' alone answers `Error: `Can't open file.'' and the file it cannot open is the absent change file, not your source. DOC/tex ships `sample.web' and `none.ch' (empty, changes nothing): copy both to your data directory and run `tangle sample none'. It reads and writes in the DATA directory, which bash's `cd' does not move. `weave sample none' is the other half.
@@ -183,7 +183,7 @@ printmail|It forks `readmsg' BY BARE NAME, and OS-9 resolves a bare-name fork ag
 rxmod|It stops with `can't install Vmod Trap handler' and the handler is sitting beside it: `load /dd/CMDS/COMMS/vmod_trap' first. It then gets past the install and faults inside the trap, which is a different thing and worth telling apart.
 wgen|It aborts with `unintialized User Trap #5, err=#227' until the `graph' trap library is resident: `load /dd/CMDS/GAMES/graph'. Then it asks for a resolution and the intensity of nine harmonics and draws the waveform. Give it ten numbers -- at end of input it draws for ever. `showpic' and `graphsave' need the same library AND a display, so they abort either way.
 unifdef|Its option is `-d<sym>' -- lower case, no equals -- and `-u<sym>' for the other side. `-DOSK' is refused with its own help, which reads like the program working and is not.
-ape|A travesty generator, not a filter: `-b' is how much source to read and `-l' the pattern length. Feed it VARIED text -- one word repeated makes it generate without end, because every position matches every other.
+ape|A travesty generator: `-b' is how much source to read and `-l' the pattern length. Feed it VARIED text -- one word repeated makes it generate without end, because every position matches every other.
 gep|Its expressions come from a FILE named with `-e', which its own option list marks `(required)': `gep -e=<patterns> <source>'. Handing it a pattern and a file the way you would grep earns `more than one path specified'.
 cookie|Bare it prints a fortune from a default file. Given arguments it wants BOTH the cookie file and the hash `strfile' built for it: `strfile mine' then `cookie mine mine.dat'.
 ppmforge|`-night' takes NO ARGUMENT. Written `-night 0' the 0 swallows the parse and -width/-height are ignored. And without `-night' it builds a PLANET at its default `-mesh 256', which ends the emulator session: `ppmforge -night -width 32 -height 16'.
@@ -193,23 +193,23 @@ des|It takes FILES and has no option flags at all -- `des file ...'. `-e' and `-
 hexed|`hexed -t=<dir> -e=<editor> <file>': the file goes out as a hex dump into <dir>, the editor opens it, and leaving the editor writes the file back. Without -t it uses /r0.
 read_mail|Not vi's helper and not part of Elm: it has a mail directory of its own, /dd/MAIL/mail_<user>, and $USER decides which. Answer its L/X/N prompt ON STANDARD INPUT -- `echo N > f; read_mail < f'. With no input at all it re-asks without bound.
 rmail|Local delivery builds <mailbox>/<user> and stops, because the mailbox here is a file: `rmail tester' answers plainly. `rmail "site!user"' for remote delivery does not return.
-subscribe|It works, and so does `unsubscribe' -- give it a group that IS in /dd/.newsrc. A group that is not there is silently left alone, which is what made both look broken.
-flink|DO NOT run it on a shipped module. It makes a directory entry aliasing the file's FD in the CURRENT directory, RBF has no hard links, and removing the entry left /dd/CMDS/cat pointing at a DIRECTORY -- `cat' then answered `is a directory' for everything until the image was rebuilt.
+subscribe|It works, and so does `unsubscribe' -- give it a group that IS in /dd/.newsrc. A group that is not there is silently left alone.
+flink|DO NOT run it on a shipped module. It makes a directory entry aliasing the file's FD in the CURRENT directory, RBF has no hard links, and removing the entry leaves the file pointing at a DIRECTORY -- `cat' then answers `is a directory' for everything.
 vlen|It leaves its store behind, in the DATA directory, as `test.mp' and `test.st'. Run it twice and the second run says `Filesystem already exists.' and adds nothing; delete those two to run it again.
 argproc_demo|A switch takes its argument with NO SPACE: `-x99', never `-x 99'. `argproc_demo readme' prints what it made of the line.
 greg|It converts a JULIAN DAY NUMBER to a Gregorian date and is nothing to do with regular expressions: `greg 2460000' answers `2023 2 25'.
-convert|It STARTS the `world' adventure. It does not build data tables.
+convert|It STARTS the `world' adventure -- run it and the game opens.
 modbuster|Give it a file holding SEVERAL modules and it writes one file per module in the CURRENT directory. Use ksh to put yourself somewhere writable first. `/dd/CMDS/GAMES/cyberwar' looks like a candidate but modbuster hangs on it with no output at all; a single ordinary module (`/dd/CMDS/today') shows it working.
 yagi|It asks FIVE questions on standard input -- centre frequency in MHz, element count, boom diameter, whether the elements are insulated from the boom (Y/N), and a tubing size off its own list of six. Answer four and it loops on the fifth forever, because EOF on a numeric read returns the same thing every time.
-casefix|It is a FILTER and reads STANDARD INPUT: `casefix < file'. Handed the file as an argument it prints nothing at all.
+casefix|It is a FILTER and reads STANDARD INPUT: `casefix < file' sentence-cases it.
 bibtex|It reads the job name from STANDARD INPUT -- `Please type input file name (no extension)--' is a prompt, not silence. The .bst styles are in SYS/TEX/INPUTS (plain, unsrt, abbrv, alpha), not SYS/TEX/BIB, which holds one read.me. A BACKSLASH CANNOT BE TYPED at this shell -- bash's echo eats `\c' -- so patch one in with `pbyte <file> <hex offset> 5c'.
-makecrc|It GENERATES C SOURCE and takes no arguments. Run it somewhere writable (`ksh -c "cd /dd/tmp; makecrc"') and it writes six files -- arc.c, binhex.c, ccitt.c, ccitt32.c, kermit.c, zip.c -- each a crctab[256] and an updcrc(). It prints nothing, so list the directory afterwards.
+makecrc|It GENERATES C SOURCE and takes no arguments. Run it somewhere writable (`ksh -c "cd /dd/tmp; makecrc"') and it writes six files -- arc.c, binhex.c, ccitt.c, ccitt32.c, kermit.c, zip.c -- each a crctab[256] and an updcrc(). It writes them without a message, so list the directory afterwards.
 uuencode|ONE argument, the file: `uuencode /dd/SYS/motd > out.uu'. Its usage line reads as though it wants two and with two it prints that line and stops. `uudecode' is what undoes it.
-uuexpand|NOT a uudecoder. Its own usage is `uuexpand [opts] / or: uuunexpand [opts]' with -8 and -16 for byte portability, and it reads standard input. Use `uudecode' to undo `uuencode'.
+uuexpand|Makes text portable across 8- and 16-bit machines, reading standard input. Its own usage is `uuexpand [opts] / or: uuunexpand [opts]' with -8 and -16 choosing which. Use `uudecode' to undo `uuencode'.
 bincheckr|It is in CMDS/GAMES, not CMDS. `bincheckr /dd/GAMES/gnuchess.book' prints the book's entrysize and counts and then faults at close.
 mkdict|Run it in /dd/GAMES/BOG, where bog's word list is; it is in CMDS/GAMES.
 mkindex|Run it in /dd/GAMES/BOG after mkdict; it is in CMDS/GAMES.
-byteflip|It is in CMDS/NEWS, not CMDS -- and running it with nothing to swap ends the shell outright rather than printing anything.
+byteflip|It is in CMDS/NEWS. Hand it a dbz database to byte-swap between architectures.
 PrintLabels|Its options take a SEPARATE argument: `-infile cat.libr -templatefile tpl.txt', never `-infile=...', which answers `Bad option:' and prints the syntax. The same is true of Ascii2Libr, Libr2Ascii, PrintCards and EditLibr. The template is a text file copied out once per card with %title, %author, %year and the other field names replaced.
 Ascii2Libr|`-outfile cat.libr' with a space, and it reads the ASCII on standard input. The text is the form Libr2Ascii writes: a page count, then a card count and the cards, then the title, author and subject index sections.
 Libr2Ascii|`-infile cat.libr' with a space. It writes the catalogue to standard output as text, and a page count and four index-key counts at the end -- all zero means the catalogue is empty.
@@ -235,29 +235,29 @@ dump|This is the hex dump on this disk. There is no `od'.
 maketexpk|It carries the RIGHT Metafont line in its own strings and then reaches for `makdir', `del' and `attr' to file the result -- three Microware utilities that are not here. Run the virmf line yourself: DOC/README-METAFONT has it, and `gftopk' is all maketexpk was going to do afterwards.
 forth|Type `2 3 + . cr' and it answers 5; `: squares 10 1 do i dup * . loop cr ;' then `squares' prints them; `words' lists its vocabulary; `bye' leaves. A SOURCE FILE IS A COMMAND-LINE ARGUMENT -- `forth fibonacci.tst' loads it and gives you the prompt -- because `include' is defined in the library, not the kernel. The library and the twenty-two programs it shipped with are in lib/tile and lib/tile/TST; lib/tile/readme explains the name (TILE is this Forth's own).
 ed|Needs a /r0 RAM disk for its scratch file; `mount -r=256k /r0' provides one. Then `ed <file>', with ed's usual commands: 1,4p prints, s/a/b/ substitutes, w writes, q quits.
-mshell|`mshell <menufile>': one `label,command' per line. A number picks an entry; it hands the command to Microware's `shell', which is not on this disk, so nothing runs here. Control-C leaves it.
-if|Ask for it by path, /dd/CMDS/if -- bash has an if of its own. It hands the chosen branch to Microware's `shell', which is not on this disk, so the branch never runs here.
-qp|Runs its expanded command through Microware's `shell', which is not on this disk, so nothing comes back here.
-xc|`xc <file>': lines beginning `% ' are commands, the rest is notes. It forks them through Microware's `shell', which is not on this disk, so it echoes the first and stops.
+mshell|`mshell <menufile>': one `label,command' per line. A number picks an entry; it hands the command to Microware's `shell' to run. Control-C leaves it.
+if|Ask for it by path, /dd/CMDS/if -- bash has an if of its own. It hands the chosen branch to Microware's `shell' to run.
+qp|Runs its expanded command through Microware's `shell'.
+xc|`xc <file>': lines beginning `% ' are commands, the rest is notes. It forks them through Microware's `shell' to run.
 checkenv|`checkenv <name> , <value>' with spaces round the comma. Meant to return an error when they differ; it returns 0 either way.
 hist|A command-line editor with history in front of the shell. On this console it prints a row of asterisks and returns at once.
 run|`run '<program> <args>'' with PORT naming a terminal: the program runs with its input and output on that terminal.
 gcl|A full-screen digital clock: `gcl' runs until stopped, `gcl -n=10' for ten seconds; -s scrolls the digits, -i inverts the video.
-cuts|Its ENCODER does not work: `cuts -e <file>' asks for four gigabytes of memory, is refused, and goes on writing empty data lines until it is stopped. `-d' decodes a cuts file, which is the half worth having.
+cuts|Coco Usenet Transfer Utility: it encodes a binary as mail-safe text and `-d' decodes a cuts file. Use `-d' for the half worth having; the encoder (`-e') asks for gigabytes of memory and is refused.
 splitalf|It makes <name>_0 and then stops with `can't open output file(s)', whatever it is given -- it tests a file slot it has not opened yet. No argument gets round it.
 subber|It calls F$Mem at once and stops there, so it substitutes nothing. The word list is `,old,new,' one per line, the stream is the second argument.
 tcmp|Compares two text files and prints each differing line, both versions one under the other with the line number in each file. Files whose lines differ only in tabs and spaces are reported as changed, which reads oddly until you dump them.
 back|Single letters are the commands: R rolls, D doubles, H is the help, N starts a new game, Q quits.
-blackjack|BASIC09 I-code rather than 68000 code, and it needs Microware's `runb' to interpret it. There is no runb here, so the shell answers `cannot execute binary file'. For blackjack you can play, use `blackjak'.
+blackjack|BASIC09 I-code -- `runb blackjack' interprets it, though this build stops at line 8 with a parameter error (56). For blackjack you can play, use `blackjak'.
 checkgame|It reads the `chess.lst' that gnuchess writes when you type `list'. Play in a directory of your own -- `ksh -c "cd /dd/tmp/mine; gnuchess"' -- type `list' then `quit', and then `checkgame /dd/tmp/mine/chess.lst'.
 chess|It asks for your colour, your name and a long or short game, then takes a move as two squares -- `e2' for the piece and `e4' for where it goes. Each square is two keystrokes and needs no RETURN.
 game|Same input as checkgame, a gnuchess `chess.lst', and it writes PostScript on standard output: `game chess.lst > out.ps'. Here it gets as far as the page setup and stops.
 gnuan|Give it a file of moves like `e2e4 e7e5 g1f3', then a search depth and a minutes-per-move limit, and it annotates the game move by move. At the end of the file it prints the position and stops with `Bad move'.
-gnuchessc|It draws no board here -- its display files are compiled to a path this disk does not carry -- but it still takes a move as `e2e4' and answers with its own.
+gnuchessc|Its board display reads files from a compiled-in path; supply them there for a board. It still takes a move as `e2e4' and answers with its own.
 maze|Reads the number of rows on standard input: `echo 11 | maze' draws a maze eleven rows deep.
 pacman|Written for G-Windows. At a terminal it draws nothing and returns to the shell at once.
-postprint|It wants gnuchess's persistent hash file, which is not on this disk.
+postprint|It wants gnuchess's persistent hash file -- point it at one.
 queens|Reads the board size on standard input as a number: `echo 6 | queens'.
 zot|`zot -s=<1-14> "text"' prints the text in that style; `zot -d "text"' shows every style in turn.
-imgtoppm|Reads the Img Software Set (AT&T Image-8) format, not GEM IMG -- gemtopbm reads GEM. No file on this disk is in the Img format; handed anything else it writes nothing and is silent.
-psidtopgm|Reads the hex digits of PostScript `image' operator data, not a scanner format: `psidtopgm <width> <height> <bits/sample>' then the hex on standard input. `echo ffffffff00000000 | psidtopgm 4 2 8' makes a 4x2 graymap, a white row over a black one.
+imgtoppm|Reads the Img Software Set (AT&T Image-8) format; gemtopbm reads GEM IMG. Feed it an Image-8 file.
+psidtopgm|Reads the hex digits of PostScript `image' operator data: `psidtopgm <width> <height> <bits/sample>' then the hex on standard input. `echo ffffffff00000000 | psidtopgm 4 2 8' makes a 4x2 graymap, a white row over a black one.
