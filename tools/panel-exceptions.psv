@@ -6,7 +6,6 @@
 # better card is possible, the line comes out.
 perr|perr prints the text of an OS-9 error number; error text IS its output
 elvprsv|run by elvis on a crash to preserve the buffer; by hand with nothing preserved it prints nothing, and the card says so
-pbyte|patches bytes silently; the cat before and after on its card is the evidence of its work
 exrecover|recovers a buffer expreserve kept when vi died; with nothing preserved "File not found" is its whole answer, and the card says so
 hist|a line editor in front of the shell; on this console it prints a row of asterisks and returns, and the card says so
 if|its help and a try: it hands the chosen branch to Microware's shell, which is not on this disk, so the branch never runs; the card says so
@@ -18,80 +17,37 @@ epson|writes its control codes to the printer itself; with no printer on the dis
 lmargin|writes its control codes to the printer itself; with no printer on the disk its option list is what there is to show, and the card says so
 splman|Carl Kreider's spooler manager wants a printer on a serial device; without one it prints nothing and returns, and the card says so
 splprt|the spooler's printer process wants a printer device; without one it prints nothing and returns, and the card says so
-splstat|the spooler's queue status; with no queue it prints nothing and returns, and the card says so
-gs33|Ghostscript 3.33 without its initialisation files: its device list is as far as it goes, and the card says so
 lp|there is no spooler running on this disk; its option list is what there is to show, and the card says so
 lprm|there is no spooler running on this disk; its option list is what there is to show, and the card says so
 lpsched|there is no printer device on this disk to start the spooler on; its option list is what there is to show
 submit|a batch-file runner; its option list is what a card can show without a .sub job to run
-oleo|GNU Oleo stops on an illegal instruction before it draws a cell; the abort is the whole of what it does here, and the card says so
-divide|prints nothing itself; the ls and cat that follow on its card show the pieces it made
-sox|prints nothing itself; the file line that follows on its card shows the converted sound
-todos|it cannot rename its temporary file over the original and says so; the unchanged checksums on its card are the finding
-toos9|it cannot rename its temporary file over the original and says so; the unchanged checksums on its card are the finding
 chardef|loads a VT220 character set from a definition file, and no terminal here to load; its syntax is what there is to show
 macunpack|opens PackIt archives and none is on the disk; its options are what there is to show
-UnMacpack|opens PackIt archives and none is on the disk; its options are what there is to show
-uudecode|writes the decoded file silently; the ls and cat that follow on its card show it back
 lua|built against a later csl edition than the disk ships; the mismatch banner is where it stops, and the card says so
 runc|built against a later csl edition than the disk ships; the mismatch banner is where it stops, and the card says so
-mscopy|copies onto the DOS disk silently; the msdir that follows on its card shows the file there
-mslabel|labels the DOS disk silently; the msdir that follows on its card shows the label
-msmd|makes the directory silently; the msdir that follows on its card shows it
-msmove|moves the file silently; the msdir that follows on its card shows it moved
-msren|renames silently; the msdir that follows on its card shows the new name
-mswrite|writes onto the DOS disk silently; the msread and checksums that follow on its card show the file came back unchanged
 pacman|a G-Windows program: at a terminal it draws nothing and returns, and its card says so
-ctags|writes the tags file silently; the cat that follows on its card shows it
 disktest|measures the disk and, run on one, ends the session; its syntax is what there is to show, and the card says so
 trap|an example trap handler that cannot be installed from user state; the refusal is the whole of what it does here, and the card says so
 convert|starts WORLD, whose opening shows only its MORE prompt here; the card says so
 puzzle|a G-Windows program: at a terminal one line of its tile frame is all it draws, and the card says so
-cyberwar|a G-Windows program: at a terminal it exits without a word, and the card says so
-scriptmaster|a G-Windows program: at a terminal it exits without a word, and the card says so
-colortest|a G-Windows program: it looks for the /win device and says it cannot, and the card says so
-dclock|a G-Windows program, and it says so; the card shows that
-mkdict|takes a bus error on the word list that ships; the card shows the stop
 vtxtcn|writes its tables silently; the ls that follows on its card is the evidence
-zot|its fourteen styles are terminal attributes the page cannot show; the card says so
 unstr|asks for 75 megabytes before it reads a byte and is refused; the stop is the whole of what it does, and the card says so
-bmgtest|a Boyer-Moore test program that prints nothing when satisfied; the status line on its card is the evidence
-bmgtest2|a Boyer-Moore test program that prints nothing when satisfied; the status line on its card is the evidence
-buildhash|wants ispell's word list, which the disk does not carry, and says which; the card says so
-compr|compresses in place silently; the ls that follows on its card shows the .Z it made
 modbuster|prints only the name of the module it split out; the card shows that
 funzip|unzips from a pipe, and nothing on the disk can write a zip for it to read; its usage is what there is to show
 texidx|builds an index from a TeX run's entries; with none to read its usage is what there is to show
-gftopk|packs the font silently; the ls that follows on its card shows both sizes
-pktogf|unpacks silently; the ls that follows on its card shows the result
-pltotf|writes the .tfm silently; the ls that follows on its card shows the round trip
-as09|assembles silently to an S-record file; the listing that follows on its card shows the result
-bison|writes its parser tables silently; the file shown after on its card is the result
-flex|writes lex.yy.c silently; the file shown after on its card is the result
-cccp2|preprocesses to a file; the cat that follows on its card shows the expanded source
-gcc_cccp|preprocesses to a file; the cat that follows on its card shows the expanded source
 collect|a g++ linker-helper pass; with nothing to link its usage is what there is to show
 gcc_collect|a g++ linker-helper pass; with nothing to link its usage is what there is to show
 gpp_collect|a g++ linker-helper pass; with nothing to link its usage is what there is to show
-lnk.org|the RTF Fortran linker; it aborts for want of Microware's l68, and the card shows that
 cron|a scheduling daemon; its card shows the crontab it reads rather than running it
-clock|wants a pipe it cannot open here and says so; the stop is the whole of what it does
-sysid|asks the kernel to identify itself through a call os9exec does not implement; that reply is its output
 t|a stub that returns success and prints nothing; the status line on its card is the evidence
-gen|writes a C program frame to a file; the listing that follows on its card shows it
-mexist|answers only in its exit status; the two statuses on its card are the evidence
 eset|the event directory is empty and nothing here creates an event, so it can only report that
 eunlink|the event directory is empty, so it reports the event is not found
-bioradtopgm|reads a Bio-Rad confocal image, a format no sample ships for; its card shows it naming what it wants
 brushtopbm|reads a Xerox brush file, no sample ships; its card shows it naming what it wants
 gouldtoppm|reads a Gould scanner file, no sample ships; its card shows it naming what it wants
 hipstopgm|reads a HIPS image, no sample ships; its card shows it naming what it wants
 hpcdtoppm|reads a PhotoCD image, no sample ships; its card shows it naming what it wants
-imgtoppm|reads an Img-Software-Set image, no sample ships; its card shows it naming what it wants
 mtvtoppm|reads an MTV/PRT ray-tracer image, no sample ships; its card shows it naming what it wants
-spctoppm|reads an Atari Spectrum image, no sample ships; its card shows it naming what it wants
 spottopgm|reads a SPOT satellite image, no sample ships; its card shows its usage
 ximtoppm|reads an Xim image, no sample ships; its card shows it naming what it wants
 xvminitoppm|reads an XV thumbnail image, no sample ships; its card shows it naming what it wants
-zeisstopnm|reads a Zeiss confocal image, no sample ships; its card shows it naming what it wants
 ptxminst|installs the ptxm path-table module into the kernel, which needs system state not available here; its usage is what there is to show
