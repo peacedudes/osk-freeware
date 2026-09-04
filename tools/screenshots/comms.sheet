@@ -592,13 +592,6 @@ run     /dd/CMDS/BROKEN/wysecrack
 wait    6
 kill
 
-shot    wysetime
-cap     A subroutine module for setting a Wyse terminal's clock, meant to
-cap     be called by another program rather than run.  Asked to run it,
-cap     the shell reports it cannot be executed.
-run     wysetime
-wait    4
-
 # --- Terminal & transfer --------------------------------------------------
 
 shot    sterm

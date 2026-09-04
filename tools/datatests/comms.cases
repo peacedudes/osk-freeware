@@ -96,12 +96,6 @@ run     /dd/CMDS/date
 expect  19126
 expect  2100
 
-# wysetime is a TYPE $02 SUBROUTINE MODULE, not a program: bash refuses to
-# execute it and is right to. DOC/INDEX lists it among the commands.
-case    wysetime-is-a-subroutine-module-and-cannot-be-run
-run     /dd/CMDS/wysetime
-expect  cannot execute binary file
-
 case    the-news-decoders-reject-input-that-is-not-news
 run     /dd/CMDS/NEWS/dbz
 run     /dd/CMDS/NEWS/c7decode < /dd/SYS/motd

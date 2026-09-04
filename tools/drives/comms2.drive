@@ -42,13 +42,6 @@ run     echo "--- and what date says:"
 run     /dd/CMDS/date
 run     /dd/CMDS/date -t
 
-drive   wysetime
-why     "cannot execute binary file" from bash.  It is a TYPE $02 SUBROUTINE
-why     module, not a program -- so bash is right and DOC/INDEX is not.
-run     /dd/CMDS/wysetime
-run     /dd/CMDS/ident -m wysetime
-run     echo "--- end"
-
 drive   cls-and-clear
 why     are they the same seven bytes?
 run     /dd/CMDS/cls > /dd/tmp/c1.bin

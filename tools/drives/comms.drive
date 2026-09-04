@@ -39,9 +39,6 @@ drive   udate
 why     "UNAXCESS BBS - date display"
 run     /dd/CMDS/udate
 
-drive   wysetime
-run     /dd/CMDS/wysetime
-
 drive   tsmon2
 run     /dd/CMDS/tsmon2 -?
 
