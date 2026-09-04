@@ -1,5 +1,23 @@
 # Picking this up cold
 
+**2026-09-04: the per-program card pass is DONE and the CI pipeline is green.**
+814 of 913 runnable programs show their own output on their own card; the
+other 99 are documented honest exceptions in `tools/panel-exceptions.psv`;
+`tools/panel-backlog.txt` is empty. Maintainer craft is gone from the cards,
+`DOC/INDEX` and `tools/howto.psv`. The page is the three-column layout.
+`tools/ci/run_workflow_locally.sh` passed end to end (all 22 checks, the
+drift check, os9exec built from the pinned commit, image build + readback).
+
+**What needs rdoggett:** the branch has never been pushed and nothing is
+tagged -- pushing/tagging a release is his call, see `notes/FOR-RDOGGETT.md`.
+The os9exec gaps and the "best forgotten" candidates are there too.
+
+The loop and tools below still stand for any follow-up.
+
+---
+
+# Picking this up cold
+
 **Read `notes/PLAN.md`. It is self-contained and it is the work.**
 
 Everything else in `notes/` is background. You do not need it, and reading it
