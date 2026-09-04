@@ -1,0 +1,18 @@
+$ k -?
+General Usage:
+   To send files:      K <file1> <file2> <etc.>
+   To receive files:   K
+
+By default, K will automatically guess the type of each file.
+   To treat all files as a certain type:
+     -A   All files are ASCII      -B   All files are Binary
+   To get debugging information: -d, -dd, etc.
+
+K uses the MODEM environment variable to determine the port
+to use.  If none is available, stdio paths will be used.
+The -p<port> option overrides the MODEM environment variable.
+Host mode: -h forces K to use stdio paths and suppresses all
+progress and debug messages.  Equivalent to `unsetenv MODEM'.
+
+Based on "The Working Programmer's Guide to Serial Protocols"
+Copyright (C) 1995 Tim Kientzle and The Coriolis Group, Inc.

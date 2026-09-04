@@ -1,0 +1,22 @@
+$ net
+          Internet Protocol Package, (C) 1988 by Phil Karn, KA9Q
+               NET/ROM Support (C) 1989 by Dan Frank, W9NK
+
+                       This puppy was housebroken by
+               Joe Buswell, K5JB, 44.78.0.2, Midwest City OK
+
+     OS9-68k Port, Robert E. Brose II, N0QBJ, 44.94.249.29, St. Paul, MN
+
+                  This version is K5JB.k35c with options:
+                  AX.25/Seg, AX.25/vcipcall, Netrom, MBOX
+                  MDKISS, Mulport, Heard, Unix, OS9-68K
+
+Warning: File /dd/startup.net not found
+Warning: File /dd/ftpusers not found
+Warning: File /dd/hosts.net not found
+Note: File /dd/aliases not found
+Note: File /dd/helpbox.hlp not found
+Error: Directory /usr/spool/mail not found
+Error: Directory /usr/spool/mqueue not found
+
+Sorry, Chapter 2 will help you set up correctly.

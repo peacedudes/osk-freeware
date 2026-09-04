@@ -1,5 +1,0 @@
-$ uwho
-uwho: can't open /etc/utmp
-$ udate
-Tuesday, September 1, 19126 - 7:31 PM
-$ input < /nil

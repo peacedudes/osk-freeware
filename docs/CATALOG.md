@@ -865,7 +865,7 @@
 | `tterm` | &#9733; Stephen Carville's terminal emulator, VT100-ish<br>`Usage:  tterm <options>` |
 | `txmod` | send an OS-9 MODULE over a serial line<br>`Syntax: TXMod [<opts>] module(s) [<opts>]` |
 | `uld` | &#9733; XModem upload<br>`Syntax: uld <file>` |
-| `xy` | XMODEM/YMODEM transfer (Tim Kientzle).  IT HAS NO USAGE FLAG -- `-h' is HOST MODE and `-?' is not an option, so either one starts a receive: `Receiving...' and then the CRC handshake going out to a peer that never answers.  Use `z -?' for the family's option list; they share it |
+| `xy` | XMODEM/YMODEM transfer (Tim Kientzle).  `xy -?' prints the shared usage: send by naming files, receive by naming none; -A forces ASCII, -B binary, and -X/-Y/-K/-G/-C pick the protocol.  `z -?' lists the family's options too |
 | `xydown` | XModem/YModem download, public domain.  It SENSES which the sender is using -- XModem, YModem or YModem-Batch -- and follows, and it converts line endings on the way in. Written for use inside Eddie Kuns' KBCom terminal program and stands alone.  Full source in SRC/xydown, notes in DOC/xydown<br>`Usage:  XYDOWN  [opts]  [filename]` |
 | `xyt` | &#9733; X/Y/ZMODEM transfer for tterm<br>`Usage:  xyt [opts] [filename] [opts]` |
 | `z` | ZMODEM transfer (Tim Kientzle).  `z -?' prints the usage for both.  $MODEM names the port; -p<port> overrides it |

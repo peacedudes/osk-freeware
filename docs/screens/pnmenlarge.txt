@@ -1,0 +1,17 @@
+pnmenlarge 3 /dd/tmp/NEAB/b.pbm > /dd/tmp/NEAB/e.pbm
+$ pnmfile /dd/tmp/NEAB/b.pbm /dd/tmp/NEAB/e.pbm
+/dd/tmp/NEAB/b.pbm:     PBM raw, 16 by 8
+/dd/tmp/NEAB/e.pbm:     PBM raw, 48 by 24
+$ pbmtoascii /dd/tmp/NEAB/e.pbm
+   MMM   MMM   MMM   MMM   MMM   MMM   MMM   MMM
+ooo"""ooo"""ooo"""ooo"""ooo"""ooo"""ooo"""ooo"""
+MMM   MMM   MMM   MMM   MMM   MMM   MMM   MMM
+   MMM   MMM   MMM   MMM   MMM   MMM   MMM   MMM
+ooo"""ooo"""ooo"""ooo"""ooo"""ooo"""ooo"""ooo"""
+MMM   MMM   MMM   MMM   MMM   MMM   MMM   MMM
+   MMM   MMM   MMM   MMM   MMM   MMM   MMM   MMM
+ooo"""ooo"""ooo"""ooo"""ooo"""ooo"""ooo"""ooo"""
+MMM   MMM   MMM   MMM   MMM   MMM   MMM   MMM
+   MMM   MMM   MMM   MMM   MMM   MMM   MMM   MMM
+ooo"""ooo"""ooo"""ooo"""ooo"""ooo"""ooo"""ooo"""
+MMM   MMM   MMM   MMM   MMM   MMM   MMM   MMM

@@ -19,9 +19,5 @@ Proceeding with zero size characters for this font
 Current TeX page counters: [0]
 [1{1}]  [OK]
 $ ls -l /dd/tmp/TEX | grep story.dvi_
--rw-------   1 0        0            2670 Sep  3 07:50 story.dvi_alw
--rw-------   1 0        0             129 Sep  3 07:52 story.dvi_djc
--rw-------   1 0        0            7252 Sep  3 07:53 story.dvi_eps
--rw-------   1 0        0             464 Sep  3 07:56 story.dvi_err
--rw-------   1 0        0             140 Sep  3 07:54 story.dvi_imp
--rw-------   1 0        0              76 Sep  3 07:56 story.dvi_jep
+-rw-------   1 0        0             464 Sep  3 17:12 story.dvi_err
+-rw-------   1 0        0              76 Sep  3 17:12 story.dvi_jep

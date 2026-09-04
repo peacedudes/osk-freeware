@@ -186,6 +186,19 @@ def verdict_for(prog, panel, cards, plays):
             return "not-run", "on the `%s' card" % card
         found = blocks(panel["s"], runs)
         seen = [b for b in found if b[0] in mine]
+        # A PROGRAM'S OWN NAMED CARD is judged by whether THE CARD shows
+        # work, not by whether output sits after the program's own command
+        # line.  A converter that writes a file silently and a following
+        # `pnmfile'/`ls' that confirms it is one card doing one program's
+        # job; tying the verdict to the exact command line called all of
+        # those `silent'.  The strict per-command rule stays for SHARED
+        # cards (card != prog), which is what catches a program riding on a
+        # neighbour's output -- the lessecho case this tool exists for.
+        if card == prog:
+            body = [audit_cards.PROMPT.sub("", l).strip()
+                    for l in panel["s"].split("\n")]
+            body = [l for l in body if l and l not in runs]
+            seen = [("", body)]
         if not found:
             # A FULL-SCREEN PROGRAM CLEARS THE COMMAND THAT STARTED IT.  No
             # typed command is on the screen at all, the card runs this

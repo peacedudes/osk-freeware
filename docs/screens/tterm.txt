@@ -1,0 +1,8 @@
+$ tterm -?
+
+Tterm Version 2.30
+
+Usage:  tterm <options>
+   -?      Print this usage message
+   -l[=]p  Link to modem port 'p'
+           defaults to MODEM

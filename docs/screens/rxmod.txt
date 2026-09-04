@@ -1,0 +1,10 @@
+rxmod -?
+ 4ERXMod - Err:  -? "
+RXmod Ed.4 Rv.2 - load Module via SCF from TXMod on Host
+Syntax: rxmod [<opts> [module(s)]]
+Options:
+  -l[=]<dev> : use dev for xmission
+              else StdIn/StdOut/StdErr
+   Module(s) : all after <dev> to EOL is send to
+              Host, preceeded by 'TXMOD'. For
+              wildchards on host use "*" in double-quotes

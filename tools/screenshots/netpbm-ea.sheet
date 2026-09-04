@@ -1,0 +1,317 @@
+# netpbm "edit & analyse": the tools that take a PNM image (PBM bitmap, PGM
+# greyscale or PPM colour) and change it, measure it or make one from
+# scratch -- scale, crop, rotate, pad, paste, quantise, filter, and report.
+#
+# Each stanza is self-contained: it makes its own small test image under
+# /dd/tmp/NEAB, then `clear's the screen before the run that is the picture,
+# so the panel shows that one program's own work.  Geometry is shown with
+# pnmfile before and after (the dimensions change); filters and generators
+# are rendered back to characters with pbmtoascii so the effect is visible.
+
+shot    pbmmake
+cap     Makes a blank bitmap of a given size and fill -- the starting point
+cap     most of the PBM tools build on.  `-g' lays down a grey checkerboard,
+cap     `-w' all white, `-b' all black; pbmtoascii renders it back to text.
+run     mkdir -p /dd/tmp/NEAB > /nil 2>/nil
+run     clear
+run     pbmmake -g 48 16 | pbmtoascii
+wait    5
+
+shot    ppmmake
+cap     Fills an image with a single colour -- the blank canvas the PPM
+cap     tools start from.  The colour is hex r/g/b; ppmhist reads it straight
+cap     back off the result, one colour over all 800 pixels.
+run     mkdir -p /dd/tmp/NEAB > /nil 2>/nil
+run     clear
+run     ppmmake rgb:ff/80/00 40 20 > /dd/tmp/NEAB/a.ppm
+wait    3
+run     pnmfile /dd/tmp/NEAB/a.ppm
+wait    3
+run     ppmhist /dd/tmp/NEAB/a.ppm
+wait    3
+
+shot    ppmforge
+cap     Invents a whole world from a random seed: fractal terrain, sea,
+cap     polar ice and a star field, none of it drawn by hand.  `-mesh' sets
+cap     how finely the land is subdivided and the seed makes it repeatable.
+run     mkdir -p /dd/tmp/NEAB > /nil 2>/nil
+run     clear
+run     ppmforge -mesh 8 -width 72 -height 44 -seed 7 > /dd/tmp/NEAB/pl.ppm
+wait    40
+run     ppmtopgm /dd/tmp/NEAB/pl.ppm | pgmtopbm | pbmtoascii -2x4
+wait    6
+
+shot    pnmscale
+cap     Scales an image.  One number is a factor -- 2 doubles each side --
+cap     while -xysize fits it to exact dimensions.  A 32x16 ramp doubled to
+cap     64x32.  Given only a filename it takes THAT as the factor, so always
+cap     name the factor.
+run     mkdir -p /dd/tmp/NEAB > /nil 2>/nil
+run     pgmramp -lr 32 16 > /dd/tmp/NEAB/r.pgm
+wait    3
+run     clear
+run     pnmscale 2 /dd/tmp/NEAB/r.pgm > /dd/tmp/NEAB/b.pgm
+wait    4
+run     pnmfile /dd/tmp/NEAB/r.pgm /dd/tmp/NEAB/b.pgm
+wait    4
+
+shot    pnmcut
+cap     Cuts a rectangle out of an image -- top-left corner, then width and
+cap     height.  A 24x12 window taken out of a 48x24 ramp.
+run     mkdir -p /dd/tmp/NEAB > /nil 2>/nil
+run     pgmramp -lr 48 24 > /dd/tmp/NEAB/r.pgm
+wait    3
+run     clear
+run     pnmcut 8 4 24 12 /dd/tmp/NEAB/r.pgm > /dd/tmp/NEAB/c.pgm
+wait    4
+run     pnmfile /dd/tmp/NEAB/r.pgm /dd/tmp/NEAB/c.pgm
+wait    3
+run     pgmtopbm /dd/tmp/NEAB/c.pgm | pbmtoascii -2x4
+wait    4
+
+shot    pnmcrop
+cap     Trims a uniform border away.  An image padded with a black margin
+cap     comes back its original size, and pnmcrop reports how many rows and
+cap     columns it removed from each edge.
+run     mkdir -p /dd/tmp/NEAB > /nil 2>/nil
+run     pgmramp -lr 40 20 > /dd/tmp/NEAB/r.pgm
+wait    3
+run     pnmpad -black -l8 -r8 -t4 -b4 /dd/tmp/NEAB/r.pgm > /dd/tmp/NEAB/p.pgm
+wait    4
+run     clear
+run     pnmcrop /dd/tmp/NEAB/p.pgm > /dd/tmp/NEAB/c.pgm
+wait    4
+run     pnmfile /dd/tmp/NEAB/p.pgm /dd/tmp/NEAB/c.pgm
+wait    4
+
+shot    pnmpad
+cap     Adds a border of a chosen colour and width.  The margins are written
+cap     attached to the side -- -l8 for eight columns on the left, -t4 for
+cap     four rows on top -- putting a white frame round a small ramp.
+run     mkdir -p /dd/tmp/NEAB > /nil 2>/nil
+run     pgmramp -lr 24 12 > /dd/tmp/NEAB/r.pgm
+wait    3
+run     clear
+run     pnmpad -white -l8 -r8 -t4 -b4 /dd/tmp/NEAB/r.pgm > /dd/tmp/NEAB/p.pgm
+wait    4
+run     pnmfile /dd/tmp/NEAB/r.pgm /dd/tmp/NEAB/p.pgm
+wait    3
+run     pgmtopbm /dd/tmp/NEAB/p.pgm | pbmtoascii -2x4
+wait    4
+
+shot    pnmpaste
+cap     Pastes one image into another at a given position.  A top-to-bottom
+cap     ramp dropped into a left-to-right one at column 8, row 8, over-writing
+cap     what was there.
+run     mkdir -p /dd/tmp/NEAB > /nil 2>/nil
+run     pgmramp -lr 48 24 > /dd/tmp/NEAB/r.pgm
+wait    3
+run     pgmramp -tb 16 10 > /dd/tmp/NEAB/pt.pgm
+wait    3
+run     clear
+run     pnmpaste /dd/tmp/NEAB/pt.pgm 8 8 /dd/tmp/NEAB/r.pgm > /dd/tmp/NEAB/ps.pgm
+wait    4
+run     pgmtopbm /dd/tmp/NEAB/ps.pgm | pbmtoascii -2x4
+wait    4
+
+shot    pnmenlarge
+cap     Enlarges an image by a whole-number factor, copying each pixel into
+cap     an NxN block.  A 16x8 checkerboard becomes 48x24 at factor 3.
+run     mkdir -p /dd/tmp/NEAB > /nil 2>/nil
+run     pbmmake -g 16 8 > /dd/tmp/NEAB/b.pbm
+wait    3
+run     clear
+run     pnmenlarge 3 /dd/tmp/NEAB/b.pbm > /dd/tmp/NEAB/e.pbm
+wait    4
+run     pnmfile /dd/tmp/NEAB/b.pbm /dd/tmp/NEAB/e.pbm
+wait    3
+run     pbmtoascii /dd/tmp/NEAB/e.pbm
+wait    4
+
+shot    pnmflip
+cap     Mirrors or rotates an image by a right angle -- left-right,
+cap     top-bottom, transpose, or 90/180/270 degrees.  A left-to-right ramp
+cap     flipped left-right runs the other way.
+run     mkdir -p /dd/tmp/NEAB > /nil 2>/nil
+run     pgmramp -lr 56 12 > /dd/tmp/NEAB/r.pgm
+wait    3
+run     clear
+run     pgmtopbm /dd/tmp/NEAB/r.pgm | pbmtoascii -2x4
+wait    4
+run     pnmflip -lr /dd/tmp/NEAB/r.pgm | pgmtopbm | pbmtoascii -2x4
+wait    5
+
+shot    pnmrotate
+cap     Rotates an image by any angle.  The result is the smallest upright
+cap     rectangle that holds the turned picture, so its size grows -- a 48x24
+cap     ramp turned 20 degrees needs 55x41.
+run     mkdir -p /dd/tmp/NEAB > /nil 2>/nil
+run     pgmramp -lr 48 24 > /dd/tmp/NEAB/r.pgm
+wait    3
+run     clear
+run     pnmrotate 20 /dd/tmp/NEAB/r.pgm > /dd/tmp/NEAB/o.pgm
+wait    5
+run     pnmfile /dd/tmp/NEAB/r.pgm /dd/tmp/NEAB/o.pgm
+wait    4
+
+shot    pnmshear
+cap     Slants an image sideways by an angle, turning a rectangle into a
+cap     parallelogram; the width grows to hold the slant.  A ramp sheared 20
+cap     degrees.
+run     mkdir -p /dd/tmp/NEAB > /nil 2>/nil
+run     pgmramp -lr 40 24 > /dd/tmp/NEAB/r.pgm
+wait    3
+run     clear
+run     pnmshear 20 /dd/tmp/NEAB/r.pgm > /dd/tmp/NEAB/s.pgm
+wait    5
+run     pnmfile /dd/tmp/NEAB/r.pgm /dd/tmp/NEAB/s.pgm
+wait    3
+run     pgmtopbm /dd/tmp/NEAB/s.pgm | pbmtoascii -2x4
+wait    4
+
+shot    pnmdepth
+cap     Changes the number of grey levels -- the maxval.  Taking a smooth
+cap     255-level ramp down to 15 levels posterises it into visible bands,
+cap     and pnmfile shows the new maxval.
+run     mkdir -p /dd/tmp/NEAB > /nil 2>/nil
+run     pgmramp -lr 64 16 > /dd/tmp/NEAB/r.pgm
+wait    3
+run     clear
+run     pnmdepth 15 /dd/tmp/NEAB/r.pgm > /dd/tmp/NEAB/d.pgm
+wait    4
+run     pnmfile /dd/tmp/NEAB/r.pgm /dd/tmp/NEAB/d.pgm
+wait    4
+
+shot    pnmgamma
+cap     Applies gamma correction: it bends the midtones brighter or darker
+cap     while leaving black and white fixed.  A linear ramp at gamma 0.5
+cap     redistributes its greys, which the dither below shows as denser mid.
+run     mkdir -p /dd/tmp/NEAB > /nil 2>/nil
+run     pgmramp -lr 64 16 > /dd/tmp/NEAB/r.pgm
+wait    3
+run     clear
+run     pgmtopbm /dd/tmp/NEAB/r.pgm | pbmtoascii -2x4
+wait    4
+run     pnmgamma 0.5 /dd/tmp/NEAB/r.pgm | pgmtopbm | pbmtoascii -2x4
+wait    5
+
+shot    pgmnorm
+cap     Stretches the contrast: it finds the darkest and lightest greys the
+cap     image actually uses and remaps them to full black and white.  A
+cap     cratered moon that sits in the middle of the range is spread across
+cap     all of it.
+run     mkdir -p /dd/tmp/NEAB > /nil 2>/nil
+run     pgmcrater -number 40 -xsize 64 -ysize 40 > /dd/tmp/NEAB/mo.pgm
+wait    12
+run     clear
+run     pgmnorm /dd/tmp/NEAB/mo.pgm > /dd/tmp/NEAB/mn.pgm
+wait    5
+run     pgmtopbm /dd/tmp/NEAB/mn.pgm | pbmtoascii -2x4
+wait    5
+
+shot    pgmedge
+cap     An edge detector: it keeps the places where brightness changes and
+cap     darkens the flat areas.  A greyed gingham weave comes back as the
+cap     grid of its seams, the panels between them gone.
+run     mkdir -p /dd/tmp/NEAB > /nil 2>/nil
+run     ppmpat -gingham3 40 20 | ppmtopgm > /dd/tmp/NEAB/gg.pgm
+wait    5
+run     clear
+run     pgmedge /dd/tmp/NEAB/gg.pgm > /dd/tmp/NEAB/eg.pgm
+wait    20
+run     pgmtopbm /dd/tmp/NEAB/eg.pgm | pbmtoascii -2x4
+wait    6
+
+shot    pgmkernel
+cap     Generates a convolution matrix -- the weights pnmconvol multiplies
+cap     an image by.  Given a size it prints the matrix as a small greyscale
+cap     image, the centre weight largest and falling off to the edges.
+run     mkdir -p /dd/tmp/NEAB > /nil 2>/nil
+run     clear
+run     pgmkernel 5
+wait    4
+
+shot    pnmconvol
+cap     Convolves an image with a weighting matrix -- the operation behind
+cap     blurring, sharpening and edge filters.  Here the matrix from pgmkernel
+cap     averages each pixel with its neighbours, smoothing a field of noise.
+run     mkdir -p /dd/tmp/NEAB > /nil 2>/nil
+run     pgmnoise 48 24 > /dd/tmp/NEAB/n.pgm
+wait    5
+run     pgmkernel 3 > /dd/tmp/NEAB/k.pgm
+wait    4
+run     clear
+run     pnmconvol /dd/tmp/NEAB/k.pgm /dd/tmp/NEAB/n.pgm > /dd/tmp/NEAB/cv.pgm
+wait    18
+run     pgmtopbm /dd/tmp/NEAB/cv.pgm | pbmtoascii -2x4
+wait    6
+
+shot    pnmsmooth
+cap     Averages each pixel with its neighbours to smooth an image, and it
+cap     builds the averaging matrix -- shown here by its -dump option -- in a
+cap     temporary file on the RAM disk /r0.  With no such disk mounted the
+cap     smoothing step writes nothing; pnmconvol does the same averaging.
+run     mkdir -p /dd/tmp/NEAB > /nil 2>/nil
+run     clear
+run     pnmsmooth -size 5 5 -dump /dd/tmp/NEAB/mk.pgm > /nil 2>/nil
+wait    4
+run     cat /dd/tmp/NEAB/mk.pgm
+wait    4
+
+shot    pnmhistmap
+cap     Draws the image's histogram AS an image -- a bar for every grey
+cap     level, its height the count of pixels at that level.  Fed a cratered
+cap     moon it plots that image's distribution into a fresh 256x200 picture,
+cap     which pnmfile identifies.
+run     mkdir -p /dd/tmp/NEAB > /nil 2>/nil
+run     pgmcrater -number 40 -xsize 64 -ysize 40 > /dd/tmp/NEAB/mo.pgm
+wait    12
+run     clear
+run     pnmhistmap /dd/tmp/NEAB/mo.pgm > /dd/tmp/NEAB/hm.pgm
+wait    6
+run     pnmfile /dd/tmp/NEAB/mo.pgm /dd/tmp/NEAB/hm.pgm
+wait    4
+
+shot    ppmmix
+cap     Blends two images by a fraction -- 0.5 is an even average.  A red
+cap     frame and a blue one mix to the purple ppmhist reports underneath.
+run     mkdir -p /dd/tmp/NEAB > /nil 2>/nil
+run     ppmmake rgb:ff/00/00 40 20 > /dd/tmp/NEAB/a.ppm
+wait    3
+run     ppmmake rgb:00/00/ff 40 20 > /dd/tmp/NEAB/b.ppm
+wait    3
+run     clear
+run     ppmmix 0.5 /dd/tmp/NEAB/a.ppm /dd/tmp/NEAB/b.ppm > /dd/tmp/NEAB/m.ppm
+wait    4
+run     ppmhist /dd/tmp/NEAB/m.ppm
+wait    4
+
+shot    ppmshift
+cap     Shifts each row of an image sideways by a random amount, up to the
+cap     number you give -- a melted, watery look.  A tartan weave shows it
+cap     plainly: the straight lines break up row by row.
+run     mkdir -p /dd/tmp/NEAB > /nil 2>/nil
+run     ppmpat -tartan 64 32 > /dd/tmp/NEAB/t.ppm
+wait    3
+run     clear
+run     ppmshift 6 /dd/tmp/NEAB/t.ppm > /dd/tmp/NEAB/s.ppm
+wait    4
+run     ppmtopgm /dd/tmp/NEAB/s.ppm | pgmtopbm | pbmtoascii -2x4
+wait    5
+
+shot    ppm3d
+cap     Builds a red/blue 3-D anaglyph from two images, a left-eye and a
+cap     right-eye view, taking red from one and blue-green from the other.
+cap     Through coloured glasses the pair fuses into depth.
+run     mkdir -p /dd/tmp/NEAB > /nil 2>/nil
+run     ppmpat -tartan 64 32 > /dd/tmp/NEAB/t.ppm
+wait    3
+run     ppmshift 6 /dd/tmp/NEAB/t.ppm > /dd/tmp/NEAB/s.ppm
+wait    4
+run     clear
+run     ppm3d /dd/tmp/NEAB/t.ppm /dd/tmp/NEAB/s.ppm > /dd/tmp/NEAB/3d.ppm
+wait    4
+run     pnmfile /dd/tmp/NEAB/3d.ppm
+wait    3
+run     ppmtopgm /dd/tmp/NEAB/3d.ppm | pgmtopbm | pbmtoascii -2x4
+wait    5

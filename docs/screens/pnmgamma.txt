@@ -1,23 +1,10 @@
-$ pnmhisteq /dd/tmp/gg.pgm | pgmtopbm | pbmtoascii -2x4
-RM9H$H&1F&F$Z&/]$$\$&$\?S<<</?:?$$>?S$>Z(&?$<L|L\(($$%<?|kZc&J|/?(?<(:.
-RDRFM&&&RM&SF&&&&Z&&S$^'         >$<}&&&$\$%}DZ&$\&$&&Z&$k$$k$9]$$1?$%:
-M9R6HH&kM1&9&1SkHZFF'   ..,__..    `%b$FF$&&?&&\<k$Fk&$d]$&&FS$&Zd$)&|:
-M$k&99&1&&&&Zk&>Sk\'.:::::::>###b.. :?%Z?%$|$>Z$Z?S?rZ%Z{4?S//Z$\\4i?|'
-6M9HH&H&H&H1&1F[$Lk:.:>:i$:\::?P?$-. \\::??S?%\\\^?r/?Z%)?$Z%?($S??i%::
-RM&kH9FHH&6b9&&&&&?:\:?#&<RM9&?-bob:.`:?S%::/\>\:?)?<\4|<:?>$)$|:\|:\:.
-R6H&&S&kk|}k%?S?\?-:`:-:::Z&H6HM9HHMMHH#?/?\|%:?|:S||S|||||||?:%:\:::/.
-6DFF&$Z$SZH/??$?:| .' -.-: :*>R*?~//S&H6MMH&&$S?|?:%>i|%?/||||???:/;::.
-6M&S6&&SF/>Tk$|>!: -` . :.`.`.:>>)//>:/Z&HMHkR$%?/?>SS|i<?(?/?%?:)::\<
-H&R&1R&&&&S}kZ\S-. '- .. - -`.:/\:\?|\\%//?&$?$?(\$%(r$))>7//(<$Z:S;/::
-M9H&kH9F6&&$&&%'-.. .. . . - ` `      '://:?&?|)$)Z$TS>$]S&$}S$($$?:?<:
-6MH&H9&&6H&F&H'.-..- - .- .              -:?+}S\\S&H{{$/>9$$/&&]1>$?Z\-
-H&6M&H9H&HH&P :.-:..- - .    . . .-:::|do\_ >Z}kF&&1S6&Fk6F&}Rk}kk&\$),
-M9&9HHH&R6ML::.-.-- .` .  .- .-.::-:.::?HMMHr`<}&19{1$S&$kRFF&&\\&>?%>.
-MHM6MRHMRMHHL\:`. '  .  .'-:'\:.\:::'|Z??; :::.`<:%\$(DSS$?TL?$%%<?//:.
-M9HHHRMHMMHMH?:-.- '   .-: ::::.:::::::\:$$&#MHpdbb?\%Z?SS:$J<:\\%://;
-MMMM6MMHRMHMHM&::.- `  :: :.:-:.-:-:/&&RMRb#P&>MRMHMM#Hd|/<||||)::>:\\'
-MM9MMMHMMMRMM*"'    - -::`:`. '.: :-::**/\%%/S?\$Z9&MMMMM$HZZ$?/+\|?.S
-MMMMMMMHMMM6M#?:.-.-.-`..:.- :. .. .-':://?\SS?}$J)$S$R9HM&&F&/$|k?\::'
-MMMMMHMMMHMMHH9Hk:::.':.''-':-.-.-.-`-::(}&$ZR&S&$FkD&&&$DFD&FFFF&S\?|:
-MMM9MMRMMMHMMMHMH&<` ..'::.'.:.:. :`.: :$S$$&$H$&F&6F&&FFFRH&&&Fk$&$)::
-MMMMMMMMMMMMMMMMH?.::.-:`.::.:.-.- ..:/-&$$$ZR&FkR&&Fk&SH&&9&&&9FH/&$\-
+pgmtopbm /dd/tmp/NEAB/r.pgm | pbmtoascii -2x4
+MMMRM9FkRH%F$$J|||;>\/:::.:. .
+MMHMD6Fkk&Z$1|%%%%\/>\:::.::.
+MMHMHkRk6$k&/Z%|||(?:://.:.-.-
+MMHHRH&9$k$$7/%%%?/i%::::/: .-
+$ pnmgamma 0.5 /dd/tmp/NEAB/r.pgm | pgmtopbm | pbmtoascii -2x4
+MMMMMMMMMHM9M&FFDZ$|k%%\|>::-.
+MMMMMMMMHM9&HH&&&$17/|||/\\::-.
+MMMMMMMHMHRM9HFR&1%FS\\\\:::: .
+MMMMMRMM6MH6DkR6F&$\$///%:i/:.

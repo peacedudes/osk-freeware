@@ -1,0 +1,9 @@
+pnmconvol /dd/tmp/NEAB/k.pgm /dd/tmp/NEAB/n.pgm > /dd/tmp/NEAB/cv.pgm
+pnmconvol: WARNING - this convolution matrix is biased
+$ pgmtopbm /dd/tmp/NEAB/cv.pgm | pbmtoascii -2x4
+: '` `:""-``.i`/':'`` S|
+i./ :\:.:' -`-',.-`-v-.:
+.`   - .- ' .. - . .- /|
+T-::` :\.:` ` -.. ?` `:|
+:%/::..  :-`<' : :.. '.:
+c?,_:._\:.\?.,..::\.,:,|

@@ -1,0 +1,23 @@
+$ uucico -?
+usage: uucico [opts] -r | sys [sys...]  [opts]
+
+      sys      -remote system to call as MASTER (default)
+
+opts: -r       -run as SLAVE
+      -u       -do not run UUXQT at all
+      -a       -run UUXQT after each call, default is after all calls
+                  are completed
+      -l       -use RAM disk for temporary "uulog"
+      -o       -orphan UUXQT
+      -pN      -fork UUXQT with a priority of N
+      -q       -run quietly
+      -wN      -use window size of N
+      -xN      -set debug level to N (0-9), default is 0 (off), if N > 5
+                  additional info sent to 'uulog'
+      -z       -send log info to screen if debug level is 1 to 5,
+                  overrides -l
+      -iN      -wait N minutes between call retries, default is 2
+      -tN      -try to call remote up to N times, default is 1
+
+v2.1 (94Sep30) This is free software released under the GNU General Public
+License.  Please send suggestions/bug reports to:  bob@kc2wz.bubble.org

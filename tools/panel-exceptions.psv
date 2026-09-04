@@ -94,3 +94,4 @@ spottopgm|reads a SPOT satellite image, no sample ships; its card shows its usag
 ximtoppm|reads an Xim image, no sample ships; its card shows it naming what it wants
 xvminitoppm|reads an XV thumbnail image, no sample ships; its card shows it naming what it wants
 zeisstopnm|reads a Zeiss confocal image, no sample ships; its card shows it naming what it wants
+ptxminst|installs the ptxm path-table module into the kernel, which needs system state not available here; its usage is what there is to show

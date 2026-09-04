@@ -1,0 +1,4 @@
+$ fkeys -?
+Syntax: fkeys [<path>]
+Function:set User-Defined Keys on VT220 Terminals
+Options: none

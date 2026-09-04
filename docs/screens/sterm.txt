@@ -1,9 +1,10 @@
-$ sterm
-$ ttermrt defined!
-No MODEM port defined!
-$ tsu
-Checking /dd/USR...OK!
-Checking /dd/USR/TTERM...Creating
-Checking /dd/USR/TTERM/tester.dial...Creating
+$ sterm -?
 
-Directory and File structure is correct.
+Sterm Ver. 2.0
+
+Usage:  sterm [-df? -l'p' -e'x']
+    -d       Debug mode on (displays during downloads)
+    -f    NOT downloading to floppy disks (CoCo only)
+    -?    Print this usage message
+    -l p  Link to modem port 'p' (Default /t2)
+    -e x  Set B+ MAXERRS to 'x' (default 10)

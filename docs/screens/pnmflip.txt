@@ -1,0 +1,8 @@
+pgmtopbm /dd/tmp/NEAB/r.pgm | pbmtoascii -2x4
+MMMHHHSk&1%&|///%:>:.::.
+MMHHH&k6$$$}$)):?\::<.::`.
+MMM9RH11S$1?(((///::'..:-
+$ pnmflip -lr /dd/tmp/NEAB/r.pgm | pgmtopbm | pbmtoascii -2x4
+   . .-:S::?)||T?$S&&19&MHMM
+  `.::-::>\:?||%Z$Z$9$6HHHMM
+  '-.`::::|%>???}$Z$&&6HHHMM

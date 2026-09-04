@@ -11,4 +11,4 @@ This is TeX, C Version 3.14
 Output written on story.dvi (1 page, 668 bytes).
 Transcript written on story.log.
 $ ls -l /dd/tmp/TEX/story.dvi
--rw-------   1 0        0             668 Sep  3 07:41 /dd/tmp/TEX/story.dvi
+-rw-------   1 0        0             668 Sep  3 17:04 /dd/tmp/TEX/story.dvi

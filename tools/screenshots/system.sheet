@@ -97,27 +97,21 @@ cap     it is in use.
 run     dinfo /dd
 wait    5
 shot    dload
-for     dload sbreak setfont trap
+for     dload trap
 cap     `dload' does NOT send a file down a serial line, whatever the name
 cap     suggests: it loads a data file INTO A DATA MODULE -- `dload
 cap     /dd/SYS/motd' answers with the size it read and the address the
-cap     module went to.  `sbreak' is the serial-line example, harmless
-cap     here because there is no serial line.  `trap' is the system-state
-cap     trap-handler example and cannot
-cap     install one from user state; it is asked for by path because bash
-cap     has a trap of its own.
+cap     module went to.  `trap' is the system-state trap-handler example
+cap     and cannot install one from user state; it is asked for by path
+cap     because bash has a trap of its own.
 run     dload -?
 wait    6
 run     dload /dd/SYS/motd
 wait    8
-run     sbreak -?
-wait    6
 run     load /dd/CMDS/math
 wait    4
 run     /dd/CMDS/trap
 wait    6
-run     setfont < /nil
-wait    8
 shot    drop
 size    30 80
 cap     drop puts back exactly what keep wrote.  A program is kept first,

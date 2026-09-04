@@ -1,0 +1,23 @@
+Type ? or HELP for help
+C-Kermit>show features
+
+Special features:
+ Latin-1 (West European) character-set translation
+ Latin-2 (East European) character-set translation
+ Cyrillic (Russian, Ukrainian, etc) character-set translation
+ Hebrew character-set translation
+ Kanji (Japanese) character-set translation
+ Fullscreen file transfer display
+ Control-character unprefixing
+
+Features not included:
+ No network support
+ No hardware flow control
+ No REDIRECT command
+ No RESEND command
+
+Compiler options:
+ DEBUG TLOG CK_SPEED DYNAMIC CMDDEP=20 NOKVERBS mc68000 CK_CURSES DCMDBUF
+ CK_RECALL
+
+C-Kermit>

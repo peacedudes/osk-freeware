@@ -1,0 +1,5 @@
+$ kermit3
+
+Kermit68K version 1.0.00 from 01 July 1987
+
+Kermit68K>

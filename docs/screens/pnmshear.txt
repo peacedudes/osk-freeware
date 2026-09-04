@@ -1,0 +1,11 @@
+pnmshear 20 /dd/tmp/NEAB/r.pgm > /dd/tmp/NEAB/s.pgm
+$ pnmfile /dd/tmp/NEAB/r.pgm /dd/tmp/NEAB/s.pgm
+/dd/tmp/NEAB/r.pgm:     PGM raw, 40 by 24  maxval 255
+/dd/tmp/NEAB/s.pgm:     PGM raw, 49 by 24  maxval 255
+$ pgmtopbm /dd/tmp/NEAB/s.pgm | pbmtoascii -2x4
+MMM9HS/&%|||>::::.  9MMM|
+MM6M1&&$$$%%\/<:: : `HMM|
+MMMMHH&1?k%??):::::- `MM|
+MMMMH9FkF1%???%/:::.- TM|
+MMMMRMH&&$Z$|||?/,:-:  9|
+MMMMMMHF6&1%||||/:::.' `|

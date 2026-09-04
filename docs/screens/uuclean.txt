@@ -1,5 +1,3 @@
-$ uuclean -?
-
 uuclean: removed old UUCP files, rotate UUCP and FileServ log files
 Usage: uuclean [opts]
 

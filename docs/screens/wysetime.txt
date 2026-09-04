@@ -1,0 +1,2 @@
+$ wysetime
+/dd/CMDS/wysetime: cannot execute binary file

@@ -1,0 +1,2 @@
+$ /dd/CMDS/COMMS/vmod_trap
+/dd/CMDS/COMMS/vmod_trap: cannot execute binary file

@@ -233,16 +233,6 @@ run     pgmnoise 60 30 | pgmtopbm | pbmlife | pbmtoascii
 wait    10
 
 
-shot    pbmmake
-for     pbmmake pbmupc pbmreduce
-cap     pbmupc draws a real UPC-A barcode from its digits; pbmreduce halves
-cap     it so the whole code fits a screen.
-run     pbmmake -g 24 8 | pbmtoascii -1x2
-wait    8
-run     pbmupc 0 72890 00011 | pbmreduce 2 | pbmtoascii -2x4
-wait    15
-
-
 shot    pbmtext
 cap     pbmtext sets a line of type as a bitmap; pbmtoascii renders that
 cap     bitmap back as characters.  Nothing is drawn by hand.
@@ -289,26 +279,6 @@ cap     pgmcrater drops craters at random and shades them -- a whole moon
 cap     out of a random number generator.
 run     pgmcrater -number 80 -xsize 152 -ysize 88 | pgmtopbm | pbmtoascii -2x4
 wait    30
-
-
-shot    pgmedge
-for     pgmedge pgmenhance pgmnorm
-cap     pgmedge keeps only where the brightness changes.  It works on a
-cap     gradient and HANGS on a photograph: given the scaled gulls or the
-cap     demo sphere it produces no output, no error and never returns, and
-cap     the emulator has to be stopped. -- a ramp of 64x36 goes through in a
-cap     second, the same-sized sphere never does. pgmenhance and pgmnorm
-cap     both handle either.
-run     pgmramp -lr 64 36 > /dd/tmp/t64.pgm
-wait    8
-run     pgmedge /dd/tmp/t64.pgm > /dd/tmp/e64.pgm
-wait    15
-run     pnmfile /dd/tmp/t64.pgm /dd/tmp/e64.pgm
-wait    8
-run     pgmenhance /dd/tmp/t64.pgm | pnmfile
-wait    10
-run     pgmnorm < /nil
-wait    8
 
 
 shot    pgmhist
@@ -419,25 +389,6 @@ run     pnmcat -lr /dd/tmp/s.pgm /dd/tmp/si.pgm | pgmtopbm | pbmtoascii -2x4
 wait    12
 
 
-shot    pnmcut
-for     pnmcut pnmpaste pnmenlarge pnmshear pnmpad
-cap     Five geometric filters run one after another -- cut a piece out,
-cap     enlarge it, shear it, pad it and paste it back -- with pnmfile
-cap     reporting the size after each, which is where the work shows.
-run     pgmramp -lr 64 32 > /dd/tmp/r.pgm
-wait    8
-run     pnmcut 0 0 32 16 /dd/tmp/r.pgm > /dd/tmp/cut.pgm
-wait    8
-run     pnmenlarge 2 /dd/tmp/cut.pgm > /dd/tmp/big.pgm
-wait    8
-run     pnmshear 20 /dd/tmp/big.pgm > /dd/tmp/shr.pgm
-wait    10
-run     pnmpaste /dd/tmp/cut.pgm 0 0 /dd/tmp/r.pgm > /dd/tmp/pst.pgm
-wait    10
-run     pnmfile /dd/tmp/r.pgm /dd/tmp/cut.pgm /dd/tmp/big.pgm /dd/tmp/shr.pgm /dd/tmp/pst.pgm
-wait    10
-
-
 shot    pnmfile
 cap     pnmfile identifies what each intermediate in a pipeline actually is
 cap     -- format, dimensions and whether it is raw or plain.
@@ -480,42 +431,11 @@ run     pnmfile /dd/tmp/ramp2.pgm /dd/tmp/tile2.pgm /dd/tmp/pad2.pgm
 wait    8
 
 
-shot    pnmgamma
-for     pnmgamma pnmhisteq
-cap     pnmhisteq equalises the histogram of the gulls photograph -- it
-cap     spreads the greys the picture actually uses across the whole range,
-cap     which is why the dither has so much more to work with here than in
-cap     the plain conversion above.
-run     giftopnm /dd/DEMO/gulls.gif | ppmtopgm | pnmscale -xysize 152 88 > /dd/tmp/gg.pgm
-wait    25
-run     pnmgamma 2.2 /dd/tmp/gg.pgm > /dd/tmp/gam.pgm
-wait    15
-run     pnmhisteq /dd/tmp/gg.pgm | pgmtopbm | pbmtoascii -2x4
-wait    20
-
-
 shot    pnminvert
 cap     The sphere that ships in DEMO, inverted, so the light comes from
 cap     the other side.
 run     pnmscale -width 152 /dd/DEMO/sphere.pgm | pnminvert | pgmtopbm | pbmtoascii
 wait    15
-
-
-shot    pnmrotate
-size    36 80
-for     pnmrotate pnmcrop pnmflip
-cap     pnmrotate turns the sphere thirty degrees and pnmcrop trims the
-cap     margin the rotation left behind.
-run     pnmscale -xysize 100 100 /dd/DEMO/sphere.pgm > /dd/tmp/rot1.pgm
-wait    12
-run     pnmrotate 30 /dd/tmp/rot1.pgm | pnmcrop > /dd/tmp/rot2.pgm
-wait    20
-run     pnmscale -xysize 152 88 /dd/tmp/rot2.pgm > /dd/tmp/rot3.pgm
-wait    15
-run     pgmtopbm /dd/tmp/rot3.pgm | pbmtoascii -2x4
-wait    15
-run     pnmflip < /nil
-wait    8
 
 
 shot    pnmtile
@@ -537,27 +457,6 @@ run     pnmtops /dd/tmp/ramp.pgm | head -n 18
 wait    10
 
 
-shot    ppm3d
-size    36 80
-for     ppm3d ppmspread ppmshift ppmmix
-cap     ppmspread scatters every pixel up to eight places from where it
-cap     belongs -- the photograph is still there underneath, which is the
-cap     point of the filter. ppm3d, ppmshift and ppmmix run first, over the
-cap     same image.
-run     giftopnm /dd/DEMO/gulls.gif | pnmscale -xysize 76 44 > /dd/tmp/s1.ppm
-wait    20
-run     ppmshift 6 /dd/tmp/s1.ppm > /dd/tmp/sh.ppm
-wait    10
-run     ppm3d /dd/tmp/s1.ppm /dd/tmp/sh.ppm > /dd/tmp/3d.ppm
-wait    12
-run     ppmmix 0.5 /dd/tmp/s1.ppm /dd/tmp/sh.ppm > /dd/tmp/mix.ppm
-wait    12
-run     pnmfile /dd/tmp/sh.ppm /dd/tmp/3d.ppm /dd/tmp/mix.ppm
-wait    8
-run     ppmspread 8 /dd/tmp/s1.ppm | ppmtopgm | pnmscale -xysize 152 88 | pgmtopbm | pbmtoascii -2x4
-wait    25
-
-
 shot    ppmdither
 size    36 80
 for     ppmdither ppmquant ppmtopgm
@@ -574,15 +473,6 @@ run     ppmtopgm /dd/tmp/g16q.ppm | pgmtopbm | pbmtoascii -2x4
 wait    20
 run     ppmdither /dd/tmp/g16s.ppm | pnmfile
 wait    20
-
-
-shot    ppmforge
-cap     ppmforge invents a planet from a random seed: fractal terrain, an
-cap     atmosphere and a star field, none of it drawn by anybody.
-run     ppmforge -width 152 -height 88 -seed 7 > /dd/tmp/planet.ppm
-wait    300
-run     ppmtopgm /dd/tmp/planet.ppm | pgmtopbm | pbmtoascii -2x4
-wait    60
 
 
 shot    ppmforge-clouds
@@ -602,26 +492,6 @@ run     ppmpat -tartan 80 40 > /dd/tmp/t.ppm
 wait    8
 run     ppmhist /dd/tmp/t.ppm | head -n 18
 wait    8
-
-
-shot    ppmmake
-for     ppmmake ppmbrighten ppmdim ppmnorm ppmchange
-cap     ppmmake fills an image with one colour; ppmbrighten, ppmdim and
-cap     ppmnorm change what that colour is, and ppmhist counts the result.
-cap     each is asked over the same flat colour, so the histogram underneath
-cap     says exactly what it did.
-run     ppmmake rgb:80/40/c0 40 20 > /dd/tmp/flat.ppm
-wait    16
-run     ppmhist /dd/tmp/flat.ppm
-wait    16
-run     ppmbrighten -v 50 /dd/tmp/flat.ppm | ppmhist
-wait    22
-run     ppmdim 0.5 /dd/tmp/flat.ppm | ppmhist
-wait    22
-run     ppmnorm /dd/tmp/flat.ppm | ppmhist
-wait    22
-run     ppmchange rgb:80/40/c0 red /dd/tmp/flat.ppm | ppmhist
-wait    22
 
 
 shot    ppmpat

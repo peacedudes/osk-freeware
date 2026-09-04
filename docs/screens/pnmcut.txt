@@ -1,11 +1,8 @@
-$ pgmramp -lr 64 32 > /dd/tmp/r.pgm
-$ pnmcut 0 0 32 16 /dd/tmp/r.pgm > /dd/tmp/cut.pgm
-$ pnmenlarge 2 /dd/tmp/cut.pgm > /dd/tmp/big.pgm
-$ pnmshear 20 /dd/tmp/big.pgm > /dd/tmp/shr.pgm
-$ pnmpaste /dd/tmp/cut.pgm 0 0 /dd/tmp/r.pgm > /dd/tmp/pst.pgm
-< /dd/tmp/cut.pgm /dd/tmp/big.pgm /dd/tmp/shr.pgm /dd/tmp/pst.pgm
-/dd/tmp/r.pgm:  PGM raw, 64 by 32  maxval 255
-/dd/tmp/cut.pgm:        PGM raw, 32 by 16  maxval 255
-/dd/tmp/big.pgm:        PGM raw, 64 by 32  maxval 255
-/dd/tmp/shr.pgm:        PGM raw, 76 by 32  maxval 255
-/dd/tmp/pst.pgm:        PGM raw, 64 by 32  maxval 255
+pnmcut 8 4 24 12 /dd/tmp/NEAB/r.pgm > /dd/tmp/NEAB/c.pgm
+$ pnmfile /dd/tmp/NEAB/r.pgm /dd/tmp/NEAB/c.pgm
+/dd/tmp/NEAB/r.pgm:     PGM raw, 48 by 24  maxval 255
+/dd/tmp/NEAB/c.pgm:     PGM raw, 24 by 12  maxval 255
+$ pgmtopbm /dd/tmp/NEAB/c.pgm | pbmtoascii -2x4
+R6&$7$\\\?|:
+R&Z$F$////iS
+66&&Z$$%%?|:

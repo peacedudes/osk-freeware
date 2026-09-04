@@ -1,14 +1,9 @@
-$ ksh -c "cd /h0/c/unid/wn_1.14.3/osk; wndex" 2>/nil
-Wrote cache file ./index.cache
-$ echo "GET /index.html HTTP/1.0" > /dd/tmp/rq
-$ echo "" >> /dd/tmp/rq
-$ autolf -c -C -L < /dd/tmp/rq > /dd/tmp/rq.crlf
-$ wn -L /nil -l /nil < /dd/tmp/rq.crlf | head -n 18
+wn -L /nil -l /nil < /dd/tmp/COMB/rq.crlf | head -n 18
 HTTP/1.0 200 OK
 
 Server: WN/1.14.4 OS-9 Version
 
-Date: Wed, 02 Sep 2026 00:44:13 GMT
+Date: Thu, 03 Sep 2026 21:17:06 GMT
 
 Last-modified: Tue, 04 Aug 2026 00:00:00 GMT
 

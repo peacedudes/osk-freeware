@@ -5,14 +5,8 @@ $ dload /dd/SYS/motd
 size of file is 40 bytes
 datamodule created at address $   a6034
 done
-$ sbreak -?
-Syntax:   sbreak [/device]
-Function: send break on SCF device
-Options:  none
 $ load /dd/CMDS/math
 $ /dd/CMDS/trap
 tlink: -1
 **** Can't install trap handler ****
  **** +-*/&|^<>@? ****
-$ setfont < /nil
-usage: setfont <path>

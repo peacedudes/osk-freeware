@@ -1,28 +1,4 @@
-$ pnmscale -xysize 100 100 /dd/DEMO/sphere.pgm > /dd/tmp/rot1.pgm
-$ pnmrotate 30 /dd/tmp/rot1.pgm | pnmcrop > /dd/tmp/rot2.pgm
-$ pnmscale -xysize 152 88 /dd/tmp/rot2.pgm > /dd/tmp/rot3.pgm
-$ pgmtopbm /dd/tmp/rot3.pgm | pbmtoascii -2x4
-MMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMM&&9MMMMMMMMMMM|
-MMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMH&$$?$|7MMMMMMMMMM|
-MMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMM&P$7/Z$$S\S$MMMMMMMMM|
-MMMMMMMMMMMMMMMMMMMMMMMMMMMMM&&S\\$)SS$|)))?SHMMMMMMM|
-MMMMMMMMMMMMMMMMMMMMMMMMMH&\%$<SSS:(</(/|!//??HMMMMMM|
-MMMMMMMMMMMMMMMMMMMMMHR&?T||?\\/<::\`::::/\/:S?9MMMMM|
-MMMMMMMMMMMMMMMMMMH&SS|?%\://:---:.`:.-: //:\\||HMMMM|
-MMMMMMMMMMMMMMMH&&]??:/:\:`.:: :  - . :`.::<:S|||>MMM|
-MMMMMMMMMMMHR6&&4|\%::::`.-          ` -..:<!:||/$7MM|
-MMMMMMMMHRFM&ST//?|::- -.          ` `.::.\|:))?Z|T/M|
-MMMMMM9HH9H$Z(||<::-: :             .-.:::>?%%&J?($dH|
-MMM9H9H9R&1T||/:::.'..           . -.:.:i|||?$%$HHMMM|
-MHRHRH9H&&4|\%!::.:'.  .      ..-.-::/<|||)S1&MMMMMMM|
-MMHHMHD6$k&||::/\-:: :.. '.':...-:;:?||)Z6HMMMMMMMMMM|
-MMMHHH9&F>%%%|:/\::::.-::.-:.:\<;:((<&&MMMMMMMMMMMMMM|
-MMMMM9DD&S$)):i|<|:::::.<\\\:|\|(LHHMMMMMMMMMMMMMMMMM|
-MMMMMMHHS$&$%???i|SS;S/:?>?SS(&&MMMMMMMMMMMMMMMMMMMMM|
-MMMMMMMM&F&&$S1?$S$$?S(&{S&&HMMMMMMMMMMMMMMMMMMMMMMMM|
-MMMMMMMM9RHD6kD6&&1&&&9&MHMMMMMMMMMMMMMMMMMMMMMMMMMMM|
-MMMMMMMMMR6M9HR6RM&RHMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMM|
-MMMMMMMMMMH6HH&MHHMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMM|
-MMMMMMMMMMMM9MMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMM|
-$ pnmflip < /nil
-pnmflip: EOF / read error reading magic number
+pnmrotate 20 /dd/tmp/NEAB/r.pgm > /dd/tmp/NEAB/o.pgm
+$ pnmfile /dd/tmp/NEAB/r.pgm /dd/tmp/NEAB/o.pgm
+/dd/tmp/NEAB/r.pgm:     PGM raw, 48 by 24  maxval 255
+/dd/tmp/NEAB/o.pgm:     PGM raw, 55 by 41  maxval 255

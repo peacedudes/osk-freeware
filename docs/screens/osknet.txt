@@ -1,0 +1,28 @@
+$ osknet
+
+
+
+                    OSKNET an OS9 friendly version of:
+
+          Internet Protocol Package, (C) 1988 by Phil Karn, KA9Q
+
+          With additions and corrections by:
+                    Joe Buswell, K5JB, 44.78.0.2, Midwest City OK.
+          Original OSK port by:
+                    Robert E. Brose II, N0QBJ, 44.94.249.29, St. Paul, MN.
+          OSKNET port by:
+                    Chris Hawks, chrish@syscon-intl.com, New Carlisle, IN.
+
+          This is OSKNET v1.1 with Telnet, FTP, SMTP, and PING.
+
+          Supporting SLIP and PPP protocols with PAP and CHAP authentication
+          and Van Jacobson Compression (c) UC Berkeley.
+
+Warning: File /dd/startup.okn not found
+Warning: File /dd/ftpusers not found
+Warning: File /dd/hosts.net not found
+Note: File /dd/aliases not found
+Error: Directory /spool/mail not found
+Error: Directory /spool/mqueue not found
+
+Sorry, Chapter 2 will help you set up correctly.

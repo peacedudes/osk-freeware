@@ -1,0 +1,9 @@
+pnmpad -white -l8 -r8 -t4 -b4 /dd/tmp/NEAB/r.pgm > /dd/tmp/NEAB/p.pgm
+$ pnmfile /dd/tmp/NEAB/r.pgm /dd/tmp/NEAB/p.pgm
+/dd/tmp/NEAB/r.pgm:     PGM raw, 24 by 12  maxval 255
+/dd/tmp/NEAB/p.pgm:     PGM raw, 40 by 20  maxval 255
+$ pgmtopbm /dd/tmp/NEAB/p.pgm | pbmtoascii -2x4
+
+    MMFk&||:/:
+    MHH&)??i:::
+    MR6$FSS:\-.

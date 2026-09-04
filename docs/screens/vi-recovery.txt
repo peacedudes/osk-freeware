@@ -13,7 +13,3 @@ $ read_mail < /dd/tmp/rm.in
 > This message exists so that Elm has something to show you.
 
 [L]ist again ,  e[X]it & delete mail ,  exit & [N]ot delete   ?
-$ add_errm?
-usage: add_errmsg "msg1" ... "msgN"
-    appends messages at the end of /dd/SYS/vi_errmsg
-    and reports seek positions

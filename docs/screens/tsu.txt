@@ -1,0 +1,6 @@
+$ tsu
+Checking /dd/USR...OK!
+Checking /dd/USR/TTERM...Creating
+Checking /dd/USR/TTERM/tester.dial...Creating
+
+Directory and File structure is correct.

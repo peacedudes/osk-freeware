@@ -1,0 +1,10 @@
+ppmshift 6 /dd/tmp/NEAB/t.ppm > /dd/tmp/NEAB/s.ppm
+$ ppmtopgm /dd/tmp/NEAB/s.ppm | pgmtopbm | pbmtoascii -2x4
+MRM9RHMSH9&H6M9RMHSFFR6&F6H&&H&&
+M&HH6M96H&99H&H6HHH&SDHSFkHFR&RH
+DM&&#&D#1H$HDHH&#&kkk&&&&&&1ck&#
+M9RM9RMHZ&RMH9RM9FkH&H19&&H$kR&&
+H&SH&&&99$4$RH&&FRRF[&ZHZF&<R&&Z
+H&&H&H&&&$F6&9&D6&&$&&$&&$$9$&&$
+H19&H1H&HSS&9&H&HZ&DZ&\k6$Z&1&S&
+&1&&&&1Sk&&1&Fk6kH$1%R/1S$&%k\$Z

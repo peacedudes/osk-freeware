@@ -1,22 +1,7 @@
-$ ppmmake rgb:80/40/c0 40 20 > /dd/tmp/flat.ppm
-$ ppmhist /dd/tmp/flat.ppm
+ppmmake rgb:ff/80/00 40 20 > /dd/tmp/NEAB/a.ppm
+$ pnmfile /dd/tmp/NEAB/a.ppm
+/dd/tmp/NEAB/a.ppm:     PPM raw, 40 by 20  maxval 255
+$ ppmhist /dd/tmp/NEAB/a.ppm
  r   g   b      lum     count
 --- --- ---     ---     -----
-128  64 192     98      800
-$ ppmbrighten -v 50 /dd/tmp/flat.ppm | ppmhist
- r   g   b      lum     count
---- --- ---     ---     -----
-170  85 255     130     800
-$ ppmdim 0.5 /dd/tmp/flat.ppm | ppmhist
- r   g   b      lum     count
---- --- ---     ---     -----
- 64  32  96     49      800
-$ ppmnorm /dd/tmp/flat.ppm | ppmhist
-ppmnorm: remapping 97..97 to 0..255
- r   g   b      lum     count
---- --- ---     ---     -----
-255   0 255     105     800
-$ ppmchange rgb:80/40/c0 red /dd/tmp/flat.ppm | ppmhist
- r   g   b      lum     count
---- --- ---     ---     -----
-255   0   0     76      800
+255 128   0     151     800

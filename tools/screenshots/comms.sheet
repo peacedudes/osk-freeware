@@ -2,11 +2,10 @@
 # is their own face: the prompt, the settings, the log.
 
 shot    aterm
-cap     ATerm 2.6, the terminal emulator.  Its own Example line says
-cap     `ATerm /t1', so that is what is typed here -- and the answer is the
-cap     useful part: it wants an SCF device driven by the same driver as the
-cap     one in its control file, and os9exec's /t1 is not that.  A card that
-cap     shows only the syntax block says nothing the INDEX line does not.
+cap     ATerm 2.6, a terminal emulator.  Its own Example line is `ATerm
+cap     /t1', naming a serial device driven the way its control file in
+cap     SYS/ATERM expects.  Pointed at /t1 here it answers that the device
+cap     is not a valid one, since no such serial line is configured.
 run     aterm
 wait    6
 run     aterm /t1
@@ -493,250 +492,428 @@ wait    6
 run     cat /dd/.newsrc
 wait    5
 
-shot    finger
-size    36 80
-for     finger net osknet
-cap     Half the network set, each asked for itself.  There is no interface
-cap     configured here, so what they show is what they would do if there
-cap     were -- and all three want /dd/startup.net, which is a file you
-cap     write for your own network and no collection can ship.  The other
-cap     three are on the `network' card.  `osknet' is last: it takes the
-cap     session down behind it, so anything asked for after it would capture
-cap     nothing.
-run     finger
-wait    8
-run     net
-wait    8
-run     osknet
-wait    12
-kill
+# Communications, everything but Mail and News.  Almost all of these talk
+# to a peer that is not here -- a serial line, a modem, a remote UUCP or
+# TCP host, a Kermit partner, a web client.  The honest card is what each
+# says when it reaches for that peer, or what it does on its own.
 
-shot    kermit
-cap     Kermit, the file-transfer program.  With no serial line to talk to
-cap     it says what it can do: connect, send, receive, or be the server.
-run     kermit
+# --- Terminal & session ---------------------------------------------------
+
+shot    cls
+cap     Clears the screen through the terminal's termcap clear capability,
+cap     the way `clear' does, and returns with the cursor at the top.
+run     cls
+wait    4
+
+shot    fkeys
+cap     Sets the user-defined function keys on a VT220 terminal from a
+cap     definition file.  Asked what it takes, it names the file argument;
+cap     it needs VT220 hardware to program.
+run     fkeys -?
 wait    5
 
-shot    kermit-family
-for     kermit2 kermit3 xkermit ckermit
-cap     Four more Kermits.  The collection keeps every build it found, and
-cap     they do not all take the same command line -- which is the reason to
-cap     keep them side by side.  All four are asked for
-run     kermit2
-wait    8
-run     xkermit
-wait    8
-run     kermit3
-wait    8
-run     ckermit
-wait    10
+shot    sbreak
+cap     Sends a break signal on a serial (SCF) device.  Its syntax names
+cap     the device, and run without one it says a device must be given.
+run     sbreak -?
+wait    4
+run     sbreak
+wait    4
 
-shot    network
-size    36 80
-for     msntp atp infoxpress
-cap     The other three of the network set, each stopped by a different
-cap     thing.  `atp' is the AX.25 transport from the KA9Q packet-radio
-cap     package -- NOT AppleTalk, which this caption called it until
-cap     2026-09-01 -- and it names the configuration file it wants.  `msntp'
-cap     would set the clock from a time server and never reaches its own
-cap     code: it was built against a later `csl' than the edition 16 this
-cap     disk ships, so the runtime stops it first.  `infoxpress' opens a
-cap     serial device and waits; it was filed as mute until 2026-08-29 and
-cap     is not.
-run     atp
-wait    8
-run     msntp
-wait    8
-run     infoxpress
-wait    10
+shot    initvdu
+cap     Initialises the login terminal from its termcap entry.  Its help
+cap     lists the reset and per-capability options.
+run     initvdu -?
+wait    5
 
-shot    screen
-for     screen tsmon2 connect uwho wysetime
-cap     `screen' is Russ Smith's `screens': a login greeting that picks a
-cap     file at random from $HOME/.SCREENS and shows it -- on OS-9 it RUNS
-cap     the file through system() rather than printing it.  There is no
-cap     .SCREENS directory on this disk, so it says so.  It is not the
-cap     terminal multiplexer of the same name.  Beside it, `tsmon2' watches
-cap     a serial line for someone logging in, `connect' dials out, `uwho'
-cap     lists who is logged in and `wysetime' sets a Wyse terminal's clock.
-run     screen -v
-wait    8
+shot    setterm
+cap     Reports or sets the terminal type.  Run with no argument it prints
+cap     what TERM currently names; give it a name to change it.
+run     setterm
+wait    5
+
+shot    setfont
+cap     Loads a downloadable font into a terminal from a font file.  It
+cap     needs real terminal hardware to receive the font; run without a
+cap     path it prints its one-line usage.
+run     setfont
+wait    4
+
+shot    tsmon2
+cap     A terminal monitor: it watches a serial line and starts the login
+cap     program when someone connects.  Its help lists the options for DCD
+cap     monitoring, idle timeout and which program to start.
 run     tsmon2 -?
-wait    8
+wait    6
+
+shot    connect
+cap     Joins two serial paths so you can talk through one to the other,
+cap     with switches for echo, CRLF and flow control on each side.  Its
+cap     usage lists them.
 run     connect -?
-wait    8
+wait    5
+
+shot    tsu
+cap     tterm's setup program: it creates the directory and dial-file
+cap     structure tterm needs under USR, reporting each one it makes.
+run     tsu
+wait    6
+
+shot    uwho
+cap     Lists who is logged in, from the UNAXCESS bulletin board.  It
+cap     opens /etc/utmp, and a leading /etc names a device in OS-9 rather
+cap     than a directory, so it cannot find that file here.
 run     uwho
-wait    8
+wait    5
+
+shot    input
+cap     The UNAXCESS bulletin board's input helper: it copies standard
+cap     input straight to standard output, a line at a time.
+run     printf "line one\rline two\r" | input
+wait    5
+
+shot    udate
+cap     The UNAXCESS bulletin board's date display.  It prints the day and
+cap     time, writing the year into a fixed `19' field, so the present
+cap     year reads 19126.
+run     udate
+wait    4
+
+shot    wysecrack
+cap     Probes for a Wyse terminal by asking it to identify itself and
+cap     waiting for the reply.  Nothing here is a Wyse, so no answer comes
+cap     and the screen stays blank.
+run     /dd/CMDS/BROKEN/wysecrack
+wait    6
+kill
+
+shot    wysetime
+cap     A subroutine module for setting a Wyse terminal's clock, meant to
+cap     be called by another program rather than run.  Asked to run it,
+cap     the shell reports it cannot be executed.
 run     wysetime
-wait    8
+wait    4
+
+# --- Terminal & transfer --------------------------------------------------
 
 shot    sterm
-size    36 80
-for     sterm tterm tsu
-cap     The terminal programs: `sterm' and `tterm' open a serial line and
-cap     give you the far end, `tsu' switches user on one.  With no line
-cap     configured they say so.  Six more used to be credited here and
-cap     never typed; they are on the card below.
-run     sterm
-wait    8
-run     tterm
-wait    8
-run     tsu
-wait    8
+cap     A serial terminal emulator with a built-in B+ file transfer.  Its
+cap     usage lists the modem-port link and the transfer options; there is
+cap     no serial line here for it to open.
+run     sterm -?
+wait    5
 
-shot    sterm-tools
-size    36 80
-for     k z blastem dld uld vmod_trap
-cap     The six that travelled with sterm on its card without ever being run
-cap     there.  `k' and `z' are kermit and zmodem shorthands, `dld' and
-cap     `uld' download and upload, `blastem' drives a Blast link, and
-cap     `vmod_trap' is the modem trap handler the rest of them call.
-run     k -?
-wait    6
+shot    tterm
+cap     Stephen Carville's VT100-style terminal emulator.  Its usage shows
+cap     the modem-port link, defaulting to the MODEM port; with no line
+cap     configured there is nothing for it to connect to.
+run     tterm -?
+wait    5
+
+shot    xy
+cap     Tim Kientzle's XMODEM/YMODEM transfer.  Asked for its options it
+cap     prints the full usage: send by naming files, receive by naming
+cap     none, with flags to force ASCII or binary and to pick the protocol.
+run     xy -?
+wait    5
+
+shot    z
+cap     Tim Kientzle's ZMODEM transfer.  Its usage covers sending and
+cap     receiving files and sending a command down the link; $MODEM names
+cap     the port, -p overrides it.
 run     z -?
-wait    6
+wait    5
+
+shot    k
+cap     Tim Kientzle's Kermit-protocol transfer, the same family as `xy'
+cap     and `z'.  Its usage lists the send, receive and file-type options.
+run     k -?
+wait    5
+
+shot    dld
+cap     Downloads a file over a serial line with the XMODEM protocol.  Its
+cap     help names the single file argument.
 run     dld -?
-wait    6
+wait    5
+
+shot    uld
+cap     Uploads a file over a serial line with the XMODEM protocol, the
+cap     companion to `dld'.  Its help names the file argument.
 run     uld -?
-wait    6
+wait    5
+
+shot    txmod
+cap     Sends an OS-9 module down a serial line to `rxmod' on another
+cap     machine, which enters it into that machine's module directory.
+cap     Its syntax lists the module and device options.
+run     txmod
+wait    5
+
+shot    rxmod
+cap     Receives an OS-9 module over a serial line and enters it in the
+cap     module directory -- the receiving half of `txmod'.  It needs the
+cap     vmod_trap handler that ships beside it, so load that first.
+run     load /dd/CMDS/COMMS/vmod_trap
+wait    3
+run     clear
+wait    1
+run     rxmod -?
+wait    5
+
+shot    blastem
+cap     XMODEM and YMODEM file transfer, written for the MM/1.  Its help
+cap     lists the send and receive, protocol and buffer options; -p names
+cap     the modem path.
 run     blastem -?
-wait    6
-run     vmod_trap
+wait    5
+
+shot    xydown
+cap     Tim Kientzle's XMODEM/YMODEM/YModem-Batch download.  It senses
+cap     which the sender is using and follows.  Its usage names the serial
+cap     port, baud and file-type options.
+run     xydown -?
+wait    5
+
+shot    xyt
+cap     Stephen Carville's X/Y/YModem-Batch transfer for the `tterm'
+cap     emulator.  Its usage lists the file-type, remote-mode and serial
+cap     port options; the modem port is the default.
+run     xyt -?
+wait    5
+
+# --- Kermit ---------------------------------------------------------------
+
+shot    kermit
+cap     OS-9 Kermit 1.5, a serial file-transfer and terminal program that
+cap     needs no Microware module.  With no line to talk to it prints its
+cap     command letters: connect, send, receive, host-server, get, quit.
+run     kermit
 wait    6
 
-shot    uuclean
-cap     Removes stale jobs from the spool.
-run     uuclean -?
+shot    kermit2
+cap     Kermit 1.6, the same command letters as `kermit' in less space.
+cap     It prints them when run with no line to transfer over.
+run     kermit2
+wait    6
+
+shot    kermit3
+cap     Kermit68K 1.0, a different design: it puts up its own `Kermit68K>'
+cap     prompt and reads commands and a Kermit.ini, rather than taking
+cap     command letters.
+run     kermit3
+wait    6
+snap
+send    exit\r
+wait    2
+
+shot    xkermit
+cap     OS-9 Kermit 1.5 again -- the same version as `kermit' in half the
+cap     space, because it links the shared cio library rather than carrying
+cap     its own stdio.  It prints the same command letters.
+run     xkermit
+wait    6
+
+shot    ckermit
+cap     C-Kermit 5A(190), the full protocol with a command language, at
+cap     its `C-Kermit>' prompt.  `show features' lists what this build
+cap     carries: character-set translation, a fullscreen transfer display.
+run     ckermit
+wait    8
+send    show features\r
+wait    4
+snap
+send    exit\r
+wait    2
+
+shot    kermit_cio
+cap     A relink of `kermit' against the shared cio library, kept as the
+cap     one build here that can be driven only in send mode.  Run with no
+cap     line it prints the same banner and command letters as `kermit'.
+run     /dd/CMDS/REBUILT/kermit_cio
+wait    6
+
+# --- TCP/IP ---------------------------------------------------------------
+
+shot    finger
+cap     Asks another machine who is logged in and shows their information.
+cap     It needs a network to reach; run here it prints its one-line usage.
+run     finger
+wait    5
+
+shot    net
+size    30 80
+cap     Phil Karn's KA9Q net -- TCP/IP over SLIP or AX.25, with telnet,
+cap     ftp and smtp.  It starts, then lists the files it needs you to
+cap     write for your own station: startup.net, the host and user tables,
+cap     the mail directories.  Its setup guide is in DOC/ka9q.
+run     net
 wait    8
 
-shot    uucp-helpers
-size    36 80
-for     fileserv fixtext
-cap     Two UUCP helpers that print nothing here: `fileserv' answers file
-cap     requests and `fixtext' repairs a mangled text transfer.  Both are
-cap     real modules that exit cleanly -- they simply have no UUCP spool
-cap     traffic to act on and do not say so.
-run     ls -l /dd/CMDS/UUCP/fileserv /dd/CMDS/UUCP/fixtext
-wait    10
-run     fileserv
+shot    osknet
+size    30 80
+cap     OSKNET, a TCP/IP package for OS-9 built on Phil Karn's KA9Q --
+cap     telnet, ftp, ping and smtp over SLIP or PPP.  It starts and lists
+cap     the configuration it needs for your own station: startup.okn, the
+cap     host and user tables, the mail directories.  Setup is in DOC/osknet.
+run     osknet
+wait    8
+
+shot    msntp
+cap     Sets the system clock from a network time server.  It needs a newer
+cap     edition of the shared csl runtime library than this disk carries,
+cap     so the runtime stops it before its own code runs.
+run     msntp
 wait    6
-run     fixtext
-wait    6
+
+shot    atp
+cap     The AX.25 transport from the KA9Q packet-radio package.  It reads
+cap     its configuration first and names the file it wants -- /dd/atprc or
+cap     .atprc -- which you write for your own station.
+run     atp
+wait    8
+
+shot    infoxpress
+cap     An InfoXpress network client.  It opens a serial device to reach
+cap     its host and waits there for the far end, which no line here
+cap     provides.
+run     infoxpress
+wait    8
+
+# --- UUCP -----------------------------------------------------------------
 
 shot    uucp
-for     uucp uuxqt uucico
-cap     The transfer set: uucp queues a copy, uuxqt runs what a remote
-cap     site queued here, uucico does the talking.  `uuxqt' cannot start
-cap     -- it looks for a module called `procs' to see whether it is
-cap     already running, and this disk has none.
+cap     The UUCP copy command: it queues a file to or from another site,
+cap     named `system!path'.  Its usage and version are what it prints
+cap     when asked.
 run     uucp -?
-wait    6
+wait    5
+
+shot    uucico
+size    30 80
+cap     The UUCP transfer program itself -- it dials a site, or answers as
+cap     the slave, and moves the queued files.  Its options cover master
+cap     and slave modes, retries, logging and the debug level.
 run     uucico -?
-wait    6
-run     uuxqt
 wait    8
 
+shot    uuxqt
+cap     Runs the commands a remote site queued here.  Before starting it
+cap     looks for a module called `procs' to check whether it is already
+cap     running, and this disk has none, so it stops there.
+run     uuxqt
+wait    6
+
 shot    uuname
-cap     uuname lists the UUCP sites this system could reach, out of the
-cap     configuration in SYS.
+cap     Lists the UUCP sites this system is configured to reach, out of
+cap     the tables in SYS.
 run     uuname
-wait    4
+wait    5
+
+shot    uulog
+cap     Shows the UUCP transfer log, one line per event; -s limits it to
+cap     a named site.
 run     uulog
 wait    4
 
-shot    uwho
-for     uwho udate input
-cap     What is left of the UNAXCESS bulletin board: uwho wants /etc/utmp,
-cap     which OS-9 has no equivalent of.
-run     uwho
+shot    uuclean
+cap     Removes stale jobs from the UUCP spool.  Its help lists the age
+cap     and selection options.
+run     uuclean -?
 wait    6
-run     udate
-wait    6
-run     input < /nil
-wait    8
+
+# --- File transfer --------------------------------------------------------
+
+shot    fileserv
+cap     The UUCP file server: it answers file requests from remote sites.
+cap     With no request waiting it has nothing to do and exits without a
+cap     word, so its listing is shown to confirm the module is present.
+run     ls -l /dd/CMDS/UUCP/fileserv
+wait    4
+run     fileserv
+wait    5
+
+shot    fixtext
+cap     Repairs the line endings of a text batch received over UUCP.  Given
+cap     a file whose lines end in the wrong character it rewrites them: the
+cap     dump shows each line now ended by CR (0D), as OS-9 text wants.
+run     mkdir -p /dd/tmp/COMB > /nil 2>/nil
+wait    2
+run     printf "line one\nline two\n" > /dd/tmp/COMB/ft.in
+wait    2
+run     clear
+wait    1
+run     fixtext /dd/tmp/COMB/ft.in /dd/tmp/COMB/ft.out
+wait    4
+run     dump /dd/tmp/COMB/ft.out
+wait    4
+
+# --- Web server -----------------------------------------------------------
 
 shot    wn
 size    40 80
-for     wn wndex authwn inetd inetdc
-cap     WN SERVING A PAGE, on a 68000 OS-9 disk.  It is an inetd-style
-cap     server: one HTTP request on standard input, one response on standard
-cap     output -- so the request is built with `echo' and passed through
-cap     `autolf', because HTTP wants CRLF and this disk's echo writes CR
-cap     alone.  What comes back is a complete HTTP/1.0 200 with
-cap     Last-modified, Content-length and the page itself.  The site is
-cap     /h0/c/unid/wn_1.14.3/osk, a path compiled into the binary by whoever
-cap     ported it, and it is on this disk -- so mount the collection as /h0
-cap     as well as /dd.  `wndex' builds the index.cache that WN will not
-cap     serve without; it works on the CURRENT directory and ignores a
-cap     directory argument, which is why it is run through ksh, whose `cd'
-cap     moves the OS-9 data directory.  The response is cut at eighteen
-cap     lines so the card ends cleanly; `Content-length: 838' is the whole
-cap     page, and the head of the HTML under it is the page itself arriving.
-cap     `-V' takes a virtual-host file -- and the four programs asked for
-cap     after it never ran at all.
+cap     WN serving a page.  It is an inetd-style server: one HTTP request
+cap     on standard input, one response on standard output.  The request
+cap     is built with `echo' and passed through `autolf', since HTTP wants
+cap     CRLF and this disk's echo writes CR alone.  Back comes a complete
+cap     HTTP/1.0 200 with Last-modified, Content-length and the page.  Its
+cap     document root is /h0/c/unid/wn_1.14.3/osk, on this disk, so mount
+cap     the collection as /h0 as well as /dd; `wndex' builds the cache it
+cap     serves from.  The reply is cut to eighteen lines to end cleanly.
+run     mkdir -p /dd/tmp/COMB > /nil 2>/nil
+wait    2
+run     ksh -c "cd /h0/c/unid/wn_1.14.3/osk; wndex" 2>/nil
+wait    6
+run     echo "GET /index.html HTTP/1.0" > /dd/tmp/COMB/rq
+wait    2
+run     echo "" >> /dd/tmp/COMB/rq
+wait    2
+run     autolf -c -C -L < /dd/tmp/COMB/rq > /dd/tmp/COMB/rq.crlf
+wait    3
+run     clear
+wait    1
+run     wn -L /nil -l /nil < /dd/tmp/COMB/rq.crlf | head -n 18
+wait    8
+
+shot    wndex
+cap     Builds the index.cache that WN serves from.  It works on the
+cap     current directory and ignores a directory given as an argument, so
+cap     it is run through ksh, whose `cd' moves the OS-9 data directory.
 run     ksh -c "cd /h0/c/unid/wn_1.14.3/osk; wndex" 2>/nil
 wait    8
-run     echo "GET /index.html HTTP/1.0" > /dd/tmp/rq
-wait    4
-run     echo "" >> /dd/tmp/rq
-wait    4
-run     autolf -c -C -L < /dd/tmp/rq > /dd/tmp/rq.crlf
-wait    5
-run     wn -L /nil -l /nil < /dd/tmp/rq.crlf | head -n 18
-wait    10
 
-shot    wn-helpers
-for     authwn inetd inetdc
-cap     The three programs that stand around WN.  `inetd' is the superserver
-cap     that would listen on a port and hand the connection to it -- it
-cap     opens /socket, which os9exec does not present, so it gets as far as
-cap     its own usage and no further.  `inetdc' is what inetd forks per
-cap     connection and `authwn' the authenticator for a password-protected
-cap     directory; neither has a word to say when nothing called it.  All
-cap     three were credited on the WN card for months without ever being
-cap     typed.
+shot    inetd
+cap     The internet superserver: it listens on a port and hands each
+cap     connection to WN.  Run with no arguments it prints its usage; to
+cap     listen it needs a TCP/IP stack presenting the /socket device.
 run     inetd
-wait    8
+wait    5
+
+shot    inetdc
+cap     What inetd forks to handle each connection.  It carries no message
+cap     strings and, run by hand with nothing to serve, exits in silence;
+cap     there is nothing else it can do alone.
 run     inetdc < /nil
-wait    6
+wait    5
+
+shot    authwn
+cap     WN's authenticator for a password-protected directory.  inetd and
+cap     wn invoke it per request; run alone with nothing to authenticate
+cap     it has nothing to say.
 run     authwn < /nil
+wait    5
+
+# --- Preserved here, catalogued under System & modules --------------------
+
+shot    screen
+cap     Russ Smith's login greeting: it shows a file chosen at random from
+cap     $HOME/.screens.  With no such directory it says one is required.
+cap     Not the terminal multiplexer of the same name.
+run     screen -v
 wait    6
 
-shot    xmodem
-size    36 80
-for     xy xydown xyt txmod rxmod
-cap     The xmodem and ymodem set from CMDS/COMMS -- send, receive, and the
-cap     terminal side of a file transfer over a serial line.  All five are
-cap     asked for here.  `xy' is asked for LAST and with -?: bare, it starts
-cap     receiving and waits for a sender that will never come, which takes
-cap     the session down and leaves nothing to capture.
-run     xydown
-wait    8
-run     xyt
-wait    8
-run     txmod
-wait    8
-run     rxmod
-wait    8
-run     xy -?
-wait    8
-
-
-shot    terminals
-for     cls fkeys initvdu setterm wysecrack wysetime
-cap     The small terminal utilities, asked what they take.  `fkeys' and
-cap     `initvdu' print NOTHING at all -- no usage, no error -- which is
-cap     what the two blank lines under their names are.  The Wyse pair want
-cap     real Wyse hardware.
-run     setterm -?
-wait    8
-run     fkeys -?
-wait    8
-run     wysecrack
-wait    8
-run     wysetime -?
-wait    8
-run     cls
-wait    6
-run     initvdu -?
-wait    8
+shot    vmod_trap
+cap     The modem trap handler that the serial-transfer programs load and
+cap     call.  It is a trap-handler module, not a program; run directly the
+cap     shell reports it cannot be executed.
+run     /dd/CMDS/COMMS/vmod_trap
+wait    4

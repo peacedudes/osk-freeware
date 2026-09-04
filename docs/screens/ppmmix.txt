@@ -1,0 +1,5 @@
+ppmmix 0.5 /dd/tmp/NEAB/a.ppm /dd/tmp/NEAB/b.ppm > /dd/tmp/NEAB/m.ppm
+$ ppmhist /dd/tmp/NEAB/m.ppm
+ r   g   b      lum     count
+--- --- ---     ---     -----
+127   0 127     52      800
