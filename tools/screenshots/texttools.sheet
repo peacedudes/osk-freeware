@@ -174,10 +174,7 @@ run     rm -f /dd/tmp/b1 /dd/tmp/b2 /dd/tmp/b3
 wait    4
 
 shot    hc
-cap     hc shifts text to a column, or labels every line -- and it is the
-cap     program this collection had most wrong: DOC/INDEX called it a hex
-cap     calculator until 2026-08-31, and its own card showed nothing but the
-cap     usage line, from an invocation the usage line does not describe.
+cap     hc shifts text to a column, or labels every line.
 cap     `+8' indents to column 8, `-11' strips back to column 11, and
 cap     `-l' puts a string in front of every line.
 run     cat /dd/SYS/motd

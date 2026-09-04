@@ -81,8 +81,7 @@ run     demo -a -b -c=7 one two
 wait    6
 shot    devprc
 for     devprc ptxminst t_trtest
-cap     devprc shows which device belongs to which process.  Rebuilt here:
-cap     the archived module had been patched and would not run.  `ptxminst'
+cap     devprc shows which device belongs to which process.  `ptxminst'
 cap     installs Ptxm, and `t_trtest' exercises a trap handler.
 run     devprc -h
 wait    8
@@ -260,8 +259,8 @@ run     oskversion
 wait    3
 shot    passwd
 cap     passwd changes a login password in SYS/password.  It matches on the
-cap     user name, and the file it edits is plain text you can read here --
-cap     the card shows the file, then passwd's command format.
+cap     user name, and the file it edits is plain text you can read here,
+cap     shown with passwd's command format.
 run     cat /dd/SYS/password
 wait    5
 run     passwd -?
@@ -392,8 +391,7 @@ shot    vc
 for     vc
 cap     `vc' is a SPREADSHEET -- "Welcome to the Spreadsheet Calculator,
 cap     type ? for help" -- with rows, columns and a formula line.  `?' is
-cap     the help key and `q' quits; it does not answer Ctrl-E, so this card
-cap     leaves it the way the program expects.
+cap     the help key and `q' quits.
 run     vc
 wait    8
 quit    q\r
@@ -466,8 +464,7 @@ cap     LINKS it can find it.  `for', the RTF Fortran driver, prints nothing
 cap     at all until os9lib is loaded -- and then it says what it takes.  It
 cap     is called by its full path because `for' is a bash keyword and the
 cap     shell would answer first.  That silence is the whole symptom, and
-cap     this is the cure: a clean-room load, contributed by the os9exec
-cap     project and built here, with its source in SRC/load.
+cap     this is the cure: a clean-room load, with its source in SRC/load.
 run     /dd/CMDS/for
 wait    6
 run     load /dd/CMDS/os9lib
@@ -568,7 +565,7 @@ shot    cron
 cap     cron is a scheduling daemon: it reads SYS/crontab, then forks each
 cap     command at its minute, hour and day and runs until it is stopped.
 cap     It is not run here -- there is no screen for a daemon that waits --
-cap     so the card shows the crontab it would act on.
+cap     so the screen shows the crontab it would act on.
 run     cat /dd/usr/lib/crontab
 wait    5
 shot    setime

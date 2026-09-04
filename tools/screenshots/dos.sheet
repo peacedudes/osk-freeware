@@ -201,7 +201,7 @@ wait    10
 
 shot    mscheck
 cap     A shell script that reads every file on the DOS disk to make sure
-cap     each can be read: the directory, then each file verified.
+cap     each can be read: first the directory, then each file in turn.
 run     mscd a:/ > /nil; msdel a:MOTD.TXT > /nil 2>/nil; mscopy /dd/SYS/motd a:MOTD.TXT > /nil
 wait    10
 run     clear
