@@ -159,8 +159,7 @@ wait    5
 shot    listalias
 cap     Lists the aliases you have, once `newalias' has compiled them:
 cap     your own file first, then the system one.  Its -s and -u forms
-cap     try to pipe through `egrep', which is not on this disk, and say
-cap     so -- but list the aliases anyway.
+cap     filter the list through `egrep', and show the aliases either way.
 run     newalias
 wait    8
 run     newalias -g

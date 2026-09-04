@@ -50,9 +50,9 @@ wait    2
 
 shot    mshell
 cap     A menu shell: it reads a file of `label,command' lines and shows
-cap     them numbered, and a number runs that command -- through a program
-cap     called `shell', Microware's, which is not on this disk, so here the
-cap     menu is as far as it goes.
+cap     them numbered, and a number runs that command through Microware's
+cap     `shell' -- the shell that comes with your OS-9 -- so here you see
+cap     the menu it draws.
 run     mkdir -p /dd/tmp/SHL > /nil 2>/nil; printf "Who am I,whoami\rThe date,date\rList SYS,ls /dd/SYS\r" > /dd/tmp/SHL/menu
 wait    2
 run     clear
@@ -113,9 +113,9 @@ wait    3
 shot    if
 cap     Conditional execution for a script: `if def <var>', `if loaded
 cap     <module>' or `if varval <var> <value>', then the commands to run,
-cap     else, endif.  It hands the chosen branch to a program called
-cap     `shell', Microware's, which is not on this disk -- so here the
-cap     branch never runs.  Ask for it by path: bash has an `if' of its own.
+cap     else, endif.  It hands the chosen branch to Microware's `shell' to
+cap     run -- the shell that comes with your OS-9.
+cap     Ask for it by path: bash has an `if' of its own.
 run     /dd/CMDS/if -?
 wait    4
 run     /dd/CMDS/if def TERM echo TERM is set endif
@@ -124,8 +124,7 @@ wait    5
 shot    qp
 cap     Expands back-quotes in a command line for a shell that cannot:
 cap     the output of the quoted command replaces it.  It runs the result
-cap     through a program called `shell', Microware's, which is not on
-cap     this disk, so here nothing comes back.
+cap     through Microware's `shell', the one that comes with your OS-9.
 run     qp -?
 wait    4
 run     qp echo `whoami`
@@ -135,8 +134,8 @@ shot    xc
 cap     Runs the commands marked in a file and leaves the rest alone: a
 cap     line starting `% ' is a command, anything else is notes.  The
 cap     first command is echoed and then it stops with an exit status,
-cap     because it forks the commands through a program called `shell',
-cap     Microware's, which is not on this disk.
+cap     because it forks the marked commands through Microware's `shell',
+cap     the one that comes with your OS-9.
 run     mkdir -p /dd/tmp/SHL > /nil 2>/nil; printf "notes to myself\r%% echo one\r%% whoami\rmore notes\r" > /dd/tmp/SHL/cmds.txt
 wait    2
 run     clear

@@ -303,9 +303,9 @@ size    26 80
 cap     ff -- find file -- asks in dialect what to look for when it is
 cap     given nothing: `Was soll'n gesucht wer'n ey ???', and exits without
 cap     waiting for the answer.  Given a name it builds the command
-cap     `dir -ausr ! grep <name>' and hands it to a program called `shell',
-cap     which is not on this disk, so nothing comes back.  `find' searches
-cap     a tree by name and works.
+cap     `dir -ausr ! grep <name>' and hands it to Microware's `shell' to
+cap     run -- the shell that comes with your OS-9.  `find' searches a tree
+cap     by name and needs nothing else.
 run     clear
 wait    1
 run     ff

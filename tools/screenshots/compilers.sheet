@@ -132,8 +132,8 @@ wait    10
 shot    gcc2
 cap     The GCC 2.x driver, `gcc version 2.5.6'.  Asked to stop at
 cap     assembly it succeeds -- Microware's own syntax, `psect', `link.w
-cap     a5,#0' -- and asked to go all the way it looks for Microware's
-cap     `r68' assembler, which is not on this disk.
+cap     a5,#0' -- and asked to go all the way it compiles to assembly and
+cap     calls `r68' to assemble it.  `r68' is Microware's, part of your OS-9.
 run     mkdir -p /dd/tmp/CMPA > /nil 2>/nil; printf "int main() {\r  return 0;\r}\r" > /dd/tmp/CMPA/hello.c
 wait    4
 run     /dd/CMDS/GCC2/gcc2 -v
@@ -148,8 +148,8 @@ wait    10
 shot    gpp
 cap     The C++ driver, GCC2's copy -- `gpp version 1.40.3 (based on GCC
 cap     1.40)'.  Asked to compile, it runs its whole pipeline: gpp_cccp
-cap     preprocesses, gpp_cc1plus compiles to assembly, and then it looks
-cap     for Microware's `r68' assembler, which is not on this disk.
+cap     preprocesses, gpp_cc1plus compiles to assembly, and then it calls
+cap     Microware's `r68' to assemble it -- `r68' comes with your OS-9.
 run     mkdir -p /dd/tmp/CMPA > /nil 2>/nil; printf "int main() {\r  return 0;\r}\r" > /dd/tmp/CMPA/hello.c
 wait    4
 run     /dd/CMDS/GCC2/gpp -v -c /dd/tmp/CMPA/hello.c
@@ -360,8 +360,8 @@ shot    rtf
 cap     RTF/68K 2.14 (1987) compiling real Fortran-77: `load os9lib' first
 cap     -- without its runtime library the whole set prints nothing at
 cap     all -- then `rtf' reads the source and writes 68k assembly beside
-cap     it.  Assembling and linking that needs Microware's r68 and l68,
-cap     which is not on this disk.
+cap     it.  Assembling and linking that is Microware's `r68' and `l68',
+cap     part of your OS-9, so your system finishes the build.
 run     rm -f /dd/tmp/CMPA/div.f /dd/tmp/CMPA/div.a; mkdir -p /dd/tmp/CMPA > /nil 2>/nil
 wait    4
 run     cp /dd/SRC/rtf/div.f /dd/tmp/CMPA/div.f
@@ -374,10 +374,9 @@ run     ls -l /dd/tmp/CMPA/div.a
 wait    6
 
 shot    for
-cap     the RTF/68K FORTRAN driver: it prints the `rtf' command it wants
-cap     to run and then cannot, because it forks a program called `shell'
-cap     that this disk does not carry.  Call `rtf' directly instead --
-cap     it needs no shell at all.
+cap     the RTF/68K FORTRAN driver: it prints the `rtf' command it wants to
+cap     run and forks Microware's `shell' -- the one from your OS-9 -- to
+cap     run it.  Or call `rtf' directly, which needs no shell at all.
 run     mkdir -p /dd/tmp/CMPA > /nil 2>/nil; cp /dd/SRC/rtf/div.f /dd/tmp/CMPA/div.f
 wait    4
 run     load /dd/CMDS/os9lib

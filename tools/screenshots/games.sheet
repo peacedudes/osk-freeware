@@ -254,11 +254,10 @@ send    \003
 wait    3
 
 shot    blackjack
-cap     A Las Vegas blackjack written in BASIC09.  It is I-code rather than
-cap     68000 code, so it is not a program the shell can start -- it needs
-cap     Microware's `runb' interpreter, which is not on this disk, and this
-cap     is what happens without it.  It sits in CMDS/BROKEN, off the login
-cap     path.  For blackjack you can play here, see `blackjak'.
+cap     A Las Vegas blackjack in BASIC09 (M. Theys).  Like the other BASIC09
+cap     programs it runs through Microware's `runb' -- `load /h1/CMDS/runb'
+cap     then `runb blackjack' -- from your own OS-9.  It sits in CMDS/BROKEN,
+cap     off the login path; for a blackjack that runs here, see `blackjak'.
 run     /dd/CMDS/BROKEN/blackjack
 wait    8
 
@@ -513,9 +512,9 @@ wait    12
 shot    postprint
 cap     Meant to print the positions in GNU Chess's saved hash file as
 cap     PostScript, a board to a page with the best move and the search
-cap     depth.  The hash file it wants is not on this disk; run on the
-cap     opening book instead it writes the first line of the page setup and
-cap     stops.  DOC/postprint has the manual page.
+cap     depth.  Given GNU Chess's opening book in place of a saved hash it
+cap     writes the first line of the page setup and stops.  DOC/postprint
+cap     has the manual page.
 run     postprint /dd/GAMES/gnuchess.book
 wait    12
 
