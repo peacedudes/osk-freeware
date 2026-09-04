@@ -1,0 +1,5 @@
+diff_1.1 /dd/tmp/BLGX/d1 /dd/tmp/BLGX/d2
+2c2
+< pear
+---
+> peach

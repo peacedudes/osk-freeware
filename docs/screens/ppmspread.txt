@@ -1,0 +1,15 @@
+pgmtopbm /dd/tmp/NEAB/sr.pgm | pbmtoascii -2x4
+MMM&M&&S[$$SS>\%:-::.
+MMHRH&Z&$$$||\\\\::.-:
+MMHH&H$&Z$$||/:<\:: :.
+MMRHH&&S}$]||:>::<.- -
+MMHHH&S$/Z|||?!|/:::'.'
+MM&RM&1S$%||||?\!:::.-
+$ ppmspread 8 /dd/tmp/NEAB/sr.pgm > /dd/tmp/NEAB/sp.ppm
+$ ppmtopgm /dd/tmp/NEAB/sp.ppm | pgmtopbm | pbmtoascii -2x4
+MMH96&&&4J?((S:i<::.-
+MMR6RH$Z/$S$/S:S:/.:: -
+MRMH&FR$$?}??!|<:::-` .
+MHHH&&6k$\S$?/?::.:::-
+MMRM&kD&$S(((?|::/.:.`
+MR6M&&&$Z%$?!|?:\::.-:

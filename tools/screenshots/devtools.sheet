@@ -313,16 +313,15 @@ run     ksh -c "cd /dd/tmp/DEV/xrf; xrf about.c" | head -n 24
 wait    12
 
 shot    ref
-cap     Looks a tag up in the tags file and prints the lines around its
-cap     definition.  With a tags file in the current directory it prints
-cap     nothing here.
-run     mkdir -p /dd/tmp/DEV > /nil 2>/nil; ksh -c "cd /dd/tmp/DEV; ctags /dd/SRC/keep/keep.c"
-wait    6
+cap     Looks a C function up in a tags file and prints the lines around
+cap     where it is defined.  Here ctags indexes keep.c and ref shows the
+cap     definition of crc_of, comment header and all.
+run     rm -rf /dd/tmp/DEV/ref > /nil 2>/nil; mkdir -p /dd/tmp/DEV/ref > /nil 2>/nil
+run     cp /dd/SRC/keep/keep.c /dd/tmp/DEV/ref/keep.c
+run     ksh -c "cd /dd/tmp/DEV/ref; ctags keep.c" 2>/nil
+wait    3
 run     clear
-wait    1
-run     ref -?
-wait    4
-run     ksh -c "cd /dd/tmp/DEV; ref crc_of"; echo "status $?"
+run     ksh -c "cd /dd/tmp/DEV/ref; ref crc_of" 2>/nil
 wait    6
 
 shot    libsplit

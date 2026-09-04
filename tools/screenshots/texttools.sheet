@@ -44,6 +44,16 @@ wait    3
 run     diff -c /dd/tmp/a.txt /dd/tmp/b.txt
 wait    5
 
+shot    diff_1.1
+cap     A second build of GNU diff 1.1.  Two short lists that differ on one
+cap     line: diff_1.1 reports the change, pear becoming peach.
+run     mkdir -p /dd/tmp/BLGX > /nil 2>/nil
+run     printf 'apple\rpear\rplum\r' > /dd/tmp/BLGX/d1
+run     printf 'apple\rpeach\rplum\r' > /dd/tmp/BLGX/d2
+run     clear
+run     diff_1.1 /dd/tmp/BLGX/d1 /dd/tmp/BLGX/d2
+wait    5
+
 shot    deton
 cap     deton counts down three seconds and blows the machine up, which it
 cap     announces and does not do.  Run it with nothing on standard input

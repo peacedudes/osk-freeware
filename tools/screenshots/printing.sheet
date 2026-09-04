@@ -43,9 +43,6 @@ cap     meant to be sent to the printer device.  Shown here as a dump.
 run     mkdir -p /dd/tmp/PRT > /nil 2>/nil; alps -lq > /dd/tmp/PRT/alps.out
 wait    3
 run     clear
-wait    1
-run     alps
-wait    3
 run     dump /dd/tmp/PRT/alps.out
 wait    5
 

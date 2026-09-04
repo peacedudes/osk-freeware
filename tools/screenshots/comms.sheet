@@ -248,10 +248,15 @@ run     nptx < /dd/tmp/MAILA/np.txt
 wait    6
 
 shot    pathalias
-cap     Computes mail routes from a map of who calls whom -- its options,
-cap     since no map ships here.
-run     pathalias -?
-wait    6
+cap     Computes mail routes from a map of who calls whom.  Given a map
+cap     where milkyway calls phoenix, phoenix calls seabass and seabass
+cap     calls pirsqrd, it prints the cheapest route to each site; the %s
+cap     is where a user name goes.
+run     mkdir -p /dd/tmp/BLGX > /nil 2>/nil
+run     printf "milkyway phoenix(20)\rphoenix seabass(30)\rseabass pirsqrd(10)\r" > /dd/tmp/BLGX/map
+run     clear
+run     pathalias -l milkyway /dd/tmp/BLGX/map
+wait    5
 
 shot    philmail
 cap     An off-line mail reader: it opens $MAIL, confirms the file is
@@ -875,10 +880,10 @@ run     wn -L /nil -l /nil < /dd/tmp/COMB/rq.crlf | head -n 18
 wait    8
 
 shot    wndex
-cap     Builds the index.cache that WN serves from.  It works on the
-cap     current directory and ignores a directory given as an argument, so
-cap     it is run through ksh, whose `cd' moves the OS-9 data directory.
-run     ksh -c "cd /h0/c/unid/wn_1.14.3/osk; wndex" 2>/nil
+cap     Builds the index.cache the WN web server reads a directory from.
+cap     It works on the current directory, so it is run through ksh, whose
+cap     `cd' moves the OS-9 data directory to the site's folder first.
+run     ksh -c "cd /dd/c/unid/wn_1.14.3/osk; /dd/CMDS/WN/wndex" 2>/nil
 wait    8
 
 shot    inetd

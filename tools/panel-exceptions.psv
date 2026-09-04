@@ -51,3 +51,55 @@ spottopgm|reads a SPOT satellite image, no sample ships; its card shows its usag
 ximtoppm|reads an Xim image, no sample ships; its card shows it naming what it wants
 xvminitoppm|reads an XV thumbnail image, no sample ships; its card shows it naming what it wants
 ptxminst|installs the ptxm path-table module into the kernel, which needs system state not available here; its usage is what there is to show
+frm|lists who your mail is from; it does not recognize this disk's mail folder and reports no mail, where messages and readmsg read the same one
+lmail|delivers mail locally; a real recipient makes it wait on a peer that never answers, so only its usage line is safe to show
+mail|a simple mail sender; it opens a scratch file on /r0, the RAM disk this configuration has no device for, and stops there
+mailx|the mail reader and sender; it finds a mailbox by user number, and the super user this runs as has none
+rmail|delivers incoming mail, invoked by uuxqt not by hand; local delivery expects a mailbox directory where a plain file ships, so it stops
+smail|the smart mail router; it needs a routing configuration and a peer to hand mail to, neither present, so its options are what there is to show
+uucico|the UUCP transfer program; it dials or answers a UUCP peer over a serial line, of which there is none here, so its options are what there is to show
+uuxqt|runs the commands a remote UUCP site queued here; it needs a queue and a peer to fill it, finds neither, and stops at once
+uulog|shows the UUCP transfer log; no UUCP traffic has been logged on this disk, so there is nothing to print
+finger|asks another machine who is logged in; it needs a network to reach, and prints its usage without one
+msntp|sets the clock from a network time server; built against a later csl edition than the disk ships, it stops at the mismatch banner
+blastem|XMODEM and YMODEM file transfer for the MM/1; it needs a modem on a serial path, and its help is what there is to show without one
+byteflip|byte-swaps a dbz database between architectures; with no database to swap it ends the shell rather than printing anything
+newslock|the news system's file lock; it belongs to a news spool this configuration does not run, and leaves no trace here
+connect|joins two serial paths so you can talk through one to the other; there are no serial devices here, so its usage is what there is to show
+disable|turns MTSMon off on a serial port; it needs the port's driver module resident to find it, and none is loaded
+enable|the counterpart to disable on a serial port; it too needs the port's driver module resident, and none is loaded
+cls|clears the screen through the terminal's termcap clear capability; a cleared screen is the whole of its output
+fkeys|sets a VT220 terminal's function keys from a definition file; it needs VT220 hardware to program, and names its file argument without one
+setfont|loads a downloadable font into a terminal from a font file; it needs terminal hardware to receive the font, and prints its usage without one
+sbreak|sends a break signal on a serial device; there is no serial device here to send one on, so it reports that a device must be given
+wysecrack|probes for a Wyse terminal by asking it to identify itself; nothing here is a Wyse, so no reply comes and the screen stays blank
+uwho|lists who is logged in from the UNAXCESS bulletin board; it opens /etc/utmp, and a leading /etc names a device in OS-9, so it cannot find that file
+authwn|WN's authenticator for a password-protected area; inetd and wn invoke it per request, and run alone it has nothing to authenticate
+inetdc|what inetd forks to handle each connection; run by hand with nothing to serve it exits in silence
+basicwin|an X11 basic-window demo; built against a later csl edition than the disk ships, it stops at the mismatch banner before it looks for an X server
+xengine|an X11 demo that animates an engine; built against a later csl edition than the disk ships, it stops at the mismatch banner before it looks for an X server
+loadmem|loads a file into memory at a hex address; it must run as the super user with addresses given, and prints its syntax without them
+savemem|writes a block of memory out to a file; it must run as the super user with addresses given, and prints its syntax without them
+snap|writes a snapshot of the screen on specific hardware terminals; it does not recognize this console, which is not one of them
+getsys|reports OS-9's system globals; the emulator does not implement the system-global reads it makes, so only unimplemented notices come back
+sysmax|reports the scheduler's maximum process age; the emulator keeps no such setting, so it reads back zero
+signal|sends an OS-9 signal to a process named by id; with no target process its syntax is what there is to show
+snd_sig|sends a signal to one or more processes named by id; with no target process its synopsis is what there is to show
+transfer|copies files from GDOS disks to OS-9; it wants the GDOS device DGDOS0, which is not present
+mvolformat|formats a set of floppies with sequential volume numbers; there is no floppy drive here, so its syntax is what there is to show
+bootgen|builds an OS9Boot file from named modules for a machine to start from; there is no such file to build here, so it answers with its command format
+bsplt68|takes an OS9Boot file apart into the modules inside it; there is no boot file here, so it answers with its usage line
+dpark|restores an RBF disk's head to track zero; there is no disk head to park here, so it answers with its command format
+setime|sets the system clock; it prompts for the date and time in YYMMDDHHMMSS order, and setting the clock is a privileged operation
+rndir|renames subdirectory names to upper or lower case; on this case-insensitive filesystem a name and its other-case form are one entry, so there is nothing to change
+lgrep|lists the files a pattern appears in; it prints nothing even for a pattern that is present, so grep -l does this job
+fixyear|corrects a file's modification year when the clock wrote a wrong one; the files here carry good years, so it finds nothing to fix
+os9lib|not a program but the RTF/68K FORTRAN runtime library; it is shown among the runtime modules, not run
+edir|lists the OS-9 event directory; nothing on this disk creates an event, so the heading is all there is
+pbmtobbnbg|writes graphics for a BBN BitGraph terminal; it rejects the PBM bitmaps this disk's netpbm makes with bad magic number and writes nothing
+lpq|shows the print spooler's queue; no spooler is running on this disk, and it says so
+lpshut|stops the print spooler; none is running here, and it says so
+setterm|reports the terminal type in a single line -- too little for a published panel, but it does its one job
+uuname|lists the UUCP site names, a few short lines below the publish threshold; it does its job
+vis|redraws one command's output in place like watch; its control header is a single line, too little to publish
+unpacklib.os9|the OS-9 build of unpacklib; extracts modules from a library until a sync mismatch, shown on the unpacklib card

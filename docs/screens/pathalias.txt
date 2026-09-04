@@ -1,2 +1,5 @@
-$ pathalias -?
-usage: pathalias [-vciDfI] [-l localname] [-d deadlink] [-t tracelink] [-g edge]
+pathalias -l milkyway /dd/tmp/BLGX/map
+milkyway        %s
+phoenix phoenix!%s
+seabass phoenix!seabass!%s
+pirsqrd phoenix!seabass!pirsqrd!%s

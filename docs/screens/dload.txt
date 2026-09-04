@@ -1,12 +1,4 @@
-$ dload -?
-Syntax: dload <filename>
-Function: loads datafile into datamodule
-$ dload /dd/SYS/motd
+dload /dd/SYS/motd
 size of file is 40 bytes
 datamodule created at address $   a6034
 done
-$ load /dd/CMDS/math
-$ /dd/CMDS/trap
-tlink: -1
-**** Can't install trap handler ****
- **** +-*/&|^<>@? ****

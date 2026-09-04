@@ -21,7 +21,7 @@ advcom 9ae540c60a6292e0
 advent 9075b262893d053c
 advint 26d631e81235a8a2
 afm2tfm ebc3bdf80c70c39c
-alps 3a28ea3743d43d11
+alps 7472efa296c3ae26
 animal 8d6dde8ad9d818e0
 answer 68432d5553132353
 ape ff2ea3d1aec5fd5a
@@ -166,6 +166,7 @@ dhryO2 53cda304a834444b
 dhryshamu 5e5747f5569ace77
 dhryshamu2 fa53101f8a6f23fa
 diff f72994c1e4161a8f
+diff_1.1 f9bf5ba7f302d343
 digclk fbfa25c19b06608e
 dinfo 0051d35cb9088d43
 dir 1854f7f147d2183c
@@ -176,7 +177,7 @@ divide d349c04fa6c2a9e6
 djpeg c2e703e947c074cc
 djpeg.070 73c4fb106442b4a8
 dld 29b521f9a53df750
-dload a383bac4e722deb4
+dload 4c55012c26d7d3f5
 dm 0489d0b6490d54c4
 dmake 7695714abde9ca2c
 dotilde d03058da0d1d66ac
@@ -227,7 +228,7 @@ expr 93380e70a1308318
 exrecover 7e7b5298a953fdb1
 fastcc c055587702188aa7
 fastmail 1d2d8ec37627ea28
-fc 2a141c738ea23450
+fc a980adc22d2b53de
 fcomp 7aecd893e0f4fe60
 ff dfa69563d285691d
 fgrep b278536a389453c1
@@ -393,6 +394,7 @@ luac e2ea42f12587de6c
 lunisolar d63d5ea17ef7647f
 lwf bf97ed782b46f95d
 m4 378850f6d59d1404
+m4_0.5 4ee266258ee3e7d3
 macbin e85a55c39081aa41
 macsave 36cc548a9e398565
 macstream 30b4f145c6304010
@@ -480,10 +482,11 @@ paranoia 0a60d6a2260427f6
 passwd 80bb42d2e96f7a0e
 paste d2243f0ddb449c8a
 patch df1f681e1f48c636
-pathalias 0f9a9b5303f5a359
+pathalias 34756b5fc6d4acd9
 pbmclean 992d59ef466d5e30
 pbmlife 3f167eca3c936086
 pbmmake f565a85b9906f3ec
+pbmreduce be6bce43042fff63
 pbmtext 5f83b08009f7c689
 pbmtext-big 711041865a144bd2
 pbmtobbnbg 67eb174ce26454d1
@@ -503,6 +506,7 @@ perr 02e58a200bd8ac19
 pgmbentley b079b91a0b00deb1
 pgmcrater dee5ef5d4f77dbcb
 pgmedge 6c951766d777d2fe
+pgmenhance fc4309c40cd0e7e0
 pgmhist a8733cee879451f2
 pgmkernel 3a015b39f4093c70
 pgmnoise 3a49d99fa17cd305
@@ -532,6 +536,7 @@ pnmfile-set f1d2d67917d3cef5
 pnmfilters b54d08f8f12e6ab0
 pnmflip 985c8b4b2ff90b2b
 pnmgamma a2d15ca13610bf0a
+pnmhisteq 25b7d221c6b91435
 pnmhistmap c0d83fa1b9832e49
 pnminvert b10ec80cf694c965
 pnmpad 674dd3c6ea9d2b54
@@ -549,17 +554,22 @@ poker 82d2300aa146e42d
 postnews cf27d5fa47119b0b
 postprint a58d11a7c2dbd6fd
 ppm3d 636f7a9489a4580d
+ppmbrighten bc06c6f2ba3c9bd7
+ppmchange bc7f47bf9f37e26f
+ppmdim 75761f7f1a4d5fe6
 ppmdither d18894ea323bbfc9
 ppmforge 25eca22c40c974fb
 ppmforge-clouds 6a098c52c172f163
 ppmhist 3b3195262c83e0a6
 ppmmake 9333f2d4677b5be4
 ppmmix 232b20da2529b42a
+ppmnorm 3173c49ace12eb0b
 ppmntsc 6126a0662b8ff756
 ppmpat 59551434201fdbb7
 ppmpat-madras 786dc9d0282816d7
 ppmrelief 0dffe89da022c80e
 ppmshift ca0211b4f530ecaf
+ppmspread 81350140e7adc00c
 ppmtoacad 89769a272db50e74
 ppmtomitsu f9e67f772f9c3944
 ppmtosixel 166c86b3adb6732f
@@ -597,8 +607,8 @@ read_mail be5251153b679bc2
 readmsg acf5e6d2c4a14d0e
 readnews d2383353e60d7d02
 rechne 59c965a157f88843
-ref 832a8361d38d58b9
-remove ae6c313cfc68e63d
+ref 84447238ec383253
+remove 775f9a9bc4c913f9
 rendsk a2b8a5173c3a3a45
 repeat e9f8f6a00172082f
 rlog 8424d653c8d9b882
@@ -779,6 +789,7 @@ wgen c6a9a7f50fccf8ee
 what f7bea8cc7ea0b3ae
 whoami ac172d53bcf13294
 wn a5b2d37c942823ac
+wndex 916f0dae1acb0289
 workstations e4b6598d2606da9b
 writeonly 304e6fedbd14aba1
 wrjpgcom 39e3cf5ee5f6d222

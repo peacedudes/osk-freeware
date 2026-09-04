@@ -282,10 +282,7 @@ cap     the whole of it.
 run     mkdir -p /dd/tmp/ENC > /nil 2>/nil; rm -f /dd/tmp/ENC/fc.*; cat /dd/SYS/holidays | head -n 12 > /dd/tmp/ENC/fc.txt
 wait    3
 run     clear
-wait    1
-run     /dd/CMDS/fc -?
-wait    4
-run     ksh -c "cd /dd/tmp/ENC; /dd/CMDS/fc fc.txt"
+run     ksh -c "cd /dd/tmp/ENC; /dd/CMDS/fc fc.txt" 2>/nil
 wait    6
 run     ls -l /dd/tmp/ENC/fc.txt /dd/tmp/ENC/fc.txt_1
 wait    5

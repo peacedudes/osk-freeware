@@ -1,7 +1,11 @@
-ref -?
-usage: ref [-t] [-c class] [-f file] tag
-   -t        output tag info, instead of the function header
-   -f File   tag might be a static function in File
-   -c Class  tag might be a member of class Class
-$ ksh -c "cd /dd/tmp/DEV; ref crc_of"; echo "status $?"
-status 1
+ksh -c "cd /dd/tmp/DEV/ref; ref crc_of" 2>/nil
+keep.c, line 83:
+/* ---------------------------------------------------------------- CRC ---
+ * The OS-9 module CRC: polynomial $800063, complemented.  Used here on
+ * ordinary data files too, so the receipt can tell "the file I wrote" from
+ * "the file you have since played into".  Any CRC would do; this one is the
+ * collection's own idiom and is already understood by its tools.
+ */
+static unsigned long crc_of(path, sizep)
+char *path;
+long *sizep;

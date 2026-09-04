@@ -278,6 +278,16 @@ wait    5
 run     m4 < /dd/tmp/m.m4
 wait    8
 
+shot    m4_0.5
+cap     A second build of the m4 macro processor.  It reads a macro
+cap     definition and expands each use of it: GREET(world) becomes
+cap     hello world.
+run     mkdir -p /dd/tmp/BLGX > /nil 2>/nil
+run     printf 'define(GREET,hello $1)GREET(world)\r' > /dd/tmp/BLGX/mm.m4
+run     clear
+run     m4_0.5 /dd/tmp/BLGX/mm.m4
+wait    5
+
 shot    make
 size    36 80
 cap     `make' building the target, then running the same rule again with

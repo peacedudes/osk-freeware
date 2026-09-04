@@ -1,0 +1,4 @@
+pbmreduce 2 /dd/tmp/NEAB/ck.pbm > /dd/tmp/NEAB/ck2.pbm
+$ pnmfile /dd/tmp/NEAB/ck.pbm /dd/tmp/NEAB/ck2.pbm
+/dd/tmp/NEAB/ck.pbm:    PBM raw, 48 by 24
+/dd/tmp/NEAB/ck2.pbm:   PBM raw, 24 by 12

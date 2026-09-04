@@ -1,0 +1,8 @@
+pgmenhance -9 /dd/tmp/NEAB/en.pgm > /dd/tmp/NEAB/enh.pgm
+$ pgmtopbm /dd/tmp/NEAB/enh.pgm | pbmtoascii -2x4
+MMRM9H&S$/||||S;:::: .
+MM9H91&&S(}??S:<:/:-.-
+MMR&kH&$?}$))|;:|::-.:
+MM9MH1$$&S$||/:\\:::.
+MMH&&6&$S($??/?:>:-:'.'
+MMM9H&&S$Z$||\::/::- -

@@ -195,13 +195,15 @@ cap     `load' puts a program's module in the module directory, where it
 cap     can be started by name from anywhere; after `remove' the same name
 cap     is not found.  `rm' is what deletes files.
 run     clear
-wait    1
 run     load /dd/CMDS/ELM/readmsg
-wait    4
+wait    3
+run     echo "readmsg is now resident and answers by name:"
 run     sh -c "readmsg -\?"
-wait    6
-run     remove readmsg; sh -c "readmsg -\?"
-wait    8
+wait    4
+run     remove readmsg
+run     echo "after remove, the module is gone:"
+run     sh -c "readmsg -\?"
+wait    5
 snap
 
 shot    dir

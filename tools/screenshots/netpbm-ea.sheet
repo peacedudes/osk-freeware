@@ -315,3 +315,108 @@ run     pnmfile /dd/tmp/NEAB/3d.ppm
 wait    3
 run     ppmtopgm /dd/tmp/NEAB/3d.ppm | pgmtopbm | pbmtoascii -2x4
 wait    5
+
+shot    pbmreduce
+cap     Shrinks a bitmap by a whole-number factor, averaging each NxN block
+cap     down to one pixel.  A 48x24 checkerboard reduced by 2 comes out
+cap     24x12, as pnmfile reports.
+run     mkdir -p /dd/tmp/NEAB > /nil 2>/nil
+run     pbmmake -g 48 24 > /dd/tmp/NEAB/ck.pbm
+run     clear
+run     pbmreduce 2 /dd/tmp/NEAB/ck.pbm > /dd/tmp/NEAB/ck2.pbm
+wait    4
+run     pnmfile /dd/tmp/NEAB/ck.pbm /dd/tmp/NEAB/ck2.pbm
+wait    4
+
+shot    pgmenhance
+cap     Sharpens a greyscale image by picking out its edges; -N sets the
+cap     strength from 1 to 9.  A smooth left-to-right ramp comes back with
+cap     its steps emphasised, rendered here to characters.
+run     mkdir -p /dd/tmp/NEAB > /nil 2>/nil
+run     pgmramp -lr 48 24 > /dd/tmp/NEAB/en.pgm
+run     clear
+run     pgmenhance -9 /dd/tmp/NEAB/en.pgm > /dd/tmp/NEAB/enh.pgm
+wait    4
+run     pgmtopbm /dd/tmp/NEAB/enh.pgm | pbmtoascii -2x4
+wait    5
+
+shot    pnmhisteq
+cap     Equalises an image's tones so its brightness levels spread evenly.
+cap     -verbose prints the mapping it applied, each old value to its new
+cap     one and the pixel count at that level.
+run     mkdir -p /dd/tmp/NEAB > /nil 2>/nil
+run     pgmramp -lr 40 20 > /dd/tmp/NEAB/hq.pgm
+run     clear
+run     pnmhisteq -verbose /dd/tmp/NEAB/hq.pgm > /dd/tmp/NEAB/hqe.pgm
+wait    5
+
+shot    ppmchange
+cap     Replaces one colour with another throughout an image.  A solid red
+cap     image becomes solid blue; ppmhist reads the single colour back
+cap     before and after.
+run     mkdir -p /dd/tmp/NEAB > /nil 2>/nil
+run     ppmmake rgb:ff/00/00 40 20 > /dd/tmp/NEAB/rd.ppm
+run     clear
+run     ppmhist /dd/tmp/NEAB/rd.ppm
+wait    3
+run     ppmchange rgb:ff/00/00 rgb:00/00/ff /dd/tmp/NEAB/rd.ppm > /dd/tmp/NEAB/bl.ppm
+wait    3
+run     ppmhist /dd/tmp/NEAB/bl.ppm
+wait    3
+
+shot    ppmdim
+cap     Dims an image by a factor between 0 and 1, scaling every pixel
+cap     toward black.  White at 255 becomes grey at 127 when dimmed by
+cap     half, as ppmhist shows.
+run     mkdir -p /dd/tmp/NEAB > /nil 2>/nil
+run     ppmmake rgb:ff/ff/ff 40 20 > /dd/tmp/NEAB/wh.ppm
+run     clear
+run     ppmhist /dd/tmp/NEAB/wh.ppm
+wait    3
+run     ppmdim 0.5 /dd/tmp/NEAB/wh.ppm > /dd/tmp/NEAB/dm.ppm
+wait    3
+run     ppmhist /dd/tmp/NEAB/dm.ppm
+wait    3
+
+shot    ppmbrighten
+cap     Adjusts an image's brightness and saturation in HSV; -value gives
+cap     the percentage change.  A dull brown lightened by 50 percent, its
+cap     colour read back by ppmhist.
+run     mkdir -p /dd/tmp/NEAB > /nil 2>/nil
+run     ppmmake rgb:80/40/20 40 20 > /dd/tmp/NEAB/br.ppm
+run     clear
+run     ppmhist /dd/tmp/NEAB/br.ppm
+wait    3
+run     ppmbrighten -value +50 /dd/tmp/NEAB/br.ppm > /dd/tmp/NEAB/brr.ppm
+wait    3
+run     ppmhist /dd/tmp/NEAB/brr.ppm
+wait    3
+
+shot    ppmnorm
+cap     Stretches an image's contrast so its darkest and lightest pixels
+cap     reach full black and white.  A flat grey remapped to white, ppmnorm
+cap     reporting the range it moved.
+run     mkdir -p /dd/tmp/NEAB > /nil 2>/nil
+run     ppmmake rgb:ff/ff/ff 40 20 > /dd/tmp/NEAB/nw.ppm
+run     ppmdim 0.4 /dd/tmp/NEAB/nw.ppm > /dd/tmp/NEAB/nd.ppm
+run     clear
+run     ppmhist /dd/tmp/NEAB/nd.ppm
+wait    3
+run     ppmnorm /dd/tmp/NEAB/nd.ppm > /dd/tmp/NEAB/nn.ppm
+wait    3
+run     ppmhist /dd/tmp/NEAB/nn.ppm
+wait    3
+
+shot    ppmspread
+cap     Displaces each pixel by a random amount up to the number given,
+cap     roughening an image.  A smooth ramp above, the same spread by 8
+cap     below.
+run     mkdir -p /dd/tmp/NEAB > /nil 2>/nil
+run     pgmramp -lr 48 24 > /dd/tmp/NEAB/sr.pgm
+run     clear
+run     pgmtopbm /dd/tmp/NEAB/sr.pgm | pbmtoascii -2x4
+wait    3
+run     ppmspread 8 /dd/tmp/NEAB/sr.pgm > /dd/tmp/NEAB/sp.ppm
+wait    3
+run     ppmtopgm /dd/tmp/NEAB/sp.ppm | pgmtopbm | pbmtoascii -2x4
+wait    4

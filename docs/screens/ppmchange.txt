@@ -1,0 +1,9 @@
+ppmhist /dd/tmp/NEAB/rd.ppm
+ r   g   b      lum     count
+--- --- ---     ---     -----
+255   0   0     76      800
+<0 rgb:00/00/ff /dd/tmp/NEAB/rd.ppm > /dd/tmp/NEAB/bl.ppm
+$ ppmhist /dd/tmp/NEAB/bl.ppm
+ r   g   b      lum     count
+--- --- ---     ---     -----
+  0   0 255     29      800
