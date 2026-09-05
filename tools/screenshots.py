@@ -24,11 +24,26 @@ model driving this -- looks at them. What it DOES guarantee is that every
 screen here came out of a running program on the real disk image: the bytes
 are captured off the terminal, never composed.
 
+A card is a science-fair stand: a browser who knows nothing about the
+program should see at a glance WHAT IT DOES (the caption's first line and the
+catalogue's purpose), WHAT TO TYPE (`try', short, no paths), and IT RUNNING
+(a before/after in the capture), and only then, folded away, the detail.
+Requirements the reader must supply -- data files, a GAMES directory, runb --
+come from DOC/DEPENDS and show as `Needs'; cio is not one, it ships.
+
 Sheet format (blank lines and `#' comments ignored):
 
     shot    today                  start a stanza; the program's own name,
                                    because that is how the catalogue finds it
-    cap     Prints the date in ...  caption for the gallery (repeatable)
+    cap     Prints the date in ...  caption for the gallery (repeatable) --
+                                   describe what the reader is LOOKING AT; do
+                                   not restate the command or narrate the
+                                   capture, the screen is the example
+    try     today -l               the short command the card shows as `Try
+                                   it' -- what a reader types, with NO full
+                                   pathlists; omit it and the card shows the
+                                   bare program name, which is what you type
+                                   for most.  The demo below shows the real run
     for     sysid getsys           which CATALOGUE programs this screen shows,
                                    when the shot's own name is not the only
                                    one -- the gallery hangs it on each
