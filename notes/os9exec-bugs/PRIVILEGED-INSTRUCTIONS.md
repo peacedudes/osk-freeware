@@ -134,11 +134,14 @@ Measured against the rebuilt binary the same evening:
   twelve months of Koerper/Seele/Geist, and it loops back to the name
   prompt.  Its card now shows the chart.
 - **`creadoc` runs past the instruction** and reaches a stop of its own:
-  it reads file names out of `dir -eadu` from column 53 (`fnpos = 53` in
-  creadoc.f) and the 2.4 `dir` prints them from column 54, so it opens
-  `" biory.f"` -- a name with a leading space -- and gets 214.  That is a
-  listing-format dependency in the program, not the CPU.  Whether OS-9's
-  own F$PrsNam would skip that space is not settled by the manuals on
-  hand; os9exec parses it as an empty name.
+  it reads file names from a fixed column of a `dir -eadu` listing
+  (`fnpos = 53` in creadoc.f) and expects a two-digit year there, being a
+  1989 program.  OS-9 prints 2026 as `126', one digit wider, so the name
+  lands a column right and creadoc opens `" biory.f"' -- a leading space --
+  and gets 214.  This is a pre-Y2K program meeting a post-1999 date, NOT
+  the parser: F$PrsNam follows the 68k manual and does not skip a leading
+  space (rdoggett/os9exec, 2026-09-05).  Date the sources before 2000 and
+  the column is right, and creadoc still writes nothing -- a second stop,
+  not yet found, and not a MOVE SR matter.
 
 The Graph programs are unchanged: RTE is supervisor-only on every 68k.

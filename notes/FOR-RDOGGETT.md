@@ -51,9 +51,6 @@ of it. Updated 2026-09-04.
 7. **os9exec.** Three things still stop cards:
    - `F$GPrDBT` (0x1f) and `F$GPrDsc` (0x18) take a bus error instead of a
      refusal; `devprc -a`, `top` and `sysmon` reach them.
-   - `F$PrsNam` on a name with a leading space: os9exec parses it as an
-     empty name (`creadoc` hands it one). Whether real OS-9 skips the
-     space is not in the manuals on hand.
    - The allocator's `# No more memory ...` line goes to the console,
      which is the program's stdout, so it lands on a card (subber's).
      Real OS-9 refuses silently.

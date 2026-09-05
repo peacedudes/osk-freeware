@@ -406,13 +406,13 @@ wait    10
 
 shot    creadoc
 cap     extracts the documentation header of every .f file in the current
-cap     directory into creadoc.txt.  It lists the directory with `dir
-cap     -eadu' and reads each file name from column 53 of the listing;
-cap     this dir starts the name at column 54, so creadoc is handed a name
-cap     with a leading space and stops with OPEN ERROR 214 on the first
-cap     file.  DOC/rtf/biory.doc is what it makes of biory.f where the
-cap     columns match.  It needs the Fortran run-time loaded, and it
-cap     shells out to your dir and del, so those are loaded too.
+cap     directory into creadoc.txt.  It reads each file name from a fixed
+cap     column of a `dir -eadu' listing and was written in 1989 to expect a
+cap     two-digit year there; OS-9 prints 2026 as `126', a digit wider, so
+cap     the name lands a column right and creadoc opens it with a leading
+cap     space and stops -- a pre-Y2K program meeting a post-1999 date.  It
+cap     needs the Fortran run-time loaded, and shells out to your dir and
+cap     del, so those are loaded too.
 run     rm -rf /dd/tmp/CMPA; mkdir -p /dd/tmp/CMPA; cp /dd/SRC/rtf/biory.f /dd/tmp/CMPA/biory.f
 wait    4
 run     load /dd/CMDS/os9lib; load /h1/CMDS/shell; load /h1/CMDS/dir; load /h1/CMDS/del
