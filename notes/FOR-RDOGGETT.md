@@ -4,6 +4,26 @@ Only what is waiting on a decision of yours. Everything done, and why, is in
 git history and `notes/START-HERE-NEXT-SESSION.md`; this file carries none
 of it. Updated 2026-09-05.
 
+## The gallery, recast for a browser (2026-09-05)
+
+Done, per your science-fair steer -- the program panel (docs/index.html, from
+tools/catalog.template.html) now leads with what it does, a **Try it**
+command (short, no pathlists), **See it run** (the capture, moved up), and
+**Needs** (only real requirements -- data files and directories from
+DEPENDS, and runb for a BASIC09 program). Version, author, provenance, its
+own help and see-also are folded into a collapsed Details section. cio is
+de-emphasised as you asked: the star on every cio program, the "uses cio"
+flag and the "Runs without cio" filter are gone -- the modules ship, so it
+is a non-event. A new `try' sheet directive gives a card its command;
+without one the card shows the bare program name, which is what you type for
+most. The format is documented in tools/screenshots.py's sheet-format help.
+
+**What is left on this, for a later pass, not a blocker:** the per-card
+"what it does" line. Sampled, most are already clean one-liners; a minority
+still carry how-it-was-got-working prose. It is a category-by-category
+editing pass, not a redesign. Authoring `try' for the arg-needing cards
+(most just take their name) is the same kind of incremental work.
+
 ## Content decisions
 
 1. **Programs that may be best forgotten.** Each is measured and carded
