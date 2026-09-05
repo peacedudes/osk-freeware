@@ -93,7 +93,7 @@ SHEETS = os.path.join(REPO, "tools", "screenshots")
 # wants one and does not get it fails in a way that reads as its own bug --
 # `sokoban' stops with "cannot get your username" without USER, and `tttt'
 # with "Unknown terminal type ''" without TERM.
-LOGIN = ("export TERM=vt100",
+LOGIN = ("export TERM=xterm-256color",
          "export TERMCAP=/dd/SYS/termcap",
          "export HOME=/dd",
          "export USER=tester",
