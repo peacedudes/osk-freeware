@@ -1,0 +1,6 @@
+cat /dd/tmp/SUB/words
+,fox,cat
+,here,there
+<MDS/subber #1000k /dd/tmp/SUB/words /dd/tmp/SUB/in.txt"
+there is a cat
+the cat went there
