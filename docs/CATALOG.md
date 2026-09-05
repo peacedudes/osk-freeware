@@ -1255,8 +1255,8 @@
 |---|---|
 | `maze` | maze generator, small enough to have won an obfuscated-C contest.  It reads the number of rows on standard input and draws a maze that wide: `echo 11 \| maze'<br>**How:** Reads the number of rows on standard input: `echo 11 \| maze' draws a maze eleven rows deep. |
 | `mines` | &#9733; minesweeper<br>**How:** Full-screen minesweeper. Name a square by its row letter and then its column letter, and answer `Mark?' with Y to flag it rather than open it. `q' quits. |
-| `puz15` | the 15-puzzle -- same program as CMDS/puzzle15, built twice<br>**How:** Full-screen fifteen puzzle. Slide the tiles into the gap; `puz15 5x5' plays a bigger board. Control-C gets you out. |
-| `puzzle15` | the 15-puzzle -- same program as GAMES/puz15, built twice<br>**How:** The same fifteen puzzle, in CMDS. Slide the tiles into the gap; `puzzle15 5x5' plays a bigger board. Control-C gets you out. |
+| `puz15` | the 15-puzzle: slide the tiles into the gap, `puz15 5x5' for a bigger board.  A second port is CMDS/puzzle15; both have source and play the same<br>**How:** Full-screen fifteen puzzle. Slide the tiles into the gap; `puz15 5x5' plays a bigger board. Control-C gets you out. |
+| `puzzle15` | the 15-puzzle: slide the tiles into the gap, `puzzle15 5x5' for a bigger board.  A second port lives in GAMES/puz15; both have source and play the same<br>**How:** The same fifteen puzzle, in CMDS. Slide the tiles into the gap; `puzzle15 5x5' plays a bigger board. Control-C gets you out. |
 | `queens` | &#9733; N-queens solver -- IOCCC entry by M. Baruch.  It reads the board size on standard input as a NUMBER and draws every arrangement it finds with no two queens attacking: `echo 6 \| queens'<br>**How:** Reads the board size on standard input as a number: `echo 6 \| queens'. |
 
 **Word & guessing**
