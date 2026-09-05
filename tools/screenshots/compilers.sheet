@@ -405,13 +405,19 @@ run     lnk.org /dd/tmp/CMPA/div.f
 wait    10
 
 shot    creadoc
-cap     extracts documentation comments from FORTRAN source -- and aborts
-cap     here with a privilege violation, on an instruction (MOVE SR,D0) a
-cap     68000 allows and a real 68000 is what it needs.  `rtf' itself
-cap     compiles and `biory', the other RTF program on this disk, runs.
-run     mkdir -p /dd/tmp/CMPA > /nil 2>/nil; cp /dd/SRC/rtf/div.f /dd/tmp/CMPA/div.f
+cap     extracts the documentation header of every .f file in the current
+cap     directory into creadoc.txt.  It lists the directory with `dir
+cap     -eadu' and reads each file name from column 53 of the listing;
+cap     this dir starts the name at column 54, so creadoc is handed a name
+cap     with a leading space and stops with OPEN ERROR 214 on the first
+cap     file.  DOC/rtf/biory.doc is what it makes of biory.f where the
+cap     columns match.  It needs the Fortran run-time loaded, and it
+cap     shells out to your dir and del, so those are loaded too.
+run     rm -rf /dd/tmp/CMPA; mkdir -p /dd/tmp/CMPA; cp /dd/SRC/rtf/biory.f /dd/tmp/CMPA/biory.f
 wait    4
-run     load /dd/CMDS/os9lib
-wait    6
-run     creadoc /dd/tmp/CMPA/div.f
-wait    10
+run     load /dd/CMDS/os9lib; load /h1/CMDS/shell; load /h1/CMDS/dir; load /h1/CMDS/del
+wait    8
+run     clear
+wait    1
+run     ksh -c "cd /dd/tmp/CMPA; creadoc"
+wait    12

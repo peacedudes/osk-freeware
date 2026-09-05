@@ -270,45 +270,62 @@ run     dir /dd/tmp/ARC/zt
 wait    6
 
 shot    unzip
-cap     unzip's own banner and options.  Nothing on this disk can WRITE a
-cap     zip archive for it to open -- see `zip' -- so this is as far as
-cap     it goes here.
+cap     Info-ZIP unzip listing and then extracting an archive: two members,
+cap     one deflated and one stored, with their dates and sizes.
+cap     `unzip -l' lists, `unzip' extracts into the current directory, and
+cap     `-o' overwrites without asking.  DOC/zip/sample.zip is the archive.
+run     rm -rf /dd/tmp/UNZ; mkdir /dd/tmp/UNZ > /nil 2>/nil
+wait    3
 run     clear
 wait    1
-run     unzip
+run     unzip -l /dd/DOC/zip/sample.zip
+wait    6
+run     ksh -c "cd /dd/tmp/UNZ; unzip -o /dd/DOC/zip/sample.zip"
 wait    8
+run     ls -l /dd/tmp/UNZ
+wait    5
 
 shot    zipinfo
-cap     zipinfo's own options.  As with unzip, there is no zip archive on
-cap     this disk to report on.
+cap     zipinfo on an archive: one line per member with its permissions,
+cap     zip version, size, compression method and date, and a total.
+cap     `zipinfo -v' gives the long form.
 run     clear
 wait    1
-run     zipinfo
+run     zipinfo /dd/DOC/zip/sample.zip
 wait    6
 
 shot    zipnote
-cap     zipnote reads and writes a zip archive's comments; its own
-cap     options, for want of a zip archive to try it on.
+cap     zipnote writes an archive's comments as text -- one `@ name' line
+cap     per member with its comment beneath -- and reads the same text
+cap     back with `-w' to set them.  This archive has none, so the lines
+cap     are bare.
 run     clear
 wait    1
-run     zipnote
+run     zipnote /dd/DOC/zip/sample.zip
 wait    6
 
 shot    zipsplit
-cap     zipsplit cuts a zip archive into pieces that fit a floppy; its
-cap     own options, for want of a zip archive to try it on.
+cap     zipsplit cuts an archive into pieces no bigger than `-n' bytes,
+cap     numbered sample1.zip, sample2.zip and so on, so a large archive
+cap     fits a set of floppies.
+run     rm -rf /dd/tmp/ZSP; mkdir /dd/tmp/ZSP > /nil 2>/nil
+wait    3
 run     clear
 wait    1
-run     zipsplit
-wait    6
+run     ksh -c "cd /dd/tmp/ZSP; zipsplit -n 6000 /dd/DOC/zip/sample.zip"
+wait    8
+run     ls -l /dd/tmp/ZSP
+wait    5
 
 shot    funzip
-cap     funzip unzips the first entry of a zip stream straight through a
-cap     pipe; its usage line, for want of a zip archive to try it on.
+cap     funzip unzips the first member of an archive straight through a
+cap     pipe -- `funzip < archive.zip' -- and prints it; here the first
+cap     member is unzip's own readme.  Later members are ignored, and it
+cap     says so.
 run     clear
 wait    1
-run     funzip
-wait    6
+run     funzip < /dd/DOC/zip/sample.zip | head -n 16
+wait    8
 
 shot    shar
 cap     shar wraps files as a shell archive -- how source travelled over

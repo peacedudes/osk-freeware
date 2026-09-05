@@ -43,7 +43,7 @@ USAGE = re.compile(r"(?i)^\s*(usage|syntax|use\b|options?)\s*[:\-]"
                    r"|^\s*usage\s*$")
 ERROR = re.compile(
     r"(?i)(error\s*#|\berror\b|can't|cannot|couldn't|unable to|not found"
-    r"|no such|\*\*\*\*|unknown option|illegal|invalid|bad |permission"
+    r"|no such|\*\*\*\*\s.*\s\*\*\*\*|unknown option|illegal|invalid|bad |permission"
     r"|E\$[A-Za-z]|vector=\$|not accessible|no more memory|abort)")
 
 

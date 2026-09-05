@@ -173,9 +173,38 @@ case    gtar-reads-what-tar-wrote
 run     /dd/CMDS/REBUILT/gtar tf /dd/tmp/t.tar
 expect  tarme.txt
 
-# funzip and zipsplit need a zip archive, and `zip' on this disk cannot make
-# one (above).  So they are untestable here rather than broken, and this case
-# records the reason where anyone adding to this file will meet it.
-case    funzip-has-nothing-to-read
-run     /dd/CMDS/funzip < /dd/tmp/a.zip
-absent  ee2c20fa226fe6fc78feec7f123c7a99
+# THE ZIP READERS, 2026-09-04.  `zip' cannot write an archive here (above), so
+# DOC/zip/sample.zip ships as one for them to read: unzip's own `readme'
+# (4033 bytes, deflated) and `ziprules' (5218 bytes, stored).  Each reader
+# proves itself against the md5 of the file it was made from.
+case    zipinfo-lists-the-sample
+run     /dd/CMDS/zipinfo /dd/DOC/zip/sample.zip
+expect  2 files
+expect  ziprules
+
+case    unzip-extracts-the-sample
+run     /dd/CMDS/rm -rf /dd/tmp/UNZC
+run     /dd/CMDS/mkdir /dd/tmp/UNZC
+run     /dd/CMDS/ksh -c "cd /dd/tmp/UNZC; /dd/CMDS/unzip -o /dd/DOC/zip/sample.zip"
+run     /dd/CMDS/md5 /dd/tmp/UNZC/readme
+expect  7b7aa8ced5818e930b45a08a2439c03c
+run     /dd/CMDS/md5 /dd/tmp/UNZC/ziprules
+expect  cb0183b20aaca4269066d5fb68072c81
+
+case    funzip-inflates-the-first-member
+run     /dd/CMDS/funzip < /dd/DOC/zip/sample.zip > /dd/tmp/funz.out
+run     /dd/CMDS/md5 /dd/tmp/funz.out
+expect  7b7aa8ced5818e930b45a08a2439c03c
+
+case    zipnote-names-both-members
+run     /dd/CMDS/zipnote /dd/DOC/zip/sample.zip
+expect  @ readme
+expect  @ ziprules
+
+case    zipsplit-makes-two-pieces
+run     /dd/CMDS/rm -rf /dd/tmp/ZSPC
+run     /dd/CMDS/mkdir /dd/tmp/ZSPC
+run     /dd/CMDS/ksh -c "cd /dd/tmp/ZSPC; /dd/CMDS/zipsplit -n 6000 /dd/DOC/zip/sample.zip"
+expect  2 zip files will be made
+run     /dd/CMDS/zipinfo /dd/tmp/ZSPC/sample2.zip
+expect  1 file

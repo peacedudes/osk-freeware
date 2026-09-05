@@ -9,26 +9,29 @@ run     areacode 212 415 314 617
 wait    4
 
 shot    biory
+size    44 100
 cap     A biorhythm chart, in German.  It asks for a name (Name Vorname),
 cap     a birth date as day-month-year (Geburtsdatum, TTMMJJ) and the span
-cap     of years to chart (Gueltigkeitsbereich, JJ-JJ), and writes the chart
-cap     to Biory.Lis in the current directory.  It needs the Fortran run-time
-cap     loaded first.  After the third answer it stops on an instruction a
-cap     68000 allows and the 68020 os9exec emulates does not, so the chart
-cap     is written only on a 68000.
+cap     of years to chart (Gueltigkeitsbereich, JJ-JJ), writes the chart
+cap     to Biory.Lis in the current directory and asks for the next name;
+cap     RETURN there ends it.  Each month is three rows -- Koerper (body),
+cap     Seele (emotion), Geist (mind) -- with K marking the day a cycle
+cap     crosses.  It needs the Fortran run-time loaded first.
 run     load /dd/CMDS/os9lib
 wait    2
-run     rm -f /dd/tmp/BIO; mkdir -p /dd/tmp/BIO
+run     rm -rf /dd/tmp/BIO; mkdir -p /dd/tmp/BIO
 wait    2
 run     clear
 wait    1
-run     ksh -c "cd /dd/tmp/BIO; biory"
+run     ksh -c "cd /dd/tmp/BIO; biory; head -n 30 Biory.Lis"
 wait    5
 send    Anna Bergmann\r
 wait    3
 send    140365\r
 wait    3
 send    88-88\r
+wait    8
+send    \r
 wait    6
 
 shot    bio

@@ -336,9 +336,9 @@ cap     question and does work; it has its own card.
 run     ssl /dd/DOC/INDEX
 wait    4
 shot    sysid
-cap     sysid asks the kernel to identify itself through F$SysID.  That call
-cap     is not implemented here, so the line that comes back reports it as
-cap     unimplemented -- which is what sysid has to show on this system.
+cap     sysid asks the kernel to identify itself through F$SysID and prints
+cap     what comes back: the processor it is running on, the processor the
+cap     kernel was built for, and the kernel's own name and version line.
 run     sysid
 wait    5
 shot    sysmon

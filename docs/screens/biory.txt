@@ -1,13 +1,36 @@
-$ ksh -c "cd /dd/tmp/BIO; biory"
   Ausgabe im Listingfile 'Biory.Lis'
   Name Vorname (RETURN=Ende)  : Anna Bergmann
   Geburtsdatum (TTMMJJ)       : 140365
   Gueltigkeitsbereich (JJ-JJ) : 88-88
+  Name Vorname (RETURN=Ende)  :
+ STOP: BIO / NORMAL END
+         Biorhythmogramm fuer Anna Bergmann                (14.03.65)
+         ============================================================
 
-Process   Pid: 4, biory, edition 1
-    Exit code: E_PRCABT(228) Process Aborted
-  Directories: Current   - /dd/tmp/BIO
-               Execution - /dd/CMDS
-        Files: 00 fCons /term
-  Error #000:108 (E_VIOLAT) privelage violation TRAP 8 occurred
-%1       4 Error  108           biory
+         Januar    1988 :    1...5...10...15...20...25...30.
+                             *********K           K*********  Koerper
+                             **K             K*************K  Seele
+                             ****K                K*********  Geist
+
+         Februar   1988 :    1...5...10...15...20...25...30.
+                             *K           K**********K        Koerper
+                                          K*************K     Seele
+                             ******K                K*****    Geist
+
+         Maerz     1988 :    1...5...10...15...20...25...30.
+                                    K**********K           K  Koerper
+                                         K*************K      Seele
+                             **********K                K***  Geist
+
+         April     1988 :    1...5...10...15...20...25...30.
+                             **********K           K*******   Koerper
+                                      K*************K         Seele
+                             ************K                K   Geist
+
+         Mai       1988 :    1...5...10...15...20...25...30.
+                             ***K           K**********K      Koerper
+                                    K*************K           Seele
+                             ***************K                 Geist
+
+         Juni      1988 :    1...5...10...15...20...25...30.
+                                    K**********K              Koerper

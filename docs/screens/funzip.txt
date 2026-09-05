@@ -1,3 +1,18 @@
-funzip
-usage: funzip < infile.zip > outfile
-       extracts to stdout the first zip entry of stdin.
+funzip < /dd/DOC/zip/sample.zip | head -n 16
+funzip warning: zip file has more than one entry--rest ignored
+File Readme for:
+
+unzip50.zip     generic Unix/VMS/OS2/MSDOS/Mac/Windows[/Amiga/Atari] UnZip 5.0
+unzip50.zoo     same as above, but ZOO format
+unzip50.tar.Z   same as above, but compressed tar format
+
+A public distribution version of the Info-ZIP project's generic UnZip
+utility; 21 August 1992.
+
+__________________________________________________________________________
+
+BEFORE YOU ASK:  UnZip, its companion utility Zip, and related utilities
+and support files can be found in many places; read the file "Where" for
+further details.  To contact the authors with suggestions, bug reports, or
+fixes, continue reading this file (Readme) and the file "ZipRules".  For
+a list of known bugs and possible future features, read "BUGS".  And for a

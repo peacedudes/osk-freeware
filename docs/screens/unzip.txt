@@ -1,16 +1,14 @@
-unzip
-UnZip:  Zipfile Extract v5.0 of 21 August 1992;  (c) 1989 S.H.Smith and others
-Versions 3.0 and later by Info-ZIP.  Bug reports ONLY to zip-bugs@cs.ucla.edu
-
-OSK Version 1.1 By Ricky Beam 10/16/93
-Usage: unzip [ -options[modifiers] ] file[.zip] [filespec...]
-  -x  extract files (default)                -l  list files (short format)
-  -c  extract files to stdout/screen (CRT)   -v  list files (verbose format)
-  -f  freshen existing files, create none    -p  extract to pipe, no messages
-  -u  update files, create if necessary      -t  test archive integrity
-                                             -z  display archive comment
-modifiers:
-  -n  never overwrite existing files
-  -o  overwrite files WITHOUT prompting      -a  convert text (CR LF => LF)
-  -j  junk paths (don't make directories)    -U  don't make names lowercase
-  -q  quiet mode (-qq => quieter)
+unzip -l /dd/DOC/zip/sample.zip
+ Length    Date    Time    Name ("^" ==> case
+ ------    ----    ----    ----   conversion)
+   4033  08-30-92  12:00   readme
+   5218  08-30-92  12:00   ziprules
+ ------                    -------
+   9251                    2
+$ ksh -c "cd /dd/tmp/UNZ; unzip -o /dd/DOC/zip/sample.zip"
+  Inflating: readme
+ Extracting: ziprules
+$ ls -l /dd/tmp/UNZ
+total 9728
+-rw-------   1 0        0            4033 Sep  4 20:30 readme
+-rw-------   1 0        0            5218 Sep  4 20:30 ziprules

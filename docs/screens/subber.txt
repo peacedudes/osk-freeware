@@ -1,4 +1,5 @@
 cat /dd/tmp/TEXTA/subs
-,quick,slow,
-$ subber /dd/tmp/TEXTA/subs /dd/tmp/TEXTA/fox.txt
-# unimplemented F$Mem called by pid=3
+,quick,slow
+,lazy,busy
+$ load /dd/CMDS/cio; subber /dd/tmp/TEXTA/subs /dd/tmp/TEXTA/fox.txt
+# No more memory: 256-byte request refused: the block above the data area is ina

@@ -1,12 +1,8 @@
-zipsplit
-Copyright (C) 1990-1992 Mark Adler, Richard B. Wales, Jean-loup Gailly
-and Kai Uwe Rommel. Type 'zipsplit -L' for the software License.
-
-ZipSplit 1.9 (Aug 20th 1992)
-Usage:  zipsplit [-ti] [-n size] [-b path] zipfile
-  -t   report how many files it will take, but don't make them
-  -i   make index (zipsplit.idx) and count its size against first zip file
-  -n   make zip files no larger than "size" (default = 36000)
-  -b   use "path" for the output zip files
-  -s   do a sequential split even if it takes more zip files
-  -h   show this help               -L   show software license
+ksh -c "cd /dd/tmp/ZSP; zipsplit -n 6000 /dd/DOC/zip/sample.zip"
+2 zip files will be made (100% efficiency)
+creating sample1.zip
+creating sample2.zip
+$ ls -l /dd/tmp/ZSP
+total 8192
+-rw-------   1 0        0            2103 Sep  4 20:31 sample1.zip
+-rw-------   1 0        0            5332 Sep  4 20:31 sample2.zip

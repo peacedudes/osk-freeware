@@ -181,12 +181,16 @@ run     echo "define(G,hi \$1)G(there)" > /dd/tmp/m.src
 run     /dd/CMDS/m4 < /dd/tmp/m.src
 expect  hi there
 
-# LAST ON PURPOSE: subber's F$Mem failure takes the whole emulator session
-# with it, so every case after it would report `never ran'.
-case    subber-still-calls-an-unimplemented-syscall
-run     echo ",a,A," > /dd/tmp/sub.words
+# subber grows its data area 256 bytes at a time with F$Mem, which OS-9 grants
+# only while nothing sits in the memory directly above it.  A `cc' program
+# links cio right there at start, so the bare run is refused with E$MemFul --
+# deterministic, and what the manual says can happen.  With cio resident
+# BEFORE it starts it runs from Microware's shell; under bash something is
+# always above it, so that half is not a case.
+case    subber-bare-is-refused-its-data-area
+run     echo ",a,A" > /dd/tmp/sub.words
 run     /dd/CMDS/subber /dd/tmp/sub.words $T
-expect  F$Mem
+expect  Memory Full
 
 # RTF/68K COMPILES, measured 2026-08-29.  Its runtime library has to be in the
 # module directory first; without `load os9lib' the whole Fortran set prints

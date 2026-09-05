@@ -275,15 +275,29 @@ def break_cio_scan(root):
 
 
 def break_panel_backlog_forgets(root):
-    """A failing program taken OFF the backlog: the gate must miss it."""
+    """A failing program on neither list: the gate must miss it.
+
+    While the backlog had names, dropping one was the break.  It emptied on
+    2026-09-04 and this breaker crashed on names[0] -- the tool that exists
+    to prove checks can fail had stopped being able to run.  Now, with an
+    empty backlog, the same failure is made by taking a program OFF the
+    exceptions list instead: it fails the audit and is on neither file.
+    """
     import audit_panels
+    work = os.path.dirname(root)
     src = os.path.join(REPO, "tools", "panel-backlog.txt")
     names = [l.strip() for l in open(src) if l.strip() and not l.startswith("#")]
-    keep = names[1:]
-    copy = os.path.join(os.path.dirname(root), "panel-backlog.txt")
-    open(copy, "w").write("\n".join(keep) + "\n")
-    os.environ["OSK_PANEL_BACKLOG"] = copy
-    return "`%s' dropped from a COPY of panel-backlog.txt" % names[0]
+    if names:
+        copy = os.path.join(work, "panel-backlog.txt")
+        open(copy, "w").write("\n".join(names[1:]) + "\n")
+        os.environ["OSK_PANEL_BACKLOG"] = copy
+        return "`%s' dropped from a COPY of panel-backlog.txt" % names[0]
+    exc = os.path.join(REPO, "tools", "panel-exceptions.psv")
+    rows = [l for l in open(exc) if l.strip() and not l.startswith("#")]
+    copy = os.path.join(work, "panel-exceptions.psv")
+    open(copy, "w").write("".join(rows[1:]))
+    os.environ["OSK_PANEL_EXCEPTIONS"] = copy
+    return "`%s' dropped from a COPY of panel-exceptions.psv" % rows[0].split("|")[0]
 
 
 def break_panel_backlog_stale(root):
@@ -400,6 +414,7 @@ def main(argv):
         shutil.rmtree(root)
         shutil.move(pristine, root)
         os.environ.pop("OSK_PANEL_BACKLOG", None)
+        os.environ.pop("OSK_PANEL_EXCEPTIONS", None)
 
     shutil.rmtree(work, ignore_errors=True)
     print("\n%d of %d breaks were caught by the check meant to catch them"

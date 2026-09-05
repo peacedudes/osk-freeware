@@ -62,9 +62,9 @@ bincheckr e6e962522d8397eb
 binhex 31bd24cdb7d247f9
 bio 570e60369038202b
 bioradtopgm 646cd466aff9d089
-biory 4d3d4e013550da95
+biory d172ff3b5fed58de
 bison 64235b18086410da
-blackjack cec1db00d38ca72b
+blackjack cb5b1723a6717229
 blackjak af801185feddb977
 blastem fa9732657d0832ad
 bm 5b237767a602a2c0
@@ -127,7 +127,7 @@ cookie 56260c431cc004e7
 cp 2f22522d48ffeb04
 cpr 2c7a04b3b35e4e61
 cpu 098e41d6e2631e71
-creadoc 488d554aeee5356a
+creadoc 6579f37c36cf65c6
 crib 4db82a065a15e79a
 cribbage 236f40fb817c182c
 cron fac2b8018af8f39f
@@ -255,7 +255,7 @@ fortune 9ecfa07b45d3dc28
 fstat 69d2c7c7cc391f1b
 fstopgm 559908327f76f834
 fuddle 95d0107b8e92bdc1
-funzip 336d89a0b2f524c4
+funzip 4b9fcb57ad7604d3
 g fe668ad88d2c5a40
 g3 fa43d048ddbf5c4f
 game 2324f0be3ac484eb
@@ -685,7 +685,7 @@ strfile 3b4558cf363d4a58
 striche 78cf3953bcc12164
 strings b36450fe0c9d5b9e
 su a6743cd58fbaac7c
-subber ba4c5c95533aae40
+subber 64cb42fff9f49426
 submit f61226d5d1a9c152
 subscribe de670ec00b1065f4
 suicide1 a37ab53f9d172b16
@@ -750,7 +750,7 @@ unpacklib d74315bd236b0197
 unpacklib.os9 38afad1175812917
 unsit d313249b66cb4a1a
 unsubscribe ad1a9487cb43c7e6
-unzip 41b2c903b362064a
+unzip 2de866d3272cdb5f
 upperdir 2aa7400831d9c061
 uucico d94fafb3daba81bb
 uuclean 61b9ee9dcd19b1db
@@ -817,9 +817,9 @@ yuvsplittoppm ae67a7dfaab110c0
 z 44acd9294c1d2884
 zeisstopnm 6a472c42b5ee9648
 zip 7b56ca75e06c9a1a
-zipinfo 2b3b9c7af11d7768
-zipnote 78f5735a325c0c8b
-zipsplit 43011d0547125a91
+zipinfo 3d7d7d19e1b1aecc
+zipnote 1e3c046dc3560281
+zipsplit fe71bb762dcccec3
 zoo 3b81f688e7e2ca55
 zoo_2.1 e0aa18d63e61ddcf
 zot 82be4a319601a9ad

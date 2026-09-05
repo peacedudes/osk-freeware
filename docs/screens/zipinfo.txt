@@ -1,12 +1,5 @@
-zipinfo
-   ZipInfo:  Zipfile Information Utility v1.0 of 21 August 92
-   (brought to you by Newtware, Inc., and the fine folks at Info-ZIP)
-
-   Usage:  zipinfo [-1smlvht] file[.zip] [filespec...]
-     -1  list filenames only, one per line (useful for pipes)
-     -s  list zipfile info in short Unix "ls -l" format:  default
-     -m  list zipfile info in medium Unix "ls -l" format
-     -l  list zipfile info in long Unix "ls -l" format
-     -v  list zipfile information in verbose, multi-page format
-     -h  list header line
-     -t  list totals for files listed or for all files
+zipinfo /dd/DOC/zip/sample.zip
+Archive:  /dd/DOC/zip/sample.zip   7413 bytes   2 files
+d---------  2.0 unx    4033 b- defN 30-Aug-92 12:00 readme
+d---------  2.0 unx    5218 b- stor 30-Aug-92 12:00 ziprules
+2 files, 9251 bytes uncompressed, 7211 bytes compressed:  22%
