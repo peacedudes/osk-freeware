@@ -256,6 +256,10 @@ function rank(p, q){
 
 // The list gives each program one line: the first sentence of its entry.
 // The whole entry is on its page.
+function lead(d){
+  const m = /^(.*?)(\.\s|$)/.exec(d||"");
+  return m ? m[1] : d;
+}
 function brief(d){
   const m = /^(.*?)(\.\s|\s--\s|;\s|$)/.exec(d||"");
   return m ? m[1] : d;
@@ -373,6 +377,8 @@ function renderPanel(){
   add("Came from", p.origin ? esc(p.origin)+(p.archive?` &mdash; ${esc(p.archive)}`:"") : "");
   add("Source",    p.src ? `<code>SRC/${esc(p.src)}</code>` : (p.hassrc?`<code>SRC/${esc(p.name)}</code>`:""));
   add("Docs",      p.docs ? `<code>DOC/${esc(p.name)}/</code>` : "");
+  const full = p.desc && p.desc !== lead(p.desc) ? p.desc : "";
+  if(full && !((p.info||{}).purpose)) add("In full", esc(full));
   if(p.usage) D.push(`<dt>Its own help</dt><dd><pre class="usage">${esc(p.usage)}</pre></dd>`);
   add("Restrictions", esc(i.restrictions));
   add("Hardware",     esc(i.hardware));
@@ -394,7 +400,7 @@ function renderPanel(){
   col.innerHTML = `<div class="panel">`+
     `<button class="back" id="back">&larr; Back to the list</button>`+
     `<h2 class="pn">${esc(p.name)}</h2>`+
-    `<p class="pd">${esc(i.purpose||p.desc)}</p>`+
+    `<p class="pd">${esc(i.purpose||lead(p.desc))}</p>`+
     `<div class="try"><span class="k">Try it</span><code>${esc(tryCmd)}</code></div>`+
     (needs.length?`<div class="needs"><span class="k">Needs</span><span>${needs.join(" &middot; ")}</span></div>`:"")+
     seeHTML+

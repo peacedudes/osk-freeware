@@ -723,7 +723,7 @@
 | `binhex` | Encode a file as Macintosh BinHex 4.0<br>`Usage: binhex [-binhex] [files]` |
 | `hexbin` | Decode BinHex back to a Macintosh file<br>**How:** Decodes Macintosh BinHex (.hqx) files, which is how Mac software travelled by mail and BBS. binhex goes the other way; unsit opens StuffIt archives and macunpack opens PackIt ones. All trap-free. DOC/macutils has the package readme. |
 | `macbin` | MacBinary encode/decode<br>`Usage  :   Converts files to MacBinary format` |
-| `macsave` | unpack MacBinary files FROM STANDARD INPUT, and its SILENCE IS CORRECT: its own manual page says it "reads standard input and silently writes the file(s) it contains", giving them `.bin' names in the current directory and making subdirectories for embedded folders. `macbin' is the translator that MAKES one. DOC/macsave/macsave.1.<br>**How:** Its silence is CORRECT and documented: DOC/macsave/macsave.1 says it "reads standard input and silently writes the file(s) it contains". `macbin' makes the MacBinary it wants, and the pair round-trips. |
+| `macsave` | unpack MacBinary files from standard input into `.bin' files in the current directory, making subdirectories for embedded folders.  It writes silently, as its manual page says.  `macbin' is the translator that makes a MacBinary file.  DOC/macsave/macsave.1.<br>**How:** Its silence is CORRECT and documented: DOC/macsave/macsave.1 says it "reads standard input and silently writes the file(s) it contains". `macbin' makes the MacBinary it wants, and the pair round-trips. |
 | `macstream` | Read a MacTerminal file stream.  It measures the file before it reads it and answers `Short file <name>' for anything too small to be one<br>`Usage: macstream [-macstream] files` |
 | `macunpack` | Unpack a packed Macintosh archive<br>`Usage: macunpack [-macunpack] [filename]` |
 | `mcvert` | Convert between Macintosh file representations<br>`Usage: Mcvert [-rduxh] [DUpqsv] filename(s)` |
@@ -1421,7 +1421,7 @@
 | `sysmin` | &#9733; shows the system's minimum process PRIORITY -- `system minimun priority is 0' here, same F$SetSys call. |
 | `sysmon` | &#9733; system monitor.  It asks whether to create SYS/nodedef, times out on the keyboard and draws its Process Monitor, then takes a bus error at F$GPrDsc, the get-process- descriptor call this system does not answer -- the same gap `devprc -a' and `top' meet.  `dinfo', `map' and `space' answer the questions it would have.<br>`Syntax: sysmon [<opt>]` |
 | `t` | tiny test/stub binary |
-| `top` | &#9733; show the busiest processes -- prints its heading and then aborts (E_PRCABT).  `aprocs' aborts the same way<br>`Syntax: top [<opts>] [<num>]` |
+| `top` | &#9733; show the busiest processes by their share of the CPU.  It prints its headings and then crashes -- its own bug: it asks about the root process's non-existent parent and does not check the error.  `aprocs' and `sysmon' show process state and run<br>`Syntax: top [<opts>] [<num>]` |
 | `vis` | &#9733; run a command over and over and refresh the screen with its output -- what `watch' does on other systems: `vis {opts} <command> <args>'.  Not the Unix `vis' that makes non-printing characters visible |
 | `who` | 'who is logged in'.  Written in Microware shell syntax |
 
