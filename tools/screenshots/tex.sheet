@@ -122,10 +122,10 @@ wait    20
 
 shot    dvialw
 size    36 80
-cap     The DVI driver for the Apple LaserWriter: it turns the story's
-cap     DVI into PostScript beside it.  The bitmap fonts it looks for at
-cap     300 dots per inch are not on the disk, so it sets the text at zero
-cap     size and says so for each font.
+cap     The DVI driver for the Apple LaserWriter: it turns the story's DVI
+cap     into PostScript beside it, rendering the text from the 300 dpi
+cap     Computer Modern fonts this collection now ships (SYS/TEX/FONTS).
+cap     It reports [OK] and the PostScript carries the real glyphs.
 run     mkdir -p /dd/tmp/TEX > /nil 2>/nil; rm -f /dd/tmp/TEX/story.dvi /dd/tmp/TEX/story.dvi_alw; cat /dd/SYS/TEX/SAMPLES/story.tex > /dd/tmp/TEX/story.tex; printf '\\end\r' >> /dd/tmp/TEX/story.tex; ksh -c "cd /dd/tmp/TEX; tex story.tex" > /nil
 wait    40
 run     clear
@@ -137,8 +137,9 @@ wait    5
 
 shot    dvidjp
 size    36 80
-cap     The DVI driver for the HP DeskJet, on the same story; the same
-cap     missing bitmap fonts.
+cap     The DVI driver for the HP DeskJet, on the same story: at 300 dpi
+cap     it finds the shipped Computer Modern fonts and renders the page,
+cap     the output growing from the DVI by the size of the glyph rasters.
 run     mkdir -p /dd/tmp/TEX > /nil 2>/nil; rm -f /dd/tmp/TEX/story.dvi /dd/tmp/TEX/story.dvi_*; cat /dd/SYS/TEX/SAMPLES/story.tex > /dd/tmp/TEX/story.tex; printf '\\end\r' >> /dd/tmp/TEX/story.tex; ksh -c "cd /dd/tmp/TEX; tex story.tex" > /nil
 wait    40
 run     clear
@@ -150,7 +151,9 @@ wait    5
 
 shot    dvieps
 size    36 80
-cap     The DVI driver for Epson dot-matrix printers, on the same story.
+cap     The DVI driver for Epson dot-matrix printers (240 dpi).  There is
+cap     no 240 dpi font here, so it scales the shipped 300 dpi ones by
+cap     nearest neighbor -- which it announces per font -- and renders.
 run     mkdir -p /dd/tmp/TEX > /nil 2>/nil; rm -f /dd/tmp/TEX/story.dvi /dd/tmp/TEX/story.dvi_*; cat /dd/SYS/TEX/SAMPLES/story.tex > /dd/tmp/TEX/story.tex; printf '\\end\r' >> /dd/tmp/TEX/story.tex; ksh -c "cd /dd/tmp/TEX; tex story.tex" > /nil
 wait    40
 run     clear
@@ -162,7 +165,8 @@ wait    5
 
 shot    dviimp
 size    36 80
-cap     The DVI driver for the Imagen laser printer, on the same story.
+cap     The DVI driver for the Imagen laser printer (300 dpi), on the same
+cap     story: it finds the shipped 300 dpi fonts and renders the page.
 run     mkdir -p /dd/tmp/TEX > /nil 2>/nil; rm -f /dd/tmp/TEX/story.dvi /dd/tmp/TEX/story.dvi_*; cat /dd/SYS/TEX/SAMPLES/story.tex > /dd/tmp/TEX/story.tex; printf '\\end\r' >> /dd/tmp/TEX/story.tex; ksh -c "cd /dd/tmp/TEX; tex story.tex" > /nil
 wait    40
 run     clear
@@ -174,7 +178,8 @@ wait    5
 
 shot    dvijep
 size    36 80
-cap     The DVI driver for the HP LaserJet Plus, on the same story.
+cap     The DVI driver for the HP LaserJet Plus (300 dpi), on the same
+cap     story: it finds the shipped 300 dpi fonts and renders the page.
 run     mkdir -p /dd/tmp/TEX > /nil 2>/nil; rm -f /dd/tmp/TEX/story.dvi /dd/tmp/TEX/story.dvi_*; cat /dd/SYS/TEX/SAMPLES/story.tex > /dd/tmp/TEX/story.tex; printf '\\end\r' >> /dd/tmp/TEX/story.tex; ksh -c "cd /dd/tmp/TEX; tex story.tex" > /nil
 wait    40
 run     clear
@@ -186,7 +191,8 @@ wait    5
 
 shot    dvijet
 size    36 80
-cap     The DVI driver for the HP LaserJet, on the same story.
+cap     The DVI driver for the HP LaserJet (120 dpi default): it scales the
+cap     shipped 300 dpi fonts by nearest neighbor and renders the page.
 run     mkdir -p /dd/tmp/TEX > /nil 2>/nil; rm -f /dd/tmp/TEX/story.dvi /dd/tmp/TEX/story.dvi_*; cat /dd/SYS/TEX/SAMPLES/story.tex > /dd/tmp/TEX/story.tex; printf '\\end\r' >> /dd/tmp/TEX/story.tex; ksh -c "cd /dd/tmp/TEX; tex story.tex" > /nil
 wait    40
 run     clear
@@ -198,7 +204,9 @@ wait    5
 
 shot    dvilj2
 size    36 80
-cap     The DVI driver for the HP LaserJet II, on the same story.
+cap     The DVI driver for the HP LaserJet II (300 dpi), on the same story:
+cap     it finds the shipped 300 dpi Computer Modern fonts, reports [OK],
+cap     and the PCL it writes carries the real glyph rasters.
 run     mkdir -p /dd/tmp/TEX > /nil 2>/nil; rm -f /dd/tmp/TEX/story.dvi /dd/tmp/TEX/story.dvi_*; cat /dd/SYS/TEX/SAMPLES/story.tex > /dd/tmp/TEX/story.tex; printf '\\end\r' >> /dd/tmp/TEX/story.tex; ksh -c "cd /dd/tmp/TEX; tex story.tex" > /nil
 wait    40
 run     clear
@@ -210,7 +218,8 @@ wait    5
 
 shot    dvimac
 size    36 80
-cap     The DVI driver for the Apple ImageWriter, on the same story.
+cap     The DVI driver for the Apple ImageWriter (120 dpi): it scales the
+cap     shipped 300 dpi fonts by nearest neighbor and renders the page.
 run     mkdir -p /dd/tmp/TEX > /nil 2>/nil; rm -f /dd/tmp/TEX/story.dvi /dd/tmp/TEX/story.dvi_*; cat /dd/SYS/TEX/SAMPLES/story.tex > /dd/tmp/TEX/story.tex; printf '\\end\r' >> /dd/tmp/TEX/story.tex; ksh -c "cd /dd/tmp/TEX; tex story.tex" > /nil
 wait    40
 run     clear
@@ -222,7 +231,8 @@ wait    5
 
 shot    dvioki
 size    36 80
-cap     The DVI driver for Okidata printers, on the same story.
+cap     The DVI driver for Okidata printers (144 dpi): it scales the
+cap     shipped 300 dpi fonts by nearest neighbor and renders the page.
 run     mkdir -p /dd/tmp/TEX > /nil 2>/nil; rm -f /dd/tmp/TEX/story.dvi /dd/tmp/TEX/story.dvi_*; cat /dd/SYS/TEX/SAMPLES/story.tex > /dd/tmp/TEX/story.tex; printf '\\end\r' >> /dd/tmp/TEX/story.tex; ksh -c "cd /dd/tmp/TEX; tex story.tex" > /nil
 wait    40
 run     clear
@@ -234,7 +244,8 @@ wait    5
 
 shot    dvitos
 size    36 80
-cap     The DVI driver for Toshiba printers, on the same story.
+cap     The DVI driver for Toshiba printers (166 dpi): it scales the
+cap     shipped 300 dpi fonts by nearest neighbor and renders the page.
 run     mkdir -p /dd/tmp/TEX > /nil 2>/nil; rm -f /dd/tmp/TEX/story.dvi /dd/tmp/TEX/story.dvi_*; cat /dd/SYS/TEX/SAMPLES/story.tex > /dd/tmp/TEX/story.tex; printf '\\end\r' >> /dd/tmp/TEX/story.tex; ksh -c "cd /dd/tmp/TEX; tex story.tex" > /nil
 wait    40
 run     clear

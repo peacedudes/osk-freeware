@@ -6,18 +6,18 @@ ksh -c "cd /dd/tmp/TEX; dvioki story.dvi"
 [1 pages]
 [Log file [story.dvi_err] created]
 
-Font file [cmsl10 [144 dpi]] could not be opened; 0 font files are open
-Proceeding with zero size characters for this font
+Font file [cmsl10 [144 dpi]] could not be opened.
+---using nearest neighbor [/DD/SYS/TEX/FONTS/pk300/cmsl10.300pk [300 dpi]] inst.
 Current TeX page counters: [0]
 
-Font file [cmbx10 [144 dpi]] could not be opened; 0 font files are open
-Proceeding with zero size characters for this font
+Font file [cmbx10 [144 dpi]] could not be opened.
+---using nearest neighbor [/DD/SYS/TEX/FONTS/pk300/cmbx10.300pk [300 dpi]] inst.
 Current TeX page counters: [0]
 
-Font file [cmr10 [144 dpi]] could not be opened; 0 font files are open
-Proceeding with zero size characters for this font
+Font file [cmr10 [144 dpi]] could not be opened.
+---using nearest neighbor [/DD/SYS/TEX/FONTS/pk300/cmr10.300pk [300 dpi]] inste.
 Current TeX page counters: [0]
 [1{1}]  [OK]
 $ ls -l /dd/tmp/TEX | grep story.dvi_
--rw-------   1 0        0             464 Sep  3 17:18 story.dvi_err
--rw-------   1 0        0            2509 Sep  3 17:18 story.dvi_oki
+-rw-------   1 0        0             496 Sep  5 01:49 story.dvi_err
+-rw-------   1 0        0           23873 Sep  5 01:49 story.dvi_oki

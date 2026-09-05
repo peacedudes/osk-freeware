@@ -24,6 +24,7 @@ family  tex
 setup   T=/dd/CMDS/TEXCMDS
 setup   S=/dd/SYS/TEX
 setup   /dd/CMDS/rm /dd/small.dvi /dd/small.log /dd/small.aux
+setup   /dd/CMDS/TEXCMDS/virtex '&plain' '\\input /dd/SYS/TEX/SAMPLES/story \\end'
 
 case    latex-typesets-a-document-through-virtex
 run     $T/virtex '&lplain' $S/SAMPLES/small.tex
@@ -68,15 +69,14 @@ run     $T/tex $S/SAMPLES/story.tex
 expect  virtex "&plain" /dd/SYS/TEX/SAMPLES/story.tex
 expect  (E$PNNF)
 
-case    dvialw-writes-postscript-and-reports-the-missing-bitmaps
-run     /dd/CMDS/rm /dd/small.dvi_alw
-run     $T/dvialw /dd/small.dvi
-run     /dd/CMDS/wc -c /dd/small.dvi_alw
+case    dvialw-renders-the-sample-to-postscript
+run     /dd/CMDS/rm /dd/story.dvi_alw
+run     $T/dvialw /dd/story.dvi
+run     /dd/CMDS/wc -c /dd/story.dvi_alw
 expect  [PostScript [Apple LaserWriter laser printer]]
 expect  [1 pages]
-expect  could not be opened; 0 font files are open
-expect  Proceeding with zero size characters
-expect  2705 /dd/small.dvi_alw
+expect  [OK]
+absent  could not be opened
 
 case    the-other-nine-drivers-each-read-it-and-write-their-own-file
 run     /dd/CMDS/rm /dd/small.dvi_jet /dd/small.dvi_lj2 /dd/small.dvi_tos
@@ -106,13 +106,14 @@ expect  1296 /dd/SYS/TEX/FONTS/TFM/cmr10.tfm
 expect  1296 /dd/tmp/cmr10.tfm
 
 # NO BITMAPS, and the font tools say so plainly rather than dying.
-case    the-pk-directories-are-empty-and-the-font-tools-report-it
+case    the-font-tools-read-the-installed-300dpi-font
 run     /dd/CMDS/ls $S/FONTS/PK300
 run     $T/pktype $S/FONTS/PK300/cmr10.300pk
 run     $T/pktogf $S/FONTS/PK300/cmr10.300pk /dd/tmp/x.gf
-expect  Makefile
+run     /dd/CMDS/wc -c /dd/tmp/x.gf
+expect  cmr10.300pk
 expect  This is PKtype, C Version 2.3
-expect  PK file not found
+expect  13212 /dd/tmp/x.gf
 
 case    afm2tfm-vftovp-and-vptovf-answer-with-their-usage
 run     $T/afm2tfm
@@ -145,3 +146,23 @@ case    texidx-runs-out-of-memory-on-any-input
 run     echo "\indexentry{alpha}{1}" > /dd/tmp/t.idx
 run     $T/texidx /dd/tmp/t.idx
 expect  virtual memory exhausted
+
+# THE FONTS, added 2026-09-05.  The sixteen Plain TeX fonts now ship at 300
+# dpi -- a .pk in FONTS/PK300 and a .gf in FONTS -- built with virmf/gftopk in
+# the CanonCX mode.  With them in place every DVI driver renders the sample
+# instead of setting the text at zero size.
+case    the-300dpi-fonts-are-installed
+run     /dd/CMDS/wc -c /dd/SYS/TEX/FONTS/PK300/cmr10.300pk /dd/SYS/TEX/FONTS/cmr10.300gf
+expect  5476
+expect  cmr10.300gf
+
+case    dvilj2-renders-the-sample-with-the-shipped-fonts
+run     /dd/CMDS/TEXCMDS/dvilj2 /dd/story.dvi
+expect  [1 pages]
+expect  [OK]
+absent  could not be opened
+
+case    dvieps-scales-the-300dpi-fonts-to-its-own-resolution
+run     /dd/CMDS/TEXCMDS/dvieps /dd/story.dvi
+expect  nearest neighbor
+expect  [OK]

@@ -4,24 +4,11 @@ ksh -c "cd /dd/tmp/TEX; dvialw story.dvi"
 [Input from DVI file story.dvi]
 [Output on file story.dvi_alw]
 [1 pages]
-[Log file [story.dvi_err] created]
-
-Font file [cmsl10 [300 dpi]] could not be opened; 0 font files are open
-Proceeding with zero size characters for this font
-Current TeX page counters: [0]
-
-Font file [cmbx10 [300 dpi]] could not be opened; 0 font files are open
-Proceeding with zero size characters for this font
-Current TeX page counters: [0]
-
-Font file [cmr10 [300 dpi]] could not be opened; 0 font files are open
-Proceeding with zero size characters for this font
-Current TeX page counters: [0]
 [1{1}]  [OK]
 $ cat /dd/tmp/TEX/story.dvi_alw | head -n 6
 %!
 %%Dimensions: 0 0 612 792
 %%Title: dvialw story.dvi
-%%CreationDate: Thu Sep  3 07:50:43 2026
+%%CreationDate: Sat Sep  5 01:38:37 2026
 %%Creator:  and [TeX82 DVI Translator Version 2.10b for PostScript [App-
 %-le LaserWriter laser printer]

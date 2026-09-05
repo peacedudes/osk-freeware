@@ -565,7 +565,7 @@
 
 | | |
 |---|---|
-| `creadoc` | extract the documentation header (C++ ... C--) from every .f file in the current directory into creadoc.txt.  It lists the directory with `dir -eadu' and takes each file name from column 53 of the listing; a dir that starts the name one column later hands it a name with a leading space, which it cannot open.  DOC/rtf/biory.doc is its output for biory.f.  Source: SRC/rtf/creadoc.f |
+| `creadoc` | extract the documentation header (C++ ... C--) from every .f file in the current directory into creadoc.txt.  It reads each file name from a fixed column of a `dir -eadu' listing. Written in 1989, it expects a two-digit year there; OS-9 prints 2026 as `126', one digit wider, so the name lands a column right and creadoc opens it with a leading space and stops.  Date the sources before 2000 and the column is right -- and it then writes nothing, so a further stop is still to be found.  DOC/rtf/biory.doc is its output for biory.f. Source: SRC/rtf/creadoc.f |
 | `for` | the RTF/68K FORTRAN driver, and a bash KEYWORD -- ask for it by PATH (`/dd/CMDS/for') or bash swallows the name.  It uses Microware's `shell' on your execution path, forking one to run each compiler pass.  Call `rtf' directly and you need no shell at all -- see DOC/README-FORTRAN |
 | `rtf` | RTF/68K Real-Time Fortran-77 compiler, v2.14 (CERN, 1987), AND IT COMPILES HERE.  `load /dd/CMDS/os9lib' first, then `rtf <file>.f' reads the Fortran and writes 68k ASSEMBLY beside the source: zero errors, `RTF normally completed'. Assemble and link that with Microware's r68 and l68. Call rtf directly: the `for' driver forks Microware's `shell' to run it.  Sources to try in SRC/rtf.  Manual: DOC/rtf/rtfman.txt |
 

@@ -4,20 +4,6 @@ ksh -c "cd /dd/tmp/TEX; dvijep story.dvi"
 [Input from DVI file story.dvi]
 [Output on file story.dvi_jep]
 [1 pages]
-[Log file [story.dvi_err] created]
-
-Font file [cmsl10 [300 dpi]] could not be opened; 0 font files are open
-Proceeding with zero size characters for this font
-Current TeX page counters: [0]
-
-Font file [cmbx10 [300 dpi]] could not be opened; 0 font files are open
-Proceeding with zero size characters for this font
-Current TeX page counters: [0]
-
-Font file [cmr10 [300 dpi]] could not be opened; 0 font files are open
-Proceeding with zero size characters for this font
-Current TeX page counters: [0]
 [1{1}]  [OK]
 $ ls -l /dd/tmp/TEX | grep story.dvi_
--rw-------   1 0        0             464 Sep  3 17:12 story.dvi_err
--rw-------   1 0        0              76 Sep  3 17:12 story.dvi_jep
+-rw-------   1 0        0            6155 Sep  5 01:43 story.dvi_jep
