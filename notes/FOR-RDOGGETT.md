@@ -37,11 +37,15 @@ of it. Updated 2026-09-05.
    - `creadoc` is an early Fortran documentation extractor (it pulls the
      `C++ ... C--' header block out of a `.f' source into creadoc.txt, a
      1988 forerunner of javadoc) and is worth keeping as that. It does not
-     run here: it reads filenames from a fixed column of a `dir -eadu'
-     listing and the year rendering shifts them, and a second stop remains
-     even when the column looks right. I'd preserve it, documented, with
-     DOC/rtf/biory.doc as the example of its output -- not patch an
-     archived binary for a date artifact. Your call.
+     run here: it reads the file name from column 53 of a `dir -eadu'
+     listing, and this disk's dir puts it at 54 (the 2026 date, printed
+     `126', pushes it further) -- so it opens a space-prefixed name and
+     stops. A dir-column brittleness (its fnpos=53 vs this dir's 54), one
+     constant in SRC/rtf/creadoc.f. Rebuilding it means the RTF Fortran
+     chain plus Microware's r68/l68 on /h1, and it edits an archived
+     binary. I'd keep it as interesting historical software, documented,
+     with DOC/rtf/biory.doc as the example of its output; rebuild only if
+     you want it runnable. Your call.
 
 3. **The `os9-dev` skill** (`~/Developer/os9/os9-dev-skill`), three gaps in
    `references/common/using-os9exec-repl.md`, written up in git history
