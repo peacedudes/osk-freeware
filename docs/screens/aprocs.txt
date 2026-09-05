@@ -1,7 +1,6 @@
 $ aprocs
-
-Process   Pid: 3, aprocs, edition 110
-    Exit code: E_PRCABT(228) Process Aborted
-  Directories: Current   - /dd
-               Execution - /dd/CMDS
-        Files:
+ Id PId Prior  CPU-Time  Proc-Age SYS-% PRC-%  Module-Name
+--- --- ----- --------- --------- ----- -----  -----------
+  1   0 65535     11.27  15:09:56  97.2   0.0
+  2   0   128      0.32  15:09:56   2.8   0.0  bash
+  3   2   128      0.01  15:09:44   0.0   0.0    aprocs

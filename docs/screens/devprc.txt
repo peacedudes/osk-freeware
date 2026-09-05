@@ -1,8 +1,16 @@
-$ devprc -h
-devprc: display device(s) belonging to process(es), V.1.01
-options:     -a       display all devices belonging to all processes
-             -d [dev] display process having device [dev] open
-             -h       print header (with -d option)
+$ devprc -a
+
+PID=2, NAME=bash
+        PROCESSPATH=0, SYSPATH=1, DEVICE=/term
+        PROCESSPATH=1, SYSPATH=1, DEVICE=/term
+        PROCESSPATH=2, SYSPATH=1, DEVICE=/term
+PID=3, NAME=devprc
+        PROCESSPATH=0, SYSPATH=1, DEVICE=/term
+        PROCESSPATH=1, SYSPATH=1, DEVICE=/term
+        PROCESSPATH=2, SYSPATH=1, DEVICE=/term
+        PROCESSPATH=3, SYSPATH=1, DEVICE=/term
+        PROCESSPATH=4, SYSPATH=1, DEVICE=/term
+        PROCESSPATH=5, SYSPATH=1, DEVICE=/term
 $ ptxminst -?
 $ t_trtest
 line (or .):

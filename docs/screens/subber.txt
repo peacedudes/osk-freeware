@@ -1,6 +1,5 @@
-cat /dd/tmp/SUB/words
+/h1/CMDS/shell "chd /dd/tmp/sub; cat words; subber #1000k words in"
 ,fox,cat
 ,here,there
-<MDS/subber #1000k /dd/tmp/SUB/words /dd/tmp/SUB/in.txt"
 there is a cat
 the cat went there

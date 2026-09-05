@@ -11,12 +11,12 @@ cap     moment you ask, so it cannot drift from what shipped.
 run     about hack
 wait    5
 shot    aprocs
-cap     A process monitor -- and it cannot run here.  It reads the system
-cap     globals through F$SetSys, which os9exec does not implement, and
-cap     aborts.  This is a limit of the emulator, not of the program.
+cap     A process monitor: it prints the active processes as a tree -- id,
+cap     parent, priority, CPU time, age and share of the CPU -- reading the
+cap     ages through F$SetSys's Julian and second-of-day globals.  Here it
+cap     catches the shell, ksh and itself.
 run     aprocs
 wait    5
-kill
 shot    argproc_demo
 cap     argproc_demo PARSING A COMMAND LINE, which is the whole point of it:
 cap     RICO's argproc() takes the switches, fills in the defaults for the
@@ -73,9 +73,10 @@ run     demo -a -b -c=7 one two
 wait    6
 shot    devprc
 for     devprc ptxminst t_trtest
-cap     devprc shows which device belongs to which process.  `ptxminst'
+cap     devprc shows which device each process holds a path to: `-a' walks
+cap     every process and lists its open paths and their devices.  `ptxminst'
 cap     installs Ptxm, and `t_trtest' exercises a trap handler.
-run     devprc -h
+run     devprc -a
 wait    8
 run     ptxminst -?
 wait    8
@@ -342,20 +343,30 @@ cap     kernel was built for, and the kernel's own name and version line.
 run     sysid
 wait    5
 shot    sysmon
-size    28 80
-cap     sysmon draws memory and process state.  It asks whether to create
-cap     SYS/nodedef, times out on the keyboard, and draws its Process
-cap     Monitor -- the task table, the two percentage rules and the CPU it
-cap     thinks it is on -- before it takes a bus error at F$GPrDsc, the
-cap     get-process-descriptor call this system does not answer.  dinfo, map
-cap     and space answer the questions it would have and have cards of their
-cap     own.
-run     sysmon < /nil
-wait    45
+size    30 80
+cap     sysmon draws the OS-9/68k Process Monitor: the header with the
+cap     active-task count and poll delay, the per-process CPU bar chart
+cap     scaled 0 to 100 percent, and the task frame.  It wants a
+cap     SYS/nodedef node-definition file to poll continuously; without one
+cap     it draws the screen once and stops there.
+run     export TERM=vt100
+wait    1
+run     clear
+wait    1
+run     sysmon
+wait    6
+send    Y
+wait    3
+send    \r
+wait    6
+kill
 shot    top
 cap     top lists processes by their share of the CPU.  It prints its column
-cap     headings and then stops at F$GPrDBT, the process-table call this
-cap     system does not answer; aprocs, its neighbour, stops the same way.
+cap     headings and then crashes on the root process, whose parent is
+cap     process 0: it asks F$GPrDsc about 0, which correctly reports no such
+cap     process, does not check that error, and reads a field from its own
+cap     unfilled buffer.  A bug in top, not the system; aprocs and sysmon
+cap     read the same state and run.
 run     top
 wait    6
 shot    tty

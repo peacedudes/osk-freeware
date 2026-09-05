@@ -1,11 +1,11 @@
                        OS9/68k V4.16 Process Monitor V6.1
-F$SetSys: unimpl  04:48:12  02-Sep-19126  TASKS: 001  CPU: 68040
-F$SeMinage: 00000  Maxage: 00000  ActiveTasks: 000  Delay: 04s  Port: /NIL
+F$SetSys: unimpl##04:26:27##05-Sep-19126##TASKS:#001##CPU:#68040##
+F$SeMinage: 00000  Maxage: 00000  ActiveTasks: 000  Delay: 04s  Port: /TERM
                                     0        25        50        75        100 %
 Id  Username   Processname          +---------+---------+---------+----------+
                                     |         |         |         |          |
         ... the same line 16 times over
                                     +---------+---------+---------+----------+
- SYSMON:  Can't open '/dd/sys/nodedef' [Node-definition file]
+#SYSMON:# Can't open '/dd/sys/nodedef' [Node-definition file]
 
-Process
+Process   Pid: 3,
