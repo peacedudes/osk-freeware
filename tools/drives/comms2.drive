@@ -38,9 +38,6 @@ drive   udate-y2k
 why     it printed `Monday, August 31, 19126' -- a two-digit year printed
 why     into a four-digit field
 run     /dd/CMDS/udate
-run     echo "--- and what date says:"
-run     /dd/CMDS/date
-run     /dd/CMDS/date -t
 
 drive   cls-and-clear
 why     are they the same seven bytes?

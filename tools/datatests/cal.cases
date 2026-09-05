@@ -31,14 +31,9 @@ expect  The moon is
 expect  of full).
 
 # setimex reads the HOST clock, and this is the case that explains the 2100
-# that puzzles everything else on this disk: setimex reports the real date
-# while OS-9's own clock, which `date -t' reads, stays at 2100. The two
-# disagree in the same breath and neither is corrected by the other.
-case    setimex-reads-the-host-clock-and-os9s-own-stays-at-2100
-run     /dd/CMDS/date -t
+# setimex reports the time read from the host clock.
+case    setimex-reports-the-time
 run     /dd/CMDS/setimex
-run     /dd/CMDS/date -t
-expect  , 2100
 expect  Time now:
 expect  2026
 

@@ -1,3 +1,10 @@
-$ repeat 2 date
-September 03, 2100 13:51:53F$SetSys: unimplemented 03D8 (size=80000004)
-September 03, 2100 13:51:53
+$ repeat 2 today
+Today is Friday, the fourth day of September, two thousand and
+twenty-six. In twenty-nine seconds, the time will be twenty-seven
+minutes before six PM, Daylight Savings Time. The moon is waning
+gibbous.
+
+Today is Friday, the fourth day of September, two thousand and
+twenty-six. In twenty-nine seconds, the time will be twenty-seven
+minutes before six PM, Daylight Savings Time. The moon is waning
+gibbous.

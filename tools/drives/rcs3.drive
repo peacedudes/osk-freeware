@@ -14,12 +14,12 @@ setup   /dd/CMDS/printf 'second revision\r.\r' > /dd/tmp/d2
 setup   echo 400000 > /dd/tmp/runs4
 
 drive   second-revision-after-a-real-delay
-run     /dd/CMDS/date -t
+run     /dd/CMDS/today
 run     /dd/CMDS/ci $W/note.txt < /dd/tmp/d1
 run     /dd/CMDS/co -l $W/note.txt
 run     echo "a second line" >> $W/note.txt
 run     /dd/CMDS/DHRY/dhryO2 < /dd/tmp/runs4 > /nil
-run     /dd/CMDS/date -t
+run     /dd/CMDS/today
 run     /dd/CMDS/ci $W/note.txt < /dd/tmp/d2
 run     echo "--- rlog:"
 run     /dd/CMDS/rlog $W/note.txt

@@ -66,14 +66,6 @@ cap     The disk allocation map: one character per cluster across a 253 MB
 cap     volume, so you can see where the collection sits on it.
 run     dam /dd | head -n 21
 wait    10
-shot    date
-cap     date prints the date and time.  It reads the year as 2100, which is
-cap     why the disk carries the setyear and fixyear repairs; `date -t'
-cap     shows the same clock in the format setime prompts for.
-run     date
-wait    4
-run     date -t
-wait    4
 shot    demo
 cap     demo, the egetopt option-parsing example, showing how it read the
 cap     command line it was given.
@@ -546,7 +538,7 @@ size    24 80
 cap     vis runs a command over and over and redraws the screen with its
 cap     output, the way `watch' does elsewhere.  Its header names the
 cap     command, the delay between runs and the number of runs so far.
-run     vis -d=1 date
+run     vis -d=1 whoami
 wait    4
 send    \023
 wait    1
@@ -556,10 +548,10 @@ send    \003
 wait    2
 shot    repeat
 size    24 80
-cap     repeat runs a command a number of times -- `repeat 2 date' runs date
-cap     twice.  It hands the line to $SHELL, which SYS/login sets to ksh;
-cap     date writes no trailing newline, so the two runs abut.
-run     repeat 2 date
+cap     repeat runs a command a number of times -- `repeat 2 today' runs
+cap     today twice.  It hands the line to $SHELL, which SYS/login sets to
+cap     ksh, whose start-up prints the os9exec `F$SetSys' notices between.
+run     repeat 2 today
 wait    4
 shot    cron
 cap     cron is a scheduling daemon: it reads SYS/crontab, then forks each

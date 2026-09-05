@@ -100,7 +100,7 @@ wait    14
 
 shot    timid
 cap     Times a command by the clock: start, end and elapsed ticks.
-run     timid date
+run     timid today
 wait    8
 
 shot    disktest

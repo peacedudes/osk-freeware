@@ -1,4 +1,0 @@
-$ date
-September 03, 2100 13:35:05
-$ date -t
-September 03, 2100 13:35:10

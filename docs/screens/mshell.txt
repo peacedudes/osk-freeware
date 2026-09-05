@@ -1,8 +1,8 @@
- 1: Who am I,whoami
+ 1: Who#am#I,whoami
 
- 2: The date,date
+ 2: The#date,today
 
- 3: List SYS,ls /dd/SYS
+ 3: List#SYS,ls#/dd/SYS
 
 
 

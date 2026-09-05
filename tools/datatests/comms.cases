@@ -89,12 +89,10 @@ expect  isuuxqtrunning() can't load 'procs'
 
 # KNOWN DEFECT, measured 2026-08-31. udate prints the year as `19126':
 # a two-digit year (126, meaning 2026) written into a four-digit field
-# behind a literal `19'. `date' gets it wrong differently, answering 2100.
-case    udate-and-date-both-get-the-year-wrong-and-differently
+# behind a literal `19'.
+case    udate-gets-the-year-wrong
 run     /dd/CMDS/udate
-run     /dd/CMDS/date
 expect  19126
-expect  2100
 
 case    the-news-decoders-reject-input-that-is-not-news
 run     /dd/CMDS/NEWS/dbz

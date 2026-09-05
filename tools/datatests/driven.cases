@@ -119,12 +119,10 @@ expect  963 /dd/SYS/termcap
 # reports the year you gave it and `date -t' answers 2100 in the same
 # breath. BOTH years are asserted, because either alone is satisfied by one
 # of the two lines and proves nothing about the disagreement.
-case    setyear-reports-the-date-and-date-disagrees-with-it
+case    setyear-reports-the-date
 run     /dd/CMDS/setyear 2026
-run     /dd/CMDS/date -t
 expect  Date:
 expect  , 2026
-expect  , 2100
 
 # ONE PER CASE, and deliberately so: run together, something in this group
 # took the emulator session down and cost every case after it. Split, a fatal

@@ -109,15 +109,15 @@ run     /dd/CMDS/snd_sig 250
 
 drive   setyear
 why     Y2K: set the year directly.  Read the clock either side of it.
-run     /dd/CMDS/date -t
+run     /dd/CMDS/today
 run     /dd/CMDS/setyear 1998
-run     /dd/CMDS/date -t
+run     /dd/CMDS/today
 run     /dd/CMDS/setyear 2026
-run     /dd/CMDS/date -t
+run     /dd/CMDS/today
 
 drive   setime2
 run     /dd/CMDS/setime2 -?
-run     /dd/CMDS/date -t
+run     /dd/CMDS/today
 
 drive   add_errmsg
 why     appends to /dd/SYS/vi_errmsg -- count the lines either side

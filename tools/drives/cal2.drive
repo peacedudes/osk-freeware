@@ -46,9 +46,7 @@ run     echo "--- end calender"
 drive   setimex
 why     "set time from hardware clock".  There is no hardware clock here,
 why     so the question is what it says about that.
-run     /dd/CMDS/date -t
 run     /dd/CMDS/setimex
-run     /dd/CMDS/date -t
 run     echo "--- end setimex"
 
 drive   lunisolar

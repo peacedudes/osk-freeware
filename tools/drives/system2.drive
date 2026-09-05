@@ -55,18 +55,6 @@ run     echo "--- before dpark"
 run     /dd/CMDS/dpark /dd
 run     echo "--- after dpark, still alive"
 
-drive   date-year-2100
-why     `date -t' answered "August 31, 2100" on a system whose own date is
-why     2026.  Is that date -t, or the clock?
-run     /dd/CMDS/date
-run     /dd/CMDS/date -t
-run     /dd/CMDS/date -y
-run     echo "--- setyear 1998, then read it three ways:"
-run     /dd/CMDS/setyear 1998
-run     /dd/CMDS/date
-run     /dd/CMDS/date -t
-run     /dd/CMDS/setyear 2026
-
 drive   demerge-really-splits
 why     the first drive proved nothing: demerge printed nothing and the file
 why     it was given was left whole.  Where do the parts go?

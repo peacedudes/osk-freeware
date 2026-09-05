@@ -3,6 +3,8 @@ print hello from a ksh script
 for f in a b c; do print item $f; done
 $ ksh /dd/tmp/SHL/script.ksh
 /dd/tmp/SHL/script.ksh: cannot execute
-$ ksh -c "print the date is; date"
+$ ksh -c "print the date is; today"
 the date is
-September 03, 2100 03:57:30
+Today is Friday, the fourth day of September, two thousand and
+twenty-six. The time is twenty-seven minutes and thirty-two seconds
+after five PM, Daylight Savings Time. The moon is waning gibbous.

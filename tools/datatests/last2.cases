@@ -137,12 +137,9 @@ expect  Can't get screen addr
 # fields on the command line. `date -t' meanwhile reports 2100 -- the
 # emulator's clock -- which `setyear' disagrees with too (driven.cases).
 case    setime-prints-its-format-and-leaves-the-clock-alone
-run     /dd/CMDS/date -t
 run     echo "260901120000" > $W/time.txt
 run     /dd/CMDS/setime < $W/time.txt
-run     /dd/CMDS/date -t
 expect  YYMMDDHHMMSS
-expect  , 2100
 
 # THE LAST TWO BOTH END THE SESSION, so they are last and in this order.
 # xy has NO usage flag -- `-h' means HOST MODE and starts an XMODEM-CRC

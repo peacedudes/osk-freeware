@@ -104,18 +104,18 @@ drive   setime
 why     "Set system time (prompts YYMMDDHHMMSS)".  Show the clock, set it,
 why     show it again.  LATE IN THE SHEET on purpose: everything written
 why     after this carries the new date.
-run     /dd/CMDS/date -t
+run     /dd/CMDS/today
 run     echo "--- set it to 1 September 2026, 12:00:00:"
 run     echo "260901120000" > $W/time.txt
 run     /dd/CMDS/setime < $W/time.txt
-run     /dd/CMDS/date -t
+run     /dd/CMDS/today
 run     echo "--- and on the command line.  The OS-9 utility takes six"
 run     echo "--- separate fields, y m d h m s -- not the packed string:"
 run     /dd/CMDS/setime 26 09 01 13 00 00
-run     /dd/CMDS/date -t
+run     /dd/CMDS/today
 run     echo "--- the packed form on the command line, for comparison:"
 run     /dd/CMDS/setime 260901140000
-run     /dd/CMDS/date -t
+run     /dd/CMDS/today
 run     echo "--- end setime"
 
 drive   new_e

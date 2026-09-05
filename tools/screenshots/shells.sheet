@@ -35,7 +35,7 @@ run     cat /dd/tmp/SHL/script.ksh
 wait    2
 run     ksh /dd/tmp/SHL/script.ksh
 wait    5
-run     ksh -c "print the date is; date"
+run     ksh -c "print the date is; today"
 wait    5
 
 shot    gshell
@@ -53,7 +53,7 @@ cap     A menu shell: it reads a file of `label,command' lines and shows
 cap     them numbered, and a number runs that command through Microware's
 cap     `shell' -- the shell that comes with your OS-9 -- so here you see
 cap     the menu it draws.
-run     mkdir -p /dd/tmp/SHL > /nil 2>/nil; printf "Who am I,whoami\rThe date,date\rList SYS,ls /dd/SYS\r" > /dd/tmp/SHL/menu
+run     mkdir -p /dd/tmp/SHL > /nil 2>/nil; printf "Who am I,whoami\rThe date,today\rList SYS,ls /dd/SYS\r" > /dd/tmp/SHL/menu
 wait    2
 run     clear
 wait    1

@@ -549,7 +549,6 @@ top|System & modules|Processes & memory
 who|System & modules|Processes & memory
 cron|System & modules|Scheduling
 clock|System & modules|System state
-date|System & modules|System state
 load|System & modules|OS-9 modules
 oskversion|System & modules|System state
 setime|System & modules|System state
