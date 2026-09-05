@@ -8,6 +8,22 @@ twenty-one now, nineteen of them proved able to FAIL by
 
 ---
 
+## 2026-09-04: setup settled; one document left to reframe
+
+Done this session (all committed): the tribute voice reached the captions
+(no caption says "not on this disk" now); `date` removed at your word;
+`wysetime` restored and carded via runb (it runs -- I was wrong to drop it);
+`TERM=xterm-256color` in login; the reader's OS-9 goes on `/h1` (login loads
+runb from it, harness mounts it); `lua` fixed by the csl-25 swap; `bio`
+kept, source in SRC, carded.
+
+**Still open -- `DOC/README-RUNNING`'s three arrangements.** The opening now
+leads with "os9exec is the kernel" (fixed), but arrangement 1 still puts your
+OS-9 on `/dd` and the collection on `/h0` -- the swap you moved away from.
+Now that login assumes the collection on `/dd` (+ hard-link `/h0`) and your
+own system on `/h1`, the arrangements want rewriting to lead with that. Left
+for you: it is your call how the setup is framed.
+
 ## 2026-09-03: an os9exec item, said loudly as asked
 
 **`biory` cannot draw its chart on os9exec.** After its three answers it
@@ -1128,33 +1144,3 @@ a camshaft calculator filed under Hardware demos is as good as missing.
 ## Nothing below here needs you
 
 (kept for the record; the two open questions are at the top of this file)
-
-
-## 2026-09-04: the date binary, and a TERM question
-
-**`date' prints the year as 2100, and it is the collection's own
-`/dd/CMDS/date', not os9exec.** Proven on the shipped image under one
-os9exec: `/dd/CMDS/date' says "September 04, 2100" while the SDK's
-`/h0/CMDS/date' says "September 4, 2026" from the same clock -- F$Time is
-right, this 442-byte binary decodes the year wrong. It came in the first
-import with no ORIGINS, nothing on the disk depends on it, and it shadows
-the correct `date' every reader brings. Remove it? (Your call.) If it goes,
-the year-2100 mentions in the `date', `setime', `rcsdiff' and `udate' INDEX
-entries go with it. The old `notes/os9exec-bugs/DATE-YEAR-2100.md' blamed an
-os9exec regression and repeated the bio-2100 theory; both were wrong (bio's
-`.19' century hardcode is bio's own), so it is deleted.
-
-**`SYS/login' sets `TERM=vt100', which you questioned.** The active
-`SYS/termcap' resolves it -- its first entry is `xterm-256color|xterm|vt100'
--- so vt100 gets xterm-256color capabilities, which works but is a mislabel.
-Set login to `TERM=xterm-256color' to match what you type by hand? Small
-change; your call on whether it is worth making.
-
-**`DOC/README-RUNNING' still describes the old swap arrangement.** Its
-opening no longer calls the disk a boot disk (fixed 2026-09-04, it now leads
-with "os9exec is the kernel"), but its three numbered "arrangements" predate
-the /h1 decision: arrangement 1 puts your OS-9 on /dd and the collection on
-/h0, the swap you moved away from tonight. Now that SYS/login assumes the
-collection on /dd (+ hard-link /h0) and your own system on /h1, the
-arrangements want rewriting to lead with that. Left for you -- it is your
-call how the setup is framed.
