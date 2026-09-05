@@ -353,11 +353,13 @@ function renderPanel(){
   const p = st.sel && BY[st.sel];
   if(!p){
     col.innerHTML = `<div class="about">`+
-      `<p>Choose a kind of program, or a letter, then a program. Its page says what it is, `+
-      `what it needs, where it came from, how to run it, and shows it running.</p>`+
-      `<p><b>Sample output</b> was captured from the program running on the disk image: `+
-      `keystrokes into os9exec&rsquo;s console, and the terminal stream rendered into the `+
-      `grid a vt100 would have shown. Nothing is mocked up.</p>`+
+      `<p>Pick a kind of program, or a letter, then a program. Each one&rsquo;s page `+
+      `says in a line what it does, gives you the command to <b>try it</b>, `+
+      `shows it <b>running</b>, and lists anything it <b>needs</b> &mdash; the rest `+
+      `(version, author, where it came from) is tucked below.</p>`+
+      `<p><b>See it run</b> was captured from the program on the disk image: keystrokes `+
+      `into os9exec&rsquo;s console, the terminal stream rendered into the grid a vt100 `+
+      `would have shown. Nothing is mocked up.</p>`+
       `<p>Tick programs with <b>+</b> (or the space bar) to build a <code>keep</code> command `+
       `you can paste at an OS-9 shell; see <code>DOC/README-KEEP</code>.</p>`+
       `<p>Built from <code>DOC/INDEX</code>, <code>DOC/ORIGINS</code>, <code>DOC/DEPENDS</code>, `+
