@@ -593,6 +593,21 @@ kill
 
 # --- Terminal & transfer --------------------------------------------------
 
+shot    wysetime
+cap     A Wyse terminal clock-setter in BASIC09: `runb wysetime' emits the
+cap     escape sequence a Wyse smart terminal reads to set its own on-screen
+cap     clock.  The bytes are shown through `dump', being terminal control
+cap     codes rather than text.
+run     load /h1/CMDS/runb
+wait    2
+run     rm -f /dd/tmp/wysetime.out
+run     runb wysetime > /dd/tmp/wysetime.out
+wait    3
+run     clear
+wait    1
+run     dump /dd/tmp/wysetime.out
+wait    4
+
 shot    sterm
 cap     A serial terminal emulator with a built-in B+ file transfer.  Its
 cap     usage lists the modem-port link and the transfer options; there is
