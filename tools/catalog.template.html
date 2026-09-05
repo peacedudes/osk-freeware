@@ -261,8 +261,8 @@ function lead(d){
   return m ? m[1] : d;
 }
 function brief(d){
-  const m = /^(.*?)(\.\s|\s--\s|;\s|$)/.exec(d||"");
-  return m ? m[1] : d;
+  const s = lead(d);
+  return s.length > 68 ? s.slice(0,66).replace(/\s+\S*$/,"") + "\u2026" : s;
 }
 function row(p, where){
   const on = picked.has(p.name);
@@ -360,8 +360,9 @@ function renderPanel(){
   // requirement worth surfacing; what a reader must supply is the data the
   // program opens (from DEPENDS) and, for a BASIC09 program, runb.
   const needs=[];
-  if(p.basic09) needs.push('runs with Microware&rsquo;s <code>runb</code>');
-  alsoReads(p).forEach(x=>needs.push(`<code>${esc(x)}</code>`));
+  if(p.basic09) needs.push('Microware&rsquo;s <code>runb</code>');
+  const data=alsoReads(p);
+  data.forEach(x=>needs.push(`<code>${esc(x)}</code>`));
   if(p.military) needs.push('the author asks no military use');
 
   const D=[];
@@ -402,7 +403,7 @@ function renderPanel(){
     `<h2 class="pn">${esc(p.name)}</h2>`+
     `<p class="pd">${esc(i.purpose||lead(p.desc))}</p>`+
     `<div class="try"><span class="k">Try it</span><code>${esc(tryCmd)}</code></div>`+
-    (needs.length?`<div class="needs"><span class="k">Needs</span><span>${needs.join(" &middot; ")}</span></div>`:"")+
+    (needs.length?`<div class="needs"><span class="k">Needs</span><span>${needs.join(" &middot; ")}${data.length?` <span class="okk">&middot; ${data.length>1?"all ":""}on the disk</span>`:""}</span></div>`:"")+
     seeHTML+
     (p.howto?`<details class="more"><summary>How to run it</summary><div class="howto">${esc(p.howto)}</div></details>`:"")+
     (D.length?`<details class="more"><summary>Details and provenance</summary><dl>${D.join("")}</dl></details>`:"")+
