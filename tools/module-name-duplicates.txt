@@ -25,7 +25,9 @@ cc1plus   A gcc compiler pass, present in each toolchain.  The drivers fork
 cc2       Same.
 cccp2     Same.
 collect   Same.
-gnuchess  OPEN, not accepted -- CMDS/gnuchess and CMDS/GAMES/gnuchess are
-          different ports.  Measured 2026-08-31: the CMDS one prints nothing
-          and the GAMES one plays.  See notes/FOR-RDOGGETT.md; this line goes
-          when that is decided.
+gnuchess  CMDS/gnuchess and CMDS/GAMES/gnuchess are different ports.  Both
+          play; the CMDS build reads the opening book at its compiled-in
+          /h0/usr/src/chess/gnuchess.book (which ships and is reachable, the
+          collection being /h0) and is first on PATH, so `gnuchess' runs it
+          and answers 1.e4 with a book move.  The GAMES build opens its book
+          by bare name.  Kept as two ports; the user gets the book one.

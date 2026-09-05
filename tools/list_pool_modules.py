@@ -92,7 +92,7 @@ def main():
             mods.setdefault(module_name(d).lower() or f.lower(), []).append((f, len(d), p))
     D = "/Users/rdoggett/Developer/os9/osk-freeware/disk"
     have = set()
-    for sub in ("CMDS", "CMDS/GAMES", "CMDS/NETPBM", "CMDS/BROKEN", "CMDS/REBUILT",
+    for sub in ("CMDS", "CMDS/GAMES", "CMDS/NETPBM", "CMDS/REBUILT",
                 "CMDS/GCC139", "CMDS/GCC2", "CMDS/DEMOS", "CMDS/DHRY"):
         p = os.path.join(D, sub)
         if os.path.isdir(p):

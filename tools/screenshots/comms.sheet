@@ -587,7 +587,7 @@ shot    wysecrack
 cap     Probes for a Wyse terminal by asking it to identify itself and
 cap     waiting for the reply.  Nothing here is a Wyse, so no answer comes
 cap     and the screen stays blank.
-run     /dd/CMDS/BROKEN/wysecrack
+run     /dd/CMDS/COMMS/wysecrack
 wait    6
 kill
 

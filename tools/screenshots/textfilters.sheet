@@ -523,24 +523,6 @@ run     dump /dd/tmp/TEXTA/back.txt
 wait    4
 snap
 
-shot    subber
-cap     subber substitutes words in a stream from a word list of `,old,new'
-cap     lines -- one pair per line, the first character being the delimiter
-cap     -- and reads standard input when no file is named.  It grows its
-cap     data area 256 bytes at a time with F$Mem, which OS-9 grants only
-cap     while nothing sits directly above it; a cc program links cio just
-cap     there, so `load cio' first and run it from your OS-9 shell.  Under
-cap     bash something is always above it, and this is the refusal.
-run     mkdir -p /dd/tmp/TEXTA; echo ",quick,slow" > /dd/tmp/TEXTA/subs; echo ",lazy,busy" >> /dd/tmp/TEXTA/subs; echo "the quick brown fox" > /dd/tmp/TEXTA/fox.txt; echo "jumps over the lazy dog" >> /dd/tmp/TEXTA/fox.txt
-wait    3
-run     clear
-wait    1
-run     cat /dd/tmp/TEXTA/subs
-wait    3
-run     load /dd/CMDS/cio; subber /dd/tmp/TEXTA/subs /dd/tmp/TEXTA/fox.txt
-wait    8
-snap
-
 shot    tcmp
 cap     tcmp compares two text files line by line and prints each line that
 cap     differs, both versions one under the other, with the line number in

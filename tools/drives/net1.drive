@@ -131,5 +131,5 @@ run     echo "--- end ckermit"
 drive   wysecrack
 why     "Wyse terminal baud detect -- it writes `Anybody out there?' and
 why     waits".  Confirm that is all it does before the session ends.
-run     /dd/CMDS/BROKEN/wysecrack < /nil
+run     /dd/CMDS/COMMS/wysecrack < /nil
 run     echo "--- end wysecrack"

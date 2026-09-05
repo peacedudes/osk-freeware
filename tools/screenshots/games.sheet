@@ -159,10 +159,10 @@ send    q
 wait    2
 
 shot    pacman
-cap     Pac-Man written for G-Windows, the graphics system this disk does
-cap     not carry.  At a terminal it draws nothing and returns to the shell
-cap     at once, which is the whole of what it does here; its maze and score
-cap     file are in GAMES/PACMAN.
+cap     Pac-Man as an ASCII maze, moved with the keypad -- 8 up, 2 down, 4
+cap     left, 6 right (the layout is in GAMES/pacman/document).  It draws
+cap     the maze with direct cursor control in raw keyboard mode; the maze,
+cap     score and board files are in GAMES/pacman.
 run     pacman
 wait    8
 
@@ -362,16 +362,18 @@ wait    30
 
 shot    gnuchess
 size    24 80
-cap     GNU Chess after 1. e4, with a clock for each side and the search
-cap     depth on the right.  It asks for a time control first -- `1' is one
-cap     move a minute -- and then takes moves as `e2e4'.  It reads the
-cap     terminal description out of TERMCAP as the description itself rather
-cap     than as a filename, so the entry is put in the variable first.
+cap     GNU Chess after 1. e4, answered with the Sicilian (c7c5) straight
+cap     out of the opening book -- the build `gnuchess' runs reads it from
+cap     /h0/usr/src/chess/gnuchess.book, which ships here.  It asks for a
+cap     time control first (`1' is a move a minute) and takes moves as
+cap     `e2e4'; a clock for each side and the search depth sit to the right.
+cap     It reads the terminal description out of TERMCAP itself, so the
+cap     entry is put in the variable first.
 run     . /dd/SYS/termcap.entry
 wait    4
 run     clear
 wait    1
-run     /dd/CMDS/GAMES/gnuchess
+run     /dd/CMDS/gnuchess
 wait    12
 send    1\r
 wait    10
