@@ -139,6 +139,7 @@ def parse(path):
         rest = rest.strip()
         if word == "shot":
             cur = {"name": rest, "cap": [], "for": [], "acts": [],
+                   "try": None,
                    "rate": rate, "size": size, "quit": None, "sheet": path}
             shots.append(cur)
             continue
@@ -164,6 +165,8 @@ def parse(path):
             cur["cap"].append(rest)
         elif word == "for":
             cur["for"] += rest.split()
+        elif word == "try":
+            cur["try"] = rest
         elif word == "run":
             cur["acts"].append(("run", rest))
         elif word == "kill":

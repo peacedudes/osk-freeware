@@ -111,16 +111,30 @@
   dd pre.usage{font-family:var(--mono);font-size:12px;line-height:1.45;margin:0;
     white-space:pre-wrap;overflow-wrap:anywhere;background:var(--paper);
     border:1px solid var(--rule);border-radius:6px;padding:9px 11px;color:var(--ink)}
-  dd pre.shot{font-family:var(--mono);font-size:11px;line-height:1.2;margin:0;
+  pre.shot{font-family:var(--mono);font-size:11px;line-height:1.2;margin:0;
     white-space:pre;overflow-x:auto;background:var(--screen);color:var(--phosphor);
     border-radius:6px;padding:10px 12px}
-  dd .shotcap{margin:.5rem 0 0;color:var(--dim);font-size:12.5px;line-height:1.45;max-width:64ch}
+  .shotcap{margin:.5rem 0 0;color:var(--dim);font-size:12.5px;line-height:1.45;max-width:64ch}
   dd .howto{font-size:13px;line-height:1.45;max-width:64ch}
   dd.advice{color:var(--dim);font-size:12.5px;line-height:1.45}
   dd .okk{color:var(--ok);font-size:11.5px}
   dd a.kin{color:var(--accent);text-decoration:none}
   dd a.kin:hover{text-decoration:underline}
-  .back{display:none;font:inherit;font-size:13px;background:none;border:0;color:var(--accent);
+  .try,.needs{display:flex;align-items:baseline;gap:12px;margin:14px 0 0;font-size:13.5px}
+  .try .k,.needs .k,.see .k{color:var(--faint);font-family:var(--mono);font-size:11px;
+     letter-spacing:.06em;text-transform:uppercase;flex:0 0 auto}
+  .try code{font-family:var(--mono);font-size:14.5px;color:var(--ink);background:var(--paper);
+     border:1px solid var(--rule);border-radius:6px;padding:6px 11px}
+  .needs code{font-family:var(--mono);font-size:12.5px;color:var(--dim)}
+  .needs span{color:var(--dim)}
+  .see{margin:16px 0 2px}
+  .see .k{display:block;margin:0 0 6px}
+  details.more{margin:16px 0 0;border-top:1px solid var(--rule);padding-top:10px}
+  details.more summary{cursor:pointer;color:var(--accent);font-size:12.5px;list-style:none}
+  details.more summary::-webkit-details-marker{display:none}
+  details.more dl{margin-top:10px}
+  details.more .howto{font-size:13px;line-height:1.45;max-width:64ch;margin-top:10px}
+    .back{display:none;font:inherit;font-size:13px;background:none;border:0;color:var(--accent);
         cursor:pointer;padding:0;margin:0 0 10px}
   .about{padding:24px 18px;color:var(--dim);font-size:13px;max-width:52ch;line-height:1.5}
   .about code{font-family:var(--mono);color:var(--ink)}
@@ -176,7 +190,6 @@
     <input type="search" id="q" placeholder="Search names and descriptions"
            aria-label="Search programs" autocomplete="off">
     <div class="only" role="group" aria-label="Show only">
-      <button class="chip" id="f-nocio" aria-pressed="false">Runs without cio</button>
       <button class="chip" id="f-src" aria-pressed="false">Source on disk</button>
       <button class="chip" id="f-doc" aria-pressed="false">Has docs</button>
       <button class="chip" id="f-shot" aria-pressed="false">Sample output</button>
@@ -253,7 +266,7 @@ function row(p, where){
     `${st.sel===p.name?' aria-current="true"':''}>`+
     `<button class="pick" data-pick="${esc(p.name)}" tabindex="-1" `+
     `aria-label="pick ${esc(p.name)}">${on?"&#10003;":"+"}</button>`+
-    `<span class="nm">${p.star?'<span class="st" title="uses cio">&#9733;</span>':''}${esc(p.name)}</span>`+
+    `<span class="nm">${esc(p.name)}</span>`+
     `<span class="ds">${esc(brief(p.desc))}${where?` <span class="where">&middot; ${esc(where)}</span>`:""}</span></li>`;
 }
 
@@ -332,8 +345,6 @@ function renderPanel(){
       `<p><b>Sample output</b> was captured from the program running on the disk image: `+
       `keystrokes into os9exec&rsquo;s console, and the terminal stream rendered into the `+
       `grid a vt100 would have shown. Nothing is mocked up.</p>`+
-      `<p><span style="color:var(--accent)">&#9733;</span> marks a program that needs `+
-      `Microware&rsquo;s <code>cio</code>, which ships on the disk; see <code>DOC/README-CIO</code>.</p>`+
       `<p>Tick programs with <b>+</b> (or the space bar) to build a <code>keep</code> command `+
       `you can paste at an OS-9 shell; see <code>DOC/README-KEEP</code>.</p>`+
       `<p>Built from <code>DOC/INDEX</code>, <code>DOC/ORIGINS</code>, <code>DOC/DEPENDS</code>, `+
@@ -341,13 +352,13 @@ function renderPanel(){
       `</div>`;
     return;
   }
-  const F=[];
-  if(p.star)     F.push('<span class="flag cio">&#9733; uses cio</span>');
-  if(p.basic09)  F.push('<span class="flag cio">BASIC09 &mdash; runs with runb</span>');
-  if(p.military) F.push('<span class="flag mil">author asks: no military use</span>');
-  if(!p.star && !p.basic09) F.push('<span class="flag ok">runs on the bare disk</span>');
-  if(p.hassrc)   F.push('<span class="flag">source on disk</span>');
-  if(p.docs)     F.push('<span class="flag">documented</span>');
+  // Real requirements only.  cio ships on the disk, so it is not a
+  // requirement worth surfacing; what a reader must supply is the data the
+  // program opens (from DEPENDS) and, for a BASIC09 program, runb.
+  const needs=[];
+  if(p.basic09) needs.push('runs with Microware&rsquo;s <code>runb</code>');
+  alsoReads(p).forEach(x=>needs.push(`<code>${esc(x)}</code>`));
+  if(p.military) needs.push('the author asks no military use');
 
   const D=[];
   const add=(k,v)=>{ if(v) D.push(`<dt>${k}</dt><dd>${v}</dd>`); };
@@ -362,34 +373,34 @@ function renderPanel(){
   add("Came from", p.origin ? esc(p.origin)+(p.archive?` &mdash; ${esc(p.archive)}`:"") : "");
   add("Source",    p.src ? `<code>SRC/${esc(p.src)}</code>` : (p.hassrc?`<code>SRC/${esc(p.name)}</code>`:""));
   add("Docs",      p.docs ? `<code>DOC/${esc(p.name)}/</code>` : "");
-  const reads=alsoReads(p);
-  if(reads.length)
-    add("Also reads", reads.map(x=>`<code>${esc(x)}</code>`).join("<br>")+
-        `<span class="okk"> &middot; on the disk</span>`);
-  if(p.howto) add("How to run it", `<div class="howto">${esc(p.howto)}</div>`);
   if(p.usage) D.push(`<dt>Its own help</dt><dd><pre class="usage">${esc(p.usage)}</pre></dd>`);
-  // THE PROGRAM RUNNING, beside its own help: captured from the disk image,
-  // never composed.  A card belongs to one program; where a family shares
-  // one, the caption says so.
-  const shot=SHOTS[p.name];
-  if(shot){
-    D.push(`<dt>Sample output</dt><dd><pre class="shot">${esc(shot.s)}</pre>`+
-      `<p class="shotcap">${esc(shot.c)}</p></dd>`);
-  }
   add("Restrictions", esc(i.restrictions));
   add("Hardware",     esc(i.hardware));
-  // Siblings: the answer to "is there anything else like this?"
   const kin=DATA.filter(x=>x.sub===p.sub && x.name!==p.name).sort((a,b)=>a.name.localeCompare(b.name));
   if(kin.length) add("See also", kin.slice(0,14).map(x=>
       `<a href="#p=${encodeURIComponent(x.name)}" class="kin" data-n="${esc(x.name)}"><code>${esc(x.name)}</code></a>`)
       .join(", ") + (kin.length>14?` &hellip; and ${kin.length-14} more`:""));
 
+  // The two things a browser wants first: what to type, and the program
+  // doing it.  The command is short; the demo shows the real invocation.
+  const shot=SHOTS[p.name];
+  const tryCmd=(shot&&shot.try)||p.name;
+  const seeHTML=shot
+    ? `<div class="see"><div class="k">See it run</div>`+
+      `<pre class="shot">${esc(shot.s)}</pre>`+
+      `<p class="shotcap">${esc(shot.c)}</p></div>`
+    : "";
+
   col.innerHTML = `<div class="panel">`+
     `<button class="back" id="back">&larr; Back to the list</button>`+
     `<h2 class="pn">${esc(p.name)}</h2>`+
     `<p class="pd">${esc(i.purpose||p.desc)}</p>`+
-    (F.length?`<div class="flags">${F.join("")}</div>`:"")+
-    (D.length?`<dl>${D.join("")}</dl>`:"")+`</div>`;
+    `<div class="try"><span class="k">Try it</span><code>${esc(tryCmd)}</code></div>`+
+    (needs.length?`<div class="needs"><span class="k">Needs</span><span>${needs.join(" &middot; ")}</span></div>`:"")+
+    seeHTML+
+    (p.howto?`<details class="more"><summary>How to run it</summary><div class="howto">${esc(p.howto)}</div></details>`:"")+
+    (D.length?`<details class="more"><summary>Details and provenance</summary><dl>${D.join("")}</dl></details>`:"")+
+    `</div>`;
   col.scrollTop = 0;
 }
 
@@ -479,7 +490,7 @@ document.getElementById("panel-col").addEventListener("click",e=>{
 document.getElementById("q").addEventListener("input",e=>{
   st.q=e.target.value; if(st.q){ st.cat=null; st.letter=null; }
   document.getElementById("app").dataset.stage="list"; toHash(); render(); });
-for(const [id,k] of [["f-nocio","nocio"],["f-src","src"],["f-doc","doc"],["f-shot","shot"]]){
+for(const [id,k] of [["f-src","src"],["f-doc","doc"],["f-shot","shot"]]){
   const b=document.getElementById(id);
   b.onclick=()=>{ st[k]=!st[k]; b.setAttribute("aria-pressed",String(st[k])); render(); };
 }

@@ -316,6 +316,7 @@ def sheet_shots():
                                        v for k, v in shot["acts"]
                                        if k in ("run", "send", "setup")),
                                    "cap": " ".join(shot["cap"]),
+                                   "try": shot.get("try"),
                                    "for": shot["for"] or [shot["name"]],
                                    "sheet": f[:-6],
                                    "path": os.path.join(SHEETS, f)}
@@ -397,6 +398,7 @@ def collect():
         stamp = os.path.join(CAPS, "%s.shot.hash" % name)
         taken = open(stamp).read().strip() if os.path.exists(stamp) else ""
         out.append({"name": name, "cap": caption, "screen": screen,
+                    "try": (meta.get("try") if meta else None),
                     "for": [p for p in shows if p in bycat],
                     "stanza_hash": taken,
                     "cat": cat[0], "sub": cat[1]})
@@ -479,7 +481,8 @@ def main():
                 rank = 1 if prog == e["name"] else 2 if types(e["name"], prog) else 3
                 if rank == tier:
                     screens.setdefault(prog, {"n": e["name"], "c": e["cap"],
-                                              "s": e["screen"]})
+                                              "s": e["screen"],
+                                              **({"try": e["try"]} if e.get("try") else {})})
     for e in ordered:
         open(os.path.join(KEEP, "%s.txt" % e["name"]), "w").write(
             fold_ascii(e["screen"]) + "\n")

@@ -525,6 +525,7 @@ snap
 
 shot    subber
 size    24 80
+try     subber #1000k words in
 cap     subber substitutes words in a stream.  The word list is `,old,new'
 cap     pairs, one to a line, the line's first character being the delimiter;
 cap     the stream is a file, or standard input.  It grows its memory as it
