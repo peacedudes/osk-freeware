@@ -205,7 +205,7 @@
 | `lout` | Lout 2.05 document formatter (Basser Lout, Jeffrey Kingston)<br>`usage: -o<filename>` |
 | `nroff` | nroff text formatter.  Built `-qm' from SRC/nroff, it formats: given a man page it sets the text and names the macros it does not know (`unrecognized command .TH'), which is a plain nroff without the man package rather than a fault. DOC/README-CIO<br>**How:** Formats a text with nroff requests: `nroff file.ms'. Its macro sets are in LIB (tmac.*). Point TMACDIR at LIB if a macro package is not found. |
 | `proff` | proff - portable roff text formatter (macros in LIB/proff). Given a text file it justifies it to a measure, and takes page ranges and a statistics option.  `roff' works too; `nroff' wants a real macro package and answers `illegal switch' to -?<br>`usage: proff [+n] [-n] [-v] [-ifile] [-s] [-pon] [infile [outfile]]` |
-| `roff` | roff text formatter, and it works: `roff -?' gives its syntax and page-range options.<br>`Syntax: roff {[+00] [-00] [-s] -[h] file}` |
+| `roff` | roff text formatter: `roff -?' gives its syntax and page-range options.<br>`Syntax: roff {[+00] [-00] [-s] -[h] file}` |
 | `tformat` | text formatter (SNOBOL4-in-C)<br>`Usage: tformat [width\|-?] [<infile] [>outfile]` |
 
 **Fortune & sayings**
@@ -610,7 +610,7 @@
 | | |
 |---|---|
 | `forth` | &#9733; Forth-83, and it runs.  Type at it:<br>**How:** Type `2 3 + . cr' and it answers 5; `: squares 10 1 do i dup * . loop cr ;' then `squares' prints them; `words' lists its vocabulary; `bye' leaves. A SOURCE FILE IS A COMMAND-LINE ARGUMENT -- `forth fibonacci.tst' loads it and gives you the prompt -- because `include' is defined in the library, not the kernel. The library and the twenty-two programs it shipped with are in lib/tile and lib/tile/TST; lib/tile/readme explains the name (TILE is this Forth's own). |
-| `lua` | Lua 3.0, a small scripting language -- and it RUNS, once it has a `csl' of the edition it was built against.  As it stands it stops at `**** csl traphandler mismatch ****', because the `csl' on this disk is edition 16 and lua wants a later one.  `load' the newer module first and it works:<br>**How:** It stops at `**** csl traphandler mismatch ****' because it was built against a LATER csl than the edition 16 this disk ships. `load' a later csl module first -- anyone with a Microware SDK has one -- and it runs: `lua DOC/lua/examples/hello.lua' prints `hello world, from Lua!'. `luac' needs none of that. Eight example scripts are in DOC/lua/examples. |
+| `lua` | Lua 3.0, a small scripting language.  `lua <file>' runs a script:<br>**How:** It stops at `**** csl traphandler mismatch ****' because it was built against a LATER csl than the edition 16 this disk ships. `load' a later csl module first -- anyone with a Microware SDK has one -- and it runs: `lua DOC/lua/examples/hello.lua' prints `hello world, from Lua!'. `luac' needs none of that. Eight example scripts are in DOC/lua/examples. |
 | `luac` | &#9733; Lua bytecode compiler -- luac -o out in.lua<br>**How:** `luac -l -o out.lc in.lua' compiles and lists the bytecode instruction by instruction. It needs no csl and works as the disk stands. DOC/lua/examples has eight scripts that came with the package. |
 | `runc` | Runs a compiled Lua chunk as an OS-9 command -- and stops with the same csl mismatch as `lua'.  DOC/STATUS names all five programs that do |
 | `wam.sbprolog` | SB-Prolog 2.2 WAM engine -- see DOC/sbprolog/README-SBPROLOG<br>`Usage: sim [-Ttdns] [-m s_size] [-p p_size] [-b tr_size] [-ui num] pil_file_name ...` |
