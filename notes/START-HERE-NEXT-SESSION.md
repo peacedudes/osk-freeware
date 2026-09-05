@@ -48,14 +48,34 @@ reader HAS Microware OS-9; os9exec is only the convenience. See the memories
 - `TERM=xterm-256color` in login (was mislabelled `vt100`, an alias of the
   same termcap entry).
 
+## What this session did (2026-09-04, evening)
+
+- **os9exec `852dddd` no longer traps MOVE from SR in user state.** `biory`
+  draws its chart and its card shows it. `creadoc` runs on to a stop of its
+  own (it reads file names from column 53 of `dir -eadu`; this dir prints
+  them from 54) -- carded and documented as such.
+- **`blackjack` plays** under runb; "error 56 at line 8" was chx off CMDS,
+  where runb cannot find the `math` trap handler. Moved out of
+  `CMDS/BROKEN` into `CMDS` beside bio and wysetime, carded.
+- **The five zip readers have an archive**: `DOC/zip/sample.zip` (unzip's
+  own readme and ziprules). unzip, zipinfo, zipnote, zipsplit and funzip
+  are carded on it and `archives.cases` asserts the md5s.
+- **F$Mem is implemented in os9exec (`7fa2899`)** as the manual describes.
+  `subber` grows its data area with it 256 bytes at a time, which succeeds
+  only while nothing sits directly above the area: from Microware's shell
+  with cio loaded first it substitutes; under bash it is always refused,
+  so its card shows the refusal, excepted with the reason. The `#256k`
+  route written earlier tonight was layout luck, not the modifier.
+
 ## What needs rdoggett -- `notes/FOR-RDOGGETT.md`
 
 - `DOC/README-RUNNING`'s three numbered arrangements still describe the
   pre-`/h1` swap model (its opening is fixed). They want rewriting to lead
   with the `/h1` arrangement -- his call how the setup is framed.
 - The branch has never been pushed and nothing is tagged: a release is his.
-- "Best forgotten" candidates and the os9exec gaps (biory's MOVE SR, F$Mem,
-  the RCS same-second clock) are listed there.
+- "Best forgotten" candidates, re-measured 2026-09-04 evening (blackjack,
+  bio and the zip readers came off it), and the remaining os9exec gaps
+  (the RCS same-second clock, F$GPrDBT) are listed there.
 
 ## The loop, for card and test work
 

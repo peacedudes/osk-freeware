@@ -120,3 +120,25 @@ message is os9exec's dbgAnomaly diagnostic, on by default, and it lands
 on every card the program is on, so `gen_screens.py` now leaves those
 lines off the published screen.  Which global $3D8 is has not been looked
 up.
+
+## Resolved 2026-09-04: os9exec no longer traps MOVE from SR in user state
+
+os9exec commit `852dddd` ("MOVE from SR is user-legal, as on the 68000 it
+was built for") removes the privilege check from the MVSR2 handlers, with a
+test (`t50`) that failed first.  MOVE to SR, RTE, STOP and RESET stay
+privileged, so the Graph six still fault on RTE and that is right.
+
+Measured against the rebuilt binary the same evening:
+
+- **`biory` writes its chart.**  Three answers, then Biory.Lis, 3558 bytes,
+  twelve months of Koerper/Seele/Geist, and it loops back to the name
+  prompt.  Its card now shows the chart.
+- **`creadoc` runs past the instruction** and reaches a stop of its own:
+  it reads file names out of `dir -eadu` from column 53 (`fnpos = 53` in
+  creadoc.f) and the 2.4 `dir` prints them from column 54, so it opens
+  `" biory.f"` -- a name with a leading space -- and gets 214.  That is a
+  listing-format dependency in the program, not the CPU.  Whether OS-9's
+  own F$PrsNam would skip that space is not settled by the manuals on
+  hand; os9exec parses it as an empty name.
+
+The Graph programs are unchanged: RTE is supervisor-only on every 68k.
