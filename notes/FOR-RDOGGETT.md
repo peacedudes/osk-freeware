@@ -32,11 +32,16 @@ of it. Updated 2026-09-05.
      is being worked on for these.
    - The allocator's `# No more memory ...` line goes to the console, which
      is the program's stdout, so it can land on a card. Real OS-9 refuses
-     silently. (subber is now carried as an exception rather than a card.)
-   - `creadoc` writes nothing even when its dir-column year is two digits.
-     Its first stop (the `126' year shifting the filename) is a pre-Y2K
-     program, not os9exec; the second stop is unidentified and may be
-     either side.
+     silently. (subber now has a working card -- `#1000k' pre-sizes its
+     data area so it never asks os9exec to grow one.)
+   - `creadoc` is an early Fortran documentation extractor (it pulls the
+     `C++ ... C--' header block out of a `.f' source into creadoc.txt, a
+     1988 forerunner of javadoc) and is worth keeping as that. It does not
+     run here: it reads filenames from a fixed column of a `dir -eadu'
+     listing and the year rendering shifts them, and a second stop remains
+     even when the column looks right. I'd preserve it, documented, with
+     DOC/rtf/biory.doc as the example of its output -- not patch an
+     archived binary for a date artifact. Your call.
 
 3. **The `os9-dev` skill** (`~/Developer/os9/os9-dev-skill`), three gaps in
    `references/common/using-os9exec-repl.md`, written up in git history
