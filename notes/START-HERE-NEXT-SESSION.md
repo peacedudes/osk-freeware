@@ -8,10 +8,33 @@ number), `osk-freeware.dd` current.
 is not optional. This file is only the cold start; the rest of `notes/` is
 background you do not need first.**
 
-## Where it stands (2026-09-04)
+## What 2026-09-05 did (all committed, gate-green)
+
+- **TeX renders.** The sixteen Plain TeX Computer Modern fonts are built at
+  300 dpi (virmf/CanonCX) and ship as .pk in SYS/TEX/FONTS/PK300 and .gf in
+  SYS/TEX/FONTS. All eleven DVI drivers now render the sample instead of
+  zero-size text -- five at 300 dpi, five by nearest-neighbor scaling; only
+  dvips cannot, for want of its tex.pro header. README-METAFONT and the
+  driver cards are corrected.
+- **gnuchess plays the book.** CMDS/gnuchess reads USR/src/chess/gnuchess.book
+  (reachable as /h0/...), is first on PATH, and answers 1.e4 with the
+  Sicilian. The collision with the GAMES build is accepted; the card shows
+  the book move.
+- **wysecrack left BROKEN** (moved to CMDS/COMMS -- it probes a Wyse
+  terminal, not broken); CMDS/BROKEN is retired.
+- **pacman** corrected -- a keypad ASCII maze game, not G-Windows.
+- **subber** carried as an exception: it grows its data area with F$Mem, a
+  6.5 KB request os9exec's arena cannot grant in place; runs on real OS-9.
+- **creadoc** re-explained: a pre-Y2K column shift (2026 prints as `126'),
+  not F$PrsNam, and it writes nothing even when the column is right.
+- **README-RUNNING** rewritten to the settled /dd + /h0 + /h1 arrangement.
+- os9exec fixes that landed and were measured here: MOVE from SR (biory
+  draws its chart), F$Mem (per the manual), F$SysID (sysid reports).
+
+## Where it stands (2026-09-05)
 
 Per-program **cards** show each program doing its own job: 814 of 912
-runnable programs score "work" or "play"; the other ~98 are honest exceptions
+runnable programs score "work" or "play"; the rest are honest exceptions
 in `tools/panel-exceptions.psv`, each with a reason, and
 `tools/panel-backlog.txt` is empty. The gate `panels show their own program`
 enforces it. The web page is the three-column layout in `docs/`.
