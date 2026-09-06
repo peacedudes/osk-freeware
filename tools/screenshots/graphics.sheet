@@ -1099,7 +1099,11 @@ shot    mgif
 cap     Inspects a GIF and reports its structure -- image geometry, bit
 cap     depth, colour-map size and layout.  Displaying a GIF needs Atari
 cap     ST graphics hardware; -i inspects on any terminal.
-run     mgif -i /dd/DEMO/gulls.gif
+run     builtin cd /dd/DEMO
+wait    1
+run     clear
+wait    1
+run     mgif -i gulls.gif
 wait    8
 snap
 

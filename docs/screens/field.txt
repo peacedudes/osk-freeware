@@ -1,10 +1,10 @@
-cat /dd/tmp/TEXTA/fox.txt
+cat fox
 the quick brown fox
 jumps over the lazy dog
-$ field 2 4 1 < /dd/tmp/TEXTA/fox.txt
+$ field 2 4 1 < fox
 quick   fox     the
 over    lazy    jumps
-$ field -i=, 1 3 < /dd/SYS/password
+$ field -i=, 1 3 < pw
 su      0.0
 tester  1.7
         1.99

@@ -11,7 +11,7 @@ PrintLabels 273f43fecd92e44f
 UnMacpack 6ddb41751817bf06
 X11R6shl 61d1b28a4c470915
 about 253c97e879e0105e
-add_errmsg 9210f25cbf7104ca
+add_errmsg 58882a7c07b4c410
 adduser aeb299e88a914c4d
 adlcomp 51d54f57dc01332a
 adldebug af45090c63cd8854
@@ -29,7 +29,7 @@ apfel 77cdc537a38abde5
 aprocs e09b6077ad89639d
 ar 153dc6dff2b25522
 ar2 d9a8f4ab9db408a4
-arc 6f4b8ea5736eee91
+arc c516c0bbb2c39fe2
 arc_5.12 5e0b7449d11f0f57
 areacode c1465c13732198ab
 arepdaemon eb5335dfc6829c4c
@@ -58,7 +58,7 @@ bcheck c20893fb3e31b33b
 bdecode 4775f4408316f918
 bibtex 04eb3adefae94c24
 bigsetter a65afaeb5077cfad
-bincheckr e6e962522d8397eb
+bincheckr 00003df49784821c
 binhex 31bd24cdb7d247f9
 bio 570e60369038202b
 bioradtopgm 646cd466aff9d089
@@ -93,7 +93,7 @@ cc2plus 4a8cbbf676b895d6
 cccp2 7cadf12bab8fb1e4
 ccheck fc8039768a5bc757
 cdiff c20874fb713cd0fc
-charcnt cd15a3a9da7c09c1
+charcnt 6f3d8f7999fc7036
 chardef d4caa2e6337cc9d2
 chbase 19a911b330380a09
 checkalias 17a0c27a8214bdce
@@ -124,7 +124,7 @@ config f6e67a27e95bc933
 connect 7dd389eebeec2ac3
 cookhash e1aa7b557d5161db
 cookie 56260c431cc004e7
-cp 2f22522d48ffeb04
+cp 284ff3912f4ad26e
 cpr 2c7a04b3b35e4e61
 cpu 098e41d6e2631e71
 creadoc 6579f37c36cf65c6
@@ -135,7 +135,7 @@ crypto ee96bdb3042ce625
 ctags a08576ed58e9d0e5
 ctags.elvis ecd0ed2eb20e7485
 cursive 97b454155c3401de
-cut a5fa24627e045eee
+cut db89f25fada4b2e9
 cuts 1aa3acac94fe05ca
 cvtbase 22e68e7c868991de
 cxref da844bb04f50e6b2
@@ -144,7 +144,7 @@ dam c30b7cc7269589c3
 dback a541ed8a4bc417b3
 dbz 603ef4d1a8f2c8ef
 dclock 9081125499f001ad
-dearc ab00d24ce2751569
+dearc 2a58125961c0d5ce
 delbak c27e91aba1726cbf
 demerge 9b67fa2ec7514dd8
 demo 56e8d37beec6bcf8
@@ -169,7 +169,7 @@ diff f72994c1e4161a8f
 diff_1.1 f9bf5ba7f302d343
 digclk fbfa25c19b06608e
 dinfo 0051d35cb9088d43
-dir 1854f7f147d2183c
+dir db672f433ae4e3eb
 dirname d61dfe1d96b81180
 disable 392a7269b17d81d7
 disktest cef9b1c52f746013
@@ -177,7 +177,7 @@ divide d349c04fa6c2a9e6
 djpeg c2e703e947c074cc
 djpeg.070 73c4fb106442b4a8
 dld 29b521f9a53df750
-dload 4c55012c26d7d3f5
+dload 123da82a8ca4aeac
 dm 0489d0b6490d54c4
 dmake 7695714abde9ca2c
 dotilde d03058da0d1d66ac
@@ -214,8 +214,8 @@ enable f3b946f52217bade
 england d6027b06875145fc
 env b204bde44766916f
 eo 0618dc87545d1fc3
-ephem 4393307c10efb064
-ephem881 eeb7caa617dfde35
+ephem 59fd505985416455
+ephem881 b2ff1bbc463abc95
 epson b0ba1ac846678b47
 eset 0d7db79c1b26ab57
 etags 81074b23f25ed40a
@@ -231,9 +231,9 @@ fastmail 1d2d8ec37627ea28
 fc a980adc22d2b53de
 fcomp 7aecd893e0f4fe60
 ff dfa69563d285691d
-fgrep b278536a389453c1
+fgrep 4e98fc62c03728b2
 fibo d1f08baf63bfb96e
-field 06224dd470f31263
+field 23e15abb15f652dd
 file 0c38bdb5477721da
 fileserv 94281ba25515ae37
 fillup 7ffbdce3fd6077c5
@@ -259,7 +259,7 @@ funzip 4b9fcb57ad7604d3
 g fe668ad88d2c5a40
 g3 fa43d048ddbf5c4f
 game 2324f0be3ac484eb
-gawk b0b0c083352f65be
+gawk 49dd1fd65b79d340
 gcc 5dc6547034a1e133
 gcc2 16db721523ff1e5f
 gcc_cc1 4d5a90952d4116b3
@@ -276,7 +276,7 @@ gep b957bb6cf7809265
 getenv f80c67660f97119e
 gftopk 1ab92bf18f71d409
 gftype 7b07c097e5780736
-ggrep cfe53104d19a39e2
+ggrep a2320b13d3d07622
 gif f92f7b11da4a9504
 gif2 b5c0592108bf2c41
 giftopnm 2f3769f6c8c49b2a
@@ -314,7 +314,7 @@ gzipcpu32_nocsl 0611a20f8f8c85b7
 gzipcpu32k_csl a71994e582c2bafd
 hack 0fa0a0ab8bfee9d5
 hang 087e991e81c527f9
-hc 84fb1986a4e666b8
+hc c248b77d3ef338e8
 head 851a182fada2e62b
 help f3582562e66c29aa
 helpindex 058ac3b26282ba45
@@ -361,7 +361,7 @@ latex ddd911e879e6428e
 launch f4feaadc8120ed98
 lcasep e4e0800cde682d5c
 less b8696ce43f4dfe22
-lessecho 6713786ec0850e0a
+lessecho f577c22750348f4e
 lesskey 01943ebdce034e1b
 lgrep 320ceb09b782093f
 lha 6a538ffe51fc33a4
@@ -416,7 +416,7 @@ me 8c5d6411df074c86
 messages 5fde366e76c236de
 mexist ce07f4f61b5f4f22
 mg 320231c02b99af85
-mgif 857193f165036564
+mgif e0349a589f6ed716
 mille 2b0f47ef4c18ff16
 mines d60bd064f0a8be59
 minnesota 0bbeae4ac2dd551d
@@ -431,7 +431,7 @@ msattrib 4d8fed91801e461e
 msbadblocks feb44f7316ace773
 mscd 5f2a90b651ca0918
 mscheck 871d43ac6af850fb
-mscopy ff2d0cdd8fda14bd
+mscopy 4a3f275b2e9c8d13
 msdel dae26c9b305e7084
 msdeltree 705a244ed922b292
 msdir ad4154a37c0c1e7b
@@ -447,7 +447,7 @@ msread b88dd7ca7e4eb5b8
 msren a5379a9a11c7acbe
 mstoolstest fca8001fdb9e2a5f
 mstype 18a97666cc8aef6f
-mswrite d915e5c9eac03ea5
+mswrite 5b5dd1b4788e9257
 mtools 0ca7321e28cae63e
 mtst 85c98c0c717f9312
 mtvtoppm a7ad87d1ccf3439c
@@ -552,7 +552,7 @@ pnmtops 4a9b69fa3ddddc7d
 pnmtosgi 0cd448e375790f45
 poker 82d2300aa146e42d
 postnews cf27d5fa47119b0b
-postprint a58d11a7c2dbd6fd
+postprint 35dd579cb7894377
 ppm3d 636f7a9489a4580d
 ppmbrighten bc06c6f2ba3c9bd7
 ppmchange bc7f47bf9f37e26f
@@ -588,7 +588,7 @@ ptob 729e6ac61b044c64
 puz15 f4446639e39ed1e6
 puzzle15 681b23b46819725d
 pwgen bf28b70252d5753d
-pwparse 70eb153a3b190910
+pwparse 53ca2a07a5edd842
 qp 159fb95fa4e549d8
 qsort9 ed92b7818b8897ae
 qt 6e09112db03ccdd9
@@ -778,7 +778,7 @@ virtex 9d559fb54e82f573
 vlen 80cc66f3d5a73dc9
 vmod_trap 8a18b7818c4c192e
 vptovf aa06d95176e88cdd
-vtxtcn 531083198516eafc
+vtxtcn 24c0341f76ee53e1
 wam.sbprolog fa0747085d0fcca9
 wanderer 8e76bdfa9c03d380
 wc 2c40381787584b00

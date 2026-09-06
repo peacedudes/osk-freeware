@@ -282,7 +282,11 @@ wait    6
 shot    pwparse
 cap     Parses a password file into the login names the mailer wants,
 cap     one per line.
-run     pwparse < /dd/SYS/password
+run     builtin cd /dd/SYS
+wait    1
+run     clear
+wait    1
+run     pwparse < password
 wait    6
 
 shot    read_mail

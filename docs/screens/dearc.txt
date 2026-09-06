@@ -1,8 +1,4 @@
 dearc m.arc
 motd
-WARNING: File fails CRC check
-$ chksum /dd/SYS/motd /dd/motd
-4b68af85
-c0121dba
-========
-f91e001a
+Overwrite file (y/n)? chksum motd /dd/motd
+Overwrite file (y/n)?

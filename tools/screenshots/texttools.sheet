@@ -177,13 +177,17 @@ shot    hc
 cap     hc shifts text to a column, or labels every line.
 cap     `+8' indents to column 8, `-11' strips back to column 11, and
 cap     `-l' puts a string in front of every line.
-run     cat /dd/SYS/motd
+run     builtin cd /dd/SYS
+wait    1
+run     clear
+wait    1
+run     cat motd
 wait    5
-run     hc +8 /dd/SYS/motd
+run     hc +8 motd
 wait    5
-run     hc -11 /dd/SYS/motd
+run     hc -11 motd
 wait    5
-run     hc -l "> " /dd/SYS/motd
+run     hc -l "> " motd
 wait    5
 
 # Formatters, fortune tools, comparers, sorters, searchers and the KWIC
@@ -339,7 +343,11 @@ wait    5
 
 shot    ggrep
 cap     GNU grep, with line numbers.
-run     ggrep -n USR /dd/SYS/password
+run     builtin cd /dd/SYS
+wait    1
+run     clear
+wait    1
+run     ggrep -n USR password
 wait    5
 
 shot    bmgtest
@@ -416,5 +424,9 @@ wait    6
 shot    fgrep
 cap     Searches for a fixed string rather than a pattern: the lines of
 cap     the password file naming a home under USR.
-run     fgrep -n USR /dd/SYS/password
+run     builtin cd /dd/SYS
+wait    1
+run     clear
+wait    1
+run     fgrep -n USR password
 wait    5

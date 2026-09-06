@@ -1,6 +1,6 @@
-ls -l /dd/SYS/motd
--rw-rw-rw-   1 0        0              40 Aug  3 19:00 /dd/SYS/motd
-<mp/FILESA/motd.copy; ls -l /dd/tmp/FILESA/motd.copy
+ls -l motd
+-rw-rw-rw-   1 0        0              40 Aug  3 19:00 motd
+$ cp motd /dd/tmp/FILESA/motd.copy; ls -l /dd/tmp/FILESA/motd.copy
 -rw-rw-rw-   1 0        0              40 Aug  3 19:00 /dd/tmp/FILESA/motd.copy
 $ cat /dd/tmp/FILESA/motd.copy
 Welcome to os9exec -- OS-9/68k emulator

@@ -1,7 +1,7 @@
-mswrite /dd/SYS/motd a:RAW.TXT
+mswrite motd a:RAW.TXT
 $ msread a:RAW.TXT /dd/tmp/raw.out
 Copying RAW.TXT
-$ chksum /dd/SYS/motd /dd/tmp/raw.out
+$ chksum motd /dd/tmp/raw.out
 4b68af85
 4b68af85
 ========

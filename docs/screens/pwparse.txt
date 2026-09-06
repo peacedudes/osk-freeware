@@ -1,4 +1,4 @@
-$ pwparse < /dd/SYS/password
+pwparse < password
         os9
         uucp
 

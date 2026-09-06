@@ -1,11 +1,11 @@
-dir -e /dd/SYS/ksh
+dir -e ksh
 
-Directory of "/dd/SYS/ksh" 05:52:17  09/03/126
+Directory of "ksh" 18:47:45  09/05/126
 
  Owner   Last modified  Attributes Sector Bytecount Name
 -------  -------------  ---------- ------ --------- -----
-  0.0    126/08/03 1900   ---wr-wr   730A8       528 envi.ksh
-  0.0    126/08/03 1900   ---wr-wr   730AC      1159 mark
-  0.0    126/08/03 1900   ---wr-wr   730B4      1160 profile.ksh
+  0.0    126/08/03 1900   ---wr-wr   73518       528 envi.ksh
+  0.0    126/08/03 1900   ---wr-wr   7351C      1159 mark
+  0.0    126/08/03 1900   ---wr-wr   73524      1160 profile.ksh
 
 Total of 3 files containing 2847 bytes.

@@ -48,7 +48,11 @@ cap     An astronomical ephemeris: the sun, the moon and the planets for
 cap     the moment it is set to, with rise, transit and set down the side,
 cap     from the configuration and star database in SYS.  RETURN passes
 cap     its opening page; control-D leaves it.
-run     ephem -c /dd/SYS/ephem.cfg -d /dd/SYS/ephem.db
+run     builtin cd /dd/SYS
+wait    1
+run     clear
+wait    1
+run     ephem -c ephem.cfg -d ephem.db
 wait    8
 send    \r
 wait    10
@@ -57,7 +61,11 @@ quit    \004
 
 shot    ephem881
 cap     The same ephemeris built for a 68881 floating-point coprocessor.
-run     ephem881 -c /dd/SYS/ephem.cfg -d /dd/SYS/ephem.db
+run     builtin cd /dd/SYS
+wait    1
+run     clear
+wait    1
+run     ephem881 -c ephem.cfg -d ephem.db
 wait    8
 send    \r
 wait    10

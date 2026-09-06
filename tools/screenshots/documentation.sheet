@@ -37,7 +37,11 @@ shot    lessecho
 cap     Prints its arguments back, one line, the way less hands file
 cap     names to a shell -- a name containing spaces or a wildcard comes
 cap     back quoted so the shell leaves it alone.
-run     lessecho /dd/SYS/motd "two words" it*s
+run     builtin cd /dd/SYS
+wait    1
+run     clear
+wait    1
+run     lessecho motd "two words" it*s
 wait    4
 
 shot    lesskey

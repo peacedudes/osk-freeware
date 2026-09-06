@@ -49,13 +49,17 @@ size    24 80
 cap     cp copies a file: `cp <from> <to>'.  The listing after it shows the
 cap     copy alongside the original, the same length, and its contents are
 cap     the same bytes.
+run     builtin cd /dd/SYS
+wait    1
+run     clear
+wait    1
 run     mkdir -p /dd/tmp/FILESA > /nil 2>/nil; rm -f /dd/tmp/FILESA/motd.copy > /nil 2>/nil
 wait    4
 run     clear
 wait    1
-run     ls -l /dd/SYS/motd
+run     ls -l motd
 wait    5
-run     cp /dd/SYS/motd /dd/tmp/FILESA/motd.copy; ls -l /dd/tmp/FILESA/motd.copy
+run     cp motd /dd/tmp/FILESA/motd.copy; ls -l /dd/tmp/FILESA/motd.copy
 wait    6
 run     cat /dd/tmp/FILESA/motd.copy
 wait    4
@@ -211,9 +215,13 @@ size    26 80
 cap     dir lists a directory.  `-e' is the long form: owner, date and time,
 cap     the attribute letters, the sector the file descriptor sits on, and
 cap     the length in bytes.
+run     builtin cd /dd/SYS
+wait    1
 run     clear
 wait    1
-run     dir -e /dd/SYS/ksh
+run     clear
+wait    1
+run     dir -e ksh
 wait    8
 snap
 

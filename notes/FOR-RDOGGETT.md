@@ -11,7 +11,11 @@ pathlists' fails the build on any `/dd/...`, `/h0/...` or `/h1/...` in a
 card's caption or `try' line, and check_the_checks records the by-hand
 proof.  The ten caption lines that still named absolute paths are reworded.
 
-**What is left: the shown COMMANDS.** 180 of 907 captures still echo a
+**What is left: the shown COMMANDS.** 23 are done (the clean single-
+directory ones: `arc a m.arc motd termcap', `charcnt holidays motd', `hc
++8 motd', `cut password', and so on -- a hidden `builtin cd' moves the
+data directory so the shown command needs no path).  About 157 of 907
+captures still echo a
 full path in the command line itself -- `arc a m.arc /dd/SYS/motd', not
 `arc a m.arc motd' -- because their sheet `run' line uses full paths.  Each
 one is a stanza reworked to `chd' into a short work directory with

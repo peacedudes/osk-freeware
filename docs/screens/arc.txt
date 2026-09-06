@@ -1,4 +1,4 @@
-arc a m.arc /dd/SYS/motd /dd/SYS/termcap
+arc a m.arc motd termcap
 Creating new archive: m.arc
 adding file:   motd           analyzing, storing, done. (0%)
 adding file:   termcap        analyzing, crunched, done. (36%)

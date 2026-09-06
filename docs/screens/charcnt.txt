@@ -1,4 +1,4 @@
-$ charcnt /dd/SYS/holidays /dd/SYS/motd
+charcnt holidays motd
 
 
  ch  cnt  ch  cnt  ch  cnt  ch  cnt  ch  cnt  ch  cnt  ch  cnt  ch  cnt

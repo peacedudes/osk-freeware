@@ -479,7 +479,11 @@ cap     Checks a GNU Chess opening book for how well it is packed: entry
 cap     size, book size, pocket and count.  Given the 145 KB book that ships
 cap     in GAMES it reports the entry size and then zeroes for the rest, and
 cap     is aborted as it closes the file.
-run     bincheckr /dd/GAMES/gnuchess.book
+run     builtin cd /dd/GAMES
+wait    1
+run     clear
+wait    1
+run     bincheckr gnuchess.book
 wait    10
 
 shot    checkgame
@@ -531,7 +535,11 @@ cap     PostScript, a board to a page with the best move and the search
 cap     depth.  Given GNU Chess's opening book in place of a saved hash it
 cap     writes the first line of the page setup and stops.  DOC/postprint
 cap     has the manual page.
-run     postprint /dd/GAMES/gnuchess.book
+run     builtin cd /dd/GAMES
+wait    1
+run     clear
+wait    1
+run     postprint gnuchess.book
 wait    12
 
 # ------------------------------------------------------------ dungeon crawl
@@ -795,9 +803,13 @@ wait    3
 shot    vtxtcn
 cap     Builds WORLD's text tables from the .dat files in the current
 cap     directory, writing .inc files and printing nothing.
-run     ksh -c "cd /dd/GAMES/WORLD; vtxtcn" < /nil; echo "status $?"
+run     builtin cd /dd/GAMES
+wait    1
+run     clear
+wait    1
+run     ksh -c "cd WORLD; vtxtcn" < /nil; echo "status $?"
 wait    12
-run     ls /dd/GAMES/WORLD
+run     ls WORLD
 wait    4
 
 shot    mkindex

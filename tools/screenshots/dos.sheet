@@ -40,11 +40,15 @@ wait    10
 shot    mscopy
 cap     Copies a file from OS-9 onto the DOS disk, and the listing shows
 cap     it there.
+run     builtin cd /dd/SYS
+wait    1
+run     clear
+wait    1
 run     mscd a:/ > /nil; msdel a:MOTD.TXT > /nil 2>/nil
 wait    8
 run     clear
 wait    1
-run     mscopy /dd/SYS/motd a:MOTD.TXT
+run     mscopy motd a:MOTD.TXT
 wait    10
 run     msdir a:
 wait    10
@@ -160,15 +164,19 @@ wait    8
 shot    mswrite
 cap     Writes a file onto the DOS disk raw, with none of the DOS
 cap     filename rules involved; the checksums show it arrived unchanged.
+run     builtin cd /dd/SYS
+wait    1
+run     clear
+wait    1
 run     mscd a:/ > /nil; msdel a:RAW.TXT > /nil 2>/nil; rm -f /dd/tmp/raw.out
 wait    8
 run     clear
 wait    1
-run     mswrite /dd/SYS/motd a:RAW.TXT
+run     mswrite motd a:RAW.TXT
 wait    10
 run     msread a:RAW.TXT /dd/tmp/raw.out
 wait    10
-run     chksum /dd/SYS/motd /dd/tmp/raw.out
+run     chksum motd /dd/tmp/raw.out
 wait    8
 
 shot    msread

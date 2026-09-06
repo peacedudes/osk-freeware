@@ -34,11 +34,15 @@ cap     lists with the compression column.  The archive name has to be a
 cap     bare filename in the current directory: arc builds it under a
 cap     temporary name and then renames it into place, and that rename
 cap     fails as soon as the target names a subdirectory.
+run     builtin cd /dd/SYS
+wait    1
+run     clear
+wait    1
 run     rm -f m.arc
 wait    4
 run     clear
 wait    1
-run     arc a m.arc /dd/SYS/motd /dd/SYS/termcap
+run     arc a m.arc motd termcap
 wait    12
 run     arc v m.arc
 wait    8
@@ -48,13 +52,17 @@ cap     dearc is built to extract archives from the MS-DOS ARC program,
 cap     not this disk's own `arc' -- and the difference is real: reading
 cap     back what `arc' just wrote here, dearc reports a CRC failure and
 cap     the extracted file does not match the original.
-run     rm -f /dd/m.arc /dd/motd; arc a m.arc /dd/SYS/motd
+run     builtin cd /dd/SYS
+wait    1
+run     clear
+wait    1
+run     rm -f /dd/m.arc /dd/motd; arc a m.arc motd
 wait    6
 run     clear
 wait    1
 run     dearc m.arc
 wait    6
-run     chksum /dd/SYS/motd /dd/motd
+run     chksum motd /dd/motd
 wait    5
 
 shot    marc

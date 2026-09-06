@@ -93,8 +93,12 @@ cap     Loads a data file INTO A DATA MODULE in memory, despite the name --
 cap     it does not send anything down a serial line.  Given the message of
 cap     the day it reports the size it read and the address the module was
 cap     placed at.
+run     builtin cd /dd/SYS
+wait    1
 run     clear
-run     dload /dd/SYS/motd
+wait    1
+run     clear
+run     dload motd
 wait    7
 
 shot    drop
@@ -645,13 +649,17 @@ shot    add_errmsg
 cap     add_errmsg appends error messages to vi's message file, one per
 cap     quoted argument.  It seeks to the end
 cap     and writes, and the file grows by the message.
+run     builtin cd /dd/SYS
+wait    1
 run     clear
 wait    1
-run     wc -c /dd/SYS/vi_errmsg
+run     clear
+wait    1
+run     wc -c vi_errmsg
 wait    2
 run     add_errmsg "disk full -- delete something"
 wait    3
-run     wc -c /dd/SYS/vi_errmsg
+run     wc -c vi_errmsg
 wait    2
 shot    clear
 cap     clear clears the terminal screen.  A directory listing is printed

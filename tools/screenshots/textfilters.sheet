@@ -15,7 +15,11 @@ size    26 80
 cap     charcnt counts how often each character occurs in the files named,
 cap     control characters included -- CR is the line ending here -- and
 cap     totals the bytes read.
-run     charcnt /dd/SYS/holidays /dd/SYS/motd
+run     builtin cd /dd/SYS
+wait    1
+run     clear
+wait    1
+run     charcnt holidays motd
 wait    6
 
 shot    dump
@@ -178,13 +182,17 @@ size    30 80
 cap     cut picks columns out of each line of the password file: `-d, -f3'
 cap     the third comma-separated field, the group and user number; `-f1-3'
 cap     the first three; `-c1-4' the first four characters.
-run     cat /dd/SYS/password
+run     builtin cd /dd/SYS
+wait    1
+run     clear
+wait    1
+run     cat password
 wait    3
-run     cut -d, -f3 /dd/SYS/password
+run     cut -d, -f3 password
 wait    4
-run     cut -d, -f1-3 /dd/SYS/password
+run     cut -d, -f1-3 password
 wait    4
-run     cut -c1-4 /dd/SYS/password
+run     cut -c1-4 password
 wait    4
 
 shot    cuts
@@ -242,21 +250,20 @@ wait    8
 snap
 
 shot    field
-cap     field selects whitespace-separated fields from standard input by
-cap     number, in the order asked for, tab-separated on output: fields 2, 4
-cap     and 1 of each line.  `-i=c' names another input separator, here the
-cap     comma of the password file.
-run     mkdir -p /dd/tmp/TEXTA; echo "the quick brown fox" > /dd/tmp/TEXTA/fox.txt; echo "jumps over the lazy dog" >> /dd/tmp/TEXTA/fox.txt
+cap     field prints the words you pick from each line by their position:
+cap     the 2nd, 4th and 1st here, then fields 1 and 3 from a comma list.
+run     rm -rf /dd/tmp/fld > /nil 2>/nil; mkdir -p /dd/tmp/fld; echo "the quick brown fox" > /dd/tmp/fld/fox; echo "jumps over the lazy dog" >> /dd/tmp/fld/fox; cp /dd/SYS/password /dd/tmp/fld/pw
 wait    3
+run     builtin cd /dd/tmp/fld
+wait    1
 run     clear
 wait    1
-run     cat /dd/tmp/TEXTA/fox.txt
+run     cat fox
+wait    2
+run     field 2 4 1 < fox
 wait    3
-run     field 2 4 1 < /dd/tmp/TEXTA/fox.txt
-wait    5
-run     field -i=, 1 3 < /dd/SYS/password
-wait    5
-snap
+run     field -i=, 1 3 < pw
+wait    3
 
 shot    fillup
 size    30 80
@@ -423,11 +430,15 @@ cap     standard
 cap     input -- this build ignores a filename argument and reads standard
 cap     input whatever it is given, so a named file leaves it waiting on the
 cap     terminal.
-run     cat /dd/SYS/password
+run     builtin cd /dd/SYS
+wait    1
+run     clear
+wait    1
+run     cat password
 wait    4
-run     gawk -F, "{printf \"%-8s %s\n\", \$1, \$6}" < /dd/SYS/password
+run     gawk -F, "{printf \"%-8s %s\n\", \$1, \$6}" < password
 wait    12
-run     gawk "{w+=NF} END {print NR, w}" < /dd/SYS/holidays
+run     gawk "{w+=NF} END {print NR, w}" < holidays
 wait    12
 snap
 
