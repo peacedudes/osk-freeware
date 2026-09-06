@@ -283,7 +283,7 @@ size    40 80
 for     dedit exrecover read_mail
 cap     `read_mail' READING A FOLDER, and the vi recovery helper beside it.
 cap     read_mail is not vi's helper despite sitting among them: it is a
-cap     small mail reader with a mail directory of its own, /dd/MAIL, and it
+cap     small mail reader with a mail directory of its own, and it
 cap     quotes what it finds and offers to delete it.  `exrecover' brings
 cap     back a buffer that `expreserve' saved when vi died; asked for one
 cap     nobody saved it says `File not found', which is the honest answer on
@@ -642,8 +642,8 @@ wait    2
 run     ls -l /dd/tmp/UTILA/tr/f; cat /dd/tmp/UTILA/tr/f; echo
 wait    3
 shot    add_errmsg
-cap     add_errmsg appends error messages to vi's message file,
-cap     /dd/SYS/vi_errmsg, one per quoted argument.  It seeks to the end
+cap     add_errmsg appends error messages to vi's message file, one per
+cap     quoted argument.  It seeks to the end
 cap     and writes, and the file grows by the message.
 run     clear
 wait    1

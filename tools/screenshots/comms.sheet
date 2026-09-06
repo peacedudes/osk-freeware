@@ -32,8 +32,8 @@ send    tester\r
 wait    5
 
 shot    arepdaemon
-cap     The daemon autoreply relies on.  Wants
-cap     /dd/USR/LIB/ELM/autoreply.data, which is not here, and says so:
+cap     The daemon autoreply relies on.  Wants its data file, which is
+cap     not here, and says so:
 cap     `Error 216 attempting fstat' -- though it still touches
 cap     autoreply.log on its way there.
 run     rm -f /dd/USR/LIB/ELM/autoreply.data /dd/USR/LIB/ELM/autoreply.log
@@ -286,8 +286,8 @@ run     pwparse < /dd/SYS/password
 wait    6
 
 shot    read_mail
-cap     vi/elvis's own mail-reading helper, not part of Elm: it opens
-cap     /dd/MAIL/mail_<user> and quotes what it finds.  The file that
+cap     vi/elvis's own mail-reading helper, not part of Elm: it opens your
+cap     mailbox and quotes what it finds.  The file that
 cap     ships is empty, so it reads to end and has nothing to quote.
 run     ls -l /dd/MAIL
 wait    4
@@ -779,7 +779,7 @@ wait    6
 
 shot    atp
 cap     The AX.25 transport from the KA9Q packet-radio package.  It reads
-cap     its configuration first and names the file it wants -- /dd/atprc or
+cap     its configuration first and names the file it wants -- atprc or
 cap     .atprc -- which you write for your own station.
 run     atp
 wait    8
@@ -868,8 +868,8 @@ cap     on standard input, one response on standard output.  The request
 cap     is built with `echo' and passed through `autolf', since HTTP wants
 cap     CRLF and this disk's echo writes CR alone.  Back comes a complete
 cap     HTTP/1.0 200 with Last-modified, Content-length and the page.  Its
-cap     document root is /h0/c/unid/wn_1.14.3/osk, on this disk, so mount
-cap     the collection as /h0 as well as /dd; `wndex' builds the cache it
+cap     document root is a directory this disk carries, so mount the
+cap     collection as /h0 as well as /dd; `wndex' builds the cache it
 cap     serves from.  The reply is cut to eighteen lines to end cleanly.
 run     mkdir -p /dd/tmp/COMB > /nil 2>/nil
 wait    2

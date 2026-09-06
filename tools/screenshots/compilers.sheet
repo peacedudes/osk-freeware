@@ -244,7 +244,7 @@ wait    8
 
 shot    gmake
 cap     GNU make 3.67, running a rule from DOC/make/demo.mk: copies
-cap     /dd/SYS/motd to /dd/tmp/greeting and reports the file it made.
+cap     one file to another and reports the file it made.
 run     rm -f /dd/tmp/greeting
 wait    4
 run     gmake -v

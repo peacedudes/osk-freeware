@@ -96,7 +96,7 @@ wait    4
 
 shot    jargon
 cap     The Jargon File browser, looking up a word in its own database --
-cap     jargon.txt and jargon.idx in /dd/VH.  The database is named by its
+cap     jargon.txt and jargon.idx, in the VH directory.  The database is named
 cap     BASE name and nothing else: given a path it says it cannot find it.
 run     jargon -b kluge jargon
 wait    10

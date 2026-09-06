@@ -791,6 +791,41 @@ def check_cards_do_not_depend_on_each_other(root):
     return not bad, "%d card(s) depend on another card" % len(bad)
 
 
+def check_cards_have_no_pathlists(root):
+    """A card's caption or `try' line must never carry a full absolute path.
+
+    rdoggett, told many times and finally angrily (2026-09-05): `DO NOT USE
+    FULL PATHLISTS in explanation on cards.  Arrange to not need them.'  A
+    reader browsing hundreds of programs does not benefit from
+    `/dd/CMDS/subber /dd/tmp/SUB/words' where `subber words in' would do.
+    Name a file by its bare or short-relative name, or arrange the demo with
+    a `chd' so the shown command reads short.  A bare device (`mount as /h0')
+    is fine; a rooted pathlist (`/h0/usr/src/...') is not.
+    """
+    sheets = os.path.join(os.path.dirname(os.path.abspath(__file__)),
+                          "screenshots")
+    if not os.path.isdir(sheets):
+        return True, ""
+    pathlist = re.compile(r"(?:/dd|/h0|/h1|/h5|/h6)/[\w.]")
+    bad = []
+    for f in sorted(os.listdir(sheets)):
+        if not f.endswith(".sheet"):
+            continue
+        shot = None
+        for raw in open(os.path.join(sheets, f)):
+            line = raw.rstrip("\n")
+            word = line.split(None, 1)[0] if line.split() else ""
+            rest = line.split(None, 1)[1] if len(line.split(None, 1)) > 1 else ""
+            if word == "shot":
+                shot = rest.strip()
+            elif word in ("cap", "try") and pathlist.search(rest):
+                bad.append("%s: `%s' %s line names a full path: %s"
+                           % (f, shot, word, pathlist.search(rest).group(0) + "..."))
+    for b in bad:
+        print("    %s" % b)
+    return not bad, "%d card caption/try line(s) carry a full pathlist" % len(bad)
+
+
 def check_module_names(root):
     """No two files under CMDS register the same MODULE name.
 
@@ -1030,6 +1065,7 @@ CHECKS = [
     ("the disk's documents are intact", check_docs_not_truncated),
     ("README names documents that exist", check_readme_cross_references),
     ("cards do not depend on each other", check_cards_do_not_depend_on_each_other),
+    ("cards carry no full pathlists", check_cards_have_no_pathlists),
     ("harness env matches SYS/login", check_harness_env_matches_login),
     ("panels show their own program", check_panels_show_their_program),
 ]

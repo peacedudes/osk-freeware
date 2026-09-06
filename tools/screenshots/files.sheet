@@ -319,7 +319,7 @@ size    30 80
 cap     dm, Disk Master 1.4: a two-pane browser with the directory on the
 cap     left and a file-information panel on the right, and its commands
 cap     along the foot.  It carries those out through system(), so SHELL
-cap     has to name a shell that can run them -- /dd/CMDS/sh here.
+cap     has to name a shell that can run them -- `sh' here.
 cap     Arrow keys move; the letter in each word on the bottom line picks
 cap     that command.
 run     clear

@@ -363,8 +363,8 @@ wait    30
 shot    gnuchess
 size    24 80
 cap     GNU Chess after 1. e4, answered with the Sicilian (c7c5) straight
-cap     out of the opening book -- the build `gnuchess' runs reads it from
-cap     /h0/usr/src/chess/gnuchess.book, which ships here.  It asks for a
+cap     out of the opening book, which ships here, read by the build
+cap     `gnuchess' runs.  It asks for a
 cap     time control first (`1' is a move a minute) and takes moves as
 cap     `e2e4'; a clock for each side and the search depth sit to the right.
 cap     It reads the terminal description out of TERMCAP itself, so the

@@ -172,6 +172,18 @@ def break_card_dependency(root):
     return None
 
 
+def break_pathlists(root):
+    """A card caption made to carry a full pathlist.
+
+    Like `break_card_dependency', this reads `tools/screenshots', not the
+    disk copy, so it is verified by hand rather than auto-probed: on
+    2026-09-05, inserting `cap  reads /dd/CMDS/gnuchess' into games.sheet
+    made `cards carry no full pathlists' report one, and removing it made it
+    pass.  Not automated, for the same reason as the card-dependency check.
+    """
+    return None
+
+
 def break_hand_files(root):
     """DOC/USAGE, not DOC/STATUS.
 
