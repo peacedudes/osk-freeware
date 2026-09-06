@@ -70,7 +70,7 @@ run     checksum /dd/tmp/ENC/j.txt
 wait    4
 
 shot    chksum
-cap     A 32-bit checksum of a file.
+cap     The checksum of two of the disk's own files.
 run     mkdir -p /dd/tmp/ENC > /nil 2>/nil; printf "Twas brillig, and the slithy toves\r" > /dd/tmp/ENC/j.txt
 wait    2
 run     clear

@@ -71,7 +71,7 @@ wait    8
 
 shot    georgia
 size    24 100
-cap     The weather program on its south-Atlantic profile.
+cap     The south-Atlantic run -- a year of weather down the page.
 run     georgia | head -n 21
 wait    8
 
@@ -84,8 +84,7 @@ wait    8
 
 shot    japan
 size    24 100
-cap     The weather program on its north-Pacific profile, with the months
-cap     of the Japanese calendar.
+cap     The north-Pacific run -- a year of weather down the page.
 run     japan | head -n 21
 wait    8
 
@@ -117,7 +116,7 @@ send    \r
 wait    3
 
 shot    name
-cap     Invents pronounceable names, as many as you ask for.
+cap     Eight names in one run.
 run     name 8
 wait    4
 

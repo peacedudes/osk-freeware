@@ -237,8 +237,7 @@ run     newmail -d tester
 wait    8
 
 shot    nptx
-cap     smail's full-name permuter: give it a line of `<full name>' TAB
-cap     `<login>' and it answers with the pair reversed.
+cap     The address it builds from one name-and-login line.
 run     mkdir -p /dd/tmp/MAILA > /nil 2>/nil; printf "John Q Public\tjqpublic\r" > /dd/tmp/MAILA/np.txt
 wait    3
 run     clear
@@ -315,7 +314,7 @@ run     rmail tester
 wait    6
 
 shot    smail
-cap     The smart mail router: its options.
+cap     The options it lists.
 run     smail -?
 wait    8
 

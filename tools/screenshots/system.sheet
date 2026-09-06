@@ -173,7 +173,7 @@ wait    8
 run     i_am_i
 wait    8
 shot    i_am_i
-cap     i_am_i prints its own source: a Pascal quine.
+cap     The Pascal quine printing its own source.
 run     i_am_i
 wait    5
 shot    ident
@@ -211,10 +211,7 @@ wait    1
 run     kept
 wait    5
 shot    launch
-cap     launch is a login helper: it reads SYS/config, sets the environment
-cap     for your terminal type -- and optionally a default PATH and the emacs
-cap     bindings -- then starts the shell you name.  It answers a bare -?
-cap     with its command format.
+cap     launch's syntax and version.
 run     launch -?
 wait    6
 shot    makecrc
@@ -396,9 +393,7 @@ run     ub68020demo | head -n 3
 wait    8
 shot    vc
 for     vc
-cap     `vc' is a SPREADSHEET -- "Welcome to the Spreadsheet Calculator,
-cap     type ? for help" -- with rows, columns and a formula line.  `?' is
-cap     the help key and `q' quits.
+cap     vc open: its welcome line and the empty grid.
 run     vc
 wait    8
 quit    q\r

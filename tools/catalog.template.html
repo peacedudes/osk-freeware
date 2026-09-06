@@ -129,6 +129,10 @@
   .needs span{color:var(--dim)}
   .see{margin:16px 0 2px}
   .see .k{display:block;margin:0 0 6px}
+  .morekin{display:inline}
+  .morekin summary{display:inline;cursor:pointer;color:var(--accent);list-style:none}
+  .morekin summary::-webkit-details-marker{display:none}
+  .morekin[open] summary::after{content:":"}
   details.more{margin:16px 0 0;border-top:1px solid var(--rule);padding-top:10px}
   details.more summary{cursor:pointer;color:var(--accent);font-size:12.5px;list-style:none}
   details.more summary::-webkit-details-marker{display:none}
@@ -386,9 +390,14 @@ function renderPanel(){
   add("Restrictions", esc(i.restrictions));
   add("Hardware",     esc(i.hardware));
   const kin=DATA.filter(x=>x.sub===p.sub && x.name!==p.name).sort((a,b)=>a.name.localeCompare(b.name));
-  if(kin.length) add("See also", kin.slice(0,14).map(x=>
-      `<a href="#p=${encodeURIComponent(x.name)}" class="kin" data-n="${esc(x.name)}"><code>${esc(x.name)}</code></a>`)
-      .join(", ") + (kin.length>14?` &hellip; and ${kin.length-14} more`:""));
+  if(kin.length){
+    const klink = x => `<a href="#p=${encodeURIComponent(x.name)}" class="kin" data-n="${esc(x.name)}"><code>${esc(x.name)}</code></a>`;
+    let kh = kin.slice(0,14).map(klink).join(", ");
+    if(kin.length>14)
+      kh += `, <details class="morekin"><summary>and ${kin.length-14} more</summary>`
+          + kin.slice(14).map(klink).join(", ") + `</details>`;
+    add("See also", kh);
+  }
 
   // The two things a browser wants first: what to type, and the program
   // doing it.  The command is short; the demo shows the real invocation.

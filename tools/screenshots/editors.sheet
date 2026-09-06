@@ -110,8 +110,7 @@ send    \030\003
 wait    3
 
 shot    emacs.mm1
-cap     MicroEMACS 4.00 as built for the MM/1 -- the same editor as
-cap     `emacs', on the same file.
+cap     The MM/1 build, open on the Jabberwocky.
 run     mkdir -p /dd/tmp/EDIT > /nil 2>/nil; printf "Twas brillig, and the slithy toves\r     Did gyre and gimble in the wabe:\rAll mimsy were the borogoves,\r     And the mome raths outgrabe.\r" > /dd/tmp/EDIT/jabber.txt
 wait    2
 run     clear
@@ -123,7 +122,7 @@ send    \030\003
 wait    3
 
 shot    umacs
-cap     uMacs, MicroEMACS in 45K: the same keys, no macro language.
+cap     uMacs open on the Jabberwocky, ready to edit.
 run     mkdir -p /dd/tmp/EDIT > /nil 2>/nil; printf "Twas brillig, and the slithy toves\r     Did gyre and gimble in the wabe:\rAll mimsy were the borogoves,\r     And the mome raths outgrabe.\r" > /dd/tmp/EDIT/jabber.txt
 wait    2
 run     clear

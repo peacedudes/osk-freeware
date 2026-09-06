@@ -537,11 +537,11 @@ snap
 shot    subber
 size    24 80
 try     subber #1000k words in
-cap     subber substitutes words in a stream.  The word list is `,old,new'
-cap     pairs, one to a line, the line's first character being the delimiter;
-cap     the stream is a file, or standard input.  It grows its memory as it
-cap     reads, so it wants room up front, given with the `#' size at an OS-9
-cap     shell.
+cap     Here the word list `,fox,cat' and `,here,there' rewrites the two
+cap     lines below it.  The catch, and the reason for the `#1000k': subber
+cap     grows its memory as it reads, and that growth almost always fails
+cap     part-way on this system -- so you hand it plenty from the start with
+cap     the `#' size and it never has to grow.
 run     rm -rf /dd/tmp/sub > /nil 2>/nil; /h1/CMDS/makdir /dd/tmp/sub > /nil 2>/nil; printf ',fox,cat\r,here,there\r' > /dd/tmp/sub/words; printf 'here is a fox\rthe fox went here\r' > /dd/tmp/sub/in
 wait    3
 run     clear

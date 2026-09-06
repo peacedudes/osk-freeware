@@ -212,8 +212,7 @@ run     /dd/CMDS/GCC139/gcc_collect
 wait    8
 
 shot    gcc_cc2
-cap     GCC 2.x's C compiler pass, installed under the name gcc2's driver
-cap     forks it by.
+cap     Its version banner.
 run     /dd/CMDS/gcc_cc2 -version
 wait    8
 

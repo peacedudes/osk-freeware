@@ -1,6 +1,6 @@
 # What is on this disk
 
-936 programs of OS-9/68K community software, gathered from the archives that kept it and made to run again. **585 of them need nothing but this disk**; the rest want Microware's `cio`, marked below with a star.
+935 programs of OS-9/68K community software, gathered from the archives that kept it and made to run again. **584 of them need nothing but this disk**; the rest want Microware's `cio`, marked below with a star.
 
 `DOC/INDEX` on the disk lists everything alphabetically. This is the same collection sorted by what each program is *for*, which is the more useful order when you do not yet know what you are looking for.
 
@@ -18,7 +18,7 @@
 | [Developer tools](#developer-tools) | 46 | Version control, tags, cross-reference, formatters, a debugger and benchmarks. |
 | [Compilers & build](#compilers--build) | 40 | C compilers and their passes, assemblers, linkers, make and parser generators. |
 | [Languages](#languages) | 10 | Interpreters and language systems beyond C. |
-| [Archives & compression](#archives--compression) | 37 | Pack, unpack and shrink -- lha, zip, tar, arc, zoo, and OS-9 module libraries. |
+| [Archives & compression](#archives--compression) | 36 | Pack, unpack and shrink -- lha, zip, tar, arc, zoo, and OS-9 module libraries. |
 | [Encoding & conversion](#encoding--conversion) | 24 | Between text encodings, line endings, Macintosh formats, ciphers and hashes. |
 | [Communications](#communications) | 96 | Kermit in several builds, terminal sessions, and networking. |
 | [Graphics & images](#graphics--images) | 202 | The netpbm toolkit, JPEG, a ray tracer, and things that draw. |
@@ -323,7 +323,7 @@
 | `pep` | file 'detergent' - strip junk from files<br>`Usage: pep [options] [filename ...]` |
 | `psc` | &#9733; turn an ASCII table into commands for `sc', the spreadsheet: `psc -d' ' < table' answers `let A0 = 1', `let B0 = 2' and a `format' line per column.  -d sets the field delimiter, -r assembles rows first, -s names the top-left cell.  Robert Bond's, and it works<br>**How:** Feeds `sc', the spreadsheet: `psc -d' ' < table' turns rows of numbers into `let A0 = 1' commands sc can read. -r assembles rows first, -s names the top-left cell, -d sets the delimiter. |
 | `rot` | turn a text file on its side -- line one becomes column one |
-| `subber` | &#9733; Substitute text in a stream: a word list of `,old,new' pairs (the first character is the delimiter) and a file or standard input (Carl Kreider).  It grows its data area as it reads, so give it room -- at your OS-9 shell, `subber #1000k words file'<br>**How:** Substitutes words in a stream from a word list of `,old,new' pairs (the line's first character is the delimiter), reading a file as the second argument or standard input. It grows its data area as it reads, with F$Mem, so give it room up front: at an OS-9 (Microware) shell, `subber #1000k words file' -- bash and ksh read the `#' as a comment, so run it at your OS-9 shell or through it, `/h1/CMDS/shell "subber #1000k words file"'. Tested: `,fox,cat' turns `a fox' into `a cat'. |
+| `subber` | &#9733; Substitute words in a stream from a `,old,new' word list, one pair a line, the first character the delimiter (Carl Kreider).  It grows its memory as it reads, and that growth almost always fails part-way here, so give it plenty up front: `subber #1000k words file' at an OS-9 shell<br>**How:** Substitutes words in a stream from a word list of `,old,new' pairs (the line's first character is the delimiter), reading a file as the second argument or standard input. It grows its data area as it reads, with F$Mem, so give it room up front: at an OS-9 (Microware) shell, `subber #1000k words file' -- bash and ksh read the `#' as a comment, so run it at your OS-9 shell or through it, `/h1/CMDS/shell "subber #1000k words file"'. Tested: `,fox,cat' turns `a fox' into `a cat'. |
 | `tabs` | re-space a file, standard input to standard output: `-i8' says the input's tab stops are every 8 columns, `-o0' asks for spaces on output and `-o4' for tabs every 4.<br>`Syntax   : tabs [<opts>] [<input_redirection>] [<output_redirection>]` |
 | `tac` | Print a file backwards, last line first (GNU)<br>**How:** Prints a file backwards, last line first -- cat's mirror image. Needs cio. |
 | `unexpand` | Turn leading spaces back into tabs (GNU)<br>`Usage: unexpand [-tab1[,tab2[,...]]] [-t tab1[,tab2[,...]]] [-a]` |
@@ -622,13 +622,12 @@
 
 *Pack, unpack and shrink -- lha, zip, tar, arc, zoo, and OS-9 module libraries.*
 
-<details><summary>37 programs</summary>
+<details><summary>36 programs</summary>
 
 **Alternates**
 
 | | |
 |---|---|
-| `arc_5.12` | ARC v5.12, third-party; /dd/CMDS/arc is 5.21.  5.12 wants its command letter with a leading dash, and cannot write an archive on this disk: the rename of its temporary file into place fails every time, with `No Children'<br>`Usage: arc -{amufdxeplvtc}[bswn][g<password>]` |
 | `compress_4.0` | compress 4.0, another edition of CMDS/compress<br>`Syntax   : compress [-cdfvV] [-b maxbits] [file ...]` |
 | `compress_rebuilt` | our source build of CMDS/compress, from the same hc_utils source.  Same program, and the two agree byte for byte on what they write<br>`Usage: compress [-dfvoV] [-b MaxBits] [file ...]` |
 | `gtar` | another GNU tar; CMDS/tar is the one the image build uses |
@@ -1415,7 +1414,7 @@
 | `edir` | &#9733; list the EVENT directory -- OS-9 events and their values<br>`Syntax: edir [<opts>]` |
 | `eset` | &#9733; set an OS-9 event to a value -- eset <event> <num><br>`Syntax: eset <event> <num> [<opts>]` |
 | `eunlink` | &#9733; unlink an OS-9 EVENT by name -- `eunlink <event>'.  `edir' lists the events and `eset' sets one<br>`Syntax: eunlink {<event>}` |
-| `launch` | &#9733; M.C.Gregorie's login helper: reads /dd/SYS/config, sets the environment for your terminal type -- and optionally a default PATH and emacs bindings -- then starts the shell you name on its command line.  It does not put anything in the background<br>**How:** Says "nothing to launch" until it is configured -- see its documentation. |
+| `launch` | &#9733; M.C.Gregorie's login helper: reads SYS/config, sets the environment for your terminal type -- and optionally a default PATH and emacs bindings -- then starts the shell you name on its command line.  It does not put anything in the background<br>**How:** Says "nothing to launch" until it is configured -- see its documentation. |
 | `signal` | &#9733; send a signal to a process<br>`Syntax: signal <process-id> <signal-code> [<seconds>]` |
 | `sysmax` | &#9733; shows the system's maximum process AGE -- `system maximum age is 0' unless the kernel answers the F$SetSys call it uses. |
 | `sysmin` | &#9733; shows the system's minimum process PRIORITY -- `system minimun priority is 0' here, same F$SetSys call. |

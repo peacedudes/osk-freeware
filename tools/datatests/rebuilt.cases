@@ -54,18 +54,11 @@ run     $R/diff_1.1 /dd/tmp/x1 /dd/tmp/x2 > /dd/tmp/d2.out
 run     /dd/CMDS/tcmp /dd/tmp/d1.out /dd/tmp/d2.out
 expect  are identical
 
-# REBUILT/arc_5.12 is version 5.12 and wants its command letter with a LEADING
-# DASH; the shipped 5.21 takes it bare. Handed 5.21's form the older one
-# prints its usage and does nothing, which is why 5.21 is what ships.
+# The shipped `arc' is version 5.21 and takes its command letter bare.
 case    the-shipped-arc-is-5.21-and-takes-a-bare-command-letter
 run     /dd/CMDS/rm -f /dd/a1.arc
 run     /dd/CMDS/arc a a1.arc $T
 expect  Creating new archive
-
-case    rebuilt-arc-is-5.12-and-refuses-the-same-line
-run     /dd/CMDS/rm -f /dd/a2.arc
-run     $R/arc_5.12 a a2.arc $T
-expect  arc - Archive Utility, 5.12
 
 # C-LHarc: the shipped `lharc' is 1.00, REBUILT/lharcs is 1.01 -- newer, and
 # no behavioural difference found. Each reads the other's archive, so there
@@ -100,9 +93,7 @@ expect  .screens directory
 # EVERY MODULE IN HERE NOW ANSWERS TO ITS OWN FILENAME, 2026-08-30. Five of
 # these files used to carry the module name of the program in /dd/CMDS that
 # they sit beside, and OS-9 finds a program by MODULE name once it is
-# resident -- so loading one of them silently answered for the other. The
-# case below that loads arc_5.12 and then runs /dd/CMDS/arc is the one that
-# has to keep failing to come back.
+# resident -- so loading one of them silently answered for the other.
 case    rebuilt-compress-calls-itself-compress_rebuilt
 run     /dd/CMDS/modinfo $R/compress_rebuilt
 expect  Module name           = compress_rebuilt
@@ -119,16 +110,6 @@ run     /dd/CMDS/compress -dc < /dd/tmp/rc.Z > /dd/tmp/rc.out
 run     /dd/CMDS/md5 /dd/tmp/rc.out
 expect  ee2c20fa226fe6fc78feec7f123c7a99
 
-# The collision, asserted from both ends. Before the rename this second case
-# printed `arc - Archive Utility, 5.12' -- the alternate answering for the
-# program whose path was typed.
-case    loading-arc_5.12-no-longer-answers-for-CMDS-arc
-run     /dd/CMDS/load $R/arc_5.12
-run     /dd/CMDS/rm -f /dd/a3.arc
-run     /dd/CMDS/arc a a3.arc $T
-expect  Creating new archive
-absent  5.12
-
 case    the-renamed-kermit-still-runs
 run     $R/kermit_cio
 expect  Usage: kermit
@@ -136,10 +117,6 @@ expect  Usage: kermit
 case    the-renamed-pvic-reports-its-own-name
 run     /dd/CMDS/modinfo $R/vi_1.0
 expect  Module name           = vi_1.0
-
-case    the-renamed-arc-reports-its-own-name
-run     /dd/CMDS/modinfo $R/arc_5.12
-expect  Module name           = arc_5.12
 
 case    the-renamed-kermit-reports-its-own-name
 run     /dd/CMDS/modinfo $R/kermit_cio

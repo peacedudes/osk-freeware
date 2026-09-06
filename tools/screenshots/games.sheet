@@ -684,7 +684,7 @@ wait    2
 # -------------------------------------------------------------- other games
 
 shot    fuddle
-cap     fuddle, a chess variant, one move in.
+cap     The board and the colour prompt, one move in.
 run     fuddle
 wait    6
 send    y\r
@@ -838,8 +838,7 @@ run     ask
 wait    5
 
 shot    shuffle
-cap     A switch puzzle: a row of numbered switches where flipping one
-cap     flips its neighbours, a level and a move counter.  q quits.
+cap     The switch rows, mid-game.
 run     shuffle
 wait    6
 snap
@@ -871,6 +870,6 @@ run     colortest
 wait    6
 
 shot    dclock
-cap     A digital clock for G-Windows, and it says so.
+cap     At a terminal it reports that it needs G-Windows.
 run     dclock; echo "status $?"
 wait    5

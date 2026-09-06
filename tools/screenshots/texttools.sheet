@@ -140,7 +140,7 @@ run     what /dd/CMDS/today
 wait    8
 
 shot    tformat
-cap     tformat, the SNOBOL4 text formatter.
+cap     README-KEEP set as justified text.
 run     head -n 24 /dd/DOC/README-KEEP | tformat
 wait    8
 
@@ -218,8 +218,7 @@ wait    10
 
 shot    proff
 size    30 80
-cap     proff, a portable roff, on the same text; its macros are in
-cap     LIB/proff.
+cap     Jabberwocky set as justified text.
 run     mkdir -p /dd/tmp/TXT > /nil 2>/nil; printf ".ce\rJABBERWOCKY\r.sp\rTwas brillig, and the slithy toves did gyre and gimble in the wabe: all mimsy were the borogoves, and the mome raths outgrabe.\r.sp\rBeware the Jabberwock, my son -- the jaws that bite, the claws that catch.\r" > /dd/tmp/TXT/jab.r
 wait    3
 run     clear

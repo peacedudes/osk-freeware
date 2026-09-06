@@ -373,20 +373,6 @@ wait    6
 run     gtar tvf /dd/tmp/ARC/keep2.tar
 wait    5
 
-shot    arc_5.12
-cap     ARC v5.12, an earlier edition than CMDS/arc's 5.21.  It never gets
-cap     past writing its own temporary file: the rename into place fails
-cap     every time, with `No Children' -- so it cannot write an archive on
-cap     this disk at all.
-run     rm -f /dd/tmp/o5.arc
-wait    2
-run     clear
-wait    1
-run     arc_5.12 -a /dd/tmp/o5.arc /dd/SYS/motd
-wait    8
-run     arc_5.12 -v /dd/tmp/o5.arc
-wait    6
-
 shot    liborder
 cap     Reports the order to concatenate OS-9 modules in a library, read
 cap     from an OS-9 ROF file.
