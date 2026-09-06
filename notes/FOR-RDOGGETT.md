@@ -2,29 +2,52 @@
 
 Only what is waiting on a decision of yours. Everything done, and why, is in
 git history and `notes/START-HERE-NEXT-SESSION.md`; this file carries none
-of it. Updated 2026-09-05.
+of it. Updated 2026-09-06.
 
-## Full pathlists on cards -- captions ruled, shown commands remain
+## Full pathlists on cards -- captions ruled and gated; shown commands mostly done
 
 The rule is made and enforced: `check_disk.py`'s `cards carry no full
 pathlists' fails the build on any `/dd/...`, `/h0/...` or `/h1/...` in a
 card's caption or `try' line, and check_the_checks records the by-hand
-proof.  The ten caption lines that still named absolute paths are reworded.
+proof (21 of 21 breaks caught, re-run 2026-09-06).
 
-**What is left: the shown COMMANDS.** 23 are done (the clean single-
-directory ones: `arc a m.arc motd termcap', `charcnt holidays motd', `hc
-+8 motd', `cut password', and so on -- a hidden `builtin cd' moves the
-data directory so the shown command needs no path).  About 157 of 907
-captures still echo a
-full path in the command line itself -- `arc a m.arc /dd/SYS/motd', not
-`arc a m.arc motd' -- because their sheet `run' line uses full paths.  Each
-one is a stanza reworked to `chd' into a short work directory with
-short-named files, then re-shot (the subber card is the model).  It is a
-few hours of captures, so I have not swept it blind; say the word and I run
-it down, or I chip at it whenever a card is touched anyway.  I did not put
-an automated check on the shown commands: telling a real command-path from
-a legitimate one (the `about' card deliberately shows `hack's full path,
-because its name collides) needs judgement a regex would get wrong.
+**The shown COMMANDS are swept.** The bulk pass moved visible run lines to
+short relative names reached by a single `chd'/`cd', committed 2026-09-06.
+What still shows a path in a published panel now falls into three kinds,
+and I stopped there on purpose rather than risk working cards for marginal
+gain:
+
+  - **Program OUTPUT that names a path** -- `Execution - /dd/CMDS' from a
+    program reporting its own directory, an ELM error naming
+    `/dd/USR/LIB/ELM/...', a password or motd line whose CONTENT is a path.
+    Not a command anyone typed; not ours to reword.
+  - **The sanctioned single-`cd' form** -- `ksh -c "cd /dd/tmp/TEX; dvips
+    story.dvi"': the path appears once, in the cd, and everything after is
+    a short name. That is the model the memory rule prescribes.
+  - **A typed path with the reason in the caption** -- `mv' and `move' are
+    called by full path and the card says why (`mv' alone reaches a ksh
+    built-in of the same name); the GCC drivers are pathed because they
+    look for their passes beside themselves and break otherwise; `fc' is
+    `/dd/CMDS/fc' because `fc' is a ksh built-in too. Each is a buried
+    reason a blind sweep would trip over.
+
+  A short set of confirmation lines (`ls -l /dd/tmp/X/a /dd/tmp/X/b',
+  `cat /dd/tmp/X/data') could still be folded into their demo's `cd'. It is
+  cosmetic and low-value; say the word and I do it, or I chip at it when a
+  card is touched anyway.
+
+## Four panels restored (2026-09-06)
+
+Byproducts of the shown-command sweep, all now green and committed:
+  - `pgmedge' and `lesskey' were bad captures -- a partial `--only' re-shot
+    ran them without the earlier stanza that makes their work directory, so
+    their setup failed silently. Re-shot in full-sheet context.
+  - `ppmtopj' and `ppmtorgb3' write their output to files; the pjtoppm
+    round-trip and the `ls' that follow on their cards are the evidence.
+    They joined `vtxtcn' as honest `panel-exceptions.psv' entries. (At HEAD
+    they passed only because a stale netpbm progress line counted as work;
+    the rebuilt test image now converts for real, so their own line is
+    genuinely silent.)
 
 ## The gallery, recast for a browser (2026-09-05)
 

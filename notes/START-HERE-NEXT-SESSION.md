@@ -46,6 +46,20 @@ reader's own OS-9, never by its absence ("not on this disk" is banned). The
 reader HAS Microware OS-9; os9exec is only the convenience. See the memories
 `os9-collection-is-a-tribute` and `os9-card-rules-2026-09-03`.
 
+## What the last session did (2026-09-06), all committed and gate-green
+
+- **Shown-command pathlists swept.** Visible `run' lines across the sheets
+  now use short relative names reached by one `chd'/`cd'; captions and
+  `try' lines were already clean and gated. What still shows a path in a
+  panel is program output, the sanctioned single-`cd' form, or a typed path
+  the caption explains (`mv'/`move'/`fc' dodge a ksh built-in; the GCC
+  drivers must be pathed). See `notes/FOR-RDOGGETT.md'.
+- **Four panels restored** after the sweep: `pgmedge' and `lesskey' re-shot
+  in full-sheet context (a partial re-shot had skipped the stanza that
+  makes their work directory); `ppmtopj' and `ppmtorgb3' write to files and
+  became honest `panel-exceptions.psv' entries beside `vtxtcn', the
+  following round-trip/`ls' being their evidence.
+
 ## What this session did (2026-09-04), all committed and gate-green
 
 - The tribute voice reached the **captions** (the earlier INDEX/howto pass
