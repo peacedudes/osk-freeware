@@ -1,4 +1,4 @@
- File: /dd/tmp/EDIT/jabber.txt                   insert ; Line=1       ; Buf=0
+ File: tmp/EDIT/jabber.txt                       insert ; Line=1       ; Buf=0
 L       T       T       T       T       T       T       T       T       T      R
 
 

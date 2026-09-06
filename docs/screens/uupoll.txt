@@ -1,5 +1,5 @@
 uupoll seabass
-$ ls -l /dd/SPOOL/uucp/seabass
+$ ls -l SPOOL/uucp/seabass
 total 1024
--rw-------   1 0        0               0 Sep  3 14:12 C.seabassAPOLL
+-rw-------   1 0        0               0 Sep  6 02:48 C.seabassAPOLL
 -rw-rw-rw-   1 0        0             762 Aug  3 19:00 README

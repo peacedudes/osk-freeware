@@ -1,8 +1,8 @@
-lharcs a /dd/tmp/ARC/ls.lzh /dd/SYS/motd
-/dd/SYS/motd - Frozen(100%)o
-$ lharcs l /dd/tmp/ARC/ls.lzh
+lharcs a tmp/ARC/ls.lzh SYS/motd
+SYS/motd - Frozen(100%)o
+$ lharcs l tmp/ARC/ls.lzh
    SIZE  RATIO     STAMP    NAME
 ------- ------ ------------ --------------------
-     40 100.0% Aug  3 14:00 /dd/SYS/motd
+     40 100.0% Aug  3 14:00 SYS/motd
 ------- ------ ------------ --------------------
-     40 100.0% Sep  3 08:01    1 file
+     40 100.0% Sep  6 02:37    1 file

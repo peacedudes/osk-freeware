@@ -1,10 +1,10 @@
-cat /dd/.newsrc
+cat .newsrc
 comp.os.os9: 1
 comp.sys.m68k: 1
 news.announce.newusers: 1
 $ unsubscribe comp.sys.m68k
 Newsgroup comp.sys.m68k is now unsubscribed.
-$ cat /dd/.newsrc
+$ cat .newsrc
 comp.os.os9: 1
 comp.sys.m68k! 1
 news.announce.newusers: 1

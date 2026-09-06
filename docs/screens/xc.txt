@@ -1,8 +1,11 @@
-cat /dd/tmp/SHL/cmds.txt
+cat tmp/SHL/cmds.txt
 notes to myself
 % echo one
 % whoami
 more notes
-$ xc /dd/tmp/SHL/cmds.txt
+$ xc tmp/SHL/cmds.txt
  echo one
-xc:  ** Exit status 2727:184 **
+one
+ whoami
+whoami: nowhere found
+xc:  ** Exit status 000:203 **

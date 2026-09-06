@@ -1,4 +1,4 @@
-newslock /dd/tmp/MAILA/tmplock /dd/tmp/MAILA/reallock
-$ ls /dd/tmp/MAILA/tmplock /dd/tmp/MAILA/reallock
+newslock tmp/MAILA/tmplock tmp/MAILA/reallock
+$ ls tmp/MAILA/tmplock tmp/MAILA/reallock
 ls: %s: error 216
 ls: %s: error 216

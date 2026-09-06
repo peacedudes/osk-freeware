@@ -4,4 +4,4 @@ All mimsy were the borogoves,
      And the mome raths outgrabe.
 ~
         ... the same line 19 times over
- "/dd/tmp/EDIT/jabber.txt" [READONLY] 4 lines, 137 chars
+#"tmp/EDIT/jabber.txt"#[READONLY]#4#lines,#137#chars#

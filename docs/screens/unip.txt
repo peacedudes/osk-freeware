@@ -1,19 +1,19 @@
-$ sepwords < /dd/DOC/README-CIO | sort | unip | head -n 18
+sepwords < DOC/README-CIO | sort | unip | head -n 18
+!!!
+!!!'
+"000000".
+"C.XRF"
+"Language
+"MAXLINECOUNT
+"allocate
+"cdiff.c"
+"flush
+"word
+#13
+$00..$45,
+$41.
+$44
+$45
+$PORT
 (`-qm`)
-(source
-(the
-****
-*cat.cio
-*ckermit
-*ed
-*emacs
-*fgrep
-*ksh
-*rcs
-*vi_cio
-*zoo
---
--------
------------
-----------------------------
---------------------------------
+(it

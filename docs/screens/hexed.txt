@@ -1,3 +1,3 @@
-hexed -t=/dd/tmp/EDIT -e=vi_nocio /dd/tmp/EDIT/jabber.txt
-Creating '/dd/tmp/EDIT/jabber.txt.hd' from '/dd/tmp/EDIT/jabber.txt'.
-Generating '/dd/tmp/EDIT/jabber.txt' from '/dd/tmp/EDIT/jabber.txt.hd'.
+hexed -t=tmp/EDIT -e=vi_nocio tmp/EDIT/jabber.txt
+Creating 'tmp/EDIT/jabber.txt.hd' from 'tmp/EDIT/jabber.txt'.
+Generating 'tmp/EDIT/jabber.txt' from 'tmp/EDIT/jabber.txt.hd'.

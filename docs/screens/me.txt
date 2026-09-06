@@ -20,4 +20,4 @@ All mimsy were the borogoves,
 
 
 
-==== MicroEMACS 3.11 BETA () == jabber.txt == Datei: /dd/tmp/EDIT/jabber.txt ===
+====#MicroEMACS#3.11#BETA#()#==#jabber.txt#==#Datei:#tmp/EDIT/jabber.txt#=======

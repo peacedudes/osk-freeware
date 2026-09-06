@@ -9,16 +9,22 @@ cap     source is the tiny demo shipped in ADL/DEMOS; it includes
 cap     standard.adl by bare name, which is what -i points at.
 run     mkdir -p /dd/tmp/LNG > /nil 2>/nil; rm -f /dd/tmp/LNG/tiny
 wait    2
+run     builtin cd /dd
+wait    1
 run     clear
 wait    1
-run     adlcomp /dd/ADL/DEMOS/tiny.adl -o /dd/tmp/LNG/tiny -i/dd/ADL
+run     adlcomp ADL/DEMOS/tiny.adl -o tmp/LNG/tiny -iADL
 wait    35
-run     ls -l /dd/tmp/LNG/tiny
+run     ls -l tmp/LNG/tiny
 wait    4
 shot    adlrun
 cap     Playing a compiled ADL world: AARD, which ships ready to run in
 cap     ADL/AARD, opening with its first room and answering `look'.
-run     adlrun /dd/ADL/AARD/aard
+run     builtin cd /dd
+wait    1
+run     clear
+wait    1
+run     adlrun ADL/AARD/aard
 wait    8
 send    look\r
 wait    5
@@ -28,9 +34,11 @@ cap     The ADL debugger on a freshly compiled world: it loads the symbol
 cap     table and gives a > prompt where ? lists its commands.
 run     mkdir -p /dd/tmp/LNG > /nil 2>/nil; rm -f /dd/tmp/LNG/tiny; adlcomp /dd/ADL/DEMOS/tiny.adl -o /dd/tmp/LNG/tiny -i/dd/ADL > /nil
 wait    35
+run     builtin cd /dd
+wait    1
 run     clear
 wait    1
-run     adldebug /dd/tmp/LNG/tiny
+run     adldebug tmp/LNG/tiny
 wait    8
 send    ?\r
 wait    5
@@ -44,13 +52,15 @@ cap     Marks a compiled world as changed, so a makefile rebuilds what
 cap     depends on it: the file and a version number.
 run     mkdir -p /dd/tmp/LNG > /nil 2>/nil; rm -f /dd/tmp/LNG/tiny; adlcomp /dd/ADL/DEMOS/tiny.adl -o /dd/tmp/LNG/tiny -i/dd/ADL > /nil
 wait    35
+run     builtin cd /dd
+wait    1
 run     clear
 wait    1
-run     ls -l /dd/tmp/LNG/tiny
+run     ls -l tmp/LNG/tiny
 wait    3
-run     adltouch /dd/tmp/LNG/tiny 1; echo "status $?"
+run     adltouch tmp/LNG/tiny 1; echo "status $?"
 wait    5
-run     ls -l /dd/tmp/LNG/tiny
+run     ls -l tmp/LNG/tiny
 wait    3
 shot    forth
 cap     TILE Forth: two numbers added, a word defined and run -- the
@@ -72,14 +82,22 @@ size    32 80
 cap     The Lua 3.0 bytecode compiler on one of the example scripts in
 cap     DOC/lua/examples, a temperature table: -l lists what it compiled,
 cap     instruction by instruction.
-run     cat /dd/DOC/lua/examples/cf.lua | head -n 8
+run     builtin cd /dd
+wait    1
+run     clear
+wait    1
+run     cat DOC/lua/examples/cf.lua | head -n 8
 wait    6
-run     luac -l -o /dd/tmp/cf.lc /dd/DOC/lua/examples/cf.lua | head -n 14
+run     luac -l -o tmp/cf.lc DOC/lua/examples/cf.lua | head -n 14
 wait    10
 shot    lua
 cap     Lua 3.0, the interpreter, running the temperature-table example from
 cap     DOC/lua/examples: a Celsius-to-Fahrenheit chart printed row by row.
-run     lua /dd/DOC/lua/examples/cf.lua
+run     builtin cd /dd
+wait    1
+run     clear
+wait    1
+run     lua DOC/lua/examples/cf.lua
 wait    6
 shot    runc
 cap     runc is the Lua runtime engine: a chunk compiled with `luac -x' runs
@@ -92,9 +110,11 @@ cap     SB-Prolog 2.2 at its prompt, answering a query.  SIMPATH names
 cap     the module library it loads from.
 run     export SIMPATH=/dd/SBPROLOG/MODLIB
 wait    2
+run     builtin cd /dd
+wait    1
 run     clear
 wait    1
-run     wam.sbprolog /dd/SBPROLOG/MODLIB/\$readloop
+run     wam.sbprolog SBPROLOG/MODLIB/\$readloop
 wait    10
 send    X is 6*7, write(X), nl.\r
 wait    6

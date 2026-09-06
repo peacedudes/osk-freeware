@@ -1,8 +1,6 @@
-$ ksh -c "cd /dd/tmp/DOCB; helpindex dinfo.hlp"
+ksh -c "cd /dd/tmp/DOCB; helpindex dinfo.hlp"
 Writing index for "dinfo.hlp" to "dinfo.ndx" ..done (4 pages).
 $ ls -l /dd/tmp/DOCB
-total 5120
+total 4096
 -rw-rw-rw-   1 0        0            3569 Aug  3 19:00 dinfo.hlp
--rw-------   1 0        0              24 Sep  3 01:22 dinfo.ndx
--rw-rw-rw-   1 0        0              37 Sep  3 01:20 keys
--rw-------   1 0        0              20 Sep  3 01:20 lesskeys
+-rw-------   1 0        0              24 Sep  6 06:51 dinfo.ndx

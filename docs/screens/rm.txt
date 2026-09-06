@@ -1,15 +1,15 @@
-ls -lR /dd/tmp/FILESA/rmd
+ls -lR tmp/FILESA/rmd
 total 1024
 -rw-rw-rw-   1 0        0              40 Aug  3 19:00 a
-drwxrwxrwx   1 0        0              96 Sep  3 05:49 sub
+drwxrwxrwx   1 0        0              96 Sep  6 03:32 sub
 
-/dd/tmp/FILESA/rmd/sub:
+tmp/FILESA/rmd/sub:
 total 512
 -rw-rw-rw-   1 0        0              40 Aug  3 19:00 b
-$ rm -rv /dd/tmp/FILESA/rmd
-  /dd/tmp/FILESA/rmd
-  /dd/tmp/FILESA/rmd/sub
-  /dd/tmp/FILESA/rmd/sub/b
-  /dd/tmp/FILESA/rmd/a
-$ ls /dd/tmp/FILESA/rmd
+$ rm -rv tmp/FILESA/rmd
+  tmp/FILESA/rmd
+  tmp/FILESA/rmd/sub
+  tmp/FILESA/rmd/sub/b
+  tmp/FILESA/rmd/a
+$ ls tmp/FILESA/rmd
 ls: %s: error 216

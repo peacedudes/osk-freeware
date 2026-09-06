@@ -27,7 +27,11 @@ wait    4
 shot    less
 cap     less, paging a file.  It reads the terminal from TERM and TERMCAP,
 cap     and its own help screen (h) is on the disk as SYS/less.hlp.
-run     less /dd/DOC/README-RUNNING
+run     builtin cd /dd
+wait    1
+run     clear
+wait    1
+run     less DOC/README-RUNNING
 wait    5
 snap
 send    q

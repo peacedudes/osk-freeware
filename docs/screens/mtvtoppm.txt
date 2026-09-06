@@ -1,2 +1,2 @@
-mtvtoppm /dd/tmp/NPIB/nr.ppm
+mtvtoppm tmp/NPIB/nr.ppm
 mtvtoppm: unable to parse MTV file header

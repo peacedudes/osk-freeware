@@ -1,17 +1,17 @@
-dump /dd/tmp/TEXTA/ctl.txt
+dump tmp/TEXTA/ctl.txt
 
 Addr   0 1  2 3  4 5  6 7  8 9  A B  C D  E F 0 2 4 6 8 A C E
 ----  ---- ---- ---- ---- ---- ---- ---- ---- ----------------
 0000  6265 6C6C 0761 6E64 0862 6163 6B73 7061 bell.and.backspa
 0010  6365 2068 6572 650D                     ce here.
-$ pep -b -u13 /dd/tmp/TEXTA/ctl.txt > /dd/tmp/TEXTA/clean.txt
+$ pep -b -u13 tmp/TEXTA/ctl.txt > tmp/TEXTA/clean.txt
 pep  ver. 2.1; Copyright (c) 1989 Gisle Hannemyr
 Transformations:
  * stripping all trailing spaces;
  * removing non ASCII-codes;
  * terminating lines with CR;
  * removing control characters.
-$ dump /dd/tmp/TEXTA/clean.txt
+$ dump tmp/TEXTA/clean.txt
 
 Addr   0 1  2 3  4 5  6 7  8 9  A B  C D  E F 0 2 4 6 8 A C E
 ----  ---- ---- ---- ---- ---- ---- ---- ---- ----------------

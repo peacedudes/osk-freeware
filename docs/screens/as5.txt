@@ -1,4 +1,4 @@
-$ as5 /dd/DOC/xasm/sample.a5 - l s
+as5 DOC/xasm/sample.a5 - l s
 0001                         * sample.a5 -- a 6805 program for as5.  Bit set, bit test ane
 0002                         * what the 6805 is for, so it uses them.
 0003                         *

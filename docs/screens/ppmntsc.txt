@@ -1,12 +1,12 @@
-$ ppmpat -madras 64 40 > /dd/tmp/n.ppm
-$ ppmntsc 0.8 /dd/tmp/n.ppm | pnmfile
+ppmpat -madras 64 40 > tmp/n.ppm
+$ ppmntsc 0.8 tmp/n.ppm | pnmfile
 stdin:  PPM raw, 64 by 40  maxval 255
-$ ppmqvga /dd/tmp/n.ppm | pnmfile
+$ ppmqvga tmp/n.ppm | pnmfile
 stdin:  PPM raw, 64 by 40  maxval 255
-$ pnmtorast /dd/tmp/n.ppm > /dd/tmp/w.ras
+$ pnmtorast tmp/n.ppm > tmp/w.ras
 pnmtorast: computing colormap...
 pnmtorast: 6 colors found
-$ rasttopnm /dd/tmp/w.ras | pnmfile
+$ rasttopnm tmp/w.ras | pnmfile
 rasttopnm: writing PPM file
 stdin:  PPM raw, 64 by 40  maxval 255
 $ pnmtoddif < /nil

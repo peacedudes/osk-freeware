@@ -1,2 +1,2 @@
-gouldtoppm /dd/tmp/NPIB/nr.ppm
+gouldtoppm tmp/NPIB/nr.ppm
 gouldtoppm: cannot read gould header(2nd)

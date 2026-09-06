@@ -1,5 +1,5 @@
-pnmsmooth -size 5 5 -dump /dd/tmp/NEAB/mk.pgm > /nil 2>/nil
-$ cat /dd/tmp/NEAB/mk.pgm
+pnmsmooth -size 5 5 -dump tmp/NEAB/mk.pgm > /nil 2>/nil
+$ cat tmp/NEAB/mk.pgm
 P2
 5 5
 50

@@ -1,4 +1,4 @@
-ls -l /dd/tmp/ARC/readme
--rw-rw-rw-   1 0        0            6940 Aug  3 19:00 /dd/tmp/ARC/readme
-$ shar /dd/tmp/ARC/readme
-No read access for file: /dd/tmp/ARC/readme
+ls -l tmp/ARC/readme
+-rw-rw-rw-   1 0        0            6838 Aug  3 19:00 tmp/ARC/readme
+$ shar tmp/ARC/readme
+No read access for file: tmp/ARC/readme

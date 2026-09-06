@@ -1,12 +1,12 @@
-ppm3d /dd/tmp/NEAB/t.ppm /dd/tmp/NEAB/s.ppm > /dd/tmp/NEAB/3d.ppm
-$ pnmfile /dd/tmp/NEAB/3d.ppm
-/dd/tmp/NEAB/3d.ppm:    PPM raw, 64 by 32  maxval 255
-$ ppmtopgm /dd/tmp/NEAB/3d.ppm | pgmtopbm | pbmtoascii -2x4
-HFR6RRHFkFk&$SFk&%F1$Z$&&MHRMHHM
-HFH&H&R6kHZ&$S&$S14$&$Z$HHH6M9MH
-R6H6H&&kH&\$&/$$&S$1S14%&9M&6M&M
-RH&6HH&kRH$&Z$S$}&&{$S$k&R6HMHRM
-R$&6&&R&$$$\T?\?T$($$$%\TRRM9&6M
-&$9$F&&$$\$$|%$$|%%&%$|%&H&HHH&9
-HS6&&FF&$1$)$|)Z%?Z$%?Z%&6R6M&6M
-$}k&&&Z&/S?|||T???<Z/////H9kM&H9
+ppm3d tmp/NEAB/t.ppm tmp/NEAB/s.ppm > tmp/NEAB/3d.ppm
+$ pnmfile tmp/NEAB/3d.ppm
+tmp/NEAB/3d.ppm:        PPM raw, 64 by 32  maxval 255
+$ ppmtopgm tmp/NEAB/3d.ppm | pgmtopbm | pbmtoascii -2x4
+MSRM9M96RHFFFkM&1H&&H&&SHMMMMMHM
+M$H6HH9H9RFRH$&R&&&&&&&19MHHM9MM
+H$H&M&HpD&H>&&pkckk&&&&&&HMH6MHM
+M$MHDM9R6H1Fk6&kk&&SH&&1HMHMHHMM
+HSR6RR6RH&$F&&Z/&&Z$k&&$1MH9HHHM
+H$&&HH&D&FD&S&&$$&]$&&$&&HMH6MHH
+MSRHkM&Fk6&S&&Sk&S&&Zk&1&H9HMHRM
+H$H1D6H&$&&S/$S}/$$S\$&/&6MH&MHM

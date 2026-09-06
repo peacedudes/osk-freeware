@@ -1,11 +1,11 @@
-split -l 10 /dd/SYS/holidays /dd/tmp/TEXTA/SP/part
-$ ls -l /dd/tmp/TEXTA/SP
+split -l 10 SYS/holidays tmp/TEXTA/SP/part
+$ ls -l tmp/TEXTA/SP
 total 2048
--rw-------   1 0        0             196 Sep  3 04:30 partaa
--rw-------   1 0        0             166 Sep  3 04:30 partab
--rw-------   1 0        0             193 Sep  3 04:30 partac
--rw-------   1 0        0             162 Sep  3 04:30 partad
-$ cat /dd/tmp/TEXTA/SP/partad
+-rw-------   1 0        0             196 Sep  6 06:04 partaa
+-rw-------   1 0        0             166 Sep  6 06:04 partab
+-rw-------   1 0        0             193 Sep  6 06:04 partac
+-rw-------   1 0        0             162 Sep  6 06:04 partad
+$ cat tmp/TEXTA/SP/partad
 *7/4 Independence Day (US)
 *10/2Monday Columbus Day (US)
 *11/7 Election Day (US)

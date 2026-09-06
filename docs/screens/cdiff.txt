@@ -1,6 +1,10 @@
-$ head -n 3 /dd/SYS/holidays > /dd/tmp/h1 2>/nil
-$ sed -e "s/Day/DAY/" /dd/tmp/h1 > /dd/tmp/h2
-$ cdiff /dd/tmp/h1 /dd/tmp/h2
->>>> Difference of file "/dd/tmp/h1" and file "/dd/tmp/h2".
+head -n 3 SYS/holidays > tmp/h1 2>/nil
+$ sed -e "s/Day/DAY/" tmp/h1 > tmp/h2
+$ cdiff tmp/h1 tmp/h2
+>>>> Difference of file "tmp/h1" and file "tmp/h2".
 
-MAXLINECOUNT exceeded, must stop.
+>>>> 3 CHANGED FROM
+1/1             New Year's Day
+>>>>     CHANGED TO
+1/1             New Year's DAY
+>>>> End of differences.

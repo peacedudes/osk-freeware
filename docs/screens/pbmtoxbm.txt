@@ -1,5 +1,5 @@
-pbmtoxbm < /dd/tmp/NPMB/b.pbm > /dd/tmp/NPMB/o.xbm
-$ cat /dd/tmp/NPMB/o.xbm | head -6
+pbmtoxbm < tmp/NPMB/b.pbm > tmp/NPMB/o.xbm
+$ cat tmp/NPMB/o.xbm | head -6
 #define noname_width 48
 #define noname_height 24
 static char noname_bits[] = {

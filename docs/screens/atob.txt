@@ -1,6 +1,6 @@
-cat /dd/tmp/ENC/j.btoa
+cat tmp/ENC/j.btoa
 xbtoa Begin
 <-Mbl+C]A*Ci!fu/0JA=A0>u-AKZ&1Bln$6+EVOFATJ:\
 xbtoa End N 35 23 E 3d S cc3 R cf464e42
-$ atob < /dd/tmp/ENC/j.btoa
+$ atob < tmp/ENC/j.btoa
 Twas brillig, and the slithy toves

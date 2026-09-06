@@ -1,8 +1,8 @@
-xcrypt -k=freeware /dd/tmp/ENC/x.txt /dd/tmp/ENC/x.enc
+xcrypt -k=freeware tmp/ENC/x.txt tmp/ENC/x.enc
 en/decrypt <input-file> <output-file>
-$ xcrypt -k=freeware /dd/tmp/ENC/x.enc /dd/tmp/ENC/x.dec
+$ xcrypt -k=freeware tmp/ENC/x.enc tmp/ENC/x.dec
 en/decrypt <input-file> <output-file>
-$ chksum /dd/tmp/ENC/x.txt /dd/tmp/ENC/x.dec
+$ chksum tmp/ENC/x.txt tmp/ENC/x.dec
 09f241c9
 00000000
 ========

@@ -1,4 +1,4 @@
-cat /dd/tmp/TEXTA/hol.txt
+cat tmp/TEXTA/hol.txt
 * Common Holidays
 
 1/1             New Year's Day
@@ -7,7 +7,7 @@ cat /dd/tmp/TEXTA/hol.txt
 easter Easter Sunday
 *easter-7 Palm Sunday
 *easter-46 Ash Wednesday
-$ tail -l=3 /dd/tmp/TEXTA/hol.txt
+$ tail -l=3 tmp/TEXTA/hol.txt
 easter Easter Sunday
 *easter-7 Palm Sunday
 *easter-46 Ash Wednesday

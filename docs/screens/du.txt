@@ -1,9 +1,9 @@
-du /dd/DOC/gnuplot
-Disk usage starting from "/dd/DOC/gnuplot" on 19126-09-03  05:53:13
+du DOC/gnuplot
+Disk usage starting from "DOC/gnuplot" on 19126-09-06  03:35:52
 
 Directory name                      Bytes    kBytes   Sectors    File #
 --------------                   --------   -------   -------   -------
-/dd/DOC/gnuplot/demo                 7010         7        28         7
-/dd/DOC/gnuplot                     10547        11        42         1
+DOC/gnuplot/demo                     7010         7        28         7
+DOC/gnuplot                         10547        11        42         1
 
 Total of 11 kBytes (42 sectors) in 2 directories and 8 files.

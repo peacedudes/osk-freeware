@@ -1,4 +1,4 @@
-qsort9 < /dd/tmp/TXT/dups
+qsort9 < tmp/TXT/dups
 apple
 apple
 fig

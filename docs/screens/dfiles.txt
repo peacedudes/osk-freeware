@@ -1,13 +1,13 @@
-dfiles /dd/SYS
-cmp -s  /dd/SYS/TEX/FONTS/PK144/Makefile /dd/SYS/TEX/FONTS/EPSON/Makefile
-cmp -s  /dd/SYS/TEX/FONTS/PK300/Makefile /dd/SYS/TEX/FONTS/EPSON/Makefile
-cmp -s  /dd/SYS/TEX/FONTS/read.me /dd/SYS/TEX/BIB/read.me
-cmp -s  /dd/SYS/TEX/FORMATS/Makefile /dd/SYS/TEX/FONTS/EPSON/Makefile
-cmp -s  /dd/SYS/TEX/MFBASES/Makefile /dd/SYS/TEX/FONTS/EPSON/Makefile
-cmp -s  /dd/SYS/TEX/MFBASES/install.script /dd/SYS/TEX/FORMATS/install.script
-cmp -s  /dd/SYS/TEX/MFINPUTS/CMTEST/Makefile /dd/SYS/TEX/FONTS/EPSON/Makefile
-cmp -s  /dd/SYS/TEX/MFINPUTS/EXTRACM/cmex9.mf /dd/SYS/TEX/MFINPUTS/CM/cmex9.mf
-cmp -s  /dd/SYS/TEX/MFINPUTS/MFCONTRIB/cmcyr/README /dd/SYS/TEX/MFINPUTS/MFCONTE
-cmp -s  /dd/SYS/TEX/MFINPUTS/MFCONTRIB/pandora/README /dd/SYS/TEX/MFINPUTS/MFCOE
-cmp -s  /dd/SYS/TEX/MFINPUTS/MFCONTRIB/ransom/ransom10.tfm /dd/SYS/TEX/FONTS/TFm
-cmp -s  /dd/SYS/profile.ksh /dd/SYS/ksh/profile.ksh
+dfiles SYS
+cmp -s  SYS/TEX/FONTS/PK144/Makefile SYS/TEX/FONTS/EPSON/Makefile
+cmp -s  SYS/TEX/FONTS/PK300/Makefile SYS/TEX/FONTS/EPSON/Makefile
+cmp -s  SYS/TEX/FONTS/read.me SYS/TEX/BIB/read.me
+cmp -s  SYS/TEX/FORMATS/Makefile SYS/TEX/FONTS/EPSON/Makefile
+cmp -s  SYS/TEX/MFBASES/Makefile SYS/TEX/FONTS/EPSON/Makefile
+cmp -s  SYS/TEX/MFBASES/install.script SYS/TEX/FORMATS/install.script
+cmp -s  SYS/TEX/MFINPUTS/CMTEST/Makefile SYS/TEX/FONTS/EPSON/Makefile
+cmp -s  SYS/TEX/MFINPUTS/EXTRACM/cmex9.mf SYS/TEX/MFINPUTS/CM/cmex9.mf
+cmp -s  SYS/TEX/MFINPUTS/MFCONTRIB/cmcyr/README SYS/TEX/MFINPUTS/MFCONTRIB/READE
+cmp -s  SYS/TEX/MFINPUTS/MFCONTRIB/pandora/README SYS/TEX/MFINPUTS/MFCONTRIB/REE
+cmp -s  SYS/TEX/MFINPUTS/MFCONTRIB/ransom/ransom10.tfm SYS/TEX/FONTS/TFM/ransomm
+cmp -s  SYS/profile.ksh SYS/ksh/profile.ksh

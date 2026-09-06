@@ -9,9 +9,11 @@ cap     year.  Fed from a file here, because it asks its questions on one
 cap     line; 120,000 over thirty years at 6.5% is 758.48 a month.
 run     mkdir -p /dd/tmp/MTH > /nil 2>/nil; printf "120000\r30\r6.5\r8\rs\r" > /dd/tmp/MTH/la
 wait    2
+run     builtin cd /dd
+wait    1
 run     clear
 wait    1
-run     loan < /dd/tmp/MTH/la | head -n 22
+run     loan < tmp/MTH/la | head -n 22
 wait    10
 
 shot    cvtbase

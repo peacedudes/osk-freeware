@@ -1,4 +1,4 @@
-join /dd/tmp/TXT/j1 /dd/tmp/TXT/j2
+join tmp/TXT/j1 tmp/TXT/j2
 apple red 3
 fig purple 12
 pear green 7

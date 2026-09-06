@@ -1,2 +1,2 @@
-hpcdtoppm /dd/tmp/NPIB/nr.ppm
+hpcdtoppm tmp/NPIB/nr.ppm
 Error while reading.

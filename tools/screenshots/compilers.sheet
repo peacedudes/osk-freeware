@@ -6,7 +6,11 @@ size    30 90
 cap     as0, the 6800/6802 cross-assembler: address, opcode bytes and the
 cap     source line, then the symbol table -- `l' for the listing and `s'
 cap     for the symbols, after a lone `-'.
-run     as0 /dd/DOC/xasm/sample.a0 - l s
+run     builtin cd /dd
+wait    1
+run     clear
+wait    1
+run     as0 DOC/xasm/sample.a0 - l s
 wait    14
 
 shot    as09
@@ -42,21 +46,33 @@ shot    as1
 size    30 90
 cap     as1, the 6801/6803 cross-assembler.  The 6801 adds MUL, ADDD and
 cap     the D register over the 6800, and the sample uses all three.
-run     as1 /dd/DOC/xasm/sample.a1 - l s
+run     builtin cd /dd
+wait    1
+run     clear
+wait    1
+run     as1 DOC/xasm/sample.a1 - l s
 wait    14
 
 shot    as4
 size    30 90
 cap     as4, the 6804 cross-assembler.  Its instruction set is small: no
 cap     CLR on the pseudo-registers, no immediate CMP.
-run     as4 /dd/DOC/xasm/sample.a4 - l s
+run     builtin cd /dd
+wait    1
+run     clear
+wait    1
+run     as4 DOC/xasm/sample.a4 - l s
 wait    14
 
 shot    as5
 size    30 90
 cap     as5, the 6805/68HC05 cross-assembler, on bit set, bit test and
 cap     branch -- what the 6805 is for.
-run     as5 /dd/DOC/xasm/sample.a5 - l s
+run     builtin cd /dd
+wait    1
+run     clear
+wait    1
+run     as5 DOC/xasm/sample.a5 - l s
 wait    14
 
 shot    as11
@@ -65,7 +81,11 @@ cap     as11, the 68HC11 cross-assembler.  It lists by default -- no `-l'
 cap     needed -- and reads any word after the file name as one more
 cap     source file rather than as an option, so the `- l s' its siblings
 cap     take is not for this one.
-run     as11 /dd/DOC/xasm/sample.a11
+run     builtin cd /dd
+wait    1
+run     clear
+wait    1
+run     as11 DOC/xasm/sample.a11
 wait    14
 
 shot    assembler
@@ -92,26 +112,34 @@ cap     GNU bison 1.19 on a two-rule grammar it writes for itself, then
 cap     the report -v leaves behind: the rules as bison read them, the
 cap     terminals with the rules they appear in, and the numbers it gave
 cap     them.  It says nothing at all when it succeeds.
-run     echo "%token NUM" > /dd/tmp/b.y
+run     builtin cd /dd
+wait    1
+run     clear
+wait    1
+run     echo "%token NUM" > tmp/b.y
 wait    3
-run     echo "%%" >> /dd/tmp/b.y
+run     echo "%%" >> tmp/b.y
 wait    3
-run     echo "expr : expr NUM | NUM ;" >> /dd/tmp/b.y
+run     echo "expr : expr NUM | NUM ;" >> tmp/b.y
 wait    3
-run     bison -v /dd/tmp/b.y
+run     bison -v tmp/b.y
 wait    15
-run     head -n 12 /dd/tmp/b.output 2>/nil
+run     head -n 12 tmp/b.output 2>/nil
 wait    6
 
 shot    flex
 cap     flex turning a lexical description into C.
-run     echo "%%" > /dd/tmp/l.l
+run     builtin cd /dd
+wait    1
+run     clear
+wait    1
+run     echo "%%" > tmp/l.l
 wait    5
-run     echo "[0-9]+   { return NUM; }" >> /dd/tmp/l.l
+run     echo "[0-9]+   { return NUM; }" >> tmp/l.l
 wait    5
-run     echo ".        ;" >> /dd/tmp/l.l
+run     echo ".        ;" >> tmp/l.l
 wait    5
-run     flex /dd/tmp/l.l
+run     flex tmp/l.l
 wait    8
 run     head -n 10 lex.yy.c
 wait    5
@@ -244,37 +272,49 @@ wait    8
 shot    gmake
 cap     GNU make 3.67, running a rule from DOC/make/demo.mk: copies
 cap     one file to another and reports the file it made.
-run     rm -f /dd/tmp/greeting
+run     builtin cd /dd
+wait    1
+run     clear
+wait    1
+run     rm -f tmp/greeting
 wait    4
 run     gmake -v
 wait    5
-run     gmake -f /dd/DOC/make/demo.mk greeting
+run     gmake -f DOC/make/demo.mk greeting
 wait    10
-run     ls -l /dd/tmp/greeting
+run     ls -l tmp/greeting
 wait    6
 
 shot    dmake
 cap     dmake 3.70, Dennis Vadura's parallel make, on the same rule --
 cap     its own makefile dialect still reads DOC/make/demo.mk and builds
 cap     the target.
-run     rm -f /dd/tmp/greeting
+run     builtin cd /dd
+wait    1
+run     clear
+wait    1
+run     rm -f tmp/greeting
 wait    4
 run     dmake -V
 wait    5
-run     dmake -f /dd/DOC/make/demo.mk greeting
+run     dmake -f DOC/make/demo.mk greeting
 wait    10
-run     ls -l /dd/tmp/greeting
+run     ls -l tmp/greeting
 wait    6
 
 shot    m4
 cap     m4, the macro processor, expanding a macro from a file.
-run     echo "define(GREET,Hello \$1 from OS-9)" > /dd/tmp/m.m4
+run     builtin cd /dd
+wait    1
+run     clear
+wait    1
+run     echo "define(GREET,Hello \$1 from OS-9)" > tmp/m.m4
 wait    5
-run     echo "GREET(reader)" >> /dd/tmp/m.m4
+run     echo "GREET(reader)" >> tmp/m.m4
 wait    5
-run     cat /dd/tmp/m.m4
+run     cat tmp/m.m4
 wait    5
-run     m4 < /dd/tmp/m.m4
+run     m4 < tmp/m.m4
 wait    8
 
 shot    m4_0.5
@@ -283,8 +323,10 @@ cap     definition and expands each use of it: GREET(world) becomes
 cap     hello world.
 run     mkdir -p /dd/tmp/BLGX > /nil 2>/nil
 run     printf 'define(GREET,hello $1)GREET(world)\r' > /dd/tmp/BLGX/mm.m4
+run     builtin cd /dd
+wait    1
 run     clear
-run     m4_0.5 /dd/tmp/BLGX/mm.m4
+run     m4_0.5 tmp/BLGX/mm.m4
 wait    5
 
 shot    make
@@ -300,13 +342,17 @@ cap     metacharacter: where a line has none make forks the command itself,
 cap     but where it has a `>' it forks bash and hands it the whole line AS
 cap     A PATHNAME rather than with -c, so `cat a > b' answers `That path
 cap     name doesn't lead to a file' and `cp a b' works.
-run     rm -f /dd/tmp/greeting
+run     builtin cd /dd
+wait    1
+run     clear
+wait    1
+run     rm -f tmp/greeting
 wait    5
-run     make -f /dd/DOC/make/demo.mk greeting
+run     make -f DOC/make/demo.mk greeting
 wait    12
-run     ls -l /dd/tmp/greeting
+run     ls -l tmp/greeting
 wait    8
-run     make -f /dd/DOC/make/demo.mk greeting
+run     make -f DOC/make/demo.mk greeting
 wait    10
 
 shot    makeinfo

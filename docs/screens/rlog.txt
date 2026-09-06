@@ -1,6 +1,6 @@
-rlog /dd/tmp/DEV/rcs/note_v
+rlog tmp/DEV/rcs/note_v
 
-RCS file:        /dd/tmp/DEV/rcs/note_v;   Working file:    note
+RCS file:        tmp/DEV/rcs/note_v;   Working file:    note
 head:            1.1
 branch:
 locks:           ;  strict
@@ -11,6 +11,6 @@ total revisions: 1;    selected revisions: 1
 description:
 ----------------------------
 revision 1.1
-date: 12/.0/.0 .0:.1:.2;  author: Tester;  state: Exp;
+date: 12/.0/.0 .0:.0:.5;  author: Tester;  state: Exp;
 Initial revision
 =============================================================================

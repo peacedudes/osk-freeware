@@ -1,4 +1,4 @@
-cjpeg -quality 50 /dd/tmp/GFXA/j.ppm > /dd/tmp/GFXA/j.jpg
-$ ls -l /dd/tmp/GFXA/j.ppm /dd/tmp/GFXA/j.jpg
--rw-rw-rw-   1 0        0             742 Sep  3 15:07 /dd/tmp/GFXA/j.jpg
--rw-rw-rw-   1 0        0            3469 Sep  3 15:07 /dd/tmp/GFXA/j.ppm
+cjpeg -quality 50 tmp/GFXA/j.ppm > tmp/GFXA/j.jpg
+$ ls -l tmp/GFXA/j.ppm tmp/GFXA/j.jpg
+-rw-rw-rw-   1 0        0             875 Sep  6 04:45 tmp/GFXA/j.jpg
+-rw-rw-rw-   1 0        0            3469 Sep  6 04:45 tmp/GFXA/j.ppm

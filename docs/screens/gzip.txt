@@ -1,2 +1,2 @@
-gzip -v /dd/tmp/ARC/g1
-/dd/tmp/ARC/g1:          64.0% -- replaced with /dd/tmp/ARC/g1.gz
+gzip -v tmp/ARC/g1
+tmp/ARC/g1:              63.7% -- replaced with tmp/ARC/g1.gz

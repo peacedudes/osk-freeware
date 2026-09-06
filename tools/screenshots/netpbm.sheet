@@ -16,10 +16,12 @@ cap     bitmap packs to the coded file `ls' lists.
 run     mkdir -p /dd/tmp/NPMB > /nil 2>/nil
 run     pbmmake -g 48 24 > /dd/tmp/NPMB/b.pbm
 wait    4
+run     builtin cd /dd
+wait    1
 run     clear
-run     pbmtog3 /dd/tmp/NPMB/b.pbm > /dd/tmp/NPMB/o.g3
+run     pbmtog3 tmp/NPMB/b.pbm > tmp/NPMB/o.g3
 wait    5
-run     ls -l /dd/tmp/NPMB/o.g3
+run     ls -l tmp/NPMB/o.g3
 wait    4
 
 shot    pbmtogem
@@ -29,10 +31,12 @@ cap     .img file.
 run     mkdir -p /dd/tmp/NPMB > /nil 2>/nil
 run     pbmmake -g 48 24 > /dd/tmp/NPMB/b.pbm
 wait    4
+run     builtin cd /dd
+wait    1
 run     clear
-run     pbmtogem /dd/tmp/NPMB/b.pbm > /dd/tmp/NPMB/o.gem
+run     pbmtogem tmp/NPMB/b.pbm > tmp/NPMB/o.gem
 wait    5
-run     ls -l /dd/tmp/NPMB/o.gem
+run     ls -l tmp/NPMB/o.gem
 wait    4
 
 shot    pbmtoicon
@@ -42,10 +46,12 @@ cap     test bitmap's checkerboard.
 run     mkdir -p /dd/tmp/NPMB > /nil 2>/nil
 run     pbmmake -g 48 24 > /dd/tmp/NPMB/b.pbm
 wait    4
+run     builtin cd /dd
+wait    1
 run     clear
-run     pbmtoicon /dd/tmp/NPMB/b.pbm > /dd/tmp/NPMB/o.icon
+run     pbmtoicon tmp/NPMB/b.pbm > tmp/NPMB/o.icon
 wait    5
-run     cat /dd/tmp/NPMB/o.icon | head -8
+run     cat tmp/NPMB/o.icon | head -8
 wait    4
 
 shot    pbmtomacp
@@ -55,10 +61,12 @@ cap     lists.
 run     mkdir -p /dd/tmp/NPMB > /nil 2>/nil
 run     pbmmake -g 48 24 > /dd/tmp/NPMB/b.pbm
 wait    4
+run     builtin cd /dd
+wait    1
 run     clear
-run     pbmtomacp /dd/tmp/NPMB/b.pbm > /dd/tmp/NPMB/o.mac
+run     pbmtomacp tmp/NPMB/b.pbm > tmp/NPMB/o.mac
 wait    5
-run     ls -l /dd/tmp/NPMB/o.mac
+run     ls -l tmp/NPMB/o.mac
 wait    4
 
 shot    pbmtopi3
@@ -68,10 +76,12 @@ cap     32034 bytes whatever the bitmap's size.
 run     mkdir -p /dd/tmp/NPMB > /nil 2>/nil
 run     pbmmake -g 48 24 > /dd/tmp/NPMB/b.pbm
 wait    4
+run     builtin cd /dd
+wait    1
 run     clear
-run     pbmtopi3 /dd/tmp/NPMB/b.pbm > /dd/tmp/NPMB/o.pi3
+run     pbmtopi3 tmp/NPMB/b.pbm > tmp/NPMB/o.pi3
 wait    5
-run     ls -l /dd/tmp/NPMB/o.pi3
+run     ls -l tmp/NPMB/o.pi3
 wait    4
 
 shot    pbmtoxbm
@@ -81,10 +91,12 @@ cap     `noname'.
 run     mkdir -p /dd/tmp/NPMB > /nil 2>/nil
 run     pbmmake -g 48 24 > /dd/tmp/NPMB/b.pbm
 wait    4
+run     builtin cd /dd
+wait    1
 run     clear
-run     pbmtoxbm < /dd/tmp/NPMB/b.pbm > /dd/tmp/NPMB/o.xbm
+run     pbmtoxbm < tmp/NPMB/b.pbm > tmp/NPMB/o.xbm
 wait    5
-run     cat /dd/tmp/NPMB/o.xbm | head -6
+run     cat tmp/NPMB/o.xbm | head -6
 wait    4
 
 shot    pbmtoptx
@@ -94,10 +106,12 @@ cap     `ls' lists.
 run     mkdir -p /dd/tmp/NPMB > /nil 2>/nil
 run     pbmmake -g 48 24 > /dd/tmp/NPMB/b.pbm
 wait    4
+run     builtin cd /dd
+wait    1
 run     clear
-run     pbmtoptx /dd/tmp/NPMB/b.pbm > /dd/tmp/NPMB/o.ptx
+run     pbmtoptx tmp/NPMB/b.pbm > tmp/NPMB/o.ptx
 wait    5
-run     ls -l /dd/tmp/NPMB/o.ptx
+run     ls -l tmp/NPMB/o.ptx
 wait    4
 
 shot    pbmtobbnbg
@@ -108,10 +122,12 @@ cap     same file.
 run     mkdir -p /dd/tmp/NPMB > /nil 2>/nil
 run     pbmmake -g 48 24 > /dd/tmp/NPMB/b.pbm
 wait    4
+run     builtin cd /dd
+wait    1
 run     clear
-run     pbmtobbnbg /dd/tmp/NPMB/b.pbm > /dd/tmp/NPMB/o.bg
+run     pbmtobbnbg tmp/NPMB/b.pbm > tmp/NPMB/o.bg
 wait    5
-run     ls -l /dd/tmp/NPMB/o.bg
+run     ls -l tmp/NPMB/o.bg
 wait    4
 
 shot    pgmtofs
@@ -121,10 +137,12 @@ cap     greyscale ramp fills in below the blank header.
 run     mkdir -p /dd/tmp/NPMB > /nil 2>/nil
 run     pgmramp -lr 48 24 > /dd/tmp/NPMB/g.pgm
 wait    4
+run     builtin cd /dd
+wait    1
 run     clear
-run     pgmtofs /dd/tmp/NPMB/g.pgm > /dd/tmp/NPMB/o.fs
+run     pgmtofs tmp/NPMB/g.pgm > tmp/NPMB/o.fs
 wait    5
-run     cat /dd/tmp/NPMB/o.fs | head -8
+run     cat tmp/NPMB/o.fs | head -8
 wait    4
 
 shot    pgmtolispm
@@ -134,10 +152,12 @@ cap     lists.
 run     mkdir -p /dd/tmp/NPMB > /nil 2>/nil
 run     pgmramp -lr 48 24 > /dd/tmp/NPMB/g.pgm
 wait    4
+run     builtin cd /dd
+wait    1
 run     clear
-run     pgmtolispm /dd/tmp/NPMB/g.pgm > /dd/tmp/NPMB/o.lispm
+run     pgmtolispm tmp/NPMB/g.pgm > tmp/NPMB/o.lispm
 wait    5
-run     ls -l /dd/tmp/NPMB/o.lispm
+run     ls -l tmp/NPMB/o.lispm
 wait    4
 
 shot    pgmtoppm
@@ -147,10 +167,12 @@ cap     back a 48x24 PPM, which pnmfile confirms.
 run     mkdir -p /dd/tmp/NPMB > /nil 2>/nil
 run     pgmramp -lr 48 24 > /dd/tmp/NPMB/g.pgm
 wait    4
+run     builtin cd /dd
+wait    1
 run     clear
-run     pgmtoppm red-blue /dd/tmp/NPMB/g.pgm > /dd/tmp/NPMB/o.ppm
+run     pgmtoppm red-blue tmp/NPMB/g.pgm > tmp/NPMB/o.ppm
 wait    5
-run     pnmfile /dd/tmp/NPMB/o.ppm
+run     pnmfile tmp/NPMB/o.ppm
 wait    4
 
 shot    pnmtofits
@@ -160,10 +182,12 @@ cap     array with an ASCII header; `ls' shows the file.
 run     mkdir -p /dd/tmp/NPMB > /nil 2>/nil
 run     pgmramp -lr 48 24 > /dd/tmp/NPMB/g.pgm
 wait    4
+run     builtin cd /dd
+wait    1
 run     clear
-run     pnmtofits /dd/tmp/NPMB/g.pgm > /dd/tmp/NPMB/o.fits
+run     pnmtofits tmp/NPMB/g.pgm > tmp/NPMB/o.fits
 wait    5
-run     ls -l /dd/tmp/NPMB/o.fits
+run     ls -l tmp/NPMB/o.fits
 wait    4
 
 shot    pnmtoddif
@@ -173,10 +197,12 @@ cap     the DDIF stream `ls' lists.
 run     mkdir -p /dd/tmp/NPMB > /nil 2>/nil
 run     pgmramp -lr 48 24 > /dd/tmp/NPMB/g.pgm
 wait    4
+run     builtin cd /dd
+wait    1
 run     clear
-run     pnmtoddif /dd/tmp/NPMB/g.pgm > /dd/tmp/NPMB/o.ddif
+run     pnmtoddif tmp/NPMB/g.pgm > tmp/NPMB/o.ddif
 wait    5
-run     ls -l /dd/tmp/NPMB/o.ddif
+run     ls -l tmp/NPMB/o.ddif
 wait    4
 
 shot    pnmtosgi
@@ -186,10 +212,12 @@ cap     lists.
 run     mkdir -p /dd/tmp/NPMB > /nil 2>/nil
 run     ppmpat -gingham3 48 24 > /dd/tmp/NPMB/c.ppm
 wait    4
+run     builtin cd /dd
+wait    1
 run     clear
-run     pnmtosgi /dd/tmp/NPMB/c.ppm > /dd/tmp/NPMB/o.sgi
+run     pnmtosgi tmp/NPMB/c.ppm > tmp/NPMB/o.sgi
 wait    5
-run     ls -l /dd/tmp/NPMB/o.sgi
+run     ls -l tmp/NPMB/o.sgi
 wait    4
 
 shot    ppmtoacad
@@ -201,10 +229,12 @@ run     ppmpat -gingham3 48 24 > /dd/tmp/NPMB/c.ppm
 wait    4
 run     ppmquant 16 /dd/tmp/NPMB/c.ppm > /dd/tmp/NPMB/q.ppm
 wait    5
+run     builtin cd /dd
+wait    1
 run     clear
-run     ppmtoacad /dd/tmp/NPMB/q.ppm > /dd/tmp/NPMB/o.sld
+run     ppmtoacad tmp/NPMB/q.ppm > tmp/NPMB/o.sld
 wait    5
-run     ls -l /dd/tmp/NPMB/o.sld
+run     ls -l tmp/NPMB/o.sld
 wait    4
 
 shot    ppmtomitsu
@@ -216,10 +246,12 @@ run     ppmpat -gingham3 48 24 > /dd/tmp/NPMB/c.ppm
 wait    4
 run     ppmquant 16 /dd/tmp/NPMB/c.ppm > /dd/tmp/NPMB/q.ppm
 wait    5
+run     builtin cd /dd
+wait    1
 run     clear
-run     ppmtomitsu /dd/tmp/NPMB/q.ppm > /dd/tmp/NPMB/o.mitsu
+run     ppmtomitsu tmp/NPMB/q.ppm > tmp/NPMB/o.mitsu
 wait    6
-run     ls -l /dd/tmp/NPMB/o.mitsu
+run     ls -l tmp/NPMB/o.mitsu
 wait    4
 
 shot    ppmtosixel
@@ -231,10 +263,12 @@ run     ppmpat -gingham3 48 24 > /dd/tmp/NPMB/c.ppm
 wait    4
 run     ppmquant 16 /dd/tmp/NPMB/c.ppm > /dd/tmp/NPMB/q.ppm
 wait    5
+run     builtin cd /dd
+wait    1
 run     clear
-run     ppmtosixel /dd/tmp/NPMB/q.ppm > /dd/tmp/NPMB/o.six
+run     ppmtosixel tmp/NPMB/q.ppm > tmp/NPMB/o.six
 wait    6
-run     ls -l /dd/tmp/NPMB/o.six
+run     ls -l tmp/NPMB/o.six
 wait    4
 
 shot    ppmtoyuvsplit
@@ -244,8 +278,10 @@ cap     pair per 2x2 block, so .U and .V are a quarter the size of .Y.
 run     mkdir -p /dd/tmp/NPMB > /nil 2>/nil
 run     ppmpat -gingham3 48 24 > /dd/tmp/NPMB/c.ppm
 wait    4
+run     builtin cd /dd
+wait    1
 run     clear
-run     ppmtoyuvsplit /dd/tmp/NPMB/y /dd/tmp/NPMB/c.ppm
+run     ppmtoyuvsplit tmp/NPMB/y tmp/NPMB/c.ppm
 wait    5
-run     ls -l /dd/tmp/NPMB/y.Y /dd/tmp/NPMB/y.U /dd/tmp/NPMB/y.V
+run     ls -l tmp/NPMB/y.Y tmp/NPMB/y.U tmp/NPMB/y.V
 wait    4

@@ -38,13 +38,15 @@ cap     `Error 216 attempting fstat' -- though it still touches
 cap     autoreply.log on its way there.
 run     rm -f /dd/USR/LIB/ELM/autoreply.data /dd/USR/LIB/ELM/autoreply.log
 wait    3
+run     builtin cd /dd
+wait    1
 run     clear
 wait    1
-run     ls -l /dd/USR/LIB/ELM
+run     ls -l USR/LIB/ELM
 wait    4
 run     arepdaemon
 wait    5
-run     ls -l /dd/USR/LIB/ELM
+run     ls -l USR/LIB/ELM
 wait    5
 
 shot    autoreply
@@ -104,9 +106,11 @@ cap     unrecognized one gets `Unrecognized tilde command' and it keeps
 cap     reading.
 run     mkdir -p /dd/tmp/MAILA > /nil 2>/nil; printf "hello\r~x\rmore text\r" > /dd/tmp/MAILA/dt.txt
 wait    3
+run     builtin cd /dd
+wait    1
 run     clear
 wait    1
-run     dotilde < /dd/tmp/MAILA/dt.txt
+run     dotilde < tmp/MAILA/dt.txt
 wait    6
 
 shot    fastmail
@@ -115,11 +119,13 @@ cap     delivery agent to actually hand the message off; there is none
 cap     here, so the folder is unchanged and it returns in silence.
 run     mkdir -p /dd/tmp/MAILA > /nil 2>/nil; printf "hello from fastmail\r" > /dd/tmp/MAILA/fm.txt
 wait    3
+run     builtin cd /dd
+wait    1
 run     clear
 wait    1
 run     messages
 wait    4
-run     fastmail /dd/tmp/MAILA/fm.txt tester
+run     fastmail tmp/MAILA/fm.txt tester
 wait    6
 run     messages
 wait    5
@@ -131,11 +137,13 @@ cap     reaches for a scratch file at /r0, the RAM disk this disk has no
 cap     device for.
 run     filter -?
 wait    5
+run     builtin cd /dd
+wait    1
 run     clear
 wait    1
-run     mkdir -p /dd/tmp/MAILA > /nil 2>/nil; printf "From tester\rSubject: test\r\rbody\r" > /dd/tmp/MAILA/msg.txt
+run     mkdir -p tmp/MAILA > /nil 2>/nil; printf "From tester\rSubject: test\r\rbody\r" > tmp/MAILA/msg.txt
 wait    3
-run     filter -v < /dd/tmp/MAILA/msg.txt
+run     filter -v < tmp/MAILA/msg.txt
 wait    6
 
 shot    frm
@@ -151,9 +159,11 @@ cap     Lower-cases a name for the mailer, reading it from standard
 cap     input.
 run     mkdir -p /dd/tmp/MAILA > /nil 2>/nil; printf "Robert Smith\r" > /dd/tmp/MAILA/lc.txt
 wait    3
+run     builtin cd /dd
+wait    1
 run     clear
 wait    1
-run     lcasep < /dd/tmp/MAILA/lc.txt
+run     lcasep < tmp/MAILA/lc.txt
 wait    5
 
 shot    listalias
@@ -200,20 +210,26 @@ cap     Builds smail's path-alias database from a text source, two files
 cap     beside it: a .dir and a .pag.
 run     makedb -?
 wait    5
+run     builtin cd /dd
+wait    1
 run     clear
 wait    1
-run     mkdir -p /dd/tmp/MAILA > /nil 2>/nil
+run     mkdir -p tmp/MAILA > /nil 2>/nil
 wait    2
-run     makedb -o /dd/tmp/MAILA/palias /dd/USR/LIB/SMAIL/palias
+run     makedb -o tmp/MAILA/palias USR/LIB/SMAIL/palias
 wait    6
-run     ls -l /dd/tmp/MAILA/palias.dir /dd/tmp/MAILA/palias.pag
+run     ls -l tmp/MAILA/palias.dir tmp/MAILA/palias.pag
 wait    5
 
 shot    messages
 cap     Counts and lists what is in a folder.
+run     builtin cd /dd
+wait    1
+run     clear
+wait    1
 run     messages
 wait    5
-run     messages -f /dd/SPOOL/MAIL/tester
+run     messages -f SPOOL/MAIL/tester
 wait    5
 
 shot    newalias
@@ -240,9 +256,11 @@ shot    nptx
 cap     The address it builds from one name-and-login line.
 run     mkdir -p /dd/tmp/MAILA > /nil 2>/nil; printf "John Q Public\tjqpublic\r" > /dd/tmp/MAILA/np.txt
 wait    3
+run     builtin cd /dd
+wait    1
 run     clear
 wait    1
-run     nptx < /dd/tmp/MAILA/np.txt
+run     nptx < tmp/MAILA/np.txt
 wait    6
 
 shot    pathalias
@@ -252,8 +270,10 @@ cap     calls pirsqrd, it prints the cheapest route to each site; the %s
 cap     is where a user name goes.
 run     mkdir -p /dd/tmp/BLGX > /nil 2>/nil
 run     printf "milkyway phoenix(20)\rphoenix seabass(30)\rseabass pirsqrd(10)\r" > /dd/tmp/BLGX/map
+run     builtin cd /dd
+wait    1
 run     clear
-run     pathalias -l milkyway /dd/tmp/BLGX/map
+run     pathalias -l milkyway tmp/BLGX/map
 wait    5
 
 shot    philmail
@@ -294,11 +314,13 @@ cap     mailbox and quotes what it finds.  The file that
 cap     ships is empty, so it reads to end and has nothing to quote.
 run     ls -l /dd/MAIL
 wait    4
+run     builtin cd /dd
+wait    1
 run     clear
 wait    1
-run     mkdir -p /dd/tmp/MAILA > /nil 2>/nil; echo N > /dd/tmp/MAILA/ans
+run     mkdir -p tmp/MAILA > /nil 2>/nil; echo N > tmp/MAILA/ans
 wait    3
-run     read_mail < /dd/tmp/MAILA/ans; echo "exit: $?"
+run     read_mail < tmp/MAILA/ans; echo "exit: $?"
 wait    6
 
 shot    readmsg
@@ -324,11 +346,13 @@ cap     only sign is the poll file it leaves in the site's spool
 cap     directory.
 run     ls -l /dd/SPOOL/uucp/seabass
 wait    4
+run     builtin cd /dd
+wait    1
 run     clear
 wait    1
 run     uupoll seabass
 wait    6
-run     ls -l /dd/SPOOL/uucp/seabass
+run     ls -l SPOOL/uucp/seabass
 wait    5
 
 shot    uux
@@ -347,9 +371,11 @@ cap     Decodes a batched news article.  Handed a file with no batch
 cap     header, it says so plainly.
 run     mkdir -p /dd/tmp/MAILA > /nil 2>/nil; printf "not a batch\r" > /dd/tmp/MAILA/bd.txt
 wait    3
+run     builtin cd /dd
+wait    1
 run     clear
 wait    1
-run     bdecode /dd/tmp/MAILA/bd.txt
+run     bdecode tmp/MAILA/bd.txt
 wait    6
 
 shot    byteflip
@@ -364,9 +390,11 @@ cap     Decodes 7-bit-safe encoded news.  Handed text that is not
 cap     encoded that way, it says so.
 run     mkdir -p /dd/tmp/MAILA > /nil 2>/nil; printf "not encoded\r" > /dd/tmp/MAILA/c7.txt
 wait    3
+run     builtin cd /dd
+wait    1
 run     clear
 wait    1
-run     c7decode < /dd/tmp/MAILA/c7.txt
+run     c7decode < tmp/MAILA/c7.txt
 wait    6
 
 shot    dbz
@@ -407,11 +435,13 @@ cap     lock name.  It leaves no trace here -- no file at either name,
 cap     nothing printed.
 run     mkdir -p /dd/tmp/MAILA > /nil 2>/nil
 wait    2
+run     builtin cd /dd
+wait    1
 run     clear
 wait    1
-run     newslock /dd/tmp/MAILA/tmplock /dd/tmp/MAILA/reallock
+run     newslock tmp/MAILA/tmplock tmp/MAILA/reallock
 wait    6
-run     ls /dd/tmp/MAILA/tmplock /dd/tmp/MAILA/reallock
+run     ls tmp/MAILA/tmplock tmp/MAILA/reallock
 wait    5
 
 shot    postnews
@@ -462,13 +492,15 @@ run     printf "Newsgroups: comp.os.os9\rSubject: test article\r\rhello there\r"
 wait    3
 run     LEN=$(cat /dd/tmp/MAILA/art.txt | wc -c)
 wait    2
+run     builtin cd /dd
+wait    1
 run     clear
 wait    1
-run     printf "#! rnews %s\r" $LEN > /dd/tmp/MAILA/batch.txt; cat /dd/tmp/MAILA/art.txt >> /dd/tmp/MAILA/batch.txt
+run     printf "#! rnews %s\r" $LEN > tmp/MAILA/batch.txt; cat tmp/MAILA/art.txt >> tmp/MAILA/batch.txt
 wait    4
-run     rnews /dd/tmp/MAILA/batch.txt
+run     rnews tmp/MAILA/batch.txt
 wait    6
-run     ls -laR /dd/SPOOL/news/COMP
+run     ls -laR SPOOL/news/COMP
 wait    6
 
 shot    subscribe
@@ -477,26 +509,30 @@ cap     listed in .newsrc but turned off, this turns it back on.  A
 cap     group that is not in .newsrc at all is silently left alone.
 run     unsubscribe news.announce.newusers
 wait    5
+run     builtin cd /dd
+wait    1
 run     clear
 wait    1
-run     cat /dd/.newsrc
+run     cat .newsrc
 wait    4
 run     subscribe news.announce.newusers
 wait    6
-run     cat /dd/.newsrc
+run     cat .newsrc
 wait    5
 
 shot    unsubscribe
 cap     Drops a newsgroup from your subscription list.
 run     subscribe comp.sys.m68k
 wait    5
+run     builtin cd /dd
+wait    1
 run     clear
 wait    1
-run     cat /dd/.newsrc
+run     cat .newsrc
 wait    4
 run     unsubscribe comp.sys.m68k
 wait    6
-run     cat /dd/.newsrc
+run     cat .newsrc
 wait    5
 
 # Communications, everything but Mail and News.  Almost all of these talk
@@ -606,9 +642,11 @@ wait    2
 run     rm -f /dd/tmp/wysetime.out
 run     runb wysetime > /dd/tmp/wysetime.out
 wait    3
+run     builtin cd /dd
+wait    1
 run     clear
 wait    1
-run     dump /dd/tmp/wysetime.out
+run     dump tmp/wysetime.out
 wait    4
 
 shot    sterm
@@ -842,7 +880,11 @@ shot    fileserv
 cap     The UUCP file server: it answers file requests from remote sites.
 cap     With no request waiting it has nothing to do and exits without a
 cap     word, so its listing is shown to confirm the module is present.
-run     ls -l /dd/CMDS/UUCP/fileserv
+run     builtin cd /dd
+wait    1
+run     clear
+wait    1
+run     ls -l CMDS/UUCP/fileserv
 wait    4
 run     fileserv
 wait    5
@@ -855,11 +897,13 @@ run     mkdir -p /dd/tmp/COMB > /nil 2>/nil
 wait    2
 run     printf "line one\nline two\n" > /dd/tmp/COMB/ft.in
 wait    2
+run     builtin cd /dd
+wait    1
 run     clear
 wait    1
-run     fixtext /dd/tmp/COMB/ft.in /dd/tmp/COMB/ft.out
+run     fixtext tmp/COMB/ft.in tmp/COMB/ft.out
 wait    4
-run     dump /dd/tmp/COMB/ft.out
+run     dump tmp/COMB/ft.out
 wait    4
 
 # --- Web server -----------------------------------------------------------
@@ -884,9 +928,11 @@ run     echo "" >> /dd/tmp/COMB/rq
 wait    2
 run     autolf -c -C -L < /dd/tmp/COMB/rq > /dd/tmp/COMB/rq.crlf
 wait    3
+run     builtin cd /dd
+wait    1
 run     clear
 wait    1
-run     wn -L /nil -l /nil < /dd/tmp/COMB/rq.crlf | head -n 18
+run     wn -L /nil -l /nil < tmp/COMB/rq.crlf | head -n 18
 wait    8
 
 shot    wndex

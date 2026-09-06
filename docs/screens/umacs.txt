@@ -20,5 +20,5 @@ All mimsy were the borogoves,
 
 
 
-== uMacs 1.0 () == jabber.txt == File: /dd/tmp/EDIT/jabber.txt =================
+==#uMacs#1.0#()#==#jabber.txt#==#File:#tmp/EDIT/jabber.txt#=====================
 [Read 4 lines]

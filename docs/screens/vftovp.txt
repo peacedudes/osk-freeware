@@ -1,10 +1,10 @@
-vftovp s.vf s.tfm /dd/tmp/TEX/back.vpl
+vftovp s.vf s.tfm tmp/TEX/back.vpl
 This is VFtoVP, C Version 1.2
 A one-character virtual font, for demonstrating vptovf and vftovp
 MAPFONT 0: cmr10 at 10.00pt
 Check sum in VF file being replaced by TFM check sum
 '101.
-$ cat /dd/tmp/TEX/back.vpl | head -n 16
+$ cat tmp/TEX/back.vpl | head -n 16
 (VTITLE A one-character virtual font, for demonstrating vptovf and vftovp)
 (FAMILY SAMPLEVF)
 (FACE F MRR)

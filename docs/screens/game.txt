@@ -1,2 +1,2 @@
-game /dd/tmp/GAMESA/g.lst 1 2
+game tmp/GAMESA/g.lst 1 2
 /V 11 72 mul def /L 60 def

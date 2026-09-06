@@ -1,7 +1,7 @@
-ls /dd/tmp/TEXTA/UD
+ls tmp/TEXTA/UD
 MixedCase.TXT  subdir
-$ upperdir /dd/tmp/TEXTA/UD
+$ upperdir tmp/TEXTA/UD
 
 SUBDIR          mixedcase.txt
-$ ls /dd/tmp/TEXTA/UD
+$ ls tmp/TEXTA/UD
 SUBDIR         mixedcase.txt

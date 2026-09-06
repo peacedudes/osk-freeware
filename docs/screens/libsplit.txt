@@ -1,2 +1,2 @@
-$ libsplit /dd/LIB/blarslib.l
+libsplit LIB/blarslib.l
 No new Type Library! Try <unpacklib> instead.

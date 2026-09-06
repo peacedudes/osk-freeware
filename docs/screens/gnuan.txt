@@ -27,4 +27,4 @@ Bad move.    Board position is:
  r n b q k b n r
 
 
-Process   Pid: 3, gnuan, e
+Proces

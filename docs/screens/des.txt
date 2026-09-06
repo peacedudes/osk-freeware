@@ -1,7 +1,7 @@
-ls -l /dd/tmp/ENC/d.txt
--rw-rw-rw-   1 0        0              35 Sep  3 05:08 /dd/tmp/ENC/d.txt
-$ des /dd/tmp/ENC/d.txt
-Type password for /dd/tmp/ENC/d.txt: freeware
-Verify password for /dd/tmp/ENC/d.txt: freeware
-$ ls -l /dd/tmp/ENC/d.txt.n
--rw-------   1 0        0              40 Sep  3 05:08 /dd/tmp/ENC/d.txt.n
+ls -l tmp/ENC/d.txt
+-rw-rw-rw-   1 0        0              35 Sep  6 03:27 tmp/ENC/d.txt
+$ des tmp/ENC/d.txt
+Type password for tmp/ENC/d.txt: freeware
+Verify password for tmp/ENC/d.txt: freeware
+$ ls -l tmp/ENC/d.txt.n
+-rw-------   1 0        0              40 Sep  6 03:27 tmp/ENC/d.txt.n

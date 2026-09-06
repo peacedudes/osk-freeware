@@ -1,11 +1,11 @@
-cat /dd/tmp/TXT/rag.txt
+cat tmp/TXT/rag.txt
 Twas brillig,
 and the slithy
 toves did gyre and gimble in the wabe: all mimsy were the borogoves, and the mo.
-$ fmt /dd/tmp/TXT/rag.txt
+$ fmt tmp/TXT/rag.txt
 Twas brillig, and the slithy toves did gyre and gimble in the wabe: all
 mimsy were the borogoves, and the mome raths outgrabe.
-$ fmt -30 /dd/tmp/TXT/rag.txt
+$ fmt -30 tmp/TXT/rag.txt
 Twas brillig, and the slithy
 toves did gyre and gimble in
 the wabe: all mimsy were the

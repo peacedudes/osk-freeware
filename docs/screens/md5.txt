@@ -1,4 +1,4 @@
-$ md5 /dd/SYS/motd /dd/SYS/password /dd/DOC/INDEX
-MD5 (/dd/SYS/motd) = f2783580b7a4c5ef6a29ec5895e6ad95
-MD5 (/dd/SYS/password) = 468f9b420b5bb6d1f44418669c326033
-MD5 (/dd/DOC/INDEX) = e2a01070257732d27174d7fd795f9e3a
+md5 SYS/motd SYS/password DOC/INDEX
+MD5 (SYS/motd) = f2783580b7a4c5ef6a29ec5895e6ad95
+MD5 (SYS/password) = 468f9b420b5bb6d1f44418669c326033
+MD5 (DOC/INDEX) = dd88e9abf9bb1030988328026ecdcc77

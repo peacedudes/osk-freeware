@@ -1,4 +1,4 @@
--------------------------------- /dd/CMDS/today  - - - - - - - - - - - - - - - -
+---------------------------------- CMDS/today  - - - - - - - - - - - - - - - - -
 Module name           = today
 System revision       = 1
 Module size           = 19450

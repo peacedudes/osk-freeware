@@ -1,6 +1,6 @@
-ppmtoacad /dd/tmp/NPIB/q.ppm > /dd/tmp/NPIB/s.sld
+ppmtoacad tmp/NPIB/q.ppm > tmp/NPIB/s.sld
 ppmtoacad: computing colourmap...
 ppmtoacad: 6 colours found
-$ sldtoppm /dd/tmp/NPIB/s.sld > /dd/tmp/NPIB/back.ppm
-$ pnmfile /dd/tmp/NPIB/back.ppm
-/dd/tmp/NPIB/back.ppm:  PPM raw, 48 by 24  maxval 255
+$ sldtoppm tmp/NPIB/s.sld > tmp/NPIB/back.ppm
+$ pnmfile tmp/NPIB/back.ppm
+tmp/NPIB/back.ppm:      PPM raw, 48 by 24  maxval 255

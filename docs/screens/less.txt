@@ -1,12 +1,11 @@
 HOW TO RUN THIS DISK
 ====================
 
-This disk is NOT a boot disk, and os9exec does not boot anything.  There is
-no kernel here and no OS9Boot file.  os9exec is the kernel: you point it at a
-disk with OS9DISK and name a program to run, and that disk is what OS-9 then
-sees as /dd -- its root and its home.  There is no established name for that
-role, which is why people reach for "boot disk"; this disk cannot boot
-anything.
+os9exec is the kernel.  You point it at a disk with OS9DISK and name a
+program to run; that disk becomes /dd, OS-9's root and home, and the program
+runs.  There is no OS9Boot file here and none is needed -- os9exec supplies
+the kernel a boot file would otherwise load.  Mount this collection as /dd,
+the recommended arrangement below, and it runs on its own.
 
 Most of the programs in CMDS and CMDS/GAMES need nothing but this disk.
 
@@ -21,4 +20,5 @@ around the disk straight away:
     a shell        sh, or bash
     list a dir     ls
     read a file    cat, or less
-/dd/DOC/README-RUNNING
+    copy a file    cat one > two
+DOC/README-RUNNING

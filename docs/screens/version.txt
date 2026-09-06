@@ -1,3 +1,2 @@
-$ version /dd/CMDS/today
 Dies ist das Program 'version', Version 7
 ... oder in anderer Notation, version 0.7

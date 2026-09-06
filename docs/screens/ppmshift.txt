@@ -1,10 +1,10 @@
-ppmshift 6 /dd/tmp/NEAB/t.ppm > /dd/tmp/NEAB/s.ppm
-$ ppmtopgm /dd/tmp/NEAB/s.ppm | pgmtopbm | pbmtoascii -2x4
-MRM9RHMSH9&H6M9RMHSFFR6&F6H&&H&&
-M&HH6M96H&99H&H6HHH&SDHSFkHFR&RH
-DM&&#&D#1H$HDHH&#&kkk&&&&&&1ck&#
-M9RM9RMHZ&RMH9RM9FkH&H19&&H$kR&&
-H&SH&&&99$4$RH&&FRRF[&ZHZF&<R&&Z
-H&&H&H&&&$F6&9&D6&&$&&$&&$$9$&&$
-H19&H1H&HSS&9&H&HZ&DZ&\k6$Z&1&S&
-&1&&&&1Sk&&1&Fk6kH$1%R/1S$&%k\$Z
+ppmshift 6 tmp/NEAB/t.ppm > tmp/NEAB/s.ppm
+$ ppmtopgm tmp/NEAB/s.ppm | pgmtopbm | pbmtoascii -2x4
+M96RM9H66H99RM9H6R&F&&91&$99&Z&&
+6HH9H6HDDR6HH&6M&M&&11S&kR&S&k&Z
+HH&H&&H&RH>H&H&&R&k&$111<&#$1$Zk
+RM9HR6M$H6RM96MHH11SDH1$&&&1&9%k
+RHSkRR&S$&9SkR&9$Z4?$$$&$(&/1?$$
+&$6&$&&$d$$H$D&&&$$$7$$$$&$$\}$$
+DZ&6&&H1&$1H]H]1HSk$]|$&//Z&S(&/
+&Zk&&$1S1$\$\&&S/$&{|<$$?/}Z?Z<%

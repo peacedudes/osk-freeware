@@ -1,9 +1,9 @@
-ppmhist /dd/tmp/NEAB/wh.ppm
+ppmhist tmp/NEAB/wh.ppm
  r   g   b      lum     count
 --- --- ---     ---     -----
 255 255 255     255     800
-$ ppmdim 0.5 /dd/tmp/NEAB/wh.ppm > /dd/tmp/NEAB/dm.ppm
-$ ppmhist /dd/tmp/NEAB/dm.ppm
+$ ppmdim 0.5 tmp/NEAB/wh.ppm > tmp/NEAB/dm.ppm
+$ ppmhist tmp/NEAB/dm.ppm
  r   g   b      lum     count
 --- --- ---     ---     -----
 127 127 127     127     800

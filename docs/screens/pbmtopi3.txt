@@ -1,3 +1,3 @@
-pbmtopi3 /dd/tmp/NPMB/b.pbm > /dd/tmp/NPMB/o.pi3
-$ ls -l /dd/tmp/NPMB/o.pi3
--rw-rw-rw-   1 0        0           32034 Sep  3 15:12 /dd/tmp/NPMB/o.pi3
+pbmtopi3 tmp/NPMB/b.pbm > tmp/NPMB/o.pi3
+$ ls -l tmp/NPMB/o.pi3
+-rw-rw-rw-   1 0        0           32034 Sep  6 05:06 tmp/NPMB/o.pi3

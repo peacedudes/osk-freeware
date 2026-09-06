@@ -1,11 +1,7 @@
-cat /dd/tmp/TEXTA/list.txt
+cat tmp/TEXTA/list.txt
 /dd/SYS/motd
 /dd/SYS/holidays
 /dd/SYS/birthdays
-$ SHELL=/dd/CMDS/sh eo /dd/tmp/TEXTA/list.txt wc @
+$ SHELL=CMDS/sh eo tmp/TEXTA/list.txt wc @
 wc /dd/SYS/motd
-      1      6     40 /dd/SYS/motd
-wc /dd/SYS/holidays
-     37    103    717 /dd/SYS/holidays
-wc /dd/SYS/birthdays
-      9     60    343 /dd/SYS/birthdays
+can't execute CMDS/sh

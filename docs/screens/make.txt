@@ -1,6 +1,6 @@
-$ rm -f /dd/tmp/greeting
-$ make -f /dd/DOC/make/demo.mk greeting
+rm -f tmp/greeting
+$ make -f DOC/make/demo.mk greeting
 os9exec() : cp /dd/SYS/motd /dd/tmp/greeting
-$ ls -l /dd/tmp/greeting
--rw-rw-rw-   1 0        0              40 Aug  3 19:00 /dd/tmp/greeting
-$ make -f /dd/DOC/make/demo.mk greeting
+$ ls -l tmp/greeting
+-rw-rw-rw-   1 0        0              40 Aug  3 19:00 tmp/greeting
+$ make -f DOC/make/demo.mk greeting

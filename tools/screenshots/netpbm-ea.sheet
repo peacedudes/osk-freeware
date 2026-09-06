@@ -22,12 +22,14 @@ cap     Fills an image with a single colour -- the blank canvas the PPM
 cap     tools start from.  The colour is hex r/g/b; ppmhist reads it straight
 cap     back off the result, one colour over all 800 pixels.
 run     mkdir -p /dd/tmp/NEAB > /nil 2>/nil
+run     builtin cd /dd
+wait    1
 run     clear
-run     ppmmake rgb:ff/80/00 40 20 > /dd/tmp/NEAB/a.ppm
+run     ppmmake rgb:ff/80/00 40 20 > tmp/NEAB/a.ppm
 wait    3
-run     pnmfile /dd/tmp/NEAB/a.ppm
+run     pnmfile tmp/NEAB/a.ppm
 wait    3
-run     ppmhist /dd/tmp/NEAB/a.ppm
+run     ppmhist tmp/NEAB/a.ppm
 wait    3
 
 shot    ppmforge
@@ -35,10 +37,12 @@ cap     Invents a whole world from a random seed: fractal terrain, sea,
 cap     polar ice and a star field, none of it drawn by hand.  `-mesh' sets
 cap     how finely the land is subdivided and the seed makes it repeatable.
 run     mkdir -p /dd/tmp/NEAB > /nil 2>/nil
+run     builtin cd /dd
+wait    1
 run     clear
-run     ppmforge -mesh 8 -width 72 -height 44 -seed 7 > /dd/tmp/NEAB/pl.ppm
+run     ppmforge -mesh 8 -width 72 -height 44 -seed 7 > tmp/NEAB/pl.ppm
 wait    40
-run     ppmtopgm /dd/tmp/NEAB/pl.ppm | pgmtopbm | pbmtoascii -2x4
+run     ppmtopgm tmp/NEAB/pl.ppm | pgmtopbm | pbmtoascii -2x4
 wait    6
 
 shot    pnmscale
@@ -49,10 +53,12 @@ cap     name the factor.
 run     mkdir -p /dd/tmp/NEAB > /nil 2>/nil
 run     pgmramp -lr 32 16 > /dd/tmp/NEAB/r.pgm
 wait    3
+run     builtin cd /dd
+wait    1
 run     clear
-run     pnmscale 2 /dd/tmp/NEAB/r.pgm > /dd/tmp/NEAB/b.pgm
+run     pnmscale 2 tmp/NEAB/r.pgm > tmp/NEAB/b.pgm
 wait    4
-run     pnmfile /dd/tmp/NEAB/r.pgm /dd/tmp/NEAB/b.pgm
+run     pnmfile tmp/NEAB/r.pgm tmp/NEAB/b.pgm
 wait    4
 
 shot    pnmcut
@@ -61,12 +67,14 @@ cap     height.  A 24x12 window taken out of a 48x24 ramp.
 run     mkdir -p /dd/tmp/NEAB > /nil 2>/nil
 run     pgmramp -lr 48 24 > /dd/tmp/NEAB/r.pgm
 wait    3
+run     builtin cd /dd
+wait    1
 run     clear
-run     pnmcut 8 4 24 12 /dd/tmp/NEAB/r.pgm > /dd/tmp/NEAB/c.pgm
+run     pnmcut 8 4 24 12 tmp/NEAB/r.pgm > tmp/NEAB/c.pgm
 wait    4
-run     pnmfile /dd/tmp/NEAB/r.pgm /dd/tmp/NEAB/c.pgm
+run     pnmfile tmp/NEAB/r.pgm tmp/NEAB/c.pgm
 wait    3
-run     pgmtopbm /dd/tmp/NEAB/c.pgm | pbmtoascii -2x4
+run     pgmtopbm tmp/NEAB/c.pgm | pbmtoascii -2x4
 wait    4
 
 shot    pnmcrop
@@ -78,10 +86,12 @@ run     pgmramp -lr 40 20 > /dd/tmp/NEAB/r.pgm
 wait    3
 run     pnmpad -black -l8 -r8 -t4 -b4 /dd/tmp/NEAB/r.pgm > /dd/tmp/NEAB/p.pgm
 wait    4
+run     builtin cd /dd
+wait    1
 run     clear
-run     pnmcrop /dd/tmp/NEAB/p.pgm > /dd/tmp/NEAB/c.pgm
+run     pnmcrop tmp/NEAB/p.pgm > tmp/NEAB/c.pgm
 wait    4
-run     pnmfile /dd/tmp/NEAB/p.pgm /dd/tmp/NEAB/c.pgm
+run     pnmfile tmp/NEAB/p.pgm tmp/NEAB/c.pgm
 wait    4
 
 shot    pnmpad
@@ -91,12 +101,14 @@ cap     four rows on top -- putting a white frame round a small ramp.
 run     mkdir -p /dd/tmp/NEAB > /nil 2>/nil
 run     pgmramp -lr 24 12 > /dd/tmp/NEAB/r.pgm
 wait    3
+run     builtin cd /dd
+wait    1
 run     clear
-run     pnmpad -white -l8 -r8 -t4 -b4 /dd/tmp/NEAB/r.pgm > /dd/tmp/NEAB/p.pgm
+run     pnmpad -white -l8 -r8 -t4 -b4 tmp/NEAB/r.pgm > tmp/NEAB/p.pgm
 wait    4
-run     pnmfile /dd/tmp/NEAB/r.pgm /dd/tmp/NEAB/p.pgm
+run     pnmfile tmp/NEAB/r.pgm tmp/NEAB/p.pgm
 wait    3
-run     pgmtopbm /dd/tmp/NEAB/p.pgm | pbmtoascii -2x4
+run     pgmtopbm tmp/NEAB/p.pgm | pbmtoascii -2x4
 wait    4
 
 shot    pnmpaste
@@ -108,10 +120,12 @@ run     pgmramp -lr 48 24 > /dd/tmp/NEAB/r.pgm
 wait    3
 run     pgmramp -tb 16 10 > /dd/tmp/NEAB/pt.pgm
 wait    3
+run     builtin cd /dd
+wait    1
 run     clear
-run     pnmpaste /dd/tmp/NEAB/pt.pgm 8 8 /dd/tmp/NEAB/r.pgm > /dd/tmp/NEAB/ps.pgm
+run     pnmpaste tmp/NEAB/pt.pgm 8 8 tmp/NEAB/r.pgm > tmp/NEAB/ps.pgm
 wait    4
-run     pgmtopbm /dd/tmp/NEAB/ps.pgm | pbmtoascii -2x4
+run     pgmtopbm tmp/NEAB/ps.pgm | pbmtoascii -2x4
 wait    4
 
 shot    pnmenlarge
@@ -120,12 +134,14 @@ cap     an NxN block.  A 16x8 checkerboard becomes 48x24 at factor 3.
 run     mkdir -p /dd/tmp/NEAB > /nil 2>/nil
 run     pbmmake -g 16 8 > /dd/tmp/NEAB/b.pbm
 wait    3
+run     builtin cd /dd
+wait    1
 run     clear
-run     pnmenlarge 3 /dd/tmp/NEAB/b.pbm > /dd/tmp/NEAB/e.pbm
+run     pnmenlarge 3 tmp/NEAB/b.pbm > tmp/NEAB/e.pbm
 wait    4
-run     pnmfile /dd/tmp/NEAB/b.pbm /dd/tmp/NEAB/e.pbm
+run     pnmfile tmp/NEAB/b.pbm tmp/NEAB/e.pbm
 wait    3
-run     pbmtoascii /dd/tmp/NEAB/e.pbm
+run     pbmtoascii tmp/NEAB/e.pbm
 wait    4
 
 shot    pnmflip
@@ -135,10 +151,12 @@ cap     flipped left-right runs the other way.
 run     mkdir -p /dd/tmp/NEAB > /nil 2>/nil
 run     pgmramp -lr 56 12 > /dd/tmp/NEAB/r.pgm
 wait    3
+run     builtin cd /dd
+wait    1
 run     clear
-run     pgmtopbm /dd/tmp/NEAB/r.pgm | pbmtoascii -2x4
+run     pgmtopbm tmp/NEAB/r.pgm | pbmtoascii -2x4
 wait    4
-run     pnmflip -lr /dd/tmp/NEAB/r.pgm | pgmtopbm | pbmtoascii -2x4
+run     pnmflip -lr tmp/NEAB/r.pgm | pgmtopbm | pbmtoascii -2x4
 wait    5
 
 shot    pnmrotate
@@ -148,10 +166,12 @@ cap     ramp turned 20 degrees needs 55x41.
 run     mkdir -p /dd/tmp/NEAB > /nil 2>/nil
 run     pgmramp -lr 48 24 > /dd/tmp/NEAB/r.pgm
 wait    3
+run     builtin cd /dd
+wait    1
 run     clear
-run     pnmrotate 20 /dd/tmp/NEAB/r.pgm > /dd/tmp/NEAB/o.pgm
+run     pnmrotate 20 tmp/NEAB/r.pgm > tmp/NEAB/o.pgm
 wait    5
-run     pnmfile /dd/tmp/NEAB/r.pgm /dd/tmp/NEAB/o.pgm
+run     pnmfile tmp/NEAB/r.pgm tmp/NEAB/o.pgm
 wait    4
 
 shot    pnmshear
@@ -161,12 +181,14 @@ cap     degrees.
 run     mkdir -p /dd/tmp/NEAB > /nil 2>/nil
 run     pgmramp -lr 40 24 > /dd/tmp/NEAB/r.pgm
 wait    3
+run     builtin cd /dd
+wait    1
 run     clear
-run     pnmshear 20 /dd/tmp/NEAB/r.pgm > /dd/tmp/NEAB/s.pgm
+run     pnmshear 20 tmp/NEAB/r.pgm > tmp/NEAB/s.pgm
 wait    5
-run     pnmfile /dd/tmp/NEAB/r.pgm /dd/tmp/NEAB/s.pgm
+run     pnmfile tmp/NEAB/r.pgm tmp/NEAB/s.pgm
 wait    3
-run     pgmtopbm /dd/tmp/NEAB/s.pgm | pbmtoascii -2x4
+run     pgmtopbm tmp/NEAB/s.pgm | pbmtoascii -2x4
 wait    4
 
 shot    pnmdepth
@@ -176,10 +198,12 @@ cap     and pnmfile shows the new maxval.
 run     mkdir -p /dd/tmp/NEAB > /nil 2>/nil
 run     pgmramp -lr 64 16 > /dd/tmp/NEAB/r.pgm
 wait    3
+run     builtin cd /dd
+wait    1
 run     clear
-run     pnmdepth 15 /dd/tmp/NEAB/r.pgm > /dd/tmp/NEAB/d.pgm
+run     pnmdepth 15 tmp/NEAB/r.pgm > tmp/NEAB/d.pgm
 wait    4
-run     pnmfile /dd/tmp/NEAB/r.pgm /dd/tmp/NEAB/d.pgm
+run     pnmfile tmp/NEAB/r.pgm tmp/NEAB/d.pgm
 wait    4
 
 shot    pnmgamma
@@ -189,10 +213,12 @@ cap     redistributes its greys, which the dither below shows as denser mid.
 run     mkdir -p /dd/tmp/NEAB > /nil 2>/nil
 run     pgmramp -lr 64 16 > /dd/tmp/NEAB/r.pgm
 wait    3
+run     builtin cd /dd
+wait    1
 run     clear
-run     pgmtopbm /dd/tmp/NEAB/r.pgm | pbmtoascii -2x4
+run     pgmtopbm tmp/NEAB/r.pgm | pbmtoascii -2x4
 wait    4
-run     pnmgamma 0.5 /dd/tmp/NEAB/r.pgm | pgmtopbm | pbmtoascii -2x4
+run     pnmgamma 0.5 tmp/NEAB/r.pgm | pgmtopbm | pbmtoascii -2x4
 wait    5
 
 shot    pgmnorm
@@ -240,10 +266,12 @@ run     pgmnoise 48 24 > /dd/tmp/NEAB/n.pgm
 wait    5
 run     pgmkernel 3 > /dd/tmp/NEAB/k.pgm
 wait    4
+run     builtin cd /dd
+wait    1
 run     clear
-run     pnmconvol /dd/tmp/NEAB/k.pgm /dd/tmp/NEAB/n.pgm > /dd/tmp/NEAB/cv.pgm
+run     pnmconvol tmp/NEAB/k.pgm tmp/NEAB/n.pgm > tmp/NEAB/cv.pgm
 wait    18
-run     pgmtopbm /dd/tmp/NEAB/cv.pgm | pbmtoascii -2x4
+run     pgmtopbm tmp/NEAB/cv.pgm | pbmtoascii -2x4
 wait    6
 
 shot    pnmsmooth
@@ -252,10 +280,12 @@ cap     builds the averaging matrix -- shown here by its -dump option -- in a
 cap     temporary file on the RAM disk /r0.  With no such disk mounted the
 cap     smoothing step writes nothing; pnmconvol does the same averaging.
 run     mkdir -p /dd/tmp/NEAB > /nil 2>/nil
+run     builtin cd /dd
+wait    1
 run     clear
-run     pnmsmooth -size 5 5 -dump /dd/tmp/NEAB/mk.pgm > /nil 2>/nil
+run     pnmsmooth -size 5 5 -dump tmp/NEAB/mk.pgm > /nil 2>/nil
 wait    4
-run     cat /dd/tmp/NEAB/mk.pgm
+run     cat tmp/NEAB/mk.pgm
 wait    4
 
 shot    pnmhistmap
@@ -266,10 +296,12 @@ cap     which pnmfile identifies.
 run     mkdir -p /dd/tmp/NEAB > /nil 2>/nil
 run     pgmcrater -number 40 -xsize 64 -ysize 40 > /dd/tmp/NEAB/mo.pgm
 wait    12
+run     builtin cd /dd
+wait    1
 run     clear
-run     pnmhistmap /dd/tmp/NEAB/mo.pgm > /dd/tmp/NEAB/hm.pgm
+run     pnmhistmap tmp/NEAB/mo.pgm > tmp/NEAB/hm.pgm
 wait    6
-run     pnmfile /dd/tmp/NEAB/mo.pgm /dd/tmp/NEAB/hm.pgm
+run     pnmfile tmp/NEAB/mo.pgm tmp/NEAB/hm.pgm
 wait    4
 
 shot    ppmmix
@@ -280,10 +312,12 @@ run     ppmmake rgb:ff/00/00 40 20 > /dd/tmp/NEAB/a.ppm
 wait    3
 run     ppmmake rgb:00/00/ff 40 20 > /dd/tmp/NEAB/b.ppm
 wait    3
+run     builtin cd /dd
+wait    1
 run     clear
-run     ppmmix 0.5 /dd/tmp/NEAB/a.ppm /dd/tmp/NEAB/b.ppm > /dd/tmp/NEAB/m.ppm
+run     ppmmix 0.5 tmp/NEAB/a.ppm tmp/NEAB/b.ppm > tmp/NEAB/m.ppm
 wait    4
-run     ppmhist /dd/tmp/NEAB/m.ppm
+run     ppmhist tmp/NEAB/m.ppm
 wait    4
 
 shot    ppmshift
@@ -293,10 +327,12 @@ cap     plainly: the straight lines break up row by row.
 run     mkdir -p /dd/tmp/NEAB > /nil 2>/nil
 run     ppmpat -tartan 64 32 > /dd/tmp/NEAB/t.ppm
 wait    3
+run     builtin cd /dd
+wait    1
 run     clear
-run     ppmshift 6 /dd/tmp/NEAB/t.ppm > /dd/tmp/NEAB/s.ppm
+run     ppmshift 6 tmp/NEAB/t.ppm > tmp/NEAB/s.ppm
 wait    4
-run     ppmtopgm /dd/tmp/NEAB/s.ppm | pgmtopbm | pbmtoascii -2x4
+run     ppmtopgm tmp/NEAB/s.ppm | pgmtopbm | pbmtoascii -2x4
 wait    5
 
 shot    ppm3d
@@ -308,12 +344,14 @@ run     ppmpat -tartan 64 32 > /dd/tmp/NEAB/t.ppm
 wait    3
 run     ppmshift 6 /dd/tmp/NEAB/t.ppm > /dd/tmp/NEAB/s.ppm
 wait    4
+run     builtin cd /dd
+wait    1
 run     clear
-run     ppm3d /dd/tmp/NEAB/t.ppm /dd/tmp/NEAB/s.ppm > /dd/tmp/NEAB/3d.ppm
+run     ppm3d tmp/NEAB/t.ppm tmp/NEAB/s.ppm > tmp/NEAB/3d.ppm
 wait    4
-run     pnmfile /dd/tmp/NEAB/3d.ppm
+run     pnmfile tmp/NEAB/3d.ppm
 wait    3
-run     ppmtopgm /dd/tmp/NEAB/3d.ppm | pgmtopbm | pbmtoascii -2x4
+run     ppmtopgm tmp/NEAB/3d.ppm | pgmtopbm | pbmtoascii -2x4
 wait    5
 
 shot    pbmreduce
@@ -322,10 +360,12 @@ cap     down to one pixel.  A 48x24 checkerboard reduced by 2 comes out
 cap     24x12, as pnmfile reports.
 run     mkdir -p /dd/tmp/NEAB > /nil 2>/nil
 run     pbmmake -g 48 24 > /dd/tmp/NEAB/ck.pbm
+run     builtin cd /dd
+wait    1
 run     clear
-run     pbmreduce 2 /dd/tmp/NEAB/ck.pbm > /dd/tmp/NEAB/ck2.pbm
+run     pbmreduce 2 tmp/NEAB/ck.pbm > tmp/NEAB/ck2.pbm
 wait    4
-run     pnmfile /dd/tmp/NEAB/ck.pbm /dd/tmp/NEAB/ck2.pbm
+run     pnmfile tmp/NEAB/ck.pbm tmp/NEAB/ck2.pbm
 wait    4
 
 shot    pgmenhance
@@ -334,10 +374,12 @@ cap     strength from 1 to 9.  A smooth left-to-right ramp comes back with
 cap     its steps emphasised, rendered here to characters.
 run     mkdir -p /dd/tmp/NEAB > /nil 2>/nil
 run     pgmramp -lr 48 24 > /dd/tmp/NEAB/en.pgm
+run     builtin cd /dd
+wait    1
 run     clear
-run     pgmenhance -9 /dd/tmp/NEAB/en.pgm > /dd/tmp/NEAB/enh.pgm
+run     pgmenhance -9 tmp/NEAB/en.pgm > tmp/NEAB/enh.pgm
 wait    4
-run     pgmtopbm /dd/tmp/NEAB/enh.pgm | pbmtoascii -2x4
+run     pgmtopbm tmp/NEAB/enh.pgm | pbmtoascii -2x4
 wait    5
 
 shot    pnmhisteq
@@ -346,8 +388,10 @@ cap     -verbose prints the mapping it applied, each old value to its new
 cap     one and the pixel count at that level.
 run     mkdir -p /dd/tmp/NEAB > /nil 2>/nil
 run     pgmramp -lr 40 20 > /dd/tmp/NEAB/hq.pgm
+run     builtin cd /dd
+wait    1
 run     clear
-run     pnmhisteq -verbose /dd/tmp/NEAB/hq.pgm > /dd/tmp/NEAB/hqe.pgm
+run     pnmhisteq -verbose tmp/NEAB/hq.pgm > tmp/NEAB/hqe.pgm
 wait    5
 
 shot    ppmchange
@@ -356,12 +400,14 @@ cap     image becomes solid blue; ppmhist reads the single colour back
 cap     before and after.
 run     mkdir -p /dd/tmp/NEAB > /nil 2>/nil
 run     ppmmake rgb:ff/00/00 40 20 > /dd/tmp/NEAB/rd.ppm
+run     builtin cd /dd
+wait    1
 run     clear
-run     ppmhist /dd/tmp/NEAB/rd.ppm
+run     ppmhist tmp/NEAB/rd.ppm
 wait    3
-run     ppmchange rgb:ff/00/00 rgb:00/00/ff /dd/tmp/NEAB/rd.ppm > /dd/tmp/NEAB/bl.ppm
+run     ppmchange rgb:ff/00/00 rgb:00/00/ff tmp/NEAB/rd.ppm > tmp/NEAB/bl.ppm
 wait    3
-run     ppmhist /dd/tmp/NEAB/bl.ppm
+run     ppmhist tmp/NEAB/bl.ppm
 wait    3
 
 shot    ppmdim
@@ -370,12 +416,14 @@ cap     toward black.  White at 255 becomes grey at 127 when dimmed by
 cap     half, as ppmhist shows.
 run     mkdir -p /dd/tmp/NEAB > /nil 2>/nil
 run     ppmmake rgb:ff/ff/ff 40 20 > /dd/tmp/NEAB/wh.ppm
+run     builtin cd /dd
+wait    1
 run     clear
-run     ppmhist /dd/tmp/NEAB/wh.ppm
+run     ppmhist tmp/NEAB/wh.ppm
 wait    3
-run     ppmdim 0.5 /dd/tmp/NEAB/wh.ppm > /dd/tmp/NEAB/dm.ppm
+run     ppmdim 0.5 tmp/NEAB/wh.ppm > tmp/NEAB/dm.ppm
 wait    3
-run     ppmhist /dd/tmp/NEAB/dm.ppm
+run     ppmhist tmp/NEAB/dm.ppm
 wait    3
 
 shot    ppmbrighten
@@ -384,12 +432,14 @@ cap     the percentage change.  A dull brown lightened by 50 percent, its
 cap     colour read back by ppmhist.
 run     mkdir -p /dd/tmp/NEAB > /nil 2>/nil
 run     ppmmake rgb:80/40/20 40 20 > /dd/tmp/NEAB/br.ppm
+run     builtin cd /dd
+wait    1
 run     clear
-run     ppmhist /dd/tmp/NEAB/br.ppm
+run     ppmhist tmp/NEAB/br.ppm
 wait    3
-run     ppmbrighten -value +50 /dd/tmp/NEAB/br.ppm > /dd/tmp/NEAB/brr.ppm
+run     ppmbrighten -value +50 tmp/NEAB/br.ppm > tmp/NEAB/brr.ppm
 wait    3
-run     ppmhist /dd/tmp/NEAB/brr.ppm
+run     ppmhist tmp/NEAB/brr.ppm
 wait    3
 
 shot    ppmnorm
@@ -399,12 +449,14 @@ cap     reporting the range it moved.
 run     mkdir -p /dd/tmp/NEAB > /nil 2>/nil
 run     ppmmake rgb:ff/ff/ff 40 20 > /dd/tmp/NEAB/nw.ppm
 run     ppmdim 0.4 /dd/tmp/NEAB/nw.ppm > /dd/tmp/NEAB/nd.ppm
+run     builtin cd /dd
+wait    1
 run     clear
-run     ppmhist /dd/tmp/NEAB/nd.ppm
+run     ppmhist tmp/NEAB/nd.ppm
 wait    3
-run     ppmnorm /dd/tmp/NEAB/nd.ppm > /dd/tmp/NEAB/nn.ppm
+run     ppmnorm tmp/NEAB/nd.ppm > tmp/NEAB/nn.ppm
 wait    3
-run     ppmhist /dd/tmp/NEAB/nn.ppm
+run     ppmhist tmp/NEAB/nn.ppm
 wait    3
 
 shot    ppmspread
@@ -413,10 +465,12 @@ cap     roughening an image.  A smooth ramp above, the same spread by 8
 cap     below.
 run     mkdir -p /dd/tmp/NEAB > /nil 2>/nil
 run     pgmramp -lr 48 24 > /dd/tmp/NEAB/sr.pgm
+run     builtin cd /dd
+wait    1
 run     clear
-run     pgmtopbm /dd/tmp/NEAB/sr.pgm | pbmtoascii -2x4
+run     pgmtopbm tmp/NEAB/sr.pgm | pbmtoascii -2x4
 wait    3
-run     ppmspread 8 /dd/tmp/NEAB/sr.pgm > /dd/tmp/NEAB/sp.ppm
+run     ppmspread 8 tmp/NEAB/sr.pgm > tmp/NEAB/sp.ppm
 wait    3
-run     ppmtopgm /dd/tmp/NEAB/sp.ppm | pgmtopbm | pbmtoascii -2x4
+run     ppmtopgm tmp/NEAB/sp.ppm | pgmtopbm | pbmtoascii -2x4
 wait    4

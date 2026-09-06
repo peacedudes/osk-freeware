@@ -1,2 +1,2 @@
-lcasep < /dd/tmp/MAILA/lc.txt
+lcasep < tmp/MAILA/lc.txt
 robert smith

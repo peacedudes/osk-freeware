@@ -1,15 +1,15 @@
-$ giftopnm /dd/DEMO/gulls.gif | pnmscale -xysize 76 44 > /dd/tmp/w.ppm
-$ pnmnlfilt 1.0 0.5 /dd/tmp/w.ppm | pnmfile
+giftopnm DEMO/gulls.gif | pnmscale -xysize 76 44 > tmp/w.ppm
+$ pnmnlfilt 1.0 0.5 tmp/w.ppm | pnmfile
 stdin:  PPM raw, 71 by 44  maxval 255
-$ ppmflash 0.4 /dd/tmp/w.ppm | pnmfile
+$ ppmflash 0.4 tmp/w.ppm | pnmfile
 stdin:  PPM raw, 71 by 44  maxval 255
-$ ppmquant 256 /dd/tmp/w.ppm | ppmdist | pnmfile
+$ ppmquant 256 tmp/w.ppm | ppmdist | pnmfile
 ppmquant: making histogram...
 ppmquant: 1578 colors found
 ppmquant: choosing 256 colors...
 ppmquant: mapping image to new colors...
 stdin:  PGM raw, 71 by 44  maxval 242
-$ pnmalias /dd/tmp/w.ppm | pnmfile
+$ pnmalias tmp/w.ppm | pnmfile
 stdin:  PPM raw, 71 by 44  maxval 255
-$ pnmcomp /dd/tmp/w.ppm /dd/tmp/w.ppm | pnmfile
+$ pnmcomp tmp/w.ppm tmp/w.ppm | pnmfile
 stdin:  PPM raw, 71 by 44  maxval 255

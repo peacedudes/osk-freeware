@@ -1,13 +1,13 @@
-$ sepwords < /dd/DOC/README-CIO | sort | uniq -c | sort -nr | head -n 12
-38 the
-17 and
-16 a
-16 is
-14 you
-11 it
-11 of
-10 --
-10 this
-9 in
-8 that
-8 with
+sepwords < DOC/README-CIO | sort | uniq -c | sort -nr | head -n 12
+106 the
+62 and
+56 a
+53 is
+36 of
+34 it
+25 --
+22 to
+21 in
+20 this
+19 that
+17 program

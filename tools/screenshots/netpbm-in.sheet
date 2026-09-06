@@ -20,12 +20,14 @@ cap     drew of the word `npbm', and pnmfile confirms a 40x8 PGM came out.
 run     mkdir -p /dd/tmp/NPIB > /nil 2>/nil
 run     pbmtext "npbm" | pbmtoascii > /dd/tmp/NPIB/art.txt
 wait    8
+run     builtin cd /dd
+wait    1
 run     clear
-run     cat /dd/tmp/NPIB/art.txt
+run     cat tmp/NPIB/art.txt
 wait    3
-run     asciitopgm 8 40 < /dd/tmp/NPIB/art.txt > /dd/tmp/NPIB/a.pgm
+run     asciitopgm 8 40 < tmp/NPIB/art.txt > tmp/NPIB/a.pgm
 wait    5
-run     pnmfile /dd/tmp/NPIB/a.pgm
+run     pnmfile tmp/NPIB/a.pgm
 wait    5
 
 shot    fstopgm
@@ -35,12 +37,14 @@ cap     ramp out as a FaceSaver, fstopgm reads it, pnmfile confirms the PGM.
 run     mkdir -p /dd/tmp/NPIB > /nil 2>/nil
 run     pgmramp -lr 48 24 > /dd/tmp/NPIB/g.pgm
 wait    5
+run     builtin cd /dd
+wait    1
 run     clear
-run     pgmtofs /dd/tmp/NPIB/g.pgm > /dd/tmp/NPIB/f.fs
+run     pgmtofs tmp/NPIB/g.pgm > tmp/NPIB/f.fs
 wait    5
-run     fstopgm /dd/tmp/NPIB/f.fs > /dd/tmp/NPIB/back.pgm
+run     fstopgm tmp/NPIB/f.fs > tmp/NPIB/back.pgm
 wait    5
-run     pnmfile /dd/tmp/NPIB/back.pgm
+run     pnmfile tmp/NPIB/back.pgm
 wait    5
 
 shot    lispmtopgm
@@ -50,12 +54,14 @@ cap     most 16 grey levels, so pnmdepth 15 first; the ramp round-trips.
 run     mkdir -p /dd/tmp/NPIB > /nil 2>/nil
 run     pgmramp -lr 48 24 | pnmdepth 15 > /dd/tmp/NPIB/g15.pgm
 wait    6
+run     builtin cd /dd
+wait    1
 run     clear
-run     pgmtolispm /dd/tmp/NPIB/g15.pgm > /dd/tmp/NPIB/l.lispm
+run     pgmtolispm tmp/NPIB/g15.pgm > tmp/NPIB/l.lispm
 wait    5
-run     lispmtopgm /dd/tmp/NPIB/l.lispm > /dd/tmp/NPIB/back.pgm
+run     lispmtopgm tmp/NPIB/l.lispm > tmp/NPIB/back.pgm
 wait    5
-run     pnmfile /dd/tmp/NPIB/back.pgm
+run     pnmfile tmp/NPIB/back.pgm
 wait    5
 
 shot    psidtopgm
@@ -63,12 +69,14 @@ cap     Reads the hex digits of PostScript `image' operator data into a
 cap     greyscale image -- not a scanner format.  Given a width, height and
 cap     bits per sample it decodes the hex: a white row over a black one.
 run     mkdir -p /dd/tmp/NPIB > /nil 2>/nil
+run     builtin cd /dd
+wait    1
 run     clear
-run     echo ffffffffffffffff0000000000000000 > /dd/tmp/NPIB/i.ps
+run     echo ffffffffffffffff0000000000000000 > tmp/NPIB/i.ps
 wait    3
-run     psidtopgm 8 2 8 < /dd/tmp/NPIB/i.ps > /dd/tmp/NPIB/p.pgm
+run     psidtopgm 8 2 8 < tmp/NPIB/i.ps > tmp/NPIB/p.pgm
 wait    5
-run     pnmnoraw /dd/tmp/NPIB/p.pgm
+run     pnmnoraw tmp/NPIB/p.pgm
 wait    5
 
 shot    rawtopgm
@@ -78,10 +86,12 @@ cap     at all.  Fed the pixel bytes of a ramp, pnmfile confirms a 48x24 PGM.
 run     mkdir -p /dd/tmp/NPIB > /nil 2>/nil
 run     pgmramp -lr 48 24 > /dd/tmp/NPIB/g.pgm
 wait    5
+run     builtin cd /dd
+wait    1
 run     clear
-run     rawtopgm 48 24 < /dd/tmp/NPIB/g.pgm > /dd/tmp/NPIB/r.pgm
+run     rawtopgm 48 24 < tmp/NPIB/g.pgm > tmp/NPIB/r.pgm
 wait    5
-run     pnmfile /dd/tmp/NPIB/r.pgm
+run     pnmfile tmp/NPIB/r.pgm
 wait    5
 
 shot    rawtoppm
@@ -91,10 +101,12 @@ cap     PPM came out.
 run     mkdir -p /dd/tmp/NPIB > /nil 2>/nil
 run     ppmpat -gingham3 48 24 > /dd/tmp/NPIB/c.ppm
 wait    5
+run     builtin cd /dd
+wait    1
 run     clear
-run     rawtoppm 48 24 < /dd/tmp/NPIB/c.ppm > /dd/tmp/NPIB/r.ppm
+run     rawtoppm 48 24 < tmp/NPIB/c.ppm > tmp/NPIB/r.ppm
 wait    5
-run     pnmfile /dd/tmp/NPIB/r.ppm
+run     pnmfile tmp/NPIB/r.ppm
 wait    5
 
 shot    sldtoppm
@@ -106,12 +118,14 @@ run     ppmpat -gingham3 48 24 > /dd/tmp/NPIB/c.ppm
 wait    5
 run     ppmquant 16 /dd/tmp/NPIB/c.ppm > /dd/tmp/NPIB/q.ppm
 wait    6
+run     builtin cd /dd
+wait    1
 run     clear
-run     ppmtoacad /dd/tmp/NPIB/q.ppm > /dd/tmp/NPIB/s.sld
+run     ppmtoacad tmp/NPIB/q.ppm > tmp/NPIB/s.sld
 wait    5
-run     sldtoppm /dd/tmp/NPIB/s.sld > /dd/tmp/NPIB/back.ppm
+run     sldtoppm tmp/NPIB/s.sld > tmp/NPIB/back.ppm
 wait    5
-run     pnmfile /dd/tmp/NPIB/back.ppm
+run     pnmfile tmp/NPIB/back.ppm
 wait    5
 
 shot    tgatoppm
@@ -121,12 +135,14 @@ cap     a Targa, tgatoppm reads it, pnmfile confirms the PPM.
 run     mkdir -p /dd/tmp/NPIB > /nil 2>/nil
 run     ppmpat -gingham3 48 24 > /dd/tmp/NPIB/c.ppm
 wait    5
+run     builtin cd /dd
+wait    1
 run     clear
-run     ppmtotga /dd/tmp/NPIB/c.ppm > /dd/tmp/NPIB/t.tga
+run     ppmtotga tmp/NPIB/c.ppm > tmp/NPIB/t.tga
 wait    5
-run     tgatoppm /dd/tmp/NPIB/t.tga > /dd/tmp/NPIB/back.ppm
+run     tgatoppm tmp/NPIB/t.tga > tmp/NPIB/back.ppm
 wait    5
-run     pnmfile /dd/tmp/NPIB/back.ppm
+run     pnmfile tmp/NPIB/back.ppm
 wait    5
 
 shot    xbmtopbm
@@ -136,12 +152,14 @@ cap     bitmap, xbmtopbm reads it, pnmfile confirms the PBM.
 run     mkdir -p /dd/tmp/NPIB > /nil 2>/nil
 run     pbmmake -g 48 24 > /dd/tmp/NPIB/b.pbm
 wait    5
+run     builtin cd /dd
+wait    1
 run     clear
-run     pbmtoxbm /dd/tmp/NPIB/b.pbm > /dd/tmp/NPIB/t.xbm
+run     pbmtoxbm tmp/NPIB/b.pbm > tmp/NPIB/t.xbm
 wait    5
-run     xbmtopbm /dd/tmp/NPIB/t.xbm > /dd/tmp/NPIB/back.pbm
+run     xbmtopbm tmp/NPIB/t.xbm > tmp/NPIB/back.pbm
 wait    5
-run     pnmfile /dd/tmp/NPIB/back.pbm
+run     pnmfile tmp/NPIB/back.pbm
 wait    5
 
 shot    yuvsplittoppm
@@ -151,12 +169,14 @@ cap     height.  ppmtoyuvsplit writes the three, yuvsplittoppm reassembles.
 run     mkdir -p /dd/tmp/NPIB > /nil 2>/nil
 run     ppmpat -gingham3 48 24 > /dd/tmp/NPIB/c.ppm
 wait    5
+run     builtin cd /dd
+wait    1
 run     clear
-run     ppmtoyuvsplit /dd/tmp/NPIB/y /dd/tmp/NPIB/c.ppm
+run     ppmtoyuvsplit tmp/NPIB/y tmp/NPIB/c.ppm
 wait    5
-run     yuvsplittoppm /dd/tmp/NPIB/y 48 24 > /dd/tmp/NPIB/back.ppm
+run     yuvsplittoppm tmp/NPIB/y 48 24 > tmp/NPIB/back.ppm
 wait    5
-run     pnmfile /dd/tmp/NPIB/back.ppm
+run     pnmfile tmp/NPIB/back.ppm
 wait    5
 
 # ---- no writer for the format ships, so the reader is shown rejecting a
@@ -169,8 +189,10 @@ cap     so rather than guessing.
 run     mkdir -p /dd/tmp/NPIB > /nil 2>/nil
 run     ppmmake red 16 16 > /dd/tmp/NPIB/nr.ppm
 wait    5
+run     builtin cd /dd
+wait    1
 run     clear
-run     bioradtopgm /dd/tmp/NPIB/nr.ppm
+run     bioradtopgm tmp/NPIB/nr.ppm
 wait    5
 
 shot    brushtopbm
@@ -180,8 +202,10 @@ cap     number rather than guessing.
 run     mkdir -p /dd/tmp/NPIB > /nil 2>/nil
 run     ppmmake red 16 16 > /dd/tmp/NPIB/nr.ppm
 wait    5
+run     builtin cd /dd
+wait    1
 run     clear
-run     brushtopbm /dd/tmp/NPIB/nr.ppm
+run     brushtopbm tmp/NPIB/nr.ppm
 wait    5
 
 shot    gouldtoppm
@@ -191,8 +215,10 @@ cap     will not read rather than guessing.
 run     mkdir -p /dd/tmp/NPIB > /nil 2>/nil
 run     ppmmake red 16 16 > /dd/tmp/NPIB/nr.ppm
 wait    5
+run     builtin cd /dd
+wait    1
 run     clear
-run     gouldtoppm /dd/tmp/NPIB/nr.ppm
+run     gouldtoppm tmp/NPIB/nr.ppm
 wait    5
 
 shot    hipstopgm
@@ -202,8 +228,10 @@ cap     handed a colour picture it reports the header error rather than guess.
 run     mkdir -p /dd/tmp/NPIB > /nil 2>/nil
 run     ppmmake red 16 16 > /dd/tmp/NPIB/nr.ppm
 wait    5
+run     builtin cd /dd
+wait    1
 run     clear
-run     hipstopgm /dd/tmp/NPIB/nr.ppm
+run     hipstopgm tmp/NPIB/nr.ppm
 wait    5
 
 shot    hpcdtoppm
@@ -213,8 +241,10 @@ cap     rather than guessing.
 run     mkdir -p /dd/tmp/NPIB > /nil 2>/nil
 run     ppmmake red 16 16 > /dd/tmp/NPIB/nr.ppm
 wait    5
+run     builtin cd /dd
+wait    1
 run     clear
-run     hpcdtoppm /dd/tmp/NPIB/nr.ppm
+run     hpcdtoppm tmp/NPIB/nr.ppm
 wait    5
 
 shot    imgtoppm
@@ -222,8 +252,10 @@ cap     Reads an Img Software Set (AT&T Image-8) image into a colour
 cap     picture -- not GEM IMG, which gemtopbm reads.  No file in that format
 cap     ships here; handed a name that is not there it says it cannot open it.
 run     mkdir -p /dd/tmp/NPIB > /nil 2>/nil
+run     builtin cd /dd
+wait    1
 run     clear
-run     imgtoppm /dd/tmp/NPIB/none.img
+run     imgtoppm tmp/NPIB/none.img
 wait    5
 
 shot    mtvtoppm
@@ -233,8 +265,10 @@ cap     MTV header rather than guessing.
 run     mkdir -p /dd/tmp/NPIB > /nil 2>/nil
 run     ppmmake red 16 16 > /dd/tmp/NPIB/nr.ppm
 wait    5
+run     builtin cd /dd
+wait    1
 run     clear
-run     mtvtoppm /dd/tmp/NPIB/nr.ppm
+run     mtvtoppm tmp/NPIB/nr.ppm
 wait    5
 
 shot    spctoppm
@@ -244,8 +278,10 @@ cap     Spectrum picture rather than guessing.
 run     mkdir -p /dd/tmp/NPIB > /nil 2>/nil
 run     ppmmake red 16 16 > /dd/tmp/NPIB/nr.ppm
 wait    5
+run     builtin cd /dd
+wait    1
 run     clear
-run     spctoppm /dd/tmp/NPIB/nr.ppm
+run     spctoppm tmp/NPIB/nr.ppm
 wait    5
 
 shot    spottopgm
@@ -263,8 +299,10 @@ cap     rather than guessing.
 run     mkdir -p /dd/tmp/NPIB > /nil 2>/nil
 run     ppmmake red 16 16 > /dd/tmp/NPIB/nr.ppm
 wait    5
+run     builtin cd /dd
+wait    1
 run     clear
-run     ximtoppm /dd/tmp/NPIB/nr.ppm
+run     ximtoppm tmp/NPIB/nr.ppm
 wait    5
 
 shot    xvminitoppm
@@ -274,8 +312,10 @@ cap     picture it reports the bad magic number rather than guessing.
 run     mkdir -p /dd/tmp/NPIB > /nil 2>/nil
 run     ppmmake red 16 16 > /dd/tmp/NPIB/nr.ppm
 wait    5
+run     builtin cd /dd
+wait    1
 run     clear
-run     xvminitoppm /dd/tmp/NPIB/nr.ppm
+run     xvminitoppm tmp/NPIB/nr.ppm
 wait    5
 
 shot    zeisstopnm
@@ -285,6 +325,8 @@ cap     Zeiss format rather than guessing.
 run     mkdir -p /dd/tmp/NPIB > /nil 2>/nil
 run     ppmmake red 16 16 > /dd/tmp/NPIB/nr.ppm
 wait    5
+run     builtin cd /dd
+wait    1
 run     clear
-run     zeisstopnm /dd/tmp/NPIB/nr.ppm
+run     zeisstopnm tmp/NPIB/nr.ppm
 wait    5

@@ -1,9 +1,9 @@
-ls -l /dd/USR/LIB/ELM
+ls -l USR/LIB/ELM
 total 1024
 -rw-rw-rw-   1 0        0             896 Aug  3 19:00 aliases.text
 $ arepdaemon
 Error 216 attempting fstat on /dd/USR/LIB/ELM/autoreply.data
-$ ls -l /dd/USRM
+$ ls -l USR/LIBM
 total 1024
 -rw-rw-rw-   1 0        0             896 Aug  3 19:00 aliases.text
--rw-------   1 0        0               0 Sep  3 14:22 autoreply.log
+-rw-------   1 0        0               0 Sep  6 02:44 autoreply.log

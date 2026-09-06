@@ -1,4 +1,4 @@
-$ cat /dd/DOC/lua/examples/cf.lua | head -n 8
+cat DOC/lua/examples/cf.lua | head -n 8
 -- temperature conversion table
 
 -- celsius to farenheit
@@ -7,9 +7,9 @@ c0=-20
 while c0<50 do
 
         c1=c0+10
-$ luac -l -o /dd/tmp/cf.lc /dd/DOC/lua/examples/cf.lua | head -n 14
+$ luac -l -o tmp/cf.lc DOC/lua/examples/cf.lua | head -n 14
 
-main of "/dd/DOC/lua/examples/cf.lua" (175 bytes at 9ee58)
+main of "DOC/lua/examples/cf.lua" (175 bytes at d4880)
      0  PUSHBYTE        20
      2  MINUSOP
      3  STOREGLOBAL     26      ; c0

@@ -1,14 +1,13 @@
-gtar cvf /dd/tmp/ARC/keep2.tar /dd/SRC/keep
-gtar: Removing leading / from absolute path names in the archive.
+gtar cvf tmp/ARC/keep2.tar SRC/keep
 SRC/keep/
 SRC/keep/about.c
 SRC/keep/drop.sh
 SRC/keep/keep.c
 SRC/keep/keep.sh
 SRC/keep/kept.sh
-$ gtar tvf /dd/tmp/ARC/keep2.tar
-drwxrwxrwx su/0       0 Sep  3 08:04 2026 SRC/keep/
--rw-rw-rw- su/0   12024 Sep  3 06:08 2026 SRC/keep/about.c
+$ gtar tvf tmp/ARC/keep2.tar
+drwxrwxrwx su/0       0 Sep  6 02:40 2026 SRC/keep/
+-rw-rw-rw- su/0   12024 Aug  3 19:00 2026 SRC/keep/about.c
 -rw-rw-rw- su/0    2220 Aug  3 19:00 2026 SRC/keep/drop.sh
 -rw-rw-rw- su/0   20473 Aug  3 19:00 2026 SRC/keep/keep.c
 -rw-rw-rw- su/0    4513 Aug  3 19:00 2026 SRC/keep/keep.sh

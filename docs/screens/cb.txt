@@ -1,6 +1,6 @@
-cat /dd/tmp/DEV/ugly.c
+cat tmp/DEV/ugly.c
 int main(){int i;for(i=0;i<3;i++){if(i)printf("%d ",i);else puts("zero");}retur}
-$ cb < /dd/tmp/DEV/ugly.c
+$ cb < tmp/DEV/ugly.c
 int main(){
    int i;
    for(i=0;i<3;i++){

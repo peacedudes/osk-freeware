@@ -1,8 +1,8 @@
-pgmenhance -9 /dd/tmp/NEAB/en.pgm > /dd/tmp/NEAB/enh.pgm
-$ pgmtopbm /dd/tmp/NEAB/enh.pgm | pbmtoascii -2x4
-MMRM9H&S$/||||S;:::: .
-MM9H91&&S(}??S:<:/:-.-
-MMR&kH&$?}$))|;:|::-.:
-MM9MH1$$&S$||/:\\:::.
-MMH&&6&$S($??/?:>:-:'.'
-MMM9H&&S$Z$||\::/::- -
+pgmenhance -9 tmp/NEAB/en.pgm > tmp/NEAB/enh.pgm
+$ pgmtopbm tmp/NEAB/enh.pgm | pbmtoascii -2x4
+MMMHH&&S/$\\\\S:::::.
+MHHRM&Z&Z$S??:(/:-:-:-
+MMM&&Fk$?&%%%\~:::::..
+MM9RH9Sk&4|)):!|/;.- -
+MM6H91Sk&$7||/\<;.`:: -
+MMHH&&&Z&?7||//\:::-.-

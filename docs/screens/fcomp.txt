@@ -1,7 +1,7 @@
-$ echo "alpha" > /dd/tmp/fc1
-$ echo "bravo" >> /dd/tmp/fc1
-$ cp /dd/tmp/fc1 /dd/tmp/fc2
-$ echo "charlie" >> /dd/tmp/fc2
-$ fcomp /dd/tmp/fc1 /dd/tmp/fc2
+echo "alpha" > tmp/fc1
+$ echo "bravo" >> tmp/fc1
+$ cp tmp/fc1 tmp/fc2
+$ echo "charlie" >> tmp/fc2
+$ fcomp tmp/fc1 tmp/fc2
 Inserted after line 2:
  charlie

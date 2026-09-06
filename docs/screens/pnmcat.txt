@@ -1,13 +1,13 @@
-$ pnmscale -xysize 74 88 /dd/DEMO/sphere.pgm > /dd/tmp/s.pgm
-$ pnminvert /dd/tmp/s.pgm > /dd/tmp/si.pgm
-$ pnmcat -lr /dd/tmp/s.pgm /dd/tmp/si.pgm | pgmtopbm | pbmtoascii -2x4
-MRM9RMH9H&FFFFS$$<S$Z%<$?F$7ZZ$$$\4|%. .. ..:.::.:\//:/>>S:\S:\?:\|S?|:?\|
-MH6HH&H9$7|T||S/(<://::<!:S<?||\?$$%$.- :.-:,:||/|J?/JS&{S$$$>Z\?\\\|\:(//
-MH&FF&%\|\>:::::-`.:- -:-`-:\::i???\\ .':/i||||S&$&H1&RMH&6MHH&DH$Zk}\\\|\
-MH&&\$):%:-:--. -    `   '` -::.:/?|| ..>\>?Z&$&19&HHMHHMMMHMHMM9HkH&1%}??
-M&&$\|\\:/:..' .          ` ..:::!:S| :.S??($$9&1RMRMMMMMMMMMMMMMDM1FkF1?(
-MH&S|||S:>:-. -           . ..-.-:?)?-:::||T$S$6&96MHMMMMMMMMMMMHH6&9$&/$S
-6MH1S$SS>Si::: :: -. .. :..::.::\\(($  -/:///|k&Z&&9RMHRMHRMRHH9H9&Z$$S||(
-MDM&6F&$SS\\\:::>::::::::i/:/S|;S?($?.: .-\:\)\7)7$$$&&&SRH&ZFk&$S$%$/|S|/
-6M6MH6HH&$S$$SSS/?\(/?S/?SS?S$S1??Z?$ . :`.`::::\:%?|??\\??(|$(((/S</\>i|S
-"'"`'"""""""'"``''"`````'"`'"`"````''    '   `    '` '` '''` '   '````` ''
+pnmscale -xysize 74 88 DEMO/sphere.pgm > tmp/s.pgm
+$ pnminvert tmp/s.pgm > tmp/si.pgm
+$ pnmcat -lr tmp/s.pgm tmp/si.pgm | pgmtopbm | pbmtoascii -2x4
+MRM96HH&R6&&H&&TZZZ<SS$Z$\$\Z/S|&?$J| .-.-.- :/.::::<///:>:/i|?\<:)//\\||/
+H6MH&99&S$7??%>)\\\::/://;:/|(($%|}$)-.- :.:.\\|||?S$$$/$$Z\&%}\|}S>?):/|S
+MH&H&$S4|!:S:\'::--`.: -:-:::::/|||?%-.`:;i!?$?$$$&H1&6HH6MH&M1kR$k}&%??:(
+M9&ST//|::/.: :. ' -     .-`.`./:S!??. ::/:($Sk&&H&6MMHMMHMHMMHMH6D6&&)\?S
+M&&$???\>:.'.-             -.'.-:::?? :.S:($4SkRMHH6MMMMMMMMMMMRMHMHFkF1?(
+H6D7$((\\:::.-`            ..-:::<|\%.`:<///Z&&&&&RMMHMMMMMMMMHMM&DkM%R/SS
+MDM&S||||?:-:\: :. .. .- :.:.-:\\>/// :.::?||?$&&&&&M9RM9M9RM9HFM&Sk$F:\|\
+M96M1&S&?/:(\:(:,<:.:::\::;:!:\\?($4| . .:-\?|||?\$$&$&&&19&1&SF$S$?%%>):?
+MHH96H9&H$S&{|<%/<%<%<?||iSS($$$Z/Z|$.-- :`.::-!>\>%>?SS?$)?$T|\?/)\\/S?|\
+"`"'"`'"""`""`'"`'"`'"`'"'"```'''"``' ` '       ''` '` '` '`` '` `` ''''``

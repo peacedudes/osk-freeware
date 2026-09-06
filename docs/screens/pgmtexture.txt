@@ -1,6 +1,6 @@
-$ giftopnm /dd/DEMO/gulls.gif | ppmtopgm > /dd/tmp/gg2.pgm
-$ pnmscale -xysize 60 40 /dd/tmp/gg2.pgm > /dd/tmp/gg3.pgm
-$ pgmtexture -d 2 /dd/tmp/gg3.pgm | head -n 14
+giftopnm DEMO/gulls.gif | ppmtopgm > tmp/gg2.pgm
+$ pnmscale -xysize 60 40 tmp/gg2.pgm > tmp/gg3.pgm
+$ pgmtexture -d 2 tmp/gg3.pgm | head -n 14
 (Image has 184 graylevels.)
 (Computing spatial dependence matrix... done.)
 (Computing textural features......
@@ -10,4 +10,4 @@ Contrast               2.700e+02  5.744e+02  4.163e+02  3.861e+02  4.117e+02
 Correlation            8.781e-01  7.962e-01  8.301e-01  8.621e-01  8.416e-01
 Variance               8.915e+02  8.801e+02  8.881e+02  8.694e+02  8.823e+02
 Inverse Diff Moment    3.968e-01  2.847e-01  3.258e-01  3.018e-01  3.273e-01
-Sum Average            2.303e+02  2.247e+02  2.27......
+Sum Average            2.303e+02  2.247e+02  2.27..

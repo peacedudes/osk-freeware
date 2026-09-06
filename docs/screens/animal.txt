@@ -1,11 +1,15 @@
 |------------------------------------------------------------------------------|
                                     Animal                                     |
  |----------------------------------------------------------------------------||
- |using datafile: /dd/DOC/animal/example                                      ||
+ |using datafile: DOC/animal/example                                          ||
  |----------------------------------------------------------------------------||
  |----------------------------------------------------------------------------||
  |Think of something...                                                       ||
- |was or is it a living organism?   is it a human?   is it female (for sex-less?
+ |was or is it a living organism? y                                           ||
+ |is it a human? y                                                            ||
+ |is it female (for sex-less object answer no)? y                             ||
+ |is she a well known politician? y                                           ||
+ |final guess: is it Indira Ghandi?                                           ||
  |                                                                            ||
-        ... the same line 14 times over
+        ... the same line 10 times over
  |----------------------------------------------------------------------------|-

@@ -1,4 +1,4 @@
-$ as1 /dd/DOC/xasm/sample.a1 - l s
+as1 DOC/xasm/sample.a1 - l s
 0001                         * sample.a1 -- a 6801 program for as1.  The 6801 adds MUL, Ae
 0002                         * D register to the 6800, so this uses them: as0 would rejec.
 0003                         *

@@ -1,6 +1,6 @@
-$ pbmtog3 /dd/tmp/base.pbm > /dd/tmp/t.g3
-$ g3topbm /dd/tmp/t.g3 | pnmfile
+pbmtog3 tmp/base.pbm > tmp/t.g3
+$ g3topbm tmp/t.g3 | pnmfile
 stdin:  PBM raw, 48 by 24
-$ pbmtogem /dd/tmp/base.pbm > /dd/tmp/t.gem
-$ gemtopbm /dd/tmp/t.gem | pnmfile
+$ pbmtogem tmp/base.pbm > tmp/t.gem
+$ gemtopbm tmp/t.gem | pnmfile
 stdin:  PBM raw, 48 by 24

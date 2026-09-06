@@ -1,4 +1,4 @@
-loan < /dd/tmp/MTH/la | head -n 22
+loan < tmp/MTH/la | head -n 22
 Enter principal amount: Enter term in years: Enter interest rate in percent: En?
 [f = file / s = screen] :
          *** Amortization Schedule ***

@@ -1,14 +1,14 @@
-cat /dd/tmp/TEXTA/c1.txt
+cat tmp/TEXTA/c1.txt
 the quick brown fox
 jumps over the lazy dog
 and lands in the river
-$ cat /dd/tmp/TEXTA/c2.txt
+$ cat tmp/TEXTA/c2.txt
 the quick brown fox
 leaps over the lazy dog
 and lands in the river
-$ tcmp /dd/tmp/TEXTA/c1.txt /dd/tmp/TEXTA/c2.txt
+$ tcmp tmp/TEXTA/c1.txt tmp/TEXTA/c2.txt
 [Tcmp v2.3]
 
-> Line 2 of /dd/tmp/TEXTA/c1.txt changed to line 2 of /dd/tmp/TEXTA/c2.txt
+> Line 2 of tmp/TEXTA/c1.txt changed to line 2 of tmp/TEXTA/c2.txt
 jumps over the lazy dog
 leaps over the lazy dog

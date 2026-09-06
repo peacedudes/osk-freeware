@@ -1,5 +1,5 @@
-$ pnmscale -width 30 /dd/DEMO/sphere.pgm > /dd/tmp/t.pgm
-<p/t.pgm | pgmtopbm -threshold -value 0.4 | pbmtoascii
+pnmscale -width 30 DEMO/sphere.pgm > tmp/t.pgm
+$ pnmtile 150 40 tmp/t.pgm | pgmtopbm -threshold -value 0.4 | pbmtoascii
 MMMMMMMMMMMM"""""""""""MM     MMMMMMMMMMMM"""""""""""MM     MMMMMMMMMMMM"""""""M
 MMMMMM""                      MMMMMM""                      MMMMMM""           "
 MMMM"                         MMMM"                         MMMM"              "

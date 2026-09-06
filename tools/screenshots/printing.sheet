@@ -9,13 +9,15 @@ cap     that bitmap as text.  GS_LIB names its fonts and initialisation
 cap     files, in LIB/gs403.
 run     mkdir -p /dd/tmp/PRT > /nil 2>/nil; printf "/Helvetica-Bold findfont 40 scalefont setfont\r8 14 moveto (OS-9/68000) show\rshowpage\r" > /dd/tmp/PRT/hello.ps; export GS_LIB=/dd/LIB/gs403
 wait    2
+run     builtin cd /dd
+wait    1
 run     clear
 wait    1
-run     cat /dd/tmp/PRT/hello.ps
+run     cat tmp/PRT/hello.ps
 wait    2
-run     gs403 -q -dNOPAUSE -sDEVICE=pbm -r48 -g200x60 -sOutputFile=/dd/tmp/PRT/hello.pbm /dd/tmp/PRT/hello.ps -c quit
+run     gs403 -q -dNOPAUSE -sDEVICE=pbm -r48 -g200x60 -sOutputFile=tmp/PRT/hello.pbm tmp/PRT/hello.ps -c quit
 wait    60
-run     pbmtoascii /dd/tmp/PRT/hello.pbm
+run     pbmtoascii tmp/PRT/hello.pbm
 wait    10
 
 shot    gs33
@@ -31,9 +33,11 @@ cap     Plain text to PostScript, the way enscript does it: the head of
 cap     the page it sets, with its prologue from USR/LIB.
 run     mkdir -p /dd/tmp/PRT > /nil 2>/nil; printf "Twas brillig, and the slithy toves\r" > /dd/tmp/PRT/j.txt
 wait    2
+run     builtin cd /dd
+wait    1
 run     clear
 wait    1
-run     lwf /dd/tmp/PRT/j.txt | head -n 14
+run     lwf tmp/PRT/j.txt | head -n 14
 wait    8
 
 shot    alps
@@ -42,8 +46,10 @@ cap     printer to letter quality (-lq) or back (-norm): three bytes,
 cap     meant to be sent to the printer device.  Shown here as a dump.
 run     mkdir -p /dd/tmp/PRT > /nil 2>/nil; alps -lq > /dd/tmp/PRT/alps.out
 wait    3
+run     builtin cd /dd
+wait    1
 run     clear
-run     dump /dd/tmp/PRT/alps.out
+run     dump tmp/PRT/alps.out
 wait    5
 
 shot    epson

@@ -1,10 +1,10 @@
-$ ppmtobmp /dd/tmp/base.ppm > /dd/tmp/t.bmp
+ppmtobmp tmp/base.ppm > tmp/t.bmp
 ppmtobmp: computing colormap...
 ppmtobmp: 6 colors found
 ppmtobmp: Using 4 bits per pixel
-$ bmptoppm /dd/tmp/t.bmp > /dd/tmp/back2.ppm
+$ bmptoppm tmp/t.bmp > tmp/back2.ppm
 bmptoppm: OS/2 BMP, 48x24x4
-$ ls -l /dd/tmp/t.bmp
--rw-rw-rw-   1 0        0             650 Aug 28 17:21 /dd/tmp/t.bmp
-$ pnmfile /dd/tmp/back2.ppm
-/dd/tmp/back2.ppm:      PPM raw, 48 by 24  maxval 255
+$ ls -l tmp/t.bmp
+-rw-rw-rw-   1 0        0             650 Sep  6 03:56 tmp/t.bmp
+$ pnmfile tmp/back2.ppm
+tmp/back2.ppm:  PPM raw, 48 by 24  maxval 255

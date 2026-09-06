@@ -1,8 +1,8 @@
-$ exrecover -r /dd/tmp/nothing
+exrecover -r tmp/nothing
  File not found
-$ head -n 7 /dd/SPOOL/MAIL/tester > /dd/MAIL/mail_tester
-$ echo "N" > /dd/tmp/rm.in
-$ read_mail < /dd/tmp/rm.in
+$ head -n 7 SPOOL/MAIL/tester > MAIL/mail_tester
+$ echo "N" > tmp/rm.in
+$ read_mail < tmp/rm.in
 
 > From os9-freeware Sat Aug 16 00:00:00 1986
 > From: The OS-9 Freeware Collection <os9-freeware>

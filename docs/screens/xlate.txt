@@ -1,4 +1,4 @@
-cat /dd/tmp/DEV/t.a
+cat tmp/DEV/t.a
  nam test
  start ldx #buf
 loop lda ,x+
@@ -9,7 +9,7 @@ done rts
 buf fcc /hello/
  fcb 0
  end
-$ xlate /dd/tmp/DEV/t.a
+$ xlate tmp/DEV/t.a
  nam test
  move.b #buf
 loop move.b (a0)+,d0

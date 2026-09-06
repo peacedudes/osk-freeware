@@ -1,8 +1,8 @@
-cat /dd/tmp/TEXTA/table.txt
+cat tmp/TEXTA/table.txt
 1 2 3
 4 5 6
 7 8 9
-$ psc < /dd/tmp/TEXTA/table.txt
+$ psc < tmp/TEXTA/table.txt
 let A0 = 1
 let B0 = 2
 let C0 = 3

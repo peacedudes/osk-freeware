@@ -1,19 +1,18 @@
-tree /dd/CMDS
-/dd/CMDS ----+- ADL
-             +- BROKEN
-             +- COMMS
-             +- DEMOS
-             +- DHRY
-             +- ELM
-             +- GAMES
-             +- GCC139
-             +- GCC2
-             +- MM1
-             +- NETPBM
-             +- NETWORK
-             +- NEWS
-             +- REBUILT
-             +- TEXCMDS
-             +- UUCP
-             +- WN
-             +- archives
+tree CMDS
+CMDS --------+- ADL
+             |- COMMS
+             |- DEMOS
+             |- DHRY
+             |- ELM
+             |- GAMES
+             |- GCC139
+             |- GCC2
+             |- MM1
+             |- NETPBM
+             |- NETWORK
+             |- NEWS
+             |- REBUILT
+             |- TEXCMDS
+             |- UUCP
+             |- WN
+             `- archives

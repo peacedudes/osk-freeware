@@ -1,2 +1,2 @@
-$ bmgtest2 the /dd/SYS/motd; echo "status $?"
+bmgtest2 the SYS/motd; echo "status $?"
 status 0

@@ -1,8 +1,8 @@
-</pt.pgm 8 8 /dd/tmp/NEAB/r.pgm > /dd/tmp/NEAB/ps.pgm
-$ pgmtopbm /dd/tmp/NEAB/ps.pgm | pbmtoascii -2x4
-MMMHFR&$S$4|||\\:.:/ .
-MMHR6kR&S/Z%%\(\:::: .
-MM9H&9&RH&H9\?|::::-:.
-MMHH::<'>:>`?)::/::.: -
-MM9Roov?vvi,))!/:-:/.-
-MHMH&&&%k\\||\%:/:.--.
+pnmpaste tmp/NEAB/pt.pgm 8 8 tmp/NEAB/r.pgm > tmp/NEAB/ps.pgm
+$ pgmtopbm tmp/NEAB/ps.pgm | pbmtoascii -2x4
+MMM9H&1S$$)???)::::/ .
+MM6H99$&&?%??/:<,-::`.
+MMH6&RH&RH&HSS//<:-:- .
+MMH6!///<\\`%//::::.'-
+MMH&ovo?vv,:))\\/::.:-
+MMHR&Fk&S$%%%\|>::::.-

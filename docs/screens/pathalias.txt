@@ -1,4 +1,4 @@
-pathalias -l milkyway /dd/tmp/BLGX/map
+pathalias -l milkyway tmp/BLGX/map
 milkyway        %s
 phoenix phoenix!%s
 seabass phoenix!seabass!%s

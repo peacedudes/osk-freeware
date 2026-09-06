@@ -1,5 +1,5 @@
-rcsdiff /dd/tmp/DEV/rcs/note_v
-RCS file: /dd/tmp/DEV/rcs/note_v
+rcsdiff tmp/DEV/rcs/note_v
+RCS file: tmp/DEV/rcs/note_v
 retrieving revision 1.1
 -/dd/tmp/_RCSt1000003: cannot create
 diff -r1.1 note

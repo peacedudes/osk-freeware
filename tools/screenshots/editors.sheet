@@ -11,9 +11,11 @@ run     mkdir -p /dd/tmp/EDIT > /nil 2>/nil; printf "Twas brillig, and the slith
 wait    2
 run     mount -r=256k /r0
 wait    3
+run     builtin cd /dd
+wait    1
 run     clear
 wait    1
-run     ed /dd/tmp/EDIT/jabber.txt
+run     ed tmp/EDIT/jabber.txt
 wait    4
 send    1,4p\r
 wait    3
@@ -37,9 +39,11 @@ cap     Elvis, a vi with ex mode, its manual on the disk under DOC/elvis,
 cap     opened on a four-line file.  Tildes mark the lines past the end.
 run     mkdir -p /dd/tmp/EDIT > /nil 2>/nil; printf "Twas brillig, and the slithy toves\r     Did gyre and gimble in the wabe:\rAll mimsy were the borogoves,\r     And the mome raths outgrabe.\r" > /dd/tmp/EDIT/jabber.txt
 wait    2
+run     builtin cd /dd
+wait    1
 run     clear
 wait    1
-run     elvis /dd/tmp/EDIT/jabber.txt
+run     elvis tmp/EDIT/jabber.txt
 wait    8
 snap
 send    \033:q!\r
@@ -88,9 +92,11 @@ cap     MicroEMACS 3.8b on a four-line file, with its mode line at the
 cap     foot.  Control-X control-C leaves it.
 run     mkdir -p /dd/tmp/EDIT > /nil 2>/nil; printf "Twas brillig, and the slithy toves\r     Did gyre and gimble in the wabe:\rAll mimsy were the borogoves,\r     And the mome raths outgrabe.\r" > /dd/tmp/EDIT/jabber.txt
 wait    2
+run     builtin cd /dd
+wait    1
 run     clear
 wait    1
-run     em /dd/tmp/EDIT/jabber.txt
+run     em tmp/EDIT/jabber.txt
 wait    8
 snap
 send    \030\003
@@ -101,9 +107,11 @@ cap     MicroEMACS 4.00, the full one with the macro language; its macros
 cap     and help are in USR/LIB/EMACS.  Control-X control-C leaves it.
 run     mkdir -p /dd/tmp/EDIT > /nil 2>/nil; printf "Twas brillig, and the slithy toves\r     Did gyre and gimble in the wabe:\rAll mimsy were the borogoves,\r     And the mome raths outgrabe.\r" > /dd/tmp/EDIT/jabber.txt
 wait    2
+run     builtin cd /dd
+wait    1
 run     clear
 wait    1
-run     emacs /dd/tmp/EDIT/jabber.txt
+run     emacs tmp/EDIT/jabber.txt
 wait    8
 snap
 send    \030\003
@@ -113,9 +121,11 @@ shot    emacs.mm1
 cap     The MM/1 build, open on the Jabberwocky.
 run     mkdir -p /dd/tmp/EDIT > /nil 2>/nil; printf "Twas brillig, and the slithy toves\r     Did gyre and gimble in the wabe:\rAll mimsy were the borogoves,\r     And the mome raths outgrabe.\r" > /dd/tmp/EDIT/jabber.txt
 wait    2
+run     builtin cd /dd
+wait    1
 run     clear
 wait    1
-run     emacs.mm1 /dd/tmp/EDIT/jabber.txt
+run     emacs.mm1 tmp/EDIT/jabber.txt
 wait    8
 snap
 send    \030\003
@@ -125,9 +135,11 @@ shot    umacs
 cap     uMacs open on the Jabberwocky, ready to edit.
 run     mkdir -p /dd/tmp/EDIT > /nil 2>/nil; printf "Twas brillig, and the slithy toves\r     Did gyre and gimble in the wabe:\rAll mimsy were the borogoves,\r     And the mome raths outgrabe.\r" > /dd/tmp/EDIT/jabber.txt
 wait    2
+run     builtin cd /dd
+wait    1
 run     clear
 wait    1
-run     umacs /dd/tmp/EDIT/jabber.txt
+run     umacs tmp/EDIT/jabber.txt
 wait    8
 snap
 send    \030\003
@@ -138,9 +150,11 @@ cap     MicroEMACS 3.11 with German messages -- Datei for File.
 cap     Control-X control-C leaves it.
 run     mkdir -p /dd/tmp/EDIT > /nil 2>/nil; printf "Twas brillig, and the slithy toves\r     Did gyre and gimble in the wabe:\rAll mimsy were the borogoves,\r     And the mome raths outgrabe.\r" > /dd/tmp/EDIT/jabber.txt
 wait    2
+run     builtin cd /dd
+wait    1
 run     clear
 wait    1
-run     me /dd/tmp/EDIT/jabber.txt
+run     me tmp/EDIT/jabber.txt
 wait    8
 snap
 send    \030\003
@@ -151,9 +165,11 @@ cap     Mg, MicroGnuEmacs: Emacs keys in 79K, its documentation under
 cap     DOC/mg.  Control-X control-C leaves it.
 run     mkdir -p /dd/tmp/EDIT > /nil 2>/nil; printf "Twas brillig, and the slithy toves\r     Did gyre and gimble in the wabe:\rAll mimsy were the borogoves,\r     And the mome raths outgrabe.\r" > /dd/tmp/EDIT/jabber.txt
 wait    2
+run     builtin cd /dd
+wait    1
 run     clear
 wait    1
-run     mg /dd/tmp/EDIT/jabber.txt
+run     mg tmp/EDIT/jabber.txt
 wait    8
 snap
 send    \030\003
@@ -165,9 +181,11 @@ cap     top, the file below it, and its key bindings read from
 cap     SYS/sedt.keys.
 run     mkdir -p /dd/tmp/EDIT > /nil 2>/nil; printf "Twas brillig, and the slithy toves\r     Did gyre and gimble in the wabe:\rAll mimsy were the borogoves,\r     And the mome raths outgrabe.\r" > /dd/tmp/EDIT/jabber.txt
 wait    2
+run     builtin cd /dd
+wait    1
 run     clear
 wait    1
-run     sedt /dd/tmp/EDIT/jabber.txt
+run     sedt tmp/EDIT/jabber.txt
 wait    8
 snap
 send    \003
@@ -177,9 +195,11 @@ shot    new_e
 cap     SEDT again, the build that picks VT100 or VT220 keys from TERM.
 run     mkdir -p /dd/tmp/EDIT > /nil 2>/nil; printf "Twas brillig, and the slithy toves\r     Did gyre and gimble in the wabe:\rAll mimsy were the borogoves,\r     And the mome raths outgrabe.\r" > /dd/tmp/EDIT/jabber.txt
 wait    2
+run     builtin cd /dd
+wait    1
 run     clear
 wait    1
-run     new_e /dd/tmp/EDIT/jabber.txt
+run     new_e tmp/EDIT/jabber.txt
 wait    8
 snap
 send    \003
@@ -190,9 +210,11 @@ cap     SEDT a third time, the small VT220 build.  All three read the
 cap     same three files in SYS: sedt.keys, sedt.ruler0 and sedt.help.
 run     mkdir -p /dd/tmp/EDIT > /nil 2>/nil; printf "Twas brillig, and the slithy toves\r     Did gyre and gimble in the wabe:\rAll mimsy were the borogoves,\r     And the mome raths outgrabe.\r" > /dd/tmp/EDIT/jabber.txt
 wait    2
+run     builtin cd /dd
+wait    1
 run     clear
 wait    1
-run     e /dd/tmp/EDIT/jabber.txt
+run     e tmp/EDIT/jabber.txt
 wait    8
 snap
 send    \003
@@ -205,9 +227,11 @@ cap     leave it turns the dump back into the file.  -t names the
 cap     directory for the dump.
 run     mkdir -p /dd/tmp/EDIT > /nil 2>/nil; printf "Twas brillig, and the slithy toves\r     Did gyre and gimble in the wabe:\rAll mimsy were the borogoves,\r     And the mome raths outgrabe.\r" > /dd/tmp/EDIT/jabber.txt
 wait    2
+run     builtin cd /dd
+wait    1
 run     clear
 wait    1
-run     hexed -t=/dd/tmp/EDIT -e=vi_nocio /dd/tmp/EDIT/jabber.txt
+run     hexed -t=tmp/EDIT -e=vi_nocio tmp/EDIT/jabber.txt
 wait    10
 
 shot    hexedit
@@ -217,9 +241,11 @@ cap     terminal description from TERMCAP as text rather than as a file
 cap     name, so the entry is put in the variable first.
 run     . /dd/SYS/termcap.entry
 wait    3
+run     builtin cd /dd
+wait    1
 run     clear
 wait    1
-run     hexedit /dd/CMDS/today
+run     hexedit CMDS/today
 wait    12
 kill
 
@@ -250,9 +276,11 @@ shot    sed
 cap     sed, the stream editor, substituting on every line of a file.
 run     mkdir -p /dd/tmp/EDIT > /nil 2>/nil; printf "Twas brillig, and the slithy toves\r     Did gyre and gimble in the wabe:\rAll mimsy were the borogoves,\r     And the mome raths outgrabe.\r" > /dd/tmp/EDIT/jabber.txt
 wait    2
+run     builtin cd /dd
+wait    1
 run     clear
 wait    1
-run     sed "s/the/THE/g" /dd/tmp/EDIT/jabber.txt
+run     sed "s/the/THE/g" tmp/EDIT/jabber.txt
 wait    6
 
 shot    sed_1.06
@@ -272,9 +300,11 @@ cap     and stops there; on a terminal it fills the screen.  Its source is
 cap     in SRC/effo_vi.
 run     mkdir -p /dd/tmp/EDIT > /nil 2>/nil; printf "Twas brillig, and the slithy toves\r     Did gyre and gimble in the wabe:\rAll mimsy were the borogoves,\r     And the mome raths outgrabe.\r" > /dd/tmp/EDIT/jabber.txt
 wait    2
+run     builtin cd /dd
+wait    1
 run     clear
 wait    1
-run     vi /dd/tmp/EDIT/jabber.txt
+run     vi tmp/EDIT/jabber.txt
 wait    15
 snap
 send    \033
@@ -286,9 +316,11 @@ cap     Elvis opened read-only, which is what the name `view' asks of it:
 cap     the status line says READONLY.
 run     mkdir -p /dd/tmp/EDIT > /nil 2>/nil; printf "Twas brillig, and the slithy toves\r     Did gyre and gimble in the wabe:\rAll mimsy were the borogoves,\r     And the mome raths outgrabe.\r" > /dd/tmp/EDIT/jabber.txt
 wait    2
+run     builtin cd /dd
+wait    1
 run     clear
 wait    1
-run     view /dd/tmp/EDIT/jabber.txt
+run     view tmp/EDIT/jabber.txt
 wait    8
 snap
 send    :q!\r
@@ -341,9 +373,11 @@ cap     PVIC 1.0a, the build that needs no Microware module: the smallest
 cap     vi on the disk.
 run     mkdir -p /dd/tmp/EDIT > /nil 2>/nil; printf "Twas brillig, and the slithy toves\r     Did gyre and gimble in the wabe:\rAll mimsy were the borogoves,\r     And the mome raths outgrabe.\r" > /dd/tmp/EDIT/jabber.txt
 wait    2
+run     builtin cd /dd
+wait    1
 run     clear
 wait    1
-run     vi_nocio /dd/tmp/EDIT/jabber.txt
+run     vi_nocio tmp/EDIT/jabber.txt
 wait    8
 snap
 send    :q!\r

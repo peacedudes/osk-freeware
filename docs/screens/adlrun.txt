@@ -1,4 +1,4 @@
-$ adlrun /dd/ADL/AARD/aard
+adlrun ADL/AARD/aard
 ADL interpreter - Version 3.2 - June 7, 1987
 Copyright 1985, 1986, 1987 by Ross Cunniff
 All rights reserved.

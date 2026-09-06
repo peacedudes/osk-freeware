@@ -1,2 +1,2 @@
-compress_4.0 -v /dd/tmp/ARC/idx5
-/dd/tmp/ARC/idx5: Compression: 58.42% -- replaced with /dd/tmp/ARC/idx5.Z
+compress_4.0 -v tmp/ARC/idx5
+tmp/ARC/idx5: Compression: 57.94% -- replaced with tmp/ARC/idx5.Z

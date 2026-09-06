@@ -1,6 +1,4 @@
-$ lgrep -?
 Syntax: lgrep <arg1> ... <argn>
 Function: same as 'grep -l', but prints filenames without comments
 Options: same as with 'grep'
-$ lgrep ksh /dd/SYS/password; echo "found nothing, status $?"
-found nothing, status 0
+$ found nothing, status 0

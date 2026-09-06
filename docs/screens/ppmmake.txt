@@ -1,7 +1,7 @@
-ppmmake rgb:ff/80/00 40 20 > /dd/tmp/NEAB/a.ppm
-$ pnmfile /dd/tmp/NEAB/a.ppm
-/dd/tmp/NEAB/a.ppm:     PPM raw, 40 by 20  maxval 255
-$ ppmhist /dd/tmp/NEAB/a.ppm
+ppmmake rgb:ff/80/00 40 20 > tmp/NEAB/a.ppm
+$ pnmfile tmp/NEAB/a.ppm
+tmp/NEAB/a.ppm: PPM raw, 40 by 20  maxval 255
+$ ppmhist tmp/NEAB/a.ppm
  r   g   b      lum     count
 --- --- ---     ---     -----
 255 128   0     151     800

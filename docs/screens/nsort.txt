@@ -1,4 +1,4 @@
-cat /dd/tmp/TXT/dups; echo ---; nsort < /dd/tmp/TXT/dups
+cat tmp/TXT/dups; echo ---; nsort < tmp/TXT/dups
 pear
 apple
 pear

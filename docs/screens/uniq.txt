@@ -1,10 +1,10 @@
-uniq < /dd/tmp/TXT/dups
+uniq < tmp/TXT/dups
 pear
 apple
 pear
 fig
 apple
-$ sort /dd/tmp/TXT/dups | uniq -c
+$ sort tmp/TXT/dups | uniq -c
 2 apple
 3 fig
 2 pear

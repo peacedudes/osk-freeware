@@ -1,7 +1,7 @@
-l -40 /dd/tmp/FILESA/long.txt
+l -40 tmp/FILESA/long.txt
 
 
-   List of File /dd/tmp/FILESA/long.txt
+   List of File tmp/FILESA/long.txt
 
 Home Librarian is a computerised
 library card catalogue for OS-9,

@@ -29,11 +29,13 @@ cap     pd-ksh, the Korn shell, running a three-line script and a one-line
 cap     command.  It is the shell programs on this disk shell out through.
 run     mkdir -p /dd/tmp/SHL > /nil 2>/nil; printf "print hello from a ksh script\rfor f in a b c; do print item \$f; done\r" > /dd/tmp/SHL/script.ksh
 wait    2
+run     builtin cd /dd
+wait    1
 run     clear
 wait    1
-run     cat /dd/tmp/SHL/script.ksh
+run     cat tmp/SHL/script.ksh
 wait    2
-run     ksh /dd/tmp/SHL/script.ksh
+run     ksh tmp/SHL/script.ksh
 wait    5
 run     ksh -c "print the date is; today"
 wait    5
@@ -55,9 +57,11 @@ cap     `shell' -- the shell that comes with your OS-9 -- so here you see
 cap     the menu it draws.
 run     mkdir -p /dd/tmp/SHL > /nil 2>/nil; printf "Who am I,whoami\rThe date,today\rList SYS,ls /dd/SYS\r" > /dd/tmp/SHL/menu
 wait    2
+run     builtin cd /dd
+wait    1
 run     clear
 wait    1
-run     mshell /dd/tmp/SHL/menu
+run     mshell tmp/SHL/menu
 wait    5
 snap
 send    \003
@@ -96,9 +100,13 @@ wait    4
 shot    exist
 cap     Tests whether a file exists and answers in its exit status, 0 for
 cap     yes and 1 for no, which is what a script wants.
-run     exist /dd/SYS/motd; echo "exist says $?"
+run     builtin cd /dd
+wait    1
+run     clear
+wait    1
+run     exist SYS/motd; echo "exist says $?"
 wait    4
-run     exist /dd/SYS/no-such-file; echo "exist says $?"
+run     exist SYS/no-such-file; echo "exist says $?"
 wait    4
 
 shot    expr
@@ -138,11 +146,13 @@ cap     because it forks the marked commands through Microware's `shell',
 cap     the one that comes with your OS-9.
 run     mkdir -p /dd/tmp/SHL > /nil 2>/nil; printf "notes to myself\r%% echo one\r%% whoami\rmore notes\r" > /dd/tmp/SHL/cmds.txt
 wait    2
+run     builtin cd /dd
+wait    1
 run     clear
 wait    1
-run     cat /dd/tmp/SHL/cmds.txt
+run     cat tmp/SHL/cmds.txt
 wait    2
-run     xc /dd/tmp/SHL/cmds.txt
+run     xc tmp/SHL/cmds.txt
 wait    5
 
 shot    run

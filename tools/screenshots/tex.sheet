@@ -279,11 +279,13 @@ cap     The other way: a property list back into a binary .tfm, and the
 cap     round trip gives a file of the same size.
 run     mkdir -p /dd/tmp/TEX > /nil 2>/nil; tftopl /dd/SYS/TEX/FONTS/TFM/cmr10.tfm > /dd/tmp/TEX/cmr10.pl
 wait    20
+run     builtin cd /dd
+wait    1
 run     clear
 wait    1
-run     pltotf /dd/tmp/TEX/cmr10.pl /dd/tmp/TEX/cmr10.tfm
+run     pltotf tmp/TEX/cmr10.pl tmp/TEX/cmr10.tfm
 wait    20
-run     ls -l /dd/SYS/TEX/FONTS/TFM/cmr10.tfm /dd/tmp/TEX/cmr10.tfm
+run     ls -l SYS/TEX/FONTS/TFM/cmr10.tfm tmp/TEX/cmr10.tfm
 wait    5
 
 shot    vptovf
@@ -291,11 +293,13 @@ cap     Compiles a virtual-font property list into a .vf and its .tfm:
 cap     here a one-character font that maps onto cmr10.
 run     mkdir -p /dd/tmp/TEX > /nil 2>/nil; rm -f /dd/tmp/TEX/s.vf /dd/tmp/TEX/s.tfm
 wait    2
+run     builtin cd /dd
+wait    1
 run     clear
 wait    1
-run     vptovf /dd/DOC/tex/sample.vpl /dd/tmp/TEX/s.vf /dd/tmp/TEX/s.tfm
+run     vptovf DOC/tex/sample.vpl tmp/TEX/s.vf tmp/TEX/s.tfm
 wait    20
-run     ls -l /dd/tmp/TEX/s.vf /dd/tmp/TEX/s.tfm
+run     ls -l tmp/TEX/s.vf tmp/TEX/s.tfm
 wait    4
 
 shot    vftovp
@@ -305,11 +309,13 @@ cap     VFFONTS and TEXFONTS name the directory, because the font search
 cap     paths do not include the current one.
 run     mkdir -p /dd/tmp/TEX > /nil 2>/nil; vptovf /dd/DOC/tex/sample.vpl /dd/tmp/TEX/s.vf /dd/tmp/TEX/s.tfm > /nil; export VFFONTS=/dd/tmp/TEX; export TEXFONTS=/dd/tmp/TEX:/dd/SYS/TEX/FONTS/TFM
 wait    20
+run     builtin cd /dd
+wait    1
 run     clear
 wait    1
-run     vftovp s.vf s.tfm /dd/tmp/TEX/back.vpl
+run     vftovp s.vf s.tfm tmp/TEX/back.vpl
 wait    20
-run     cat /dd/tmp/TEX/back.vpl | head -n 16
+run     cat tmp/TEX/back.vpl | head -n 16
 wait    5
 
 shot    virmf
@@ -351,11 +357,13 @@ cap     Packs a GF bitmap font into the smaller PK form the DVI drivers
 cap     read; the two sizes side by side.
 run     mkdir -p /dd/tmp/MF > /nil 2>/nil; rm -f /dd/tmp/MF/logo10.*; echo "\\mode=epsonlo; mode_setup; input logo10" > /dd/tmp/MF/run.mf; ksh -c "cd /dd/tmp/MF; virmf < run.mf" > /nil; export GFFONTS=/dd/tmp/MF; export PKFONTS=/dd/tmp/MF
 wait    50
+run     builtin cd /dd
+wait    1
 run     clear
 wait    1
-run     gftopk logo10.120gf /dd/tmp/MF/logo10.120pk
+run     gftopk logo10.120gf tmp/MF/logo10.120pk
 wait    20
-run     ls -l /dd/tmp/MF/logo10.120gf /dd/tmp/MF/logo10.120pk
+run     ls -l tmp/MF/logo10.120gf tmp/MF/logo10.120pk
 wait    5
 
 shot    pktype
@@ -373,9 +381,11 @@ shot    pktogf
 cap     Unpacks a PK font back to GF, the other half of gftopk.
 run     mkdir -p /dd/tmp/MF > /nil 2>/nil; rm -f /dd/tmp/MF/logo10.* /dd/tmp/MF/back.120gf; echo "\\mode=epsonlo; mode_setup; input logo10" > /dd/tmp/MF/run.mf; ksh -c "cd /dd/tmp/MF; virmf < run.mf" > /nil; export GFFONTS=/dd/tmp/MF; export PKFONTS=/dd/tmp/MF; gftopk logo10.120gf /dd/tmp/MF/logo10.120pk > /nil
 wait    70
+run     builtin cd /dd
+wait    1
 run     clear
 wait    1
-run     pktogf logo10.120pk /dd/tmp/MF/back.120gf
+run     pktogf logo10.120pk tmp/MF/back.120gf
 wait    20
-run     ls -l /dd/tmp/MF/logo10.120gf /dd/tmp/MF/back.120gf
+run     ls -l tmp/MF/logo10.120gf tmp/MF/back.120gf
 wait    5

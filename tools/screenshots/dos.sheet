@@ -184,11 +184,13 @@ cap     Reads a file off the DOS disk raw into an OS-9 file, the other
 cap     half of mswrite.
 run     mscd a:/ > /nil; msdel a:RAW.TXT > /nil 2>/nil; mswrite /dd/SYS/motd a:RAW.TXT > /nil; rm -f /dd/tmp/raw.out
 wait    12
+run     builtin cd /dd
+wait    1
 run     clear
 wait    1
-run     msread a:RAW.TXT /dd/tmp/raw.out
+run     msread a:RAW.TXT tmp/raw.out
 wait    10
-run     cat /dd/tmp/raw.out
+run     cat tmp/raw.out
 wait    6
 
 shot    msbadblocks

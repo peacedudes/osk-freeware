@@ -1,4 +1,4 @@
-cat /dd/tmp/DEV/t.a
+cat tmp/DEV/t.a
  nam test
  start ldx #buf
 loop lda ,x+
@@ -9,7 +9,7 @@ done rts
 buf fcc /hello/
  fcb 0
  end
-$ tab -b < /dd/tmp/DEV/t.a
+$ tab -b < tmp/DEV/t.a
             nam test
             start     ldx                      #buf
 loop        lda       ,x+

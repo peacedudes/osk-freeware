@@ -6,4 +6,4 @@ $ rtf /dd/tmp/CMPA/div.f
  Total Errors   0   Warnings   0
  RTF normally completed
 $ ls -l /dd/tmp/CMPA/div.a
--rw-------   1 0        0            1008 Sep  3 08:24 /dd/tmp/CMPA/div.a
+-rw-------   1 0        0            1008 Sep  6 06:35 /dd/tmp/CMPA/div.a

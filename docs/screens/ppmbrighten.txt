@@ -1,9 +1,9 @@
-ppmhist /dd/tmp/NEAB/br.ppm
+ppmhist tmp/NEAB/br.ppm
  r   g   b      lum     count
 --- --- ---     ---     -----
 128  64  32     79      800
-$ ppmbrighten -value +50 /dd/tmp/NEAB/br.ppm > /dd/tmp/NEAB/brr.ppm
-$ ppmhist /dd/tmp/NEAB/brr.ppm
+$ ppmbrighten -value +50 tmp/NEAB/br.ppm > tmp/NEAB/brr.ppm
+$ ppmhist tmp/NEAB/brr.ppm
  r   g   b      lum     count
 --- --- ---     ---     -----
 192  96  48     119     800

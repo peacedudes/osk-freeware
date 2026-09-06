@@ -1,4 +1,4 @@
-diff /dd/tmp/TXT/a /dd/tmp/TXT/b | ediff
+diff tmp/TXT/a tmp/TXT/b | ediff
 
 -------- 1 line changed at 2 from:
 banana

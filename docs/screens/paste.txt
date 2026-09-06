@@ -1,10 +1,10 @@
-paste /dd/tmp/TEXTA/a.txt /dd/tmp/TEXTA/b.txt
+paste tmp/TEXTA/a.txt tmp/TEXTA/b.txt
 one     eins
 two     zwei
 three   drei
-$ paste -d: /dd/tmp/TEXTA/a.txt /dd/tmp/TEXTA/b.txt
+$ paste -d: tmp/TEXTA/a.txt tmp/TEXTA/b.txt
 one:eins
 two:zwei
 three:drei
-$ paste -s /dd/tmp/TEXTA/a.txt
+$ paste -s tmp/TEXTA/a.txt
 one     two     three

@@ -1,8 +1,8 @@
-$ pgmramp -lr 40 20 > /dd/tmp/ramp.pgm
-$ pnmtops /dd/tmp/ramp.pgm | head -n 18
+pgmramp -lr 40 20 > tmp/ramp.pgm
+$ pnmtops tmp/ramp.pgm | head -n 18
 %!PS-Adobe-2.0 EPSF-2.0
 %%Creator: pnmtops
-%%Title: /dd/tmp/ramp.ps
+%%Title: tmp/ramp.ps
 %%Pages: 1
 %%BoundingBox: 296 361 316 400
 %%EndComments

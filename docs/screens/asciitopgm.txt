@@ -1,4 +1,4 @@
-cat /dd/tmp/NPIB/art.txt
+cat tmp/NPIB/art.txt
 
 
 
@@ -14,6 +14,6 @@ cat /dd/tmp/NPIB/art.txt
 
 
 
-$ asciitopgm 8 40 < /dd/tmp/NPIB/art.txt > /dd/tmp/NPIB/a.pgm
-$ pnmfile /dd/tmp/NPIB/a.pgm
-/dd/tmp/NPIB/a.pgm:     PGM raw, 40 by 8  maxval 127
+$ asciitopgm 8 40 < tmp/NPIB/art.txt > tmp/NPIB/a.pgm
+$ pnmfile tmp/NPIB/a.pgm
+tmp/NPIB/a.pgm: PGM raw, 40 by 8  maxval 127

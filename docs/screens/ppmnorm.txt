@@ -1,10 +1,10 @@
-ppmhist /dd/tmp/NEAB/nd.ppm
+ppmhist tmp/NEAB/nd.ppm
  r   g   b      lum     count
 --- --- ---     ---     -----
 101 101 101     101     800
-$ ppmnorm /dd/tmp/NEAB/nd.ppm > /dd/tmp/NEAB/nn.ppm
+$ ppmnorm tmp/NEAB/nd.ppm > tmp/NEAB/nn.ppm
 ppmnorm: remapping 101..101 to 0..255
-$ ppmhist /dd/tmp/NEAB/nn.ppm
+$ ppmhist tmp/NEAB/nn.ppm
  r   g   b      lum     count
 --- --- ---     ---     -----
 255 255 255     255     800

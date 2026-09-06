@@ -1,8 +1,8 @@
-cat /dd/tmp/TEXTA/r.txt
+cat tmp/TEXTA/r.txt
 the quick brown fox
 jumps over the
 lazy dog
-$ rot /dd/tmp/TEXTA/r.txt
+$ rot tmp/TEXTA/r.txt
 ljt
 auh
 zme

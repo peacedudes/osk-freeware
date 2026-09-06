@@ -1,4 +1,4 @@
-chksum /dd/tmp/ENC/j.txt /dd/SYS/motd
+chksum tmp/ENC/j.txt SYS/motd
 09f241c9
 4b68af85
 ========

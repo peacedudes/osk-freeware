@@ -1,6 +1,6 @@
-ifdef -DOSK /dd/tmp/DEV/ifd.c
+ifdef -DOSK tmp/DEV/ifd.c
 int on_os9 = 1;
 int always = 2;
-$ ifdef -UOSK /dd/tmp/DEV/ifd.c
+$ ifdef -UOSK tmp/DEV/ifd.c
 int on_os9 = 0;
 int always = 2;

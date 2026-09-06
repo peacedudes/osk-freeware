@@ -107,9 +107,11 @@ cap     other sample is a master-slave flip-flop.  PORT must name the
 cap     terminal, because it reopens the keyboard through that path.
 run     export PORT=/term
 wait    1
+run     builtin cd /dd
+wait    1
 run     clear
 wait    1
-run     logisim /dd/DOC/logisim/counter.lsi
+run     logisim DOC/logisim/counter.lsi
 wait    10
 snap
 send    \r
@@ -205,7 +207,11 @@ size    30 80
 cap     Rewrites its input as plausible nonsense -- a Markov chain over
 cap     the text, here the weather program's own README, asked for 400
 cap     characters.
-run     travesty -n400 < /dd/DOC/weather/README
+run     builtin cd /dd
+wait    1
+run     clear
+wait    1
+run     travesty -n400 < DOC/weather/README
 wait    10
 
 shot    textb

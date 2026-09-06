@@ -1,4 +1,4 @@
-$ indent /dd/SRC/keep/about.c -st | head -n 20
+indent SRC/keep/about.c -st | head -n 20
 /*
  * about -- everything this collection knows about one program, on one
  * screen.

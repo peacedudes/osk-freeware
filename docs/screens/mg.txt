@@ -20,5 +20,5 @@ All mimsy were the borogoves,
 
 
 
------Mg: jabber.txt                       (fundamental)-------------------------
+-----Mg:#jabber.txt#######################(fundamental)-------------------------
 (Read 4 lines)

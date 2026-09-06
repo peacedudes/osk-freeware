@@ -8,11 +8,13 @@ cap     basename prints the last part of a path -- the filename with every
 cap     directory in front of it dropped.  Give it a suffix as a second
 cap     argument and that comes off too.  It prints no newline of its own,
 cap     so `; echo' is there to end the line.
+run     builtin cd /dd
+wait    1
 run     clear
 wait    1
-run     basename /dd/CMDS/GAMES/hack ; echo
+run     basename CMDS/GAMES/hack ; echo
 wait    4
-run     basename /dd/DOC/tex/none.ch .ch ; echo
+run     basename DOC/tex/none.ch .ch ; echo
 wait    4
 snap
 
@@ -22,11 +24,13 @@ cap     dirname prints the other half of a path: everything up to the last
 cap     slash, with the filename dropped.  A name with no directory in it
 cap     leaves nothing to print.  It writes no newline, so `; echo' ends
 cap     the line.
+run     builtin cd /dd
+wait    1
 run     clear
 wait    1
-run     dirname /dd/CMDS/GAMES/hack ; echo
+run     dirname CMDS/GAMES/hack ; echo
 wait    4
-run     dirname /dd/SYS/termcap ; echo
+run     dirname SYS/termcap ; echo
 wait    4
 run     dirname /dd ; echo
 wait    4
@@ -38,9 +42,11 @@ cap     mkdir makes a directory, and `-p' makes every directory on the way
 cap     to it, so one command builds a whole chain.
 run     rm -rf /dd/tmp/FILESA/mk > /nil 2>/nil
 wait    3
+run     builtin cd /dd
+wait    1
 run     clear
 wait    1
-run     mkdir -p /dd/tmp/FILESA/mk/notes/june; ls -l /dd/tmp/FILESA/mk/notes
+run     mkdir -p tmp/FILESA/mk/notes/june; ls -l tmp/FILESA/mk/notes
 wait    6
 snap
 
@@ -117,13 +123,15 @@ run     rm -rf /dd/tmp/FILESA/rmd > /nil 2>/nil
 wait    3
 run     mkdir -p /dd/tmp/FILESA/rmd/sub > /nil 2>/nil; cp /dd/SYS/motd /dd/tmp/FILESA/rmd/a; cp /dd/SYS/motd /dd/tmp/FILESA/rmd/sub/b
 wait    6
+run     builtin cd /dd
+wait    1
 run     clear
 wait    1
-run     ls -lR /dd/tmp/FILESA/rmd
+run     ls -lR tmp/FILESA/rmd
 wait    5
-run     rm -rv /dd/tmp/FILESA/rmd
+run     rm -rv tmp/FILESA/rmd
 wait    6
-run     ls /dd/tmp/FILESA/rmd
+run     ls tmp/FILESA/rmd
 wait    5
 snap
 
@@ -136,13 +144,15 @@ run     rm -rf /dd/tmp/FILESA/bk > /nil 2>/nil; mkdir -p /dd/tmp/FILESA/bk/sub >
 wait    5
 run     cp /dd/SYS/motd /dd/tmp/FILESA/bk/notes.txt; cp /dd/SYS/motd /dd/tmp/FILESA/bk/notes.txt_bak; cp /dd/SYS/motd /dd/tmp/FILESA/bk/sub/old.c_bak
 wait    6
+run     builtin cd /dd
+wait    1
 run     clear
 wait    1
-run     ls -lR /dd/tmp/FILESA/bk
+run     ls -lR tmp/FILESA/bk
 wait    5
-run     delbak /dd/tmp/FILESA/bk
+run     delbak tmp/FILESA/bk
 wait    6
-run     ls -lR /dd/tmp/FILESA/bk
+run     ls -lR tmp/FILESA/bk
 wait    5
 snap
 
@@ -157,11 +167,13 @@ run     rm -rf /dd/tmp/FILESA/db /dd/tmp/FILESA/dbk > /nil 2>/nil
 wait    3
 run     mkdir -p /dd/tmp/FILESA/db /dd/tmp/FILESA/dbk > /nil 2>/nil; cp /dd/SYS/motd /dd/tmp/FILESA/db/one
 wait    6
+run     builtin cd /dd
+wait    1
 run     clear
 wait    1
-run     dback /dd/tmp/FILESA/db /dd/tmp/FILESA/dbk
+run     dback tmp/FILESA/db tmp/FILESA/dbk
 wait    10
-run     ls -l /dd/tmp/FILESA/dbk
+run     ls -l tmp/FILESA/dbk
 wait    5
 snap
 
@@ -176,11 +188,13 @@ run     rm -rf /dd/tmp/FILESA/ud > /nil 2>/nil; mkdir -p /dd/tmp/FILESA/ud > /ni
 wait    6
 run     rm /dd/tmp/FILESA/ud/notes.txt
 wait    4
+run     builtin cd /dd
+wait    1
 run     clear
 wait    1
 run     undel
 wait    6
-send    /dd/tmp/FILESA/ud\r
+send    tmp/FILESA/ud\r
 wait    8
 send    y\r
 wait    6
@@ -188,7 +202,7 @@ send    y\r
 wait    6
 send    n\r
 wait    8
-run     ls -l /dd/tmp/FILESA/ud
+run     ls -l tmp/FILESA/ud
 wait    6
 snap
 
@@ -198,8 +212,10 @@ cap     remove takes a MODULE out of memory -- it does not touch files.
 cap     `load' puts a program's module in the module directory, where it
 cap     can be started by name from anywhere; after `remove' the same name
 cap     is not found.  `rm' is what deletes files.
+run     builtin cd /dd
+wait    1
 run     clear
-run     load /dd/CMDS/ELM/readmsg
+run     load CMDS/ELM/readmsg
 wait    3
 run     echo "readmsg is now resident and answers by name:"
 run     sh -c "readmsg -\?"
@@ -229,9 +245,11 @@ shot    ls
 size    26 80
 cap     GNU ls with `-al': one line a file, with the OS-9 attributes shown
 cap     as the mode letters ls prints, the owner, the length and the date.
+run     builtin cd /dd
+wait    1
 run     clear
 wait    1
-run     ls -al /dd/SYS | head -n 18
+run     ls -al SYS | head -n 18
 wait    8
 snap
 
@@ -245,9 +263,11 @@ run     mkdir -p /dd/tmp/FILESA > /nil 2>/nil; rm -f /dd/tmp/FILESA/long.txt > /
 wait    4
 run     echo "Home Librarian is a computerised library card catalogue for OS-9, written by Robert Heller of Deepwoods Software and released in 1992." > /dd/tmp/FILESA/long.txt
 wait    4
+run     builtin cd /dd
+wait    1
 run     clear
 wait    1
-run     l -40 /dd/tmp/FILESA/long.txt
+run     l -40 tmp/FILESA/long.txt
 wait    6
 snap
 
@@ -255,9 +275,11 @@ shot    tree
 size    30 80
 cap     tree draws the shape of a directory tree with line graphics --
 cap     directories only, sorted, from the one you name.
+run     builtin cd /dd
+wait    1
 run     clear
 wait    1
-run     tree /dd/CMDS
+run     tree CMDS
 wait    10
 snap
 
@@ -265,9 +287,11 @@ shot    du
 size    26 80
 cap     du adds up what a directory tree holds: bytes, kilobytes, sectors
 cap     and the number of files, one line per directory, with a total.
+run     builtin cd /dd
+wait    1
 run     clear
 wait    1
-run     du /dd/DOC/gnuplot
+run     du DOC/gnuplot
 wait    12
 snap
 
@@ -276,9 +300,11 @@ size    26 80
 cap     space measures what a tree costs on the disk rather than what it
 cap     contains: the file contents, the sectors actually allocated, and
 cap     the smallest number of sectors the same files could occupy.
+run     builtin cd /dd
+wait    1
 run     clear
 wait    1
-run     space /dd/DOC/gnuplot
+run     space DOC/gnuplot
 wait    12
 snap
 
@@ -287,9 +313,11 @@ size    26 80
 cap     dfiles hunts a tree for files with identical contents and writes
 cap     out the `cmp' commands that would prove each pair equal.  The list
 cap     is the answer; no `cmp' program ships here to run it through.
+run     builtin cd /dd
+wait    1
 run     clear
 wait    1
-run     dfiles /dd/SYS
+run     dfiles SYS
 wait    12
 kill
 snap
@@ -300,9 +328,11 @@ cap     find walks a directory tree looking for what you describe and
 cap     prints what it matched.  `-n=' gives the name, wildcards allowed,
 cap     and `-o' asks for the pathnames.  Its other tests are on size,
 cap     owner, group, permissions and depth.
+run     builtin cd /dd
+wait    1
 run     clear
 wait    1
-run     find /dd/SYS "-n=cal*" -o
+run     find SYS "-n=cal*" -o
 wait    10
 snap
 
@@ -330,9 +360,11 @@ cap     along the foot.  It carries those out through system(), so SHELL
 cap     has to name a shell that can run them -- `sh' here.
 cap     Arrow keys move; the letter in each word on the bottom line picks
 cap     that command.
+run     builtin cd /dd
+wait    1
 run     clear
 wait    1
-run     SHELL=/dd/CMDS/sh dm /dd/SYS
+run     SHELL=CMDS/sh dm SYS
 wait    12
 snap
 kill
@@ -343,11 +375,13 @@ cap     fstat reads a file's RBF file descriptor -- the sector RBF keeps
 cap     about the file: owner as group.user, the attribute letters, the
 cap     dates and the length.  `-s' adds the segment list, which is where
 cap     on the disk the file's data actually lies.
+run     builtin cd /dd
+wait    1
 run     clear
 wait    1
-run     fstat /dd/CMDS/tar
+run     fstat CMDS/tar
 wait    6
-run     fstat -s /dd/CMDS/tar
+run     fstat -s CMDS/tar
 wait    6
 snap
 
@@ -359,13 +393,15 @@ cap     found, and writes it into the file descriptor -- fstat either side
 cap     shows the owner going from 0.0 to 1.7.
 run     mkdir -p /dd/tmp/FILESA > /nil 2>/nil; cp /dd/SYS/motd /dd/tmp/FILESA/own.txt
 wait    5
+run     builtin cd /dd
+wait    1
 run     clear
 wait    1
-run     fstat /dd/tmp/FILESA/own.txt
+run     fstat tmp/FILESA/own.txt
 wait    6
-run     owner tester /dd/tmp/FILESA/own.txt
+run     owner tester tmp/FILESA/own.txt
 wait    6
-run     fstat /dd/tmp/FILESA/own.txt
+run     fstat tmp/FILESA/own.txt
 wait    6
 snap
 
@@ -376,11 +412,13 @@ cap     fstat before and after shows 0.0 becoming 0.5.  It takes a number
 cap     or a name out of SYS/password.
 run     mkdir -p /dd/tmp/FILESA > /nil 2>/nil; cp /dd/SYS/motd /dd/tmp/FILESA/usr.txt
 wait    5
+run     builtin cd /dd
+wait    1
 run     clear
 wait    1
-run     fstat /dd/tmp/FILESA/usr.txt
+run     fstat tmp/FILESA/usr.txt
 wait    6
-run     chown 5 /dd/tmp/FILESA/usr.txt; fstat /dd/tmp/FILESA/usr.txt
+run     chown 5 tmp/FILESA/usr.txt; fstat tmp/FILESA/usr.txt
 wait    8
 snap
 
@@ -391,11 +429,13 @@ cap     after shows 0.0 becoming 3.0.  Everything on this disk arrives
 cap     owned 0.0.
 run     mkdir -p /dd/tmp/FILESA > /nil 2>/nil; cp /dd/SYS/motd /dd/tmp/FILESA/grp.txt
 wait    5
+run     builtin cd /dd
+wait    1
 run     clear
 wait    1
-run     fstat /dd/tmp/FILESA/grp.txt
+run     fstat tmp/FILESA/grp.txt
 wait    6
-run     chgrp 3 /dd/tmp/FILESA/grp.txt; fstat /dd/tmp/FILESA/grp.txt
+run     chgrp 3 tmp/FILESA/grp.txt; fstat tmp/FILESA/grp.txt
 wait    8
 snap
 
@@ -480,11 +520,13 @@ run     echo "1" >> /dd/tmp/FILESA/cat.txt; echo '"Programming" #( "B0001" "B000
 wait    3
 run     Ascii2Libr -outfile /dd/tmp/FILESA/cat.libr < /dd/tmp/FILESA/cat.txt
 wait    10
+run     builtin cd /dd
+wait    1
 run     clear
 wait    1
-run     cat /dd/tmp/FILESA/cat.txt | head -n 4
+run     cat tmp/FILESA/cat.txt | head -n 4
 wait    5
-run     C=/dd/tmp/FILESA
+run     C=tmp/FILESA
 wait    2
 run     Ascii2Libr -outfile $C/cat2.libr < $C/cat.txt; ls -l $C/cat2.libr
 wait    12
@@ -515,9 +557,11 @@ run     echo "1" >> /dd/tmp/FILESA/cat.txt; echo '"Programming" #( "B0001" "B000
 wait    3
 run     Ascii2Libr -outfile /dd/tmp/FILESA/cat.libr < /dd/tmp/FILESA/cat.txt
 wait    10
+run     builtin cd /dd
+wait    1
 run     clear
 wait    1
-run     Libr2Ascii -infile /dd/tmp/FILESA/cat.libr | head -n 22
+run     Libr2Ascii -infile tmp/FILESA/cat.libr | head -n 22
 wait    12
 snap
 
@@ -543,9 +587,11 @@ run     echo "1" >> /dd/tmp/FILESA/cat.txt; echo '"Programming" #( "B0001" "B000
 wait    3
 run     Ascii2Libr -outfile /dd/tmp/FILESA/cat.libr < /dd/tmp/FILESA/cat.txt
 wait    10
+run     builtin cd /dd
+wait    1
 run     clear
 wait    1
-run     Librarian -infile /dd/tmp/FILESA/cat.libr
+run     Librarian -infile tmp/FILESA/cat.libr
 wait    8
 keys    \016\016
 wait    3
@@ -578,9 +624,11 @@ run     echo "1" >> /dd/tmp/FILESA/cat.txt; echo '"Programming" #( "B0001" "B000
 wait    3
 run     Ascii2Libr -outfile /dd/tmp/FILESA/cat.libr < /dd/tmp/FILESA/cat.txt
 wait    10
+run     builtin cd /dd
+wait    1
 run     clear
 wait    1
-run     EditLibr -editfile /dd/tmp/FILESA/cat.libr
+run     EditLibr -editfile tmp/FILESA/cat.libr
 wait    8
 keys    \016\016\016\016\016\016
 wait    3
@@ -614,9 +662,11 @@ run     echo "1" >> /dd/tmp/FILESA/cat.txt; echo '"Programming" #( "B0001" "B000
 wait    3
 run     Ascii2Libr -outfile /dd/tmp/FILESA/cat.libr < /dd/tmp/FILESA/cat.txt
 wait    10
+run     builtin cd /dd
+wait    1
 run     clear
 wait    1
-run     PrintCards -infile /dd/tmp/FILESA/cat.libr | head -n 22
+run     PrintCards -infile tmp/FILESA/cat.libr | head -n 22
 wait    12
 snap
 
@@ -648,9 +698,11 @@ run     rm -f /dd/tmp/FILESA/tpl > /nil 2>/nil
 wait    3
 run     echo '%title' > /dd/tmp/FILESA/tpl; echo '  by %author' >> /dd/tmp/FILESA/tpl; echo '  %publisher, %city, %year   [%id]' >> /dd/tmp/FILESA/tpl
 wait    5
+run     builtin cd /dd
+wait    1
 run     clear
 wait    1
-run     C=/dd/tmp/FILESA
+run     C=tmp/FILESA
 wait    2
 run     cat $C/tpl
 wait    5

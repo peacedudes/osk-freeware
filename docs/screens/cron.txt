@@ -1,4 +1,3 @@
-$ cat /dd/usr/lib/crontab
 * crontab -- what cron runs, and when.
 * Empty on purpose: this collection schedules nothing for you.
 *

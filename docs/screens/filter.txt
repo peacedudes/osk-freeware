@@ -1,3 +1,3 @@
-<rom tester\rSubject: test\r\rbody\r" > /dd/tmp/MAILA/msg.txt
-$ filter -v < /dd/tmp/MAILA/msg.txt
-filter (Thu Sep  3 14:06:12 2026 su): LEAVE Cannot open temporary file /r0/filt3
+<tester\rSubject: test\r\rbody\r" > tmp/MAILA/msg.txt
+$ filter -v < tmp/MAILA/msg.txt
+filter (Sun Sep  6 02:46:08 2026 su): LEAVE Cannot open temporary file /r0/filt3

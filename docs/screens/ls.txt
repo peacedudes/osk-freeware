@@ -1,16 +1,16 @@
-ls -al /dd/SYS | head -n 18
-total 189952
-drwxrwxrwx   1 0        0            1408 Sep  3 05:23 .
-drwxrwxrwx   1 0        0            1120 Sep  3 05:27 ..
+ls -al SYS | head -n 18
+total 190976
+drwxrwxrwx   1 0        0            1440 Sep  6 03:31 .
+drwxrwxrwx   1 0        0            1440 Sep  6 03:31 ..
 -rw-rw-rw-   1 0        0              31 Aug  3 19:00 .exrc
 -rw-rw-rw-   1 0        0             213 Aug  3 19:00 .login
-drwxrwxrwx   1 0        0             160 Sep  3 05:19 ATERM
-drwxrwxrwx   1 0        0             832 Sep  3 05:19 HELP
-drwxrwxrwx   1 0        0             288 Sep  3 05:19 PEP
+drwxrwxrwx   1 0        0             160 Sep  6 02:12 ATERM
+drwxrwxrwx   1 0        0             832 Sep  6 02:12 HELP
+drwxrwxrwx   1 0        0             288 Sep  6 02:12 PEP
 -rw-rw-rw-   1 0        0             414 Aug  3 19:00 README-bootlog
-drwxrwxrwx   1 0        0             288 Sep  3 05:19 TERM
-drwxrwxrwx   1 0        0             384 Sep  3 05:19 TEX
-drwxrwxrwx   1 0        0             320 Sep  3 05:19 UUCP
+drwxrwxrwx   1 0        0             288 Sep  6 02:12 TERM
+drwxrwxrwx   1 0        0             384 Sep  6 02:12 TEX
+drwxrwxrwx   1 0        0             352 Sep  6 02:12 UUCP
 -rw-rw-rw-   1 0        0             343 Aug  3 19:00 birthdays
 -rw-rw-rw-   1 0        0               0 Aug  3 19:00 bootlog
 -rw-rw-rw-   1 0        0             717 Aug  3 19:00 cal.holidays

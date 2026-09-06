@@ -1,4 +1,4 @@
-$ bcheck /dd/SRC/keep/about.c | head -n 16
+bcheck SRC/keep/about.c | head -n 16
 00001: 00  /* about -- everything this collection knows about one program, on o.
 00002: 00   *
 00003: 00   * Written for the OS-9 freeware collection, 2026-08-22. Microware C.

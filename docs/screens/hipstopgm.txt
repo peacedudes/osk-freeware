@@ -1,2 +1,2 @@
-hipstopgm /dd/tmp/NPIB/nr.ppm
+hipstopgm tmp/NPIB/nr.ppm
 hipstopgm: error reading header

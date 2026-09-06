@@ -1,4 +1,4 @@
-dotilde < /dd/tmp/MAILA/dt.txt
+dotilde < tmp/MAILA/dt.txt
 Unrecognized tilde command
 
 Continuing...type "." or <ESC> to end message...

@@ -1,14 +1,14 @@
-zoo_2.1 a /dd/tmp/ARC/z2.zoo /dd/SYS/motd
-Zoo:  /dd/SYS/motd --  ( 0%) added
-$ booz l /dd/tmp/ARC/z2.zoo
+zoo_2.1 a tmp/ARC/z2.zoo SYS/motd
+Zoo:  SYS/motd --  ( 0%) added
+$ booz l tmp/ARC/z2.zoo
 Length    CF  Size Now  Date      Time
 --------  --- --------  --------- --------
       40   0%       40   3 Aug 26 19:00:00  motd
-$ fiz /dd/tmp/ARC/z2.zoo
+$ fiz tmp/ARC/z2.zoo
 ****************
       20: DIR  [] ==> 196607
 ****************
-      42: DIR [/dd/SYS] [motd] ==>  121
-     121: DATA
+      42: DIR [SYS] [motd] ==>  117
+     117: DATA
 ****************
-     161: DIR  [] ==>    0
+     157: DIR  [] ==>    0

@@ -1,10 +1,10 @@
-$ cpr /dd/SRC/keep/about.c | head -n 16
+cpr SRC/keep/about.c | head -n 16
 
-Table of  Contents                                     Thu Sep  3 06:18:33 2026
+Table of  Contents                                     Sun Sep  6 03:05:05 2026
 
 
 
-    File: /dd/SRC/keep/about.c                                   Page    1
+    File: SRC/keep/about.c                                       Page    1
         exists ..........................................    1
         is_dir ..........................................    2
         samepath ........................................    2

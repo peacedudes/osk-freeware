@@ -142,11 +142,13 @@ cap     name you give, which is why it looks as though it wrote nothing:
 cap     `gen -p demo' leaves demo.c, whose head is shown here.
 run     rm -f /dd/tmp/SYSB/demo.c > /nil 2>/nil; mkdir -p /dd/tmp/SYSB > /nil 2>/nil
 wait    3
+run     builtin cd /dd
+wait    1
 run     clear
 wait    1
-run     gen -p /dd/tmp/SYSB/demo
+run     gen -p tmp/SYSB/demo
 wait    5
-run     cat /dd/tmp/SYSB/demo.c | head -n 16
+run     cat tmp/SYSB/demo.c | head -n 16
 wait    6
 shot    getsys
 cap     getsys reports OS-9's system globals, reading the global page
@@ -195,9 +197,11 @@ cap     into a scratch directory, and keep names each file it wrote and
 cap     records it so drop can put it back.
 run     rm -f /dd/SYS/kept; rm -f /dd/tmp/SYSB/kp/CMDS/greg > /nil 2>/nil; mkdir -p /dd/tmp/SYSB > /nil 2>/nil
 wait    3
+run     builtin cd /dd
+wait    1
 run     clear
 wait    1
-run     keep -p /dd/tmp/SYSB/kp greg
+run     keep -p tmp/SYSB/kp greg
 wait    6
 shot    kept
 size    30 80
@@ -229,17 +233,29 @@ wait    3
 shot    map
 cap     map shows the blocks a file occupies -- not a memory map, whatever
 cap     the name suggests.
-run     map -e /dd/DOC/INDEX
+run     builtin cd /dd
+wait    1
+run     clear
+wait    1
+run     map -e DOC/INDEX
 wait    5
 shot    modinfo
 cap     An OS-9 module header read back: name, type, size, edition and CRC.
 cap     Every program on this disk is a module like this one.
-run     modinfo /dd/CMDS/today
+run     builtin cd /dd
+wait    1
+run     clear
+wait    1
+run     modinfo CMDS/today
 wait    3
 shot    names
 cap     names lists the modules inside a file. os9lib is the FORTRAN
 cap     runtime, and it holds many.
-run     names /dd/CMDS/os9lib
+run     builtin cd /dd
+wait    1
+run     clear
+wait    1
+run     names CMDS/os9lib
 wait    5
 kill
 shot    ob68kdemo
@@ -255,7 +271,11 @@ shot    passwd
 cap     passwd changes a login password in SYS/password.  It matches on the
 cap     user name, and the file it edits is plain text you can read here,
 cap     shown with passwd's command format.
-run     cat /dd/SYS/password
+run     builtin cd /dd
+wait    1
+run     clear
+wait    1
+run     cat SYS/password
 wait    5
 run     passwd -?
 wait    6
@@ -295,13 +315,17 @@ cap     so the whole exchange fits on one screen. read_mail must be given
 cap     its answer ON STANDARD INPUT -- `N' from a file returns, and so does
 cap     `n', while read_mail with NO input at all re-prompts without bound
 cap     and fills a capture with four megabytes of the same question.
-run     exrecover -r /dd/tmp/nothing
+run     builtin cd /dd
+wait    1
+run     clear
+wait    1
+run     exrecover -r tmp/nothing
 wait    8
-run     head -n 7 /dd/SPOOL/MAIL/tester > /dd/MAIL/mail_tester
+run     head -n 7 SPOOL/MAIL/tester > MAIL/mail_tester
 wait    5
-run     echo "N" > /dd/tmp/rm.in
+run     echo "N" > tmp/rm.in
 wait    4
-run     read_mail < /dd/tmp/rm.in
+run     read_mail < tmp/rm.in
 wait    10
 shot    sddemo
 cap     White's Speedisk 2.10, a disk defragmenter, drawing the map of a
@@ -320,9 +344,13 @@ cap     spline fits a curve through points and writes PostScript -- the
 cap     `%!' at the head of the line is the PostScript magic.  It writes
 cap     the same stream whatever it is given, including -?, so it never
 cap     tells you what it wants.
-run     echo "0 0" > /dd/tmp/pts
+run     builtin cd /dd
+wait    1
+run     clear
+wait    1
+run     echo "0 0" > tmp/pts
 wait    2
-run     spline /dd/tmp/pts | head -n 14
+run     spline tmp/pts | head -n 14
 wait    5
 shot    sqrtx
 cap     A square-root demonstration -- one of the small programs the forums
@@ -335,7 +363,11 @@ cap     in order.  It prints the heading and no rows for every file tried
 cap     here: os9exec's RBF does not hand back the file descriptor sector,
 cap     so there is nothing for ssl to list.  `map -e' answers the same
 cap     question and does work; it has its own card.
-run     ssl /dd/DOC/INDEX
+run     builtin cd /dd
+wait    1
+run     clear
+wait    1
+run     ssl DOC/INDEX
 wait    4
 shot    sysid
 cap     sysid asks the kernel to identify itself through F$SysID and prints
@@ -401,7 +433,11 @@ shot    version
 cap     version prints a module's own edition number -- `version <module>'
 cap     reads the edition byte from the module header, whatever the file is
 cap     named.
-run     version /dd/CMDS/today
+run     builtin cd /dd
+wait    1
+run     clear
+wait    1
+run     version CMDS/today
 wait    4
 shot    yagi
 cap     yagi designs a Yagi antenna to DL6WU's method: give it a frequency,
@@ -426,19 +462,23 @@ cap     programs -- you cannot run them -- so this is what they look like to
 cap     `modinfo': name, type, edition and CRC. cio and math ship here by
 cap     Microware's permission; SOURCES.txt records the exchange.  All seven
 cap     are asked for below, one line each
-run     modinfo /dd/CMDS/cio | head -n 6
+run     builtin cd /dd
+wait    1
+run     clear
+wait    1
+run     modinfo CMDS/cio | head -n 6
 wait    12
-run     modinfo /dd/CMDS/csl | grep -a "name\|Edition\|size"
+run     modinfo CMDS/csl | grep -a "name\|Edition\|size"
 wait    12
-run     modinfo /dd/CMDS/csl020 | grep -a "name\|Edition\|size"
+run     modinfo CMDS/csl020 | grep -a "name\|Edition\|size"
 wait    12
-run     modinfo /dd/CMDS/math | grep -a "name\|Edition\|size"
+run     modinfo CMDS/math | grep -a "name\|Edition\|size"
 wait    12
-run     modinfo /dd/CMDS/math881 | grep -a "name\|Edition\|size"
+run     modinfo CMDS/math881 | grep -a "name\|Edition\|size"
 wait    12
-run     modinfo /dd/CMDS/os9lib | grep -a "name\|Edition\|size"
+run     modinfo CMDS/os9lib | grep -a "name\|Edition\|size"
 wait    12
-run     modinfo /dd/CMDS/rtfdat | grep -a "name\|Edition\|size"
+run     modinfo CMDS/rtfdat | grep -a "name\|Edition\|size"
 wait    12
 shot    drivers
 for     keydrv.mm1 msdrv.901_340 msdrv_340.901.ms rb37c65 scsi_mm1a snddrv windio.52
@@ -446,19 +486,23 @@ cap     The MM/1 drivers -- keyboard, mouse, floppy, SCSI, sound and the
 cap     windowing terminal.  They are device drivers for hardware that is
 cap     not here, so `modinfo' is what there is to show: type $C (device
 cap     driver) rather than $1 (program).  Each is asked for, one line apiece.
-run     modinfo /dd/CMDS/MM1/keydrv.mm1 | head -n 4
+run     builtin cd /dd
+wait    1
+run     clear
+wait    1
+run     modinfo CMDS/MM1/keydrv.mm1 | head -n 4
 wait    12
-run     modinfo /dd/CMDS/MM1/msdrv.901_340 | head -n 4
+run     modinfo CMDS/MM1/msdrv.901_340 | head -n 4
 wait    12
-run     modinfo /dd/CMDS/MM1/rb37c65 | head -n 4
+run     modinfo CMDS/MM1/rb37c65 | head -n 4
 wait    12
-run     modinfo /dd/CMDS/MM1/scsi_mm1a | head -n 4
+run     modinfo CMDS/MM1/scsi_mm1a | head -n 4
 wait    12
-run     modinfo /dd/CMDS/MM1/snddrv | head -n 4
+run     modinfo CMDS/MM1/snddrv | head -n 4
 wait    12
-run     modinfo /dd/CMDS/MM1/windio.52 | head -n 4
+run     modinfo CMDS/MM1/windio.52 | head -n 4
 wait    12
-run     modinfo /dd/CMDS/MM1/msdrv_340.901.ms | head -n 4
+run     modinfo CMDS/MM1/msdrv_340.901.ms | head -n 4
 wait    12
 shot    load
 cap     load puts a MODULE in the module directory so that a program which
@@ -480,9 +524,13 @@ for     ptxm wn.stb
 cap     Two more modules that are not programs: `ptxm', Nick Holgate's Path
 cap     Table eXtension Module, which `ptxminst' installs, and `wn.stb', the
 cap     symbol table that ships beside the WN web server.
-run     modinfo /dd/CMDS/ptxm | head -n 12
+run     builtin cd /dd
+wait    1
+run     clear
+wait    1
+run     modinfo CMDS/ptxm | head -n 12
 wait    12
-run     modinfo /dd/CMDS/NETWORK/wn.stb | head -n 4
+run     modinfo CMDS/NETWORK/wn.stb | head -n 4
 wait    10
 shot    mtst
 for     mtst
@@ -568,7 +616,11 @@ cap     cron is a scheduling daemon: it reads SYS/crontab, then forks each
 cap     command at its minute, hour and day and runs until it is stopped.
 cap     It is not run here -- there is no screen for a daemon that waits --
 cap     so the screen shows the crontab it would act on.
-run     cat /dd/usr/lib/crontab
+run     builtin cd /dd
+wait    1
+run     clear
+wait    1
+run     cat usr/lib/crontab
 wait    5
 shot    setime
 cap     setime sets the system clock.  It prompts with the field order it
@@ -591,11 +643,13 @@ run     rm -rf /dd/tmp/UTILA/cmb > /nil 2>/nil
 run     mkdir -p /dd/tmp/UTILA/cmb > /nil 2>/nil
 run     printf 'AAAAAAAA' > /dd/tmp/UTILA/cmb/even
 run     printf 'BBBBBBBB' > /dd/tmp/UTILA/cmb/odd
+run     builtin cd /dd
+wait    1
 run     clear
 wait    1
-run     combine /dd/tmp/UTILA/cmb/even /dd/tmp/UTILA/cmb/odd /dd/tmp/UTILA/cmb/mix
+run     combine tmp/UTILA/cmb/even tmp/UTILA/cmb/odd tmp/UTILA/cmb/mix
 wait    3
-run     cat /dd/tmp/UTILA/cmb/mix; echo
+run     cat tmp/UTILA/cmb/mix; echo
 wait    3
 shot    demerge
 cap     demerge splits a file of several OS-9 modules back into one file
@@ -670,9 +724,13 @@ cap     lgrep lists the files a pattern appears in; its banner claims the
 cap     same result as `grep -l'.  It prints nothing even for a string
 cap     that is present, so `grep -l' is the one to reach for.
 cap     DOC/README-GREP compares the searchers.
+run     builtin cd /dd
+wait    1
+run     clear
+wait    1
 run     lgrep -?
 wait    3
-run     lgrep ksh /dd/SYS/password; echo "found nothing, status $?"
+run     lgrep ksh SYS/password; echo "found nothing, status $?"
 wait    3
 shot    suse
 cap     suse is meant to print a program's usage line.  It prints nothing

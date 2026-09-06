@@ -20,5 +20,5 @@
 
 gnuplot> set terminal postscript
 Terminal type set to 'postscript'
-gnuplot> set output "/dd/tmp/plot.ps"
+gnuplot> set output "tmp/plot.ps"
 gnuplot>

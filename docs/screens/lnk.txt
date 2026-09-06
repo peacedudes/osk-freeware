@@ -2,4 +2,5 @@
 $ load /dd/CMDS/os9lib
 $ lnk /dd/tmp/CMPA/div.f
 l68 -l=/h0/LIB/sys.l /h0/LIB/rtfstart.r -o=/h0/CMDS//dd/tmp/CMPA/div.f /dd/tmp/r
+l68: nowhere found
  STOP: linking aborted

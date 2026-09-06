@@ -1,22 +1,18 @@
-$ modinfo /dd/CMDS/cio | head -n 6
---------------------------------- /dd/CMDS/cio  - - - - - - - - - - - - - - - --
+----------------------------------- CMDS/cio  - - - - - - - - - - - - - - - - --
 Module name           = cio
 System revision       = 1
 Module size           = 18058
 Owner Id              = 1.0
 Offset to module name = 00004396H
-$ modinfo /dd/CMDS/csl | grep -a "name\|Edition\|size"
-grep: illegal option -- a
+$ grep: illegal option -- a
 usage: grep [-[[AB] ]<num>] [-[CEFGVchilnqsvwx]] [-[ef]] <expr> [<files...>]
-$ modinfo /dd/CMDS/csl020 | grep -a "name\|Edition\|size"
-grep: illegal option -- a
+$ grep: illegal option -- a
 usage: grep [-[[AB] ]<num>] [-[CEFGVchilnqsvwx]] [-[ef]] <expr> [<files...>]
-$ modinfo /dd/CMDS/math | grep -a "name\|Edition\|size"
-grep: illegal option -- a
+$ grep: illegal option -- a
 usage: grep [-[[AB] ]<num>] [-[CEFGVchilnqsvwx]] [-[ef]] <expr> [<files...>]
-$ modinfo /dd/CMDS/math881 | grep -a "name\|Edition\|size"
-grep: illegal option -- a
+$ grep: illegal option -- a
 usage: grep [-[[AB] ]<num>] [-[CEFGVchilnqsvwx]] [-[ef]] <expr> [<files...>]
-$ modinfo /dd/CMDS/os9lib | grep -a "name\|Edition\|size"
-grep: illegal option -- a
+$ grep: illegal option -- a
+usage: grep [-[[AB] ]<num>] [-[CEFGVchilnqsvwx]] [-[ef]] <expr> [<files...>]
+$ grep: illegal option -- a
 usage: grep [-[[AB] ]<num>] [-[CEFGVchilnqsvwx]] [-[ef]] <expr> [<files...>]

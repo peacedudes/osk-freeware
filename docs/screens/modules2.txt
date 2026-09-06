@@ -1,5 +1,4 @@
-$ modinfo /dd/CMDS/ptxm | head -n 12
--------------------------------- /dd/CMDS/ptxm  - - - - - - - - - - - - - - - --
+---------------------------------- CMDS/ptxm  - - - - - - - - - - - - - - - - --
 Module name           = Ptxm
 System revision       = 1
 Module size           = 2886
@@ -11,5 +10,4 @@ Attribute/Revision    = a000H   reentrant  execute in supervisor state
 Edition               = 3
 Comment string offset = 00000000H
 Symbol table offset   = 00000000H
-$ modinfo /dd/CMDS/NETWORK/wn.stb | head -n 4
-modinfo: Cant open ! Errno = 80
+$ modinfo: Cant open ! Errno = 80

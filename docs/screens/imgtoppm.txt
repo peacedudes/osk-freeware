@@ -1,2 +1,2 @@
-imgtoppm /dd/tmp/NPIB/none.img
-imgtoppm: /dd/tmp/NPIB/none.img -
+imgtoppm tmp/NPIB/none.img
+imgtoppm: tmp/NPIB/none.img -

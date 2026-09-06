@@ -1,10 +1,10 @@
-$ pnmtofits /dd/tmp/base.pgm > /dd/tmp/t.fits
-$ fitstopnm /dd/tmp/t.fits | pnmfile
+pnmtofits tmp/base.pgm > tmp/t.fits
+$ fitstopnm tmp/t.fits | pnmfile
 fitstopnm: writing PGM file
 stdin:  PGM raw, 48 by 24  maxval 255
-$ pnmtoxwd /dd/tmp/base.ppm > /dd/tmp/t.xwd
+$ pnmtoxwd tmp/base.ppm > tmp/t.xwd
 pnmtoxwd: computing colormap...
 pnmtoxwd: 6 colors found
-$ xwdtopnm /dd/tmp/t.xwd | pnmfile
+$ xwdtopnm tmp/t.xwd | pnmfile
 xwdtopnm: writing PPM file
 stdin:  PPM raw, 48 by 24  maxval 255

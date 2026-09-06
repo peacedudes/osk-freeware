@@ -1,4 +1,4 @@
-$ rdoc /dd/SRC/keep/keep.c | tail -l=24
+rdoc SRC/keep/keep.c | tail -l=24
        case  break
         ... the same line 4 times over
        case

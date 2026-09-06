@@ -1,7 +1,7 @@
-$ pgmramp -lr 40 20 > /dd/tmp/ramp.pgm
-$ pgmtopbm -threshold /dd/tmp/ramp.pgm > /dd/tmp/ramp.pbm
-$ ppmpat -gingham2 40 20 > /dd/tmp/ging.ppm
-$ pnmfile /dd/tmp/ramp.pgm /dd/tmp/ramp.pbm /dd/tmp/ging.ppm
-/dd/tmp/ramp.pgm:       PGM raw, 40 by 20  maxval 255
-/dd/tmp/ramp.pbm:       PBM raw, 40 by 20
-/dd/tmp/ging.ppm:       PPM raw, 40 by 20  maxval 255
+pgmramp -lr 40 20 > tmp/ramp.pgm
+$ pgmtopbm -threshold tmp/ramp.pgm > tmp/ramp.pbm
+$ ppmpat -gingham2 40 20 > tmp/ging.ppm
+$ pnmfile tmp/ramp.pgm tmp/ramp.pbm tmp/ging.ppm
+tmp/ramp.pgm:   PGM raw, 40 by 20  maxval 255
+tmp/ramp.pbm:   PBM raw, 40 by 20
+tmp/ging.ppm:   PPM raw, 40 by 20  maxval 255

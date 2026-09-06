@@ -1,5 +1,5 @@
-$ sum /dd/SYS/motd /dd/SYS/holidays /dd/SYS/birthdays /dd/DOC/INDEX
-34333     1 /dd/SYS/motd
-11804     1 /dd/SYS/holidays
-21283     1 /dd/SYS/birthdays
-59734   162 /dd/DOC/INDEX
+sum SYS/motd SYS/holidays SYS/birthdays DOC/INDEX
+34333     1 SYS/motd
+11804     1 SYS/holidays
+21283     1 SYS/birthdays
+27104   145 DOC/INDEX

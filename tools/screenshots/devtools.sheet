@@ -117,26 +117,30 @@ cap     archive beside the file -- note_v, because OS-9 has no comma in a
 cap     file name -- and removes the working file.
 run     rm -f /dd/tmp/DEV/rcs/note /dd/tmp/DEV/rcs/note_v; mkdir -p /dd/tmp/DEV/rcs > /nil 2>/nil; printf "Twas brillig, and the slithy toves\r" > /dd/tmp/DEV/rcs/note
 wait    3
+run     builtin cd /dd
+wait    1
 run     clear
 wait    1
-run     ci /dd/tmp/DEV/rcs/note
+run     ci tmp/DEV/rcs/note
 wait    6
 send    first draft\r
 wait    3
 send    .\r
 wait    8
-run     ls -l /dd/tmp/DEV/rcs
+run     ls -l tmp/DEV/rcs
 wait    4
 
 shot    co
 cap     RCS: checking the file out again from its archive.
 run     rm -f /dd/tmp/DEV/rcs/note /dd/tmp/DEV/rcs/note_v; mkdir -p /dd/tmp/DEV/rcs > /nil 2>/nil; printf "Twas brillig, and the slithy toves\r" > /dd/tmp/DEV/rcs/note; ci -t-draft /dd/tmp/DEV/rcs/note < /nil
 wait    10
+run     builtin cd /dd
+wait    1
 run     clear
 wait    1
-run     co /dd/tmp/DEV/rcs/note_v
+run     co tmp/DEV/rcs/note_v
 wait    8
-run     ls -l /dd/tmp/DEV/rcs; cat /dd/tmp/DEV/rcs/note
+run     ls -l tmp/DEV/rcs; cat tmp/DEV/rcs/note
 wait    4
 
 shot    rlog
@@ -145,9 +149,11 @@ cap     RCS: the history of an archive -- head revision, locks, the
 cap     description and each revision's log.
 run     rm -f /dd/tmp/DEV/rcs/note /dd/tmp/DEV/rcs/note_v; mkdir -p /dd/tmp/DEV/rcs > /nil 2>/nil; printf "Twas brillig, and the slithy toves\r" > /dd/tmp/DEV/rcs/note; ci -t-draft /dd/tmp/DEV/rcs/note < /nil
 wait    10
+run     builtin cd /dd
+wait    1
 run     clear
 wait    1
-run     rlog /dd/tmp/DEV/rcs/note_v
+run     rlog tmp/DEV/rcs/note_v
 wait    8
 
 shot    rcsident
@@ -155,9 +161,11 @@ cap     RCS: looks for $Id$-style keywords in a file and prints them;
 cap     this archive carries none, and it says so.
 run     rm -f /dd/tmp/DEV/rcs/note /dd/tmp/DEV/rcs/note_v; mkdir -p /dd/tmp/DEV/rcs > /nil 2>/nil; printf "Twas brillig, and the slithy toves\r" > /dd/tmp/DEV/rcs/note; ci -t-draft /dd/tmp/DEV/rcs/note < /nil
 wait    10
+run     builtin cd /dd
+wait    1
 run     clear
 wait    1
-run     rcsident /dd/tmp/DEV/rcs/note_v
+run     rcsident tmp/DEV/rcs/note_v
 wait    6
 
 shot    rcs
@@ -173,9 +181,11 @@ cap     running co through a shell with Microware's redirection syntax,
 cap     which no shell here understands, and stops there.
 run     rm -f /dd/tmp/DEV/rcs/note /dd/tmp/DEV/rcs/note_v; mkdir -p /dd/tmp/DEV/rcs > /nil 2>/nil; printf "Twas brillig, and the slithy toves\r" > /dd/tmp/DEV/rcs/note; ci -t-draft /dd/tmp/DEV/rcs/note < /nil; co /dd/tmp/DEV/rcs/note_v > /nil
 wait    12
+run     builtin cd /dd
+wait    1
 run     clear
 wait    1
-run     rcsdiff /dd/tmp/DEV/rcs/note_v
+run     rcsdiff tmp/DEV/rcs/note_v
 wait    8
 
 shot    rcsmerge
@@ -190,24 +200,34 @@ cap     The C beautifier: it indents C that has none, reading standard
 cap     input and writing standard output.
 run     mkdir -p /dd/tmp/DEV > /nil 2>/nil; echo 'int main(){int i;for(i=0;i<3;i++){if(i)printf("%d ",i);else puts("zero");}return 0;}' > /dd/tmp/DEV/ugly.c
 wait    3
+run     builtin cd /dd
+wait    1
 run     clear
 wait    1
-run     cat /dd/tmp/DEV/ugly.c
+run     cat tmp/DEV/ugly.c
 wait    3
-run     cb < /dd/tmp/DEV/ugly.c
+run     cb < tmp/DEV/ugly.c
 wait    8
 
 shot    indent
 size    30 80
 cap     GNU indent reformatting C source to a house style: the head of
 cap     what it makes of about.c, with -st sending it to the screen.
-run     indent /dd/SRC/keep/about.c -st | head -n 20
+run     builtin cd /dd
+wait    1
+run     clear
+wait    1
+run     indent SRC/keep/about.c -st | head -n 20
 wait    15
 
 shot    cpr
 cap     Prints C source as a listing with a title, page numbers and line
 cap     numbers, for paper: the head of one page.
-run     cpr /dd/SRC/keep/about.c | head -n 16
+run     builtin cd /dd
+wait    1
+run     clear
+wait    1
+run     cpr SRC/keep/about.c | head -n 16
 wait    8
 
 shot    unifdef
@@ -215,11 +235,13 @@ cap     Resolves #ifdef in C source for one setting of a symbol and leaves
 cap     the rest alone: -dOSK keeps the OSK branch, -uOSK the other.
 run     mkdir -p /dd/tmp/DEV > /nil 2>/nil; printf "#ifdef OSK\rint on_os9 = 1;\r#else\rint on_os9 = 0;\r#endif\rint always = 2;\r" > /dd/tmp/DEV/ifd.c
 wait    3
+run     builtin cd /dd
+wait    1
 run     clear
 wait    1
-run     cat /dd/tmp/DEV/ifd.c
+run     cat tmp/DEV/ifd.c
 wait    3
-run     unifdef -dOSK /dd/tmp/DEV/ifd.c
+run     unifdef -dOSK tmp/DEV/ifd.c
 wait    5
 
 shot    ifdef
@@ -227,11 +249,13 @@ cap     The same job by another author: -Dsymbol defines, -Usymbol
 cap     undefines, and -t prints the table it worked from.
 run     mkdir -p /dd/tmp/DEV > /nil 2>/nil; printf "#ifdef OSK\rint on_os9 = 1;\r#else\rint on_os9 = 0;\r#endif\rint always = 2;\r" > /dd/tmp/DEV/ifd.c
 wait    3
+run     builtin cd /dd
+wait    1
 run     clear
 wait    1
-run     ifdef -DOSK /dd/tmp/DEV/ifd.c
+run     ifdef -DOSK tmp/DEV/ifd.c
 wait    5
-run     ifdef -UOSK /dd/tmp/DEV/ifd.c
+run     ifdef -UOSK tmp/DEV/ifd.c
 wait    5
 
 shot    patch
@@ -241,23 +265,33 @@ cap     then cannot finish: it writes a temporary file and cannot read it
 cap     back.  The file it was patching is left as it was.
 run     mkdir -p /dd/tmp/DEV > /nil 2>/nil; printf "one\rtwo\rthree\r" > /dd/tmp/DEV/p1; printf "one\rTWO\rthree\r" > /dd/tmp/DEV/p2; diff /dd/tmp/DEV/p1 /dd/tmp/DEV/p2 > /dd/tmp/DEV/p.diff
 wait    6
+run     builtin cd /dd
+wait    1
 run     clear
 wait    1
-run     cat /dd/tmp/DEV/p.diff
+run     cat tmp/DEV/p.diff
 wait    4
-run     patch /dd/tmp/DEV/p1 /dd/tmp/DEV/p.diff
+run     patch tmp/DEV/p1 tmp/DEV/p.diff
 wait    10
 
 shot    bcheck
 cap     Counts brackets in a C source, line by line, so a mismatch can be
 cap     found: the running depth beside each line.
-run     bcheck /dd/SRC/keep/about.c | head -n 16
+run     builtin cd /dd
+wait    1
+run     clear
+wait    1
+run     bcheck SRC/keep/about.c | head -n 16
 wait    8
 
 shot    ccheck
 cap     Checks C source for mismatched brackets, quotes and comment
 cap     markers, and for indentation that disagrees with the nesting.
-run     ccheck /dd/SRC/keep/keep.c
+run     builtin cd /dd
+wait    1
+run     clear
+wait    1
+run     ccheck SRC/keep/keep.c
 wait    8
 
 shot    ctags
@@ -288,7 +322,11 @@ shot    cxref
 size    30 80
 cap     A C cross-reference: the source listed with line numbers, then
 cap     every symbol with the lines it appears on.
-run     cxref /dd/SRC/keep/about.c | head -n 24
+run     builtin cd /dd
+wait    1
+run     clear
+wait    1
+run     cxref SRC/keep/about.c | head -n 24
 wait    10
 
 shot    rdoc
@@ -297,7 +335,11 @@ cap     Reverse documentation: given C source it prints the control
 cap     structure as an indented skeleton -- every if, else, for, switch
 cap     and case in place, the code between them taken away.  The tail of
 cap     what it makes of keep.c.
-run     rdoc /dd/SRC/keep/keep.c | tail -l=24
+run     builtin cd /dd
+wait    1
+run     clear
+wait    1
+run     rdoc SRC/keep/keep.c | tail -l=24
 wait    90
 
 shot    xrf
@@ -328,13 +370,21 @@ shot    libsplit
 cap     Splits a library of the newer ROF type into its object files.
 cap     The libraries on this disk are the older type, and it says so:
 cap     unpacklib is the one for those.
-run     libsplit /dd/LIB/blarslib.l
+run     builtin cd /dd
+wait    1
+run     clear
+wait    1
+run     libsplit LIB/blarslib.l
 wait    6
 
 shot    sdb
 cap     SDB 2.0, a symbolic debugger, opened on a program: its prompt.
 cap     q leaves it.
-run     sdb /dd/CMDS/today
+run     builtin cd /dd
+wait    1
+run     clear
+wait    1
+run     sdb CMDS/today
 wait    8
 snap
 send    q\r
@@ -352,11 +402,13 @@ cap     Tabulates assembly source into label, opcode and argument
 cap     columns, a filter; -b for 6809 mnemonics, 68000 otherwise.
 run     mkdir -p /dd/tmp/DEV > /nil 2>/nil; printf " nam test\r start ldx #buf\rloop lda ,x+\r beq done\r bsr putc\r bra loop\rdone rts\rbuf fcc /hello/\r fcb 0\r end\r" > /dd/tmp/DEV/t.a
 wait    3
+run     builtin cd /dd
+wait    1
 run     clear
 wait    1
-run     cat /dd/tmp/DEV/t.a
+run     cat tmp/DEV/t.a
 wait    3
-run     tab -b < /dd/tmp/DEV/t.a
+run     tab -b < tmp/DEV/t.a
 wait    6
 
 shot    xlate
@@ -364,9 +416,11 @@ cap     Translates 6809 assembly source into 68000: registers mapped,
 cap     branches sized, one instruction for one.
 run     mkdir -p /dd/tmp/DEV > /nil 2>/nil; printf " nam test\r start ldx #buf\rloop lda ,x+\r beq done\r bsr putc\r bra loop\rdone rts\rbuf fcc /hello/\r fcb 0\r end\r" > /dd/tmp/DEV/t.a
 wait    3
+run     builtin cd /dd
+wait    1
 run     clear
 wait    1
-run     cat /dd/tmp/DEV/t.a
+run     cat tmp/DEV/t.a
 wait    3
-run     xlate /dd/tmp/DEV/t.a
+run     xlate tmp/DEV/t.a
 wait    6

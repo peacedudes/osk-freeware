@@ -1,10 +1,10 @@
-cat /dd/tmp/TEXTA/words | head -n 5
+cat tmp/TEXTA/words | head -n 5
 *
 *easter-46
 *easter-7
 1/1
 2/14
-$ splitalf /dd/tmp/TEXTA/words
+$ splitalf tmp/TEXTA/words
 splitalf: can't open output file(s)
-$ ls /dd/tmp/TEXTA/words*
-/dd/tmp/TEXTA/words    /dd/tmp/TEXTA/words_0
+$ ls tmp/TEXTA/words*
+tmp/TEXTA/words    tmp/TEXTA/words_0

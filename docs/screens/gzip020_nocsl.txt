@@ -1,2 +1,2 @@
-gzip020_nocsl -v /dd/tmp/ARC/g4
-/dd/tmp/ARC/g4:          64.1% -- replaced with /dd/tmp/ARC/g4.gz
+gzip020_nocsl -v tmp/ARC/g4
+tmp/ARC/g4:              63.7% -- replaced with tmp/ARC/g4.gz

@@ -84,7 +84,11 @@ cap     `inventory'.  Three Inform demonstration stories ship in
 cap     GAMES/INFORM -- dejavu, hellow and shell.  This build reads the
 cap     terminal description from termcap, and is the one to use at a
 cap     terminal.
-run     infocom.tcap /dd/GAMES/INFORM/dejavu.z3
+run     builtin cd /dd
+wait    1
+run     clear
+wait    1
+run     infocom.tcap GAMES/INFORM/dejavu.z3
 wait    8
 send    \r
 wait    4
@@ -100,7 +104,11 @@ cap     The same Z-machine interpreter without the termcap display code.  It
 cap     plays the story, but it writes the cursor codes for its status line
 cap     as literal text, which is the row of brackets down the left.  For a
 cap     readable screen use infocom.tcap; RETURN clears each [MORE].
-run     infocom /dd/GAMES/INFORM/dejavu.z3
+run     builtin cd /dd
+wait    1
+run     clear
+wait    1
+run     infocom GAMES/INFORM/dejavu.z3
 wait    8
 send    \r
 wait    5
@@ -349,11 +357,13 @@ cap     `book'.  At the end of the file it prints the position reached and
 cap     stops with `Bad move', which is how it reads end of input.
 run     mkdir -p /dd/tmp/GAMESA > /nil 2>/nil; echo "e2e4 e7e5 g1f3 b8c6 f1b5 a7a6" > /dd/tmp/GAMESA/moves
 wait    4
+run     builtin cd /dd
+wait    1
 run     clear
 wait    1
 run     gnuan
 wait    8
-send    /dd/tmp/GAMESA/moves\r
+send    tmp/GAMESA/moves\r
 wait    5
 send    2\r
 wait    4
@@ -508,11 +518,13 @@ send    list\r
 wait    8
 send    quit\r
 wait    6
+run     builtin cd /dd
+wait    1
 run     clear
 wait    1
-run     cat /dd/tmp/GAMESA/chess.lst
+run     cat tmp/GAMESA/chess.lst
 wait    5
-run     checkgame /dd/tmp/GAMESA/chess.lst
+run     checkgame tmp/GAMESA/chess.lst
 wait    10
 
 shot    game
@@ -524,9 +536,11 @@ cap     page setup and stops there, so there is nothing to print.
 cap     DOC/game has the manual page.
 run     mkdir -p /dd/tmp/GAMESA > /nil 2>/nil; echo "e2e4      0      0      0     8" > /dd/tmp/GAMESA/g.lst
 wait    4
+run     builtin cd /dd
+wait    1
 run     clear
 wait    1
-run     game /dd/tmp/GAMESA/g.lst 1 2
+run     game tmp/GAMESA/g.lst 1 2
 wait    12
 
 shot    postprint
@@ -642,7 +656,11 @@ cap     down a tree of things it already knows and makes a final guess, and
 cap     when it is wrong it asks you what you were thinking of and what
 cap     question would have told the two apart, then writes the answer back
 cap     into its data file.  A file to start from is in DOC/animal.
-run     animal /dd/DOC/animal/example
+run     builtin cd /dd
+wait    1
+run     clear
+wait    1
+run     animal DOC/animal/example
 wait    6
 send    y\r
 wait    3

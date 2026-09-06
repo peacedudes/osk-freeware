@@ -1,8 +1,8 @@
-pgmtopbm /dd/tmp/NEAB/r.pgm | pbmtoascii -2x4
-MMMHHHSk&1%&|///%:>:.::.
-MMHHH&k6$$$}$)):?\::<.::`.
-MMM9RH11S$1?(((///::'..:-
-$ pnmflip -lr /dd/tmp/NEAB/r.pgm | pgmtopbm | pbmtoascii -2x4
-   . .-:S::?)||T?$S&&19&MHMM
-  `.::-::>\:?||%Z$Z$9$6HHHMM
-  '-.`::::|%>???}$Z$&&6HHHMM
+pgmtopbm tmp/NEAB/r.pgm | pbmtoascii -2x4
+MMMR6H&1S$Z$%||%\?::/::.
+MMHM&R&k}R{)?||?/|>;-:-::.
+MMHHR&kH&%}Z{||!/i%::::. .
+$ pnmflip -lr tmp/NEAB/r.pgm | pgmtopbm | pbmtoascii -2x4
+   .. ::|S!:/||//%F&&19&MHMM
+  - ::::;:\/SSS|/Z&1&$6HHHMM
+  .-.::::::|\\\\($Z$RH&HHHMM

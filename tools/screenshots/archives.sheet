@@ -81,9 +81,11 @@ shot    cat
 cap     cat, concatenating two files to standard output.
 run     mkdir -p /dd/tmp/ARC > /nil 2>/nil; printf "one\r" > /dd/tmp/ARC/one; printf "two\r" > /dd/tmp/ARC/two
 wait    3
+run     builtin cd /dd
+wait    1
 run     clear
 wait    1
-run     cat /dd/tmp/ARC/one /dd/tmp/ARC/two
+run     cat tmp/ARC/one tmp/ARC/two
 wait    5
 
 shot    modbuster
@@ -102,29 +104,35 @@ shot    compr
 cap     compr, a second OS-9 file compressor, on the disk's index.
 run     rm -f /dd/tmp/ARC/idx3*; mkdir -p /dd/tmp/ARC > /nil 2>/nil; cp /dd/DOC/INDEX /dd/tmp/ARC/idx3
 wait    4
+run     builtin cd /dd
+wait    1
 run     clear
 wait    1
-run     compr /dd/tmp/ARC/idx3
+run     compr tmp/ARC/idx3
 wait    10
-run     ls -l /dd/tmp/ARC/idx3*
+run     ls -l tmp/ARC/idx3*
 wait    5
 
 shot    compress
 cap     compress, the LZW one, reporting what it saved.
 run     rm -f /dd/tmp/ARC/idx4*; cat /dd/DOC/INDEX > /dd/tmp/ARC/idx4
 wait    3
+run     builtin cd /dd
+wait    1
 run     clear
 wait    1
-run     compress -v /dd/tmp/ARC/idx4
+run     compress -v tmp/ARC/idx4
 wait    8
 
 shot    compress_4.0
 cap     compress 4.0, another edition of CMDS/compress, on the same file.
 run     rm -f /dd/tmp/ARC/idx5*; cat /dd/DOC/INDEX > /dd/tmp/ARC/idx5
 wait    3
+run     builtin cd /dd
+wait    1
 run     clear
 wait    1
-run     compress_4.0 -v /dd/tmp/ARC/idx5
+run     compress_4.0 -v tmp/ARC/idx5
 wait    8
 
 shot    compress_rebuilt
@@ -132,83 +140,101 @@ cap     Our own source build of compress, from the same source as
 cap     CMDS/compress -- and it writes byte for byte what that one does.
 run     rm -f /dd/tmp/ARC/idx6*; cat /dd/DOC/INDEX > /dd/tmp/ARC/idx6
 wait    3
+run     builtin cd /dd
+wait    1
 run     clear
 wait    1
-run     compress_rebuilt -v /dd/tmp/ARC/idx6
+run     compress_rebuilt -v tmp/ARC/idx6
 wait    8
 
 shot    gzip
 cap     GNU gzip on the same file, for comparison with compress.
 run     rm -f /dd/tmp/ARC/g1*; cat /dd/DOC/INDEX > /dd/tmp/ARC/g1
 wait    3
+run     builtin cd /dd
+wait    1
 run     clear
 wait    1
-run     gzip -v /dd/tmp/ARC/g1
+run     gzip -v tmp/ARC/g1
 wait    8
 
 shot    gzip68k_nocsl
 cap     gzip 1.2.4 built for the 68000, without the csl trap library.
 run     rm -f /dd/tmp/ARC/g2*; cat /dd/DOC/INDEX > /dd/tmp/ARC/g2
 wait    3
+run     builtin cd /dd
+wait    1
 run     clear
 wait    1
-run     gzip68k_nocsl -v /dd/tmp/ARC/g2
+run     gzip68k_nocsl -v tmp/ARC/g2
 wait    8
 
 shot    gzip68k_csl
 cap     The same 68000 build of gzip 1.2.4, linked against csl instead.
 run     rm -f /dd/tmp/ARC/g3*; cat /dd/DOC/INDEX > /dd/tmp/ARC/g3
 wait    3
+run     builtin cd /dd
+wait    1
 run     clear
 wait    1
-run     gzip68k_csl -v /dd/tmp/ARC/g3
+run     gzip68k_csl -v tmp/ARC/g3
 wait    8
 
 shot    gzip020_nocsl
 cap     gzip 1.2.4 built for the 68020, without csl.
 run     rm -f /dd/tmp/ARC/g4*; cat /dd/DOC/INDEX > /dd/tmp/ARC/g4
 wait    3
+run     builtin cd /dd
+wait    1
 run     clear
 wait    1
-run     gzip020_nocsl -v /dd/tmp/ARC/g4
+run     gzip020_nocsl -v tmp/ARC/g4
 wait    8
 
 shot    gzip020_csl
 cap     The 68020 build of gzip 1.2.4, linked against csl.
 run     rm -f /dd/tmp/ARC/g5*; cat /dd/DOC/INDEX > /dd/tmp/ARC/g5
 wait    3
+run     builtin cd /dd
+wait    1
 run     clear
 wait    1
-run     gzip020_csl -v /dd/tmp/ARC/g5
+run     gzip020_csl -v tmp/ARC/g5
 wait    8
 
 shot    gzipcpu32_nocsl
 cap     gzip 1.2.4 built for the CPU32, without csl.
 run     rm -f /dd/tmp/ARC/g6*; cat /dd/DOC/INDEX > /dd/tmp/ARC/g6
 wait    3
+run     builtin cd /dd
+wait    1
 run     clear
 wait    1
-run     gzipcpu32_nocsl -v /dd/tmp/ARC/g6
+run     gzipcpu32_nocsl -v tmp/ARC/g6
 wait    8
 
 shot    gzipcpu32k_csl
 cap     The CPU32 build of gzip 1.2.4, linked against csl.
 run     rm -f /dd/tmp/ARC/g7*; cat /dd/DOC/INDEX > /dd/tmp/ARC/g7
 wait    3
+run     builtin cd /dd
+wait    1
 run     clear
 wait    1
-run     gzipcpu32k_csl -v /dd/tmp/ARC/g7
+run     gzipcpu32k_csl -v tmp/ARC/g7
 wait    8
 
 shot    lha
 cap     LHa 2.08: pack, then list with the ratio.
 run     rm -f /dd/tmp/ARC/k.lzh; mkdir -p /dd/tmp/ARC > /nil 2>/nil
 wait    2
+run     builtin cd /dd
+wait    1
 run     clear
 wait    1
-run     lha a /dd/tmp/ARC/k.lzh /dd/SRC/keep/keep.c
+run     lha a tmp/ARC/k.lzh SRC/keep/keep.c
 wait    8
-run     lha l /dd/tmp/ARC/k.lzh
+run     lha l tmp/ARC/k.lzh
 wait    5
 
 shot    lharc
@@ -217,35 +243,41 @@ cap     LHarc, the older sibling of lha: pack, then list.  xlharc, a
 cap     third build of the same reader, lists the same archive.
 run     rm -f /dd/tmp/ARC/l.lzh
 wait    2
+run     builtin cd /dd
+wait    1
 run     clear
 wait    1
-run     lharc a /dd/tmp/ARC/l.lzh /dd/SYS/motd
+run     lharc a tmp/ARC/l.lzh SYS/motd
 wait    10
-run     lharc l /dd/tmp/ARC/l.lzh
+run     lharc l tmp/ARC/l.lzh
 wait    6
-run     xlharc l /dd/tmp/ARC/l.lzh
+run     xlharc l tmp/ARC/l.lzh
 wait    8
 
 shot    lharcs
 cap     C-LHarc 1.01, an older build than lha 2.08, on the same job.
 run     rm -f /dd/tmp/ARC/ls.lzh
 wait    2
+run     builtin cd /dd
+wait    1
 run     clear
 wait    1
-run     lharcs a /dd/tmp/ARC/ls.lzh /dd/SYS/motd
+run     lharcs a tmp/ARC/ls.lzh SYS/motd
 wait    10
-run     lharcs l /dd/tmp/ARC/ls.lzh
+run     lharcs l tmp/ARC/ls.lzh
 wait    6
 
 shot    zoo
 cap     zoo, packing and then listing -- compression ratio per member.
 run     rm -f /dd/tmp/ARC/k.zoo
 wait    2
+run     builtin cd /dd
+wait    1
 run     clear
 wait    1
-run     zoo a /dd/tmp/ARC/k.zoo /dd/SRC/keep/keep.c
+run     zoo a tmp/ARC/k.zoo SRC/keep/keep.c
 wait    6
-run     zoo l /dd/tmp/ARC/k.zoo
+run     zoo l tmp/ARC/k.zoo
 wait    5
 
 shot    zoo_2.1
@@ -255,13 +287,15 @@ cap     archive; booz lists it with a BARE LETTER, not a dash-letter; fiz
 cap     walks its internal directory structure.
 run     rm -f /dd/tmp/ARC/z2.zoo
 wait    2
+run     builtin cd /dd
+wait    1
 run     clear
 wait    1
-run     zoo_2.1 a /dd/tmp/ARC/z2.zoo /dd/SYS/motd
+run     zoo_2.1 a tmp/ARC/z2.zoo SYS/motd
 wait    10
-run     booz l /dd/tmp/ARC/z2.zoo
+run     booz l tmp/ARC/z2.zoo
 wait    8
-run     fiz /dd/tmp/ARC/z2.zoo
+run     fiz tmp/ARC/z2.zoo
 wait    10
 
 shot    zip
@@ -270,11 +304,13 @@ cap     temporary file over the target -- the archive is never written.
 cap     unzip reads other people's archives perfectly well.
 run     rm -rf /dd/tmp/ARC/zt; mkdir /dd/tmp/ARC/zt > /nil 2>/nil; cp /dd/SYS/motd /dd/tmp/ARC/zt/motd
 wait    5
+run     builtin cd /dd
+wait    1
 run     clear
 wait    1
-run     zip /dd/tmp/ARC/zt/test.zip /dd/tmp/ARC/zt/motd
+run     zip tmp/ARC/zt/test.zip tmp/ARC/zt/motd
 wait    12
-run     dir /dd/tmp/ARC/zt
+run     dir tmp/ARC/zt
 wait    6
 
 shot    unzip
@@ -297,9 +333,11 @@ shot    zipinfo
 cap     zipinfo on an archive: one line per member with its permissions,
 cap     zip version, size, compression method and date, and a total.
 cap     `zipinfo -v' gives the long form.
+run     builtin cd /dd
+wait    1
 run     clear
 wait    1
-run     zipinfo /dd/DOC/zip/sample.zip
+run     zipinfo DOC/zip/sample.zip
 wait    6
 
 shot    zipnote
@@ -307,9 +345,11 @@ cap     zipnote writes an archive's comments as text -- one `@ name' line
 cap     per member with its comment beneath -- and reads the same text
 cap     back with `-w' to set them.  This archive has none, so the lines
 cap     are bare.
+run     builtin cd /dd
+wait    1
 run     clear
 wait    1
-run     zipnote /dd/DOC/zip/sample.zip
+run     zipnote DOC/zip/sample.zip
 wait    6
 
 shot    zipsplit
@@ -330,9 +370,11 @@ cap     funzip unzips the first member of an archive straight through a
 cap     pipe -- `funzip < archive.zip' -- and prints it; here the first
 cap     member is unzip's own readme.  Later members are ignored, and it
 cap     says so.
+run     builtin cd /dd
+wait    1
 run     clear
 wait    1
-run     funzip < /dd/DOC/zip/sample.zip | head -n 16
+run     funzip < DOC/zip/sample.zip | head -n 16
 wait    8
 
 shot    shar
@@ -342,11 +384,13 @@ cap     every file that EXISTS, even one `cat' and `ls' both show as
 cap     world-readable.
 run     rm -f /dd/tmp/ARC/readme; mkdir -p /dd/tmp/ARC > /nil 2>/nil; cp /dd/readme /dd/tmp/ARC/readme
 wait    3
+run     builtin cd /dd
+wait    1
 run     clear
 wait    1
-run     ls -l /dd/tmp/ARC/readme
+run     ls -l tmp/ARC/readme
 wait    4
-run     shar /dd/tmp/ARC/readme
+run     shar tmp/ARC/readme
 wait    6
 
 shot    tar
@@ -354,11 +398,13 @@ cap     GNU tar 1.10 packing a directory off this disk and listing what it
 cap     wrote -- the same tar the image build uses to populate the disk.
 run     rm -f /dd/tmp/ARC/keep.tar; mkdir -p /dd/tmp/ARC > /nil 2>/nil
 wait    2
+run     builtin cd /dd
+wait    1
 run     clear
 wait    1
-run     tar cvf /dd/tmp/ARC/keep.tar /dd/SRC/keep
+run     tar cvf tmp/ARC/keep.tar SRC/keep
 wait    6
-run     tar tvf /dd/tmp/ARC/keep.tar
+run     tar tvf tmp/ARC/keep.tar
 wait    5
 
 shot    gtar
@@ -366,11 +412,13 @@ cap     Another build of GNU tar, on the same directory -- it strips the
 cap     leading slash from absolute names going into the archive.
 run     rm -f /dd/tmp/ARC/keep2.tar
 wait    2
+run     builtin cd /dd
+wait    1
 run     clear
 wait    1
-run     gtar cvf /dd/tmp/ARC/keep2.tar /dd/SRC/keep
+run     gtar cvf tmp/ARC/keep2.tar SRC/keep
 wait    6
-run     gtar tvf /dd/tmp/ARC/keep2.tar
+run     gtar tvf tmp/ARC/keep2.tar
 wait    5
 
 shot    liborder
@@ -385,7 +433,9 @@ shot    unpacklib
 cap     Splits an OS-9 library apart into its member modules -- it gets
 cap     the first two out of this one and then stops on a bad sync word
 cap     partway through.
+run     builtin cd /dd
+wait    1
 run     clear
 wait    1
-run     unpacklib -verbose /dd/LIB/blarslib.l
+run     unpacklib -verbose LIB/blarslib.l
 wait    10

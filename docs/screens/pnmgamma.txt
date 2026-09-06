@@ -1,10 +1,10 @@
-pgmtopbm /dd/tmp/NEAB/r.pgm | pbmtoascii -2x4
-MMMRM9FkRH%F$$J|||;>\/:::.:. .
-MMHMD6Fkk&Z$1|%%%%\/>\:::.::.
-MMHMHkRk6$k&/Z%|||(?:://.:.-.-
-MMHHRH&9$k$$7/%%%?/i%::::/: .-
-$ pnmgamma 0.5 /dd/tmp/NEAB/r.pgm | pgmtopbm | pbmtoascii -2x4
-MMMMMMMMMHM9M&FFDZ$|k%%\|>::-.
-MMMMMMMMHM9&HH&&&$17/|||/\\::-.
-MMMMMMMHMHRM9HFR&1%FS\\\\:::: .
-MMMMMRMM6MH6DkR6F&$\$///%:i/:.
+pgmtopbm tmp/NEAB/r.pgm | pbmtoascii -2x4
+MMMM9M&1&&&S}$)??S/|S:::-::.
+MMHRDM&1&$$S4)????S:\://:.:-`.
+MMMHRHH$FF1%}S4|||\/):::::..-.
+MMH96M&&&Z$|k$|%%>i?S:::::.-.
+$ pnmgamma 0.5 tmp/NEAB/r.pgm | pgmtopbm | pbmtoascii -2x4
+MMMMMMMMMMH6HH&&&$&Z%|||?\/:.:
+MMMMMMMMHRM&H6H&&Sk$$)):?:::.-.
+MMMMMMHM6M9MH&H&Z&\S|L||(::::-.
+MMMMMM9M96M&FM&&1$Z&4||/\\<.::

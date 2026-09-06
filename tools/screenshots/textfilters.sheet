@@ -26,7 +26,11 @@ shot    dump
 cap     dump, the hex dump, showing the head of an OS-9 program module.  The
 cap     first two bytes are the sync pattern $4AFC that marks every module,
 cap     and the module's own name sits in clear at $0044.
-run     dump /dd/CMDS/today | head -n 16
+run     builtin cd /dd
+wait    1
+run     clear
+wait    1
+run     dump CMDS/today | head -n 16
 wait    5
 
 shot    file
@@ -36,11 +40,13 @@ cap     place, a GIF with its size and colour count, a PGM image, and a
 cap     tar archive made a moment before.
 run     mkdir -p /dd/tmp/TEXTA; tar cf /dd/tmp/TEXTA/f.tar /dd/SYS/motd
 wait    6
+run     builtin cd /dd
+wait    1
 run     clear
 wait    1
-run     file /dd/CMDS/today /dd/DOC/INDEX /dd/DEMO/gulls.gif
+run     file CMDS/today DOC/INDEX DEMO/gulls.gif
 wait    6
-run     file /dd/DEMO/sphere.pgm /dd/tmp/TEXTA/f.tar
+run     file DEMO/sphere.pgm tmp/TEXTA/f.tar
 wait    6
 snap
 
@@ -52,17 +58,19 @@ cap     the records read and written.  Send its output through `>': `of='
 cap     can only name a file that already exists.
 run     mkdir -p /dd/tmp/TEXTA; echo "the quick brown fox" > /dd/tmp/TEXTA/fox.txt; echo "jumps over the lazy dog" >> /dd/tmp/TEXTA/fox.txt
 wait    3
+run     builtin cd /dd
+wait    1
 run     clear
 wait    1
-run     cat /dd/tmp/TEXTA/fox.txt
+run     cat tmp/TEXTA/fox.txt
 wait    3
-run     gdd if=/dd/tmp/TEXTA/fox.txt conv=ucase > /dd/tmp/TEXTA/up.txt
+run     gdd if=tmp/TEXTA/fox.txt conv=ucase > tmp/TEXTA/up.txt
 wait    5
-run     cat /dd/tmp/TEXTA/up.txt
+run     cat tmp/TEXTA/up.txt
 wait    3
-run     gdd if=/dd/tmp/TEXTA/fox.txt bs=8 count=1 > /dd/tmp/TEXTA/eight.txt
+run     gdd if=tmp/TEXTA/fox.txt bs=8 count=1 > tmp/TEXTA/eight.txt
 wait    5
-run     dump /dd/tmp/TEXTA/eight.txt
+run     dump tmp/TEXTA/eight.txt
 wait    4
 snap
 
@@ -71,7 +79,11 @@ cap     strings finds the runs of printable text inside a binary -- here the
 cap     type names built into `file' -- and reports each
 cap     with the offset it was found at.  `-l=n' sets the shortest run
 cap     worth reporting, so a bigger number leaves out the accidental ones.
-run     strings -l=12 /dd/CMDS/file | head -n 14
+run     builtin cd /dd
+wait    1
+run     clear
+wait    1
+run     strings -l=12 CMDS/file | head -n 14
 wait    6
 
 shot    tail
@@ -79,18 +91,24 @@ cap     tail prints the last lines of a file: `-l=3' for the last three,
 cap     twenty by default.  The whole file is above it for comparison.
 run     mkdir -p /dd/tmp/TEXTA; cat /dd/SYS/holidays | head -n 8 > /dd/tmp/TEXTA/hol.txt
 wait    3
+run     builtin cd /dd
+wait    1
 run     clear
 wait    1
-run     cat /dd/tmp/TEXTA/hol.txt
+run     cat tmp/TEXTA/hol.txt
 wait    3
-run     tail -l=3 /dd/tmp/TEXTA/hol.txt
+run     tail -l=3 tmp/TEXTA/hol.txt
 wait    5
 snap
 
 shot    wc
 cap     wc counts lines, words and bytes for each file named, and totals
 cap     them.
-run     wc /dd/DOC/INDEX /dd/DOC/ORIGINS /dd/DOC/DEPENDS /dd/SOURCES.txt
+run     builtin cd /dd
+wait    1
+run     clear
+wait    1
+run     wc DOC/INDEX DOC/ORIGINS DOC/DEPENDS SOURCES.txt
 wait    6
 
 shot    wc.cio
@@ -99,13 +117,15 @@ cap     `wc.cio < file' counts.  Named as an argument the file is ignored
 cap     and nothing is printed, which the second command shows.
 run     mkdir -p /dd/tmp/TEXTA; echo "the quick brown fox" > /dd/tmp/TEXTA/fox.txt; echo "jumps over the lazy dog" >> /dd/tmp/TEXTA/fox.txt
 wait    3
+run     builtin cd /dd
+wait    1
 run     clear
 wait    1
-run     cat /dd/tmp/TEXTA/fox.txt
+run     cat tmp/TEXTA/fox.txt
 wait    3
-run     wc.cio < /dd/tmp/TEXTA/fox.txt
+run     wc.cio < tmp/TEXTA/fox.txt
 wait    5
-run     wc.cio /dd/tmp/TEXTA/fox.txt
+run     wc.cio tmp/TEXTA/fox.txt
 wait    5
 snap
 
@@ -115,11 +135,13 @@ cap     word list or an index.  Two lines become nine words, put in order by
 cap     `sort'.
 run     mkdir -p /dd/tmp/TEXTA; echo "the quick brown fox" > /dd/tmp/TEXTA/fox.txt; echo "jumps over the lazy dog" >> /dd/tmp/TEXTA/fox.txt
 wait    3
+run     builtin cd /dd
+wait    1
 run     clear
 wait    1
-run     cat /dd/tmp/TEXTA/fox.txt
+run     cat tmp/TEXTA/fox.txt
 wait    3
-run     sepwords < /dd/tmp/TEXTA/fox.txt | sort
+run     sepwords < tmp/TEXTA/fox.txt | sort
 wait    5
 snap
 
@@ -133,13 +155,15 @@ run     mkdir -p /dd/tmp/TEXTA; rm -f /dd/tmp/TEXTA/words*; cat /dd/SYS/holidays
 wait    3
 run     sepwords < /dd/tmp/TEXTA/hol.txt | sort > /dd/tmp/TEXTA/words
 wait    4
+run     builtin cd /dd
+wait    1
 run     clear
 wait    1
-run     cat /dd/tmp/TEXTA/words | head -n 5
+run     cat tmp/TEXTA/words | head -n 5
 wait    4
-run     splitalf /dd/tmp/TEXTA/words
+run     splitalf tmp/TEXTA/words
 wait    5
-run     ls /dd/tmp/TEXTA/words*
+run     ls tmp/TEXTA/words*
 wait    4
 snap
 
@@ -148,7 +172,11 @@ cap     ape writes gibberish in the style of whatever it reads -- here the
 cap     first 12K of the Jargon File.  `-l' is how many characters must
 cap     match before it follows the source text; `-b' is how much source to
 cap     read.
-run     ape -b=12k -l=5 < /dd/VH/jargon.txt | head -n 14
+run     builtin cd /dd
+wait    1
+run     clear
+wait    1
+run     ape -b=12k -l=5 < VH/jargon.txt | head -n 14
 wait    12
 
 shot    autolf
@@ -160,13 +188,15 @@ cap     reads standard input and writes standard output; `-l' in and `-C'
 cap     out goes the other way.
 run     mkdir -p /dd/tmp/TEXTA; echo "the quick brown fox" > /dd/tmp/TEXTA/fox.txt; echo "jumps over the lazy dog" >> /dd/tmp/TEXTA/fox.txt
 wait    3
+run     builtin cd /dd
+wait    1
 run     clear
 wait    1
-run     autolf -c -C -L < /dd/tmp/TEXTA/fox.txt > /dd/tmp/TEXTA/dos.txt
+run     autolf -c -C -L < tmp/TEXTA/fox.txt > tmp/TEXTA/dos.txt
 wait    4
-run     dump /dd/tmp/TEXTA/fox.txt
+run     dump tmp/TEXTA/fox.txt
 wait    4
-run     dump /dd/tmp/TEXTA/dos.txt
+run     dump tmp/TEXTA/dos.txt
 wait    4
 snap
 
@@ -203,9 +233,11 @@ cap     20-byte file it demands billions of bytes of memory, is refused, and
 cap     goes on writing empty data lines until it is stopped.
 run     mkdir -p /dd/tmp/TEXTA; echo "the quick brown fox" > /dd/tmp/TEXTA/fox.txt; echo "jumps over the lazy dog" >> /dd/tmp/TEXTA/fox.txt
 wait    3
+run     builtin cd /dd
+wait    1
 run     clear
 wait    1
-run     cuts -e /dd/tmp/TEXTA/fox.txt | head -n 4
+run     cuts -e tmp/TEXTA/fox.txt | head -n 4
 wait    10
 snap
 kill
@@ -217,17 +249,19 @@ cap     09 09 between the date and the name comes out with a run of 20s;
 cap     `-t4' puts the tab stops every four columns instead of eight.
 run     mkdir -p /dd/tmp/TEXTA; cat /dd/SYS/holidays | head -n 3 | tail -l=1 > /dd/tmp/TEXTA/tab.txt
 wait    4
+run     builtin cd /dd
+wait    1
 run     clear
 wait    1
-run     dump /dd/tmp/TEXTA/tab.txt
+run     dump tmp/TEXTA/tab.txt
 wait    4
-run     detab /dd/tmp/TEXTA/tab.txt > /dd/tmp/TEXTA/notab.txt
+run     detab tmp/TEXTA/tab.txt > tmp/TEXTA/notab.txt
 wait    4
-run     dump /dd/tmp/TEXTA/notab.txt
+run     dump tmp/TEXTA/notab.txt
 wait    4
-run     detab -t4 /dd/tmp/TEXTA/tab.txt > /dd/tmp/TEXTA/tab4.txt
+run     detab -t4 tmp/TEXTA/tab.txt > tmp/TEXTA/tab4.txt
 wait    4
-run     dump /dd/tmp/TEXTA/tab4.txt
+run     dump tmp/TEXTA/tab4.txt
 wait    4
 snap
 
@@ -241,11 +275,13 @@ run     mkdir -p /dd/tmp/TEXTA; echo /dd/SYS/motd > /dd/tmp/TEXTA/list.txt; echo
 wait    3
 run     load /dd/CMDS/wc
 wait    2
+run     builtin cd /dd
+wait    1
 run     clear
 wait    1
-run     cat /dd/tmp/TEXTA/list.txt
+run     cat tmp/TEXTA/list.txt
 wait    3
-run     SHELL=/dd/CMDS/sh eo /dd/tmp/TEXTA/list.txt wc @
+run     SHELL=CMDS/sh eo tmp/TEXTA/list.txt wc @
 wait    8
 snap
 
@@ -272,15 +308,17 @@ cap     `-n=64' the length, `-i=46' the byte, a full stop.  It reports what
 cap     it added, and dump shows the 2E bytes after the original text.
 run     mkdir -p /dd/tmp/TEXTA; echo "the quick brown fox" > /dd/tmp/TEXTA/pad.txt; echo "jumps over the lazy dog" >> /dd/tmp/TEXTA/pad.txt
 wait    3
+run     builtin cd /dd
+wait    1
 run     clear
 wait    1
-run     ls -l /dd/tmp/TEXTA/pad.txt
+run     ls -l tmp/TEXTA/pad.txt
 wait    3
-run     fillup -n=64 -i=46 /dd/tmp/TEXTA/pad.txt
+run     fillup -n=64 -i=46 tmp/TEXTA/pad.txt
 wait    4
-run     ls -l /dd/tmp/TEXTA/pad.txt
+run     ls -l tmp/TEXTA/pad.txt
 wait    3
-run     dump /dd/tmp/TEXTA/pad.txt
+run     dump tmp/TEXTA/pad.txt
 wait    4
 snap
 
@@ -290,11 +328,13 @@ cap     named with `-e': two patterns over the holidays file.  It is grep
 cap     for a whole list of patterns at once.
 run     mkdir -p /dd/tmp/TEXTA; echo Easter > /dd/tmp/TEXTA/pats; echo Valentine >> /dd/tmp/TEXTA/pats
 wait    3
+run     builtin cd /dd
+wait    1
 run     clear
 wait    1
-run     cat /dd/tmp/TEXTA/pats
+run     cat tmp/TEXTA/pats
 wait    3
-run     gep -e=/dd/tmp/TEXTA/pats /dd/SYS/holidays
+run     gep -e=tmp/TEXTA/pats SYS/holidays
 wait    6
 snap
 
@@ -306,13 +346,15 @@ run     mkdir -p /dd/tmp/TEXTA; echo one > /dd/tmp/TEXTA/a.txt; echo two >> /dd/
 wait    3
 run     echo eins > /dd/tmp/TEXTA/b.txt; echo zwei >> /dd/tmp/TEXTA/b.txt; echo drei >> /dd/tmp/TEXTA/b.txt
 wait    3
+run     builtin cd /dd
+wait    1
 run     clear
 wait    1
-run     paste /dd/tmp/TEXTA/a.txt /dd/tmp/TEXTA/b.txt
+run     paste tmp/TEXTA/a.txt tmp/TEXTA/b.txt
 wait    5
-run     paste -d: /dd/tmp/TEXTA/a.txt /dd/tmp/TEXTA/b.txt
+run     paste -d: tmp/TEXTA/a.txt tmp/TEXTA/b.txt
 wait    5
-run     paste -s /dd/tmp/TEXTA/a.txt
+run     paste -s tmp/TEXTA/a.txt
 wait    5
 snap
 
@@ -325,13 +367,15 @@ cap     the backspace (08) took the letter before it away with it.  It lists
 cap     the transformations it applied as it goes.
 run     mkdir -p /dd/tmp/TEXTA; echo -e "bell\aand\bbackspace here" > /dd/tmp/TEXTA/ctl.txt
 wait    3
+run     builtin cd /dd
+wait    1
 run     clear
 wait    1
-run     dump /dd/tmp/TEXTA/ctl.txt
+run     dump tmp/TEXTA/ctl.txt
 wait    4
-run     pep -b -u13 /dd/tmp/TEXTA/ctl.txt > /dd/tmp/TEXTA/clean.txt
+run     pep -b -u13 tmp/TEXTA/ctl.txt > tmp/TEXTA/clean.txt
 wait    5
-run     dump /dd/tmp/TEXTA/clean.txt
+run     dump tmp/TEXTA/clean.txt
 wait    5
 snap
 
@@ -341,11 +385,13 @@ cap     one `let' per cell, A0 at top left, then a `format' line per column.
 cap     It reads standard input.
 run     mkdir -p /dd/tmp/TEXTA; echo "1 2 3" > /dd/tmp/TEXTA/table.txt; echo "4 5 6" >> /dd/tmp/TEXTA/table.txt; echo "7 8 9" >> /dd/tmp/TEXTA/table.txt
 wait    3
+run     builtin cd /dd
+wait    1
 run     clear
 wait    1
-run     cat /dd/tmp/TEXTA/table.txt
+run     cat tmp/TEXTA/table.txt
 wait    3
-run     psc < /dd/tmp/TEXTA/table.txt
+run     psc < tmp/TEXTA/table.txt
 wait    6
 snap
 
@@ -355,11 +401,13 @@ cap     rot turns text on its side: the first line becomes the first column,
 cap     read downwards.  It refuses tabs, so expand them first.
 run     mkdir -p /dd/tmp/TEXTA; echo "the quick brown fox" > /dd/tmp/TEXTA/r.txt; echo "jumps over the" >> /dd/tmp/TEXTA/r.txt; echo "lazy dog" >> /dd/tmp/TEXTA/r.txt
 wait    3
+run     builtin cd /dd
+wait    1
 run     clear
 wait    1
-run     cat /dd/tmp/TEXTA/r.txt
+run     cat tmp/TEXTA/r.txt
 wait    3
-run     rot /dd/tmp/TEXTA/r.txt
+run     rot tmp/TEXTA/r.txt
 wait    6
 snap
 
@@ -370,17 +418,19 @@ cap     columns; `-o0' asks for no tabs on output, spaces instead; `-o4' for
 cap     stops every 4.  dump shows a line of the holidays file each way.
 run     mkdir -p /dd/tmp/TEXTA; cat /dd/SYS/holidays | head -n 3 | tail -l=1 > /dd/tmp/TEXTA/tab.txt
 wait    4
+run     builtin cd /dd
+wait    1
 run     clear
 wait    1
-run     dump /dd/tmp/TEXTA/tab.txt
+run     dump tmp/TEXTA/tab.txt
 wait    4
-run     tabs -i8 -o0 < /dd/tmp/TEXTA/tab.txt > /dd/tmp/TEXTA/sp.txt
+run     tabs -i8 -o0 < tmp/TEXTA/tab.txt > tmp/TEXTA/sp.txt
 wait    4
-run     dump /dd/tmp/TEXTA/sp.txt
+run     dump tmp/TEXTA/sp.txt
 wait    4
-run     tabs -i8 -o4 < /dd/tmp/TEXTA/tab.txt > /dd/tmp/TEXTA/t4.txt
+run     tabs -i8 -o4 < tmp/TEXTA/tab.txt > tmp/TEXTA/t4.txt
 wait    4
-run     dump /dd/tmp/TEXTA/t4.txt
+run     dump tmp/TEXTA/t4.txt
 wait    4
 snap
 
@@ -393,13 +443,15 @@ run     mkdir -p /dd/tmp/TEXTA; rm -r /dd/tmp/TEXTA/UD
 wait    3
 run     mkdir -p /dd/tmp/TEXTA/UD/subdir; cp /dd/SYS/motd /dd/tmp/TEXTA/UD/MixedCase.TXT
 wait    4
+run     builtin cd /dd
+wait    1
 run     clear
 wait    1
-run     ls /dd/tmp/TEXTA/UD
+run     ls tmp/TEXTA/UD
 wait    3
-run     upperdir /dd/tmp/TEXTA/UD
+run     upperdir tmp/TEXTA/UD
 wait    5
-run     ls /dd/tmp/TEXTA/UD
+run     ls tmp/TEXTA/UD
 wait    3
 snap
 
@@ -411,11 +463,13 @@ run     mkdir -p /dd/tmp/TEXTA; echo "I think this operating system is really go
 wait    3
 run     echo "The manual is excellent and the games are enjoyable." >> /dd/tmp/TEXTA/val.txt
 wait    3
+run     builtin cd /dd
+wait    1
 run     clear
 wait    1
-run     cat /dd/tmp/TEXTA/val.txt
+run     cat tmp/TEXTA/val.txt
 wait    3
-run     valspeak < /dd/tmp/TEXTA/val.txt
+run     valspeak < tmp/TEXTA/val.txt
 wait    6
 snap
 
@@ -449,17 +503,19 @@ cap     default and `-t 4' every four.  dump shows the two tabs (09 09) of a
 cap     line of the holidays file become spaces (20).
 run     mkdir -p /dd/tmp/TEXTA; cat /dd/SYS/holidays | head -n 3 | tail -l=1 > /dd/tmp/TEXTA/tab.txt
 wait    4
+run     builtin cd /dd
+wait    1
 run     clear
 wait    1
-run     dump /dd/tmp/TEXTA/tab.txt
+run     dump tmp/TEXTA/tab.txt
 wait    4
-run     expand /dd/tmp/TEXTA/tab.txt > /dd/tmp/TEXTA/sp.txt
+run     expand tmp/TEXTA/tab.txt > tmp/TEXTA/sp.txt
 wait    4
-run     dump /dd/tmp/TEXTA/sp.txt
+run     dump tmp/TEXTA/sp.txt
 wait    4
-run     expand -t 4 /dd/tmp/TEXTA/tab.txt > /dd/tmp/TEXTA/sp4.txt
+run     expand -t 4 tmp/TEXTA/tab.txt > tmp/TEXTA/sp4.txt
 wait    4
-run     dump /dd/tmp/TEXTA/sp4.txt
+run     dump tmp/TEXTA/sp4.txt
 wait    4
 snap
 
@@ -469,13 +525,15 @@ cap     an argument, the file's name is printed after its lines; through a
 cap     pipe it is not.
 run     mkdir -p /dd/tmp/TEXTA; cat /dd/SYS/holidays | head -n 8 > /dd/tmp/TEXTA/hol.txt
 wait    3
+run     builtin cd /dd
+wait    1
 run     clear
 wait    1
-run     cat /dd/tmp/TEXTA/hol.txt
+run     cat tmp/TEXTA/hol.txt
 wait    3
-run     head -n 3 /dd/tmp/TEXTA/hol.txt
+run     head -n 3 tmp/TEXTA/hol.txt
 wait    4
-run     cat /dd/tmp/TEXTA/hol.txt | head -n 3
+run     cat tmp/TEXTA/hol.txt | head -n 3
 wait    4
 snap
 
@@ -485,20 +543,26 @@ cap     each -- named partaa, partab and so on after the prefix given.  The
 cap     holidays file makes four; the last is printed.
 run     mkdir -p /dd/tmp/TEXTA/SP; rm -f /dd/tmp/TEXTA/SP/*
 wait    3
+run     builtin cd /dd
+wait    1
 run     clear
 wait    1
-run     split -l 10 /dd/SYS/holidays /dd/tmp/TEXTA/SP/part
+run     split -l 10 SYS/holidays tmp/TEXTA/SP/part
 wait    5
-run     ls -l /dd/tmp/TEXTA/SP
+run     ls -l tmp/TEXTA/SP
 wait    4
-run     cat /dd/tmp/TEXTA/SP/partad
+run     cat tmp/TEXTA/SP/partad
 wait    4
 snap
 
 shot    sum
 cap     sum prints a checksum and a block count for each file named -- the
 cap     checksum every Unix had before md5.
-run     sum /dd/SYS/motd /dd/SYS/holidays /dd/SYS/birthdays /dd/DOC/INDEX
+run     builtin cd /dd
+wait    1
+run     clear
+wait    1
+run     sum SYS/motd SYS/holidays SYS/birthdays DOC/INDEX
 wait    6
 
 shot    tac
@@ -506,11 +570,13 @@ cap     tac prints a file last line first -- cat backwards.  Name the file:
 cap     read from a pipe it stops with an error.
 run     mkdir -p /dd/tmp/TEXTA; cat /dd/SYS/holidays | head -n 8 > /dd/tmp/TEXTA/hol.txt
 wait    3
+run     builtin cd /dd
+wait    1
 run     clear
 wait    1
-run     cat /dd/tmp/TEXTA/hol.txt
+run     cat tmp/TEXTA/hol.txt
 wait    3
-run     tac /dd/tmp/TEXTA/hol.txt
+run     tac tmp/TEXTA/hol.txt
 wait    5
 snap
 
@@ -524,13 +590,15 @@ run     mkdir -p /dd/tmp/TEXTA; cat /dd/SYS/holidays | head -n 3 | tail -l=1 > /
 wait    4
 run     expand /dd/tmp/TEXTA/tab.txt > /dd/tmp/TEXTA/sp.txt
 wait    4
+run     builtin cd /dd
+wait    1
 run     clear
 wait    1
-run     dump /dd/tmp/TEXTA/sp.txt
+run     dump tmp/TEXTA/sp.txt
 wait    4
-run     unexpand -a /dd/tmp/TEXTA/sp.txt > /dd/tmp/TEXTA/back.txt
+run     unexpand -a tmp/TEXTA/sp.txt > tmp/TEXTA/back.txt
 wait    4
-run     dump /dd/tmp/TEXTA/back.txt
+run     dump tmp/TEXTA/back.txt
 wait    4
 snap
 
@@ -557,13 +625,15 @@ run     mkdir -p /dd/tmp/TEXTA; echo "the quick brown fox" > /dd/tmp/TEXTA/c1.tx
 wait    3
 run     echo "the quick brown fox" > /dd/tmp/TEXTA/c2.txt; echo "leaps over the lazy dog" >> /dd/tmp/TEXTA/c2.txt; echo "and lands in the river" >> /dd/tmp/TEXTA/c2.txt
 wait    3
+run     builtin cd /dd
+wait    1
 run     clear
 wait    1
-run     cat /dd/tmp/TEXTA/c1.txt
+run     cat tmp/TEXTA/c1.txt
 wait    3
-run     cat /dd/tmp/TEXTA/c2.txt
+run     cat tmp/TEXTA/c2.txt
 wait    3
-run     tcmp /dd/tmp/TEXTA/c1.txt /dd/tmp/TEXTA/c2.txt
+run     tcmp tmp/TEXTA/c1.txt tmp/TEXTA/c2.txt
 wait    6
 snap
 
@@ -574,12 +644,14 @@ cap     it removed, by code and line number.  dump shows the bell (07) and
 cap     backspace (08) before, and the clean text after.
 run     mkdir -p /dd/tmp/TEXTA; echo -e "bell\aand\bbackspace here" > /dd/tmp/TEXTA/ctl.txt
 wait    3
+run     builtin cd /dd
+wait    1
 run     clear
 wait    1
-run     dump /dd/tmp/TEXTA/ctl.txt
+run     dump tmp/TEXTA/ctl.txt
 wait    4
-run     unp < /dd/tmp/TEXTA/ctl.txt > /dd/tmp/TEXTA/clean.txt
+run     unp < tmp/TEXTA/ctl.txt > tmp/TEXTA/clean.txt
 wait    4
-run     dump /dd/tmp/TEXTA/clean.txt
+run     dump tmp/TEXTA/clean.txt
 wait    4
 snap

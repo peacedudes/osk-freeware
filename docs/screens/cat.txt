@@ -1,3 +1,3 @@
-cat /dd/tmp/ARC/one /dd/tmp/ARC/two
+cat tmp/ARC/one tmp/ARC/two
 one
 two

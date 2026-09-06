@@ -1,6 +1,6 @@
-vptovf /dd/DOC/tex/sample.vpl /dd/tmp/TEX/s.vf /dd/tmp/TEX/s.tfm
+vptovf DOC/tex/sample.vpl tmp/TEX/s.vf tmp/TEX/s.tfm
 This is VPtoVF, C Version 1.3
 '101.
-$ ls -l /dd/tmp/TEX/s.vf /dd/tmp/TEX/s.tfm
--rw-------   1 0        0             152 Sep  3 07:37 /dd/tmp/TEX/s.tfm
--rw-------   1 0        0             104 Sep  3 07:37 /dd/tmp/TEX/s.vf
+$ ls -l tmp/TEX/s.vf tmp/TEX/s.tfm
+-rw-------   1 0        0             152 Sep  6 05:50 tmp/TEX/s.tfm
+-rw-------   1 0        0             104 Sep  6 05:50 tmp/TEX/s.vf

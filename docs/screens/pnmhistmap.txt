@@ -1,4 +1,4 @@
-pnmhistmap /dd/tmp/NEAB/mo.pgm > /dd/tmp/NEAB/hm.pgm
-$ pnmfile /dd/tmp/NEAB/mo.pgm /dd/tmp/NEAB/hm.pgm
-/dd/tmp/NEAB/mo.pgm:    PGM raw, 64 by 40  maxval 255
-/dd/tmp/NEAB/hm.pgm:    PBM raw, 256 by 200
+pnmhistmap tmp/NEAB/mo.pgm > tmp/NEAB/hm.pgm
+$ pnmfile tmp/NEAB/mo.pgm tmp/NEAB/hm.pgm
+tmp/NEAB/mo.pgm:        PGM raw, 64 by 40  maxval 255
+tmp/NEAB/hm.pgm:        PBM raw, 256 by 200

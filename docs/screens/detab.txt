@@ -1,18 +1,18 @@
-dump /dd/tmp/TEXTA/tab.txt
+dump tmp/TEXTA/tab.txt
 
 Addr   0 1  2 3  4 5  6 7  8 9  A B  C D  E F 0 2 4 6 8 A C E
 ----  ---- ---- ---- ---- ---- ---- ---- ---- ----------------
 0000  312F 3109 094E 6577 2059 6561 7227 7320 1/1..New Year's
 0010  4461 790D                               Day.
-$ detab /dd/tmp/TEXTA/tab.txt > /dd/tmp/TEXTA/notab.txt
-$ dump /dd/tmp/TEXTA/notab.txt
+$ detab tmp/TEXTA/tab.txt > tmp/TEXTA/notab.txt
+$ dump tmp/TEXTA/notab.txt
 
 Addr   0 1  2 3  4 5  6 7  8 9  A B  C D  E F 0 2 4 6 8 A C E
 ----  ---- ---- ---- ---- ---- ---- ---- ---- ----------------
 0000  312F 3120 2020 2020 204E 6577 2059 6561 1/1      New Yea
 0010  7227 7320 4461 790D                     r's Day.
-$ detab -t4 /dd/tmp/TEXTA/tab.txt > /dd/tmp/TEXTA/tab4.txt
-$ dump /dd/tmp/TEXTA/tab4.txt
+$ detab -t4 tmp/TEXTA/tab.txt > tmp/TEXTA/tab4.txt
+$ dump tmp/TEXTA/tab4.txt
 
 Addr   0 1  2 3  4 5  6 7  8 9  A B  C D  E F 0 2 4 6 8 A C E
 ----  ---- ---- ---- ---- ---- ---- ---- ---- ----------------

@@ -1,4 +1,4 @@
-ed /dd/tmp/EDIT/jabber.txt
+ed tmp/EDIT/jabber.txt
 137
 1,4p
 Twas brillig, and the slithy toves

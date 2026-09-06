@@ -1,13 +1,13 @@
-$ ppmmake red 16 16 > /dd/tmp/nr.ppm
-$ hipstopgm /dd/tmp/nr.ppm
+ppmmake red 16 16 > tmp/nr.ppm
+$ hipstopgm tmp/nr.ppm
 hipstopgm: error reading header
-$ qrttoppm /dd/tmp/nr.ppm | head -n 3
+$ qrttoppm tmp/nr.ppm | head -n 3
 qrttoppm: EOF / read error
 P6
 13904 12557
 255
-$ spottopgm /dd/tmp/nr.ppm
-$ sputoppm /dd/tmp/nr.ppm
+$ spottopgm tmp/nr.ppm
+$ sputoppm tmp/nr.ppm
 P6
 320 200
 7

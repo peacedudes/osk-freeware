@@ -1,4 +1,4 @@
-find /dd/SYS "-n=cal*" -o
-/dd/SYS/TEX/MFINPUTS/CM/calu.mf
-/dd/SYS/cal.holidays
-/dd/SYS/cal.init
+find SYS "-n=cal*" -o
+SYS/TEX/MFINPUTS/CM/calu.mf
+SYS/cal.holidays
+SYS/cal.init

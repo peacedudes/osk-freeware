@@ -1,9 +1,9 @@
-cat /dd/tmp/DEV/p.diff
+cat tmp/DEV/p.diff
 2c2
 < two
 ---
 > TWO
-$ patch /dd/tmp/DEV/p1 /dd/tmp/DEV/p.diff
+$ patch tmp/DEV/p1 tmp/DEV/p.diff
 Hmm...  Looks like a normal diff to me...
-Patching file /dd/tmp/DEV/p1 using Plan B...
+Patching file tmp/DEV/p1 using Plan B...
 Error reading tmp file /dd/tmp/patchi000004.

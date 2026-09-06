@@ -1,8 +1,8 @@
-pnmcrop /dd/tmp/NEAB/p.pgm > /dd/tmp/NEAB/c.pgm
+pnmcrop tmp/NEAB/p.pgm > tmp/NEAB/c.pgm
 pnmcrop: cropping 4 rows off the top
 pnmcrop: cropping 4 rows off the bottom
 pnmcrop: cropping 9 cols off the left
 pnmcrop: cropping 8 cols off the right
-$ pnmfile /dd/tmp/NEAB/p.pgm /dd/tmp/NEAB/c.pgm
-/dd/tmp/NEAB/p.pgm:     PGM raw, 56 by 28  maxval 255
-/dd/tmp/NEAB/c.pgm:     PGM raw, 39 by 20  maxval 255
+$ pnmfile tmp/NEAB/p.pgm tmp/NEAB/c.pgm
+tmp/NEAB/p.pgm: PGM raw, 56 by 28  maxval 255
+tmp/NEAB/c.pgm: PGM raw, 39 by 20  maxval 255

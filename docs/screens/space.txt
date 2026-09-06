@@ -1,11 +1,11 @@
-space /dd/DOC/gnuplot
-Space requirement of "/dd/DOC/gnuplot":
+space DOC/gnuplot
+Space requirement of "DOC/gnuplot":
 
                                  Contents  Contents   Sectors   Sectors   # of
 Directory/file name               (files)   (total)      used    (min.)   Files
 -------------------              --------  --------  --------  --------  ------
-/dd/DOC/gnuplot/demo                 7010      7010        60        60       7
-/dd/DOC/gnuplot                      3537     10547        80        80       1
+DOC/gnuplot/demo                     7010      7010        60        60       7
+DOC/gnuplot                          3537     10547        80        80       1
 
 Number of files                          : 8
 Number of subdirectories                 : 1

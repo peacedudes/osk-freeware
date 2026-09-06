@@ -1,6 +1,6 @@
-ppmtotga /dd/tmp/NPIB/c.ppm > /dd/tmp/NPIB/t.tga
+ppmtotga tmp/NPIB/c.ppm > tmp/NPIB/t.tga
 ppmtotga: computing colormap...
 ppmtotga: 6 colors found
-$ tgatoppm /dd/tmp/NPIB/t.tga > /dd/tmp/NPIB/back.ppm
-$ pnmfile /dd/tmp/NPIB/back.ppm
-/dd/tmp/NPIB/back.ppm:  PPM raw, 48 by 24  maxval 255
+$ tgatoppm tmp/NPIB/t.tga > tmp/NPIB/back.ppm
+$ pnmfile tmp/NPIB/back.ppm
+tmp/NPIB/back.ppm:      PPM raw, 48 by 24  maxval 255

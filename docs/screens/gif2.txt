@@ -1,8 +1,8 @@
-$ ppmtogif /dd/tmp/base.ppm > /dd/tmp/t.gif
+ppmtogif tmp/base.ppm > tmp/t.gif
 ppmtogif: computing colormap...
 ppmtogif: 6 colors found
-$ giftopnm /dd/tmp/t.gif > /dd/tmp/back.ppm
-$ file /dd/tmp/t.gif
-/dd/tmp/t.gif           GIF picture ver. 87a 48 x 24, interlaced, 8 colors
-$ pnmfile /dd/tmp/back.ppm
-/dd/tmp/back.ppm:       PPM raw, 48 by 24  maxval 255
+$ giftopnm tmp/t.gif > tmp/back.ppm
+$ file tmp/t.gif
+tmp/t.gif               GIF picture ver. 87a 48 x 24, interlaced, 8 colors
+$ pnmfile tmp/back.ppm
+tmp/back.ppm:   PPM raw, 48 by 24  maxval 255
