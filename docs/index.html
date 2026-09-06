@@ -136,10 +136,6 @@
   .needs span{color:var(--dim)}
   .see{margin:16px 0 2px}
   .see .k{display:block;margin:0 0 6px}
-  .morekin{display:inline}
-  .morekin summary{display:inline;cursor:pointer;color:var(--accent);list-style:none}
-  .morekin summary::-webkit-details-marker{display:none}
-  .morekin[open] summary::after{content:":"}
   details.more{margin:16px 0 0;border-top:1px solid var(--rule);padding-top:10px}
   details.more summary{cursor:pointer;color:var(--accent);font-size:12.5px;list-style:none}
   details.more summary::-webkit-details-marker{display:none}
@@ -393,20 +389,12 @@ function renderPanel(){
   add("Came from", p.origin ? esc(p.origin)+(p.archive?` &mdash; ${esc(p.archive)}`:"") : "");
   add("Source",    p.src ? `<code>SRC/${esc(p.src)}</code>` : (p.hassrc?`<code>SRC/${esc(p.name)}</code>`:""));
   add("Docs",      p.docs ? `<code>DOC/${esc(p.name)}/</code>` : "");
-  const full = p.desc && p.desc !== lead(p.desc) ? p.desc : "";
-  if(full && !((p.info||{}).purpose)) add("In full", esc(full));
   if(p.usage) D.push(`<dt>Its own help</dt><dd><pre class="usage">${esc(p.usage)}</pre></dd>`);
   add("Restrictions", esc(i.restrictions));
   add("Hardware",     esc(i.hardware));
   const kin=DATA.filter(x=>x.sub===p.sub && x.name!==p.name).sort((a,b)=>a.name.localeCompare(b.name));
-  if(kin.length){
-    const klink = x => `<a href="#p=${encodeURIComponent(x.name)}" class="kin" data-n="${esc(x.name)}"><code>${esc(x.name)}</code></a>`;
-    let kh = kin.slice(0,14).map(klink).join(", ");
-    if(kin.length>14)
-      kh += `, <details class="morekin"><summary>and ${kin.length-14} more</summary>`
-          + kin.slice(14).map(klink).join(", ") + `</details>`;
-    add("See also", kh);
-  }
+  if(kin.length) add("See also", kin.map(x=>
+      `<a href="#p=${encodeURIComponent(x.name)}" class="kin" data-n="${esc(x.name)}"><code>${esc(x.name)}</code></a>`).join(", "));
 
   // The two things a browser wants first: what to type, and the program
   // doing it.  The command is short; the demo shows the real invocation.
@@ -425,7 +413,6 @@ function renderPanel(){
     `<div class="try"><span class="k">Try it</span><code>${esc(tryCmd)}</code></div>`+
     (needs.length?`<div class="needs"><span class="k">Needs</span><span>${needs.join(" &middot; ")}${data.length?` <span class="okk">&middot; ${data.length>1?"all ":""}on the disk</span>`:""}</span></div>`:"")+
     seeHTML+
-    (p.howto?`<details class="more"><summary>How to run it</summary><div class="howto">${esc(p.howto)}</div></details>`:"")+
     (D.length?`<details class="more"><summary>Details and provenance</summary><dl>${D.join("")}</dl></details>`:"")+
     `</div>`;
   col.scrollTop = 0;
