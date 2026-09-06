@@ -4,6 +4,24 @@ Only what is waiting on a decision of yours. Everything done, and why, is in
 git history and `notes/START-HERE-NEXT-SESSION.md`; this file carries none
 of it. Updated 2026-09-05.
 
+## Full pathlists on cards -- captions ruled, shown commands remain
+
+The rule is made and enforced: `check_disk.py`'s `cards carry no full
+pathlists' fails the build on any `/dd/...`, `/h0/...` or `/h1/...` in a
+card's caption or `try' line, and check_the_checks records the by-hand
+proof.  The ten caption lines that still named absolute paths are reworded.
+
+**What is left: the shown COMMANDS.** 180 of 907 captures still echo a
+full path in the command line itself -- `arc a m.arc /dd/SYS/motd', not
+`arc a m.arc motd' -- because their sheet `run' line uses full paths.  Each
+one is a stanza reworked to `chd' into a short work directory with
+short-named files, then re-shot (the subber card is the model).  It is a
+few hours of captures, so I have not swept it blind; say the word and I run
+it down, or I chip at it whenever a card is touched anyway.  I did not put
+an automated check on the shown commands: telling a real command-path from
+a legitimate one (the `about' card deliberately shows `hack's full path,
+because its name collides) needs judgement a regex would get wrong.
+
 ## The gallery, recast for a browser (2026-09-05)
 
 Done, per your science-fair steer -- the program panel (docs/index.html, from
