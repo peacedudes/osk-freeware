@@ -1,4 +1,4 @@
-ksh -c "cd /dd/tmp/TEX; virtex '&plain' story.tex"
+virtex '&plain' story.tex
 This is TeX, C Version 3.14
 (story.tex [1] )
 Output written on story.dvi (1 page, 668 bytes).

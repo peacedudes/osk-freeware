@@ -1,14 +1,14 @@
-ksh -c "cd /dd/tmp/TEX; dvialw story.dvi"
+dvialw story.dvi
 [TeX82 DVI Translator Version 2.10b]
 [PostScript [Apple LaserWriter laser printer]]
 [Input from DVI file story.dvi]
 [Output on file story.dvi_alw]
 [1 pages]
 [1{1}]  [OK]
-$ cat /dd/tmp/TEX/story.dvi_alw | head -n 6
+$ head -n 6 story.dvi_alw
 %!
 %%Dimensions: 0 0 612 792
 %%Title: dvialw story.dvi
-%%CreationDate: Sat Sep  5 01:38:37 2026
+%%CreationDate: Mon Sep  7 08:42:09 2026
 %%Creator:  and [TeX82 DVI Translator Version 2.10b for PostScript [App-
 %-le LaserWriter laser printer]

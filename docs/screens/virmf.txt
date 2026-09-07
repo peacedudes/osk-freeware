@@ -1,14 +1,15 @@
-ksh -c "cd /dd/tmp/MF; virmf < run.mf"
+virmf < run.mf
 This is METAFONT, C Version 2.7
 **(/DD/SYS/TEX/MFINPUTS/logo10.mf (/DD/SYS/TEX/MFINPUTS/logo.mf [77] [69]
 [84] [65] [70] [79] [78]) )
 Font metrics written on logo10.tfm.
 Output written on logo10.120gf (7 characters, 608 bytes).
 Transcript written on logo10.log.
-$ ls -l /dd/tmp/MF
-total 3584
--rw-------   1 0        0             632 Sep  3 07:40 back.120gf
--rw-------   1 0        0             608 Sep  3 08:04 logo10.120gf
--rw-------   1 0        0             306 Sep  3 08:04 logo10.log
--rw-------   1 0        0             256 Sep  3 08:04 logo10.tfm
--rw-rw-rw-   1 0        0              40 Sep  3 08:04 run.mf
+$ ls -l
+total 6144
+-rw-------   1 0        0             632 Sep  7 08:33 back.120gf
+-rw-------   1 0        0             608 Sep  7 08:56 logo10.120gf
+-rw-------   1 0        0             306 Sep  7 08:56 logo10.log
+-rw-------   1 0        0             256 Sep  7 08:56 logo10.tfm
+-rw-rw-rw-   1 0        0            2249 Sep  7 08:39 pt.out
+-rw-rw-rw-   1 0        0              40 Sep  7 08:56 run.mf

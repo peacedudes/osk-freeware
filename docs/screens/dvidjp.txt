@@ -1,4 +1,4 @@
-ksh -c "cd /dd/tmp/TEX; dvidjp story.dvi"
+dvidjp story.dvi
 [TeX82 DVI Translator Version 2.10]
 [Hewlett-Packard Desk Jet plus (from LaserJet)
         WITH Data Compaction for faster I/O]
@@ -6,5 +6,5 @@ ksh -c "cd /dd/tmp/TEX; dvidjp story.dvi"
 [Output on file story.dvi_djc]
 [1 pages]
 [1{1}]  [OK]
-$ ls -l /dd/tmp/TEX | grep story.dvi_
--rw-------   1 0        0           16133 Sep  5 01:39 story.dvi_djc
+$ ls -l story.dvi_*
+-rw-------   1 0        0           16133 Sep  7 08:43 story.dvi_djc

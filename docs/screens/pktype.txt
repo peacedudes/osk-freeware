@@ -1,6 +1,7 @@
-pktype logo10.120pk | head -n 16
+pktype logo10.120pk > pt.out
+$ head -n 16 pt.out
 This is PKtype, C Version 2.3
-'GFtoPK 2.3 output from METAFONT output 2026.09.03:0747'
+'GFtoPK 2.3 output from METAFONT output 2026.09.07:0838'
 Design size = 10485760
 Checksum = -925365712
 Resolution: horizontal = 108819  vertical = 108819  (120 dpi)

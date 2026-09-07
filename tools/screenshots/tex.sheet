@@ -9,13 +9,14 @@ cap     TeX typesetting Knuth's sample story: the plain format loads, the
 cap     page is set, and a DVI file is written beside the source.
 run     mkdir -p /dd/tmp/TEX > /nil 2>/nil; rm -f /dd/tmp/TEX/story.dvi /dd/tmp/TEX/story.dvi_*; cat /dd/SYS/TEX/SAMPLES/story.tex > /dd/tmp/TEX/story.tex; printf '\\end\r' >> /dd/tmp/TEX/story.tex
 wait    3
+run     builtin cd /dd/tmp/TEX
 run     clear
 wait    1
-run     cat /dd/tmp/TEX/story.tex | head -n 6
+run     head -n 6 story.tex
 wait    3
-run     ksh -c "cd /dd/tmp/TEX; tex story.tex"
+run     tex story.tex
 wait    40
-run     ls -l /dd/tmp/TEX/story.dvi
+run     ls -l story.dvi
 wait    4
 
 shot    virtex
@@ -24,9 +25,10 @@ cap     The TeX engine itself, told which format to load: `&plain' and
 cap     then the file.  tex and latex are one-line wrappers round this.
 run     mkdir -p /dd/tmp/TEX > /nil 2>/nil; rm -f /dd/tmp/TEX/story.dvi /dd/tmp/TEX/story.dvi_*; cat /dd/SYS/TEX/SAMPLES/story.tex > /dd/tmp/TEX/story.tex; printf '\\end\r' >> /dd/tmp/TEX/story.tex
 wait    3
+run     builtin cd /dd/tmp/TEX
 run     clear
 wait    1
-run     ksh -c "cd /dd/tmp/TEX; virtex '&plain' story.tex"
+run     virtex '&plain' story.tex
 wait    40
 
 shot    latex
@@ -35,11 +37,12 @@ cap     LaTeX setting the small sample document that ships with it, and
 cap     reporting the page as it writes it.
 run     mkdir -p /dd/tmp/TEX > /nil 2>/nil; rm -f /dd/tmp/TEX/small.dvi /dd/tmp/TEX/small.aux; cp /dd/SYS/TEX/SAMPLES/small.tex /dd/tmp/TEX/small.tex
 wait    3
+run     builtin cd /dd/tmp/TEX
 run     clear
 wait    1
-run     ksh -c "cd /dd/tmp/TEX; latex small.tex"
+run     latex small.tex
 wait    60
-run     ls -l /dd/tmp/TEX/small.dvi
+run     ls -l small.dvi
 wait    4
 
 shot    slitex
@@ -88,11 +91,12 @@ cap     TANGLE turns a WEB source into the Pascal program in it.  It
 cap     always wants a change file named as well; none.ch is an empty one.
 run     mkdir -p /dd/tmp/TEX > /nil 2>/nil; rm -f /dd/tmp/TEX/sample.p; cp /dd/DOC/tex/sample.web /dd/tmp/TEX/sample.web; cp /dd/DOC/tex/none.ch /dd/tmp/TEX/none.ch
 wait    3
+run     builtin cd /dd/tmp/TEX
 run     clear
 wait    1
-run     ksh -c "cd /dd/tmp/TEX; tangle sample none"
+run     tangle sample none
 wait    15
-run     cat /dd/tmp/TEX/sample.p
+run     cat sample.p
 wait    5
 
 shot    weave
@@ -101,11 +105,12 @@ cap     WEAVE, the other half: the same WEB source becomes a TeX document
 cap     with an index.
 run     mkdir -p /dd/tmp/TEX > /nil 2>/nil; rm -f /dd/tmp/TEX/sample.tex; cp /dd/DOC/tex/sample.web /dd/tmp/TEX/sample.web; cp /dd/DOC/tex/none.ch /dd/tmp/TEX/none.ch
 wait    3
+run     builtin cd /dd/tmp/TEX
 run     clear
 wait    1
-run     ksh -c "cd /dd/tmp/TEX; weave sample none"
+run     weave sample none
 wait    15
-run     cat /dd/tmp/TEX/sample.tex | head -n 8
+run     head -n 8 sample.tex
 wait    5
 
 shot    dvitype
@@ -113,12 +118,14 @@ size    36 80
 cap     Reads a DVI file back and prints what is in it: the fonts and, at
 cap     the level chosen, every character and the position TeX gave it.
 cap     It asks five questions and takes the default for each.
-run     mkdir -p /dd/tmp/TEX > /nil 2>/nil; rm -f /dd/tmp/TEX/story.dvi /dd/tmp/TEX/story.dvi_*; cat /dd/SYS/TEX/SAMPLES/story.tex > /dd/tmp/TEX/story.tex; printf '\\end\r' >> /dd/tmp/TEX/story.tex; ksh -c "cd /dd/tmp/TEX; tex story.tex" > /nil
+run     mkdir -p /dd/tmp/TEX > /nil 2>/nil; rm -f /dd/tmp/TEX/story.dvi /dd/tmp/TEX/story.dvi_*; cat /dd/SYS/TEX/SAMPLES/story.tex > /dd/tmp/TEX/story.tex; printf '\\end\r' >> /dd/tmp/TEX/story.tex; builtin cd /dd/tmp/TEX; tex story.tex > /nil
 wait    40
 run     clear
 wait    1
-run     ksh -c "cd /dd/tmp/TEX; dvitype story.dvi" < /nil | head -n 30
+run     dvitype story.dvi < /nil > dt.out
 wait    20
+run     head -n 30 dt.out
+wait    4
 
 shot    dvialw
 size    36 80
@@ -126,13 +133,14 @@ cap     The DVI driver for the Apple LaserWriter: it turns the story's DVI
 cap     into PostScript beside it, rendering the text from the 300 dpi
 cap     Computer Modern fonts this collection now ships (SYS/TEX/FONTS).
 cap     It reports [OK] and the PostScript carries the real glyphs.
-run     mkdir -p /dd/tmp/TEX > /nil 2>/nil; rm -f /dd/tmp/TEX/story.dvi /dd/tmp/TEX/story.dvi_alw; cat /dd/SYS/TEX/SAMPLES/story.tex > /dd/tmp/TEX/story.tex; printf '\\end\r' >> /dd/tmp/TEX/story.tex; ksh -c "cd /dd/tmp/TEX; tex story.tex" > /nil
+run     mkdir -p /dd/tmp/TEX > /nil 2>/nil; rm -f /dd/tmp/TEX/story.dvi /dd/tmp/TEX/story.dvi_alw; cat /dd/SYS/TEX/SAMPLES/story.tex > /dd/tmp/TEX/story.tex; printf '\\end\r' >> /dd/tmp/TEX/story.tex; builtin cd /dd/tmp/TEX; tex story.tex > /nil
 wait    40
+run     builtin cd /dd/tmp/TEX
 run     clear
 wait    1
-run     ksh -c "cd /dd/tmp/TEX; dvialw story.dvi"
+run     dvialw story.dvi
 wait    25
-run     cat /dd/tmp/TEX/story.dvi_alw | head -n 6
+run     head -n 6 story.dvi_alw
 wait    5
 
 shot    dvidjp
@@ -140,13 +148,14 @@ size    36 80
 cap     The DVI driver for the HP DeskJet, on the same story: at 300 dpi
 cap     it finds the shipped Computer Modern fonts and renders the page,
 cap     the output growing from the DVI by the size of the glyph rasters.
-run     mkdir -p /dd/tmp/TEX > /nil 2>/nil; rm -f /dd/tmp/TEX/story.dvi /dd/tmp/TEX/story.dvi_*; cat /dd/SYS/TEX/SAMPLES/story.tex > /dd/tmp/TEX/story.tex; printf '\\end\r' >> /dd/tmp/TEX/story.tex; ksh -c "cd /dd/tmp/TEX; tex story.tex" > /nil
+run     mkdir -p /dd/tmp/TEX > /nil 2>/nil; rm -f /dd/tmp/TEX/story.dvi /dd/tmp/TEX/story.dvi_*; cat /dd/SYS/TEX/SAMPLES/story.tex > /dd/tmp/TEX/story.tex; printf '\\end\r' >> /dd/tmp/TEX/story.tex; builtin cd /dd/tmp/TEX; tex story.tex > /nil
 wait    40
+run     builtin cd /dd/tmp/TEX
 run     clear
 wait    1
-run     ksh -c "cd /dd/tmp/TEX; dvidjp story.dvi"
+run     dvidjp story.dvi
 wait    25
-run     ls -l /dd/tmp/TEX | grep story.dvi_
+run     ls -l story.dvi_*
 wait    5
 
 shot    dvieps
@@ -154,52 +163,56 @@ size    36 80
 cap     The DVI driver for Epson dot-matrix printers (240 dpi).  There is
 cap     no 240 dpi font here, so it scales the shipped 300 dpi ones by
 cap     nearest neighbor -- which it announces per font -- and renders.
-run     mkdir -p /dd/tmp/TEX > /nil 2>/nil; rm -f /dd/tmp/TEX/story.dvi /dd/tmp/TEX/story.dvi_*; cat /dd/SYS/TEX/SAMPLES/story.tex > /dd/tmp/TEX/story.tex; printf '\\end\r' >> /dd/tmp/TEX/story.tex; ksh -c "cd /dd/tmp/TEX; tex story.tex" > /nil
+run     mkdir -p /dd/tmp/TEX > /nil 2>/nil; rm -f /dd/tmp/TEX/story.dvi /dd/tmp/TEX/story.dvi_*; cat /dd/SYS/TEX/SAMPLES/story.tex > /dd/tmp/TEX/story.tex; printf '\\end\r' >> /dd/tmp/TEX/story.tex; builtin cd /dd/tmp/TEX; tex story.tex > /nil
 wait    40
+run     builtin cd /dd/tmp/TEX
 run     clear
 wait    1
-run     ksh -c "cd /dd/tmp/TEX; dvieps story.dvi"
+run     dvieps story.dvi
 wait    25
-run     ls -l /dd/tmp/TEX | grep story.dvi_
+run     ls -l story.dvi_*
 wait    5
 
 shot    dviimp
 size    36 80
 cap     The DVI driver for the Imagen laser printer (300 dpi), on the same
 cap     story: it finds the shipped 300 dpi fonts and renders the page.
-run     mkdir -p /dd/tmp/TEX > /nil 2>/nil; rm -f /dd/tmp/TEX/story.dvi /dd/tmp/TEX/story.dvi_*; cat /dd/SYS/TEX/SAMPLES/story.tex > /dd/tmp/TEX/story.tex; printf '\\end\r' >> /dd/tmp/TEX/story.tex; ksh -c "cd /dd/tmp/TEX; tex story.tex" > /nil
+run     mkdir -p /dd/tmp/TEX > /nil 2>/nil; rm -f /dd/tmp/TEX/story.dvi /dd/tmp/TEX/story.dvi_*; cat /dd/SYS/TEX/SAMPLES/story.tex > /dd/tmp/TEX/story.tex; printf '\\end\r' >> /dd/tmp/TEX/story.tex; builtin cd /dd/tmp/TEX; tex story.tex > /nil
 wait    40
+run     builtin cd /dd/tmp/TEX
 run     clear
 wait    1
-run     ksh -c "cd /dd/tmp/TEX; dviimp story.dvi"
+run     dviimp story.dvi
 wait    25
-run     ls -l /dd/tmp/TEX | grep story.dvi_
+run     ls -l story.dvi_*
 wait    5
 
 shot    dvijep
 size    36 80
 cap     The DVI driver for the HP LaserJet Plus (300 dpi), on the same
 cap     story: it finds the shipped 300 dpi fonts and renders the page.
-run     mkdir -p /dd/tmp/TEX > /nil 2>/nil; rm -f /dd/tmp/TEX/story.dvi /dd/tmp/TEX/story.dvi_*; cat /dd/SYS/TEX/SAMPLES/story.tex > /dd/tmp/TEX/story.tex; printf '\\end\r' >> /dd/tmp/TEX/story.tex; ksh -c "cd /dd/tmp/TEX; tex story.tex" > /nil
+run     mkdir -p /dd/tmp/TEX > /nil 2>/nil; rm -f /dd/tmp/TEX/story.dvi /dd/tmp/TEX/story.dvi_*; cat /dd/SYS/TEX/SAMPLES/story.tex > /dd/tmp/TEX/story.tex; printf '\\end\r' >> /dd/tmp/TEX/story.tex; builtin cd /dd/tmp/TEX; tex story.tex > /nil
 wait    40
+run     builtin cd /dd/tmp/TEX
 run     clear
 wait    1
-run     ksh -c "cd /dd/tmp/TEX; dvijep story.dvi"
+run     dvijep story.dvi
 wait    25
-run     ls -l /dd/tmp/TEX | grep story.dvi_
+run     ls -l story.dvi_*
 wait    5
 
 shot    dvijet
 size    36 80
 cap     The DVI driver for the HP LaserJet (120 dpi default): it scales the
 cap     shipped 300 dpi fonts by nearest neighbor and renders the page.
-run     mkdir -p /dd/tmp/TEX > /nil 2>/nil; rm -f /dd/tmp/TEX/story.dvi /dd/tmp/TEX/story.dvi_*; cat /dd/SYS/TEX/SAMPLES/story.tex > /dd/tmp/TEX/story.tex; printf '\\end\r' >> /dd/tmp/TEX/story.tex; ksh -c "cd /dd/tmp/TEX; tex story.tex" > /nil
+run     mkdir -p /dd/tmp/TEX > /nil 2>/nil; rm -f /dd/tmp/TEX/story.dvi /dd/tmp/TEX/story.dvi_*; cat /dd/SYS/TEX/SAMPLES/story.tex > /dd/tmp/TEX/story.tex; printf '\\end\r' >> /dd/tmp/TEX/story.tex; builtin cd /dd/tmp/TEX; tex story.tex > /nil
 wait    40
+run     builtin cd /dd/tmp/TEX
 run     clear
 wait    1
-run     ksh -c "cd /dd/tmp/TEX; dvijet story.dvi"
+run     dvijet story.dvi
 wait    25
-run     ls -l /dd/tmp/TEX | grep story.dvi_
+run     ls -l story.dvi_*
 wait    5
 
 shot    dvilj2
@@ -207,52 +220,56 @@ size    36 80
 cap     The DVI driver for the HP LaserJet II (300 dpi), on the same story:
 cap     it finds the shipped 300 dpi Computer Modern fonts, reports [OK],
 cap     and the PCL it writes carries the real glyph rasters.
-run     mkdir -p /dd/tmp/TEX > /nil 2>/nil; rm -f /dd/tmp/TEX/story.dvi /dd/tmp/TEX/story.dvi_*; cat /dd/SYS/TEX/SAMPLES/story.tex > /dd/tmp/TEX/story.tex; printf '\\end\r' >> /dd/tmp/TEX/story.tex; ksh -c "cd /dd/tmp/TEX; tex story.tex" > /nil
+run     mkdir -p /dd/tmp/TEX > /nil 2>/nil; rm -f /dd/tmp/TEX/story.dvi /dd/tmp/TEX/story.dvi_*; cat /dd/SYS/TEX/SAMPLES/story.tex > /dd/tmp/TEX/story.tex; printf '\\end\r' >> /dd/tmp/TEX/story.tex; builtin cd /dd/tmp/TEX; tex story.tex > /nil
 wait    40
+run     builtin cd /dd/tmp/TEX
 run     clear
 wait    1
-run     ksh -c "cd /dd/tmp/TEX; dvilj2 story.dvi"
+run     dvilj2 story.dvi
 wait    25
-run     ls -l /dd/tmp/TEX | grep story.dvi_
+run     ls -l story.dvi_*
 wait    5
 
 shot    dvimac
 size    36 80
 cap     The DVI driver for the Apple ImageWriter (120 dpi): it scales the
 cap     shipped 300 dpi fonts by nearest neighbor and renders the page.
-run     mkdir -p /dd/tmp/TEX > /nil 2>/nil; rm -f /dd/tmp/TEX/story.dvi /dd/tmp/TEX/story.dvi_*; cat /dd/SYS/TEX/SAMPLES/story.tex > /dd/tmp/TEX/story.tex; printf '\\end\r' >> /dd/tmp/TEX/story.tex; ksh -c "cd /dd/tmp/TEX; tex story.tex" > /nil
+run     mkdir -p /dd/tmp/TEX > /nil 2>/nil; rm -f /dd/tmp/TEX/story.dvi /dd/tmp/TEX/story.dvi_*; cat /dd/SYS/TEX/SAMPLES/story.tex > /dd/tmp/TEX/story.tex; printf '\\end\r' >> /dd/tmp/TEX/story.tex; builtin cd /dd/tmp/TEX; tex story.tex > /nil
 wait    40
+run     builtin cd /dd/tmp/TEX
 run     clear
 wait    1
-run     ksh -c "cd /dd/tmp/TEX; dvimac story.dvi"
+run     dvimac story.dvi
 wait    25
-run     ls -l /dd/tmp/TEX | grep story.dvi_
+run     ls -l story.dvi_*
 wait    5
 
 shot    dvioki
 size    36 80
 cap     The DVI driver for Okidata printers (144 dpi): it scales the
 cap     shipped 300 dpi fonts by nearest neighbor and renders the page.
-run     mkdir -p /dd/tmp/TEX > /nil 2>/nil; rm -f /dd/tmp/TEX/story.dvi /dd/tmp/TEX/story.dvi_*; cat /dd/SYS/TEX/SAMPLES/story.tex > /dd/tmp/TEX/story.tex; printf '\\end\r' >> /dd/tmp/TEX/story.tex; ksh -c "cd /dd/tmp/TEX; tex story.tex" > /nil
+run     mkdir -p /dd/tmp/TEX > /nil 2>/nil; rm -f /dd/tmp/TEX/story.dvi /dd/tmp/TEX/story.dvi_*; cat /dd/SYS/TEX/SAMPLES/story.tex > /dd/tmp/TEX/story.tex; printf '\\end\r' >> /dd/tmp/TEX/story.tex; builtin cd /dd/tmp/TEX; tex story.tex > /nil
 wait    40
+run     builtin cd /dd/tmp/TEX
 run     clear
 wait    1
-run     ksh -c "cd /dd/tmp/TEX; dvioki story.dvi"
+run     dvioki story.dvi
 wait    25
-run     ls -l /dd/tmp/TEX | grep story.dvi_
+run     ls -l story.dvi_*
 wait    5
 
 shot    dvitos
 size    36 80
 cap     The DVI driver for Toshiba printers (166 dpi): it scales the
 cap     shipped 300 dpi fonts by nearest neighbor and renders the page.
-run     mkdir -p /dd/tmp/TEX > /nil 2>/nil; rm -f /dd/tmp/TEX/story.dvi /dd/tmp/TEX/story.dvi_*; cat /dd/SYS/TEX/SAMPLES/story.tex > /dd/tmp/TEX/story.tex; printf '\\end\r' >> /dd/tmp/TEX/story.tex; ksh -c "cd /dd/tmp/TEX; tex story.tex" > /nil
+run     mkdir -p /dd/tmp/TEX > /nil 2>/nil; rm -f /dd/tmp/TEX/story.dvi /dd/tmp/TEX/story.dvi_*; cat /dd/SYS/TEX/SAMPLES/story.tex > /dd/tmp/TEX/story.tex; printf '\\end\r' >> /dd/tmp/TEX/story.tex; builtin cd /dd/tmp/TEX; tex story.tex > /nil
 wait    40
+run     builtin cd /dd/tmp/TEX
 run     clear
 wait    1
-run     ksh -c "cd /dd/tmp/TEX; dvitos story.dvi"
+run     dvitos story.dvi
 wait    25
-run     ls -l /dd/tmp/TEX | grep story.dvi_
+run     ls -l story.dvi_*
 wait    5
 
 shot    dvips
@@ -260,11 +277,12 @@ size    36 80
 cap     dvips, the later PostScript driver.  It stops at once for want
 cap     of its header file, tex.pro, which is not on the disk; dvialw is
 cap     the PostScript driver that runs.
-run     mkdir -p /dd/tmp/TEX > /nil 2>/nil; rm -f /dd/tmp/TEX/story.dvi /dd/tmp/TEX/story.dvi_*; cat /dd/SYS/TEX/SAMPLES/story.tex > /dd/tmp/TEX/story.tex; printf '\\end\r' >> /dd/tmp/TEX/story.tex; ksh -c "cd /dd/tmp/TEX; tex story.tex" > /nil
+run     mkdir -p /dd/tmp/TEX > /nil 2>/nil; rm -f /dd/tmp/TEX/story.dvi /dd/tmp/TEX/story.dvi_*; cat /dd/SYS/TEX/SAMPLES/story.tex > /dd/tmp/TEX/story.tex; printf '\\end\r' >> /dd/tmp/TEX/story.tex; builtin cd /dd/tmp/TEX; tex story.tex > /nil
 wait    40
+run     builtin cd /dd/tmp/TEX
 run     clear
 wait    1
-run     ksh -c "cd /dd/tmp/TEX; dvips story.dvi"
+run     dvips story.dvi
 wait    20
 
 shot    tftopl
@@ -315,7 +333,7 @@ run     clear
 wait    1
 run     vftovp s.vf s.tfm tmp/TEX/back.vpl
 wait    20
-run     cat tmp/TEX/back.vpl | head -n 16
+run     head -n 16 tmp/TEX/back.vpl
 wait    5
 
 shot    virmf
@@ -325,11 +343,12 @@ cap     low resolution, from its source in MFINPUTS, and writing the
 cap     bitmap font, its metrics and a log beside it.
 run     mkdir -p /dd/tmp/MF > /nil 2>/nil; rm -f /dd/tmp/MF/logo10.*; echo "\\mode=epsonlo; mode_setup; input logo10" > /dd/tmp/MF/run.mf
 wait    3
+run     builtin cd /dd/tmp/MF
 run     clear
 wait    1
-run     ksh -c "cd /dd/tmp/MF; virmf < run.mf"
+run     virmf < run.mf
 wait    50
-run     ls -l /dd/tmp/MF
+run     ls -l
 wait    5
 
 shot    inimf
@@ -345,47 +364,49 @@ size    36 80
 cap     Draws a bitmap font's characters as text: the M of the METAFONT
 cap     logo font, from the GF file Metafont wrote.  GFFONTS names the
 cap     directory.
-run     mkdir -p /dd/tmp/MF > /nil 2>/nil; rm -f /dd/tmp/MF/logo10.*; echo "\\mode=epsonlo; mode_setup; input logo10" > /dd/tmp/MF/run.mf; ksh -c "cd /dd/tmp/MF; virmf < run.mf" > /nil; export GFFONTS=/dd/tmp/MF
+run     mkdir -p /dd/tmp/MF > /nil 2>/nil; rm -f /dd/tmp/MF/logo10.*; echo "\\mode=epsonlo; mode_setup; input logo10" > /dd/tmp/MF/run.mf; builtin cd /dd/tmp/MF; virmf < run.mf > /nil; export GFFONTS=/dd/tmp/MF
 wait    50
 run     clear
 wait    1
-run     gftype -i logo10.120gf | sed -n 4,22p
+run     gftype -i logo10.120gf > gt.out
 wait    25
+run     head -n 22 gt.out
+wait    4
 
 shot    gftopk
 cap     Packs a GF bitmap font into the smaller PK form the DVI drivers
 cap     read; the two sizes side by side.
-run     mkdir -p /dd/tmp/MF > /nil 2>/nil; rm -f /dd/tmp/MF/logo10.*; echo "\\mode=epsonlo; mode_setup; input logo10" > /dd/tmp/MF/run.mf; ksh -c "cd /dd/tmp/MF; virmf < run.mf" > /nil; export GFFONTS=/dd/tmp/MF; export PKFONTS=/dd/tmp/MF
+run     mkdir -p /dd/tmp/MF > /nil 2>/nil; rm -f /dd/tmp/MF/logo10.*; echo "\\mode=epsonlo; mode_setup; input logo10" > /dd/tmp/MF/run.mf; builtin cd /dd/tmp/MF; virmf < run.mf > /nil; export GFFONTS=/dd/tmp/MF; export PKFONTS=/dd/tmp/MF
 wait    50
-run     builtin cd /dd
-wait    1
+run     builtin cd /dd/tmp/MF
 run     clear
 wait    1
-run     gftopk logo10.120gf tmp/MF/logo10.120pk
+run     gftopk logo10.120gf logo10.120pk
 wait    20
-run     ls -l tmp/MF/logo10.120gf tmp/MF/logo10.120pk
+run     ls -l logo10.120gf logo10.120pk
 wait    5
 
 shot    pktype
 size    30 80
 cap     Reads a packed PK font back and describes it: the head of what it
 cap     says about the logo font.
-run     mkdir -p /dd/tmp/MF > /nil 2>/nil; rm -f /dd/tmp/MF/logo10.*; echo "\\mode=epsonlo; mode_setup; input logo10" > /dd/tmp/MF/run.mf; ksh -c "cd /dd/tmp/MF; virmf < run.mf" > /nil; export GFFONTS=/dd/tmp/MF; export PKFONTS=/dd/tmp/MF; gftopk logo10.120gf /dd/tmp/MF/logo10.120pk > /nil
+run     mkdir -p /dd/tmp/MF > /nil 2>/nil; rm -f /dd/tmp/MF/logo10.*; echo "\\mode=epsonlo; mode_setup; input logo10" > /dd/tmp/MF/run.mf; builtin cd /dd/tmp/MF; virmf < run.mf > /nil; export GFFONTS=/dd/tmp/MF; export PKFONTS=/dd/tmp/MF; gftopk logo10.120gf /dd/tmp/MF/logo10.120pk > /nil
 wait    70
 run     clear
 wait    1
-run     pktype logo10.120pk | head -n 16
+run     pktype logo10.120pk > pt.out
 wait    20
+run     head -n 16 pt.out
+wait    4
 
 shot    pktogf
 cap     Unpacks a PK font back to GF, the other half of gftopk.
-run     mkdir -p /dd/tmp/MF > /nil 2>/nil; rm -f /dd/tmp/MF/logo10.* /dd/tmp/MF/back.120gf; echo "\\mode=epsonlo; mode_setup; input logo10" > /dd/tmp/MF/run.mf; ksh -c "cd /dd/tmp/MF; virmf < run.mf" > /nil; export GFFONTS=/dd/tmp/MF; export PKFONTS=/dd/tmp/MF; gftopk logo10.120gf /dd/tmp/MF/logo10.120pk > /nil
+run     mkdir -p /dd/tmp/MF > /nil 2>/nil; rm -f /dd/tmp/MF/logo10.* /dd/tmp/MF/back.120gf; echo "\\mode=epsonlo; mode_setup; input logo10" > /dd/tmp/MF/run.mf; builtin cd /dd/tmp/MF; virmf < run.mf > /nil; export GFFONTS=/dd/tmp/MF; export PKFONTS=/dd/tmp/MF; gftopk logo10.120gf /dd/tmp/MF/logo10.120pk > /nil
 wait    70
-run     builtin cd /dd
-wait    1
+run     builtin cd /dd/tmp/MF
 run     clear
 wait    1
-run     pktogf logo10.120pk tmp/MF/back.120gf
+run     pktogf logo10.120pk back.120gf
 wait    20
-run     ls -l tmp/MF/logo10.120gf tmp/MF/back.120gf
+run     ls -l logo10.120gf back.120gf
 wait    5

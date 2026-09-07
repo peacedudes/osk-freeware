@@ -1,4 +1,4 @@
-pktogf logo10.120pk tmp/MF/back.120gf
-$ ls -l tmp/MF/logo10.120gf tmp/MF/back.120gf
--rw-------   1 0        0             632 Sep  6 05:53 tmp/MF/back.120gf
--rw-------   1 0        0             608 Sep  6 05:52 tmp/MF/logo10.120gf
+pktogf logo10.120pk back.120gf
+$ ls -l logo10.120gf back.120gf
+-rw-------   1 0        0             632 Sep  7 08:33 back.120gf
+-rw-------   1 0        0             608 Sep  7 08:31 logo10.120gf

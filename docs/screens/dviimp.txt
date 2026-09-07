@@ -1,9 +1,9 @@
-ksh -c "cd /dd/tmp/TEX; dviimp story.dvi"
+dviimp story.dvi
 [TeX82 DVI Translator Version 2.10]
 [imPRESS [Imagen laser printer family]]
 [Input from DVI file story.dvi]
 [Output on file story.dvi_imp]
 [1 pages]
 [1{1}]  [OK]
-$ ls -l /dd/tmp/TEX | grep story.dvi_
--rw-------   1 0        0            4872 Sep  5 01:42 story.dvi_imp
+$ ls -l story.dvi_*
+-rw-------   1 0        0            4872 Sep  7 08:46 story.dvi_imp

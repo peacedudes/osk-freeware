@@ -1,3 +1,3 @@
-ksh -c "cd /dd/tmp/TEX; dvips story.dvi"
+dvips story.dvi
 This is dvipsk 5.495b Copyright 1986, 1992 Radical Eye Software
 dvips: ! Couldn't find header file tex.pro

@@ -1,10 +1,10 @@
-ksh -c "cd /dd/tmp/TEX; weave sample none"
+weave sample none
 This is WEAVE, C Version 4.2
 *1*2
 Writing the output file...*1*2
 Writing the index...Done.
 (No errors were found.)
-$ cat /dd/tmp/TEX/sample.tex | head -n 8
+$ head -n 8 sample.tex
 \input webmac
 % sample.web -- a tiny literate program, so that `tangle' and `weave' can
 % be shown doing their job.  WEB is Knuth's literate-programming language:

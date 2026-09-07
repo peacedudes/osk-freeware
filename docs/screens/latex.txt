@@ -1,4 +1,4 @@
-ksh -c "cd /dd/tmp/TEX; latex small.tex"
+latex small.tex
 This is TeX, C Version 3.14
 (small.tex
 LaTeX Version 2.09 <7 Dec 1989>
@@ -9,5 +9,5 @@ No file small.aux.
 [1] (small.aux) )
 Output written on small.dvi (1 page, 1704 bytes).
 Transcript written on small.log.
-$ ls -l /dd/tmp/TEX/small.dvi
--rw-------   1 0        0            1704 Sep  3 07:43 /dd/tmp/TEX/small.dvi
+$ ls -l small.dvi
+-rw-------   1 0        0            1704 Sep  7 08:35 small.dvi

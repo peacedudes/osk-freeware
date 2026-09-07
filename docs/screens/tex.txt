@@ -1,14 +1,14 @@
-cat /dd/tmp/TEX/story.tex | head -n 6
+head -n 6 story.tex
 \hrule
 \vskip 1in
 \centerline{\bf A SHORT STORY}
 \vskip 6pt
 \centerline{\sl    by A. U. Thor} % !`?`?! (modified)
 \vskip .5cm
-$ ksh -c "cd /dd/tmp/TEX; tex story.tex"
+$ tex story.tex
 This is TeX, C Version 3.14
 (story.tex [1] )
 Output written on story.dvi (1 page, 668 bytes).
 Transcript written on story.log.
-$ ls -l /dd/tmp/TEX/story.dvi
--rw-------   1 0        0             668 Sep  3 17:04 /dd/tmp/TEX/story.dvi
+$ ls -l story.dvi
+-rw-------   1 0        0             668 Sep  7 08:34 story.dvi

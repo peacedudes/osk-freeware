@@ -1,9 +1,9 @@
-ksh -c "cd /dd/tmp/TEX; dvijep story.dvi"
+dvijep story.dvi
 [TeX82 DVI Translator Version 2.10]
 [Hewlett-Packard LaserJet Plus laser printer]
 [Input from DVI file story.dvi]
 [Output on file story.dvi_jep]
 [1 pages]
 [1{1}]  [OK]
-$ ls -l /dd/tmp/TEX | grep story.dvi_
--rw-------   1 0        0            6155 Sep  5 01:43 story.dvi_jep
+$ ls -l story.dvi_*
+-rw-------   1 0        0            6155 Sep  7 08:47 story.dvi_jep

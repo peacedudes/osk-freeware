@@ -1,9 +1,9 @@
-ksh -c "cd /dd/tmp/TEX; tangle sample none"
+tangle sample none
 This is TANGLE, C Version 4.2
 *1*2
 Writing the output file
 Done.
 (No errors were found.)
-$ cat /dd/tmp/TEX/sample.p
+$ cat sample.p
 {1:}program sample(output);begin write('hello from WEB');writeln;
 end.{:1}
