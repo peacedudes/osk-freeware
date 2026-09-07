@@ -1,3 +1,5 @@
-<C/ms; macsave < ../j.txt.MAC"; ls -l /dd/tmp/ENC/ms
-total 512
--rw-------   1 0        0             256 Sep  3 05:11 j.txt.bin
+macsave < j.txt.MAC
+$ ls -l
+total 1024
+-rw-------   1 0        0             256 Sep  7 08:20 j.txt.MAC
+-rw-------   1 0        0             256 Sep  7 08:21 j.txt.bin

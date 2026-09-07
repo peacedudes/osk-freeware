@@ -58,7 +58,7 @@ bdecode 4c9435dbc68ae7e5
 bibtex 04eb3adefae94c24
 bigsetter a65afaeb5077cfad
 bincheckr 00003df49784821c
-binhex 8938a272898cecc4
+binhex abe31b8b77dfffa3
 bio 570e60369038202b
 bioradtopgm c52d3308a86b2aa9
 biory 3d3e1eae75c61db9
@@ -227,7 +227,7 @@ expr 93380e70a1308318
 exrecover 7e7b5298a953fdb1
 fastcc c055587702188aa7
 fastmail 9ffc8c75fc408915
-fc a980adc22d2b53de
+fc c5a542e9ea5adaa5
 fcomp 1088fc8ffba0aabb
 ff dfa69563d285691d
 fgrep 4e98fc62c03728b2
@@ -317,7 +317,7 @@ hc c248b77d3ef338e8
 head 75d65b434027b00b
 help f3582562e66c29aa
 helpindex 6e05b7ef5cb8238e
-hexbin 78a1ad442dbe8973
+hexbin 06949c54d9627202
 hexed ad46480b4037f9ca
 hexedit 296ee6ff860344e7
 hinterhalt 5b3a02628f05e653
@@ -394,8 +394,8 @@ lunisolar d63d5ea17ef7647f
 lwf 6b7310dc13d97cc8
 m4 a2516e3ec537a6de
 m4_0.5 142bec8c9f3a0fff
-macbin e85a55c39081aa41
-macsave 36cc548a9e398565
+macbin 3a7f913cb6815c13
+macsave 4b29f37316dbc3fc
 macstream 30b4f145c6304010
 macunpack b88c77a3c71ce67b
 mail 665bfec34a31ab4b
@@ -409,7 +409,7 @@ maketexpk eb25a36d250f989a
 map 2ca31eb0fe17ba0b
 marc 4f0332b4c4bed354
 maze 9de8ac4cb12ee6fd
-mcvert 42614dc92af426b3
+mcvert 10bcffb77425cb41
 md5 f7ca13d738767f9a
 me 98d867e530f821ec
 messages a6d10c4c797232b7
@@ -754,7 +754,7 @@ upperdir 7456190d2c69ba1c
 uucico d94fafb3daba81bb
 uuclean 61b9ee9dcd19b1db
 uucp 05e486c2e07d12a2
-uudecode 54de5578e103a088
+uudecode 9d17dbb5520dbcd3
 uuencode ef2f6199e6f7181d
 uuexpand 01cd8bc54967c7da
 uulog 9ccaeac3af76146e

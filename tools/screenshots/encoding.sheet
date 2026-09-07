@@ -44,15 +44,19 @@ wait    5
 shot    uudecode
 cap     Undoes uuencode: the file named on the begin line is written back
 cap     into the current directory.
-run     mkdir -p /dd/tmp/ENC/dec > /nil 2>/nil; rm -f /dd/tmp/ENC/dec/j.txt; printf "Twas brillig, and the slithy toves\r" > /dd/tmp/ENC/j.txt; ksh -c "cd /dd/tmp/ENC; uuencode j.txt" > /dd/tmp/ENC/j.uue
+run     rm -rf /dd/tmp/ENC/dec > /nil 2>/nil; mkdir -p /dd/tmp/ENC/dec; printf "Twas brillig, and the slithy toves\r" > /dd/tmp/ENC/j.txt
+run     builtin cd /dd/tmp/ENC; uuencode j.txt > dec/j.uue
+run     builtin cd /dd/tmp/ENC/dec
 wait    3
 run     clear
 wait    1
-run     cat /dd/tmp/ENC/j.uue
+run     cat j.uue
 wait    3
-run     ksh -c "cd /dd/tmp/ENC/dec; uudecode ../j.uue"
+run     uudecode j.uue
 wait    5
-run     ls -l /dd/tmp/ENC/dec; cat /dd/tmp/ENC/dec/j.txt
+run     ls
+wait    2
+run     cat j.txt
 wait    4
 
 shot    uuexpand
@@ -185,61 +189,76 @@ cap     Wraps a file in MacBinary, the form a Macintosh file with two
 cap     forks travels in: a 128-byte header naming the file, its type and
 cap     its creator, then the data padded to 128 bytes.
 run     mkdir -p /dd/tmp/ENC > /nil 2>/nil; rm -f /dd/tmp/ENC/j.txt.MAC; printf "Twas brillig, and the slithy toves\r" > /dd/tmp/ENC/j.txt
+run     builtin cd /dd/tmp/ENC
 wait    2
 run     clear
 wait    1
-run     ksh -c "cd /dd/tmp/ENC; macbin j.txt"; ls -l /dd/tmp/ENC/j.txt /dd/tmp/ENC/j.txt.MAC
-wait    5
-run     dump /dd/tmp/ENC/j.txt.MAC | head -n 12
+run     macbin j.txt
+wait    3
+run     ls -l j.txt j.txt.MAC
+wait    3
+run     dump j.txt.MAC
 wait    5
 
 shot    binhex
 cap     Encodes a MacBinary file as BinHex 4.0, the text form Macintosh
 cap     software was posted in: a banner line, then the file in a
 cap     64-character alphabet between colons.
-run     mkdir -p /dd/tmp/ENC > /nil 2>/nil; rm -f /dd/tmp/ENC/j.txt.MAC; printf "Twas brillig, and the slithy toves\r" > /dd/tmp/ENC/j.txt; ksh -c "cd /dd/tmp/ENC; macbin j.txt"
+run     mkdir -p /dd/tmp/ENC > /nil 2>/nil; rm -f /dd/tmp/ENC/j.txt.MAC; printf "Twas brillig, and the slithy toves\r" > /dd/tmp/ENC/j.txt
+run     builtin cd /dd/tmp/ENC
+run     macbin j.txt
 wait    4
-run     builtin cd /dd
-wait    1
 run     clear
 wait    1
-run     binhex tmp/ENC/j.txt.MAC
+run     binhex j.txt.MAC
 wait    6
 
 shot    mcvert
 cap     Converts between MacBinary and BinHex either way: -U makes the
 cap     BinHex for uploading, -D takes it back to MacBinary for
 cap     downloading.  Here a MacBinary file becomes a .hqx.
-run     mkdir -p /dd/tmp/ENC > /nil 2>/nil; rm -f /dd/tmp/ENC/j.txt.MAC /dd/tmp/ENC/j.txt01.hqx; printf "Twas brillig, and the slithy toves\r" > /dd/tmp/ENC/j.txt; ksh -c "cd /dd/tmp/ENC; macbin j.txt"
+run     mkdir -p /dd/tmp/ENC > /nil 2>/nil; rm -f /dd/tmp/ENC/j.txt.MAC /dd/tmp/ENC/j.txt01.hqx; printf "Twas brillig, and the slithy toves\r" > /dd/tmp/ENC/j.txt
+run     builtin cd /dd/tmp/ENC
+run     macbin j.txt
 wait    4
 run     clear
 wait    1
-run     ksh -c "cd /dd/tmp/ENC; mcvert -U j.txt.MAC"
+run     mcvert -U j.txt.MAC
 wait    6
-run     ls -l /dd/tmp/ENC/j.txt.MAC /dd/tmp/ENC/j.txt01.hqx
+run     ls -l j.txt.MAC j.txt01.hqx
 wait    4
-run     cat /dd/tmp/ENC/j.txt01.hqx
+run     cat j.txt01.hqx
 wait    4
 
 shot    hexbin
 cap     Decodes a BinHex file back into the Macintosh file it carried,
 cap     written into the current directory.
-run     mkdir -p /dd/tmp/ENC/hb > /nil 2>/nil; rm -f /dd/tmp/ENC/j.txt.MAC /dd/tmp/ENC/j.txt01.hqx /dd/tmp/ENC/hb/*; printf "Twas brillig, and the slithy toves\r" > /dd/tmp/ENC/j.txt; ksh -c "cd /dd/tmp/ENC; macbin j.txt; mcvert -U j.txt.MAC"
+run     rm -rf /dd/tmp/ENC/hb > /nil 2>/nil; mkdir -p /dd/tmp/ENC/hb; printf "Twas brillig, and the slithy toves\r" > /dd/tmp/ENC/j.txt
+run     builtin cd /dd/tmp/ENC; macbin j.txt; mcvert -U j.txt.MAC
+run     cp /dd/tmp/ENC/j.txt01.hqx /dd/tmp/ENC/hb/j.txt01.hqx
+run     builtin cd /dd/tmp/ENC/hb
 wait    5
 run     clear
 wait    1
-run     ksh -c "cd /dd/tmp/ENC/hb; hexbin ../j.txt01.hqx"; ls -l /dd/tmp/ENC/hb
-wait    6
+run     hexbin j.txt01.hqx
+wait    4
+run     ls -l
+wait    3
 
 shot    macsave
 cap     Reads MacBinary from its input and writes the file it carries
 cap     into the current directory, silently.
-run     mkdir -p /dd/tmp/ENC/ms > /nil 2>/nil; rm -f /dd/tmp/ENC/j.txt.MAC /dd/tmp/ENC/ms/*; printf "Twas brillig, and the slithy toves\r" > /dd/tmp/ENC/j.txt; ksh -c "cd /dd/tmp/ENC; macbin j.txt"
+run     rm -rf /dd/tmp/ENC/ms > /nil 2>/nil; mkdir -p /dd/tmp/ENC/ms; printf "Twas brillig, and the slithy toves\r" > /dd/tmp/ENC/j.txt
+run     builtin cd /dd/tmp/ENC; macbin j.txt
+run     cp /dd/tmp/ENC/j.txt.MAC /dd/tmp/ENC/ms/j.txt.MAC
+run     builtin cd /dd/tmp/ENC/ms
 wait    4
 run     clear
 wait    1
-run     ksh -c "cd /dd/tmp/ENC/ms; macsave < ../j.txt.MAC"; ls -l /dd/tmp/ENC/ms
+run     macsave < j.txt.MAC
 wait    6
+run     ls -l
+wait    3
 
 shot    macstream
 cap     Reads a MacBinary stream and lists or extracts the files in it:
@@ -310,9 +329,11 @@ cap     360K floppies.  Asked for by path because bash has an fc of its
 cap     own.  This file is shorter than the cut, so the first piece is
 cap     the whole of it.
 run     mkdir -p /dd/tmp/ENC > /nil 2>/nil; rm -f /dd/tmp/ENC/fc.*; cat /dd/SYS/holidays | head -n 12 > /dd/tmp/ENC/fc.txt
+run     builtin cd /dd/tmp/ENC
 wait    3
 run     clear
-run     ksh -c "cd /dd/tmp/ENC; /dd/CMDS/fc fc.txt" 2>/nil
+wait    1
+run     /dd/CMDS/fc fc.txt
 wait    6
-run     ls -l /dd/tmp/ENC/fc.txt /dd/tmp/ENC/fc.txt_1
+run     ls -l fc.txt fc.txt_1
 wait    5

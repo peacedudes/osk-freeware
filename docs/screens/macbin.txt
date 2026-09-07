@@ -1,7 +1,8 @@
-<C; macbin j.txt"; ls -l /dd/tmp/ENC/j.txt /dd/tmp/ENC/j.txt.MAC
--rw-rw-rw-   1 0        0              35 Sep  3 05:10 /dd/tmp/ENC/j.txt
--rw-------   1 0        0             256 Sep  3 05:10 /dd/tmp/ENC/j.txt.MAC
-$ dump /dd/tmp/ENC/j.txt.MAC | head -n 12
+macbin j.txt
+$ ls -l j.txt j.txt.MAC
+-rw-rw-rw-   1 0        0              35 Sep  7 08:19 j.txt
+-rw-------   1 0        0             256 Sep  7 08:19 j.txt.MAC
+$ dump j.txt.MAC
 
 Addr   0 1  2 3  4 5  6 7  8 9  A B  C D  E F 0 2 4 6 8 A C E
 ----  ---- ---- ---- ---- ---- ---- ---- ---- ----------------
@@ -14,3 +15,6 @@ Addr   0 1  2 3  4 5  6 7  8 9  A B  C D  E F 0 2 4 6 8 A C E
 0070  0000 0000 0000 0000 0000 0000 0000 0000 ................
 0080  5477 6173 2062 7269 6C6C 6967 2C20 616E Twas brillig, an
 0090  6420 7468 6520 736C 6974 6879 2074 6F76 d the slithy tov
+00A0  6573 0D00 0000 0000 0000 0000 0000 0000 es..............
+00B0  0000 0000 0000 0000 0000 0000 0000 0000 ................
+        ********  4 duplicate lines  ********

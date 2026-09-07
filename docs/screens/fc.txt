@@ -1,7 +1,7 @@
-ksh -c "cd /dd/tmp/ENC; /dd/CMDS/fc fc.txt" 2>/nil
+/dd/CMDS/fc fc.txt
 Oops! File was already less than 350,000 bytes!
 That's ok. Now you have two copies of the same
 file.
-$ ls -l /dd/tmp/ENC/fc.txt /dd/tmp/ENC/fc.txt_1
--rw-rw-rw-   1 0        0             242 Sep  3 21:27 /dd/tmp/ENC/fc.txt
--rw-------   1 0        0             242 Sep  3 21:27 /dd/tmp/ENC/fc.txt_1
+$ ls -l fc.txt fc.txt_1
+-rw-rw-rw-   1 0        0             242 Sep  7 08:21 fc.txt
+-rw-------   1 0        0             242 Sep  7 08:21 fc.txt_1

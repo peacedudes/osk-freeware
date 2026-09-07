@@ -1,9 +1,9 @@
-ksh -c "cd /dd/tmp/ENC; mcvert -U j.txt.MAC"
+mcvert -U j.txt.MAC
 Converting     j.txt                          type = "TEXT", author = "OS-9"
-$ ls -l /dd/tmp/ENC/j.txt.MAC /dd/tmp/ENC/j.txt01.hqx
--rw-------   1 0        0             256 Sep  3 05:18 /dd/tmp/ENC/j.txt.MAC
--rw-------   1 0        0             135 Sep  3 05:18 /dd/tmp/ENC/j.txt01.hqx
-$ cat /dd/tmp/ENC/j.txt01.hqx
+$ ls -l j.txt.MAC j.txt01.hqx
+-rw-------   1 0        0             256 Sep  7 08:19 j.txt.MAC
+-rw-------   1 0        0             135 Sep  7 08:20 j.txt01.hqx
+$ cat j.txt01.hqx
 (This file must be converted with BinHex 4.0)
 
 :"@SZG(Kd!&4&@&428bdj!*!&)`#3",l-9(GKFb"LFQPXE'PR,#"KEQ3JG'KP)(0
