@@ -21,9 +21,11 @@ run     load /dd/CMDS/os9lib
 wait    2
 run     rm -rf /dd/tmp/BIO; mkdir -p /dd/tmp/BIO
 wait    2
+run     builtin cd /dd/tmp/BIO
+wait    1
 run     clear
 wait    1
-run     ksh -c "cd /dd/tmp/BIO; biory; head -n 30 Biory.Lis"
+run     biory
 wait    5
 send    Anna Bergmann\r
 wait    3
@@ -33,6 +35,8 @@ send    88-88\r
 wait    8
 send    \r
 wait    6
+run     head -n 30 Biory.Lis
+wait    5
 
 shot    bio
 cap     F. Kaefer's Biorhythm V2.2e, a BASIC09 program: give it a date and a

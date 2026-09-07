@@ -1,4 +1,4 @@
-$ echo Freeware | cursive
+$ cursive Freeware
    _____
     /  '
  ,-/-, __  _  _  , , , __.  __  _

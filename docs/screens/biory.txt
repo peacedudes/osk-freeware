@@ -1,9 +1,11 @@
+biory
   Ausgabe im Listingfile 'Biory.Lis'
   Name Vorname (RETURN=Ende)  : Anna Bergmann
   Geburtsdatum (TTMMJJ)       : 140365
   Gueltigkeitsbereich (JJ-JJ) : 88-88
   Name Vorname (RETURN=Ende)  :
  STOP: BIO / NORMAL END
+$ head -n 30 Biory.Lis
          Biorhythmogramm fuer Anna Bergmann                (14.03.65)
          ============================================================
 

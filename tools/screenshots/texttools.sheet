@@ -37,10 +37,10 @@ run     cookie
 wait    3
 
 shot    cursive
-cap     cursive writes a joined-up banner sideways down the screen.
-run     echo Freeware | cursive
+cap     cursive draws a joined-up banner of the word you give it, down the
+cap     screen.
+run     cursive Freeware
 wait    6
-kill
 
 shot    diff
 cap     GNU diff 1.1 on two versions of the same file -- the disk had no

@@ -1,14 +1,12 @@
-unzip -l /dd/DOC/zip/sample.zip
+unzip -l sample.zip
  Length    Date    Time    Name ("^" ==> case
  ------    ----    ----    ----   conversion)
    4033  08-30-92  12:00   readme
    5218  08-30-92  12:00   ziprules
  ------                    -------
    9251                    2
-$ ksh -c "cd /dd/tmp/UNZ; unzip -o /dd/DOC/zip/sample.zip"
+$ unzip sample.zip
   Inflating: readme
  Extracting: ziprules
-$ ls -l /dd/tmp/UNZ
-total 9728
--rw-------   1 0        0            4033 Sep  4 20:30 readme
--rw-------   1 0        0            5218 Sep  4 20:30 ziprules
+$ ls
+readme      sample.zip  ziprules
