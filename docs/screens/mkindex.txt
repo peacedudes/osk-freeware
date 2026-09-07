@@ -1,3 +1,7 @@
-$ ksh -c "cd /dd/GAMES/BOG; mkindex" < /nil; echo "status $?"
+mkindex < /nil
       0     -1
-status 0
+$ ls -l
+total 85504
+-rw-rw-rw-   1 0        0           80520 Aug  3 19:00 dict
+-rw-rw-rw-   1 0        0             416 Aug  3 19:00 dict.ind
+-rw-rw-rw-   1 0        0            3620 Aug  3 19:00 helpfile

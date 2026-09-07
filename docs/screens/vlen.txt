@@ -1,4 +1,5 @@
-ksh -c "cd /dd/tmp/UTILA/vl; vlen" 2>/nil | tail -l=16
+vlen > vl.out
+$ tail -l=16 vl.out
 deleted bytes in store == 2000, store size == 7081
 
 Read record #91; length==50

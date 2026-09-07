@@ -503,12 +503,11 @@ cap     when you type `list' -- replays it looking for illegal moves and
 cap     prints the board it finishes on.  A game is made here first by
 cap     playing one move against gnuchess and listing it.
 run     mkdir -p /dd/tmp/GAMESA > /nil 2>/nil; rm -f /dd/tmp/GAMESA/chess.lst
-wait    3
 run     . /dd/SYS/termcap.entry
-wait    3
 run     load /dd/CMDS/GAMES/gnuchess
-wait    4
-run     ksh -c "cd /dd/tmp/GAMESA; gnuchess" > /nil 2>/nil
+run     builtin cd /dd/tmp/GAMESA
+wait    3
+run     gnuchess > /nil 2>/nil
 wait    12
 send    1\r
 wait    8
@@ -518,13 +517,11 @@ send    list\r
 wait    8
 send    quit\r
 wait    6
-run     builtin cd /dd
-wait    1
 run     clear
 wait    1
-run     cat tmp/GAMESA/chess.lst
+run     cat chess.lst
 wait    5
-run     checkgame tmp/GAMESA/chess.lst
+run     checkgame chess.lst
 wait    10
 
 shot    game
@@ -833,8 +830,14 @@ wait    4
 shot    mkindex
 cap     Builds the index bog reads its dictionary through, in the
 cap     directory holding the dictionary; it reports two counts.
-run     ksh -c "cd /dd/GAMES/BOG; mkindex" < /nil; echo "status $?"
+run     builtin cd /dd/GAMES/BOG
+wait    1
+run     clear
+wait    1
+run     mkindex < /nil
 wait    12
+run     ls -l
+wait    3
 
 shot    mkdict
 cap     Builds bog's dictionary from a word list.  On the list that ships

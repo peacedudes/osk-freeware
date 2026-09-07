@@ -98,7 +98,7 @@ chbase 19a911b330380a09
 checkalias 17a0c27a8214bdce
 checkenv af7526fb1be42dde
 checkfile 6e26d4ddd9eed805
-checkgame 4d3ed6486ea9a892
+checkgame 61724e39a71a366a
 checksum ca1161603ac9d882
 chess 24ca8addeb091c9c
 chgrp afb641af9a3d88cb
@@ -145,7 +145,7 @@ dbz b8a2dbd1e541b4a4
 dclock 9081125499f001ad
 dearc 2a58125961c0d5ce
 delbak 5afa330f2759aa23
-demerge 9b67fa2ec7514dd8
+demerge 5d1401233cb0522a
 demo 56e8d37beec6bcf8
 des 850682ebbb6037f3
 detab 693cae8730d97533
@@ -401,7 +401,7 @@ macunpack b88c77a3c71ce67b
 mail 665bfec34a31ab4b
 mailx 13e40634d305ceeb
 make e787c0fd1f44b47d
-makecrc 92fa0fd6df5b66b3
+makecrc 541a2d827eb1a03f
 makedb 20377f8a3e598728
 makeinfo 3172d405e40f894a
 makelex 08eaa269934654ed
@@ -421,7 +421,7 @@ mines d60bd064f0a8be59
 minnesota 0bbeae4ac2dd551d
 mkdict da1546c1ab60e07b
 mkdir d5cbe4d6e1888792
-mkindex 99e6f6bd957e38d1
+mkindex 56e25e6b32f8fb0c
 modinfo 35b55f276b3cbaeb
 modules 3f1b889666b4b165
 modules2 0ecb14eeec9a1655
@@ -746,7 +746,7 @@ unip 5598a74a1fee6179
 uniq 62938badd8aa5e3d
 unp d9954af1d0edb570
 unpacklib 8bb1d3a69ebb675e
-unpacklib.os9 38afad1175812917
+unpacklib.os9 79c4b0a974668f7c
 unsit d313249b66cb4a1a
 unsubscribe 0d927590b28d92fa
 unzip ee4a5b0c4de86033
@@ -774,7 +774,7 @@ vi_nocio 00e67187c0224616
 view 70db0c17ded9c614
 virmf 9a2022512aac2a1b
 virtex 9d559fb54e82f573
-vlen 80cc66f3d5a73dc9
+vlen 6bf567ff7defc20f
 vmod_trap 8a18b7818c4c192e
 vptovf acd9fb8d80a0a040
 vtxtcn 24c0341f76ee53e1

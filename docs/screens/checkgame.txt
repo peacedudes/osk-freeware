@@ -1,10 +1,10 @@
-cat tmp/GAMESA/chess.lst
+cat chess.lst
 
        score  depth  nodes  time                score  depth  nodes  time
 
  e2e4      0      0      0     9          d7d5     -3      5  29080     4
 
-$ checkgame tmp/GAMESA/chess.lst
+$ checkgame chess.lst
 
 
 Final board:

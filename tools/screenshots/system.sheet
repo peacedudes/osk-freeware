@@ -224,11 +224,12 @@ cap     and says nothing -- the files it leaves are the output.  Run in a
 cap     writable directory, then listed.
 run     rm -rf /dd/tmp/UTILA/mc > /nil 2>/nil
 run     mkdir -p /dd/tmp/UTILA/mc > /nil 2>/nil
+run     builtin cd /dd/tmp/UTILA/mc
 run     clear
 wait    1
-run     ksh -c "cd /dd/tmp/UTILA/mc; makecrc" 2>/nil
+run     makecrc
 wait    4
-run     ls /dd/tmp/UTILA/mc
+run     ls
 wait    3
 shot    map
 cap     map shows the blocks a file occupies -- not a memory map, whatever
@@ -659,11 +660,12 @@ cap     today and tty again.
 run     rm -rf /dd/tmp/UTILA/dm > /nil 2>/nil
 run     mkdir -p /dd/tmp/UTILA/dm > /nil 2>/nil
 run     cat /dd/CMDS/today /dd/CMDS/tty > /dd/tmp/UTILA/dm/both
+run     builtin cd /dd/tmp/UTILA/dm
 run     clear
 wait    1
-run     ksh -c "cd /dd/tmp/UTILA/dm; demerge both" 2>/nil
+run     demerge both
 wait    4
-run     ls -l /dd/tmp/UTILA/dm
+run     ls -l
 wait    3
 shot    ptob
 cap     ptob turns a file of bit patterns back into characters, the other
@@ -786,11 +788,13 @@ cap     current directory, stopping at the first record that is not a
 cap     module.
 run     rm -rf /dd/tmp/UTILA/ul > /nil 2>/nil
 run     mkdir -p /dd/tmp/UTILA/ul > /nil 2>/nil
+run     cp /dd/LIB/alib.l /dd/tmp/UTILA/ul/alib.l
+run     builtin cd /dd/tmp/UTILA/ul
 run     clear
 wait    1
-run     ksh -c "cd /dd/tmp/UTILA/ul; unpacklib /dd/LIB/alib.l" 2>/nil
+run     unpacklib alib.l
 wait    5
-run     ls /dd/tmp/UTILA/ul
+run     ls
 wait    3
 shot    ynad
 size    24 80
@@ -849,10 +853,13 @@ cap     length, and reads them back deleting some as it goes.  The tail of
 cap     the run, ending `vlTest completed successfully'.
 run     rm -rf /dd/tmp/UTILA/vl > /nil 2>/nil
 run     mkdir -p /dd/tmp/UTILA/vl > /nil 2>/nil
+run     builtin cd /dd/tmp/UTILA/vl
 run     clear
 wait    1
-run     ksh -c "cd /dd/tmp/UTILA/vl; vlen" 2>/nil | tail -l=16
-wait    6
+run     vlen > vl.out
+wait    14
+run     tail -l=16 vl.out
+wait    4
 shot    mvolformat
 cap     mvolformat formats a set of floppies with sequential volume
 cap     numbers.  With no drive here, its syntax and options are what

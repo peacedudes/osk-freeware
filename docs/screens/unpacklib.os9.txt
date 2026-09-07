@@ -1,4 +1,4 @@
-ksh -c "cd /dd/tmp/UTILA/ul; unpacklib /dd/LIB/alib.l" 2>/nil
+unpacklib alib.l
 Wrong SYNC long word, found 0xB0000002
-$ ls /dd/tmp/UTILA/ul
-basename.r  pwent.r
+$ ls
+alib.l      basename.r  pwent.r
