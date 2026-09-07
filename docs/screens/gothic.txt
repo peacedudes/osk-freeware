@@ -1,20 +1,38 @@
-                                  O                    OOOOOOOOOOOOOOOOOOOOOOOOO
-                                 OOOO                 OOOOOOOOOOOOOOOOOOOOOOOOOO
-                                OOOOOOO              OOOOOOOOOOOOOOOOOOOOOOOOOOO
-                               OOOOOOOO             OOOOOOOOOOOOOOOOOOOOOOOOOOOO
-                              OOOOOOOO             OOOOOOOOOOOOOOOOOOOOOOOOOOOOO
-                             OOOOOOOO             OOOOOOOO                     O
-                            OOOOOOOO             OOOOOOOO                      O
-                           OOOOOOOO             OOOOOOOO                       O
-                          OOOOOOOO             OOOOOOOO                        O
-                         OOOOOOOO               OOOOOO                         O
-                          OOOOOO                 OOOO                          O
-                           OOOO                   OO                           O
-                            OO                     OO                         OO
-                             OO                     OO                       OOO
-                              OO                     OO                     OOOO
-                               OOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOO
-                                OOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOO
-                                 OOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOO
-                                  OOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOO
-                                   OOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOO
+             O
+               OO
+                OOO
+                 OOO                    OO
+                  OOO                 OOOOO
+                  OOOO               OOOOOOO
+                  OOOO              OOOOOOOOO
+                  OOOOO     O      OOOOOOOO   O
+                  OOOOO    O      OOOOOOOO     OO
+                 OOOOOO          OOOOOOOO     OOOOOOO
+                OOOOOO        O  OOOOOOO     OOOOOO
+              OOOOOOO           OOOOOOO      OOOO
+             OOOOOOO            OOOOOO      OOOOO
+              OOOOO            OOOOOO  O   OOOOOO
+               OOO             OOOOOO     OOOOOOO
+               O              OOOOOO       OOOOOO
+                O            OOOOOO         OOOOO
+                 OO         OOOOOOO          OOOO  O
+                  OO      OOOOOOO             OOO   O
+                    OOOOOOOOOO                  OO
+
+
+                         OO
+                          OOOO
+        ... the same line 6 times over
+                           OOO
+
+
+                 O          OOOOOOOOOOOO
+                OOOO       OOOOOOOOOOOOOO
+               OOOO       OOOOOOOOOOOOOOOO
+              OOOO       OOOO             O
+             OOOO       OOOO             OOO
+             OOO         OO             OOOO
+              O           O            OOOO
+               O           O          OOOO
+                OOOOOOOOOOOOOOOOOOOOOOOOO
+                 OOOOOOOOOOOOOOOOOOOOOOO

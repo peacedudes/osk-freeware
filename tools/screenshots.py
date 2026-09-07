@@ -379,6 +379,17 @@ def _drive(sess, shot):
     for part in (LOGIN[:half], LOGIN[half:]):
         sess.write("; ".join(part) + "\r")
         time.sleep(0.6)
+    # RESET THE DATA DIRECTORY TO ROOT at the head of every stanza.  Stanzas
+    # in one size-group share a session, and `builtin cd' moves the OS-9 data
+    # directory for the whole session, not just one command -- so a stanza
+    # that does its setup with a hidden `builtin cd /dd/tmp/X' would leave the
+    # next stanza looking there too.  The old sheets never hit this because
+    # every cd was scoped inside a `ksh -c "cd X; ..."' subshell; a card that
+    # shows a bare command instead keeps the cd out of sight up here, and this
+    # line is what makes that safe.  SYS/login does the same `builtin cd
+    # $ROOT', and it is a no-op for a stanza that never moved the directory.
+    sess.write("builtin cd /dd\r")
+    time.sleep(0.6)
     sess.write("clear\r")
     time.sleep(1.2)
     shot["_start"] = sess.mark()

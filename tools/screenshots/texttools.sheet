@@ -93,15 +93,10 @@ run     fcomp tmp/fc1 tmp/fc2
 wait    6
 
 shot    gothic
-cap     gothic sets a line in blackletter.  It asks where to write and
-cap     whether to halve the size before it draws.
-run     gothic
-wait    3
-send    \r
-wait    2
-send    \r
-wait    2
-send    OS-9\r
+size    46 100
+cap     gothic sets a word in blackletter, drawn down the screen.  `-h'
+cap     draws it at half size.
+run     gothic -h OS-9
 wait    6
 
 shot    grep
