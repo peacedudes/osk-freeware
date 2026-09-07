@@ -46,6 +46,28 @@ reader's own OS-9, never by its absence ("not on this disk" is banned). The
 reader HAS Microware OS-9; os9exec is only the convenience. See the memories
 `os9-collection-is-a-tribute` and `os9-card-rules-2026-09-03`.
 
+## What the last session did (2026-09-07), all committed and gate-green
+
+- **Every gallery demo recut to the simple style rdoggett asked for**: the
+  visible line is the program and its arguments, and the `cd', the `load'
+  and the file staging are hidden before the `clear'.  A reader new to a
+  command sees what to type, not a `ksh -c "cd X; ..."' shell-in-a-shell.
+  All 55 wrapped cards were done across amusements, archives, calendars,
+  documentation, editors, comms, compilers, devtools, encoding, games,
+  system and tex -- five commits, each sheet-group its own.
+- **screenshots.py now resets the data directory (`builtin cd /dd') at the
+  head of every stanza.**  Stanzas in a size-group share a session, so a
+  hidden `builtin cd' would otherwise leak into the next stanza; the reset
+  is what makes the bare-command style safe.  Verified a no-op for the old
+  sheets (an untouched card recaptures byte-identical).
+- **Three cards keep their `ksh -c "cd"' wrapper on purpose**, noted in
+  FOR-RDOGGETT: `creadoc' (known-broken, needs /h1), `vtxtcn' (leaves the
+  session unusable unless run in a subshell), `mkdict' (fragile; and it no
+  longer bus-errors, so its caption is stale).
+- **gothic runs non-interactively now** (`gothic -h OS-9'), and the config
+  for testing the Microware shell is settled: freeware on /dd and /h0, the
+  SDK on /h1 (absolute path -- a tilde does not expand into OS9H1).
+
 ## What the last session did (2026-09-06), all committed and gate-green
 
 - **Shown-command pathlists swept.** Visible `run' lines across the sheets

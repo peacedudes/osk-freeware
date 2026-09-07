@@ -2,7 +2,7 @@
 
 Only what is waiting on a decision of yours. Everything done, and why, is in
 git history and `notes/START-HERE-NEXT-SESSION.md`; this file carries none
-of it. Updated 2026-09-06.
+of it. Updated 2026-09-07.
 
 ## Full pathlists on cards -- captions ruled and gated; shown commands mostly done
 
@@ -68,6 +68,21 @@ most. The format is documented in tools/screenshots.py's sheet-format help.
 still carry how-it-was-got-working prose. It is a category-by-category
 editing pass, not a redesign. Authoring `try' for the arg-needing cards
 (most just take their name) is the same kind of incremental work.
+
+## Card demos are now all simple (2026-09-07) -- three edge cases left
+
+Every gallery demo shows the program and its arguments, nothing else; the
+55 `ksh -c "cd X; ..."' wrappers are gone, with the cd and staging hidden
+before the clear.  Three keep a wrapper on purpose, and they are yours to
+rule on if you want them touched:
+
+  - **creadoc** -- known-broken (the column-53 bug), and needs the Microware
+    shell/dir/del on /h1; left as it was.
+  - **vtxtcn** -- run directly it leaves the capture session unusable, so it
+    needs the `ksh -c' subshell to contain it.
+  - **mkdict** -- fragile, and it NO LONGER bus-errors: it now returns status
+    0 silently, so its card caption ("takes a bus error and stops") is stale
+    and wants a rewrite once you decide what the card should show.
 
 ## Content decisions
 
