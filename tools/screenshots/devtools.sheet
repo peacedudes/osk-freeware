@@ -298,24 +298,28 @@ shot    ctags
 cap     Builds the tags file vi uses to jump to a definition: one line
 cap     per function, with the file and a search pattern.
 run     mkdir -p /dd/tmp/DEV > /nil 2>/nil; rm -f /dd/tmp/DEV/tags
+run     cp /dd/SRC/keep/keep.c /dd/tmp/DEV/keep.c
+run     builtin cd /dd/tmp/DEV
 wait    2
 run     clear
 wait    1
-run     ksh -c "cd /dd/tmp/DEV; ctags /dd/SRC/keep/keep.c"
+run     ctags keep.c
 wait    6
-run     cat /dd/tmp/DEV/tags | head -n 8
+run     head -n 8 tags
 wait    4
 
 shot    etags
 cap     Builds the TAGS file emacs uses, the way ctags does for vi: it
 cap     says nothing and leaves the file in the current directory.
 run     mkdir -p /dd/tmp/DEV > /nil 2>/nil; rm -f /dd/tmp/DEV/TAGS
+run     cp /dd/SRC/keep/about.c /dd/tmp/DEV/about.c
+run     builtin cd /dd/tmp/DEV
 wait    2
 run     clear
 wait    1
-run     ksh -c "cd /dd/tmp/DEV; etags /dd/SRC/keep/about.c"; echo "status $?"
+run     etags about.c
 wait    8
-run     ls -l /dd/tmp/DEV/TAGS
+run     ls -l TAGS
 wait    4
 
 shot    cxref
@@ -343,15 +347,16 @@ run     rdoc SRC/keep/keep.c | tail -l=24
 wait    90
 
 shot    xrf
-size    30 80
+size    44 80
 cap     A C cross-reference generator that reads its language table,
 cap     C.XRF, and the source both from the current directory; the table
 cap     ships in DOC/xrf.
 run     mkdir -p /dd/tmp/DEV/xrf > /nil 2>/nil; cp /dd/DOC/xrf/c.xrf /dd/tmp/DEV/xrf/C.XRF; cp /dd/SRC/keep/about.c /dd/tmp/DEV/xrf/about.c
+run     builtin cd /dd/tmp/DEV/xrf
 wait    4
 run     clear
 wait    1
-run     ksh -c "cd /dd/tmp/DEV/xrf; xrf about.c" | head -n 24
+run     xrf about.c
 wait    12
 
 shot    ref
@@ -360,10 +365,12 @@ cap     where it is defined.  Here ctags indexes keep.c and ref shows the
 cap     definition of crc_of, comment header and all.
 run     rm -rf /dd/tmp/DEV/ref > /nil 2>/nil; mkdir -p /dd/tmp/DEV/ref > /nil 2>/nil
 run     cp /dd/SRC/keep/keep.c /dd/tmp/DEV/ref/keep.c
-run     ksh -c "cd /dd/tmp/DEV/ref; ctags keep.c" 2>/nil
+run     builtin cd /dd/tmp/DEV/ref
+run     ctags keep.c 2>/nil
 wait    3
 run     clear
-run     ksh -c "cd /dd/tmp/DEV/ref; ref crc_of" 2>/nil
+wait    1
+run     ref crc_of
 wait    6
 
 shot    libsplit

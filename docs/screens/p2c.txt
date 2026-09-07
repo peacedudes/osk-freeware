@@ -1,15 +1,14 @@
-$ mkdir -p /dd/tmp/P2C
-mkdir: cannot change mode of `/dd/tmp/P2C': 000:214 file not accessible
-$ echo "program hello; begin writeln('hi') end." > /dd/tmp/P2C/h.pas
-$ cat /dd/tmp/P2C/h.pas
+cat h.pas
 program hello; begin writeln('hi') end.
-$ ksh -c "cd /dd/tmp/P2C; p2c h.pas" 2>/nil
+$ p2c h.pas
 hello
 h.pas, line 1: Warning: Symbol 'WRITELN' is not defined [221]
 
-$ ls /dd/tmp/P2C
+
+Translation completed.
+$ ls
 h.c    h.pas
-$ head -n 12 /dd/tmp/P2C/h.c
+$ head -n 12 h.c
 /* Output from p2c, the Pascal-to-C translator */
 /* From input file "h.pas" */
 

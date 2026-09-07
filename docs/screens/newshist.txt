@@ -1,4 +1,4 @@
-ksh -c "cd /dd/lib/news; dbz history"
+dbz history
 dbz: (file `history', line 1) store failed on `<one@site.uucp> 9999999999 1
 ...'
 $ newshist "<one@site.uucp>"

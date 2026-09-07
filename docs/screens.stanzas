@@ -34,7 +34,7 @@ areacode c1465c13732198ab
 arepdaemon 5b5a133d4e551d53
 argproc_demo 58b09c3f5ce797ca
 as0 4f234d977c1e0f97
-as09 09e55897947feaef
+as09 bf9a95623f1cb580
 as1 3ec0175a8f9b88b2
 as11 0a8f4ecf1bcf1c1a
 as4 48406aebc2d57508
@@ -131,7 +131,7 @@ crib 4db82a065a15e79a
 cribbage 236f40fb817c182c
 cron 32dbb5d3d7b578bc
 crypto ee96bdb3042ce625
-ctags a08576ed58e9d0e5
+ctags 012d62e919d9a679
 ctags.elvis 6c2ef630ff254565
 cursive b6556ab83fc099c5
 cut db89f25fada4b2e9
@@ -141,7 +141,7 @@ cxref 835c2421b77d6158
 cyberwar 217de83f79ad4776
 dam c30b7cc7269589c3
 dback 906be23ee236ebeb
-dbz 603ef4d1a8f2c8ef
+dbz b8a2dbd1e541b4a4
 dclock 9081125499f001ad
 dearc 2a58125961c0d5ce
 delbak 5afa330f2759aa23
@@ -217,7 +217,7 @@ ephem 59fd505985416455
 ephem881 b2ff1bbc463abc95
 epson b0ba1ac846678b47
 eset 0d7db79c1b26ab57
-etags 81074b23f25ed40a
+etags 788393f941aed325
 eunlink 53f837f1df24bebb
 every 1a87d90bcd248316
 exist c54bb20bc7c4df89
@@ -461,7 +461,7 @@ new_e 690352b9bd5b7797
 newalias 8d158b4f1f815a2e
 newmail df0f987d0fc5e9af
 newsgen 99c44fee16b57b16
-newshist 9b31d5f25fe1cfa0
+newshist ceedd2cb3f480714
 newslock 6fc4ff0ff643b066
 noreader e04559edcefa0d2c
 nptx 478329f3f0d22998
@@ -473,7 +473,7 @@ orbit 3699a62f5f60136b
 osknet 5412cde63b6dd985
 oskversion 2263e37034171b78
 owner 7fb3f2c98801f014
-p2c 0547b3a700db114e
+p2c ad2cc748d21b5b6a
 pagefraz b7df03a6ec1e2269
 pagekwic d02606167b53409f
 pageline 13c7f481a68a01c9
@@ -606,7 +606,7 @@ read_mail b6c46e3207483f44
 readmsg acf5e6d2c4a14d0e
 readnews d2383353e60d7d02
 rechne 59c965a157f88843
-ref 84447238ec383253
+ref 24535c0b7a043a59
 remove 4d89e01e02b53a43
 rendsk a2b8a5173c3a3a45
 repeat 86d732ebd88df086
@@ -786,8 +786,8 @@ weave deeb784fa123e255
 wgen c6a9a7f50fccf8ee
 what 8642a07e7041636b
 whoami ac172d53bcf13294
-wn bce7d8229ee274dd
-wndex 916f0dae1acb0289
+wn f0b1aaa64c9cc858
+wndex 4e51decae1f21212
 workstations e2e0317a1ff371e0
 writeonly 14344f0f27ffa55d
 wrjpgcom c48ec6047691ec09
@@ -803,12 +803,12 @@ xkermit 7122f8dd9f815456
 xlate 2def5f80f6503487
 xlisp 0b7422cb632e67fb
 xpm 7b2a1d3ed8191ac5
-xrf 1ef6a5c3930bacc9
+xrf 3339febc2e9ae9e1
 xvminitoppm 1b1b54762eba707c
 xy e31dbf52740284b7
 xydown 3b91fa6d06d1cff9
 xyt 53e361ed92dcf2f5
-yacc 537ee7f7be555240
+yacc 68da3ce1893fa99a
 yagi 469ad661c6ada1aa
 ynad 4e45aa6ac750eb7c
 yuv 7bc729e24271bbd0

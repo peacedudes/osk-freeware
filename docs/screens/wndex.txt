@@ -1,2 +1,2 @@
-$ ksh -c "cd /dd/c/unid/wn_1.14.3/osk; /dd/CMDS/WN/wndex" 2>/nil
+wndex
 Wrote cache file ./index.cache

@@ -401,12 +401,13 @@ shot    dbz
 cap     The news history database from C News: builds a .dir/.pag pair
 cap     from a text history file.
 run     mkdir -p /dd/tmp/MAILA > /nil 2>/nil; printf "<one@site.uucp> 999999999 1\r" > /dd/tmp/MAILA/history
+run     builtin cd /dd/tmp/MAILA
 wait    3
 run     clear
 wait    1
-run     ksh -c "cd /dd/tmp/MAILA; dbz history"
+run     dbz history
 wait    8
-run     ls -l /dd/tmp/MAILA/history.dir /dd/tmp/MAILA/history.pag
+run     ls -l history.dir history.pag
 wait    5
 
 shot    expire
@@ -421,10 +422,11 @@ cap     fails on the entry it is given here -- see dbz -- so what
 cap     newshist can say about an id that really is in the file is that
 cap     it has no entry for it.
 run     mkdir -p /dd/lib/news > /nil 2>/nil; printf "<one@site.uucp> 9999999999 1\r" > /dd/lib/news/history
+run     builtin cd /dd/lib/news
 wait    3
 run     clear
 wait    1
-run     ksh -c "cd /dd/lib/news; dbz history"
+run     dbz history
 wait    8
 run     newshist "<one@site.uucp>"
 wait    6
@@ -919,8 +921,8 @@ cap     document root is a directory this disk carries, so mount the
 cap     collection as /h0 as well as /dd; `wndex' builds the cache it
 cap     serves from.  The reply is cut to eighteen lines to end cleanly.
 run     mkdir -p /dd/tmp/COMB > /nil 2>/nil
-wait    2
-run     ksh -c "cd /h0/c/unid/wn_1.14.3/osk; wndex" 2>/nil
+run     builtin cd /h0/c/unid/wn_1.14.3/osk
+run     wndex 2>/nil
 wait    6
 run     echo "GET /index.html HTTP/1.0" > /dd/tmp/COMB/rq
 wait    2
@@ -937,9 +939,13 @@ wait    8
 
 shot    wndex
 cap     Builds the index.cache the WN web server reads a directory from.
-cap     It works on the current directory, so it is run through ksh, whose
-cap     `cd' moves the OS-9 data directory to the site's folder first.
-run     ksh -c "cd /dd/c/unid/wn_1.14.3/osk; /dd/CMDS/WN/wndex" 2>/nil
+cap     It works on the current directory, so the demo moves there first,
+cap     off-screen, and runs it by name.
+run     builtin cd /dd/c/unid/wn_1.14.3/osk
+wait    1
+run     clear
+wait    1
+run     wndex
 wait    8
 
 shot    inetd

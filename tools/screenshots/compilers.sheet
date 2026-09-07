@@ -19,27 +19,22 @@ cap     as09, the 6809 assembler and the only one of the six xasm programs
 cap     that is not a cross-assembler for an 8-bit relative of the 6809 --
 cap     none of the six assembles 68000 code.  It says nothing and writes
 cap     Motorola S-records beside the source: four instructions at $1000,
-cap     in the format a ROM burner reads.  Run through ksh, whose `cd'
-cap     moves the OS-9 data directory where bash's does not -- given the
-cap     source by its full path instead, as09 cannot create its own
-cap     temporary file.
+cap     in the format a ROM burner reads.
 run     mkdir -p /dd/tmp/CMPA > /nil 2>/nil; rm -f /dd/tmp/CMPA/t.a /dd/tmp/CMPA/t.s19
-wait    3
 run     echo "        org  \0441000" > /dd/tmp/CMPA/t.a
-wait    5
 run     echo "        lda  #\04442" >> /dd/tmp/CMPA/t.a
-wait    5
 run     echo "        sta  \0442000" >> /dd/tmp/CMPA/t.a
-wait    5
 run     echo "        rts" >> /dd/tmp/CMPA/t.a
-wait    5
 run     echo "        end" >> /dd/tmp/CMPA/t.a
-wait    5
-run     cat /dd/tmp/CMPA/t.a
-wait    6
-run     ksh -c "cd /dd/tmp/CMPA; as09 t.a"
+run     builtin cd /dd/tmp/CMPA
+wait    2
+run     clear
+wait    1
+run     cat t.a
+wait    4
+run     as09 t.a
 wait    12
-run     cat /dd/tmp/CMPA/t.s19
+run     cat t.s19
 wait    8
 
 shot    as1
@@ -364,23 +359,23 @@ wait    6
 shot    p2c
 size    36 80
 cap     p2c TRANSLATING PASCAL INTO C, which is the thing it is for.  It
-cap     works on the CURRENT directory, so it is run through ksh -- whose
-cap     `cd' moves the OS-9 data directory where bash's does not -- and it
 cap     writes `h.c' beside the source.  The warning is p2c's own and
 cap     correct: nothing has told it what `writeln' is, because the Pascal
 cap     runtime declarations live in LIB/p2c and this one-line program does
 cap     not ask for them.
-run     mkdir -p /dd/tmp/P2C
-wait    4
+run     mkdir -p /dd/tmp/P2C > /nil 2>/nil
 run     echo "program hello; begin writeln('hi') end." > /dd/tmp/P2C/h.pas
+run     builtin cd /dd/tmp/P2C
 wait    4
-run     cat /dd/tmp/P2C/h.pas
+run     clear
+wait    1
+run     cat h.pas
 wait    4
-run     ksh -c "cd /dd/tmp/P2C; p2c h.pas" 2>/nil
+run     p2c h.pas
 wait    12
-run     ls /dd/tmp/P2C
-wait    6
-run     head -n 12 /dd/tmp/P2C/h.c
+run     ls
+wait    4
+run     head -n 12 h.c
 wait    8
 
 shot    yacc
@@ -389,16 +384,16 @@ cap     into the data directory -- the two-rule grammar above.  The four
 cap     `F$SetSys' lines are a harmless system-call notice, not an error:
 cap     status 0 and the file both confirm it finished.
 run     rm -f /dd/tmp/CMPA/g.y /dd/tmp/CMPA/y.tab.c; mkdir -p /dd/tmp/CMPA > /nil 2>/nil
-wait    4
 run     printf "%%token NUM\r%%%%\rexpr : expr NUM | NUM ;\r" > /dd/tmp/CMPA/g.y
-wait    4
-run     cat /dd/tmp/CMPA/g.y
-wait    4
+run     builtin cd /dd/tmp/CMPA
+wait    3
 run     clear
 wait    1
-run     ksh -c "cd /dd/tmp/CMPA; yacc g.y"; echo "status $?"
+run     cat g.y
+wait    4
+run     yacc g.y
 wait    15
-run     ls -l /dd/tmp/CMPA/y.tab.c
+run     ls -l y.tab.c
 wait    6
 
 shot    rtf

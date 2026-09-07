@@ -1,16 +1,10 @@
-< > /nil 2>/nil; rm -f /dd/tmp/CMPA/t.a /dd/tmp/CMPA/t.s19
-$ echo "        org  \0441000" > /dd/tmp/CMPA/t.a
-$ echo "        lda  #\04442" >> /dd/tmp/CMPA/t.a
-$ echo "        sta  \0442000" >> /dd/tmp/CMPA/t.a
-$ echo "        rts" >> /dd/tmp/CMPA/t.a
-$ echo "        end" >> /dd/tmp/CMPA/t.a
-$ cat /dd/tmp/CMPA/t.a
+cat t.a
         org  $1000
         lda  #$42
         sta  $2000
         rts
         end
-$ ksh -c "cd /dd/tmp/CMPA; as09 t.a"
-$ cat /dd/tmp/CMPA/t.s19
+$ as09 t.a
+$ cat t.s19
 S10910008642B72000390E
 S9030000FC

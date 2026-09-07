@@ -1,25 +1,44 @@
-ksh -c "cd /dd/tmp/DEV/xrf; xrf about.c" | head -n 24
-Language table loaded
-/
-
-#include <stdio.h>
-#include <modes.h>
-
-#define MAXPATH 256
-#define MAXLINE 512
-#define MAXDEPS 24
-#define DEPLEN  128
-
-extern char *getenv();
-
-static char collection[MAXPATH];
-
-/
-static char *roots[] = { ", ", ", ", 0 };
-
-static int exists(path)
-char *path;
-{
-   FILE *f;
-
+   sprintf(path, ", collection);
    if ((f = fopen(path, ")) == NULL)
+      return;
+   while (fgets(line, sizeof line, f) != NULL) {
+      trim(line);
+      if (line[0] == ' && line[1] == ' && line[2] != ') {
+         mine = entry_for(line, prog, 2);
+         continue;
+      }
+      if (!mine || line[0] != ')
+         continue;
+      if (sscanf(line, ", want) != 1 || want[0] != ')
+         continue;
+      /
+      /
+      real[0] = ';
+      if (samepath(want, ") || samepath(want, "))
+         sprintf(real, ", collection, want + 4);
+      printf(", any ? " : ", want,
+             real[0] && (exists(real) || is_dir(real)) ? " : ");
+      any = 1;
+   }
+   fclose(f);
+}
+
+/
+
+static int find_collection()
+{
+   char probe[MAXPATH];
+   char *env;
+   int i;
+
+   if (((env = getenv(")) != NULL && *env) ||
+       ((env = getenv("))  != NULL && *env)) {
+      sprintf(probe, ", env);
+      if (exists(probe)) {
+         strcpy(collection, env);
+         return 1;
+      }
+   }
+   for (i = 0; roots[i]; i++) {
+      sprintf(probe, ", roots[i]);
+      if (exist

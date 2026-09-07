@@ -1,4 +1,4 @@
-ksh -c "cd /dd/tmp/DEV/ref; ref crc_of" 2>/nil
+ref crc_of
 keep.c, line 83:
 /* ---------------------------------------------------------------- CRC ---
  * The OS-9 module CRC: polynomial $800063, complemented.  Used here on
