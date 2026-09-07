@@ -1,8 +1,9 @@
-ksh -c "cd /dd/tmp/ZSP; zipsplit -n 6000 /dd/DOC/zip/sample.zip"
+zipsplit -n 6000 sample.zip
 2 zip files will be made (100% efficiency)
 creating sample1.zip
 creating sample2.zip
-$ ls -l /dd/tmp/ZSP
-total 8192
--rw-------   1 0        0            2103 Sep  4 20:31 sample1.zip
--rw-------   1 0        0            5332 Sep  4 20:31 sample2.zip
+$ ls -l
+total 15872
+-rw-rw-rw-   1 0        0            7413 Aug  3 19:00 sample.zip
+-rw-------   1 0        0            2103 Sep  7 07:38 sample1.zip
+-rw-------   1 0        0            5332 Sep  7 07:38 sample2.zip

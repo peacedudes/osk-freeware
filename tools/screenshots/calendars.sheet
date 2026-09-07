@@ -86,14 +86,15 @@ cap     elements are published in, into the kepler.dat that `orbit'
 cap     reads.  It takes nasa.dat from the current directory and writes
 cap     kepler.dat beside it; this is one satellite in and out.
 run     mkdir -p /dd/tmp/CAL > /nil 2>/nil; printf "ISS (ZARYA)\r1 25544U 98067A   26246.50000000  .00016717  00000-0  10270-3 0  9005\r2 25544  51.6416 247.4627 0006703 130.5360 325.0288 15.72125391563537\r" > /dd/tmp/CAL/nasa.dat
+run     builtin cd /dd/tmp/CAL
 wait    2
 run     clear
 wait    1
-run     cat /dd/tmp/CAL/nasa.dat
+run     cat nasa.dat
 wait    2
-run     ksh -c "cd /dd/tmp/CAL; nasa"
+run     nasa
 wait    8
-run     cat /dd/tmp/CAL/kepler.dat
+run     cat kepler.dat
 wait    4
 
 shot    orbit
@@ -104,7 +105,11 @@ cap     shift, range, height, the point beneath the satellite and the
 cap     transponder mode it is in.  It reads kepler.dat, mode.dat and a
 cap     site file by name from the current directory, and DOC/orbit holds
 cap     them, so it is run from there.
-run     ksh -c "cd /dd/DOC/orbit; orbit"
+run     builtin cd /dd/DOC/orbit
+wait    1
+run     clear
+wait    1
+run     orbit
 wait    10
 send    d\r
 wait    4

@@ -15,13 +15,14 @@ shot    helpindex
 cap     Builds the index a help file needs.  Given dinfo.hlp it writes
 cap     dinfo.ndx beside it, one entry per page, and says how many pages
 cap     it found.
-run     rm -f /dd/tmp/DOCB; mkdir -p /dd/tmp/DOCB; cp /dd/SYS/HELP/dinfo.hlp /dd/tmp/DOCB/dinfo.hlp
+run     rm -rf /dd/tmp/DOCB > /nil 2>/nil; mkdir -p /dd/tmp/DOCB; cp /dd/SYS/HELP/dinfo.hlp /dd/tmp/DOCB/dinfo.hlp
+run     builtin cd /dd/tmp/DOCB
 wait    3
 run     clear
 wait    1
-run     ksh -c "cd /dd/tmp/DOCB; helpindex dinfo.hlp"
+run     helpindex dinfo.hlp
 wait    5
-run     ls -l /dd/tmp/DOCB
+run     ls -l
 wait    4
 
 shot    less

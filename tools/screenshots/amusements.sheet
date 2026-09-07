@@ -179,13 +179,14 @@ shot    scales
 cap     Musical scales and chords, shuffled into a practice order with a
 cap     tick-box each, written to scales.lst in the current directory.
 cap     `-a' asks for all 90 of them.
-run     rm -f /dd/tmp/SCL; mkdir -p /dd/tmp/SCL
+run     rm -rf /dd/tmp/SCL > /nil 2>/nil; mkdir -p /dd/tmp/SCL > /nil 2>/nil
+run     builtin cd /dd/tmp/SCL
 wait    2
 run     clear
 wait    1
-run     ksh -c "cd /dd/tmp/SCL; /dd/CMDS/scales -a"
+run     scales -a
 wait    6
-run     cat /dd/tmp/SCL/scales.lst | head -n 12
+run     head -n 12 scales.lst
 wait    4
 
 shot    touchtype

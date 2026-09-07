@@ -132,7 +132,7 @@ cribbage 236f40fb817c182c
 cron 32dbb5d3d7b578bc
 crypto ee96bdb3042ce625
 ctags a08576ed58e9d0e5
-ctags.elvis ecd0ed2eb20e7485
+ctags.elvis 6c2ef630ff254565
 cursive b6556ab83fc099c5
 cut db89f25fada4b2e9
 cuts e025b1f5300263c5
@@ -316,7 +316,7 @@ hang 087e991e81c527f9
 hc c248b77d3ef338e8
 head 75d65b434027b00b
 help f3582562e66c29aa
-helpindex 058ac3b26282ba45
+helpindex 6e05b7ef5cb8238e
 hexbin 78a1ad442dbe8973
 hexed ad46480b4037f9ca
 hexedit 296ee6ff860344e7
@@ -454,7 +454,7 @@ mv 12d95932c04fa1ab
 mvolformat 6a48f614886d1373
 name fdfd42ee83c7c2ea
 names 0bd377e8e88094b2
-nasa 453bf7090766cd2b
+nasa e91379ce9e15b3a7
 nchess 0dfb3a13eb024d85
 net 8d37bd4fcf3b208f
 new_e 690352b9bd5b7797
@@ -469,7 +469,7 @@ nroff 335fb42df32f76c9
 nsort 13434acb0c4303cb
 ob68kdemo f3ecd32662b190e2
 oleo d3bd071d889f55f3
-orbit 22eac90acb825dda
+orbit 3699a62f5f60136b
 osknet 5412cde63b6dd985
 oskversion 2263e37034171b78
 owner 7fb3f2c98801f014
@@ -630,7 +630,7 @@ rxmod 7653c9295e274a56
 savage bf3933988e4e3dd1
 savemem e4a93e37477e19cd
 sbreak 0d4d861694242fa2
-scales 22dd734b9cb49bdf
+scales 69b7c64560ae1038
 scqref 212b299642ae763b
 screen 82b54fc99b77b5ed
 screen_nocio 64855f75a2c7e258
@@ -818,7 +818,7 @@ zeisstopnm 11c0d429931d235f
 zip 957211de267a02a6
 zipinfo 5780201f80f1146c
 zipnote c13e62bff5c4c1db
-zipsplit fe71bb762dcccec3
+zipsplit 1b88d6aa10cc41a8
 zoo be029b960a3ddef4
 zoo_2.1 b73d565d5db9caee
 zot 82be4a319601a9ad

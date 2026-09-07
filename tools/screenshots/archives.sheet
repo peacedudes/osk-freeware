@@ -357,13 +357,15 @@ shot    zipsplit
 cap     zipsplit cuts an archive into pieces no bigger than `-n' bytes,
 cap     numbered sample1.zip, sample2.zip and so on, so a large archive
 cap     fits a set of floppies.
-run     rm -rf /dd/tmp/ZSP; mkdir /dd/tmp/ZSP > /nil 2>/nil
+run     rm -rf /dd/tmp/ZSP > /nil 2>/nil; mkdir -p /dd/tmp/ZSP > /nil 2>/nil
+run     cp /dd/DOC/zip/sample.zip /dd/tmp/ZSP/sample.zip
+run     builtin cd /dd/tmp/ZSP
 wait    3
 run     clear
 wait    1
-run     ksh -c "cd /dd/tmp/ZSP; zipsplit -n 6000 /dd/DOC/zip/sample.zip"
+run     zipsplit -n 6000 sample.zip
 wait    8
-run     ls -l /dd/tmp/ZSP
+run     ls -l
 wait    5
 
 shot    funzip

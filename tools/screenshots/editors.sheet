@@ -387,10 +387,12 @@ shot    ctags.elvis
 cap     Builds a tags file for elvis from C source: one line per function,
 cap     with the file and a search pattern that finds it.
 run     mkdir -p /dd/tmp/EDIT > /nil 2>/nil; rm -f /dd/tmp/EDIT/tags
+run     cp /dd/SRC/keep/about.c /dd/tmp/EDIT/about.c
+run     builtin cd /dd/tmp/EDIT
 wait    2
 run     clear
 wait    1
-run     ksh -c "cd /dd/tmp/EDIT; ctags.elvis /dd/SRC/keep/about.c"
+run     ctags.elvis about.c
 wait    8
-run     cat /dd/tmp/EDIT/tags | head -n 8
+run     head -n 8 tags
 wait    4

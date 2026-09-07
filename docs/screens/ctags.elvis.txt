@@ -1,1 +1,3 @@
-$ main      /dd/SRC/keep/about.c    /^main(argc, argv)$/
+ctags.elvis about.c
+$ head -n 8 tags
+main    about.c /^main(argc, argv)$/
