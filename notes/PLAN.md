@@ -219,6 +219,59 @@ for the maintainer, which is why `lessecho`'s panel explains `helpindex`.
   no "it turns out", no "this collection had it wrong", no "until
   2026-08-31", no "the card used to". The reader is a stranger in 2040.
 
+### The all-card sweep, from 2026-09-08 -- read this before touching a card
+
+rdoggett, 2026-09-08, having looked at `gothic': the per-program pass had
+"worked fine as kind of a factory model, stamping out one after another",
+and the result "looks like something I don't want my name on".  So:
+**look at every single command individually, as a unique thing.**  For
+each card the question is: does this say what it should to help someone
+who has no idea whatsoever what the program is, wants to know, and wants
+to decide whether to keep it?
+
+What was mechanically wrong, and is fixed in the tools:
+
+- **905 of 906 cards had no `try' line**, so the `Try it' box showed the
+  bare name -- `gothic' for a picture made with `gothic -h OS-9'.  Now
+  every stanza needs one; `check_disk`'s `every card says what to type`
+  ratchets on `tools/try-backlog.txt`.  Removing a name from that file is
+  how a card is finished.
+- **Line folding cut the middle out of pictures** ("... the same line 6
+  times over" through gothic's blackletter).  It is off unless a stanza
+  says `fold`, and none needs it.
+- **There was no way to say how the command reads at Microware's shell.**
+  The page has a bash / OS-9 shell switch; a stanza carries an `os9' line
+  where the spelling differs, and `tools/os9try.py` verifies it by booting
+  the SDK's shell on the image.
+
+The rules for each card, on top of the 2026-09-03 ones below:
+
+1. **`try' on every card**: the program and its real arguments, as a
+   beginner types it at bash or ksh.  A bare name only for a program that
+   takes none.  It must be the command the picture was made with, or the
+   picture is of something else.
+2. **`os9' where Microware's shell spells it differently** -- `chd' for
+   `cd', `>-' to overwrite, `#32k', no `$VAR', different quoting, no
+   `echo' -- and only after `tools/os9try.py <sheet> --only <name>` has
+   shown the shell running it.  Most commands are the same at both shells
+   and need no `os9' line; run the verifier anyway and read what came back.
+3. **No capitals for emphasis**, anywhere a reader looks: caption, index
+   line, howto.  "ALL CAPS has long become synonymous with shouting at
+   people."  `tools/audit_caps.py --show captions` (and `INDEX`, `howto`)
+   lists them.  Rewrite the sentence so it carries the weight itself.
+4. **The window fits the picture.**  A program whose output is 60 lines
+   tall gets `size 64 100', not a half-size run to squeeze it into 24.
+   Where the interesting part is later, capture later; where it is
+   several pages, `snap' more than once -- the fullest is published,
+   so make the one that matters the fullest, or `kill' at the right moment.
+5. **No author names in the index line or the caption.**  Credit lives in
+   SOURCES.txt and DOC/ORIGINS.  "charcnt -- Count characters in a file
+   (Carl Kreider)" is wrong; the card takes its line from DOC/INDEX.
+6. **Read the card as the stranger.**  What is it; what do I type; what
+   will I see; what does it need; would I keep it?  If the card does not
+   answer all five in that order, it is not done.  A card that only shows
+   a usage line is a defect unless the program has nothing else to show.
+
 ### Where the pass stands (kept current; re-measure with `tools/audit_panels.py --summary`)
 
 | date | panels showing their own program | batches landed |
