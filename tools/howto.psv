@@ -269,4 +269,4 @@ scqref|`scqref ! less' pages the reference; it is 360 lines.
 ttyexp|`ttyexp -s2 -p50' fills the screen with bursts; it runs ten seconds and clears the screen when done.
 help|`help dinfo'. At bash type `enable -n help' first, or bash's own help builtin answers instead.
 runc|Compile with `luac -x -o greet greet.lua', `load greet', then `runc greet World'. The script reads argv[1] onwards; argv.n is the count.
-wam.sbprolog|Needs SIMPATH=/dd/SBPROLOG/MODLIB (login sets it). From /dd: `wam.sbprolog SBPROLOG/MODLIB/$readloop' gives | ?-; after a solution ; asks for the next and Return accepts it; halt. leaves.
+wam.sbprolog|Needs SIMPATH=/dd/SBPROLOG/MODLIB (login sets it). From /dd: `wam.sbprolog SBPROLOG/MODLIB/$readloop' gives the `?-' prompt; after a solution ; asks for the next and Return accepts it; halt. leaves.

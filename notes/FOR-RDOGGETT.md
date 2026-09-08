@@ -32,7 +32,10 @@ Waiting on you:
    programs -- the skill warns `-r' can hide truncation, hence asking. Add
    it, or list the two as exceptions?
 
-2. **piano and rstory2 are best-forgotten candidates.** `piano' parses its
+2. **oleo, piano and rstory2 are best-forgotten candidates.**  `oleo'
+   (GNU Oleo 1.6) aborts with an illegal instruction before it draws a
+   cell -- confirmed on real Microware hardware too, not just os9exec -- so
+   it is the program, and `sc' serves the spreadsheet need. `piano' parses its
    arguments then prints `tuning - sorry' and aborts -- it drives a tone
    generator the emulator has none of. `rstory2' forks story programs
    (`rstory_W' and the rest) that did not come with it, so it stops after
