@@ -315,97 +315,97 @@ Games (Other games), Graphics & images (netpbm is a real family), System
   the list. Data and generator stay; this is template-only.
 - **Phase 4 -- release.** Run the CI workflow once for real, tag, publish.
 
-### How to do a batch -- the protocol, as run on Amusements 2026-09-03
+### How to do a batch -- the protocol, from 2026-09-08
 
-One batch is one category or a few sub-categories, twenty to forty
-programs. Work on a COPY of the image so two batches can run at once:
-`cp osk-freeware.dd <scratch>/<batch>.dd` and pass `--image` to every
-harness. Do not commit; do not run `gen_screens.py` or `gen_catalog.py` --
-the session that dispatched the batch regenerates, audits, prunes the
-backlog and commits. Report what was changed and what was found.
+One batch is one sheet under `tools/screenshots/` (or a few small ones),
+twenty to a hundred stanzas.  A batch owns its sheet and a copy of the
+image, and nothing else: `cp osk-freeware.dd <scratch>/<batch>.dd` and
+pass `--image` to every harness.  Two batches run at once at most.  A
+batch does not commit, does not run `gen_screens.py` or `gen_catalog.py`,
+and does not edit `DOC/INDEX`, `tools/howto.psv` or `tools/categories.psv`
+-- those are shared, so it writes the changes it wants to
+`<scratch>/<batch>.edits` (format in `tools/apply_edits.py`) and the
+dispatching session applies them, regenerates, audits and commits.
 
-**For each program, in order, and write nothing until you have looked:**
+**For each stanza, in order, and write nothing until you have looked:**
 
-1. **What the disk already says.** `tools/worklist.py --cat "<category>"`
-   for the index line, the usage line and which sheet already runs it;
-   `tools/howto.psv` (often right where `DOC/INDEX` is wrong); the
-   program's own `DOC/<name>/` and any `README-*` that names it;
-   `DOC/DEPENDS` for what it opens; `DOC/STATUS` for what was found before;
-   `disk/SRC/` for its source when the prompts or the exit path are
-   unclear (`grep printf`, `grep FORMAT`).
-2. **Run it with real arguments and do what it does.** Write a scratch
-   sheet and `tools/probe_sheet.py scratch.sheet --image <copy>`; it prints
-   exactly what a card would show and saves nothing. A prompter gets its
-   prompts answered with a plausible choice; a filter gets a real file
-   (`/dd/SYS/motd`, `/dd/DOC/README-RUNNING`, a file you make under
-   `/dd/tmp/<BATCH>/`); a game gets played a few moves; a full-screen
-   program gets `snap` at the moment worth seeing. `size` goes right after
-   `shot`; wide output gets a wide window; a program whose interesting
-   part is later gets captured later. A work directory gets a name only
-   this batch uses, `rm -f`'d and `mkdir -p`'d first. `load` the helper a
-   program forks by bare name, or the trap library it wants.
-3. **Decide what it is**, from what it did: does the index line describe
-   this program, is it in the right sub-category, is the sub-category
-   itself right, does it need something (and does `DOC/DEPENDS` list it),
-   is there a better invocation, and is there anything its own
-   documentation adds that a stranger needs. `tools/audit_craft.py --show
-   INDEX` (and `--show howto`, `--show captions`) lists the entries that
-   carry dates, "measured", "used to", "this collection", "the card" or
-   os9exec: rewrite every one of yours for a stranger. Fix `DOC/INDEX` (CR-only --
-   write bytes, `\r` for every newline), `tools/howto.psv` and
-   `tools/categories.psv` where they are wrong. A program that cannot do
-   its job here -- wants hardware, a peer, a helper that never came, a
-   68000 -- gets a card that shows it as far as it goes and a caption that
-   says plainly what stops it; and its name goes in the batch report as a
-   candidate for rdoggett's "best forgotten" list.
-4. **Write the stanza**: one `shot` per program, named for it; `for` only
-   where members of a real family are each run on the card. Caption for
-   a stranger: what they are looking at, what was typed, what the program
-   is for. No dates, no history, no "used to", no "this collection", no
-   "the card", no "it turns out", no os9exec unless the program's stop is
-   its subject. `clear` before the run that is the picture when setup
-   lines came first. Probe it, look at it, and only then move it into
-   the sheet under `tools/screenshots/` (the category's sheet, or a new
-   one named for the batch).
-5. **Shoot for real**: `tools/screenshots.py tools/screenshots/<sheet>
-   --image <copy>` (or `--only a,b,c`). Read every `<-- LOOK AT THIS ONE`.
-   Then `tools/audit_panels.py --all | grep -E "^(a|b|c) "` -- the verdict
-   is computed from the LAST published `docs/screens.js`, so it lags until
-   the dispatcher regenerates; use it to check that your typed line names
-   the program the way the audit matches it.
-6. **Report**, per program: verdict (works / works with `X` / stops
-   because `Y` / best forgotten), what was corrected, what needs a decision.
+1. **What the disk already says.**  `tools/worklist.py --cat "<category>"`
+   for the index line, the usage line and the sheet; `tools/howto.psv`;
+   the program's own `DOC/<name>/` and any `README-*` that names it;
+   `DOC/DEPENDS` for what it opens; `disk/SRC/` for its source when the
+   prompts or the exit path are unclear.  Read the disk's own
+   documentation before running anything.
+2. **Run it with real arguments and do what it does.**  Write a scratch
+   stanza and `tools/probe_sheet.py scratch.sheet --image <copy>`; it
+   prints exactly what a card would show and saves nothing.  A prompter
+   gets its prompts answered with a plausible choice; a filter gets a
+   real file; a game gets played a few moves; a full-screen program gets
+   `snap` at the moment worth seeing.  The window fits the picture (`size`
+   right after `shot`); a program whose interesting part is later is
+   captured later.  Setup -- `builtin cd`, `load`, staging -- goes before
+   `clear`; the visible line is the program and its arguments.  A work
+   directory gets a name only this batch uses, `rm -rf`'d and `mkdir -p`'d
+   first.
+3. **Write the `try' line**: the command the picture was made with, as a
+   beginner types it.  Then **run `tools/os9try.py <sheet> --only <name>
+   --image <copy>`** and read what Microware's shell made of it.  Where it
+   differs -- `cd` (use `chd`), `>` onto an existing file (`>-`), a `#32k`
+   modifier, `$VAR`, an `echo` -- write an `os9` line and run the verifier
+   again until the shell runs it.  Where a program cannot be run at
+   Microware's shell at all, say so in the caption in one plain clause.
+4. **Decide what it is**, from what it did: does the index line describe
+   this program; is it in the right sub-category; does it need something
+   (and does `DOC/DEPENDS` list it); is there a better invocation; is
+   there anything its own documentation adds that a stranger needs.  Put
+   the index line, the howto note and the category you want into the
+   `.edits` file.  No author names in any of them; no capitals for
+   emphasis; no dates, no "measured", no "this collection", no os9exec
+   unless the program's stop under it is the subject.  A program that
+   cannot do its job here -- wants hardware, a peer, a helper that never
+   came -- gets a card that shows it as far as it goes, a caption that
+   says plainly what stops it, and a line in the report as a candidate for
+   rdoggett's "best forgotten" list.
+5. **Write the caption for a stranger**: what they are looking at, what
+   it is for, what the prompts mean if there are prompts.  Not what was
+   typed (the card shows that), not history, not craft.  Two to five
+   lines is usual.  Run `tools/audit_caps.py --show captions` and
+   `tools/audit_craft.py --show captions` on your sheet before you are
+   done.
+6. **Shoot for real**: `tools/screenshots.py tools/screenshots/<sheet>
+   --image <copy>` (or `--only a,b,c`).  Read every capture it prints.
+   Then remove each finished stanza's name from `tools/try-backlog.txt`.
+7. **Report**, per program, in one line each: verdict (works / works
+   with `X` / stops because `Y` / best forgotten), `try`, `os9` or "same",
+   what was corrected, what needs a decision.  Then anything that looked
+   like an os9exec bug -- stop on the spot and put it at the top -- and
+   any place the os9-dev skill was wrong or silent.
 
 **Freezing a program that scrolls, to take its picture:** `send \023`
 (Ctrl-S, XOFF) stops the terminal where it is, `snap` takes the screen,
-`send \021` (Ctrl-Q) lets it go on. rdoggett's tip, 2026-09-03, and it
-works through the harness -- rpoem froze mid-word. Use it where `kill`
-would end the program before the interesting part, or where `head` would
-change what the program does.
+`send \021` (Ctrl-Q) lets it go on.  Use it where `kill` would end the
+program before the interesting part, or where `head` would change what
+the program does.
 
 **"TOOK THE EMULATOR DOWN" is usually the harness, not the program.**
 Every stanza ends with Ctrl-E, aimed at the terminal's last writer; when
 the program has already exited, the last writer is the shell, and killing
-it ends os9exec. `mshell` and `xlate` were both reported that way on
-2026-09-03 and both run fine standalone. Reproduce on a pty of your own
-(a ten-line python script that spawns `os9exec bash /dd/SYS/login`)
-before calling anything an emulator crash.
+it ends os9exec.  Reproduce on a pty of your own before calling anything
+an emulator crash.
 
-**No `!` in anything typed at bash.** History expansion is on, so a
-`!` inside double quotes -- "my son! The jaws" -- makes bash answer
-`Event not found` and run nothing; single quotes protect it, or leave it
-out. (The Text tools probe lost a whole sheet to one exclamation mark.)
+**No `!` in anything typed at bash.** History expansion is on, so a `!`
+inside double quotes makes bash answer `Event not found` and run nothing;
+single quotes protect it, or leave it out.
 
 **`\e` in a `send` line is ESCAPE, so `\end` arrives as ESC-n-d.** Type a
 backslash as octal, `\134`: `send \134end\r`.
 
-Things that bit on the first batch: a `size` line between stanzas attaches
-to the one BEFORE it; the fullest-moment picker prefers a menu to a playing
-field, which `snap` overrides; `head -n N file` prints `head: file` as a
-trailer, so pipe `cat file | head -n N`; `pwgen` needs twenty seconds;
-`echo ====` fails in zsh because a leading `=` is a path expansion; a
-program that reads its answers from a pipe may not read them at all --
-the harness gives it a pty, and that is the one to believe.
+Things that bit before: a `size` line between stanzas attaches to the one
+BEFORE it; the fullest-moment picker prefers a menu to a playing field,
+which `snap` overrides; `head -n N file` prints `head: file` as a trailer,
+so pipe `cat file | head -n N`; `pwgen` needs twenty seconds; `echo ====`
+fails in zsh because a leading `=` is a path expansion; a program that
+reads its answers from a pipe may not read them at all -- the harness
+gives it a pty, and that is the one to believe.
 
 ### Rules for this pass
 

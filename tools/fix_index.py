@@ -44,9 +44,19 @@ def fix(name, newlines, path=INDEX):
     pat = re.compile(r"^ (\*| )?%s\s{2,}" % re.escape(name))
     hits = [i for i, l in enumerate(lines) if pat.match(l)]
 
+    # A grid row is up to four bare names; an entry reads like a sentence.
+    # Punctuation is one sign; a small word -- `a', `as', `the' -- is the
+    # other, and `print text as a gothic/blackletter banner' has only the
+    # second (it was SKIPped on 2026-09-08 for want of a comma).
+    SMALL = {"a", "an", "the", "to", "of", "in", "as", "for", "and", "or",
+             "is", "it", "its", "on", "by", "at", "not", "no", "with",
+             "from", "that", "into", "than", "then", "one", "two", "what"}
+
     def prose(line):
         rest = pat.sub("", line)
-        return len(rest.split()) > 3 and any(c in rest for c in ".,:;-()'")
+        words = rest.split()
+        return (len(words) > 4 or any(c in rest for c in ".,:;-()'")
+                or any(w.lower() in SMALL for w in words))
 
     # One match is unambiguous whatever it looks like: a short entry like
     # `gen  generate a program frame' has no punctuation and would fail the
