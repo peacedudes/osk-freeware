@@ -1,7 +1,9 @@
 infocom GAMES/INFORM/dejavu.z3
 
 [
-        ... the same line 4 times over
+[
+[
+[
 [What a horrid dream, all about compiling something. Thank heavens you've final.
 [
 [DEJA VU

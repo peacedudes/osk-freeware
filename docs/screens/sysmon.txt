@@ -4,7 +4,21 @@ F$SeMinage: 00000  Maxage: 00000  ActiveTasks: 000  Delay: 04s  Port: /TERM
                                     0        25        50        75        100 %
 Id  Username   Processname          +---------+---------+---------+----------+
                                     |         |         |         |          |
-        ... the same line 16 times over
+                                    |         |         |         |          |
+                                    |         |         |         |          |
+                                    |         |         |         |          |
+                                    |         |         |         |          |
+                                    |         |         |         |          |
+                                    |         |         |         |          |
+                                    |         |         |         |          |
+                                    |         |         |         |          |
+                                    |         |         |         |          |
+                                    |         |         |         |          |
+                                    |         |         |         |          |
+                                    |         |         |         |          |
+                                    |         |         |         |          |
+                                    |         |         |         |          |
+                                    |         |         |         |          |
                                     +---------+---------+---------+----------+
 #SYSMON:# Can't open '/dd/sys/nodedef' [Node-definition file]
 

@@ -11,5 +11,13 @@
  |is she a well known politician? y                                           ||
  |final guess: is it Indira Ghandi?                                           ||
  |                                                                            ||
-        ... the same line 10 times over
+ |                                                                            ||
+ |                                                                            ||
+ |                                                                            ||
+ |                                                                            ||
+ |                                                                            ||
+ |                                                                            ||
+ |                                                                            ||
+ |                                                                            ||
+ |                                                                            ||
  |----------------------------------------------------------------------------|-

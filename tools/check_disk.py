@@ -818,12 +818,66 @@ def check_cards_have_no_pathlists(root):
             rest = line.split(None, 1)[1] if len(line.split(None, 1)) > 1 else ""
             if word == "shot":
                 shot = rest.strip()
-            elif word in ("cap", "try") and pathlist.search(rest):
+            elif word in ("cap", "try", "os9") and pathlist.search(rest):
                 bad.append("%s: `%s' %s line names a full path: %s"
                            % (f, shot, word, pathlist.search(rest).group(0) + "..."))
     for b in bad:
         print("    %s" % b)
     return not bad, "%d card caption/try line(s) carry a full pathlist" % len(bad)
+
+
+def check_cards_have_a_try_line(root):
+    """Every card says what to type -- ratcheted.
+
+    The card's `Try it' box shows the stanza's `try' line, and without one
+    it falls back to the bare program name.  On 2026-09-07 one card in 906
+    had a `try' line, so `gothic' -- whose picture was made with `gothic -h
+    OS-9' -- told the reader to type `gothic', which prompts for a file
+    name and waits.  rdoggett: "notice: no argument, wtf?".
+
+    `tools/try-backlog.txt' names the stanzas still without one.  A stanza
+    that has neither a `try' line nor a backlog entry fails; so does a
+    backlog entry whose stanza now has one, until its line comes out.
+    Writing the `try' line is part of looking at the program, so the
+    backlog shrinks as the per-program pass goes round.
+    """
+    tools = os.path.dirname(os.path.abspath(__file__))
+    sheets = os.path.join(tools, "screenshots")
+    if not os.path.isdir(sheets):
+        return True, ""
+    backlog_path = os.environ.get("OSK_TRY_BACKLOG",
+                                  os.path.join(tools, "try-backlog.txt"))
+    backlog = set()
+    if os.path.exists(backlog_path):
+        backlog = {ln.strip() for ln in open(backlog_path)
+                   if ln.strip() and not ln.startswith("#")}
+    has_try, stanzas = set(), set()
+    for f in sorted(os.listdir(sheets)):
+        if not f.endswith(".sheet"):
+            continue
+        shot = None
+        for raw in open(os.path.join(sheets, f)):
+            parts = raw.split(None, 1)
+            if not parts or raw.lstrip().startswith("#"):
+                continue
+            if parts[0] == "shot":
+                shot = parts[1].strip()
+                stanzas.add(shot)
+            elif parts[0] == "try" and shot:
+                has_try.add(shot)
+    bad = []
+    for name in sorted(stanzas - has_try - backlog):
+        bad.append("`%s' has no try line and is not on the backlog" % name)
+    for name in sorted(backlog & has_try):
+        bad.append("`%s' has a try line now -- take it off the backlog" % name)
+    for name in sorted(backlog - stanzas):
+        bad.append("`%s' is on the backlog and is not a stanza" % name)
+    for b in bad[:12]:
+        print("    %s" % b)
+    if len(bad) > 12:
+        print("    ... and %d more" % (len(bad) - 12))
+    return not bad, "%d problem(s); %d cards still without a try line" % (
+        len(bad), len(stanzas - has_try))
 
 
 def check_module_names(root):
@@ -1066,6 +1120,7 @@ CHECKS = [
     ("README names documents that exist", check_readme_cross_references),
     ("cards do not depend on each other", check_cards_do_not_depend_on_each_other),
     ("cards carry no full pathlists", check_cards_have_no_pathlists),
+    ("every card says what to type", check_cards_have_a_try_line),
     ("harness env matches SYS/login", check_harness_env_matches_login),
     ("panels show their own program", check_panels_show_their_program),
 ]

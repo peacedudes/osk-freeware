@@ -39,11 +39,22 @@ Sheet format (blank lines and `#' comments ignored):
                                    describe what the reader is LOOKING AT; do
                                    not restate the command or narrate the
                                    capture, the screen is the example
-    try     today -l               the short command the card shows as `Try
-                                   it' -- what a reader types, with NO full
-                                   pathlists; omit it and the card shows the
-                                   bare program name, which is what you type
-                                   for most.  The demo below shows the real run
+    try     today -l               the command the card shows as `Try it':
+                                   what a reader types at bash or ksh, the
+                                   program and its real arguments, no full
+                                   pathlists.  Every stanza carries one; a
+                                   bare name is right only for a program
+                                   that takes no arguments
+    os9     today -l               the same command at Microware's shell,
+                                   when it differs (chd for cd, >- to
+                                   overwrite, #32k memory, no $VAR, quoting).
+                                   Omit it when the `try' line is the same
+                                   at both shells.  Verify it with
+                                   tools/os9try.py before writing it down
+    fold                           fold a run of identical lines into one
+                                   and a count -- for a program that floods
+                                   one line; off by default, because ASCII
+                                   art is made of repeated lines
     for     sysid getsys           which CATALOGUE programs this screen shows,
                                    when the shot's own name is not the only
                                    one -- the gallery hangs it on each
@@ -154,7 +165,7 @@ def parse(path):
         rest = rest.strip()
         if word == "shot":
             cur = {"name": rest, "cap": [], "for": [], "acts": [],
-                   "try": None,
+                   "try": None, "os9": None, "fold": False,
                    "rate": rate, "size": size, "quit": None, "sheet": path}
             shots.append(cur)
             continue
@@ -182,6 +193,10 @@ def parse(path):
             cur["for"] += rest.split()
         elif word == "try":
             cur["try"] = rest
+        elif word == "os9":
+            cur["os9"] = rest
+        elif word == "fold":
+            cur["fold"] = True
         elif word == "run":
             cur["acts"].append(("run", rest))
         elif word == "kill":

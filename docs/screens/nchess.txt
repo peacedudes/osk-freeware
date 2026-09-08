@@ -1,5 +1,7 @@
  - - - - - - - -
-        ... the same line 4 times over
+ - - - - - - - -
+ - - - - - - - -
+ - - - - - - - -
  p p p p p p p p
  r n b q k b n r
 

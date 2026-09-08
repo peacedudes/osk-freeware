@@ -323,6 +323,31 @@ def break_panel_backlog_stale(root):
     return "`%s' (which passes) added to a COPY of panel-backlog.txt" % passing
 
 
+def break_try_backlog_forgets(root):
+    """A stanza with no `try' line dropped from a COPY of the backlog."""
+    src = os.path.join(REPO, "tools", "try-backlog.txt")
+    names = [l.strip() for l in open(src) if l.strip() and not l.startswith("#")]
+    if not names:
+        return None
+    copy = os.path.join(os.path.dirname(root), "try-backlog.txt")
+    open(copy, "w").write("\n".join(names[1:]) + "\n")
+    os.environ["OSK_TRY_BACKLOG"] = copy
+    return "`%s' dropped from a COPY of try-backlog.txt" % names[0]
+
+
+def break_try_backlog_stale(root):
+    """A stanza that HAS a `try' line added to a COPY of the backlog."""
+    import screenshots
+    src = os.path.join(REPO, "tools", "try-backlog.txt")
+    sheets = os.path.join(REPO, "tools", "screenshots")
+    has = next(s["name"] for f in sorted(os.listdir(sheets)) if f.endswith(".sheet")
+               for s in screenshots.parse(os.path.join(sheets, f)) if s.get("try"))
+    copy = os.path.join(os.path.dirname(root), "try-backlog.txt")
+    open(copy, "w").write(open(src).read() + has + "\n")
+    os.environ["OSK_TRY_BACKLOG"] = copy
+    return "`%s' (which has a try line) added to a COPY of try-backlog.txt" % has
+
+
 BREAKS = [
     ("line endings", "line endings are CR-only", add_line_ending),
     ("utf8", "no UTF-8 on an 8-bit disk", add_utf8),
@@ -348,6 +373,8 @@ BREAKS = [
     # OSK_PANEL_BACKLOG points the gate at -- the live file is never edited.
     ("panel forgets", "panels show their own program", break_panel_backlog_forgets),
     ("panel stale", "panels show their own program", break_panel_backlog_stale),
+    ("try forgets", "every card says what to type", break_try_backlog_forgets),
+    ("try stale", "every card says what to type", break_try_backlog_stale),
     # `one line per name in the hand lists' is NOT probed here: its input is
     # tools/howto.psv and tools/categories.psv, not the disk tree this tool
     # copies, so a break would edit the live lists. It was made to fail by
@@ -427,6 +454,7 @@ def main(argv):
         shutil.move(pristine, root)
         os.environ.pop("OSK_PANEL_BACKLOG", None)
         os.environ.pop("OSK_PANEL_EXCEPTIONS", None)
+        os.environ.pop("OSK_TRY_BACKLOG", None)
 
     shutil.rmtree(work, ignore_errors=True)
     print("\n%d of %d breaks were caught by the check meant to catch them"

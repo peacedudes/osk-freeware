@@ -22,7 +22,11 @@
 
                          OO
                           OOOO
-        ... the same line 6 times over
+                          OOOO
+                          OOOO
+                          OOOO
+                          OOOO
+                          OOOO
                            OOO
 
 

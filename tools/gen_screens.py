@@ -268,6 +268,12 @@ def collapse(text, keep=3):
     sample output, it is a wall, and it pushes the command that caused it off
     the top of the card. rdoggett, 2026-08-28, looking at cvtbase: "I asked
     you to capture an interesting screen shot, this is what you saved".
+
+    OPT-IN PER STANZA (`fold'), never the default.  Applied to every card it
+    cut the middle out of gothic's blackletter -- a stroke of a letter IS a
+    run of identical lines -- and published "... the same line 6 times over"
+    in the middle of a picture (rdoggett, 2026-09-07).  A flood is rare and
+    a repeated line is ordinary.
     """
     out, lines = [], text.split("\n")
     i = 0
@@ -317,13 +323,15 @@ def sheet_shots():
                                        if k in ("run", "send", "setup")),
                                    "cap": " ".join(shot["cap"]),
                                    "try": shot.get("try"),
+                                   "os9": shot.get("os9"),
+                                   "fold": shot.get("fold", False),
                                    "for": shot["for"] or [shot["name"]],
                                    "sheet": f[:-6],
                                    "path": os.path.join(SHEETS, f)}
     return shots
 
 
-def pick(name, want, first=""):
+def pick(name, want, first="", fold=False):
     """The screen to publish: the asked-for snapshot, else the fullest."""
     cands = []
     for f in os.listdir(CAPS):
@@ -331,8 +339,9 @@ def pick(name, want, first=""):
         if not m or m.group(1) == "control":
             continue
         label = "final" if m.group(1) == "screen" else m.group(1)
-        body = collapse(trim(to_cp437(open(os.path.join(CAPS, f)).read()),
-                             first))
+        body = trim(to_cp437(open(os.path.join(CAPS, f)).read()), first)
+        if fold:
+            body = collapse(body)
         cands.append((label, body, ink(body)))
     if not cands:
         return None
@@ -381,7 +390,8 @@ def collect():
     for name in names:
         meta = sheets.get(name)
         want = meta and "shot" or CAPTIONS.get(name, (None, "final"))[1]
-        got = pick(name, want, meta["first"] if meta else "")
+        got = pick(name, want, meta["first"] if meta else "",
+                   fold=bool(meta and meta.get("fold")))
         if not got:
             continue
         label, screen = got
@@ -399,6 +409,7 @@ def collect():
         taken = open(stamp).read().strip() if os.path.exists(stamp) else ""
         out.append({"name": name, "cap": caption, "screen": screen,
                     "try": (meta.get("try") if meta else None),
+                    "os9": (meta.get("os9") if meta else None),
                     "for": [p for p in shows if p in bycat],
                     "stanza_hash": taken,
                     "cat": cat[0], "sub": cat[1]})
@@ -482,7 +493,8 @@ def main():
                 if rank == tier:
                     screens.setdefault(prog, {"n": e["name"], "c": e["cap"],
                                               "s": e["screen"],
-                                              **({"try": e["try"]} if e.get("try") else {})})
+                                              **({"try": e["try"]} if e.get("try") else {}),
+                                              **({"os9": e["os9"]} if e.get("os9") else {})})
     for e in ordered:
         open(os.path.join(KEEP, "%s.txt" % e["name"]), "w").write(
             fold_ascii(e["screen"]) + "\n")

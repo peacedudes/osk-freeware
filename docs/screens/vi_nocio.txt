@@ -3,5 +3,22 @@ Twas brillig, and the slithy toves
 All mimsy were the borogoves,
      And the mome raths outgrabe.
 ~
-        ... the same line 19 times over
+~
+~
+~
+~
+~
+~
+~
+~
+~
+~
+~
+~
+~
+~
+~
+~
+~
+~
 "tmp/EDIT/jabber.txt" 4 lines, 137 characters

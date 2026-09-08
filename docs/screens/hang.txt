@@ -11,7 +11,12 @@ Unused Letters:
                                         |                         |
 a_a__o_                                 |                         |
                                         |                         |
-        ... the same line 7 times over
+                                        |                         |
+                                        |                         |
+                                        |                         |
+                                        |                         |
+                                        |                         |
+                                        |                         |
                                         ---------------------------
 There are 7 letters in the word
 Sorry

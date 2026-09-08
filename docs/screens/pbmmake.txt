@@ -1,3 +1,9 @@
 pbmmake -g 48 16 | pbmtoascii
 o"o"o"o"o"o"o"o"o"o"o"o"o"o"o"o"o"o"o"o"o"o"o"o"
-        ... the same line 8 times over
+o"o"o"o"o"o"o"o"o"o"o"o"o"o"o"o"o"o"o"o"o"o"o"o"
+o"o"o"o"o"o"o"o"o"o"o"o"o"o"o"o"o"o"o"o"o"o"o"o"
+o"o"o"o"o"o"o"o"o"o"o"o"o"o"o"o"o"o"o"o"o"o"o"o"
+o"o"o"o"o"o"o"o"o"o"o"o"o"o"o"o"o"o"o"o"o"o"o"o"
+o"o"o"o"o"o"o"o"o"o"o"o"o"o"o"o"o"o"o"o"o"o"o"o"
+o"o"o"o"o"o"o"o"o"o"o"o"o"o"o"o"o"o"o"o"o"o"o"o"
+o"o"o"o"o"o"o"o"o"o"o"o"o"o"o"o"o"o"o"o"o"o"o"o"

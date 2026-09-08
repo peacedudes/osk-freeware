@@ -1,6 +1,8 @@
 rdoc SRC/keep/keep.c | tail -l=24
        case  break
-        ... the same line 4 times over
+       case  break
+       case  break
+       case  break
        case
          if
          else  if

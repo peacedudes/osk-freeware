@@ -1,3 +1,15 @@
 $ zot -d "OS-9 freeware"
 OS-9 freeware
-        ... the same line 14 times over
+OS-9 freeware
+OS-9 freeware
+OS-9 freeware
+OS-9 freeware
+OS-9 freeware
+OS-9 freeware
+OS-9 freeware
+OS-9 freeware
+OS-9 freeware
+OS-9 freeware
+OS-9 freeware
+OS-9 freeware
+OS-9 freeware
