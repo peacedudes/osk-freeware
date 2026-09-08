@@ -93,11 +93,14 @@ run     fcomp tmp/fc1 tmp/fc2
 wait    6
 
 shot    gothic
-size    46 100
-cap     gothic sets a word in blackletter, drawn down the screen.  `-h'
-cap     draws it at half size.
-run     gothic -h OS-9
+size    90 96
+cap     Sets a word in fraktur capitals, each letter drawn large down the
+cap     screen, for a title page or a poster.  `-h' draws it at half size
+cap     to fit a short terminal.
+try     gothic OS-9
+run     gothic OS-9
 wait    6
+snap
 
 shot    grep
 cap     GNU grep 2.0 searching the disk's own index, with the count beside

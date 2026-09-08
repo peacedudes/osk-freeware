@@ -284,7 +284,6 @@ gnuchessc
 gnuchessn
 gnuchessr
 gnuplot
-gothic
 gouldtoppm
 gpp
 gpp_cc1plus
