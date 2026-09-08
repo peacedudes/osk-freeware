@@ -268,7 +268,35 @@ def from_origins(root, progs):
                                      archive=m.group(4).strip())
 
 
+def on_disk(root, path):
+    """Where an absolute OS-9 path lands in the tree, or None.
+
+    `/dd/GAMES/adv/glorkz', `/DD/SYS/motd' and `/h0/sys/termcap' all name
+    files of this collection (it is /dd and hard-linked as /h0), and RBF
+    is case-insensitive where the host may not be -- so each segment is
+    matched without regard to case.
+    """
+    m = re.match(r"^/(?:dd|h0)/(.+)$", path, re.I)
+    if not m:
+        return None
+    here = root
+    for seg in m.group(1).strip("/").split("/"):
+        try:
+            names = os.listdir(here)
+        except OSError:
+            return None
+        hit = next((n for n in names if n.lower() == seg.lower()), None)
+        if hit is None:
+            return None
+        here = os.path.join(here, hit)
+    return here
+
+
 def from_depends(root, progs):
+    """What each program reads, and -- for the page's keep preview -- how
+    big each of those files is.  `bytes' is None for a directory or for a
+    path that is not here; keep copies neither, and the page says so the
+    same way keep does."""
     cur = None
     for line in read(root, "DOC/DEPENDS").split("\n"):
         m = re.match(r"^  (\S+)\s+\((\S+)\)$", line)
@@ -278,8 +306,13 @@ def from_depends(root, progs):
         if cur and line.startswith("      /") and cur in progs:
             path = line[6:].rstrip()
             missing = path.endswith("--")
+            path = path.replace("--", "").strip()
+            where = None if missing else on_disk(root, path)
             progs[cur].setdefault("needs", []).append(
-                {"path": path.replace("--", "").strip(), "missing": missing})
+                {"path": path, "missing": missing,
+                 "dir": bool(where and os.path.isdir(where)),
+                 "bytes": (os.path.getsize(where)
+                           if where and os.path.isfile(where) else None)})
 
 
 INFO_FIELDS = {"$VERSION":"version", "$AUTHOR-NAME":"author", "$PURPOSE":"purpose",
