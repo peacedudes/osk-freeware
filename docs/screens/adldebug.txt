@@ -1,4 +1,4 @@
-adldebug tmp/LNG/tiny
+adldebug tiny
 ADL debugger - Version 2.1 - April 28, 1987
 Copyright 1985, 1986, 1987 by Ross Cunniff
 All rights reserved.

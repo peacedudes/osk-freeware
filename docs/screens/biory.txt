@@ -5,7 +5,7 @@ biory
   Gueltigkeitsbereich (JJ-JJ) : 88-88
   Name Vorname (RETURN=Ende)  :
  STOP: BIO / NORMAL END
-$ head -n 30 Biory.Lis
+$ cat Biory.Lis | head -n 32
          Biorhythmogramm fuer Anna Bergmann                (14.03.65)
          ============================================================
 
@@ -36,3 +36,5 @@ $ head -n 30 Biory.Lis
 
          Juni      1988 :    1...5...10...15...20...25...30.
                                     K**********K              Koerper
+                                 K*************K              Seele
+                              K***************K               Geist

@@ -600,20 +600,20 @@
 
 | | |
 |---|---|
-| `adlcomp` | compile an ADL world<br>**How:** Compiles an ADL world: `adlcomp /dd/ADL/DEMOS/tiny.adl -o /dd/tmp/tiny -i /dd/ADL'. The `-i' is where standard.adl lives and is required. |
-| `adldebug` | play with the debugger attached<br>**How:** adlrun with the debugger attached. |
-| `adlrun` | <world>                          play it<br>**How:** Plays a compiled ADL world: `adlrun /dd/tmp/tiny'. The tiny demo opens "You are in a small but comfortable room... There is a red pillow here." NOTE: play from an RBF disk, not a host-directory mount; reading a world off /hN under os9exec trips an assertion inside the emulator. |
-| `adltouch` | refresh a compiled world<br>**How:** Refreshes a compiled world after you edit its source. |
+| `adlcomp` | compile an ADL world<br>**How:** From ADL/DEMOS: `adlcomp tiny.adl -o tiny -i..'. -i names the directory holding standard.adl and is required for any world that includes it. |
+| `adldebug` | the ADL debugger: loads a compiled world with its symbol table and dumps its tables -- objects, nouns, verbs, routines, strings -- over a range of numbers. ? lists the commands, q leaves<br>**How:** `adldebug tiny' on a compiled world; ? lists its commands, `o 0-4' dumps the first objects, q leaves. |
+| `adlrun` | <world>                          play it inventory, a direction; save and restore keep a game, quit leaves. AARD is ready to run in ADL/AARD: `adlrun aard'<br>**How:** `adlrun aard' in ADL/AARD plays the museum adventure at a > prompt; save and restore keep a game, quit leaves. |
+| `adltouch` | stamps a compiled ADL world with a number: `adltouch <world> <n>' writes n into the first four bytes of the file, where the compiler left a #! line. Prints nothing<br>**How:** `adltouch tiny 7' writes 7 into the first four bytes of the compiled world; dump the file to see it. It prints nothing. |
 
 **Interpreters**
 
 | | |
 |---|---|
-| `forth` | &#9733; Forth-83, and it runs.  Type at it:<br>**How:** Type `2 3 + . cr' and it answers 5; `: squares 10 1 do i dup * . loop cr ;' then `squares' prints them; `words' lists its vocabulary; `bye' leaves. A SOURCE FILE IS A COMMAND-LINE ARGUMENT -- `forth fibonacci.tst' loads it and gives you the prompt -- because `include' is defined in the library, not the kernel. The library and the twenty-two programs it shipped with are in lib/tile and lib/tile/TST; lib/tile/readme explains the name (TILE is this Forth's own). |
-| `lua` | Lua 3.0, a small scripting language.  `lua <file>' runs a script:<br>**How:** It stops at `**** csl traphandler mismatch ****' because it was built against a LATER csl than the edition 16 this disk ships. `load' a later csl module first -- anyone with a Microware SDK has one -- and it runs: `lua DOC/lua/examples/hello.lua' prints `hello world, from Lua!'. `luac' needs none of that. Eight example scripts are in DOC/lua/examples. |
-| `luac` | &#9733; Lua bytecode compiler -- luac -o out in.lua<br>**How:** `luac -l -o out.lc in.lua' compiles and lists the bytecode instruction by instruction. It needs no csl and works as the disk stands. DOC/lua/examples has eight scripts that came with the package. |
-| `runc` | Runs a compiled Lua chunk as an OS-9 command -- and stops with the same csl mismatch as `lua'.  DOC/STATUS names all five programs that do |
-| `wam.sbprolog` | SB-Prolog 2.2 WAM engine -- see DOC/sbprolog/README-SBPROLOG<br>`Usage: sim [-Ttdns] [-m s_size] [-p p_size] [-b tr_size] [-ui num] pil_file_name ...` |
+| `forth` | &#9733; TILE Forth, a Forth-83 in C. A source file named on the command line is loaded first -- `forth fibonacci.tst' in lib/tile/TST -- and then it prompts silently: `2 3 + . cr' prints 5, a colon definition makes a new word, words lists the vocabulary, bye leaves. lib/tile holds its source library and TST twenty-two test programs; sixteen manuals in DOC/forth<br>**How:** Type `2 3 + . cr' and it answers 5; `: squares 11 1 do i dup * . loop cr ;' then `squares' prints them; `words' lists its vocabulary; `bye' leaves. A source file is a command-line argument -- `forth fibonacci.tst' in lib/tile/TST loads it and gives you the prompt -- because `include' is defined in the library, not the kernel. The library and its twenty-two programs are in lib/tile and lib/tile/TST. |
+| `lua` | Lua 3.0, a small scripting language.  `lua <file>' runs a script:<br>**How:** `lua cf.lua' in DOC/lua/examples prints a temperature table; `lua hello.lua' says hello. Eight example scripts are there; -v prints the version. |
+| `luac` | &#9733; Lua bytecode compiler: `luac -o out.lc in.lua'; -l lists the instructions as it compiles, -x compiles into an OS-9 module in the execution directory for runc to start<br>**How:** `luac -l -o hello.lc hello.lua' compiles and lists the bytecode. `luac -x -o name script.lua' makes an OS-9 module in the execution directory for runc. |
+| `runc` | runs a Lua script that `luac -x' has compiled into an OS-9 module: `load greet', then `runc greet <args>'. The script reads its arguments from argv[1] onwards, with the count in argv.n<br>**How:** Compile with `luac -x -o greet greet.lua', `load greet', then `runc greet World'. The script reads argv[1] onwards; argv.n is the count. |
+| `wam.sbprolog` | SB-Prolog 2.2, a full Prolog. Needs SIMPATH=/dd/SBPROLOG/MODLIB; `wam.sbprolog SBPROLOG/MODLIB/$readloop' from /dd gives the \| ?- prompt, halt. leaves. DOC/sbprolog has the manual and README- SBPROLOG<br>**How:** Needs SIMPATH=/dd/SBPROLOG/MODLIB (login sets it). From /dd: `wam.sbprolog SBPROLOG/MODLIB/$readloop' gives \| ?-; after a solution ; asks for the next and Return accepts it; halt. leaves. |
 | `xlisp` | XLISP 2.1 Lisp interpreter |
 
 </details>
@@ -1281,10 +1281,10 @@
 | `life` | Conway's Game of Life<br>**How:** life [init-file]. The patterns are in /dd/GAMES/LIFE -- try `life /dd/GAMES/LIFE/glider`. It also wants more memory than the default; from the OS-9 shell that is `life #22k <file>`, and bash has no #size syntax at all. |
 | `rain` | raindrops screen effect<br>**How:** Full-screen: it takes over the display. **control-C gets you out**; q, Q, control-D and ESC do not. If it has a quit command of its own, its documentation in DOC/ will say. |
 | `suicide` | animation: a stick figure walks off a rooftop |
-| `suicide1` | suicide, variant |
-| `suicide2` | suicide, variant |
+| `suicide1` | rooftop animation: a stick figure jumps from a tower block and a scream runs along the roofline as it falls. Plays once and returns; draws with termcap |
+| `suicide2` | the rooftop animation with a car: the figure lands on the road below and a warning is shouted across the top of the screen. Plays once and returns |
 | `textb` | &#9733; Mandelbrot set drawn in ASCII on an 80x25 terminal.  Start with X -2.3, Y -2.0, range 4.0, 32 iterations<br>**How:** An ASCII Mandelbrot viewer -- it asks four questions and draws. Try X_Coord -2.3, Y_Coord -2.0, RANGE 4.0, Max Iter 32. Needs Microware's cio. |
-| `ttyexp` | fireworks that clear the screen; VT100, wants TERMCAP<br>`Usage: ttyexp <parameters>` |
+| `ttyexp` | fireworks drawn in characters: bursts thrown out from a point, arcing under gravity with trails. -s<n> bursts at once, -p<n> points in each, -D<n> seconds to run; `ttyexp -s2 -p50' fills the screen. Clears the screen when done; VT100, wants TERMCAP<br>**How:** `ttyexp -s2 -p50' fills the screen with bursts; it runs ten seconds and clears the screen when done. |
 | `worms` | worms screen effect<br>`usage: worms [-field] [-length #] [-number #] [-trail]` |
 
 </details>
@@ -1299,36 +1299,36 @@
 
 | | |
 |---|---|
-| `bio` | a biorhythm chart in BASIC09 -- `runb bio' asks a Date and a Birthday as DD.MM.YYYY (RETURN at the Date prompt takes your system date), then `g' for a graph (or `v' for values) and a number of days, and plots the physical, emotional and mental cycles<br>**How:** A biorhythm chart (F. Kaefer's Biorhythm V2.2e, BASIC09) -- `runb bio' draws it. It asks a Date, then a Birthday, both as DD.MM.YYYY (dots, four-digit year, e.g. 06.09.1954; RETURN at the Date prompt takes your system date), then `g' for a graph (or `v' for values) and a number of days, and plots the physical, emotional and mental cycles. |
+| `bio` | a biorhythm chart in BASIC09 -- `runb bio' asks a Date and a Birthday as DD.MM.YYYY (RETURN at the Date prompt takes your system date), then `g' for a graph (or `v' for values) and a number of days, and plots the physical, emotional and mental cycles<br>**How:** A biorhythm chart in BASIC09 -- `runb bio' draws it. It asks a Date, then a Birthday, both as day.month.year with a four-digit year (RETURN at the Date prompt takes your system date), then `g' for a graph (or `v' for values) and a number of days, and plots the physical, emotional and mental cycles. |
 | `biory` | biorhythm chart, in German: asks a name (Name Vorname), a birth date as TTMMJJ and a span of years as JJ-JJ, and writes the chart -- Koerper, Seele, Geist, month by month -- to Biory.Lis in the current directory.  Needs `load /dd/CMDS/os9lib' first; RETURN at the name prompt ends it. Source: SRC/rtf/biory.f |
 
 **Curiosities**
 
 | | |
 |---|---|
-| `areacode` | &#9733; look up a US telephone area code<br>`Usage: areacode nnn nnn ...` |
+| `areacode` | &#9733; looks up North American telephone area codes, as many as you give it, from a table of the late 1980s; a code it does not know is said to be no area code<br>`Usage: areacode nnn nnn ...` |
 | `touchtype` | TYPEFAST, a typing game: words fall down the screen and you type each one before it lands.  ESC ends the game and scores you in words per minute<br>**How:** Full-screen typing game. Answer `n' to the instructions question, pick a level 1-3 (q quits there), type each falling word followed by SPACE or RETURN. ESC ends the game and prints the words-per-minute score. |
 
 **Generators**
 
 | | |
 |---|---|
-| `name` | &#9733; invents pronounceable names, as many as you ask for<br>`Usage: name number-of-names` |
+| `name` | &#9733; invents pronounceable names for the characters in a tabletop game, as many as you ask for, dealing vowels and consonants in turn with the letter frequencies of a Scrabble set<br>`Usage: name number-of-names` |
 | `newsgen` | &#9733; generate a fake news bulletin |
-| `pwgen` | &#9733; pronounceable passwords: `pwgen <length> [how many]'<br>**How:** pwgen <length> [count]. Give it a length and it prints that many pronounceable passwords. |
-| `rndname` | &#9733; invents pronounceable names, as many as you ask for -- a second program of the same idea as `name'<br>`Usage: name number-of-names` |
+| `pwgen` | &#9733; pronounceable passwords: `pwgen <length> [how many]'<br>**How:** pwgen <length> [count]: length 4 to 16. It takes a few seconds over each password, so allow for that. |
+| `rndname` | &#9733; invents pronounceable names, as many as you ask for -- the earlier version of `name', with every letter equally likely, so the names come out more exotic<br>`Usage: name number-of-names` |
 | `rpoem` | &#9733; random poem generator (SNOBOL4-in-C).  Data: GAMES/SNOBOL |
-| `rstory` | random story generator, roff output.  Data: GAMES/SNOBOL |
-| `rstory2` | &#9733; asks your name, sex, favourite animal and colour and a setting, then hands them to a story program (rstory_W, rstory_S, rstory_C or rstory_G); supply one and it writes the story |
-| `scales` | &#9733; musical scale generator -- writes `scales.lst' in the current directory<br>`Usage: scales [-h] [-d] [-a] [-m] [-c] [outname]` |
+| `rstory` | a cumulative tale in the shape of The Old Woman and Her Pig, the animal, the obstacle and every helper drawn at random; `rstory \| tformat' sets it justified under a dated heading. Data: GAMES/SNOBOL |
+| `rstory2` | &#9733; asks your name, sex, favourite animal and colour and a setting, then hands them through the shell to a story program (rstory_W, rstory_S, rstory_C or rstory_G) whose story goes through tformat to the printer at /p1. The four story programs did not come with it, so the questions are as far as it goes |
+| `scales` | &#9733; deals scales and chords into a random practice order, a tick-box each, in `scales.lst' in the current directory (or a file you name): -d diatonic scales, -a altered scales, -m modes, -c chords; each entry gives the key signature and the spelling<br>**How:** Pick at least one of -d -a -m -c or it asks what you had in mind; `scales -d -c' writes 195 entries to scales.lst, and a trailing name writes elsewhere. |
 | `travesty` | rewrites its input as plausible nonsense, by Markov chains: `travesty -n400 < file' for 400 characters of it<br>`Usage: travesty [ -oord ] [ -nnum ] [ -rrand ] [ -sS ] [ -ACHUVW ]` |
 
 **Simulated weather**
 
 | | |
 |---|---|
-| `england` | &#9733; a year of random weather, day by day, for a tabletop game: the mid-Atlantic climate profile on the Gregorian calendar. `england 2' does two years.  Six builds of one program differ only in climate and calendar: england, florida (Gulf coast), georgia (south Atlantic), minnesota (north Atlantic), japan (north Pacific, Japanese calendar) and shire (mid-Atlantic, Middle-earth calendar)<br>**How:** One of six weather simulators that differ only in climate and calendar: england, florida, georgia, minnesota, japan (Japanese calendar) and shire (Middle-earth). Each prints a day's weather and stops. |
-| `florida` | &#9733; the weather program on its Gulf-coast profile; see england<br>**How:** `florida < /nil'. It simulates a year of Florida weather day by day, with the calendar notes. |
+| `england` | &#9733; a year of random weather, day by day, for a tabletop game: the mid-Atlantic climate profile on the Gregorian calendar. `england 2' does two years.  Six builds of one program differ only in climate and calendar: england, florida (Gulf coast), georgia (south Atlantic), minnesota (north Atlantic), japan (north Pacific, Japanese calendar) and shire (mid-Atlantic, Middle-earth calendar)<br>**How:** One of six weather simulators that differ only in climate and calendar: england, florida, georgia, minnesota, japan (Japanese calendar) and shire (Middle-earth). Each prints a year of weather, a line a day, with a summary at each month's end; a number says how many years. |
+| `florida` | &#9733; the weather program on its Gulf-coast profile; see england<br>**How:** Prints a year of Gulf-coast weather, a line a day; `florida \| head -n 37' shows January. See england. |
 | `georgia` | &#9733; the weather program on its south-Atlantic profile; see england |
 | `japan` | &#9733; the weather program on its north-Pacific profile, with the months of the Japanese calendar; see england<br>**How:** A weather simulator on the Japanese calendar -- see `england'. |
 | `minnesota` | &#9733; the weather program on its north-Atlantic profile; see england |
@@ -1610,25 +1610,25 @@
 |---|---|
 | `cam` | &#9733; CAMSHAFT, not camera: it asks for the rocker ratio, the lift at a crank angle and the base circle, and plots the lift curve for an intake lobe.  The plot is Tektronix vectors, so on a vt100 it arrives as characters -- the dialogue above it is the readable part. |
 | `chbase` | &#9733; converts a number from one base to another: `chbase 255 10 16' prints FF, and a target base of 0 prints every base from 2 to 36<br>`Syntax   : chbase <number> [ <base A> [ <base B> ] ]` |
-| `cvtbase` | converts a number between bases.  The bases are named by key -- b, d, h or x, o -- or by their value, and the number comes on standard input: `echo 255 ! cvtbase d h' answers ff<br>**How:** The BASES are the arguments and the NUMBER comes on standard input: `echo 255 ! cvtbase d h' answers ff, `cvtbase d b' answers 11111111. Bases are named b, d, h or x, o -- or by their actual digit characters. |
-| `loan` | &#9733; amortisation calculator: principal, term, rate and start month in, the payment and a month-by-month schedule out |
-| `rechne` | &#9733; calculator, German -- and it takes ONE expression with no spaces in it: `rechne 4095+1' answers 4096, $1000 and the binary.  Spaced out it evaluates each argument separately |
-| `rpn` | &#9733; RPN calculator -- and its `+' is wrong: 12, 34, + leaves a stack of three with 0 on top instead of one with 46. `rechne' is the calculator that answers correctly |
+| `cvtbase` | converts a number between bases.  The bases are named by key -- b, d, h or x, o -- or by their value, and the number comes on standard input: `echo 255 ! cvtbase d h' answers ff<br>**How:** The bases are the arguments and the numbers come on standard input, one per line: `cvtbase d h' then 255 answers ff; Escape ends it. Bases are named b, d, h or x, o -- or by their digit characters. |
+| `loan` | &#9733; amortisation calculator: principal, term, rate and start month in, the payment and a month-by-month schedule out<br>**How:** Answers four prompts and prints the schedule for the whole term; pipe it through head or less. |
+| `rechne` | &#9733; German command-line calculator: every answer in decimal, hex and binary at once. The expression is one argument with no spaces -- `rechne 4095+1' -- with operators + - x / m (modulo) a o p (and, or, xor) and $ for hex; -b lists the bits set<br>**How:** One expression, no spaces: `rechne 4095+1'. Operators + - x / m a o p; $ff is hex; -b lists the set bits. The other -xx switches decode status codes of the maker's own equipment. |
+| `rpn` | &#9733; reverse-Polish calculator on whole numbers. A number typed is pushed; the words add, sub, mul, div and mod combine the top two, and, or, xor and not work bitwise, pr prints an entry, pop discards one. After each line it shows the stack top and depth; ? lists the words, q leaves<br>**How:** Operators are words typed on their own line: 12, 34, add. A + sign is read as the number 0 and pushed. q leaves. |
 | `sc` | sc -- spreadsheet calculator (needs TERM)<br>**How:** The spreadsheet, version 6.16. `sc' opens and says "Type '?' for help". It reads TERMCAP as SYS/login sets it, so no `. /dd/SYS/termcap.entry' is needed first. |
 
 **Simulators**
 
 | | |
 |---|---|
-| `logisim` | logic circuit simulator -- draws a pulse diagram from a circuit written as text.  Two sample circuits ship with it, DOC/logisim/flipflop.lsi and counter.lsi, and its notes are DOC/logisim/logisim.doc, in German.  It needs `PORT' set to a terminal path -- it reopens the keyboard through it, so `setenv PORT /term' first.  Past that it floods `No more memory !!!'.<br>**How:** Set PORT first: `setenv PORT /term'. Without it, `logisim: Environment variable PORT not defined' -- it reopens the keyboard through that path. Two sample circuits ship in DOC/logisim (counter.lsi, flipflop.lsi) and its notes are there too, in German. |
+| `logisim` | logic circuit simulator -- draws a pulse diagram, a row per node and a column per step, from a circuit written as text. Two sample circuits ship with it, DOC/logisim/counter.lsi and flipflop.lsi, and its notes are DOC/logisim/logisim.doc, in German. It needs `PORT' set to a terminal path, `setenv PORT /term', because it reopens the keyboard through it; Esc stops the run<br>**How:** Set PORT first: `setenv PORT /term'. Without it, `logisim: Environment variable PORT not defined' -- it reopens the keyboard through that path. Two sample circuits ship in DOC/logisim (counter.lsi, flipflop.lsi) and its notes are there too, in German. |
 
 **Spreadsheets**
 
 | | |
 |---|---|
-| `checkfile` | &#9733; a CHEQUE BOOK -- a full-screen account manager, John R. Wainwright, 1992.  Records carry Date, Type, Description, Account and Amount; the menu is A - Add Records, B - Print Balance, R - Report, F - Select File, V - View/Edit, Q - Quit, and it opens `testfile.dat' unless you pick another.  Wants TERM.  For checking C source, that is `ccheck'<br>**How:** Full-screen: it takes over the display. **`q' quits**. |
-| `oleo` | GNU Oleo 1.6, a spreadsheet.  `sc' is the spreadsheet on this disk that runs; Oleo stops with an illegal instruction at 000465d2 before it draws a cell.<br>**How:** GNU Oleo, a spreadsheet. `sc' is the spreadsheet on this disk that runs; Oleo stops with an illegal instruction (0009, E_PRCABT), from a full login session as much as from a bare shell. |
-| `scqref` | &#9733; Quick reference for sc, the spreadsheet on this disk |
+| `checkfile` | &#9733; cheque-book register, full screen. A adds a record through a form (item, date as YY/MM/DD, type, description, account, amount -- cheques as negative amounts), R lists the records with the balance, V edits, F picks the data file, Q quits. Records go in testfile.dat in the current directory. Wants TERM<br>**How:** Full screen. A adds a record through a form, C accepts it, R lists the records with the balance, Q quits. Records go in testfile.dat in the current directory; cheques are entered as negative amounts. |
+| `oleo` | GNU Oleo 1.6, a spreadsheet. It stops with an illegal instruction before it draws a cell; sc is the spreadsheet that runs<br>**How:** GNU Oleo. It stops with an illegal instruction before drawing a cell; sc is the spreadsheet that runs. |
+| `scqref` | &#9733; quick reference for sc, the spreadsheet: a 360-line document that prints itself, in sections A to Q -- options, cursor movement, cell entry, files, ranges and the function lists. `scqref ! less' pages it<br>**How:** `scqref ! less' pages the reference; it is 360 lines. |
 
 </details>
 
@@ -1678,9 +1678,9 @@
 
 | | |
 |---|---|
-| `help` | help system<br>`Syntax:   help [<opts>] [<topic> {<subtopic>}] [<opts>]` |
+| `help` | help system: `help <topic>' pages the topic's article from a .hlp file in SYS/HELP and then offers its subtopics; `help help' explains the format. bash has a help builtin of its own that answers first, so `enable -n help' there<br>**How:** `help dinfo'. At bash type `enable -n help' first, or bash's own help builtin answers instead. |
 | `helpindex` | &#9733; builds the .ndx index a .hlp help file needs: `helpindex dinfo.hlp' writes dinfo.ndx beside it<br>**How:** `helpindex dinfo.hlp' writes dinfo.ndx beside it. Only names ending .hlp or .hlib are accepted unless -a is given; with no name it asks for one. |
-| `less` | Pager (wants a real TERM).  Its help screen works now: SYS/less.hlp is on the disk |
+| `less` | pager: space or f for the next page, b for the one before, / to search, h for its help screen (SYS/less.hlp), q to leave. Reads the terminal from TERM and TERMCAP |
 | `lessecho` | &#9733; prints its arguments back quoted for a shell -- the helper less uses to hand file names on<br>`usage: lessecho [-ox] [-cx] [-pn] [-dn] [-a] file ...` |
 | `lesskey` | turns a key-binding file into the binary less reads: a `#command' section, then one key and one command per line<br>`usage: lesskey [-o output] [input]` |
 

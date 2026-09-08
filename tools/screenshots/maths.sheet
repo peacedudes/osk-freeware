@@ -1,36 +1,54 @@
 # Calculators and the spreadsheets, one stanza per program.
 
 shot    loan
-size    30 80
-cap     An amortisation calculator.  Principal, term in years, rate and
-cap     the starting month go in, and out comes the payment, the total
-cap     interest and a month-by-month schedule with a subtotal at each
-cap     year.  Fed from a file here, because it asks its questions on one
-cap     line; 120,000 over thirty years at 6.5% is 758.48 a month.
-run     mkdir -p /dd/tmp/MTH > /nil 2>/nil; printf "120000\r30\r6.5\r8\rs\r" > /dd/tmp/MTH/la
+size    46 80
+cap     An amortisation calculator.  It asks for the principal, the term
+cap     in years, the yearly rate and the month payments start, and
+cap     prints the monthly payment, the total interest, and a schedule
+cap     of every month's principal, interest and balance, subtotalled
+cap     at each year end.  Payments from August give a five-month first
+cap     year.  The schedule runs the full term, so page it or cut it.
+try     loan | head -n 40
+os9     loan
+run     loan | head -n 40
+wait    3
+send    120000\r
 wait    2
-run     builtin cd /dd
-wait    1
-run     clear
-wait    1
-run     loan < tmp/MTH/la | head -n 22
-wait    10
+send    30\r
+wait    2
+send    6.5\r
+wait    2
+send    8\r
+wait    8
 
 shot    cvtbase
-cap     Converts a number between bases.  The bases are named by key --
-cap     d for decimal, h or x for hex, b for binary, o for octal -- and
-cap     the number arrives on standard input.
-run     echo 255 | cvtbase d h
-wait    4
-run     echo 255 | cvtbase d b
-wait    4
-run     echo ff | cvtbase h d
-wait    4
+cap     Converts numbers from one base to another.  The two arguments
+cap     name the bases, in and out: d decimal, h or x hex, o octal, b
+cap     binary, or the digit characters themselves for any other base.
+cap     Each number typed is answered on the next line; Escape ends it.
+try     cvtbase d h
+run     cvtbase d h
+wait    3
+send    255\r
+wait    2
+send    4095\r
+wait    2
+send    \033
+wait    2
+run     cvtbase h b
+wait    3
+send    ff\r
+wait    2
+send    \033
+wait    2
 
 shot    rechne
-cap     A German command-line calculator: every answer in decimal, hex
-cap     and binary at once.  The expression is one argument with no
-cap     spaces in it; x multiplies and m is modulo.
+cap     A German command-line calculator that gives every answer three
+cap     ways: decimal, hex and binary.  The expression is one argument
+cap     with no spaces; the operators are + - x / and m for modulo, a, o
+cap     and p for and, or and xor, and $ prefixes a hex number.  -b lists
+cap     which bits of the result are set.
+try     rechne 4095+1
 run     rechne 4095+1
 wait    2
 run     rechne 12x12
@@ -43,41 +61,110 @@ run     rechne -b 12345
 wait    3
 
 shot    rpn
-cap     A reverse-Polish calculator, and this is it going wrong: 12 and
-cap     34 push correctly, and then + pushes a 0 on top of them instead of
-cap     replacing them with 46.  rechne is the calculator that answers.
+size    50 80
+cap     A reverse-Polish calculator on whole numbers.  A number typed is
+cap     pushed on the stack; the words add, sub, mul, div and mod combine
+cap     the top two, and, or, xor and not work bitwise, pr prints an
+cap     entry and pop discards one.  After each line it shows the top
+cap     of the stack and how deep it is.  ? lists the words; q leaves.
+try     rpn
 run     rpn
 wait    2
 send    12\r
 wait    1
 send    34\r
 wait    1
-send    +\r
+send    add\r
+wait    1
+send    100\r
+wait    1
+send    mul\r
+wait    1
+send    7\r
+wait    1
+send    div\r
+wait    1
+send    ?\r
 wait    2
 snap
 send    q\r
 wait    2
 
 shot    checkfile
-cap     A cheque-book: a full-screen account manager whose records carry
-cap     a date, a type, a description, an account and an amount.  A adds
-cap     records, B prints the balance, R reports, F picks the file, Q
-cap     quits.
+size    30 80
+cap     A cheque-book register, full screen.  A adds a record through a
+cap     form -- item number, date as YY/MM/DD, a type code, description,
+cap     account and amount, with cheques entered as negative amounts --
+cap     and C accepts it.  R lists every record with the balance, as
+cap     shown; V edits, F changes the data file, Q quits.  Records go
+cap     in testfile.dat in the current directory.  It needs TERM set.
+try     checkfile
+run     rm -rf /dd/tmp/MTHB > /nil 2>/nil; mkdir -p /dd/tmp/MTHB
+wait    2
+run     builtin cd /dd/tmp/MTHB
+wait    1
+run     clear
+wait    1
 run     checkfile
-wait    6
-snap
-send    q
+wait    5
+send    A
 wait    3
+send    101\r
+wait    2
+send    26/09/01\r
+wait    2
+send    CHK\r
+wait    2
+send    Electric bill\r
+wait    2
+send    UTIL\r
+wait    2
+send    -84.50\r
+wait    3
+send    C
+wait    3
+send    Y
+wait    3
+send    102\r
+wait    2
+send    26/09/03\r
+wait    2
+send    DEP\r
+wait    2
+send    Pay cheque\r
+wait    2
+send    INC\r
+wait    2
+send    1250.00\r
+wait    3
+send    C
+wait    3
+send    N
+wait    3
+send    R
+wait    5
+snap
+send    \r
+wait    3
+quit    Q
 
 shot    oleo
 cap     GNU Oleo 1.6, a spreadsheet.  It stops on an illegal instruction
 cap     before it draws a cell, and the process is aborted; sc is the
 cap     spreadsheet that runs.
+try     oleo
 run     oleo
 wait    5
 
 shot    scqref
-cap     The quick-reference card for sc, the spreadsheet: a document that
-cap     prints itself.  These are its first sixteen lines.
-run     scqref | head -n 16
-wait    12
+cap     The quick-reference card for sc, the spreadsheet: a document
+cap     that prints itself, 360 lines in sections A to Q -- options,
+cap     cursor movement, cell entry, files, ranges, the function
+cap     lists.  Page it with less: space for the next page, q to leave.
+try     scqref | less
+os9     scqref ! less
+run     scqref | less
+wait    10
+snap
+send    q
+wait    2

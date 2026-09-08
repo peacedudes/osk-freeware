@@ -1,4 +1,4 @@
-$ /dd/CMDS/help dinfo
+help dinfo
 
 
 DINFO

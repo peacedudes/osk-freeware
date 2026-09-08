@@ -1,0 +1,8 @@
+cat greet.lua
+print("hello, "..argv[1])
+print(argv.n.." arguments")
+$ luac -x -o greet greet.lua
+$ load greet
+$ runc greet World again
+hello, World
+2 arguments

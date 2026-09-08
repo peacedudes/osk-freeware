@@ -2,19 +2,26 @@
 
 shot    help
 cap     The help system on a topic.  Each subject is a .hlp file with an
-cap     index beside it in SYS/HELP; `help dinfo' pages the dinfo article
-cap     and then offers its subtopics.  Ask for it by path: bash has a
-cap     `help' builtin of its own that answers first.
-run     /dd/CMDS/help dinfo
+cap     index beside it in SYS/HELP; the article is paged, and at the
+cap     end it offers the subtopics.  bash has a help builtin of its own
+cap     that answers first, so type `enable -n help' once to let this one
+cap     answer.
+try     help dinfo
+run     enable -n help
+wait    1
+run     clear
+wait    1
+run     help dinfo
 wait    6
 snap
 send    q
 wait    2
 
 shot    helpindex
-cap     Builds the index a help file needs.  Given dinfo.hlp it writes
-cap     dinfo.ndx beside it, one entry per page, and says how many pages
-cap     it found.
+cap     Builds the index a help file needs before help can page it.
+cap     Given dinfo.hlp it writes dinfo.ndx beside it, one entry per
+cap     page, and says how many pages it found.
+try     helpindex dinfo.hlp
 run     rm -rf /dd/tmp/DOCB > /nil 2>/nil; mkdir -p /dd/tmp/DOCB; cp /dd/SYS/HELP/dinfo.hlp /dd/tmp/DOCB/dinfo.hlp
 run     builtin cd /dd/tmp/DOCB
 wait    3
@@ -26,41 +33,50 @@ run     ls -l
 wait    4
 
 shot    less
-cap     less, paging a file.  It reads the terminal from TERM and TERMCAP,
-cap     and its own help screen (h) is on the disk as SYS/less.hlp.
+cap     less, paging a file a screen at a time: space or f for the next
+cap     page, b for the one before, / to search, h for its help screen
+cap     and q to leave.  It reads the terminal's size and codes from
+cap     TERM and TERMCAP.
+try     less DOC/forth/tile.doc
 run     builtin cd /dd
 wait    1
 run     clear
 wait    1
-run     less DOC/README-RUNNING
+run     less DOC/forth/tile.doc
 wait    5
 snap
 send    q
 wait    2
 
 shot    lessecho
-cap     Prints its arguments back, one line, the way less hands file
-cap     names to a shell -- a name containing spaces or a wildcard comes
-cap     back quoted so the shell leaves it alone.
+cap     Prints its arguments back on one line, the way less hands file
+cap     names to a shell: an argument containing a space comes back
+cap     inside quotes, so the shell keeps it as one word.
+try     lessecho one "two words" three
 run     builtin cd /dd/SYS
 wait    1
 run     clear
 wait    1
-run     lessecho motd "two words" it*s
+run     lessecho one "two words" three
 wait    4
 
 shot    lesskey
 cap     Turns a key-binding file into the binary less reads from
 cap     $HOME/.less.  The input names a section and then one key and one
-cap     command per line; here z and Z are made to page forward and back.
-run     echo "#command" > /dd/tmp/DOCB/keys; echo "z forw-screen" >> /dd/tmp/DOCB/keys; echo "Z back-screen" >> /dd/tmp/DOCB/keys
+cap     command per line; here z and Z are made to page forward and back,
+cap     and -o says where to write the result.
+try     lesskey -o lesskeys keys
+run     rm -rf /dd/tmp/DOCK > /nil 2>/nil; mkdir -p /dd/tmp/DOCK
+wait    2
+run     builtin cd /dd/tmp/DOCK
+wait    1
+run     echo "#command" > keys; echo "z forw-screen" >> keys; echo "Z back-screen" >> keys
 wait    2
 run     clear
 wait    1
-run     cat /dd/tmp/DOCB/keys
+run     cat keys
 wait    2
-run     lesskey -o /dd/tmp/DOCB/lesskeys /dd/tmp/DOCB/keys
+run     lesskey -o lesskeys keys
 wait    4
-run     ls -l /dd/tmp/DOCB/lesskeys
+run     ls -l lesskeys
 wait    3
-

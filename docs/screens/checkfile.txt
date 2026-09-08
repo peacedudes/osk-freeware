@@ -1,23 +1,5 @@
-      ==========================CHECKFILE=================================
-      ===========Copyright#(c)#1992#by#John#R.#Wainwright#================
-
-            Current Active File:          testfile.dat
-
-            Nr of Recs in File            0
-
-      =========================CURRENT#RECORD=============================
-
-      1.  Record Nr.                    2.  Item Nr.
-
-      3.  Date                          4.  Type
-
-      5.  Description
-
-      6.  Account                       7.  Amount
-
-      ============================ACTION==================================
-
-      A - Add Records      B - Print Balance       V - View/Edit
-      R - Report           F - Select File         Q - Quit
-
-      Select
+Rec###Item##Date#####Code#####Description###############Acct##Amt
+1     101   26/09/01 CHK      Electric bill             UTIL-84.50  -84.50
+2     102   26/09/03 DEP      Pay cheque                INC   1250.00
+Balance -- 1165.50
+End of List - Any Key to Continue

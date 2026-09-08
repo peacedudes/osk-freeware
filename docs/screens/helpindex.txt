@@ -3,4 +3,4 @@ Writing index for "dinfo.hlp" to "dinfo.ndx" ..done (4 pages).
 $ ls -l
 total 4096
 -rw-rw-rw-   1 0        0            3569 Aug  3 19:00 dinfo.hlp
--rw-------   1 0        0              24 Sep  7 07:41 dinfo.ndx
+-rw-------   1 0        0              24 Sep  8 04:46 dinfo.ndx

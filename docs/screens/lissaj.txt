@@ -3,4 +3,11 @@ $ lissaj
 Lissajous pattern generator (PD)1990 Russell Hoffman
 
 
-X angular freq. ->
+X angular freq. -> 3
+
+Y angular freq. -> 2
+
+Duration of storage -> 0
+Phi -> 1
+
+2m0@m2m0@

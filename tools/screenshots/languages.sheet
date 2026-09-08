@@ -3,111 +3,176 @@
 
 shot    adlcomp
 size    36 80
-cap     The ADL compiler turning a world written in Ross Cunniff's
-cap     Adventure Definition Language into a file adlrun can play.  The
-cap     source is the tiny demo shipped in ADL/DEMOS; it includes
-cap     standard.adl by bare name, which is what -i points at.
-run     mkdir -p /dd/tmp/LNG > /nil 2>/nil; rm -f /dd/tmp/LNG/tiny
-wait    2
-run     builtin cd /dd
+cap     The ADL compiler turning a text adventure written in the
+cap     Adventure Definition Language into a world file adlrun can play.
+cap     tiny.adl is the smallest of the demos in ADL/DEMOS; it includes
+cap     standard.adl, which -i points at, and the compiler reports what
+cap     it used of each table before writing the world.
+try     adlcomp tiny.adl -o tiny -i..
+run     builtin cd /dd/ADL/DEMOS
+wait    1
+run     rm -f tiny
 wait    1
 run     clear
 wait    1
-run     adlcomp ADL/DEMOS/tiny.adl -o tmp/LNG/tiny -iADL
+run     adlcomp tiny.adl -o tiny -i..
 wait    35
-run     ls -l tmp/LNG/tiny
+run     ls -l tiny
 wait    4
+
 shot    adlrun
-cap     Playing a compiled ADL world: AARD, which ships ready to run in
-cap     ADL/AARD, opening with its first room and answering `look'.
-run     builtin cd /dd
-wait    1
-run     clear
-wait    1
-run     adlrun ADL/AARD/aard
-wait    8
-send    look\r
-wait    5
-shot    adldebug
 size    36 80
-cap     The ADL debugger on a freshly compiled world: it loads the symbol
-cap     table and gives a > prompt where ? lists its commands.
-run     mkdir -p /dd/tmp/LNG > /nil 2>/nil; rm -f /dd/tmp/LNG/tiny; adlcomp /dd/ADL/DEMOS/tiny.adl -o /dd/tmp/LNG/tiny -i/dd/ADL > /nil
-wait    35
-run     builtin cd /dd
+cap     Playing a compiled ADL world.  AARD ships ready to run in
+cap     ADL/AARD: it opens at the museum entrance, and the > prompt
+cap     takes the usual adventure commands -- look, take, inventory,
+cap     a direction.  save and restore keep a game; quit leaves.
+try     adlrun aard
+run     builtin cd /dd/ADL/AARD
 wait    1
 run     clear
 wait    1
-run     adldebug tmp/LNG/tiny
+run     adlrun aard
+wait    8
+send    take lamp\r
+wait    3
+send    inventory\r
+wait    3
+send    south\r
+wait    5
+quit    quit\ry\r
+
+shot    adldebug
+size    40 80
+cap     The ADL debugger on a compiled world: it loads the symbol table
+cap     and gives a > prompt where ? lists its commands.  Each one dumps
+cap     a table of the world -- objects, nouns, verbs, routines, strings
+cap     -- over a range of numbers, $ standing for the last.  q leaves.
+try     adldebug tiny
+run     builtin cd /dd/ADL/DEMOS
+wait    1
+run     rm -f tiny; adlcomp tiny.adl -o tiny -i.. > /nil
+wait    35
+run     clear
+wait    1
+run     adldebug tiny
 wait    8
 send    ?\r
-wait    5
-snap
-send    quit\r
 wait    3
-send    y\r
-wait    2
+snap
+send    o 1-2\r
+wait    4
+quit    q\r
+
 shot    adltouch
-cap     Marks a compiled world as changed, so a makefile rebuilds what
-cap     depends on it: the file and a version number.
-run     mkdir -p /dd/tmp/LNG > /nil 2>/nil; rm -f /dd/tmp/LNG/tiny; adlcomp /dd/ADL/DEMOS/tiny.adl -o /dd/tmp/LNG/tiny -i/dd/ADL > /nil
+size    30 80
+cap     Stamps a compiled world with a number: it writes the number
+cap     given into the first four bytes of the file, where the compiler
+cap     had left a #! line.  The two dumps show the file before and
+cap     after.  It prints nothing itself.
+try     adltouch tiny 7
+run     builtin cd /dd/ADL/DEMOS
+wait    1
+run     rm -f tiny; adlcomp tiny.adl -o tiny -i.. > /nil
 wait    35
-run     builtin cd /dd
+run     clear
+wait    1
+run     dump tiny | head -n 4
+wait    4
+run     adltouch tiny 7
+wait    4
+run     dump tiny | head -n 4
+wait    4
+
+shot    forth
+size    30 80
+cap     TILE Forth, with a source file loaded from the command line:
+cap     fibonacci.tst from lib/tile/TST defines fib, and typing at the
+cap     prompt runs it -- 20 fib leaves the answer on the stack, . prints
+cap     it, cr ends the line.  A colon definition makes a new word and
+cap     runs at once.  The prompt is silent; bye leaves.
+try     forth fibonacci.tst
+run     builtin cd /dd/lib/tile/TST
 wait    1
 run     clear
 wait    1
-run     ls -l tmp/LNG/tiny
-wait    3
-run     adltouch tmp/LNG/tiny 1; echo "status $?"
-wait    5
-run     ls -l tmp/LNG/tiny
-wait    3
-shot    forth
-cap     TILE Forth: two numbers added, a word defined and run -- the
-cap     squares of 1 to 10 -- and then `words', the whole vocabulary with
-cap     the new word at its head.
-run     forth
-wait    3
-send    2 3 + . cr\r
-wait    2
+run     forth fibonacci.tst
+wait    6
+send    20 fib . cr\r
+wait    4
 send    : squares 11 1 do i dup * . loop cr ;\r
 wait    2
 send    squares\r
-wait    4
-send    words\r
 wait    3
 quit    bye\r
+
 shot    luac
-size    32 80
-cap     The Lua 3.0 bytecode compiler on one of the example scripts in
-cap     DOC/lua/examples, a temperature table: -l lists what it compiled,
-cap     instruction by instruction.
-run     builtin cd /dd
+size    30 80
+cap     The Lua bytecode compiler on the smallest of the examples in
+cap     DOC/lua/examples: -o names the output file and -l lists what it
+cap     compiled, instruction by instruction.  lua runs the .lc file the
+cap     same as the source.
+try     luac -l -o hello.lc hello.lua
+run     rm -rf /dd/tmp/LNGB > /nil 2>/nil; mkdir -p /dd/tmp/LNGB; cp /dd/DOC/lua/examples/hello.lua /dd/tmp/LNGB/hello.lua
+wait    2
+run     builtin cd /dd/tmp/LNGB
 wait    1
 run     clear
 wait    1
-run     cat DOC/lua/examples/cf.lua | head -n 8
-wait    6
-run     luac -l -o tmp/cf.lc DOC/lua/examples/cf.lua | head -n 14
-wait    10
+run     cat hello.lua
+wait    3
+run     luac -l -o hello.lc hello.lua
+wait    8
+run     ls -l hello.lc
+wait    3
+
 shot    lua
-cap     Lua 3.0, the interpreter, running the temperature-table example from
-cap     DOC/lua/examples: a Celsius-to-Fahrenheit chart printed row by row.
-run     builtin cd /dd
+size    30 80
+cap     Lua 3.0, the interpreter, running one of the eight example
+cap     scripts in DOC/lua/examples: a Celsius-to-Fahrenheit table
+cap     printed row by row.  lua with no argument reads a script from
+cap     standard input; -v prints its version.
+try     lua cf.lua
+run     builtin cd /dd/DOC/lua/examples
 wait    1
 run     clear
 wait    1
-run     lua DOC/lua/examples/cf.lua
+run     lua cf.lua
 wait    6
+
 shot    runc
-cap     runc is the Lua runtime engine: a chunk compiled with `luac -x' runs
-cap     through it by its own name at an OS-9 shell, the way runb runs a
-cap     BASIC09 module.  On its own it has no chunk to interpret.
-run     runc
-wait    5
+size    30 80
+cap     Runs a Lua script that luac -x has compiled into an OS-9 module
+cap     and put in the execution directory.  load makes the module
+cap     resident, and runc starts it by name with its arguments, which
+cap     the script reads from the argv table -- argv[1] onwards, with
+cap     the count in argv.n.
+try     runc greet World again
+run     rm -rf /dd/tmp/LNGC > /nil 2>/nil; mkdir -p /dd/tmp/LNGC
+wait    2
+run     builtin cd /dd/tmp/LNGC
+wait    1
+run     echo 'print("hello, "..argv[1])' > greet.lua; echo 'print(argv.n.." arguments")' >> greet.lua
+wait    2
+run     clear
+wait    1
+run     cat greet.lua
+wait    2
+run     luac -x -o greet greet.lua
+wait    6
+run     load greet
+wait    3
+run     runc greet World again
+wait    6
+
 shot    wam.sbprolog
-cap     SB-Prolog 2.2 at its prompt, answering a query.  SIMPATH names
-cap     the module library it loads from.
+size    30 80
+cap     SB-Prolog 2.2 at its | ?- prompt.  assert adds a fact; a query
+cap     with a variable is answered one solution at a time, ; asking for
+cap     the next and Return accepting the last; is evaluates arithmetic.
+cap     The argument is the read-eval loop it starts in, and SIMPATH
+cap     names the module library it loads from.  halt. leaves.
+try     wam.sbprolog SBPROLOG/MODLIB/\$readloop
+os9     wam.sbprolog SBPROLOG/MODLIB/$readloop
 run     export SIMPATH=/dd/SBPROLOG/MODLIB
 wait    2
 run     builtin cd /dd
@@ -116,11 +181,36 @@ run     clear
 wait    1
 run     wam.sbprolog SBPROLOG/MODLIB/\$readloop
 wait    10
-send    X is 6*7, write(X), nl.\r
-wait    6
+send    assert(likes(mary,wine)).\r
+wait    3
+send    assert(likes(john,wine)).\r
+wait    3
+send    assert(likes(john,mary)).\r
+wait    3
+send    likes(john,X).\r
+wait    4
+send    ;\r
+wait    4
+send    \r
+wait    3
+send    likes(Who,wine).\r
+wait    4
+send    ;\r
+wait    4
+send    \r
+wait    3
+send    X is 6*7.\r
+wait    4
+send    \r
+wait    3
+quit    halt.\r
+
 shot    xlisp
-cap     XLISP 2.1: factorial defined recursively, mapped over ten
-cap     numbers, and a dolist walking a list of symbols.
+cap     XLISP 2.1, a Lisp with objects, at its > prompt: a factorial
+cap     defined recursively with defun, mapped over the numbers one to
+cap     ten, and a dolist walking a list of symbols and printing each
+cap     with the length of its name.  (exit) leaves.
+try     xlisp
 run     xlisp
 wait    2
 send    (defun fact (n) (if (< n 2) 1 (* n (fact (1- n)))))\r

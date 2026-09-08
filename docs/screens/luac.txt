@@ -1,24 +1,14 @@
-cat DOC/lua/examples/cf.lua | head -n 8
--- temperature conversion table
+cat hello.lua
+-- the first program in every language
 
--- celsius to farenheit
+write("hello world, from Lua!\n")
+$ luac -l -o hello.lc hello.lua
 
-c0=-20
-while c0<50 do
-
-        c1=c0+10
-$ luac -l -o tmp/cf.lc DOC/lua/examples/cf.lua | head -n 14
-
-main of "DOC/lua/examples/cf.lua" (175 bytes at d4880)
-     0  PUSHBYTE        20
-     2  MINUSOP
-     3  STOREGLOBAL     26      ; c0
-     6  PUSHGLOBAL      26      ; c0
-     9  PUSHBYTE        50
-    11  LTOP
-    12  IFFJMP  159             ; to 174
-    15  PUSHGLOBAL      26      ; c0
-    18  PUSHBYTE        10
-    20  ADDOP
-    21  STOREGLOBAL     27      ; c1
-    24  PUSHGLOBAL      28      ; write
+main of "hello.lua" (10 bytes at d3990)
+     0  PUSHGLOBAL      26      ; write
+     3  PUSHSTRING      2       ; "hello world, from Lua!
+"
+     6  CALLFUNC        1 0
+     9  RETCODE0
+$ ls -l hello.lc
+-rw-------   1 0        0              83 Sep  8 04:50 hello.lc

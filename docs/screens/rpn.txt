@@ -8,6 +8,41 @@ WELCOME TO RPN!!! (Rpn version 1) by Nils McCarthy
 34
                 stack top: 34
                         stacksize: 2
-+
-                stack top: 0
-                        stacksize: 3
+add
+                stack top: 46
+                        stacksize: 1
+100
+                stack top: 100
+                        stacksize: 2
+mul
+                stack top: 4600
+                        stacksize: 1
+7
+                stack top: 7
+                        stacksize: 2
+div
+                stack top: 657
+                        stacksize: 1
+?
+
+
+WELCOME TO RPN, a reverse polish notation calculator.
+the functions are as follows:
+add - add the top two numbers on the stack
+sub - subtract the top two numbers on the stack
+mul - multiply the top two numbers on the stack
+div - divide the top two numbers on the stack
+pop - discard the top element of the stack
+mod - take the remainder of the division of the top two numbers on the stack
+not - take the compliment of the top element on the stack
+help - display this help
+xor - exclusive or
+or - not-exclusive or
+and - bitwise and
+pr [number] - print the number [number] deep in the stack. defaults to 0
+sw - switch printing top of stack on/off
+(not that you'll ever need this, but:)
+end - terminate the progran
+
+                stack top: 657
+                        stacksize: 1

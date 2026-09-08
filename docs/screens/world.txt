@@ -14,4 +14,6 @@ odd mirage effect which so far has prevented your mother ship
 850 kilometers above from getting clear photos of the large
 valley which must lie just beyond the pass you now approach.
 
+>look
+Something more is necessary after this verb.
 >

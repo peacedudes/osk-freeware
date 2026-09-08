@@ -1,6 +1,25 @@
 wam.sbprolog SBPROLOG/MODLIB/\$readloop
 SB-Prolog Version 2.2
-| ?- X is 6*7, write(X), nl.
-42
+| ?- assert(likes(mary,wine)).
+yes
+| ?- assert(likes(john,wine)).
+yes
+| ?- assert(likes(john,mary)).
+yes
+| ?- likes(john,X).
+
+X = wine;
+
+X = mary
+yes
+| ?- likes(Who,wine).
+
+Who = mary;
+
+Who = john
+yes
+| ?- X is 6*7.
 
 X = 42
+yes
+| ?-

@@ -1,2 +1,2 @@
-lessecho motd "two words" it*s
-motd "two words" it*s
+lessecho one "two words" three
+one "two words" three

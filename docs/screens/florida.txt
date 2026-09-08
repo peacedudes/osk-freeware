@@ -1,22 +1,38 @@
-$ florida | head -n 21
+$ florida | head -n 37
                                                                   Snow
 Year   1    Weather        Sky   Temperature    Precip      Wind  Depth  Notes
 January
-   1       Overcast       Mist    Warm ( 65)      None     Brisk         New Years (s)
-   2          Clear      Clear    Warm ( 70)      None      Calm
-   3          Clear      Clear    Fair ( 50)      None      Calm
-   4          Clear      Clear    Warm ( 65)      None      Calm
-   5          Clear      Clear    Fair ( 60)      None      Calm
+   1          Clear      Clear    Warm ( 70)      None      Calm         New Years (s)
+   2          Clear      Clear    Warm ( 65)      None      Calm
+   3          Clear      Clear    Warm ( 65)      None      Calm
+   4          Clear      Clear    Warm ( 70)      None      Calm
+   5          Clear      Clear    Warm ( 65)      None     Light
    6          Clear      Clear    Warm ( 65)      None      Calm         Twelfth Night
-   7  Precipitation     Cloudy    Fair ( 60)  Sprinkle      Calm         Rain - 25 minutes,
-   8  Precipitation     Cloudy    Warm ( 65)     Heavy      Calm         Storm -  2 hours, Catastro,
-   9  Precipitation       Mist    Warm ( 65)    Shower     Light         Storm - 60 minutes,
-  10  Precipitation     Cloudy    Fair ( 50)  Sprinkle  Blustery         Rain - 10 minutes,
-  11  Precipitation     Cloudy    Fair ( 55)     Heavy      Calm         Rain -  4 hours,
-  12          Clear      Clear    Warm ( 70)      None      Calm
-  13  Precipitation  Light Fog    Warm ( 65)    Shower      Calm         Storm - 80 minutes,
-  14          Clear      Clear    Warm ( 70)      None      Calm
-  15          Clear      Clear    Fair ( 60)      None      Calm
+   7          Clear      Clear    Warm ( 65)      None      Calm
+   8          Clear      Clear    Fair ( 50)      None      Calm
+   9          Clear      Clear    Fair ( 55)      None      Calm
+  10  Precipitation  Heavy Fog    Warm ( 65)    Shower  Blustery         Storm - 50 minutes,
+  11          Clear      Clear    Fair ( 60)      None      Calm
+  12          Clear      Clear    Warm ( 65)      None      Calm
+  13          Clear      Clear    Warm ( 65)      None      Calm
+  14          Clear      Clear    Warm ( 65)      None      Calm
+  15          Clear      Clear    Warm ( 70)      None      Calm
   16          Clear      Clear    Warm ( 65)      None      Calm
-  17          Clear      Clear    Warm ( 65)      None      Calm
-  18  Precipitation     Cloudy    Warm ( 65)    Steady      Calm         Rain - 24 hours,
+  17          Clear      Clear    Fair ( 60)      None      Calm
+  18  Precipitation       Mist    Warm ( 65)    Shower  Blustery         Storm - 50 minutes,
+  19          Clear      Clear    Warm ( 65)      None      Calm
+  20          Clear      Clear    Warm ( 65)      None     Light
+  21          Clear      Clear    Warm ( 65)      None     Light
+  22  Precipitation       Mist    Fair ( 60)  Sprinkle     Light         Rain -  5 minutes,
+  23          Clear      Clear    Fair ( 60)      None      Calm
+  24       Overcast  Heavy Fog    Warm ( 75)      None      Calm
+  25       Overcast     Cloudy    Warm ( 65)      None      Calm
+  26          Clear      Clear    Warm ( 65)      None     Light
+  27          Clear      Clear    Fair ( 60)      None      Calm
+  28          Clear      Clear    Fair ( 60)      None      Calm
+  29          Clear      Clear    Warm ( 65)      None      Calm
+  30          Clear      Clear    Warm ( 65)      None      Calm
+  31          Clear      Clear    Fair ( 60)      None      Calm
+High Temp =  75, Low Temp =  50, Average Temp =  63
+
+February

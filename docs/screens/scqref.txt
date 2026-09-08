@@ -1,4 +1,3 @@
-$ scqref | head -n 16
 sc Quick Reference
 
 $Revision: 6.16 $
@@ -15,3 +14,11 @@ $Revision: 6.16 $
  H:   Range commands
  I:   Miscellaneous commands
  J:   Variable names/Expressions
+ K:   Range functions
+ L:   Numeric functions
+ M:   String functions
+ N:   Financial functions
+ O:   Time and date functions
+
+ Q:   Return to main spreadsheet
+:

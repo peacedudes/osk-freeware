@@ -1,19 +1,23 @@
-scales -a
+scales -d -c
 Initializing...
-Building deck...90 cards made
+Building deck...195 cards made
 Shuffling list...
 Writing list to scales.lst
 Done!
-$ head -n 12 scales.lst
-Random Order of 90 Possible Scales or Chords
+$ cat scales.lst | head -n 16
+Random Order of 195 Possible Scales or Chords
 
-___   1 F Harmonic Minor        (4  flats:  Bb Eb Ab Db)
-        Spelling:       F G Ab Bb C Db En
-___   2 B Hungarian Minor       (2 sharps:  F# C#)
-        Spelling:       B C# D E E# F# G A#
-___   3 Ab Whole Tone
-        Spelling:       Ab Bb C D E F#
-___   4 Eb Diminished           (6  flats:  Bb Eb Ab Db Gb Cb)
-        Spelling:       Eb F Gb Ab Bbb Cb Cn Dn
-___   5 Bb Whole Tone
-        Spelling:       Bb C D E F# G#
+___   1 Gb7
+        Spelling:       Gb Bb Db Fb
+___   2 A-9
+        Spelling:       A B C E G
+___   3 E-9
+        Spelling:       E F# G B D
+___   4 GbM9
+        Spelling:       Gb Ab Bb Db F
+___   5 C#-9 (maj 7)
+        Spelling:       C# D# E G# B#
+___   6 C-9
+        Spelling:       C D Eb G Bb
+___   7 Eb-6
+        Spelling:       Eb Gb Bb C

@@ -1,5 +1,9 @@
-loan < tmp/MTH/la | head -n 22
-Enter principal amount: Enter term in years: Enter interest rate in percent: En?
+$ loan | head -n 40
+Enter principal amount: 120000
+Enter term in years: 30
+Enter interest rate in percent: 6.5
+Enter month payments begin (ex: 8 = August): 8
+Do you want the report directed to a file or to the screen?
 [f = file / s = screen] :
          *** Amortization Schedule ***
 
@@ -21,3 +25,21 @@ MONTH   PRINCIPAL       INTEREST        BALANCE
 6        111.45          647.03          119340.22
 7        112.06          646.43          119228.16
 8        112.66          645.82          119115.50
+9        113.27          645.21          119002.23
+10       113.89          644.60          118888.34
+11       114.50          643.98          118773.83
+12       115.13          643.36          118658.70
+13       115.75          642.73          118542.95
+14       116.38          642.11          118426.58
+15       117.01          641.48          118309.57
+16       117.64          640.84          118191.93
+17       118.28          640.21          118073.66
+                Interest paid for year 2 is 7723.79
+
+18       118.92          639.57          117954.74
+19       119.56          638.92          117835.18
+20       120.21          638.27          117714.97
+21       120.86          637.62          117594.11
+22       121.52          636.97          117472.59
+23       122.17          636.31          117350.42
+24       122.84          635.65          117227.59

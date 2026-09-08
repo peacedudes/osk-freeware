@@ -1,5 +1,5 @@
-$ pwgen 10 4
-soquemike
-roookeroj
-echigiena
-shiquakog
+$ pwgen 8 5
+fiuhonu
+rijukap
+shiquay
+yicheesh

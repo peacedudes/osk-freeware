@@ -1,37 +1,38 @@
-     Long ago in a small village there was a little
-girl dressed in red who went to a super market and bought
-a cat. On the way home they came upon a fence which
-the cat was afraid to cross. The little girl dressed
-in red said "cat, cat, jump over the fence or I won't
-get home tonight."  But the cat would not.  The little
-girl dressed in red went over hill and dale and she
-met a smoke.  She said, "smoke, smoke, suffocate cat,
-cat won't jump over the fence and I shan't get home
-tonight."  But the smoke would not.  The little girl
-dressed in red went down the path and she met a wind.
-She said, "wind, wind, disperse smoke,  smoke won't
-suffocate the cat,   cat won't jump over the fence and
-I shan't get home tonight."  But the wind would not.
-The little girl dressed in red went near the black mill
-and she met a smoke.  She said, "smoke, smoke, pollute
-wind,  wind won't disperse the smoke,  smoke won't suffocate
-the cat,   cat won't jump over the fence and I shan't
-get home tonight."  But the smoke would not.  The little
-girl dressed in red went down the path and she met a
-wind.  She said, "wind, wind, disperse smoke,  smoke
-won't pollute the wind,  wind won't disperse the smoke,
-smoke won't suffocate the cat,   cat won't jump over
-the fence and I shan't get home tonight."  But the wind
-would not.  The little girl dressed in red went down
-the path and she met a smoke.  She said, "smoke, smoke,
-pollute wind,  wind won't disperse the smoke,  smoke
-won't pollute the wind,  wind won't disperse the smoke,
-smoke won't suffocate the cat,   cat won't jump over
-the fence and I shan't get home tonight."  The smoke
-knew the little girl dressed in red and, in fact, had
-been saved by her from a wild lion.  So the  smoke began
-to pollute the wind; the  wind began to disperse the
-smoke; the  smoke began to pollute the wind; the  wind
-began to disperse the smoke; the  smoke began to suffocate
-the cat; the   cat began to jump over the fence and
-the little girl dressed in red got home that night.
+$ rstory | tformat
+
+
+
+
+
+                     Generated on Tue Sep  8 04:46:06 2026
+
+
+
+
+
+
+      Once upon a time there was a retired seamstress who went  to  market  and
+bought  a  dog.  On the way home they came upon a fallen tree which the dog was
+afraid to cross. The retired seamstress said "dog, dog, jump  over  the  fallen
+tree  or  I  won't  get  home  tonight."   But  the dog would not.  The retired
+seamstress went down the path and she  met  a  scissor.   She  said,  "scissor,
+scissor,  snip dog,   dog won't jump over the fallen tree and I shan't get home
+tonight."  But the scissor would not.  The retired seamstress went down the path
+and she met a girl.  She said, "girl, girl, break scissor, scissor  won't  snip
+the  dog,   dog won't jump over the fallen tree and I shan't get home tonight."
+But the girl would not.  The retired seamstress went down the path and she met a
+bee.  She said, "bee, bee, sting girl,  girl won't break the scissor,   scissor
+won't snip the dog,   dog won't jump over the fallen tree and I shan't get home
+tonight."  But the bee would not. The retired seamstress went down the path and
+she  met  a  hunter.  She said, "hunter, hunter, swat bee,  bee won't sting the
+girl,  girl won't break the scissor, scissor won't snip the  dog,    dog  won't
+jump over the fallen tree and I shan't get home tonight."  But the hunter would
+not.   The  retired  seamstress went on the road to the red house and she met a
+fire.  She said, "fire, fire, burn hunter,  hunter won't swat the bee, bee won't
+sting the girl,  girl won't break the scissor, scissor won't snip the dog,   dog
+won't jump over the fallen tree and I shan't get home tonight."  The fire  knew
+the  retired  seamstress and, in fact, had been saved by her from a wild tiger.
+So the  fire began to burn the hunter; the  hunter began to swat the  bee;  the
+bee began to sting the girl; the  girl began to break the scissor; the  scissor
+began  to  snip  the  dog;  the  dog began to jump over the fallen tree and the
+retired seamstress got home that night.

@@ -1,0 +1,244 @@
+# Programs whose card used to be built by a tools/playtests/*.keys script and
+# a caption in gen_screens.py, now ordinary stanzas -- each with its own try
+# line and a caption written for a stranger.  Screen toys and full-screen
+# programs; every one ends with Ctrl-E from the harness whatever it is doing.
+# backgammon and teachgammon draw their boards in one burst and are captured
+# through an unthrottled path elsewhere; they are not here.
+
+shot    worms
+cap     Worms crawl about the screen at random, each leaving a trail, until
+cap     you stop them.  A screen toy.  Control-C ends it.
+try     worms
+run     worms
+wait    4
+snap
+wait    4
+snap
+send    \003
+wait    2
+
+shot    rain
+cap     Raindrops land on the screen and spread in rings.  A screen toy.
+cap     Control-C ends it.
+try     rain
+run     rain
+wait    5
+snap
+wait    3
+snap
+wait    3
+snap
+wait    3
+snap
+send    \003
+wait    2
+
+shot    sonnet
+cap     Writes a sonnet: fourteen numbered lines of iambic pentameter, the
+cap     words drawn at random from its own lists.  Escape ends it.
+try     sonnet
+run     sonnet
+wait    4
+snap
+wait    3
+snap
+send    \e
+wait    2
+
+shot    sc
+cap     A spreadsheet.  Cells are named by column letter and row number; a
+cap     leading `=' enters a number or formula in the current cell, the
+cap     arrow keys or hjkl move, `?' lists the commands and `q' quits.
+cap     Here 42 has been entered in cell A0.
+try     sc
+run     export TERM=vt100
+wait    1
+run     clear
+wait    1
+run     sc
+wait    4
+keys    =42
+send    \r
+wait    2
+snap
+send    q
+wait    1
+send    y
+wait    2
+
+shot    banner
+cap     Prints its argument as tall letters made of `@', for a banner or a
+cap     sign.
+try     banner OS-9
+run     banner OS-9
+wait    5
+
+shot    beav
+cap     A binary editor and viewer, here on a file of the disk's own
+cap     documentation: the offset, sixteen bytes in hexadecimal, and the
+cap     same sixteen as characters.  Control-C leaves it.
+run     builtin cd /dd/DOC
+wait    1
+run     clear
+wait    1
+try     beav README-CIO
+run     beav README-CIO
+wait    5
+snap
+send    \003
+wait    2
+
+shot    card
+size    24 80
+cap     A Towers of Hanoi solving itself, whose twelve disks are the lines
+cap     of a season's greeting; the message assembles as the disks arrive on
+cap     the far peg.
+try     card
+run     card
+wait    16
+snap
+send    \003
+wait    2
+
+shot    nobs
+cap     Cribbage against the computer.  It deals six cards, asks which two
+cap     to lay away to the crib, then plays the hand and pegs the score on
+cap     the board above.  Control-C leaves it.
+try     nobs
+run     nobs
+wait    5
+snap
+wait    4
+snap
+send    \003
+wait    2
+
+shot    suicide
+cap     An animation: a stick figure walks to the edge of a rooftop and
+cap     jumps, with a long cry across the top of the screen.
+try     suicide
+run     suicide
+wait    5
+snap
+wait    4
+snap
+send    \003
+wait    2
+
+shot    bite
+cap     A skull draws itself, then bites; a screen toy.  `q' quits.
+try     bite
+run     bite
+wait    4
+snap
+wait    3
+snap
+send    q
+wait    2
+
+shot    life
+cap     Conway's Game of Life on a pattern from GAMES/LIFE -- here the
+cap     glider, which walks across the board.  It detects a repeating
+cap     pattern's period and prints it.  Control-C ends it.
+try     life glider
+run     builtin cd /dd/GAMES/LIFE
+wait    1
+run     clear
+wait    1
+run     life glider
+wait    8
+snap
+send    \003
+wait    2
+
+shot    tess
+size    30 80
+cap     Beyond the Tesseract, a text adventure whose puzzles draw on physics
+cap     and mathematics.  Two-word commands -- look, get all, use stack, n,
+cap     s -- and about two hundred words are understood.  `-f' skips the
+cap     title and scenario.
+try     tess -f
+run     tess -f
+wait    5
+send    look\r
+wait    3
+send    i\r
+wait    3
+snap
+send    \003
+wait    2
+
+shot    world
+size    30 80
+cap     A text adventure set on an alien world where your landing party is
+cap     stranded.  The usual verbs -- look, take, n, s -- move you and act;
+cap     `quit' leaves.  It reads its text from GAMES/world.
+try     world
+run     world
+wait    5
+send    look\r
+wait    4
+snap
+send    quit\r
+wait    2
+send    y\r
+wait    2
+
+shot    wish
+cap     A one-line joke: it tells you what you wished for in hack, and what
+cap     became of the game.
+try     wish
+run     wish
+wait    4
+
+shot    cam
+cap     Camshaft design.  It asks the rocker ratio, then the valve lift at
+cap     each crank angle of an intake lobe, and draws the lift curve.  The
+cap     curve is drawn in Tektronix vectors, so on a character terminal the
+cap     dialogue is the readable part.
+try     cam
+run     cam
+wait    5
+send    1.5\r
+wait    2
+send    0.4\r
+wait    2
+send    0.9\r
+wait    2
+send    1.4\r
+wait    2
+send    1.8\r
+wait    2
+snap
+send    \003
+wait    2
+
+shot    lissaj
+cap     Draws Lissajous figures -- the curve two oscillators trace against
+cap     each other -- from the frequencies, duration and phase you give it.
+cap     The curve is drawn in Tektronix vectors; on a character terminal the
+cap     dialogue is the readable part.
+try     lissaj
+run     lissaj
+wait    4
+send    3\r
+wait    2
+send    2\r
+wait    2
+send    0\r
+wait    2
+snap
+send    1\r
+wait    1
+snap
+send    \003
+wait    2
+
+shot    piano
+cap     Plays a scale through a tone generator: given a base note and a note
+cap     length it sounds the notes.  It wants a third number as well; with
+cap     no sound hardware to drive it answers `tuning - sorry' and stops.
+try     piano 40 4 4
+run     piano 40 4 4
+wait    2
+snap

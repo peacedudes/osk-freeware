@@ -1,6 +1,8 @@
-$ echo 255 | cvtbase d h
-ff
-$ echo 255 | cvtbase d b
-11111111
-$ echo ff | cvtbase h d
+$ cvtbase d h
 255
+ff
+4095
+fff
+$ cvtbase h b
+ff
+11111111

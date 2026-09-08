@@ -3,7 +3,7 @@
 # `every card says what to type' fails on a stanza that is on neither this
 # list nor a sheet's `try' line, and on a line here whose stanza has one.
 # Fixing a card means writing its `try' line and removing its line here.
-# Started 2026-09-08 at 846 of 847 stanzas.
+# Rebuilt 2026-09-08 from the sheets; 800 stanzas still without a try line.
 Ascii2Libr
 EditLibr
 Libr2Ascii
@@ -15,10 +15,6 @@ X11R6shl
 about
 add_errmsg
 adduser
-adlcomp
-adldebug
-adlrun
-adltouch
 advcom
 advent
 advint
@@ -32,7 +28,6 @@ aprocs
 ar
 ar2
 arc
-areacode
 arepdaemon
 argproc_demo
 as0
@@ -62,9 +57,7 @@ bibtex
 bigsetter
 bincheckr
 binhex
-bio
 bioradtopgm
-biory
 bison
 blackjack
 blackjak
@@ -102,7 +95,6 @@ chardef
 chbase
 checkalias
 checkenv
-checkfile
 checkgame
 checksum
 chess
@@ -143,7 +135,6 @@ ctags.elvis
 cursive
 cut
 cuts
-cvtbase
 cxref
 cyberwar
 dam
@@ -219,7 +210,6 @@ em
 emacs
 emacs.mm1
 enable
-england
 env
 eo
 ephem
@@ -254,11 +244,9 @@ fkeys
 flex
 flink
 float
-florida
 fmt
 fontgen
 for
-forth
 fortune
 frm
 fstat
@@ -280,7 +268,6 @@ gcc_collect
 gcl
 gdd
 gen
-georgia
 gep
 getenv
 getsys
@@ -326,8 +313,6 @@ hack
 hang
 hc
 head
-help
-helpindex
 hexbin
 hexed
 hexedit
@@ -355,7 +340,6 @@ initvdu
 input
 isam
 ispell
-japan
 jargon
 join
 k
@@ -372,9 +356,6 @@ larn
 latex
 launch
 lcasep
-less
-lessecho
-lesskey
 lgrep
 lha
 lharc
@@ -390,8 +371,6 @@ lnk
 lnk.org
 load
 loadmem
-loan
-logisim
 logname
 lorenz3d
 lout
@@ -401,8 +380,6 @@ lprm
 lpsched
 lpshut
 ls
-lua
-luac
 lunisolar
 lwf
 m4
@@ -431,7 +408,6 @@ mg
 mgif
 mille
 mines
-minnesota
 mkdict
 mkdir
 mkindex
@@ -466,7 +442,6 @@ mtst
 mtvtoppm
 mv
 mvolformat
-name
 names
 nasa
 nchess
@@ -474,7 +449,6 @@ net
 new_e
 newalias
 newmail
-newsgen
 newshist
 newslock
 noreader
@@ -482,7 +456,6 @@ nptx
 nroff
 nsort
 ob68kdemo
-oleo
 orbit
 osknet
 oskversion
@@ -602,7 +575,6 @@ ptob
 puz15
 puzzle
 puzzle15
-pwgen
 pwparse
 qp
 qsort9
@@ -621,7 +593,6 @@ rdoc
 read_mail
 readmsg
 readnews
-rechne
 ref
 remove
 rendsk
@@ -630,25 +601,17 @@ rlog
 rm
 rmail
 rndir
-rndname
 rnews
 robots
 roff
 rot
-rpn
-rpoem
 rsconvert
-rstory
-rstory2
 rtf
 run
-runc
 rxmod
 savage
 savemem
 sbreak
-scales
-scqref
 screen
 screen_nocio
 scriptmaster
@@ -669,7 +632,6 @@ setyear
 sh
 shar
 shdev
-shire
 showpic
 shuffle
 sieve
@@ -708,8 +670,6 @@ strings
 su
 submit
 subscribe
-suicide1
-suicide2
 sum
 suse
 suspend
@@ -728,7 +688,6 @@ tcmp
 tet
 tex
 texidx
-textb
 tformat
 tftopl
 tga
@@ -740,11 +699,9 @@ today
 todos
 toos9
 top
-touchtype
 tplot
 transfer
 trap
-travesty
 tree
 trunc
 tsmon2
@@ -753,7 +710,6 @@ tt
 tterm
 tttt
 tty
-ttyexp
 txmod
 ub68020demo
 ub68kdemo
@@ -805,7 +761,6 @@ vlen
 vmod_trap
 vptovf
 vtxtcn
-wam.sbprolog
 wanderer
 wc
 wc.cio
@@ -829,7 +784,6 @@ xengine
 ximtoppm
 xkermit
 xlate
-xlisp
 xpm
 xrf
 xvminitoppm

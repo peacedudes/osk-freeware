@@ -1,21 +1,20 @@
-$ rpoem | head -n 20
+$ rpoem 3
 ------------------------------------------
 Verse 1
-A timorous shovel should sing of land over love
-And revere gentle age.
-But the flower over the wagon wheel beside a lark of strength reveres a face ofe
-While land over love controls the timorous shovel.
+A frail lark must gurgle under the motion of a wagon wheel
+And worship a pensive petal.
+But a pensive dove pursues power of time
+While the motion of a wagon wheel reveres the frail lark.
 ------------------------------------------
 Verse 2
-A mournful dish must sing over the cloud up a wanton dish
-And kill a frolicking spoon.
-But a sorrowful dish provokes gentle war
-While the cloud up a wanton dish understands the mournful dish.
+A timid raven should dance under the tooth up a timorous book
+And becalm a wagon wheel of night.
+But love over time pursues a happy face
+While the tooth up a timorous book worships the timid raven.
 ------------------------------------------
 Verse 3
-A rusty tree must bend beside lustful time
-And revere a timid brain.
-But a flower of strength reveres night's activity
-While lustful time worships the rusty tree.
+A frolicking shovel should bask on strength of night
+And strengthen the age of a star.
+But peace on wisdom understands nature's motion
+While strength of night becalms the frolicking shovel.
 ------------------------------------------
-Verse 4

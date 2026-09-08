@@ -11,9 +11,9 @@
 
 
 
-                               Ah   7h   3h   2s   5h   7s
+                               Qs   Qd   4d   Kd  10d   2c
                                 a    b    c    d    e    f
 
 
-     It is my crib.
+     It is your crib.
      Select 2 cards.  Type RETURN to discard.

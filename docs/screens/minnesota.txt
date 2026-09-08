@@ -1,22 +1,38 @@
-$ minnesota | head -n 21
+$ minnesota | head -n 37
                                                                   Snow
 Year   1    Weather        Sky   Temperature    Precip      Wind  Depth  Notes
 January
-   1          Clear      Clear    Cold ( 10)      None      Calm 122.1"  New Years (s)
-   2          Clear      Clear    Cold ( 15)      None      Calm 122.1"
-   3          Clear      Clear    Cold ( 10)      None      Calm 122.1"
-   4          Clear      Clear    Cold ( 10)      None     Light 122.1"
-   5          Clear      Clear    Cold ( 10)      None      Calm 122.1"
-   6          Clear      Clear    Cold ( 15)      None      Calm 122.1"  Twelfth Night
-   7          Clear      Clear  Chilly ( 25)      None      Calm 122.1"
-   8          Clear      Clear    Cold (  0)      None      Calm 122.1"
-   9          Clear      Clear    Cold ( 10)      None      Calm 122.1"
-  10  Precipitation       Mist    Cold ( 10)    Shower     Light 122.1"  Snow - 40 minutes,
-  11  Precipitation     Cloudy    Cold ( 20)    Shower  Blustery 123.1"  Snow - 100 minutes,
-  12          Clear      Clear    Cold ( 10)      None  Blustery 123.1"
-  13          Clear      Clear    Cold ( 10)      None      Calm 123.1"
-  14          Clear      Clear    Cold ( 10)      None      Calm 123.1"
-  15       Overcast     Cloudy    Cold ( 15)      None      Calm 123.1"
-  16  Precipitation       Mist    Cold (  0)  Sprinkle     Light 123.2"  Snow - 30 minutes,
-  17  Precipitation     Cloudy    Cold (  5)    Steady      Calm 126.2"  Snow - 24 hours,
-  18  Precipitation       Mist    Cold ( 10)    Steady     Brisk 131.2"  Snow - 24 hours,
+   1  Precipitation       Mist    Cold (  5)  Sprinkle      Calm  29.8"  Snow - 30 minutes, New Yea)
+   2  Precipitation       Mist    Cold ( 10)    Shower      Calm  29.8"  Snow - 60 minutes,
+   3          Clear      Clear    Cold ( 10)      None      Calm  29.8"
+   4          Clear      Clear    Cold ( 20)      None      Calm  29.8"
+   5  Precipitation     Cloudy    Cold ( 10)    Shower  Blustery  29.8"  Snow - 90 minutes,
+   6          Clear      Clear    Cold ( 10)      None      Calm  29.8"  Twelfth Night
+   7          Clear      Clear    Cold (  5)      None      Calm  29.8"
+   8          Clear      Clear    Cold (  0)      None      Calm  29.8"
+   9          Clear      Clear    Cold ( 10)      None      Calm  29.8"
+  10          Clear      Clear    Cold ( 15)      None      Calm  29.8"
+  11          Clear      Clear  Chilly ( 25)      None      Calm  29.8"
+  12          Clear      Clear    Cold ( 10)      None      Calm  29.8"
+  13          Clear      Clear    Cold ( 20)      None      Calm  29.8"
+  14       Overcast       Mist    Cold ( 10)      None      Calm  29.8"
+  15       Overcast     Cloudy    Cold ( 10)      None      Calm  29.8"
+  16       Overcast     Cloudy    Cold ( 10)      None      Calm  29.8"
+  17       Overcast       Mist    Cold ( 10)      None      Calm  29.8"
+  18       Overcast       Mist    Cold (  5)      None      Calm  29.8"
+  19       Overcast     Cloudy    Cold (  0)      None      Calm  29.8"
+  20       Overcast       Mist    Cold (  0)      None      Calm  29.8"
+  21  Precipitation     Cloudy    Cold ( 15)  Sprinkle      Calm  29.9"  Snow - 10 minutes,
+  22  Precipitation       Mist    Cold ( 10)  Sprinkle      Calm  30.0"  Snow - 30 minutes,
+  23  Precipitation       Mist    Cold ( 15)    Shower     Brisk  30.0"  Snow - 70 minutes,
+  24  Precipitation  Light Fog    Cold ( 10)    Steady      Calm  34.0"  Snow - 24 hours,
+  25  Precipitation     Cloudy  Chilly ( 25)  Sprinkle      Calm  34.1"  Snow - 20 minutes,
+  26          Clear      Clear    Cold ( 10)      None      Calm  34.1"
+  27          Clear      Clear    Cold (  5)      None      Calm  34.1"
+  28          Clear      Clear  Chilly ( 25)      None     Light  34.1"
+  29          Clear      Clear    Cold ( 10)      None      Calm  34.1"
+  30          Clear      Clear    Cold ( 10)      None      Calm  34.1"
+  31       Overcast       Mist    Cold ( 10)      None      Calm  34.1"
+High Temp =  25, Low Temp =   0, Average Temp =  10
+
+February

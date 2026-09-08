@@ -1,6 +1,11 @@
-ls -l tmp/LNG/tiny
--rw-------   1 0        0           10548 Sep  6 04:59 tmp/LNG/tiny
-$ adltouch tmp/LNG/tiny 1; echo "status $?"
-status 0
-$ ls -l tmp/LNG/tiny
--rw-------   1 0        0           10548 Sep  6 04:59 tmp/LNG/tiny
+dump tiny | head -n 4
+
+Addr   0 1  2 3  4 5  6 7  8 9  A B  C D  E F 0 2 4 6 8 A C E
+----  ---- ---- ---- ---- ---- ---- ---- ---- ----------------
+0000  2321 202F 6831 2F41 444C 2F43 4D44 530D #! /h1/ADL/CMDS.
+$ adltouch tiny 7
+$ dump tiny | head -n 4
+
+Addr   0 1  2 3  4 5  6 7  8 9  A B  C D  E F 0 2 4 6 8 A C E
+----  ---- ---- ---- ---- ---- ---- ---- ---- ----------------
+0000  0000 0007 6831 2F41 444C 2F43 4D44 530D ....h1/ADL/CMDS.

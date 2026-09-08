@@ -103,3 +103,4 @@ vis|redraws one command's output in place like watch; its control header is a si
 unpacklib.os9|the OS-9 build of unpacklib; extracts modules from a library until a sync mismatch, shown on the unpacklib card
 ppmtopj|writes an HP PaintJet file silently; the pjtoppm round-trip that follows on its card, ending in "PPM raw, 48 by 24", is the evidence
 ppmtorgb3|writes three RGB plane files silently; the ls that follows on its card, three 1165-byte files, is the evidence
+rain|a screen toy; a still frame of falling raindrops is too sparse to score, and there is nothing denser to show

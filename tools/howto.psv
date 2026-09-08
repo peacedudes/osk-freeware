@@ -19,14 +19,14 @@
 
 orbit|It reads kepler.dat, mode.dat and a <site>.sit by bare name from the current directory, and DOC/orbit holds them: `ksh -c "cd /dd/DOC/orbit; orbit"'. Answer d for a day's table, then the site (pgh), the date, the start hour, the step and the length.
 nasa|Put NASA two-line elements in nasa.dat in the current directory and run `nasa'; it writes kepler.dat, which `orbit' reads. No element set ships; they are published for every satellite.
-pwgen|pwgen <length> [count]. Give it a length and it prints that many pronounceable passwords.
+pwgen|pwgen <length> [count]: length 4 to 16. It takes a few seconds over each password, so allow for that.
 bmgtest|bmgtest [-i] [-n] <pattern> [file ...]. A demonstration of Boyer-Moore-Gosper searching.
 life|life [init-file]. The patterns are in /dd/GAMES/LIFE -- try `life /dd/GAMES/LIFE/glider`. It also wants more memory than the default; from the OS-9 shell that is `life #22k <file>`, and bash has no #size syntax at all.
-bio|A biorhythm chart (F. Kaefer's Biorhythm V2.2e, BASIC09) -- `runb bio' draws it. It asks a Date, then a Birthday, both as DD.MM.YYYY (dots, four-digit year, e.g. 06.09.1954; RETURN at the Date prompt takes your system date), then `g' for a graph (or `v' for values) and a number of days, and plots the physical, emotional and mental cycles.
+bio|A biorhythm chart in BASIC09 -- `runb bio' draws it. It asks a Date, then a Birthday, both as day.month.year with a four-digit year (RETURN at the Date prompt takes your system date), then `g' for a graph (or `v' for values) and a number of days, and plots the physical, emotional and mental cycles.
 logisim|Set PORT first: `setenv PORT /term'. Without it, `logisim: Environment variable PORT not defined' -- it reopens the keyboard through that path. Two sample circuits ship in DOC/logisim (counter.lsi, flipflop.lsi) and its notes are there too, in German.
 calender|A whole year at once, in German. It asks `Fuer welches Jahr?' (which year); RETURN at the question ends it.
 gdd|GNU dd -- a block copier and converter. `gdd if=<file> bs=8 count=1' copies eight bytes, `conv=ucase' converts on the way through. `of=' can only name a file that already exists, so send the output through `>'. Give it arguments. It uses Microware's cio; `dump' is the hex dump here.
-england|One of six weather simulators that differ only in climate and calendar: england, florida, georgia, minnesota, japan (Japanese calendar) and shire (Middle-earth). Each prints a day's weather and stops.
+england|One of six weather simulators that differ only in climate and calendar: england, florida, georgia, minnesota, japan (Japanese calendar) and shire (Middle-earth). Each prints a year of weather, a line a day, with a summary at each month's end; a number says how many years.
 japan|A weather simulator on the Japanese calendar -- see `england'.
 shire|A weather simulator using the Middle-earth calendar -- see `england'.
 sokoban|Wants a username, so run it from a login rather than a bare shell, or it stops with "cannot get your username".
@@ -44,8 +44,8 @@ yuvtoppm|yuvtoppm <width> <height>. The dimensions are not stored in a YUV file,
 lispmtopgm|This build handles at most 16 grey levels and says "depth is too large" otherwise. Run the image through `pnmdepth 15' before pgmtolispm.
 pbmtopk|A TeX font tool: it wants a pkfile, a .tfm metric file and a resolution. Point it at a .tfm.
 nroff|Formats a text with nroff requests: `nroff file.ms'. Its macro sets are in LIB (tmac.*). Point TMACDIR at LIB if a macro package is not found.
-lua|It stops at `**** csl traphandler mismatch ****' because it was built against a LATER csl than the edition 16 this disk ships. `load' a later csl module first -- anyone with a Microware SDK has one -- and it runs: `lua DOC/lua/examples/hello.lua' prints `hello world, from Lua!'. `luac' needs none of that. Eight example scripts are in DOC/lua/examples.
-luac|`luac -l -o out.lc in.lua' compiles and lists the bytecode instruction by instruction. It needs no csl and works as the disk stands. DOC/lua/examples has eight scripts that came with the package.
+lua|`lua cf.lua' in DOC/lua/examples prints a temperature table; `lua hello.lua' says hello. Eight example scripts are there; -v prints the version.
+luac|`luac -l -o hello.lc hello.lua' compiles and lists the bytecode. `luac -x -o name script.lua' makes an OS-9 module in the execution directory for runc.
 gnuplot|Type `set term' first -- it lists every output device it knows, and refuses to plot until you choose one. Its whole manual is built in: type `help'. Demos and sample data are in DOC/gnuplot/demo. Needs Microware's cio.
 gawk|GNU awk 2.11. IT IGNORES A FILENAME ARGUMENT and reads standard input whatever it is given, so redirect: `gawk "{print \$1}" < file', never `gawk "{print \$1}" file' -- named a file it sits waiting on the terminal. Keep the program text short: a command line wider than the window scrolls under bash and is hard to read back. Needs Microware's cio.
 Librarian|One of six Home Librarian programs that must stay together -- its licence says so. Start here to search a catalogue; EditLibr edits one, Ascii2Libr builds one from text, Libr2Ascii dumps it back, PrintCards and PrintLabels print it. Manual in DOC/homelibr.
@@ -62,7 +62,7 @@ dhry|Dhrystone 2.0. Twelve builds of the same source sit in CMDS/DHRY -- run sev
 head|First lines of a file. This GNU build wants `head -n 20 file' -- the older `head -20' form is rejected as an unrecognized option. Needs cio.
 tac|Prints a file backwards, last line first -- cat's mirror image. Needs cio.
 as0|Assemble the sample that ships with it: `as0 /dd/DOC/xasm/sample.a0 - l s' -- the options come after a lone `-', `l' for the listing and `s' for the symbol table. There is a sample for each of the six (sample.a0, .a1, .a4, .a5, .a09, .a11) and each is written for its own processor: as09 rejects the 6800 one, correctly. as11 is the one that takes its options without the `-'. None of these is a 68000 assembler.
-oleo|GNU Oleo, a spreadsheet. `sc' is the spreadsheet on this disk that runs; Oleo stops with an illegal instruction (0009, E_PRCABT), from a full login session as much as from a bare shell.
+oleo|GNU Oleo. It stops with an illegal instruction before drawing a cell; sc is the spreadsheet that runs.
 booz|Extracts and lists zoo archives. `booz -l file.zoo' to look, `booz -x' to extract. fiz repairs a zoo archive that will not open.
 funzip|Unzips from a pipe rather than a file: `funzip < thing.zip > thing'. For a normal archive use unzip; zipinfo lists what is inside one.
 gs403|Aladdin Ghostscript 4.03. Point GS_LIB at its library first -- in bash that is `export GS_LIB=/dd/LIB/gs403`, NOT `setenv`, which is the OS-9 shell's command and gets "setenv: command not found" here. Then `gs403 -q -dNOPAUSE -sDEVICE=nullpage <file>.ps` reads the file and gives you its GS> prompt. Everything it needs, fonts included, is in that directory. gs403 is the complete build; gs33 is the older one.
@@ -82,7 +82,7 @@ assembler|Full-screen: it takes over the display. **control-C gets you out**; no
 beav|Full-screen binary editor: `beav <file>'. Control-C leaves it.
 bite|Full-screen: it takes over the display. **`q' quits**.
 bog|Boggle. Space starts the three-minute round, `?' shows the rules, and you type every word you can trace through adjoining letters. Control-C leaves it. Its word list, index and help are in GAMES/BOG.
-checkfile|Full-screen: it takes over the display. **`q' quits**.
+checkfile|Full screen. A adds a record through a form, C accepts it, R lists the records with the balance, Q quits. Records go in testfile.dat in the current directory; cheques are entered as negative amounts.
 compiler|Full-screen: it takes over the display. **control-C gets you out**; none of q, Q, control-D or ESC do.
 crib|Full-screen cribbage, and it wants TERM -- run it from a login session. Answer the instructions question, choose a long or short game, and discard by naming a card, `7H'. Control-C gets you out.
 cribbage|The other cribbage, the same shape: TERM must be set, it offers the rules first, then cuts for the crib. Control-C gets you out.
@@ -138,10 +138,10 @@ newalias|Rebuilds the Elm alias database from USR/LIB/ELM/aliases.text after you
 wn|A real HTTP server (WN 1.14.3, GPL). It starts and opens its log -- the path /h0/c/unid/wn_1.14.3/osk/logs is compiled into the binary, and that directory is on this disk so it can. To serve, it needs TCP/IP under it (KA9Q or osknet, in CMDS/NET). It is an inetd-style server -- one request in on standard input, one response out -- so you can hand it a request by hand and read the reply. Its manual is 30 HTML files in DOC/wn.
 wndex|Builds the index.cache WN will not serve without. It works on the CURRENT directory and IGNORES a directory given as an argument -- on this disk that means ksh, whose `cd' is a real chdir where bash's is not: `ksh -c "cd <dir>; /dd/CMDS/WN/wndex"'. On its own it says "Can't open ./index -- skipping it", which means you are not where you think you are. The site that ships at /dd/c/unid/wn_1.14.3/osk already has its cache built; that is WN's compiled-in document root.
 inetd|The listener that hands incoming connections to wn. Needs a network.
-adlcomp|Compiles an ADL world: `adlcomp /dd/ADL/DEMOS/tiny.adl -o /dd/tmp/tiny -i /dd/ADL'. The `-i' is where standard.adl lives and is required.
-adlrun|Plays a compiled ADL world: `adlrun /dd/tmp/tiny'. The tiny demo opens "You are in a small but comfortable room... There is a red pillow here." NOTE: play from an RBF disk, not a host-directory mount; reading a world off /hN under os9exec trips an assertion inside the emulator.
-adldebug|adlrun with the debugger attached.
-adltouch|Refreshes a compiled world after you edit its source.
+adlcomp|From ADL/DEMOS: `adlcomp tiny.adl -o tiny -i..'. -i names the directory holding standard.adl and is required for any world that includes it.
+adlrun|`adlrun aard' in ADL/AARD plays the museum adventure at a > prompt; save and restore keep a game, quit leaves.
+adldebug|`adldebug tiny' on a compiled world; ? lists its commands, `o 0-4' dumps the first objects, q leaves.
+adltouch|`adltouch tiny 7' writes 7 into the first four bytes of the compiled world; dump the file to see it. It prints nothing.
 osknet|Charles Hedrick's TCP/IP for OS-9 -- Telnet, FTP, Ping and SMTP. It needs a network interface. Its own documentation is nine files in DOC/osknet: start with howto.doc and useguide.doc.
 net|KA9Q net, Phil Karn's TCP/IP over SLIP or AX.25 -- the stack amateur radio ran on. Needs NETHOME, NETSPOOL and TMPDIR set and a real interface; see DOC/ka9q.
 dbz|The news history database from C News: `dbz [-a] [-x] [-c] database [file]...'. Part of a news system.
@@ -177,7 +177,7 @@ paste|Joins lines side by side, tab-separated by default: `paste f1 f2'. `-d:' p
 tangle|Needs a CHANGE FILE named, always. `tangle yourfile.web' alone answers `Error: `Can't open file.'' and the file it cannot open is the absent change file, not your source. DOC/tex ships `sample.web' and `none.ch' (empty, changes nothing): copy both to your data directory and run `tangle sample none'. It reads and writes in the DATA directory, which bash's `cd' does not move. `weave sample none' is the other half.
 
 xrf|Wants TWO files in the DATA directory, not on the command line: its language table as `C.XRF' (the disk has it as DOC/xrf/c.xrf -- copy it) and the source you name. Given both it prints a full cross-reference: every identifier with the lines it appears on.
-cvtbase|The BASES are the arguments and the NUMBER comes on standard input: `echo 255 ! cvtbase d h' answers ff, `cvtbase d b' answers 11111111. Bases are named b, d, h or x, o -- or by their actual digit characters.
+cvtbase|The bases are the arguments and the numbers come on standard input, one per line: `cvtbase d h' then 255 answers ff; Escape ends it. Bases are named b, d, h or x, o -- or by their digit characters.
 nptx|smail's full-name permuter, and its input format is the whole trick: one line of `<full name>' TAB `<login>' and it answers with the pair reversed. ANY other shape -- an address list, a bare name, the password file -- earns `format error: <the line>', which is how it came to be described as an alias expander.
 printmail|It forks `readmsg' BY BARE NAME, and OS-9 resolves a bare-name fork against the EXECUTION directory, never against PATH -- so it is silent from everywhere except /dd/CMDS/ELM. `load /dd/CMDS/ELM/readmsg' once and it works from anywhere: a RESIDENT module is found by name with no directory search at all.
 rxmod|It stops with `can't install Vmod Trap handler' and the handler is sitting beside it: `load /dd/CMDS/COMMS/vmod_trap' first. It then gets past the install and faults inside the trap, which is a different thing and worth telling apart.
@@ -222,7 +222,7 @@ pktogf|Unpacks a .pk. The result is longer than the .gf it came from -- pktogf r
 vptovf|`vptovf /dd/DOC/tex/sample.vpl s.vf s.tfm'. sample.vpl is a one-character virtual font written for this, mapping `A' onto cmr10's.
 vftovp|`vftovp s.vf s.tfm back.vpl' reads the binary pair back to text. VFFONTS and TEXFONTS must name where the .vf and .tfm are.
 helpindex|`helpindex dinfo.hlp' writes dinfo.ndx beside it. Only names ending .hlp or .hlib are accepted unless -a is given; with no name it asks for one.
-florida|`florida < /nil'. It simulates a year of Florida weather day by day, with the calendar notes.
+florida|Prints a year of Gulf-coast weather, a line a day; `florida | head -n 37' shows January. See england.
 weave|The other half of `tangle', and it NEEDS A CHANGE FILE NAMED just as tangle does: `weave sample none', never `weave sample.web'. Given only a .web it answers `Error: `Can't open file.'' and the file it cannot open is the absent change file. DOC/tex ships sample.web and none.ch.
 printf|printf as on Unix: `printf "%-8s|%5d\n" name 12'. Widths, numbers and floating point all work.
 ppmquant|A PALETTED CONVERTER NEEDS A QUANTISED IMAGE, and this is what quantises: `ppmquant 16 in.ppm > out.ppm'. Eight netpbm writers -- ppmtoicr, ppmtosixel, ppmtouil, ppmtopuzz, ppmtopict, ppmtopi1 and two more -- write ZERO BYTES for a 24-bit PPM and correct files after it.
@@ -233,7 +233,7 @@ lnk.org|`load /dd/CMDS/os9lib' first. Without it this calls F$Link for os9lib, g
 demerge|OS-9's `merge' is concatenation and there is no `merge' binary here, so `cat a b > c' makes the file demerge takes apart. There is no `od' either -- `dump' is the hex dump.
 dump|This is the hex dump on this disk. There is no `od'.
 maketexpk|It carries the RIGHT Metafont line in its own strings and then reaches for `makdir', `del' and `attr' to file the result -- three Microware utilities that are not here. Run the virmf line yourself: DOC/README-METAFONT has it, and `gftopk' is all maketexpk was going to do afterwards.
-forth|Type `2 3 + . cr' and it answers 5; `: squares 10 1 do i dup * . loop cr ;' then `squares' prints them; `words' lists its vocabulary; `bye' leaves. A SOURCE FILE IS A COMMAND-LINE ARGUMENT -- `forth fibonacci.tst' loads it and gives you the prompt -- because `include' is defined in the library, not the kernel. The library and the twenty-two programs it shipped with are in lib/tile and lib/tile/TST; lib/tile/readme explains the name (TILE is this Forth's own).
+forth|Type `2 3 + . cr' and it answers 5; `: squares 11 1 do i dup * . loop cr ;' then `squares' prints them; `words' lists its vocabulary; `bye' leaves. A source file is a command-line argument -- `forth fibonacci.tst' in lib/tile/TST loads it and gives you the prompt -- because `include' is defined in the library, not the kernel. The library and its twenty-two programs are in lib/tile and lib/tile/TST.
 ed|Needs a /r0 RAM disk for its scratch file; `mount -r=256k /r0' provides one. Then `ed <file>', with ed's usual commands: 1,4p prints, s/a/b/ substitutes, w writes, q quits.
 mshell|`mshell <menufile>': one `label,command' per line. A number picks an entry; it hands the command to Microware's `shell' to run. Control-C leaves it.
 if|Ask for it by path, /dd/CMDS/if -- bash has an if of its own. It hands the chosen branch to Microware's `shell' to run.
@@ -261,3 +261,12 @@ queens|Reads the board size on standard input as a number: `echo 6 | queens'.
 zot|`zot -s=<1-14> "text"' prints the text in that style; `zot -d "text"' shows every style in turn.
 imgtoppm|Reads the Img Software Set (AT&T Image-8) format; gemtopbm reads GEM IMG. Feed it an Image-8 file.
 psidtopgm|Reads the hex digits of PostScript `image' operator data: `psidtopgm <width> <height> <bits/sample>' then the hex on standard input. `echo ffffffff00000000 | psidtopgm 4 2 8' makes a 4x2 graymap, a white row over a black one.
+scales|Pick at least one of -d -a -m -c or it asks what you had in mind; `scales -d -c' writes 195 entries to scales.lst, and a trailing name writes elsewhere.
+rechne|One expression, no spaces: `rechne 4095+1'. Operators + - x / m a o p; $ff is hex; -b lists the set bits. The other -xx switches decode status codes of the maker's own equipment.
+rpn|Operators are words typed on their own line: 12, 34, add. A + sign is read as the number 0 and pushed. q leaves.
+loan|Answers four prompts and prints the schedule for the whole term; pipe it through head or less.
+scqref|`scqref ! less' pages the reference; it is 360 lines.
+ttyexp|`ttyexp -s2 -p50' fills the screen with bursts; it runs ten seconds and clears the screen when done.
+help|`help dinfo'. At bash type `enable -n help' first, or bash's own help builtin answers instead.
+runc|Compile with `luac -x -o greet greet.lua', `load greet', then `runc greet World'. The script reads argv[1] onwards; argv.n is the count.
+wam.sbprolog|Needs SIMPATH=/dd/SBPROLOG/MODLIB (login sets it). From /dd: `wam.sbprolog SBPROLOG/MODLIB/$readloop' gives | ?-; after a solution ; asks for the next and Return accepts it; halt. leaves.

@@ -1,24 +1,21 @@
-HOW TO RUN THIS DISK
-====================
+                                                          TILE(1)
 
-os9exec is the kernel.  You point it at a disk with OS9DISK and name a
-program to run; that disk becomes /dd, OS-9's root and home, and the program
-runs.  There is no OS9Boot file here and none is needed -- os9exec supplies
-the kernel a boot file would otherwise load.  Mount this collection as /dd,
-the recommended arrangement below, and it runs on its own.
 
-Most of the programs in CMDS and CMDS/GAMES need nothing but this disk.
 
-------------------------------------------------------
-Trying things before you fetch cio
-------------------------------------------------------
+NAME
+     tile - c based forth-83 standard programming environment
 
-If you run OS-9 you have cio, csl and math -- but the SDK may be on a shelf
-rather than to hand.  This is what works in the meantime, so you can look
-around the disk straight away:
+SYNOPSIS
+     forth [file ...] [-a argument ...]
+     forth [file ...] [-s start-symbol] [argument ...]
 
-    a shell        sh, or bash
-    list a dir     ls
-    read a file    cat, or less
-    copy a file    cat one > two
-DOC/README-RUNNING
+DESCRIPTION
+     forth uses a command syntax much like a compiler. The file
+     arguments are loaded before the interaction top loop is
+     started. A start-symbol may also be given as an argument
+     thus allowing forth to act as a `compile-and-go' compiler of
+     applications. An extra options or parameters passed to forth
+     may be accessed by the application. As extensions of the
+     Forth-83 Standard forth supports multi-tasking, exceptions,
+     vocabulary casting, private definitions, argument binding
+DOC/forth/tile.doc
