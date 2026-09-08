@@ -2,7 +2,57 @@
 
 Only what is waiting on a decision of yours. Everything done, and why, is in
 git history and `notes/START-HERE-NEXT-SESSION.md`; this file carries none
-of it. Updated 2026-09-07.
+of it. Updated 2026-09-08.
+
+
+## The all-card sweep is under way -- four decisions waiting (2026-09-08)
+
+The machinery that made gothic's card wrong is fixed and the sweep has begun.
+`gothic' now shows a full-size blackletter word (line folding no longer cuts
+the middle out of a picture; it is opt-in per card), and every card must
+carry a `try' line saying what to type -- `check_disk`'s `every card says
+what to type' gates it, with `tools/try-backlog.txt` as the ratchet (800
+cards still to write one, down from 852). A `bash / OS-9 shell' switch on the
+web page changes the prompt and swaps in an OS-9 spelling where a card gives
+one (`tools/os9try.py' verifies those against Microware's shell). Contrast
+raised, ALL CAPS gone from the reader-facing text, keep explained on a start
+panel and previewed file-by-file. Five categories are reviewed (amusements,
+toys, maths, documentation, languages) and the 17 play-tested programs are
+recut as proper cards.
+
+Waiting on you:
+
+1. **backgammon and teachgammon draw their board in one burst and never
+   redraw.** Through the screenshot harness (which paces output to a real
+   baud rate) only the board's outer rules survive -- the walls and pieces
+   are dropped, so the card is blank. An unthrottled capture draws the whole
+   board perfectly (I have seen it). This is the known output-pacing FIFO
+   limit, not a new os9exec bug, so I did not file one. To card these two I
+   would add an unthrottled (`-r') capture path for draw-once full-screen
+   programs -- the skill warns `-r' can hide truncation, hence asking. Add
+   it, or list the two as exceptions?
+
+2. **piano and rstory2 are best-forgotten candidates.** `piano' parses its
+   arguments then prints `tuning - sorry' and aborts -- it drives a tone
+   generator the emulator has none of. `rstory2' forks story programs
+   (`rstory_W' and the rest) that did not come with it, so it stops after
+   its questions. Both are carded honestly as far as they go; your call
+   whether they stay.
+
+3. **logisim's rebuilt binary drops every second letter of its on-screen
+   labels** (`* oi  iuao *' for `*** Logic - Simulator ***'). Traced to
+   `t_putsxy' in `disk/SRC/eff_logisim/logisim.c' doing `putchar(*s++)',
+   which the SDK's `putc' macro double-evaluates on a line-buffered stream.
+   The fix is `ch = *s++; putchar(ch);' at two sites and a rebuild through
+   the recipe. Redirected to a file the labels are intact, so it is a source
+   bug the `-qm' build exposes, not the emulator. I left `disk/' untouched;
+   say the word and I make the fix and rebuild.
+
+4. **The played-program cards changed how their pictures are made.** The 17
+   that used to come from `tools/playtests/*.keys' are now stanzas in
+   `tools/screenshots/played.sheet'. The play-tests still run as tests; the
+   card now comes from the stanza. `rain' has no card -- a still frame of
+   falling raindrops is too sparse to score -- and is an honest exception.
 
 ## Full pathlists on cards -- captions ruled and gated; shown commands mostly done
 
