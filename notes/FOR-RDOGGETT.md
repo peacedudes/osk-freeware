@@ -69,6 +69,38 @@ still carry how-it-was-got-working prose. It is a category-by-category
 editing pass, not a redesign. Authoring `try' for the arg-needing cards
 (most just take their name) is the same kind of incremental work.
 
+## NEXT SESSION -- two things rdoggett called out (2026-09-07)
+
+1. **Author names must come out of DOC/INDEX (and so off the cards).**
+   rdoggett: *"You are also including author's name in the index sometimes.
+   Example: charcnt Count characters in a file (Carl Kreider). We don't want
+   that."*  An index entry says what a program IS; the author credit belongs
+   in SOURCES.txt and DOC/ORIGINS, not here -- and the gallery card takes its
+   one-line description from DOC/INDEX, so the name rides onto the card too.
+   Fourteen entries carry a person in parentheses (grep DOC/INDEX after
+   `tr '\r' '\n'` for `\([A-Z][a-z]+ [A-Z]`):
+
+     ar  bsplt68  charcnt  splman  tcmp  unp  dearc  dedit   -- (Carl Kreider)
+     k  xy  z                                                -- (Tim Kientzle)
+     ptxm (Nick Holgate, 1995)   gshell (Uwe Simon, 1988)
+     lout (Basser Lout, Jeffrey Kingston)
+
+   Strip the parenthetical from each entry's description.  Do NOT touch two
+   false positives the same regex hits: biory's `(Name Vorname)' is the
+   German prompt label, and `home  os9-freeware (This Collection)' is sample
+   output.  DOC/INDEX is CR-terminated -- edit it CR-only.  howto.psv is
+   clean (checked).  Regenerate the cards after.
+
+2. **The simple-demo pass should cover EVERY card, not only the 55 wrapped
+   ones.**  rdoggett expected a consistency sweep over the whole gallery:
+   *"I thought you would go through every card and make sure they are all
+   consistent, not just 55."*  The 55 `ksh -c "cd"' cards are done; the rest
+   (~900) were not reviewed one by one for the same style -- bare visible
+   command, staging hidden, no stray pipe or full path, caption describing.
+   That is the open job.  `tools/audit_panels.py` scores what each card
+   shows; a card-by-card read against the style in the memory
+   [[os9-clean-examples]] is what remains.
+
 ## Card demos are now all simple (2026-09-07) -- three edge cases left
 
 Every gallery demo shows the program and its arguments, nothing else; the
