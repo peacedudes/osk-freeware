@@ -39,7 +39,7 @@ Waiting on you:
    arguments then prints `tuning - sorry' and aborts -- it drives a tone
    generator the emulator has none of. `rstory2' forks story programs
    (`rstory_W' and the rest) that did not come with it, so it stops after
-   its questions. Both are carded honestly as far as they go; your call
+   its questions. Each is carded honestly as far as they go; your call
    whether they stay.
 
 3. **logisim's rebuilt binary drops every second letter of its on-screen
