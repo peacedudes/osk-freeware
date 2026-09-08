@@ -334,7 +334,10 @@ dispatching session applies them, regenerates, audits and commits.
    the program's own `DOC/<name>/` and any `README-*` that names it;
    `DOC/DEPENDS` for what it opens; `disk/SRC/` for its source when the
    prompts or the exit path are unclear.  Read the disk's own
-   documentation before running anything.
+   documentation before running anything.  If the program is in
+   `tools/panel-exceptions.psv`, read its reason and judge it again: an
+   exception is a debt, and a better card pays it off (say so in the
+   report, and I take the line out).
 2. **Run it with real arguments and do what it does.**  Write a scratch
    stanza and `tools/probe_sheet.py scratch.sheet --image <copy>`; it
    prints exactly what a card would show and saves nothing.  A prompter
