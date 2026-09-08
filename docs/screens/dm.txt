@@ -3,22 +3,22 @@
 | 32==PARENT==23                               |       2File Information       |
 | 2.ELM23                                      |                               |
 | .bashrc23                                    |           Filename            |
-| .mcwd23                                      |              ..               |
-| .newsrc23                                    |          Attributes           |
-| 923                                          |           d-ewrewr            |
-| 2ADL23                                       |      2Length:2 1312 bytes     |
-| 2CMDS23                                      |        Creation date          |
-| 2DEFS23                                      |           00/00/00            |
-| 2DEMO23                                      |        Last modified2         |
-| 2DOC23                                       |        126/09/06 03:41        |
-| 2DOS23                                       |                               |
-| 2ETC23                                       +-------------------------------+
+| .newsrc23                                    |              ..               |
+| 2ADL23                                       |          Attributes           |
+| 2CMDS23                                      |           d-ewrewr            |
+| 2DEFS23                                      |      2Length:2 992 bytes      |
+| 2DEMO23                                      |        Creation date          |
+| 2DOC23                                       |           00/00/00            |
+| 2DOS23                                       |        Last modified2         |
+| 2ETC23                                       |        126/09/08 15:46        |
 | 2GAMES23                                     |                               |
-| 2GNUCHESS4.023                               |       Current disk info       |
+| 2GNUCHESS4.023                               +-------------------------------+
 | 2GNULIB23                                    |                               |
-| 2LIB23                                       |      Can't get size of /dd    |
+| 2LIB23                                       |       Current disk info       |
 | 2LOG23                                       |                               |
-| 2MAIL23                                      |                               |
+| 2MAIL23                                      |      Can't get size of /dd    |
 | 2SBPROLOG23                                  |                               |
+| SOURCES.txt23                                |                               |
+| 2SPL23                                       |                               |
 +-  -------------------------------------------+-------------------------------+
 2Attr Copy Rename Del Newdir Makdir mOve Tag/untag List Unarc Help Quit Shell2

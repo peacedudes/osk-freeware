@@ -1,9 +1,8 @@
-C=tmp/FILESA
-$ cat $C/tpl
+cat tpl
 %title
   by %author
   %publisher, %city, %year   [%id]
-$ PrintLabels -infile $C/cat.libr -templatefile $C/tpl
+$ PrintLabels -infile cat.libr -templatefile tpl
 The C Programming Language
   by Kernighan and Ritchie
   Prentice-Hall, Englewood Cliffs, 1978   [B0001]

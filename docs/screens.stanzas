@@ -2,12 +2,12 @@
 # <stanza> <sha1 of the stanza the published screen came
 # from>.  `--check' compares these against the sheets, which
 # is the only way to detect drift where the captures are not.
-Ascii2Libr af6e2055edcf02fd
+Ascii2Libr 6aa2ccb744e69d02
 EditLibr e8d5c6c0541553ac
 Libr2Ascii 13791d65825d0f4f
 Librarian 38f1d66eda4b0fc3
 PrintCards 26271d1335491b8b
-PrintLabels 4ee8b358bfba0ecd
+PrintLabels 9335f0872fd24057
 UnMacpack 6ddb41751817bf06
 X11R6shl 61d1b28a4c470915
 about 253c97e879e0105e
@@ -110,13 +110,13 @@ chess 24ca8addeb091c9c
 chgrp afb641af9a3d88cb
 chksum 95ff9e1a6c600201
 chown 342b73b89e3c5a35
-ci 1f20538c7033e3af
+ci 02f2445cdea7cd26
 cjpeg d3d0a901439eb926
 cjpeg.070 a5da2379ec4194ef
 ckermit 350e3d3b03d28a11
 clear c78ef3a4b1b938bd
 clock f694aa1ec8a552c8
-co a79126fbe31b7936
+co 96e8232542582cfc
 collect 5a00f9a3ae087b18
 colortest 5c2330766a9f14e5
 combine 206d5cbdc2d7267e
@@ -129,7 +129,7 @@ config f6e67a27e95bc933
 connect 7dd389eebeec2ac3
 cookhash cedded114d6c5708
 cookie 56260c431cc004e7
-cp 284ff3912f4ad26e
+cp 4eb4c5585888d0e5
 cpr 76278f625fcbe97d
 cpu 098e41d6e2631e71
 creadoc 6579f37c36cf65c6
@@ -137,7 +137,7 @@ crib 4db82a065a15e79a
 cribbage 236f40fb817c182c
 cron 32dbb5d3d7b578bc
 crypto ee96bdb3042ce625
-ctags 012d62e919d9a679
+ctags 841abe2f2cfff6b3
 ctags.elvis be73695a040d2c13
 cursive b6556ab83fc099c5
 cut db89f25fada4b2e9
@@ -158,7 +158,7 @@ detab 693cae8730d97533
 deton 8e55fa06dca8e53c
 devprc c2f43b3bc265ad35
 dfiles 6146aeac3e39ef55
-dhry f06c3384a3f4e054
+dhry 882e185dd872643d
 dhryGcc d60e587bf8282eb0
 dhryGcc2 bdc33258bdaf955f
 dhryGcc2in b4c1d9ec84367008
@@ -250,7 +250,6 @@ fixtext 7f412c13c37f6331
 fkeys 56a9454bbb85c506
 flex 193feb36356502d8
 flink 13b93a9700f18093
-float 42fdb2dcc2573738
 florida 71f8d32b60c46888
 fmt 26d23caaf43a2d30
 fontgen 60e1c7f5b6cdba8d
@@ -432,7 +431,7 @@ mkindex 56e25e6b32f8fb0c
 modinfo 35b55f276b3cbaeb
 modules 3f1b889666b4b165
 modules2 0ecb14eeec9a1655
-move 14d8ac1f13f1a760
+move eeae24bf2e1d12fb
 msattrib 4d8fed91801e461e
 msbadblocks feb44f7316ace773
 mscd 5f2a90b651ca0918
@@ -457,7 +456,7 @@ mswrite 5b5dd1b4788e9257
 mtools 0ca7321e28cae63e
 mtst 85c98c0c717f9312
 mtvtoppm c85e698b7a2166c8
-mv 12d95932c04fa1ab
+mv 6954b7253efc7c50
 mvolformat 6a48f614886d1373
 name fdfd42ee83c7c2ea
 names 0bd377e8e88094b2
@@ -605,9 +604,9 @@ rawtopgm 44b6f0cd3736c181
 rawtoppm 68880f52798e4bf8
 rayshade 1e2c69998aeea301
 rcs 0a7ef2bf484960ec
-rcsdiff 30b2641ec191838c
-rcsident 2261599329b5b2b7
-rcsmerge a92b1543203e194c
+rcsdiff 8b8fde2a69c1409e
+rcsident 32281f0ea742f004
+rcsmerge a0d6230fb91be227
 rdjpgcom e7bf0acbf472a866
 rdjpgcom.070 21fad5e8bdcc6030
 rdoc a0d7a1db99272266
@@ -615,11 +614,11 @@ read_mail b6c46e3207483f44
 readmsg acf5e6d2c4a14d0e
 readnews d2383353e60d7d02
 rechne 59c965a157f88843
-ref 24535c0b7a043a59
-remove 4d89e01e02b53a43
+ref 24ef05ffb6b7e3a9
+remove 9bd13869d0eed3a0
 rendsk a2b8a5173c3a3a45
 repeat 86d732ebd88df086
-rlog f4dbb83a710c1b04
+rlog e9a49a095f09448d
 rm 7ed8216dd14e7330
 rmail 245cc5bb1daa0815
 rndir 6bde2178ac76d811
@@ -637,7 +636,7 @@ rtf 19fd157e8be2a5d2
 run c11d6dbde30fe3a8
 runc cfd55f670e3d1059
 rxmod 7653c9295e274a56
-savage bf3933988e4e3dd1
+savage 478adc0a252dfa33
 savemem e4a93e37477e19cd
 sbreak 0d4d861694242fa2
 sc b31b921dc9ee7460
@@ -663,7 +662,6 @@ shdev 2bff145e6db657b6
 shire 73eb937ead616c9c
 showpic 706e687b246a0ffa
 shuffle df56b0a91782f830
-sieve 71dec5535d838ebd
 signal cd58109a61af0db6
 sine 0cece66040b0292a
 sir 8c2bcd16bc9d8649
@@ -727,7 +725,7 @@ tga 0e01a6bbe8ee7e74
 tgatoppm d5a487674cad43f9
 tiffish 402f3d0ac1e908de
 time a3ba286af1dfe84f
-timid df12a7dea1015f83
+timid 8ac2e5fb4322cda4
 today 4fe69e051d3146c8
 todos caffc76cd117b03d
 toos9 22377fa726080b38
@@ -735,7 +733,7 @@ top 252a98dc53f88e25
 touchtype 9609742a1b462edc
 tplot 9d1a9b6593afdfbb
 transfer a5b5f2a0a0001d1c
-trap 8031068bed0a8327
+trap 826cf28c3665cc74
 travesty a7b61d3796043c40
 tree f30a33dfb68549f7
 trunc 7d5a9d9b7c3e1a1d
@@ -754,7 +752,7 @@ ularn d1f0b86a94761e8a
 uld 4f96f7610891b009
 umacs 979e0b76ff348e9b
 umusek f710027837dfa4e8
-undel 56b7c83a2041922d
+undel 26f8baa790812507
 unexpand 78737392555a4a4e
 unifdef c9d33e347e75ac68
 unip 5598a74a1fee6179
@@ -821,7 +819,7 @@ xkermit 7122f8dd9f815456
 xlate 2def5f80f6503487
 xlisp 0b7422cb632e67fb
 xpm 7b2a1d3ed8191ac5
-xrf 3339febc2e9ae9e1
+xrf 6675d40aa3886ab0
 xvminitoppm 1b1b54762eba707c
 xy e31dbf52740284b7
 xydown 3b91fa6d06d1cff9

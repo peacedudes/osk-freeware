@@ -1,8 +1,8 @@
-ls -l /dd/tmp/FILESA/mvd
+ls -l
 total 512
 -rw-rw-rw-   1 0        0              40 Aug  3 19:00 one
-$ /dd/CMDS/mv -v /dd/tmp/FILESA/mvd/one /dd/tmp/FILESA/mvd/two
-/dd/tmp/FILESA/mvd/one -> /dd/tmp/FILESA/mvd/two
-$ ls -l /dd/tmp/FILESA/mvd
+$ mv -v one two
+one -> two
+$ ls -l
 total 512
 -rw-rw-rw-   1 0        0              40 Aug  3 19:00 two

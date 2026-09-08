@@ -5,15 +5,23 @@ U N D E L E T E    V1.1   by  Stephan Enzler
 
 
 Please Enter FULL Pathname of Directory
-or press RETURN for current Directory) : tmp/FILESA/ud
+or press RETURN for current Directory) : /dd/tmp/FILESA/ud
+Deleted File found:  ?otes.txt
+UNDELETE  (y/n) ? y
 
-ERROR undel: FULL PATHNAME of DIRECTORY required
+File Descriptor available
 
-$ y
-y: command not found
-$ y
-y: command not found
-$ n
-n: command not found
+Segments available
+REALLY UNDELETE File: ?otes.txt  (y/n) ? y
+Please Enter First Character of Filename : n
+Rewriting Directory Name
+Allocating File Descriptor
+Allocating Segment(s)
+
+Work done. IF FILE was a DIRECTORY File, USE the ATTR Utiliy
+           for changing the Attribute. Usage: attr <file> -d
+
+
 $ ls -l tmp/FILESA/ud
-total 0
+total 512
+-rw-rw-rw-   1 0        0              40 Sep  8 15:58 notes.txt

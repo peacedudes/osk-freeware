@@ -40,7 +40,9 @@ Waiting on you:
    generator the emulator has none of. `rstory2' forks story programs
    (`rstory_W' and the rest) that did not come with it, so it stops after
    its questions. Each is carded honestly as far as they go; your call
-   whether they stay.
+   whether they stay.  A fourth: **ff** (a German file-finder) hands off
+   to Microware's shell to do the search and `find' supersedes it; a
+   best-forgotten candidate from the files sweep.
 
 3. **logisim's rebuilt binary drops every second letter of its on-screen
    labels** (`* oi  iuao *' for `*** Logic - Simulator ***'). Traced to

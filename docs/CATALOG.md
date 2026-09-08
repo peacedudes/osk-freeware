@@ -318,7 +318,7 @@
 | `gdd` | &#9733; GNU dd -- a block copier and converter. `gdd if=<file> bs=<n> skip= seek= count=', and `conv=ucase' converts to upper case on the way through. `of=' can only name a file that already exists, so send the output through `>' instead. Give it arguments; `dump' is the hex dump here.<br>**How:** GNU dd -- a block copier and converter. `gdd if=<file> bs=8 count=1' copies eight bytes, `conv=ucase' converts on the way through. `of=' can only name a file that already exists, so send the output through `>'. Give it arguments. It uses Microware's cio; `dump' is the hex dump here. |
 | `gep` | &#9733; global expression parser -- grep-like; its `-e' takes the PATH OF A FILE holding the expressions: `gep -e=/dd/tmp/patterns <file>'. A file of patterns applied at once is what it is for and nothing else here does it. See DOC/README-GREP<br>**How:** Its expressions come from a FILE named with `-e', which its own option list marks `(required)': `gep -e=<patterns> <source>'. Handing it a pattern and a file the way you would grep earns `more than one path specified'. |
 | `head` | First lines of a file -- `head -n 20 file'.  These GNU builds want -n 20, not -20<br>**How:** First lines of a file. This GNU build wants `head -n 20 file' -- the older `head -20' form is rejected as an unrecognized option. Needs cio. |
-| `l` | &#9733; list a TEXT FILE with word wrap and a carriage return at the end of every line -- `l -<width> <file>', 79 columns by default.  Written for Stylo documents and other long-line files.  It takes files, not directories<br>`Usage: l [-options] [file] [file] [-options]` |
+| `l` | &#9733; list a text file with word wrap and a carriage return at the end of every line -- `l -<width> <file>', 79 columns by default. Written for Stylo documents and other long-line files. It takes files, not directories<br>`Usage: l [-options] [file] [file] [-options]` |
 | `paste` | merge lines of files<br>**How:** Joins lines side by side, tab-separated by default: `paste f1 f2'. `-d:' picks another separator; `-s' puts one file's lines on a single line. |
 | `pep` | file 'detergent' - strip junk from files<br>`Usage: pep [options] [filename ...]` |
 | `psc` | &#9733; turn an ASCII table into commands for `sc', the spreadsheet: `psc -d' ' < table' answers `let A0 = 1', `let B0 = 2' and a `format' line per column.  -d sets the field delimiter, -r assembles rows first, -s names the top-left cell.  Robert Bond's, and it works<br>**How:** Feeds `sc', the spreadsheet: `psc -d' ' < table' turns rows of numbers into `let A0 = 1' commands sc can read. -r assembles rows first, -s names the top-left cell, -d sets the delimiter. |
@@ -345,8 +345,8 @@
 |---|---|
 | `chgrp` | &#9733; change group<br>`Usage:  chgrp [-z] {numerical-gid \| username} [file [... file]]` |
 | `chown` | &#9733; change owner<br>`Usage:  chown [-z] {numerical-uid \| username} [file [... file]]` |
-| `fstat` | display a file's FILE DESCRIPTOR -- the RBF FD sector, not the attribute bits `attr' shows you.  Its own Function line says "Display file descriptor information" and it reports itself as `FStat'.  `-s' adds the segment list, and `ssl' shows the same list from the same sector<br>`Syntax: FStat [<opts>] <file1> [<opts>]` |
-| `owner` | &#9733; CHANGE a file's owner -- `owner <user> <file> ...', super user only.  Run with a file it prints its usage; run as `owner <file>' it reads the filename as a user name and answers `No such user'.  `fstat' and `ls -l' are what SHOW an owner<br>`Usage: owner user file file ...` |
+| `fstat` | display a file's file descriptor -- the RBF file-descriptor sector, not the attribute bits `attr' shows you. Its own Function line says `Display file descriptor information' and it reports itself as `FStat'. `-s' adds the segment list, and `ssl' shows the same list from the same sector<br>`Syntax: FStat [<opts>] <file1> [<opts>]` |
+| `owner` | &#9733; change a file's owner -- `owner <user> <file> ...', super user only. Run with a file it prints its usage; run as `owner <file>' it reads the filename as a user name and answers `No such user'. `fstat' and `ls -l' are what show an owner<br>`Usage: owner user file file ...` |
 
 **Copy, move, delete**
 
@@ -355,7 +355,7 @@
 | `cp` | &#9733; copy files -- `cp <from> <to>' copies the bytes across.  Run with no arguments it prints its usage and then stops on a bus error<br>`Usage: cp file1 file2` |
 | `dback` | directory backup: walks a directory and issues an OS-9 `copy' for every file that has changed, so what you see is the list of copies it wants<br>`Usage: Dback [-options] <fromdir> <todir> [-options]` |
 | `delbak` | &#9733; delete backup files (*_bak) in a directory tree<br>`Usage: delbak [-options] [directory] [-options]` |
-| `move` | &#9733; move files between directories WITHOUT COPYING THE CONTENTS -- it relinks them, which is why it is quick and why its own help warns never to kill it mid-run.  `move <from> <to>' wants a destination NAME; -w=<dir> is the wildcard form that takes a directory.  L. Zeller, V2.1<br>`Syntax:   move [<options>] <from> [<to>] [<options>]` |
+| `move` | &#9733; move files between directories without copying the contents -- it relinks them, which is why it is quick and why its own help warns never to kill it mid-run. `move <from> <to>' wants a destination name; -w=<dir> is the wildcard form that takes a directory.<br>`Syntax:   move [<options>] <from> [<to>] [<options>]` |
 | `mv` | &#9733; GNU mv (fileutils 3.13) -- rename a file or move it into a directory; `-i' asks before overwriting, `-b' keeps a backup, `-v' names what it moved<br>`Usage: mv [-bfiuv] [-S backup-suffix] [-V {numbered,existing,simple}]` |
 | `rm` | &#9733; remove files<br>`Usage: rm [-dfirvPR] [+directory] [+force] [+interactive] [+recursive]` |
 | `undel` | &#9733; undelete a file<br>`Usage: attr <file> -d` |
@@ -384,9 +384,9 @@
 | `Ascii2Libr` | Home Librarian: build a catalogue from plain text -- `Ascii2Libr -outfile cat.libr', with the text on standard input, in the form Libr2Ascii writes<br>**How:** `-outfile cat.libr' with a space, and it reads the ASCII on standard input. The text is the form Libr2Ascii writes: a page count, then a card count and the cards, then the title, author and subject index sections. |
 | `EditLibr` | Home Librarian: edit a catalogue<br>**How:** Part of the HL10 librarian set. Wants an edit file as a parameter; `EditLibr' alone prints its syntax. |
 | `Libr2Ascii` | Home Librarian: dump a catalogue to plain text<br>**How:** `-infile cat.libr' with a space. It writes the catalogue to standard output as text, and a page count and four index-key counts at the end -- all zero means the catalogue is empty. |
-| `Librarian` | Home Librarian: search a catalogue.  SIX PROGRAMS AND THEIR DOCS TRAVEL TOGETHER -- its licence requires it<br>**How:** One of six Home Librarian programs that must stay together -- its licence says so. Start here to search a catalogue; EditLibr edits one, Ascii2Libr builds one from text, Libr2Ascii dumps it back, PrintCards and PrintLabels print it. Manual in DOC/homelibr. |
+| `Librarian` | Home Librarian: search a catalogue. Six programs and their docs travel together -- its licence requires it<br>**How:** One of six Home Librarian programs that must stay together -- its licence says so. Start here to search a catalogue; EditLibr edits one, Ascii2Libr builds one from text, Libr2Ascii dumps it back, PrintCards and PrintLabels print it. Manual in DOC/homelibr. |
 | `PrintCards` | Home Librarian: print catalogue cards<br>`Syntax: PrintCards [opts]` |
-| `PrintLabels` | Home Librarian: print labels.  ITS OPTIONS TAKE A SEPARATE ARGUMENT -- `-infile cat.libr -templatefile tpl.txt', not `-infile=...', which answers `Bad option:' and prints the syntax.  The same is true of Ascii2Libr, Libr2Ascii, PrintCards and EditLibr.  The template is a text file copied out once per card, with %title, %author, %year and the other field names replaced<br>**How:** Its options take a SEPARATE argument: `-infile cat.libr -templatefile tpl.txt', never `-infile=...', which answers `Bad option:' and prints the syntax. The same is true of Ascii2Libr, Libr2Ascii, PrintCards and EditLibr. The template is a text file copied out once per card with %title, %author, %year and the other field names replaced. |
+| `PrintLabels` | Home Librarian: print labels. Its options each take a separate argument -- `-infile cat.libr -templatefile tpl.txt', not `-infile=...', which answers `Bad option:' and prints the syntax. The same is true of Ascii2Libr, Libr2Ascii, PrintCards and EditLibr. The template is a text file copied out once per card, with %title, %author, %year and the other field names replaced<br>**How:** Its options take a separate argument -- `-infile cat.libr -templatefile tpl.txt', never `-infile=...', which answers `Bad option:' and prints the syntax. The same is true of Ascii2Libr, Libr2Ascii, PrintCards and EditLibr. The template is a text file copied out once per card with %title, %author, %year and the other field names replaced. |
 
 **List & navigate**
 
@@ -448,14 +448,14 @@
 | `savage` | &#9733; Savage floating-point accuracy benchmark |
 | `sieve` | &#9733; sieve of Eratosthenes benchmark |
 | `time` | &#9733; time a command |
-| `timid` | timing utility -- and it reports itself as `timit', which is the name in its own usage line.  It takes NO command to time: `timid wc -c file' answers `timid: unknown option c'. `time' is the one that times a command.<br>`Syntax: timit [<opts>]` |
+| `timid` | a fixed timing loop -- runs a set batch of system calls and reports the elapsed clock ticks. It takes no command; time is the one that times a command.<br>`Syntax: timit [<opts>]` |
 
 **Debugging**
 
 | | |
 |---|---|
 | `sdb` | SDB 2.0 - symbolic debugger |
-| `trap` | &#9733; system-state trap-handler example -- it installs a trap from system state.  Ask for it by PATH: `trap' is also a bash builtin, and the builtin answers first, silently.<br>**How:** The system-state trap-handler example: it installs a trap from system state. Ask for it BY PATH -- `/dd/CMDS/trap' -- because `trap' is also a bash builtin, and the builtin answers first, silently. |
+| `trap` | &#9733; an example trap handler -- it installs a trap from system state, so from an ordinary program it stops. Run it by path; trap is also a shell builtin.<br>**How:** The system-state trap-handler example: it installs a trap from system state. Ask for it BY PATH -- `/dd/CMDS/trap' -- because `trap' is also a bash builtin, and the builtin answers first, silently. |
 
 **Libraries**
 
@@ -475,11 +475,11 @@
 | | |
 |---|---|
 | `cb` | &#9733; C beautifier<br>`Usage:  cb <input.fil >output.fil` |
-| `cpr` | print/pretty-list C source files -- and it expands what it is given rather than passing it through: 40 bytes of /dd/SYS/motd come out as 404, paginated.<br>`Usage: cpr [-cCnNsS] [-T title] [-t tabwidth] [-p[num]] [-r[num]] [-l pagelength] [[-f] file] ...` |
+| `cpr` | print or pretty-list C source for paper: a title, a contents page, then the source with page and line numbers.<br>`Usage: cpr [-cCnNsS] [-T title] [-t tabwidth] [-p[num]] [-r[num]] [-l pagelength] [[-f] file] ...` |
 | `ifdef` | resolve #ifdefs in C source<br>`Syntax: ifdef [<opts>] [<file>] [<opts>]` |
 | `indent` | reformat a C source program for readability<br>`Syntax: indent [<opts>] [<inpath> [<outpath>]] [<opts>]` |
-| `patch` | patch - apply a diff.  It recognises a diff, then stops with `Error reading tmp file /dd/tmp/patchi000003' and leaves the target unchanged. `diff' itself works |
-| `unifdef` | remove #ifdef sections from C source.  Its option is `-d<sym>' -- lower case, no equals -- and `-u<sym>' for the other side; `-D<sym>' is refused.<br>**How:** Its option is `-d<sym>' -- lower case, no equals -- and `-u<sym>' for the other side. `-DOSK' is refused with its own help, which reads like the program working and is not. |
+| `patch` | apply a diff to update a file. It recognises the diff but cannot complete the patch, leaving the target unchanged; diff itself works. |
+| `unifdef` | resolve #ifdef sections in C source for one symbol: -d<sym> keeps its branch, -u<sym> the other.<br>**How:** Its option is `-d<sym>' -- lower case, no equals -- and `-u<sym>' for the other side. `-DOSK' is refused with its own help, which reads like the program working and is not. |
 
 **Source navigation**
 
@@ -489,7 +489,7 @@
 | `cxref` | &#9733; C cross-reference lister -- numbered listing + symbol table<br>`Syntax:		cxref [-opts] [path]` |
 | `etags` | generate an emacs TAGS file<br>`Syntax: etags { [<opts>] <path> }` |
 | `rdoc` | &#9733; reverse documentation: C source in, structure chart out |
-| `xrf` | C cross-reference generator -- it wants its language table, `C.XRF', in the CURRENT DATA DIRECTORY.  The disk has it as DOC/xrf/c.xrf; copy that beside your source or it stops with `Cannot open Language Table file'<br>**How:** Wants TWO files in the DATA directory, not on the command line: its language table as `C.XRF' (the disk has it as DOC/xrf/c.xrf -- copy it) and the source you name. Given both it prints a full cross-reference: every identifier with the lines it appears on. |
+| `xrf` | C cross-reference generator -- it reads its language table C.XRF from the current data directory; the disk ships one in DOC/xrf.<br>**How:** Wants TWO files in the DATA directory, not on the command line: its language table as `C.XRF' (the disk has it as DOC/xrf/c.xrf -- copy it) and the source you name. Given both it prints a full cross-reference: every identifier with the lines it appears on. |
 
 **Tags**
 
@@ -505,9 +505,9 @@
 | `ci` | &#9733; RCS check in |
 | `co` | &#9733; RCS check out |
 | `rcs` | &#9733; RCS |
-| `rcsdiff` | &#9733; RCS diff.  The RCS set here depends on the clock advancing between check-ins: two made in the same second collide and `ci' refuses the second -- `Date ... is not later than ... in existing revision 1.1'.  With only one revision there is nothing for rcsdiff to compare, and it then cannot create its own temporary either.  `ci', `co' and `rlog' work singly. |
+| `rcsdiff` | &#9733; RCS diff -- compare a working file against a stored revision. |
 | `rcsident` | &#9733; RCS ident |
-| `rcsmerge` | &#9733; RCS merge -- same clock, same result as rcsdiff |
+| `rcsmerge` | &#9733; RCS merge -- merge the changes between two revisions into a working file. |
 | `rlog` | &#9733; RCS log |
 
 </details>
@@ -1401,7 +1401,7 @@
 | `mexist` | &#9733; test module existence<br>`Usage: mexist [options] <Module>` |
 | `os9lib` | RTF/68K FORTRAN run-time LIBRARY.  rtf, for, lnk, biory and creadoc all F$Link it, so `load' it into the module directory before running them.  See DOC/README-FORTRAN. |
 | `ptxm` | Path Table eXtension Module: a KERNEL extension letting user-state processes open unlimited I/O paths.  Courtesyware, free.  It installs into the kernel and so needs supervisor state.  DOC/ptxm/ptxm.txt |
-| `remove` | &#9733; REMOVE MODULES FROM MEMORY -- its own Function line says so.  `remove <module>...', -q for quiet.  `rm' removes files<br>**How:** Removes MODULES FROM MEMORY. `del', `rm' and `deldir' are the file ones. |
+| `remove` | &#9733; remove modules from memory -- its own Function line says so. `remove <module>...', -q for quiet. `rm' removes files<br>**How:** Removes modules from memory. `del', `rm' and `deldir' are the file ones. |
 | `rtfdat` | RTF FORTRAN data module |
 | `version` | &#9733; prints ITS OWN version and nothing else -- `Dies ist das Program 'version', Version 7' -- whatever module you name. `ident' and `modinfo' show a module's edition. |
 | `vmod_trap` | the VMod_trap trap library rxmod and txmod need.  Type-$0B, and it runs in SUPERVISOR state, so it installs here and then faults.  Renamed from lowercase `vmod_trap' -- rxmod asks for `VMod_trap' and real OS-9 matches exactly and it runs in SUPERVISOR state, so it installs here and then faults.  Renamed from lowercase `vmod_trap' -- rxmod asks for `VMod_trap' and real OS-9 matches exactly |
@@ -1411,9 +1411,9 @@
 | | |
 |---|---|
 | `aprocs` | &#9733; process monitor.  It calls F$SetSys twice and is aborted (E_PRCABT) where that call is not implemented.  `procs', `top' and `sysmon' are the other process listers.<br>`Syntax: aprocs [<opts>]` |
-| `edir` | &#9733; list the EVENT directory -- OS-9 events and their values<br>`Syntax: edir [<opts>]` |
+| `edir` | &#9733; list the event directory -- OS-9 events and their values<br>`Syntax: edir [<opts>]` |
 | `eset` | &#9733; set an OS-9 event to a value -- eset <event> <num><br>`Syntax: eset <event> <num> [<opts>]` |
-| `eunlink` | &#9733; unlink an OS-9 EVENT by name -- `eunlink <event>'.  `edir' lists the events and `eset' sets one<br>`Syntax: eunlink {<event>}` |
+| `eunlink` | &#9733; unlink an OS-9 event by name -- `eunlink <event>'. `edir' lists the events and `eset' sets one<br>`Syntax: eunlink {<event>}` |
 | `launch` | &#9733; M.C.Gregorie's login helper: reads SYS/config, sets the environment for your terminal type -- and optionally a default PATH and emacs bindings -- then starts the shell you name on its command line.  It does not put anything in the background<br>**How:** Says "nothing to launch" until it is configured -- see its documentation. |
 | `signal` | &#9733; send a signal to a process<br>`Syntax: signal <process-id> <signal-code> [<seconds>]` |
 | `sysmax` | &#9733; shows the system's maximum process AGE -- `system maximum age is 0' unless the kernel answers the F$SetSys call it uses. |

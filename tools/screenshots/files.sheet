@@ -8,6 +8,7 @@ cap     basename prints the last part of a path -- the filename with every
 cap     directory in front of it dropped.  Give it a suffix as a second
 cap     argument and that comes off too.  It prints no newline of its own,
 cap     so `; echo' is there to end the line.
+try     basename CMDS/GAMES/hack ; echo
 run     builtin cd /dd
 wait    1
 run     clear
@@ -24,6 +25,7 @@ cap     dirname prints the other half of a path: everything up to the last
 cap     slash, with the filename dropped.  A name with no directory in it
 cap     leaves nothing to print.  It writes no newline, so `; echo' ends
 cap     the line.
+try     dirname CMDS/GAMES/hack ; echo
 run     builtin cd /dd
 wait    1
 run     clear
@@ -40,6 +42,7 @@ shot    mkdir
 size    24 80
 cap     mkdir makes a directory, and `-p' makes every directory on the way
 cap     to it, so one command builds a whole chain.
+try     mkdir -p tmp/FILESA/mk/notes/june; ls -l tmp/FILESA/mk/notes
 run     rm -rf /dd/tmp/FILESA/mk > /nil 2>/nil
 wait    3
 run     builtin cd /dd
@@ -52,64 +55,66 @@ snap
 
 shot    cp
 size    24 80
-cap     cp copies a file: `cp <from> <to>'.  The listing after it shows the
-cap     copy alongside the original, the same length, and its contents are
-cap     the same bytes.
-run     builtin cd /dd/SYS
+cap     cp copies a file: `cp <from> <to>'.  The listing afterwards shows
+cap     the copy beside the original at the same length, and reading it
+cap     back shows the same bytes.
+try     cp motd motd.copy; ls -l motd.copy
+run     rm -rf /dd/tmp/FILESA/cpw > /nil 2>/nil; mkdir -p /dd/tmp/FILESA/cpw > /nil 2>/nil; cp /dd/SYS/motd /dd/tmp/FILESA/cpw/motd
+wait    5
+run     builtin cd /dd/tmp/FILESA/cpw
 wait    1
-run     clear
-wait    1
-run     mkdir -p /dd/tmp/FILESA > /nil 2>/nil; rm -f /dd/tmp/FILESA/motd.copy > /nil 2>/nil
-wait    4
 run     clear
 wait    1
 run     ls -l motd
 wait    5
-run     cp motd /dd/tmp/FILESA/motd.copy; ls -l /dd/tmp/FILESA/motd.copy
+run     cp motd motd.copy; ls -l motd.copy
 wait    6
-run     cat /dd/tmp/FILESA/motd.copy
+run     cat motd.copy
 wait    4
 snap
 
 shot    mv
 size    24 80
-cap     GNU mv renaming a file, `-v' naming what it moved.  The listing
-cap     before and after shows `one' becoming `two'.  It is called by its
-cap     full path here because `mv' on its own reaches a built-in command
-cap     of the same name.
-run     rm -rf /dd/tmp/FILESA/mvd > /nil 2>/nil; mkdir -p /dd/tmp/FILESA/mvd > /nil 2>/nil; cp /dd/SYS/motd /dd/tmp/FILESA/mvd/one
+cap     GNU mv renames a file or moves it into a directory; `-v' names
+cap     what it moved.  The listing before and after shows `one' becoming
+cap     `two'.
+try     mv -v one two
+run     rm -rf /dd/tmp/FILESA/mvw > /nil 2>/nil; mkdir -p /dd/tmp/FILESA/mvw > /nil 2>/nil; cp /dd/SYS/motd /dd/tmp/FILESA/mvw/one
 wait    5
+run     builtin cd /dd/tmp/FILESA/mvw
+wait    1
+run     load /dd/CMDS/mv
+wait    2
 run     clear
 wait    1
-run     ls -l /dd/tmp/FILESA/mvd
+run     ls -l
 wait    5
-run     /dd/CMDS/mv -v /dd/tmp/FILESA/mvd/one /dd/tmp/FILESA/mvd/two
+run     mv -v one two
 wait    5
-run     ls -l /dd/tmp/FILESA/mvd
+run     ls -l
 wait    5
 snap
 
 shot    move
 size    34 80
-cap     move takes a file from one directory to another WITHOUT copying the
-cap     contents: it unhooks the file from the first directory and hooks it
-cap     into the second, so a large file moves as fast as a small one.  The
-cap     two listings before and after show `note' leaving one directory and
-cap     arriving in the other.  Its own help warns never to stop it in the
-cap     middle.  It is called by its full path because `move' on its own
-cap     reaches a built-in command of the same name, and `C' is a shorthand
-cap     for the directory the two are in.
-run     rm -rf /dd/tmp/FILESA/mfrom /dd/tmp/FILESA/mto > /nil 2>/nil
+cap     move takes a file from one directory to another without copying
+cap     the contents: it unhooks the file from the first directory and
+cap     hooks it into the second, so a large file moves as fast as a small
+cap     one.  The two listings before and after show `note' leaving one
+cap     directory and arriving in the other.  Its own help warns never to
+cap     stop it in the middle.
+try     move from/note to/note
+run     rm -rf /dd/tmp/FILESA/mvd > /nil 2>/nil
 wait    3
-run     mkdir -p /dd/tmp/FILESA/mfrom /dd/tmp/FILESA/mto > /nil 2>/nil; cp /dd/SYS/motd /dd/tmp/FILESA/mfrom/note
+run     mkdir -p /dd/tmp/FILESA/mvd/from /dd/tmp/FILESA/mvd/to > /nil 2>/nil; cp /dd/SYS/motd /dd/tmp/FILESA/mvd/from/note
 wait    5
+run     builtin cd /dd/tmp/FILESA/mvd
+wait    1
 run     clear
 wait    1
-run     C=/dd/tmp/FILESA
-wait    2
-run     dir $C/mfrom $C/mto
+run     dir from to
 wait    6
-run     /dd/CMDS/move $C/mfrom/note $C/mto/note; dir $C/mfrom $C/mto
+run     move from/note to/note; dir from to
 wait    8
 snap
 
@@ -119,6 +124,7 @@ cap     rm removing a small tree: `-r' goes down into directories, `-v'
 cap     names each thing as it goes.  The listing before it shows what was
 cap     there; asking for the directory afterwards gets an error, because
 cap     it is gone.
+try     rm -rv tmp/FILESA/rmd
 run     rm -rf /dd/tmp/FILESA/rmd > /nil 2>/nil
 wait    3
 run     mkdir -p /dd/tmp/FILESA/rmd/sub > /nil 2>/nil; cp /dd/SYS/motd /dd/tmp/FILESA/rmd/a; cp /dd/SYS/motd /dd/tmp/FILESA/rmd/sub/b
@@ -140,6 +146,7 @@ size    26 80
 cap     delbak walks a directory tree and deletes every backup file -- the
 cap     ones whose names end in `_bak' -- naming each as it goes.  The
 cap     listings either side show what went and what stayed.
+try     delbak tmp/FILESA/bk
 run     rm -rf /dd/tmp/FILESA/bk > /nil 2>/nil; mkdir -p /dd/tmp/FILESA/bk/sub > /nil 2>/nil
 wait    5
 run     cp /dd/SYS/motd /dd/tmp/FILESA/bk/notes.txt; cp /dd/SYS/motd /dd/tmp/FILESA/bk/notes.txt_bak; cp /dd/SYS/motd /dd/tmp/FILESA/bk/sub/old.c_bak
@@ -163,6 +170,7 @@ cap     OS-9 `copy' for every file that has changed.  It names the pair of
 cap     directories it is working on and then prints the copy it wants.
 cap     There is no `copy' program on this disk, so nothing is copied and
 cap     the backup directory stays empty.
+try     dback tmp/FILESA/db tmp/FILESA/dbk
 run     rm -rf /dd/tmp/FILESA/db /dd/tmp/FILESA/dbk > /nil 2>/nil
 wait    3
 run     mkdir -p /dd/tmp/FILESA/db /dd/tmp/FILESA/dbk > /nil 2>/nil; cp /dd/SYS/motd /dd/tmp/FILESA/db/one
@@ -184,6 +192,7 @@ cap     in place with its first letter overwritten, which is why the name
 cap     comes up as `?otes.txt'; undel asks for the directory, offers each
 cap     deleted name it finds, and asks twice before writing.  Answered
 cap     `y' and `y' here.
+try     undel
 run     rm -rf /dd/tmp/FILESA/ud > /nil 2>/nil; mkdir -p /dd/tmp/FILESA/ud > /nil 2>/nil; cp /dd/SYS/motd /dd/tmp/FILESA/ud/notes.txt
 wait    6
 run     rm /dd/tmp/FILESA/ud/notes.txt
@@ -194,7 +203,7 @@ run     clear
 wait    1
 run     undel
 wait    6
-send    tmp/FILESA/ud\r
+send    /dd/tmp/FILESA/ud\r
 wait    8
 send    y\r
 wait    6
@@ -208,15 +217,16 @@ snap
 
 shot    remove
 size    26 80
-cap     remove takes a MODULE out of memory -- it does not touch files.
+cap     remove takes a module out of memory -- it does not touch files.
 cap     `load' puts a program's module in the module directory, where it
 cap     can be started by name from anywhere; after `remove' the same name
 cap     is not found.  `rm' is what deletes files.
+try     remove readmsg
 run     builtin cd /dd
 wait    1
-run     clear
-run     load CMDS/ELM/readmsg
+run     load /dd/CMDS/ELM/readmsg
 wait    3
+run     clear
 run     echo "readmsg is now resident and answers by name:"
 run     sh -c "readmsg -\?"
 wait    4
@@ -231,6 +241,7 @@ size    26 80
 cap     dir lists a directory.  `-e' is the long form: owner, date and time,
 cap     the attribute letters, the sector the file descriptor sits on, and
 cap     the length in bytes.
+try     dir -e ksh
 run     builtin cd /dd/SYS
 wait    1
 run     clear
@@ -245,6 +256,8 @@ shot    ls
 size    26 80
 cap     GNU ls with `-al': one line a file, with the OS-9 attributes shown
 cap     as the mode letters ls prints, the owner, the length and the date.
+try     ls -al SYS | head -n 18
+os9     ls -al SYS ! head -n 18
 run     builtin cd /dd
 wait    1
 run     clear
@@ -255,10 +268,11 @@ snap
 
 shot    l
 size    26 80
-cap     `l' lists a TEXT FILE, folding it at a width you choose and ending
+cap     `l' lists a text file, folding it at a width you choose and ending
 cap     every line with a carriage return -- written for long-line
 cap     documents that would otherwise run off the screen.  `-40' sets the
 cap     width; 79 columns is the default.  It takes files, not directories.
+try     l -40 tmp/FILESA/long.txt
 run     mkdir -p /dd/tmp/FILESA > /nil 2>/nil; rm -f /dd/tmp/FILESA/long.txt > /nil 2>/nil
 wait    4
 run     echo "Home Librarian is a computerised library card catalogue for OS-9, written by Robert Heller of Deepwoods Software and released in 1992." > /dd/tmp/FILESA/long.txt
@@ -275,6 +289,7 @@ shot    tree
 size    30 80
 cap     tree draws the shape of a directory tree with line graphics --
 cap     directories only, sorted, from the one you name.
+try     tree CMDS
 run     builtin cd /dd
 wait    1
 run     clear
@@ -287,6 +302,7 @@ shot    du
 size    26 80
 cap     du adds up what a directory tree holds: bytes, kilobytes, sectors
 cap     and the number of files, one line per directory, with a total.
+try     du DOC/gnuplot
 run     builtin cd /dd
 wait    1
 run     clear
@@ -300,6 +316,7 @@ size    26 80
 cap     space measures what a tree costs on the disk rather than what it
 cap     contains: the file contents, the sectors actually allocated, and
 cap     the smallest number of sectors the same files could occupy.
+try     space DOC/gnuplot
 run     builtin cd /dd
 wait    1
 run     clear
@@ -313,6 +330,7 @@ size    26 80
 cap     dfiles hunts a tree for files with identical contents and writes
 cap     out the `cmp' commands that would prove each pair equal.  The list
 cap     is the answer; no `cmp' program ships here to run it through.
+try     dfiles SYS
 run     builtin cd /dd
 wait    1
 run     clear
@@ -328,6 +346,7 @@ cap     find walks a directory tree looking for what you describe and
 cap     prints what it matched.  `-n=' gives the name, wildcards allowed,
 cap     and `-o' asks for the pathnames.  Its other tests are on size,
 cap     owner, group, permissions and depth.
+try     find SYS "-n=cal*" -o
 run     builtin cd /dd
 wait    1
 run     clear
@@ -344,6 +363,7 @@ cap     waiting for the answer.  Given a name it builds the command
 cap     `dir -ausr ! grep <name>' and hands it to Microware's `shell' to
 cap     run -- the shell that comes with your OS-9.  `find' searches a tree
 cap     by name and needs nothing else.
+try     ff
 run     clear
 wait    1
 run     ff
@@ -360,6 +380,8 @@ cap     along the foot.  It carries those out through system(), so SHELL
 cap     has to name a shell that can run them -- `sh' here.
 cap     Arrow keys move; the letter in each word on the bottom line picks
 cap     that command.
+try     SHELL=CMDS/sh dm SYS
+os9     setenv SHELL CMDS/sh; dm SYS
 run     builtin cd /dd
 wait    1
 run     clear
@@ -375,6 +397,7 @@ cap     fstat reads a file's RBF file descriptor -- the sector RBF keeps
 cap     about the file: owner as group.user, the attribute letters, the
 cap     dates and the length.  `-s' adds the segment list, which is where
 cap     on the disk the file's data actually lies.
+try     fstat CMDS/tar
 run     builtin cd /dd
 wait    1
 run     clear
@@ -387,10 +410,11 @@ snap
 
 shot    owner
 size    26 80
-cap     owner CHANGES a file's owner; it does not show one.  `owner tester
+cap     owner changes a file's owner; it does not show one.  `owner tester
 cap     <file>' looks the name up in SYS/password, reports the number it
 cap     found, and writes it into the file descriptor -- fstat either side
 cap     shows the owner going from 0.0 to 1.7.
+try     owner tester tmp/FILESA/own.txt
 run     mkdir -p /dd/tmp/FILESA > /nil 2>/nil; cp /dd/SYS/motd /dd/tmp/FILESA/own.txt
 wait    5
 run     builtin cd /dd
@@ -410,6 +434,7 @@ size    26 80
 cap     An OS-9 owner is a pair, group.user.  chown sets the user half:
 cap     fstat before and after shows 0.0 becoming 0.5.  It takes a number
 cap     or a name out of SYS/password.
+try     chown 5 tmp/FILESA/usr.txt; fstat tmp/FILESA/usr.txt
 run     mkdir -p /dd/tmp/FILESA > /nil 2>/nil; cp /dd/SYS/motd /dd/tmp/FILESA/usr.txt
 wait    5
 run     builtin cd /dd
@@ -427,6 +452,7 @@ size    26 80
 cap     chgrp sets the other half of the pair, the group: fstat before and
 cap     after shows 0.0 becoming 3.0.  Everything on this disk arrives
 cap     owned 0.0.
+try     chgrp 3 tmp/FILESA/grp.txt; fstat tmp/FILESA/grp.txt
 run     mkdir -p /dd/tmp/FILESA > /nil 2>/nil; cp /dd/SYS/motd /dd/tmp/FILESA/grp.txt
 wait    5
 run     builtin cd /dd
@@ -441,10 +467,11 @@ snap
 
 shot    rendsk
 size    26 80
-cap     rendsk changes the VOLUME name of a disk -- the name written in the
+cap     rendsk changes the volume name of a disk -- the name written in the
 cap     identification sector, not any file on it.  `dinfo' either side
 cap     shows the volume going from one name to the other.  Only the super
 cap     user may do it.
+try     rendsk /dd CARD-CATALOGUE; dinfo /dd
 run     rendsk /dd OSK-FREEWARE
 wait    5
 run     clear
@@ -457,10 +484,11 @@ snap
 
 shot    edir
 size    24 80
-cap     edir lists the EVENT directory.  An OS-9 event is a counter that
+cap     edir lists the event directory.  An OS-9 event is a counter that
 cap     processes wait on to take turns; edir prints one line per event
 cap     with its value and the processes queued on it.  Nothing on this
 cap     disk creates one, so the heading and the time are all there is.
+try     edir
 run     clear
 wait    1
 run     edir
@@ -473,6 +501,7 @@ cap     eset changes the value of an existing event, and `-a' releases
 cap     every process waiting on it.  It can only reach an event that has
 cap     already been created; asked for a name that does not exist, it
 cap     cannot link to it.
+try     eset testevent 1
 run     clear
 wait    1
 run     eset -?
@@ -485,8 +514,9 @@ shot    eunlink
 size    24 80
 cap     eunlink is the other end of the same pair: it drops a process's
 cap     link to an event, so the event can go away when the last user lets
-cap     go.  It takes an event name, not a filename, and answers E_EVNF
-cap     when there is no event of that name.
+cap     go.  It takes an event name, not a filename, and reports that there
+cap     is no event of that name.
+try     eunlink testevent
 run     clear
 wait    1
 run     eunlink
@@ -501,9 +531,10 @@ cap     Ascii2Libr builds a Home Librarian catalogue from plain text.  The
 cap     text is the form Libr2Ascii writes: a page count, a card count, then
 cap     one record per book, then the title, author and subject indexes.
 cap     `-outfile' names the catalogue to create and the text arrives on
-cap     standard input, with `C' a shorthand for the directory in use.  Two
-cap     books go in, a 17K catalogue comes out, and Libr2Ascii reads it
-cap     straight back.
+cap     standard input.  Two books go in, a catalogue comes out, and
+cap     Libr2Ascii reads it straight back.
+try     Ascii2Libr -outfile cat2.libr < cat.txt; ls -l cat2.libr
+os9     Ascii2Libr -outfile cat2.libr <cat.txt; ls -l cat2.libr
 run     mkdir -p /dd/tmp/FILESA > /nil 2>/nil; rm -f /dd/tmp/FILESA/cat.libr /dd/tmp/FILESA/cat2.libr /dd/tmp/FILESA/cat.txt > /nil 2>/nil
 wait    4
 run     echo "16" > /dd/tmp/FILESA/cat.txt; echo "2" >> /dd/tmp/FILESA/cat.txt
@@ -518,19 +549,15 @@ run     echo "2" >> /dd/tmp/FILESA/cat.txt; echo '"Kelly and Pohl" #( "B0002" )'
 wait    3
 run     echo "1" >> /dd/tmp/FILESA/cat.txt; echo '"Programming" #( "B0001" "B0002" )' >> /dd/tmp/FILESA/cat.txt
 wait    3
-run     Ascii2Libr -outfile /dd/tmp/FILESA/cat.libr < /dd/tmp/FILESA/cat.txt
-wait    10
-run     builtin cd /dd
+run     builtin cd /dd/tmp/FILESA
 wait    1
 run     clear
 wait    1
-run     cat tmp/FILESA/cat.txt | head -n 4
+run     cat cat.txt | head -n 4
 wait    5
-run     C=tmp/FILESA
-wait    2
-run     Ascii2Libr -outfile $C/cat2.libr < $C/cat.txt; ls -l $C/cat2.libr
+run     Ascii2Libr -outfile cat2.libr < cat.txt; ls -l cat2.libr
 wait    12
-run     Libr2Ascii -infile $C/cat2.libr | head -n 6
+run     Libr2Ascii -infile cat2.libr | head -n 6
 wait    10
 snap
 
@@ -541,6 +568,8 @@ cap     -- the whole of a two-book catalogue here.  It is how a catalogue
 cap     is carried to another machine, and how it is tidied up: the text is
 cap     read back by Ascii2Libr, which leaves out records deleted along the
 cap     way.
+try     Libr2Ascii -infile tmp/FILESA/cat.libr | head -n 22
+os9     Libr2Ascii -infile tmp/FILESA/cat.libr ! head -n 22
 run     mkdir -p /dd/tmp/FILESA > /nil 2>/nil; rm -f /dd/tmp/FILESA/cat.libr /dd/tmp/FILESA/cat.txt > /nil 2>/nil
 wait    4
 run     echo "16" > /dd/tmp/FILESA/cat.txt; echo "2" >> /dd/tmp/FILESA/cat.txt
@@ -568,9 +597,10 @@ snap
 shot    Librarian
 size    30 80
 cap     Librarian searches a catalogue.  Its main menu offers the cards and
-cap     the three indexes; `List Titles' was chosen and RETURN taken for
+cap     the three indexes; `List Titles' was chosen and Return taken for
 cap     the empty search prefix, so every title is listed.  Typing a
 cap     reference number brings up that card.
+try     Librarian -infile tmp/FILESA/cat.libr
 run     mkdir -p /dd/tmp/FILESA > /nil 2>/nil; rm -f /dd/tmp/FILESA/cat.libr /dd/tmp/FILESA/cat.txt > /nil 2>/nil
 wait    4
 run     echo "16" > /dd/tmp/FILESA/cat.txt; echo "2" >> /dd/tmp/FILESA/cat.txt
@@ -606,8 +636,9 @@ shot    EditLibr
 size    30 80
 cap     EditLibr is where a catalogue is built and maintained: add a card,
 cap     edit one, delete by author, title or subject.  `List Cards' was
-cap     chosen from the menu and RETURN taken for the empty prefix, which
+cap     chosen from the menu and Return taken for the empty prefix, which
 cap     lists the shelf by its id numbers with the title beside each.
+try     EditLibr -editfile tmp/FILESA/cat.libr
 run     mkdir -p /dd/tmp/FILESA > /nil 2>/nil; rm -f /dd/tmp/FILESA/cat.libr /dd/tmp/FILESA/cat.txt > /nil 2>/nil
 wait    4
 run     echo "16" > /dd/tmp/FILESA/cat.txt; echo "2" >> /dd/tmp/FILESA/cat.txt
@@ -646,6 +677,8 @@ cap     record, spaced for continuous pin-fed card stock: id and the kind of
 cap     card at the top, then author and year, title, type, publisher and
 cap     the description.  `-by Title', `-by Author' or `-by Subject' print
 cap     the reference cards instead of the shelf list.
+try     PrintCards -infile tmp/FILESA/cat.libr | head -n 22
+os9     PrintCards -infile tmp/FILESA/cat.libr ! head -n 22
 run     mkdir -p /dd/tmp/FILESA > /nil 2>/nil; rm -f /dd/tmp/FILESA/cat.libr /dd/tmp/FILESA/cat.txt > /nil 2>/nil
 wait    4
 run     echo "16" > /dd/tmp/FILESA/cat.txt; echo "2" >> /dd/tmp/FILESA/cat.txt
@@ -676,8 +709,8 @@ cap     PrintLabels copies a template file out once per card, replacing
 cap     %title, %author, %publisher, %city, %year and %id with that card's
 cap     fields -- so it prints labels, or any listing you can describe in a
 cap     template.  The three-line template is shown first, then the two
-cap     books it produced.  Its options each take a separate argument, and
-cap     `C' is just a shorthand for the directory the two files are in.
+cap     books it produced.  Its options each take a separate argument.
+try     PrintLabels -infile cat.libr -templatefile tpl
 run     mkdir -p /dd/tmp/FILESA > /nil 2>/nil; rm -f /dd/tmp/FILESA/cat.libr /dd/tmp/FILESA/cat.txt > /nil 2>/nil
 wait    4
 run     echo "16" > /dd/tmp/FILESA/cat.txt; echo "2" >> /dd/tmp/FILESA/cat.txt
@@ -698,14 +731,12 @@ run     rm -f /dd/tmp/FILESA/tpl > /nil 2>/nil
 wait    3
 run     echo '%title' > /dd/tmp/FILESA/tpl; echo '  by %author' >> /dd/tmp/FILESA/tpl; echo '  %publisher, %city, %year   [%id]' >> /dd/tmp/FILESA/tpl
 wait    5
-run     builtin cd /dd
+run     builtin cd /dd/tmp/FILESA
 wait    1
 run     clear
 wait    1
-run     C=tmp/FILESA
-wait    2
-run     cat $C/tpl
+run     cat tpl
 wait    5
-run     PrintLabels -infile $C/cat.libr -templatefile $C/tpl
+run     PrintLabels -infile cat.libr -templatefile tpl
 wait    12
 snap

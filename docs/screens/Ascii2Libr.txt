@@ -1,12 +1,11 @@
-cat tmp/FILESA/cat.txt | head -n 4
+cat cat.txt | head -n 4
 16
 2
 "B0001" #C( :type Book :author "Kernighan and Ritchie" :title "The C Programmin)
 "B0002" #C( :type Book :author "Kelly and Pohl" :title "A Book on C" :publisher)
-$ C=tmp/FILESA
-$ Ascii2Libr -outfile $C/cat2.libr < $C/cat.txt; ls -l $C/cat2.libr
--rw-------   1 0        0           17677 Sep  6 03:42 tmp/FILESA/cat2.libr
-$ Libr2Ascii -infile $C/cat2.libr | head -n 6
+$ Ascii2Libr -outfile cat2.libr < cat.txt; ls -l cat2.libr
+-rw-------   1 0        0           17677 Sep  8 16:00 cat2.libr
+$ Libr2Ascii -infile cat2.libr | head -n 6
 4
 2
 "B0001" #C(:TYPE Book :AUTHOR "Kernighan and Ritchie"

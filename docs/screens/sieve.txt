@@ -1,4 +1,0 @@
-$ sieve; echo "sieve returned $?"
-start
- 100 sieves done
-sieve returned 0

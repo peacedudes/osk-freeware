@@ -4,200 +4,263 @@
 # /dd/tmp/DEV.
 
 shot    sieve
-cap     The sieve of Eratosthenes benchmark: it counts primes for a fixed
-cap     number of passes and reports how long that took.
-run     sieve; echo "sieve returned $?"
+cap     The sieve of Eratosthenes, a classic speed test: it finds the primes
+cap     below a fixed limit and repeats the whole pass many times over.  It
+cap     prints only that the passes are done -- time it with `time' to see how
+cap     fast the machine is.
+try     sieve
+run     sieve
 wait    10
 
 shot    fibo
-cap     The Fibonacci benchmark: a recursive definition run to a fixed
-cap     depth, timed.
+cap     The Fibonacci benchmark: it works out a Fibonacci number by the plain
+cap     recursive definition, which fans out into a great many calls, and
+cap     repeats that a set number of times.  A stress test for the cost of a
+cap     function call rather than for arithmetic.
+try     fibo
 run     fibo
 wait    12
 
 shot    float
-cap     A floating-point loop, timed.
-run     float; echo "float returned $?"
+cap     A floating-point speed test: an arithmetic loop run a fixed number of
+cap     times, reporting when the loops are done.
+try     float
+run     float
 wait    12
 
 shot    savage
-size    30 80
-cap     Savage's benchmark, which is about accuracy rather than speed: a
-cap     chain of transcendental functions that should return exactly what
-cap     went in, and the error it reports is how far the arithmetic drifted.
+cap     Savage's benchmark stresses accuracy rather than speed.  It runs a
+cap     chain of functions that cancel out, so each pass should add exactly
+cap     one; after a thousand passes the printed value has drifted from the
+cap     round number it ought to reach, and that drift is the arithmetic's
+cap     accumulated rounding error.
+try     savage
 run     savage
 wait    15
 
 shot    dhry
-size    30 80
+size    28 80
 cap     Dhrystone 2.1, the classic integer benchmark, built with Microware's
-cap     cc.  It reads the number of runs from its input and then reports
-cap     the checks and the rate; 500,000 runs is enough for the clock to
-cap     measure.  Eleven more builds of the same source follow, so the
-cap     compilers can be compared.
+cap     cc.  It reads the number of runs from its input and then reports the
+cap     checks and the rate; 500,000 runs is enough for the clock to measure.
+cap     Eleven more builds of the same source follow, so the compilers can be
+cap     compared.
+try     echo 500000 | dhry | tail -l=8
+os9     echo 500000 ! dhry ! tail -l=8
 run     echo 500000 | dhry | tail -l=8
 wait    30
 
 shot    dhryO2
 cap     Dhrystone built with Microware's cc at -O2.
+try     echo 500000 | dhryO2 | tail -l=6
+os9     echo 500000 ! dhryO2 ! tail -l=6
 run     echo 500000 | dhryO2 | tail -l=6
 wait    30
 
 shot    dhryGcc
 cap     Dhrystone built with GCC 1.
+try     echo 500000 | dhryGcc | tail -l=6
+os9     echo 500000 ! dhryGcc ! tail -l=6
 run     echo 500000 | dhryGcc | tail -l=6
 wait    30
 
 shot    dhryGcco2
 cap     Dhrystone built with GCC 1 at -O2.
+try     echo 500000 | dhryGcco2 | tail -l=6
+os9     echo 500000 ! dhryGcco2 ! tail -l=6
 run     echo 500000 | dhryGcco2 | tail -l=6
 wait    30
 
 shot    dhryGccin
 cap     Dhrystone built with GCC 1 with inlining.
+try     echo 500000 | dhryGccin | tail -l=6
+os9     echo 500000 ! dhryGccin ! tail -l=6
 run     echo 500000 | dhryGccin | tail -l=6
 wait    30
 
 shot    dhryGccmx
 cap     Dhrystone built with GCC 1, mixed options.
+try     echo 500000 | dhryGccmx | tail -l=6
+os9     echo 500000 ! dhryGccmx ! tail -l=6
 run     echo 500000 | dhryGccmx | tail -l=6
 wait    30
 
 shot    dhryGcc2
 cap     Dhrystone built with GCC 2.
+try     echo 500000 | dhryGcc2 | tail -l=6
+os9     echo 500000 ! dhryGcc2 ! tail -l=6
 run     echo 500000 | dhryGcc2 | tail -l=6
 wait    30
 
 shot    dhryGcc2o2
 cap     Dhrystone built with GCC 2 at -O2.
+try     echo 500000 | dhryGcc2o2 | tail -l=6
+os9     echo 500000 ! dhryGcc2o2 ! tail -l=6
 run     echo 500000 | dhryGcc2o2 | tail -l=6
 wait    30
 
 shot    dhryGcc2in
 cap     Dhrystone built with GCC 2 with inlining.
+try     echo 500000 | dhryGcc2in | tail -l=6
+os9     echo 500000 ! dhryGcc2in ! tail -l=6
 run     echo 500000 | dhryGcc2in | tail -l=6
 wait    30
 
 shot    dhryGcc2mx
 cap     Dhrystone built with GCC 2, mixed options.
+try     echo 500000 | dhryGcc2mx | tail -l=6
+os9     echo 500000 ! dhryGcc2mx ! tail -l=6
 run     echo 500000 | dhryGcc2mx | tail -l=6
 wait    30
 
 shot    dhryshamu
 cap     Dhrystone, the shamu build.
+try     echo 500000 | dhryshamu | tail -l=6
+os9     echo 500000 ! dhryshamu ! tail -l=6
 run     echo 500000 | dhryshamu | tail -l=6
 wait    30
 
 shot    dhryshamu2
-cap     Dhrystone, the second shamu build.
+cap     Dhrystone, a second shamu build.
+try     echo 500000 | dhryshamu2 | tail -l=6
+os9     echo 500000 ! dhryshamu2 ! tail -l=6
 run     echo 500000 | dhryshamu2 | tail -l=6
 wait    30
 
 shot    time
-cap     Times a command the way OS-9 accounts for it: here the sieve.
+cap     Times a command the way OS-9 accounts for it -- here the sieve: the
+cap     system and user ticks, the seconds elapsed, and the calls and bytes
+cap     it took.
+try     time sieve
 run     time sieve
 wait    14
 
 shot    timid
-cap     Times a command by the clock: start, end and elapsed ticks.
-run     timid today
+cap     A fixed timing loop: it runs the same batch of system calls tens of
+cap     thousands of times and reports the elapsed clock ticks.  It times only
+cap     itself -- any argument you give it is ignored.
+try     timid
+run     timid
 wait    8
 
 shot    disktest
-cap     Measures how long reads and writes really take through the disk
-cap     system.  Its one option is its syntax; run on a disk it ends the
-cap     session, so its syntax is what there is to show.
+cap     Times how long reads and writes really take through the disk system.
+cap     Run for real it takes over the drive and needs the system's own
+cap     privileges, so what it can show here is its syntax.
+try     disktest -?
 run     disktest -?
 wait    8
 
 shot    ci
 size    30 80
-cap     RCS: checking a file in.  ci asks for a description, writes the
-cap     archive beside the file -- note_v, because OS-9 has no comma in a
-cap     file name -- and removes the working file.
-run     rm -f /dd/tmp/DEV/rcs/note /dd/tmp/DEV/rcs/note_v; mkdir -p /dd/tmp/DEV/rcs > /nil 2>/nil; printf "Twas brillig, and the slithy toves\r" > /dd/tmp/DEV/rcs/note
+cap     RCS: checking a file in.  ci asks for a description, writes the history
+cap     file beside the working file -- note_v, since OS-9 has no comma in a
+cap     file name -- and takes the working file away.
+try     ci note
+run     rm -rf /dd/tmp/DEV/rcs > /nil 2>/nil; mkdir -p /dd/tmp/DEV/rcs; printf "Twas brillig, and the slithy toves\r" > /dd/tmp/DEV/rcs/note
 wait    3
-run     builtin cd /dd
+run     builtin cd /dd/tmp/DEV/rcs
 wait    1
 run     clear
 wait    1
-run     ci tmp/DEV/rcs/note
+run     ci note
 wait    6
 send    first draft\r
 wait    3
 send    .\r
 wait    8
-run     ls -l tmp/DEV/rcs
+run     ls -l
 wait    4
 
 shot    co
-cap     RCS: checking the file out again from its archive.
-run     rm -f /dd/tmp/DEV/rcs/note /dd/tmp/DEV/rcs/note_v; mkdir -p /dd/tmp/DEV/rcs > /nil 2>/nil; printf "Twas brillig, and the slithy toves\r" > /dd/tmp/DEV/rcs/note; ci -t-draft /dd/tmp/DEV/rcs/note < /nil
+size    30 80
+cap     RCS: checking the file out again.  co reads the history file and
+cap     recreates the working file from the chosen revision.
+try     co note_v
+run     rm -rf /dd/tmp/DEV/rcs > /nil 2>/nil; mkdir -p /dd/tmp/DEV/rcs; printf "Twas brillig, and the slithy toves\r" > /dd/tmp/DEV/rcs/note; ci -t-draft /dd/tmp/DEV/rcs/note < /nil
 wait    10
-run     builtin cd /dd
+run     builtin cd /dd/tmp/DEV/rcs
 wait    1
 run     clear
 wait    1
-run     co tmp/DEV/rcs/note_v
+run     co note_v
 wait    8
-run     ls -l tmp/DEV/rcs; cat tmp/DEV/rcs/note
+run     ls -l; cat note
 wait    4
 
 shot    rlog
 size    30 80
-cap     RCS: the history of an archive -- head revision, locks, the
-cap     description and each revision's log.
-run     rm -f /dd/tmp/DEV/rcs/note /dd/tmp/DEV/rcs/note_v; mkdir -p /dd/tmp/DEV/rcs > /nil 2>/nil; printf "Twas brillig, and the slithy toves\r" > /dd/tmp/DEV/rcs/note; ci -t-draft /dd/tmp/DEV/rcs/note < /nil
+cap     RCS: the history of a file -- head revision, locks, the description
+cap     and the log of each revision.
+try     rlog note_v
+run     rm -rf /dd/tmp/DEV/rcs > /nil 2>/nil; mkdir -p /dd/tmp/DEV/rcs; printf "Twas brillig, and the slithy toves\r" > /dd/tmp/DEV/rcs/note; ci -t-draft /dd/tmp/DEV/rcs/note < /nil
 wait    10
-run     builtin cd /dd
+run     builtin cd /dd/tmp/DEV/rcs
 wait    1
 run     clear
 wait    1
-run     rlog tmp/DEV/rcs/note_v
+run     rlog note_v
 wait    8
 
 shot    rcsident
-cap     RCS: looks for $Id$-style keywords in a file and prints them;
-cap     this archive carries none, and it says so.
-run     rm -f /dd/tmp/DEV/rcs/note /dd/tmp/DEV/rcs/note_v; mkdir -p /dd/tmp/DEV/rcs > /nil 2>/nil; printf "Twas brillig, and the slithy toves\r" > /dd/tmp/DEV/rcs/note; ci -t-draft /dd/tmp/DEV/rcs/note < /nil
+cap     RCS: looks for $Id$-style keywords stamped in a file and prints them.
+cap     This file carries none, and it says so.
+try     rcsident note_v
+run     rm -rf /dd/tmp/DEV/rcs > /nil 2>/nil; mkdir -p /dd/tmp/DEV/rcs; printf "Twas brillig, and the slithy toves\r" > /dd/tmp/DEV/rcs/note; ci -t-draft /dd/tmp/DEV/rcs/note < /nil
 wait    10
-run     builtin cd /dd
+run     builtin cd /dd/tmp/DEV/rcs
 wait    1
 run     clear
 wait    1
-run     rcsident tmp/DEV/rcs/note_v
+run     rcsident note_v
 wait    6
 
 shot    rcs
-cap     RCS: the archive administration command -- access lists, locks,
-cap     comment leaders.  It takes no -?, so its answer to one is its
-cap     command format.
+cap     RCS: the administration command -- it sets access lists, locks and
+cap     comment leaders on a history file.  It has no -? option, so it answers
+cap     one with its command format.
+try     rcs -?
 run     rcs -?
 wait    6
 
 shot    rcsdiff
-cap     RCS: compares the working file with a revision.  It does that by
-cap     running co through a shell with Microware's redirection syntax,
-cap     which no shell here understands, and stops there.
-run     rm -f /dd/tmp/DEV/rcs/note /dd/tmp/DEV/rcs/note_v; mkdir -p /dd/tmp/DEV/rcs > /nil 2>/nil; printf "Twas brillig, and the slithy toves\r" > /dd/tmp/DEV/rcs/note; ci -t-draft /dd/tmp/DEV/rcs/note < /nil; co /dd/tmp/DEV/rcs/note_v > /nil
-wait    12
-run     builtin cd /dd
+size    30 80
+cap     RCS: compares your working file against a stored revision.  To read the
+cap     revision it runs co into a temporary file, through a redirection the
+cap     shells here cannot make, so the compare has nothing to read and stops.
+try     rcsdiff note_v
+run     rm -rf /dd/tmp/DEV/rcs > /nil 2>/nil; mkdir -p /dd/tmp/DEV/rcs; printf "Twas brillig, and the slithy toves\r" > /dd/tmp/DEV/rcs/note; ci -t-draft /dd/tmp/DEV/rcs/note < /nil
+wait    8
+run     builtin cd /dd/tmp/DEV/rcs
+wait    1
+run     co note_v
+wait    5
+run     clear
+wait    1
+run     rcsdiff note_v
+wait    8
+snap
+
+shot    rcsmerge
+cap     RCS: merges the changes between two revisions into your working file.
+cap     It needs a base revision named with -r; given only a file it stops and
+cap     says it has no base revision to work from.
+try     rcsmerge note_v
+run     rm -rf /dd/tmp/DEV/rcs > /nil 2>/nil; mkdir -p /dd/tmp/DEV/rcs; printf "Twas brillig, and the slithy toves\r" > /dd/tmp/DEV/rcs/note; ci -t-draft /dd/tmp/DEV/rcs/note < /nil
+wait    10
+run     builtin cd /dd/tmp/DEV/rcs
 wait    1
 run     clear
 wait    1
-run     rcsdiff tmp/DEV/rcs/note_v
-wait    8
-
-shot    rcsmerge
-cap     RCS: merges two revisions into the working file.  Like rcsdiff it
-cap     runs co through a shell with Microware's redirection syntax, and
-cap     stops where that fails.
-run     rcsmerge
+run     rcsmerge note_v
 wait    6
 
 shot    cb
-cap     The C beautifier: it indents C that has none, reading standard
-cap     input and writing standard output.
+cap     The C beautifier: it indents C that has none, reading standard input
+cap     and writing standard output.  The one-line source goes in, laid-out C
+cap     comes out.
+try     cb < tmp/DEV/ugly.c
+os9     cb <tmp/DEV/ugly.c
 run     mkdir -p /dd/tmp/DEV > /nil 2>/nil; echo 'int main(){int i;for(i=0;i<3;i++){if(i)printf("%d ",i);else puts("zero");}return 0;}' > /dd/tmp/DEV/ugly.c
 wait    3
 run     builtin cd /dd
@@ -211,8 +274,10 @@ wait    8
 
 shot    indent
 size    30 80
-cap     GNU indent reformatting C source to a house style: the head of
-cap     what it makes of about.c, with -st sending it to the screen.
+cap     GNU indent reformatting C source to a house style: the head of what it
+cap     makes of about.c, with -st sending the result to the screen.
+try     indent SRC/keep/about.c -st | head -n 20
+os9     indent SRC/keep/about.c -st ! head -n 20
 run     builtin cd /dd
 wait    1
 run     clear
@@ -221,8 +286,12 @@ run     indent SRC/keep/about.c -st | head -n 20
 wait    15
 
 shot    cpr
-cap     Prints C source as a listing with a title, page numbers and line
-cap     numbers, for paper: the head of one page.
+size    24 80
+cap     Formats C source for printing: a title, a contents page listing the
+cap     functions and the page each starts on, then the source itself with
+cap     page and line numbers.  Here the contents page.
+try     cpr SRC/keep/about.c | head -n 16
+os9     cpr SRC/keep/about.c ! head -n 16
 run     builtin cd /dd
 wait    1
 run     clear
@@ -231,8 +300,9 @@ run     cpr SRC/keep/about.c | head -n 16
 wait    8
 
 shot    unifdef
-cap     Resolves #ifdef in C source for one setting of a symbol and leaves
-cap     the rest alone: -dOSK keeps the OSK branch, -uOSK the other.
+cap     Resolves #ifdef in C source for one setting of a symbol and leaves the
+cap     rest alone: -dOSK keeps the OSK branch, -uOSK the other.
+try     unifdef -dOSK tmp/DEV/ifd.c
 run     mkdir -p /dd/tmp/DEV > /nil 2>/nil; printf "#ifdef OSK\rint on_os9 = 1;\r#else\rint on_os9 = 0;\r#endif\rint always = 2;\r" > /dd/tmp/DEV/ifd.c
 wait    3
 run     builtin cd /dd
@@ -245,8 +315,10 @@ run     unifdef -dOSK tmp/DEV/ifd.c
 wait    5
 
 shot    ifdef
-cap     The same job by another author: -Dsymbol defines, -Usymbol
-cap     undefines, and -t prints the table it worked from.
+cap     The same job by another author: -Dsymbol keeps the branch for a symbol
+cap     you define, -Usymbol the branch for one you leave undefined.  The same
+cap     source is resolved both ways.
+try     ifdef -DOSK tmp/DEV/ifd.c
 run     mkdir -p /dd/tmp/DEV > /nil 2>/nil; printf "#ifdef OSK\rint on_os9 = 1;\r#else\rint on_os9 = 0;\r#endif\rint always = 2;\r" > /dd/tmp/DEV/ifd.c
 wait    3
 run     builtin cd /dd
@@ -260,9 +332,10 @@ wait    5
 
 shot    patch
 size    30 80
-cap     patch recognises a diff -- "Looks like a normal diff to me" -- and
-cap     then cannot finish: it writes a temporary file and cannot read it
-cap     back.  The file it was patching is left as it was.
+cap     patch recognises a diff -- "Looks like a normal diff to me" -- and then
+cap     cannot finish: it writes a temporary file and cannot read it back.  The
+cap     file it was patching is left as it was.
+try     patch tmp/DEV/p1 tmp/DEV/p.diff
 run     mkdir -p /dd/tmp/DEV > /nil 2>/nil; printf "one\rtwo\rthree\r" > /dd/tmp/DEV/p1; printf "one\rTWO\rthree\r" > /dd/tmp/DEV/p2; diff /dd/tmp/DEV/p1 /dd/tmp/DEV/p2 > /dd/tmp/DEV/p.diff
 wait    6
 run     builtin cd /dd
@@ -276,7 +349,9 @@ wait    10
 
 shot    bcheck
 cap     Counts brackets in a C source, line by line, so a mismatch can be
-cap     found: the running depth beside each line.
+cap     found: the running nesting depth beside each line.
+try     bcheck SRC/keep/about.c | head -n 16
+os9     bcheck SRC/keep/about.c ! head -n 16
 run     builtin cd /dd
 wait    1
 run     clear
@@ -285,8 +360,9 @@ run     bcheck SRC/keep/about.c | head -n 16
 wait    8
 
 shot    ccheck
-cap     Checks C source for mismatched brackets, quotes and comment
-cap     markers, and for indentation that disagrees with the nesting.
+cap     Checks C source for mismatched brackets, quotes and comment markers,
+cap     and for indentation that disagrees with the nesting.
+try     ccheck SRC/keep/keep.c
 run     builtin cd /dd
 wait    1
 run     clear
@@ -295,8 +371,9 @@ run     ccheck SRC/keep/keep.c
 wait    8
 
 shot    ctags
-cap     Builds the tags file vi uses to jump to a definition: one line
-cap     per function, with the file and a search pattern.
+cap     Builds the tags file vi uses to jump to a definition: one line per
+cap     function, with the file and a search pattern to find it.
+try     ctags keep.c
 run     mkdir -p /dd/tmp/DEV > /nil 2>/nil; rm -f /dd/tmp/DEV/tags
 run     cp /dd/SRC/keep/keep.c /dd/tmp/DEV/keep.c
 run     builtin cd /dd/tmp/DEV
@@ -305,12 +382,13 @@ run     clear
 wait    1
 run     ctags keep.c
 wait    6
-run     head -n 8 tags
+run     cat tags | head -n 8
 wait    4
 
 shot    etags
-cap     Builds the TAGS file emacs uses, the way ctags does for vi: it
-cap     says nothing and leaves the file in the current directory.
+cap     Builds the TAGS file emacs uses, as ctags does for vi: it says nothing
+cap     and leaves the file in the current directory.
+try     etags about.c
 run     mkdir -p /dd/tmp/DEV > /nil 2>/nil; rm -f /dd/tmp/DEV/TAGS
 run     cp /dd/SRC/keep/about.c /dd/tmp/DEV/about.c
 run     builtin cd /dd/tmp/DEV
@@ -324,8 +402,10 @@ wait    4
 
 shot    cxref
 size    30 80
-cap     A C cross-reference: the source listed with line numbers, then
-cap     every symbol with the lines it appears on.
+cap     A C cross-reference.  It prints the source with line numbers (shown
+cap     here) and then a table of every symbol and the lines it appears on.
+try     cxref SRC/keep/about.c | head -n 24
+os9     cxref SRC/keep/about.c ! head -n 24
 run     builtin cd /dd
 wait    1
 run     clear
@@ -335,10 +415,12 @@ wait    10
 
 shot    rdoc
 size    30 80
-cap     Reverse documentation: given C source it prints the control
-cap     structure as an indented skeleton -- every if, else, for, switch
-cap     and case in place, the code between them taken away.  The tail of
-cap     what it makes of keep.c.
+cap     Reverse documentation: given C source it prints the control structure
+cap     as an indented skeleton -- every if, else, for, switch and case in
+cap     place, the code between them taken away.  The tail of what it makes of
+cap     keep.c.
+try     rdoc SRC/keep/keep.c | tail -l=24
+os9     rdoc SRC/keep/keep.c ! tail -l=24
 run     builtin cd /dd
 wait    1
 run     clear
@@ -347,23 +429,26 @@ run     rdoc SRC/keep/keep.c | tail -l=24
 wait    90
 
 shot    xrf
-size    44 80
-cap     A C cross-reference generator that reads its language table,
-cap     C.XRF, and the source both from the current directory; the table
-cap     ships in DOC/xrf.
-run     mkdir -p /dd/tmp/DEV/xrf > /nil 2>/nil; cp /dd/DOC/xrf/c.xrf /dd/tmp/DEV/xrf/C.XRF; cp /dd/SRC/keep/about.c /dd/tmp/DEV/xrf/about.c
+size    24 80
+cap     A C cross-reference generator.  It reads its language table, C.XRF,
+cap     and the source from the current directory, then prints each name in
+cap     the source with a count of its uses and the line numbers where it
+cap     appears.
+try     xrf small.c
+run     rm -rf /dd/tmp/DEV/xrf > /nil 2>/nil; mkdir -p /dd/tmp/DEV/xrf; cp /dd/DOC/xrf/c.xrf /dd/tmp/DEV/xrf/C.XRF; printf "int count = 0;\rmain()\r{\r  int i;\r  for (i = 0; i < count; i++)\r    total(i);\r}\r" > /dd/tmp/DEV/xrf/small.c
 run     builtin cd /dd/tmp/DEV/xrf
-wait    4
+wait    2
 run     clear
 wait    1
-run     xrf about.c
-wait    12
+run     xrf small.c
+wait    10
 
 shot    ref
-cap     Looks a C function up in a tags file and prints the lines around
-cap     where it is defined.  Here ctags indexes keep.c and ref shows the
-cap     definition of crc_of, comment header and all.
-run     rm -rf /dd/tmp/DEV/ref > /nil 2>/nil; mkdir -p /dd/tmp/DEV/ref > /nil 2>/nil
+cap     Looks a C function up in a tags file and prints the lines around where
+cap     it is defined.  Here ctags indexes keep.c and ref shows the definition
+cap     of crc_of, comment header and all.
+try     ref crc_of
+run     rm -rf /dd/tmp/DEV/ref > /nil 2>/nil; mkdir -p /dd/tmp/DEV/ref
 run     cp /dd/SRC/keep/keep.c /dd/tmp/DEV/ref/keep.c
 run     builtin cd /dd/tmp/DEV/ref
 run     ctags keep.c 2>/nil
@@ -374,9 +459,10 @@ run     ref crc_of
 wait    6
 
 shot    libsplit
-cap     Splits a library of the newer ROF type into its object files.
+cap     Splits a linker library of the newer ROF type into its object files.
 cap     The libraries on this disk are the older type, and it says so:
 cap     unpacklib is the one for those.
+try     libsplit LIB/blarslib.l
 run     builtin cd /dd
 wait    1
 run     clear
@@ -385,8 +471,9 @@ run     libsplit LIB/blarslib.l
 wait    6
 
 shot    sdb
-cap     SDB 2.0, a symbolic debugger, opened on a program: its prompt.
-cap     q leaves it.
+cap     SDB 2.0, a symbolic debugger, opened on a program: its prompt, ready
+cap     for a command.  q leaves it.
+try     sdb CMDS/today
 run     builtin cd /dd
 wait    1
 run     clear
@@ -398,15 +485,22 @@ send    q\r
 wait    3
 
 shot    trap
-cap     An example trap handler.  Installing one needs system state, and
-cap     from a user program it says so and stops.  Asked for by path
-cap     because bash has a trap of its own.
-run     /dd/CMDS/trap
+cap     An example trap handler.  Installing one needs system state, and from
+cap     an ordinary program it says so and stops.  Run by path so the shell's
+cap     own trap does not answer in its place.
+try     CMDS/trap
+run     builtin cd /dd
+wait    1
+run     clear
+wait    1
+run     CMDS/trap
 wait    6
 
 shot    tab
-cap     Tabulates assembly source into label, opcode and argument
-cap     columns, a filter; -b for 6809 mnemonics, 68000 otherwise.
+cap     Tabulates assembly source into label, opcode and argument columns, a
+cap     filter: -b reads 6809 mnemonics, 68000 otherwise.
+try     tab -b < tmp/DEV/t.a
+os9     tab -b <tmp/DEV/t.a
 run     mkdir -p /dd/tmp/DEV > /nil 2>/nil; printf " nam test\r start ldx #buf\rloop lda ,x+\r beq done\r bsr putc\r bra loop\rdone rts\rbuf fcc /hello/\r fcb 0\r end\r" > /dd/tmp/DEV/t.a
 wait    3
 run     builtin cd /dd
@@ -419,8 +513,9 @@ run     tab -b < tmp/DEV/t.a
 wait    6
 
 shot    xlate
-cap     Translates 6809 assembly source into 68000: registers mapped,
-cap     branches sized, one instruction for one.
+cap     Translates 6809 assembly source into 68000: registers mapped, branches
+cap     sized, one instruction for one.
+try     xlate tmp/DEV/t.a
 run     mkdir -p /dd/tmp/DEV > /nil 2>/nil; printf " nam test\r start ldx #buf\rloop lda ,x+\r beq done\r bsr putc\r bra loop\rdone rts\rbuf fcc /hello/\r fcb 0\r end\r" > /dd/tmp/DEV/t.a
 wait    3
 run     builtin cd /dd

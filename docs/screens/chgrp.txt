@@ -3,7 +3,7 @@ fstat tmp/FILESA/grp.txt
 Filename:     tmp/FILESA/grp.txt
 Owner:        0.0
 Attributes:   ---wr-wr
-Created:      09/06/2026
+Created:      09/07/2026
 Modified:     08/03/2026 07:00 pm
 File Length:  40 $(28)
 $ chgrp 3 tmp/FILESA/grp.txt; fstat tmp/FILESA/grp.txt
@@ -11,6 +11,6 @@ $ chgrp 3 tmp/FILESA/grp.txt; fstat tmp/FILESA/grp.txt
 Filename:     tmp/FILESA/grp.txt
 Owner:        3.0
 Attributes:   ---wr-wr
-Created:      09/06/2026
-Modified:     09/06/2026 03:39 am
+Created:      09/07/2026
+Modified:     09/08/2026 03:43 pm
 File Length:  40 $(28)

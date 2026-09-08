@@ -1,9 +1,7 @@
-load CMDS/ELM/readmsg
-load: can't load "CMDS/ELM/readmsg" - Error #000:216 (E_PNNF) Path Name Not Foud
-$ echo "readmsg is now resident and answers by name:"
+echo "readmsg is now resident and answers by name:"
 readmsg is now resident and answers by name:
 $ sh -c "readmsg -\?"
-readmsg: nowhere found
+Usage: readmsg [-anhp] [-f Folder] {MessageNum ... | pattern | *}
 $ remove readmsg
 $ echo "after remove, the module is gone:"
 after remove, the module is gone:

@@ -171,7 +171,7 @@ paranoia|The PARANOIA text adventure. RETURN to go on, a letter to choose, `p' f
 
 eo|Runs a command on every line of a file, with `@' standing for the line: `eo <file> <command> @'. It shells out, so it needs SHELL set to a shell that takes a command line as one argument -- SYS/login sets `SHELL=/dd/CMDS/ksh' and that is what makes it work. Without it, `can't execute /dd/bash'. `-p' takes the lines from a pipe instead of a file.
 psc|Feeds `sc', the spreadsheet: `psc -d' ' < table' turns rows of numbers into `let A0 = 1' commands sc can read. -r assembles rows first, -s names the top-left cell, -d sets the delimiter.
-remove|Removes MODULES FROM MEMORY. `del', `rm' and `deldir' are the file ones.
+remove|Removes modules from memory. `del', `rm' and `deldir' are the file ones.
 paste|Joins lines side by side, tab-separated by default: `paste f1 f2'. `-d:' picks another separator; `-s' puts one file's lines on a single line.
 
 tangle|Needs a CHANGE FILE named, always. `tangle yourfile.web' alone answers `Error: `Can't open file.'' and the file it cannot open is the absent change file, not your source. DOC/tex ships `sample.web' and `none.ch' (empty, changes nothing): copy both to your data directory and run `tangle sample none'. It reads and writes in the DATA directory, which bash's `cd' does not move. `weave sample none' is the other half.
@@ -210,7 +210,7 @@ bincheckr|It is in CMDS/GAMES, not CMDS. `bincheckr /dd/GAMES/gnuchess.book' pri
 mkdict|Run it in /dd/GAMES/BOG, where bog's word list is; it is in CMDS/GAMES.
 mkindex|Run it in /dd/GAMES/BOG after mkdict; it is in CMDS/GAMES.
 byteflip|It is in CMDS/NEWS. Hand it a dbz database to byte-swap between architectures.
-PrintLabels|Its options take a SEPARATE argument: `-infile cat.libr -templatefile tpl.txt', never `-infile=...', which answers `Bad option:' and prints the syntax. The same is true of Ascii2Libr, Libr2Ascii, PrintCards and EditLibr. The template is a text file copied out once per card with %title, %author, %year and the other field names replaced.
+PrintLabels|Its options take a separate argument -- `-infile cat.libr -templatefile tpl.txt', never `-infile=...', which answers `Bad option:' and prints the syntax. The same is true of Ascii2Libr, Libr2Ascii, PrintCards and EditLibr. The template is a text file copied out once per card with %title, %author, %year and the other field names replaced.
 Ascii2Libr|`-outfile cat.libr' with a space, and it reads the ASCII on standard input. The text is the form Libr2Ascii writes: a page count, then a card count and the cards, then the title, author and subject index sections.
 Libr2Ascii|`-infile cat.libr' with a space. It writes the catalogue to standard output as text, and a page count and four index-key counts at the end -- all zero means the catalogue is empty.
 inimf|It builds a Metafont base, which SYS/TEX/MFBASES now ships. To rebuild: `echo "plain; \input modes; dump" > mf.in' then `ksh -c "cd /dd/tmp; inimf < mf.in"'. About a minute. DOC/README-METAFONT has the rest.

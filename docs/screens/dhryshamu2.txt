@@ -2,5 +2,5 @@ $ echo 500000 | dhryshamu2 | tail -l=6
 Str_2_Loc:           DHRYSTONE PROGRAM, 2'ND STRING
         should be:   DHRYSTONE PROGRAM, 2'ND STRING
 
-Microseconds for one run through Dhrystone:   12.0
-Dhrystones per Second:                      83333.3
+Microseconds for one run through Dhrystone:    8.0
+Dhrystones per Second:                      125000.0

@@ -1,8 +1,9 @@
-co tmp/DEV/rcs/note_v
-tmp/DEV/rcs/note_v  -->  note
+co note_v
+note_v  -->  note
 revision 1.1
 done
-$ ls -l tmp/DEV/rcs; cat tmp/DEV/rcs/note
-total 512
--r--r--r--   1 0        0             250 Sep  6 03:02 note_v
-cat: couldn't open 'tmp/DEV/rcs/note' (Error #000:216)
+$ ls -l; cat note
+total 1024
+-r--r--r--   1 0        0              35 Sep  8 16:23 note
+-r--r--r--   1 0        0             250 Sep  8 16:23 note_v
+Twas brillig, and the slithy toves

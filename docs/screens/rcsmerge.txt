@@ -1,6 +1,3 @@
-$ rcsmerge
-rcsmerge error: No input file
-command format:
-    rcsmerge -p -rrev1 -rrev2 file
-    rcsmerge -p -rrev1 file
+rcsmerge note_v
+rcsmerge error: no base revision number given
 rcsmerge aborted
