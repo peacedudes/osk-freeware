@@ -50,6 +50,7 @@ atp b2a4706e4c1bfea6
 autolf 29221f80f2bd5051
 autoreply 5e836efbe081dd75
 back 5ae21a1e7e12cc2a
+backgammon 04e947029b634805
 banner 5a6b9d4158349032
 basename 88d6e9c0a92810a1
 bash 6e45fc01c6b3701f
@@ -120,7 +121,7 @@ collect 5a00f9a3ae087b18
 colortest 5c2330766a9f14e5
 combine 206d5cbdc2d7267e
 compiler a1cfa4c684d609b5
-compr 0363d35c10827948
+compr 6f55fb11df248478
 compress a6249bf9930187e5
 compress_4.0 a923278466ef7663
 compress_rebuilt 898383101fcc06c0
@@ -137,7 +138,7 @@ cribbage 236f40fb817c182c
 cron 32dbb5d3d7b578bc
 crypto ee96bdb3042ce625
 ctags 012d62e919d9a679
-ctags.elvis 6c2ef630ff254565
+ctags.elvis be73695a040d2c13
 cursive b6556ab83fc099c5
 cut db89f25fada4b2e9
 cuts e025b1f5300263c5
@@ -148,7 +149,7 @@ dam c30b7cc7269589c3
 dback 906be23ee236ebeb
 dbz b8a2dbd1e541b4a4
 dclock 9081125499f001ad
-dearc 2a58125961c0d5ce
+dearc be5ac2cb655130ec
 delbak 5afa330f2759aa23
 demerge 5d1401233cb0522a
 demo 56e8d37beec6bcf8
@@ -209,7 +210,7 @@ ediff a77ad36bb656fd6e
 editor cc22a9da6564489a
 elm 202e330b419a3743
 elvis f33d9af83b3e1f10
-elvis_input 89c3267a085b9720
+elvis_input 749a1fe020ebcab6
 elvrec e3a4ae2e4a7041dc
 em ffb237c4c74742fe
 emacs 514b4e95ff91f5c5
@@ -371,7 +372,6 @@ lgrep f1ef4ef5180533dc
 lha 52340e9187ace34b
 lharc b3f9054245bf7775
 lharcs 4f1f23a3be40ea59
-liborder 87e0ceb0cee99186
 libsplit d91101c22b790347
 life cb3cef72829ef40d
 lispm ae2065e7d6fe27aa
@@ -505,7 +505,7 @@ pbmtopi3 18a7ed04042a29bc
 pbmtoptx 82ca56ca964c8c04
 pbmtoxbm ef9a2839d02eaffe
 pbmupc cfb7064fa3a78d28
-pbyte 25a936dd4fca1787
+pbyte 383cb31a3d969ce3
 pcx a201e4e08ebb3481
 pdraw 77bd46c09789763d
 pep 8cd5b600ad9af25f
@@ -650,7 +650,7 @@ scsiutil 24cd2d532328b474
 sdb 69353d08c23f2acb
 sddemo c472fc5dc89bc5e1
 sed 4c288411a1a0cb8c
-sed_1.06 4e19975aa8b4b90b
+sed_1.06 8ad77df0201254f0
 sedt c1d9526ab394690c
 sepwords 2946a889b8fd59d2
 setime2 51ad4508112afdfc
@@ -715,6 +715,7 @@ tail 6ea68bae59eb265a
 tangle 7d4969b60893eedf
 tar f899633bf18895d6
 tcmp 762791b8abc9e457
+teachgammon 9f9cf6fe5e075e8f
 tess f73bbe2f9db6b28d
 tet dc9a16bf1fcb1b43
 tex 20393d1a0d61cf68
@@ -781,9 +782,9 @@ version 4cf80677f3f5a15c
 vftovp 53793b018696e5a2
 vi c29746acf28ee834
 vi-recovery 8f92b8aadde3d619
-vi.elvis d72787b21727e5d7
-vi_1.0 929b4a23562e5ef7
-vi_cio b3a8548d6ec171e6
+vi.elvis 8253ea73025a2ad1
+vi_1.0 912d53b32f43f229
+vi_cio 0b6faca63148c4db
 vi_nocio 00e67187c0224616
 view 70db0c17ded9c614
 virmf 7914f725d504a378
@@ -832,7 +833,7 @@ yuv 7bc729e24271bbd0
 yuvsplittoppm 537120403af77c9c
 z 44acd9294c1d2884
 zeisstopnm 11c0d429931d235f
-zip 957211de267a02a6
+zip 2407e59999c640ed
 zipinfo 5780201f80f1146c
 zipnote c13e62bff5c4c1db
 zipsplit 1b88d6aa10cc41a8

@@ -1,3 +1,4 @@
-compr tmp/ARC/idx3
+compr -v tmp/ARC/idx3
+tmp/ARC/idx3: Compression: 57.94% -- replaced with tmp/ARC/idx3.Z
 $ ls -l tmp/ARC/idx3*
--rw-------   1 0        0           62105 Sep  6 02:32 tmp/ARC/idx3.Z
+-rw-------   1 0        0           62105 Sep  8 15:22 tmp/ARC/idx3.Z

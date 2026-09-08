@@ -1,5 +1,2 @@
-cat /dd/tmp/EDIT/pb.txt
 Twas brillig, and the slithy toves
-$ pbyte /dd/tmp/EDIT/pb.txt 0 41 42 43
-$ cat /dd/tmp/EDIT/pb.txt
-ABCs brillig, and the slithy toves
+$ ABCs brillig, and the slithy toves

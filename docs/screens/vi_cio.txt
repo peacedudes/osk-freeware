@@ -1,2 +1,24 @@
-vi_cio /dd/tmp/EDIT/jabber.txt
-TERMCAP is not a termcap entry for xterm-256color or a valid termcap database ne
+Twas brillig, and the slithy toves
+     Did gyre and gimble in the wabe:
+All mimsy were the borogoves,
+     And the mome raths outgrabe.
+~
+~
+~
+~
+~
+~
+~
+~
+~
+~
+~
+~
+~
+~
+~
+~
+~
+~
+~
+"tmp/EDIT/jabber.txt" 4 lines, 137 characters

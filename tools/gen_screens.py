@@ -71,11 +71,6 @@ CAPTIONS = {
                  "prompt over it.", "entered"),
     "elvis":    ("Elvis 1.7 -- the best documented of this disk's three vi "
                  "editors -- displaying DOC/README-CIO.", "final"),
-    "backgammon": ("The OTHER backgammon -- it asks three questions a single "
-                   "key at a time (rules, instructions, colour) and then "
-                   "draws its board frame. The points and the pieces do not "
-                   "arrive on this terminal; `back' is the one that draws a "
-                   "whole board.", "board"),
     "banner":   ("banner, the letters made of their own initials.", "final"),
     "beav":     ("beav, the binary editor, on a file of this disk's own "
                  "documentation: hex on the left, characters on the right.",
@@ -110,8 +105,6 @@ CAPTIONS = {
                  "writing roff input.", "final"),
     "suicide":  ("An animation: a stick figure walks off a rooftop.",
                  "final"),
-    "teachgammon": ("The backgammon tutor, which explains the rules and then "
-                    "plays a practice game against you.", "final"),
     "tess":     ("Beyond The Tesseract, a text adventure of its own.",
                  "final"),
     "textb":    ("The Mandelbrot set in ASCII: it asks for a centre, a range "

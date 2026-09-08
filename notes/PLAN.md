@@ -356,6 +356,14 @@ dispatching session applies them, regenerates, audits and commits.
    modifier, `$VAR`, an `echo` -- write an `os9` line and run the verifier
    again until the shell runs it.  Where a program cannot be run at
    Microware's shell at all, say so in the caption in one plain clause.
+   For a sheet of full-screen editors, run `os9try' only on the
+   NON-INTERACTIVE stanzas (a filter, a byte-patcher, a recovery tool):
+   the editors spell the same at both shells and each either exits on its
+   quit keys or spins to the sixty-second timeout, which is fifteen minutes
+   and a huge log for nothing.  A program that paints its whole screen in
+   one burst and never repaints (a game board) gets a `burst' stanza --
+   the paced capture drops most of that burst; `burst' captures it
+   unthrottled.
 4. **Decide what it is**, from what it did: does the index line describe
    this program; is it in the right sub-category; does it need something
    (and does `DOC/DEPENDS` list it); is there a better invocation; is

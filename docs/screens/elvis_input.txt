@@ -21,4 +21,4 @@ Callooh! Callay!
 ~
 ~
 ~
- "/dd/tmp/EDIT/new.txt" [NEW FILE]  1 line, 1 char
+#"tmp/EDIT/new.txt"#[NEW#FILE]##1#line,#1#char#

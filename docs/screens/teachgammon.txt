@@ -1,3 +1,14 @@
    These rules consist of text describing how to play Backgammon
 followed by a tutorial session where you play a practice game
-against the computer.  When using
+against the computer.  When using this program, think carefuly
+before typing, since it reacts as soon as you type something.  In
+addition, the program presents text output, such as these rules,
+in small blocks that will not roll off the top of the screen.
+Frequently, you will see the characters '-->' indicating that the
+program is waiting for you to finish reading, and will continue
+printing when you type a space or newline.  Also, the rules are
+divided into sections, and although you should read them in or-
+der, you can go directly to any of them by typing one of the fol-
+lowing letters:
+(Remember to hit a space or a newline to continue.)
+Error: 000:000 - readc

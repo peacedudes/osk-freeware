@@ -1,5 +1,5 @@
 du DOC/gnuplot
-Disk usage starting from "DOC/gnuplot" on 19126-09-06  03:35:52
+Disk usage starting from "DOC/gnuplot" on 19126-09-08  15:39:46
 
 Directory name                      Bytes    kBytes   Sectors    File #
 --------------                   --------   -------   -------   -------

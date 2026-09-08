@@ -1,9 +1,7 @@
-# try-backlog.txt -- stanzas whose card still has no `try' line, so the
-# card shows the bare program name as what to type.  check_disk.py's
-# `every card says what to type' fails on a stanza that is on neither this
-# list nor a sheet's `try' line, and on a line here whose stanza has one.
-# Fixing a card means writing its `try' line and removing its line here.
-# Rebuilt 2026-09-08 from the sheets; 800 stanzas still without a try line.
+# try-backlog.txt -- stanzas whose card still has no `try' line.
+# check_disk.py's `every card says what to type' gates it; fixing a card
+# means writing its try line and removing its name here.  Rebuilt wholesale
+# from the sheets, so it cannot drift.  736 stanzas remain.
 Ascii2Libr
 EditLibr
 Libr2Ascii
@@ -25,9 +23,6 @@ answer
 ape
 apfel
 aprocs
-ar
-ar2
-arc
 arepdaemon
 argproc_demo
 as0
@@ -82,7 +77,6 @@ cal
 calen
 calender
 casefix
-cat
 cb
 cc1plus
 cc2
@@ -92,7 +86,6 @@ ccheck
 cdiff
 charcnt
 chardef
-chbase
 checkalias
 checkenv
 checkgame
@@ -113,10 +106,6 @@ collect
 colortest
 combine
 compiler
-compr
-compress
-compress_4.0
-compress_rebuilt
 config
 connect
 convert
@@ -131,7 +120,6 @@ cribbage
 cron
 crypto
 ctags
-ctags.elvis
 cursive
 cut
 cuts
@@ -141,7 +129,6 @@ dam
 dback
 dbz
 dclock
-dearc
 delbak
 demerge
 demo
@@ -196,19 +183,9 @@ dvioki
 dvips
 dvitos
 dvitype
-e
-ed
 ediff
 edir
-editor
 elm
-elvis
-elvis_input
-elvprsv
-elvrec
-em
-emacs
-emacs.mm1
 enable
 env
 eo
@@ -223,7 +200,6 @@ exist
 expand
 expire
 expr
-exrecover
 fastcc
 fastmail
 fc
@@ -252,7 +228,6 @@ frm
 fstat
 fstopgm
 fuddle
-funzip
 g
 g3
 game
@@ -298,23 +273,13 @@ grep
 gs33
 gs403
 gshell
-gtar
 gulls
 gulls-invert
-gzip
-gzip020_csl
-gzip020_nocsl
-gzip68k_csl
-gzip68k_nocsl
-gzipcpu32_nocsl
-gzipcpu32k_csl
 hack
 hang
 hc
 head
 hexbin
-hexed
-hexedit
 hinterhalt
 hipstopgm
 hist
@@ -356,10 +321,6 @@ latex
 launch
 lcasep
 lgrep
-lha
-lharc
-lharcs
-liborder
 libsplit
 lispm
 lispmtopgm
@@ -396,21 +357,17 @@ makeinfo
 makelex
 maketexpk
 map
-marc
 maze
 mcvert
 md5
-me
 messages
 mexist
-mg
 mgif
 mille
 mines
 mkdict
 mkdir
 mkindex
-modbuster
 modinfo
 modules
 modules2
@@ -445,7 +402,6 @@ names
 nasa
 nchess
 net
-new_e
 newalias
 newmail
 newshist
@@ -484,7 +440,6 @@ pbmtopi3
 pbmtoptx
 pbmtoxbm
 pbmupc
-pbyte
 pcx
 pdraw
 pep
@@ -617,9 +572,6 @@ scriptmaster
 scsiutil
 sdb
 sddemo
-sed
-sed_1.06
-sedt
 sepwords
 setfont
 setime
@@ -629,7 +581,6 @@ setterm
 setup-image
 setyear
 sh
-shar
 shdev
 showpic
 shuffle
@@ -682,7 +633,6 @@ tabs
 tac
 tail
 tangle
-tar
 tcmp
 tet
 tex
@@ -715,7 +665,6 @@ ub68kdemo
 udate
 ularn
 uld
-umacs
 umusek
 undel
 unexpand
@@ -723,12 +672,10 @@ unifdef
 unip
 uniq
 unp
-unpacklib
 unpacklib.os9
 unsit
 unstr
 unsubscribe
-unzip
 upperdir
 uucico
 uuclean
@@ -746,13 +693,7 @@ valspeak
 vc
 version
 vftovp
-vi
 vi-recovery
-vi.elvis
-vi_1.0
-vi_cio
-vi_nocio
-view
 virmf
 virtex
 vis
@@ -796,10 +737,4 @@ yuv
 yuvsplittoppm
 z
 zeisstopnm
-zip
-zipinfo
-zipnote
-zipsplit
-zoo
-zoo_2.1
 zot

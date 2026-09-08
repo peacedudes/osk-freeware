@@ -1,3 +1,10 @@
-ctags.elvis about.c
-$ head -n 8 tags
-main    about.c /^main(argc, argv)$/
+ctags.elvis exrecover.c
+$ cat tags | head -n 8
+while   exrecover.c     /^      while (H.Flines > 0) {$/
+error   exrecover.c     /^error(str, inf)$/
+qucmp   exrecover.c     /^int  qucmp () ;$/
+enter   exrecover.c     /^enter(fp, fname, count)$/
+qucmp   exrecover.c     /^qucmp(p1, p2)$/
+findtmp exrecover.c     /^findtmp(dir)$/
+searchdir       exrecover.c     /^searchdir(dirname)$/
+yeah    exrecover.c     /^yeah(name)$/

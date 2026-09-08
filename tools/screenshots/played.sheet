@@ -242,3 +242,32 @@ try     piano 40 4 4
 run     piano 40 4 4
 wait    2
 snap
+
+shot    backgammon
+size    30 80
+burst
+cap     Backgammon against the computer.  It asks whether you want the rules
+cap     and the instructions, then which colour to take, and draws the board
+cap     -- the points numbered 1 to 24, the bar down the middle, your men as
+cap     `w' and the computer's as `r' -- then prompts for each move.
+try     backgammon
+run     export TERM=vt100
+run     clear
+run     backgammon
+send    n\r
+send    n\r
+send    w\r
+
+shot    teachgammon
+size    40 80
+burst
+cap     A backgammon tutor: it sets out the rules a screen at a time, then
+cap     plays a practice game with you, a move at a time, explaining as it
+cap     goes.  RETURN steps through the lessons.
+try     teachgammon
+run     export TERM=vt100
+run     clear
+run     teachgammon
+send    \r
+send    \r
+send    \r

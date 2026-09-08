@@ -1,4 +1,5 @@
 dearc m.arc
-motd
-Overwrite file (y/n)? chksum motd /dd/motd
-Overwrite file (y/n)?
+orig
+WARNING: File fails CRC check
+$ ls
+m.arc  orig

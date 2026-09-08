@@ -63,7 +63,7 @@ head|First lines of a file. This GNU build wants `head -n 20 file' -- the older 
 tac|Prints a file backwards, last line first -- cat's mirror image. Needs cio.
 as0|Assemble the sample that ships with it: `as0 /dd/DOC/xasm/sample.a0 - l s' -- the options come after a lone `-', `l' for the listing and `s' for the symbol table. There is a sample for each of the six (sample.a0, .a1, .a4, .a5, .a09, .a11) and each is written for its own processor: as09 rejects the 6800 one, correctly. as11 is the one that takes its options without the `-'. None of these is a 68000 assembler.
 oleo|GNU Oleo. It stops with an illegal instruction before drawing a cell; sc is the spreadsheet that runs.
-booz|Extracts and lists zoo archives. `booz -l file.zoo' to look, `booz -x' to extract. fiz repairs a zoo archive that will not open.
+booz|Lists and extracts zoo archives: `booz l file.zoo' lists with a bare letter, `booz x' extracts. fiz repairs a zoo archive that will not open.
 funzip|Unzips from a pipe rather than a file: `funzip < thing.zip > thing'. For a normal archive use unzip; zipinfo lists what is inside one.
 gs403|Aladdin Ghostscript 4.03. Point GS_LIB at its library first -- in bash that is `export GS_LIB=/dd/LIB/gs403`, NOT `setenv`, which is the OS-9 shell's command and gets "setenv: command not found" here. Then `gs403 -q -dNOPAUSE -sDEVICE=nullpage <file>.ps` reads the file and gives you its GS> prompt. Everything it needs, fonts included, is in that directory. gs403 is the complete build; gs33 is the older one.
 hexbin|Decodes Macintosh BinHex (.hqx) files, which is how Mac software travelled by mail and BBS. binhex goes the other way; unsit opens StuffIt archives and macunpack opens PackIt ones. All trap-free. DOC/macutils has the package readme.

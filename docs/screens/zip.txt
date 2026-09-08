@@ -1,12 +1,7 @@
-zip tmp/ARC/zt/test.zip tmp/ARC/zt/motd
-adding tmp/ARC/zt/motd (stored 0%)
-zip warning: new zip file left as: tmp/ARC/zt/_Z000003
+zip test.zip motd
+adding motd (stored 0%)
+zip warning: new zip file left as: _Z000003
 zip error: file not found
 zip error: Could not create output file (was replacing the original zip file)
-$ dir tmp/ARC/zt
-
-Directory of "tmp/ARC/zt" 02:39:22  09/06/126
-
-_Z000003        motd
-
-Total of 2 files.
+$ ls
+_Z000003  motd

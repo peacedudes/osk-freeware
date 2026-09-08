@@ -143,8 +143,7 @@ cap     16-bit counter that ships with it in DOC/logisim, counting up from
 cap     the top row; the other sample there is a master-slave flip-flop
 cap     whose input you set at a prompt.  Esc stops the run.  PORT must
 cap     name your terminal, because it reopens the keyboard through that
-cap     path.  The node names down the left and its prompts come out with
-cap     every second letter missing.
+cap     path.
 try     logisim DOC/logisim/counter.lsi
 os9     setenv PORT /term; logisim DOC/logisim/counter.lsi
 run     export PORT=/term

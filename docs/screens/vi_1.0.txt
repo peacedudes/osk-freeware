@@ -21,4 +21,4 @@ All mimsy were the borogoves,
 ~
 ~
 ~
-"/dd/tmp/EDIT/jabber.txt" 4 lines, 137 characters
+"tmp/EDIT/jabber.txt" 4 lines, 137 characters

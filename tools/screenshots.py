@@ -51,6 +51,13 @@ Sheet format (blank lines and `#' comments ignored):
                                    Omit it when the `try' line is the same
                                    at both shells.  Verify it with
                                    tools/os9try.py before writing it down
+    burst                          capture this stanza UNTHROTTLED -- for a
+                                   program that paints its screen in one
+                                   burst and never repaints (backgammon's
+                                   board), where the paced pty drops most of
+                                   it.  `run'/`send' lines become the shell
+                                   proc and the program's standard input;
+                                   answer prompts with `send'
     fold                           fold a run of identical lines into one
                                    and a count -- for a program that floods
                                    one line; off by default, because ASCII
@@ -165,7 +172,7 @@ def parse(path):
         rest = rest.strip()
         if word == "shot":
             cur = {"name": rest, "cap": [], "for": [], "acts": [],
-                   "try": None, "os9": None, "fold": False,
+                   "try": None, "os9": None, "fold": False, "burst": False,
                    "rate": rate, "size": size, "quit": None, "sheet": path}
             shots.append(cur)
             continue
@@ -197,6 +204,13 @@ def parse(path):
             cur["os9"] = rest
         elif word == "fold":
             cur["fold"] = True
+        elif word == "burst":
+            # Capture this stanza unthrottled (see capture_burst).  For a
+            # program that paints its whole screen in one burst and never
+            # repaints -- backgammon's board -- the paced pty drops most of
+            # the burst through its FIFO, so only the frame survives; an
+            # unthrottled run delivers the lot.
+            cur["burst"] = True
         elif word == "run":
             cur["acts"].append(("run", rest))
         elif word == "kill":
@@ -558,6 +572,73 @@ def check_names(shots):
         seen[key] = shot["name"]
 
 
+
+def capture_burst(image, shot):
+    """Capture one stanza with the emulator UNTHROTTLED, for a draw-once
+    full-screen program the paced pty cannot deliver whole.
+
+    Runs under Microware's own shell (the reader's OS-9, mounted as /h1 from
+    OS9SDK) on a CR-only procedure file, with `-r' so pacing is off and the
+    program's one burst of screen output arrives intact.  The stanza's `run'
+    lines after the last `clear' are the commands; its `send' lines become
+    the program's standard input, one per CR-terminated piece.  The raw
+    terminal stream is rendered into the grid.
+    """
+    import tempfile
+    rows, cols = shot["size"]
+    sdk = os.environ.get("OS9SDK")
+    if not sdk:
+        # No reader-OS-9 to run the unthrottled shell: leave a blank grid
+        # rather than a wrong one; the shoot log's low ink flags it.
+        return ansiscreen.render(b"", rows, cols), False
+    runs = [v for k, v in shot["acts"] if k == "run"]
+    while "clear" in runs:
+        runs = runs[runs.index("clear") + 1:]
+    cmds = []
+    for r in runs:
+        r = r.strip()
+        if not r or r == "clear":
+            continue
+        m = re.match(r"^(?:builtin\s+)?cd\s+(\S+)", r)
+        if m:
+            cmds.append("chd " + m.group(1))
+        elif r.startswith("export "):
+            continue                            # env is set below, Microware-style
+        else:
+            cmds.append(r)
+    stdin = []
+    for kind, val in shot["acts"]:
+        if kind == "send":
+            for piece in val.split("\r"):
+                if piece != "" and all(ord(c) >= 32 for c in piece):
+                    stdin.append(piece)
+    env = ("setenv TERM vt100",
+           "setenv TERMCAP /dd/SYS/termcap",
+           "setenv PORT /term",
+           "setenv PATH /dd/CMDS:/dd/CMDS/GAMES:/dd/CMDS/NETPBM:/dd/CMDS/UUCP:"
+           "/dd/CMDS/TEXCMDS:/dd/CMDS/ELM:/dd/CMDS/COMMS:/dd/CMDS/NETWORK:"
+           "/dd/CMDS/NEWS:/dd/CMDS/WN:/dd/CMDS/ADL:/dd/CMDS/REBUILT:"
+           "/dd/CMDS/DEMOS:/dd/CMDS/DHRY:/dd/CMDS/GCC139:/h1/CMDS",
+           "chx /dd/CMDS", "chd /dd")
+    lines = ["-nx"] + list(env) + cmds + stdin
+    scratch = tempfile.mkdtemp(prefix="burst.")
+    proc = os.path.join(scratch, "b.proc")
+    open(proc, "wb").write(("\r".join(lines) + "\r").encode("latin-1", "replace"))
+    envd = dict(os.environ, OS9DISK=image, OS9H0=image, OS9H1=sdk,
+                OS9H6=scratch)
+    try:
+        out = subprocess.run([OS9EXEC, "-r", "/h1/CMDS/shell", "/h6/b.proc"],
+                             stdin=subprocess.DEVNULL, stdout=subprocess.PIPE,
+                             stderr=subprocess.STDOUT, env=envd, timeout=90)
+        raw = out.stdout
+    except subprocess.TimeoutExpired as e:
+        raw = e.stdout or b""
+    i = raw.find(b"\x1b")
+    if i > 0:
+        raw = raw[i:]
+    return ansiscreen.render(raw, rows, cols), False
+
+
 def run_sheet(path, image, only=None):
     shots = parse(path)
     # check_names guards the WHOLE sheet, not just the subset -- a case
@@ -570,10 +651,28 @@ def run_sheet(path, image, only=None):
     os.makedirs(CAPS, exist_ok=True)
     print("== %s: %d shots" % (os.path.basename(path), len(shots)),
           flush=True)
-    # One session per window size: the size is fixed when the pty is opened.
     done = 0
-    for size in sorted({s["size"] for s in shots}):
-        group = [s for s in shots if s["size"] == size]
+
+    def save(shot, scr, died):
+        out = os.path.join(CAPS, "%s.shot.txt" % shot["name"])
+        open(out, "w").write(scr.text() + "\n")
+        open(out[:-4] + ".hash", "w").write(stanza_hash(shot))
+        print("   %-16s ink=%-5d %s"
+              % (shot["name"], ink(scr),
+                 "TOOK THE EMULATOR DOWN WITH IT" if died
+                 else "" if ink(scr) >= 20 else "<-- LOOK AT THIS ONE"),
+              flush=True)
+
+    # Draw-once full-screen stanzas, unthrottled and each on its own emulator.
+    burst = [s for s in shots if s.get("burst")]
+    for shot in burst:
+        scr, died = capture_burst(image, shot)
+        save(shot, scr, died)
+        done += 1
+
+    # Everything else: one paced pty session per window size.
+    for size in sorted({s["size"] for s in shots if not s.get("burst")}):
+        group = [s for s in shots if s["size"] == size and not s.get("burst")]
         sess = Session(image, size[0], size[1])
         try:
             for shot in group:

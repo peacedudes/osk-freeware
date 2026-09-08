@@ -94,7 +94,7 @@
 |---|---|
 | `beav` | BEAV 1.40 -- Binary Editor And Viewer (needs TERM)<br>**How:** Full-screen binary editor: `beav <file>'. Control-C leaves it. |
 | `hexed` | a hex editor made of your text editor: it writes the file out as a hex dump, opens that in the editor `-e=' names (default vi), and writes the file back when you leave. `-t=<dir>' says where the dump goes; without it, /r0 [no military use -- EFFO-INFO]<br>**How:** `hexed -t=<dir> -e=<editor> <file>': the file goes out as a hex dump into <dir>, the editor opens it, and leaving the editor writes the file back. Without -t it uses /r0. |
-| `hexedit` | HEXPERT V2.4 by Dominic Alston -- `hexedit <file>'.  It reads TERMCAP as the capability string itself, not as the name of a file, so source `. /dd/SYS/termcap.entry' first and it draws its viewer; without that it prints the terminal type and exits.  gnuchess wants the same.  Its -d option is separately broken -- `file not accessible' (214) for a file that is readable.  `beav' is the binary editor that needs nothing, and `hexed' the one that would work if there were a RAM disk.<br>**How:** `hexedit <file>'. Put the termcap entry in TERMCAP first (`. /dd/SYS/termcap.entry') or it will not draw. |
+| `hexedit` | HEXPERT V2.4 -- `hexedit <file>'. It reads TERMCAP as the capability string itself, not as the name of a file, so source `. /dd/SYS/termcap.entry' first and it draws its viewer; without that it prints the terminal type and exits. Its -d option reports `file not accessible' (214) for a file that is readable. beav is the binary editor that needs nothing, and hexed the one that would work if there were a RAM disk.<br>**How:** `hexedit <file>'. Put the termcap entry in TERMCAP first (`. /dd/SYS/termcap.entry') or it will not draw. |
 | `pbyte` | &#9733; patch bytes in a file at a hex offset<br>`Syntax: pbyte <path> <hex_offset> <hex_byte> [<hex_byte>]` |
 
 **emacs family**
@@ -102,10 +102,10 @@
 | | |
 |---|---|
 | `em` | MicroEMACS 3.8b, a screen editor with Emacs keys<br>**How:** A screen editor. It stops with "Environment variable TERM not defined!" unless TERM is set -- SYS/login sets it, so run it from a login shell rather than bare. |
-| `emacs` | &#9733; MicroEmacs 4.00<br>**How:** Full-screen editor, MicroEMACS keys. Control-X control-C quits. Its macros and help are in USR/LIB/EMACS. |
+| `emacs` | &#9733; MicroEMACS 4.00, a full-screen editor with Emacs keys and a macro language; its macros and help are in USR/LIB/EMACS.<br>**How:** Full-screen editor, MicroEMACS keys. Control-X control-C quits. Its macros and help are in USR/LIB/EMACS. |
 | `emacs.mm1` | &#9733; MicroEMACS 4.00 built for the MM/1 -- the same editor as `emacs'<br>**How:** The MM/1 build of `emacs'; the same keys, control-X control-C quits. |
-| `me` | MicroEmacs 3.11 -- ADDED; needs TERM.  (memacs400 `emacs` needs cio)<br>**How:** Full-screen editor, MicroEMACS keys, German messages. Control-X control-C quits. |
-| `mg` | &#9733; MicroGnuEmacs<br>**How:** Full-screen editor, Emacs keys. Control-X control-C quits. |
+| `me` | MicroEMACS 3.11, a screen editor with Emacs keys and German messages (Datei for File); needs TERM set. The memacs 4.00 build shipped as emacs needs cio.<br>**How:** Full-screen editor, MicroEMACS keys, German messages. Control-X control-C quits. |
+| `mg` | &#9733; Mg, a small MicroGnuEmacs -- Emacs keys in 79K, its documentation under DOC/mg.<br>**How:** Full-screen editor, Emacs keys. Control-X control-C quits. |
 | `umacs` | &#9733; uMacs 1.0, MicroEMACS in 45K -- the same keys, no macro language<br>**How:** A small Emacs (uMacs 1.0). Full-screen: it takes the display and shows "== uMacs 1.0 == main ==" at the foot. It needs only TERM set. |
 
 **Line & stream**
@@ -121,17 +121,17 @@
 | | |
 |---|---|
 | `btree` | &#9733; B-tree file handling demonstration and test |
-| `new_e` | SEDT editor, generic terminal -- it picks vt100 or vt220 by TERM.  Needs the same three SYS/sedt.* files as `e' |
+| `new_e` | SEDT editor that reads TERM to choose its terminal setup; here it comes up for a VT100. Needs the same three SYS/sedt.* files as e. |
 | `sedt` | &#9733; SEDT 2.6 screen editor, the VT100 build: a DEC-style keypad editor.  `new_e' and `e' are two more builds of it; all three read SYS/sedt.keys, sedt.ruler0 and sedt.help |
 
 **vi clones**
 
 | | |
 |---|---|
-| `elvis` | Elvis 1.7 -- the best-documented of this disk's three vi editors, and the one with the most options.  Built from the source in CMDS/archives.  Needs TERM and TERMCAP; runs with no program under its other personalities and need elvis present to run. IT ALSO NEEDS A /dd/tmp, and the path is compiled in: on a /dd without that directory it stops before drawing anything with `Can't create temp file... Does directory "/dd/tmp" exist?'.  This disk ships one, so it bites on the machine you copy elvis TO.  Either `makdir /dd/tmp' or, before starting it, `setenv EXINIT "set directory=<a dir you have>"' -- elvis reads EXINIT before creating the temp file.  `vi' has the same compiled-in /dd/tmp; the PVIC builds do not.  DOC/README-VI has the table<br>**How:** A full vi/ex clone. Needs TERM and TERMCAP set -- `SYS/login' does both. `view' opens read-only, REBUILT/vi.elvis is the same program as vi, and all of them exec CMDS/elvis, so it must be present. |
+| `elvis` | Elvis 1.7, a full vi and ex clone -- the best-documented of this disk's three vi editors and the one with the most options, its source in CMDS/archives and its manual under DOC/elvis. Needs TERM and TERMCAP. It also appears as view (read-only) and as REBUILT/vi.elvis, both of which run elvis. It wants a /dd/tmp for its scratch file, a path compiled in: without that directory it stops before drawing, with `Can't create temp file...'. This disk ships one, so it bites only on a /dd you copy it to; `makdir /dd/tmp', or `setenv EXINIT "set directory=<a dir you have>"' before starting it, cures that. DOC/README-VI compares the three.<br>**How:** A full vi/ex clone. Needs TERM and TERMCAP set -- `SYS/login' does both. `view' opens read-only, REBUILT/vi.elvis is the same program as vi, and all of them exec CMDS/elvis, so it must be present. |
 | `elvis_input` | elvis under its `input' personality -- it opens already in insert mode.  The name is load-bearing: elvis's wrapper picks its personality from the LAST LETTER of the name it was invoked by, so a name ending in another letter falls through to plain vi.  CMDS/input is a different program entirely |
 | `elvprsv` | Preserve an elvis session across a crash |
-| `elvrec` | recover an elvis buffer preserved when elvis died.  Run with NO ARGUMENTS it lists what is recoverable -- so its silence here means there is nothing, which is true.  It reads `/usr/preserve/Index', and OS-9 cannot have a /usr at all: a leading /name is a DEVICE, not a directory.  So on this machine it can never find anything, whatever is placed under /dd.  `expreserve' is the half that saves. DOC/elvrec/elvrec.doc.<br>**How:** Bare, it lists what elvis preserved; nothing listed means nothing was preserved. |
+| `elvrec` | Recover an elvis buffer preserved when elvis died. Run with no arguments it lists what is recoverable, so silence means nothing was preserved. It reads /usr/preserve/Index, and OS-9 has no /usr -- a leading /name is a device, not a directory -- so it finds nothing here whatever is placed under /dd. expreserve is the half that saves. DOC/elvrec/elvrec.doc.<br>**How:** Bare, it lists what elvis preserved; nothing listed means nothing was preserved. |
 | `vi.elvis` | elvis 1.7 as vi.  CMDS/vi is the EFFO build and CMDS/vi_nocio is PVic -- three unrelated vi clones |
 | `view` | elvis opened read-only |
 
@@ -645,7 +645,7 @@
 | | |
 |---|---|
 | `compr` | file compressor<br>`Usage: compress [-dfvcV] [-b maxbits] [file ...]` |
-| `compress` | compress/uncompress (LZW) -- ADDED<br>`Usage: compress [-dfvoV] [-b MaxBits] [file ...]` |
+| `compress` | compress and uncompress with Lempel-Ziv-Welch coding<br>`Usage: compress [-dfvoV] [-b MaxBits] [file ...]` |
 | `gzip` | GNU gzip<br>`usage: gzip [-gzipcdfhlLngziptvV19] [-S suffix] [file ...]` |
 
 **Create & extract**
@@ -653,13 +653,14 @@
 | | |
 |---|---|
 | `ar` | archive librarian -- .ar files<br>`Usage:  Ar -<cmd>[<modifier>] [file .. ]` |
+| `ar2` | &#9733; Ar V2.00 -- an archiver, a later edition than the V1.2 included as `ar'.  Both are here; ar is unstarred<br>`Usage:  Ar -<cmd>[<modifier>] archive [file .. ]` |
 | `arc` | ARC 5.21 archive utility<br>`Usage: arc {amufdxerplvtc}[biswnoq][g<password>]` |
 | `cat` | &#9733; concatenate files (S.M. Ryger, 1987) |
 | `dearc` | &#9733; Extract an MS-DOS .ARC archive.  arc and marc handle the OS-9 side<br>`Usage: dearc [p] filename` |
 | `lha` | LHa 2.08 -- create/extract .lzh archives<br>`Syntax: LHa -{axelvudmcp}[qvnfodiszrgc012][w=<dir>] archive_file [file...]` |
 | `lharc` | LHarc archiver<br>`Usage: lharc {axevlufdmctp}[qnftv] archive_file [files or directories...]` |
 | `marc` | MARC, the archive MERGER -- `marc <target> <source> [names]' copies members from one .arc into another<br>`Usage: MARC <tgtarc> <srcarc> [<filename> . . .]` |
-| `shar` | Shell-archive creator, and ONE BROKEN CHECK is all that stops it: its read-access test rejects every file that EXISTS -- `No read access for file: <name>' on its own standard output, for world-readable files that `cat' reads, absolute or relative, with -a or without.  Hand it a name that is NOT there and the check passes vacuously: it writes the whole shell-archive preamble, cut line and all, and only then fails at open.  For making an archive here, use `tar', `zoo' or `lha'. |
+| `shar` | Shell-archive creator, and one faulty check is all that stops it: its read-access test rejects every file that exists -- `No read access for file: <name>' on its own standard output, for world-readable files that `cat' reads, absolute or relative, with -a or without. Hand it a name that is not there and the check passes vacuously: it writes the whole shell-archive preamble, cut line and all, and only then fails at open. For making an archive here, use `tar', `zoo' or `lha'. |
 | `tar` | GNU tar 1.10<br>`Syntax : tar [ctx][mfv] tarfile [file(s)...]` |
 | `unzip` | &#9733; Info-ZIP unzip -- reads zips made elsewhere; DOC/zip/sample.zip is one to try it on.  `zoo', `tar' and `gzip' are the archivers on this disk<br>`Usage: unzip [ -options[modifiers] ] file[.zip] [filespec...]` |
 | `zip` | Info-ZIP zip 1.9.  It deflates correctly, writes a temporary file (_Z000003), then cannot rename it over the target and reports `zip error: Could not create output file', in /dd/tmp and in /dd alike.  `zoo', `tar' and `gzip' round-trip exactly. |
@@ -671,8 +672,7 @@
 
 | | |
 |---|---|
-| `ar2` | &#9733; Ar V2.00 -- an archiver, a later edition than the V1.2 included as `ar'.  Both are here; ar is unstarred<br>`Usage:  Ar -<cmd>[<modifier>] archive [file .. ]` |
-| `liborder` | &#9733; order the modules in an OS-9 library -- give it one. On /dd/LIB/alib.l and the other libraries here it works. Handed a plain file instead it reads a length from what it takes to be a ROF header and asks for that many bytes, which floods `No more memory !!!'.<br>`Usage: liborder <options> file1.r file2.r ...` |
+| `liborder` | &#9733; order the modules in an OS-9 library -- give it one. On alib.l and the other libraries here it works. Handed a plain file instead it reads a length from what it takes to be a relocatable-object header and asks for that many bytes, which floods `No more memory !!!'.<br>`Usage: liborder <options> file1.r file2.r ...` |
 | `modbuster` | Split merged OS-9 module files<br>**How:** Give it a file holding SEVERAL modules and it writes one file per module in the CURRENT directory. Use ksh to put yourself somewhere writable first. `/dd/CMDS/GAMES/cyberwar' looks like a candidate but modbuster hangs on it with no output at all; a single ordinary module (`/dd/CMDS/today') shows it working. |
 | `unpacklib` | &#9733; split an OS-9 library into its modules<br>`Usage: unpacklib <options> file1.l file2.l ...` |
 
@@ -687,7 +687,7 @@
 
 | | |
 |---|---|
-| `booz` | &#9733; Extract or list a zoo archive.  Public domain, Rahul Dhesi<br>**How:** Extracts and lists zoo archives. `booz -l file.zoo' to look, `booz -x' to extract. fiz repairs a zoo archive that will not open. |
+| `booz` | &#9733; Extract or list a zoo archive.  Public domain, Rahul Dhesi<br>**How:** Lists and extracts zoo archives: `booz l file.zoo' lists with a bare letter, `booz x' extracts. fiz repairs a zoo archive that will not open. |
 | `fiz` | &#9733; Repair a damaged zoo archive.  Public domain<br>`Usage:  fiz archive[.zoo]  ("fiz -h" for help)` |
 
 </details>
@@ -1469,7 +1469,7 @@
 | `deton` | &#9733; time out an I/O read using an alarm: `deton [seconds]', an example rather than a tool.  For converting tabs, see `detab' and `expand'<br>`syntax: deton [seconds]` |
 | `devprc` | show which device each process holds a path to: `-a' walks every process and lists its open paths and the device behind each.  `top' prints its headings and then crashes -- its own bug, not the system: it asks F$GPrDsc about the root process's parent (process 0), does not check the "no such process" it correctly gets back, and reads an unfilled buffer.  aprocs and sysmon read the same state and run. |
 | `dload` | &#9733; load a data file into a data module: `dload <filename>'. Nothing to do with serial downloads -- `sbreak' and `break' are the serial-line examples here<br>`Syntax: dload <filename>` |
-| `e` | SEDT screen editor, the small VT220 build.  Reads SYS/sedt.keys, sedt.ruler0 and sedt.help, which ship |
+| `e` | SEDT screen editor, a small fixed VT100 build. Reads SYS/sedt.keys, sedt.ruler0 and sedt.help, the same three sedt and new_e read. |
 | `expreserve` | &#9733; vi's crash-recovery helper: preserves an edit buffer when the editor dies.  Like ksh it reads the terminal asking for more bytes than you type (388), so it depends on the same emulator behaviour -- see DOC/README-KSH<br>**How:** Saves a vi buffer when the editor or the line dies; vi runs it for you rather than you running it. |
 | `exrecover` | &#9733; recover a vi buffer that expreserve saved<br>**How:** Recovers what expreserve saved. Again, vi's helper rather than a command you start. |
 | `fastcc` | &#9733; a faster front end for cc |
