@@ -44,17 +44,42 @@ ATerm AtoB BtoA FStat UnMacpack PrintCards PrintLabels EditLibr Librarian
 Ascii2Libr Libr2Ascii X11R6shl SEDT PVIC PVic GSHELL MSHELL WORLD ADVENT
 ZORK Infocom ZIP CANON HP HPGL LJ LJ2 QMS PS LN03 LN03+ NEC OKI
 ID PID GID UID CIO CSL MATH FPU040 CIO020 CSL020 MATH881
+SDK GPL KA9Q OSKNET CGI USENET MM/1 CPU32 SLIP PK144 PK300 SIR YUV
+UUCPbb LZH DVI TeX RTF/68K RTF ATP GNU_ATP_1_40 I-CODE OS9DISK OS9H0
+SOURCES CDEF CLIB K5JB AX.25 ZMODEM XMODEM YMODEM NAME=value
 ABC ISO DIN UTC GMT AM PM
 """.split())
 
-WORD = re.compile(r"[A-Z][A-Z0-9'/+.-]*[A-Z0-9]")
+# A run of capitals that is a whole word: not the `XM' of XModem, not the
+# `XPK' of MakeTeXPK, not the `HC11' of 68HC11.
+WORD = re.compile(r"(?<![A-Za-z0-9])[A-Z][A-Z0-9'/+.-]*[A-Z0-9](?![a-z])")
+
+
+def disk_names():
+    """Every file and directory name on the disk, as spelt: CMDS, DOC,
+    README-CIO, GAMES/adv -- a path in capitals is a name, not a shout."""
+    names = set()
+    root = os.path.join(REPO, "disk")
+    for here, dirs, files in os.walk(root):
+        for n in dirs + files:
+            names.add(n)
+    return names
+
+
+ON_DISK = None
 
 
 def shouting(text):
+    global ON_DISK
+    if ON_DISK is None:
+        ON_DISK = disk_names()
     out = []
     for m in WORD.finditer(text):
         w = m.group(0).rstrip(".")
         if len(w) < 2 or w in NAMES or w.rstrip("S") in NAMES:
+            continue
+        # A path, or a name the disk spells that way.
+        if "/" in w or w in ON_DISK or w.rstrip("S") in ON_DISK:
             continue
         # A word of digits and one letter -- 68K, 3B1 -- is a name, not a shout.
         if sum(c.isalpha() for c in w) < 2:
