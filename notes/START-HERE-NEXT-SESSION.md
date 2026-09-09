@@ -1,5 +1,19 @@
 # Start here, next session
 
+## NEXT: re-card every program to a higher bar -- `notes/PLAN-recard.md`
+
+The first all-card sweep gave every card a `try' line and a fresh capture but
+was too uniform: spot-checks found a truncated gothic and a roff card whose
+"help" is a mechanical scrape that stops at `Options:' with the options cut
+off.  **`notes/PLAN-recard.md' is the plan for the next attempt: visit every
+card again, one at a time, fix the help field to show each program's real
+complete `-?' output, and correct the descriptions -- text tools, text
+filters, communications and graphics first (their descriptions were never
+improved).  Read that file; it is self-contained.**
+
+---
+
+
 ## The all-card sweep is DONE (2026-09-09)
 
 Every program card (~900) was reviewed one at a time and carries a `try'
