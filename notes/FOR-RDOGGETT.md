@@ -2,8 +2,49 @@
 
 Only what is waiting on a decision of yours. Everything done, and why, is in
 git history and `notes/START-HERE-NEXT-SESSION.md`; this file carries none
-of it. Updated 2026-09-08.
+of it. Updated 2026-09-09.
 
+
+
+## The all-card sweep is COMPLETE (2026-09-09)
+
+Every one of the ~900 program cards has been read one at a time and now
+carries a `try' line saying what to type -- the try-line backlog is zero and
+`check_disk.py' is green. All twenty gallery sheets are done: amusements,
+toys, maths, documentation, languages, the play-tested set, gothic, editors,
+archives, files, developer tools, games, compilers, communications, graphics,
+shells, time & calendar, encoding, disk & DOS, system & modules, printing,
+text tools, TeX, text filters, and the three netpbm sheets.  Captions were
+rewritten for a stranger, author names and shouting taken out of the
+reader-facing text, and every capture freshly shot.  805 of 911 runnable
+programs show a panel doing their own job; the rest are honest exceptions in
+`tools/panel-exceptions.psv', each with a reason (hardware a program needs, a
+one-line result too sparse to score, a file-only converter shown by its
+round-trip, a draw-once screen).
+
+**Two loose ends, both non-blocking:**
+
+- **DOC/INDEX de-shouting for four categories.** The per-card captions are
+  clean, but the underlying `DOC/INDEX' one-liners for communications,
+  graphics, text tools and text filters still carry some ALL-CAPS emphasis:
+  the subagents on those four hit the account session limit (or stalled)
+  before writing their index edits. The cards read fine; this is the
+  underlying data. `tools/audit_caps.py --show INDEX' lists them.
+
+- **Best-forgotten candidates, consolidated** (each has an honest card as far
+  as it goes; removing any is your call):
+  - Needs a display os9exec has none of: `cyberwar', `puzzle',
+    `scriptmaster', `colortest', `dclock' (G-Windows); `apfel', `g',
+    `showpic', `sine', `striche', `graphdemo', `graphsave' (the Graph
+    library); `umusek', `pacman' (a TeleVideo terminal).
+  - Needs hardware/peer it cannot have: `splman', `lpsched' (a printer);
+    the RTF Fortran drivers `for', `lnk', `lnk.org' (`rtf' is the working
+    program of that set); `oleo' (aborts on real Microware hardware too --
+    `sc' serves the spreadsheet need).
+  - Broken or brittle here: `dedit' (spins for want of `tmode', and writes
+    raw sectors -- do not run unsupervised); `names' (prints garbage and
+    never terminates -- `modinfo' does its job); `piano' (drives a tone
+    generator, stops at `tuning - sorry'); `rstory2', `ff', `creadoc'.
 
 ## The all-card sweep is under way -- four decisions waiting (2026-09-08)
 

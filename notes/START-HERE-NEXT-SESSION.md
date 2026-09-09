@@ -1,5 +1,24 @@
 # Start here, next session
 
+## The all-card sweep is DONE (2026-09-09)
+
+Every program card (~900) was reviewed one at a time and carries a `try'
+line; the try-line backlog is zero and every `check_disk.py' check is green.
+All twenty gallery sheets swept, captions rewritten for a stranger, author
+names and ALL-CAPS out of the reader-facing text, captures freshly shot.
+The machinery built for it: line-folding is opt-in (`fold'), cards carry a
+`try' line (gated) and an `os9' line where Microware's shell differs
+(verified by `tools/os9try.py'), draw-once full-screen programs are captured
+unthrottled (`burst'), and the web page has a bash / OS-9 shell switch, a
+keep preview, more contrast and no capitals.  logisim's label bug was fixed
+at its source and rebuilt.  What is left is polish, not sweep: see
+`notes/FOR-RDOGGETT.md' (DOC/INDEX de-shouting for four categories whose
+agents hit the session limit, and the best-forgotten candidates).
+
+---
+
+
+
 Branch `release-pass-2026-08-21`, never pushed. Tree clean, every
 `check_disk.py` check green (read the list the tool prints, do not trust a
 number), `osk-freeware.dd` current.
