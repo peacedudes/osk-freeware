@@ -205,7 +205,7 @@
 | `lout` | Lout 2.05 document formatter<br>`usage: -o<filename>` |
 | `nroff` | nroff text formatter.  Built `-qm' from SRC/nroff, it formats: given a man page it sets the text and names the macros it does not know (`unrecognized command .TH'), which is a plain nroff without the man package rather than a fault. DOC/README-CIO<br>**How:** Formats a text with nroff requests: `nroff file.ms'. Its macro sets are in LIB (tmac.*). Point TMACDIR at LIB if a macro package is not found. |
 | `proff` | proff - portable roff text formatter (macros in LIB/proff). Given a text file it justifies it to a measure, and takes page ranges and a statistics option.  `roff' works too; `nroff' wants a real macro package and answers `illegal switch' to -?<br>`usage: proff [+n] [-n] [-v] [-ifile] [-s] [-pon] [infile [outfile]]` |
-| `roff` | roff text formatter: `roff -?' gives its syntax and page-range options.<br>`Syntax: roff {[+00] [-00] [-s] -[h] file}` |
+| `roff` | a text formatter in the nroff line: it reads text with dot-commands at the start of a line and fills, justifies and paginates it.  `.ce' centres, `.sp' spaces, `.fi'/ `.nf' turn filling on and off, `.ad'/`.na' the right justify, `.in'/`.ti'/`.ll' set the margins and measure, `.he'/`.fo' add a running header and footer with the page number, `.sh' numbers headings.  nroff and proff are the same idea; DOC/roff has the full request list.<br>`Syntax: roff {[+00] [-00] [-s] -[h] file}` |
 | `tformat` | text formatter (SNOBOL4-in-C)<br>`Usage: tformat [width\|-?] [<infile] [>outfile]` |
 
 **Fortune & sayings**
