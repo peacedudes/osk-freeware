@@ -1,2 +1,2 @@
 $ msformat a:
-msformat: Non-removable media is not supported (You must tell the complete geom
+msformat: Non-removable media is not supported (You must tell the complete geometry of the disk, either in /etc/mtools or on the command line)

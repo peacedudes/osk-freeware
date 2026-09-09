@@ -4,6 +4,8 @@
 shot    btoa
 cap     Encodes a file as printable text, five characters for every four
 cap     bytes, with a checksum on the last line -- denser than uuencode.
+try     cat tmp/ENC/j.txt; btoa < tmp/ENC/j.txt
+os9     cat tmp/ENC/j.txt; btoa <tmp/ENC/j.txt
 run     mkdir -p /dd/tmp/ENC > /nil 2>/nil; printf "Twas brillig, and the slithy toves\r" > /dd/tmp/ENC/j.txt
 wait    2
 run     builtin cd /dd
@@ -17,6 +19,8 @@ wait    5
 
 shot    atob
 cap     Decodes what btoa encoded: the text comes back exactly.
+try     cat tmp/ENC/j.btoa; atob < tmp/ENC/j.btoa
+os9     cat tmp/ENC/j.btoa; atob <tmp/ENC/j.btoa
 run     mkdir -p /dd/tmp/ENC > /nil 2>/nil; printf "Twas brillig, and the slithy toves\r" > /dd/tmp/ENC/j.txt; btoa < /dd/tmp/ENC/j.txt > /dd/tmp/ENC/j.btoa
 wait    3
 run     builtin cd /dd
@@ -32,6 +36,7 @@ shot    uuencode
 cap     Wraps a file as printable text, the way binaries crossed mail and
 cap     news before attachments: a begin line with the file's mode and
 cap     name, the data, an end line.
+try     uuencode tmp/ENC/j.txt
 run     mkdir -p /dd/tmp/ENC > /nil 2>/nil; printf "Twas brillig, and the slithy toves\r" > /dd/tmp/ENC/j.txt
 wait    2
 run     builtin cd /dd
@@ -44,6 +49,7 @@ wait    5
 shot    uudecode
 cap     Undoes uuencode: the file named on the begin line is written back
 cap     into the current directory.
+try     cat j.uue; uudecode j.uue; ls; cat j.txt
 run     rm -rf /dd/tmp/ENC/dec > /nil 2>/nil; mkdir -p /dd/tmp/ENC/dec; printf "Twas brillig, and the slithy toves\r" > /dd/tmp/ENC/j.txt
 run     builtin cd /dd/tmp/ENC; uuencode j.txt > dec/j.uue
 run     builtin cd /dd/tmp/ENC/dec
@@ -60,20 +66,31 @@ run     cat j.txt
 wait    4
 
 shot    uuexpand
-cap     Pads a uuencoded file's lines out to a fixed width, for a link
-cap     that strips trailing spaces; uuunexpand takes them back.  It is
-cap     not a decoder -- uudecode is.
-run     mkdir -p /dd/tmp/ENC > /nil 2>/nil; printf "Twas brillig, and the slithy toves\r" > /dd/tmp/ENC/j.txt; uuencode /dd/tmp/ENC/j.txt > /dd/tmp/ENC/j.uue
-wait    3
+cap     Expands a file into a run of `0' and `1' characters, one for each
+cap     bit -- despite the shared prefix, unrelated to uuencode.  It is
+cap     meant to move a file between machines with different byte or
+cap     character sizes; uuexpand -u reverses it, and the checksums here
+cap     match.
+try     uuexpand < tmp/ENC/j.txt > tmp/ENC/j.exp; cat tmp/ENC/j.exp; uuexpand -u < tmp/ENC/j.exp > tmp/ENC/j.back; chksum tmp/ENC/j.txt tmp/ENC/j.back
+os9     uuexpand <tmp/ENC/j.txt >tmp/ENC/j.exp; cat tmp/ENC/j.exp; uuexpand -u <tmp/ENC/j.exp >tmp/ENC/j.back; chksum tmp/ENC/j.txt tmp/ENC/j.back
+run     mkdir -p /dd/tmp/ENC > /nil 2>/nil; printf "Twas brillig, and the slithy toves\r" > /dd/tmp/ENC/j.txt
+wait    2
 run     builtin cd /dd
 wait    1
 run     clear
 wait    1
-run     uuexpand < tmp/ENC/j.uue
-wait    5
+run     uuexpand < tmp/ENC/j.txt > tmp/ENC/j.exp
+wait    3
+run     cat tmp/ENC/j.exp
+wait    3
+run     uuexpand -u < tmp/ENC/j.exp > tmp/ENC/j.back
+wait    3
+run     chksum tmp/ENC/j.txt tmp/ENC/j.back
+wait    4
 
 shot    checksum
 cap     A 16-bit checksum of a file.
+try     checksum tmp/ENC/j.txt
 run     mkdir -p /dd/tmp/ENC > /nil 2>/nil; printf "Twas brillig, and the slithy toves\r" > /dd/tmp/ENC/j.txt
 wait    2
 run     builtin cd /dd
@@ -85,6 +102,7 @@ wait    4
 
 shot    chksum
 cap     The checksum of two of the disk's own files.
+try     chksum tmp/ENC/j.txt SYS/motd
 run     mkdir -p /dd/tmp/ENC > /nil 2>/nil; printf "Twas brillig, and the slithy toves\r" > /dd/tmp/ENC/j.txt
 wait    2
 run     builtin cd /dd
@@ -96,6 +114,7 @@ wait    4
 
 shot    md5
 cap     MD5 digests of three files on the disk.
+try     md5 SYS/motd SYS/password DOC/INDEX
 run     builtin cd /dd
 wait    1
 run     clear
@@ -108,6 +127,7 @@ cap     An assistant for solving cryptograms: it takes a substitution
 cap     cipher text and lets you try letter assignments and see the
 cap     result.  These are its options; its interactive commands are
 cap     listed by -i.
+try     crypto -h
 run     crypto -h
 wait    6
 
@@ -116,6 +136,7 @@ cap     DES file encryption.  It asks for the key twice, writes the result
 cap     as the file's name with .n on the end, and removes the original:
 cap     35 bytes in, 40 out.  Run over its own output with the same key
 cap     it does not restore the original.
+try     des tmp/ENC/d.txt; ls -l tmp/ENC/d.txt.n
 run     mkdir -p /dd/tmp/ENC > /nil 2>/nil; rm -f /dd/tmp/ENC/d.txt.n; printf "Twas brillig, and the slithy toves\r" > /dd/tmp/ENC/d.txt
 wait    3
 run     builtin cd /dd
@@ -136,6 +157,7 @@ wait    4
 shot    xcrypt
 cap     A simple file cipher with a key, and it round-trips: encrypt,
 cap     decrypt, and the checksums match.
+try     xcrypt -k=freeware tmp/ENC/x.txt tmp/ENC/x.enc; xcrypt -k=freeware tmp/ENC/x.enc tmp/ENC/x.dec; chksum tmp/ENC/x.txt tmp/ENC/x.dec
 run     mkdir -p /dd/tmp/ENC > /nil 2>/nil; printf "Twas brillig, and the slithy toves\r" > /dd/tmp/ENC/x.txt
 wait    2
 run     builtin cd /dd
@@ -154,6 +176,7 @@ cap     Meant to turn OS-9 line endings into DOS ones in place.  It
 cap     converts into a temporary file and then cannot rename it back
 cap     over the original, so the file comes out unchanged, as the
 cap     checksums show.  autolf does the job as a filter.
+try     chksum tmp/ENC/le.txt; todos tmp/ENC/le.txt; chksum tmp/ENC/le.txt
 run     mkdir -p /dd/tmp/ENC > /nil 2>/nil; printf "Twas brillig, and the slithy toves\r" > /dd/tmp/ENC/le.txt
 wait    2
 run     builtin cd /dd
@@ -171,6 +194,7 @@ shot    toos9
 cap     The other direction, DOS line endings to OS-9, and the same
 cap     story: the temporary file cannot be renamed over the original,
 cap     so nothing changes.  autolf does the job as a filter.
+try     chksum tmp/ENC/dos.txt; toos9 tmp/ENC/dos.txt; chksum tmp/ENC/dos.txt
 run     mkdir -p /dd/tmp/ENC > /nil 2>/nil; printf "Twas brillig, and the slithy toves\r\n" > /dd/tmp/ENC/dos.txt
 wait    2
 run     builtin cd /dd
@@ -188,6 +212,7 @@ shot    macbin
 cap     Wraps a file in MacBinary, the form a Macintosh file with two
 cap     forks travels in: a 128-byte header naming the file, its type and
 cap     its creator, then the data padded to 128 bytes.
+try     macbin j.txt; ls -l j.txt j.txt.MAC; dump j.txt.MAC
 run     mkdir -p /dd/tmp/ENC > /nil 2>/nil; rm -f /dd/tmp/ENC/j.txt.MAC; printf "Twas brillig, and the slithy toves\r" > /dd/tmp/ENC/j.txt
 run     builtin cd /dd/tmp/ENC
 wait    2
@@ -204,6 +229,7 @@ shot    binhex
 cap     Encodes a MacBinary file as BinHex 4.0, the text form Macintosh
 cap     software was posted in: a banner line, then the file in a
 cap     64-character alphabet between colons.
+try     binhex j.txt.MAC
 run     mkdir -p /dd/tmp/ENC > /nil 2>/nil; rm -f /dd/tmp/ENC/j.txt.MAC; printf "Twas brillig, and the slithy toves\r" > /dd/tmp/ENC/j.txt
 run     builtin cd /dd/tmp/ENC
 run     macbin j.txt
@@ -217,6 +243,7 @@ shot    mcvert
 cap     Converts between MacBinary and BinHex either way: -U makes the
 cap     BinHex for uploading, -D takes it back to MacBinary for
 cap     downloading.  Here a MacBinary file becomes a .hqx.
+try     mcvert -U j.txt.MAC; ls -l j.txt.MAC j.txt01.hqx; cat j.txt01.hqx
 run     mkdir -p /dd/tmp/ENC > /nil 2>/nil; rm -f /dd/tmp/ENC/j.txt.MAC /dd/tmp/ENC/j.txt01.hqx; printf "Twas brillig, and the slithy toves\r" > /dd/tmp/ENC/j.txt
 run     builtin cd /dd/tmp/ENC
 run     macbin j.txt
@@ -233,6 +260,7 @@ wait    4
 shot    hexbin
 cap     Decodes a BinHex file back into the Macintosh file it carried,
 cap     written into the current directory.
+try     hexbin j.txt01.hqx; ls -l
 run     rm -rf /dd/tmp/ENC/hb > /nil 2>/nil; mkdir -p /dd/tmp/ENC/hb; printf "Twas brillig, and the slithy toves\r" > /dd/tmp/ENC/j.txt
 run     builtin cd /dd/tmp/ENC; macbin j.txt; mcvert -U j.txt.MAC
 run     cp /dd/tmp/ENC/j.txt01.hqx /dd/tmp/ENC/hb/j.txt01.hqx
@@ -248,6 +276,8 @@ wait    3
 shot    macsave
 cap     Reads MacBinary from its input and writes the file it carries
 cap     into the current directory, silently.
+try     macsave < j.txt.MAC; ls -l
+os9     macsave <j.txt.MAC; ls -l
 run     rm -rf /dd/tmp/ENC/ms > /nil 2>/nil; mkdir -p /dd/tmp/ENC/ms; printf "Twas brillig, and the slithy toves\r" > /dd/tmp/ENC/j.txt
 run     builtin cd /dd/tmp/ENC; macbin j.txt
 run     cp /dd/tmp/ENC/j.txt.MAC /dd/tmp/ENC/ms/j.txt.MAC
@@ -261,26 +291,41 @@ run     ls -l
 wait    3
 
 shot    macstream
-cap     Reads a MacBinary stream and lists or extracts the files in it:
-cap     its options.
-run     macstream -?
-wait    5
+cap     Combines one or more files into a MacBinary stream on standard
+cap     output, the format a Mac terminal program expects.  -d treats a
+cap     plain file as data and gives it a placeholder type and creator.
+try     macstream -d ms.txt > ms.stream; ls -l ms.stream; dump ms.stream
+os9     macstream -d ms.txt >ms.stream; ls -l ms.stream; dump ms.stream
+run     mkdir -p /dd/tmp/ENC > /nil 2>/nil; rm -f /dd/tmp/ENC/ms.stream; printf "Twas brillig, and the slithy toves\r" > /dd/tmp/ENC/ms.txt
+run     builtin cd /dd/tmp/ENC
+wait    2
+run     clear
+wait    1
+run     macstream -d ms.txt > ms.stream
+wait    4
+run     ls -l ms.stream
+wait    2
+run     dump ms.stream
+wait    4
 
 shot    macunpack
 cap     Opens PackIt archives from a Macintosh: its options.  No PackIt
 cap     archive is on this disk to open.
+try     macunpack -?
 run     macunpack -?
 wait    5
 
 shot    UnMacpack
 cap     Another PackIt extractor: its options.  No PackIt archive is on
 cap     this disk to open.
+try     UnMacpack -?
 run     UnMacpack -?
 wait    5
 
 shot    unsit
 cap     Opens StuffIt archives from a Macintosh: its options.  No StuffIt
 cap     archive is on this disk to open.
+try     unsit -?
 run     unsit -?
 wait    5
 
@@ -288,6 +333,7 @@ shot    sox
 cap     Sound eXchange converting one of the sample sounds in DOC/sox,
 cap     an Amiga 8SVX, to Sun .au, and `file' reporting both.  There is
 cap     no sound device here, so it converts rather than plays.
+try     sox DOC/sox/great_oz.iff -t au tmp/ENC/oz.au; file DOC/sox/great_oz.iff tmp/ENC/oz.au
 run     mkdir -p /dd/tmp/ENC > /nil 2>/nil; rm -f /dd/tmp/ENC/oz.au
 wait    2
 run     builtin cd /dd
@@ -302,6 +348,7 @@ wait    6
 shot    chardef
 cap     Loads a character set into a VT220 terminal from a definition
 cap     file: its syntax.  It calls itself defchar.
+try     chardef -?
 run     chardef -?
 wait    5
 
@@ -310,6 +357,7 @@ wait    5
 shot    divide
 cap     Splits a file into pieces of so many lines: twelve lines in,
 cap     four to a piece, three pieces out, named piece.1, .2 and .3.
+try     divide -l=4 tmp/ENC/dv.txt tmp/ENC/piece; ls -l tmp/ENC/piece.1 tmp/ENC/piece.2 tmp/ENC/piece.3; cat tmp/ENC/piece.2
 run     mkdir -p /dd/tmp/ENC > /nil 2>/nil; rm -f /dd/tmp/ENC/piece.*; cat /dd/SYS/holidays | head -n 12 > /dd/tmp/ENC/dv.txt
 wait    3
 run     builtin cd /dd
@@ -328,12 +376,15 @@ cap     Cuts a big file in two at exactly 350,000 bytes, to carry it on
 cap     360K floppies.  Asked for by path because bash has an fc of its
 cap     own.  This file is shorter than the cut, so the first piece is
 cap     the whole of it.
+try     CMDS/fc tmp/ENC/fc.txt; ls -l tmp/ENC/fc.txt tmp/ENC/fc.txt_1
+os9     fc tmp/ENC/fc.txt; ls -l tmp/ENC/fc.txt tmp/ENC/fc.txt_1
 run     mkdir -p /dd/tmp/ENC > /nil 2>/nil; rm -f /dd/tmp/ENC/fc.*; cat /dd/SYS/holidays | head -n 12 > /dd/tmp/ENC/fc.txt
-run     builtin cd /dd/tmp/ENC
-wait    3
+wait    2
+run     builtin cd /dd
+wait    1
 run     clear
 wait    1
-run     /dd/CMDS/fc fc.txt
+run     CMDS/fc tmp/ENC/fc.txt
 wait    6
-run     ls -l fc.txt fc.txt_1
+run     ls -l tmp/ENC/fc.txt tmp/ENC/fc.txt_1
 wait    5

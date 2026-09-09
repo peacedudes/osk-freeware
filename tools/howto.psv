@@ -189,7 +189,7 @@ cookie|Bare it prints a fortune from a default file. Given arguments it wants BO
 ppmforge|`-night' takes NO ARGUMENT. Written `-night 0' the 0 swallows the parse and -width/-height are ignored. And without `-night' it builds a PLANET at its default `-mesh 256', which ends the emulator session: `ppmforge -night -width 32 -height 16'.
 ppmntsc|It takes a DIMFACTOR first -- 0.0 is black, 1.0 the original -- then the file. Without it you get its usage.
 ppmtoyuvsplit|It takes a BASENAME and writes THREE files beside the DATA directory, not to standard output: <name>.Y, .U and .V. 4:2:0 subsampling, so a 32x16 image gives .Y = 512 bytes and .U = .V = 128. `yuvsplittoppm <name> <w> <h>' brings them back.
-des|It takes FILES and has no option flags at all -- `des file ...'. `-e' and `-?' are read as filenames and earn `Can't read -e.'
+des|It takes files and has no option flags at all -- `des file ...'. `-e' and `-?' are read as filenames and earn `Can't read -e.'
 hexed|`hexed -t=<dir> -e=<editor> <file>': the file goes out as a hex dump into <dir>, the editor opens it, and leaving the editor writes the file back. Without -t it uses /r0.
 read_mail|Not vi's helper and not part of Elm: it has a mail directory of its own, /dd/MAIL/mail_<user>, and $USER decides which. Answer its L/X/N prompt ON STANDARD INPUT -- `echo N > f; read_mail < f'. With no input at all it re-asks without bound.
 rmail|Local delivery builds <mailbox>/<user> and stops, because the mailbox here is a file: `rmail tester' answers plainly. `rmail "site!user"' for remote delivery does not return.
@@ -204,8 +204,8 @@ yagi|It asks FIVE questions on standard input -- centre frequency in MHz, elemen
 casefix|It is a FILTER and reads STANDARD INPUT: `casefix < file' sentence-cases it.
 bibtex|It reads the job name from STANDARD INPUT -- `Please type input file name (no extension)--' is a prompt, not silence. The .bst styles are in SYS/TEX/INPUTS (plain, unsrt, abbrv, alpha), not SYS/TEX/BIB, which holds one read.me. A BACKSLASH CANNOT BE TYPED at this shell -- bash's echo eats `\c' -- so patch one in with `pbyte <file> <hex offset> 5c'.
 makecrc|It GENERATES C SOURCE and takes no arguments. Run it somewhere writable (`ksh -c "cd /dd/tmp; makecrc"') and it writes six files -- arc.c, binhex.c, ccitt.c, ccitt32.c, kermit.c, zip.c -- each a crctab[256] and an updcrc(). It writes them without a message, so list the directory afterwards.
-uuencode|ONE argument, the file: `uuencode /dd/SYS/motd > out.uu'. Its usage line reads as though it wants two and with two it prints that line and stops. `uudecode' is what undoes it.
-uuexpand|Makes text portable across 8- and 16-bit machines, reading standard input. Its own usage is `uuexpand [opts] / or: uuunexpand [opts]' with -8 and -16 choosing which. Use `uudecode' to undo `uuencode'.
+uuencode|One argument, the file: `uuencode /dd/SYS/motd > out.uu'. Its usage line reads as though it wants two and with two it prints that line and stops. `uudecode' is what undoes it.
+uuexpand|Expands a file into a string of 0s and 1s, one character per bit; despite the name it is unrelated to uuencode or uudecode. `uuexpand -u' (or `uuunexpand') reverses it. The -8/-16/-7 options choose the assumed character width, for portability across machines.
 bincheckr|It is in CMDS/GAMES, not CMDS. `bincheckr /dd/GAMES/gnuchess.book' prints the book's entrysize and counts and then faults at close.
 mkdict|Run it in /dd/GAMES/BOG, where bog's word list is; it is in CMDS/GAMES.
 mkindex|Run it in /dd/GAMES/BOG after mkdict; it is in CMDS/GAMES.
@@ -227,7 +227,7 @@ weave|The other half of `tangle', and it NEEDS A CHANGE FILE NAMED just as tangl
 printf|printf as on Unix: `printf "%-8s|%5d\n" name 12'. Widths, numbers and floating point all work.
 ppmquant|A PALETTED CONVERTER NEEDS A QUANTISED IMAGE, and this is what quantises: `ppmquant 16 in.ppm > out.ppm'. Eight netpbm writers -- ppmtoicr, ppmtosixel, ppmtouil, ppmtopuzz, ppmtopict, ppmtopi1 and two more -- write ZERO BYTES for a 24-bit PPM and correct files after it.
 pgmtopbm|WITHOUT -threshold IT IS NOT REPRODUCIBLE: its dither differs every run, so any assertion on a length or a checksum downstream of it flaps. `pgmtopbm -threshold' when you need the same answer twice.
-macsave|Its silence is CORRECT and documented: DOC/macsave/macsave.1 says it "reads standard input and silently writes the file(s) it contains". `macbin' makes the MacBinary it wants, and the pair round-trips.
+macsave|Its silence is correct and documented: DOC/macsave/macsave.1 says it "reads standard input and silently writes the file(s) it contains". `macbin' makes the MacBinary it wants, and the pair round-trips.
 elvrec|Bare, it lists what elvis preserved; nothing listed means nothing was preserved.
 lnk.org|`load /dd/CMDS/os9lib' first. Without it this calls F$Link for os9lib, gets E_MNF and exits printing nothing. DOC/README-RUNNING names the four programs that do this.
 demerge|OS-9's `merge' is concatenation and there is no `merge' binary here, so `cat a b > c' makes the file demerge takes apart. There is no `od' either -- `dump' is the hex dump.
@@ -270,3 +270,5 @@ ttyexp|`ttyexp -s2 -p50' fills the screen with bursts; it runs ten seconds and c
 help|`help dinfo'. At bash type `enable -n help' first, or bash's own help builtin answers instead.
 runc|Compile with `luac -x -o greet greet.lua', `load greet', then `runc greet World'. The script reads argv[1] onwards; argv.n is the count.
 wam.sbprolog|Needs SIMPATH=/dd/SBPROLOG/MODLIB (login sets it). From /dd: `wam.sbprolog SBPROLOG/MODLIB/$readloop' gives the `?-' prompt; after a solution ; asks for the next and Return accepts it; halt. leaves.
+msformat|Refuses this disk image outright because it is not removable media; even given the image's own geometry it does not complete. A real floppy drive is what it wants.
+mstoolstest|Prints mtools' resolved configuration -- the drives it knows and the image file behind each one -- not a diagnostic test of anything.

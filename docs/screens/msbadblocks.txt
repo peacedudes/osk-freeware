@@ -1,2 +1,3 @@
-$ msbadblocks a:; echo "status $?"
-status 0
+$ msbadblocks a:
+$ echo scan finished
+scan finished

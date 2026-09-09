@@ -1,2 +1,2 @@
-mstype a:MOTD.TXT
-$ e to os9exec -- OS-9/68k emulator
+mstype a:MOTD.TXT | cat
+Welcome to os9exec -- OS-9/68k emulator

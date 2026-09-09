@@ -1,7 +1,7 @@
 mswrite motd a:RAW.TXT
-$ msread a:RAW.TXT /dd/tmp/raw.out
+$ msread a:RAW.TXT raw.out
 Copying RAW.TXT
-$ chksum motd /dd/tmp/raw.out
+$ chksum motd raw.out
 4b68af85
 4b68af85
 ========

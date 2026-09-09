@@ -4,7 +4,6 @@ $ msdir a:
  Volume Serial Number is 35D7-0A00
  Directory for A:/
 
-readme   txt       139 08-02-2026   2:22a readme.txt
-DOCS         <DIR>     09-03-2026   5:36a
-        2 file(s)               139 bytes
-                          1 456 640 bytes free
+DOCS         <DIR>     09-08-2026   9:31p
+        1 file(s)                 0 bytes
+                          1 457 152 bytes free

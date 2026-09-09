@@ -408,8 +408,8 @@
 
 | | |
 |---|---|
-| `divide` | &#9733; SPLIT A FILE into pieces -- Farside Systems 1992, `divide -l=<lines> <infile> [<outfile>]' |
-| `fc` | &#9733; split a big file in two, to carry it on 360k disks -- the cut is at exactly 350,000 BYTES: its own Function line says "Takes first 350,000 bytes of a file or stdin and puts in one file and puts remaining bytes" in the other<br>`Syntax:   fc [<file>]` |
+| `divide` | &#9733; splits a file into pieces -- Farside Systems 1992, `divide -l=<lines> <infile> [<outfile>]' |
+| `fc` | &#9733; split a big file in two, to carry it on 360k disks -- the cut is at exactly 350,000 bytes: its own Function line says "Takes first 350,000 bytes of a file or stdin and puts in one file and puts remaining bytes" in the other<br>`Syntax:   fc [<file>]` |
 
 </details>
 
@@ -711,7 +711,7 @@
 | `checksum` | &#9733; file checksum<br>`Syntax:   checksum <file> [<file>...]` |
 | `chksum` | &#9733; 32-bit file checksum |
 | `crypto` | &#9733; cryptogram puzzle solver's assistant<br>**How:** `crypto -h' is the real option list and `-i' the interactive commands; its bare answer is two lines naming those. As a FILTER it ends the emulator session here, so read the help rather than piping through it. |
-| `des` | &#9733; DES file encryption -- it writes `<file>.n' and removes the original.  It does not restore a file run through it twice with the same key (the result checksums 00000000), so for a round trip use `xcrypt'<br>**How:** It takes FILES and has no option flags at all -- `des file ...'. `-e' and `-?' are read as filenames and earn `Can't read -e.' |
+| `des` | &#9733; DES file encryption -- it writes `<file>.n' and removes the original.  It does not restore a file run through it twice with the same key (the result checksums 00000000), so for a round trip use `xcrypt'<br>**How:** It takes files and has no option flags at all -- `des file ...'. `-e' and `-?' are read as filenames and earn `Can't read -e.' |
 | `md5` | MD5 checksum<br>`Usage: MD%d <-opts> <filename>` |
 | `xcrypt` | &#9733; file encryption/decryption |
 
@@ -722,7 +722,7 @@
 | `binhex` | Encode a file as Macintosh BinHex 4.0<br>`Usage: binhex [-binhex] [files]` |
 | `hexbin` | Decode BinHex back to a Macintosh file<br>**How:** Decodes Macintosh BinHex (.hqx) files, which is how Mac software travelled by mail and BBS. binhex goes the other way; unsit opens StuffIt archives and macunpack opens PackIt ones. All trap-free. DOC/macutils has the package readme. |
 | `macbin` | MacBinary encode/decode<br>`Usage  :   Converts files to MacBinary format` |
-| `macsave` | unpack MacBinary files from standard input into `.bin' files in the current directory, making subdirectories for embedded folders.  It writes silently, as its manual page says.  `macbin' is the translator that makes a MacBinary file.  DOC/macsave/macsave.1.<br>**How:** Its silence is CORRECT and documented: DOC/macsave/macsave.1 says it "reads standard input and silently writes the file(s) it contains". `macbin' makes the MacBinary it wants, and the pair round-trips. |
+| `macsave` | unpack MacBinary files from standard input into `.bin' files in the current directory, making subdirectories for embedded folders.  It writes silently, as its manual page says.  `macbin' is the translator that makes a MacBinary file.  DOC/macsave/macsave.1.<br>**How:** Its silence is correct and documented: DOC/macsave/macsave.1 says it "reads standard input and silently writes the file(s) it contains". `macbin' makes the MacBinary it wants, and the pair round-trips. |
 | `macstream` | Read a MacTerminal file stream.  It measures the file before it reads it and answers `Short file <name>' for anything too small to be one<br>`Usage: macstream [-macstream] files` |
 | `macunpack` | Unpack a packed Macintosh archive<br>`Usage: macunpack [-macunpack] [filename]` |
 | `mcvert` | Convert between Macintosh file representations<br>`Usage: Mcvert [-rduxh] [DUpqsv] filename(s)` |
@@ -739,8 +739,8 @@
 | `todos` | &#9733; OS-9 to DOS line endings.  Use `autolf -c -C -L', which does the job -- todos and toos9 are no-ops (see below) |
 | `toos9` | &#9733; DOS to OS-9 line endings.  `autolf -l -C' converts the other way and is the one to use: todos and toos9 rewrite a file in place but leave it byte-identical to the input on CR-only OS-9 text, so they are no-ops here.  `flip' host-side or `tr' also convert. |
 | `uudecode` | &#9733; uudecode<br>`USAGE: uudecode [infile]` |
-| `uuencode` | &#9733; uuencode.  Give it ONE argument -- the input file -- and redirect: `uuencode myfile > myfile.uu'.  Its own usage line prints `uuencode >outfile [infile] name', which fails with two arguments.<br>**How:** ONE argument, the file: `uuencode /dd/SYS/motd > out.uu'. Its usage line reads as though it wants two and with two it prints that line and stops. `uudecode' is what undoes it. |
-| `uuexpand` | make text portable across 8- and 16-bit machines, reading standard input: its own usage is `uuexpand [opts]' or `uuunexpand [opts]', with -8 and -16 choosing which.  To undo a `uuencode', that is `uudecode', which is here<br>**How:** Makes text portable across 8- and 16-bit machines, reading standard input. Its own usage is `uuexpand [opts] / or: uuunexpand [opts]' with -8 and -16 choosing which. Use `uudecode' to undo `uuencode'. |
+| `uuencode` | &#9733; uuencode. Give it one argument -- the input file -- and redirect: `uuencode myfile > myfile.uu'. Its own usage line prints `uuencode >outfile [infile] name', which fails with two arguments.<br>**How:** One argument, the file: `uuencode /dd/SYS/motd > out.uu'. Its usage line reads as though it wants two and with two it prints that line and stops. `uudecode' is what undoes it. |
+| `uuexpand` | expands a file into a run of `0' and `1' characters, one per bit -- despite the shared prefix, unrelated to uuencode -- so it survives a copy between machines with different byte or character sizes; `uuexpand -u' (or `uuunexpand') reverses it<br>**How:** Expands a file into a string of 0s and 1s, one character per bit; despite the name it is unrelated to uuencode or uudecode. `uuexpand -u' (or `uuunexpand') reverses it. The -8/-16/-7 options choose the assumed character width, for portability across machines. |
 
 </details>
 
@@ -1546,7 +1546,7 @@
 | `msdel` | mtools 3.6 -- MS-DOS del (drive a: and b: are ready)<br>`Usage: msdel [-v] msdosfile [msdosfiles...]` |
 | `msdeltree` | mtools 3.6 -- MS-DOS deltree (drive a: and b: are ready)<br>`Usage: msdeltree [-v] msdosfile [msdosfiles...]` |
 | `msdir` | mtools 3.6 -- MS-DOS dir (drive a: and b: are ready)<br>`Usage: msdir: [-V] [-w] [-a] msdosdirectory` |
-| `msformat` | mtools 3.6 -- MS-DOS format (drive a: and b: are ready)<br>`Usage: msformat [-V] [-t tracks] [-h heads] [-s sectors] [-l label] [-n serialnumber] [-S hardsectorsize] [-M softsectorsize] [-1][-2 track0sectors] [-0 rate0] [-A rateany] [-a]device` |
+| `msformat` | mtools 3.6 -- MS-DOS format (drive a: and b: are ready)<br>**How:** Refuses this disk image outright because it is not removable media; even given the image's own geometry it does not complete. A real floppy drive is what it wants. |
 | `msinfo` | mtools 3.6 -- MS-DOS info (drive a: and b: are ready)<br>`Usage: msinfo [-v] drive` |
 | `mslabel` | mtools 3.6 -- MS-DOS label (drive a: and b: are ready)<br>`Usage: mslabel [-vscV] drive:` |
 | `msmd` | mtools 3.6 -- MS-DOS md (drive a: and b: are ready)<br>`Usage: msmd [-itnmvV] file targetfile` |
@@ -1554,7 +1554,7 @@
 | `msrd` | mtools 3.6 -- MS-DOS rd (drive a: and b: are ready)<br>`Usage: msrd [-v] msdosfile [msdosfiles...]` |
 | `msread` | mtools 3.6 -- MS-DOS read (drive a: and b: are ready)<br>`Usage: msread [-tnmvV] sourcefile targetfile` |
 | `msren` | mtools 3.6 -- MS-DOS ren (drive a: and b: are ready)<br>`Usage: msren [-itnmvV] file targetfile` |
-| `mstoolstest` | mtools 3.6 -- MS-DOS toolstest (drive a: and b: are ready)<br>`Usage: export COUNTRY=countrycode[,[codepage][,filename]]` |
+| `mstoolstest` | mtools 3.6 -- MS-DOS toolstest (drive a: and b: are ready)<br>**How:** Prints mtools' resolved configuration -- the drives it knows and the image file behind each one -- not a diagnostic test of anything. |
 | `mstype` | mtools 3.6 -- MS-DOS type (drive a: and b: are ready)<br>`Usage: mstype [-tnmvV] sourcefile targetfile` |
 | `mswrite` | mtools 3.6 -- MS-DOS write (drive a: and b: are ready)<br>`Usage: mswrite [-tnmvV] sourcefile targetfile` |
 | `mtools` | MS-DOS disk suite -- front end listing its sub-commands<br>`Usage: mtools [-p] [-a\|+a] [-h\|+h] [-r\|+r] [-s\|+s] msdosfile [msdosfiles...]` |

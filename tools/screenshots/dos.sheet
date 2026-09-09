@@ -4,14 +4,20 @@
 # before its picture, so the sheet means the same thing on every run.
 
 shot    msinfo
-cap     What the DOS floppy image is, read out of its own boot sector:
-cap     the geometry, the FAT layout and the media byte.
+cap     msinfo reads a DOS disk image's own boot sector: the drive
+cap     geometry, the sector size, the volume banner, and the mformat
+cap     command line that would recreate a disk with the same layout.
+try     msinfo a: | head -n 13
+os9     msinfo a: ! head -n 13
 run     msinfo a: | head -n 13
 wait    12
+snap
 
 shot    mslabel
-cap     Puts a volume label on the DOS disk; msdir shows it on its first
-cap     line.
+cap     mslabel writes a volume label into a DOS disk's boot sector.
+cap     msdir's first line then names the label mslabel just set.
+try     mslabel a:FREEWARE; msdir a: | head -n 3
+os9     mslabel a:FREEWARE; msdir a: ! head -n 3
 run     mscd a:/ > /nil
 wait    4
 run     clear
@@ -20,26 +26,37 @@ run     mslabel a:FREEWARE
 wait    8
 run     msdir a: | head -n 3
 wait    6
+snap
 
 shot    msformat
-cap     Formats DOS media.  Bare, it refuses the image because it is not
-cap     removable media, and that is as far as it goes here.
+size    24 150
+cap     msformat writes a fresh MS-DOS filesystem to a floppy. Run
+cap     against the plain disk image here it refuses outright, because
+cap     the drive is not removable media; even given the image's own
+cap     geometry it does not complete. A real floppy drive is what the
+cap     command wants.
+try     msformat a:
 run     msformat a:
 wait    10
+snap
 
 shot    msdir
-cap     The DOS disk's directory, with DOS's own 8.3 names, dates and
-cap     free-space line.
+cap     msdir lists a DOS disk's directory in its own format: 8.3 names,
+cap     dates, and the free space left on the disk.
+try     msdir a:
 run     mscd a:/ > /nil; msdel a:MOTD.TXT > /nil 2>/nil; mscopy /dd/SYS/motd a:MOTD.TXT > /nil
 wait    10
 run     clear
 wait    1
 run     msdir a:
 wait    10
+snap
 
 shot    mscopy
-cap     Copies a file from OS-9 onto the DOS disk, and the listing shows
-cap     it there.
+cap     mscopy copies a file from OS-9 onto the DOS disk. The directory
+cap     listing afterward shows it arrived with a DOS name, a size, and
+cap     today's date.
+try     mscopy motd a:MOTD.TXT; msdir a:
 run     builtin cd /dd/SYS
 wait    1
 run     clear
@@ -52,18 +69,25 @@ run     mscopy motd a:MOTD.TXT
 wait    10
 run     msdir a:
 wait    10
+snap
 
 shot    mstype
-cap     Types a file that lives on the DOS disk.
+cap     mstype prints the contents of a file that lives on the DOS disk.
+try     mstype a:MOTD.TXT | cat
+os9     mstype a:MOTD.TXT ! cat
 run     mscd a:/ > /nil; msdel a:MOTD.TXT > /nil 2>/nil; mscopy /dd/SYS/motd a:MOTD.TXT > /nil
 wait    10
 run     clear
 wait    1
-run     mstype a:MOTD.TXT
-wait    8
+run     mstype a:MOTD.TXT | cat
+wait    10
+snap
 
 shot    msdel
-cap     Deletes a file on the DOS disk: there before, gone after.
+cap     msdel deletes a file from the DOS disk. The listing before and
+cap     the count after show it gone.
+try     msdir a: | grep MOTD; msdel a:MOTD.TXT; msdir a: | grep -c MOTD
+os9     msdir a: ! grep MOTD; msdel a:MOTD.TXT; msdir a: ! grep -c MOTD
 run     mscd a:/ > /nil; msdel a:MOTD.TXT > /nil 2>/nil; mscopy /dd/SYS/motd a:MOTD.TXT > /nil
 wait    10
 run     clear
@@ -74,9 +98,12 @@ run     msdel a:MOTD.TXT
 wait    8
 run     msdir a: | grep -c MOTD
 wait    8
+snap
 
 shot    msmd
-cap     Makes a directory on the DOS disk.
+cap     msmd makes a directory on the DOS disk, the way `mkdir' does on
+cap     OS-9's own filesystem.
+try     msmd a:/DOCS; msdir a:
 run     mscd a:/ > /nil; msdeltree a:/DOCS > /nil 2>/nil
 wait    8
 run     clear
@@ -85,10 +112,15 @@ run     msmd a:/DOCS
 wait    8
 run     msdir a:
 wait    10
+snap
 
 shot    mscd
-cap     Sets the current directory on the DOS disk, which the other
-cap     commands then use, and reports it when asked bare.
+cap     mscd sets mtools' own idea of the current directory on the DOS
+cap     disk, so the other mtools commands can use a name instead of a
+cap     full DOS path; asked bare it reports where it is. DOS counts the
+cap     `.' and `..' entries every directory carries as files of their
+cap     own, which is why an empty new directory still shows two.
+try     mscd a:/DOCS; mscd; msdir
 run     mscd a:/ > /nil; msdeltree a:/DOCS > /nil 2>/nil; msmd a:/DOCS > /nil
 wait    10
 run     clear
@@ -99,9 +131,13 @@ run     mscd
 wait    5
 run     msdir
 wait    8
+snap
 
 shot    msrd
-cap     Removes an empty directory from the DOS disk.
+cap     msrd removes an empty directory from the DOS disk. The listing
+cap     before and the count after show it gone.
+try     msdir a: | grep EMPTY; msrd a:/EMPTY; msdir a: | grep -c EMPTY
+os9     msdir a: ! grep EMPTY; msrd a:/EMPTY; msdir a: ! grep -c EMPTY
 run     mscd a:/ > /nil; msdeltree a:/EMPTY > /nil 2>/nil; msmd a:/EMPTY > /nil
 wait    10
 run     clear
@@ -112,9 +148,14 @@ run     msrd a:/EMPTY
 wait    8
 run     msdir a: | grep -c EMPTY
 wait    8
+snap
 
 shot    msdeltree
-cap     Removes a directory and everything in it.
+cap     msdeltree removes a directory and everything inside it in one
+cap     step, naming each file as it goes. The count afterward includes
+cap     the two directory-entry markers DOS carries along with the file.
+try     msdir a:/DOCS; msdeltree a:/DOCS; msdir a: | grep -c DOCS
+os9     msdir a:/DOCS; msdeltree a:/DOCS; msdir a: ! grep -c DOCS
 run     mscd a:/ > /nil; msdeltree a:/DOCS > /nil 2>/nil; msmd a:/DOCS > /nil; mscopy /dd/SYS/motd a:/DOCS/README.TXT > /nil
 wait    12
 run     clear
@@ -125,9 +166,15 @@ run     msdeltree a:/DOCS
 wait    8
 run     msdir a: | grep -c DOCS
 wait    8
+snap
 
 shot    msattrib
-cap     Sets a DOS attribute and reads it back: R is the read-only bit.
+cap     msattrib sets and reads back a DOS file's attribute bits. `+r'
+cap     turns on the read-only bit; asked bare it prints the current
+cap     flags, `R' for read-only among them and `A' for the archive bit,
+cap     which mscopy already set when it wrote the file. `-r' turns
+cap     read-only back off.
+try     msattrib +r a:MOTD.TXT; msattrib a:MOTD.TXT; msattrib -r a:MOTD.TXT
 run     mscd a:/ > /nil; msdel a:MOTD.TXT > /nil 2>/nil; mscopy /dd/SYS/motd a:MOTD.TXT > /nil
 wait    10
 run     clear
@@ -138,9 +185,12 @@ run     msattrib a:MOTD.TXT
 wait    8
 run     msattrib -r a:MOTD.TXT
 wait    8
+snap
 
 shot    msmove
-cap     Moves a file to another directory on the DOS disk.
+cap     msmove moves a file into a different directory on the DOS disk,
+cap     the way OS-9's own `move' does.
+try     msmove a:MOTD.TXT a:/MOVED/MOTD.TXT; msdir a:/MOVED
 run     mscd a:/ > /nil; msdel a:MOTD.TXT > /nil 2>/nil; mscopy /dd/SYS/motd a:MOTD.TXT > /nil; msdeltree a:/MOVED > /nil 2>/nil; msmd a:/MOVED > /nil
 wait    14
 run     clear
@@ -149,9 +199,12 @@ run     msmove a:MOTD.TXT a:/MOVED/MOTD.TXT
 wait    8
 run     msdir a:/MOVED
 wait    8
+snap
 
 shot    msren
-cap     Renames a file on the DOS disk.
+cap     msren renames a file on the DOS disk in place.
+try     msren a:OLD.TXT a:NEW.TXT; msdir a: | grep TXT
+os9     msren a:OLD.TXT a:NEW.TXT; msdir a: ! grep TXT
 run     mscd a:/ > /nil; msdel a:OLD.TXT a:NEW.TXT > /nil 2>/nil; mscopy /dd/SYS/motd a:OLD.TXT > /nil
 wait    10
 run     clear
@@ -160,61 +213,92 @@ run     msren a:OLD.TXT a:NEW.TXT
 wait    8
 run     msdir a: | grep TXT
 wait    8
+snap
 
 shot    mswrite
-cap     Writes a file onto the DOS disk raw, with none of the DOS
-cap     filename rules involved; the checksums show it arrived unchanged.
-run     builtin cd /dd/SYS
+cap     mswrite writes a file onto the DOS disk exactly as it is, byte
+cap     for byte, with none of the DOS filename rules or text conversion
+cap     mcopy applies. Reading it back with msread and checksumming both
+cap     files shows the same number twice: nothing changed in the round
+cap     trip.
+try     mswrite motd a:RAW.TXT; msread a:RAW.TXT raw.out; chksum motd raw.out
+run     rm -rf /dd/tmp/DOSB > /nil 2>/nil; mkdir -p /dd/tmp/DOSB; cp /dd/SYS/motd /dd/tmp/DOSB/motd
+wait    6
+run     builtin cd /dd/tmp/DOSB
 wait    1
-run     clear
-wait    1
-run     mscd a:/ > /nil; msdel a:RAW.TXT > /nil 2>/nil; rm -f /dd/tmp/raw.out
+run     mscd a:/ > /nil; msdel a:RAW.TXT > /nil 2>/nil
 wait    8
 run     clear
 wait    1
 run     mswrite motd a:RAW.TXT
 wait    10
-run     msread a:RAW.TXT /dd/tmp/raw.out
+run     msread a:RAW.TXT raw.out
 wait    10
-run     chksum motd /dd/tmp/raw.out
+run     chksum motd raw.out
 wait    8
+snap
 
 shot    msread
-cap     Reads a file off the DOS disk raw into an OS-9 file, the other
-cap     half of mswrite.
-run     mscd a:/ > /nil; msdel a:RAW.TXT > /nil 2>/nil; mswrite /dd/SYS/motd a:RAW.TXT > /nil; rm -f /dd/tmp/raw.out
-wait    12
-run     builtin cd /dd
+cap     msread is the other half of mswrite: it reads a file off the DOS
+cap     disk raw, byte for byte, into a file on OS-9.
+try     msread a:RAW.TXT raw.out; cat raw.out
+run     rm -rf /dd/tmp/DOSB > /nil 2>/nil; mkdir -p /dd/tmp/DOSB
+wait    4
+run     builtin cd /dd/tmp/DOSB
 wait    1
+run     mscd a:/ > /nil; msdel a:RAW.TXT > /nil 2>/nil; mswrite /dd/SYS/motd a:RAW.TXT > /nil
+wait    12
 run     clear
 wait    1
-run     msread a:RAW.TXT tmp/raw.out
+run     msread a:RAW.TXT raw.out
 wait    10
-run     cat tmp/raw.out
+run     cat raw.out
 wait    6
+snap
 
 shot    msbadblocks
-cap     Reads the whole DOS disk looking for bad blocks, and reports none.
-run     msbadblocks a:; echo "status $?"
-wait    12
+cap     msbadblocks reads every used cluster on the DOS disk looking for
+cap     ones that fail to read, and marks any it finds as bad so nothing
+cap     is written there again. It says nothing when the disk is fine,
+cap     which this one is.
+try     msbadblocks a:; echo scan finished
+run     msbadblocks a:
+wait    10
+run     echo scan finished
+wait    4
+snap
 
 shot    mstoolstest
-cap     mtools' own self-test, exercising the library on the disk.
-run     mstoolstest
-wait    12
+cap     mstoolstest prints mtools' own resolved configuration: the
+cap     drives it knows about, the image file behind each one, and the
+cap     settings it would use. Shown here are drive a: and b:, each
+cap     mapped to the image file mtools.conf points it at.
+try     mstoolstest | head -n 14
+os9     mstoolstest ! head -n 14
+run     mstoolstest | head -n 14
+wait    10
+snap
 
 shot    mtools
-cap     The mtools front end, listing the sub-commands that ship with it;
-cap     each is a separate program on this disk.
+cap     mtools is the suite's own front end: called bare, or under any
+cap     name it does not recognise, it lists every sub-command that
+cap     ships with it. Each of those is also its own separate program on
+cap     this disk.
+try     mtools
 run     mtools
 wait    10
+snap
 
 shot    mscheck
-cap     A shell script that reads every file on the DOS disk to make sure
-cap     each can be read: first the directory, then each file in turn.
-run     mscd a:/ > /nil; msdel a:MOTD.TXT > /nil 2>/nil; mscopy /dd/SYS/motd a:MOTD.TXT > /nil
-wait    10
+cap     mscheck is a shell script that checks a DOS disk is readable: it
+cap     lists the directory, then reads every file in it in turn and
+cap     reports whether the disk came back clean.
+try     mscheck
+os9     ksh mscheck
+run     mscd a:/ > /nil; msdeltree a:/MOVED > /nil 2>/nil; msdel a:NEW.TXT a:RAW.TXT a:MOTD.TXT > /nil 2>/nil; mscopy /dd/SYS/motd a:MOTD.TXT > /nil
+wait    12
 run     clear
 wait    1
 run     mscheck
 wait    12
+snap
