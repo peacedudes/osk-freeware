@@ -1,5 +1,5 @@
 ppmtoyuvsplit tmp/NPMB/y tmp/NPMB/c.ppm
 $ ls -l tmp/NPMB/y.Y tmp/NPMB/y.U tmp/NPMB/y.V
--rw-------   1 0        0             288 Sep  6 05:11 tmp/NPMB/y.U
--rw-------   1 0        0             288 Sep  6 05:11 tmp/NPMB/y.V
--rw-------   1 0        0            1152 Sep  6 05:11 tmp/NPMB/y.Y
+-rw-------   1 0        0             288 Sep  9 01:17 tmp/NPMB/y.U
+-rw-------   1 0        0             288 Sep  9 01:17 tmp/NPMB/y.V
+-rw-------   1 0        0            1152 Sep  9 01:17 tmp/NPMB/y.Y

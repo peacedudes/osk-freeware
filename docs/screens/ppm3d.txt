@@ -2,11 +2,11 @@ ppm3d tmp/NEAB/t.ppm tmp/NEAB/s.ppm > tmp/NEAB/3d.ppm
 $ pnmfile tmp/NEAB/3d.ppm
 tmp/NEAB/3d.ppm:        PPM raw, 64 by 32  maxval 255
 $ ppmtopgm tmp/NEAB/3d.ppm | pgmtopbm | pbmtoascii -2x4
-MSRM9M96RHFFFkM&1H&&H&&SHMMMMMHM
-M$H6HH9H9RFRH$&R&&&&&&&19MHHM9MM
-H$H&M&HpD&H>&&pkckk&&&&&&HMH6MHM
-M$MHDM9R6H1Fk6&kk&&SH&&1HMHMHHMM
-HSR6RR6RH&$F&&Z/&&Z$k&&$1MH9HHHM
-H$&&HH&D&FD&S&&$$&]$&&$&&HMH6MHH
-MSRHkM&Fk6&S&&Sk&S&&Zk&1&H9HMHRM
-H$H1D6H&$&&S/$S}/$$S\$&/&6MH&MHM
+MSRM9RM6H&F1%D&&\Z$Fk$k&&MHRMHMH
+MS6HHH&M&1&S$&]$&Z$S&Z$&&HMHHRMM
+H$kM&H&kH$k$?&q&%$?&k$$>&H&HHHDM
+M$6HHH9R66}[&$]&$SZ$}[&4]MMHHHHM
+R$&R&kRk$$&4|<$S?7SST/Z%&&9&96H9
+&&$$k&&\&d//)%$?????$??/ZM9H&6MH
+R/H1&&SkZ&S?(S?|$\)$$|$(&H66RH&M
+$|H&S$k}S%?/|/)?):S?|||\>&M1H&H&

@@ -121,3 +121,4 @@ wndex|builds the WN web server index for a directory and reports the one line `W
 qt|a talking clock: it prints the time in words as one sentence (and chimes near the hour); that one line is all it has to show
 bootlogger|records boot-time events to a log; on an already-running system there is nothing to record, so it writes its log silently and returns with nothing to show
 lfmaker|builds a low-level disk format descriptor and needs a real disk device to size; with none it reads its length argument as an address and stops with a No-more-memory request, which is as far as it goes here
+pgmedge|an edge detector; it writes a valid edge greymap (pnmfile confirms a 40x20 PGM) but is slow enough to leave the interactive capture session unusable before the follow-up renders, so the card shows the command it ran

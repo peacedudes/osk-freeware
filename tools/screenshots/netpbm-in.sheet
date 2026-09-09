@@ -17,6 +17,7 @@ shot    asciitopgm
 cap     Turns ASCII art back into a greyscale image, each character weighted
 cap     by how much ink it carries.  Here it reads the picture pbmtoascii
 cap     drew of the word `npbm', and pnmfile confirms a 40x8 PGM came out.
+try     asciitopgm 8 40 < tmp/NPIB/art.txt > tmp/NPIB/a.pgm
 run     mkdir -p /dd/tmp/NPIB > /nil 2>/nil
 run     pbmtext "npbm" | pbmtoascii > /dd/tmp/NPIB/art.txt
 wait    8
@@ -34,6 +35,7 @@ shot    fstopgm
 cap     Reads a Usenix FaceSaver file -- the mugshot format of the Usenix
 cap     face database -- back into a greyscale image.  pgmtofs writes the
 cap     ramp out as a FaceSaver, fstopgm reads it, pnmfile confirms the PGM.
+try     fstopgm tmp/NPIB/f.fs > tmp/NPIB/back.pgm
 run     mkdir -p /dd/tmp/NPIB > /nil 2>/nil
 run     pgmramp -lr 48 24 > /dd/tmp/NPIB/g.pgm
 wait    5
@@ -51,6 +53,7 @@ shot    lispmtopgm
 cap     Reads a Lisp Machine bitmap -- the screen format of Symbolics and TI
 cap     Lisp machines -- back into a greyscale image.  pgmtolispm handles at
 cap     most 16 grey levels, so pnmdepth 15 first; the ramp round-trips.
+try     lispmtopgm tmp/NPIB/l.lispm > tmp/NPIB/back.pgm
 run     mkdir -p /dd/tmp/NPIB > /nil 2>/nil
 run     pgmramp -lr 48 24 | pnmdepth 15 > /dd/tmp/NPIB/g15.pgm
 wait    6
@@ -68,6 +71,7 @@ shot    psidtopgm
 cap     Reads the hex digits of PostScript `image' operator data into a
 cap     greyscale image -- not a scanner format.  Given a width, height and
 cap     bits per sample it decodes the hex: a white row over a black one.
+try     psidtopgm 8 2 8 < tmp/NPIB/i.ps > tmp/NPIB/p.pgm
 run     mkdir -p /dd/tmp/NPIB > /nil 2>/nil
 run     builtin cd /dd
 wait    1
@@ -83,6 +87,7 @@ shot    rawtopgm
 cap     Reads headerless bytes as a greyscale image, given the width and
 cap     height -- how you get a picture out of a machine that wrote no header
 cap     at all.  Fed the pixel bytes of a ramp, pnmfile confirms a 48x24 PGM.
+try     rawtopgm 48 24 < tmp/NPIB/g.pgm > tmp/NPIB/r.pgm
 run     mkdir -p /dd/tmp/NPIB > /nil 2>/nil
 run     pgmramp -lr 48 24 > /dd/tmp/NPIB/g.pgm
 wait    5
@@ -98,6 +103,7 @@ shot    rawtoppm
 cap     Reads headerless bytes as a colour image, given the width and height.
 cap     Fed the pixel bytes of a colour pattern, pnmfile confirms a 48x24
 cap     PPM came out.
+try     rawtoppm 48 24 < tmp/NPIB/c.ppm > tmp/NPIB/r.ppm
 run     mkdir -p /dd/tmp/NPIB > /nil 2>/nil
 run     ppmpat -gingham3 48 24 > /dd/tmp/NPIB/c.ppm
 wait    5
@@ -113,6 +119,7 @@ shot    sldtoppm
 cap     Reads an AutoCAD slide (.sld) -- the format AutoCAD shows in a slide
 cap     show -- back into a colour image.  A slide is written from a colour
 cap     map, so ppmquant 16 first; ppmtoacad writes it and sldtoppm reads it.
+try     sldtoppm tmp/NPIB/s.sld > tmp/NPIB/back.ppm
 run     mkdir -p /dd/tmp/NPIB > /nil 2>/nil
 run     ppmpat -gingham3 48 24 > /dd/tmp/NPIB/c.ppm
 wait    5
@@ -132,6 +139,7 @@ shot    tgatoppm
 cap     Reads a Targa (.tga) image -- the Truevision workstation format --
 cap     back into a colour image.  ppmtotga writes the colour pattern out as
 cap     a Targa, tgatoppm reads it, pnmfile confirms the PPM.
+try     tgatoppm tmp/NPIB/t.tga > tmp/NPIB/back.ppm
 run     mkdir -p /dd/tmp/NPIB > /nil 2>/nil
 run     ppmpat -gingham3 48 24 > /dd/tmp/NPIB/c.ppm
 wait    5
@@ -149,6 +157,7 @@ shot    xbmtopbm
 cap     Reads an X11 bitmap -- the C source X uses for cursors and icons --
 cap     back into a bitmap.  pbmtoxbm writes the test bitmap out as an X
 cap     bitmap, xbmtopbm reads it, pnmfile confirms the PBM.
+try     xbmtopbm tmp/NPIB/t.xbm > tmp/NPIB/back.pbm
 run     mkdir -p /dd/tmp/NPIB > /nil 2>/nil
 run     pbmmake -g 48 24 > /dd/tmp/NPIB/b.pbm
 wait    5
@@ -166,6 +175,7 @@ shot    yuvsplittoppm
 cap     Reads Abekas YUV video split across three files -- <name>.Y luma and
 cap     <name>.U/.V chroma -- back into a colour image, given its width and
 cap     height.  ppmtoyuvsplit writes the three, yuvsplittoppm reassembles.
+try     yuvsplittoppm tmp/NPIB/y 48 24 > tmp/NPIB/back.ppm
 run     mkdir -p /dd/tmp/NPIB > /nil 2>/nil
 run     ppmpat -gingham3 48 24 > /dd/tmp/NPIB/c.ppm
 wait    5
@@ -186,6 +196,7 @@ shot    bioradtopgm
 cap     Reads a Bio-Rad confocal microscope image into a greyscale picture.
 cap     No file in that format ships here; handed a colour picture it says
 cap     so rather than guessing.
+try     bioradtopgm tmp/NPIB/nr.ppm
 run     mkdir -p /dd/tmp/NPIB > /nil 2>/nil
 run     ppmmake red 16 16 > /dd/tmp/NPIB/nr.ppm
 wait    5
@@ -199,6 +210,7 @@ shot    brushtopbm
 cap     Reads a Xerox doodle brush file into a bitmap.  No file in that
 cap     format ships here; handed a colour picture it reports the bad magic
 cap     number rather than guessing.
+try     brushtopbm tmp/NPIB/nr.ppm
 run     mkdir -p /dd/tmp/NPIB > /nil 2>/nil
 run     ppmmake red 16 16 > /dd/tmp/NPIB/nr.ppm
 wait    5
@@ -212,6 +224,7 @@ shot    gouldtoppm
 cap     Reads a Gould scanner image into a colour picture.  No file in that
 cap     format ships here; handed a colour picture it says the Gould header
 cap     will not read rather than guessing.
+try     gouldtoppm tmp/NPIB/nr.ppm
 run     mkdir -p /dd/tmp/NPIB > /nil 2>/nil
 run     ppmmake red 16 16 > /dd/tmp/NPIB/nr.ppm
 wait    5
@@ -225,6 +238,7 @@ shot    hipstopgm
 cap     Reads a HIPS image -- the format of a human-vision research library
 cap     -- into a greyscale picture.  No file in that format ships here;
 cap     handed a colour picture it reports the header error rather than guess.
+try     hipstopgm tmp/NPIB/nr.ppm
 run     mkdir -p /dd/tmp/NPIB > /nil 2>/nil
 run     ppmmake red 16 16 > /dd/tmp/NPIB/nr.ppm
 wait    5
@@ -238,6 +252,7 @@ shot    hpcdtoppm
 cap     Reads a Kodak Photo CD image into a colour picture.  No Photo CD
 cap     file ships here; handed a colour picture it reports the read error
 cap     rather than guessing.
+try     hpcdtoppm tmp/NPIB/nr.ppm
 run     mkdir -p /dd/tmp/NPIB > /nil 2>/nil
 run     ppmmake red 16 16 > /dd/tmp/NPIB/nr.ppm
 wait    5
@@ -251,6 +266,7 @@ shot    imgtoppm
 cap     Reads an Img Software Set (AT&T Image-8) image into a colour
 cap     picture -- not GEM IMG, which gemtopbm reads.  No file in that format
 cap     ships here; handed a name that is not there it says it cannot open it.
+try     imgtoppm tmp/NPIB/none.img
 run     mkdir -p /dd/tmp/NPIB > /nil 2>/nil
 run     builtin cd /dd
 wait    1
@@ -262,6 +278,7 @@ shot    mtvtoppm
 cap     Reads the output of the MTV ray tracer into a colour picture.  No MTV
 cap     image ships here; handed a colour picture it says it cannot parse the
 cap     MTV header rather than guessing.
+try     mtvtoppm tmp/NPIB/nr.ppm
 run     mkdir -p /dd/tmp/NPIB > /nil 2>/nil
 run     ppmmake red 16 16 > /dd/tmp/NPIB/nr.ppm
 wait    5
@@ -275,6 +292,7 @@ shot    spctoppm
 cap     Reads an Atari ST Spectrum 512 picture into a colour image.  No
 cap     Spectrum file ships here; handed a colour picture it says it is not a
 cap     Spectrum picture rather than guessing.
+try     spctoppm tmp/NPIB/nr.ppm
 run     mkdir -p /dd/tmp/NPIB > /nil 2>/nil
 run     ppmmake red 16 16 > /dd/tmp/NPIB/nr.ppm
 wait    5
@@ -288,6 +306,7 @@ shot    spottopgm
 cap     Reads a spot-scanner image into a greyscale picture, optionally
 cap     cropped to a rectangle.  No spot file ships here; run with no
 cap     arguments it prints what it expects.
+try     spottopgm
 run     clear
 run     spottopgm
 wait    5
@@ -296,6 +315,7 @@ shot    ximtoppm
 cap     Reads an X image (.xim) into a colour picture.  No xim file ships
 cap     here; handed a colour picture it says it cannot read the xim header
 cap     rather than guessing.
+try     ximtoppm tmp/NPIB/nr.ppm
 run     mkdir -p /dd/tmp/NPIB > /nil 2>/nil
 run     ppmmake red 16 16 > /dd/tmp/NPIB/nr.ppm
 wait    5
@@ -309,6 +329,7 @@ shot    xvminitoppm
 cap     Reads an XV thumbnail -- the small preview the XV image viewer saves
 cap     -- into a colour picture.  No thumbnail ships here; handed a colour
 cap     picture it reports the bad magic number rather than guessing.
+try     xvminitoppm tmp/NPIB/nr.ppm
 run     mkdir -p /dd/tmp/NPIB > /nil 2>/nil
 run     ppmmake red 16 16 > /dd/tmp/NPIB/nr.ppm
 wait    5
@@ -322,6 +343,7 @@ shot    zeisstopnm
 cap     Reads a Zeiss confocal microscope image into a PNM.  No Zeiss file
 cap     ships here; handed a small colour picture it says the input is not in
 cap     Zeiss format rather than guessing.
+try     zeisstopnm tmp/NPIB/nr.ppm
 run     mkdir -p /dd/tmp/NPIB > /nil 2>/nil
 run     ppmmake red 16 16 > /dd/tmp/NPIB/nr.ppm
 wait    5

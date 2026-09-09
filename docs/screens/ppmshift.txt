@@ -1,10 +1,10 @@
 ppmshift 6 tmp/NEAB/t.ppm > tmp/NEAB/s.ppm
 $ ppmtopgm tmp/NEAB/s.ppm | pgmtopbm | pbmtoascii -2x4
-M96RM9H66H99RM9H6R&F&&91&$99&Z&&
-6HH9H6HDDR6HH&6M&M&&11S&kR&S&k&Z
-HH&H&&H&RH>H&H&&R&k&$111<&#$1$Zk
-RM9HR6M$H6RM96MHH11SDH1$&&&1&9%k
-RHSkRR&S$&9SkR&9$Z4?$$$&$(&/1?$$
-&$6&$&&$d$$H$D&&&$$$7$$$$&$$\}$$
-DZ&6&&H1&$1H]H]1HSk$]|$&//Z&S(&/
-&Zk&&$1S1$\$\&&S/$&{|<$$?/}Z?Z<%
+RM9RRM9H&&9RM9RH6HZF1SHS&&7&k&]Z
+RH6M&H9ZMH$RH9H9RH91$&$Zk&$}9$$Z
+DH&1H&&&#&&&&H&H&#q>$1Sq>\1$$Z/c
+RM9H&M9H$&6M9&M&&M$$Z$9$S}&&&$S$
+F9Z&&&$P/[$k&&&S&$$\?Z%&($$Z$($Z
+F&$D&$D&$$%DFD&$F&&{|~:$<S(?&??S
+Z&&Z&[&&S&?HS61Z&1/?|[$4//%?Z$?Z
+k$$Z$&\)S$$&%}&%L$???//||$%%%??<

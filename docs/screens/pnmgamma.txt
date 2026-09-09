@@ -1,10 +1,10 @@
 pgmtopbm tmp/NEAB/r.pgm | pbmtoascii -2x4
-MMMM9M&1&&&S}$)??S/|S:::-::.
-MMHRDM&1&$$S4)????S:\://:.:-`.
-MMMHRHH$FF1%}S4|||\/):::::..-.
-MMH96M&&&Z$|k$|%%>i?S:::::.-.
+MMM9M&FkR&S\\%||||\<:\\::..-.
+MMH6M&Fk&&$S|}7///<\:\::::-.-`
+MMM6MH&FF1$?}S4||!?:>::::.:.`
+MMHH&HH1&$Z&/$SSS/|?:/::\.-:`.
 $ pnmgamma 0.5 tmp/NEAB/r.pgm | pgmtopbm | pbmtoascii -2x4
-MMMMMMMMMMH6HH&&&$&Z%|||?\/:.:
-MMMMMMMMHRM&H6H&&Sk$$)):?:::.-.
-MMMMMMHM6M9MH&H&Z&\S|L||(::::-.
-MMMMMM9M96M&FM&&1$Z&4||/\\<.::
+MMMMMMMMMM9RRM&S&&S/$))):/>':.
+MMMMMMMMH6M&M&S&&&S[$\\\:\/::.'
+MMMMMMHM9MHH&6H&$1$$)\\\\\:/.-.
+MMMMMMRMM6M6R6M&$$S$$))):>\:.-.

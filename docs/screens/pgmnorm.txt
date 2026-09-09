@@ -1,13 +1,13 @@
-pgmnorm /dd/tmp/NEAB/mo.pgm > /dd/tmp/NEAB/mn.pgm
+pgmnorm mo.pgm > mn.pgm
 pgmnorm: remapping 128..128 to 0..255
-$ pgmtopbm /dd/tmp/NEAB/mn.pgm | pbmtoascii -2x4
+$ pgmtopbm mn.pgm | pbmtoascii -2x4
                                |
-                             . |
+             .       .'       .|
                                |
+              '                |
                                |
- -        -                    |
-       -                       |
+    -                          |
                                |
-                     -         |
-                           -   |
+                        .      |
                                |
+                              .|

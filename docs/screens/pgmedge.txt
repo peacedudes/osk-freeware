@@ -1,7 +1,0 @@
-pgmedge /dd/tmp/NEAB/gg.pgm > /dd/tmp/NEAB/eg.pgm
-$ pgmtopbm /dd/tmp/NEAB/eg.pgm | pbmtoascii -2x4
-MMMMR&MMMMMMMMMMMMMM
-H&bb+?&ddb&dd&dddbbH
-MMMMFJMMM9RMMMRMMMMM
-MM9MLdMHHRMHM9H&M9MM
-MMMMkHMMM6MMMMMMMMMM

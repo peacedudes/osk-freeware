@@ -13,6 +13,7 @@ shot    pbmtog3
 cap     Turns a PBM bitmap into a CCITT Group 3 fax stream -- the run-length
 cap     encoding fax machines send down a phone line.  The 48x24 test
 cap     bitmap packs to the coded file `ls' lists.
+try     pbmtog3 tmp/NPMB/b.pbm > tmp/NPMB/o.g3
 run     mkdir -p /dd/tmp/NPMB > /nil 2>/nil
 run     pbmmake -g 48 24 > /dd/tmp/NPMB/b.pbm
 wait    4
@@ -28,6 +29,7 @@ shot    pbmtogem
 cap     Writes a GEM bitmap image, the format of Digital Research's GEM
 cap     desktop and Ventura Publisher.  The 48x24 bitmap becomes a coded
 cap     .img file.
+try     pbmtogem tmp/NPMB/b.pbm > tmp/NPMB/o.gem
 run     mkdir -p /dd/tmp/NPMB > /nil 2>/nil
 run     pbmmake -g 48 24 > /dd/tmp/NPMB/b.pbm
 wait    4
@@ -43,6 +45,7 @@ shot    pbmtoicon
 cap     Writes a Sun icon file: C source you paste into a program, one
 cap     16-bit word per row of the bitmap.  The 0x5555/0xaaaa words are the
 cap     test bitmap's checkerboard.
+try     pbmtoicon tmp/NPMB/b.pbm > tmp/NPMB/o.icon
 run     mkdir -p /dd/tmp/NPMB > /nil 2>/nil
 run     pbmmake -g 48 24 > /dd/tmp/NPMB/b.pbm
 wait    4
@@ -58,6 +61,7 @@ shot    pbmtomacp
 cap     Writes a MacPaint document, the format of the original Macintosh
 cap     paint program.  The bitmap is run-length coded into the file `ls'
 cap     lists.
+try     pbmtomacp tmp/NPMB/b.pbm > tmp/NPMB/o.mac
 run     mkdir -p /dd/tmp/NPMB > /nil 2>/nil
 run     pbmmake -g 48 24 > /dd/tmp/NPMB/b.pbm
 wait    4
@@ -73,6 +77,7 @@ shot    pbmtopi3
 cap     Writes an Atari ST DEGAS high-resolution picture (.pi3).  The
 cap     format is a fixed 640x400 monochrome screen, so the file is always
 cap     32034 bytes whatever the bitmap's size.
+try     pbmtopi3 tmp/NPMB/b.pbm > tmp/NPMB/o.pi3
 run     mkdir -p /dd/tmp/NPMB > /nil 2>/nil
 run     pbmmake -g 48 24 > /dd/tmp/NPMB/b.pbm
 wait    4
@@ -88,6 +93,7 @@ shot    pbmtoxbm
 cap     Writes an X11 bitmap: the C `#define'/`_bits[]' source X uses for
 cap     cursors and icons.  Fed on standard input, so the array is named
 cap     `noname'.
+try     pbmtoxbm < tmp/NPMB/b.pbm > tmp/NPMB/o.xbm
 run     mkdir -p /dd/tmp/NPMB > /nil 2>/nil
 run     pbmmake -g 48 24 > /dd/tmp/NPMB/b.pbm
 wait    4
@@ -103,6 +109,7 @@ shot    pbmtoptx
 cap     Writes Printronix printer graphics -- the plot codes a Printronix
 cap     line printer draws dots with.  The bitmap becomes the coded file
 cap     `ls' lists.
+try     pbmtoptx tmp/NPMB/b.pbm > tmp/NPMB/o.ptx
 run     mkdir -p /dd/tmp/NPMB > /nil 2>/nil
 run     pbmmake -g 48 24 > /dd/tmp/NPMB/b.pbm
 wait    4
@@ -119,6 +126,7 @@ cap     Meant to write graphics for a BBN BitGraph terminal.  Given a PBM
 cap     this disk's netpbm makes -- raw or plain -- it answers `bad magic
 cap     number' and writes nothing, while the other PBM converters read the
 cap     same file.
+try     pbmtobbnbg tmp/NPMB/b.pbm > tmp/NPMB/o.bg
 run     mkdir -p /dd/tmp/NPMB > /nil 2>/nil
 run     pbmmake -g 48 24 > /dd/tmp/NPMB/b.pbm
 wait    4
@@ -134,6 +142,7 @@ shot    pgmtofs
 cap     Writes a FaceSaver file -- the format of the Usenix face database, a
 cap     text header of contact fields followed by hex pixel rows.  The
 cap     greyscale ramp fills in below the blank header.
+try     pgmtofs tmp/NPMB/g.pgm > tmp/NPMB/o.fs
 run     mkdir -p /dd/tmp/NPMB > /nil 2>/nil
 run     pgmramp -lr 48 24 > /dd/tmp/NPMB/g.pgm
 wait    4
@@ -149,6 +158,7 @@ shot    pgmtolispm
 cap     Writes a Lisp Machine bitmap, the screen format of Symbolics and TI
 cap     Lisp machines.  The greyscale ramp becomes the coded file `ls'
 cap     lists.
+try     pgmtolispm tmp/NPMB/g.pgm > tmp/NPMB/o.lispm
 run     mkdir -p /dd/tmp/NPMB > /nil 2>/nil
 run     pgmramp -lr 48 24 > /dd/tmp/NPMB/g.pgm
 wait    4
@@ -164,6 +174,7 @@ shot    pgmtoppm
 cap     Colours a greyscale image.  Given a colour or a pair -- `red-blue'
 cap     ramps between them -- it maps grey levels to colour; the ramp comes
 cap     back a 48x24 PPM, which pnmfile confirms.
+try     pgmtoppm red-blue tmp/NPMB/g.pgm > tmp/NPMB/o.ppm
 run     mkdir -p /dd/tmp/NPMB > /nil 2>/nil
 run     pgmramp -lr 48 24 > /dd/tmp/NPMB/g.pgm
 wait    4
@@ -179,6 +190,7 @@ shot    pnmtofits
 cap     Writes a FITS file -- the Flexible Image Transport System
 cap     astronomers store images in.  The greyscale image becomes a FITS
 cap     array with an ASCII header; `ls' shows the file.
+try     pnmtofits tmp/NPMB/g.pgm > tmp/NPMB/o.fits
 run     mkdir -p /dd/tmp/NPMB > /nil 2>/nil
 run     pgmramp -lr 48 24 > /dd/tmp/NPMB/g.pgm
 wait    4
@@ -194,6 +206,7 @@ shot    pnmtoddif
 cap     Writes a DDIF file -- DEC's Document Interchange Format, for
 cap     embedding an image in a DEC document.  The greyscale image becomes
 cap     the DDIF stream `ls' lists.
+try     pnmtoddif tmp/NPMB/g.pgm > tmp/NPMB/o.ddif
 run     mkdir -p /dd/tmp/NPMB > /nil 2>/nil
 run     pgmramp -lr 48 24 > /dd/tmp/NPMB/g.pgm
 wait    4
@@ -209,6 +222,7 @@ shot    pnmtosgi
 cap     Writes an SGI image, the RGB/IRIS format from Silicon Graphics
 cap     workstations.  The colour test image becomes the SGI file `ls'
 cap     lists.
+try     pnmtosgi tmp/NPMB/c.ppm > tmp/NPMB/o.sgi
 run     mkdir -p /dd/tmp/NPMB > /nil 2>/nil
 run     ppmpat -gingham3 48 24 > /dd/tmp/NPMB/c.ppm
 wait    4
@@ -224,6 +238,7 @@ shot    ppmtoacad
 cap     Writes an AutoCAD slide (.sld), the format AutoCAD shows in a slide
 cap     show.  It builds a colourmap from the image, then writes the slide
 cap     `ls' lists.
+try     ppmtoacad tmp/NPMB/q.ppm > tmp/NPMB/o.sld
 run     mkdir -p /dd/tmp/NPMB > /nil 2>/nil
 run     ppmpat -gingham3 48 24 > /dd/tmp/NPMB/c.ppm
 wait    4
@@ -241,6 +256,7 @@ shot    ppmtomitsu
 cap     Writes a print job for a Mitsubishi S340-10 colour printer.  It
 cap     builds a lookup table from the image's colours, rotates it for the
 cap     printer, and writes the job `ls' lists.
+try     ppmtomitsu tmp/NPMB/q.ppm > tmp/NPMB/o.mitsu
 run     mkdir -p /dd/tmp/NPMB > /nil 2>/nil
 run     ppmpat -gingham3 48 24 > /dd/tmp/NPMB/c.ppm
 wait    4
@@ -258,6 +274,7 @@ shot    ppmtosixel
 cap     Writes DEC sixel graphics -- the escape codes a VT300 or compatible
 cap     terminal draws a colour image with.  It builds a colourmap and
 cap     delivers the sixel stream `ls' lists.
+try     ppmtosixel tmp/NPMB/q.ppm > tmp/NPMB/o.six
 run     mkdir -p /dd/tmp/NPMB > /nil 2>/nil
 run     ppmpat -gingham3 48 24 > /dd/tmp/NPMB/c.ppm
 wait    4
@@ -275,6 +292,7 @@ shot    ppmtoyuvsplit
 cap     Writes Abekas YUV video, split into three files: `<name>.Y' luma
 cap     and `<name>.U'/`.V' chroma.  4:2:0 subsampling keeps one chroma
 cap     pair per 2x2 block, so .U and .V are a quarter the size of .Y.
+try     ppmtoyuvsplit tmp/NPMB/y tmp/NPMB/c.ppm
 run     mkdir -p /dd/tmp/NPMB > /nil 2>/nil
 run     ppmpat -gingham3 48 24 > /dd/tmp/NPMB/c.ppm
 wait    4

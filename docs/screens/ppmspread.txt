@@ -1,15 +1,15 @@
 pgmtopbm tmp/NEAB/sr.pgm | pbmtoascii -2x4
-MMM9H&$&S|}??i|>/: :.
-MMHH9&&%}&%%%\(<:::.`.
-MMH6FR&ZF$J||\/:.:::.-
-MM9R6kR$$$???)\\:/.-: '
-MMM&H$$R$|$|||\>:::: :
-MMHHH&&$S|}??)\::\:.-.
+MMM9M&&%F$)))|;:>:: ..
+MM&RH&&$Z%T|||?\::\: .
+MMRMH&Z&$\\SS|;\::::.-
+MMHDkHZk&S\\\\(<:::.-:
+MM96HZ&&Z$$SSS/:::::..
+MMHH&k&%k?L||(?:::::-.
 $ ppmspread 8 tmp/NEAB/sr.pgm > tmp/NEAB/sp.ppm
 $ ppmtopgm tmp/NEAB/sp.ppm | pgmtopbm | pbmtoascii -2x4
-MMM6H&Z&?T}????:\\'.-.
-MMDRM&$Z$T$SS/>:/:::-.
-MHMH&HSk$&?//|;:S.:-:
-MMDR6k&$S$$??<\/:::: .-
-MHM9&&6$&S%??S|:-:::. .
-MM6HHZk&$)?|||>!%:.':`
+MMM6R&1$S4?////S.:-:.
+MM&6HH17&$))||/::/-:.`.
+MMHH9&$S?&)7|/:\!:\-:.
+MM&H$RH%F$(|+\|%i:.-. .
+MHMFRkF[$|$%%%\\/;:.--
+MM6M$R&Z$S$|||://::.: -
