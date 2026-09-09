@@ -12,11 +12,11 @@ static char *tmp/qx[] = {
 /* width height ncolors chars_per_pixel */
 "48 24 6 1",
 /* colors */
-"  c #662735",
-". c #A57843",
-"X c #69B57B",
-"o c #2EF3B3",
-"O c #854F3C",
+"  c #380D3D",
+". c #91233E",
+"X c #5A4A64",
+"o c #B36065",
+"O c #7D878C",
 $ xpmtoppm tmp/t.xpm | pnmfile
 stdin:  PPM raw, 48 by 24  maxval 255
 $ ppmtopuzz tmp/qx.ppm > tmp/t.puzz

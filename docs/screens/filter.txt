@@ -1,3 +1,3 @@
 <tester\rSubject: test\r\rbody\r" > tmp/MAILA/msg.txt
 $ filter -v < tmp/MAILA/msg.txt
-filter (Sun Sep  6 02:46:08 2026 su): LEAVE Cannot open temporary file /r0/filt3
+filter (Tue Sep  8 18:06:11 2026 su): LEAVE Cannot open temporary file /r0/filt3

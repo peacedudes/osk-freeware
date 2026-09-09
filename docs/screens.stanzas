@@ -25,7 +25,6 @@ alps b87fad0f1c3db62c
 animal 0a0d19a335dff202
 answer 68432d5553132353
 ape a66ed5fcbcfe0784
-apfel 77cdc537a38abde5
 aprocs e09b6077ad89639d
 ar 153dc6dff2b25522
 ar2 d9a8f4ab9db408a4
@@ -73,7 +72,7 @@ blastem fa9732657d0832ad
 bm 81e5bace8971e799
 bmgtest ce72d50c61788f73
 bmgtest2 b1a35f3056550cd5
-bmp 5d890d05c0e78f6d
+bmp 095921447e784b82
 bog 6a559c9a353d94f5
 bootgen a84da7013b341aa3
 bootlogger ae62a47371b479e9
@@ -246,7 +245,7 @@ fillup dd094c0bcbd90d64
 filter 5a3c721524100ccc
 find bc48b346d17192b8
 finger ba2c1c5fd943c54b
-fits 3982d3984b9e6727
+fits d5c926450ae70c81
 fixtext 7f412c13c37f6331
 fkeys 56a9454bbb85c506
 flex 8c3f2fdd70fa2ca9
@@ -261,8 +260,7 @@ fstat aecaa6bd7270fe1a
 fstopgm cb54318f9243410c
 fuddle 95d0107b8e92bdc1
 funzip e3be593215895e13
-g fe668ad88d2c5a40
-g3 aafc12991c8b0cf1
+g3 f4a93c537b76b141
 game 04dc246b40477d8a
 gawk 49dd1fd65b79d340
 gcc 9bc79750e4d9b9a5
@@ -282,7 +280,7 @@ getenv f80c67660f97119e
 gftopk 8100bfd8bd2de516
 gftype 78a3af015c4c1079
 ggrep a2320b13d3d07622
-gif fc8f4252fa462025
+gif 122497c680583f1e
 gif2 517438797963c379
 giftopnm 89440862984bacda
 gmake bc0878d5be334e55
@@ -298,7 +296,7 @@ gpp 29abc61477265dbc
 gpp_cc1plus 870c0d0d360be757
 gpp_cccp c3243bd84008c813
 gpp_collect 72241bec17e95aa4
-graph f9efd2fd28e13dd5
+graph db8cce2aef3f69f7
 graphdemo e54d0a7bf36b46b3
 graphsave d0d49807572e471e
 greed 158e714fe4950b0c
@@ -331,11 +329,11 @@ hipstopgm 50daa9f3332217ee
 hotel 41cf8b374b076d33
 hpcdtoppm 35b8593fab141bfd
 i_am_i 65844e506a55c3e6
-icon ad074cb4ef0bd162
+icon 50772be6a1eb3fef
 ident d24209e786b1ac02
 if 8b8e84cc03804931
 ifdef 75f94280c21c0ca5
-ilbm 69f0937fcaa42ea3
+ilbm 2a57f92f5f4ad67a
 imgtoppm e385dad9fd237200
 indent b8de68b935d4c012
 inetd de3c4ab4195bc57d
@@ -491,9 +489,10 @@ passwd a75ac662a0382d5e
 paste e5c0a3068bf0c04c
 patch 9da2962d6bd48a2f
 pathalias 9b473023501bda9d
-pbmclean 4b547c32623975b2
+pbmclean 13653d26ec909838
 pbmlife 3f167eca3c936086
 pbmmake f565a85b9906f3ec
+pbmmask e39a71a9a3eb5361
 pbmreduce 8c52b6ac61de2df3
 pbmtext 5f83b08009f7c689
 pbmtext-big 711041865a144bd2
@@ -502,13 +501,14 @@ pbmtog3 82c26344952d3fdd
 pbmtogem b26d5de10db9074c
 pbmtoicon 0022a8436122ceb3
 pbmtomacp df04ca347ea2c1d2
+pbmtopgm 6e2b04a32b82ca86
 pbmtopi3 18a7ed04042a29bc
 pbmtoptx 82ca56ca964c8c04
 pbmtoxbm ef9a2839d02eaffe
 pbmupc cfb7064fa3a78d28
 pbyte 383cb31a3d969ce3
-pcx a201e4e08ebb3481
-pdraw 77bd46c09789763d
+pcx c99b1cc9bb515cbf
+pdraw 24cfd6da1d1047d1
 pep 8cd5b600ad9af25f
 perr 02e58a200bd8ac19
 pgmbentley 2062db311a127430
@@ -548,6 +548,7 @@ pnmgamma dd938d5b2fd934be
 pnmhisteq db39a7913e9013fa
 pnmhistmap ec87358aa0948546
 pnminvert 31fd425ea4064438
+pnmnoraw 7da071f12d8effca
 pnmpad c79c0e4b72d5b7b5
 pnmpaste 42ecd557ec5b1736
 pnmrotate dec962ef01d22fee
@@ -662,10 +663,8 @@ sh 1050ea4d5b07cd6b
 shar a6676333f58d6a6b
 shdev 2bff145e6db657b6
 shire 73eb937ead616c9c
-showpic 706e687b246a0ffa
 shuffle df56b0a91782f830
 signal cd58109a61af0db6
-sine 0cece66040b0292a
 sir 8c2bcd16bc9d8649
 sldtoppm 426a41fc35f1e5a8
 slitex 9d5c592edccfeb5c
@@ -693,7 +692,6 @@ ssl 14b797edbedf2d17
 sterm 0af240d71420c91a
 stone 1a340282f3de4054
 strfile aacbe8f2cbb58af8
-striche 78cf3953bcc12164
 strings a69f26e3b152e77c
 su a6743cd58fbaac7c
 subber a2d2ab5962fe9db3
@@ -723,9 +721,9 @@ texidx 402d102d89fe6654
 textb 99f4ff8f414d5e94
 tformat 0886ddeb67b764e1
 tftopl 00dbe2aa2c796222
-tga 0e01a6bbe8ee7e74
+tga 957e110722e045fc
 tgatoppm d5a487674cad43f9
-tiffish 402f3d0ac1e908de
+tiffish f64869cd9cfd6f5b
 time a3ba286af1dfe84f
 timid 8ac2e5fb4322cda4
 today 4fe69e051d3146c8
@@ -733,7 +731,6 @@ todos caffc76cd117b03d
 toos9 22377fa726080b38
 top 252a98dc53f88e25
 touchtype 9609742a1b462edc
-tplot 9d1a9b6593afdfbb
 transfer a5b5f2a0a0001d1c
 trap 826cf28c3665cc74
 travesty a7b61d3796043c40
@@ -802,7 +799,6 @@ what 8642a07e7041636b
 whoami ac172d53bcf13294
 wish 25127b626c43c503
 wn f0b1aaa64c9cc858
-wndex 4e51decae1f21212
 workstations e2e0317a1ff371e0
 world adf7081315adaee5
 worms 44d3eb5b2a689c90
@@ -810,7 +806,7 @@ writeonly 14344f0f27ffa55d
 wrjpgcom c48ec6047691ec09
 wrjpgcom.070 431c1c4199d91118
 wysetime f4698b8097414beb
-xbm 8a523dad0ed0786d
+xbm db7087d7e8969392
 xbmtopbm 699141463bda5b4d
 xc 49d190da131fcb1d
 xcrypt 3c480b4fc7c07d95
@@ -828,7 +824,7 @@ xyt 53e361ed92dcf2f5
 yacc 68da3ce1893fa99a
 yagi 469ad661c6ada1aa
 ynad 4e45aa6ac750eb7c
-yuv 7bc729e24271bbd0
+yuv a14145a7c5bf9bcd
 yuvsplittoppm 537120403af77c9c
 z 44acd9294c1d2884
 zeisstopnm 11c0d429931d235f

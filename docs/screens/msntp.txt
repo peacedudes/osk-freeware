@@ -1,3 +1,2 @@
-$ msntp
 msntp: unable to allocate socket for NTP
 msntp: 000:221 (E$MNF) That module isn't currently loaded.

@@ -1,3 +1,1 @@
-ls -l CMDS/UUCP/fileserv
 -r-xr-xr-x   1 0        0           21202 Aug  3 19:00 CMDS/UUCP/fileserv
-$ fileserv

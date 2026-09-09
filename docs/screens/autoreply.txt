@@ -1,2 +1,2 @@
 autoreply off
-You're not currently autoreplying to mail!
+No-one is autoreplying to their mail!

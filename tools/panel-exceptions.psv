@@ -109,3 +109,12 @@ float|a floating-point benchmark: it runs a fixed loop of arithmetic and prints 
 sieve|the Sieve of Eratosthenes benchmark: it counts the primes below its fixed limit and prints the one count; pair it with `time` for a rate
 rcsmerge|forks a `merge` helper that is not on this disk and cannot create its RCS temp files, so it aborts; rcs, ci, co, rlog and rcsident are the RCS tools that work here
 lnk.org|an RTF Fortran link driver: it prints the l68 command it would run and stops, because the link needs l68 from the reader own OS-9; rtf compiles and is the working program of that set
+apfel|a Mandelbrot drawer for the Graph library display; with no such display it prints its name and aborts. Needs G-Windows
+g|a Graph-library drawing program; with no G-Windows display it prints its name and aborts
+showpic|shows a picture through the Graph library; with no G-Windows display it aborts at once
+sine|plots a sine curve through the Graph library; with no G-Windows display it aborts
+striche|a Graph-library line drawing; with no G-Windows display it aborts
+graphdemo|a Graph-library demonstration; it aborts at once with no G-Windows display to draw on
+graphsave|saves a Graph-library screen; with no display to read it aborts at once
+tplot|a Tektronix plotter: it asks for the interval and points and draws the curve in Tektronix vectors, so on a character terminal the dialogue is the readable part
+wndex|builds the WN web server index for a directory and reports the one line `Wrote cache file'; there is nothing more to show

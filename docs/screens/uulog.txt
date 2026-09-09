@@ -1,1 +1,2 @@
-uuxqt  (Sep 3-16:13:04) ERROR--isuuxqtrunning() can't load 'procs'
+rmail milkyway (Sep 8-18:12:21) ERROR--dolocal: can't change to mailbox: /dd/SP4
+uuxqt  (Sep 8-18:25:54) ERROR--isuuxqtrunning() can't load 'procs'

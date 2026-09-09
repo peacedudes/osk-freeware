@@ -1,6 +1,0 @@
-$ tplot
-x interval    ? 1
-x interval    ? 2
-x interval    ? 3
-x interval    ? 4
-x interval    ?

@@ -1,3 +1,2 @@
 $ rsconvert; echo ""
-/* Converted by rsconvert */
-**** Stack Overflow ****
+$ tack Overflow ****t */

@@ -1,15 +1,2 @@
-$ modinfo /dd/CMDS/GAMES/graph | head -n 14
------------------------------ /dd/CMDS/GAMES/graph  - - - - - - - - - - - - - --
-Module name           = Graph
-System revision       = 1
-Module size           = 5138
-Owner Id              = 0.0
-Offset to module name = 000013b6H
-Access permission     = e-re-re-r
-Type/Language          = 0b01H  Trap handler library   68000 Object Code Module
-Attribute/Revision    = a000H   reentrant  execute in supervisor state
-Edition               = 4
-Comment string offset = 00000000H
-Symbol table offset   = 00000000H
-Ident code            = 0000H
-Header parity         = 1cf6H
+modinfo graph | head -n 14
+$  parity         = 1cf6H000Heentrant  execute in supervisor statede Module-

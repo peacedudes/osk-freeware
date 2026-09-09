@@ -6,6 +6,7 @@ cap     ATerm 2.6, a terminal emulator.  Its own Example line is `ATerm
 cap     /t1', naming a serial device driven the way its control file in
 cap     SYS/ATERM expects.  Pointed at /t1 here it answers that the device
 cap     is not a valid one, since no such serial line is configured.
+try     aterm /t1
 run     aterm
 wait    6
 run     aterm /t1
@@ -14,6 +15,7 @@ wait    10
 shot    elm
 cap     The full-screen mail reader, opening on the folder that ships for
 cap     this account: one message.  `d' deletes, `r' replies, `q' quits.
+try     elm
 run     elm
 wait    10
 quit    q\r
@@ -22,6 +24,7 @@ shot    answer
 cap     Replies to messages in a folder one at a time, prompting `Message
 cap     to:' for a recipient it checks against the alias table.  Anything
 cap     else gets `Sorry, could not find ... in list!' and it asks again.
+try     answer
 run     newalias
 wait    8
 run     clear
@@ -36,6 +39,7 @@ cap     The daemon autoreply relies on.  Wants its data file, which is
 cap     not here, and says so:
 cap     `Error 216 attempting fstat' -- though it still touches
 cap     autoreply.log on its way there.
+try     arepdaemon
 run     rm -f /dd/USR/LIB/ELM/autoreply.data /dd/USR/LIB/ELM/autoreply.log
 wait    3
 run     builtin cd /dd
@@ -55,6 +59,7 @@ cap     mailbox by the session's numeric owner rather than $USER, so
 cap     under this identity it reaches for a mailbox named `su' and
 cap     stops there; turning autoreplying off does not need the mailbox
 cap     and answers for real.
+try     autoreply off
 run     autoreply -?
 wait    6
 run     clear
@@ -63,10 +68,11 @@ run     autoreply off
 wait    6
 
 shot    checkalias
-cap     Checks that an alias resolves, after `newalias' compiles the
-cap     table.  It prints nothing either way and returns the same status
-cap     for an alias that exists and one that does not -- `listalias' is
-cap     what actually answers the question.
+cap     Checks whether a mail alias resolves.  It prints nothing and hands
+cap     back the same status whether the alias is in the table or not, so
+cap     listalias -- which prints the match -- is the better way to ask.
+try     checkalias os9; echo "exit: $?"
+os9     checkalias os9; echo exit: $?
 run     newalias
 wait    8
 run     clear
@@ -77,9 +83,10 @@ run     checkalias nosuchalias; echo "exit: $?"
 wait    5
 
 shot    disable
-cap     Turns MTSMon off on a serial port.  It wants the port's device
-cap     driver module resident in memory to find it by name; none is
-cap     loaded here, so it gets no further than looking.
+cap     Turns a serial port's terminal monitor off.  It wants the port's
+cap     device driver module resident in memory to find it by name; none
+cap     is loaded here, so it gets no further than looking.
+try     disable /t1
 run     disable -?
 wait    5
 run     clear
@@ -92,6 +99,7 @@ cap     The other half of `disable', with an extra option to hold its
 cap     prompt until a signal comes in.  Asked for by full path -- bash
 cap     has its own builtin of the same name, which answers first.  Same
 cap     story as disable: it wants the /t1 module resident and none is.
+try     enable /t1
 run     /dd/CMDS/UUCP/enable -?
 wait    5
 run     clear
@@ -100,50 +108,49 @@ run     /dd/CMDS/UUCP/enable /t1
 wait    5
 
 shot    dotilde
-cap     The mailer's tilde-escape handler: it reads a message from
-cap     standard input and acts on the `~' commands inside it.  An
-cap     unrecognized one gets `Unrecognized tilde command' and it keeps
-cap     reading.
-run     mkdir -p /dd/tmp/MAILA > /nil 2>/nil; printf "hello\r~x\rmore text\r" > /dd/tmp/MAILA/dt.txt
+cap     The mailer's tilde-escape handler: it reads a message from standard
+cap     input and acts on the `~' commands inside it.  An unrecognized one
+cap     gets `Unrecognized tilde command' and it keeps reading.
+try     dotilde <msg.txt
+run     rm -rf /dd/tmp/EC; mkdir -p /dd/tmp/EC; printf "hello\r~x\rmore text\r" > /dd/tmp/EC/msg.txt
 wait    3
-run     builtin cd /dd
+run     builtin cd /dd/tmp/EC
 wait    1
 run     clear
 wait    1
-run     dotilde < tmp/MAILA/dt.txt
+run     dotilde <msg.txt
 wait    6
 
 shot    fastmail
-cap     Sends a file as mail without opening the reader.  It needs a
-cap     delivery agent to actually hand the message off; there is none
-cap     here, so the folder is unchanged and it returns in silence.
-run     mkdir -p /dd/tmp/MAILA > /nil 2>/nil; printf "hello from fastmail\r" > /dd/tmp/MAILA/fm.txt
+cap     Sends a file as mail without opening the reader.  It needs a delivery
+cap     agent to hand the message off, and there is none here, so the folder
+cap     is unchanged and it returns in silence.
+try     fastmail msg.txt tester
+run     rm -rf /dd/tmp/EC; mkdir -p /dd/tmp/EC; printf "hello from fastmail\r" > /dd/tmp/EC/msg.txt
 wait    3
-run     builtin cd /dd
+run     builtin cd /dd/tmp/EC
 wait    1
 run     clear
 wait    1
 run     messages
 wait    4
-run     fastmail tmp/MAILA/fm.txt tester
+run     fastmail msg.txt tester
 wait    6
 run     messages
 wait    5
 
 shot    filter
-cap     A pipe stage that sorts incoming mail into folders by rule -- its
-cap     own usage line begins with the pipe.  Piping it a message here
-cap     reaches for a scratch file at /r0, the RAM disk this disk has no
-cap     device for.
-run     filter -?
-wait    5
-run     builtin cd /dd
+cap     A pipe stage that sorts incoming mail into folders by rule -- its own
+cap     usage line begins with the pipe.  Piping it a message here reaches for
+cap     a scratch file at /r0, the RAM disk this disk has no device for.
+try     filter -v <msg.txt
+run     rm -rf /dd/tmp/EC; mkdir -p /dd/tmp/EC; printf "From tester\rSubject: test\r\rbody\r" > /dd/tmp/EC/msg.txt
+wait    3
+run     builtin cd /dd/tmp/EC
 wait    1
 run     clear
 wait    1
-run     mkdir -p tmp/MAILA > /nil 2>/nil; printf "From tester\rSubject: test\r\rbody\r" > tmp/MAILA/msg.txt
-wait    3
-run     filter -v < tmp/MAILA/msg.txt
+run     filter -v <msg.txt
 wait    6
 
 shot    frm
@@ -151,25 +158,26 @@ cap     Lists who your mail is from, one line each.  On this disk it
 cap     opens the folder, names you, and answers that there is no mail --
 cap     even though `messages' and `readmsg' both find the one message
 cap     that is there.
+try     frm
 run     frm
 wait    6
 
 shot    lcasep
-cap     Lower-cases a name for the mailer, reading it from standard
-cap     input.
-run     mkdir -p /dd/tmp/MAILA > /nil 2>/nil; printf "Robert Smith\r" > /dd/tmp/MAILA/lc.txt
+cap     Lower-cases a name for the mailer, reading it from standard input.
+try     lcasep <name.txt
+run     rm -rf /dd/tmp/EC; mkdir -p /dd/tmp/EC; printf "Robert Smith\r" > /dd/tmp/EC/name.txt
 wait    3
-run     builtin cd /dd
+run     builtin cd /dd/tmp/EC
 wait    1
 run     clear
 wait    1
-run     lcasep < tmp/MAILA/lc.txt
+run     lcasep <name.txt
 wait    5
 
 shot    listalias
-cap     Lists the aliases you have, once `newalias' has compiled them:
-cap     your own file first, then the system one.  Its -s and -u forms
-cap     filter the list through `egrep', and show the aliases either way.
+cap     Lists the mail aliases you have, once newalias has compiled them:
+cap     your own aliases first, then the shared system ones.
+try     listalias
 run     newalias
 wait    8
 run     newalias -g
@@ -178,19 +186,19 @@ run     clear
 wait    1
 run     listalias
 wait    6
-run     listalias -s
-wait    6
 
 shot    lmail
 cap     Local mail delivery.  Its usage line is safe to ask for; giving
 cap     it a real recipient does not return here -- it hangs and has to
 cap     be broken out of.
+try     lmail -?
 run     lmail -?
 wait    6
 
 shot    mail
 cap     A simple mail sender.  It reaches for a scratch file at /r0, the
 cap     RAM disk this disk has no device for, and stops there.
+try     mail tester
 run     mkdir -p /dd/tmp/MAILA > /nil 2>/nil
 wait    2
 run     clear
@@ -199,30 +207,31 @@ run     printf "hi\r.\r" | mail tester
 wait    6
 
 shot    mailx
-cap     The mail reader and sender.  It looks your mailbox up by USER
-cap     NUMBER, not by $USER -- logged in as the super user, which has no
-cap     mailbox of its own, so it says it cannot change to it.
+cap     The mail reader and sender.  It finds your mailbox by the numeric
+cap     user id rather than by name -- logged in as the super user, which
+cap     has no mailbox of its own, so it says it cannot change to it.
+try     mailx
 run     mailx
 wait    8
 
 shot    makedb
-cap     Builds smail's path-alias database from a text source, two files
-cap     beside it: a .dir and a .pag.
-run     makedb -?
-wait    5
-run     builtin cd /dd
-wait    1
+cap     Builds smail's path-alias database from a text source, writing two
+cap     files beside the name you give: a .dir and a .pag.
+try     makedb -o palias palias.src
+run     rm -rf /dd/tmp/EC; mkdir -p /dd/tmp/EC
+run     cat /dd/USR/LIB/SMAIL/palias > /dd/tmp/EC/palias.src
+run     builtin cd /dd/tmp/EC
+wait    2
 run     clear
 wait    1
-run     mkdir -p tmp/MAILA > /nil 2>/nil
-wait    2
-run     makedb -o tmp/MAILA/palias USR/LIB/SMAIL/palias
+run     makedb -o palias palias.src
 wait    6
-run     ls -l tmp/MAILA/palias.dir tmp/MAILA/palias.pag
+run     ls -l palias.dir palias.pag
 wait    5
 
 shot    messages
 cap     Counts and lists what is in a folder.
+try     messages
 run     builtin cd /dd
 wait    1
 run     clear
@@ -235,6 +244,7 @@ wait    5
 shot    newalias
 cap     Rebuilds the alias database after you edit the alias files: your
 cap     own first, then the system one with -g.
+try     newalias
 run     newalias
 wait    8
 run     newalias -g
@@ -245,6 +255,7 @@ wait    8
 shot    newmail
 cap     Watches for mail arriving and says so; -d also reports the
 cap     folder it is watching and its size.
+try     newmail -d tester
 run     newmail -?
 wait    6
 run     clear
@@ -253,33 +264,37 @@ run     newmail -d tester
 wait    8
 
 shot    nptx
-cap     The address it builds from one name-and-login line.
-run     mkdir -p /dd/tmp/MAILA > /nil 2>/nil; printf "John Q Public\tjqpublic\r" > /dd/tmp/MAILA/np.txt
+cap     The address it builds from one name-and-login line: given the full
+cap     name and the login separated by a tab, it answers with the pair.
+try     nptx <name.txt
+run     rm -rf /dd/tmp/EC; mkdir -p /dd/tmp/EC; printf "John Q Public\tjqpublic\r" > /dd/tmp/EC/name.txt
 wait    3
-run     builtin cd /dd
+run     builtin cd /dd/tmp/EC
 wait    1
 run     clear
 wait    1
-run     nptx < tmp/MAILA/np.txt
+run     nptx <name.txt
 wait    6
 
 shot    pathalias
-cap     Computes mail routes from a map of who calls whom.  Given a map
-cap     where milkyway calls phoenix, phoenix calls seabass and seabass
-cap     calls pirsqrd, it prints the cheapest route to each site; the %s
-cap     is where a user name goes.
-run     mkdir -p /dd/tmp/BLGX > /nil 2>/nil
-run     printf "milkyway phoenix(20)\rphoenix seabass(30)\rseabass pirsqrd(10)\r" > /dd/tmp/BLGX/map
-run     builtin cd /dd
+cap     Computes mail routes from a map of who calls whom.  Given a map where
+cap     milkyway calls phoenix, phoenix calls seabass and seabass calls
+cap     pirsqrd, it prints the cheapest route to each site; the %s is where a
+cap     user name goes.
+try     pathalias -l milkyway map
+run     rm -rf /dd/tmp/EC; mkdir -p /dd/tmp/EC
+run     printf "milkyway phoenix(20)\rphoenix seabass(30)\rseabass pirsqrd(10)\r" > /dd/tmp/EC/map
+run     builtin cd /dd/tmp/EC
 wait    1
 run     clear
-run     pathalias -l milkyway tmp/BLGX/map
+run     pathalias -l milkyway map
 wait    5
 
 shot    philmail
 cap     An off-line mail reader: it opens $MAIL, confirms the file is
 cap     well formed, and lets you step through messages with return;
 cap     `q' quits.
+try     philmail
 run     philmail
 wait    6
 send    \r
@@ -291,6 +306,7 @@ shot    printmail
 cap     Formats a message for a printer.  It forks `readmsg' by bare
 cap     name, so load it first; then printmail prints the message the
 cap     same way `readmsg' would.
+try     printmail 1
 run     load /dd/CMDS/ELM/readmsg
 wait    3
 run     clear
@@ -301,6 +317,7 @@ wait    6
 shot    pwparse
 cap     Parses a password file into the login names the mailer wants,
 cap     one per line.
+try     pwparse <password
 run     builtin cd /dd/SYS
 wait    1
 run     clear
@@ -309,22 +326,23 @@ run     pwparse < password
 wait    6
 
 shot    read_mail
-cap     vi/elvis's own mail-reading helper, not part of Elm: it opens your
-cap     mailbox and quotes what it finds.  The file that
-cap     ships is empty, so it reads to end and has nothing to quote.
-run     ls -l /dd/MAIL
-wait    4
-run     builtin cd /dd
-wait    1
+cap     vi/elvis's own mail helper, not part of Elm: it opens your mailbox,
+cap     quotes each message, then offers to list them again, exit and delete,
+cap     or exit and keep.  Here it quotes the one message and `N' keeps it.
+try     read_mail
+run     mkdir -p /dd/MAIL > /nil 2>/nil
+run     printf "From: os9-freeware\rSubject: hello\r\rWelcome to the collection.\r" > /dd/MAIL/mail_tester
+wait    3
 run     clear
 wait    1
-run     mkdir -p tmp/MAILA > /nil 2>/nil; echo N > tmp/MAILA/ans
-wait    3
-run     read_mail < tmp/MAILA/ans; echo "exit: $?"
-wait    6
+run     read_mail
+wait    5
+send    N\r
+wait    4
 
 shot    readmsg
 cap     Prints a message from a folder by number.
+try     readmsg 1
 run     readmsg 1
 wait    6
 
@@ -332,11 +350,13 @@ shot    rmail
 cap     Delivers incoming mail -- invoked by uuxqt, not typed by hand.
 cap     Local delivery expects a mailbox directory; the one that ships
 cap     is a plain file, so it stops there.
+try     rmail tester
 run     rmail tester
 wait    6
 
 shot    smail
 cap     The options it lists.
+try     smail -?
 run     smail -?
 wait    8
 
@@ -344,6 +364,7 @@ shot    uupoll
 cap     Polls a UUCP site for waiting work.  It works in silence -- the
 cap     only sign is the poll file it leaves in the site's spool
 cap     directory.
+try     uupoll seabass
 run     ls -l /dd/SPOOL/uucp/seabass
 wait    4
 run     builtin cd /dd
@@ -356,52 +377,61 @@ run     ls -l SPOOL/uucp/seabass
 wait    5
 
 shot    uux
-cap     Runs a command on another UUCP site: its options.  This is a
-cap     different UUCP package from the one whose Systems file names
-cap     `seabass', so asking for it that way answers `Unknown Host'.
+cap     Runs a command on another UUCP site: its options.  This is a different
+cap     UUCP package from the one whose Systems file names `seabass', so asking
+cap     for it that way answers `Unknown Host'.
+try     uux 'seabass!rnews'
+os9     uux "seabass!rnews"
 run     uux -?
 wait    6
 run     clear
 wait    1
-run     uux seabass\!rnews
+run     uux 'seabass!rnews'
 wait    6
+snap
 
 shot    bdecode
-cap     Decodes a batched news article.  Handed a file with no batch
-cap     header, it says so plainly.
-run     mkdir -p /dd/tmp/MAILA > /nil 2>/nil; printf "not a batch\r" > /dd/tmp/MAILA/bd.txt
+cap     Decodes a batched news article.  Handed a file with no batch header,
+cap     it says so plainly.
+try     bdecode msg.txt
+run     rm -rf /dd/tmp/EC; mkdir -p /dd/tmp/EC; printf "not a batch\r" > /dd/tmp/EC/msg.txt
 wait    3
-run     builtin cd /dd
+run     builtin cd /dd/tmp/EC
 wait    1
 run     clear
 wait    1
-run     bdecode tmp/MAILA/bd.txt
+run     bdecode msg.txt
 wait    6
 
 shot    byteflip
 cap     Byte-swaps a dbz database between architectures.  Run with
 cap     nothing to swap, it ends the shell outright rather than printing
 cap     anything.
+try     byteflip
 run     byteflip
 wait    6
 
 shot    c7decode
-cap     Decodes 7-bit-safe encoded news.  Handed text that is not
-cap     encoded that way, it says so.
-run     mkdir -p /dd/tmp/MAILA > /nil 2>/nil; printf "not encoded\r" > /dd/tmp/MAILA/c7.txt
+cap     Decodes 7-bit-safe encoded news.  Handed text that is not encoded
+cap     that way, it says so.
+try     c7decode <msg.txt
+run     rm -rf /dd/tmp/EC; mkdir -p /dd/tmp/EC; printf "not encoded\r" > /dd/tmp/EC/msg.txt
 wait    3
-run     builtin cd /dd
+run     builtin cd /dd/tmp/EC
 wait    1
 run     clear
 wait    1
-run     c7decode < tmp/MAILA/c7.txt
+run     c7decode <msg.txt
 wait    6
 
 shot    dbz
-cap     The news history database from C News: builds a .dir/.pag pair
-cap     from a text history file.
-run     mkdir -p /dd/tmp/MAILA > /nil 2>/nil; printf "<one@site.uucp> 999999999 1\r" > /dd/tmp/MAILA/history
-run     builtin cd /dd/tmp/MAILA
+cap     The news history database from C News.  It reads a text history file
+cap     and builds the hashed .dir and .pag index beside it; on the single
+cap     sample line here the store reports it could not place the entry, and
+cap     leaves the pair it had begun.
+try     dbz history
+run     rm -rf /dd/tmp/EC; mkdir -p /dd/tmp/EC; printf "<one@site.uucp> 999999999 1\r" > /dd/tmp/EC/history
+run     builtin cd /dd/tmp/EC
 wait    3
 run     clear
 wait    1
@@ -413,6 +443,7 @@ wait    5
 shot    expire
 cap     Deletes news articles past their expiry date.  -t previews
 cap     without deleting, walking every newsgroup in the active file.
+try     expire -t
 run     expire -t
 wait    8
 
@@ -421,6 +452,7 @@ cap     Rebuilds the news history file.  dbz's own store on this disk
 cap     fails on the entry it is given here -- see dbz -- so what
 cap     newshist can say about an id that really is in the file is that
 cap     it has no entry for it.
+try     newshist "<one@site.uucp>"
 run     mkdir -p /dd/lib/news > /nil 2>/nil; printf "<one@site.uucp> 9999999999 1\r" > /dd/lib/news/history
 run     builtin cd /dd/lib/news
 wait    3
@@ -435,6 +467,7 @@ shot    newslock
 cap     The news system's lock, given a temporary name and the real
 cap     lock name.  It leaves no trace here -- no file at either name,
 cap     nothing printed.
+try     newslock tmplock reallock
 run     mkdir -p /dd/tmp/MAILA > /nil 2>/nil
 wait    2
 run     builtin cd /dd
@@ -454,6 +487,7 @@ cap     line with just a dot.  It builds the whole header correctly and
 cap     then tries to file the article by running `rnews' as a
 cap     subprocess -- which it cannot start, so that is as far as it
 cap     goes.
+try     postnews
 run     postnews
 wait    6
 send    comp.os.os9\r
@@ -474,6 +508,7 @@ size    30 80
 cap     Reads Usenet news articles.  With nothing in .newsrc matching
 cap     most of the active groups, it asks about each one in turn before
 cap     it would start showing articles.
+try     readnews
 run     readnews
 wait    6
 send    n\r
@@ -486,21 +521,22 @@ wait    4
 shot    rnews
 size    30 80
 cap     Unpacks an incoming news batch.  Given one real article with a
-cap     `Newsgroups:' header, it files it under the matching directory
-cap     tree in the news spool.
-run     mkdir -p /dd/tmp/MAILA > /nil 2>/nil; rm -rf /dd/SPOOL/news/COMP
+cap     `Newsgroups:' header, it files it under the matching directory tree in
+cap     the news spool.
+try     rnews batch.txt
+run     rm -rf /dd/SPOOL/news/COMP /dd/art.txt /dd/batch.txt
 wait    3
-run     printf "Newsgroups: comp.os.os9\rSubject: test article\r\rhello there\r" > /dd/tmp/MAILA/art.txt
+run     printf "Newsgroups: comp.os.os9\rSubject: test article\r\rhello there\r" > /dd/art.txt
 wait    3
-run     LEN=$(cat /dd/tmp/MAILA/art.txt | wc -c)
+run     LEN=$(cat /dd/art.txt | wc -c)
 wait    2
 run     builtin cd /dd
 wait    1
 run     clear
 wait    1
-run     printf "#! rnews %s\r" $LEN > tmp/MAILA/batch.txt; cat tmp/MAILA/art.txt >> tmp/MAILA/batch.txt
+run     printf "#! rnews %s\r" $LEN > batch.txt; cat art.txt >> batch.txt
 wait    4
-run     rnews tmp/MAILA/batch.txt
+run     rnews batch.txt
 wait    6
 run     ls -laR SPOOL/news/COMP
 wait    6
@@ -509,6 +545,7 @@ shot    subscribe
 cap     Adds a newsgroup to your subscription list -- if it is already
 cap     listed in .newsrc but turned off, this turns it back on.  A
 cap     group that is not in .newsrc at all is silently left alone.
+try     subscribe news.announce.newusers
 run     unsubscribe news.announce.newusers
 wait    5
 run     builtin cd /dd
@@ -524,6 +561,7 @@ wait    5
 
 shot    unsubscribe
 cap     Drops a newsgroup from your subscription list.
+try     unsubscribe comp.sys.m68k
 run     subscribe comp.sys.m68k
 wait    5
 run     builtin cd /dd
@@ -547,6 +585,7 @@ wait    5
 shot    cls
 cap     Clears the screen through the terminal's termcap clear capability,
 cap     the way `clear' does, and returns with the cursor at the top.
+try     cls
 run     cls
 wait    4
 
@@ -554,12 +593,14 @@ shot    fkeys
 cap     Sets the user-defined function keys on a VT220 terminal from a
 cap     definition file.  Asked what it takes, it names the file argument;
 cap     it needs VT220 hardware to program.
+try     fkeys -?
 run     fkeys -?
 wait    5
 
 shot    sbreak
 cap     Sends a break signal on a serial (SCF) device.  Its syntax names
 cap     the device, and run without one it says a device must be given.
+try     sbreak
 run     sbreak -?
 wait    4
 run     sbreak
@@ -568,12 +609,14 @@ wait    4
 shot    initvdu
 cap     Initialises the login terminal from its termcap entry.  Its help
 cap     lists the reset and per-capability options.
+try     initvdu -?
 run     initvdu -?
 wait    5
 
 shot    setterm
 cap     Reports or sets the terminal type.  Run with no argument it prints
 cap     what TERM currently names; give it a name to change it.
+try     setterm
 run     setterm
 wait    5
 
@@ -581,46 +624,59 @@ shot    setfont
 cap     Loads a downloadable font into a terminal from a font file.  It
 cap     needs real terminal hardware to receive the font; run without a
 cap     path it prints its one-line usage.
+try     setfont
 run     setfont
 wait    4
 
 shot    tsmon2
 cap     A terminal monitor: it watches a serial line and starts the login
-cap     program when someone connects.  Its help lists the options for DCD
-cap     monitoring, idle timeout and which program to start.
+cap     program when someone connects.  Its help lists the options for
+cap     carrier-detect monitoring, idle timeout and which program to start.
+try     tsmon2 -?
 run     tsmon2 -?
 wait    6
 
 shot    connect
 cap     Joins two serial paths so you can talk through one to the other,
-cap     with switches for echo, CRLF and flow control on each side.  Its
-cap     usage lists them.
+cap     with switches for echo, line-ending translation and flow control on
+cap     each side.  Its usage lists them.
+try     connect -?
 run     connect -?
 wait    5
 
 shot    tsu
 cap     tterm's setup program: it creates the directory and dial-file
 cap     structure tterm needs under USR, reporting each one it makes.
+try     tsu
 run     tsu
 wait    6
 
 shot    uwho
-cap     Lists who is logged in, from the UNAXCESS bulletin board.  It
+cap     Lists who is logged in, from the Unaxcess bulletin board.  It
 cap     opens /etc/utmp, and a leading /etc names a device in OS-9 rather
 cap     than a directory, so it cannot find that file here.
+try     uwho
 run     uwho
 wait    5
 
 shot    input
-cap     The UNAXCESS bulletin board's input helper: it copies standard
-cap     input straight to standard output, a line at a time.
-run     printf "line one\rline two\r" | input
+cap     The Unaxcess bulletin board's input helper: it copies standard input
+cap     straight to standard output, a line at a time.
+try     input <lines.txt
+run     rm -rf /dd/tmp/EC; mkdir -p /dd/tmp/EC; printf "line one\rline two\r" > /dd/tmp/EC/lines.txt
+wait    3
+run     builtin cd /dd/tmp/EC
+wait    1
+run     clear
+wait    1
+run     input <lines.txt
 wait    5
 
 shot    udate
-cap     The UNAXCESS bulletin board's date display.  It prints the day and
+cap     The Unaxcess bulletin board's date display.  It prints the day and
 cap     time, writing the year into a fixed `19' field, so the present
 cap     year reads 19126.
+try     udate
 run     udate
 wait    4
 
@@ -628,6 +684,7 @@ shot    wysecrack
 cap     Probes for a Wyse terminal by asking it to identify itself and
 cap     waiting for the reply.  Nothing here is a Wyse, so no answer comes
 cap     and the screen stays blank.
+try     wysecrack
 run     /dd/CMDS/COMMS/wysecrack
 wait    6
 kill
@@ -639,6 +696,7 @@ cap     A Wyse terminal clock-setter in BASIC09: `runb wysetime' emits the
 cap     escape sequence a Wyse smart terminal reads to set its own on-screen
 cap     clock.  The bytes are shown through `dump', being terminal control
 cap     codes rather than text.
+try     runb wysetime
 run     load /h1/CMDS/runb
 wait    2
 run     rm -f /dd/tmp/wysetime.out
@@ -655,45 +713,52 @@ shot    sterm
 cap     A serial terminal emulator with a built-in B+ file transfer.  Its
 cap     usage lists the modem-port link and the transfer options; there is
 cap     no serial line here for it to open.
+try     sterm -?
 run     sterm -?
 wait    5
 
 shot    tterm
-cap     Stephen Carville's VT100-style terminal emulator.  Its usage shows
-cap     the modem-port link, defaulting to the MODEM port; with no line
-cap     configured there is nothing for it to connect to.
+cap     A VT100-style terminal emulator.  Its usage shows the modem-port
+cap     link it opens by default; with no line configured there is nothing
+cap     for it to connect to.
+try     tterm -?
 run     tterm -?
 wait    5
 
 shot    xy
-cap     Tim Kientzle's XMODEM/YMODEM transfer.  Asked for its options it
+cap     An XMODEM/YMODEM file transfer.  Asked for its options it
 cap     prints the full usage: send by naming files, receive by naming
 cap     none, with flags to force ASCII or binary and to pick the protocol.
+try     xy -?
 run     xy -?
 wait    5
 
 shot    z
-cap     Tim Kientzle's ZMODEM transfer.  Its usage covers sending and
-cap     receiving files and sending a command down the link; $MODEM names
-cap     the port, -p overrides it.
+cap     A ZMODEM file transfer.  Its usage covers sending and receiving
+cap     files and sending a command down the link; an environment variable
+cap     names the port, and -p overrides it.
+try     z -?
 run     z -?
 wait    5
 
 shot    k
-cap     Tim Kientzle's Kermit-protocol transfer, the same family as `xy'
+cap     A Kermit-protocol transfer, the same family as `xy'
 cap     and `z'.  Its usage lists the send, receive and file-type options.
+try     k -?
 run     k -?
 wait    5
 
 shot    dld
 cap     Downloads a file over a serial line with the XMODEM protocol.  Its
 cap     help names the single file argument.
+try     dld -?
 run     dld -?
 wait    5
 
 shot    uld
 cap     Uploads a file over a serial line with the XMODEM protocol, the
 cap     companion to `dld'.  Its help names the file argument.
+try     uld -?
 run     uld -?
 wait    5
 
@@ -701,6 +766,7 @@ shot    txmod
 cap     Sends an OS-9 module down a serial line to `rxmod' on another
 cap     machine, which enters it into that machine's module directory.
 cap     Its syntax lists the module and device options.
+try     txmod
 run     txmod
 wait    5
 
@@ -708,6 +774,7 @@ shot    rxmod
 cap     Receives an OS-9 module over a serial line and enters it in the
 cap     module directory -- the receiving half of `txmod'.  It needs the
 cap     vmod_trap handler that ships beside it, so load that first.
+try     rxmod -?
 run     load /dd/CMDS/COMMS/vmod_trap
 wait    3
 run     clear
@@ -719,20 +786,23 @@ shot    blastem
 cap     XMODEM and YMODEM file transfer, written for the MM/1.  Its help
 cap     lists the send and receive, protocol and buffer options; -p names
 cap     the modem path.
+try     blastem -?
 run     blastem -?
 wait    5
 
 shot    xydown
-cap     Tim Kientzle's XMODEM/YMODEM/YModem-Batch download.  It senses
+cap     An XMODEM/YMODEM/YModem-Batch download.  It senses
 cap     which the sender is using and follows.  Its usage names the serial
 cap     port, baud and file-type options.
+try     xydown -?
 run     xydown -?
 wait    5
 
 shot    xyt
-cap     Stephen Carville's X/Y/YModem-Batch transfer for the `tterm'
+cap     An X/Y/YModem-Batch transfer for the `tterm'
 cap     emulator.  Its usage lists the file-type, remote-mode and serial
 cap     port options; the modem port is the default.
+try     xyt -?
 run     xyt -?
 wait    5
 
@@ -742,12 +812,14 @@ shot    kermit
 cap     OS-9 Kermit 1.5, a serial file-transfer and terminal program that
 cap     needs no Microware module.  With no line to talk to it prints its
 cap     command letters: connect, send, receive, host-server, get, quit.
+try     kermit
 run     kermit
 wait    6
 
 shot    kermit2
 cap     Kermit 1.6, the same command letters as `kermit' in less space.
 cap     It prints them when run with no line to transfer over.
+try     kermit2
 run     kermit2
 wait    6
 
@@ -755,6 +827,7 @@ shot    kermit3
 cap     Kermit68K 1.0, a different design: it puts up its own `Kermit68K>'
 cap     prompt and reads commands and a Kermit.ini, rather than taking
 cap     command letters.
+try     kermit3
 run     kermit3
 wait    6
 snap
@@ -765,6 +838,7 @@ shot    xkermit
 cap     OS-9 Kermit 1.5 again -- the same version as `kermit' in half the
 cap     space, because it links the shared cio library rather than carrying
 cap     its own stdio.  It prints the same command letters.
+try     xkermit
 run     xkermit
 wait    6
 
@@ -772,6 +846,7 @@ shot    ckermit
 cap     C-Kermit 5A(190), the full protocol with a command language, at
 cap     its `C-Kermit>' prompt.  `show features' lists what this build
 cap     carries: character-set translation, a fullscreen transfer display.
+try     ckermit
 run     ckermit
 wait    8
 send    show features\r
@@ -784,6 +859,7 @@ shot    kermit_cio
 cap     A relink of `kermit' against the shared cio library, kept as the
 cap     one build here that can be driven only in send mode.  Run with no
 cap     line it prints the same banner and command letters as `kermit'.
+try     kermit_cio
 run     /dd/CMDS/REBUILT/kermit_cio
 wait    6
 
@@ -792,31 +868,35 @@ wait    6
 shot    finger
 cap     Asks another machine who is logged in and shows their information.
 cap     It needs a network to reach; run here it prints its one-line usage.
+try     finger
 run     finger
 wait    5
 
 shot    net
 size    30 80
-cap     Phil Karn's KA9Q net -- TCP/IP over SLIP or AX.25, with telnet,
+cap     The KA9Q net -- TCP/IP over SLIP or AX.25, with telnet,
 cap     ftp and smtp.  It starts, then lists the files it needs you to
 cap     write for your own station: startup.net, the host and user tables,
 cap     the mail directories.  Its setup guide is in DOC/ka9q.
+try     net
 run     net
 wait    8
 
 shot    osknet
 size    30 80
-cap     OSKNET, a TCP/IP package for OS-9 built on Phil Karn's KA9Q --
+cap     OSKNET, a TCP/IP package for OS-9 built on KA9Q --
 cap     telnet, ftp, ping and smtp over SLIP or PPP.  It starts and lists
 cap     the configuration it needs for your own station: startup.okn, the
 cap     host and user tables, the mail directories.  Setup is in DOC/osknet.
+try     osknet
 run     osknet
 wait    8
 
 shot    msntp
-cap     Sets the system clock from a network time server (SNTP).  There is no
-cap     network here, so it cannot open an NTP socket and says so; with a
+cap     Sets the system clock from a network time server.  There is no
+cap     network here, so it cannot open a time socket and says so; with a
 cap     network it reaches a server and sets the clock.
+try     msntp
 run     msntp
 wait    6
 
@@ -824,6 +904,7 @@ shot    atp
 cap     The AX.25 transport from the KA9Q packet-radio package.  It reads
 cap     its configuration first and names the file it wants -- atprc or
 cap     .atprc -- which you write for your own station.
+try     atp
 run     atp
 wait    8
 
@@ -831,6 +912,7 @@ shot    infoxpress
 cap     An InfoXpress network client.  It opens a serial device to reach
 cap     its host and waits there for the far end, which no line here
 cap     provides.
+try     infoxpress
 run     infoxpress
 wait    8
 
@@ -840,6 +922,7 @@ shot    uucp
 cap     The UUCP copy command: it queues a file to or from another site,
 cap     named `system!path'.  Its usage and version are what it prints
 cap     when asked.
+try     uucp -?
 run     uucp -?
 wait    5
 
@@ -848,6 +931,7 @@ size    30 80
 cap     The UUCP transfer program itself -- it dials a site, or answers as
 cap     the slave, and moves the queued files.  Its options cover master
 cap     and slave modes, retries, logging and the debug level.
+try     uucico -?
 run     uucico -?
 wait    8
 
@@ -855,24 +939,29 @@ shot    uuxqt
 cap     Runs the commands a remote site queued here.  Before starting it
 cap     looks for a module called `procs' to check whether it is already
 cap     running, and this disk has none, so it stops there.
+try     uuxqt
 run     uuxqt
 wait    6
 
 shot    uuname
 cap     Lists the UUCP sites this system is configured to reach, out of
 cap     the tables in SYS.
+try     uuname
 run     uuname
 wait    5
 
 shot    uulog
-cap     Shows the UUCP transfer log, one line per event; -s limits it to
-cap     a named site.
+cap     Shows the UUCP transfer log, a line an event.  Nothing has been
+cap     transferred here, so there is no log to open and it says so; -s would
+cap     narrow a real log to one named site.
+try     uulog
 run     uulog
 wait    4
 
 shot    uuclean
 cap     Removes stale jobs from the UUCP spool.  Its help lists the age
 cap     and selection options.
+try     uuclean -?
 run     uuclean -?
 wait    6
 
@@ -882,6 +971,7 @@ shot    fileserv
 cap     The UUCP file server: it answers file requests from remote sites.
 cap     With no request waiting it has nothing to do and exits without a
 cap     word, so its listing is shown to confirm the module is present.
+try     fileserv
 run     builtin cd /dd
 wait    1
 run     clear
@@ -892,55 +982,56 @@ run     fileserv
 wait    5
 
 shot    fixtext
-cap     Repairs the line endings of a text batch received over UUCP.  Given
-cap     a file whose lines end in the wrong character it rewrites them: the
-cap     dump shows each line now ended by CR (0D), as OS-9 text wants.
-run     mkdir -p /dd/tmp/COMB > /nil 2>/nil
+cap     Repairs the line endings of a text batch received over UUCP.  Given a
+cap     file whose lines end in the wrong character it rewrites them: the dump
+cap     shows each line now ended by CR (0D), as OS-9 text wants.
+try     fixtext ft.in ft.out
+run     rm -rf /dd/tmp/EC; mkdir -p /dd/tmp/EC
+run     printf "line one\nline two\n" > /dd/tmp/EC/ft.in
+run     builtin cd /dd/tmp/EC
 wait    2
-run     printf "line one\nline two\n" > /dd/tmp/COMB/ft.in
-wait    2
-run     builtin cd /dd
-wait    1
 run     clear
 wait    1
-run     fixtext tmp/COMB/ft.in tmp/COMB/ft.out
+run     fixtext ft.in ft.out
 wait    4
-run     dump tmp/COMB/ft.out
+run     dump ft.out
 wait    4
-
-# --- Web server -----------------------------------------------------------
 
 shot    wn
 size    40 80
-cap     WN serving a page.  It is an inetd-style server: one HTTP request
-cap     on standard input, one response on standard output.  The request
-cap     is built with `echo' and passed through `autolf', since HTTP wants
-cap     CRLF and this disk's echo writes CR alone.  Back comes a complete
-cap     HTTP/1.0 200 with Last-modified, Content-length and the page.  Its
-cap     document root is a directory this disk carries, so mount the
-cap     collection as /h0 as well as /dd; `wndex' builds the cache it
-cap     serves from.  The reply is cut to eighteen lines to end cleanly.
-run     mkdir -p /dd/tmp/COMB > /nil 2>/nil
+cap     WN serving a page.  It is an inetd-style server: one HTTP request on
+cap     standard input, one response on standard output.  The request is built
+cap     with `echo' and passed through `autolf', since HTTP wants a carriage
+cap     return and line feed and this disk's echo writes the return alone.
+cap     Back comes a complete HTTP/1.0 200 with
+cap     Last-modified, Content-length and the page.  Its document root is a
+cap     directory this disk carries, so mount the collection as /h0 as well as
+cap     /dd; `wndex' builds the cache it serves from.  The reply is cut to
+cap     eighteen lines to end cleanly.
+try     wn -L /nil -l /nil <rq.crlf | head -n 18
+os9     wn -L /nil -l /nil <rq.crlf ! head -n 18
+run     rm -rf /dd/tmp/EC; mkdir -p /dd/tmp/EC
 run     builtin cd /h0/c/unid/wn_1.14.3/osk
 run     wndex 2>/nil
 wait    6
-run     echo "GET /index.html HTTP/1.0" > /dd/tmp/COMB/rq
+run     echo "GET /index.html HTTP/1.0" > /dd/tmp/EC/rq
 wait    2
-run     echo "" >> /dd/tmp/COMB/rq
+run     echo "" >> /dd/tmp/EC/rq
 wait    2
-run     autolf -c -C -L < /dd/tmp/COMB/rq > /dd/tmp/COMB/rq.crlf
+run     autolf -c -C -L < /dd/tmp/EC/rq > /dd/tmp/EC/rq.crlf
 wait    3
-run     builtin cd /dd
+run     builtin cd /dd/tmp/EC
 wait    1
 run     clear
 wait    1
-run     wn -L /nil -l /nil < tmp/COMB/rq.crlf | head -n 18
+run     wn -L /nil -l /nil <rq.crlf | head -n 18
 wait    8
 
 shot    wndex
 cap     Builds the index.cache the WN web server reads a directory from.
 cap     It works on the current directory, so the demo moves there first,
 cap     off-screen, and runs it by name.
+try     wndex
 run     builtin cd /dd/c/unid/wn_1.14.3/osk
 wait    1
 run     clear
@@ -952,6 +1043,7 @@ shot    inetd
 cap     The internet superserver: it listens on a port and hands each
 cap     connection to WN.  Run with no arguments it prints its usage; to
 cap     listen it needs a TCP/IP stack presenting the /socket device.
+try     inetd
 run     inetd
 wait    5
 
@@ -959,6 +1051,7 @@ shot    inetdc
 cap     What inetd forks to handle each connection.  It carries no message
 cap     strings and, run by hand with nothing to serve, exits in silence;
 cap     there is nothing else it can do alone.
+try     inetdc
 run     inetdc < /nil
 wait    5
 
@@ -966,15 +1059,17 @@ shot    authwn
 cap     WN's authenticator for a password-protected directory.  inetd and
 cap     wn invoke it per request; run alone with nothing to authenticate
 cap     it has nothing to say.
+try     authwn
 run     authwn < /nil
 wait    5
 
 # --- Preserved here, catalogued under System & modules --------------------
 
 shot    screen
-cap     Russ Smith's login greeting: it shows a file chosen at random from
+cap     A login greeting: it shows a file chosen at random from
 cap     $HOME/.screens.  With no such directory it says one is required.
 cap     Not the terminal multiplexer of the same name.
+try     screen -v
 run     screen -v
 wait    6
 
@@ -982,5 +1077,6 @@ shot    vmod_trap
 cap     The modem trap handler that the serial-transfer programs load and
 cap     call.  It is a trap-handler module, not a program; run directly the
 cap     shell reports it cannot be executed.
+try     vmod_trap
 run     /dd/CMDS/COMMS/vmod_trap
 wait    4

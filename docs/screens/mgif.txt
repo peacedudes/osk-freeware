@@ -1,23 +1,3 @@
-Read global color map
-
-Read image descriptor, image: 1
-     Image left (i_x)         = 0
-     Image top (i_y)          = 0
-     Image width (i_dx)       = 320
-     Image height (i_dy)      = 200
-     Use local map? (i_gcm)   = 0
-     Interlaced? (i_intlace)  = 0
-     Bits per pixel (i_bits)  = 8
-     Number colors (i_colors) = 256
-     (If no local color map, use screen bits and colors)
-
-Use global color map
-     BitsPerPixel = 8
-     ColorMapSize = 256
-     BitMask      = 00ff
-     WIDTH        = 320
-     HEIGHT       = 200
-     Interlace    = 0
-
-Elapsed time:    0 sec
+mgif -i gulls.gif
 e
+$  time:    0 sec0fmap, use screen bits and colors)

@@ -1,2 +1,0 @@
-wndex
-Wrote cache file ./index.cache

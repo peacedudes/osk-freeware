@@ -2,5 +2,5 @@ dbz history
 dbz: (file `history', line 1) store failed on `<one@site.uucp> 999999999 1
 ...'
 $ ls -l history.dir history.pag
--rw-------   1 0        0              60 Sep  7 07:48 history.dir
--rw-------   1 0        0          147960 Sep  7 07:48 history.pag
+-rw-------   1 0        0              60 Sep  8 18:15 history.dir
+-rw-------   1 0        0          147960 Sep  8 18:15 history.pag

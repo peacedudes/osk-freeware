@@ -6,4 +6,4 @@ Error 216 attempting fstat on /dd/USR/LIB/ELM/autoreply.data
 $ ls -l USR/LIBM
 total 1024
 -rw-rw-rw-   1 0        0             896 Aug  3 19:00 aliases.text
--rw-------   1 0        0               0 Sep  6 02:44 autoreply.log
+-rw-------   1 0        0               0 Sep  8 18:03 autoreply.log

@@ -1,5 +1,5 @@
 $ expire -t
-expire (Sep 3-14:15:09) expiring articles over 14 days old
+expire (Sep 8-18:15:26) expiring articles over 14 days old
 would expire newsgroup: alt.folklore.computers
 would expire newsgroup: alt.folklore.urban
 would expire newsgroup: alt.magic

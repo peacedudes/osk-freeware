@@ -3,7 +3,7 @@ Newsgroups: comp.os.os9
 Subject: a test posting
 Keywords:
 Message-ID: <1@milkyway.andromeda.org>
-Date: Thu, 3 Sep 26 14:17:39 -0500
+Date: Tue, 8 Sep 26 18:29:06 -0500
 Reply-To: su@milkyway.andromeda.org
 Distribution: world
 Summary: testing postnews

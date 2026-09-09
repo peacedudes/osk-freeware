@@ -1,15 +1,9 @@
-ppmtotga tmp/base.ppm > tmp/t.tga
+ppmtotga tmp/base.ppm | tgatoppm | pnmfile
 ppmtotga: computing colormap...
 ppmtotga: 6 colors found
-$ tgatoppm tmp/t.tga > tmp/back4.ppm
-$ pnmtorast tmp/base.ppm > tmp/t.ras
+stdin:  PPM raw, 48 by 24  maxval 255
+$ pnmtorast tmp/base.ppm | rasttopnm | pnmfile
 pnmtorast: computing colormap...
 pnmtorast: 6 colors found
-$ rasttopnm tmp/t.ras > tmp/back5.ppm
 rasttopnm: writing PPM file
-$ ls -l tmp/t.tga tmp/t.ras
--rw-rw-rw-   1 0        0            1085 Sep  6 04:29 tmp/t.ras
--rw-rw-rw-   1 0        0             228 Sep  6 04:29 tmp/t.tga
-$ pnmfile tmp/back4.ppm tmp/back5.ppm
-tmp/back4.ppm:  PPM raw, 48 by 24  maxval 255
-tmp/back5.ppm:  PPM raw, 48 by 24  maxval 255
+stdin:  PPM raw, 48 by 24  maxval 255

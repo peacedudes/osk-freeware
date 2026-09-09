@@ -1,16 +1,16 @@
 $ pgmnoise 60 30 | pgmtopbm | pbmlife | pbmtoascii
-"oMMMMooo MMo"ooM"""  oo Moooo"oMMMo"o"MoMooMMMo M oMMo Mo""
- M"M M oM""  MMMMoMo"M M Mo"MMooM M"MMMMMMMMM"ooM"o  M""MMM"
-"MMooMMMMM""MMMMMMMMMoo"MoM MoMMMM""MMM"o"""M"" M"MoMM MM"M
-  M"MoMMMo""MMMMMMMMMMM M M"MMMM M"MMMMM"MoM ""oMMMMMM"MMoM
-""M MMMM M    MMMM ""MMoMo" MMMM " ooMMM""M"M MM"M M "o  MM"
-M M MMMMooMoM MMMMo "M MMM"M"MMMMoMoMoM"MM"oMoMMM""M"MoM"Mo
-" M oo " "M"Mo" MMM"MMM M"MMoMoM MMMMMMMMo"M"MMMM"" ""MMMMo
- oM ooM  M"MoM" M MoMoM"M"MMMMMM M"M" oMMM M" oMMMMMoo"MM "
- "M"M MoM"MMo "o""ooMM" MM"MMMMMMM "M   M MoMMMMMo"oMMMM " M
-"o" "MMoo""MMM"M M o M MMMM"MMMMMMMo"M M"MMMMo" MoMMMMMMMM "
-oM M MMMMoMMMMoM"M MoMMM" MMMM"MMMMMMMMMoM"MMo" M"M"M MMMMo"
-" M"MMMMMM""MMoMMoM"M""M""""M"MooM"MMMM"o""ooMo"ooMoMoMM"ooo
-MM"M" MMMMMMM " ooM MooM""M"""M M" ""MMo" "Mooo"""MMMMMMMoMo
-MM M"o"MMMMMMoMooo""MMM""M MM"""MooMMo ""MMMM" M""MMMM"MMMM
-MMM  M"""   " o"M"Moo"M""""""MMM""M"M""oMMMoMM""M""o"M"" M""
+   MoooMMMooooMo ooooMM"M""ooMMMoooMMM "M" oo MMMooo"ooo  M"
+oo" "ooo""" MMMMoMMMoMoMMM""MMoMMo  M oo"o  M"MMMMM"M"oMMMo"
+"ooMMMo oM""MMMMMMM" MMMM"""MoMMoMoMMMMMoMMoM M"M MoMMMMMMM"
+oMoM M MMoMM"M"M"MMM"MM"M MMoo"Moooo"MMoMMM"M M ""MoMMMMM"Mo
+M MMoMoMMMMMM"MMoM"MM"M M"oM"oM ooo    ooMMMMoo MMMoo"MMMoM"
+M "" MoMoM"MMM""MMMo "M M MoMMMMMoMM MMo MMM""oM"MMoM M MoM
+"oM"MMMMMM ""MM"MM"MooMMMMMMMMMMMM"" ooMoMM M"Mo"MoMMMMMM oM
+ "MMoMoMMMoo "MMMM MMMMoM """ oMMoM M MM"o  ooooo o M MooM"M
+" M"oo"MMMooooMMMMM"MMMo" o"MMM"MMMM""MMM o"MMMMMoM MMMMMMM
+oooooMMMMMoMoMMo"""""MoM"M M"""""oM"M""MMMM M M"MMMMMM "oM"
+M oMoMMMMMM""MMMM"""MMoMoM"M""M" M " M"M""M  "M "oMMMooo"oM
+ MMMM"M"MM" o"MMMM"o ooo"M"M ""MoM"MMMM " ooM MMM"oMoMoMMMM"
+"MMoM MMMMMoo  MoMMMoMoMMMMoM MoMMMMMMM o "M"MMoMMo"M Mooo"o
+oMooM MMM ooMoMMMMMMMMoMMMMooMMMMMM MoM"oMMMMMMMMooMMMM M  M
+MM ""MMo"  oM"M"M"MoM M Moo MooM" M M M""""""""" ""M"""""" M

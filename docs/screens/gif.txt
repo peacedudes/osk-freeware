@@ -1,9 +1,4 @@
-ppmtogif tmp/base.ppm > tmp/t.gif
+ppmtogif tmp/base.ppm | giftopnm | pnmfile
 ppmtogif: computing colormap...
 ppmtogif: 6 colors found
-$ giftopnm tmp/t.gif > tmp/back.ppm
-$ ls -l tmp/t.gif
--rw-rw-rw-   1 0        0             186 Sep  6 03:58 tmp/t.gif
-$ pnmfile tmp/base.ppm tmp/back.ppm
-tmp/base.ppm:   PPM raw, 48 by 24  maxval 255
-tmp/back.ppm:   PPM raw, 48 by 24  maxval 255
+stdin:  PPM raw, 48 by 24  maxval 255

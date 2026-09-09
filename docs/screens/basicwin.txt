@@ -1,2 +1,2 @@
 $ basicwin; echo ""
-basicwin: cannot connect to X server
+$ in: cannot connect to X server

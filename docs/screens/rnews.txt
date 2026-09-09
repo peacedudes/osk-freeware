@@ -2,18 +2,18 @@
 $ rnews tmp/MAILA/batch.txt
 $ ls -laR SPOOL/news/COMP
 total 1536
-drwxrwxrwx   1 0        0              96 Sep  6 02:52 .
-drwxrwxrwx   1 0        0             128 Sep  6 02:52 ..
-drwxrwxrwx   1 0        0              96 Sep  6 02:52 OS
+drwxrwxrwx   1 0        0              96 Sep  8 18:30 .
+drwxrwxrwx   1 0        0             256 Sep  8 18:30 ..
+drwxrwxrwx   1 0        0              96 Sep  8 18:30 OS
 
 SPOOL/news/COMP/OS:
 total 1536
-drwxrwxrwx   1 0        0              96 Sep  6 02:52 .
-drwxrwxrwx   1 0        0              96 Sep  6 02:52 ..
-drwxrwxrwx   1 0        0              96 Sep  6 02:52 OS9
+drwxrwxrwx   1 0        0              96 Sep  8 18:30 .
+drwxrwxrwx   1 0        0              96 Sep  8 18:30 ..
+drwxrwxrwx   1 0        0              96 Sep  8 18:30 OS9
 
 SPOOL/news/COMP/OS/OS9:
 total 1536
-drwxrwxrwx   1 0        0              96 Sep  6 02:52 .
-drwxrwxrwx   1 0        0              96 Sep  6 02:52 ..
--rw-------   1 0        0              59 Sep  6 02:52 a1
+drwxrwxrwx   1 0        0              96 Sep  8 18:30 .
+drwxrwxrwx   1 0        0              96 Sep  8 18:30 ..
+-rw-------   1 0        0              59 Sep  8 18:30 a1

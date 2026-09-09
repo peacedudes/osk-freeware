@@ -1,5 +1,5 @@
 mkdir -p tmp/MAILA > /nil 2>/nil
 $ makedb -o tmp/MAILA/palias USR/LIB/SMAIL/palias
 $ ls -l tmp/MAILA/palias.dir tmp/MAILA/palias.pag
--rw-------   1 0        0               0 Sep  6 02:46 tmp/MAILA/palias.dir
--rw-------   1 0        0            1024 Sep  6 02:46 tmp/MAILA/palias.pag
+-rw-------   1 0        0               0 Sep  8 18:08 tmp/MAILA/palias.dir
+-rw-------   1 0        0            1024 Sep  8 18:08 tmp/MAILA/palias.pag
