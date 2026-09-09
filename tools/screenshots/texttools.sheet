@@ -105,7 +105,7 @@ run     fcomp tmp/fc1 tmp/fc2
 wait    6
 
 shot    gothic
-size    90 96
+size    272 96
 cap     Sets a word in fraktur capitals, each letter drawn large down the
 cap     screen, for a title page or a poster.  `-h' draws it at half size
 cap     to fit a short terminal.
