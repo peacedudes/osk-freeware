@@ -3,6 +3,7 @@
 shot    bm
 cap     bm, a Boyer-Moore grep, and fgrep beside it -- both older and
 cap     faster than the GNU one, and both still here.
+try     bm cribbage DOC/INDEX
 run     builtin cd /dd
 wait    1
 run     clear
@@ -13,10 +14,10 @@ run     fgrep cribbage DOC/INDEX
 wait    4
 
 shot    cdiff
-cap     cdiff is a context diff and it cannot finish one: `MAXLINECOUNT
-cap     exceeded, must stop' on any pair of files given it here, down to
-cap     three lines apiece.  `diff' and `ediff' both work; diff has its own
-cap     card.
+cap     cdiff, an older context diff, comparing a holiday list against a
+cap     copy with one word changed.  Its own shape: a line number and
+cap     what it changed from and to, closed off with a line saying so.
+try     cdiff tmp/h1 tmp/h2
 run     builtin cd /dd
 wait    1
 run     clear
@@ -31,20 +32,24 @@ wait    6
 shot    cookie
 cap     cookie, the fortune-cookie program, reading the collection's own
 cap     sayings file.
+try     cookie
 run     cookie
 wait    2
 run     cookie
 wait    3
 
 shot    cursive
-cap     cursive draws a joined-up banner of the word you give it, down the
-cap     screen.
+cap     cursive writes the word you give it as a single line of joined,
+cap     sloping script, the kind of flourish people once signed email
+cap     with.
+try     cursive Freeware
 run     cursive Freeware
 wait    6
 
 shot    diff
 cap     GNU diff 1.1 on two versions of the same file -- the disk had no
 cap     diff at all before this one was added.
+try     diff -c tmp/a.txt tmp/b.txt
 run     builtin cd /dd
 wait    1
 run     clear
@@ -59,6 +64,7 @@ wait    5
 shot    diff_1.1
 cap     A second build of GNU diff 1.1.  Two short lists that differ on one
 cap     line: diff_1.1 reports the change, pear becoming peach.
+try     diff_1.1 tmp/BLGX/d1 tmp/BLGX/d2
 run     mkdir -p /dd/tmp/BLGX > /nil 2>/nil
 run     printf 'apple\rpear\rplum\r' > /dd/tmp/BLGX/d1
 run     printf 'apple\rpeach\rplum\r' > /dd/tmp/BLGX/d2
@@ -69,14 +75,20 @@ run     diff_1.1 tmp/BLGX/d1 tmp/BLGX/d2
 wait    5
 
 shot    deton
-cap     deton counts down three seconds and blows the machine up, which it
-cap     announces and does not do.  Run it with nothing on standard input
-cap     and it goes off by itself.
+cap     deton is a demonstration of timing out a read with an alarm, not
+cap     a tool in its own right.  Given nothing to read within three
+cap     seconds it announces self-destruct and then, having read no
+cap     password, sets it off -- all in words; nothing is actually at
+cap     risk.
+try     deton < /nil
+os9     deton</nil
 run     deton < /nil
 wait    8
 
 shot    fcomp
-cap     fcomp compares two text files line by line.
+cap     fcomp compares two text files line by line and names what
+cap     changed between them -- here, a line inserted at the end.
+try     fcomp tmp/fc1 tmp/fc2
 run     builtin cd /dd
 wait    1
 run     clear
@@ -105,6 +117,7 @@ snap
 shot    grep
 cap     GNU grep 2.0 searching the disk's own index, with the count beside
 cap     the hits.
+try     grep -n "chess" DOC/INDEX
 run     builtin cd /dd
 wait    1
 run     clear
@@ -115,21 +128,27 @@ run     grep -c "" DOC/INDEX
 wait    4
 
 shot    jargon
-cap     The Jargon File browser, looking up a word in its own database --
-cap     jargon.txt and jargon.idx, in the VH directory.  The database is named
-cap     BASE name and nothing else: given a path it says it cannot find it.
+cap     The Jargon File browser, jumping straight to the entry for
+cap     kluge.  It reads jargon.txt and jargon.idx from the VH
+cap     directory on its own; give it a document by name and it looks
+cap     for that instead.
+try     jargon -b kluge jargon
 run     jargon -b kluge jargon
 wait    10
 
 shot    lout
-cap     Basser Lout 2.05, a document formatter in the TeX tradition, saying
-cap     what it is.
+cap     Basser Lout 2.05, a document formatter in the TeX tradition,
+cap     saying what it is.  Its own libraries never came with this
+cap     collection, so this is as far as it goes here.
+try     lout -V
 run     lout -V
 wait    6
 
 shot    sort
 cap     sort and uniq counting the commonest words in the disk's own
 cap     documentation -- a pipeline of five programs, all of them here.
+try     sepwords < DOC/README-CIO | sort | uniq -c | sort -nr | head -n 12
+os9     sepwords DOC/README-CIO!sort!uniq -c!sort -nr!head -n 12
 run     builtin cd /dd
 wait    1
 run     clear
@@ -141,12 +160,17 @@ shot    soundex
 cap     soundex reduces each word to its phonetic key -- Robert and Rupert
 cap     come out the same, which is the whole idea.  It wants one word to
 cap     a line, so sepwords feeds it.
+try     echo Robert Rupert Rubin Ashcraft Ashcroft | sepwords | soundex
+os9     echo Robert Rupert Rubin Ashcraft Ashcroft!sepwords!soundex
 run     echo Robert Rupert Rubin Ashcraft Ashcroft | sepwords | soundex
 wait    5
 
 shot    speech
 cap     speech turns English spelling into phonemes -- the front half of a
-cap     speech synthesiser, with the sound left to the hardware.
+cap     speech synthesiser, with the sound left to the hardware.  It
+cap     reads one line typed at it and prints back its phonetic
+cap     transcription; a hyphen and a digit are spelled out as words.
+try     speech
 run     speech
 wait    3
 send    OS-9 is a real time operating system\r
@@ -158,6 +182,7 @@ cap     machine much of the EFFO material was written for: address,
 cap     reference byte and name.  With no GEPARD underneath it the table
 cap     comes out empty, and it ignores anything given to it on the command
 cap     line.
+try     what
 run     builtin cd /dd
 wait    1
 run     clear
@@ -168,12 +193,15 @@ run     what CMDS/today
 wait    8
 
 shot    tformat
-cap     README-KEEP set as justified text.
+cap     README-KEEP set as justified text: the ragged original refilled
+cap     into even lines.
+try     cat DOC/README-KEEP | head -n 24 | tformat
+os9     cat DOC/README-KEEP!head -n 24!tformat
 run     builtin cd /dd
 wait    1
 run     clear
 wait    1
-run     head -n 24 DOC/README-KEEP | tformat
+run     cat DOC/README-KEEP | head -n 24 | tformat
 wait    8
 
 shot    unip
@@ -182,6 +210,8 @@ cap     chain that starts with sepwords: split a document into words, sort
 cap     them, and print each one once with the pages it appeared on.  The
 cap     page column is empty here because nothing upstream paginated the
 cap     text; what is left is the vocabulary of the file, in order.
+try     sepwords < DOC/README-CIO | sort | unip | head -n 18
+os9     sepwords DOC/README-CIO!sort!unip!head -n 18
 run     builtin cd /dd
 wait    1
 run     clear
@@ -192,27 +222,34 @@ wait    10
 shot    btop
 cap     btop turns each character of a file into a grid of O and space --
 cap     how a font or a bitmap moved through a mail system that would only
-cap     carry text, long before uuencode.  Twelve bytes of text become
-cap     rows of O and space; `ptob' turns them back, byte for byte.
-run     head -c 12 /dd/SYS/motd > /dd/tmp/b1
-wait    5
-run     btop /dd/tmp/b1
+cap     carry text, long before uuencode.  ptob turns the grid back into
+cap     bytes; diff finding nothing to report is the proof the twelve
+cap     bytes came back unchanged.
+try     btop tmp/b1
+run     builtin cd /dd
+wait    1
+run     cat SYS/motd | head -c 12 > tmp/b1
+wait    3
+run     clear
+wait    1
+run     btop tmp/b1
 wait    8
-run     btop /dd/tmp/b1 > /dd/tmp/b2
+run     btop tmp/b1 > tmp/b2
 wait    5
-run     ptob /dd/tmp/b2 > /dd/tmp/b3
+run     ptob tmp/b2 > tmp/b3
 wait    5
-run     /dd/CMDS/cmp /dd/tmp/b1 /dd/tmp/b3
-wait    6
-run     cat /dd/tmp/b3
+run     diff tmp/b1 tmp/b3
 wait    5
-run     rm -f /dd/tmp/b1 /dd/tmp/b2 /dd/tmp/b3
+run     cat tmp/b3
+wait    5
+run     rm -f tmp/b1 tmp/b2 tmp/b3
 wait    4
 
 shot    hc
 cap     hc shifts text to a column, or labels every line.
 cap     `+8' indents to column 8, `-11' strips back to column 11, and
 cap     `-l' puts a string in front of every line.
+try     hc +8 motd
 run     builtin cd /dd/SYS
 wait    1
 run     clear
@@ -234,6 +271,7 @@ shot    nroff
 size    30 80
 cap     nroff setting a short text: a centred title, then paragraphs
 cap     filled and justified to the measure.  Its macro sets are in LIB.
+try     nroff tmp/TXT/jab.r | head -n 14
 run     mkdir -p /dd/tmp/TXT > /nil 2>/nil; printf ".ce\rJABBERWOCKY\r.sp\rTwas brillig, and the slithy toves did gyre and gimble in the wabe: all mimsy were the borogoves, and the mome raths outgrabe.\r.sp\rBeware the Jabberwock, my son -- the jaws that bite, the claws that catch.\r" > /dd/tmp/TXT/jab.r
 wait    3
 run     builtin cd /dd
@@ -247,6 +285,7 @@ shot    roff
 size    30 80
 cap     roff, the older formatter, on the same text: title centred, the
 cap     paragraph filled and justified to a narrower measure.
+try     roff tmp/TXT/jab.r | head -n 14
 run     mkdir -p /dd/tmp/TXT > /nil 2>/nil; printf ".ce\rJABBERWOCKY\r.sp\rTwas brillig, and the slithy toves did gyre and gimble in the wabe: all mimsy were the borogoves, and the mome raths outgrabe.\r.sp\rBeware the Jabberwock, my son -- the jaws that bite, the claws that catch.\r" > /dd/tmp/TXT/jab.r
 wait    3
 run     builtin cd /dd
@@ -259,6 +298,7 @@ wait    10
 shot    proff
 size    30 80
 cap     Jabberwocky set as justified text.
+try     proff tmp/TXT/jab.r | head -n 14
 run     mkdir -p /dd/tmp/TXT > /nil 2>/nil; printf ".ce\rJABBERWOCKY\r.sp\rTwas brillig, and the slithy toves did gyre and gimble in the wabe: all mimsy were the borogoves, and the mome raths outgrabe.\r.sp\rBeware the Jabberwock, my son -- the jaws that bite, the claws that catch.\r" > /dd/tmp/TXT/jab.r
 wait    3
 run     builtin cd /dd
@@ -271,6 +311,7 @@ wait    10
 shot    fmt
 cap     Refills ragged text into even lines, to 72 columns or to a width
 cap     given as -<n>.
+try     fmt tmp/TXT/rag.txt
 run     mkdir -p /dd/tmp/TXT > /nil 2>/nil; printf "Twas brillig,\rand the slithy\rtoves did gyre and gimble in the wabe: all mimsy were the borogoves, and the mome raths outgrabe.\r" > /dd/tmp/TXT/rag.txt
 wait    3
 run     builtin cd /dd
@@ -287,6 +328,7 @@ wait    5
 shot    strfile
 cap     Turns a file of sayings separated by %% lines into the indexed
 cap     .dat file fortune reads, and reports what it found.
+try     strfile tmp/TXT/say
 run     mkdir -p /dd/tmp/TXT > /nil 2>/nil; rm -f /dd/tmp/TXT/say.dat; printf "A closed mouth gathers no feet.\r%%%%\rThe second mouse gets the cheese.\r%%%%\rNever test for an error you do not know how to handle.\r%%%%\r" > /dd/tmp/TXT/say
 wait    3
 run     builtin cd /dd
@@ -299,21 +341,26 @@ run     strfile tmp/TXT/say
 wait    5
 
 shot    unstr
-cap     Meant to be the other way, printing the sayings back out of the
-cap     .dat file strfile made.  It asks for 75 megabytes of memory
-cap     before it reads a byte, is refused, and stops.
-run     mkdir -p /dd/tmp/TXT > /nil 2>/nil; rm -f /dd/tmp/TXT/say.dat; printf "A closed mouth gathers no feet.\r%%%%\rThe second mouse gets the cheese.\r%%%%\r" > /dd/tmp/TXT/say; strfile /dd/tmp/TXT/say > /nil
+cap     unstr is strfile's reverse: given the .dat file, and a name for
+cap     the result, it writes the sayings back out as plain text --
+cap     silently, if it succeeds, so the real proof is in the file it
+cap     wrote.
+try     unstr tmp/TXT/say.dat tmp/TXT/say.out
+run     mkdir -p /dd/tmp/TXT > /nil 2>/nil; rm -f /dd/tmp/TXT/say.dat /dd/tmp/TXT/say.out; printf "A closed mouth gathers no feet.\r%%%%\rThe second mouse gets the cheese.\r%%%%\r" > /dd/tmp/TXT/say; strfile /dd/tmp/TXT/say > /nil
 wait    4
 run     builtin cd /dd
 wait    1
 run     clear
 wait    1
-run     unstr tmp/TXT/say
+run     unstr tmp/TXT/say.dat tmp/TXT/say.out
+wait    5
+run     cat tmp/TXT/say.out
 wait    5
 
 shot    cookhash
 cap     Builds the hash file the cookie program uses to pick a saying
 cap     at random from a file of them.
+try     cookhash < tmp/TXT/say > tmp/TXT/say.hash
 run     mkdir -p /dd/tmp/TXT > /nil 2>/nil; printf "A closed mouth gathers no feet.\r%%%%\rThe second mouse gets the cheese.\r%%%%\r" > /dd/tmp/TXT/say
 wait    3
 run     builtin cd /dd
@@ -325,6 +372,7 @@ wait    5
 
 shot    fortune
 cap     A fortune at random from the collection in GAMES/FORTUNE, twice.
+try     fortune
 run     fortune
 wait    5
 run     fortune
@@ -333,6 +381,7 @@ wait    5
 shot    ediff
 cap     Puts diff's output into plain English: which lines changed, from
 cap     what to what, and what was added.
+try     diff tmp/TXT/a tmp/TXT/b | ediff
 run     mkdir -p /dd/tmp/TXT > /nil 2>/nil; printf "apple\rbanana\rcherry\rdate\r" > /dd/tmp/TXT/a; printf "apple\rblueberry\rcherry\rdate\relder\r" > /dd/tmp/TXT/b
 wait    3
 run     builtin cd /dd
@@ -345,6 +394,7 @@ wait    6
 shot    spiff
 cap     spiff compares two files and reports the differences in diff's
 cap     shape: a changed line and an added one.
+try     spiff tmp/TXT/a tmp/TXT/b
 run     mkdir -p /dd/tmp/TXT > /nil 2>/nil; printf "apple\rbanana\rcherry\rdate\r" > /dd/tmp/TXT/a; printf "apple\rblueberry\rcherry\rdate\relder\r" > /dd/tmp/TXT/b
 wait    3
 run     builtin cd /dd
@@ -356,6 +406,7 @@ wait    6
 
 shot    uniq
 cap     Drops repeated adjacent lines; after a sort, -c counts each.
+try     uniq < tmp/TXT/dups
 run     mkdir -p /dd/tmp/TXT > /nil 2>/nil; printf "pear\rapple\rpear\rfig\rfig\rfig\rapple\r" > /dd/tmp/TXT/dups
 wait    3
 run     builtin cd /dd
@@ -368,7 +419,9 @@ run     sort tmp/TXT/dups | uniq -c
 wait    5
 
 shot    nsort
-cap     A sort filter: the same seven lines, in order.
+cap     A sort filter: the same seven lines, lexical order, duplicates
+cap     kept.
+try     cat tmp/TXT/dups; echo ---; nsort < tmp/TXT/dups
 run     mkdir -p /dd/tmp/TXT > /nil 2>/nil; printf "pear\rapple\rpear\rfig\rfig\rfig\rapple\r" > /dd/tmp/TXT/dups
 wait    3
 run     builtin cd /dd
@@ -379,7 +432,8 @@ run     cat tmp/TXT/dups; echo ---; nsort < tmp/TXT/dups
 wait    5
 
 shot    qsort9
-cap     Another sort filter, by quicksort.
+cap     Another sort filter, by quicksort, on the same seven lines.
+try     qsort9 < tmp/TXT/dups
 run     mkdir -p /dd/tmp/TXT > /nil 2>/nil; printf "pear\rapple\rpear\rfig\rfig\rfig\rapple\r" > /dd/tmp/TXT/dups
 wait    3
 run     builtin cd /dd
@@ -393,6 +447,7 @@ shot    join
 cap     Joins two files on a common first field, the way a database
 cap     joins tables: name and colour from one, name and count from the
 cap     other.
+try     join tmp/TXT/j1 tmp/TXT/j2
 run     mkdir -p /dd/tmp/TXT > /nil 2>/nil; printf "apple red\rfig purple\rpear green\r" > /dd/tmp/TXT/j1; printf "apple 3\rfig 12\rpear 7\r" > /dd/tmp/TXT/j2
 wait    3
 run     builtin cd /dd
@@ -404,6 +459,7 @@ wait    5
 
 shot    ggrep
 cap     GNU grep, with line numbers.
+try     ggrep -n USR password
 run     builtin cd /dd/SYS
 wait    1
 run     clear
@@ -412,8 +468,10 @@ run     ggrep -n USR password
 wait    5
 
 shot    bmgtest
-cap     A test program for the Boyer-Moore search in bm: given a pattern
-cap     and a file it searches and prints nothing when it is satisfied.
+cap     A demonstration program for the Boyer-Moore-Gosper search bm is
+cap     built on: given a pattern and a file, it prints every matching
+cap     line, streaming through the file rather than loading it whole.
+try     bmgtest the SYS/motd
 run     builtin cd /dd
 wait    1
 run     clear
@@ -422,7 +480,10 @@ run     bmgtest the SYS/motd; echo "status $?"
 wait    5
 
 shot    bmgtest2
-cap     The second Boyer-Moore test program, the same shape.
+cap     The other Boyer-Moore-Gosper demonstration: the same search, but
+cap     it reads the whole file into memory first rather than streaming
+cap     through it.
+try     bmgtest2 the SYS/motd
 run     builtin cd /dd
 wait    1
 run     clear
@@ -434,6 +495,7 @@ shot    pagekwic
 size    36 80
 cap     A keyword-in-context index: every rotation of every title, one
 cap     line each, the way a KWIC index is built before sorting.
+try     pagekwic < tmp/TXT/titles
 run     mkdir -p /dd/tmp/TXT > /nil 2>/nil; printf "The Art of Computer Programming\rStructured Programming\rThe C Programming Language\rThe Mythical Man-Month\r" > /dd/tmp/TXT/titles
 wait    3
 run     builtin cd /dd
@@ -449,6 +511,7 @@ shot    pagefraz
 size    36 80
 cap     The phrase index of the same set: each title broken into the
 cap     phrases an index would list.
+try     pagefraz < tmp/TXT/titles
 run     mkdir -p /dd/tmp/TXT > /nil 2>/nil; printf "The Art of Computer Programming\rStructured Programming\rThe C Programming Language\rThe Mythical Man-Month\r" > /dd/tmp/TXT/titles
 wait    3
 run     builtin cd /dd
@@ -460,6 +523,7 @@ wait    8
 
 shot    pageline
 cap     Numbers the lines of the same set for the index to refer to.
+try     pageline < tmp/TXT/titles
 run     mkdir -p /dd/tmp/TXT > /nil 2>/nil; printf "The Art of Computer Programming\rStructured Programming\rThe C Programming Language\rThe Mythical Man-Month\r" > /dd/tmp/TXT/titles
 wait    3
 run     builtin cd /dd
@@ -472,6 +536,7 @@ wait    8
 shot    ispell
 cap     ispell listing the words it does not know in a file: -l gives
 cap     the list instead of the interactive session.
+try     ispell -l tmp/TXT/spell.txt
 run     mkdir -p /dd/tmp/TXT > /nil 2>/nil; printf "Twas brilig and the slithy tovs did gyre and gimble in the wabe.\r" > /dd/tmp/TXT/spell.txt
 wait    3
 run     builtin cd /dd
@@ -484,14 +549,16 @@ wait    12
 shot    buildhash
 cap     Builds ispell's hashed dictionary from a word list and an affix
 cap     file; without the word list it says which one it wants.
+try     buildhash
 run     buildhash
 wait    6
 
 shot    makelex
-cap     Turns a word list into C source for a dictionary table, one
-cap     entry per line; given no list it shows the shape of what it
-cap     writes.
-run     mkdir -p /dd/tmp/TXT > /nil 2>/nil; printf "apple 1\rfig 2\rpear 3\r" > /dd/tmp/TXT/wl
+cap     Turns sonnet's word list into a C array, one dictionary entry
+cap     per line: a word and three codes for its rhythm, stress and
+cap     sound, out of which it prints the C initialiser.
+try     makelex < tmp/TXT/wl
+run     mkdir -p /dd/tmp/TXT > /nil 2>/nil; printf "Allah:TF:SO:0\rBMW:TDF:SU:0\rBabylon:HIF:SO:n\r" > /dd/tmp/TXT/wl
 wait    3
 run     builtin cd /dd
 wait    1
@@ -503,6 +570,7 @@ wait    6
 shot    fgrep
 cap     Searches for a fixed string rather than a pattern: the lines of
 cap     the password file naming a home under USR.
+try     fgrep -n USR password
 run     builtin cd /dd/SYS
 wait    1
 run     clear

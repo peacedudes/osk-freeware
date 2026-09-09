@@ -1,4 +1,4 @@
-head -n 24 DOC/README-KEEP | tformat
+cat DOC/README-KEEP | head -n 24 | tformat
 README-KEEP      --      taking      things      off      this       collection
 ================================================
     keep <name>...      the program, and whatever it needs     keep -n <name>..

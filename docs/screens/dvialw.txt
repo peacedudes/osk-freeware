@@ -5,10 +5,10 @@ dvialw story.dvi
 [Output on file story.dvi_alw]
 [1 pages]
 [1{1}]  [OK]
-$ head -n 6 story.dvi_alw
+$ cat story.dvi_alw | head -n 6
 %!
 %%Dimensions: 0 0 612 792
 %%Title: dvialw story.dvi
-%%CreationDate: Mon Sep  7 08:42:09 2026
+%%CreationDate: Wed Sep  9 00:30:10 2026
 %%Creator:  and [TeX82 DVI Translator Version 2.10b for PostScript [App-
 %-le LaserWriter laser printer]

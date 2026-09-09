@@ -57,7 +57,7 @@ basicwin f7b0c22628587472
 bcheck 129a9acf434dd876
 bdecode 4c9435dbc68ae7e5
 beav 5c4c9333df878ea7
-bibtex 04eb3adefae94c24
+bibtex 851e0756eed6be3b
 bigsetter a65afaeb5077cfad
 bincheckr 00003df49784821c
 binhex abe31b8b77dfffa3
@@ -78,7 +78,7 @@ bootgen a84da7013b341aa3
 break 3066c233736b242f
 brushtopbm ab0affe58b89d817
 btoa 8c34c328db6ca264
-btop e3524b4838824199
+btop c2d56a633e5b8ee1
 btree d2d82344ac802011
 buildhash 488b6e3d5a2e09fe
 c7decode cd523a3e251f1784
@@ -191,7 +191,7 @@ drivers 1219f2195af87ff8
 drop 6d619a49e2c69fb2
 du a58fd06112b32f84
 dump 8a79a4b161c262b3
-dvialw b105a7c289eeddab
+dvialw ce4551bcf1b92db5
 dvidjp 4a892597918eb8b1
 dvieps 779260c5fe27479b
 dviimp 3795a814dfd667ab
@@ -202,7 +202,7 @@ dvimac 4eb617016668e238
 dvioki 9a0198b8fd2df2ab
 dvips 2304f0018cd40e2c
 dvitos 0d0e17b496dbc859
-dvitype 3553bae034c4d3da
+dvitype 39ae706d5b4fe689
 e dfb9e2d2330f22ac
 ed 431d3e6ebaa40aa8
 ediff a77ad36bb656fd6e
@@ -277,7 +277,7 @@ georgia 918ee7752fd6a578
 gep bfb90bd7d3f06f98
 getenv f80c67660f97119e
 gftopk 8100bfd8bd2de516
-gftype 78a3af015c4c1079
+gftype 70dc99f00e650750
 ggrep a2320b13d3d07622
 gif 122497c680583f1e
 gif2 517438797963c379
@@ -409,7 +409,7 @@ make c9902ae76af265bf
 makecrc 541a2d827eb1a03f
 makedb 20377f8a3e598728
 makeinfo 3172d405e40f894a
-makelex 08eaa269934654ed
+makelex 1fd04e7cb20c1700
 maketexpk eb25a36d250f989a
 map 2ca31eb0fe17ba0b
 marc 4f0332b4c4bed354
@@ -529,7 +529,7 @@ philmail 78144d49c88e3081
 phone a31d7cf45ea70220
 piano 1ecb84e975881200
 pktogf 3ec328b65858c636
-pktype ba1cbabb39636f36
+pktype 062c6ceb9985bd92
 plotters 948e14cb78588456
 pltotf 6bb77dea93432748
 pnmarith 77cb25377107527f
@@ -715,11 +715,11 @@ tcmp 762791b8abc9e457
 teachgammon 9f9cf6fe5e075e8f
 tess f73bbe2f9db6b28d
 tet dc9a16bf1fcb1b43
-tex 20393d1a0d61cf68
-texidx 402d102d89fe6654
+tex b338940c32f30961
+texidx 61f087fdcc5a3de8
 textb 99f4ff8f414d5e94
-tformat 0886ddeb67b764e1
-tftopl 00dbe2aa2c796222
+tformat c4d190c37758eb86
+tftopl 4a4642e61fce05cf
 tga 957e110722e045fc
 tgatoppm d5a487674cad43f9
 tiffish f64869cd9cfd6f5b
@@ -759,6 +759,7 @@ unp d9954af1d0edb570
 unpacklib 8bb1d3a69ebb675e
 unpacklib.os9 79c4b0a974668f7c
 unsit d313249b66cb4a1a
+unstr 85771e0718288e79
 unsubscribe 0d927590b28d92fa
 unzip ee4a5b0c4de86033
 upperdir 7456190d2c69ba1c
@@ -775,7 +776,7 @@ uuxqt 64679172304137b0
 valspeak 7d51b124e270473b
 vc 184340ae7a592513
 version 4cf80677f3f5a15c
-vftovp 53793b018696e5a2
+vftovp 01cee193d3f83aa4
 vi c29746acf28ee834
 vi-recovery ea4fd3700d282789
 vi.elvis 8253ea73025a2ad1
@@ -792,7 +793,7 @@ wam.sbprolog e91dbcc1bdd9bb87
 wanderer 8e76bdfa9c03d380
 wc 03b04d6fc60a833a
 wc.cio 037b3e5bded79cac
-weave c0b50a9722a526d2
+weave 3883143cb9339b5f
 wgen c6a9a7f50fccf8ee
 what 8642a07e7041636b
 whoami ac172d53bcf13294

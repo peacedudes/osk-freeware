@@ -4,7 +4,7 @@ This is WEAVE, C Version 4.2
 Writing the output file...*1*2
 Writing the index...Done.
 (No errors were found.)
-$ head -n 8 sample.tex
+$ cat sample.tex | head -n 8
 \input webmac
 % sample.web -- a tiny literate program, so that `tangle' and `weave' can
 % be shown doing their job.  WEB is Knuth's literate-programming language:

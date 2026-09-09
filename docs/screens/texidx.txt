@@ -1,2 +1,3 @@
-$ texidx -?
-texi: invalid command switch ?
+texidx sample.idx
+# No more memory: 67108928-byte request refused, 10400704 bytes free in a 33554a
+texi: virtual memory exhausted

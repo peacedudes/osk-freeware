@@ -4,7 +4,7 @@ A one-character virtual font, for demonstrating vptovf and vftovp
 MAPFONT 0: cmr10 at 10.00pt
 Check sum in VF file being replaced by TFM check sum
 '101.
-$ head -n 16 tmp/TEX/back.vpl
+$ cat tmp/TEX/back.vpl | head -n 16
 (VTITLE A one-character virtual font, for demonstrating vptovf and vftovp)
 (FAMILY SAMPLEVF)
 (FACE F MRR)

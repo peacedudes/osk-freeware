@@ -1,5 +1,4 @@
-$ head -c 12 /dd/SYS/motd > /dd/tmp/b1
-$ btop /dd/tmp/b1
+btop tmp/b1
 + O + O + O O O
 + O O + + O + O
 + O O + O O + +
@@ -12,11 +11,9 @@ $ btop /dd/tmp/b1
 + O O + O O O O
 + + O + + + + +
 + O O + O O O O
-$ btop /dd/tmp/b1 > /dd/tmp/b2
-$ ptob /dd/tmp/b2 > /dd/tmp/b3
-$ /dd/CMDS/cmp /dd/tmp/b1 /dd/tmp/b3
-/dd/CMDS/cmp:  (E$PNNF) That path name doesn't lead to anything - check the spe.
-
-$ cat /dd/tmp/b3
+$ btop tmp/b1 > tmp/b2
+$ ptob tmp/b2 > tmp/b3
+$ diff tmp/b1 tmp/b3
+$ cat tmp/b3
 Welcome to o
-$ rm -f /dd/tmp/b1 /dd/tmp/b2 /dd/tmp/b3
+$ rm -f tmp/b1 tmp/b2 tmp/b3

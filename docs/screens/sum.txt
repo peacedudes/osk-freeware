@@ -2,4 +2,4 @@ sum SYS/motd SYS/holidays SYS/birthdays DOC/INDEX
 34333     1 SYS/motd
 11804     1 SYS/holidays
 21283     1 SYS/birthdays
-27104   145 DOC/INDEX
+13052   148 DOC/INDEX

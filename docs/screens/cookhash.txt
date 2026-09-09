@@ -1,2 +1,2 @@
 cookhash < tmp/TXT/say > tmp/TXT/say.hash; ls -l tmp/TXT/say.hash
--rw-rw-rw-   1 0        0              21 Sep  6 06:25 tmp/TXT/say.hash
+-rw-rw-rw-   1 0        0              21 Sep  9 00:20 tmp/TXT/say.hash

@@ -2,5 +2,5 @@ cat tmp/TEXTA/val.txt
 I think this operating system is really good.
 The manual is excellent and the games are enjoyable.
 $ valspeak < tmp/TEXTA/val.txt
-I think this operatin' system is really bitchin'.
-The manual is like wow! excellent and thuh games are enjoyable.
+I think this operatin' system is like wow! really bitchin'.
+The manual is excellent and thuh games are enjoyable.

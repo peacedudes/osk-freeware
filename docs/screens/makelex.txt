@@ -7,11 +7,8 @@ makelex < tmp/TXT/wl
 
 WORDTYPE Words[] = {
         /* Input: standard input */
-Badly-formed line, skipped:
-        apple 1
-Badly-formed line, skipped:
-        fig 2
-Badly-formed line, skipped:
-        pear 3
+    {   "Allah",         0, FT_TF,  VS_SO,  0   },
+    {   "BMW",           0, FT_TDF,  VS_SU,  0  },
+    {   "Babylon",       0, FT_HIF,  VS_SO,  'n'        },
     { NULL }
 };

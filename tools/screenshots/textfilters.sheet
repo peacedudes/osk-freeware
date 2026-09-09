@@ -7,6 +7,7 @@ shot    ascii
 size    70 80
 cap     The ASCII character table: every code from 0 to 127 with its control
 cap     name, decimal, hex and octal, in two columns.
+try     ascii
 run     ascii
 wait    6
 
@@ -15,6 +16,7 @@ size    26 80
 cap     charcnt counts how often each character occurs in the files named,
 cap     control characters included -- CR is the line ending here -- and
 cap     totals the bytes read.
+try     charcnt holidays motd
 run     builtin cd /dd/SYS
 wait    1
 run     clear
@@ -26,6 +28,7 @@ shot    dump
 cap     dump, the hex dump, showing the head of an OS-9 program module.  The
 cap     first two bytes are the sync pattern $4AFC that marks every module,
 cap     and the module's own name sits in clear at $0044.
+try     dump CMDS/today | head -n 16
 run     builtin cd /dd
 wait    1
 run     clear
@@ -38,6 +41,7 @@ cap     file names what a file is, from the magic table in SYS/magic: an
 cap     OS-9 program module, a text file it can see is text but cannot
 cap     place, a GIF with its size and colour count, a PGM image, and a
 cap     tar archive made a moment before.
+try     file CMDS/today DOC/INDEX DEMO/gulls.gif; file DEMO/sphere.pgm tmp/TEXTA/f.tar
 run     mkdir -p /dd/tmp/TEXTA; tar cf /dd/tmp/TEXTA/f.tar /dd/SYS/motd
 wait    6
 run     builtin cd /dd
@@ -56,6 +60,7 @@ cap     converts to upper case on the way through; `bs=8 count=1' copies
 cap     exactly eight bytes, which dump shows.  The two lines it prints are
 cap     the records read and written.  Send its output through `>': `of='
 cap     can only name a file that already exists.
+try     cat tmp/TEXTA/fox.txt; gdd if=tmp/TEXTA/fox.txt conv=ucase > tmp/TEXTA/up.txt; cat tmp/TEXTA/up.txt; gdd if=tmp/TEXTA/fox.txt bs=8 count=1 > tmp/TEXTA/eight.txt; dump tmp/TEXTA/eight.txt
 run     mkdir -p /dd/tmp/TEXTA; echo "the quick brown fox" > /dd/tmp/TEXTA/fox.txt; echo "jumps over the lazy dog" >> /dd/tmp/TEXTA/fox.txt
 wait    3
 run     builtin cd /dd
@@ -79,6 +84,7 @@ cap     strings finds the runs of printable text inside a binary -- here the
 cap     type names built into `file' -- and reports each
 cap     with the offset it was found at.  `-l=n' sets the shortest run
 cap     worth reporting, so a bigger number leaves out the accidental ones.
+try     strings -l=12 CMDS/file | head -n 14
 run     builtin cd /dd
 wait    1
 run     clear
@@ -89,6 +95,7 @@ wait    6
 shot    tail
 cap     tail prints the last lines of a file: `-l=3' for the last three,
 cap     twenty by default.  The whole file is above it for comparison.
+try     cat tmp/TEXTA/hol.txt; tail -l=3 tmp/TEXTA/hol.txt
 run     mkdir -p /dd/tmp/TEXTA; cat /dd/SYS/holidays | head -n 8 > /dd/tmp/TEXTA/hol.txt
 wait    3
 run     builtin cd /dd
@@ -104,6 +111,7 @@ snap
 shot    wc
 cap     wc counts lines, words and bytes for each file named, and totals
 cap     them.
+try     wc DOC/INDEX DOC/ORIGINS DOC/DEPENDS SOURCES.txt
 run     builtin cd /dd
 wait    1
 run     clear
@@ -115,6 +123,7 @@ shot    wc.cio
 cap     wc.cio is an older word count that reads standard input only:
 cap     `wc.cio < file' counts.  Named as an argument the file is ignored
 cap     and nothing is printed, which the second command shows.
+try     cat tmp/TEXTA/fox.txt; wc.cio < tmp/TEXTA/fox.txt; wc.cio tmp/TEXTA/fox.txt
 run     mkdir -p /dd/tmp/TEXTA; echo "the quick brown fox" > /dd/tmp/TEXTA/fox.txt; echo "jumps over the lazy dog" >> /dd/tmp/TEXTA/fox.txt
 wait    3
 run     builtin cd /dd
@@ -133,6 +142,7 @@ shot    sepwords
 cap     sepwords splits text into one word a line -- the first step towards a
 cap     word list or an index.  Two lines become nine words, put in order by
 cap     `sort'.
+try     cat tmp/TEXTA/fox.txt; sepwords < tmp/TEXTA/fox.txt | sort
 run     mkdir -p /dd/tmp/TEXTA; echo "the quick brown fox" > /dd/tmp/TEXTA/fox.txt; echo "jumps over the lazy dog" >> /dd/tmp/TEXTA/fox.txt
 wait    3
 run     builtin cd /dd
@@ -151,6 +161,7 @@ cap     <name>_Z, and <name>_0 for lines that start otherwise.  It gets no
 cap     further than the first: having opened <name>_0 it tests a slot it
 cap     has not opened yet, finds nothing in it, and stops with `can't open
 cap     output file(s)'.  No argument gets round that.
+try     cat tmp/TEXTA/words | head -n 5; splitalf tmp/TEXTA/words; ls tmp/TEXTA/words*
 run     mkdir -p /dd/tmp/TEXTA; rm -f /dd/tmp/TEXTA/words*; cat /dd/SYS/holidays | head -n 8 > /dd/tmp/TEXTA/hol.txt
 wait    3
 run     sepwords < /dd/tmp/TEXTA/hol.txt | sort > /dd/tmp/TEXTA/words
@@ -172,6 +183,7 @@ cap     ape writes gibberish in the style of whatever it reads -- here the
 cap     first 12K of the Jargon File.  `-l' is how many characters must
 cap     match before it follows the source text; `-b' is how much source to
 cap     read.
+try     ape -b=12k -l=5 < VH/jargon.txt | head -n 14
 run     builtin cd /dd
 wait    1
 run     clear
@@ -186,6 +198,7 @@ cap     CR; `-C -L' asks for CR LF on output -- DOS text from OS-9 text --
 cap     and dump shows the 0D at the end of each line becoming 0D 0A.  It
 cap     reads standard input and writes standard output; `-l' in and `-C'
 cap     out goes the other way.
+try     autolf -c -C -L < tmp/TEXTA/fox.txt > tmp/TEXTA/dos.txt; dump tmp/TEXTA/fox.txt; dump tmp/TEXTA/dos.txt
 run     mkdir -p /dd/tmp/TEXTA; echo "the quick brown fox" > /dd/tmp/TEXTA/fox.txt; echo "jumps over the lazy dog" >> /dd/tmp/TEXTA/fox.txt
 wait    3
 run     builtin cd /dd
@@ -204,6 +217,7 @@ shot    casefix
 cap     casefix normalises capitals: every letter goes to lower case except
 cap     the first of each sentence.  It reads standard input only -- named
 cap     as an argument, a file is ignored.
+try     echo "tHE qUICK bROWN fOX. jUMPS oVER the LAZY dog." | casefix
 run     echo "tHE qUICK bROWN fOX. jUMPS oVER the LAZY dog." | casefix
 wait    5
 
@@ -212,6 +226,7 @@ size    30 80
 cap     cut picks columns out of each line of the password file: `-d, -f3'
 cap     the third comma-separated field, the group and user number; `-f1-3'
 cap     the first three; `-c1-4' the first four characters.
+try     cat password; cut -d, -f3 password; cut -d, -f1-3 password; cut -c1-4 password
 run     builtin cd /dd/SYS
 wait    1
 run     clear
@@ -231,6 +246,7 @@ cap     does, in a form that survives gateways between ASCII and EBCDIC
 cap     machines; `-d' decodes.  Its encoder does not work: asked for a
 cap     20-byte file it demands billions of bytes of memory, is refused, and
 cap     goes on writing empty data lines until it is stopped.
+try     cuts -e tmp/TEXTA/fox.txt | head -n 4
 run     mkdir -p /dd/tmp/TEXTA; echo "the quick brown fox" > /dd/tmp/TEXTA/fox.txt; echo "jumps over the lazy dog" >> /dd/tmp/TEXTA/fox.txt
 wait    3
 run     builtin cd /dd
@@ -247,6 +263,7 @@ size    30 80
 cap     detab replaces tabs with spaces.  The line of the holidays file with
 cap     09 09 between the date and the name comes out with a run of 20s;
 cap     `-t4' puts the tab stops every four columns instead of eight.
+try     dump tmp/TEXTA/tab.txt; detab tmp/TEXTA/tab.txt > tmp/TEXTA/notab.txt; dump tmp/TEXTA/notab.txt; detab -t4 tmp/TEXTA/tab.txt > tmp/TEXTA/tab4.txt; dump tmp/TEXTA/tab4.txt
 run     mkdir -p /dd/tmp/TEXTA; cat /dd/SYS/holidays | head -n 3 | tail -l=1 > /dd/tmp/TEXTA/tab.txt
 wait    4
 run     builtin cd /dd
@@ -271,6 +288,7 @@ cap     the line: here `wc' over the three files named in list.txt, each
 cap     command echoed before its output.  It hands the commands to the shell
 cap     named by SHELL -- `sh' here, with `wc' loaded first so that sh finds
 cap     it by name.
+try     cat tmp/TEXTA/list.txt; SHELL=CMDS/sh eo tmp/TEXTA/list.txt wc @
 run     mkdir -p /dd/tmp/TEXTA; echo /dd/SYS/motd > /dd/tmp/TEXTA/list.txt; echo /dd/SYS/holidays >> /dd/tmp/TEXTA/list.txt; echo /dd/SYS/birthdays >> /dd/tmp/TEXTA/list.txt
 wait    3
 run     load /dd/CMDS/wc
@@ -288,6 +306,7 @@ snap
 shot    field
 cap     field prints the words you pick from each line by their position:
 cap     the 2nd, 4th and 1st here, then fields 1 and 3 from a comma list.
+try     cat fox; field 2 4 1 < fox; field -i=, 1 3 < pw
 run     rm -rf /dd/tmp/fld > /nil 2>/nil; mkdir -p /dd/tmp/fld; echo "the quick brown fox" > /dd/tmp/fld/fox; echo "jumps over the lazy dog" >> /dd/tmp/fld/fox; cp /dd/SYS/password /dd/tmp/fld/pw
 wait    3
 run     builtin cd /dd/tmp/fld
@@ -306,6 +325,7 @@ size    30 80
 cap     fillup pads a file out to a given length with one byte value:
 cap     `-n=64' the length, `-i=46' the byte, a full stop.  It reports what
 cap     it added, and dump shows the 2E bytes after the original text.
+try     ls -l tmp/TEXTA/pad.txt; fillup -n=64 -i=46 tmp/TEXTA/pad.txt; ls -l tmp/TEXTA/pad.txt; dump tmp/TEXTA/pad.txt
 run     mkdir -p /dd/tmp/TEXTA; echo "the quick brown fox" > /dd/tmp/TEXTA/pad.txt; echo "jumps over the lazy dog" >> /dd/tmp/TEXTA/pad.txt
 wait    3
 run     builtin cd /dd
@@ -326,6 +346,7 @@ shot    gep
 cap     gep searches a file for every expression listed in a second file,
 cap     named with `-e': two patterns over the holidays file.  It is grep
 cap     for a whole list of patterns at once.
+try     cat tmp/TEXTA/pats; gep -e=tmp/TEXTA/pats SYS/holidays
 run     mkdir -p /dd/tmp/TEXTA; echo Easter > /dd/tmp/TEXTA/pats; echo Valentine >> /dd/tmp/TEXTA/pats
 wait    3
 run     builtin cd /dd
@@ -342,6 +363,7 @@ shot    paste
 cap     paste joins files line by line, side by side: the first line of
 cap     each, then the second.  The separator is a tab; `-d:' makes it a
 cap     colon, and `-s' lays one file's lines out along a single line.
+try     paste tmp/TEXTA/a.txt tmp/TEXTA/b.txt; paste -d: tmp/TEXTA/a.txt tmp/TEXTA/b.txt; paste -s tmp/TEXTA/a.txt
 run     mkdir -p /dd/tmp/TEXTA; echo one > /dd/tmp/TEXTA/a.txt; echo two >> /dd/tmp/TEXTA/a.txt; echo three >> /dd/tmp/TEXTA/a.txt
 wait    3
 run     echo eins > /dd/tmp/TEXTA/b.txt; echo zwei >> /dd/tmp/TEXTA/b.txt; echo drei >> /dd/tmp/TEXTA/b.txt
@@ -365,6 +387,7 @@ cap     outside ASCII; `-u13' keeps CR as the line ending.  dump shows the
 cap     file before and after: the bell (07) has come out as a line end, and
 cap     the backspace (08) took the letter before it away with it.  It lists
 cap     the transformations it applied as it goes.
+try     dump tmp/TEXTA/ctl.txt; pep -b -u13 tmp/TEXTA/ctl.txt > tmp/TEXTA/clean.txt; dump tmp/TEXTA/clean.txt
 run     mkdir -p /dd/tmp/TEXTA; echo -e "bell\aand\bbackspace here" > /dd/tmp/TEXTA/ctl.txt
 wait    3
 run     builtin cd /dd
@@ -383,6 +406,7 @@ shot    psc
 cap     psc turns a table of numbers into commands for `sc', the spreadsheet:
 cap     one `let' per cell, A0 at top left, then a `format' line per column.
 cap     It reads standard input.
+try     cat tmp/TEXTA/table.txt; psc < tmp/TEXTA/table.txt
 run     mkdir -p /dd/tmp/TEXTA; echo "1 2 3" > /dd/tmp/TEXTA/table.txt; echo "4 5 6" >> /dd/tmp/TEXTA/table.txt; echo "7 8 9" >> /dd/tmp/TEXTA/table.txt
 wait    3
 run     builtin cd /dd
@@ -399,6 +423,7 @@ shot    rot
 size    30 80
 cap     rot turns text on its side: the first line becomes the first column,
 cap     read downwards.  It refuses tabs, so expand them first.
+try     cat tmp/TEXTA/r.txt; rot tmp/TEXTA/r.txt
 run     mkdir -p /dd/tmp/TEXTA; echo "the quick brown fox" > /dd/tmp/TEXTA/r.txt; echo "jumps over the" >> /dd/tmp/TEXTA/r.txt; echo "lazy dog" >> /dd/tmp/TEXTA/r.txt
 wait    3
 run     builtin cd /dd
@@ -416,6 +441,7 @@ size    30 80
 cap     tabs re-spaces a file.  `-i8' says the input's tab stops are every 8
 cap     columns; `-o0' asks for no tabs on output, spaces instead; `-o4' for
 cap     stops every 4.  dump shows a line of the holidays file each way.
+try     dump tmp/TEXTA/tab.txt; tabs -i8 -o0 < tmp/TEXTA/tab.txt > tmp/TEXTA/sp.txt; dump tmp/TEXTA/sp.txt; tabs -i8 -o4 < tmp/TEXTA/tab.txt > tmp/TEXTA/t4.txt; dump tmp/TEXTA/t4.txt
 run     mkdir -p /dd/tmp/TEXTA; cat /dd/SYS/holidays | head -n 3 | tail -l=1 > /dd/tmp/TEXTA/tab.txt
 wait    4
 run     builtin cd /dd
@@ -439,6 +465,7 @@ cap     upperdir normalises the names in a directory: files to lower case,
 cap     directories to upper.  It prints the names as it renames them.  A
 cap     scratch directory holding MixedCase.TXT and subdir is listed before
 cap     and after.
+try     ls tmp/TEXTA/UD; upperdir tmp/TEXTA/UD; ls tmp/TEXTA/UD
 run     mkdir -p /dd/tmp/TEXTA; rm -r /dd/tmp/TEXTA/UD
 wait    3
 run     mkdir -p /dd/tmp/TEXTA/UD/subdir; cp /dd/SYS/motd /dd/tmp/TEXTA/UD/MixedCase.TXT
@@ -459,6 +486,7 @@ shot    valspeak
 cap     valspeak rewrites plain English the way a Californian valley girl of
 cap     the 1980s would say it.  It is a filter: standard input in, the
 cap     rewritten text out.  The file it was given is above the result.
+try     cat tmp/TEXTA/val.txt; valspeak < tmp/TEXTA/val.txt
 run     mkdir -p /dd/tmp/TEXTA; echo "I think this operating system is really good." > /dd/tmp/TEXTA/val.txt
 wait    3
 run     echo "The manual is excellent and the games are enjoyable." >> /dd/tmp/TEXTA/val.txt
@@ -484,6 +512,7 @@ cap     standard
 cap     input -- this build ignores a filename argument and reads standard
 cap     input whatever it is given, so a named file leaves it waiting on the
 cap     terminal.
+try     cat password; gawk -F, "{printf \"%-8s %s\n\", \$1, \$6}" < password; gawk "{w+=NF} END {print NR, w}" < holidays
 run     builtin cd /dd/SYS
 wait    1
 run     clear
@@ -501,6 +530,7 @@ size    30 80
 cap     expand replaces tabs with spaces, at stops eight columns apart by
 cap     default and `-t 4' every four.  dump shows the two tabs (09 09) of a
 cap     line of the holidays file become spaces (20).
+try     dump tmp/TEXTA/tab.txt; expand tmp/TEXTA/tab.txt > tmp/TEXTA/sp.txt; dump tmp/TEXTA/sp.txt; expand -t 4 tmp/TEXTA/tab.txt > tmp/TEXTA/sp4.txt; dump tmp/TEXTA/sp4.txt
 run     mkdir -p /dd/tmp/TEXTA; cat /dd/SYS/holidays | head -n 3 | tail -l=1 > /dd/tmp/TEXTA/tab.txt
 wait    4
 run     builtin cd /dd
@@ -523,6 +553,7 @@ shot    head
 cap     head prints the first lines of a file, `-n 3' for three.  Named as
 cap     an argument, the file's name is printed after its lines; through a
 cap     pipe it is not.
+try     cat tmp/TEXTA/hol.txt; head -n 3 tmp/TEXTA/hol.txt; cat tmp/TEXTA/hol.txt | head -n 3
 run     mkdir -p /dd/tmp/TEXTA; cat /dd/SYS/holidays | head -n 8 > /dd/tmp/TEXTA/hol.txt
 wait    3
 run     builtin cd /dd
@@ -541,6 +572,7 @@ shot    split
 cap     split cuts a file into pieces of a given size -- `-l 10' ten lines
 cap     each -- named partaa, partab and so on after the prefix given.  The
 cap     holidays file makes four; the last is printed.
+try     split -l 10 SYS/holidays tmp/TEXTA/SP/part; ls -l tmp/TEXTA/SP; cat tmp/TEXTA/SP/partad
 run     mkdir -p /dd/tmp/TEXTA/SP; rm -f /dd/tmp/TEXTA/SP/*
 wait    3
 run     builtin cd /dd
@@ -558,6 +590,7 @@ snap
 shot    sum
 cap     sum prints a checksum and a block count for each file named -- the
 cap     checksum every Unix had before md5.
+try     sum SYS/motd SYS/holidays SYS/birthdays DOC/INDEX
 run     builtin cd /dd
 wait    1
 run     clear
@@ -568,6 +601,7 @@ wait    6
 shot    tac
 cap     tac prints a file last line first -- cat backwards.  Name the file:
 cap     read from a pipe it stops with an error.
+try     cat tmp/TEXTA/hol.txt; tac tmp/TEXTA/hol.txt
 run     mkdir -p /dd/tmp/TEXTA; cat /dd/SYS/holidays | head -n 8 > /dd/tmp/TEXTA/hol.txt
 wait    3
 run     builtin cd /dd
@@ -586,6 +620,7 @@ cap     unexpand turns runs of spaces back into tabs; `-a' does it anywhere
 cap     in the line, not only at the start.  A line of the holidays file has
 cap     its tabs expanded to spaces first, and comes back with 09 09
 cap     restored.
+try     dump tmp/TEXTA/sp.txt; unexpand -a tmp/TEXTA/sp.txt > tmp/TEXTA/back.txt; dump tmp/TEXTA/back.txt
 run     mkdir -p /dd/tmp/TEXTA; cat /dd/SYS/holidays | head -n 3 | tail -l=1 > /dd/tmp/TEXTA/tab.txt
 wait    4
 run     expand /dd/tmp/TEXTA/tab.txt > /dd/tmp/TEXTA/sp.txt
@@ -621,6 +656,7 @@ shot    tcmp
 cap     tcmp compares two text files line by line and prints each line that
 cap     differs, both versions one under the other, with the line number in
 cap     each file.  Here two three-line files that differ in the middle.
+try     cat tmp/TEXTA/c1.txt; cat tmp/TEXTA/c2.txt; tcmp tmp/TEXTA/c1.txt tmp/TEXTA/c2.txt
 run     mkdir -p /dd/tmp/TEXTA; echo "the quick brown fox" > /dd/tmp/TEXTA/c1.txt; echo "jumps over the lazy dog" >> /dd/tmp/TEXTA/c1.txt; echo "and lands in the river" >> /dd/tmp/TEXTA/c1.txt
 wait    3
 run     echo "the quick brown fox" > /dd/tmp/TEXTA/c2.txt; echo "leaps over the lazy dog" >> /dd/tmp/TEXTA/c2.txt; echo "and lands in the river" >> /dd/tmp/TEXTA/c2.txt
@@ -642,6 +678,7 @@ size    30 80
 cap     unp strips unprintable characters from a stream and reports each one
 cap     it removed, by code and line number.  dump shows the bell (07) and
 cap     backspace (08) before, and the clean text after.
+try     dump tmp/TEXTA/ctl.txt; unp < tmp/TEXTA/ctl.txt > tmp/TEXTA/clean.txt; dump tmp/TEXTA/clean.txt
 run     mkdir -p /dd/tmp/TEXTA; echo -e "bell\aand\bbackspace here" > /dd/tmp/TEXTA/ctl.txt
 wait    3
 run     builtin cd /dd

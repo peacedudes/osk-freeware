@@ -1,4 +1,4 @@
 pktogf logo10.120pk back.120gf
 $ ls -l logo10.120gf back.120gf
--rw-------   1 0        0             632 Sep  7 08:33 back.120gf
--rw-------   1 0        0             608 Sep  7 08:31 logo10.120gf
+-rw-------   1 0        0             632 Sep  9 00:19 back.120gf
+-rw-------   1 0        0             608 Sep  9 00:18 logo10.120gf

@@ -1,13 +1,13 @@
 grep -n "chess" DOC/INDEX | head -n 10
-343:                 terminal type and exits.  gnuchess wants the same.  Its -d
-664:  gnuchess        gnuchessn       gnuchessr       gnuplot
-826:ularn is complete and also runs.  gnuchessc and gnuan read their data
-1117: *gnuchess       GNU Chess, and the build `gnuchess' runs: it is first on
-1119:                 /h0/usr/src/chess/gnuchess.book, which ships here, so it
-1122:                 shares a module name with CMDS/GAMES/gnuchess, a second
-1124: *gnuchessn      GNU Chess with the 1989 display, which draws the squares
-1128: *gnuchessr      GNU Chess with the plainest display -- pieces as letters,
-1630:                 the board it finishes on.  It reads the `chess.lst' that
-1631:                 gnuchess writes when you type `list'.  A different
+672:  gnuchess        gnuchessn       gnuchessr       gnuplot
+830:ularn is complete and also runs.  gnuchessc and gnuan read their data
+1130: *gnuchess       GNU Chess, and the build `gnuchess' runs: it is first on
+1132:                 /h0/usr/src/chess/gnuchess.book, which ships here, so it
+1135:                 shares a module name with CMDS/GAMES/gnuchess, a second
+1137: *gnuchessn      GNU Chess with the 1989 display, which draws the squares
+1141: *gnuchessr      GNU Chess with the plainest display -- pieces as letters,
+1666:                 the board it finishes on.  It reads the `chess.lst' that
+1667:                 gnuchess writes when you type `list'.  A different
+1669:  chess          chess against the machine on a shaded board.  It asks
 $ grep -c "" DOC/INDEX
-2505
+2556

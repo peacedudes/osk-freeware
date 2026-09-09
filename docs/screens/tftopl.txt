@@ -1,4 +1,4 @@
-$ tftopl /dd/SYS/TEX/FONTS/TFM/cmr10.tfm | head -n 20
+tftopl cmr10.tfm | head -n 20
 (FAMILY CMR)
 (FACE O 352)
 (CODINGSCHEME TEX TEXT)

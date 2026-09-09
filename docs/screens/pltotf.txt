@@ -1,4 +1,4 @@
 pltotf tmp/TEX/cmr10.pl tmp/TEX/cmr10.tfm
 $ ls -l SYS/TEX/FONTS/TFM/cmr10.tfm tmp/TEX/cmr10.tfm
 -rw-rw-rw-   1 0        0            1296 Aug  3 19:00 SYS/TEX/FONTS/TFM/cmr10.m
--rw-------   1 0        0            1296 Sep  7 09:02 tmp/TEX/cmr10.tfm
+-rw-------   1 0        0            1296 Sep  9 00:15 tmp/TEX/cmr10.tfm

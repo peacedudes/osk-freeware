@@ -1,6 +1,4 @@
 $ cookie
-"If you'll excuse me a minute, I'm going to have a cup of coffee."
-- broadcast from Apollo 11's LEM, "Eagle", to Johnson Space Center, Houston
-  July 20, 1969, 7:27 P.M.
+Your project will be late.
 $ cookie
-Thufir's a Harkonnen now.
+A good workman is known by his tools.

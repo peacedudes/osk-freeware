@@ -1,6 +1,6 @@
 dvitype story.dvi < /nil > dt.out
 This is DVItype, C Version 3.4
-Output level (default=4, ? for help): Starting page (default=*): Maximum numbert
+Output level (default=4, ? for help): Starting page (default=*): Maximum number0
 Options selected:
   Starting page = *
   Maximum number of pages = 1000000
@@ -8,7 +8,7 @@ Options selected:
   Resolution = 300.00000000 pixels per inch
 numerator/denominator=25400000/473628672
 magnification=1000;       0.00006334 pixels per DVI unit
-' TeX output 2026.09.07:0840'
+' TeX output 2026.09.09:0028'
 Postamble starts at byte 564.
 maxv=43725786, maxh=30785863, maxstackdepth=3, totalpages=1
 Font 33: cmsl10---loaded at size 655360 DVI units

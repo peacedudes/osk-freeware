@@ -1,8 +1,8 @@
 gftype -i logo10.120gf > gt.out
-$ head -n 22 gt.out
+$ cat gt.out | head -n 22
 This is GFtype, C Version 3.1
 Options selected: Mnemonic output = false; pixel output = true.
-' METAFONT output 2026.09.07:0857'
+' METAFONT output 2026.09.09:0045'
 
 35: beginning of char 77
 .<--This pixel's lower left corner is at (1,10) in METAFONT coordinates
