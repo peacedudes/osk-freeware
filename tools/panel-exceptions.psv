@@ -118,3 +118,4 @@ graphdemo|a Graph-library demonstration; it aborts at once with no G-Windows dis
 graphsave|saves a Graph-library screen; with no display to read it aborts at once
 tplot|a Tektronix plotter: it asks for the interval and points and draws the curve in Tektronix vectors, so on a character terminal the dialogue is the readable part
 wndex|builds the WN web server index for a directory and reports the one line `Wrote cache file'; there is nothing more to show
+qt|a talking clock: it prints the time in words as one sentence (and chimes near the hour); that one line is all it has to show

@@ -1,12 +1,17 @@
 $ lunisolar
-The moon is last quarter (61% of full).
-$ lunisolar -?
-Bad args: lunisolar -?
-Usage: lunisolar
-gives the phase of the moon,
-and: lunisolar <year> <time_zone>
-generates a lunisolar calendar for LaTeX.
-Time zone may be one of:
-GMT     NST     AST     EST     CST
-MST     PST     YST     HST     BST
-JST
+The moon is a waning crescent (6% of full).
+$ lunisolar 2026 EST | head -n 14
+% Lunisolar calendar for 2026.
+% Constructed for EST, 5.00 hours west of Greenwich.
+% Seasons relative to January 1: -12 77 170 263 353.
+\documentstyle{article}
+\pagestyle{empty}
+\begin{document}
+\Large
+\setlength{\unitlength}{60mm}
+\begin{figure}
+\begin{center}
+\begin{picture}(2.0,2.0)(-1.0,-1.0)
+\tiny
+\put(0,0){\makebox(0,0){\Huge Winter 2025}}
+\put(0.125493,0.992095){\makebox(0,0){12/20}}

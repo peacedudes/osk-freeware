@@ -1,4 +1,4 @@
-$ /dd/CMDS/if -?
+$ command if -?
 Syntax: if [not] <cond> {<arg>} {<cmd1>} [else {<cmd2>}] endif
 Function: if the [negated] condition <cond> depending on the arguments
           <arg> is true, then hand the commands <cmd1> to the shell for
@@ -9,4 +9,4 @@ Conditions available:
     varval <var> <val>        true, if envir. variable <var> has value <val>
 Options:
      (none)
-$ /dd/CMDS/if def TERM echo TERM is set endif
+$ command if def TERM today endif

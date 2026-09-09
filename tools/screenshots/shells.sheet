@@ -10,6 +10,7 @@ run     echo $((355/113)) $((7*6))
 wait    3
 run     for f in one two three; do echo "item $f"; done
 wait    4
+try     bash -c "echo bash $BASH_VERSION, running a one-line script"
 
 shot    sh
 cap     A small Bourne shell, version 7.5, running as a program under
@@ -23,6 +24,7 @@ send    chd /dd/SYS; pwd\r
 wait    3
 send    exit\r
 wait    3
+try     sh
 
 shot    ksh
 cap     pd-ksh, the Korn shell, running a three-line script and a one-line
@@ -35,10 +37,12 @@ run     clear
 wait    1
 run     cat tmp/SHL/script.ksh
 wait    2
-run     ksh tmp/SHL/script.ksh
+run     ksh < tmp/SHL/script.ksh
 wait    5
 run     ksh -c "print the date is; today"
 wait    5
+try     ksh < tmp/SHL/script.ksh
+os9     ksh <tmp/SHL/script.ksh
 
 shot    gshell
 cap     GSHELL, a menu in place of a command line: the directory as a
@@ -49,6 +53,7 @@ wait    6
 snap
 send    \003
 wait    2
+try     gshell
 
 shot    mshell
 cap     A menu shell: it reads a file of `label,command' lines and shows
@@ -66,17 +71,21 @@ wait    5
 snap
 send    \003
 wait    2
+try     mshell tmp/SHL/menu
 
 shot    env
 cap     Runs a command with a variable added to its environment: here
 cap     printenv, which shows the variable arriving.
 run     env FOO=bar printenv | grep FOO
 wait    5
+try     env FOO=bar printenv | grep FOO
+os9     env FOO=bar printenv ! grep FOO
 
 shot    printenv
 cap     The environment a login on this disk arrives with.
 run     printenv
 wait    5
+try     printenv
 
 shot    getenv
 cap     Reads one environment variable back: -p prints it with a newline,
@@ -86,6 +95,7 @@ run     getenv -p TERM
 wait    3
 run     getenv -p HOME
 wait    3
+try     getenv -p TERM
 
 shot    checkenv
 cap     Compares an environment variable with a value, for a script to
@@ -96,6 +106,8 @@ run     checkenv TERM , vt100; echo "status $?"
 wait    4
 run     checkenv TERM , ansi; echo "status $?"
 wait    4
+try     checkenv TERM , vt100; echo "status $?"
+os9     checkenv TERM , vt100
 
 shot    exist
 cap     Tests whether a file exists and answers in its exit status, 0 for
@@ -108,6 +120,8 @@ run     exist SYS/motd; echo "exist says $?"
 wait    4
 run     exist SYS/no-such-file; echo "exist says $?"
 wait    4
+try     exist SYS/motd; echo "exist says $?"
+os9     exist SYS/motd
 
 shot    expr
 cap     GNU expr, evaluating an expression for a script.
@@ -117,17 +131,20 @@ run     expr 6 \* 7 + 1
 wait    3
 run     expr length "OS-9/68000"
 wait    3
+try     expr 355 / 113
 
 shot    if
 cap     Conditional execution for a script: `if def <var>', `if loaded
-cap     <module>' or `if varval <var> <value>', then the commands to run,
-cap     else, endif.  It hands the chosen branch to Microware's `shell' to
-cap     run -- the shell that comes with your OS-9.
-cap     Ask for it by path: bash has an `if' of its own.
-run     /dd/CMDS/if -?
+cap     <module>' or `if varval <var> <value>', then one command to run.
+cap     It hands that command to Microware's `shell' to run, which is
+cap     not on this disk, so here it does nothing.  bash has an `if' of
+cap     its own, a reserved word; `command if' reaches this one instead.
+run     command if -?
 wait    4
-run     /dd/CMDS/if def TERM echo TERM is set endif
+run     command if def TERM today endif
 wait    5
+try     command if -?
+os9     if -?
 
 shot    qp
 cap     Expands back-quotes in a command line for a shell that cannot:
@@ -137,6 +154,7 @@ run     qp -?
 wait    4
 run     qp echo `whoami`
 wait    5
+try     qp -?
 
 shot    xc
 cap     Runs the commands marked in a file and leaves the rest alone: a
@@ -154,6 +172,7 @@ run     cat tmp/SHL/cmds.txt
 wait    2
 run     xc tmp/SHL/cmds.txt
 wait    5
+try     xc tmp/SHL/cmds.txt
 
 shot    run
 cap     Runs a program with its input and output rebound to the terminal
@@ -163,12 +182,19 @@ run     run
 wait    4
 run     export PORT=/term; run 'whoami'
 wait    5
+try     run
 
 shot    hist
-cap     A command-line editor and history in front of the shell.  On this
-cap     console it prints a row of asterisks and returns at once.
+cap     A command-line editor and history in front of the shell: cursor
+cap     movement, word and line deletion, and command recall.  Its own
+cap     prompt stays buffered and does not reach this console; giving it
+cap     a command, `whoami', flushes that buffer as a row of asterisks
+cap     and returns to bash.
 run     hist
-wait    5
+wait    3
+send    whoami\r
+wait    4
+try     hist
 
 shot    printf
 cap     printf for the shell: widths, numbers, floating point.
@@ -178,6 +204,7 @@ run     printf "hello, %s\n" world
 wait    3
 run     printf "plain text, no conversion\n"
 wait    3
+try     printf "%-8s|%5d|%6.2f\n" apples 12 3.14159
 
 shot    whoami
 cap     Who you are, by user number in SYS/password.  Everything on this
@@ -187,6 +214,7 @@ run     whoami
 wait    3
 run     echo "USER is $USER"
 wait    3
+try     whoami
 
 shot    logname
 cap     Your login name, looked up the same way as whoami.
@@ -194,6 +222,7 @@ run     logname
 wait    3
 run     echo "logged in as $(logname), user $USER"
 wait    3
+try     logname
 
 shot    su
 cap     GNU su.  Its options, and an attempt to become tester, which on a
@@ -203,9 +232,11 @@ run     su --help
 wait    5
 run     su tester
 wait    4
+try     su --help
 
 shot    submit
 cap     Runs the commands in a .sub file with its parameters substituted
 cap     into them -- a batch job: its options.
 run     submit -?
 wait    5
+try     submit -?

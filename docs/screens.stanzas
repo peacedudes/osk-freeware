@@ -84,7 +84,7 @@ btree d2d82344ac802011
 buildhash 488b6e3d5a2e09fe
 c7decode cd523a3e251f1784
 cal 901a5f69eca7c189
-calen 94ba6586bda13bfd
+calen 47ebd7471ad0a89b
 calender 30e2052f8d39bf1b
 cam e05ecc930a3c0842
 card ea78bd6d7ca324bb
@@ -326,12 +326,13 @@ hexed ad46480b4037f9ca
 hexedit 296ee6ff860344e7
 hinterhalt 5b3a02628f05e653
 hipstopgm 50daa9f3332217ee
+hist 68066fadce0438f2
 hotel 41cf8b374b076d33
 hpcdtoppm 35b8593fab141bfd
 i_am_i 65844e506a55c3e6
 icon 50772be6a1eb3fef
 ident d24209e786b1ac02
-if 8b8e84cc03804931
+if 068c045eb61550f9
 ifdef 75f94280c21c0ca5
 ilbm 2a57f92f5f4ad67a
 imgtoppm e385dad9fd237200
@@ -356,7 +357,7 @@ kermit ed49abee7f893498
 kermit2 28b91e5e0320a6d8
 kermit3 b49d8ac64ba36539
 kermit_cio ec5d707f2ccce35c
-ksh 59e589e3b9159a96
+ksh 48a0d25a0419584c
 l b55c56636af052b2
 lander 0a0fc53a8fb1341a
 larn 1d392eb91a869f4c
@@ -395,7 +396,7 @@ lpshut 1a2217774748cd7f
 ls 7475c3da2ee7ecd8
 lua 448a54bf1e1f69a5
 luac 293a5b24a0a08af3
-lunisolar d63d5ea17ef7647f
+lunisolar 7ceaa86754e487d1
 lwf 6b7310dc13d97cc8
 m4 7fd0922baaf64a97
 m4_0.5 178bd754c4d97c82
@@ -601,7 +602,6 @@ pwgen b533b0b4fe951869
 pwparse 53ca2a07a5edd842
 qp 159fb95fa4e549d8
 qsort9 60b79e4fd20080c9
-qt 6e09112db03ccdd9
 queens 620aaa05515f3571
 rawtopgm 44b6f0cd3736c181
 rawtoppm 68880f52798e4bf8

@@ -1,2 +1,0 @@
-$ qt
-It's almost a quarter past four.

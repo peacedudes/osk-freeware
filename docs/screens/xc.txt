@@ -5,7 +5,4 @@ notes to myself
 more notes
 $ xc tmp/SHL/cmds.txt
  echo one
-one
- whoami
-whoami: nowhere found
-xc:  ** Exit status 000:203 **
+xc:  ** Exit status 2726:056 **

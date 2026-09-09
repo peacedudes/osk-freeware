@@ -25,9 +25,9 @@
 | [Games](#games) | 67 | Adventures, board and card games, arcade ports, dungeon crawls and puzzles. |
 | [Screen toys](#screen-toys) | 10 | Animations and screen effects -- they draw on the terminal rather than print to it. Some run until you stop them. |
 | [Amusements](#amusements) | 19 | Generators, simulators and diversions that are not quite games. |
-| [System & modules](#system--modules) | 127 | OS-9 module and process tools, devices, system state and scheduling. |
+| [System & modules](#system--modules) | 126 | OS-9 module and process tools, devices, system state and scheduling. |
 | [Disk & DOS](#disk--dos) | 20 | Reading and writing MS-DOS media with the mtools set. |
-| [Time & calendar](#time--calendar) | 13 | Calendars, clocks and astronomy. |
+| [Time & calendar](#time--calendar) | 14 | Calendars, clocks and astronomy. |
 | [Maths & calculators](#maths--calculators) | 11 | Calculators, plotting, orbits and number theory. |
 | [Printing](#printing) | 15 | Spoolers, page formatting and PostScript. |
 | [Documentation](#documentation) | 5 | Pagers, readers and the help system. |
@@ -46,7 +46,7 @@
 | `exist` | &#9733; test file existence |
 | `getenv` | &#9733; print or test an environment variable.  German prompts: `getenv -p TERM' prints the value with a newline, -l without one, -x exits with it, -n inverts the test.  Bare, or with a name and no option, it prints its own usage.  DESIGNA VLT, version UTIL 2.40<br>`USAGE: getenv [-n\|-p\|-l\|-x] <Environment> [<Wert>]` |
 | `hist` | a command-line editor with history, in front of the shell  [no military use -- EFFO-INFO]<br>**How:** A command-line editor with history in front of the shell. On this console it prints a row of asterisks and returns at once. |
-| `if` | conditional execution for a shell script: `if def <var>', `if loaded <module>' or `if varval <var> <value>', the commands, `else', `endif'.  It hands the branch to Microware's `shell' to run<br>**How:** Ask for it by path, /dd/CMDS/if -- bash has an if of its own. It hands the chosen branch to Microware's `shell' to run. |
+| `if` | conditional execution for a shell script: `if def <var>', `if loaded <module>' or `if varval <var> <value>', the commands, `else', `endif'.  It hands the branch to Microware's `shell' to run<br>**How:** bash's own `if' is a reserved word; `command if' reaches the one on this disk. |
 | `printenv` | &#9733; print the environment<br>`Syntax:   printenv [<options>] [{<env var name}]` |
 | `printf` | formatted print from the shell, as on Unix: widths, numbers and floating point<br>**How:** printf as on Unix: `printf "%-8s\|%5d\n" name 12'. Widths, numbers and floating point all work. |
 | `qp` | &#9733; expand BACK-QUOTES in a command line, which Microware's shell does not do for itself: `qp <cmd> <args>'.  It forks a `shell' to do the expansion, so it wants Microware's on your execution path<br>**How:** Runs its expanded command through Microware's `shell'. |
@@ -1340,7 +1340,7 @@
 
 *OS-9 module and process tools, devices, system state and scheduling.*
 
-<details><summary>127 programs</summary>
+<details><summary>126 programs</summary>
 
 **Devices & disks**
 
@@ -1477,7 +1477,6 @@
 | `fontgen` | generate a font for the Gepard display<br>**How:** Generates a character font for the Gepard display -- it prints the assembler source of an 80-column font on stdout. |
 | `getsys` | &#9733; report the system's globals -- what OS-9 thinks it is running on<br>`Syntax: getsys [<opts>]` |
 | `ggrep` | &#9733; GNU grep, from the sh_utils collection<br>**How:** GNU grep. `ggrep <expr> <files...>'; -E, -F, -i, -v, -w and the rest as you would expect. |
-| `greg` | &#9733; converts a Julian day number to a Gregorian date: `greg 2461281' is the 29th of August 2026<br>**How:** It converts a JULIAN DAY NUMBER to a Gregorian date and is nothing to do with regular expressions: `greg 2460000' answers `2023 2 25'. |
 | `hinterhalt` | &#9733; a small game (EFFO forum 7) |
 | `i_am_i` | prints its own source (Pascal) |
 | `isam` | &#9733; indexed-sequential file demonstration |
@@ -1566,7 +1565,7 @@
 
 *Calendars, clocks and astronomy.*
 
-<details><summary>13 programs</summary>
+<details><summary>14 programs</summary>
 
 **Astronomy**
 
@@ -1575,18 +1574,17 @@
 | `ephem` | &#9733; ephem - astronomical ephemeris<br>**How:** An astronomical ephemeris: `ephem -c /dd/SYS/ephem.cfg -d /dd/SYS/ephem.db'. RETURN passes the opening page; any key stops the loop; ? is help; control-D quits. |
 | `ephem881` | &#9733; ephem, 68881 build<br>**How:** The same as ephem, built for a 68881 coprocessor. Control-D quits. |
 | `lunisolar` | &#9733; lunar and solar position calculator |
-| `nasa` | &#9733; NASA orbital-element reader.  Wants `nasa.dat' in the CURRENT directory: NORAD two-line element sets -- a name line, then TLE line 1 and line 2 per satellite -- and writes kepler.dat. No element set ships here; supply a current one.  The format is parsed in SRC/eff_orbit/nasa.c and is column-sensitive<br>**How:** Put NASA two-line elements in nasa.dat in the current directory and run `nasa'; it writes kepler.dat, which `orbit' reads. No element set ships; they are published for every satellite. |
+| `nasa` | &#9733; NASA orbital-element reader. Wants `nasa.dat' in the current directory: NORAD two-line element sets -- a name line, then TLE line 1 and line 2 per satellite -- and writes kepler.dat. No element set ships here; supply a current one. The format is parsed in SRC/eff_orbit/nasa.c and is column- sensitive<br>**How:** Put NASA two-line elements in nasa.dat in the current directory and run `nasa'; it writes kepler.dat, which `orbit' reads. No element set ships; they are published for every satellite. |
 | `orbit` | &#9733; the N3EMO satellite tracker, version 3.7: where a satellite is from a site, hour by hour -- azimuth, elevation, doppler, range and transponder mode.  It opens kepler.dat, mode.dat and a <site>.sit by bare name from the current directory, and DOC/orbit holds them (pgh, bern and zuerich sites), so run it from there: `chd /dd/DOC/orbit' and `orbit', or under bash `ksh -c "cd /dd/DOC/orbit; orbit"'.  `nasa' makes a kepler.dat from published two-line elements<br>**How:** It reads kepler.dat, mode.dat and a <site>.sit by bare name from the current directory, and DOC/orbit holds them: `ksh -c "cd /dd/DOC/orbit; orbit"'. Answer d for a day's table, then the site (pgh), the date, the start hour, the step and the length. |
 
 **Calendars**
 
 | | |
 |---|---|
-| `cal` | &#9733; Calendar, Bob van der Poel.  `cal -h' prints holidays with it -- SYS/holidays is here, and SYS/birthdays is an empty template for your own dates.  SYS/cal.init is a printer setup for a laser<br>**How:** `cal -m=<month> -y=<year>', with flags. -h marks the holidays in SYS/holidays and anything you add to SYS/birthdays, which it includes. |
+| `cal` | &#9733; Calendar. `cal -h' prints holidays with it -- SYS/holidays is here, and SYS/birthdays is an empty template for your own dates. SYS/cal.init is a printer setup for a laser<br>**How:** `cal -m=<month> -y=<year>', with flags. -h marks the holidays in SYS/holidays and anything you add to SYS/birthdays, which it includes. |
 | `calen` | calendar printer (v_misc) |
 | `calender` | &#9733; print a whole year's calendar (German)<br>**How:** A whole year at once, in German. It asks `Fuer welches Jahr?' (which year); RETURN at the question ends it. |
-| `qt` | &#9733; tells the time in words, the way a person would say it: `It's just gone ten past four.' |
-| `setimex` | &#9733; set time from hardware clock<br>`Usage:` |
+| `greg` | &#9733; converts a Julian day number to a Gregorian date: `greg 2461281' is the 29th of August 2026<br>**How:** It converts a Julian day number to a Gregorian date and is nothing to do with regular expressions: `greg 2460000' answers `2023 2 25'. |
 | `today` | date, moon phase and this-day-in-history |
 
 **Clocks**
@@ -1595,6 +1593,8 @@
 |---|---|
 | `digclk` | &#9733; digital clock with hostname<br>`Usage: digclk [refresh_rate]` |
 | `gcl` | &#9733; a grand digital clock: the time drawn large across the terminal and redrawn as it runs.  `-n=<seconds>' runs it for that long; -s scrolls the digits, -i inverts the video<br>**How:** A full-screen digital clock: `gcl' runs until stopped, `gcl -n=10' for ten seconds; -s scrolls the digits, -i inverts the video. |
+| `qt` | &#9733; tells the time in words, the way a person would say it: `It's just gone ten past four.' |
+| `setimex` | &#9733; set time from hardware clock<br>`Usage:` |
 
 </details>
 

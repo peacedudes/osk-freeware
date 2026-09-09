@@ -1,10 +1,14 @@
 cat tmp/SHL/script.ksh
 print hello from a ksh script
 for f in a b c; do print item $f; done
-$ ksh tmp/SHL/script.ksh
-tmp/SHL/script.ksh: cannot execute
+$ ksh < tmp/SHL/script.ksh
+hello from a ksh script
+item a
+item b
+item c
+
 $ ksh -c "print the date is; today"
 the date is
-Today is Sunday, the sixth day of September, two thousand and
-twenty-six. In fifty-two seconds, the time will be twenty-one minutes
-before six AM, Digital Standard Time. The moon is in its last quarter.
+Today is Tuesday, the eighth day of September, two thousand and
+twenty-six. The time is nineteen minutes and fifty-nine seconds after
+eight PM, Daylight Savings Time. The moon is waning crescent.

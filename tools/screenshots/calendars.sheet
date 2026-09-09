@@ -1,23 +1,30 @@
 # Calendars, clocks and astronomy, one stanza per program.
 
 shot    cal
-cap     A month with the holidays from SYS/holidays marked on it.  This
-cap     cal takes flags, -m for the month and -y for the year, and -h asks
-cap     for the holidays.
+cap     A month, one line a week.  -m and -y give the month and year; -h
+cap     marks the holidays kept in SYS, and anything added to SYS/birthdays
+cap     is included with them.
+try     cal -m=9 -y=2026 -h
 run     cal -m=9 -y=2026 -h
 wait    4
 
 shot    calen
-cap     A month as a diary page, ruled for appointments.  It reads the
+size    90 160
+cap     A month as a diary page, ruled for appointments, with the previous
+cap     and next months as small calendars in the corners.  It reads the
 cap     month, the year and how many months to print from its input.
-run     echo 9 2026 1 | calen | head -n 21
-wait    6
+try     echo 9 2026 1 | calen
+os9     echo 9 2026 1 ! calen
+run     echo 9 2026 1 | calen
+wait    100
+snap
 
 shot    calender
 size    58 100
 cap     A whole year at once, in German, with the German public holidays
 cap     listed under it.  It asks `Fuer welches Jahr?' -- for which year --
-cap     and then asks again for the next.
+cap     and then asks again for the next; RETURN there ends it.
+try     calender
 run     calender
 wait    2
 send    2026\r
@@ -27,8 +34,12 @@ send    \r
 wait    2
 
 shot    digclk
-cap     A digital clock in block characters, with the machine's name under
-cap     it, redrawn every second until stopped.
+cap     A clock in block digits, with the machine's name above it and the
+cap     full date and time below.  By default it redraws once a minute;
+cap     give it a refresh rate in seconds to update faster.  At Microware's
+cap     own shell it can't find its terminal type and won't draw; at bash
+cap     or ksh it works as shown.
+try     digclk
 run     digclk
 wait    5
 snap
@@ -38,16 +49,20 @@ shot    gcl
 cap     A grand digital clock: the time drawn large across the terminal,
 cap     redrawn as it runs.  -n says how many seconds to run; without it
 cap     it runs until stopped.
+try     gcl -n=6
 run     gcl -n=6
 wait    4
 snap
 wait    4
 
 shot    ephem
-cap     An astronomical ephemeris: the sun, the moon and the planets for
-cap     the moment it is set to, with rise, transit and set down the side,
-cap     from the configuration and star database in SYS.  RETURN passes
-cap     its opening page; control-D leaves it.
+cap     A live panel from the SYS configuration and star database: date,
+cap     sidereal time and site at the top, and below it each body's
+cap     position -- right ascension, declination, azimuth, altitude and
+cap     more.  It keeps recomputing as it runs, and without a coprocessor
+cap     the outer planets take a while to fill in.  RETURN passes the
+cap     opening page; control-D quits.
+try     ephem -c ephem.cfg -d ephem.db
 run     builtin cd /dd/SYS
 wait    1
 run     clear
@@ -60,7 +75,10 @@ snap
 quit    \004
 
 shot    ephem881
-cap     The same ephemeris built for a 68881 floating-point coprocessor.
+cap     The same ephemeris built for a 68881 floating-point coprocessor:
+cap     with hardware floating point the whole table fills in at once,
+cap     Mars through Pluto included.
+try     ephem881 -c ephem.cfg -d ephem.db
 run     builtin cd /dd/SYS
 wait    1
 run     clear
@@ -74,10 +92,13 @@ quit    \004
 
 shot    lunisolar
 cap     The phase of the moon in one line.  Given a year and a time zone
-cap     it writes a whole lunisolar calendar as LaTeX instead.
+cap     it writes a whole lunisolar calendar as LaTeX instead: the
+cap     opening of it is below, one line a day, each one placed by that
+cap     day's phase of the moon.
+try     lunisolar
 run     lunisolar
 wait    6
-run     lunisolar -?
+run     lunisolar 2026 EST | head -n 14
 wait    6
 
 shot    nasa
@@ -85,6 +106,7 @@ cap     Converts NASA two-line orbital elements, the form satellite
 cap     elements are published in, into the kepler.dat that `orbit'
 cap     reads.  It takes nasa.dat from the current directory and writes
 cap     kepler.dat beside it; this is one satellite in and out.
+try     nasa
 run     mkdir -p /dd/tmp/CAL > /nil 2>/nil; printf "ISS (ZARYA)\r1 25544U 98067A   26246.50000000  .00016717  00000-0  10270-3 0  9005\r2 25544  51.6416 247.4627 0006703 130.5360 325.0288 15.72125391563537\r" > /dd/tmp/CAL/nasa.dat
 run     builtin cd /dd/tmp/CAL
 wait    2
@@ -105,6 +127,7 @@ cap     shift, range, height, the point beneath the satellite and the
 cap     transponder mode it is in.  It reads kepler.dat, mode.dat and a
 cap     site file by name from the current directory, and DOC/orbit holds
 cap     them, so it is run from there.
+try     orbit
 run     builtin cd /dd/DOC/orbit
 wait    1
 run     clear
@@ -128,18 +151,23 @@ wait    20
 
 shot    qt
 cap     The time the way a person says it: `just gone ten past four',
-cap     `nearly a quarter past'.  It says whatever the clock says.
+cap     `nearly a quarter past'.  It says whatever the clock says, and
+cap     near the hour or the quarter hour it chimes too.
+try     qt
 run     qt
 wait    5
 
 shot    setimex
-cap     Sets the system clock from a hardware clock, and reports the time
+cap     Checks the system clock against a hardware time source and
+cap     corrects it if it drifted.  Run bare, it just reports the time
 cap     it found.
+try     setimex
 run     setimex
 wait    8
 
 shot    today
-cap     The date in words.
+cap     The date, the time and the moon's phase, in a sentence.
+try     today
 run     today
 wait    6
 
@@ -147,6 +175,7 @@ shot    greg
 cap     A Julian day number to a Gregorian date.  Its count runs one day
 cap     ahead of the astronomers' convention: 2440588, which they call
 cap     the first of January 1970, comes out as the second.
+try     greg 2461281
 run     greg 2461281
 wait    6
 run     greg 2440588

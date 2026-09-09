@@ -618,7 +618,7 @@ gep|Text tools|Transform & filter
 paste|Text tools|Transform & filter
 pep|Text tools|Transform & filter
 psc|Text tools|Transform & filter
-qt|Time & calendar|Calendars
+qt|Time & calendar|Clocks
 rot|Text tools|Transform & filter
 shuffle|Games|Other games
 tabs|Text tools|Transform & filter
@@ -633,7 +633,7 @@ calen|Time & calendar|Calendars
 calender|Time & calendar|Calendars
 digclk|Time & calendar|Clocks
 japan|Amusements|Simulated weather
-setimex|Time & calendar|Calendars
+setimex|Time & calendar|Clocks
 shire|Amusements|Simulated weather
 today|Time & calendar|Calendars
 
@@ -907,7 +907,7 @@ afm2tfm|Text tools|TeX
 e|System & modules|Utilities
 new_e|Editors|SEDT family
 every|System & modules|Scheduling
-greg|System & modules|Utilities
+greg|Time & calendar|Calendars
 isam|System & modules|Utilities
 lgrep|System & modules|Utilities
 liborder.os9|System & modules|Utilities

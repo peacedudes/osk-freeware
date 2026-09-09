@@ -197,7 +197,7 @@ subscribe|It works, and so does `unsubscribe' -- give it a group that IS in /dd/
 flink|DO NOT run it on a shipped module. It makes a directory entry aliasing the file's FD in the CURRENT directory, RBF has no hard links, and removing the entry leaves the file pointing at a DIRECTORY -- `cat' then answers `is a directory' for everything.
 vlen|It leaves its store behind, in the DATA directory, as `test.mp' and `test.st'. Run it twice and the second run says `Filesystem already exists.' and adds nothing; delete those two to run it again.
 argproc_demo|A switch takes its argument with NO SPACE: `-x99', never `-x 99'. `argproc_demo readme' prints what it made of the line.
-greg|It converts a JULIAN DAY NUMBER to a Gregorian date and is nothing to do with regular expressions: `greg 2460000' answers `2023 2 25'.
+greg|It converts a Julian day number to a Gregorian date and is nothing to do with regular expressions: `greg 2460000' answers `2023 2 25'.
 convert|It STARTS the `world' adventure -- run it and the game opens.
 modbuster|Give it a file holding SEVERAL modules and it writes one file per module in the CURRENT directory. Use ksh to put yourself somewhere writable first. `/dd/CMDS/GAMES/cyberwar' looks like a candidate but modbuster hangs on it with no output at all; a single ordinary module (`/dd/CMDS/today') shows it working.
 yagi|It asks FIVE questions on standard input -- centre frequency in MHz, element count, boom diameter, whether the elements are insulated from the boom (Y/N), and a tubing size off its own list of six. Answer four and it loops on the fifth forever, because EOF on a numeric read returns the same thing every time.
@@ -236,7 +236,7 @@ maketexpk|It carries the RIGHT Metafont line in its own strings and then reaches
 forth|Type `2 3 + . cr' and it answers 5; `: squares 11 1 do i dup * . loop cr ;' then `squares' prints them; `words' lists its vocabulary; `bye' leaves. A source file is a command-line argument -- `forth fibonacci.tst' in lib/tile/TST loads it and gives you the prompt -- because `include' is defined in the library, not the kernel. The library and its twenty-two programs are in lib/tile and lib/tile/TST.
 ed|Needs a /r0 RAM disk for its scratch file; `mount -r=256k /r0' provides one. Then `ed <file>', with ed's usual commands: 1,4p prints, s/a/b/ substitutes, w writes, q quits.
 mshell|`mshell <menufile>': one `label,command' per line. A number picks an entry; it hands the command to Microware's `shell' to run. Control-C leaves it.
-if|Ask for it by path, /dd/CMDS/if -- bash has an if of its own. It hands the chosen branch to Microware's `shell' to run.
+if|bash's own `if' is a reserved word; `command if' reaches the one on this disk.
 qp|Runs its expanded command through Microware's `shell'.
 xc|`xc <file>': lines beginning `% ' are commands, the rest is notes. It forks them through Microware's `shell' to run.
 checkenv|`checkenv <name> , <value>' with spaces round the comma. Meant to return an error when they differ; it returns 0 either way.

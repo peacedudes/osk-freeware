@@ -1,4 +1,4 @@
 $ getenv -p TERM
-vt100
+xterm-256color
 $ getenv -p HOME
 /dd
