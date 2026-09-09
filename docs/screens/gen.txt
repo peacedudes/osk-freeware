@@ -11,7 +11,7 @@ shorthand, name and address of authors:
   MM       M. Moser, Jakob-Brucker-Str. 15, 8950 Kaufbeuren
 ----------------------------------------------------------------------
 version, author, date and report:
-  1.0    MM      06.09.126 first version
+  1.0    MM      08.09.126 first version
 ----------------------------------------------------------------------
 pecularities:
   none

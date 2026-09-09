@@ -1,4 +1,4 @@
-$ splstat; echo "splstat said nothing, status $?"
-splstat said nothing, status 0
+$ splstat -?
+Splstat: device out of range
 $ lpq
 lpq: no spooler installed

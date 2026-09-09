@@ -1,6 +1,6 @@
-ls -l /dd/tmp/UTILA/tr/f
--rw-rw-rw-   1 0        0              16 Sep  6 06:18 /dd/tmp/UTILA/tr/f
-$ trunc /dd/tmp/UTILA/tr/f 8
-$ ls -l /dd/tmp/UTILA/tr/f; cat /dd/tmp/UTILA/tr/f; echo
--rw-rw-rw-   1 0        0               8 Sep  6 06:18 /dd/tmp/UTILA/tr/f
+ls -l f
+-rw-rw-rw-   1 0        0              16 Sep  8 22:41 f
+$ trunc f 8
+$ ls -l f; cat f; echo
+-rw-rw-rw-   1 0        0               8 Sep  8 22:41 f
 01234567

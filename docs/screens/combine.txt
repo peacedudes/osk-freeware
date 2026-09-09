@@ -1,3 +1,5 @@
+combine tmp/UTILA/cmb/even tmp/UTILA/cmb/odd tmp/UTILA/cmb/mix
+
 file: tmp/UTILA/cmb/even  opened for input
 file: tmp/UTILA/cmb/odd  opened for input
 file: tmp/UTILA/cmb/mix  opened for output
@@ -5,5 +7,5 @@ file: tmp/UTILA/cmb/mix  opened for output
 combine operation completed !
 total bytes processed: 16
 
-attr: nowhere found
-$ ABABABABABABABABAB
+$ cat tmp/UTILA/cmb/mix; echo
+ABABABABABABABABAB

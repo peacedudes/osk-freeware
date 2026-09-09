@@ -1,2 +1,3 @@
-$ /dd/CMDS/break -?; echo "returned $?"
+$ enable -n break
+$ break -?; echo "returned $?"
 returned 0

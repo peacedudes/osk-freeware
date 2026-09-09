@@ -10,4 +10,8 @@ $ config
 /* Properties of float: */
 /* Base = 2 */
 /* Significant base digits = 24 (= at least 7 decimal digits) */
-/* Smalles
+/* Smallest x such that 1.0-base**x != 1.0 = -24 */
+/* Small x such that 1.0-x != 1.0 = 5.96046e-08 */
+/* Smallest x such that 1.0+base**x != 1.0 = -23 */
+/* Smallest x such that 1.0+x != 1.0 = 1.19209e-07 */
+/* Arithmetic chops but uses guard digits */

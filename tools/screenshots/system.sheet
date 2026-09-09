@@ -8,6 +8,7 @@ cap     The collection's own guide: `about hack' answers what a program is,
 cap     where it came from, what it opens and whether its source survived --
 cap     out of the four files the web catalogue is built from, read at the
 cap     moment you ask, so it cannot drift from what shipped.
+try     about hack
 run     about hack
 wait    5
 shot    aprocs
@@ -15,15 +16,15 @@ cap     A process monitor: it prints the active processes as a tree -- id,
 cap     parent, priority, CPU time, age and share of the CPU -- reading the
 cap     ages through F$SetSys's Julian and second-of-day globals.  Here it
 cap     catches the shell, ksh and itself.
+try     aprocs
 run     aprocs
 wait    5
 shot    argproc_demo
-cap     argproc_demo PARSING A COMMAND LINE, which is the whole point of it:
-cap     RICO's argproc() takes the switches, fills in the defaults for the
-cap     ones you left out, and hands back the filename.  Switches take their
-cap     arguments with NO SPACE -- `-x99', never `-x 99'.  It wanted STACK.
-cap     Rebuilt with MEM=64k from the source in SRC/argproc and it runs --
-cap     the recipe carries the flag now.
+cap     argproc_demo parsing a command line, which is the whole point of
+cap     it: argproc() takes the switches, fills in the defaults for the
+cap     ones you left out, and hands back the filename.  A switch takes
+cap     its argument with no space -- `-x99', never `-x 99'.
+try     argproc_demo readme; argproc_demo -x99 -sHello readme; argproc_demo -help
 run     argproc_demo readme
 wait    6
 run     argproc_demo -x99 -sHello readme
@@ -33,42 +34,52 @@ wait    8
 shot    bigsetter
 cap     A Modula-2 set-operations demonstration -- proof the Modula
 cap     compiler's output runs here.
+try     bigsetter
 run     bigsetter
 wait    8
 shot    bootgen
 cap     bootgen builds an OS9Boot file for a machine to start from -- you
 cap     name the device and the modules to put in it.  There is no boot
 cap     file to build here, so it answers with its command format.
+try     bootgen -?
 run     bootgen -?
 wait    8
 shot    btree
 cap     A B-tree demonstration, building and walking an index.
+try     btree
 run     btree
 wait    8
 shot    clock
 cap     clock displays a running clock, and cannot here: it opens a pipe
 cap     to feed its display and answers `Popen error 216' when that pipe
 cap     cannot be made.
+try     clock; echo "clock returned $?"
 run     clock; echo "clock returned $?"
 wait    6
 shot    config
 cap     config reports this machine's C type properties as the #defines a
 cap     portable program would want.
+try     config
 run     config
 wait    5
 shot    cpu
 cap     A CPU speed test.  It takes os9exec down with it every time -- the
 cap     emulator exits mid-run, which is why the screen stops where it does.
+try     cpu
 run     cpu
 wait    10
 shot    dam
-cap     The disk allocation map: one character per cluster across a 253 MB
-cap     volume, so you can see where the collection sits on it.
+cap     The disk allocation map: one character per cluster across a
+cap     253-megabyte volume, so you can see where the collection sits on
+cap     it.
+try     dam /dd | head -n 21
+os9     dam /dd !head -n 21
 run     dam /dd | head -n 21
 wait    10
 shot    demo
 cap     demo, the egetopt option-parsing example, showing how it read the
 cap     command line it was given.
+try     demo -a -b -c=7 one two
 run     demo -a -b -c=7 one two
 wait    6
 shot    devprc
@@ -76,6 +87,7 @@ for     devprc ptxminst t_trtest
 cap     devprc shows which device each process holds a path to: `-a' walks
 cap     every process and lists its open paths and their devices.  `ptxminst'
 cap     installs Ptxm, and `t_trtest' exercises a trap handler.
+try     devprc -a; ptxminst -?; t_trtest
 run     devprc -a
 wait    8
 run     ptxminst -?
@@ -86,13 +98,15 @@ shot    dinfo
 cap     dinfo reports a device's geometry and free space -- here the volume
 cap     the collection is mounted as: its size, sector size and how much of
 cap     it is in use.
+try     dinfo /dd
 run     dinfo /dd
 wait    5
 shot    dload
-cap     Loads a data file INTO A DATA MODULE in memory, despite the name --
-cap     it does not send anything down a serial line.  Given the message of
-cap     the day it reports the size it read and the address the module was
-cap     placed at.
+cap     Loads a data file into a data module in memory, despite the name
+cap     -- it does not send anything down a serial line.  Given the
+cap     message of the day it reports the size it read and the address
+cap     the module was placed at.
+try     dload motd
 run     builtin cd /dd/SYS
 wait    1
 run     clear
@@ -107,6 +121,7 @@ cap     drop puts back exactly what keep wrote.  A program is kept first,
 cap     then dropped: drop reads the receipt in SYS/kept and removes each
 cap     file, refusing any whose checksum has changed since it was kept, so
 cap     your saves and scores are safe from it.
+try     drop greg
 run     rm -f /dd/SYS/kept; rm -f /dd/tmp/SYSB/kp/CMDS/greg > /nil 2>/nil; keep -p /dd/tmp/SYSB/kp greg > /nil
 wait    5
 run     clear
@@ -117,29 +132,43 @@ shot    every
 cap     every runs a command again and again at a fixed interval:
 cap     `every 2 oskversion' asks the kernel its version every two seconds
 cap     until you stop it.  The first two answers are on the screen.
+try     every 2 oskversion
 run     every 2 oskversion
 wait    14
 kill
 shot    fastcc
+size    32 80
 for     fastcc lfmaker
-cap     fastcc, a quicker driver for cc, and lfmaker.
+cap     fastcc, a quicker front end for cc, and lfmaker, which builds a
+cap     G-Windows launch file.  lfmaker asks the memory allocator for an
+cap     address as though it were a length, so a real argument gets the
+cap     request refused in a very large, very specific-looking number --
+cap     it moves with the environment, which is what gives away that it
+cap     is really an address.  Run bare first it prints nothing.
+try     fastcc -?; lfmaker; lfmaker readme
 run     fastcc -?
 wait    6
-run     lfmaker < /nil
-wait    10
+run     lfmaker
+wait    4
+run     lfmaker readme
+wait    6
 shot    flink
 cap     flink makes a second directory entry for a file, under a name you
 cap     give -- an RBF hard link.  It is shown by its usage: RBF has no true
 cap     hard links, and removing such an entry can leave the original
 cap     pointing at the wrong place, so it is not run on the disk here.
+try     flink -?
 run     flink -?
 wait    5
 shot    gen
 size    30 80
-cap     gen writes the FRAME of a new C program -- header block, authorship
-cap     and version lines and sectioned comments.  It appends `.c' to the
-cap     name you give, which is why it looks as though it wrote nothing:
-cap     `gen -p demo' leaves demo.c, whose head is shown here.
+cap     gen writes the frame of a new C program -- header block,
+cap     authorship and version lines and sectioned comments.  It appends
+cap     `.c' to the name you give, which is why it looks as though it
+cap     wrote nothing: `gen -p demo' leaves demo.c, whose head is shown
+cap     here.
+try     gen -p tmp/SYSB/demo; cat tmp/SYSB/demo.c | head -n 16
+os9     gen -p tmp/SYSB/demo; cat tmp/SYSB/demo.c !head -n 16
 run     rm -f /dd/tmp/SYSB/demo.c > /nil 2>/nil; mkdir -p /dd/tmp/SYSB > /nil 2>/nil
 wait    3
 run     builtin cd /dd
@@ -154,28 +183,37 @@ shot    getsys
 cap     getsys reports OS-9's system globals, reading the global page
 cap     field by field -- the count of forked processes, the memory
 cap     limits, the priority range and the system debugger's pointers.
+try     getsys | head -n 21
+os9     getsys !head -n 21
 run     getsys | head -n 21
 wait    6
 shot    hinterhalt
-for     hinterhalt testibc sqrtx bigsetter i_am_i
-cap     hinterhalt, a small game that came with EFFO forum 7 -- one of the
-cap     example programs the German OS-9 user group circulated.  Four more
-cap     from the same shelf are asked for beside it -- `testibc' exercises
-cap     the inter-process bus, `sqrtx' takes a square root, `bigsetter'
-cap     demonstrates Modula-2 set operations and `i_am_i' reports its own
-cap     process.
-run     hinterhalt
-wait    10
+for     hinterhalt testibc
+cap     testibc, a menu for driving an IEEE-488 instrument bus -- send,
+cap     receive, clear, remote and local control -- from the same EFFO
+cap     forum shelf as hinterhalt.  It asks for a timeout time first;
+cap     answered, its menu is what there is to show with no real bus
+cap     attached.  hinterhalt is a small maze game from the same shelf:
+cap     asked whether it needs to explain itself (J/N, German for Y/N)
+cap     and told no, it draws the board -- walls, the player and a
+cap     target.
+try     testibc; hinterhalt
 run     testibc
-wait    8
-run     sqrtx 144
-wait    8
-run     bigsetter
-wait    8
-run     i_am_i
-wait    8
+wait    4
+send    5\r
+wait    4
+send    Q
+wait    2
+run     clear
+wait    1
+run     hinterhalt
+wait    4
+send    N\r
+wait    6
+snap
 shot    i_am_i
 cap     The Pascal quine printing its own source.
+try     i_am_i
 run     i_am_i
 wait    5
 shot    ident
@@ -183,10 +221,12 @@ for     liborder.os9
 cap     liborder.os9 lists the object modules inside an OS-9 library and the
 cap     order they are linked in.  version, mexist, modinfo and names each
 cap     ask their own question about a module and have cards of their own.
+try     liborder.os9 -?
 run     liborder.os9 -?
 wait    6
 shot    isam
 cap     The indexed-sequential file demonstration from the same shelf.
+try     isam
 run     isam
 wait    8
 shot    keep
@@ -195,6 +235,7 @@ cap     keep takes a program off the collection onto your own /dd, copying
 cap     the binary and the files DOC/DEPENDS says it reads.  Here greg goes
 cap     into a scratch directory, and keep names each file it wrote and
 cap     records it so drop can put it back.
+try     keep -p tmp/SYSB/kp greg
 run     rm -f /dd/SYS/kept; rm -f /dd/tmp/SYSB/kp/CMDS/greg > /nil 2>/nil; mkdir -p /dd/tmp/SYSB > /nil 2>/nil
 wait    3
 run     builtin cd /dd
@@ -208,6 +249,7 @@ size    30 80
 cap     kept lists what keep has taken from the collection and what it came
 cap     to.  A program is kept first, then listed: each file, its size, and
 cap     the total.
+try     kept
 run     rm -f /dd/SYS/kept; rm -f /dd/tmp/SYSB/kp/CMDS/greg > /nil 2>/nil; keep -p /dd/tmp/SYSB/kp greg > /nil
 wait    5
 run     clear
@@ -216,12 +258,14 @@ run     kept
 wait    5
 shot    launch
 cap     launch's syntax and version.
+try     launch -?
 run     launch -?
 wait    6
 shot    makecrc
 cap     makecrc generates C source for six CRC polynomials, one file each,
 cap     and says nothing -- the files it leaves are the output.  Run in a
 cap     writable directory, then listed.
+try     makecrc; ls
 run     rm -rf /dd/tmp/UTILA/mc > /nil 2>/nil
 run     mkdir -p /dd/tmp/UTILA/mc > /nil 2>/nil
 run     builtin cd /dd/tmp/UTILA/mc
@@ -234,6 +278,7 @@ wait    3
 shot    map
 cap     map shows the blocks a file occupies -- not a memory map, whatever
 cap     the name suggests.
+try     map -e DOC/INDEX
 run     builtin cd /dd
 wait    1
 run     clear
@@ -243,6 +288,7 @@ wait    5
 shot    modinfo
 cap     An OS-9 module header read back: name, type, size, edition and CRC.
 cap     Every program on this disk is a module like this one.
+try     modinfo CMDS/today
 run     builtin cd /dd
 wait    1
 run     clear
@@ -250,8 +296,13 @@ wait    1
 run     modinfo CMDS/today
 wait    3
 shot    names
-cap     names lists the modules inside a file. os9lib is the FORTRAN
-cap     runtime, and it holds many.
+cap     names is meant to list the modules inside a file.  Pointed at
+cap     os9lib, the Fortran runtime, which holds many, it instead prints
+cap     what looks like a stray program's own data and keeps prompting
+cap     for input that never stops arriving, until it is stopped by
+cap     hand.  modinfo answers the same question about one module at a
+cap     time, reliably, and has its own card.
+try     names CMDS/os9lib
 run     builtin cd /dd
 wait    1
 run     clear
@@ -261,17 +312,20 @@ wait    5
 kill
 shot    ob68kdemo
 cap     OmniBasic 1.16, a BASIC compiler, in its demonstration build.
+try     ob68kdemo
 run     ob68kdemo
 wait    8
 shot    oskversion
 cap     oskversion prints the OS-9 version the system reports -- the number,
 cap     the CPU it thinks it is on, and the edition.
+try     oskversion
 run     oskversion
 wait    3
 shot    passwd
 cap     passwd changes a login password in SYS/password.  It matches on the
 cap     user name, and the file it edits is plain text you can read here,
 cap     shown with passwd's command format.
+try     cat SYS/password; passwd -?
 run     builtin cd /dd
 wait    1
 run     clear
@@ -284,11 +338,12 @@ shot    phone
 size    24 80
 cap     `phone' connects two terminals over a communication path, so you
 cap     can type to somebody on another terminal.  Give it one -- `phone
-cap     /t1' -- and it draws its face and starts ringing: OS9/68K PHONE
-cap     FACILITY, the terminal it is calling, the try count.  Control-E
-cap     leaves.  With no path it prints its syntax.  The tail of the bottom
-cap     line is the echoed command that was on that row when phone painted
-cap     over it.
+cap     /t1' -- and it draws its face and starts ringing, naming itself
+cap     and the terminal it is calling, with a count of tries.  Control-E
+cap     leaves.  With no path it prints its syntax.  The tail of the
+cap     bottom line is the echoed command that was on that row when phone
+cap     painted over it.
+try     phone /t1
 run     phone /t1
 wait    28
 shot    scsiutil
@@ -296,33 +351,35 @@ for     scsiutil expreserve
 cap     scsiutil talks to a SCSI device; expreserve is vi's crash
 cap     recovery, preserving an edit buffer when the editor dies.  Neither
 cap     has anything to work on here, and each answers with its usage.
+try     scsiutil -?; expreserve -?
 run     scsiutil -?
 wait    8
 run     expreserve -?
 wait    8
 shot    vi-recovery
 size    40 80
-for     dedit exrecover read_mail
-cap     `read_mail' READING A FOLDER, and the vi recovery helper beside it.
-cap     read_mail is not vi's helper despite sitting among them: it is a
-cap     small mail reader with a mail directory of its own, and it
+for     exrecover read_mail
+cap     `read_mail' reading a folder, and the vi recovery helper beside
+cap     it.  read_mail is not vi's helper despite sitting among them: it
+cap     is a small mail reader with a mail directory of its own, and it
 cap     quotes what it finds and offers to delete it.  `exrecover' brings
 cap     back a buffer that `expreserve' saved when vi died; asked for one
-cap     nobody saved it says `File not found', which is the honest answer on
-cap     a disk where vi has not crashed.  `dedit' is
-cap     Carl Kreider's BASIC09 disk sector editor and needs runb, like the
-cap     other three BASIC09 programs here.  The folder is cut to seven lines
-cap     so the whole exchange fits on one screen. read_mail must be given
-cap     its answer ON STANDARD INPUT -- `N' from a file returns, and so does
-cap     `n', while read_mail with NO input at all re-prompts without bound
-cap     and fills a capture with four megabytes of the same question.
+cap     nobody saved it says `File not found', which is the honest answer
+cap     on a disk where vi has not crashed.  The folder is cut to seven
+cap     lines so the whole exchange fits on one screen.  read_mail reads
+cap     its answer from standard input -- `N' from a file returns, and so
+cap     does `n', while read_mail given nothing at all re-prompts without
+cap     bound and fills a capture with four megabytes of the same
+cap     question.
+try     exrecover -r tmp/nothing; cat SPOOL/MAIL/tester | head -n 7 > MAIL/mail_tester; echo "N" > tmp/rm.in; read_mail < tmp/rm.in
+os9     exrecover -r tmp/nothing; cat SPOOL/MAIL/tester !head -n 7 >MAIL/mail_tester; echo "N" >tmp/rm.in; read_mail <tmp/rm.in
 run     builtin cd /dd
 wait    1
 run     clear
 wait    1
 run     exrecover -r tmp/nothing
 wait    8
-run     head -n 7 SPOOL/MAIL/tester > MAIL/mail_tester
+run     cat SPOOL/MAIL/tester | head -n 7 > MAIL/mail_tester
 wait    5
 run     echo "N" > tmp/rm.in
 wait    4
@@ -331,6 +388,7 @@ wait    10
 shot    sddemo
 cap     White's Speedisk 2.10, a disk defragmenter, drawing the map of a
 cap     volume it is about to work on.
+try     sddemo
 run     sddemo
 wait    10
 shot    shdev
@@ -338,6 +396,7 @@ cap     shdev lists the system's device table -- what is mounted and the
 cap     driver behind each one.  It prints its heading and no rows: there is
 cap     no OS-9 device table here for it to walk.  dinfo asks a named device
 cap     directly and does answer; it has its own card.
+try     shdev
 run     shdev
 wait    6
 shot    spline
@@ -345,6 +404,8 @@ cap     spline fits a curve through points and writes PostScript -- the
 cap     `%!' at the head of the line is the PostScript magic.  It writes
 cap     the same stream whatever it is given, including -?, so it never
 cap     tells you what it wants.
+try     echo "0 0" > tmp/pts; spline tmp/pts | head -n 14
+os9     echo "0 0" >tmp/pts; spline tmp/pts !head -n 14
 run     builtin cd /dd
 wait    1
 run     clear
@@ -356,14 +417,17 @@ wait    5
 shot    sqrtx
 cap     A square-root demonstration -- one of the small programs the forums
 cap     circulated to prove a compiler worked.
+try     sqrtx
 run     sqrtx
 wait    6
 shot    ssl
-cap     ssl asks RBF for a file's segment list -- the sectors it was given,
-cap     in order.  It prints the heading and no rows for every file tried
-cap     here: os9exec's RBF does not hand back the file descriptor sector,
-cap     so there is nothing for ssl to list.  `map -e' answers the same
-cap     question and does work; it has its own card.
+cap     ssl asks RBF for a file's segment list -- the sectors it was
+cap     given, in order.  It prints the heading and no rows for every
+cap     file tried here, the segment information it wants not being
+cap     available in this environment.  `map -e' answers the same
+cap     question about a file's blocks, and does work; it has its own
+cap     card.
+try     ssl DOC/INDEX
 run     builtin cd /dd
 wait    1
 run     clear
@@ -374,6 +438,7 @@ shot    sysid
 cap     sysid asks the kernel to identify itself through F$SysID and prints
 cap     what comes back: the processor it is running on, the processor the
 cap     kernel was built for, and the kernel's own name and version line.
+try     sysid
 run     sysid
 wait    5
 shot    sysmon
@@ -383,6 +448,7 @@ cap     active-task count and poll delay, the per-process CPU bar chart
 cap     scaled 0 to 100 percent, and the task frame.  It wants a
 cap     SYS/nodedef node-definition file to poll continuously; without one
 cap     it draws the screen once and stops there.
+try     sysmon
 run     export TERM=vt100
 wait    1
 run     clear
@@ -401,12 +467,14 @@ cap     process 0: it asks F$GPrDsc about 0, which correctly reports no such
 cap     process, does not check that error, and reads a field from its own
 cap     unfilled buffer.  A bug in top, not the system; aprocs and sysmon
 cap     read the same state and run.
+try     top
 run     top
 wait    6
 shot    tty
 for     tty vecho lmargin
 cap     tty names the terminal; vecho writes without a newline; lmargin
 cap     sets a left margin on what follows.
+try     tty; vecho "no newline here -- "; lmargin -?
 run     tty
 wait    5
 run     vecho "no newline here -- "
@@ -417,16 +485,21 @@ shot    ub68kdemo
 cap     UniBasic 1.10, a BASIC compiler, in its demonstration build for the
 cap     68000 -- its opening banner, which names the processor it was built
 cap     for.  The symbol table is capped in the demo; nothing else is.
+try     ub68kdemo | head -n 3
+os9     ub68kdemo !head -n 3
 run     ub68kdemo | head -n 3
 wait    8
 shot    ub68020demo
 cap     The same UniBasic 1.10 demonstration built for the 68020 -- the one
 cap     line that differs is the processor it announces.
+try     ub68020demo | head -n 3
+os9     ub68020demo !head -n 3
 run     ub68020demo | head -n 3
 wait    8
 shot    vc
 for     vc
 cap     vc open: its welcome line and the empty grid.
+try     vc
 run     vc
 wait    8
 quit    q\r
@@ -434,6 +507,7 @@ shot    version
 cap     version prints a module's own edition number -- `version <module>'
 cap     reads the edition byte from the module header, whatever the file is
 cap     named.
+try     version CMDS/today
 run     builtin cd /dd
 wait    1
 run     clear
@@ -444,6 +518,7 @@ shot    yagi
 cap     yagi designs a Yagi antenna to DL6WU's method: give it a frequency,
 cap     an element count, a boom diameter and a tube size, and it works out
 cap     the lengths and spacings.  144 MHz, nine elements, 20 mm boom.
+try     yagi
 run     yagi
 wait    4
 send    144\r
@@ -463,6 +538,8 @@ cap     programs -- you cannot run them -- so this is what they look like to
 cap     `modinfo': name, type, edition and CRC. cio and math ship here by
 cap     Microware's permission; SOURCES.txt records the exchange.  All seven
 cap     are asked for below, one line each
+try     modinfo CMDS/cio | head -n 6; modinfo CMDS/csl | grep -a "name\|Edition\|size"; modinfo CMDS/csl020 | grep -a "name\|Edition\|size"; modinfo CMDS/math | grep -a "name\|Edition\|size"; modinfo CMDS/math881 | grep -a "name\|Edition\|size"; modinfo CMDS/os9lib | grep -a "name\|Edition\|size"; modinfo CMDS/rtfdat | grep -a "name\|Edition\|size"
+os9     modinfo CMDS/cio !head -n 6; modinfo CMDS/csl !grep "name\|Edition\|size"; modinfo CMDS/csl020 !grep "name\|Edition\|size"; modinfo CMDS/math !grep "name\|Edition\|size"; modinfo CMDS/math881 !grep "name\|Edition\|size"; modinfo CMDS/os9lib !grep "name\|Edition\|size"; modinfo CMDS/rtfdat !grep "name\|Edition\|size"
 run     builtin cd /dd
 wait    1
 run     clear
@@ -487,6 +564,8 @@ cap     The MM/1 drivers -- keyboard, mouse, floppy, SCSI, sound and the
 cap     windowing terminal.  They are device drivers for hardware that is
 cap     not here, so `modinfo' is what there is to show: type $C (device
 cap     driver) rather than $1 (program).  Each is asked for, one line apiece.
+try     modinfo CMDS/MM1/keydrv.mm1 | head -n 4; modinfo CMDS/MM1/msdrv.901_340 | head -n 4; modinfo CMDS/MM1/rb37c65 | head -n 4; modinfo CMDS/MM1/scsi_mm1a | head -n 4; modinfo CMDS/MM1/snddrv | head -n 4; modinfo CMDS/MM1/windio.52 | head -n 4; modinfo CMDS/MM1/msdrv_340.901.ms | head -n 4
+os9     modinfo CMDS/MM1/keydrv.mm1 !head -n 4; modinfo CMDS/MM1/msdrv.901_340 !head -n 4; modinfo CMDS/MM1/rb37c65 !head -n 4; modinfo CMDS/MM1/scsi_mm1a !head -n 4; modinfo CMDS/MM1/snddrv !head -n 4; modinfo CMDS/MM1/windio.52 !head -n 4; modinfo CMDS/MM1/msdrv_340.901.ms !head -n 4
 run     builtin cd /dd
 wait    1
 run     clear
@@ -506,32 +585,37 @@ wait    12
 run     modinfo CMDS/MM1/msdrv_340.901.ms | head -n 4
 wait    12
 shot    load
-cap     load puts a MODULE in the module directory so that a program which
-cap     LINKS it can find it.  `for', the RTF Fortran driver, prints nothing
-cap     at all until os9lib is loaded -- and then it says what it takes.  It
-cap     is called by its full path because `for' is a bash keyword and the
-cap     shell would answer first.  That silence is the whole symptom, and
-cap     this is the cure: a clean-room load, with its source in SRC/load.
-run     /dd/CMDS/for
+cap     load puts a module in the module directory so that a program
+cap     which links it can find it.  `for', the RTF Fortran driver,
+cap     answers only after os9lib is loaded, saying what it takes; asked
+cap     for beforehand at bash it prints nothing, `for' being a shell
+cap     keyword there too, so it is asked for with `command' ahead of it
+cap     to make bash look the name up as a program.  This is the cure
+cap     for the silence: a clean-room load, with its source in SRC/load.
+try     command for; load os9lib; command for; load nosuchthing
+os9     for; load os9lib; for; load nosuchthing
+run     command for
 wait    6
-run     load /dd/CMDS/os9lib
+run     load os9lib
 wait    8
-run     /dd/CMDS/for
+run     command for
 wait    8
-run     load /dd/CMDS/nosuchthing
+run     load nosuchthing
 wait    8
 shot    modules2
 for     ptxm wn.stb
 cap     Two more modules that are not programs: `ptxm', Nick Holgate's Path
 cap     Table eXtension Module, which `ptxminst' installs, and `wn.stb', the
 cap     symbol table that ships beside the WN web server.
+try     modinfo CMDS/ptxm | head -n 12; modinfo CMDS/WN/wn.stb | head -n 4
+os9     modinfo CMDS/ptxm !head -n 12; modinfo CMDS/WN/wn.stb !head -n 4
 run     builtin cd /dd
 wait    1
 run     clear
 wait    1
 run     modinfo CMDS/ptxm | head -n 12
 wait    12
-run     modinfo CMDS/NETWORK/wn.stb | head -n 4
+run     modinfo CMDS/WN/wn.stb | head -n 4
 wait    10
 shot    mtst
 for     mtst
@@ -539,55 +623,66 @@ cap     mtst exercises the C maths library and prints what each function
 cap     returned beside what it was given -- ceil, floor and round on the
 cap     same number, integer and floating side by side.  It is one of the
 cap     small programs a port was checked with.
+try     mtst | head -n 16
+os9     mtst !head -n 16
 run     mtst | head -n 16
 wait    12
 shot    fontgen
 for     fontgen
-cap     fontgen writes the SOURCE of a character font: an OS-9 data module
-cap     in assembler, psect and all, ready for the 80-column card it was
-cap     written for.  It reads its bitmap from standard input and will sit
-cap     waiting on the terminal if you forget to give it one.
+cap     fontgen writes the source of a character font: an OS-9 data
+cap     module in assembler, psect and all, ready for the 80-column card
+cap     it was written for.  It reads its bitmap from standard input and
+cap     will sit waiting on the terminal if you forget to give it one.
+try     fontgen < /nil | head -n 10
+os9     fontgen </nil !head -n 10
 run     fontgen < /nil | head -n 10
 wait    12
 shot    dpark
 cap     dpark restores an RBF disk's head to track 00 -- what you did before
 cap     moving a drive.  With no disk head to park here it answers with its
 cap     command format.
+try     dpark -?
 run     dpark -?
 wait    5
 shot    bsplt68
 cap     bsplt68 takes an OS9Boot file apart into the modules inside it.
 cap     There is no boot file here, so it answers with its usage line.
+try     bsplt68
 run     bsplt68
 wait    5
 shot    signal
 cap     signal sends an OS-9 signal to a process, after a delay if you ask
 cap     for one.  With no process named it prints its syntax: the process
 cap     id, the signal code and the seconds to wait.
+try     signal -?
 run     signal -?
 wait    5
 shot    sysmax
 cap     sysmax reports the system's maximum process age -- the scheduler
 cap     setting that bounds how far a waiting process's priority can climb.
 cap     The setting is not kept here, so it reads back as zero.
+try     sysmax
 run     sysmax
 wait    5
 shot    sysmin
 cap     sysmin reports the system's minimum process priority, the floor the
 cap     scheduler ages processes up from.  The setting is not kept here, so
 cap     it reads back as zero.
+try     sysmin
 run     sysmin
 wait    5
 shot    t
 cap     t is a minimal trap-handler test stub: it installs, returns cleanly
 cap     and prints nothing, so a zero exit status is the whole of what it
 cap     has to show.
+try     t; echo "status $?"
 run     t; echo "status $?"
 wait    4
 shot    mexist
-cap     mexist tests whether a MODULE is in memory and sets its exit status
-cap     -- zero when the module is there, one when it is not.  bash is
-cap     resident; nosuchmodule is not.
+cap     mexist tests whether a module is in memory and sets its exit
+cap     status -- zero when the module is there, one when it is not.
+cap     bash is resident; nosuchmodule is not.
+try     mexist bash; echo "status $?"; mexist nosuchmodule; echo "status $?"
 run     mexist bash; echo "status $?"
 wait    4
 run     mexist nosuchmodule; echo "status $?"
@@ -597,6 +692,7 @@ size    24 80
 cap     vis runs a command over and over and redraws the screen with its
 cap     output, the way `watch' does elsewhere.  Its header names the
 cap     command, the delay between runs and the number of runs so far.
+try     vis -d=1 whoami
 run     vis -d=1 whoami
 wait    4
 send    \023
@@ -608,8 +704,9 @@ wait    2
 shot    repeat
 size    24 80
 cap     repeat runs a command a number of times -- `repeat 2 today' runs
-cap     today twice.  It hands the line to $SHELL, which SYS/login sets to
-cap     ksh, whose start-up prints the os9exec `F$SetSys' notices between.
+cap     today twice, one after the other.  It hands the line to $SHELL,
+cap     which SYS/login sets to ksh.
+try     repeat 2 today
 run     repeat 2 today
 wait    4
 shot    cron
@@ -617,6 +714,7 @@ cap     cron is a scheduling daemon: it reads SYS/crontab, then forks each
 cap     command at its minute, hour and day and runs until it is stopped.
 cap     It is not run here -- there is no screen for a daemon that waits --
 cap     so the screen shows the crontab it would act on.
+try     cat usr/lib/crontab
 run     builtin cd /dd
 wait    1
 run     clear
@@ -624,8 +722,10 @@ wait    1
 run     cat usr/lib/crontab
 wait    5
 shot    setime
-cap     setime sets the system clock.  It prompts with the field order it
-cap     wants, YYMMDDHHMMSS -- year, month, day, hour, minute, second.
+cap     setime sets the system clock.  It prompts for the date and time
+cap     as one string, two digits each: year, month, day, hour, minute,
+cap     second, in that order.
+try     setime -?
 run     setime -?
 wait    5
 shot    adduser
@@ -633,13 +733,15 @@ size    30 80
 cap     adduser adds a login to the system, or removes one with -r.  With no
 cap     name given it prints its usage: the options and the command forms it
 cap     accepts.
+try     adduser -?
 run     adduser -?
 wait    6
 shot    combine
-cap     combine interleaves two files BYTE BY BYTE -- the even bytes from
+cap     combine interleaves two files byte by byte -- the even bytes from
 cap     one, the odd bytes from the other -- which is how a 16-bit EPROM
 cap     image is rebuilt from its two 8-bit halves.  Eight A's and eight
 cap     B's go in; the interleaved result comes out.
+try     combine tmp/UTILA/cmb/even tmp/UTILA/cmb/odd tmp/UTILA/cmb/mix; cat tmp/UTILA/cmb/mix; echo
 run     rm -rf /dd/tmp/UTILA/cmb > /nil 2>/nil
 run     mkdir -p /dd/tmp/UTILA/cmb > /nil 2>/nil
 run     printf 'AAAAAAAA' > /dd/tmp/UTILA/cmb/even
@@ -657,6 +759,7 @@ cap     demerge splits a file of several OS-9 modules back into one file
 cap     per module.  OS-9's `merge' is concatenation, so `cat' makes the
 cap     input: today and tty joined into one file, then taken apart into
 cap     today and tty again.
+try     demerge both; ls -l
 run     rm -rf /dd/tmp/UTILA/dm > /nil 2>/nil
 run     mkdir -p /dd/tmp/UTILA/dm > /nil 2>/nil
 run     cat /dd/CMDS/today /dd/CMDS/tty > /dd/tmp/UTILA/dm/both
@@ -671,35 +774,43 @@ shot    ptob
 cap     ptob turns a file of bit patterns back into characters, the other
 cap     half of `btop': `Hi' becomes rows of dots and O's, and ptob reads
 cap     those back to `Hi'.
+try     cat bits; ptob bits > back; cat back
+os9     cat bits; ptob bits >back; cat back
 run     mkdir -p /dd/tmp/UTILA/pb > /nil 2>/nil
 run     printf 'Hi' > /dd/tmp/UTILA/pb/t
 run     btop /dd/tmp/UTILA/pb/t > /dd/tmp/UTILA/pb/bits
+run     builtin cd /dd/tmp/UTILA/pb
+wait    1
 run     clear
 wait    1
-run     cat /dd/tmp/UTILA/pb/bits
+run     cat bits
 wait    2
-run     ptob /dd/tmp/UTILA/pb/bits > /dd/tmp/UTILA/pb/back
+run     ptob bits > back
 wait    2
-run     cat /dd/tmp/UTILA/pb/back; echo
+run     cat back; echo
 wait    2
 shot    trunc
 cap     trunc cuts a file to a given length: `trunc <path> <num>'.  A
 cap     sixteen-byte file is cut to eight, and the listing either side of
 cap     it is the whole demonstration.
+try     ls -l f; trunc f 8; ls -l f; cat f; echo
 run     mkdir -p /dd/tmp/UTILA/tr > /nil 2>/nil
 run     printf '0123456789ABCDEF' > /dd/tmp/UTILA/tr/f
+run     builtin cd /dd/tmp/UTILA/tr
+wait    1
 run     clear
 wait    1
-run     ls -l /dd/tmp/UTILA/tr/f
+run     ls -l f
 wait    2
-run     trunc /dd/tmp/UTILA/tr/f 8
+run     trunc f 8
 wait    2
-run     ls -l /dd/tmp/UTILA/tr/f; cat /dd/tmp/UTILA/tr/f; echo
+run     ls -l f; cat f; echo
 wait    3
 shot    add_errmsg
 cap     add_errmsg appends error messages to vi's message file, one per
 cap     quoted argument.  It seeks to the end
 cap     and writes, and the file grows by the message.
+try     wc -c vi_errmsg; add_errmsg "disk full -- delete something"; wc -c vi_errmsg
 run     builtin cd /dd/SYS
 wait    1
 run     clear
@@ -715,7 +826,10 @@ wait    2
 shot    clear
 cap     clear clears the terminal screen.  A directory listing is printed
 cap     and then wiped by clear -- only the line typed after it is left.
-run     dir /dd/CMDS
+try     dir CMDS; clear; echo "the listing above was wiped by clear"
+run     builtin cd /dd
+wait    1
+run     dir CMDS
 wait    2
 run     clear
 wait    1
@@ -726,6 +840,7 @@ cap     lgrep lists the files a pattern appears in; its banner claims the
 cap     same result as `grep -l'.  It prints nothing even for a string
 cap     that is present, so `grep -l' is the one to reach for.
 cap     DOC/README-GREP compares the searchers.
+try     lgrep -?; lgrep ksh SYS/password; echo "found nothing, status $?"
 run     builtin cd /dd
 wait    1
 run     clear
@@ -736,28 +851,32 @@ run     lgrep ksh SYS/password; echo "found nothing, status $?"
 wait    3
 shot    suse
 cap     suse is meant to print a program's usage line.  It prints nothing
-cap     for any module tried, by name or by full path, and returns
-cap     success.
+cap     for any module tried, and returns success regardless.
+try     suse cat; echo "status $?"; suse today; echo "status $?"
 run     suse cat; echo "status $?"
 wait    3
-run     suse /dd/CMDS/today; echo "status $?"
+run     suse today; echo "status $?"
 wait    3
 shot    pri
-cap     pri changes a process's priority: `pri <pid> <priority>'.  There
-cap     is no process listing on this disk to show the change, and it
-cap     reports nothing whether the process exists or not.
+cap     pri changes a process's priority: `pri <pid> <priority>'.  It
+cap     prints nothing, so the exit status is the whole of what it has
+cap     to show: 221, module not found, since there is no process 2 on
+cap     this disk to change.
+try     pri 2 128; echo "status $?"
 run     pri 2 128; echo "status $?"
 wait    3
 shot    snd_sig
 cap     snd_sig sends a signal to one or more processes named by pid;
 cap     `-(n)' is the signal number, and with none it sends the wake
 cap     signal.  Its synopsis, there being no process here to signal.
+try     snd_sig -?
 run     snd_sig -?
 wait    3
 shot    setime2
 cap     setime2 sets the system date and time from the fields
 cap     `yyy mm dd hh mm ss' at its prompt -- yyy counts years from 1900,
 cap     so 126 is 2026 -- and prints the date it set.
+try     setime2
 run     clear
 wait    1
 run     setime2
@@ -767,18 +886,21 @@ wait    3
 shot    setyear
 cap     setyear sets the year directly and prints the date it made:
 cap     `setyear 2026'.
+try     setyear 2026
 run     setyear 2026
 wait    3
 shot    suspend
-cap     suspend REMOVES a process from the system, as its own Function
+cap     suspend removes a process from the system, as its own Function
 cap     line says, rather than pausing it; `-s' reaches system programs
 cap     too.  Its syntax, there being no process here to remove.
+try     suspend
 run     suspend
 wait    3
 shot    umusek
 cap     umusek is a music editor.  It wants a hardware screen address and
 cap     stops without one: `DS_ScAdd Error 208', then `Can't get screen
 cap     addr, bye'.
+try     umusek; echo "status $?"
 run     umusek; echo "status $?"
 wait    5
 shot    unpacklib.os9
@@ -786,6 +908,7 @@ cap     unpacklib extracts the object modules from an OS-9 library into
 cap     separate .r files.  Run on the C library it writes them into the
 cap     current directory, stopping at the first record that is not a
 cap     module.
+try     unpacklib alib.l; ls
 run     rm -rf /dd/tmp/UTILA/ul > /nil 2>/nil
 run     mkdir -p /dd/tmp/UTILA/ul > /nil 2>/nil
 run     cp /dd/LIB/alib.l /dd/tmp/UTILA/ul/alib.l
@@ -800,6 +923,7 @@ shot    ynad
 size    24 80
 cap     YNAD -- Yet Another Name & Address program, a full-screen contact
 cap     database.  Its title bar on opening; there is no address file yet.
+try     ynad
 run     ynad
 wait    8
 snap
@@ -809,33 +933,42 @@ shot    bootlogger
 cap     bootlogger records what happens during system start-up to a log.
 cap     Run by hand, outside boot, it has nothing to record and returns
 cap     silently.
+try     bootlogger; echo "status $?"
 run     bootlogger; echo "status $?"
 wait    3
 shot    screen_nocio
 cap     screen_nocio is the trap-free build of `screen', a login greeting
-cap     that picks a file at random from $HOME/.SCREENS and RUNS it
-cap     through the shell.  It reaches the lookup where the cio build will
-cap     not start; running the greeting needs Microware's shell, and
+cap     that picks a file at random from $HOME/.SCREENS and runs it
+cap     through the shell.  It reaches the lookup where the cio build
+cap     will not start; running the greeting needs Microware's shell, and
 cap     without one the child is aborted.
+try     screen_nocio; echo "st $?"
 run     rm -rf /dd/tmp/UTILA/home > /nil 2>/nil
 run     mkdir -p /dd/tmp/UTILA/home/.screens > /nil 2>/nil
 run     printf 'today\r' > /dd/tmp/UTILA/home/.screens/hi
 run     export HOME=/dd/tmp/UTILA/home
 run     clear
 wait    1
-run     /dd/CMDS/REBUILT/screen_nocio; echo "st $?"
+run     screen_nocio; echo "st $?"
 wait    5
 shot    break
-cap     break sends a BREAK on a serial line, an assembler example from
-cap     the forums.  Run bare it calls the system-debugger trap and, with
-cap     no debugger attached, does not return; asked with `-?' it exits at
-cap     once.  Asked for by path, because bash has a break of its own.
-run     /dd/CMDS/break -?; echo "returned $?"
+cap     break sends a break signal on a serial line, an assembler
+cap     example from the forums.  Run bare it calls the system-debugger
+cap     trap and, with no debugger attached, does not return; asked with
+cap     `-?' it exits at once.  bash's own `break' answers first, so
+cap     `enable -n break' turns that off for the session before it is
+cap     run.
+try     enable -n break; break -?; echo "returned $?"
+run     enable -n break
+wait    1
+run     break -?; echo "returned $?"
 wait    4
 shot    transfer
-cap     transfer copies files from GDOS DISKS to OS-9 and takes no options
-cap     -- not a general device-to-device copier; `cp' and `dsave' are
-cap     those.  It wants the GDOS device DGDOS0, which is not present.
+cap     transfer copies files from GDOS disks to OS-9 and takes no
+cap     options -- not a general device-to-device copier; `cp' and
+cap     `dsave' are those.  It wants the GDOS device DGDOS0, which is not
+cap     present.
+try     transfer
 run     transfer
 wait    4
 send    \r
@@ -844,6 +977,7 @@ shot    preset
 cap     preset programs the terminal's function keys with a fixed set of
 cap     definitions -- dir, umacs, r68, l68, dsave and so on.  It takes no
 cap     arguments and ignores any given.
+try     preset
 run     preset
 wait    4
 shot    vlen
@@ -851,6 +985,8 @@ cap     vlen is a variable-length-record demonstration: it builds a small
 cap     filesystem of its own, writes a hundred records of differing
 cap     length, and reads them back deleting some as it goes.  The tail of
 cap     the run, ending `vlTest completed successfully'.
+try     vlen > vl.out; tail -l=16 vl.out
+os9     vlen >vl.out; tail -l=16 vl.out
 run     rm -rf /dd/tmp/UTILA/vl > /nil 2>/nil
 run     mkdir -p /dd/tmp/UTILA/vl > /nil 2>/nil
 run     builtin cd /dd/tmp/UTILA/vl
@@ -864,11 +1000,13 @@ shot    mvolformat
 cap     mvolformat formats a set of floppies with sequential volume
 cap     numbers.  With no drive here, its syntax and options are what
 cap     there is to show.
+try     mvolformat
 run     mvolformat
 wait    3
 shot    rndir
-cap     rndir converts the NAMES of the subdirectories in a directory to
+cap     rndir converts the names of the subdirectories in a directory to
 cap     upper or lower case; `-l' makes them lower case, `-q' works
 cap     quietly.  Its options.
+try     rndir -?
 run     rndir -?
 wait    4

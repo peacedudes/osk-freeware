@@ -1,6 +1,6 @@
 demerge both
 $ ls -l
 total 41984
--rw-rw-rw-   1 0        0           20898 Sep  7 08:07 both
--rw-------   1 0        0           19450 Sep  7 08:07 today
--rw-------   1 0        0            1448 Sep  7 08:07 tty
+-rw-rw-rw-   1 0        0           20898 Sep  8 22:40 both
+-rw-------   1 0        0           19450 Sep  8 22:40 today
+-rw-------   1 0        0            1448 Sep  8 22:40 tty

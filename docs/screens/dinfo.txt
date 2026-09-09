@@ -1,8 +1,8 @@
 $ dinfo /dd
 Device name   : /dd
 Volume name   : "OSK-Freeware"
-Creation date : 2026-9-3 0:24
+Creation date : 2026-9-8 15:45
 Capacity      : 261120 KBytes (1044480 sectors, 100.00%)
-Free          : 138470 KBytes (553880 sectors, 53.03%) in 10 Blocks
-Used          : 122650 KBytes (490600 sectors, 46.97%)
-Largest block : 138440 KBytes (553760 sectors, 53.02%)
+Free          : 141477 KBytes (565908 sectors, 54.18%) in 7 Blocks
+Used          : 119643 KBytes (478572 sectors, 45.82%)
+Largest block : 141452 KBytes (565808 sectors, 54.17%)

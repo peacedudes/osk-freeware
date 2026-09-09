@@ -1,4 +1,4 @@
-/dd/CMDS/REBUILT/screen_nocio; echo "st $?"
+screen_nocio; echo "st $?"
 
 Process   Pid: 3, screen_nocio, edition 7
     Exit code: E_PRCABT(228) Process Aborted

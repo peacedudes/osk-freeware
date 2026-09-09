@@ -1,4 +1,3 @@
-$ adduser -?
  ADDUSER: add a user to or remove a user from the system
  Usage: adduser [opts] [<username> [<userid>] ]
 

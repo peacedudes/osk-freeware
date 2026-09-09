@@ -1,9 +1,6 @@
-$ epson -?
-usage: epson [<opts>]
-        c<int>  number of characters per line
-                10,12,17 CPI
-        g       german character set
-        u       ascii character set
-        p       formfeed
-        n       normal (ascii + c17)
-(C) oettle + reichler Datentechnik GmbH, Paul Farquhar 1989
+epson -c17 -g -p > tmp/PRT/epson.out
+$ dump tmp/PRT/epson.out
+
+Addr   0 1  2 3  4 5  6 7  8 9  A B  C D  E F 0 2 4 6 8 A C E
+----  ---- ---- ---- ---- ---- ---- ---- ---- ----------------
+0000  0F1B 5202 0C                            ..R..

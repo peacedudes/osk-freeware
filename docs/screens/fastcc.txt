@@ -1,3 +1,6 @@
+$ fastcc -?
+fastcc: <opts> <files> <opts>
+Options:
         -a              Compile to assembler files
         -bp             show commands before executing
         -bg             create ghost module on output
@@ -21,3 +24,6 @@
         -x              use math-trap-lib
         -v<=dir>        search-dir for cpp
         -m<=n>          additional memory for stack in output module
+$ lfmaker
+$ lfmaker readme
+# No more memory: 2470464192-byte request refused, 32734784 bytes free in a 335a

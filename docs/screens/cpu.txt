@@ -1,6 +1,6 @@
          ==== THE OS9/68k CPU-SPEED PROGRAM  SPEED VERSION 1.0 ====
           === (c.) 1988 F.R.Schmitt  MPI Kernphysik Heidelberg ===
-                        <  16:54:57   28-Aug-19126  >
+                        <##22:20:09###08-Sep-19126##>
 
 
                      0        05        10        15         20         25 Mhz
@@ -12,12 +12,12 @@ CPU-SPEED            |##########################################################
          Your CPU is performing like a 68000 CPU running at: 312.5Mhz
 
 
-CURRENT TEST NO :  0000000011
+CURRENT TEST NO : #0000000011#
 
-ELAPSED TIME    :  0000:00:11
+ELAPSED TIME    : #0000:00:11#
 
 
 
 
 -----------------------------------------------------------------------------
- CPU-SPEED :  Press any key to abort !
+#CPU-SPEED#:# Press any key to abort !

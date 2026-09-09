@@ -75,8 +75,7 @@ bmgtest2 b1a35f3056550cd5
 bmp 095921447e784b82
 bog 6a559c9a353d94f5
 bootgen a84da7013b341aa3
-bootlogger ae62a47371b479e9
-break d645f3c6ab3e24bc
+break 3066c233736b242f
 brushtopbm ab0affe58b89d817
 btoa 8c34c328db6ca264
 btop e3524b4838824199
@@ -113,7 +112,7 @@ ci 02f2445cdea7cd26
 cjpeg d3d0a901439eb926
 cjpeg.070 a5da2379ec4194ef
 ckermit 350e3d3b03d28a11
-clear c78ef3a4b1b938bd
+clear a45512bf7a197623
 clock f694aa1ec8a552c8
 co 96e8232542582cfc
 collect f300802e1e634ae9
@@ -221,7 +220,7 @@ env b204bde44766916f
 eo a4a29448f81694f4
 ephem 59fd505985416455
 ephem881 b2ff1bbc463abc95
-epson b0ba1ac846678b47
+epson 0b6f36e0dbd7e50d
 eset 0d7db79c1b26ab57
 etags 788393f941aed325
 eunlink 53f837f1df24bebb
@@ -231,7 +230,7 @@ expand 6d527f34be7958ca
 expire 4f5c0139a9bff507
 expr 93380e70a1308318
 exrecover 7e7b5298a953fdb1
-fastcc c055587702188aa7
+fastcc 5e4a74de4c19af8a
 fastmail 9ffc8c75fc408915
 fc d5a28e4ea8596b2c
 fcomp 1088fc8ffba0aabb
@@ -302,7 +301,7 @@ graphsave d0d49807572e471e
 greed 158e714fe4950b0c
 greg 76f1f9ff303cd722
 grep 358e2708027e2124
-gs33 3b8e74ed05de9b06
+gs33 addce421260f1692
 gs403 0e2dc5b17e161979
 gshell 33ecf84de9211522
 gtar b5cc1b17d0d6bb41
@@ -324,7 +323,7 @@ helpindex 6e05b7ef5cb8238e
 hexbin 06949c54d9627202
 hexed ad46480b4037f9ca
 hexedit 296ee6ff860344e7
-hinterhalt 5b3a02628f05e653
+hinterhalt b00eedc2d15c2162
 hipstopgm 50daa9f3332217ee
 hist 68066fadce0438f2
 hotel 41cf8b374b076d33
@@ -381,16 +380,16 @@ lmail 1edf6257d9bedd78
 lmargin 0e7377b686da6c46
 lnk 6be6483d8b461aaa
 lnk.org 6844d9fc6293d1f7
-load ed88e752e89868aa
+load 104f6887d304107f
 loadmem 157a6d50ee6894bb
 loan 974d2f18d2e5f11e
 logisim cb402d526bf0a098
 logname 8f17510b2cfc5411
 lorenz3d 7adc33fafa9ee955
 lout c0ebd5f69b37c4fd
-lp 1469c197aebfd27c
+lp dbfb5d4e455235bd
 lpq 72048a1ea9770d4d
-lprm 13057b9a20d916c5
+lprm d1bdd7ce76063de2
 lpsched 3e994fe2a3db2a4d
 lpshut 1a2217774748cd7f
 ls 7475c3da2ee7ecd8
@@ -430,7 +429,7 @@ mkdir d5cbe4d6e1888792
 mkindex 56e25e6b32f8fb0c
 modinfo 35b55f276b3cbaeb
 modules 3f1b889666b4b165
-modules2 0ecb14eeec9a1655
+modules2 3e9cd772e0307a88
 move eeae24bf2e1d12fb
 msattrib 447ddc9504eb95b8
 msbadblocks 66d74d636341ac20
@@ -595,7 +594,7 @@ prjob 5d31d13e051d89d7
 proff dd5084898c3b214a
 psc 0bdca397b0d3f04e
 psidtopgm f1c1848f751ebeab
-ptob 729e6ac61b044c64
+ptob adf4ce6f8152f623
 puz15 f4446639e39ed1e6
 puzzle15 681b23b46819725d
 pwgen b533b0b4fe951869
@@ -646,7 +645,7 @@ sc b31b921dc9ee7460
 scales d22cb38358ab8626
 scqref adedca7f3361d069
 screen 82b54fc99b77b5ed
-screen_nocio 64855f75a2c7e258
+screen_nocio c44b4c396992499c
 scriptmaster c2480f44f645d209
 scsiutil 24cd2d532328b474
 sdb 69353d08c23f2acb
@@ -685,7 +684,7 @@ spiff 77b977066ba81c85
 spline 1376cdc970be1997
 split 6e90775ab9b17fef
 splitalf 0b0865851f498907
-splstat e96bdd073ebd30c7
+splstat f223ff456a981b4f
 spottopgm f14a2c92ed428c34
 sqrtx 27e19ff0d5f65f07
 ssl 14b797edbedf2d17
@@ -701,7 +700,7 @@ suicide 44b09a2fe2001ec1
 suicide1 a37ab53f9d172b16
 suicide2 500125cf5d1d0c04
 sum afdc981977ce6a0d
-suse 0ace15326dc90faa
+suse a20cb996353fbdc9
 suspend 58d044e0396fc49d
 sysid 5c038a5fdcf0eb2b
 sysmin 4d4569d97afa466d
@@ -735,7 +734,7 @@ transfer a5b5f2a0a0001d1c
 trap 826cf28c3665cc74
 travesty a7b61d3796043c40
 tree f30a33dfb68549f7
-trunc 7d5a9d9b7c3e1a1d
+trunc ed788a65427308da
 tsmon2 2d2223ddf831d141
 tsu 1359a0e76f1a3564
 tt 24e254dfe016e84b
@@ -778,7 +777,7 @@ vc 184340ae7a592513
 version 4cf80677f3f5a15c
 vftovp 53793b018696e5a2
 vi c29746acf28ee834
-vi-recovery 8f92b8aadde3d619
+vi-recovery ea4fd3700d282789
 vi.elvis 8253ea73025a2ad1
 vi_1.0 912d53b32f43f229
 vi_cio 0b6faca63148c4db

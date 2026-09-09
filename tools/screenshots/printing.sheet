@@ -7,6 +7,7 @@ cap     Ghostscript 4.03 rendering a line of PostScript.  The page is
 cap     rasterised to a bitmap at 48 dots per inch, and pbmtoascii shows
 cap     that bitmap as text.  GS_LIB names its fonts and initialisation
 cap     files, in LIB/gs403.
+try     cat tmp/PRT/hello.ps; gs403 -q -dNOPAUSE -sDEVICE=pbm -r48 -g200x60 -sOutputFile=tmp/PRT/hello.pbm tmp/PRT/hello.ps -c quit; pbmtoascii tmp/PRT/hello.pbm
 run     mkdir -p /dd/tmp/PRT > /nil 2>/nil; printf "/Helvetica-Bold findfont 40 scalefont setfont\r8 14 moveto (OS-9/68000) show\rshowpage\r" > /dd/tmp/PRT/hello.ps; export GS_LIB=/dd/LIB/gs403
 wait    2
 run     builtin cd /dd
@@ -21,16 +22,29 @@ run     pbmtoascii tmp/PRT/hello.pbm
 wait    10
 
 shot    gs33
-cap     Ghostscript 3.33, the older build: its device list, and the
-cap     search path where its initialisation files and fonts would be.
-cap     They are not on the disk, so it can list devices and no more;
-cap     gs403 is the one that renders.
-run     gs33 -h | head -n 14
-wait    12
+cap     Ghostscript 3.33, the earlier build on this disk -- gs403 is the
+cap     complete one.  Its devices are printer codes, not a plain bitmap,
+cap     so here it turns a line of PostScript into what an Epson-compatible
+cap     printer would receive, shown as a dump.  `xmode: not found' is a
+cap     helper it looks for and does without.
+try     gs33 -q -dNOPAUSE -sDEVICE=epson -r48 -g200x60 -sOutputFile=tmp/PRT/old.out tmp/PRT/old.ps -c quit; dump tmp/PRT/old.out | head -n 8
+os9     gs33 -q -dNOPAUSE -sDEVICE=epson -r48 -g200x60 -sOutputFile=tmp/PRT/old.out tmp/PRT/old.ps -c quit ! dump tmp/PRT/old.out ! head -n 8
+run     mkdir -p /dd/tmp/PRT > /nil 2>/nil; printf "/Helvetica-Bold findfont 40 scalefont setfont\r8 14 moveto (OS-9/68000) show\rshowpage\r" > /dd/tmp/PRT/old.ps
+wait    2
+run     builtin cd /dd
+wait    1
+run     clear
+wait    1
+run     gs33 -q -dNOPAUSE -sDEVICE=epson -r48 -g200x60 -sOutputFile=tmp/PRT/old.out tmp/PRT/old.ps -c quit
+wait    45
+run     dump tmp/PRT/old.out | head -n 8
+wait    5
 
 shot    lwf
 cap     Plain text to PostScript, the way enscript does it: the head of
 cap     the page it sets, with its prologue from USR/LIB.
+try     lwf tmp/PRT/j.txt | head -n 14
+os9     lwf tmp/PRT/j.txt ! head -n 14
 run     mkdir -p /dd/tmp/PRT > /nil 2>/nil; printf "Twas brillig, and the slithy toves\r" > /dd/tmp/PRT/j.txt
 wait    2
 run     builtin cd /dd
@@ -44,6 +58,8 @@ shot    alps
 cap     Writes the control sequence that switches an ALPS ASP-1000
 cap     printer to letter quality (-lq) or back (-norm): three bytes,
 cap     meant to be sent to the printer device.  Shown here as a dump.
+try     alps -lq > tmp/PRT/alps.out; dump tmp/PRT/alps.out
+os9     alps -lq >-tmp/PRT/alps.out; dump tmp/PRT/alps.out
 run     mkdir -p /dd/tmp/PRT > /nil 2>/nil; alps -lq > /dd/tmp/PRT/alps.out
 wait    3
 run     builtin cd /dd
@@ -53,84 +69,125 @@ run     dump tmp/PRT/alps.out
 wait    5
 
 shot    epson
-cap     Sets up an Epson printer: characters per inch, the German or
-cap     ASCII character set, a form feed.  It writes to the printer
-cap     itself, so with no printer on this disk its options are what
-cap     there is to see.
-run     epson -?
-wait    5
+cap     Sets condensed printing, an international character set, and a
+cap     form feed -- three commands an Epson-compatible printer would
+cap     receive.  It writes them to its own standard output, so
+cap     redirecting that to a file shows them here in place of a printer.
+try     epson -c17 -g -p > tmp/PRT/epson.out; dump tmp/PRT/epson.out
+os9     epson -c17 -g -p >-tmp/PRT/epson.out; dump tmp/PRT/epson.out
+run     mkdir -p /dd/tmp/PRT > /nil 2>/nil
+wait    1
+run     builtin cd /dd
+wait    1
+run     clear
+wait    1
+run     epson -c17 -g -p > tmp/PRT/epson.out
+wait    3
+run     dump tmp/PRT/epson.out
+wait    4
 
 shot    lmargin
-cap     Sets the left margin on an Epson printer, in characters.  It is
-cap     a build of the same program as epson and writes to the printer
-cap     itself.
+cap     Sets the left margin on an Epson-compatible printer, in
+cap     characters -- its own usage line still says `epson', inherited
+cap     from the same source.  Asking it to do anything but show its
+cap     options leaves it waiting rather than answering, so this is what
+cap     there is to show.
+try     lmargin -?
 run     lmargin -?
 wait    5
 
 shot    lp
-cap     Submits a file to the print spooler: its options.  There is no
-cap     printer and no spooler running on this disk, so a submission has
-cap     nowhere to go.
-run     lp -?
+cap     Submits a file to the print spooler.  Without lpsched running
+cap     there is no spooler to hand it to, and it says so plainly rather
+cap     than trying.
+try     lp tmp/PRT/letter.txt
+run     mkdir -p /dd/tmp/PRT > /nil 2>/nil; printf "Dear reader,\rThe collection speaks for itself.\r" > /dd/tmp/PRT/letter.txt
+wait    2
+run     builtin cd /dd
+wait    1
+run     clear
+wait    1
+run     lp tmp/PRT/letter.txt
 wait    5
 
 shot    lpq
 cap     Shows the spooler's queue.  With no spooler started it says so.
+try     lpq -?; lpq
 run     lpq -?
 wait    4
 run     lpq
 wait    4
 
 shot    lprm
-cap     Removes a job from the spooler's queue: its options.
+cap     Removes a job from the spooler's queue by its id: its options.
+cap     With no spooler managing a queue there is nothing to link to,
+cap     and it says exactly that instead of trying to remove anything.
+try     lprm -?; lprm 1
 run     lprm -?
+wait    4
+run     lprm 1
 wait    4
 
 shot    lpshut
 cap     Stops the spooler.  With none running it says so.
+try     lpshut -?; lpshut
+os9     lpshut
 run     lpshut -?
 wait    4
 run     lpshut
 wait    4
 
 shot    prjob
-cap     Prints a queued job.  With no spooler installed it says so.
+cap     Prints a queued job.  With no spooler installed it says so --
+cap     even its own option list gives the same answer.
+try     prjob -?; prjob
+os9     prjob
 run     prjob -?
 wait    4
 run     prjob
 wait    4
 
 shot    lpsched
-cap     Starts the spooler for a printer device: its options.  There is
-cap     no printer device on this disk to start it on.
+cap     Starts the spooler for a printer device: its options.  Giving it
+cap     a device -- there is none on this disk -- has it wait to open
+cap     one rather than answer, so the option list is what there is to
+cap     show.
+try     lpsched -?
 run     lpsched -?
 wait    4
 
 shot    splman
 cap     The manager of the other spooler on the disk, Carl Kreider's: it
-cap     spools to a printer on a serial device.  With no such device it
-cap     prints nothing and returns.
-run     splman; echo "status $?"
-wait    5
+cap     opens a printer on a serial device before it does anything else.
+cap     With none here it waits for one rather than returning; this
+cap     shows it starting and going no further.
+try     splman
+run     splman
+wait    6
 
 shot    splprt
 cap     The printer process of Carl Kreider's spooler, one per printer.
 cap     With no printer device it prints nothing and returns.
+try     splprt; echo "status $?"
+os9     splprt
 run     splprt; echo "status $?"
 wait    5
 
 shot    splstat
-cap     The queue status of Carl Kreider's spooler.  With no queue it
-cap     prints nothing and returns; lpq, the other spooler's, says so in
-cap     words.
-run     splstat; echo "splstat said nothing, status $?"
-wait    5
+cap     The queue status of Carl Kreider's spooler.  Asking for its
+cap     options answers instead that its device number is out of range
+cap     -- as close as it comes to a queue with none running.  lpq, the
+cap     other spooler's, says so in plainer words.
+try     splstat -?; lpq
+run     splstat -?
+wait    4
 run     lpq
 wait    4
 
 shot    perr
 cap     Prints the text of an OS-9 error number.  These are the ones met
 cap     most often: file not accessible, path name not found, path name
-cap     already exists, module not found, and permission.
+cap     already exists, module not found, and out of memory.
+try     perr 214 216 218 221 237
 run     perr 214 216 218 221 237
 wait    5

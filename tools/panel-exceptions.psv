@@ -15,7 +15,7 @@ run|its usage and a try; the program it runs answers on the terminal PORT names,
 su|GNU su's usage and a try to become tester, which on a disk owned 0.0 throughout has no one to become
 epson|writes its control codes to the printer itself; with no printer on the disk its option list is what there is to show, and the card says so
 lmargin|writes its control codes to the printer itself; with no printer on the disk its option list is what there is to show, and the card says so
-splman|Carl Kreider's spooler manager wants a printer on a serial device; without one it prints nothing and returns, and the card says so
+splman|the spooler manager opens a printer on a serial device and blocks waiting for it; with no such device there is nothing to show but that it started, and the card says so
 splprt|the spooler's printer process wants a printer device; without one it prints nothing and returns, and the card says so
 lp|there is no spooler running on this disk; its option list is what there is to show, and the card says so
 lprm|there is no spooler running on this disk; its option list is what there is to show, and the card says so
@@ -119,3 +119,5 @@ graphsave|saves a Graph-library screen; with no display to read it aborts at onc
 tplot|a Tektronix plotter: it asks for the interval and points and draws the curve in Tektronix vectors, so on a character terminal the dialogue is the readable part
 wndex|builds the WN web server index for a directory and reports the one line `Wrote cache file'; there is nothing more to show
 qt|a talking clock: it prints the time in words as one sentence (and chimes near the hour); that one line is all it has to show
+bootlogger|records boot-time events to a log; on an already-running system there is nothing to record, so it writes its log silently and returns with nothing to show
+lfmaker|builds a low-level disk format descriptor and needs a real disk device to size; with none it reads its length argument as an address and stops with a No-more-memory request, which is as far as it goes here

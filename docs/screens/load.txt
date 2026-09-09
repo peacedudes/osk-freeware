@@ -1,6 +1,6 @@
-$ /dd/CMDS/for
-$ load /dd/CMDS/os9lib
-$ /dd/CMDS/for
+$ command for
+$ load os9lib
+$ command for
 command: for file{,file} [-rtfopt{,rtfopt}]
-$ load /dd/CMDS/nosuchthing
-load: can't load "/dd/CMDS/nosuchthing" - Error #000:216 (E_PNNF) Path Name Notd
+$ load nosuchthing
+load: can't load "nosuchthing" - Error #000:216 (E_PNNF) Path Name Not Found

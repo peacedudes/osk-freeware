@@ -1,6 +1,6 @@
 exrecover -r tmp/nothing
  File not found
-$ head -n 7 SPOOL/MAIL/tester > MAIL/mail_tester
+$ cat SPOOL/MAIL/tester | head -n 7 > MAIL/mail_tester
 $ echo "N" > tmp/rm.in
 $ read_mail < tmp/rm.in
 

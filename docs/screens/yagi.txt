@@ -1,4 +1,3 @@
-   Horizontal beam width: 37 degrees
    Vertical beam width: 45 degrees
    Horizontal stacking distance: 3.257m
    Vertical stacking distance: 2.696m
@@ -21,4 +20,4 @@ Notes:
 
    1. Dimensions are from center to center in all cases.
    2. Accuries are +/- 1mm above 400MHz, +/- 1.5mm below.
-   3. Element mounting must be +/- .5mm of e
+   3. Element mounting must be +/- .5mm of element center.

@@ -1,4 +1,3 @@
-$ oskversion
 OSK level : 1
 OSK version : 4
 Revision : 16

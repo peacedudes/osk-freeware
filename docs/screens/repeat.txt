@@ -1,10 +1,8 @@
 $ repeat 2 today
-Today is Friday, the fourth day of September, two thousand and
-twenty-six. In twenty-nine seconds, the time will be twenty-seven
-minutes before six PM, Daylight Savings Time. The moon is waning
-gibbous.
+Today is Tuesday, the eighth day of September, two thousand and
+twenty-six. In eight seconds, the time will be twenty minutes before
+eleven PM, Daylight Savings Time. The moon is waning crescent.
 
-Today is Friday, the fourth day of September, two thousand and
-twenty-six. In twenty-nine seconds, the time will be twenty-seven
-minutes before six PM, Daylight Savings Time. The moon is waning
-gibbous.
+Today is Tuesday, the eighth day of September, two thousand and
+twenty-six. In eight seconds, the time will be twenty minutes before
+eleven PM, Daylight Savings Time. The moon is waning crescent.

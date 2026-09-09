@@ -1,2 +1,0 @@
-$ bootlogger; echo "status $?"
-status 0

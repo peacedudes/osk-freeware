@@ -1,4 +1,3 @@
-$ mvolformat
 Syntax: mvolformat drive volname volcount [format options]
 Function: format multiple floppies with sequential volume #s
 Parameters:

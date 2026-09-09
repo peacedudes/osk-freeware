@@ -1,15 +1,11 @@
-$ gs33 -h | head -n 14
-Aladdin Ghostscript 3.33 (4/10/1995)
-Copyright (C) 1995 Aladdin Enterprises, Menlo Park, CA.  All rights reserved.
-Usage: gs [switches] [file1.ps file2.ps ...]
-Available devices:
-        kwin deskjet djet500 epson epsonc eps9mid eps9high ibmpro
-        st800 ap3250 laserjet ljetplus ljet2p ljet3 ljet4 cdeskjet
-        cdjcolor cdjmono cdj550 pj pjxl pjxl300 bj10e bj200
-        dfaxhigh
-Language interpreters:
-        PostScript PostScriptLevel1 PostScriptLevel2 PDF
-Search path:
-    .
-    /dd/etc/lib/gs33
-Most frequently used switches: (you can use # in place of =)
+<-sOutputFile=tmp/PRT/old.out tmp/PRT/old.ps -c quit
+xmode: not found
+$ dump tmp/PRT/old.out | head -n 8
+
+Addr   0 1  2 3  4 5  6 7  8 9  A B  C D  E F 0 2 4 6 8 A C E
+----  ---- ---- ---- ---- ---- ---- ---- ---- ----------------
+0000  1B40 1B50 1B6C 000D 1B51 2B1B 4A63 1B2A .@.P.l...Q+.Jc.*
+0010  BF88 007E 00F0 00E0 00F0 007E 001F 0001 ...~.......~....
+0020  0000 0000 003F 00FB 00E1 00F1 007C 001C .....?.......|..
+0030  0000 0000 0000 0000 0000 0000 0000 001F ................
+0040  007C 0070 0078 001F 0000 0000 0000 0007 .|.p.x..........

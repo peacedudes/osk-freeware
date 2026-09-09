@@ -1,5 +1,3 @@
-$ ob68kdemo
-
 OmniBasic Version 1.16
 OS9/68000 Version
 
