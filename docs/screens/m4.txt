@@ -1,8 +1,8 @@
-echo "define(GREET,Hello \$1 from OS-9)" > tmp/m.m4
-$ echo "GREET(reader)" >> tmp/m.m4
+echo "define(greet,hi \0441 -- welcome)" > tmp/m.m4
+$ echo "greet(reader)" >> tmp/m.m4
 $ cat tmp/m.m4
-define(GREET,Hello $1 from OS-9)
-GREET(reader)
-$ m4 < tmp/m.m4
+define(greet,hi $1 -- welcome)
+greet(reader)
+$ m4 tmp/m.m4
 
-Hello reader from OS-9
+hi reader -- welcome

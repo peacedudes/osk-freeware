@@ -2,9 +2,9 @@
               |          |                |  .65...  |
               |          |                `----------'
               |          |
-              |          |         .---------------------------.
-              |    RRR   |         |                           |
-              |    R     |         |      ..   Menu   ..       |
+              |    BBB   |         .---------------------------.
+              |      B   |         |                           |
+              |          |         |      ..   Menu   ..       |
               |          |         |                           |
               |          |         |   h     .... high scores  |
               |          |         |   b     .... toggle beep  |
@@ -13,10 +13,10 @@
               |          |         |                           |
               |          |         | s or j  .... move left    |
               |          |         | d or k  .... rotate piece |
-              |          |         | f or l  .... move right   |
-              |    BBB   |         |  spc    .... fall piece   |
-              |    GGB   |         |  esc    .... pause        |
-              |     GG   |         |                           |
-              |     OO   |         | LATEST: allow concurrent  |
-              |     OO   |         |    high score setting     |
+              |    WWW   |         | f or l  .... move right   |
+              |     W    |         |  spc    .... fall piece   |
+              |     OO   |         |  esc    .... pause        |
+              |     OO   |         |                           |
+              |    RRR   |         | LATEST: allow concurrent  |
+              |    R     |         |    high score setting     |
               `----------'         `---------------------------'

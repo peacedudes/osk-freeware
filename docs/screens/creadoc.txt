@@ -1,8 +1,8 @@
-ksh -c "cd /dd/tmp/CMPA; creadoc"
+creadoc
 Processing file  biory.f
 OPEN  ERROR  214  ON UNIT   12
  Traceback - Routine  Call from
              -------  ---------
                TBACK   000B2100
-               _OPEN   000DC2A6
-             CREADOC   0D005F3D
+               _OPEN   000A4D66
+             CREADOC   0D005045

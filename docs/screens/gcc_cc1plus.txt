@@ -1,3 +1,3 @@
-$ /dd/CMDS/GCC139/gcc_cc1plus -version
+$ gcc_cc1plus -version
 GNU C++ version 1.37.1 (based on GCC 1.37) (68k, Motorola syntax) compiled by G.
 default target switches: -mregparm -mstack-check

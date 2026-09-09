@@ -1,4 +1,4 @@
-infocom GAMES/INFORM/dejavu.z3
+infocom dejavu.z3
 
 [
 [

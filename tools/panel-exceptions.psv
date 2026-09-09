@@ -108,3 +108,4 @@ liborder|reports the module concatenation order, one relocatable name per librar
 float|a floating-point benchmark: it runs a fixed loop of arithmetic and prints the single result value it computes; pair it with `time` for a rate. There is nothing more to show
 sieve|the Sieve of Eratosthenes benchmark: it counts the primes below its fixed limit and prints the one count; pair it with `time` for a rate
 rcsmerge|forks a `merge` helper that is not on this disk and cannot create its RCS temp files, so it aborts; rcs, ci, co, rlog and rcsident are the RCS tools that work here
+lnk.org|an RTF Fortran link driver: it prints the l68 command it would run and stops, because the link needs l68 from the reader own OS-9; rtf compiles and is the working program of that set

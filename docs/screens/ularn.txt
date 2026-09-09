@@ -1,17 +1,15 @@
-                                  H
+                           =
+                $                      V
+               H
+                                      +
+                                                     E
+
+                                      S
 
 
 
-         S
-                                               E        V
 
+                                             L
 
-                                                               =
-              L
-
-
-
-                           +
-
-Spells:  1( 1)  AC: 2    WC: 3    Level 1  Exp: 0           novice explorer
-HP:  12( 12) STR=8  INT=12 WIS=8  CON=10 DEX=14 CHA=6  LV: H  Gold: 0
+Spells:  2( 2)  AC: 0    WC: 0    Level 1  Exp: 0           novice explorer
+HP:   8(  8) STR=8  INT=16 WIS=16 CON=6  DEX=6  CHA=8  LV: H  Gold: 0

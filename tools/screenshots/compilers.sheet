@@ -1,11 +1,12 @@
 # Compilers and build tools, each one actually building something.
-# Every stanza makes what it reads under /dd/tmp/CMPA.
+# Most stanzas make what they read under /dd/tmp/CMPA.
 
 shot    as0
 size    30 90
 cap     as0, the 6800/6802 cross-assembler: address, opcode bytes and the
-cap     source line, then the symbol table -- `l' for the listing and `s'
-cap     for the symbols, after a lone `-'.
+cap     source line, then the symbol table.  `l' asks for the listing and
+cap     `s' for the symbols, after a lone `-'.
+try     as0 DOC/xasm/sample.a0 - l s
 run     builtin cd /dd
 wait    1
 run     clear
@@ -15,11 +16,12 @@ wait    14
 
 shot    as09
 size    30 90
-cap     as09, the 6809 assembler and the only one of the six xasm programs
-cap     that is not a cross-assembler for an 8-bit relative of the 6809 --
+cap     as09, the 6809 assembler -- the one of the six xasm tools that
+cap     assembles for the 6809 itself, not one of its 8-bit relatives;
 cap     none of the six assembles 68000 code.  It says nothing and writes
 cap     Motorola S-records beside the source: four instructions at $1000,
 cap     in the format a ROM burner reads.
+try     as09 t.a
 run     mkdir -p /dd/tmp/CMPA > /nil 2>/nil; rm -f /dd/tmp/CMPA/t.a /dd/tmp/CMPA/t.s19
 run     echo "        org  \0441000" > /dd/tmp/CMPA/t.a
 run     echo "        lda  #\04442" >> /dd/tmp/CMPA/t.a
@@ -39,8 +41,10 @@ wait    8
 
 shot    as1
 size    30 90
-cap     as1, the 6801/6803 cross-assembler.  The 6801 adds MUL, ADDD and
-cap     the D register over the 6800, and the sample uses all three.
+cap     as1, the 6801/6803 cross-assembler.  The 6801 adds a hardware
+cap     multiply and 16-bit accumulator arithmetic over the 6800, and the
+cap     sample uses both.
+try     as1 DOC/xasm/sample.a1 - l s
 run     builtin cd /dd
 wait    1
 run     clear
@@ -51,7 +55,8 @@ wait    14
 shot    as4
 size    30 90
 cap     as4, the 6804 cross-assembler.  Its instruction set is small: no
-cap     CLR on the pseudo-registers, no immediate CMP.
+cap     clear on the pseudo-registers, no immediate compare.
+try     as4 DOC/xasm/sample.a4 - l s
 run     builtin cd /dd
 wait    1
 run     clear
@@ -61,8 +66,9 @@ wait    14
 
 shot    as5
 size    30 90
-cap     as5, the 6805/68HC05 cross-assembler, on bit set, bit test and
-cap     branch -- what the 6805 is for.
+cap     as5, the 6805/68HC05 cross-assembler, shown on bit-set, bit-test
+cap     and branch -- what the 6805 is for.
+try     as5 DOC/xasm/sample.a5 - l s
 run     builtin cd /dd
 wait    1
 run     clear
@@ -73,9 +79,10 @@ wait    14
 shot    as11
 size    30 90
 cap     as11, the 68HC11 cross-assembler.  It lists by default -- no `-l'
-cap     needed -- and reads any word after the file name as one more
-cap     source file rather than as an option, so the `- l s' its siblings
+cap     needed -- and treats any word after the file name as another
+cap     source file rather than an option, so the `- l s' its siblings
 cap     take is not for this one.
+try     as11 DOC/xasm/sample.a11
 run     builtin cd /dd
 wait    1
 run     clear
@@ -84,9 +91,10 @@ run     as11 DOC/xasm/sample.a11
 wait    14
 
 shot    assembler
-cap     The GSHELL front-end for the assembler family: a full-screen file
-cap     picker, not an assembler itself.  Control-C leaves it; none of q,
-cap     Q, control-D or ESC do.
+cap     A full-screen file picker that hands a chosen file to the
+cap     assembler family; not an assembler itself.  Control-C leaves it;
+cap     q, Q, control-D and ESC do not.
+try     assembler
 run     assembler
 wait    8
 snap
@@ -94,8 +102,9 @@ send    \003
 wait    3
 
 shot    compiler
-cap     The GSHELL front-end for the C compiler: the same file-picker
-cap     menu, headed for cc.  Control-C leaves it.
+cap     A full-screen file picker headed for the C compiler -- the same
+cap     menu as `assembler', not a compiler itself.  Control-C leaves it.
+try     compiler
 run     compiler
 wait    8
 snap
@@ -103,10 +112,11 @@ send    \003
 wait    3
 
 shot    bison
-cap     GNU bison 1.19 on a two-rule grammar it writes for itself, then
-cap     the report -v leaves behind: the rules as bison read them, the
-cap     terminals with the rules they appear in, and the numbers it gave
-cap     them.  It says nothing at all when it succeeds.
+cap     GNU bison on a two-rule grammar written for it, then the report
+cap     `-v' leaves behind: the rules as bison read them, the terminals
+cap     with the rules they appear in, and the numbers it gave them.  It
+cap     prints nothing when it succeeds.
+try     bison -v tmp/b.y
 run     builtin cd /dd
 wait    1
 run     clear
@@ -123,7 +133,10 @@ run     head -n 12 tmp/b.output 2>/nil
 wait    6
 
 shot    flex
-cap     flex turning a lexical description into C.
+cap     flex turning a lexical description into C: the rules go in and the
+cap     scanner `lex.yy.c' comes out.  The head of that generated file is
+cap     shown below.
+try     flex tmp/l.l
 run     builtin cd /dd
 wait    1
 run     clear
@@ -136,137 +149,195 @@ run     echo ".        ;" >> tmp/l.l
 wait    5
 run     flex tmp/l.l
 wait    8
-run     head -n 10 lex.yy.c
+run     cat lex.yy.c | head -n 10
 wait    5
 
 shot    gcc
-cap     The GCC139 and GCC2 drivers share the name `gcc'; this is GCC2's
-cap     copy, `gcc version 1.42'.  Asked to compile it prints the
-cap     preprocessor command it wants and then cannot find `cccp' -- the
-cap     pass lives under a prefix here (gcc_cccp, gcc_cccp2), not under
-cap     its own name.
-run     mkdir -p /dd/tmp/CMPA > /nil 2>/nil; printf "int main() {\r  return 0;\r}\r" > /dd/tmp/CMPA/hello.c
-wait    4
-run     /dd/CMDS/GCC2/gcc -v
+cap     The GCC drivers live in their own directory, off the command
+cap     path, so each is run from there with `./'.  This is `gcc', the
+cap     older driver, reporting version 1.42.  Asked to compile it prints
+cap     the preprocessor command it wants, then stops: it looks for a pass
+cap     called `cccp' that is not installed under that bare name here.
+cap     The working drivers are `gcc2' and `gpp'.
+try     ./gcc -v -c hello.c
+run     builtin cd /dd/CMDS/GCC2; printf "int main() {\r  return 0;\r}\r" > hello.c
+wait    3
+run     clear
+wait    1
+run     ./gcc -v
 wait    6
-run     /dd/CMDS/GCC2/gcc -v -c /dd/tmp/CMPA/hello.c
+run     ./gcc -v -c hello.c
 wait    10
 
 shot    gcc2
-cap     The GCC 2.x driver, `gcc version 2.5.6'.  Asked to stop at
-cap     assembly it succeeds -- Microware's own syntax, `psect', `link.w
-cap     a5,#0' -- and asked to go all the way it compiles to assembly and
-cap     calls `r68' to assemble it.  `r68' is Microware's, part of your OS-9.
-run     mkdir -p /dd/tmp/CMPA > /nil 2>/nil; printf "int main() {\r  return 0;\r}\r" > /dd/tmp/CMPA/hello.c
-wait    4
-run     /dd/CMDS/GCC2/gcc2 -v
-wait    5
-run     /dd/CMDS/GCC2/gcc2 -S -o /dd/tmp/CMPA/hello.a /dd/tmp/CMPA/hello.c
+cap     `gcc2', the GCC 2.5.6 C driver, run from its own directory since
+cap     it is off the command path.  Asked to stop at assembly (`-S') it
+cap     succeeds, writing 68k assembly in Microware syntax -- `psect',
+cap     `link.w a5,#0'.  Asked to go all the way it compiles and then
+cap     calls `r68' to assemble, the 68k assembler that comes with your
+cap     OS-9.
+try     ./gcc2 -S -o hello.a hello.c
+run     builtin cd /dd/CMDS/GCC2; printf "int main() {\r  return 0;\r}\r" > hello.c
+wait    3
+run     clear
+wait    1
+run     ./gcc2 -S -o hello.a hello.c
 wait    12
-run     cat /dd/tmp/CMPA/hello.a | head -n 8
+run     cat hello.a | head -n 8
 wait    5
-run     /dd/CMDS/GCC2/gcc2 -o /dd/tmp/CMPA/hello /dd/tmp/CMPA/hello.c
+run     ./gcc2 -o hello hello.c
 wait    10
 
 shot    gpp
-cap     The C++ driver, GCC2's copy -- `gpp version 1.40.3 (based on GCC
-cap     1.40)'.  Asked to compile, it runs its whole pipeline: gpp_cccp
-cap     preprocesses, gpp_cc1plus compiles to assembly, and then it calls
-cap     Microware's `r68' to assemble it -- `r68' comes with your OS-9.
-run     mkdir -p /dd/tmp/CMPA > /nil 2>/nil; printf "int main() {\r  return 0;\r}\r" > /dd/tmp/CMPA/hello.c
-wait    4
-run     /dd/CMDS/GCC2/gpp -v -c /dd/tmp/CMPA/hello.c
+cap     `gpp', the GCC2 C++ driver (1.40.3), run from its own directory.
+cap     It runs the whole pipeline -- `gpp_cccp' preprocesses,
+cap     `gpp_cc1plus' compiles to assembly -- then calls `r68' to
+cap     assemble, which comes with your OS-9.
+try     ./gpp -v -c hello.c
+run     builtin cd /dd/CMDS/GCC2; printf "int main() {\r  return 0;\r}\r" > hello.c
+wait    3
+run     clear
+wait    1
+run     ./gpp -v -c hello.c
 wait    16
 
 shot    cccp2
-cap     GCC 2.x's preprocessor pass, expanding a small C file -- the
-cap     `# 1 "..."' line is the marker it adds; there are no macros here
-cap     to expand.
-run     mkdir -p /dd/tmp/CMPA > /nil 2>/nil; printf "int main() {\r  return 0;\r}\r" > /dd/tmp/CMPA/hello.c
-wait    4
-run     /dd/CMDS/GCC2/cccp2 /dd/tmp/CMPA/hello.c /dd/tmp/CMPA/hello.i
+cap     The GCC 2.x preprocessor pass, expanding a small C file.  The
+cap     `# 1 "..."' line is the source marker it adds; there are no macros
+cap     here to expand.  It is run from the GCC2 directory, off the
+cap     command path.
+try     ./cccp2 hello.c hello.i
+run     builtin cd /dd/CMDS/GCC2; printf "int main() {\r  return 0;\r}\r" > hello.c
+wait    3
+run     clear
+wait    1
+run     ./cccp2 hello.c hello.i
 wait    8
-run     cat /dd/tmp/CMPA/hello.i
+run     cat hello.i
 wait    5
 
 shot    cc2
-cap     GCC 2.x's C compiler pass, saying what it is.
-run     /dd/CMDS/GCC2/cc2 -version
+cap     The GCC 2.x C compiler pass -- the stage that turns preprocessed
+cap     C into assembly.  The driver runs it for you; on its own it
+cap     reports its version and the code-generation options it was built
+cap     with.
+try     ./cc2 -version
+run     builtin cd /dd/CMDS/GCC2
+wait    1
+run     clear
+run     ./cc2 -version
 wait    8
 
 shot    cc1plus
-cap     GCC 2.x's C++ compiler pass, saying what it is.
-run     /dd/CMDS/GCC2/cc1plus -version
+cap     A GCC C++ compiler pass (version 1.40.3) from the GCC2 directory.
+cap     The driver calls it; run alone it reports its version.
+try     ./cc1plus -version
+run     builtin cd /dd/CMDS/GCC2
+wait    1
+run     clear
+run     ./cc1plus -version
 wait    8
 
 shot    cc2plus
-cap     GCC 2.x's other C++ pass, saying what it is.
-run     /dd/CMDS/GCC2/cc2plus -version
+cap     A second C++ compiler pass (version 2.5.8) in the GCC2 directory,
+cap     reporting its version and code-generation options.
+try     ./cc2plus -version
+run     builtin cd /dd/CMDS/GCC2
+wait    1
+run     clear
+run     ./cc2plus -version
 wait    8
 
 shot    collect
-cap     GCC 2.x's collect2, which builds the global constructor/destructor
-cap     table a C++ program needs -- its own syntax, since it takes no -?.
-run     /dd/CMDS/GCC2/collect
+cap     collect2, which builds the table of global constructors and
+cap     destructors a C++ program needs before linking.  It takes no
+cap     `-?', so with no arguments it prints its own usage.
+try     ./collect
+run     builtin cd /dd/CMDS/GCC2
+wait    1
+run     clear
+run     ./collect
 wait    8
 
 shot    gcc_cc1
-cap     GCC 1.39's C compiler pass, saying what it is.
-run     /dd/CMDS/GCC139/gcc_cc1 -version
+cap     The GCC 1.39 C compiler pass.  It reports its version; the driver
+cap     runs it as part of a compile.
+try     gcc_cc1 -version
+run     gcc_cc1 -version
 wait    8
 
 shot    gcc_cc1plus
-cap     GCC 1.39's C++ compiler pass, saying what it is.
-run     /dd/CMDS/GCC139/gcc_cc1plus -version
+cap     The GCC 1.x C++ compiler pass (version 1.37.1), reporting its
+cap     version.
+try     gcc_cc1plus -version
+run     gcc_cc1plus -version
 wait    8
 
 shot    gcc_cccp
-cap     GCC 1.39's preprocessor pass, expanding the same small C file.
+cap     The GCC 1.39 preprocessor pass, expanding a small C file.  The
+cap     `# 1 "..."' line marks the source; there are no macros to expand
+cap     here.
+try     gcc_cccp hello.c hello.i
 run     mkdir -p /dd/tmp/CMPA > /nil 2>/nil; printf "int main() {\r  return 0;\r}\r" > /dd/tmp/CMPA/hello.c
-wait    4
-run     /dd/CMDS/GCC139/gcc_cccp /dd/tmp/CMPA/hello.c /dd/tmp/CMPA/hello.i
+run     builtin cd /dd/tmp/CMPA
+wait    2
+run     clear
+wait    1
+run     gcc_cccp hello.c hello.i
 wait    8
-run     cat /dd/tmp/CMPA/hello.i
+run     cat hello.i
 wait    5
 
 shot    gcc_collect
-cap     GCC 1.39's collect2, the same program as GCC 2.x's.
-run     /dd/CMDS/GCC139/gcc_collect
+cap     collect2 again -- the same global-constructor collector as the
+cap     GCC2 directory's, reached here under the GCC 1.39 name.  With no
+cap     arguments it prints its usage.
+try     gcc_collect
+run     gcc_collect
 wait    8
 
 shot    gcc_cc2
-cap     Its version banner.
-run     /dd/CMDS/gcc_cc2 -version
+cap     The GCC 2.x C compiler pass installed on the command path under
+cap     this name, so the `gcc2' driver can fork it.  Run alone it reports
+cap     its version and options.
+try     gcc_cc2 -version
+run     gcc_cc2 -version
 wait    8
 
 shot    gcc_cccp2
-cap     GCC 2.x's preprocessor, installed under the name gcc2's driver
-cap     forks it by: its own version banner and the two directories it
-cap     searches for headers.
-run     /dd/CMDS/gcc_cccp2 -version
+cap     The GCC 2.x preprocessor installed on the command path under the
+cap     name the `gcc2' driver forks it by.  It reports its version and
+cap     the two directories it searches for headers.
+try     gcc_cccp2 -version
+run     gcc_cccp2 -version
 wait    8
 
 shot    gpp_cc1plus
-cap     GCC 2.x's C++ compiler pass, installed under the name gpp's
-cap     driver forks it by.
-run     /dd/CMDS/gpp_cc1plus -version
+cap     The GCC C++ compiler pass installed on the command path under the
+cap     name the `gpp' driver forks it by.  It reports its version.
+try     gpp_cc1plus -version
+run     gpp_cc1plus -version
 wait    8
 
 shot    gpp_cccp
-cap     GCC 2.x's preprocessor, installed under the name gpp's driver
-cap     forks it by -- the same program as gcc_cccp2.
-run     /dd/CMDS/gpp_cccp -version
+cap     The GCC 2.x preprocessor under the name the `gpp' driver forks it
+cap     by -- the same program as `gcc_cccp2'.  It reports its version and
+cap     its header search path.
+try     gpp_cccp -version
+run     gpp_cccp -version
 wait    8
 
 shot    gpp_collect
-cap     GCC 2.x's collect2, installed under the name gpp's driver forks
-cap     it by.
-run     /dd/CMDS/gpp_collect
+cap     collect2 under the name the `gpp' driver forks it by -- the same
+cap     collector as the others.  With no arguments it prints its usage.
+try     gpp_collect
+run     gpp_collect
 wait    8
 
 shot    gmake
-cap     GNU make 3.67, running a rule from DOC/make/demo.mk: copies
-cap     one file to another and reports the file it made.
+cap     GNU make, running a rule from a shipped makefile: it copies one
+cap     file to another and reports the file it made.
+try     gmake -f DOC/make/demo.mk greeting
 run     builtin cd /dd
 wait    1
 run     clear
@@ -281,9 +352,9 @@ run     ls -l tmp/greeting
 wait    6
 
 shot    dmake
-cap     dmake 3.70, Dennis Vadura's parallel make, on the same rule --
-cap     its own makefile dialect still reads DOC/make/demo.mk and builds
-cap     the target.
+cap     dmake, a parallel make, on the same rule -- its own makefile
+cap     dialect still reads the shipped makefile and builds the target.
+try     dmake -f DOC/make/demo.mk greeting
 run     builtin cd /dd
 wait    1
 run     clear
@@ -298,26 +369,30 @@ run     ls -l tmp/greeting
 wait    6
 
 shot    m4
-cap     m4, the macro processor, expanding a macro from a file.
+cap     m4, the macro processor.  `define' names a macro with a parameter,
+cap     and each later use of it is expanded -- here `greet(reader)'
+cap     becomes a short welcome with the name filled in.
+try     m4 tmp/m.m4
 run     builtin cd /dd
 wait    1
 run     clear
 wait    1
-run     echo "define(GREET,Hello \$1 from OS-9)" > tmp/m.m4
+run     echo "define(greet,hi \0441 -- welcome)" > tmp/m.m4
 wait    5
-run     echo "GREET(reader)" >> tmp/m.m4
+run     echo "greet(reader)" >> tmp/m.m4
 wait    5
 run     cat tmp/m.m4
 wait    5
-run     m4 < tmp/m.m4
+run     m4 tmp/m.m4
 wait    8
 
 shot    m4_0.5
 cap     A second build of the m4 macro processor.  It reads a macro
-cap     definition and expands each use of it: GREET(world) becomes
-cap     hello world.
+cap     definition and expands each use: `greet(world)' becomes
+cap     `hello world'.
+try     m4_0.5 tmp/BLGX/mm.m4
 run     mkdir -p /dd/tmp/BLGX > /nil 2>/nil
-run     printf 'define(GREET,hello $1)GREET(world)\r' > /dd/tmp/BLGX/mm.m4
+run     printf 'define(greet,hello $1)greet(world)\r' > /dd/tmp/BLGX/mm.m4
 run     builtin cd /dd
 wait    1
 run     clear
@@ -325,18 +400,10 @@ run     m4_0.5 tmp/BLGX/mm.m4
 wait    5
 
 shot    make
-size    36 80
-cap     `make' building the target, then running the same rule again with
-cap     nothing to do -- it says nothing once a target is up to date.
-cap     TWO obstacles along the way, neither of them make being broken.  A
-cap     command line in a makefile must begin with a TAB, and a tab does not
-cap     survive being typed at this terminal, so every makefile written here
-cap     by echoing at the shell was a syntax error; DOC/make/demo.mk is one
-cap     SHIPPED with its tabs intact.  And a recipe must contain no shell
-cap     metacharacter: where a line has none make forks the command itself,
-cap     but where it has a `>' it forks bash and hands it the whole line AS
-cap     A PATHNAME rather than with -c, so `cat a > b' answers `That path
-cap     name doesn't lead to a file' and `cp a b' works.
+cap     `make' building a target from a shipped makefile: it runs the
+cap     rule's command and names the file it made.  Run again with the
+cap     target already up to date, it does nothing and stays silent.
+try     make -f DOC/make/demo.mk greeting
 run     builtin cd /dd
 wait    1
 run     clear
@@ -351,18 +418,21 @@ run     make -f DOC/make/demo.mk greeting
 wait    10
 
 shot    makeinfo
-cap     GNU makeinfo, Texinfo to Info -- it takes `+' options, not `--':
-cap     `+version' answers, GNU-style `--version' does not.
+cap     GNU makeinfo turns Texinfo source into Info files.  Its options
+cap     take a leading `+', not the GNU-style `--', so `+version' answers
+cap     where `--version' would not.
+try     makeinfo +version
 run     makeinfo +version
 wait    6
 
 shot    p2c
 size    36 80
-cap     p2c TRANSLATING PASCAL INTO C, which is the thing it is for.  It
-cap     writes `h.c' beside the source.  The warning is p2c's own and
-cap     correct: nothing has told it what `writeln' is, because the Pascal
-cap     runtime declarations live in LIB/p2c and this one-line program does
-cap     not ask for them.
+cap     p2c translating Pascal into C, which is what it is for.  It writes
+cap     `h.c' beside the source.  The warning is p2c's own and correct:
+cap     nothing has told it what `writeln' is, because the Pascal run-time
+cap     declarations live elsewhere and this one-line program does not ask
+cap     for them.
+try     p2c h.pas
 run     mkdir -p /dd/tmp/P2C > /nil 2>/nil
 run     echo "program hello; begin writeln('hi') end." > /dd/tmp/P2C/h.pas
 run     builtin cd /dd/tmp/P2C
@@ -379,10 +449,11 @@ run     head -n 12 h.c
 wait    8
 
 shot    yacc
-cap     yacc reading a grammar and writing y.tab.c, the parser table,
-cap     into the data directory -- the two-rule grammar above.  The four
-cap     `F$SetSys' lines are a harmless system-call notice, not an error:
-cap     status 0 and the file both confirm it finished.
+cap     yacc reading a grammar and writing `y.tab.c', the parser tables,
+cap     into the data directory -- the two-rule grammar shown above.  It
+cap     prints nothing on success; the listed file and its size confirm it
+cap     finished.
+try     yacc g.y
 run     rm -f /dd/tmp/CMPA/g.y /dd/tmp/CMPA/y.tab.c; mkdir -p /dd/tmp/CMPA > /nil 2>/nil
 run     printf "%%token NUM\r%%%%\rexpr : expr NUM | NUM ;\r" > /dd/tmp/CMPA/g.y
 run     builtin cd /dd/tmp/CMPA
@@ -397,65 +468,94 @@ run     ls -l y.tab.c
 wait    6
 
 shot    rtf
-cap     RTF/68K 2.14 (1987) compiling real Fortran-77: `load os9lib' first
-cap     -- without its runtime library the whole set prints nothing at
-cap     all -- then `rtf' reads the source and writes 68k assembly beside
-cap     it.  Assembling and linking that is Microware's `r68' and `l68',
-cap     part of your OS-9, so your system finishes the build.
+cap     RTF/68K compiling Fortran-77: with its run-time library loaded
+cap     first (`load os9lib'), `rtf' reads the source and writes 68k
+cap     assembly beside it.  Assembling and linking that is `r68' and
+cap     `l68', which come with your OS-9, so your system finishes the
+cap     build.
+try     rtf div.f
 run     rm -f /dd/tmp/CMPA/div.f /dd/tmp/CMPA/div.a; mkdir -p /dd/tmp/CMPA > /nil 2>/nil
-wait    4
+wait    3
 run     cp /dd/SRC/rtf/div.f /dd/tmp/CMPA/div.f
-wait    4
+wait    3
 run     load /dd/CMDS/os9lib
-wait    6
-run     rtf /dd/tmp/CMPA/div.f
-wait    20
-run     ls -l /dd/tmp/CMPA/div.a
+wait    5
+run     builtin cd /dd/tmp/CMPA
+wait    1
+run     clear
+wait    1
+run     rtf div.f
+wait    18
+run     ls -l div.a
 wait    6
 
 shot    for
-cap     the RTF/68K FORTRAN driver: it prints the `rtf' command it wants to
-cap     run and forks Microware's `shell' -- the one from your OS-9 -- to
-cap     run it.  Or call `rtf' directly, which needs no shell at all.
+cap     The RTF Fortran compile driver: it prints the `rtf' command it
+cap     means to run, then stops, because it forks a separate shell to run
+cap     it.  Called directly, `rtf' needs no shell and does the compile.
+cap     At the bash prompt `for' is also the loop keyword, so it is reached
+cap     by path.
+try     ../../CMDS/for div.f
+os9     for div.f
 run     mkdir -p /dd/tmp/CMPA > /nil 2>/nil; cp /dd/SRC/rtf/div.f /dd/tmp/CMPA/div.f
-wait    4
+wait    3
 run     load /dd/CMDS/os9lib
-wait    6
-run     /dd/CMDS/for /dd/tmp/CMPA/div.f
+wait    5
+run     builtin cd /dd/tmp/CMPA
+wait    1
+run     clear
+wait    1
+run     ../../CMDS/for div.f
 wait    10
 
 shot    lnk
-cap     the RTF FORTRAN link driver: it prints the `l68' command it wants
-cap     -- Microware's linker, with Microware's library -- and stops the
-cap     same way `for' does, forking a shell this disk does not carry.
+cap     The RTF Fortran link driver: it prints the `l68' command it means
+cap     to run -- the linker and library from your OS-9 -- and stops the
+cap     same way `for' does, forking a shell to run it.
+try     lnk div.f
 run     mkdir -p /dd/tmp/CMPA > /nil 2>/nil; cp /dd/SRC/rtf/div.f /dd/tmp/CMPA/div.f
-wait    4
+wait    3
 run     load /dd/CMDS/os9lib
-wait    6
-run     lnk /dd/tmp/CMPA/div.f
+wait    5
+run     builtin cd /dd/tmp/CMPA
+wait    1
+run     clear
+wait    1
+run     lnk div.f
 wait    10
 
 shot    lnk.org
-cap     the original build of `lnk', the same program and the same stop.
+cap     The original build of `lnk' -- the same driver and the same stop,
+cap     forking a shell that is not here.
+try     lnk.org div.f
 run     mkdir -p /dd/tmp/CMPA > /nil 2>/nil; cp /dd/SRC/rtf/div.f /dd/tmp/CMPA/div.f
-wait    4
+wait    3
 run     load /dd/CMDS/os9lib
-wait    6
-run     lnk.org /dd/tmp/CMPA/div.f
+wait    5
+run     builtin cd /dd/tmp/CMPA
+wait    1
+run     clear
+wait    1
+run     lnk.org div.f
 wait    10
 
 shot    creadoc
-cap     extracts the documentation header (C++ ... C--) of every .f file
-cap     into creadoc.txt -- an early Fortran doc generator.  It reads each
-cap     file name from column 53 of a `dir -eadu' listing, where this disk's
-cap     dir puts it at 54 (and 2026, printed `126', pushes it further), so
-cap     it opens a space-prefixed name and stops.  A dir-column brittleness.
-cap     It needs the Fortran run-time loaded, and shells out to dir and del.
-run     rm -rf /dd/tmp/CMPA; mkdir -p /dd/tmp/CMPA; cp /dd/SRC/rtf/biory.f /dd/tmp/CMPA/biory.f
-wait    4
+size    28 90
+cap     An early Fortran documentation generator: it walks the `.f' files
+cap     in the data directory and copies each one's header comment into
+cap     `creadoc.txt'.  It needs the Fortran run-time loaded.  Here it
+cap     stops at the first file: it reads each name from a fixed column of
+cap     a directory listing, and this system's listing places the name a
+cap     column further over, so it opens a name with a leading space and
+cap     cannot find it.
+try     creadoc
+run     rm -rf /dd/tmp/CRD; mkdir -p /dd/tmp/CRD; cp /dd/SRC/rtf/biory.f /dd/tmp/CRD/biory.f
+wait    3
 run     load /dd/CMDS/os9lib; load /h1/CMDS/shell; load /h1/CMDS/dir; load /h1/CMDS/del
-wait    8
+wait    6
+run     builtin cd /dd/tmp/CRD
+wait    1
 run     clear
 wait    1
-run     ksh -c "cd /dd/tmp/CMPA; creadoc"
+run     creadoc
 wait    12

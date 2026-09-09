@@ -1,4 +1,4 @@
-$ /dd/CMDS/gcc_cccp2 -version
+$ gcc_cccp2 -version
 GNU CPP version 2.5.6 (68k, Motorola/OSK syntax, srcdbg support)
 #include "..." search starts here:
 #include <...> search starts here:

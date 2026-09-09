@@ -1,1 +1,0 @@
-ksh -c "cd WORLD; vtxtcn" < /nil; echo "status $?"

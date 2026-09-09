@@ -42,7 +42,14 @@ Waiting on you:
    its questions. Each is carded honestly as far as they go; your call
    whether they stay.  A fourth: **ff** (a German file-finder) hands off
    to Microware's shell to do the search and `find' supersedes it; a
-   best-forgotten candidate from the files sweep.
+    best-forgotten candidate from the files sweep.  From games: the five
+   G-Windows programs that need a display os9exec has none of (`cyberwar',
+   `puzzle', `scriptmaster', `colortest', `dclock'), and `pacman', which
+   paints only on a TeleVideo terminal.  From compilers: the RTF Fortran
+   drivers `for', `lnk' and `lnk.org' (they print the command they would
+   run and stop -- `rtf' is the working program of that set) and `creadoc'
+   (brittle on this system's directory-column layout).  Each has an honest
+   card as far as it goes; none removed.
 
 3. **logisim's rebuilt binary drops every second letter of its on-screen
    labels** (`* oi  iuao *' for `*** Logic - Simulator ***'). Traced to

@@ -1,3 +1,3 @@
-$ /dd/CMDS/gpp_cc1plus -version
+$ gpp_cc1plus -version
 GNU C++ version 1.40.3 (based on GCC 1.40) (68k, Motorola syntax) compiled by G.
 default target switches: -mregparm -mstack-check

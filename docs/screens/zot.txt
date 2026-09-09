@@ -1,4 +1,3 @@
-$ zot -d "OS-9 freeware"
 OS-9 freeware
 OS-9 freeware
 OS-9 freeware

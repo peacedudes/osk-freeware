@@ -255,7 +255,7 @@ game|Same input as checkgame, a gnuchess `chess.lst', and it writes PostScript o
 gnuan|Give it a file of moves like `e2e4 e7e5 g1f3', then a search depth and a minutes-per-move limit, and it annotates the game move by move. At the end of the file it prints the position and stops with `Bad move'.
 gnuchessc|Its board display reads files from a compiled-in path; supply them there for a board. It still takes a move as `e2e4' and answers with its own.
 maze|Reads the number of rows on standard input: `echo 11 | maze' draws a maze eleven rows deep.
-pacman|Pac-Man as an ASCII maze: the keypad moves you -- 8 up, 2 down, 4 left, 6 right (the layout is in GAMES/pacman/document). The maze, score and board files are in GAMES/pacman. It draws in raw keyboard mode at an OS-9 terminal.
+pacman|Answer the name and instructions prompts, then play with the keypad: 8 up, 2 down, 4 left, 6 right, q quits. It draws with TeleVideo cursor codes (ESC = row col), so the maze paints only on a terminal that understands them; its board, help and score files are in GAMES/pacman.
 postprint|It wants gnuchess's persistent hash file -- point it at one.
 queens|Reads the board size on standard input as a number: `echo 6 | queens'.
 zot|`zot -s=<1-14> "text"' prints the text in that style; `zot -d "text"' shows every style in turn.

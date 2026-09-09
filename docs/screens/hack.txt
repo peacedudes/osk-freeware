@@ -1,4 +1,15 @@
-Hello tester, welcome to hack!  The little dog misses the acid blob.
+Hello tester, welcome to hack!
+
+
+
+   -------
+   |.....|
+   |.?d.@+
+   |.....|
+   |.....+
+   |.....|
+   |.....|
+   ---+---
 
 
 
@@ -10,15 +21,4 @@ Hello tester, welcome to hack!  The little dog misses the acid blob.
 
 
 
-
-
-                                  -+-----
-                                  |.@d..|
-                                  +..a..|
-                                  |.....|
-                                  |.....|
-                                  |...$.|
-                                  -------
-
-
-Level 1    Hp  14(14)   Ac 7    Str 17      Exp  1
+Level 1    Hp  15(15)   Ac 9    Str 16      Exp  1

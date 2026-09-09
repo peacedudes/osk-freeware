@@ -1,4 +1,4 @@
-$ /dd/CMDS/GCC139/gcc_collect
+$ gcc_collect
 Syntax   : collect [<opts>] {<file>} [<opts>]
 Function : generate global con-/de-structor table for g++
 Options  : -o <outfile> write output to <outfile>

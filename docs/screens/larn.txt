@@ -1,17 +1,17 @@
-                      S
+             V                            +
+
+                                                                S
+                   =
+
+           H
 
 
-                                                    E
+
+                                                       E
+                                                                L
 
 
-                                              H         =
 
-
-
-              $       L
-                                                                +
-
-                                          V
 
 Spells:  1( 1)  AC: 2    WC: 3    Level 1  Exp: 0           novice explorer
 HP:  10( 10) STR=12 INT=12 WIS=12 CON=12 DEX=12 CHA=12 LV: H  Gold: 0

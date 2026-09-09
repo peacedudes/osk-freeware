@@ -1,8 +1,5 @@
-<t main() {\r  return 0;\r}\r" > /dd/tmp/CMPA/hello.c
-$ /dd/CMDS/GCC2/gcc2 -v
-gcc version 2.5.6
-$ /dd/CMDS/GCC2/gcc2 -S -o /dd/tmp/CMPA/hello.a /dd/tmp/CMPA/hello.c
-$ cat /dd/tmp/CMPA/hello.a | head -n 8
+./gcc2 -S -o hello.a hello.c
+$ cat hello.a | head -n 8
         psect hello_gc,0,0,0,0,0
         align
 main:
@@ -11,5 +8,5 @@ main:
         bsr _stkcheck
         move.l (a7)+,d0 :2
         link.w a5,#0
-$ /dd/CMDS/GCC2/gcc2 -o /dd/tmp/CMPA/hello /dd/tmp/CMPA/hello.c
-/dd/CMDS/GCC2/gcc2: Can't fork 'r68': 000:221 module not found (/dd/tmp/CMPA/he)
+$ ./gcc2 -o hello hello.c
+./gcc2: Can't fork 'r68': 000:221 module not found (hello.c)

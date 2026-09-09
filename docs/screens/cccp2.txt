@@ -1,7 +1,6 @@
-<t main() {\r  return 0;\r}\r" > /dd/tmp/CMPA/hello.c
-$ /dd/CMDS/GCC2/cccp2 /dd/tmp/CMPA/hello.c /dd/tmp/CMPA/hello.i
-$ cat /dd/tmp/CMPA/hello.i
-# 1 "/dd/tmp/CMPA/hello.c"
+./cccp2 hello.c hello.i
+$ cat hello.i
+# 1 "hello.c"
 int main() {
   return 0;
 }

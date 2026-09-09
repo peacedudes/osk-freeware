@@ -1,21 +1,21 @@
-||          [][]      ||  TETRIS#FOR#TERMINALS
-||          [][]      ||
-||                    ||  Written by Mike Taylor
-||                    ||  Email: mirk@uk.ac.warwick.cs
-||                    ||  Started: Thu Sep  3 06:36:46 2026
-||                    ||
-||                    ||  Game level: 0
-||          ()        ||
-||          ()        ||  Score:  18
-||          ()()      ||  Pieces: 6
-||          {}        ||  Levels: 0
-||          {}        ||
-||        {}{}        ||    Use keys:
-||          [][]      ||    =========
-||          [][]##    ||    Move left:  ','
-||            ####    ||    Move right: '/'
-||          [][]##    ||    Rotate:     '.'
-||          [][]      ||    Drop:       ' '
-||      {}{}{}        ||    Pause:      's'
-||          {}        ||    Quit:       'q'
+||        ##  ##      ||  TETRIS#FOR#TERMINALS
+||          ##        ||
+||          %%%%      ||  Written by Mike Taylor
+||        %%%%        ||  Email: mirk@uk.ac.warwick.cs
+||        %%          ||  Started: Tue Sep  8 17:39:27 2026
+||        %%%%        ||
+||        %%%%        ||  Game level: 0
+||        %%%%        ||
+||          %%        ||  Score:  38
+||        {}{}{}      ||  Pieces: 10
+||            {}      ||  Levels: 0
+||          {}{}      ||
+||          {}        ||    Use keys:
+||          {}        ||    =========
+||          %%%%      ||    Move left:  ','
+||        %%%%        ||    Move right: '/'
+||        <>          ||    Rotate:     '.'
+||        <>          ||    Drop:       ' '
+||        <>    [][]  ||    Pause:      's'
+||        <>    [][]  ||    Quit:       'q'
 ++====================++    Refresh:    '^L'

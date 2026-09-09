@@ -1,2 +1,6 @@
-$ ksh -c "cd /dd/GAMES/BOG; mkdict" < /nil; echo "status $?"
-status 0
+mkdict < /nil
+$ ls -l
+total 85504
+-rw-rw-rw-   1 0        0           80520 Aug  3 19:00 dict
+-rw-rw-rw-   1 0        0             416 Aug  3 19:00 dict.ind
+-rw-rw-rw-   1 0        0            3620 Aug  3 19:00 helpfile

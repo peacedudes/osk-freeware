@@ -1,15 +1,15 @@
 |------------------------------------------------------------------------------|
                                     Animal                                     |
  |----------------------------------------------------------------------------||
- |using datafile: DOC/animal/example                                          ||
+ |using datafile: example                                                     ||
  |----------------------------------------------------------------------------||
  |----------------------------------------------------------------------------||
  |Think of something...                                                       ||
- |was or is it a living organism? y                                           ||
- |is it a human? y                                                            ||
- |is it female (for sex-less object answer no)? y                             ||
- |is she a well known politician? y                                           ||
- |final guess: is it Indira Ghandi?                                           ||
+ |was or is it a living organism?   is it a human?   is it female (for sex-less?
+ |                                                                            ||
+ |                                                                            ||
+ |                                                                            ||
+ |                                                                            ||
  |                                                                            ||
  |                                                                            ||
  |                                                                            ||
