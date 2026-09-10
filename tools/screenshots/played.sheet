@@ -197,11 +197,14 @@ wait    2
 
 shot    wish
 size    24 80
-cap     WiSH, a windowing shell that sits on the OS-9 shell: the current
-cap     directory in a window, its files and sub-directories listed, the
-cap     one under the cursor described along the foot, and the function keys
-cap     labelled across the bottom.  A German program, English at the
-cap     keyboard.  (A different `wish' in GAMES is an unrelated hack joke.)
+cap     WiSH, a windowing shell over the OS-9 shell: the current directory in
+cap     a window, its files listed, the one under the cursor described along
+cap     the foot.  Type a command on the top line and Enter runs it.  The
+cap     labels along the bottom are function keys a vt100 does not send, so
+cap     use the control keys: Ctrl-P/N/B/F move the cursor, Ctrl-A marks a
+cap     file and Ctrl-W puts its name on the command line, Ctrl-D leaves.
+cap     German-made, English at the keyboard.  (The `wish' in GAMES is an
+cap     unrelated hack joke.)
 try     wish
 run     wish
 wait    8

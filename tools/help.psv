@@ -750,7 +750,7 @@ bite|none|it takes no options; q quits
 life|none|it takes a pattern file and nothing else
 tess|none|-f skips the title and scenario; there is no help flag
 world|none|it takes no options: run it and the adventure begins
-wish|none|it takes what you wish for and nothing else
+wish|none|WiSH the windowing shell has no -? screen; Ctrl-D leaves it, the control keys drive it (see the card).  The GAMES wish is the hack toy
 cam|none|it asks for its numbers itself; there is no help flag
 lissaj|none|it asks for its numbers itself; there is no help flag
 piano|piano -?|
