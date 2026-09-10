@@ -227,9 +227,9 @@
     <input type="search" id="q" placeholder="Search names and descriptions"
            aria-label="Search programs" autocomplete="off">
     <div class="only">
-      <span role="group" aria-label="Your shell" class="shellsw">
-        <button class="chip" id="sh-unix" aria-pressed="true" title="bash or ksh, as on this disk">bash</button>
-        <button class="chip" id="sh-os9" aria-pressed="false" title="Microware's own shell">OS-9 shell</button>
+      <span class="shellsw">
+        <button class="chip" id="sh-toggle" aria-pressed="false"
+                title="Which shell the commands are spelt for; press to switch">shell: bash</button>
       </span>
       <span role="group" aria-label="Show only">
       <button class="chip" id="f-src" aria-pressed="false">Source on disk</button>
@@ -285,11 +285,16 @@ const picked = new Set();
 let shell = "unix";
 try{ if(localStorage.getItem("shell")==="os9") shell="os9"; }catch(e){}
 const PROMPT = {unix:"bash$ ", os9:"shell$ "};
+// One button, showing the shell in force; pressing it switches to the
+// other.  The chip reads pressed when the OS-9 shell is chosen.
+const SHELL_NAME = {unix:"bash", os9:"OS-9 shell"};
 function setShell(s){
   shell = s;
   try{ localStorage.setItem("shell", s); }catch(e){}
-  document.getElementById("sh-unix").setAttribute("aria-pressed", String(s==="unix"));
-  document.getElementById("sh-os9").setAttribute("aria-pressed", String(s==="os9"));
+  const b = document.getElementById("sh-toggle");
+  b.textContent = "shell: " + SHELL_NAME[s];
+  b.setAttribute("aria-pressed", String(s==="os9"));
+  b.setAttribute("aria-label", "Commands are spelt for " + SHELL_NAME[s] + "; press for " + SHELL_NAME[s==="os9"?"unix":"os9"]);
   renderPanel(); about();
 }
 // A picture is a session: its typed lines start `$ '.  Show them at the
@@ -455,8 +460,8 @@ function about(){
     `where it came from follow.</p>`+
     `<p><b>See it run</b> was captured from the program on the disk image: keystrokes `+
     `into the console, the terminal stream rendered into the grid a vt100 `+
-    `would have shown. Nothing is mocked up. The <b>bash</b> / <b>OS-9 shell</b> switch `+
-    `above sets which shell the commands are spelt for.</p>`+
+    `would have shown. Nothing is mocked up. The <b>shell</b> button `+
+    `above names the shell the commands are spelt for; press it to switch.</p>`+
     `<p><b>Taking programs onto your own disk.</b> If this collection is your <code>/dd</code>, `+
     `everything already runs where it is. If your own OS-9 is <code>/dd</code> and this `+
     `disk is mounted alongside it, <code>keep</code> copies a program and the data files `+
@@ -656,8 +661,7 @@ function copier(codeId, buttonId){ return ()=>{
 }; }
 document.getElementById("traycopy").onclick=copier("traycmd","traycopy");
 document.getElementById("traycopydry").onclick=copier("traydry","traycopydry");
-document.getElementById("sh-unix").onclick=()=>setShell("unix");
-document.getElementById("sh-os9").onclick=()=>setShell("os9");
+document.getElementById("sh-toggle").onclick=()=>setShell(shell==="os9" ? "unix" : "os9");
 document.getElementById("trayclear").onclick=()=>{ picked.clear(); renderProgs(); tray(); };
 window.addEventListener("popstate", ()=>{ st.sel=null; st.cat=null; st.letter=null; st.q=""; fromHash(); render(); });
 document.addEventListener("keydown",e=>{
