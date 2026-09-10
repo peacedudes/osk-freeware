@@ -1,18 +1,53 @@
 # Start here, next session
 
-## NEXT: re-card every program to a higher bar -- `notes/PLAN-recard.md`
+## Where it stands (2026-09-09, evening): every card carries its own captured help
 
-The first all-card sweep gave every card a `try' line and a fresh capture but
-was too uniform: spot-checks found a truncated gothic and a roff card whose
-"help" is a mechanical scrape that stops at `Options:' with the options cut
-off.  **`notes/PLAN-recard.md' is the plan for the next attempt: visit every
-card again, one at a time, fix the help field to show each program's real
-complete `-?' output, and correct the descriptions -- text tools, text
-filters, communications and graphics first (their descriptions were never
-improved).  Read that file; it is self-contained.**
+The second pass `notes/PLAN-recard.md' asked for is done in its mechanical
+half and its reading half, category by category, in fourteen commits:
+
+- **The scrape is gone.** `usage_of()' is out of `gen_catalog.py'.
+  `tools/help.psv' says, per program, which command asks it for help (or
+  `none' with a note), `tools/helpcap.py' runs that at Microware's shell and
+  keeps the whole answer in `docs/help/<name>.txt', and the card shows the
+  command and the text under **its own help** -- unfolded, on the card,
+  not behind the details.  `tools/help-backlog.txt' is the ratchet and it
+  is EMPTY: all 935 programs have a line.  The gate `cards carry real help
+  text' fails on a missing, stale, hung, empty or cut-off capture, and
+  `check_the_checks.py' proves it both ways.
+- **The page**: help is its own section after "see it run"; "details and
+  provenance" is always open (it was a fold that closed on every shell
+  switch).  Both were rdoggett's asks.
+- **DOC/INDEX** was read entry by entry with the probe beside it: craft,
+  author names and shouting out; the 169 netpbm programs now have one real
+  entry each (the columnar block is gone, `from_index' no longer special-
+  cases NETPBM); the ADL usage table, the duplicate rxmod/vmod_trap and
+  `about' entries and the "Where a few programs live" list are cleaned up.
+  `DOC/USAGE' is regenerated from the captures (`helpcap.py --disk disk').
+- **Demos recut** where the help section made a `-?' demo redundant: the
+  serial-transfer programs (xy, z, k, dld, uld, blastem, xydown, xyt,
+  sterm, tterm, connect, uucico) now show what they do without a line.
+
+**Not done, and honest about it:** the cards were read as text dumps, not
+rendered in a browser (opening Safari on rdoggett's screen is disruptive).
+Open `docs/index.html' and read a few at random -- that is the acceptance
+test PLAN-recard names, and it has not been run by eye.
+
+**Traps met today, for the next session:**
+- `fix_index.fix' used to match star-grid rows (some names ARE small
+  words: `in', `is', `mail') and entries at three spaces or `  *name'; both
+  fixed, and it now pads a 16-letter name to two spaces (compress_rebuilt
+  had dropped out of the catalogue).  Deleting the rule line after the star
+  grid makes the grid parser eat the prose that follows -- keep it.
+- **Gate the commit on `check_disk.py`'s EXIT STATUS**, never on `grep -v
+  ok` (which succeeds when it finds failures).  One commit went in red that
+  way and was fixed in the next.
+- At Microware's shell under os9exec, bare `mv' runs the emulator's
+  built-in `move'; `load /dd/CMDS/mv' first (help.psv does).  A `chx' away
+  from CMDS loses `cio'; `load /dd/CMDS/cio' first (the GCC drivers do).
+- A heredoc python patch that asserts halfway leaves NOTHING written;
+  check the file after, not the "ok" you expected.
 
 ---
-
 
 ## The all-card sweep is DONE (2026-09-09)
 

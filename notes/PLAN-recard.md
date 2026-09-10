@@ -1,5 +1,12 @@
 # Plan: visit every card again, to a higher bar
 
+> **Status 2026-09-09 (evening): done except the by-eye acceptance.**
+> The machinery section is built (`tools/helpcap.py', `tools/help.psv',
+> `docs/help/', the gate `cards carry real help text'), every category was
+> read program by program with its captured help beside it, and the
+> backlog is empty.  What has NOT been done is reading the cards RENDERED
+> in a browser; `notes/START-HERE-NEXT-SESSION.md' says so.
+
 Hand this to a fresh session. It is self-contained. Read `CLAUDE.md` for the
 rules and `notes/PLAN.md` for the build/test mechanics; you do not need the
 rest of `notes/` or any prior chat.

@@ -2,7 +2,28 @@
 
 Only what is waiting on a decision of yours. Everything done, and why, is in
 git history and `notes/START-HERE-NEXT-SESSION.md`; this file carries none
-of it. Updated 2026-09-09.
+of it. Updated 2026-09-09, evening.
+
+
+## The recard pass (2026-09-09, evening) -- three things for you
+
+1. **Look at the page.**  `docs/index.html': help is now its own section
+   on every card, captured from the program (`its own help', with the
+   command that asked), and "details and provenance" no longer folds.
+   I read every card as text, not in a browser -- opening Safari on your
+   screen did not seem right.  A random walk through it is the test.
+2. **`uucico' and the emulator's chatter.**  `uucico seabass' makes a real
+   call attempt and prints `call 1 failed -- seabass is unavailable', which
+   is the better card -- but the pty capture also shows os9exec's own line
+   `# /t3 is /dev/ttys008 (attach with: screen ...)' when the port is
+   opened.  I kept the bare `uucico' ("no remote to call") rather than
+   put emulator text on a card.  If os9exec could keep that line off the
+   program's terminal, four cards (uucico, tsmon2, infoxpress, dld)
+   would show more.
+3. **`mv' at Microware's shell under os9exec runs the built-in `move'.**
+   Bare-name forks reach os9exec's internal commands before the disk;
+   `mv' is one of them.  The help capture loads the module first.  Worth
+   knowing if you ever wonder why `mv -?' documents move.
 
 
 
@@ -24,12 +45,9 @@ round-trip, a draw-once screen).
 
 **Two loose ends, both non-blocking:**
 
-- **DOC/INDEX de-shouting for four categories.** The per-card captions are
-  clean, but the underlying `DOC/INDEX' one-liners for communications,
-  graphics, text tools and text filters still carry some ALL-CAPS emphasis:
-  the subagents on those four hit the account session limit (or stalled)
-  before writing their index edits. The cards read fine; this is the
-  underlying data. `tools/audit_caps.py --show INDEX' lists them.
+- **DOC/INDEX de-shouting** -- done 2026-09-09 (evening), every category;
+  what `tools/audit_caps.py --show INDEX' still lists is format names and
+  acronyms (ALPS, FITS, GEM, Y2K), which are allowed.
 
 - **Best-forgotten candidates, consolidated** (each has an honest card as far
   as it goes; removing any is your call):
