@@ -1,0 +1,4 @@
+$ eunlink -?
+Syntax: eunlink {<event>}
+Function: unlink an event
+Options: none

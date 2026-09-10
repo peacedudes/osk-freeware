@@ -1,0 +1,14 @@
+$ space -?
+Syntax:   space [<opts>] {<dir/file path>} [<opts>]
+Function: Shows effective space requirements of directory trees and single
+          files on a given disk. "Effective" space means that not
+          only net file sizes, but also all space consumed by the
+          file system itself such as file descriptors, directory
+          files and partially used clusters is taken into account
+Options:  -c=<clustersize> : assume specified cluster size for space
+                             requirement calculation
+          -d=<disk>        : assume specified disk's cluster size
+                             for space requirement calculation
+          -g               : show grand total only
+          -k               : show KBytes instead of Sector count
+V1.1 Ed#4 (c) 1990 by L.Zeller

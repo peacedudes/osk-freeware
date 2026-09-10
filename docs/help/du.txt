@@ -1,0 +1,4 @@
+$ du -?
+Syntax: du <directory>
+Function: displays information about disk usage
+Options : -a displays just the final summary

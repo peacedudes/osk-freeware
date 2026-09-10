@@ -1,0 +1,6 @@
+$ edir -?
+Syntax: edir [<opts>]
+Function: display event directory
+Options:
+	-e	print extendet event directory
+	-u	print unformatted listing

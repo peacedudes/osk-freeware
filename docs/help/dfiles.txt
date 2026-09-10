@@ -1,0 +1,15 @@
+$ dfiles -?
+dfiles 0.7
+Usage:
+dfiles <path> [<path> ...]
+Function:
+	recursive directory scan:
+	finds double files on disk and
+	issues the necessary 'cmp' commands
+	files may be excluded from compare by an exclude list
+Options:
+  -v            verbose mode
+  -e[=<file>]   exclude list
+  -z[=<file>]   dir list
+  -c            execute the 'cmp'
+  -d            use 'diff' instead of 'cmp'

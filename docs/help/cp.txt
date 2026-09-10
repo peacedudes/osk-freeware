@@ -1,0 +1,12 @@
+$ cp -?
+Usage: cp file1 file2
+  or   cp file1 file2 .. dir
+    copy one file literally to another, or
+     copy several files to a directory.
+   options:
+    -c    confirm before overwrite
+    -n    noisy (tells of copies)
+    -u    upcase before compare
+    -v    verify the data written
+  file spec can include meta chars, but not dir
+cp: cp is not directory

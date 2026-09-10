@@ -1,0 +1,7 @@
+$ owner -?
+owner: change ownership of files
+         (super user only)
+Usage: owner user file file ...
+Where:
+User    = group.userno or username
+Options = -?

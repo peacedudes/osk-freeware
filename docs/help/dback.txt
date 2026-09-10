@@ -1,0 +1,16 @@
+$ dback -?
+Usage: Dback [-options] <fromdir> <todir> [-options]
+     -b=<no>k= copy buffer
+     -d=file = backup selected directory
+     -e      = execute
+     -f=xxx  = omit files suffixed xxx (default:_BAK)
+     -k      = omit OS9Boot files
+     -l      = no recursion
+     -p      = pause before copying
+     -s=file = start copying at
+     -t=file = terminate copying at
+     -v      = verify
+     -?      = report help
+Defaults
+ source directory (default =  . )
+ target directory (default = /d0)

@@ -1,0 +1,21 @@
+$ dir -?
+Dir Version 1.08  (C) 1988 by Lim. (Modified by L.Z)
+Syntax: dir [<opts>] {<dir names> [<opts>]}
+Function: display directory contents
+Options:
+     -a        show all files
+     -c        show creation date
+     -d        show directories with a slash
+     -e        extended dir listing
+     -f        show fragmentation and link count
+     -h        show file size in hex
+     -k        show file size in kilo bytes
+     -m        sort 'last modified' field
+     -n        treat dirs like files
+     -p        follow the PATH environment dir names
+     -r        recursive dir listings
+     -r=<num>  recursive dir listing to depth <num>
+     -s        unsorted dir listing
+     -u        unformatted listing
+     -x        directory is execution dir
+     -z        read dir names from stdin

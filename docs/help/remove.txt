@@ -1,0 +1,6 @@
+$ remove -?
+Syntax   : remove [<opt>] [<modules>] [<opt>] [<modules>] [<opt>]
+Function : remove modules from memory
+Options  : -?  show this text
+           -q  quiet opertaion
+ V1.0, written by Stephan Paschedag

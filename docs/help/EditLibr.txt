@@ -1,0 +1,10 @@
+$ EditLibr -?
+Syntax: EditLibr [opts]
+Librarian Card Catalog file editor
+This program is used to edit and maintain Card Catalog Files
+Options:
+-editfile	String Required The name of the file to edit
+-minpages	Integer Optional The minimum # of pages to set aside when creating a new file
+
+	Version: V1.0Beta
+	Copyright (c) 1991,1992 Robert Heller D/B/A Deepwoods Software

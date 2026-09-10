@@ -1,0 +1,9 @@
+$ l -?
+Usage: l [-options] [file] [file] [-options]
+    -no  = width (default 79, max 256)
+    file = list of files to be listed
+    -f   = form feed after each file
+    -l   = end line at line feed
+    -t=n = tab-stop every 'n' characters (default = 4)
+    -z=xx= read filenames from xx (default = stdin)
+    -?   = report help

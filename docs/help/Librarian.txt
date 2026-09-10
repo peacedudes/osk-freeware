@@ -1,0 +1,9 @@
+$ Librarian -?
+Syntax: Librarian [opts]
+Librarian Card Catalog query program
+This program is used to search a Card Catalog file
+Options:
+-infile	String Required The name of the file to search
+
+	Version: V1.0Beta
+	Copyright (c) 1991,1992 Robert Heller D/B/A Deepwoods Software

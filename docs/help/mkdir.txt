@@ -1,0 +1,3 @@
+$ mkdir -?
+mkdir: unrecognized option `-?'
+Usage: mkdir [-p] [-m mode] [+path] [+mode mode] dir...

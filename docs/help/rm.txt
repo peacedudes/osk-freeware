@@ -1,0 +1,4 @@
+$ rm -?
+rm: unrecognized option `-?'
+Usage: rm [-dfirvPR] [+directory] [+force] [+interactive] [+recursive]
+       [+verbose] [+no-permission] path...

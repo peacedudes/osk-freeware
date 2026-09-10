@@ -1,0 +1,5 @@
+$ fstat -?
+Syntax: FStat [<opts>] <file1> [<opts>]
+Function: Display file descriptor information
+Options:
+    -s  display file segment list

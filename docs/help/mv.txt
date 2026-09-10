@@ -1,0 +1,11 @@
+$ load /dd/CMDS/mv; mv --help
+mv: unrecognized option `--'
+Usage: mv [-bfiuv] [-S backup-suffix] [-V {numbered,existing,simple}]
+       [+backup] [+force] [+interactive] [+update] [+verbose]
+       [+suffix backup-suffix] [+version-control {numbered,existing,simple}]
+       source dest
+
+       mv [-bfiuv] [-S backup-suffix] [-V {numbered,existing,simple}]
+       [+backup] [+force] [+interactive] [+update] [+verbose]
+       [+suffix backup-suffix] [+version-control {numbered,existing,simple}]
+       source... directory

@@ -319,7 +319,7 @@
 | `gdd` | &#9733; GNU dd, a block copier and converter: `gdd if=<file> bs=<n> skip= seek= count=', and `conv=ucase' converts on the way through. `of=' can only name a file that already exists, so send the output through `>' instead<br>**How:** GNU dd -- a block copier and converter. `gdd if=<file> bs=8 count=1' copies eight bytes, `conv=ucase' converts on the way through. `of=' can only name a file that already exists, so send the output through `>'. Give it arguments. It uses Microware's cio; `dump' is the hex dump here. |
 | `gep` | &#9733; global expression parser -- grep-like; its `-e' takes the PATH OF A FILE holding the expressions: `gep -e=/dd/tmp/patterns <file>'. A file of patterns applied at once is what it is for and nothing else here does it. See DOC/README-GREP<br>**How:** Its expressions come from a FILE named with `-e', which its own option list marks `(required)': `gep -e=<patterns> <source>'. Handing it a pattern and a file the way you would grep earns `more than one path specified'. |
 | `head` | prints the first lines of a file: `head -n 20 file'. This GNU build wants -n 20, not -20<br>**How:** First lines of a file. This GNU build wants `head -n 20 file' -- the older `head -20' form is rejected as an unrecognized option. Needs cio. |
-| `l` | &#9733; list a text file with word wrap and a carriage return at the end of every line -- `l -<width> <file>', 79 columns by default. Written for Stylo documents and other long-line files. It takes files, not directories |
+| `l` | &#9733; list a text file with word wrap and a carriage return at the end of every line -- `l -<width> <file>', 79 columns by default. Written for Stylo documents and other long-line files. It takes files, not directories<br>`Usage: l [-options] [file] [file] [-options]` |
 | `paste` | joins files line by line, side by side and tab-separated: `paste f1 f2'; -d picks another separator and -s lays one file's lines along a single line<br>**How:** Joins lines side by side, tab-separated by default: `paste f1 f2'. `-d:' picks another separator; `-s' puts one file's lines on a single line. |
 | `pep` | a file detergent: strips control characters and non-ASCII (-b), converts between the DEC, IBM-PC, Macintosh and WordStar character sets, expands tabs and sets the line terminator (-u)<br>`pep  ver. 2.1; Copyright (c) 1989 Gisle Hannemyr` |
 | `psc` | &#9733; turns an ASCII table into commands for `sc', the spreadsheet: `psc -d' ' < table' answers `let A0 = 1', `let B0 = 2' and a `format' line per column. -d sets the field delimiter, -r assembles rows first, -s names the top-left cell<br>**How:** Feeds `sc', the spreadsheet: `psc -d' ' < table' turns rows of numbers into `let A0 = 1' commands sc can read. -r assembles rows first, -s names the top-left cell, -d sets the delimiter. |
@@ -344,66 +344,66 @@
 
 | | |
 |---|---|
-| `chgrp` | &#9733; change group |
-| `chown` | &#9733; change owner |
-| `fstat` | display a file's file descriptor -- the RBF file-descriptor sector, not the attribute bits `attr' shows you. Its own Function line says `Display file descriptor information' and it reports itself as `FStat'. `-s' adds the segment list, and `ssl' shows the same list from the same sector |
-| `owner` | &#9733; change a file's owner -- `owner <user> <file> ...', super user only. Run with a file it prints its usage; run as `owner <file>' it reads the filename as a user name and answers `No such user'. `fstat' and `ls -l' are what show an owner |
+| `chgrp` | &#9733; sets the group half of a file's owner, by number or by name<br>`chgrp: Usage:  chgrp [-z] {numerical-gid \| username} [file [... file]]` |
+| `chown` | &#9733; sets the user half of a file's owner, group.user, by number or by a name from SYS/password<br>`chown: Usage:  chown [-z] {numerical-uid \| username} [file [... file]]` |
+| `fstat` | display a file's file descriptor -- the RBF file-descriptor sector, not the attribute bits `attr' shows you. Its own Function line says `Display file descriptor information' and it reports itself as `FStat'. `-s' adds the segment list, and `ssl' shows the same list from the same sector<br>`Syntax: FStat [<opts>] <file1> [<opts>]` |
+| `owner` | &#9733; change a file's owner -- `owner <user> <file> ...', super user only. Run with a file it prints its usage; run as `owner <file>' it reads the filename as a user name and answers `No such user'. `fstat' and `ls -l' are what show an owner<br>`owner: change ownership of files` |
 
 **Copy, move, delete**
 
 | | |
 |---|---|
-| `cp` | &#9733; copy files -- `cp <from> <to>' copies the bytes across.  Run with no arguments it prints its usage and then stops on a bus error |
-| `dback` | directory backup: walks a directory and issues an OS-9 `copy' for every file that has changed, so what you see is the list of copies it wants |
-| `delbak` | &#9733; delete backup files (*_bak) in a directory tree |
-| `move` | &#9733; move files between directories without copying the contents -- it relinks them, which is why it is quick and why its own help warns never to kill it mid-run. `move <from> <to>' wants a destination name; -w=<dir> is the wildcard form that takes a directory. |
-| `mv` | &#9733; GNU mv (fileutils 3.13) -- rename a file or move it into a directory; `-i' asks before overwriting, `-b' keeps a backup, `-v' names what it moved |
-| `rm` | &#9733; remove files |
-| `undel` | &#9733; undelete a file |
+| `cp` | &#9733; copy files -- `cp <from> <to>' copies the bytes across.  Run with no arguments it prints its usage and then stops on a bus error<br>`Usage: cp file1 file2` |
+| `dback` | directory backup: walks a directory and issues an OS-9 `copy' for every file that has changed, so what you see is the list of copies it wants<br>`Usage: Dback [-options] <fromdir> <todir> [-options]` |
+| `delbak` | &#9733; delete backup files (*_bak) in a directory tree<br>`Usage: delbak [-options] [directory] [-options]` |
+| `move` | &#9733; move files between directories without copying the contents -- it relinks them, which is why it is quick and why its own help warns never to kill it mid-run. `move <from> <to>' wants a destination name; -w=<dir> is the wildcard form that takes a directory.<br>`Syntax:   move [<options>] <from> [<to>] [<options>]` |
+| `mv` | &#9733; GNU mv (fileutils 3.13) -- rename a file or move it into a directory; `-i' asks before overwriting, `-b' keeps a backup, `-v' names what it moved<br>`mv: unrecognized option `--'` |
+| `rm` | &#9733; GNU rm: removes files, whole directories with -r, asking first with -i, naming each with -v<br>`rm: unrecognized option `-?'` |
+| `undel` | &#9733; brings back a deleted file: it asks for the directory, offers each deleted name RBF still holds (the first letter overwritten), and asks twice before writing<br>`usage: undel  [ -opt ] [ full directory name ] [ -opt ]` |
 
 **Create & rename**
 
 | | |
 |---|---|
-| `mkdir` | &#9733; make directory |
-| `rendsk` | &#9733; rename a disk volume |
+| `mkdir` | &#9733; makes a directory; -p makes every directory on the way to it, -m sets its mode<br>`mkdir: unrecognized option `-?'` |
+| `rendsk` | &#9733; changes the volume name of a disk -- the name in its identification sector, not any file on it; super user only<br>`Syntax:   rendsk [<opts>] <disk device> <new name>` |
 
 **Find & compare**
 
 | | |
 |---|---|
-| `dfiles` | &#9733; find duplicate files under a directory and write out the `cmp' commands that would prove them identical, so the list itself is the answer |
-| `du` | &#9733; disk usage, by directory |
+| `dfiles` | &#9733; find duplicate files under a directory and write out the `cmp' commands that would prove them identical, so the list itself is the answer<br>`dfiles 0.7` |
+| `du` | &#9733; adds up what a directory tree holds -- bytes, kilobytes, sectors and the number of files -- one line per directory, with a total<br>`Syntax: du <directory>` |
 | `ff` | &#9733; find files by name -- `ff <name>'.  It builds the command `dir -ausr ! grep <name>' and hands it to Microware's `shell'. `find' does the same job |
-| `find` | &#9733; find 1.1.5 -- search a directory tree, with its own syntax: `-n=<name>' matches and `-o' prints what it found. (`find <dir> -name x -print' answers `only one parameter allowed'.)  The manual in DOC/find describes a different find. |
-| `space` | &#9733; effective disk usage  [conditions apply -- run `help space`] |
+| `find` | &#9733; find 1.1.5 -- search a directory tree, with its own syntax: `-n=<name>' matches and `-o' prints what it found. (`find <dir> -name x -print' answers `only one parameter allowed'.)  The manual in DOC/find describes a different find.<br>`Syntax: find {<opts>} [<path>]` |
+| `space` | &#9733; effective disk usage: what a tree costs on the disk, descriptors, directories and part-used clusters included, rather than what it contains. Conditions apply; `help space' has them<br>`Syntax:   space [<opts>] {<dir/file path>} [<opts>]` |
 
 **Home Librarian**
 
 | | |
 |---|---|
 | `Ascii2Libr` | Home Librarian: build a catalogue from plain text -- `Ascii2Libr -outfile cat.libr', with the text on standard input, in the form Libr2Ascii writes<br>**How:** `-outfile cat.libr' with a space, and it reads the ASCII on standard input. The text is the form Libr2Ascii writes: a page count, then a card count and the cards, then the title, author and subject index sections. |
-| `EditLibr` | Home Librarian: edit a catalogue<br>**How:** Part of the HL10 librarian set. Wants an edit file as a parameter; `EditLibr' alone prints its syntax. |
-| `Libr2Ascii` | Home Librarian: dump a catalogue to plain text<br>**How:** `-infile cat.libr' with a space. It writes the catalogue to standard output as text, and a page count and four index-key counts at the end -- all zero means the catalogue is empty. |
+| `EditLibr` | Home Librarian: builds and maintains a catalogue -- add, edit and delete cards -- `EditLibr -editfile cat.libr'<br>**How:** Part of the HL10 librarian set. Wants an edit file as a parameter; `EditLibr' alone prints its syntax. |
+| `Libr2Ascii` | Home Librarian: dumps a catalogue to plain text on standard output, `Libr2Ascii -infile cat.libr', in the form Ascii2Libr reads back<br>**How:** `-infile cat.libr' with a space. It writes the catalogue to standard output as text, and a page count and four index-key counts at the end -- all zero means the catalogue is empty. |
 | `Librarian` | Home Librarian: search a catalogue. Six programs and their docs travel together -- its licence requires it<br>**How:** One of six Home Librarian programs that must stay together -- its licence says so. Start here to search a catalogue; EditLibr edits one, Ascii2Libr builds one from text, Libr2Ascii dumps it back, PrintCards and PrintLabels print it. Manual in DOC/homelibr. |
-| `PrintCards` | Home Librarian: print catalogue cards |
+| `PrintCards` | Home Librarian: prints a catalogue as index cards, the shelf list by default or the title, author or subject reference cards with -by<br>`Syntax: PrintCards [opts]` |
 | `PrintLabels` | Home Librarian: print labels. Its options each take a separate argument -- `-infile cat.libr -templatefile tpl.txt', not `-infile=...', which answers `Bad option:' and prints the syntax. The same is true of Ascii2Libr, Libr2Ascii, PrintCards and EditLibr. The template is a text file copied out once per card, with %title, %author, %year and the other field names replaced<br>**How:** Its options take a separate argument -- `-infile cat.libr -templatefile tpl.txt', never `-infile=...', which answers `Bad option:' and prints the syntax. The same is true of Ascii2Libr, Libr2Ascii, PrintCards and EditLibr. The template is a text file copied out once per card with %title, %author, %year and the other field names replaced. |
 
 **List & navigate**
 
 | | |
 |---|---|
-| `dir` | &#9733; directory listing -- `dir [<opts>] <directory>'; `-e' adds owner, dates, attributes and size |
+| `dir` | &#9733; directory listing -- `dir [<opts>] <directory>'; `-e' adds owner, dates, attributes and size<br>`Dir Version 1.08  (C) 1988 by Lim. (Modified by L.Z)` |
 | `dm` | &#9733; Disk Master 1.4, a full-screen two-pane disk and directory browser with a file-information panel beside the listing.  It runs the commands on its bottom line through system(), so SHELL must name a shell that can carry them out: with SHELL=/dd/CMDS/sh it runs completely.  Its help file is SYS/dm.hlp<br>**How:** Disk Master 1.4, a full-screen disk browser. It runs the commands on its bottom line through system(), so SHELL must name a shell that can carry them out; with SHELL=/dd/CMDS/sh it runs completely, listing and file-information panel and all. |
-| `ls` | GNU ls (fileutils 3.13) -- a real stat(), columns, and `-al' |
-| `tree` | print a directory tree, drawn with line graphics -- directories only, sorted, from the directory you name |
+| `ls` | GNU ls (fileutils 3.13) -- a real stat(), columns, and `-al'<br>`Usage: ls [OPTION]... [FILE]...` |
+| `tree` | print a directory tree, drawn with line graphics -- directories only, sorted, from the directory you name<br>`tree, v1.21 - 28.04.90 - updated 17.06.90` |
 
 **Paths**
 
 | | |
 |---|---|
-| `basename` | &#9733; strip directory from a pathname |
-| `dirname` | &#9733; strip filename from a pathname |
+| `basename` | &#9733; prints the last part of a path -- the file name with every directory dropped -- and drops a suffix too if one is given as a second argument<br>`basename v1.0 (c) M.C.Gregorie, 1994` |
+| `dirname` | &#9733; prints the directory part of a path: everything up to the last slash<br>`dirname v1.0 (c) M.C.Gregorie, 1994` |
 
 **Split & join**
 
@@ -1412,9 +1412,9 @@
 | | |
 |---|---|
 | `aprocs` | &#9733; process monitor.  It calls F$SetSys twice and is aborted (E_PRCABT) where that call is not implemented.  `procs', `top' and `sysmon' are the other process listers. |
-| `edir` | &#9733; list the event directory -- OS-9 events and their values |
-| `eset` | &#9733; set an OS-9 event to a value -- eset <event> <num> |
-| `eunlink` | &#9733; unlink an OS-9 event by name -- `eunlink <event>'. `edir' lists the events and `eset' sets one |
+| `edir` | &#9733; list the event directory -- OS-9 events and their values<br>`Syntax: edir [<opts>]` |
+| `eset` | &#9733; set an OS-9 event to a value -- eset <event> <num><br>`Syntax: eset <event> <num> [<opts>]` |
+| `eunlink` | &#9733; unlink an OS-9 event by name -- `eunlink <event>'. `edir' lists the events and `eset' sets one<br>`Syntax: eunlink {<event>}` |
 | `launch` | &#9733; M.C.Gregorie's login helper: reads SYS/config, sets the environment for your terminal type -- and optionally a default PATH and emacs bindings -- then starts the shell you name on its command line.  It does not put anything in the background<br>**How:** Says "nothing to launch" until it is configured -- see its documentation. |
 | `signal` | &#9733; send a signal to a process |
 | `sysmax` | &#9733; shows the system's maximum process AGE -- `system maximum age is 0' unless the kernel answers the F$SetSys call it uses. |

@@ -1,0 +1,14 @@
+$ find -?
+Syntax: find {<opts>} [<path>]
+Function: finds files in Filesystem
+Options :
+	-o              output the found pathnames
+	-~              only non matching files
+	-n=[-]<string>  files with name <string> (wildcards allowed)
+	-p=<num>        files with permissions <num> (<num> is octal)
+	-u=[-]<num>     files which belong to user <num>
+	-g=[-]<num>     files which belong to group <num>
+	-s=[+|-]<num>   files are <num> blocks long (256 Byte/Block)
+	-e=<string>     execute <string> on matching files
+	-a=<string>     ask for executing <string> on matching files
+	-l=<num>        recursive search to depth <num>

@@ -1,0 +1,4 @@
+$ dm -?
+Usage: DiskMaster [-c] [-d<dir name>]
+       -c don't clear screen on exit
+       dir name is initial directory

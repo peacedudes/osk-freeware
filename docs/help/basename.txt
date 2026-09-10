@@ -1,0 +1,8 @@
+$ basename -?
+basename v1.0 (c) M.C.Gregorie, 1994
+
+Syntax:   basename <path> [<suffix>]
+Function: Outputs string after deleting any
+          prefix ending in / and the suffix
+          if it is present
+Options:  none

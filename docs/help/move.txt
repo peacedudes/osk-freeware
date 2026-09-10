@@ -1,0 +1,9 @@
+$ move -?
+Syntax:   move [<options>] <from> [<to>] [<options>]
+Function: Moves files from one directory to another without
+          actually copying the file contents
+Options:  -d : move subdirectories too (required with -w only)
+          -p : don't print file names moved (with -w only)
+          -w=<dir name> : wildcard move to specified directory
+          -x : look in execution directory for source
+          -r : rewrite destination

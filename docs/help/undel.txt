@@ -1,0 +1,5 @@
+$ undel -?
+usage: undel  [ -opt ] [ full directory name ] [ -opt ]
+       undelete Files in Directory < full pathname >
+       options: -? prints usage message
+                -e extended info about undeleting

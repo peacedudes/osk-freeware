@@ -1,0 +1,7 @@
+$ dirname -?
+dirname v1.0 (c) M.C.Gregorie, 1994
+
+Syntax:   dirname <path>
+Function: Outputs string after deleting
+          anything after the final /
+Options:  none

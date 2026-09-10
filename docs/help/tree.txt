@@ -1,0 +1,13 @@
+$ tree -?
+tree, v1.21 - 28.04.90 - updated 17.06.90
+Syntax: tree [<directory>] [<opts>]
+Function: print all subdirectories as a tree
+          use special graphics for VT100 compatibles
+          and for IBM compatibles printers and ATARI ST
+Options:
+   -f    print all files
+   -w=n  limit name field width to n characters
+   -d    internal debug flag
+   -a    force terminal type to be ANY_TERM
+   -v    force terminal type to be VT100
+   -s    force terminal type to be ST/IBM

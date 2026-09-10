@@ -1,0 +1,6 @@
+$ delbak -?
+Usage: delbak [-options] [directory] [-options]
+     -n      = no recursion
+     -l      = list only
+     -f=<ext>= extension to delete, default _bak
+     -?      = report help

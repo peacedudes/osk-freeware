@@ -1,0 +1,6 @@
+$ rendsk -?
+Syntax:   rendsk [<opts>] <disk device> <new name>
+Function: Changes Volume name of disk devices
+Notes:  - ONLY SUPERUSERS may use rendsk
+        - if new name contains spaces, surround it with double quotes
+V1.0 Ed#1 (c) 1990 by L.Zeller

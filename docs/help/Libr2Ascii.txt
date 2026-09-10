@@ -1,0 +1,9 @@
+$ Libr2Ascii -?
+Syntax: Libr2Ascii [opts]
+Convert a Librarian Card Catalog file to a plain ASCII text file.
+Output is sent to stdout.
+Options:
+-infile	String Required Input file
+
+	Version: V1.0Beta
+	Copyright (c) 1991,1992 Robert Heller D/B/A Deepwoods Software

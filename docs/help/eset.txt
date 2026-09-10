@@ -1,0 +1,5 @@
+$ eset -?
+Syntax: eset <event> <num> [<opts>]
+Function: set event to a new value
+Options:
+	-a	start all waiting processes
