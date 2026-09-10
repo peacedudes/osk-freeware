@@ -1061,7 +1061,11 @@ def check_cards_carry_real_help(root):
             bad.append("`%s' printed nothing for `%s'" % (name, cmd))
         elif helpcap.NO_ANSWER in text:
             bad.append("`%s' hangs on `%s'" % (name, cmd))
-        elif text.rstrip().endswith(":"):
+        elif re.match(r"^[A-Za-z][A-Za-z ]{0,30}:$", text.rstrip().split("\n")[-1].strip()):
+            # A bare heading as the last line -- `Options:', `Commands:' --
+            # is an option list cut off before it began.  A usage line
+            # that happens to end in a colon (`Usage: mslabel [-vscV]
+            # drive:') is not, and was a false alarm on 2026-09-09.
             bad.append("`%s': help ends at `%s' -- cut off?" % (name, text.rstrip().split("\n")[-1].strip()))
     for b in bad[:12]:
         print("    %s" % b)

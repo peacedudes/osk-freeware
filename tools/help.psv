@@ -458,7 +458,7 @@ liborder|liborder -?|
 unpacklib|unpacklib -?|
 help|help -?|
 helpindex|helpindex -?|
-less|less -?|
+less|none|`h' inside less is its help screen (SYS/less.hlp); it takes file names, and a flag it does not know opens that screen and waits
 lessecho|lessecho -?|
 lesskey|lesskey -?|
 msinfo|msinfo -?|

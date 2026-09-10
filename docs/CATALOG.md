@@ -1680,7 +1680,7 @@
 |---|---|
 | `help` | help system: `help <topic>' pages the topic's article from a .hlp file in SYS/HELP and then offers its subtopics; `help help' explains the format. bash has a help builtin of its own that answers first, so `enable -n help' there<br>**How:** `help dinfo'. At bash type `enable -n help' first, or bash's own help builtin answers instead. |
 | `helpindex` | &#9733; builds the .ndx index a .hlp help file needs: `helpindex dinfo.hlp' writes dinfo.ndx beside it<br>**How:** `helpindex dinfo.hlp' writes dinfo.ndx beside it. Only names ending .hlp or .hlib are accepted unless -a is given; with no name it asks for one. |
-| `less` | pager: space or f for the next page, b for the one before, / to search, h for its help screen (SYS/less.hlp), q to leave. Reads the terminal from TERM and TERMCAP<br>`SUMMARY OF LESS COMMANDS` |
+| `less` | pager: space or f for the next page, b for the one before, / to search, h for its help screen (SYS/less.hlp), q to leave. Reads the terminal from TERM and TERMCAP |
 | `lessecho` | &#9733; prints its arguments back quoted for a shell -- the helper less uses to hand file names on<br>`usage: lessecho [-ox] [-cx] [-pn] [-dn] [-a] file ...` |
 | `lesskey` | turns a key-binding file into the binary less reads: a `#command' section, then one key and one command per line<br>`usage: lesskey [-o output] [input]` |
 
