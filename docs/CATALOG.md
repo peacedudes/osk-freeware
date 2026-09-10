@@ -1315,14 +1315,14 @@
 | | |
 |---|---|
 | `name` | &#9733; invents pronounceable names for the characters in a tabletop game, as many as you ask for, dealing vowels and consonants in turn with the letter frequencies of a Scrabble set |
-| `newsgen` | &#9733; generate a fake news bulletin |
+| `newsgen` | &#9733; makes up a news bulletin at random from parts -- a top story of public figures, deeds, places and reactions, then the weather -- different every run<br>`"news" or "news lp"` |
 | `pwgen` | &#9733; pronounceable passwords: `pwgen <length> [how many]'<br>**How:** pwgen <length> [count]: length 4 to 16. It takes a few seconds over each password, so allow for that. |
 | `rndname` | &#9733; invents pronounceable names, as many as you ask for -- the earlier version of `name', with every letter equally likely, so the names come out more exotic |
-| `rpoem` | &#9733; random poem generator (SNOBOL4-in-C).  Data: GAMES/SNOBOL |
+| `rpoem` | &#9733; writes verses at random from a grammar and a word list in GAMES/SNOBOL; a number says how many, thirty without one |
 | `rstory` | a cumulative tale in the shape of The Old Woman and Her Pig, the animal, the obstacle and every helper drawn at random; `rstory \| tformat' sets it justified under a dated heading. Data: GAMES/SNOBOL |
 | `rstory2` | &#9733; asks your name, sex, favourite animal and colour and a setting, then hands them through the shell to a story program (rstory_W, rstory_S, rstory_C or rstory_G) whose story goes through tformat to the printer at /p1. The four story programs did not come with it, so the questions are as far as it goes |
 | `scales` | &#9733; deals scales and chords into a random practice order, a tick-box each, in `scales.lst' in the current directory (or a file you name): -d diatonic scales, -a altered scales, -m modes, -c chords; each entry gives the key signature and the spelling<br>**How:** Pick at least one of -d -a -m -c or it asks what you had in mind; `scales -d -c' writes 195 entries to scales.lst, and a trailing name writes elsewhere. |
-| `travesty` | rewrites its input as plausible nonsense, by Markov chains: `travesty -n400 < file' for 400 characters of it |
+| `travesty` | rewrites its input as plausible nonsense, by Markov chains: `travesty -n400 < file' for 400 characters of it<br>`travesty makes a travesty of its input.` |
 
 **Simulated weather**
 
@@ -1571,9 +1571,9 @@
 
 | | |
 |---|---|
-| `ephem` | &#9733; ephem - astronomical ephemeris<br>**How:** An astronomical ephemeris: `ephem -c /dd/SYS/ephem.cfg -d /dd/SYS/ephem.db'. RETURN passes the opening page; any key stops the loop; ? is help; control-D quits. |
-| `ephem881` | &#9733; ephem, 68881 build<br>**How:** The same as ephem, built for a 68881 coprocessor. Control-D quits. |
-| `lunisolar` | &#9733; lunar and solar position calculator |
+| `ephem` | &#9733; an astronomical ephemeris: a live panel of the sun, moon and planets -- right ascension, declination, azimuth, altitude and more -- for a site and time, from the configuration and star database in SYS. RETURN passes the opening page, control-D quits<br>**How:** An astronomical ephemeris: `ephem -c /dd/SYS/ephem.cfg -d /dd/SYS/ephem.db'. RETURN passes the opening page; any key stops the loop; ? is help; control-D quits. |
+| `ephem881` | &#9733; ephem built for a 68881 floating-point coprocessor: the same panel, and with hardware floating point the whole table fills in at once<br>**How:** The same as ephem, built for a 68881 coprocessor. Control-D quits. |
+| `lunisolar` | &#9733; the phase of the moon in one line; given a year and a time zone it writes a whole lunisolar calendar as LaTeX instead<br>`Bad args: lunisolar -?` |
 | `nasa` | &#9733; NASA orbital-element reader. Wants `nasa.dat' in the current directory: NORAD two-line element sets -- a name line, then TLE line 1 and line 2 per satellite -- and writes kepler.dat. No element set ships here; supply a current one. The format is parsed in SRC/eff_orbit/nasa.c and is column- sensitive<br>**How:** Put NASA two-line elements in nasa.dat in the current directory and run `nasa'; it writes kepler.dat, which `orbit' reads. No element set ships; they are published for every satellite. |
 | `orbit` | &#9733; the N3EMO satellite tracker, version 3.7: where a satellite is from a site, hour by hour -- azimuth, elevation, doppler, range and transponder mode.  It opens kepler.dat, mode.dat and a <site>.sit by bare name from the current directory, and DOC/orbit holds them (pgh, bern and zuerich sites), so run it from there: `chd /dd/DOC/orbit' and `orbit', or under bash `ksh -c "cd /dd/DOC/orbit; orbit"'.  `nasa' makes a kepler.dat from published two-line elements<br>**How:** It reads kepler.dat, mode.dat and a <site>.sit by bare name from the current directory, and DOC/orbit holds them: `ksh -c "cd /dd/DOC/orbit; orbit"'. Answer d for a day's table, then the site (pgh), the date, the start hour, the step and the length. |
 
@@ -1582,7 +1582,7 @@
 | | |
 |---|---|
 | `cal` | &#9733; Calendar. `cal -h' prints holidays with it -- SYS/holidays is here, and SYS/birthdays is an empty template for your own dates. SYS/cal.init is a printer setup for a laser<br>**How:** `cal -m=<month> -y=<year>', with flags. -h marks the holidays in SYS/holidays and anything you add to SYS/birthdays, which it includes. |
-| `calen` | calendar printer (v_misc) |
+| `calen` | prints a month as a diary page, ruled for appointments, with the neighbouring months as small calendars in the corners. It reads the month, the year and how many months from its input: `echo 9 2026 1 \| calen'<br>`Invalid flag: -?` |
 | `calender` | &#9733; print a whole year's calendar (German)<br>**How:** A whole year at once, in German. It asks `Fuer welches Jahr?' (which year); RETURN at the question ends it. |
 | `greg` | &#9733; converts a Julian day number to a Gregorian date: `greg 2461281' is the 29th of August 2026<br>**How:** It converts a Julian day number to a Gregorian date and is nothing to do with regular expressions: `greg 2460000' answers `2023 2 25'. |
 | `today` | date, moon phase and this-day-in-history |
@@ -1591,10 +1591,10 @@
 
 | | |
 |---|---|
-| `digclk` | &#9733; digital clock with hostname |
+| `digclk` | &#9733; a clock in block digits with the machine's name above it and the date below, redrawn once a minute, or every so many seconds as given<br>`Usage: digclk [refresh_rate]` |
 | `gcl` | &#9733; a grand digital clock: the time drawn large across the terminal and redrawn as it runs.  `-n=<seconds>' runs it for that long; -s scrolls the digits, -i inverts the video<br>**How:** A full-screen digital clock: `gcl' runs until stopped, `gcl -n=10' for ten seconds; -s scrolls the digits, -i inverts the video. |
 | `qt` | &#9733; tells the time in words, the way a person would say it: `It's just gone ten past four.' |
-| `setimex` | &#9733; set time from hardware clock |
+| `setimex` | &#9733; checks the system clock against a hardware time source and sets it: -s=<date> sets a date outright, -t tests, and -x or -e make the exit status say whether the time was right<br>`SETIMEX  Version UTIL 2.80 by DESIGNA VLT 03.08.98` |
 
 </details>
 

@@ -384,3 +384,38 @@ rdjpgcom|rdjpgcom -?|
 wrjpgcom|wrjpgcom -?|
 rdjpgcom.070|rdjpgcom.070 -?|
 wrjpgcom.070|wrjpgcom.070 -?|
+areacode|none|it takes area codes and nothing else; one it does not know it calls no area code
+biory|none|it asks its questions itself, in German; load os9lib first. There is no help flag
+bio|none|a BASIC09 program run by runb; it asks its questions itself
+england|none|it takes a number of years and nothing else
+florida|none|it takes a number of years and nothing else
+georgia|none|it takes a number of years and nothing else
+minnesota|none|it takes a number of years and nothing else
+japan|none|it takes a number of years and nothing else
+shire|none|it takes a number of years and nothing else
+logisim|logisim -?|
+name|none|it takes how many names to invent and nothing else
+rndname|none|it takes how many names to invent and nothing else
+newsgen|newsgen -?|
+pwgen|none|`pwgen <length> [count]', the length 4 to 16; there is no help flag
+rpoem|none|it takes how many verses to write and nothing else
+rstory|none|it takes no options: run it and it tells a tale
+rstory2|none|it asks its questions itself; there is no help flag
+scales|scales -h|
+touchtype|touchtype -?|
+textb|none|it asks its four questions itself; there is no help flag
+cal|cal -?|
+calen|calen -?|
+calender|none|it asks `Fuer welches Jahr?' itself; there is no help flag
+digclk|digclk -?|
+gcl|gcl -?|
+ephem|ephem -?|
+ephem881|ephem881 -?|
+lunisolar|lunisolar -?|
+nasa|none|it takes no options: it reads nasa.dat from the current directory
+orbit|none|it takes no options: it reads kepler.dat, mode.dat and a site file from the current directory, then asks its questions
+qt|none|it takes no options: run it and it tells the time
+setimex|setimex -?|
+today|none|it takes no options: run it and it prints the day
+greg|greg -?|
+travesty|travesty -H|

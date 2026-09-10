@@ -1,0 +1,2 @@
+$ greg -?
+greg: Usage greg <julian_date>

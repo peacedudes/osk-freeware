@@ -1,0 +1,10 @@
+$ scales -h
+Usage: scales [-h] [-d] [-a] [-m] [-c] [outname]
+
+             -h: This message only
+             -d: include diatonic scales
+             -a: include altered scales
+             -m: include modal scales
+             -c: include chords
+
+No scales or chords are given as a default.

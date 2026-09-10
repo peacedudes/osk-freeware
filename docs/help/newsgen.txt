@@ -1,0 +1,2 @@
+$ newsgen -?
+"news" or "news lp"

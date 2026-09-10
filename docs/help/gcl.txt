@@ -1,0 +1,10 @@
+$ gcl -?
+syntax: gcl {opts} [bkgnd] {opts}
+Function: display grand digital clock
+Options:
+	-i			inverse video
+	-s			scroll digits
+	-n[=]<num>	run continuously for <num> seconds (default forever)
+	-x[=]<num>	begin display at column <num>
+	-y[=]<num>	begin display at row <num> (from top)
+'bkgnd' = a shell command to display a background image

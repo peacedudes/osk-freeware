@@ -1,0 +1,25 @@
+$ cal -?
+Cal, (c) 1995, Bob van der Poel Software
+Usage: calendar [<opts>]
+Function: Prints a calendar to standard output
+Options:
+    -b          print in big format
+    -c[=]value  prints <value> months
+    -g          don't use graphics characters
+    -h[=][path] print holidays, use path for data (def=/dd/sys/holidays)
+    -m[=]range  sets start/end month to print
+    -oe[=]str   overstrike end codes
+    -os[=]str   overstrike start codes
+    -p[=]path   set output to 'path'
+    -se[=]str   session end codes
+    -ss[=]str   session start codes
+    -u[-][path] use initialization file (def=/dd/sys/cal.init)
+    -w[=]value  set page width for big format (default=80)
+    -y[=]range  sets start/end year to print
+         <range> can be specified as (dd=digits, eg. 12):
+           dd     print only specified month/year
+           -dd    print from current month/year to dd
+           dd-dd  print this range of month/year
+
+By default, the three current months are displayed
+and the current month and year are used.

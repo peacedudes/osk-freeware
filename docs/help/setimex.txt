@@ -1,0 +1,24 @@
+$ setimex -?
+SETIMEX  Version UTIL 2.80 by DESIGNA VLT 03.08.98
+Usage:
+  -n         Exit always with 0 (standard)
+  -x         Exit with 0 if time was ok; 1 for not ok
+  -e         Exit with 1 if time was ok; 0 for not ok
+
+  -s=<date>  Set this date (format see below)
+  -d=<date>  If old Date is wrong, then set this date (format see below)
+
+  -?         This helptable
+  -0         Debug
+  -t         Test (set incorrect time and correct immediately)
+
+  -1         Set Time to actual time - 1 hour
+  +1         Set Time to actual time + 1 hour
+  -s         starts OS9 'setime -s'
+
+Possible formats for Date:
+               YYYYMMDDhhmmss         YYYMMDDhhmmss    YYMMDDhhmmss
+               YYMMDDhhmm             YYYMMDDhhmm      (seconds will be 00)
+               YYMMDD                 YYYMMDD          (time will be 00:00:00)
+
+Exit-Values:      0=No Error         1=Error

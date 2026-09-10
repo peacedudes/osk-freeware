@@ -1,0 +1,2 @@
+$ digclk -?
+Usage: digclk [refresh_rate]
