@@ -1,6 +1,6 @@
 # What is on this disk
 
-935 programs of OS-9/68K community software, gathered from the archives that kept it and made to run again. **584 of them need nothing but this disk**; the rest want Microware's `cio`, marked below with a star.
+935 programs of OS-9/68K community software, gathered from the archives that kept it and made to run again. **585 of them need nothing but this disk**; the rest want Microware's `cio`, marked below with a star.
 
 `DOC/INDEX` on the disk lists everything alphabetically. This is the same collection sorted by what each program is *for*, which is the more useful order when you do not yet know what you are looking for.
 
@@ -1222,7 +1222,7 @@
 | `hack` | hack -- the original dungeon crawl NetHack grew out of<br>**How:** RUN IT BY ITS FULL PATH: `/dd/CMDS/GAMES/hack', not `hack'. It chdirs into its playground and then stats argv[0] to date-check saved levels, so a bare name cannot resolve and it stops with "Cannot get status of hack." Invoked in full it starts: "Are you an experienced player?". Its playground -- record, bones, rumors, help -- is in GAMES/HACK/PLAYGROUND. |
 | `larn` | &#9733; larn, a dungeon crawl: RETURN gets past the opening text; its saved games and score file are in GAMES/LARN/PLAYGROUND<br>**How:** Full-screen dungeon crawl. RETURN gets past the opening text. Control-C gets you out; its playground is GAMES/LARN/PLAYGROUND. |
 | `ularn` | ULarn -- the larn variant, and its data is complete<br>`Cmd line format: Ularn [-slicnh] [-o<optsfile>] [-##] [++]` |
-| `wish` | &#9733; the `hack' wish toy: run it and it prints `Wishing for: 3 potions of gain level' and `what happened to "hack"'.  The same program as CMDS/GAMES/wish.  DOC/ORIGINS lists a `wish' from EFFO disk 17 (WiSH_src.lzh, Hellmuth Michaelis, GPL) as well as one from the `toys' archive; the EFFO one is not the binary that is here, under either name |
+| `wish` | WiSH, a full-screen windowing shell over the OS-9 shell: a file window to move about in, an attributes window, and the function keys labelled along the foot.  German-made, English at the keyboard.  Not the hack toy of the same name in GAMES wishing, wishes for what you name (`wish 3 potions of gain level' is the default) and saves that game for you to play |
 
 **Other games**
 

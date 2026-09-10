@@ -1,19 +1,30 @@
-$ world
-WORLD. Amiga C  Version 1.02 Copyright 1987 J.D. McDonald  GOOD LUCK!
+  Knapsack
+    The knapsack contains:
+      Green shirt
+      Canvas shoes
+      Tan pants
+      Butterfly net
+        The net is empty.
+      Plastic tube
+      Instant camera
+      Plastic bag
+        The plastic bag is empty.
+  Red shirt
+  Pair of heavy boots
+  Blue pants
 
-You are standing on a steeply climbing trail nearing the top of
-a pass. The trail is ill-defined here, obviously the work of
-some alien animal. To the south, far below, you can barely make
-out the site hacked out of the virgin forest by your landing
-party. The only objects visible are the main landing craft which
-brought you to this strange world, and the huge transparent
-geodesic dome which still houses the rest of your friends.
-Even here, only a few tens of meters from the crest of the
-trail, the suns are shining brightly, totally unobscured by the
-odd mirage effect which so far has prevented your mother ship
-850 kilometers above from getting clear photos of the large
-valley which must lie just beyond the pass you now approach.
+>n
 
->look
-Something more is necessary after this verb.
+Finally, after the exhausting climb up that bad trail, you are
+almost at the top of the pass. Your camp is still visible
+behind you, as is the great red sun to the south. However, the
+small blue sun to the northeast, over the valley, is, although
+still strong, affected by the same shimmering seen from above.
+It darts and dances around in a most disconcerting manner. It's
+clear from here that the observers in the ship were seeing a
+real phenomenon, albeit a most strange one. As you look up the
+last few meters to the pass, you feel honored that you were
+given the assignment of scouting this most peculiar site. The
+weight of your pack seems less of a load this near the top.
+
 >

@@ -1,5 +1,7 @@
-ask
+$ wisecrack &
+<4>
+$ ask
 COMPUTER-VEREIN E.V
 
 $ ask
-+ WERDE  MITGLIED +
++ COVE IST SPITZE +

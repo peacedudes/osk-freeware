@@ -320,6 +320,28 @@ def from_tree(root, progs, starred):
         p["docs"]     = p["name"].lower() in docs
         p["hassrc"]   = p.get("src", "").lower() in srcs or p["name"].lower() in srcs
         p["military"] = "no military use" in p.get("desc", "")
+    # tools/language.psv: the programs that speak German (or another language)
+    # at the terminal.  The card says so under Needs, and the page offers them
+    # as a filter -- a reader who has the language wants exactly these.
+    langs = load_languages(os.path.join(os.path.dirname(os.path.abspath(__file__)),
+                                        "language.psv"))
+    for p in progs.values():
+        if p["name"] in langs:
+            p["lang"], p["langnote"] = langs[p["name"]]
+
+
+def load_languages(path):
+    """name -> (language, what is in it), from tools/language.psv."""
+    out = {}
+    if not os.path.exists(path):
+        return out
+    for raw in open(path):
+        line = raw.strip()
+        if not line or line.startswith("#"):
+            continue
+        name, lang, note = (line.split("|", 2) + ["", ""])[:3]
+        out[name.strip()] = (lang.strip(), note.strip())
+    return out
 
 
 def load_categories(path):
@@ -479,7 +501,8 @@ ORDER = ["Shells","Editors","Text tools","Files & directories","Developer tools"
  "Printing","Documentation","Uncategorised"]
 
 KEEP = ("name","desc","cat","sub","star","dir","size","origin","archive","src",
-        "docs","hassrc","military","basic09","needs","info","help","howto")
+        "docs","hassrc","military","basic09","needs","info","help","howto",
+        "lang","langnote")
 
 def render_markdown(progs):
     """A catalogue GitHub will actually render in the repository view.

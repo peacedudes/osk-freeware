@@ -1,4 +1,24 @@
-$ wish
-Wishing for: 3 potions of gain level
-Game 1
-what happened to "hack"
+HeaderLine
+
+================================================================================
+Current Directory: /dd                                             Entries: 032
+
+Dirs:   ..              .ELM            ADL             CMDS
+        DEFS            DEMO            DOC             DOS
+        ETC             GAMES           GNUCHESS4.0     GNULIB
+        LIB             LOG             MAIL            SBPROLOG
+        SPL             SPOOL           SRC             SYS
+        USR             VH              c               local
+        tmp
+
+Files:  .bash_history   .bashrc         .newsrc         SOURCES.txt
+        readme          startup
+
+
+
+
+
+
+================================================================================
+Siz:     1024 Atr: d-ewrewr Usr:   0 Grp:   0 CrD: 00-00-00 WrD: 00-00-00 00:00
+ #echo#  #mark#  unmark  ######  ######  ######  ######  ######  ######  #exit#

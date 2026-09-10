@@ -226,6 +226,7 @@
       <button class="chip" id="f-src" aria-pressed="false">Source on disk</button>
       <button class="chip" id="f-doc" aria-pressed="false">Has docs</button>
       <button class="chip" id="f-shot" aria-pressed="false">Sample output</button>
+      <button class="chip" id="f-de" aria-pressed="false" title="Programs that speak German at the terminal">In German</button>
       </span>
     </div>
   </header>
@@ -310,13 +311,14 @@ function tryFor(shot){
   return (shell==="os9" && shot.os9) || shot.try || null;
 }
 // What the reader has chosen: a kind OR a letter, a query, and a program.
-const st = {q:"", cat:null, letter:null, sel:null, nocio:false, src:false, doc:false, shot:false};
+const st = {q:"", cat:null, letter:null, sel:null, nocio:false, src:false, doc:false, shot:false, de:false};
 
 function ok(p){
   if(st.nocio && p.star) return false;
   if(st.src && !p.hassrc) return false;
   if(st.doc && !p.docs) return false;
   if(st.shot && !SHOTS[p.name]) return false;
+  if(st.de && p.lang!=="German") return false;
   return true;
 }
 function matches(p, q){
@@ -512,6 +514,7 @@ function renderPanel(){
   const data=alsoReads(p);
   data.forEach(x=>needs.push(`<code>${esc(x)}</code>`));
   if(p.military) needs.push('the author asks no military use');
+  if(p.lang) needs.push(`${esc(p.lang)}: ${esc(p.langnote||"its prompts and messages")}`);
 
   const D=[];
   const add=(k,v)=>{ if(v) D.push(`<dt>${k}</dt><dd>${v}</dd>`); };
@@ -663,7 +666,7 @@ document.getElementById("panel-col").addEventListener("click",e=>{
 document.getElementById("q").addEventListener("input",e=>{
   st.q=e.target.value; if(st.q){ st.cat=null; st.letter=null; }
   document.getElementById("app").dataset.stage="list"; toHash(); render(); });
-for(const [id,k] of [["f-src","src"],["f-doc","doc"],["f-shot","shot"]]){
+for(const [id,k] of [["f-src","src"],["f-doc","doc"],["f-shot","shot"],["f-de","de"]]){
   const b=document.getElementById(id);
   b.onclick=()=>{ st[k]=!st[k]; b.setAttribute("aria-pressed",String(st[k])); render(); };
 }

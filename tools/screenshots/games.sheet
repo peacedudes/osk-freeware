@@ -938,15 +938,29 @@ wait    12
 run     ls -l
 wait    5
 
+shot    wisecrack
+cap     A server: started in the background with the `&', it feeds slogans
+cap     from a German OS-9 club seminar of 1992-93 into /pipe/txtpipe, in
+cap     German -- "VIEL SPASS MIT OSK" is "have fun with OSK" -- and prints
+cap     nothing itself.  Each `ask' then pulls out the next one.  Type the
+cap     `&': started in the foreground it waits for a reader and, under
+cap     os9exec, neither Ctrl-C nor Ctrl-E gets the terminal back.
+try     wisecrack &
+run     wisecrack &
+wait    3
+run     ask
+wait    5
+run     ask
+wait    5
+
 shot    ask
 cap     Reads the next message from the pipe wisecrack writes to and
-cap     prints it, one a call; with wisecrack running behind it the
-cap     messages come out one at a time.
+cap     prints it, one a call, in German: they are the slogans of a 1992-93
+cap     OS-9 club seminar.  wisecrack must be running behind it, started
+cap     with the `&' as shown; on its own ask says "No Wisecracks coming".
 try     ask
 run     wisecrack &
 wait    3
-run     clear
-wait    1
 run     ask
 wait    5
 run     ask

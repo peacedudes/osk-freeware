@@ -1,0 +1,21 @@
+# language.psv -- programs whose prompts, messages or output are not in
+# English.  name | language | what is in that language
+#
+# Hand-maintained.  A good part of this collection came through EFFO, the
+# European Forum for OS-9, and a program written for a German user base speaks
+# German at the terminal.  The catalogue marks these on the card ("in German")
+# and offers them as a filter, because they are hard to use without the
+# language -- and because a good many OS-9 installations are in Germany, for
+# whom that is the point.  rdoggett, 2026-09-10.
+hinterhalt|German|the whole game: it asks whether you need it explained (J/N)
+preset|German|its one message, `Funktionstasten belegt!'
+biory|German|every prompt: name, date of birth, the chart's headings
+me|German|the editor's messages -- Datei for File
+what|German|the GEPARD it inventories is a German machine; its table is German
+calender|German|the year it prints, holidays and all, and its one question
+getenv|German|its prompts
+logisim|German|its notes, DOC/logisim/logisim.doc; the program itself is terse
+rechne|German|its name (rechne = calculate) and its messages
+wisecrack|German|the slogans it serves, from a 1992-93 OS-9 club seminar
+ask|German|what it prints: the slogans wisecrack serves
+ff|German|its messages
