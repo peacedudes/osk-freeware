@@ -26,7 +26,10 @@ kept exactly as the archive had it.  What happens, in order:
 3. I tried USER=wizard (the usual way into hack debug mode) and it still hung,
    so this hack build either uses a different compiled WIZARD name or does not
    start the wizard with a zappable wand.  Settling that needs hack's source
-   (do we have it?) to read its WIZARD name and debug-start inventory.
+   (do we have it?) to read its WIZARD name and debug-start inventory -- and there is NO hack
+   source on the disk or in the pool (checked 2026-09-10), so this would mean
+   reverse-engineering the hack binary for the WIZARD name string and its
+   debug behaviour: real work for a joke toy, only if you want it.
 
 So the toy is a fragile 1980s cheat-harness tuned to one hack build's debug
 mode and prompt wording; against the hack on this disk its cheat dialogue
