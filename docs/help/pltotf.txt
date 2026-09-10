@@ -1,0 +1,2 @@
+$ pltotf -?
+Usage: pltotf [-verbose] <property list file> <tfm file>.

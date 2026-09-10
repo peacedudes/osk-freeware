@@ -1,0 +1,8 @@
+$ mvolformat -?
+Syntax: mvolformat drive volname volcount [format options]
+Function: format multiple floppies with sequential volume #s
+Parameters:
+	drive		Drive name (i.e. /d0)
+	volname		Base volume name. 'Volnn' gets appended (nn = vol num)
+	volcount		Volume count. 1-99
+	format options	Any options legal for format, except -r and -v

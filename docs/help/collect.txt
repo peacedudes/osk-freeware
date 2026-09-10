@@ -1,4 +1,4 @@
-$ chx /dd/CMDS/GCC2; collect -?
+$ load /dd/CMDS/cio; chx /dd/CMDS/GCC2; collect -?
 Syntax   : collect [<opts>] {<file>} [<opts>]
 Function : generate global con-/de-structor table for g++
 Options  : -o <outfile> write output to <outfile>

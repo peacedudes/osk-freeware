@@ -1,0 +1,17 @@
+$ adduser -?
+ ADDUSER: add a user to or remove a user from the system
+ Usage: adduser [opts] [<username> [<userid>] ]
+
+ opts: -r <username>  - remove <username> from the system
+       -s  - allow the creation of super users
+       -?             - this message
+
+       acceptable command lines are:
+          adduser
+          adduser <username>
+          adduser <username> <userid>
+          adduser -r <username>
+          adduser -s <username>
+
+v2.1 (94Sep30) This is free software released under the GNU General Public
+License.  Please send suggestions/bug reports to:  bob@kc2wz.bubble.org

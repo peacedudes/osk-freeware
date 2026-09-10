@@ -63,8 +63,9 @@ try     config
 run     config
 wait    5
 shot    cpu
-cap     A CPU speed test.  It takes os9exec down with it every time -- the
-cap     emulator exits mid-run, which is why the screen stops where it does.
+cap     A CPU speed test: it draws a bar chart of its timing loop and
+cap     prints the clock rate it measured, then stops on a trap and the
+cap     session ends with it, which is why the screen stops where it does.
 try     cpu
 run     cpu
 wait    10

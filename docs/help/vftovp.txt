@@ -1,0 +1,2 @@
+$ vftovp -?
+Usage: <vfm file> <tfm file> <vpl file>.

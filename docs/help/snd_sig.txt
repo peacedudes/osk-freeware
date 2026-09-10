@@ -1,0 +1,6 @@
+$ snd_sig -?
+Syntax:   snd_sig [-options] pid pid1...pidn
+Function: Wakeup a process with the wake signal
+Options:
+          -?              display synopsis
+          -(n)            signal number to send

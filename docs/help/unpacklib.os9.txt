@@ -1,0 +1,9 @@
+$ unpacklib.os9 -?
+unpacklib: Unimplemented option '-?'.
+
+Usage: unpacklib <options> file1.l file2.l ...
+Ricreates OS-9 modules from OS-9 libraries.
+ Where options are:
+   '-verbose':	list all the processed module names
+   '-list':	list module names and size ONLY (don not create files)
+Copyright by CERN, written by CN/CE/MS (Vers.1.0 - 6 July 90)

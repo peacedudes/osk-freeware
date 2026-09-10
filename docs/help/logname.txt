@@ -1,0 +1,5 @@
+$ logname --help
+Usage: logname [OPTION]...
+
+  --help      display this help and exit
+  --version   output version information and exit

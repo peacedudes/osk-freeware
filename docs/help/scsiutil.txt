@@ -1,0 +1,29 @@
+$ scsiutil -?
+SCSIutil V2.02 [Jan 28 1997 : 15:59:35] - written by Gary Duncan
+         (gduncan@philips.oz.au) and Heiko Rath (hr@brewhr.swb.de)
+           OS-9 port by Andrzej Kotanski (kotanski@if.uj.edu.pl)
+Usage: SCSIutil [/scsi_dev@] <command>
+ -c[r]                 : Read capacity [raw]
+ -d<l|r|s> sec blks    : Read 16 bit digital audio(start sector/# blocks)(2)
+ -D<l|r|s> sec blks    : Read  8 bit digital audio(left or right channel)(3)
+ -e <0|1>              : Change medium (0=eject, 1=load)
+ -i[r]                 : Inquiry [raw]
+ -h[r] blk             : Read CD-ROM data block address header
+ -l <0|1>              : Allow/Prevent medium removal
+ -m <0|1>              : Stop/Start motor {0=stop, 1=start}
+ -o[r] contr page      : Mode sense (contr = 0-3)(4)
+ -p st si et ei        : Play audio CD track (1-99), index (1-99)
+ -r sec_no             : Read sectors
+ -s sec_no             : Seek to sector (5)
+ -t[r|l]               : Display TOC of an audio CD [raw|long]
+ -u[r] chan fmt track  : Read CD sub-channel information [raw] (6)
+ -v [vl0 vl1 vl2 vl3]  : Set output volume channels 0-3 (7)
+
+Note 2: with 's' returns LRLRLR pairs of stereo audio, 2352 bytes per block
+     3: converted to 8 bit audio (-d and -D work with Sony CDU 561 & 8003)
+     4: contr 0: current, 1: changeable, 2: default, 3: saved values
+     5: to park heads, try sec_no of -1
+     6: Q-channel = 64, fmt: 0=Sub-Q Channel data,1=current CD-ROM pos.,
+        2=Media Catalog Number (UPC/Bar Code),3=Track ISRC
+     7: use -1 to leave volume of channel as it is, without argument shows
+        current volume settings

@@ -1,0 +1,4 @@
+$ oskversion -?
+Syntax:   OSKversion
+Function: prints some useful informations about the operating system.
+Options:  none

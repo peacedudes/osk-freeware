@@ -1,0 +1,18 @@
+$ mexist -?
+MEXIST   Version UTIL 2.40 by DESIGNA VLT 24.11.97
+Usage: mexist [options] <Module>
+
+This utility checks whether the specified <Modul>
+is loaded to the module-directory (CASE-SENSITIVE !!) (or not)
+(a maximum of 256 modules is checked.)
+
+no opt   Exit-Code 0, if module DOES exist
+  -n     Exit-Code 0, if module does NOT exist
+
+  -s     Show Modules (unsorted) until <Module> found
+
+  -?     This helptable
+
+Examples:
+  'mexist <Mod1> <Mod2>;dir'    --> start dir if BOTH modules are loaded
+  'mexist -n <Mod1> <Mod2>;dir' --> start dir if BOTH modules are NOT loaded

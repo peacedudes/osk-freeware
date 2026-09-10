@@ -1,0 +1,3 @@
+$ modinfo -?
+module: Show Module Information
+Syntax:    module [modulename]

@@ -1,0 +1,27 @@
+$ ob68kdemo -?
+OmniBasic Version 1.16
+OS9/68000 Version
+
+*************** DEMO VERSION ***************
+Modification expressly forbidden!!!
+
+To order call: (573) 236-4372 or 4373
+EMail at mlsmith@vax2.rain.gen.mo.us
+
+Versions for other operating systems available
+
+Copyright  1995, 1996 Computer Design Lab
+All Rights Reserved
+
+ob file [opts] {CompVar=Const}
+Options:
+    -a        Compile to assembler (.a or .s file)
+    -c        Compile to C code (.c file)
+    -d        Declare each variable (turns off Auto-Diminsion)
+    -e        Compile with no output but check for errors
+    -f        Function mode
+    -g        Generate symbol module for debugger
+    -r        Turn OFF remarks (comments) in -c option
+    -s        Symbol Table Dump to stdout
+    -u        Unabridged symbol table dump
+    -v        Verbose (detailed reporting of progress)

@@ -1,0 +1,8 @@
+$ setime2 -?
+Syntax:    setime2 [<opt>] [<yyy mm dd hh mm ss [am/pm]>] [<opt>]
+Function:  set system date and time
+Options:
+       -?    help message
+       -d    don't display time
+       -s    setime for battery backed-up clocks
+Note: 'YYY' is number of years after 1900

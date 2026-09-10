@@ -581,14 +581,14 @@ assembler|assembler -?|
 compiler|compiler -?|
 bison|bison -?|
 flex|flex -?|
-gcc|chx /dd/CMDS/GCC2; gcc -?|
-gcc2|chx /dd/CMDS/GCC2; gcc2 -?|
-gpp|chx /dd/CMDS/GCC2; gpp -?|
-cccp2|chx /dd/CMDS/GCC2; cccp2 -?|
+gcc|load /dd/CMDS/cio; chx /dd/CMDS/GCC2; gcc -?|
+gcc2|load /dd/CMDS/cio; chx /dd/CMDS/GCC2; gcc2 -?|
+gpp|load /dd/CMDS/cio; chx /dd/CMDS/GCC2; gpp -?|
+cccp2|load /dd/CMDS/cio; chx /dd/CMDS/GCC2; cccp2 -?|
 cc2|none|the driver runs it; -version prints its version, and it has no help flag
 cc1plus|none|the driver runs it; -version prints its version, and it has no help flag
 cc2plus|none|the driver runs it; -version prints its version, and it has no help flag
-collect|chx /dd/CMDS/GCC2; collect -?|
+collect|load /dd/CMDS/cio; chx /dd/CMDS/GCC2; collect -?|
 gcc_cc1|none|the driver runs it; -version prints its version, and it has no help flag
 gcc_cc1plus|none|the driver runs it; -version prints its version, and it has no help flag
 gcc_cccp|gcc_cccp -?|
@@ -790,3 +790,156 @@ hist|none|it takes no options
 printf|none|it takes a format and its arguments and nothing else
 submit|submit -?|
 shuffle|shuffle -|
+tex|none|it takes the file to typeset; a flag is read as a file name
+virtex|none|it takes the format, `&plain', and then the file; a flag is read as a file name
+latex|none|it takes the file to typeset; a flag is read as a file name
+slitex|none|it takes the file to typeset; a flag is read as a file name
+initex|none|it takes the macro file to read and `\dump'; a flag is read as a file name
+texidx|none|it takes the .idx file and nothing else
+bibtex|none|it reads the job name from standard input and takes no options
+afm2tfm|afm2tfm|
+maketexpk|none|it takes a font name, a resolution and a mode; there is no help flag
+tangle|tangle -?|
+weave|weave -?|
+dvitype|none|it takes the .dvi file and asks its five questions itself
+dvialw|dvialw -?|
+dvidjp|dvidjp -?|
+dvieps|dvieps -?|
+dviimp|dviimp -?|
+dvijep|dvijep -?|
+dvijet|dvijet -?|
+dvilj2|dvilj2 -?|
+dvimac|dvimac -?|
+dvioki|dvioki -?|
+dvitos|dvitos -?|
+dvips|dvips -?|
+tftopl|none|it takes the .tfm file and, if wanted, the .pl to write; there is no help flag
+pltotf|pltotf -?|
+vptovf|vptovf -?|
+vftovp|vftovp -?|
+virmf|none|it takes the base, `&cmbase', and Metafont commands; a flag is read as a file name
+inimf|none|it takes the macro file to read and `dump'; a flag is read as a file name
+gftype|gftype -?|
+gftopk|gftopk -?|
+pktype|none|it takes the .pk file and nothing else
+pktogf|pktogf -?|
+about|none|it takes a program name and nothing else
+aprocs|aprocs -?|
+argproc_demo|argproc_demo -help|
+bigsetter|none|it takes no options: run it and it prints its test
+bootgen|bootgen -?|
+btree|none|it takes no options: run it and it builds its index
+clock|none|it takes no options
+config|none|it takes no options: run it and it prints the defines
+cpu|none|it takes no options
+dam|none|it takes a device and nothing else
+demo|none|it takes options to parse and prints what it made of them
+devprc|devprc -?|
+dinfo|dinfo -?|
+dload|dload -?|
+drop|drop -?|
+every|every -?|
+fastcc|fastcc -?|
+flink|flink -?|
+gen|gen -?|
+getsys|getsys -?|
+hinterhalt|none|it asks its question itself, in German (J/N)
+i_am_i|none|it takes no options: run it and it prints itself
+isam|none|it takes no options: run it and it runs its test
+keep|keep -?|
+kept|kept -?|
+launch|launch -?|
+makecrc|none|it takes no options and writes its six files in the data directory
+map|map -?|
+modinfo|modinfo -?|
+names|none|it takes the file to list; given a flag it prints garbage and waits
+ob68kdemo|ob68kdemo -?|
+oskversion|oskversion -?|
+passwd|passwd -?|
+phone|phone -?|
+scsiutil|scsiutil -?|
+sddemo|sddemo -?|
+shdev|none|it takes no options
+spline|none|it takes a file of points and writes PostScript whatever it is given; there is no help flag
+sqrtx|none|it takes no options
+ssl|none|it takes the file and nothing else
+sysid|none|it takes no options
+sysmon|sysmon -?|
+top|top -?|
+tty|none|it takes no options
+ub68kdemo|ub68kdemo -?|
+ub68020demo|ub68020demo -?|
+vc|none|`?' inside it is the help; a flag is read as a file name
+version|none|it prints its own version whatever it is given
+yagi|none|it asks its five questions itself
+load|load -?|
+mtst|none|it takes no options
+fontgen|none|it reads its bitmap on standard input and takes no options
+dpark|dpark -?|
+bsplt68|none|it takes the boot file and nothing else
+signal|signal -?|
+sysmax|none|it takes no options
+sysmin|none|it takes no options
+t|none|it takes no options and prints nothing
+mexist|mexist -?|
+vis|vis -?|
+repeat|repeat -?|
+cron|none|it takes no options; it reads the crontab and runs as a daemon
+setime|none|it prompts YYMMDDHHMMSS itself; there is no help flag
+adduser|adduser -?|
+combine|combine -?|
+demerge|demerge -?|
+ptob|ptob -?|
+trunc|trunc -?|
+add_errmsg|add_errmsg -?|
+clear|clear -?|
+lgrep|lgrep -?|
+suse|none|it takes a program name and prints nothing
+pri|none|`pri <pid> <priority>'; there is no help flag
+snd_sig|snd_sig -?|
+setime2|setime2 -?|
+setyear|setyear -?|
+suspend|suspend -?|
+umusek|none|it takes no options; it wants a hardware screen
+unpacklib.os9|unpacklib.os9 -?|
+ynad|none|it takes no options; its commands are inside
+bootlogger|none|it takes no options and prints nothing
+screen_nocio|none|-v prints its version; it wants a $HOME/.screens directory
+break|none|it takes no options; asked for help it returns at once, and run bare it calls the debugger trap
+transfer|transfer -?|
+preset|none|it takes no options and ignores any given
+vlen|none|it takes no options and ignores any given
+mvolformat|mvolformat -?|
+rndir|rndir -?|
+cio|none|Microware's C I/O trap handler, not a program: the starred programs call it
+csl|none|Microware's C standard library trap handler, not a program
+csl020|none|Microware's C standard library trap handler built for the 68020, not a program
+math|none|Microware's maths trap handler, not a program
+math881|none|Microware's maths trap handler for the 68881, not a program
+os9lib|none|the RTF Fortran run-time library, a trap module: `load /dd/CMDS/os9lib' before rtf, for, lnk or biory
+rtfdat|none|a data module for the RTF Fortran set, not a program
+keydrv.mm1|none|a device driver for the MM/1, not a program
+msdrv.901_340|none|a device driver for the MM/1, not a program
+msdrv_340.901.ms|none|a device descriptor for the MM/1, not a program
+rb37c65|none|a device driver for the MM/1, not a program
+scsi_mm1a|none|a device driver for the MM/1, not a program
+snddrv|none|a device driver for the MM/1, not a program
+windio.52|none|a device driver for the MM/1, not a program
+dedit|none|it edits raw disk sectors at its own prompts and has no help flag; it writes what it is told
+env|env --help|
+expreserve|none|vi runs it itself when it dies; it takes no options and wants a /r0 to write to
+fixyear|fixyear -?|
+lfmaker|none|it takes the file to make a launch file for and nothing else
+liborder.os9|liborder.os9 -?|
+logname|logname --help|
+ptxm|none|a kernel extension module, not a program; ptxminst installs it
+ptxminst|none|it takes no options; it installs ptxm, which must be loaded first
+read_mail|none|it takes no options and asks L, X or N on standard input
+su|su --help|
+t_trtest|none|it asks for lines itself and has no help flag
+testibc|none|it asks its questions itself and has no help flag
+vecho|none|it takes the text to print and nothing else
+who|none|a shell script with no options
+whoami|whoami --help|
+wisecrack|none|it takes no options: run it in the background and `ask' reads what it writes
+wn.stb|none|a symbol table that ships beside the WN web server, not a program

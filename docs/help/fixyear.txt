@@ -1,0 +1,9 @@
+$ fixyear -?
+Usage: fixyear [-opt] <file|dir> <dir|file> [-opt]
+       Fix modification year if less than 1970
+
+Options:
+   -l   log action to stdout
+   -q   don't quit on error
+   -z   read file names from stdin
+   -z=<file>  read file names from <file>

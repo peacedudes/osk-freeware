@@ -1,0 +1,11 @@
+$ dinfo -?
+Syntax:   dinfo [<opts>] {<device name> [<opts>]}
+Function: Show information about a RBF Disk Device
+          (Substitute for OS9 "free" utility)
+Options:  -e           : Extended display
+          -f[[=]<num>] : Show fragmentation info. <num> specifies max
+                         size (in clusters) of blocks to be reported as
+                         "small blocks". Default is 4 clusters
+          -l           : detailed list of unused blocks
+          -b[=]<size>  : set buffer size
+V2.1 Ed#4 (c) 1990 by L.Zeller

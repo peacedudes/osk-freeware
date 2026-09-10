@@ -1,0 +1,5 @@
+$ demerge -?
+Syntax:   demerge <path>
+Function: demerges a file of merged modules to single module
+          files named as modules
+opts:     none

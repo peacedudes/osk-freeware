@@ -1,0 +1,12 @@
+$ load -?
+Syntax:   load [<opts>] {<module> [<opts>]}
+Function: load a module into memory
+Options:
+     -d            load file from data directory
+     -l            print pathlist of file loaded
+     -z            get list of module names from standard input
+     -z=<file>     get list of module names from <file>
+
+This is a clean-room reimplementation of Microware's load,
+written from the published manuals so that this freeware
+collection can stand on its own.  Source: SRC/load

@@ -1,0 +1,21 @@
+$ drop -?
+keep 1.0 -- OS-9 freeware collection
+
+Usage: keep [-n] [-f] [-q] [-s] [-p <dir>] <program>...
+       drop [-n] <program>...
+       kept
+
+  keep   copy a program from this collection onto your own /dd,
+         together with the files DOC/DEPENDS says it reads.
+  drop   remove exactly what keep wrote, and NOTHING whose
+         contents have changed since.
+  kept   list what has been taken, and how much it came to.
+
+  -n     dry run: print what would happen, write nothing
+  -f     overwrite a file that is already there
+  -p <d> put everything under <d> instead of /dd
+  -q     leave out the notes about what was skipped
+  -s     take the SOURCE tree too, where there is one
+
+If you mount this collection as /dd you do not need any of this;
+see DOC/README-RUNNING.

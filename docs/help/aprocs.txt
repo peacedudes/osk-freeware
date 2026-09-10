@@ -1,0 +1,14 @@
+$ aprocs -?
+Syntax: aprocs [<opts>]
+Function: Another process utility; show processes in various formats
+Options:
+ -a         Show only processes with CPU-Time more than 0.1 percent
+ -c[=]<dif> Number of columns in process tree from parent to child (def: 2)
+ -h[elp]    Show informations about aprocs' output
+ -m[=<sec>] Measure process activity between two points in time (def: 3 secs)
+ -n         Don't show processes in tree format (parent -> child)
+ -q         Fill table entries with zeroes (allows output sorting with 'qsort')
+ -v         Show some more process informations
+ -vv        Be very verbose (includes -v)
+ -V         Show informations about aprocs
+aprocs: V1.10, (c)1996 by EKF Elektronik GmbH, 59065 Hamm, Germany

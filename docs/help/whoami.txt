@@ -1,0 +1,7 @@
+$ whoami --help
+Usage: whoami [OPTION]...
+
+  --help      display this help and exit
+  --version   output version information and exit
+
+Same as id -un.

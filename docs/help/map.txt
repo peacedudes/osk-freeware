@@ -1,0 +1,5 @@
+$ map -?
+Syntax: map [<opts>] <file> {<file>}
+Function: shows blocks used by a file
+Options:
+	-e     extended map listing

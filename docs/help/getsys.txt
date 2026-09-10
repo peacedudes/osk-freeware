@@ -1,0 +1,5 @@
+$ getsys -?
+Syntax: getsys [<opts>]
+Function: display system global variables
+Options:  none
+getsys: no parameters recognized

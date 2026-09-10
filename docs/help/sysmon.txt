@@ -1,0 +1,23 @@
+$ sysmon -?
+Syntax: sysmon [<opt>]
+Version: V6.1 09.03.1993
+Function: show active tasks and cpu time consumption
+Options:
+     -a      select alphanumeric mode
+     -b      select alphanumeric mode [extended]
+     -d      get default device from 'init'-module
+     -e      select alphanumeric mode [module information]
+     -j      enable max-hold function [dislay maximum cputime used]
+     -m      mark processes using more than 75 % cpu time  [graphic mode]
+     -p      show process priority instead of group & user [graphic mode]
+     -q      disable priority rising during work of sysmon [only at /term]
+     -r      switch QUICK-REFERENCE on
+     -t=s    get value for scan-time [seconds]
+     -u      select user mode (display only user processes)
+     -v      show program version and explanation
+     -w      enable WATCH-mode [kill unkown user processes]
+     -?      show this explanation
+NOTE:    While the program is running you can switch from NAME - mode
+         to DATA - mode by typing the 'N' - key. It's also possible to
+         switch to ALFA - mode by typing 'A' - key or to switch to
+         GRAFIC - mode by typing the 'G' - key !

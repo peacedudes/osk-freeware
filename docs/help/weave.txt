@@ -1,0 +1,2 @@
+$ weave -?
+Usage: weave webfile[.web] [changefile[.ch]] [-x].

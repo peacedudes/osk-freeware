@@ -1,0 +1,2 @@
+$ gftopk -?
+Usage: gftopk [-v] <gf file> [pk file].

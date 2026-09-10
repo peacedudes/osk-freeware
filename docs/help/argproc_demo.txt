@@ -1,0 +1,11 @@
+$ argproc_demo -help
+argproc_demo: Usage:  file ...
+Demonstration program for argproc().  Note that no spaces are allowed
+between a switch and its arguments (i.e. -x3 is okay, -x 3 is not allowed).
+Options:
+    -help    Print this message
+    -b       Set b_bool TRUE
+    -c       Set c_bool TRUE
+    -sSTRING Set string s  [default: ]
+    -xINT    Set integer x [default: 0]
+    -piFLOAT Set double pi [default: 0.000000]

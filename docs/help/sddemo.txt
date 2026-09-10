@@ -1,0 +1,19 @@
+$ sddemo -?
+Speedisk v2.10 (Demo) -- Copyright (c) 1994 by Dynamic Systems
+
+Usage:	Speedisk [<opts>] [<device>] [<opts>]
+
+        If no device is specified, the device containing the current
+        working directory is used.
+
+Options:
+        -a        Accept some disk errors as okay and continue
+        -b=<num>  Limit temporary file storage to <num> kilobytes of RAM
+        -d        Don't put directories at the front of the disk
+        -e        Don't put executable files before others
+        -f        Don't use fullscreen display
+        -o        Optimize now (batch mode)
+        -r=<num>  Use <num> kilobytes of RAM for read/write buffer
+        -t=<num>  Limit optimization time to <num> minutes (batch mode)
+        -v        Verify all disk writes
+        -w        Wipe free space after optimization (for security)

@@ -1,0 +1,4 @@
+$ passwd -?
+Syntax: passwd
+Function: get new password
+Options: none

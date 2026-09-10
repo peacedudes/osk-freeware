@@ -1,0 +1,26 @@
+$ ub68kdemo -?
+UniBasic Version 1.10
+OS9/68000 Version
+
+*************** DEMO VERSION ***************
+Modification expressly forbidden!!!
+
+To order call: (573) 236-4372 or 4373
+EMail at mlsmith@vax2.rain.gen.mo.us
+
+Versions for other operating systems available
+
+Copyright  1995, 1996 Computer Design Lab
+All Rights Reserved
+
+cb file [opts] {CompVar=Const}
+Options:
+    -a        Compile to assembler (.a or .s file)
+    -e        Compile with no output but check for errors
+    -s        Symbol Table Dump to stdout
+    -f        Function mode
+    -g        Generate symbol module for debugger
+    -c        Compile to C code (.c file)
+    -r        Turn OFF remarks (comments) in -c option
+    -u        Unabridged symbol table dump
+    -v        Verbose (detailed reporting of progress)

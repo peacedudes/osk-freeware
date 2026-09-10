@@ -1,0 +1,4 @@
+$ clear -?
+Syntax:   clear
+Function: Clears the screen.  (Informations from TERMCAP -file)
+Options:  none

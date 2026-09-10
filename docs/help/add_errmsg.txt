@@ -1,0 +1,4 @@
+$ add_errmsg -?
+usage: add_errmsg "msg1" ... "msgN"
+    appends messages at the end of /dd/SYS/vi_errmsg
+    and reports seek positions

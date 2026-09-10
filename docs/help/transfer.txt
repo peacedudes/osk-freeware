@@ -1,0 +1,4 @@
+$ transfer -?
+Syntax: transfer
+Function: copy files from GDOS-disks to OS-9
+transfer: no options allowed

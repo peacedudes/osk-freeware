@@ -1,0 +1,23 @@
+$ dvips -?
+This is dvipsk 5.495b Copyright 1986, 1992 Radical Eye Software
+     Usage: dvips [options] filename[.dvi]
+ a*  Conserve memory, not time      x # Override dvi magnification
+ b # Page copies, for posters e.g.  y # Multiply by dvi magnification
+ c # Uncollated copies              C # Collated copies
+ d # Debugging                      D # Resolution
+ e # Maxdrift value                 E*  Try to create EPSF
+ f*  Run as filter                  F*  Send control-D at end
+ h f Add header file                K*  Pull comments from inclusions
+ i*  Separate file per section      M*  Don't make fonts
+ k*  Print crop marks               N*  No structured comments
+ l # Last page                      O c Set/change paper offset
+ m*  Manual feed                    P s Load config.$s
+ n # Maximum number of pages        R   Run securely
+ o f Output file                    S # Max section size in pages
+ p # First page                     T c Specify desired page size
+ q*  Run quietly                    U*  Disable string param trick
+ r*  Reverse order of pages         X # Horizontal resolution
+ s*  Enclose output in save/restore Y # Vertical resolution
+ t s Paper format                   Z*  Compress bitmap fonts
+     # = number   f = file   s = string  * = suffix, `0' to turn off
+     c = comma-separated dimension pair (e.g., 3.2in,-32.1cm)

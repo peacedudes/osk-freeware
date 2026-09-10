@@ -1,4 +1,4 @@
-$ chx /dd/CMDS/GCC2; gpp -?
+$ load /dd/CMDS/cio; chx /dd/CMDS/GCC2; gpp -?
 GNU C++ Compiler (Version 1.40.3 (based on GCC 1.40))
 Usage: gpp {options} {files} {options}
 Options:  (Do not concatenate single letter options)

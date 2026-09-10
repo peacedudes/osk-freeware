@@ -1,0 +1,27 @@
+$ dvieps -?
+[TeX82 DVI Translator Version 2.10 [experimental]]
+[Epson 9-pin family 240dpi x 216dpi dot matrix printer]
+Usage:  [opts] dvifiles
+Options:
+   -a    cache font files
+   -b    print in backwards order
+   -c#   print # copies
+   -d#   set debug mode
+   -eVAR=val  act as if environment var VAR were set
+   -fsubfile  use indicated file for font substitutions
+   -l    turn off logging
+   -m#   Use indicated magnification
+   -o# -o#:#   output indicated page or range of pages
+   -o#:#:#  output range of pages, with indicated step
+   -p    don't preload fonts
+   -q    quiet mode
+   -r    use run-length encoding of output
+   -t     Make two passes for each line
+   -x#    specify left margin (e.g., -x1.2in)
+   -y#    specify top margin
+For documentation on this program, try the command(s):
+more /dd/sys/tex/docs/dvi.help
+
+
+/dd/CMDS/TEXCMDS/dvieps: FATAL--option():  -? is not a legal switch
+Current TeX page counters: [0]

@@ -1,0 +1,2 @@
+$ pktogf -?
+Usage: pktogf [-v] <pk file> [gf file].

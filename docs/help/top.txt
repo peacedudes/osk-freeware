@@ -1,0 +1,5 @@
+$ top -?
+Syntax: top [<opts>] [<num>]
+Function: display the processtable every num (def.: 10) seconds
+Options:
+	-a	display all process

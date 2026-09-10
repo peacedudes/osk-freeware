@@ -58,11 +58,11 @@
 
 | | |
 |---|---|
-| `env` | &#9733; GNU env: runs a command with variables added to its environment, `env FOO=bar printenv' |
+| `env` | &#9733; GNU env: runs a command with variables added to its environment, `env FOO=bar printenv'<br>`Usage: env [OPTION]... [-] [NAME=VALUE]... [COMMAND [ARG]...]` |
 | `expr` | &#9733; GNU expr: evaluates an expression for a script -- arithmetic, comparisons, string length and matching |
-| `logname` | &#9733; Print your login name (GNU) |
-| `su` | &#9733; GNU su: become another user; its options are under `su --help' |
-| `whoami` | &#9733; Print who you are logged in as (GNU) |
+| `logname` | &#9733; Print your login name (GNU)<br>`Usage: logname [OPTION]...` |
+| `su` | &#9733; GNU su: become another user; its options are under `su --help'<br>`Usage: su [OPTION]... [-] [USER [ARG]...]` |
+| `whoami` | &#9733; Print who you are logged in as (GNU)<br>`Usage: whoami [OPTION]...` |
 
 **Shells**
 
@@ -186,15 +186,15 @@
 | | |
 |---|---|
 | `dvialw` | DVI to Apple LaserWriter<br>**How:** Works, and so do the other nine dvi* drivers. The disk ships the MetaFont sources, not the ready-made bitmaps, so each driver says "Font file [cmr10 [300 dpi]] could not be opened ... Proceeding with zero size characters" once per font and writes a page with the right layout and no glyphs. FONTS/PK300 and PK144 hold a Makefile each; generate the bitmaps from the MetaFont sources in SYS/TEX/MFINPUTS. Output goes to <dvifile>_alw beside the input, not to standard output. |
-| `dvidjp` | DVI to HP DeskJet Plus |
-| `dvieps` | DVI to Epson |
-| `dviimp` | DVI to Imagen |
-| `dvijep` | DVI to HP LaserJet Plus |
-| `dvijet` | DVI to HP LaserJet |
-| `dvilj2` | DVI to HP LaserJet II |
-| `dvimac` | DVI to Macintosh |
-| `dvioki` | DVI to Okidata |
-| `dvitos` | DVI to Toshiba |
+| `dvidjp` | DVI to HP DeskJet Plus<br>`[TeX82 DVI Translator Version 2.10]` |
+| `dvieps` | DVI to Epson<br>`[TeX82 DVI Translator Version 2.10 [experimental]]` |
+| `dviimp` | DVI to Imagen<br>`[TeX82 DVI Translator Version 2.10]` |
+| `dvijep` | DVI to HP LaserJet Plus<br>`[TeX82 DVI Translator Version 2.10]` |
+| `dvijet` | DVI to HP LaserJet<br>`[TeX82 DVI Translator Version 2.10]` |
+| `dvilj2` | DVI to HP LaserJet II<br>`[TeX82 DVI Translator Version 2.10]` |
+| `dvimac` | DVI to Macintosh<br>`[TeX82 DVI Translator Version 2.10]` |
+| `dvioki` | DVI to Okidata<br>`[TeX82 DVI Translator Version 2.10]` |
+| `dvitos` | DVI to Toshiba<br>`[TeX82 DVI Translator Version 2.10]` |
 
 **Format & typeset**
 
@@ -278,9 +278,9 @@
 
 | | |
 |---|---|
-| `afm2tfm` | Adobe font metrics to TeX font metrics |
-| `bibtex` | BibTeX -- bibliography formatter, and it WORKS.  It reads the job name from STANDARD INPUT (`Please type input file name (no extension)--' is a prompt, not silence), and the .bst styles are in SYS/TEX/INPUTS -- plain, unsrt, abbrv and alpha -- not in SYS/TEX/BIB, which holds a read.me<br>**How:** It reads the job name from STANDARD INPUT -- `Please type input file name (no extension)--' is a prompt, not silence. The .bst styles are in SYS/TEX/INPUTS (plain, unsrt, abbrv, alpha), not SYS/TEX/BIB, which holds one read.me. A BACKSLASH CANNOT BE TYPED at this shell -- bash's echo eats `\c' -- so patch one in with `pbyte <file> <hex offset> 5c'. |
-| `dvips` | DVI to PostScript -- pair it with gs33<br>**How:** DVI to PostScript. It wants a header file tex.pro -- point it at one, or use `dvialw', which writes PostScript too. |
+| `afm2tfm` | Adobe font metrics to TeX font metrics<br>`afm2tfm 7.0, Copyright 1990-92 by Radical Eye Software` |
+| `bibtex` | BibTeX, the bibliography formatter. It reads the job name from standard input -- `Please type input file name (no extension)--' is a prompt, not silence -- and the .bst styles are in SYS/TEX/INPUTS (plain, unsrt, abbrv and alpha), not in SYS/TEX/BIB, which holds a read.me<br>**How:** It reads the job name from STANDARD INPUT -- `Please type input file name (no extension)--' is a prompt, not silence. The .bst styles are in SYS/TEX/INPUTS (plain, unsrt, abbrv, alpha), not SYS/TEX/BIB, which holds one read.me. A BACKSLASH CANNOT BE TYPED at this shell -- bash's echo eats `\c' -- so patch one in with `pbyte <file> <hex offset> 5c'. |
+| `dvips` | DVI to PostScript, dvipsk 5.495b. It wants its header file, tex.pro, before it will write a page, so dvialw is the PostScript driver that runs here<br>**How:** DVI to PostScript. It wants a header file tex.pro -- point it at one, or use `dvialw', which writes PostScript too. |
 | `dvitype` | show what is inside a .dvi file, as text<br>**How:** `dvitype <file>.dvi < /nil'. It asks five questions -- output level, starting page, page count, device resolution, magnification -- and takes the default for each at end of file. Redirect its input so a script does not wait on the questions. |
 | `gftopk` | MetaFont generic font to packed font<br>**How:** `gftopk cmr10.120gf /dd/tmp/cmr10.120pk'. GFFONTS must name where the input is; the OUTPUT path is never searched for, so an absolute one works with nothing set. |
 | `gftype` | show what is inside a .gf file<br>**How:** `gftype -i <font>.<dpi>gf' draws the glyphs as asterisks; -m adds the opcodes. GFFONTS must NAME THE DIRECTORY -- the compiled-in FONTS paths do not begin with `.', so a file beside you is invisible. |
@@ -290,9 +290,9 @@
 | `maketexpk` | generate a .pk font at the size TeX asked for<br>**How:** It carries the RIGHT Metafont line in its own strings and then reaches for `makdir', `del' and `attr' to file the result -- three Microware utilities that are not here. Run the virmf line yourself: DOC/README-METAFONT has it, and `gftopk' is all maketexpk was going to do afterwards. |
 | `pktogf` | packed font back to generic font<br>**How:** Unpacks a .pk. The result is longer than the .gf it came from -- pktogf rewrites the preamble comment -- and the bitmap is unchanged. |
 | `pktype` | show what is inside a .pk file<br>**How:** `pktype <font>.<dpi>pk' prints the packed font back, glyphs included. PKFONTS must name the directory. |
-| `pltotf` | property list to TeX font metric |
+| `pltotf` | property list to TeX font metric<br>`Usage: pltotf [-verbose] <property list file> <tfm file>.` |
 | `slitex` | SliTeX -- LaTeX for slides<br>**How:** LaTeX for slides; its format is SYS/TEX/FORMATS/splain.fmt, already built. |
-| `tangle` | WEB to Pascal -- Knuth's literate programming tool.  IT NEEDS A CHANGE FILE NAMED, always: given only a .web it answers `Error: `Can't open file.'' -- the absent CHANGE file is what it could not open.  DOC/tex ships `sample.web' and `none.ch' (an empty change file): copy both to your data directory and run `tangle sample none'.  It reads and writes there, not where you typed from.<br>**How:** Needs a CHANGE FILE named, always. `tangle yourfile.web' alone answers `Error: `Can't open file.'' and the file it cannot open is the absent change file, not your source. DOC/tex ships `sample.web' and `none.ch' (empty, changes nothing): copy both to your data directory and run `tangle sample none'. It reads and writes in the DATA directory, which bash's `cd' does not move. `weave sample none' is the other half. |
+| `tangle` | WEB to Pascal -- Knuth's literate programming tool. It needs a change file named, always: given only a .web it answers `Error: `Can't open file.'' and the absent change file is what it could not open. DOC/tex ships `sample.web' and `none.ch' (an empty change file): copy both to your data directory and run `tangle sample none'. It reads and writes there, not where you typed from<br>**How:** Needs a CHANGE FILE named, always. `tangle yourfile.web' alone answers `Error: `Can't open file.'' and the file it cannot open is the absent change file, not your source. DOC/tex ships `sample.web' and `none.ch' (empty, changes nothing): copy both to your data directory and run `tangle sample none'. It reads and writes in the DATA directory, which bash's `cd' does not move. `weave sample none' is the other half. |
 | `tex` | TeX itself -- the typesetting program (a driver; virtex does the work)<br>**How:** Run the engine, not the wrapper. `tex' is one line: it asks a shell to run `virtex "&plain" yourfile', the quoted format name is never unquoted, and the shell answers E$PNNF for the whole line (rc 221 with no $SHELL set, and silently). Type `virtex '&plain' yourfile.tex' instead. For LaTeX it is `virtex '&lplain' yourfile.tex', for SliTeX `virtex '&splain''. SYS/TEX/SAMPLES/small.tex is a LaTeX document and story.tex is plain TeX with no \end. |
 | `texidx` | build an index from TeX's .idx output |
 | `tftopl` | TeX font metric to property list (the readable form) |
@@ -546,11 +546,11 @@
 | `cc1plus` | a GCC C++ compiler pass (1.40.3) in the GCC2 directory; the driver runs it |
 | `cc2` | the GCC 2.x C compiler pass, in the GCC2 directory; the driver runs it, and -version reports it |
 | `cc2plus` | a second GCC C++ compiler pass (2.5.8) in the GCC2 directory |
-| `cccp2` | &#9733; the GCC 2.x preprocessor, in the GCC2 directory beside its driver<br>`**** Can't install trap handler ****` |
+| `cccp2` | &#9733; the GCC 2.x preprocessor, in the GCC2 directory beside its driver<br>`GNU C Compatible Compiler Preprocessor (Version 2.5.6)` |
 | `collect` | collect2: builds the table of global constructors and destructors a C++ program needs before linking<br>`Syntax   : collect [<opts>] {<file>} [<opts>]` |
 | `compiler` | GSHELL front-end for the C compiler<br>**How:** Full-screen: it takes over the display. **control-C gets you out**; none of q, Q, control-D or ESC do. |
-| `gcc` | &#9733; the GCC driver -- GCC139's and GCC2's share this name. They are not the same version, and neither is 2.x: GCC139/gcc answers `gcc version 1.39' and GCC2/gcc answers `gcc version 1.42', read out of `gcc -v'<br>`**** Can't install trap handler ****` |
-| `gcc2` | &#9733; the GCC 2.x driver, and the only one that is: `gcc version 2.5.6'<br>`**** Can't install trap handler ****` |
+| `gcc` | &#9733; the GCC driver -- GCC139's and GCC2's share this name. They are not the same version, and neither is 2.x: GCC139/gcc answers `gcc version 1.39' and GCC2/gcc answers `gcc version 1.42', read out of `gcc -v'<br>`GNU C Compiler (Version 1.42)` |
+| `gcc2` | &#9733; the GCC 2.x driver, and the only one that is: `gcc version 2.5.6'<br>`GNU C Compiler (Version 2.5.6)` |
 | `gcc_cc1` | GCC 1.39 C compiler pass |
 | `gcc_cc1plus` | GCC 1.39 C++ compiler pass |
 | `gcc_cc2` | GCC 2.x compiler pass, under the name gcc2 forks |
@@ -1134,7 +1134,7 @@
 
 | | |
 |---|---|
-| `mtst` | &#9733; spline curve fitting - test driver |
+| `mtst` | &#9733; exercises the C maths library: ceil, floor and round on a run of numbers, integer and floating side by side -- one of the small programs a port was checked with |
 | `rayshade` | ray tracer 4.0.  It renders, and requires Microware's `shell' on the execution path: it builds its scene through popen(), which OS-9's C library implements by forking a program of exactly that name.  It also wants `cccp' in the data directory, where the forked shell looks.  With both, it renders and reports its statistics.  DOC/rayshade has the two lines.<br>**How:** Ray tracer 4.0, and it renders. REQUIRES MICROWARE'S `shell` on your execution path -- it builds its scene through popen(), and OS-9's C library implements popen() by forking a program of exactly that name. It also wants `cccp` in the DATA directory. DOC/rayshade has the two lines. |
 | `rsconvert` | converts rayshade image output between formats. Run here it prints `/* Converted by rsconvert */' and stops with a stack overflow, with or without a file named |
 
@@ -1349,9 +1349,9 @@
 |---|---|
 | `dam` | &#9733; display the disk allocation map -- dam [<drive>] |
 | `dedit` | BASIC09 disk sector editor -- read, edit and write raw sectors, decode a disk's identification sector.  I-CODE, not 68000 code: run it with runb and the bare module name, like bio and wysetime.  Nine modules in the one file. |
-| `dinfo` | &#9733; disk/device information |
-| `dpark` | &#9733; park the DISK HEAD: `dpark [/device]' restores an RBF device's head to track 00, which is what you did before moving a drive. |
-| `shdev` | &#9733; show devices |
+| `dinfo` | &#9733; disk/device information<br>`Syntax:   dinfo [<opts>] {<device name> [<opts>]}` |
+| `dpark` | &#9733; parks the disk head: `dpark [/device]' restores an RBF device's head to track 00, which is what you did before moving a drive<br>`Syntax:   dpark [/device]` |
+| `shdev` | &#9733; lists the system's device table: what is mounted and the driver behind each |
 | `ssl` | &#9733; show a file's segment list, sector by sector -- ssl <file> |
 
 **Finding things**
@@ -1364,9 +1364,9 @@
 
 | | |
 |---|---|
-| `drop` | put back exactly what keep wrote.  It refuses to remove any file whose checksum has changed, so your saves and scores are safe from it by construction. |
-| `keep` | take a program off this disk onto your own disk -- copies it and whatever DOC/DEPENDS says it needs, and records every file written.  `keep -n' shows what it would do without doing it.  See DOC/README-KEEP. |
-| `kept` | list what has been taken, and how much it came to |
+| `drop` | put back exactly what keep wrote.  It refuses to remove any file whose checksum has changed, so your saves and scores are safe from it by construction.<br>`keep 1.0 -- OS-9 freeware collection` |
+| `keep` | take a program off this disk onto your own disk -- copies it and whatever DOC/DEPENDS says it needs, and records every file written.  `keep -n' shows what it would do without doing it.  See DOC/README-KEEP.<br>`keep 1.0 -- OS-9 freeware collection` |
+| `kept` | list what has been taken, and how much it came to<br>`keep 1.0 -- OS-9 freeware collection` |
 
 **Microware runtime**
 
@@ -1394,35 +1394,35 @@
 
 | | |
 |---|---|
-| `bootgen` | &#9733; generate an OS-9 boot file |
+| `bootgen` | &#9733; generate an OS-9 boot file<br>`Syntax:   bootgen [<opts>] <device> {<path> [<opts>] }` |
 | `bsplt68` | Split a boot file into its component modules |
-| `flink` | &#9733; list a module's links<br>**How:** DO NOT run it on a shipped module. It makes a directory entry aliasing the file's FD in the CURRENT directory, RBF has no hard links, and removing the entry leaves the file pointing at a DIRECTORY -- `cat' then answers `is a directory' for everything. |
-| `gen` | generates the FRAME of a new C program -- header block, authorship and version lines and the sectioned comments a Microware example was laid out with.  It appends `.c' to whatever name you give it: `gen -p frame' leaves `frame.c'.  `-m' does a module frame, `-t' a type, `-f' a function declaration. |
-| `load` | load a module into memory, so a program that LINKS a library MODULE can find it -- `load /dd/CMDS/os9lib' and the RTF Fortran set comes alive.  A clean-room reimplementation of Microware's load, source in SRC/load, built trap-free |
-| `mexist` | &#9733; test module existence |
+| `flink` | &#9733; makes a second directory entry for a file under a name you give -- an RBF hard link. RBF has no true hard links, and removing such an entry can leave the original pointing at the wrong place, so do not run it on a disk you care about<br>**How:** DO NOT run it on a shipped module. It makes a directory entry aliasing the file's FD in the CURRENT directory, RBF has no hard links, and removing the entry leaves the file pointing at a DIRECTORY -- `cat' then answers `is a directory' for everything. |
+| `gen` | generates the frame of a new C program -- header block, authorship and version lines and the sectioned comments a Microware example was laid out with. It appends `.c' to whatever name you give it: `gen -p frame' leaves `frame.c'. `-m' does a module frame, `-t' a type, `-f' a function declaration<br>`Syntax: gen [<opt>] <pathname> [<opts>]` |
+| `load` | loads a module into memory, so a program that links a library module can find it -- `load /dd/CMDS/os9lib' and the RTF Fortran set comes alive. A clean-room reimplementation of Microware's load, source in SRC/load, built trap-free<br>`Syntax:   load [<opts>] {<module> [<opts>]}` |
+| `mexist` | &#9733; test module existence<br>`MEXIST   Version UTIL 2.40 by DESIGNA VLT 24.11.97` |
 | `os9lib` | RTF/68K FORTRAN run-time LIBRARY.  rtf, for, lnk, biory and creadoc all F$Link it, so `load' it into the module directory before running them.  See DOC/README-FORTRAN. |
 | `ptxm` | Path Table eXtension Module: a KERNEL extension letting user-state processes open unlimited I/O paths.  Courtesyware, free.  It installs into the kernel and so needs supervisor state.  DOC/ptxm/ptxm.txt |
 | `remove` | &#9733; remove modules from memory -- its own Function line says so. `remove <module>...', -q for quiet. `rm' removes files<br>**How:** Removes modules from memory. `del', `rm' and `deldir' are the file ones. |
 | `rtfdat` | RTF FORTRAN data module |
-| `version` | &#9733; prints ITS OWN version and nothing else -- `Dies ist das Program 'version', Version 7' -- whatever module you name. `ident' and `modinfo' show a module's edition. |
+| `version` | &#9733; prints its own version and nothing else -- `Dies ist das Program 'version', Version 7' -- whatever module you name. `ident' and `modinfo' show a module's edition |
 | `vmod_trap` | the VMod_trap trap handler that rxmod and txmod call. A type-$0B trap module, not a program: `load /dd/CMDS/COMMS/vmod_trap' before running them. It runs in supervisor state, so once installed it faults on this kernel |
 
 **Processes & memory**
 
 | | |
 |---|---|
-| `aprocs` | &#9733; process monitor.  It calls F$SetSys twice and is aborted (E_PRCABT) where that call is not implemented.  `procs', `top' and `sysmon' are the other process listers. |
+| `aprocs` | &#9733; a process monitor: prints the active processes as a tree -- id, parent, priority, CPU time, age and share of the CPU -- and -m measures their activity over a few seconds. `procs', `top' and `sysmon' are the other process listers<br>`Syntax: aprocs [<opts>]` |
 | `edir` | &#9733; list the event directory -- OS-9 events and their values<br>`Syntax: edir [<opts>]` |
 | `eset` | &#9733; set an OS-9 event to a value -- eset <event> <num><br>`Syntax: eset <event> <num> [<opts>]` |
 | `eunlink` | &#9733; unlink an OS-9 event by name -- `eunlink <event>'. `edir' lists the events and `eset' sets one<br>`Syntax: eunlink {<event>}` |
-| `launch` | &#9733; M.C.Gregorie's login helper: reads SYS/config, sets the environment for your terminal type -- and optionally a default PATH and emacs bindings -- then starts the shell you name on its command line.  It does not put anything in the background<br>**How:** Says "nothing to launch" until it is configured -- see its documentation. |
-| `signal` | &#9733; send a signal to a process |
-| `sysmax` | &#9733; shows the system's maximum process AGE -- `system maximum age is 0' unless the kernel answers the F$SetSys call it uses. |
-| `sysmin` | &#9733; shows the system's minimum process PRIORITY -- `system minimun priority is 0' here, same F$SetSys call. |
-| `sysmon` | &#9733; system monitor.  It asks whether to create SYS/nodedef, times out on the keyboard and draws its Process Monitor, then takes a bus error at F$GPrDsc, the get-process- descriptor call this system does not answer -- the same gap `devprc -a' and `top' meet.  `dinfo', `map' and `space' answer the questions it would have. |
-| `t` | tiny test/stub binary |
-| `top` | &#9733; show the busiest processes by their share of the CPU.  It prints its headings and then crashes -- its own bug: it asks about the root process's non-existent parent and does not check the error.  `aprocs' and `sysmon' show process state and run |
-| `vis` | &#9733; run a command over and over and refresh the screen with its output -- what `watch' does on other systems: `vis {opts} <command> <args>'.  Not the Unix `vis' that makes non-printing characters visible |
+| `launch` | &#9733; a login helper: reads SYS/config, sets the environment for your terminal type -- and optionally a default PATH and emacs bindings -- then starts the shell you name on its command line. It does not put anything in the background<br>**How:** Says "nothing to launch" until it is configured -- see its documentation. |
+| `signal` | &#9733; send a signal to a process<br>`Syntax: signal <process-id> <signal-code> [<seconds>]` |
+| `sysmax` | &#9733; shows the system's maximum process age -- `system maximum age is 0' unless the kernel answers the F$SetSys call it uses |
+| `sysmin` | &#9733; shows the system's minimum process priority -- `system minimun priority is 0' here, from the same F$SetSys call |
+| `sysmon` | &#9733; system monitor.  It asks whether to create SYS/nodedef, times out on the keyboard and draws its Process Monitor, then takes a bus error at F$GPrDsc, the get-process- descriptor call this system does not answer -- the same gap `devprc -a' and `top' meet.  `dinfo', `map' and `space' answer the questions it would have.<br>`Syntax: sysmon [<opt>]` |
+| `t` | a minimal trap-handler test stub: it installs, returns cleanly and prints nothing |
+| `top` | &#9733; show the busiest processes by their share of the CPU.  It prints its headings and then crashes -- its own bug: it asks about the root process's non-existent parent and does not check the error.  `aprocs' and `sysmon' show process state and run<br>`Syntax: top [<opts>] [<num>]` |
+| `vis` | &#9733; run a command over and over and refresh the screen with its output -- what `watch' does on other systems: `vis {opts} <command> <args>'.  Not the Unix `vis' that makes non-printing characters visible<br>`vis: illegal option -- ?` |
 | `who` | 'who is logged in'.  Written in Microware shell syntax |
 
 **Scheduling**
@@ -1430,93 +1430,93 @@
 | | |
 |---|---|
 | `cron` | run commands at specified times (daemon) |
-| `every` | &#9733; run a command at intervals |
-| `repeat` | repeat an OS-9 command N times -- `repeat 2 date' runs date twice.  It hands the command to $SHELL, which SYS/login sets to ksh, and ksh runs it.  date writes no trailing newline, so the repeats abut on one line. |
+| `every` | &#9733; run a command at intervals<br>`Syntax: every <time> <progname> [<progopts>]` |
+| `repeat` | repeat an OS-9 command N times -- `repeat 2 date' runs date twice.  It hands the command to $SHELL, which SYS/login sets to ksh, and ksh runs it.  date writes no trailing newline, so the repeats abut on one line.<br>`repeat ver 1.2` |
 
 **System state**
 
 | | |
 |---|---|
-| `clock` | display a clock |
-| `oskversion` | &#9733; report the OS-9/OSK version |
+| `clock` | displays a running clock on the terminal; it needs a terminal type and opens a pipe to feed its display |
+| `oskversion` | &#9733; report the OS-9/OSK version<br>`Syntax:   OSKversion` |
 | `perr` | &#9733; print an OS-9 error message<br>`Syntax: perr [<error_codes>]` |
-| `setime` | Set system time.  It PROMPTS with `YYMMDDHHMMSS' and then does not set it: the clock is unchanged whether the answer comes from standard input or from six fields on the command line. |
+| `setime` | sets the system time. It prompts with `YYMMDDHHMMSS' and then does not set it: the clock is unchanged whether the answer comes from standard input or from six fields on the command line |
 | `sysid` | &#9733; show system identification |
 
 **Users and login**
 
 | | |
 |---|---|
-| `adduser` | &#9733; add a user to the system, for uucp logins |
-| `passwd` | change your own password in /dd/SYS/password.  Matches on the user NAME, and the name must be spelt exactly as the password file has it, capitals included.  Matthias Rosenthal's, EFFO forum disk 5; source in SRC/passwd. |
+| `adduser` | &#9733; add a user to the system, for uucp logins<br>`ADDUSER: add a user to or remove a user from the system` |
+| `passwd` | changes your own password in /dd/SYS/password. It matches on the user name, and the name must be spelt exactly as the password file has it, capitals included. Source in SRC/passwd<br>`Syntax: passwd` |
 
 **Utilities**
 
 | | |
 |---|---|
-| `add_errmsg` | &#9733; build vi's error-message file -- it wants /dd/SYS/vi_errmsg, which is here |
-| `argproc_demo` | demonstration of argproc(), RICO's command-line argument parser.  Built from SRC/argproc with MEM=64k, it parses the line and prints what it made of it -- `argproc_demo readme' answers `arg=readme, b=0, c=0, sGiven=0, s=this is a test, x=32, pi=3.144500'.  A switch takes its argument with NO SPACE (`-x99', not `-x 99'), which the program says itself under -help.  The argproc library manual is here too: DOC/argproc_demo/man.argproc, from EFFO forum 7.<br>**How:** A switch takes its argument with NO SPACE: `-x99', never `-x 99'. `argproc_demo readme' prints what it made of the line. |
+| `add_errmsg` | &#9733; build vi's error-message file -- it wants /dd/SYS/vi_errmsg, which is here<br>`usage: add_errmsg "msg1" ... "msgN"` |
+| `argproc_demo` | a demonstration of argproc(), a command-line argument parser: it parses the line and prints what it made of it -- `argproc_demo readme' answers `arg=readme, b=0, c=0, sGiven=0, s=this is a test, x=32, pi=3.144500'. A switch takes its argument with no space (`-x99', not `-x 99'), which the program says itself under -help. The argproc library manual is in DOC/argproc_demo/man.argproc<br>**How:** A switch takes its argument with NO SPACE: `-x99', never `-x 99'. `argproc_demo readme' prints what it made of the line. |
 | `bigsetter` | Modula-2 set-operations demonstration |
 | `bootlogger` | &#9733; log what happens during boot |
 | `break` | send a BREAK on a serial line -- an assembler example, and it calls F$SysDbg, the system-debugger trap, on its way there.  On a machine with a debugger attached that drops you into it and waits for an answer, which in a script is a hang |
 | `btop` | convert characters to bit patterns -- its own Function: line, and what it does: `btop <file>' prints each character as a grid of O and space.<br>`Syntax:   BtoP [<opts>] [<path1>] [<opts>] [<path2>] [<opts>]` |
 | `chardef` | loads a character set into a VT220 terminal from a definition file: `chardef <file>'; it calls itself defchar<br>`Syntax: defchar [<path>]` |
-| `clear` | &#9733; clear the screen |
-| `combine` | &#9733; interleave two files BYTE BY BYTE, one supplying the even bytes and the other the odd -- how a 16-bit EPROM image is put back together from two 8-bit halves.  F.R.Schmitt, 1989. |
+| `clear` | &#9733; clear the screen<br>`Syntax:   clear` |
+| `combine` | &#9733; interleaves two files byte by byte, one supplying the even bytes and the other the odd -- how a 16-bit EPROM image is put back together from two 8-bit halves<br>`(c.) 1989 by F.R.Schmitt MPI Kernphysik Heidelberg` |
 | `config` | report this machine's C type properties as #defines -- char, short, int, long, pointer and float all come out; it then aborts where `double' begins, because that needs a 68881 or Microware's fpu.  See DOC/README-BUSERR |
-| `cpu` | &#9733; CPU speed test -- draws its bar chart and its answer (156 MHz, which is the emulator), then traps on vector $07 and takes the session down with it |
+| `cpu` | &#9733; a CPU speed test: it draws a bar chart of its timing loop and prints the clock rate it measured, then stops on a trap |
 | `demerge` | split a merged file back into its parts<br>**How:** OS-9's `merge' is concatenation and there is no `merge' binary here, so `cat a b > c' makes the file demerge takes apart. There is no `od' either -- `dump' is the hex dump. |
 | `demo` | egetopt option-parsing demonstration |
 | `deton` | &#9733; time out an I/O read using an alarm: `deton [seconds]', an example rather than a tool.  For converting tabs, see `detab' and `expand'<br>`syntax: deton [seconds]` |
-| `devprc` | show which device each process holds a path to: `-a' walks every process and lists its open paths and the device behind each.  `top' prints its headings and then crashes -- its own bug, not the system: it asks F$GPrDsc about the root process's parent (process 0), does not check the "no such process" it correctly gets back, and reads an unfilled buffer.  aprocs and sysmon read the same state and run. |
-| `dload` | &#9733; load a data file into a data module: `dload <filename>'. Nothing to do with serial downloads -- `sbreak' and `break' are the serial-line examples here |
+| `devprc` | shows which device each process holds a path to: -a walks every process and lists its open paths and the device behind each<br>`devprc: display device(s) belonging to process(es), V.1.01` |
+| `dload` | &#9733; load a data file into a data module: `dload <filename>'. Nothing to do with serial downloads -- `sbreak' and `break' are the serial-line examples here<br>`Syntax: dload <filename>` |
 | `e` | SEDT screen editor, a small fixed VT100 build. Reads SYS/sedt.keys, sedt.ruler0 and sedt.help, the same three sedt and new_e read.<br>`Syntax:` |
 | `expreserve` | &#9733; vi's crash-recovery helper: preserves an edit buffer when the editor dies.  Like ksh it reads the terminal asking for more bytes than you type (388), so it depends on the same emulator behaviour -- see DOC/README-KSH<br>**How:** Saves a vi buffer when the editor or the line dies; vi runs it for you rather than you running it. |
 | `exrecover` | &#9733; recover a vi buffer that expreserve saved<br>**How:** Recovers what expreserve saved. Again, vi's helper rather than a command you start. |
-| `fastcc` | &#9733; a faster front end for cc |
-| `fixyear` | Y2K: correct a date the clock got wrong |
+| `fastcc` | &#9733; a faster front end for cc<br>`fastcc: <opts> <files> <opts>` |
+| `fixyear` | Y2K: correct a date the clock got wrong<br>`Usage: fixyear [-opt] <file\|dir> <dir\|file> [-opt]` |
 | `fontgen` | generate a font for the Gepard display<br>**How:** Generates a character font for the Gepard display -- it prints the assembler source of an 80-column font on stdout. |
-| `getsys` | &#9733; report the system's globals -- what OS-9 thinks it is running on |
-| `hinterhalt` | &#9733; a small game (EFFO forum 7) |
+| `getsys` | &#9733; report the system's globals -- what OS-9 thinks it is running on<br>`Syntax: getsys [<opts>]` |
+| `hinterhalt` | &#9733; a small maze game, in German: asked whether you need instructions (J/N) and told no, it draws the board -- walls, the player and a target |
 | `i_am_i` | prints its own source (Pascal) |
 | `isam` | &#9733; indexed-sequential file demonstration |
 | `lfmaker` | make a G-Windows launch file -- and it asks the allocator for an ADDRESS as if it were a length, so the request is refused: `2470464192-byte request refused, 32682944 bytes free'.  The number MOVES with the environment, which is what identifies it as an address.  It happens only once the module is already resident: run it bare first, then with an argument. |
-| `lgrep` | &#9733; list the files a pattern appears in -- its banner says "same as 'grep -l', but prints filenames without comments". `grep -l' does the same job here.  DOC/README-GREP compares the six searchers |
-| `liborder.os9` | report the order of modules in a library |
-| `makecrc` | GENERATE C SOURCE for CRC tables.  It takes no arguments: run it somewhere writable and it writes six files into the data directory -- arc.c, binhex.c, ccitt.c, ccitt32.c, kermit.c and zip.c -- each holding a crctab[256] and an updcrc() for one polynomial.  It writes them without a message, so list the directory afterwards.  For a CRC of a file, `chksum' does that<br>**How:** It GENERATES C SOURCE and takes no arguments. Run it somewhere writable (`ksh -c "cd /dd/tmp; makecrc"') and it writes six files -- arc.c, binhex.c, ccitt.c, ccitt32.c, kermit.c, zip.c -- each a crctab[256] and an updcrc(). It writes them without a message, so list the directory afterwards. |
-| `map` | &#9733; show the disk blocks a file occupies, sector by sector: `map <file>', or `map -e <file>' for the extended form. For memory rather than disk, see `mfree' and `free' |
-| `modinfo` | report a module's header -- name, type, size, edition, CRC |
-| `mvolformat` | format a multi-volume set |
+| `lgrep` | &#9733; list the files a pattern appears in -- its banner says "same as 'grep -l', but prints filenames without comments". `grep -l' does the same job here.  DOC/README-GREP compares the six searchers<br>`Syntax: lgrep <arg1> ... <argn>` |
+| `liborder.os9` | report the order of modules in a library<br>`liborder: Unimplemented option '-?'.` |
+| `makecrc` | generates C source for CRC tables. It takes no arguments: run it somewhere writable and it writes six files into the data directory -- arc.c, binhex.c, ccitt.c, ccitt32.c, kermit.c and zip.c -- each holding a crctab[256] and an updcrc() for one polynomial. It writes them without a message, so list the directory afterwards. For a CRC of a file, `chksum' does that<br>**How:** It GENERATES C SOURCE and takes no arguments. Run it somewhere writable (`ksh -c "cd /dd/tmp; makecrc"') and it writes six files -- arc.c, binhex.c, ccitt.c, ccitt32.c, kermit.c, zip.c -- each a crctab[256] and an updcrc(). It writes them without a message, so list the directory afterwards. |
+| `map` | &#9733; show the disk blocks a file occupies, sector by sector: `map <file>', or `map -e <file>' for the extended form. For memory rather than disk, see `mfree' and `free'<br>`Syntax: map [<opts>] <file> {<file>}` |
+| `modinfo` | report a module's header -- name, type, size, edition, CRC<br>`module: Show Module Information` |
+| `mvolformat` | format a multi-volume set<br>`Syntax: mvolformat drive volname volcount [format options]` |
 | `names` | &#9733; list the names of modules in a file.  It can hang on some inputs; `ident', `modinfo' and `module_census' answer the same question. |
-| `phone` | connect two terminals |
-| `preset` | LOAD THE TERMINAL'S FUNCTION KEYS: it writes a fixed set of definitions -- `dir', `umacs', `r68', `l68', `dsave -ieb128k' and so on -- and answers `Funktionstasten belegt!'.  German, from forum3.  It takes no arguments and ignores any given. |
+| `phone` | connects two terminals over a communication path so you can type to somebody on another: `phone /t1' rings until answered; control-E leaves<br>`Syntax: phone <communication-path>` |
+| `preset` | loads the terminal's function keys: it writes a fixed set of definitions -- `dir', `umacs', `r68', `l68', `dsave -ieb128k' and so on -- and answers `Funktionstasten belegt!'. German. It takes no arguments and ignores any given |
 | `pri` | change a process's priority: `pri <pid> <priority>'. |
-| `ptob` | convert bit patterns back to characters -- the other half of `btop', and the round trip is exact. |
+| `ptob` | convert bit patterns back to characters -- the other half of `btop', and the round trip is exact.<br>`Syntax:   PtoB [<opts>] [<path1>] [<opts>] [<path2>] [<opts>]` |
 | `ptxminst` | install Ptxm -- the kernel extension above |
-| `rndir` | &#9733; convert directory NAMES between upper and lower case -- its own Function: line is "rename directory names in big/small characters".  `-l' for small, `-q' to work silently. |
+| `rndir` | &#9733; converts directory names between upper and lower case -- its own Function line is "rename directory names in big/small characters". `-l' for small, `-q' to work silently<br>`Syntax: rndir [<opt>]` |
 | `screen` | &#9733; `screens': picks a file at random from $HOME/.SCREENS and shows it -- a login greeting.  On OS-9 it RUNS the file rather than printing it, through system(), so it wants Microware's `shell' on your execution path.  Not the terminal multiplexer of the same name.  Source in SRC/screen, man page in DOC/screen/screens.6 |
 | `screen_nocio` | a trap-free source build; CMDS/screen uses cio and this one does not |
-| `scsiutil` | SCSI device utility |
-| `setime2` | Y2K: set the system time, four-digit year |
-| `setyear` | Y2K: set the year directly |
-| `snd_sig` | &#9733; send a signal to a process |
+| `scsiutil` | talks to a SCSI device: inquiry, capacity, read sectors, eject, and audio CD control -- table of contents, play, volume<br>`SCSIutil V2.02 [Jan 28 1997 : 15:59:35] - written by Gary Duncan` |
+| `setime2` | Y2K: set the system time, four-digit year<br>`Syntax:    setime2 [<opt>] [<yyy mm dd hh mm ss [am/pm]>] [<opt>]` |
+| `setyear` | Y2K: set the year directly<br>`Syntax:    setyear <YYYY>` |
+| `snd_sig` | &#9733; send a signal to a process<br>`Syntax:   snd_sig [-options] pid pid1...pidn` |
 | `spline` | &#9733; fit a spline through points, output PostScript |
 | `sqrtx` | square-root demonstration |
 | `suse` | show a program's usage line.  `-?' does the same for most programs here. |
-| `suspend` | &#9733; REMOVES a process from the system -- its own usage line says so -- rather than suspending it.  F.R.Schmitt, 1989. |
+| `suspend` | &#9733; removes a process from the system -- its own usage line says so -- rather than suspending it; -s reaches system programs too<br>`SUSPEND V1.1 (C.) 1989 by F.R.Schmitt` |
 | `t_trtest` | RICO trap-handler test |
 | `testibc` | IEEE-488 (GPIB) bus test program, B & K Denmark, 1989. Answer its `Timeout time (1/10 Sec)?' prompt and it draws a full command menu: Ifc, Remote, Llo, Goto local, Clear, Send, Enter, Dev-clear, Time, Quit.  Each command needs an IEEE-488 bus to reach.  It reads its messages from /dd/sys/errmsg.ibc. |
-| `transfer` | &#9733; copies files from GDOS DISKS to OS-9, and takes no options at all.  For general device-to-device copies, `cp', `copy' and `dsave' do that. |
-| `trunc` | &#9733; truncate a file to a given length |
+| `transfer` | &#9733; copies files from GDOS disks to OS-9, and takes no options at all. For general device-to-device copies, `cp', `copy' and `dsave' do that<br>`Syntax: transfer` |
+| `trunc` | &#9733; truncate a file to a given length<br>`OS-9/68k supplementary command.` |
 | `tty` | &#9733; report the terminal's name |
 | `umusek` | UMusEK -- a music editor.  It needs a hardware graphics screen: point it at one and it opens.  Without a graphics screen it stops with `***DS_ScAdd Error 208.' and `Fran: Can't get screen addr, 'bye!'. |
-| `unpacklib.os9` | unpack a library into its object modules |
-| `vc` | &#9733; a SPREADSHEET -- `Welcome to the Spreadsheet Calculator, type ? for help', with rows, columns and a formula line |
+| `unpacklib.os9` | unpack a library into its object modules<br>`unpacklib: Unimplemented option '-?'.` |
+| `vc` | &#9733; a spreadsheet: `Welcome to the Spreadsheet Calculator, type ? for help', with rows, columns and a formula line |
 | `vecho` | System V `echo': the newline is suppressed by a trailing \c IN THE ARGUMENT, not by default.  `vecho one' writes `one' and a CR; `vecho one\c' writes `one' and stops. Several arguments are joined with a space.  SRC/less_v177 |
-| `vlen` | &#9733; a VARIABLE-LENGTH RECORD demonstration: it ignores whatever you give it, creates a filesystem of its own, adds a hundred records of varying length and prints the minimum, the maximum and the mapper entries as it goes.  `isam' is the other demonstration of its kind here.  IT LEAVES ITS STORE BEHIND, in the DATA directory, as `test.mp' and `test.st' -- run it twice and the second run answers `Filesystem already exists.' and adds nothing.  Delete those two to run it again.<br>**How:** It leaves its store behind, in the DATA directory, as `test.mp' and `test.st'. Run it twice and the second run says `Filesystem already exists.' and adds nothing; delete those two to run it again. |
+| `vlen` | &#9733; a variable-length record demonstration: it ignores whatever you give it, creates a filesystem of its own, adds a hundred records of varying length and prints the minimum, the maximum and the mapper entries as it goes. `isam' is the other demonstration of its kind here. It leaves its store behind in the data directory as `test.mp' and `test.st' -- run it twice and the second run answers `Filesystem already exists.' and adds nothing. Delete those two to run it again<br>**How:** It leaves its store behind, in the DATA directory, as `test.mp' and `test.st'. Run it twice and the second run says `Filesystem already exists.' and adds nothing; delete those two to run it again. |
 | `what` | inventory the expansion cards in a GEPARD -- the German 68k machine much of the EFFO material was written on.  It prints `What's where in the GEPARD:' and a table of I/O address, reference byte and card name, empty on anything else.  It ignores its arguments.<br>**How:** An inventory tool for the GEPARD, the German 68k machine: it prints "What's where in the GEPARD:" and a table of expansion cards. On other hardware the table is empty, and it ignores its arguments. |
 | `xlharc` | C-LHarc 1.00 in a third build: extracts and lists .lzh archives like `lharc'<br>`C-LHarc for OSK Version 1.00   (C) 1989-1990 Y.Tagawa` |
-| `yagi` | Yagi antenna design calculator, to DL6WU's method.  It asks FIVE questions on standard input -- frequency, element count, boom diameter, insulated from the boom Y/N, and a tubing size off its own list -- and prints element lengths and spacings.  Answer four and it loops on the fifth<br>**How:** It asks FIVE questions on standard input -- centre frequency in MHz, element count, boom diameter, whether the elements are insulated from the boom (Y/N), and a tubing size off its own list of six. Answer four and it loops on the fifth forever, because EOF on a numeric read returns the same thing every time. |
+| `yagi` | a Yagi antenna design calculator, to DL6WU's method. It asks five questions on standard input -- frequency, element count, boom diameter, insulated from the boom Y/N, and a tubing size off its own list -- and prints element lengths and spacings. Answer four and it loops on the fifth<br>**How:** It asks FIVE questions on standard input -- centre frequency in MHz, element count, boom diameter, whether the elements are insulated from the boom (Y/N), and a tubing size off its own list of six. Answer four and it loops on the fifth forever, because EOF on a numeric read returns the same thing every time. |
 | `ynad` | &#9733; YNAD -- Yet Another Name & Address program.  A contact database. |
 
 **Vendor demos**
@@ -1525,7 +1525,7 @@
 |---|---|
 | `ob68kdemo` | OmniBasic 1.16 -- a BASIC compiler.  Limited symbol table; otherwise the including compiler.  Run it from /dd/DOC/omnibasic, where its library and examples are. Like UniBasic it needs Microware's cc to finish a build<br>**How:** OmniBasic 1.16, same arrangement as ub68kdemo and the same SHELL trick -- see its entry. Run it from /dd/DOC/omnibasic. DEMO VERSION, capped symbol table. |
 | `sddemo` | White's Speedisk 2.10 -- disk de-fragmenter.  Wants an 80x24 screen; falls back to tty mode<br>**How:** White's Speedisk 2.10 de-fragmenter, demo build. Wants an 80x24 screen and drops to tty mode without one. |
-| `ub68020demo` | UniBasic 1.10 for the 68020 -- the same demonstration as `ub68kdemo' and it runs the same way, announcing `OS9/68020 Version' where the other says 68000. |
+| `ub68020demo` | UniBasic 1.10 for the 68020 -- the same demonstration as `ub68kdemo' and it runs the same way, announcing `OS9/68020 Version' where the other says 68000.<br>`UniBasic Version 1.10` |
 | `ub68kdemo` | UniBasic 1.10 -- a BASIC compiler, same arrangement as OmniBasic.  Run it from /dd/DOC/unibasic<br>**How:** UniBasic 1.10, and it does compile -- the trick is that it runs its build through $SHELL. With SHELL unset it hunts for `/dd/bash' and dies with "Error Exit" and error 216. Do `setenv SHELL /dd/CMDS/sh', work in a directory holding basic.h and basic.l (DOC/unibasic has them), have your C toolchain reachable with CDEF and CLIB set, and give it memory. DEMO VERSION: the symbol table is capped, nothing else is. |
 
 </details>
