@@ -216,7 +216,7 @@ def on_disk(root, path):
     """Where an absolute OS-9 path lands in the tree, or None.
 
     `/dd/GAMES/adv/glorkz', `/DD/SYS/motd' and `/h0/sys/termcap' all name
-    files of this collection (it is /dd and hard-linked as /h0), and RBF
+    files of this collection (it is /dd and /h0, the same image twice), and RBF
     is case-insensitive where the host may not be -- so each segment is
     matched without regard to case.
     """

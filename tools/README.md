@@ -238,10 +238,10 @@ at `/h0`. `notes/DECISION-placement.md` has the reasoning;
 `tools/measure_layout.py disk` prints the numbers rather than asking you to
 believe them.
 
-Then add `/h0` as well, to collect the 53. os9exec will not mount one host path
-as two devices, so hard-link it and one inode has two names:
-
-    ln osk-freeware.dd h0
+Then add `/h0` as well, to collect the 53. Under os9exec that is the same
+image named twice, `OS9DISK=<image> OS9H0=<image>`; it says
+`# /h0: using OS9H0=...` once and mounts it. No link or copy is needed
+(measured 2026-09-10; this file used to prescribe `ln osk-freeware.dd h0`).
 
 ## The catalogue
 

@@ -64,14 +64,21 @@ disk, with Microware's permission**. `SOURCES.txt` records the exchange.
 
 ## Trying it first, with os9exec
 
-os9exec is a community emulator for macOS and Linux: point it at the image
-and it runs, no OS-9 of your own needed. Two lines on the host:
+os9exec is a community emulator that builds on macOS, Linux, Windows and
+most anything with a C compiler: point it at the image and it runs, no OS-9
+of your own needed. Its devices are named by environment variables -- the
+image as both `OS9DISK` and `OS9H0`, your own OS-9 system or SDK as
+`OS9H1` if you have one:
 
-    ln osk-freeware.dd h0     # one image, two names: os9exec will not mount a path twice
-    OS9DISK=$PWD/osk-freeware.dd OS9H0=$PWD/h0 os9exec -r bash /dd/SYS/login
+    OS9DISK=$PWD/osk-freeware.dd OS9H0=$PWD/osk-freeware.dd OS9H1=<your OS-9> \
+        os9exec -r bash /dd/SYS/login
 
-Add `OS9H1=<your OS-9 system or SDK>` and the programs that want `runb` or
-Microware's shell find them. Everything in `docs/` was captured this way.
+With `OS9H1` set, the programs that want `runb` or Microware's shell find
+them. Keep the collection as an RBF image rather than unpacking it into a
+host directory: on the image, file permissions and record locking work as
+OS-9 expects, and a host directory gives neither. os9exec's own `mount -k`
+makes a blank image when you want one of your own. Everything in `docs/`
+was captured this way.
 
 ### Taking a few programs onto your own system disk
 

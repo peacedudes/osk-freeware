@@ -216,7 +216,7 @@ def run_family(path, image, workdir):
     sh = os.path.join(workdir, "h1", "%s.sh" % fam["family"])
     # /h0 IS THIS DISK TOO, and that is not a convenience -- it is the
     # arrangement notes/DECISION-placement.md settles on and DOC/README-CIO
-    # documents: mount the collection as /dd and hard-link it as /h0, so the
+    # documents: mount the collection as /dd and again as /h0, so the
     # 139 programs carrying a hardcoded /h0 path find what they are looking
     # for. `drive.py' has always done this and the other three harnesses did
     # not, which meant a program could pass under one and fail under another

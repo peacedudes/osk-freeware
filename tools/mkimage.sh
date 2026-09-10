@@ -32,8 +32,8 @@
 #     This used to be done with os9exec's OS9MDIR environment variable, which
 #     is an emulator mechanism rather than an OS-9 one; `load` is the OS-9
 #     answer and the disk now carries it.
-#   * os9exec will not mount one host path as two devices. To use the result
-#     as both /dd and /h0, hard-link it: `ln osk-freeware.dd h0`.
+#   * To use the result as both /dd and /h0 under os9exec, name it twice:
+#     OS9DISK=<image> OS9H0=<image>.  No link is needed.
 set -u
 
 SRC=${1:-}; OUT=${2:-}; MB=${3:-0}

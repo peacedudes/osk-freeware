@@ -463,12 +463,17 @@ function about(){
     `disk with the <code>tar</code> module shipped beside it. We have not had a real `+
     `machine to do this on; <code>DOC/README-RUNNING</code> says what is known.</p>`+
     `<p><b>Trying it first</b><br>`+
-    `os9exec, a community emulator for macOS and Linux, runs the image with no OS-9 `+
-    `of your own, in two lines on the host:</p>`+
-    `<pre class="usage">ln osk-freeware.dd h0\n`+
-    `OS9DISK=$PWD/osk-freeware.dd OS9H0=$PWD/h0 os9exec -r bash /dd/SYS/login</pre>`+
-    `<p>The hard link is how the emulator gives one image two names. Everything on `+
-    `these pages was captured that way.</p>`+
+    `os9exec, a community emulator that builds on macOS, Linux, Windows and most `+
+    `anything with a C compiler, runs the image with no OS-9 of your own. Its `+
+    `devices are named by environment variables: give the image as both `+
+    `<code>OS9DISK</code> and <code>OS9H0</code>, and your own OS-9 system or SDK, if `+
+    `you have one, as <code>OS9H1</code>.</p>`+
+    `<pre class="usage">OS9DISK=$PWD/osk-freeware.dd OS9H0=$PWD/osk-freeware.dd OS9H1=&lt;your OS-9&gt; \\\n`+
+    `    os9exec -r bash /dd/SYS/login</pre>`+
+    `<p>Keep it as an RBF image rather than unpacking it into a host directory: on the `+
+    `image, file permissions and record locking work as OS-9 expects, and a host `+
+    `directory gives neither. os9exec's own <code>mount -k</code> makes a blank one. `+
+    `Everything on these pages was captured this way.</p>`+
     `<p><b>Taking a few programs onto your own disk</b><br>`+
     `<code>keep</code>, <code>kept</code> and <code>unkeep</code> are three small programs `+
     `written for this collection, for the same arrangement. <code>keep cookie</code> copies `+

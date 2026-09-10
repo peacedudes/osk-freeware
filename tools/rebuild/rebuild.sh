@@ -698,7 +698,7 @@ compile_long() {   # $1 arch  $2 sources  $3 oskdef  $4 defines  $5 prog  $6 ext
 # 45 both ran past it and were recorded FAIL with no output at all.
 LIMIT=240
 # /h0 IS THE OVERLAY TOO -- the arrangement the finished disk ships under,
-# mounted as /dd and hard-linked as /h0 (notes/DECISION-placement.md).  Headers
+# mounted as /dd and again as /h0 (notes/DECISION-placement.md).  Headers
 # here carry /h0-absolute includes because the people who wrote them kept their
 # tools there: DEFS/os9lib/time.h asks for </h0/defs/setsys.h>, and no -V or -I
 # can redirect an absolute path.  Without an /h0 the whole os9lib DEFS set is

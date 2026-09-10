@@ -156,7 +156,7 @@ reader HAS Microware OS-9; os9exec is only the convenience. See the memories
   had not): no caption says "not on this disk" any more.
 - **The reader's own OS-9 mounts on `/h1`.** `SYS/login` adds `/h1/CMDS` to
   PATH and does a silent `load /h1/CMDS/runb`; the collection stays `/dd`
-  (+ hard-link `/h0`). The harness mounts the SDK as `/h1` when `OS9SDK` is
+  (+ `/h0`, the same image). The harness mounts the SDK as `/h1` when `OS9SDK` is
   set. `load` fails gracefully with no `/h1`, so standalone boot is unchanged.
 - **`date` removed** -- a broken shadow of Microware's date (it decoded the
   year as 2100). The clock itself is fine: F$Time returns 2026, only that

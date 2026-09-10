@@ -97,9 +97,9 @@ to build than "install", and it is what the receipt makes safe.
 1. **Ship the collection to be mounted as `/dd`.** `OS9DISK=osk-freeware.dd`.
    This is what os9exec gives you for free -- `/dd` is the root and the home --
    and it is how all 942 programs were tested.
-2. **Also hard-link it as `/h0`** (`ln dd h0`; os9exec will not mount one host
-   path as two devices, so a link is the mechanism). This costs one inode and
-   collects the 53. It is what the current arrangement already does and it
+2. **Also mount it as `/h0`** (`OS9H0=` the same image; os9exec mounts one
+   image under two names, and the hard link this once prescribed was never
+   needed -- 2026-09-10). This collects the 53. It is what the current arrangement already does and it
    should stay.
 3. **`/h0`-only is the one arrangement to steer people away from.** It is
    strictly the worst of the three: it strands 429 programs to satisfy 54.
