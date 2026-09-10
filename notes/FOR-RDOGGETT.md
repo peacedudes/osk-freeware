@@ -5,6 +5,20 @@ git history and `notes/START-HERE-NEXT-SESSION.md`; this file carries none
 of it. Updated 2026-09-09, evening.
 
 
+## Two programs are both named `wish' (2026-09-10) -- your call
+
+The disk carries WiSH, a windowing shell (`CMDS/wish', module `wish'), and a
+hack cheat toy (`CMDS/GAMES/wish', module `B_wish').  On the path `wish'
+resolves to the shell, so the toy is only reachable from GAMES, and the toy
+needs `hack' loaded first (it forks it by bare name).  This is confusing:
+someone wanting the wishing gets the shell, someone wanting the shell might
+find the toy on a system where GAMES comes first.  Options: rename the toy
+(it is a joke -- `hackwish'?), or leave both and rely on the documentation.
+I left both and documented them; a rename is a shipped-artifact decision, so
+it is yours.  (I earlier "improved" the toy to fork hack by full path and to
+close its pipe ends; that broke the wishing, and I have reverted it to the
+original archive source, which works when hack is loaded.)
+
 ## Real OS-9 first (2026-09-10) -- two things for you
 
 1. **The hardware step is written from what we know, not from doing it.**
