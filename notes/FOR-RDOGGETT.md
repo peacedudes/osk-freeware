@@ -5,6 +5,19 @@ git history and `notes/START-HERE-NEXT-SESSION.md`; this file carries none
 of it. Updated 2026-09-09, evening.
 
 
+## Real OS-9 first (2026-09-10) -- two things for you
+
+1. **The hardware step is written from what we know, not from doing it.**
+   Every guide now opens with the real-system arrangement and offers two
+   routes onto a real disk: the raw image written whole, or
+   `osk-freeware.tar' unpacked with the `tar' module shipped beside it
+   (`tools/mkimage.sh' writes both next to the image).  The guides say
+   plainly that we have not done it on hardware.  If you know anyone with
+   a real system, that paragraph is the one to have checked.
+2. **The CI workflow does not yet publish the tar.**  It builds the image;
+   the tar and the module are new artefacts and want adding to what a
+   release carries -- your call with the release itself.
+
 ## The recard pass (2026-09-09, evening) -- three things for you
 
 1. **Look at the page.**  `docs/index.html': help is now its own section
