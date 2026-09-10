@@ -1031,7 +1031,7 @@ def check_cards_carry_real_help(root):
     tools = os.path.dirname(os.path.abspath(__file__))
     sys.path.insert(0, tools)
     import helpcap
-    table = helpcap.load_table()
+    table = helpcap.load_table(os.environ.get("OSK_HELP_TABLE", helpcap.TABLE))
     helpdir = os.environ.get("OSK_HELP_DIR", helpcap.HELPDIR)
     backlog_path = os.environ.get("OSK_HELP_BACKLOG", helpcap.BACKLOG)
     backlog = set()

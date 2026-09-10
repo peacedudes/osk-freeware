@@ -349,15 +349,28 @@ def break_try_backlog_stale(root):
 
 
 def break_help_backlog_forgets(root):
-    """A program with no help.psv line dropped from a COPY of the backlog."""
+    """A program on neither list: the gate must miss it.
+
+    While the backlog had names, dropping one was the break.  It emptied
+    on 2026-09-09, so the same failure is made the other way round: a
+    line is dropped from a COPY of help.psv, which OSK_HELP_TABLE points
+    the gate at, and that program is then on neither file.
+    """
     src = os.path.join(REPO, "tools", "help-backlog.txt")
     names = [l.strip() for l in open(src) if l.strip() and not l.startswith("#")]
-    if not names:
-        return None
-    copy = os.path.join(os.path.dirname(root), "help-backlog.txt")
-    open(copy, "w").write("\n".join(names[1:]) + "\n")
-    os.environ["OSK_HELP_BACKLOG"] = copy
-    return "`%s' dropped from a COPY of help-backlog.txt" % names[0]
+    work = os.path.dirname(root)
+    if names:
+        copy = os.path.join(work, "help-backlog.txt")
+        open(copy, "w").write("\n".join(names[1:]) + "\n")
+        os.environ["OSK_HELP_BACKLOG"] = copy
+        return "`%s' dropped from a COPY of help-backlog.txt" % names[0]
+    table = os.path.join(REPO, "tools", "help.psv")
+    rows = open(table).read().split("\n")
+    i = next(i for i, r in enumerate(rows) if r.strip() and not r.startswith("#"))
+    copy = os.path.join(work, "help.psv")
+    open(copy, "w").write("\n".join(rows[:i] + rows[i + 1:]))
+    os.environ["OSK_HELP_TABLE"] = copy
+    return "`%s' dropped from a COPY of help.psv" % rows[i].split("|")[0]
 
 
 def break_help_truncated(root):
@@ -473,6 +486,15 @@ def main(argv):
         shutil.rmtree(pristine, ignore_errors=True)
         shutil.copytree(root, pristine, symlinks=True)
         what = breaker(root)
+        if what is None:
+            # The break cannot be built from the tree as it stands -- the
+            # try-line backlog emptied on 2026-09-09 and there is no stanza
+            # left to drop from it.  That is not blindness; say so and
+            # move on rather than count a check that was never probed.
+            print("  %-34s not applicable   (nothing left to break with)" % label)
+            shutil.rmtree(root)
+            shutil.move(pristine, root)
+            continue
         failing = failing_labels(run_checker(root))
         ok = label in failing
         print("  %-34s %s   (%s)"
@@ -488,6 +510,7 @@ def main(argv):
         os.environ.pop("OSK_TRY_BACKLOG", None)
         os.environ.pop("OSK_HELP_BACKLOG", None)
         os.environ.pop("OSK_HELP_DIR", None)
+        os.environ.pop("OSK_HELP_TABLE", None)
         shutil.rmtree(os.path.join(work, "help"), ignore_errors=True)
 
     shutil.rmtree(work, ignore_errors=True)
