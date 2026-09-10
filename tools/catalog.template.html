@@ -275,7 +275,10 @@ const picked = new Set();
 // what the OS-9 setting shows.  Remembered in this browser only.
 let shell = "unix";
 try{ if(localStorage.getItem("shell")==="os9") shell="os9"; }catch(e){}
-const PROMPT = {unix:"bash$ ", os9:"shell$ "};
+const PROMPT = {unix:"bash$ ", os9:"$ "};
+// A comment after a command: bash reads a hash; Microware's shell reads
+// a star at the start of a command, so a semicolon first.
+const COMMENT = {unix:"   # ", os9:"   ; * "};
 // One button, showing the shell in force; pressing it switches to the
 // other.  The chip reads pressed when the OS-9 shell is chosen.
 const SHELL_NAME = {unix:"bash", os9:"OS-9 shell"};
@@ -443,36 +446,34 @@ function about(){
   const col = document.getElementById("panel-col");
   if(st.sel && BY[st.sel]) return;
   const pr = PROMPT[shell];
+  const cm = esc(COMMENT[shell]);
   col.innerHTML = `<div class="about">`+
-    `<p><b>Setting up.</b> Mount the disk image as <code>/dd</code>, and as `+
-    `<code>/h0</code> as well (a second name for the same image: <code>ln osk-freeware.dd h0</code> `+
-    `on the host), because some programs carry <code>/h0</code> paths inside them. `+
-    `Your own OS-9, if you have one, goes on <code>/h1</code>, which puts runb, r68 and `+
-    `the rest on the path. That is the whole arrangement; everything then runs `+
-    `where it is. <code>DOC/README-RUNNING</code> on the disk says the same at length.</p>`+
-    `<p><b>Taking a few programs onto your own system disk.</b> <code>keep</code>, `+
-    `<code>kept</code> and <code>unkeep</code> are three small programs written for this `+
-    `collection. For them the mounts are the other way round: your own OS-9 is `+
-    `<code>/dd</code> and this disk is mounted beside it, as <code>/h0</code> or any drive. `+
-    `Then <code>keep cookie</code> copies cookie and the data files it reads to where `+
-    `it looks for them, and records every file it wrote; <code>kept</code> lists `+
-    `those files; <code>unkeep cookie</code> removes them, leaving any you have changed `+
-    `since, such as a score file. Tick programs with <b>+</b> (or the space bar) `+
-    `and the command builds itself below.</p>`+
-    `<pre class="usage">${esc(pr)}keep -n fortune cookie    what would be written, nothing touched\n`+
-    `${esc(pr)}keep fortune cookie       copy them, and record every file\n`+
-    `${esc(pr)}kept                      every file keep has written, and the total\n`+
-    `${esc(pr)}unkeep cookie             remove what keep wrote for cookie</pre>`+
+    `<p><b>Setting up</b><br>`+
+    `Mount the disk image as <code>/dd</code>, and as <code>/h0</code> as well, a second name `+
+    `for the same image (<code>ln osk-freeware.dd h0</code> on the host), because some `+
+    `programs carry <code>/h0</code> paths inside them. Your own OS-9, if you have one, `+
+    `goes on <code>/h1</code>, which puts runb, r68 and the rest on the path. Everything `+
+    `then runs where it is. <code>DOC/README-RUNNING</code> on the disk says the same at length.</p>`+
+    `<p><b>Taking a few programs onto your own disk</b><br>`+
+    `<code>keep</code>, <code>kept</code> and <code>unkeep</code> are three small programs `+
+    `written for this collection, for the same arrangement. <code>keep cookie</code> copies `+
+    `cookie and the data files it reads from this disk onto your own on <code>/h1</code>, `+
+    `laid out the way cookie expects them, and records every file it wrote; `+
+    `<code>kept</code> lists those files; <code>unkeep cookie</code> removes them, leaving `+
+    `any you have changed since, such as a score file. Tick programs with <b>+</b> `+
+    `(or the space bar) and the command builds itself below.</p>`+
+    `<pre class="usage">${esc(pr)}keep -n fortune cookie${cm}show what keep would write\n`+
+    `${esc(pr)}keep fortune cookie${cm}copy them, and record every file written\n`+
+    `${esc(pr)}kept${cm}list every file keep has written\n`+
+    `${esc(pr)}unkeep cookie${cm}remove what keep wrote for cookie</pre>`+
     `<p><code>DOC/README-KEEP</code> on the disk has the rest.</p>`+
-    `<p>Pick a kind of program, or a letter, then a program. Each one&rsquo;s page `+
-    `says in a line what it does, gives you the command to <b>try it</b>, `+
-    `lists anything it <b>needs</b>, shows it <b>running</b>, and prints `+
-    `<b>its own help</b> as the program itself gives it; version, author and `+
-    `where it came from follow.</p>`+
-    `<p><b>See it run</b> was captured from the program on the disk image: keystrokes `+
-    `into the console, the terminal stream rendered into the grid a vt100 `+
-    `would have shown. Nothing is mocked up. The <b>shell</b> button `+
-    `above names the shell the commands are spelt for; press it to switch.</p>`+
+    `<p><b>Reading a page</b><br>`+
+    `Pick a kind of program, or a letter, then a program. Its page says what it does, `+
+    `gives a command to try, lists what it needs, shows it running, and prints its own `+
+    `help. Version, author and origin follow.</p>`+
+    `<p><b>See it run</b> was captured from the program on the disk image; nothing is `+
+    `mocked up. The <b>shell</b> button at the top names the shell the commands are `+
+    `spelt for, bash or the OS-9 shell, and pressing it changes to the other.</p>`+
     `</div>`;
 }
 

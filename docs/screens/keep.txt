@@ -1,7 +1,7 @@
-keep -p tmp/SYSB/kp greg
-collection at /h0, keeping into tmp/SYSB/kp
+keep greg
+collection at /dd, keeping into /dd/tmp/SYSB/kp
 
 greg:
-  tmp/SYSB/kp/CMDS/greg
+  /dd/tmp/SYSB/kp/CMDS/greg
 
 1 file written.

@@ -123,7 +123,7 @@ cap     unkept: unkeep reads the receipt in SYS/kept and removes each file
 cap     it lists, leaving any whose checksum has changed since -- a score
 cap     file, a saved game -- so those are safe from it.
 try     unkeep greg
-run     rm -f /dd/SYS/kept; rm -f /dd/tmp/SYSB/kp/CMDS/greg > /nil 2>/nil; keep -p /dd/tmp/SYSB/kp greg > /nil
+run     export KEEP_TO=/dd/tmp/SYSB/kp; rm -rf /dd/tmp/SYSB/kp > /nil 2>/nil; keep greg > /nil
 wait    5
 run     clear
 wait    1
@@ -232,26 +232,24 @@ run     isam
 wait    8
 shot    keep
 size    30 80
-cap     keep takes a program off the collection onto your own /dd, copying
-cap     the binary and the files DOC/DEPENDS says it reads.  Here greg goes
-cap     into a scratch directory, and keep names each file it wrote and
+cap     keep takes a program off the collection onto your own disk, copying
+cap     the binary and the files DOC/DEPENDS says it reads, laid out as the
+cap     program expects them.  Here greg goes to a scratch directory
+cap     standing in for your disk on /h1; keep names each file it wrote and
 cap     records it so unkeep can take it back.
-try     keep -p tmp/SYSB/kp greg
-run     rm -f /dd/SYS/kept; rm -f /dd/tmp/SYSB/kp/CMDS/greg > /nil 2>/nil; mkdir -p /dd/tmp/SYSB > /nil 2>/nil
-wait    3
-run     builtin cd /dd
+try     keep greg
+run     export KEEP_TO=/dd/tmp/SYSB/kp; rm -rf /dd/tmp/SYSB/kp > /nil 2>/nil; mkdir -p /dd/tmp/SYSB > /nil 2>/nil
 wait    1
 run     clear
 wait    1
-run     keep -p tmp/SYSB/kp greg
+run     keep greg
 wait    6
 shot    kept
-size    30 80
-cap     kept lists what keep has taken from the collection and what it came
-cap     to.  A program is kept first, then listed: each file, its size, and
-cap     the total.
+cap     kept lists what keep has written to your disk and what it came to.
+cap     A program is kept first, then listed: each file, its size, and the
+cap     total.
 try     kept
-run     rm -f /dd/SYS/kept; rm -f /dd/tmp/SYSB/kp/CMDS/greg > /nil 2>/nil; keep -p /dd/tmp/SYSB/kp greg > /nil
+run     export KEEP_TO=/dd/tmp/SYSB/kp; rm -rf /dd/tmp/SYSB/kp > /nil 2>/nil; keep greg > /nil
 wait    5
 run     clear
 wait    1
