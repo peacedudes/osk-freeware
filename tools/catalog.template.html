@@ -451,11 +451,24 @@ function about(){
   const cm = esc(COMMENT[shell]);
   col.innerHTML = `<div class="about">`+
     `<p><b>Setting up</b><br>`+
-    `Mount the disk image as <code>/dd</code>, and as <code>/h0</code> as well, a second name `+
-    `for the same image (<code>ln osk-freeware.dd h0</code> on the host), because some `+
-    `programs carry <code>/h0</code> paths inside them. Your own OS-9, if you have one, `+
-    `goes on <code>/h1</code>, which puts runb, r68 and the rest on the path. Everything `+
-    `then runs where it is. <code>DOC/README-RUNNING</code> on the disk says the same at length.</p>`+
+    `This collection is for OS-9. Give it a disk of its own on your system, reached `+
+    `by two device names: <code>/dd</code>, where the programs look for their data, and `+
+    `<code>/h0</code>, which a few of them carry inside instead. On most OS-9 systems `+
+    `<code>/dd</code> already names the <code>/h0</code> drive, so that is the usual `+
+    `arrangement. Your own commands and modules stay where they are: `+
+    `<code>SYS/login</code> puts <code>/h1/CMDS</code> on the path for runb, the shell and `+
+    `the rest, so <code>/h1</code> is the name to give your system disk while this one is `+
+    `<code>/dd</code>. Two ways to get it there: the raw RBF image, written whole to a disk `+
+    `your system mounts; or the same tree as a tar archive, unpacked at the root of the `+
+    `disk with the <code>tar</code> module shipped beside it. We have not had a real `+
+    `machine to do this on; <code>DOC/README-RUNNING</code> says what is known.</p>`+
+    `<p><b>Trying it first</b><br>`+
+    `os9exec, a community emulator for macOS and Linux, runs the image with no OS-9 `+
+    `of your own, in two lines on the host:</p>`+
+    `<pre class="usage">ln osk-freeware.dd h0\n`+
+    `OS9DISK=$PWD/osk-freeware.dd OS9H0=$PWD/h0 os9exec -r bash /dd/SYS/login</pre>`+
+    `<p>The hard link is how the emulator gives one image two names. Everything on `+
+    `these pages was captured that way.</p>`+
     `<p><b>Taking a few programs onto your own disk</b><br>`+
     `<code>keep</code>, <code>kept</code> and <code>unkeep</code> are three small programs `+
     `written for this collection, for the same arrangement. <code>keep cookie</code> copies `+

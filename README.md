@@ -12,56 +12,75 @@ Not for the 6809 line — these are 68k binaries.
 
 ## What it is
 
-A single OS-9 RBF disk image, built from `disk/`. It is **not a boot
-disk**: os9exec is the kernel, and this is the disk it mounts as `/dd` — the
-root and home. There is no established name for that role.
+The community's software for OS-9, made to run again on OS-9. It ships two
+ways, both built from `disk/`:
 
-    disk/       the tree the image is built from
-      CMDS/       the commands, plus GAMES/ REBUILT/ BROKEN/ NETPBM/ GCC*/
-      SRC/        C source for most of it
+- **`osk-freeware.dd`** -- one RBF disk image, 256 MB, with room left for
+  scores, saves and your own work.
+- **`osk-freeware.tar`** -- the same tree as a tar archive, with **`tar`**,
+  the collection's own trap-free tar module, beside it to unpack it with.
+
+It is not a boot disk and carries no OS9Boot: it is a data disk for an OS-9
+system you already have, or for os9exec.
+
+    disk/       the tree both are built from
+      CMDS/       the commands, plus GAMES/ REBUILT/ NETPBM/ GCC*/ and the rest
+      SRC/        C source for two thirds of it
       DOC/        per-package documentation, plus the index files below
       GAMES/      game data
       SYS/ LIB/ DEFS/
     tools/      how the image gets built (see tools/README.md)
 
-## Running it
+## On a real OS-9 system
 
-**Mount this as `/dd`:**
+Give the collection a disk of its own, reached by two device names: `/dd`,
+where most programs look for their data (`advent` wants
+`/dd/GAMES/adv/glorkz`, `fortune` `/dd/GAMES/FORTUNE/fortunes.dat`, `nroff`
+`/dd/LIB/tmac.*`), and `/h0`, which a smaller number carry inside instead.
+On most OS-9 systems `/dd` already names the `/h0` drive, so that is the
+usual arrangement. Your own system disk takes another name -- `SYS/login`
+puts `/h1/CMDS` on the path, so `/h1` is the one it expects -- and your own
+`runb`, shell, `r68` and `l68` are found there by the programs that want
+them.
 
-    OS9DISK=$PWD/osk-freeware.dd os9exec -r bash /dd/SYS/login
+Two ways to get it onto that disk:
 
-That is the arrangement to prefer, and it is not a close call. Most of the
-programs that read data of their own read it from `/dd` — `advent` wants
-`/dd/GAMES/adv/glorkz`, `fortune` wants `/dd/GAMES/FORTUNE/fortunes.dat`,
-`nroff` wants `/dd/LIB/tmac.*`. A minority want theirs under `/h0`. Run
-`tools/measure_layout.py` for the tally as it stands; the reasoning is in
-`notes/DECISION-placement.md`.
+- write `osk-freeware.dd`, the raw RBF image, whole onto a disk your system
+  mounts; or
+- move `osk-freeware.tar` and the `tar` module across by whatever path you
+  have -- a network, a serial line, a disk written elsewhere -- and unpack
+  the archive at the root of the disk.
 
-Nothing has to be fetched. `cio`, `csl`, `csl020`, `math` and `math881` — the
-Microware runtime modules the starred programs need — **ship on the disk, with
-Microware's permission**. `SOURCES.txt` records the exchange.
+Then `bash /dd/SYS/login` from your own shell gives you a session with the
+paths set, or use the programs directly: `SYS/login` says what it sets.
 
-`SYS/login` works out where the disk is mounted from the path you hand it,
-then sets `PATH`, `HOME`, `TERM` and `TERMCAP`.
+We have not done this on hardware ourselves. `DOC/README-RUNNING` on the
+disk says what is known and what has been measured; if you have, what
+worked is worth writing down there.
 
-**Add `/h0` as well** — it costs one inode and collects the rest:
+Nothing has to be fetched. `cio`, `csl`, `csl020`, `math` and `math881` --
+the Microware runtime modules the starred programs need -- **ship on the
+disk, with Microware's permission**. `SOURCES.txt` records the exchange.
 
-    ln osk-freeware.dd h0     # a hard link: os9exec will not mount one path twice
+## Trying it first, with os9exec
+
+os9exec is a community emulator for macOS and Linux: point it at the image
+and it runs, no OS-9 of your own needed. Two lines on the host:
+
+    ln osk-freeware.dd h0     # one image, two names: os9exec will not mount a path twice
     OS9DISK=$PWD/osk-freeware.dd OS9H0=$PWD/h0 os9exec -r bash /dd/SYS/login
 
-### If you already run OS-9 and want to keep your own `/dd`
+Add `OS9H1=<your OS-9 system or SDK>` and the programs that want `runb` or
+Microware's shell find them. Everything in `docs/` was captured this way.
 
-    OS9DISK=<your own disk>  OS9H0=<this image, named h0>  os9exec shell
-    setenv PATH /dd/CMDS:/h0/CMDS:/h0/CMDS/GAMES
+### Taking a few programs onto your own system disk
 
-This keeps your system, your `LIB` and your own `cio`. What it costs is the
-programs that keep data here: `/dd` is now yours, so their data is not where
-they look. The
-disk carries **`keep`** for exactly this — it copies a program onto your `/dd`
-together with the files `DOC/DEPENDS` says it reads, records every byte it
-wrote, and `drop` will not remove anything you have since changed. See
-`DOC/README-KEEP`. `docs/index.html` will build the command for you: tick
-programs and it writes out `keep a b c` to paste.
+The disk carries **`keep`**, **`kept`** and **`unkeep`**, written for this
+collection: `keep cookie` copies cookie and the files `DOC/DEPENDS` says it
+reads from `/dd` onto your disk on `/h1`, laid out the way cookie expects
+them, and records every file; `kept` lists them; `unkeep cookie` removes them,
+leaving any you have changed since. See `DOC/README-KEEP`. `docs/index.html`
+builds the command for you: tick programs and it writes out `keep a b c`.
 
 ### Two things worth knowing either way
 

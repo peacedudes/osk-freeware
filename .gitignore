@@ -1,5 +1,8 @@
-# Built artefacts -- the image is a release asset, not source.
+# Built artefacts -- the image, the tar of the same tree and the tar module
+# that unpacks it are release assets, not source.
 /osk-freeware.dd
+/osk-freeware.tar
+/tar
 # The advisory lock tools/imagelock.py holds while a harness runs.  It
 # was committed once, by a `git add -A' during a run.
 *.dd.lock
