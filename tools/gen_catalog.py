@@ -162,7 +162,10 @@ def load_help(root):
         if not os.path.exists(path):
             continue
         first, _, text = open(path, encoding="ascii").read().partition("\n")
-        out[name] = {"cmd": first[2:], "text": text.rstrip("\n")}
+        # The card shows the command a reader types, not the hidden
+        # setup (a `load' or `chx') that let the capture run it by name.
+        shown = helpcap.split_command(first[2:])[1]
+        out[name] = {"cmd": shown, "text": text.rstrip("\n")}
     return out
 
 
