@@ -19,6 +19,19 @@
   link may still sit in the repo root (gitignored); nothing reads it.
 - **One arrangement for running and keeping**: `keep' copies from `/dd'
   onto `/h1'; `unkeep' (was `drop') takes it back.  `DOC/README-KEEP'.
+- **Spot-check fixes from rdoggett's own reading of the page.** `zot':
+  its styles are ANIMATIONS (letters sliding, bouncing, sorting in, each
+  frame a CR-rewrite of one line), invisible under `os9exec -r`, which
+  drops the pacing; the card is now a filmstrip via the new sheet
+  directive `frames'.  `robots': every score read "your name" because the
+  OS-9 port's getlogin() stub in `SRC/rob/os9stuff.c' returned that
+  literal; it now reads USER, LOGNAME, then group.user, rebuilt and
+  installed, verified against an emptied list ("tester", today's date).
+  The shipped 1987 score files are untouched.  Card shows the board in
+  play, not the top ten.  `sonnet': the card says what `-l' takes (a poem
+  sonnet wrote with `w'; sonnet.out by default).  `oleo' aborts, is
+  carded as such, and is on FOR-RDOGGETT's best-forgotten list with piano
+  and rstory2 -- recommendation: drop all three; his call.
 
 ## Where it stands (2026-09-09, evening): every card carries its own captured help
 
