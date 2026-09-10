@@ -8,6 +8,12 @@
                         the check meant to catch it to say so
     gen_depends.py      regenerate disk/DOC/DEPENDS
     gen_catalog.py      build docs/index.html, the browsable guide
+    helpcap.py          capture each program's OWN help, whole, as it prints
+                        it -- tools/help.psv says how each one is asked,
+                        docs/help/<name>.txt is what it said; the card
+                        shows both.  --probe asks `-?' of everything not
+                        yet in the table; --backlog rewrites
+                        help-backlog.txt, the ratchet check_disk reads
     measure_layout.py   where the programs expect their files -- /dd or /h0
     doc_census.py       how many programs have documentation
     src_census.py       how many have SOURCE here, and by which route
@@ -23,8 +29,8 @@
                         when it turned out to be gone
     gen_freeware_index.py
 
-    worklist.py         one row per program: what DOC/INDEX claims, what the
-                        binary's own usage line says, whether a card
+    worklist.py         one row per program: what DOC/INDEX claims, what its
+                        captured help says, whether a card
                         captures it, whether any test asserts anything
                         about it, and whether a drive sheet runs it. Every
                         column is derived, so none of it can go stale

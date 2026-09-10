@@ -139,11 +139,21 @@
   .needs span{color:var(--dim)}
   .see{margin:16px 0 2px}
   .see .k{display:block;margin:0 0 6px}
-  details.more{margin:16px 0 0;border-top:1px solid var(--rule);padding-top:10px}
-  details.more summary{cursor:pointer;color:var(--accent);font-size:12.5px;list-style:none}
-  details.more summary::-webkit-details-marker{display:none}
-  details.more dl{margin-top:10px}
-  details.more .howto{font-size:13px;line-height:1.45;max-width:64ch;margin-top:10px}
+  /* The program's own help, whole, right under the picture of it running:
+     the reader should not have to open anything to see the options.  The
+     header line is the command that asked for it, at the reader's prompt. */
+  .help{margin:16px 0 2px}
+  .help .k{display:block;margin:0 0 6px}
+  .help pre.usage{font-family:var(--mono);font-size:12px;line-height:1.45;margin:0;
+    white-space:pre-wrap;overflow-wrap:anywhere;background:var(--paper);
+    border:1px solid var(--rule);border-radius:6px;padding:9px 11px;color:var(--ink)}
+  .help pre.usage .pr{color:var(--faint)}
+  .help .none{color:var(--dim);font-size:13px}
+  /* Details and provenance are always open.  They were a fold, and the fold
+     closed again every time the shell switch re-rendered the card. */
+  .more{margin:18px 0 0;border-top:1px solid var(--rule);padding-top:10px}
+  .more .k{color:var(--faint);font-family:var(--mono);font-size:11.5px;letter-spacing:.03em}
+  .more dl{margin-top:10px}
     .back{display:none;font:inherit;font-size:13px;background:none;border:0;color:var(--accent);
         cursor:pointer;padding:0;margin:0 0 10px}
   .about{padding:24px 18px;color:var(--dim);font-size:13px;max-width:52ch;line-height:1.5}
@@ -431,8 +441,9 @@ function about(){
   col.innerHTML = `<div class="about">`+
     `<p>Pick a kind of program, or a letter, then a program. Each one&rsquo;s page `+
     `says in a line what it does, gives you the command to <b>try it</b>, `+
-    `shows it <b>running</b>, and lists anything it <b>needs</b> &mdash; the rest `+
-    `(version, author, where it came from) is tucked below.</p>`+
+    `lists anything it <b>needs</b>, shows it <b>running</b>, and prints `+
+    `<b>its own help</b> as the program itself gives it; version, author and `+
+    `where it came from follow.</p>`+
     `<p><b>See it run</b> was captured from the program on the disk image: keystrokes `+
     `into the console, the terminal stream rendered into the grid a vt100 `+
     `would have shown. Nothing is mocked up. The <b>bash</b> / <b>OS-9 shell</b> switch `+
@@ -480,7 +491,6 @@ function renderPanel(){
   add("Came from", p.origin ? esc(p.origin)+(p.archive?` &mdash; ${esc(p.archive)}`:"") : "");
   add("Source",    p.src ? `<code>SRC/${esc(p.src)}</code>` : (p.hassrc?`<code>SRC/${esc(p.name)}</code>`:""));
   add("Docs",      p.docs ? `<code>DOC/${esc(p.name)}/</code>` : "");
-  if(p.usage) D.push(`<dt>Its own help</dt><dd><pre class="usage">${esc(p.usage)}</pre></dd>`);
   add("Restrictions", esc(i.restrictions));
   add("Hardware",     esc(i.hardware));
   const kin=DATA.filter(x=>x.sub===p.sub && x.name!==p.name).sort((a,b)=>a.name.localeCompare(b.name));
@@ -496,6 +506,14 @@ function renderPanel(){
       `<pre class="shot">${shotHTML(shot)}</pre>`+
       `<p class="shotcap">${esc(shot.c)}</p></div>`
     : "";
+  // What the program says of itself when asked, captured whole
+  // (tools/help.psv says how each one is asked; docs/help/ holds the
+  // answers).  A program with no help of its own says so in a line.
+  const h=p.help;
+  const helpHTML=!h ? "" : h.cmd
+    ? `<div class="help"><div class="k">its own help</div>`+
+      `<pre class="usage"><span class="pr">${esc(PROMPT[shell])}</span>${esc(h.cmd)}\n${esc(h.text)}</pre></div>`
+    : `<div class="help"><div class="k">its own help</div><span class="none">${esc(h.note)}</span></div>`;
 
   col.innerHTML = `<div class="panel">`+
     `<button class="back" id="back">&larr; Back to the list</button>`+
@@ -504,8 +522,9 @@ function renderPanel(){
     `<div class="try"><span class="k">try it</span><code><span class="pr">${esc(PROMPT[shell])}</span>${esc(tryCmd)}</code></div>`+
     (needs.length?`<div class="needs"><span class="k">needs</span><span>${needs.join(" &middot; ")}${data.length?` <span class="okk">&middot; ${data.length>1?"all ":""}on the disk</span>`:""}</span></div>`:"")+
     seeHTML+
+    helpHTML+
     bringsHTML(p)+
-    (D.length?`<details class="more"><summary>details and provenance</summary><dl>${D.join("")}</dl></details>`:"")+
+    (D.length?`<div class="more"><span class="k">details and provenance</span><dl>${D.join("")}</dl></div>`:"")+
     `</div>`;
   col.scrollTop = 0;
 }

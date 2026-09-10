@@ -163,66 +163,35 @@ def derive_netpbm_desc(name):
 
 # ---- the program's own help text -------------------------------------
 
-USAGE_START = re.compile(rb"(?i)(usage|syntax)\s*:")
-USAGE_CONT  = re.compile(rb"(?i)^(options?|function|where|flags?|commands?)\s*[:\-]")
-USAGE_OPT   = re.compile(rb"(?i)^\s{0,6}-{1,2}[A-Za-z?][\w=]*\s")
+def load_help(root):
+    """name -> what the card shows as "its own help".
 
-def usage_of(path, name, limit=1200):
-    """Lift a program's syntax line and option list out of its own binary.
+    tools/help.psv says, per program, which command asks it for help (or
+    that it has none), and docs/help/<name>.txt is what the program said,
+    captured whole by tools/helpcap.py -- first line `$ <command>', then the
+    text.  Until 2026-09-09 this was a regex over the binary's strings that
+    stopped at the first line not shaped like an option, which is how roff's
+    help was published as three lines ending at `Options:'.  Nothing here is
+    read out of a binary any more.
 
-    "WOLK - dam utility" tells a reader nothing they can act on, and no
-    second-hand summary beats the program's own account. Almost every OS-9
-    program carries its usage text as plain strings.
-
-    Telling that text from the rest of a binary is the awkward part: symbol
-    tables and format fragments look similar. Anchor on a syntax line, then
-    keep following strings only while they still look like option
-    documentation, and stop at the first that does not.
+    Returns {"cmd": ..., "text": ...} for a captured help, or {"note": ...}
+    for a program the table says has none; a program on the backlog (no
+    table line yet) gets nothing and the card shows nothing.
     """
-    try:
-        data = open(path, "rb").read()
-    except OSError:
-        return None
-    if data[:2] != b"\x4a\xfc":
-        return None
-    out, taking = [], False
-    for m in re.finditer(rb"[ -~\t]{6,}", data):
-        line = m.group().rstrip()
-        if not line:
+    here = os.path.dirname(os.path.abspath(__file__))
+    sys.path.insert(0, here)
+    import helpcap
+    out = {}
+    for name, (cmd, note) in helpcap.load_table().items():
+        if cmd is None:
+            out[name] = {"note": note or "it prints no help of its own"}
             continue
-        if not taking:
-            # SEARCH, not match: these strings often carry a few bytes of
-            # surrounding code, and "N]NuUsage: gnuchess [-a]" starts with a
-            # letter, so stripping non-letters off the front never reached it.
-            hit = USAGE_START.search(line)
-            if hit:
-                taking = True
-                out.append(line[hit.start():])
+        path = os.path.join(helpcap.HELPDIR, name + ".txt")
+        if not os.path.exists(path):
             continue
-        line = re.sub(rb"^[^A-Za-z/\-]{0,6}", b"", line)
-        if USAGE_OPT.match(line) or USAGE_CONT.match(line) or re.match(rb"^\s{2,}\S", line):
-            out.append(line)
-            if sum(len(x) for x in out) > limit:
-                break
-        else:
-            break
-    if not out:
-        return None
-    text = b"\n".join(out).decode("latin-1")
-    text = re.sub(r"[ \t]{3,}", "   ", text)
-    # these are printf templates; %s is almost always the program's own name
-    text = text.replace("%s", name)
-    text = text[:limit]
-
-    # Reject what substitution turned into noise. netpbm composes its usage at
-    # run time from "usage:  %s %s", so the argument spec is never in the
-    # binary and this yields "usage: pnmcut pnmcut" -- worse than saying
-    # nothing, because it looks like the program takes its own name twice.
-    body = re.sub(r"(?i)^\s*(usage|syntax)\s*:", "", text).strip()
-    body = body.replace(name, "").strip()
-    if len(body) < 6 or not re.search(r"[\[<(\-]|\w\s+\w", body):
-        return None
-    return text
+        first, _, text = open(path, encoding="ascii").read().partition("\n")
+        out[name] = {"cmd": first[2:], "text": text.rstrip("\n")}
+    return out
 
 
 # The origin phrases DOC/ORIGINS actually uses, longest first so that
@@ -367,9 +336,6 @@ def from_tree(root, progs, starred):
             progs[n]["size"] = os.path.getsize(p)
             if len(head) > 0x14 and head[:2] == b"\x4a\xfc" and head[0x13] == 2:
                 progs[n]["basic09"] = True      # I-code: needs runb, not the kernel
-            u = usage_of(p, n)
-            if u:
-                progs[n]["usage"] = u
 
     docs = {x.lower() for x in os.listdir(os.path.join(root, "DOC"))
             if os.path.isdir(os.path.join(root, "DOC", x))}
@@ -397,8 +363,8 @@ def load_howto(path):
 
     Separate from categories.psv because it answers a different question and
     covers a handful of programs rather than all of them. Most programs need
-    no entry -- usage_of() lifts their usage line straight out of the binary,
-    which cannot go stale the way a written note can.
+    no entry -- their own captured help (tools/help.psv, docs/help/) says how
+    they are called.
     """
     notes = {}
     if not os.path.exists(path):
@@ -426,7 +392,7 @@ def shared_names(root):
     THE CATALOGUE CAN ONLY SHOW ONE OF EACH.  Everything here is keyed by
     NAME -- DOC/INDEX, categories.psv, howto.psv and `progs' itself -- so
     where two directories hold different programs under one name, whichever
-    `from_tree' walks last supplies the size, the usage text and the
+    `from_tree' walks last supplies the size and the
     directory, and the other is not in the guide at all.
 
     As measured 2026-08-30 there are nine, eight of them different programs
@@ -491,12 +457,15 @@ def gather(root, catfile):
     cats  = load_categories(catfile)
     howto = load_howto(os.path.join(os.path.dirname(os.path.abspath(__file__)),
                                     "howto.psv"))
+    helps = load_help(root)
     out, uncategorised = [], []
     for p in sorted(progs.values(), key=lambda x: x["name"].lower()):
         if not p.get("dir"):
             continue                      # named in INDEX but not on the disk
         if p["name"] in howto:
             p["howto"] = howto[p["name"]]
+        if p["name"] in helps:
+            p["help"] = helps[p["name"]]
         if p["name"] in cats:
             p["cat"], p["sub"] = cats[p["name"]]
         elif p["name"] in groups:
@@ -539,7 +508,7 @@ ORDER = ["Shells","Editors","Text tools","Files & directories","Developer tools"
  "Printing","Documentation","Uncategorised"]
 
 KEEP = ("name","desc","cat","sub","star","dir","size","origin","archive","src",
-        "docs","hassrc","military","basic09","needs","info","usage","howto")
+        "docs","hassrc","military","basic09","needs","info","help","howto")
 
 def render_markdown(progs):
     """A catalogue GitHub will actually render in the repository view.
@@ -599,14 +568,13 @@ def render_markdown(progs):
             for p in sorted(subs[sub], key=lambda x: x["name"].lower()):
                 star = "&#9733; " if p.get("star") else ""
                 cell = star + p.get("desc", "").replace("|", "\\|")
-                # How to run it, which is what a reader actually wants next.
-                # The usage line comes out of the binary; the note is written.
-                # Both were previously generated and then shown only in the
-                # HTML, where most people never see them.
+                # How to run it, which is what a reader actually wants next:
+                # the written note, or else the first line of the help the
+                # program printed when asked (docs/help/<name>.txt).
                 if p.get("howto"):
                     cell += "<br>**How:** " + p["howto"].replace("|", "\\|")
-                elif p.get("usage"):
-                    one = p["usage"].strip().splitlines()[0].strip()
+                elif p.get("help", {}).get("text"):
+                    one = p["help"]["text"].strip().splitlines()[0].strip()
                     if one:
                         cell += "<br>`%s`" % one.replace("|", "\\|")
                 L.append("| `%s` | %s |" % (p["name"], cell))

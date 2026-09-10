@@ -26,7 +26,8 @@ on its own.
 Columns:
 
     name  dir  star  category  sub  size  src  doc  howto  card  test  driven
-    usage   the program's own first usage/syntax line, lifted from the binary
+    usage   the first line of the help the program printed when asked
+            (docs/help/<name>.txt), blank until tools/help.psv has its line
     desc    its DOC/INDEX line, whitespace collapsed
 """
 import os
@@ -179,7 +180,7 @@ def rows():
     cards, done = carded(), driven(known)
     tests = tested(known)
     for p in progs:
-        usage = (p.get("usage") or "").split("\n")[0].strip()
+        usage = (p.get("help", {}).get("text") or "").split("\n")[0].strip()
         desc = " ".join((p.get("desc") or "").split())
         yield {
             "name": p["name"], "dir": p.get("dir", ""),

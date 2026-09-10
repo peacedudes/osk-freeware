@@ -1,0 +1,9 @@
+$ roff -?
+Syntax: roff {[+00] [-00] [-s] -[h] file}
+Function: format textfiles
+Options:
+     +00       start at page 00
+     -00       end at page 00
+     -c        print tabel of contents
+     -s        ????
+     -h        use hardtabs

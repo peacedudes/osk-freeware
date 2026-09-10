@@ -1,0 +1,12 @@
+# help.psv -- how each program is asked for its own help.  name|command|note
+#
+# One line per program, written by somebody who has just run it.  The
+# command is what a reader types to get the help -- `-?' is the OS-9
+# convention and not universal.  `none' means the program prints no help
+# of its own, and the note says what the card shows instead.  A leading
+# `load X;' or `chd X;' is hidden setup; `<< a\rb' feeds standard input.
+# tools/helpcap.py captures every command here into docs/help/<name>.txt,
+# whole, and the gate `cards carry real help text' checks the captures
+# against this table.  tools/help-backlog.txt lists what is not here yet.
+roff|roff -?|
+bm|bm -?|

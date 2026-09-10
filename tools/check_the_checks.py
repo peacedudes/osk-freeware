@@ -348,6 +348,35 @@ def break_try_backlog_stale(root):
     return "`%s' (which has a try line) added to a COPY of try-backlog.txt" % has
 
 
+def break_help_backlog_forgets(root):
+    """A program with no help.psv line dropped from a COPY of the backlog."""
+    src = os.path.join(REPO, "tools", "help-backlog.txt")
+    names = [l.strip() for l in open(src) if l.strip() and not l.startswith("#")]
+    if not names:
+        return None
+    copy = os.path.join(os.path.dirname(root), "help-backlog.txt")
+    open(copy, "w").write("\n".join(names[1:]) + "\n")
+    os.environ["OSK_HELP_BACKLOG"] = copy
+    return "`%s' dropped from a COPY of help-backlog.txt" % names[0]
+
+
+def break_help_truncated(root):
+    """A capture cut off at `Options:' in a COPY of docs/help -- the roff
+    scrape, re-enacted."""
+    import helpcap
+    name = next((n for n, (c, _) in helpcap.load_table().items()
+                 if c and os.path.exists(os.path.join(helpcap.HELPDIR, n + ".txt"))), None)
+    if name is None:
+        return None
+    copy = os.path.join(os.path.dirname(root), "help")
+    shutil.copytree(helpcap.HELPDIR, copy)
+    path = os.path.join(copy, name + ".txt")
+    lines = open(path).read().split("\n")
+    open(path, "w").write("\n".join(lines[:2] + ["Options:"]) + "\n")
+    os.environ["OSK_HELP_DIR"] = copy
+    return "`%s's capture cut off after `Options:' in a COPY of docs/help" % name
+
+
 BREAKS = [
     ("line endings", "line endings are CR-only", add_line_ending),
     ("utf8", "no UTF-8 on an 8-bit disk", add_utf8),
@@ -375,6 +404,8 @@ BREAKS = [
     ("panel stale", "panels show their own program", break_panel_backlog_stale),
     ("try forgets", "every card says what to type", break_try_backlog_forgets),
     ("try stale", "every card says what to type", break_try_backlog_stale),
+    ("help forgets", "cards carry real help text", break_help_backlog_forgets),
+    ("help truncated", "cards carry real help text", break_help_truncated),
     # `one line per name in the hand lists' is NOT probed here: its input is
     # tools/howto.psv and tools/categories.psv, not the disk tree this tool
     # copies, so a break would edit the live lists. It was made to fail by
@@ -455,6 +486,9 @@ def main(argv):
         os.environ.pop("OSK_PANEL_BACKLOG", None)
         os.environ.pop("OSK_PANEL_EXCEPTIONS", None)
         os.environ.pop("OSK_TRY_BACKLOG", None)
+        os.environ.pop("OSK_HELP_BACKLOG", None)
+        os.environ.pop("OSK_HELP_DIR", None)
+        shutil.rmtree(os.path.join(work, "help"), ignore_errors=True)
 
     shutil.rmtree(work, ignore_errors=True)
     print("\n%d of %d breaks were caught by the check meant to catch them"

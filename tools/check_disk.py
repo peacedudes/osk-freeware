@@ -1010,6 +1010,67 @@ def check_cio_macro_population(root):
     return not problems, "%d problem(s) with the cio-macro population" % len(problems)
 
 
+def check_cards_carry_real_help(root):
+    """Every card's "its own help" is what the program printed -- ratcheted.
+
+    Until 2026-09-09 the help on a card was lifted out of the binary by a
+    regex that stopped at the first string not shaped like an option, so
+    `roff' was published as three lines ending at `Options:' with the
+    options cut off.  Now tools/help.psv says, per program, which command
+    asks it for help (or that it has none) and docs/help/<name>.txt is what
+    it answered, captured whole by tools/helpcap.py.
+
+    The ratchet: a program is in the table or on tools/help-backlog.txt,
+    never both and never neither.  For each table entry with a command, the
+    capture must exist, begin `$ <that command>' (a table line changed
+    without a re-capture fails), hold some text, hold no `[no answer in'
+    marker (the program hung on that flag: the table is wrong), and not
+    end on a line ending in `:' -- a cut-off option list, the roff scrape
+    made into a rule.
+    """
+    tools = os.path.dirname(os.path.abspath(__file__))
+    sys.path.insert(0, tools)
+    import helpcap
+    table = helpcap.load_table()
+    helpdir = os.environ.get("OSK_HELP_DIR", helpcap.HELPDIR)
+    backlog_path = os.environ.get("OSK_HELP_BACKLOG", helpcap.BACKLOG)
+    backlog = set()
+    if os.path.exists(backlog_path):
+        backlog = {ln.strip() for ln in open(backlog_path)
+                   if ln.strip() and not ln.startswith("#")}
+    ondisk = set(helpcap.programs(root))
+    bad = []
+    for name in sorted(ondisk - set(table) - backlog):
+        bad.append("`%s' has no help.psv line and is not on the backlog" % name)
+    for name in sorted(backlog & set(table)):
+        bad.append("`%s' is in help.psv now -- regenerate the backlog" % name)
+    for name in sorted(set(table) - ondisk):
+        bad.append("`%s' is in help.psv and is not on the disk" % name)
+    for name, (cmd, _note) in sorted(table.items()):
+        if cmd is None:
+            continue
+        path = os.path.join(helpdir, name + ".txt")
+        if not os.path.exists(path):
+            bad.append("`%s': no capture in docs/help" % name)
+            continue
+        first, _, text = open(path, encoding="ascii").read().partition("\n")
+        text = text.rstrip("\n")
+        if first != "$ " + cmd:
+            bad.append("`%s': capture is of `%s', table says `%s'" % (name, first[2:], cmd))
+        elif not text.strip():
+            bad.append("`%s' printed nothing for `%s'" % (name, cmd))
+        elif helpcap.NO_ANSWER in text:
+            bad.append("`%s' hangs on `%s'" % (name, cmd))
+        elif text.rstrip().endswith(":"):
+            bad.append("`%s': help ends at `%s' -- cut off?" % (name, text.rstrip().split("\n")[-1].strip()))
+    for b in bad[:12]:
+        print("    %s" % b)
+    if len(bad) > 12:
+        print("    ... and %d more" % (len(bad) - 12))
+    return not bad, "%d problem(s); %d programs still without a help line" % (
+        len(bad), len(backlog))
+
+
 def check_harness_env_matches_login(root):
     """The harnesses' idea of the login environment must match SYS/login's.
 
@@ -1121,6 +1182,7 @@ CHECKS = [
     ("cards do not depend on each other", check_cards_do_not_depend_on_each_other),
     ("cards carry no full pathlists", check_cards_have_no_pathlists),
     ("every card says what to type", check_cards_have_a_try_line),
+    ("cards carry real help text", check_cards_carry_real_help),
     ("harness env matches SYS/login", check_harness_env_matches_login),
     ("panels show their own program", check_panels_show_their_program),
 ]
