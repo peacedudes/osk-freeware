@@ -23,7 +23,6 @@ afm2tfm
 alps
 animal
 answer
-ape
 apfel
 aprocs
 ar
@@ -38,7 +37,6 @@ as1
 as11
 as4
 as5
-ascii
 asciitopgm
 ask
 assembler
@@ -47,7 +45,6 @@ atktopbm
 atob
 atp
 authwn
-autolf
 autoreply
 back
 backgammon
@@ -87,7 +84,6 @@ calen
 calender
 cam
 card
-casefix
 cat
 cb
 cc1plus
@@ -95,7 +91,6 @@ cc2
 cc2plus
 cccp2
 ccheck
-charcnt
 chardef
 chbase
 checkalias
@@ -140,8 +135,6 @@ csl
 csl020
 ctags
 ctags.elvis
-cut
-cuts
 cvtbase
 cxref
 cyberwar
@@ -155,7 +148,6 @@ delbak
 demerge
 demo
 des
-detab
 devprc
 dfiles
 dhry
@@ -188,7 +180,6 @@ dpark
 draw
 drop
 du
-dump
 dvialw
 dvidjp
 dvieps
@@ -216,7 +207,6 @@ emacs.mm1
 enable
 england
 env
-eo
 ephem
 ephem881
 epson
@@ -225,7 +215,6 @@ etags
 eunlink
 every
 exist
-expand
 expire
 expr
 expreserve
@@ -235,10 +224,7 @@ fastmail
 fc
 ff
 fibo
-field
-file
 fileserv
-fillup
 filter
 find
 finger
@@ -262,7 +248,6 @@ funzip
 g
 g3topbm
 game
-gawk
 gcc
 gcc2
 gcc_cc1
@@ -272,11 +257,9 @@ gcc_cccp
 gcc_cccp2
 gcc_collect
 gcl
-gdd
 gemtopbm
 gen
 georgia
-gep
 getenv
 getsys
 gftopk
@@ -312,7 +295,6 @@ gzipcpu32_nocsl
 gzipcpu32k_csl
 hack
 hang
-head
 help
 helpindex
 hexbin
@@ -479,7 +461,6 @@ p2c
 pacman
 paranoia
 passwd
-paste
 patch
 pathalias
 pbmclean
@@ -519,7 +500,6 @@ pbmupc
 pbyte
 pcxtoppm
 pdraw
-pep
 perr
 pgmbentley
 pgmcrater
@@ -627,7 +607,6 @@ printenv
 printf
 printmail
 prjob
-psc
 psidtopgm
 ptob
 ptxm
@@ -670,7 +649,6 @@ rndir
 rndname
 rnews
 robots
-rot
 rpn
 rpoem
 rsconvert
@@ -697,7 +675,6 @@ sddemo
 sed
 sed_1.06
 sedt
-sepwords
 setfont
 setime
 setime2
@@ -728,8 +705,6 @@ sox
 space
 spctoppm
 spline
-split
-splitalf
 splman
 splprt
 splstat
@@ -740,15 +715,12 @@ ssl
 sterm
 stone
 striche
-strings
 su
-subber
 submit
 subscribe
 suicide
 suicide1
 suicide2
-sum
 suse
 suspend
 sysid
@@ -758,12 +730,8 @@ sysmon
 t
 t_trtest
 tab
-tabs
-tac
-tail
 tangle
 tar
-tcmp
 teachgammon
 tess
 testibc
@@ -802,15 +770,12 @@ uld
 umacs
 umusek
 undel
-unexpand
 unifdef
-unp
 unpacklib
 unpacklib.os9
 unsit
 unsubscribe
 unzip
-upperdir
 uucico
 uuclean
 uucp
@@ -823,7 +788,6 @@ uupoll
 uux
 uuxqt
 uwho
-valspeak
 vc
 vecho
 version
@@ -843,8 +807,6 @@ vptovf
 vtxtcn
 wam.sbprolog
 wanderer
-wc
-wc.cio
 weave
 wgen
 who

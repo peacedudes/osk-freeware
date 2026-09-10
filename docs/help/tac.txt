@@ -1,0 +1,4 @@
+$ tac -?
+tac: unrecognized option `-?'
+Usage: tac [-br] [-s separator] [+before] [+regex] [+separator=separator]
+       [file...]

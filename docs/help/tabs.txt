@@ -1,0 +1,6 @@
+$ tabs -?
+Unknown switch: ?
+Syntax   : tabs [<opts>] [<input_redirection>] [<output_redirection>]
+Function : convert from one tab size to another (default eight)
+           replace tabs with spaces or v.v.
+           delete trailing spaces/tabs on lines

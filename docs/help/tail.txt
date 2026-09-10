@@ -1,0 +1,7 @@
+$ tail -?
+TAIL     Version UTIL 2.70 by DESIGNA VLT 27.05.98
+tail [Optionen] <File(Wildcard)>
+Prints last <x> lines of Textfile
+
+   -l=<x>, default=20
+   -d Switch on debug

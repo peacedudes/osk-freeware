@@ -1,0 +1,8 @@
+$ strings -?
+Usage: strings [-anpl=n] [file [file]]
+     searches named binary files for strings
+     -a   string is alpha chars only
+     -n   string is alphanumeric chars only
+     -p   string is printable chars only
+     -l=n set match length to 'n'
+     -z   get file names from std in

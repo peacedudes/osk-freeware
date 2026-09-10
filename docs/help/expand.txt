@@ -1,0 +1,4 @@
+$ expand -?
+expand: unrecognized option `-?'
+Usage: expand [-tab1[,tab2[,...]]] [-t tab1[,tab2[,...]]] [-i]
+       [+tabs=tab1[,tab2[,...]]] [+initial] [file...]

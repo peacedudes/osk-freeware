@@ -1,0 +1,7 @@
+$ fillup -?
+Syntax:   fillup [<options>] <file>
+Function: fill up file with constant data
+Options:  -?        : displays this text
+          -n=<num>  : append data until file is <num> bytes long
+          -i=<data> : fill data byte, default=255
+(c) 1992 by L.Zeller

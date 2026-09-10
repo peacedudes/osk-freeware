@@ -1,0 +1,19 @@
+$ psc -?
+Syntax: psc [-rkfLSPv?] [-s v] [-R i] [-C i] [-n i] [-d c] [<path1] [>path2]
+Function: filter to prepare ASCII data for the Spreadsheet Calculator
+Options:
+  -s cell Top left location in the spreadsheet should be 'cell'; eg, k5
+  -R n    Increment by n between rows (not valid with '-r' option)
+  -C n    Increment by n between columns (valid only with '-r' option)
+  -n n    Length of the row (column) should be n.
+  -d c    Use c as the delimiter between the fields.
+  -r      Assemble data into rows first, not columns.
+  -k      Keep all delimiters - Default is strip multiple delimiters
+  -f      Suppress 'format' lines in output
+  -L      Left justify strings.  Default is right justify.
+  -S      Use strings vs numbers for numbers
+  -P      Use numbers only when there is no [-+eE] (plain numbers only)
+  -v      Version
+  -?      Help (this panel)
+
+ Author: Robert Bond.  Adjustments: Jeff Buhrt and Eric Putz.

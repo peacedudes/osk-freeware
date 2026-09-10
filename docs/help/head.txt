@@ -1,0 +1,6 @@
+$ head -?
+head: unrecognized option `-?'
+Usage: head [-b #] [-c #] [-n #] [-qv] [+blocks=#] [+bytes=#] [+lines=#]
+       [+quiet] [+silent] [+verbose] [file...]
+
+       head [-#bclqv] [file...]

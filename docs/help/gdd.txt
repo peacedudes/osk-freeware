@@ -1,0 +1,7 @@
+$ gdd -?
+gdd: unrecognized option `-?'
+Usage: gdd [if=file] [of=file] [ibs=bytes] [obs=bytes] [bs=bytes] [cbs=bytes]
+       [skip=blocks] [seek=blocks] [count=blocks]
+       [conv={ascii,ebcdic,ibm,block,unblock,lcase,ucase,swab,noerror,sync}]
+Numbers can be followed by a multiplier:
+b=512, k=1024, w=2, xm=number m

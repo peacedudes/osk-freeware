@@ -1,0 +1,11 @@
+$ field -?
+field v1.0 (c) S.R.Bourne, M.C.Gregorie, 1994
+
+Syntax  : field [<opts>] <fields...> [<opts>]
+Function: select fields or columns from lines in standard input
+Options :
+     -c           check that all required fields are in each line
+     -d           debug mode
+     -i=c         input field separator. Defaults to whitespace
+     -o=c         output field separator. Defaults to tab
+     -s           suppress lines not containing all required fields

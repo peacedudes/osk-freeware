@@ -1,0 +1,25 @@
+$ file -?
+Syntax:   file [<opts>] {<file>}
+Function: identify file types
+Options:
+   -f[=]path  read files from path
+   -h[elp]    display verbose help information
+   -m[=]file  use file for magic file
+   -r         recursively descend directories
+   -x         execution directory relative
+   -z         read files from stdin
+   -z[=]path  read files from path (same as -f)
+
+Note: the -r and -x options are mutually exclusive, and the last
+      one seen on the command line will turn the other off.
+      Also, the options -f, -help, -m, and -z (since the may be
+      longer than a single character, must be the final option in
+      a group if grouped with other options. (ie -rz is OK, -zr is
+      not)
+
+The environment variable MAGIC_FILE (if set) changes
+the default magic file (from /dd/SYS/magic).
+
+This program is Copyright (c) 1995 by Scott McGee but may be
+distributed at no cost in its original unaltered form. This program
+comes with ABSOLUTELY NO WARRANTY!

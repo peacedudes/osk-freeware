@@ -1,0 +1,3 @@
+$ detab -?
+Usage: detab [-tn] [infile] or [<infile]
+     -tn = n is tabstop

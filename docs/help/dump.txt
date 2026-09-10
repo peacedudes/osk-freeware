@@ -1,0 +1,7 @@
+$ dump -?
+Syntax: dump [<opts>] <path/module> [<opts>] [<starting byte>] [<opts>]
+Function: formatted display of contents of a file/module
+Options:
+     -c        don't compress duplicate lines
+     -x        path implies execution directory
+     -m        dump memory module

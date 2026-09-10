@@ -171,15 +171,15 @@
 
 | | |
 |---|---|
-| `ascii` | &#9733; ASCII character table |
-| `charcnt` | &#9733; Count characters in a file |
-| `dump` | hex dump of a file or module<br>**How:** This is the hex dump on this disk. There is no `od'. |
-| `file` | Identify file types.  SYS/magic is now here, so it names real formats -- "GIF picture ver. 87a 320 x 200, interlaced, 256 colors" -- and not just OS-9 modules<br>**How:** Names real formats now that SYS/magic is here: `file /dd/DEMO/gulls.gif' reports the GIF version, size and colour count. |
-| `strings` | &#9733; extract printable strings, reported as $offset: <text> |
-| `sum` | Checksum and block count (GNU) |
-| `tail` | &#9733; last lines of a file -- DESIGNA's, and it takes `-l=<n>', not GNU's `-n <n>', which it rejects as an unknown option.  `head' on this disk IS the GNU one and takes -n: two conventions, one disk |
+| `ascii` | &#9733; prints the ASCII character table: every code from 0 to 127 with its control name, decimal, hex and octal |
+| `charcnt` | &#9733; counts how often each character occurs in the files named, control characters included, and totals the bytes read |
+| `dump` | the hex dump: shows a file, or a module in memory (-m), as offsets, hex bytes and the characters beside them<br>**How:** This is the hex dump on this disk. There is no `od'. |
+| `file` | identifies file types from the magic table in SYS/magic -- OS-9 modules, text, images with their size and colours, archives -- one line per file named<br>**How:** Names real formats now that SYS/magic is here: `file /dd/DEMO/gulls.gif' reports the GIF version, size and colour count. |
+| `strings` | &#9733; finds the runs of printable text inside a binary and prints each with its offset, `$offset: text'; -l=n sets the shortest run reported<br>`Usage: strings [-anpl=n] [file [file]]` |
+| `sum` | GNU sum: prints a checksum and a block count for each file named |
+| `tail` | &#9733; prints the last lines of a text file: `tail -l=3 file' the last three, twenty by default<br>`TAIL     Version UTIL 2.70 by DESIGNA VLT 27.05.98` |
 | `wc` | count lines, words and characters for each file named, and print a total; it counts CR-terminated lines as well as LF. |
-| `wc.cio` | &#9733; archived build of wc.  It counts on standard input -- `1 lines, 6 words, 40 chars' where `wc' says `1 6 40' -- so `wc' is the build for a file argument. |
+| `wc.cio` | &#9733; an older word count that reads standard input only: `wc.cio < file' answers `1 lines, 6 words, 40 chars'; `wc' is the build that takes file names |
 
 **DVI drivers**
 
@@ -252,7 +252,7 @@
 | `qsort9` | &#9733; an in-memory quicksort filter: sorts lines by a chosen field (-f) and separator (-c), in dictionary order, reversed or unique<br>`Syntax: qsort9 [<opts>] [<srcpath>] [<opts>]` |
 | `sort` | GNU sort: sorts lines of text -- by field (+POS or -k), numerically (-n), reversed (-r), folding case (-f), unique (-u) -- and merges already-sorted files (-m)<br>`sort: unrecognized option `-?'` |
 | `spiff` | &#9733; a tolerant diff: compares two files while ignoring differences that do not matter -- white space, number formatting, case if asked -- and knows C, shell, Fortran, Modula-2 and Lisp source<br>**How:** Compares two files while ignoring differences that do not matter (whitespace, number formatting). Takes TWO filenames. |
-| `tcmp` | &#9733; Compare two text files<br>**How:** Compares two text files and prints each differing line, both versions one under the other with the line number in each file. Files whose lines differ only in tabs and spaces are reported as changed, which reads oddly until you dump them. |
+| `tcmp` | &#9733; compares two text files and prints each differing line, both versions one under the other with the line number in each; -s sets how far ahead it looks to resynchronise<br>**How:** Compares two text files and prints each differing line, both versions one under the other with the line number in each file. Files whose lines differ only in tabs and spaces are reported as changed, which reads oddly until you dump them. |
 | `unip` | unique lines with page numbers<br>`Syntax: unip [<opts>] [<srcpath>] [<opts>]` |
 | `uniq` | &#9733; drops repeated adjacent lines: -u keeps only the unrepeated, -d only the repeated, -c counts each; sort first<br>`Usage: UNIQ [-u][-d][-c] [-n] [^n] input [>output]` |
 
@@ -270,8 +270,8 @@
 
 | | |
 |---|---|
-| `sepwords` | split a file to one word per line |
-| `split` | Split a file into pieces (GNU) |
+| `sepwords` | splits text into one word per line -- the first step towards a word list or an index<br>`Syntax: sepwords [<in_path> [<out_path>]]` |
+| `split` | GNU split: cuts a file into pieces of so many lines (-l) or bytes (-b), named after a prefix -- partaa, partab and so on<br>`split: unrecognized option `-?'` |
 | `splitalf` | &#9733; split a file into <name>_A to <name>_Z by the first letter of each line, and <name>_0 for the rest.  It opens <name>_0, then tests a file slot it has not opened yet and stops with `can't open output file(s)'.<br>**How:** It makes <name>_0 and then stops with `can't open output file(s)', whatever it is given -- it tests a file slot it has not opened yet. No argument gets round it. |
 
 **TeX**
@@ -306,30 +306,30 @@
 
 | | |
 |---|---|
-| `ape` | writes GIBBERISH in the style of whatever it is given -- a travesty generator. `travesty' and `newsgen' are the others of its kind here. Its options are `-b' (how much source to read) and `-l' (how many characters must match before it follows the source).<br>**How:** A travesty generator: `-b' is how much source to read and `-l' the pattern length. Feed it VARIED text -- one word repeated makes it generate without end, because every position matches every other. |
-| `autolf` | &#9733; a line-ending converter, 1995, and the one that WORKS: it turns CR into CRLF or LF and back, expands tabs, and handles ^Z. Use it as a FILTER -- `autolf -c -C -L < in > out' makes DOS text out of OS-9 text. Given a FILENAME it converts in place through a temporary and then cannot rename it back -- this C library has no rename(), the same wall zip and arc hit. `-H' explains the conversions. It is what `todos' and `toos9' were supposed to be. |
-| `casefix` | normalise letter case -- A FILTER, and it reads STANDARD INPUT.  Given a file as an argument it says nothing at all; `casefix < file' sentence-cases it<br>**How:** It is a FILTER and reads STANDARD INPUT: `casefix < file' sentence-cases it. |
-| `cut` | cut selected fields from each line |
-| `detab` | &#9733; tabs to spaces |
-| `eo` | &#9733; EXECUTE A COMMAND ON EVERY LINE OF A FILE -- an xargs. `eo <file> <command> @' runs <command> once per line with `@' replaced by the line; -p takes the lines from a pipe, -q runs quietly, -e stops on the first error. Marc Balmer, version 1.8. It shells out, so it needs SHELL set, which SYS/login does.<br>**How:** Runs a command on every line of a file, with `@' standing for the line: `eo <file> <command> @'. It shells out, so it needs SHELL set to a shell that takes a command line as one argument -- SYS/login sets `SHELL=/dd/CMDS/ksh' and that is what makes it work. Without it, `can't execute /dd/bash'. `-p' takes the lines from a pipe instead of a file. |
-| `expand` | Turn tabs into spaces (GNU) |
-| `field` | &#9733; select whitespace-separated fields from standard input by number, in the order asked for and tab-separated on output: `field 2 4 1' prints the second, fourth and first word of each line. `-i=c' names another input separator. |
-| `fillup` | &#9733; fill a file up to a given length with a constant byte: `fillup -n=64 -i=65 f' pads f to 64 bytes with `A' and says `24 bytes (value=65) appended'.  The length option is -n=, not -l=.  L. Zeller, 1992 |
-| `gawk` | &#9733; GNU awk 2.11 -- the pattern-and-action language.  It works, but it IGNORES A FILENAME ARGUMENT and reads standard input whatever it is given, so redirect: gawk '{...}' < file, never gawk '{...}' file.  Named a file, it sits waiting on the terminal.<br>**How:** GNU awk 2.11. IT IGNORES A FILENAME ARGUMENT and reads standard input whatever it is given, so redirect: `gawk "{print \$1}" < file', never `gawk "{print \$1}" file' -- named a file it sits waiting on the terminal. Keep the program text short: a command line wider than the window scrolls under bash and is hard to read back. Needs Microware's cio. |
-| `gdd` | &#9733; GNU dd -- a block copier and converter. `gdd if=<file> bs=<n> skip= seek= count=', and `conv=ucase' converts to upper case on the way through. `of=' can only name a file that already exists, so send the output through `>' instead. Give it arguments; `dump' is the hex dump here.<br>**How:** GNU dd -- a block copier and converter. `gdd if=<file> bs=8 count=1' copies eight bytes, `conv=ucase' converts on the way through. `of=' can only name a file that already exists, so send the output through `>'. Give it arguments. It uses Microware's cio; `dump' is the hex dump here. |
+| `ape` | writes gibberish in the style of whatever it reads -- a travesty generator; `-b' is how much source to read and `-l' how many characters must match before it follows the source. `travesty' and `newsgen' are the others of its kind here<br>**How:** A travesty generator: `-b' is how much source to read and `-l' the pattern length. Feed it VARIED text -- one word repeated makes it generate without end, because every position matches every other. |
+| `autolf` | &#9733; converts line endings between CR, LF and CR LF, expands tabs and handles ^Z, as a filter: `autolf -c -C -L < in > out' makes DOS text of OS-9 text, and `-H' explains the conversions. Given a file name it converts through a temporary it then cannot rename back, so feed it standard input<br>`autolf: copy stdin to stdout, converting end-of-line character sequences` |
+| `casefix` | sentence-cases text: every letter to lower case except the first of each sentence. A filter that reads standard input; a file named as an argument is ignored<br>**How:** It is a FILTER and reads STANDARD INPUT: `casefix < file' sentence-cases it. |
+| `cut` | picks fields (-f) or character columns (-c) out of each line, with -d naming the field separator<br>`cut: Illegal option -- ?` |
+| `detab` | &#9733; replaces tabs with spaces, at stops every eight columns or every n with -tn<br>`Usage: detab [-tn] [infile] or [<infile]` |
+| `eo` | &#9733; runs a command on every line of a file -- an xargs: `eo <file> <command> @' runs the command once per line with `@' replaced by the line; -p takes the lines from a pipe, -q runs quietly, -e stops at the first error. It shells out through SHELL, which SYS/login sets<br>**How:** Runs a command on every line of a file, with `@' standing for the line: `eo <file> <command> @'. It shells out, so it needs SHELL set to a shell that takes a command line as one argument -- SYS/login sets `SHELL=/dd/CMDS/ksh' and that is what makes it work. Without it, `can't execute /dd/bash'. `-p' takes the lines from a pipe instead of a file. |
+| `expand` | GNU expand: turns tabs into spaces, at stops eight columns apart or as -t says<br>`expand: unrecognized option `-?'` |
+| `field` | &#9733; select whitespace-separated fields from standard input by number, in the order asked for and tab-separated on output: `field 2 4 1' prints the second, fourth and first word of each line. `-i=c' names another input separator.<br>`field v1.0 (c) S.R.Bourne, M.C.Gregorie, 1994` |
+| `fillup` | &#9733; fills a file up to a given length with a constant byte: `fillup -n=64 -i=65 f' pads f to 64 bytes with `A' and says `24 bytes (value=65) appended'. The length option is -n=, not -l=<br>`Syntax:   fillup [<options>] <file>` |
+| `gawk` | &#9733; GNU awk 2.11, the pattern-and-action language. This build reads standard input whatever it is given, so redirect: `gawk "{...}" < file'; named a file it waits on the terminal<br>**How:** GNU awk 2.11. IT IGNORES A FILENAME ARGUMENT and reads standard input whatever it is given, so redirect: `gawk "{print \$1}" < file', never `gawk "{print \$1}" file' -- named a file it sits waiting on the terminal. Keep the program text short: a command line wider than the window scrolls under bash and is hard to read back. Needs Microware's cio. |
+| `gdd` | &#9733; GNU dd, a block copier and converter: `gdd if=<file> bs=<n> skip= seek= count=', and `conv=ucase' converts on the way through. `of=' can only name a file that already exists, so send the output through `>' instead<br>**How:** GNU dd -- a block copier and converter. `gdd if=<file> bs=8 count=1' copies eight bytes, `conv=ucase' converts on the way through. `of=' can only name a file that already exists, so send the output through `>'. Give it arguments. It uses Microware's cio; `dump' is the hex dump here. |
 | `gep` | &#9733; global expression parser -- grep-like; its `-e' takes the PATH OF A FILE holding the expressions: `gep -e=/dd/tmp/patterns <file>'. A file of patterns applied at once is what it is for and nothing else here does it. See DOC/README-GREP<br>**How:** Its expressions come from a FILE named with `-e', which its own option list marks `(required)': `gep -e=<patterns> <source>'. Handing it a pattern and a file the way you would grep earns `more than one path specified'. |
-| `head` | First lines of a file -- `head -n 20 file'.  These GNU builds want -n 20, not -20<br>**How:** First lines of a file. This GNU build wants `head -n 20 file' -- the older `head -20' form is rejected as an unrecognized option. Needs cio. |
+| `head` | prints the first lines of a file: `head -n 20 file'. This GNU build wants -n 20, not -20<br>**How:** First lines of a file. This GNU build wants `head -n 20 file' -- the older `head -20' form is rejected as an unrecognized option. Needs cio. |
 | `l` | &#9733; list a text file with word wrap and a carriage return at the end of every line -- `l -<width> <file>', 79 columns by default. Written for Stylo documents and other long-line files. It takes files, not directories |
-| `paste` | merge lines of files<br>**How:** Joins lines side by side, tab-separated by default: `paste f1 f2'. `-d:' picks another separator; `-s' puts one file's lines on a single line. |
-| `pep` | file 'detergent' - strip junk from files |
-| `psc` | &#9733; turn an ASCII table into commands for `sc', the spreadsheet: `psc -d' ' < table' answers `let A0 = 1', `let B0 = 2' and a `format' line per column.  -d sets the field delimiter, -r assembles rows first, -s names the top-left cell.  Robert Bond's, and it works<br>**How:** Feeds `sc', the spreadsheet: `psc -d' ' < table' turns rows of numbers into `let A0 = 1' commands sc can read. -r assembles rows first, -s names the top-left cell, -d sets the delimiter. |
-| `rot` | turn a text file on its side -- line one becomes column one |
-| `subber` | &#9733; Substitute words in a stream from a `,old,new' word list, one pair a line, the first character the delimiter (Carl Kreider).  It grows its memory as it reads, and that growth almost always fails part-way here, so give it plenty up front: `subber #1000k words file' at an OS-9 shell<br>**How:** Substitutes words in a stream from a word list of `,old,new' pairs (the line's first character is the delimiter), reading a file as the second argument or standard input. It grows its data area as it reads, with F$Mem, so give it room up front: at an OS-9 (Microware) shell, `subber #1000k words file' -- bash and ksh read the `#' as a comment, so run it at your OS-9 shell or through it, `/h1/CMDS/shell "subber #1000k words file"'. Tested: `,fox,cat' turns `a fox' into `a cat'. |
-| `tabs` | re-space a file, standard input to standard output: `-i8' says the input's tab stops are every 8 columns, `-o0' asks for spaces on output and `-o4' for tabs every 4. |
-| `tac` | Print a file backwards, last line first (GNU)<br>**How:** Prints a file backwards, last line first -- cat's mirror image. Needs cio. |
-| `unexpand` | Turn leading spaces back into tabs (GNU) |
-| `unp` | &#9733; Strip unprintable characters from a stream |
-| `upperdir` | Normalise case: files lowercase, dirs uppercase |
+| `paste` | joins files line by line, side by side and tab-separated: `paste f1 f2'; -d picks another separator and -s lays one file's lines along a single line<br>**How:** Joins lines side by side, tab-separated by default: `paste f1 f2'. `-d:' picks another separator; `-s' puts one file's lines on a single line. |
+| `pep` | a file detergent: strips control characters and non-ASCII (-b), converts between the DEC, IBM-PC, Macintosh and WordStar character sets, expands tabs and sets the line terminator (-u)<br>`pep  ver. 2.1; Copyright (c) 1989 Gisle Hannemyr` |
+| `psc` | &#9733; turns an ASCII table into commands for `sc', the spreadsheet: `psc -d' ' < table' answers `let A0 = 1', `let B0 = 2' and a `format' line per column. -d sets the field delimiter, -r assembles rows first, -s names the top-left cell<br>**How:** Feeds `sc', the spreadsheet: `psc -d' ' < table' turns rows of numbers into `let A0 = 1' commands sc can read. -r assembles rows first, -s names the top-left cell, -d sets the delimiter. |
+| `rot` | turn a text file on its side -- line one becomes column one<br>`syntax: rot {opt} [<file>]` |
+| `subber` | &#9733; substitutes words in a stream from a `,old,new' word list, one pair a line, the first character being the delimiter. It grows its memory as it reads, so give it plenty up front: `subber #1000k words file' at an OS-9 shell<br>**How:** Substitutes words in a stream from a word list of `,old,new' pairs (the line's first character is the delimiter), reading a file as the second argument or standard input. It grows its data area as it reads, with F$Mem, so give it room up front: at an OS-9 (Microware) shell, `subber #1000k words file' -- bash and ksh read the `#' as a comment, so run it at your OS-9 shell or through it, `/h1/CMDS/shell "subber #1000k words file"'. Tested: `,fox,cat' turns `a fox' into `a cat'. |
+| `tabs` | re-space a file, standard input to standard output: `-i8' says the input's tab stops are every 8 columns, `-o0' asks for spaces on output and `-o4' for tabs every 4.<br>`Unknown switch: ?` |
+| `tac` | GNU tac: prints a file backwards, last line first<br>**How:** Prints a file backwards, last line first -- cat's mirror image. Needs cio. |
+| `unexpand` | GNU unexpand: turns leading spaces back into tabs, or all of them with -a<br>`unexpand: unrecognized option `-?'` |
+| `unp` | &#9733; strips unprintable characters from a stream and reports each one removed, by code and line number<br>`Usage:  unp [-?] [file]` |
+| `upperdir` | normalises the names in a directory: files to lower case, directories to upper, printing each as it renames it<br>`Usage: UpperDir [directory name]` |
 | `valspeak` | Valley-speak text filter: standard input in, the rewritten text out. `I think this operating system is really good' comes back as `I think this operatin' system is like wow! really bitchin''. |
 
 </details>

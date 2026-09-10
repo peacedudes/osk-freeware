@@ -1,0 +1,24 @@
+$ autolf -?
+autolf: copy stdin to stdout, converting end-of-line character sequences
+between the formats CR, LF and CRLF.  Also expands tabs if required.
+If filenames are provided, then these are used instead of stdin.
+Version 2.4, date 1995/03/01
+by Mike Tozer: autolf@vkthree.demon.co.uk   See -x for licence.
+Usage:   autolf [<opts>] {<file names> [<opts>]}
+   -?         print this information
+   -H         show detailed information on conversions
+   -c         use CR on input as eol sequence
+   -l         use LF on input as eol sequence
+   -C         use CR on output as eol sequence
+   -L         use LF on output as eol sequence
+   -N         set -C & -L for this platform (i.e. cr)
+   -z         ignore all ^Z characters from input
+   -Z         add a ^Z character at the end of the file
+   -k         keep intermediate temporary file(s)
+   -x         show licence details
+   -t[=][<n>] expand tab characters (tab-size <n> default is 4)
+If no -c, -l, -C, -L or -N specified, -t is set automatically
+If both -C & -L (or -c & -l) given, CR/LF is implied
+If neither -c or -l given, auto-detection of input format {i.e. first
+                                EOL sequence detected is used}.
+If none of -C, -L, -N given, output is based on input format: see -H

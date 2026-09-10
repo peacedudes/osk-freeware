@@ -1,0 +1,5 @@
+$ splitalf -?
+Syntax: splitalf <opts> [<in_path>] <opts>
+Function: split file alphabetically.
+Options:
+     -?        print usage

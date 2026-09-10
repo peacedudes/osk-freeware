@@ -1,0 +1,4 @@
+$ split -?
+split: unrecognized option `-?'
+Usage: split [-lines] [-l lines] [-b bytes[km]] [-C bytes[km]] [+lines=lines]
+       [+bytes=bytes[km]] [+line-bytes=bytes[km]] [infile [outfile-prefix]]

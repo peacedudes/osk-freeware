@@ -1,0 +1,4 @@
+$ unexpand -?
+unexpand: unrecognized option `-?'
+Usage: unexpand [-tab1[,tab2[,...]]] [-t tab1[,tab2[,...]]] [-a]
+       [+tabs=tab1[,tab2[,...]]] [+all] [file...]

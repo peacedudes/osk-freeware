@@ -52,3 +52,41 @@ ispell|ispell -?|
 buildhash|none|it takes no options: run bare it reads the word list dict.191 and the affix file and builds the hash, or names the file it cannot find
 makelex|none|a filter with no options: the word list on standard input, the C array out; given a file name it opens that instead
 fgrep|fgrep -?|
+ascii|none|it takes no options: run it and it prints the table
+charcnt|none|it takes no options: name the files to count, and with none it asks for some
+dump|dump -?|
+file|file -?|
+gdd|gdd -?|
+strings|strings -?|
+tail|tail -?|
+wc|none|it takes no options: name the files to count, or give it standard input
+wc.cio|none|it takes no options and counts standard input only
+sepwords|sepwords -?|
+splitalf|splitalf -?|
+ape|ape -?|
+autolf|autolf -?|
+casefix|none|a filter with no options: text on standard input, sentence-cased text out
+cut|cut -?|
+cuts|cuts -h|
+detab|detab -?|
+eo|eo -?|
+field|field -?|
+fillup|fillup -?|
+gep|gep -?|
+paste|paste -?|
+pep|pep -h|
+psc|psc -?|
+rot|rot -?|
+tabs|tabs -?|
+upperdir|upperdir -?|
+valspeak|none|a filter with no options: English on standard input, valley-speak out
+gawk|gawk -?|
+expand|expand -?|
+head|head -?|
+split|split -?|
+sum|none|it takes no options of its own: name the files to sum
+tac|tac -?|
+unexpand|unexpand -?|
+subber|subber -?|
+tcmp|tcmp -?|
+unp|unp -?|

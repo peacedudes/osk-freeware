@@ -1,0 +1,8 @@
+$ tcmp -?
+[Tcmp v2.3]
+Usage:  tcmp [options] file1 file2
+  options:
+    -sdd   = syncronize up to dd lines
+     (dd = 0 is strict compare; default is 3
+    -fnnnn = start at line nnnn
+    -tnnnn = stop at line nnnn

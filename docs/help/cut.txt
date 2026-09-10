@@ -1,0 +1,3 @@
+$ cut -?
+cut: Illegal option -- ?
+cut [-d<delimitor>] [-s] -c<list>|-f<list> [files]

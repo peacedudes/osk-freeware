@@ -1,0 +1,20 @@
+$ cuts -h
+          CUTS Usage Summary
+
+To decode one or more CUTS-encoded files:
+     cuts -d <file> . . .
+
+To encode one or more files into a CUTS package:
+     cuts -e [-o <output_file>]  [ [-<type>] <file> ]
+
+   where <output_file> defaults to standard output,
+   <type> is one of:   -9    OS9-specific binary
+                       -a    ASCII text file
+                       -b    non-specific Binary file(e.g. picture files)
+                       -r    RSDOS-specific binary
+
+To print out information about this version of CUTS:
+     cuts -v
+
+To get this message:
+     cuts -h

@@ -1,0 +1,5 @@
+$ subber -?
+Usage : subber <opts> wordlist <filename>
+
+        if no filename standard in is used
+        no opts yet

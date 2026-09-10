@@ -1,0 +1,3 @@
+$ sepwords -?
+Syntax: sepwords [<in_path> [<out_path>]]
+Function: split file to one word per line.

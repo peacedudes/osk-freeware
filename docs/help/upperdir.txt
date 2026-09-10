@@ -1,0 +1,4 @@
+$ upperdir -?
+Usage: UpperDir [directory name]
+       Changes filenames to lowercase,
+       and directories to uppercase.

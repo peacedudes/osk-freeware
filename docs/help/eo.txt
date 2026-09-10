@@ -1,0 +1,24 @@
+$ eo -?
+eo ver 1.8 (c) by marc balmer, basel
+
+eo [-options] [file] [OS9 command]
+
+execute a command on every line in [file]
+a '@' character is replaced by the line in
+[file]. options are:
+	p	take the input lines from a
+      pipe rather than from a file
+      (e.g. 'dirr-u ! eo -p list @')
+	q   don't display commands while
+		executing, e.g.:
+
+		eo [file] -q copy @ /h0/tmp/@
+
+		would execute the copy command
+		on every filename in <file>
+		without displaying the command
+		everytime it is executed
+	e	stop on error
+
+you can easily generate the [file] file by typing
+'dir -u>[file]'

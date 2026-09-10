@@ -1,0 +1,6 @@
+$ ape -?
+syntax: ape {opts}
+Function: write gibberish in the style of <stdin> to <stdout>
+Options:
+	-b[=]<num>[k]	maximum amount of source text to read (default 8k)
+	-l[=]<num>		length of pattern required to match (default 4)
