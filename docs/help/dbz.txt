@@ -1,0 +1,3 @@
+$ dbz -?
+/dd/CMDS/NEWS/dbz: unknown option -?
+usage: /dd/CMDS/NEWS/dbz [-a] [-x] [-c] database [file] ...

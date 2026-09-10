@@ -1,0 +1,8 @@
+$ aterm -?
+                    ATerm : A terminal program for OS9/68000
+                    ===== = = ======== ======= === =========
+
+                       Syntax  : ATerm /serial_path
+                       Function: Terminal program for OSK
+                       Example : ATerm /t1
+?

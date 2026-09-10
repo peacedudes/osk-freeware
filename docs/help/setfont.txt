@@ -1,0 +1,2 @@
+$ setfont -?
+usage: setfont <path>

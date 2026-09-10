@@ -1,0 +1,19 @@
+$ smail -?
+Usage:   /dd/CMDS/UUCP/smail [<options>] address...
+Options:
+   -d              debug - verbose and don't invoke mailers.
+   -v              verbose - just verbose.
+   -A              print mapped addresses.  don't invoke mailers.
+   -h hostname     set hostname
+   -H hostdomain   set hostdomain (default hostname.MYDOM)
+   -p pathfile     path database filename
+   -r              force routing of host!address
+   -R              reroute even explicit path!user
+   -l              user@domain goes to local mailer
+   -L              all mail goes local
+   -q number       mail queueing cost threshold
+   -m number       limit on number of uux_noqueue jobs
+   -n namelist     list of full names for simple aliases
+   -u string       string of flags for uux
+   -F address      name to substitute in From: line
+   -a aliasfile    aliases filename (not used with SENDMAIL)

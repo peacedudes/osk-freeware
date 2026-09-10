@@ -1,0 +1,4 @@
+$ sbreak -?
+Syntax:   sbreak [/device]
+Function: send break on SCF device
+Options:  none

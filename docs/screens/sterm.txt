@@ -1,10 +1,2 @@
-$ sterm -?
-
-Sterm Ver. 2.0
-
-Usage:  sterm [-df? -l'p' -e'x']
-    -d       Debug mode on (displays during downloads)
-    -f    NOT downloading to floppy disks (CoCo only)
-    -?    Print this usage message
-    -l p  Link to modem port 'p' (Default /t2)
-    -e x  Set B+ MAXERRS to 'x' (default 10)
+$ sterm; echo ""
+No MODEM port defined!

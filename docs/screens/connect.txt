@@ -1,21 +1,2 @@
-$ connect -?
-
-Usage: connect [<switches>] [<path1>] [<switches>] [<path2>]
-
-Where: 'switches' are...
-   -e : Enable local echo to selected path.
-   -d : Same as '-e'.
-   -l : Enable auto CRLF to selected path.
-   -x : Enable XON/XOFF to selected path.
-   -r : Open selected path for read only.
-   -w : Open selected path for write only.
-   -  : Use standard input and output to substitute for path name.
-   -- : Same as '-'.
-   -h : Show usage.
-   -? : Show usage.
-<path1>: Path name of controlling terminal (default is stdio).
-<path2>: Path name of remote device (default is stdio).
-
-All switches affect the path name that follows.
-If '-x' is selected with one of '-r' or '-w', the path will be opened
-with read+write attributes.
+$ connect
+Connected: Enter ^E to quit

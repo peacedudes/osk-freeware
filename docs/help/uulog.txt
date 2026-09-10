@@ -1,0 +1,13 @@
+$ uulog -?
+uulog: examine uucp or fileserver log files
+
+Usage: uulog [-s<sysname> -u<username> -d<days>] [-f]
+
+Opts:  -s<sysname>   -show work to/from the remote <sysname>
+       -u<username>  -show work to/from the user <username>
+       -d<days>      -show log file for <days> days ago.  Default is show
+                        today's log file
+       -f            -show fileserver logs, default is UUCP logs
+
+v2.1 (94Sep30) This is free software released under the GNU General Public
+License.  Please send suggestions/bug reports to:  bob@kc2wz.bubble.org

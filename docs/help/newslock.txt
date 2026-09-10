@@ -1,0 +1,2 @@
+$ newslock -?
+Usage: /dd/CMDS/NEWS/newslock tempname lockname

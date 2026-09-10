@@ -1,0 +1,2 @@
+$ uupoll -?
+Usage: uupoll [-g<grade>] system

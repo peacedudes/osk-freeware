@@ -1,0 +1,3 @@
+$ listalias -?
+/dd/CMDS/ELM/listalias: illegal option -- ?
+Usage: listalias [ -s | -u ] <optional-regular-expression>

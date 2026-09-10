@@ -1,0 +1,3 @@
+$ disable -?
+Syntax: disable <port>
+Function: Turn OFF MTSMon on <port>

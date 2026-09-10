@@ -1,0 +1,19 @@
+$ dotilde -?
+================= Tilde Help =================
+ ~h, ~?       this help message
+ ~m[c]        append message being replied to
+                preface each line with char c
+                default is T
+ ~r[c] <file> append 'file', preface each line
+                with char c, uuencode binaries
+ ~R[c] <file> same as ~r, 'file' NOT uuencoded
+ ~v           edit message with vi
+ ~e           edit message with UNDEFINED
+ ~q, ~x       exit immediately
+ ~!           fork a shell
+ ~a           abort sending current message
+ ~u <file>    uuencode 'file' before appending
+ ==============================================
+
+
+Continuing...type "." or <ESC> to end message...

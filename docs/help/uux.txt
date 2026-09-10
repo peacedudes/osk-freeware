@@ -1,0 +1,10 @@
+$ uux -?
+Syntax: uux [<opts>] <host>!<prog> [<args>]
+Function: UUCP Executive
+Options:
+     -a=<user name>      user requesting the service
+     -b                  binary file transfer (default ascii)
+     -g<grade>           specify grade
+     -r                  queue request
+     -d,-x=<level>       debug level
+     -z                  input from standard input

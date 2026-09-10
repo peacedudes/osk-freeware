@@ -1,0 +1,5 @@
+$ enable -?
+Syntax: enable [<opts>] <port> [<opts>]
+Function: Turn ON MTSMon on <port>
+Options:
+  -p  no prompt till signal

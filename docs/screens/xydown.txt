@@ -1,16 +1,3 @@
-$ xydown -?
+$ xydown
 XYDOWN ver. 1.1
-XYDown ver. 1.1: XModem/YModem/YBatch download utility
-Usage:  XYDOWN  [opts]  [filename]
-Options:
-  -a        Download file(s) as ASCII.
-  -b        Download file(s) as Binary.
-  -t<path>  Use <path> as serial port.  Default is /T0.
-  -l<path>  Use <path> as logging path.
-  -r<baud>  Use baud rate <baud>.
-XYDown automatically senses whether the sender is using
-XModem, YModem, or YBatch.  It will also make an automatic
-determination of the file type if neither -a nor -b is
-specified.
-Released into Public Domain.
-Author: Tim Kientzle, 1990.
+XYDown:Can't open serial port. -- Error 240

@@ -1,0 +1,2 @@
+$ newalias -?
+Usage: /dd/CMDS/ELM/newalias [-g]

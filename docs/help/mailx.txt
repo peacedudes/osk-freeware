@@ -1,0 +1,19 @@
+$ mailx -?
+mailx v2.1 (94Sep30)  --send and receive e-mail
+
+ mail [-r]                                        ...read mail
+      opt:  r                   -read mail in reverse order
+
+ mail [opts] [<address>...] [opts]                ...send mail
+      opts: a <file>            -file replying to
+            s "subject"         -Subject: "subject"
+            x N                 -N = debug level
+            d                   -don't add .signature
+            n                   -use .alt_signature
+            p                   -don't prompt for carbon copy (Cc:)
+            q                   -work quietly when sending mail
+            ?                   -this message
+            v                   -toggle file viewer...default OFF
+            c [<user>...]       -check for our waiting mail and that of user
+
+This is free software released under the GNU General Public License.  PleasePlease send suggestions/bug reports to:  bob@kc2wz.bubble.org

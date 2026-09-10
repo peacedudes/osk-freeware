@@ -1,0 +1,7 @@
+$ readnews -?
+readnews: read Usenet news articles
+
+Usage: readnews
+
+v2.1 (94Sep30) This is free software released under the GNU General Public
+License.  Please send suggestions/bug reports to:  bob@kc2wz.bubble.org

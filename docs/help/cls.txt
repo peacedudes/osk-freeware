@@ -1,0 +1,5 @@
+$ cls -?
+Syntax: cls
+Function: clear terminal screen, uses TERM enviroment variable
+           and 'termcap' to clear screen
+Options: none.

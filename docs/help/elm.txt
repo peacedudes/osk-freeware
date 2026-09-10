@@ -1,0 +1,18 @@
+$ elm -h
+Possible Starting Arguments for ELM program:
+
+	arg			Meaning
+	 -a 		Arrow - use the arrow pointer regardless
+	 -c 		Checkalias - check the given aliases only
+	 -dn		Debug - set debug level to 'n'
+	 -fx		Folder - read folder 'x' rather than incoming mailbox
+	 -h 		Help - give this list of options
+	 -ix		Include prepared file 'x' in edit buffer for send
+	 -k 		Keypad - enable HP 2622 terminal keyboard
+	 -K 		Keypad&softkeys - enable use of softkeys + "-k"
+	 -m 		Menu - Turn off menu, using more of the screen
+	 -sx		Subject 'x' - for batch mailing
+	 -t 		TiTe - don't use termcap/terminfo ti/te entries.
+	 -V 		Enable sendmail voyeur mode.
+	 -v 		Print out ELM version information.
+	 -z 		Zero - don't enter ELM if no mail is pending

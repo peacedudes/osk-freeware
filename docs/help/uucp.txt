@@ -1,0 +1,7 @@
+$ uucp -?
+uucp:  unix to unix copy program
+
+       uucp [-options] [system!]fromfile [system!]tofile
+
+v2.1 (94Sep30) This is free software released under the GNU General Public
+License.  Please send suggestions/bug reports to:  bob@kc2wz.bubble.org

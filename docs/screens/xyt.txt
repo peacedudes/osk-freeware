@@ -1,16 +1,2 @@
-$ xyt -?
-xyt - version 1.02
-   XModem/YModem/YBatch transfer utility
-   Copyright 1995 by Stephen Carville
-   P.O. Box 822, Glendora, CA 91740  USA
-   (818) 914-2511
-
-Usage:  xyt [opts] [filename] [opts]
-
-options:
-   -a  Force all transfers to Text
-   -b  Force all transfers to Binary
-   -x  startup in remote mode
-   -z[=]<file>  Get list of files to send from <file>
-   -t[=]<path>  Use <path> as serial port.
-Defaults:  local - MODEM port, remote - stdin
+$ xyt
+Unable to determine MODEM port

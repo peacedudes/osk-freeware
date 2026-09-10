@@ -1,6 +1,4 @@
-$ dld -?
+dld motd
 dld version 1.4   (c) 1986 FHL
 
-Syntax: dld <file>
-
-Function: download from <file> using XMODEM protocol
+Beginning XMODEM download (control-X will abort).

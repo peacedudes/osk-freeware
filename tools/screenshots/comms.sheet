@@ -638,11 +638,14 @@ wait    6
 
 shot    connect
 cap     Joins two serial paths so you can talk through one to the other,
-cap     with switches for echo, line-ending translation and flow control on
-cap     each side.  Its usage lists them.
-try     connect -?
-run     connect -?
+cap     with switches for echo, line-ending translation and flow control
+cap     on each side.  With no paths named both ends are the terminal
+cap     itself: it reports the connection, names the terminal's quit
+cap     character, and waits.
+try     connect
+run     connect
 wait    5
+snap
 
 shot    tsu
 cap     tterm's setup program: it creates the directory and dial-file
@@ -710,57 +713,78 @@ run     dump tmp/wysetime.out
 wait    4
 
 shot    sterm
-cap     A serial terminal emulator with a built-in B+ file transfer.  Its
-cap     usage lists the modem-port link and the transfer options; there is
-cap     no serial line here for it to open.
-try     sterm -?
-run     sterm -?
+cap     A serial terminal emulator with a built-in B+ file transfer.  It
+cap     links to the port MODEM names, or -l gives, and with neither it
+cap     says so and stops.
+try     sterm
+run     sterm; echo ""
 wait    5
 
 shot    tterm
-cap     A VT100-style terminal emulator.  Its usage shows the modem-port
-cap     link it opens by default; with no line configured there is nothing
-cap     for it to connect to.
-try     tterm -?
-run     tterm -?
+cap     A VT100-style terminal emulator.  It links to the port MODEM names,
+cap     or -l gives, and with neither it says so and stops.  `tsu' makes
+cap     the directories it keeps its dialling files in.
+try     tterm
+run     tterm
 wait    5
 
 shot    xy
-cap     An XMODEM/YMODEM file transfer.  Asked for its options it
-cap     prints the full usage: send by naming files, receive by naming
-cap     none, with flags to force ASCII or binary and to pick the protocol.
-try     xy -?
-run     xy -?
-wait    5
+cap     xy waiting to receive a file by XMODEM or YMODEM.  With no MODEM
+cap     port set it talks on the terminal itself, so the `C' it sends to
+cap     ask the far end for a CRC transfer lands on the screen; a sender
+cap     on the line would answer with the first block.  Name files to
+cap     send instead.
+try     xy
+run     xy
+wait    6
+snap
 
 shot    z
-cap     A ZMODEM file transfer.  Its usage covers sending and receiving
-cap     files and sending a command down the link; an environment variable
-cap     names the port, and -p overrides it.
-try     z -?
-run     z -?
-wait    5
+cap     z waiting to receive by ZMODEM.  With no MODEM port set it talks on
+cap     the terminal, so its receive-ready frame, sent again every few
+cap     seconds until the far end answers, is what shows.  Name files to
+cap     send instead; -p names a port.
+try     z
+run     z
+wait    8
+snap
 
 shot    k
-cap     A Kermit-protocol transfer, the same family as `xy'
-cap     and `z'.  Its usage lists the send, receive and file-type options.
-try     k -?
-run     k -?
+cap     k waiting for the first Kermit packet on the terminal, since no
+cap     MODEM port is set; a sender on the line would start the transfer.
+cap     Name files to send instead.  The same family as `xy' and `z'.
+try     k
+run     k
 wait    5
+snap
 
 shot    dld
-cap     Downloads a file over a serial line with the XMODEM protocol.  Its
-cap     help names the single file argument.
-try     dld -?
-run     dld -?
+cap     dld sending a file down the line by XMODEM -- in its vocabulary a
+cap     download goes from this machine to the terminal.  It announces the
+cap     transfer and waits for the receiver's first request.
+try     dld motd
+run     builtin cd /dd/SYS
+wait    1
+run     clear
+wait    1
+run     dld motd
 wait    5
+snap
 
 shot    uld
-cap     Uploads a file over a serial line with the XMODEM protocol, the
-cap     companion to `dld'.  Its help names the file argument.
-try     uld -?
-run     uld -?
+cap     uld receiving a file by XMODEM into the name given -- an upload,
+cap     from the terminal to this machine, the companion to `dld'.  It
+cap     creates the file, announces the transfer and sends the `C' that
+cap     asks the far end for a CRC transfer.
+try     uld got.txt
+run     rm -f /dd/tmp/got.txt
+run     builtin cd /dd/tmp
+wait    1
+run     clear
+wait    1
+run     uld got.txt
 wait    5
+snap
 
 shot    txmod
 cap     Sends an OS-9 module down a serial line to `rxmod' on another
@@ -783,27 +807,31 @@ run     rxmod -?
 wait    5
 
 shot    blastem
-cap     XMODEM and YMODEM file transfer, written for the MM/1.  Its help
-cap     lists the send and receive, protocol and buffer options; -p names
-cap     the modem path.
-try     blastem -?
-run     blastem -?
+cap     blastem asked to send a file by XMODEM: it opens the modem path,
+cap     /t0 unless -p names another, and there is no such device on this
+cap     system, so it says so and stops.  -y is YMODEM, -r receive.
+try     blastem -s motd
+run     builtin cd /dd/SYS
+wait    1
+run     clear
+wait    1
+run     blastem -s motd; echo ""
 wait    5
 
 shot    xydown
-cap     An XMODEM/YMODEM/YModem-Batch download.  It senses
-cap     which the sender is using and follows.  Its usage names the serial
-cap     port, baud and file-type options.
-try     xydown -?
-run     xydown -?
+cap     An XMODEM/YMODEM/YModem-Batch download that senses which the sender
+cap     is using and follows.  Run bare it opens the serial port, /T0
+cap     unless -t names another, and stops when there is no such device.
+try     xydown
+run     xydown
 wait    5
 
 shot    xyt
-cap     An X/Y/YModem-Batch transfer for the `tterm'
-cap     emulator.  Its usage lists the file-type, remote-mode and serial
-cap     port options; the modem port is the default.
-try     xyt -?
-run     xyt -?
+cap     An X/Y/YModem-Batch transfer for the `tterm' emulator.  It uses
+cap     the MODEM port unless -t names another, and with neither set it
+cap     says so.
+try     xyt
+run     xyt
 wait    5
 
 # --- Kermit ---------------------------------------------------------------
@@ -927,13 +955,12 @@ run     uucp -?
 wait    5
 
 shot    uucico
-size    30 80
-cap     The UUCP transfer program itself -- it dials a site, or answers as
-cap     the slave, and moves the queued files.  Its options cover master
-cap     and slave modes, retries, logging and the debug level.
-try     uucico -?
-run     uucico -?
-wait    8
+cap     The UUCP transfer program itself.  Given a site name it dials that
+cap     site and moves the queued files; -r answers as the slave instead.
+cap     Run with neither it says what it is missing.
+try     uucico
+run     uucico
+wait    5
 
 shot    uuxqt
 cap     Runs the commands a remote site queued here.  Before starting it

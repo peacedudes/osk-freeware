@@ -1,0 +1,3 @@
+$ lmail -?
+Syntax: lmail <user name> {<user name>}
+Function: sends local mail to <user name(s)>

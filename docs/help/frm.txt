@@ -1,0 +1,16 @@
+$ frm -h
+frm -- list from and subject lines of messages in mailbox or folder
+
+Usage: frm [-n] [-v] [-s {new|old|read}] [filename | username] ...
+
+option summary:
+-h	print this help message.
+-n	display the message number of each message printed.
+-Q	very quiet -- no output is produced.  This option allows shell
+	scripts to check frm's return status without having output.
+-q	quiet -- only print summaries for each mailbox or folder.
+-S	summarize the number of messages in each mailbox or folder.
+-s status only select messages with the specified status.
+	'status' is one of "new", "old", "unread" (same as "old"),
+	or "read".  The first letter need only be specified.
+-v	print a verbose header.

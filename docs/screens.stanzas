@@ -68,7 +68,7 @@ bison 1abafe842ef1ae3c
 bite 932ca46eb8d7c7cf
 blackjack cb5b1723a6717229
 blackjak af801185feddb977
-blastem fa9732657d0832ad
+blastem 392393562d589092
 bm 81e5bace8971e799
 bmgtest ce72d50c61788f73
 bmgtest2 b1a35f3056550cd5
@@ -124,7 +124,7 @@ compress a6249bf9930187e5
 compress_4.0 a923278466ef7663
 compress_rebuilt 898383101fcc06c0
 config f6e67a27e95bc933
-connect 7dd389eebeec2ac3
+connect 6f66266523d65a1d
 convert 35a7dc94e03647b3
 cookhash cedded114d6c5708
 cookie 56260c431cc004e7
@@ -180,7 +180,7 @@ disktest cef9b1c52f746013
 divide 5d42d00640eb98f9
 djpeg ad8376024b2b43d2
 djpeg.070 056535a96995b78a
-dld 29b521f9a53df750
+dld 2bd5dd6d0ead4c98
 dload 123da82a8ca4aeac
 dm 4e6c09cd76709ff9
 dmake 9d073d5d6b821c33
@@ -349,7 +349,6 @@ ispell 25ab73eb17c5c5fd
 japan 0d3ecf5c721bf981
 jargon 5d03fb56e069502a
 join 4d1311ffaf9da182
-k 968c9cb3abde4bbf
 keep 6b1bac6a4998ac60
 kept 9b453bb88a4a3d88
 kermit ed49abee7f893498
@@ -687,7 +686,7 @@ splstat f223ff456a981b4f
 spottopgm f14a2c92ed428c34
 sqrtx 27e19ff0d5f65f07
 ssl 14b797edbedf2d17
-sterm 0af240d71420c91a
+sterm ad3781050e051e44
 stone 1a340282f3de4054
 strfile aacbe8f2cbb58af8
 strings a69f26e3b152e77c
@@ -737,7 +736,6 @@ trunc ed788a65427308da
 tsmon2 2d2223ddf831d141
 tsu 1359a0e76f1a3564
 tt 24e254dfe016e84b
-tterm f85dc891ddc41946
 tttt a8619cf88deee7dd
 tty b7e538ffeb67cd7e
 ttyexp d67daee8ab58c5aa
@@ -746,7 +744,7 @@ ub68020demo dd6614e0b6b7d065
 ub68kdemo a23d32c97b7c0679
 udate 7ff31bc871140d1d
 ularn d1f0b86a94761e8a
-uld 4f96f7610891b009
+uld 5ba781c0c11e10df
 umacs 979e0b76ff348e9b
 umusek f710027837dfa4e8
 undel 26f8baa790812507
@@ -762,7 +760,6 @@ unstr 85771e0718288e79
 unsubscribe 0d927590b28d92fa
 unzip ee4a5b0c4de86033
 upperdir 7456190d2c69ba1c
-uucico d94fafb3daba81bb
 uuclean 61b9ee9dcd19b1db
 uucp 05e486c2e07d12a2
 uudecode 9d17dbb5520dbcd3
@@ -817,15 +814,14 @@ xlisp 0b7422cb632e67fb
 xpm 7b2a1d3ed8191ac5
 xrf 6675d40aa3886ab0
 xvminitoppm 1b1b54762eba707c
-xy e31dbf52740284b7
-xydown 3b91fa6d06d1cff9
-xyt 53e361ed92dcf2f5
+xydown 02a8d3c30f67c056
+xyt d635823690053449
 yacc 68da3ce1893fa99a
 yagi 469ad661c6ada1aa
 ynad 4e45aa6ac750eb7c
 yuv a14145a7c5bf9bcd
 yuvsplittoppm 537120403af77c9c
-z 44acd9294c1d2884
+z d27a4eb090546333
 zeisstopnm 11c0d429931d235f
 zip 2407e59999c640ed
 zipinfo 5780201f80f1146c

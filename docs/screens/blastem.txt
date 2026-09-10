@@ -1,19 +1,2 @@
-$ blastem -?
-Syntax: Blastem [<opts>] {<filename> [<opts>]}
-Function: Xmodem/Ymodem file transfer utility
-Options:
-        -y        use YModem (Batch) protocol (XModem default)
-        -r        receive file(s) (default)
-        -s        send file(s)
-        -f        remove filler at EOF
-        -k        do not use 1K blocks (128 byte)
-        -l        checknum (8-bit)
-        -m        CRC (16-bit) (default)
-        -h        CRC (32-bit)
-        -t        use standard paths for transfer
-        -q        quiet (suppress messages)
-        -p=<path> modem path ('/t0' default)
-        -b=<size> buffer size (2K default)
-        -x        look in execution directory for file(s)
-        -z        get file names from standard input
-        -z=<path> get list of files from <path>
+blastem -s motd; echo ""
+Blastem: Cannot open modem path (/t0) -

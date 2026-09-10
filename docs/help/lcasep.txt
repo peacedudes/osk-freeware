@@ -1,0 +1,3 @@
+$ lcasep -?
+/dd/CMDS/UUCP/lcasep: illegal option -- ?
+usage: /dd/CMDS/UUCP/lcasep [-f file] [-o outfile]

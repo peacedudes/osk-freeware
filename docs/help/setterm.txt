@@ -1,0 +1,20 @@
+$ setterm -?
+setterm v2.0 (c) 1991, 1995 by Dynamic Software Systems
+
+Syntax:   setterm [opts] [term type]
+Function: Optionally prompt for terminal type.
+          Copy the terminal description to the TERMCAP
+          environment variable for faster access.
+Options:
+          -s   send o/p to std output. Default is /pipe/setterm
+          -i   read std input. Default is to use std output
+               so it can access the terminal from Microware
+               shell .login scripts.
+          -x   don't set TERMCAP. Default is to set TERMCAP
+               unless the resulting command is too big for the shell.
+
+normal use:    setterm [term type]
+               profile /pipe/setterm
+
+        or:    var=`setterm -si [term type]`
+               eval $var

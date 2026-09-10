@@ -1,0 +1,19 @@
+$ philmail -?
+/dd/CMDS/UUCP/philmail is an off-line mail reader for UNIX mail
+The idea being, you grab your /usr/spool/mail file to your home machine
+   and invoke this program on it
+
+It will read your mail for you, and ask whether to reply or not.
+  NOTE: to reply, your EDITOR env. variable Must be defined appropriately
+It SHOULD offer inclusion of original message,
+   and reply to original sender, or ALL recipients
+It is meant to be used in conjunction with a shell-script that
+   takes first and second lines of a file as recipient and subject,
+   and then mails the file. [on the UNIX end]
+WARINING: this version can only handle 50 messages
+
+This will check the $MAIL file if non is specified.
+   It will also allow you to make a mailfile to send
+  ie: "philmail machine!blah!person "
+FURTHER NOTE:  the ~ escape is recognised (while composing without editor),
+   but doesn't do much currently

@@ -1,0 +1,14 @@
+$ fastmail -?
+/dd/CMDS/ELM/fastmail: illegal option -- ?
+Usage: fastmail {args} [ filename | - ] address(es)
+   where {args} can be;
+	-b bcc-list
+	-c cc-list
+	-d
+	-C comments
+	-f from-name
+	-F from-addr
+	-i msg-id
+	-r reply-to
+	-R references
+	-s subject

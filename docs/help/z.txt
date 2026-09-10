@@ -1,0 +1,19 @@
+$ z -?
+General Usage:
+   To send files:      Z <file1> <file2> <etc.>
+   To receive files:   Z
+
+By default, Z will automatically guess the type of each file.
+   To treat all files as a certain type:
+     -A   All files are ASCII      -B   All files are Binary
+   To send a command via ZModem: -c "command"
+   To get debugging information: -d, -dd, etc.
+
+Z uses the MODEM environment variable to determine the port
+to use.  If none is available, stdio paths will be used.
+The -p<port> option overrides the MODEM environment variable.
+Host mode: -h forces Z to use stdio paths and suppresses all
+progress and debug messages.  Equivalent to `unsetenv MODEM'.
+
+Based on "The Working Programmer's Guide to Serial Protocols"
+Copyright (C) 1995 Tim Kientzle and The Coriolis Group, Inc.

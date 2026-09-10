@@ -41,8 +41,25 @@ def fix(name, newlines, path=INDEX):
     # A few live in indented SUB-LISTS four spaces in -- the shell
     # scripts under CMDS, for instance -- and those this does not touch;
     # edit them by hand and keep the indent.
-    pat = re.compile(r"^ (\*| )?%s\s{2,}" % re.escape(name))
-    hits = [i for i, l in enumerate(lines) if pat.match(l)]
+    # Entries sit at one to three leading spaces, starred ones with a `*'
+    # in the last of them (` *name', `  *name') or before the name.
+    pat = re.compile(r"^ {1,3}(\*)?%s\s{2,}" % re.escape(name))
+    # NEVER a row of the star grid.  Its rows are bare names, but some
+    # names ARE small words -- `in', `is', `mail' are programs -- so the
+    # prose test below took a grid row for a sentence and wrote the whole
+    # of `messages's new entry into the grid (2026-09-09).  The grid runs
+    # from the `All N, verified' line to the next rule, so it is skipped
+    # by position, not by look.
+    grid = set()
+    inside = False
+    for i, l in enumerate(lines):
+        if l.startswith("All ") and "verified" in l:
+            inside = True
+        elif inside and (l.startswith("---") or l.startswith("/dd")):
+            inside = False
+        elif inside:
+            grid.add(i)
+    hits = [i for i, l in enumerate(lines) if pat.match(l) and i not in grid]
 
     # A grid row is up to four bare names; an entry reads like a sentence.
     # Punctuation is one sign; a small word -- `a', `as', `the' -- is the

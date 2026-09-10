@@ -1,0 +1,4 @@
+$ filter -?
+/dd/CMDS/ELM/filter: illegal option -- ?
+Usage: | filter [-nrvlq] [-f rules] [-o file]
+	or: filter [-c] -[s|S]

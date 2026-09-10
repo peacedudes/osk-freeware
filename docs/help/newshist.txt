@@ -1,0 +1,3 @@
+$ newshist -?
+/dd/CMDS/NEWS/newshist: unknown option -?
+usage: /dd/CMDS/NEWS/newshist [-df file] msgid ...

@@ -1,0 +1,3 @@
+$ readmsg -?
+/dd/CMDS/ELM/readmsg: illegal option -- ?
+Usage: /dd/CMDS/ELM/readmsg [-anhp] [-f Folder] {MessageNum ... | pattern | *}

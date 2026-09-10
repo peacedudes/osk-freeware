@@ -1,0 +1,23 @@
+$ ckermit -h
+Usage: ckermit [cmdfile] [-x arg [-x arg]...[-yyy]..] [ = text ] ]
+  -x is an option requiring an argument, -y an option with no argument.
+     = means ignore following words, but place them in array \&@[].
+actions:
+  -s files  send files                    -r  receive files
+  -s -      send files from stdin         -k  receive files to stdout
+  -x        enter server mode             -f  finish remote server
+
+  -g files  get remote files from server (quote wildcards)
+  -a name   alternate file name, used with -s, -r, -g
+  -c        connect (before file transfer), used with -l and -b
+  -n        connect (after file transfer), used with -l and -b
+
+settings:
+  -l line   communication line device     -q   quiet during file transfer
+  -i        binary file transfer
+  -b bps    line speed, e.g. 2400         -t   half duplex, xon handshake
+  -p x      parity, x = e,o,m,s, or n     -d   log debug info to debug.log
+  -y name   alternate init file name      -w   write over files
+  -e n      receive packet length         -v n window size
+  -m name   modem type                    -z   force foreground
+If no action command is included, or -S is, enter interactive dialog.

@@ -1,0 +1,2 @@
+$ checkalias -?
+Usage: checkalias alias [alias ...]

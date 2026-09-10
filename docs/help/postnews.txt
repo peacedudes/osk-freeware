@@ -1,0 +1,16 @@
+$ postnews -?
+/dd/CMDS/UUCP/postnews: illegal option -- ?
+
+postnews       post news to Usenet
+
+Usage: postnews [options]
+        Options:
+            -f <file>
+            -n <newsgroup>
+            -S <system>
+            -s <subject>
+            -i <reference-ID>
+            -a <reference-article>
+
+v2.1 (94Sep30) This is free software released under the GNU General Public
+License.  Please send suggestions/bug reports to:  bob@kc2wz.bubble.org

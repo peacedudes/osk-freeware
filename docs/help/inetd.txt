@@ -1,0 +1,3 @@
+$ inetd -?
+inetd: Unix inetd emulation by I.Levinson
+inetd: Usage: inetd <port> <prog> {<prog-options>}

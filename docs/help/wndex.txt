@@ -1,0 +1,3 @@
+$ wndex -?
+/dd/CMDS/WN/wndex: illegal option -- ?
+Usage: /dd/CMDS/WN/wndex [-r] [-q] [-v] [-d dir] [-i indexfile] [-c cachefile]

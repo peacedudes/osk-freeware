@@ -1,0 +1,16 @@
+$ fixtext -?
+fixtext: A text file filter.  Removes escape sequences, expand tabs and change
+         end-of-line terminators to OS-9 ones.
+
+Usage:  fixtext [infile] [outfile]
+          if infile is a '-', the standard input is read
+
+Examples:
+
+fixtext                  -read standard in, write to standard out
+fixtext - outfile        -read standard in, write to outfile
+fixtext infile           -read infile, write to standard out
+fixtext infile outfile   -read infile, write to outfile
+
+v2.1 (94Sep30) This is free software released under the GNU General Public
+License.  Please send suggestions/bug reports to:  bob@kc2wz.bubble.org

@@ -1,5 +1,4 @@
 $ tterm -?
-
 Tterm Version 2.30
 
 Usage:  tterm <options>

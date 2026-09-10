@@ -756,52 +756,52 @@
 | | |
 |---|---|
 | `fileserv` | &#9733; serve files to remote sites on request |
-| `fixtext` | &#9733; repair the line endings of a received text batch |
+| `fixtext` | &#9733; repair the line endings of a received text batch<br>`fixtext: A text file filter.  Removes escape sequences, expand tabs and change` |
 
 **Kermit**
 
 | | |
 |---|---|
-| `ckermit` | &#9733; C-Kermit 5A(190) BETA.14, 24 Jul 94 -- the cio build. |
-| `kermit` | OS-9 Kermit Version 1 Release 5 -- serial file transfer and terminal emulation.  `ckermit' is the C-Kermit, and REBUILT/kermit_cio is our build of this one.  Run with no cio present it starts and prints its banner; it is REBUILT/kermit_cio that wants the module |
-| `kermit2` | Kermit Program Version 1 Release 6 -- the same command letters as `kermit', 5K smaller.  DOC/README-KERMIT compares all six |
+| `ckermit` | &#9733; C-Kermit 5A(190) BETA.14, 24 Jul 94 -- the cio build.<br>`Usage: ckermit [cmdfile] [-x arg [-x arg]...[-yyy]..] [ = text ] ]` |
+| `kermit` | OS-9 Kermit Version 1 Release 5: serial file transfer and terminal emulation by command letter -- connect, send, receive, host-server, get, quit. `ckermit' is the C-Kermit with a command language; DOC/README-KERMIT compares the six Kermits here<br>`OS-9 Kermit Version 1 Release 5` |
+| `kermit2` | Kermit Program Version 1 Release 6 -- the same command letters as `kermit', 5K smaller.  DOC/README-KERMIT compares all six<br>`Kermit Program   Version 1    Release 6` |
 | `kermit3` | Kermit68K version 1.0.00, 01 July 1987 -- a DIFFERENT program from the other small ones: it puts up its own `Kermit68K>' prompt and reads a Kermit.ini, rather than taking command letters. |
-| `kermit_cio` | &#9733; a source build that links cio; CMDS/kermit is the archive binary and needs none |
-| `xkermit` | &#9733; the same version and banner as `kermit' -- OS-9 Kermit 1.5 -- in half the space, because it links cio rather than carrying stdio.  DOC/README-KERMIT |
+| `kermit_cio` | &#9733; a relink of `kermit' against Microware's cio: the same program and command letters, in less space<br>`OS-9 Kermit Version 1 Release 5` |
+| `xkermit` | &#9733; the same version and banner as `kermit' -- OS-9 Kermit 1.5 -- in half the space, because it links cio rather than carrying stdio.  DOC/README-KERMIT<br>`OS-9 Kermit Version 1 Release 5` |
 
 **Mail**
 
 | | |
 |---|---|
-| `answer` | &#9733;  clears the screen and asks `Message to:' |
+| `answer` | &#9733;  the screen and asks `Message to:' for a recipient, checked against the alias table |
 | `arepdaemon` | &#9733; the daemon autoreply relies on.  It reads /dd/USR/LIB/ELM/autoreply.data; without it, `Error 216 attempting fstat' -- though it still touches autoreply.log on its way there |
 | `autoreply` | &#9733; send an automatic reply while you are away.  It resolves your mailbox by the session's numeric owner rather than $USER, so under this identity it reaches for a mailbox named `su' and stops there; turning autoreplying off does not need the mailbox and answers for real |
-| `checkalias` | &#9733; check an alias resolves before you rely on it. `listalias' answers the same question and prints its result |
-| `disable` | &#9733; disable a UUCP device |
-| `dotilde` | &#9733; the mailer's TILDE-ESCAPE handler: it reads a message from standard input and acts on the `~' commands in it, answering `Unrecognized tilde command' and `Continuing...type "." or <ESC> to end message...' |
+| `checkalias` | &#9733; check an alias resolves before you rely on it. `listalias' answers the same question and prints its result<br>`Usage: checkalias alias [alias ...]` |
+| `disable` | &#9733; disable a UUCP device<br>`Syntax: disable <port>` |
+| `dotilde` | &#9733; the mailer's tilde-escape handler: it reads a message from standard input and acts on the `~' commands in it, answering `Unrecognized tilde command' and `Continuing...type "." or <ESC> to end message...'<br>`================= Tilde Help =================` |
 | `elm` | &#9733; the Elm mail reader itself -- full-screen, menu-driven<br>**How:** The full-screen mail reader. It opens on the folder that ships for this account, `~/SPOOL/MAIL/tester', showing one message. `readmsg 1' prints a message without opening the reader; `messages' counts the folder. Mail lives at /dd/SPOOL/MAIL/<user>, and SYS/login points MAIL at it. |
-| `enable` | &#9733; re-enable a UUCP device |
-| `fastmail` | &#9733; send a file as mail without opening the reader.  It needs a delivery agent to deliver it |
-| `filter` | sort incoming mail into folders by rule.  A PIPE stage: its own usage line begins `\| filter' |
+| `enable` | &#9733; re-enable a UUCP device<br>`Syntax: enable [<opts>] <port> [<opts>]` |
+| `fastmail` | &#9733; send a file as mail without opening the reader.  It needs a delivery agent to deliver it<br>`/dd/CMDS/ELM/fastmail: illegal option -- ?` |
+| `filter` | sort incoming mail into folders by rule.  A PIPE stage: its own usage line begins `\| filter'<br>`/dd/CMDS/ELM/filter: illegal option -- ?` |
 | `frm` | &#9733; list who your mail is from, one line each.  On this port it answers `tester has no mail' for a folder that `messages' counts and `readmsg' prints, so use those two<br>**How:** Lists who your mail is from, one line each. Reads $MAIL, which SYS/login sets. |
-| `lcasep` | &#9733; lower-case a name for mail |
-| `listalias` | &#9733; list the aliases you have, once newalias has compiled them: `home  os9-freeware (This Collection)'.  Its -s and -u forms pipe through `egrep'; the plain form needs nothing extra |
-| `lmail` | &#9733; local mail delivery.  Its usage line answers; giving it a real recipient does not return here -- it hangs, and only the session's own end brings it down |
+| `lcasep` | &#9733; lower-case a name for mail<br>`/dd/CMDS/UUCP/lcasep: illegal option -- ?` |
+| `listalias` | &#9733; list the aliases you have, once newalias has compiled them: `home  os9-freeware (This Collection)'.  Its -s and -u forms pipe through `egrep'; the plain form needs nothing extra<br>`/dd/CMDS/ELM/listalias: illegal option -- ?` |
+| `lmail` | &#9733; local mail delivery.  Its usage line answers; giving it a real recipient does not return here -- it hangs, and only the session's own end brings it down<br>`Syntax: lmail <user name> {<user name>}` |
 | `mail` | &#9733; a simple mail sender |
-| `mailx` | &#9733; the mail reader and sender |
-| `makedb` | build smail's path-alias dbm: `makedb -o <name> <file>' writes <name>.dir and <name>.pag.  /dd/USR/LIB/SMAIL/palias is the source it defaults to |
-| `messages` | &#9733; count and list what is in a folder.  Works<br>**How:** Counts what is in your mail folder: "There is 1 message in your mailbox". |
+| `mailx` | &#9733; the mail reader and sender<br>`mailx v2.1 (94Sep30)  --send and receive e-mail` |
+| `makedb` | build smail's path-alias dbm: `makedb -o <name> <file>' writes <name>.dir and <name>.pag.  /dd/USR/LIB/SMAIL/palias is the source it defaults to<br>`/dd/CMDS/UUCP/makedb: illegal option -- ?` |
+| `messages` | &#9733; counts and lists what is in a mail folder: `There is 1 message in your mailbox'<br>**How:** Counts what is in your mail folder: "There is 1 message in your mailbox". |
 | `newalias` | &#9733; rebuild the alias database -- run it after editing aliases, and add -g for the system file.  `processed 2 aliases', `processed 6 aliases'<br>**How:** Rebuilds the Elm alias database from USR/LIB/ELM/aliases.text after you edit it. |
-| `newmail` | &#9733; watch for mail arriving and say so.  -d reports the folder it is watching and its size |
+| `newmail` | &#9733; watch for mail arriving and say so.  -d reports the folder it is watching and its size<br>`/dd/CMDS/ELM/newmail: illegal option -- ?` |
 | `nptx` | &#9733; smail's full-name permuter: it takes `<full name>' TAB `<login>', one per line, and answers with the pair reversed.  Anything else -- an address list, a bare name, the password file -- earns `format error: <the line>'<br>**How:** smail's full-name permuter, and its input format is the whole trick: one line of `<full name>' TAB `<login>' and it answers with the pair reversed. ANY other shape -- an address list, a bare name, the password file -- earns `format error: <the line>', which is how it came to be described as an alias expander. |
-| `pathalias` | compute mail routes from a map |
-| `philmail` | the philmail mailer |
+| `pathalias` | compute mail routes from a map<br>`/dd/CMDS/UUCP/pathalias: illegal option -- ?` |
+| `philmail` | an off-line mail reader: it opens your mail file, steps through the messages with return and offers a reply; `q' quits<br>`/dd/CMDS/UUCP/philmail is an off-line mail reader for UNIX mail` |
 | `printmail` | &#9733; format a message for a printer.  It forks `readmsg' by bare name, so load it first; then it prints the message the same way `readmsg' would<br>**How:** It forks `readmsg' BY BARE NAME, and OS-9 resolves a bare-name fork against the EXECUTION directory, never against PATH -- so it is silent from everywhere except /dd/CMDS/ELM. `load /dd/CMDS/ELM/readmsg' once and it works from anywhere: a RESIDENT module is found by name with no directory search at all. |
 | `pwparse` | &#9733; parse the password file for the mailer |
 | `read_mail` | &#9733; a small mail reader of its own: it opens /dd/MAIL/mail_<user> and offers `[L]ist again, e[X]it & delete mail, exit & [N]ot delete'<br>**How:** Not vi's helper and not part of Elm: it has a mail directory of its own, /dd/MAIL/mail_<user>, and $USER decides which. Answer its L/X/N prompt ON STANDARD INPUT -- `echo N > f; read_mail < f'. With no input at all it re-asks without bound. |
-| `readmsg` | &#9733; print selected messages from a folder, by number or by pattern.  Works<br>**How:** Prints messages from a mail folder: `readmsg 1' for the first. It reads the welcome message in /dd/SPOOL/MAIL/tester. |
+| `readmsg` | &#9733; prints selected messages from a mail folder, by number or by pattern: `readmsg 1' for the first<br>**How:** Prints messages from a mail folder: `readmsg 1' for the first. It reads the welcome message in /dd/SPOOL/MAIL/tester. |
 | `rmail` | &#9733; deliver incoming mail (invoked by uuxqt, not by you). Given a local name it builds <mailbox>/<user>, and the mailbox here is a file, so it stops with `can't change to mailbox: /dd/SPOOL/MAIL/tester/tester'.  Given a `host!user' address for remote delivery it does not return at all<br>**How:** Local delivery builds <mailbox>/<user> and stops, because the mailbox here is a file: `rmail tester' answers plainly. `rmail "site!user"' for remote delivery does not return. |
-| `smail` | &#9733; smart mail router |
+| `smail` | &#9733; smart mail router<br>`Usage:   /dd/CMDS/UUCP/smail [<options>] address...` |
 | `uupoll` | &#9733; poll a site for waiting work.  It works silently: `uupoll nowhere' leaves /dd/SPOOL/uucp/nowhere/C.nowhereAPOLL, and the grade letter from -g goes into the name (`-gZ' -> ...ZPOLL)<br>**How:** Polls a UUCP site for waiting work, and it does the job in SILENCE -- which is why it reads as broken. `uupoll <site>' leaves /dd/SPOOL/uucp/<site>/C.<site>APOLL; the grade letter from -g goes into the name, so `-gZ' gives ...ZPOLL. Blars uucp; wants the `uucp' user, which SYS/password has. |
 | `uux` | &#9733; run a command on another UUCP site<br>**How:** Runs a command on another UUCP site. This is BLARS uucp, which reads USR/LIB/UUCP/Config -- a different configuration from UUCPbb's SYS/UUCP. Both ship. |
 
@@ -813,14 +813,14 @@
 | `byteflip` | &#9733; byte-swap a dbz database between architectures -- hand it a dbz database<br>**How:** It is in CMDS/NEWS. Hand it a dbz database to byte-swap between architectures. |
 | `c7decode` | &#9733; decode 7-bit-safe encoded news |
 | `dbz` | &#9733; the news history database<br>**How:** The news history database from C News: `dbz [-a] [-x] [-c] database [file]...'. Part of a news system. |
-| `expire` | &#9733; delete news articles past their expiry date |
-| `newshist` | &#9733; rebuild the history file |
-| `newslock` | &#9733; the news system's lock |
-| `postnews` | &#9733; post an article to a newsgroup |
-| `readnews` | &#9733; read Usenet news articles: it opens the reader and asks about each newsgroup in the active file not yet in .newsrc, then answers `**** End of newsgroups' when the news spool is empty |
-| `rnews` | &#9733; unpack an incoming news batch |
+| `expire` | &#9733; delete news articles past their expiry date<br>`/dd/CMDS/UUCP/expire: illegal option -- ?` |
+| `newshist` | &#9733; rebuild the history file<br>`/dd/CMDS/NEWS/newshist: unknown option -?` |
+| `newslock` | &#9733; the news system's lock<br>`Usage: /dd/CMDS/NEWS/newslock tempname lockname` |
+| `postnews` | &#9733; post an article to a newsgroup<br>`/dd/CMDS/UUCP/postnews: illegal option -- ?` |
+| `readnews` | &#9733; read Usenet news articles: it opens the reader and asks about each newsgroup in the active file not yet in .newsrc, then answers `**** End of newsgroups' when the news spool is empty<br>`readnews: read Usenet news articles` |
+| `rnews` | &#9733; unpack an incoming news batch<br>`rnews [-x debug_level] [-n inital_newsgroup] [-z] newsfile` |
 | `subscribe` | &#9733; add a newsgroup to your subscription list -- for one already in /dd/.newsrc but turned off, `Newsgroup X is now subscribed.' and `X! 1' becomes `X: 1' in the file. A group not in .newsrc at all is silently left alone, which both this and unsubscribe do<br>**How:** It works, and so does `unsubscribe' -- give it a group that IS in /dd/.newsrc. A group that is not there is silently left alone. |
-| `unsubscribe` | &#9733; drop one, and it does that too: `!' replaces `:'.  It has one bug of its own -- for a group that is ALREADY off it prints `Newsgroup  684700s already unsubscribed.', because the string in the binary is `Newsgroup % is already unsubscribed.' with no conversion letter after the `%' |
+| `unsubscribe` | &#9733; drops a newsgroup from your subscription list: `!' replaces `:' in /dd/.newsrc. For a group that is already off it prints `Newsgroup 684700s already unsubscribed.', because the string in the binary is `Newsgroup % is already unsubscribed.' with no conversion letter after the `%'<br>`unsubscribe: unsubscribe from Usenet newsgroup(s)` |
 
 **TCP/IP**
 
@@ -828,8 +828,8 @@
 |---|---|
 | `atp` | &#9733; AX.25 transport, from the KA9Q package |
 | `finger` | &#9733; ask another machine who is logged in<br>**How:** Asks another machine who is logged in: `finger <userid>'. Needs a network. |
-| `infoxpress` | InfoXpress client |
-| `msntp` | set the clock from a network time server -- stops with a csl traphandler mismatch; see DOC/STATUS<br>**How:** Sets the clock from a network time server. |
+| `infoxpress` | a client for the InfoXpress information service, reached over a serial line |
+| `msntp` | sets the system clock from a network time server, by SNTP; it needs a network to reach one<br>**How:** Sets the clock from a network time server. |
 | `net` | KA9Q net -- TCP/IP over SLIP or AX.25: telnet, ftp, smtp<br>**How:** KA9Q net, Phil Karn's TCP/IP over SLIP or AX.25 -- the stack amateur radio ran on. Needs NETHOME, NETSPOOL and TMPDIR set and a real interface; see DOC/ka9q. |
 | `osknet` | OSKNET -- TCP/IP for OS-9, Telnet, FTP, Ping and SMTP<br>**How:** Charles Hedrick's TCP/IP for OS-9 -- Telnet, FTP, Ping and SMTP. It needs a network interface. Its own documentation is nine files in DOC/osknet: start with howto.doc and useguide.doc. |
 
@@ -837,16 +837,16 @@
 
 | | |
 |---|---|
-| `aterm` | ATerm 2.6 terminal emulator.  WORKS -- config is in SYS/ATERM; run it from a login session rather than as the machine's first process, or its terminal library bus errors.  `aterm /t1' for a real serial port.  Manual DOC/aterm, source SRC/aterm |
-| `cls` | clear the screen (termcap) |
-| `connect` | &#9733; connect to a serial line |
-| `fkeys` | define terminal function keys |
+| `aterm` | ATerm 2.6, a terminal emulator for a serial line: `aterm /t1'. Its configuration is in SYS/ATERM; run it from a login session rather than as the machine's first process. Manual in DOC/aterm, source in SRC/aterm<br>`ATerm : A terminal program for OS9/68000` |
+| `cls` | clear the screen (termcap)<br>`Syntax: cls` |
+| `connect` | &#9733; connect to a serial line<br>`Usage: connect [<switches>] [<path1>] [<switches>] [<path2>]` |
+| `fkeys` | define terminal function keys<br>`Syntax: fkeys [<path>]` |
 | `initvdu` | &#9733; init video display<br>**How:** It sets up specific VDU hardware. On a terminal it is not defined for, it answers "is not defined for this terminal". |
 | `input` | UNAXCESS BBS - input helper |
-| `sbreak` | Send/clear an SS_Break signal on a serial path |
-| `setfont` | &#9733; load a downloadable terminal font -- setfont <path>. Given a font file it writes no byte to /term, to $PORT, or to a file $PORT names, and returns exit status 0.  With no argument it answers `usage: setfont <path>'. |
-| `setterm` | &#9733; set the terminal type -- SetTerm 2.0, Brian C. White. `setterm' alone reports what TERM says; give it a name to change it.  When TERM names a terminal it does not know it falls back on SYS/setterm, which lists the defaults, and that file ships now -- it came in the same archive as the binary and had never been unpacked.  DOC/setterm has the manual and a termcap.extra of further entries<br>**How:** `setterm' alone reports what TERM says; give it a terminal name to change it. Run with no arguments and a terminal it wants to configure it goes FULL-SCREEN -- **ESC quits** (control-C also works, but ESC is the program's own way). SYS/setterm is the defaults file it falls back on when TERM names something it does not know, and DOC/setterm/termcap.extra has further entries you can add to SYS/termcap. |
-| `tsmon2` | tsmon replacement - terminal monitor |
+| `sbreak` | Send/clear an SS_Break signal on a serial path<br>`Syntax:   sbreak [/device]` |
+| `setfont` | &#9733; load a downloadable terminal font -- setfont <path>. Given a font file it writes no byte to /term, to $PORT, or to a file $PORT names, and returns exit status 0.  With no argument it answers `usage: setfont <path>'.<br>`usage: setfont <path>` |
+| `setterm` | &#9733; reports or sets the terminal type: `setterm' alone says what TERM names; give it a name to change it. When TERM names a terminal it does not know it falls back on SYS/setterm, the defaults file. DOC/setterm has the manual and a termcap.extra of further entries<br>**How:** `setterm' alone reports what TERM says; give it a terminal name to change it. Run with no arguments and a terminal it wants to configure it goes FULL-SCREEN -- **ESC quits** (control-C also works, but ESC is the program's own way). SYS/setterm is the defaults file it falls back on when TERM names something it does not know, and DOC/setterm/termcap.extra has further entries you can add to SYS/termcap. |
+| `tsmon2` | tsmon replacement - terminal monitor<br>`**** TSMON2: de-luxe version of the timesharing monitor (c) 1989 by L.Zeller` |
 | `udate` | &#9733; UNAXCESS BBS date display -- and it gets the YEAR wrong: `Monday, August 31, 19126'.  A two-digit year (126, meaning 2026) written into a four-digit field behind a literal `19'. |
 | `uwho` | &#9733; UNAXCESS BBS -- who is online.  Opens `/etc/utmp'; in OS-9 a leading /etc names a DEVICE, so it wants an /etc device presenting utmp, which the BBS would supply.  A Unix-ism from the port |
 | `wysecrack` | &#9733; probe a Wyse terminal: it sends the code that asks the terminal to identify itself (`Anybody out there?' is in the binary) and reads the reply to sense its baud rate. With a Wyse terminal on the line it answers; without one it waits.  Companion to wysetime, which sets that terminal's clock |
@@ -856,29 +856,29 @@
 
 | | |
 |---|---|
-| `blastem` | XModem and YModem file transfer, written for the MM/1 |
-| `dld` | &#9733; XModem download |
-| `k` | Kermit transfer |
-| `rxmod` | receive an OS-9 module over a serial line and enter it in the module directory.  Source: SRC/serload the module directory.  Source: SRC/serload<br>**How:** It stops with `can't install Vmod Trap handler' and the handler is sitting beside it: `load /dd/CMDS/COMMS/vmod_trap' first. It then gets past the install and faults inside the trap, which is a different thing and worth telling apart. |
-| `sterm` | a serial terminal emulator |
+| `blastem` | XModem and YModem file transfer, written for the MM/1<br>`Syntax: Blastem [<opts>] {<filename> [<opts>]}` |
+| `dld` | &#9733; XModem download<br>`dld version 1.4   (c) 1986 FHL` |
+| `k` | Kermit transfer<br>`General Usage:` |
+| `rxmod` | receives an OS-9 module over a serial line and enters it in the module directory -- the receiving half of `txmod'. It calls the VMod_trap handler that ships beside it in COMMS, so `load' that first. Source in SRC/serload<br>**How:** It stops with `can't install Vmod Trap handler' and the handler is sitting beside it: `load /dd/CMDS/COMMS/vmod_trap' first. It then gets past the install and faults inside the trap, which is a different thing and worth telling apart. |
+| `sterm` | a serial terminal emulator<br>`Sterm Ver. 2.0` |
 | `tsu` | &#9733; tterm's setup program |
-| `tterm` | &#9733; a terminal emulator, VT100-ish |
-| `txmod` | send an OS-9 module over a serial line |
-| `uld` | &#9733; XModem upload |
-| `xy` | XMODEM/YMODEM transfer.  `xy -?' prints the shared usage: send by naming files, receive by naming none; -A forces ASCII, -B binary, and -X/-Y/-K/-G/-C pick the protocol.  `z -?' lists the family's options too |
-| `xydown` | XModem/YModem download, public domain.  It senses which the sender is using -- XModem, YModem or YModem-Batch -- and follows, and it converts line endings on the way in. Written for use inside Eddie Kuns' KBCom terminal program and stands alone.  Full source in SRC/xydown, notes in DOC/xydown |
-| `xyt` | &#9733; X/Y/ZMODEM transfer for tterm |
-| `z` | ZMODEM transfer.  `z -?' prints the usage for both.  $MODEM names the port; -p<port> overrides it |
+| `tterm` | &#9733; a terminal emulator, VT100-ish<br>`Tterm Version 2.30` |
+| `txmod` | send an OS-9 module over a serial line<br>`4ETXMod - Err:  -? !` |
+| `uld` | &#9733; XModem upload<br>`uld version 1.4   (c) 1986 FHL` |
+| `xy` | XMODEM/YMODEM transfer.  `xy -?' prints the shared usage: send by naming files, receive by naming none; -A forces ASCII, -B binary, and -X/-Y/-K/-G/-C pick the protocol.  `z -?' lists the family's options too<br>`General Usage:` |
+| `xydown` | XModem/YModem download, public domain.  It senses which the sender is using -- XModem, YModem or YModem-Batch -- and follows, and it converts line endings on the way in. Written for use inside Eddie Kuns' KBCom terminal program and stands alone.  Full source in SRC/xydown, notes in DOC/xydown<br>`XYDOWN ver. 1.1` |
+| `xyt` | &#9733; X/Y/ZMODEM transfer for tterm<br>`xyt - version 1.02` |
+| `z` | ZMODEM transfer.  `z -?' prints the usage for both.  $MODEM names the port; -p<port> overrides it<br>`General Usage:` |
 
 **UUCP**
 
 | | |
 |---|---|
-| `uucico` | &#9733; the transfer program itself -- dials, talks UUCP |
-| `uuclean` | &#9733; remove stale jobs from the spool.  The spool is /dd/SPOOL/uucp, and SYS/UUCP/Parameters names it.  uuclean walks every ENTRY in the spool as if it were a directory, so the README that keeps the directory in the repository trips it: `can't change to directory .../README'. Harmless, and it is why the message is not a sign of a broken spool |
-| `uucp` | &#9733; queue a file copy to or from another site |
-| `uulog` | &#9733; show the transfer log |
-| `uuname` | &#9733; list the sites you can reach |
+| `uucico` | &#9733; the transfer program itself -- dials, talks UUCP<br>`usage: uucico [opts] -r \| sys [sys...]  [opts]` |
+| `uuclean` | &#9733; removes stale jobs from the UUCP spool, /dd/SPOOL/uucp, which SYS/UUCP/Parameters names, and rotates the log files. It walks every entry in the spool as if it were a directory, so a plain file there earns `can't change to directory'; harmless<br>`uuclean: removed old UUCP files, rotate UUCP and FileServ log files` |
+| `uucp` | &#9733; queue a file copy to or from another site<br>`uucp:  unix to unix copy program` |
+| `uulog` | &#9733; show the transfer log<br>`uulog: examine uucp or fileserver log files` |
+| `uuname` | &#9733; list the sites you can reach<br>`uuname --show local machine name or those of UUCP sites we talk to` |
 | `uuxqt` | &#9733; run the jobs a remote site queued here.  It looks for a module called `procs' to see whether it is already running, so it wants a `procs' loaded (error 221 without one). |
 
 **Web server**
@@ -888,9 +888,9 @@
 | `authwn` | authentication helper for protected areas |
 | `inetd` | &#9733; the internet daemon: it listens on a port and hands the connection to `wn'.  It opens `/socket', so it needs a TCP/IP stack presenting that device; without one it gets as far as `tcp protocol unknown'.  `inetd' alone prints its usage<br>**How:** The listener that hands incoming connections to wn. Needs a network. |
 | `inetdc` | &#9733; what inetd forks for each connection.  1626 bytes with no message strings; inetd runs it, not you |
-| `wn` | the web server itself, and it SERVES.  It is an inetd-style server: one HTTP request on standard input, one response on standard output, so run bare it waits.  Its document root is compiled in as /h0/c/unid/wn_1.14.3/osk -- which is on this disk, so mount the collection as /h0 as well as /dd and it answers `HTTP/1.0 200 OK' with the page. It serves the files named in that directory's index.cache; see wndex.<br>**How:** A real HTTP server (WN 1.14.3, GPL). It starts and opens its log -- the path /h0/c/unid/wn_1.14.3/osk/logs is compiled into the binary, and that directory is on this disk so it can. To serve, it needs TCP/IP under it (KA9Q or osknet, in CMDS/NET). It is an inetd-style server -- one request in on standard input, one response out -- so you can hand it a request by hand and read the reply. Its manual is 30 HTML files in DOC/wn. |
+| `wn` | the WN web server, version 1.14.3. It is an inetd-style server: one HTTP request on standard input, one response on standard output, so run bare it waits. Its document root is compiled in as /h0/c/unid/wn_1.14.3/osk, which is on this disk, so mount the collection as /h0 as well as /dd and it answers `HTTP/1.0 200 OK' with the page. It serves the files named in that directory's index.cache; see wndex. Its manual is 30 HTML files in DOC/wn<br>**How:** A real HTTP server (WN 1.14.3, GPL). It starts and opens its log -- the path /h0/c/unid/wn_1.14.3/osk/logs is compiled into the binary, and that directory is on this disk so it can. To serve, it needs TCP/IP under it (KA9Q or osknet, in CMDS/NET). It is an inetd-style server -- one request in on standard input, one response out -- so you can hand it a request by hand and read the reply. Its manual is 30 HTML files in DOC/wn. |
 | `wn.stb` | WN's symbol table (a data module) |
-| `wndex` | build the index.cache WN serves from.  It works on the CURRENT directory and IGNORES a directory given as an argument, so on this disk run it as `ksh -c "cd <dir>; /dd/CMDS/WN/wndex"' -- ksh's cd moves the OS-9 data directory where bash's does not<br>**How:** Builds the index.cache WN will not serve without. It works on the CURRENT directory and IGNORES a directory given as an argument -- on this disk that means ksh, whose `cd' is a real chdir where bash's is not: `ksh -c "cd <dir>; /dd/CMDS/WN/wndex"'. On its own it says "Can't open ./index -- skipping it", which means you are not where you think you are. The site that ships at /dd/c/unid/wn_1.14.3/osk already has its cache built; that is WN's compiled-in document root. |
+| `wndex` | builds the index.cache WN serves a directory from. It works on the current data directory and ignores a directory given as an argument, so move there first (ksh's `cd' or the OS-9 shell's `chd') and run it by name. `Can't open ./index -- skipping it' means you are not where you think you are<br>**How:** Builds the index.cache WN will not serve without. It works on the CURRENT directory and IGNORES a directory given as an argument -- on this disk that means ksh, whose `cd' is a real chdir where bash's is not: `ksh -c "cd <dir>; /dd/CMDS/WN/wndex"'. On its own it says "Can't open ./index -- skipping it", which means you are not where you think you are. The site that ships at /dd/c/unid/wn_1.14.3/osk already has its cache built; that is WN's compiled-in document root. |
 
 </details>
 
@@ -1405,7 +1405,7 @@
 | `remove` | &#9733; remove modules from memory -- its own Function line says so. `remove <module>...', -q for quiet. `rm' removes files<br>**How:** Removes modules from memory. `del', `rm' and `deldir' are the file ones. |
 | `rtfdat` | RTF FORTRAN data module |
 | `version` | &#9733; prints ITS OWN version and nothing else -- `Dies ist das Program 'version', Version 7' -- whatever module you name. `ident' and `modinfo' show a module's edition. |
-| `vmod_trap` | the VMod_trap trap library rxmod and txmod need.  Type-$0B, and it runs in SUPERVISOR state, so it installs here and then faults.  Renamed from lowercase `vmod_trap' -- rxmod asks for `VMod_trap' and real OS-9 matches exactly and it runs in SUPERVISOR state, so it installs here and then faults.  Renamed from lowercase `vmod_trap' -- rxmod asks for `VMod_trap' and real OS-9 matches exactly |
+| `vmod_trap` | the VMod_trap trap handler that rxmod and txmod call. A type-$0B trap module, not a program: `load /dd/CMDS/COMMS/vmod_trap' before running them. It runs in supervisor state, so once installed it faults on this kernel |
 
 **Processes & memory**
 

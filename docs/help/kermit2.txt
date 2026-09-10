@@ -1,0 +1,8 @@
+$ kermit2 -?
+Kermit Program   Version 1    Release 6
+Usage:   kermit c[le line esc.char]         (connect mode)
+or:      kermit s[difl line] file ...       (send mode)
+or:      kermit r[difl line]                (receive mode)
+or:      kermit h[difl line]                (Host server mode)
+or:      kermit g[difl line] file ...       (get file from server)
+or:      kermit q[diful line]               (Quit remote Host servern

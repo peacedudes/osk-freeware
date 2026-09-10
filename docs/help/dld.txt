@@ -1,0 +1,6 @@
+$ dld -?
+dld version 1.4   (c) 1986 FHL
+
+Syntax: dld <file>
+
+Function: download from <file> using XMODEM protocol

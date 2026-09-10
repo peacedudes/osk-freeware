@@ -90,3 +90,99 @@ unexpand|unexpand -?|
 subber|subber -?|
 tcmp|tcmp -?|
 unp|unp -?|
+aterm|aterm -?|
+elm|elm -h|
+answer|none|it takes no options: run it and it asks `Message to:'
+arepdaemon|none|it takes no options: it reads USR/LIB/ELM/autoreply.data and runs as a daemon
+autoreply|none|`autoreply on' and `autoreply off' are its whole vocabulary, plus a file of reply text; there is no help flag
+checkalias|checkalias -?|
+disable|disable -?|
+enable|enable -?|
+dotilde|dotilde -?|
+fastmail|fastmail -?|
+filter|filter -?|
+frm|frm -h|
+lcasep|lcasep -?|
+listalias|listalias -?|
+lmail|lmail -?|
+mail|none|it takes a recipient and reads the message on standard input; there is no help flag
+mailx|mailx -?|
+makedb|makedb -?|
+messages|messages -?|
+newalias|newalias -?|
+newmail|newmail -?|
+nptx|none|a filter with no options: `full name TAB login' lines in, the permuted addresses out
+pathalias|pathalias -?|
+philmail|philmail -?|
+printmail|printmail -?|
+pwparse|none|a filter with no options: the password file on standard input, the login names out
+readmsg|readmsg -?|
+rmail|rmail -?|
+smail|smail -?|
+uupoll|uupoll -?|
+uux|uux -?|
+bdecode|none|it takes the file to decode and no options
+byteflip|none|it takes the database to swap and no options; with nothing named it waits on standard input
+c7decode|none|a filter with no options: encoded news on standard input, the article out
+dbz|dbz -?|
+expire|expire -?|
+newshist|newshist -?|
+newslock|newslock -?|
+postnews|postnews -?|
+readnews|readnews -?|
+rnews|rnews -?|
+subscribe|subscribe -?|
+unsubscribe|unsubscribe -?|
+cls|cls -?|
+fkeys|fkeys -?|
+sbreak|sbreak -?|
+initvdu|initvdu -?|
+setterm|setterm -?|
+setfont|setfont -?|
+tsmon2|tsmon2 -?|
+connect|connect -?|
+tsu|none|it takes no options: run it and it checks tterm's directories, creating what is missing
+uwho|none|it takes no options
+input|none|a filter with no options
+udate|none|it takes no options: run it and it prints the date
+wysecrack|none|it takes no options: it sends the identify request and waits for the terminal's reply
+wysetime|none|a BASIC09 program run by runb; it takes no options
+sterm|sterm -?|
+tterm|tterm -?|
+xy|xy -?|
+z|z -?|
+k|k -?|
+dld|dld -?|
+uld|uld -?|
+txmod|txmod -?|
+rxmod|load /dd/CMDS/COMMS/vmod_trap; rxmod -?|
+blastem|blastem -?|
+xydown|xydown -?|
+xyt|xyt -?|
+kermit|kermit -?|
+kermit2|kermit2 -?|
+kermit3|none|it takes its commands at its own `Kermit68K>' prompt, where `?' lists them, and from Kermit.ini
+xkermit|xkermit -?|
+ckermit|ckermit -h|
+kermit_cio|kermit_cio -?|
+finger|finger -?|
+net|none|it takes the name of a startup file and no options; `help' at its `net>' prompt lists its commands
+osknet|none|it takes its commands at its own prompt; DOC/osknet has the guide
+msntp|none|it takes the address of a time server and no help flag
+atp|none|it takes no options: it reads atprc or .atprc from the data directory
+infoxpress|none|it takes no options: it opens its serial device and waits for the host
+uucp|uucp -?|
+uucico|uucico -?|
+uuxqt|none|it takes no options; it looks for `procs' before it starts
+uuname|uuname -?|
+uulog|uulog -?|
+uuclean|uuclean -?|
+fileserv|none|it takes no options and prints nothing; it answers the requests waiting in the spool
+fixtext|fixtext -?|
+wn|none|inetd gives it its options and the request arrives on standard input; there is no help flag
+wndex|wndex -?|
+inetd|inetd -?|
+inetdc|none|inetd forks it; it takes no options and carries no message text
+authwn|none|wn invokes it per request; it takes no options
+vmod_trap|none|a trap-handler module, not a program: `load' it before rxmod and txmod
+screen|none|-v prints its version; it has no help flag, and it wants a $HOME/.screens directory

@@ -1,6 +1,6 @@
-$ uld -?
+uld got.txt
 uld version 1.4   (c) 1986 FHL
 
-Syntax: uld <file>
+Beginning XMODEM upload (control-X will abort).
 
-Function: upload to <file> using XMODEM protocol
+C

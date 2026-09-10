@@ -1,0 +1,5 @@
+$ uuname -?
+uuname --show local machine name or those of UUCP sites we talk to
+Usage:  uuname [-l]
+
+           -l   show name of this machine

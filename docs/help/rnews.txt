@@ -1,0 +1,2 @@
+$ rnews -?
+rnews [-x debug_level] [-n inital_newsgroup] [-z] newsfile

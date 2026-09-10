@@ -1,0 +1,2 @@
+$ printmail -?
+Usage: printmail [-p] [-r filename] <message list>

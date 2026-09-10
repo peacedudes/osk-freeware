@@ -1,0 +1,3 @@
+$ makedb -?
+/dd/CMDS/UUCP/makedb: illegal option -- ?
+/dd/CMDS/UUCP/makedb [-o dbmname] [-a] [file ...]

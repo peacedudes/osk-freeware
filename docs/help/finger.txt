@@ -1,0 +1,4 @@
+$ finger -?
+Syntax: finger <userid>
+Function: display real world info on user.
+Options: none

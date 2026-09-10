@@ -1,0 +1,14 @@
+$ expire -?
+/dd/CMDS/UUCP/expire: illegal option -- ?
+ expire        news article expire utility
+
+     -t         test (don't actually delete articles)
+     -x<level>  debug, default is 0 (OFF)
+     -n<group>  expire only given group
+     -e<days>   expire articles older than specified number of days
+
+     With no arguments, expires all articles older than 14 days in
+     all newsgroups.
+
+v2.1 (94Sep30) This is free software released under the GNU General Public
+License.  Please send suggestions/bug reports to:  bob@kc2wz.bubble.org
