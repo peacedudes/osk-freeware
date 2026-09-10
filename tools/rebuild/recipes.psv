@@ -313,7 +313,7 @@ dm|dm|diskmaster.c screen.c dirread.c showfiles.c misc.c error.c unarc.c mouse.c
 travesty|travesty|travesty.c ../unixlib/getopt.c|TRAPFREE||
 # The collection's own. One source builds three programs; `about' is separate.
 keep|keep|keep.c|||
-drop|keep|keep.c|MODE_DROP||
+unkeep|keep|keep.c|MODE_UNKEEP||
 kept|keep|keep.c|MODE_KEPT||
 about|keep|about.c|||
 # `wish' is from the toys archive; its makefile names the eleven sources.

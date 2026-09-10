@@ -188,7 +188,6 @@ dotilde 9a96fc28a25bc280
 dpark 89795f37105e6574
 draw 644ffd4bed768159
 drivers 1219f2195af87ff8
-drop 6d619a49e2c69fb2
 du a58fd06112b32f84
 dump 8a79a4b161c262b3
 dvialw ce4551bcf1b92db5
@@ -752,6 +751,7 @@ unexpand 78737392555a4a4e
 unifdef c9d33e347e75ac68
 unip 5598a74a1fee6179
 uniq 62938badd8aa5e3d
+unkeep 84203ffd30b01d6d
 unp d9954af1d0edb570
 unpacklib 8bb1d3a69ebb675e
 unpacklib.os9 79c4b0a974668f7c

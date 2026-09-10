@@ -837,7 +837,7 @@ demo|none|it takes options to parse and prints what it made of them
 devprc|devprc -?|
 dinfo|dinfo -?|
 dload|dload -?|
-drop|drop -?|
+unkeep|unkeep -?|
 every|every -?|
 fastcc|fastcc -?|
 flink|flink -?|

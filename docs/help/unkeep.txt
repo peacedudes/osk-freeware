@@ -1,4 +1,4 @@
-$ kept -?
+$ unkeep -?
 keep 1.0 -- OS-9 freeware collection
 
 keep copies a program from this collection onto your own disk,

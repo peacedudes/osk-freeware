@@ -1360,13 +1360,13 @@
 |---|---|
 | `about` | what this collection knows about a program: what it is, what it is for, where it came from, the files it opens and whether they are here, and whether its source and documentation survived.  One card per program -- `about hack'.  DOC/CATEGORIES browses; this answers. |
 
-**Keeping and dropping**
+**Keeping**
 
 | | |
 |---|---|
-| `drop` | put back exactly what keep wrote.  It refuses to remove any file whose checksum has changed, so your saves and scores are safe from it by construction.<br>`keep 1.0 -- OS-9 freeware collection` |
 | `keep` | take a program off this disk onto your own disk -- copies it and whatever DOC/DEPENDS says it needs, and records every file written.  `keep -n' shows what it would do without doing it.  See DOC/README-KEEP.<br>`keep 1.0 -- OS-9 freeware collection` |
 | `kept` | list what has been taken, and how much it came to<br>`keep 1.0 -- OS-9 freeware collection` |
+| `unkeep` | removes the files keep wrote for a program -- it reads the receipt in SYS/kept -- and leaves any whose checksum has changed since, so your saves and scores are safe from it by construction.  `kept' lists what it would take<br>`keep 1.0 -- OS-9 freeware collection` |
 
 **Microware runtime**
 

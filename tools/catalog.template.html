@@ -453,17 +453,26 @@ function about(){
     `into the console, the terminal stream rendered into the grid a vt100 `+
     `would have shown. Nothing is mocked up. The <b>shell</b> button `+
     `above names the shell the commands are spelt for; press it to switch.</p>`+
-    `<p><b>Taking programs onto your own disk.</b> If this collection is your <code>/dd</code>, `+
-    `everything already runs where it is. If your own OS-9 is <code>/dd</code> and this `+
-    `disk is mounted alongside it, <code>keep</code> copies a program and the data files `+
-    `it reads to where it expects them, and writes a receipt of every file. `+
-    `Tick programs with <b>+</b> (or the space bar) and the command builds itself below.</p>`+
+    `<p><b>Setting up.</b> Mount the disk image as <code>/dd</code>, and as `+
+    `<code>/h0</code> as well (a second name for the same image: <code>ln osk-freeware.dd h0</code> `+
+    `on the host), because some programs carry <code>/h0</code> paths inside them. `+
+    `Your own OS-9, if you have one, goes on <code>/h1</code>, which puts runb, r68 and `+
+    `the rest on the path. That is the whole arrangement; everything then runs `+
+    `where it is. <code>DOC/README-RUNNING</code> on the disk says the same at length.</p>`+
+    `<p><b>Taking a few programs onto your own system disk.</b> <code>keep</code>, `+
+    `<code>kept</code> and <code>unkeep</code> are three small programs written for this `+
+    `collection. For them the mounts are the other way round: your own OS-9 is `+
+    `<code>/dd</code> and this disk is mounted beside it, as <code>/h0</code> or any drive. `+
+    `Then <code>keep cookie</code> copies cookie and the data files it reads to where `+
+    `it looks for them, and records every file it wrote; <code>kept</code> lists `+
+    `those files; <code>unkeep cookie</code> removes them, leaving any you have changed `+
+    `since, such as a score file. Tick programs with <b>+</b> (or the space bar) `+
+    `and the command builds itself below.</p>`+
     `<pre class="usage">${esc(pr)}keep -n fortune cookie    what would be written, nothing touched\n`+
     `${esc(pr)}keep fortune cookie       copy them, and record every file\n`+
-    `${esc(pr)}kept                      what has been taken, and how much it came to\n`+
-    `${esc(pr)}drop cookie               put back exactly what keep wrote</pre>`+
-    `<p><code>drop</code> leaves alone any file you have changed since &mdash; a score file, `+
-    `a saved game &mdash; and says so. <code>DOC/README-KEEP</code> on the disk has the rest.</p>`+
+    `${esc(pr)}kept                      every file keep has written, and the total\n`+
+    `${esc(pr)}unkeep cookie             remove what keep wrote for cookie</pre>`+
+    `<p><code>DOC/README-KEEP</code> on the disk has the rest.</p>`+
     `</div>`;
 }
 
@@ -587,7 +596,7 @@ function tray(){
   const bytes=all.reduce((n,f)=>n+f.bytes,0);
   document.getElementById("traysize").innerHTML =
     `<b>${names.length}</b> program${names.length===1?"":"s"}, <b>${all.length}</b> file${all.length===1?"":"s"}, `+
-    `<b>${kb(bytes)}</b> written under /dd. Every file is recorded, so <code>drop</code> can take it back.`;
+    `<b>${kb(bytes)}</b> written under /dd. Every file is recorded, so <code>unkeep</code> can take it back.`;
   document.getElementById("traysum").textContent = "every file it would write ("+all.length+")";
   document.getElementById("trayfiles").innerHTML =
     all.map(f=>`<li>${esc(f.path)}<span class="sz">${kb(f.bytes)}</span></li>`).join("")+

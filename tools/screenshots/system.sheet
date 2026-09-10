@@ -116,18 +116,18 @@ run     clear
 run     dload motd
 wait    7
 
-shot    drop
+shot    unkeep
 size    30 80
-cap     drop puts back exactly what keep wrote.  A program is kept first,
-cap     then dropped: drop reads the receipt in SYS/kept and removes each
-cap     file, refusing any whose checksum has changed since it was kept, so
-cap     your saves and scores are safe from it.
-try     drop greg
+cap     unkeep takes back what keep wrote.  A program is kept first, then
+cap     unkept: unkeep reads the receipt in SYS/kept and removes each file
+cap     it lists, leaving any whose checksum has changed since -- a score
+cap     file, a saved game -- so those are safe from it.
+try     unkeep greg
 run     rm -f /dd/SYS/kept; rm -f /dd/tmp/SYSB/kp/CMDS/greg > /nil 2>/nil; keep -p /dd/tmp/SYSB/kp greg > /nil
 wait    5
 run     clear
 wait    1
-run     drop greg
+run     unkeep greg
 wait    5
 shot    every
 cap     every runs a command again and again at a fixed interval:
@@ -235,7 +235,7 @@ size    30 80
 cap     keep takes a program off the collection onto your own /dd, copying
 cap     the binary and the files DOC/DEPENDS says it reads.  Here greg goes
 cap     into a scratch directory, and keep names each file it wrote and
-cap     records it so drop can put it back.
+cap     records it so unkeep can take it back.
 try     keep -p tmp/SYSB/kp greg
 run     rm -f /dd/SYS/kept; rm -f /dd/tmp/SYSB/kp/CMDS/greg > /nil 2>/nil; mkdir -p /dd/tmp/SYSB > /nil 2>/nil
 wait    3
