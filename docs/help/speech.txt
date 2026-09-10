@@ -1,0 +1,3 @@
+$ speech -?
+Error: Cannot open input file.
+Usage: PHONEME [infile [outfile]]

@@ -117,6 +117,14 @@ def clean(text):
     lines = [ln.rstrip() for ln in text.split("\n")]
     while lines and not lines[-1]:
         lines.pop()
+    # A program that prints its usage and exits non-zero makes the shell
+    # (run -x) report the status -- `Error #000:002 (S_Abort) ...' -- after
+    # the program's own words.  That line is the shell's, not the help; it
+    # goes, unless it is all there is, in which case it is the answer.
+    while len(lines) > 1 and re.match(r"^Error #\d{3}:\d{3}", lines[-1]):
+        lines.pop()
+        while lines and not lines[-1]:
+            lines.pop()
     while lines and not lines[0]:
         lines.pop(0)
     return "\n".join(lines)

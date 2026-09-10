@@ -13,7 +13,7 @@
 |---|--:|---|
 | [Shells](#shells) | 21 | Unix shells to sit beside OS-9's own -- bash and ksh bring history, job control, and scripts that come across unchanged. |
 | [Editors](#editors) | 27 | vi and emacs in several flavours, line and stream editors, and editors for binary and hex. |
-| [Text tools](#text-tools) | 114 | Search, sort, compare, reformat, split and spell-check. |
+| [Text tools](#text-tools) | 115 | Search, sort, compare, reformat, split and spell-check. |
 | [Files & directories](#files--directories) | 32 | Listing, copying, finding, renaming, and knowing what you have. |
 | [Developer tools](#developer-tools) | 46 | Version control, tags, cross-reference, formatters, a debugger and benchmarks. |
 | [Compilers & build](#compilers--build) | 40 | C compilers and their passes, assemblers, linkers, make and parser generators. |
@@ -25,7 +25,7 @@
 | [Games](#games) | 67 | Adventures, board and card games, arcade ports, dungeon crawls and puzzles. |
 | [Screen toys](#screen-toys) | 10 | Animations and screen effects -- they draw on the terminal rather than print to it. Some run until you stop them. |
 | [Amusements](#amusements) | 19 | Generators, simulators and diversions that are not quite games. |
-| [System & modules](#system--modules) | 126 | OS-9 module and process tools, devices, system state and scheduling. |
+| [System & modules](#system--modules) | 125 | OS-9 module and process tools, devices, system state and scheduling. |
 | [Disk & DOS](#disk--dos) | 20 | Reading and writing MS-DOS media with the mtools set. |
 | [Time & calendar](#time--calendar) | 14 | Calendars, clocks and astronomy. |
 | [Maths & calculators](#maths--calculators) | 11 | Calculators, plotting, orbits and number theory. |
@@ -150,20 +150,20 @@
 
 *Search, sort, compare, reformat, split and spell-check.*
 
-<details><summary>114 programs</summary>
+<details><summary>115 programs</summary>
 
 **Alternates**
 
 | | |
 |---|---|
-| `diff_1.1` | another build of GNU diff 1.1 |
+| `diff_1.1` | a second build of GNU diff 1.1 with the same options; see `diff'<br>`Syntax   : diff [<options>] file1 file2` |
 
 **Banners & text art**
 
 | | |
 |---|---|
 | `banner` | &#9733; print large banner text |
-| `cursive` | generate a horizontal cursive banner |
+| `cursive` | writes a message as one line of joined, sloping cursive script, the flourish people once signed mail with<br>`usage: cursive [-tn] [-in] message` |
 | `gothic` | &#9733; print text as a gothic/blackletter banner |
 | `zot` | &#9733; prints a line of text in one of fourteen decorative styles: `zot -s=3 "text"'; -d shows them all<br>**How:** `zot -s=<1-14> "text"' prints the text in that style; `zot -d "text"' shows every style in turn. |
 
@@ -200,60 +200,61 @@
 
 | | |
 |---|---|
-| `fmt` | Simple text formatter (elvis 1.7) |
-| `hc` | shift text to a column, or label every line.  `hc +8 f' indents f so the text starts at column 8; `hc -11 f' strips leading columns so it starts at column 11; `hc -l "> " f' puts that string in front of every line.  With no option it copies the file through.  It evaluates nothing -- for arithmetic see `bc' and `dc' |
-| `lout` | Lout 2.05 document formatter |
-| `nroff` | nroff text formatter.  Built `-qm' from SRC/nroff, it formats: given a man page it sets the text and names the macros it does not know (`unrecognized command .TH'), which is a plain nroff without the man package rather than a fault. DOC/README-CIO<br>**How:** Formats a text with nroff requests: `nroff file.ms'. Its macro sets are in LIB (tmac.*). Point TMACDIR at LIB if a macro package is not found. |
-| `proff` | proff - portable roff text formatter (macros in LIB/proff). Given a text file it justifies it to a measure, and takes page ranges and a statistics option.  `roff' works too; `nroff' wants a real macro package and answers `illegal switch' to -? |
+| `fmt` | refills ragged text into even lines, 72 columns wide or as given by -<width>; the fmt that came with elvis<br>`usage: fmt [-width] [files]...` |
+| `hc` | shift text to a column, or label every line. `hc +8 f' indents f so the text starts at column 8; `hc -11 f' strips leading columns so it starts at column 11; `hc -l "> " f' puts that string in front of every line. With no option it copies the file through<br>`hc: unrecognized option=-?` |
+| `lout` | Lout 2.05 document formatter<br>`usage: lout [ -i<filename> ] files` |
+| `nroff` | nroff, the text formatter: fills and justifies text under dot requests and macro packages (-man and the rest); the macro sets are in LIB, and TMACDIR points at them<br>**How:** Formats a text with nroff requests: `nroff file.ms'. Its macro sets are in LIB (tmac.*). Point TMACDIR at LIB if a macro package is not found. |
+| `proff` | proff, a portable roff: formats text under dot requests -- fill, justify, centre, running page headers -- with its macros in LIB/proff; +n and -n select pages, -v prints statistics<br>`usage: proff [+n] [-n] [-v] [-ifile] [-s] [-pon] [infile [outfile]]` |
 | `roff` | a text formatter in the nroff line: it reads text with dot-commands at the start of a line and fills, justifies and paginates it.  `.ce' centres, `.sp' spaces, `.fi'/ `.nf' turn filling on and off, `.ad'/`.na' the right justify, `.in'/`.ti'/`.ll' set the margins and measure, `.he'/`.fo' add a running header and footer with the page number, `.sh' numbers headings.  nroff and proff are the same idea; DOC/roff has the full request list.<br>`Syntax: roff {[+00] [-00] [-s] -[h] file}` |
-| `tformat` | text formatter (SNOBOL4-in-C) |
+| `tformat` | fills text to a width: `tformat [width]' reads standard input and writes it refilled and justified, 80 columns unless told otherwise<br>`tformat - format stdin to stdout.` |
 
 **Fortune & sayings**
 
 | | |
 |---|---|
-| `cookhash` | build the hash file cookie(1) needs, from a sayings file |
+| `cookhash` | build the hash file cookie(1) needs, from a sayings file<br>`usage: cookhash <cookiefile >hashfile` |
 | `cookie` | print a random fortune cookie<br>**How:** Bare it prints a fortune from a default file. Given arguments it wants BOTH the cookie file and the hash `strfile' built for it: `strfile mine' then `cookie mine mine.dat'. |
-| `fortune` | print a random quotation |
+| `fortune` | print a random quotation<br>`usage:  fortune [ - ] [ -wsloa ] [ file ]` |
 | `sonnet` | writes (bad) sonnets in iambic pentameter, curses-based<br>**How:** Full-screen: it takes over the display. **ESC quits**. (control-C also gets you out, but ESC is the program's own way.) |
-| `strfile` | &#9733; build fortune's index file |
-| `unstr` | reverse strfile - dump a fortune index.  It takes the index BASE name, appending `.dat' itself, so `unstr /dd/GAMES/FORTUNE/fortunes' is the invocation and bare it prints its own usage.  DOC/README-CIO |
+| `strfile` | &#9733; builds the .dat index that fortune reads from a file of sayings separated by %% lines, and reports what it found<br>`usage:  strfile [ - ] [ -cC ] [ -sv ] inputfile [ datafile ]` |
+| `unstr` | strfile's reverse: writes the sayings back out of a fortune .dat index as plain text -- `unstr sayings.dat out'; the .dat may be left off the name<br>`usage: unstr datafile[.dat] [ outfile ]` |
 
 **KWIC index**
 
 | | |
 |---|---|
-| `pagefraz` | KWIC suite - phrase extractor |
-| `pagekwic` | KWIC suite - split a Stylo file to one phrase per line with page no. |
-| `pageline` | KWIC suite - line/page numbering |
+| `pagefraz` | the KWIC index suite: extracts the phrases of a Stylo- spooled text, one per line with its page number<br>`Syntax: pagefraz <opts> [<in_path> [<out_path>]] <opts>` |
+| `pagekwic` | the KWIC index suite: splits a Stylo-spooled text into one phrase per line with its page number, the first step of a keyword-in-context index<br>`Syntax: pagekwic <opts> [<in_path> [<out_path>]] <opts>` |
+| `pageline` | the KWIC index suite: splits a Stylo-spooled text into one word per line with its page number<br>`Syntax: pageline <opts> [<in_path> [<out_path>]] <opts>` |
 
 **Search & match**
 
 | | |
 |---|---|
-| `bm` | &#9733; bm - fast grep utility (Boyer-Moore)<br>`bm: search for a given string or strings in a file or files` |
+| `bm` | &#9733; a fast grep by the Boyer-Moore algorithm: searches files for one or more fixed strings, with counts, file lists and character offsets on request<br>`bm: search for a given string or strings in a file or files` |
 | `bmgtest` | &#9733; Boyer-Moore-Gosper substring search demo<br>**How:** bmgtest [-i] [-n] <pattern> [file ...]. A demonstration of Boyer-Moore-Gosper searching. |
-| `bmgtest2` | &#9733; Boyer-Moore-Gosper substring search demo (variant) |
-| `fgrep` | &#9733; very fast grep utility |
-| `grep` | GNU grep 2.0 -- pattern search |
+| `bmgtest2` | &#9733; Boyer-Moore-Gosper substring search demo (variant)<br>`usage: bmgtest [-i] [-n] pattern [file ...]` |
+| `fgrep` | &#9733; searches files for fixed strings rather than patterns, with context lines, counts, line numbers and file lists on request<br>`Syntax   : fgrep [-[[AB] ]<num>] [-[CVchilnsvwx]] [-[ef]] <expr> [<files...>]` |
+| `ggrep` | &#9733; GNU grep, a second build: the same options as `grep'<br>**How:** GNU grep. `ggrep <expr> <files...>'; -E, -F, -i, -v, -w and the rest as you would expect. |
+| `grep` | GNU grep 2.0: prints the lines of files that match a regular expression -- -E extended, -F fixed strings, -i ignore case, -v invert, -n number, -c count<br>`grep: illegal option -- ?` |
 | `soundex` | Soundex phonetic key for each word on stdin |
 
 **Sort, compare & merge**
 
 | | |
 |---|---|
-| `cdiff` | context diff.  Built `-qm' from SRC/v_misc/cdiff.c, it produces a real context diff: `>>>> INSERT BEFORE 2'. DOC/README-CIO |
-| `diff` | &#9733; GNU diff 1.1 -- handles CR text files. |
-| `ediff` | put `diff' output into plain English: `diff <f1> <f2> ! ediff', or `ediff <file' for a diff you already have.  A one-line change comes out as `-------- 1 line changed at 3 from: ... to: ...'.  `diff' does the comparing; this makes the answer readable |
-| `fcomp` | &#9733; compare two text files |
-| `join` | GNU join -- relational join of two sorted files |
-| `nsort` | sort lines from standard input -- LEXICALLY, despite the name: given 3, 22, 111 and 4 it answers 111, 22, 3, 4, the same order GNU `sort' gives with no options.  For a numeric sort use `sort -n', which gets it right |
-| `qsort9` | &#9733; sort filter |
-| `sort` | GNU sort |
-| `spiff` | &#9733; tolerant diff - ignores formatting noise<br>**How:** Compares two files while ignoring differences that do not matter (whitespace, number formatting). Takes TWO filenames. |
+| `cdiff` | a context diff: compares two text files and prints what changed, each difference headed by a line such as `>>>> INSERT BEFORE 2'<br>`TRY: diff oldfile newfile` |
+| `diff` | &#9733; GNU diff 1.1: compares two text files and prints the lines that differ, in normal, context (-c) or ed-script (-e) form; reads CR-terminated text<br>`diff: illegal option -- diff: requires two file names.  Usage: diff [-options] file1 file2` |
+| `ediff` | put `diff' output into plain English: `diff <f1> <f2> ! ediff', or `ediff <file' for a diff you already have.  A one-line change comes out as `-------- 1 line changed at 3 from: ... to: ...'.  `diff' does the comparing; this makes the answer readable<br>`Syntax   : 'ediff <file'  or  'diff <f1> <f2> ! ediff'` |
+| `fcomp` | &#9733; compares two text files line by line and names the lines inserted, deleted or changed between them<br>`Syntax: fcomp <file_1> <file_2>` |
+| `join` | GNU join -- relational join of two sorted files<br>`join: unrecognized option `-?'` |
+| `nsort` | sort lines from standard input -- LEXICALLY, despite the name: given 3, 22, 111 and 4 it answers 111, 22, 3, 4, the same order GNU `sort' gives with no options.  For a numeric sort use `sort -n', which gets it right<br>`Usage: nsort <unordered >sorted` |
+| `qsort9` | &#9733; an in-memory quicksort filter: sorts lines by a chosen field (-f) and separator (-c), in dictionary order, reversed or unique<br>`Syntax: qsort9 [<opts>] [<srcpath>] [<opts>]` |
+| `sort` | GNU sort: sorts lines of text -- by field (+POS or -k), numerically (-n), reversed (-r), folding case (-f), unique (-u) -- and merges already-sorted files (-m)<br>`sort: unrecognized option `-?'` |
+| `spiff` | &#9733; a tolerant diff: compares two files while ignoring differences that do not matter -- white space, number formatting, case if asked -- and knows C, shell, Fortran, Modula-2 and Lisp source<br>**How:** Compares two files while ignoring differences that do not matter (whitespace, number formatting). Takes TWO filenames. |
 | `tcmp` | &#9733; Compare two text files<br>**How:** Compares two text files and prints each differing line, both versions one under the other with the line number in each file. Files whose lines differ only in tabs and spaces are reported as changed, which reads oddly until you dump them. |
-| `unip` | unique lines with page numbers |
-| `uniq` | &#9733; drop duplicate lines |
+| `unip` | unique lines with page numbers<br>`Syntax: unip [<opts>] [<srcpath>] [<opts>]` |
+| `uniq` | &#9733; drops repeated adjacent lines: -u keeps only the unrepeated, -d only the repeated, -c counts each; sort first<br>`Usage: UNIQ [-u][-d][-c] [-n] [^n] input [>output]` |
 
 **Spelling & words**
 
@@ -261,9 +262,9 @@
 |---|---|
 | `buildhash` | build ispell's dictionary hash.  It reads a word list called `dict.191' (the name is compiled in). /dd/LIB/ispell.hash is the built hash, 490,186 bytes, and it ships, so ispell itself reads that and works.  `chardef' reads the same word list. |
 | `ispell` | interactive spelling checker<br>**How:** Interactive spelling checker. Takes a file: `ispell <file>'. `ispell -a' is the pipe interface programs use. |
-| `jargon` | Jargon-file browser (needs its database files)<br>**How:** A browser for the Jargon File, which is here: VH/jargon.txt, version 3.0.0 of 27 July 1993, with its index. It will not read SYS/termcap -- do `. /dd/SYS/termcap.entry' first, then `jargon -m'. |
+| `jargon` | a browser for the Jargon File, the hackers' dictionary: `jargon -b word' opens at an entry; it reads jargon.txt and jargon.idx from VH on its own<br>**How:** A browser for the Jargon File, which is here: VH/jargon.txt, version 3.0.0 of 27 July 1993, with its index. It will not read SYS/termcap -- do `. /dd/SYS/termcap.entry' first, then `jargon -m'. |
 | `makelex` | &#9733; compiles sonnet's lex.data word list into a C array |
-| `speech` | English-to-phoneme translation |
+| `speech` | translates English text into phonemes, the front half of a speech synthesiser: run bare it reads a line and prints its transcription; `speech in out' does a whole file<br>`Error: Cannot open input file.` |
 
 **Split & join**
 
@@ -1340,7 +1341,7 @@
 
 *OS-9 module and process tools, devices, system state and scheduling.*
 
-<details><summary>126 programs</summary>
+<details><summary>125 programs</summary>
 
 **Devices & disks**
 
@@ -1458,7 +1459,7 @@
 | `bigsetter` | Modula-2 set-operations demonstration |
 | `bootlogger` | &#9733; log what happens during boot |
 | `break` | send a BREAK on a serial line -- an assembler example, and it calls F$SysDbg, the system-debugger trap, on its way there.  On a machine with a debugger attached that drops you into it and waits for an answer, which in a script is a hang |
-| `btop` | convert characters to bit patterns -- its own Function: line, and what it does: `btop <file>' prints each character as a grid of O and space. |
+| `btop` | convert characters to bit patterns -- its own Function: line, and what it does: `btop <file>' prints each character as a grid of O and space.<br>`Syntax:   BtoP [<opts>] [<path1>] [<opts>] [<path2>] [<opts>]` |
 | `chardef` | define a character set -- it reads the same `dict.191' word list as `buildhash'.  Run bare it ends the os9exec session, so give it its input. |
 | `clear` | &#9733; clear the screen |
 | `combine` | &#9733; interleave two files BYTE BY BYTE, one supplying the even bytes and the other the odd -- how a 16-bit EPROM image is put back together from two 8-bit halves.  F.R.Schmitt, 1989. |
@@ -1466,7 +1467,7 @@
 | `cpu` | &#9733; CPU speed test -- draws its bar chart and its answer (156 MHz, which is the emulator), then traps on vector $07 and takes the session down with it |
 | `demerge` | split a merged file back into its parts<br>**How:** OS-9's `merge' is concatenation and there is no `merge' binary here, so `cat a b > c' makes the file demerge takes apart. There is no `od' either -- `dump' is the hex dump. |
 | `demo` | egetopt option-parsing demonstration |
-| `deton` | &#9733; time out an I/O read using an alarm: `deton [seconds]', an example rather than a tool.  For converting tabs, see `detab' and `expand' |
+| `deton` | &#9733; time out an I/O read using an alarm: `deton [seconds]', an example rather than a tool.  For converting tabs, see `detab' and `expand'<br>`syntax: deton [seconds]` |
 | `devprc` | show which device each process holds a path to: `-a' walks every process and lists its open paths and the device behind each.  `top' prints its headings and then crashes -- its own bug, not the system: it asks F$GPrDsc about the root process's parent (process 0), does not check the "no such process" it correctly gets back, and reads an unfilled buffer.  aprocs and sysmon read the same state and run. |
 | `dload` | &#9733; load a data file into a data module: `dload <filename>'. Nothing to do with serial downloads -- `sbreak' and `break' are the serial-line examples here |
 | `e` | SEDT screen editor, a small fixed VT100 build. Reads SYS/sedt.keys, sedt.ruler0 and sedt.help, the same three sedt and new_e read. |
@@ -1476,7 +1477,6 @@
 | `fixyear` | Y2K: correct a date the clock got wrong |
 | `fontgen` | generate a font for the Gepard display<br>**How:** Generates a character font for the Gepard display -- it prints the assembler source of an 80-column font on stdout. |
 | `getsys` | &#9733; report the system's globals -- what OS-9 thinks it is running on |
-| `ggrep` | &#9733; GNU grep, from the sh_utils collection<br>**How:** GNU grep. `ggrep <expr> <files...>'; -E, -F, -i, -v, -w and the rest as you would expect. |
 | `hinterhalt` | &#9733; a small game (EFFO forum 7) |
 | `i_am_i` | prints its own source (Pascal) |
 | `isam` | &#9733; indexed-sequential file demonstration |

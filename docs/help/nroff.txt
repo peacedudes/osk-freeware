@@ -1,0 +1,14 @@
+$ nroff -h
+Usage: nroff [options] file [...]
+Options:
+-a              font changes
+-b              backspace
+-h              hold screen
+-m<name>        macro file (e.g. -man)
+-o file         error log file
+-po<n>          page offset
+-pn<n>          initial page number
+-v              version
++<n>            first page to do
+-<n>            last page to do
+-               use stdin

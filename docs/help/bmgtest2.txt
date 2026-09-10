@@ -1,0 +1,2 @@
+$ bmgtest2 -?
+usage: bmgtest [-i] [-n] pattern [file ...]

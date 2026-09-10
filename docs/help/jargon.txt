@@ -1,0 +1,2 @@
+$ jargon -?
+usage: jargon [-cigmr] [-b key] [srcname] [indexname]

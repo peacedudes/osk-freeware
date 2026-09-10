@@ -1,0 +1,13 @@
+$ qsort9 -?
+Syntax: qsort9 [<opts>] [<srcpath>] [<opts>]
+Function: in memory 'quik sort'
+Options:
+     -a        don't match upper to lower case
+     -b[=]<n>[K]  use specified buffer size (4096)
+     -c[=]<char>  use specified field seperator
+     -d        sort in dictionary order
+     -f[=]<n>  skip <n> fields for key
+     -i        ignore case completely
+     -r        reverse sort
+     -u        print unique lines
+     -?        print usage

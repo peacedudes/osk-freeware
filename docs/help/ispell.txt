@@ -1,0 +1,12 @@
+$ ispell -?
+syntax: ispell {opts} {<file> {opts}}
+Function: interactive spelling checker
+Options:
+	-a         use from program via pipe (see manual)
+	-l         produce a list of misspelled words in file(s)
+	-s         unknown... (seems to wreck -a option)
+	-o=<file>  name of output file for -a option, if not stdout
+	-u         produce a list of unique misspelled words in file(s)
+	-z         get file names from standard input
+	-z=<path>  get list of file names from <path>
+note: your personal dictionary is kept in HOME/ispell.words

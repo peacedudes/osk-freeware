@@ -1,0 +1,23 @@
+$ fgrep -?
+Syntax   : fgrep [-[[AB] ]<num>] [-[CVchilnsvwx]] [-[ef]] <expr> [<files...>]
+Function : search for expressions in files
+Options  :
+   -<num>    print <num> lines of context on each side of every match
+   -A <num>  print <num> lines of context after every maching line
+   -B <num>  print <num> lines of context before every maching line
+   -C        print 2 lines of context on each side of every match
+   -V        print version number on stderr
+   -b        print every match preceded by its byte offset
+   -c        print a total count of matching lines only
+   -e <expr> searach for <expr> (useful if <expr> starts with a '-')
+   -f <expr> search for <expr> containes in <file>
+   -h        don't display filenames on matches
+   -i        ignore case difference when comparing strings
+   -l        list files containing matches only
+   -n        print each match preceded by its line number
+   -s        run silently producing no output except error messages
+   -v        print only lines that contain no matches for the <expr>
+   -w        print only lines where the match is a complete word
+   -x        print only lines where the match is a whole line
+   -y        ignore case difference when comparing strings
+  Adapted to OS-9/68k by Stephan Paschedag

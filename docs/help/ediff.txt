@@ -1,0 +1,4 @@
+$ ediff -?
+Syntax   : 'ediff <file'  or  'diff <f1> <f2> ! ediff'
+Function : print output of 'diff' in plain text
+Options  : none

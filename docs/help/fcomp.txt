@@ -1,0 +1,5 @@
+$ fcomp -?
+Syntax: fcomp <file_1> <file_2>
+Function: compares two text files
+Options:
+    -b[=]<n>[k]  use <n> as minimum memory request chunk (16)

@@ -1,0 +1,3 @@
+$ cdiff -?
+TRY: diff oldfile newfile
+?

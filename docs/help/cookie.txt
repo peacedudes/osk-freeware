@@ -1,0 +1,2 @@
+$ cookie -?
+usage: cookie cookiefile hashfile

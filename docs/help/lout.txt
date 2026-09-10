@@ -1,0 +1,2 @@
+$ lout -u
+usage: lout [ -i<filename> ] files

@@ -1,0 +1,7 @@
+$ strfile -
+usage:  strfile [ - ] [ -cC ] [ -sv ] inputfile [ datafile ]
+        - - Give this usage summary
+        c - Replace delimiting character with 'C'
+        s - Silent.  Give no summary
+        v - Verbose.  Give summary.  (default)
+        Default "datafile" is inputfile.dat

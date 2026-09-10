@@ -70,8 +70,6 @@ bite
 blackjack
 blackjak
 blastem
-bmgtest
-bmgtest2
 bmptoppm
 bog
 bootgen
@@ -81,9 +79,7 @@ break
 brushtopbm
 bsplt68
 btoa
-btop
 btree
-buildhash
 byteflip
 c7decode
 cal
@@ -99,7 +95,6 @@ cc2
 cc2plus
 cccp2
 ccheck
-cdiff
 charcnt
 chardef
 chbase
@@ -133,8 +128,6 @@ compress_rebuilt
 config
 connect
 convert
-cookhash
-cookie
 cp
 cpr
 cpu
@@ -147,7 +140,6 @@ csl
 csl020
 ctags
 ctags.elvis
-cursive
 cut
 cuts
 cvtbase
@@ -164,7 +156,6 @@ demerge
 demo
 des
 detab
-deton
 devprc
 dfiles
 dhry
@@ -179,8 +170,6 @@ dhryGcco2
 dhryO2
 dhryshamu
 dhryshamu2
-diff
-diff_1.1
 digclk
 dinfo
 dir
@@ -214,7 +203,6 @@ dvitos
 dvitype
 e
 ed
-ediff
 edir
 editor
 elm
@@ -245,9 +233,7 @@ exrecover
 fastcc
 fastmail
 fc
-fcomp
 ff
-fgrep
 fibo
 field
 file
@@ -265,11 +251,9 @@ flex
 flink
 float
 florida
-fmt
 fontgen
 for
 forth
-fortune
 frm
 fstat
 fstopgm
@@ -297,7 +281,6 @@ getenv
 getsys
 gftopk
 gftype
-ggrep
 giftopnm
 gmake
 gnuan
@@ -306,7 +289,6 @@ gnuchessc
 gnuchessn
 gnuchessr
 gnuplot
-gothic
 gouldtoppm
 gpp
 gpp_cc1plus
@@ -317,7 +299,6 @@ graphdemo
 graphsave
 greed
 greg
-grep
 gs33
 gs403
 gshell
@@ -331,7 +312,6 @@ gzipcpu32_nocsl
 gzipcpu32k_csl
 hack
 hang
-hc
 head
 help
 helpindex
@@ -360,10 +340,7 @@ initex
 initvdu
 input
 isam
-ispell
 japan
-jargon
-join
 k
 keep
 kept
@@ -404,7 +381,6 @@ loan
 logisim
 logname
 lorenz3d
-lout
 lp
 lpq
 lprm
@@ -428,7 +404,6 @@ make
 makecrc
 makedb
 makeinfo
-makelex
 maketexpk
 map
 marc
@@ -493,8 +468,6 @@ newshist
 newslock
 nobs
 nptx
-nroff
-nsort
 ob68kdemo
 oleo
 orbit
@@ -504,9 +477,6 @@ oskversion
 owner
 p2c
 pacman
-pagefraz
-pagekwic
-pageline
 paranoia
 passwd
 paste
@@ -657,7 +627,6 @@ printenv
 printf
 printmail
 prjob
-proff
 psc
 psidtopgm
 ptob
@@ -670,7 +639,6 @@ pwgen
 pwparse
 qp
 qrttoppm
-qsort9
 qt
 queens
 rain
@@ -756,13 +724,9 @@ snd_sig
 snddrv
 sokoban
 sonnet
-sort
-soundex
 sox
 space
 spctoppm
-speech
-spiff
 spline
 split
 splitalf
@@ -775,7 +739,6 @@ sqrtx
 ssl
 sterm
 stone
-strfile
 striche
 strings
 su
@@ -808,7 +771,6 @@ tet
 tex
 texidx
 textb
-tformat
 tftopl
 tgatoppm
 time
@@ -842,13 +804,10 @@ umusek
 undel
 unexpand
 unifdef
-unip
-uniq
 unp
 unpacklib
 unpacklib.os9
 unsit
-unstr
 unsubscribe
 unzip
 upperdir
@@ -888,7 +847,6 @@ wc
 wc.cio
 weave
 wgen
-what
 who
 whoami
 windio.52

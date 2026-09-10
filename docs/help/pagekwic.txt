@@ -1,0 +1,8 @@
+$ pagekwic -?
+Syntax: pagekwic <opts> [<in_path> [<out_path>]] <opts>
+Function: split Stylo spooled file to one phrase/line with page number.
+Options:
+     -L[=]<n>  set lines per page (66)
+     -P[=]<n>  set starting page number (1)
+     -F[=]<n>  set words per phrase (4)
+     -?        print usage

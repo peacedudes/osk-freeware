@@ -1,0 +1,2 @@
+$ unstr
+usage: unstr datafile[.dat] [ outfile ]

@@ -1,0 +1,7 @@
+$ pageline -?
+Syntax: pageline <opts> [<in_path> [<out_path>]] <opts>
+Function: split Stylo spooled file to one word per line with page number.
+Options:
+     -L[=]<n>   set lines per page (66)
+     -P[=]<n>   set starting page number (1)
+     -?        print usage

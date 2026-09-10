@@ -1,0 +1,9 @@
+$ pagefraz -?
+Syntax: pagefraz <opts> [<in_path> [<out_path>]] <opts>
+Function: split Stylo spooled file to one phrase/line with page number.
+Options:
+     -f[=]<n>  set max words per phrase (4)
+     -l[=]<n>  set lines per page (66)
+     -m        print multi-phrases
+     -p[=]<n>  set starting page number (1)
+     -?        print usage

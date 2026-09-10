@@ -1,0 +1,3 @@
+$ grep -?
+grep: illegal option -- ?
+usage: grep [-[[AB] ]<num>] [-[CEFGVchilnqsvwx]] [-[ef]] <expr> [<files...>]

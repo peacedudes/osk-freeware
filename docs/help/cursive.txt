@@ -1,0 +1,2 @@
+$ cursive -?
+usage: cursive [-tn] [-in] message

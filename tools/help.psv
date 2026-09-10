@@ -10,3 +10,45 @@
 # against this table.  tools/help-backlog.txt lists what is not here yet.
 roff|roff -?|
 bm|bm -?|
+cdiff|cdiff -?|
+cookie|cookie -?|
+cursive|cursive -?|
+diff|diff -?|
+diff_1.1|diff_1.1 -?|
+deton|deton -?|
+fcomp|fcomp -?|
+gothic|none|it draws whatever it is given, a `-?' included: `gothic word' sets the word, and `-h' halves the height
+grep|grep -?|
+jargon|jargon -?|
+lout|lout -u|
+sort|sort -?|
+soundex|none|a filter with no options: one word a line on standard input, one Soundex key a line out
+speech|speech -?|
+what|none|it takes no options and ignores its arguments; run it and it prints its table
+tformat|tformat -?|
+unip|unip -?|
+btop|btop -?|
+hc|hc -?|
+nroff|nroff -h|
+proff|proff -?|
+fmt|fmt -?|
+strfile|strfile -|
+unstr|unstr|
+cookhash|cookhash -?|
+fortune|fortune -|
+ediff|ediff -?|
+spiff|spiff -?|
+uniq|uniq -?|
+nsort|nsort -?|
+qsort9|qsort9 -?|
+join|join -?|
+ggrep|ggrep -?|
+bmgtest|bmgtest -?|
+bmgtest2|bmgtest2 -?|
+pagekwic|pagekwic -?|
+pagefraz|pagefraz -?|
+pageline|pageline -?|
+ispell|ispell -?|
+buildhash|none|it takes no options: run bare it reads the word list dict.191 and the affix file and builds the hash, or names the file it cannot find
+makelex|none|a filter with no options: the word list on standard input, the C array out; given a file name it opens that instead
+fgrep|fgrep -?|

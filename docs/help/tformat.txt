@@ -1,0 +1,6 @@
+$ tformat -?
+tformat - format stdin to stdout.
+
+Usage: tformat [width|-?] [<infile] [>outfile]
+
+		If width omitted, then a width of 80 is used.

@@ -1,0 +1,8 @@
+$ uniq -?
+Usage: UNIQ [-u][-d][-c] [-n] [^n] input [>output]
+   -u ==> just output unrepeated lines
+   -d ==> output one copy of just repeated lines
+   (default) ==> union of -u and -d options
+   -c ==> prefix each output line with count of occurrences
+   -n ==> skip first n fields in comparison
+   ^n ==> ignore first n characters after skipped fields

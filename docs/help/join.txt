@@ -1,0 +1,4 @@
+$ join -?
+join: unrecognized option `-?'
+Usage: join [-a 1|2] [-v 1|2] [-e empty-string] [-o field-list...] [-t char]
+       [-j[1|2] field] [-1 field] [-2 field] file1 file2

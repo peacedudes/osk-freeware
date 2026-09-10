@@ -1,0 +1,2 @@
+$ nsort -?
+Usage: nsort <unordered >sorted

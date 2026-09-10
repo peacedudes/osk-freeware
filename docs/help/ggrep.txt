@@ -1,0 +1,3 @@
+$ ggrep -?
+ggrep: illegal option -- ?
+usage: ggrep [-[[AB] ]<num>] [-[CEFGVchilnqsvwx]] [-[ef]] <expr> [<files...>]

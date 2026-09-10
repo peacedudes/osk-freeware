@@ -1,0 +1,25 @@
+$ spiff -?
+Syntax: spiff [-s script] [-f sfile] [-bteiqcdwm] [-abr value] -value f1 f2
+Function: make controlled approximate comparsions between two files
+
+Options:
+  -q        supress waring messages
+  -t        produce output in terms of individual tokens
+  -e        token compare
+  -value    sets a limit on the total number of insertions/deletions
+  -f sfile  a command script to be taken from file 'sfile'
+  -s script command script
+  -b        treat all objects (incl floating point numbers) as literals
+  -c        ignore differences between upper and lower case
+  -w        treat white space as objects
+  -m        treat leading sign chars (+/-) as separate
+  -d        treat integer numbers as real numbers
+  -a fpn    specifies an absolute value for the tolerance in fpns
+  -r fpn    specifies a relative tolerance (fpn=floating point number)
+  -i        causes differences between fpns to be ignored
+   Languages:
+  -C        treat input files as C program source code
+  -S        treat input files as Bourne shell program source code
+  -F        treat input files as FORTRAN program source code
+  -M        treat input files as Modula-2 program source code
+  -L        treat input files as Lisp program source code

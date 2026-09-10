@@ -1,0 +1,4 @@
+$ sort -?
+sort: unrecognized option `-?'
+Usage: sort [-cmus] [-t separator] [-o output-file] [-bdfiMnr] [+POS1 [-POS2]]
+       [-k POS1[,POS2]] [file...]

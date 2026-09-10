@@ -1,0 +1,8 @@
+$ unip -?
+Syntax: unip [<opts>] [<srcpath>] [<opts>]
+Function: unique with page numbers
+Options:
+     -a        don't match upper to lower case
+     -d        match in dictionary order
+     -i        ignore case completely
+     -?        print usage

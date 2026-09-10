@@ -1,0 +1,9 @@
+$ proff -?
+usage: proff [+n] [-n] [-v] [-ifile] [-s] [-pon] [infile [outfile]]
+		format infile (or stdin) to outfile (or stdout)
+options:	+n start printing at page n
+		-n stop printing after page n
+		-v verbose mode, prints statistics after printing
+		-s stop before each page and wait for prompt
+		-pon set page offset to n (equivalent to .po)
+		-ifile include file (may be repeated)
