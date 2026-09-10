@@ -1,0 +1,2 @@
+$ worms -?
+usage: /dd/CMDS/GAMES/worms [-field] [-length #] [-number #] [-trail]

@@ -1,0 +1,16 @@
+$ exist -?
+EXIST    Version UTIL 2.40 by DESIGNA VLT 24.11.97
+Aufruf: exist [options] <File, Dir>
+no param Exit-Code 0, if file DOES exist
+  -n     Exit-Code 0, if file does NOT exist
+
+  -d     <File> is NOT a file, BUT a directory
+
+  -?     This helptable
+
+Rueckgabewerte:
+     0   Kein Fehler
+    17   Falsches Argument
+    18   Kein Argument angegeben
+    20   Kein Dateiname angegeben
+    21   Datei nicht gefunden

@@ -1,0 +1,6 @@
+$ submit -?
+Syntax: submit [<opts>] [<submit file>] [{<parameter>)]
+Function: Executes commands from the submit file with textual replacement.
+          The submit file must have the suffix .sub.
+Options:
+     -?       displays this help message

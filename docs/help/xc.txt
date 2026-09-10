@@ -1,0 +1,10 @@
+$ xc -?
+xc: illegal option -- ?
+syntax: xc [-c <key_char>] [file]
+function: find and execute commands contained in a file
+command lines are in the form:
+	%c <shell command>       or
+	$c <shell command>       (not echoed)
+...where 'c' is the optional key_char.
+
+the most recent filename (from HOME/.xc) is assumed if omitted

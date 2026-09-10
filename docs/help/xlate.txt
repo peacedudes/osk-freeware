@@ -1,0 +1,29 @@
+$ xlate -?
+Syntax: xlate [<opts>] <pathname>
+Function: Translate a 6809 assembly language to 68000
+Options:
+     -b<size>      Make branches <size>
+                        <size> is one of s,b,w,l
+                        Default: BRA: short, LBRA: word
+     -c            Convert comments to lower case
+     -f            Use 68020 full format addressing modes
+     -k<cpu>       Select CPU: 0=68000 (default); 2=68020
+     -o            Include old opcodes in comment field
+     -r            Read register mapping from 'xlate.regs'
+                        Contains lines of the form:
+                        <6809reg>=<68000reg>
+                        Lines starting with '*' are ignored
+     -r<from>=<to> Map 6809 register <from> to 68000 register <to>
+                        Defaults: A=d0, B=d1, D=d2, X=a0, Y=a1,
+                        U=a6, DP=a6 S=a7, PC=pc, CR=ccr, I(indirect)=a5
+     -s<size>      Make data registers <size>
+                        <size> is one of b,w,l
+                        Default: A,B: byte, D: word
+     -w            Don't issue warnings for non-68000 op codes
+     -?            List usage
+Input taken from file, output to stdout
+
+Copyright (c) 1991,1994 Steven Weller, Windsor Systems
+2407 Lime Kiln Court, Louisville, KY 40222, U.S.A.
+Phone +1 (502) 425 9560  Fax +1 (502) 426 3944, email info@barefoot.com
+May be distributed freely

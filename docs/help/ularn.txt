@@ -1,0 +1,10 @@
+$ ularn -h
+Cmd line format: Ularn [-slicnh] [-o<optsfile>] [-##] [++]
+  -s   show the scoreboard
+  -i   show scoreboard with inventories
+  -c   create new scoreboard (wizard only)
+  -n   suppress welcome message on starting game
+  -h   print this help text
+  -o<optsfile>   specify .Ularnopts file to be used instead of "~/.Ularnopts"
+  -##  specify level of difficulty (example: Ularn -5)
+  -++  restore game checkpoint file

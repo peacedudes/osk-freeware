@@ -1,0 +1,11 @@
+$ zot -?
+syntax: zot [<opts>] {<text> [<opts>]}
+Function: echo text line(s) to stdout in interesting ways
+Options:
+	-d          display text line in all styles, one at a time
+	-s          help with styles  :-)
+	-s[=]<num>  use style <num>
+	-z[=<file>] get text from <file> (or stdin)
+
+By: Roger Murray (ucla-an!remsit!rem@ee.ucla.edu) and
+    Marc Kriguer (kriguer@ernie.berkeley.edu)

@@ -1,0 +1,5 @@
+$ ref -?
+usage: ref [-t] [-c class] [-f file] tag
+   -t        output tag info, instead of the function header
+   -f File   tag might be a static function in File
+   -c Class  tag might be a member of class Class

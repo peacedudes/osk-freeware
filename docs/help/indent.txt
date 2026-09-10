@@ -1,0 +1,56 @@
+$ indent -?
+Syntax: indent [<opts>] [<inpath> [<outpath>]] [<opts>]
+Function: reformat C programs for more readability
+Options: a proceeding n turns the option off
+   -[n]bacc    blanklines around conditional compilation (default: on)
+   -[n]badp    blanklines after declarations of the first block (def.: on)
+   -[n]bad     blanklines after declarations (default: on)
+   -[n]bap     blanklines after procs (default: on)
+   -[n]bbb     blanklines before block commants (default: on)
+   -[n]bc      never break declarations after commas (default: on)
+   -bl         brace should not be on same line as if, while etc. (def.: on)
+   -br         brace should be on same line as if, while etc. (def.: on)
+   -[n]bs      blank after sizeof (default: on)
+   -[n]cdb     comment delimiter on blankline (default: on)
+   -cd[=]<num> set column in which comment after declarations should be
+               put (default: 0)
+   -[n]ce      else should cuddle up to '}' (default: on)
+   -ci[=]<num> set indentiation between the edge of code and
+               continuation lines (default: 0)
+   -cli[=]<num>   set case label indent level (default: 0)
+   -c[=]<num>  set column in which comments to the right of code should
+               start (default: 33)
+   -di[=]<num> set column to indent declared identifiers to (def.: 16)
+   -[n]dj      declarations should be left justified (default: off)
+   -d[=]<num>  comments not to the right of of code will be placed <num>
+               indentation levels to the left of code (default: 0)
+   -[n]eei     continuation lines from the expression part of 'if(e)',
+               'while(e)', 'for(e;e;e)' should be indented an extra tab
+               stop (default: on)
+   -[n]ei      'else if' pairs are handled specially (default: on)
+   -[n]fc1     comment which start in column 1 are to be magically
+               reformated (default: on)
+   -[n]ip      indent parameters (default: on)
+   -i[=]<num>  set size of one indentation level (default: 8)
+   -lc[=]<num> set maximum line lenght for comments (def.: '-l' - value)
+   -[n]lp      continued code whithin parentheses will be lined up to the
+               open parenthesis (default: on)
+   -l[=]<num>  set maximum line lenth (default: 78)
+   -[n]pcs     no space after fucntion name (default: off)
+   -npro       do not read '.indent.pro' file
+   -[n]psl     newline between type of the function and its name (def.: on)
+   -[n]ps      pointer as binop (default: on)
+   -[n]sc      comment continuation lines should have a star (def.: on)
+   -[n]sob     swallow optional blanklines (default: on)
+   -st         write to standard output
+   -[n]tab     use TAB-characters where possible (default: on)
+   -troff      generate input for 'troff' (default: off)
+               fonts for 'troff':
+   -fbc[=]<font>     block comment font (default: 'I2')
+   -fbx[=]<font>     box comment font (default: 'I2')
+   -fb[=]<font>      major body font (default: 'R'
+   -fc[=]<font>      same line comment font (default: 'I')
+   -fk[=]<font>      keyword font (default: 'B')
+   -fs[=]<font>      string font (default: 'L')
+   -T[=]<str>  add <str> as an declaration keyword to the keyword table
+   -[n]v       verbose mode (default: off)

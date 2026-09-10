@@ -1,0 +1,9 @@
+$ epson -?
+usage: epson [<opts>]
+	c<int>	number of characters per line
+		10,12,17 CPI
+	g	german character set
+	u	ascii character set
+	p	formfeed
+	n	normal (ascii + c17)
+(C) oettle + reichler Datentechnik GmbH, Paul Farquhar 1989

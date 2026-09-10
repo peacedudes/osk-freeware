@@ -1,0 +1,9 @@
+$ gshell -?
+Syntax: gshell [<path>]
+Function: a menuedriven shell
+Options:
+	-c           no change of directory allowed
+	-p           no optional parameter allowed
+	-a           display Files beginning with '.'
+	-m=<name>    mask for File to select (<name> may contain '*' and '?')
+	-e[=<file>]  print error explanations

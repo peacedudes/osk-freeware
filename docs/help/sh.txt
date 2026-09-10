@@ -1,0 +1,24 @@
+$ sh -?
+Syntax: sh [<opts>] [<scriptfile>] [<arg1>] ... [<argn>]
+Function: Operating system user interface (shell)
+Options:
+    -b            block input path while editing (default)
+    -C            redirected output requires '-' to overwrite file
+    -c            exit after reading and executing one command
+    -d[=<mode>]   enable debug output [for <mode>]
+    -e[=<path>]   print error explanations [using file <path>]
+    -f=<profile>  process profile file <profile>
+    -g            command completion includes execution directories
+    -h=<n>        set the # of history lines to <n>
+    -i            do not suppress shell messages (default if interactive)
+    -l            require 'logout' to logout (default automatic)
+    -p[=<prompt>] print prompt <prompt>
+    -r            do not process default profile files
+    -s            stop command execution
+    -t            echo input lines
+    -u            display references to unset variables
+    -v            verbose mode (same as '-t')
+    -w            kill all child processes and abort if carrier lost
+    -x            exit on error (default if non-interactive)
+    -y            try to make standard input path a tty
+All options may be prefixed by an 'n' character to invert their sense

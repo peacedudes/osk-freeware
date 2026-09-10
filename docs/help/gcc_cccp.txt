@@ -1,0 +1,34 @@
+$ gcc_cccp -?
+GNU C Compatible Compiler Preprocessor (Version 1.39)
+Usage: /dd/CMDS/GCC139/gcc_cccp [switches] input output
+Switches:
+  -Idirectory           add the directory to be searched for header file.
+  -ifile                process file to make the macros defined in the file
+                        available for use in the main input.
+  -n(ostdinc)           use no default include directories.
+  -Dname[=definition]   predefine name as a macro with definition.(default 1).
+  -Uname                do not predefine name.(superior to -D option.)
+  -u(ndef)              do not predefine any non standard macros.
+  -traditional          try to imitate old fashioned non-ANSI preprocessor.
+  -trigraphs            process ANSI standard trigraph sequences.
+  -$                    do not admit `$' in identifier.
+  -+                    handle C++ comment and use extra default include
+                        directories for C++.
+  -P                    inhibit generation of #-line information.
+  -C                    output comments too.
+  -p(edantic)           issue warnings required by the ANSI C standard.
+  -w                    do not print warnings.
+  -Wtrigraphs           warn if there are any trigraphs.
+  -Wcomment(s)          warn if `/*' appears in a comment.
+  -Wall                 same as -Wtrigraphs and -Wcomment.
+  -o file               output result into file.
+  -d                    output #define's instead of preprocessing result.
+  -M                    output dependencies of files instead of preprocessing
+                        result.
+  -MM                   as -M but output only user include files.
+  -v                    print version number.
+  -K                    try to imitate microware's preprocessor.
+following options are valid only under -K option
+  -e number             specify OSK psect edition.
+  -g                    output debug info too.
+  -l                    output comments too.

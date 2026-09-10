@@ -1,0 +1,5 @@
+$ shuffle -
+Unknown terminal type ''.
+Usage: shuffle [-] [-L level]
+	- - give this summary of usage
+	L [level] - start at [level] of difficulty

@@ -1,0 +1,3 @@
+$ advint -?
+ADVINT v1.2 - Copyright (c) 1986, by David Betz
+usage: advint [-r<rows>] [-c<columns>] [-l<log-file>] <file>

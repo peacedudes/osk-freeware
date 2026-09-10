@@ -1,0 +1,5 @@
+$ ci -?
+ci error: unknown option: -?
+command format:
+ci -r[rev] -l[rev] -u[rev] -f[rev] -k[rev] -q[rev] -mmsg -nname -Nname -sstate -t[txtfile] file ...
+ci aborted

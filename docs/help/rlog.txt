@@ -1,0 +1,5 @@
+$ rlog -?
+rlog error: unknown option: -?
+command format:
+rlog -L -R -h -t -b -ddates -l[lockers] -rrevisions -sstates -w[logins] file ...
+rlog aborted

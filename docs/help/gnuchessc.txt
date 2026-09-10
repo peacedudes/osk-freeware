@@ -1,0 +1,2 @@
+$ gnuchessc -?
+Usage: Gnuchess [-a] [-t] [-c size] [-s savefile][-l listfile] [-x xwndw]

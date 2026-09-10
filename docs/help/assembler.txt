@@ -1,0 +1,4 @@
+$ assembler -?
+Syntax: assembler [<path>]
+Function: a menue driven assembler shell
+Options: none

@@ -1,0 +1,12 @@
+$ teachgammon -?
+Syntax: backgammon [<opts>] [<file>]
+Function: what do you think ?
+Options:
+     -n        don't ask for instructions
+     -r        you play red
+     -w        you play white
+     -b        you play both sides
+     -p[rwb]   print board before red/white/both
+     -s <file> recover earlier game from <file>
+If no -s is present, but <file> is specified, then
+recover from <file>

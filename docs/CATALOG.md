@@ -43,36 +43,36 @@
 | | |
 |---|---|
 | `checkenv` | &#9733; compares an environment variable with a value for a script to branch on: `checkenv <name> , <value>', spaces round the comma.  It returns 0 whether the value matches or not, so `getenv -p <name>', which prints the value, is the one to use for a reliable branch<br>**How:** `checkenv <name> , <value>' with spaces round the comma. Meant to return an error when they differ; it returns 0 either way. |
-| `exist` | &#9733; test file existence |
-| `getenv` | &#9733; print or test an environment variable.  German prompts: `getenv -p TERM' prints the value with a newline, -l without one, -x exits with it, -n inverts the test.  Bare, or with a name and no option, it prints its own usage.  DESIGNA VLT, version UTIL 2.40 |
+| `exist` | &#9733; test file existence<br>`EXIST    Version UTIL 2.40 by DESIGNA VLT 24.11.97` |
+| `getenv` | &#9733; print or test an environment variable.  German prompts: `getenv -p TERM' prints the value with a newline, -l without one, -x exits with it, -n inverts the test.  Bare, or with a name and no option, it prints its own usage.  DESIGNA VLT, version UTIL 2.40<br>`GETENV   Version UTIL 2.40 by DESIGNA VLT 24.11.97` |
 | `hist` | a command-line editor with history, in front of the shell  [no military use -- EFFO-INFO]<br>**How:** A command-line editor with history in front of the shell. On this console it prints a row of asterisks and returns at once. |
 | `if` | conditional execution for a shell script: `if def <var>', `if loaded <module>' or `if varval <var> <value>', the commands, `else', `endif'.  It hands the branch to Microware's `shell' to run<br>**How:** bash's own `if' is a reserved word; `command if' reaches the one on this disk. |
-| `printenv` | &#9733; print the environment |
+| `printenv` | &#9733; print the environment<br>`**** PRINTENV Utility for use with ZSH, (c) 1989 by L.Zeller ****` |
 | `printf` | formatted print from the shell, as on Unix: widths, numbers and floating point<br>**How:** printf as on Unix: `printf "%-8s\|%5d\n" name 12'. Widths, numbers and floating point all work. |
-| `qp` | &#9733; expand BACK-QUOTES in a command line, which Microware's shell does not do for itself: `qp <cmd> <args>'.  It forks a `shell' to do the expansion, so it wants Microware's on your execution path<br>**How:** Runs its expanded command through Microware's `shell'. |
+| `qp` | &#9733; expands back-quotes in a command line, which Microware's shell does not do for itself: `qp <cmd> <args>'. It forks a `shell' to run the result, so it wants Microware's on your execution path<br>**How:** Runs its expanded command through Microware's `shell'. |
 | `run` | runs a program with its input and output on the terminal PORT names: `run '<program> <args>''<br>**How:** `run '<program> <args>'' with PORT naming a terminal: the program runs with its input and output on that terminal. |
-| `submit` | &#9733; submit a job to the print spooler |
+| `submit` | &#9733; runs the commands in a .sub file with its parameters substituted into them -- a batch job<br>`Syntax: submit [<opts>] [<submit file>] [{<parameter>)]` |
 | `xc` | runs the commands marked in a file -- a line beginning `% ' -- and leaves the rest as notes.  Forks them through Microware's `shell' to run<br>**How:** `xc <file>': lines beginning `% ' are commands, the rest is notes. It forks them through Microware's `shell' to run. |
 
 **Shell utilities**
 
 | | |
 |---|---|
-| `env` | &#9733; Print or set the environment for a command (GNU) |
-| `expr` | &#9733; Evaluate an expression (GNU) |
+| `env` | &#9733; GNU env: runs a command with variables added to its environment, `env FOO=bar printenv' |
+| `expr` | &#9733; GNU expr: evaluates an expression for a script -- arithmetic, comparisons, string length and matching |
 | `logname` | &#9733; Print your login name (GNU) |
-| `su` | &#9733; Become another user (GNU) -- and it is the GNU one, so it answers `illegal option' and points at `su --help' for the `-?' every other program here takes |
+| `su` | &#9733; GNU su: become another user; its options are under `su --help' |
 | `whoami` | &#9733; Print who you are logged in as (GNU) |
 
 **Shells**
 
 | | |
 |---|---|
-| `bash` | GNU Bourne-Again Shell 1.12 -- this disk's shell; reads .bashrc. It CANNOT serve as $SHELL for a program that shells out: it reads system()'s command line as a script filename.  `ksh' is the one that can, and SYS/login sets SHELL to it. DOC/README-SHELLS compares all five |
-| `gshell` | GSHELL V1.1 -- a full-screen MENU, not a command shell: a lettered list of the directory, `+' and `-' to page, `.' to change directory, a letter to run a file. `assembler', `compiler' and `editor' are the same engine pointed at one job each.  DOC/README-SHELLS<br>**How:** A full-screen menu of the current directory: + and - page, . changes directory, a letter runs that file. Control-C leaves it. |
-| `ksh` | &#9733; Korn shell.  `ksh -c '<commands>'` works completely.  Its INTERACTIVE loop depends on the EMULATOR: it reads the command line with read(fd,buf,256), and needs the emulator's I$Read to return at the end-of-record character rather than only when the full count arrives, or no typed command reaches it.  Given that, ksh is a full shell -- prompt, for loops, variables, forking.  DOC/README-KSH |
+| `bash` | GNU Bourne-Again Shell 1.12 -- this disk's shell; it reads .bashrc. It cannot serve as $SHELL for a program that shells out, because it reads system()'s command line as a script file name; `ksh' can, and SYS/login sets SHELL to it. DOC/README-SHELLS compares all five |
+| `gshell` | GSHELL V1.1 -- a full-screen menu, not a command shell: a lettered list of the directory, `+' and `-' to page, `.' to change directory, a letter to run a file. `assembler', `compiler' and `editor' are the same engine pointed at one job each. DOC/README-SHELLS<br>**How:** A full-screen menu of the current directory: + and - page, . changes directory, a letter runs that file. Control-C leaves it. |
+| `ksh` | &#9733; the Korn shell, pd-ksh: a full shell with a prompt, history, for loops, variables and functions, and `ksh -c '<commands>'' runs a line. It is the shell programs on this disk shell out through. DOC/README-KSH |
 | `mshell` | &#9733; a menu shell: `mshell <menufile>' shows one numbered entry per `label,command' line and a number runs that command -- through Microware's `shell'<br>**How:** `mshell <menufile>': one `label,command' per line. A number picks an entry; it hands the command to Microware's `shell' to run. Control-C leaves it. |
-| `sh` | Bourne shell v7.5 -- what the startup script runs.  It has a REAL `chd' where bash does not, and it cannot fork a program by absolute pathname here, which is the trade. DOC/README-SHELLS |
+| `sh` | Bourne shell v7.5 -- what the startup script runs.  It has a REAL `chd' where bash does not, and it cannot fork a program by absolute pathname here, which is the trade. DOC/README-SHELLS<br>`Syntax: sh [<opts>] [<scriptfile>] [<arg1>] ... [<argn>]` |
 
 </details>
 
@@ -162,7 +162,7 @@
 
 | | |
 |---|---|
-| `banner` | &#9733; print large banner text |
+| `banner` | &#9733; prints its argument as tall letters made of `@', for a banner or a sign |
 | `cursive` | writes a message as one line of joined, sloping cursive script, the flourish people once signed mail with<br>`usage: cursive [-tn] [-in] message` |
 | `gothic` | &#9733; print text as a gothic/blackletter banner |
 | `zot` | &#9733; prints a line of text in one of fourteen decorative styles: `zot -s=3 "text"'; -d shows them all<br>**How:** `zot -s=<1-14> "text"' prints the text in that style; `zot -d "text"' shows every style in turn. |
@@ -424,61 +424,61 @@
 
 | | |
 |---|---|
-| `tab` | Tabulate 6809 or 68000 assembly source -- opcode-aware, and works on code that will not assemble |
+| `tab` | Tabulate 6809 or 68000 assembly source -- opcode-aware, and works on code that will not assemble<br>`Syntax: tab [<opts>]` |
 | `xlate` | &#9733; Translate 6809 assembly source to 68000<br>**How:** Translates 6809 assembly source into 68000. Pairs with as09 (the 6809 assembler on this disk) and with `tab', which tabulates either dialect. Needs cio. |
 
 **Benchmarks**
 
 | | |
 |---|---|
-| `dhry` | Microware cc<br>**How:** Dhrystone 2.0. Twelve builds of the same source sit in CMDS/DHRY -- run several and compare, which is what tells you the compiler's cost. Run under an emulator the number describes the host machine, not a 68000. |
-| `dhryGcc` | &#9733; GCC 1.x |
-| `dhryGcc2` | &#9733; GCC 2.x |
-| `dhryGcc2in` | &#9733; GCC 2.x, inlined |
-| `dhryGcc2mx` | &#9733; GCC 2.x, mixed |
-| `dhryGcc2o2` | &#9733; GCC 2.x, optimised |
-| `dhryGccin` | &#9733; GCC 1.x, inlined |
-| `dhryGccmx` | &#9733; GCC 1.x, mixed |
-| `dhryGcco2` | &#9733; GCC 1.x, optimised |
-| `dhryO2` | Microware cc, optimised<br>**How:** All eleven Dhrystone builds READ A RUN COUNT FROM STANDARD INPUT before they start -- run bare they print two lines and wait. `echo 200000 \| dhryO2'. Under os9exec even 20000 runs finish inside one tick of the clock, so it answers "Measured time too small ... Please increase number of runs" rather than a rate; the comparison between builds is what they are here for, and on real hardware it works as intended. |
-| `dhryshamu` | &#9733; Shamus build |
-| `dhryshamu2` | &#9733; Shamus build, second variant |
-| `disktest` | measure disk performance  [no military use -- DOC/EFFO-INFO] |
-| `fibo` | &#9733; Fibonacci benchmark |
-| `float` | &#9733; floating-point benchmark |
-| `savage` | &#9733; Savage floating-point accuracy benchmark |
-| `sieve` | &#9733; sieve of Eratosthenes benchmark |
-| `time` | &#9733; time a command |
-| `timid` | a fixed timing loop -- runs a set batch of system calls and reports the elapsed clock ticks. It takes no command; time is the one that times a command. |
+| `dhry` | Dhrystone 2.0 built with Microware's cc. It reads the number of runs from standard input: `echo 500000 \| dhry'. Twelve builds of the same source sit in CMDS/DHRY, so the compilers can be compared<br>**How:** Dhrystone 2.0. Twelve builds of the same source sit in CMDS/DHRY -- run several and compare, which is what tells you the compiler's cost. Run under an emulator the number describes the host machine, not a 68000. |
+| `dhryGcc` | &#9733; Dhrystone 2.0 built with GCC 1; see dhry |
+| `dhryGcc2` | &#9733; Dhrystone 2.0 built with GCC 2; see dhry |
+| `dhryGcc2in` | &#9733; Dhrystone 2.0 built with GCC 2 with inlining; see dhry |
+| `dhryGcc2mx` | &#9733; Dhrystone 2.0 built with GCC 2, mixed options; see dhry |
+| `dhryGcc2o2` | &#9733; Dhrystone 2.0 built with GCC 2 at -O2; see dhry |
+| `dhryGccin` | &#9733; Dhrystone 2.0 built with GCC 1 with inlining; see dhry |
+| `dhryGccmx` | &#9733; Dhrystone 2.0 built with GCC 1, mixed options; see dhry |
+| `dhryGcco2` | &#9733; Dhrystone 2.0 built with GCC 1 at -O2; see dhry |
+| `dhryO2` | Dhrystone 2.0 built with Microware's cc at -O2; see dhry<br>**How:** All eleven Dhrystone builds READ A RUN COUNT FROM STANDARD INPUT before they start -- run bare they print two lines and wait. `echo 200000 \| dhryO2'. Under os9exec even 20000 runs finish inside one tick of the clock, so it answers "Measured time too small ... Please increase number of runs" rather than a rate; the comparison between builds is what they are here for, and on real hardware it works as intended. |
+| `dhryshamu` | &#9733; Dhrystone 2.0, the shamu build; see dhry |
+| `dhryshamu2` | &#9733; Dhrystone 2.0, a second shamu build; see dhry |
+| `disktest` | measure disk performance  [no military use -- DOC/EFFO-INFO]<br>`Syntax   : disktest [<opt>]` |
+| `fibo` | &#9733; the Fibonacci benchmark: a Fibonacci number by the plain recursive definition, ten times over -- a test of the cost of a function call |
+| `float` | &#9733; a floating-point speed test: an arithmetic loop run seven thousand times |
+| `savage` | &#9733; Savage's benchmark: a chain of functions that should cancel to an exact number, a thousand times; how far the printed value drifts measures the arithmetic's rounding |
+| `sieve` | &#9733; the sieve of Eratosthenes as a speed test: the primes below a fixed limit, the pass repeated a hundred times; time it with `time' |
+| `time` | &#9733; times a command the way OS-9 accounts for it: system and user ticks, seconds elapsed, system calls and bytes moved. A time.stat file in the current directory collects the figures<br>`syntax: time <shell cmd>` |
+| `timid` | a fixed timing loop -- runs a set batch of system calls and reports the elapsed clock ticks. It takes no command; time is the one that times a command.<br>`Syntax: timit [<opts>]` |
 
 **Debugging**
 
 | | |
 |---|---|
-| `sdb` | SDB 2.0 - symbolic debugger |
+| `sdb` | SDB 2.0, a symbolic debugger: opens a program at its prompt, where breakpoints, single steps and memory display are commands; q leaves |
 | `trap` | &#9733; an example trap handler -- it installs a trap from system state, so from an ordinary program it stops. Run it by path; trap is also a shell builtin.<br>**How:** The system-state trap-handler example: it installs a trap from system state. Ask for it BY PATH -- `/dd/CMDS/trap' -- because `trap' is also a bash builtin, and the builtin answers first, silently. |
 
 **Libraries**
 
 | | |
 |---|---|
-| `libsplit` | Split a linker library into its component modules |
+| `libsplit` | Split a linker library into its component modules<br>`Syntax   : [<opts>] {<library>} [<opts>]` |
 
 **Source checking**
 
 | | |
 |---|---|
-| `bcheck` | &#9733; count brackets in a source file and report a mismatch. |
+| `bcheck` | &#9733; count brackets in a source file and report a mismatch.<br>`Syntax: bcheck [<opt>] [<filename>]` |
 | `ccheck` | &#9733; C program checker -- matching brackets, quotes, comment brackets, and indentation that disagrees with them<br>**How:** Checks C source for mismatched brackets, quotes and comment markers, and for indentation that disagrees with the nesting. Needs cio. |
 
 **Source formatting**
 
 | | |
 |---|---|
-| `cb` | &#9733; C beautifier |
-| `cpr` | print or pretty-list C source for paper: a title, a contents page, then the source with page and line numbers. |
-| `ifdef` | resolve #ifdefs in C source |
-| `indent` | reformat a C source program for readability |
+| `cb` | &#9733; the C beautifier: indents C source into a readable layout, standard input to standard output<br>`Usage:  cb <input.fil >output.fil` |
+| `cpr` | print or pretty-list C source for paper: a title, a contents page, then the source with page and line numbers.<br>`Usage: cpr [-cCnNsS] [-T title] [-t tabwidth] [-p[num]] [-r[num]] [-l pagelength] [[-f] file] ...` |
+| `ifdef` | resolve #ifdefs in C source<br>`Syntax: ifdef [<opts>] [<file>] [<opts>]` |
+| `indent` | reformat a C source program for readability<br>`Syntax: indent [<opts>] [<inpath> [<outpath>]] [<opts>]` |
 | `patch` | apply a diff to update a file. It recognises the diff but cannot complete the patch, leaving the target unchanged; diff itself works. |
 | `unifdef` | resolve #ifdef sections in C source for one symbol: -d<sym> keeps its branch, -u<sym> the other.<br>**How:** Its option is `-d<sym>' -- lower case, no equals -- and `-u<sym>' for the other side. `-DOSK' is refused with its own help, which reads like the program working and is not. |
 
@@ -486,9 +486,9 @@
 
 | | |
 |---|---|
-| `ctags` | generate a vi tags file from C source (BSD) |
-| `cxref` | &#9733; C cross-reference lister -- numbered listing + symbol table |
-| `etags` | generate an emacs TAGS file |
+| `ctags` | generate a vi tags file from C source (BSD)<br>`ctags: illegal option -- ?` |
+| `cxref` | &#9733; C cross-reference lister -- numbered listing + symbol table<br>`Syntax:		cxref [-opts] [path]` |
+| `etags` | generate an emacs TAGS file<br>`Syntax: etags { [<opts>] <path> }` |
 | `rdoc` | &#9733; reverse documentation: C source in, structure chart out |
 | `xrf` | C cross-reference generator -- it reads its language table C.XRF from the current data directory; the disk ships one in DOC/xrf.<br>**How:** Wants TWO files in the DATA directory, not on the command line: its language table as `C.XRF' (the disk has it as DOC/xrf/c.xrf -- copy it) and the source you name. Given both it prints a full cross-reference: every identifier with the lines it appears on. |
 
@@ -497,19 +497,19 @@
 | | |
 |---|---|
 | `ctags.elvis` | elvis 1.7's ctags; CMDS/ctags is the BSD one<br>`usage: ctags [flags] filenames...` |
-| `ref` | Look up a C function's declaration from a tags file |
+| `ref` | Look up a C function's declaration from a tags file<br>`usage: ref [-t] [-c class] [-f file] tag` |
 
 **Version control**
 
 | | |
 |---|---|
-| `ci` | &#9733; RCS check in |
-| `co` | &#9733; RCS check out |
-| `rcs` | &#9733; RCS |
-| `rcsdiff` | &#9733; RCS diff -- compare a working file against a stored revision. |
-| `rcsident` | &#9733; RCS ident |
-| `rcsmerge` | &#9733; RCS merge -- merge the changes between two revisions into a working file. |
-| `rlog` | &#9733; RCS log |
+| `ci` | &#9733; RCS: checks a working file in, writing the revision into its history file -- name_v here, since OS-9 has no comma in a file name -- with a log message<br>`ci error: unknown option: -?` |
+| `co` | &#9733; RCS: checks a revision out of a history file into a working file; -l locks it for editing<br>`co error: unknown option: -?` |
+| `rcs` | &#9733; RCS: the administration command -- access lists, locks, comment leaders and states on a history file<br>`rcs error: Unknown option: -?` |
+| `rcsdiff` | &#9733; RCS diff -- compare a working file against a stored revision.<br>`rcsdiff error: unknown option: -?` |
+| `rcsident` | &#9733; RCS: finds $Id$-style keywords stamped in a file and prints them |
+| `rcsmerge` | &#9733; RCS merge -- merge the changes between two revisions into a working file.<br>`rcsmerge error: unknown option: -?` |
+| `rlog` | &#9733; RCS: prints a history file's log -- head revision, locks, the description and each revision's message<br>`rlog error: unknown option: -?` |
 
 </details>
 
@@ -523,18 +523,18 @@
 
 | | |
 |---|---|
-| `m4_0.5` | &#9733; another build of m4 -- it is the build that ships as `m4'; the earlier one mangled what it expanded. |
+| `m4_0.5` | &#9733; a second build of the m4 macro processor, kept under its version number<br>`Syntax   : m4 [<opts>] [<files>]` |
 
 **Assemblers & linkers**
 
 | | |
 |---|---|
-| `as0` | 6800/6802 cross-assembler (xasm).  See the note below this list.  A sample source for each of the six ships in DOC/xasm, so they can be seen doing their job rather than printing their usage line: `as0 /dd/DOC/xasm/sample.a0 - l s' lists the assembly with addresses, opcodes and a symbol table. The options come after a lone `-', and as11 is the one exception -- it takes them without it<br>**How:** Assemble the sample that ships with it: `as0 /dd/DOC/xasm/sample.a0 - l s' -- the options come after a lone `-', `l' for the listing and `s' for the symbol table. There is a sample for each of the six (sample.a0, .a1, .a4, .a5, .a09, .a11) and each is written for its own processor: as09 rejects the 6800 one, correctly. as11 is the one that takes its options without the `-'. None of these is a 68000 assembler. |
+| `as0` | 6800/6802 cross-assembler, one of the six xasm tools: `as0 file - l s' assembles with a listing (l) and a symbol table (s), the options after a lone `-'. A sample source for each of the six ships in DOC/xasm. None of the six assembles 68000 code<br>**How:** Assemble the sample that ships with it: `as0 /dd/DOC/xasm/sample.a0 - l s' -- the options come after a lone `-', `l' for the listing and `s' for the symbol table. There is a sample for each of the six (sample.a0, .a1, .a4, .a5, .a09, .a11) and each is written for its own processor: as09 rejects the 6800 one, correctly. as11 is the one that takes its options without the `-'. None of these is a 68000 assembler. |
 | `as09` | &#9733; 6809 assembler -- the one that targets the 6809 itself. It rejects 6800 source (`ldaa' is a 6800 mnemonic, not a 6809 one); DOC/xasm/sample.a09 is written for it |
-| `as1` | 6801/6803 cross-assembler (xasm).  DOC/xasm/sample.a1 |
-| `as11` | 68HC11 cross-assembler (xasm).  DOC/xasm/sample.a11 |
-| `as4` | 6804 cross-assembler (xasm).  DOC/xasm/sample.a4 |
-| `as5` | 6805/68HC05 cross-assembler (xasm).  DOC/xasm/sample.a5 |
+| `as1` | 6801/6803 cross-assembler (xasm); see as0. Sample in DOC/xasm/sample.a1 |
+| `as11` | 68HC11 cross-assembler (xasm). It lists by default and takes no `- l s'; a word after the file name is another source file. Sample in DOC/xasm/sample.a11 |
+| `as4` | 6804 cross-assembler (xasm); see as0. Sample in DOC/xasm/sample.a4 |
+| `as5` | 6805/68HC05 cross-assembler (xasm); see as0. Sample in DOC/xasm/sample.a5 |
 | `assembler` | GSHELL front-end for the assembler -- the same full-screen menu as `gshell', headed `Assembler-SHELL V1.0'.  It does not assemble anything itself; `as0' and its five siblings are the assemblers<br>**How:** Full-screen: it takes over the display. **control-C gets you out**; none of q, Q, control-D or ESC do. |
 | `lnk` | RTF FORTRAN link driver; calls l68 with /h0/LIB/sys.l, which is Microware's |
 | `lnk.org` | as lnk, the original build<br>**How:** `load /dd/CMDS/os9lib' first. Without it this calls F$Link for os9lib, gets E_MNF and exits printing nothing. DOC/README-RUNNING names the four programs that do this. |
@@ -543,45 +543,45 @@
 
 | | |
 |---|---|
-| `cc1plus` | GCC 2.x C++ compiler pass, where it was built |
-| `cc2` | GCC 2.x C compiler pass, where it was built |
-| `cc2plus` | GCC 2.x C++ pass, second form |
-| `cccp2` | &#9733; GCC 2.x preprocessor, where it was built |
-| `collect` | GCC 2.x collect2, where it was built |
+| `cc1plus` | a GCC C++ compiler pass (1.40.3) in the GCC2 directory; the driver runs it |
+| `cc2` | the GCC 2.x C compiler pass, in the GCC2 directory; the driver runs it, and -version reports it |
+| `cc2plus` | a second GCC C++ compiler pass (2.5.8) in the GCC2 directory |
+| `cccp2` | &#9733; the GCC 2.x preprocessor, in the GCC2 directory beside its driver<br>`**** Can't install trap handler ****` |
+| `collect` | collect2: builds the table of global constructors and destructors a C++ program needs before linking<br>`Syntax   : collect [<opts>] {<file>} [<opts>]` |
 | `compiler` | GSHELL front-end for the C compiler<br>**How:** Full-screen: it takes over the display. **control-C gets you out**; none of q, Q, control-D or ESC do. |
-| `gcc` | &#9733; the GCC driver -- GCC139's and GCC2's share this name. They are not the same version, and neither is 2.x: GCC139/gcc answers `gcc version 1.39' and GCC2/gcc answers `gcc version 1.42', read out of `gcc -v' |
-| `gcc2` | &#9733; the GCC 2.x driver, and the only one that is: `gcc version 2.5.6' |
+| `gcc` | &#9733; the GCC driver -- GCC139's and GCC2's share this name. They are not the same version, and neither is 2.x: GCC139/gcc answers `gcc version 1.39' and GCC2/gcc answers `gcc version 1.42', read out of `gcc -v'<br>`**** Can't install trap handler ****` |
+| `gcc2` | &#9733; the GCC 2.x driver, and the only one that is: `gcc version 2.5.6'<br>`**** Can't install trap handler ****` |
 | `gcc_cc1` | GCC 1.39 C compiler pass |
 | `gcc_cc1plus` | GCC 1.39 C++ compiler pass |
 | `gcc_cc2` | GCC 2.x compiler pass, under the name gcc2 forks |
-| `gcc_cccp` | GCC 1.39 preprocessor |
-| `gcc_cccp2` | &#9733; GCC 2.x preprocessor, under the name gcc2 forks |
-| `gcc_collect` | GCC 1.39 collect2 |
-| `gpp` | the C++ driver -- and it is a GCC 1.x one.  GCC2/gpp says `gpp version 1.40.3 (based on GCC 1.40)' and GCC139/gpp says 1.37.1 |
+| `gcc_cccp` | GCC 1.39 preprocessor<br>`GNU C Compatible Compiler Preprocessor (Version 1.39)` |
+| `gcc_cccp2` | &#9733; GCC 2.x preprocessor, under the name gcc2 forks<br>`GNU C Compatible Compiler Preprocessor (Version 2.5.6)` |
+| `gcc_collect` | GCC 1.39 collect2<br>`Syntax   : collect [<opts>] {<file>} [<opts>]` |
+| `gpp` | the C++ driver -- and it is a GCC 1.x one.  GCC2/gpp says `gpp version 1.40.3 (based on GCC 1.40)' and GCC139/gpp says 1.37.1<br>`GNU C++ Compiler (Version 1.40.3 (based on GCC 1.40))` |
 | `gpp_cc1plus` | GCC 2.x C++ pass, under the name gpp forks |
-| `gpp_cccp` | &#9733; GCC 2.x preprocessor, under the name gpp forks |
-| `gpp_collect` | GCC 2.x collect2, under the name gpp forks |
+| `gpp_cccp` | &#9733; GCC 2.x preprocessor, under the name gpp forks<br>`GNU C Compatible Compiler Preprocessor (Version 2.5.6)` |
+| `gpp_collect` | GCC 2.x collect2, under the name gpp forks<br>`Syntax   : collect [<opts>] {<file>} [<opts>]` |
 
 **Fortran**
 
 | | |
 |---|---|
 | `creadoc` | extract the documentation header (C++ ... C--) from every .f file in the current directory into creadoc.txt -- an early Fortran documentation generator.  It reads each file name from column 53 of a `dir -eadu' listing, where this disk's dir puts it at 54 (and 2026, printed `126', pushes it a column further), so it opens the name with a leading space and stops.  A dir-format brittleness, not the CPU; a one-constant source fix.  DOC/rtf/biory.doc is its output for biory.f.  Source: SRC/rtf/creadoc.f |
-| `for` | the RTF/68K FORTRAN driver, and a bash KEYWORD -- ask for it by PATH (`/dd/CMDS/for') or bash swallows the name.  It uses Microware's `shell' on your execution path, forking one to run each compiler pass.  Call `rtf' directly and you need no shell at all -- see DOC/README-FORTRAN |
-| `rtf` | RTF/68K Real-Time Fortran-77 compiler, v2.14 (CERN, 1987), AND IT COMPILES HERE.  `load /dd/CMDS/os9lib' first, then `rtf <file>.f' reads the Fortran and writes 68k ASSEMBLY beside the source: zero errors, `RTF normally completed'. Assemble and link that with Microware's r68 and l68. Call rtf directly: the `for' driver forks Microware's `shell' to run it.  Sources to try in SRC/rtf.  Manual: DOC/rtf/rtfman.txt |
+| `for` | the RTF/68K Fortran driver: it forks Microware's shell to run each compiler pass. At bash `for' is also the loop keyword, so ask for it by path there. Calling `rtf' directly needs no shell at all; see DOC/README-FORTRAN |
+| `rtf` | RTF/68K, the Real-Time Fortran-77 compiler, v2.14 (CERN, 1987). `load /dd/CMDS/os9lib' first; then `rtf file.f' reads the Fortran and writes 68k assembly beside the source, and r68 and l68 from your OS-9 assemble and link it. `for' is its driver, which forks Microware's shell for each pass. Sources to try in SRC/rtf; the manual is DOC/rtf/rtfman.txt |
 
 **Make & generators**
 
 | | |
 |---|---|
-| `bison` | GNU bison 1.19 parser generator -- ADDED; skeletons in /dd/LIB |
-| `dmake` | &#9733; dmake 3.70 - parallel make with its own makefile dialect |
-| `flex` | lexical analyzer generator -- see DOC/flex/README-FLEX FIRST |
-| `gmake` | GNU make -- ADDED (the gnu.bin build of make is the broken one) |
-| `m4` | m4 macro processor.  It expands macros correctly, from a file or a pipe |
+| `bison` | GNU bison 1.19, the parser generator: reads a grammar and writes the parser in C, with -v leaving a report of the states and conflicts. Its skeletons are in LIB<br>`Bison 1.19 (OSK-Version 1.2) (c) 1993 Dipl-Kfm Norbert Kuehne` |
+| `dmake` | &#9733; dmake 3.70 - parallel make with its own makefile dialect<br>`Usage:` |
+| `flex` | flex, the fast lexical analyser generator: turns a rules file into a C scanner, lex.yy.c. DOC/flex/README-FLEX has what to know first<br>`Syntax   : flex [-bcdfinpstvFILT8 -C[efmF] -Sskeleton] [filename ...]` |
+| `gmake` | GNU make: builds targets from a makefile's rules -- -f names the file, -n prints what it would do, -k keeps going past errors<br>`Usage: gmake [options] [target] ...` |
+| `m4` | m4 macro processor.  It expands macros correctly, from a file or a pipe<br>`Syntax   : m4 [<opts>] [<files>]` |
 | `make` | &#9733; make -- maintains a target. Two rules catch people: a command line must begin with a TAB (which will not survive being typed at this terminal, so copy DOC/make/demo.mk rather than echoing one), and a recipe must have no shell metacharacter -- `cp a b' runs, `cat a > b' gets `That path name doesn't lead to a file'.  DOC/STATUS has both<br>**How:** It works. Copy `/dd/DOC/make/demo.mk` rather than writing a makefile at the shell -- a command line must begin with a TAB and a tab does not survive being typed at this terminal. And keep shell metacharacters out of a recipe: `cp a b` runs, `cat a > b` gets "That path name doesn't lead to a file", because make forks bash with the line as a PATHNAME rather than with -c. The default rules are in default.mk beside it, and make looks for that along your PATH. |
-| `makeinfo` | GNU makeinfo -- Texinfo to info |
-| `yacc` | yacc parser generator, rebuilt `-qm' from SRC/effo_yacc. It reads a grammar and writes y.tab.c into the data directory.  `bison' is the other parser generator here and reports states and conflicts |
+| `makeinfo` | GNU makeinfo -- Texinfo to info<br>`makeinfo: unrecognized option `-?'` |
+| `yacc` | yacc parser generator, rebuilt `-qm' from SRC/effo_yacc. It reads a grammar and writes y.tab.c into the data directory.  `bison' is the other parser generator here and reports states and conflicts<br>`Syntax   : yacc [-dltv] [-b <prefix>] filename` |
 
 **Translators**
 
@@ -603,7 +603,7 @@
 |---|---|
 | `adlcomp` | compile an ADL world<br>**How:** From ADL/DEMOS: `adlcomp tiny.adl -o tiny -i..'. -i names the directory holding standard.adl and is required for any world that includes it. |
 | `adldebug` | the ADL debugger: loads a compiled world with its symbol table and dumps its tables -- objects, nouns, verbs, routines, strings -- over a range of numbers. ? lists the commands, q leaves<br>**How:** `adldebug tiny' on a compiled world; ? lists its commands, `o 0-4' dumps the first objects, q leaves. |
-| `adlrun` | <world>                          play it inventory, a direction; save and restore keep a game, quit leaves. AARD is ready to run in ADL/AARD: `adlrun aard'<br>**How:** `adlrun aard' in ADL/AARD plays the museum adventure at a > prompt; save and restore keep a game, quit leaves. |
+| `adlrun` | plays a compiled ADL world at a > prompt -- look, take, inventory, a direction; save and restore keep a game, quit leaves. AARD is ready to run in ADL/AARD: `adlrun aard'<br>**How:** `adlrun aard' in ADL/AARD plays the museum adventure at a > prompt; save and restore keep a game, quit leaves. |
 | `adltouch` | stamps a compiled ADL world with a number: `adltouch <world> <n>' writes n into the first four bytes of the file, where the compiler left a #! line. Prints nothing<br>**How:** `adltouch tiny 7' writes 7 into the first four bytes of the compiled world; dump the file to see it. It prints nothing. |
 
 **Interpreters**
@@ -615,7 +615,7 @@
 | `luac` | &#9733; Lua bytecode compiler: `luac -o out.lc in.lua'; -l lists the instructions as it compiles, -x compiles into an OS-9 module in the execution directory for runc to start<br>**How:** `luac -l -o hello.lc hello.lua' compiles and lists the bytecode. `luac -x -o name script.lua' makes an OS-9 module in the execution directory for runc. |
 | `runc` | runs a Lua script that `luac -x' has compiled into an OS-9 module: `load greet', then `runc greet <args>'. The script reads its arguments from argv[1] onwards, with the count in argv.n<br>**How:** Compile with `luac -x -o greet greet.lua', `load greet', then `runc greet World'. The script reads argv[1] onwards; argv.n is the count. |
 | `wam.sbprolog` | SB-Prolog 2.2, a full Prolog. Needs SIMPATH=/dd/SBPROLOG/MODLIB; `wam.sbprolog SBPROLOG/MODLIB/$readloop' from /dd gives the `?-' prompt, and halt. leaves. DOC/sbprolog has the manual and README- SBPROLOG<br>**How:** Needs SIMPATH=/dd/SBPROLOG/MODLIB (login sets it). From /dd: `wam.sbprolog SBPROLOG/MODLIB/$readloop' gives the `?-' prompt; after a solution ; asks for the next and Return accepts it; halt. leaves. |
-| `xlisp` | XLISP 2.1 Lisp interpreter |
+| `xlisp` | XLISP 2.1, a Lisp interpreter with objects, at a > prompt; (exit) leaves. DOC/xlisp has the manual |
 
 </details>
 
@@ -904,7 +904,7 @@
 
 | | |
 |---|---|
-| `draw` | character-graphics drawing program |
+| `draw` | a character-graphics drawing program: it rules a canvas across the terminal and you move a cursor over it laying down characters -- hjkl to move, p to lift and drop the pen, backslash to choose the character; `?' shows the keys<br>`syntax: draw [<opts>] <file> [<opts>]` |
 | `loadmem` | loads a file into memory at a given address -- destination, upper limit and path, the addresses in hex; super user only. savemem is its reverse<br>`Syntax   : LOADMEM <destinati address> <upper limit address> <path>` |
 | `pdraw` | Pdraw 1.4 - 2D/3D data plotting, PostScript output<br>`Pdraw V1.4  9/4/90` |
 | `savemem` | writes a block of memory to a file -- from address, to address and path, the addresses in hex; super user only. loadmem is its reverse<br>`Syntax   : SAVEMEM <from address> <to address> <path>` |
@@ -1164,10 +1164,10 @@
 
 | | |
 |---|---|
-| `advcom` | ADVSYS adventure COMPILER -- turns .adv source into a world file (a .dat, not a .adi; the .adi is an INCLUDE).  The sample source is here, in GAMES/ADVSYS.  Copy osample.adv and objects.adi to a directory, make it the data directory (`load' advcom, then `sh -c "chd <dir>; advcom osample"') and it writes osample.dat -- bare name, because it holds a filename in 20 characters and appends `.adv'<br>**How:** The ADVSYS compiler. It opens its `@objects.adi' include by BARE NAME in the data directory and keeps a filename in 20 characters, so copy osample.adv and objects.adi from GAMES/ADVSYS to a directory of your own, `load /dd/CMDS/GAMES/advcom', then `sh -c "chd /dd/tmp/adv; advcom osample"'. It names every object it compiles and writes osample.dat. |
+| `advcom` | the ADVSYS adventure compiler: turns .adv source into the world file advint plays. It opens its `@objects.adi' include by bare name in the data directory and keeps a file name in 20 characters, so copy osample.adv and objects.adi from GAMES/ADVSYS to a directory of your own and run it there: `advcom osample'<br>**How:** The ADVSYS compiler. It opens its `@objects.adi' include by BARE NAME in the data directory and keeps a filename in 20 characters, so copy osample.adv and objects.adi from GAMES/ADVSYS to a directory of your own, `load /dd/CMDS/GAMES/advcom', then `sh -c "chd /dd/tmp/adv; advcom osample"'. It names every object it compiles and writes osample.dat. |
 | `advent` | Colossal Cave Adventure, Will Crowther and Don Woods' mid-1970s original and the first text adventure -- self-contained, reads /dd/GAMES/adv/glorkz.  Needs this disk as /dd; mounted only as /h0 it cannot find its data.  Unrelated to advcom/advint.<br>**How:** Colossal Cave. Needs this disk as /dd -- it opens /dd/GAMES/adv/glorkz by absolute path, so mounted only as /h0 it cannot find its data. |
-| `advint` | ADVSYS adventure INTERPRETER -- plays a world compiled by advcom, and there is one to play: build it as advcom's entry says and `advint osample' starts you in the livingroom. Both open their files by bare name in the data directory, so run them where the files are: `load' the module, then `sh -c "chd /dd/tmp/adv; advint osample"'. GAMES/ADVSYS/README has the details<br>**How:** Plays an ADVSYS world. Build one first (see advcom), then run it where the .dat is: `load /dd/CMDS/GAMES/advint', then `sh -c "chd /dd/tmp/adv; advint osample"' -- you start in the livingroom, `n' goes to the hallway, `e' to a storage room with a key. |
-| `infocom` | Infocom Z-MACHINE interpreter -- a third, unrelated adventure system.  Plays the .z3 files in GAMES/INFORM (dejavu, hellow, shell -- Inform demos, not the Infocom games).<br>**How:** A Z-machine. Plays the .z3 files in /dd/GAMES/INFORM -- the Inform demos dejavu, hellow and shell. |
+| `advint` | the ADVSYS adventure interpreter: plays a world advcom compiled, opened by bare name in the data directory -- `advint osample' starts you in the livingroom. GAMES/ADVSYS/README has the details<br>**How:** Plays an ADVSYS world. Build one first (see advcom), then run it where the .dat is: `load /dd/CMDS/GAMES/advint', then `sh -c "chd /dd/tmp/adv; advint osample"' -- you start in the livingroom, `n' goes to the hallway, `e' to a storage room with a key. |
+| `infocom` | an interpreter for Infocom's Z-machine, a third and unrelated adventure system: plays the .z3 files in GAMES/INFORM (dejavu, hellow, shell -- Inform demonstrations, not the Infocom games). It writes its status-line cursor codes as literal text; infocom.tcap is the build for a terminal<br>**How:** A Z-machine. Plays the .z3 files in /dd/GAMES/INFORM -- the Inform demos dejavu, hellow and shell. |
 | `infocom.tcap` | Infocom interpreter, TERMCAP build -- and it is the one to use at a terminal.  It puts a proper status line at the top of the screen (`Y2 Rock Room     Score: 0/2') where plain `infocom' writes the cursor codes for that line as literal text down the left margin<br>**How:** The termcap build of the Z-machine, and the one to use at a terminal: `infocom.tcap /dd/GAMES/INFORM/dejavu.z3' keeps a status line (room and score) across the top. Three Inform story files ship in GAMES/INFORM: dejavu, hellow, shell. |
 | `paranoia` | &#9733; the PARANOIA text adventure.  `Welcome to Paranoia!  As Philo-R-DMD you will die at times during the adventure... you will be given a new clone' -- six clones, one mission, RETURN to go on.  `float' and `savage' are the floating-point benchmarks of that name.<br>**How:** The PARANOIA text adventure. RETURN to go on, a letter to choose, `p' for your statistics, six clones. `float' and `savage' are the floating-point benchmarks on this disk. |
 
@@ -1175,15 +1175,15 @@
 
 | | |
 |---|---|
-| `greed` | Greed - grid game |
+| `greed` | Greed: the screen is a field of digits and `@' is you. Move with the vi keys to eat that many digits in that direction, until no move is left<br>`Usage: /dd/CMDS/GAMES/greed [-p] [-s]` |
 | `lander` | lunar lander -- space starts a game, a digit sets the power, x or k is vertical thrust, z/j and c/l the side retros.  Its score file is GAMES/lander.hs, looked for under /h0, so mount the disk there as well<br>**How:** Full-screen. Space starts a descent, a digit sets the engine power, `x' or `k' fires the main thruster and z/j and c/l the side retros. `q' quits. |
 | `pacman` | Pac-Man in an ASCII maze. It reads its board, help and score files from GAMES/pacman, asks your name and whether you want instructions, then lays out the maze: you are OS9, chased by four ghosts named for old operating systems, and the keypad moves you (8 up, 2 down, 4 left, 6 right). It positions with TeleVideo cursor codes, so the board draws on a terminal that reads them.<br>**How:** Answer the name and instructions prompts, then play with the keypad: 8 up, 2 down, 4 left, 6 right, q quits. It draws with TeleVideo cursor codes (ESC = row col), so the maze paints only on a terminal that understands them; its board, help and score files are in GAMES/pacman. |
-| `robots` | &#9733; robots -- outrun them until they crash into each other. You are the `I', the robots are the `#' and a wreck is an `@'.  USE -m: manual mode, one robot step per move of yours; without it the game is effectively unplayable. The keys are the numeric keypad 1-9 with 5 to stand still, `t' to teleport and `s' for a last stand.<br>**How:** Play with `robots -m' -- manual mode, where the robots take one step per move you make. Keys are the numeric keypad 1-9 (5 stands still), `s' for last stand, `t' to teleport. Needs Microware's math module and a real TERM. |
+| `robots` | &#9733; robots: outrun them until they crash into each other. You are the `I', the robots are the `#' and a wreck is an `@'. Use -m, manual mode, one robot step per move of yours; without it the game is effectively unplayable. The keys are the numeric keypad 1-9 with 5 to stand still, `t' to teleport and `s' for a last stand<br>**How:** Play with `robots -m' -- manual mode, where the robots take one step per move you make. Keys are the numeric keypad 1-9 (5 stands still), `s' for last stand, `t' to teleport. Needs Microware's math module and a real TERM. |
 | `snake` | snake arcade game.  You are the `I', the money is the `$' and the snake chases you; h/j/k/l move, `x' quits. Run it from a login session -- bare, with no TERMCAP, it bus errors instead; see DOC/README-BUSERR.  Some of its cursor moves arrive as literal text, so the board picks up stray characters as you play.  Playable, untidy<br>**How:** Full-screen. h/j/k/l move; reach the `$' before the snake reaches you. `x' quits. |
-| `sokoban` | &#9733; Sokoban puzzle<br>**How:** Wants a username, so run it from a login rather than a bare shell, or it stops with "cannot get your username". |
+| `sokoban` | &#9733; Sokoban: push every packet (`$') onto a storage square (`.') without trapping one. Its fifty levels, help text and saved games are in GAMES/SOKOBAN, and it asks the system for your user name, so run it from a login<br>**How:** Wants a username, so run it from a login rather than a bare shell, or it stops with "cannot get your username". |
 | `tet` | Tetris -- `p' plays; s/j and f/l move a piece, d/k turns it, space drops it, q quits to the high-score table it keeps in GAMES/tet.hs.  Needs a terminal, not a pipe<br>**How:** Tetris. `p' plays from the menu; s or j moves the piece left, f or l right, d or k turns it, space drops it, ESC pauses and q quits to the high-score table, kept in GAMES/tet.hs. Give it a real terminal: it does no terminal setup of its own (the raw-mode code in SRC/tet/tet.c is inside `#ifndef OSK'), so from a pipe it draws its board and reads nothing. |
 | `tt` | Tetris for terminals: , and / move, . rotates, space drops, s pauses, q quits<br>**How:** Tetris for terminals, full-screen: , and / move the piece, . rotates, space drops, s pauses, q quits. |
-| `wanderer` | Boulderdash-style maze game.  Screens ARE here, in GAMES/WAND/screens; needs this disk as /dd to find them.<br>**How:** Full-screen. Dig through the earth for diamonds, forty-five on the first screen. `q' quits. Its thirty screens are in GAMES/WAND. |
+| `wanderer` | a Boulderdash-style maze game: dig through the earth for diamonds. Its thirty screens are in GAMES/WAND/screens, found with this disk as /dd<br>**How:** Full-screen. Dig through the earth for diamonds, forty-five on the first screen. `q' quits. Its thirty screens are in GAMES/WAND. |
 
 **Board & card**
 
@@ -1196,7 +1196,7 @@
 | `crib` | cribbage.  Needs TERM set, so run it from a login session -- bare it says `Unknown terminal type'<br>**How:** Full-screen cribbage, and it wants TERM -- run it from a login session. Answer the instructions question, choose a long or short game, and discard by naming a card, `7H'. Control-C gets you out. |
 | `cribbage` | &#9733; cribbage -- offers instructions before it deals.  Needs TERM, so run it from a login session<br>**How:** The other cribbage, the same shape: TERM must be set, it offers the rules first, then cuts for the crib. Control-C gets you out. |
 | `fuddle` | A chess variant that shuffles -- "fuddles" -- the pieces into fresh places and then plays a game from there. It asks whether you want white, draws a shaded board with the pieces listed above it, and takes moves as two squares, e2e4. |
-| `gnuchess` | &#9733; GNU Chess, and the build `gnuchess' runs: it is first on PATH and reads its opening book at the compiled-in path /h0/usr/src/chess/gnuchess.book, which ships here, so it answers 1.e4 with a book move.  Source `. termcap.entry' first (it reads TERMCAP as the description itself).  It shares a module name with CMDS/GAMES/gnuchess, a second port that opens its book by bare name reads TERMCAP as the description itself rather than as a filename -- and it draws the board, keeps both clocks and plays.  It opens its opening book by bare name, so it books when the book is the current directory; the CMDS build books from a fixed path and is what `gnuchess' runs<br>**How:** Full-screen chess. It reads TERMCAP as the terminal description itself rather than as a filename, so do `. /dd/SYS/termcap.entry' first; then it draws its time-control menu and plays. The build in CMDS/GAMES is the one that draws a board. |
+| `gnuchess` | &#9733; GNU Chess, the build `gnuchess' runs: first on PATH, it reads its opening book at the compiled-in path /h0/usr/src/chess/gnuchess.book, which ships here, so it answers 1.e4 with a book move. Source `. termcap.entry' first, since it reads TERMCAP as the description itself. CMDS/GAMES/gnuchess, a second port under the same name, opens its book by bare name and draws the board reads TERMCAP as the description itself rather than as a filename -- and it draws the board, keeps both clocks and plays.  It opens its opening book by bare name, so it books when the book is the current directory; the CMDS build books from a fixed path and is what `gnuchess' runs<br>**How:** Full-screen chess. It reads TERMCAP as the terminal description itself rather than as a filename, so do `. /dd/SYS/termcap.entry' first; then it draws its time-control menu and plays. The build in CMDS/GAMES is the one that draws a board. |
 | `gnuchessc` | GNU Chess 4.0 built for a curses display.  Its display files live at a compiled-in path; supply them there for a board.  It takes a move as `e2e4' and answers with its own<br>**How:** Its board display reads files from a compiled-in path; supply them there for a board. It still takes a move as `e2e4' and answers with its own. |
 | `gnuchessn` | &#9733; GNU Chess with the 1989 display, which draws the squares as blocks of hashes so light and dark can be told apart on a terminal with no highlighting.  Source `. /dd/SYS/termcap.entry' first; moves go in as `e2e4'<br>**How:** As gnuchess: `. /dd/SYS/termcap.entry' first, then moves as `e2e4'. |
 | `gnuchessr` | &#9733; GNU Chess with the plainest display -- pieces as letters, capitals for one side and lower case for the other, nothing that needs a terminal to draw.  It prompts `Enter #moves #minutes', takes a move and replies with its own |
@@ -1220,8 +1220,8 @@
 | | |
 |---|---|
 | `hack` | hack -- the original dungeon crawl NetHack grew out of<br>**How:** RUN IT BY ITS FULL PATH: `/dd/CMDS/GAMES/hack', not `hack'. It chdirs into its playground and then stats argv[0] to date-check saved levels, so a bare name cannot resolve and it stops with "Cannot get status of hack." Invoked in full it starts: "Are you an experienced player?". Its playground -- record, bones, rumors, help -- is in GAMES/HACK/PLAYGROUND. |
-| `larn` | &#9733; larn -- dungeon crawl; see the PLAYGROUND note above<br>**How:** Full-screen dungeon crawl. RETURN gets past the opening text. Control-C gets you out; its playground is GAMES/LARN/PLAYGROUND. |
-| `ularn` | ULarn -- the larn variant, and its data is complete |
+| `larn` | &#9733; larn, a dungeon crawl: RETURN gets past the opening text; its saved games and score file are in GAMES/LARN/PLAYGROUND<br>**How:** Full-screen dungeon crawl. RETURN gets past the opening text. Control-C gets you out; its playground is GAMES/LARN/PLAYGROUND. |
+| `ularn` | ULarn -- the larn variant, and its data is complete<br>`Cmd line format: Ularn [-slicnh] [-o<optsfile>] [-##] [++]` |
 | `wish` | &#9733; the `hack' wish toy: run it and it prints `Wishing for: 3 potions of gain level' and `what happened to "hack"'.  The same program as CMDS/GAMES/wish.  DOC/ORIGINS lists a `wish' from EFFO disk 17 (WiSH_src.lzh, Hellmuth Michaelis, GPL) as well as one from the `toys' archive; the EFFO one is not the binary that is here, under either name |
 
 **Other games**
@@ -1229,22 +1229,22 @@
 | | |
 |---|---|
 | `ask` | the CLIENT for `wisecrack': it reads one line from /PIPE/txtpipe and prints it, and says `No Wisecracks coming' when nothing is feeding the pipe.  Start the server first -- `wisecrack &' -- and it answers.<br>**How:** Asks a yes/no question and sets the shell status, for scripts. On its own it says "No Wisecracks coming" -- it is the front half of the `wisecrack' pipe from EFFO forum 20. |
-| `backgammon` | &#9733; backgammon, with a computer opponent |
-| `colortest` | &#9733; G-Windows colour chart |
-| `convert` | STARTS the `world' adventure. Run it and you get `WORLD. Amiga C  Version 1.02 Copyright 1987 J.D. McDonald  GOOD LUCK!', the opening paragraph and a `>' prompt.<br>**How:** It STARTS the `world' adventure -- run it and the game opens. |
+| `backgammon` | &#9733; backgammon, with a computer opponent<br>`Syntax: backgammon [<opts>] [<file>]` |
+| `colortest` | &#9733; G-Windows colour chart<br>`colortest` |
+| `convert` | starts the WORLD text adventure: run it and the game opens with its banner, the opening paragraph and a `>' prompt<br>**How:** It STARTS the `world' adventure -- run it and the game opens. |
 | `cyberwar` | &#9733; CyberWar -- a game that needs G-Windows |
-| `dclock` | &#9733; a digital clock for G-Windows |
+| `dclock` | &#9733; a digital clock for G-Windows<br>`dclock - digital clock for G-windows` |
 | `hotel` | &#9733; hotel -- two-player board game, played by coordinates<br>**How:** Full-screen: it takes over the display. **control-C gets you out**; q, Q, control-D and ESC do not. If it has a quit command of its own, its documentation in DOC/ will say. |
 | `mkdict` | builds bog's dictionary from a word list in the current directory<br>**How:** Run it in /dd/GAMES/BOG, where bog's word list is; it is in CMDS/GAMES. |
 | `mkindex` | builds the index bog reads its dictionary through, from the dictionary in the current directory<br>**How:** Run it in /dd/GAMES/BOG after mkdict; it is in CMDS/GAMES. |
-| `nobs` | cribbage (Colonel's program)<br>**How:** Full-screen: it takes over the display. **control-C gets you out**; q, Q, control-D and ESC do not. If it has a quit command of its own, its documentation in DOC/ will say. |
-| `piano` | &#9733; play notes -- piano <base note> <note duration> |
+| `nobs` | cribbage against the computer, a third one: it deals six cards, asks which two go to the crib, plays the hand and pegs the board above<br>**How:** Full-screen: it takes over the display. **control-C gets you out**; q, Q, control-D and ESC do not. If it has a quit command of its own, its documentation in DOC/ will say. |
+| `piano` | &#9733; plays a scale through a tone generator: `piano <base note> <note duration>'. With no sound hardware to drive it stops at `tuning - sorry'<br>`piano: syntax: piano <base note> <note duration>` |
 | `puzzle` | &#9733; sliding-tile puzzle for G-Windows -- it draws through G-Windows, so at a terminal it gets one rule of plus signs out -- the top edge of the tile frame -- and stops.  For a 15-puzzle you can play, use puzzle15 or GAMES/puz15; both work |
 | `scriptmaster` | &#9733; G-Windows scripting tool |
-| `shuffle` | a FULL-SCREEN SWITCH PUZZLE: a row of numbered switches, `LEVEL: 1', `Wich switch ?' and a move counter, where flipping one flips its neighbours.  `q' quits.  Wants TERM. For shuffling lines, `sort -r' and `tac' are the line tools<br>**How:** Full-screen: it takes over the display. **`q' quits**. |
+| `shuffle` | a full-screen switch puzzle: a row of numbered switches, `Wich switch ?' and a move counter, where flipping one flips its neighbours; q quits. It wants TERM. For shuffling lines, `sort -r' and `tac' are the line tools<br>**How:** Full-screen: it takes over the display. **`q' quits**. |
 | `stone` | &#9733; the stones game (SNOBOL4-in-C).  Data: GAMES/SNOBOL |
-| `teachgammon` | &#9733; backgammon that teaches you the game as you play |
-| `tess` | &#9733; tesselation puzzle |
+| `teachgammon` | &#9733; backgammon that teaches you the game as you play<br>`Syntax: backgammon [<opts>] [<file>]` |
+| `tess` | &#9733; Beyond the Tesseract, a text adventure whose puzzles draw on physics and mathematics: two-word commands, about two hundred words understood, and -f skips the title and scenario |
 | `vtxtcn` | world - build its text tables.  Writes .inc files; needs world's .dat files in the current directory |
 | `wisecrack` | a SERVER, and `ask' is its client.  Run it in the background and every `ask' pulls one line out of it through /PIPE/txtpipe -- slogans from a German OS-9 seminar, 1992-93.  `wisecrack & ask "anything"'. |
 | `world` | World - text adventure |
@@ -1254,18 +1254,18 @@
 | | |
 |---|---|
 | `maze` | maze generator, small enough to have won an obfuscated-C contest.  It reads the number of rows on standard input and draws a maze that wide: `echo 11 \| maze'<br>**How:** Reads the number of rows on standard input: `echo 11 \| maze' draws a maze eleven rows deep. |
-| `mines` | &#9733; minesweeper<br>**How:** Full-screen minesweeper. Name a square by its row letter and then its column letter, and answer `Mark?' with Y to flag it rather than open it. `q' quits. |
+| `mines` | &#9733; minesweeper on a sixteen-by-sixteen board with forty mines: name a square by its row and column letters, answer `Mark?' with Y to flag it; q quits<br>**How:** Full-screen minesweeper. Name a square by its row letter and then its column letter, and answer `Mark?' with Y to flag it rather than open it. `q' quits. |
 | `puz15` | the 15-puzzle: slide the tiles into the gap, `puz15 5x5' for a bigger board.  A second port is CMDS/puzzle15; both have source and play the same<br>**How:** Full-screen fifteen puzzle. Slide the tiles into the gap; `puz15 5x5' plays a bigger board. Control-C gets you out. |
 | `puzzle15` | the 15-puzzle: slide the tiles into the gap, `puzzle15 5x5' for a bigger board.  A second port lives in GAMES/puz15; both have source and play the same<br>**How:** The same fifteen puzzle, in CMDS. Slide the tiles into the gap; `puzzle15 5x5' plays a bigger board. Control-C gets you out. |
-| `queens` | &#9733; N-queens solver -- IOCCC entry by M. Baruch.  It reads the board size on standard input as a NUMBER and draws every arrangement it finds with no two queens attacking: `echo 6 \| queens'<br>**How:** Reads the board size on standard input as a number: `echo 6 \| queens'. |
+| `queens` | &#9733; an N-queens solver, an obfuscated-C contest entry: it reads the board size on standard input as a number and draws every arrangement it finds with no two queens attacking: `echo 6 \| queens'<br>**How:** Reads the board size on standard input as a number: `echo 6 \| queens'. |
 
 **Word & guessing**
 
 | | |
 |---|---|
-| `animal` | guess-the-animal learning game<br>**How:** The file it learns from is one you name: `animal /dd/DOC/animal/example'. Answer y or n to each question; when its final guess is wrong it asks what you were thinking of and what question tells the two apart, and writes that back into the file. Control-C leaves it. |
-| `bog` | Boggle word game<br>**How:** Boggle. Space starts the three-minute round, `?' shows the rules, and you type every word you can trace through adjoining letters. Control-C leaves it. Its word list, index and help are in GAMES/BOG. |
-| `hang` | &#9733; hangman<br>**How:** Hangman. Type a letter to guess it; the letters still unused are along the top. Control-C gets you out. Its word list is GAMES/dict. |
+| `animal` | the guess-the-animal game that learns: `animal <file>' asks yes-or-no questions down a tree of what it knows, and when its guess is wrong asks what you were thinking of and writes it back into the file. DOC/animal/example is one to start from<br>**How:** The file it learns from is one you name: `animal /dd/DOC/animal/example'. Answer y or n to each question; when its final guess is wrong it asks what you were thinking of and what question tells the two apart, and writes that back into the file. Control-C leaves it. |
+| `bog` | Boggle: sixteen lettered dice and three minutes to type every word you can trace through adjoining letters; its word list, index and help are in GAMES/BOG<br>**How:** Boggle. Space starts the three-minute round, `?' shows the rules, and you type every word you can trace through adjoining letters. Control-C leaves it. Its word list, index and help are in GAMES/BOG. |
+| `hang` | &#9733; hangman: type a letter to guess it, and the gallows fills in as you get them wrong; its word list is GAMES/dict<br>**How:** Hangman. Type a letter to guess it; the letters still unused are along the top. Control-C gets you out. Its word list is GAMES/dict. |
 
 </details>
 
@@ -1277,16 +1277,16 @@
 
 | | |
 |---|---|
-| `bite` | a skull animation<br>**How:** Full-screen: it takes over the display. **`q' quits**. |
+| `bite` | a skull draws itself and bites -- a screen toy; q quits<br>**How:** Full-screen: it takes over the display. **`q' quits**. |
 | `card` | Towers of Hanoi whose twelve disks are the lines of a Christmas message; VT100, wants TERMCAP |
 | `life` | Conway's Game of Life<br>**How:** life [init-file]. The patterns are in /dd/GAMES/LIFE -- try `life /dd/GAMES/LIFE/glider`. It also wants more memory than the default; from the OS-9 shell that is `life #22k <file>`, and bash has no #size syntax at all. |
-| `rain` | raindrops screen effect<br>**How:** Full-screen: it takes over the display. **control-C gets you out**; q, Q, control-D and ESC do not. If it has a quit command of its own, its documentation in DOC/ will say. |
+| `rain` | raindrops land on the screen and spread in rings -- a screen toy; control-C ends it<br>**How:** Full-screen: it takes over the display. **control-C gets you out**; q, Q, control-D and ESC do not. If it has a quit command of its own, its documentation in DOC/ will say. |
 | `suicide` | animation: a stick figure walks off a rooftop |
 | `suicide1` | rooftop animation: a stick figure jumps from a tower block and a scream runs along the roofline as it falls. Plays once and returns; draws with termcap |
 | `suicide2` | the rooftop animation with a car: the figure lands on the road below and a warning is shouted across the top of the screen. Plays once and returns |
 | `textb` | &#9733; Mandelbrot set drawn in ASCII on an 80x25 terminal.  Start with X -2.3, Y -2.0, range 4.0, 32 iterations<br>**How:** An ASCII Mandelbrot viewer -- it asks four questions and draws. Try X_Coord -2.3, Y_Coord -2.0, RANGE 4.0, Max Iter 32. Needs Microware's cio. |
 | `ttyexp` | fireworks drawn in characters: bursts thrown out from a point, arcing under gravity with trails. -s<n> bursts at once, -p<n> points in each, -D<n> seconds to run; `ttyexp -s2 -p50' fills the screen. Clears the screen when done; VT100, wants TERMCAP<br>**How:** `ttyexp -s2 -p50' fills the screen with bursts; it runs ten seconds and clears the screen when done. |
-| `worms` | worms screen effect |
+| `worms` | worms crawl about the screen at random, each leaving a trail -- a screen toy: -number how many, -length how long, -trail to leave one; control-C ends it<br>`usage: /dd/CMDS/GAMES/worms [-field] [-length #] [-number #] [-trail]` |
 
 </details>
 
@@ -1439,7 +1439,7 @@
 |---|---|
 | `clock` | display a clock |
 | `oskversion` | &#9733; report the OS-9/OSK version |
-| `perr` | &#9733; print an OS-9 error message |
+| `perr` | &#9733; print an OS-9 error message<br>`Syntax: perr [<error_codes>]` |
 | `setime` | Set system time.  It PROMPTS with `YYMMDDHHMMSS' and then does not set it: the clock is unchanged whether the answer comes from standard input or from six fields on the command line. |
 | `sysid` | &#9733; show system identification |
 
@@ -1642,7 +1642,7 @@
 
 | | |
 |---|---|
-| `gs33` | Ghostscript 3.33 -- the older one.  gs403 ships with its init files and fonts; use that |
+| `gs33` | Ghostscript 3.33 -- the older one.  gs403 ships with its init files and fonts; use that<br>`Aladdin Ghostscript 3.33 (4/10/1995)` |
 | `gs403` | Aladdin Ghostscript 4.03, the complete build: its init files and fonts are in LIB/gs403. Point GS_LIB at that directory and it interprets -- `export GS_LIB=/dd/LIB/gs403' in bash, not `setenv', which is the OS-9 shell's and is not a bash command. It then reads a PostScript file and drops to its own `GS>' prompt. Runs with no trap handler -- built with GCC 2.5.8 by its porter.<br>**How:** Aladdin Ghostscript 4.03. Point GS_LIB at its library first -- in bash that is `export GS_LIB=/dd/LIB/gs403`, not `setenv`, which is the OS-9 shell's command and gets "setenv: command not found" here. Then `gs403 -q -dNOPAUSE -sDEVICE=nullpage <file>.ps` reads the file and gives you its GS> prompt. Everything it needs, fonts included, is in that directory. gs403 is the complete build; gs33 is the older one. |
 | `lwf` | ASCII to PostScript, like Unix enscript.  Reads its prologue from /dd/USR/LIB/lwf.prologue<br>**How:** Turns plain text into PostScript, the way Unix enscript does. It reads /dd/USR/LIB/lwf.prologue and stops without it. No PostScript printer here, so send the output to a file and take it elsewhere. |
 
@@ -1650,20 +1650,20 @@
 
 | | |
 |---|---|
-| `alps` | &#9733; Switch an ALPS ASP-1000 printer between draft and NLQ |
-| `epson` | &#9733; spline output driver for an Epson printer |
-| `lmargin` | &#9733; set the left margin on an Epson printer -- its own usage line says `epson'. For indenting text, see `fmt', `proff' and `pep'. |
+| `alps` | &#9733; Switch an ALPS ASP-1000 printer between draft and NLQ<br>`Syntax: alps [<opts>] >/<device>` |
+| `epson` | &#9733; spline output driver for an Epson printer<br>`usage: epson [<opts>]` |
+| `lmargin` | &#9733; set the left margin on an Epson printer -- its own usage line says `epson'. For indenting text, see `fmt', `proff' and `pep'.<br>`usage: epson [<opts>]` |
 
 **Spooling**
 
 | | |
 |---|---|
-| `lp` | &#9733; line printer spooler - submit a job |
-| `lpq` | &#9733; shows the spooler queue. It looks for a data module called `spoolqueue' in memory; with a spooler running it reports the queue, and without one answers `no spooler installed'. Same for `prjob' and `lp'. |
-| `lprm` | &#9733; remove a job from the print queue |
-| `lpsched` | &#9733; the line-printer scheduler |
-| `lpshut` | &#9733; shut down the printer scheduler |
-| `prjob` | &#9733; print a job |
+| `lp` | &#9733; submits a file to the lp print spooler: -n=xx makes copies, -d=ptr picks the printer, -m mails you when it is done<br>`Syntax: lp [<opts>] {<path>}` |
+| `lpq` | &#9733; shows the spooler queue. It looks for a data module called `spoolqueue' in memory; with a spooler running it reports the queue, and without one answers `no spooler installed'. Same for `prjob' and `lp'.<br>`Syntax: lpq [-p=dev] [user]` |
+| `lprm` | &#9733; remove a job from the print queue<br>`Syntax: lprm [-d=dev] [-] job..` |
+| `lpsched` | &#9733; starts the lp print spooler on a printer device; -r restarts it<br>`Syntax: lpsched [-r] {<devname>}` |
+| `lpshut` | &#9733; shut down the printer scheduler<br>`Syntax: lpshut` |
+| `prjob` | &#9733; prints a queued job from the lp spooler; with no spooler installed it says so |
 | `splman` | &#9733; OS-9 print spooler: the manager.  It wants a printer on an SCF device to spool to.  `splprt' is the process that drives the printer and `splstat' shows the queue; the three go together |
 | `splprt` | &#9733; OS-9 print spooler: the printer process, one per printer. It wants an SCF device to write to |
 | `splstat` | &#9733; OS-9 print spooler: queue status.  It reads the spooler's queue.  The other spooler on this disk speaks up when its queue is empty: `lpq: no spooler installed', `lpshut: no spooler active', `prjob: Spooler not installed'. |

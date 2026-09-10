@@ -1,0 +1,19 @@
+$ etags -?
+Syntax: etags { [<opts>] <path> }
+Function: GNU tags file maker.
+Creates tag table files for editors like vi or emacs.
+Emulates etags with -e option set.
+Handles LaTex (.tex, .aux, .bbl), lisp (.l, .el, .lisp, .cl, .clisp),
+scheme (.scm, .sm, .scheme, .t, .sch, .SM, .SCM), C (.c, .h, .y)
+and fortran (all other extensions) source files.
+Options:
+    -a         append to tag file
+    -t         record typedefs in C code as tags
+    -u         update tag file, for ctags style tag files only
+    -w         suppress warnings
+    -v         create vgrind style index output
+    -x         create cxref style output
+    -e         etags style output for GNU Emacs
+    -f=<path>  alternate tag file name
+    -B         set search char to '?', create ctags style output
+    -F         set search char to '/', create ctags style output

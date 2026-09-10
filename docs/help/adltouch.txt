@@ -1,0 +1,2 @@
+$ adltouch -?
+Usage: adltouch <file> <number>

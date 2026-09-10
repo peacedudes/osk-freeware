@@ -1,0 +1,4 @@
+$ colortest -?
+colortest
+   Provides information about G-Windows CLUT configuration
+Options: none

@@ -1,0 +1,5 @@
+$ perr -?
+Syntax: perr [<error_codes>]
+Function: print error code messages
+ <error_code> is <ddd> or <ddd>:<ddd>
+Options: none.

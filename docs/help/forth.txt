@@ -1,0 +1,8 @@
+$ forth -?
+TILE Forth version 2.48, Copyright (c) 1989, by Mikael Patel
+Syntax   : forth [<opts>] [<file>] [<opts>]
+Function : forth interpreter
+Options  :
+     -a <argument>       access arguments
+     -s <start-symbol>   define where to start
+Adapted to OS-9/68k by Stephan Paschedag

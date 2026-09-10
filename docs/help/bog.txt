@@ -1,0 +1,10 @@
+$ bog -?
+Usage: bog [-b] [-d] [-s#] [-t#] [-w#] [+[+]] [boardspec]
+-b: 'batch mode' (boardspec must be present)
+-d: debug
+-s#: use # as the random number seed
+-t#: time limit is # seconds
+-w#: minimum word length is # letters
++: can reuse a cube, but not twice in succession
+++: can reuse cubes arbitrarily
+boardspec: the first board to use (use 'q' for 'qu')

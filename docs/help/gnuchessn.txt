@@ -1,0 +1,3 @@
+$ gnuchessn -?
+Usage: gnuchess [-a] [-h] [-x xwndw]
+'xterm-256color': Unknown terminal type.

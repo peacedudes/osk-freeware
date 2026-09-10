@@ -1,0 +1,15 @@
+$ adlcomp -?
+Usage: /dd/CMDS/ADL/adlcomp Infile (with any of the following)
+	-o Outfile		File for output
+	-i Dir			Directory for INCLUDEs
+	-t Dir			Directory for temp files
+	-d			Output debugging info
+	-w			Suppress warnings
+	-e N			Max # of errors
+	-g N			Max # of globals
+	-m N			Max # of strings
+	-n N			Max # of objects
+	-p N			Max # of prep phrases
+	-r N			Max # of routines
+	-s N			Max # of verb phrases
+	-v N			Max # of verbs

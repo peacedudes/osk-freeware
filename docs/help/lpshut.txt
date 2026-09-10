@@ -1,0 +1,3 @@
+$ lpshut -?
+Syntax: lpshut
+Function:  stops Printerspooler

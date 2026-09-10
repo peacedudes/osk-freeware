@@ -1,0 +1,7 @@
+$ sokoban -?
+sokoban: illegal command line syntax
+Usage: sokoban [-{s|c|r|<nn>}]
+           -c:    create new score table (superuser only)
+           -r:    restore saved game
+           -s:    show score table
+           -<nn>: play this level (<nn> must be greater 0)

@@ -1,0 +1,5 @@
+$ rcsdiff -?
+rcsdiff error: unknown option: -?
+command format:
+    rcsdiff [-biwt] [-q] [-cefhn] [-rrev1] [-rrev2] file
+rcsdiff aborted

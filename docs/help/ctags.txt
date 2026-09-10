@@ -1,0 +1,13 @@
+$ ctags -?
+ctags: illegal option -- ?
+usage: ctags [-BFadtuwvx] [-f tagsfile] file ...
+        -B : use backward searching patterns (? ?)
+        -F : use forward searching patterns (/ /)
+        -a : append to 'tags' file
+        -d : create tags for #define's without arguments
+        -f : place tag description in 'tagsfile'
+        -t : create tags for typedefs, structs, unions
+        -u : update specified files in 'tags'
+        -v : prepare index for 'vgrind'
+        -w : suppress warnings
+        -x : prepare xref index

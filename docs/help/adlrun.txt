@@ -1,0 +1,2 @@
+$ adlrun -?
+Usage: adlrun [filename] [-d] [-h] [-r savefile]

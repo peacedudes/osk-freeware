@@ -1,0 +1,5 @@
+$ co -?
+co error: unknown option: -?
+command format:
+co -f[rev] -l[rev] -p[rev] -q[rev] -r[rev] -ddate -sstate -w[login] -jjoinlist file ...
+co aborted

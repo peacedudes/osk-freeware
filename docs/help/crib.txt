@@ -1,0 +1,7 @@
+$ crib -?
+syntax: crib {opt}
+function: play game of cribbage against computer
+options:
+	-e	explain player (scoring) errors
+	-q	use abbreviated messages
+	-r	use random cuts instead of inquiring

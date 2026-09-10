@@ -1,0 +1,8 @@
+$ dclock -?
+dclock - digital clock for G-windows
+Copyright 1996 by High-G Software.
+
+Usage: dclock [options]
+    options:
+        -m = use 24 hour format (default = 12 hour format).
+        -h = don't hibernate on startup.

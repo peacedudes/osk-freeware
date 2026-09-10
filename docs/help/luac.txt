@@ -1,0 +1,12 @@
+$ luac -?
+usage: luac [-c | -u] [-d] [-l] [-p] [-q] [-v] [-o output] file ...
+ -c	compile (default)
+ -u	undump
+ -d	generate debugging information
+ -l	list (default for -u)
+ -o	output file for -c (default "luac.out")
+ -p	parse only
+ -q	quiet (default for -c)
+ -m	generate OS-9 I-CblCode module
+ -x	put module into default execution directory(includes -m)
+ -v	show version information

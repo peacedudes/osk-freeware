@@ -1,0 +1,4 @@
+$ checkenv -?
+Syntax: checkenv <eparam> , <evalue>
+Function: check environment variable value
+  errors if <evalue> not = SETENV value

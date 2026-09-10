@@ -1,0 +1,24 @@
+$ tab -?
+Syntax: tab [<opts>]
+Function: Pipe to format 68000 series assembler source code
+Options:
+     -a[=]<num> Argument field width (default 25)
+     -b         Tabulate 6809 mnemonics instead of 68000
+     -c         Only check conditionals
+     -i[=]<num> Indent by <num> characters per level (default 5)
+     -l[=]<num> Label field width (default 12)
+     -m         Don't use bar (|) to mark indented lines
+     -n         Ignore conditionals: no indent, no bar (overrides p)
+     -o[=]<num> Opcode field width (default 10)
+     -p         Form feed ($0c) on 'pag' nmemonics
+     -r         Remove all unnecessary spaces and tabs (overrides s)
+     -s         Format for columns 13,25,46 (overrides a,l,o)
+     -u         Allow only uncommented lines
+     -?         List usage
+
+Copyright (c) 1991 Steven Weller, Windsor Systems
+2407 Lime Kiln Lane, Louisville, KY 40222, U.S.A.
+Phone +1 (502) 425 9560  Fax +1 (502) 426 3944
+
+This program may be freely copied and distributed, provided that
+it and this copyright message remain unmodified.

@@ -1,0 +1,21 @@
+$ rechne -?
+RECHNE   Version UTIL 2.80 by DESIGNA VLT 03.08.98
+rechne [Optionen] <Ausdruck>
+   Moegliche Operatoren:
+      + = Addition        - = Subtraktion     x = Multiplikation
+      / = Division        m = Modulo
+      a = Log. AND        o = Log. ODER       p = Log. XOR
+
+   Moegliche Operanden:
+      ..  = Dezimal ..          $.. = Hex ..
+
+   Spezielle Parameter:
+      -b  = Bitkodierung        -ak = A-Karten-Status
+      -ip = Preise-Status       -ti = TCC-Init
+      -tn = TCC-Netzstatus      -tz = TCC-Zustand
+      -kf = KFCHECK-Fehlernr.   -kr = Krt_Meld-Status
+      -kk = KK-File-Status		-ec = KK_EC-Status
+      -ah = AktPKH-Status		-ih = InitPKH-Status
+      -kb = Kassenbuch-Art
+      -sec=Ausdruck in Sekunden -min=Ausdruck in Minuten
+      -std=Ausdruck in Stunden  -tag=Ausdruck in Tage

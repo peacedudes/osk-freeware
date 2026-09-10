@@ -1,0 +1,7 @@
+$ cxref -?
+Syntax:		cxref [-opts] [path]
+Function:	Create and print a 'C' cross-reference
+Options:	-x			make cross-reference only
+			-w=(n)		print line width(>50, default 132)
+			-t=(n)		maximum token with(7<n<25, default 24)
+			-?			display synopsis

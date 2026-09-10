@@ -571,3 +571,222 @@ PrintCards|PrintCards -?|
 PrintLabels|PrintLabels -?|
 mv|load /dd/CMDS/mv; mv --help|
 ls|ls --help|
+as0|none|it takes the source file and, after a lone `-', the letters l for a listing and s for the symbol table; there is no help flag
+as09|none|it takes the source file and nothing else
+as1|none|it takes the source file and, after a lone `-', the letters l for a listing and s for the symbol table; there is no help flag
+as4|none|it takes the source file and, after a lone `-', the letters l for a listing and s for the symbol table; there is no help flag
+as5|none|it takes the source file and, after a lone `-', the letters l for a listing and s for the symbol table; there is no help flag
+as11|none|it takes source files and nothing else, and lists by default
+assembler|assembler -?|
+compiler|compiler -?|
+bison|bison -?|
+flex|flex -?|
+gcc|chx /dd/CMDS/GCC2; gcc -?|
+gcc2|chx /dd/CMDS/GCC2; gcc2 -?|
+gpp|chx /dd/CMDS/GCC2; gpp -?|
+cccp2|chx /dd/CMDS/GCC2; cccp2 -?|
+cc2|none|the driver runs it; -version prints its version, and it has no help flag
+cc1plus|none|the driver runs it; -version prints its version, and it has no help flag
+cc2plus|none|the driver runs it; -version prints its version, and it has no help flag
+collect|chx /dd/CMDS/GCC2; collect -?|
+gcc_cc1|none|the driver runs it; -version prints its version, and it has no help flag
+gcc_cc1plus|none|the driver runs it; -version prints its version, and it has no help flag
+gcc_cccp|gcc_cccp -?|
+gcc_collect|gcc_collect -?|
+gcc_cc2|none|the driver runs it; -version prints its version, and it has no help flag
+gcc_cccp2|gcc_cccp2 -?|
+gpp_cc1plus|none|the driver runs it; -version prints its version, and it has no help flag
+gpp_cccp|gpp_cccp -?|
+gpp_collect|gpp_collect -?|
+gmake|gmake -h|
+dmake|dmake -?|
+m4|m4 -?|
+m4_0.5|m4_0.5 -?|
+make|make -?|
+makeinfo|makeinfo -?|
+p2c|p2c -?|
+yacc|yacc -?|
+rtf|none|`load /dd/CMDS/os9lib' first; then it takes the source file and nothing else
+for|none|`load /dd/CMDS/os9lib' first; then it takes the source file and nothing else
+lnk|none|`load /dd/CMDS/os9lib' first; then it takes the source file and nothing else
+lnk.org|none|`load /dd/CMDS/os9lib' first; then it takes the source file and nothing else
+creadoc|none|`load /dd/CMDS/os9lib' first; it takes no options and works on the .f files in the data directory
+sieve|none|it takes no options: run it and it reports when the passes are done
+fibo|none|it takes no options: run it and it reports the result
+float|none|it takes no options: run it and it reports when the loops are done
+savage|none|it takes no options: run it and it reports the drift
+dhry|none|it reads the number of runs from standard input and takes no options: `echo 500000 | dhry'
+dhryO2|none|it reads the number of runs from standard input and takes no options: `echo 500000 | dhryO2'
+dhryGcc|none|it reads the number of runs from standard input and takes no options: `echo 500000 | dhryGcc'
+dhryGcco2|none|it reads the number of runs from standard input and takes no options: `echo 500000 | dhryGcco2'
+dhryGccin|none|it reads the number of runs from standard input and takes no options: `echo 500000 | dhryGccin'
+dhryGccmx|none|it reads the number of runs from standard input and takes no options: `echo 500000 | dhryGccmx'
+dhryGcc2|none|it reads the number of runs from standard input and takes no options: `echo 500000 | dhryGcc2'
+dhryGcc2o2|none|it reads the number of runs from standard input and takes no options: `echo 500000 | dhryGcc2o2'
+dhryGcc2in|none|it reads the number of runs from standard input and takes no options: `echo 500000 | dhryGcc2in'
+dhryGcc2mx|none|it reads the number of runs from standard input and takes no options: `echo 500000 | dhryGcc2mx'
+dhryshamu|none|it reads the number of runs from standard input and takes no options: `echo 500000 | dhryshamu'
+dhryshamu2|none|it reads the number of runs from standard input and takes no options: `echo 500000 | dhryshamu2'
+time|time -?|
+timid|timid -?|
+disktest|disktest -?|
+ci|ci -?|
+co|co -?|
+rlog|rlog -?|
+rcsident|none|it takes file names and no options
+rcs|rcs -?|
+rcsdiff|rcsdiff -?|
+rcsmerge|rcsmerge -?|
+cb|cb -?|
+indent|indent -?|
+cpr|cpr -?|
+unifdef|unifdef -?|
+ifdef|ifdef -?|
+patch|none|`patch <file> <diff>'; a switch it does not know is refused with no help text
+bcheck|bcheck -?|
+ccheck|ccheck -?|
+ctags|ctags -?|
+etags|etags -?|
+cxref|cxref -?|
+rdoc|none|it takes the source file and nothing else
+xrf|none|it takes the source file and nothing else, with C.XRF in the data directory
+ref|ref -?|
+libsplit|libsplit -?|
+sdb|none|it takes the program to debug and nothing else; its commands are typed at its own prompt
+trap|none|an example trap handler that takes no options; run it by path
+tab|tab -?|
+xlate|xlate -?|
+advcom|none|it takes the source name and nothing else; a flag is read as a file
+advint|advint -?|
+advent|none|it takes no options; it asks its own questions
+infocom.tcap|none|it takes the story file and nothing else
+infocom|none|it takes the story file and nothing else
+paranoia|none|it takes no options; RETURN goes on and a letter chooses
+greed|greed -?|
+lander|none|it takes no options; its keys are on the card
+pacman|none|it takes no options and asks its own questions
+robots|robots -?|
+snake|none|it takes no options; h, j, k and l move and x quits
+sokoban|sokoban -?|
+tet|none|it takes no options; p plays from its menu
+wanderer|wanderer -?|
+back|none|it takes no options; H at its prompt is the help
+blackjack|none|a BASIC09 program run by runb; it asks its questions itself
+blackjak|none|it takes no options and asks whether you want the rules; answer yes or no in full
+chess|chess -?|
+crib|crib -?|
+cribbage|cribbage -?|
+gnuan|gnuan -?|
+gnuchess|gnuchess -?|
+gnuchessc|gnuchessc -?|
+gnuchessn|gnuchessn -?|
+gnuchessr|none|it takes -a, -h and -x xwndw; asked for help it prints the usage line and starts the game anyway
+mille|none|it takes a saved game to restore and no options
+nchess|none|it takes no options; `help' at its prompt lists the commands
+poker|none|it takes no options and asks whether you want the rules; answer yes or no in full
+queens|none|it reads the board size on standard input and takes no options
+tttt|none|it takes no options; q quits
+bincheckr|none|it takes the book file and nothing else
+checkgame|none|it takes the game listing and nothing else
+game|none|it takes the game listing and the page numbers and nothing else
+postprint|none|it takes the hash file and nothing else
+hack|none|it has no help flag; `?' inside the game lists the commands
+larn|none|it has no help flag; `?' inside the game is the help
+ularn|ularn -h|
+maze|none|it reads the number of rows on standard input and takes no options
+mines|none|it takes no options; q quits
+puz15|puz15 -?|
+puzzle15|puzzle15 -?|
+animal|none|it takes the file it learns from and no options
+bog|bog -?|
+hang|none|it takes no options
+fuddle|none|it takes no options and asks whether you want white
+hotel|none|it takes no options
+stone|none|it takes no options and asks whether you want the rules; answer yes or no in full
+draw|draw -?|
+lorenz3d|none|it asks for its parameters itself; there is no help flag
+tt|tt -?|
+zot|zot -?|
+convert|none|it takes no options: run it and the adventure begins
+vtxtcn|none|it takes no options and reads the .dat files in the data directory
+mkindex|none|it takes no options; run it where the dictionary is
+mkdict|none|it takes no options; run it where the word list is
+ask|none|it takes no options
+cyberwar|none|it needs G-Windows; there is no help flag
+puzzle|none|it needs G-Windows; there is no help flag
+scriptmaster|none|it needs G-Windows; there is no help flag
+colortest|colortest -?|
+dclock|dclock -?|
+adlcomp|adlcomp -?|
+adlrun|adlrun -?|
+adldebug|none|it takes the compiled world and nothing else; `?' at its prompt lists the commands
+adltouch|adltouch -?|
+forth|forth -?|
+luac|luac -?|
+lua|none|it takes a script file, or reads one from standard input; -v prints its version, and there is no help flag
+runc|none|it takes the module name luac -x made and the script's arguments
+wam.sbprolog|none|it takes the module to start in and has no help flag
+xlisp|none|it takes no options; its prompt takes Lisp, and (exit) leaves
+loan|none|it asks its four questions itself; there is no help flag
+cvtbase|cvtbase -?|
+rechne|rechne -?|
+rpn|none|`?' at its prompt lists the words; a flag is refused
+checkfile|none|it takes no options; its commands are single letters on the screen
+oleo|none|it stops before it reads anything; there is no help to show
+scqref|none|it takes no options: run it and it prints the reference
+suicide1|none|it takes no options
+suicide2|none|it takes no options
+ttyexp|ttyexp -?|
+worms|worms -?|
+rain|none|it takes no options; control-C ends it
+sonnet|sonnet -?|
+sc|sc -?|
+banner|none|it takes the text to print and nothing else
+beav|beav -?|
+card|none|it takes no options
+nobs|nobs -?|
+suicide|none|it takes no options
+bite|none|it takes no options; q quits
+life|none|it takes a pattern file and nothing else
+tess|none|-f skips the title and scenario; there is no help flag
+world|none|it takes no options: run it and the adventure begins
+wish|none|it takes what you wish for and nothing else
+cam|none|it asks for its numbers itself; there is no help flag
+lissaj|none|it asks for its numbers itself; there is no help flag
+piano|piano -?|
+backgammon|backgammon -?|
+teachgammon|teachgammon -?|
+gs403|gs403 -?|
+gs33|gs33 -?|
+lwf|lwf -?|
+alps|alps -?|
+epson|epson -?|
+lmargin|lmargin -?|
+lp|lp -?|
+lpq|lpq -?|
+lprm|lprm -?|
+lpshut|lpshut -?|
+prjob|none|it takes a job id; with no spooler running it says so before anything else
+lpsched|lpsched -?|
+splman|none|it takes no options; it opens the printer device and waits for work
+splprt|none|it takes no options
+splstat|none|it takes a device number; anything else is refused as out of range
+perr|perr -?|
+bash|none|-c runs a command line, and `help' at its prompt lists its builtins; bash 1.12 has no help flag of its own
+sh|sh -?|
+ksh|none|-c runs a command line; it has no help flag, and DOC/README-KSH describes it
+gshell|gshell -?|
+mshell|none|it takes the menu file and nothing else
+printenv|printenv -?|
+getenv|getenv -?|
+checkenv|checkenv -?|
+exist|exist -?|
+expr|none|it takes an expression and nothing else
+if|if -?|
+qp|qp -?|
+xc|xc -?|
+run|none|it takes the quoted command and reads PORT from the environment; there is no help flag
+hist|none|it takes no options
+printf|none|it takes a format and its arguments and nothing else
+submit|submit -?|
+shuffle|shuffle -|

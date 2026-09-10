@@ -1,0 +1,87 @@
+$ chx /dd/CMDS/GCC2; gpp -?
+GNU C++ Compiler (Version 1.40.3 (based on GCC 1.40))
+Usage: gpp {options} {files} {options}
+Options:  (Do not concatenate single letter options)
+
+Control compile stages
+  -c           not run linker
+  -o68         use o68 before assemble
+  -S           only compile source files
+  -E           only preprocess source files
+  -M           only print dependencies
+  -MM          only print dependencies sans system header files
+  -pipe        connect preprocessor and compiler via pipe
+  -debug       not execute but only print command to execute
+  -v           print version and commands to execute
+  -Q           not quiet mode
+  -BPREFIX     use PREFIX for commands
+  -bPREFIX     use machine dependent PREFIX for commands
+  -LDIR        search DIR for library files
+  -TDIR        specify DIR of temp files
+  -FPROGsSIZEpPRIO
+               fork PROGram (one of cccp cc1plus o68 r68(020) l68) with
+               additional stack SIZE and PRIOrity
+
+Output
+  -o FILE      output to FILE
+  -x           put executable file into default execution directory
+  -col         do not delete collector output file
+
+Warning
+  -W           issue warnings
+  -WCASE       CASE is one of
+                 implicit return-type ununsed switch comment trigraphs all
+                 shadow id-clash-LEN pointer-arith cast-qual write-strings
+  -w           inhibit all warnings
+
+Portability
+  -ansi         support ANSI standard
+  -traditional  try to imitate traditional C compiler
+  -pedantic     support pedantic ANSI standard
+
+Preprocessor
+  -DMACRO[=DEF] define MACRO (by DEF)
+  -UMACRO       undefine MACRO
+  -IDIR         search include file in DIR
+  -I-           dir specified by the -Idir before -I- applies to only user
+                include files
+  -iFILE        get only #define's in FILE
+  -nostdinc     do not use standard directory of include files
+  -C            include comments in preprocessor output
+  -trigraphs    support ANSI trigraphs
+
+Assembler
+  -ob           optimize branch sizing
+
+Compiler
+  -O            optimize
+  -p            generate profile code too
+  -a            generate block profile code too
+  -mMACHINESPEC MACHINESPEC is one of
+                (c)68000 (c)68020 (c)68040 68881 soft-float short (no)bitfield
+                rtd (no)remote (no)stack-check (no)gss (no)long-calls
+  -fFLAG        FLAG is one of
+                  caller-saves combine-regs cond-mismatch float-store
+                  force-addr force-mem inline-functions keep-inline-functions
+                  omit-frame-pointer pcc-struct-return strength-reduce
+                  unsigned-char volatile writable-strings asm defer-pop
+                  function-cse signed-char delayed-branch shared-data
+                and the above with prefix no- and
+                  fixed-REG call-used-REG call-saved-REG
+                  strict-prototype elide-contructors all-virtual
+                  this-is-variable save-memoized memoize-lookups
+  -dLETTERS     dump debug info in various stages.  LETTER is one of
+                  y r j s L f c l g J d m
+
+Linker
+  -lFILE        use library FILE
+  -nostdlib     do not use any standard library files and startup file
+  -p (or -a)    link profile dump library
+  -g            output symbol table too
+  -cio          use cio trap handler
+  -j            inhibit to make jump table
+  -ghost        output ghost module
+  -s SIZE       specify addtional stack SIZE of output module
+  -e NUMBER     specify edition NUMBER of output module
+  -n NAME       specify output module NAME
+  -P HEX        specify permission of output module in HEX

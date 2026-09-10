@@ -1,0 +1,17 @@
+$ make -?
+Syntax :	make {[-f <makefile>] [-dDinrst] [<target>] [<macro>=<value>]}
+Function :	maintain, update & regenerate groups of files
+Options :
+	-?			display this help text
+	-f makefile	use the description file 'makefile'
+				(- denotes stdin) of which several can be given
+	-d			display reasons why to rebuild a target
+	-dd			display dependencies and processing in detail
+	-D			display makefiles read in
+	-DD			display makefiles and 'default.mk' read in
+	-i			ignore error codes of commands (same as .IGNORE)
+	-n			print but don't execute commands (except $(MAKE) references)
+	-r			don't read in default file
+	-s			don't print command lines (same as .SILENT)
+	-t			touch files rather than executing commands
+	macro=value	macro definition

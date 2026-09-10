@@ -1,0 +1,9 @@
+$ ccheck -?
+Syntax  : ccheck [<opts>] <file>...
+Function: To find and report all badly matched openers
+          and closers plus assignment/equality
+          confusions in a C source file.
+Options :
+     -q           quiet mode (suppress warnings)
+     -s           synomym of quiet mode
+     -v           verbose mode

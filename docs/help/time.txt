@@ -1,0 +1,18 @@
+$ time -?
+syntax: time <shell cmd>
+function: prints program timing statistics.  If a file
+	named "time.stat" exists in the current directory,
+	the statistics will be appended to this file.
+
+Format of time.stat file:
+	Field	Offset	Size	Description
+	  1		  0		 30		command executed
+	  2		 30		  6		date
+	  3		 36		  4		execution time in seconds
+	  4		 40		  6		system ticks
+	  5		 46		  6		user ticks
+	  6		 52		  5		OS-9 function calls
+	  7		 57		  5		I/O calls
+	  8		 62		  8		bytes read
+	  9		 70		  8		bytes written
+J?

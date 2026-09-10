@@ -1,0 +1,10 @@
+$ sc -?
+Syntax: sc [-c] [-r] [-m] [-n] [-x] [-b] [filename]
+Function: spreadsheet calculator
+Options:
+  -c  Recalculation set for column order
+  -r  Recalculation set for row order (default)
+  -m  Automatic recalculation disabled
+  -n  Quick numeric entry mode
+  -x  Encryption/decryption for Get/Put commands
+  -b  Disable auto-backups

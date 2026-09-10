@@ -1,0 +1,7 @@
+$ draw -?
+syntax: draw [<opts>] <file> [<opts>]
+Function: drawing editor
+Options:
+	-l=<num>	number of lines (default 132)
+	-n			use numeric keypad movement keys
+	-w=<num>	maximum line width (default 80)

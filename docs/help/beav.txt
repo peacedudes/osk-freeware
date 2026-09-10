@@ -1,0 +1,5 @@
+$ beav -?
+nrow 23, ncol 80
+Syntax   : beav {<filename>}
+Function : binary file editor and viewer
+Options  : <none>

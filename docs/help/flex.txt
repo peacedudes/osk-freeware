@@ -1,0 +1,20 @@
+$ flex -?
+Syntax   : flex [-bcdfinpstvFILT8 -C[efmF] -Sskeleton] [filename ...]
+Function : fast lexical analyzer generator
+Options  :
+   -b       generate backtracking info to 'lex.backtrack'
+   -C[efmF] controls the degree of table compression
+   -d       makes the generated scanner run in debug mode
+   -f       use full table (a faster scanner is generated)
+   -F       use fast scanner table representation
+   -i       generates a case-sensitve scanner
+   -I       generates an interactive scanner
+   -L       do not generate '#line' directives
+   -p       generate performance report to stderr
+   -s       causes the default rule to be suppressed
+   -S<file> override the default skeleton file by <file>
+   -t       write generated scanner to stdout
+   -T       run flex in trace mode
+   -v       write summary of statistics about the generated scanner to stderr
+   -8       generate a 8-bit scanner
+  Adapted to OS-9/68k by Stephan Paschedag

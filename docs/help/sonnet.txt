@@ -1,0 +1,3 @@
+$ sonnet -?
+sonnet: illegal option -- ?
+Usage:  sonnet [-l input] [-f outfilename]

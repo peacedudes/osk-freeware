@@ -1,0 +1,16 @@
+$ unifdef -?
+syntax: unifdef {<opts>} [<file>]
+function: remove ifdef'ed lines from source file
+options:
+	-c			operation of unifdef is complemented
+	-d<sym>		define a symbol
+	-id<sym>	ignore lines within defined symbol
+	-iu<sym>	ignore lines within undefined symbol
+	-l			blank out removed lines instead of deleting them
+	-t			text file, ignore comments and quotes
+	-u<sym>		undefine a symbol
+
+Exit status: 0=output is exact copy of input, 1 if not, 2 if trouble.
+This is public domain software (newsnet), not for sale.
+
+At least one arg from [-d -u -id -iu] is required

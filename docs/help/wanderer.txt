@@ -1,0 +1,10 @@
+$ wanderer -?
+syntax: wanderer {opt}
+function: play interactive game
+options:
+	-c  print credits for wanderer
+	-s  show high scores
+	-e  enter screen development editor on file "screen"
+	-m  edit hiscore table (master password required)
+	-f  starts game with 'map' display instead of normal (too easy)
+Note: type "?" in game to display game instructions

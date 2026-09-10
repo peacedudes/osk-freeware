@@ -32,7 +32,7 @@ somebody who has just run the thing:
 The command is what a reader types at the shell to get the help -- `-?' is
 the OS-9 convention and is not universal: some want `-h', `--help', `help',
 a bare run, and games, editors and screen programs mostly have none.  A
-leading `load X;' or `chd X;' is hidden setup (the same as a sheet's).  `<<'
+leading `load X;', `chd X;' or `chx X;' is hidden setup (the same as a sheet's).  `<<'
 gives standard-input lines, `\r'-separated, for a program that asks before
 it answers.  `none' says the program has no help of its own; the note says
 what the card should say instead, and nothing is captured.
@@ -105,8 +105,8 @@ def split_command(cmd):
     parts = [p.strip() for p in cmd.split(";")]
     setup, command = parts[:-1], parts[-1]
     for s in setup:
-        if not re.match(r"^(load|chd)\s+\S", s):
-            sys.exit("only `load X' or `chd X' may precede the command: %s" % cmd)
+        if not re.match(r"^(load|chd|chx)\s+\S", s):
+            sys.exit("only `load X', `chd X' or `chx X' may precede the command: %s" % cmd)
     return setup, command, stdin
 
 
@@ -134,7 +134,10 @@ def capture(image, cmd, timeout=TIMEOUT):
     """Run one table command at Microware's shell; the cleaned text."""
     setup, command, stdin = split_command(cmd)
     chds = [s[4:] for s in setup if s.startswith("chd ")]
-    loads = [s for s in setup if s.startswith("load ")]
+    # `load' and `chx' lines go into the procedure file as they are; a
+    # chx is how a program off the command path -- the GCC drivers in
+    # their own directory -- is asked by its bare name.
+    loads = [s for s in setup if s.startswith(("load ", "chx "))]
     text = os9try.run(image, command, chds[-1] if chds else None, loads,
                       stdin, timeout=timeout)
     text = text.replace("[os9try: no answer", NO_ANSWER.rstrip())

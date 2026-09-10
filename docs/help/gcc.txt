@@ -1,0 +1,3 @@
+$ chx /dd/CMDS/GCC2; gcc -?
+**** Can't install trap handler ****
+ **** cio ****

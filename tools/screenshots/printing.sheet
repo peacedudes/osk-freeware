@@ -157,7 +157,7 @@ run     lpsched -?
 wait    4
 
 shot    splman
-cap     The manager of the other spooler on the disk, Carl Kreider's: it
+cap     The manager of the disk's other print spooler: it
 cap     opens a printer on a serial device before it does anything else.
 cap     With none here it waits for one rather than returning; this
 cap     shows it starting and going no further.
@@ -166,7 +166,7 @@ run     splman
 wait    6
 
 shot    splprt
-cap     The printer process of Carl Kreider's spooler, one per printer.
+cap     The printer process of the disk's other spooler, one per printer.
 cap     With no printer device it prints nothing and returns.
 try     splprt; echo "status $?"
 os9     splprt
@@ -174,7 +174,7 @@ run     splprt; echo "status $?"
 wait    5
 
 shot    splstat
-cap     The queue status of Carl Kreider's spooler.  Asking for its
+cap     The queue status of the disk's other spooler.  Asking for its
 cap     options answers instead that its device number is out of range
 cap     -- as close as it comes to a queue with none running.  lpq, the
 cap     other spooler's, says so in plainer words.

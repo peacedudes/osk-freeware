@@ -1,0 +1,7 @@
+$ printenv -?
+**** PRINTENV Utility for use with ZSH, (c) 1989 by L.Zeller ****
+Syntax:   printenv [<options>] [{<env var name}]
+Function: Displays the specified (or all, if none specified) environment
+          variable(s). Variables beginning with '@' (ZSH symbols) will
+          not be shown unless the -a option is used
+Options:  -a : show all variables (including those starting with a '@')

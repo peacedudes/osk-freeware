@@ -1,0 +1,4 @@
+$ compiler -?
+Syntax: compiler [<path>]
+Function: a menue driven compiler shell
+Options: none

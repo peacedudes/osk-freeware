@@ -1,0 +1,4 @@
+$ robots -?
+Unknown terminal type ''.
+
+Usage: /dd/CMDS/GAMES/robots [ -m ] [ -s ]

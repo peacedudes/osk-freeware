@@ -1,0 +1,3 @@
+$ dmake -?
+Usage:
+dmake [-AeEhiknpqrsStTuVx] [-v{dfimt}] [-P#] [-{f|K} file] [macro[*][+][:]=value ...] [target ...]

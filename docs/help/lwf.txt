@@ -1,0 +1,2 @@
+$ lwf -?
+Usage: lwf [-d] [-i#] [-l] [-m] [-olist] [-p[str]] [-r] [-s#] [-t#] [-v] [-S] [file ...]

@@ -1,0 +1,9 @@
+$ lp -?
+Syntax: lp [<opts>] {<path>}
+Options:
+       -z     get file names from standard input
+       -w     message on terminal when ready
+       -m     mail to user when ready
+       -n=xx  make xx copies (default 1)
+       -d=ptr output on device ptr
+       -s     silentmode

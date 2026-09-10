@@ -1,0 +1,5 @@
+$ disktest -?
+Syntax   : disktest [<opt>]
+Function : measure diskperformance
+Options  : -?  show this text
+  V1.0, written by Stephan Paschedag

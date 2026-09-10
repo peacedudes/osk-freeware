@@ -1,0 +1,9 @@
+$ chess -?
+Syntax: chess [<opts>] <name> [<opts>]
+Function: plays interactive chess
+Options:
+     -b	play black pieces
+     -l	long game
+     -s	short game
+     -w	play white pieces
+('NAME' environment variable will be used if set)
