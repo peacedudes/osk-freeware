@@ -1,5 +1,25 @@
 # Start here, next session
 
+## 2026-09-10: the guides, corrected twice by rdoggett, both committed
+
+- **Real OS-9 comes first.** Every reader-facing guide (front page,
+  `README.md', `disk/readme', `DOC/README-RUNNING') opens with the real
+  system: a disk of its own reached as `/dd' and `/h0', the reader's own
+  OS-9 on `/h1', the image written whole or `osk-freeware.tar' unpacked
+  with the `tar' module beside it.  os9exec comes second, as the test-drive.
+  Never a bare emulator line as the first thing a reader sees.
+- **os9exec is named by its variables, never by a link.**  `OS9DISK' and
+  `OS9H0' may be the SAME image -- os9exec says `# /h0: using OS9H0=...'
+  and mounts it -- so the `ln osk-freeware.dd h0' every guide used to
+  teach is gone, along with the claim that the emulator "will not mount
+  one path as two devices".  It builds on macOS, Linux, Windows and most
+  anything with a C compiler.  RBF images are the preferred format:
+  permissions and record locking work as OS-9 expects on an image and not
+  on a host directory; `mount -k' makes a blank one.  A stale `h0' hard
+  link may still sit in the repo root (gitignored); nothing reads it.
+- **One arrangement for running and keeping**: `keep' copies from `/dd'
+  onto `/h1'; `unkeep' (was `drop') takes it back.  `DOC/README-KEEP'.
+
 ## Where it stands (2026-09-09, evening): every card carries its own captured help
 
 The second pass `notes/PLAN-recard.md' asked for is done in its mechanical
