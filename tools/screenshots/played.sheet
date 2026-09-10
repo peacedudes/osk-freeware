@@ -35,7 +35,14 @@ wait    2
 
 shot    sonnet
 cap     Writes a sonnet: fourteen numbered lines of iambic pentameter, the
-cap     words drawn at random from its own lists.  Escape ends it.
+cap     words drawn at random from a vocabulary compiled into the program,
+cap     each word carrying its rhythm and its rhyme.  At the prompt, m and
+cap     u mark and unmark a line by number, r recomposes the unmarked
+cap     lines around the ones you kept, w appends the poem to a file
+cap     (sonnet.out unless -f names another), q quits.  The file -l takes
+cap     is a poem sonnet wrote that way, fourteen lines, loaded to go on
+cap     marking and rewriting it; it refuses a poem it did not compose.
+cap     Escape also ends it.
 try     sonnet
 run     sonnet
 wait    4

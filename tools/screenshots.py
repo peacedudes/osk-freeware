@@ -62,6 +62,15 @@ Sheet format (blank lines and `#' comments ignored):
                                    and a count -- for a program that floods
                                    one line; off by default, because ASCII
                                    art is made of repeated lines
+    frames                         publish the stanza as a FILMSTRIP: one
+                                   line per frame, top to bottom -- for a
+                                   program that animates by rewriting one
+                                   line with bare carriage returns (zot's
+                                   letters dancing in).  A screen grid keeps
+                                   only the last frame of that, which is a
+                                   plain line of text; the strip keeps the
+                                   dance.  Sampled evenly to fit the window,
+                                   the typed commands always kept
     for     sysid getsys           which CATALOGUE programs this screen shows,
                                    when the shot's own name is not the only
                                    one -- the gallery hangs it on each
@@ -173,6 +182,7 @@ def parse(path):
         if word == "shot":
             cur = {"name": rest, "cap": [], "for": [], "acts": [],
                    "try": None, "os9": None, "fold": False, "burst": False,
+                   "frames": False,
                    "rate": rate, "size": size, "quit": None, "sheet": path}
             shots.append(cur)
             continue
@@ -204,6 +214,8 @@ def parse(path):
             cur["os9"] = rest
         elif word == "fold":
             cur["fold"] = True
+        elif word == "frames":
+            cur["frames"] = True
         elif word == "burst":
             # Capture this stanza unthrottled (see capture_burst).  For a
             # program that paints its whole screen in one burst and never
@@ -478,6 +490,35 @@ def _drive(sess, shot):
 
 
 PARTIAL = re.compile(rb"\x1b\[?[0-9;?]*$")
+ANSI = re.compile(rb"\x1b\[[0-9;?]*[A-Za-z]|\x1b[()#][0-9A-Za-z]|\x1b[=>78]")
+FRAME_BREAK = re.compile(rb"\r\n?|\n")
+
+
+def filmstrip(data, shot):
+    """The stanza as one line per frame, for a program that animates a line.
+
+    zot's fourteen styles slide, bounce, sort or spin the letters in, and it
+    does that by writing the line again and again, each write ending in a
+    bare carriage return so the next one lands on top.  Rendered into a grid
+    that is the last frame only -- a plain line of text, which is what the
+    card showed for a month, captioned as terminal attributes it never
+    used.  Here every CR-terminated write is a line of its own, top to
+    bottom, so the reader sees the dance.  Escape sequences go, blank frames
+    go, and when there are more frames than rows the program's frames are
+    sampled evenly while every typed command line stays.
+    """
+    rows, cols = shot["size"]
+    text = ANSI.sub(b"", trim_partial(data))
+    frames = [f for f in FRAME_BREAK.split(text) if f.strip()]
+    runs = [v.encode("utf-8") for k, v in shot["acts"] if k == "run"]
+    anchors = {i for i, f in enumerate(frames) if any(r in f for r in runs)}
+    others = [i for i in range(len(frames)) if i not in anchors]
+    room = rows - len(anchors)
+    if len(others) > room and room > 1:
+        keep = {others[round(k * (len(others) - 1) / (room - 1))]
+                for k in range(room)}
+        frames = [f for i, f in enumerate(frames) if i in anchors or i in keep]
+    return ansiscreen.render(b"\r\n".join(frames) + b"\r\n", rows, cols)
 
 
 def trim_partial(data):
@@ -509,6 +550,8 @@ def stanza_hash(shot):
     """
     parts = [shot["name"], repr(shot["acts"]), str(shot["quit"]),
              str(shot["size"])]
+    if shot.get("frames"):
+        parts.append("frames")            # only when set: older hashes hold
     return hashlib.sha1("\n".join(parts).encode("utf-8")).hexdigest()[:16]
 
 
@@ -678,6 +721,10 @@ def run_sheet(path, image, only=None):
             for shot in group:
                 shot.pop("_end", None)
                 scr, died = capture(sess, shot)
+                if shot.get("frames"):
+                    scr = filmstrip(sess.slice(shot["_start"],
+                                               shot.get("_end") or sess.mark()),
+                                    shot)
                 out = os.path.join(CAPS, "%s.shot.txt" % shot["name"])
                 open(out, "w").write(scr.text() + "\n")
                 # A FINGERPRINT OF THE STANZA THAT TOOK IT, so gen_screens can

@@ -199,18 +199,20 @@ shot    robots
 size    24 80
 cap     Robots: you are the `I', the robots are the `#', and they walk
 cap     straight at you every time you move -- steer them into each other
-cap     and they become junk heaps.  Run it with `-m' so they take one step
-cap     per move of yours; the keys are the numeric keypad 1-9 with 5 to
-cap     stand still, `t' to teleport and `s' for a last stand.
+cap     and they become junk heaps, `@'.  Run it with `-m' so they take one
+cap     step per move of yours; the keys are the numeric keypad 1-9 with 5
+cap     to stand still, `t' to teleport and `s' for a last stand.  The
+cap     panel keeps the screen, robot and score counts; when they get you
+cap     the top ten appears in the arena, under the name USER gives, and
+cap     `robots -s' prints that list on its own.
 try     robots -m
 run     robots -m
 wait    8
 keys    8
 wait    3
-keys    8
+snap
+keys    4
 wait    3
-keys    9
-wait    4
 snap
 send    \003
 wait    2
@@ -867,12 +869,18 @@ send    q
 wait    2
 
 shot    zot
-cap     Prints a line of text in one of fourteen decorative styles; -d
-cap     shows them all in turn.  The styles are terminal attributes --
-cap     bold, underline, blink -- so on this page they all look alike.
-try     zot -d "OS-9 freeware"
-run     zot -d "OS-9 freeware"
-wait    8
+cap     Prints a line of text in one of fourteen animated styles: the
+cap     letters slide in from a side, bounce, sort themselves, or turn up
+cap     one at a time like a game-show board, and settle as the line.  Shown
+cap     as a strip, one line per frame, top to bottom: Wheel of Fortune
+cap     (style 14), then Expand text outward (style 5).  zot -s names all
+cap     fourteen.
+try     zot -s=14 "OS-9 freeware"
+frames
+run     zot -s=14 "OS-9 freeware"
+wait    3
+run     zot -s=5 "OS-9 freeware"
+wait    3
 
 shot    convert
 cap     Starts the WORLD text adventure.  Its opening sets you on a trail

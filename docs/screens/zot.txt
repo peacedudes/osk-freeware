@@ -1,14 +1,19 @@
+$ zot -s=14 "OS-9 freeware"
+____ ________
+__-_ ________
+__-9 ________
+O_-9 ________
+OS-9 ________
+OS-9 _____a__
+OS-9 __ee_a_e
+OS-9 f_ee_a_e
+OS-9 free_are
 OS-9 freeware
-OS-9 freeware
-OS-9 freeware
-OS-9 freeware
-OS-9 freeware
-OS-9 freeware
-OS-9 freeware
-OS-9 freeware
-OS-9 freeware
-OS-9 freeware
-OS-9 freeware
-OS-9 freeware
-OS-9 freeware
+$ zot -s=5 "OS-9 freeware"
+      Oe
+     OSre
+    OS-are
+   OS-9ware
+  OS-9 eware
+ OS-9 feeware
 OS-9 freeware

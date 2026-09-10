@@ -165,7 +165,7 @@
 | `banner` | &#9733; prints its argument as tall letters made of `@', for a banner or a sign |
 | `cursive` | writes a message as one line of joined, sloping cursive script, the flourish people once signed mail with<br>`usage: cursive [-tn] [-in] message` |
 | `gothic` | &#9733; print text as a gothic/blackletter banner |
-| `zot` | &#9733; prints a line of text in one of fourteen decorative styles: `zot -s=3 "text"'; -d shows them all<br>**How:** `zot -s=<1-14> "text"' prints the text in that style; `zot -d "text"' shows every style in turn. |
+| `zot` | &#9733; prints a line of text in one of fourteen animated styles -- the letters slide in, bounce, sort themselves or turn up one at a time: `zot -s=14 "text"'; -s names the styles, -d plays them all<br>**How:** `zot -s=<1-14> "text"' animates the text in that style -- the letters slide in, bounce, sort themselves or turn up one at a time, each frame overwriting the last with a bare CR; `zot -s' names the fourteen styles; `zot -d "text"' plays them all in turn.  Under os9exec, -r (unpaced output) makes every animation instantaneous, so you see only the finished line. |
 
 **Count & inspect**
 
@@ -215,7 +215,7 @@
 | `cookhash` | build the hash file cookie(1) needs, from a sayings file<br>`usage: cookhash <cookiefile >hashfile` |
 | `cookie` | print a random fortune cookie<br>**How:** Bare it prints a fortune from a default file. Given arguments it wants BOTH the cookie file and the hash `strfile' built for it: `strfile mine' then `cookie mine mine.dat'. |
 | `fortune` | print a random quotation<br>`usage:  fortune [ - ] [ -wsloa ] [ file ]` |
-| `sonnet` | writes (bad) sonnets in iambic pentameter, curses-based<br>**How:** Full-screen: it takes over the display. **ESC quits**. (control-C also gets you out, but ESC is the program's own way.) |
+| `sonnet` | writes (bad) sonnets in iambic pentameter, full screen: mark the lines you like and recompose the rest; w appends the poem to a file and -l <file> loads one it wrote to go on working on it<br>**How:** Full-screen: it takes over the display. **ESC quits**, so does q at its prompt. Commands at the prompt: m# / u# mark and unmark a line, r recomposes the unmarked lines, w [file] appends the poem to a file (sonnet.out by default, -f <file> changes that). `sonnet -l <file>' loads a poem it wrote with w -- fourteen lines -- and refuses any other file. The vocabulary is compiled in (SRC/sonnet/lex.data through makelex), not read at run time. |
 | `strfile` | &#9733; builds the .dat index that fortune reads from a file of sayings separated by %% lines, and reports what it found<br>`usage:  strfile [ - ] [ -cC ] [ -sv ] inputfile [ datafile ]` |
 | `unstr` | strfile's reverse: writes the sayings back out of a fortune .dat index as plain text -- `unstr sayings.dat out'; the .dat may be left off the name<br>`usage: unstr datafile[.dat] [ outfile ]` |
 
