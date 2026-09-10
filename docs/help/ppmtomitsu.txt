@@ -1,0 +1,2 @@
+$ ppmtomitsu -?
+usage:  ppmtomitsu [-sharpness <1-4>] [-enlarge <1-3>] [-media <a,a4,as,a4s>] [-copy <1-9>] [-tiny] [-dpi300] [ppmfile]

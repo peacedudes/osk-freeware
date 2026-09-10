@@ -1,0 +1,2 @@
+$ pcxtoppm -?
+usage:  pcxtoppm [-stdpalette] [pcxfile]

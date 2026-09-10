@@ -1,0 +1,2 @@
+$ ilbmtoppm -?
+usage:  ilbmtoppm [-verbose] [-ignore <chunkID>] [-isham|-isehb] [-adjustcolors] [ilbmfile]

@@ -1,0 +1,2 @@
+$ pbmto4425 -?
+usage:  pbmto4425 [pbmfile]

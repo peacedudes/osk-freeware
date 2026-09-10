@@ -1,0 +1,2 @@
+$ pnmpaste -?
+usage:  pnmpaste [-replace|-or|-and|-xor] frompnmfile x y [intopnmfile]

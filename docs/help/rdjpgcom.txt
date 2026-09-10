@@ -1,0 +1,5 @@
+$ rdjpgcom -?
+rdjpgcom displays any textual comments in a JPEG file.
+Usage: rdjpgcom [switches] [inputfile]
+Switches (names may be abbreviated):
+  -verbose    Also display dimensions of JPEG image

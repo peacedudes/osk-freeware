@@ -1,0 +1,2 @@
+$ bioradtopgm -?
+usage:  bioradtopgm [-image#] [Bioradfile]

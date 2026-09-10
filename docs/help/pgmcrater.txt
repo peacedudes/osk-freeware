@@ -1,0 +1,3 @@
+$ pgmcrater -?
+usage:  pgmcrater [-number <n>] [-width|-xsize <w>]
+                  [-height|-ysize <h>] [-gamma <f>]

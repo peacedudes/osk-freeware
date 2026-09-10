@@ -1,0 +1,2 @@
+$ ppmtopj -?
+usage:  ppmtopj [-center] [-xpos <pos>] [-ypos <pos>] [-gamma <val>] [-back <dark|lite>] [-rle] [-render <none|snap|bw|dither|diffuse|monodither|monodiffuse|clusterdither|monoclusterdither>] [ppmfile]

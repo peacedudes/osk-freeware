@@ -1,0 +1,3 @@
+$ pgmtopbm -?
+usage:  pgmtopbm [-floyd|-fs  | -hilbert | -threshold | -dither8|-d8 |
+     -cluster3|-c3|-cluster4|-c4|-cluster8|-c8] [-value <val>] [-clump <size>] [pgmfile]

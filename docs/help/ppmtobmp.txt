@@ -1,0 +1,2 @@
+$ ppmtobmp -?
+usage:  ppmtobmp [-windows] [-os2] [ppmfile]

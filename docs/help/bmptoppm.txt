@@ -1,0 +1,2 @@
+$ bmptoppm -?
+usage:  bmptoppm [bmpfile]

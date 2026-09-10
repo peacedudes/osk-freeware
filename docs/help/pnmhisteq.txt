@@ -1,0 +1,2 @@
+$ pnmhisteq -?
+usage:  pnmhisteq [-gray] [-verbose] [-rmap pgmfile] [-wmap pgmfile] [pnmfile]

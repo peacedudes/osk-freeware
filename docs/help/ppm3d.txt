@@ -1,0 +1,2 @@
+$ ppm3d -?
+usage:  ppm3d leftppmfile rightppmfile horizontal offset

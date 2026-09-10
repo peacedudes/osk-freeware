@@ -1,0 +1,2 @@
+$ rawtopgm -?
+usage:  rawtopgm [-headerskip N] [-rowskip N] [-tb|-topbottom] [<width> <height>] [rawfile]

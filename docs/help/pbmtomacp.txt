@@ -1,0 +1,2 @@
+$ pbmtomacp -?
+usage:  pbmtomacp [-l left] [-r right] [-b bottom] [-t top] [pbmfile]

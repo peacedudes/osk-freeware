@@ -1,0 +1,4 @@
+$ sldtoppm -?
+usage:  sldtoppm [-verbose] [-info] [-adjust] [-scale <s>]
+                 [-dir] [-lib|-Lib <name>]
+                 [-xsize|-width <x>] [-ysize|-height <y>] [sldfile]

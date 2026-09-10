@@ -1,0 +1,7 @@
+$ pnmscale -?
+usage:  pnmscale <s> [pnmfile]
+             -xsize|width|-ysize|-height <s> [pnmfile]
+             -xscale|-yscale <s> [pnmfile]
+             -xscale|-xsize|-width <s> -yscale|-ysize|-height <s> [pnmfile]
+             -xysize <x> <y> [pnmfile]
+             -pixels <n> [pnmfile]

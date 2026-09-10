@@ -1,0 +1,2 @@
+$ pnmsmooth -?
+usage:  pnmsmooth [-size width height] [-dump dumpfile] [pnmfile]

@@ -1,0 +1,5 @@
+$ pdraw -?
+Pdraw V1.4  9/4/90
+   Terminal Type             = xterm-256color
+   Default Printer           = -Plp550M
+usage: pdraw [-v vx vy vz] [-o options-file] [-Pprinter] [-s scale] [-e] [-h] [-nosort] [-noplot] [-print] [-ps] infile1 infile2 ...

@@ -1,0 +1,15 @@
+$ cjpeg -?
+usage: cjpeg [switches] [inputfile]
+Switches (names may be abbreviated):
+  -quality N     Compression quality (0..100; 5-95 is useful range)
+  -grayscale     Create monochrome JPEG file
+  -optimize      Optimize Huffman table (smaller file, but slow compression)
+  -targa         Input file is Targa format (usually not needed)
+Switches for advanced users:
+  -restart N     Set restart interval in rows, or in blocks with B
+  -smooth N      Smooth dithered input (N=1..100 is strength)
+  -maxmemory N   Maximum memory to use (in kbytes)
+  -verbose  or  -debug   Emit debug output
+Switches for wizards:
+  -qtables file  Use quantization tables given in file
+  -sample HxV[,...]  Set JPEG sampling factors

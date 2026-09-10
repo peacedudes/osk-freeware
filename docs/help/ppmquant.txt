@@ -1,0 +1,3 @@
+$ ppmquant -?
+usage:  ppmquant [-floyd|-fs] <ncolors> [ppmfile]
+                 [-floyd|-fs] -map mapfile [ppmfile]

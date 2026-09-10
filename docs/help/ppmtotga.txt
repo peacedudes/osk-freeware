@@ -1,0 +1,2 @@
+$ ppmtotga -?
+usage:  ppmtotga [-name <tganame>] [-mono|-cmap|-rgb] [-norle] [ppmfile]

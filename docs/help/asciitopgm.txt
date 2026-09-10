@@ -1,0 +1,2 @@
+$ asciitopgm -?
+usage:  asciitopgm [-d <val>] height width [asciifile]

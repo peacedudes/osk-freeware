@@ -1,0 +1,2 @@
+$ fitstopnm -?
+usage:  fitstopnm [-image N] [-noraw] [-scanmax] [-printmax] [-min f] [-max f] [FITSfile]

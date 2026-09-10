@@ -1,0 +1,6 @@
+$ pnmnlfilt -?
+usage:  pnmnlfilt alpha radius pnmfile
+ 0.0 <= alpha <= 0.5 for alpha trimmed mean -or-
+ 1.0 <= alpha <= 2.0 for optimal estimation -or-
+ -0.1 >= alpha >= -0.9 for edge enhancement
+ 0.3333 <= radius <= 1.0 specify effective radius

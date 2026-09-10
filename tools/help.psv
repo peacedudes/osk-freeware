@@ -186,3 +186,201 @@ inetdc|none|inetd forks it; it takes no options and carries no message text
 authwn|none|wn invokes it per request; it takes no options
 vmod_trap|none|a trap-handler module, not a program: `load' it before rxmod and txmod
 screen|none|-v prints its version; it has no help flag, and it wants a $HOME/.screens directory
+asciitopgm|asciitopgm -?|
+atktopbm|none|a filter with no options: an image on standard input or a file name, the result on standard output
+bioradtopgm|bioradtopgm -?|
+bmptoppm|bmptoppm -?|
+brushtopbm|none|a filter with no options: an image on standard input or a file name, the result on standard output
+cmuwmtopbm|none|a filter with no options: an image on standard input or a file name, the result on standard output
+fitstopnm|fitstopnm -?|
+fstopgm|none|a filter with no options: an image on standard input or a file name, the result on standard output
+g3topbm|g3topbm -?|
+gemtopbm|gemtopbm -?|
+giftopnm|giftopnm -?|
+gouldtoppm|none|a filter with no options: an image on standard input or a file name, the result on standard output
+hipstopgm|none|a filter with no options: an image on standard input or a file name, the result on standard output
+hpcdtoppm|hpcdtoppm|
+icontopbm|none|a filter with no options: an image on standard input or a file name, the result on standard output
+ilbmtoppm|ilbmtoppm -?|
+imgtoppm|none|a filter with no options: an image on standard input or a file name, the result on standard output
+lispmtopgm|none|a filter with no options: an image on standard input or a file name, the result on standard output
+macptopbm|macptopbm -?|
+mgrtopbm|none|a filter with no options: an image on standard input or a file name, the result on standard output
+mtvtoppm|none|a filter with no options: an image on standard input or a file name, the result on standard output
+pbmclean|none|it takes no options: a bitmap on standard input or a file name, the cleaned bitmap out
+pbmlife|none|a filter with no options: an image on standard input or a file name, the result on standard output
+pbmmake|pbmmake -?|
+pbmmask|pbmmask -?|
+pbmpscale|pbmpscale|
+pbmreduce|pbmreduce -?|
+pbmtext|pbmtext -?|
+pbmto10x|none|a filter with no options: an image on standard input or a file name, the result on standard output
+pbmto4425|pbmto4425 -?|
+pbmtoascii|pbmtoascii -?|
+pbmtoatk|none|a filter with no options: an image on standard input or a file name, the result on standard output
+pbmtobbnbg|none|it takes no options: a bitmap in, BitGraph codes out
+pbmtocmuwm|none|a filter with no options: an image on standard input or a file name, the result on standard output
+pbmtoepsi|pbmtoepsi -?|
+pbmtoepson|none|a filter with no options: an image on standard input or a file name, the result on standard output
+pbmtog3|pbmtog3 -?|
+pbmtogem|none|a filter with no options: an image on standard input or a file name, the result on standard output
+pbmtogo|none|a filter with no options: an image on standard input or a file name, the result on standard output
+pbmtoicon|none|a filter with no options: an image on standard input or a file name, the result on standard output
+pbmtolj|pbmtolj -?|
+pbmtoln03|pbmtoln03 -?|
+pbmtolps|none|a filter with no options: an image on standard input or a file name, the result on standard output
+pbmtomacp|pbmtomacp -?|
+pbmtomgr|none|a filter with no options: an image on standard input or a file name, the result on standard output
+pbmtopgm|pbmtopgm -?|
+pbmtopi3|none|a filter with no options: an image on standard input or a file name, the result on standard output
+pbmtopk|pbmtopk|
+pbmtoplot|none|a filter with no options: an image on standard input or a file name, the result on standard output
+pbmtoptx|none|a filter with no options: an image on standard input or a file name, the result on standard output
+pbmtox10bm|none|a filter with no options: an image on standard input or a file name, the result on standard output
+pbmtoxbm|none|a filter with no options: an image on standard input or a file name, the result on standard output
+pbmtoybm|none|a filter with no options: an image on standard input or a file name, the result on standard output
+pbmtozinc|none|a filter with no options: an image on standard input or a file name, the result on standard output
+pbmupc|pbmupc -?|
+pcxtoppm|pcxtoppm -?|
+pgmbentley|none|a filter with no options: an image on standard input or a file name, the result on standard output
+pgmcrater|pgmcrater -?|
+pgmedge|none|a filter with no options: an image on standard input or a file name, the result on standard output
+pgmenhance|pgmenhance -?|
+pgmhist|none|a filter with no options: an image on standard input or a file name, the result on standard output
+pgmkernel|pgmkernel -?|
+pgmnoise|pgmnoise -?|
+pgmnorm|pgmnorm -?|
+pgmoil|pgmoil -?|
+pgmramp|pgmramp -?|
+pgmtexture|pgmtexture -?|
+pgmtofs|none|a filter with no options: an image on standard input or a file name, the result on standard output
+pgmtolispm|none|a filter with no options: an image on standard input or a file name, the result on standard output
+pgmtopbm|pgmtopbm -?|
+pgmtoppm|pgmtoppm -?|
+pi1toppm|none|a filter with no options: an image on standard input or a file name, the result on standard output
+pi3topbm|pi3topbm -?|
+picttoppm|picttoppm -?|
+pjtoppm|none|a filter with no options: an image on standard input or a file name, the result on standard output
+pktopbm|pktopbm|
+pnmalias|pnmalias -?|
+pnmarith|pnmarith -?|
+pnmcat|pnmcat -?|
+pnmcomp|pnmcomp -?|
+pnmconvol|pnmconvol|
+pnmcrop|pnmcrop -?|
+pnmcut|pnmcut -?|
+pnmdepth|pnmdepth -?|
+pnmenlarge|pnmenlarge -?|
+pnmfile|none|it takes file names and no options
+pnmflip|pnmflip -?|
+pnmgamma|pnmgamma -?|
+pnmhisteq|pnmhisteq -?|
+pnmhistmap|pnmhistmap -?|
+pnminvert|none|a filter with no options: an image on standard input or a file name, the result on standard output
+pnmnlfilt|pnmnlfilt -?|
+pnmnoraw|none|a filter with no options: an image on standard input or a file name, the result on standard output
+pnmpad|pnmpad -?|
+pnmpaste|pnmpaste -?|
+pnmrotate|pnmrotate -?|
+pnmscale|pnmscale -?|
+pnmshear|pnmshear -?|
+pnmsmooth|pnmsmooth -?|
+pnmtile|pnmtile -?|
+pnmtoddif|pnmtoddif -?|
+pnmtofits|pnmtofits -?|
+pnmtops|pnmtops -?|
+pnmtorast|pnmtorast -?|
+pnmtosgi|pnmtosgi -?|
+pnmtosir|none|a filter with no options: an image on standard input or a file name, the result on standard output
+pnmtoxwd|pnmtoxwd -?|
+ppm3d|ppm3d -?|
+ppmbrighten|ppmbrighten -?|
+ppmchange|none|a filter with no options: an image on standard input or a file name, the result on standard output
+ppmdim|ppmdim -?|
+ppmdist|ppmdist -?|
+ppmdither|ppmdither -?|
+ppmflash|ppmflash -?|
+ppmforge|ppmforge -?|
+ppmhist|ppmhist -?|
+ppmmake|ppmmake|
+ppmmix|ppmmix -?|
+ppmnorm|none|a filter with no options: an image on standard input or a file name, the result on standard output
+ppmntsc|ppmntsc -?|
+ppmpat|ppmpat -?|
+ppmquant|ppmquant -?|
+ppmqvga|ppmqvga -?|
+ppmrelief|none|a filter with no options: an image on standard input or a file name, the result on standard output
+ppmshift|ppmshift -?|
+ppmspread|ppmspread -?|
+ppmtoacad|ppmtoacad -?|
+ppmtobmp|ppmtobmp -?|
+ppmtogif|ppmtogif -?|
+ppmtoicr|ppmtoicr -?|
+ppmtoilbm|ppmtoilbm -?|
+ppmtomap|ppmtomap -?|
+ppmtomitsu|ppmtomitsu -?|
+ppmtopcx|ppmtopcx -?|
+ppmtopgm|none|a filter with no options: an image on standard input or a file name, the result on standard output
+ppmtopi1|none|a filter with no options: an image on standard input or a file name, the result on standard output
+ppmtopict|none|a filter with no options: an image on standard input or a file name, the result on standard output
+ppmtopj|ppmtopj -?|
+ppmtopjxl|ppmtopjxl -?|
+ppmtopuzz|none|a filter with no options: an image on standard input or a file name, the result on standard output
+ppmtorgb3|none|a filter with no options: an image on standard input or a file name, the result on standard output
+ppmtosixel|ppmtosixel -?|
+ppmtotga|ppmtotga -?|
+ppmtouil|ppmtouil -?|
+ppmtoxpm|ppmtoxpm -?|
+ppmtoyuv|none|a filter with no options: an image on standard input or a file name, the result on standard output
+ppmtoyuvsplit|ppmtoyuvsplit|
+psidtopgm|psidtopgm -?|
+qrttoppm|none|a filter with no options: an image on standard input or a file name, the result on standard output
+rasttopnm|none|a filter with no options: an image on standard input or a file name, the result on standard output
+rawtopgm|rawtopgm -?|
+rawtoppm|rawtoppm -?|
+rgb3toppm|rgb3toppm -?|
+sgitopnm|sgitopnm -?|
+sirtopnm|none|a filter with no options: an image on standard input or a file name, the result on standard output
+sldtoppm|sldtoppm -?|
+spctoppm|none|a filter with no options: an image on standard input or a file name, the result on standard output
+spottopgm|none|it takes the file to convert and no help flag
+sputoppm|none|a filter with no options: an image on standard input or a file name, the result on standard output
+tgatoppm|tgatoppm -?|
+xbmtopbm|none|a filter with no options: an image on standard input or a file name, the result on standard output
+ximtoppm|none|a filter with no options: an image on standard input or a file name, the result on standard output
+xpmtoppm|none|a filter with no options: an image on standard input or a file name, the result on standard output
+xvminitoppm|none|a filter with no options: an image on standard input or a file name, the result on standard output
+xwdtopnm|none|a filter with no options: an image on standard input or a file name, the result on standard output
+ybmtopbm|none|a filter with no options: an image on standard input or a file name, the result on standard output
+yuvsplittoppm|yuvsplittoppm -?|
+yuvtoppm|yuvtoppm -?|
+zeisstopnm|zeisstopnm -?|
+graph|none|a trap-handler library, not a program: `load' it before g, striche, apfel and the other Graph programs
+g|none|it takes no options; it calls the Graph trap library, so load graph first
+striche|none|it takes no options; it calls the Graph trap library, so load graph first
+apfel|none|it takes no options; it calls the Graph trap library, so load graph first
+sine|none|it takes no options; it calls the Graph trap library, so load graph first
+graphdemo|none|it takes no options; it calls the Graph trap library, so load graph first
+graphsave|none|it takes no options; it calls the Graph trap library, so load graph first
+showpic|none|it takes no options; it calls the Graph trap library, so load graph first
+wgen|none|it takes no options: it asks for a resolution and the intensity of each harmonic, with the Graph trap library loaded first
+loadmem|loadmem -?|
+savemem|savemem -?|
+snap|snap -?|
+pdraw|pdraw -?|
+basicwin|none|it takes an X display and nothing else
+xengine|none|it takes an X display and nothing else
+X11R6shl|none|a shared library, not a program
+tplot|tplot -?|
+rsconvert|none|it takes the file to convert and no help flag
+mgif|mgif -?|
+gnuplot|none|`help' at its own prompt is its whole manual; a flag is read as the name of a file to load
+rayshade|rayshade -h|
+cjpeg|cjpeg -?|
+djpeg|djpeg -?|
+cjpeg.070|cjpeg.070 -?|
+djpeg.070|djpeg.070 -?|
+rdjpgcom|rdjpgcom -?|
+wrjpgcom|wrjpgcom -?|
+rdjpgcom.070|rdjpgcom.070 -?|
+wrjpgcom.070|wrjpgcom.070 -?|

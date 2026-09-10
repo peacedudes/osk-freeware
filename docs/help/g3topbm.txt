@@ -1,0 +1,2 @@
+$ g3topbm -?
+usage:  g3topbm [-kludge][-reversebits][-stretch] [g3file]

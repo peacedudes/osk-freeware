@@ -1,0 +1,2 @@
+$ pnmcrop -?
+usage:  pnmcrop [-white|-black] [-left] [-right] [-top] [-bottom] [pnmfile]

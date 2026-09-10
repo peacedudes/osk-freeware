@@ -1,0 +1,2 @@
+$ ppmdither -?
+usage:  ppmdither [-dim <num>] [-red <num>] [-green <num>] [-blue <num>] [pbmfile]

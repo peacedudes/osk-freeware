@@ -1,0 +1,2 @@
+$ ppmdist -?
+usage:  ppmdist [-frequency|-intensity] [ppmfile]

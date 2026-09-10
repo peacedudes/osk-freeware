@@ -1,0 +1,2 @@
+$ pgmenhance -?
+usage:  pgmenhance [-N] [pgmfile]  ( 1 <= N <= 9, default = 9 )

@@ -1,0 +1,2 @@
+$ pbmtoln03 -?
+usage:  pbmtoln03 [-left <nn>] [-right <nn>] [-top <nn>] [-bottom <nn>] [-formlength <nn>] [pbmfile]

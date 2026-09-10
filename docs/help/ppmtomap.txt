@@ -1,0 +1,2 @@
+$ ppmtomap -?
+usage:  ppmtomap [-sort] [-square] [ppmfile]

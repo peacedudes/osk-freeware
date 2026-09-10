@@ -1,0 +1,2 @@
+$ pnmtile -?
+usage:  pnmtile width height [pnmfile]

@@ -1,0 +1,2 @@
+$ pnmalias -?
+usage:  pnmalias [-bgcolor <color>] [-fgcolor <color>] [-bonly] [-fonly] [-balias] [-falias] [-weight <w>] [pnmfile]

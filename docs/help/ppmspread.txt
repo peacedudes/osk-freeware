@@ -1,0 +1,3 @@
+$ ppmspread -?
+usage:  ppmspread amount [ppmfile]
+        amount: # of pixels to displace a pixel by at most

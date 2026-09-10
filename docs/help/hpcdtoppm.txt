@@ -1,0 +1,25 @@
+$ hpcdtoppm
+Error in Arguments !
+
+Usage: hpcdtoppm [options] pcd-file [ppm-file]
+
+Opts:
+     -x Overskip mode (tries to improve color quality.)
+     -i Give some (buggy) informations from fileheader
+     -s Apply simple sharpness-operator on the Luma-channel
+     -d Show differential picture only
+
+     -r Rotate clockwise for portraits
+     -l Rotate counter-clockwise for portraits
+     -a Try to find out orientation automatically.
+        (Experimentally, please report if it doesn't work.)
+
+     -ycc suppress ycc to rgb conversion
+        (Experimentally, doesn't have deeper sense)
+
+     -0 Extract thumbnails from Overview file
+     -1 Extract  128x192  from Image file
+     -2 Extract  256x384  from Image file
+     -3 Extract  512x768  from Image file
+     -4 Extract 1024x1536 from Image file
+     -5 Extract 2048x3072 from Image file

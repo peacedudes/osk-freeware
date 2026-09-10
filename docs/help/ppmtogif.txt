@@ -1,0 +1,2 @@
+$ ppmtogif -?
+usage:  ppmtogif [-interlace] [-sort] [-map mapfile] [-transparent color] [ppmfile]

@@ -1,0 +1,2 @@
+$ pbmmask -?
+usage:  pbmmask [-expand] [pbmfile]

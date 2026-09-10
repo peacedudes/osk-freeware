@@ -1,0 +1,2 @@
+$ pbmtog3 -?
+usage:  pbmtog3  [-reversebits] [pbmfile]

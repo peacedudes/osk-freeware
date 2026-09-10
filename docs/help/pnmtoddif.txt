@@ -1,0 +1,2 @@
+$ pnmtoddif -?
+usage:  pnmtoddif [-resolution x y] [pnmfile [ddiffile]]

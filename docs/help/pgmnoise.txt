@@ -1,0 +1,3 @@
+$ pgmnoise -?
+usage:  pgmnoise width height
+        width and height are picture dimensions in pixels

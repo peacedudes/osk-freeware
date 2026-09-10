@@ -1,0 +1,2 @@
+$ pbmtext -?
+usage:  pbmtext [-font <fontfile>] [-builtin <fontname>] [text]

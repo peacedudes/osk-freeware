@@ -1,0 +1,2 @@
+$ ppmtoilbm -?
+usage:  ppmtoilbm [-ecs|-aga] [-ham6|-ham8] [-maxplanes|-mp n] [-fixplanes|-fp n] [-normal|-hamif|-hamforce|-24if|-24force|-dcif|-dcforce|-cmaponly] [-hambits|-hamplanes n] [-dcbits|-dcplanes r g b] [-hires] [-lace] [-floyd|-fs] [-compress|-nocompress] [-cmethod none|byterun1] [-map ppmfile] [-savemem] [ppmfile]

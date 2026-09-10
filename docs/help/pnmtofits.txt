@@ -1,0 +1,2 @@
+$ pnmtofits -?
+usage:  pnmtofits [-max f] [-min f] [pnmfile]

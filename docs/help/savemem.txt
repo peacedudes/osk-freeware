@@ -1,0 +1,5 @@
+$ savemem -?
+Syntax   : SAVEMEM <from address> <to address> <path>
+Function : saves memory block to file
+Notes    : - You must be super user
+           - specify addresses in hex

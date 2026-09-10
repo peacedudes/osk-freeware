@@ -1,0 +1,2 @@
+$ ppmmake
+usage:  ppmmake <color> <width> <height>

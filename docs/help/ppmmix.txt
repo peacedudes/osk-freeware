@@ -1,0 +1,3 @@
+$ ppmmix -?
+usage:  ppmmix fadefactor ppmfile1 ppmfile2
+        fadefactor: 0.0 = only ppmfile1, 1.0 = only ppmfile2

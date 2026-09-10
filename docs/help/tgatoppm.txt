@@ -1,0 +1,2 @@
+$ tgatoppm -?
+usage:  tgatoppm  [-debug] [tgafile]

@@ -1,0 +1,9 @@
+$ mgif -?
+mgif [options] file ...
+
+-i       inquire about image only
+-v       verbose
+-N       use NTSC equation for luminescence
+file     a .gif file
+
+If more than one file, all share command switch settings.

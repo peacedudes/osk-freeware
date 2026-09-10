@@ -1,0 +1,2 @@
+$ pnmarith -?
+usage:  pnmarith -add|-subtract|-multiply|-difference|-minimum|-maximum pnmfile1 pnmfile2

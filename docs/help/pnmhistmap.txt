@@ -1,0 +1,2 @@
+$ pnmhistmap -?
+usage:  pnmhistmap [-white] [-black] [-max maxvalue] [-verbose] [pnmfile]

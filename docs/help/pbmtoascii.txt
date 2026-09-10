@@ -1,0 +1,2 @@
+$ pbmtoascii -?
+usage:  pbmtoascii [-1x2|-2x4] [pbmfile]

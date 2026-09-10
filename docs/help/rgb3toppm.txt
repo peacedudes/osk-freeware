@@ -1,0 +1,2 @@
+$ rgb3toppm -?
+usage:  rgb3toppm <red pgmfile> <green pgmfile> <blue pgmfile>

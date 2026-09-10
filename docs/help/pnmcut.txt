@@ -1,0 +1,2 @@
+$ pnmcut -?
+usage:  pnmcut x y width height [pnmfile]

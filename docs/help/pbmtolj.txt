@@ -1,0 +1,3 @@
+$ pbmtolj -?
+usage:  pbmtolj [-noreset|-float|-resolution N] [pbmfile]
+	resolution = [75|100|150|300] (dpi)

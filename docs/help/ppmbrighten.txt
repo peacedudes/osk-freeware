@@ -1,0 +1,2 @@
+$ ppmbrighten -?
+usage:  ppmbrighten [-saturation <+-s>] [-value <+-v>] [-normalize] [<ppmfile>]

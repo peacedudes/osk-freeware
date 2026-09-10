@@ -1,0 +1,2 @@
+$ ppmpat -?
+usage:  ppmpat -gingham|-g2|-gingham3|-g3|-madras|-tartan|-poles|-squig|-camo|-anticamo <width> <height>

@@ -1,0 +1,2 @@
+$ ppmtoicr -?
+usage:  ppmtoicr [-windowname windowname] [-expand expand] [-display display] [-rle] [ppmfile]

@@ -1,0 +1,2 @@
+$ pnmconvol
+usage:  pnmconvol <convolutionfile> [pnmfile]

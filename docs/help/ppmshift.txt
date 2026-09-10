@@ -1,0 +1,3 @@
+$ ppmshift -?
+usage:  ppmshift shift [ppmfile]
+        shift: maximum number of pixels to shift a line by

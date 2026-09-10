@@ -773,7 +773,7 @@
 
 | | |
 |---|---|
-| `answer` | &#9733;  the screen and asks `Message to:' for a recipient, checked against the alias table |
+| `answer` | &#9733; replies to the messages in a folder one at a time: it clears the screen and asks `Message to:' for a recipient, checked against the alias table |
 | `arepdaemon` | &#9733; the daemon autoreply relies on.  It reads /dd/USR/LIB/ELM/autoreply.data; without it, `Error 216 attempting fstat' -- though it still touches autoreply.log on its way there |
 | `autoreply` | &#9733; send an automatic reply while you are away.  It resolves your mailbox by the session's numeric owner rather than $USER, so under this identity it reaches for a mailbox named `su' and stops there; turning autoreplying off does not need the mailbox and answers for real |
 | `checkalias` | &#9733; check an alias resolves before you rely on it. `listalias' answers the same question and prints its result<br>`Usage: checkalias alias [alias ...]` |
@@ -905,25 +905,25 @@
 | | |
 |---|---|
 | `draw` | character-graphics drawing program |
-| `loadmem` | load memory image |
-| `pdraw` | Pdraw 1.4 - 2D/3D data plotting, PostScript output |
-| `savemem` | save memory image |
-| `snap` | &#9733; snapshot the screen to a file |
+| `loadmem` | loads a file into memory at a given address -- destination, upper limit and path, the addresses in hex; super user only. savemem is its reverse<br>`Syntax   : LOADMEM <destinati address> <upper limit address> <path>` |
+| `pdraw` | Pdraw 1.4 - 2D/3D data plotting, PostScript output<br>`Pdraw V1.4  9/4/90` |
+| `savemem` | writes a block of memory to a file -- from address, to address and path, the addresses in hex; super user only. loadmem is its reverse<br>`Syntax   : SAVEMEM <from address> <to address> <path>` |
+| `snap` | &#9733; snapshot the screen to a file<br>`syntax: snap {opt} [<file>] {opt}` |
 
 **Hardware demos**
 
 | | |
 |---|---|
-| `apfel` | Mandelbrot (Apfelmaennchen) -- Atari GRAPH display |
-| `g` | &#9733; an Atari GRAPH demo, paired with striche.  Needs the `graph' |
-| `graph` | the `Graph' TRAP LIBRARY itself -- a type-$0B module.  It is what g, striche, apfel, sine, showpic, graphdemo, graphsave and wgen all link.  `load' it and the trap installs; the module executes in supervisor state, so a program that calls it from the shell is entered and aborts on a supervisor-only instruction. |
-| `graphdemo` | Atari GRAPH demonstration |
+| `apfel` | the Mandelbrot set (Apfelmaennchen) drawn on the Atari Graph display; it calls the `graph' trap library |
+| `g` | &#9733; an Atari Graph demonstration, paired with striche. It calls the `graph' trap library, so load that first; it then aborts on a supervisor-only instruction, having been written to run in supervisor state |
+| `graph` | the Graph trap library itself -- a type-$0B module, not a program. It is what g, striche, apfel, sine, showpic, graphdemo, graphsave and wgen all call: `load' it and the trap installs. The module executes in supervisor state, so a program that calls it from the shell is entered and aborts on a supervisor-only instruction |
+| `graphdemo` | a demonstration of the Atari Graph display; it calls the `graph' trap library |
 | `graphsave` | save an Atari GRAPH screen.  Aborts with the `graph' trap library resident, like `showpic': it wants the display |
 | `lissaj` | &#9733; Tektronix demo: Lissajous figures |
 | `lorenz3d` | &#9733; Tektronix demo: the Lorenz attractor in 3D |
 | `showpic` | show a picture on the Atari GRAPH display.  With the `graph' trap library resident it is entered and aborts: it wants the display, not just the library. |
-| `sine` | sine plot, Atari GRAPH |
-| `striche` | &#9733; line drawing, Atari GRAPH.  Needs the `graph' trap library found -- see the graph entry below |
+| `sine` | a sine plot on the Atari Graph display; it calls the `graph' trap library |
+| `striche` | &#9733; line drawing for the Atari Graph display; it calls the `graph' trap library, so load that first |
 | `wgen` | Tektronix waveform generator.  With the `graph' trap library resident it runs and asks for a resolution and the intensity of each harmonic, then emits Tektronix plotting codes.  Bare, it aborts with `unintialized User Trap #5'.<br>**How:** It aborts with `unintialized User Trap #5, err=#227' until the `graph' trap library is resident: `load /dd/CMDS/GAMES/graph'. Then it asks for a resolution and the intensity of nine harmonics and draws the waveform. Give it ten numbers -- at end of input it draws for ever. `showpic' and `graphsave' need the same library AND a display, so they abort either way. |
 
 **JPEG**
@@ -931,204 +931,204 @@
 | | |
 |---|---|
 | `cjpeg` | JPEG encoder (IJG).  Makes a JPEG from a PNM.  It wants LF between the fields of a PNM header where the netpbm here writes CR, so patch the three separators with `pbyte' first; DOC/STATUS has the offsets both ways.<br>**How:** Makes a JPEG from a PNM -- but not straight from a netpbm PNM. cjpeg wants LF between the header fields and this disk's netpbm writes CR, so it says "Bogus data in PPM file". Patch the three separators with `pbyte` first: for `ppmmake red 8 8` they are at offsets 2, 6 and a. DOC/STATUS has the full recipe both ways. |
-| `cjpeg.070` | JPEG encoder, a build for another processor.  On the 68000 its twin `cjpeg' is the one to use; the .070 files are builds for a different CPU. |
+| `cjpeg.070` | JPEG encoder, a build for another processor.  On the 68000 its twin `cjpeg' is the one to use; the .070 files are builds for a different CPU.<br>`usage: cjpeg.070 [switches] [inputfile]` |
 | `djpeg` | JPEG decompressor, jpeg-5a.  Decodes a JPEG to a PNM.  Its output ends each header line with LF where the netpbm here wants CR, so patch the three separators with `pbyte' to pipe it on; DOC/STATUS has the offsets.<br>**How:** Decompresses a JPEG: `djpeg -pnm image.jpg > out.ppm`. The disk has one to try, SRC/jpeglib/JPEG_5A/testimg.jpg. Its output will NOT pipe into netpbm unpatched -- djpeg writes LF at the end of a PNM header line and netpbm here wants CR. `pbyte out.ppm 2 0d` and the same at the two later separators fixes it; DOC/STATUS has the offsets. |
-| `djpeg.070` | JPEG decompressor, a build for another processor.  It decodes a JPEG, including one the 68000 cjpeg wrote; its companion encoder is cjpeg.070 |
-| `rdjpgcom` | read the comment from a JPEG file |
-| `rdjpgcom.070` | read a JPEG's comment (IJG 0.70 build) |
-| `wrjpgcom` | write a comment into a JPEG file |
-| `wrjpgcom.070` | write a JPEG's comment (IJG 0.70 build) |
+| `djpeg.070` | JPEG decompressor, a build for another processor.  It decodes a JPEG, including one the 68000 cjpeg wrote; its companion encoder is cjpeg.070<br>`usage: djpeg.070 [switches] [inputfile]` |
+| `rdjpgcom` | read the comment from a JPEG file<br>`rdjpgcom displays any textual comments in a JPEG file.` |
+| `rdjpgcom.070` | read a JPEG's comment (IJG 0.70 build)<br>`rdjpgcom displays any textual comments in a JPEG file.` |
+| `wrjpgcom` | write a comment into a JPEG file<br>`wrjpgcom inserts a textual comment in a JPEG file.` |
+| `wrjpgcom.070` | write a JPEG's comment (IJG 0.70 build)<br>`wrjpgcom inserts a textual comment in a JPEG file.` |
 
 **NETPBM: edit & analyse**
 
 | | |
 |---|---|
-| `pbmclean` | netpbm image tool |
-| `pbmlife` | netpbm image tool |
-| `pbmmake` | netpbm image tool |
-| `pbmmask` | netpbm image tool |
-| `pbmpscale` | netpbm image tool |
-| `pbmreduce` | netpbm image tool |
-| `pbmtext` | netpbm image tool<br>**How:** pbmtext <word> draws it as an image. `pbmtext os9 \| pbmtoascii' prints it on the terminal and needs no file at all -- the shortest demonstration of the 169 NETPBM programs. See DOC/README-NETPBM. |
-| `pbmupc` | netpbm image tool |
-| `pgmbentley` | netpbm image tool |
-| `pgmcrater` | netpbm image tool |
-| `pgmedge` | netpbm image tool |
-| `pgmenhance` | netpbm image tool |
-| `pgmhist` | netpbm image tool |
-| `pgmkernel` | netpbm image tool |
-| `pgmnoise` | netpbm image tool |
-| `pgmnorm` | netpbm image tool |
-| `pgmoil` | netpbm image tool |
-| `pgmramp` | netpbm image tool |
-| `pgmtexture` | netpbm image tool |
-| `pnmalias` | netpbm image tool |
-| `pnmarith` | netpbm image tool |
-| `pnmcat` | netpbm image tool |
-| `pnmcomp` | netpbm image tool |
-| `pnmconvol` | netpbm image tool |
-| `pnmcrop` | netpbm image tool |
-| `pnmcut` | netpbm image tool |
-| `pnmdepth` | netpbm image tool |
-| `pnmenlarge` | netpbm image tool |
-| `pnmfile` | netpbm image tool |
-| `pnmflip` | netpbm image tool |
-| `pnmgamma` | netpbm image tool |
-| `pnmhisteq` | netpbm image tool |
-| `pnmhistmap` | netpbm image tool |
-| `pnminvert` | netpbm image tool |
-| `pnmnlfilt` | netpbm image tool |
-| `pnmnoraw` | netpbm image tool |
-| `pnmpad` | netpbm image tool |
-| `pnmpaste` | netpbm image tool |
-| `pnmrotate` | netpbm image tool |
-| `pnmscale` | netpbm image tool<br>**How:** Scales an image: `pnmscale 0.5 file'. Given only a filename it takes THAT as the scale factor and then waits on empty input, reporting "bad magic number" -- which means you left out the factor, not that your file is bad. The same trap catches pnmdepth, pnmcut, pnmrotate and others. |
-| `pnmshear` | netpbm image tool |
-| `pnmsmooth` | netpbm image tool |
-| `pnmtile` | netpbm image tool |
-| `ppm3d` | netpbm image tool |
-| `ppmbrighten` | netpbm image tool |
-| `ppmchange` | netpbm image tool |
-| `ppmdim` | netpbm image tool |
-| `ppmdist` | netpbm image tool |
-| `ppmdither` | netpbm image tool |
-| `ppmflash` | netpbm image tool |
-| `ppmforge` | netpbm image tool<br>**How:** `-night' takes NO ARGUMENT. Written `-night 0' the 0 swallows the parse and -width/-height are ignored. And without `-night' it builds a PLANET at its default `-mesh 256', which ends the emulator session: `ppmforge -night -width 32 -height 16'. |
-| `ppmhist` | netpbm image tool |
-| `ppmmake` | netpbm image tool |
-| `ppmmix` | netpbm image tool |
-| `ppmnorm` | netpbm image tool |
-| `ppmntsc` | netpbm image tool<br>**How:** It takes a DIMFACTOR first -- 0.0 is black, 1.0 the original -- then the file. Without it you get its usage. |
-| `ppmpat` | netpbm image tool |
-| `ppmquant` | netpbm image tool<br>**How:** A PALETTED CONVERTER NEEDS A QUANTISED IMAGE, and this is what quantises: `ppmquant 16 in.ppm > out.ppm'. Eight netpbm writers -- ppmtoicr, ppmtosixel, ppmtouil, ppmtopuzz, ppmtopict, ppmtopi1 and two more -- write ZERO BYTES for a 24-bit PPM and correct files after it. |
-| `ppmqvga` | netpbm image tool |
-| `ppmrelief` | netpbm image tool |
-| `ppmshift` | netpbm image tool |
-| `ppmspread` | netpbm image tool |
+| `pbmclean` | removes lone pixels from a bitmap -- the speckle of a scan |
+| `pbmlife` | one generation of Conway's Life on a bitmap |
+| `pbmmake` | makes a plain bitmap of the size given: white, black or grey (a checkerboard)<br>`usage:  pbmmake [-white\|-black\|-gray] <width> <height>` |
+| `pbmmask` | makes a mask from a bitmap: the background, found from the corners, white and everything else black<br>`usage:  pbmmask [-expand] [pbmfile]` |
+| `pbmpscale` | enlarges a bitmap by an integer factor, smoothing the edges rather than making stairs<br>`usage:  pbmpscale scale [pbmfile]` |
+| `pbmreduce` | shrinks a bitmap by an integer factor, dithering the averaged pixels<br>`usage:  pbmreduce [-floyd\|-fs \| -threshold] [-value <val>] N [pbmfile]` |
+| `pbmtext` | sets a line of text as a bitmap, in its built-in font or one from a file<br>**How:** pbmtext <word> draws it as an image. `pbmtext os9 \| pbmtoascii' prints it on the terminal and needs no file at all -- the shortest demonstration of the 169 NETPBM programs. See DOC/README-NETPBM. |
+| `pbmupc` | draws a UPC-A bar code from its digits<br>`usage:  pbmupc [-s1\|-s2] <type> <manufac> <product>` |
+| `pgmbentley` | the Bentley effect: an image smeared as if painted, brightness shifting the pixels |
+| `pgmcrater` | makes a cratered landscape -- a moon -- from a random number generator<br>`usage:  pgmcrater [-number <n>] [-width\|-xsize <w>]` |
+| `pgmedge` | finds the edges in a greymap |
+| `pgmenhance` | sharpens a greymap by edge enhancement, -1 mild to -9 strong<br>`usage:  pgmenhance [-N] [pgmfile]  ( 1 <= N <= 9, default = 9 )` |
+| `pgmhist` | prints a histogram of the grey levels in a greymap |
+| `pgmkernel` | makes a convolution kernel for pnmconvol, of the size given<br>`usage:  pgmkernel [-weight f] width [height]` |
+| `pgmnoise` | makes white noise: every pixel an independent random grey<br>`usage:  pgmnoise width height` |
+| `pgmnorm` | normalises the contrast of a greymap, stretching it to the full range<br>`usage:  pgmnorm [-bpercent N \| -bvalue N] [-wpercent N \| -wvalue N] [pgmfile]` |
+| `pgmoil` | paints a greymap again as if in oils: each pixel becomes the commonest value around it<br>`usage:  pgmoil [-n <n>] [pgmfile]` |
+| `pgmramp` | makes a grey ramp -- left to right, top to bottom, rectangular or elliptical<br>`usage:  pgmramp -lr\|-tb\|-rectangle\|-ellipse <width> <height>` |
+| `pgmtexture` | measures the texture of a greymap the way a pattern- recognition paper does: angular second moment, contrast, correlation, entropy and the rest<br>`usage:  pgmtexture [-d <d>] [pgmfile]` |
+| `pnmalias` | anti-aliases an image, smoothing the edge between a foreground and a background colour<br>`usage:  pnmalias [-bgcolor <color>] [-fgcolor <color>] [-bonly] [-fonly] [-balias] [-falias] [-weight <w>] [pnmfile]` |
+| `pnmarith` | adds, subtracts, multiplies or differences two images of the same size, pixel by pixel<br>`usage:  pnmarith -add\|-subtract\|-multiply\|-difference\|-minimum\|-maximum pnmfile1 pnmfile2` |
+| `pnmcat` | puts images side by side (-lr) or one above another (-tb)<br>`usage:  pnmcat [-white\|-black] -leftright\|-lr [-jtop\|-jbottom] pnmfile ...` |
+| `pnmcomp` | composites one image over another at an offset, through an alpha mask if one is given<br>`usage:  pnmcomp [-invert] [-xoff N] [-yoff N] [-alpha file] overlay [image] [output]` |
+| `pnmconvol` | convolves an image with a kernel given as a PGM; pgmkernel makes one<br>`usage:  pnmconvol <convolutionfile> [pnmfile]` |
+| `pnmcrop` | crops the white (or black) border off an image<br>`usage:  pnmcrop [-white\|-black] [-left] [-right] [-top] [-bottom] [pnmfile]` |
+| `pnmcut` | cuts a rectangle out of an image: x, y, width, height<br>`usage:  pnmcut x y width height [pnmfile]` |
+| `pnmdepth` | changes the maximum value -- the depth -- of an image<br>`usage:  pnmdepth newmaxval [pnmfile]` |
+| `pnmenlarge` | enlarges an image by an integer factor, pixel for pixel<br>`usage:  pnmenlarge N [pnmfile]` |
+| `pnmfile` | says what an image is: format, width, height, depth, raw or plain |
+| `pnmflip` | flips an image left to right or top to bottom, transposes it, or turns it a quarter turn<br>`usage:  pnmflip [-leftright\|-lr] [-topbottom\|-tb] [-transpose\|-xy]` |
+| `pnmgamma` | gamma-corrects an image, by one value or one per colour<br>`usage:  pnmgamma <value> [pnmfile]` |
+| `pnmhisteq` | equalises the histogram of an image, spreading its grey levels evenly<br>`usage:  pnmhisteq [-gray] [-verbose] [-rmap pgmfile] [-wmap pgmfile] [pnmfile]` |
+| `pnmhistmap` | draws the histogram of an image as an image<br>`usage:  pnmhistmap [-white] [-black] [-max maxvalue] [-verbose] [pnmfile]` |
+| `pnminvert` | inverts an image -- a negative |
+| `pnmnlfilt` | a non-linear filter -- alpha-trimmed mean, optimal estimation or edge enhancement -- chosen by the two numbers given<br>`usage:  pnmnlfilt alpha radius pnmfile` |
+| `pnmnoraw` | writes an image in the plain form, its pixels spelled out as numbers you can read or edit |
+| `pnmpad` | pads an image with a border of the widths given, white or black<br>`usage:  pnmpad [-white\|-black] [-l#] [-r#] [-t#] [-b#] [pnmfile]` |
+| `pnmpaste` | pastes one image into another at a position, replacing, or- ing, and-ing or xor-ing the pixels<br>`usage:  pnmpaste [-replace\|-or\|-and\|-xor] frompnmfile x y [intopnmfile]` |
+| `pnmrotate` | rotates an image by an angle up to ninety degrees, anti- aliased<br>`usage:  pnmrotate [-noantialias] <angle> [pnmfile]` |
+| `pnmscale` | scales an image by a factor, to a width or height, or into a box (-xysize)<br>**How:** Scales an image: `pnmscale 0.5 file'. Given only a filename it takes THAT as the scale factor and then waits on empty input, reporting "bad magic number" -- which means you left out the factor, not that your file is bad. The same trap catches pnmdepth, pnmcut, pnmrotate and others. |
+| `pnmshear` | shears an image by an angle, anti-aliased<br>`usage:  pnmshear [-noantialias] <angle> [pnmfile]` |
+| `pnmsmooth` | smooths an image by convolving it with a mean kernel of the size given<br>`usage:  pnmsmooth [-size width height] [-dump dumpfile] [pnmfile]` |
+| `pnmtile` | repeats an image to fill a width and height<br>`usage:  pnmtile width height [pnmfile]` |
+| `ppm3d` | makes a red-blue stereo anaglyph from a left and a right image<br>`usage:  ppm3d leftppmfile rightppmfile horizontal offset` |
+| `ppmbrighten` | changes the brightness and saturation of an image, or normalises it<br>`usage:  ppmbrighten [-saturation <+-s>] [-value <+-v>] [-normalize] [<ppmfile>]` |
+| `ppmchange` | changes one colour in an image to another |
+| `ppmdim` | dims an image by a factor, 0.0 black to 1.0 unchanged<br>`usage:  ppmdim dimfactor [ppmfile]` |
+| `ppmdist` | turns a colour image into a greymap for monochrome printing, spreading the colours over the grey scale by frequency or by intensity<br>`usage:  ppmdist [-frequency\|-intensity] [ppmfile]` |
+| `ppmdither` | dithers a colour image down to a fixed palette of red, green and blue levels<br>`usage:  ppmdither [-dim <num>] [-red <num>] [-green <num>] [-blue <num>] [pbmfile]` |
+| `ppmflash` | brightens an image towards white by a factor, as a flash would<br>`usage:  ppmflash flashfactor [ppmfile]` |
+| `ppmforge` | forges a planet, clouds or a starry sky from fractal noise<br>**How:** `-night' takes NO ARGUMENT. Written `-night 0' the 0 swallows the parse and -width/-height are ignored. And without `-night' it builds a PLANET at its default `-mesh 256', which ends the emulator session: `ppmforge -night -width 32 -height 16'. |
+| `ppmhist` | prints a histogram of the colours in an image, commonest first<br>`usage:  ppmhist [-map] [ppmfile]` |
+| `ppmmake` | makes a plain image of one colour and the size given<br>`usage:  ppmmake <color> <width> <height>` |
+| `ppmmix` | mixes two images by a fade factor, 0.0 all the first to 1.0 all the second<br>`usage:  ppmmix fadefactor ppmfile1 ppmfile2` |
+| `ppmnorm` | normalises the contrast of a colour image |
+| `ppmntsc` | clamps an image's colours to the range NTSC television can carry, dimming by a factor<br>**How:** It takes a DIMFACTOR first -- 0.0 is black, 1.0 the original -- then the file. Without it you get its usage. |
+| `ppmpat` | weaves a pattern -- gingham, madras, tartan, poles, squiggles, camouflage -- of the size given<br>`usage:  ppmpat -gingham\|-g2\|-gingham3\|-g3\|-madras\|-tartan\|-poles\|-squig\|-camo\|-anticamo <width> <height>` |
+| `ppmquant` | reduces an image to a number of colours, or to the colours of a map image, with Floyd-Steinberg dithering if asked<br>**How:** A PALETTED CONVERTER NEEDS A QUANTISED IMAGE, and this is what quantises: `ppmquant 16 in.ppm > out.ppm'. Eight netpbm writers -- ppmtoicr, ppmtosixel, ppmtouil, ppmtopuzz, ppmtopict, ppmtopi1 and two more -- write ZERO BYTES for a 24-bit PPM and correct files after it. |
+| `ppmqvga` | quantises an image to a 256-colour VGA palette<br>`usage:  ppmqvga [-dither] [-verbose] [ppmfile]` |
+| `ppmrelief` | embosses an image, lighting it from the side by arithmetic |
+| `ppmshift` | shifts each line of an image sideways by a random amount up to the number given<br>`usage:  ppmshift shift [ppmfile]` |
+| `ppmspread` | displaces each pixel by a random amount up to the number given -- a frosted-glass effect<br>`usage:  ppmspread amount [ppmfile]` |
 
 **NETPBM: into PNM**
 
 | | |
 |---|---|
-| `asciitopgm` | ASCII art to PGM (greyscale) |
-| `atktopbm` | Andrew toolkit to PBM (bitmap) |
-| `bioradtopgm` | Bio-Rad confocal to PGM (greyscale) |
-| `bmptoppm` | BMP to PPM (colour) |
-| `brushtopbm` | Xerox brush to PBM (bitmap) |
-| `cmuwmtopbm` | CMU window manager to PBM (bitmap) |
-| `fitstopnm` | FITS to PNM |
-| `fstopgm` | Usenix FaceSaver to PGM (greyscale) |
-| `g3topbm` | Group 3 fax to PBM (bitmap) |
-| `gemtopbm` | GEM to PBM (bitmap) |
-| `giftopnm` | GIF to PNM<br>**How:** Reads a GIF into the PNM formats the other 168 converters work on -- try `giftopnm /dd/DEMO/gulls.gif \| pnmfile'. IMPORTANT for anyone piping images out of the emulator: os9exec turns CR into CRLF on the way to the host, so a raw image containing byte 13 arrives corrupted. Keep binary inside OS-9 and convert with pnmnoraw before taking a picture anywhere else. DOC/README-NETPBM has the details. |
-| `gouldtoppm` | Gould scanner to PPM (colour) |
-| `hipstopgm` | HIPS to PGM (greyscale) |
-| `hpcdtoppm` | PhotoCD to PPM (colour) |
-| `icontopbm` | Sun icon to PBM (bitmap) |
-| `ilbmtoppm` | IFF/ILBM to PPM (colour) |
-| `imgtoppm` | AT&T Image-8 to PPM (colour)<br>**How:** Reads the Img Software Set (AT&T Image-8) format; gemtopbm reads GEM IMG. Feed it an Image-8 file. |
-| `lispmtopgm` | Lisp machine to PGM (greyscale)<br>**How:** This build handles at most 16 grey levels and says "depth is too large" otherwise. Run the image through `pnmdepth 15' before pgmtolispm. |
-| `macptopbm` | MacPaint to PBM (bitmap) |
-| `mgrtopbm` | MGR to PBM (bitmap) |
-| `mtvtoppm` | MTV ray tracer to PPM (colour) |
-| `pcxtoppm` | PCX to PPM (colour)<br>**How:** Cannot read a pipe -- it seeks backwards in its input and stops with "error seeking past header". Write the PCX to a file and pass the filename. sgitopnm has the same limitation. |
-| `pi1toppm` | Atari PI1 to PPM (colour) |
-| `pi3topbm` | Atari PI3 to PBM (bitmap) |
-| `picttoppm` | PICT to PPM (colour) |
-| `pjtoppm` | HP PaintJet to PPM (colour) |
-| `pktopbm` | packed font to PBM (bitmap) |
-| `psidtopgm` | PostScript image to PGM (greyscale)<br>**How:** Reads the hex digits of PostScript `image' operator data: `psidtopgm <width> <height> <bits/sample>' then the hex on standard input. `echo ffffffff00000000 \| psidtopgm 4 2 8' makes a 4x2 graymap, a white row over a black one. |
-| `qrttoppm` | QRT ray tracer to PPM (colour) |
+| `asciitopgm` | reads a text picture -- ASCII art -- as a greymap, each character's darkness a grey level<br>`usage:  asciitopgm [-d <val>] height width [asciifile]` |
+| `atktopbm` | Andrew Toolkit raster to PBM |
+| `bioradtopgm` | Bio-Rad confocal microscope image to PGM; -image picks one of a stack<br>`usage:  bioradtopgm [-image#] [Bioradfile]` |
+| `bmptoppm` | Windows or OS/2 BMP to PPM<br>`usage:  bmptoppm [bmpfile]` |
+| `brushtopbm` | Xerox doodle brush to PBM |
+| `cmuwmtopbm` | CMU window manager bitmap to PBM |
+| `fitstopnm` | FITS, the astronomers' image format, to PNM; -image picks a plane, -min and -max set the scaling<br>`usage:  fitstopnm [-image N] [-noraw] [-scanmax] [-printmax] [-min f] [-max f] [FITSfile]` |
+| `fstopgm` | Usenix FaceSaver image to PGM |
+| `g3topbm` | Group 3 fax file to PBM<br>`usage:  g3topbm [-kludge][-reversebits][-stretch] [g3file]` |
+| `gemtopbm` | GEM .img (Atari and PC) to PBM<br>`usage:  gemtopbm [-debug] [gemfile]` |
+| `giftopnm` | GIF to PNM; -image picks one of several in the file, -comments prints its comments<br>**How:** Reads a GIF into the PNM formats the other 168 converters work on -- try `giftopnm /dd/DEMO/gulls.gif \| pnmfile'. IMPORTANT for anyone piping images out of the emulator: os9exec turns CR into CRLF on the way to the host, so a raw image containing byte 13 arrives corrupted. Keep binary inside OS-9 and convert with pnmnoraw before taking a picture anywhere else. DOC/README-NETPBM has the details. |
+| `gouldtoppm` | Gould scanner file to PPM |
+| `hipstopgm` | HIPS, the image-processing package's format, to PGM |
+| `hpcdtoppm` | Kodak Photo CD image to PPM, at one of five resolutions<br>`Error in Arguments !` |
+| `icontopbm` | Sun icon to PBM |
+| `ilbmtoppm` | Amiga IFF ILBM to PPM, HAM and extra-halfbrite pictures included<br>`usage:  ilbmtoppm [-verbose] [-ignore <chunkID>] [-isham\|-isehb] [-adjustcolors] [ilbmfile]` |
+| `imgtoppm` | Img-whatnot, a PC paint program's format, to PPM<br>**How:** Reads the Img Software Set (AT&T Image-8) format; gemtopbm reads GEM IMG. Feed it an Image-8 file. |
+| `lispmtopgm` | Lisp machine bitmap to PGM<br>**How:** This build handles at most 16 grey levels and says "depth is too large" otherwise. Run the image through `pnmdepth 15' before pgmtolispm. |
+| `macptopbm` | MacPaint to PBM<br>`usage:  macptopbm [-extraskip N] [macpfile]` |
+| `mgrtopbm` | MGR window-manager bitmap to PBM |
+| `mtvtoppm` | MTV or PRT ray-tracer output to PPM |
+| `pcxtoppm` | PCX, PC Paintbrush's format, to PPM<br>**How:** Cannot read a pipe -- it seeks backwards in its input and stops with "error seeking past header". Write the PCX to a file and pass the filename. sgitopnm has the same limitation. |
+| `pi1toppm` | Atari Degas .pi1 to PPM |
+| `pi3topbm` | Atari Degas .pi3 to PBM<br>`usage:  pi3topbm [-debug] [pi3file]` |
+| `picttoppm` | Macintosh PICT to PPM<br>`usage:  picttoppm [-verbose] [-fullres] [-noheader] [-quickdraw] [-fontdir file] [pictfile]` |
+| `pjtoppm` | HP PaintJet file to PPM |
+| `pktopbm` | TeX packed-font (.pk) characters to PBM, one bitmap per character<br>`pktopbm: This is PKtoPBM, version 2.4` |
+| `psidtopgm` | a PostScript image -- the hex data of an `image' operator -- to PGM, given its width, height and bits per sample<br>**How:** Reads the hex digits of PostScript `image' operator data: `psidtopgm <width> <height> <bits/sample>' then the hex on standard input. `echo ffffffff00000000 \| psidtopgm 4 2 8' makes a 4x2 graymap, a white row over a black one. |
+| `qrttoppm` | QRT ray-tracer output to PPM |
 | `rasttopnm` | Sun raster to PNM |
-| `rawtopgm` | raw bytes to PGM (greyscale) |
-| `rawtoppm` | raw bytes to PPM (colour) |
-| `rgb3toppm` | rgb3 to PPM (colour) |
-| `sgitopnm` | SGI to PNM<br>**How:** Cannot read a pipe -- same as pcxtoppm. Give it a filename or it reports "premature EOF". |
-| `sirtopnm` | sir to PNM |
-| `sldtoppm` | AutoCAD slide to PPM (colour) |
-| `spctoppm` | Atari Spectrum to PPM (colour) |
-| `spottopgm` | spot to PGM (greyscale) |
-| `sputoppm` | Atari Spectrum to PPM (colour) |
-| `tgatoppm` | Targa to PPM (colour) |
-| `xbmtopbm` | X bitmap to PBM (bitmap) |
-| `ximtoppm` | xim to PPM (colour) |
-| `xpmtoppm` | XPM to PPM (colour) |
-| `xvminitoppm` | xvmini to PPM (colour) |
-| `xwdtopnm` | X window dump to PNM |
-| `ybmtopbm` | ybm to PBM (bitmap) |
-| `yuvsplittoppm` | yuvsplit to PPM (colour) |
-| `yuvtoppm` | Abekas YUV to PPM (colour)<br>**How:** yuvtoppm <width> <height>. The dimensions are not stored in a YUV file, so you must supply the ones ppmtoyuv started from. |
-| `zeisstopnm` | Zeiss confocal to PNM |
+| `rawtopgm` | raw grey bytes to PGM, given the width and height; -headerskip drops a header<br>`usage:  rawtopgm [-headerskip N] [-rowskip N] [-tb\|-topbottom] [<width> <height>] [rawfile]` |
+| `rawtoppm` | raw RGB bytes to PPM, given the width and height and the byte order<br>`usage:  rawtoppm [-headerskip N] [-rowskip N] [-rgb\|-rbg\|-grb\|-gbr\|-brg\|-bgr] [-interpixel\|-interrow] <width> <height> [rawfile]` |
+| `rgb3toppm` | three greymaps -- red, green and blue -- combined into one PPM; ppmtorgb3 splits it<br>`usage:  rgb3toppm <red pgmfile> <green pgmfile> <blue pgmfile>` |
+| `sgitopnm` | SGI image to PNM<br>**How:** Cannot read a pipe -- same as pcxtoppm. Give it a filename or it reports "premature EOF". |
+| `sirtopnm` | Solitaire image recorder file to PNM |
+| `sldtoppm` | AutoCAD slide to PPM<br>`usage:  sldtoppm [-verbose] [-info] [-adjust] [-scale <s>]` |
+| `spctoppm` | Atari compressed Spectrum picture to PPM |
+| `spottopgm` | SPOT satellite image to PGM |
+| `sputoppm` | Atari uncompressed Spectrum picture to PPM |
+| `tgatoppm` | TrueVision Targa to PPM<br>`usage:  tgatoppm  [-debug] [tgafile]` |
+| `xbmtopbm` | X11 or X10 bitmap, as C source, to PBM |
+| `ximtoppm` | Xim image to PPM |
+| `xpmtoppm` | X pixmap (XPM) to PPM |
+| `xvminitoppm` | XV thumbnail (.xvpics) to PPM |
+| `xwdtopnm` | X window dump (xwd) to PNM |
+| `ybmtopbm` | Bennet Yee `face' bitmap to PBM |
+| `yuvsplittoppm` | three YUV planes -- basename.Y, .U and .V, 4:2:0 -- to PPM, given the width and height<br>`usage:  yuvsplittoppm <basename> <width> <height> [-ccir601]` |
+| `yuvtoppm` | Abekas YUV bytes to PPM, given the width and height<br>**How:** yuvtoppm <width> <height>. The dimensions are not stored in a YUV file, so you must supply the ones ppmtoyuv started from. |
+| `zeisstopnm` | Zeiss confocal microscope image to PNM<br>`usage:  zeisstopnm [-pgm\|-ppm] [Zeissfile]` |
 
 **NETPBM: out of PNM**
 
 | | |
 |---|---|
-| `pbmto10x` | PBM (bitmap) to 10x |
-| `pbmto4425` | PBM (bitmap) to 4425 |
-| `pbmtoascii` | PBM (bitmap) to ASCII art<br>**How:** Prints an image as characters, so NETPBM can be seen on an ordinary terminal with no graphics. Try `pnminvert /dd/DEMO/sphere.pgm \| pgmtopbm -threshold -value 0.5 \| pbmtoascii'. |
-| `pbmtoatk` | PBM (bitmap) to Andrew toolkit |
-| `pbmtobbnbg` | PBM (bitmap) to bbnbg |
-| `pbmtocmuwm` | PBM (bitmap) to CMU window manager |
-| `pbmtoepsi` | PBM (bitmap) to epsi |
-| `pbmtoepson` | PBM (bitmap) to epson |
-| `pbmtog3` | PBM (bitmap) to Group 3 fax |
-| `pbmtogem` | PBM (bitmap) to GEM |
-| `pbmtogo` | PBM (bitmap) to go |
-| `pbmtoicon` | PBM (bitmap) to Sun icon |
-| `pbmtolj` | PBM (bitmap) to lj |
-| `pbmtoln03` | PBM (bitmap) to ln03 |
-| `pbmtolps` | PBM (bitmap) to lps |
-| `pbmtomacp` | PBM (bitmap) to MacPaint |
-| `pbmtomgr` | PBM (bitmap) to MGR |
-| `pbmtopgm` | PBM (bitmap) to PGM (greyscale) |
-| `pbmtopi3` | PBM (bitmap) to Atari PI3 |
-| `pbmtopk` | PBM (bitmap) to packed font<br>**How:** A TeX font tool: it wants a pkfile, a .tfm metric file and a resolution. Point it at a .tfm. |
-| `pbmtoplot` | PBM (bitmap) to plot |
-| `pbmtoptx` | PBM (bitmap) to ptx |
-| `pbmtox10bm` | PBM (bitmap) to X10 bitmap |
-| `pbmtoxbm` | PBM (bitmap) to X bitmap |
-| `pbmtoybm` | PBM (bitmap) to ybm |
-| `pbmtozinc` | PBM (bitmap) to zinc |
-| `pgmtofs` | PGM (greyscale) to Usenix FaceSaver |
-| `pgmtolispm` | PGM (greyscale) to Lisp machine |
-| `pgmtopbm` | PGM (greyscale) to PBM (bitmap)<br>**How:** WITHOUT -threshold IT IS NOT REPRODUCIBLE: its dither differs every run, so any assertion on a length or a checksum downstream of it flaps. `pgmtopbm -threshold' when you need the same answer twice. |
-| `pgmtoppm` | PGM (greyscale) to PPM (colour) |
-| `pnmtoddif` | PNM to ddif |
-| `pnmtofits` | PNM to FITS |
-| `pnmtops` | PNM to PostScript |
-| `pnmtorast` | PNM to Sun raster |
-| `pnmtosgi` | PNM to SGI |
-| `pnmtosir` | PNM to sir |
-| `pnmtoxwd` | PNM to X window dump |
-| `ppmtoacad` | PPM (colour) to acad |
-| `ppmtobmp` | PPM (colour) to BMP |
-| `ppmtogif` | PPM (colour) to GIF |
-| `ppmtoicr` | PPM (colour) to icr |
-| `ppmtoilbm` | PPM (colour) to IFF/ILBM |
-| `ppmtomap` | PPM (colour) to map |
-| `ppmtomitsu` | PPM (colour) to mitsu |
-| `ppmtopcx` | PPM (colour) to PCX |
-| `ppmtopgm` | PPM (colour) to PGM (greyscale) |
-| `ppmtopi1` | PPM (colour) to Atari PI1 |
-| `ppmtopict` | PPM (colour) to PICT |
-| `ppmtopj` | PPM (colour) to HP PaintJet |
-| `ppmtopjxl` | PPM (colour) to pjxl |
-| `ppmtopuzz` | PPM (colour) to puzz |
-| `ppmtorgb3` | PPM (colour) to rgb3 |
-| `ppmtosixel` | PPM (colour) to sixel |
-| `ppmtotga` | PPM (colour) to Targa |
-| `ppmtouil` | PPM (colour) to uil |
-| `ppmtoxpm` | PPM (colour) to XPM |
-| `ppmtoyuv` | PPM (colour) to Abekas YUV |
-| `ppmtoyuvsplit` | PPM (colour) to yuvsplit<br>**How:** It takes a BASENAME and writes THREE files beside the DATA directory, not to standard output: <name>.Y, .U and .V. 4:2:0 subsampling, so a 32x16 image gives .Y = 512 bytes and .U = .V = 128. `yuvsplittoppm <name> <w> <h>' brings them back. |
+| `pbmto10x` | PBM to Gemini 10X printer graphics |
+| `pbmto4425` | PBM to AT&T 4425 terminal graphics<br>`usage:  pbmto4425 [pbmfile]` |
+| `pbmtoascii` | PBM to ASCII art, one character per 1x2 or 2x4 block of pixels -- how to see an image on a terminal<br>**How:** Prints an image as characters, so NETPBM can be seen on an ordinary terminal with no graphics. Try `pnminvert /dd/DEMO/sphere.pgm \| pgmtopbm -threshold -value 0.5 \| pbmtoascii'. |
+| `pbmtoatk` | PBM to Andrew Toolkit raster |
+| `pbmtobbnbg` | PBM to BBN BitGraph terminal graphics |
+| `pbmtocmuwm` | PBM to CMU window manager bitmap |
+| `pbmtoepsi` | PBM to an encapsulated PostScript preview bitmap (EPSI)<br>`usage:  pbmtoepsi [-bbonly] [pbmfile]` |
+| `pbmtoepson` | PBM to Epson printer graphics |
+| `pbmtog3` | PBM to Group 3 fax file<br>`usage:  pbmtog3  [-reversebits] [pbmfile]` |
+| `pbmtogem` | PBM to GEM .img |
+| `pbmtogo` | PBM to GraphOn terminal graphics |
+| `pbmtoicon` | PBM to Sun icon |
+| `pbmtolj` | PBM to HP LaserJet graphics, at 75 to 300 dots per inch<br>`usage:  pbmtolj [-noreset\|-float\|-resolution N] [pbmfile]` |
+| `pbmtoln03` | PBM to DEC LN03 printer graphics<br>`usage:  pbmtoln03 [-left <nn>] [-right <nn>] [-top <nn>] [-bottom <nn>] [-formlength <nn>] [pbmfile]` |
+| `pbmtolps` | PBM to PostScript for a DEC LPS printer, as line drawing |
+| `pbmtomacp` | PBM to MacPaint<br>`usage:  pbmtomacp [-l left] [-r right] [-b bottom] [-t top] [pbmfile]` |
+| `pbmtomgr` | PBM to MGR window-manager bitmap |
+| `pbmtopgm` | blurs a bitmap into a greymap by averaging over a window w pixels by h<br>`usage:  pbmtopgm <w> <h> [pbmfile]` |
+| `pbmtopi3` | PBM to Atari Degas .pi3 |
+| `pbmtopk` | PBM character bitmaps to a TeX packed font (.pk) and its .tfm metrics<br>**How:** A TeX font tool: it wants a pkfile, a .tfm metric file and a resolution. Point it at a .tfm. |
+| `pbmtoplot` | PBM to a Unix plot(5) file |
+| `pbmtoptx` | PBM to Printronix printer graphics |
+| `pbmtox10bm` | PBM to X10 bitmap, as C source |
+| `pbmtoxbm` | PBM to X11 bitmap, as C source |
+| `pbmtoybm` | PBM to Bennet Yee `face' bitmap |
+| `pbmtozinc` | PBM to Zinc Interface Library bitmap, as C source |
+| `pgmtofs` | PGM to Usenix FaceSaver image |
+| `pgmtolispm` | PGM to Lisp machine bitmap |
+| `pgmtopbm` | greymap to bitmap by dithering -- Floyd-Steinberg, ordered or clustered -- or by a plain threshold (-threshold -value)<br>**How:** WITHOUT -threshold IT IS NOT REPRODUCIBLE: its dither differs every run, so any assertion on a length or a checksum downstream of it flaps. `pgmtopbm -threshold' when you need the same answer twice. |
+| `pgmtoppm` | colours a greymap: `pgmtoppm colour' runs black to white through the colour, `pgmtoppm c1,c2' from one colour to another<br>`usage:  pgmtoppm <colorspec> [pgmfile]` |
+| `pnmtoddif` | PNM to DEC DDIF image<br>`usage:  pnmtoddif [-resolution x y] [pnmfile [ddiffile]]` |
+| `pnmtofits` | PNM to FITS<br>`usage:  pnmtofits [-max f] [-min f] [pnmfile]` |
+| `pnmtops` | PNM to PostScript, scaled and centred on the page; -rle compresses<br>`usage:  pnmtops [-scale <x>] [-dpi <n>] [-width <n>] [-height <n>] [-rle\|-runlength] [-center\|-nocenter] [-turn\|-noturn] [pnmfile]` |
+| `pnmtorast` | PNM to Sun raster<br>`usage:  pnmtorast [-standard\|-rle] [pnmfile]` |
+| `pnmtosgi` | PNM to SGI image<br>`usage:  pnmtosgi [-verbatim\|-rle] [-imagename <name>] [pnmfile]` |
+| `pnmtosir` | PNM to Solitaire image recorder file |
+| `pnmtoxwd` | PNM to X window dump<br>`usage:  pnmtoxwd [-pseudodepth n] [-directcolor] [pnmfile]` |
+| `ppmtoacad` | PPM to AutoCAD slide or DXB file<br>`usage:  ppmtoacad [-poly] [-dxb] [-white] [-background <col>]` |
+| `ppmtobmp` | PPM to Windows or OS/2 BMP<br>`usage:  ppmtobmp [-windows] [-os2] [ppmfile]` |
+| `ppmtogif` | PPM to GIF; -interlace, and -transparent names a colour<br>`usage:  ppmtogif [-interlace] [-sort] [-map mapfile] [-transparent color] [ppmfile]` |
+| `ppmtoicr` | PPM to NCSA ICR (Telnet) graphics<br>`usage:  ppmtoicr [-windowname windowname] [-expand expand] [-display display] [-rle] [ppmfile]` |
+| `ppmtoilbm` | PPM to Amiga IFF ILBM, HAM included<br>`usage:  ppmtoilbm [-ecs\|-aga] [-ham6\|-ham8] [-maxplanes\|-mp n] [-fixplanes\|-fp n] [-normal\|-hamif\|-hamforce\|-24if\|-24force\|-dcif\|-dcforce\|-cmaponly] [-hambits\|-hamplanes n] [-dcbits\|-dcplanes r g b] [-hires] [-lace] [-floyd\|-fs] [-compress\|-nocompress] [-cmethod none\|byterun1] [-map ppmfile] [-savemem] [ppmfile]` |
+| `ppmtomap` | lists the colours in a PPM as a colour-map image, one pixel per colour<br>`usage:  ppmtomap [-sort] [-square] [ppmfile]` |
+| `ppmtomitsu` | PPM to Mitsubishi S340-10 dye-sublimation printer graphics<br>`usage:  ppmtomitsu [-sharpness <1-4>] [-enlarge <1-3>] [-media <a,a4,as,a4s>] [-copy <1-9>] [-tiny] [-dpi300] [ppmfile]` |
+| `ppmtopcx` | PPM to PCX<br>`usage:  ppmtopcx [-24bit] [-packed] [ppmfile]` |
+| `ppmtopgm` | colour to greymap, by luminance |
+| `ppmtopi1` | PPM to Atari Degas .pi1, sixteen colours |
+| `ppmtopict` | PPM to Macintosh PICT |
+| `ppmtopj` | PPM to HP PaintJet graphics<br>`usage:  ppmtopj [-center] [-xpos <pos>] [-ypos <pos>] [-gamma <val>] [-back <dark\|lite>] [-rle] [-render <none\|snap\|bw\|dither\|diffuse\|monodither\|monodiffuse\|clusterdither\|monoclusterdither>] [ppmfile]` |
+| `ppmtopjxl` | PPM to HP PaintJet XL graphics (PCL)<br>`usage:  ppmtopjxl [-nopack] [-gamma <n>] [-presentation] [-dark]` |
+| `ppmtopuzz` | PPM to the X11 puzzle game's file |
+| `ppmtorgb3` | splits a PPM into three greymaps, .red, .grn and .blu, written beside the input |
+| `ppmtosixel` | PPM to DEC sixel graphics<br>`usage:  ppmtosixel [-raw] [-margin] [ppmfile]` |
+| `ppmtotga` | PPM to TrueVision Targa<br>`usage:  ppmtotga [-name <tganame>] [-mono\|-cmap\|-rgb] [-norle] [ppmfile]` |
+| `ppmtouil` | PPM to Motif UIL icon source<br>`usage:  ppmtouil [-name <uilname>] [ppmfile]` |
+| `ppmtoxpm` | PPM to X pixmap (XPM)<br>`usage:  ppmtoxpm [-name <xpm-name>] [-rgb <rgb-textfile>] [ppmfile]` |
+| `ppmtoyuv` | PPM to Abekas YUV bytes |
+| `ppmtoyuvsplit` | PPM to three YUV planes -- basename.Y, .U and .V, 4:2:0 -- written in the data directory<br>**How:** It takes a BASENAME and writes THREE files beside the DATA directory, not to standard output: <name>.Y, .U and .V. 4:2:0 subsampling, so a 32x16 image gives .Y = 512 bytes and .U = .V = 128. `yuvsplittoppm <name> <w> <h>' brings them back. |
 
 **Plotting**
 
 | | |
 |---|---|
 | `gnuplot` | &#9733; gnuplot 2.0 -- plots functions and data files.  Built-in help (SYS/gnuplot.gih); demos and sample data in DOC/gnuplot/demo<br>**How:** Type `set term' first -- it lists every output device it knows, and refuses to plot until you choose one. Its whole manual is built in: type `help'. Demos and sample data are in DOC/gnuplot/demo. Needs Microware's cio. |
-| `tplot` | &#9733; Plot data to a plotter.  Asks for an interval and a range and drives the output device; written for an Atari ST |
+| `tplot` | &#9733; Plot data to a plotter.  Asks for an interval and a range and drives the output device; written for an Atari ST<br>`Usage : hiplot <-opt1> .. <-optn> <file1> .. <filen>` |
 
 **Ray tracing & 3D**
 
@@ -1136,21 +1136,21 @@
 |---|---|
 | `mtst` | &#9733; spline curve fitting - test driver |
 | `rayshade` | ray tracer 4.0.  It renders, and requires Microware's `shell' on the execution path: it builds its scene through popen(), which OS-9's C library implements by forking a program of exactly that name.  It also wants `cccp' in the data directory, where the forked shell looks.  With both, it renders and reports its statistics.  DOC/rayshade has the two lines.<br>**How:** Ray tracer 4.0, and it renders. REQUIRES MICROWARE'S `shell` on your execution path -- it builds its scene through popen(), and OS-9's C library implements popen() by forking a program of exactly that name. It also wants `cccp` in the DATA directory. DOC/rayshade has the two lines. |
-| `rsconvert` | convert rayshade image output between formats.  Run here it prints `/* Converted by rsconvert */' and then stops with a stack overflow, with or without a file named. |
+| `rsconvert` | converts rayshade image output between formats. Run here it prints `/* Converted by rsconvert */' and stops with a stack overflow, with or without a file named |
 
 **Viewers**
 
 | | |
 |---|---|
-| `mgif` | GIF inspector and viewer.  `mgif -i file.gif' reports a GIF's structure and works anywhere; DISPLAYING one needs an Atari ST, because flicker.c writes to ST graphics memory.  Source in SRC/mgif -- its GIF decoder is portable and is the part worth having<br>**How:** `mgif -i file.gif' inspects a GIF and prints its structure -- that works on any terminal. Displaying an image needs an Atari ST, because it writes straight to ST graphics memory. Try it on /dd/DEMO/gulls.gif. |
+| `mgif` | a GIF inspector and viewer. `mgif -i file.gif' reports a GIF's structure and works on any terminal; displaying one needs an Atari ST, because flicker.c writes to ST graphics memory. Source in SRC/mgif; its GIF decoder is portable and is the part worth having<br>**How:** `mgif -i file.gif' inspects a GIF and prints its structure -- that works on any terminal. Displaying an image needs an Atari ST, because it writes straight to ST graphics memory. Try it on /dd/DEMO/gulls.gif. |
 
 **X11**
 
 | | |
 |---|---|
-| `basicwin` | X11 demo - basic window (needs an X server) |
+| `basicwin` | the classic X11 demonstration: it opens a window on an X display and draws into it |
 | `X11R6shl` | X11R6 shared library loader |
-| `xengine` | X11 demo - engine animation (needs an X server) |
+| `xengine` | an X11 demonstration: an engine animated in a window on an X display |
 
 </details>
 

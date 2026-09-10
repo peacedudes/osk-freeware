@@ -1,0 +1,2 @@
+$ rawtoppm -?
+usage:  rawtoppm [-headerskip N] [-rowskip N] [-rgb|-rbg|-grb|-gbr|-brg|-bgr] [-interpixel|-interrow] <width> <height> [rawfile]

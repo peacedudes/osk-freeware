@@ -1,0 +1,2 @@
+$ zeisstopnm -?
+usage:  zeisstopnm [-pgm|-ppm] [Zeissfile]

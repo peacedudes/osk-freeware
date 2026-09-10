@@ -1,0 +1,15 @@
+$ wrjpgcom.070 -?
+wrjpgcom inserts a textual comment in a JPEG file.
+You can add to or replace any existing comment(s).
+Usage: wrjpgcom.070 [switches] [inputfile]
+Switches (names may be abbreviated):
+  -replace         Delete any existing comments
+  -comment "text"  Insert comment with given text
+  -cfile name      Read comment from named file
+Notice that you must put quotes around the comment text
+when you use -comment.
+If you do not give either -comment or -cfile on the command line,
+then the comment text is read from standard input.
+It can be multiple lines, up to 65000 characters total.
+You must specify an input JPEG file name when supplying
+comment text from standard input.

@@ -1,0 +1,2 @@
+$ pgmramp -?
+usage:  pgmramp -lr|-tb|-rectangle|-ellipse <width> <height>

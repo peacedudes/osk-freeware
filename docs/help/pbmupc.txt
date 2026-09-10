@@ -1,0 +1,2 @@
+$ pbmupc -?
+usage:  pbmupc [-s1|-s2] <type> <manufac> <product>

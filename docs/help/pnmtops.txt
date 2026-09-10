@@ -1,0 +1,2 @@
+$ pnmtops -?
+usage:  pnmtops [-scale <x>] [-dpi <n>] [-width <n>] [-height <n>] [-rle|-runlength] [-center|-nocenter] [-turn|-noturn] [pnmfile]

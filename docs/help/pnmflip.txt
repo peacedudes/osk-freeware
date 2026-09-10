@@ -1,0 +1,4 @@
+$ pnmflip -?
+usage:  pnmflip [-leftright|-lr] [-topbottom|-tb] [-transpose|-xy]
+            [-rotate90|-r90|-ccw] [-rotate270|r270|-cw]
+            [-rotate180|-r180] [pnmfile]

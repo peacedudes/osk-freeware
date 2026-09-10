@@ -1,0 +1,4 @@
+$ pgmtoppm -?
+usage:  pgmtoppm <colorspec> [pgmfile]
+                 <colorspec1>,<colorspec2> [pgmfile]
+                 -map mapfile [pgmfile]

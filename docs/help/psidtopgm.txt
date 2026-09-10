@@ -1,0 +1,2 @@
+$ psidtopgm -?
+usage:  psidtopgm <width> <height> <bits/sample> [imagedata]

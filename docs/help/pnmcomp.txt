@@ -1,0 +1,2 @@
+$ pnmcomp -?
+usage:  pnmcomp [-invert] [-xoff N] [-yoff N] [-alpha file] overlay [image] [output]

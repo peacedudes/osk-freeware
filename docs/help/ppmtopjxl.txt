@@ -1,0 +1,7 @@
+$ ppmtopjxl -?
+usage:  ppmtopjxl [-nopack] [-gamma <n>] [-presentation] [-dark]
+            [-diffuse] [-cluster] [-dither]
+            [-xshift <s>] [-yshift <s>]
+            [-xshift <s>] [-yshift <s>]
+            [-xsize|-width|-xscale <s>] [-ysize|-height|-yscale <s>]
+            [ppmfile]

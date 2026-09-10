@@ -1,0 +1,2 @@
+$ pnmdepth -?
+usage:  pnmdepth newmaxval [pnmfile]

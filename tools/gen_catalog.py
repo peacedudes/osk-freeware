@@ -37,10 +37,12 @@ def from_index(root):
     """name -> {desc, section}, plus the set of starred names.
 
     Two blocks in INDEX list names in COLUMNS rather than one per line: the
-    "All 92" starred block and the netpbm/gcc directories. Read as ordinary
-    entries, the first name on a column line acquires the next three as its
+    "All N" starred block and the gcc directory. Read as ordinary entries,
+    the first name on a column line acquires the next three as its
     description and those three vanish -- which is how 42 of 169 netpbm
-    programs used to survive.
+    programs used to survive, until 2026-09-09, when the netpbm section
+    was rewritten as one entry per program with a real description and
+    left the columnar list.
     """
     lines = read(root, "DOC/INDEX").split("\n")
     # The gcc heading reads "/dd/CMDS/GCC139 and /dd/CMDS/GCC2 --", so the
@@ -52,7 +54,7 @@ def from_index(root):
     # wrapped continuation lines (single-spaced prose) from matching.
     ENTRY   = re.compile(r"^ {1,4}(\*?) ?([A-Za-z0-9_.][\w.]*)\s{2,}(\S.*)$")
     # SECTION captures to the first space, so the gcc heading yields this:
-    COLUMNAR = ("CMDS/NETPBM", "CMDS/GCC139")
+    COLUMNAR = ("CMDS/GCC139",)
     # Continuations sit far enough right that no entry could match.
     CONT     = re.compile(r"^ {10,}\S")
 
@@ -129,36 +131,6 @@ def netpbm_groups(root):
             for tok in l.split():
                 out[tok] = group
     return out
-
-
-# netpbm names are <from>to<to>; the section documents the convention. Nothing
-# gives these 169 an individual description, so derive one rather than ship a
-# blank row, which is what made them undiscoverable.
-FORMATS = {
- "pnm":"PNM","pbm":"PBM (bitmap)","pgm":"PGM (greyscale)","ppm":"PPM (colour)",
- "gif":"GIF","jpeg":"JPEG","tiff":"TIFF","bmp":"BMP","pcx":"PCX","ps":"PostScript",
- "ascii":"ASCII art","fits":"FITS","xwd":"X window dump","x10bm":"X10 bitmap",
- "xbm":"X bitmap","xpm":"XPM","sgi":"SGI","sun":"Sun raster","rast":"Sun raster",
- "macp":"MacPaint","pi1":"Atari PI1","pi3":"Atari PI3","pict":"PICT","tga":"Targa",
- "ilbm":"IFF/ILBM","icon":"Sun icon","g3":"Group 3 fax","hips":"HIPS","mgr":"MGR",
- "img":"AT&T Image-8","gem":"GEM","cmuwm":"CMU window manager","atk":"Andrew toolkit",
- "brush":"Xerox brush","fs":"Usenix FaceSaver","gould":"Gould scanner",
- "mtv":"MTV ray tracer","qrt":"QRT ray tracer","raw":"raw bytes","spc":"Atari Spectrum",
- "spu":"Atari Spectrum","yuv":"Abekas YUV","zeiss":"Zeiss confocal",
- "biorad":"Bio-Rad confocal","lispm":"Lisp machine","pj":"HP PaintJet",
- "pk":"packed font","pcd":"PhotoCD","hpcd":"PhotoCD","sld":"AutoCAD slide",
- "psid":"PostScript image",
-}
-
-def derive_netpbm_desc(name):
-    m = re.match(r"^(.+?)to(.+)$", name)
-    if not m:
-        return "netpbm image tool"
-    a, b = m.group(1).lower(), m.group(2).lower()
-    if a in FORMATS or b in FORMATS:
-        return "%s to %s" % (FORMATS.get(a, a), FORMATS.get(b, b))
-    return "netpbm image tool"
-
 
 
 # ---- the program's own help text -------------------------------------
@@ -450,10 +422,6 @@ def gather(root, catfile):
     from_depends(root, progs)
     from_effo(root, progs)
     from_tree(root, progs, starred)
-    for p in progs.values():
-        if p.get("section") == "CMDS/NETPBM" and not p["desc"]:
-            p["desc"] = derive_netpbm_desc(p["name"])
-
     cats  = load_categories(catfile)
     howto = load_howto(os.path.join(os.path.dirname(os.path.abspath(__file__)),
                                     "howto.psv"))

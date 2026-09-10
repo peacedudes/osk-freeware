@@ -1,0 +1,2 @@
+$ pnmshear -?
+usage:  pnmshear [-noantialias] <angle> [pnmfile]

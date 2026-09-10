@@ -1,0 +1,2 @@
+$ ppmtoyuvsplit
+usage:  ppmtoyuvsplit basename [ppmfile]

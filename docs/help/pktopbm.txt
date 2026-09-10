@@ -1,0 +1,3 @@
+$ pktopbm
+pktopbm: This is PKtoPBM, version 2.4
+usage:  pktopbm pkfile[.pk] [[-x width] [-y height] [-c num] pbmfile]...

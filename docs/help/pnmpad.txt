@@ -1,0 +1,2 @@
+$ pnmpad -?
+usage:  pnmpad [-white|-black] [-l#] [-r#] [-t#] [-b#] [pnmfile]

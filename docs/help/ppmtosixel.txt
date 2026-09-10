@@ -1,0 +1,2 @@
+$ ppmtosixel -?
+usage:  ppmtosixel [-raw] [-margin] [ppmfile]

@@ -1,0 +1,2 @@
+$ pbmtoepsi -?
+usage:  pbmtoepsi [-bbonly] [pbmfile]

@@ -1,0 +1,2 @@
+$ pgmoil -?
+usage:  pgmoil [-n <n>] [pgmfile]

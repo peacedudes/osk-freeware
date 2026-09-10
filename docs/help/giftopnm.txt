@@ -1,0 +1,2 @@
+$ giftopnm -?
+usage:  giftopnm [-verbose] [-comments] [-image N] [GIFfile]

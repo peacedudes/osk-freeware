@@ -1,0 +1,2 @@
+$ pgmkernel -?
+usage:  pgmkernel [-weight f] width [height]

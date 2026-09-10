@@ -1,0 +1,9 @@
+$ pbmtopk
+pbmtopk: This is PBMtoPK, version 2.4
+usage:  pbmtopk pkfile[.pk] tfmfile[.tfm] dpi [-s designsize] [-p num param...]
+        [-C codingscheme ] [-F family] [-c num | <char>]...
+   <char> is:
+        [-W tfmwidth] [-H tfmheight] [-D tfmdepth] [-I ital_corr] [-h horiz]
+        [-v vert] [-x xoffset] [-y yoffset] file
+    or:
+        -f optfile

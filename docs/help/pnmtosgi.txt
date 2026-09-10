@@ -1,0 +1,2 @@
+$ pnmtosgi -?
+usage:  pnmtosgi [-verbatim|-rle] [-imagename <name>] [pnmfile]

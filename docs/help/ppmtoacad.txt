@@ -1,0 +1,3 @@
+$ ppmtoacad -?
+usage:  ppmtoacad [-poly] [-dxb] [-white] [-background <col>]
+                  [-aspect <f>] [-8] [ppmfile]

@@ -1,0 +1,2 @@
+$ pbmreduce -?
+usage:  pbmreduce [-floyd|-fs | -threshold] [-value <val>] N [pbmfile]

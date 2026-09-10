@@ -1,0 +1,2 @@
+$ yuvsplittoppm -?
+usage:  yuvsplittoppm <basename> <width> <height> [-ccir601]

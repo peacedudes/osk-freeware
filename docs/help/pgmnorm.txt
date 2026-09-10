@@ -1,0 +1,2 @@
+$ pgmnorm -?
+usage:  pgmnorm [-bpercent N | -bvalue N] [-wpercent N | -wvalue N] [pgmfile]

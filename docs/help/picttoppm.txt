@@ -1,0 +1,2 @@
+$ picttoppm -?
+usage:  picttoppm [-verbose] [-fullres] [-noheader] [-quickdraw] [-fontdir file] [pictfile]

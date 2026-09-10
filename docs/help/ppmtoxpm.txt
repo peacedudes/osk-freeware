@@ -1,0 +1,2 @@
+$ ppmtoxpm -?
+usage:  ppmtoxpm [-name <xpm-name>] [-rgb <rgb-textfile>] [ppmfile]

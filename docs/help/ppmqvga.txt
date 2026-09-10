@@ -1,0 +1,2 @@
+$ ppmqvga -?
+usage:  ppmqvga [-dither] [-verbose] [ppmfile]

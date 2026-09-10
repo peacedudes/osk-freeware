@@ -1,0 +1,3 @@
+$ ppmdim -?
+usage:  ppmdim dimfactor [ppmfile]
+        dimfactor: 0.0 = total blackness, 1.0 = original picture

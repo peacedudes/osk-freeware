@@ -1,0 +1,2 @@
+$ pbmpscale
+usage:  pbmpscale scale [pbmfile]

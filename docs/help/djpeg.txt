@@ -1,0 +1,15 @@
+$ djpeg -?
+usage: djpeg [switches] [inputfile]
+Switches (names may be abbreviated):
+  -colors N      Reduce image to no more than N colors
+  -gif           Select GIF output format
+  -pnm           Select PBMPLUS (PPM/PGM) output format (default)
+  -quantize N    Same as -colors N
+  -targa         Select Targa output format
+Switches for advanced users:
+  -blocksmooth   Apply cross-block smoothing
+  -grayscale     Force grayscale output
+  -nodither      Don't use dithering in quantization
+  -onepass       Use 1-pass quantization (fast, low quality)
+  -maxmemory N   Maximum memory to use (in kbytes)
+  -verbose  or  -debug   Emit debug output
