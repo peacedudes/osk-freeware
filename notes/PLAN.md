@@ -279,6 +279,7 @@ The rules for each card, on top of the 2026-09-03 ones below:
 | 2026-09-03 morning | 438 of 913 | none -- the audit's first honest count |
 | 2026-09-03 evening | 598 of 913 | Amusements, Documentation, Editors, Shells, Time & calendar, Printing, Maths, Screen toys, Encoding, Languages, Text tools (filters), Games (interactive half), Disk & DOS, Developer tools |
 | 2026-09-04 | **797 of 913** | every category passed once: + Compilers, System (all), Communications (all), TeX/DVI, Archives, Graphics (all incl. 169 netpbm). Backlog 69, exceptions 47. |
+| 2026-09-09 evening | every card carries its own CAPTURED help | `notes/PLAN-recard.md' done: `usage_of()' retired for `tools/helpcap.py' + `tools/help.psv' + `docs/help/', gate `cards carry real help text', help-backlog EMPTY (935 of 935); help unfolded on the card, details always open; every DOC/INDEX entry read with its probe beside it, netpbm's 169 given real entries; DOC/USAGE regenerated from the captures. Not yet read rendered in a browser. |
 
 Still to do, in the order worth doing: Files & directories and Archives
 (in flight), Compilers & build (the GCC passes live under
