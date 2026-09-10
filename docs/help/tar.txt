@@ -1,0 +1,7 @@
+$ tar -?
+Syntax : tar [ctx][mfv] tarfile [file(s)...]
+Function: Builds and extracts from Unix tape archive files
+Options:
+   c : create archive
+   t : list contents
+   x : extract from archive

@@ -419,3 +419,40 @@ setimex|setimex -?|
 today|none|it takes no options: run it and it prints the day
 greg|greg -?|
 travesty|travesty -H|
+ar|ar -?|
+ar2|ar2 -?|
+arc|arc -?|
+dearc|none|it takes the archive to extract and nothing else
+marc|marc -?|
+cat|cat -?|
+modbuster|modbuster -?|
+compr|compr -?|
+compress|compress -?|
+compress_4.0|compress_4.0 -?|
+compress_rebuilt|compress_rebuilt -?|
+gzip|gzip -h|
+gzip68k_nocsl|gzip68k_nocsl -h|
+gzip68k_csl|gzip68k_csl -h|
+gzip020_nocsl|gzip020_nocsl -h|
+gzip020_csl|gzip020_csl -h|
+gzipcpu32_nocsl|gzipcpu32_nocsl -h|
+gzipcpu32k_csl|gzipcpu32k_csl -h|
+lha|lha -?|
+lharc|lharc -?|
+lharcs|lharcs -?|
+xlharc|xlharc -?|
+zoo|zoo h|
+zoo_2.1|zoo_2.1 h|
+booz|booz -?|
+fiz|none|it takes the archive to repair and nothing else
+zip|zip -h|
+unzip|unzip -?|
+zipinfo|zipinfo -?|
+zipnote|zipnote -h|
+zipsplit|zipsplit -h|
+funzip|none|a filter with no options: a zip archive on standard input, its first member out
+shar|shar -?|
+tar|tar -?|
+gtar|gtar +help|
+liborder|liborder -?|
+unpacklib|unpacklib -?|

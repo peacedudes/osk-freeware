@@ -22,9 +22,6 @@ afm2tfm
 alps
 animal
 aprocs
-ar
-ar2
-arc
 argproc_demo
 as0
 as09
@@ -53,14 +50,12 @@ blackjak
 bog
 bootgen
 bootlogger
-booz
 break
 bsplt68
 btoa
 btree
 cam
 card
-cat
 cb
 cc1plus
 cc2
@@ -86,10 +81,6 @@ collect
 colortest
 combine
 compiler
-compr
-compress
-compress_4.0
-compress_rebuilt
 config
 convert
 cp
@@ -110,7 +101,6 @@ cyberwar
 dam
 dback
 dclock
-dearc
 dedit
 delbak
 demerge
@@ -181,7 +171,6 @@ ff
 fibo
 find
 fixyear
-fiz
 flex
 flink
 float
@@ -190,7 +179,6 @@ for
 forth
 fstat
 fuddle
-funzip
 game
 gcc
 gcc2
@@ -219,14 +207,6 @@ greed
 gs33
 gs403
 gshell
-gtar
-gzip
-gzip020_csl
-gzip020_nocsl
-gzip68k_csl
-gzip68k_nocsl
-gzipcpu32_nocsl
-gzipcpu32k_csl
 hack
 hang
 help
@@ -260,10 +240,6 @@ lessecho
 lesskey
 lfmaker
 lgrep
-lha
-lharc
-lharcs
-liborder
 liborder.os9
 libsplit
 life
@@ -295,7 +271,6 @@ makecrc
 makeinfo
 maketexpk
 map
-marc
 math
 math881
 maze
@@ -309,7 +284,6 @@ mines
 mkdict
 mkdir
 mkindex
-modbuster
 modinfo
 move
 msattrib
@@ -412,7 +386,6 @@ setime
 setime2
 setyear
 sh
-shar
 shdev
 shuffle
 sieve
@@ -447,7 +420,6 @@ t
 t_trtest
 tab
 tangle
-tar
 teachgammon
 tess
 testibc
@@ -475,10 +447,8 @@ umacs
 umusek
 undel
 unifdef
-unpacklib
 unpacklib.os9
 unsit
-unzip
 uudecode
 uuencode
 uuexpand
@@ -512,16 +482,9 @@ worms
 xc
 xcrypt
 xlate
-xlharc
 xlisp
 xrf
 yacc
 yagi
 ynad
-zip
-zipinfo
-zipnote
-zipsplit
-zoo
-zoo_2.1
 zot

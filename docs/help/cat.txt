@@ -1,0 +1,14 @@
+$ cat -?
+Syntax: cat [<opts>] {[-] <path> [<opts>]}
+Function: concatenate files to standard output
+Options:
+    -u        output is unbuffered
+    -n        preceds each line with a linenumber
+    -b        number each but blank lines like -n
+    -v        non-printable chars as ^X (control) or M-X (msb set)
+    -s        squeeze adjacent blank lines to one blank line
+    -e        like -v but display a $ at the end of line
+    -t        like -v but display tab as ^I
+    -x        directory to search is execution directory
+    -z        get list of file names from standard input
+    -z=<file> get list of file names from <file>

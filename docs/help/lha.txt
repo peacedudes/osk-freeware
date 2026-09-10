@@ -1,0 +1,23 @@
+$ lha -?
+LHa Vrs. 2.08 for OSK - revised Dec. 2, 1994  M.Haaland
+Syntax: LHa -{axelvudmcp}[qvnfodiszrgc012][w=<dir>] archive_file [file...]
+Function: Archive Management Utility
+Commands:                           Options:
+ a   Add (create/replace) to archive q  quiet
+ x,e EXtract from archive            v  verbose
+ l,v List / Verbose List             n  not execute
+ u   Update newer files to archive   f  force (over write at extract)
+ d   Delete from archive             t  FILES are TEXT file
+ m   Move to archive (means 'ad')    o  use LHarc compatible method (a/u)
+ c   re-Construct new archive        w=<dir> specify extract directory (x/e)
+ p   Print to STDOUT from archive    d  delete FILES after (a/u/c)
+ t   Test file CRC in archive        i  ignore directory path (x/e)
+                                     g  [Generic] format (for compatiblity)
+                                     0/1/2 header level (a/u)
+                                     c  bad CoCo OS-9 archive (x/l)
+                                     s  store - don't compress files (a/u)
+                                     z  get list of file from standard input
+                                     r  Recursive expansion of dirs (a/u)
+
+The environment variable TMPDIR may be set to specify the directory used for
+creating temporary files while archiving

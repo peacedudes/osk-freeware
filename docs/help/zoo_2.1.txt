@@ -1,0 +1,18 @@
+$ zoo_2.1 h
+Zoo archiver, zoo 2.1 $Date: 91/07/09 02:10:34$  (OSK port 91/07/22 reto/hcz)
+(C) Copyright 1991 Rahul Dhesi -- Noncommercial use permitted
+Usage: zoo {acDeglLPTuUvx}[aAcCdEfInmMNoOpPqu1:/.@n] archive file
+("zoo h" for help, "zoo H" for extended help)
+
+Choose a command from within {} and zero or more modifiers from within [].
+E.g.:  `zoo a save /bin/*' will archive all files in /bin into save.zoo.
+(Please see the user manual for a complete description of commands.)
+
+
+Novice usage:  zoo -cmd archive[.zoo] file...  where -cmd is one of these:
+-add -extract -move -test -print -delete -list -update -freshen -comment
+
+
+
+
+Hit RETURN (or ENTER) key to continue...

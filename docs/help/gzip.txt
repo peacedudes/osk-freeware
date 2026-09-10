@@ -1,0 +1,20 @@
+$ gzip -h
+gzip 1.2.2 (17 Jun 93)
+usage: gzip [-acdfhlLnrtvV19] [-S suffix] [file ...]
+ -a --ascii       ascii text; convert end-of-lines using local conventions
+ -c --stdout      write on standard output, keep original files unchanged
+ -d --decompress  decompress
+ -f --force       force overwrite of output file and compress links
+ -h --help        give this help
+ -l --list        list .gz file contents
+ -L --license     display software license
+ -n --no-name     do not save or restore the original name
+ -q --quiet       suppress all warnings
+ -r --recurse     recurse through directories
+ -S .suf  --suffix .suf     use suffix .suf instead of .gz
+ -t --test        test compressed file integrity
+ -v --verbose     verbose mode
+ -V --version     display version number
+ -1 --fast        compress faster
+ -9 --best        compress better
+ file...          files to (de)compress. If none given, use standard input.

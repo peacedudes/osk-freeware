@@ -1,6 +1,6 @@
 # What is on this disk
 
-935 programs of OS-9/68K community software, gathered from the archives that kept it and made to run again. **584 of them need nothing but this disk**; the rest want Microware's `cio`, marked below with a star.
+934 programs of OS-9/68K community software, gathered from the archives that kept it and made to run again. **583 of them need nothing but this disk**; the rest want Microware's `cio`, marked below with a star.
 
 `DOC/INDEX` on the disk lists everything alphabetically. This is the same collection sorted by what each program is *for*, which is the more useful order when you do not yet know what you are looking for.
 
@@ -18,7 +18,7 @@
 | [Developer tools](#developer-tools) | 46 | Version control, tags, cross-reference, formatters, a debugger and benchmarks. |
 | [Compilers & build](#compilers--build) | 40 | C compilers and their passes, assemblers, linkers, make and parser generators. |
 | [Languages](#languages) | 10 | Interpreters and language systems beyond C. |
-| [Archives & compression](#archives--compression) | 36 | Pack, unpack and shrink -- lha, zip, tar, arc, zoo, and OS-9 module libraries. |
+| [Archives & compression](#archives--compression) | 35 | Pack, unpack and shrink -- lha, zip, tar, arc, zoo, and OS-9 module libraries. |
 | [Encoding & conversion](#encoding--conversion) | 24 | Between text encodings, line endings, Macintosh formats, ciphers and hashes. |
 | [Communications](#communications) | 96 | Kermit in several builds, terminal sessions, and networking. |
 | [Graphics & images](#graphics--images) | 202 | The netpbm toolkit, JPEG, a ray tracer, and things that draw. |
@@ -623,73 +623,72 @@
 
 *Pack, unpack and shrink -- lha, zip, tar, arc, zoo, and OS-9 module libraries.*
 
-<details><summary>36 programs</summary>
+<details><summary>35 programs</summary>
 
 **Alternates**
 
 | | |
 |---|---|
-| `compress_4.0` | compress 4.0, another edition of CMDS/compress |
-| `compress_rebuilt` | our source build of CMDS/compress, from the same hc_utils source.  Same program, and the two agree byte for byte on what they write |
-| `gtar` | another GNU tar; CMDS/tar is the one the image build uses |
-| `gzip020_csl` | &#9733; gzip 1.2.4, 68020, needs csl |
-| `gzip020_nocsl` | gzip 1.2.4, 68020, no csl needed |
-| `gzip68k_csl` | &#9733; gzip 1.2.4, 68000, needs csl |
-| `gzip68k_nocsl` | gzip 1.2.4, 68000, no csl needed |
-| `gzipcpu32_nocsl` | gzip 1.2.4, CPU32, no csl needed |
-| `gzipcpu32k_csl` | &#9733; gzip 1.2.4, CPU32, needs csl |
-| `lharcs` | C-LHarc 1.01, older than CMDS/lha 2.08 |
-| `zoo_2.1` | zoo 2.1 (1991), newer than the 2.01 in CMDS.  Same OSK porters as pd-ksh.  Reads what 2.01 writes; CMDS/zoo is left in place because the pool tools here call it. |
+| `compress_4.0` | compress 4.0, another edition of CMDS/compress<br>`Syntax   : compress [-cdfvV] [-b maxbits] [file ...]` |
+| `gtar` | another build of GNU tar, taking the long +option spellings as well: `gtar +help' lists them<br>`This is GNU tar, the tape archiving program.` |
+| `gzip020_csl` | &#9733; gzip 1.2.4, 68020, needs csl<br>`gzip020_csl 1.2.4 (18 Aug 93)` |
+| `gzip020_nocsl` | gzip 1.2.4, 68020, no csl needed<br>`gzip020_nocsl 1.2.4 (18 Aug 93)` |
+| `gzip68k_csl` | &#9733; gzip 1.2.4, 68000, needs csl<br>`gzip68k_csl 1.2.4 (18 Aug 93)` |
+| `gzip68k_nocsl` | gzip 1.2.4, 68000, no csl needed<br>`gzip68k_nocsl 1.2.4 (18 Aug 93)` |
+| `gzipcpu32_nocsl` | gzip 1.2.4, CPU32, no csl needed<br>`gzipcpu32_nocsl 1.2.4 (18 Aug 93)` |
+| `gzipcpu32k_csl` | &#9733; gzip 1.2.4, CPU32, needs csl<br>`gzipcpu32k_csl 1.2.4 (18 Aug 93)` |
+| `lharcs` | C-LHarc 1.01, older than CMDS/lha 2.08<br>`C-LHarc for OS-9/68k Version 1.01   (C) 1989-1991 Y.Tagawa, Kai Uwe Rommel,` |
+| `zoo_2.1` | zoo 2.1 (1991), newer than the 2.01 in CMDS; it reads what 2.01 writes and has an extended help under `zoo_2.1 H'<br>`Zoo archiver, zoo 2.1 $Date: 91/07/09 02:10:34$  (OSK port 91/07/22 reto/hcz)` |
 
 **Compress a file**
 
 | | |
 |---|---|
-| `compr` | file compressor |
-| `compress` | compress and uncompress with Lempel-Ziv-Welch coding |
-| `gzip` | GNU gzip |
+| `compr` | a Lempel-Ziv-Welch file compressor, another edition of `compress': -v reports the saving, -d decompresses, and the .Z file replaces the original<br>`Unknown flag: '?'; Usage: compress [-dfvcV] [-b maxbits] [file ...]` |
+| `compress` | compress and uncompress with Lempel-Ziv-Welch coding<br>`Unknown flag: '?'; Usage: compress [-dfvoV] [-b MaxBits] [file ...]` |
+| `gzip` | GNU gzip 1.2.2: compresses a file to .gz and back again with -d; -l lists, -t tests, -1 to -9 trade speed for size<br>`gzip 1.2.2 (17 Jun 93)` |
 
 **Create & extract**
 
 | | |
 |---|---|
-| `ar` | archive librarian -- .ar files |
-| `ar2` | &#9733; Ar V2.00 -- an archiver, a later edition than the V1.2 included as `ar'.  Both are here; ar is unstarred |
-| `arc` | ARC 5.21 archive utility |
-| `cat` | &#9733; concatenate files (S.M. Ryger, 1987) |
+| `ar` | archive librarian -- .ar files<br>`Ar V1.2 - archive file manager` |
+| `ar2` | &#9733; Ar 2.00, a later edition of `ar' with delete and move as well, and each file's attributes recorded<br>`Ar V2.00 - archive file manager` |
+| `arc` | ARC 5.21, the archiver that came before zip: a adds, x extracts, v lists with the compression column, t tests, p prints a member<br>`ARC - archive utility, Version 5.21, created on 04/22/87 at 15:05:21` |
+| `cat` | &#9733; concatenates files to standard output: -n numbers the lines, -v shows control characters, -s squeezes runs of blank lines<br>`Syntax: cat [<opts>] {[-] <path> [<opts>]}` |
 | `dearc` | &#9733; Extract an MS-DOS .ARC archive.  arc and marc handle the OS-9 side |
-| `lha` | LHa 2.08 -- create/extract .lzh archives |
-| `lharc` | LHarc archiver |
-| `marc` | MARC, the archive MERGER -- `marc <target> <source> [names]' copies members from one .arc into another |
-| `shar` | Shell-archive creator, and one faulty check is all that stops it: its read-access test rejects every file that exists -- `No read access for file: <name>' on its own standard output, for world-readable files that `cat' reads, absolute or relative, with -a or without. Hand it a name that is not there and the check passes vacuously: it writes the whole shell-archive preamble, cut line and all, and only then fails at open. For making an archive here, use `tar', `zoo' or `lha'. |
-| `tar` | GNU tar 1.10 |
-| `unzip` | &#9733; Info-ZIP unzip -- reads zips made elsewhere; DOC/zip/sample.zip is one to try it on.  `zoo', `tar' and `gzip' are the archivers on this disk |
-| `zip` | Info-ZIP zip 1.9.  It deflates correctly, writes a temporary file (_Z000003), then cannot rename it over the target and reports `zip error: Could not create output file', in /dd/tmp and in /dd alike.  `zoo', `tar' and `gzip' round-trip exactly. |
-| `zipnote` | Info-ZIP zipnote -- view/edit zip comments |
-| `zipsplit` | Info-ZIP zipsplit -- split a zip archive |
-| `zoo` | &#9733; zoo archiver |
+| `lha` | LHa 2.08 -- create/extract .lzh archives<br>`LHa Vrs. 2.08 for OSK - revised Dec. 2, 1994  M.Haaland` |
+| `lharc` | C-LHarc 1.00, the older sibling of lha: a adds to a .lzh archive, x extracts, l lists, t tests<br>`C-LHarc for OS-9/68k Version 1.00   (C) 1989-1990 Y.Tagawa, Kai Uwe Rommel` |
+| `marc` | MARC, the archive MERGER -- `marc <target> <source> [names]' copies members from one .arc into another<br>`MARC - archive merger, Version 5.21, created on 04/22/87 at 15:05:10` |
+| `shar` | Shell-archive creator, and one faulty check is all that stops it: its read-access test rejects every file that exists -- `No read access for file: <name>' on its own standard output, for world-readable files that `cat' reads, absolute or relative, with -a or without. Hand it a name that is not there and the check passes vacuously: it writes the whole shell-archive preamble, cut line and all, and only then fails at open. For making an archive here, use `tar', `zoo' or `lha'.<br>`shar: illegal option -- ?` |
+| `tar` | GNU tar 1.10: c creates a Unix tape archive, t lists it, x extracts; v shows each file, f names the archive<br>`Syntax : tar [ctx][mfv] tarfile [file(s)...]` |
+| `unzip` | &#9733; Info-ZIP unzip -- reads zips made elsewhere; DOC/zip/sample.zip is one to try it on.  `zoo', `tar' and `gzip' are the archivers on this disk<br>`UnZip:  Zipfile Extract v5.0 of 21 August 1992;  (c) 1989 S.H.Smith and others` |
+| `zip` | Info-ZIP zip 1.9.  It deflates correctly, writes a temporary file (_Z000003), then cannot rename it over the target and reports `zip error: Could not create output file', in /dd/tmp and in /dd alike.  `zoo', `tar' and `gzip' round-trip exactly.<br>`Copyright (C) 1990-1992 Mark Adler, Richard B. Wales, Jean-loup Gailly` |
+| `zipnote` | Info-ZIP zipnote -- view/edit zip comments<br>`Copyright (C) 1990-1992 Mark Adler, Richard B. Wales, Jean-loup Gailly` |
+| `zipsplit` | Info-ZIP zipsplit -- split a zip archive<br>`Copyright (C) 1990-1992 Mark Adler, Richard B. Wales, Jean-loup Gailly` |
+| `zoo` | &#9733; zoo 2.01: archives files with -add, -extract, -list, -test, -delete and the rest; `zoo h' prints its help<br>`Zoo archiver, Version 2.01 (1988/08/25 12:43:57)` |
 
 **OS-9 module libraries**
 
 | | |
 |---|---|
-| `liborder` | &#9733; order the modules in an OS-9 library -- give it one. On alib.l and the other libraries here it works. Handed a plain file instead it reads a length from what it takes to be a relocatable-object header and asks for that many bytes, which floods `No more memory !!!'. |
-| `modbuster` | Split merged OS-9 module files<br>**How:** Give it a file holding SEVERAL modules and it writes one file per module in the CURRENT directory. Use ksh to put yourself somewhere writable first. `/dd/CMDS/GAMES/cyberwar' looks like a candidate but modbuster hangs on it with no output at all; a single ordinary module (`/dd/CMDS/today') shows it working. |
-| `unpacklib` | &#9733; split an OS-9 library into its modules |
+| `liborder` | &#9733; order the modules in an OS-9 library -- give it one. On alib.l and the other libraries here it works. Handed a plain file instead it reads a length from what it takes to be a relocatable-object header and asks for that many bytes, which floods `No more memory !!!'.<br>`liborder: Unimplemented option '-?'.` |
+| `modbuster` | splits a file holding several OS-9 modules into one file per module, in the current directory or the one -w=<dir> names<br>**How:** Give it a file holding SEVERAL modules and it writes one file per module in the CURRENT directory. Use ksh to put yourself somewhere writable first. `/dd/CMDS/GAMES/cyberwar' looks like a candidate but modbuster hangs on it with no output at all; a single ordinary module (`/dd/CMDS/today') shows it working. |
+| `unpacklib` | &#9733; split an OS-9 library into its modules<br>`unpacklib: Unimplemented option '-?'.` |
 
 **zip**
 
 | | |
 |---|---|
 | `funzip` | &#9733; Unzip straight from a pipe -- funzip < file.zip<br>**How:** Unzips from a pipe rather than a file: `funzip < thing.zip > thing'. For a normal archive use unzip; zipinfo lists what is inside one. |
-| `zipinfo` | &#9733; Info-ZIP zipinfo -- what is inside a zip archive |
+| `zipinfo` | &#9733; Info-ZIP zipinfo -- what is inside a zip archive<br>`ZipInfo:  Zipfile Information Utility v1.0 of 21 August 92` |
 
 **zoo**
 
 | | |
 |---|---|
-| `booz` | &#9733; Extract or list a zoo archive.  Public domain, Rahul Dhesi<br>**How:** Lists and extracts zoo archives: `booz l file.zoo' lists with a bare letter, `booz x' extracts. fiz repairs a zoo archive that will not open. |
-| `fiz` | &#9733; Repair a damaged zoo archive.  Public domain |
+| `booz` | &#9733; extracts or lists a zoo archive: `booz l' lists, `booz x' extracts, `booz t' tests<br>**How:** Lists and extracts zoo archives: `booz l file.zoo' lists with a bare letter, `booz x' extracts. fiz repairs a zoo archive that will not open. |
+| `fiz` | &#9733; repairs a damaged zoo archive by walking its directory entries |
 
 </details>
 
@@ -1515,7 +1514,7 @@
 | `vecho` | System V `echo': the newline is suppressed by a trailing \c IN THE ARGUMENT, not by default.  `vecho one' writes `one' and a CR; `vecho one\c' writes `one' and stops. Several arguments are joined with a space.  SRC/less_v177 |
 | `vlen` | &#9733; a VARIABLE-LENGTH RECORD demonstration: it ignores whatever you give it, creates a filesystem of its own, adds a hundred records of varying length and prints the minimum, the maximum and the mapper entries as it goes.  `isam' is the other demonstration of its kind here.  IT LEAVES ITS STORE BEHIND, in the DATA directory, as `test.mp' and `test.st' -- run it twice and the second run answers `Filesystem already exists.' and adds nothing.  Delete those two to run it again.<br>**How:** It leaves its store behind, in the DATA directory, as `test.mp' and `test.st'. Run it twice and the second run says `Filesystem already exists.' and adds nothing; delete those two to run it again. |
 | `what` | inventory the expansion cards in a GEPARD -- the German 68k machine much of the EFFO material was written on.  It prints `What's where in the GEPARD:' and a table of I/O address, reference byte and card name, empty on anything else.  It ignores its arguments.<br>**How:** An inventory tool for the GEPARD, the German 68k machine: it prints "What's where in the GEPARD:" and a table of expansion cards. On other hardware the table is empty, and it ignores its arguments. |
-| `xlharc` | extract LHarc archives |
+| `xlharc` | C-LHarc 1.00 in a third build: extracts and lists .lzh archives like `lharc'<br>`C-LHarc for OSK Version 1.00   (C) 1989-1990 Y.Tagawa` |
 | `yagi` | Yagi antenna design calculator, to DL6WU's method.  It asks FIVE questions on standard input -- frequency, element count, boom diameter, insulated from the boom Y/N, and a tubing size off its own list -- and prints element lengths and spacings.  Answer four and it loops on the fifth<br>**How:** It asks FIVE questions on standard input -- centre frequency in MHz, element count, boom diameter, whether the elements are insulated from the boom (Y/N), and a tubing size off its own list of six. Answer four and it loops on the fifth forever, because EOF on a numeric read returns the same thing every time. |
 | `ynad` | &#9733; YNAD -- Yet Another Name & Address program.  A contact database. |
 

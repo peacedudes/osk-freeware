@@ -1,0 +1,8 @@
+$ marc -?
+MARC - archive merger, Version 5.21, created on 04/22/87 at 15:05:10
+Usage: MARC <tgtarc> <srcarc> [<filename> . . .]
+Where: <tgtarc> is the archive to add files to,
+       <srcarc> is the archive to get files from, and
+       <filename> is zero or more file names to get.
+
+adapted to OS-9/68k by Stephan Paschedag

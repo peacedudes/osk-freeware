@@ -1,0 +1,2 @@
+$ compr -?
+Unknown flag: '?'; Usage: compress [-dfvcV] [-b maxbits] [file ...]

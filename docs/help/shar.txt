@@ -1,0 +1,4 @@
+$ shar -?
+shar: illegal option -- ?
+shar: No input files
+usage: shar [-u archive] [[-a] [-p prefix] [-d delim] [-bcv] files > archive]

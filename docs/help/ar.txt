@@ -1,0 +1,14 @@
+$ ar -?
+Ar V1.2 - archive file manager
+Usage:  Ar -<cmd>[<modifier>] [file .. ]
+      <cmd> is one of the following:
+         t  show table of contents for archive
+         u  update/add file(s) to the archive
+         p  print file(s) from the archive
+         x  extract file(s) from the archive
+      <modifier> is one of the following:
+         a  all versions (for extract)
+         s  supress file compression
+         z  read names for <cmd> from std in
+
+      File names can include the meta chars * and ?, or path lists.

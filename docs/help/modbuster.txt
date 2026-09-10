@@ -1,0 +1,9 @@
+$ modbuster -?
+Syntax: Modbuster [<opts>] <path> [<opts>]
+Function: Seperate merged modules, rels, basic source or KWindows bitmaps
+Options:
+   -b=<size>  buffer size
+   -q         quiet/silent mode
+   -v         verbose
+   -w=<dir>   seperate into <dir>
+              (default = current work directory)

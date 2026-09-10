@@ -1,0 +1,5 @@
+$ booz -?
+Public domain zoo archive extractor/lister by Rahul Dhesi
+Version 2.0 (1991/07/07)
+Usage:  booz {lxt} archive[.zoo] [ file ... ]
+l = list, x = extract, t = test

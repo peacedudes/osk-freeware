@@ -1,0 +1,17 @@
+$ xlharc -?
+C-LHarc for OSK Version 1.00   (C) 1989-1990 Y.Tagawa
+ (C) 1991 OS9/68000 Version N. Kuehne
+
+Usage: xlharc {axevlufdmctp}[qnftv] archive_file [files or directories...]
+
+Commands:                    Options:
+  a   Append                   q   quiet
+  x,e EXtract                  n   no execute
+  v,l View/List                f   force (over write at extract)
+  u   Update                   t   files are TEXT files
+  f   Freshen                  p<pager>  use file pager for p command
+  d   Delete
+  m   Move
+  c   re-Construct new archive
+  t   Test archive
+  p   Print to STDOUT

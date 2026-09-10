@@ -1,0 +1,32 @@
+$ zoo h
+Zoo archiver, Version 2.01 (1988/08/25 12:43:57)
+(C) Copyright 1988 Rahul Dhesi -- Noncommercial use permitted
+Usage: zoo {acDeglLPTuUvx}[aAcCdEfInmMNoOpPqu1:/.@n] archive file
+("zoo h" for help)
+
+Choose a command from within {} and zero or more modifiers from within [].
+E.g.:  `zoo a save /bin/*' will archive all files in /bin into save.zoo.
+(Please see the user manual for a complete description of commands.)
+
+ Commands in {} mean:         |Modifiers in [] mean:
+  a     add files             | a     show archive name(s) in listing
+  c     update comments       | A     apply g or c to archive
+  D     delete stored files   | c     add/list comments
+  e,x   extract files         | d     extract/list deleted files too
+  g     adj. gen. limit/count | dd    extract/list only deleted files
+  l,L,v,V list filenames      | E     erase backup after packing
+  P     pack archive          | f     fast add (no compression) or list
+  T     fix archive datestamp | M     move when adding (erase original)
+  u     add only newer files  | n     add only files not already in archive
+  U     undelete stored files | N     send extracted data to Neverland
+  f     act as filter         | c/u   compress/uncompress as filter
+ -----------------------------  O     don't ask "Overwrite?"
+  q     be quiet                p     pipe extracted data to standard output
+  :     don't store dir names   /,//  extract full pathnames
+  .     pack to current dir     I     add filenames read from stdin
+  C     show file CRC value     +/-   enable/disable generations
+  S     overwrite newer files   g     list generation limits
+  P     pack after adding       @n    start extract/list at position n
+
+Novice usage:  zoo -cmd archive[.zoo] file...  where -cmd is one of these:
+-add -extract -move -test -print -delete -list -update -freshen -comment

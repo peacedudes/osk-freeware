@@ -1,0 +1,21 @@
+$ zip -h
+Copyright (C) 1990-1992 Mark Adler, Richard B. Wales, Jean-loup Gailly
+and Kai Uwe Rommel. Type 'zip -L' for the software License.
+
+Zip 1.9 (Aug 20th 1992). Usage:
+zip [-options] [-b path] [-t mmddyy] [-n suffixes] [zipfile list] [-x list]
+  The default action is to add or replace zipfile entries from list, which
+  can include the special name - to compress standard input.
+  If zipfile and list are ommitted, zip compresses stdin to stdout.
+  -f   freshen: only changed files  -u   update: only changed or new files
+  -d   delete entries in zipfile    -m   move into zipfile (delete files)
+  -k   simulate PKZIP made zipfile  -g   allow growing existing zipfile
+  -h   show this help               -L   show software license
+  -r   recurse into directories     -j   junk (don't record) directory names
+  -0   store only                   -l   translate end-of-line
+  -1   compress faster              -9   compress better
+  -q   quiet operation              -n   don't compress these suffixes
+  -c   add one-line comments        -z   add zipfile comment
+  -b   use "path" for temp files    -t   only do files after "mmddyy"
+  -@   read names from stdin        -o   make zipfile as old as latest entry
+  -x   exclude the names that follow from those operated on

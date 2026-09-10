@@ -1,0 +1,24 @@
+$ arc -?
+ARC - archive utility, Version 5.21, created on 04/22/87 at 15:05:21
+Usage: arc {amufdxerplvtc}[biswnoq][g<password>] <archive> [<filename> . . .]
+Where:   a   = add files to archive
+         m   = move files to archive
+         u   = update files in archive
+         f   = freshen files in archive
+         d   = delete files from archive
+         x,e = extract files from archive
+         r   = run files from archive
+         p   = copy files from archive to standard output
+         l   = list files in archive
+         v   = verbose listing of files in archive
+         t   = test archive integrity
+         c   = convert entry to new packing method
+         b   = retain backup copy of archive
+         s   = suppress compression (store only)
+         w   = suppress warning messages
+         n   = suppress notes and comments
+         o   = overwrite existing files when extracting
+         q   = squash instead of crunching
+         g   = Encrypt/decrypt archive entry
+
+adapted to OS-9/68k by Stephan Paschedag

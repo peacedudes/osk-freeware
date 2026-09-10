@@ -1,0 +1,14 @@
+$ liborder -?
+liborder: Unimplemented option '-?'.
+
+Usage: liborder <options> file1.r file2.r ...
+Produces an ordered list of the input modules to build OS-9 libraries.
+ Where options are:
+   '-modinfo':	print info about each module (PUBLIC and EXTERNAL)
+   '-public':	list all PUBLIC functions
+   '-external':	list all EXTERNAL functions
+   '-preced':	list precedences between modules
+   '-precsymb':	list cross referenced symbols
+   '-lump':	print the set of fundamental cycles (need to be grouped)
+   '-exit':	do not perform ordering, print info only
+Copyright by CERN, written by CN/CE/MS (Vers.2.1 - 13 July 90)
