@@ -276,9 +276,11 @@ const picked = new Set();
 let shell = "unix";
 try{ if(localStorage.getItem("shell")==="os9") shell="os9"; }catch(e){}
 const PROMPT = {unix:"bash$ ", os9:"$ "};
-// A comment after a command: bash reads a hash; Microware's shell reads
-// a star at the start of a command, so a semicolon first.
-const COMMENT = {unix:"   # ", os9:"   ; * "};
+// A comment after a command.  Microware's shell reads a star at the start
+// of a command, so a semicolon first.  This bash (1.12) reads a hash only
+// in a script, never at the prompt -- measured: `echo one # x' prints both
+// -- so the bash form is its no-op builtin `:', which swallows its arguments.
+const COMMENT = {unix:"   ;: ", os9:"   ;* "};
 // One button, showing the shell in force; pressing it switches to the
 // other.  The chip reads pressed when the OS-9 shell is chosen.
 const SHELL_NAME = {unix:"bash", os9:"OS-9 shell"};
@@ -466,7 +468,7 @@ function about(){
     `${esc(pr)}keep fortune cookie${cm}copy them, and record every file written\n`+
     `${esc(pr)}kept${cm}list every file keep has written\n`+
     `${esc(pr)}unkeep cookie${cm}remove what keep wrote for cookie</pre>`+
-    `<p><code>DOC/README-KEEP</code> on the disk has the rest.</p>`+
+    `<p><code>DOC/README-KEEP</code> on the disk has the rest.${shell==="unix" ? " (This bash reads a <code>#</code> comment only in a script; at the prompt, <code>:</code> is the no-op that swallows one.)" : ""}</p>`+
     `<p><b>Reading a page</b><br>`+
     `Pick a kind of program, or a letter, then a program. Its page says what it does, `+
     `gives a command to try, lists what it needs, shows it running, and prints its own `+
