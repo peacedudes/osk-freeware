@@ -1,0 +1,12 @@
+$ em -?
+Syntax: em [<opts>] [<filenames> [<opts>]]
+Function: MicroEMACS screen editor
+Options:
+     -v        view file
+     -e        edit file
+     -sSTRING  initial search string
+     -gLINE    initial goto
+     -r        restrictive use
+     -kSTRING  crypt key
+     @FILE     process different startup file (default is
+               '.emacsrc' in home directory

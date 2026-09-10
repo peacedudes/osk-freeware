@@ -1,0 +1,4 @@
+$ chardef -?
+Syntax: defchar [<path>]
+Function:defines a new Charset for VT220 Terminals
+Options: none

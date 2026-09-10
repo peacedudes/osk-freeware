@@ -1,0 +1,5 @@
+$ msmd -?
+msmd: illegal option -- ?
+Mtools version 3.6, dated 14 Apr 97
+Usage: msmd [-itnmvV] file targetfile
+       msmd [-itnmvV] file [files...] target_directory

@@ -1,0 +1,2 @@
+$ lesskey -?
+usage: lesskey [-o output] [input]

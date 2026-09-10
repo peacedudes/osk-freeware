@@ -1,0 +1,10 @@
+$ new_e -?
+Syntax:
+  e -[<opts>] <file1> [<opts_file1>]  <file2> [<opts_file2>] ...
+  up to four files may be specified
+
+Options:
+  -o=<filename>   specify another file as output
+  -n   	      open the file read-only (no output file)
+  -l=<number>     goto this line
+  or <number>     goto this line

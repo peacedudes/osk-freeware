@@ -1,0 +1,14 @@
+$ divide -?
+DIVIDE Version 1.1
+Copyright (C) 1992
+Farside Systems
+Usage..: Divide file into pieces.
+Syntax.: divide -<option> [ infile [outfile] ] -<option>
+Options:
+         -?         Help
+         -v         Verbose
+         -d         Delimit files
+         -l=num     Number of lines for each piece.
+                    Default is 1200
+         Each piece is of the form outfile.xx
+         If no outfile is specified infile is used.

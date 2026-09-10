@@ -1,0 +1,3 @@
+$ uudecode -?
+ERROR: can't find -?
+USAGE: uudecode [infile]

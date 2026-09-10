@@ -1,0 +1,11 @@
+$ ed --help
+Usage: ed [OPTION]... [FILE]
+
+  -G, --traditional          use a few backward compatible features
+  -p, --prompt=STRING        use STRING as an interactive prompt
+  -s, -, --quiet, --silent   suppress diagnostics
+      --help                 display this help
+      --version              output version information
+
+Start edit by reading in FILE if given.  Read output of shell command
+if FILE begins with a `!'.

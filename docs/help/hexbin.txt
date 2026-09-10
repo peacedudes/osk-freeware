@@ -1,0 +1,20 @@
+$ hexbin -H
+File output options:
+-b:	MacBinary (default)
+-s:	MacBinary stream to standard output
+-f:	three fork mode, skipping empty forks
+-3:	the same, writing also empty forks
+-r:	resource forks only
+-d:	data forks only
+-u:	data forks only with Mac -> Unix text file translation
+-U:	as -u, but filename will not have an extension
+-a:	not supported, needs recompilation
+Hexbin specific options:
+-i:	give information only, do not convert
+-l:	give listing
+-v:	give verbose listing, including lines skipped
+-c:	do not check for equal line lengths
+-n nm:	name to be generated
+-V:	give information about this version
+-H:	this message
+Default is silent conversion

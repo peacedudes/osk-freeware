@@ -1,0 +1,4 @@
+$ editor -?
+Syntax: editor [<path>]
+Function: a menue driven umacs shell
+Options: none

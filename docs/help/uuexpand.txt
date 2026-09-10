@@ -1,0 +1,19 @@
+$ uuexpand -?
+Usage: uuexpand [opts]
+   or: uuunexpand [opts]
+
+Where [opts] can be:
+
+	-16  	Ensure 16-bit portability
+	-8   	Ensure 8-bit portability (the default)
+	-7   	Ensure 7-bit portability
+	-?     	List the starting options (this information)
+	-h     	Identical in functionality to '-?'
+	-A   	Use the ASCII character set for expanded output
+	-E     	Use the EBCDIC character set for expanded output
+	-d   	Enable debugging output (to stderr)
+	-e   	Expand output (same as invoking 'uuexpand')
+	-u     	UnExpand output (same as invoking 'uuunexpand')
+	-v   	Enable verbose output (to stderr)
+	-w N   	Set expanded line output width to 'N' representational elements
+	     	per line (default is 8 per 8-bit represented line)

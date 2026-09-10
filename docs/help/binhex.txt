@@ -1,0 +1,16 @@
+$ binhex -H
+File input options:
+-r:	read as resource files
+-d:	read as data files
+-u:	read as data files with Unix -> Mac text file translation
+-U:	a synonym for -u
+-c cr:	creator if one of the above options is used
+-t ty:	filetype if one of the above options is used
+Binhex specific options:
+-r:	do not use run length encoding
+-i:	give information only, do not write
+-l:	give listing
+-q:	query for every file/folder before writing
+-V:	give information about this version
+-H:	this message
+Default is silent writing

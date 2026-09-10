@@ -456,3 +456,83 @@ tar|tar -?|
 gtar|gtar +help|
 liborder|liborder -?|
 unpacklib|unpacklib -?|
+help|help -?|
+helpindex|helpindex -?|
+less|less -?|
+lessecho|lessecho -?|
+lesskey|lesskey -?|
+msinfo|msinfo -?|
+mslabel|mslabel -?|
+msformat|msformat -?|
+msdir|msdir -?|
+mscopy|mscopy -?|
+mstype|mstype -?|
+msdel|msdel -?|
+msmd|msmd -?|
+mscd|none|it takes a DOS directory and no options; run bare it reports where it is
+msrd|msrd -?|
+msdeltree|msdeltree -?|
+msattrib|msattrib -?|
+msmove|msmove -?|
+msren|msren -?|
+mswrite|mswrite -?|
+msread|msread -?|
+msbadblocks|none|it takes a drive and no options, and says nothing when the disk is fine
+mstoolstest|none|it takes no options: run it and it prints the configuration
+mtools|mtools -?|
+mscheck|none|a shell script with no options: run it and it checks the disk
+editor|editor -?|
+elvis|none|it takes file names; an unknown flag is ignored with a note, and DOC/elvis has the manual
+elvis_input|none|it takes file names; an unknown flag is ignored with a note, and DOC/elvis has the manual
+elvprsv|none|elvis runs it itself when it dies; it takes no options
+elvrec|none|it takes the name of a preserved file; run bare it lists what is preserved
+exrecover|none|it takes a user name and a file name and nothing else
+em|em -?|
+emacs|none|it takes file names and no help flag; its help lives inside, in the macros and help files under USR/LIB/EMACS
+emacs.mm1|none|it takes file names and no help flag; its help lives inside, in the macros and help files under USR/LIB/EMACS
+umacs|none|it takes file names and no help flag
+me|me -?|
+mg|none|it takes file names and no help flag; control-H inside it is the help key
+sedt|sedt -?|
+new_e|new_e -?|
+e|e -?|
+hexed|hexed -?|
+hexedit|hexedit -?|
+pbyte|pbyte -?|
+chbase|chbase -?|
+sed|sed -?|
+sed_1.06|sed_1.06 -?|
+vi|none|it takes file names, and -x makes it ex, -d edit; there is no help flag
+view|none|elvis read-only; it takes file names and DOC/elvis has the manual
+vi.elvis|none|it takes file names; an unknown flag is ignored with a note, and DOC/elvis has the manual
+vi_1.0|vi_1.0 -?|
+vi_cio|vi_cio -?|
+vi_nocio|vi_nocio -?|
+ctags.elvis|ctags.elvis -?|
+ed|ed --help|
+btoa|btoa -?|
+atob|atob -?|
+uuencode|uuencode -?|
+uudecode|uudecode -?|
+uuexpand|uuexpand -?|
+checksum|checksum -?|
+chksum|chksum -h|
+md5|none|it takes file names and no options
+crypto|crypto -h|
+des|none|it takes files and no option flags at all; a flag is read as a file name
+xcrypt|xcrypt -?|
+todos|none|it takes the file to convert and nothing else
+toos9|toos9 -?|
+macbin|macbin -?|
+mcvert|mcvert -?|
+unsit|unsit -?|
+sox|sox -?|
+chardef|chardef -?|
+divide|divide -?|
+fc|fc -?|
+binhex|binhex -H|
+hexbin|hexbin -H|
+macsave|macsave -H|
+macstream|macstream -H|
+macunpack|macunpack -H|
+UnMacpack|UnMacpack -H|

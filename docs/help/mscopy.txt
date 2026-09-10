@@ -1,0 +1,5 @@
+$ mscopy -?
+mscopy: illegal option -- ?
+Mtools version 3.6, dated 14 Apr 97
+Usage: mscopy [-tnmvV] sourcefile targetfile
+       mscopy [-tnmvV] sourcefile [sourcefiles...] targetdirectory

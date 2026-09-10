@@ -1,0 +1,5 @@
+$ msdir -?
+msdir: illegal option -- ?
+Mtools version 3.6, dated 14 Apr 97
+Usage: msdir: [-V] [-w] [-a] msdosdirectory
+       msdir: [-V] [-w] [-a] msdosfile [msdosfiles...]

@@ -1,0 +1,5 @@
+$ mstype -?
+mstype: illegal option -- ?
+Mtools version 3.6, dated 14 Apr 97
+Usage: mstype [-tnmvV] sourcefile targetfile
+       mstype [-tnmvV] sourcefile [sourcefiles...] targetdirectory

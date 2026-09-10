@@ -1,0 +1,13 @@
+$ chksum -h
+syntax: chksum [-cehtv]	{file|--|-}...
+function: calculate 32-bit checksum for file(s), output to stdout
+Options:
+	-c	Count bytes also
+	-e	give extended Error reports on stderr
+	-h	Help; give this help message and exit
+	-t	Total only; don't list sum for each file
+	-v	Verbose; list filenames along with checksums
+	--	take filenames from stdin, 1 name per line
+	-	take stdin as a file
+Filenames may be mixed with options.
+Exit status is the number of file errors encountered.

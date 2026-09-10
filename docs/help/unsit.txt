@@ -1,0 +1,19 @@
+$ unsit -?
+unsit: unknown option -?
+Unsit V1.15f Update by Nigel Perry
+             Orginal by Allen G Weber
+             OSK Port by Dean Leiber
+
+Usage: Unsit [-rdulM] [-vqfm] filename
+
+ Options:
+             -r = Extract Resource Fork only
+             -d = Extract Data Fork only
+             -u = Mac -> Unix Text
+             -l = List Archive Contents
+             -M = Macbinary
+ Modifiers:
+             -v = Verbose
+             -q = Query (Prompt for Y/N)
+             -m = Input Macbinary [Default]
+             -f = Flatten Archive

@@ -1,0 +1,5 @@
+$ vi_1.0 -?
+Usage: vi [file ...]
+       vi -t tag
+       vi +[num] file
+       vi +/pat  file

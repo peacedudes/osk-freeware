@@ -1,0 +1,6 @@
+$ sox -?
+sox: illegal option -- ?
+sox: Usage: [ -V -S ] [ fopts ] ifile [ fopts ] ofile [ effect [ effopts ] ]
+fopts: -r rate -v volume -c channels -s/-u/-U/-A -b/-w/-l/-f/-d/-D -x
+effects and effopts: various
+Failed at: No input file?

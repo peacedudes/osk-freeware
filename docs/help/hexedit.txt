@@ -1,0 +1,3 @@
+$ hexedit -?
+hexedit: unrecognized option `-?'
+Usage: hex [-vdr] 'file'

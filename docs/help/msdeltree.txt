@@ -1,0 +1,4 @@
+$ msdeltree -?
+msdeltree: illegal option -- ?
+Mtools version 3.6, dated 14 Apr 97
+Usage: msdeltree [-v] msdosfile [msdosfiles...]

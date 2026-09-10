@@ -1,0 +1,4 @@
+$ msformat -?
+msformat: illegal option -- ?
+Mtools version 3.6, dated 14 Apr 97
+Usage: msformat [-V] [-t tracks] [-h heads] [-s sectors] [-l label] [-n serialnumber] [-S hardsectorsize] [-M softsectorsize] [-1][-2 track0sectors] [-0 rate0] [-A rateany] [-a]device

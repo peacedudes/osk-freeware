@@ -1,0 +1,13 @@
+$ macbin -?
+MacBinary file converter version 1.1
+Usage  :   Converts files to MacBinary format
+Syntax :   macbin [-vdtc?] <file 1> [<file 2>]
+
+Options:
+       -v           verbose
+       -d           deconvert
+       -t=<type>    set file type to <type>
+       -c=<creator> set file creator to <creator>
+
+Note:  <creator> and <type> are 4 characters long,
+       the defaults are: <type>=TEXT, <creator>=OS-9

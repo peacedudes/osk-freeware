@@ -1,0 +1,7 @@
+$ ctags.elvis -?
+usage: ctags [flags] filenames...
+	-s  include static functions
+	-t  include typedefs
+	-v  include variable declarations
+	-r  generate a "refs" file, too
+	-a  append to "tags", instead of overwriting

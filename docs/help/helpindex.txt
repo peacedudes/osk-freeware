@@ -1,0 +1,10 @@
+$ helpindex -?
+Syntax:   helpindex [<opts>] {<help file>} [<opts>]
+Function: Creates index file for specified help files
+          Without the -a option, only files with names ending
+          in ".hlp" and ".hlib" will be processed. The index
+          file name will have the ".hlp"/".hlib" replaced by
+          ".ndx".
+Options:  -a  : Process all files with no name restrictions.
+Note:     existing index files (".ndx") will be overwritten
+V1.0 (c) 1989 by L.Zeller

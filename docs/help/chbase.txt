@@ -1,0 +1,7 @@
+$ chbase -?
+chbase   : OS9 Utility, created by Philip Maechler
+Function : This program changes a number from base A to base B.
+Syntax   : chbase <number> [ <base A> [ <base B> ] ]
+           base A : base of entry  (default=10)
+           base B : base of output (default=16)
+           (B='0' prints all bases from 2 to 36)

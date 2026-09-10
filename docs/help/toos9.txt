@@ -1,0 +1,8 @@
+$ toos9 -?
+TOOS9    Version UTIL 2.80 by DESIGNA VLT 03.08.98
+toos9 <File(Wildcard)>
+
+Converts TEXT-File from DOS-Format to OS9-Format
+(and overwrites the source-file !!)
+
+   -1         Convert german special chars (a-Umlaut (HEX 0x84)->ae, ...)

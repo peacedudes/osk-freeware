@@ -1,0 +1,2 @@
+$ xcrypt -?
+en/decrypt <input-file> <output-file>

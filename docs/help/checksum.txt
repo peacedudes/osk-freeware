@@ -1,0 +1,7 @@
+$ checksum -?
+Syntax:   checksum <file> [<file>...]
+Function: checksum calculation
+Options:  -?        : displays this text
+          -n=<n>    : calculate over <n> bytes, (empty=$FF)
+          -s=<n>    : start calculation at offset <n>
+(c) 1992 by L.Zeller

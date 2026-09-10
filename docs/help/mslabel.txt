@@ -1,0 +1,4 @@
+$ mslabel -?
+mslabel: illegal option -- ?
+Mtools version 3.6, dated 14 Apr 97
+Usage: mslabel [-vscV] drive:

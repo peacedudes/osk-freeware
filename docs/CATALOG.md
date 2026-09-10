@@ -1,6 +1,6 @@
 # What is on this disk
 
-934 programs of OS-9/68K community software, gathered from the archives that kept it and made to run again. **583 of them need nothing but this disk**; the rest want Microware's `cio`, marked below with a star.
+935 programs of OS-9/68K community software, gathered from the archives that kept it and made to run again. **584 of them need nothing but this disk**; the rest want Microware's `cio`, marked below with a star.
 
 `DOC/INDEX` on the disk lists everything alphabetically. This is the same collection sorted by what each program is *for*, which is the more useful order when you do not yet know what you are looking for.
 
@@ -18,7 +18,7 @@
 | [Developer tools](#developer-tools) | 46 | Version control, tags, cross-reference, formatters, a debugger and benchmarks. |
 | [Compilers & build](#compilers--build) | 40 | C compilers and their passes, assemblers, linkers, make and parser generators. |
 | [Languages](#languages) | 10 | Interpreters and language systems beyond C. |
-| [Archives & compression](#archives--compression) | 35 | Pack, unpack and shrink -- lha, zip, tar, arc, zoo, and OS-9 module libraries. |
+| [Archives & compression](#archives--compression) | 36 | Pack, unpack and shrink -- lha, zip, tar, arc, zoo, and OS-9 module libraries. |
 | [Encoding & conversion](#encoding--conversion) | 24 | Between text encodings, line endings, Macintosh formats, ciphers and hashes. |
 | [Communications](#communications) | 96 | Kermit in several builds, terminal sessions, and networking. |
 | [Graphics & images](#graphics--images) | 202 | The netpbm toolkit, JPEG, a ray tracer, and things that draw. |
@@ -86,7 +86,7 @@
 
 | | |
 |---|---|
-| `sed_1.06` | &#9733; another build of sed -- it is the build that ships as `sed'; the earlier one did nothing but exhaust memory. |
+| `sed_1.06` | &#9733; a second build of sed, kept under its version number; the same substitutions<br>`Syntax   : sed [<opts>] [<file>]` |
 
 **Binary & hex**
 
@@ -94,8 +94,8 @@
 |---|---|
 | `beav` | BEAV 1.40 -- Binary Editor And Viewer (needs TERM)<br>**How:** Full-screen binary editor: `beav <file>'. Control-C leaves it. |
 | `hexed` | a hex editor made of your text editor: it writes the file out as a hex dump, opens that in the editor `-e=' names (default vi), and writes the file back when you leave. `-t=<dir>' says where the dump goes; without it, /r0 [no military use -- EFFO-INFO]<br>**How:** `hexed -t=<dir> -e=<editor> <file>': the file goes out as a hex dump into <dir>, the editor opens it, and leaving the editor writes the file back. Without -t it uses /r0. |
-| `hexedit` | HEXPERT V2.4 -- `hexedit <file>'. It reads TERMCAP as the capability string itself, not as the name of a file, so source `. /dd/SYS/termcap.entry' first and it draws its viewer; without that it prints the terminal type and exits. Its -d option reports `file not accessible' (214) for a file that is readable. beav is the binary editor that needs nothing, and hexed the one that would work if there were a RAM disk.<br>**How:** `hexedit <file>'. Put the termcap entry in TERMCAP first (`. /dd/SYS/termcap.entry') or it will not draw. |
-| `pbyte` | &#9733; patch bytes in a file at a hex offset |
+| `hexedit` | HEXPERT V2.4, a hex viewer and editor: `hexedit <file>'. It reads TERMCAP as the capability string itself, not as the name of a file, so source `. /dd/SYS/termcap.entry' first and it draws its viewer; without that it prints the terminal type and exits. Its -d option reports `file not accessible' for a file that is readable<br>**How:** `hexedit <file>'. Put the termcap entry in TERMCAP first (`. /dd/SYS/termcap.entry') or it will not draw. |
+| `pbyte` | &#9733; patch bytes in a file at a hex offset<br>`Syntax: pbyte <path> <hex_offset> <hex_byte> [<hex_byte>]` |
 
 **emacs family**
 
@@ -104,7 +104,7 @@
 | `em` | MicroEMACS 3.8b, a screen editor with Emacs keys<br>**How:** A screen editor. It stops with "Environment variable TERM not defined!" unless TERM is set -- SYS/login sets it, so run it from a login shell rather than bare. |
 | `emacs` | &#9733; MicroEMACS 4.00, a full-screen editor with Emacs keys and a macro language; its macros and help are in USR/LIB/EMACS.<br>**How:** Full-screen editor, MicroEMACS keys. Control-X control-C quits. Its macros and help are in USR/LIB/EMACS. |
 | `emacs.mm1` | &#9733; MicroEMACS 4.00 built for the MM/1 -- the same editor as `emacs'<br>**How:** The MM/1 build of `emacs'; the same keys, control-X control-C quits. |
-| `me` | MicroEMACS 3.11, a screen editor with Emacs keys and German messages (Datei for File); needs TERM set. The memacs 4.00 build shipped as emacs needs cio.<br>**How:** Full-screen editor, MicroEMACS keys, German messages. Control-X control-C quits. |
+| `me` | MicroEMACS 3.11, a screen editor with Emacs keys and German messages (Datei for File); needs TERM set<br>**How:** Full-screen editor, MicroEMACS keys, German messages. Control-X control-C quits. |
 | `mg` | &#9733; Mg, a small MicroGnuEmacs -- Emacs keys in 79K, its documentation under DOC/mg.<br>**How:** Full-screen editor, Emacs keys. Control-X control-C quits. |
 | `umacs` | &#9733; uMacs 1.0, MicroEMACS in 45K -- the same keys, no macro language<br>**How:** A small Emacs (uMacs 1.0). Full-screen: it takes the display and shows "== uMacs 1.0 == main ==" at the foot. It needs only TERM set. |
 
@@ -114,15 +114,15 @@
 |---|---|
 | `ed` | &#9733; GNU ed 0.2, the line editor.  It keeps its scratch file on /r0, a RAM disk, so mount one (`mount -r=256k /r0'); DOC/README-RUNNING has the details<br>**How:** Needs a /r0 RAM disk for its scratch file; `mount -r=256k /r0' provides one. Then `ed <file>', with ed's usual commands: 1,4p prints, s/a/b/ substitutes, w writes, q quits. |
 | `editor` | a full-screen file picker that hands the file you choose to `umacs': a lettered list of the directory, `+' and `-' to page, `.' to change directory.  Run it bare; given a path on the command line it stops on an illegal instruction. `gshell' and `assembler' are the same menu in front of other programs.<br>**How:** Run it bare: a full-screen file picker for umacs. Given a file on the command line it stops on an illegal instruction. Control-C leaves the menu. |
-| `sed` | &#9733; sed - stream editor: substitutes, deletes and prints with -n.  See DOC/README-CIO. |
+| `sed` | &#9733; sed, the stream editor: substitutes, deletes and prints, with -n for no default output, -e for a script line and -f for a script file<br>`Syntax   : sed [<opts>] [<file>]` |
 
 **SEDT family**
 
 | | |
 |---|---|
 | `btree` | &#9733; B-tree file handling demonstration and test |
-| `new_e` | SEDT editor that reads TERM to choose its terminal setup; here it comes up for a VT100. Needs the same three SYS/sedt.* files as e. |
-| `sedt` | &#9733; SEDT 2.6 screen editor, the VT100 build: a DEC-style keypad editor.  `new_e' and `e' are two more builds of it; all three read SYS/sedt.keys, sedt.ruler0 and sedt.help |
+| `new_e` | SEDT editor that reads TERM to choose its terminal setup; here it comes up for a VT100. Needs the same three SYS/sedt.* files as e.<br>`Syntax:` |
+| `sedt` | &#9733; SEDT 2.6 screen editor, the VT100 build: a DEC-style keypad editor.  `new_e' and `e' are two more builds of it; all three read SYS/sedt.keys, sedt.ruler0 and sedt.help<br>`Syntax:` |
 
 **vi clones**
 
@@ -130,7 +130,7 @@
 |---|---|
 | `elvis` | Elvis 1.7, a full vi and ex clone -- the best-documented of this disk's three vi editors and the one with the most options, its source in CMDS/archives and its manual under DOC/elvis. Needs TERM and TERMCAP. It also appears as view (read-only) and as REBUILT/vi.elvis, both of which run elvis. It wants a /dd/tmp for its scratch file, a path compiled in: without that directory it stops before drawing, with `Can't create temp file...'. This disk ships one, so it bites only on a /dd you copy it to; `makdir /dd/tmp', or `setenv EXINIT "set directory=<a dir you have>"' before starting it, cures that. DOC/README-VI compares the three.<br>**How:** A full vi/ex clone. Needs TERM and TERMCAP set -- `SYS/login' does both. `view' opens read-only, REBUILT/vi.elvis is the same program as vi, and all of them exec CMDS/elvis, so it must be present. |
 | `elvis_input` | elvis under its `input' personality -- it opens already in insert mode.  The name is load-bearing: elvis's wrapper picks its personality from the LAST LETTER of the name it was invoked by, so a name ending in another letter falls through to plain vi.  CMDS/input is a different program entirely |
-| `elvprsv` | Preserve an elvis session across a crash |
+| `elvprsv` | preserves elvis's buffer when elvis dies, for elvrec to recover; elvis runs it itself |
 | `elvrec` | Recover an elvis buffer preserved when elvis died. Run with no arguments it lists what is recoverable, so silence means nothing was preserved. It reads /usr/preserve/Index, and OS-9 has no /usr -- a leading /name is a device, not a directory -- so it finds nothing here whatever is placed under /dd. expreserve is the half that saves. DOC/elvrec/elvrec.doc.<br>**How:** Bare, it lists what elvis preserved; nothing listed means nothing was preserved. |
 | `vi.elvis` | elvis 1.7 as vi.  CMDS/vi is the EFFO build and CMDS/vi_nocio is PVic -- three unrelated vi clones |
 | `view` | elvis opened read-only |
@@ -140,8 +140,8 @@
 | | |
 |---|---|
 | `vi` | &#9733; the real vi/ex, and it keeps the name -- its source in SRC/effo_vi is the Berkeley ex source itself, not a clone. `vi -x' is ex, `vi -d' is edit.  See DOC/README-VI.<br>**How:** One of three unrelated vi editors here, and the only one that is the genuine Berkeley ex/vi rather than a clone -- its source in SRC/effo_vi is the real ex_*.c files. `vi -x' becomes ex, `vi -d' becomes edit. DOC/README-VI compares all three. |
-| `vi_1.0` | PVIC 1.0, public domain      -> /dd/CMDS/REBUILT (name was taken) and CMDS/vi_nocio are PVIC 1.0a |
-| `vi_cio` | &#9733; PVic vi, cio build (use vi_nocio instead)<br>**How:** PVIC 1.0a built with cio. Put the termcap entry in TERMCAP first (`. /dd/SYS/termcap.entry'), then `vi_cio <file>'. CMDS/vi_nocio is the same editor needing no module. |
+| `vi_1.0` | PVIC 1.0, the Portable VI Clone, public domain; vi_nocio and vi_cio are PVIC 1.0a<br>`Usage: vi [file ...]` |
+| `vi_cio` | &#9733; PVIC 1.0a built with Microware's cio. It reads its terminal description from TERMCAP as text, so source `. /dd/SYS/termcap.entry' first; vi_nocio is the same editor without the module<br>**How:** PVIC 1.0a built with cio. Put the termcap entry in TERMCAP first (`. /dd/SYS/termcap.entry'), then `vi_cio <file>'. CMDS/vi_nocio is the same editor needing no module. |
 | `vi_nocio` | PVIC 1.0a -- the smallest of this disk's three vi editors, public domain.  See DOC/README-VI to choose between them<br>**How:** PVIC 1.0a, the smallest of the three vi editors on this disk, public domain, no source or docs here. DOC/README-VI compares it with vi and elvis. |
 
 </details>
@@ -409,8 +409,8 @@
 
 | | |
 |---|---|
-| `divide` | &#9733; splits a file into pieces -- Farside Systems 1992, `divide -l=<lines> <infile> [<outfile>]' |
-| `fc` | &#9733; split a big file in two, to carry it on 360k disks -- the cut is at exactly 350,000 bytes: its own Function line says "Takes first 350,000 bytes of a file or stdin and puts in one file and puts remaining bytes" in the other |
+| `divide` | &#9733; splits a file into pieces of so many lines: `divide -l=<lines> <infile> [<outfile>]' writes outfile.1, outfile.2 and so on<br>`DIVIDE Version 1.1` |
+| `fc` | &#9733; split a big file in two, to carry it on 360k disks -- the cut is at exactly 350,000 bytes: its own Function line says "Takes first 350,000 bytes of a file or stdin and puts in one file and puts remaining bytes" in the other<br>`Syntax:   fc [<file>]` |
 
 </details>
 
@@ -496,7 +496,7 @@
 
 | | |
 |---|---|
-| `ctags.elvis` | elvis 1.7's ctags; CMDS/ctags is the BSD one |
+| `ctags.elvis` | elvis 1.7's ctags; CMDS/ctags is the BSD one<br>`usage: ctags [flags] filenames...` |
 | `ref` | Look up a C function's declaration from a tags file |
 
 **Version control**
@@ -623,13 +623,14 @@
 
 *Pack, unpack and shrink -- lha, zip, tar, arc, zoo, and OS-9 module libraries.*
 
-<details><summary>35 programs</summary>
+<details><summary>36 programs</summary>
 
 **Alternates**
 
 | | |
 |---|---|
 | `compress_4.0` | compress 4.0, another edition of CMDS/compress<br>`Syntax   : compress [-cdfvV] [-b maxbits] [file ...]` |
+| `compress_rebuilt` | a second build of `compress' from the same source; the two write the same bytes<br>`Unknown flag: '?'; Usage: compress [-dfvoV] [-b MaxBits] [file ...]` |
 | `gtar` | another build of GNU tar, taking the long +option spellings as well: `gtar +help' lists them<br>`This is GNU tar, the tape archiving program.` |
 | `gzip020_csl` | &#9733; gzip 1.2.4, 68020, needs csl<br>`gzip020_csl 1.2.4 (18 Aug 93)` |
 | `gzip020_nocsl` | gzip 1.2.4, 68020, no csl needed<br>`gzip020_nocsl 1.2.4 (18 Aug 93)` |
@@ -652,7 +653,7 @@
 
 | | |
 |---|---|
-| `ar` | archive librarian -- .ar files<br>`Ar V1.2 - archive file manager` |
+| `ar` | Ar 1.2, an archive manager: gathers files into one .ar archive and compresses them as it goes -- -u adds, -t lists, -x extracts, -p prints a member<br>`Ar V1.2 - archive file manager` |
 | `ar2` | &#9733; Ar 2.00, a later edition of `ar' with delete and move as well, and each file's attributes recorded<br>`Ar V2.00 - archive file manager` |
 | `arc` | ARC 5.21, the archiver that came before zip: a adds, x extracts, v lists with the compression column, t tests, p prints a member<br>`ARC - archive utility, Version 5.21, created on 04/22/87 at 15:05:21` |
 | `cat` | &#9733; concatenates files to standard output: -n numbers the lines, -v shows control characters, -s squeezes runs of blank lines<br>`Syntax: cat [<opts>] {[-] <path> [<opts>]}` |
@@ -708,37 +709,37 @@
 
 | | |
 |---|---|
-| `checksum` | &#9733; file checksum |
-| `chksum` | &#9733; 32-bit file checksum |
+| `checksum` | &#9733; a 16-bit checksum of a file, or of part of one with -s for the offset and -n for the length<br>`Syntax:   checksum <file> [<file>...]` |
+| `chksum` | &#9733; a 32-bit checksum of each file named, with -c to count bytes as well and -t for a total only<br>`syntax: chksum [-cehtv]	{file\|--\|-}...` |
 | `crypto` | &#9733; cryptogram puzzle solver's assistant<br>**How:** `crypto -h' is the real option list and `-i' the interactive commands; its bare answer is two lines naming those. As a FILTER it ends the emulator session here, so read the help rather than piping through it. |
 | `des` | &#9733; DES file encryption -- it writes `<file>.n' and removes the original.  It does not restore a file run through it twice with the same key (the result checksums 00000000), so for a round trip use `xcrypt'<br>**How:** It takes files and has no option flags at all -- `des file ...'. `-e' and `-?' are read as filenames and earn `Can't read -e.' |
-| `md5` | MD5 checksum |
-| `xcrypt` | &#9733; file encryption/decryption |
+| `md5` | the MD5 digest of each file named |
+| `xcrypt` | &#9733; a simple file cipher: `xcrypt -k=<key> in out' encrypts, and the same command over the result decrypts it<br>`en/decrypt <input-file> <output-file>` |
 
 **Macintosh**
 
 | | |
 |---|---|
-| `binhex` | Encode a file as Macintosh BinHex 4.0 |
-| `hexbin` | Decode BinHex back to a Macintosh file<br>**How:** Decodes Macintosh BinHex (.hqx) files, which is how Mac software travelled by mail and BBS. binhex goes the other way; unsit opens StuffIt archives and macunpack opens PackIt ones. All trap-free. DOC/macutils has the package readme. |
-| `macbin` | MacBinary encode/decode |
+| `binhex` | encodes a MacBinary file as BinHex 4.0, the text form Macintosh software was posted in<br>`File input options:` |
+| `hexbin` | decodes a BinHex file back into the Macintosh file it carried<br>**How:** Decodes Macintosh BinHex (.hqx) files, which is how Mac software travelled by mail and BBS. binhex goes the other way; unsit opens StuffIt archives and macunpack opens PackIt ones. All trap-free. DOC/macutils has the package readme. |
+| `macbin` | wraps a file in MacBinary, the form a Macintosh file with two forks travels in; -t and -c set its type and creator, and -d unwraps<br>`MacBinary file converter version 1.1` |
 | `macsave` | unpack MacBinary files from standard input into `.bin' files in the current directory, making subdirectories for embedded folders.  It writes silently, as its manual page says.  `macbin' is the translator that makes a MacBinary file.  DOC/macsave/macsave.1.<br>**How:** Its silence is correct and documented: DOC/macsave/macsave.1 says it "reads standard input and silently writes the file(s) it contains". `macbin' makes the MacBinary it wants, and the pair round-trips. |
-| `macstream` | Read a MacTerminal file stream.  It measures the file before it reads it and answers `Short file <name>' for anything too small to be one |
-| `macunpack` | Unpack a packed Macintosh archive |
-| `mcvert` | Convert between Macintosh file representations |
-| `UnMacpack` | Unpack MacPack format.  Named for its module, which is UnMacpack rather than unmacpack |
-| `unsit` | Unpack a StuffIt archive (V1.15f, Nigel Perry) |
+| `macstream` | Read a MacTerminal file stream.  It measures the file before it reads it and answers `Short file <name>' for anything too small to be one<br>`File input options:` |
+| `macunpack` | opens PackIt archives from a Macintosh<br>`File output options:` |
+| `mcvert` | converts between MacBinary and BinHex either way: -U makes the BinHex for uploading, -D takes it back to MacBinary for downloading<br>`Mcvert V1.05 By Doug Moore` |
+| `UnMacpack` | Unpack MacPack format.  Named for its module, which is UnMacpack rather than unmacpack<br>`File output options:` |
+| `unsit` | opens StuffIt archives from a Macintosh: -l lists, -r and -d take one fork only<br>`unsit: unknown option -?` |
 
 **Text encodings**
 
 | | |
 |---|---|
-| `atob` | ASCII-to-binary decode |
-| `btoa` | Binary-to-ASCII encode |
+| `atob` | decodes what btoa encoded, back to the bytes<br>`Bad args to atob` |
+| `btoa` | encodes a binary file as printable text, five characters for every four bytes with a checksum on the last line -- denser than uuencode; atob decodes it<br>`Bad args to btoa` |
 | `cuts` | &#9733; Coco Usenet Transfer Utility -- encodes a binary as text that will pass through electronic mail, in a form that survives gateways between ASCII and EBCDIC machines; `-d' decodes, which is the half worth having.  The encoder (`-e') asks for billions of bytes of memory, is refused, and writes empty data lines until it is stopped.<br>**How:** Coco Usenet Transfer Utility: it encodes a binary as mail-safe text and `-d' decodes a cuts file. Use `-d' for the half worth having; the encoder (`-e') asks for gigabytes of memory and is refused. |
-| `todos` | &#9733; OS-9 to DOS line endings.  Use `autolf -c -C -L', which does the job -- todos and toos9 are no-ops (see below) |
-| `toos9` | &#9733; DOS to OS-9 line endings.  `autolf -l -C' converts the other way and is the one to use: todos and toos9 rewrite a file in place but leave it byte-identical to the input on CR-only OS-9 text, so they are no-ops here.  `flip' host-side or `tr' also convert. |
-| `uudecode` | &#9733; uudecode |
+| `todos` | &#9733; meant to turn OS-9 line endings into DOS ones in place; it converts into a temporary file it then cannot rename back, so the file is left unchanged. `autolf -c -C -L' does the job as a filter |
+| `toos9` | &#9733; meant to turn DOS line endings into OS-9 ones in place, and the same story as todos: the temporary cannot be renamed over the original. `autolf -l -C' does the job as a filter<br>`TOOS9    Version UTIL 2.80 by DESIGNA VLT 03.08.98` |
+| `uudecode` | &#9733; undoes uuencode: writes the file named on the begin line back into the current directory<br>`ERROR: can't find -?` |
 | `uuencode` | &#9733; uuencode. Give it one argument -- the input file -- and redirect: `uuencode myfile > myfile.uu'. Its own usage line prints `uuencode >outfile [infile] name', which fails with two arguments.<br>**How:** One argument, the file: `uuencode /dd/SYS/motd > out.uu'. Its usage line reads as though it wants two and with two it prints that line and stops. `uudecode' is what undoes it. |
 | `uuexpand` | expands a file into a run of `0' and `1' characters, one per bit -- despite the shared prefix, unrelated to uuencode -- so it survives a copy between machines with different byte or character sizes; `uuexpand -u' (or `uuunexpand') reverses it<br>**How:** Expands a file into a string of 0s and 1s, one character per bit; despite the name it is unrelated to uuencode or uudecode. `uuexpand -u' (or `uuunexpand') reverses it. The -8/-16/-7 options choose the assumed character width, for portability across machines. |
 
@@ -1459,7 +1460,7 @@
 | `bootlogger` | &#9733; log what happens during boot |
 | `break` | send a BREAK on a serial line -- an assembler example, and it calls F$SysDbg, the system-debugger trap, on its way there.  On a machine with a debugger attached that drops you into it and waits for an answer, which in a script is a hang |
 | `btop` | convert characters to bit patterns -- its own Function: line, and what it does: `btop <file>' prints each character as a grid of O and space.<br>`Syntax:   BtoP [<opts>] [<path1>] [<opts>] [<path2>] [<opts>]` |
-| `chardef` | define a character set -- it reads the same `dict.191' word list as `buildhash'.  Run bare it ends the os9exec session, so give it its input. |
+| `chardef` | loads a character set into a VT220 terminal from a definition file: `chardef <file>'; it calls itself defchar<br>`Syntax: defchar [<path>]` |
 | `clear` | &#9733; clear the screen |
 | `combine` | &#9733; interleave two files BYTE BY BYTE, one supplying the even bytes and the other the odd -- how a 16-bit EPROM image is put back together from two 8-bit halves.  F.R.Schmitt, 1989. |
 | `config` | report this machine's C type properties as #defines -- char, short, int, long, pointer and float all come out; it then aborts where `double' begins, because that needs a 68881 or Microware's fpu.  See DOC/README-BUSERR |
@@ -1469,7 +1470,7 @@
 | `deton` | &#9733; time out an I/O read using an alarm: `deton [seconds]', an example rather than a tool.  For converting tabs, see `detab' and `expand'<br>`syntax: deton [seconds]` |
 | `devprc` | show which device each process holds a path to: `-a' walks every process and lists its open paths and the device behind each.  `top' prints its headings and then crashes -- its own bug, not the system: it asks F$GPrDsc about the root process's parent (process 0), does not check the "no such process" it correctly gets back, and reads an unfilled buffer.  aprocs and sysmon read the same state and run. |
 | `dload` | &#9733; load a data file into a data module: `dload <filename>'. Nothing to do with serial downloads -- `sbreak' and `break' are the serial-line examples here |
-| `e` | SEDT screen editor, a small fixed VT100 build. Reads SYS/sedt.keys, sedt.ruler0 and sedt.help, the same three sedt and new_e read. |
+| `e` | SEDT screen editor, a small fixed VT100 build. Reads SYS/sedt.keys, sedt.ruler0 and sedt.help, the same three sedt and new_e read.<br>`Syntax:` |
 | `expreserve` | &#9733; vi's crash-recovery helper: preserves an edit buffer when the editor dies.  Like ksh it reads the terminal asking for more bytes than you type (388), so it depends on the same emulator behaviour -- see DOC/README-KSH<br>**How:** Saves a vi buffer when the editor or the line dies; vi runs it for you rather than you running it. |
 | `exrecover` | &#9733; recover a vi buffer that expreserve saved<br>**How:** Recovers what expreserve saved. Again, vi's helper rather than a command you start. |
 | `fastcc` | &#9733; a faster front end for cc |
@@ -1537,26 +1538,26 @@
 
 | | |
 |---|---|
-| `msattrib` | mtools 3.6 -- MS-DOS attrib (drive a: and b: are ready) |
-| `msbadblocks` | mtools 3.6 -- MS-DOS badblocks (drive a: and b: are ready) |
-| `mscd` | mtools 3.6 -- MS-DOS cd (drive a: and b: are ready) |
+| `msattrib` | mtools 3.6: reads or sets a DOS file's attribute bits -- +r and -r read-only, +a archive, +h hidden, +s system<br>`msattrib: illegal option -- ?` |
+| `msbadblocks` | mtools 3.6: reads every used cluster of a DOS disk and marks the ones that fail as bad, so nothing is written there again |
+| `mscd` | mtools 3.6: sets the current directory on a DOS disk for the other ms commands; run bare it reports where it is |
 | `mscheck` | mtools disk verifier.  A ksh script (#!ksh), and ksh is starred, so this one wants cio too.  Drives a: and b: are ready. |
-| `mscopy` | mtools 3.6 -- MS-DOS copy (drive a: and b: are ready) |
-| `msdel` | mtools 3.6 -- MS-DOS del (drive a: and b: are ready) |
-| `msdeltree` | mtools 3.6 -- MS-DOS deltree (drive a: and b: are ready) |
-| `msdir` | mtools 3.6 -- MS-DOS dir (drive a: and b: are ready) |
-| `msformat` | mtools 3.6 -- MS-DOS format (drive a: and b: are ready)<br>**How:** Refuses this disk image outright because it is not removable media; even given the image's own geometry it does not complete. A real floppy drive is what it wants. |
-| `msinfo` | mtools 3.6 -- MS-DOS info (drive a: and b: are ready) |
-| `mslabel` | mtools 3.6 -- MS-DOS label (drive a: and b: are ready) |
-| `msmd` | mtools 3.6 -- MS-DOS md (drive a: and b: are ready) |
-| `msmove` | mtools 3.6 -- MS-DOS move (drive a: and b: are ready) |
-| `msrd` | mtools 3.6 -- MS-DOS rd (drive a: and b: are ready) |
-| `msread` | mtools 3.6 -- MS-DOS read (drive a: and b: are ready) |
-| `msren` | mtools 3.6 -- MS-DOS ren (drive a: and b: are ready) |
-| `mstoolstest` | mtools 3.6 -- MS-DOS toolstest (drive a: and b: are ready)<br>**How:** Prints mtools' resolved configuration -- the drives it knows and the image file behind each one -- not a diagnostic test of anything. |
-| `mstype` | mtools 3.6 -- MS-DOS type (drive a: and b: are ready) |
-| `mswrite` | mtools 3.6 -- MS-DOS write (drive a: and b: are ready) |
-| `mtools` | MS-DOS disk suite -- front end listing its sub-commands |
+| `mscopy` | mtools 3.6: copies files between OS-9 and a DOS disk, `mscopy file a:NAME.TXT' or the other way round; -t converts text line endings<br>`mscopy: illegal option -- ?` |
+| `msdel` | mtools 3.6: deletes files on a DOS disk<br>`msdel: illegal option -- ?` |
+| `msdeltree` | mtools 3.6: removes a directory on a DOS disk and everything inside it<br>`msdeltree: illegal option -- ?` |
+| `msdir` | mtools 3.6: lists a DOS directory in DOS's own form -- 8.3 names, dates and the free space left<br>`msdir: illegal option -- ?` |
+| `msformat` | mtools 3.6: writes a fresh MS-DOS filesystem onto a floppy; it wants removable media and refuses a plain disk image<br>**How:** Refuses this disk image outright because it is not removable media; even given the image's own geometry it does not complete. A real floppy drive is what it wants. |
+| `msinfo` | mtools 3.6: reads a DOS disk's boot sector and reports its geometry, sector size and label, with the msformat line that would recreate it<br>`msinfo: illegal option -- ?` |
+| `mslabel` | mtools 3.6: reads or writes a DOS disk's volume label<br>`mslabel: illegal option -- ?` |
+| `msmd` | mtools 3.6: makes a directory on a DOS disk<br>`msmd: illegal option -- ?` |
+| `msmove` | mtools 3.6: moves files between directories on a DOS disk<br>`msmove: illegal option -- ?` |
+| `msrd` | mtools 3.6: removes an empty directory from a DOS disk<br>`msrd: illegal option -- ?` |
+| `msread` | mtools 3.6: reads a file off a DOS disk byte for byte into an OS-9 file<br>`msread: illegal option -- ?` |
+| `msren` | mtools 3.6: renames a file on a DOS disk<br>`msren: illegal option -- ?` |
+| `mstoolstest` | mtools 3.6: prints mtools' resolved configuration -- the drives it knows and the image file behind each -- rather than testing anything<br>**How:** Prints mtools' resolved configuration -- the drives it knows and the image file behind each one -- not a diagnostic test of anything. |
+| `mstype` | mtools 3.6: prints a file that lives on a DOS disk<br>`mstype: illegal option -- ?` |
+| `mswrite` | mtools 3.6: writes a file onto a DOS disk byte for byte, with none of the name rules or text conversion mscopy applies; msread is its reverse<br>`mswrite: illegal option -- ?` |
+| `mtools` | the mtools 3.6 suite's own front end: run bare it lists every sub-command, each of which is also its own program here. Drives a: and b: are set up in SYS/mtools.conf, backed by the disk images in DOS<br>`Supported commands:` |
 
 </details>
 
@@ -1608,7 +1609,7 @@
 | | |
 |---|---|
 | `cam` | &#9733; CAMSHAFT, not camera: it asks for the rocker ratio, the lift at a crank angle and the base circle, and plots the lift curve for an intake lobe.  The plot is Tektronix vectors, so on a vt100 it arrives as characters -- the dialogue above it is the readable part. |
-| `chbase` | &#9733; converts a number from one base to another: `chbase 255 10 16' prints FF, and a target base of 0 prints every base from 2 to 36 |
+| `chbase` | &#9733; converts a number from one base to another: `chbase 255 10 16' prints FF, and a target base of 0 prints every base from 2 to 36<br>`chbase   : OS9 Utility, created by Philip Maechler` |
 | `cvtbase` | converts a number between bases.  The bases are named by key -- b, d, h or x, o -- or by their value, and the number comes on standard input: `echo 255 ! cvtbase d h' answers ff<br>**How:** The bases are the arguments and the numbers come on standard input, one per line: `cvtbase d h' then 255 answers ff; Escape ends it. Bases are named b, d, h or x, o -- or by their digit characters. |
 | `loan` | &#9733; amortisation calculator: principal, term, rate and start month in, the payment and a month-by-month schedule out<br>**How:** Answers four prompts and prints the schedule for the whole term; pipe it through head or less. |
 | `rechne` | &#9733; German command-line calculator: every answer in decimal, hex and binary at once. The expression is one argument with no spaces -- `rechne 4095+1' -- with operators + - x / m (modulo) a o p (and, or, xor) and $ for hex; -b lists the bits set<br>**How:** One expression, no spaces: `rechne 4095+1'. Operators + - x / m a o p; $ff is hex; -b lists the set bits. The other -xx switches decode status codes of the maker's own equipment. |
@@ -1679,9 +1680,9 @@
 |---|---|
 | `help` | help system: `help <topic>' pages the topic's article from a .hlp file in SYS/HELP and then offers its subtopics; `help help' explains the format. bash has a help builtin of its own that answers first, so `enable -n help' there<br>**How:** `help dinfo'. At bash type `enable -n help' first, or bash's own help builtin answers instead. |
 | `helpindex` | &#9733; builds the .ndx index a .hlp help file needs: `helpindex dinfo.hlp' writes dinfo.ndx beside it<br>**How:** `helpindex dinfo.hlp' writes dinfo.ndx beside it. Only names ending .hlp or .hlib are accepted unless -a is given; with no name it asks for one. |
-| `less` | pager: space or f for the next page, b for the one before, / to search, h for its help screen (SYS/less.hlp), q to leave. Reads the terminal from TERM and TERMCAP |
-| `lessecho` | &#9733; prints its arguments back quoted for a shell -- the helper less uses to hand file names on |
-| `lesskey` | turns a key-binding file into the binary less reads: a `#command' section, then one key and one command per line |
+| `less` | pager: space or f for the next page, b for the one before, / to search, h for its help screen (SYS/less.hlp), q to leave. Reads the terminal from TERM and TERMCAP<br>`SUMMARY OF LESS COMMANDS` |
+| `lessecho` | &#9733; prints its arguments back quoted for a shell -- the helper less uses to hand file names on<br>`usage: lessecho [-ox] [-cx] [-pn] [-dn] [-a] file ...` |
+| `lesskey` | turns a key-binding file into the binary less reads: a `#command' section, then one key and one command per line<br>`usage: lesskey [-o output] [input]` |
 
 </details>
 

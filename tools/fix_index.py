@@ -95,7 +95,11 @@ def fix(name, newlines, path=INDEX):
     # already keeps for 617 of its 748 entries.  This read 15 until
     # 2026-08-29 and put every head it wrote one column left of its own
     # continuations.
-    head = " %s%s%s" % (star, name, " " * max(1, 16 - len(star) - len(name)))
+    # At least TWO spaces after the name, whatever its length: the entry
+    # parser (gen_catalog.from_index) requires them, and a sixteen-letter
+    # name padded to the column got one, which dropped `compress_rebuilt'
+    # out of the catalogue on 2026-09-09.
+    head = " %s%s%s" % (star, name, " " * max(2, 16 - len(star) - len(name)))
     lines[i:j] = [head + newlines[0]] + ["                 " + x
                                          for x in newlines[1:]]
     open(path, "wb").write("\r".join(lines).encode("latin-1"))

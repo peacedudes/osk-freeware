@@ -1,0 +1,14 @@
+$ me -?
+Syntax:   emacs [opts] <files>
+Funktion: microemacs 3.11 (beta) Texteditor aufrufen.
+Optionen:
+    -e          bearbeite Fehlerdatei "error.cmd"
+    -f<file>    fuehre <file> statt "emacs.rc" beim Aufruf aus.
+    -c          veraenderbare Puffer.
+    -g<znr>     gehe zu Zeile <znr>.
+    -i<var> <wert>  setze Variable <var> auf Wert <wert>.
+    -k<code>    Puffer mit Schluessel <code> ver- und entschluesseln.
+    -r          eingeschraenkte Verwendung.
+    -s<kette>   suche nach Suchkette <kette>.
+    -v          schreibgeschuetzte Puffer, nur ansehen.
+    -?,-h       diesen Hilfetext anzeigen.

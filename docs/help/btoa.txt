@@ -1,0 +1,5 @@
+$ btoa -?
+Bad args to btoa
+
+BtoA V4.0 - Encode binary files to ascii.
+    Usage : btoa <filein >fileout

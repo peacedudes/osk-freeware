@@ -1,0 +1,5 @@
+$ atob -?
+Bad args to atob
+
+AtoB V4.0 - Decode 'btoa' ascii files back to binary.
+    Usage: atob <filein >fileout
