@@ -1,6 +1,6 @@
 # What is on this disk
 
-935 programs of OS-9/68K community software, gathered from the archives that kept it and made to run again. **586 of them need nothing but this disk**; the rest want Microware's `cio`, marked below with a star.
+937 programs of OS-9/68K community software, gathered from the archives that kept it and made to run again. **588 of them need nothing but this disk**; the rest want Microware's `cio`, marked below with a star.
 
 `DOC/INDEX` on the disk lists everything alphabetically. This is the same collection sorted by what each program is *for*, which is the more useful order when you do not yet know what you are looking for.
 
@@ -25,7 +25,7 @@
 | [Games](#games) | 61 | Adventures, board and card games, arcade ports, dungeon crawls and puzzles. |
 | [Screen toys](#screen-toys) | 10 | Animations and screen effects -- they draw on the terminal rather than print to it. Some run until you stop them. |
 | [Amusements](#amusements) | 19 | Generators, simulators and diversions that are not quite games. |
-| [System & modules](#system--modules) | 124 | OS-9 module and process tools, devices, system state and scheduling. |
+| [System & modules](#system--modules) | 126 | OS-9 module and process tools, devices, system state and scheduling. |
 | [Disk & DOS](#disk--dos) | 20 | Reading and writing MS-DOS media with the mtools set. |
 | [Time & calendar](#time--calendar) | 14 | Calendars, clocks and astronomy. |
 | [Maths & calculators](#maths--calculators) | 11 | Calculators, plotting, orbits and number theory. |
@@ -1337,7 +1337,7 @@
 
 *OS-9 module and process tools, devices, system state and scheduling.*
 
-<details><summary>124 programs</summary>
+<details><summary>126 programs</summary>
 
 **Devices & disks**
 
@@ -1355,6 +1355,8 @@
 | | |
 |---|---|
 | `about` | what this collection knows about a program: what it is, what it is for, where it came from, the files it opens and whether they are here, and whether its source and documentation survived.  One card per program -- `about hack'.  DOC/CATEGORIES browses; this answers. |
+| `whereis` | find a program's source, command and documentation -- SRC, CMDS, DEFS, LIB and DOC, searched all the way down on every device PATH names.  `whereis gen'<br>`whereis [ -sbmu ] [ -SBM dir ... -f ] name...` |
+| `which` | what a command name runs, found the way the OS-9 shell finds it, and for a module already in memory, the file it came from.  `which -a dir'<br>`Usage: which [-i] [-a] [--] [<command>]` |
 
 **Keeping**
 
