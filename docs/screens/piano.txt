@@ -1,3 +1,0 @@
-$ piano 40 4 4
-base = 40, 1/4 notes
-tuning - sorry

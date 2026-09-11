@@ -114,8 +114,7 @@ round-trip, a draw-once screen).
     `sc' serves the spreadsheet need).
   - Broken or brittle here: `dedit' (spins for want of `tmode', and writes
     raw sectors -- do not run unsupervised); `names' (prints garbage and
-    never terminates -- `modinfo' does its job); `piano' (drives a tone
-    generator, stops at `tuning - sorry'); `rstory2', `ff', `creadoc'.
+    never terminates -- `modinfo' does its job); `rstory2', `ff', `creadoc'.
 
 ## The all-card sweep is under way -- four decisions waiting (2026-09-08)
 
@@ -144,12 +143,10 @@ Waiting on you:
    programs -- the skill warns `-r' can hide truncation, hence asking. Add
    it, or list the two as exceptions?
 
-2. **oleo, piano and rstory2 are best-forgotten candidates.**  `oleo'
+2. **oleo and rstory2 are best-forgotten candidates.** (piano was removed 2026-09-11 -- the author's RF-radio music toy, obsolete and unverifiable; he keeps the source.)  `oleo'
    (GNU Oleo 1.6) aborts with an illegal instruction before it draws a
    cell -- confirmed on real Microware hardware too, not just os9exec -- so
-   it is the program, and `sc' serves the spreadsheet need. `piano' parses its
-   arguments then prints `tuning - sorry' and aborts -- it drives a tone
-   generator the emulator has none of. `rstory2' forks story programs
+   it is the program, and `sc' serves the spreadsheet need. `rstory2' forks story programs
    (`rstory_W' and the rest) that did not come with it, so it stops after
    its questions. Each is carded honestly as far as they go; your call
    whether they stay.  A fourth: **ff** (a German file-finder) hands off

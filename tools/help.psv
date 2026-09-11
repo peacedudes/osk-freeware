@@ -753,7 +753,6 @@ world|none|it takes no options: run it and the adventure begins
 wish|none|WiSH the windowing shell has no -? screen; Ctrl-D leaves it, the control keys drive it (see the card)
 cam|none|it asks for its numbers itself; there is no help flag
 lissaj|none|it asks for its numbers itself; there is no help flag
-piano|piano -?|
 backgammon|backgammon -?|
 teachgammon|teachgammon -?|
 gs403|gs403 -?|

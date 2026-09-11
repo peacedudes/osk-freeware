@@ -255,15 +255,6 @@ snap
 send    \003
 wait    2
 
-shot    piano
-cap     Plays a scale through a tone generator: given a base note and a note
-cap     length it sounds the notes.  It wants a third number as well; with
-cap     no sound hardware to drive it answers `tuning - sorry' and stops.
-try     piano 40 4 4
-run     piano 40 4 4
-wait    2
-snap
-
 shot    backgammon
 size    30 80
 burst
