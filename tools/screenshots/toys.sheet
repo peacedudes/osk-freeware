@@ -1,28 +1,6 @@
 # Screen toys: animations and effects, one stanza per program.  The
-# play-tests in tools/playtests cover bite, card, life, rain, suicide and
+# play-tests in tools/playtests cover bite, card, life, rain and
 # worms.
-
-shot    suicide1
-cap     A rooftop animation drawn in characters: a stick figure jumps
-cap     from the top of a tower block and a long scream runs along the
-cap     roofline as it falls.  It plays once, a few seconds, and returns
-cap     to the prompt.  It draws with the terminal's termcap entry.
-try     suicide1
-run     suicide1
-wait    6
-snap
-wait    2
-
-shot    suicide2
-cap     The same rooftop animation with a different ending: a car comes
-cap     along the road at the foot of the building, and somebody shouts
-cap     a warning across the top of the screen.  It plays once and
-cap     returns to the prompt.
-try     suicide2
-run     suicide2
-wait    6
-snap
-wait    2
 
 shot    ttyexp
 size    30 80

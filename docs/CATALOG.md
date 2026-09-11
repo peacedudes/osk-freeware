@@ -1,6 +1,6 @@
 # What is on this disk
 
-939 programs of OS-9/68K community software, gathered from the archives that kept it and made to run again. **590 of them need nothing but this disk**; the rest want Microware's `cio`, marked below with a star.
+936 programs of OS-9/68K community software, gathered from the archives that kept it and made to run again. **587 of them need nothing but this disk**; the rest want Microware's `cio`, marked below with a star.
 
 `DOC/INDEX` on the disk lists everything alphabetically. This is the same collection sorted by what each program is *for*, which is the more useful order when you do not yet know what you are looking for.
 
@@ -23,7 +23,7 @@
 | [Communications](#communications) | 96 | Kermit in several builds, terminal sessions, and networking. |
 | [Graphics & images](#graphics--images) | 202 | The netpbm toolkit, JPEG, a ray tracer, and things that draw. |
 | [Games](#games) | 62 | Adventures, board and card games, arcade ports, dungeon crawls and puzzles. |
-| [Screen toys](#screen-toys) | 11 | Animations and screen effects -- they draw on the terminal rather than print to it. Some run until you stop them. |
+| [Screen toys](#screen-toys) | 8 | Animations and screen effects -- they draw on the terminal rather than print to it. Some run until you stop them. |
 | [Amusements](#amusements) | 19 | Generators, simulators and diversions that are not quite games. |
 | [System & modules](#system--modules) | 126 | OS-9 module and process tools, devices, system state and scheduling. |
 | [Disk & DOS](#disk--dos) | 20 | Reading and writing MS-DOS media with the mtools set. |
@@ -1270,7 +1270,7 @@
 
 *Animations and screen effects -- they draw on the terminal rather than print to it. Some run until you stop them.*
 
-<details><summary>11 programs</summary>
+<details><summary>8 programs</summary>
 
 | | |
 |---|---|
@@ -1278,9 +1278,6 @@
 | `card` | Towers of Hanoi whose twelve disks are the lines of a Christmas message; VT100, wants TERMCAP |
 | `life` | Conway's Game of Life<br>**How:** life [init-file]. The patterns are in /dd/GAMES/LIFE -- try `life /dd/GAMES/LIFE/glider`. It also wants more memory than the default; from the OS-9 shell that is `life #22k <file>`, and bash has no #size syntax at all. |
 | `rain` | raindrops land on the screen and spread in rings -- a screen toy; control-C ends it<br>**How:** Full-screen: it takes over the display. **control-C gets you out**; q, Q, control-D and ESC do not. If it has a quit command of its own, its documentation in DOC/ will say. |
-| `suicide` | animation: a stick figure walks off a rooftop |
-| `suicide1` | rooftop animation: a stick figure jumps from a tower block and a scream runs along the roofline as it falls. Plays once and returns; draws with termcap |
-| `suicide2` | the rooftop animation with a car: the figure lands on the road below and a warning is shouted across the top of the screen. Plays once and returns |
 | `textb` | &#9733; Mandelbrot set drawn in ASCII on an 80x25 terminal.  Start with X -2.3, Y -2.0, range 4.0, 32 iterations<br>**How:** An ASCII Mandelbrot viewer -- it asks four questions and draws. Try X_Coord -2.3, Y_Coord -2.0, RANGE 4.0, Max Iter 32. Needs Microware's cio. |
 | `ttyexp` | fireworks drawn in characters: bursts thrown out from a point, arcing under gravity with trails. -s<n> bursts at once, -p<n> points in each, -D<n> seconds to run; `ttyexp -s2 -p50' fills the screen. Clears the screen when done; VT100, wants TERMCAP<br>**How:** `ttyexp -s2 -p50' fills the screen with bursts; it runs ten seconds and clears the screen when done. |
 | `worms` | worms crawl about the screen at random, each leaving a trail -- a screen toy: -number how many, -length how long, -trail to leave one; control-C ends it<br>`usage: /dd/CMDS/GAMES/worms [-field] [-length #] [-number #] [-trail]` |

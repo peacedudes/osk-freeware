@@ -734,8 +734,6 @@ rpn|none|`?' at its prompt lists the words; a flag is refused
 checkfile|none|it takes no options; its commands are single letters on the screen
 oleo|none|it stops before it reads anything; there is no help to show
 scqref|none|it takes no options: run it and it prints the reference
-suicide1|none|it takes no options
-suicide2|none|it takes no options
 ttyexp|ttyexp -?|
 worms|worms -?|
 rain|none|it takes no options; control-C ends it
@@ -745,7 +743,6 @@ banner|none|it takes the text to print and nothing else
 beav|beav -?|
 card|none|it takes no options
 nobs|nobs -?|
-suicide|none|it takes no options
 bite|none|it takes no options; q quits
 life|none|it takes a pattern file and nothing else
 tess|none|-f skips the title and scenario; there is no help flag

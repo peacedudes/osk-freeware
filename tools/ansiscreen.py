@@ -48,6 +48,14 @@ CHARSET = re.compile(rb"\x1b([()])([0-9A-B])")
 TVI_CUP = re.compile(rb"\x1b=([\x20-\x7e])([\x20-\x7e])")
 TVI_ATTR = re.compile(rb"\x1bG[0-9]")
 
+# TeleVideo / ADM-3A clear-to-end-of-line.  `fuddle', a TeleVideo program,
+# clears its status line with ESC T before writing "White's move:" over it;
+# unhandled, the ESC was skipped and its `T' printed as text at column 0, so
+# the card read "TWhite's move:".  ESC T and the TVI-925 ESC t both clear from
+# the cursor to the end of the line.  (ESC Y, clear to end of screen, is left
+# out: nothing here needs it, and it collides with vt52 cursor addressing.)
+TVI_CLEAR = re.compile(rb"\x1b([Tt])")
+
 # DEC Special Graphics, MAPPED TO ASCII rather than to the Unicode box
 # characters, because nothing in this repository is allowed to carry a byte
 # over 0x7f.  A corner is a `+', a horizontal a `-', a vertical a `|'; that
@@ -201,6 +209,11 @@ class Screen:
                 m = TVI_ATTR.match(data, i)
                 if m:
                     self.reverse = m.group(0)[-1:] == b"4"
+                    i = m.end()
+                    continue
+                m = TVI_CLEAR.match(data, i)
+                if m:
+                    self.erase_line(0)           # clear cursor -> end of line
                     i = m.end()
                     continue
                 m = ESC2.match(data, i)

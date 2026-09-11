@@ -103,8 +103,6 @@ CAPTIONS = {
                  "here, with their data in GAMES/SNOBOL.", "final"),
     "rstory":   ("A random story generator from the same SNOBOL4 shelf, "
                  "writing roff input.", "final"),
-    "suicide":  ("An animation: a stick figure walks off a rooftop.",
-                 "final"),
     "tess":     ("Beyond The Tesseract, a text adventure of its own.",
                  "final"),
     "textb":    ("The Mandelbrot set in ASCII: it asks for a centre, a range "
@@ -252,6 +250,19 @@ def trim(text, first=""):
 def ink(text):
     return len(re.sub(r"\s", "", text))
 
+# The ink floor below skips a near-BLANK capture -- a program that drew
+# nothing.  A few programs draw genuinely sparse screens that are still a true
+# picture of them: `rain' is a gentle screen toy, a handful of raindrop rings
+# on an otherwise empty field, and its honest frame sits just under the floor.
+# For these, a lower floor applies -- enough to still catch a blank, not so
+# high it rejects a real but airy screen.
+SPARSE_OK = {"rain"}
+SPARSE_FLOOR = 12
+
+def ink_floor(name):
+    return SPARSE_FLOOR if name in SPARSE_OK else 30
+
+
 
 def collapse(text, keep=3):
     """Fold a run of identical lines into one line and a count.
@@ -388,7 +399,7 @@ def collect():
         if not got:
             continue
         label, screen = got
-        if ink(screen) < 30:
+        if ink(screen) < ink_floor(name):
             continue                       # nothing worth looking at
         caption = (meta["cap"] if meta
                    else CAPTIONS.get(name, ("",))[0]) or "Captured while running."

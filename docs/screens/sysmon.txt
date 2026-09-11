@@ -1,5 +1,5 @@
                        OS9/68k V4.16 Process Monitor V6.1
-F$SetSys: unimpl##22:48:37##08-Sep-19126##TASKS:#001##CPU:#68040##
+F$SetSys: unimpl##08:59:38##11-Sep-19126##TASKS:#001##CPU:#68040##
 F$SeMinage: 00000  Maxage: 00000  ActiveTasks: 000  Delay: 04s  Port: /TERM
                                     0        25        50        75        100 %
 Id  Username   Processname          +---------+---------+---------+----------+
@@ -22,4 +22,4 @@ Id  Username   Processname          +---------+---------+---------+----------+
                                     +---------+---------+---------+----------+
 #SYSMON:# Can't open '/dd/sys/nodedef' [Node-definition file]
 
-Process   Pid: 3, sysmon, edi
+Process   Pid: 3

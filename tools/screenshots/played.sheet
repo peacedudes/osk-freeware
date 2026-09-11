@@ -22,13 +22,25 @@ cap     Raindrops land on the screen and spread in rings.  A screen toy.
 cap     Control-C ends it.
 try     rain
 run     rain
-wait    5
+wait    6
 snap
-wait    3
+wait    4
 snap
-wait    3
+wait    4
 snap
-wait    3
+wait    4
+snap
+wait    4
+snap
+wait    4
+snap
+wait    4
+snap
+wait    4
+snap
+wait    4
+snap
+wait    4
 snap
 send    \003
 wait    2
@@ -113,18 +125,6 @@ cap     to lay away to the crib, then plays the hand and pegs the score on
 cap     the board above.  Control-C leaves it.
 try     nobs
 run     nobs
-wait    5
-snap
-wait    4
-snap
-send    \003
-wait    2
-
-shot    suicide
-cap     An animation: a stick figure walks to the edge of a rooftop and
-cap     jumps, with a long cry across the top of the screen.
-try     suicide
-run     suicide
 wait    5
 snap
 wait    4
