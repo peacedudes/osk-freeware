@@ -945,3 +945,5 @@ wn.stb|none|a symbol table that ships beside the WN web server, not a program
 hackwish|none|the wish defaults to 3 potions of gain level; name your own instead, e.g. `hackwish a blessed +3 ring of levitation'
 which|which -?|
 whereis|whereis -?|
+worm|none|it takes a starting length and nothing else; h, j, k and l steer and control-C leaves
+xmas|none|it takes no options; control-C ends it

@@ -893,3 +893,5 @@ pnmscale|netpbm/PNM|pnmscale.c|_OSK SYSV|/dd/LIB/pnm.l /dd/LIB/ppm.l /dd/LIB/pgm
 pnmshear|netpbm/PNM|pnmshear.c|_OSK SYSV|/dd/LIB/pnm.l /dd/LIB/ppm.l /dd/LIB/pgm.l /dd/LIB/pbm.l /dd/LIB/pbm.l /dd/LIB/pbm.l /dd/LIB/math.l| -V=/h6/netpbm -V=/h6/netpbm/PBM -V=/h6/netpbm/PGM -V=/h6/netpbm/PPM
 which|which|which.c|||
 whereis|whereis|whereis.c|||
+xmas|xmas|xmas.c||/dd/LIB/curses.l /dd/LIB/termlib.l|
+worm|worm|worm.c||/dd/LIB/curses.l /dd/LIB/termlib.l|

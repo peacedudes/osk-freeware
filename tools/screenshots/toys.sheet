@@ -38,3 +38,15 @@ snap
 wait    2
 snap
 wait    7
+
+shot    xmas
+size    24 80
+cap     A Christmas card drawn in characters: the tree is drawn and trimmed,
+cap     lights blink along its strings, and reindeer run across the screen
+cap     before the card starts over.  It loops until control-C.
+try     xmas
+run     xmas
+wait    60
+snap
+send    \003
+wait    2

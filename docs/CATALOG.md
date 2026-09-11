@@ -1,6 +1,6 @@
 # What is on this disk
 
-937 programs of OS-9/68K community software, gathered from the archives that kept it and made to run again. **588 of them need nothing but this disk**; the rest want Microware's `cio`, marked below with a star.
+939 programs of OS-9/68K community software, gathered from the archives that kept it and made to run again. **590 of them need nothing but this disk**; the rest want Microware's `cio`, marked below with a star.
 
 `DOC/INDEX` on the disk lists everything alphabetically. This is the same collection sorted by what each program is *for*, which is the more useful order when you do not yet know what you are looking for.
 
@@ -22,8 +22,8 @@
 | [Encoding & conversion](#encoding--conversion) | 24 | Between text encodings, line endings, Macintosh formats, ciphers and hashes. |
 | [Communications](#communications) | 96 | Kermit in several builds, terminal sessions, and networking. |
 | [Graphics & images](#graphics--images) | 202 | The netpbm toolkit, JPEG, a ray tracer, and things that draw. |
-| [Games](#games) | 61 | Adventures, board and card games, arcade ports, dungeon crawls and puzzles. |
-| [Screen toys](#screen-toys) | 10 | Animations and screen effects -- they draw on the terminal rather than print to it. Some run until you stop them. |
+| [Games](#games) | 62 | Adventures, board and card games, arcade ports, dungeon crawls and puzzles. |
+| [Screen toys](#screen-toys) | 11 | Animations and screen effects -- they draw on the terminal rather than print to it. Some run until you stop them. |
 | [Amusements](#amusements) | 19 | Generators, simulators and diversions that are not quite games. |
 | [System & modules](#system--modules) | 126 | OS-9 module and process tools, devices, system state and scheduling. |
 | [Disk & DOS](#disk--dos) | 20 | Reading and writing MS-DOS media with the mtools set. |
@@ -1160,7 +1160,7 @@
 
 *Adventures, board and card games, arcade ports, dungeon crawls and puzzles.*
 
-<details><summary>61 programs</summary>
+<details><summary>62 programs</summary>
 
 **Adventure & fiction**
 
@@ -1186,6 +1186,7 @@
 | `tet` | Tetris -- `p' plays; s/j and f/l move a piece, d/k turns it, space drops it, q quits to the high-score table it keeps in GAMES/tet.hs.  Needs a terminal, not a pipe<br>**How:** Tetris. `p' plays from the menu; s or j moves the piece left, f or l right, d or k turns it, space drops it, ESC pauses and q quits to the high-score table, kept in GAMES/tet.hs. Give it a real terminal: it does no terminal setup of its own (the raw-mode code in SRC/tet/tet.c is inside `#ifndef OSK'), so from a pipe it draws its board and reads nothing. |
 | `tt` | Tetris for terminals: , and / move, . rotates, space drops, s pauses, q quits<br>**How:** Tetris for terminals, full-screen: , and / move the piece, . rotates, space drops, s pauses, q quits. |
 | `wanderer` | a Boulderdash-style maze game: dig through the earth for diamonds. Its thirty screens are in GAMES/WAND/screens, found with this disk as /dd<br>**How:** Full-screen. Dig through the earth for diamonds, forty-five on the first screen. `q' quits. Its thirty screens are in GAMES/WAND. |
+| `worm` | the growing worm: you are the `@' and your body the `o's; h/j/k/l steer, H/J/K/L run, and with no key the worm keeps going.  Eat a digit to grow that much; the wall or your own body ends it.  `worm <length>' sets how long it starts<br>**How:** Full-screen. h/j/k/l steer, H/J/K/L run; with no key the worm keeps going. Eat the digits to grow. Control-C gets you out. |
 
 **Board & card**
 
@@ -1269,7 +1270,7 @@
 
 *Animations and screen effects -- they draw on the terminal rather than print to it. Some run until you stop them.*
 
-<details><summary>10 programs</summary>
+<details><summary>11 programs</summary>
 
 | | |
 |---|---|
@@ -1283,6 +1284,7 @@
 | `textb` | &#9733; Mandelbrot set drawn in ASCII on an 80x25 terminal.  Start with X -2.3, Y -2.0, range 4.0, 32 iterations<br>**How:** An ASCII Mandelbrot viewer -- it asks four questions and draws. Try X_Coord -2.3, Y_Coord -2.0, RANGE 4.0, Max Iter 32. Needs Microware's cio. |
 | `ttyexp` | fireworks drawn in characters: bursts thrown out from a point, arcing under gravity with trails. -s<n> bursts at once, -p<n> points in each, -D<n> seconds to run; `ttyexp -s2 -p50' fills the screen. Clears the screen when done; VT100, wants TERMCAP<br>**How:** `ttyexp -s2 -p50' fills the screen with bursts; it runs ten seconds and clears the screen when done. |
 | `worms` | worms crawl about the screen at random, each leaving a trail -- a screen toy: -number how many, -length how long, -trail to leave one; control-C ends it<br>`usage: /dd/CMDS/GAMES/worms [-field] [-length #] [-number #] [-trail]` |
+| `xmas` | a Christmas card in characters: a tree drawn and trimmed, lights blinking along its strings, reindeer running across the screen, and round again until control-C<br>**How:** Full-screen: a Christmas card that plays in a loop. Control-C gets you out. |
 
 </details>
 

@@ -599,6 +599,7 @@ pwparse 53ca2a07a5edd842
 qp 159fb95fa4e549d8
 qsort9 60b79e4fd20080c9
 queens 620aaa05515f3571
+rain 050b5008150a7cf4
 rawtopgm 44b6f0cd3736c181
 rawtoppm 68880f52798e4bf8
 rayshade 1e2c69998aeea301
@@ -800,6 +801,7 @@ wish 352bc99e672247a0
 wn f0b1aaa64c9cc858
 workstations e2e0317a1ff371e0
 world 03a1c73875042171
+worm dadf60f5bdf3dae5
 worms 44d3eb5b2a689c90
 writeonly 14344f0f27ffa55d
 wrjpgcom c48ec6047691ec09
@@ -814,6 +816,7 @@ ximtoppm dce987f4b7f688f6
 xkermit 7122f8dd9f815456
 xlate 2def5f80f6503487
 xlisp 0b7422cb632e67fb
+xmas 097684f3ea5c4c2b
 xpm 7b2a1d3ed8191ac5
 xrf 6675d40aa3886ab0
 xvminitoppm 1b1b54762eba707c

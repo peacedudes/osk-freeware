@@ -74,6 +74,16 @@ Name a pool file by what `file`/its listing shows, never by its filename.
    `pub/unix/os9/gnu/gcc-1.37.1-osk-src.tar.Z`, pool `MISC/vh_1.4.lzh`, pool
    `DRIVERS/nulman.lzh` (dvips 5.5, misnamed).  0.6-1.4 MB each.
    (Recommendation: add them.)
+3. **`jive` (1987, comp.sources.games v01i003).**  It builds and runs --
+   `Sheeit, dis be a big-ass scribblin'` -- but it is a joke filter built on
+   a racial caricature of Black speech, and a gallery card would showcase
+   that.  Held, not shipped.  Everything needed is kept at
+   `Scraped/acquisitions-2026-09-11/unix/jive-built-2026-09-11/` (flex output,
+   `libl.c` for `yywrap`, the posting, the built module).  Ship or leave?
+4. **`xmas` signs off "from The ghost of Robert past"** -- the OS-9 port's own
+   change to the line the source invites you to change.  Kept as the port
+   shipped it, with nothing on the card saying whose it is.  Say if it
+   should read otherwise.
 
 Settled: the Star Wars ASCIImation is dropped (no grant from its author).
 `sl` is left out (only a 2015 rewrite survives).  The VT100 `.vt` movies are
@@ -141,7 +151,7 @@ this repo.  An acquisitions session works beside it:
 
 Status: `open`, `claimed <session>`, or `done <commit>`.
 
-### B1 -- already on the disk as source, never built                    open
+### B1 -- already on the disk as source, never built    done 2026-09-11: worm, xmas; jive held (Q3)
 - `xmas` (asciixmas, Larry Bartz 1989): `disk/SRC/hc_loose/xmas.c`, which already
   carries an OS-9 `cc ... curses.l termlib.l` line.
 - `worm` (BSD growing-worm game): `disk/SRC/toys/worm.c`, never built by the toys
