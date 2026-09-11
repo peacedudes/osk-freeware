@@ -750,7 +750,7 @@ bite|none|it takes no options; q quits
 life|none|it takes a pattern file and nothing else
 tess|none|-f skips the title and scenario; there is no help flag
 world|none|it takes no options: run it and the adventure begins
-wish|none|WiSH the windowing shell has no -? screen; Ctrl-D leaves it, the control keys drive it (see the card).  The GAMES wish is the hack toy
+wish|none|WiSH the windowing shell has no -? screen; Ctrl-D leaves it, the control keys drive it (see the card)
 cam|none|it asks for its numbers itself; there is no help flag
 lissaj|none|it asks for its numbers itself; there is no help flag
 piano|piano -?|
@@ -943,3 +943,4 @@ who|none|a shell script with no options
 whoami|whoami --help|
 wisecrack|none|it takes no options: run it in the background and `ask' reads what it writes
 wn.stb|none|a symbol table that ships beside the WN web server, not a program
+hackwish|none|the hack cheat: run it (optionally with your wish, e.g. `hackwish a blessed +3 ring of levitation'), it plays hack until a starting wand is a wand of wishing, wishes, and saves the game; then play the save with hack

@@ -208,8 +208,15 @@ def from_origins(root, progs):
     for line in read(root, "DOC/ORIGINS").split("\n"):
         m = ORIGIN_RX.match(line)
         if m and m.group(1) in progs:
+            arch = m.group(4).strip()
+            # A bare archive FILENAME (toys.ar, zot.ar, foo.lzh) is not on the
+            # disk and means nothing to a reader -- rdoggett, 2026-09-11: "the
+            # toys.ar part is worse than noise".  Drop it; keep descriptive
+            # provenance (a person, a forum, a disk).
+            if re.match(r"^[\w.+-]+\.(ar|lzh|lha|zoo|arc|tar|Z|gz)$", arch):
+                arch = ""
             progs[m.group(1)].update(src=m.group(2), origin=m.group(3),
-                                     archive=m.group(4).strip())
+                                     archive=arch)
 
 
 def on_disk(root, path):

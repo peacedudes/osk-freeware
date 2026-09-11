@@ -232,7 +232,7 @@ vis|vis|vis.c||/dd/LIB/egetopt.r|
 vtxtcn|world|vtxtcn.c|||
 vcnvrt|world|vcnvrt.c|||
 wanderer|wanderer|m.c display.c edit.c fall.c game.c help.c icon.c jump.c read.c save.c scores.c||/dd/LIB/curses.l /dd/LIB/termlib.l|
-wish|toys|wish.c|||
+hackwish|toys|wish.c|MODNAME=hackwish||
 worms|toys|worms.c ctime.c rand.c screen.c||/dd/LIB/usr.l /dd/LIB/termlib.l|
 xc|v_misc|xc.c||/dd/LIB/egetopt.r|
 xcrypt|xrand|xcrypt.c|||-K=2L

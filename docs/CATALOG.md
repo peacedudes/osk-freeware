@@ -1,6 +1,6 @@
 # What is on this disk
 
-935 programs of OS-9/68K community software, gathered from the archives that kept it and made to run again. **585 of them need nothing but this disk**; the rest want Microware's `cio`, marked below with a star.
+936 programs of OS-9/68K community software, gathered from the archives that kept it and made to run again. **586 of them need nothing but this disk**; the rest want Microware's `cio`, marked below with a star.
 
 `DOC/INDEX` on the disk lists everything alphabetically. This is the same collection sorted by what each program is *for*, which is the more useful order when you do not yet know what you are looking for.
 
@@ -11,7 +11,7 @@
 
 | Category | Programs | |
 |---|--:|---|
-| [Shells](#shells) | 21 | Unix shells to sit beside OS-9's own -- bash and ksh bring history, job control, and scripts that come across unchanged. |
+| [Shells](#shells) | 22 | Unix shells to sit beside OS-9's own -- bash and ksh bring history, job control, and scripts that come across unchanged. |
 | [Editors](#editors) | 27 | vi and emacs in several flavours, line and stream editors, and editors for binary and hex. |
 | [Text tools](#text-tools) | 115 | Search, sort, compare, reformat, split and spell-check. |
 | [Files & directories](#files--directories) | 32 | Listing, copying, finding, renaming, and knowing what you have. |
@@ -36,7 +36,7 @@
 
 *Unix shells to sit beside OS-9's own -- bash and ksh bring history, job control, and scripts that come across unchanged.*
 
-<details><summary>21 programs</summary>
+<details><summary>22 programs</summary>
 
 **Shell helpers**
 
@@ -73,6 +73,7 @@
 | `ksh` | &#9733; the Korn shell, pd-ksh: a full shell with a prompt, history, for loops, variables and functions, and `ksh -c '<commands>'' runs a line. It is the shell programs on this disk shell out through. DOC/README-KSH |
 | `mshell` | &#9733; a menu shell: `mshell <menufile>' shows one numbered entry per `label,command' line and a number runs that command -- through Microware's `shell'<br>**How:** `mshell <menufile>': one `label,command' per line. A number picks an entry; it hands the command to Microware's `shell' to run. Control-C leaves it. |
 | `sh` | Bourne shell v7.5 -- what the startup script runs. It has a real `chd' where bash does not, and it cannot fork a program by absolute pathname here, which is the trade. DOC/README- SHELLS<br>`Syntax: sh [<opts>] [<scriptfile>] [<arg1>] ... [<argn>]` |
+| `wish` | WiSH, a full-screen windowing shell over the OS-9 shell: a file window to move about in and a command line at the top. The labelled keys are terminal function keys; the control keys always work, Ctrl-D to leave.  German-made, English at the keyboard.  Not the hack toy of the same name in GAMES<br>**How:** WiSH, a windowing shell over the OS-9 shell. Type a command on the top line (`ls', `dir', anything), Enter runs it through the OS-9 shell and pages the output -- press Enter again to return to the window. The labelled keys along the foot are terminal function keys a vt100 does not send; the control keys always work: Ctrl-P/N/B/F move the cursor over the file window, Tab moves right, Ctrl-A marks the file under the cursor, Ctrl-U unmarks all, Ctrl-W copies the cursor's name onto the command line, Ctrl-L redraws, Ctrl-V/Ctrl-Z page. **Ctrl-D leaves.** German program, English at the keyboard. (hackwish, in GAMES, is the unrelated hack cheat.) |
 
 </details>
 
@@ -1220,9 +1221,9 @@
 | | |
 |---|---|
 | `hack` | hack -- the original dungeon crawl NetHack grew out of<br>**How:** RUN IT BY ITS FULL PATH: `/dd/CMDS/GAMES/hack', not `hack'. It chdirs into its playground and then stats argv[0] to date-check saved levels, so a bare name cannot resolve and it stops with "Cannot get status of hack." Invoked in full it starts: "Are you an experienced player?". Its playground -- record, bones, rumors, help -- is in GAMES/HACK/PLAYGROUND. |
+| `hackwish` | a hack cheat: it plays hack over and over -- a wizard, whose starting wands it zaps -- until one is a wand of wishing, then wishes for what you named (3 potions of gain level by default: `hackwish a +2 long sword') and saves that game.  Run hack afterwards to play it with what you asked for.  It counts the games as it goes and can take a while<br>**How:** The hack cheat.  Run it, optionally with the wish on the line (`hackwish a +2 long sword'); it plays hack game after game -- a wizard, zapping its starting wands -- until one is a wand of wishing, wishes for what you named, and saves that game.  Then run hack to play the save with the loot.  It needs no `load'; it finds hack itself.  Wands of wishing are rare, so it can run a while, counting the games. |
 | `larn` | &#9733; larn, a dungeon crawl: RETURN gets past the opening text; its saved games and score file are in GAMES/LARN/PLAYGROUND<br>**How:** Full-screen dungeon crawl. RETURN gets past the opening text. Control-C gets you out; its playground is GAMES/LARN/PLAYGROUND. |
 | `ularn` | ULarn -- the larn variant, and its data is complete<br>`Cmd line format: Ularn [-slicnh] [-o<optsfile>] [-##] [++]` |
-| `wish` | WiSH, a full-screen windowing shell over the OS-9 shell: a file window to move about in and a command line at the top. The labelled keys are terminal function keys; the control keys always work, Ctrl-D to leave.  German-made, English at the keyboard.  Not the hack toy of the same name in GAMES on the path is WiSH, the shell above).  It plays hack over and over -- a wizard, whose starting wands it zaps -- until one is a wand of wishing, wishes for what you named (3 potions of gain level by default: `wish a +2 long sword') and saves that game. Run hack afterwards to play the saved game with what you asked for.  It counts the games as it goes and can take a while<br>**How:** WiSH, a windowing shell over the OS-9 shell. Type a command on the top line (`ls', `dir', anything), Enter runs it through the OS-9 shell and pages the output -- press Enter again to return to the window. The labelled keys along the foot are terminal function keys a vt100 does not send; the control keys always work: Ctrl-P/N/B/F move the cursor over the file window, Tab moves right, Ctrl-A marks the file under the cursor, Ctrl-U unmarks all, Ctrl-W copies the cursor's name onto the command line, Ctrl-L redraws, Ctrl-V/Ctrl-Z page. **Ctrl-D leaves.** German program, English at the keyboard. (The `wish' in GAMES is an unrelated hack toy.) |
 
 **Other games**
 

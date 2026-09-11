@@ -525,7 +525,8 @@ bash|Shells|Shells
 gshell|Shells|Shells
 ksh|Shells|Shells
 sh|Shells|Shells
-wish|Games|Dungeon crawl
+hackwish|Games|Dungeon crawl
+wish|Shells|Shells
 
 # ---- System & modules ----
 dinfo|System & modules|Devices & disks

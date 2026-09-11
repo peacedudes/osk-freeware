@@ -116,7 +116,7 @@ is no help until you already know the name you want.
 
 | Category | | |
 |---|--:|---|
-| **Shells** | 21 | Unix shells to sit beside OS-9's own -- bash and ksh bring history, job control, and scripts that come across unchanged. |
+| **Shells** | 22 | Unix shells to sit beside OS-9's own -- bash and ksh bring history, job control, and scripts that come across unchanged. |
 | **Editors** | 27 | vi and emacs in several flavours, line and stream editors, and editors for binary and hex. |
 | **Text tools** | 115 | Search, sort, compare, reformat, split and spell-check. |
 | **Files & directories** | 32 | Listing, copying, finding, renaming, and knowing what you have. |

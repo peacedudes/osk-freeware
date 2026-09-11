@@ -203,8 +203,8 @@ cap     the foot.  Type a command on the top line and Enter runs it.  The
 cap     labels along the bottom are function keys a vt100 does not send, so
 cap     use the control keys: Ctrl-P/N/B/F move the cursor, Ctrl-A marks a
 cap     file and Ctrl-W puts its name on the command line, Ctrl-D leaves.
-cap     German-made, English at the keyboard.  (The `wish' in GAMES is an
-cap     unrelated hack joke.)
+cap     German-made, English at the keyboard.  (hackwish, in GAMES, is the
+cap     unrelated hack cheat.)
 try     wish
 run     wish
 wait    8

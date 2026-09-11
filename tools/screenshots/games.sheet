@@ -606,6 +606,21 @@ wait    12
 
 # ------------------------------------------------------------ dungeon crawl
 
+shot    hackwish
+size    24 80
+cap     A hack cheat, and a second's honesty about it: it plays hack over and
+cap     over as a wizard, zapping the two wands the wizard starts with, until
+cap     one turns out to be a wand of wishing.  Then it wishes for what you
+cap     named -- 3 potions of gain level by default -- and saves that game, so
+cap     you run hack afterwards and play on with the loot.  It counts the games
+cap     as it hunts; wands of wishing are rare, so it runs a while.
+try     hackwish
+run     hackwish
+wait    75
+snap
+send    \003
+wait    2
+
 shot    hack
 cap     Hack, the dungeon crawl NetHack grew out of: a room drawn in line
 cap     characters, `@' for you, a letter for each monster -- `d' is a dog
