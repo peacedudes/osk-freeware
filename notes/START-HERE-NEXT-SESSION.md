@@ -1,5 +1,20 @@
 # Start here, next session
 
+## 2026-09-11: two tracks running
+
+- **Acquisitions plan**: `notes/PLAN-acquisitions.md` (committed b241bfac) --
+  eleven batches of software the collection lacks, with verified URLs and
+  licence terms, from two deep archive sweeps. Claim a batch by message
+  before starting; one session at a time regenerates DEPENDS/CATEGORIES/
+  README/docs or rebuilds the image, announced first. Two questions wait on
+  rdoggett: non-commercial licences, and GPL source for shipped gcc/dvips.
+- **keep is now a real installer** (`notes/keep-installer-2026-09-11.md`): it
+  fetches termcap-when-missing and a program's data directories, leaves the
+  system directories to your own disk, refcounts shared files, preserves
+  scores on re-install (`unkeep -a` clears them), takes every build of a
+  name (gcc 1.39 and 2), and unkeep now removes the directories it empties.
+  Verified across 440+ programs; three bugs found and fixed in the pass.
+
 ## 2026-09-10: the guides, corrected twice by rdoggett, both committed
 
 - **Real OS-9 comes first.** Every reader-facing guide (front page,
