@@ -94,11 +94,26 @@ keep/unkeep/kept are one source, `disk/SRC/keep/keep.c`, three modules via
 The baseline build was confirmed byte-identical to the shipped binaries
 before any change, so the toolchain is faithful.
 
+## fuddle's card, which you flagged
+
+Fixed in `d7dd4578`. It captured badly for the same two reasons a game
+always does when nobody tells the harness it is one: no `snap`, so the
+"fullest moment" kept several of fuddle's TeleVideo redraws flattened on top
+of each other; and it sent `e2e4`, illegal once the pieces are fuddled, so a
+"no such square" error and a position dump landed on top. It now takes an
+explicit `size`, lets fuddle make its move, and snaps the settled board at
+White's move. One stray character survives at the prompt line -- fuddle
+draws a character at a time via TeleVideo cursor addressing and the grid
+reconstruction leaves it; it is cosmetic and not worth chasing into the
+terminal emulation.
+
+The garbling you saw in your own terminal is the same TeleVideo addressing
+meeting a real xterm: fuddle assumes an ADM-3A/TeleVideo screen and speaks
+to it that way regardless of TERM. That is fuddle's, not something keep or
+the card can change.
+
 ## Left undone
 
-- **fuddle's card** -- you reported it captures badly and garbles the
-  terminal (escape sequences and a position dump leaking). Separate from
-  keep; being looked at next.
 - The DEPENDS improvement once imagined for the directory cases (listing
   each file) is **not needed** -- copying the directory whole supersedes it.
 - Minor: README-KEEP's worked transcript still shows an older "keeping into
