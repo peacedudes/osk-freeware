@@ -5,47 +5,45 @@ git history and `notes/START-HERE-NEXT-SESSION.md`; this file carries none
 of it. Updated 2026-09-09, evening.
 
 
-## The GAMES/wish hack toy hangs at Game 1 -- full diagnosis (2026-09-10)
+## The GAMES/wish hack toy -- FIXED and working end to end (2026-09-10)
 
-You said it used to work and worried it points at an os9exec bug.  I traced
-it end to end.  My reading: it is NOT an os9exec bug, and the shipped toy is
-kept exactly as the archive had it.  What happens, in order:
+You were right that it never got past Game 1, and that it should update every
+few games.  It does now, and it completes.  What was wrong and what I changed
+(all in `disk/SRC/toys/wish.c', rebuilt as `CMDS/GAMES/wish', module B_wish):
 
-1. The OS-9 port forks hack by the BARE name "hack" (`SRC/toys/wish.c',
-   game[]).  hack chd's into its playground (/h0/games/hack/playground) and
-   then reopens ITSELF by that name; "hack" is not in the playground, so the
-   open fails E$PNNF and hack dies before any prompt.  The toy, waiting for a
-   prompt, hangs at "Game 1".  A full path (`/dd/CMDS/GAMES/hack') fixes this
-   step and hack then runs -- I verified it draws the dungeon -- but see 2.
-2. With hack running, the toy answers "experienced player?" and the class
-   prompt, then calls wishwand(), which ZAPS a wand and waits for hack's
-   "What do you want to zap [" prompt.  A fresh character HAS NO WAND, so hack
-   answers "You don't have anything to zap" -- which the toy does not match --
-   and it hangs there instead.  The toy never plays hack to acquire wands; it
-   assumes the character starts with one, i.e. hack's DEBUG WIZARD mode.
-3. I tried USER=wizard (the usual way into hack debug mode) and it still hung,
-   so this hack build either uses a different compiled WIZARD name or does not
-   start the wizard with a zappable wand.  Settling that needs hack's source
-   (do we have it?) to read its WIZARD name and debug-start inventory -- and there is NO hack
-   source on the disk or in the pool (checked 2026-09-10), so this would mean
-   reverse-engineering the hack binary for the WIZARD name string and its
-   debug behaviour: real work for a joke toy, only if you want it.
+1. It forked hack by the bare name "hack"; hack chd's into its playground and
+   reopens itself by that name, which is not there, so it died before its
+   first prompt.  Now it forks `/dd/CMDS/GAMES/hack' by full path.  `load
+   hack' is no longer needed.
+2. After the class is picked hack prints a welcome and a --More-- before the
+   level; the toy's zap was eaten by that --More--.  It now drains to the
+   status line first.
+3. hack prefixes its in-game prompts with cursor-positioning escapes, so the
+   toy's fixed few-byte reads missed them and it hung.  The wand check now
+   polls `_gs_rdy()' for how many bytes are ready and reads only those --
+   never blocking -- and matches "In what direction?" and "You may wish for
+   an object" as substrings.  A direction prompt is cancelled with ESC (a
+   wand of wishing never asks one, and cancelling spares the hero).
+4. The end-of-game path waited for a screen-clear this hack never sends; it
+   now answers hack's "Hit return to continue:" and loops to the next game.
+5. On a win it drains hack's post-wish output before saving.
 
-So the toy is a fragile 1980s cheat-harness tuned to one hack build's debug
-mode and prompt wording; against the hack on this disk its cheat dialogue
-does not complete.  os9exec forks hack, runs it, and carries the pipe both
-ways (hack accepted the toy's keystrokes and drew a level) -- no pipe or fork
-regression is visible.  Your call: (a) find the WIZARD name in hack's source
-and make the toy match (I can, with the source), (b) apply just the full-path
-fix so hack at least runs and note the toy is incomplete, or (c) retire the
-toy as best-forgotten with piano/rstory2/oleo.  I did NOT ship any change to
-it -- it is the pristine archive binary -- pending your steer.
+And one DATA fix: hack saves to a `save' subdirectory of its playground that
+did NOT exist on the disk, so every save failed "Cannot open save file".  I
+added `disk/GAMES/HACK/PLAYGROUND/save/' (with a `.keep' placeholder, because
+the collection's own tar skips an empty nested directory).
 
-Also: two programs are both named `wish' -- WiSH the shell (`CMDS/wish',
-module `wish') and this toy (`CMDS/GAMES/wish', module `B_wish').  On the path
-`wish' is the shell; the toy is only reached from GAMES.  A rename of the toy
-(`hackwish'?) would end the confusion, but that changes what ships, so it is
-yours too.
+Verified end to end: run it, it plays hack game after game (fast under
+os9exec's unpaced `-r'; ~38 games one run), finds a wand of wishing, wishes
+"3 potions of gain level", hack grants them, it saves the game and prints
+"Found in game 38 !!!" and returns to the shell.  Restoring that save in hack
+shows the hero holding a wand of wishing and 3 potions of gain level.  You can
+give it your own wish on the line: `wish a blessed +3 ring of levitation'.
+
+Still yours to decide: the NAME COLLISION.  `wish' on the path is WiSH the
+shell (`CMDS/wish'); the toy is `CMDS/GAMES/wish', reachable only by its path
+or where GAMES sits ahead of CMDS.  A rename of the toy (`hackwish'?) would
+let both be run by name, but it changes what ships, so it is your call.
 
 ## Real OS-9 first (2026-09-10) -- two things for you
 
