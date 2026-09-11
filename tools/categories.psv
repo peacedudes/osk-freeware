@@ -900,9 +900,9 @@ exrecover|System & modules|Utilities
 fontgen|System & modules|Utilities
 ggrep|Text tools|Search & match
 umacs|Editors|emacs family
-colortest|Games|Other games
-cyberwar|Games|Other games
-dclock|Games|Other games
+colortest|G-Windows|G-Windows
+cyberwar|G-Windows|G-Windows
+dclock|G-Windows|G-Windows
 dvips|Text tools|TeX
 afm2tfm|Text tools|TeX
 e|System & modules|Utilities
@@ -946,9 +946,9 @@ dload|System & modules|Utilities
 snd_sig|System & modules|Utilities
 hinterhalt|System & modules|Utilities
 i_am_i|System & modules|Utilities
-lfmaker|System & modules|Utilities
-puzzle|Games|Other games
-scriptmaster|Games|Other games
+lfmaker|G-Windows|G-Windows
+puzzle|G-Windows|G-Windows
+scriptmaster|G-Windows|G-Windows
 xy|Communications|Terminal & transfer
 z|Communications|Terminal & transfer
 k|Communications|Terminal & transfer

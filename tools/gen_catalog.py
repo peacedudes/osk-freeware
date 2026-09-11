@@ -501,12 +501,13 @@ BLURB = {
  "Maths & calculators":"Calculators, plotting, orbits and number theory.",
  "Printing":"Spoolers, page formatting and PostScript.",
  "Documentation":"Pagers, readers and the help system.",
+ "G-Windows":"Programs for G-Windows, OS-9's graphical display.  os9exec has no G-Windows, so none of these run or can be tested here; they are listed for a real OS-9 workstation that has it.",
 }
 ORDER = ["Shells","Editors","Text tools","Files & directories","Developer tools",
  "Compilers & build","Languages","Archives & compression","Encoding & conversion",
  "Communications","Graphics & images","Games","Screen toys","Amusements",
  "System & modules","Disk & DOS","Time & calendar","Maths & calculators",
- "Printing","Documentation","Uncategorised"]
+ "Printing","Documentation","G-Windows","Uncategorised"]
 
 KEEP = ("name","desc","cat","sub","star","dir","size","origin","archive","src",
         "docs","hassrc","military","basic09","needs","info","help","howto",

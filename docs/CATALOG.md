@@ -22,15 +22,16 @@
 | [Encoding & conversion](#encoding--conversion) | 24 | Between text encodings, line endings, Macintosh formats, ciphers and hashes. |
 | [Communications](#communications) | 96 | Kermit in several builds, terminal sessions, and networking. |
 | [Graphics & images](#graphics--images) | 202 | The netpbm toolkit, JPEG, a ray tracer, and things that draw. |
-| [Games](#games) | 67 | Adventures, board and card games, arcade ports, dungeon crawls and puzzles. |
+| [Games](#games) | 62 | Adventures, board and card games, arcade ports, dungeon crawls and puzzles. |
 | [Screen toys](#screen-toys) | 10 | Animations and screen effects -- they draw on the terminal rather than print to it. Some run until you stop them. |
 | [Amusements](#amusements) | 19 | Generators, simulators and diversions that are not quite games. |
-| [System & modules](#system--modules) | 125 | OS-9 module and process tools, devices, system state and scheduling. |
+| [System & modules](#system--modules) | 124 | OS-9 module and process tools, devices, system state and scheduling. |
 | [Disk & DOS](#disk--dos) | 20 | Reading and writing MS-DOS media with the mtools set. |
 | [Time & calendar](#time--calendar) | 14 | Calendars, clocks and astronomy. |
 | [Maths & calculators](#maths--calculators) | 11 | Calculators, plotting, orbits and number theory. |
 | [Printing](#printing) | 15 | Spoolers, page formatting and PostScript. |
 | [Documentation](#documentation) | 5 | Pagers, readers and the help system. |
+| [G-Windows](#g-windows) | 6 | Programs for G-Windows, OS-9's graphical display.  os9exec has no G-Windows, so none of these run or can be tested here; they are listed for a real OS-9 workstation that has it. |
 
 ## Shells
 
@@ -1159,7 +1160,7 @@
 
 *Adventures, board and card games, arcade ports, dungeon crawls and puzzles.*
 
-<details><summary>67 programs</summary>
+<details><summary>62 programs</summary>
 
 **Adventure & fiction**
 
@@ -1231,17 +1232,12 @@
 |---|---|
 | `ask` | the client for `wisecrack': it reads one line from /pipe/txtpipe and prints it, and says `No Wisecracks coming' when nothing is feeding the pipe. Start the server first -- `wisecrack &' -- and it answers<br>**How:** Asks a yes/no question and sets the shell status, for scripts. On its own it says "No Wisecracks coming" -- it is the front half of the `wisecrack' pipe from EFFO forum 20. |
 | `backgammon` | &#9733; backgammon, with a computer opponent<br>`Syntax: backgammon [<opts>] [<file>]` |
-| `colortest` | &#9733; G-Windows colour chart<br>`colortest` |
 | `convert` | starts the WORLD text adventure: run it and the game opens with its banner, the opening paragraph and a `>' prompt<br>**How:** It STARTS the `world' adventure -- run it and the game opens. |
-| `cyberwar` | &#9733; CyberWar -- a game that needs G-Windows |
-| `dclock` | &#9733; a digital clock for G-Windows<br>`dclock - digital clock for G-windows` |
 | `hotel` | &#9733; hotel -- two-player board game, played by coordinates<br>**How:** Full-screen: it takes over the display. **control-C gets you out**; q, Q, control-D and ESC do not. If it has a quit command of its own, its documentation in DOC/ will say. |
 | `mkdict` | builds bog's dictionary from a word list in the current directory<br>**How:** Run it in /dd/GAMES/BOG, where bog's word list is; it is in CMDS/GAMES. |
 | `mkindex` | builds the index bog reads its dictionary through, from the dictionary in the current directory<br>**How:** Run it in /dd/GAMES/BOG after mkdict; it is in CMDS/GAMES. |
 | `nobs` | cribbage against the computer, a third one: it deals six cards, asks which two go to the crib, plays the hand and pegs the board above<br>**How:** Full-screen: it takes over the display. **control-C gets you out**; q, Q, control-D and ESC do not. If it has a quit command of its own, its documentation in DOC/ will say. |
 | `piano` | &#9733; plays a scale through a tone generator: `piano <base note> <note duration>'. With no sound hardware to drive it stops at `tuning - sorry'<br>`piano: syntax: piano <base note> <note duration>` |
-| `puzzle` | &#9733; sliding-tile puzzle for G-Windows -- it draws through G-Windows, so at a terminal it gets one rule of plus signs out -- the top edge of the tile frame -- and stops.  For a 15-puzzle you can play, use puzzle15 or GAMES/puz15; both work |
-| `scriptmaster` | &#9733; G-Windows scripting tool |
 | `shuffle` | a full-screen switch puzzle: a row of numbered switches, `Wich switch ?' and a move counter, where flipping one flips its neighbours; q quits. It wants TERM. For shuffling lines, `sort -r' and `tac' are the line tools<br>**How:** Full-screen: it takes over the display. **`q' quits**. |
 | `stone` | &#9733; the stones game (SNOBOL4-in-C).  Data: GAMES/SNOBOL |
 | `teachgammon` | &#9733; backgammon that teaches you the game as you play<br>`Syntax: backgammon [<opts>] [<file>]` |
@@ -1342,7 +1338,7 @@
 
 *OS-9 module and process tools, devices, system state and scheduling.*
 
-<details><summary>125 programs</summary>
+<details><summary>124 programs</summary>
 
 **Devices & disks**
 
@@ -1481,7 +1477,6 @@
 | `hinterhalt` | &#9733; a small maze game, in German: asked whether you need instructions (J/N) and told no, it draws the board -- walls, the player and a target |
 | `i_am_i` | prints its own source (Pascal) |
 | `isam` | &#9733; indexed-sequential file demonstration |
-| `lfmaker` | makes a G-Windows launch file. It asks the allocator for an address as if it were a length, so the request is refused: `2470464192-byte request refused, 32682944 bytes free'. The number moves with the environment, which is what identifies it as an address. It happens only once the module is already resident: run it bare first, then with an argument |
 | `lgrep` | &#9733; list the files a pattern appears in -- its banner says "same as 'grep -l', but prints filenames without comments". `grep -l' does the same job here.  DOC/README-GREP compares the six searchers<br>`Syntax: lgrep <arg1> ... <argn>` |
 | `liborder.os9` | report the order of modules in a library<br>`liborder: Unimplemented option '-?'.` |
 | `makecrc` | generates C source for CRC tables. It takes no arguments: run it somewhere writable and it writes six files into the data directory -- arc.c, binhex.c, ccitt.c, ccitt32.c, kermit.c and zip.c -- each holding a crctab[256] and an updcrc() for one polynomial. It writes them without a message, so list the directory afterwards. For a CRC of a file, `chksum' does that<br>**How:** It GENERATES C SOURCE and takes no arguments. Run it somewhere writable (`ksh -c "cd /dd/tmp; makecrc"') and it writes six files -- arc.c, binhex.c, ccitt.c, ccitt32.c, kermit.c, zip.c -- each a crctab[256] and an updcrc(). It writes them without a message, so list the directory afterwards. |
@@ -1684,6 +1679,23 @@
 | `less` | pager: space or f for the next page, b for the one before, / to search, h for its help screen (SYS/less.hlp), q to leave. Reads the terminal from TERM and TERMCAP |
 | `lessecho` | &#9733; prints its arguments back quoted for a shell -- the helper less uses to hand file names on<br>`usage: lessecho [-ox] [-cx] [-pn] [-dn] [-a] file ...` |
 | `lesskey` | turns a key-binding file into the binary less reads: a `#command' section, then one key and one command per line<br>`usage: lesskey [-o output] [input]` |
+
+</details>
+
+## G-Windows
+
+*Programs for G-Windows, OS-9's graphical display.  os9exec has no G-Windows, so none of these run or can be tested here; they are listed for a real OS-9 workstation that has it.*
+
+<details><summary>6 programs</summary>
+
+| | |
+|---|---|
+| `colortest` | &#9733; G-Windows colour chart<br>`colortest` |
+| `cyberwar` | &#9733; CyberWar -- a game that needs G-Windows |
+| `dclock` | &#9733; a digital clock for G-Windows<br>`dclock - digital clock for G-windows` |
+| `lfmaker` | makes a G-Windows launch file. It asks the allocator for an address as if it were a length, so the request is refused: `2470464192-byte request refused, 32682944 bytes free'. The number moves with the environment, which is what identifies it as an address. It happens only once the module is already resident: run it bare first, then with an argument |
+| `puzzle` | &#9733; sliding-tile puzzle for G-Windows -- it draws through G-Windows, so at a terminal it gets one rule of plus signs out -- the top edge of the tile frame -- and stops.  For a 15-puzzle you can play, use puzzle15 or GAMES/puz15; both work |
+| `scriptmaster` | &#9733; G-Windows scripting tool |
 
 </details>
 

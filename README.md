@@ -127,15 +127,16 @@ is no help until you already know the name you want.
 | **Encoding & conversion** | 24 | Between text encodings, line endings, Macintosh formats, ciphers and hashes. |
 | **Communications** | 96 | Kermit in several builds, terminal sessions, and networking. |
 | **Graphics & images** | 202 | The netpbm toolkit, JPEG, a ray tracer, and things that draw. |
-| **Games** | 67 | Adventures, board and card games, arcade ports, dungeon crawls and puzzles. |
+| **Games** | 62 | Adventures, board and card games, arcade ports, dungeon crawls and puzzles. |
 | **Screen toys** | 10 | Animations and screen effects -- they draw on the terminal rather than print to it. Some run until you stop them. |
 | **Amusements** | 19 | Generators, simulators and diversions that are not quite games. |
-| **System & modules** | 125 | OS-9 module and process tools, devices, system state and scheduling. |
+| **System & modules** | 124 | OS-9 module and process tools, devices, system state and scheduling. |
 | **Disk & DOS** | 20 | Reading and writing MS-DOS media with the mtools set. |
 | **Time & calendar** | 14 | Calendars, clocks and astronomy. |
 | **Maths & calculators** | 11 | Calculators, plotting, orbits and number theory. |
 | **Printing** | 15 | Spoolers, page formatting and PostScript. |
 | **Documentation** | 5 | Pagers, readers and the help system. |
+| **G-Windows** | 6 | Programs for G-Windows, OS-9's graphical display.  os9exec has no G-Windows, so none of these run or can be tested here; they are listed for a real OS-9 workstation that has it. |
 
 <!-- CATEGORIES:END -->
 
