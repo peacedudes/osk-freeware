@@ -260,9 +260,14 @@ def from_depends(root, progs):
             missing = path.endswith("--")
             path = path.replace("--", "").strip()
             where = None if missing else on_disk(root, path)
+            isdir = bool(where and os.path.isdir(where))
+            nfiles = 0
+            if isdir:
+                for _r, _d, _f in os.walk(where):
+                    nfiles += len(_f)
             progs[cur].setdefault("needs", []).append(
-                {"path": path, "missing": missing,
-                 "dir": bool(where and os.path.isdir(where)),
+                {"path": path, "missing": missing, "dir": isdir,
+                 "nfiles": nfiles,
                  "bytes": (os.path.getsize(where)
                            if where and os.path.isfile(where) else None)})
 

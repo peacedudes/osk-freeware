@@ -439,7 +439,7 @@ function brings(p){
     if(/^sys\/termcap$/i.test(rel)) continue;
     if(seen.has(rel.toLowerCase())) continue;
     seen.add(rel.toLowerCase());
-    if(n.dir){ notes.push(n.path+" is a directory, left for you to decide about"); continue; }
+    if(n.dir){ notes.push(n.path+" \u2014 a directory of "+(n.nfiles||0)+" file"+(n.nfiles===1?"":"s")+", which keep does not copy"); continue; }
     if(n.bytes==null) continue;
     files.push({path:"/dd/"+rel, bytes:n.bytes});
   }
