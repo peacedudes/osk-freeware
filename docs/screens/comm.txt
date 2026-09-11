@@ -1,0 +1,5 @@
+comm tmp/B3C/a tmp/B3C/b
+apple
+                banana
+                cherry
+        damson

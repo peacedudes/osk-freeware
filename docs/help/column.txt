@@ -1,0 +1,3 @@
+$ column -?
+column: illegal option -- ?
+usage: column [-tx] [-c columns] [file ...]

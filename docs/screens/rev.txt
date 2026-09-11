@@ -1,0 +1,10 @@
+echo "stressed" | rev
+desserts
+$ cat tmp/B3R/w.txt
+stressed
+drawer
+regal
+$ rev tmp/B3R/w.txt
+desserts
+reward
+lager

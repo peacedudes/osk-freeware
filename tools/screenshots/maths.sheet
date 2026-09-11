@@ -168,3 +168,36 @@ wait    10
 snap
 send    q
 wait    2
+
+shot    factor
+size    24 80
+cap     factor prints the prime factors of each number it is given.
+try     factor 1234567890 1000001 97
+run     builtin cd /dd
+wait    1
+run     clear
+wait    1
+run     factor 1234567890 1000001 97
+wait    5
+
+shot    primes
+size    30 80
+cap     primes lists the primes between two numbers.
+try     primes 1 100
+run     builtin cd /dd
+wait    1
+run     clear
+wait    1
+run     primes 1 100
+wait    5
+
+shot    number
+size    24 80
+cap     number writes a number out in English words, a part at a time.
+try     number 1234567
+run     builtin cd /dd
+wait    1
+run     clear
+wait    1
+run     number 1234567
+wait    5

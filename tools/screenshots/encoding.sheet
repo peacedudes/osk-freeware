@@ -403,3 +403,55 @@ run     CMDS/fc tmp/ENC/fc.txt
 wait    6
 run     ls -l tmp/ENC/fc.txt tmp/ENC/fc.txt_1
 wait    5
+
+shot    caesar
+size    24 80
+cap     caesar breaks a Caesar cipher without being told the shift: it tries
+cap     all 25 and keeps the one whose letters look most like English.  Given
+cap     a number, as in `caesar 13', it simply shifts by that much.
+try     echo "gur dhvpx oebja sbk whzcf bire gur ynml qbt" | caesar
+os9     echo "gur dhvpx oebja sbk whzcf bire gur ynml qbt" ! caesar
+run     builtin cd /dd
+wait    1
+run     clear
+wait    1
+run     echo "gur dhvpx oebja sbk whzcf bire gur ynml qbt" | caesar
+wait    5
+
+shot    morse
+size    24 80
+cap     morse writes text as Morse code: dit and daw, or with -s dots and
+cap     dashes, a comma after each letter.
+try     morse -s sos
+run     builtin cd /dd
+wait    1
+run     clear
+wait    1
+run     morse -s sos
+wait    5
+run     morse hi
+wait    5
+
+shot    ppt
+size    24 80
+cap     ppt punches text onto paper tape: one row of holes for each character,
+cap     its bits read across, with the sprocket hole down the middle.
+try     ppt OS-9
+run     builtin cd /dd
+wait    1
+run     clear
+wait    1
+run     ppt OS-9
+wait    5
+
+shot    bcd
+size    24 80
+cap     bcd prints text as an 80-column punched card, with a hole punched in
+cap     the rows each character's code needs.
+try     bcd OS-9
+run     builtin cd /dd
+wait    1
+run     clear
+wait    1
+run     bcd OS-9
+wait    5

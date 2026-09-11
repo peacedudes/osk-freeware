@@ -897,3 +897,20 @@ xmas|xmas|xmas.c||/dd/LIB/curses.l /dd/LIB/termlib.l|
 worm|worm|worm.c||/dd/LIB/curses.l /dd/LIB/termlib.l|
 unshar|cshar|unshar.c glue.c parser.c lcwd.c lfiles.c llib.c lmem.c|||
 mimecode|mimecode|mimecode.c|||
+fold|fold|fold.c ../unixlib/getopt.c ../unixlib/strerror.c|||
+comm|comm|comm.c ../unixlib/getopt.c|||
+column|column|column.c ../unixlib/getopt.c ../unixlib/strerror.c ../unixlib/strdup.c|||
+colrm|colrm|colrm.c|||
+col|col|col.c ../unixlib/getopt.c|||
+ul|ul|ul.c ../unixlib/getopt.c||/dd/LIB/termlib.l|
+tsort|tsort|tsort.c ../unixlib/strerror.c ../unixlib/strdup.c|||
+yes|yes|yes.c|||
+factor|factor|factor.c ../primes/pr_tbl.c|LONGREF||-V=/h6/primes
+primes|primes|primes.c pattern.c pr_tbl.c||/dd/LIB/math.l|
+caesar|caesar|caesar.c ../unixlib/strerror.c|CPP2|/dd/LIB/math.l|
+morse|morse|morse.c ../unixlib/getopt.c|||
+ppt|ppt|ppt.c|||
+bcd|bcd|bcd.c|||
+number|number|number.c|||
+rev|rev|rev.c ../unixlib/getopt.c|||
+look|look|look.c|||

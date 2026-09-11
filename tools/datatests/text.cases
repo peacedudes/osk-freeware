@@ -253,3 +253,57 @@ case    virtex-typesets-latex-too
 run     /dd/CMDS/TEXCMDS/virtex "&lplain" /dd/SYS/TEX/SAMPLES/small.tex < /nil
 expect  LaTeX Version 2.09
 expect  Output written on small.dvi
+
+# The Net/2 text filters (and look, from comp.sources.misc), each asserted on
+# a result nothing else would print.  Work directory /dd/tmp/B3X.
+case    fold-wraps-at-the-width-given
+run     echo "aaaa bbbb cccc dddd" | /dd/CMDS/fold -w 10
+expect  aaaa bbbb
+expect  cccc dddd
+
+case    comm-12-keeps-only-the-common-lines
+run     /dd/CMDS/rm -rf /dd/tmp/B3X
+run     /dd/CMDS/mkdir -p /dd/tmp/B3X
+run     echo apple > /dd/tmp/B3X/a; echo banana >> /dd/tmp/B3X/a
+run     echo banana > /dd/tmp/B3X/b; echo cherry >> /dd/tmp/B3X/b
+run     /dd/CMDS/comm -12 /dd/tmp/B3X/a /dd/tmp/B3X/b
+expect  banana
+absent  apple
+absent  cherry
+
+case    column-t-lines-up-a-table
+run     echo -e "alpha beta\nx y" | /dd/CMDS/column -t
+expect  x      y
+
+case    colrm-deletes-the-columns-named
+run     echo abcdefghij | /dd/CMDS/colrm 3 5
+expect  abfghij
+
+case    col-b-keeps-the-last-character-struck
+run     echo -e "b\b_o\b_l\b_d" > /dd/tmp/B3X/over.txt
+run     /dd/CMDS/col -b < /dd/tmp/B3X/over.txt
+expect  ___d
+
+case    ul-i-puts-the-underline-on-its-own-line
+run     export TERM=xterm-256color TERMCAP=/dd/SYS/termcap
+run     /dd/CMDS/ul -i /dd/tmp/B3X/over.txt
+expect  bold
+expect  ___
+
+case    tsort-follows-the-chain
+run     echo $(echo "a b b c c d" | /dd/CMDS/tsort)
+expect  a b c d
+
+case    rev-reverses-each-line
+run     echo "stressed" | /dd/CMDS/rev
+expect  desserts
+
+case    look-finds-the-words-with-a-prefix
+run     /dd/CMDS/look abscis /dd/GAMES/words
+expect  abscissa
+expect  abscissae
+absent  abscess
+
+case    yes-stops-when-its-reader-does
+run     /dd/CMDS/yes ok | /dd/CMDS/head -n 2; echo "yes came back"
+expect  yes came back

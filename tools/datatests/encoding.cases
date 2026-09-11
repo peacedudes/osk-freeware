@@ -154,3 +154,24 @@ run     /dd/CMDS/sed -e "s/Day/DAY/" /dd/tmp/e1 > /dd/tmp/e2
 run     /dd/CMDS/diff /dd/tmp/e1 /dd/tmp/e2 | /dd/CMDS/ediff
 expect  1 line changed at 3
 run     /dd/CMDS/rm -f /dd/tmp/e1 /dd/tmp/e2 /dd/tmp/b1 /dd/tmp/b2 /dd/tmp/b3
+
+# caesar, morse, ppt and bcd, from 4.3BSD Net/2.
+case    caesar-finds-the-shift-by-itself
+run     echo "uryyb jbeyq, gur dhvpx oebja sbk whzcf bire gur ynml qbt" | /dd/CMDS/caesar
+expect  hello world, the quick brown fox jumps over the lazy dog
+
+case    caesar-13-is-rot13
+run     echo "hello" | /dd/CMDS/caesar 13
+expect  uryyb
+
+case    morse-s-spells-sos-in-dots-and-dashes
+run     /dd/CMDS/morse -s sos
+expect  ---,
+
+case    ppt-punches-a-letter-into-paper-tape
+run     /dd/CMDS/ppt A
+expect  | o   .  o|
+
+case    bcd-punches-a-card
+run     /dd/CMDS/bcd OS9
+expect  /OS9

@@ -1,0 +1,18 @@
+ls CMDS/GAMES | column
+advcom          crib            hotel           puz15           tformat
+advent          cribbage        lander          puzzle          tt
+advint          cyberwar        larn            rain            ularn
+animal          dclock          life            robots          valspeak
+apfel           fuddle          lissaj          rpoem           vtxtcn
+back            g               lorenz3d        rstory          wanderer
+backgammon      game            maze            rstory2         wgen
+bincheckr       gnuan           mille           scriptmaster    wisecrack
+bite            gnuchess        mines           showpic         world
+blackjak        gnuchessc       mkdict          sine            worm
+bog             graph           mkindex         snake           worms
+cam             graphdemo       nchess          sokoban         xmas
+card            graphsave       newsgen         stone           zot
+checkgame       greed           nobs            striche
+chess           hack            pacman          teachgammon
+colortest       hackwish        poker           tess
+convert         hang            postprint       tet

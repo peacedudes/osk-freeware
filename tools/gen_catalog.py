@@ -179,7 +179,8 @@ ORIGIN_KINDS = ("Microware OS-9 archive", "EFFO public-domain disk",
                 "Usenet", "EFFO forum",
                 "hc disk", "PD disk", "microware",
                 "Larry Crane",   # a person, for hackwish -- see SOURCES.txt
-                "4.3BSD Net/2")  # whereis
+                "4.3BSD Net/2",  # whereis
+                "4.4BSD")        # rev
 ORIGIN_RX = re.compile(r"^  (\S+)\s+(\S+)\s+(%s)\b(.*)$"
                        % "|".join(re.escape(k) for k in ORIGIN_KINDS))
 # An entry line is a name, a source-tree name, and something after them.

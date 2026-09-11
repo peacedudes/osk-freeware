@@ -168,7 +168,7 @@ and the disk's `shar` is broken.  Unlocks every other shar posting here.
 Done when: `unshar` unpacks the which6 posting on OS-9 byte-identically
 (the shar's own counts: which6.c 5970, which.1 2384, Makefile 443).
 
-### B3 -- Net/2 small tools, one batch (BSD)                            open
+### B3 -- Net/2 small tools, one batch (BSD)    done 2026-09-11: 16 + look; leave not ported (forks and sleeps)
 From `NET2/usr.bin/` and `NET2/games/`, all K&R and stdio unless noted:
 `look` (or `CSM/volume5/s5look.gz`, PD 1988), `fold`, `comm`, `column`
 (stub one ioctl) and `colrm`, `col` and `ul` (termcap; useful since nroff

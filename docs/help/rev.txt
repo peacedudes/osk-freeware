@@ -1,0 +1,3 @@
+$ rev -?
+rev: illegal option -- ?
+usage: rev [file ...]

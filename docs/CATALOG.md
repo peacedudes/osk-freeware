@@ -1,6 +1,6 @@
 # What is on this disk
 
-938 programs of OS-9/68K community software, gathered from the archives that kept it and made to run again. **589 of them need nothing but this disk**; the rest want Microware's `cio`, marked below with a star.
+955 programs of OS-9/68K community software, gathered from the archives that kept it and made to run again. **606 of them need nothing but this disk**; the rest want Microware's `cio`, marked below with a star.
 
 `DOC/INDEX` on the disk lists everything alphabetically. This is the same collection sorted by what each program is *for*, which is the more useful order when you do not yet know what you are looking for.
 
@@ -11,15 +11,15 @@
 
 | Category | Programs | |
 |---|--:|---|
-| [Shells](#shells) | 22 | Unix shells to sit beside OS-9's own -- bash and ksh bring history, job control, and scripts that come across unchanged. |
+| [Shells](#shells) | 23 | Unix shells to sit beside OS-9's own -- bash and ksh bring history, job control, and scripts that come across unchanged. |
 | [Editors](#editors) | 27 | vi and emacs in several flavours, line and stream editors, and editors for binary and hex. |
-| [Text tools](#text-tools) | 115 | Search, sort, compare, reformat, split and spell-check. |
+| [Text tools](#text-tools) | 124 | Search, sort, compare, reformat, split and spell-check. |
 | [Files & directories](#files--directories) | 32 | Listing, copying, finding, renaming, and knowing what you have. |
 | [Developer tools](#developer-tools) | 46 | Version control, tags, cross-reference, formatters, a debugger and benchmarks. |
 | [Compilers & build](#compilers--build) | 40 | C compilers and their passes, assemblers, linkers, make and parser generators. |
 | [Languages](#languages) | 10 | Interpreters and language systems beyond C. |
 | [Archives & compression](#archives--compression) | 37 | Pack, unpack and shrink -- lha, zip, tar, arc, zoo, and OS-9 module libraries. |
-| [Encoding & conversion](#encoding--conversion) | 25 | Between text encodings, line endings, Macintosh formats, ciphers and hashes. |
+| [Encoding & conversion](#encoding--conversion) | 29 | Between text encodings, line endings, Macintosh formats, ciphers and hashes. |
 | [Communications](#communications) | 96 | Kermit in several builds, terminal sessions, and networking. |
 | [Graphics & images](#graphics--images) | 202 | The netpbm toolkit, JPEG, a ray tracer, and things that draw. |
 | [Games](#games) | 62 | Adventures, board and card games, arcade ports, dungeon crawls and puzzles. |
@@ -28,7 +28,7 @@
 | [System & modules](#system--modules) | 126 | OS-9 module and process tools, devices, system state and scheduling. |
 | [Disk & DOS](#disk--dos) | 20 | Reading and writing MS-DOS media with the mtools set. |
 | [Time & calendar](#time--calendar) | 14 | Calendars, clocks and astronomy. |
-| [Maths & calculators](#maths--calculators) | 11 | Calculators, plotting, orbits and number theory. |
+| [Maths & calculators](#maths--calculators) | 14 | Calculators, plotting, orbits and number theory. |
 | [Printing](#printing) | 15 | Spoolers, page formatting and PostScript. |
 | [Documentation](#documentation) | 5 | Pagers, readers and the help system. |
 | [G-Windows](#g-windows) | 6 | Programs for G-Windows, OS-9's graphical display.  os9exec has no G-Windows, so none of these run or can be tested here; they are listed for a real OS-9 workstation that has it. |
@@ -37,7 +37,7 @@
 
 *Unix shells to sit beside OS-9's own -- bash and ksh bring history, job control, and scripts that come across unchanged.*
 
-<details><summary>22 programs</summary>
+<details><summary>23 programs</summary>
 
 **Shell helpers**
 
@@ -54,6 +54,7 @@
 | `run` | runs a program with its input and output on the terminal PORT names: `run '<program> <args>''<br>**How:** `run '<program> <args>'' with PORT naming a terminal: the program runs with its input and output on that terminal. |
 | `submit` | &#9733; runs the commands in a .sub file with its parameters substituted into them -- a batch job<br>`Syntax: submit [<opts>] [<submit file>] [{<parameter>)]` |
 | `xc` | runs the commands marked in a file -- a line beginning `% ' -- and leaves the rest as notes.  Forks them through Microware's `shell' to run<br>**How:** `xc <file>': lines beginning `% ' are commands, the rest is notes. It forks them through Microware's `shell' to run. |
+| `yes` | prints `y', or the words it is given, over and over until the program reading it stops -- for answering prompts |
 
 **Shell utilities**
 
@@ -152,7 +153,7 @@
 
 *Search, sort, compare, reformat, split and spell-check.*
 
-<details><summary>115 programs</summary>
+<details><summary>124 programs</summary>
 
 **Alternates**
 
@@ -202,6 +203,8 @@
 
 | | |
 |---|---|
+| `col` | filters reverse and half-line feeds out of text, so nroff's output reads on a terminal; -b drops backspaces and keeps the last character struck in each column<br>`col: illegal option -- ?` |
+| `column` | sets a list out in columns across the screen; -t lines a table up, -x fills rows before columns; COLUMNS sets the width<br>`column: illegal option -- ?` |
 | `fmt` | refills ragged text into even lines, 72 columns wide or as given by -<width>; the fmt that came with elvis<br>`usage: fmt [-width] [files]...` |
 | `hc` | shift text to a column, or label every line. `hc +8 f' indents f so the text starts at column 8; `hc -11 f' strips leading columns so it starts at column 11; `hc -l "> " f' puts that string in front of every line. With no option it copies the file through<br>`hc: unrecognized option=-?` |
 | `lout` | Lout 2.05 document formatter<br>`usage: lout [ -i<filename> ] files` |
@@ -209,6 +212,7 @@
 | `proff` | proff, a portable roff: formats text under dot requests -- fill, justify, centre, running page headers -- with its macros in LIB/proff; +n and -n select pages, -v prints statistics<br>`usage: proff [+n] [-n] [-v] [-ifile] [-s] [-pon] [infile [outfile]]` |
 | `roff` | a text formatter in the nroff line: it reads text with dot-commands at the start of a line and fills, justifies and paginates it.  `.ce' centres, `.sp' spaces, `.fi'/ `.nf' turn filling on and off, `.ad'/`.na' the right justify, `.in'/`.ti'/`.ll' set the margins and measure, `.he'/`.fo' add a running header and footer with the page number, `.sh' numbers headings.  nroff and proff are the same idea; DOC/roff has the full request list.<br>`Syntax: roff {[+00] [-00] [-s] -[h] file}` |
 | `tformat` | fills text to a width: `tformat [width]' reads standard input and writes it refilled and justified, 80 columns unless told otherwise<br>`tformat - format stdin to stdout.` |
+| `ul` | turns underlining made with backspaces into what the terminal shows as underline; -i puts the underline on a line of its own<br>`ul: illegal option -- ?` |
 
 **Fortune & sayings**
 
@@ -239,6 +243,7 @@
 | `fgrep` | &#9733; searches files for fixed strings rather than patterns, with context lines, counts, line numbers and file lists on request<br>`Syntax   : fgrep [-[[AB] ]<num>] [-[CVchilnsvwx]] [-[ef]] <expr> [<files...>]` |
 | `ggrep` | &#9733; GNU grep, a second build: the same options as `grep'<br>**How:** GNU grep. `ggrep <expr> <files...>'; -E, -F, -i, -v, -w and the rest as you would expect. |
 | `grep` | GNU grep 2.0: prints the lines of files that match a regular expression -- -E extended, -F fixed strings, -i ignore case, -v invert, -n number, -c count<br>`grep: illegal option -- ?` |
+| `look` | prints the lines of a sorted file that begin with a string: `look abs GAMES/words'; -f ignores case<br>`usage: look [-f] string file` |
 | `soundex` | Soundex phonetic key for each word on stdin |
 
 **Sort, compare & merge**
@@ -246,6 +251,7 @@
 | | |
 |---|---|
 | `cdiff` | a context diff: compares two text files and prints what changed, each difference headed by a line such as `>>>> INSERT BEFORE 2'<br>`TRY: diff oldfile newfile` |
+| `comm` | compares two sorted files: the lines only in the first, only in the second, and in both, in three columns; -1, -2 and -3 leave a column out<br>`comm: illegal option -- ?` |
 | `diff` | &#9733; GNU diff 1.1: compares two text files and prints the lines that differ, in normal, context (-c) or ed-script (-e) form; reads CR-terminated text<br>`diff: illegal option -- diff: requires two file names.  Usage: diff [-options] file1 file2` |
 | `ediff` | put `diff' output into plain English: `diff <f1> <f2> ! ediff', or `ediff <file' for a diff you already have.  A one-line change comes out as `-------- 1 line changed at 3 from: ... to: ...'.  `diff' does the comparing; this makes the answer readable<br>`Syntax   : 'ediff <file'  or  'diff <f1> <f2> ! ediff'` |
 | `fcomp` | &#9733; compares two text files line by line and names the lines inserted, deleted or changed between them<br>`Syntax: fcomp <file_1> <file_2>` |
@@ -255,6 +261,7 @@
 | `sort` | GNU sort: sorts lines of text -- by field (+POS or -k), numerically (-n), reversed (-r), folding case (-f), unique (-u) -- and merges already-sorted files (-m)<br>`sort: unrecognized option `-?'` |
 | `spiff` | &#9733; a tolerant diff: compares two files while ignoring differences that do not matter -- white space, number formatting, case if asked -- and knows C, shell, Fortran, Modula-2 and Lisp source<br>**How:** Compares two files while ignoring differences that do not matter (whitespace, number formatting). Takes TWO filenames. |
 | `tcmp` | &#9733; compares two text files and prints each differing line, both versions one under the other with the line number in each; -s sets how far ahead it looks to resynchronise<br>**How:** Compares two text files and prints each differing line, both versions one under the other with the line number in each file. Files whose lines differ only in tabs and spaces are reported as changed, which reads oddly until you dump them. |
+| `tsort` | sorts pairs topologically: each pair says the first must come before the second, and out comes one order that keeps them all<br>`usage: tsort [ inputfile ]` |
 | `unip` | unique lines with page numbers<br>`Syntax: unip [<opts>] [<srcpath>] [<opts>]` |
 | `uniq` | &#9733; drops repeated adjacent lines: -u keeps only the unrepeated, -d only the repeated, -c counts each; sort first<br>`Usage: UNIQ [-u][-d][-c] [-n] [^n] input [>output]` |
 
@@ -311,12 +318,14 @@
 | `ape` | writes gibberish in the style of whatever it reads -- a travesty generator; `-b' is how much source to read and `-l' how many characters must match before it follows the source. `travesty' and `newsgen' are the others of its kind here<br>**How:** A travesty generator: `-b' is how much source to read and `-l' the pattern length. Feed it VARIED text -- one word repeated makes it generate without end, because every position matches every other. |
 | `autolf` | &#9733; converts line endings between CR, LF and CR LF, expands tabs and handles ^Z, as a filter: `autolf -c -C -L < in > out' makes DOS text of OS-9 text, and `-H' explains the conversions. Given a file name it converts through a temporary it then cannot rename back, so feed it standard input<br>`autolf: copy stdin to stdout, converting end-of-line character sequences` |
 | `casefix` | sentence-cases text: every letter to lower case except the first of each sentence. A filter that reads standard input; a file named as an argument is ignored<br>**How:** It is a FILTER and reads STANDARD INPUT: `casefix < file' sentence-cases it. |
+| `colrm` | removes columns from each line: `colrm 3 5' deletes the third to fifth characters |
 | `cut` | picks fields (-f) or character columns (-c) out of each line, with -d naming the field separator<br>`cut: Illegal option -- ?` |
 | `detab` | &#9733; replaces tabs with spaces, at stops every eight columns or every n with -tn<br>`Usage: detab [-tn] [infile] or [<infile]` |
 | `eo` | &#9733; runs a command on every line of a file -- an xargs: `eo <file> <command> @' runs the command once per line with `@' replaced by the line; -p takes the lines from a pipe, -q runs quietly, -e stops at the first error. It shells out through SHELL, which SYS/login sets<br>**How:** Runs a command on every line of a file, with `@' standing for the line: `eo <file> <command> @'. It shells out, so it needs SHELL set to a shell that takes a command line as one argument -- SYS/login sets `SHELL=/dd/CMDS/ksh' and that is what makes it work. Without it, `can't execute /dd/bash'. `-p' takes the lines from a pipe instead of a file. |
 | `expand` | GNU expand: turns tabs into spaces, at stops eight columns apart or as -t says<br>`expand: unrecognized option `-?'` |
 | `field` | &#9733; select whitespace-separated fields from standard input by number, in the order asked for and tab-separated on output: `field 2 4 1' prints the second, fourth and first word of each line. `-i=c' names another input separator.<br>`field v1.0 (c) S.R.Bourne, M.C.Gregorie, 1994` |
 | `fillup` | &#9733; fills a file up to a given length with a constant byte: `fillup -n=64 -i=65 f' pads f to 64 bytes with `A' and says `24 bytes (value=65) appended'. The length option is -n=, not -l=<br>`Syntax:   fillup [<options>] <file>` |
+| `fold` | wraps long lines to a width, 80 columns unless -w says otherwise<br>`fold: illegal option -- ?` |
 | `gawk` | &#9733; GNU awk 2.11, the pattern-and-action language. This build reads standard input whatever it is given, so redirect: `gawk "{...}" < file'; named a file it waits on the terminal<br>**How:** GNU awk 2.11. IT IGNORES A FILENAME ARGUMENT and reads standard input whatever it is given, so redirect: `gawk "{print \$1}" < file', never `gawk "{print \$1}" file' -- named a file it sits waiting on the terminal. Keep the program text short: a command line wider than the window scrolls under bash and is hard to read back. Needs Microware's cio. |
 | `gdd` | &#9733; GNU dd, a block copier and converter: `gdd if=<file> bs=<n> skip= seek= count=', and `conv=ucase' converts on the way through. `of=' can only name a file that already exists, so send the output through `>' instead<br>**How:** GNU dd -- a block copier and converter. `gdd if=<file> bs=8 count=1' copies eight bytes, `conv=ucase' converts on the way through. `of=' can only name a file that already exists, so send the output through `>'. Give it arguments. It uses Microware's cio; `dump' is the hex dump here. |
 | `gep` | &#9733; a global expression parser -- grep-like; its `-e' takes the path of a file holding the expressions: `gep -e=/dd/tmp/patterns <file>'. A file of patterns applied at once is what it is for and nothing else here does it. See DOC/README-GREP<br>**How:** Its expressions come from a FILE named with `-e', which its own option list marks `(required)': `gep -e=<patterns> <source>'. Handing it a pattern and a file the way you would grep earns `more than one path specified'. |
@@ -325,6 +334,7 @@
 | `paste` | joins files line by line, side by side and tab-separated: `paste f1 f2'; -d picks another separator and -s lays one file's lines along a single line<br>**How:** Joins lines side by side, tab-separated by default: `paste f1 f2'. `-d:' picks another separator; `-s' puts one file's lines on a single line. |
 | `pep` | a file detergent: strips control characters and non-ASCII (-b), converts between the DEC, IBM-PC, Macintosh and WordStar character sets, expands tabs and sets the line terminator (-u)<br>`pep  ver. 2.1; Copyright (c) 1989 Gisle Hannemyr` |
 | `psc` | &#9733; turns an ASCII table into commands for `sc', the spreadsheet: `psc -d' ' < table' answers `let A0 = 1', `let B0 = 2' and a `format' line per column. -d sets the field delimiter, -r assembles rows first, -s names the top-left cell<br>**How:** Feeds `sc', the spreadsheet: `psc -d' ' < table' turns rows of numbers into `let A0 = 1' commands sc can read. -r assembles rows first, -s names the top-left cell, -d sets the delimiter. |
+| `rev` | reverses the characters of each line<br>`rev: illegal option -- ?` |
 | `rot` | turn a text file on its side -- line one becomes column one<br>`syntax: rot {opt} [<file>]` |
 | `subber` | &#9733; substitutes words in a stream from a `,old,new' word list, one pair a line, the first character being the delimiter. It grows its memory as it reads, so give it plenty up front: `subber #1000k words file' at an OS-9 shell<br>**How:** Substitutes words in a stream from a word list of `,old,new' pairs (the line's first character is the delimiter), reading a file as the second argument or standard input. It grows its data area as it reads, with F$Mem, so give it room up front: at an OS-9 (Microware) shell, `subber #1000k words file' -- bash and ksh read the `#' as a comment, so run it at your OS-9 shell or through it, `/h1/CMDS/shell "subber #1000k words file"'. Tested: `,fox,cat' turns `a fox' into `a cat'. |
 | `tabs` | re-space a file, standard input to standard output: `-i8' says the input's tab stops are every 8 columns, `-o0' asks for spaces on output and `-o4' for tabs every 4.<br>`Unknown switch: ?` |
@@ -700,7 +710,7 @@
 
 *Between text encodings, line endings, Macintosh formats, ciphers and hashes.*
 
-<details><summary>25 programs</summary>
+<details><summary>29 programs</summary>
 
 **Audio**
 
@@ -712,6 +722,7 @@
 
 | | |
 |---|---|
+| `caesar` | breaks a Caesar cipher, guessing the shift from how often English uses each letter; `caesar 13' applies a shift of its own, which makes it rot13 |
 | `checksum` | &#9733; a 16-bit checksum of a file, or of part of one with -s for the offset and -n for the length<br>`Syntax:   checksum <file> [<file>...]` |
 | `chksum` | &#9733; a 32-bit checksum of each file named, with -c to count bytes as well and -t for a total only<br>`syntax: chksum [-cehtv]	{file\|--\|-}...` |
 | `crypto` | &#9733; cryptogram puzzle solver's assistant<br>**How:** `crypto -h' is the real option list and `-i' the interactive commands; its bare answer is two lines naming those. As a FILTER it ends the emulator session here, so read the help rather than piping through it. |
@@ -738,9 +749,12 @@
 | | |
 |---|---|
 | `atob` | decodes what btoa encoded, back to the bytes<br>`Bad args to atob` |
+| `bcd` | prints text as an 80-column punched card, the holes marked in each row: `bcd OS-9' |
 | `btoa` | encodes a binary file as printable text, five characters for every four bytes with a checksum on the last line -- denser than uuencode; atob decodes it<br>`Bad args to btoa` |
 | `cuts` | &#9733; Coco Usenet Transfer Utility -- encodes a binary as text that will pass through electronic mail, in a form that survives gateways between ASCII and EBCDIC machines; `-d' decodes, which is the half worth having.  The encoder (`-e') asks for billions of bytes of memory, is refused, and writes empty data lines until it is stopped.<br>**How:** Coco Usenet Transfer Utility: it encodes a binary as mail-safe text and `-d' decodes a cuts file. Use `-d' for the half worth having; the encoder (`-e') asks for gigabytes of memory and is refused. |
 | `mimecode` | encode or decode base64, MIME's transfer encoding. `mimecode -e' turns a file into printable base64 and `-d' turns it back; uuencode and btoa are the older kinds, this is the one mail and the web use.  Tim Kientzle's, from DDJ.<br>`Usage: mimecode <options>` |
+| `morse` | writes text as Morse code -- dit and daw, or dots and dashes with -s<br>`morse: illegal option -- ?` |
+| `ppt` | punches text onto paper tape: a row of holes for each character, with the sprocket hole down the middle |
 | `todos` | &#9733; meant to turn OS-9 line endings into DOS ones in place; it converts into a temporary file it then cannot rename back, so the file is left unchanged. `autolf -c -C -L' does the job as a filter |
 | `toos9` | &#9733; meant to turn DOS line endings into OS-9 ones in place, and the same story as todos: the temporary cannot be renamed over the original. `autolf -l -C' does the job as a filter<br>`TOOS9    Version UTIL 2.80 by DESIGNA VLT 03.08.98` |
 | `uudecode` | &#9733; undoes uuencode: writes the file named on the begin line back into the current directory<br>`ERROR: can't find -?` |
@@ -1600,7 +1614,7 @@
 
 *Calculators, plotting, orbits and number theory.*
 
-<details><summary>11 programs</summary>
+<details><summary>14 programs</summary>
 
 **Calculators**
 
@@ -1609,7 +1623,10 @@
 | `cam` | &#9733; camshaft design, not a camera: it asks for the rocker ratio, the lift at each crank angle and the base circle, and plots the lift curve for an intake lobe. The plot is Tektronix vectors, so on a vt100 it arrives as characters -- the dialogue above it is the readable part |
 | `chbase` | &#9733; converts a number from one base to another: `chbase 255 10 16' prints FF, and a target base of 0 prints every base from 2 to 36<br>`chbase   : OS9 Utility, created by Philip Maechler` |
 | `cvtbase` | converts a number between bases.  The bases are named by key -- b, d, h or x, o -- or by their value, and the number comes on standard input: `echo 255 ! cvtbase d h' answers ff<br>**How:** The bases are the arguments and the numbers come on standard input, one per line: `cvtbase d h' then 255 answers ff; Escape ends it. Bases are named b, d, h or x, o -- or by their digit characters. |
+| `factor` | prints the prime factors of each number it is given, or of each it reads, one to a line: `factor 1000001' |
 | `loan` | &#9733; amortisation calculator: principal, term, rate and start month in, the payment and a month-by-month schedule out<br>**How:** Answers four prompts and prints the schedule for the whole term; pipe it through head or less. |
+| `number` | writes numbers out in English words: `number 1234567'<br>`usage: number # ...` |
+| `primes` | lists the primes between two numbers: `primes 1 100' |
 | `rechne` | &#9733; German command-line calculator: every answer in decimal, hex and binary at once. The expression is one argument with no spaces -- `rechne 4095+1' -- with operators + - x / m (modulo) a o p (and, or, xor) and $ for hex; -b lists the bits set<br>**How:** One expression, no spaces: `rechne 4095+1'. Operators + - x / m a o p; $ff is hex; -b lists the set bits. The other -xx switches decode status codes of the maker's own equipment. |
 | `rpn` | &#9733; reverse-Polish calculator on whole numbers. A number typed is pushed; the words add, sub, mul, div and mod combine the top two, and, or, xor and not work bitwise, pr prints an entry, pop discards one. After each line it shows the stack top and depth; ? lists the words, q leaves<br>**How:** Operators are words typed on their own line: 12, 34, add. A + sign is read as the number 0 and pushed. q leaves. |
 | `sc` | sc -- spreadsheet calculator (needs TERM)<br>**How:** The spreadsheet, version 6.16. `sc' opens and says "Type '?' for help". It reads TERMCAP as SYS/login sets it, so no `. /dd/SYS/termcap.entry' is needed first. |

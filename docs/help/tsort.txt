@@ -1,0 +1,2 @@
+$ tsort -?
+usage: tsort [ inputfile ]

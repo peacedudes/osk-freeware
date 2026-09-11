@@ -116,15 +116,15 @@ is no help until you already know the name you want.
 
 | Category | | |
 |---|--:|---|
-| **Shells** | 22 | Unix shells to sit beside OS-9's own -- bash and ksh bring history, job control, and scripts that come across unchanged. |
+| **Shells** | 23 | Unix shells to sit beside OS-9's own -- bash and ksh bring history, job control, and scripts that come across unchanged. |
 | **Editors** | 27 | vi and emacs in several flavours, line and stream editors, and editors for binary and hex. |
-| **Text tools** | 115 | Search, sort, compare, reformat, split and spell-check. |
+| **Text tools** | 124 | Search, sort, compare, reformat, split and spell-check. |
 | **Files & directories** | 32 | Listing, copying, finding, renaming, and knowing what you have. |
 | **Developer tools** | 46 | Version control, tags, cross-reference, formatters, a debugger and benchmarks. |
 | **Compilers & build** | 40 | C compilers and their passes, assemblers, linkers, make and parser generators. |
 | **Languages** | 10 | Interpreters and language systems beyond C. |
 | **Archives & compression** | 37 | Pack, unpack and shrink -- lha, zip, tar, arc, zoo, and OS-9 module libraries. |
-| **Encoding & conversion** | 25 | Between text encodings, line endings, Macintosh formats, ciphers and hashes. |
+| **Encoding & conversion** | 29 | Between text encodings, line endings, Macintosh formats, ciphers and hashes. |
 | **Communications** | 96 | Kermit in several builds, terminal sessions, and networking. |
 | **Graphics & images** | 202 | The netpbm toolkit, JPEG, a ray tracer, and things that draw. |
 | **Games** | 62 | Adventures, board and card games, arcade ports, dungeon crawls and puzzles. |
@@ -133,7 +133,7 @@ is no help until you already know the name you want.
 | **System & modules** | 126 | OS-9 module and process tools, devices, system state and scheduling. |
 | **Disk & DOS** | 20 | Reading and writing MS-DOS media with the mtools set. |
 | **Time & calendar** | 14 | Calendars, clocks and astronomy. |
-| **Maths & calculators** | 11 | Calculators, plotting, orbits and number theory. |
+| **Maths & calculators** | 14 | Calculators, plotting, orbits and number theory. |
 | **Printing** | 15 | Spoolers, page formatting and PostScript. |
 | **Documentation** | 5 | Pagers, readers and the help system. |
 | **G-Windows** | 6 | Programs for G-Windows, OS-9's graphical display.  os9exec has no G-Windows, so none of these run or can be tested here; they are listed for a real OS-9 workstation that has it. |

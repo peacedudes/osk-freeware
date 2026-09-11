@@ -83,3 +83,23 @@ absent  stack top: 46
 case    hc-still-only-prints-its-usage
 run     echo "1f + 3" | /dd/CMDS/hc
 expect  usage:
+
+# factor, primes and number, from 4.3BSD Net/2.
+case    factor-breaks-a-number-into-primes
+run     /dd/CMDS/factor 1000001
+expect  1000001: 101 9901
+
+case    primes-lists-the-primes-in-a-range
+run     /dd/CMDS/primes 90 110
+expect  97
+expect  101
+expect  103
+expect  107
+expect  109
+absent  99
+
+case    number-writes-a-number-in-words
+run     /dd/CMDS/number 1234567
+expect  one million.
+expect  two hundred thirty-four thousand.
+expect  five hundred sixty-seven.

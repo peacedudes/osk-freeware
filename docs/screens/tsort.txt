@@ -1,0 +1,5 @@
+echo "underwear trousers trousers shoes socks shoes" | tsort
+socks
+underwear
+trousers
+shoes

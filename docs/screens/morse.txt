@@ -1,0 +1,7 @@
+morse -s sos
+ ...,
+ ---,
+ ...,
+$ morse hi
+ dit dit dit dit,
+ dit dit,

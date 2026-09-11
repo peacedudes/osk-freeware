@@ -1,0 +1,14 @@
+echo abcdefghij
+abcdefghij
+$ echo abcdefghij | colrm 3 5
+abfghij
+$ echo abcdefghij | colrm 5
+abcd
+$ cat tmp/B3M/list.txt
+001 apple
+002 banana
+003 cherry
+$ colrm 1 4 < tmp/B3M/list.txt
+apple
+banana
+cherry

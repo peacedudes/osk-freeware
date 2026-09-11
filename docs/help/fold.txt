@@ -1,0 +1,3 @@
+$ fold -?
+fold: illegal option -- ?
+usage: fold [-w width] [file ...]

@@ -1,0 +1,7 @@
+dump tmp/B3C/over.txt
+
+Addr   0 1  2 3  4 5  6 7  8 9  A B  C D  E F 0 2 4 6 8 A C E
+----  ---- ---- ---- ---- ---- ---- ---- ---- ----------------
+0000  6208 5F6F 085F 6C08 5F64 2074 7970 650D b._o._l._d type.
+$ col -b < tmp/B3C/over.txt
+___d type

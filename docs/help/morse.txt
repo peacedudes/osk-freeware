@@ -1,0 +1,3 @@
+$ morse -?
+morse: illegal option -- ?
+usage: morse [string ...]

@@ -692,3 +692,158 @@ wait    4
 run     dump tmp/TEXTA/clean.txt
 wait    4
 snap
+
+shot    fold
+size    24 80
+cap     fold wraps long lines to a width -- 80 columns unless -w says otherwise.
+try     fold -w 24 tmp/B3C/fox.txt
+run     rm -rf /dd/tmp/B3C; mkdir -p /dd/tmp/B3C; echo "The quick brown fox jumps over the lazy dog, and then over the lazy dog again." > /dd/tmp/B3C/fox.txt
+wait    3
+run     builtin cd /dd
+wait    1
+run     clear
+wait    1
+run     fold -w 24 tmp/B3C/fox.txt
+wait    5
+
+shot    comm
+size    24 80
+cap     comm compares two sorted files.  The first column is what only the
+cap     first file has, the second what only the second has, the third what
+cap     both share.
+try     comm tmp/B3C/a tmp/B3C/b
+run     rm -rf /dd/tmp/B3C; mkdir -p /dd/tmp/B3C; echo apple > /dd/tmp/B3C/a; echo banana >> /dd/tmp/B3C/a; echo cherry >> /dd/tmp/B3C/a; echo banana > /dd/tmp/B3C/b; echo cherry >> /dd/tmp/B3C/b; echo damson >> /dd/tmp/B3C/b
+wait    3
+run     builtin cd /dd
+wait    1
+run     clear
+wait    1
+run     comm tmp/B3C/a tmp/B3C/b
+wait    5
+
+shot    column
+size    24 80
+cap     column sets a list out in columns as wide as the screen -- here the
+cap     names in the games directory.
+try     ls CMDS/GAMES | column
+os9     ls CMDS/GAMES ! column
+run     builtin cd /dd
+wait    1
+run     clear
+wait    1
+run     ls CMDS/GAMES | column
+wait    5
+
+shot    colrm
+size    24 80
+cap     colrm removes columns from each line.  Given two numbers it cuts from
+cap     the first to the second -- the third to the fifth character here --
+cap     and given one it cuts from there to the end of the line.
+try     echo abcdefghij | colrm 3 5
+os9     echo abcdefghij ! colrm 3 5
+run     rm -rf /dd/tmp/B3M; mkdir -p /dd/tmp/B3M; echo "001 apple" > /dd/tmp/B3M/list.txt; echo "002 banana" >> /dd/tmp/B3M/list.txt; echo "003 cherry" >> /dd/tmp/B3M/list.txt
+wait    3
+run     builtin cd /dd
+wait    1
+run     clear
+wait    1
+run     echo abcdefghij
+wait    3
+run     echo abcdefghij | colrm 3 5
+wait    4
+run     echo abcdefghij | colrm 5
+wait    4
+run     cat tmp/B3M/list.txt
+wait    3
+run     colrm 1 4 < tmp/B3M/list.txt
+wait    4
+
+shot    col
+size    24 80
+cap     col cleans up text meant for a printer.  The file above was underlined
+cap     by striking each letter and then an underscore over it; col -b keeps
+cap     the last character struck in each column.
+try     col -b < tmp/B3C/over.txt
+run     rm -rf /dd/tmp/B3C; mkdir -p /dd/tmp/B3C; echo -e "b\b_o\b_l\b_d type" > /dd/tmp/B3C/over.txt
+wait    3
+run     builtin cd /dd
+wait    1
+run     clear
+wait    1
+run     dump tmp/B3C/over.txt
+wait    5
+run     col -b < tmp/B3C/over.txt
+wait    5
+
+shot    ul
+size    24 80
+cap     ul reads underlining made with backspaces -- each letter struck, then
+cap     an underscore over it -- and shows it the way the terminal can.  With
+cap     -i the underline is drawn on a line of its own.
+try     ul -i tmp/B3C/over.txt
+run     rm -rf /dd/tmp/B3C; mkdir -p /dd/tmp/B3C; echo -e "b\b_o\b_l\b_d type" > /dd/tmp/B3C/over.txt
+wait    3
+run     builtin cd /dd
+wait    1
+run     clear
+wait    1
+run     ul -i tmp/B3C/over.txt
+wait    5
+
+shot    tsort
+size    24 80
+cap     tsort takes pairs -- the first must come before the second -- and
+cap     prints one order that keeps every pair: underwear before trousers,
+cap     trousers and socks before shoes.
+try     echo "underwear trousers trousers shoes socks shoes" | tsort
+os9     echo "underwear trousers trousers shoes socks shoes" ! tsort
+run     builtin cd /dd
+wait    1
+run     clear
+wait    1
+run     echo "underwear trousers trousers shoes socks shoes" | tsort
+wait    5
+
+shot    rev
+size    24 80
+cap     rev reverses the characters of each line: stressed comes back as
+cap     desserts.
+try     echo "stressed" | rev
+os9     echo "stressed" ! rev
+run     rm -rf /dd/tmp/B3R; mkdir -p /dd/tmp/B3R; echo "stressed" > /dd/tmp/B3R/w.txt; echo "drawer" >> /dd/tmp/B3R/w.txt; echo "regal" >> /dd/tmp/B3R/w.txt
+wait    3
+run     builtin cd /dd
+wait    1
+run     clear
+wait    1
+run     echo "stressed" | rev
+wait    4
+run     cat tmp/B3R/w.txt
+wait    3
+run     rev tmp/B3R/w.txt
+wait    4
+
+shot    look
+size    30 80
+cap     look prints the lines of a sorted file that begin with a string -- here
+cap     the words in GAMES/words that start with abs.  -f ignores case.
+try     look abs GAMES/words
+run     builtin cd /dd
+wait    1
+run     clear
+wait    1
+run     look abs GAMES/words
+wait    5
+
+shot    yes
+size    24 80
+cap     yes prints y, or what it is given, over and over, to answer a
+cap     program that keeps asking.  head takes three lines and yes stops.
+try     yes hello | head -n 3
+os9     yes hello ! head -n 3
+run     builtin cd /dd
+wait    1
+run     clear
+wait    1
+run     yes hello | head -n 3
+wait    5

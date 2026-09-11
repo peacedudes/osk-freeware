@@ -946,3 +946,20 @@ worm|none|it takes a starting length and nothing else; h, j, k and l steer and c
 xmas|none|it takes no options; control-C ends it
 unshar|unshar -?|
 mimecode|mimecode|
+fold|fold -?|
+comm|comm -?|
+column|column -?|
+col|col -?|
+ul|ul -?|
+tsort|tsort -?|
+morse|morse -?|
+number|number -?|
+look|look -?|
+rev|rev -?|
+colrm|none|it takes the first and last column to remove, and nothing else
+factor|none|it takes numbers, or reads them one to a line; -? is not a number and gets `ouch'
+primes|none|it takes the two numbers to list the primes between
+caesar|none|it takes a shift, or reads the text and guesses one
+ppt|none|it punches whatever it is given, -? included
+bcd|none|it punches whatever it is given, -? included
+yes|none|it prints what it is given until the reader stops; a pipe to head is how to see it

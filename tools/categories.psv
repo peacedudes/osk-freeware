@@ -994,3 +994,20 @@ worm|Games|Arcade & action
 xmas|Screen toys|Screen toys
 unshar|Archives & compression|Create & extract
 mimecode|Encoding & conversion|Text encodings
+bcd|Encoding & conversion|Text encodings
+caesar|Encoding & conversion|Ciphers & hashes
+col|Text tools|Format & typeset
+colrm|Text tools|Transform & filter
+column|Text tools|Format & typeset
+comm|Text tools|Sort, compare & merge
+factor|Maths & calculators|Calculators
+fold|Text tools|Transform & filter
+look|Text tools|Search & match
+morse|Encoding & conversion|Text encodings
+number|Maths & calculators|Calculators
+ppt|Encoding & conversion|Text encodings
+primes|Maths & calculators|Calculators
+rev|Text tools|Transform & filter
+tsort|Text tools|Sort, compare & merge
+ul|Text tools|Format & typeset
+yes|Shells|Shell helpers

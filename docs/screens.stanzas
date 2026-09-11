@@ -54,6 +54,7 @@ banner 5a6b9d4158349032
 basename 88d6e9c0a92810a1
 bash 6e45fc01c6b3701f
 basicwin f7b0c22628587472
+bcd 9293614be1ad39bf
 bcheck 129a9acf434dd876
 bdecode 4c9435dbc68ae7e5
 beav 5c4c9333df878ea7
@@ -82,6 +83,7 @@ btop c2d56a633e5b8ee1
 btree d2d82344ac802011
 buildhash 488b6e3d5a2e09fe
 c7decode cd523a3e251f1784
+caesar d8865432f1d55b0a
 cal 901a5f69eca7c189
 calen 47ebd7471ad0a89b
 calender 30e2052f8d39bf1b
@@ -115,9 +117,13 @@ ckermit 350e3d3b03d28a11
 clear a45512bf7a197623
 clock f694aa1ec8a552c8
 co 96e8232542582cfc
+col 6c2dbd2160aea05c
 collect f300802e1e634ae9
 colortest 5c2330766a9f14e5
+colrm f2bccdfd04b918a9
+column f707f3f864db525f
 combine 206d5cbdc2d7267e
+comm d41baa7bc4a2c62b
 compiler a1cfa4c684d609b5
 compr 6f55fb11df248478
 compress a6249bf9930187e5
@@ -229,6 +235,7 @@ expand 6d527f34be7958ca
 expire 4f5c0139a9bff507
 expr 93380e70a1308318
 exrecover 7e7b5298a953fdb1
+factor 1ccd0e9539df7630
 fastcc 5e4a74de4c19af8a
 fastmail 9ffc8c75fc408915
 fc d5a28e4ea8596b2c
@@ -250,6 +257,7 @@ flex 8c3f2fdd70fa2ca9
 flink 13b93a9700f18093
 florida 71f8d32b60c46888
 fmt 26d23caaf43a2d30
+fold a69433f50beabd2b
 fontgen 60e1c7f5b6cdba8d
 for 4b2af34c4a16a946
 forth 2a97e56b02c52c56
@@ -384,6 +392,7 @@ loadmem 157a6d50ee6894bb
 loan 974d2f18d2e5f11e
 logisim cb402d526bf0a098
 logname 8f17510b2cfc5411
+look 22644a3ef76ff2e5
 lorenz3d 7adc33fafa9ee955
 lout c0ebd5f69b37c4fd
 lp dbfb5d4e455235bd
@@ -430,6 +439,7 @@ mkindex 56e25e6b32f8fb0c
 modinfo 35b55f276b3cbaeb
 modules 3f1b889666b4b165
 modules2 3e9cd772e0307a88
+morse 5ab2783888c595ae
 move eeae24bf2e1d12fb
 msattrib 447ddc9504eb95b8
 msbadblocks 66d74d636341ac20
@@ -473,6 +483,7 @@ noreader e04559edcefa0d2c
 nptx 478329f3f0d22998
 nroff 335fb42df32f76c9
 nsort 13434acb0c4303cb
+number 7b35c5f6ba180f86
 ob68kdemo f3ecd32662b190e2
 oleo d3bd071d889f55f3
 orbit 3699a62f5f60136b
@@ -582,8 +593,10 @@ ppmtoacad 833e4b7326505378
 ppmtomitsu f000394365c3707f
 ppmtosixel a3e1ef4c286a1b23
 ppmtoyuvsplit b9f2b5bad65f103b
+ppt be54bc7cadf6a5fd
 preset 040d066815e788ab
 pri 6876cd41d7c25569
+primes f8e35036f13e68a0
 printenv a557b5b8c28a798e
 printers 4f456d597c40ea47
 printf 046d0cf3de983021
@@ -619,6 +632,7 @@ ref 24ef05ffb6b7e3a9
 remove 9bd13869d0eed3a0
 rendsk a2b8a5173c3a3a45
 repeat 86d732ebd88df086
+rev 46f510f2d0eb4591
 rlog e9a49a095f09448d
 rm 7ed8216dd14e7330
 rmail 245cc5bb1daa0815
@@ -732,6 +746,7 @@ travesty a7b61d3796043c40
 tree f30a33dfb68549f7
 trunc ed788a65427308da
 tsmon2 2d2223ddf831d141
+tsort 67fdabd5ebfb61eb
 tsu 1359a0e76f1a3564
 tt 24e254dfe016e84b
 tttt a8619cf88deee7dd
@@ -741,6 +756,7 @@ txmod fd4dae283e0996bc
 ub68020demo dd6614e0b6b7d065
 ub68kdemo a23d32c97b7c0679
 udate 7ff31bc871140d1d
+ul 89f5dba125d83b55
 ularn d1f0b86a94761e8a
 uld 5ba781c0c11e10df
 umacs 979e0b76ff348e9b
@@ -823,6 +839,7 @@ xydown 02a8d3c30f67c056
 xyt d635823690053449
 yacc 68da3ce1893fa99a
 yagi 469ad661c6ada1aa
+yes 11260d4297218e4d
 ynad 4e45aa6ac750eb7c
 yuv a14145a7c5bf9bcd
 yuvsplittoppm 537120403af77c9c
