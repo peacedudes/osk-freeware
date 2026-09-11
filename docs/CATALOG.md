@@ -1,6 +1,6 @@
 # What is on this disk
 
-936 programs of OS-9/68K community software, gathered from the archives that kept it and made to run again. **587 of them need nothing but this disk**; the rest want Microware's `cio`, marked below with a star.
+937 programs of OS-9/68K community software, gathered from the archives that kept it and made to run again. **588 of them need nothing but this disk**; the rest want Microware's `cio`, marked below with a star.
 
 `DOC/INDEX` on the disk lists everything alphabetically. This is the same collection sorted by what each program is *for*, which is the more useful order when you do not yet know what you are looking for.
 
@@ -18,7 +18,7 @@
 | [Developer tools](#developer-tools) | 46 | Version control, tags, cross-reference, formatters, a debugger and benchmarks. |
 | [Compilers & build](#compilers--build) | 40 | C compilers and their passes, assemblers, linkers, make and parser generators. |
 | [Languages](#languages) | 10 | Interpreters and language systems beyond C. |
-| [Archives & compression](#archives--compression) | 36 | Pack, unpack and shrink -- lha, zip, tar, arc, zoo, and OS-9 module libraries. |
+| [Archives & compression](#archives--compression) | 37 | Pack, unpack and shrink -- lha, zip, tar, arc, zoo, and OS-9 module libraries. |
 | [Encoding & conversion](#encoding--conversion) | 24 | Between text encodings, line endings, Macintosh formats, ciphers and hashes. |
 | [Communications](#communications) | 96 | Kermit in several builds, terminal sessions, and networking. |
 | [Graphics & images](#graphics--images) | 202 | The netpbm toolkit, JPEG, a ray tracer, and things that draw. |
@@ -625,7 +625,7 @@
 
 *Pack, unpack and shrink -- lha, zip, tar, arc, zoo, and OS-9 module libraries.*
 
-<details><summary>36 programs</summary>
+<details><summary>37 programs</summary>
 
 **Alternates**
 
@@ -665,6 +665,7 @@
 | `marc` | the arc archive merger -- `marc <target> <source> [names]' copies members from one .arc into another<br>`MARC - archive merger, Version 5.21, created on 04/22/87 at 15:05:10` |
 | `shar` | Shell-archive creator, and one faulty check is all that stops it: its read-access test rejects every file that exists -- `No read access for file: <name>' on its own standard output, for world-readable files that `cat' reads, absolute or relative, with -a or without. Hand it a name that is not there and the check passes vacuously: it writes the whole shell-archive preamble, cut line and all, and only then fails at open. For making an archive here, use `tar', `zoo' or `lha'.<br>`shar: illegal option -- ?` |
 | `tar` | GNU tar 1.10: c creates a Unix tape archive, t lists it, x extracts; v shows each file, f names the archive<br>`Syntax : tar [ctx][mfv] tarfile [file(s)...]` |
+| `unshar` | unpacks a shell archive -- the form programs were posted to Usenet in -- with its own small interpreter, no Unix shell needed.  DOC/unshar/which6.shar is one to try it on<br>`unshar: illegal option -- ?` |
 | `unzip` | &#9733; Info-ZIP unzip -- reads zips made elsewhere; DOC/zip/sample.zip is one to try it on.  `zoo', `tar' and `gzip' are the archivers on this disk<br>`UnZip:  Zipfile Extract v5.0 of 21 August 1992;  (c) 1989 S.H.Smith and others` |
 | `zip` | Info-ZIP zip 1.9.  It deflates correctly, writes a temporary file (_Z000003), then cannot rename it over the target and reports `zip error: Could not create output file', in /dd/tmp and in /dd alike.  `zoo', `tar' and `gzip' round-trip exactly.<br>`Copyright (C) 1990-1992 Mark Adler, Richard B. Wales, Jean-loup Gailly` |
 | `zipnote` | Info-ZIP zipnote -- view/edit zip comments<br>`Copyright (C) 1990-1992 Mark Adler, Richard B. Wales, Jean-loup Gailly` |

@@ -74,3 +74,14 @@ run     export PATH=/dd/CMDS
 run     /dd/CMDS/which definitelynotacommand; echo "which junk says $?"
 expect  definitelynotacommand not found in:
 expect  which junk says 1
+
+# which names the data directory the way pd does, a level at a time.  It
+# climbed with `../..' once, which on OS-9 opens the parent again, so three
+# levels down it could only answer `.'.
+case    which-names-a-deep-data-directory
+run     /dd/CMDS/rm -rf /dd/tmp/WDEEP
+run     /dd/CMDS/mkdir -p /dd/tmp/WDEEP/a/b
+run     /dd/CMDS/cp /dd/SYS/motd /dd/tmp/WDEEP/a/b/note
+run     export PATH=/dd/CMDS
+run     /dd/CMDS/ksh -c "cd /dd/tmp/WDEEP/a/b; /dd/CMDS/which note"
+expect  /dd/tmp/WDEEP/a/b/note

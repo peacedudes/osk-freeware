@@ -123,7 +123,7 @@ is no help until you already know the name you want.
 | **Developer tools** | 46 | Version control, tags, cross-reference, formatters, a debugger and benchmarks. |
 | **Compilers & build** | 40 | C compilers and their passes, assemblers, linkers, make and parser generators. |
 | **Languages** | 10 | Interpreters and language systems beyond C. |
-| **Archives & compression** | 36 | Pack, unpack and shrink -- lha, zip, tar, arc, zoo, and OS-9 module libraries. |
+| **Archives & compression** | 37 | Pack, unpack and shrink -- lha, zip, tar, arc, zoo, and OS-9 module libraries. |
 | **Encoding & conversion** | 24 | Between text encodings, line endings, Macintosh formats, ciphers and hashes. |
 | **Communications** | 96 | Kermit in several builds, terminal sessions, and networking. |
 | **Graphics & images** | 202 | The netpbm toolkit, JPEG, a ray tracer, and things that draw. |

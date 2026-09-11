@@ -1,0 +1,3 @@
+$ unshar -?
+unshar: illegal option -- ?
+unshar:  Usage: unshar [-fs] [-c dir] [-h hdrfile] [input files].

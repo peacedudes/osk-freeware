@@ -204,3 +204,22 @@ run     /dd/CMDS/ksh -c "cd /dd/tmp/ZSPC; /dd/CMDS/zipsplit -n 6000 /dd/DOC/zip/
 expect  2 zip files will be made
 run     /dd/CMDS/zipinfo /dd/tmp/ZSPC/sample2.zip
 expect  1 file
+
+# unshar unpacks a shell archive with its own interpreter.  The sample is the
+# which6 posting; its three files must come back byte for byte as the
+# posting carries them (the md5s of SRC/which/ORIG).
+case    unshar-unpacks-which6-byte-for-byte
+run     /dd/CMDS/rm -rf /dd/tmp/UNSH
+run     /dd/CMDS/mkdir -p /dd/tmp/UNSH
+run     /dd/CMDS/ksh -c "cd /dd/tmp/UNSH; /dd/CMDS/unshar -n /dd/DOC/unshar/which6.shar"
+run     /dd/CMDS/md5 /dd/tmp/UNSH/which6.c /dd/tmp/UNSH/which.1 /dd/tmp/UNSH/Makefile
+expect  ec84e20efff9c28ab281eb5dec8c75b2
+expect  426c0d5a368e7bde7adb72959c0aee67
+expect  d400a25907e0ac0d3edf8ec6c443f056
+
+# The same archive on standard input, into a directory -d makes.
+case    unshar-reads-standard-input-into-a-new-directory
+run     /dd/CMDS/rm -rf /dd/tmp/UNSD
+run     /dd/CMDS/cat /dd/DOC/unshar/which6.shar | /dd/CMDS/unshar -n -d /dd/tmp/UNSD
+run     /dd/CMDS/md5 /dd/tmp/UNSD/which6.c
+expect  ec84e20efff9c28ab281eb5dec8c75b2

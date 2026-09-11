@@ -435,6 +435,25 @@ wait    4
 run     shar tmp/ARC/readme
 wait    6
 
+shot    unshar
+size    24 80
+cap     unshar unpacks a shell archive -- the form programs were posted to
+cap     Usenet in -- with its own interpreter, no Unix shell needed.  This is
+cap     the 1991 posting that `which' on this disk came from; the three files
+cap     it carried come out beside it.  chmod has no meaning here, so unshar
+cap     says so and carries on.
+try     unshar which6.shar
+run     rm -rf /dd/tmp/UNSHAR; mkdir -p /dd/tmp/UNSHAR; cp /dd/DOC/unshar/which6.shar /dd/tmp/UNSHAR/which6.shar
+wait    3
+run     builtin cd /dd/tmp/UNSHAR
+wait    1
+run     clear
+wait    1
+run     unshar which6.shar
+wait    8
+run     ls -l
+wait    3
+
 shot    tar
 cap     GNU tar 1.10 packing a directory into a .tar and listing what it
 cap     wrote, with permissions, sizes and dates.

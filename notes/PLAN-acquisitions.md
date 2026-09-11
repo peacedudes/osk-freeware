@@ -160,7 +160,7 @@ Status: `open`, `claimed <session>`, or `done <commit>`.
   `valspeak` already ships from the same posting.
 Done when: each runs, has its card, a case, and INDEX/ORIGINS/SOURCES lines.
 
-### B2 -- unshar                                                         open
+### B2 -- unshar    done 2026-09-11 (cshar 2.0 pl3; 30/30 files identical to sh)
 cshar (Rich Salz, 1988): `CSU/volume15/cshar/` part01-03 + patches, 182,681 b,
 public domain ("do what you want, but let your conscience be your guide").
 Its `parser.c` interprets shell archives itself, so unshar needs no sh --

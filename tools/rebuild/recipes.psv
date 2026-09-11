@@ -895,3 +895,4 @@ which|which|which.c|||
 whereis|whereis|whereis.c|||
 xmas|xmas|xmas.c||/dd/LIB/curses.l /dd/LIB/termlib.l|
 worm|worm|worm.c||/dd/LIB/curses.l /dd/LIB/termlib.l|
+unshar|cshar|unshar.c glue.c parser.c lcwd.c lfiles.c llib.c lmem.c|||

@@ -1,0 +1,20 @@
+unshar which6.shar
+unshar:  Sending header to which6.sha.hdr.
+unshar:  Doing which6.shar:
+Extracting which6.c
+You'll have to do this yourself:
+        chmod u=rw,g=r,o=r which6.c
+Extracting which.1
+You'll have to do this yourself:
+        chmod u=rw,g=r,o=r which.1
+Extracting Makefile
+You'll have to do this yourself:
+        chmod u=rw,g=r,o=r Makefile
+Exiting, with status 0
+$ ls -l
+total 22016
+-rw-------   1 0        0             443 Sep 11 09:10 Makefile
+-rw-------   1 0        0            2384 Sep 11 09:10 which.1
+-rw-------   1 0        0            5970 Sep 11 09:10 which6.c
+-rw-------   1 0        0             873 Sep 11 09:10 which6.sha.hdr
+-rw-rw-rw-   1 0        0           11416 Aug  3 19:00 which6.shar
