@@ -943,4 +943,4 @@ who|none|a shell script with no options
 whoami|whoami --help|
 wisecrack|none|it takes no options: run it in the background and `ask' reads what it writes
 wn.stb|none|a symbol table that ships beside the WN web server, not a program
-hackwish|none|the hack cheat: run it (optionally with your wish, e.g. `hackwish a blessed +3 ring of levitation'), it plays hack until a starting wand is a wand of wishing, wishes, and saves the game; then play the save with hack
+hackwish|none|the wish defaults to 3 potions of gain level; name your own instead, e.g. `hackwish a blessed +3 ring of levitation'
