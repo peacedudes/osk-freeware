@@ -1,0 +1,2 @@
+$ which -?
+Usage: which [-i] [-a] [--] [<command>]

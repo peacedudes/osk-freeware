@@ -11,6 +11,31 @@ cap     moment you ask, so it cannot drift from what shipped.
 try     about hack
 run     about hack
 wait    5
+shot    which
+size    24 100
+cap     Says what a command name runs, and where it came from.  It looks where
+cap     the OS-9 shell looks -- memory, the execution directory, each PATH
+cap     directory, then the data directory -- and stops at the first; -a lists
+cap     every place.  A module already in memory is traced to the file that
+cap     holds the same module, whatever the file is called: ckermit's module
+cap     is named wermit.
+try     which -a gnuchess
+run     which cat
+run     which -a gnuchess
+run     load ckermit
+run     which wermit
+wait    6
+shot    whereis
+size    24 100
+cap     Finds a program's source, its command and its documentation.  It
+cap     searches SRC, CMDS, DEFS, LIB and DOC all the way down, on this disk and
+cap     on every device PATH names, so source filed under the archive it came
+cap     in -- gen's is in divutils -- still turns up.  Source is listed first,
+cap     then commands, then documentation.
+try     whereis gen
+run     whereis gen
+run     whereis keep tex
+wait    6
 shot    aprocs
 cap     A process monitor: it prints the active processes as a tree -- id,
 cap     parent, priority, CPU time, age and share of the CPU -- reading the

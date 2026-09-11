@@ -178,7 +178,8 @@ def load_help(root):
 ORIGIN_KINDS = ("Microware OS-9 archive", "EFFO public-domain disk",
                 "Usenet", "EFFO forum",
                 "hc disk", "PD disk", "microware",
-                "Larry Crane")   # a person, for hackwish -- see SOURCES.txt
+                "Larry Crane",   # a person, for hackwish -- see SOURCES.txt
+                "4.3BSD Net/2")  # whereis
 ORIGIN_RX = re.compile(r"^  (\S+)\s+(\S+)\s+(%s)\b(.*)$"
                        % "|".join(re.escape(k) for k in ORIGIN_KINDS))
 # An entry line is a name, a source-tree name, and something after them.
@@ -262,12 +263,24 @@ def from_depends(root, progs):
             where = None if missing else on_disk(root, path)
             isdir = bool(where and os.path.isdir(where))
             nfiles = 0
+            files = []
             if isdir:
-                for _r, _d, _f in os.walk(where):
-                    nfiles += len(_f)
+                # Capture the names keep will copy, so the card can list them
+                # (the page shows them only for a small directory).  Capped so
+                # a compiler's LIB does not bloat the JSON; nfiles is the true
+                # total either way.
+                CAP = 24
+                for _r, _d, _f in sorted(os.walk(where)):
+                    for fn in sorted(_f):
+                        nfiles += 1
+                        if len(files) < CAP:
+                            fp = os.path.join(_r, fn)
+                            rel = os.path.relpath(fp, where).replace(os.sep, "/")
+                            files.append({"name": rel,
+                                          "bytes": os.path.getsize(fp)})
             progs[cur].setdefault("needs", []).append(
                 {"path": path, "missing": missing, "dir": isdir,
-                 "nfiles": nfiles,
+                 "nfiles": nfiles, "files": files,
                  "bytes": (os.path.getsize(where)
                            if where and os.path.isfile(where) else None)})
 

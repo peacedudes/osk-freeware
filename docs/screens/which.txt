@@ -1,0 +1,8 @@
+$ which cat
+/dd/CMDS/cat
+$ which -a gnuchess
+/dd/CMDS/gnuchess
+/dd/CMDS/GAMES/gnuchess
+$ load ckermit
+$ which wermit
+wermit  in memory, same as /dd/CMDS/ckermit

@@ -891,3 +891,5 @@ pnmnlfilt|netpbm/PNM|pnmnlfilt.c|CPP2 LONGREF SYSV _OSK|/dd/LIB/pnm.l /dd/LIB/pp
 pnmrotate|netpbm/PNM|pnmrotate.c|_OSK SYSV|/dd/LIB/pnm.l /dd/LIB/ppm.l /dd/LIB/pgm.l /dd/LIB/pbm.l /dd/LIB/pbm.l /dd/LIB/pbm.l /dd/LIB/math.l| -V=/h6/netpbm -V=/h6/netpbm/PBM -V=/h6/netpbm/PGM -V=/h6/netpbm/PPM
 pnmscale|netpbm/PNM|pnmscale.c|_OSK SYSV|/dd/LIB/pnm.l /dd/LIB/ppm.l /dd/LIB/pgm.l /dd/LIB/pbm.l /dd/LIB/pbm.l /dd/LIB/pbm.l /dd/LIB/math.l| -V=/h6/netpbm -V=/h6/netpbm/PBM -V=/h6/netpbm/PGM -V=/h6/netpbm/PPM
 pnmshear|netpbm/PNM|pnmshear.c|_OSK SYSV|/dd/LIB/pnm.l /dd/LIB/ppm.l /dd/LIB/pgm.l /dd/LIB/pbm.l /dd/LIB/pbm.l /dd/LIB/pbm.l /dd/LIB/math.l| -V=/h6/netpbm -V=/h6/netpbm/PBM -V=/h6/netpbm/PGM -V=/h6/netpbm/PPM
+which|which|which.c|||
+whereis|whereis|whereis.c|||

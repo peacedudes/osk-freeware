@@ -1,0 +1,5 @@
+$ whereis gen
+gen: /dd/SRC/divutils/gen.c /dd/SRC/divutils/gen.r /dd/SRC/flex/gen.c /dd/CMDS/gen
+$ whereis keep tex
+keep: /dd/SRC/keep /dd/CMDS/keep
+tex: /dd/CMDS/TEXCMDS/tex /dd/DOC/tex

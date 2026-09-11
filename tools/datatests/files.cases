@@ -160,3 +160,20 @@ case    nroff-now-prints-the-text-it-was-given
 run     /dd/CMDS/nroff /dd/tmp/c1
 expect  New Year
 run     /dd/CMDS/rm -f /dd/tmp/c1
+
+# whereis searches SRC, CMDS, DEFS, LIB and DOC all the way down.  Source on
+# this disk is filed by the archive it came in, so gen's source is found only
+# by descending into SRC/divutils.
+case    whereis-finds-source-filed-under-its-archive
+run     /dd/CMDS/whereis gen
+expect  /dd/SRC/divutils/gen.c
+expect  /dd/CMDS/gen
+
+case    whereis-reports-a-matching-directory-and-does-not-enter-it
+run     /dd/CMDS/whereis -s keep
+expect  /dd/SRC/keep
+absent  /dd/SRC/keep/keep.c
+
+case    whereis-ignores-case-as-RBF-does
+run     /dd/CMDS/whereis -b GEN
+expect  /dd/CMDS/gen

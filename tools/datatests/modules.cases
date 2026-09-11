@@ -52,3 +52,25 @@ expect  mexist os9lib says 0
 case    mexist-says-no-to-what-is-not-loaded
 run     /dd/CMDS/mexist definitelynotamodule; echo "mexist junk says $?"
 absent  mexist junk says 0
+
+# which asks the module directory first, as the shell does -- and a module
+# in memory has no filename, so which names the file holding the same module
+# (name, size and CRC).  ckermit's module is called wermit, so the filename
+# and the module name differ, which is the case worth proving.
+case    which-names-the-file-a-module-in-memory-came-from
+run     export PATH=/dd/CMDS
+run     /dd/CMDS/load /dd/CMDS/ckermit
+run     /dd/CMDS/which wermit
+expect  in memory, same as /dd/CMDS/ckermit
+
+case    which-finds-a-file-on-PATH-by-its-filename
+run     export PATH=/dd/CMDS/GAMES:/dd/CMDS
+run     /dd/CMDS/which -a ckermit
+expect  /dd/CMDS/ckermit
+absent  in memory
+
+case    which-reports-what-it-cannot-find
+run     export PATH=/dd/CMDS
+run     /dd/CMDS/which definitelynotacommand; echo "which junk says $?"
+expect  definitelynotacommand not found in:
+expect  which junk says 1
