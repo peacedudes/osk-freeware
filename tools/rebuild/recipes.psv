@@ -107,7 +107,6 @@ ifdef|ifdef|ifdef.c|||
 indent|indent|indent.c io.c lexi.c parse.c comment.c args.c|||
 input|effo_unaxcess|input.c|||
 japan|weather|weather.c|JAPAN N_PACIFIC|/dd/LIB/rand.r /dd/LIB/math.l|
-joke|toys|joke.c|||
 # THE SHIPPED kermit_cio IS AN OLDER -qixm BUILD and needs cio, where the
 # archive's own CMDS/kermit does not.  A rebuild through this recipe gets the
 # driver's -qm default and comes out trap-free -- at which point the file wants

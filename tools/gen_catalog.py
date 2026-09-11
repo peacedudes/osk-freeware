@@ -176,7 +176,7 @@ def load_help(root):
 # source on the disk -- showed no provenance at all in the guide, and nothing
 # said so.  `unmatched_origins' below is why it cannot go quiet again.
 ORIGIN_KINDS = ("Microware OS-9 archive", "EFFO public-domain disk",
-                "usenet archive", "EFFO forum",
+                "Usenet", "EFFO forum",
                 "hc disk", "PD disk", "microware",
                 "Larry Crane")   # a person, for hackwish -- see SOURCES.txt
 ORIGIN_RX = re.compile(r"^  (\S+)\s+(\S+)\s+(%s)\b(.*)$"
