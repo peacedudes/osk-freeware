@@ -426,23 +426,26 @@ function alsoReads(p){
 }
 
 // What `keep <name>' writes, by keep's own rules (SRC/keep/keep.c): the
-// program, then each file DOC/DEPENDS says it opens that is here -- not
-// termcap (SYS/login sets TERMCAP), not a directory (keep names it and
-// leaves the decision to you), a path named twice taken once.
+// program, then everything DOC/DEPENDS says it opens that is here -- data
+// files by name, a data directory copied whole, and a terminal description
+// if your own disk has none.  A path named twice is taken once; a path the
+// scan marked absent is a compiled-in fallback and is left out.
 function brings(p){
   const files = [{path:"/dd/"+p.dir+"/"+p.name, bytes:p.size||0}];
   const seen = new Set([(p.dir+"/"+p.name).toLowerCase()]);
   const notes = [];
+  let termcap = false;
   for(const n of (p.needs||[])){
     if(n.missing) continue;
     const rel = n.path.replace(/^\/(dd|h0)\//i,"");
-    if(/^sys\/termcap$/i.test(rel)) continue;
+    if(/^sys\/termcap$/i.test(rel)){ termcap = true; continue; }
     if(seen.has(rel.toLowerCase())) continue;
     seen.add(rel.toLowerCase());
-    if(n.dir){ notes.push(n.path+" \u2014 a directory of "+(n.nfiles||0)+" file"+(n.nfiles===1?"":"s")+", which keep does not copy"); continue; }
+    if(n.dir){ notes.push(n.path+" \u2014 a directory of "+(n.nfiles||0)+" file"+(n.nfiles===1?"":"s")+", copied whole"); continue; }
     if(n.bytes==null) continue;
     files.push({path:"/dd/"+rel, bytes:n.bytes});
   }
+  if(termcap) notes.push("a terminal description (SYS/termcap), if your disk has none");
   return {files, notes};
 }
 function bringsHTML(p){
