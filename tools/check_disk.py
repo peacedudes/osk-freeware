@@ -807,6 +807,13 @@ def check_cards_have_no_pathlists(root):
     if not os.path.isdir(sheets):
         return True, ""
     pathlist = re.compile(r"(?:/dd|/h0|/h1|/h5|/h6)/[\w.]")
+    # ONE scoped exception: hack's `try' line.  hack relaunches itself by the
+    # name it was started with, and bash passes a program only the bare word
+    # typed (Microware's shell passes the whole pathlist), so under bash hack
+    # must be given its full path or it cannot re-open itself.  The `os9' line
+    # stays bare.  The card's caption explains it.  This is the copy-paste
+    # rule winning over the no-pathlist rule for the one command that needs it.
+    path_ok = {("hack", "try")}
     bad = []
     for f in sorted(os.listdir(sheets)):
         if not f.endswith(".sheet"):
@@ -818,7 +825,8 @@ def check_cards_have_no_pathlists(root):
             rest = line.split(None, 1)[1] if len(line.split(None, 1)) > 1 else ""
             if word == "shot":
                 shot = rest.strip()
-            elif word in ("cap", "try", "os9") and pathlist.search(rest):
+            elif word in ("cap", "try", "os9") and pathlist.search(rest) \
+                    and (shot, word) not in path_ok:
                 bad.append("%s: `%s' %s line names a full path: %s"
                            % (f, shot, word, pathlist.search(rest).group(0) + "..."))
     for b in bad:

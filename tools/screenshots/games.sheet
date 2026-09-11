@@ -610,10 +610,13 @@ shot    hack
 cap     Hack, the dungeon crawl NetHack grew out of: a room drawn in line
 cap     characters, `@' for you, a letter for each monster -- `d' is a dog
 cap     -- and your hit points, armour class, strength and experience along
-cap     the foot.  Start it by its full path, because it looks itself up by
-cap     the name it was called with after moving into its playground, which
-cap     is GAMES/HACK/PLAYGROUND.
-try     hack
+cap     the foot.  It relaunches itself by the name it was started with, so
+cap     the two shells want it differently: at bash give the whole pathlist
+cap     shown, because bash hands a program only the bare word you typed; at
+cap     the OS-9 shell plain `hack' is enough.  Its saves and scores live in
+cap     GAMES/HACK/PLAYGROUND.
+try     /dd/CMDS/GAMES/hack
+os9     hack
 run     /dd/CMDS/GAMES/hack
 wait    10
 send    n\r
