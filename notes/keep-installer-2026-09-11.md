@@ -118,3 +118,51 @@ the card can change.
   each file) is **not needed** -- copying the directory whole supersedes it.
 - Minor: README-KEEP's worked transcript still shows an older "keeping into
   /dd" example; cosmetic, left as is.
+
+## Exhaustive pass over every program that needs more than itself (2026-09-11)
+
+rdoggett asked to try keep against ANYTHING that needs more than its own
+binary, compilers included. 443 programs in DOC/DEPENDS name at least one
+non-missing path. A harness keeps every one onto a minimal OS-9 target (built
+from a hand tree: the shells and Microware's runtime, a login, but NO termcap
+and NO game data), then checks each program's declared, on-disk dependencies
+actually landed. Zero of them made keep error. Three real bugs surfaced that
+only the full pass could find, each now fixed and re-verified:
+
+1. **Case-insensitive device prefix.** `source_for` matched only lower-case
+   `/dd/` and `/h0/`; DOC/DEPENDS also carries `/DD/` and `/H0/` as the
+   binaries spell them. 68 programs -- gcc, gpp, elm, mail, the whole dvi/TeX
+   family -- had their data silently skipped. A `dev_prefix` helper now
+   accepts either case.
+
+2. **Top-level system directories are no longer copied.** adduser names
+   `/dd/cmds`, so keep_tree was recursively copying the ENTIRE 900-program
+   collection onto the target. A directory dependency is now copied whole
+   only when it is NESTED (a game's playground, dvips's font-metric folder);
+   a top-level system directory (`/dd/cmds`, `/dd/sys`, `/dd/usr`, `/dd/lib`,
+   `/dd/log`) is named and left to the user's own disk. This is the exact
+   clobbering rdoggett warned against, and it also keeps us from overwriting
+   the user's LIB/DEFS with our possibly version-skewed copies.
+
+3. **depends_for clobbered the last program's directory.** DOC/DEPENDS has a
+   second section ("the half a path scan cannot see") whose entries are
+   `  CMDS/prog` with no `(dir)`. On OS-9's sscanf those return EOF, not 1,
+   so the old `if (rc >= 1)` never reset `in_ours` -- and the LAST program of
+   the first section (zeisstopnm) kept `in_ours` true into the second
+   section, where each dir-less line overwrote its directory with an empty
+   string. keep then looked for `/dd/CMDS/zeisstopnm` instead of
+   `/dd/CMDS/NETPBM/zeisstopnm` and skipped the binary. depends_for now reads
+   name and dir out of the buffer directly and resets `in_ours` on every
+   header, ignoring the quirky return code.
+
+Verified end to end on isolated fresh targets: adduser (binary + termcap, the
+system dirs left), gcc/gcc2 (binary, LIB/GNULIB left), dvips (binary + 202
+TeX .tfm files), elm (binary + aliases + mail spool + termcap), cookie, hack,
+larn, sokoban, wanderer, zeisstopnm. After the fixes the whole-collection
+sweep shows every program's on-disk dependencies present, no keep errors.
+
+**Known limit, not fixed here:** the second DEPENDS section (bare-name files
+a program opens relative to its data directory) is identified by dir/name,
+not bare name, so keep does not pull those specifically. In practice the file
+usually ships inside the program's own data directory, which keep does copy.
+Recorded for a later look rather than widened into this pass.
