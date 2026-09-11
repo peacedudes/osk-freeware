@@ -1,6 +1,6 @@
 # What is on this disk
 
-937 programs of OS-9/68K community software, gathered from the archives that kept it and made to run again. **588 of them need nothing but this disk**; the rest want Microware's `cio`, marked below with a star.
+938 programs of OS-9/68K community software, gathered from the archives that kept it and made to run again. **589 of them need nothing but this disk**; the rest want Microware's `cio`, marked below with a star.
 
 `DOC/INDEX` on the disk lists everything alphabetically. This is the same collection sorted by what each program is *for*, which is the more useful order when you do not yet know what you are looking for.
 
@@ -19,7 +19,7 @@
 | [Compilers & build](#compilers--build) | 40 | C compilers and their passes, assemblers, linkers, make and parser generators. |
 | [Languages](#languages) | 10 | Interpreters and language systems beyond C. |
 | [Archives & compression](#archives--compression) | 37 | Pack, unpack and shrink -- lha, zip, tar, arc, zoo, and OS-9 module libraries. |
-| [Encoding & conversion](#encoding--conversion) | 24 | Between text encodings, line endings, Macintosh formats, ciphers and hashes. |
+| [Encoding & conversion](#encoding--conversion) | 25 | Between text encodings, line endings, Macintosh formats, ciphers and hashes. |
 | [Communications](#communications) | 96 | Kermit in several builds, terminal sessions, and networking. |
 | [Graphics & images](#graphics--images) | 202 | The netpbm toolkit, JPEG, a ray tracer, and things that draw. |
 | [Games](#games) | 62 | Adventures, board and card games, arcade ports, dungeon crawls and puzzles. |
@@ -700,7 +700,7 @@
 
 *Between text encodings, line endings, Macintosh formats, ciphers and hashes.*
 
-<details><summary>24 programs</summary>
+<details><summary>25 programs</summary>
 
 **Audio**
 
@@ -740,6 +740,7 @@
 | `atob` | decodes what btoa encoded, back to the bytes<br>`Bad args to atob` |
 | `btoa` | encodes a binary file as printable text, five characters for every four bytes with a checksum on the last line -- denser than uuencode; atob decodes it<br>`Bad args to btoa` |
 | `cuts` | &#9733; Coco Usenet Transfer Utility -- encodes a binary as text that will pass through electronic mail, in a form that survives gateways between ASCII and EBCDIC machines; `-d' decodes, which is the half worth having.  The encoder (`-e') asks for billions of bytes of memory, is refused, and writes empty data lines until it is stopped.<br>**How:** Coco Usenet Transfer Utility: it encodes a binary as mail-safe text and `-d' decodes a cuts file. Use `-d' for the half worth having; the encoder (`-e') asks for gigabytes of memory and is refused. |
+| `mimecode` | encode or decode base64, MIME's transfer encoding. `mimecode -e' turns a file into printable base64 and `-d' turns it back; uuencode and btoa are the older kinds, this is the one mail and the web use.  Tim Kientzle's, from DDJ.<br>`Usage: mimecode <options>` |
 | `todos` | &#9733; meant to turn OS-9 line endings into DOS ones in place; it converts into a temporary file it then cannot rename back, so the file is left unchanged. `autolf -c -C -L' does the job as a filter |
 | `toos9` | &#9733; meant to turn DOS line endings into OS-9 ones in place, and the same story as todos: the temporary cannot be renamed over the original. `autolf -l -C' does the job as a filter<br>`TOOS9    Version UTIL 2.80 by DESIGNA VLT 03.08.98` |
 | `uudecode` | &#9733; undoes uuencode: writes the file named on the begin line back into the current directory<br>`ERROR: can't find -?` |

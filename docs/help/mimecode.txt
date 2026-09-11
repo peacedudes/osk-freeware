@@ -1,0 +1,4 @@
+$ mimecode
+Usage: mimecode <options>
+Options:  -e   Encode
+          -d   Decode

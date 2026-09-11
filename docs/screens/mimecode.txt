@@ -1,0 +1,2 @@
+mimecode -e < tmp/ENC/m.txt
+VHdhcyBicmlsbGlnLCBhbmQgdGhlIHNsaXRoeSB0b3Zlcw0=

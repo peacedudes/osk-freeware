@@ -196,7 +196,7 @@ Checked absent by FUNCTION against INDEX and against Microware's commands.
 | vttest | `CSU/volume7/vttest/` | 1986 | non-commercial -- **Q1** |
 Not found anywhere searched: `nl`, true `csplit`, a clean `dc`, apropos/whatis.
 
-### B5 -- OS-9-native programs and code                                 open
+### B5 -- OS-9-native programs and code                          mimecode done
 | prog | where | date | terms | note |
 |---|---|---|---|---|
 | Browse (P. da Silva, OSK port C. Emde) | TWN 653558 (3 parts, complete) | 1990 | none in the port | K&R + termcap + os9lib; help at `/h0/SYS/browse.hlp` |
@@ -206,7 +206,7 @@ Not found anywhere searched: `nl`, true `csplit`, a clean `dc`, apropos/whatis.
 | howfrag | MW 4223 | | PD | |
 | uustat, ancient, hdump/undump | MW 3970, 3894, 3928 | | per item | |
 | dumpinit (init module lister) | MW 2240 | ~1994 | none | generic though filed MM/1 |
-| mimecode (base64) | MW 2503 | 1995 | author's permission | |
+| mimecode (base64) | MW 2503 | 1995 | author's permission | DONE -- built -qm, tested, carded; Tim Kientzle/DDJ, Gene Heskett's OS-9 pack |
 | zc ZipCode + ZIPDATA | MW 2248, 2250 | 1995 | PD | needs `/dd/sys/zipcodes.txt` |
 | os9dsk / rsdsk (read CoCo .DSK images) | MW 2244, 2246 | 1995-97 | freely distributed | |
 | BIX one-page telecom (Dibble/Schmitt) | TWN 653653 | 1989 | distribution permitted | teaching example, asm |

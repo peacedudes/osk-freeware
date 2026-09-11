@@ -88,6 +88,21 @@ wait    3
 run     chksum tmp/ENC/j.txt tmp/ENC/j.back
 wait    4
 
+shot    mimecode
+cap     Base64, the binary-to-text encoding mail attachments and the web use.
+cap     Here it turns a line of text into printable base64; `mimecode -d'
+cap     turns the printable form back into the original bytes.  uuencode and
+cap     btoa above are the older kinds.
+try     mimecode -e < tmp/ENC/m.txt
+run     mkdir -p /dd/tmp/ENC > /nil 2>/nil; printf "Twas brillig, and the slithy toves\r" > /dd/tmp/ENC/m.txt
+wait    2
+run     builtin cd /dd
+wait    1
+run     clear
+wait    1
+run     mimecode -e < tmp/ENC/m.txt
+wait    5
+
 shot    checksum
 cap     A 16-bit checksum of a file.
 try     checksum tmp/ENC/j.txt

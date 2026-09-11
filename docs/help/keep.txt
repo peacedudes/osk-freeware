@@ -19,7 +19,8 @@ Usage: keep [-n] [-f] [-s] [-p <dir>] <program>...
   -f     overwrite a file that is already there
   -p <d> put everything under <d> instead of /h1
   -s     take the source tree too, where there is one
-  -q     say nothing about files it left out (termcap, directories)
+  -a     unkeep only: remove your saves and high scores as well
+  -q     say less about files already on your disk
 
 Everything runs in place from this disk as /dd; keep is for
 carrying a program onto your own system.  See DOC/README-KEEP.
