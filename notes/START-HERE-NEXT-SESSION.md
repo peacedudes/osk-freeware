@@ -1,5 +1,52 @@
 # Start here, next session
 
+## 2026-09-12: seven programs added, 1000 total, 24 commits
+
+Added and carded: **browse** and **uustat** (the two B5 called blocked -- the
+scan that "proved" it looked only in `disk/LIB/`, and the library is
+`disk/GNULIB/os9lib.l', already on the build path), **almanac**, **zc** with
+its 780 KB zipcode table, **cfscores**, **rot22**, **reversi**, **gnugo**.
+
+Fixed, each found by measurement rather than report: `ls' printed a literal
+`%s' where the filename belongs (error.c defined variadic error() with fixed
+parameters) and had silently blanked two cards whose whole point was showing
+a file gone; `infoxpress' published os9exec's own pty announcement as its
+entire panel; `xcrypt', `liborder' and `unpacklib.os9' all claimed things
+their own captures contradicted; `disk/readme' endorsed leaving the reader's
+OS-9 on /dd two lines after saying not to.
+
+Settled: rdoggett's `/h1' shell load (see FOR-RDOGGETT); Q1 (non-commercial
+terms) recorded as settled so nobody re-asks; the twenty-four command names
+this disk shares with OS-9's own, noted in README-KEEP.
+
+**Assessed and ready to pick up, in order:**
+
+- **scrabble** -- viable, a focused afternoon.  ~48 ANSI prototypes plus 29
+  in its header; util.c wants gettimeofday/getrusage/getpwuid but all three
+  sit in one 144-line file; DICT_FILE is a define and `GAMES/words' (164 KB,
+  CR, one word a line) is already on the disk.
+- **napoleon** -- a day.  71 unconditional ANSI prototypes with no PROTO()
+  indirection; `-DPURE_ANSI' dodges the missing headers but not those.  yacc
+  and bison both run here, so the grammar is not the problem.
+- **TOP's own source trees** (`Scraped/.../os9/top/src/'): compress43,
+  gnudiff, less, rcs, ncurses, flex21, gawk2.0, bison, emacs_3.10 -- OS-9
+  ports of programs this disk ships as BINARIES.  That is Q2's territory and
+  worth reading before starting.
+
+**Left out deliberately, with reasons in PLAN-acquisitions.md:** `flicker'
+(an unstoppable ANSI loop), `dumpinit' (six mod_config members this SDK's
+<module.h> does not have), `adven2' (Fortran).
+
+**Two build rules learned the hard way:**
+- `KNR' ON AN ALREADY-K&R TREE IS HARMFUL.  ansi2knr rewrites parameter
+  declarations that are already K&R and c68 then reports `multiple
+  definition' on plainly-correct lines.  Symptom is distinctive; the fix is
+  to REMOVE the flag.  In `tools/rebuild/README.md' too.
+- `build.sh' deletes its temp directory on exit, so a failed build's log is
+  gone before you can read it.  Pass `OUT=' and `LOG=' in the environment --
+  rebuild.sh honours them and build.sh does not override.
+
+
 ## 2026-09-11: two tracks running
 
 - **Acquisitions plan**: `notes/PLAN-acquisitions.md` (committed b241bfac) --
@@ -30,8 +77,13 @@
   one path as two devices".  It builds on macOS, Linux, Windows and most
   anything with a C compiler.  RBF images are the preferred format:
   permissions and record locking work as OS-9 expects on an image and not
-  on a host directory; `mount -k' makes a blank one.  A stale `h0' hard
-  link may still sit in the repo root (gitignored); nothing reads it.
+  on a host directory; `mount -k' makes a blank one.  **The `h0' symlink in
+  the repo root is NOT stale and must not be deleted** -- this file said
+  "nothing reads it" and that was wrong: rdoggett's `free' alias passes
+  `.../osk-freeware/h0' as BOTH OS9DISK and OS9H0, so removing it removed
+  his disk and os9exec stopped with `E_MNF: bash' before emulation began.
+  Deleted on a sibling session's report 2026-09-12, restored the same night.
+  The evidence that would stop you is in `~/.zshrc', not in the tree.
 - **One arrangement for running and keeping**: `keep' copies from `/dd'
   onto `/h1'; `unkeep' (was `drop') takes it back.  `DOC/README-KEEP'.
 - **Spot-check fixes from rdoggett's own reading of the page.** `zot':

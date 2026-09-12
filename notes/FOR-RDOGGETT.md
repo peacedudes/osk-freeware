@@ -5,50 +5,31 @@ git history and `notes/START-HERE-NEXT-SESSION.md`; this file carries none
 of it. Updated 2026-09-11, night.
 
 
-## One decision: a `shell' module, and the hazard attached to it
+## Settled 2026-09-12: the `shell' module, your way
 
-Programs that call `system()' do nothing on this disk, and tonight we found
-out why. Microware's C library `system()' forks the bare module name
-`shell' and never reads `$SHELL' at all. This disk has bash, ksh, sh,
-gshell and mshell -- nothing named `shell' -- so the fork fails with
-"module not found", nothing runs, and `system()' hands back a junk number
-that changes between runs. Traced under `os9exec -d 0x0002', and confirmed
-independently by the os9exec session against its own SDK-built probe.
+You chose a fourth option and it is in (`4bdd22e6'): `SYS/login' now loads
+YOUR Microware shell from /h1, beside the line that already loads runb --
 
-**What fixing it buys: one program.** `m4's `syscmd' is silent without it
-and prints its answer with it. That is the only shipped program affected.
-gawk's OS-9 port disabled `system()' outright; `make' calls `os9exec()'
-directly; and `tex', `latex', `eo' and `maketexpk' give identical output
-either way -- which disproves what `DOC/README-SHELLS' and `SYS/login' have
-both claimed since 2026-08-31. Both are now corrected. (`ed' does call
-`system()', but its `!' escape fails earlier, on a scratch file it opens as
-`/r0/ed.XXXXXX', so this alone would not revive it.)
+    load /h1/CMDS/shell >/nil 2>/nil
 
-**Why I have not just done it.** A real OS-9 system already has
-`/dd/CMDS/shell' -- Microware's own. This collection is meant to be
-installed onto a user's own `/dd', and the tar route would overwrite theirs
-with a public-domain ksh. The bug exists only where this collection is the
-whole world, which is the emulator; the hazard exists only where the bug
-does not.
+Nothing of Microware's ships to make it work, no file called `shell' goes on
+this disk where it could overwrite yours, and with no /h1 the line finds
+nothing and moves on.  Measured both ways: with /h1 present `system()'
+returns 0 and m4's `syscmd' prints its answer; without it, silence.
 
-Three ways, all measured tonight:
+Two things recorded rather than left to be rediscovered.  `DOC/README-SHELLS'
+and the SYS/login comment had both claimed since 2026-08-31 that SHELL=ksh is
+what makes tex, latex, eo and maketexpk work; measured, all four give
+identical output with SHELL unset, and the return value of `system()' tells
+you nothing in either direction -- junk here, 0 on another machine -- so the
+sound test is whether a redirect target was created.  Both documents say that
+now.
 
-  (a) Ship nothing. `README-SHELLS' now explains it. `m4's `syscmd' stays
-      silent when the collection runs on its own.
-  (b) Ship a copy of our own ksh as `CMDS/pdshell', with the MODULE renamed
-      to `shell', and `load' it from `SYS/login'. No file called `shell'
-      ever exists, so nothing of yours is overwritten, and the name is only
-      claimed in memory. Measured: `system()' returns 0 and m4 answers.
-      This is not an emulator trick -- module names and file names are
-      independent in OS-9, as you confirmed tonight, so `F$Fork' finds a
-      resident `shell' whatever file it came from, on real hardware as much
-      as here. **This is the one I would take.**
-  (c) Ship it as `CMDS/shell'. Simplest, and the one that can overwrite a
-      real system's own shell.
-
-Licence is not the obstacle: ours is pdksh, "Public Domain Korn Shell 4.3",
-so a second copy under another name is free. The only question is whether
-(b) is worth a 118 KB duplicate to restore one program's feature.
+Still open only if you want it: m4's `syscmd' stays silent for someone
+running the collection standalone with no /h1.  That is the emulator
+test-drive case, where the user has no Microware licence anyway.  Shipping a
+renamed pdksh as a resident `shell' would fix it; you said you would sleep on
+that, and nothing here needs it.
 
 ## Programs that may be best forgotten
 
