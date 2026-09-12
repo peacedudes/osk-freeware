@@ -526,7 +526,8 @@ the outcome here, and fold anything found into a batch above.
 | usenetarchives.com | Usenet | HTTP 403 |
 | comp.sources.misc v48+, comp.sources.games v19+ | later postings | no mirror found |
 | alt.sources 1987 to mid-1989, May 1992, April 1993 | gaps in funet's copy | not on funet |
-| EFFO PD disks 100-123 (1993-95), forum disks 18 and 19 | EFFO material after what the pool has | not found |
+| EFFO PD disks 100-123 (1993-95) | EFFO material after what the pool has | not found |
+| ~~forum disks 18 and 19~~ | CLOSED 2026-09-12: they do not exist.  `notes/DOWNLOADS-68k.md' records the archive's ids running contiguously `forum17=4008', `forum20=4009' -- EFFO published them, this archive never had them.  Stop looking. | n/a |
 | OS-9 Users Group disk library | user-group software | not found |
 | CompuServe OS9 SIG library | names survive at lcurtisboyle.com: cawf, defrag, dskcat, hpdisp, spel68, aplrts, swtool, g261 | files not found |
 | colorcomputerarchive.com (~150 OS-9 zips), archive.org `cdrom-coco-archive` | 6809 OS-9, some C | few opened |
