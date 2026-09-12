@@ -1,3 +1,8 @@
-mkdir -p tmp/MAILA > /nil 2>/nil; echo N > tmp/MAILA/ans
-$ read_mail < tmp/MAILA/ans; echo "exit: $?"
-exit: 0
+read_mail
+
+> From: os9-freeware
+> Subject: hello
+>
+> Welcome to the collection.
+
+[L]ist again ,  e[X]it & delete mail ,  exit & [N]ot delete   ?  N

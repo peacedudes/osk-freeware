@@ -1,2 +1,2 @@
-nptx < tmp/MAILA/np.txt
+nptx <name.txt
 jqpublic        John Q Public

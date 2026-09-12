@@ -1,2 +1,2 @@
-bdecode tmp/MAILA/bd.txt
-bdecode: tmp/MAILA/bd.txt: Missing header
+bdecode msg.txt
+bdecode: msg.txt: Missing header

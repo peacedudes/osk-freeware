@@ -1,9 +1,9 @@
-wn -L /nil -l /nil < tmp/COMB/rq.crlf | head -n 18
+wn -L /nil -l /nil <rq.crlf | head -n 18
 HTTP/1.0 200 OK
 
 Server: WN/1.14.4 OS-9 Version
 
-Date: Tue, 08 Sep 2026 23:32:06 GMT
+Date: Sat, 12 Sep 2026 11:32:12 GMT
 
 Last-modified: Tue, 04 Aug 2026 00:00:00 GMT
 

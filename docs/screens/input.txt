@@ -1,3 +1,4 @@
-printf "line one\rline two\r" | input
-line one
-line two
+input <lines.txt
+the first line
+the second line
+and the third

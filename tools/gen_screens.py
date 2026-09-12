@@ -256,7 +256,13 @@ def ink(text):
 # on an otherwise empty field, and its honest frame sits just under the floor.
 # For these, a lower floor applies -- enough to still catch a blank, not so
 # high it rejects a real but airy screen.
-SPARSE_OK = {"rain"}
+SPARSE_OK = {"rain",
+             # lcasep lower-cases ONE name and prints it: the command and
+             # a single line is the whole program, and a true picture of
+             # it.  Its old panel only cleared the floor because the
+             # stanza then used a longer pathname -- ink from a path, not
+             # from the program.
+             "lcasep"}
 SPARSE_FLOOR = 12
 
 def ink_floor(name):

@@ -5,11 +5,16 @@ You see around you:
 Exits:
   north.  west.
 
-Enter command: look
-That object is not here.
-
-Enter command: i
+Enter command: inventory
 You are carrying:
   a stack.
+
+Enter command: n
+
+You are in a green house.
+You see around you:
+  a large circular reflector.
+Exits:
+  south.  west.
 
 Enter command:

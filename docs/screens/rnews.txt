@@ -1,19 +1,19 @@
-<" $LEN > tmp/MAILA/batch.txt; cat tmp/MAILA/art.txt >> tmp/MAILA/batch.txt
-$ rnews tmp/MAILA/batch.txt
+printf "#! rnews %s\r" $LEN > batch.txt; cat art.txt >> batch.txt
+$ rnews batch.txt
 $ ls -laR SPOOL/news/COMP
 total 1536
-drwxrwxrwx   1 0        0              96 Sep  8 18:30 .
-drwxrwxrwx   1 0        0             256 Sep  8 18:30 ..
-drwxrwxrwx   1 0        0              96 Sep  8 18:30 OS
+drwxrwxrwx   1 0        0              96 Sep 12 06:31 .
+drwxrwxrwx   1 0        0             128 Sep 12 06:31 ..
+drwxrwxrwx   1 0        0              96 Sep 12 06:31 OS
 
 SPOOL/news/COMP/OS:
 total 1536
-drwxrwxrwx   1 0        0              96 Sep  8 18:30 .
-drwxrwxrwx   1 0        0              96 Sep  8 18:30 ..
-drwxrwxrwx   1 0        0              96 Sep  8 18:30 OS9
+drwxrwxrwx   1 0        0              96 Sep 12 06:31 .
+drwxrwxrwx   1 0        0              96 Sep 12 06:31 ..
+drwxrwxrwx   1 0        0              96 Sep 12 06:31 OS9
 
 SPOOL/news/COMP/OS/OS9:
 total 1536
-drwxrwxrwx   1 0        0              96 Sep  8 18:30 .
-drwxrwxrwx   1 0        0              96 Sep  8 18:30 ..
--rw-------   1 0        0              59 Sep  8 18:30 a1
+drwxrwxrwx   1 0        0              96 Sep 12 06:31 .
+drwxrwxrwx   1 0        0              96 Sep 12 06:31 ..
+-rw-------   1 0        0              59 Sep 12 06:31 a1

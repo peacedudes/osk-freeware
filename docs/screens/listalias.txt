@@ -1,7 +1,3 @@
 listalias
 home                 os9-freeware (This Collection)
-self                 tester (Me)
-os9                  os9-freeware (The OS-9 Freeware Collection)
-$ listalias -s
-cannot open pipe to egrep program for expressions!
 os9                  os9-freeware (The OS-9 Freeware Collection)

@@ -150,6 +150,8 @@ run     builtin cd /dd/tmp/EC
 wait    1
 run     clear
 wait    1
+run     filter -?
+wait    4
 run     filter -v <msg.txt
 wait    6
 
@@ -165,7 +167,7 @@ wait    6
 shot    lcasep
 cap     Lower-cases a name for the mailer, reading it from standard input.
 try     lcasep <name.txt
-run     rm -rf /dd/tmp/EC; mkdir -p /dd/tmp/EC; printf "Robert Smith\r" > /dd/tmp/EC/name.txt
+run     rm -rf /dd/tmp/EC; mkdir -p /dd/tmp/EC; printf "John Q Public\r" > /dd/tmp/EC/name.txt
 wait    3
 run     builtin cd /dd/tmp/EC
 wait    1
@@ -377,16 +379,18 @@ run     ls -l SPOOL/uucp/seabass
 wait    5
 
 shot    uux
-cap     Runs a command on another UUCP site: its options.  This is a different
-cap     UUCP package from the one whose Systems file names `seabass', so asking
-cap     for it that way answers `Unknown Host'.
-try     uux 'seabass!rnews'
+cap     Queues a command to run on another UUCP site, named as site!command.
+cap     Its options come first; then a request for `seabass', which this UUCP
+cap     package has no route to -- a different package on the disk is the one
+cap     whose Systems file names that site.  The backslash is bash's: it reads
+cap     `!' as a history reference before it considers quoting.
+try     uux seabass\!rnews
 os9     uux "seabass!rnews"
 run     uux -?
 wait    6
 run     clear
 wait    1
-run     uux 'seabass!rnews'
+run     uux seabass\!rnews
 wait    6
 snap
 
@@ -666,7 +670,7 @@ shot    input
 cap     The Unaxcess bulletin board's input helper: it copies standard input
 cap     straight to standard output, a line at a time.
 try     input <lines.txt
-run     rm -rf /dd/tmp/EC; mkdir -p /dd/tmp/EC; printf "line one\rline two\r" > /dd/tmp/EC/lines.txt
+run     rm -rf /dd/tmp/EC; mkdir -p /dd/tmp/EC; printf "the first line\rthe second line\rand the third\r" > /dd/tmp/EC/lines.txt
 wait    3
 run     builtin cd /dd/tmp/EC
 wait    1

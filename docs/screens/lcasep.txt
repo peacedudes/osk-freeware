@@ -1,2 +1,2 @@
-lcasep < tmp/MAILA/lc.txt
-robert smith
+lcasep <name.txt
+john q public
