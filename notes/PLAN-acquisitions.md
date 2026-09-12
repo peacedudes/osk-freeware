@@ -343,7 +343,7 @@ the native tools expect `/dd/SYS/utmp`, group, password or smail.
 | saa (Streets and Alleys) | `CSG/volume12/saa/` | 1991 | permission granted | DONE (d72a0cea) -- built unchanged with -DNON_ANSI_C |
 | accordian | `CSG/volume15/accordian/` | 1992 | public domain | DONE (6a512987) -- curses solitaire; RANDOM->rand, popen/getpwuid dropped, win log local |
 | mastrm | `CSG/volume2/mastrm.gz` | 1987 | public domain | DONE (0a75970f) -- system(clear) -> ANSI clrscr |
-| hexa (hexagonal sokoban) | `ALT/volume93/Jan/930127.01.gz` | 1993 | no notice | curses |
+| hexa (hexagonal sokoban) | `ALT/volume93/Jan/930127.01.gz` | 1993 | no notice | DONE (c6aae0a7) -- 216-byte binary level maps in GAMES/HEXA |
 | corewars | `CSG/volume6/corewars/` | 1989 | public domain | curses |
 | castle | `CSG/volume8/castle/` | 1990 | public domain | curses |
 | othello3 / reversi | `CSG/volume12/othello3/`; `CSG/volume15/reversi/` | 1991-92 | free / GPL | othello3 DONE (77b95c01) as othello -- getchar->getch, LINES/COLS clash removed; reversi (2-part) still open |
