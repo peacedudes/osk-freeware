@@ -947,5 +947,7 @@ canfield|canfield|canfield.c||/dd/LIB/curses.l /dd/LIB/termlib.l /dd/LIB/rand.r|
 cwasm|corewars|amain.c tokenize.c parse.c lookup.c aoutput.c assem.c|SMALL||
 cwdis|corewars|disassem.c|SMALL||
 corewar|corewars|main.c load.c output.c play.c inst.c|SMALL||
+monop|monop|monop.c cards.c execute.c getinp.c houses.c jail.c misc.c morg.c print.c prop.c rent.c roll.c spec.c trade.c||/dd/LIB/rand.r|
+yahtzee2|yahtzee2|admin.c book.c comp.c eval.c help.c main.c score.c scr.c getopt.c os9box.c||/dd/LIB/rand.r|
 dvi2tty|dvi2tty|dvi2tty.c dvistuff.c|||-dstrchr=index
 disdvi|dvi2tty|disdvi.c|||-dstrchr=index
