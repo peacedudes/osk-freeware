@@ -1,0 +1,24 @@
+Name      Own      Price Mg # Rent      Name      Own      Price Mg # Rent
+=== GO ===                              Free Parki
+Mediterran - Purple    60               Kentucky a - Red      220
+Community                               Chance ii
+Baltic ave - Purple    60               Indiana av - Red      220
+Income Tax                              Illinois a - Red      240
+Reading RR - Railroad 200               B&O RR     - Railroad 200
+Oriental a - Lt. Blue 100               Atlantic a - Yellow   260
+Chance i                                Ventnor av - Yellow   260
+Vermont av - Lt. Blue 100               Water Work -          150
+Connecticu - Lt. Blue 120               Marvin Gar - Yellow   280
+Just Visit                              GO TO JAIL
+St. Charle - Violet   140               Pacific av - Green    300
+Electric C -          150               N. Carolin - Green    300
+States ave - Violet   140               Community
+Virginia a - Violet   160               Pennsylvan - Green    320
+Pennsylvan - Railroad 200               Short Line - Railroad 200
+St. James  - Orange   180               Chance iii
+Community                               Park place - Dk. Blue 350
+Tennessee  - Orange   180               Luxury Tax
+New York a - Orange   200               Boardwalk  - Dk. Blue 400
+
+Bob (2) (cash $1500) on === GO ===
+-- Command:

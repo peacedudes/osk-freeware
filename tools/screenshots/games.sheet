@@ -1255,3 +1255,31 @@ send    q\r
 wait    1
 send    y\r
 wait    2
+
+shot    monop
+size    24 80
+cap     Monopoly for two to nine players: the Parker Brothers board game
+cap     played at the keyboard.  It asks the players' names, rolls for
+cap     order, then each turn you `roll' to move and buy the property you
+cap     land on; `print' shows the board with every square's owner, price
+cap     and rent, `where' shows the pieces, and `mortgage', `buy houses'
+cap     and `trade' manage what you own.  Money is tracked for you.
+cap     `quit' ends the game.
+try     monop
+run     monop
+wait    2
+send    2\r
+wait    1
+send    Alice\r
+send    Bob\r
+wait    2
+send    print\r
+wait    2
+snap
+send    where\r
+wait    2
+snap
+send    quit\r
+wait    1
+send    yes\r
+wait    2
