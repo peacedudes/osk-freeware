@@ -402,7 +402,15 @@ them (836 of 900 against the true 20).
 
 - The acquisitions retry was done at the top of this session: the Internet
   Archive is globally offline, so the three Wayback rows and cdrom-coco are
-  untestable rather than refused.  effo.org and colorcomputerarchive.com DO
-  answer and have not been fetched -- that is the next harvest.
+  untestable rather than refused.
+- **effo.org answers 200 and is a PARKED PAGE -- no content at all.**  I
+  recorded it as a live lead on the strength of the status code alone, which
+  is the very trap I had written into the recovery log two hours earlier
+  about the Internet Archive: a 200 on a ROOT URL is not evidence of
+  content.  Fetch something real before believing a host is back.
+- colorcomputerarchive.com is alive but it is CoCo, i.e. 6809 OS-9, where
+  this disk is OS-9/68000; judge scope before harvesting it.
+- The reachable gap is the MICROWARE archive: `os9/mw/*.tsv' lists files the
+  pool never fetched, and microware.com answered 200 this session.
 - TOP's own source trees, as above.
 - Q2 (GPL source for the gawk/bison/emacs binaries) is rdoggett's call.
