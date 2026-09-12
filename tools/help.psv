@@ -966,3 +966,4 @@ yes|none|it prints what it is given until the reader stops; a pipe to head is ho
 howfrag|howfrag -?|
 unc|unc -?|
 phoon|none|shows tonight's moon, or a date given as year month day
+globe|none|it takes no options; it shows the Earth lit as it is now

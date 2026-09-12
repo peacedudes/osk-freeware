@@ -326,3 +326,12 @@ cap     made of green cheese.
 try     phoon 2025 10 7
 run     phoon 2025 10 7
 wait    3
+
+shot    globe
+size    24 80
+cap     globe draws the Earth as it is lit right now, one of thirty ASCII
+cap     views spread across the day, so the globe turns from one run to the
+cap     next as the hours pass.  It takes no options.
+try     globe
+run     globe
+wait    3
