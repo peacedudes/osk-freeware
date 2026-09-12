@@ -533,6 +533,46 @@ the outcome here, and fold anything found into a batch above.
 | colorcomputerarchive.com (~150 OS-9 zips), archive.org `cdrom-coco-archive` | 6809 OS-9, some C | few opened |
 | Microware archive, the rest | `os9/mw/*.tsv`: 127 OSK files the pool never fetched, the MM/1 tree (84), USERGROUPS, BENCHMARKS, FAQ, DOCS (incl. a 1994 chestnut.index) | listed, not all fetched |
 
+### Microware archive refetch, 2026-09-12
+
+The five categories `notes/DOWNLOADS-68k.md' fetched in August and the pool
+did not keep -- they went to a `scratchpad/web/dl/' the note itself calls
+temporary -- are back: **153 files, 34 MB, zero failures**, in
+`os9/mw/refetch/{DRIVERS,EFFO,GWINDOWS,NETWORK,TELECOM}'.  Fetched from
+`osk.tsv' rather than by scraping the category listings: the tsv is
+`category<TAB>id<TAB>filename' and its rows match the live pages id for id,
+so the pairing comes out of a manifest instead of a regex, and the listing
+requests disappear.  `scratchpad/fetch_from_tsv.py' does it.
+
+`61-gwindows' is deliberately NOT in that set.  Ids 56-62 are the
+OS-9000/x86 family (`56-msdos', `57-os-9-ce') where 99+ are OSK, and its
+three files are `blackjack_x86.uue', `puzzle_386.lzh' and a cyberwar --
+wrong architecture.  `refetch_archive.py' mapping GWINDOWS to 122 alone is
+right, not an oversight.
+
+**EFFO: no new programs, but licence data for four we ship.**  All 31 disks
+(forum1-17, 20-23; pd0-9) came down.  Of the 72 `CMDS/' programs across them,
+**70 are already on this disk** -- EFFO has been absorbed thoroughly.  The
+only two that are not are `init.lsp', which is XLisp data, and `loglist', a
+5,654-byte 1988 binary on pd1 with no source, no documentation and no info
+block anywhere: no grant, so it stays out on the `utime.c' rule.
+
+What the harvest DOES carry is 35 `info_<program>' blocks against the 20 on
+the disk, and four of the new ones are for programs we already ship, in the
+authors' own words:
+
+    beav      $AVAILABILITY public,    no conditions  (Peter Reiley; OSK
+              extensions Stephan Paschedag, FORUM17)
+    lharc     $AVAILABILITY freeware,  no conditions  (Yooichi Tagawa)
+    compress  $AVAILABILITY public domain             (COVE, EFFO)
+    m4        $AVAILABILITY public, $CONDITIONS "see file COPYING !"
+              -- FSF, so the GPL travels with it
+
+`demerge's block is an unfilled template, every field empty.
+
+Also confirmed from a second source: **forum 18 and 19 do not exist.**  The
+EFFO directory runs forum17 then forum20, exactly as DOWNLOADS-68k.md said.
+
 ### Recovery log
 - 2026-09-11: first sweep; table above.
 - 2026-09-12: re-probed every row. **No change in our favour, and one row
