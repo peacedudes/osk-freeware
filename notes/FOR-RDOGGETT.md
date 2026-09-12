@@ -31,6 +31,23 @@ test-drive case, where the user has no Microware licence anyway.  Shipping a
 renamed pdksh as a resident `shell' would fix it; you said you would sleep on
 that, and nothing here needs it.
 
+## Q2 again, with the sources located
+
+You have had this one a while: the disk ships gcc, g++, VH, dvips, gawk,
+bison and emacs as binaries without their source.  Measured 2026-09-12,
+`src_census.py' puts it at 307 of 1005 programs with no source here, and
+three of the named ones have a TOP tree sitting in the pool ready to stage:
+
+    gawk   -> Scraped/.../os9/top/src/gawk2.0
+    bison  -> Scraped/.../os9/top/src/bison
+    emacs  -> Scraped/.../os9/top/src/emacs_3.10
+
+Also `DRIVERS/nulman.lzh' from the refetch is dvips 5.5 source, misnamed.
+
+Nothing is staged and nothing will be until you say so.  Say the word and
+they go in with their own licence blocks read and recorded; say no and I
+will note it settled so it stops coming back.
+
 ## One licence call: Microware's `fpu' module
 
 The TELECOM refetch turned up `fpu' inside `xyz.lzh', and it carries its own

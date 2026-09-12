@@ -619,6 +619,45 @@ author's written permission otherwise.
 **So the whole 153-file, 34 MB refetch yields no new programs.**  What it did
 yield is licence data: lharc and m4 (579f289c) and the three above.
 
+### TOP's 30 source trees, triaged 2026-09-12 -- nothing stageable
+
+`src_census.py disk --tsv' says 1005 programs, 696 with source (69%), **307
+without**.  TOP release 2 carries 30 source trees; the question was which of
+them fill a real gap.  Answer: four, and not one can be staged tonight.
+
+    bison   -> TOP/bison        Q2, rdoggett's call
+    emacs   -> TOP/emacs_3.10   Q2
+    gawk    -> TOP/gawk2.0      Q2
+    larn    -> TOP/larn         BLOCKED ON TERMS, see below
+
+Everything else TOP holds that ships here already has source: clock
+(SRC/misc), world, animal, os9lib (SRC/rtf), and the rest by recipe.
+
+**larn is the one worth writing down, because it will tempt the next
+reader.**  TOP's tree IS the right source -- it is larn 12.0 and the shipped
+binary's own strings read `Larn12.0.ckp' -- so the material matches the
+program exactly.  It still cannot go in: all 25 files say only "Larn is
+copyrighted 1986 by Noah Morgan", and a search of the whole tree for
+permission, redistribute, public domain or freely-copied wording returns
+NOTHING.  Bare copyright, no grant: the `utime.c' rule.  The binary already
+ships (an older decision); adding the SOURCE would be a new act of
+redistribution with nothing behind it.
+
+**Two matching rules, both wrong, in opposite directions.**  Stem-matching
+paired TOP's `puzzle15' tree with our source-less `puzzle' -- but `puzzle15'
+and `puz15' both HAVE source (SRC/eff_puzzle15, SRC/v_misc) and
+`CMDS/GAMES/puzzle' is a third, unrelated program TOP does not hold.  Exact
+name matching then missed `emacs_3.10' -> `emacs' and `gawk2.0' -> `gawk'
+and reported only two gaps.  Use the census tsv and check the specific pair;
+neither rule is safe on its own.
+
+Terms read from the other trees while I was in there, for whoever needs
+them: bandit and v7make public domain; upatch Larry Wall 1986 with a copy
+grant; clock (c) 1988 George M. Sipe all rights reserved; scpp (c) 1985
+Tektronix; zmodem (c) 1986 Stephen Satchell; cpp.decus and typefast state
+nothing.  TOP's package readme gives no licence at all -- terms are per
+tree.
+
 ### Recovery log
 - 2026-09-11: first sweep; table above.
 - 2026-09-12: re-probed every row. **No change in our favour, and one row
