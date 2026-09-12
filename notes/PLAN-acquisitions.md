@@ -573,6 +573,52 @@ authors' own words:
 Also confirmed from a second source: **forum 18 and 19 do not exist.**  The
 EFFO directory runs forum17 then forum20, exactly as DOWNLOADS-68k.md said.
 
+### The other four categories, triaged 2026-09-12 -- nothing shippable
+
+Method that worked, after two that did not: build the inventory from the
+ARCHIVE LISTINGS (`lha l`), match an anchored `CMDS/<name>` path, and diff
+against `disk/CMDS`.  Do NOT triage on filenames -- the plan warns above that
+these five categories' names do not match their contents -- and do not parse
+the prose indexes.  One trap: EFFO's disks list as `[generic]` while these
+carry real OS-9 permission strings (`------wr`, `d-ewrewr`), so a filter
+keyed to a leading bracket silently returns nothing for all of them.
+
+    DRIVERS    4 CMDS/ programs, all here (the 4th is maketexpk.c, a source file)
+    GWINDOWS   0 CMDS/ programs; the 7 are G-Windows packages already shipping
+    NETWORK  169 CMDS/ programs, ALL 169 already here -- it is netpbm
+    TELECOM   39 CMDS/ programs, 30 here, 9 candidates
+
+The nine, and why none of them ships:
+
+    rz, sz          COMMERCIAL.  `mailer.rz' is an Omen Technology licence
+                    FORM -- $20 per user, quantity discounts, "Payment of
+                    This License authorizes the installation and use".  Not
+                    shareware.  Out, and they were the two best candidates.
+    linkup,         K-Windows clients from KWIN_LinkUp_1_0.lzh: fonts,
+    ansishow,       icons, .wav/.iff media, an installer that overwrites
+    audioplay,      /DD.  Same position as the excluded G-Windows set --
+    gport,          they need a display this collection has not got.  Their
+    terminal        CMDS/kermit, CMDS/xy and CMDS/z also collide with names
+                    already here.
+    ot              OSKTag, a taglines tool.  NO terms anywhere: 7,778 bytes
+                    of osktag.txt and its readme name no author, no
+                    copyright and no grant.  Out on the utime.c rule.
+    fpu             Microware's own ("(C) 1995 Microware Systems Corp.
+                    Permission to distribute FPU is granted so long as this
+                    file is retained").  A grant in the file against a house
+                    rule that names fpu040 among the excluded -- rdoggett's
+                    call, in FOR-RDOGGETT.md.
+
+`k', `xy' and `z' turned out to be already on the disk with no provenance
+recorded at all; that is fixed (64cf6cfb), and their Kientzle conditions are
+already satisfied because each program prints the required acknowledgement
+in its own `-?' output.  Their SOURCE stays out: condition 1 makes
+redistribution conditional on owning the book and condition 3 wants the
+author's written permission otherwise.
+
+**So the whole 153-file, 34 MB refetch yields no new programs.**  What it did
+yield is licence data: lharc and m4 (579f289c) and the three above.
+
 ### Recovery log
 - 2026-09-11: first sweep; table above.
 - 2026-09-12: re-probed every row. **No change in our favour, and one row

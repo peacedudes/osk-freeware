@@ -31,6 +31,23 @@ test-drive case, where the user has no Microware licence anyway.  Shipping a
 renamed pdksh as a resident `shell' would fix it; you said you would sleep on
 that, and nothing here needs it.
 
+## One licence call: Microware's `fpu' module
+
+The TELECOM refetch turned up `fpu' inside `xyz.lzh', and it carries its own
+permission:
+
+    FPU - (C) 1995 Microware Systems Corp.
+    Permission to distribute FPU is granted so long as this file is retained.
+
+That is a grant, in the file, from Microware.  But CLAUDE.md's rule lists
+`fpu040' among the things that stay out, against the five modules you asked
+Allan for and he agreed to.  I have not added it and will not without you.
+
+It matters only a little: it is the floating-point emulation an Ultra C
+build wants on a machine with no 68881, and the three programs in that
+archive which need it (`k', `xy', `z') already run here without it.  So this
+is tidiness, not a blocker.
+
 ## Programs that may be best forgotten
 
 Each is measured and carded honestly as far as it goes. Removing any is
