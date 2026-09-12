@@ -44,7 +44,7 @@
 | | |
 |---|---|
 | `checkenv` | &#9733; compares an environment variable with a value for a script to branch on: `checkenv <name> , <value>', spaces round the comma.  It returns 0 whether the value matches or not, so `getenv -p <name>', which prints the value, is the one to use for a reliable branch<br>**How:** `checkenv <name> , <value>' with spaces round the comma. Meant to return an error when they differ; it returns 0 either way. |
-| `exist` | &#9733; test file existence<br>`EXIST    Version UTIL 2.40 by DESIGNA VLT 24.11.97` |
+| `exist` | &#9733; test whether a file exists and answer in the exit status: 0 if it does, 1 if it does not, which is what a script wants.  -n inverts the test, -d asks whether the name is a directory.  German: its help is headed `Aufruf' and `Rueckgabewerte'.  DESIGNA VLT, version UTIL 2.40<br>`EXIST    Version UTIL 2.40 by DESIGNA VLT 24.11.97` |
 | `getenv` | &#9733; print or test an environment variable.  German prompts: `getenv -p TERM' prints the value with a newline, -l without one, -x exits with it, -n inverts the test.  Bare, or with a name and no option, it prints its own usage.  DESIGNA VLT, version UTIL 2.40<br>`GETENV   Version UTIL 2.40 by DESIGNA VLT 24.11.97` |
 | `hist` | a command-line editor with history, in front of the shell  [no military use -- EFFO-INFO]<br>**How:** A command-line editor with history in front of the shell. On this console it prints a row of asterisks and returns at once. |
 | `if` | conditional execution for a shell script: `if def <var>', `if loaded <module>' or `if varval <var> <value>', the commands, `else', `endif'.  It hands the branch to Microware's `shell' to run<br>**How:** bash's own `if' is a reserved word; `command if' reaches the one on this disk. |
@@ -75,7 +75,7 @@
 | `gshell` | GSHELL V1.1 -- a full-screen menu, not a command shell: a lettered list of the directory, `+' and `-' to page, `.' to change directory, a letter to run a file. `assembler', `compiler' and `editor' are the same engine pointed at one job each. DOC/README-SHELLS<br>**How:** A full-screen menu of the current directory: + and - page, . changes directory, a letter runs that file. Control-C leaves it. |
 | `ksh` | &#9733; the Korn shell, pd-ksh: a full shell with a prompt, history, for loops, variables and functions, and `ksh -c '<commands>'' runs a line. It is the shell programs on this disk shell out through. DOC/README-KSH |
 | `mshell` | &#9733; a menu shell: `mshell <menufile>' shows one numbered entry per `label,command' line and a number runs that command -- through Microware's `shell'<br>**How:** `mshell <menufile>': one `label,command' per line. A number picks an entry; it hands the command to Microware's `shell' to run. Control-C leaves it. |
-| `sh` | Bourne shell v7.5 -- what the startup script runs. It has a real `chd' where bash does not, and it cannot fork a program by absolute pathname here, which is the trade. DOC/README- SHELLS<br>`Syntax: sh [<opts>] [<scriptfile>] [<arg1>] ... [<argn>]` |
+| `sh` | Bourne shell v7.5 -- what the startup script runs. It has a real `chd' where bash does not, and it cannot fork a program by absolute pathname here, which is the trade.  See DOC/README-SHELLS<br>`Syntax: sh [<opts>] [<scriptfile>] [<arg1>] ... [<argn>]` |
 | `wish` | WiSH, a full-screen windowing shell over the OS-9 shell: a file window to move about in and a command line at the top. The labelled keys are terminal function keys; the control keys always work, Ctrl-D to leave.  German-made, English at the keyboard.  Not the hack toy of the same name in GAMES<br>**How:** WiSH, a windowing shell over the OS-9 shell. Type a command on the top line (`ls', `dir', anything), Enter runs it through the OS-9 shell and pages the output -- press Enter again to return to the window. The labelled keys along the foot are terminal function keys a vt100 does not send; the control keys always work: Ctrl-P/N/B/F move the cursor over the file window, Tab moves right, Ctrl-A marks the file under the cursor, Ctrl-U unmarks all, Ctrl-W copies the cursor's name onto the command line, Ctrl-L redraws, Ctrl-V/Ctrl-Z page. **Ctrl-D leaves.** German program, English at the keyboard. (hackwish, in GAMES, is the unrelated hack cheat.) |
 
 </details>
@@ -817,7 +817,7 @@
 | `filter` | sorts incoming mail into folders by rule, as a pipe stage: its own usage line begins `\| filter'<br>`/dd/CMDS/ELM/filter: illegal option -- ?` |
 | `frm` | &#9733; list who your mail is from, one line each.  On this port it answers `tester has no mail' for a folder that `messages' counts and `readmsg' prints, so use those two<br>**How:** Lists who your mail is from, one line each. Reads $MAIL, which SYS/login sets. |
 | `lcasep` | &#9733; lower-case a name for mail<br>`/dd/CMDS/UUCP/lcasep: illegal option -- ?` |
-| `listalias` | &#9733; list the aliases you have, once newalias has compiled them: `home  os9-freeware (This Collection)'.  Its -s and -u forms pipe through `egrep'; the plain form needs nothing extra<br>`/dd/CMDS/ELM/listalias: illegal option -- ?` |
+| `listalias` | &#9733; list the aliases you have, once newalias has compiled them: `home  os9-freeware (This Collection)'.  Its -s and -u forms pipe through `egrep', which is not on this disk; the plain form needs nothing extra<br>`/dd/CMDS/ELM/listalias: illegal option -- ?` |
 | `lmail` | &#9733; local mail delivery.  Its usage line answers; giving it a real recipient does not return here -- it hangs, and only the session's own end brings it down<br>`Syntax: lmail <user name> {<user name>}` |
 | `mail` | &#9733; a simple mail sender |
 | `mailx` | &#9733; the mail reader and sender<br>`mailx v2.1 (94Sep30)  --send and receive e-mail` |
@@ -1460,7 +1460,7 @@
 | `remove` | &#9733; remove modules from memory -- its own Function line says so. `remove <module>...', -q for quiet. `rm' removes files<br>**How:** Removes modules from memory. `del', `rm' and `deldir' are the file ones. |
 | `rtfdat` | the RTF Fortran data module |
 | `unc` | disassemble a 68000 OS-9 module back to assembler: the header as equates, then the code, tracing which bytes are instructions and which are data, naming the OS-9 syscalls.<br>`Syntax: unc {-<opts>} <file> {-<opts>}` |
-| `version` | &#9733; prints its own version and nothing else -- `Dies ist das Program 'version', Version 7' -- whatever module you name. `ident' and `modinfo' show a module's edition |
+| `version` | &#9733; prints its own version and nothing else -- `Dies ist das Program 'version', Version 7' -- whatever module you name. `modinfo' shows a module's edition; there is no `ident' here |
 | `vmod_trap` | the VMod_trap trap handler that rxmod and txmod call. A type-$0B trap module, not a program: `load /dd/CMDS/COMMS/vmod_trap' before running them. It runs in supervisor state, so once installed it faults on this kernel |
 
 **Processes & memory**
@@ -1539,10 +1539,10 @@
 | `lgrep` | &#9733; list the files a pattern appears in -- its banner says "same as 'grep -l', but prints filenames without comments". `grep -l' does the same job here.  DOC/README-GREP compares the six searchers<br>`Syntax: lgrep <arg1> ... <argn>` |
 | `liborder.os9` | report the order of modules in a library<br>`liborder: Unimplemented option '-?'.` |
 | `makecrc` | generates C source for CRC tables. It takes no arguments: run it somewhere writable and it writes six files into the data directory -- arc.c, binhex.c, ccitt.c, ccitt32.c, kermit.c and zip.c -- each holding a crctab[256] and an updcrc() for one polynomial. It writes them without a message, so list the directory afterwards. For a CRC of a file, `chksum' does that<br>**How:** It GENERATES C SOURCE and takes no arguments. Run it somewhere writable (`ksh -c "cd /dd/tmp; makecrc"') and it writes six files -- arc.c, binhex.c, ccitt.c, ccitt32.c, kermit.c, zip.c -- each a crctab[256] and an updcrc(). It writes them without a message, so list the directory afterwards. |
-| `map` | &#9733; show the disk blocks a file occupies, sector by sector: `map <file>', or `map -e <file>' for the extended form. For memory rather than disk, see `mfree' and `free'<br>`Syntax: map [<opts>] <file> {<file>}` |
+| `map` | &#9733; show the disk blocks a file occupies, sector by sector: `map <file>', or `map -e <file>' for the extended form. For memory rather than disk, `mfree' and `free' would be the equivalents; neither is on this disk<br>`Syntax: map [<opts>] <file> {<file>}` |
 | `modinfo` | report a module's header -- name, type, size, edition, CRC<br>`module: Show Module Information` |
 | `mvolformat` | format a multi-volume set<br>`Syntax: mvolformat drive volname volcount [format options]` |
-| `names` | &#9733; list the names of modules in a file.  It can hang on some inputs; `ident', `modinfo' and `module_census' answer the same question. |
+| `names` | &#9733; list the names of modules in a file.  It can hang on some inputs; `modinfo' answers the same question.  `ident' is not on this disk. |
 | `phone` | connects two terminals over a communication path so you can type to somebody on another: `phone /t1' rings until answered; control-E leaves<br>`Syntax: phone <communication-path>` |
 | `preset` | loads the terminal's function keys: it writes a fixed set of definitions -- `dir', `umacs', `r68', `l68', `dsave -ieb128k' and so on -- and answers `Funktionstasten belegt!'. German. It takes no arguments and ignores any given |
 | `pri` | change a process's priority: `pri <pid> <priority>'. |
