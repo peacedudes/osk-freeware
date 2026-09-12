@@ -316,7 +316,7 @@ the native tools expect `/dd/SYS/utmp`, group, password or smail.
 | hexa (hexagonal sokoban) | `ALT/volume93/Jan/930127.01.gz` | 1993 | no notice | curses |
 | corewars | `CSG/volume6/corewars/` | 1989 | public domain | curses |
 | castle | `CSG/volume8/castle/` | 1990 | public domain | curses |
-| othello3 / reversi | `CSG/volume12/othello3/`; `CSG/volume15/reversi/` | 1991-92 | free / GPL | curses |
+| othello3 / reversi | `CSG/volume12/othello3/`; `CSG/volume15/reversi/` | 1991-92 | free / GPL | othello3 DONE (77b95c01) as othello -- getchar->getch, LINES/COLS clash removed; reversi (2-part) still open |
 | jotto, conn4 (Sicherman) | `CSG/volume11/jotto/`, `CSG/volume12/conn4/` | 1990-91 | no notice | conn4 DONE (39eb5990) as c4; jotto DONE (0a75970f) -- built-in word list |
 | yahtzee2 | `CSG/volume8/yahtzee2/` | 1989 | no notice | one fork |
 | rot2.2 ("software rot") | `CSG/volume1/rot22.gz` | 1987 | no notice | name clashes with CMDS/rot |
