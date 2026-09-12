@@ -236,7 +236,7 @@ the native tools expect `/dd/SYS/utmp`, group, password or smail.
 ### B7 -- games and screen toys                                         open
 | prog | source | date | terms | port |
 |---|---|---|---|---|
-| phoon (Poskanzer) | `CSU/volume8/phoon.gz` | 1987 | permission granted | stdio |
+| phoon (Poskanzer) | `CSU/volume8/phoon.gz` | 1987 | permission granted | DONE (fc775046) -- numeric date, tws.c stands in for libtws |
 | globe (Poskanzer) | `CSM/volume43/globe/part01.gz` | 1994 | permission granted | stdio |
 | atc | `NET2/games/atc` | 1990 | BSD | curses, lex/yacc, setitimer->alarm |
 | canfield (+cfscores) | `NET2/games/canfield` | 1980 | BSD | curses, easy |
