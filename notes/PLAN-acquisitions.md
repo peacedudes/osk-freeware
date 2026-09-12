@@ -236,10 +236,10 @@ re-derived:
 | prog | where | date | terms | note |
 |---|---|---|---|---|
 | Browse (P. da Silva, OSK port C. Emde) | TWN 653558 (3 parts, complete) | 1990 | none in the port | K&R + termcap + os9lib; help at `/h0/SYS/browse.hlp` |
-| unc (68000 module disassembler) | pool `SRC/unc.lzh`; MW 4308 | 1991 | none | links `GNULIB/os9lib.l` |
+| unc (68000 module disassembler) | pool `SRC/unc.lzh`; MW 4308 | 1991 | none | DONE df6d23ce -- ships, links `GNULIB/os9lib.l` |
 | almanac 3.2 (J. Semler) | MW 2313 (has almanac.OSK) | ~1992 | none | terminal card candidate |
 | freeb | MW 3921; TWN 653668 | | PD | |
-| howfrag | MW 4223 | | PD | |
+| howfrag | MW 4223 | | PD | DONE df6d23ce -- ships |
 | uustat, ancient, hdump/undump | MW 3970, 3894, 3928 | | per item | |
 | dumpinit (init module lister) | MW 2240 | ~1994 | none | generic though filed MM/1 |
 | mimecode (base64) | MW 2503 | 1995 | author's permission | DONE -- built -qm, tested, carded; Tim Kientzle/DDJ, Gene Heskett's OS-9 pack |
