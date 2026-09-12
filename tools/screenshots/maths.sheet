@@ -149,12 +149,14 @@ wait    3
 quit    Q
 
 shot    oleo
-cap     GNU Oleo 1.6, a spreadsheet.  It stops on an illegal instruction
-cap     before it draws a cell, and the process is aborted; sc is the
-cap     spreadsheet that runs.
+size    20 80
+cap     GNU Oleo 1.6, a spreadsheet.  It opens on its copyright notice and
+cap     the help character, and waits for a key before drawing the grid.  It
+cap     used to stop on an illegal instruction before reaching this far; two
+cap     fixes in the emulator's trap handling on 2026-09-11 let it run.
 try     oleo
 run     oleo
-wait    5
+wait    6
 
 shot    scqref
 cap     The quick-reference card for sc, the spreadsheet: a document

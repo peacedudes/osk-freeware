@@ -189,6 +189,7 @@ dinfo 0051d35cb9088d43
 dir db672f433ae4e3eb
 dirname 234180d3f267aa9f
 disable 392a7269b17d81d7
+disdvi e1ada0a46a4b8270
 disktest cef9b1c52f746013
 divide 5d42d00640eb98f9
 djpeg ad8376024b2b43d2
@@ -204,6 +205,7 @@ drawl c48c20a247e0e429
 drivers 1219f2195af87ff8
 du a58fd06112b32f84
 dump 8a79a4b161c262b3
+dvi2tty e11a73af6a50576b
 dvialw ce4551bcf1b92db5
 dvidjp 4a892597918eb8b1
 dvieps 779260c5fe27479b
@@ -504,7 +506,7 @@ nroff 335fb42df32f76c9
 nsort 13434acb0c4303cb
 number 7b35c5f6ba180f86
 ob68kdemo f3ecd32662b190e2
-oleo d3bd071d889f55f3
+oleo 4a8729ec0aeea90b
 orbit 3699a62f5f60136b
 os9dsk 11679b5b5d0c5d01
 osknet 5412cde63b6dd985

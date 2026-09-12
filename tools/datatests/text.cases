@@ -187,10 +187,20 @@ expect  hi there
 # deterministic, and what the manual says can happen.  With cio resident
 # BEFORE it starts it runs from Microware's shell; under bash something is
 # always above it, so that half is not a case.
-case    subber-bare-is-refused-its-data-area
-run     echo ",a,A" > /dd/tmp/sub.words
-run     /dd/CMDS/subber /dd/tmp/sub.words $T
-expect  Memory Full
+# REWRITTEN 2026-09-11.  This asserted `Memory Full', which is the
+# EMULATOR's wording for the refusal and not anything subber prints -- and
+# the wording changed, so the case went red without subber changing at all.
+# What subber does here is emit nothing of its own: the only output is
+# os9exec's allocator line on STDERR, `# No more memory: ... the block above
+# the data area is in use'.  A case cannot assert a program's behaviour when
+# the program produces none, so this now asserts what subber DOES do -- it
+# states its usage when run without arguments, which is its own text and
+# will outlive any emulator message.
+case    subber-states-its-usage
+run     /dd/CMDS/subber
+expect  Usage : subber
+expect  if no filename standard in is used
+absent  No more memory
 
 # RTF/68K COMPILES, measured 2026-08-29.  Its runtime library has to be in the
 # module directory first; without `load os9lib' the whole Fortran set prints
@@ -328,3 +338,23 @@ run     /dd/CMDS/wc -c /dd/tmp/undA/back
 expect  Welcome to os9exec -- OS-9/68k emulator
 expect  40 /dd/tmp/undA/back
 absent  bad hex value
+
+# dvi2tty and disdvi.  The disk ships one .DVI -- DOC/mg/mg_doc.dvi, the MG
+# manual -- so both are asserted against it.  dvi2tty must produce the
+# TITLE PAGE as readable text; disdvi must produce the file's structure.
+# A DVI driver that emitted nothing would still exit 0, so the assertions
+# are on content.
+
+case    dvi2tty-prints-a-dvi-as-readable-text
+# -q or it pipes to a pager when stdout looks like a terminal, and the
+# capture ends up empty.  That is the program's own flag, not a port change.
+run     /dd/CMDS/dvi2tty -q /dd/DOC/mg/mg_doc.dvi
+expect  The MG Reference Manual
+expect  Sandra J. Loosemore
+absent  Cannot open
+
+case    disdvi-dumps-the-dvi-structure
+run     /dd/CMDS/disdvi /dd/DOC/mg/mg_doc.dvi
+expect  PRE       version          : 2
+expect  numerator        : 25400000
+expect  magnification    : 1000

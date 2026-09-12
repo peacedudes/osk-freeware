@@ -1,6 +1,6 @@
 # What is on this disk
 
-987 programs of OS-9/68K community software, gathered from the archives that kept it and made to run again. **638 of them need nothing but this disk**; the rest want Microware's `cio`, marked below with a star.
+989 programs of OS-9/68K community software, gathered from the archives that kept it and made to run again. **640 of them need nothing but this disk**; the rest want Microware's `cio`, marked below with a star.
 
 `DOC/INDEX` on the disk lists everything alphabetically. This is the same collection sorted by what each program is *for*, which is the more useful order when you do not yet know what you are looking for.
 
@@ -13,7 +13,7 @@
 |---|--:|---|
 | [Shells](#shells) | 24 | Unix shells to sit beside OS-9's own -- bash and ksh bring history, job control, and scripts that come across unchanged. |
 | [Editors](#editors) | 27 | vi and emacs in several flavours, line and stream editors, and editors for binary and hex. |
-| [Text tools](#text-tools) | 127 | Search, sort, compare, reformat, split and spell-check. |
+| [Text tools](#text-tools) | 129 | Search, sort, compare, reformat, split and spell-check. |
 | [Files & directories](#files--directories) | 33 | Listing, copying, finding, renaming, and knowing what you have. |
 | [Developer tools](#developer-tools) | 47 | Version control, tags, cross-reference, formatters, a debugger and benchmarks. |
 | [Compilers & build](#compilers--build) | 40 | C compilers and their passes, assemblers, linkers, make and parser generators. |
@@ -154,7 +154,7 @@
 
 *Search, sort, compare, reformat, split and spell-check.*
 
-<details><summary>127 programs</summary>
+<details><summary>129 programs</summary>
 
 **Alternates**
 
@@ -192,6 +192,8 @@
 
 | | |
 |---|---|
+| `disdvi` | dumps a .DVI file's structure -- the preamble, the fonts, and every command in it, one to a line.  For understanding what TeX produced, or why a driver dislikes it |
+| `dvi2tty` | prints a TeX .DVI file as text, so a typeset document can be read on a terminal.  The disk's other DVI programs drive printers; this one is for the screen.  -e narrows or widens the spacing between words<br>`Usage: dvi2tty [ options ] dvifile[.dvi]` |
 | `dvialw` | DVI to Apple LaserWriter<br>**How:** Works, and so do the other nine dvi* drivers. The disk ships the MetaFont sources, not the ready-made bitmaps, so each driver says "Font file [cmr10 [300 dpi]] could not be opened ... Proceeding with zero size characters" once per font and writes a page with the right layout and no glyphs. FONTS/PK300 and PK144 hold a Makefile each; generate the bitmaps from the MetaFont sources in SYS/TEX/MFINPUTS. Output goes to <dvifile>_alw beside the input, not to standard output. |
 | `dvidjp` | DVI to HP DeskJet Plus<br>`[TeX82 DVI Translator Version 2.10]` |
 | `dvieps` | DVI to Epson<br>`[TeX82 DVI Translator Version 2.10 [experimental]]` |

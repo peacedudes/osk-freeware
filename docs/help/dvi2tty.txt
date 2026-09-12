@@ -1,0 +1,13 @@
+$ dvi2tty
+Usage: dvi2tty [ options ] dvifile[.dvi]
+Options are:
+ -ofile   Write output to file, else write to stdout.
+ -plist   Print pages whos TeX-page-number are in list.
+ -Plist   Print pages whos sequential number are in list.
+ -wn      Print the lines with width n characters, default 80.
+ -f       Try to pipe to a pager if output is a tty (default).
+ -q       Don't try to pipe to a pager.
+ -Fprog   Pipe output to pager prog.
+ -l       Write ''^L'' instead of formfeed between pages.
+ -u       National Swedish/Finnish characters printed as aaoAAO (default).
+ -s       National Swedish/Finnish characters printed as }{|][\.

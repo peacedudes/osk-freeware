@@ -900,3 +900,31 @@ run     cat back
 wait    3
 run     wc -c m.hex back
 wait    3
+
+shot    dvi2tty
+size    18 80
+cap     Prints a TeX .DVI file as text, so a typeset document can be read on
+cap     a terminal.  The disk's other DVI programs drive printers; this one
+cap     is for the screen.  Here it reads the MG manual that ships in DOC.
+cap     -q keeps it from paging: left alone it pipes to a pager when its
+cap     output is a terminal.
+try     dvi2tty -q mg_doc.dvi
+run     builtin cd /dd/DOC/mg
+wait    1
+run     clear
+wait    1
+run     dvi2tty -q mg_doc.dvi
+wait    6
+
+shot    disdvi
+size    18 80
+cap     Dumps a .DVI file's structure instead of its text: the preamble, the
+cap     numerator and denominator that set its units, the magnification, and
+cap     then every command in the file, one to a line.
+try     disdvi mg_doc.dvi
+run     builtin cd /dd/DOC/mg
+wait    1
+run     clear
+wait    1
+run     disdvi mg_doc.dvi
+wait    6

@@ -88,8 +88,9 @@ ASCII maze game and draws fine. Kept.)
 **Needs hardware or a peer it cannot have.** `splman', `lpsched' (a
 printer). The RTF Fortran drivers `for', `lnk', `lnk.org' -- they print the
 command they would run and stop; `rtf' is the working program of that set.
-`oleo' aborts with an illegal instruction before drawing a cell, confirmed
-on real Microware hardware too, and `sc' serves the spreadsheet need.
+(`oleo' WAS on this list and is now off it: two F$STrap fixes in os9exec
+on 2026-09-11 made it run, and it draws its copyright screen and its
+spreadsheet grid and takes input. Verified here, not taken on report.)
 
 **Broken or brittle here.** `dedit' spins for want of `tmode' and writes
 raw sectors -- do not run it unsupervised. `names' prints garbage and never
@@ -109,17 +110,15 @@ their own sources. Both stay.)
 
 ## Yours because the repos are yours
 
-**os9exec.** Two things still stop a card:
-- `F$GPrDBT' (0x1f) and `F$GPrDsc' (0x18) take a bus error instead of a
-  refusal; `devprc -a', `top' and `sysmon' reach them. You said os9exec is
-  being worked on for these.
-- The allocator's `# No more memory ...' line goes to the console, which is
-  the program's stdout, so it can land on a card. Real OS-9 refuses
-  silently.
-- `uucico seabass' makes a real call and prints the better message, but the
-  capture also shows os9exec's own `# /t3 is /dev/ttys008 ...' line. Four
-  cards (uucico, tsmon2, infoxpress, dld) would show more if that line
-  stayed off the program's terminal.
+**os9exec -- nothing needed from you.** Both items that were here are
+resolved or ours: `F$GPrDBT'/`F$GPrDsc' were fixed on 2026-09-05 (c024fbc)
+and `devprc -a' and `aprocs' now run clean; `top' still crashes, but that is
+top's own bug (it asks for PID 0, gets the documented refusal, ignores it
+and reads an unfilled buffer) and would do the same on real hardware. The
+emulator's two noisy lines go to STDERR, not stdout as this file used to
+say, so `2>/nil' on a capture drops them -- that is ours to do, not theirs.
+Giving emulator diagnostics their own channel is on the os9exec roadmap,
+with our four affected cards recorded as the reason.
 
 **creadoc**, if you want it runnable. It is an early Fortran documentation
 extractor -- a 1988 forerunner of javadoc -- and worth keeping as that. It
