@@ -24,29 +24,17 @@ this disk shares with OS-9's own, noted in README-KEEP.
 - **scrabble** -- DONE 2026-09-12, commit 9d6aa1e4.  It ships, reads
   GAMES/words and draws its board.  The estimate below was the right shape
   but for the wrong reason; see the next bullet.
-- **napoleon** -- IN PROGRESS 2026-09-12.  **The "71 unconditional ANSI
-  prototypes, a day" was the wrong measurement**, and the correction is
-  worth more than the program.  `ansi2knr' -- the KNR recipe flag -- rewrites
-  function DEFINITIONS and never touches DECLARATIONS.  Napoleon has 90
-  definitions, which the flag does for nothing, and 69 declarations, 66 of
-  them in `adv.h' alone: one scripted edit of one header.  Scrabble was the
-  same shape (46 free, 40 by hand).  **Count declarations, not prototypes,
-  when sizing an ANSI tree.**  What actually costs time is the things no
-  prototype count shows: an ANSI function-pointer struct (scrabble), a
-  variadic definition ansi2knr cannot convert (napoleon's `format'), and
-  `const'/`signed'/adjacent string literals.  All recorded in
-  `tools/rebuild/README.md'.
+- **napoleon** -- DONE 2026-09-12, commit 58199b30.  It ships and it plays.
+  The "a day, 71 ANSI prototypes" estimate was wrong in KIND, and the
+  correction is in `tools/rebuild/README.md': ansi2knr converts only a
+  definition whose NAME is at the left margin, so it did 46 of scrabble's for
+  nothing and 0 of napoleon's 84.  **Ask where the name sits, not how many
+  prototypes there are.**  The rest of what that port cost -- 634 adjacent
+  string literals, a 12,449-character GPL scroll joined at run time, no
+  `#error' in Microware's cpp, difftime being a macro, the disk's own yacc
+  beating host bison -- is all recorded there too, because none of it is
+  about napoleon.
 
-  Napoleon specifics, all measured: `-DPURE_ANSI' removes the GNU readline
-  dependency outright -- the author supplies an fgets-based `readline' behind
-  it -- so the missing history library is a non-issue.  `difftime.c' must be
-  DROPPED: the SDK's <time.h> defines difftime as a MACRO and the file's own
-  definition would be expanded into nonsense.  `vsprintf' comes from
-  `../unixlib/vsprintf.c', as bc and fiz already do.  **Generate the parser
-  with the DISK's own yacc, not the host's**: macOS `/usr/bin/yacc' is bison
-  in disguise and emits a 67 KB skeleton full of `__builtin_alloca',
-  <libintl.h> and <stddef.h>; the disk's yacc emits 30 KB with no `const',
-  no alloca, no ANSI definitions and no line over 80 characters.
 - **TOP's own source trees** (`Scraped/.../os9/top/src/') -- OS-9 ports of
   programs this disk ships as binaries.  Verified 2026-09-12 against
   `src_census.py' (694 of 1003 programs have source here, 69%; 309 do not)
@@ -396,25 +384,25 @@ tools/check_disk.py disk
 | What needs rdoggett | `notes/FOR-RDOGGETT.md` |
 | Why it is like this | `notes/HISTORY-2026-08.md` |
 
-## Outstanding: 20 captures no longer match their stanza (2026-09-12)
+## Done 2026-09-12: the twenty drifted captures (commit d842cc4b)
 
-Measured with the project's own `screenshots.stanza_hash', not a proxy:
+All re-shot.  Re-shooting them is what showed WHY they had drifted: the
+stanzas had been rewritten earlier and never re-shot, which left `input'
+under the ink floor, `lcasep' clearing it only on the length of an old
+PATHNAME, and `filter' reaching for a /r0 that is compiled into its binary
+and that this disk has no device for.  Fixed, listed in SPARSE_OK, and
+listed in panel-exceptions.psv respectively.
 
-    comms.sheet   bdecode c7decode dbz dotilde fastmail filter fixtext
-                  input lcasep listalias makedb nptx pathalias read_mail
-                  rnews uux wn
-    games.sheet   vtxtcn
-    maths.sheet   oleo
-    played.sheet  tess
+`gen_screens --check' no longer says captures are "OLDER than the sheet":
+it compares a stanza HASH, and the old wording sends you to compare mtimes,
+where a sheet touched to add one stanza looks like it invalidated all of
+them (836 of 900 against the true 20).
 
-Nothing is missing a capture; these twenty have had their caption or their
-commands edited since the shot was taken, so each publishes an OLD screen
-under a NEW caption.  Re-shoot with `tools/screenshots.py <sheet> --only
-<names>'.
+## Next
 
-**Do not reach for mtime or git log to second-guess this.**  The check is a
-content hash of the stanza; the tool's message used to say "OLDER than the
-sheet that defines them", which sent me to compare file mtimes -- a sheet
-touched to add ONE stanza then looks like it invalidated every stanza in it,
-and a naive mtime sweep across all sheets reports 836 stale out of 900.  The
-message is fixed to say what it compares.
+- The acquisitions retry was done at the top of this session: the Internet
+  Archive is globally offline, so the three Wayback rows and cdrom-coco are
+  untestable rather than refused.  effo.org and colorcomputerarchive.com DO
+  answer and have not been fetched -- that is the next harvest.
+- TOP's own source trees, as above.
+- Q2 (GPL source for the gawk/bison/emacs binaries) is rdoggett's call.
