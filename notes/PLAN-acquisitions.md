@@ -335,7 +335,7 @@ the native tools expect `/dd/SYS/utmp`, group, password or smail.
 | phoon (Poskanzer) | `CSU/volume8/phoon.gz` | 1987 | permission granted | DONE (fc775046) -- numeric date, tws.c stands in for libtws |
 | globe (Poskanzer) | `CSM/volume43/globe/part01.gz` | 1994 | permission granted | DONE (597b2a9e) -- built unchanged |
 | atc | `NET2/games/atc` | 1990 | BSD | curses, lex/yacc, setitimer->alarm |
-| canfield (+cfscores) | `NET2/games/canfield` | 1980 | BSD | curses, easy |
+| canfield (+cfscores) | `NET2/games/canfield` | 1980 | BSD | canfield DONE (8c133d0b) -- curses; _tty/SIGTSTP/SIGTERM shimmed; cfscores companion open |
 | trek (Allman) | `NET2/games/trek` | 1980 | BSD | sgtty/select bits |
 | monop, wump, fish, arithmetic | `NET2/games/...` | 1980-90 | BSD | wump DONE (70fe4c6d), fish DONE (73cb6958) -- self-contained, getopt bundled, instructions embedded; monop has a fork to remove |
 | bs (ESR battleships) | `CSG/volume8/bs/part01.gz` | 1989 | no notice | DONE (cee1197c) -- OSK curses arm shims beep/chtype/ungetch, cbreak parenthesised |
