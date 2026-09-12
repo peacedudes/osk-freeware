@@ -211,6 +211,37 @@ when a prototype is actually stopping the build, and take it out again the
 moment the errors change shape.  Its symptom is distinctive: `multiple
 definition' pointing at a line that is plainly correct K&R.
 
+**ADJACENT STRING LITERALS ARE NOT K&R, AND NOTHING HERE WILL JOIN THEM.**
+`"abc" "def"` is ANSI (translation phase 6) and c68 reads it as two separate
+expressions: the symptom is `; expected' on the continuation line plus
+`warning - expression with little effect'.  **`CPP2' does NOT rescue it** --
+the driver runs `cccp2 -P -traditional', and traditional mode is precisely
+the mode with concatenation turned off.  So the literals must be joined in
+the SOURCE.  Measured 2026-09-12 on `napoleon', which had 191 such
+constructs across eight files.
+
+**DO NOT test for this by grepping for lines that begin with a quote.**  That
+counts string-array initialisers and comma-separated arguments too -- legal
+K&R both -- and on that test `bc' scores 116, `flex' 124 and `ed' 27, all of
+which build here.  It reads as proof that concatenation is fine.  It is not:
+a TRUE adjacent pair is a line ending in a closing quote with NO comma after
+it, followed by a line opening with a quote.
+
+**THE JOINED LINE THEN MEETS THE LINE LIMITS**, and they are per LOGICAL
+line, with backslash-newline continuations spliced BEFORE counting -- so
+continuation buys nothing.  Microware `cpp' bus-errors at 513 and `c68' stops
+at 1023.  Joining napoleon's constructs produced lines of 503 to 686
+characters, which is over cpp's limit and under c68's: that IS what `CPP2' is
+for, and it is why that recipe carries it.  One construct could not be joined
+at all -- an in-game scroll holding the whole GPL, 12,449 characters in 154
+pieces.  It became an array of short strings joined at run time, since no
+line-based trick reaches twelve times the compiler's limit.
+
+**A `__FILE__' MACRO IS THE HIDDEN CASE.**  napoleon's `fail()' expanded to
+`"... fail point is " __FILE__ ":%d\n"', so EVERY file that called it failed
+at the call site with errors that pointed at the caller, not at the header.
+Pass `__FILE__' as a `%s' argument instead.
+
 **ansi2knr REWRITES DEFINITIONS ONLY. DECLARATIONS REACH c68 INTACT.**
 Measured 2026-09-12 on `scrabble' and `napoleon'.  The flag converted
 scrabble's 46 ANSI definitions and napoleon's 90 for nothing, and left every

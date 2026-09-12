@@ -1,0 +1,21 @@
+napoleon
+Napoleon, version 1.02, copyright (c) Pete Chown 1992
+
+
+Napoleon is free software and you are welcome to distribute copies of it under
+certain conditions; read the scroll (in the office where you start) to see them.
+There is absolutely no warranty for Napoleon; again details are on the scroll.
+
+
+
+The central office
+
+This is the office, at the centre of the Napoleons' web.  A smart ebony desk
+sits in one corner, with the sort of office chair behind it that you can twirl
+round and round on if you get bored.  Boring carpet tiles adorn the floor, the
+walls are painted hospital white, as is the ceiling which is also equipped with
+a large fluorescent tube.  There is an exit to the south.
+
+On the desk, there is a scroll.
+
+(napoleon)

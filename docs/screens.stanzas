@@ -59,7 +59,7 @@ basicwin f7b0c22628587472
 bc 26218d4b817772ba
 bcd 9293614be1ad39bf
 bcheck 129a9acf434dd876
-bdecode 4c9435dbc68ae7e5
+bdecode 3d8e88f1697a9b18
 beav 5c4c9333df878ea7
 bibtex 851e0756eed6be3b
 bigsetter a65afaeb5077cfad
@@ -88,7 +88,7 @@ btop c2d56a633e5b8ee1
 btree d2d82344ac802011
 buildhash 488b6e3d5a2e09fe
 c4 79e00796ab327574
-c7decode cd523a3e251f1784
+c7decode 56f4f46f18762003
 caesar d8865432f1d55b0a
 cal 901a5f69eca7c189
 calen 47ebd7471ad0a89b
@@ -165,7 +165,7 @@ cxref 835c2421b77d6158
 cyberwar 217de83f79ad4776
 dam c30b7cc7269589c3
 dback 906be23ee236ebeb
-dbz b8a2dbd1e541b4a4
+dbz 574c22070aaf4b57
 dclock 9081125499f001ad
 dearc be5ac2cb655130ec
 delbak 5afa330f2759aa23
@@ -204,7 +204,7 @@ dld 2bd5dd6d0ead4c98
 dload 123da82a8ca4aeac
 dm 4e6c09cd76709ff9
 dmake 9d073d5d6b821c33
-dotilde 9a96fc28a25bc280
+dotilde b9f777c45444c952
 dpark 89795f37105e6574
 draw 644ffd4bed768159
 drawl c48c20a247e0e429
@@ -253,7 +253,7 @@ expr 93380e70a1308318
 exrecover 7e7b5298a953fdb1
 factor 1ccd0e9539df7630
 fastcc 5e4a74de4c19af8a
-fastmail 9ffc8c75fc408915
+fastmail de1605f1973c63c9
 fc d5a28e4ea8596b2c
 fcomp 1088fc8ffba0aabb
 ff dfa69563d285691d
@@ -263,12 +263,12 @@ field 23e15abb15f652dd
 file c9d8fdc888312ccd
 fileserv 94ca3f927ad83188
 fillup dd094c0bcbd90d64
-filter 5a3c721524100ccc
+filter a748db3deed32aa3
 find bc48b346d17192b8
 finger ba2c1c5fd943c54b
 fish 97279909ded02a23
 fits d5c926450ae70c81
-fixtext 7f412c13c37f6331
+fixtext 904f7f27dc4a9a67
 fkeys 56a9454bbb85c506
 flex 8c3f2fdd70fa2ca9
 flink 13b93a9700f18093
@@ -374,7 +374,7 @@ infocom.tcap 2b652fc03ad80016
 inimf f97af714700a6cfb
 initex 54027428dfff0ad8
 initvdu 702afc4863e9f823
-input 4e57b66075eb2f9e
+input 8071c07987f3d81d
 isam 9fa60597ccc34dc8
 ispell 25ab73eb17c5c5fd
 japan 0d3ecf5c721bf981
@@ -394,7 +394,7 @@ lander 0a0fc53a8fb1341a
 larn 1d392eb91a869f4c
 latex eb4cb1a4e66b6ae5
 launch f4feaadc8120ed98
-lcasep 8d7dbb05afd821ba
+lcasep bc72fef46809a36e
 less d6f842a2c01ad42a
 lessecho 54e47f4bb0aa4054
 lesskey d392f6e111e10d1c
@@ -408,7 +408,7 @@ life cb3cef72829ef40d
 lispm ae2065e7d6fe27aa
 lispmtopgm 4b27b981a050464f
 lissaj d7853d340da26d5f
-listalias ffbfbb9557a63301
+listalias 7cc9f05840bea902
 lmail 1edf6257d9bedd78
 lmargin 0e7377b686da6c46
 lnk 6be6483d8b461aaa
@@ -441,7 +441,7 @@ mail 665bfec34a31ab4b
 mailx 13e40634d305ceeb
 make c9902ae76af265bf
 makecrc 541a2d827eb1a03f
-makedb 20377f8a3e598728
+makedb da9ac82136e50140
 makeinfo 3172d405e40f894a
 makelex 1fd04e7cb20c1700
 maketexpk eb25a36d250f989a
@@ -497,6 +497,7 @@ mv 6954b7253efc7c50
 mvolformat 6a48f614886d1373
 name fdfd42ee83c7c2ea
 names 0bd377e8e88094b2
+napoleon 5b78f29e7f1c227d
 nasa e91379ce9e15b3a7
 nchess 0dfb3a13eb024d85
 net 8d37bd4fcf3b208f
@@ -508,12 +509,12 @@ newshist ceedd2cb3f480714
 newslock 6fc4ff0ff643b066
 nobs 054e8a73fee05633
 noreader e04559edcefa0d2c
-nptx 478329f3f0d22998
+nptx 2511f673227aa21f
 nroff 335fb42df32f76c9
 nsort 13434acb0c4303cb
 number 7b35c5f6ba180f86
 ob68kdemo f3ecd32662b190e2
-oleo 4a8729ec0aeea90b
+oleo 4ccee3ed8b453f20
 orbit 3699a62f5f60136b
 os9dsk 11679b5b5d0c5d01
 osknet 5412cde63b6dd985
@@ -529,7 +530,7 @@ paranoia 0a60d6a2260427f6
 passwd a75ac662a0382d5e
 paste e5c0a3068bf0c04c
 patch 9da2962d6bd48a2f
-pathalias 9b473023501bda9d
+pathalias 1b2246df713cd409
 pbmclean 13653d26ec909838
 pbmlife 3f167eca3c936086
 pbmmake f565a85b9906f3ec
@@ -655,7 +656,7 @@ rcsmerge a0d6230fb91be227
 rdjpgcom e7bf0acbf472a866
 rdjpgcom.070 21fad5e8bdcc6030
 rdoc a0d7a1db99272266
-read_mail b6c46e3207483f44
+read_mail 75f865aec1a08c3f
 readmsg acf5e6d2c4a14d0e
 readnews d2383353e60d7d02
 rechne 59c965a157f88843
@@ -670,7 +671,7 @@ rm 7ed8216dd14e7330
 rmail 245cc5bb1daa0815
 rndir 6bde2178ac76d811
 rndname 41a53ac034e446fe
-rnews 4d125f508d8576e9
+rnews 4d20cedcc809543a
 robots 0fbe984846b11774
 roff d40c26c3bca3deb1
 rot 53c55a2e616ff0c6
@@ -760,7 +761,7 @@ tangle 7d4969b60893eedf
 tar f899633bf18895d6
 tcmp 762791b8abc9e457
 teachgammon 9f9cf6fe5e075e8f
-tess f73bbe2f9db6b28d
+tess a6819de4d871479c
 tet dc9a16bf1fcb1b43
 tex b338940c32f30961
 texidx 61f087fdcc5a3de8
@@ -824,7 +825,7 @@ uuexpand af2741af1d85b8ce
 uulog 9ccaeac3af76146e
 uupoll 16b72e7930e12e9f
 uustat 6b344e24fe936fa5
-uux 3044f30e98c14684
+uux 600ce072555b3c4a
 uuxqt 64679172304137b0
 valspeak 7d51b124e270473b
 vc 184340ae7a592513
@@ -854,7 +855,7 @@ which 70dd4d4ba523dfba
 whoami ac172d53bcf13294
 wisecrack b1fb166889722fa1
 wish 352bc99e672247a0
-wn f0b1aaa64c9cc858
+wn 8cebd8e6d5c70876
 workstations e2e0317a1ff371e0
 world 03a1c73875042171
 worm dadf60f5bdf3dae5
