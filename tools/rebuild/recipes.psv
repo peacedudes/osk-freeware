@@ -927,3 +927,4 @@ xargs|xargs|xargs.c|||
 cdecl|cdecl|cdecl.c os9tmpfile.c ../unixlib/getopt.c|||
 accordian|accordian|accordian.c cards.c help.c||/dd/LIB/curses.l /dd/LIB/termlib.l /dd/LIB/rand.r|
 saa|saa|saa.c|NON_ANSI_C|/dd/LIB/curses.l /dd/LIB/termlib.l /dd/LIB/rand.r|
+bs|bs|bs.c||/dd/LIB/curses.l /dd/LIB/termlib.l /dd/LIB/rand.r|

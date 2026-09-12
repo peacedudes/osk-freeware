@@ -945,6 +945,7 @@ whereis|whereis -?|
 worm|none|it takes a starting length and nothing else; h, j, k and l steer and control-C leaves
 accordian|none|d deals one, D the rest, f finds a move, u undoes, x exits
 saa|none|type a stack 1-8 then a destination (0 for a foundation); ? for the rules, q quits
+bs|none|place ships then fire; hjklyubn move the cursor, R scatters your fleet, control-C leaves
 c4|none|type a column letter a-g to drop a piece; q quits, control-L redraws
 fish|none|it deals and prompts; ask for a rank you hold; control-C or the deck running out ends it
 wump|none|-h harder, -r/-t/-a resize the cave; control-C or a bad end leaves

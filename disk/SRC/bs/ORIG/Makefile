@@ -1,0 +1,1 @@
+#	Makefile for BattleshipsCFLAGS=-DNDEBUGLIBS = -lcurses -ltermcapbs: bs.c	cc $(CFLAGS) -o bs bs.c $(LIBS)lint:	lint bs.c $(LIBS)clean:	rm -f bs bs.shar *~shar:	shar READ.ME bs.c Makefile bs.6 >bs.shar

@@ -1,0 +1,23 @@
+                                   BATTLESHIPS
+        Main Board                                     Hit/Miss Board
+   0  1  2  3  4  5  6  7  8  9                 0  1  2  3  4  5  6  7  8  9
+A  A  .  .  .  P  P  .  .  .  .  A           A  .  .  .  .  .  .  .  .  .  .  A
+B  A  .  .  .  .  .  .  .  .  .  B           B  .  .  .  .  .  .  .  .  .  .  B
+C  A  .  .  .  B  B  B  B  .  .  C           C  .  .  .  .  .  .  .  .  .  .  C
+D  A  .  .  .  .  .  .  .  .  .  D           D  .  .  .  .  .  .  .  .  .  .  D
+E  A  .  .  .  .  .  .  .  .  .  E           E  .  .  .  .  .  .  .  .  .  .  E
+F  .  .  .  .  D  D  D  .  .  .  F           F  .  .  .  .  .  .  .  .  .  .  F
+G  .  .  S  .  .  .  .  .  .  .  G           G  .  .  .  .  .  .  .  .  .  .  G
+H  .  .  S  .  .  .  .  .  .  .  H           H  .  .  .  .  .  .  .  .  .  .  H
+I  .  .  S  .  .  .  .  .  .  .  I           I  .  .  .  .  .  .  .  .  .  .  I
+J  .  .  .  .  .  .  .  .  .  .  J           J  .  .  .  .  .  .  .  .  .  .  J
+   0  1  2  3  4  5  6  7  8  9                 0  1  2  3  4  5  6  7  8  9
+
+To fire, move the cursor to your chosen aiming point            Aiming keys:
+and strike any key other than a motion key.                    y k u    7 8 9
+                                                                \|/      \|/
+                                                               h-+-l    4-+-6
+                                                                /|\      /|\
+                                                               b j n    1 2 3
+Press any key to start...
+Placing the rest of your fleet at random...

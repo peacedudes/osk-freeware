@@ -1139,3 +1139,20 @@ wait    6
 snap
 keys    q
 wait    2
+
+shot    bs
+size    24 80
+cap     Battleships against the computer.  Place your fleet on the lower
+cap     grid -- move the cursor with h/j/k/l, rotate with a letter, or `R'
+cap     to scatter them all -- then hunt the computer's ships on the upper
+cap     grid by firing at squares.  First to sink the other's fleet wins.
+try     bs
+run     bs
+wait    5
+keys    R
+wait    3
+snap
+keys    Y
+wait    1
+send    \003
+wait    2
