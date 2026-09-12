@@ -281,7 +281,7 @@ the native tools expect `/dd/SYS/utmp`, group, password or smail.
 | bs (ESR battleships) | `CSG/volume8/bs/part01.gz` | 1989 | no notice | curses |
 | scrabble | `CSG/volume6/scrabble/` | 1989 | redistribute in any manner | curses |
 | saa (Streets and Alleys) | `CSG/volume12/saa/` | 1991 | permission granted | curses |
-| accordian | `CSG/volume15/accordian/` | 1992 | public domain | BUILT+carded, commit HELD pending shared-tree deconflict with 00's B4 -- all files staged-ready (SRC/accordian, CMDS/GAMES/accordian, DOC/accordian.doc, INDEX/ORIGINS/SOURCES/categories/help/recipe) |
+| accordian | `CSG/volume15/accordian/` | 1992 | public domain | DONE (6a512987) -- curses solitaire; RANDOM->rand, popen/getpwuid dropped, win log local |
 | mastrm | `CSG/volume2/mastrm.gz` | 1987 | public domain | stdio |
 | hexa (hexagonal sokoban) | `ALT/volume93/Jan/930127.01.gz` | 1993 | no notice | curses |
 | corewars | `CSG/volume6/corewars/` | 1989 | public domain | curses |
