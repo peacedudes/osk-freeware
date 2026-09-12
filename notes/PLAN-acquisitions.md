@@ -658,6 +658,22 @@ Tektronix; zmodem (c) 1986 Stephen Satchell; cpp.decus and typefast state
 nothing.  TOP's package readme gives no licence at all -- terms are per
 tree.
 
+### DOC/ORIGINS is already mined -- do not plan a sweep through it
+
+Checked 2026-09-12, after nearly starting one.  Of the 309 programs
+`src_census.py' reports with no source here, exactly **5 have a DOC/ORIGINS
+row** -- and that is not a gap in ORIGINS, which holds 597 program rows and
+answers every control thrown at it (mimecode, gnugo, napoleon, maze).  It is
+structural: the census's ARCHIVE route already consults ORIGINS ("disk/SRC/
+<archive>/ exists, where DOC/ORIGINS says the program came from <archive>"),
+so anything ORIGINS can place is counted as HAVING source before it ever
+reaches the no-source list.  The 309 are precisely the residue ORIGINS
+cannot help with; the ARCHIVE route contributed 12 of the 696.
+
+So there is no cheap join to be had here.  Finding source for those programs
+means per-program archive hunting, which is the work the batches above
+already represent.
+
 ### Recovery log
 - 2026-09-11: first sweep; table above.
 - 2026-09-12: re-probed every row. **No change in our favour, and one row
