@@ -28,3 +28,19 @@ wait    60
 snap
 send    \003
 wait    2
+
+shot    rot22
+size    24 80
+cap     Software rot, demonstrated: the letters of a file come loose a few at
+cap     a time and fall down the screen, piling up at the bottom until the
+cap     text has drained out of the top.  Give it a file or pipe text in.
+cap     This is a still from partway through; it is a moving picture.
+try     rot22 DOC/README-CIO
+run     builtin cd /dd
+wait    1
+run     clear
+wait    1
+run     rot22 DOC/README-CIO
+wait    3
+snap
+wait    12

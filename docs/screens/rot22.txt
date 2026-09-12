@@ -1,0 +1,23 @@
+README-CIO -- the starred programs, and the five modules that serve them
+=======================================================================
+
+Some of the names in DOC/INDEX carry a star.  A star means the program needs
+one of Microware's runtime trap modules: `cio` for nearly all of them, and
+for some `math`, `math881`, `csl` or `csl020`.
+
+THEY RUN HERE.                                     in CMDS, included with
+Microware's pe r                                 ,exchange.  You need do
+nothing, supply                                 k tar tells you what a
+program depend                               d s s
+              s A llff                        i e
+This file exp  mi  ifnge  n         t          h  o do in the two cases
+where you mi lao n   nt-amadU     x to        t  t
+            ght n  i a,wtheOfR u   no    o     e
+Why so many pr iwsn oatdihfdsil    kstrhngi   h
+-------------- gramt ne dfi rteE atan.,eand   a
+              ---a-sh--e---ttettSmcrasgtme  ..
+`cc -qixm` -- the-C--ib-aryeinarcaearnd trnt.handler rather than linked into
+every binary -- wa lth rnor- lnalyrtoeb  lap or OS-9, and it is why a starred
+program is often asfraetionmafwtaessizeeifd ftrap-free one.  Much of this
+collection was rebuiltctrap-oreeh(h-qm`uosoait would run with nothing loaded
+at all; most of the programsfunder`CMDS)need no module whatever.  The rest

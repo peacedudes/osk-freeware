@@ -1,0 +1,1 @@
+# Simple makefile for rot programCFLAGS = -O #-DSYSVrot:	rot.c	cc $(CFLAGS) -o rot rot.c -ltermlibtest:	rot	./rot <rot.c
