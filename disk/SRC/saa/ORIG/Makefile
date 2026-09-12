@@ -1,0 +1,1 @@
+# This is Makefile version 1.1 of 91/05/17 for Streets and Alleys.PROG	= saaCFLAGS	= -O# Define NON_ANSI_C if /usr/include/stdlib.h is missing.#CFLAGS	= -O -DNON_ANSI_CLDLIBS	= -lcurses -ltermcapall:	$(PROG)$(PROG):	$(PROG).c	$(CC) $(CFLAGS) -o $(PROG) $(PROG).c $(LDLIBS)clean:	rm $(PROG).PHONY:	all clean

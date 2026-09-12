@@ -1,0 +1,24 @@
+            Streets and Alleys
+
+
+
+
+
+
+
+
+
+
+
+            S-
+                  D7    HQ    SA    C7
+            H-    CK    HT    HK    S6    H3    CA    SK    C5
+                  CT    S5    HA    H4    H7    S7    DA    S8
+            D-    SJ    H8    C8    S4    D5    D6    DJ    C9
+                  C2    C6    ST    C4    C3    D9    DQ    DK
+            C-    S3    D2    DT    D8    H2    D4    S2    CQ
+                  HJ    H6    SQ    D3    CJ    H9    S9    H5
+Commands:   0,    1,    2,    3,    4,    5,    6,    7,    8,    q, r, or ?.
+
+Status:     Fresh display.  Type ? for help.
+Prompt:     Move from stack
