@@ -1,0 +1,5 @@
+$ rsdsk -?
+Usage: rsdsk -dir filename.dsk
+       rsdsk -get filename.dsk rsdosfile os9file
+       rsdsk -proc filename.dsk
+       rsdsk -help for more details

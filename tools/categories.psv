@@ -1035,3 +1035,6 @@ hdump|Text tools|Count & inspect
 undump|Text tools|Count & inspect
 
 othello|Games|Board & card
+hexa|Games|Puzzles
+os9dsk|System & modules|Devices & disks
+rsdsk|System & modules|Devices & disks

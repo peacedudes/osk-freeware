@@ -936,3 +936,6 @@ hdump|hdump|od.c cnv.c|||
 undump|hdump|undump.c|||
 freeb|freeb|freeb.c|||
 othello|othello3|othello.c usleep.c||/dd/LIB/curses.l /dd/LIB/termlib.l /dd/LIB/rand.r|
+hexa|hexa|hexa.c||/dd/LIB/curses.l /dd/LIB/termlib.l|
+os9dsk|os9dsk|os9dsk.c diskid.c os9dir.c os9proc.c os9copy.c usage.c finddir.c get_attr.c||/dd/LIB/alib.l|
+rsdsk|rsdsk|rsdsk.c rsdir.c get_len.c get_fat.c get_sector.c rsreaddir.c usage.c rscopy.c gran2trksec.c rsproc.c|||

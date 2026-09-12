@@ -1,0 +1,1 @@
+/* gran2trksec function for rsdsk *//* to read Jeff vavasour's emulator .DSK files *//* copyright (c) 1997, by Bob Devries */intgran2trksec(gran, track, sector)char gran;int *track;int *sector;{	if ((gran & 1) == 1)		*sector = 10;	else		*sector = 1;			*track = gran >> 1;		if (*track > 16)		*track += 1;}/* EOF gran2trksec.c */

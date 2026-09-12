@@ -129,3 +129,24 @@ case    freeb-counts-the-free-blocks-by-size
 run     /dd/CMDS/freeb -t /dd
 expect  Total free:
 absent  Could not read sect0
+
+# os9dsk and rsdsk read Color Computer .DSK images.  The third case is the
+# one worth having: the two programs read DIFFERENT formats in the same kind
+# of file, and each says so plainly when handed the other's.
+
+case    os9dsk-lists-an-os9-coco-disk-image
+run     /dd/CMDS/os9dsk -dir /dd/DOC/os9dsk/PUBDOM19.DSK
+expect  CMDS
+expect  BASIC09
+expect  85/11/29
+absent  Not an OS-9
+
+case    rsdsk-lists-an-rsdos-coco-disk-image
+run     /dd/CMDS/rsdsk -dir /dd/DOC/rsdsk/PUBDOM09.DSK
+expect  MENU
+expect  ORCH
+absent  Not an RS-DOS
+
+case    os9dsk-says-so-when-the-image-is-the-other-kind
+run     /dd/CMDS/os9dsk -dir /dd/DOC/rsdsk/PUBDOM09.DSK
+expect  Not an OS-9 .DSK file!

@@ -1,0 +1,1 @@
+/* get_fat function for reading Jeff Vavasour's emulator .DSK files *//* copyright (c) 1997, by Bob Devries */#include <stdio.h>intget_fat(fp,fat)FILE *fp;char *fat;{	return(get_sector(fp, 17, 2, fat));}

@@ -987,3 +987,6 @@ hdump|hdump -?|
 undump|undump -h|
 
 othello|none|choose players and a level, then a move is the row letter then the column number; Q quits
+hexa|none|k/j move up and down, u/i/n/m along the diagonals; push bags onto the safes; q quits
+os9dsk|os9dsk -?|
+rsdsk|rsdsk -?|

@@ -1,0 +1,1 @@
+/* rsdir.h */typedef struct {	char rs_filename[9];	char rs_extension[4];	char rs_filetype;#ifdef OSK	unsigned char rs_ascii_flag;#else	char rs_ascii_flag;#endif	char rs_first_gran;	short rs_last_sect;} RSDIR;#define RSDIRSIZE 32L/* EOF rsdir.h */

@@ -1,0 +1,4 @@
+$ os9dsk -?
+Usage:	os9dsk -dir filename.DSK DSKpath
+		os9dsk -get filename.DSK DSKpath os9file
+		os9dsk -proc filename.DSK DSKpath

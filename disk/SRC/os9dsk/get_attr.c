@@ -1,0 +1,1 @@
+/* get_attr.c *//* copyright (c) 1997 by Bob Devries */intget_attr(att,str)char att;char *str;{	int x, pos = 0x80;		for (x = 0; x < 8; x++) {		if ((((int)att & 0xff) & pos) != pos) str[x] = '-';		pos >>= 1;	};}/* EOF get_attr.c */

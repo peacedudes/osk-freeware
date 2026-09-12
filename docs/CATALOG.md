@@ -1,6 +1,6 @@
 # What is on this disk
 
-977 programs of OS-9/68K community software, gathered from the archives that kept it and made to run again. **628 of them need nothing but this disk**; the rest want Microware's `cio`, marked below with a star.
+980 programs of OS-9/68K community software, gathered from the archives that kept it and made to run again. **631 of them need nothing but this disk**; the rest want Microware's `cio`, marked below with a star.
 
 `DOC/INDEX` on the disk lists everything alphabetically. This is the same collection sorted by what each program is *for*, which is the more useful order when you do not yet know what you are looking for.
 
@@ -22,10 +22,10 @@
 | [Encoding & conversion](#encoding--conversion) | 29 | Between text encodings, line endings, Macintosh formats, ciphers and hashes. |
 | [Communications](#communications) | 97 | Kermit in several builds, terminal sessions, and networking. |
 | [Graphics & images](#graphics--images) | 202 | The netpbm toolkit, JPEG, a ray tracer, and things that draw. |
-| [Games](#games) | 71 | Adventures, board and card games, arcade ports, dungeon crawls and puzzles. |
+| [Games](#games) | 72 | Adventures, board and card games, arcade ports, dungeon crawls and puzzles. |
 | [Screen toys](#screen-toys) | 8 | Animations and screen effects -- they draw on the terminal rather than print to it. Some run until you stop them. |
 | [Amusements](#amusements) | 22 | Generators, simulators and diversions that are not quite games. |
-| [System & modules](#system--modules) | 128 | OS-9 module and process tools, devices, system state and scheduling. |
+| [System & modules](#system--modules) | 130 | OS-9 module and process tools, devices, system state and scheduling. |
 | [Disk & DOS](#disk--dos) | 20 | Reading and writing MS-DOS media with the mtools set. |
 | [Time & calendar](#time--calendar) | 14 | Calendars, clocks and astronomy. |
 | [Maths & calculators](#maths--calculators) | 15 | Calculators, plotting, orbits and number theory. |
@@ -1183,7 +1183,7 @@
 
 *Adventures, board and card games, arcade ports, dungeon crawls and puzzles.*
 
-<details><summary>71 programs</summary>
+<details><summary>72 programs</summary>
 
 **Adventure & fiction**
 
@@ -1281,6 +1281,7 @@
 
 | | |
 |---|---|
+| `hexa` | hexagonal Sokoban: push every moneybag onto a safe square on a six-sided grid, one bag at a time and only ever forward; k/j move up and down, u/i/n/m along the diagonals.  Five screens ship, and `hexa <n>' edits one |
 | `maze` | maze generator, small enough to have won an obfuscated-C contest.  It reads the number of rows on standard input and draws a maze that wide: `echo 11 \| maze'<br>**How:** Reads the number of rows on standard input: `echo 11 \| maze' draws a maze eleven rows deep. |
 | `mines` | &#9733; minesweeper on a sixteen-by-sixteen board with forty mines: name a square by its row and column letters, answer `Mark?' with Y to flag it; q quits<br>**How:** Full-screen minesweeper. Name a square by its row letter and then its column letter, and answer `Mark?' with Y to flag it rather than open it. `q' quits. |
 | `puz15` | the 15-puzzle: slide the tiles into the gap, `puz15 5x5' for a bigger board.  A second port is CMDS/puzzle15; both have source and play the same<br>**How:** Full-screen fifteen puzzle. Slide the tiles into the gap; `puz15 5x5' plays a bigger board. Control-C gets you out. |
@@ -1371,7 +1372,7 @@
 
 *OS-9 module and process tools, devices, system state and scheduling.*
 
-<details><summary>128 programs</summary>
+<details><summary>130 programs</summary>
 
 **Devices & disks**
 
@@ -1382,6 +1383,8 @@
 | `dinfo` | &#9733; disk/device information<br>`Syntax:   dinfo [<opts>] {<device name> [<opts>]}` |
 | `dpark` | &#9733; parks the disk head: `dpark [/device]' restores an RBF device's head to track 00, which is what you did before moving a drive<br>`Syntax:   dpark [/device]` |
 | `freeb` | lists the free space on a disk block by block -- how many free blocks there are, how big each one is and where it starts.  -t counts them by size, -a lists every one, -h leaves the header out and -s the total<br>`Usage:` |
+| `os9dsk` | reads a CoCo OS-9 disk image -- the .DSK files a Color Computer emulator uses.  `os9dsk -dir <file>.DSK' lists it, -get copies a file out, -proc shows the file descriptor.  A 1985 disk reads as easily as a new one<br>`Usage:	os9dsk -dir filename.DSK DSKpath` |
+| `rsdsk` | reads a CoCo RS-DOS disk image, the Disk Extended BASIC side of the same .DSK files: -dir lists it, -get copies a file out.  Between them and os9dsk, either kind of Color Computer disk can be read here<br>`Usage: rsdsk -dir filename.dsk` |
 | `shdev` | &#9733; lists the system's device table: what is mounted and the driver behind each |
 | `ssl` | &#9733; show a file's segment list, sector by sector -- ssl <file> |
 
