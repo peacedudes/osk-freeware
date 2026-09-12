@@ -404,7 +404,7 @@ the native tools expect `/dd/SYS/utmp`, group, password or smail.
 | mastrm | `CSG/volume2/mastrm.gz` | 1987 | public domain | DONE (0a75970f) -- system(clear) -> ANSI clrscr |
 | hexa (hexagonal sokoban) | `ALT/volume93/Jan/930127.01.gz` | 1993 | no notice | DONE (c6aae0a7) -- 216-byte binary level maps in GAMES/HEXA |
 | corewars | `CSG/volume6/corewars/` | 1989 | public domain | curses |
-| castle | `CSG/volume8/castle/` | 1990 | public domain | curses |
+| castle | `CSG/volume8/castle/` | 1990 | public domain | ATTEMPTED 2026-09-11, parked.  Compiles clean (SIGILL/SEGV/TERM/FPE/BUS guarded in both the `signal()' calls and the `catch()' case labels; savetty/resetty shimmed; the `-DFILES' quote-hack replaced with literal paths; `sys/time.h' dropped).  Will NOT LINK: "non-remote data allocation exceeds 64k".  The globals in `INCLUDE/castle.h' are declared without `extern' and five .c files include it, so static data totals ~80K; `short'->`char' on the two graphics arrays made it WORSE (93844), so c68 is not common-merging the tentative definitions.  The fix is to extern-ise castle.h's globals with one definition per global in a single .c.  Terms fine (CSG no-notice basis).  Work is in the other session's scratch, not in the tree |
 | othello3 / reversi | `CSG/volume12/othello3/`; `CSG/volume15/reversi/` | 1991-92 | free / GPL | othello3 DONE (77b95c01) as othello -- getchar->getch, LINES/COLS clash removed; reversi (2-part) still open |
 | jotto, conn4 (Sicherman) | `CSG/volume11/jotto/`, `CSG/volume12/conn4/` | 1990-91 | no notice | conn4 DONE (39eb5990) as c4; jotto DONE (0a75970f) -- built-in word list |
 | yahtzee2 | `CSG/volume8/yahtzee2/` | 1989 | no notice | one fork |
