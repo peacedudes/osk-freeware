@@ -944,5 +944,8 @@ fudd|fudd|lex.yy.c yywrap.c|||
 drawl|drawl|lex.yy.c yywrap.c|||
 lame|lame|lame.c||/dd/LIB/rand.r|
 canfield|canfield|canfield.c||/dd/LIB/curses.l /dd/LIB/termlib.l /dd/LIB/rand.r|
+cwasm|corewars|amain.c tokenize.c parse.c lookup.c aoutput.c assem.c|SMALL||
+cwdis|corewars|disassem.c|SMALL||
+corewar|corewars|main.c load.c output.c play.c inst.c|SMALL||
 dvi2tty|dvi2tty|dvi2tty.c dvistuff.c|||-dstrchr=index
 disdvi|dvi2tty|disdvi.c|||-dstrchr=index

@@ -1,6 +1,6 @@
 # What is on this disk
 
-989 programs of OS-9/68K community software, gathered from the archives that kept it and made to run again. **640 of them need nothing but this disk**; the rest want Microware's `cio`, marked below with a star.
+992 programs of OS-9/68K community software, gathered from the archives that kept it and made to run again. **643 of them need nothing but this disk**; the rest want Microware's `cio`, marked below with a star.
 
 `DOC/INDEX` on the disk lists everything alphabetically. This is the same collection sorted by what each program is *for*, which is the more useful order when you do not yet know what you are looking for.
 
@@ -22,7 +22,7 @@
 | [Encoding & conversion](#encoding--conversion) | 29 | Between text encodings, line endings, Macintosh formats, ciphers and hashes. |
 | [Communications](#communications) | 97 | Kermit in several builds, terminal sessions, and networking. |
 | [Graphics & images](#graphics--images) | 202 | The netpbm toolkit, JPEG, a ray tracer, and things that draw. |
-| [Games](#games) | 75 | Adventures, board and card games, arcade ports, dungeon crawls and puzzles. |
+| [Games](#games) | 78 | Adventures, board and card games, arcade ports, dungeon crawls and puzzles. |
 | [Screen toys](#screen-toys) | 8 | Animations and screen effects -- they draw on the terminal rather than print to it. Some run until you stop them. |
 | [Amusements](#amusements) | 26 | Generators, simulators and diversions that are not quite games. |
 | [System & modules](#system--modules) | 130 | OS-9 module and process tools, devices, system state and scheduling. |
@@ -1185,7 +1185,7 @@
 
 *Adventures, board and card games, arcade ports, dungeon crawls and puzzles.*
 
-<details><summary>75 programs</summary>
+<details><summary>78 programs</summary>
 
 **Adventure & fiction**
 
@@ -1269,6 +1269,9 @@
 | `ask` | the client for `wisecrack': it reads one line from /pipe/txtpipe and prints it, and says `No Wisecracks coming' when nothing is feeding the pipe. Start the server first -- `wisecrack &' -- and it answers<br>**How:** Asks a yes/no question and sets the shell status, for scripts. On its own it says "No Wisecracks coming" -- it is the front half of the `wisecrack' pipe from EFFO forum 20. |
 | `backgammon` | &#9733; backgammon, with a computer opponent<br>`Syntax: backgammon [<opts>] [<file>]` |
 | `convert` | starts the WORLD text adventure: run it and the game opens with its banner, the opening paragraph and a `>' prompt<br>**How:** It STARTS the `world' adventure -- run it and the game opens. |
+| `corewar` | Core War: two Redcode battle programs fight for control of a circular memory.  `corewar <cycles> a.e b.e' runs the fight and maps the core -- a 1 or a 2 marks the cells each program holds -- as the cycles count down.  Assemble warriors with cwasm; twelve samples are in GAMES/COREWARS |
+| `cwasm` | the Core War assembler: `cwasm w.rc' turns a Redcode warrior into the object file w.e that corewar loads.  Sample warriors are in GAMES/COREWARS |
+| `cwdis` | the Core War disassembler: `cwdis w.e' prints a warrior object back as a numbered opcode and parameter table |
 | `hotel` | &#9733; hotel -- two-player board game, played by coordinates<br>**How:** Full-screen: it takes over the display. **control-C gets you out**; q, Q, control-D and ESC do not. If it has a quit command of its own, its documentation in DOC/ will say. |
 | `mkdict` | builds bog's dictionary from a word list in the current directory<br>**How:** Run it in /dd/GAMES/BOG, where bog's word list is; it is in CMDS/GAMES. |
 | `mkindex` | builds the index bog reads its dictionary through, from the dictionary in the current directory<br>**How:** Run it in /dd/GAMES/BOG after mkdict; it is in CMDS/GAMES. |

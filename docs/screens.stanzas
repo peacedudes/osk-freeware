@@ -141,6 +141,7 @@ connect 6f66266523d65a1d
 convert 35a7dc94e03647b3
 cookhash cedded114d6c5708
 cookie 56260c431cc004e7
+corewar 18d045751014191a
 cp 4eb4c5585888d0e5
 cpr 76278f625fcbe97d
 cpu 098e41d6e2631e71
@@ -155,6 +156,8 @@ cursive b6556ab83fc099c5
 cut db89f25fada4b2e9
 cuts e025b1f5300263c5
 cvtbase 9f4a0465f3919336
+cwasm 35542b5a99b2deb9
+cwdis 49bb773ef35fdfef
 cxref 835c2421b77d6158
 cyberwar 217de83f79ad4776
 dam c30b7cc7269589c3

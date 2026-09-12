@@ -1000,3 +1000,6 @@ monop|none|set up players, then at -- Command: type roll to move, print for the 
 yahtzee2|none|enter the player count, space toggles human/computer, n names a player; in play a digit holds a die, space rerolls, b shows rules, q quits
 dvi2tty|dvi2tty|
 disdvi|none|it takes a .DVI file and nothing else -- `-?' is read as a filename, so there is no help flag; the man page is in DOC/dvi2tty
+corewar|none|corewar <cycles> <w1.e> <w2.e> runs the fight; assemble warriors with cwasm first; no argument shows usage
+cwasm|none|cwasm file.rc [file2.rc ...] writes each warrior as a .e object corewar loads
+cwdis|none|cwdis file.e prints the warrior object as an opcode/parameter table

@@ -1309,3 +1309,48 @@ wait    5
 snap
 send    n
 wait    2
+
+shot    corewar
+size    24 80
+cap     Core War: two battle programs written in Redcode, the warriors bomb.rc,
+cap     dwarf.rc, gemini.rc and the rest, fight for control of a circular
+cap     memory.  `corewar <cycles> a.e b.e' runs the fight; the screen maps the
+cap     core, a 1 or a 2 marking the cells each program holds, with the cycles
+cap     counting down.  Assemble a warrior with cwasm (cwasm dwarf.rc makes
+cap     dwarf.e); twelve samples and their objects are in GAMES/COREWARS.
+try     corewar 2000 dwarf.e imp.e
+run     builtin cd /dd/GAMES/COREWARS
+run     clear
+run     corewar 2000 dwarf.e imp.e
+wait    3
+snap
+wait    3
+snap
+send    \r
+wait    2
+
+shot    cwdis
+size    24 80
+cap     The Core War disassembler: cwdis reads a warrior object and prints it
+cap     back as a numbered table -- the opcode and its two parameters, with `#'
+cap     marking an immediate operand and `@' an indirect one.  Assemble an
+cap     object with cwasm first; the samples in GAMES/COREWARS come ready-made.
+try     cwdis dwarf.e
+run     builtin cd /dd/GAMES/COREWARS
+run     clear
+run     cwdis dwarf.e
+wait    2
+snap
+
+shot    cwasm
+size    24 80
+cap     The Core War assembler: cwasm reads a Redcode warrior (a .rc file) and
+cap     writes the object .e that corewar loads -- `cwasm dwarf.rc' makes
+cap     dwarf.e.  Name several and it assembles each in turn.  Twelve sample
+cap     warriors are in GAMES/COREWARS; cwdis prints an object back out.
+try     cwasm dwarf.rc imp.rc gemini.rc mice.rc
+run     builtin cd /dd/GAMES/COREWARS
+run     clear
+run     cwasm dwarf.rc imp.rc gemini.rc mice.rc
+wait    2
+snap
