@@ -534,3 +534,36 @@ the outcome here, and fold anything found into a batch above.
 
 ### Recovery log
 - 2026-09-11: first sweep; table above.
+- 2026-09-12: re-probed every row. **No change in our favour, and one row
+  got worse for a reason that is not ours.** The Internet Archive is
+  GLOBALLY OFFLINE today -- `web.archive.org/cdx/...` answers HTTP 503 with
+  a page headed "Internet Archive services are temporarily offline", and
+  `archive.org/wayback/available` answers 429 for every host. The front page
+  answers 200, which is how this reads as working if you only check the
+  root: **probe the CDX endpoint, not the front page.** So the three Wayback
+  rows (chestnut.cs.wisc.edu, lucy.ifi.unibas.ch, the German university
+  FTPs) and the `cdrom-coco-archive` row could not be tested at all today;
+  their 429 is the outage, not a block on us. Retry when IA is back.
+  Still refusing, same as yesterday: Google Groups comp.os.os9 (429),
+  usenetarchives.com (403). Still no connection at all: ftp.uni-kl.de,
+  ftp.leo.org, os9forum.de, os9.org, ftp.rtsi.com, minkirri.apana.org.au.
+  Now answering where the table did not say so: effo.org (200) and
+  colorcomputerarchive.com (200) -- both worth a real fetch next session.
+  **Everything the pool was actually built from is up**: the sunet
+  comp.sources.games mirror, funet's alt.sources, trashworldnews thread
+  fetches and microware.com all answer 200. Nothing is blocking more
+  harvesting; the blocked rows are the ones that were already blocked.
+
+  **And the "we got cut off about 1990" is a property of the SOURCE, not of
+  our access.** Measured in the pool: the tuhs copies we hold are
+  `alt.sources` 1988-1991 and `comp.sources.misc` 1988-1991 and stop there,
+  because utzoo/tuhs stops mid-1991 -- which is the row already in the table
+  above. It is not a fetch that failed partway and can be resumed; there is
+  nothing after 1991 at that source to resume to. The later years have to
+  come from somewhere else, and one of them is already in hand: funet's
+  `alt.sources.index` covers **volume93 through volume99** (5,356 lines)
+  plus 1,350 lines of a flat modern `/pub/archive/alt.sources/NNNN.gz`
+  section, and funet answers 200 today. So the real hole is **1992 to early
+  1993** -- between where tuhs stops and where funet's volumes start -- plus
+  the gaps the table already names. Next session's harvest should work
+  funet's volume93-95 range, which is in era and untouched.
