@@ -1283,3 +1283,29 @@ send    quit\r
 wait    1
 send    yes\r
 wait    2
+
+shot    yahtzee2
+size    24 80
+cap     Yahtzee 2.1, the poker-dice game, with a curses scoreboard: up to
+cap     six players, human or computer, roll five dice three times a turn
+cap     and bank each roll in one of thirteen categories.  The dice boxes
+cap     are drawn across the top, the categories down the left, and the
+cap     computer plays a studied game.  Press a number to hold a die,
+cap     space to reroll, `?' for help, `b' for the rules, `q' to quit.
+cap     High scores are kept in GAMES/YAHTZEE.
+try     yahtzee2 -f
+run     yahtzee2 -f
+wait    2
+send    2
+wait    1
+send    \r
+wait    1
+send    \r
+wait    5
+snap
+wait    5
+snap
+wait    5
+snap
+send    n
+wait    2
