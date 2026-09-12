@@ -400,17 +400,38 @@ them (836 of 900 against the true 20).
 
 ## Next
 
-- The acquisitions retry was done at the top of this session: the Internet
-  Archive is globally offline, so the three Wayback rows and cdrom-coco are
-  untestable rather than refused.
-- **effo.org answers 200 and is a PARKED PAGE -- no content at all.**  I
-  recorded it as a live lead on the strength of the status code alone, which
-  is the very trap I had written into the recovery log two hours earlier
-  about the Internet Archive: a 200 on a ROOT URL is not evidence of
-  content.  Fetch something real before believing a host is back.
-- colorcomputerarchive.com is alive but it is CoCo, i.e. 6809 OS-9, where
-  this disk is OS-9/68000; judge scope before harvesting it.
-- The reachable gap is the MICROWARE archive: `os9/mw/*.tsv' lists files the
-  pool never fetched, and microware.com answered 200 this session.
-- TOP's own source trees, as above.
-- Q2 (GPL source for the gawk/bison/emacs binaries) is rdoggett's call.
+Three acquisition avenues were opened and CLOSED on 2026-09-12.  All of them
+ended on TERMS or on prior coverage, not on availability -- which is worth
+knowing before opening a fourth.
+
+- **The Microware archive refetch is done**: the five categories the pool
+  lost are back, 153 files, 34 MB, zero failures (`2f048f62', `d2081094').
+  It yielded NO new programs.  rz/sz are commercial, five are K-Windows
+  clients, `ot' states no terms at all, `fpu' is Microware's and is yours.
+  What it did yield is licence data: lharc and m4 (`579f289c'), and
+  provenance for k/xy/z which were shipping unrecorded (`64cf6cfb').
+- **TOP's 30 source trees are triaged** (`4542b440').  Four fill real gaps:
+  bison, emacs and gawk are Q2 and yours; larn is blocked on a bare 1986
+  copyright with no grant anywhere in its 25 files, even though the tree is
+  demonstrably the right source for the shipped binary.
+- **DOC/ORIGINS is already mined** (`c1579c53').  Do not plan a sweep
+  through it -- src_census.py's ARCHIVE route reads it already, so the 309
+  source-less programs are precisely the residue it cannot place.
+
+**The honest state of "find more": the cheap seams are worked out.**  Of the
+309 without source, 5 are Microware runtime modules that will never have
+any, 25 are large GNU packages, and the remaining 279 need per-program
+archive hunting -- the same work the batches in PLAN-acquisitions represent,
+at roughly one evening per handful.
+
+Still genuinely open, in order of how much they are worth:
+
+- **Two decisions are yours**, both in FOR-RDOGGETT.md with the material
+  located: Q2 (gawk/bison/emacs source, TOP trees ready to stage) and
+  Microware's `fpu' module.
+- colorcomputerarchive.com is alive and unfetched, but it is CoCo -- 6809,
+  where this disk is 68k.  Judge scope before spending on it.
+- The Internet Archive was globally offline all night; its three Wayback
+  rows and cdrom-coco are untestable rather than refused.  Retry.
+- Everything in ROADMAP-freeware.md about the release -- CI never exercised,
+  branch never pushed, nothing tagged -- is yours.
