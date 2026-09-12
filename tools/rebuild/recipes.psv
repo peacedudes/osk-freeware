@@ -958,3 +958,4 @@ zc|zc|zc.c||/dd/LIB/termlib.l|
 cfscores|canfield|cfscores.c|||
 rot22|rot22|rot22.c||/dd/LIB/termlib.l|
 reversi|reversi|reversi.c comp.c graphics.c menu.c move.c||/dd/LIB/curses.l /dd/LIB/termlib.l|
+gnugo|gnugo|count.c countlib.c endgame.c eval.c exambord.c findcolr.c findnext.c findopen.c findpatn.c findsavr.c findwinr.c fioe.c genmove.c getij.c getmove.c initmark.c main.c matchpat.c opening.c openregn.c random.c seed.c sethand.c showbord.c showinst.c suicide.c|||

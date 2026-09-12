@@ -1390,3 +1390,27 @@ wait    4
 snap
 send    \033
 wait    2
+
+shot    gnugo
+size    24 80
+cap     GNU Go on the full 19x19 board, a few moves in.  It asks the
+cap     handicap and which colour you take, then plays: moves are a column
+cap     letter and a row number -- A to T with I left out, 1 to 19 -- and
+cap     `pass', `save' and `stop' do what they say.  It counts the score
+cap     when both sides pass.
+try     gnugo
+run     clear
+wait    1
+run     gnugo
+wait    3
+send    \r
+wait    2
+send    0\r
+wait    2
+send    b\r
+wait    3
+send    D4\r
+wait    6
+snap
+send    stop\rn\r
+wait    3

@@ -1,6 +1,6 @@
 # What is on this disk
 
-999 programs of OS-9/68K community software, gathered from the archives that kept it and made to run again. **650 of them need nothing but this disk**; the rest want Microware's `cio`, marked below with a star.
+1000 programs of OS-9/68K community software, gathered from the archives that kept it and made to run again. **651 of them need nothing but this disk**; the rest want Microware's `cio`, marked below with a star.
 
 `DOC/INDEX` on the disk lists everything alphabetically. This is the same collection sorted by what each program is *for*, which is the more useful order when you do not yet know what you are looking for.
 
@@ -22,7 +22,7 @@
 | [Encoding & conversion](#encoding--conversion) | 29 | Between text encodings, line endings, Macintosh formats, ciphers and hashes. |
 | [Communications](#communications) | 98 | Kermit in several builds, terminal sessions, and networking. |
 | [Graphics & images](#graphics--images) | 202 | The netpbm toolkit, JPEG, a ray tracer, and things that draw. |
-| [Games](#games) | 80 | Adventures, board and card games, arcade ports, dungeon crawls and puzzles. |
+| [Games](#games) | 81 | Adventures, board and card games, arcade ports, dungeon crawls and puzzles. |
 | [Screen toys](#screen-toys) | 9 | Animations and screen effects -- they draw on the terminal rather than print to it. Some run until you stop them. |
 | [Amusements](#amusements) | 26 | Generators, simulators and diversions that are not quite games. |
 | [System & modules](#system--modules) | 131 | OS-9 module and process tools, devices, system state and scheduling. |
@@ -1192,7 +1192,7 @@
 
 *Adventures, board and card games, arcade ports, dungeon crawls and puzzles.*
 
-<details><summary>80 programs</summary>
+<details><summary>81 programs</summary>
 
 **Adventure & fiction**
 
@@ -1241,6 +1241,7 @@
 | `gnuchessc` | GNU Chess 4.0 built for a curses display.  Its display files live at a compiled-in path; supply them there for a board.  It takes a move as `e2e4' and answers with its own<br>**How:** Its board display reads files from a compiled-in path; supply them there for a board. It still takes a move as `e2e4' and answers with its own. |
 | `gnuchessn` | &#9733; GNU Chess with the 1989 display, which draws the squares as blocks of hashes so light and dark can be told apart on a terminal with no highlighting.  Source `. /dd/SYS/termcap.entry' first; moves go in as `e2e4'<br>**How:** As gnuchess: `. /dd/SYS/termcap.entry' first, then moves as `e2e4'. |
 | `gnuchessr` | &#9733; GNU Chess with the plainest display -- pieces as letters, capitals for one side and lower case for the other, nothing that needs a terminal to draw.  It prompts `Enter #moves #minutes', takes a move and replies with its own |
+| `gnugo` | GNU Go 1.1, the Free Software Foundation's Go program: it plays Wei-Chi on a 19x19 board, gives black up to 17 handicap stones if you ask, and counts the score at the end.  Moves are a letter and a number, `D4'.  It needs no terminal setup |
 | `mastrm` | Master Mind: break the computer's hidden four-peg colour code in ten guesses, reading the `b' and `w' pegs each guess earns for right colour in right or wrong place |
 | `mille` | &#9733; Mille Bornes -- the French car-racing card game<br>**How:** Full-screen Mille Bornes. `p' picks a card, `u #' plays one, `d #' discards, `s' saves the game and `q' quits. |
 | `monop` | Monopoly for two to nine players: the Parker Brothers board game at the keyboard.  Each turn `roll' to move and buy the property you land on; `print' shows the whole board with owners, prices and rents, and `mortgage', `buy houses' and `trade' manage it.  Money and rent are tracked for you. `quit' ends the game |
