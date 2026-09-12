@@ -343,3 +343,49 @@ rule on if you want them touched:
    the CI pin in `.github/workflows/build-image.yml` is an old os9exec
    commit and has never run for real. I can bump it and run the workflow
    locally; the push, the tag and the merge to main are yours.
+
+## dvi2tty -- two decisions before it can ship (2026-09-11)
+
+`dvi2tty' reads a TeX .DVI file and prints it as text, and `disdvi' dumps a
+DVI's structure.  Both BUILD AND RUN here: pointed at `DOC/mg/mg_doc.dvi',
+dvi2tty prints "The MG Reference Manual / Release MG2A / Sandra J.
+Loosemore".  This is a real gap on the disk -- TeX is here, and eight DVI
+PRINTER drivers (dvialw, dvijet, dvilj2 ...), but nothing that shows a DVI
+on a screen.  They are built and waiting in scratch, deliberately not staged.
+
+**1.  It states no licence, and the trail its own readme gives leads to
+another program's notice.**
+
+The archive is `dvi2tty.ar' from the Microware OS-9 archive (MW 3861).  The
+group's `tex_readme' says: "I am NOT the author of these programs, see the
+'copying' and 'readme' files in ctexdoc.ar for authors instructions on
+distribution."  I could not fetch ctexdoc.ar (the archive page returns HTML,
+no download route), but `ctexsrc.ar' IS in the pool and carries the same
+`copying'.  It is Pat Joseph Monardo's notice for **Common TeX**, 1986-87 --
+verbatim copies with the notice preserved, a source-availability
+requirement, modified versions under an identical notice, no warranty.
+
+Monardo wrote Common TeX.  He did not write dvi2tty: that is Marcel J.E.
+Mol's C translation (Delft, 1989-90) of Svante Lindahl's Pascal (KTH).  So
+the pointer leads to a notice covering a DIFFERENT program, and dvi2tty
+itself carries no grant at all.  The one permission sentence in its README
+-- "use it and improve as you wish" -- is about `disdvi' specifically, in a
+paragraph about disdvi.
+
+The disk has precedent for shipping a Usenet posting with no notice
+(`cdecl', `xargs', `which' are all worded "posted to Usenet and freely
+redistributed since.  No licence text accompanies the source.").  dvi2tty is
+not quite that: it came through the Microware archive rather than a
+newsgroup posting, and its author is alive and findable (Marcel Mol later
+released dvi2tty under the GPL).  **Ship it on the no-notice precedent, ask
+Marcel Mol, or leave it out?**  I have not staged it either way.
+
+**2.  Its README ends with an obscenity.**
+
+The author's signature block closes with a Lennon lyric containing the word
+"fucking".  The collection's convention is that `ORIG/' holds a release
+exactly as it came, which would ship it verbatim into `SRC/dvi2tty/ORIG/'
+and, if the README goes to `DOC/', onto the documentation shelf as well.
+Nothing on the disk currently does that as far as I know.  Your call: ship
+ORIG verbatim as the convention says, keep ORIG but leave the README out of
+DOC, or neither.
