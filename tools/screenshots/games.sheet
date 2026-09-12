@@ -1053,3 +1053,18 @@ cap     At a terminal it reports that it needs G-Windows.
 try     dclock
 run     dclock; echo "status $?"
 wait    5
+
+shot    wump
+size    24 80
+cap     Hunt the Wumpus: you move room to room through a cave of tunnels,
+cap     reading the hazards you sense -- a draft is a pit next door, a
+cap     smell is the Wumpus himself.  Move with `m' and a room number, or
+cap     loose a crooked arrow with `s' and a path of rooms to kill him.
+cap     Miss and he may wake and eat you.
+try     wump
+run     wump
+send    n\r
+wait    3
+snap
+send    \003
+wait    2

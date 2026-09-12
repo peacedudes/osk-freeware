@@ -918,3 +918,4 @@ howfrag|howfrag|howfrag.c|||
 unc|unc|main.c alloc.c file.c robj.c iset.c prin.c osk.c heur.c os9traps.c||/dd/LIB/os9lib.l|
 phoon|phoon|phoon.c tws.c||/dd/LIB/math.l|
 globe|globe|globe.c|||
+wump|wump|wump.c getopt.c||/dd/LIB/rand.r|

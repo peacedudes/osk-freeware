@@ -1,6 +1,6 @@
 # What is on this disk
 
-959 programs of OS-9/68K community software, gathered from the archives that kept it and made to run again. **610 of them need nothing but this disk**; the rest want Microware's `cio`, marked below with a star.
+960 programs of OS-9/68K community software, gathered from the archives that kept it and made to run again. **611 of them need nothing but this disk**; the rest want Microware's `cio`, marked below with a star.
 
 `DOC/INDEX` on the disk lists everything alphabetically. This is the same collection sorted by what each program is *for*, which is the more useful order when you do not yet know what you are looking for.
 
@@ -22,7 +22,7 @@
 | [Encoding & conversion](#encoding--conversion) | 29 | Between text encodings, line endings, Macintosh formats, ciphers and hashes. |
 | [Communications](#communications) | 96 | Kermit in several builds, terminal sessions, and networking. |
 | [Graphics & images](#graphics--images) | 202 | The netpbm toolkit, JPEG, a ray tracer, and things that draw. |
-| [Games](#games) | 62 | Adventures, board and card games, arcade ports, dungeon crawls and puzzles. |
+| [Games](#games) | 63 | Adventures, board and card games, arcade ports, dungeon crawls and puzzles. |
 | [Screen toys](#screen-toys) | 8 | Animations and screen effects -- they draw on the terminal rather than print to it. Some run until you stop them. |
 | [Amusements](#amusements) | 21 | Generators, simulators and diversions that are not quite games. |
 | [System & modules](#system--modules) | 127 | OS-9 module and process tools, devices, system state and scheduling. |
@@ -1177,7 +1177,7 @@
 
 *Adventures, board and card games, arcade ports, dungeon crawls and puzzles.*
 
-<details><summary>62 programs</summary>
+<details><summary>63 programs</summary>
 
 **Adventure & fiction**
 
@@ -1262,6 +1262,7 @@
 | `vtxtcn` | world - build its text tables.  Writes .inc files; needs world's .dat files in the current directory |
 | `wisecrack` | a server, and `ask' is its client. Run it in the background and every `ask' pulls one line out of it through /pipe/txtpipe -- slogans from a German OS-9 seminar, 1992-93. `wisecrack & ask "anything"' |
 | `world` | World - text adventure |
+| `wump` | hunt the Wumpus through a cave of tunnels by the hazards you sense: a draft means a pit is next door, a smell the Wumpus himself.  Move room to room, then loose a crooked arrow along a path of rooms to kill him -- but miss and he may wake and eat you.  `-h' for a harder cave; `-r'/`-t'/`-a' resize it |
 
 **Puzzles**
 

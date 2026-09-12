@@ -943,6 +943,7 @@ hackwish|none|the wish defaults to 3 potions of gain level; name your own instea
 which|which -?|
 whereis|whereis -?|
 worm|none|it takes a starting length and nothing else; h, j, k and l steer and control-C leaves
+wump|none|-h harder, -r/-t/-a resize the cave; control-C or a bad end leaves
 xmas|none|it takes no options; control-C ends it
 unshar|unshar -?|
 mimecode|mimecode|
