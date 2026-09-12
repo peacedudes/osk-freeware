@@ -355,7 +355,7 @@ the native tools expect `/dd/SYS/utmp`, group, password or smail.
 | Toon 1.0, Juggle 1.0 | `ALT/volume94/May/940508.36-.40`; `ALT/volume95/Apr/950426.08.gz` | 1994-95 | GPL | curses, setitimer |
 | rogue 5.3 clone (Stoehr) | `CSG/volume1/rogue/` | 1987 | not for profit -- **Q1** | curses, sgtty |
 | gnugo, napoleon, adven2 | `CSG/volume6/gnugo/`, `CSG/volume17/napoleon/`, `CSG/volume11/adven2/` | 1989-93 | GPL/GPL/none | napoleon ANSI |
-| text toys: spew, silly.tar (kraut, b1ff, chef, fudd) | `CSG/volume1/spew.gz`; `ALT/volume92/Dec/921220.11` | 1987-92 | spew free; silly mixed | spew DONE (0a75970f) -- headline generator, no lex; silly (chef/b1ff/fudd) still open, lex |
+| text toys: spew, silly.tar (kraut, b1ff, chef, fudd) | `CSG/volume1/spew.gz`; `ALT/volume92/Dec/921220.11` | 1987-92 | spew free; silly mixed | spew DONE (0a75970f); chef DONE (5b4dbd3e), fudd+drawl DONE (2cd9981e) -- lex filters generated in-universe; kraut/newspeak(big)/plain-C ones open; mb SKIPPED (parodies a real person) |
 Leave: cdungeon ("COMMERCIAL USAGE STRICTLY PROHIBITED", Infocom); hearts,
 dots2, diph (sockets/fork/select); X11-only; umoria/omega/nethack from Usenet
 (TOP has OSK builds -- B6).
