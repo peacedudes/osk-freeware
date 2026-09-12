@@ -180,3 +180,17 @@ run     greg 2461281
 wait    6
 run     greg 2440588
 wait    6
+
+shot    almanac
+size    24 80
+cap     Where the Sun, Moon and the eight planets stood at a given moment:
+cap     right ascension and declination, the apparent diameter of each, and
+cap     its distance in astronomical units.  Give it a longitude and latitude
+cap     as well and it adds azimuth and altitude for an observer standing
+cap     there.  Its constants were taken from the 1990 Astronomical Almanac,
+cap     so the further a date lies from then the softer the accuracy.
+try     almanac 0101.1995 12.0000
+run     clear
+wait    1
+run     almanac 0101.1995 12.0000
+wait    8

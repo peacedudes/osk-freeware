@@ -1,0 +1,1 @@
+zc, kzc, and zipdata are all OS-9/68000 programs.  zc and kzc are 2versions of ZipCode by Joel Mathew Hegberg (zc for termcap systems andkzc for K-Windows systems).  Both require the data file zipdata.zc and kzc allow the user to punch in a 5-digit zip code and it very veryquickly retrieves the city and state information.   -- Joel Mathew Hegberg. 

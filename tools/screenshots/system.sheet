@@ -1092,3 +1092,20 @@ run     clear
 wait    1
 run     rsdsk -dir PUBDOM09.DSK
 wait    5
+
+shot    zc
+size    24 80
+cap     A US postal zip code in, the city and state out.  The table it reads
+cap     is three quarters of a megabyte of them, one line per code, and a
+cap     code that is not in the table is told so rather than guessed at.
+cap     With no argument it opens a small form instead, where C clears the
+cap     field and Q leaves.
+try     zc 60115
+run     clear
+wait    1
+run     zc 60115
+wait    3
+run     zc 02139
+wait    3
+run     zc 99999
+wait    3

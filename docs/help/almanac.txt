@@ -1,0 +1,18 @@
+$ almanac
+Syntax of command:
+    "almanac [<longitude> <latitude>] <date> <time> [<timezone>]"
+where
+    "<longitude>" is local longitude (DDD.MM,+W,-E)
+    "<latitude>" is local latitude (DD.MM,+N,-S)
+    "<date>" is calendar date (MMDD.YYYY)
+    "<time>" is time (24 hour format,HH.MMSS)
+    "<timezone>" is one of the following: "EST", "CST", "MST", or "PST"
+
+Azimuth and altitude is not computed if the parameter "<longitude>" and
+"<latitude>" was omitted.  Universal time is assumed unless a "<timezone>"
+flag was supplied.  For the summer months, enter your time minus 1 hour if
+daylight saving time is in effect in your local time zone.
+
+All displayed angles are in degrees, minutes, seconds (if displayed) format
+except for right ascension which is in hours, minutes, seconds format.
+Azimuth is measured clockwise from north in the plane of the horizon.

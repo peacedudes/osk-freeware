@@ -251,7 +251,7 @@ re-derived:
 | freeb | MW 3921; TWN 653668 | 1989 | PD | DONE e1a56b0c -- ships |
 | howfrag | MW 4223 | | PD | DONE df6d23ce -- ships |
 | uustat, ancient, hdump/undump | MW 3970, 3894, 3928 | | per item | hdump+undump DONE e1a56b0c; uustat DONE a214cf0b -- ships, built unchanged, Oldach's own grant; ancient DROPPED, no terms stated |
-| dumpinit (init module lister) | MW 2240 | ~1994 | none | generic though filed MM/1 |
+| dumpinit (init module lister) | MW 2240 | ~1994 | none | ATTEMPTED 2026-09-12, BLOCKED and left out.  Andrzej Kotanski, Cracow 1995; source is CR-clean and no terms are stated anywhere in it.  It will not compile against this SDK's <module.h>: of the 27 `mod_config' members it prints, 21 exist here and six do not -- _msysparam, _mip_id, _mcompat, _mcompat2, _mstacksz, _mcoldretrys, _mmemlist.  The SDK struct ends at _mevents plus _mreserved[14], where his MM/1-era header evidently named the compatibility bytes, the IRQ stack size, the coldstart retry count and the coloured-memory list.  Mapping those onto _mreserved would be inventing an init-module layout, which is measurement this collection does not have.  Source kept out of disk/SRC; the pool copy is at mw/dl/x/mm1_dumpinit |
 | mimecode (base64) | MW 2503 | 1995 | author's permission | DONE -- built -qm, tested, carded; Tim Kientzle/DDJ, Gene Heskett's OS-9 pack |
 | zc ZipCode + ZIPDATA | MW 2248, 2250 | 1995 | PD | needs `/dd/sys/zipcodes.txt` |
 | os9dsk / rsdsk (read CoCo .DSK images) | MW 2244, 2246 | 1997 | freely distributed | DONE 07a11dee -- both ship, with a sample .DSK each |

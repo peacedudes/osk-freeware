@@ -953,3 +953,5 @@ dvi2tty|dvi2tty|dvi2tty.c dvistuff.c|||-dstrchr=index
 disdvi|dvi2tty|disdvi.c|||-dstrchr=index
 uustat|uustat|uustat.c||/dd/LIB/os9lib.l|
 browse|browse|browse.c||/dd/LIB/os9lib.l /dd/LIB/termlib.l|
+almanac|almanac|almanac.c||/dd/LIB/math.l|
+zc|zc|zc.c||/dd/LIB/termlib.l|

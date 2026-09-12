@@ -1005,3 +1005,5 @@ cwasm|none|cwasm file.rc [file2.rc ...] writes each warrior as a .e object corew
 cwdis|none|cwdis file.e prints the warrior object as an opcode/parameter table
 uustat|uustat -?|
 browse|browse -?|
+almanac|almanac|
+zc|none|zc <zipcode> names the city and state; with no argument it opens a form, C clears the field and Q quits

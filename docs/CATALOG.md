@@ -1,6 +1,6 @@
 # What is on this disk
 
-994 programs of OS-9/68K community software, gathered from the archives that kept it and made to run again. **645 of them need nothing but this disk**; the rest want Microware's `cio`, marked below with a star.
+996 programs of OS-9/68K community software, gathered from the archives that kept it and made to run again. **647 of them need nothing but this disk**; the rest want Microware's `cio`, marked below with a star.
 
 `DOC/INDEX` on the disk lists everything alphabetically. This is the same collection sorted by what each program is *for*, which is the more useful order when you do not yet know what you are looking for.
 
@@ -25,9 +25,9 @@
 | [Games](#games) | 78 | Adventures, board and card games, arcade ports, dungeon crawls and puzzles. |
 | [Screen toys](#screen-toys) | 8 | Animations and screen effects -- they draw on the terminal rather than print to it. Some run until you stop them. |
 | [Amusements](#amusements) | 26 | Generators, simulators and diversions that are not quite games. |
-| [System & modules](#system--modules) | 130 | OS-9 module and process tools, devices, system state and scheduling. |
+| [System & modules](#system--modules) | 131 | OS-9 module and process tools, devices, system state and scheduling. |
 | [Disk & DOS](#disk--dos) | 20 | Reading and writing MS-DOS media with the mtools set. |
-| [Time & calendar](#time--calendar) | 14 | Calendars, clocks and astronomy. |
+| [Time & calendar](#time--calendar) | 15 | Calendars, clocks and astronomy. |
 | [Maths & calculators](#maths--calculators) | 15 | Calculators, plotting, orbits and number theory. |
 | [Printing](#printing) | 15 | Spoolers, page formatting and PostScript. |
 | [Documentation](#documentation) | 5 | Pagers, readers and the help system. |
@@ -1391,7 +1391,7 @@
 
 *OS-9 module and process tools, devices, system state and scheduling.*
 
-<details><summary>130 programs</summary>
+<details><summary>131 programs</summary>
 
 **Devices & disks**
 
@@ -1414,6 +1414,7 @@
 | `about` | what this collection knows about a program: what it is, what it is for, where it came from, the files it opens and whether they are here, and whether its source and documentation survived.  One card per program -- `about hack'.  DOC/CATEGORIES browses; this answers. |
 | `whereis` | find a program's source, command and documentation -- SRC, CMDS, DEFS, LIB and DOC, searched all the way down on every device PATH names.  `whereis gen'<br>`whereis [ -sbmu ] [ -SBM dir ... -f ] name...` |
 | `which` | what a command name runs, found the way the OS-9 shell finds it, and for a module already in memory, the file it came from.  `which -a dir'<br>`Usage: which [-i] [-a] [--] [<command>]` |
+| `zc` | looks up a US postal zip code and names the city and state -- `zc 60115' answers `De Kalb, IL.'.  With no argument it opens a form you type codes into until you quit, C clearing the field and Q leaving.  It reads SYS/zipcodes.txt, which ships |
 
 **Keeping**
 
@@ -1620,12 +1621,13 @@
 
 *Calendars, clocks and astronomy.*
 
-<details><summary>14 programs</summary>
+<details><summary>15 programs</summary>
 
 **Astronomy**
 
 | | |
 |---|---|
+| `almanac` | computes where the Sun, Moon and the eight planets are for a given date and time: right ascension, declination, apparent diameter and distance in AU.  Add your longitude and latitude and it also gives azimuth and altitude.  Its constants were taken from The Astronomical Almanac 1990, so accuracy softens the further you go from then<br>`Syntax of command:` |
 | `ephem` | &#9733; an astronomical ephemeris: a live panel of the sun, moon and planets -- right ascension, declination, azimuth, altitude and more -- for a site and time, from the configuration and star database in SYS. RETURN passes the opening page, control-D quits<br>**How:** An astronomical ephemeris: `ephem -c /dd/SYS/ephem.cfg -d /dd/SYS/ephem.db'. RETURN passes the opening page; any key stops the loop; ? is help; control-D quits. |
 | `ephem881` | &#9733; ephem built for a 68881 floating-point coprocessor: the same panel, and with hardware floating point the whole table fills in at once<br>**How:** The same as ephem, built for a 68881 coprocessor. Control-D quits. |
 | `lunisolar` | &#9733; the phase of the moon in one line; given a year and a time zone it writes a whole lunisolar calendar as LaTeX instead<br>`Bad args: lunisolar -?` |
