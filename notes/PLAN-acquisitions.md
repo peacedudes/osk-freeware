@@ -282,12 +282,12 @@ the native tools expect `/dd/SYS/utmp`, group, password or smail.
 | scrabble | `CSG/volume6/scrabble/` | 1989 | redistribute in any manner | curses |
 | saa (Streets and Alleys) | `CSG/volume12/saa/` | 1991 | permission granted | DONE (d72a0cea) -- built unchanged with -DNON_ANSI_C |
 | accordian | `CSG/volume15/accordian/` | 1992 | public domain | DONE (6a512987) -- curses solitaire; RANDOM->rand, popen/getpwuid dropped, win log local |
-| mastrm | `CSG/volume2/mastrm.gz` | 1987 | public domain | stdio |
+| mastrm | `CSG/volume2/mastrm.gz` | 1987 | public domain | DONE (0a75970f) -- system(clear) -> ANSI clrscr |
 | hexa (hexagonal sokoban) | `ALT/volume93/Jan/930127.01.gz` | 1993 | no notice | curses |
 | corewars | `CSG/volume6/corewars/` | 1989 | public domain | curses |
 | castle | `CSG/volume8/castle/` | 1990 | public domain | curses |
 | othello3 / reversi | `CSG/volume12/othello3/`; `CSG/volume15/reversi/` | 1991-92 | free / GPL | curses |
-| jotto, conn4 (Sicherman) | `CSG/volume11/jotto/`, `CSG/volume12/conn4/` | 1990-91 | no notice | conn4 DONE (39eb5990) as c4 -- curses, cbreak/noecho added; jotto still open |
+| jotto, conn4 (Sicherman) | `CSG/volume11/jotto/`, `CSG/volume12/conn4/` | 1990-91 | no notice | conn4 DONE (39eb5990) as c4; jotto DONE (0a75970f) -- built-in word list |
 | yahtzee2 | `CSG/volume8/yahtzee2/` | 1989 | no notice | one fork |
 | rot2.2 ("software rot") | `CSG/volume1/rot22.gz` | 1987 | no notice | name clashes with CMDS/rot |
 | flicker | `CSG/volume5/flicker.gz` | 1988 | no notice | ANSI escapes |
@@ -295,7 +295,7 @@ the native tools expect `/dd/SYS/utmp`, group, password or smail.
 | Toon 1.0, Juggle 1.0 | `ALT/volume94/May/940508.36-.40`; `ALT/volume95/Apr/950426.08.gz` | 1994-95 | GPL | curses, setitimer |
 | rogue 5.3 clone (Stoehr) | `CSG/volume1/rogue/` | 1987 | not for profit -- **Q1** | curses, sgtty |
 | gnugo, napoleon, adven2 | `CSG/volume6/gnugo/`, `CSG/volume17/napoleon/`, `CSG/volume11/adven2/` | 1989-93 | GPL/GPL/none | napoleon ANSI |
-| text toys: spew, silly.tar (kraut, b1ff, chef, fudd) | `CSG/volume1/spew.gz`; `ALT/volume92/Dec/921220.11` | 1987-92 | spew free; silly mixed | lex |
+| text toys: spew, silly.tar (kraut, b1ff, chef, fudd) | `CSG/volume1/spew.gz`; `ALT/volume92/Dec/921220.11` | 1987-92 | spew free; silly mixed | spew DONE (0a75970f) -- headline generator, no lex; silly (chef/b1ff/fudd) still open, lex |
 Leave: cdungeon ("COMMERCIAL USAGE STRICTLY PROHIBITED", Infocom); hearts,
 dots2, diph (sockets/fork/select); X11-only; umoria/omega/nethack from Usenet
 (TOP has OSK builds -- B6).
