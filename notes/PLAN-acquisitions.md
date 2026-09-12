@@ -235,16 +235,16 @@ re-derived:
 ### B5 -- OS-9-native programs and code                          mimecode done
 | prog | where | date | terms | note |
 |---|---|---|---|---|
-| Browse (P. da Silva, OSK port C. Emde) | TWN 653558 (3 parts, complete) | 1990 | none in the port | K&R + termcap + os9lib; help at `/h0/SYS/browse.hlp` |
+| Browse (P. da Silva, OSK port C. Emde) | TWN 653558 (3 parts, complete) | 1990 | none in the port | BLOCKED on os9lib (see below); help at `/h0/SYS/browse.hlp` |
 | unc (68000 module disassembler) | pool `SRC/unc.lzh`; MW 4308 | 1991 | none | DONE df6d23ce -- ships, links `GNULIB/os9lib.l` |
 | almanac 3.2 (J. Semler) | MW 2313 (has almanac.OSK) | ~1992 | none | terminal card candidate |
 | freeb | MW 3921; TWN 653668 | 1989 | PD | DONE e1a56b0c -- ships |
 | howfrag | MW 4223 | | PD | DONE df6d23ce -- ships |
-| uustat, ancient, hdump/undump | MW 3970, 3894, 3928 | | per item | hdump+undump DONE e1a56b0c; uustat and ancient still open |
+| uustat, ancient, hdump/undump | MW 3970, 3894, 3928 | | per item | hdump+undump DONE e1a56b0c; uustat BLOCKED on os9lib (see below); ancient DROPPED, no terms stated |
 | dumpinit (init module lister) | MW 2240 | ~1994 | none | generic though filed MM/1 |
 | mimecode (base64) | MW 2503 | 1995 | author's permission | DONE -- built -qm, tested, carded; Tim Kientzle/DDJ, Gene Heskett's OS-9 pack |
 | zc ZipCode + ZIPDATA | MW 2248, 2250 | 1995 | PD | needs `/dd/sys/zipcodes.txt` |
-| os9dsk / rsdsk (read CoCo .DSK images) | MW 2244, 2246 | 1995-97 | freely distributed | |
+| os9dsk / rsdsk (read CoCo .DSK images) | MW 2244, 2246 | 1997 | freely distributed | DONE 07a11dee -- both ship, with a sample .DSK each |
 | BIX one-page telecom (Dibble/Schmitt) | TWN 653653 | 1989 | distribution permitted | teaching example, asm |
 | OS-9 International code disk (EFFO) | MW 5041 `effo.lzh` -> `EFFO/OS9_INTERNATIONAL/*.lzh` | 1993-94 | EFFO: personal, not commercial/military | disp SCF driver in C, lfcrman, watchdog, cache control; for real OS-9 |
 | EFFO system examples | pool `EFFO/forum16.lzh` SOFTWARE/ASSEMBLER (4007); `forum12.lzh` SOFTWARE/C/ERROR (4003) | 1990-91 | "Public" | uacct, exception handler, F$CCtl/F$Permit bindings |
@@ -283,6 +283,36 @@ THE METHOD, proved on freeb and now the way to do this:
 3. The disk carries `unshar', `tar', `ar', `gzip', `compress', `lha',
    `lharc', `unzip', `zip', `arc' and `zoo', which covers nearly every
    format in the pool.
+
+**TWO PROGRAMS WAIT ON ONE FILE: `os9lib.l`.**  `uustat' and `Browse' are
+both complete, both wanted, and both fail at the LINK for want of the same
+library.  Measured, not assumed: no `disk/LIB/*.l` defines `info_str' or
+`info_is_locked' -- every library was scanned for the symbols.  The `os9lib'
+that IS on this disk is the RTF Fortran trap module, a different thing under
+the same name, which is what makes this look like a solved problem when it
+is not.
+
+The pool HAS the library: `acquisitions-2026-09-11/os9/top/x/LIB/os9lib.l',
+inside the TOP release, and in three other places besides.  So the question
+is whether os9lib may ship, not whether the programs work -- which makes
+both of them B6-dependent.  If TOP lands, build them the same day.
+
+**REPLACING A HEADER BEATS SCREENING IT, when what it describes is a
+FORMAT.**  `os9dsk' carried a `coco_direct.h' that was 77% the SDK's
+`direct.h' and said in its own first line that it was "modified from the OSK
+version".  It was NOT added to `tools/screened-src.txt': that file says an
+exception is added when "a person has read and accepted", and after `msfm'
+-- 21 files of Microware file-manager internals that shipped for months --
+adding Microware-derived headers to an exception list is rdoggett's
+decision, not a session's.
+
+Replacing it cost nothing.  What the program needs is the layout of the
+MEDIA it reads: a CoCo directory entry gives the name 29 characters and the
+descriptor address 3 bytes, where OS-9/68000 uses 28 and a long.  That is a
+disk format, and a format can be described afresh.  The rebuilt module is
+the same size TO THE BYTE and reads the sample disk identically.  Screening
+remains right for the other case -- the two `stat.h' entries on that list --
+where a program must match an INTERFACE to call the system at all.
 
 ### B6 -- TOP, "The OS-9 Project", release 2 (Munich 1989-90)           open
 https://ftp.funet.fi/pub/unix/os9/top.tar.Z (8,900,473 b; index beside it);
