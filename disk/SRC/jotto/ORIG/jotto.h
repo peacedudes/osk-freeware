@@ -1,0 +1,1 @@
+/* *	jotto.h - definitions for jotto. */#define	MAXGUESS 25#define	WORDLEN  5#define	DICTLEN  1900

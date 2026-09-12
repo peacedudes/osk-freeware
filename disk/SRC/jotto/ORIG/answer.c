@@ -1,0 +1,1 @@
+/* *	answer */answer(w, n)char *w;int n;{	printf(" %s has %d letter%s\n", w, n, n==1? "": "s");}

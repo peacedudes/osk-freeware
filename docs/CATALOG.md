@@ -1,6 +1,6 @@
 # What is on this disk
 
-970 programs of OS-9/68K community software, gathered from the archives that kept it and made to run again. **621 of them need nothing but this disk**; the rest want Microware's `cio`, marked below with a star.
+973 programs of OS-9/68K community software, gathered from the archives that kept it and made to run again. **624 of them need nothing but this disk**; the rest want Microware's `cio`, marked below with a star.
 
 `DOC/INDEX` on the disk lists everything alphabetically. This is the same collection sorted by what each program is *for*, which is the more useful order when you do not yet know what you are looking for.
 
@@ -22,9 +22,9 @@
 | [Encoding & conversion](#encoding--conversion) | 29 | Between text encodings, line endings, Macintosh formats, ciphers and hashes. |
 | [Communications](#communications) | 97 | Kermit in several builds, terminal sessions, and networking. |
 | [Graphics & images](#graphics--images) | 202 | The netpbm toolkit, JPEG, a ray tracer, and things that draw. |
-| [Games](#games) | 68 | Adventures, board and card games, arcade ports, dungeon crawls and puzzles. |
+| [Games](#games) | 70 | Adventures, board and card games, arcade ports, dungeon crawls and puzzles. |
 | [Screen toys](#screen-toys) | 8 | Animations and screen effects -- they draw on the terminal rather than print to it. Some run until you stop them. |
-| [Amusements](#amusements) | 21 | Generators, simulators and diversions that are not quite games. |
+| [Amusements](#amusements) | 22 | Generators, simulators and diversions that are not quite games. |
 | [System & modules](#system--modules) | 127 | OS-9 module and process tools, devices, system state and scheduling. |
 | [Disk & DOS](#disk--dos) | 20 | Reading and writing MS-DOS media with the mtools set. |
 | [Time & calendar](#time--calendar) | 14 | Calendars, clocks and astronomy. |
@@ -1181,7 +1181,7 @@
 
 *Adventures, board and card games, arcade ports, dungeon crawls and puzzles.*
 
-<details><summary>68 programs</summary>
+<details><summary>70 programs</summary>
 
 **Adventure & fiction**
 
@@ -1228,6 +1228,7 @@
 | `gnuchessc` | GNU Chess 4.0 built for a curses display.  Its display files live at a compiled-in path; supply them there for a board.  It takes a move as `e2e4' and answers with its own<br>**How:** Its board display reads files from a compiled-in path; supply them there for a board. It still takes a move as `e2e4' and answers with its own. |
 | `gnuchessn` | &#9733; GNU Chess with the 1989 display, which draws the squares as blocks of hashes so light and dark can be told apart on a terminal with no highlighting.  Source `. /dd/SYS/termcap.entry' first; moves go in as `e2e4'<br>**How:** As gnuchess: `. /dd/SYS/termcap.entry' first, then moves as `e2e4'. |
 | `gnuchessr` | &#9733; GNU Chess with the plainest display -- pieces as letters, capitals for one side and lower case for the other, nothing that needs a terminal to draw.  It prompts `Enter #moves #minutes', takes a move and replies with its own |
+| `mastrm` | Master Mind: break the computer's hidden four-peg colour code in ten guesses, reading the `b' and `w' pegs each guess earns for right colour in right or wrong place |
 | `mille` | &#9733; Mille Bornes -- the French car-racing card game<br>**How:** Full-screen Mille Bornes. `p' picks a card, `u #' plays one, `d #' discards, `s' saves the game and `q' quits. |
 | `nchess` | GNU Chess 4.0 (plain display) |
 | `poker` | &#9733; Cold-hand Poker (SNOBOL4-in-C).  Data: GAMES/SNOBOL |
@@ -1290,6 +1291,7 @@
 | `animal` | the guess-the-animal game that learns: `animal <file>' asks yes-or-no questions down a tree of what it knows, and when its guess is wrong asks what you were thinking of and writes it back into the file. DOC/animal/example is one to start from<br>**How:** The file it learns from is one you name: `animal /dd/DOC/animal/example'. Answer y or n to each question; when its final guess is wrong it asks what you were thinking of and what question tells the two apart, and writes that back into the file. Control-C leaves it. |
 | `bog` | Boggle: sixteen lettered dice and three minutes to type every word you can trace through adjoining letters; its word list, index and help are in GAMES/BOG<br>**How:** Boggle. Space starts the three-minute round, `?' shows the rules, and you type every word you can trace through adjoining letters. Control-C leaves it. Its word list, index and help are in GAMES/BOG. |
 | `hang` | &#9733; hangman: type a letter to guess it, and the gallows fills in as you get them wrong; its word list is GAMES/dict<br>**How:** Hangman. Type a letter to guess it; the letters still unused are along the top. Control-C gets you out. Its word list is GAMES/dict. |
+| `jotto` | Jotto: you and the computer each pick a secret five-letter word of different letters and take turns guessing; a wrong guess is scored by how many of its letters are in the word |
 
 </details>
 
@@ -1316,7 +1318,7 @@
 
 *Generators, simulators and diversions that are not quite games.*
 
-<details><summary>21 programs</summary>
+<details><summary>22 programs</summary>
 
 **Biorhythms**
 
@@ -1346,6 +1348,7 @@
 | `rstory` | a cumulative tale in the shape of The Old Woman and Her Pig, the animal, the obstacle and every helper drawn at random; `rstory \| tformat' sets it justified under a dated heading. Data: GAMES/SNOBOL |
 | `rstory2` | &#9733; asks your name, sex, favourite animal and colour and a setting, then hands them through the shell to a story program (rstory_W, rstory_S, rstory_C or rstory_G) whose story goes through tformat to the printer at /p1. The four story programs did not come with it, so the questions are as far as it goes |
 | `scales` | &#9733; deals scales and chords into a random practice order, a tick-box each, in `scales.lst' in the current directory (or a file you name): -d diatonic scales, -a altered scales, -m modes, -c chords; each entry gives the key signature and the spelling<br>**How:** Pick at least one of -d -a -m -c or it asks what you had in mind; `scales -d -c' writes 195 entries to scales.lst, and a trailing name writes elsewhere. |
+| `spew` | builds mock National Enquirer headlines from a grammar of phrases -- almost a yacc in reverse; `spew 5' makes five |
 | `travesty` | rewrites its input as plausible nonsense, by Markov chains: `travesty -n400 < file' for 400 characters of it<br>`travesty makes a travesty of its input.` |
 
 **Simulated weather**

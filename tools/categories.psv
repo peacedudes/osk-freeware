@@ -1026,3 +1026,7 @@ tput|Communications|Terminal & session
 xargs|Shells|Shell helpers
 xd|Text tools|Count & inspect
 bc|Maths & calculators|Calculators
+
+jotto|Games|Word & guessing
+mastrm|Games|Board & card
+spew|Amusements|Generators

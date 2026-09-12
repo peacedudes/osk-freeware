@@ -335,3 +335,13 @@ cap     next as the hours pass.  It takes no options.
 try     globe
 run     globe
 wait    3
+
+shot    spew
+size    24 80
+cap     spew builds mock National Enquirer headlines from a grammar of
+cap     phrases and slots -- almost a yacc in reverse.  `spew' makes one,
+cap     `spew 5' makes five; point it at your own rules file for other
+cap     kinds of nonsense.
+try     spew 4
+run     spew 4
+wait    2

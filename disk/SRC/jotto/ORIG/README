@@ -1,0 +1,1 @@
+Jotto plays the word game of Jotto with you.  You and the programeach secretly choose a common English word of five different letters.The players take turns guessing words of five different letters.Each guess (if wrong) is answered by the number of letters in the guessthat occur in the secret word.  The winner is the first player to guessright.

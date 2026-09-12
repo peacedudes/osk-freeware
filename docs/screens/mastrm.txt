@@ -1,0 +1,15 @@
+Would you like instructions, y/n [default is n] -> n
+Do you want to guess, or make the code, g/m [default is g] -> g
+Do you want coaching, y/n [default is n] -> n
+
+Choosing a code for you to guess.
+red green blue yellow
+
+Please enter guess #1 -> w
+
+guess, refresh, hint, or quit [default is guess] ->
+
+Please enter guess #2 -> white black red green
+ww
+
+guess, refresh, hint, or quit [default is guess] ->

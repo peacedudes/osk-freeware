@@ -1,0 +1,12 @@
+$ jotto
+ Jotto 3.0
+
+ Think of a word of 5 different letters.
+ Ready? y
+ Type a carriage-return for a list of my answers.
+
+ What is your 1st guess? beach
+ beach has 1 letter
+
+ My 1st guess is: wield.
+ How many letters?

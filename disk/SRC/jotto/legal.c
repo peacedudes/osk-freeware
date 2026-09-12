@@ -1,0 +1,1 @@
+/* *	legal */#include <ctype.h>#ifdef BSD#include <strings.h>#else#include <string.h>#endif#include "jotto.h"intlegal(w)char *w;{	char *ww, *xx;	if (strlen(w) != WORDLEN) return 0;	for (ww=w; *ww; ww++) if (!islower(*ww)) return 0;	for (ww=w; ww[1]; ww++) for (xx=ww+1; xx[0]; xx++)		if (*ww == *xx) return 0;	return 1;}

@@ -1,0 +1,1 @@
+/* *	jsumm - list the answers given. */#include "jotto.h"extern	char	uguess[MAXGUESS][WORDLEN+1];extern	int	uguessc, iresp[MAXGUESS];jsumm(){	int i;	if (!uguessc) {		printf(" no guesses yet.\n");		return;	}	for (i=0; i<uguessc; i++) answer(uguess[i], iresp[i]);}

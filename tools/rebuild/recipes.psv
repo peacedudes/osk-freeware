@@ -929,3 +929,6 @@ accordian|accordian|accordian.c cards.c help.c||/dd/LIB/curses.l /dd/LIB/termlib
 saa|saa|saa.c|NON_ANSI_C|/dd/LIB/curses.l /dd/LIB/termlib.l /dd/LIB/rand.r|
 bs|bs|bs.c||/dd/LIB/curses.l /dd/LIB/termlib.l /dd/LIB/rand.r|
 bc|bc|bc.c scan.c execute.c load.c main.c number.c storage.c util.c global.c ../unixlib/getopt.c ../unixlib/vsprintf.c|CPP2|/dd/LIB/alib.l|
+jotto|jotto|jotto.c answer.c isis.c jsumm.c legal.c load.c ord.c subs.c||/dd/LIB/rand.r|
+mastrm|mastrm|mastrm.c||/dd/LIB/rand.r|
+spew|spew|spew.c||/dd/LIB/rand.r|
