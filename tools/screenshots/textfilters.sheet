@@ -847,3 +847,19 @@ run     clear
 wait    1
 run     yes hello | head -n 3
 wait    5
+
+shot    xd
+size    20 80
+cap     A hex dump that numbers its addresses in hex.  -c sets the
+cap     characters alongside the bytes, a period standing for each one that
+cap     will not print.  -d writes the same bytes as a C array instead, and
+cap     -l reads a dump back to rebuild the file it came from.
+try     xd -c motd; xd -d motd
+run     builtin cd /dd/SYS
+wait    1
+run     clear
+wait    1
+run     xd -c motd
+wait    3
+run     xd -d motd
+wait    4

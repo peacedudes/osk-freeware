@@ -1107,3 +1107,23 @@ cap     shell reports it cannot be executed.
 try     vmod_trap
 run     /dd/CMDS/COMMS/vmod_trap
 wait    4
+
+shot    tput
+size    16 80
+cap     Asks termcap what this terminal needs for a capability, by its
+cap     System V name.  `cols' and `lines' answer with a number; `clear'
+cap     and `cup' answer with the escape sequence itself, which is shown
+cap     here through xd so that the bytes can be read.
+try     tput -Tvt100 cols; tput -Tvt100 clear | xd -c
+os9     tput -Tvt100 cols; tput -Tvt100 clear ! xd -c
+run     builtin cd /dd
+wait    1
+run     clear
+wait    1
+run     tput -Tvt100 lines
+run     tput -Tvt100 cols
+wait    3
+run     tput -Tvt100 clear | xd -c
+wait    4
+run     tput -Tvt100 cup 10 20 | xd -c
+wait    4

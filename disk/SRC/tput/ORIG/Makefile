@@ -1,0 +1,1 @@
+tput: tput.c tput.h	cc -o tput tput.c -ltermlibman: tput.1	nroff -man tput.1 > tput.docdtput: tput.c tput.h	cc -g -o dtput tput.c -ltermliblint:	lint -DLINT tput.c

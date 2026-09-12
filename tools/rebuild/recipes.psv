@@ -921,3 +921,8 @@ globe|globe|globe.c|||
 wump|wump|wump.c getopt.c||/dd/LIB/rand.r|
 fish|fish|fish.c getopt.c||/dd/LIB/rand.r|
 c4|conn4|c4.c||/dd/LIB/curses.l /dd/LIB/termlib.l|
+tput|tput|tput.c||/dd/LIB/termlib.l|
+xd|xd|xd.c|||
+xargs|xargs|xargs.c|||
+cdecl|cdecl|cdecl.c os9tmpfile.c ../unixlib/getopt.c|||
+accordian|accordian|accordian.c cards.c help.c||/dd/LIB/curses.l /dd/LIB/termlib.l /dd/LIB/rand.r|

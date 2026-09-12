@@ -943,6 +943,7 @@ hackwish|none|the wish defaults to 3 potions of gain level; name your own instea
 which|which -?|
 whereis|whereis -?|
 worm|none|it takes a starting length and nothing else; h, j, k and l steer and control-C leaves
+accordian|none|d deals one, D the rest, f finds a move, u undoes, x exits
 c4|none|type a column letter a-g to drop a piece; q quits, control-L redraws
 fish|none|it deals and prompts; ask for a rank you hold; control-C or the deck running out ends it
 wump|none|-h harder, -r/-t/-a resize the cave; control-C or a bad end leaves
@@ -970,3 +971,7 @@ howfrag|howfrag -?|
 unc|unc -?|
 phoon|none|shows tonight's moon, or a date given as year month day
 globe|none|it takes no options; it shows the Earth lit as it is now
+tput|tput -?|
+xd|xd -?|
+cdecl|cdecl << help|
+xargs|none|it takes no options of its own -- what follows the name is the command it runs, and the arguments for that command are what it reads on standard input

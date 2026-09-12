@@ -1,0 +1,6 @@
+ls
+one  two
+$ ls | xargs wc -l
+      2 one
+      1 two
+      3 total

@@ -1,0 +1,9 @@
+$ xd -?
+XD  --  Hex dump.  Call
+             with xd [input [output]]
+
+         Options:
+              -C      Dump as ISO characters
+              -Dlabel Dump as a C data declaration
+              -L      Load file from hex dump
+              -S      Stream load (don't check file addresses)

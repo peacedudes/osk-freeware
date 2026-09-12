@@ -993,6 +993,7 @@ about|System & modules|Finding things
 which|System & modules|Finding things
 whereis|System & modules|Finding things
 worm|Games|Arcade & action
+accordian|Games|Board & card
 c4|Games|Board & card
 fish|Games|Board & card
 wump|Games|Other games
@@ -1018,3 +1019,7 @@ ul|Text tools|Format & typeset
 yes|Shells|Shell helpers
 howfrag|Files & directories|Find & compare
 unc|System & modules|OS-9 modules
+cdecl|Developer tools|Source checking
+tput|Communications|Terminal & session
+xargs|Shells|Shell helpers
+xd|Text tools|Count & inspect

@@ -1,0 +1,6 @@
+echo "explain int *p" | cdecl
+declare p as pointer to int
+$ echo "explain char *(*fp)()" | cdecl
+declare fp as pointer to function returning pointer to char
+$ echo "declare x as pointer to function returning int" | cdecl
+int (*x)()

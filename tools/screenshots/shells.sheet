@@ -240,3 +240,21 @@ cap     into them -- a batch job: its options.
 run     submit -?
 wait    5
 try     submit -?
+
+shot    xargs
+size    16 80
+cap     Turns what it reads into arguments for a command: the names arrive
+cap     on the command line rather than on standard input, which is what a
+cap     program like wc needs to count them separately.
+try     ls | xargs wc -l
+os9     ls ! xargs wc -l
+run     rm -rf /dd/tmp/XARG > /nil 2>/nil; mkdir -p /dd/tmp/XARG
+run     printf "alpha\rbeta\r" > /dd/tmp/XARG/one; printf "gamma\r" > /dd/tmp/XARG/two
+run     builtin cd /dd/tmp/XARG
+wait    2
+run     clear
+wait    1
+run     ls
+wait    2
+run     ls | xargs wc -l
+wait    5

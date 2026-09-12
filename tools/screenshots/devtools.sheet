@@ -526,3 +526,21 @@ run     cat tmp/DEV/t.a
 wait    3
 run     xlate tmp/DEV/t.a
 wait    6
+
+shot    cdecl
+size    18 80
+cap     Reads a C declaration and says it in English, and takes the English
+cap     and writes the declaration.  It prompts when run bare; fed a line it
+cap     answers and stops, which is what is shown here.
+try     echo "explain int *p" | cdecl
+os9     echo "explain int *p" ! cdecl
+run     builtin cd /dd
+wait    1
+run     clear
+wait    1
+run     echo "explain int *p" | cdecl
+wait    3
+run     echo "explain char *(*fp)()" | cdecl
+wait    3
+run     echo "declare x as pointer to function returning int" | cdecl
+wait    4

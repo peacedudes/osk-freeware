@@ -176,7 +176,7 @@ ships), `tsort`, `factor` and `primes`, `caesar`, `morse`/`ppt`/`bcd`,
 `number`, `rev` (`44BSD/usr.bin/rev`, BSD 4-clause), `yes`, `leave`.
 Checked absent by FUNCTION against INDEX and against Microware's commands.
 
-### B4 -- period Usenet utilities                                       open
+### B4 -- period Usenet utilities            done: tput, xd, xargs, cdecl
 | prog | source | date | terms as stated |
 |---|---|---|---|
 | cdecl | `CSU/volume14/cdecl2/` (or `CSU/volume6/cdecl.gz`) | 1988 | no notice |
@@ -195,6 +195,42 @@ Checked absent by FUNCTION against INDEX and against Microware's commands.
 | agrep 2.01 | `CSU/volume26/agrep-2.01/`; also MW 4310 | 1992 | non-profit only -- **Q1** |
 | vttest | `CSU/volume7/vttest/` | 1986 | non-commercial -- **Q1** |
 Not found anywhere searched: `nl`, true `csplit`, a clean `dc`, apropos/whatis.
+
+**B4 landed 2026-09-11: `tput`, `xd`, `xargs`, `cdecl`.**  All four were
+built with `cc -qm`, verified running, and carry their source, their ORIG
+tree and their own manual page.  `xd` needed NO source changes at all --
+it compiled as posted.
+
+Decided against, with the reason, so nobody re-fetches them:
+
+- `calendar` (Minow) -- dropped as redundant.  `cal`, `calen` and
+  `calender` are already here and cover it.
+- `slice` -- deferred.  It wants BSD `re_comp`/`re_exec`, which this C
+  library has not got; it needs a regex shim before it can be built.
+- `mmv` -- deferred.  It wants signal and dirent headers this library
+  does not supply, and its documentation states terms that may not
+  permit redistribution -- read them before spending effort on it.
+
+Two things measured while doing B4 that cost hours and should not be
+re-derived:
+
+1. **`system()` launches nothing in a program WE build**, in both a `-qm`
+   and a CIOLINK build -- no child runs and a redirect in the command
+   line never creates its file.  An archive binary that shells out (`eo`)
+   works fine on the same image, so the split is ours-vs-theirs, NOT
+   `-qm`-vs-`cio`, and the mechanism is still unknown.  The answer for a
+   program that needs it is to fork directly:
+   `os9exec(os9fork, av[0], av, environ, 0, 0, 3)`, which is what `xargs`
+   now does.  `SRC/xargs/README.OSK` carries the measurement.
+2. **bash's `cd` breaks a later pipeline whose producer is a BUILTIN.**
+   After a real `cd`, `echo hello | cat` produces nothing -- and it does
+   not return empty, it HANGS until the harness timeout.  A pipeline whose
+   producer is a real PROGRAM is unaffected.  The cause is already in
+   CLAUDE.md: bash's `pwd`/`getwd()` walks `..`, OS-9 has one root per
+   device, and a non-interactive bash never reads the `.bashrc` that
+   replaces `cd`.  There is no `echo` BINARY here, so `echo` in a
+   pipeline is always the builtin.  In sheets and cases, either do not
+   `cd`, or use `ksh -c "cd DIR; prog"`.
 
 ### B5 -- OS-9-native programs and code                          mimecode done
 | prog | where | date | terms | note |
@@ -245,7 +281,7 @@ the native tools expect `/dd/SYS/utmp`, group, password or smail.
 | bs (ESR battleships) | `CSG/volume8/bs/part01.gz` | 1989 | no notice | curses |
 | scrabble | `CSG/volume6/scrabble/` | 1989 | redistribute in any manner | curses |
 | saa (Streets and Alleys) | `CSG/volume12/saa/` | 1991 | permission granted | curses |
-| accordian | `CSG/volume15/accordian/` | 1992 | public domain | curses |
+| accordian | `CSG/volume15/accordian/` | 1992 | public domain | BUILT+carded, commit HELD pending shared-tree deconflict with 00's B4 -- all files staged-ready (SRC/accordian, CMDS/GAMES/accordian, DOC/accordian.doc, INDEX/ORIGINS/SOURCES/categories/help/recipe) |
 | mastrm | `CSG/volume2/mastrm.gz` | 1987 | public domain | stdio |
 | hexa (hexagonal sokoban) | `ALT/volume93/Jan/930127.01.gz` | 1993 | no notice | curses |
 | corewars | `CSG/volume6/corewars/` | 1989 | public domain | curses |

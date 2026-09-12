@@ -1,0 +1,2 @@
+$ tput -?
+Usage: tput [ -Ttype ] [ -e ] [ -nlines ] capname [ x y ]
