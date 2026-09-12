@@ -1,7 +1,7 @@
 ls -lR tmp/FILESA/rmd
 total 1024
 -rw-rw-rw-   1 0        0              40 Aug  3 19:00 a
-drwxrwxrwx   1 0        0              96 Sep  8 15:36 sub
+drwxrwxrwx   1 0        0              96 Sep 12 00:58 sub
 
 tmp/FILESA/rmd/sub:
 total 512
@@ -12,4 +12,4 @@ $ rm -rv tmp/FILESA/rmd
   tmp/FILESA/rmd/sub/b
   tmp/FILESA/rmd/a
 $ ls tmp/FILESA/rmd
-ls: %s: error 216
+ls: tmp/FILESA/rmd: error 216

@@ -1,4 +1,4 @@
 newslock tmp/MAILA/tmplock tmp/MAILA/reallock
 $ ls tmp/MAILA/tmplock tmp/MAILA/reallock
-ls: %s: error 216
-ls: %s: error 216
+ls: tmp/MAILA/tmplock: error 216
+ls: tmp/MAILA/reallock: error 216
