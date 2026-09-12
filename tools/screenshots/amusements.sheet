@@ -345,3 +345,13 @@ cap     kinds of nonsense.
 try     spew 4
 run     spew 4
 wait    2
+
+shot    chef
+size    24 80
+cap     chef rewrites English into the Swedish Chef's mock accent a letter
+cap     and syllable at a time -- the becomes zee, w becomes v, o becomes
+cap     oo -- and barks "Bork Bork Bork!" at the end of every sentence.
+cap     Pipe any text through it.
+try     echo "The Swedish chef boils the water and stirs the soup." | chef
+run     echo "The Swedish chef boils the water and stirs the soup." | chef
+wait    2

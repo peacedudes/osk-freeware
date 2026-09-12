@@ -1,6 +1,6 @@
 # What is on this disk
 
-980 programs of OS-9/68K community software, gathered from the archives that kept it and made to run again. **631 of them need nothing but this disk**; the rest want Microware's `cio`, marked below with a star.
+981 programs of OS-9/68K community software, gathered from the archives that kept it and made to run again. **632 of them need nothing but this disk**; the rest want Microware's `cio`, marked below with a star.
 
 `DOC/INDEX` on the disk lists everything alphabetically. This is the same collection sorted by what each program is *for*, which is the more useful order when you do not yet know what you are looking for.
 
@@ -24,7 +24,7 @@
 | [Graphics & images](#graphics--images) | 202 | The netpbm toolkit, JPEG, a ray tracer, and things that draw. |
 | [Games](#games) | 72 | Adventures, board and card games, arcade ports, dungeon crawls and puzzles. |
 | [Screen toys](#screen-toys) | 8 | Animations and screen effects -- they draw on the terminal rather than print to it. Some run until you stop them. |
-| [Amusements](#amusements) | 22 | Generators, simulators and diversions that are not quite games. |
+| [Amusements](#amusements) | 23 | Generators, simulators and diversions that are not quite games. |
 | [System & modules](#system--modules) | 130 | OS-9 module and process tools, devices, system state and scheduling. |
 | [Disk & DOS](#disk--dos) | 20 | Reading and writing MS-DOS media with the mtools set. |
 | [Time & calendar](#time--calendar) | 14 | Calendars, clocks and astronomy. |
@@ -1322,7 +1322,7 @@
 
 *Generators, simulators and diversions that are not quite games.*
 
-<details><summary>22 programs</summary>
+<details><summary>23 programs</summary>
 
 **Biorhythms**
 
@@ -1344,6 +1344,7 @@
 
 | | |
 |---|---|
+| `chef` | talk like the Swedish Chef: a filter that rewrites English into his mock accent -- the->zee, w->v, o->oo -- and barks "Bork Bork Bork!" at each sentence end.  `echo text \| chef` |
 | `name` | &#9733; invents pronounceable names for the characters in a tabletop game, as many as you ask for, dealing vowels and consonants in turn with the letter frequencies of a Scrabble set |
 | `newsgen` | &#9733; makes up a news bulletin at random from parts -- a top story of public figures, deeds, places and reactions, then the weather -- different every run<br>`"news" or "news lp"` |
 | `pwgen` | &#9733; pronounceable passwords: `pwgen <length> [how many]'<br>**How:** pwgen <length> [count]: length 4 to 16. It takes a few seconds over each password, so allow for that. |

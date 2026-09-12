@@ -1,0 +1,3 @@
+$ echo "The Swedish chef boils the water and stirs the soup." | chef
+Zee Svedeesh cheff bueels zee veter und sturs zee suoop.
+Bork Bork Bork!

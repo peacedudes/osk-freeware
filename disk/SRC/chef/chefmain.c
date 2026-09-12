@@ -1,0 +1,1 @@
+/* chef main: flex 2.3 output has no main/yywrap of its own.  A filter   over stdin -> stdout; generated in universe from chef.l with the   disk's own flex. */int yywrap(){    return 1;}main(){    yylex();    return 0;}
