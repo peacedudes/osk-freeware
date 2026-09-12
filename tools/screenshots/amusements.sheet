@@ -373,3 +373,12 @@ cap     Pipe any text through it.
 try     echo "I am going to the store to buy some food." | drawl
 run     echo "I am going to the store to buy some food." | drawl
 wait    2
+
+shot    lame
+size    24 80
+cap     lame rewrites its arguments into IRC "leet-speak" -- o becomes 0 or
+cap     (), you becomes U, and becomes &, i becomes 1, e becomes 3 -- with a
+cap     little randomness, the way a lamer types.  Give it a sentence.
+try     lame you are so cool and elite
+run     lame you are so cool and elite
+wait    2

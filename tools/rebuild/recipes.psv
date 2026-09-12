@@ -942,3 +942,4 @@ rsdsk|rsdsk|rsdsk.c rsdir.c get_len.c get_fat.c get_sector.c rsreaddir.c usage.c
 chef|chef|lex.yy.c chefmain.c|||
 fudd|fudd|lex.yy.c yywrap.c|||
 drawl|drawl|lex.yy.c yywrap.c|||
+lame|lame|lame.c||/dd/LIB/rand.r|
