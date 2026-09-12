@@ -1,9 +1,4 @@
-xcrypt -k=freeware tmp/ENC/x.txt tmp/ENC/x.enc
+xcrypt
 en/decrypt <input-file> <output-file>
-$ xcrypt -k=freeware tmp/ENC/x.enc tmp/ENC/x.dec
+$ xcrypt tmp/XCA/a.txt tmp/XCA/a.enc
 en/decrypt <input-file> <output-file>
-$ chksum tmp/ENC/x.txt tmp/ENC/x.dec
-09f241c9
-00000000
-========
-09f241c9

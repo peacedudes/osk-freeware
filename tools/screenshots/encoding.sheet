@@ -170,21 +170,19 @@ run     ls -l tmp/ENC/d.txt.n
 wait    4
 
 shot    xcrypt
-cap     A simple file cipher with a key, and it round-trips: encrypt,
-cap     decrypt, and the checksums match.
-try     xcrypt -k=freeware tmp/ENC/x.txt tmp/ENC/x.enc; xcrypt -k=freeware tmp/ENC/x.enc tmp/ENC/x.dec; chksum tmp/ENC/x.txt tmp/ENC/x.dec
-run     mkdir -p /dd/tmp/ENC > /nil 2>/nil; printf "Twas brillig, and the slithy toves\r" > /dd/tmp/ENC/x.txt
-wait    2
-run     builtin cd /dd
-wait    1
+cap     A file cipher that cannot be driven from a command line here.  Every
+cap     form prints the same syntax line and stops -- two filenames, a key
+cap     given as `-k=word' or `-k word', or nothing at all -- and no output
+cap     file is created.  The binary carries a `Key:' prompt and a warning
+cap     that a short key is weak, so a key was meant to be typed somewhere,
+cap     but nothing on this disk reaches it.
+try     xcrypt
 run     clear
 wait    1
-run     xcrypt -k=freeware tmp/ENC/x.txt tmp/ENC/x.enc
-wait    5
-run     xcrypt -k=freeware tmp/ENC/x.enc tmp/ENC/x.dec
-wait    5
-run     chksum tmp/ENC/x.txt tmp/ENC/x.dec
-wait    5
+run     xcrypt
+wait    3
+run     xcrypt tmp/XCA/a.txt tmp/XCA/a.enc
+wait    3
 
 shot    todos
 cap     Meant to turn OS-9 line endings into DOS ones in place.  It

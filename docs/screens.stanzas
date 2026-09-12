@@ -402,6 +402,7 @@ lgrep f1ef4ef5180533dc
 lha 52340e9187ace34b
 lharc b3f9054245bf7775
 lharcs 4f1f23a3be40ea59
+liborder f6e8a5f90d444254
 libsplit d91101c22b790347
 life cb3cef72829ef40d
 lispm ae2065e7d6fe27aa
@@ -805,7 +806,7 @@ uniq 62938badd8aa5e3d
 unkeep a91b5f770a867348
 unp d9954af1d0edb570
 unpacklib 8bb1d3a69ebb675e
-unpacklib.os9 79c4b0a974668f7c
+unpacklib.os9 5f7d671d280f441e
 unshar fbb8d1b66d8174cb
 unsit d313249b66cb4a1a
 unstr 85771e0718288e79
@@ -864,7 +865,7 @@ xargs 7c5ffd5e9d0881c4
 xbm db7087d7e8969392
 xbmtopbm 699141463bda5b4d
 xc 49d190da131fcb1d
-xcrypt 3c480b4fc7c07d95
+xcrypt a78503f08711fde6
 xd 7ffede9c9392ffe8
 xengine 5722aee171787384
 ximtoppm dce987f4b7f688f6

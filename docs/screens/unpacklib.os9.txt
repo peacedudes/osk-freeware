@@ -1,4 +1,13 @@
-unpacklib alib.l
-Wrong SYNC long word, found 0xB0000002
+unpacklib.os9 alib.l
 $ ls
-alib.l      basename.r  pwent.r
+adump.r        gethostname.r  perror.r       stat.r         strucmp.r
+alarm.r        getopt.r       pipe.r         strchr.r       strucpy.r
+alib.l         getwd.r        popen.r        strcspn.r      swab.r
+atan2.r        htoi1.r        pwcryp.r       strftime.r     ttynam.r
+basename.r     ioctl.r        pwent.r        strnucmp.r     umask.r
+bsearch.r      itoa.r         qrand.r        strpbrk.r      utime.r
+devtyp.r       ltoa.r         rename.r       strrchr.r      vfprintf.r
+dup2.r         memccpy.r      reverse.r      strspn.r       vsprintf.r
+exec.r         ocreat.r       signal.r       strstr.r
+fmt_err.r      patmatch.r     skip.r         strtok.r
+get_dev.r      permit.r       ss_stat.r      strtol.r

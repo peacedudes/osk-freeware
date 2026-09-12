@@ -485,16 +485,21 @@ run     gtar tvf tmp/ARC/keep2.tar
 wait    5
 
 shot    liborder
-cap     Given an OS-9 module library, liborder reports the order its
-cap     modules should be concatenated in, read from the library's
-cap     relocatable-object records.
-try     liborder alib.l
-run     builtin cd /dd/LIB
+cap     Given relocatable objects it prints them in the order you would feed
+cap     them to `merge' to build a library -- last first, which is the order
+cap     the linker wants.  Measured: it reverses whatever list it is given.
+cap     It does not read a finished .l; handed one it takes the first bytes
+cap     for an object header and asks for a length that is not there.
+cap     `-modinfo' prints an object's public names instead.
+try     liborder make.r parse.r stat.r
+run     builtin cd /dd/SRC/eff_make
 wait    1
 run     clear
 wait    1
-run     liborder alib.l
-wait    10
+run     liborder make.r parse.r stat.r
+wait    5
+run     liborder -modinfo stat.r
+wait    5
 
 shot    unpacklib
 cap     Splits an OS-9 library apart into its member modules -- it gets

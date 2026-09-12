@@ -944,14 +944,14 @@ cap     unpacklib extracts the object modules from an OS-9 library into
 cap     separate .r files.  Run on the C library it writes them into the
 cap     current directory, stopping at the first record that is not a
 cap     module.
-try     unpacklib alib.l; ls
+try     unpacklib.os9 alib.l; ls
 run     rm -rf /dd/tmp/UTILA/ul > /nil 2>/nil
 run     mkdir -p /dd/tmp/UTILA/ul > /nil 2>/nil
 run     cp /dd/LIB/alib.l /dd/tmp/UTILA/ul/alib.l
 run     builtin cd /dd/tmp/UTILA/ul
 run     clear
 wait    1
-run     unpacklib alib.l
+run     unpacklib.os9 alib.l
 wait    5
 run     ls
 wait    3

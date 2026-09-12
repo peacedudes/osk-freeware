@@ -1,0 +1,12 @@
+liborder make.r parse.r stat.r
+stat.r
+parse.r
+make.r
+$ liborder -modinfo stat.r
+
+MODULE NAME: stat.r
+Public Names Count = 2
+Public stat
+Public fstat
+External Names Count = 0
+stat.r
