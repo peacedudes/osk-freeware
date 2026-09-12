@@ -1370,16 +1370,23 @@ wait    3
 
 shot    reversi
 size    24 80
-cap     Othello against the computer, opening on the menu it starts from:
-cap     the board setup, then who plays which colour, then a strength from
-cap     Apprentice to Very Hard.  In play the cursor moves with the arrow
-cap     keys or hjkl and RETURN puts a disk down; `m' brings the menu back.
-cap     Not the same program as `othello', which is another author's.
+cap     Othello, part way into a game against the computer.  It starts by
+cap     asking three things -- the board setup, who plays which colour, and
+cap     a strength from Apprentice to Very Hard -- and then draws the board
+cap     with the four opening disks.  The cursor moves with the arrow keys
+cap     or hjkl and RETURN puts a disk down; `m' reopens the menu.  Not the
+cap     same program as `othello', which is another author's.
 try     reversi
 run     clear
 wait    1
 run     reversi
-wait    9
+wait    4
+send    \r
+wait    2
+send    \r
+wait    2
+send    \r
+wait    4
 snap
-send    q
-wait    3
+send    \033
+wait    2
