@@ -963,3 +963,5 @@ caesar|none|it takes a shift, or reads the text and guesses one
 ppt|none|it punches whatever it is given, -? included
 bcd|none|it punches whatever it is given, -? included
 yes|none|it prints what it is given until the reader stops; a pipe to head is how to see it
+howfrag|howfrag -?|
+unc|unc -?|

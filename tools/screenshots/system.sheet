@@ -2,6 +2,18 @@
 # itself.  Some of these meet os9exec's limits rather than their
 # own -- where they do, the screen says so.
 
+shot    unc
+cap     unc disassembles a 68000 OS-9 module back to assembler: the module
+cap     header as equates, then the code, tracing which bytes are
+cap     instructions and which are data, and naming the OS-9 system calls.
+try     unc break
+run     builtin cd /dd/CMDS
+wait    1
+run     clear
+wait    1
+run     unc break
+wait    5
+
 shot    about
 size    30 80
 cap     The collection's own guide: `about hack' answers what a program is,

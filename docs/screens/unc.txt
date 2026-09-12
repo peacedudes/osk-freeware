@@ -1,0 +1,21 @@
+          psect     disas,Typ_Lang,Attr_Rev,Ed,stk,start
+
+          sub.l     #3,d5
+          bcs.s     LB1                      ($f2)
+          cmp.b     #$2d,(a5)+
+          bne.s     LB1                      ($f2)
+          cmp.b     #$3f,(a5)+
+          bne.s     LB1                      ($f2)
+LB2:      lea       $ff60(pc),a0
+          bra.s     LB3                      ($100)
+
+LB1:      tst.l     d1
+          bne.s     LB2                      ($ec)
+          moveq.l   #$0,d1
+          os9       F$SysDbg
+          lea       -87(pc),a0
+LB3:      moveq.l   #$1,d0
+          moveq.l   #$ffffffff,d1
+          os9       I$WritLn
+          moveq.l   #$0,d1
+          os9       F$Exit

@@ -2,6 +2,18 @@
 # Librarian card catalogue.  One stanza per program; each makes the files
 # it reads under /dd/tmp/FILESA, and the picture is what follows `clear'.
 
+shot    howfrag
+cap     howfrag reports how fragmented a file is -- how many separate disk
+cap     pieces it is stored in, out of the 48 a file descriptor holds.  A
+cap     high count on a file that grows a lot is the sign to re-copy it.
+try     howfrag cat clear ls
+run     builtin cd /dd/CMDS
+wait    1
+run     clear
+wait    1
+run     howfrag cat clear ls
+wait    4
+
 shot    basename
 size    24 80
 cap     basename prints the last part of a path -- the filename with every

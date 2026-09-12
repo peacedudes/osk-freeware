@@ -71,3 +71,11 @@ disk/SRC/infoxpress/BNU/ELM_2.4/HDRS/osk.h
 # against Microware's own files or against ours sitting beside them.
 disk/SRC/pdksh/OSK/DEFS/ioctl.h
 disk/SRC/pdksh/OSK/DEFS/termios.h
+
+# unc's own tables of OS-9 syscall MNEMONICS -- the strings "F$Fork",
+# "I$Open" and the rest -- so the disassembler can name a trap in its
+# output. The published names of the system calls, held in the author's own
+# `systraps[]`/`iotraps[]` arrays; no Microware code, just the labels a
+# 68000 OS-9 module's `os9` instructions decode to. ORIG/ is the byte copy.
+disk/SRC/unc/os9traps.c
+disk/SRC/unc/ORIG/os9traps.c

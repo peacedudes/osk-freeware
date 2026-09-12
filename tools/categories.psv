@@ -1011,3 +1011,5 @@ rev|Text tools|Transform & filter
 tsort|Text tools|Sort, compare & merge
 ul|Text tools|Format & typeset
 yes|Shells|Shell helpers
+howfrag|Files & directories|Find & compare
+unc|System & modules|OS-9 modules

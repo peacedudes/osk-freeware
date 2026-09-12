@@ -1,6 +1,6 @@
 # What is on this disk
 
-955 programs of OS-9/68K community software, gathered from the archives that kept it and made to run again. **606 of them need nothing but this disk**; the rest want Microware's `cio`, marked below with a star.
+957 programs of OS-9/68K community software, gathered from the archives that kept it and made to run again. **608 of them need nothing but this disk**; the rest want Microware's `cio`, marked below with a star.
 
 `DOC/INDEX` on the disk lists everything alphabetically. This is the same collection sorted by what each program is *for*, which is the more useful order when you do not yet know what you are looking for.
 
@@ -14,7 +14,7 @@
 | [Shells](#shells) | 23 | Unix shells to sit beside OS-9's own -- bash and ksh bring history, job control, and scripts that come across unchanged. |
 | [Editors](#editors) | 27 | vi and emacs in several flavours, line and stream editors, and editors for binary and hex. |
 | [Text tools](#text-tools) | 124 | Search, sort, compare, reformat, split and spell-check. |
-| [Files & directories](#files--directories) | 32 | Listing, copying, finding, renaming, and knowing what you have. |
+| [Files & directories](#files--directories) | 33 | Listing, copying, finding, renaming, and knowing what you have. |
 | [Developer tools](#developer-tools) | 46 | Version control, tags, cross-reference, formatters, a debugger and benchmarks. |
 | [Compilers & build](#compilers--build) | 40 | C compilers and their passes, assemblers, linkers, make and parser generators. |
 | [Languages](#languages) | 10 | Interpreters and language systems beyond C. |
@@ -25,7 +25,7 @@
 | [Games](#games) | 62 | Adventures, board and card games, arcade ports, dungeon crawls and puzzles. |
 | [Screen toys](#screen-toys) | 8 | Animations and screen effects -- they draw on the terminal rather than print to it. Some run until you stop them. |
 | [Amusements](#amusements) | 19 | Generators, simulators and diversions that are not quite games. |
-| [System & modules](#system--modules) | 126 | OS-9 module and process tools, devices, system state and scheduling. |
+| [System & modules](#system--modules) | 127 | OS-9 module and process tools, devices, system state and scheduling. |
 | [Disk & DOS](#disk--dos) | 20 | Reading and writing MS-DOS media with the mtools set. |
 | [Time & calendar](#time--calendar) | 14 | Calendars, clocks and astronomy. |
 | [Maths & calculators](#maths--calculators) | 14 | Calculators, plotting, orbits and number theory. |
@@ -350,7 +350,7 @@
 
 *Listing, copying, finding, renaming, and knowing what you have.*
 
-<details><summary>32 programs</summary>
+<details><summary>33 programs</summary>
 
 **Attributes & ownership**
 
@@ -388,6 +388,7 @@
 | `du` | &#9733; adds up what a directory tree holds -- bytes, kilobytes, sectors and the number of files -- one line per directory, with a total<br>`Syntax: du <directory>` |
 | `ff` | &#9733; find files by name -- `ff <name>'.  It builds the command `dir -ausr ! grep <name>' and hands it to Microware's `shell'. `find' does the same job |
 | `find` | &#9733; find 1.1.5 -- search a directory tree, with its own syntax: `-n=<name>' matches and `-o' prints what it found. (`find <dir> -name x -print' answers `only one parameter allowed'.)  The manual in DOC/find describes a different find.<br>`Syntax: find {<opts>} [<path>]` |
+| `howfrag` | report how fragmented a file is: how many disk pieces it is stored in, out of a file descriptor's 48.  A high count on a file that grows a lot is when to re-copy it.<br>`Syntax:   howfrag <filename> [<filenames> ... ]` |
 | `space` | &#9733; effective disk usage: what a tree costs on the disk, descriptors, directories and part-used clusters included, rather than what it contains. Conditions apply; `help space' has them<br>`Syntax:   space [<opts>] {<dir/file path>} [<opts>]` |
 
 **Home Librarian**
@@ -1352,7 +1353,7 @@
 
 *OS-9 module and process tools, devices, system state and scheduling.*
 
-<details><summary>126 programs</summary>
+<details><summary>127 programs</summary>
 
 **Devices & disks**
 
@@ -1417,6 +1418,7 @@
 | `ptxm` | Path Table eXtension Module: a kernel extension letting user-state processes open unlimited I/O paths. Courtesyware, free. It installs into the kernel and so needs supervisor state. DOC/ptxm/ptxm.txt |
 | `remove` | &#9733; remove modules from memory -- its own Function line says so. `remove <module>...', -q for quiet. `rm' removes files<br>**How:** Removes modules from memory. `del', `rm' and `deldir' are the file ones. |
 | `rtfdat` | the RTF Fortran data module |
+| `unc` | disassemble a 68000 OS-9 module back to assembler: the header as equates, then the code, tracing which bytes are instructions and which are data, naming the OS-9 syscalls.<br>`Syntax: unc {-<opts>} <file> {-<opts>}` |
 | `version` | &#9733; prints its own version and nothing else -- `Dies ist das Program 'version', Version 7' -- whatever module you name. `ident' and `modinfo' show a module's edition |
 | `vmod_trap` | the VMod_trap trap handler that rxmod and txmod call. A type-$0B trap module, not a program: `load /dd/CMDS/COMMS/vmod_trap' before running them. It runs in supervisor state, so once installed it faults on this kernel |
 

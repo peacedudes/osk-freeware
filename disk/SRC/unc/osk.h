@@ -1,0 +1,1 @@
+#include <modes.h>#define open(p, f, m) _open(p, f, m)#define O_RDONLY S_IREAD#define O_WRONLY S_IWRITE#define O_RDWR (S_IREAD + S_IWRITE)#define O_CREAT 0x100#define O_TRUNC 0x200#define O_APPEND 0x400#define O_EXCL 0x800#ifndef NULL#define NULL (void *) 0#endif#define strrchr rindex#define strchr index

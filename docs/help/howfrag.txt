@@ -1,0 +1,3 @@
+$ howfrag -?
+Syntax:   howfrag <filename> [<filenames> ... ]
+Function: determine number of fragments in a file.

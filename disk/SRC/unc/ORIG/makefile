@@ -1,0 +1,1 @@
+CLIB=/dd/LIBRDIR=RELSCFLAGS=-gt=/r0LFLAGS=-giOBJS=$(RDIR)/alloc.r $(RDIR)/file.r $(RDIR)/robj.r $(RDIR)/iset.r $(RDIR)/prin.r $(RDIR)/main.r $(RDIR)/osk.r $(RDIR)/heur.r\    $(RDIR)/os9traps.runc:	$(OBJS)        cc -f=$@ $(OBJS) $(LFLAGS) -l=$(CLIB)/os9lib.l$(OBJS):	unc.h

@@ -1,0 +1,10 @@
+$ unc -?
+Syntax: unc {-<opts>} <file> {-<opts>}
+Funkcion: 68k Disassembler
+Options:    -p     print address and opcode values too
+            -x=<n> exactness mode
+                   <n> = 0: Best guess,
+                         1: no check for labels falling into instruction argument,
+                         2: as above plus no check for bad jsr/bxx thread,
+                         3: don't check instruction thread at all
+            -d     debug mode
