@@ -1,1 +1,452 @@
-# For rdoggettOnly what is waiting on a decision of yours. Everything done, and why, is ingit history and `notes/START-HERE-NEXT-SESSION.md`; this file carries noneof it. Updated 2026-09-09, evening.## The GAMES/wish hack toy -- FIXED and working end to end (2026-09-10)You were right that it never got past Game 1, and that it should update everyfew games.  It does now, and it completes.  What was wrong and what I changed(all in `disk/SRC/toys/wish.c', rebuilt as `CMDS/GAMES/wish', module B_wish):1. It forked hack by the bare name "hack"; hack chd's into its playground and   reopens itself by that name, which is not there, so it died before its   first prompt.  Now it forks `/dd/CMDS/GAMES/hack' by full path.  `load   hack' is no longer needed.2. After the class is picked hack prints a welcome and a --More-- before the   level; the toy's zap was eaten by that --More--.  It now drains to the   status line first.3. hack prefixes its in-game prompts with cursor-positioning escapes, so the   toy's fixed few-byte reads missed them and it hung.  The wand check now   polls `_gs_rdy()' for how many bytes are ready and reads only those --   never blocking -- and matches "In what direction?" and "You may wish for   an object" as substrings.  A direction prompt is cancelled with ESC (a   wand of wishing never asks one, and cancelling spares the hero).4. The end-of-game path waited for a screen-clear this hack never sends; it   now answers hack's "Hit return to continue:" and loops to the next game.5. On a win it drains hack's post-wish output before saving.And one DATA fix: hack saves to a `save' subdirectory of its playground thatdid NOT exist on the disk, so every save failed "Cannot open save file".  Iadded `disk/GAMES/HACK/PLAYGROUND/save/' (with a `.keep' placeholder, becausethe collection's own tar skips an empty nested directory).Verified end to end: run it, it plays hack game after game (fast underos9exec's unpaced `-r'; ~38 games one run), finds a wand of wishing, wishes"3 potions of gain level", hack grants them, it saves the game and prints"Found in game 38 !!!" and returns to the shell.  Restoring that save in hackshows the hero holding a wand of wishing and 3 potions of gain level.  You cangive it your own wish on the line: `wish a blessed +3 ring of levitation'.Still yours to decide: the NAME COLLISION.  `wish' on the path is WiSH theshell (`CMDS/wish'); the toy is `CMDS/GAMES/wish', reachable only by its pathor where GAMES sits ahead of CMDS.  A rename of the toy (`hackwish'?) wouldlet both be run by name, but it changes what ships, so it is your call.## Real OS-9 first (2026-09-10) -- two things for you1. **The hardware step is written from what we know, not from doing it.**   Every guide now opens with the real-system arrangement and offers two   routes onto a real disk: the raw image written whole, or   `osk-freeware.tar' unpacked with the `tar' module shipped beside it   (`tools/mkimage.sh' writes both next to the image).  The guides say   plainly that we have not done it on hardware.  If you know anyone with   a real system, that paragraph is the one to have checked.2. **The CI workflow does not yet publish the tar.**  It builds the image;   the tar and the module are new artefacts and want adding to what a   release carries -- your call with the release itself.## The recard pass (2026-09-09, evening) -- three things for you1. **Look at the page.**  `docs/index.html': help is now its own section   on every card, captured from the program (`its own help', with the   command that asked), and "details and provenance" no longer folds.   I read every card as text, not in a browser -- opening Safari on your   screen did not seem right.  A random walk through it is the test.2. **`uucico' and the emulator's chatter.**  `uucico seabass' makes a real   call attempt and prints `call 1 failed -- seabass is unavailable', which   is the better card -- but the pty capture also shows os9exec's own line   `# /t3 is /dev/ttys008 (attach with: screen ...)' when the port is   opened.  I kept the bare `uucico' ("no remote to call") rather than   put emulator text on a card.  If os9exec could keep that line off the   program's terminal, four cards (uucico, tsmon2, infoxpress, dld)   would show more.3. **`mv' at Microware's shell under os9exec runs the built-in `move'.**   Bare-name forks reach os9exec's internal commands before the disk;   `mv' is one of them.  The help capture loads the module first.  Worth   knowing if you ever wonder why `mv -?' documents move.## The all-card sweep is COMPLETE (2026-09-09)Every one of the ~900 program cards has been read one at a time and nowcarries a `try' line saying what to type -- the try-line backlog is zero and`check_disk.py' is green. All twenty gallery sheets are done: amusements,toys, maths, documentation, languages, the play-tested set, gothic, editors,archives, files, developer tools, games, compilers, communications, graphics,shells, time & calendar, encoding, disk & DOS, system & modules, printing,text tools, TeX, text filters, and the three netpbm sheets.  Captions wererewritten for a stranger, author names and shouting taken out of thereader-facing text, and every capture freshly shot.  805 of 911 runnableprograms show a panel doing their own job; the rest are honest exceptions in`tools/panel-exceptions.psv', each with a reason (hardware a program needs, aone-line result too sparse to score, a file-only converter shown by itsround-trip, a draw-once screen).**Two loose ends, both non-blocking:**- **DOC/INDEX de-shouting** -- done 2026-09-09 (evening), every category;  what `tools/audit_caps.py --show INDEX' still lists is format names and  acronyms (ALPS, FITS, GEM, Y2K), which are allowed.- **Best-forgotten candidates, consolidated** (each has an honest card as far  as it goes; removing any is your call):  - Needs a display os9exec has none of: `cyberwar', `puzzle',    `scriptmaster', `colortest', `dclock' (G-Windows); `apfel', `g',    `showpic', `sine', `striche', `graphdemo', `graphsave' (the Graph    library); `umusek', `pacman' (a TeleVideo terminal).  - Needs hardware/peer it cannot have: `splman', `lpsched' (a printer);    the RTF Fortran drivers `for', `lnk', `lnk.org' (`rtf' is the working    program of that set); `oleo' (aborts on real Microware hardware too --    `sc' serves the spreadsheet need).  - Broken or brittle here: `dedit' (spins for want of `tmode', and writes    raw sectors -- do not run unsupervised); `names' (prints garbage and    never terminates -- `modinfo' does its job); `rstory2', `ff', `creadoc'.## The all-card sweep is under way -- four decisions waiting (2026-09-08)The machinery that made gothic's card wrong is fixed and the sweep has begun.`gothic' now shows a full-size blackletter word (line folding no longer cutsthe middle out of a picture; it is opt-in per card), and every card mustcarry a `try' line saying what to type -- `check_disk`'s `every card sayswhat to type' gates it, with `tools/try-backlog.txt` as the ratchet (800cards still to write one, down from 852). A `bash / OS-9 shell' switch on theweb page changes the prompt and swaps in an OS-9 spelling where a card givesone (`tools/os9try.py' verifies those against Microware's shell). Contrastraised, ALL CAPS gone from the reader-facing text, keep explained on a startpanel and previewed file-by-file. Five categories are reviewed (amusements,toys, maths, documentation, languages) and the 17 play-tested programs arerecut as proper cards.Waiting on you:1. **backgammon and teachgammon draw their board in one burst and never   redraw.** Through the screenshot harness (which paces output to a real   baud rate) only the board's outer rules survive -- the walls and pieces   are dropped, so the card is blank. An unthrottled capture draws the whole   board perfectly (I have seen it). This is the known output-pacing FIFO   limit, not a new os9exec bug, so I did not file one. To card these two I   would add an unthrottled (`-r') capture path for draw-once full-screen   programs -- the skill warns `-r' can hide truncation, hence asking. Add   it, or list the two as exceptions?2. **oleo and rstory2 are best-forgotten candidates.** (piano was removed 2026-09-11 -- the author's RF-radio music toy, obsolete and unverifiable; he keeps the source.)  `oleo'   (GNU Oleo 1.6) aborts with an illegal instruction before it draws a   cell -- confirmed on real Microware hardware too, not just os9exec -- so   it is the program, and `sc' serves the spreadsheet need. `rstory2' forks story programs   (`rstory_W' and the rest) that did not come with it, so it stops after   its questions. Each is carded honestly as far as they go; your call   whether they stay.  A fourth: **ff** (a German file-finder) hands off   to Microware's shell to do the search and `find' supersedes it; a    best-forgotten candidate from the files sweep.  From games: the five   G-Windows programs that need a display os9exec has none of (`cyberwar',   `puzzle', `scriptmaster', `colortest', `dclock'), and `pacman', which   paints only on a TeleVideo terminal.  From compilers: the RTF Fortran   drivers `for', `lnk' and `lnk.org' (they print the command they would   run and stop -- `rtf' is the working program of that set) and `creadoc'   (brittle on this system's directory-column layout).  Each has an honest   card as far as it goes; none removed.3. **logisim's rebuilt binary drops every second letter of its on-screen   labels** (`* oi  iuao *' for `*** Logic - Simulator ***'). Traced to   `t_putsxy' in `disk/SRC/eff_logisim/logisim.c' doing `putchar(*s++)',   which the SDK's `putc' macro double-evaluates on a line-buffered stream.   The fix is `ch = *s++; putchar(ch);' at two sites and a rebuild through   the recipe. Redirected to a file the labels are intact, so it is a source   bug the `-qm' build exposes, not the emulator. I left `disk/' untouched;   say the word and I make the fix and rebuild.4. **The played-program cards changed how their pictures are made.** The 17   that used to come from `tools/playtests/*.keys' are now stanzas in   `tools/screenshots/played.sheet'. The play-tests still run as tests; the   card now comes from the stanza. `rain' has no card -- a still frame of   falling raindrops is too sparse to score -- and is an honest exception.## Full pathlists on cards -- captions ruled and gated; shown commands mostly doneThe rule is made and enforced: `check_disk.py`'s `cards carry no fullpathlists' fails the build on any `/dd/...`, `/h0/...` or `/h1/...` in acard's caption or `try' line, and check_the_checks records the by-handproof (21 of 21 breaks caught, re-run 2026-09-06).**The shown COMMANDS are swept.** The bulk pass moved visible run lines toshort relative names reached by a single `chd'/`cd', committed 2026-09-06.What still shows a path in a published panel now falls into three kinds,and I stopped there on purpose rather than risk working cards for marginalgain:  - **Program OUTPUT that names a path** -- `Execution - /dd/CMDS' from a    program reporting its own directory, an ELM error naming    `/dd/USR/LIB/ELM/...', a password or motd line whose CONTENT is a path.    Not a command anyone typed; not ours to reword.  - **The sanctioned single-`cd' form** -- `ksh -c "cd /dd/tmp/TEX; dvips    story.dvi"': the path appears once, in the cd, and everything after is    a short name. That is the model the memory rule prescribes.  - **A typed path with the reason in the caption** -- `mv' and `move' are    called by full path and the card says why (`mv' alone reaches a ksh    built-in of the same name); the GCC drivers are pathed because they    look for their passes beside themselves and break otherwise; `fc' is    `/dd/CMDS/fc' because `fc' is a ksh built-in too. Each is a buried    reason a blind sweep would trip over.  A short set of confirmation lines (`ls -l /dd/tmp/X/a /dd/tmp/X/b',  `cat /dd/tmp/X/data') could still be folded into their demo's `cd'. It is  cosmetic and low-value; say the word and I do it, or I chip at it when a  card is touched anyway.## Four panels restored (2026-09-06)Byproducts of the shown-command sweep, all now green and committed:  - `pgmedge' and `lesskey' were bad captures -- a partial `--only' re-shot    ran them without the earlier stanza that makes their work directory, so    their setup failed silently. Re-shot in full-sheet context.  - `ppmtopj' and `ppmtorgb3' write their output to files; the pjtoppm    round-trip and the `ls' that follow on their cards are the evidence.    They joined `vtxtcn' as honest `panel-exceptions.psv' entries. (At HEAD    they passed only because a stale netpbm progress line counted as work;    the rebuilt test image now converts for real, so their own line is    genuinely silent.)## The gallery, recast for a browser (2026-09-05)Done, per your science-fair steer -- the program panel (docs/index.html, fromtools/catalog.template.html) now leads with what it does, a **Try it**command (short, no pathlists), **See it run** (the capture, moved up), and**Needs** (only real requirements -- data files and directories fromDEPENDS, and runb for a BASIC09 program). Version, author, provenance, itsown help and see-also are folded into a collapsed Details section. cio isde-emphasised as you asked: the star on every cio program, the "uses cio"flag and the "Runs without cio" filter are gone -- the modules ship, so itis a non-event. A new `try' sheet directive gives a card its command;without one the card shows the bare program name, which is what you type formost. The format is documented in tools/screenshots.py's sheet-format help.**What is left on this, for a later pass, not a blocker:** the per-card"what it does" line. Sampled, most are already clean one-liners; a minoritystill carry how-it-was-got-working prose. It is a category-by-categoryediting pass, not a redesign. Authoring `try' for the arg-needing cards(most just take their name) is the same kind of incremental work.## NEXT SESSION -- two things rdoggett called out (2026-09-07)1. **Author names must come out of DOC/INDEX (and so off the cards).**   rdoggett: *"You are also including author's name in the index sometimes.   Example: charcnt Count characters in a file (Carl Kreider). We don't want   that."*  An index entry says what a program IS; the author credit belongs   in SOURCES.txt and DOC/ORIGINS, not here -- and the gallery card takes its   one-line description from DOC/INDEX, so the name rides onto the card too.   Fourteen entries carry a person in parentheses (grep DOC/INDEX after   `tr '\r' '\n'` for `\([A-Z][a-z]+ [A-Z]`):     ar  bsplt68  charcnt  splman  tcmp  unp  dearc  dedit   -- (Carl Kreider)     k  xy  z                                                -- (Tim Kientzle)     ptxm (Nick Holgate, 1995)   gshell (Uwe Simon, 1988)     lout (Basser Lout, Jeffrey Kingston)   Strip the parenthetical from each entry's description.  Do NOT touch two   false positives the same regex hits: biory's `(Name Vorname)' is the   German prompt label, and `home  os9-freeware (This Collection)' is sample   output.  DOC/INDEX is CR-terminated -- edit it CR-only.  howto.psv is   clean (checked).  Regenerate the cards after.2. **The simple-demo pass should cover EVERY card, not only the 55 wrapped   ones.**  rdoggett expected a consistency sweep over the whole gallery:   *"I thought you would go through every card and make sure they are all   consistent, not just 55."*  The 55 `ksh -c "cd"' cards are done; the rest   (~900) were not reviewed one by one for the same style -- bare visible   command, staging hidden, no stray pipe or full path, caption describing.   That is the open job.  `tools/audit_panels.py` scores what each card   shows; a card-by-card read against the style in the memory   [[os9-clean-examples]] is what remains.## Card demos are now all simple (2026-09-07) -- three edge cases leftEvery gallery demo shows the program and its arguments, nothing else; the55 `ksh -c "cd X; ..."' wrappers are gone, with the cd and staging hiddenbefore the clear.  Three keep a wrapper on purpose, and they are yours torule on if you want them touched:  - **creadoc** -- known-broken (the column-53 bug), and needs the Microware    shell/dir/del on /h1; left as it was.  - **vtxtcn** -- run directly it leaves the capture session unusable, so it    needs the `ksh -c' subshell to contain it.  - **mkdict** -- fragile, and it NO LONGER bus-errors: it now returns status    0 silently, so its card caption ("takes a bus error and stops") is stale    and wants a rewrite once you decide what the card should show.## Content decisions1. **Programs that may be best forgotten.** Each is measured and carded   honestly; removing one is yours to decide. Since the last pass:   - `pacman` -- a keypad ASCII maze game (not G-Windows, as I had wrongly     said); it draws in raw keyboard mode. Kept.   - `rstory2` -- forks four story programs that never shipped with it.   - `dearc` -- reads MS-DOS ARC files; nothing here writes one. It could     be given a sample the way the zip readers were, if you want it kept.   - `splitalf` -- writes `<name>_0` and stops, whatever it is given.   - `cuts -e` -- the encoder asks for gigabytes; `-d` decodes fine.   - `game`, `postprint` -- want the `chess.lst` gnuchess writes on `list`,     which the checkgame card already produces; not re-measured, an     evening's work rather than a removal.   - `puz15` and `puzzle15` are NOT duplicates -- two different programs,     each with its own source (`SRC/v_misc/puz15.c`, `SRC/eff_puzzle15`).     Both stay. The five GNU Chess builds and `wc.cio` are the real     duplicate question, one decision each.## Yours because the repos are yours2. **os9exec.** What still stops a card, now that MOVE SR, F$Mem and   F$SysID are fixed:   - `F$GPrDBT` (0x1f) and `F$GPrDsc` (0x18) take a bus error instead of a     refusal; `devprc -a`, `top` and `sysmon` reach them. You said os9exec     is being worked on for these.   - The allocator's `# No more memory ...` line goes to the console, which     is the program's stdout, so it can land on a card. Real OS-9 refuses     silently. (subber now has a working card -- `#1000k' pre-sizes its     data area so it never asks os9exec to grow one.)   - `creadoc` is an early Fortran documentation extractor (it pulls the     `C++ ... C--' header block out of a `.f' source into creadoc.txt, a     1988 forerunner of javadoc) and is worth keeping as that. It does not     run here: it reads the file name from column 53 of a `dir -eadu'     listing, and this disk's dir puts it at 54 (the 2026 date, printed     `126', pushes it further) -- so it opens a space-prefixed name and     stops. A dir-column brittleness (its fnpos=53 vs this dir's 54), one     constant in SRC/rtf/creadoc.f. Rebuilding it means the RTF Fortran     chain plus Microware's r68/l68 on /h1, and it edits an archived     binary. I'd keep it as interesting historical software, documented,     with DOC/rtf/biory.doc as the example of its output; rebuild only if     you want it runnable. Your call.3. **The `os9-dev` skill** (`~/Developer/os9/os9-dev-skill`), three gaps in   `references/common/using-os9exec-repl.md`, written up in git history   (2026-09-01 entry of this file): the cio selector mismatch is absent; "a   usage message is a pass" is unsafe for that class; a bare relative   `OS9Hx` path breaks file opens while module loading works. Say the word   and I write them in.## Release4. The branch has never been pushed and nothing is tagged. Before that:   the CI pin in `.github/workflows/build-image.yml` is an old os9exec   commit and has never run for real. I can bump it and run the workflow   locally; the push, the tag and the merge to main are yours.## dvi2tty -- two decisions before it can ship (2026-09-11)`dvi2tty' reads a TeX .DVI file and prints it as text, and `disdvi' dumps aDVI's structure.  Both BUILD AND RUN here: pointed at `DOC/mg/mg_doc.dvi',dvi2tty prints "The MG Reference Manual / Release MG2A / Sandra J.Loosemore".  This is a real gap on the disk -- TeX is here, and eight DVIPRINTER drivers (dvialw, dvijet, dvilj2 ...), but nothing that shows a DVIon a screen.  They are built and waiting in scratch, deliberately not staged.**1.  It states no licence, and the trail its own readme gives leads toanother program's notice.**The archive is `dvi2tty.ar' from the Microware OS-9 archive (MW 3861).  Thegroup's `tex_readme' says: "I am NOT the author of these programs, see the'copying' and 'readme' files in ctexdoc.ar for authors instructions ondistribution."  I could not fetch ctexdoc.ar (the archive page returns HTML,no download route), but `ctexsrc.ar' IS in the pool and carries the same`copying'.  It is Pat Joseph Monardo's notice for **Common TeX**, 1986-87 --verbatim copies with the notice preserved, a source-availabilityrequirement, modified versions under an identical notice, no warranty.Monardo wrote Common TeX.  He did not write dvi2tty: that is Marcel J.E.Mol's C translation (Delft, 1989-90) of Svante Lindahl's Pascal (KTH).  Sothe pointer leads to a notice covering a DIFFERENT program, and dvi2ttyitself carries no grant at all.  The one permission sentence in its README-- "use it and improve as you wish" -- is about `disdvi' specifically, in aparagraph about disdvi.The disk has precedent for shipping a Usenet posting with no notice(`cdecl', `xargs', `which' are all worded "posted to Usenet and freelyredistributed since.  No licence text accompanies the source.").  dvi2tty isnot quite that: it came through the Microware archive rather than anewsgroup posting, and its author is alive and findable (Marcel Mol laterreleased dvi2tty under the GPL).  **Ship it on the no-notice precedent, askMarcel Mol, or leave it out?**  I have not staged it either way.**2.  Its README ends with an obscenity.**The author's signature block closes with a Lennon lyric containing the word"fucking".  The collection's convention is that `ORIG/' holds a releaseexactly as it came, which would ship it verbatim into `SRC/dvi2tty/ORIG/'and, if the README goes to `DOC/', onto the documentation shelf as well.Nothing on the disk currently does that as far as I know.  Your call: shipORIG verbatim as the convention says, keep ORIG but leave the README out ofDOC, or neither.## B7 games with non-commercial clauses -- RESOLVED, shipped (2026-09-11)You settled this: "we are not trying to profit so what's the issue?"  Sincethe collection is distributed free, a clause that only bars making money offthe program is no obstacle.  So the three that carried one are now shipped:- jotto (0a75970f) -- "don't try to make money off the program".- mastrm (0a75970f) -- "not to be used for profit".- rogue -- "not for profit"; NOT yet built (it is a 5-part roguelike, a  larger port, and the disk already has hack and larn), but its licence is  no longer a blocker whenever someone takes it on.Recorded here only so the earlier open question is not left standing.  Thedvi2tty question below is a DIFFERENT one -- no grant at all -- and stays open.
+# For rdoggett
+
+Only what is waiting on a decision of yours. Everything done, and why, is in
+git history and `notes/START-HERE-NEXT-SESSION.md`; this file carries none
+of it. Updated 2026-09-09, evening.
+
+
+## The GAMES/wish hack toy -- FIXED and working end to end (2026-09-10)
+
+You were right that it never got past Game 1, and that it should update every
+few games.  It does now, and it completes.  What was wrong and what I changed
+(all in `disk/SRC/toys/wish.c', rebuilt as `CMDS/GAMES/wish', module B_wish):
+
+1. It forked hack by the bare name "hack"; hack chd's into its playground and
+   reopens itself by that name, which is not there, so it died before its
+   first prompt.  Now it forks `/dd/CMDS/GAMES/hack' by full path.  `load
+   hack' is no longer needed.
+2. After the class is picked hack prints a welcome and a --More-- before the
+   level; the toy's zap was eaten by that --More--.  It now drains to the
+   status line first.
+3. hack prefixes its in-game prompts with cursor-positioning escapes, so the
+   toy's fixed few-byte reads missed them and it hung.  The wand check now
+   polls `_gs_rdy()' for how many bytes are ready and reads only those --
+   never blocking -- and matches "In what direction?" and "You may wish for
+   an object" as substrings.  A direction prompt is cancelled with ESC (a
+   wand of wishing never asks one, and cancelling spares the hero).
+4. The end-of-game path waited for a screen-clear this hack never sends; it
+   now answers hack's "Hit return to continue:" and loops to the next game.
+5. On a win it drains hack's post-wish output before saving.
+
+And one DATA fix: hack saves to a `save' subdirectory of its playground that
+did NOT exist on the disk, so every save failed "Cannot open save file".  I
+added `disk/GAMES/HACK/PLAYGROUND/save/' (with a `.keep' placeholder, because
+the collection's own tar skips an empty nested directory).
+
+Verified end to end: run it, it plays hack game after game (fast under
+os9exec's unpaced `-r'; ~38 games one run), finds a wand of wishing, wishes
+"3 potions of gain level", hack grants them, it saves the game and prints
+"Found in game 38 !!!" and returns to the shell.  Restoring that save in hack
+shows the hero holding a wand of wishing and 3 potions of gain level.  You can
+give it your own wish on the line: `wish a blessed +3 ring of levitation'.
+
+Still yours to decide: the NAME COLLISION.  `wish' on the path is WiSH the
+shell (`CMDS/wish'); the toy is `CMDS/GAMES/wish', reachable only by its path
+or where GAMES sits ahead of CMDS.  A rename of the toy (`hackwish'?) would
+let both be run by name, but it changes what ships, so it is your call.
+
+## Real OS-9 first (2026-09-10) -- two things for you
+
+1. **The hardware step is written from what we know, not from doing it.**
+   Every guide now opens with the real-system arrangement and offers two
+   routes onto a real disk: the raw image written whole, or
+   `osk-freeware.tar' unpacked with the `tar' module shipped beside it
+   (`tools/mkimage.sh' writes both next to the image).  The guides say
+   plainly that we have not done it on hardware.  If you know anyone with
+   a real system, that paragraph is the one to have checked.
+2. **The CI workflow does not yet publish the tar.**  It builds the image;
+   the tar and the module are new artefacts and want adding to what a
+   release carries -- your call with the release itself.
+
+## The recard pass (2026-09-09, evening) -- three things for you
+
+1. **Look at the page.**  `docs/index.html': help is now its own section
+   on every card, captured from the program (`its own help', with the
+   command that asked), and "details and provenance" no longer folds.
+   I read every card as text, not in a browser -- opening Safari on your
+   screen did not seem right.  A random walk through it is the test.
+2. **`uucico' and the emulator's chatter.**  `uucico seabass' makes a real
+   call attempt and prints `call 1 failed -- seabass is unavailable', which
+   is the better card -- but the pty capture also shows os9exec's own line
+   `# /t3 is /dev/ttys008 (attach with: screen ...)' when the port is
+   opened.  I kept the bare `uucico' ("no remote to call") rather than
+   put emulator text on a card.  If os9exec could keep that line off the
+   program's terminal, four cards (uucico, tsmon2, infoxpress, dld)
+   would show more.
+3. **`mv' at Microware's shell under os9exec runs the built-in `move'.**
+   Bare-name forks reach os9exec's internal commands before the disk;
+   `mv' is one of them.  The help capture loads the module first.  Worth
+   knowing if you ever wonder why `mv -?' documents move.
+
+
+
+## The all-card sweep is COMPLETE (2026-09-09)
+
+Every one of the ~900 program cards has been read one at a time and now
+carries a `try' line saying what to type -- the try-line backlog is zero and
+`check_disk.py' is green. All twenty gallery sheets are done: amusements,
+toys, maths, documentation, languages, the play-tested set, gothic, editors,
+archives, files, developer tools, games, compilers, communications, graphics,
+shells, time & calendar, encoding, disk & DOS, system & modules, printing,
+text tools, TeX, text filters, and the three netpbm sheets.  Captions were
+rewritten for a stranger, author names and shouting taken out of the
+reader-facing text, and every capture freshly shot.  805 of 911 runnable
+programs show a panel doing their own job; the rest are honest exceptions in
+`tools/panel-exceptions.psv', each with a reason (hardware a program needs, a
+one-line result too sparse to score, a file-only converter shown by its
+round-trip, a draw-once screen).
+
+**Two loose ends, both non-blocking:**
+
+- **DOC/INDEX de-shouting** -- done 2026-09-09 (evening), every category;
+  what `tools/audit_caps.py --show INDEX' still lists is format names and
+  acronyms (ALPS, FITS, GEM, Y2K), which are allowed.
+
+- **Best-forgotten candidates, consolidated** (each has an honest card as far
+  as it goes; removing any is your call):
+  - Needs a display os9exec has none of: `cyberwar', `puzzle',
+    `scriptmaster', `colortest', `dclock' (G-Windows); `apfel', `g',
+    `showpic', `sine', `striche', `graphdemo', `graphsave' (the Graph
+    library); `umusek', `pacman' (a TeleVideo terminal).
+  - Needs hardware/peer it cannot have: `splman', `lpsched' (a printer);
+    the RTF Fortran drivers `for', `lnk', `lnk.org' (`rtf' is the working
+    program of that set); `oleo' (aborts on real Microware hardware too --
+    `sc' serves the spreadsheet need).
+  - Broken or brittle here: `dedit' (spins for want of `tmode', and writes
+    raw sectors -- do not run unsupervised); `names' (prints garbage and
+    never terminates -- `modinfo' does its job); `rstory2', `ff', `creadoc'.
+
+## The all-card sweep is under way -- four decisions waiting (2026-09-08)
+
+The machinery that made gothic's card wrong is fixed and the sweep has begun.
+`gothic' now shows a full-size blackletter word (line folding no longer cuts
+the middle out of a picture; it is opt-in per card), and every card must
+carry a `try' line saying what to type -- `check_disk`'s `every card says
+what to type' gates it, with `tools/try-backlog.txt` as the ratchet (800
+cards still to write one, down from 852). A `bash / OS-9 shell' switch on the
+web page changes the prompt and swaps in an OS-9 spelling where a card gives
+one (`tools/os9try.py' verifies those against Microware's shell). Contrast
+raised, ALL CAPS gone from the reader-facing text, keep explained on a start
+panel and previewed file-by-file. Five categories are reviewed (amusements,
+toys, maths, documentation, languages) and the 17 play-tested programs are
+recut as proper cards.
+
+Waiting on you:
+
+1. **backgammon and teachgammon draw their board in one burst and never
+   redraw.** Through the screenshot harness (which paces output to a real
+   baud rate) only the board's outer rules survive -- the walls and pieces
+   are dropped, so the card is blank. An unthrottled capture draws the whole
+   board perfectly (I have seen it). This is the known output-pacing FIFO
+   limit, not a new os9exec bug, so I did not file one. To card these two I
+   would add an unthrottled (`-r') capture path for draw-once full-screen
+   programs -- the skill warns `-r' can hide truncation, hence asking. Add
+   it, or list the two as exceptions?
+
+2. **oleo and rstory2 are best-forgotten candidates.** (piano was removed 2026-09-11 -- the author's RF-radio music toy, obsolete and unverifiable; he keeps the source.)  `oleo'
+   (GNU Oleo 1.6) aborts with an illegal instruction before it draws a
+   cell -- confirmed on real Microware hardware too, not just os9exec -- so
+   it is the program, and `sc' serves the spreadsheet need. `rstory2' forks story programs
+   (`rstory_W' and the rest) that did not come with it, so it stops after
+   its questions. Each is carded honestly as far as they go; your call
+   whether they stay.  A fourth: **ff** (a German file-finder) hands off
+   to Microware's shell to do the search and `find' supersedes it; a
+    best-forgotten candidate from the files sweep.  From games: the five
+   G-Windows programs that need a display os9exec has none of (`cyberwar',
+   `puzzle', `scriptmaster', `colortest', `dclock'), and `pacman', which
+   paints only on a TeleVideo terminal.  From compilers: the RTF Fortran
+   drivers `for', `lnk' and `lnk.org' (they print the command they would
+   run and stop -- `rtf' is the working program of that set) and `creadoc'
+   (brittle on this system's directory-column layout).  Each has an honest
+   card as far as it goes; none removed.
+
+3. **logisim's rebuilt binary drops every second letter of its on-screen
+   labels** (`* oi  iuao *' for `*** Logic - Simulator ***'). Traced to
+   `t_putsxy' in `disk/SRC/eff_logisim/logisim.c' doing `putchar(*s++)',
+   which the SDK's `putc' macro double-evaluates on a line-buffered stream.
+   The fix is `ch = *s++; putchar(ch);' at two sites and a rebuild through
+   the recipe. Redirected to a file the labels are intact, so it is a source
+   bug the `-qm' build exposes, not the emulator. I left `disk/' untouched;
+   say the word and I make the fix and rebuild.
+
+4. **The played-program cards changed how their pictures are made.** The 17
+   that used to come from `tools/playtests/*.keys' are now stanzas in
+   `tools/screenshots/played.sheet'. The play-tests still run as tests; the
+   card now comes from the stanza. `rain' has no card -- a still frame of
+   falling raindrops is too sparse to score -- and is an honest exception.
+
+## Full pathlists on cards -- captions ruled and gated; shown commands mostly done
+
+The rule is made and enforced: `check_disk.py`'s `cards carry no full
+pathlists' fails the build on any `/dd/...`, `/h0/...` or `/h1/...` in a
+card's caption or `try' line, and check_the_checks records the by-hand
+proof (21 of 21 breaks caught, re-run 2026-09-06).
+
+**The shown COMMANDS are swept.** The bulk pass moved visible run lines to
+short relative names reached by a single `chd'/`cd', committed 2026-09-06.
+What still shows a path in a published panel now falls into three kinds,
+and I stopped there on purpose rather than risk working cards for marginal
+gain:
+
+  - **Program OUTPUT that names a path** -- `Execution - /dd/CMDS' from a
+    program reporting its own directory, an ELM error naming
+    `/dd/USR/LIB/ELM/...', a password or motd line whose CONTENT is a path.
+    Not a command anyone typed; not ours to reword.
+  - **The sanctioned single-`cd' form** -- `ksh -c "cd /dd/tmp/TEX; dvips
+    story.dvi"': the path appears once, in the cd, and everything after is
+    a short name. That is the model the memory rule prescribes.
+  - **A typed path with the reason in the caption** -- `mv' and `move' are
+    called by full path and the card says why (`mv' alone reaches a ksh
+    built-in of the same name); the GCC drivers are pathed because they
+    look for their passes beside themselves and break otherwise; `fc' is
+    `/dd/CMDS/fc' because `fc' is a ksh built-in too. Each is a buried
+    reason a blind sweep would trip over.
+
+  A short set of confirmation lines (`ls -l /dd/tmp/X/a /dd/tmp/X/b',
+  `cat /dd/tmp/X/data') could still be folded into their demo's `cd'. It is
+  cosmetic and low-value; say the word and I do it, or I chip at it when a
+  card is touched anyway.
+
+## Four panels restored (2026-09-06)
+
+Byproducts of the shown-command sweep, all now green and committed:
+  - `pgmedge' and `lesskey' were bad captures -- a partial `--only' re-shot
+    ran them without the earlier stanza that makes their work directory, so
+    their setup failed silently. Re-shot in full-sheet context.
+  - `ppmtopj' and `ppmtorgb3' write their output to files; the pjtoppm
+    round-trip and the `ls' that follow on their cards are the evidence.
+    They joined `vtxtcn' as honest `panel-exceptions.psv' entries. (At HEAD
+    they passed only because a stale netpbm progress line counted as work;
+    the rebuilt test image now converts for real, so their own line is
+    genuinely silent.)
+
+## The gallery, recast for a browser (2026-09-05)
+
+Done, per your science-fair steer -- the program panel (docs/index.html, from
+tools/catalog.template.html) now leads with what it does, a **Try it**
+command (short, no pathlists), **See it run** (the capture, moved up), and
+**Needs** (only real requirements -- data files and directories from
+DEPENDS, and runb for a BASIC09 program). Version, author, provenance, its
+own help and see-also are folded into a collapsed Details section. cio is
+de-emphasised as you asked: the star on every cio program, the "uses cio"
+flag and the "Runs without cio" filter are gone -- the modules ship, so it
+is a non-event. A new `try' sheet directive gives a card its command;
+without one the card shows the bare program name, which is what you type for
+most. The format is documented in tools/screenshots.py's sheet-format help.
+
+**What is left on this, for a later pass, not a blocker:** the per-card
+"what it does" line. Sampled, most are already clean one-liners; a minority
+still carry how-it-was-got-working prose. It is a category-by-category
+editing pass, not a redesign. Authoring `try' for the arg-needing cards
+(most just take their name) is the same kind of incremental work.
+
+## NEXT SESSION -- two things rdoggett called out (2026-09-07)
+
+1. **Author names must come out of DOC/INDEX (and so off the cards).**
+   rdoggett: *"You are also including author's name in the index sometimes.
+   Example: charcnt Count characters in a file (Carl Kreider). We don't want
+   that."*  An index entry says what a program IS; the author credit belongs
+   in SOURCES.txt and DOC/ORIGINS, not here -- and the gallery card takes its
+   one-line description from DOC/INDEX, so the name rides onto the card too.
+   Fourteen entries carry a person in parentheses (grep DOC/INDEX after
+   `tr '\r' '\n'` for `\([A-Z][a-z]+ [A-Z]`):
+
+     ar  bsplt68  charcnt  splman  tcmp  unp  dearc  dedit   -- (Carl Kreider)
+     k  xy  z                                                -- (Tim Kientzle)
+     ptxm (Nick Holgate, 1995)   gshell (Uwe Simon, 1988)
+     lout (Basser Lout, Jeffrey Kingston)
+
+   Strip the parenthetical from each entry's description.  Do NOT touch two
+   false positives the same regex hits: biory's `(Name Vorname)' is the
+   German prompt label, and `home  os9-freeware (This Collection)' is sample
+   output.  DOC/INDEX is CR-terminated -- edit it CR-only.  howto.psv is
+   clean (checked).  Regenerate the cards after.
+
+2. **The simple-demo pass should cover EVERY card, not only the 55 wrapped
+   ones.**  rdoggett expected a consistency sweep over the whole gallery:
+   *"I thought you would go through every card and make sure they are all
+   consistent, not just 55."*  The 55 `ksh -c "cd"' cards are done; the rest
+   (~900) were not reviewed one by one for the same style -- bare visible
+   command, staging hidden, no stray pipe or full path, caption describing.
+   That is the open job.  `tools/audit_panels.py` scores what each card
+   shows; a card-by-card read against the style in the memory
+   [[os9-clean-examples]] is what remains.
+
+## Card demos are now all simple (2026-09-07) -- three edge cases left
+
+Every gallery demo shows the program and its arguments, nothing else; the
+55 `ksh -c "cd X; ..."' wrappers are gone, with the cd and staging hidden
+before the clear.  Three keep a wrapper on purpose, and they are yours to
+rule on if you want them touched:
+
+  - **creadoc** -- known-broken (the column-53 bug), and needs the Microware
+    shell/dir/del on /h1; left as it was.
+  - **vtxtcn** -- run directly it leaves the capture session unusable, so it
+    needs the `ksh -c' subshell to contain it.
+  - **mkdict** -- fragile, and it NO LONGER bus-errors: it now returns status
+    0 silently, so its card caption ("takes a bus error and stops") is stale
+    and wants a rewrite once you decide what the card should show.
+
+## Content decisions
+
+1. **Programs that may be best forgotten.** Each is measured and carded
+   honestly; removing one is yours to decide. Since the last pass:
+   - `pacman` -- a keypad ASCII maze game (not G-Windows, as I had wrongly
+     said); it draws in raw keyboard mode. Kept.
+   - `rstory2` -- forks four story programs that never shipped with it.
+   - `dearc` -- reads MS-DOS ARC files; nothing here writes one. It could
+     be given a sample the way the zip readers were, if you want it kept.
+   - `splitalf` -- writes `<name>_0` and stops, whatever it is given.
+   - `cuts -e` -- the encoder asks for gigabytes; `-d` decodes fine.
+   - `game`, `postprint` -- want the `chess.lst` gnuchess writes on `list`,
+     which the checkgame card already produces; not re-measured, an
+     evening's work rather than a removal.
+   - `puz15` and `puzzle15` are NOT duplicates -- two different programs,
+     each with its own source (`SRC/v_misc/puz15.c`, `SRC/eff_puzzle15`).
+     Both stay. The five GNU Chess builds and `wc.cio` are the real
+     duplicate question, one decision each.
+
+## Yours because the repos are yours
+
+2. **os9exec.** What still stops a card, now that MOVE SR, F$Mem and
+   F$SysID are fixed:
+   - `F$GPrDBT` (0x1f) and `F$GPrDsc` (0x18) take a bus error instead of a
+     refusal; `devprc -a`, `top` and `sysmon` reach them. You said os9exec
+     is being worked on for these.
+   - The allocator's `# No more memory ...` line goes to the console, which
+     is the program's stdout, so it can land on a card. Real OS-9 refuses
+     silently. (subber now has a working card -- `#1000k' pre-sizes its
+     data area so it never asks os9exec to grow one.)
+   - `creadoc` is an early Fortran documentation extractor (it pulls the
+     `C++ ... C--' header block out of a `.f' source into creadoc.txt, a
+     1988 forerunner of javadoc) and is worth keeping as that. It does not
+     run here: it reads the file name from column 53 of a `dir -eadu'
+     listing, and this disk's dir puts it at 54 (the 2026 date, printed
+     `126', pushes it further) -- so it opens a space-prefixed name and
+     stops. A dir-column brittleness (its fnpos=53 vs this dir's 54), one
+     constant in SRC/rtf/creadoc.f. Rebuilding it means the RTF Fortran
+     chain plus Microware's r68/l68 on /h1, and it edits an archived
+     binary. I'd keep it as interesting historical software, documented,
+     with DOC/rtf/biory.doc as the example of its output; rebuild only if
+     you want it runnable. Your call.
+
+3. **The `os9-dev` skill** (`~/Developer/os9/os9-dev-skill`), three gaps in
+   `references/common/using-os9exec-repl.md`, written up in git history
+   (2026-09-01 entry of this file): the cio selector mismatch is absent; "a
+   usage message is a pass" is unsafe for that class; a bare relative
+   `OS9Hx` path breaks file opens while module loading works. Say the word
+   and I write them in.
+
+## Release
+
+4. The branch has never been pushed and nothing is tagged. Before that:
+   the CI pin in `.github/workflows/build-image.yml` is an old os9exec
+   commit and has never run for real. I can bump it and run the workflow
+   locally; the push, the tag and the merge to main are yours.
+
+## dvi2tty -- two decisions before it can ship (2026-09-11)
+
+`dvi2tty' reads a TeX .DVI file and prints it as text, and `disdvi' dumps a
+DVI's structure.  Both BUILD AND RUN here: pointed at `DOC/mg/mg_doc.dvi',
+dvi2tty prints "The MG Reference Manual / Release MG2A / Sandra J.
+Loosemore".  This is a real gap on the disk -- TeX is here, and eight DVI
+PRINTER drivers (dvialw, dvijet, dvilj2 ...), but nothing that shows a DVI
+on a screen.  They are built and waiting in scratch, deliberately not staged.
+
+**1.  It states no licence, and the trail its own readme gives leads to
+another program's notice.**
+
+The archive is `dvi2tty.ar' from the Microware OS-9 archive (MW 3861).  The
+group's `tex_readme' says: "I am NOT the author of these programs, see the
+'copying' and 'readme' files in ctexdoc.ar for authors instructions on
+distribution."  I could not fetch ctexdoc.ar (the archive page returns HTML,
+no download route), but `ctexsrc.ar' IS in the pool and carries the same
+`copying'.  It is Pat Joseph Monardo's notice for **Common TeX**, 1986-87 --
+verbatim copies with the notice preserved, a source-availability
+requirement, modified versions under an identical notice, no warranty.
+
+Monardo wrote Common TeX.  He did not write dvi2tty: that is Marcel J.E.
+Mol's C translation (Delft, 1989-90) of Svante Lindahl's Pascal (KTH).  So
+the pointer leads to a notice covering a DIFFERENT program, and dvi2tty
+itself carries no grant at all.  The one permission sentence in its README
+-- "use it and improve as you wish" -- is about `disdvi' specifically, in a
+paragraph about disdvi.
+
+The disk has precedent for shipping a Usenet posting with no notice
+(`cdecl', `xargs', `which' are all worded "posted to Usenet and freely
+redistributed since.  No licence text accompanies the source.").  dvi2tty is
+not quite that: it came through the Microware archive rather than a
+newsgroup posting, and its author is alive and findable (Marcel Mol later
+released dvi2tty under the GPL).  **Ship it on the no-notice precedent, ask
+Marcel Mol, or leave it out?**  I have not staged it either way.
+
+**2.  Its README ends with an obscenity.**
+
+The author's signature block closes with a Lennon lyric containing the word
+"fucking".  The collection's convention is that `ORIG/' holds a release
+exactly as it came, which would ship it verbatim into `SRC/dvi2tty/ORIG/'
+and, if the README goes to `DOC/', onto the documentation shelf as well.
+Nothing on the disk currently does that as far as I know.  Your call: ship
+ORIG verbatim as the convention says, keep ORIG but leave the README out of
+DOC, or neither.
+
+
+## B7 games with non-commercial clauses -- RESOLVED, shipped (2026-09-11)
+
+You settled this: "we are not trying to profit so what's the issue?"  Since
+the collection is distributed free, a clause that only bars making money off
+the program is no obstacle.  So the three that carried one are now shipped:
+
+- jotto (0a75970f) -- "don't try to make money off the program".
+- mastrm (0a75970f) -- "not to be used for profit".
+- rogue -- "not for profit"; NOT yet built (it is a 5-part roguelike, a
+  larger port, and the disk already has hack and larn), but its licence is
+  no longer a blocker whenever someone takes it on.
+
+Recorded here only so the earlier open question is not left standing.  The
+dvi2tty question below is a DIFFERENT one -- no grant at all -- and stays open.
+
+## os9lib -- a compilation under four sets of terms (2026-09-11)
+
+TOP's `os9lib' is the library `uustat', `Browse' and several of TOP's own
+games link against, so whether it can ship decides a batch rather than a
+program.  It does not build cleanly yet (that is in the plan, not here), but
+the licence question is independent of the build and is yours.
+
+**It is not one licence.  It is 47 source files under at least four.**  I
+counted every file rather than sampling, having twice reported a sample as
+the whole and been wrong both times:
+
+  32  Wolfgang Ocker, Ulli Dessauer, Reimer Mellin and Ulrich Dessauer,
+      1988 -- "copied and distributed freely for any non-commercial
+      purposes", commercial incorporation by written permission only.
+      **Your ruling covers these**: "we are not trying to profit so what's
+      the issue?"
+   2  `regexp.c', `regsub.c' -- Henry Spencer, University of Toronto 1986.
+      Permission for any purpose, redistribute freely, three
+      no-misrepresentation conditions.  The same wording `uustat' carries.
+  12  No notice, but identifiable: `rnd.c' is Berkeley 4.2 `random.c',
+      `crypt.c' is Tanenbaum's textbook DES rewritten in C, and the rest
+      are small shims (`umask.c' is 72 bytes).
+   1  **`utime.c' -- Michael Hoffmann, Muenchen 1988.  A bare copyright
+      line and NO GRANT AT ALL.**
+
+That last one is the same situation as `dvi2tty' above, and I have treated
+it the same way: not shipped on my own judgement.  It is a 56-line wrapper
+that sets a file's date, nothing in os9lib calls it, and `uustat' does not
+either -- so **dropping it costs nothing**, and I have left it out of the
+build.  Say if you would rather it stayed.
+
+**One file carries a condition worth knowing even though it permits
+distribution.**  `info.c' is Wolfgang Ocker's SYSINFO: *"I would like to
+establish the SYSINFO concept as a STANDARD for OS-9/68000.  So please
+DON'T CHANGE ANYTHING ... You may not distribute any modified versions, or
+programs which rely on a modified version."*  Shipping it UNMODIFIED is
+fine.  It means that file must not be patched, which constrains anyone
+fixing the library later.
+
+**What I would like from you**, when you have a moment: whether os9lib
+ships at all on the 32-file non-commercial basis plus the above.  If yes,
+`uustat' and `Browse' follow it, and so do the TOP games the other session
+is holding.  If you would rather leave the whole TOP release alone, say so
+and we both stop spending time on it.

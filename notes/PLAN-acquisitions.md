@@ -314,6 +314,55 @@ the same size TO THE BYTE and reads the sample disk identically.  Screening
 remains right for the other case -- the two `stat.h' entries on that list --
 where a program must match an INTERFACE to call the system at all.
 
+**os9lib: WHERE IT ACTUALLY STANDS, 2026-09-11 night.**  It does not link
+yet, and the next session should start from these measurements rather than
+from the top.  Everything below was run, not inferred.
+
+WHAT WORKS: the sources extract in universe (`tar' on the disk reads
+`os9lib.t'), 42 members are named and 42 objects build, and the merged
+container has the same header shape as the author's prebuilt.  Two
+18-member half-libraries EACH LINK CLEANLY.
+
+THE FAULT I FIXED: `l68: error - psect '<name>' contains assembly errors'
+when linking against the whole library.  It is NOT a bad member -- removing
+the named one just moves the error to the next (dbm_c -> popen_c ->
+stat_c), because l68 names whichever junction it reaches first.  Proof: the
+two halves link, and CONCATENATING the two halves (an OS-9 library is just
+concatenated modules) produces a 36-member library with the fault GONE.
+The difference from the author's build is the merge: the driver does ONE
+pass, `merge -z=ctmp.list > lib'; the makefile does TWO, `merge -b50 OBJS1
+>-lib' then `merge -b50 OBJS2 >+lib'.  (`-b50' is a buffer size, NOT
+boundary padding -- the author's member spacings mod 50 are 5, 10, 36, 41,
+36.)
+
+WHAT IS STILL BROKEN, and the place to start: symbols do not resolve from
+the joined library.  `info_str' and `info_is_locked' come back unresolved
+although `info.c' is member 25 of it and the symbol text is in the file six
+times.  Repeating `-l=' three times does not help (l68 makes one pass).  So
+l68 reads the library and does not match the definitions.  That is ONE
+question, not a mystery.
+
+FOUR TRAPS, each of which cost a build or more:
+
+1. **A `.l` recipe reports `clean' when `merge' RAN, not when the members
+   compiled.**  A library whose first member failed still came back green,
+   at 2,914 bytes against the author's 55,032.  For a library recipe, check
+   the SIZE and the SYMBOLS, never the verdict.
+2. **A `.l` recipe cannot carry a `.a` member.**  The driver names it
+   `<source>.r', so `signal.a' became `signal.a.r' and merge could not find
+   it.  os9lib is short `signal()'/`_siginit()' for this reason.
+3. **CPP2 is required, and it MASKS real failures.**  Without it six members
+   fail: `popen.c' and `pipe.c' want S_IREAD/S_IWRITE (no `<modes.h>'),
+   `dbm.c' hits os9lib `stat.h''s own "Can not include both stat.h and
+   modes.h" #error, `rnd.c' only warns.  Microware's cpp also will not
+   resolve `#include "local.h"' from the source's own directory; GNU's
+   does.  Three members failed on that until the headers the tar shipped
+   (`regexp.h', `regmagic.h', `infomod.h') were staged -- `cp *.c' had left
+   them behind.
+4. **Count members on a CLEARED tree.**  `.r' objects accumulate across
+   runs, so "objects present" counts history.  Every census taken before
+   clearing was wrong.
+
 ### B6 -- TOP, "The OS-9 Project", release 2 (Munich 1989-90)           open
 https://ftp.funet.fi/pub/unix/os9/top.tar.Z (8,900,473 b; index beside it);
 the same release per file in MW category 159-top (IDs 4489 on).  Local:
@@ -337,7 +386,7 @@ the native tools expect `/dd/SYS/utmp`, group, password or smail.
 | atc | `NET2/games/atc` | 1990 | BSD | curses, lex/yacc, setitimer->alarm |
 | canfield (+cfscores) | `NET2/games/canfield` | 1980 | BSD | canfield DONE (8c133d0b) -- curses; _tty/SIGTSTP/SIGTERM shimmed; cfscores companion open |
 | trek (Allman) | `NET2/games/trek` | 1980 | BSD | sgtty/select bits |
-| monop, wump, fish, arithmetic | `NET2/games/...` | 1980-90 | BSD | wump DONE (70fe4c6d), fish DONE (73cb6958) -- self-contained, getopt bundled, instructions embedded; monop has a fork to remove |
+| monop, wump, fish, arithmetic | `NET2/games/...` | 1980-90 | BSD | wump DONE (70fe4c6d), fish DONE (73cb6958), monop DONE (830dee5e) -- self-contained, getopt bundled, instructions embedded.  monop's board, properties and cards are .dat files #INCLUDED as C initialisers, so they had to be CR like source, not like data |
 | bs (ESR battleships) | `CSG/volume8/bs/part01.gz` | 1989 | no notice | DONE (cee1197c) -- OSK curses arm shims beep/chtype/ungetch, cbreak parenthesised |
 | scrabble | `CSG/volume6/scrabble/` | 1989 | redistribute in any manner | curses |
 | saa (Streets and Alleys) | `CSG/volume12/saa/` | 1991 | permission granted | DONE (d72a0cea) -- built unchanged with -DNON_ANSI_C |
