@@ -79,3 +79,13 @@ disk/SRC/pdksh/OSK/DEFS/termios.h
 # 68000 OS-9 module's `os9` instructions decode to. ORIG/ is the byte copy.
 disk/SRC/unc/os9traps.c
 disk/SRC/unc/ORIG/os9traps.c
+
+# os9lib's own interface, not Microware's. 469 bytes declaring the entry
+# points of TOP Munich's library -- info_str, info_is_locked, info_lock,
+# info_unlock, info_change, info_signal, info_kill -- whose implementation is
+# Ocker's info.c in that same library. It flags only because a copy sits in
+# the SDK's DEFS/os9lib, which is where somebody installed TOP's library on
+# the machine the SDK came from. The identical file already ships here as
+# DEFS/os9lib/info.h; this copy sits beside uustat.c because naming the whole
+# of DEFS/os9lib on the include path drags in its <stat.h> and collides.
+disk/SRC/uustat/info.h

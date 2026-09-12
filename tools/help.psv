@@ -1003,3 +1003,5 @@ disdvi|none|it takes a .DVI file and nothing else -- `-?' is read as a filename,
 corewar|none|corewar <cycles> <w1.e> <w2.e> runs the fight; assemble warriors with cwasm first; no argument shows usage
 cwasm|none|cwasm file.rc [file2.rc ...] writes each warrior as a .e object corewar loads
 cwdis|none|cwdis file.e prints the warrior object as an opcode/parameter table
+uustat|uustat -?|
+browse|browse -?|

@@ -119,13 +119,13 @@ is no help until you already know the name you want.
 | **Shells** | 24 | Unix shells to sit beside OS-9's own -- bash and ksh bring history, job control, and scripts that come across unchanged. |
 | **Editors** | 27 | vi and emacs in several flavours, line and stream editors, and editors for binary and hex. |
 | **Text tools** | 129 | Search, sort, compare, reformat, split and spell-check. |
-| **Files & directories** | 33 | Listing, copying, finding, renaming, and knowing what you have. |
+| **Files & directories** | 34 | Listing, copying, finding, renaming, and knowing what you have. |
 | **Developer tools** | 47 | Version control, tags, cross-reference, formatters, a debugger and benchmarks. |
 | **Compilers & build** | 40 | C compilers and their passes, assemblers, linkers, make and parser generators. |
 | **Languages** | 10 | Interpreters and language systems beyond C. |
 | **Archives & compression** | 37 | Pack, unpack and shrink -- lha, zip, tar, arc, zoo, and OS-9 module libraries. |
 | **Encoding & conversion** | 29 | Between text encodings, line endings, Macintosh formats, ciphers and hashes. |
-| **Communications** | 97 | Kermit in several builds, terminal sessions, and networking. |
+| **Communications** | 98 | Kermit in several builds, terminal sessions, and networking. |
 | **Graphics & images** | 202 | The netpbm toolkit, JPEG, a ray tracer, and things that draw. |
 | **Games** | 78 | Adventures, board and card games, arcade ports, dungeon crawls and puzzles. |
 | **Screen toys** | 8 | Animations and screen effects -- they draw on the terminal rather than print to it. Some run until you stop them. |

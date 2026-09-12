@@ -1127,3 +1127,16 @@ run     tput -Tvt100 clear | xd -c
 wait    4
 run     tput -Tvt100 cup 10 20 | xd -c
 wait    4
+
+shot    uustat
+cap     uustat reports on the UUCP job queue -- what is waiting, for which
+cap     system, and who queued it -- and can kill a job or rejuvenate one.
+cap     Nothing has been queued on this disk, so it reaches the spool, finds
+cap     no jobs waiting, and says so.
+try     uustat
+run     uustat -?
+wait    4
+run     clear
+wait    1
+run     uustat
+wait    4

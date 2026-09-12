@@ -1,0 +1,12 @@
+$ uustat -?
+Syntax: uustat [<opts>]
+Function: uucp status inquiry and job control
+Options:
+     -k                kill all uucp requests
+     -k[=]<jobid>      kill uucp request <jobid>
+     -r                rejuvenate all uucp requests
+     -r[=]<jobid>      rejuvenate uucp request <jobid>
+     -s[=]<system>     display status for <system>
+     -u[=]<user>       report requests issued by <user>
+     -v                verbose mode (with -k or -r)
+     -?                display this help

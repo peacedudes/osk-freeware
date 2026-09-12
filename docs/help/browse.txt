@@ -1,0 +1,9 @@
+$ browse -?
+Browse through a directory, written by Peter da Silva
+Adapted for OS-9 using TOP's os9lib
+Syntax: browse [<dir>]
+Function: show an ls-like directory listing which can be 'edited', i.e.
+          files may be tagged and inspected, dumped, executed, deleted,
+          renamed, copied, edited etc.
+Options:
+     none

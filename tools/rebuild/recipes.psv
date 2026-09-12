@@ -951,3 +951,5 @@ monop|monop|monop.c cards.c execute.c getinp.c houses.c jail.c misc.c morg.c pri
 yahtzee2|yahtzee2|admin.c book.c comp.c eval.c help.c main.c score.c scr.c getopt.c os9box.c||/dd/LIB/rand.r|
 dvi2tty|dvi2tty|dvi2tty.c dvistuff.c|||-dstrchr=index
 disdvi|dvi2tty|disdvi.c|||-dstrchr=index
+uustat|uustat|uustat.c||/dd/LIB/os9lib.l|
+browse|browse|browse.c||/dd/LIB/os9lib.l /dd/LIB/termlib.l|

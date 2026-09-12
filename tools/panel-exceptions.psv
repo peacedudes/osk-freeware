@@ -126,3 +126,4 @@ xy|waiting to receive on the terminal, since no MODEM port is set: the `C' it se
 k|waiting for the first Kermit packet on the terminal: `Receiving...' is all a receiver shows until a sender answers, and the card says so
 xyt|it wants a MODEM port and there is none to give it; saying so is what it does here, and the card says so
 tterm|it wants a MODEM port and there is none to give it; saying so is what it does here, and the card says so
+uustat|reports on the UUCP job queue, and nothing has been queued on this disk; it reaches the spool, finds no jobs waiting and says so, which is the same footing as uucico, uuxqt and uulog beside it

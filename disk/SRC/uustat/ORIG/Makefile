@@ -1,0 +1,1 @@
+CFLAGS = -dDEBUG -q -t=/dd/TMP -xLFLAGS = -i -l=/dd/LIB/os9lib.l -qRDIR = RELSODIR = /h0/ETC/CMDSMOD = uustatall.date:	$(MOD)	chd $(ODIR); attr -epe $(MOD)

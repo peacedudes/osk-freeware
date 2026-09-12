@@ -1,6 +1,6 @@
 # What is on this disk
 
-992 programs of OS-9/68K community software, gathered from the archives that kept it and made to run again. **643 of them need nothing but this disk**; the rest want Microware's `cio`, marked below with a star.
+994 programs of OS-9/68K community software, gathered from the archives that kept it and made to run again. **645 of them need nothing but this disk**; the rest want Microware's `cio`, marked below with a star.
 
 `DOC/INDEX` on the disk lists everything alphabetically. This is the same collection sorted by what each program is *for*, which is the more useful order when you do not yet know what you are looking for.
 
@@ -14,13 +14,13 @@
 | [Shells](#shells) | 24 | Unix shells to sit beside OS-9's own -- bash and ksh bring history, job control, and scripts that come across unchanged. |
 | [Editors](#editors) | 27 | vi and emacs in several flavours, line and stream editors, and editors for binary and hex. |
 | [Text tools](#text-tools) | 129 | Search, sort, compare, reformat, split and spell-check. |
-| [Files & directories](#files--directories) | 33 | Listing, copying, finding, renaming, and knowing what you have. |
+| [Files & directories](#files--directories) | 34 | Listing, copying, finding, renaming, and knowing what you have. |
 | [Developer tools](#developer-tools) | 47 | Version control, tags, cross-reference, formatters, a debugger and benchmarks. |
 | [Compilers & build](#compilers--build) | 40 | C compilers and their passes, assemblers, linkers, make and parser generators. |
 | [Languages](#languages) | 10 | Interpreters and language systems beyond C. |
 | [Archives & compression](#archives--compression) | 37 | Pack, unpack and shrink -- lha, zip, tar, arc, zoo, and OS-9 module libraries. |
 | [Encoding & conversion](#encoding--conversion) | 29 | Between text encodings, line endings, Macintosh formats, ciphers and hashes. |
-| [Communications](#communications) | 97 | Kermit in several builds, terminal sessions, and networking. |
+| [Communications](#communications) | 98 | Kermit in several builds, terminal sessions, and networking. |
 | [Graphics & images](#graphics--images) | 202 | The netpbm toolkit, JPEG, a ray tracer, and things that draw. |
 | [Games](#games) | 78 | Adventures, board and card games, arcade ports, dungeon crawls and puzzles. |
 | [Screen toys](#screen-toys) | 8 | Animations and screen effects -- they draw on the terminal rather than print to it. Some run until you stop them. |
@@ -356,7 +356,7 @@
 
 *Listing, copying, finding, renaming, and knowing what you have.*
 
-<details><summary>33 programs</summary>
+<details><summary>34 programs</summary>
 
 **Attributes & ownership**
 
@@ -366,6 +366,12 @@
 | `chown` | &#9733; sets the user half of a file's owner, group.user, by number or by a name from SYS/password<br>`chown: Usage:  chown [-z] {numerical-uid \| username} [file [... file]]` |
 | `fstat` | display a file's file descriptor -- the RBF file-descriptor sector, not the attribute bits `attr' shows you. Its own Function line says `Display file descriptor information' and it reports itself as `FStat'. `-s' adds the segment list, and `ssl' shows the same list from the same sector<br>`Syntax: FStat [<opts>] <file1> [<opts>]` |
 | `owner` | &#9733; change a file's owner -- `owner <user> <file> ...', super user only. Run with a file it prints its usage; run as `owner <file>' it reads the filename as a user name and answers `No such user'. `fstat' and `ls -l' are what show an owner<br>`owner: change ownership of files` |
+
+**Browse & inspect**
+
+| | |
+|---|---|
+| `browse` | a screen-oriented directory browser: it shows an `ls -l' listing you move around the way you would move around a file in `vi', and acts on the entry under the cursor -- SPACE enters a directory or pages a file, `x' dumps it in hex, `?' shows the help.  Wants TERM, and a shell for the keys that run a program<br>`Browse through a directory, written by Peter da Silva` |
 
 **Copy, move, delete**
 
@@ -775,7 +781,7 @@
 
 *Kermit in several builds, terminal sessions, and networking.*
 
-<details><summary>97 programs</summary>
+<details><summary>98 programs</summary>
 
 **File transfer**
 
@@ -906,6 +912,7 @@
 | `uucp` | &#9733; queue a file copy to or from another site<br>`uucp:  unix to unix copy program` |
 | `uulog` | &#9733; show the transfer log<br>`uulog: examine uucp or fileserver log files` |
 | `uuname` | &#9733; list the sites you can reach<br>`uuname --show local machine name or those of UUCP sites we talk to` |
+| `uustat` | UUCP job status and control: what is queued, for which system and by whom.  `-s' limits it to one system, `-u' to one user, `-k' kills a job and `-r' rejuvenates one.  With no queue to report on it says `uucp is possibly active' and stops<br>`Syntax: uustat [<opts>]` |
 | `uuxqt` | &#9733; run the jobs a remote site queued here.  It looks for a module called `procs' to see whether it is already running, so it wants a `procs' loaded (error 221 without one). |
 
 **Web server**
