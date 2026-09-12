@@ -1,6 +1,6 @@
 # What is on this disk
 
-996 programs of OS-9/68K community software, gathered from the archives that kept it and made to run again. **647 of them need nothing but this disk**; the rest want Microware's `cio`, marked below with a star.
+997 programs of OS-9/68K community software, gathered from the archives that kept it and made to run again. **648 of them need nothing but this disk**; the rest want Microware's `cio`, marked below with a star.
 
 `DOC/INDEX` on the disk lists everything alphabetically. This is the same collection sorted by what each program is *for*, which is the more useful order when you do not yet know what you are looking for.
 
@@ -22,7 +22,7 @@
 | [Encoding & conversion](#encoding--conversion) | 29 | Between text encodings, line endings, Macintosh formats, ciphers and hashes. |
 | [Communications](#communications) | 98 | Kermit in several builds, terminal sessions, and networking. |
 | [Graphics & images](#graphics--images) | 202 | The netpbm toolkit, JPEG, a ray tracer, and things that draw. |
-| [Games](#games) | 78 | Adventures, board and card games, arcade ports, dungeon crawls and puzzles. |
+| [Games](#games) | 79 | Adventures, board and card games, arcade ports, dungeon crawls and puzzles. |
 | [Screen toys](#screen-toys) | 8 | Animations and screen effects -- they draw on the terminal rather than print to it. Some run until you stop them. |
 | [Amusements](#amusements) | 26 | Generators, simulators and diversions that are not quite games. |
 | [System & modules](#system--modules) | 131 | OS-9 module and process tools, devices, system state and scheduling. |
@@ -700,7 +700,7 @@
 
 | | |
 |---|---|
-| `liborder` | &#9733; order the modules in an OS-9 library -- give it one. On alib.l and the other libraries here it works. Handed a plain file instead it reads a length from what it takes to be a relocatable-object header and asks for that many bytes, which floods `No more memory !!!'.<br>`liborder: Unimplemented option '-?'.` |
+| `liborder` | &#9733; lists relocatable objects in the order you would merge them into a library -- `liborder a.r b.r c.r' prints them last first, which is the order l68 wants.  Measured: it reverses whatever it is given, and does not read a .l at all.  Handed a library or a plain file it takes the first bytes for an object header, reads a length from them and asks for that many, which floods `No more memory !!!'. `-modinfo' prints each object's public names. `liborder.os9' is the same program, a second build.<br>`liborder: Unimplemented option '-?'.` |
 | `modbuster` | splits a file holding several OS-9 modules into one file per module, in the current directory or the one -w=<dir> names<br>**How:** Give it a file holding SEVERAL modules and it writes one file per module in the CURRENT directory. Use ksh to put yourself somewhere writable first. `/dd/CMDS/GAMES/cyberwar' looks like a candidate but modbuster hangs on it with no output at all; a single ordinary module (`/dd/CMDS/today') shows it working. |
 | `unpacklib` | &#9733; split an OS-9 library into its modules<br>`unpacklib: Unimplemented option '-?'.` |
 
@@ -742,7 +742,7 @@
 | `crypto` | &#9733; cryptogram puzzle solver's assistant<br>**How:** `crypto -h' is the real option list and `-i' the interactive commands; its bare answer is two lines naming those. As a FILTER it ends the emulator session here, so read the help rather than piping through it. |
 | `des` | &#9733; DES file encryption -- it writes `<file>.n' and removes the original.  It does not restore a file run through it twice with the same key (the result checksums 00000000), so for a round trip use `xcrypt'<br>**How:** It takes files and has no option flags at all -- `des file ...'. `-e' and `-?' are read as filenames and earn `Can't read -e.' |
 | `md5` | the MD5 digest of each file named |
-| `xcrypt` | &#9733; a simple file cipher: `xcrypt -k=<key> in out' encrypts, and the same command over the result decrypts it<br>`en/decrypt <input-file> <output-file>` |
+| `xcrypt` | &#9733; a file cipher that cannot be driven here.  It prints `en/decrypt <input-file> <output-file>' and stops, whatever it is given -- two filenames, a `-k' key, or nothing.  The binary carries a `Key:' prompt and a `your key is rather short' warning, so the key was meant to be typed, but nothing reaches it.  No source came with it.<br>`en/decrypt <input-file> <output-file>` |
 
 **Macintosh**
 
@@ -1192,7 +1192,7 @@
 
 *Adventures, board and card games, arcade ports, dungeon crawls and puzzles.*
 
-<details><summary>78 programs</summary>
+<details><summary>79 programs</summary>
 
 **Adventure & fiction**
 
@@ -1231,6 +1231,7 @@
 | `bs` | Battleships against the computer on a 10x10 grid: place your fleet, then hunt the computer's ships square by square with the hjklyubn cursor keys; sink the whole fleet to win |
 | `c4` | Connect Four against the computer: the columns are lettered a to g, and you drop a piece by typing a column's letter. Line up four in a row to win; `q' quits.  Hard to beat |
 | `canfield` | Canfield, the casino solitaire you bet on: earn units for each card worked up to a foundation, building down in alternating colours on the tableau; name a move by its two ends (s2, tf, 13, 2f), `ht' deals, `q' quits |
+| `cfscores` | reports what canfield's betting has cost you and won you -- hands, inspections, games, runs, information, thinking time, and what you are worth after it all.  It reads the same GAMES/cfscores canfield writes; before your first game it says so and stops |
 | `chess` | chess against the machine on a shaded board.  It asks for your colour, your name and a long or short game, then takes a move as two squares -- `e2' then `e4', two keystrokes each with no RETURN.  68k port, three engine versions built<br>**How:** It asks for your colour, your name and a long or short game, then takes a move as two squares -- `e2' for the piece and `e4' for where it goes. Each square is two keystrokes and needs no RETURN. |
 | `crib` | cribbage.  Needs TERM set, so run it from a login session -- bare it says `Unknown terminal type'<br>**How:** Full-screen cribbage, and it wants TERM -- run it from a login session. Answer the instructions question, choose a long or short game, and discard by naming a card, `7H'. Control-C gets you out. |
 | `cribbage` | &#9733; cribbage -- offers instructions before it deals.  Needs TERM, so run it from a login session<br>**How:** The other cribbage, the same shape: TERM must be set, it offers the rules first, then cuts for the crib. Control-C gets you out. |
@@ -1538,7 +1539,7 @@
 | `i_am_i` | prints its own source (Pascal) |
 | `isam` | &#9733; indexed-sequential file demonstration |
 | `lgrep` | &#9733; list the files a pattern appears in -- its banner says "same as 'grep -l', but prints filenames without comments". `grep -l' does the same job here.  DOC/README-GREP compares the six searchers<br>`Syntax: lgrep <arg1> ... <argn>` |
-| `liborder.os9` | report the order of modules in a library<br>`liborder: Unimplemented option '-?'.` |
+| `liborder.os9` | the same program as liborder, a second build<br>`liborder: Unimplemented option '-?'.` |
 | `makecrc` | generates C source for CRC tables. It takes no arguments: run it somewhere writable and it writes six files into the data directory -- arc.c, binhex.c, ccitt.c, ccitt32.c, kermit.c and zip.c -- each holding a crctab[256] and an updcrc() for one polynomial. It writes them without a message, so list the directory afterwards. For a CRC of a file, `chksum' does that<br>**How:** It GENERATES C SOURCE and takes no arguments. Run it somewhere writable (`ksh -c "cd /dd/tmp; makecrc"') and it writes six files -- arc.c, binhex.c, ccitt.c, ccitt32.c, kermit.c, zip.c -- each a crctab[256] and an updcrc(). It writes them without a message, so list the directory afterwards. |
 | `map` | &#9733; show the disk blocks a file occupies, sector by sector: `map <file>', or `map -e <file>' for the extended form. For memory rather than disk, `mfree' and `free' would be the equivalents; neither is on this disk<br>`Syntax: map [<opts>] <file> {<file>}` |
 | `modinfo` | report a module's header -- name, type, size, edition, CRC<br>`module: Show Module Information` |

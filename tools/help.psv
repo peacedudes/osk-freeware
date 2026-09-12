@@ -1007,3 +1007,4 @@ uustat|uustat -?|
 browse|browse -?|
 almanac|almanac|
 zc|none|zc <zipcode> names the city and state; with no argument it opens a form, C clears the field and Q quits
+cfscores|none|it takes no options: run it and it reports your canfield bank, or says you have never played

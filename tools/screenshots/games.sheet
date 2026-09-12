@@ -1354,3 +1354,16 @@ run     clear
 run     cwasm dwarf.rc imp.rc gemini.rc mice.rc
 wait    2
 snap
+
+shot    cfscores
+size    24 80
+cap     canfield is a casino game and this is the bank behind it: what the
+cap     hands, the inspections, the games and the thinking time have cost,
+cap     what came back, and what you are worth after the lot.  It reads the
+cap     file canfield writes, so before a first game it says so plainly
+cap     rather than printing a table of noughts.
+try     cfscores
+run     clear
+wait    1
+run     cfscores
+wait    3

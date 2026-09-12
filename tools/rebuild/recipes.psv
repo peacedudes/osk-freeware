@@ -955,3 +955,4 @@ uustat|uustat|uustat.c||/dd/LIB/os9lib.l|
 browse|browse|browse.c||/dd/LIB/os9lib.l /dd/LIB/termlib.l|
 almanac|almanac|almanac.c||/dd/LIB/math.l|
 zc|zc|zc.c||/dd/LIB/termlib.l|
+cfscores|canfield|cfscores.c|||
