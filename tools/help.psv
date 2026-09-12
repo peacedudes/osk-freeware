@@ -600,7 +600,7 @@ gpp_cccp|gpp_cccp -?|
 gpp_collect|gpp_collect -?|
 gmake|gmake -h|
 dmake|dmake -?|
-m4|m4 -?|
+m4|m4 -?|its `syscmd' forks a module called `shell' and does nothing without one; keep your own shell loaded, and see DOC/README-SHELLS
 m4_0.5|m4_0.5 -?|
 make|make -?|
 makeinfo|makeinfo -?|

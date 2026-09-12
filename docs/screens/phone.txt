@@ -1,6 +1,6 @@
                              OS9/68K#PHONE#FACILITY
-
-
+#EXIT#
+Sorry your Partner is not on his Terminal or too busy to have a chat with you!
 -------------------------------------------------------------------------------
                                  /term::TESTER
 
@@ -21,4 +21,4 @@
 
 
 
-                             (C) by M.Rosenthal, CH# /t1 is /de
+$                        (C) by M.Rosenthal, CH

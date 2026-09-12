@@ -371,7 +371,9 @@ wait    6
 shot    m4
 cap     m4, the macro processor.  `define' names a macro with a parameter,
 cap     and each later use of it is expanded -- here `greet(reader)'
-cap     becomes a short welcome with the name filled in.
+cap     becomes a short welcome with the name filled in.  One thing needs
+cap     more than this disk: `syscmd' forks a module called `shell' and is
+cap     silent without one, so keep your own shell loaded.
 try     m4 tmp/m.m4
 run     builtin cd /dd
 wait    1
