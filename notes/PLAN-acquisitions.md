@@ -245,12 +245,12 @@ re-derived:
 ### B5 -- OS-9-native programs and code                          mimecode done
 | prog | where | date | terms | note |
 |---|---|---|---|---|
-| Browse (P. da Silva, OSK port C. Emde) | TWN 653558 (3 parts, complete) | 1990 | none in the port | BLOCKED on os9lib (see below); help at `/h0/SYS/browse.hlp` |
+| Browse (P. da Silva, OSK port C. Emde) | TWN 653558 (3 parts, complete) | 1990 | none in the port | DONE a214cf0b -- ships.  NOT blocked: os9lib is disk/GNULIB/os9lib.l.  The thread carries two editions; the 30 Jan shar (browse_2a+2b merged) supersedes the 6 Jan one, which ORIG keeps.  One change: its pager was `more', which this disk has not got |
 | unc (68000 module disassembler) | pool `SRC/unc.lzh`; MW 4308 | 1991 | none | DONE df6d23ce -- ships, links `GNULIB/os9lib.l` |
 | almanac 3.2 (J. Semler) | MW 2313 (has almanac.OSK) | ~1992 | none | terminal card candidate |
 | freeb | MW 3921; TWN 653668 | 1989 | PD | DONE e1a56b0c -- ships |
 | howfrag | MW 4223 | | PD | DONE df6d23ce -- ships |
-| uustat, ancient, hdump/undump | MW 3970, 3894, 3928 | | per item | hdump+undump DONE e1a56b0c; uustat BLOCKED on os9lib (see below); ancient DROPPED, no terms stated |
+| uustat, ancient, hdump/undump | MW 3970, 3894, 3928 | | per item | hdump+undump DONE e1a56b0c; uustat DONE a214cf0b -- ships, built unchanged, Oldach's own grant; ancient DROPPED, no terms stated |
 | dumpinit (init module lister) | MW 2240 | ~1994 | none | generic though filed MM/1 |
 | mimecode (base64) | MW 2503 | 1995 | author's permission | DONE -- built -qm, tested, carded; Tim Kientzle/DDJ, Gene Heskett's OS-9 pack |
 | zc ZipCode + ZIPDATA | MW 2248, 2250 | 1995 | PD | needs `/dd/sys/zipcodes.txt` |
@@ -259,7 +259,7 @@ re-derived:
 | OS-9 International code disk (EFFO) | MW 5041 `effo.lzh` -> `EFFO/OS9_INTERNATIONAL/*.lzh` | 1993-94 | EFFO: personal, not commercial/military | disp SCF driver in C, lfcrman, watchdog, cache control; for real OS-9 |
 | EFFO system examples | pool `EFFO/forum16.lzh` SOFTWARE/ASSEMBLER (4007); `forum12.lzh` SOFTWARE/C/ERROR (4003) | 1990-91 | "Public" | uacct, exception handler, F$CCtl/F$Permit bindings |
 | kings, vt100 (MM/1 tree, terminal) | MW 2191, 2180 | 1991-95 | mostly unstated | |
-| dvi2tty (+ Common TeX source) | MW 3861, 3860 | ~1991 | see ctexdoc.ar | disk has TeX and no DVI viewer |
+| dvi2tty (+ Common TeX source) | MW 3861, 3860 | ~1991 | see ctexdoc.ar | DONE 4d158c64 -- dvi2tty and disdvi ship |
 | BRU/OS-9 1.2 | MW 2330 | 1991 | GPL-style | 6809 C, plausible port |
 | rnclone 1.0 | MW 3740 | 1993-94 | free, keep head comments | 6809 C, has 68k porting notes |
 | K5JB k37 source (for shipped `net`, `bm`) | https://github.com/johnsonjh/k5jb | 1993-95 | no licence file | check it matches the binaries |
@@ -488,6 +488,27 @@ G-Windows fonts.  Networking that needs Microware ISP (rdate, ttcp, bind,
 boa, wn 1.16.7) is for real systems only -- later, if at all.
 
 ---
+
+## A defect found by the skill session, 2026-09-12
+
+`ls' printed a literal `%s' where a filename belongs:
+
+    $ ls nosuchfile
+    ls: %s: error 216
+
+`SRC/ls/error.h' declares `void error(int, int, const char *, ...)' and
+`SRC/ls/error.c' defined it with three fixed parameters, so the argument
+after the format was dropped and the format reached stderr unsubstituted.
+Thirteen call sites, every one passing exactly one argument after the
+format.  Fixed by taking that argument; vfprintf would be the general
+answer but os9lib, the only library the recipe links, has none.
+
+Found by the os9-dev skill session running our own disk as a dogfood test,
+which is the second thing that pass has caught that we could not see from
+inside.  The first was that our `system()' return value is not a reliable
+failure signal -- junk here, 0 on their machine -- and that the sound test
+is whether a redirect target was created, since a shell makes the file
+named after `>' before it runs the command.
 
 ## Recovery, day by day
 
