@@ -129,7 +129,7 @@ is no help until you already know the name you want.
 | **Graphics & images** | 202 | The netpbm toolkit, JPEG, a ray tracer, and things that draw. |
 | **Games** | 72 | Adventures, board and card games, arcade ports, dungeon crawls and puzzles. |
 | **Screen toys** | 8 | Animations and screen effects -- they draw on the terminal rather than print to it. Some run until you stop them. |
-| **Amusements** | 23 | Generators, simulators and diversions that are not quite games. |
+| **Amusements** | 25 | Generators, simulators and diversions that are not quite games. |
 | **System & modules** | 130 | OS-9 module and process tools, devices, system state and scheduling. |
 | **Disk & DOS** | 20 | Reading and writing MS-DOS media with the mtools set. |
 | **Time & calendar** | 14 | Calendars, clocks and astronomy. |

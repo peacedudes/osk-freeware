@@ -1,0 +1,2 @@
+$ echo "Be very very quiet, I am hunting rabbits." | fudd
+Be vewy vewy qwiet, I am hunting wabbits.

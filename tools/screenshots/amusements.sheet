@@ -355,3 +355,21 @@ cap     Pipe any text through it.
 try     echo "The Swedish chef boils the water and stirs the soup." | chef
 run     echo "The Swedish chef boils the water and stirs the soup." | chef
 wait    2
+
+shot    fudd
+size    24 80
+cap     fudd rewrites text the way Elmer Fudd would say it -- r and l both
+cap     become w, th becomes d -- so any sentence comes out in his hunting
+cap     lisp.  Pipe text through it.
+try     echo "Be very very quiet, I am hunting rabbits." | fudd
+run     echo "Be very very quiet, I am hunting rabbits." | fudd
+wait    2
+
+shot    drawl
+size    24 80
+cap     drawl gives text a broad Texan accent, dropping g's and stretching
+cap     vowels -- going becomes goin', to becomes tuh, the becomes thuh.
+cap     Pipe any text through it.
+try     echo "I am going to the store to buy some food." | drawl
+run     echo "I am going to the store to buy some food." | drawl
+wait    2
