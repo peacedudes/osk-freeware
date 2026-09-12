@@ -1200,3 +1200,22 @@ send    q\r
 wait    1
 send    \003
 wait    2
+
+shot    othello
+size    24 80
+cap     Othello against the computer: place a disk so it flanks a line of
+cap     the opponent's between it and one of yours, and every disk trapped
+cap     flips to your colour.  It asks how many players and a level 1-5;
+cap     a move is the row letter A-H then the column number 1-8.  Q quits.
+try     othello
+run     othello
+wait    5
+keys    1
+wait    2
+keys    3
+wait    3
+keys    C4
+wait    3
+snap
+keys    Q
+wait    2

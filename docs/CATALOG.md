@@ -1,6 +1,6 @@
 # What is on this disk
 
-976 programs of OS-9/68K community software, gathered from the archives that kept it and made to run again. **627 of them need nothing but this disk**; the rest want Microware's `cio`, marked below with a star.
+977 programs of OS-9/68K community software, gathered from the archives that kept it and made to run again. **628 of them need nothing but this disk**; the rest want Microware's `cio`, marked below with a star.
 
 `DOC/INDEX` on the disk lists everything alphabetically. This is the same collection sorted by what each program is *for*, which is the more useful order when you do not yet know what you are looking for.
 
@@ -22,7 +22,7 @@
 | [Encoding & conversion](#encoding--conversion) | 29 | Between text encodings, line endings, Macintosh formats, ciphers and hashes. |
 | [Communications](#communications) | 97 | Kermit in several builds, terminal sessions, and networking. |
 | [Graphics & images](#graphics--images) | 202 | The netpbm toolkit, JPEG, a ray tracer, and things that draw. |
-| [Games](#games) | 70 | Adventures, board and card games, arcade ports, dungeon crawls and puzzles. |
+| [Games](#games) | 71 | Adventures, board and card games, arcade ports, dungeon crawls and puzzles. |
 | [Screen toys](#screen-toys) | 8 | Animations and screen effects -- they draw on the terminal rather than print to it. Some run until you stop them. |
 | [Amusements](#amusements) | 22 | Generators, simulators and diversions that are not quite games. |
 | [System & modules](#system--modules) | 128 | OS-9 module and process tools, devices, system state and scheduling. |
@@ -1183,7 +1183,7 @@
 
 *Adventures, board and card games, arcade ports, dungeon crawls and puzzles.*
 
-<details><summary>70 programs</summary>
+<details><summary>71 programs</summary>
 
 **Adventure & fiction**
 
@@ -1233,6 +1233,7 @@
 | `mastrm` | Master Mind: break the computer's hidden four-peg colour code in ten guesses, reading the `b' and `w' pegs each guess earns for right colour in right or wrong place |
 | `mille` | &#9733; Mille Bornes -- the French car-racing card game<br>**How:** Full-screen Mille Bornes. `p' picks a card, `u #' plays one, `d #' discards, `s' saves the game and `q' quits. |
 | `nchess` | GNU Chess 4.0 (plain display) |
+| `othello` | Othello (Reversi) against the computer: place a disk to flank a line of the opponent's between it and one of yours and they all flip; the most disks when the board fills wins |
 | `poker` | &#9733; Cold-hand Poker (SNOBOL4-in-C).  Data: GAMES/SNOBOL |
 | `saa` | Streets and Alleys solitaire: eight stacks and a foundation per suit; move a stack's top card onto the next rank up or home to its foundation, and order every card to win |
 | `tttt` | tic-tac-toe<br>**How:** Full-screen tic-tac-toe on a four-by-four board. Name a square as a column letter and a row digit, `b1'. `q' quits. |

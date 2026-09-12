@@ -935,3 +935,4 @@ spew|spew|spew.c||/dd/LIB/rand.r|
 hdump|hdump|od.c cnv.c|||
 undump|hdump|undump.c|||
 freeb|freeb|freeb.c|||
+othello|othello3|othello.c usleep.c||/dd/LIB/curses.l /dd/LIB/termlib.l /dd/LIB/rand.r|

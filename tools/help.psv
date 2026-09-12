@@ -985,3 +985,5 @@ spew|none|`spew n' makes n headlines; point it at a rules file or set RULESFILE 
 freeb|freeb -?|
 hdump|hdump -?|
 undump|undump -h|
+
+othello|none|choose players and a level, then a move is the row letter then the column number; Q quits
