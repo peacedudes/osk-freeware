@@ -1109,3 +1109,19 @@ wait    3
 snap
 keys    q
 wait    2
+
+shot    accordian
+size    24 80
+cap     Accordian solitaire: the deck is dealt in a row, and a stack moves
+cap     one or three places left onto a card of the same suit or rank,
+cap     closing the gap.  Squeeze the whole deck into a single pile to win
+cap     -- which almost never happens.  `d' deals one, `D' the rest, `f'
+cap     finds a move, `u' undoes, `x' exits.
+try     accordian
+run     accordian
+wait    6
+keys    D
+wait    4
+snap
+keys    x
+wait    2

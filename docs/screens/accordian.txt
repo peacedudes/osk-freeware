@@ -1,0 +1,16 @@
+                       Accordian Solitaire - by Eric Lechner
+
+
+           4C   ---  QH   ---  JH   --- 10D
+           9S   |    3C   |    KD   |    8C
+           4D   |    AS   |    9H   |    7H
+           2C   |    3S   |    5H   |    JD       All cards have been dealt.
+           2S   |    5C   |    8S   |    4H
+           QS   |    JC   |    3H   |    AH
+           JS   |    9C   |    7C   |    AD       Your move :
+           6S   |   10C   |   10H   |    2H
+           9D   |    AC   |    8D   |    3D
+           6D   |    5D   |    7D   |    KS
+          10S   |    4S   |    7S   |    5S
+           QC   |    8H   |    QD   |    6C
+           KH <--    6H <--    2D <--    KC
