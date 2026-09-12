@@ -11,6 +11,7 @@ PrintLabels 9335f0872fd24057
 UnMacpack 6ddb41751817bf06
 X11R6shl 61d1b28a4c470915
 about 253c97e879e0105e
+accordian ca56c357b4bc2d6e
 add_errmsg 58882a7c07b4c410
 adduser aeb299e88a914c4d
 adlcomp 32d3f23a90138ca5
@@ -98,6 +99,7 @@ cc2 d46d4bba80b2680a
 cc2plus 77c7e857748addb6
 cccp2 9c5e61c5e4f2a4dd
 ccheck 4bd3bb5853fc2dae
+cdecl fbf232df2738d1df
 cdiff bf59ca4980c1cbf1
 charcnt 6f3d8f7999fc7036
 chardef d4caa2e6337cc9d2
@@ -745,6 +747,7 @@ todos caffc76cd117b03d
 toos9 22377fa726080b38
 top 252a98dc53f88e25
 touchtype 9609742a1b462edc
+tput 26902f6a8f2f41b5
 transfer a5b5f2a0a0001d1c
 trap 826cf28c3665cc74
 travesty a7b61d3796043c40
@@ -829,10 +832,12 @@ wrjpgcom c48ec6047691ec09
 wrjpgcom.070 431c1c4199d91118
 wump 670d79d07f33b5c7
 wysetime f4698b8097414beb
+xargs 7c5ffd5e9d0881c4
 xbm db7087d7e8969392
 xbmtopbm 699141463bda5b4d
 xc 49d190da131fcb1d
 xcrypt 3c480b4fc7c07d95
+xd 7ffede9c9392ffe8
 xengine 5722aee171787384
 ximtoppm dce987f4b7f688f6
 xkermit 7122f8dd9f815456

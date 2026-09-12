@@ -1,6 +1,6 @@
 # What is on this disk
 
-962 programs of OS-9/68K community software, gathered from the archives that kept it and made to run again. **613 of them need nothing but this disk**; the rest want Microware's `cio`, marked below with a star.
+967 programs of OS-9/68K community software, gathered from the archives that kept it and made to run again. **618 of them need nothing but this disk**; the rest want Microware's `cio`, marked below with a star.
 
 `DOC/INDEX` on the disk lists everything alphabetically. This is the same collection sorted by what each program is *for*, which is the more useful order when you do not yet know what you are looking for.
 
@@ -11,18 +11,18 @@
 
 | Category | Programs | |
 |---|--:|---|
-| [Shells](#shells) | 23 | Unix shells to sit beside OS-9's own -- bash and ksh bring history, job control, and scripts that come across unchanged. |
+| [Shells](#shells) | 24 | Unix shells to sit beside OS-9's own -- bash and ksh bring history, job control, and scripts that come across unchanged. |
 | [Editors](#editors) | 27 | vi and emacs in several flavours, line and stream editors, and editors for binary and hex. |
-| [Text tools](#text-tools) | 124 | Search, sort, compare, reformat, split and spell-check. |
+| [Text tools](#text-tools) | 125 | Search, sort, compare, reformat, split and spell-check. |
 | [Files & directories](#files--directories) | 33 | Listing, copying, finding, renaming, and knowing what you have. |
-| [Developer tools](#developer-tools) | 46 | Version control, tags, cross-reference, formatters, a debugger and benchmarks. |
+| [Developer tools](#developer-tools) | 47 | Version control, tags, cross-reference, formatters, a debugger and benchmarks. |
 | [Compilers & build](#compilers--build) | 40 | C compilers and their passes, assemblers, linkers, make and parser generators. |
 | [Languages](#languages) | 10 | Interpreters and language systems beyond C. |
 | [Archives & compression](#archives--compression) | 37 | Pack, unpack and shrink -- lha, zip, tar, arc, zoo, and OS-9 module libraries. |
 | [Encoding & conversion](#encoding--conversion) | 29 | Between text encodings, line endings, Macintosh formats, ciphers and hashes. |
-| [Communications](#communications) | 96 | Kermit in several builds, terminal sessions, and networking. |
+| [Communications](#communications) | 97 | Kermit in several builds, terminal sessions, and networking. |
 | [Graphics & images](#graphics--images) | 202 | The netpbm toolkit, JPEG, a ray tracer, and things that draw. |
-| [Games](#games) | 65 | Adventures, board and card games, arcade ports, dungeon crawls and puzzles. |
+| [Games](#games) | 66 | Adventures, board and card games, arcade ports, dungeon crawls and puzzles. |
 | [Screen toys](#screen-toys) | 8 | Animations and screen effects -- they draw on the terminal rather than print to it. Some run until you stop them. |
 | [Amusements](#amusements) | 21 | Generators, simulators and diversions that are not quite games. |
 | [System & modules](#system--modules) | 127 | OS-9 module and process tools, devices, system state and scheduling. |
@@ -37,7 +37,7 @@
 
 *Unix shells to sit beside OS-9's own -- bash and ksh bring history, job control, and scripts that come across unchanged.*
 
-<details><summary>23 programs</summary>
+<details><summary>24 programs</summary>
 
 **Shell helpers**
 
@@ -53,6 +53,7 @@
 | `qp` | &#9733; expands back-quotes in a command line, which Microware's shell does not do for itself: `qp <cmd> <args>'. It forks a `shell' to run the result, so it wants Microware's on your execution path<br>**How:** Runs its expanded command through Microware's `shell'. |
 | `run` | runs a program with its input and output on the terminal PORT names: `run '<program> <args>''<br>**How:** `run '<program> <args>'' with PORT naming a terminal: the program runs with its input and output on that terminal. |
 | `submit` | &#9733; runs the commands in a .sub file with its parameters substituted into them -- a batch job<br>`Syntax: submit [<opts>] [<submit file>] [{<parameter>)]` |
+| `xargs` | builds command lines out of what it reads and runs them: `ls \| xargs cat' hands the names to cat as arguments rather than as input |
 | `xc` | runs the commands marked in a file -- a line beginning `% ' -- and leaves the rest as notes.  Forks them through Microware's `shell' to run<br>**How:** `xc <file>': lines beginning `% ' are commands, the rest is notes. It forks them through Microware's `shell' to run. |
 | `yes` | prints `y', or the words it is given, over and over until the program reading it stops -- for answering prompts |
 
@@ -153,7 +154,7 @@
 
 *Search, sort, compare, reformat, split and spell-check.*
 
-<details><summary>124 programs</summary>
+<details><summary>125 programs</summary>
 
 **Alternates**
 
@@ -183,6 +184,7 @@
 | `tail` | &#9733; prints the last lines of a text file: `tail -l=3 file' the last three, twenty by default<br>`TAIL     Version UTIL 2.70 by DESIGNA VLT 27.05.98` |
 | `wc` | count lines, words and characters for each file named, and print a total; it counts CR-terminated lines as well as LF. |
 | `wc.cio` | &#9733; an older word count that reads standard input only: `wc.cio < file' answers `1 lines, 6 words, 40 chars'; `wc' is the build that takes file names |
+| `xd` | hex dump with hexadecimal addresses: -c shows the characters beside the bytes, -d writes them as a C array, and -l reads a dump back to rebuild the binary<br>`XD  --  Hex dump.  Call` |
 
 **DVI drivers**
 
@@ -431,7 +433,7 @@
 
 *Version control, tags, cross-reference, formatters, a debugger and benchmarks.*
 
-<details><summary>46 programs</summary>
+<details><summary>47 programs</summary>
 
 **Assembly**
 
@@ -483,6 +485,7 @@
 |---|---|
 | `bcheck` | &#9733; count brackets in a source file and report a mismatch.<br>`Syntax: bcheck [<opt>] [<filename>]` |
 | `ccheck` | &#9733; C program checker -- matching brackets, quotes, comment brackets, and indentation that disagrees with them<br>**How:** Checks C source for mismatched brackets, quotes and comment markers, and for indentation that disagrees with the nesting. Needs cio. |
+| `cdecl` | explains a C declaration in English and writes one from English: `explain int *p' answers `declare p as pointer to int', and `declare x as pointer to function returning int' answers `int (*x)()'<br>`[] means optional; {} means 1 or more; <> means defined elsewhere` |
 
 **Source formatting**
 
@@ -768,7 +771,7 @@
 
 *Kermit in several builds, terminal sessions, and networking.*
 
-<details><summary>96 programs</summary>
+<details><summary>97 programs</summary>
 
 **File transfer**
 
@@ -865,6 +868,7 @@
 | `sbreak` | Send/clear an SS_Break signal on a serial path<br>`Syntax:   sbreak [/device]` |
 | `setfont` | &#9733; load a downloadable terminal font -- setfont <path>. Given a font file it writes no byte to /term, to $PORT, or to a file $PORT names, and returns exit status 0.  With no argument it answers `usage: setfont <path>'.<br>`usage: setfont <path>` |
 | `setterm` | &#9733; reports or sets the terminal type: `setterm' alone says what TERM names; give it a name to change it. When TERM names a terminal it does not know it falls back on SYS/setterm, the defaults file. DOC/setterm has the manual and a termcap.extra of further entries<br>**How:** `setterm' alone reports what TERM says; give it a terminal name to change it. Run with no arguments and a terminal it wants to configure it goes FULL-SCREEN -- **ESC quits** (control-C also works, but ESC is the program's own way). SYS/setterm is the defaults file it falls back on when TERM names something it does not know, and DOC/setterm/termcap.extra has further entries you can add to SYS/termcap. |
+| `tput` | prints what a terminal needs for a capability, read from termcap: `tput -Tvt100 clear' emits the clear-screen escape and `tput cols' prints 80.  The capability names are the System V ones -- clear, bold, cup, lines, cols<br>`Usage: tput [ -Ttype ] [ -e ] [ -nlines ] capname [ x y ]` |
 | `tsmon2` | tsmon replacement - terminal monitor<br>`**** TSMON2: de-luxe version of the timesharing monitor (c) 1989 by L.Zeller` |
 | `udate` | &#9733; the Unaxcess bulletin board's date display -- and it gets the year wrong: `Monday, August 31, 19126'. A two-digit year (126, meaning 2026) written into a four-digit field behind a literal `19' |
 | `uwho` | &#9733; the Unaxcess bulletin board's who-is-online. It opens `/etc/utmp'; in OS-9 a leading /etc names a device, so it wants an /etc device presenting utmp, which the BBS would supply. A Unix-ism from the port |
@@ -1177,7 +1181,7 @@
 
 *Adventures, board and card games, arcade ports, dungeon crawls and puzzles.*
 
-<details><summary>65 programs</summary>
+<details><summary>66 programs</summary>
 
 **Adventure & fiction**
 
@@ -1209,6 +1213,7 @@
 
 | | |
 |---|---|
+| `accordian` | Accordian solitaire: the deck is dealt in a row, and a stack slides one or three places left onto a card of the same suit or rank, closing the gap; win by squeezing it to one pile |
 | `back` | &#9733; backgammon on a full board, points numbered 1 to 24, with the dice cup and the doubling status beside it. Single letters are the commands: R rolls, D doubles, H is the help, N starts a new game, Q quits<br>**How:** Single letters are the commands: R rolls, D doubles, H is the help, N starts a new game, Q quits. |
 | `blackjack` | Las Vegas blackjack in BASIC09 -- `runb blackjack' asks your name and whether you want the rules, then takes a wager and deals: RETURN draws, `s' stands, `d' doubles down, `x' splits a pair, a wager of 0 ends the game (blackjak, in GAMES, is the SNOBOL4 one)<br>**How:** BASIC09 I-code: `load /h1/CMDS/runb' then `runb blackjack' (bare module name -- a pathname gives BASIC09 error 43). It asks your name and whether you want the rules, then takes a wager and deals: RETURN draws a card, `s' stands, `d' doubles down, `x' splits a pair; a wager of 0 ends the game. runb links the `math' trap handler from the execution directory, so leave chx at CMDS -- tested, plays a full hand. |
 | `blackjak` | &#9733; Las Vegas BlackJack (SNOBOL4-in-C).  Data: GAMES/SNOBOL |
