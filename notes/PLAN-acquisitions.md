@@ -300,10 +300,36 @@ Leave: cdungeon ("COMMERCIAL USAGE STRICTLY PROHIBITED", Infocom); hearts,
 dots2, diph (sockets/fork/select); X11-only; umoria/omega/nethack from Usenet
 (TOP has OSK builds -- B6).
 
-### B8 -- bc                                                            open
+### B8 -- bc                                    done 2026-09-11: GNU bc 1.01
 GNU bc 1.01 `CSR/volume01/GNU_bc/` (Nov 1991, GPL, K&R-safe, yacc/lex --
 bison and flex ship) or C-BC (Hopkins) `ALT/volume93/Oct/931006.03-.07.gz`
 (1993, public domain).  Nothing on the disk does arbitrary precision.
+
+**B8 landed 2026-09-11 (ba55dde7): GNU bc 1.01**, comp.sources.reviewed
+volume 1, Philip A. Nelson, GPL v2.  Nothing on the disk did arbitrary
+precision before it, and there is still no `dc'.
+
+Three things it taught, none of them specific to bc:
+
+1. **A ported program that PARSES TEXT AT RUN TIME must be tested with CR
+   input**, not just with the archive's own test files.  bc's flex scanner
+   took only LF, so on this disk a bc script written with the disk's own
+   tools was refused as an "illegal character", and so was anything piped
+   in -- while its author's LF test files passed perfectly from the first
+   build.  Its own `libmath.b' ships CR-terminated and uses backslash
+   continuations, so `bc -l' failed too.  Two lexer rules needed widening.
+   Keep an LF file as a control so a CR fix cannot silently trade one
+   terminator for the other.
+2. **A blank CARD with low ink, where the datatests pass, means the
+   interactive shell.**  A card runs under bash; a datatest does not.  So
+   the `cd' then pipe-from-a-builtin hang shows up ONLY on cards.  bc's
+   first card was empty with "left it unusable" and the program was fine.
+3. **Look for `.dist' files before reaching for yacc or lex.**  The posting
+   ships the generated parser, scanner and token header, so the build is
+   plain cc.
+
+Still open in B8's neighbourhood: `dc' is not on the disk and was not found
+in the pool.
 
 ### B9 -- news and pseudo-terminals                                     open (Q1)
 MNews (Dessauer) MW 3840/3841; tass pool `TELECOM/tass.lzh` (needs MNews'
