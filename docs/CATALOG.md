@@ -1,6 +1,6 @@
 # What is on this disk
 
-957 programs of OS-9/68K community software, gathered from the archives that kept it and made to run again. **608 of them need nothing but this disk**; the rest want Microware's `cio`, marked below with a star.
+958 programs of OS-9/68K community software, gathered from the archives that kept it and made to run again. **609 of them need nothing but this disk**; the rest want Microware's `cio`, marked below with a star.
 
 `DOC/INDEX` on the disk lists everything alphabetically. This is the same collection sorted by what each program is *for*, which is the more useful order when you do not yet know what you are looking for.
 
@@ -24,7 +24,7 @@
 | [Graphics & images](#graphics--images) | 202 | The netpbm toolkit, JPEG, a ray tracer, and things that draw. |
 | [Games](#games) | 62 | Adventures, board and card games, arcade ports, dungeon crawls and puzzles. |
 | [Screen toys](#screen-toys) | 8 | Animations and screen effects -- they draw on the terminal rather than print to it. Some run until you stop them. |
-| [Amusements](#amusements) | 19 | Generators, simulators and diversions that are not quite games. |
+| [Amusements](#amusements) | 20 | Generators, simulators and diversions that are not quite games. |
 | [System & modules](#system--modules) | 127 | OS-9 module and process tools, devices, system state and scheduling. |
 | [Disk & DOS](#disk--dos) | 20 | Reading and writing MS-DOS media with the mtools set. |
 | [Time & calendar](#time--calendar) | 14 | Calendars, clocks and astronomy. |
@@ -1306,7 +1306,7 @@
 
 *Generators, simulators and diversions that are not quite games.*
 
-<details><summary>19 programs</summary>
+<details><summary>20 programs</summary>
 
 **Biorhythms**
 
@@ -1320,6 +1320,7 @@
 | | |
 |---|---|
 | `areacode` | &#9733; looks up North American telephone area codes, as many as you give it, from a table of the late 1980s; a code it does not know is said to be no area code |
+| `phoon` | show the phase of the moon as a little picture: `phoon' for tonight, `phoon 2025 12 25' for a date; `-l' sets the size |
 | `touchtype` | TYPEFAST, a typing game: words fall down the screen and you type each one before it lands.  ESC ends the game and scores you in words per minute<br>**How:** Full-screen typing game. Answer `n' to the instructions question, pick a level 1-3 (q quits there), type each falling word followed by SPACE or RETURN. ESC ends the game and prints the words-per-minute score. |
 
 **Generators**

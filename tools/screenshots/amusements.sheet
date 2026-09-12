@@ -315,3 +315,14 @@ send    4.0\r
 wait    3
 send    32\r
 wait    60
+
+shot    phoon
+size    25 80
+cap     phoon draws the phase of the moon, lit from the correct side, with
+cap     the days and hours to the next quarter beside it.  With no argument
+cap     it draws tonight's; give a date -- year month day -- for any other,
+cap     and `-l' sets the height.  Once in a while the moon turns out to be
+cap     made of green cheese.
+try     phoon 2025 10 7
+run     phoon 2025 10 7
+wait    3
