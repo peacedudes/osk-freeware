@@ -294,18 +294,30 @@ THE METHOD, proved on freeb and now the way to do this:
    `lharc', `unzip', `zip', `arc' and `zoo', which covers nearly every
    format in the pool.
 
-**TWO PROGRAMS WAIT ON ONE FILE: `os9lib.l`.**  `uustat' and `Browse' are
-both complete, both wanted, and both fail at the LINK for want of the same
-library.  Measured, not assumed: no `disk/LIB/*.l` defines `info_str' or
-`info_is_locked' -- every library was scanned for the symbols.  The `os9lib'
-that IS on this disk is the RTF Fortran trap module, a different thing under
-the same name, which is what makes this look like a solved problem when it
-is not.
+**uustat AND Browse ARE NOT BLOCKED, and the measurement that said so was
+wrong.**  This block used to read "no `disk/LIB/*.l` defines `info_str' or
+`info_is_locked' -- every library was scanned for the symbols", and that scan
+covered only `disk/LIB/`.  The library is in **`disk/GNULIB/os9lib.l`**.
+Re-measured 2026-09-12 across BOTH directories: every `disk/LIB/*.l` has zero,
+and `disk/GNULIB/os9lib.l` has `info_str' six times and `info_is_locked' once,
+with `info_c' among its 45 ROF members.
 
-The pool HAS the library: `acquisitions-2026-09-11/os9/top/x/LIB/os9lib.l',
-inside the TOP release, and in three other places besides.  So the question
-is whether os9lib may ship, not whether the programs work -- which makes
-both of them B6-dependent.  If TOP lands, build them the same day.
+It ships, and it is already on the build path: `tools/rebuild/make_overlay.sh`
+copies it into the overlay as `/dd/LIB/os9lib.l', which is why twelve recipes
+already link `/dd/LIB/os9lib.l' successfully (ls, zoo, fiz, ed, dbz, gtar,
+unc, rayshade, wam.sbprolog and others).
+
+So neither program is B6-dependent.  Build both against `/dd/LIB/os9lib.l'.
+The confusion was a name collision this tree has twice over: `CMDS/os9lib' is
+the RTF/68K Fortran trap module, a different thing entirely, and looking at it
+makes the library look present when the library is elsewhere -- or absent when
+it is not.
+
+Provenance of the shipped library, measured the same day: 45 ROF members in
+exactly TOP's `OBJS1' + `OBJS2' order (`signals_a' and `utls' included), byte
+identical to the archive's prebuilt except for the per-member creation dates
+-- ours 1990-05-06, the archive's 1989-07-24.  It is TOP Munich's os9lib,
+covered by the Q1 ruling above.
 
 **REPLACING A HEADER BEATS SCREENING IT, when what it describes is a
 FORMAT.**  `os9dsk' carried a `coco_direct.h' that was 77% the SDK's
