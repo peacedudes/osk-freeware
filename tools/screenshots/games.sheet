@@ -1219,3 +1219,22 @@ wait    3
 snap
 keys    Q
 wait    2
+
+shot    hexa
+size    24 80
+cap     Hexagonal Sokoban: push every box ($) onto a goal by walking into
+cap     it, but you can only push -- never pull -- and only one box at a
+cap     time.  The grid is six-sided, so you move with k/j up and down and
+cap     u/i/n/m along the four diagonals.  `q' quits.
+try     hexa
+run     hexa
+wait    4
+keys    j
+wait    1
+keys    n
+wait    1
+keys    m
+wait    2
+snap
+keys    q
+wait    2

@@ -1,0 +1,1 @@
+OBJS=hexa.cCC=cc -Oall: hexahexa: $(OBJS)	$(CC) $(OBJS) -o hexa -lcurses -ltermcap
