@@ -1,6 +1,6 @@
 # What is on this disk
 
-969 programs of OS-9/68K community software, gathered from the archives that kept it and made to run again. **620 of them need nothing but this disk**; the rest want Microware's `cio`, marked below with a star.
+970 programs of OS-9/68K community software, gathered from the archives that kept it and made to run again. **621 of them need nothing but this disk**; the rest want Microware's `cio`, marked below with a star.
 
 `DOC/INDEX` on the disk lists everything alphabetically. This is the same collection sorted by what each program is *for*, which is the more useful order when you do not yet know what you are looking for.
 
@@ -28,7 +28,7 @@
 | [System & modules](#system--modules) | 127 | OS-9 module and process tools, devices, system state and scheduling. |
 | [Disk & DOS](#disk--dos) | 20 | Reading and writing MS-DOS media with the mtools set. |
 | [Time & calendar](#time--calendar) | 14 | Calendars, clocks and astronomy. |
-| [Maths & calculators](#maths--calculators) | 14 | Calculators, plotting, orbits and number theory. |
+| [Maths & calculators](#maths--calculators) | 15 | Calculators, plotting, orbits and number theory. |
 | [Printing](#printing) | 15 | Spoolers, page formatting and PostScript. |
 | [Documentation](#documentation) | 5 | Pagers, readers and the help system. |
 | [G-Windows](#g-windows) | 6 | Programs for G-Windows, OS-9's graphical display.  os9exec has no G-Windows, so none of these run or can be tested here; they are listed for a real OS-9 workstation that has it. |
@@ -1628,12 +1628,13 @@
 
 *Calculators, plotting, orbits and number theory.*
 
-<details><summary>14 programs</summary>
+<details><summary>15 programs</summary>
 
 **Calculators**
 
 | | |
 |---|---|
+| `bc` | an arbitrary-precision calculator: the numbers are as long as they need to be, and `scale' says how many decimal places to keep.  `2^200' and `scale=40; 1/7' are both answered exactly; -l loads the maths library -- sine, cosine, arctangent, logarithm, exponential<br>`bc 1.01 (Nov 25, 1991), Copyright (C) 1991 Free Software Foundation, Inc.` |
 | `cam` | &#9733; camshaft design, not a camera: it asks for the rocker ratio, the lift at each crank angle and the base circle, and plots the lift curve for an intake lobe. The plot is Tektronix vectors, so on a vt100 it arrives as characters -- the dialogue above it is the readable part |
 | `chbase` | &#9733; converts a number from one base to another: `chbase 255 10 16' prints FF, and a target base of 0 prints every base from 2 to 36<br>`chbase   : OS9 Utility, created by Philip Maechler` |
 | `cvtbase` | converts a number between bases.  The bases are named by key -- b, d, h or x, o -- or by their value, and the number comes on standard input: `echo 255 ! cvtbase d h' answers ff<br>**How:** The bases are the arguments and the numbers come on standard input, one per line: `cvtbase d h' then 255 answers ff; Escape ends it. Bases are named b, d, h or x, o -- or by their digit characters. |

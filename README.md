@@ -133,7 +133,7 @@ is no help until you already know the name you want.
 | **System & modules** | 127 | OS-9 module and process tools, devices, system state and scheduling. |
 | **Disk & DOS** | 20 | Reading and writing MS-DOS media with the mtools set. |
 | **Time & calendar** | 14 | Calendars, clocks and astronomy. |
-| **Maths & calculators** | 14 | Calculators, plotting, orbits and number theory. |
+| **Maths & calculators** | 15 | Calculators, plotting, orbits and number theory. |
 | **Printing** | 15 | Spoolers, page formatting and PostScript. |
 | **Documentation** | 5 | Pagers, readers and the help system. |
 | **G-Windows** | 6 | Programs for G-Windows, OS-9's graphical display.  os9exec has no G-Windows, so none of these run or can be tested here; they are listed for a real OS-9 workstation that has it. |

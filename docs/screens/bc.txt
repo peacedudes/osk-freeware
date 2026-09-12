@@ -1,0 +1,15 @@
+bc powers.b
+bc 1.01 (Nov 25, 1991), Copyright (C) 1991 Free Software Foundation, Inc.
+This is free software with ABSOLUTELY NO WARRANTY.
+For details type `warranty'.
+1606938044258990275541962092341162602522202993782792835301376
+$ bc seventh.b
+bc 1.01 (Nov 25, 1991), Copyright (C) 1991 Free Software Foundation, Inc.
+This is free software with ABSOLUTELY NO WARRANTY.
+For details type `warranty'.
+.1428571428571428571428571428571428571428
+$ bc -l pi.b
+bc 1.01 (Nov 25, 1991), Copyright (C) 1991 Free Software Foundation, Inc.
+This is free software with ABSOLUTELY NO WARRANTY.
+For details type `warranty'.
+3.14159265358979323844

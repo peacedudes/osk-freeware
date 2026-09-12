@@ -103,3 +103,35 @@ run     /dd/CMDS/number 1234567
 expect  one million.
 expect  two hundred thirty-four thousand.
 expect  five hundred sixty-seven.
+
+# GNU bc.  Arbitrary precision is the whole point, so the assertions are the
+# exact digits -- a build that quietly fell back to machine arithmetic would
+# get 2^200 wrong in a way no exit code would show.
+#
+# THE CR CASES ARE THE POINT OF THE PORT.  bc's lexer took only LF as a line
+# terminator, so on this disk -- where every text file ends in CR -- a script
+# written here was refused as an "illegal character", and so was anything
+# piped in.  Both are asserted below, and `absent illegal character' is what
+# fails if that regresses.
+
+case    bc-does-arbitrary-precision
+run     echo "2^200" | /dd/CMDS/bc
+expect  1606938044258990275541962092341162602522202993782792835301376
+absent  illegal character
+
+case    bc-reads-a-CR-terminated-script
+run     /dd/CMDS/rm -rf /dd/tmp/mtbc
+run     /dd/CMDS/mkdir /dd/tmp/mtbc
+run     /dd/CMDS/printf "scale=40\r1/7\rquit\r" > /dd/tmp/mtbc/seventh.b
+run     /dd/CMDS/bc /dd/tmp/mtbc/seventh.b
+expect  .1428571428571428571428571428571428571428
+absent  illegal character
+
+case    bc-l-loads-the-maths-library
+run     /dd/CMDS/rm -rf /dd/tmp/mtbc2
+run     /dd/CMDS/mkdir /dd/tmp/mtbc2
+run     /dd/CMDS/printf "scale=20\ra(1)*4\rs(1)\rquit\r" > /dd/tmp/mtbc2/pi.b
+run     /dd/CMDS/bc -l /dd/tmp/mtbc2/pi.b
+expect  3.14159265358979323844
+expect  .84147098480789650665
+absent  Function a not defined

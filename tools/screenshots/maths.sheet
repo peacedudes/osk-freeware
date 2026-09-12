@@ -201,3 +201,25 @@ run     clear
 wait    1
 run     number 1234567
 wait    5
+
+shot    bc
+size    16 80
+cap     An arbitrary-precision calculator: the numbers are as long as they
+cap     need to be, and `scale' says how many decimal places to keep.  -l
+cap     loads the maths library, where a(1) is arctangent -- so a(1)*4 is
+cap     pi, to whatever scale was asked for.
+try     bc powers.b; bc seventh.b; bc -l pi.b
+run     rm -rf /dd/tmp/BCC > /nil 2>/nil; mkdir -p /dd/tmp/BCC
+run     printf "2^200\rquit\r" > /dd/tmp/BCC/powers.b
+run     printf "scale=40\r1/7\rquit\r" > /dd/tmp/BCC/seventh.b
+run     printf "scale=20\ra(1)*4\rquit\r" > /dd/tmp/BCC/pi.b
+run     builtin cd /dd/tmp/BCC
+wait    2
+run     clear
+wait    1
+run     bc powers.b
+wait    4
+run     bc seventh.b
+wait    4
+run     bc -l pi.b
+wait    5

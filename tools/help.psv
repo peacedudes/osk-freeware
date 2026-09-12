@@ -977,3 +977,4 @@ tput|tput -?|
 xd|xd -?|
 cdecl|cdecl << help|
 xargs|none|it takes no options of its own -- what follows the name is the command it runs, and the arguments for that command are what it reads on standard input
+bc|bc << warranty\rquit|
