@@ -241,7 +241,7 @@ the native tools expect `/dd/SYS/utmp`, group, password or smail.
 | atc | `NET2/games/atc` | 1990 | BSD | curses, lex/yacc, setitimer->alarm |
 | canfield (+cfscores) | `NET2/games/canfield` | 1980 | BSD | curses, easy |
 | trek (Allman) | `NET2/games/trek` | 1980 | BSD | sgtty/select bits |
-| monop, wump, fish, arithmetic | `NET2/games/...` | 1980-90 | BSD | monop has a fork to remove |
+| monop, wump, fish, arithmetic | `NET2/games/...` | 1980-90 | BSD | wump DONE (70fe4c6d) -- self-contained, getopt bundled, instructions embedded; monop has a fork to remove |
 | bs (ESR battleships) | `CSG/volume8/bs/part01.gz` | 1989 | no notice | curses |
 | scrabble | `CSG/volume6/scrabble/` | 1989 | redistribute in any manner | curses |
 | saa (Streets and Alleys) | `CSG/volume12/saa/` | 1991 | permission granted | curses |
