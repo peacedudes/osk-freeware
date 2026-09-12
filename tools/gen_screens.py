@@ -545,7 +545,17 @@ def main():
         print("  %d stanzas have no capture -- re-shoot them: %s"
               % (len(missing), " ".join(missing[:8])))
     if stale:
-        print("  %d captures are OLDER than the sheet that defines them: %s"
+        # SAY WHAT IS ACTUALLY COMPARED.  This used to read "OLDER than the
+        # sheet that defines them", which invites the reader to go and check
+        # mtimes and git history -- and on 2026-09-12 that is exactly what
+        # happened: a sheet touched to ADD one stanza looked like it had
+        # invalidated seventeen others, the mtime reading said "churn, skip
+        # it", and twenty real re-shoots were nearly dropped.  There is no
+        # mtime in this check at all: it is the stored stanza hash against
+        # the stanza as it now reads, so a caption edit counts, which is
+        # right -- the card publishes caption and screen together.
+        print("  %d captures no longer match their stanza (caption or "
+              "commands edited since the shot): %s"
               % (len(stale), " ".join(stale[:8])))
 
     # HOW MANY OF THOSE PROGRAMS WERE ACTUALLY RUN.  A stanza's `for' line

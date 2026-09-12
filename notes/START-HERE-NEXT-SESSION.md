@@ -395,3 +395,26 @@ tools/check_disk.py disk
 | Which panels are not worth showing, and why | `tools/panel-exceptions.psv` |
 | What needs rdoggett | `notes/FOR-RDOGGETT.md` |
 | Why it is like this | `notes/HISTORY-2026-08.md` |
+
+## Outstanding: 20 captures no longer match their stanza (2026-09-12)
+
+Measured with the project's own `screenshots.stanza_hash', not a proxy:
+
+    comms.sheet   bdecode c7decode dbz dotilde fastmail filter fixtext
+                  input lcasep listalias makedb nptx pathalias read_mail
+                  rnews uux wn
+    games.sheet   vtxtcn
+    maths.sheet   oleo
+    played.sheet  tess
+
+Nothing is missing a capture; these twenty have had their caption or their
+commands edited since the shot was taken, so each publishes an OLD screen
+under a NEW caption.  Re-shoot with `tools/screenshots.py <sheet> --only
+<names>'.
+
+**Do not reach for mtime or git log to second-guess this.**  The check is a
+content hash of the stanza; the tool's message used to say "OLDER than the
+sheet that defines them", which sent me to compare file mtimes -- a sheet
+touched to add ONE stanza then looks like it invalidated every stanza in it,
+and a naive mtime sweep across all sheets reports 836 stale out of 900.  The
+message is fixed to say what it compares.

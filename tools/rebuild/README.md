@@ -233,6 +233,23 @@ hour on scrabble: `user.c's `struct device' declared eleven members as
 cannot parse it, and the 60 errors that followed all pointed at line 17 of a
 file whose real problem was its first member.
 
+**AND IT MANGLES A MACRO INVOCATION AT THE LEFT MARGIN -- SILENTLY.**
+Measured 2026-09-12 on `napoleon'.  Its `objects.c' is 76 `ROOM(...)' and
+`OBJECT(...)' macro calls, each at the margin with its arguments running over
+several lines.  That is the same shape as a function definition, so ansi2knr
+tries to rewrite all 76 -- and does not stop.  The run sat at 100% CPU for
+twelve minutes on one 47 KB file and the `ctmp_objects.c' it had written was
+20,480 bytes of corruption, with `"\n"' inserted INTO THE MIDDLE OF WORDS
+inside string literals (`Like t"\n"he landing').  Nothing was reported: no
+error, no exit, just a build that never ends.
+
+**The tell is a ctmp_ file that is not slightly LARGER than its source.**  A
+healthy ansi2knr output grows by a few bytes per definition -- napoleon's
+other five grew by 16 to 21.  One that is smaller, or a round number like
+20480, is a truncated write, and the file it came from wants taking out of
+the pass.  The cure is one name off the `KNR=' list; `objects.c' has no
+function definitions at all, so excluding it costs nothing.
+
 **ansi2knr only sees a function whose NAME IS AT THE LEFT MARGIN.** Its own
 header says so:
 
