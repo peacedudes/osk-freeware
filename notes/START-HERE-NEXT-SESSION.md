@@ -21,13 +21,32 @@ this disk shares with OS-9's own, noted in README-KEEP.
 
 **Assessed and ready to pick up, in order:**
 
-- **scrabble** -- viable, a focused afternoon.  ~48 ANSI prototypes plus 29
-  in its header; util.c wants gettimeofday/getrusage/getpwuid but all three
-  sit in one 144-line file; DICT_FILE is a define and `GAMES/words' (164 KB,
-  CR, one word a line) is already on the disk.
-- **napoleon** -- a day.  71 unconditional ANSI prototypes with no PROTO()
-  indirection; `-DPURE_ANSI' dodges the missing headers but not those.  yacc
-  and bison both run here, so the grammar is not the problem.
+- **scrabble** -- DONE 2026-09-12, commit 9d6aa1e4.  It ships, reads
+  GAMES/words and draws its board.  The estimate below was the right shape
+  but for the wrong reason; see the next bullet.
+- **napoleon** -- IN PROGRESS 2026-09-12.  **The "71 unconditional ANSI
+  prototypes, a day" was the wrong measurement**, and the correction is
+  worth more than the program.  `ansi2knr' -- the KNR recipe flag -- rewrites
+  function DEFINITIONS and never touches DECLARATIONS.  Napoleon has 90
+  definitions, which the flag does for nothing, and 69 declarations, 66 of
+  them in `adv.h' alone: one scripted edit of one header.  Scrabble was the
+  same shape (46 free, 40 by hand).  **Count declarations, not prototypes,
+  when sizing an ANSI tree.**  What actually costs time is the things no
+  prototype count shows: an ANSI function-pointer struct (scrabble), a
+  variadic definition ansi2knr cannot convert (napoleon's `format'), and
+  `const'/`signed'/adjacent string literals.  All recorded in
+  `tools/rebuild/README.md'.
+
+  Napoleon specifics, all measured: `-DPURE_ANSI' removes the GNU readline
+  dependency outright -- the author supplies an fgets-based `readline' behind
+  it -- so the missing history library is a non-issue.  `difftime.c' must be
+  DROPPED: the SDK's <time.h> defines difftime as a MACRO and the file's own
+  definition would be expanded into nonsense.  `vsprintf' comes from
+  `../unixlib/vsprintf.c', as bc and fiz already do.  **Generate the parser
+  with the DISK's own yacc, not the host's**: macOS `/usr/bin/yacc' is bison
+  in disguise and emits a 67 KB skeleton full of `__builtin_alloca',
+  <libintl.h> and <stddef.h>; the disk's yacc emits 30 KB with no `const',
+  no alloca, no ANSI definitions and no line over 80 characters.
 - **TOP's own source trees** (`Scraped/.../os9/top/src/') -- OS-9 ports of
   programs this disk ships as binaries.  Verified 2026-09-12 against
   `src_census.py' (694 of 1003 programs have source here, 69%; 309 do not)

@@ -211,6 +211,28 @@ when a prototype is actually stopping the build, and take it out again the
 moment the errors change shape.  Its symptom is distinctive: `multiple
 definition' pointing at a line that is plainly correct K&R.
 
+**ansi2knr REWRITES DEFINITIONS ONLY. DECLARATIONS REACH c68 INTACT.**
+Measured 2026-09-12 on `scrabble' and `napoleon'.  The flag converted
+scrabble's 46 ANSI definitions and napoleon's 90 for nothing, and left every
+prototype alone: scrabble's 33 in `scrabble.h' plus 7 forward declarations,
+napoleon's 66 in `adv.h' plus 3 scattered.  Those are a scripted edit of the
+HEADER, and on both trees that was the whole of the hand work.  So when you
+size an ANSI tree, count declarations, not prototypes-and-definitions
+together -- the two numbers cost completely different amounts.
+
+**AND IT DOES NOT HANDLE A VARIADIC DEFINITION.**  `ansi2knr.c' contains no
+`va_alist' and no `va_dcl' -- grepped, not recalled.  `napoleon's
+`format(char *fmt,...)' therefore had to be converted by hand to
+`format(va_alist) va_dcl', and because that leaves the file K&R while its
+neighbours are ANSI, that file must come OUT of the pass with the selective
+`KNR=<files>' form or ansi2knr rewrites it a second time.
+
+**ANSI FUNCTION POINTERS IN A STRUCT ARE INVISIBLE TO IT TOO**, and cost an
+hour on scrabble: `user.c's `struct device' declared eleven members as
+`void (*init)(board_t *, ...)'.  ansi2knr never looks inside a struct, c68
+cannot parse it, and the 60 errors that followed all pointed at line 17 of a
+file whose real problem was its first member.
+
 **ansi2knr only sees a function whose NAME IS AT THE LEFT MARGIN.** Its own
 header says so:
 
