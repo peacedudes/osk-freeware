@@ -251,7 +251,7 @@ the native tools expect `/dd/SYS/utmp`, group, password or smail.
 | corewars | `CSG/volume6/corewars/` | 1989 | public domain | curses |
 | castle | `CSG/volume8/castle/` | 1990 | public domain | curses |
 | othello3 / reversi | `CSG/volume12/othello3/`; `CSG/volume15/reversi/` | 1991-92 | free / GPL | curses |
-| jotto, conn4 (Sicherman) | `CSG/volume11/jotto/`, `CSG/volume12/conn4/` | 1990-91 | no notice | |
+| jotto, conn4 (Sicherman) | `CSG/volume11/jotto/`, `CSG/volume12/conn4/` | 1990-91 | no notice | conn4 DONE (39eb5990) as c4 -- curses, cbreak/noecho added; jotto still open |
 | yahtzee2 | `CSG/volume8/yahtzee2/` | 1989 | no notice | one fork |
 | rot2.2 ("software rot") | `CSG/volume1/rot22.gz` | 1987 | no notice | name clashes with CMDS/rot |
 | flicker | `CSG/volume5/flicker.gz` | 1988 | no notice | ANSI escapes |
