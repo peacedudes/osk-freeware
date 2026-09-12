@@ -28,10 +28,23 @@ this disk shares with OS-9's own, noted in README-KEEP.
 - **napoleon** -- a day.  71 unconditional ANSI prototypes with no PROTO()
   indirection; `-DPURE_ANSI' dodges the missing headers but not those.  yacc
   and bison both run here, so the grammar is not the problem.
-- **TOP's own source trees** (`Scraped/.../os9/top/src/'): compress43,
-  gnudiff, less, rcs, ncurses, flex21, gawk2.0, bison, emacs_3.10 -- OS-9
-  ports of programs this disk ships as BINARIES.  That is Q2's territory and
-  worth reading before starting.
+- **TOP's own source trees** (`Scraped/.../os9/top/src/') -- OS-9 ports of
+  programs this disk ships as binaries.  Verified 2026-09-12 against
+  `src_census.py' (694 of 1003 programs have source here, 69%; 309 do not)
+  and against ORIGINS read as entries rather than by substring:
+
+      gawk    gawk2.0      15 .c   10,026 lines   no source here, no ORIGINS row
+      bison   bison        19 .c    8,380 lines   no source here, no ORIGINS row
+      emacs   emacs_3.10   23 .c   18,135 lines   no source here, no ORIGINS row
+
+  Those three are genuine gaps.  compress, less, rcs, diff and flex are NOT:
+  we already have their source, filed by ARCHIVE rather than by program
+  (`SRC/hc_utils/compress.c', `SRC/less/less_332/', `SRC/rcs', `SRC/diff',
+  `SRC/flex') -- checking `disk/SRC/<program>' finds nothing and is the wrong
+  test, which cost me three false findings tonight.  Q2 is rdoggett's call.
+
+  NOTE when sizing any TOP tree: its files are CR-terminated with zero LF, so
+  `wc -l' reports 0 for all of them.  Count CRs.
 
 **Left out deliberately, with reasons in PLAN-acquisitions.md:** `flicker'
 (an unstoppable ANSI loop), `dumpinit' (six mod_config members this SDK's
