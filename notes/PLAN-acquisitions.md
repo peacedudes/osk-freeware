@@ -278,7 +278,7 @@ the native tools expect `/dd/SYS/utmp`, group, password or smail.
 | canfield (+cfscores) | `NET2/games/canfield` | 1980 | BSD | curses, easy |
 | trek (Allman) | `NET2/games/trek` | 1980 | BSD | sgtty/select bits |
 | monop, wump, fish, arithmetic | `NET2/games/...` | 1980-90 | BSD | wump DONE (70fe4c6d), fish DONE (73cb6958) -- self-contained, getopt bundled, instructions embedded; monop has a fork to remove |
-| bs (ESR battleships) | `CSG/volume8/bs/part01.gz` | 1989 | no notice | curses |
+| bs (ESR battleships) | `CSG/volume8/bs/part01.gz` | 1989 | no notice | DONE (cee1197c) -- OSK curses arm shims beep/chtype/ungetch, cbreak parenthesised |
 | scrabble | `CSG/volume6/scrabble/` | 1989 | redistribute in any manner | curses |
 | saa (Streets and Alleys) | `CSG/volume12/saa/` | 1991 | permission granted | DONE (d72a0cea) -- built unchanged with -DNON_ANSI_C |
 | accordian | `CSG/volume15/accordian/` | 1992 | public domain | DONE (6a512987) -- curses solitaire; RANDOM->rand, popen/getpwuid dropped, win log local |
