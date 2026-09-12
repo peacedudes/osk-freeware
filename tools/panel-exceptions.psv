@@ -128,3 +128,5 @@ xyt|it wants a MODEM port and there is none to give it; saying so is what it doe
 tterm|it wants a MODEM port and there is none to give it; saying so is what it does here, and the card says so
 uustat|reports on the UUCP job queue, and nothing has been queued on this disk; it reaches the spool, finds no jobs waiting and says so, which is the same footing as uucico, uuxqt and uulog beside it
 xcrypt|a file cipher that answers every invocation with its syntax line and creates nothing -- two filenames, a -k key either spelling, or none; its binary holds a Key: prompt that nothing on this disk reaches, and the card says so
+infoxpress|an InfoXpress network client; it opens a serial device to reach its host and there is none here, so it returns without printing anything at all
+testibc|an IEEE-488 bus tester: it draws its command menu and aborts, because every command wants a GPIB bus and there is none here, and its message file errmsg.ibc is on no disk and in no archive

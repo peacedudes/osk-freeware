@@ -1562,7 +1562,7 @@
 | `suse` | show a program's usage line.  `-?' does the same for most programs here. |
 | `suspend` | &#9733; removes a process from the system -- its own usage line says so -- rather than suspending it; -s reaches system programs too<br>`SUSPEND V1.1 (C.) 1989 by F.R.Schmitt` |
 | `t_trtest` | RICO trap-handler test |
-| `testibc` | IEEE-488 (GPIB) bus test program, B & K Denmark, 1989. Answer its `Timeout time (1/10 Sec)?' prompt and it draws a full command menu: Ifc, Remote, Llo, Goto local, Clear, Send, Enter, Dev-clear, Time, Quit.  Each command needs an IEEE-488 bus to reach.  It reads its messages from /dd/sys/errmsg.ibc. |
+| `testibc` | IEEE-488 (GPIB) bus test program, B & K Denmark, 1989. Answer its `Timeout time (1/10 Sec)?' prompt and it draws its command menu -- Ifc, Remote, Llo, Goto local, Clear, Send, Enter, Dev-clear, Time, Quit -- and then stops with `Process Aborted', because every one of those commands wants an IEEE-488 bus and there is none.  It looks for its messages in /dd/sys/errmsg.ibc, which is not on this disk and was in none of the archives, so each failure prints as a bare `Error #000:007' instead of a sentence.  Kept as the instrument software it is, not as something to run. |
 | `transfer` | &#9733; copies files from GDOS disks to OS-9, and takes no options at all. For general device-to-device copies, `cp', `copy' and `dsave' do that<br>`Syntax: transfer` |
 | `trunc` | &#9733; truncate a file to a given length<br>`OS-9/68k supplementary command.` |
 | `tty` | &#9733; report the terminal's name |

@@ -1,1 +1,0 @@
-# /t3 is /dev/ttys009   (attach with: screen /dev/ttys009)
