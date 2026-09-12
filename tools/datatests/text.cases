@@ -307,3 +307,24 @@ absent  abscess
 case    yes-stops-when-its-reader-does
 run     /dd/CMDS/yes ok | /dd/CMDS/head -n 2; echo "yes came back"
 expect  yes came back
+
+# hdump and undump.  The round trip is the assertion worth making: a dump
+# that cannot be turned back into the file it came from is no use for the
+# job these two exist to do.  OCTAL is the default -- the README says
+# hexadecimal is, and it is wrong -- so -h is given explicitly.
+
+case    hdump-shows-hex-and-the-characters
+run     /dd/CMDS/hdump -h /dd/SYS/motd
+expect  Welcome to os9ex
+expect  5765 6c63 6f6d 6520 746f 206f 7339 6578
+
+case    undump-rebuilds-exactly-what-hdump-wrote
+run     /dd/CMDS/rm -rf /dd/tmp/undA
+run     /dd/CMDS/mkdir /dd/tmp/undA
+run     /dd/CMDS/hdump -h /dd/SYS/motd > /dd/tmp/undA/m.hex
+run     /dd/CMDS/undump /dd/tmp/undA/back < /dd/tmp/undA/m.hex
+run     /dd/CMDS/cat /dd/tmp/undA/back
+run     /dd/CMDS/wc -c /dd/tmp/undA/back
+expect  Welcome to os9exec -- OS-9/68k emulator
+expect  40 /dd/tmp/undA/back
+absent  bad hex value

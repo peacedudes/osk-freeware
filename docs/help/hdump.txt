@@ -1,0 +1,10 @@
+$ hdump -?
+Syntax: hdump [<opts>] [<path>] [<opts>]
+Function: formatted display of contents of a file
+Options:
+   -b    binary display
+   -d    decimal display
+   -h    hexadecimal display
+   -o    octal display (default)
+   -z    read from standard input
+   -v    version

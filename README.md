@@ -118,7 +118,7 @@ is no help until you already know the name you want.
 |---|--:|---|
 | **Shells** | 24 | Unix shells to sit beside OS-9's own -- bash and ksh bring history, job control, and scripts that come across unchanged. |
 | **Editors** | 27 | vi and emacs in several flavours, line and stream editors, and editors for binary and hex. |
-| **Text tools** | 125 | Search, sort, compare, reformat, split and spell-check. |
+| **Text tools** | 127 | Search, sort, compare, reformat, split and spell-check. |
 | **Files & directories** | 33 | Listing, copying, finding, renaming, and knowing what you have. |
 | **Developer tools** | 47 | Version control, tags, cross-reference, formatters, a debugger and benchmarks. |
 | **Compilers & build** | 40 | C compilers and their passes, assemblers, linkers, make and parser generators. |
@@ -130,7 +130,7 @@ is no help until you already know the name you want.
 | **Games** | 70 | Adventures, board and card games, arcade ports, dungeon crawls and puzzles. |
 | **Screen toys** | 8 | Animations and screen effects -- they draw on the terminal rather than print to it. Some run until you stop them. |
 | **Amusements** | 22 | Generators, simulators and diversions that are not quite games. |
-| **System & modules** | 127 | OS-9 module and process tools, devices, system state and scheduling. |
+| **System & modules** | 128 | OS-9 module and process tools, devices, system state and scheduling. |
 | **Disk & DOS** | 20 | Reading and writing MS-DOS media with the mtools set. |
 | **Time & calendar** | 14 | Calendars, clocks and astronomy. |
 | **Maths & calculators** | 15 | Calculators, plotting, orbits and number theory. |

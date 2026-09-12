@@ -1,6 +1,6 @@
 # What is on this disk
 
-973 programs of OS-9/68K community software, gathered from the archives that kept it and made to run again. **624 of them need nothing but this disk**; the rest want Microware's `cio`, marked below with a star.
+976 programs of OS-9/68K community software, gathered from the archives that kept it and made to run again. **627 of them need nothing but this disk**; the rest want Microware's `cio`, marked below with a star.
 
 `DOC/INDEX` on the disk lists everything alphabetically. This is the same collection sorted by what each program is *for*, which is the more useful order when you do not yet know what you are looking for.
 
@@ -13,7 +13,7 @@
 |---|--:|---|
 | [Shells](#shells) | 24 | Unix shells to sit beside OS-9's own -- bash and ksh bring history, job control, and scripts that come across unchanged. |
 | [Editors](#editors) | 27 | vi and emacs in several flavours, line and stream editors, and editors for binary and hex. |
-| [Text tools](#text-tools) | 125 | Search, sort, compare, reformat, split and spell-check. |
+| [Text tools](#text-tools) | 127 | Search, sort, compare, reformat, split and spell-check. |
 | [Files & directories](#files--directories) | 33 | Listing, copying, finding, renaming, and knowing what you have. |
 | [Developer tools](#developer-tools) | 47 | Version control, tags, cross-reference, formatters, a debugger and benchmarks. |
 | [Compilers & build](#compilers--build) | 40 | C compilers and their passes, assemblers, linkers, make and parser generators. |
@@ -25,7 +25,7 @@
 | [Games](#games) | 70 | Adventures, board and card games, arcade ports, dungeon crawls and puzzles. |
 | [Screen toys](#screen-toys) | 8 | Animations and screen effects -- they draw on the terminal rather than print to it. Some run until you stop them. |
 | [Amusements](#amusements) | 22 | Generators, simulators and diversions that are not quite games. |
-| [System & modules](#system--modules) | 127 | OS-9 module and process tools, devices, system state and scheduling. |
+| [System & modules](#system--modules) | 128 | OS-9 module and process tools, devices, system state and scheduling. |
 | [Disk & DOS](#disk--dos) | 20 | Reading and writing MS-DOS media with the mtools set. |
 | [Time & calendar](#time--calendar) | 14 | Calendars, clocks and astronomy. |
 | [Maths & calculators](#maths--calculators) | 15 | Calculators, plotting, orbits and number theory. |
@@ -154,7 +154,7 @@
 
 *Search, sort, compare, reformat, split and spell-check.*
 
-<details><summary>125 programs</summary>
+<details><summary>127 programs</summary>
 
 **Alternates**
 
@@ -179,9 +179,11 @@
 | `charcnt` | &#9733; counts how often each character occurs in the files named, control characters included, and totals the bytes read |
 | `dump` | the hex dump: shows a file, or a module in memory (-m), as offsets, hex bytes and the characters beside them<br>**How:** This is the hex dump on this disk. There is no `od'. |
 | `file` | identifies file types from the magic table in SYS/magic -- OS-9 modules, text, images with their size and colours, archives -- one line per file named<br>**How:** Names real formats now that SYS/magic is here: `file /dd/DEMO/gulls.gif' reports the GIF version, size and colour count. |
+| `hdump` | a hex dump with the characters beside the bytes: -h for hexadecimal, -o octal, -d decimal, -b binary, and -z to read standard input instead of a file<br>`Syntax: hdump [<opts>] [<path>] [<opts>]` |
 | `strings` | &#9733; finds the runs of printable text inside a binary and prints each with its offset, `$offset: text'; -l=n sets the shortest run reported<br>`Usage: strings [-anpl=n] [file [file]]` |
 | `sum` | GNU sum: prints a checksum and a block count for each file named |
 | `tail` | &#9733; prints the last lines of a text file: `tail -l=3 file' the last three, twenty by default<br>`TAIL     Version UTIL 2.70 by DESIGNA VLT 27.05.98` |
+| `undump` | rebuilds a binary file from a hex dump that hdump wrote. Dump a file, edit the hex with any text editor, undump it back: between them they make a text editor into a binary editor<br>`Syntax: undump [<opts>] outfile [<opts>] <infile` |
 | `wc` | count lines, words and characters for each file named, and print a total; it counts CR-terminated lines as well as LF. |
 | `wc.cio` | &#9733; an older word count that reads standard input only: `wc.cio < file' answers `1 lines, 6 words, 40 chars'; `wc' is the build that takes file names |
 | `xd` | hex dump with hexadecimal addresses: -c shows the characters beside the bytes, -d writes them as a C array, and -l reads a dump back to rebuild the binary<br>`XD  --  Hex dump.  Call` |
@@ -1368,7 +1370,7 @@
 
 *OS-9 module and process tools, devices, system state and scheduling.*
 
-<details><summary>127 programs</summary>
+<details><summary>128 programs</summary>
 
 **Devices & disks**
 
@@ -1378,6 +1380,7 @@
 | `dedit` | BASIC09 disk sector editor -- read, edit and write raw sectors, decode a disk's identification sector.  I-CODE, not 68000 code: run it with runb and the bare module name, like bio and wysetime.  Nine modules in the one file. |
 | `dinfo` | &#9733; disk/device information<br>`Syntax:   dinfo [<opts>] {<device name> [<opts>]}` |
 | `dpark` | &#9733; parks the disk head: `dpark [/device]' restores an RBF device's head to track 00, which is what you did before moving a drive<br>`Syntax:   dpark [/device]` |
+| `freeb` | lists the free space on a disk block by block -- how many free blocks there are, how big each one is and where it starts.  -t counts them by size, -a lists every one, -h leaves the header out and -s the total<br>`Usage:` |
 | `shdev` | &#9733; lists the system's device table: what is mounted and the driver behind each |
 | `ssl` | &#9733; show a file's segment list, sector by sector -- ssl <file> |
 

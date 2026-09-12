@@ -982,3 +982,6 @@ bc|bc << warranty\rquit|
 jotto|none|a bare carriage-return in place of a guess lists the computer's answers; control-C leaves
 mastrm|none|type four colour names as a guess; b = right colour right place, w = right colour wrong place
 spew|none|`spew n' makes n headlines; point it at a rules file or set RULESFILE for other nonsense
+freeb|freeb -?|
+hdump|hdump -?|
+undump|undump -h|

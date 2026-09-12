@@ -932,3 +932,6 @@ bc|bc|bc.c scan.c execute.c load.c main.c number.c storage.c util.c global.c ../
 jotto|jotto|jotto.c answer.c isis.c jsumm.c legal.c load.c ord.c subs.c||/dd/LIB/rand.r|
 mastrm|mastrm|mastrm.c||/dd/LIB/rand.r|
 spew|spew|spew.c||/dd/LIB/rand.r|
+hdump|hdump|od.c cnv.c|||
+undump|hdump|undump.c|||
+freeb|freeb|freeb.c|||

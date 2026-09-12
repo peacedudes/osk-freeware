@@ -1,0 +1,9 @@
+freeb
+Disk "OSK-Freeware" Created  9/11/2026 19:24
+1081344 total sectors (4 sector clusters)
+Total free: 586456
+$ freeb -t
+Disk "OSK-Freeware" Created  9/11/2026 19:24
+1081344 total sectors (4 sector clusters)
+586456     1
+Total free: 586456

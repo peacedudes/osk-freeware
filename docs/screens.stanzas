@@ -268,6 +268,7 @@ fontgen 60e1c7f5b6cdba8d
 for 4b2af34c4a16a946
 forth 2a97e56b02c52c56
 fortune 9ecfa07b45d3dc28
+freeb cee3e81513e9ccdd
 fstat aecaa6bd7270fe1a
 fstopgm cb54318f9243410c
 fuddle e047f4117381e351
@@ -332,6 +333,7 @@ hack 0fa0a0ab8bfee9d5
 hackwish 43454e5e00ab4f2a
 hang 087e991e81c527f9
 hc c248b77d3ef338e8
+hdump a35b376d4a7591e6
 head 75d65b434027b00b
 help 902405d7025f4ed9
 helpindex 6e05b7ef5cb8238e
@@ -777,6 +779,7 @@ umacs 979e0b76ff348e9b
 umusek f710027837dfa4e8
 unc 2fb5ff7164a357fb
 undel 26f8baa790812507
+undump a6173dc352ed242d
 unexpand 78737392555a4a4e
 unifdef c9d33e347e75ac68
 unip 5598a74a1fee6179

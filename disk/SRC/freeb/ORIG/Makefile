@@ -1,0 +1,1 @@
+CFLAGS = -t=/r0LFLAGS = -i -bgfreeb: freeb.r  cc $(LFLAGS) -f=freeb freeb.rfreeb.r: freeb.c lcldrv.h

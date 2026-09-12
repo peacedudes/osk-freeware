@@ -1,0 +1,6 @@
+$ undump -h
+Syntax: undump [<opts>] outfile [<opts>] <infile
+Function: recreate file from hdump output
+Option
+   -h   help
+   -v   version

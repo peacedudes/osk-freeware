@@ -863,3 +863,40 @@ run     xd -c motd
 wait    3
 run     xd -d motd
 wait    4
+
+shot    hdump
+size    18 80
+cap     A hex dump with the characters beside the bytes, a period standing
+cap     for each one that will not print.  -h is hexadecimal, -o octal, -d
+cap     decimal and -b binary; run bare it dumps in octal.
+try     hdump -h motd; hdump -b motd
+run     builtin cd /dd/SYS
+wait    1
+run     clear
+wait    1
+run     hdump -h motd
+wait    3
+run     hdump -b motd
+wait    4
+
+shot    undump
+size    18 80
+cap     Rebuilds a binary file from a hex dump that hdump wrote.  Dump a
+cap     file, edit the hex with any text editor, undump it back -- which is
+cap     how you patch a binary on a disk with no binary editor.  The byte
+cap     counts are the proof: 345 bytes of hex, 40 bytes back.
+try     hdump -h motd > m.hex; undump back < m.hex; cat back; wc -c m.hex back
+run     rm -rf /dd/tmp/UND > /nil 2>/nil; mkdir -p /dd/tmp/UND
+run     cp /dd/SYS/motd /dd/tmp/UND/motd
+run     builtin cd /dd/tmp/UND
+wait    2
+run     clear
+wait    1
+run     hdump -h motd > m.hex
+wait    2
+run     undump back < m.hex
+wait    3
+run     cat back
+wait    3
+run     wc -c m.hex back
+wait    3

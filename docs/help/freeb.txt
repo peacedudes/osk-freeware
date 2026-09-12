@@ -1,0 +1,3 @@
+$ freeb -?
+Usage:
+  freeb [-a] [-h] [-s] [-t] [device]

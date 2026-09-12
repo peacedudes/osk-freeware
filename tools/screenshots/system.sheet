@@ -1046,3 +1046,19 @@ cap     quietly.  Its options.
 try     rndir -?
 run     rndir -?
 wait    4
+
+shot    freeb
+size    14 80
+cap     Lists the free space on a disk block by block, rather than as one
+cap     total: the volume name and when it was made, the size of the disk,
+cap     then every free block with where it starts and how many sectors it
+cap     holds.  -t counts them by size instead, and -h leaves the header out.
+try     freeb; freeb -t
+run     builtin cd /dd
+wait    1
+run     clear
+wait    1
+run     freeb
+wait    3
+run     freeb -t
+wait    4

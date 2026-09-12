@@ -110,3 +110,22 @@ expect         msmove [-itnmvV] file [files...] target_directory
 case    mscd-answers-with-the-current-dos-directory
 run     /dd/CMDS/mscd
 expect  A:/
+
+# freeb.  The volume name and the four-digit year are the port: reading
+# sector zero from the wrong offset printed an empty name and 0/00/00, and
+# OS-9's high-bit string terminator ran a plain %s past the end of the name.
+
+case    freeb-reads-sector-zero-and-counts-the-free-blocks
+run     /dd/CMDS/freeb /dd
+expect  Disk "OSK-Freeware"
+expect  total sectors (4 sector clusters)
+expect  Total free:
+# NOT the sector count: it changes every time the image grows, and a case
+# that has to be edited whenever the disk gets bigger is a case that will
+# be edited wrong.  The volume NAME and the four-digit year are the port.
+absent  Disk "" Created  0/00/00
+
+case    freeb-counts-the-free-blocks-by-size
+run     /dd/CMDS/freeb -t /dd
+expect  Total free:
+absent  Could not read sect0

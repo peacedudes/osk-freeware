@@ -1,0 +1,1 @@
+Freeb is a superset of the os9 command Free.Use:	freeb	[options] [disk] [options]Options:	-a	List sector and size of each free block.	-t	List number of free block of each size are on the disk.	-h	Suppress normal disk name and size header.	-s	Suppress total of free blocks.	-?	List options
