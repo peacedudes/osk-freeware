@@ -1,0 +1,12 @@
+                           abcdefg
+                          |-------|
+                          |       |
+                          |   X   |
+                          |   X   |
+                          |   O   |
+                          |  OXO  |
+                          |  XOOOX|
+                          |-------|
+                           abcdefg
+
+                          X to move

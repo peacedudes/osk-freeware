@@ -1,6 +1,6 @@
 # What is on this disk
 
-961 programs of OS-9/68K community software, gathered from the archives that kept it and made to run again. **612 of them need nothing but this disk**; the rest want Microware's `cio`, marked below with a star.
+962 programs of OS-9/68K community software, gathered from the archives that kept it and made to run again. **613 of them need nothing but this disk**; the rest want Microware's `cio`, marked below with a star.
 
 `DOC/INDEX` on the disk lists everything alphabetically. This is the same collection sorted by what each program is *for*, which is the more useful order when you do not yet know what you are looking for.
 
@@ -22,7 +22,7 @@
 | [Encoding & conversion](#encoding--conversion) | 29 | Between text encodings, line endings, Macintosh formats, ciphers and hashes. |
 | [Communications](#communications) | 96 | Kermit in several builds, terminal sessions, and networking. |
 | [Graphics & images](#graphics--images) | 202 | The netpbm toolkit, JPEG, a ray tracer, and things that draw. |
-| [Games](#games) | 64 | Adventures, board and card games, arcade ports, dungeon crawls and puzzles. |
+| [Games](#games) | 65 | Adventures, board and card games, arcade ports, dungeon crawls and puzzles. |
 | [Screen toys](#screen-toys) | 8 | Animations and screen effects -- they draw on the terminal rather than print to it. Some run until you stop them. |
 | [Amusements](#amusements) | 21 | Generators, simulators and diversions that are not quite games. |
 | [System & modules](#system--modules) | 127 | OS-9 module and process tools, devices, system state and scheduling. |
@@ -1177,7 +1177,7 @@
 
 *Adventures, board and card games, arcade ports, dungeon crawls and puzzles.*
 
-<details><summary>64 programs</summary>
+<details><summary>65 programs</summary>
 
 **Adventure & fiction**
 
@@ -1212,6 +1212,7 @@
 | `back` | &#9733; backgammon on a full board, points numbered 1 to 24, with the dice cup and the doubling status beside it. Single letters are the commands: R rolls, D doubles, H is the help, N starts a new game, Q quits<br>**How:** Single letters are the commands: R rolls, D doubles, H is the help, N starts a new game, Q quits. |
 | `blackjack` | Las Vegas blackjack in BASIC09 -- `runb blackjack' asks your name and whether you want the rules, then takes a wager and deals: RETURN draws, `s' stands, `d' doubles down, `x' splits a pair, a wager of 0 ends the game (blackjak, in GAMES, is the SNOBOL4 one)<br>**How:** BASIC09 I-code: `load /h1/CMDS/runb' then `runb blackjack' (bare module name -- a pathname gives BASIC09 error 43). It asks your name and whether you want the rules, then takes a wager and deals: RETURN draws a card, `s' stands, `d' doubles down, `x' splits a pair; a wager of 0 ends the game. runb links the `math' trap handler from the execution directory, so leave chx at CMDS -- tested, plays a full hand. |
 | `blackjak` | &#9733; Las Vegas BlackJack (SNOBOL4-in-C).  Data: GAMES/SNOBOL |
+| `c4` | Connect Four against the computer: the columns are lettered a to g, and you drop a piece by typing a column's letter. Line up four in a row to win; `q' quits.  Hard to beat |
 | `chess` | chess against the machine on a shaded board.  It asks for your colour, your name and a long or short game, then takes a move as two squares -- `e2' then `e4', two keystrokes each with no RETURN.  68k port, three engine versions built<br>**How:** It asks for your colour, your name and a long or short game, then takes a move as two squares -- `e2' for the piece and `e4' for where it goes. Each square is two keystrokes and needs no RETURN. |
 | `crib` | cribbage.  Needs TERM set, so run it from a login session -- bare it says `Unknown terminal type'<br>**How:** Full-screen cribbage, and it wants TERM -- run it from a login session. Answer the instructions question, choose a long or short game, and discard by naming a card, `7H'. Control-C gets you out. |
 | `cribbage` | &#9733; cribbage -- offers instructions before it deals.  Needs TERM, so run it from a login session<br>**How:** The other cribbage, the same shape: TERM must be set, it offers the rules first, then cuts for the crib. Control-C gets you out. |

@@ -1,0 +1,1 @@
+c4 : c4.o	cc -o c4 c4.o -lcursesshar : c4.sharc4.shar : Makefile c4.6 c4.c	shar Makefile c4.6 c4.c > c4.sharclean :	rm -f c4 c4.shar *.o

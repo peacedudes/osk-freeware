@@ -920,3 +920,4 @@ phoon|phoon|phoon.c tws.c||/dd/LIB/math.l|
 globe|globe|globe.c|||
 wump|wump|wump.c getopt.c||/dd/LIB/rand.r|
 fish|fish|fish.c getopt.c||/dd/LIB/rand.r|
+c4|conn4|c4.c||/dd/LIB/curses.l /dd/LIB/termlib.l|
