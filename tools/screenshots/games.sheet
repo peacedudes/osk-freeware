@@ -1391,6 +1391,27 @@ snap
 send    \033
 wait    2
 
+shot    scrabble
+size    24 80
+cap     Scrabble on the full fifteen-by-fifteen board, one player against the
+cap     computer.  It reads its word list first -- the 19,577 usable words of
+cap     GAMES/words -- then draws the board with its premium squares and deals
+cap     seven letters.  `hjkl' move the cursor, `H' or `V' enters a word across
+cap     or down from where it sits, `T' trades letters back into the pool, `A'
+cap     asks the computer what it would play, and `Q' quits.
+try     scrabble -n 2 -m 1
+run     clear
+wait    1
+run     scrabble -n 2 -m 1
+wait    25
+send    Me\r
+wait    8
+snap
+send    Q
+wait    2
+send    y
+wait    2
+
 shot    gnugo
 size    24 80
 cap     GNU Go on the full 19x19 board, a few moves in.  It asks the

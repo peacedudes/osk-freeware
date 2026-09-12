@@ -1010,4 +1010,5 @@ zc|none|zc <zipcode> names the city and state; with no argument it opens a form,
 cfscores|none|it takes no options: run it and it reports your canfield bank, or says you have never played
 rot22|none|it takes a file name, or reads standard input; there are no options
 reversi|none|arrow keys or hjkl move the cursor, RETURN places a disk, m opens the game menu; -r resumes a saved game
+scrabble|none|hjkl move the cursor, H or V places a word across or down, T trades letters in, A asks the computer for advice, S and R save and restore, Q quits and `?' explains; -n sets the number of players and -m makes one of them the computer
 gnugo|none|it asks who plays first and the handicap, then takes moves as a letter and number like D4; no options

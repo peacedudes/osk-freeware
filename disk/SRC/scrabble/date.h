@@ -1,0 +1,1 @@
+#define DATE "Thu Apr 6 12:36:51 PDT 1989"#define HOST "saab"#define USER "billr"
