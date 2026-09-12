@@ -1367,3 +1367,19 @@ run     clear
 wait    1
 run     cfscores
 wait    3
+
+shot    reversi
+size    24 80
+cap     Othello against the computer, opening on the menu it starts from:
+cap     the board setup, then who plays which colour, then a strength from
+cap     Apprentice to Very Hard.  In play the cursor moves with the arrow
+cap     keys or hjkl and RETURN puts a disk down; `m' brings the menu back.
+cap     Not the same program as `othello', which is another author's.
+try     reversi
+run     clear
+wait    1
+run     reversi
+wait    9
+snap
+send    q
+wait    3

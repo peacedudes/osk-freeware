@@ -421,7 +421,7 @@ the native tools expect `/dd/SYS/utmp`, group, password or smail.
 | jotto, conn4 (Sicherman) | `CSG/volume11/jotto/`, `CSG/volume12/conn4/` | 1990-91 | no notice | conn4 DONE (39eb5990) as c4; jotto DONE (0a75970f) -- built-in word list |
 | yahtzee2 | `CSG/volume8/yahtzee2/` | 1989 | no notice | one fork |
 | rot2.2 ("software rot") | `CSG/volume1/rot22.gz` | 1987 | no notice | name clashes with CMDS/rot |
-| flicker | `CSG/volume5/flicker.gz` | 1988 | no notice | ANSI escapes |
+| flicker | `CSG/volume5/flicker.gz` | 1988 | no notice | LEFT OUT 2026-09-12, deliberately.  Gene H. Olson's ANSI teaser: `for(;;) write(1, buf, N*s)' of insert-line/delete-line escapes, forever.  No exit but Interrupt, no terminal restore, and the author's own README says "Enjoy, and be sensible.  (Use Interrupt to exit the program.)"  It would hang the capture harness and hand a reader a terminal to break out of.  Two files, extracted and read; nothing to build. |
 | ASCII plasma | `ALT/volume93/Feb/930203.12.gz` | 1993 | no notice | VT100 |
 | Toon 1.0, Juggle 1.0 | `ALT/volume94/May/940508.36-.40`; `ALT/volume95/Apr/950426.08.gz` | 1994-95 | GPL | curses, setitimer |
 | rogue 5.3 clone (Stoehr) | `CSG/volume1/rogue/` | 1987 | not for profit -- **Q1** | curses, sgtty |

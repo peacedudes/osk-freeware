@@ -1,0 +1,4 @@
+Select game setup
+
+Standard
+Inverse

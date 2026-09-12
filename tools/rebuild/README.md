@@ -200,6 +200,17 @@ de-ANSIfier, from the JPEG distribution, itself written in K&R so it
 bootstraps -- **builds here**, and a recipe with `KNR` in its defines runs
 every source through it before `cc`.
 
+**KNR ON AN ALREADY-K&R TREE IS HARMFUL, not merely useless.**  Measured on
+`reversi` (2026-09-12): with `KNR` in the recipe, `cc` reported `**** multiple
+definition ****` on every ordinary K&R parameter declaration --
+`main(argc, argv) int argc; char **argv;` and five more like it, across two
+files -- and the same sources compiled cleanly with the flag removed.
+ansi2knr rewrites a definition it has already rewritten, and the duplicate
+parameter declarations are what c68 then objects to.  So reach for `KNR` only
+when a prototype is actually stopping the build, and take it out again the
+moment the errors change shape.  Its symptom is distinctive: `multiple
+definition' pointing at a line that is plainly correct K&R.
+
 **ansi2knr only sees a function whose NAME IS AT THE LEFT MARGIN.** Its own
 header says so:
 

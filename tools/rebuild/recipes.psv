@@ -957,3 +957,4 @@ almanac|almanac|almanac.c||/dd/LIB/math.l|
 zc|zc|zc.c||/dd/LIB/termlib.l|
 cfscores|canfield|cfscores.c|||
 rot22|rot22|rot22.c||/dd/LIB/termlib.l|
+reversi|reversi|reversi.c comp.c graphics.c menu.c move.c||/dd/LIB/curses.l /dd/LIB/termlib.l|
