@@ -1,6 +1,6 @@
 # What is on this disk
 
-984 programs of OS-9/68K community software, gathered from the archives that kept it and made to run again. **635 of them need nothing but this disk**; the rest want Microware's `cio`, marked below with a star.
+985 programs of OS-9/68K community software, gathered from the archives that kept it and made to run again. **636 of them need nothing but this disk**; the rest want Microware's `cio`, marked below with a star.
 
 `DOC/INDEX` on the disk lists everything alphabetically. This is the same collection sorted by what each program is *for*, which is the more useful order when you do not yet know what you are looking for.
 
@@ -22,7 +22,7 @@
 | [Encoding & conversion](#encoding--conversion) | 29 | Between text encodings, line endings, Macintosh formats, ciphers and hashes. |
 | [Communications](#communications) | 97 | Kermit in several builds, terminal sessions, and networking. |
 | [Graphics & images](#graphics--images) | 202 | The netpbm toolkit, JPEG, a ray tracer, and things that draw. |
-| [Games](#games) | 72 | Adventures, board and card games, arcade ports, dungeon crawls and puzzles. |
+| [Games](#games) | 73 | Adventures, board and card games, arcade ports, dungeon crawls and puzzles. |
 | [Screen toys](#screen-toys) | 8 | Animations and screen effects -- they draw on the terminal rather than print to it. Some run until you stop them. |
 | [Amusements](#amusements) | 26 | Generators, simulators and diversions that are not quite games. |
 | [System & modules](#system--modules) | 130 | OS-9 module and process tools, devices, system state and scheduling. |
@@ -1183,7 +1183,7 @@
 
 *Adventures, board and card games, arcade ports, dungeon crawls and puzzles.*
 
-<details><summary>72 programs</summary>
+<details><summary>73 programs</summary>
 
 **Adventure & fiction**
 
@@ -1221,6 +1221,7 @@
 | `blackjak` | &#9733; Las Vegas BlackJack (SNOBOL4-in-C).  Data: GAMES/SNOBOL |
 | `bs` | Battleships against the computer on a 10x10 grid: place your fleet, then hunt the computer's ships square by square with the hjklyubn cursor keys; sink the whole fleet to win |
 | `c4` | Connect Four against the computer: the columns are lettered a to g, and you drop a piece by typing a column's letter. Line up four in a row to win; `q' quits.  Hard to beat |
+| `canfield` | Canfield, the casino solitaire you bet on: earn units for each card worked up to a foundation, building down in alternating colours on the tableau; name a move by its two ends (s2, tf, 13, 2f), `ht' deals, `q' quits |
 | `chess` | chess against the machine on a shaded board.  It asks for your colour, your name and a long or short game, then takes a move as two squares -- `e2' then `e4', two keystrokes each with no RETURN.  68k port, three engine versions built<br>**How:** It asks for your colour, your name and a long or short game, then takes a move as two squares -- `e2' for the piece and `e4' for where it goes. Each square is two keystrokes and needs no RETURN. |
 | `crib` | cribbage.  Needs TERM set, so run it from a login session -- bare it says `Unknown terminal type'<br>**How:** Full-screen cribbage, and it wants TERM -- run it from a login session. Answer the instructions question, choose a long or short game, and discard by naming a card, `7H'. Control-C gets you out. |
 | `cribbage` | &#9733; cribbage -- offers instructions before it deals.  Needs TERM, so run it from a login session<br>**How:** The other cribbage, the same shape: TERM must be set, it offers the rules first, then cuts for the crib. Control-C gets you out. |

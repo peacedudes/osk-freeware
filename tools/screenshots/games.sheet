@@ -1238,3 +1238,20 @@ wait    2
 snap
 keys    q
 wait    2
+
+shot    canfield
+size    24 80
+cap     Canfield, the casino solitaire you bet on: you pay to start and
+cap     earn back for every card you get to a foundation.  Cards move in
+cap     alternating colours on the tableau and by suit on the foundations;
+cap     `ht' deals from the stock, and you name a move by its cards.
+try     canfield
+run     canfield
+wait    3
+send    n\r
+wait    3
+snap
+send    q\r
+wait    1
+send    y\r
+wait    2

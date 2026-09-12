@@ -943,3 +943,4 @@ chef|chef|lex.yy.c chefmain.c|||
 fudd|fudd|lex.yy.c yywrap.c|||
 drawl|drawl|lex.yy.c yywrap.c|||
 lame|lame|lame.c||/dd/LIB/rand.r|
+canfield|canfield|canfield.c||/dd/LIB/curses.l /dd/LIB/termlib.l /dd/LIB/rand.r|
