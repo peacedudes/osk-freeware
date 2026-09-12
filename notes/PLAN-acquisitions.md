@@ -238,9 +238,9 @@ re-derived:
 | Browse (P. da Silva, OSK port C. Emde) | TWN 653558 (3 parts, complete) | 1990 | none in the port | K&R + termcap + os9lib; help at `/h0/SYS/browse.hlp` |
 | unc (68000 module disassembler) | pool `SRC/unc.lzh`; MW 4308 | 1991 | none | DONE df6d23ce -- ships, links `GNULIB/os9lib.l` |
 | almanac 3.2 (J. Semler) | MW 2313 (has almanac.OSK) | ~1992 | none | terminal card candidate |
-| freeb | MW 3921; TWN 653668 | | PD | |
+| freeb | MW 3921; TWN 653668 | 1989 | PD | DONE e1a56b0c -- ships |
 | howfrag | MW 4223 | | PD | DONE df6d23ce -- ships |
-| uustat, ancient, hdump/undump | MW 3970, 3894, 3928 | | per item | |
+| uustat, ancient, hdump/undump | MW 3970, 3894, 3928 | | per item | hdump+undump DONE e1a56b0c; uustat and ancient still open |
 | dumpinit (init module lister) | MW 2240 | ~1994 | none | generic though filed MM/1 |
 | mimecode (base64) | MW 2503 | 1995 | author's permission | DONE -- built -qm, tested, carded; Tim Kientzle/DDJ, Gene Heskett's OS-9 pack |
 | zc ZipCode + ZIPDATA | MW 2248, 2250 | 1995 | PD | needs `/dd/sys/zipcodes.txt` |
@@ -253,6 +253,36 @@ re-derived:
 | BRU/OS-9 1.2 | MW 2330 | 1991 | GPL-style | 6809 C, plausible port |
 | rnclone 1.0 | MW 3740 | 1993-94 | free, keep head comments | 6809 C, has 68k porting notes |
 | K5JB k37 source (for shipped `net`, `bm`) | https://github.com/johnsonjh/k5jb | 1993-95 | no licence file | check it matches the binaries |
+
+**UNPACK IN THE OS-9 UNIVERSE, not host-side.**  rdoggett, 2026-09-11:
+*"If you are not doing all this work in the os-9 universe, you are doing it
+wrong.  Stay in universe and you don't have to worry about LF/CR issues."*
+
+The evidence was already here and went unread: `dvi2tty' came out of the
+disk's own `ar' and compiled first time, while `bc' came out of a host-side
+Python unsharer and failed four separate ways -- the first two purely LF
+damage.  And the symptom does NOT say "line endings": an LF file reads to
+OS-9's cpp as one enormous line, so it surfaces as `source line too long'
+on every file at once, which reads like a source defect.
+
+THE METHOD, proved on freeb and now the way to do this:
+
+1. Transport the archive onto the disk AS OS-9 TEXT -- convert line endings
+   once, in the copy.  This is the one host-side step, and it is what
+   kermit or uucp did in period.  Skipping it fails in a way worth knowing:
+   the disk's own `unshar' answers "No shell commands in <file>", because it
+   cannot read an LF file either.
+2. Unpack with the disk's own tool, into a host-directory device so the
+   files land where the build driver wants them:
+
+       OS9H5=<dir> os9exec ksh -c "cd /h5; /dd/CMDS/unshar /dd/tmp/x.txt"
+
+   Every file it writes is CR-terminated by construction.  On freeb this
+   produced four files byte-identical to the host-side extraction, with no
+   conversion step to get wrong.
+3. The disk carries `unshar', `tar', `ar', `gzip', `compress', `lha',
+   `lharc', `unzip', `zip', `arc' and `zoo', which covers nearly every
+   format in the pool.
 
 ### B6 -- TOP, "The OS-9 Project", release 2 (Munich 1989-90)           open
 https://ftp.funet.fi/pub/unix/os9/top.tar.Z (8,900,473 b; index beside it);
