@@ -66,8 +66,18 @@ Name a pool file by what `file`/its listing shows, never by its filename.
 ## Open questions for rdoggett (do not ship these until answered)
 
 1. **"Free, but non-commercial" terms.**  TOP's os9lib, vcron, scpp; the rogue
-   clone; agrep 2.01; MNews; PtyMan.  Accept, recorded in SOURCES.txt?
-   (Recommendation: yes.)
+   clone; agrep 2.01; MNews; PtyMan.  **SETTLED 2026-09-11: accepted.**
+   rdoggett, asked once too often: *"I don't understand the question.  I
+   thought we have had os9lib for awhile, and used it to compile some
+   thing(s). ...  We are non commercial. why do you keep asking about this?"*
+   Record each item's terms in SOURCES.txt and ship it.  **Do not raise this
+   again** -- the `Q1' marks left in the B6 and B7 tables below mean "covered
+   by this ruling", not "still waiting".  (One condition survives and is not
+   about commerce: TOP's `info.c' says "please DON'T CHANGE ANYTHING ... You
+   may not distribute any modified versions", so that file ships unmodified
+   or not at all.  `utime.c', which has a bare copyright and NO grant, stays
+   out of the build -- rdoggett: "if there is any question about it we have
+   to exclude.  Don't delete, we may change our mind sometime later.")
 2. **GPL source for binaries already shipped.**  The disk ships gcc, g++, VH
    and dvips binaries without their source trees.  Sources exist: MW 4073,
    4074 (gcc 1.42, g++ 1.39.1), funet
