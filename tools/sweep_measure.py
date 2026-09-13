@@ -64,6 +64,22 @@ NONREPRO = {
     "ape":       "a Markov text generator: different prose every run",
     "cookie":    "prints a random saying: ink tracks how long it is",
     "fortune":   "prints a random saying: ink tracks how long it is",
+    "rndname":   "invents pronounceable names at random",
+    "pwgen":     "generates pronounceable passwords at random",
+    "travesty":  "a travesty generator, the same family as ape",
+    "globe":     "draws the CURRENTLY-LIT face of the Earth: clock-dependent",
+    # The weather programs -- separate builds per profile, not one binary.
+    # They moved in BOTH directions across one pair of runs (florida +115,
+    # shire +135, georgia -311, minnesota -190), which is the signature of
+    # output that is generated rather than fixed.  Whether that is the
+    # simulation itself or a 10-second capture window catching different
+    # amounts of a long print has NOT been measured.
+    "florida":   "weather program (Gulf-coast profile): output varies",
+    "georgia":   "weather program (south-Atlantic profile): output varies",
+    "minnesota": "weather program (north-Atlantic profile): output varies",
+    "shire":     "weather program (mid-Atlantic, Middle-earth calendar)",
+    "england":   "weather program (the base profile the others cite)",
+    "japan":     "weather program (its own profile)",
 }
 
 sheet = sys.argv[1]
