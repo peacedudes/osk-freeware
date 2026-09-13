@@ -1342,3 +1342,36 @@ and the scrolled capture carries 358 ink of the program's real output.
 a screenful that is simply what a 24-line window gives you.  The fix
 where it matters is the sheet's own `size' directive -- a taller window
 keeps the command on screen under a full-height picture.
+
+## gen_screens regenerates screens.js from EVERY capture -- mind what you commit
+
+2026-09-13, and it published an inconsistent gallery for one commit.
+Promoting a single card, I added explicit paths -- the sheet, that card's
+`.txt', screens.js and screens.stanzas -- which looks careful and is not.
+`gen_screens' had rewritten SEVENTEEN other cards from captures that had
+drifted, and screens.js is generated from ALL of them.  So the committed
+screens.js held `Sep 13 04:40' for `trunc' where the committed
+`trunc.txt' still held `Sep 8 22:41', and carried a `$ ' prefix for
+`clear' the card file did not.  **screens.js is what the page reads**, so
+the half that was wrong was the authoritative half.
+
+The 17 were re-shoot churn -- file timestamps, a prompt prefix,
+pgmcrater's non-reproducible dither -- the class reverted for the 70
+netpbm cards.
+
+**Order matters in the repair.**  Restore the CAPTURES first, then
+regenerate.  Reverting the card files alone leaves the drifted captures
+in notes/playtests, and the next gen_screens run reproduces the churn.
+
+    git status --short docs/     # BEFORE committing, and READ it
+    # if more than the card you meant has moved, restore captures first
+
+I printed exactly that check, labelled "mgif should be the only one",
+and committed without reading it.
+
+**Not the same thing, and do NOT try to fix it:** screens.js and a card
+file legitimately differ in ENCODING for box-drawing programs.  btop,
+c7decode, cuts, macstream, names, preset and ptob carry `+' in the card
+and CP437 box characters in screens.js, from ansiscreen's CP437_BOX
+mapping.  Seven cards, same screen, two renderings -- by design, and
+predating tonight.
