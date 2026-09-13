@@ -1407,14 +1407,42 @@ accumulated AFTER that baseline, as capabilities landed:
   **`system5`** runs `/dd/CMDS/drop`.  `drop` was RENAMED to `unkeep` on
   2026-09-09 and there is no `drop` on the disk.
 
-**FOUR ARE STILL OPEN** at the time of writing -- `tex`'s `dvialw` and
-`dvilj2` (`[1 pages]`) and `dvieps` (`nearest neighbor`), and `games2`'s
-`convert-starts-the-world-adventure`.  They are being re-run against a
-PRISTINE image, because tonight's scratch sheets wrote into `/dd/tmp`
-and into `/dd/GAMES/WORLD`, and the image is not reset between runs.
-Until that says otherwise, do not assume they are stale too: the sibling
-case that also reads `story.dvi` PASSED, so the input exists, and
-`tex.cases` WAS updated for the fonts.
+**THE FOUR WERE SETTLED BY RUNNING THE SUITE TWICE, and the controlled
+comparison is the whole value of it:**
+
+    the image I had been working on   727 of 743
+    a PRISTINE image, same commit     728 of 743
+
+**Exactly one case differs: `games2 convert-starts-the-world-adventure`
+fails on the worked image and PASSES on a clean one.  That one was MINE**
+-- a scratch diagnostic ran `vtxtcn' with the data directory at
+`/dd/GAMES/WORLD', which writes `.inc' tables beside the game's data, and
+`convert' reads that directory.  Nothing was committed and the source
+tree was untouched; the damage lived only in the built image, and a
+rebuild clears it.
+
+**The other three are REAL and are not mine**: `tex`'s `dvialw` and
+`dvilj2` (`[1 pages]`) and `dvieps` (`nearest neighbor`) fail identically
+on a pristine image.  They are the one open question in the suite.  Note
+what does NOT explain them: the sibling case that also reads
+`/dd/story.dvi` passes, so the input exists; `story.dvi` comes from the
+family's `setup` line, not from a case that could have failed first; and
+`tex.cases` WAS updated when the 300dpi fonts landed, so they are not the
+same drift as the six above.  Somebody should run those three drivers by
+hand and read what they actually print now.
+
+**The method worth keeping: run the suite against a FRESH image built to
+a different filename.**  `tools/mkimage.sh disk fresh.dd` then
+`datatest.py --all --image $PWD/fresh.dd`.  Two traps in that one line:
+the script **cd's to the output directory** (its own header says so,
+because `mount -k` creates `<CWD>/hX` and ignores `OS9Hx`), so building
+outside the repo puts the emulator somewhere with no `bash` and it stops
+with `E_MNF: 'bash'` before emulation starts; and it writes `<name>.tar`
+beside the image, which `.gitignore` does not cover for any name but
+`osk-freeware` -- delete it, or leave a 130 MB stray behind.  **Do not
+rebuild `osk-freeware.dd` itself to do this:** rdoggett keeps an emulator
+session open on that exact file (`lsof` showed it held open, twelve hours
+in) and `osk-freeware.tar` is the name his build uses.
 
 **The rule this pays for: a commit that fixes a program must update the
 case that asserts it broken, in the same commit.**  Two commits here

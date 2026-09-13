@@ -52,8 +52,25 @@ back, forty programs to an emulator start.
 The known failures are deliberate and each says why in its own file: three in
 `datatest` -- `zip-cannot-write-its-archive`, `todos-must-change-the-file`,
 `sir-round-trip-is-lossy` -- and four in `playtest` (pacman, puzzle, snake,
-valspeak). A full `datatest --all` run is **420 of 423**, measured
+valspeak). A full `datatest --all` run was **420 of 423**, measured
 2026-08-31.
+
+**Re-measured 2026-09-13 against a pristine image: 728 of 743.** The
+three deliberate failures are still there and still deliberate. Of the
+other twelve, **NINE are cases the disk has OUTGROWN** -- six of them
+asserting failures that `9befb924` ("ship csl edition 25 -- fixes lua,
+runc, msntp") and `e934210a` ("dvips renders") repaired without touching
+a single file under `tools/datatests/`, plus `dvidrivers` predating its
+own fonts, `about` quoting an origin phrase `DOC/ORIGINS` no longer uses,
+and `system5` running `drop` nine days after it became `unkeep`.
+`notes/START-HERE-NEXT-SESSION.md` names each with the commit that made
+it stale.
+
+**The remaining THREE are not explained** -- `dvialw`, `dvilj2` and
+`dvieps` -- and they are the one open question in the suite. They fail
+identically on a pristine image, so they are not left-over state, and
+`tex.cases` was updated when the fonts landed, so they are not that
+drift either.
 
 **SEVEN CASES RESTART THE FAMILY THEY ARE IN, and that is expected.**
 `paranoia` pauses for a key, `checkfile` is full-screen, and `cookhash`,
