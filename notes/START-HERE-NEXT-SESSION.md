@@ -1268,3 +1268,31 @@ graphics and the three netpbm ones.  Prediction does not work here -- I
 predicted netpbm would be affected and it was not (0 firings in 71) --
 so the only way to find another `pdraw' is to re-shoot and compare
 through trim().
+
+## Do not build a "cited commit hashes must resolve" gate
+
+Tempting after 2026-09-13, when I wrote a hash into this file that does
+not exist (`58e3c35', a fat-fingered duplicate of 398e3c35) and only
+caught it by checking by hand.  The house habit is to turn that into a
+mechanical check.  **It cannot be one**, and the reason is worth keeping
+so nobody spends an evening on it:
+
+  - `notes/' LEGITIMATELY CITES THE SIBLING REPO.  os9exec's `985e0d8'
+    appears five times, in this file and in check_disk.py's dots-gate
+    docstring, and is correct every time.  It does not resolve here and
+    never will.
+  - Not every 7-8 hex token is a hash at all.  A bare scan turns up
+    `000465d2' and `000516c8' in SECOND-PASS.md, which are OS-9
+    ADDRESSES, and `3f5b0760'/`ff75a069' in MICROWARE-PERMISSION.md,
+    which are not commits either.
+  - There is no mechanical way to tell ours from os9exec's from a hex
+    address by SHAPE.  A gate would fail on correct text, which the dots
+    gate's own docstring warns is the way to make a gate disbelieved.
+
+And a measuring lesson underneath it.  My first scan reported "16 of 16
+cited hashes resolve, 0 foreign" and I nearly recorded the gate as SAFE
+on that.  The pattern only matched BACKTICK-QUOTED hashes; every foreign
+one is written bare.  The needle measured its own shape, not the thing --
+the third time in one night, after `digit-in-word' and after searching
+subjects.tsv's AUTHOR column for OS-9 mentions.  When a scan returns a
+clean result, check what it could not have seen.
