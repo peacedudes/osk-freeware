@@ -1435,13 +1435,27 @@ error line goes and the result equals what was already published -- but
 the stanza is worth having, because the card was previously correct only
 by accident of ambient state.
 
-**Do not generalise the mechanism.**  listalias carries `uuname -l' too,
-at offset 19118, and shows no uuname error once sort is loaded, so that
-path is not reached in the plain form.  Other ELM binaries name uuname --
-answer, elm, fastmail, filter, frm, newalias -- and whether their stanzas
-want the same `load' is UNMEASURED.  `filter' and `fastmail' both turned
-up in this sweep already (filter as a clearer, fastmail as a scrolled
-gain), so they are the two to look at first.
+**Do not generalise the mechanism -- MEASURED, and the answer is that
+there is nothing left to fix.**  listalias carries `uuname -l' too, at
+offset 19118, and shows no uuname error once sort is loaded, so that path
+is not reached in the plain form.  The same held for every other
+candidate: `answer' (22070) and `frm' (23356) and `fastmail' (7316) all
+carry the string on paths their stanzas never reach, and `filter',
+`elm' and `newalias' do not reference uuname at all.
+
+The instrument that settled it costs nothing: **grep the published cards
+for the error, not the binaries for the string.**  `sh' says `nowhere
+found' and nothing else does, so one grep over docs/screens names every
+card actually carrying a failed fork.  The answer was THREE: listalias
+and newmail, both now fixed, and `remove' -- whose error line is
+DELIBERATE.  remove's card is a before-and-after: readmsg resident and
+answering, then `remove readmsg', then the same command replying
+`readmsg: nowhere found', which is the proof it worked.  Excepted in
+audit_cards rather than "fixed".
+
+`frm' is unpublished and should stay so on its own merits: its capture
+trims to ink 20 against the floor of 30, and the content is `$ frm' and
+`tester has no mail.' -- honestly terse, not damaged, nothing to recover.
 
 So ink alone has now misled three different ways in one night -- the
 raw-vs-published artefact, a scroll, and error text -- and the scroll
