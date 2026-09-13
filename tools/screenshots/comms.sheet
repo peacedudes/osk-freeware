@@ -178,12 +178,16 @@ wait    5
 
 shot    listalias
 cap     Lists the mail aliases you have, once newalias has compiled them:
-cap     your own aliases first, then the shared system ones.
+cap     your own aliases first, then the shared system ones.  It builds an
+cap     `egrep ... | sort' pipeline and hands it to a shell, so `sort' is
+cap     loaded first and the fork finds it by name.
 try     listalias
 run     newalias
 wait    8
 run     newalias -g
 wait    8
+run     load /dd/CMDS/sort
+wait    3
 run     clear
 wait    1
 run     listalias
