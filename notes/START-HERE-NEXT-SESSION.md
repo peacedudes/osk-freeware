@@ -1489,9 +1489,15 @@ measured 2026-09-13 while working the games sweep.
                 the first guess and came out 11 lines, ink 232 -> 153.
                 Nothing seeds the deck; the stanza sends `n' then `3'.
     zot         frames=True.  filmstrip() SAMPLES frames evenly when
-                there are more frames than rows, so the ink tracks how
+                there are more frames than rows, so the ink CAN track how
                 many animation frames a run produced.  It is the only
-                frames=True stanza in the collection.
+                frames=True stanza in the collection.  CAVEAT, measured
+                after the fact: a solo re-shoot came back at exactly its
+                published 217, so the sweep's 217 -> 173 was ordinary run
+                variance like the other eight, NOT frame sampling.  The
+                exclusion is still right -- a filmstrip is not comparable
+                by ink in principle -- but do not cite sampling as the
+                explanation for a particular number without checking.
     freeb       reports LIVE DISK STATISTICS.  Rebuilding the image
                 changes them: 1081344 sectors and one fragment row
                 became 1134592 sectors and seven.  Both correct.
