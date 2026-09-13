@@ -856,13 +856,13 @@ def check_no_chained_parent_paths(root):
     """
     here = os.path.dirname(os.path.abspath(__file__))
     targets = []
-    for sub in ("screenshots", "datatests", "drives"):
+    for sub in ("screenshots", "datatests", "drives", "playtests"):
         d = os.path.join(here, sub)
         if os.path.isdir(d):
             targets += [os.path.join(d, f) for f in sorted(os.listdir(d))
-                        if f.rsplit(".", 1)[-1] in ("sheet", "cases", "drive")]
+                        if f.rsplit(".", 1)[-1] in ("sheet", "cases", "drive", "keys")]
     pat = re.compile(r"\.\./\.\.")
-    runs = re.compile(r"^\s*(try|os9|run|send|expect)\s")
+    runs = re.compile(r"^\s*(try|os9|run|send|expect|keys)\s")
     bad = []
     for path in targets:
         if not os.path.exists(path):
