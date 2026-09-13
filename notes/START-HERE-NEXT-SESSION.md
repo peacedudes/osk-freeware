@@ -143,10 +143,13 @@ DISK tree and runs the gate against the copy, while the dots check reads
 the sheets and case files under tools/, which are never copied.  A breaker
 touching root/ would change nothing it looks at and the tool would report
 the check BLIND -- proof it does not have.  So the reason sits where the
-breaker would have been, and the check is proven instead by an in-tree
-probe run BOTH ways (a throwaway sheet with a chaining `run' line that
-must fail, beside prose teaching the rule and a correct `.../' form that
-must pass).  If it ever grows a root-relative target, give it a breaker.
+breaker would have been, and the check is proven instead THROUGH THE REAL CLI:
+a throwaway sheet with a chaining `run' line makes `check_disk.py disk'
+EXIT 1 and name the check, and removing it returns exit 0.  Both
+directions were probed in-process too (prose teaching the rule and a
+correct `.../' form must pass, and do).  Running the CLI is the step that
+separates a REGISTERED check from a merely defined one -- a function can
+report perfectly while nothing calls it.  If it ever grows a root-relative target, give it a breaker.
 
 **AND THE BREAKER I WROTE FIRST NEVER RAN.**  BREAKS is an explicit
 registry; I defined the function without registering it, and the tool

@@ -277,11 +277,20 @@ def break_login_env(root):
 # would change nothing the check looks at and would report the check BLIND,
 # which is worse than having none: it would claim proof it did not have.
 #
-# It is proven instead by probing it in both directions in the real tree --
-# a throwaway sheet carrying a `run' line that chains `../..' (must fail),
-# beside a `cap' line teaching the dots rule and a correct `.../' form (must
-# pass).  Both were run on 2026-09-12 and the probe removed afterwards.  If
-# this check ever grows a root-relative target, give it a breaker here.
+# It is proven instead THROUGH THE REAL CLI, which is the step that
+# distinguishes a registered check from a merely defined one -- a function
+# can report correctly while nothing ever calls it (see `absence phrasing'
+# below: its breaker existed, was unregistered, and this tool cheerfully
+# said "24 of 24 breaks were caught").  Measured 2026-09-12 with a throwaway
+# sheet in tools/screenshots:
+#
+#   sheet carries `run  ../../CMDS/for div.f'  ->  check_disk.py exits 1 and
+#                                                  prints the check FAILED
+#   probe removed                              ->  exits 0, check prints ok
+#
+# Both directions were also probed in-process: prose teaching the dots rule
+# and a correct `.../' form must PASS, and do.  If this check ever grows a
+# root-relative target, give it a breaker here.
 
 def break_absence_phrasing(root):
     """A DOC/INDEX entry that says what this disk lacks instead of what you have.
