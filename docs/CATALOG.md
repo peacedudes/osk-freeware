@@ -811,7 +811,7 @@
 | `filter` | sorts incoming mail into folders by rule, as a pipe stage: its own usage line begins `\| filter'<br>`/dd/CMDS/ELM/filter: illegal option -- ?` |
 | `frm` | &#9733; list who your mail is from, one line each.  On this port it answers `tester has no mail' for a folder that `messages' counts and `readmsg' prints, so use those two<br>**How:** Lists who your mail is from, one line each. Reads $MAIL, which SYS/login sets. |
 | `lcasep` | &#9733; lower-case a name for mail<br>`/dd/CMDS/UUCP/lcasep: illegal option -- ?` |
-| `listalias` | &#9733; list the aliases you have, once newalias has compiled them: `home  os9-freeware (This Collection)'.  Its -s and -u forms pipe through `egrep'; `grep' and `ggrep' here do the same work, and the plain form needs nothing extra<br>`/dd/CMDS/ELM/listalias: illegal option -- ?` |
+| `listalias` | &#9733; list the aliases you have, once newalias has compiled them: `home  os9-freeware (This Collection)'.  It builds an `egrep ... \| sort' pipeline and hands it to a shell, so `load' sort first or the fork misses it and you get the list unsorted with a `sort: nowhere found' line above it<br>`/dd/CMDS/ELM/listalias: illegal option -- ?` |
 | `lmail` | &#9733; local mail delivery.  Its usage line answers; giving it a real recipient does not return here -- it hangs, and only the session's own end brings it down<br>`Syntax: lmail <user name> {<user name>}` |
 | `mail` | &#9733; a simple mail sender |
 | `mailx` | &#9733; the mail reader and sender<br>`mailx v2.1 (94Sep30)  --send and receive e-mail` |
@@ -853,7 +853,7 @@
 | | |
 |---|---|
 | `atp` | &#9733; AX.25 transport, from the KA9Q package |
-| `finger` | &#9733; ask another machine who is logged in<br>**How:** Asks another machine who is logged in: `finger <userid>'. Needs a network. |
+| `finger` | &#9733; show what the system knows about a user: the home directory, the shell, and the .plan it would print; given user@host it asks that machine instead<br>**How:** `finger tester' reads the password file this disk ships and prints the account's home directory, its shell, and the .project and .plan it would show if they existed -- no network needed for a local name. `finger user@host' is the form that asks another machine. |
 | `infoxpress` | a client for the InfoXpress information service, reached over a serial line |
 | `msntp` | sets the system clock from a network time server, by SNTP; it needs a network to reach one<br>**How:** Sets the clock from a network time server. |
 | `net` | KA9Q net -- TCP/IP over SLIP or AX.25: telnet, ftp, smtp<br>**How:** KA9Q net, Phil Karn's TCP/IP over SLIP or AX.25 -- the stack amateur radio ran on. Needs NETHOME, NETSPOOL and TMPDIR set and a real interface; see DOC/ka9q. |
