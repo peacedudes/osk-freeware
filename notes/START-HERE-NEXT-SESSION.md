@@ -1303,6 +1303,63 @@ before committing' and reported exit 0 in the same breath; run unpiped
 it exits 1.  The same trap applies to `check_disk.py'.  Redirect, then
 read `$?'.
 
+## One card regressed in the gallery, and its exception argues the wrong case
+
+`pgmedge'.  Found 2026-09-13 by reading git rather than by re-shooting.
+
+At `1be0bed0' the card was SEVEN LINES: `pgmedge' wrote an edge greymap
+and `pgmtopbm eg.pgm | pbmtoascii -2x4' drew it, so a reader saw the
+gingham weave come back as the grid of its seams.  At `6b009068' -- the
+pass that gave every card a `try' line and short relative names -- the
+follow-up was changed to `pnmfile gg.pgm eg.pgm' and the card went to
+ZERO lines.  It is the only card that commit hollowed: every other
+`docs/screens/*.txt' it touched came out the same size or larger.
+
+`tools/panel-exceptions.psv' line 124 then justified the empty card:
+pgmedge "is slow enough to leave the interactive capture session
+unusable before the follow-up renders".  **The history contradicts the
+reason.**  The older stanza allowed the same `wait 20' and ITS follow-up
+rendered fine.  What changed was the demo, not the program.
+
+Re-shot solo 2026-09-13 it still comes back empty, with `(session
+replaced -- pgmedge left it unusable)', so something about the current
+form does wedge the session.  The fix to try is the older one: restore
+the `pgmtopbm | pbmtoascii' picture, which is a better card by any
+measure, and raise the wait.  **Take the exception line out only after
+the card renders** -- `audit_panels.gate()' fails on an excepted name
+that is not runnable, so removing it early breaks the gate.
+
+## A card getting SHORTER is not evidence that it broke
+
+Measured 2026-09-13, and recorded because the measurement was nearly
+reported as a finding.  Comparing every published card against its own
+previous commit, 48 shrank by four lines or more.  That list is not
+damage; it is mostly the release pass doing its job.
+
+Of the 48, five are also flagged by `audit_cards' today, and all five
+were read:
+
+  `finger'  25 -> 3.  The old card showed `osknet' -- another program's
+            banner and its missing-file warnings.  The trim FIXED it.
+  `mailx'   14 -> 2.  The old card ran `philmail' underneath mailx, and
+            published philmail's session.  The trim FIXED it.
+  `blastem' 19 -> 2, `xyt' 14 -> 2, `mail' 22 -> 3.  Deliberate: each
+            traded a screen of its own help for an honest attempt that
+            fails for want of a modem or a RAM disk.  Arguable, not
+            broken.
+
+So: one regression in the gallery (`pgmedge', above), found by reading
+the diffs rather than by size.  Two of the five biggest "losses" were
+cards that had been showing the WRONG PROGRAM, which is the defect
+`audit_panels' exists for -- and by size alone they look like the worst
+damage on the list.
+
+Two invocation hypotheses were also refuted the same way, before any
+re-shoot: `lnk.org' ALREADY loads `os9lib' (its stop is the documented
+`system()' forks a bare `shell' case), and `rcsmerge's card is a
+deliberate demonstration of the missing `-r'.  Read the stanza before
+believing a card has the wrong invocation.
+
 ## audit_cards was eating the first line of every card (fixed 2026-09-13)
 
 `classify()' discounted three kinds of line as "the command that was
