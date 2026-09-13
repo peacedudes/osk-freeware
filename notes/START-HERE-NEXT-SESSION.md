@@ -1618,3 +1618,32 @@ all**: `zot' (frames) above, and the burst stanzas `back', `backgammon'
 and `teachgammon', which are captured through a separate unthrottled
 path.  Only games.sheet contains any of them, so the graphics, system,
 comms and netpbm sweep verdicts were never affected.
+
+## zsh does NOT word-split an unquoted variable, and the job still says DONE
+
+This cost time twice on 2026-09-13, in two different scripts, and both
+times the job printed a completion line and a clean tree.
+
+    N="a b c"
+    for n in $N; do ... done        # bash: three iterations
+                                    # ZSH:  ONE iteration, "a b c"
+
+First it made a freshness check compare one nonexistent path --
+`stat: notes/playtests/cjpeg.070 wrjpgcom ... rsconvert.shot.txt' -- and
+report an md5 of nothing as a "fingerprint".  Then it made a five-stanza
+re-shoot pass `"dos.sheet msdir"' to parse() as a single filename, so
+every stanza died with FileNotFoundError while the job still printed
+`DECISIVE RECHECK DONE' and `tree: 0 modified'.
+
+**Use parameter expansion instead**, which does not depend on splitting:
+
+    for pair in dos.sheet:msdir editors.sheet:sed; do
+        SH="${pair%%:*}"; N="${pair##*:}"
+    done
+
+And the general form of the lesson, which is the one worth keeping: **a
+job that reports DONE has not necessarily done anything.**  Four times
+tonight a background job completed with exit 0 having accomplished
+nothing -- twice from this, once from an image lock it never acquired,
+once from a tool with no shebang.  Check for the OUTPUT you wanted, not
+for the absence of an error.
