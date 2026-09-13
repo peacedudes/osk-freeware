@@ -135,6 +135,27 @@ and every rule with a gate behind it fired.  So:
       must be mechanical: the wrong spelling does not announce itself, and
       whether it works depends on WHICH LAYER resolves it.
 
+**ONE GATE HAS A BREAKER; THE OTHER CANNOT HAVE ONE.  Do not read the
+pair as equally proven.**  `text names what the reader has' is registered
+in check_the_checks.py's BREAKS list and reports `fails as it should'.
+`OS-9 paths count dots' has NO breaker and cannot: that harness copies the
+DISK tree and runs the gate against the copy, while the dots check reads
+the sheets and case files under tools/, which are never copied.  A breaker
+touching root/ would change nothing it looks at and the tool would report
+the check BLIND -- proof it does not have.  So the reason sits where the
+breaker would have been, and the check is proven instead by an in-tree
+probe run BOTH ways (a throwaway sheet with a chaining `run' line that
+must fail, beside prose teaching the rule and a correct `.../' form that
+must pass).  If it ever grows a root-relative target, give it a breaker.
+
+**AND THE BREAKER I WROTE FIRST NEVER RAN.**  BREAKS is an explicit
+registry; I defined the function without registering it, and the tool
+reported "24 of 24 breaks were caught" -- true, and not an answer to the
+question I was asking.  Not a check that missed a defect: a check never
+invoked, inside the tool built to prove checks get invoked.  When you add
+a check, grep the run's output for ITS OWN LABEL; a summary line that
+sounds right is not evidence yours was among them.
+
 **THE FIRST CHECK CAUGHT A HOLE IN ITSELF ON ITS FIRST FAILURE RUN.**  My
 pattern was the literal `not on this disk'.  Against the old text it
 caught two of three and missed `map's real wording -- "neither is on this
