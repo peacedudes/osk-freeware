@@ -170,7 +170,6 @@ rot|rot|rot.c|||
 rpn|eff_rpn|rpn.c|||
 rpoem|effo_snobol|rpoem.c cardpak.c genprim.c pattern.c pokev.c quest.c rperm.c rselect.c rsent.c snorand.c|||
 rstory|effo_snobol|rstory.c cardpak.c genprim.c pattern.c pokev.c quest.c rperm.c rselect.c rsent.c snorand.c|||
-rstory2|effo_snobol|rstory2.c|||
 run|divutils|run.c misc.c|||
 savage|eff_bench|savage.c|||
 scales|hc_loose|scales.c|||
@@ -193,7 +192,6 @@ soundex|soundex|soundex.c|TESTPROG||
 space|eff_space|space.c|||
 speech|speech|parse.c phoneme.c spellword.c sayord.c english.c||/dd/LIB/sys.l|
 spiff|spiff|spiff.c output.c compare.c float.c strings.c exact.c miller.c parse.c command.c comment.c tol.c line.c floatrep.c token.c misc.c visual.c|M_TERMCAP|/dd/LIB/termlib.l /dd/LIB/unix.l|
-splitalf|bix|splitalf.c|||
 ssl|effo_wolk|ssl.c|||
 stone|effo_snobol|stone.c cardpak.c genprim.c pattern.c pokev.c quest.c rperm.c rselect.c rsent.c snorand.c|||
 strfile|fortune|strfile.c|||

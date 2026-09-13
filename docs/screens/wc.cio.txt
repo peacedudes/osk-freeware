@@ -1,6 +1,0 @@
-cat tmp/TEXTA/fox.txt
-the quick brown fox
-jumps over the lazy dog
-$ wc.cio < tmp/TEXTA/fox.txt
-2 lines, 9 words, 44 chars
-$ wc.cio tmp/TEXTA/fox.txt

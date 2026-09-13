@@ -50,25 +50,6 @@ wait    12
 run     arc v m.arc
 wait    8
 
-shot    dearc
-cap     dearc extracts archives made by the MS-DOS ARC program.  Handed
-cap     one written by this disk's own `arc', it pulls the file out but
-cap     warns that the contents fail its CRC check -- the two formats are
-cap     close but not identical.
-try     dearc m.arc
-run     rm -rf /dd/tmp/DEARC > /nil 2>/nil; mkdir -p /dd/tmp/DEARC
-wait    2
-run     cp /dd/SYS/motd /dd/tmp/DEARC/orig; builtin cd /dd/tmp/DEARC; arc a m.arc orig; rm -f orig
-wait    6
-run     builtin cd /dd/tmp/DEARC
-wait    1
-run     clear
-wait    1
-run     dearc m.arc
-wait    6
-run     ls
-wait    4
-
 shot    marc
 cap     marc merges a named member from one arc archive into another; it
 cap     does not create archives of its own.  Here termcap is copied into

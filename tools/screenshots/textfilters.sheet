@@ -119,25 +119,6 @@ wait    1
 run     wc DOC/INDEX DOC/ORIGINS DOC/DEPENDS SOURCES.txt
 wait    6
 
-shot    wc.cio
-cap     wc.cio is an older word count that reads standard input only:
-cap     `wc.cio < file' counts.  Named as an argument the file is ignored
-cap     and nothing is printed, which the second command shows.
-try     cat tmp/TEXTA/fox.txt; wc.cio < tmp/TEXTA/fox.txt; wc.cio tmp/TEXTA/fox.txt
-run     mkdir -p /dd/tmp/TEXTA; echo "the quick brown fox" > /dd/tmp/TEXTA/fox.txt; echo "jumps over the lazy dog" >> /dd/tmp/TEXTA/fox.txt
-wait    3
-run     builtin cd /dd
-wait    1
-run     clear
-wait    1
-run     cat tmp/TEXTA/fox.txt
-wait    3
-run     wc.cio < tmp/TEXTA/fox.txt
-wait    5
-run     wc.cio tmp/TEXTA/fox.txt
-wait    5
-snap
-
 shot    sepwords
 cap     sepwords splits text into one word a line -- the first step towards a
 cap     word list or an index.  Two lines become nine words, put in order by
@@ -153,29 +134,6 @@ run     cat tmp/TEXTA/fox.txt
 wait    3
 run     sepwords < tmp/TEXTA/fox.txt | sort
 wait    5
-snap
-
-shot    splitalf
-cap     splitalf sorts a file's lines into files by first letter: <name>_A to
-cap     <name>_Z, and <name>_0 for lines that start otherwise.  It gets no
-cap     further than the first: having opened <name>_0 it tests a slot it
-cap     has not opened yet, finds nothing in it, and stops with `can't open
-cap     output file(s)'.  No argument gets round that.
-try     cat tmp/TEXTA/words | head -n 5; splitalf tmp/TEXTA/words; ls tmp/TEXTA/words*
-run     mkdir -p /dd/tmp/TEXTA; rm -f /dd/tmp/TEXTA/words*; cat /dd/SYS/holidays | head -n 8 > /dd/tmp/TEXTA/hol.txt
-wait    3
-run     sepwords < /dd/tmp/TEXTA/hol.txt | sort > /dd/tmp/TEXTA/words
-wait    4
-run     builtin cd /dd
-wait    1
-run     clear
-wait    1
-run     cat tmp/TEXTA/words | head -n 5
-wait    4
-run     splitalf tmp/TEXTA/words
-wait    5
-run     ls tmp/TEXTA/words*
-wait    4
 snap
 
 shot    ape

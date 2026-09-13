@@ -7,15 +7,17 @@
 # and offers them as a filter, because they are hard to use without the
 # language -- and because a good many OS-9 installations are in Germany, for
 # whom that is the point.  rdoggett, 2026-09-10.
-hinterhalt|German|the whole game: it asks whether you need it explained (J/N)
-preset|German|its one message, `Funktionstasten belegt!'
-biory|German|every prompt: name, date of birth, the chart's headings
-me|German|the editor's messages -- Datei for File
-what|German|the GEPARD it inventories is a German machine; its table is German
-calender|German|the year it prints, holidays and all, and its one question
-getenv|German|its prompts
-logisim|German|its notes, DOC/logisim/logisim.doc; the program itself is terse
-rechne|German|its name (rechne = calculate) and its messages
-wisecrack|German|the slogans it serves, from a 1992-93 OS-9 club seminar
 ask|German|what it prints: the slogans wisecrack serves
+biory|German|every prompt: name, date of birth, the chart's headings
+calender|German|the year it prints, holidays and all, and its one question
+exist|German|its help: Aufruf, Rueckgabewerte, `Datei nicht gefunden'
 ff|German|its messages
+getenv|German|its prompts
+hinterhalt|German|the whole game: it asks whether you need it explained (J/N)
+logisim|German|its notes, DOC/logisim/logisim.doc; the program itself is terse
+me|German|the editor's messages -- Datei for File
+names|German|the whole program: Adressen Verwaltung, its field names (Anrede, Nachname, Vorname, Strasse, PLZ, Stadt, Telefon) and its menu
+preset|German|its one message, `Funktionstasten belegt!'
+rechne|German|its name (rechne = calculate) and its messages
+what|German|the GEPARD it inventories is a German machine; its table is German
+wisecrack|German|the slogans it serves, from a 1992-93 OS-9 club seminar

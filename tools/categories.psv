@@ -561,7 +561,6 @@ gdd|Text tools|Transform & filter
 strings|Text tools|Count & inspect
 tail|Text tools|Count & inspect
 wc|Text tools|Count & inspect
-wc.cio|Text tools|Count & inspect
 lout|Text tools|Format & typeset
 nroff|Text tools|Format & typeset
 proff|Text tools|Format & typeset
@@ -572,7 +571,6 @@ cookie|Text tools|Fortune & sayings
 fortune|Text tools|Fortune & sayings
 rpoem|Amusements|Generators
 rstory|Amusements|Generators
-rstory2|Amusements|Generators
 sonnet|Text tools|Fortune & sayings
 strfile|Text tools|Fortune & sayings
 unstr|Text tools|Fortune & sayings
@@ -602,7 +600,6 @@ jargon|Text tools|Spelling & words
 makelex|Text tools|Spelling & words
 speech|Text tools|Spelling & words
 sepwords|Text tools|Split & join
-splitalf|Text tools|Split & join
 ape|Text tools|Transform & filter
 autolf|Text tools|Transform & filter
 casefix|Text tools|Transform & filter
@@ -750,7 +747,6 @@ scsi_mm1a|System & modules|MM/1 drivers
 snddrv|System & modules|MM/1 drivers
 windio.52|System & modules|MM/1 drivers
 mgif|Graphics & images|Viewers
-dearc|Archives & compression|Create & extract
 tplot|Graphics & images|Plotting
 elvis|Editors|vi clones
 view|Editors|vi clones

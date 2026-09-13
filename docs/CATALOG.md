@@ -1,6 +1,6 @@
 # What is on this disk
 
-998 programs of OS-9/68K community software, gathered from the archives that kept it and made to run again. **650 of them need nothing but this disk**; the rest want Microware's `cio`, marked below with a star.
+994 programs of OS-9/68K community software, gathered from the archives that kept it and made to run again. **650 of them need nothing but this disk**; the rest want Microware's `cio`, marked below with a star.
 
 `DOC/INDEX` on the disk lists everything alphabetically. This is the same collection sorted by what each program is *for*, which is the more useful order when you do not yet know what you are looking for.
 
@@ -13,18 +13,18 @@
 |---|--:|---|
 | [Shells](#shells) | 24 | Unix shells to sit beside OS-9's own -- bash and ksh bring history, job control, and scripts that come across unchanged. |
 | [Editors](#editors) | 27 | vi and emacs in several flavours, line and stream editors, and editors for binary and hex. |
-| [Text tools](#text-tools) | 129 | Search, sort, compare, reformat, split and spell-check. |
+| [Text tools](#text-tools) | 127 | Search, sort, compare, reformat, split and spell-check. |
 | [Files & directories](#files--directories) | 34 | Listing, copying, finding, renaming, and knowing what you have. |
 | [Developer tools](#developer-tools) | 47 | Version control, tags, cross-reference, formatters, a debugger and benchmarks. |
 | [Compilers & build](#compilers--build) | 40 | C compilers and their passes, assemblers, linkers, make and parser generators. |
 | [Languages](#languages) | 10 | Interpreters and language systems beyond C. |
-| [Archives & compression](#archives--compression) | 34 | Pack, unpack and shrink -- lha, zip, tar, arc, zoo, and OS-9 module libraries. |
+| [Archives & compression](#archives--compression) | 33 | Pack, unpack and shrink -- lha, zip, tar, arc, zoo, and OS-9 module libraries. |
 | [Encoding & conversion](#encoding--conversion) | 29 | Between text encodings, line endings, Macintosh formats, ciphers and hashes. |
 | [Communications](#communications) | 97 | Kermit in several builds, terminal sessions, and networking. |
 | [Graphics & images](#graphics--images) | 202 | The netpbm toolkit, JPEG, a ray tracer, and things that draw. |
 | [Games](#games) | 83 | Adventures, board and card games, arcade ports, dungeon crawls and puzzles. |
 | [Screen toys](#screen-toys) | 9 | Animations and screen effects -- they draw on the terminal rather than print to it. Some run until you stop them. |
-| [Amusements](#amusements) | 26 | Generators, simulators and diversions that are not quite games. |
+| [Amusements](#amusements) | 25 | Generators, simulators and diversions that are not quite games. |
 | [System & modules](#system--modules) | 131 | OS-9 module and process tools, devices, system state and scheduling. |
 | [Disk & DOS](#disk--dos) | 20 | Reading and writing MS-DOS media with the mtools set. |
 | [Time & calendar](#time--calendar) | 15 | Calendars, clocks and astronomy. |
@@ -154,7 +154,7 @@
 
 *Search, sort, compare, reformat, split and spell-check.*
 
-<details><summary>129 programs</summary>
+<details><summary>127 programs</summary>
 
 **Alternates**
 
@@ -185,7 +185,6 @@
 | `tail` | &#9733; prints the last lines of a text file: `tail -l=3 file' the last three, twenty by default<br>`TAIL     Version UTIL 2.70 by DESIGNA VLT 27.05.98` |
 | `undump` | rebuilds a binary file from a hex dump that hdump wrote. Dump a file, edit the hex with any text editor, undump it back: between them they make a text editor into a binary editor<br>`Syntax: undump [<opts>] outfile [<opts>] <infile` |
 | `wc` | count lines, words and characters for each file named, and print a total; it counts CR-terminated lines as well as LF. |
-| `wc.cio` | &#9733; an older word count that reads standard input only: `wc.cio < file' answers `1 lines, 6 words, 40 chars'; `wc' is the build that takes file names |
 | `xd` | hex dump with hexadecimal addresses: -c shows the characters beside the bytes, -d writes them as a C array, and -l reads a dump back to rebuild the binary<br>`XD  --  Hex dump.  Call` |
 
 **DVI drivers**
@@ -287,7 +286,6 @@
 |---|---|
 | `sepwords` | splits text into one word per line -- the first step towards a word list or an index<br>`Syntax: sepwords [<in_path> [<out_path>]]` |
 | `split` | GNU split: cuts a file into pieces of so many lines (-l) or bytes (-b), named after a prefix -- partaa, partab and so on<br>`split: unrecognized option `-?'` |
-| `splitalf` | &#9733; split a file into <name>_A to <name>_Z by the first letter of each line, and <name>_0 for the rest.  It opens <name>_0, then tests a file slot it has not opened yet and stops with `can't open output file(s)'.<br>**How:** It makes <name>_0 and then stops with `can't open output file(s)', whatever it is given -- it tests a file slot it has not opened yet. No argument gets round it. |
 
 **TeX**
 
@@ -398,7 +396,7 @@
 |---|---|
 | `dfiles` | &#9733; find duplicate files under a directory and write out the `cmp' commands that would prove them identical, so the list itself is the answer<br>`dfiles 0.7` |
 | `du` | &#9733; adds up what a directory tree holds -- bytes, kilobytes, sectors and the number of files -- one line per directory, with a total<br>`Syntax: du <directory>` |
-| `ff` | &#9733; find files by name -- `ff <name>'.  It builds the command `dir -ausr ! grep <name>' and hands it to Microware's `shell'. `find' does the same job |
+| `ff` | &#9733; find files by name -- `ff <name>'.  IT NEEDS A `shell' MODULE: it builds the command `dir -ausr ! grep <name>' and forks a shell by that bare name to run it, so it is silent without one -- keep your own loaded, and see DOC/README-SHELLS.  `find' does the same job with no shell at all.  Its one message, when you give it nothing to look for, is in German |
 | `find` | &#9733; find 1.1.5 -- search a directory tree, with its own syntax: `-n=<name>' matches and `-o' prints what it found. (`find <dir> -name x -print' answers `only one parameter allowed'.)  The manual in DOC/find describes a different find.<br>`Syntax: find {<opts>} [<path>]` |
 | `howfrag` | report how fragmented a file is: how many disk pieces it is stored in, out of a file descriptor's 48.  A high count on a file that grows a lot is when to re-copy it.<br>`Syntax:   howfrag <filename> [<filenames> ... ]` |
 | `space` | &#9733; effective disk usage: what a tree costs on the disk, descriptors, directories and part-used clusters included, rather than what it contains. Conditions apply; `help space' has them<br>`Syntax:   space [<opts>] {<dir/file path>} [<opts>]` |
@@ -649,7 +647,7 @@
 
 *Pack, unpack and shrink -- lha, zip, tar, arc, zoo, and OS-9 module libraries.*
 
-<details><summary>34 programs</summary>
+<details><summary>33 programs</summary>
 
 **Alternates**
 
@@ -680,7 +678,6 @@
 | `ar2` | &#9733; Ar 2.00, a later edition of `ar' with delete and move as well, and each file's attributes recorded<br>`Ar V2.00 - archive file manager` |
 | `arc` | ARC 5.21, the archiver that came before zip: a adds, x extracts, v lists with the compression column, t tests, p prints a member<br>`ARC - archive utility, Version 5.21, created on 04/22/87 at 15:05:21` |
 | `cat` | &#9733; concatenates files to standard output: -n numbers the lines, -v shows control characters, -s squeezes runs of blank lines<br>`Syntax: cat [<opts>] {[-] <path> [<opts>]}` |
-| `dearc` | &#9733; Extract an MS-DOS .ARC archive.  arc and marc handle the OS-9 side |
 | `lha` | LHa 2.08 -- create/extract .lzh archives<br>`LHa Vrs. 2.08 for OSK - revised Dec. 2, 1994  M.Haaland` |
 | `lharc` | C-LHarc 1.00, the older sibling of lha: a adds to a .lzh archive, x extracts, l lists, t tests<br>`C-LHarc for OS-9/68k Version 1.00   (C) 1989-1990 Y.Tagawa, Kai Uwe Rommel` |
 | `marc` | the arc archive merger -- `marc <target> <source> [names]' copies members from one .arc into another<br>`MARC - archive merger, Version 5.21, created on 04/22/87 at 15:05:10` |
@@ -1235,8 +1232,8 @@
 | `fish` | Go Fish against the computer: ask for a rank you already hold and take any the other player has, or `GO FISH' and draw; four of a rank makes a book, and the most books wins |
 | `fuddle` | A chess variant that shuffles -- "fuddles" -- the pieces into fresh places and then plays a game from there. It asks whether you want white, draws a shaded board with the pieces listed above it, and takes moves as two squares, e2e4. |
 | `gnuchess` | &#9733; GNU Chess, the build `gnuchess' runs: first on PATH, it reads its opening book at the compiled-in path /h0/usr/src/chess/gnuchess.book, which ships here, so it answers 1.e4 with a book move. Source `. termcap.entry' first, since it reads TERMCAP as the description itself. CMDS/GAMES/gnuchess, a second port under the same name, opens its book by bare name and draws the board reads TERMCAP as the description itself rather than as a filename -- and it draws the board, keeps both clocks and plays.  It opens its opening book by bare name, so it books when the book is the current directory; the CMDS build books from a fixed path and is what `gnuchess' runs<br>**How:** Full-screen chess. It reads TERMCAP as the terminal description itself rather than as a filename, so do `. /dd/SYS/termcap.entry' first; then it draws its time-control menu and plays. The build in CMDS/GAMES is the one that draws a board. |
-| `gnuchessc` | GNU Chess 4.0 built for a curses display.  Its display files live at a compiled-in path; supply them there for a board.  It takes a move as `e2e4' and answers with its own<br>**How:** Its board display reads files from a compiled-in path; supply them there for a board. It still takes a move as `e2e4' and answers with its own. |
-| `gnuchessn` | &#9733; GNU Chess with the 1989 display, which draws the squares as blocks of hashes so light and dark can be told apart on a terminal with no highlighting.  Source `. /dd/SYS/termcap.entry' first; moves go in as `e2e4'<br>**How:** As gnuchess: `. /dd/SYS/termcap.entry' first, then moves as `e2e4'. |
+| `gnuchessc` | GNU Chess built to be driven by `chesstool', a front end that draws the board itself -- so this one prints NO board, by design and not for want of a file.  It says `Chess' and then announces moves: `1. ... e2e4', `My move is: c7c5'.  Its data, hash and language files ship at the path compiled into it and ARE found -- the `Chess' it prints is an entry in that language file, and a build that could not open one says `NO LANGFILE' instead.  Take it for the engine, not to watch a game<br>**How:** Its board display reads files from a compiled-in path; supply them there for a board. It still takes a move as `e2e4' and answers with its own. |
+| `gnuchessn` | &#9733; GNU Chess with the 1989 display, which draws the squares as blocks of hashes so light and dark can be told apart on a terminal with no highlighting.  It is the only build here whose board answers to commands of its own -- `shade', `rv', `stars', `coords' and `p' change how it is drawn.  Source `. /dd/SYS/termcap.entry' first; moves go in as `e2e4'<br>**How:** As gnuchess: `. /dd/SYS/termcap.entry' first, then moves as `e2e4'. |
 | `gnuchessr` | &#9733; GNU Chess with the plainest display -- pieces as letters, capitals for one side and lower case for the other, nothing that needs a terminal to draw.  It prompts `Enter #moves #minutes', takes a move and replies with its own |
 | `gnugo` | GNU Go 1.1, the Free Software Foundation's Go program: it plays Wei-Chi on a 19x19 board, gives black up to 17 handicap stones if you ask, and counts the score at the end.  Moves are a letter and a number, `D4'.  It needs no terminal setup |
 | `mastrm` | Master Mind: break the computer's hidden four-peg colour code in ten guesses, reading the `b' and `w' pegs each guess earns for right colour in right or wrong place |
@@ -1339,7 +1336,7 @@
 
 *Generators, simulators and diversions that are not quite games.*
 
-<details><summary>26 programs</summary>
+<details><summary>25 programs</summary>
 
 **Biorhythms**
 
@@ -1371,7 +1368,6 @@
 | `rndname` | &#9733; invents pronounceable names, as many as you ask for -- the earlier version of `name', with every letter equally likely, so the names come out more exotic |
 | `rpoem` | &#9733; writes verses at random from a grammar and a word list in GAMES/SNOBOL; a number says how many, thirty without one |
 | `rstory` | a cumulative tale in the shape of The Old Woman and Her Pig, the animal, the obstacle and every helper drawn at random; `rstory \| tformat' sets it justified under a dated heading. Data: GAMES/SNOBOL |
-| `rstory2` | &#9733; asks your name, sex, favourite animal and colour and a setting, then hands them through the shell to a story program (rstory_W, rstory_S, rstory_C or rstory_G) whose story goes through tformat to the printer at /p1. The four story programs did not come with it, so the questions are as far as it goes |
 | `scales` | &#9733; deals scales and chords into a random practice order, a tick-box each, in `scales.lst' in the current directory (or a file you name): -d diatonic scales, -a altered scales, -m modes, -c chords; each entry gives the key signature and the spelling<br>**How:** Pick at least one of -d -a -m -c or it asks what you had in mind; `scales -d -c' writes 195 entries to scales.lst, and a trailing name writes elsewhere. |
 | `spew` | builds mock National Enquirer headlines from a grammar of phrases -- almost a yacc in reverse; `spew 5' makes five |
 | `travesty` | rewrites its input as plausible nonsense, by Markov chains: `travesty -n400 < file' for 400 characters of it<br>`travesty makes a travesty of its input.` |
@@ -1545,7 +1541,7 @@
 | `map` | &#9733; show the disk blocks a file occupies, sector by sector: `map <file>', or `map -e <file>' for the extended form. For memory rather than disk, `mfree' and `free' would be the equivalents; neither is on this disk<br>`Syntax: map [<opts>] <file> {<file>}` |
 | `modinfo` | report a module's header -- name, type, size, edition, CRC<br>`module: Show Module Information` |
 | `mvolformat` | format a multi-volume set<br>`Syntax: mvolformat drive volname volcount [format options]` |
-| `names` | &#9733; list the names of modules in a file.  It can hang on some inputs; `modinfo' answers the same question.  `ident' is not on this disk. |
+| `names` | &#9733; an address book, in German: `Adressen Verwaltung', version 1.0.  Anrede, Nachname, Vorname, Strasse, PLZ, Stadt, Telefon and two Bemerkung lines per record, kept in a file of its own under SYS which it creates on first run.  Full screen and interactive -- it wants a terminal, and at end of input it re-prompts for ever.  It does NOT list module names; `modinfo' is what does that |
 | `phone` | connects two terminals over a communication path so you can type to somebody on another: `phone /t1' rings until answered; control-E leaves<br>`Syntax: phone <communication-path>` |
 | `preset` | loads the terminal's function keys: it writes a fixed set of definitions -- `dir', `umacs', `r68', `l68', `dsave -ieb128k' and so on -- and answers `Funktionstasten belegt!'. German. It takes no arguments and ignores any given |
 | `pri` | change a process's priority: `pri <pid> <priority>'. |

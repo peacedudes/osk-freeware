@@ -1,5 +1,0 @@
-dearc m.arc
-orig
-WARNING: File fails CRC check
-$ ls
-m.arc  orig

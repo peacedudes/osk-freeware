@@ -244,7 +244,6 @@ hist|A command-line editor with history in front of the shell. On this console i
 run|`run '<program> <args>'' with PORT naming a terminal: the program runs with its input and output on that terminal.
 gcl|A full-screen digital clock: `gcl' runs until stopped, `gcl -n=10' for ten seconds; -s scrolls the digits, -i inverts the video.
 cuts|Coco Usenet Transfer Utility: it encodes a binary as mail-safe text and `-d' decodes a cuts file. Use `-d' for the half worth having; the encoder (`-e') asks for gigabytes of memory and is refused.
-splitalf|It makes <name>_0 and then stops with `can't open output file(s)', whatever it is given -- it tests a file slot it has not opened yet. No argument gets round it.
 subber|Substitutes words in a stream from a word list of `,old,new' pairs (the line's first character is the delimiter), reading a file as the second argument or standard input. It grows its data area as it reads, with F$Mem, so give it room up front: at an OS-9 (Microware) shell, `subber #1000k words file' -- bash and ksh read the `#' as a comment, so run it at your OS-9 shell or through it, `/h1/CMDS/shell "subber #1000k words file"'. Tested: `,fox,cat' turns `a fox' into `a cat'.
 tcmp|Compares two text files and prints each differing line, both versions one under the other with the line number in each file. Files whose lines differ only in tabs and spaces are reported as changed, which reads oddly until you dump them.
 back|Single letters are the commands: R rolls, D doubles, H is the help, N starts a new game, Q quits.

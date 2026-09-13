@@ -60,9 +60,7 @@ gdd|gdd -?|
 strings|strings -?|
 tail|tail -?|
 wc|none|it takes no options: name the files to count, or give it standard input
-wc.cio|none|it takes no options and counts standard input only
 sepwords|sepwords -?|
-splitalf|splitalf -?|
 ape|ape -?|
 autolf|autolf -?|
 casefix|none|a filter with no options: text on standard input, sentence-cased text out
@@ -399,7 +397,6 @@ newsgen|newsgen -?|
 pwgen|none|`pwgen <length> [count]', the length 4 to 16; there is no help flag
 rpoem|none|it takes how many verses to write and nothing else
 rstory|none|it takes no options: run it and it tells a tale
-rstory2|none|it asks its questions itself; there is no help flag
 scales|scales -h|
 touchtype|touchtype -?|
 textb|none|it asks its four questions itself; there is no help flag
@@ -421,7 +418,6 @@ travesty|travesty -H|
 ar|ar -?|
 ar2|ar2 -?|
 arc|arc -?|
-dearc|none|it takes the archive to extract and nothing else
 marc|marc -?|
 cat|cat -?|
 modbuster|modbuster -?|

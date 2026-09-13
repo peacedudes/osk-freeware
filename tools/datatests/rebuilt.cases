@@ -10,13 +10,9 @@ family  rebuilt
 setup   T=/dd/SYS/motd
 setup   R=/dd/CMDS/REBUILT
 
-case    wc-and-wc.cio-count-the-same-file-the-same-way
+case    wc-counts-a-file
 run     /dd/CMDS/wc < $T
 expect  1      6     40
-
-case    wc.cio-says-it-in-words-and-ignores-a-filename
-run     $R/wc.cio < $T
-expect  1 lines, 6 words, 40 chars
 
 # The shipped ctags finds the statics as well as main; elvis's finds main
 # and nothing else. That is why the bigger one ships.

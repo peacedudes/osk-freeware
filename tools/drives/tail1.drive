@@ -49,10 +49,6 @@ why     a text formatter beside nroff and roff
 run     /dd/CMDS/proff /dd/SYS/motd
 run     echo "--- end proff"
 
-drive   splitalf
-run     /dd/CMDS/splitalf
-run     echo "--- end"
-
 drive   libsplit-and-librarians
 run     /dd/CMDS/libsplit
 run     echo "--- EditLibr:"
@@ -70,10 +66,6 @@ run     /dd/CMDS/zipnote
 run     echo "--- zipsplit:"
 run     /dd/CMDS/zipsplit
 run     echo "--- end"
-
-drive   dearc
-run     /dd/CMDS/dearc
-run     echo "--- end dearc"
 
 drive   dmake
 run     /dd/CMDS/dmake -?

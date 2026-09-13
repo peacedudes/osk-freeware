@@ -219,28 +219,6 @@ os9     rstory ! tformat
 run     rstory | tformat
 wait    12
 
-shot    rstory2
-size    24 80
-cap     Asks five questions -- your name, boy or girl, a favourite animal,
-cap     a favourite colour and a setting -- and hands the answers through
-cap     Microware's shell to a story program, rstory_W, rstory_S, rstory_C
-cap     or rstory_G by the setting, whose story goes through tformat to
-cap     the printer at /p1.  Those four story programs did not come with
-cap     it, so the questions are as far as it goes.
-try     rstory2
-run     rstory2
-wait    4
-send    Frodo\r
-wait    3
-send    B\r
-wait    3
-send    dragon\r
-wait    3
-send    green\r
-wait    3
-send    W\r
-wait    8
-
 shot    scales
 size    30 80
 cap     Scales and chords for practice, dealt into a random order with a
