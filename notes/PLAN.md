@@ -82,7 +82,7 @@ clear.
 | No gallery card runs it by name | **81** |
 | `datatest` cases | **633 in 44 families**, 3 deliberate failures |
 | `tools/drives` sheets | **72** |
-| Screens | 485 cards, **17** still flagged by `audit_cards.py` (3 of those excepted by name) |
+| Screens | **899 cards over 929 stanzas**, **30** still flagged by `audit_cards.py` (44 excepted by name, each with its reason in the table there) — re-measured 2026-09-13 |
 
 > **THE FIGURE THIS TABLE USED TO LEAD WITH WAS WRONG, and the correction is
 > worth more than the number.** "Programs with neither a test nor a card" ran
@@ -831,10 +831,23 @@ Nothing. The four questions on `notes/FOR-RDOGGETT.md` were answered on
    the session belongs in DOC/INDEX and in a drive transcript, not in a
    case** -- datatest fails any case whose session took an exception, and
    that rule is right.
-2. **17 gallery cards still flagged.** `tools/audit_cards.py`. THREE are
-   excepted by name and should stay: `perr` and `perr-print` print the text
-   of an error number, so error text IS their output, and `csl-mismatch`'s
-   whole subject is the edition skew.
+2. **30 gallery cards still flagged, of 929** (`tools/audit_cards.py`,
+   re-measured 2026-09-13 — this item said 17 of 485 and both halves had
+   drifted). **44 are excepted by name and should stay**, each with its
+   reason written beside it in that file: `perr` and `perr-print` print
+   the text of an error number, so error text IS their output;
+   `csl-mismatch`'s whole subject is the edition skew; the print-spooler
+   four and the collect2 three have no spooler and no user-facing use;
+   `flink` corrupts the disk it links on and must never be run.
+
+   **The 30 that remain are things the DISK cannot do, not cards nobody
+   has looked at** — every one has been read. 15 are absent hardware or
+   services (an X server, a modem, `/t1`, `/r0`, a mailbox, a socket,
+   `/etc/utmp`), 11 are programs that genuinely say nothing when run
+   alone, and 4 are a tail where a better card is possible.
+   `notes/START-HERE-NEXT-SESSION.md` lists them by family. Before
+   quoting any of this, run the tool: written from memory it came out
+   with two wrong names and sixteen entries for fifteen slots.
 3. **The family chooser documents.** `DOC/README-SHELLS` was written this
    session as the second one after `DOC/README-VI`. Archivers, kermit,
    editors and grep-likes are still to do, and everything they need is
