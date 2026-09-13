@@ -19,6 +19,16 @@ judgement, neither of them a task anyone can pick up:
    fails to link on `pipe`; the only `pipe()` in the pool carries a
    non-commercial clause narrower than the package around it.
 
+**The archives are otherwise DONE, and the last lead closed as a
+rediscovery.**  The "lost" RTSI archive turned out to be live -- moved to
+microware.com -- and then to be the SAME corpus this pool inventoried on
+2026-09-11, same download ids, zero new filenames.  Wayback is closed for
+all thirteen dead OS-9 hosts (front pages only, the FTP trees were never
+crawled).  What came out of the night's searching that is worth keeping
+is small and specific: the archive's 321 KB master index, a 597-row fetch
+manifest, and the name of its maintainer.  `notes/PLAN-acquisitions.md`
+has all of it.  **Do not re-search these hosts.**
+
 **The PD_ALF sweep is COMPLETE: 929 of 929 stanzas, 36 clearers, and not
 one damaged card.**  Its three leftover mysteries all resolved to
 instrument error rather than program behaviour -- see the tally below.

@@ -857,11 +857,19 @@ programs; there are none in it.
                           /pub/ is driver gnu linux mozilla tmp tug
                           uninetz windows wireshark.  No OS-9.
     os9archive.rtsi.com   answers 200, but it is a Joomla CMS; /OS9/,
-                          /pub/, /OSK/, /OS9Archive/ all 404.  Whatever
-                          it still holds needs a person and its own menu.
+                          /pub/, /OSK/, /OS9Archive/ all 404.  THE
+                          CONTENT MOVED: the whole RTSI tree is live at
+                          microware.com's archive component -- and it is
+                          the SAME corpus os9/mw/osk.tsv already lists,
+                          same Phoca ids, zero new filenames.  Nothing
+                          to fetch as a discovery.  See the RTSI section
+                          below for the download route, the master index
+                          (now in hand) and the maintainer's name.
     colorcomputerarchive  UP, mostly 6809 CoCo and out of scope -- except
                           The OSKer, above.
-    ftp.leo.org, os9forum.de, os9.org, ftp.rtsi.com,
+    ftp.rtsi.com          NXDOMAIN -- it does not resolve and never
+                          will; the archive it served is the one above.
+    ftp.leo.org, os9forum.de, os9.org,
     minkirri.apana.org.au        still dead, no connection at all.
 
 **AND THE WAYBACK ROUTE TO THEM IS CLOSED TOO, surveyed 2026-09-13.**
