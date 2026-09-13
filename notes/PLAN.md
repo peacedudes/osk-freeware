@@ -76,12 +76,12 @@ clear.
 
 | | |
 |---|---|
-| Programs catalogued | 939 |
-| Of those, RUNNABLE (a type-$01 module) | 915 -- the rest are drivers, descriptors and trap libraries |
-| **Under no test at all** | **75** — was 209 when the measurement was fixed |
-| No gallery card runs it by name | **81** |
-| `datatest` cases | **633 in 44 families**, 3 deliberate failures |
-| `tools/drives` sheets | **72** |
+| Programs catalogued | 996 |
+| Of those, RUNNABLE (a type-$01 module) | 970 -- the rest are drivers, descriptors and trap libraries |
+| **Under no test at all** | **127** — and this row has gone the WRONG way (75 on 2026-08-31), because the collection grew |
+| No gallery card runs it by name | **1** (`fixyear`) — it was 81; the all-card sweep is what closed it |
+| `datatest` cases | **743 in 57 families** |
+| `tools/drives` sheets | **76** |
 | Screens | **899 cards over 929 stanzas**, **30** still flagged by `audit_cards.py` (44 excepted by name, each with its reason in the table there) — re-measured 2026-09-13 |
 
 > **THE FIGURE THIS TABLE USED TO LEAD WITH WAS WRONG, and the correction is
@@ -101,7 +101,7 @@ clear.
 > The work done under the old figure was real: 79 cases, five rebuilds, four
 > cards. The number describing what was left was not.
 | Source here | 701 (70%) |
-| Documented beyond one index line | 602 (63%) |
+| Documented beyond one index line | 656 (65%) |
 
 Re-measured 2026-08-31 evening. The tools are the authority, not this table:
 `tools/worklist.py --programs --no-test --no-card`, `tools/audit_cards.py`,
