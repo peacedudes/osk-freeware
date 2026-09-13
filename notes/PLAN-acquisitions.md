@@ -887,8 +887,61 @@ extension and **every one is out of scope** -- Debian `.gz', Aminet
     ftp.informatik.tu-muenchen.de   staff pages, /pub/unihh, a front
                        page, a robots.txt.  Nothing.
 
-**The one lead worth keeping: RTSI's archive was at `www.rtsi.com', NOT
-`ftp.rtsi.com'** -- which is why every probe of it has failed.
+**RTSI IS NOT LOST, AND IT IS NOT NEW EITHER -- it is the archive this
+pool already inventoried.**  Chased to the end 2026-09-13.
+
+The tree is live, served by a Joomla download component at
+`microware.com/index.php/os-9-archive-new/` (`?limit=0` on a category
+URL or you get 20 rows; download by
+`...os-9-archive-new?download=<PHOCA_ID>:os-9-archive`).  It was verified
+by DOWNLOADING, not by reading a listing -- `colossal.lzh' comes back as
+`LHarc 1.x/ARX archive data', an 11 MB gcc source tarball as gzip.  597
+OSK files, 112.6 MiB; the whole archive is 4,183 files and 931 MiB, of
+which OS9_6X09 alone is 548 MiB and is 6809, out of scope.
+
+**Then the manifest was diffed against `os9/mw/osk.tsv' and the answer
+is ZERO.**  All 570 distinct filenames are already listed there, and the
+Phoca ids are IDENTICAL -- `ant.readme' is 3805 in both files.  So "the
+lost RTSI archive" and "the Microware archive" are one corpus on one
+host, and this plan mined it on 2026-09-11.  Nothing here is new
+material.  **Do not plan a fetch of it as though it were a discovery.**
+
+What IS new and worth having, and is now in hand:
+
+  `os9archive.index'  321,774 bytes, md5 381ea89ddad5ad873294fa452ee44a84,
+      4,861 lines -- a full `ls -lR' of the whole archive with sizes and
+      dates.  The Wayback survey above concluded it "is not captured
+      under any scheme or host", which was true of WAYBACK and beside the
+      point: the file was live on the site the whole time.  A lesson
+      cheaper to read than to repeat -- when an archive's index is
+      missing from a mirror, ask the LIVE site before concluding it is
+      gone.
+  `osk-manifest.tsv'  597 rows, category path + phoca id + filename: a
+      ready fetch list if a specific file is ever wanted.
+
+Both are in `~/Developer/os9/Scraped/acquisitions-2026-09-13/rtsi/`.
+
+**And a contact, which may matter more than the files.**  The archive's
+`readme.txt' names its maintainer as **Allan R. Batteiger
+<arb@rtsi.com>** -- the same Allan at Microware who was asked about the
+five runtime modules and replied "I do not see a problem with those
+modules" (`disk/SOURCES.txt`).  A known, already-cooperative contact for
+any provenance question about this material.
+
+**Two practical notes for anyone fetching from it:** range requests are
+BROKEN (asking for bytes 0-2047 returned 206 with a Content-Range for
+the tail and delivered the whole 11 MB), so plan whole-file GETs with no
+resume; and three plausible mirrors are dead ends --
+`archive.sundby.com/mirror/os9archive.rtsi.com/...` still appears in
+search results but 302s every path to its own 404,
+`blitter.com/~russtopia/files/OSK/` 404s, and `os9projects.com` is
+CoCo/6809 documentation.
+
+**The historical detail worth keeping: RTSI's archive was at
+`www.rtsi.com', NOT `ftp.rtsi.com'** -- which is why every probe of it
+failed.  `ftp.rtsi.com` is NXDOMAIN; `www.rtsi.com` resolves (Cloudflare)
+and serves a Joomla front page whose `/OS9/`, `/pub/` and
+`/os9archive.index` all 404.  The content moved to microware.com.
 `os9archive.rtsi.com/ftparchive.html', captured 2004-04-15, documents
 the structure that was lost:
 
