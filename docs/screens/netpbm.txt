@@ -2,15 +2,15 @@ $ bash
 os9$ P=/dd/CMDS/NETPBM
 
 os9$ $P/pgmramp -lr 48 12 > /dd/tmp/r.pgm
-os9$ $P/pgmtopbm $P/../../tmp/r.pgm > /dd/tmp/r.pbm
+os9$ $P/pgmtopbm $P/.../tmp/r.pgm > /dd/tmp/r.pbm
 os9$ $P/pnmfile /dd/tmp/r.pgm /dd/tmp/r.pbm
 /dd/tmp/r.pgm:  PGM raw, 48 by 12  maxval 255
 /dd/tmp/r.pbm:  PBM raw, 48 by 12
 os9$ $P/pbmtoascii /dd/tmp/r.pbm
-MMMMMMMMM"MoM"Mo"M"oM M M M o M " o "   o
-MMMMMMMoMMMoM"Mo"M Mo"o"o" M "o "o o"  o   o
-MMMMoMMMoMMoM"Mo"M"o"oM M M M o" o o "   "
-MMMMMMoMMo"MoMMo"M"oM M M M o" o" o " "   o
-MMMM"MMoMM"MoMo"MoM Mo"o"o M "o "o "o "  o
-MMMMMMMM"M"Mo"M"oM Mo"o"o"o"o" "o o o "     o
+MMMMMMMMMM"MoM"Mo"M Mo"o"o" M " o o " o  o
+MMMMMMoMMM"Mo"Mo"M"oM M M M M "o "o "   o
+MMMM"MMo"MM"M"Mo"Mo"oM M M o"o" o"  "  o  "
+MMMMMMMMMM"M"Mo"Mo"M M M M o" o" o" "o  o  o
+MMMMMoMMoMMM"Mo"Mo"oM"o"o"o"o"o "o " o  o
+MMMM"MMoMMoM"MoM"oMo"o"o"oo" o" o " o  o   o
 os9$

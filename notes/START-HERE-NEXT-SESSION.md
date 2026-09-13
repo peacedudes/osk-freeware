@@ -1530,14 +1530,23 @@ disk does not carry):
 Nearly half the disk is empty at the end of the run.  So whatever the
 late families are losing, it is not space.
 
-**BISECTED ONCE: the threshold is between 29 and 53 families.**  Run the
-first 28 families alphabetically and then `tex` LAST -- 314 of 325, and
-all three drivers PASS.  In the full run `tex` sits 53rd and they fail.
-So it takes more than 28 families ahead of it, and the next step is the
-obvious one: try about 40, then halve again.  Matched-state proof that
-this is ordering and not the image: the FIRST full run tonight was
-alphabetical on the worked image and failed all three; `tex`-first on
-that SAME worked image passed all three.
+**BISECTED TWICE, AND THE SIGNAL IS STABLE.  The threshold is between 41
+and 53 families ahead of `tex`.**
+
+    28 families then tex     314 of 325   all three drivers PASS
+    28 families then tex     314 of 325   REPEAT, identical total
+    41 families then tex     501 of 515   all three drivers PASS
+    52 families then tex (a full alphabetical run)   all three FAIL
+
+The repeat matters as much as the narrowing: the same arrangement gave
+the same answer twice, so this is not the flap I feared and a bisection
+is a fair instrument on it.  Matched-state proof that it is ordering and
+not the image: the FIRST full run tonight was alphabetical on the worked
+image and failed all three; `tex`-first on that SAME worked image passed
+all three.
+
+So the poisoning comes from something in the families sorting between
+about 42nd and 52nd alphabetically.  Next step is 48, then halve again.
 
 **One caveat, and it may undo the neatness.**  `last` FAILED in this
 bisection and in the tex-first run, and PASSED in the pristine full run
