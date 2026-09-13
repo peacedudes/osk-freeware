@@ -1536,7 +1536,8 @@ and 53 families ahead of `tex`.**
     28 families then tex     314 of 325   all three drivers PASS
     28 families then tex     314 of 325   REPEAT, identical total
     41 families then tex     501 of 515   all three drivers PASS
-    52 families then tex (a full alphabetical run)   all three FAIL
+    48 families then tex     582 of 596   all three drivers PASS
+    51 families then tex (a full alphabetical run)   all three FAIL
 
 The repeat matters as much as the narrowing: the same arrangement gave
 the same answer twice, so this is not the flap I feared and a bisection
@@ -1545,8 +1546,22 @@ not the image: the FIRST full run tonight was alphabetical on the worked
 image and failed all three; `tex`-first on that SAME worked image passed
 all three.
 
-So the poisoning comes from something in the families sorting between
-about 42nd and 52nd alphabetically.  Next step is 48, then halve again.
+**So the culprit is one of THREE families: positions 49, 50 and 51 --
+`system4`, `system5`, `tail`.**  `tex` is 52nd of the 57, so a full run
+puts 51 ahead of it, not 52; an earlier version of this table and the
+commit that carried it both said 52, which is off by one.
+
+**Two arithmetic traps in bisecting this, both of which I walked into.**
+`tex` is 52nd, so "the first N families" and "N families before tex" are
+the same number only while N < 52.  And a loop that takes the first N
+NON-tex files in glob order starts pulling in families that normally run
+AFTER `tex` -- at N=52 it adds `text` -- so it builds an arrangement the
+real suite never produces.  Anything above 51 is meaningless here.
+
+Worth knowing before the next run: `tail` is one of the families that
+takes a SESSION RESTART (`checkfile`), and in a full run it is the
+family immediately before `tex`.  That is a hypothesis, not a finding;
+50-versus-51 settles it.
 
 **One caveat, and it may undo the neatness.**  `last` FAILED in this
 bisection and in the tex-first run, and PASSED in the pristine full run
