@@ -29,7 +29,7 @@ disktest|measures the disk and, run on one, ends the session; its syntax is what
 trap|an example trap handler that cannot be installed from user state; the refusal is the whole of what it does here, and the card says so
 convert|starts WORLD, whose opening shows only its MORE prompt here; the card says so
 puzzle|a G-Windows program: at a terminal one line of its tile frame is all it draws, and the card says so
-vtxtcn|writes its tables silently; the ls that follows on its card is the evidence
+vtxtcn|writes its tables silently and then leaves the capture session unusable, so NOTHING can follow it on the card -- measured 2026-09-13 with 60 seconds allowed, and the `ls' this line used to cite as its evidence has never been on the card; what the card shows is the command it ran
 unstr|asks for 75 megabytes before it reads a byte and is refused; the stop is the whole of what it does, and the card says so
 modbuster|prints only the name of the module it split out; the card shows that
 texidx|builds an index from a TeX run's entries; with none to read its usage is what there is to show

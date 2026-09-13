@@ -1303,6 +1303,101 @@ before committing' and reported exit 0 in the same breath; run unpiped
 it exits 1.  The same trap applies to `check_disk.py'.  Redirect, then
 read `$?'.
 
+## Four flagged cards put to the test, 2026-09-13 (scratch sheet, then deleted)
+
+The way to ask "could this card be better?" is a SCRATCH SHEET run
+through `screenshots.py' -- a sheet path is just an argument, so a
+throwaway sheet in the scratchpad works and the gallery never sees it.
+**Delete the captures afterwards by explicit name.**  `audit_cards'
+scores every `*.shot.txt' in `notes/playtests', so a leftover diagnostic
+becomes a card in the count; and in zsh a glob that matches nothing
+aborts the whole `rm', so `rm -f a[BC].raw' silently removes NOTHING
+INCLUDING THE FILES THAT DID MATCH.  Ten strays were left that way.
+
+  `pgmedge'   NOT broken.  On an 8x8 image it completes and `pnmfile'
+              reads the result back: `PGM raw, 8 by 8'.  So the empty
+              card is about TIME, not capability -- see the section
+              below, where the older stanza is the fix.
+  `vtxtcn'    wedges the session: `(session replaced)' with 25 seconds
+              allowed, and the `ls' after it never ran.  Its
+              `panel-exceptions' line says "the ls that follows on its
+              card is the evidence" -- THERE IS NO ls ON ITS CARD, and
+              cannot be while it does this.
+  `byteflip'  honest, and now proven so.  The disk's own `dbz' WILL
+              build the base it wants (`dbz base' wrote base.dir and a
+              349 KB base.pag from three echoed lines), and `byteflip'
+              on that base still ends the session.  Its caption already
+              says it ends the shell outright.  No better card exists.
+  `rcsmerge'  cannot ever merge here: it forks `merge', and this disk
+              has no such binary.  A real two-revision attempt gets as
+              far as `RCS file: note_v / retrieving revision 1.1 /
+              Merging differences ... into note' and then `merge: not
+              found'.  That IS more of the program working than the
+              published card shows, so the card is improvable even
+              though the merge can never finish.
+
+### `merge' is one build and one small port away, from source already here
+
+Worth someone's evening, and NOT started tonight.  Measured 2026-09-13.
+
+`rcsmerge' is a shipped program that cannot do its job for want of one
+helper.  What the helper needs is all on this disk already:
+
+    disk/SRC/rcs/merge.sh    the merge script RCS ships, 1028 bytes
+    disk/SRC/diff/diff3.c    diff3's source, in the SAME TREE the
+                             shipped `diff' was built from
+    ed, diff                 both in CMDS
+
+What is missing is smaller than it looks.  The `diff' recipe builds
+eleven sources from `SRC/diff' and **`diff3.c' is not one of them** --
+the file is there, unbuilt, with no recipe of its own.  And `merge.sh'
+is written in Microware-shell idiom: it calls `list', `del' and `test',
+none of which are on this disk, where the same jobs are `cat', `rm' and
+bash's own `test'.  So this is a BUILD plus a small PORT, not an install.
+
+Nothing new is acquired by doing it -- `diff3.c' is part of the GNU diff
+1.1 whose source and binary already ship -- so it completes a program
+that is here rather than adding one.  If it works, `rcsmerge' stops
+being a card about a missing helper and becomes a card about merging,
+and `merge' itself is a useful program to have.
+
+**It was attempted, 2026-09-13, and it stops at ONE unresolved symbol.**
+Three builds, each against a fresh overlay from `make_overlay.sh':
+
+  1. `diff3|diff|diff3.c alloca.c ../unixlib/getopt.c|||' and the same
+     with `diff3.c' alone -- both FAIL, `undeclared identifier' at
+     `diff3.c' line 287, `char diff_program[] = DIFF_PROGRAM;'.  That
+     is a `-D' the build must supply: the program diff3 forks to do the
+     two pairwise diffs.
+  2. `diff3|diff|diff3.c|DIFF_PROGRAM="/dd/CMDS/diff"|||' -- **the
+     define survives**, unescaped, straight through the psv field.  The
+     cc line comes out as `-DDIFF_PROGRAM="/dd/CMDS/diff"' and line 287
+     compiles.  Worth knowing generally: twelve recipes carry a VALUED
+     define (`MEM=64k', `W_OK=2', `time_t=long') and none carries a
+     quoted STRING, so this is the first evidence that one works.  The
+     ESCAPED form in the extra-flags field does NOT work -- `\"' reaches
+     cc literally and gives `unterminated string'.
+  3. With the define right, the compile passes and the LINK fails:
+     **`Symbol 'pipe' unresolved'**.  diff3 forks and pipes to run
+     `diff' twice (`fork()' at line 1185, `execve (diff_program, argv,
+     environ)' at 1190), and this SDK's libraries have no `pipe'.
+
+**There IS a pipe() in the pool** -- `SRC/infoxpress/BNU/ELM_2.4/OSK/
+pipe.c', thirteen lines of code: `pipe()' is `creat("/pipe")' plus
+`dup()', `dup2()' is a loop over `dup()', and it needs only `<modes.h>'.
+Technically it is a drop-in extra source for the recipe.
+
+**But its licence is not the package's, and that stops this here.**  The
+file's own header (Wolfgang Ocker, Ulli Dessauer, Reimer Mellin, 1988)
+says it may be copied and distributed freely "for any non-commercial
+purposes" and incorporated into commercial software only by written
+permission.  `SOURCES.txt' records the Elm 2.4 package it sits inside
+under the Elm General Public License, which is permissive; this FILE is
+narrower than the package around it.  Building a new binary we SHIP
+against it would carry that restriction into the collection, which is
+rdoggett's call and is in `notes/FOR-RDOGGETT.md'.  The tree was left
+clean: `c68' emits `.r' files beside the sources and two were removed.
+
 ## One card regressed in the gallery, and its exception argues the wrong case
 
 `pgmedge'.  Found 2026-09-13 by reading git rather than by re-shooting.

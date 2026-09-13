@@ -41,6 +41,35 @@ Open questions only. Nothing here is decided. Updated 2026-09-13.
    giganews corpus walls at 2003, and the UTZOO mirrors stop mid-1991.
    `notes/PLAN-acquisitions.md' has the whole table.
 
+## A licence question, on a file that already ships
+
+6. **`rcsmerge' could be made to work, but the last piece is
+   non-commercial-only.**  `rcsmerge' ships and cannot merge, because it
+   forks `merge' and no `merge' binary is here.  Everything needed is on
+   the disk already: `SRC/rcs/merge.sh' (RCS's own script) and
+   `SRC/diff/diff3.c' (part of the GNU diff 1.1 we already ship, just
+   never built).  I built diff3 as far as it goes: it compiles once the
+   build supplies `-DDIFF_PROGRAM="/dd/CMDS/diff"', and then the LINK
+   fails on one symbol, `pipe'.
+
+   The only `pipe()' in the pool is
+   `SRC/infoxpress/BNU/ELM_2.4/OSK/pipe.c' -- thirteen lines, and it
+   would almost certainly finish the build.  **Its own header says it
+   may be copied and distributed freely "for any non-commercial
+   purposes", and incorporated into commercial software only with the
+   authors' written permission** (Wolfgang Ocker, Ulli Dessauer, Reimer
+   Mellin, 1988).  That is NARROWER than the Elm 2.4 package it sits
+   inside, which `SOURCES.txt' records under the permissive Elm licence.
+
+   The source already ships and that is not in question.  What I have
+   not done is BUILD a binary we ship against it, because that carries
+   the non-commercial clause into the collection's own artefacts, and
+   this collection has been careful about exactly that (the `utime.c'
+   rule, `loglist' left out for want of a grant).  Your call: leave
+   `rcsmerge' as a card about a missing helper, write a `pipe()' of our
+   own over OS-9's pipe device, or accept the clause for that one
+   binary.  Nothing else about diff3 is blocked.
+
 ## One question, asked of you by an os9exec session
 
 4. **Is `../..' valid OS-9 because Microware says so, or because you
