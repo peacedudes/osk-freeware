@@ -807,8 +807,19 @@ background you do not need first.**
 - **pacman** corrected -- a keypad ASCII maze game, not G-Windows.
 - **subber** carried as an exception: it grows its data area with F$Mem, a
   6.5 KB request os9exec's arena cannot grant in place; runs on real OS-9.
-- **creadoc** re-explained: a pre-Y2K column shift (2026 prints as `126'),
-  not F$PrsNam, and it writes nothing even when the column is right.
+- **creadoc** FIXED, and both halves of the old entry here were wrong. It
+  read each filename from column 53 of a `dir -eadu' listing where
+  Microware's dir puts it at 54 -- measured over 666 lines in four
+  directories, sector addresses two to five hex digits wide and sizes two
+  to seven, both fields right-aligned, the name at 54 in every one. So 53
+  was right nowhere, and it does write creadoc.txt once the column is. Not
+  F$PrsNam, which follows the 68k manual and does not skip a leading space.
+  Rebuilt through rtf -> r68 -> l68 with the SDK's utilities: the UNPATCHED
+  rebuild differs from the shipped binary in 4 bytes (an M$Excpt vestige at
+  0x37, outside the 24-word parity range, plus the 3 CRC bytes), which is
+  what makes the provenance clean; the fixed one differs in 5 -- those plus
+  offset 0x61D, ASCII `5' -> `6'. RTF stores the constant as text, so "one
+  constant" is literally one character. CRC and parity verify on both.
 - **README-RUNNING** rewritten to the settled /dd + /h0 + /h1 arrangement.
 - os9exec fixes that landed and were measured here: MOVE from SR (biory
   draws its chart), F$Mem (per the manual), F$SysID (sysid reports).

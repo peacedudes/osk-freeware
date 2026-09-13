@@ -559,11 +559,8 @@ shot    creadoc
 size    28 90
 cap     An early Fortran documentation generator: it walks the `.f' files
 cap     in the data directory and copies each one's header comment into
-cap     `creadoc.txt'.  It needs the Fortran run-time loaded.  Here it
-cap     stops at the first file: it reads each name from a fixed column of
-cap     a directory listing, and this system's listing places the name a
-cap     column further over, so it opens a name with a leading space and
-cap     cannot find it.
+cap     `creadoc.txt'.  It lists the directory through your own OS-9's
+cap     `dir', and needs the Fortran run-time and a `shell' loaded too.
 try     creadoc
 run     rm -rf /dd/tmp/CRD; mkdir -p /dd/tmp/CRD; cp /dd/SRC/rtf/biory.f /dd/tmp/CRD/biory.f
 wait    3
