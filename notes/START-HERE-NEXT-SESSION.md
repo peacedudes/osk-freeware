@@ -1472,3 +1472,36 @@ either stanza loads a helper or moves chx.  `uuname' lives in
 how the stanza invokes it.  What is unexplained is how the published
 capture ever showed otherwise.  One observation; do not call it a
 regression without measuring it.
+
+## Stanzas whose ink is NON-REPRODUCIBLE by design -- do not chase them
+
+A sweep comparing a re-shoot against the published card will report these
+as LOWER (or HIGHER) on roughly half of all runs, and nothing is wrong
+with any of them.  CLAUDE.md already names the first; the rest were
+measured 2026-09-13 while working the games sweep.
+
+    pgmcrater   `pgmtopbm' without -threshold: the dither differs every
+                run.  Same ink, different picture -- 16 of 23 lines
+                changed between two runs and both were correct.
+    fish        a card game that DEALS A DIFFERENT HAND each run.  The
+                published card runs to 17 lines because three guesses
+                landed before "GO FISH!"; a re-shoot went to GO FISH on
+                the first guess and came out 11 lines, ink 232 -> 153.
+                Nothing seeds the deck; the stanza sends `n' then `3'.
+    zot         frames=True.  filmstrip() SAMPLES frames evenly when
+                there are more frames than rows, so the ink tracks how
+                many animation frames a run produced.  It is the only
+                frames=True stanza in the collection.
+    freeb       reports LIVE DISK STATISTICS.  Rebuilding the image
+                changes them: 1081344 sectors and one fragment row
+                became 1134592 sectors and seven.  Both correct.
+
+**Candidates by NAME ONLY, not measured -- do not treat as fact:**
+`wisecrack', `ask', `shuffle', `cookie', `fortune'.  They have the shape
+(random or time-dependent) and have NOT been checked.
+
+**Two others are measured differently and cannot be compared by ink at
+all**: `zot' (frames) above, and the burst stanzas `back', `backgammon'
+and `teachgammon', which are captured through a separate unthrottled
+path.  Only games.sheet contains any of them, so the graphics, system,
+comms and netpbm sweep verdicts were never affected.
