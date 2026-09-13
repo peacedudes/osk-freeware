@@ -1177,10 +1177,23 @@ place:
     trim()-measured        70 equivalent, 0 improved, 0 degraded
 
 So no program in those three clears PD_ALF, and there are no hidden
-victims in them.  The real profile is narrower than "netpbm program plus
-redirect" -- graphics.sheet's firings were the JPEG tools (cjpeg.070,
-djpeg.070, wrjpgcom.070) and particular pipe-writers (giftopnm, gulls,
-gulls-invert, pgmbentley, pgmoil, ppmrelief), not netpbm as a family.
+victims in them.
+
+**THERE IS NO WORKING PREDICTOR FOR WHICH PROGRAMS CLEAR PD_ALF, and I
+proposed two that both failed.**  First "netpbm program writing binary
+through a redirect" -- predicted three sheets, which came back with ZERO
+firings in 71 stanzas.  Then "terminal-takers and raw-byte writers",
+which fitted the first few and does not hold either: of fifteen clearers
+checked for termcap-ish strings, only SEVEN have any (wanderer 7, larn
+11, mines 7, scrabble 7, sterm 8, hinterhalt 7, sddemo 7) and EIGHT have
+none at all (giftopnm, pgmbentley, ppmrelief, zot, connect, txmod,
+filter, casefix).  `casefix' settles it: a six-kilobyte sentence-case
+filter that reads standard input from an `echo' pipe, with no terminal
+handling of any kind, and it clears PD_ALF.
+
+So do not reason about which sheets are at risk.  **Sweep them.**  That
+is the only instrument that has ever been right about this, and it is
+cheap to run measure-only with an unconditional restore.
 
 **AND I THEN OVER-GENERALISED THAT NEGATIVE.  An earlier version of this
 heading said the fault was CONFINED to graphics.sheet; it is not.**
