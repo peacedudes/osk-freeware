@@ -1,3 +1,7 @@
-Syntax: finger <userid>
-Function: display real world info on user.
-Options: none
+finger tester
+
+No gecos info for tester
+Exec dir: /dd/CMDS
+Directory: /dd/USR/TESTER                     Shell: shell
+Project: <none>
+No plan.

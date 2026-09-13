@@ -8,7 +8,7 @@ Libr2Ascii 681f39208c745d96
 Librarian a3c7f1c63a3211b3
 PrintCards e2ee6710bb95a0fe
 PrintLabels f4590a6afb94235b
-UnMacpack 6ddb41751817bf06
+UnMacpack 8e3bd1d1640bd836
 X11R6shl bec5c92246c472a8
 about 253c97e879e0105e
 accordian ca56c357b4bc2d6e
@@ -21,7 +21,7 @@ adltouch fc3153a91279a79e
 advcom 9ae540c60a6292e0
 advent 9075b262893d053c
 advint 26d631e81235a8a2
-afm2tfm ebc3bdf80c70c39c
+afm2tfm 3130546e1aef8ea0
 almanac 6a6fc754405fe210
 alps b87fad0f1c3db62c
 animal 0a0d19a335dff202
@@ -265,7 +265,7 @@ fileserv 94ca3f927ad83188
 fillup dd094c0bcbd90d64
 filter a748db3deed32aa3
 find bc48b346d17192b8
-finger ba2c1c5fd943c54b
+finger 5226d6a06de64203
 fish 97279909ded02a23
 fits d5c926450ae70c81
 fixtext 904f7f27dc4a9a67
@@ -433,7 +433,7 @@ m4_0.5 178bd754c4d97c82
 macbin 3a7f913cb6815c13
 macsave 4b29f37316dbc3fc
 macstream 915556cc8a2a0137
-macunpack b88c77a3c71ce67b
+macunpack 40788d1c64b6f7f1
 mail 665bfec34a31ab4b
 mailx 13e40634d305ceeb
 make c9902ae76af265bf

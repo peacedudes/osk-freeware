@@ -894,11 +894,16 @@ send    exit\r
 wait    2
 
 shot    finger
-cap     Asks another machine who is logged in and shows their information.
-cap     It needs a network to reach; run here it prints its one-line usage.
-try     finger
-run     finger
-wait    5
+cap     Shows what the system knows about a user: the home directory, the
+cap     shell that account logs in with, and the `.project' and `.plan'
+cap     files it would print if the account had written them.  It reads
+cap     the password file this disk ships, so a local name answers here;
+cap     given `user@host' it asks that machine instead.
+try     finger tester
+run     clear
+wait    1
+run     finger tester
+wait    8
 
 shot    net
 size    30 80

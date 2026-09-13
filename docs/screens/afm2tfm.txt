@@ -1,4 +1,5 @@
-$ afm2tfm
-afm2tfm 7.0, Copyright 1990-92 by Radical Eye Software
-Usage: afm2tfm foo[.afm] [-O] [-v|-V bar[.vpl]]
-                 [-p|-t|-T encodingfile] [foo[.tfm]]
+afm2tfm n019003l.afm
+n019003l NimbusSanL-Regu
+$ ls -l n019003l.afm n019003l.tfm
+-rw-rw-rw-   1 0        0           27644 Aug  3 19:00 n019003l.afm
+-rw-------   1 0        0            1268 Sep 13 12:25 n019003l.tfm

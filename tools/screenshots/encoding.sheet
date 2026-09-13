@@ -322,18 +322,28 @@ run     dump ms.stream
 wait    4
 
 shot    macunpack
-cap     Opens PackIt archives from a Macintosh: its options.  No PackIt
-cap     archive is on this disk to open.
-try     macunpack -?
-run     macunpack -?
-wait    5
+size    24 80
+cap     Opens PackIt archives from a Macintosh, listing what it can do:
+cap     the fork it writes, the Macintosh-to-Unix text translation, and
+cap     the listing and query modes.  `-H' is the flag it names itself;
+cap     it rejects `-?'.  No PackIt archive is on this disk to open.
+try     macunpack -H
+run     clear
+wait    1
+run     macunpack -H
+wait    8
 
 shot    UnMacpack
-cap     Another PackIt extractor: its options.  No PackIt archive is on
-cap     this disk to open.
-try     UnMacpack -?
-run     UnMacpack -?
-wait    5
+size    24 80
+cap     Another PackIt extractor, listing what it can do: the fork it
+cap     writes, the Macintosh-to-Unix text translation, and the listing
+cap     and query modes.  `-H' is the flag it names itself; it rejects
+cap     `-?'.  No PackIt archive is on this disk to open.
+try     UnMacpack -H
+run     clear
+wait    1
+run     UnMacpack -H
+wait    8
 
 shot    unsit
 cap     Opens StuffIt archives from a Macintosh: its options.  No StuffIt

@@ -100,11 +100,21 @@ send    small\r
 wait    8
 
 shot    afm2tfm
-cap     Turns a PostScript font's metrics (an .afm) into the .tfm TeX
-cap     needs: its usage, there being no .afm on the disk.
-try     afm2tfm
-run     afm2tfm
-wait    6
+cap     Turns a PostScript font's metrics -- an .afm -- into the .tfm file
+cap     TeX reads to set type in that font.  Here it converts one of the
+cap     URW metrics this disk ships: it names the font it found inside,
+cap     NimbusSanL-Regu, and writes the .tfm beside it.
+try     afm2tfm n019003l.afm
+run     mkdir -p /dd/tmp/TEX > /nil 2>/nil; rm -f /dd/tmp/TEX/n019003l.tfm; cp /dd/LIB/gs403/n019003l.afm /dd/tmp/TEX/n019003l.afm
+wait    8
+run     builtin cd /dd/tmp/TEX
+wait    1
+run     clear
+wait    1
+run     afm2tfm n019003l.afm
+wait    35
+run     ls -l n019003l.afm n019003l.tfm
+wait    10
 
 shot    maketexpk
 cap     Meant to build a packed bitmap font at a size TeX asks for, by

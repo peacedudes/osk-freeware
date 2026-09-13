@@ -1,4 +1,19 @@
-$ UnMacpack -?
-UnMacpack: unknown option -?
-Usage: macunpack [-bsf3rduUailvqVH] [filename]
-Use "macunpack -H" for help.
+UnMacpack -H
+File output options:
+-b:     MacBinary (default)
+-s:     MacBinary stream to standard output
+-f:     three fork mode, skipping empty forks
+-3:     the same, writing also empty forks
+-r:     resource forks only
+-d:     data forks only
+-u:     data forks only with Mac -> Unix text file translation
+-U:     as -u, but filename will not have an extension
+-a:     not supported, needs recompilation
+Macunpack specific options:
+-i:     give information only, do not unpack
+-l:     give listing
+-v:     give verbose listing
+-q:     query for every file/folder before unpacking
+-V:     give information about this version
+-H:     this message
+Default is silent unpacking
