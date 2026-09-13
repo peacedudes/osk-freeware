@@ -302,18 +302,42 @@ X11R6shl 15 -> 56, xengine 14 -> 40, loadmem 7 -> 157, savemem 7 -> 129,
 rsconvert 16 -> 61, snap 4 -> 332 -- eighty-fold on that last one, same
 stanza, same image.
 
-So it is accumulated session state across a long multi-stanza run, not a
-sheet defect and not a card defect.  My commit a5cf3b97 says "re-shooting
-does not fix it", which is half wrong -- this corrects it.
+WHAT IS REFUTED, measured 2026-09-13.  Three explanations written here
+were wrong, and each died on a cheap experiment.  Do not re-derive them:
 
-THE HARNESS ALREADY KNOWS SESSIONS LEAK, AND RESETS ONLY HALF OF IT.
-tools/screenshots.py:424-432 says stanzas in a size-group SHARE A SESSION
-and writes `builtin cd /dd' at each stanza head, because a hidden
-`builtin cd' would otherwise leak into the next stanza.  It resets the
-DATA DIRECTORY and nothing else -- there is no drain of input a previous
-program left unconsumed.  That is the gap these eleven fall through, so
-the real fix is a harness change, and shooting them one at a time is a
-REPAIR that the next full-sheet run will undo.
+  ACCUMULATED STATE ACROSS A LONG RUN -- no.  `--only' on twelve of the
+  cluster reproduces the damage exactly, with the sixty earlier stanzas
+  of the sheet never run.
+
+  POSITION IN THE SESSION -- no.  loadmem, savemem and snap shot as
+  positions 1, 2 and 3 of their own session come back 157, 129 and 332,
+  which are their solo values.
+
+  `wgen' LEAVING KEYSTROKES UNCONSUMED -- no.  The batch that reproduced
+  the damage did not include wgen at all.  A bisect of `graph' then
+  `loadmem' is also clean (406 and 157), so graph alone does not poison
+  the session either.
+
+WHAT IS MEASURED.  In a twelve-stanza batch the loss is PROPORTIONAL and
+grows with position; it is not a binary seven-of-twelve:
+
+    pos 1    cjpeg.070                       48 of 48, 0% lost
+    pos 2-4  wrjpgcom, wrjpgcom.070, rdjpgcom.070    20-26% lost
+    pos 5-8  graph, loadmem, savemem, snap           95-99% lost
+    pos 9-12 basicwin, xengine, X11R6shl, rsconvert  65-74% lost
+
+  From position 5 on, every stanza yields roughly 4-21 ink whatever it
+  ought to print -- about what the echoed command alone is worth.
+
+THE READINESS GUARD ALREADY EXISTS, so "the harness resets only half of
+it" is not the whole story.  run_sheet does `if died or starved or not
+sess.ready()' after EVERY stanza and replaces the session when that
+fails; ready() makes the shell echo a SPLIT marker, which only a shell
+that runs the command can rejoin.  No session was replaced during any
+run above, so the shell was answering every time.  And the interrupt in
+this harness is \005 (Ctrl-E -- close() and the `kill' directive use
+it), not \003.  Shooting one at a time is still a REPAIR that the next
+full-sheet run will undo.
 
 THE SEAM IS LOCATED -- start here rather than re-deriving this.  In
 tools/screenshots.py, the per-stanza head does:
@@ -322,22 +346,24 @@ tools/screenshots.py, the per-stanza head does:
     sess.write("clear\r")
 
 and that is all it resets.  `self.buf' only ever grows (`_drain' does
-`buf.extend(chunk)'), nothing ever clears pending input, and NO interrupt
-is sent between stanzas -- grep finds \003 only in the sheet-format
-comment.  So a program left at a prompt by the previous stanza goes on
-consuming what the next one types, which eats its first characters.
+`buf.extend(chunk)') and nothing clears pending input between stanzas.
+Read that together with THE READINESS GUARD above, not instead of it: no
+interrupt is sent AT THE STANZA HEAD, but ready() does run after every
+stanza and replaces the session when the shell does not answer, and
+_drive() already ends each stanza with \005.  So "a program left at a
+prompt eats the next stanza's first characters" cannot be the whole
+story -- such a program would eat ready()'s marker too, and the session
+would have been replaced.  It never was in any run measured here.
+
+Note also that buf never shrinking is not itself the bug: mark() returns
+a POSITION in it, so a stanza's start is a read offset and clearing the
+buffer would invalidate every stored offset.  A fix advances the offset;
+it does not empty the buffer.
 
 A fix would send an interrupt (or drain to a fresh mark) before the
 `builtin cd', and must then be validated by re-shooting a whole sheet and
 confirming the cluster stays clean -- that is a session's work, not a
 tail-end edit.
-
-SUSPECT MECHANISM, not yet proven: the stanza immediately before the late
-cluster feeds `wgen' a queue of keystrokes (`256\r', then
-`150\r75\r40\r20\r10\r') and leaves it mid-prompt.  A program still
-consuming input would eat the first characters the next stanzas send.
-The cluster sits at graphics.sheet 1154-1475 of 86 stanzas -- late, and
-contiguous, which fits.
 
 AND THE PROGRAMS ARE INNOCENT, measured: run straight through os9try,
 `basicwin' prints `basicwin: cannot connect to X server' -- the full name
@@ -345,11 +371,30 @@ is there.  Its card shows `in: cannot connect to X server'.  SIX
 CHARACTERS ARE LOST FROM THE START OF THE LINE somewhere in the capture
 path, reproducibly, for these cards and not for others.
 
-So this is a harness or sheet fault to chase in tools/screenshots.py, not
-eleven card defects.  The seven with the lowest ink are flagged by the
-harness itself with `<-- LOOK AT THIS ONE'.  Start there: compare a
-garbled card's raw pty bytes against what lands in notes/playtests, and
-note that all eleven live in ONE sheet, which is the strongest clue.
+So this is a harness fault to chase in tools/screenshots.py, not card
+defects.  Start by comparing a garbled card's raw pty bytes against what
+lands in notes/playtests, and note that every affected stanza lives in
+ONE sheet and ONE size-group session, which is the strongest clue.
+
+THE INK FLOOR WAS MASKING IT (2026-09-13).  gen_screens drops a capture
+under 30 ink, so most of the damaged ones never reached a reader and the
+damage read as smaller than it was.  Ten are now repaired by solo
+shoots.  FOUR WERE PUBLISHED DAMAGED: graphdemo and graphsave at 33 --
+three points over the floor -- each showing a whole os9exec abort dump
+collapsed into `Cons /termd/CMDSs Aborted'; wgen at 64; mgif at 55.
+SIX WERE DROPPED BY THE FLOOR and so had no card at all, though each has
+a stanza and a full caption: g, striche, apfel, sine, showpic, tplot.
+The gallery went 893 -> 899 and audit_cards 79 -> 72.
+
+`wgen' is BETTER, NOT FIXED: 64 -> 140 ink and it now shows its dialogue,
+but the prompt lines are still torn around the echoed input (`S75',
+`e20').  Solo shooting does not cure that one.
+
+panel-exceptions.psv is UNCHANGED and correct: the recovered dumps show
+graphdemo and graphsave really do abort with no G-Windows display, which
+is what those entries say.  Only the card text was damaged -- an
+exception can enshrine a harness artefact, so read the capture before
+removing one.
 
 **THE DETECTOR HAD A BUG THAT INVENTED EMPTY CARDS.**  `strings' prints
 its offsets as `$00017F: <text>', and audit_cards' PROMPT pattern stripped
