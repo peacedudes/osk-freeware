@@ -1265,7 +1265,7 @@
 
 | | |
 |---|---|
-| `ask` | the client for `wisecrack': it reads one line from /pipe/txtpipe and prints it, and says `No Wisecracks coming' when nothing is feeding the pipe. Start the server first -- `wisecrack &' -- and it answers<br>**How:** Asks a yes/no question and sets the shell status, for scripts. On its own it says "No Wisecracks coming" -- it is the front half of the `wisecrack' pipe from EFFO forum 20. |
+| `ask` | the client for `wisecrack': it reads one line from /pipe/txtpipe and prints it, and says `No Wisecracks coming' when nothing is feeding the pipe. Start the server first -- `wisecrack &' -- and it answers<br>**How:** The reader for `wisecrack': it takes the next slogan from the pipe wisecrack writes to and prints it, one a call, in German. Start the server first -- `wisecrack &' -- or ask says "No Wisecracks coming". From EFFO forum 20. |
 | `backgammon` | &#9733; backgammon, with a computer opponent<br>`Syntax: backgammon [<opts>] [<file>]` |
 | `convert` | starts the WORLD text adventure: run it and the game opens with its banner, the opening paragraph and a `>' prompt<br>**How:** It STARTS the `world' adventure -- run it and the game opens. |
 | `corewar` | Core War: two Redcode battle programs fight for control of a circular memory.  `corewar <cycles> a.e b.e' runs the fight and maps the core -- a 1 or a 2 marks the cells each program holds -- as the cycles count down.  Assemble warriors with cwasm; twelve samples are in GAMES/COREWARS |

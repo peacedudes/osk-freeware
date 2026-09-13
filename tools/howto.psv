@@ -149,7 +149,7 @@ finger|Asks another machine who is logged in: `finger <userid>'. Needs a network
 msntp|Sets the clock from a network time server.
 umacs|A small Emacs (uMacs 1.0). Full-screen: it takes the display and shows "== uMacs 1.0 == main ==" at the foot. It needs only TERM set.
 em|A screen editor. It stops with "Environment variable TERM not defined!" unless TERM is set -- SYS/login sets it, so run it from a login shell rather than bare.
-ask|Asks a yes/no question and sets the shell status, for scripts. On its own it says "No Wisecracks coming" -- it is the front half of the `wisecrack' pipe from EFFO forum 20.
+ask|The reader for `wisecrack': it takes the next slogan from the pipe wisecrack writes to and prints it, one a call, in German. Start the server first -- `wisecrack &' -- or ask says "No Wisecracks coming". From EFFO forum 20.
 ggrep|GNU grep. `ggrep <expr> <files...>'; -E, -F, -i, -v, -w and the rest as you would expect.
 fontgen|Generates a character font for the Gepard display -- it prints the assembler source of an 80-column font on stdout.
 expreserve|Saves a vi buffer when the editor or the line dies; vi runs it for you rather than you running it.

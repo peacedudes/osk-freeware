@@ -1,7 +1,7 @@
 $ wisecrack &
-<4>
+<3>
 $ ask
-COMPUTER-VEREIN E.V
+GRUSS VON FILE HUGO
 
 $ ask
-+ COVE IST SPITZE +
+COVE GRUESST EFFO

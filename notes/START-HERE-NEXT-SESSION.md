@@ -199,6 +199,27 @@ disk", which contains no "not".  Passing on the cleaned tree would never
 have shown it.  This repo's "make every check fail once" rule, applied to
 a check written to enforce a different rule, and it paid immediately.
 
+**FINDING 20 DISSOLVES TOO -- the "error message as help" captures are
+RIGHT.**  The audit said 72 help captures are option-rejection messages
+presented under "its own help"; measured, it is 28, and they are not
+defects.  These are GNU tools whose answer to `-?' is to reject the flag
+AND PRINT THEIR USAGE:
+
+    join: unrecognized option `-?'
+    Usage: join [-a 1|2] [-v 1|2] [-e empty-string] [-o field-list...]
+
+The rejection line is one line of honest noise above the thing the reader
+wants.  Re-capturing all 28 would have replaced working help with
+identical help.  Check what follows the error before calling a capture
+broken.
+
+**FINDING 7 IS CLOSED, measured 0.**  The audit said 47 cards show a
+sample that never invokes the program the card is about.  Measured
+2026-09-12 against docs/screens.js: EVERY card's screen or try line names
+its own program -- 0 exceptions needed.  The 47 predate the `try' line and
+the `panels show their own program' ratchet, which closed it.  Do not
+re-derive it.
+
 **FINDING 13 RECONCILES -- it was stale, not wrong.**  The audit said the
 header arithmetic left no room for the BASIC09 four (992 vs 988).
 Measured 2026-09-12: 996 gathered, 340 starred, 4 BASIC09, leaving

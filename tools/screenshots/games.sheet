@@ -1016,7 +1016,7 @@ cap     Reads the next message from the pipe wisecrack writes to and
 cap     prints it, one a call, in German: they are the slogans of a 1992-93
 cap     OS-9 club seminar.  wisecrack must be running behind it, started
 cap     with the `&' as shown; on its own ask says "No Wisecracks coming".
-try     ask
+try     wisecrack &; ask
 run     wisecrack &
 wait    3
 run     ask
