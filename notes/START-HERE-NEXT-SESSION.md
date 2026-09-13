@@ -225,12 +225,31 @@ one of which is carded.  Nothing to fix.
 Measured 2026-09-12 with the repo's own detector, tools/audit_cards.py,
 which is the honest one (its header records two earlier versions that
 lied).  It flags 95 of 990 -- but 23 of those are captures the INK FLOOR
-correctly dropped, so no reader ever sees them.  The real set is the 72
+correctly dropped, so no reader ever sees them.  The real set is the 69
 that are flagged AND published:
 
     ERROR-ONLY    24        MOSTLY-HELP     4
     THIN-HELP     23        HELP-ONLY       1
-    NOTHING       19        MOSTLY-ERROR    1
+    NOTHING       16        MOSTLY-ERROR    1
+
+(Was 95/72 until the scorer was fixed -- see below.)
+
+**THE DETECTOR HAD A BUG THAT INVENTED EMPTY CARDS.**  `strings' prints
+its offsets as `$00017F: <text>', and audit_cards' PROMPT pattern stripped
+a leading bare `$', leaving `00017F: ...', which then matched the branch
+that treats a line as the TYPED COMMAND.  A card with fourteen lines of
+real output scored work=0 and was reported NOTHING.  Narrowed to
+`\$(?=\s)' -- a bare `$' is a prompt only when a space follows it.  Only
+`strings' was affected, but the shape would hide any program printing an
+address or an offset.
+
+I found it by DISBELIEVING THE VERDICT: the card looked full and the
+program plainly worked, so the tool was wrong rather than the card.  The
+first two cards I investigated from the flag list (`graph', `rdjpgcom')
+were also not defects -- both were stale captures from before fixes
+elsewhere, and re-shooting fixed both.  THREE of the first four
+investigated were false alarms.  Re-shoot, then disbelieve the tool,
+before diagnosing a program.
 
 audit_cards scores from notes/playtests, not from docs/screens.js, so it
 cannot tell a thin published card from a capture that was never
