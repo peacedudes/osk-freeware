@@ -135,7 +135,7 @@ readmsg|Prints messages from a mail folder: `readmsg 1' for the first. It reads 
 messages|Counts what is in your mail folder: "There is 1 message in your mailbox".
 frm|Lists who your mail is from, one line each. Reads $MAIL, which SYS/login sets.
 newalias|Rebuilds the Elm alias database from USR/LIB/ELM/aliases.text after you edit it.
-wn|A real HTTP server (WN 1.14.3, GPL). It starts and opens its log -- the path /h0/c/unid/wn_1.14.3/osk/logs is compiled into the binary, and that directory is on this disk so it can. To serve, it needs TCP/IP under it (KA9Q or osknet, in CMDS/NET). It is an inetd-style server -- one request in on standard input, one response out -- so you can hand it a request by hand and read the reply. Its manual is 30 HTML files in DOC/wn.
+wn|A real HTTP server (WN 1.14.3, GPL). It starts and opens its log -- the path /h0/c/unid/wn_1.14.3/osk/logs is compiled into the binary, and that directory is on this disk so it can. To serve, it needs TCP/IP under it (KA9Q or osknet, in CMDS/NETWORK). It is an inetd-style server -- one request in on standard input, one response out -- so you can hand it a request by hand and read the reply. Its manual is 30 HTML files in DOC/wn.
 wndex|Builds the index.cache WN will not serve without. It works on the CURRENT directory and IGNORES a directory given as an argument -- on this disk that means ksh, whose `cd' is a real chdir where bash's is not: `ksh -c "cd <dir>; /dd/CMDS/WN/wndex"'. On its own it says "Can't open ./index -- skipping it", which means you are not where you think you are. The site that ships at /dd/c/unid/wn_1.14.3/osk already has its cache built; that is WN's compiled-in document root.
 inetd|The listener that hands incoming connections to wn. Needs a network.
 adlcomp|From ADL/DEMOS: `adlcomp tiny.adl -o tiny -i..'. -i names the directory holding standard.adl and is required for any world that includes it.
@@ -230,8 +230,8 @@ pgmtopbm|WITHOUT -threshold IT IS NOT REPRODUCIBLE: its dither differs every run
 macsave|Its silence is correct and documented: DOC/macsave/macsave.1 says it "reads standard input and silently writes the file(s) it contains". `macbin' makes the MacBinary it wants, and the pair round-trips.
 elvrec|Bare, it lists what elvis preserved; nothing listed means nothing was preserved.
 lnk.org|`load /dd/CMDS/os9lib' first. Without it this calls F$Link for os9lib, gets E_MNF and exits printing nothing. DOC/README-RUNNING names the four programs that do this.
-demerge|OS-9's `merge' is concatenation and there is no `merge' binary here, so `cat a b > c' makes the file demerge takes apart. There is no `od' either -- `dump' is the hex dump.
-dump|This is the hex dump on this disk. There is no `od'.
+demerge|OS-9's `merge' is concatenation, so `cat a b > c' makes the file demerge takes apart -- your own `merge' does the same. `dump' is the hex dump here.
+dump|The hex dump: `dump <file>' prints offsets, bytes and the ASCII beside them.
 maketexpk|It carries the RIGHT Metafont line in its own strings and then reaches for `makdir', `del' and `attr' to file the result -- three Microware utilities that are not here. Run the virmf line yourself: DOC/README-METAFONT has it, and `gftopk' is all maketexpk was going to do afterwards.
 forth|Type `2 3 + . cr' and it answers 5; `: squares 11 1 do i dup * . loop cr ;' then `squares' prints them; `words' lists its vocabulary; `bye' leaves. A source file is a command-line argument -- `forth fibonacci.tst' in lib/tile/TST loads it and gives you the prompt -- because `include' is defined in the library, not the kernel. The library and its twenty-two programs are in lib/tile and lib/tile/TST.
 ed|Needs a /r0 RAM disk for its scratch file; `mount -r=256k /r0' provides one. Then `ed <file>', with ed's usual commands: 1,4p prints, s/a/b/ substitutes, w writes, q quits.

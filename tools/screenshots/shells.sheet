@@ -135,9 +135,10 @@ try     expr 355 / 113
 shot    if
 cap     Conditional execution for a script: `if def <var>', `if loaded
 cap     <module>' or `if varval <var> <value>', then one command to run.
-cap     It hands that command to Microware's `shell' to run, which is
-cap     not on this disk, so here it does nothing.  bash has an `if' of
-cap     its own, a reserved word; `command if' reaches this one instead.
+cap     It hands that command to Microware's `shell' to run, so on your
+cap     own OS-9 it does the work; the picture below is what it does
+cap     without one.  bash has an `if' of its own, a reserved word;
+cap     `command if' reaches this one instead.
 run     command if -?
 wait    4
 run     command if def TERM today endif
