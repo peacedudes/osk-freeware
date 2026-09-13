@@ -1,6 +1,8 @@
-./cccp2 hello.c hello.i
+printf "int main()\r{\r  return 0;\r}\r" > hello.c
+$ ./cccp2 hello.c hello.i
 $ cat hello.i
 # 1 "hello.c"
-int main() {
+int main()
+{
   return 0;
 }

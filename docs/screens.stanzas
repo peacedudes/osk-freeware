@@ -102,7 +102,7 @@ cb fd636e524500b90e
 cc1plus 32f7ea32bd0fe01c
 cc2 d46d4bba80b2680a
 cc2plus 77c7e857748addb6
-cccp2 9c5e61c5e4f2a4dd
+cccp2 44d93e789bd80878
 ccheck 4bd3bb5853fc2dae
 cdecl fbf232df2738d1df
 cdiff bf59ca4980c1cbf1
@@ -275,7 +275,7 @@ florida 71f8d32b60c46888
 fmt 26d23caaf43a2d30
 fold a69433f50beabd2b
 fontgen 60e1c7f5b6cdba8d
-for 4b2af34c4a16a946
+for abeb49e64dc9e730
 forth 2a97e56b02c52c56
 fortune 9ecfa07b45d3dc28
 freeb cee3e81513e9ccdd
@@ -287,12 +287,12 @@ funzip e3be593215895e13
 g3 f4a93c537b76b141
 game 04dc246b40477d8a
 gawk 49dd1fd65b79d340
-gcc 9bc79750e4d9b9a5
-gcc2 60f38a718f0b0673
+gcc 23bc2d0e1a6d915d
+gcc2 0899064ec563bf43
 gcc_cc1 800ca8c71d2133b5
 gcc_cc1plus 7ce53c78eb5ed304
 gcc_cc2 ec5c779535af9a9f
-gcc_cccp a4561f49b12786c5
+gcc_cccp 50ca3214f582866b
 gcc_cccp2 64d25794425dfb5a
 gcc_collect 201121905d4c9006
 gcl 98547f63e11b0c43
@@ -318,7 +318,7 @@ gnugo f9a0347f90d9f83e
 gnuplot a9a22f76c591145b
 gothic 6dfb7f6dc8246e43
 gouldtoppm f79f00e34f915be2
-gpp 29abc61477265dbc
+gpp 0a500b343c7b0b65
 gpp_cc1plus 870c0d0d360be757
 gpp_cccp c3243bd84008c813
 gpp_collect 72241bec17e95aa4

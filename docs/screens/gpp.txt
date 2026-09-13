@@ -1,4 +1,5 @@
-./gpp -v -c hello.c
+printf "int main()\r{\r  return 0;\r}\r" > hello.c
+$ ./gpp -v -c hello.c
 gpp version 1.40.3 (based on GCC 1.40)
  /DD/CMDS/gpp_cccp -+ -v -undef -D__GNUC__ -D__GNUG__ -DOSK -D__OSK__ -D__mc680p
 GNU CPP version 2.5.6 (68k, Motorola/OSK syntax, srcdbg support)
@@ -8,8 +9,8 @@ GNU CPP version 2.5.6 (68k, Motorola/OSK syntax, srcdbg support)
  /DD/DEFS/GCC2
  /DD/DEFS
 End of search list.
- /DD/CMDS/gpp_cc1plus cc.000004.cpp -quiet -dumpbase hello.c -version -o cc.000a
+ /DD/CMDS/gpp_cc1plus cc.000003.cpp -quiet -dumpbase hello.c -version -o cc.000a
 GNU C++ version 1.40.3 (based on GCC 1.40) (68k, Motorola syntax) compiled by G.
 default target switches: -mregparm -mstack-check
- r68 -v -q cc.000004.a -o=hello.r
+ r68 -v -q cc.000003.a -o=hello.r
 gpp: Can't fork 'r68'.

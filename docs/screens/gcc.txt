@@ -1,7 +1,8 @@
-./gcc -v
+printf "int main()\r{\r  return 0;\r}\r" > hello.c
+$ ./gcc -v
 gcc version 1.42
 $ ./gcc -v -c hello.c
 gcc version 1.42
  cccp -v -undef -D__GNUC__ -DOSK -D__OSK__ -D__mc68000__ -Dmc68000 hello.c cc.0p
 ./gcc: Can't fork 'cccp': module not found (hello.c)
-./gcc: cc.000004.cpp: file not found (hello.c)
+./gcc: cc.000003.cpp: file not found (hello.c)

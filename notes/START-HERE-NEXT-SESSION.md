@@ -172,6 +172,72 @@ character-art card -- a tree trimmed, lights blinking, reindeer running
 a line the source invites you to change.  Nothing on the card names
 whose it is, which is the rule, and it costs nothing to keep.
 
+**OS-9 COUNTS DOTS: `...' IS TWO LEVELS UP, NOT `../..'.**  I got this
+wrong on 2026-09-12 and wrote the opposite here; both sibling sessions
+corrected it and the MANUAL settles it -- Professional OS-9 v2.4,
+"Accessing Files and Directories: The Pathlist", p. 4-9:
+
+    "A single period (.) refers to the current directory.  Two periods
+     (..) refer to the current directory's parent directory.  Add a
+     period for each higher directory level.  For example, to specify a
+     directory two levels above the current directory, three periods are
+     required.  Four periods refer to a directory three levels above."
+
+So `..' DOES resolve mid-path, as a real traversal -- `list ../DEFS/curses.h'
+from /dd/CMDS reads the file.  What does not exist is the Unix habit of
+CHAINING: `../../SYS/motd' asks for a component literally named `..'
+inside the parent, so E_PNNF is the honest answer to what was written.
+Two levels up from /dd/CMDS/GCC2 is `.../SYS/motd'.
+
+MEASURED HERE 2026-09-12, from /dd/CMDS/GCC2, with the disk's own `cat':
+
+    cat .../SYS/motd        -> reads it.  Dot-counting works for OPENS,
+                               not just for chd.
+    cat ../../SYS/motd      -> E_PNNF, though /dd/SYS/motd exists
+    cat ../../DEFS/curses.h -> E_PNNF, though /dd/DEFS/curses.h exists
+
+THREE BEHAVIOURS, NOT TWO -- and the third caught me claiming a bug that
+was not there.  The `for' card ran `../../CMDS/for div.f' from
+/dd/tmp/CMPA for as long as it existed, and its PREVIOUSLY PUBLISHED
+capture shows it working: `rtf div.f', ` STOP: compilation aborted',
+identical to the corrected form.  So:
+
+    bash forking a path   `../../CMDS/for'  -> WORKS (measured, old card)
+    chd                   `chd ../..'       -> two levels (os9exec-cb)
+    a program's open()    `cat ../../x'     -> FAILS, E_PNNF (measured)
+
+The dotted form works for all three and is what the manual documents, so
+prefer it everywhere.  But do NOT assume a chained path is broken because
+one of these three refuses it -- I changed the `for' card believing I was
+fixing a live defect, and the capture proved the spelling had never been
+costing anything.  The change stands (documented-correct beats
+accidentally-working); the claim did not.
+
+NOTE A DISAGREEMENT WORTH KEEPING.  os9exec-cb measured `chd ../..' from
+two levels down landing TWO levels up, and predicted from that my opens
+should have succeeded.  They did not.  So `chd ../..' and
+`open("../../x")' do not resolve alike, and this repo already knew the
+open half -- tools/datatests/modules.cases:79 says `which' "climbed with
+`../..' once, which on OS-9 opens the parent again".  Trust the dotted
+form; do not model `../..' from chd's behaviour.
+
+THE TRAP IS THAT THE WRONG SPELLING FAILS QUIETLY.  The extra components
+are absorbed rather than rejected, so `../..' lands on the PARENT and the
+error names the FILE you asked for, not the path that misdirected you.
+Code that climbs by appending `/..' moves exactly one level and then
+silently stops.
+
+The GCC cards stage `hello.c' where they run, and that stands -- it is
+more robust than reaching across the disk either way.  But the reason in
+the commit is the pathlist being malformed, NOT any inability to climb.
+
+**How I got it wrong, which is the part worth keeping.**  Five failures
+shared two properties: running from a subdirectory, and using `../..'.  I
+blamed the first.  My one counter-example, `gcc_cccp', differed in BOTH,
+so it could not tell them apart -- and I read it as confirmation anyway.
+A single failing case does not tell you which of its features caused the
+failure; find the case that differs in one.
+
 **I REPEATED THAT TRAP THE SAME EVENING, so it is worth more than one
 line.**  Shipped DOC/samples/cat.txt and label.tpl, then shot six cards
 against an image built BEFORE they existed.  Every capture came back

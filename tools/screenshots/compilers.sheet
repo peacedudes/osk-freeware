@@ -157,12 +157,16 @@ cap     The GCC drivers live in their own directory, off the command
 cap     path, so each is run from there with `./'.  This is `gcc', the
 cap     older driver, reporting version 1.42.  Asked to compile it prints
 cap     the preprocessor command it wants, then stops: it looks for a pass
-cap     called `cccp' that is not installed under that bare name here.
-cap     The working drivers are `gcc2' and `gpp'.
-try     ./gcc -v -c hello.c
-run     builtin cd /dd/CMDS/GCC2; printf "int main() {\r  return 0;\r}\r" > hello.c
+cap     called `cccp'.  DOC/rayshade shows how to put one there --
+cap     `copy CMDS/GCC139/gcc_cccp cccp' in the directory it looks in.
+cap     The drivers that need nothing extra are `gcc2' and `gpp'.
+try     printf "int main()\r{\r  return 0;\r}\r" > hello.c; ./gcc -v -c hello.c
+run     builtin cd /dd/CMDS/GCC2
 wait    3
 run     clear
+wait    1
+run     printf "int main()\r{\r  return 0;\r}\r" > hello.c
+wait    3
 wait    1
 run     ./gcc -v
 wait    6
@@ -176,10 +180,13 @@ cap     succeeds, writing 68k assembly in Microware syntax -- `psect',
 cap     `link.w a5,#0'.  Asked to go all the way it compiles and then
 cap     calls `r68' to assemble, the 68k assembler that comes with your
 cap     OS-9.
-try     ./gcc2 -S -o hello.a hello.c
-run     builtin cd /dd/CMDS/GCC2; printf "int main() {\r  return 0;\r}\r" > hello.c
+try     printf "int main()\r{\r  return 0;\r}\r" > hello.c; ./gcc2 -S -o hello.a hello.c
+run     builtin cd /dd/CMDS/GCC2
 wait    3
 run     clear
+wait    1
+run     printf "int main()\r{\r  return 0;\r}\r" > hello.c
+wait    3
 wait    1
 run     ./gcc2 -S -o hello.a hello.c
 wait    12
@@ -193,10 +200,13 @@ cap     `gpp', the GCC2 C++ driver (1.40.3), run from its own directory.
 cap     It runs the whole pipeline -- `gpp_cccp' preprocesses,
 cap     `gpp_cc1plus' compiles to assembly -- then calls `r68' to
 cap     assemble, which comes with your OS-9.
-try     ./gpp -v -c hello.c
-run     builtin cd /dd/CMDS/GCC2; printf "int main() {\r  return 0;\r}\r" > hello.c
+try     printf "int main()\r{\r  return 0;\r}\r" > hello.c; ./gpp -v -c hello.c
+run     builtin cd /dd/CMDS/GCC2
 wait    3
 run     clear
+wait    1
+run     printf "int main()\r{\r  return 0;\r}\r" > hello.c
+wait    3
 wait    1
 run     ./gpp -v -c hello.c
 wait    16
@@ -206,10 +216,13 @@ cap     The GCC 2.x preprocessor pass, expanding a small C file.  The
 cap     `# 1 "..."' line is the source marker it adds; there are no macros
 cap     here to expand.  It is run from the GCC2 directory, off the
 cap     command path.
-try     ./cccp2 hello.c hello.i
-run     builtin cd /dd/CMDS/GCC2; printf "int main() {\r  return 0;\r}\r" > hello.c
+try     printf "int main()\r{\r  return 0;\r}\r" > hello.c; ./cccp2 hello.c hello.i
+run     builtin cd /dd/CMDS/GCC2
 wait    3
 run     clear
+wait    1
+run     printf "int main()\r{\r  return 0;\r}\r" > hello.c
+wait    3
 wait    1
 run     ./cccp2 hello.c hello.i
 wait    8
@@ -250,8 +263,10 @@ wait    8
 
 shot    collect
 cap     collect2, which builds the table of global constructors and
-cap     destructors a C++ program needs before linking.  It takes no
-cap     `-?', so with no arguments it prints its own usage.
+cap     destructors a C++ program needs before linking.  It lives in the
+cap     GCC2 directory with the other passes, off the command path, so it
+cap     is run from there with `./'.  It takes no `-?', so with no
+cap     arguments it prints its own usage.
 try     ./collect
 run     builtin cd /dd/CMDS/GCC2
 wait    1
@@ -277,15 +292,14 @@ shot    gcc_cccp
 cap     The GCC 1.39 preprocessor pass, expanding a small C file.  The
 cap     `# 1 "..."' line marks the source; there are no macros to expand
 cap     here.
-try     gcc_cccp hello.c hello.i
-run     mkdir -p /dd/tmp/CMPA > /nil 2>/nil; printf "int main() {\r  return 0;\r}\r" > /dd/tmp/CMPA/hello.c
-run     builtin cd /dd/tmp/CMPA
+try     gcc_cccp DOC/samples/hello.c tmp/hello.i
+run     builtin cd /dd
 wait    2
 run     clear
 wait    1
-run     gcc_cccp hello.c hello.i
+run     gcc_cccp DOC/samples/hello.c tmp/hello.i
 wait    8
-run     cat hello.i
+run     cat tmp/hello.i
 wait    5
 
 shot    gcc_collect
@@ -497,7 +511,7 @@ cap     means to run, then stops, because it forks a separate shell to run
 cap     it.  Called directly, `rtf' needs no shell and does the compile.
 cap     At the bash prompt `for' is also the loop keyword, so it is reached
 cap     by path.
-try     ../../CMDS/for div.f
+try     .../CMDS/for div.f
 os9     for div.f
 run     mkdir -p /dd/tmp/CMPA > /nil 2>/nil; cp /dd/SRC/rtf/div.f /dd/tmp/CMPA/div.f
 wait    3
@@ -507,7 +521,7 @@ run     builtin cd /dd/tmp/CMPA
 wait    1
 run     clear
 wait    1
-run     ../../CMDS/for div.f
+run     .../CMDS/for div.f
 wait    10
 
 shot    lnk
