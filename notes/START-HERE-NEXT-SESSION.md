@@ -199,6 +199,37 @@ disk", which contains no "not".  Passing on the cleaned tree would never
 have shown it.  This repo's "make every check fail once" rule, applied to
 a check written to enforce a different rule, and it paid immediately.
 
+**FINDINGS 17 AND 12's REMAINDER ARE CLOSED, measured.**  17 said the
+`browse' and `uustat' help captures recorded an execution failure
+(`shell: can't execute ... E_PNNF') and were committed ahead of their
+binaries.  Both binaries ship now and both captures show real help --
+"Browse through a directory, written by Peter da Silva" and "Syntax:
+uustat [<opts>]".  It was mid-campaign when the audit ran, as it said.
+
+12's remainder called `tail' a marginal second German program after
+`exist'.  It is not: no German strings in the binary at all.  `exist',
+`names' and `ff' are marked in language.psv; `tail' should not be.
+
+**FINDING 2's PATH HALF IS REAL AND ALREADY HANDLED.**  SYS/login sets
+seven CMDS subdirectories and neither GCC2 nor GCC139 is among them, so a
+bare `gcc' reaches nothing -- which is exactly why those cards `cd' into
+the directory and run `./gcc'.  The captions say so.  Its version half dissolves too, measured
+from the binaries: GCC2/gcc IS 1.42 and its card says 1.42, matching its
+own capture, which prints `gcc version 1.42' twice; gcc2 is 2.5.6 and
+says 2.5; gpp is 1.40.3 and says 1.40.  GCC139/gcc is 1.39 and HAS NO
+CARD -- the card called `gcc' is the GCC2 driver, run as `./gcc' from its
+directory, as its caption states.  The audit compared two binaries, only
+one of which is carded.  Nothing to fix.
+
+**SO THE CARD AUDIT IS FULLY WORKED.**  Of the six HIGH: 1 closed at 0
+(try-line paths), 2 accounted for, 3 did not reproduce, 4 not
+reproducible, 5 real but a PHRASING defect, 6 fixed.  Of the rest: 9 and
+10 real and fixed AT SOURCE (a fence chosen by content; three captions
+completed), 11 half real and fixed, 7 / 13 / 17 / 20 / 12's remainder all
+measured clean, and 16 and 19 WRONG.  Nine of fifteen dissolved on
+measurement -- which is the ratio worth remembering before acting on any
+audit, including one's own.
+
 **FINDING 20 DISSOLVES TOO -- the "error message as help" captures are
 RIGHT.**  The audit said 72 help captures are option-rejection messages
 presented under "its own help"; measured, it is 28, and they are not
