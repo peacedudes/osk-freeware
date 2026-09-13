@@ -1195,6 +1195,24 @@ So do not reason about which sheets are at risk.  **Sweep them.**  That
 is the only instrument that has ever been right about this, and it is
 cheap to run measure-only with an unconditional restore.
 
+**SWEEP TALLY, 2026-09-13.**  538 of 929 stanzas swept, 391 remaining.
+Clearers by sheet: graphics 9, games 5, comms 4, system 2, textfilters 1
+(`casefix'), netpbm 0, devtools 0.  Twenty-one in all.
+
+What the sweeps actually YIELDED, which is the honest measure of whether
+to keep going: graphics recovered `pdraw' (96 -> 396); comms exposed
+`listalias' and `newmail', both forking a helper by bare name and both
+fixed; textfilters exposed `column', whose listing was missing eleven
+games.  Four real card fixes out of five sheets.  Everything else that a
+sweep flagged -- and it flagged a lot -- was run variance, a scroll,
+error text, or a stanza that varies by design.
+
+**A LOWER of exactly 0 means the session DIED, not that output shrank.**
+`etags' came back 0 in devtools and re-shoots solo to 52 against a
+published 50, with the same 565-byte TAGS file.  The log says why:
+`(session replaced -- etags left it unusable)'.  Look for that line
+before investigating a zero.
+
 **AND I THEN OVER-GENERALISED THAT NEGATIVE.  An earlier version of this
 heading said the fault was CONFINED to graphics.sheet; it is not.**
 Sweeping `system.sheet' (100 stanzas) the guard fired TWICE, on
