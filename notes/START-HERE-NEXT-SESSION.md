@@ -1196,3 +1196,31 @@ excepts by name for being CORRECT.
 The captures from that sweep were restored rather than promoted: all 70
 were equivalent, so publishing them would have churned 70 cards for
 nothing, the same call made on pgmcrater's re-dither.
+
+## Two exception lists overlap by design, and merging them is a trap
+
+Measured 2026-09-13 while working the card-flag list down.  `audit_cards'
+has a `fine' dict of cards whose failure IS the point of the card;
+`audit_panels' has `tools/panel-exceptions.psv'.  **14 of the 19 `fine'
+entries are also panel-exceptions rows** -- perr, disktest, edir and the
+whole no-reader set -- and that was true before tonight.  Hand-listing a
+name in both is the EXISTING convention, not a slip.
+
+I nearly "fixed" it twice in one sitting: first by reverting my own
+additions as redundant, then by making audit_cards read
+panel-exceptions.psv as a single source.  Both are wrong:
+
+  - The two tools ask different questions and key on different things.
+    audit_panels scores 970 RUNNABLE PROGRAMS by program name;
+    audit_cards scores 990 CARDS by STANZA name.  The five fine-only
+    entries -- cjpeg.070, csl-mismatch, perr-alps, perr-print, silent --
+    are stanza names audit_panels never scores at all, so a merged
+    source would silently drop them.
+  - panel-exceptions.psv already prints its own reason inline in
+    audit_panels output; the `fine' reasons are written for the card
+    reader.  Same name, different audience.
+
+The real cost of the overlap is DRIFT: the same judgement is recorded
+twice in different words and nothing checks that they still agree.  If
+that is ever worth fixing, the safe shape is a CHECK that the reasons
+for a shared name have not diverged -- not one list feeding the other.
