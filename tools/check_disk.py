@@ -815,6 +815,22 @@ def check_no_chained_parent_paths(root):
     pathlist costs nothing where nothing executes it.  Host-side Python,
     shell and Makefiles are not screened at all: `../..' is the host's
     correct spelling.
+
+    PROVEN THROUGH THE CLI, not merely in-process.  This check has NO breaker
+    in check_the_checks.py and cannot have one -- that harness copies the
+    DISK tree, while this reads the sheets under tools/, which are never
+    copied -- so its wiring needs a proof of its own.  Measured 2026-09-12:
+
+        a throwaway sheet carrying `run  ../../CMDS/for div.f'
+            -> `check_disk.py disk' EXITS 1 and prints this check FAILED
+        the probe removed
+            -> exits 0, prints ok
+
+    Running the CLI is what separates a REGISTERED check from a merely
+    defined one, and reading the exit-code line is not the same as running
+    it: the sibling check's breaker was written, looked correct, was never
+    added to BREAKS, and check_the_checks reported "24 of 24 breaks were
+    caught" throughout.  A function can be perfect and unreachable.
     """
     here = os.path.dirname(os.path.abspath(__file__))
     targets = []
