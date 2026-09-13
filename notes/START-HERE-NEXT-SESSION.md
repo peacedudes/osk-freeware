@@ -1369,6 +1369,49 @@ before committing' and reported exit 0 in the same breath; run unpiped
 it exits 1.  The same trap applies to `check_disk.py'.  Redirect, then
 read `$?'.
 
+## A gate was blind to 69 files, and the published screens are TWO things
+
+Found 2026-09-13 because an os9exec session asked whether any card had
+been built around the pre-`985e0d8` RBF behaviour.  None had -- but the
+asking turned up a hole.
+
+**`check_disk`'s dots gate read `tools/{screenshots,datatests,drives}`
+and never `tools/playtests/*.keys`** -- 69 files that type commands at
+the disk and whose screens are published.  Widening the directory list
+alone changed NOTHING, because the gate only inspects lines matching an
+executable-directive regex (`try|os9|run|send|expect`) and a playtest's
+command lines begin with `keys`.  Both had to change.  It then failed
+naming `netpbm.keys:15`, the only chained `../..` in any scanned file.
+**When a gate is widened and stays green, suspect the line filter, not
+the file list.**
+
+**And the two published forms are NOT the same set.**  `docs/screens.js`
+is the gallery `index.html` reads and is keyed BY PROGRAM: a screen only
+appears if some program's card claims it.  `docs/screens/*.txt` is a
+mirror of EVERY screen, keyed by screen name, rewritten wholesale
+(`shutil.rmtree`) on each `gen_screens` run.  So the mirror legitimately
+holds screens no card shows -- `netpbm`, `netpbm-color`,
+`netpbm-convert`, `hackquit` among them -- and a string in the mirror is
+NOT necessarily published to a reader.  Checked here: 0 of the 887
+screens cards reference is `netpbm`, and NO published card text contains
+`../..`.
+
+**Three of my own inferences died in that half-hour, all the same way.**
+I read a commit date as staleness (those files are rewritten every run --
+their mtimes all match `screens.js` to the second); I tested for a
+playtest capture using the SHEET naming `<name>.shot.txt` when playtests
+write `<name>.screen.txt`, and called it an orphan; and I reported "does
+the published screen contain it? no" from a script whose input was an
+empty string because the lookup above it had found nothing.  Each looked
+like evidence.  **Check what a negative result was actually computed
+from.**
+
+**Playtest screens have no drift detection at all.**  `gen_screens
+--check` compares each capture against its SHEET stanza hash; playtest
+screens have no stanza and no hash, so a `.keys` file can be edited and
+its published screen will keep showing the old command with nothing to
+notice.  That is still open and is worth closing.
+
 ## The datatest suite: 727 of 743, and the disk has OUTGROWN NINE OF ITS TESTS
 
 Run whole for the first time in a while, 2026-09-13.  **16 failures, and
