@@ -1369,6 +1369,64 @@ before committing' and reported exit 0 in the same breath; run unpiped
 it exits 1.  The same trap applies to `check_disk.py'.  Redirect, then
 read `$?'.
 
+## The datatest suite: 727 of 743, and the disk has OUTGROWN NINE OF ITS TESTS
+
+Run whole for the first time in a while, 2026-09-13.  **16 failures, and
+so far NINE of them are cases asserting a failure that a later commit
+FIXED.**  None is a regression; the collection got better and the tests
+were not told.
+
+`notes/PLAN.md` records the baseline: 420 of 423 on 2026-08-31, with
+three deliberate failures.  Those three still fail and are still
+deliberate -- `zip-cannot-write-its-archive`,
+`todos-must-change-the-file`, `sir-round-trip-is-lossy`.  The rest
+accumulated AFTER that baseline, as capabilities landed:
+
+  **The csl three.**  `9befb924`, 2026-09-04, "Runtime: ship csl edition
+  25 -- **fixes lua, runc, msntp**".  It touched **ZERO** files under
+  `tools/datatests/`.  `driven`, `lua` and `net` still expect `csl
+  traphandler mismatch` from exactly those three programs.  The shipped
+  `disk/CMDS/csl` is now byte-for-byte the SDK's 48,366-byte copy.
+
+  **The dvips three.**  `e934210a`, 2026-09-12, "**dvips renders**, and
+  the source for gawk, bison and dvips ships".  Also touched **ZERO**
+  case files.  `tex`, `dvifont` and `dvidrivers` still expect
+  `Couldn't find header file tex.pro`, and `dvifont.cases` still carries
+  the comment "there is no .pro on this disk" -- there are SEVEN in
+  `disk/SYS/TEX/DVIPS/`.
+
+  **One font case by date.**  `a02d284c`, 2026-09-05, shipped the
+  Computer Modern fonts at 300 dpi and DID update `tex.cases` -- but not
+  `dvifont.cases` (last touched 09-01) or `dvidrivers.cases` (09-02).
+  `dvidrivers` still expects `Font file [cmr10 [300 dpi]] could not be
+  opened`, and 17 PK300 fonts ship.
+
+  **`about`** expects the origin phrase `from  usenet archive  fortune.ar`.
+  `DOC/ORIGINS` says `Usenet` now -- the old phrasing appears ZERO times.
+
+  **`system5`** runs `/dd/CMDS/drop`.  `drop` was RENAMED to `unkeep` on
+  2026-09-09 and there is no `drop` on the disk.
+
+**FOUR ARE STILL OPEN** at the time of writing -- `tex`'s `dvialw` and
+`dvilj2` (`[1 pages]`) and `dvieps` (`nearest neighbor`), and `games2`'s
+`convert-starts-the-world-adventure`.  They are being re-run against a
+PRISTINE image, because tonight's scratch sheets wrote into `/dd/tmp`
+and into `/dd/GAMES/WORLD`, and the image is not reset between runs.
+Until that says otherwise, do not assume they are stale too: the sibling
+case that also reads `story.dvi` PASSED, so the input exists, and
+`tex.cases` WAS updated for the fonts.
+
+**The rule this pays for: a commit that fixes a program must update the
+case that asserts it broken, in the same commit.**  Two commits here
+named the programs they fixed in their own subject lines and changed no
+test at all.  A suite that is not run whole does not notice, and this one
+had not been run whole in a fortnight.
+
+**And run it with `gtimeout` on PATH** (`/opt/local/bin`), or
+`datatest.py` dies with `FileNotFoundError` before a single case runs --
+and capture its status in a variable, because piping it into `tail`
+reports `tail`'s 0 and the failure looks like a pass.
+
 ## Working the flagged-card queue down, 2026-09-13: 66 of 990 -> 37 of 929
 
 Both numbers moved, and the DENOMINATOR moving is the more interesting
