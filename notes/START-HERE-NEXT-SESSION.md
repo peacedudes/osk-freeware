@@ -119,6 +119,39 @@ the count with a pointer to what the tool prints, which is what the
 passage itself advises.  FLAGGED TO RDOGGETT rather than left silent, and
 I have not touched anything else in it.
 
+**NEVER CHAIN AN EDIT WITH ITS OWN VERIFICATION IN ONE SHELL COMMAND.**
+This is the mechanism behind commit 719a911a, whose message claimed a
+docstring edit that had failed three lines above the output I read.  The
+edit asserted, printed a traceback, and the same command went on to run
+the gate and the commit -- and the gate said `EXIT=0 green=27', which was
+TRUE about the file as it already stood.  A silently failed edit leaves
+the old content in place, so every check downstream passes and says
+nothing.  Edit, then verify in a SEPARATE command, and grep the file for
+the text you just wrote (`grep -c '<the new phrase>'`) before believing
+it landed.  os9-dev-skill-fc named this one; it was my standing habit all
+evening.
+
+**A SWEEP WITHOUT CONTROLS PROVES NOTHING -- including a sweep checking
+your own work.**  At the end of the session I verified all fifteen of the
+night's claimed artifacts really exist (samples shipped, dvips prologues,
+fpu and its grant, the three source trees, the two dropped programs, both
+checks registered, the breaker in BREAKS, the CLI proof in the
+docstring): 15 present, 0 wrong.  It is only worth reporting because
+three CONTROLS were in it that had to come out FALSE -- an absent file, an
+absent string, a dropped program.  Without them a sweep that matched
+nothing would print the same reassuring zero.  The sibling session ran the
+same idea without controls first and got MISSING for all 26 items, then
+false alarms on 3 of 26, both times from bad needles rather than absent
+content.
+
+**AND THE NUMBER IN A SUMMARY IS THE ONE NOBODY MEASURES.**  I reported
+sixteen commits, then twenty, then twenty-two, having measured only the
+first and incremented in my head after.  Measured: 57 today, or 35 since
+the scrabble port -- and the gap between those two right answers is the
+point, because I had never stated WHICH set I meant, so the figure could
+not be wrong against anything.  State the boundary or do not state the
+number.
+
 **TWO HOUSE RULES BECAME GATES, and that is the durable result of this
 evening rather than the text fixes.**  os9-dev-skill-fc put it better than
 I could: every rule broken tonight was one with no mechanical enforcement,
