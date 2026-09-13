@@ -269,20 +269,23 @@ def break_login_env(root):
 
 
 def break_cio_scan(root):
-    """The one name the cio-macro scan is required to find, removed.
+    """A name the cio-macro scan is required to find, removed.
 
-    The check's positive guard is `kermit_cio', and the reason it is that
-    name and not another is in the check's own docstring: every other
-    program on the list is a candidate for rebuilding `-qm', where
-    CMDS/REBUILT/kermit_cio is DELIBERATELY the cio build. Taking it away is
-    the "scan has stopped working" case, which is the failure this guard
-    exists for -- a silent scan agrees with any number in README-CIO.
+    Taking a guard name off the disk is the "scan has stopped working"
+    case, which is the failure the guard exists for -- a silent scan agrees
+    with any number in README-CIO.
+
+    This used to remove `CMDS/REBUILT/kermit_cio', picked as the one name
+    that could never be rebuilt away. It was dropped from the collection on
+    2026-09-12 as a duplicate, which is a way for a guard to expire that
+    nobody had allowed for, and this breaker returned None -- silently
+    testing nothing -- until it was repointed. `liborder' is the guard now.
     """
-    p = os.path.join(root, "CMDS", "REBUILT", "kermit_cio")
+    p = os.path.join(root, "CMDS", "liborder")
     if not os.path.exists(p):
         return None
     os.remove(p)
-    return "CMDS/REBUILT/kermit_cio removed, so the scan's guard is gone"
+    return "CMDS/liborder removed, so the scan's guard is gone"
 
 
 

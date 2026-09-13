@@ -30,9 +30,10 @@
 # `tools/cio_macro_scan.py' IS THE GATE. Relink where it is silent about a
 # program; build `-qm' where it is not. This script now refuses a program the
 # scan names, rather than leaving the judgement to whoever reads the results.
-# `CMDS/REBUILT/kermit_cio' is what that judgement cost last time: a relink
-# this repository made, carrying the call sites, and the one build of kermit
-# here that could only be driven in send mode.
+# `kermit_cio' is what that judgement cost last time: a relink this repository
+# made, carrying the call sites, and the one build of kermit here that could
+# only be driven in send mode.  It shipped for a fortnight and was dropped
+# 2026-09-12; this gate is what came of it.
 #
 # Two flags are not optional and the reasons are old and expensive:
 #   -qixm  links cio (this is the point; -qm is what we are undoing)

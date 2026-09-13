@@ -31,7 +31,7 @@ run     echo "--- end"
 drive   gzip-alternates
 why     four builds for three CPUs, two of them wanting csl
 run     /dd/CMDS/cp /dd/SYS/termcap /dd/tmp/M4/g1
-run     /dd/CMDS/REBUILT/gzipcpu32_nocsl -c /dd/tmp/M4/g1 > /dd/tmp/M4/g1.gz
+run     /dd/CMDS/REBUILT/gzipcpu32k_csl -c /dd/tmp/M4/g1 > /dd/tmp/M4/g1.gz
 run     /dd/CMDS/wc -c /dd/tmp/M4/g1 /dd/tmp/M4/g1.gz
 run     /dd/CMDS/gzip -d -c /dd/tmp/M4/g1.gz > /dd/tmp/M4/g1.back
 run     /dd/CMDS/md5 /dd/tmp/M4/g1 /dd/tmp/M4/g1.back

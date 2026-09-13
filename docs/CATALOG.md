@@ -1,6 +1,6 @@
 # What is on this disk
 
-1002 programs of OS-9/68K community software, gathered from the archives that kept it and made to run again. **653 of them need nothing but this disk**; the rest want Microware's `cio`, marked below with a star.
+998 programs of OS-9/68K community software, gathered from the archives that kept it and made to run again. **650 of them need nothing but this disk**; the rest want Microware's `cio`, marked below with a star.
 
 `DOC/INDEX` on the disk lists everything alphabetically. This is the same collection sorted by what each program is *for*, which is the more useful order when you do not yet know what you are looking for.
 
@@ -18,9 +18,9 @@
 | [Developer tools](#developer-tools) | 47 | Version control, tags, cross-reference, formatters, a debugger and benchmarks. |
 | [Compilers & build](#compilers--build) | 40 | C compilers and their passes, assemblers, linkers, make and parser generators. |
 | [Languages](#languages) | 10 | Interpreters and language systems beyond C. |
-| [Archives & compression](#archives--compression) | 37 | Pack, unpack and shrink -- lha, zip, tar, arc, zoo, and OS-9 module libraries. |
+| [Archives & compression](#archives--compression) | 34 | Pack, unpack and shrink -- lha, zip, tar, arc, zoo, and OS-9 module libraries. |
 | [Encoding & conversion](#encoding--conversion) | 29 | Between text encodings, line endings, Macintosh formats, ciphers and hashes. |
-| [Communications](#communications) | 98 | Kermit in several builds, terminal sessions, and networking. |
+| [Communications](#communications) | 97 | Kermit in several builds, terminal sessions, and networking. |
 | [Graphics & images](#graphics--images) | 202 | The netpbm toolkit, JPEG, a ray tracer, and things that draw. |
 | [Games](#games) | 83 | Adventures, board and card games, arcade ports, dungeon crawls and puzzles. |
 | [Screen toys](#screen-toys) | 9 | Animations and screen effects -- they draw on the terminal rather than print to it. Some run until you stop them. |
@@ -649,7 +649,7 @@
 
 *Pack, unpack and shrink -- lha, zip, tar, arc, zoo, and OS-9 module libraries.*
 
-<details><summary>37 programs</summary>
+<details><summary>34 programs</summary>
 
 **Alternates**
 
@@ -659,10 +659,7 @@
 | `compress_rebuilt` | a second build of `compress' from the same source; the two write the same bytes<br>`Unknown flag: '?'; Usage: compress [-dfvoV] [-b MaxBits] [file ...]` |
 | `gtar` | another build of GNU tar, taking the long +option spellings as well: `gtar +help' lists them<br>`This is GNU tar, the tape archiving program.` |
 | `gzip020_csl` | &#9733; gzip 1.2.4, 68020, needs csl<br>`gzip020_csl 1.2.4 (18 Aug 93)` |
-| `gzip020_nocsl` | gzip 1.2.4, 68020, no csl needed<br>`gzip020_nocsl 1.2.4 (18 Aug 93)` |
 | `gzip68k_csl` | &#9733; gzip 1.2.4, 68000, needs csl<br>`gzip68k_csl 1.2.4 (18 Aug 93)` |
-| `gzip68k_nocsl` | gzip 1.2.4, 68000, no csl needed<br>`gzip68k_nocsl 1.2.4 (18 Aug 93)` |
-| `gzipcpu32_nocsl` | gzip 1.2.4, CPU32, no csl needed<br>`gzipcpu32_nocsl 1.2.4 (18 Aug 93)` |
 | `gzipcpu32k_csl` | &#9733; gzip 1.2.4, CPU32, needs csl<br>`gzipcpu32k_csl 1.2.4 (18 Aug 93)` |
 | `lharcs` | C-LHarc 1.01, older than CMDS/lha 2.08<br>`C-LHarc for OS-9/68k Version 1.01   (C) 1989-1991 Y.Tagawa, Kai Uwe Rommel,` |
 | `zoo_2.1` | zoo 2.1 (1991), newer than the 2.01 in CMDS; it reads what 2.01 writes and has an extended help under `zoo_2.1 H'<br>`Zoo archiver, zoo 2.1 $Date: 91/07/09 02:10:34$  (OSK port 91/07/22 reto/hcz)` |
@@ -781,7 +778,7 @@
 
 *Kermit in several builds, terminal sessions, and networking.*
 
-<details><summary>98 programs</summary>
+<details><summary>97 programs</summary>
 
 **File transfer**
 
@@ -798,7 +795,6 @@
 | `kermit` | OS-9 Kermit Version 1 Release 5: serial file transfer and terminal emulation by command letter -- connect, send, receive, host-server, get, quit. `ckermit' is the C-Kermit with a command language; DOC/README-KERMIT compares the six Kermits here<br>`OS-9 Kermit Version 1 Release 5` |
 | `kermit2` | Kermit Program Version 1 Release 6 -- the same command letters as `kermit', 5K smaller.  DOC/README-KERMIT compares all six<br>`Kermit Program   Version 1    Release 6` |
 | `kermit3` | Kermit68K version 1.0.00, 01 July 1987 -- a different program from the other small ones: it puts up its own `Kermit68K>' prompt and reads a Kermit.ini, rather than taking command letters |
-| `kermit_cio` | &#9733; a relink of `kermit' against Microware's cio: the same program and command letters, in less space<br>`OS-9 Kermit Version 1 Release 5` |
 | `xkermit` | &#9733; the same version and banner as `kermit' -- OS-9 Kermit 1.5 -- in half the space, because it links cio rather than carrying stdio.  DOC/README-KERMIT<br>`OS-9 Kermit Version 1 Release 5` |
 
 **Mail**
@@ -1246,7 +1242,7 @@
 | `mastrm` | Master Mind: break the computer's hidden four-peg colour code in ten guesses, reading the `b' and `w' pegs each guess earns for right colour in right or wrong place |
 | `mille` | &#9733; Mille Bornes -- the French car-racing card game<br>**How:** Full-screen Mille Bornes. `p' picks a card, `u #' plays one, `d #' discards, `s' saves the game and `q' quits. |
 | `monop` | Monopoly for two to nine players: the Parker Brothers board game at the keyboard.  Each turn `roll' to move and buy the property you land on; `print' shows the whole board with owners, prices and rents, and `mortgage', `buy houses' and `trade' manage it.  Money and rent are tracked for you. `quit' ends the game |
-| `nchess` | GNU Chess 4.0 (plain display) |
+| `nchess` | GNU Chess 4.0, the build that SHOWS ITS THINKING: the same letter board as `gnuchessr', and under it a live table of the moves it is considering -- depth, score, node count and the line it is looking at -- redrawn as it searches.  The one to keep if you want to watch the engine rather than just play it |
 | `othello` | Othello (Reversi) against the computer: place a disk to flank a line of the opponent's between it and one of yours and they all flip; the most disks when the board fills wins |
 | `poker` | &#9733; Cold-hand Poker (SNOBOL4-in-C).  Data: GAMES/SNOBOL |
 | `reversi` | Othello against the computer or another player at the same keyboard, with six strengths from Apprentice to Very Hard. It opens on a menu; the arrow keys or hjkl move the cursor, RETURN places a disk and `m' reopens the menu.  `-r' resumes a saved game.  A different author's program from `othello' |

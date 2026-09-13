@@ -63,7 +63,6 @@ unpacklib|Archives & compression|OS-9 module libraries
 # ---- Communications ----
 ckermit|Communications|Kermit
 kermit|Communications|Kermit
-kermit_cio|Communications|Kermit
 kermit2|Communications|Kermit
 kermit3|Communications|Kermit
 xkermit|Communications|Kermit
@@ -733,10 +732,7 @@ fstat|Files & directories|Attributes & ownership
 scqref|Maths & calculators|Spreadsheets
 alps|Printing|Printers
 gzip020_csl|Archives & compression|Alternates
-gzip020_nocsl|Archives & compression|Alternates
 gzip68k_csl|Archives & compression|Alternates
-gzip68k_nocsl|Archives & compression|Alternates
-gzipcpu32_nocsl|Archives & compression|Alternates
 gzipcpu32k_csl|Archives & compression|Alternates
 gtar|Archives & compression|Alternates
 lharcs|Archives & compression|Alternates

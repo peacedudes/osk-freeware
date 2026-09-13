@@ -164,7 +164,6 @@ kermit2|kermit2 -?|
 kermit3|none|it takes its commands at its own `Kermit68K>' prompt, where `?' lists them, and from Kermit.ini
 xkermit|xkermit -?|
 ckermit|ckermit -h|
-kermit_cio|kermit_cio -?|
 finger|finger -?|
 net|none|it takes the name of a startup file and no options; `help' at its `net>' prompt lists its commands
 osknet|none|it takes its commands at its own prompt; DOC/osknet has the guide
@@ -431,11 +430,8 @@ compress|compress -?|
 compress_4.0|compress_4.0 -?|
 compress_rebuilt|compress_rebuilt -?|
 gzip|gzip -h|
-gzip68k_nocsl|gzip68k_nocsl -h|
 gzip68k_csl|gzip68k_csl -h|
-gzip020_nocsl|gzip020_nocsl -h|
 gzip020_csl|gzip020_csl -h|
-gzipcpu32_nocsl|gzipcpu32_nocsl -h|
 gzipcpu32k_csl|gzipcpu32k_csl -h|
 lha|lha -?|
 lharc|lharc -?|

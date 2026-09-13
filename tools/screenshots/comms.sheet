@@ -887,16 +887,6 @@ snap
 send    exit\r
 wait    2
 
-shot    kermit_cio
-cap     A relink of `kermit' against the shared cio library, kept as the
-cap     one build here that can be driven only in send mode.  Run with no
-cap     line it prints the same banner and command letters as `kermit'.
-try     kermit_cio
-run     /dd/CMDS/REBUILT/kermit_cio
-wait    6
-
-# --- TCP/IP ---------------------------------------------------------------
-
 shot    finger
 cap     Asks another machine who is logged in and shows their information.
 cap     It needs a network to reach; run here it prints its one-line usage.

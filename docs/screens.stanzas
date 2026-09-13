@@ -337,10 +337,7 @@ gulls 3acc5cb63cf0966f
 gulls-invert 0ec3437923bf8935
 gzip 44dcbcba72b8d87b
 gzip020_csl cc8e69ddb3fda150
-gzip020_nocsl 2bc221748cc418fc
 gzip68k_csl b2993953dfe2afd2
-gzip68k_nocsl 748031f73cfb4fe6
-gzipcpu32_nocsl 2182d18281c48112
 gzipcpu32k_csl a0b74b8bc382d82d
 hack 0fa0a0ab8bfee9d5
 hackwish 43454e5e00ab4f2a
@@ -386,7 +383,6 @@ kept 234115bd596e4961
 kermit ed49abee7f893498
 kermit2 28b91e5e0320a6d8
 kermit3 b49d8ac64ba36539
-kermit_cio ec5d707f2ccce35c
 ksh 48a0d25a0419584c
 l b55c56636af052b2
 lame 71043482fd17ba58

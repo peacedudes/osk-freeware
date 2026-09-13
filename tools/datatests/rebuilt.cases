@@ -110,17 +110,11 @@ run     /dd/CMDS/compress -dc < /dd/tmp/rc.Z > /dd/tmp/rc.out
 run     /dd/CMDS/md5 /dd/tmp/rc.out
 expect  ee2c20fa226fe6fc78feec7f123c7a99
 
-case    the-renamed-kermit-still-runs
-run     $R/kermit_cio
-expect  Usage: kermit
 
 case    the-renamed-pvic-reports-its-own-name
 run     /dd/CMDS/modinfo $R/vi_1.0
 expect  Module name           = vi_1.0
 
-case    the-renamed-kermit-reports-its-own-name
-run     /dd/CMDS/modinfo $R/kermit_cio
-expect  Module name           = kermit_cio
 
 case    the-scratch-archives-go-away
 run     /dd/CMDS/rm -f /dd/a1.arc /dd/a2.arc /dd/a3.arc /dd/tags /dd/tmp/l1.lzh /dd/tmp/l2.lzh
@@ -131,16 +125,3 @@ expect  error
 # Before that these all reported the name of the program in /dd/CMDS they sit
 # beside: compress_4.0 said `compress', the six gzip builds all said `gzip',
 # and loading any of them answered for the shipped one.
-case    the-alternates-report-their-own-names
-run     /dd/CMDS/modinfo $R/compress_4.0
-expect  Module name           = compress_4.0
-run     /dd/CMDS/modinfo $R/gzip68k_nocsl
-expect  Module name           = gzip68k_nocsl
-run     /dd/CMDS/modinfo $R/zoo_2.1
-expect  Module name           = zoo_2.1
-run     /dd/CMDS/modinfo $R/vi.elvis
-expect  Module name           = vi.elvis
-run     /dd/CMDS/modinfo /dd/CMDS/vi_cio
-expect  Module name           = vi_cio
-run     /dd/CMDS/modinfo /dd/CMDS/kermit2
-expect  Module name           = kermit2

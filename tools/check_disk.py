@@ -975,13 +975,21 @@ def check_cio_macro_population(root):
     once.  `hexed' took over and has now gone the same way -- it was one of
     six more rebuilt later that day.
 
-    THE GUARD IS `kermit_cio' AND IT SHOULD NOT MOVE AGAIN.  Every other name
-    on the list is a candidate for rebuilding, so any of them makes a guard
-    that expires; `CMDS/REBUILT/kermit_cio' is DELIBERATELY the cio build --
-    that is what its name says and why it is kept beside `kermit' -- so it is
-    the one name here that is not going anywhere.  `liborder' is named too,
-    as the current holder of the most call sites, but only in the softer
-    sense: if it is ever rebuilt, move that half and leave kermit_cio alone.
+    THE GUARD WAS `kermit_cio' AND IT HAD TO MOVE AFTER ALL.  It was chosen
+    because it was the one name here that could never be rebuilt away -- it
+    was DELIBERATELY the cio build, which is what its name said -- and then
+    on 2026-09-12 it left the disk for a different reason entirely: a second
+    kermit needing cio to do what the first does without it is a duplicate,
+    and the collection dropped it.  A guard can expire by deletion as well as
+    by rebuilding, which the note it replaces did not allow for.
+
+    So the guard is now `liborder' and `unpacklib', the two holders of the
+    most call sites, PLUS A FLOOR.  Both are rebuild candidates like
+    everything else on the list, so this half is expected to need moving one
+    day; the check prints which name it wanted, and moving it is a one-line
+    edit.  The floor is what actually catches a scan gone silent, and it is
+    set well below the current population rather than at it, so that an
+    ordinary rebuild does not read as a broken scanner.
     """
     import cio_macro_scan
     total, rows = cio_macro_scan.survey([root])
@@ -990,16 +998,14 @@ def check_cio_macro_population(root):
     for n in ("autolf", "cat", "detab"):
         if n in listed:
             problems.append("%s is listed and must not be (it never calls the stub)" % n)
-    if "kermit_cio" not in listed:
-        problems.append("kermit_cio is NOT listed and must be -- it is "
-                        "DELIBERATELY the cio build, so a scan that misses it "
-                        "has stopped working")
-    if "liborder" not in listed:
-        problems.append("liborder is NOT listed and must be -- it carries the "
-                        "most call sites of anything left.  If it has just been "
-                        "rebuilt, move this half of the guard; leave the "
-                        "kermit_cio half alone")
-    if len(rows) < 5:
+    for n in ("liborder", "unpacklib"):
+        if n not in listed:
+            problems.append("%s is NOT listed and must be -- it is one of the "
+                            "two holders of the most call sites, so a scan "
+                            "that misses it has stopped working.  If it has "
+                            "just been rebuilt `-qm', move this half of the "
+                            "guard to the next name in README-CIO's list" % n)
+    if len(rows) < 15:
         problems.append("the scan found only %d programs; it has probably "
                         "stopped scanning rather than the disk having changed"
                         % len(rows))

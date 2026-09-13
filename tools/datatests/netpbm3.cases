@@ -55,7 +55,7 @@ expect  Overskip mode (tries to improve color quality.)
 # archiver's output through another's decompressor.
 case    the-cpu32-gzip-writes-what-the-68000-gzip-reads
 run     /dd/CMDS/cp /dd/SYS/termcap /dd/tmp/N3/g1
-run     /dd/CMDS/REBUILT/gzipcpu32_nocsl -c /dd/tmp/N3/g1 > /dd/tmp/N3/g1.gz
+run     /dd/CMDS/REBUILT/gzipcpu32k_csl -c /dd/tmp/N3/g1 > /dd/tmp/N3/g1.gz
 run     /dd/CMDS/gzip -d -c /dd/tmp/N3/g1.gz > /dd/tmp/N3/g1.back
 run     /dd/CMDS/wc -c /dd/tmp/N3/g1 /dd/tmp/N3/g1.gz
 run     /dd/CMDS/md5 /dd/tmp/N3/g1.back

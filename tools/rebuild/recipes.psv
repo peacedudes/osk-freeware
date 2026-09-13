@@ -107,11 +107,10 @@ ifdef|ifdef|ifdef.c|||
 indent|indent|indent.c io.c lexi.c parse.c comment.c args.c|||
 input|effo_unaxcess|input.c|||
 japan|weather|weather.c|JAPAN N_PACIFIC|/dd/LIB/rand.r /dd/LIB/math.l|
-# THE SHIPPED kermit_cio IS AN OLDER -qixm BUILD and needs cio, where the
-# archive's own CMDS/kermit does not.  A rebuild through this recipe gets the
-# driver's -qm default and comes out trap-free -- at which point the file wants
-# renaming again, because `_cio' would no longer be true of it.
-kermit_cio|kermit|os9ker.c os9con.c os9get.c os9qui.c os9raw.c os9rec.c os9sen.c os9srv.c os9utl.c|||
+# kermit_cio -- an older -qixm relink of kermit, needing cio where the archive's
+# own CMDS/kermit does not -- was DROPPED from the collection 2026-09-12 as a
+# duplicate.  There is no recipe for it and there should not be one: a -qm
+# rebuild of it would simply be CMDS/kermit again.
 lander|lander|land.c screen.c move.c score.c|RAND_BSD HS_FILE BSD|/dd/LIB/curses.l /dd/LIB/termlib.l /dd/LIB/math.l /dd/LIB/unix.l|
 liborder|eff_libutils|liborder.c|||
 life|life|life.c|MEM=64k||

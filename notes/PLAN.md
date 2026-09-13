@@ -463,7 +463,8 @@ gives it a pty, and that is the one to believe.
 ### 1. Module-name collisions — the five in REBUILT are done, 27 names remain
 
 Done 2026-08-31: `CMDS/REBUILT/{arc,compress,kermit,screen,VI}` are now
-`arc_5.12`, `compress_rebuilt`, `kermit_cio`, `screen_nocio` and `vi_1.0`,
+`arc_5.12`, `compress_rebuilt`, `kermit_cio` (since dropped as a duplicate,
+2026-09-12), `screen_nocio` and `vi_1.0`,
 file and module together, with `tools/rename_module.py`. `bush` also left the
 disk (a countdown to the end of a 1989 administration). `makeinfo` and
 `gnuchess` are NOT done.

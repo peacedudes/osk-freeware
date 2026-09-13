@@ -28,7 +28,8 @@ to fix them. `relink_cio.sh` now asks `tools/cio_macro_scan.py` first and
 **refuses** any program the scan names, rather than reporting it and leaving
 the judgement to whoever reads the results — which is what shipped
 `CMDS/REBUILT/kermit_cio`, a relink carrying the call sites and the one build
-of kermit here that could only be driven in send mode.
+of kermit here that could only be driven in send mode. It was dropped from the
+collection on 2026-09-12 as a duplicate; the lesson it paid for is this rule.
 
 It also refuses to run at all if the scan names nothing, because a scan that
 has stopped working leaves the gate open and looks exactly like a clean disk.
@@ -268,18 +269,35 @@ file whose real problem was its first member.
 Measured 2026-09-12 on `napoleon'.  Its `objects.c' is 76 `ROOM(...)' and
 `OBJECT(...)' macro calls, each at the margin with its arguments running over
 several lines.  That is the same shape as a function definition, so ansi2knr
-tries to rewrite all 76 -- and does not stop.  The run sat at 100% CPU for
-twelve minutes on one 47 KB file and the `ctmp_objects.c' it had written was
-20,480 bytes of corruption, with `"\n"' inserted INTO THE MIDDLE OF WORDS
-inside string literals (`Like t"\n"he landing').  Nothing was reported: no
-error, no exit, just a build that never ends.
+tries to rewrite all 76 -- and then never stops.  The run sat at 100% CPU for
+twelve minutes on one 47 KB file, output frozen, with `"\n"' inserted INTO THE
+MIDDLE OF WORDS inside string literals (`Like t"\n"he landing').  Nothing is
+reported: no error, no exit, just a build that never ends.
 
-**The tell is a ctmp_ file that is not slightly LARGER than its source.**  A
-healthy ansi2knr output grows by a few bytes per definition -- napoleon's
-other five grew by 16 to 21.  One that is smaller, or a round number like
-20480, is a truncated write, and the file it came from wants taking out of
-the pass.  The cure is one name off the `KNR=' list; `objects.c' has no
-function definitions at all, so excluding it costs nothing.
+**WHY it never stops, diagnosed by the os9exec session 2026-09-12.**
+`convert1()' scans the argument list with `for ( ; end == NULL; p++ )' and a
+switch that looks only for `,', `(', `)' and `/'.  There is no NUL check and
+no bound, and the buffer is 5000 bytes.  Once `test1()' misjudges a `ROOM(...)'
+macro as a function header, the scan walks off the end looking for a terminator
+that is not there.  ansi2knr's own header predicts it: "Any other construct
+that starts at the left margin and follows the above syntax (such as a macro
+or function call)" will confuse it.
+
+**I FIRST READ THIS AS AN EMULATOR FAULT AND IT IS NOT.**  The output stops at
+exactly 20,480 bytes -- 20x1024 -- and that roundness looked like a write
+ceiling.  It is only the last full stdio buffer flushed before the program
+stopped writing: inputs of 18100, 18500, 20000, 30000 and 40000 bytes all
+freeze at the same 20480, and identical output from different inputs means the
+number tracks nothing.  A 33 KB ordinary-C input completes fine.
+
+**The general caution is worth more than the bug.**  os9exec keeps its arena
+zeroed, so an out-of-bounds read finds neither a terminator nor garbage that
+happens to match -- it scans zeros for ever.  On real hardware the same code
+would more likely fault or stop by luck.  A TOO-CLEAN EMULATOR TURNS A
+THIRD-PARTY BUG INTO SOMETHING THAT LOOKS LIKE AN EMULATOR BUG.
+
+The cure is one name off the `KNR=' list; `objects.c' has no function
+definitions at all, so excluding it costs nothing.
 
 **ansi2knr only sees a function whose NAME IS AT THE LEFT MARGIN.** Its own
 header says so:

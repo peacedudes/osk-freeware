@@ -177,18 +177,6 @@ wait    1
 run     gzip -v tmp/ARC/g1
 wait    8
 
-shot    gzip68k_nocsl
-cap     gzip 1.2.4 built for the 68000, without the csl trap library.
-try     gzip68k_nocsl -v tmp/ARC/g2
-run     rm -f /dd/tmp/ARC/g2*; cat /dd/DOC/INDEX > /dd/tmp/ARC/g2
-wait    3
-run     builtin cd /dd
-wait    1
-run     clear
-wait    1
-run     gzip68k_nocsl -v tmp/ARC/g2
-wait    8
-
 shot    gzip68k_csl
 cap     The same 68000 build of gzip 1.2.4, linked against csl instead.
 try     gzip68k_csl -v tmp/ARC/g3
@@ -201,18 +189,6 @@ wait    1
 run     gzip68k_csl -v tmp/ARC/g3
 wait    8
 
-shot    gzip020_nocsl
-cap     gzip 1.2.4 built for the 68020, without csl.
-try     gzip020_nocsl -v tmp/ARC/g4
-run     rm -f /dd/tmp/ARC/g4*; cat /dd/DOC/INDEX > /dd/tmp/ARC/g4
-wait    3
-run     builtin cd /dd
-wait    1
-run     clear
-wait    1
-run     gzip020_nocsl -v tmp/ARC/g4
-wait    8
-
 shot    gzip020_csl
 cap     The 68020 build of gzip 1.2.4, linked against csl.
 try     gzip020_csl -v tmp/ARC/g5
@@ -223,18 +199,6 @@ wait    1
 run     clear
 wait    1
 run     gzip020_csl -v tmp/ARC/g5
-wait    8
-
-shot    gzipcpu32_nocsl
-cap     gzip 1.2.4 built for the CPU32, without csl.
-try     gzipcpu32_nocsl -v tmp/ARC/g6
-run     rm -f /dd/tmp/ARC/g6*; cat /dd/DOC/INDEX > /dd/tmp/ARC/g6
-wait    3
-run     builtin cd /dd
-wait    1
-run     clear
-wait    1
-run     gzipcpu32_nocsl -v tmp/ARC/g6
 wait    8
 
 shot    gzipcpu32k_csl
