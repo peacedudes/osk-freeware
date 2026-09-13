@@ -221,6 +221,34 @@ CARD -- the card called `gcc' is the GCC2 driver, run as `./gcc' from its
 directory, as its caption states.  The audit compared two binaries, only
 one of which is carded.  Nothing to fix.
 
+**PLAN.md 1a IS THE NEXT REAL WORK, and its figure is stale: 72, not 27.**
+Measured 2026-09-12 with the repo's own detector, tools/audit_cards.py,
+which is the honest one (its header records two earlier versions that
+lied).  It flags 95 of 990 -- but 23 of those are captures the INK FLOOR
+correctly dropped, so no reader ever sees them.  The real set is the 72
+that are flagged AND published:
+
+    ERROR-ONLY    24        MOSTLY-HELP     4
+    THIN-HELP     23        HELP-ONLY       1
+    NOTHING       19        MOSTLY-ERROR    1
+
+audit_cards scores from notes/playtests, not from docs/screens.js, so it
+cannot tell a thin published card from a capture that was never
+published.  Split them before counting: `cls', `byteflip', `bootlogger'
+and 20 others have NO published card at all.
+
+WHERE THE WORK IS, by category: Communications 27, Graphics 23, System &
+modules 16 -- so this is probably two or three systemic causes (no
+network, no display, no live service) rather than 72 separate defects.
+The plan's own record says the fix is nearly always THE INVOCATION rather
+than the program: `hc' was a text filter run as a calculator, `zoo2'
+wanted a bare letter, eleven Dhrystones were waiting on stdin.
+
+AND CHECK WHETHER THE PROGRAM CAN SHOW ANYTHING AT ALL FIRST.  `graph' is
+the Graph trap library, a type-$0B module and not a program; `loadmem' and
+`savemem' are super-user only.  A NOTHING card for those is correct, the
+way fpu's absence from the panel ratchet is correct.
+
 **SO THE CARD AUDIT IS FULLY WORKED.**  Of the six HIGH: 1 closed at 0
 (try-line paths), 2 accounted for, 3 did not reproduce, 4 not
 reproducible, 5 real but a PHRASING defect, 6 fixed.  Of the rest: 9 and

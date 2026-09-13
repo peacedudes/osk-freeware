@@ -1,2 +1,2 @@
 rdjpgcom tmp/GFXA/jc.jpg; echo ""
-$ reeware disk
+OS-9 freeware disk

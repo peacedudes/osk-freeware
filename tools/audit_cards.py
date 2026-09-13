@@ -37,7 +37,13 @@ REPO = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 CAPS = os.path.join(REPO, "notes", "playtests")
 
 # The shell's own prompt, in every form the captures carry it.
-PROMPT = re.compile(r"^(bash#|os9\$|\$)\s?")
+# A BARE `$' IS ONLY A PROMPT WHEN A SPACE FOLLOWS IT.  `strings'
+# prints its offsets as `$00017F: <text>', and stripping the `$' left
+# `00017F: ...', which then landed in the typed-command branch -- so a
+# card with fourteen lines of real output scored work=0 and was reported
+# NOTHING.  Measured 2026-09-12; `strings' is the only capture affected,
+# but the shape would silently hide any program whose output starts `$'.
+PROMPT = re.compile(r"^(bash#|os9\$|\$(?=\s))\s?")
 
 USAGE = re.compile(r"(?i)^\s*(usage|syntax|use\b|options?)\s*[:\-]"
                    r"|^\s*usage\s*$")
