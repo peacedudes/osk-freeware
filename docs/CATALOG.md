@@ -31,7 +31,7 @@
 | [Maths & calculators](#maths--calculators) | 15 | Calculators, plotting, orbits and number theory. |
 | [Printing](#printing) | 11 | Spoolers, page formatting and PostScript. |
 | [Documentation](#documentation) | 5 | Pagers, readers and the help system. |
-| [G-Windows](#g-windows) | 6 | Programs for G-Windows, OS-9's graphical display.  os9exec has no G-Windows, so none of these run or can be tested here; they are listed for a real OS-9 workstation that has it. |
+| [G-Windows](#g-windows) | 6 | Programs for G-Windows, OS-9's graphical display.  There is no G-Windows here, so what their cards show is each one declining in its own words -- `Unable to access "/win" device', `dclock only runs under G-Windows', a status of 208 or 221.  None of them can be exercised without the display; they are listed for a real OS-9 workstation that has it. |
 | [Needs hardware](#needs-hardware) | 12 | Programs that drive hardware this collection has no way to reach -- a graphics display of the kind a GEPARD or an MM/1 carries, or a printer on its own SCF device.  WE CANNOT TEST ANY OF THESE, at all: what is written about them comes from their own text and their code, not from watching them work.  They are here for a real machine that has the hardware. |
 
 ## Shells
@@ -1738,7 +1738,7 @@
 
 ## G-Windows
 
-*Programs for G-Windows, OS-9's graphical display.  os9exec has no G-Windows, so none of these run or can be tested here; they are listed for a real OS-9 workstation that has it.*
+*Programs for G-Windows, OS-9's graphical display.  There is no G-Windows here, so what their cards show is each one declining in its own words -- `Unable to access "/win" device', `dclock only runs under G-Windows', a status of 208 or 221.  None of them can be exercised without the display; they are listed for a real OS-9 workstation that has it.*
 
 <details><summary>6 programs</summary>
 

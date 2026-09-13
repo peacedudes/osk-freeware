@@ -136,7 +136,7 @@ is no help until you already know the name you want.
 | **Maths & calculators** | 15 | Calculators, plotting, orbits and number theory. |
 | **Printing** | 11 | Spoolers, page formatting and PostScript. |
 | **Documentation** | 5 | Pagers, readers and the help system. |
-| **G-Windows** | 6 | Programs for G-Windows, OS-9's graphical display.  os9exec has no G-Windows, so none of these run or can be tested here; they are listed for a real OS-9 workstation that has it. |
+| **G-Windows** | 6 | Programs for G-Windows, OS-9's graphical display.  There is no G-Windows here, so what their cards show is each one declining in its own words -- `Unable to access "/win" device', `dclock only runs under G-Windows', a status of 208 or 221.  None of them can be exercised without the display; they are listed for a real OS-9 workstation that has it. |
 | **Needs hardware** | 12 | Programs that drive hardware this collection has no way to reach -- a graphics display of the kind a GEPARD or an MM/1 carries, or a printer on its own SCF device.  WE CANNOT TEST ANY OF THESE, at all: what is written about them comes from their own text and their code, not from watching them work.  They are here for a real machine that has the hardware. |
 
 <!-- CATEGORIES:END -->

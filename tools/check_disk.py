@@ -1278,6 +1278,62 @@ def check_harness_env_matches_login(root):
 
 
 
+def check_every_program_is_accounted_for(root):
+    """A catalogued program is in screens.js, the backlog, or the exceptions.
+
+    THE PANEL RATCHET READS docs/screens.js, so a program that never reached
+    the catalogue is invisible to it -- not failing, not excepted, not on the
+    backlog, simply unseen.  Both ratchets then report zero outstanding while
+    the program has neither a card nor a recorded reason for lacking one.
+
+    Written 2026-09-12 after `dedit', `who', `fpu' and `fpu040' appeared to
+    fall through.  THEY DO NOT: none is a type-$01 program, so the panel
+    system ignores them correctly, and the first version of this check
+    demanded cards for things nothing can show.  It failed the gate on four
+    correctly-handled names before the predicate was narrowed to
+    audit_panels.runnable().  The lesson kept rather than the false alarm:
+    a check over a WIDER set than the system it guards will invent work.
+
+    So this is the hole rather than its instances: every name in
+    categories.psv must appear in ONE of the three places, and a new program
+    that shows nothing must say why in panel-exceptions.psv.
+    """
+    import json
+    here = os.path.dirname(os.path.abspath(__file__))
+    js = os.path.join(os.path.dirname(here), "docs", "screens.js")
+    seen = set()
+    if os.path.exists(js):
+        text = open(js).read()
+        seen = set(json.loads(text[text.index("{"):].rstrip().rstrip(";")).keys())
+    def names(path, sep):
+        out = set()
+        if not os.path.exists(path):
+            return out
+        for line in open(path):
+            line = line.strip()
+            if not line or line.startswith("#"):
+                continue
+            out.add(line.split(sep)[0] if sep else line)
+        return out
+    # The panel system's universe is audit_panels.runnable() -- every type-$01
+    # module the catalogue lists -- NOT every name in categories.psv.  Asking
+    # about the wider set makes this a false-positive generator: `fpu' and
+    # `fpu040' are type-$0C descriptors, `who' is a shell script and `dedit'
+    # is type-$02 I-code, so nothing is expected to show any of them, and
+    # cio/math/csl are traplibs credited to another card.  The first version
+    # of this check failed on exactly those four and I nearly "fixed" them.
+    sys.path.insert(0, here)
+    import audit_panels
+    cats = set(audit_panels.runnable())
+    backlog = names(os.path.join(here, "panel-backlog.txt"), None)
+    excepted = names(os.path.join(here, "panel-exceptions.psv"), "|")
+    missing = sorted(cats - seen - backlog - excepted)
+    for m in missing[:10]:
+        print("    %s is catalogued but has no card, no backlog line and no "
+              "exception" % m)
+    return not missing, "%d program(s) accounted for nowhere" % len(missing)
+
+
 def check_panels_show_their_program(root):
     """Every runnable program's panel shows THAT program working -- ratcheted.
 
@@ -1332,6 +1388,7 @@ CHECKS = [
     ("every card says what to type", check_cards_have_a_try_line),
     ("cards carry real help text", check_cards_carry_real_help),
     ("harness env matches SYS/login", check_harness_env_matches_login),
+    ("every program is accounted for", check_every_program_is_accounted_for),
     ("panels show their own program", check_panels_show_their_program),
 ]
 
