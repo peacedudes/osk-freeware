@@ -265,6 +265,38 @@ one by one rather than bucketed (my regex buckets called 22 of 31
     not apply -- sldtoppm has a real round trip through ppmtoacad, and
     psidtopgm decodes hex handed to it directly.  Neither is flagged.
 
+**THIN-HELP IS 23 OF 23 HONEST -- no defects in that group at all.**
+Every one states its situation in its own caption: `lpq' "With no spooler
+started it says so", `UnMacpack' "No PackIt archive is on this disk to
+open", `eset' "can only reach an event that has already been created",
+`lgrep' "prints nothing even for a string that is present, so `grep -l'
+is the one to reach for", `lmail' "hangs and has to be broken out of",
+`run' "the console is that terminal already".  I counted 10 unexplained,
+then 5, then 0 -- each time because my keyword net was reading a caption
+TRUNCATED TO 56 CHARACTERS and judging the fragment.  Read the caption in
+full before calling it silent.
+
+**THE REAL DEFECT IN THIS LIST IS A GARBLED-CAPTURE CLUSTER, ALL IN
+graphics.sheet.**  Characters eaten from the front of lines or overlapped:
+`wrjpgcom' shows `$ reeware disk' for "OS-9 freeware disk", `X11R6shl'
+shows `$ hl:', `basicwin' `$ in: cannot connect to X server',
+`rdjpgcom.070' `$ 70 build', and loadmem/savemem/rsconvert/snap show
+overlapping text.  RE-SHOOTING DOES NOT FIX IT.  All eleven were
+re-shot 2026-09-13 and came back BYTE-IDENTICAL, so it is not a stale
+capture -- `graph', which re-shooting did fix, was a different fault.
+
+AND THE PROGRAMS ARE INNOCENT, measured: run straight through os9try,
+`basicwin' prints `basicwin: cannot connect to X server' -- the full name
+is there.  Its card shows `in: cannot connect to X server'.  SIX
+CHARACTERS ARE LOST FROM THE START OF THE LINE somewhere in the capture
+path, reproducibly, for these cards and not for others.
+
+So this is a harness or sheet fault to chase in tools/screenshots.py, not
+eleven card defects.  The seven with the lowest ink are flagged by the
+harness itself with `<-- LOOK AT THIS ONE'.  Start there: compare a
+garbled card's raw pty bytes against what lands in notes/playtests, and
+note that all eleven live in ONE sheet, which is the strongest clue.
+
 **THE DETECTOR HAD A BUG THAT INVENTED EMPTY CARDS.**  `strings' prints
 its offsets as `$00017F: <text>', and audit_cards' PROMPT pattern stripped
 a leading bare `$', leaving `00017F: ...', which then matched the branch
