@@ -1128,3 +1128,38 @@ Still genuinely open, in order of how much they are worth:
   real-hardware test.
 - Everything in ROADMAP-freeware.md about the release -- CI never exercised,
   branch never pushed, nothing tagged -- is yours.
+
+## A MEASUREMENT TRAP THAT COST TIME TWICE IN ONE NIGHT (2026-09-13)
+
+**Never compare a raw capture in `notes/playtests' against a published
+card in `docs/screens' without running it through `gen_screens.trim()'
+first.  They are not the same text.**
+
+`gen_screens' rewrites the shell prompt on the way to publication --
+`PROMPT = re.compile(r"^bash#\s?")' becomes `$ ' -- and it also strips
+the trailing prompt, the login noise and os9exec's file-table dump.  So
+a raw capture says `bash# ppmpat ...' where the published card says
+`$ ppmpat ...'.
+
+Any ink measure that EXCLUDES lines containing `bash#' -- which
+screenshots.py's own `ink()' does, deliberately, because the shell's
+prompt is not the program's output -- therefore counts those command
+lines in the PUBLISHED card and discards them in the RAW one.  The
+bigger the stanza, the bigger the phantom loss.
+
+It bit twice, in different disguises:
+
+  1. Restoring twelve captures from backup and diffing them against the
+     published cards reported `10 of 12 MISMATCH'.  The restore was
+     byte-perfect.
+  2. Validating the PD_ALF guard over a whole sheet reported `35 of 86
+     DEGRADED', including setup-image at position 1, where no guard had
+     fired and nothing could have poisoned anything.  Re-measured
+     through trim(), it was 84 equivalent, 1 improved, 1 transient.
+
+The tell is that the flagged set has MORE `run' lines than the
+unflagged: 6.1 against 3.0 in the second case.  If a "degradation" tracks
+command count rather than program behaviour, it is this.
+
+    new = gen_screens.ink(gen_screens.trim(open(cap).read(), try_line))
+    old = gen_screens.ink(open('docs/screens/NAME.txt').read())
