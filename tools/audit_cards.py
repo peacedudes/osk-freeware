@@ -223,6 +223,47 @@ def main(argv):
                      "usage line is the only card it can ever safely have, "
                      "and the caption says why.  See CLAUDE.md, which forbids "
                      "running it in a test at all",
+            "lgrep": "its card ALREADY runs a real search -- `lgrep ksh "
+                     "SYS/password', where `ksh' is genuinely in that file -- "
+                     "and lgrep prints nothing and exits 0.  That silence IS "
+                     "the finding, the caption says so and sends the reader "
+                     "to `grep -l', and DOC/README-GREP compares the "
+                     "searchers.  Scored THIN-HELP for the usage line above "
+                     "the search, not for want of trying one",
+            "run": "its card ALREADY does the real thing -- `export "
+                   "PORT=/term; run \"whoami\"' -- and nothing comes back, "
+                   "because run rebinds stdio to the terminal PORT names and "
+                   "here the console IS that terminal.  The caption says "
+                   "exactly that.  Nothing else is available to show",
+            # THE PRINT SPOOLER IS NOT INSTALLED ON THIS DISK, and its four
+            # tools can only say so.  Each was read 2026-09-13: two of them
+            # already RUN for real on their cards and report the true state,
+            # one runs a removal, and one hangs if pushed.  `submit' is
+            # deliberately NOT here -- a .sub file could be written for it.
+            "lpq": "its card already runs `lpq' for real and gets `lpq: no "
+                   "spooler installed', which is the program working and "
+                   "reporting the true state of this disk",
+            "lprm": "its card already runs `lprm 1' for real; with no spooler "
+                    "managing a queue there is nothing to link to and it says "
+                    "so rather than pretending to remove a job",
+            "lpsched": "starts the spooler for a printer device, and given "
+                       "one -- there is no printer here -- it WAITS to open "
+                       "it rather than answering, so the option list is all "
+                       "that can safely be shown",
+            "lpshut": "its card already runs `lpshut' for real and gets "
+                      "`lpshut: no spooler active', which is the true state",
+            # collect2 is a LINKER PASS, not a user-facing program: g++ runs
+            # it between compiling and linking to build the global
+            # constructor table.  `collect' and `gpp_collect' are the same
+            # binary (md5 74b3bbf3686d) in two directories; `gcc_collect' is
+            # GCC139's build of it.  With no arguments it prints its usage by
+            # design -- it takes no -? -- and there is no demonstration of it
+            # that is not a C++ link.
+            "collect": "collect2, a g++ linker pass; with no arguments it "
+                       "prints its usage by design and its real use is inside "
+                       "a C++ link",
+            "gcc_collect": "the same linker pass, GCC139's build of it",
+            "gpp_collect": "the same linker pass, byte-identical to `collect'",
             "transfer": "copies files off a GDOS disk, and the GDOS device "
                         "DGDOS0 is not present on this disk or in os9exec -- "
                         "so `Can't load device descriptor' is the only thing "
