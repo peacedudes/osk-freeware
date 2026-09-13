@@ -360,21 +360,38 @@ a POSITION in it, so a stanza's start is a read offset and clearing the
 buffer would invalidate every stored offset.  A fix advances the offset;
 it does not empty the buffer.
 
-A fix would send an interrupt (or drain to a fresh mark) before the
-`builtin cd', and must then be validated by re-shooting a whole sheet and
-confirming the cluster stays clean -- that is a session's work, not a
-tail-end edit.
+**FOUND AND FIXED, 2026-09-13 (commit 090b27a5).** It is none of the
+above and no interrupt was needed. OS-9 ends a display line with a bare
+CARRIAGE RETURN and SCF appends the line feed itself, gated on the path
+option PD_ALF. A program wanting a clean binary stream clears PD_ALF,
+and SS_Opt is a DEVICE-level operation -- os9exec propagates it to every
+open path on the terminal, as real OS-9 does -- so one program clearing
+it leaves the shell and every later stanza writing CR with no LF. Each
+line lands back at column 0 on top of the last, and the next prompt
+overwrites the first six characters: `basicw' is six characters, and so
+is "bash# ". That is the whole of the "six characters lost from the
+start of the line" recorded above.
 
-AND THE PROGRAMS ARE INNOCENT, measured: run straight through os9try,
-`basicwin' prints `basicwin: cannot connect to X server' -- the full name
-is there.  Its card shows `in: cannot connect to X server'.  SIX
-CHARACTERS ARE LOST FROM THE START OF THE LINE somewhere in the capture
-path, reproducibly, for these cards and not for others.
+THE BYTES ALWAYS ARRIVED. A probe of the raw pty stream (scratchpad,
+probe_raw.py) found loadmem sending 212 bytes and rendering as ink 7;
+nine of twelve stanzas were "arrived, lost in rendering". ansiscreen is
+blameless -- `if ch == chr(13): self.col = 0' is correct terminal
+behaviour for a stream with no line feeds in it. So are the programs.
 
-So this is a harness fault to chase in tools/screenshots.py, not card
-defects.  Start by comparing a garbled card's raw pty bytes against what
-lands in notes/playtests, and note that every affected stanza lives in
-ONE sheet and ONE size-group session, which is the strongest clue.
+Measured both ways: loadmem alone gives LF=5 CR=5 ink 157; after
+cjpeg.070 it gives LF=1 CR=5 ink 7. A session cannot be un-poisoned from
+outside OS-9, so screenshots.py's alf_off() spots the signature in the
+stanza's own slice and replaces the session, as it does for `starved'.
+Validated on the twelve-stanza batch: every one now matches its solo
+value, and promoting the result changed NOTHING in docs/screens -- the
+guarded batch reproduces the solo captures exactly.
+
+THE PROGRAMS WERE ALWAYS INNOCENT, and so was the capture path.  Run
+straight through os9try, `basicwin' prints `basicwin: cannot connect to
+X server'; its card showed `in: cannot connect to X server'.  Those six
+characters were never LOST anywhere -- they were OVERWRITTEN in place by
+the prompt that followed, for the reason above.  Nothing in the capture
+path drops bytes, which is why every hunt for where they went failed.
 
 THE INK FLOOR WAS MASKING IT (2026-09-13).  gen_screens drops a capture
 under 30 ink, so most of the damaged ones never reached a reader and the

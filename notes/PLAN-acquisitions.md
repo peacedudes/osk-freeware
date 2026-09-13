@@ -776,3 +776,21 @@ group carried almost none across eight years either side of it.
 **Where the real hole is: comp.os.os9, 1987-2002.** See the 2026-09-13
 entry above -- what we hold starts in 2003. That is the group where OSK
 freeware was actually posted, and no copy of its active era is in hand.
+
+**comp.os.os9 1987-2002 CANNOT be closed from the Internet Archive.**
+Searched 2026-09-13, so nobody repeats it. IA holds exactly five items
+matching the group or its neighbours:
+
+  FULL-USENET-BACKUP-2020-Oct-comp.os.os9.(1345).mbox.7z   the 531 KB
+      archive we ALREADY HOLD, unpacked, 1,345 messages, 2003-2020
+  usenet-comp.os            giganews' comp.os collection -- giganews
+      begins around 2003, the same era we already have
+  usenet-comp.os2, usenet-comp.os-windows,
+  usenet-comp.os-mswindows  different groups entirely
+
+There is no pre-2003 comp.os.os9 on IA, per-group or otherwise, and the
+utzoo route is torrent-only and stops mid-1991 in any case (above). So
+the group's active era has to come from somewhere that is not IA and not
+tuhs -- a personal spool, a CD-ROM collection, or one of the German or
+Australian OS-9 user-group archives, most of which are in the dead-host
+table above. Worth retrying those hosts; not worth re-searching IA.
