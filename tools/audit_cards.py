@@ -168,6 +168,30 @@ def main(argv):
                     "`event' utility is Microware's and is not here -- so "
                     "`eset' can only link to one that already exists, which "
                     "is what its `can't link to' says",
+            # FOUR MORE WHOSE FAILURE IS THE POINT OF THE CARD (2026-09-13).
+            # Each caption states the finding, and each was read before being
+            # listed here -- the same standard `perr' and the no-reader set
+            # meet.  Checked while working the flag list down from 71: all
+            # four looked like defects from the flag alone and are not.
+            "cjpeg.070": "the card's SUBJECT is that this is the "
+                         "OTHER-PROCESSOR build.  Its 68000 twin `cjpeg' "
+                         "compresses the same PNM and is published at ink "
+                         "156; this one answers `Premature end of input "
+                         "file'.  The failure IS the comparison the card "
+                         "exists to draw",
+            "pbmtobbnbg": "a WRITER, not a no-reader: given a PBM this "
+                          "disk's own `pbmmake' produces, it reports `bad "
+                          "magic number' while pbmtog3, pbmtogem and "
+                          "pbmtoicon read the SAME FILE in the same sheet.  "
+                          "The card carries its own control and documents a "
+                          "defect in the program",
+            "newslock": "the finding is that it leaves no trace -- no file "
+                        "at either name, nothing printed.  The `ls' showing "
+                        "error 216 for both lock names is the EVIDENCE for "
+                        "that, captured on purpose, not a broken invocation",
+            "exrecover": "recovers the buffer `expreserve' kept when vi "
+                         "died.  With nothing preserved, `File not found' is "
+                         "the honest answer and the caption says so",
             }
     # `texfonts-bitmap' was excepted here until 2026-09-01, on the grounds
     # that there was no .pk, .gf or .vf for its eight tools to read.  There
