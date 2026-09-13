@@ -1,18 +1,22 @@
 ls CMDS/GAMES | column
-advcom          crib            hotel           puz15           tformat
-advent          cribbage        lander          puzzle          tt
-advint          cyberwar        larn            rain            ularn
-animal          dclock          life            robots          valspeak
-apfel           fuddle          lissaj          rpoem           vtxtcn
-back            g               lorenz3d        rstory          wanderer
-backgammon      game            maze            rstory2         wgen
-bincheckr       gnuan           mille           scriptmaster    wisecrack
-bite            gnuchess        mines           showpic         world
-blackjak        gnuchessc       mkdict          sine            worm
-bog             graph           mkindex         snake           worms
-cam             graphdemo       nchess          sokoban         xmas
-card            graphsave       newsgen         stone           zot
-checkgame       greed           nobs            striche
-chess           hack            pacman          teachgammon
-colortest       hackwish        poker           tess
-convert         hang            postprint       tet
+accordian       convert         hackwish        othello         tess
+advcom          corewar         hang            pacman          tet
+advent          crib            hexa            poker           tformat
+advint          cribbage        hotel           postprint       tt
+animal          cwasm           jotto           puz15           ularn
+apfel           cwdis           lander          puzzle          valspeak
+back            cyberwar        larn            rain            vtxtcn
+backgammon      dclock          life            reversi         wanderer
+bincheckr       fish            lissaj          robots          wgen
+bite            fuddle          lorenz3d        rpoem           wisecrack
+blackjak        g               mastrm          rstory          world
+bog             game            maze            saa             worm
+bs              gnuan           mille           scrabble        worms
+c4              gnuchess        mines           scriptmaster    wump
+cam             gnuchessc       mkdict          showpic         xmas
+canfield        gnugo           mkindex         sine            yahtzee2
+card            graph           monop           snake           zot
+cfscores        graphdemo       napoleon        sokoban
+checkgame       graphsave       nchess          stone
+chess           greed           newsgen         striche
+colortest       hack            nobs            teachgammon
