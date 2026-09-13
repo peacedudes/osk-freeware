@@ -1303,6 +1303,49 @@ before committing' and reported exit 0 in the same breath; run unpiped
 it exits 1.  The same trap applies to `check_disk.py'.  Redirect, then
 read `$?'.
 
+## audit_cards was eating the first line of every card (fixed 2026-09-13)
+
+`classify()' discounted three kinds of line as "the command that was
+typed": one behind a prompt, one matching the sheet's own `run' record,
+and **the first line of the capture, always**.  That third test was
+measured across all 990 cards: it discounted 241 first lines, of which
+TWO were echoes.  The other 239 were the programs' own opening words --
+`OS-9 BACKGAMMON', `BATTLESHIPS', `Accordian Solitaire - by Eric
+Lechner', `ATerm : A terminal program for OS9/68000', `Wrote cache file
+./index.cache'.
+
+It fired hardest on the cards whose stanza runs `clear' before the demo,
+because then no prompt-prefixed echo survives and the program's ONLY
+line is line one.  Seven cards were reported NOTHING while showing real
+output: `wndex', `vis', `bootlogger', `preset', `screen', `fileserv',
+`atp'.  Flagged count 66 -> 59.
+
+**Two cautions for whoever reads the new list.**
+
+`transfer' JOINED it, correctly -- its real first line is a second error
+(`Can't load device descriptor "DGDOS0" !') which tips it to
+MOSTLY-ERROR.  Looked at, and excepted by name: there is no GDOS device
+here, so that message is all it can say.
+
+`suspend' LEFT it and should not have.  Its capture is still nothing but
+help, but the option lines under `Options:' (`-?  show this
+explanation') score as WORK, and with the banner counted too its work
+reached 4 -- one past the `work <= 3' threshold that defines THIN-HELP.
+So the THIN-HELP rule is sensitive to how much help text a program
+prints, which is not what it means to measure.  Worth fixing if the
+queue is worked down; not worth widening the USAGE regex blind.
+
+**How the change was justified, since a scorer is exactly the thing to
+be careful with**: the replacement rule was reimplemented alongside the
+original and compared card by card over all 990 -- ZERO mismatches --
+before anything was edited, so the measurement of the old rule came from
+something known to reproduce it.  Two earlier heuristics for "does this
+first line resemble the typed command" were tried and both misfired
+(they called `Twas brillig, and the slithy toves' an echo, because a
+SETUP line writes that poem into the file the editors then display).
+Nothing outside `audit_cards.py' calls `classify()' -- `audit_panels'
+imports only the three regexes -- so the panels gate is untouched.
+
 **The archives trio is the first FAMILY among the clearers**: `lha',
 `lharc' and `lharcs' are three builds of one archiver, found together.
 That is worth noticing, but it does NOT revive the profile -- see above,

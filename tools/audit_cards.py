@@ -81,6 +81,24 @@ def commands(name, sheets):
 
 
 def classify(path, typed):
+    """Score a capture's lines.  `body' comes back holding the SCORED ones.
+
+    The command a card typed is not evidence either way, and there are two
+    honest ways to know it when you see it: a prompt in front of it, or the
+    sheet's own record of what was run.  There was a third until 2026-09-13
+    -- discount the FIRST line of every capture, on the theory that a
+    cleared screen leaves the echo bare -- and measured across 990 cards it
+    discounted 241 first lines of which TWO were echoes.  The other 239 were
+    the programs' own opening words: `OS-9 BACKGAMMON', `BATTLESHIPS',
+    `ATerm : A terminal program for OS9/68000', `Wrote cache file
+    ./index.cache'.  It cost seven cards a false NOTHING and threw away the
+    most informative line of nearly every other card in the gallery.
+
+    The two real echoes (`gs33', `wrjpgcom.070') are line-wrapped command
+    text on cards scoring work elsewhere, so letting them count as one point
+    hides nothing.  That is the trade: two spurious points against 239
+    recovered lines.
+    """
     usage = err = work = 0
     body = []
     for raw in open(path, errors="replace").read().split("\n"):
@@ -88,9 +106,7 @@ def classify(path, typed):
         stripped = PROMPT.sub("", line).strip()
         if not stripped:
             continue
-        if PROMPT.match(line) or not body or stripped in typed:
-            # The command that was typed: not evidence either way.
-            body.append(stripped)
+        if PROMPT.match(line) or stripped in typed:
             continue
         body.append(stripped)
         if USAGE.search(stripped):
@@ -200,6 +216,12 @@ def main(argv):
                       "what the caption says.  Scored THIN-HELP because the "
                       "usage line counts as help, but that line is the BEFORE "
                       "half, not the subject",
+            "transfer": "copies files off a GDOS disk, and the GDOS device "
+                        "DGDOS0 is not present on this disk or in os9exec -- "
+                        "so `Can't load device descriptor' is the only thing "
+                        "it can say here, and the caption says so.  Looked "
+                        "at 2026-09-13 when the first-line fix surfaced it: "
+                        "there is no other output to show",
             }
     # `texfonts-bitmap' was excepted here until 2026-09-01, on the grounds
     # that there was no .pk, .gf or .vf for its eight tools to read.  There
@@ -233,7 +255,7 @@ def main(argv):
              "MOSTLY-ERROR": 4, "MOSTLY-HELP": 5, "THIN-HELP": 6, "": 9}
     for name, why, u, e, w, body in sorted(everything and rows or flagged,
                                            key=lambda r: (order[r[1]], r[0])):
-        first = next((b for b in body[1:]), "") if body else ""
+        first = next(iter(body), "")
         print("%-20s %-12s help=%-3d err=%-3d work=%-4d %s"
               % (name, why or "ok", u, e, w, first[:44]))
     print("\n%d of %d cards flagged" % (len(flagged), len(rows)))
