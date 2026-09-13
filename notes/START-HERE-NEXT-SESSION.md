@@ -1410,15 +1410,38 @@ modified.  That shape is worth reusing -- it answers "are there victims
 here?" with no promotion risk at all, and promotion can then be a
 separate, deliberate step.
 
-**A THIRD way an ink gain misleads: the gain can be ERROR TEXT.**
-`listalias' 83 -> 115 and `newmail' 69 -> 89 both PASSED the scroll test
--- each starts at its own command -- and both are WORSE, not better:
+**A THIRD way an ink gain misleads: the gain can be ERROR TEXT** -- but
+only ONE of the two cards was that, and an earlier version of this
+paragraph got both wrong.  Both passed the scroll test, each starting at
+its own command, and both carried a failed bare-name fork of a helper:
 
     $ listalias        $ newmail -d tester
     sort: nowhere found      uuname: nowhere found
 
-The extra ink is a failed bare-name fork of a helper.  That is the `hc'
-defect class: a card capturing a failed invocation.  Neither promoted.
+`newmail' WAS purely that -- the published card plus one error line, no
+content gained.  `listalias' was NOT: under its error line sat SIX MORE
+ALIASES than the published card showed.  The ink was telling me something
+real and I read it as noise.
+
+**Both are now FIXED, and by the documented cure.**  Each forks a helper
+by bare name, which resolves against chx and never PATH, so the helper
+has to be resident: `load /dd/CMDS/sort' for listalias, `load
+/dd/CMDS/UUCP/uuname' for newmail -- the printmail/readmsg case.
+listalias went 83 -> 248 and its aliases now come out SORTED, which is
+the pipeline's own proof it ran (`egrep "%s" | sort' is in the binary at
+offset 1616); DOC/INDEX said "the plain form needs nothing extra" and is
+corrected (`13a460a8').  newmail's card is unchanged by its fix -- the
+error line goes and the result equals what was already published -- but
+the stanza is worth having, because the card was previously correct only
+by accident of ambient state.
+
+**Do not generalise the mechanism.**  listalias carries `uuname -l' too,
+at offset 19118, and shows no uuname error once sort is loaded, so that
+path is not reached in the plain form.  Other ELM binaries name uuname --
+answer, elm, fastmail, filter, frm, newalias -- and whether their stanzas
+want the same `load' is UNMEASURED.  `filter' and `fastmail' both turned
+up in this sweep already (filter as a clearer, fastmail as a scrolled
+gain), so they are the two to look at first.
 
 So ink alone has now misled three different ways in one night -- the
 raw-vs-published artefact, a scroll, and error text -- and the scroll
