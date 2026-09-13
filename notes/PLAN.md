@@ -19,7 +19,7 @@ own OS-9 media**. Keep that reader in mind; it decides most questions.
 
 ```sh
 OS9EXEC_DIR=~/Developer/os9/os9exec tools/mkimage.sh disk osk-freeware.dd
-tools/check_disk.py disk          # 17 invariants -- read the list it prints,
+tools/check_disk.py disk          # 28 invariants -- read the list it prints,
                                   # never a number typed anywhere else
 tools/gen_catalog.py disk --check # every program catalogued and categorised
 tools/gen_screens.py --check      # no card has drifted from its stanza
@@ -28,7 +28,7 @@ tools/gen_screens.py --check      # no card has drifted from its stanza
 Longer, and worth running before you claim anything is finished:
 
 ```sh
-tools/datatest.py --all --image osk-freeware.dd   # 324 cases
+tools/datatest.py --all --image osk-freeware.dd   # 743 cases
 tools/playtest.py --all --image osk-freeware.dd   # 116 tests, 112 pass
 tools/ci/run_workflow_locally.sh /tmp/scratch     # the whole GitHub workflow
 ```
@@ -80,7 +80,7 @@ clear.
 | Of those, RUNNABLE (a type-$01 module) | 970 -- the rest are drivers, descriptors and trap libraries |
 | **Under no test at all** | **127** — and this row has gone the WRONG way (75 on 2026-08-31), because the collection grew |
 | No gallery card runs it by name | **1** (`fixyear`) — it was 81; the all-card sweep is what closed it |
-| `datatest` cases | **743 in 57 families** |
+| `datatest` cases | **743 in 57 families**, 3 deliberate failures (`zip-cannot-write-its-archive`, `todos-must-change-the-file`, `sir-round-trip-is-lossy` — named four lines above this table) |
 | `tools/drives` sheets | **76** |
 | Screens | **899 cards over 929 stanzas**, **30** still flagged by `audit_cards.py` (44 excepted by name, each with its reason in the table there) — re-measured 2026-09-13 |
 
