@@ -31,6 +31,26 @@ its data files ARE found).  The `nchess' RECIPE carried -DCHESSTOOL, which
 deletes the search table that is nchess's whole reason to exist -- fixed,
 and the rebuild now matches what ships.
 
+**Decision 7 is finished.**  All six GNU Chess builds stay -- no two are
+indistinguishable -- and INDEX now says what tells each apart, so a reader
+can pick one and drop the rest.  Measured, not transcribed: `gnuchessr'
+carries the book's full path (it books wherever you run it) and uses `set'
+to lay out a position; `nchess' has only the bare name (books from the
+current directory), uses `edit', and on the same drive script prints the
+live search table that gnuchessr does not.  `nchess' LOST its "GNU Chess
+4.0" label, which nothing here supports -- the string lineage actually
+points the other way, but that reading is inferred, so the claim simply
+goes rather than being reversed.
+
+Two provenance gaps closed with it: gnuan, gnuchessc, gnuchessn and
+gnuchessr had NO ORIGINS row at all, and the `gnuchess' row credited the
+whole name to Usenet gnu.ar when only the CMDS/GAMES build comes from
+there -- CMDS/gnuchess is a different port from the Microware archive.
+
+DO NOT re-derive cio dependency from strings while working on these.  I
+started to, and CLAUDE.md is right: the proxy is wrong in both directions
+and the star markers were measured by running without the modules.
+
 **fpu ships** (decision 2) with its own grant in DOC/fpu.doc, honestly
 labelled: it belongs in a bootfile and an Init extension list, neither of
 which this collection has, so it is there to install on your own system.
