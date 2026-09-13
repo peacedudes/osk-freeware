@@ -1224,3 +1224,47 @@ The real cost of the overlap is DRIFT: the same judgement is recorded
 twice in different words and nothing checks that they still agree.  If
 that is ever worth fixing, the safe shape is a CHECK that the reasons
 for a shared name have not diverged -- not one list feeding the other.
+
+## What this session did (2026-09-13, overnight), all committed and gate-green
+
+**`creadoc' is FIXED and shipped.**  rdoggett asked whether it failed for
+using the wrong `dir'.  Answer: supplying Microware's `dir', `del' and
+`shell' gets it past `can't execute "del"' and no further -- it is still
+off by one, against Microware's OWN dir.  Measured 666 file entries in
+four directories, sector addresses 2-5 hex digits and sizes 2-7: both
+fields are right-aligned, so the name is at column 54 in every one and
+`fnpos = 53' is right on no system.  One character.  Rebuilt through
+rtf -> r68 -> l68; the UNPATCHED rebuild differs from the shipped binary
+in 4 bytes (an M$Excpt vestige outside the parity range, plus the CRC),
+which is what makes the provenance clean, and the fixed one differs in 5.
+RTF stores the constant as text, so "one constant" is literally one
+character.  `395751bc'.
+
+**The garbled captures are ROOT-CAUSED and fixed** -- PD_ALF; see the
+section above.  Five earlier explanations are refuted there.  Fifteen
+cards repaired or newly published: ten in the cluster (`b93df9fc'), six
+of which the INK FLOOR had been silently dropping so they had no card at
+all; X11R6shl and vmod_trap now show the LIBRARY instead of a shell
+refusing to run it (`aac8cc78', `75f50af4'); and `pdraw', which nothing
+had flagged, recovered 96 -> 396 (`be65bb61').
+
+**Two gates gained something.**  screenshots.py warns when OS9SDK is
+unset and a stanza loads from /h1 (`77eecb39') -- that silence published
+a blank card.  And alf_off() replaces a poisoned session (`090b27a5').
+
+**Three of my own claims were WRONG and are corrected in place**, all
+caught by the sibling sessions reading manuals: `../..' IS valid OS-9
+(the gate stays, on portability), SS_Opt's scope is not established, and
+`58e3c35'/`398e3c35' carry both.  A measurement trap that cost time
+twice is written down, and so is why the two exception lists overlap.
+
+**The archives were swept** -- `notes/PLAN-acquisitions.md' has the state
+table.  IA is back up; alt.sources is exhausted for OSK; comp.os.os9
+1987-2002 is NOT on IA and that is the live question.  One new source:
+The OSKer, six issues 1990-91, public-domain submissions clause, no code.
+
+**Still unswept with the guard: ~770 stanzas** in the sheets other than
+graphics and the three netpbm ones.  Prediction does not work here -- I
+predicted netpbm would be affected and it was not (0 firings in 71) --
+so the only way to find another `pdraw' is to re-shoot and compare
+through trim().
