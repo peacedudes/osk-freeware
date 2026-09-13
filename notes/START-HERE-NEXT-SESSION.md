@@ -1195,14 +1195,20 @@ So do not reason about which sheets are at risk.  **Sweep them.**  That
 is the only instrument that has ever been right about this, and it is
 cheap to run measure-only with an unconditional restore.
 
-**SWEEP TALLY, 2026-09-13.**  622 of 929 stanzas swept, 307 remaining.
-Clearers by sheet: graphics 9, games 5, comms 4, system 2, textfilters 1
-(`casefix'), and ZERO in netpbm-ea, netpbm-in, netpbm, devtools,
-texttools and compilers.  Twenty-one in all.
+**SWEEP TALLY, 2026-09-13.**  659 of 929 stanzas swept, 270 remaining.
+Clearers by sheet: graphics 9, games 5, comms 4, system 2, files 2
+(`remove', `Ascii2Libr'), textfilters 1 (`casefix'), and ZERO in
+netpbm-ea, netpbm-in, netpbm, devtools, texttools and compilers.
+Twenty-three in all.
 
 Swept and CLEAN, so do not re-sweep these: netpbm-ea, netpbm-in, netpbm,
-devtools, texttools, compilers.  Swept and worked: graphics, games,
-comms, system, textfilters.
+devtools, texttools, compilers, files.  Swept and worked: graphics,
+games, comms, system, textfilters.
+
+`files' is worth a note: it fired TWICE and every card still came out
+equivalent -- 36 of 36.  That is the guard doing its job rather than a
+sheet with a problem, and it is what a clean sweep of an affected sheet
+looks like now the fix is in.
 
 `creadoc' re-read at ink 51 in the compilers sweep -- exactly what it was
 published at hours earlier, on a rebuilt image.  The column fix is
