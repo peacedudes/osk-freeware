@@ -1382,6 +1382,40 @@ Eleven names went into `audit_cards.py's `fine' table, in families:
   `lmail'    its caption says a real recipient hangs it.  Unverified --
              if that is right it belongs with `flink'; nobody has tried.
 
+**THE REMAINING 30 ARE LEFT FLAGGED ON PURPOSE.  Do not sweep them into
+exceptions.**  Every one has been read; they fall into two families and
+a short tail, and the flag is the honest prompt that a better card would
+be welcome if the world ever supplies one.
+
+  15 ERROR-ONLY, all ABSENT HARDWARE OR SERVICE, each card already
+     running for real and printing the refusal: `basicwin' and `xengine'
+     want an X server, `blastem' and `xyt' a modem, `disable' and
+     `enable' the device `/t1', `mail' the RAM disk `/r0', `mailx' and
+     `rmail' a mailbox directory, `msntp' a socket, `uwho' `/etc/utmp',
+     `uuxqt' a `procs' module, `uulog' a log whose own CONTENT contains
+     the word ERROR, `lnk.org' a `shell' module to fork, and `rcsmerge'
+     the `merge' binary this disk has no build of.
+  11 NOTHING, programs that genuinely say nothing when run alone:
+     `authwn', `inetdc' and `splman' are server helpers invoked per
+     request; `elvprsv' runs only when elvis dies; `byteflip' and
+     `wysecrack' end the session or wait on hardware; `cls' clears the
+     screen, which is what it is FOR; `infoxpress' and `puzzle' want a
+     serial host and G-Windows; `pgmedge' and `vtxtcn' wedge the capture
+     session (both measured, both with panel-exceptions of their own).
+  the tail of 4: `lmail', `loadmem', `submit' (a `.sub' ships but the
+     command inside it needs Microware's cc), and `pdraw', which is a
+     WORKING card scored MOSTLY-HELP only because its option echo lines
+     match the usage pattern.
+
+  (The list above was written from memory first and had `filter' and
+  `macunpack' in it -- one excepted earlier tonight, one REPAIRED
+  tonight -- sixteen names for fifteen slots.  It is now taken from
+  `tools/audit_cards.py' output.  Do the same before quoting it.)
+
+So the queue is now a list of things the DISK cannot do, not a list of
+cards nobody has looked at.  That is the state it should be handed on
+in.
+
 **Four leads that died on inspection, recorded so they are not chased
 again.**  `unsit's caption says no StuffIt archive is on the disk, and
 three `.sit' files ship in `DOC/orbit' -- which looked like a caption
@@ -1399,12 +1433,47 @@ is a good card already, work=7, never flagged.)
 
 `lnk.org' and `rcsmerge' died the same way -- see the section below.
 
-**Still flagged and NOT excepted, because a test is possible and nobody
-has run it:** `savemem' (super user and hex addresses -- the harness DOES
-run as the super user, so a small dump to a file may work, at some risk
-of taking the emulator down), and `snd_sig' (needs a live process; bash
-can background one with `&' and the pid could be signalled).  Both are
-worth ten minutes and neither has had them.
+**Those two were then tested, 2026-09-13, and the test earned its ten
+minutes twice over.**
+
+`savemem' RUNS.  The harness is the super user and hex addresses are
+easy, so both of its stated requirements are met -- and `savemem 0 100
+mem.out' creates `mem.out' at ZERO BYTES.  A card showing an empty
+output file is worse than the syntax line, so the syntax line stays and
+`savemem' is excepted with that measurement attached.  `loadmem' is the
+same program backwards, writing INTO memory; it has not been tried and
+should not be for the sake of a card.
+
+**`snd_sig' took two runs, and BOTH taught something.  It is excepted:
+this bash sets `$!' to ZERO.**  Backgrounding `cat > /nil &' makes the
+shell announce the job on screen as `<3>' -- that is the pid, in OS-9's
+own notation -- but `P=$!' then reads 0, so `echo pid is $P' prints
+`pid is 0' and snd_sig answers `illegal wake parameter-0'.  A stanza
+therefore cannot learn a pid to pass on; the number is on the screen and
+nowhere a script can reach.  And a successful wake prints nothing
+anyway, so even if the pid were available the card would show a command
+and silence.  **Do not reach for `$!' in a sheet: it is 0 here.**
+
+The FIRST run failed differently, and that lesson is the wider one:
+**`!' INSIDE DOUBLE QUOTES TRIGGERS HISTORY EXPANSION.**
+The stanza ran `echo "backgrounded pid $!"' and the shell answered
+
+    ": Event not found.
+
+so `$!' never reached `echo', and the `snd_sig $!' after it got an empty
+argument and said `illegal wake parameter-0'.  Nothing was wrong with
+snd_sig; the harness line was wrong.  This shell is INTERACTIVE, so
+history expansion is on.  Use single quotes, assign `P=$!' unquoted, or
+put `set +H' ahead of it.
+
+**The exposure was then measured, and it is narrow.**  A `!' followed by
+WHITESPACE is not an expansion, which is why the one shipped sheet line
+that carries a bang in a double-quoted string -- `printf "#! rnews %s\r"'
+in `comms.sheet' -- has always worked.  What bites is `!' followed by a
+word character or by the closing quote, as in `$!"'.  And no published
+card is damaged: **zero of 990 captures and zero of 899 published
+screens carry `Event not found'**, which is the signature.  So this is a
+trap for the next stanza somebody writes, not a defect in the gallery.
 
 ## Four flagged cards put to the test, 2026-09-13 (scratch sheet, then deleted)
 

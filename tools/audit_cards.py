@@ -252,6 +252,26 @@ def main(argv):
                        "that can safely be shown",
             "lpshut": "its card already runs `lpshut' for real and gets "
                       "`lpshut: no spooler active', which is the true state",
+            # TRIED TWICE 2026-09-13 and it cannot be carded.  snd_sig wakes a
+            # process by pid, so it needs a live one -- and THIS BASH SETS $!
+            # TO 0.  It announces the background job on screen as `<3>' and
+            # publishes nothing a stanza can read, so no line can learn the
+            # pid to pass on.  A successful wake prints nothing either way.
+            "snd_sig": "wakes a process by pid; this shell announces a "
+                       "backgrounded job as `<3>' but sets $! to 0, so no "
+                       "stanza can learn a pid to signal -- and a wake "
+                       "produces no visible output in any case.  Measured "
+                       "twice, 2026-09-13",
+            # TESTED 2026-09-13 rather than assumed, and the test is why it is
+            # here: the harness DOES run as the super user, so savemem's two
+            # stated requirements are met -- and `savemem 0 100 mem.out'
+            # creates mem.out at ZERO BYTES.  A card showing an empty output
+            # file is worse than the syntax line, so the syntax line stays.
+            # `loadmem' is the same program backwards and writes INTO memory;
+            # it has not been tried and should not be, for a card.
+            "savemem": "saves a block of memory to a file, and run for real "
+                       "as the super user it writes an EMPTY file -- measured "
+                       "2026-09-13; its syntax is the honest card",
             # FOUR MORE READ 2026-09-13, each already doing the real thing on
             # its card and stopped by something this disk does not have.
             "trap": "an EXAMPLE trap handler.  Installing one needs system "
