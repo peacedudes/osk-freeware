@@ -1,2 +1,2 @@
 rdjpgcom.070 tmp/GFXA/jc7.jpg; echo ""
-$ 70 build
+IJG 0.70 build

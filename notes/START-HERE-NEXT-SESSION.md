@@ -276,14 +276,68 @@ then 5, then 0 -- each time because my keyword net was reading a caption
 TRUNCATED TO 56 CHARACTERS and judging the fragment.  Read the caption in
 full before calling it silent.
 
-**THE REAL DEFECT IN THIS LIST IS A GARBLED-CAPTURE CLUSTER, ALL IN
-graphics.sheet.**  Characters eaten from the front of lines or overlapped:
+**THE REAL DEFECT IN THIS LIST IS A GARBLED-CAPTURE CLUSTER, AND IT IS
+THE HARNESS RATHER THAN THE SHEET.**  Eleven cards in graphics.sheet, but
+the sheet is only where they happen to sit.  Characters eaten from the
+front of lines, or overlapped:
 `wrjpgcom' shows `$ reeware disk' for "OS-9 freeware disk", `X11R6shl'
 shows `$ hl:', `basicwin' `$ in: cannot connect to X server',
 `rdjpgcom.070' `$ 70 build', and loadmem/savemem/rsconvert/snap show
-overlapping text.  RE-SHOOTING DOES NOT FIX IT.  All eleven were
-re-shot 2026-09-13 and came back BYTE-IDENTICAL, so it is not a stale
-capture -- `graph', which re-shooting did fix, was a different fault.
+overlapping text.
+
+RE-SHOOTING IN A BATCH DOES NOT FIX IT; SHOOTING ONE ALONE DOES.  That
+is the whole diagnosis and it is measured.  All eleven re-shot
+together came back BYTE-IDENTICAL (basicwin: ink 15, `in: cannot connect
+to X server').  `basicwin' shot ALONE in a fresh session came back
+perfect -- ink 46, `basicwin: cannot connect to X server', name intact.
+Same stanza, same image, same command; only the SESSION differs.
+
+`graph' IS THE TWELFTH MEMBER, not a separate case as this file first
+said.  Its stanza is at graphics.sheet:1242, inside the cluster; its old
+capture was garbled identically (`$ parity = 1cf6H000Heentrant execute in
+supervisor statede M'); and a solo shoot cleaned it to a proper modinfo
+listing.  It was the FIRST evidence of the cure and I misread it as a
+stale capture.  Every one of the twelve shot singly comes back clean:
+X11R6shl 15 -> 56, xengine 14 -> 40, loadmem 7 -> 157, savemem 7 -> 129,
+rsconvert 16 -> 61, snap 4 -> 332 -- eighty-fold on that last one, same
+stanza, same image.
+
+So it is accumulated session state across a long multi-stanza run, not a
+sheet defect and not a card defect.  My commit a5cf3b97 says "re-shooting
+does not fix it", which is half wrong -- this corrects it.
+
+THE HARNESS ALREADY KNOWS SESSIONS LEAK, AND RESETS ONLY HALF OF IT.
+tools/screenshots.py:424-432 says stanzas in a size-group SHARE A SESSION
+and writes `builtin cd /dd' at each stanza head, because a hidden
+`builtin cd' would otherwise leak into the next stanza.  It resets the
+DATA DIRECTORY and nothing else -- there is no drain of input a previous
+program left unconsumed.  That is the gap these eleven fall through, so
+the real fix is a harness change, and shooting them one at a time is a
+REPAIR that the next full-sheet run will undo.
+
+THE SEAM IS LOCATED -- start here rather than re-deriving this.  In
+tools/screenshots.py, the per-stanza head does:
+
+    sess.write("builtin cd /dd\r")     # resets the DATA DIRECTORY
+    sess.write("clear\r")
+
+and that is all it resets.  `self.buf' only ever grows (`_drain' does
+`buf.extend(chunk)'), nothing ever clears pending input, and NO interrupt
+is sent between stanzas -- grep finds \003 only in the sheet-format
+comment.  So a program left at a prompt by the previous stanza goes on
+consuming what the next one types, which eats its first characters.
+
+A fix would send an interrupt (or drain to a fresh mark) before the
+`builtin cd', and must then be validated by re-shooting a whole sheet and
+confirming the cluster stays clean -- that is a session's work, not a
+tail-end edit.
+
+SUSPECT MECHANISM, not yet proven: the stanza immediately before the late
+cluster feeds `wgen' a queue of keystrokes (`256\r', then
+`150\r75\r40\r20\r10\r') and leaves it mid-prompt.  A program still
+consuming input would eat the first characters the next stanzas send.
+The cluster sits at graphics.sheet 1154-1475 of 86 stanzas -- late, and
+contiguous, which fits.
 
 AND THE PROGRAMS ARE INNOCENT, measured: run straight through os9try,
 `basicwin' prints `basicwin: cannot connect to X server' -- the full name

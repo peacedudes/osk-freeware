@@ -1,2 +1,2 @@
 $ xengine; echo ""
-$ or: Can't open display:
+XT:Error: Can't open display:

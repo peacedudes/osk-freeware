@@ -1,3 +1,15 @@
 $ snap
-$ snap -lr: Unknown terminal typee last character of long (80-char) lines
-$ tewy50 wyse50 wy50-t wyse50-t
+syntax: snap {opt} [<file>] {opt}
+function: write terminal screen snapshot to <file> (default "polaroid")
+options:
+        -s[=]<num>  starting line number
+        -e[=]<num>  ending line number
+        -l          list known terminal types (TERM)
+        -n                      remove last character of long (80-char) lines
+
+xterm-256color: Unknown terminal type
+$ snap -l
+Known terminal types:
+        kt7 amb85h abm85
+        h29 z29 h19 z19
+        wy50 wyse50 wy50-t wyse50-t

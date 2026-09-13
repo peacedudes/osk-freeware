@@ -1,2 +1,5 @@
 $ loadmem
-$      - specify addresses in hexspecified addressdress> <path>
+Syntax   : LOADMEM <destinati address> <upper limit address> <path>
+Function : loads file into memory at specified address
+Notes    : - You must be super user
+           - specify addresses in hex

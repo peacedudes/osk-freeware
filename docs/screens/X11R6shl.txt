@@ -1,2 +1,2 @@
 $ X11R6shl; echo ""
-$ hl:  (E$PNNF) That path name doesn't lead to anything - check the spellin.
+/dd/CMDS/X11R6shl: cannot execute binary file
