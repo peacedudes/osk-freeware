@@ -1,3 +1,21 @@
+mgif -i gulls.gif
+
+
+Enter ReadGIF
+
+Open file:                           gulls.gif
+
+Read MAGIC
+
+Read screen descriptor
+     Screen width (s_dx)       = 320
+     Screen height (s_dy)      = 200
+     Global map? (s_gcm)       = 1
+     Color resolution (s_cr)   = 5
+     Bits/pixel (s_bits)       = 8
+     Num colors (s_colors)     = 256
+     Background color (s_bgnd) = 0
+
 Read global color map
 
 Read image descriptor, image: 1

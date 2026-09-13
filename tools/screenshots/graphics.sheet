@@ -1491,6 +1491,7 @@ wait    6
 snap
 
 shot    mgif
+size    46 80
 cap     Inspects a GIF and reports its structure -- image geometry, bit
 cap     depth, colour-map size and layout.  Displaying a GIF needs Atari
 cap     ST graphics hardware; -i inspects on any terminal.
