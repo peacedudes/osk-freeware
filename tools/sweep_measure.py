@@ -1,3 +1,4 @@
+#!/usr/bin/env python3
 """Compare a re-shot sheet against its published cards -- with tonight's traps built in.
 
 Every one of these cost time on 2026-09-13:
