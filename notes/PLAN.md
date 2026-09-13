@@ -71,9 +71,14 @@ it stale.
 their cases look for; **run as `datatest.py tex.cases` alone the family
 is 17 of 18 and all three pass**; they fail only in a full `--all` run,
 and on a pristine image too. So an earlier family leaves state they
-depend on. `dvidrivers` and `dvifont` sort before `tex`, render the same
-`story.dvi`, and build `cmr10` at other resolutions on purpose. Run those
-three families together to pin it.
+depend on. **The obvious candidates are RULED OUT by measurement:**
+`dvidrivers` and `dvifont` sort before `tex`, render the same
+`story.dvi`, and build `cmr10` at other resolutions on purpose -- and run
+together as `dvidrivers dvifont tex` the result is 23 of 27 with all
+three drivers PASSING, with `tex` alone afterwards unchanged at 17 of 18.
+So it is accumulation across the whole suite, not a neighbour. The
+decisive probe is to run every family with `tex` FIRST (`datatest.py`
+takes an ordered list) and see whether the three pass there.
 
 **SEVEN CASES RESTART THE FAMILY THEY ARE IN, and that is expected.**
 `paranoia` pauses for a key, `checkfile` is full-screen, and `cookhash`,

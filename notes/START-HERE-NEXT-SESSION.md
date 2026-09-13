@@ -1447,17 +1447,26 @@ programs, not the cases, not the family's own ordering, and not
 left-over image state (a pristine image fails them too).  **An earlier
 FAMILY changes something they depend on.**
 
-The candidates are named by the run order, which is alphabetical:
-`dvidrivers` and `dvifont` both sort before `tex`, both render the same
-`story.dvi`, and both deliberately build `cmr10` at OTHER resolutions --
-`dvifont.cases` says in its own header that "THE STATE CARRIES BETWEEN
-CASES". A driver that finds a 240dpi or 120dpi font where it expected
-only 300dpi renders differently, which is exactly the shape of these
-three failures (`[1 pages]` missing, `nearest neighbor` missing).
+**The obvious candidates were tested and are NOT it.**  `dvidrivers` and
+`dvifont` both sort before `tex`, both render the same `story.dvi`, and
+both build `cmr10` at other resolutions on purpose -- so a driver finding
+a 240dpi font where it expected 300dpi looked like exactly the right
+shape.  Run together in `--all` order, `dvidrivers dvifont tex` gives
+**23 of 27 and all three drivers PASS**; only the four stale
+`tex.pro`/font cases fail.  `tex` alone straight afterwards is 17 of 18,
+unchanged.  So it is not those two families.
 
-That is the next hour's work on the suite, and it is now a bounded
-question: run `dvidrivers`, `dvifont` and `tex` together in that order
-and see which one poisons which.
+**What is left, and how to settle it cheaply.**  The three fail only in a
+whole-suite run, on either image, and pass in every smaller combination
+tried.  That points at ACCUMULATION rather than a neighbour: 57 families,
+four of which take a session restart (`bench`, `maths`, `news`, `tail`,
+each costing up to the 300-second timeout), all sharing one `/dd/tmp` and
+one emulator arena.  **The decisive probe is to run the whole suite with
+`tex` FIRST** -- `datatest.py` takes an explicit ordered list of case
+files, so that is one invocation.  If the three pass with `tex` first,
+it is accumulated state and the question becomes which family leaves it;
+if they still fail, the fault is in the `--all` invocation itself and not
+in any ordering.
 
 **A WRONG LEAD, REMOVED:** an earlier draft of this section said
 `/dd/story.dvi` is 668 bytes while a passing case is called
