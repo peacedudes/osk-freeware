@@ -1575,10 +1575,17 @@ goes stale whenever a program is added -- eleven were missing from it.
 Like freeb it drifts by design, but unlike freeb the newer listing is
 simply more correct, so promote it rather than restoring it.
 
-**Candidates by NAME ONLY, not measured -- do not treat as fact:**
-`wisecrack', `ask', `shuffle'.  They have the shape (random or
-time-dependent) and have NOT been checked.  `cookie' and `fortune' were
-on this list and are now measured, above.
+**The name-only candidate list is now EMPTY, and all three were WRONG.**
+`wisecrack', `ask' and `shuffle' were listed here as likely
+non-reproducible because of what they are.  Measured 2026-09-13 and none
+of them is: `shuffle' re-shoots to EXACTLY its published 437 -- it is a
+switch puzzle with a fixed layout, not a shuffler of anything random --
+and `wisecrack' (55 v 51) and `ask' (54 v 53) sit inside the noise band.
+`cookie' and `fortune' were on this list too and ARE non-reproducible,
+measured above.
+
+Two guesses right, three wrong, from the same kind of reasoning.  Names
+suggest which stanzas to CHECK; they do not settle what a stanza does.
 
 **HOW LITTLE ONE READING IS WORTH.**  In the texttools sweep `cookie'
 read 66 -> 363 and `fortune' 127 -> 58.  A solo re-shoot minutes later
