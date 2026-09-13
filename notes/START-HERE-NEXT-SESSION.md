@@ -163,10 +163,12 @@ and every rule with a gate behind it fired.  So:
       flag" lines mean the PROGRAM has no flag, and hardware facts like
       "no sound device here" are not violations.
 
-  `OS-9 paths count dots'  -- no OS-9 pathlist may chain `../..'.  The
-      manual's p. 4-9 wording is in the docstring, and so is the reason it
-      must be mechanical: the wrong spelling does not announce itself, and
-      whether it works depends on WHICH LAYER resolves it.
+  `OS-9 paths count dots'  -- no CARD may chain `../..'.  Not because it
+      is invalid OS-9 (it is not; see the 2026-09-13 correction below) but
+      for PORTABILITY: the dotted form works on real OS-9 and on every
+      os9exec build, where `../..' relative to a subdirectory failed on an
+      RBF image until os9exec 985e0d8.  A card has to work on the system
+      the reader already has.
 
 **ONE GATE HAS A BREAKER; THE OTHER CANNOT HAVE ONE.  Do not read the
 pair as equally proven.**  `text names what the reader has' is registered
@@ -364,9 +366,16 @@ it does not empty the buffer.
 above and no interrupt was needed. OS-9 ends a display line with a bare
 CARRIAGE RETURN and SCF appends the line feed itself, gated on the path
 option PD_ALF. A program wanting a clean binary stream clears PD_ALF,
-and SS_Opt is a DEVICE-level operation -- os9exec propagates it to every
-open path on the terminal, as real OS-9 does -- so one program clearing
-it leaves the shell and every later stanza writing CR with no LF. Each
+and the change OUTLIVES IT AND REACHES OTHER PATHS -- so one program
+clearing it leaves the shell and every later stanza writing CR with no
+LF. (HOW it reaches them is unsettled and does not matter to the fix:
+os9exec's pCsetopt copies the option block to every path on the device
+and says real OS-9 does too, while the v2.4 manual read plainly puts the
+table in the PATH descriptor, per path. PD_PATHS at $16, the "List of
+Open Paths on Device", and inherited standard paths sharing a descriptor
+both explain the observation without SS_Opt being device-scoped. The
+rule that holds either way: never assume an option change is private to
+your own path.) Each
 line lands back at column 0 on top of the last, and the next prompt
 overwrites the first six characters: `basicw' is six characters, and so
 is "bash# ". That is the whole of the "six characters lost from the
@@ -569,9 +578,7 @@ character-art card -- a tree trimmed, lights blinking, reindeer running
 a line the source invites you to change.  Nothing on the card names
 whose it is, which is the rule, and it costs nothing to keep.
 
-**OS-9 COUNTS DOTS: `...' IS TWO LEVELS UP, NOT `../..'.**  I got this
-wrong on 2026-09-12 and wrote the opposite here; both sibling sessions
-corrected it and the MANUAL settles it -- Professional OS-9 v2.4,
+**OS-9 COUNTS DOTS: `...' IS TWO LEVELS UP.**  Professional OS-9 v2.4,
 "Accessing Files and Directories: The Pathlist", p. 4-9:
 
     "A single period (.) refers to the current directory.  Two periods
@@ -581,10 +588,20 @@ corrected it and the MANUAL settles it -- Professional OS-9 v2.4,
      required.  Four periods refer to a directory three levels above."
 
 So `..' DOES resolve mid-path, as a real traversal -- `list ../DEFS/curses.h'
-from /dd/CMDS reads the file.  What does not exist is the Unix habit of
-CHAINING: `../../SYS/motd' asks for a component literally named `..'
-inside the parent, so E_PNNF is the honest answer to what was written.
-Two levels up from /dd/CMDS/GCC2 is `.../SYS/motd'.
+from /dd/CMDS reads the file.  Two levels up from /dd/CMDS/GCC2 is
+`.../SYS/motd'.
+
+**CHAINING IS NOT FORBIDDEN, AND AN EARLIER VERSION OF THIS ENTRY SAID IT
+WAS.**  Corrected 2026-09-13.  rdoggett, who has run the real hardware,
+gives the rule as: a component made only of dots climbs (dots - 1) levels
+and components ADD UP, so `../..' is two one-level components reaching the
+same place as `...'; his example is `../......./.././file', and he treats
+`dir ../../../../../sys' failing as a BUG.  p. 4-9 teaches the dotted form
+without excluding chaining, and no Microware line settling it either way
+has been found.  os9exec-83 had agreed with the old reading and has
+RETRACTED it; os9exec 985e0d8 (2026-09-13) makes relative `../..' climb
+on RBF images.  So the measurements below are real and are PRE-985e0d8;
+they record what one emulator build did, not what OS-9 forbids.
 
 MEASURED HERE 2026-09-12, from /dd/CMDS/GCC2, with the disk's own `cat':
 

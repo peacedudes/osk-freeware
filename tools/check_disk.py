@@ -781,22 +781,35 @@ def check_no_absence_phrasing(root):
 
 
 def check_no_chained_parent_paths(root):
-    """No OS-9 pathlist climbs with `../..'.  OS-9 COUNTS DOTS.
+    """A card's pathlist climbs with dots, not with `../..'.
 
-    Using Professional OS-9 v2.4, "Accessing Files and Directories: The
-    Pathlist", p. 4-9: "Add a period for each higher directory level ... to
-    specify a directory two levels above the current directory, three periods
-    are required."  So two levels up is `...', three is `....', and `../..'
-    is not an OS-9 pathlist at all.
+    Professional OS-9 v2.4, "Accessing Files and Directories: The Pathlist",
+    p. 4-9: "Add a period for each higher directory level ... to specify a
+    directory two levels above the current directory, three periods are
+    required."  So two levels up is `...' and three is `....'.
 
-    THE REASON THIS IS A GATE RATHER THAN A NOTE: the wrong spelling does not
-    announce itself.  Measured 2026-09-12 -- `cat ../../SYS/motd' from
-    /dd/CMDS/GCC2 gives E_PNNF naming the FILE, though /dd/SYS/motd plainly
-    exists, so the error points at the target rather than at the path that
-    misdirected you.  Worse, three layers disagree: a shell forking
-    `../../CMDS/for' resolves it, `chd ../..' climbs two levels, and a
-    program's own open() climbs one.  A `../..' that works today is working
-    by luck of which layer resolved it.
+    THIS DOES NOT MAKE `../..' INVALID, and an earlier version of this
+    docstring said it did.  rdoggett, who has run the real hardware, states
+    the opposite: a component made only of dots climbs (dots - 1) levels and
+    components ADD UP, so `../..' is two one-level components and reaches the
+    same place as `...'.  His example is `../......./.././file'.  p. 4-9
+    teaches the dotted form without excluding chaining, and no Microware line
+    settling chaining either way has been found, so treat `../..' as legal
+    OS-9 that this collection simply does not use.
+
+    THE GATE IS ABOUT PORTABILITY, NOT VALIDITY.  The dotted form works on
+    real OS-9 and on every os9exec build.  `../..' relative to a
+    subdirectory FAILED on an RBF image with E_PNNF until os9exec 985e0d8
+    (2026-09-13) -- so a card shipping it would break for every reader whose
+    emulator predates tonight, which is nearly all of them.  A card has to
+    work on the system the reader already has.
+
+    And measured 2026-09-12, BEFORE that fix, the failure did not announce
+    itself: `cat ../../SYS/motd' from /dd/CMDS/GCC2 gave E_PNNF naming the
+    FILE though /dd/SYS/motd plainly existed, and three layers disagreed --
+    a shell forking `../../CMDS/for' resolved it, `chd ../..' climbed two
+    levels, and a program's own open() climbed one.  Whether 985e0d8 has
+    made those agree has not been re-measured here.
 
     EXECUTABLE LINES ONLY, and the first version got this wrong.  It read
     whole files including DOC/INDEX and SOURCES.txt, so this sentence --

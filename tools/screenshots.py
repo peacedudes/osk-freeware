@@ -689,12 +689,23 @@ def alf_off(raw):
     line feed itself, gated on the path option PD_ALF ("If PD_ALF is not
     zero, carriage returns are automatically followed by line-feeds" -- v2.4
     Technical I/O Manual).  A program that wants a clean binary stream turns
-    PD_ALF off, and SS_Opt is a DEVICE-level operation: os9exec propagates it
-    to every open path on the same terminal, exactly as real OS-9 does.  So
-    one program clearing it leaves the shell, and every later stanza in the
-    session, writing CR with no LF -- every line lands back at column 0 on
-    top of the last one, and the next prompt overwrites the first six
-    characters of whatever is there.
+    PD_ALF off, and THE CHANGE OUTLIVES IT AND REACHES OTHER PATHS: the
+    shell, and every later stanza in the session, then writes CR with no LF
+    -- every line lands back at column 0 on top of the last one, and the
+    next prompt overwrites the first six characters of whatever is there.
+
+    HOW it reaches them is not settled, and the difference does not matter
+    to this check.  os9exec's pCsetopt copies the block to every open path
+    on the device and its comment says real OS-9 does the same; the v2.4
+    manual, read plainly, puts the option table IN THE PATH DESCRIPTOR,
+    copied per path at open, which is per-path storage.  Two mechanisms
+    would give what is measured here without SS_Opt being device-scoped:
+    PD_PATHS at $16 is the "List of Open Paths on Device", so a file
+    manager has the means to apply a change across all of them; and
+    inherited standard paths share a descriptor outright, so a child
+    clearing PD_ALF on its stdout writes the one its parent holds.  Treat
+    the scope as unsettled and never assume an option change is private to
+    your own path.
 
     That is what published `$ in: cannot connect to X server' for basicwin
     (`basicw' = six characters = len("bash# ")) and collapsed loadmem's four
