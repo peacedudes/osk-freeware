@@ -1423,13 +1423,48 @@ rebuild clears it.
 
 **The other three are REAL and are not mine**: `tex`'s `dvialw` and
 `dvilj2` (`[1 pages]`) and `dvieps` (`nearest neighbor`) fail identically
-on a pristine image.  They are the one open question in the suite.  Note
-what does NOT explain them: the sibling case that also reads
-`/dd/story.dvi` passes, so the input exists; `story.dvi` comes from the
-family's `setup` line, not from a case that could have failed first; and
-`tex.cases` WAS updated when the 300dpi fonts landed, so they are not the
-same drift as the six above.  Somebody should run those three drivers by
-hand and read what they actually print now.
+on a pristine image.
+
+**THEN THEY WERE RUN BY HAND, AND ALL THREE WORK.**  Against the same
+`/dd/story.dvi` the harness uses, each prints the exact string its case
+is looking for:
+
+    dvialw   [PostScript [Apple LaserWriter laser printer]]
+             [Output on file /dd/story.dvi_alw]   [1 pages]   [1{1}]  [OK]
+    dvilj2   [Hewlett-Packard LaserJet II laser printer]
+             [Output on file /dd/story.dvi_lj2]   [1 pages]   [1{1}]  [OK]
+    dvieps   Font file [cmsl10 [240 dpi]] could not be opened.
+             ---using nearest neighbor [...pk300/cmsl10.300pk [300 dpi]]
+             instead.                              [1{1}]  [OK]
+
+So **the programs are not broken and the cases are not wrong about what
+they print** -- the strings are there.
+
+**AND RUN ALONE, THE FAMILY PASSES: `datatest.py tex.cases` is 17 of 18,
+with only the known-stale `dvips` case failing.  All three drivers
+pass.**  So they fail ONLY in a full `--all` run.  It is not the
+programs, not the cases, not the family's own ordering, and not
+left-over image state (a pristine image fails them too).  **An earlier
+FAMILY changes something they depend on.**
+
+The candidates are named by the run order, which is alphabetical:
+`dvidrivers` and `dvifont` both sort before `tex`, both render the same
+`story.dvi`, and both deliberately build `cmr10` at OTHER resolutions --
+`dvifont.cases` says in its own header that "THE STATE CARRIES BETWEEN
+CASES". A driver that finds a 240dpi or 120dpi font where it expected
+only 300dpi renders differently, which is exactly the shape of these
+three failures (`[1 pages]` missing, `nearest neighbor` missing).
+
+That is the next hour's work on the suite, and it is now a bounded
+question: run `dvidrivers`, `dvifont` and `tex` together in that order
+and see which one poisons which.
+
+**A WRONG LEAD, REMOVED:** an earlier draft of this section said
+`/dd/story.dvi` is 668 bytes while a passing case is called
+`the-dvi-is-1704-bytes`, "so the two are not the same file". They are not
+supposed to be: that case measures `/dd/small.dvi`, from the LaTeX case
+above it. Nothing there. It was written from the case NAME without
+reading the case.
 
 **The method worth keeping: run the suite against a FRESH image built to
 a different filename.**  `tools/mkimage.sh disk fresh.dd` then

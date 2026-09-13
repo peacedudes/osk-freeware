@@ -66,11 +66,14 @@ and `system5` running `drop` nine days after it became `unkeep`.
 `notes/START-HERE-NEXT-SESSION.md` names each with the commit that made
 it stale.
 
-**The remaining THREE are not explained** -- `dvialw`, `dvilj2` and
-`dvieps` -- and they are the one open question in the suite. They fail
-identically on a pristine image, so they are not left-over state, and
-`tex.cases` was updated when the fonts landed, so they are not that
-drift either.
+**The remaining THREE are CROSS-FAMILY INTERFERENCE** -- `dvialw`,
+`dvilj2` and `dvieps`. Run by hand they work and print the exact strings
+their cases look for; **run as `datatest.py tex.cases` alone the family
+is 17 of 18 and all three pass**; they fail only in a full `--all` run,
+and on a pristine image too. So an earlier family leaves state they
+depend on. `dvidrivers` and `dvifont` sort before `tex`, render the same
+`story.dvi`, and build `cmr10` at other resolutions on purpose. Run those
+three families together to pin it.
 
 **SEVEN CASES RESTART THE FAMILY THEY ARE IN, and that is expected.**
 `paranoia` pauses for a key, `checkfile` is full-screen, and `cookhash`,
