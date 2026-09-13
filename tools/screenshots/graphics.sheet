@@ -513,7 +513,7 @@ shot    plotters
 for     pbmtoplot pbmtozinc pbmtogo pbmtoln03 pbmtolps
 cap     Six more write-only drivers, for machines that are gone: a Unix
 cap     plotter, Zinc, a BBN bitgraph, GraphOn, DEC LN03 and LPS.  All six
-cap     are asked for
+cap     are asked for below, one line each.
 try     pbmtoplot tmp/base.pbm | wc
 os9     pbmtoplot tmp/base.pbm ! wc
 run     builtin cd /dd
@@ -1060,7 +1060,7 @@ cap     Six drivers with no reader here, for machines that are gone: an NCR
 cap     terminal, a Mitsubishi dye-sublimation printer, DEC sixel, Motif UIL
 cap     source, an AT&T 4425 and an X10 bitmap.  What each made of the same
 cap     picture, in bytes -- that is what a page cost.  All six are asked
-cap     for
+cap     for below, one line each.
 try     ppmtosixel tmp/q.ppm | wc
 os9     ppmtosixel tmp/q.ppm ! wc
 run     builtin cd /dd

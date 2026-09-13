@@ -261,10 +261,10 @@
 | `diff` | &#9733; GNU diff 1.1: compares two text files and prints the lines that differ, in normal, context (-c) or ed-script (-e) form; reads CR-terminated text<br>`diff: illegal option -- diff: requires two file names.  Usage: diff [-options] file1 file2` |
 | `ediff` | put `diff' output into plain English: `diff <f1> <f2> ! ediff', or `ediff <file' for a diff you already have.  A one-line change comes out as `-------- 1 line changed at 3 from: ... to: ...'.  `diff' does the comparing; this makes the answer readable<br>`Syntax   : 'ediff <file'  or  'diff <f1> <f2> ! ediff'` |
 | `fcomp` | &#9733; compares two text files line by line and names the lines inserted, deleted or changed between them<br>`Syntax: fcomp <file_1> <file_2>` |
-| `join` | GNU join -- relational join of two sorted files<br>`join: unrecognized option `-?'` |
+| `join` | GNU join -- relational join of two sorted files<br>``join: unrecognized option `-?'`` |
 | `nsort` | sorts lines from standard input -- lexically, despite the name: given 3, 22, 111 and 4 it answers 111, 22, 3, 4, the same order GNU `sort' gives with no options. For a numeric sort use `sort -n'<br>`Usage: nsort <unordered >sorted` |
 | `qsort9` | &#9733; an in-memory quicksort filter: sorts lines by a chosen field (-f) and separator (-c), in dictionary order, reversed or unique<br>`Syntax: qsort9 [<opts>] [<srcpath>] [<opts>]` |
-| `sort` | GNU sort: sorts lines of text -- by field (+POS or -k), numerically (-n), reversed (-r), folding case (-f), unique (-u) -- and merges already-sorted files (-m)<br>`sort: unrecognized option `-?'` |
+| `sort` | GNU sort: sorts lines of text -- by field (+POS or -k), numerically (-n), reversed (-r), folding case (-f), unique (-u) -- and merges already-sorted files (-m)<br>``sort: unrecognized option `-?'`` |
 | `spiff` | &#9733; a tolerant diff: compares two files while ignoring differences that do not matter -- white space, number formatting, case if asked -- and knows C, shell, Fortran, Modula-2 and Lisp source<br>**How:** Compares two files while ignoring differences that do not matter (whitespace, number formatting). Takes TWO filenames. |
 | `tcmp` | &#9733; compares two text files and prints each differing line, both versions one under the other with the line number in each; -s sets how far ahead it looks to resynchronise<br>**How:** Compares two text files and prints each differing line, both versions one under the other with the line number in each file. Files whose lines differ only in tabs and spaces are reported as changed, which reads oddly until you dump them. |
 | `tsort` | sorts pairs topologically: each pair says the first must come before the second, and out comes one order that keeps them all<br>`usage: tsort [ inputfile ]` |
@@ -286,7 +286,7 @@
 | | |
 |---|---|
 | `sepwords` | splits text into one word per line -- the first step towards a word list or an index<br>`Syntax: sepwords [<in_path> [<out_path>]]` |
-| `split` | GNU split: cuts a file into pieces of so many lines (-l) or bytes (-b), named after a prefix -- partaa, partab and so on<br>`split: unrecognized option `-?'` |
+| `split` | GNU split: cuts a file into pieces of so many lines (-l) or bytes (-b), named after a prefix -- partaa, partab and so on<br>``split: unrecognized option `-?'`` |
 
 **TeX**
 
@@ -327,7 +327,7 @@
 | `cut` | picks fields (-f) or character columns (-c) out of each line, with -d naming the field separator<br>`cut: Illegal option -- ?` |
 | `detab` | &#9733; replaces tabs with spaces, at stops every eight columns or every n with -tn<br>`Usage: detab [-tn] [infile] or [<infile]` |
 | `eo` | &#9733; runs a command on every line of a file -- an xargs: `eo <file> <command> @' runs the command once per line with `@' replaced by the line; -p takes the lines from a pipe, -q runs quietly, -e stops at the first error. It shells out through SHELL, which SYS/login sets<br>**How:** Runs a command on every line of a file, with `@' standing for the line: `eo <file> <command> @'. It shells out, so it needs SHELL set to a shell that takes a command line as one argument -- SYS/login sets `SHELL=/dd/CMDS/ksh' and that is what makes it work. Without it, `can't execute /dd/bash'. `-p' takes the lines from a pipe instead of a file. |
-| `expand` | GNU expand: turns tabs into spaces, at stops eight columns apart or as -t says<br>`expand: unrecognized option `-?'` |
+| `expand` | GNU expand: turns tabs into spaces, at stops eight columns apart or as -t says<br>``expand: unrecognized option `-?'`` |
 | `field` | &#9733; select whitespace-separated fields from standard input by number, in the order asked for and tab-separated on output: `field 2 4 1' prints the second, fourth and first word of each line. `-i=c' names another input separator.<br>`field v1.0 (c) S.R.Bourne, M.C.Gregorie, 1994` |
 | `fillup` | &#9733; fills a file up to a given length with a constant byte: `fillup -n=64 -i=65 f' pads f to 64 bytes with `A' and says `24 bytes (value=65) appended'. The length option is -n=, not -l=<br>`Syntax:   fillup [<options>] <file>` |
 | `fold` | wraps long lines to a width, 80 columns unless -w says otherwise<br>`fold: illegal option -- ?` |
@@ -344,7 +344,7 @@
 | `subber` | &#9733; substitutes words in a stream from a `,old,new' word list, one pair a line, the first character being the delimiter. It grows its memory as it reads, so give it plenty up front: `subber #1000k words file' at an OS-9 shell<br>**How:** Substitutes words in a stream from a word list of `,old,new' pairs (the line's first character is the delimiter), reading a file as the second argument or standard input. It grows its data area as it reads, with F$Mem, so give it room up front: at an OS-9 (Microware) shell, `subber #1000k words file' -- bash and ksh read the `#' as a comment, so run it at your OS-9 shell or through it, `/h1/CMDS/shell "subber #1000k words file"'. Tested: `,fox,cat' turns `a fox' into `a cat'. |
 | `tabs` | re-space a file, standard input to standard output: `-i8' says the input's tab stops are every 8 columns, `-o0' asks for spaces on output and `-o4' for tabs every 4.<br>`Unknown switch: ?` |
 | `tac` | GNU tac: prints a file backwards, last line first<br>**How:** Prints a file backwards, last line first -- cat's mirror image. Needs cio. |
-| `unexpand` | GNU unexpand: turns leading spaces back into tabs, or all of them with -a<br>`unexpand: unrecognized option `-?'` |
+| `unexpand` | GNU unexpand: turns leading spaces back into tabs, or all of them with -a<br>``unexpand: unrecognized option `-?'`` |
 | `unp` | &#9733; strips unprintable characters from a stream and reports each one removed, by code and line number<br>`Usage:  unp [-?] [file]` |
 | `upperdir` | normalises the names in a directory: files to lower case, directories to upper, printing each as it renames it<br>`Usage: UpperDir [directory name]` |
 | `valspeak` | Valley-speak text filter: standard input in, the rewritten text out. `I think this operating system is really good' comes back as `I think this operatin' system is like wow! really bitchin''. |
@@ -380,15 +380,15 @@
 | `dback` | directory backup: walks a directory and issues an OS-9 `copy' for every file that has changed, so what you see is the list of copies it wants<br>`Usage: Dback [-options] <fromdir> <todir> [-options]` |
 | `delbak` | &#9733; delete backup files (*_bak) in a directory tree<br>`Usage: delbak [-options] [directory] [-options]` |
 | `move` | &#9733; move files between directories without copying the contents -- it relinks them, which is why it is quick and why its own help warns never to kill it mid-run. `move <from> <to>' wants a destination name; -w=<dir> is the wildcard form that takes a directory.<br>`Syntax:   move [<options>] <from> [<to>] [<options>]` |
-| `mv` | &#9733; GNU mv (fileutils 3.13) -- rename a file or move it into a directory; `-i' asks before overwriting, `-b' keeps a backup, `-v' names what it moved<br>`mv: unrecognized option `--'` |
-| `rm` | &#9733; GNU rm: removes files, whole directories with -r, asking first with -i, naming each with -v<br>`rm: unrecognized option `-?'` |
+| `mv` | &#9733; GNU mv (fileutils 3.13) -- rename a file or move it into a directory; `-i' asks before overwriting, `-b' keeps a backup, `-v' names what it moved<br>``mv: unrecognized option `--'`` |
+| `rm` | &#9733; GNU rm: removes files, whole directories with -r, asking first with -i, naming each with -v<br>``rm: unrecognized option `-?'`` |
 | `undel` | &#9733; brings back a deleted file: it asks for the directory, offers each deleted name RBF still holds (the first letter overwritten), and asks twice before writing<br>`usage: undel  [ -opt ] [ full directory name ] [ -opt ]` |
 
 **Create & rename**
 
 | | |
 |---|---|
-| `mkdir` | &#9733; makes a directory; -p makes every directory on the way to it, -m sets its mode<br>`mkdir: unrecognized option `-?'` |
+| `mkdir` | &#9733; makes a directory; -p makes every directory on the way to it, -m sets its mode<br>``mkdir: unrecognized option `-?'`` |
 | `rendsk` | &#9733; changes the volume name of a disk -- the name in its identification sector, not any file on it; super user only<br>`Syntax:   rendsk [<opts>] <disk device> <new name>` |
 
 **Find & compare**
@@ -605,7 +605,7 @@
 | `gmake` | GNU make: builds targets from a makefile's rules -- -f names the file, -n prints what it would do, -k keeps going past errors<br>`Usage: gmake [options] [target] ...` |
 | `m4` | m4 macro processor.  It expands macros correctly, from a file or a pipe.  ITS `syscmd' NEEDS A `shell' MODULE: it forks one by that bare name and is silent without it, so keep your own shell loaded -- DOC/README-SHELLS<br>`Syntax   : m4 [<opts>] [<files>]` |
 | `make` | &#9733; make -- maintains a target. Two rules catch people: a command line must begin with a TAB (which will not survive being typed at this terminal, so copy DOC/make/demo.mk rather than echoing one), and a recipe must have no shell metacharacter -- `cp a b' runs, `cat a > b' gets `That path name doesn't lead to a file'.  DOC/STATUS has both<br>**How:** It works. Copy `/dd/DOC/make/demo.mk` rather than writing a makefile at the shell -- a command line must begin with a TAB and a tab does not survive being typed at this terminal. And keep shell metacharacters out of a recipe: `cp a b` runs, `cat a > b` gets "That path name doesn't lead to a file", because make forks bash with the line as a PATHNAME rather than with -c. The default rules are in default.mk beside it, and make looks for that along your PATH. |
-| `makeinfo` | GNU makeinfo -- Texinfo to info<br>`makeinfo: unrecognized option `-?'` |
+| `makeinfo` | GNU makeinfo -- Texinfo to info<br>``makeinfo: unrecognized option `-?'`` |
 | `yacc` | yacc parser generator, rebuilt `-qm' from SRC/effo_yacc. It reads a grammar and writes y.tab.c into the data directory.  `bison' is the other parser generator here and reports states and conflicts<br>`Syntax   : yacc [-dltv] [-b <prefix>] filename` |
 
 **Translators**

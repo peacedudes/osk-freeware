@@ -599,7 +599,19 @@ def render_markdown(progs):
                 elif p.get("help", {}).get("text"):
                     one = p["help"]["text"].strip().splitlines()[0].strip()
                     if one:
-                        cell += "<br>`%s`" % one.replace("|", "\\|")
+                        # FENCE LONGER THAN ANYTHING INSIDE.  A captured
+                        # help line may itself contain a backtick -- nine do,
+                        # all of the form `join: unrecognized option `-?''
+                        # -- and a single-backtick span closes on the first
+                        # one, mangling the row.  Markdown's rule is a fence
+                        # longer than the longest run within, padded when the
+                        # content starts or ends with one.  Fixed here rather
+                        # than in CATALOG.md, which is regenerated.
+                        txt = one.replace("|", "\\|")
+                        runs = re.findall(r"`+", txt)
+                        fence = "`" * ((max(len(r) for r in runs) if runs else 0) + 1)
+                        pad = " " if txt.startswith("`") or txt.endswith("`") else ""
+                        cell += "<br>%s%s%s%s%s" % (fence, pad, txt, pad, fence)
                 L.append("| `%s` | %s |" % (p["name"], cell))
             L.append("")
         L += ["</details>", ""]

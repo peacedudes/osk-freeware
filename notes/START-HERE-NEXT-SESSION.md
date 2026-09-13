@@ -199,6 +199,30 @@ disk", which contains no "not".  Passing on the cleaned tree would never
 have shown it.  This repo's "make every check fail once" rule, applied to
 a check written to enforce a different rule, and it paid immediately.
 
+**FINDING 13 RECONCILES -- it was stale, not wrong.**  The audit said the
+header arithmetic left no room for the BASIC09 four (992 vs 988).
+Measured 2026-09-12: 996 gathered, 340 starred, 4 BASIC09, leaving
+exactly 652 unstarred non-BASIC09 -- which is what CATALOG.md's header
+claims.  It adds up; do not re-derive it.
+
+**CARD-AUDIT FINDINGS 16 AND 19 ARE BOTH WRONG -- do not act on them.**
+Measured 2026-09-12 after nearly "fixing" both.
+
+16 said `dedit' and `who' fall through the panel ratchet.  They do not:
+audit_panels.runnable() is every type-$01 module, `who' is a shell script
+and `dedit' is type-$02 I-code, so both are correctly outside it.  Same
+for `fpu'/`fpu040' (type-$0C descriptors) which I had just shipped.  I
+gave all four panel-exceptions rows and the EXISTING gate rejected three
+as "listed but is not a runnable program" -- the system telling me I had
+the wrong instrument.  Reverted.
+
+19 called four screens "orphaned in a superseded format".  They are not
+orphans: gen_screens.collect() draws names from sheets | CAPTIONS |
+play-tests, and all four have play-test captures (two are in CAPTIONS as
+well), so it re-emits them on every run -- it rmtree's docs/screens and
+rewrites it wholesale.  I deleted them twice and the generator put them
+back both times.  Nothing to do.
+
 **THE CARD AUDIT IS CLOSED AT ZERO.**  Measured against docs/screens.js
 after the final shoot: 951 programs, 951 try lines, 295 naming a tmp/
 path, and NONE naming a path nobody creates.  The claim that started it
