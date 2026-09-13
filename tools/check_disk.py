@@ -729,6 +729,118 @@ def check_modules_start_with_4afc(root):
     return not bad, "%d file(s) under CMDS are not modules" % len(bad)
 
 
+def check_no_absence_phrasing(root):
+    """Reader-facing text names what the reader HAS, never what this disk lacks.
+
+    CLAUDE.md's rule, and it had no enforcement until 2026-09-12, when a
+    sweep found six violations that had been shipping: `version' said "there
+    is no `ident' here", `map' said of mfree and free "neither is on this
+    disk", `listalias' said "`egrep', which is not on this disk", and the
+    `if' card said Microware's shell "is not on this disk, so here it does
+    nothing".
+
+    Why it matters rather than being fussy: the reader HAS OS-9.  `ident' and
+    `mfree' are Microware's own utilities and are sitting on their machine, so
+    telling them the utility does not exist is both discouraging and, from
+    where they are standing, false.
+
+    THE FIRST PATTERN SAID ONLY `not on this disk' AND MISSED A REAL ONE.
+    `map' read "neither is on this disk" -- no "not" in it -- so one of the
+    six violations this check exists for would have walked back in.  Found by
+    running the check against the old wording, NOT by watching it go green on
+    a tree already cleaned.  That is what "make every check fail once" is for.
+
+    NARROW ON PURPOSE.  Two literal shapes only.  `there is no help flag'
+    (27 of them in help.psv) means the PROGRAM has no flag and is a
+    different sense entirely; `no sound device here' and `wants an IEEE-488
+    bus and there is none' are hardware facts.  A wider net would catch all
+    three and teach whoever hits it to phrase around the checker.
+    """
+    pats = [re.compile(r"\b(?:not|neither)\b[^.]{0,40}?on this disk"),
+            re.compile(r"there is no `[^']+' here")]
+    targets = [os.path.join(root, "DOC", "INDEX")]
+    here = os.path.dirname(os.path.abspath(__file__))
+    targets.append(os.path.join(here, "howto.psv"))
+    sheets = os.path.join(here, "screenshots")
+    if os.path.isdir(sheets):
+        targets += [os.path.join(sheets, f) for f in sorted(os.listdir(sheets))
+                    if f.endswith(".sheet")]
+    bad = []
+    for path in targets:
+        if not os.path.exists(path):
+            continue
+        text = open(path, "rb").read().decode("latin-1").replace("\r", "\n")
+        for n, line in enumerate(text.split("\n"), 1):
+            for pat in pats:
+                if pat.search(line):
+                    bad.append("%s:%d %s" % (os.path.basename(path), n,
+                                             line.strip()[:60]))
+    for b in bad[:8]:
+        print("    %s" % b)
+    return not bad, "%d place(s) say what this disk lacks" % len(bad)
+
+
+def check_no_chained_parent_paths(root):
+    """No OS-9 pathlist climbs with `../..'.  OS-9 COUNTS DOTS.
+
+    Using Professional OS-9 v2.4, "Accessing Files and Directories: The
+    Pathlist", p. 4-9: "Add a period for each higher directory level ... to
+    specify a directory two levels above the current directory, three periods
+    are required."  So two levels up is `...', three is `....', and `../..'
+    is not an OS-9 pathlist at all.
+
+    THE REASON THIS IS A GATE RATHER THAN A NOTE: the wrong spelling does not
+    announce itself.  Measured 2026-09-12 -- `cat ../../SYS/motd' from
+    /dd/CMDS/GCC2 gives E_PNNF naming the FILE, though /dd/SYS/motd plainly
+    exists, so the error points at the target rather than at the path that
+    misdirected you.  Worse, three layers disagree: a shell forking
+    `../../CMDS/for' resolves it, `chd ../..' climbs two levels, and a
+    program's own open() climbs one.  A `../..' that works today is working
+    by luck of which layer resolved it.
+
+    EXECUTABLE LINES ONLY, and the first version got this wrong.  It read
+    whole files including DOC/INDEX and SOURCES.txt, so this sentence --
+
+        OS-9 counts dots: two levels up is ... and not ../.. as on Unix
+
+    -- would have been FLAGGED.  A gate that fails somebody for documenting
+    the rule it enforces teaches them the rule is arbitrary, and a gate
+    nobody believes gets routed around.  Found by probing the check with text
+    it ought to ACCEPT, which a green run on a clean tree can never show;
+    os9-dev-skill-fc hit the mirror-image hole in a check of their own the
+    same evening and described the method.
+
+    So: only the directives that RUN something -- try, os9, run, send,
+    expect -- in the sheets and the case and drive files.  A malformed
+    pathlist costs nothing where nothing executes it.  Host-side Python,
+    shell and Makefiles are not screened at all: `../..' is the host's
+    correct spelling.
+    """
+    here = os.path.dirname(os.path.abspath(__file__))
+    targets = []
+    for sub in ("screenshots", "datatests", "drives"):
+        d = os.path.join(here, sub)
+        if os.path.isdir(d):
+            targets += [os.path.join(d, f) for f in sorted(os.listdir(d))
+                        if f.rsplit(".", 1)[-1] in ("sheet", "cases", "drive")]
+    pat = re.compile(r"\.\./\.\.")
+    runs = re.compile(r"^\s*(try|os9|run|send|expect)\s")
+    bad = []
+    for path in targets:
+        if not os.path.exists(path):
+            continue
+        text = open(path, "rb").read().decode("latin-1").replace("\r", "\n")
+        for n, line in enumerate(text.split("\n"), 1):
+            if not runs.match(line):
+                continue                 # prose may name the wrong spelling
+            if pat.search(line):
+                bad.append("%s:%d %s" % (os.path.basename(path), n,
+                                         line.strip()[:58]))
+    for b in bad[:8]:
+        print("    %s" % b)
+    return not bad, "%d OS-9 path(s) chain `../..' instead of counting dots" % len(bad)
+
+
 def check_cards_do_not_depend_on_each_other(root):
     """A gallery card may build on `setup-image' and on nothing else.
 
@@ -1197,6 +1309,8 @@ CHECKS = [
      check_hand_lists_have_no_duplicate_keys),
     ("the disk's documents are intact", check_docs_not_truncated),
     ("README names documents that exist", check_readme_cross_references),
+    ("text names what the reader has", check_no_absence_phrasing),
+    ("OS-9 paths count dots", check_no_chained_parent_paths),
     ("cards do not depend on each other", check_cards_do_not_depend_on_each_other),
     ("cards carry no full pathlists", check_cards_have_no_pathlists),
     ("every card says what to type", check_cards_have_a_try_line),

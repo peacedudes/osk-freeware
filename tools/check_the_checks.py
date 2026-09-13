@@ -268,6 +268,43 @@ def break_login_env(root):
     return "SYS/login made to export SHELL=bash again"
 
 
+# `OS-9 paths count dots' HAS NO BREAKER HERE, AND CANNOT HAVE ONE.
+#
+# This harness copies the DISK TREE and runs the gate against the copy, so a
+# breaker can only damage something under root/.  That check reads the sheets
+# and the case and drive files under tools/, which are never copied -- there
+# is no sandbox-side surface to break.  A breaker that edited root/DOC/INDEX
+# would change nothing the check looks at and would report the check BLIND,
+# which is worse than having none: it would claim proof it did not have.
+#
+# It is proven instead by probing it in both directions in the real tree --
+# a throwaway sheet carrying a `run' line that chains `../..' (must fail),
+# beside a `cap' line teaching the dots rule and a correct `.../' form (must
+# pass).  Both were run on 2026-09-12 and the probe removed afterwards.  If
+# this check ever grows a root-relative target, give it a breaker here.
+
+def break_absence_phrasing(root):
+    """A DOC/INDEX entry that says what this disk lacks instead of what you have.
+
+    The house rule is CLAUDE.md's: the reader HAS OS-9, so `ident' and
+    `mfree' are on their machine and telling them the utility does not exist
+    is false from where they stand. Six entries broke it and shipped until
+    2026-09-12.
+
+    The wording put back here is `map's real one, "neither is on this disk",
+    which the check's FIRST pattern missed -- it looked only for "not on this
+    disk", and "neither" contains no "not". The hole showed up by running the
+    check against the old text, never by watching it pass on a cleaned tree.
+    """
+    p = os.path.join(root, "DOC", "INDEX")
+    t = open(p, "rb").read()
+    marker = b"the equivalents, and your own OS-9 has them"
+    if marker not in t:
+        return None
+    w(p, t.replace(marker, b"the equivalents; neither is on this disk", 1))
+    return "DOC/INDEX made to say what this disk lacks again"
+
+
 def break_cio_scan(root):
     """A name the cio-macro scan is required to find, removed.
 
@@ -413,6 +450,8 @@ BREAKS = [
     ("screened src", "no unscreened Microware source",
      break_screened_source),
     ("login env", "harness env matches SYS/login", break_login_env),
+    ("absence phrasing", "text names what the reader has",
+     break_absence_phrasing),
     ("cio macro", "the cio-macro list is current", break_cio_scan),
     # Both directions of the ratchet, through a COPY of the backlog that
     # OSK_PANEL_BACKLOG points the gate at -- the live file is never edited.

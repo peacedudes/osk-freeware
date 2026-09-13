@@ -104,6 +104,44 @@ The card now demos it honestly -- `pagekwic -f=3 < DOC/samples/jabber.txt',
 continuous prose instead of four unrelated titles, with a caption that
 says PHRASE keyword-in-context.  `-f=<n>' sets the window, 1 to 10.
 
+**CLAUDE.md IS GITIGNORED (.gitignore:20) AND IS NOT IN THE REPO.**  I
+found this by noticing an edit of mine never appeared in `git status'.  It
+matters for two reasons.  Anything corrected there is corrected only on
+THIS machine -- it does not travel, and a fresh clone gets whatever the
+file says wherever it came from.  And it is rdoggett's own instruction
+file rather than a project document, so it is not mine to maintain.
+
+I did edit it once tonight, on my own judgement and not at anyone's
+request: line 517 said "check_disk.py has TWENTY-ONE checks now" where the
+tool prints 27, and that same passage records the number having already
+drifted through nine, fifteen, seventeen, eighteen and twenty.  I replaced
+the count with a pointer to what the tool prints, which is what the
+passage itself advises.  FLAGGED TO RDOGGETT rather than left silent, and
+I have not touched anything else in it.
+
+**TWO HOUSE RULES BECAME GATES, and that is the durable result of this
+evening rather than the text fixes.**  os9-dev-skill-fc put it better than
+I could: every rule broken tonight was one with no mechanical enforcement,
+and every rule with a gate behind it fired.  So:
+
+  `text names what the reader has'  -- CLAUDE.md's rule that this
+      collection never says what the disk LACKS.  Six entries broke it and
+      had shipped.  Narrow on purpose: help.psv's 27 "there is no help
+      flag" lines mean the PROGRAM has no flag, and hardware facts like
+      "no sound device here" are not violations.
+
+  `OS-9 paths count dots'  -- no OS-9 pathlist may chain `../..'.  The
+      manual's p. 4-9 wording is in the docstring, and so is the reason it
+      must be mechanical: the wrong spelling does not announce itself, and
+      whether it works depends on WHICH LAYER resolves it.
+
+**THE FIRST CHECK CAUGHT A HOLE IN ITSELF ON ITS FIRST FAILURE RUN.**  My
+pattern was the literal `not on this disk'.  Against the old text it
+caught two of three and missed `map's real wording -- "neither is on this
+disk", which contains no "not".  Passing on the cleaned tree would never
+have shown it.  This repo's "make every check fail once" rule, applied to
+a check written to enforce a different rule, and it paid immediately.
+
 **THE CARD AUDIT IS CLOSED AT ZERO.**  Measured against docs/screens.js
 after the final shoot: 951 programs, 951 try lines, 295 naming a tmp/
 path, and NONE naming a path nobody creates.  The claim that started it
