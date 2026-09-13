@@ -1095,12 +1095,19 @@ run     screen -v
 wait    6
 
 shot    vmod_trap
-cap     The modem trap handler that the serial-transfer programs load and
-cap     call.  It is a trap-handler module, not a program; run directly the
-cap     shell reports it cannot be executed.
-try     vmod_trap
-run     /dd/CMDS/COMMS/vmod_trap
-wait    4
+cap     The trap handler that rxmod and txmod call -- a trap-handler
+cap     module, not a program.  modinfo shows what it is, including the
+cap     supervisor-state attribute that decides how it behaves once
+cap     installed.  Asking a shell to run it can only produce a refusal.
+try     modinfo vmod_trap | head -n 14
+os9     modinfo vmod_trap ! head -n 14
+run     builtin cd /dd/CMDS/COMMS
+wait    1
+run     clear
+wait    1
+run     modinfo vmod_trap | head -n 14
+wait    8
+snap
 
 shot    tput
 size    16 80

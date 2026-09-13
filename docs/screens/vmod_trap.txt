@@ -1,1 +1,15 @@
-/dd/CMDS/COMMS/vmod_trap: cannot execute binary file
+modinfo vmod_trap | head -n 14
+---------------------------------- vmod_trap  - - - - - - - - - - - - - - - - --
+Module name           = VMod_trap
+System revision       = 1
+Module size           = 202
+Owner Id              = 0.0
+Offset to module name = 000000acH
+Access permission     = e-re-re-r
+Type/Language          = 0b01H  Trap handler library   68000 Object Code Module
+Attribute/Revision    = a000H   reentrant  execute in supervisor state
+Edition               = 4
+Comment string offset = 00000000H
+Symbol table offset   = 00000000H
+Ident code            = 0000H
+Header parity         = 1b34H
