@@ -6,8 +6,8 @@ Open questions only. Nothing settled, nothing done. Updated 2026-09-12.
 
 1. **Q2 -- source for binaries we already ship.** gcc, g++, VH, dvips,
    gawk, bison, emacs ship without source. Three are staged and waiting:
-   `top/src/gawk2.0`, `top/src/bison`, `top/src/emacs_3.10`. dvips 5.5
-   source is `DRIVERS/nulman.lzh`, misnamed. Add them?
+   `top/src/gawk2.0`, `top/src/bison`, `top/src/emacs_3.10`, and dvips
+   from `DRIVERS/dvips_source.lzh` (641 KB, archive 3978). Add them?
 
 2. **Microware's `fpu`.** Carries its own grant -- "Permission to
    distribute FPU is granted so long as this file is retained" -- but

@@ -82,7 +82,11 @@ Name a pool file by what `file`/its listing shows, never by its filename.
    and dvips binaries without their source trees.  Sources exist: MW 4073,
    4074 (gcc 1.42, g++ 1.39.1), funet
    `pub/unix/os9/gnu/gcc-1.37.1-osk-src.tar.Z`, pool `MISC/vh_1.4.lzh`, pool
-   `DRIVERS/nulman.lzh` (dvips 5.5, misnamed).  0.6-1.4 MB each.
+   `DRIVERS/dvips_source.lzh` (641 KB, archive 3978).  NOT `nulman.lzh':
+   the REFETCHED nulman.lzh is ncf.a + nulman.a, a null-device manager,
+   correctly named.  The pool's `DRIVERS_nulman_lzh/' directory does
+   hold dvips.c -- that is the filename shift this file warns about in
+   these five categories, not a misnamed archive at the source.
    (Recommendation: add them.)
 3. **`jive` (1987, comp.sources.games v01i003).**  It builds and runs --
    `Sheeit, dis be a big-ass scribblin'` -- but it is a joke filter built on
