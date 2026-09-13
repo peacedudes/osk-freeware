@@ -942,6 +942,21 @@ CoCo/6809 documentation.
 failed.  `ftp.rtsi.com` is NXDOMAIN; `www.rtsi.com` resolves (Cloudflare)
 and serves a Joomla front page whose `/OS9/`, `/pub/` and
 `/os9archive.index` all 404.  The content moved to microware.com.
+
+**DO NOT COUNT "what has been fetched" BY MATCHING FILENAMES UNDER
+`os9/mw/'.**  Tried 2026-09-13 and it answers 547 of 704 never fetched,
+which is nonsense.  The pool keeps three different things in there and a
+name match conflates all three: `mw/' itself holds 53 SCRAPER artefacts
+(category `.html' pages, `mwget.py', `files.txt'), `mw/refetch/' holds
+152 original archive files under their own names, and `mw/dl/x/' holds
+material ALREADY UNPACKED into per-program directories (`c09_Solitaire',
+`osk_agrep', `c09_peruse_2_0').  So an unpacked archive reads as
+missing and a saved HTML page reads as fetched.  **The figure that
+stands is the one this plan already carries -- 127 OSK files the pool
+never fetched** -- written by the session that built the layout.  If an
+exact list is ever wanted, derive it from `osk.tsv' against
+`refetch/' plus the DIRECTORY NAMES under `dl/x/', not against a flat
+file listing.
 `os9archive.rtsi.com/ftparchive.html', captured 2004-04-15, documents
 the structure that was lost:
 
