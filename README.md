@@ -130,7 +130,7 @@ is no help until you already know the name you want.
 | **Games** | 83 | Adventures, board and card games, arcade ports, dungeon crawls and puzzles. |
 | **Screen toys** | 9 | Animations and screen effects -- they draw on the terminal rather than print to it. Some run until you stop them. |
 | **Amusements** | 25 | Generators, simulators and diversions that are not quite games. |
-| **System & modules** | 131 | OS-9 module and process tools, devices, system state and scheduling. |
+| **System & modules** | 133 | OS-9 module and process tools, devices, system state and scheduling. |
 | **Disk & DOS** | 20 | Reading and writing MS-DOS media with the mtools set. |
 | **Time & calendar** | 15 | Calendars, clocks and astronomy. |
 | **Maths & calculators** | 15 | Calculators, plotting, orbits and number theory. |

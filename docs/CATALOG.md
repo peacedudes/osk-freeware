@@ -1,6 +1,6 @@
 # What is on this disk
 
-994 programs of OS-9/68K community software, gathered from the archives that kept it and made to run again. **650 of them need nothing but this disk**; the rest want Microware's `cio`, marked below with a star.
+996 programs of OS-9/68K community software, gathered from the archives that kept it and made to run again. **652 of them need nothing but this disk**; the rest want Microware's `cio`, marked below with a star.
 
 `DOC/INDEX` on the disk lists everything alphabetically. This is the same collection sorted by what each program is *for*, which is the more useful order when you do not yet know what you are looking for.
 
@@ -25,7 +25,7 @@
 | [Games](#games) | 83 | Adventures, board and card games, arcade ports, dungeon crawls and puzzles. |
 | [Screen toys](#screen-toys) | 9 | Animations and screen effects -- they draw on the terminal rather than print to it. Some run until you stop them. |
 | [Amusements](#amusements) | 25 | Generators, simulators and diversions that are not quite games. |
-| [System & modules](#system--modules) | 131 | OS-9 module and process tools, devices, system state and scheduling. |
+| [System & modules](#system--modules) | 133 | OS-9 module and process tools, devices, system state and scheduling. |
 | [Disk & DOS](#disk--dos) | 20 | Reading and writing MS-DOS media with the mtools set. |
 | [Time & calendar](#time--calendar) | 15 | Calendars, clocks and astronomy. |
 | [Maths & calculators](#maths--calculators) | 15 | Calculators, plotting, orbits and number theory. |
@@ -590,7 +590,7 @@
 
 | | |
 |---|---|
-| `creadoc` | extract the documentation header (C++ ... C--) from every .f file in the current directory into creadoc.txt -- an early Fortran documentation generator.  It reads each file name from column 53 of a `dir -eadu' listing, where this disk's dir puts it at 54 (and 2026, printed `126', pushes it a column further), so it opens the name with a leading space and stops.  A dir-format brittleness, not the CPU; a one-constant source fix.  DOC/rtf/biory.doc is its output for biory.f.  Source: SRC/rtf/creadoc.f |
+| `creadoc` | extract the documentation header (C++ ... C--) from every .f file in the current directory into creadoc.txt -- an early Fortran documentation generator.  IT WORKS THROUGH YOUR OWN OS-9: it forks a shell twice, once for `dir -eadu *.f' to list the files and once per `del' to clear its temporary, so it wants a `shell' module and Microware's `dir' and `del' the way m4 wants a shell.  One brittleness of its own besides: it reads each file name from column 53 of that listing, where this disk's dir puts it at 54, and the year 2026 printing as `126' pushes it a column further again. DOC/rtf/biory.doc is its output for biory.f.  Source: SRC/rtf/creadoc.f |
 | `for` | the RTF/68K Fortran driver: it forks Microware's shell to run each compiler pass. At bash `for' is also the loop keyword, so ask for it by path there. Calling `rtf' directly needs no shell at all; see DOC/README-FORTRAN |
 | `rtf` | RTF/68K, the Real-Time Fortran-77 compiler, v2.14 (CERN, 1987). `load /dd/CMDS/os9lib' first; then `rtf file.f' reads the Fortran and writes 68k assembly beside the source, and r68 and l68 from your OS-9 assemble and link it. `for' is its driver, which forks Microware's shell for each pass. Sources to try in SRC/rtf; the manual is DOC/rtf/rtfman.txt |
 
@@ -1389,7 +1389,7 @@
 
 *OS-9 module and process tools, devices, system state and scheduling.*
 
-<details><summary>131 programs</summary>
+<details><summary>133 programs</summary>
 
 **Devices & disks**
 
@@ -1429,6 +1429,8 @@
 | `cio` | Microware's C library trap module -- what every starred program here needs.  Included with Microware's permission; see SOURCES.txt.  You do not run it, it loads itself. |
 | `csl` | Microware's C Shared Library, for programs built with Ultra C rather than cc 3.2 (68000) |
 | `csl020` | the same, for 68020/030/040 |
+| `fpu` | Microware's floating-point EMULATION module: where there is no 68881/68882 coprocessor it makes the machine behave as though there were, so Ultra C's floating-point code runs. Carries its own distribution grant -- DOC/fpu.doc, which the grant requires be kept with it.  Not a program and not loadable by hand: it belongs in your bootfile and in your Init module's extension list, so it is here for you to install on your own system rather than to run from here |
+| `fpu040` | the same module built for the 68040.  It registers as `fpu' too -- an Init extension list names `fpu' -- so take whichever suits the machine, not both |
 | `math` | Microware's floating-point trap module (software) |
 | `math881` | the same, using a 68881/68882 coprocessor.  Both register as the module `math'; load whichever suits your machine. |
 
