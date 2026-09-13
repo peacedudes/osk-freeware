@@ -60,18 +60,17 @@ cap     A menu shell: it reads a file of `label,command' lines and shows
 cap     them numbered, and a number runs that command through Microware's
 cap     `shell' -- the shell that comes with your OS-9 -- so here you see
 cap     the menu it draws.
-run     mkdir -p /dd/tmp/SHL > /nil 2>/nil; printf "Who am I,whoami\rThe date,today\rList SYS,ls /dd/SYS\r" > /dd/tmp/SHL/menu
 wait    2
 run     builtin cd /dd
 wait    1
 run     clear
 wait    1
-run     mshell tmp/SHL/menu
+run     mshell DOC/samples/menu
 wait    5
 snap
 send    \003
 wait    2
-try     mshell tmp/SHL/menu
+try     mshell DOC/samples/menu
 
 shot    env
 cap     Runs a command with a variable added to its environment: here

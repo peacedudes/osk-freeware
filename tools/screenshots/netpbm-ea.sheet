@@ -419,13 +419,12 @@ shot    pnmhisteq
 cap     Equalises an image's tones so its brightness levels spread evenly.
 cap     -verbose prints the mapping it applied, each old value to its new
 cap     one and the pixel count at that level.
-try     pnmhisteq -verbose tmp/NEAB/hq.pgm > tmp/NEAB/hqe.pgm
-run     mkdir -p /dd/tmp/NEAB > /nil 2>/nil
-run     pgmramp -lr 40 20 > /dd/tmp/NEAB/hq.pgm
+try     pnmhisteq -verbose DEMO/sphere.pgm > tmp/hqe.pgm
+run     mkdir -p /dd/tmp > /nil 2>/nil
 run     builtin cd /dd
 wait    1
 run     clear
-run     pnmhisteq -verbose tmp/NEAB/hq.pgm > tmp/NEAB/hqe.pgm
+run     pnmhisteq -verbose DEMO/sphere.pgm > tmp/hqe.pgm
 wait    5
 
 shot    ppmchange

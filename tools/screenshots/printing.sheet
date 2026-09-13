@@ -7,16 +7,16 @@ cap     Ghostscript 4.03 rendering a line of PostScript.  The page is
 cap     rasterised to a bitmap at 48 dots per inch, and pbmtoascii shows
 cap     that bitmap as text.  GS_LIB names its fonts and initialisation
 cap     files, in LIB/gs403.
-try     cat tmp/PRT/hello.ps; gs403 -q -dNOPAUSE -sDEVICE=pbm -r48 -g200x60 -sOutputFile=tmp/PRT/hello.pbm tmp/PRT/hello.ps -c quit; pbmtoascii tmp/PRT/hello.pbm
-run     mkdir -p /dd/tmp/PRT > /nil 2>/nil; printf "/Helvetica-Bold findfont 40 scalefont setfont\r8 14 moveto (OS-9/68000) show\rshowpage\r" > /dd/tmp/PRT/hello.ps; export GS_LIB=/dd/LIB/gs403
+try     cat DOC/samples/hello.ps; gs403 -q -dNOPAUSE -sDEVICE=pbm -r48 -g200x60 -sOutputFile=tmp/PRT/hello.pbm DOC/samples/hello.ps -c quit; pbmtoascii tmp/PRT/hello.pbm
+run     mkdir -p /dd/tmp/PRT > /nil 2>/nil; export GS_LIB=/dd/LIB/gs403
 wait    2
 run     builtin cd /dd
 wait    1
 run     clear
 wait    1
-run     cat tmp/PRT/hello.ps
+run     cat DOC/samples/hello.ps
 wait    2
-run     gs403 -q -dNOPAUSE -sDEVICE=pbm -r48 -g200x60 -sOutputFile=tmp/PRT/hello.pbm tmp/PRT/hello.ps -c quit
+run     gs403 -q -dNOPAUSE -sDEVICE=pbm -r48 -g200x60 -sOutputFile=tmp/PRT/hello.pbm DOC/samples/hello.ps -c quit
 wait    60
 run     pbmtoascii tmp/PRT/hello.pbm
 wait    10

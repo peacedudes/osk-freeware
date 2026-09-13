@@ -179,14 +179,13 @@ wait    3
 shot    mg
 cap     Mg, MicroGnuEmacs: Emacs keys in 79K, its documentation under
 cap     DOC/mg.  Control-X control-C leaves it.
-try     mg tmp/EDIT/jabber.txt
-run     mkdir -p /dd/tmp/EDIT > /nil 2>/nil; printf "Twas brillig, and the slithy toves\r     Did gyre and gimble in the wabe:\rAll mimsy were the borogoves,\r     And the mome raths outgrabe.\r" > /dd/tmp/EDIT/jabber.txt
+try     mg DOC/samples/jabber.txt
 wait    2
 run     builtin cd /dd
 wait    1
 run     clear
 wait    1
-run     mg tmp/EDIT/jabber.txt
+run     mg DOC/samples/jabber.txt
 wait    8
 snap
 send    \030\003
@@ -275,18 +274,23 @@ kill
 shot    pbyte
 cap     Patches bytes in a file at a hex offset -- the smallest binary
 cap     editor here.  Three bytes at offset 0 turn `Twas' into `ABCs'.
-try     pbyte tmp/EDIT/pb.txt 0 41 42 43
-run     mkdir -p /dd/tmp/EDIT > /nil 2>/nil; printf "Twas brillig, and the slithy toves\r" > /dd/tmp/EDIT/pb.txt
-wait    2
+cap     This is the one card that shows its own setup, and deliberately:
+cap     pbyte writes into the file you hand it, so a demo has to copy a
+cap     sample to scratch first rather than patch something the disk
+cap     ships.  Every other card hides its staging because hiding it
+cap     costs the reader nothing; this one cannot.
+try     cat DOC/samples/jabber.txt > tmp/pb.txt; pbyte tmp/pb.txt 0 41 42 43
 run     builtin cd /dd
 wait    1
 run     clear
+wait    1
+run     cat DOC/samples/jabber.txt > tmp/pb.txt
 wait    3
-run     cat tmp/EDIT/pb.txt
+run     cat tmp/pb.txt
 wait    3
-run     pbyte tmp/EDIT/pb.txt 0 41 42 43
+run     pbyte tmp/pb.txt 0 41 42 43
 wait    5
-run     cat tmp/EDIT/pb.txt
+run     cat tmp/pb.txt
 wait    3
 
 shot    chbase
@@ -301,27 +305,25 @@ wait    6
 
 shot    sed
 cap     sed, the stream editor, substituting on every line of a file.
-try     sed "s/the/THE/g" tmp/EDIT/jabber.txt
-run     mkdir -p /dd/tmp/EDIT > /nil 2>/nil; printf "Twas brillig, and the slithy toves\r     Did gyre and gimble in the wabe:\rAll mimsy were the borogoves,\r     And the mome raths outgrabe.\r" > /dd/tmp/EDIT/jabber.txt
+try     sed "s/the/THE/g" DOC/samples/jabber.txt
 wait    2
 run     builtin cd /dd
 wait    1
 run     clear
 wait    1
-run     sed "s/the/THE/g" tmp/EDIT/jabber.txt
+run     sed "s/the/THE/g" DOC/samples/jabber.txt
 wait    6
 
 shot    sed_1.06
 cap     A second build of sed, kept under its version number, doing the
 cap     same substitution.
-try     sed_1.06 "s/the/THE/g" tmp/EDIT/jabber.txt
-run     mkdir -p /dd/tmp/EDIT > /nil 2>/nil; printf "Twas brillig, and the slithy toves\r     Did gyre and gimble in the wabe:\rAll mimsy were the borogoves,\r     And the mome raths outgrabe.\r" > /dd/tmp/EDIT/jabber.txt
+try     sed_1.06 "s/the/THE/g" DOC/samples/jabber.txt
 wait    2
 run     builtin cd /dd
 wait    1
 run     clear
 wait    1
-run     sed_1.06 "s/the/THE/g" tmp/EDIT/jabber.txt
+run     sed_1.06 "s/the/THE/g" DOC/samples/jabber.txt
 wait    6
 
 shot    vi
@@ -329,14 +331,13 @@ cap     The genuine Berkeley vi and ex -- `vi -x' is ex, `vi -d' is edit.
 cap     It fills the screen on a real terminal; the picture here shows the
 cap     first lines it paints before it waits for a command.  Its source is
 cap     in SRC/effo_vi.
-try     vi tmp/EDIT/jabber.txt
-run     mkdir -p /dd/tmp/EDIT > /nil 2>/nil; printf "Twas brillig, and the slithy toves\r     Did gyre and gimble in the wabe:\rAll mimsy were the borogoves,\r     And the mome raths outgrabe.\r" > /dd/tmp/EDIT/jabber.txt
+try     vi DOC/samples/jabber.txt
 wait    2
 run     builtin cd /dd
 wait    1
 run     clear
 wait    1
-run     vi tmp/EDIT/jabber.txt
+run     vi DOC/samples/jabber.txt
 wait    15
 snap
 send    \033

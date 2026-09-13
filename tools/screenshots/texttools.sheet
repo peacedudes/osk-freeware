@@ -495,16 +495,15 @@ shot    pagekwic
 size    36 80
 cap     A keyword-in-context index: every rotation of every title, one
 cap     line each, the way a KWIC index is built before sorting.
-try     pagekwic < tmp/TXT/titles
-run     mkdir -p /dd/tmp/TXT > /nil 2>/nil; printf "The Art of Computer Programming\rStructured Programming\rThe C Programming Language\rThe Mythical Man-Month\r" > /dd/tmp/TXT/titles
+try     pagekwic < DOC/samples/titles
 wait    3
 run     builtin cd /dd
 wait    1
 run     clear
 wait    1
-run     cat tmp/TXT/titles
+run     cat DOC/samples/titles
 wait    2
-run     pagekwic < tmp/TXT/titles
+run     pagekwic < DOC/samples/titles
 wait    8
 
 shot    pagefraz

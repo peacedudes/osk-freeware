@@ -65,6 +65,50 @@ had asked for exactly this in his ReadMe.OS9.
 though the word he named is absent.  `valspeak', the companion filter from
 the same distribution, ships and is clean.
 
+**The card audit's headline was wrong by a factor of twenty, and the
+correction is worth more than the finding.**  os9-dev-skill-fc's
+CARD-AUDIT.md said 244 published `try' commands cannot be reproduced.
+Re-measured from docs/screens.js: 951 programs all carry a try line, 299
+name a path under `tmp/', and for 286 of those the path appears in that
+card's OWN published screen -- so the reader sees the file being made
+even when the creating command ran before the `clear'.  Thirteen did not,
+and TWO of those thirteen only WRITE into tmp/ (djpeg, rayshade), which
+is fine because tmp/ ships.  **Only a READ can fail.**  Eleven real ones.
+
+Fixed by SHIPPING the inputs, which is what this collection already does
+46 times over (DOC/xasm/sample.a0, DOC/logisim/counter.lsi,
+GAMES/rayshade/boxball.ray are all try-line targets that ship).  New:
+DOC/samples/{jabber.txt,titles,menu,hello.ps}.  Repointed: vi, sed,
+sed_1.06, mg, pagekwic, mshell, gs403, and pnmhisteq at the
+already-shipped DEMO/sphere.pgm.
+
+Still open from that eleven: `EditLibr' and `Librarian' want a catalogue
+Ascii2Libr generates -- the route is to mount a host directory as OS9H1
+and `copy' the built cat.libr out of the image, then ship it, checking it
+arrives byte-identical.  And `pbyte' PATCHES ITS INPUT IN PLACE, so it
+must not point at shipped data: it should be the one card that visibly
+stages a scratch copy, with a sentence saying why.
+
+**`pagekwic' MAY BE BROKEN, and it is not something I caused -- chase
+this.**  Its output rotates words ACROSS titles, not within one: the
+first line of its card reads `Structured of Computer Programming', which
+is `Structured Programming' and `The Art of Computer Programming' mixed
+together.  A keyword-in-context index rotates a single line at a time.
+The previous published capture is byte-identical to the one shot today
+against the newly shipped DOC/samples/titles, so the behaviour is old and
+the sample reproduces the old staged file exactly -- this is a real
+question about the program, not about the card.  Needs the emulator and a
+file whose lines are obviously distinct to settle it.
+
+**A trap of my own, one level below the usual one.**  The repoint script
+dropped each stanza's staging line by matching "contains the filename and
+a printf".  Every line it matched really was a staging line -- but
+gs403's also carried `export GS_LIB=/dd/LIB/gs403' and its mkdir, so the
+card would have shot Ghostscript with no fonts and been read as a
+Ghostscript limitation.  I verified what the line WAS, not everything it
+DID.  Read back what a bulk edit produced before trusting the pattern
+that produced it.
+
 **IN FLIGHT, NOT YET PROVEN -- pick this up first:** `DVIPS/tex.pro' and
 six sibling prologues are staged into `disk/SYS/TEX/DVIPS' from the
 PUBCMDS copy of dvips_source.lzh (the refetch copy does NOT contain them).

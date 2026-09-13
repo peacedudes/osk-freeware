@@ -329,7 +329,7 @@ greed 158e714fe4950b0c
 greg 76f1f9ff303cd722
 grep 358e2708027e2124
 gs33 addce421260f1692
-gs403 0e2dc5b17e161979
+gs403 761a78917e2d23bb
 gshell 33ecf84de9211522
 gtar b5cc1b17d0d6bb41
 gulls 3acc5cb63cf0966f
@@ -449,7 +449,7 @@ md5 f7ca13d738767f9a
 me 98d867e530f821ec
 messages a6d10c4c797232b7
 mexist ce07f4f61b5f4f22
-mg a771ae77cd078241
+mg 74a97d55d730463a
 mgif e0349a589f6ed716
 mille 2b0f47ef4c18ff16
 mimecode b4f8a095eb5d37f1
@@ -473,7 +473,7 @@ msdel 49c11e517526df67
 msdeltree 322b0a2831f51a42
 msdir b1d79f19b62c00e4
 msformat c3338b14d3a19e7b
-mshell f1870442873efbed
+mshell 647fe4b080093c13
 msinfo a5042fc2d611b75a
 mslabel deb85be1fbad625c
 msmd 71cc2b5a5f06ec43
@@ -519,7 +519,7 @@ owner 7fb3f2c98801f014
 p2c ad2cc748d21b5b6a
 pacman 6f7313ec3413fc2f
 pagefraz b7df03a6ec1e2269
-pagekwic d02606167b53409f
+pagekwic 4cf2a7668eea2c3c
 pageline 13c7f481a68a01c9
 paranoia 0a60d6a2260427f6
 passwd a75ac662a0382d5e
@@ -543,7 +543,7 @@ pbmtopi3 18a7ed04042a29bc
 pbmtoptx 82ca56ca964c8c04
 pbmtoxbm ef9a2839d02eaffe
 pbmupc cfb7064fa3a78d28
-pbyte 383cb31a3d969ce3
+pbyte 8b71512d94f13f59
 pcx c99b1cc9bb515cbf
 pdraw 24cfd6da1d1047d1
 pep 8cd5b600ad9af25f
@@ -581,7 +581,7 @@ pnmfile-set 43c99d6277faea24
 pnmfilters de4ce8010362e505
 pnmflip 02ba5644f458d644
 pnmgamma dd938d5b2fd934be
-pnmhisteq db39a7913e9013fa
+pnmhisteq 2b81118465a92d4b
 pnmhistmap ec87358aa0948546
 pnminvert 31fd425ea4064438
 pnmnoraw 7da071f12d8effca
@@ -694,8 +694,8 @@ scriptmaster c2480f44f645d209
 scsiutil 24cd2d532328b474
 sdb 69353d08c23f2acb
 sddemo c472fc5dc89bc5e1
-sed 4c288411a1a0cb8c
-sed_1.06 8ad77df0201254f0
+sed 86aff8401aaf7f06
+sed_1.06 b45e5f3769a58252
 sedt c1d9526ab394690c
 sepwords 2946a889b8fd59d2
 setime2 51ad4508112afdfc
@@ -824,7 +824,7 @@ valspeak 7d51b124e270473b
 vc 184340ae7a592513
 version 4cf80677f3f5a15c
 vftovp 01cee193d3f83aa4
-vi c29746acf28ee834
+vi 8208ed0b9ed6a6e4
 vi-recovery ea4fd3700d282789
 vi.elvis 8253ea73025a2ad1
 vi_1.0 912d53b32f43f229
