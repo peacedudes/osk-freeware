@@ -751,3 +751,28 @@ Four things measured tonight, so nobody spends the time again:
   `os9archive.rtsi.com` serves CMS pages; `/OS9/`, `/pub/`, `/OSK/`,
   `/OS9Archive/` and `www.rtsi.com/os9/` all 404. Whatever the archive
   still holds is behind the site's own menu, which needs a person.
+
+**alt.sources is EXHAUSTED for OSK material, measured 2026-09-13.** The
+local `unix/altsrc/subjects.tsv` indexes 12,026 articles; searching its
+SUBJECT column (field 4 -- field 3 is the author, and searching that
+matches `x68k.net' and `Jef Poskanzer' and tells you nothing) gives 8
+hits for OS-9/OSK/68k/Microware in the whole corpus. All were fetched
+and read:
+
+  910227.08  someone ASKING for an OS-9 GNU C compiler. No code.
+  910224.30  the reply: binaries sent to an FTP host, 1991. No code.
+  910331.02  `gcc-68000 gnulib in *.s' -- a real shar, but generic 68000
+             gnulib for gcc (source dir /home/cjp/gcc.68000), and
+             GNULIB/gnulib.l and LIB/libgcc.l already ship.
+  900915.23  an S-record generator; nothing here reads or writes S-records.
+  940713.12  m68kdis, an M68000-family disassembler -- and `unc' already
+             ships, which disassembles an OS-9 module back to assembler
+             (Microware archive 4308, John Collins / hcz OSK port).
+
+So the 1992-93 alt.sources gap named above is worth closing for
+completeness, but should not be expected to yield OSK programs: the
+group carried almost none across eight years either side of it.
+
+**Where the real hole is: comp.os.os9, 1987-2002.** See the 2026-09-13
+entry above -- what we hold starts in 2003. That is the group where OSK
+freeware was actually posted, and no copy of its active era is in hand.

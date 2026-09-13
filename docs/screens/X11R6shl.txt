@@ -1,2 +1,15 @@
-$ X11R6shl; echo ""
-/dd/CMDS/X11R6shl: cannot execute binary file
+modinfo X11R6shl | head -n 14
+----------------------------------- X11R6shl  - - - - - - - - - - - - - - - - --
+Module name           = X11R6shl
+System revision       = 1
+Module size           = 1678736
+Owner Id              = 0.0
+Offset to module name = 001838d8H
+Access permission     = e-re-re-r
+Type/Language          = 0b01H  Trap handler library   68000 Object Code Module
+Attribute/Revision    = 8000H   reentrant
+Edition               = 6
+Comment string offset = 00000000H
+Symbol table offset   = 00000000H
+Ident code            = 0000H
+Header parity         = ffff9e19H

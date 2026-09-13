@@ -1443,11 +1443,18 @@ wait    8
 snap
 
 shot    X11R6shl
-cap     The X11R6 shared-library loader -- a library, not a program.  Run
-cap     as a command, the shell reports it cannot execute it.
-try     X11R6shl
-run     X11R6shl; echo ""
-wait    6
+cap     The X11R6 shared-library loader -- a type-$0B trap library, not a
+cap     program.  modinfo shows what it is; asking a shell to run it can
+cap     only produce a refusal, which says nothing about the library.
+try     modinfo X11R6shl | head -n 14
+os9     modinfo X11R6shl ! head -n 14
+run     builtin cd /dd
+wait    1
+run     clear
+wait    1
+run     modinfo X11R6shl | head -n 14
+wait    8
+snap
 
 # ---- Plotting
 snap
