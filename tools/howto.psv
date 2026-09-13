@@ -129,7 +129,7 @@ initex|TeX with no format preloaded -- this is what BUILDS the .fmt files. `init
 latex|See `tex'. The wrapper cannot reach the engine; run `virtex '&lplain' yourfile.tex'. That does work: SAMPLES/small.tex gives "Output written on small.dvi (1 page, 1704 bytes)". The .dvi and .log land in your DATA directory.
 slitex|LaTeX for slides; its format is SYS/TEX/FORMATS/splain.fmt, already built.
 dvitype|`dvitype <file>.dvi < /nil'. It asks five questions -- output level, starting page, page count, device resolution, magnification -- and takes the default for each at end of file. Redirect its input so a script does not wait on the questions.
-dvips|DVI to PostScript. It wants a header file tex.pro -- point it at one, or use `dvialw', which writes PostScript too.
+dvips|DVI to PostScript: `dvips <file>.dvi -o <file>.ps'. Its prologues ship in SYS/TEX/DVIPS and it finds them there. A font size nobody has built is reported and left blank; `-M' stops it offering to make one.
 elm|The full-screen mail reader. It opens on the folder that ships for this account, `~/SPOOL/MAIL/tester', showing one message. `readmsg 1' prints a message without opening the reader; `messages' counts the folder. Mail lives at /dd/SPOOL/MAIL/<user>, and SYS/login points MAIL at it.
 readmsg|Prints messages from a mail folder: `readmsg 1' for the first. It reads the welcome message in /dd/SPOOL/MAIL/tester.
 messages|Counts what is in your mail folder: "There is 1 message in your mailbox".

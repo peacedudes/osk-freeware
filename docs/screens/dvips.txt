@@ -1,3 +1,6 @@
-dvips story.dvi
+dvips -M story.dvi -o story.ps
 This is dvipsk 5.495b Copyright 1986, 1992 Radical Eye Software
-dvips: ! Couldn't find header file tex.pro
+' TeX output 2026.09.12:1747' -> story.ps
+<tex.pro>. [1]
+$ ls -l story.ps
+-rw-------   1 0        0           12344 Sep 12 17:48 story.ps

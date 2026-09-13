@@ -625,7 +625,7 @@ yield is licence data: lharc and m4 (579f289c) and the three above.
 
 ### TOP's 30 source trees, triaged 2026-09-12 -- nothing stageable
 
-`src_census.py disk --tsv' says 1005 programs, 696 with source (69%), **307
+`src_census.py disk --tsv' says 999 programs, 701 with source (70%), **298
 without**.  TOP release 2 carries 30 source trees; the question was which of
 them fill a real gap.  Answer: four, and not one can be staged tonight.
 

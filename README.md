@@ -249,7 +249,7 @@ the trees that still have none. See `tools/rebuild/README.md`.
 
 A third of the modules under `CMDS/` have no source anywhere and can only be
 preserved, not rebuilt. That is why the binaries are committed.
-`tools/src_census.py disk` counts it — 627 of 945, 66%, as measured
+`tools/src_census.py disk` counts it — 701 of 999, 70%, as measured
 2026-08-29, and the figure moves every time a recipe lands.
 
 ## Working on this collection

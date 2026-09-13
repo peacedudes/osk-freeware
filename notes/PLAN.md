@@ -100,7 +100,7 @@ clear.
 >
 > The work done under the old figure was real: 79 cases, five rebuilds, four
 > cards. The number describing what was left was not.
-| Source here | 625 (66%) |
+| Source here | 701 (70%) |
 | Documented beyond one index line | 602 (63%) |
 
 Re-measured 2026-08-31 evening. The tools are the authority, not this table:

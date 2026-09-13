@@ -1,5 +1,67 @@
 # Start here, next session
 
+## 2026-09-12 (later): rdoggett's ten decisions, executed
+
+**Four programs dropped**, each measured first: `dearc` (cannot read a
+CRUNCHED member -- four genuine 1980s archives and one written by this
+disk's own `arc' all stop at the first member; SOURCES.txt had already
+recorded dearc as NOT taken, "arc covers it"), `rstory2` (forks four
+`rstory_*` programs that were never distributed and cannot be rebuilt --
+rstory.c's main() takes no arguments), `splitalf` (a real bug found and
+fixed in SRC -- `fa[1] == NULL' tested inside the loop that opens fa[0] --
+which only made the failure honest; it still dies on the second fopen, and
+`MEM=64k' changed nothing), `wc.cio` (nothing unique: both read stdin the
+same, `wc' also takes filenames).  Earlier the same day: `kermit_cio` and
+the three gzip `_nocsl` builds.
+
+**Four were NOT broken -- these are the better half of the finding:**
+- `dedit` is BASIC09 I-code (type 2 lang 2, measured) and wants runb.
+  DOC/INDEX said "Three programs are BASIC09 I-code"; there are FOUR.
+- `names` is a German ADDRESS BOOK (`Adressen Verwaltung' 1.0).  INDEX
+  called it "list the names of modules in a file".  It does not.
+- `ff` needs a `shell' module, like m4 -- it forks one for `dir ! grep'.
+- `creadoc` likewise: it forks a shell for `dir -eadu' and for `del', so
+  it wants your own OS-9's utilities.  Not "one constant", which is what
+  I said twice before reading the source.
+
+**All six GNU Chess builds stay** -- no two are indistinguishable, which a
+subagent established from captures and binaries.  gnuchessc was wrong in
+INDEX on both halves (it is the CHESSTOOL build, boardless BY DESIGN, and
+its data files ARE found).  The `nchess' RECIPE carried -DCHESSTOOL, which
+deletes the search table that is nchess's whole reason to exist -- fixed,
+and the rebuild now matches what ships.
+
+**fpu ships** (decision 2) with its own grant in DOC/fpu.doc, honestly
+labelled: it belongs in a bootfile and an Init extension list, neither of
+which this collection has, so it is there to install on your own system.
+
+**Q2 source staged** (decision 1): SRC/gawk2.0 (28 files), SRC/bison (39),
+SRC/dvips (65 top-level .c/.h plus the archive's own OS9/ port files).
+All CR-only, all recorded in SOURCES.txt with their terms.  dvips's porter
+had asked for exactly this in his ReadMe.OS9.
+
+**jive stays OUT** (decision 3).  No N-word in it -- but `wet-back' and
+`greaser' are in its vocabulary, which is rdoggett's stated test even
+though the word he named is absent.  `valspeak', the companion filter from
+the same distribution, ships and is clean.
+
+**IN FLIGHT, NOT YET PROVEN -- pick this up first:** `DVIPS/tex.pro' and
+six sibling prologues are staged into `disk/SYS/TEX/DVIPS' from the
+PUBCMDS copy of dvips_source.lzh (the refetch copy does NOT contain them).
+dvips has never rendered here for want of that file.  It is NOT verified:
+the gate was red when I rebuilt, so mkimage refused and every test so far
+ran against a stale image.  Run the gate, rebuild, then
+`chd /dd/DOC/mg; dvips mg_doc.dvi -o /dd/tmp/mg.ps'.  The binary searches
+`.:/DD/SYS/TEX/DVIPS:/DD/USR/TEX/DVIPS:/DD/TEX/DVIPS' and honours
+TEXCONFIG.
+
+**A trap I set for myself, worth not repeating:** I issued "stage the
+files" and "rebuild the image and test" in the SAME parallel batch, so
+mkimage ran against a tree that did not have them yet, and I read the
+resulting failure as a dvips problem.  Staging and building are not
+independent.
+
+
 ## 2026-09-12: seven programs added, 1000 total, 24 commits
 
 Added and carded: **browse** and **uustat** (the two B5 called blocked -- the
@@ -37,7 +99,7 @@ this disk shares with OS-9's own, noted in README-KEEP.
 
 - **TOP's own source trees** (`Scraped/.../os9/top/src/') -- OS-9 ports of
   programs this disk ships as binaries.  Verified 2026-09-12 against
-  `src_census.py' (694 of 1003 programs have source here, 69%; 309 do not)
+  `src_census.py' (701 of 999 programs have source here, 70%; 298 do not)
   and against ORIGINS read as entries rather than by substring:
 
       gawk    gawk2.0      15 .c   10,026 lines   no source here, no ORIGINS row

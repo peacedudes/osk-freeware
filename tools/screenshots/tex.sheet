@@ -320,17 +320,20 @@ wait    5
 
 shot    dvips
 size    36 80
-cap     dvips, the later PostScript driver.  It stops at once for want
-cap     of its header file, tex.pro, which is not on the disk; dvialw is
-cap     the PostScript driver that runs.
-try     dvips story.dvi
+cap     dvips, the fuller of the two PostScript drivers.  It reads the
+cap     seven prologues in SYS/TEX/DVIPS -- you can see it name tex.pro --
+cap     and writes the page out.  `-M' tells it not to offer to build a
+cap     font size nobody has made yet.
+try     dvips -M story.dvi -o story.ps
 run     mkdir -p /dd/tmp/TEX > /nil 2>/nil; rm -f /dd/tmp/TEX/story.dvi /dd/tmp/TEX/story.dvi_*; cat /dd/SYS/TEX/SAMPLES/story.tex > /dd/tmp/TEX/story.tex; printf '\\end\r' >> /dd/tmp/TEX/story.tex; builtin cd /dd/tmp/TEX; tex story.tex > /nil
 wait    40
 run     builtin cd /dd/tmp/TEX
 run     clear
 wait    1
-run     dvips story.dvi
-wait    20
+run     dvips -M story.dvi -o story.ps
+wait    30
+run     ls -l story.ps
+wait    5
 
 shot    tftopl
 size    30 80

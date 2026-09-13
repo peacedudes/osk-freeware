@@ -89,3 +89,38 @@ disk/SRC/unc/ORIG/os9traps.c
 # DEFS/os9lib/info.h; this copy sits beside uustat.c because naming the whole
 # of DEFS/os9lib on the include path drags in its <stat.h> and collides.
 disk/SRC/uustat/info.h
+
+# ADDED 2026-09-12 with the gawk, bison and dvips trees (rdoggett's answer to
+# Q2: ship the source for binaries we already ship).  Thirteen files flagged
+# and every one read.  NOT ONE is Microware's, and the pattern is the blind
+# spot this file already records for SRC/ed/getopt.h: the screen compares
+# against the SDK, and the SDK carries third-party GNU code of its own.
+#
+# Eight dvips files are GNU libiberty helpers, each carrying "Copyright (C)
+# 1992 Free Software Foundation, Inc." and GPL v2 in its own header.  They
+# flag at 50-60% against the SDK's getopt.h because they are three- and
+# ten-line autoconf shims, and short boilerplate matches short boilerplate.
+disk/SRC/dvips/c_errno.h
+disk/SRC/dvips/c_limits.h
+disk/SRC/dvips/c_pathmx.h
+disk/SRC/dvips/c_seek.h
+disk/SRC/dvips/concat.c
+disk/SRC/dvips/concat3.c
+disk/SRC/dvips/xmalloc.c
+disk/SRC/dvips/xstrdup.c
+
+# dvips/types.h carries no copyright line, which is why it wants saying out
+# loud: 453 bytes of Karl Berry's generic types -- a `boolean' enum, `string'
+# and `address' -- and it resembles NEITHER SDK types.h.  The SDK's DEFS copy
+# is 146 bytes of u_char/u_short typedefs; its os9lib copy is Sun/UCB 1982.
+# Different file, same common name.
+disk/SRC/dvips/types.h
+
+# The last four flag on NAME ALONE, with no line overlap reported at all.
+# bison's two carry "Copyright (C) 1984, 1989 Bob Corbett and Free Software
+# Foundation" and GPL v1 in their own headers; the Makefiles flag because
+# every project on earth has one.
+disk/SRC/bison/types.h
+disk/SRC/bison/main.c
+disk/SRC/bison/Makefile
+disk/SRC/gawk2.0/Makefile
