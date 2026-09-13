@@ -70,15 +70,23 @@ Open questions only. Nothing here is decided. Updated 2026-09-13.
    own over OS-9's pipe device, or accept the clause for that one
    binary.  Nothing else about diff3 is blocked.
 
-## One question, asked of you by an os9exec session
+## ANSWERED -- the dots question is closed
 
-4. **Is `../..' valid OS-9 because Microware says so, or because you
-   recall it working?**  You told us dots-only components climb dots-1
-   and add up, so `../..' means three levels; that is now written into
-   `tools/check_disk.py' as the reason its dots gate is about
-   PORTABILITY and not about validity.  An os9exec session asked which
-   footing the claim stands on, and it matters to them: they changed
-   os9exec to accept it (`985e0d8'), so if it is a recollection rather
-   than documented behaviour, they have encoded a recollection.  A
-   manual citation would settle it; "I remember it working" is a fine
-   answer too, as long as we label it as one.
+4. ~~**Is `../..' valid OS-9 because Microware says so, or because you
+   recall it working?**~~  **You answered this on 2026-09-13**, relayed
+   here by an os9exec session: *"yes real os-9 accepts ../../../.. no
+   problem"*, and you expect `./../.../...././file' to work too.  So it
+   is YOUR WORD rather than a manual citation, which is a perfectly good
+   footing and is now labelled as one wherever it is written down.  The
+   os9exec side reports that form working live after `985e0d8', climbing
+   exactly six levels from seven deep and NOT reaching seven -- so no
+   overclimb.
+
+   You also said to KEEP the gate: cards should use `...' rather than
+   `../..' **"because it's uniquely os9"**.  So the gate's reason is now
+   house style first -- that spelling is the one this system has and Unix
+   does not, and a collection teaching OS-9 should show it -- with
+   portability second (the chained form failed on RBF images until
+   os9exec `985e0d8', which is newer than most readers' builds).
+   `tools/check_disk.py' says exactly that now.  Nothing here needs you
+   again.

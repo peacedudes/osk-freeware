@@ -797,12 +797,21 @@ def check_no_chained_parent_paths(root):
     settling chaining either way has been found, so treat `../..' as legal
     OS-9 that this collection simply does not use.
 
-    THE GATE IS ABOUT PORTABILITY, NOT VALIDITY.  The dotted form works on
-    real OS-9 and on every os9exec build.  `../..' relative to a
-    subdirectory FAILED on an RBF image with E_PNNF until os9exec 985e0d8
-    (2026-09-13) -- so a card shipping it would break for every reader whose
-    emulator predates tonight, which is nearly all of them.  A card has to
-    work on the system the reader already has.
+    THE GATE IS ABOUT HOUSE STYLE FIRST, AND PORTABILITY SECOND.  NEITHER
+    IS ABOUT VALIDITY.  rdoggett settled both halves on 2026-09-13: real
+    OS-9 accepts the chained form -- "yes real os-9 accepts ../../../.. no
+    problem" -- and the gate should stay anyway, because the cards should
+    use the dotted form "because it's uniquely os9".  That is the reason:
+    `...' is the spelling this system has and Unix does not, and a
+    collection teaching OS-9 should show it.  `../..' is legal and simply
+    is not how we write it here.
+
+    The practical half supports it.  The dotted form works on real OS-9 and
+    on every os9exec build; `../..' relative to a subdirectory FAILED on an
+    RBF image with E_PNNF until os9exec 985e0d8 (2026-09-13) -- so a card
+    shipping it would break for every reader whose emulator predates that,
+    which is nearly all of them.  A card has to work on the system the
+    reader already has.
 
     And measured 2026-09-12, BEFORE that fix, the failure did not announce
     itself: `cat ../../SYS/motd' from /dd/CMDS/GCC2 gave E_PNNF naming the
