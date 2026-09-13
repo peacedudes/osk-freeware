@@ -1195,9 +1195,18 @@ So do not reason about which sheets are at risk.  **Sweep them.**  That
 is the only instrument that has ever been right about this, and it is
 cheap to run measure-only with an unconditional restore.
 
-**SWEEP TALLY, 2026-09-13.**  538 of 929 stanzas swept, 391 remaining.
+**SWEEP TALLY, 2026-09-13.**  622 of 929 stanzas swept, 307 remaining.
 Clearers by sheet: graphics 9, games 5, comms 4, system 2, textfilters 1
-(`casefix'), netpbm 0, devtools 0.  Twenty-one in all.
+(`casefix'), and ZERO in netpbm-ea, netpbm-in, netpbm, devtools,
+texttools and compilers.  Twenty-one in all.
+
+Swept and CLEAN, so do not re-sweep these: netpbm-ea, netpbm-in, netpbm,
+devtools, texttools, compilers.  Swept and worked: graphics, games,
+comms, system, textfilters.
+
+`creadoc' re-read at ink 51 in the compilers sweep -- exactly what it was
+published at hours earlier, on a rebuilt image.  The column fix is
+stable and reproducible.
 
 What the sweeps actually YIELDED, which is the honest measure of whether
 to keep going: graphics recovered `pdraw' (96 -> 396); comms exposed
