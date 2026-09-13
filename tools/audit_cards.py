@@ -192,6 +192,14 @@ def main(argv):
             "exrecover": "recovers the buffer `expreserve' kept when vi "
                          "died.  With nothing preserved, `File not found' is "
                          "the honest answer and the caption says so",
+            "remove": "a BEFORE-AND-AFTER, and the rule reads only half of "
+                      "it.  The stanza loads readmsg, shows it answering by "
+                      "name with its usage line, runs `remove readmsg', then "
+                      "runs the SAME command again -- and `readmsg: nowhere "
+                      "found' is the proof that remove did its job, which is "
+                      "what the caption says.  Scored THIN-HELP because the "
+                      "usage line counts as help, but that line is the BEFORE "
+                      "half, not the subject",
             }
     # `texfonts-bitmap' was excepted here until 2026-09-01, on the grounds
     # that there was no .pk, .gf or .vf for its eight tools to read.  There
