@@ -682,6 +682,32 @@ def capture_burst(image, shot):
     return ansiscreen.render(raw, rows, cols), False
 
 
+def alf_off(raw):
+    """Has something turned the console's AUTOMATIC LINE FEED off?
+
+    OS-9 ends a display line with a bare CARRIAGE RETURN and SCF appends the
+    line feed itself, gated on the path option PD_ALF ("If PD_ALF is not
+    zero, carriage returns are automatically followed by line-feeds" -- v2.4
+    Technical I/O Manual).  A program that wants a clean binary stream turns
+    PD_ALF off, and SS_Opt is a DEVICE-level operation: os9exec propagates it
+    to every open path on the same terminal, exactly as real OS-9 does.  So
+    one program clearing it leaves the shell, and every later stanza in the
+    session, writing CR with no LF -- every line lands back at column 0 on
+    top of the last one, and the next prompt overwrites the first six
+    characters of whatever is there.
+
+    That is what published `$ in: cannot connect to X server' for basicwin
+    (`basicw' = six characters = len("bash# ")) and collapsed loadmem's four
+    lines of syntax into one.  Measured 2026-09-13: the same stanza shot
+    alone gives LF=5 CR=5 and ink 157; shot after cjpeg.070 it gives LF=1
+    CR=5 and ink 7 -- the BYTES ARRIVE either way, so nothing is lost in the
+    emulator or the program.  The session cannot be un-poisoned from out
+    here, so the only cure is a fresh one.
+    """
+    crs = raw.count(b"\r")
+    return crs >= 2 and raw.count(b"\n") < crs
+
+
 def run_sheet(path, image, only=None):
     shots = parse(path)
     # check_names guards the WHOLE sheet, not just the subset -- a case
@@ -725,6 +751,8 @@ def run_sheet(path, image, only=None):
                     scr = filmstrip(sess.slice(shot["_start"],
                                                shot.get("_end") or sess.mark()),
                                     shot)
+                poisoned = alf_off(sess.slice(
+                    shot["_start"], shot.get("_end") or sess.mark()))
                 out = os.path.join(CAPS, "%s.shot.txt" % shot["name"])
                 open(out, "w").write(scr.text() + "\n")
                 # A FINGERPRINT OF THE STANZA THAT TOOK IT, so gen_screens can
@@ -750,9 +778,17 @@ def run_sheet(path, image, only=None):
                 if starved:
                     print("      (session replaced -- %s exhausted the arena)"
                           % shot["name"], flush=True)
-                if died or starved or not sess.ready():
-                    print("      (session replaced -- %s left it unusable)"
-                          % shot["name"], flush=True)
+                if poisoned:
+                    print("      (session replaced -- %s left the console "
+                          "with no automatic line feed)" % shot["name"],
+                          flush=True)
+                if died or starved or poisoned or not sess.ready():
+                    # ONE replacement, one line: `starved' and `poisoned' have
+                    # already said WHY, and a second generic line under them
+                    # reads as a second replacement to anyone counting them.
+                    if not (starved or poisoned):
+                        print("      (session replaced -- %s left it unusable)"
+                              % shot["name"], flush=True)
                     sess.close()
                     sess = Session(image, size[0], size[1])
         finally:

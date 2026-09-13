@@ -713,3 +713,41 @@ already represent.
   1993** -- between where tuhs stops and where funet's volumes start -- plus
   the gaps the table already names. Next session's harvest should work
   funet's volume93-95 range, which is in era and untouched.
+
+### Re-probed 2026-09-13 (overnight)
+
+**The Internet Archive is ANSWERING again** -- `archive.org` 200,
+`advancedsearch.php` returning real results, `web.archive.org` redirecting
+normally. The rows above that assumed otherwise can be retried.
+
+Four things measured tonight, so nobody spends the time again:
+
+- **`utzoo-wiseman-usenet-archive` on IA is a TORRENT-ONLY STUB.** The item
+  holds 12 files totalling almost nothing: an introduction, `listing.txt`,
+  checksums, and a `.torrent`. `listing.txt` is 161 lines of raw
+  `newNNNfN.tgz` news-spool tapes (~700 MB in total) with NO per-group
+  index, so there is no way to confirm comp.os.os9 content, or to fetch
+  only it, over HTTP. The obvious idea -- "get the early comp.os.os9 from
+  utzoo via IA" -- does not work cheaply. It is a torrent and a 700 MB
+  unpack, and it stops mid-1991 like every other tuhs/utzoo copy.
+
+- **The comp.os.os9 we hold is 2003-2020 ONLY.** Measured on the harvest:
+  `comp.os.os9.(1345).mbox` is 1,345 messages spanning 2003-2020, and
+  `giganews-20140404.mbox` is 2003-2014. Across every other local usenet
+  corpus (`decoded`, `funet`, `cis`, `alts`, `giga`) exactly ONE pre-2003
+  message turns up, a 1990 one in `cis`. So the group's ACTIVE ERA -- the
+  years this collection is made of -- is not held at all. That is a
+  different hole from the 1992-93 alt.sources gap named above, and a
+  bigger one for OSK material specifically.
+
+- **136 issues of the Australian National OS9 Newsletter are on IA**
+  (`australian-national-os9-newsletter-YYYY-MM`, 1988 through 1991+).
+  Period community material that names programs, authors and disk
+  libraries. BUT the OCR is bad -- a sampled issue gives `BasicO`,
+  `0S9`, `DS-9 bo^`, `jmrai` -- so mining 136 of them automatically would
+  produce mostly noise. Readable by a person; not worth a scraper.
+
+- **RTSI answers 200 but is a Joomla CMS now**, not a file tree.
+  `os9archive.rtsi.com` serves CMS pages; `/OS9/`, `/pub/`, `/OSK/`,
+  `/OS9Archive/` and `www.rtsi.com/os9/` all 404. Whatever the archive
+  still holds is behind the site's own menu, which needs a person.
