@@ -71,14 +71,19 @@ it stale.
 their cases look for; **run as `datatest.py tex.cases` alone the family
 is 17 of 18 and all three pass**; they fail only in a full `--all` run,
 and on a pristine image too. So an earlier family leaves state they
-depend on. **The obvious candidates are RULED OUT by measurement:**
-`dvidrivers` and `dvifont` sort before `tex`, render the same
-`story.dvi`, and build `cmr10` at other resolutions on purpose -- and run
-together as `dvidrivers dvifont tex` the result is 23 of 27 with all
-three drivers PASSING, with `tex` alone afterwards unchanged at 17 of 18.
-So it is accumulation across the whole suite, not a neighbour. The
-decisive probe is to run every family with `tex` FIRST (`datatest.py`
-takes an ordered list) and see whether the three pass there.
+depend on. **Measured: it is POSITION, not the programs.** Run the whole
+suite with `tex` FIRST and its three drivers PASS -- while `last` and
+`misc`, which pass in every other arrangement, fail instead. Same 728 of
+743 either way. The failures move to whatever family runs late, and they
+are all write failures (`missing /dd/tmp/mv1`, `Could not create output
+file`, a driver printing no `[1 pages]`). **The disk is NOT full** -- measured after a full run by reading the RBF
+allocation bitmap out of the image host-side: 130.7 MB free against
+146.3 MB allocated, nearly half the disk empty (`free` is not on this
+disk; LSN0 gives DD_TOT, DD_MAP and DD_BIT, and the bitmap starts at
+LSN 1). So the cause is still open. Ruled out so far: the programs, the
+cases, left-over image state, a neighbouring family, and space. What
+remains is whatever the emulator or RBF accumulates across 57 sequential
+sessions, and none of that has been measured yet.
 
 **SEVEN CASES RESTART THE FAMILY THEY ARE IN, and that is expected.**
 `paranoia` pauses for a key, `checkfile` is full-screen, and `cookhash`,

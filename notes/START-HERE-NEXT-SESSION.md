@@ -1456,17 +1456,57 @@ shape.  Run together in `--all` order, `dvidrivers dvifont tex` gives
 `tex.pro`/font cases fail.  `tex` alone straight afterwards is 17 of 18,
 unchanged.  So it is not those two families.
 
-**What is left, and how to settle it cheaply.**  The three fail only in a
-whole-suite run, on either image, and pass in every smaller combination
-tried.  That points at ACCUMULATION rather than a neighbour: 57 families,
-four of which take a session restart (`bench`, `maths`, `news`, `tail`,
-each costing up to the 300-second timeout), all sharing one `/dd/tmp` and
-one emulator arena.  **The decisive probe is to run the whole suite with
-`tex` FIRST** -- `datatest.py` takes an explicit ordered list of case
-files, so that is one invocation.  If the three pass with `tex` first,
-it is accumulated state and the question becomes which family leaves it;
-if they still fail, the fault is in the `--all` invocation itself and not
-in any ordering.
+**THE PROBE WAS RUN AND THE ANSWER IS POSITION.  These failures are not
+about which programs they are; they are about how LATE the family runs.**
+
+    whole suite, alphabetical   728 of 743   tex's three drivers FAIL
+    whole suite, tex FIRST      728 of 743   tex's three drivers PASS
+                                             -- and `last' and `misc'
+                                             fail instead, having passed
+                                             in every earlier run
+
+Same total both ways.  Move `tex` to the front and its three drivers come
+right, while two families that had always passed start failing.  The
+failures MOVE to whatever is late.
+
+**And they are all write failures.**  `misc` fails missing `/dd/tmp/mv1`;
+`last` fails missing an elm helper's reply; `archives` fails FINDING
+`Could not create output file`; and a DVI driver that cannot write its
+output file prints no `[1 pages]`.  That is one symptom wearing four
+names.
+
+**THE OBVIOUS CAUSE IS WRONG.  THE DISK IS NOT FULL.**  Measured
+immediately after a full 743-case run by reading the RBF allocation
+bitmap out of the image host-side -- no emulator, no `free` (which this
+disk does not carry):
+
+    DD_TOT 1,134,592 sectors of 256 bytes, DD_BIT 4 sectors per bit
+    allocated   149,779 clusters   146.3 MB
+    FREE        133,869 clusters   130.7 MB
+
+Nearly half the disk is empty at the end of the run.  So whatever the
+late families are losing, it is not space.
+
+**That leaves the question open, and the honest list of what is ruled out
+is worth more than another guess:** not the programs (all three drivers
+work run by hand), not the cases (they pass when their family runs
+alone), not left-over image state (a pristine image fails them too), not
+a neighbouring family (`dvidrivers dvifont tex` together is 23 of 27 with
+all three passing), and not disk space (above).  What is left is
+something the emulator or RBF accumulates across 57 sequential sessions
+-- path descriptors, module memory, directory size (`/dd/tmp` ends a run
+holding 318 entries) -- and NONE of that has been measured.  Measure
+before writing the next explanation into this file; three of mine were
+wrong tonight.
+
+**How to read the bitmap**, since it is the only free-space instrument
+here: LSN0 holds DD_TOT at 0..2, DD_MAP (bitmap bytes) at 4..5 and
+DD_BIT (sectors per bit) at 6..7; the bitmap starts at LSN 1 and a set
+bit is an allocated cluster.
+
+(`games2` fails in a tex-first run only because that run used
+`osk-freeware.dd`, which still carried the `/dd/GAMES/WORLD` pollution
+from my own scratch diagnostic.  On a pristine image it passes.)
 
 **A WRONG LEAD, REMOVED:** an earlier draft of this section said
 `/dd/story.dvi` is 668 bytes while a passing case is called
