@@ -21,17 +21,18 @@
 | [Archives & compression](#archives--compression) | 33 | Pack, unpack and shrink -- lha, zip, tar, arc, zoo, and OS-9 module libraries. |
 | [Encoding & conversion](#encoding--conversion) | 29 | Between text encodings, line endings, Macintosh formats, ciphers and hashes. |
 | [Communications](#communications) | 97 | Kermit in several builds, terminal sessions, and networking. |
-| [Graphics & images](#graphics--images) | 202 | The netpbm toolkit, JPEG, a ray tracer, and things that draw. |
+| [Graphics & images](#graphics--images) | 195 | The netpbm toolkit, JPEG, a ray tracer, and things that draw. |
 | [Games](#games) | 83 | Adventures, board and card games, arcade ports, dungeon crawls and puzzles. |
 | [Screen toys](#screen-toys) | 9 | Animations and screen effects -- they draw on the terminal rather than print to it. Some run until you stop them. |
 | [Amusements](#amusements) | 25 | Generators, simulators and diversions that are not quite games. |
-| [System & modules](#system--modules) | 133 | OS-9 module and process tools, devices, system state and scheduling. |
+| [System & modules](#system--modules) | 132 | OS-9 module and process tools, devices, system state and scheduling. |
 | [Disk & DOS](#disk--dos) | 20 | Reading and writing MS-DOS media with the mtools set. |
 | [Time & calendar](#time--calendar) | 15 | Calendars, clocks and astronomy. |
 | [Maths & calculators](#maths--calculators) | 15 | Calculators, plotting, orbits and number theory. |
-| [Printing](#printing) | 15 | Spoolers, page formatting and PostScript. |
+| [Printing](#printing) | 11 | Spoolers, page formatting and PostScript. |
 | [Documentation](#documentation) | 5 | Pagers, readers and the help system. |
 | [G-Windows](#g-windows) | 6 | Programs for G-Windows, OS-9's graphical display.  os9exec has no G-Windows, so none of these run or can be tested here; they are listed for a real OS-9 workstation that has it. |
+| [Needs hardware](#needs-hardware) | 12 | Programs that drive hardware this collection has no way to reach -- a graphics display of the kind a GEPARD or an MM/1 carries, or a printer on its own SCF device.  WE CANNOT TEST ANY OF THESE, at all: what is written about them comes from their own text and their code, not from watching them work.  They are here for a real machine that has the hardware. |
 
 ## Shells
 
@@ -925,7 +926,7 @@
 
 *The netpbm toolkit, JPEG, a ray tracer, and things that draw.*
 
-<details><summary>202 programs</summary>
+<details><summary>195 programs</summary>
 
 **Drawing & display**
 
@@ -941,16 +942,9 @@
 
 | | |
 |---|---|
-| `apfel` | the Mandelbrot set (Apfelmaennchen) drawn on the Atari Graph display; it calls the `graph' trap library |
-| `g` | &#9733; an Atari Graph demonstration, paired with striche. It calls the `graph' trap library, so load that first; it then aborts on a supervisor-only instruction, having been written to run in supervisor state |
 | `graph` | the Graph trap library itself -- a type-$0B module, not a program. It is what g, striche, apfel, sine, showpic, graphdemo, graphsave and wgen all call: `load' it and the trap installs. The module executes in supervisor state, so a program that calls it from the shell is entered and aborts on a supervisor-only instruction |
-| `graphdemo` | a demonstration of the Atari Graph display; it calls the `graph' trap library |
-| `graphsave` | save an Atari GRAPH screen.  Aborts with the `graph' trap library resident, like `showpic': it wants the display |
 | `lissaj` | &#9733; Tektronix demo: Lissajous figures |
 | `lorenz3d` | &#9733; Tektronix demo: the Lorenz attractor in 3D |
-| `showpic` | show a picture on the Atari GRAPH display.  With the `graph' trap library resident it is entered and aborts: it wants the display, not just the library. |
-| `sine` | a sine plot on the Atari Graph display; it calls the `graph' trap library |
-| `striche` | &#9733; line drawing for the Atari Graph display; it calls the `graph' trap library, so load that first |
 | `wgen` | Tektronix waveform generator.  With the `graph' trap library resident it runs and asks for a resolution and the intensity of each harmonic, then emits Tektronix plotting codes.  Bare, it aborts with `unintialized User Trap #5'.<br>**How:** It aborts with `unintialized User Trap #5, err=#227' until the `graph' trap library is resident: `load /dd/CMDS/GAMES/graph'. Then it asks for a resolution and the intensity of nine harmonics and draws the waveform. Give it ten numbers -- at end of input it draws for ever. `showpic' and `graphsave' need the same library AND a display, so they abort either way. |
 
 **JPEG**
@@ -1389,7 +1383,7 @@
 
 *OS-9 module and process tools, devices, system state and scheduling.*
 
-<details><summary>133 programs</summary>
+<details><summary>132 programs</summary>
 
 **Devices & disks**
 
@@ -1565,7 +1559,6 @@
 | `transfer` | &#9733; copies files from GDOS disks to OS-9, and takes no options at all. For general device-to-device copies, `cp', `copy' and `dsave' do that<br>`Syntax: transfer` |
 | `trunc` | &#9733; truncate a file to a given length<br>`OS-9/68k supplementary command.` |
 | `tty` | &#9733; report the terminal's name |
-| `umusek` | UMusEK -- a music editor.  It needs a hardware graphics screen: point it at one and it opens.  Without a graphics screen it stops with `***DS_ScAdd Error 208.' and `Fran: Can't get screen addr, 'bye!'. |
 | `unpacklib.os9` | unpack a library into its object modules<br>`unpacklib: Unimplemented option '-?'.` |
 | `vc` | &#9733; a spreadsheet: `Welcome to the Spreadsheet Calculator, type ? for help', with rows, columns and a formula line |
 | `vecho` | System V `echo': the newline is suppressed by a trailing \c in the argument, not by default. `vecho one' writes `one' and a CR; `vecho one\c' writes `one' and stops. Several arguments are joined with a space. SRC/less_v177 |
@@ -1697,7 +1690,7 @@
 
 *Spoolers, page formatting and PostScript.*
 
-<details><summary>15 programs</summary>
+<details><summary>11 programs</summary>
 
 **PostScript**
 
@@ -1722,12 +1715,8 @@
 | `lp` | &#9733; submits a file to the lp print spooler: -n=xx makes copies, -d=ptr picks the printer, -m mails you when it is done<br>`Syntax: lp [<opts>] {<path>}` |
 | `lpq` | &#9733; shows the spooler queue. It looks for a data module called `spoolqueue' in memory; with a spooler running it reports the queue, and without one answers `no spooler installed'. Same for `prjob' and `lp'.<br>`Syntax: lpq [-p=dev] [user]` |
 | `lprm` | &#9733; remove a job from the print queue<br>`Syntax: lprm [-d=dev] [-] job..` |
-| `lpsched` | &#9733; starts the lp print spooler on a printer device; -r restarts it<br>`Syntax: lpsched [-r] {<devname>}` |
 | `lpshut` | &#9733; shut down the printer scheduler<br>`Syntax: lpshut` |
 | `prjob` | &#9733; prints a queued job from the lp spooler; with no spooler installed it says so |
-| `splman` | &#9733; OS-9 print spooler: the manager.  It wants a printer on an SCF device to spool to.  `splprt' is the process that drives the printer and `splstat' shows the queue; the three go together |
-| `splprt` | &#9733; OS-9 print spooler: the printer process, one per printer. It wants an SCF device to write to |
-| `splstat` | &#9733; OS-9 print spooler: queue status.  It reads the spooler's queue.  The other spooler on this disk speaks up when its queue is empty: `lpq: no spooler installed', `lpshut: no spooler active', `prjob: Spooler not installed'. |
 
 </details>
 
@@ -1761,6 +1750,36 @@
 | `lfmaker` | makes a G-Windows launch file. It asks the allocator for an address as if it were a length, so the request is refused: `2470464192-byte request refused, 32682944 bytes free'. The number moves with the environment, which is what identifies it as an address. It happens only once the module is already resident: run it bare first, then with an argument |
 | `puzzle` | &#9733; sliding-tile puzzle for G-Windows -- it draws through G-Windows, so at a terminal it gets one rule of plus signs out -- the top edge of the tile frame -- and stops.  For a 15-puzzle you can play, use puzzle15 or GAMES/puz15; both work |
 | `scriptmaster` | &#9733; G-Windows scripting tool |
+
+</details>
+
+## Needs hardware
+
+*Programs that drive hardware this collection has no way to reach -- a graphics display of the kind a GEPARD or an MM/1 carries, or a printer on its own SCF device.  WE CANNOT TEST ANY OF THESE, at all: what is written about them comes from their own text and their code, not from watching them work.  They are here for a real machine that has the hardware.*
+
+<details><summary>12 programs</summary>
+
+**Display**
+
+| | |
+|---|---|
+| `apfel` | the Mandelbrot set (Apfelmaennchen) drawn on the Atari Graph display; it calls the `graph' trap library |
+| `g` | &#9733; an Atari Graph demonstration, paired with striche. It calls the `graph' trap library, so load that first; it then aborts on a supervisor-only instruction, having been written to run in supervisor state |
+| `graphdemo` | a demonstration of the Atari Graph display; it calls the `graph' trap library |
+| `graphsave` | save an Atari GRAPH screen.  Aborts with the `graph' trap library resident, like `showpic': it wants the display |
+| `showpic` | show a picture on the Atari GRAPH display.  With the `graph' trap library resident it is entered and aborts: it wants the display, not just the library. |
+| `sine` | a sine plot on the Atari Graph display; it calls the `graph' trap library |
+| `striche` | &#9733; line drawing for the Atari Graph display; it calls the `graph' trap library, so load that first |
+| `umusek` | UMusEK -- a music editor.  It needs a hardware graphics screen: point it at one and it opens.  Without a graphics screen it stops with `***DS_ScAdd Error 208.' and `Fran: Can't get screen addr, 'bye!'. |
+
+**Printers**
+
+| | |
+|---|---|
+| `lpsched` | &#9733; starts the lp print spooler on a printer device; -r restarts it<br>`Syntax: lpsched [-r] {<devname>}` |
+| `splman` | &#9733; OS-9 print spooler: the manager.  It wants a printer on an SCF device to spool to.  `splprt' is the process that drives the printer and `splstat' shows the queue; the three go together |
+| `splprt` | &#9733; OS-9 print spooler: the printer process, one per printer. It wants an SCF device to write to |
+| `splstat` | &#9733; OS-9 print spooler: queue status.  It reads the spooler's queue.  The other spooler on this disk speaks up when its queue is empty: `lpq: no spooler installed', `lpshut: no spooler active', `prjob: Spooler not installed'. |
 
 </details>
 

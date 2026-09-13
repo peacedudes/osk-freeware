@@ -55,6 +55,38 @@ ran against a stale image.  Run the gate, rebuild, then
 `.:/DD/SYS/TEX/DVIPS:/DD/USR/TEX/DVIPS:/DD/TEX/DVIPS' and honours
 TEXCONFIG.
 
+**Decisions 4 and 5 -- the untestable sections.** New category "Needs
+hardware", with subcategories Display (apfel, g, graphdemo, graphsave,
+showpic, sine, striche, umusek) and Printers (splman, splprt, splstat,
+lpsched).  Its blurb says outright that we cannot test any of them.
+
+I did NOT follow rdoggett's item-5 list literally, and this is the
+reason: he listed `for', `lnk' and `lnk.org' as needing hardware, and
+they do not.  `lnk' calls l68 with Microware's /h0/LIB/sys.l and `for'
+forks Microware's shell for each compiler pass -- that is the reader's
+own OS-9, the same case as m4, ff and creadoc, which this collection
+documents in place rather than sequestering.  Their INDEX entries
+already say so, so they stayed where they are.  `splprt' and `splstat'
+DID move, though he did not name them: splman's own entry says the three
+go together.
+
+I also checked the four programs left behind in `Graphics & images |
+Hardware demos' and left them there ON PURPOSE.  His list encodes a real
+distinction and it is abort-versus-runs: `showpic', which he named, "is
+entered and aborts: it wants the display, not just the library", while
+`wgen' with the graph trap resident RUNS and asks for a resolution,
+`lissaj' prints its 1990 banner and prompts for X and Y frequencies, and
+`lorenz3d' prompts and then emits Tektronix plotting codes.  All three
+have captures showing them working.  `graph' itself is the trap library,
+a type-$0B module and not a program at all.  Do not "tidy" these four in
+after the others.
+
+**xmas stays** (decision 9, which he left to me).  It is a real animated
+character-art card -- a tree trimmed, lights blinking, reindeer running
+-- and its "from The ghost of Robert past" is the OS-9 porter's edit of
+a line the source invites you to change.  Nothing on the card names
+whose it is, which is the rule, and it costs nothing to keep.
+
 **A trap I set for myself, worth not repeating:** I issued "stage the
 files" and "rebuild the image and test" in the SAME parallel batch, so
 mkimage ran against a tree that did not have them yet, and I read the

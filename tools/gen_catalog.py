@@ -521,12 +521,13 @@ BLURB = {
  "Printing":"Spoolers, page formatting and PostScript.",
  "Documentation":"Pagers, readers and the help system.",
  "G-Windows":"Programs for G-Windows, OS-9's graphical display.  os9exec has no G-Windows, so none of these run or can be tested here; they are listed for a real OS-9 workstation that has it.",
+ "Needs hardware":"Programs that drive hardware this collection has no way to reach -- a graphics display of the kind a GEPARD or an MM/1 carries, or a printer on its own SCF device.  WE CANNOT TEST ANY OF THESE, at all: what is written about them comes from their own text and their code, not from watching them work.  They are here for a real machine that has the hardware.",
 }
 ORDER = ["Shells","Editors","Text tools","Files & directories","Developer tools",
  "Compilers & build","Languages","Archives & compression","Encoding & conversion",
  "Communications","Graphics & images","Games","Screen toys","Amusements",
  "System & modules","Disk & DOS","Time & calendar","Maths & calculators",
- "Printing","Documentation","G-Windows","Uncategorised"]
+ "Printing","Documentation","G-Windows","Needs hardware","Uncategorised"]
 
 KEEP = ("name","desc","cat","sub","star","dir","size","origin","archive","src",
         "docs","hassrc","military","basic09","needs","info","help","howto",

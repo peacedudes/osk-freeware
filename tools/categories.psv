@@ -710,9 +710,9 @@ charcnt|Text tools|Count & inspect
 subber|Text tools|Transform & filter
 tcmp|Text tools|Sort, compare & merge
 unp|Text tools|Transform & filter
-splman|Printing|Spooling
-splprt|Printing|Spooling
-splstat|Printing|Spooling
+splman|Needs hardware|Printers
+splprt|Needs hardware|Printers
+splstat|Needs hardware|Printers
 gs403|Printing|PostScript
 binhex|Encoding & conversion|Macintosh
 hexbin|Encoding & conversion|Macintosh
@@ -934,7 +934,7 @@ makecrc|System & modules|Utilities
 scsiutil|System & modules|Utilities
 spline|System & modules|Utilities
 demo|System & modules|Utilities
-lpsched|Printing|Spooling
+lpsched|Needs hardware|Printers
 dload|System & modules|Utilities
 snd_sig|System & modules|Utilities
 hinterhalt|System & modules|Utilities
@@ -959,13 +959,13 @@ mail|Communications|Mail
 disable|Communications|Mail
 enable|Communications|Mail
 maketexpk|Text tools|TeX
-apfel|Graphics & images|Hardware demos
-graphdemo|Graphics & images|Hardware demos
-graphsave|Graphics & images|Hardware demos
-showpic|Graphics & images|Hardware demos
-sine|Graphics & images|Hardware demos
-striche|Graphics & images|Hardware demos
-g|Graphics & images|Hardware demos
+apfel|Needs hardware|Display
+graphdemo|Needs hardware|Display
+graphsave|Needs hardware|Display
+showpic|Needs hardware|Display
+sine|Needs hardware|Display
+striche|Needs hardware|Display
+g|Needs hardware|Display
 graph|Graphics & images|Hardware demos
 cam|Maths & calculators|Calculators
 lissaj|Graphics & images|Hardware demos
@@ -978,7 +978,7 @@ epson|Printing|Printers
 read_mail|Communications|Mail
 vecho|System & modules|Utilities
 ptxminst|System & modules|Utilities
-umusek|System & modules|Utilities
+umusek|Needs hardware|Display
 ptxm|System & modules|OS-9 modules
 vmod_trap|System & modules|OS-9 modules
 dedit|System & modules|Devices & disks
