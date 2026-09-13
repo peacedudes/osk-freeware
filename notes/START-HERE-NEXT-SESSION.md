@@ -1164,7 +1164,7 @@ command count rather than program behaviour, it is this.
     new = gen_screens.ink(gen_screens.trim(open(cap).read(), try_line))
     old = gen_screens.ink(open('docs/screens/NAME.txt').read())
 
-## The PD_ALF fault is CONFINED TO graphics.sheet, measured 2026-09-13
+## How far the PD_ALF fault reaches -- NOT confined to graphics.sheet
 
 After the guard landed I predicted three more sheets would carry it --
 `netpbm-ea' (31 stanzas), `netpbm-in' (22), `netpbm' (18) -- on the
@@ -1181,6 +1181,15 @@ victims in them.  The real profile is narrower than "netpbm program plus
 redirect" -- graphics.sheet's firings were the JPEG tools (cjpeg.070,
 djpeg.070, wrjpgcom.070) and particular pipe-writers (giftopnm, gulls,
 gulls-invert, pgmbentley, pgmoil, ppmrelief), not netpbm as a family.
+
+**AND I THEN OVER-GENERALISED THAT NEGATIVE.  An earlier version of this
+heading said the fault was CONFINED to graphics.sheet; it is not.**
+Sweeping `system.sheet' (100 stanzas) the guard fired TWICE, on
+`hinterhalt' and `sddemo', and recovered `config' from 503 to 726 ink --
+a second victim of the same shape as `pdraw', which nothing had flagged.
+So clearers are spread thinly across sheets and three sheets returning
+zero says nothing about a fourth.  Known so far: graphics 9 firings,
+system 2, the three netpbm sheets 0.  772 stanzas remain unswept.
 
 **Re-shooting was the only way to establish this**, and that is the
 point worth keeping.  A static scan cannot find these victims: `pdraw'
