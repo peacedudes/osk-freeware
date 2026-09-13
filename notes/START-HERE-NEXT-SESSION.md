@@ -1302,7 +1302,22 @@ last.
 
 `tools/datatests/dos.cases' is unaffected -- every case asserts a name
 present or absent (`RAW      TXT', `NEW      TXT', `MOTD     TXT'), none
-asserts a file COUNT, so the extra entry breaks nothing.
+asserts a file COUNT, so the extra entry breaks nothing.  **That was
+reasoning from reading the cases; it has since been RUN, and it holds:
+dos 10 of 10 and tail 17 of 17 pass on the rebuilt image** (tail matters
+too -- it asserts against `/dd/DOS/a.img' as well).
+
+Two traps on the way to running them, both mine and both already written
+down elsewhere in this file, which is the point:
+
+  * `datatest.py' needs `gtimeout' and it lives in `/opt/local/bin'.  A
+    background job whose PATH lacks it dies with `FileNotFoundError:
+    gtimeout' before a single case runs.  Export the PATH.
+  * and the run REPORTED SUCCESS anyway, because the script ended
+    `python3 tools/datatest.py ... | tail -25' and then read `$?' --
+    which is `tail's, and always 0.  I documented that trap tonight and
+    walked into it within the hour.  Capture the output in a variable
+    and read the status of the command itself.
 
 **What `msren' actually caught: three dos cards were showing OTHER
 STANZAS' leftovers.**  Its listing carried `MOTD     TXT', which its own
