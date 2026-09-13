@@ -252,6 +252,26 @@ def main(argv):
                        "that can safely be shown",
             "lpshut": "its card already runs `lpshut' for real and gets "
                       "`lpshut: no spooler active', which is the true state",
+            # FOUR MORE READ 2026-09-13, each already doing the real thing on
+            # its card and stopped by something this disk does not have.
+            "trap": "an EXAMPLE trap handler.  Installing one needs system "
+                    "state, and its card already runs the program by path -- "
+                    "so the shell's own `trap' does not answer in its place "
+                    "-- and gets `Can't install trap handler', which is the "
+                    "finding",
+            "bsplt68": "takes an OS9Boot file apart into the modules inside "
+                       "it, and there is no boot file here to take apart -- "
+                       "os9exec is the kernel and this disk is a root disk, "
+                       "not a boot disk",
+            "filter": "sorts incoming mail into folders by rule as a pipe "
+                      "stage; its card already pipes it a real message and it "
+                      "reaches for a scratch file on /r0, the RAM disk this "
+                      "disk has no device for",
+            "lmargin": "sets an Epson printer's left margin; its card already "
+                       "runs it, and asking it to do anything but list its "
+                       "options leaves it waiting on a printer that is not "
+                       "here.  The usage line saying `epson' is inherited "
+                       "from the shared source, and the caption says so",
             # THE EVENT PAIR, and they follow `edir' above rather than setting
             # a precedent: NOTHING ON THIS DISK CREATES AN EVENT, because
             # OS-9's own `event' utility is Microware's and is not here.  Both
