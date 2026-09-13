@@ -1305,3 +1305,40 @@ one is written bare.  The needle measured its own shape, not the thing --
 the third time in one night, after `digit-in-word' and after searching
 subjects.tsv's AUTHOR column for OS-9 mentions.  When a scan returns a
 clean result, check what it could not have seen.
+
+## An ink GAIN can mean the screen SCROLLED, not that the card got better
+
+2026-09-13, caught one card short of publishing a regression.  Comparing
+a re-shoot against the published card, I flagged anything above 1.1x as
+IMPROVED and treated that as good news.  `config' came back 503 -> 726
+and was on its way into the gallery.
+
+It had scrolled.  The PUBLISHED card starts at `$ config' and shows the
+program from its first line -- char/short/int/long sizes, alignments,
+pointer widths, then the float properties.  The new capture had lost the
+command AND the whole opening, starting mid-way at `/* Maximum number =
+3.40282e+38 */'.  It scored HIGHER because the grid kept the denser
+`double' section that followed.  moments() warns about exactly this:
+"a program that scrolls has pushed its heading off".
+
+**So neither direction is safe unread.**  Low ink is not automatically
+damage (see the raw-vs-published trap above) and high ink is not
+automatically recovery.
+
+**The cheap mechanical tell**: a sound capture's FIRST LINE is the
+stanza's own `try' command; a scrolled one starts mid-output.  Checking
+all fourteen cards promoted that night, thirteen started at their command
+and one did not.
+
+    first = open('docs/screens/NAME.txt').read().split('\n')[0]
+    ok = re.sub(r'^\$\s?', '', first).strip() == stanza_try.strip()
+
+**But a scroll is only a DEFECT when a better alternative exists.**
+`config' scrolled where a non-scrolled published card already existed --
+that would have been a strict regression.  `mgif' scrolled too, and was
+still published, because what it replaced was garbled overlap at ink 55
+and the scrolled capture carries 358 ink of the program's real output.
+47% of published cards start mid-output; for anything printing more than
+a screenful that is simply what a 24-line window gives you.  The fix
+where it matters is the sheet's own `size' directive -- a taller window
+keeps the command on screen under a full-height picture.
