@@ -1370,8 +1370,27 @@ I printed exactly that check, labelled "mgif should be the only one",
 and committed without reading it.
 
 **Not the same thing, and do NOT try to fix it:** screens.js and a card
-file legitimately differ in ENCODING for box-drawing programs.  btop,
-c7decode, cuts, macstream, names, preset and ptob carry `+' in the card
-and CP437 box characters in screens.js, from ansiscreen's CP437_BOX
-mapping.  Seven cards, same screen, two renderings -- by design, and
-predating tonight.
+file legitimately differ for SEVEN cards that predate tonight, and the
+reason is not the same for all of them.
+
+SIX are ENCODING -- btop, c7decode, cuts, names, preset and ptob carry
+`+' in the card and CP437 box characters in screens.js, from
+ansiscreen's CP437_BOX mapping.  Measured: btop has 46 non-ASCII
+characters in the js and 0 in the card, names 77 and 0, preset 12 and 0.
+Same screen, two renderings, by design.
+
+THE SEVENTH IS NOT.  `macstream' has 0 non-ASCII on both sides, so that
+explanation does not cover it -- an earlier version of this paragraph
+listed it with the other six and was wrong.  Its difference is
+whitespace: the card file carries one more trailing character on the
+`0050' dump line and one more blank line at the end, 20 lines against
+19.  The current capture matches screens.js exactly, so the CARD FILE is
+the stale half, by a trailing space.  Nothing a reader sees; not worth
+churning a card for.
+
+**And the lesson under both of tonight's gallery slips is not "print the
+check".**  I printed `git status --short docs/' labelled "mgif should be
+the only one", and committed with seventeen others showing.  I printed a
+per-card verdict that said `other' for macstream, and committed a note
+calling it an encoding difference.  The evidence was on screen both
+times.  A check you print and do not READ is a check that did not run.
