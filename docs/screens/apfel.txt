@@ -1,6 +1,6 @@
-graphdemo
+apfel
 
-Process   Pid: 3, graphdemo, edition 1
+Process   Pid: 3, apfel, edition 1
     Exit code: E_PRCABT(228) Process Aborted
   Directories: Current   - /dd
                Execution - /dd/CMDS

@@ -27,6 +27,7 @@ alps b87fad0f1c3db62c
 animal 0a0d19a335dff202
 answer 68432d5553132353
 ape a66ed5fcbcfe0784
+apfel 77cdc537a38abde5
 aprocs e09b6077ad89639d
 ar 153dc6dff2b25522
 ar2 d9a8f4ab9db408a4
@@ -284,6 +285,7 @@ fstopgm cb54318f9243410c
 fudd 31256e5b10695a95
 fuddle e047f4117381e351
 funzip e3be593215895e13
+g fe668ad88d2c5a40
 g3 f4a93c537b76b141
 game 04dc246b40477d8a
 gawk 49dd1fd65b79d340
@@ -706,8 +708,10 @@ sh 1050ea4d5b07cd6b
 shar a6676333f58d6a6b
 shdev 2bff145e6db657b6
 shire 73eb937ead616c9c
+showpic 706e687b246a0ffa
 shuffle df56b0a91782f830
 signal cd58109a61af0db6
+sine 0cece66040b0292a
 sir 8c2bcd16bc9d8649
 sldtoppm 426a41fc35f1e5a8
 slitex 9d5c592edccfeb5c
@@ -735,6 +739,7 @@ ssl 14b797edbedf2d17
 sterm ad3781050e051e44
 stone 1a340282f3de4054
 strfile aacbe8f2cbb58af8
+striche 78cf3953bcc12164
 strings a69f26e3b152e77c
 su a6743cd58fbaac7c
 subber a2d2ab5962fe9db3
@@ -771,6 +776,7 @@ todos caffc76cd117b03d
 toos9 22377fa726080b38
 top 252a98dc53f88e25
 touchtype 9609742a1b462edc
+tplot 9d1a9b6593afdfbb
 tput 26902f6a8f2f41b5
 transfer a5b5f2a0a0001d1c
 trap 826cf28c3665cc74

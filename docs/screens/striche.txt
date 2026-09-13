@@ -1,6 +1,6 @@
-graphdemo
+striche
 
-Process   Pid: 3, graphdemo, edition 1
+Process   Pid: 3, striche, edition 7
     Exit code: E_PRCABT(228) Process Aborted
   Directories: Current   - /dd
                Execution - /dd/CMDS
