@@ -1,5 +1,46 @@
 # Start here, next session
 
+## 2026-09-13 (overnight): the sweep finished, the card queue halved
+
+**Two things want rdoggett and nothing else does** -- both in
+`notes/FOR-RDOGGETT.md`, both costing either money or a licence
+judgement, neither of them a task anyone can pick up:
+
+1. **comp.os.os9 1987-2002 HAS BEEN FOUND.**  `usenet-rewind.com` holds
+   the group from May 1987 to December 2023, 17,802 messages, checked by
+   reading the 1987 digests themselves.  Bodies are free; the author
+   addresses and original messages need a plan, about $40 for a month,
+   and their terms forbid scraping while naming an API plan as the licit
+   route.  This is the hole the acquisitions plan has called the live
+   question for two days.
+2. **`rcsmerge` can be made to work, and the last piece is
+   non-commercial-only.**  diff3 compiles from source already on the
+   disk once the recipe supplies `-DDIFF_PROGRAM="/dd/CMDS/diff"`, then
+   fails to link on `pipe`; the only `pipe()` in the pool carries a
+   non-commercial clause narrower than the package around it.
+
+**The PD_ALF sweep is COMPLETE: 929 of 929 stanzas, 36 clearers, and not
+one damaged card.**  Its three leftover mysteries all resolved to
+instrument error rather than program behaviour -- see the tally below.
+Do not re-sweep for PD_ALF; the question it was opened to answer is
+answered.
+
+**The flagged-card queue went from 66 of 990 to 30 of 929**, and both
+numbers moved for reasons worth knowing.  `audit_cards` had been
+discounting the FIRST LINE of every capture (241 of them; two were
+really command echoes) and scoring 61 captures the gallery never
+publishes.  Four cards were genuinely REPAIRED -- `UnMacpack`,
+`macunpack`, `finger`, `afm2tfm` -- each of which was showing a usage
+line because of how it was being asked, not because the program could
+not do it here.  The rest were read one at a time and either excepted
+with a reason or recorded as something the DISK cannot do.
+
+**Three traps found in the harness, all of which had fooled me first:**
+`notes/playtests` is gitignored, so every "tree: 0 modified" printed
+after a sweep proved nothing about captures; a gate piped into `tail`
+reports `tail`'s exit status; and `!` inside double quotes triggers
+history expansion in this shell, where `$!` is 0 anyway.
+
 ## 2026-09-12 (later): rdoggett's ten decisions, executed
 
 **Four programs dropped**, each measured first: `dearc` (cannot read a
