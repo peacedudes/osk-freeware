@@ -1,8 +1,8 @@
-cat tpl
+cat DOC/samples/label.tpl
 %title
   by %author
   %publisher, %city, %year   [%id]
-$ PrintLabels -infile cat.libr -templatefile tpl
+$ PrintLabels -infile tmp/cat.libr -templatefile DOC/samples/label.tpl
 The C Programming Language
   by Kernighan and Ritchie
   Prentice-Hall, Englewood Cliffs, 1978   [B0001]

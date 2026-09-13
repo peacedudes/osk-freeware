@@ -545,31 +545,20 @@ cap     one record per book, then the title, author and subject indexes.
 cap     `-outfile' names the catalogue to create and the text arrives on
 cap     standard input.  Two books go in, a catalogue comes out, and
 cap     Libr2Ascii reads it straight back.
-try     Ascii2Libr -outfile cat2.libr < cat.txt; ls -l cat2.libr
-os9     Ascii2Libr -outfile cat2.libr <cat.txt; ls -l cat2.libr
-run     mkdir -p /dd/tmp/FILESA > /nil 2>/nil; rm -f /dd/tmp/FILESA/cat.libr /dd/tmp/FILESA/cat2.libr /dd/tmp/FILESA/cat.txt > /nil 2>/nil
+try     Ascii2Libr -outfile tmp/cat2.libr < DOC/samples/cat.txt; ls -l tmp/cat2.libr
+os9     Ascii2Libr -outfile tmp/cat2.libr <DOC/samples/cat.txt; ls -l tmp/cat2.libr
+run     mkdir -p /dd/tmp > /nil 2>/nil; rm -f /dd/tmp/cat.libr /dd/tmp/cat2.libr > /nil 2>/nil
 wait    4
-run     echo "16" > /dd/tmp/FILESA/cat.txt; echo "2" >> /dd/tmp/FILESA/cat.txt
-wait    3
-run     echo '"B0001" #C( :type Book :author "Kernighan and Ritchie" :title "The C Programming Language" :publisher "Prentice-Hall" :city "Englewood Cliffs" :description "The white book." :volume 0 :year 1978 )' >> /dd/tmp/FILESA/cat.txt
-wait    3
-run     echo '"B0002" #C( :type Book :author "Kelly and Pohl" :title "A Book on C" :publisher "Benjamin-Cummings" :city "Menlo Park" :description "A teaching text." :volume 0 :year 1984 )' >> /dd/tmp/FILESA/cat.txt
-wait    3
-run     echo "2" >> /dd/tmp/FILESA/cat.txt; echo '"A Book on C" #( "B0002" )' >> /dd/tmp/FILESA/cat.txt; echo '"The C Programming Language" #( "B0001" )' >> /dd/tmp/FILESA/cat.txt
-wait    3
-run     echo "2" >> /dd/tmp/FILESA/cat.txt; echo '"Kelly and Pohl" #( "B0002" )' >> /dd/tmp/FILESA/cat.txt; echo '"Kernighan and Ritchie" #( "B0001" )' >> /dd/tmp/FILESA/cat.txt
-wait    3
-run     echo "1" >> /dd/tmp/FILESA/cat.txt; echo '"Programming" #( "B0001" "B0002" )' >> /dd/tmp/FILESA/cat.txt
-wait    3
-run     builtin cd /dd/tmp/FILESA
+run     Ascii2Libr -outfile /dd/tmp/cat2.libr < /dd/DOC/samples/cat.txt
+run     builtin cd /dd
 wait    1
 run     clear
 wait    1
-run     cat cat.txt | head -n 4
+run     cat DOC/samples/cat.txt | head -n 4
 wait    5
-run     Ascii2Libr -outfile cat2.libr < cat.txt; ls -l cat2.libr
+run     Ascii2Libr -outfile tmp/cat2.libr < DOC/samples/cat.txt; ls -l tmp/cat2.libr
 wait    12
-run     Libr2Ascii -infile cat2.libr | head -n 6
+run     Libr2Ascii -infile tmp/cat2.libr | head -n 6
 wait    10
 snap
 
@@ -580,29 +569,17 @@ cap     -- the whole of a two-book catalogue here.  It is how a catalogue
 cap     is carried to another machine, and how it is tidied up: the text is
 cap     read back by Ascii2Libr, which leaves out records deleted along the
 cap     way.
-try     Libr2Ascii -infile tmp/FILESA/cat.libr | head -n 22
-os9     Libr2Ascii -infile tmp/FILESA/cat.libr ! head -n 22
-run     mkdir -p /dd/tmp/FILESA > /nil 2>/nil; rm -f /dd/tmp/FILESA/cat.libr /dd/tmp/FILESA/cat.txt > /nil 2>/nil
+try     Ascii2Libr -outfile tmp/cat.libr < DOC/samples/cat.txt; Libr2Ascii -infile tmp/cat.libr | head -n 22
+os9     Ascii2Libr -outfile tmp/cat.libr < DOC/samples/cat.txt; Libr2Ascii -infile tmp/cat.libr ! head -n 22
+run     mkdir -p /dd/tmp > /nil 2>/nil; rm -f /dd/tmp/cat.libr > /nil 2>/nil
 wait    4
-run     echo "16" > /dd/tmp/FILESA/cat.txt; echo "2" >> /dd/tmp/FILESA/cat.txt
-wait    3
-run     echo '"B0001" #C( :type Book :author "Kernighan and Ritchie" :title "The C Programming Language" :publisher "Prentice-Hall" :city "Englewood Cliffs" :description "The white book." :volume 0 :year 1978 )' >> /dd/tmp/FILESA/cat.txt
-wait    3
-run     echo '"B0002" #C( :type Book :author "Kelly and Pohl" :title "A Book on C" :publisher "Benjamin-Cummings" :city "Menlo Park" :description "A teaching text." :volume 0 :year 1984 )' >> /dd/tmp/FILESA/cat.txt
-wait    3
-run     echo "2" >> /dd/tmp/FILESA/cat.txt; echo '"A Book on C" #( "B0002" )' >> /dd/tmp/FILESA/cat.txt; echo '"The C Programming Language" #( "B0001" )' >> /dd/tmp/FILESA/cat.txt
-wait    3
-run     echo "2" >> /dd/tmp/FILESA/cat.txt; echo '"Kelly and Pohl" #( "B0002" )' >> /dd/tmp/FILESA/cat.txt; echo '"Kernighan and Ritchie" #( "B0001" )' >> /dd/tmp/FILESA/cat.txt
-wait    3
-run     echo "1" >> /dd/tmp/FILESA/cat.txt; echo '"Programming" #( "B0001" "B0002" )' >> /dd/tmp/FILESA/cat.txt
-wait    3
-run     Ascii2Libr -outfile /dd/tmp/FILESA/cat.libr < /dd/tmp/FILESA/cat.txt
+run     Ascii2Libr -outfile /dd/tmp/cat.libr < /dd/DOC/samples/cat.txt
 wait    10
 run     builtin cd /dd
 wait    1
 run     clear
 wait    1
-run     Libr2Ascii -infile tmp/FILESA/cat.libr | head -n 22
+run     Libr2Ascii -infile tmp/cat.libr | head -n 22
 wait    12
 snap
 
@@ -612,28 +589,16 @@ cap     Librarian searches a catalogue.  Its main menu offers the cards and
 cap     the three indexes; `List Titles' was chosen and Return taken for
 cap     the empty search prefix, so every title is listed.  Typing a
 cap     reference number brings up that card.
-try     Librarian -infile tmp/FILESA/cat.libr
-run     mkdir -p /dd/tmp/FILESA > /nil 2>/nil; rm -f /dd/tmp/FILESA/cat.libr /dd/tmp/FILESA/cat.txt > /nil 2>/nil
+try     Ascii2Libr -outfile tmp/cat.libr < DOC/samples/cat.txt; Librarian -infile tmp/cat.libr
+run     mkdir -p /dd/tmp > /nil 2>/nil; rm -f /dd/tmp/cat.libr > /nil 2>/nil
 wait    4
-run     echo "16" > /dd/tmp/FILESA/cat.txt; echo "2" >> /dd/tmp/FILESA/cat.txt
-wait    3
-run     echo '"B0001" #C( :type Book :author "Kernighan and Ritchie" :title "The C Programming Language" :publisher "Prentice-Hall" :city "Englewood Cliffs" :description "The white book." :volume 0 :year 1978 )' >> /dd/tmp/FILESA/cat.txt
-wait    3
-run     echo '"B0002" #C( :type Book :author "Kelly and Pohl" :title "A Book on C" :publisher "Benjamin-Cummings" :city "Menlo Park" :description "A teaching text." :volume 0 :year 1984 )' >> /dd/tmp/FILESA/cat.txt
-wait    3
-run     echo "2" >> /dd/tmp/FILESA/cat.txt; echo '"A Book on C" #( "B0002" )' >> /dd/tmp/FILESA/cat.txt; echo '"The C Programming Language" #( "B0001" )' >> /dd/tmp/FILESA/cat.txt
-wait    3
-run     echo "2" >> /dd/tmp/FILESA/cat.txt; echo '"Kelly and Pohl" #( "B0002" )' >> /dd/tmp/FILESA/cat.txt; echo '"Kernighan and Ritchie" #( "B0001" )' >> /dd/tmp/FILESA/cat.txt
-wait    3
-run     echo "1" >> /dd/tmp/FILESA/cat.txt; echo '"Programming" #( "B0001" "B0002" )' >> /dd/tmp/FILESA/cat.txt
-wait    3
-run     Ascii2Libr -outfile /dd/tmp/FILESA/cat.libr < /dd/tmp/FILESA/cat.txt
+run     Ascii2Libr -outfile /dd/tmp/cat.libr < /dd/DOC/samples/cat.txt
 wait    10
 run     builtin cd /dd
 wait    1
 run     clear
 wait    1
-run     Librarian -infile tmp/FILESA/cat.libr
+run     Librarian -infile tmp/cat.libr
 wait    8
 keys    \016\016
 wait    3
@@ -650,28 +615,16 @@ cap     EditLibr is where a catalogue is built and maintained: add a card,
 cap     edit one, delete by author, title or subject.  `List Cards' was
 cap     chosen from the menu and Return taken for the empty prefix, which
 cap     lists the shelf by its id numbers with the title beside each.
-try     EditLibr -editfile tmp/FILESA/cat.libr
-run     mkdir -p /dd/tmp/FILESA > /nil 2>/nil; rm -f /dd/tmp/FILESA/cat.libr /dd/tmp/FILESA/cat.txt > /nil 2>/nil
+try     Ascii2Libr -outfile tmp/cat.libr < DOC/samples/cat.txt; EditLibr -editfile tmp/cat.libr
+run     mkdir -p /dd/tmp > /nil 2>/nil; rm -f /dd/tmp/cat.libr > /nil 2>/nil
 wait    4
-run     echo "16" > /dd/tmp/FILESA/cat.txt; echo "2" >> /dd/tmp/FILESA/cat.txt
-wait    3
-run     echo '"B0001" #C( :type Book :author "Kernighan and Ritchie" :title "The C Programming Language" :publisher "Prentice-Hall" :city "Englewood Cliffs" :description "The white book." :volume 0 :year 1978 )' >> /dd/tmp/FILESA/cat.txt
-wait    3
-run     echo '"B0002" #C( :type Book :author "Kelly and Pohl" :title "A Book on C" :publisher "Benjamin-Cummings" :city "Menlo Park" :description "A teaching text." :volume 0 :year 1984 )' >> /dd/tmp/FILESA/cat.txt
-wait    3
-run     echo "2" >> /dd/tmp/FILESA/cat.txt; echo '"A Book on C" #( "B0002" )' >> /dd/tmp/FILESA/cat.txt; echo '"The C Programming Language" #( "B0001" )' >> /dd/tmp/FILESA/cat.txt
-wait    3
-run     echo "2" >> /dd/tmp/FILESA/cat.txt; echo '"Kelly and Pohl" #( "B0002" )' >> /dd/tmp/FILESA/cat.txt; echo '"Kernighan and Ritchie" #( "B0001" )' >> /dd/tmp/FILESA/cat.txt
-wait    3
-run     echo "1" >> /dd/tmp/FILESA/cat.txt; echo '"Programming" #( "B0001" "B0002" )' >> /dd/tmp/FILESA/cat.txt
-wait    3
-run     Ascii2Libr -outfile /dd/tmp/FILESA/cat.libr < /dd/tmp/FILESA/cat.txt
+run     Ascii2Libr -outfile /dd/tmp/cat.libr < /dd/DOC/samples/cat.txt
 wait    10
 run     builtin cd /dd
 wait    1
 run     clear
 wait    1
-run     EditLibr -editfile tmp/FILESA/cat.libr
+run     EditLibr -editfile tmp/cat.libr
 wait    8
 keys    \016\016\016\016\016\016
 wait    3
@@ -689,29 +642,17 @@ cap     record, spaced for continuous pin-fed card stock: id and the kind of
 cap     card at the top, then author and year, title, type, publisher and
 cap     the description.  `-by Title', `-by Author' or `-by Subject' print
 cap     the reference cards instead of the shelf list.
-try     PrintCards -infile tmp/FILESA/cat.libr | head -n 22
-os9     PrintCards -infile tmp/FILESA/cat.libr ! head -n 22
-run     mkdir -p /dd/tmp/FILESA > /nil 2>/nil; rm -f /dd/tmp/FILESA/cat.libr /dd/tmp/FILESA/cat.txt > /nil 2>/nil
+try     Ascii2Libr -outfile tmp/cat.libr < DOC/samples/cat.txt; PrintCards -infile tmp/cat.libr | head -n 22
+os9     Ascii2Libr -outfile tmp/cat.libr < DOC/samples/cat.txt; PrintCards -infile tmp/cat.libr ! head -n 22
+run     mkdir -p /dd/tmp > /nil 2>/nil; rm -f /dd/tmp/cat.libr > /nil 2>/nil
 wait    4
-run     echo "16" > /dd/tmp/FILESA/cat.txt; echo "2" >> /dd/tmp/FILESA/cat.txt
-wait    3
-run     echo '"B0001" #C( :type Book :author "Kernighan and Ritchie" :title "The C Programming Language" :publisher "Prentice-Hall" :city "Englewood Cliffs" :description "The white book." :volume 0 :year 1978 )' >> /dd/tmp/FILESA/cat.txt
-wait    3
-run     echo '"B0002" #C( :type Book :author "Kelly and Pohl" :title "A Book on C" :publisher "Benjamin-Cummings" :city "Menlo Park" :description "A teaching text." :volume 0 :year 1984 )' >> /dd/tmp/FILESA/cat.txt
-wait    3
-run     echo "2" >> /dd/tmp/FILESA/cat.txt; echo '"A Book on C" #( "B0002" )' >> /dd/tmp/FILESA/cat.txt; echo '"The C Programming Language" #( "B0001" )' >> /dd/tmp/FILESA/cat.txt
-wait    3
-run     echo "2" >> /dd/tmp/FILESA/cat.txt; echo '"Kelly and Pohl" #( "B0002" )' >> /dd/tmp/FILESA/cat.txt; echo '"Kernighan and Ritchie" #( "B0001" )' >> /dd/tmp/FILESA/cat.txt
-wait    3
-run     echo "1" >> /dd/tmp/FILESA/cat.txt; echo '"Programming" #( "B0001" "B0002" )' >> /dd/tmp/FILESA/cat.txt
-wait    3
-run     Ascii2Libr -outfile /dd/tmp/FILESA/cat.libr < /dd/tmp/FILESA/cat.txt
+run     Ascii2Libr -outfile /dd/tmp/cat.libr < /dd/DOC/samples/cat.txt
 wait    10
 run     builtin cd /dd
 wait    1
 run     clear
 wait    1
-run     PrintCards -infile tmp/FILESA/cat.libr | head -n 22
+run     PrintCards -infile tmp/cat.libr | head -n 22
 wait    12
 snap
 
@@ -722,34 +663,20 @@ cap     %title, %author, %publisher, %city, %year and %id with that card's
 cap     fields -- so it prints labels, or any listing you can describe in a
 cap     template.  The three-line template is shown first, then the two
 cap     books it produced.  Its options each take a separate argument.
-try     PrintLabels -infile cat.libr -templatefile tpl
-run     mkdir -p /dd/tmp/FILESA > /nil 2>/nil; rm -f /dd/tmp/FILESA/cat.libr /dd/tmp/FILESA/cat.txt > /nil 2>/nil
+try     Ascii2Libr -outfile tmp/cat.libr < DOC/samples/cat.txt; PrintLabels -infile tmp/cat.libr -templatefile DOC/samples/label.tpl
+run     mkdir -p /dd/tmp > /nil 2>/nil; rm -f /dd/tmp/cat.libr > /nil 2>/nil
 wait    4
-run     echo "16" > /dd/tmp/FILESA/cat.txt; echo "2" >> /dd/tmp/FILESA/cat.txt
-wait    3
-run     echo '"B0001" #C( :type Book :author "Kernighan and Ritchie" :title "The C Programming Language" :publisher "Prentice-Hall" :city "Englewood Cliffs" :description "The white book." :volume 0 :year 1978 )' >> /dd/tmp/FILESA/cat.txt
-wait    3
-run     echo '"B0002" #C( :type Book :author "Kelly and Pohl" :title "A Book on C" :publisher "Benjamin-Cummings" :city "Menlo Park" :description "A teaching text." :volume 0 :year 1984 )' >> /dd/tmp/FILESA/cat.txt
-wait    3
-run     echo "2" >> /dd/tmp/FILESA/cat.txt; echo '"A Book on C" #( "B0002" )' >> /dd/tmp/FILESA/cat.txt; echo '"The C Programming Language" #( "B0001" )' >> /dd/tmp/FILESA/cat.txt
-wait    3
-run     echo "2" >> /dd/tmp/FILESA/cat.txt; echo '"Kelly and Pohl" #( "B0002" )' >> /dd/tmp/FILESA/cat.txt; echo '"Kernighan and Ritchie" #( "B0001" )' >> /dd/tmp/FILESA/cat.txt
-wait    3
-run     echo "1" >> /dd/tmp/FILESA/cat.txt; echo '"Programming" #( "B0001" "B0002" )' >> /dd/tmp/FILESA/cat.txt
-wait    3
-run     Ascii2Libr -outfile /dd/tmp/FILESA/cat.libr < /dd/tmp/FILESA/cat.txt
+run     Ascii2Libr -outfile /dd/tmp/cat.libr < /dd/DOC/samples/cat.txt
 wait    10
-run     rm -f /dd/tmp/FILESA/tpl > /nil 2>/nil
 wait    3
-run     echo '%title' > /dd/tmp/FILESA/tpl; echo '  by %author' >> /dd/tmp/FILESA/tpl; echo '  %publisher, %city, %year   [%id]' >> /dd/tmp/FILESA/tpl
 wait    5
-run     builtin cd /dd/tmp/FILESA
+run     builtin cd /dd
 wait    1
 run     clear
 wait    1
-run     cat tpl
+run     cat DOC/samples/label.tpl
 wait    5
-run     PrintLabels -infile cat.libr -templatefile tpl
+run     PrintLabels -infile tmp/cat.libr -templatefile DOC/samples/label.tpl
 wait    12
 snap
 

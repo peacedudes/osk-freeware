@@ -1,35 +1,15 @@
-Structured of Computer Programming 1
-of Computer Programming Structured 1
-Computer Programming Structured of 1
-Programming Structured Programming Computer 1
-Structured Programming Computer Programming 1
-Programming Computer Programming Structured 1
-Computer Programming Structured Programming 1
-Programming Structured Programming The 1
-Structured Programming The Programming 1
-Programming The Programming Structured 1
-The Programming Structured Programming 1
-C Structured Programming The 1
-Structured Programming The C 1
-Programming The C Structured 1
-The C Structured Programming 1
-C Programming Programming The 1
-Programming Programming The C 1
-Programming The C Programming 1
-The C Programming Programming 1
-C Programming Language The 1
-Programming Language The C 1
-Language The C Programming 1
-The C Programming Language 1
-C Programming Language The 1
-Programming Language The C 1
-Language The C Programming 1
-The C Programming Language 1
-Mythical Programming Language The 1
-Programming Language The Mythical 1
-Language The Mythical Programming 1
-The Mythical Programming Language 1
-Mythical Man-Month Language The 1
-Man-Month Language The Mythical 1
-Language The Mythical Man-Month 1
-The Mythical Man-Month Language 1
+pagekwic -f=3 < DOC/samples/jabber.txt | head -n 14
+Twas brillig, and 1
+brillig, and Twas 1
+and Twas brillig, 1
+the brillig, and 1
+brillig, and the 1
+and the brillig, 1
+the slithy and 1
+slithy and the 1
+and the slithy 1
+the slithy toves 1
+slithy toves the 1
+toves the slithy 1
+Did slithy toves 1
+slithy toves Did 1

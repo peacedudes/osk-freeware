@@ -1,4 +1,4 @@
-PrintCards -infile tmp/FILESA/cat.libr | head -n 22
+PrintCards -infile tmp/cat.libr | head -n 22
 B0001               Shelf List
 
 Kernighan and Ritchie, 1978

@@ -493,18 +493,19 @@ wait    5
 
 shot    pagekwic
 size    36 80
-cap     A keyword-in-context index: every rotation of every title, one
-cap     line each, the way a KWIC index is built before sorting.
-try     pagekwic < DOC/samples/titles
-wait    3
+cap     A PHRASE keyword-in-context index, not a line-by-line one: it
+cap     slides a window of `-f' words along the text and prints every
+cap     rotation of each window, so a phrase may span a line break.  That
+cap     is the design -- its own source calls it a phrase utility -- so
+cap     give it continuous prose rather than a list.  Here, three words
+cap     at a time over the first verse of Jabberwocky.
+try     pagekwic -f=3 < DOC/samples/jabber.txt | head -n 14
 run     builtin cd /dd
 wait    1
 run     clear
 wait    1
-run     cat DOC/samples/titles
-wait    2
-run     pagekwic < DOC/samples/titles
-wait    8
+run     pagekwic -f=3 < DOC/samples/jabber.txt | head -n 14
+wait    6
 
 shot    pagefraz
 size    36 80

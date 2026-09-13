@@ -1,0 +1,1 @@
+%title  by %author  %publisher, %city, %year   [%id]

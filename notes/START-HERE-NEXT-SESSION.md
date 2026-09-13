@@ -89,16 +89,40 @@ arrives byte-identical.  And `pbyte' PATCHES ITS INPUT IN PLACE, so it
 must not point at shipped data: it should be the one card that visibly
 stages a scratch copy, with a sentence saying why.
 
-**`pagekwic' MAY BE BROKEN, and it is not something I caused -- chase
-this.**  Its output rotates words ACROSS titles, not within one: the
-first line of its card reads `Structured of Computer Programming', which
-is `Structured Programming' and `The Art of Computer Programming' mixed
-together.  A keyword-in-context index rotates a single line at a time.
-The previous published capture is byte-identical to the one shot today
-against the newly shipped DOC/samples/titles, so the behaviour is old and
-the sample reproduces the old staged file exactly -- this is a real
-question about the program, not about the card.  Needs the emulator and a
-file whose lines are obviously distinct to settle it.
+**`pagekwic' IS NOT BROKEN -- settled from source, do not chase it.**  I
+wrote here that its output looked wrong because it rotates words ACROSS
+titles.  It does, and that is the design: os9-dev-skill-fc read
+`SRC/bix/pagekwic.c' and it is a PHRASE indexer, not a line one --
+`#define DEFFRZ (4)', a circular `wordbuf' printing every rotation of a
+sliding window, and a `get_word()' that treats CR as a word separator and
+never signals end-of-line to its caller.  A phrase spanning a line break
+is what it is for.  Its DOC/INDEX entry was right all along ("one phrase
+per line"); the card's caption was the only thing setting a wrong
+expectation, and I nearly trusted the caption over the source.
+
+The card now demos it honestly -- `pagekwic -f=3 < DOC/samples/jabber.txt',
+continuous prose instead of four unrelated titles, with a caption that
+says PHRASE keyword-in-context.  `-f=<n>' sets the window, 1 to 10.
+
+**ONE LEFT, IF THE SESSION ENDED HERE: `PrintLabels' try line.**  Five of
+the six catalogue cards are right; PrintLabels reads
+
+    Ascii2Libr -outfile tmp/cat.libr < DOC/samples/cat.txt; PrintLabels -infile cat.libr -templatefile tpl
+
+-- it BUILDS tmp/cat.libr and then reads a bare `cat.libr', plus a `tpl'
+the reader has no way to have.  It only works on the card because the
+hidden run does `builtin cd /dd/tmp' first.  The try line needs the
+template built and both paths named consistently.  My path rewrite missed
+it because the bare names had no `tmp/FILESA/' prefix to match -- the
+same incomplete-consequence trap as the gs403 staging line, twice in one
+evening.  Fix, then re-shoot PrintLabels, then gen_screens.
+
+**The six Home Librarian cards share a shipped catalogue now.**
+Ascii2Libr, Libr2Ascii, EditLibr, Librarian, PrintCards and PrintLabels
+each rebuilt the same twelve-line catalogue by hand -- eight echo lines
+apiece, invisible, before the `clear'.  `DOC/samples/cat.txt' ships that
+text and each card builds from it in ONE visible line, so the try line is
+copyable and 48 lines of duplicated staging are gone.
 
 **A trap of my own, one level below the usual one.**  The repoint script
 dropped each stanza's staging line by matching "contains the filename and
@@ -150,6 +174,20 @@ character-art card -- a tree trimmed, lights blinking, reindeer running
 -- and its "from The ghost of Robert past" is the OS-9 porter's edit of
 a line the source invites you to change.  Nothing on the card names
 whose it is, which is the rule, and it costs nothing to keep.
+
+**I REPEATED THAT TRAP THE SAME EVENING, so it is worth more than one
+line.**  Shipped DOC/samples/cat.txt and label.tpl, then shot six cards
+against an image built BEFORE they existed.  Every capture came back
+`Error #000:216 -- that path name doesn't lead to anything', which reads
+exactly like a broken card and is nothing of the kind.  The first time it
+was the dvips prologues and I wrote "staging and building are not
+independent" in this very file; the second time I had that sentence in
+front of me and still did it.
+
+The rule with teeth: **anything you add under disk/ is invisible to the
+emulator until mkimage runs.**  A card that suddenly cannot open a file
+you just created is that, nine times in ten, and the check costs four
+seconds -- `dir /dd/DOC/samples' before believing the capture.
 
 **A trap I set for myself, worth not repeating:** I issued "stage the
 files" and "rebuild the image and test" in the SAME parallel batch, so

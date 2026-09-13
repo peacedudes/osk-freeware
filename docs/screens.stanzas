@@ -2,12 +2,12 @@
 # <stanza> <sha1 of the stanza the published screen came
 # from>.  `--check' compares these against the sheets, which
 # is the only way to detect drift where the captures are not.
-Ascii2Libr 6aa2ccb744e69d02
-EditLibr e8d5c6c0541553ac
-Libr2Ascii 13791d65825d0f4f
-Librarian 38f1d66eda4b0fc3
-PrintCards 26271d1335491b8b
-PrintLabels 9335f0872fd24057
+Ascii2Libr 1ad12e1f807339f7
+EditLibr 53a8528b42950372
+Libr2Ascii 681f39208c745d96
+Librarian a3c7f1c63a3211b3
+PrintCards e2ee6710bb95a0fe
+PrintLabels f4590a6afb94235b
 UnMacpack 6ddb41751817bf06
 X11R6shl 61d1b28a4c470915
 about 253c97e879e0105e
@@ -519,7 +519,7 @@ owner 7fb3f2c98801f014
 p2c ad2cc748d21b5b6a
 pacman 6f7313ec3413fc2f
 pagefraz b7df03a6ec1e2269
-pagekwic 4cf2a7668eea2c3c
+pagekwic 8ef2906c3b060d59
 pageline 13c7f481a68a01c9
 paranoia 0a60d6a2260427f6
 passwd a75ac662a0382d5e
