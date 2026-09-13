@@ -1394,3 +1394,44 @@ the only one", and committed with seventeen others showing.  I printed a
 per-card verdict that said `other' for macstream, and committed a note
 calling it an encoding difference.  The evidence was on screen both
 times.  A check you print and do not READ is a check that did not run.
+
+## comms.sheet swept 2026-09-13: four more clearers, and a THIRD way ink lies
+
+**Four more PD_ALF clearers: `filter', `connect', `sterm', `txmod'.**
+So three sheets are now known affected -- graphics 9 firings, comms 4,
+system 2, the three netpbm sheets 0 -- and the refined profile holds:
+terminal-takers and raw-byte writers (connect and sterm drive terminals,
+txmod pushes a module down a serial line, filter is a pipeline filter),
+NOT netpbm as a family.  674 stanzas remain unswept.
+
+**Swept MEASURE-ONLY and every capture restored afterwards**, so the
+gallery could not move whatever turned up: 76 equivalent, tree 0
+modified.  That shape is worth reusing -- it answers "are there victims
+here?" with no promotion risk at all, and promotion can then be a
+separate, deliberate step.
+
+**A THIRD way an ink gain misleads: the gain can be ERROR TEXT.**
+`listalias' 83 -> 115 and `newmail' 69 -> 89 both PASSED the scroll test
+-- each starts at its own command -- and both are WORSE, not better:
+
+    $ listalias        $ newmail -d tester
+    sort: nowhere found      uuname: nowhere found
+
+The extra ink is a failed bare-name fork of a helper.  That is the `hc'
+defect class: a card capturing a failed invocation.  Neither promoted.
+
+So ink alone has now misled three different ways in one night -- the
+raw-vs-published artefact, a scroll, and error text -- and the scroll
+test is necessary but NOT sufficient.  Read the content.
+
+`fixtext' (170 v 169) and `uustat' (42 v 41) re-shoot to their published
+values; transients.
+
+**One thing left unexplained, as a lead not a claim.** Those forks fail
+now and the PUBLISHED captures show them succeeding, and nothing in
+either stanza loads a helper or moves chx.  `uuname' lives in
+`CMDS/UUCP/', and a bare-name fork resolves against chx and never PATH
+-- the documented printmail/readmsg case -- so failing is CORRECT for
+how the stanza invokes it.  What is unexplained is how the published
+capture ever showed otherwise.  One observation; do not call it a
+regression without measuring it.
