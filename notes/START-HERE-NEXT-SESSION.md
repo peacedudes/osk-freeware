@@ -104,18 +104,15 @@ The card now demos it honestly -- `pagekwic -f=3 < DOC/samples/jabber.txt',
 continuous prose instead of four unrelated titles, with a caption that
 says PHRASE keyword-in-context.  `-f=<n>' sets the window, 1 to 10.
 
-**ONE LEFT, IF THE SESSION ENDED HERE: `PrintLabels' try line.**  Five of
-the six catalogue cards are right; PrintLabels reads
-
-    Ascii2Libr -outfile tmp/cat.libr < DOC/samples/cat.txt; PrintLabels -infile cat.libr -templatefile tpl
-
--- it BUILDS tmp/cat.libr and then reads a bare `cat.libr', plus a `tpl'
-the reader has no way to have.  It only works on the card because the
-hidden run does `builtin cd /dd/tmp' first.  The try line needs the
-template built and both paths named consistently.  My path rewrite missed
-it because the bare names had no `tmp/FILESA/' prefix to match -- the
-same incomplete-consequence trap as the gs403 staging line, twice in one
-evening.  Fix, then re-shoot PrintLabels, then gen_screens.
+**THE CARD AUDIT IS CLOSED AT ZERO.**  Measured against docs/screens.js
+after the final shoot: 951 programs, 951 try lines, 295 naming a tmp/
+path, and NONE naming a path nobody creates.  The claim that started it
+was 244; it went 244 -> 13 -> 11 -> 2 -> 0 as each measure was replaced
+by a better one.  The measure that is actually right, and worth reusing:
+a path is satisfied if it appears in the card's own screen OR is created
+earlier in the SAME try line -- gs403 creates its output with
+`-sOutputFile=' mid-line and reads it back, so any rule about which sigil
+precedes a path gets it wrong.
 
 **The six Home Librarian cards share a shipped catalogue now.**
 Ascii2Libr, Libr2Ascii, EditLibr, Librarian, PrintCards and PrintLabels
