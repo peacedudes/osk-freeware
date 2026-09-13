@@ -130,6 +130,9 @@ def main(argv):
     # its output and a screen full of `Error #000:216' is exactly right.
     # Listing them here rather than weakening the rule: a rule that stopped
     # noticing error-only screens would stop finding the ones that matter.
+    NOREADER = ("reads a format no file here is in, and no writer for it "
+                "ships either -- the caption says so, and refusing a file "
+                "it cannot read is the behaviour you want")
     fine = {"perr": "perr PRINTS error messages -- error text is its output",
             "perr-print": "the same program, printing a wider range",
             "csl-mismatch": "the card's SUBJECT is the csl edition skew -- "
@@ -147,6 +150,19 @@ def main(argv):
                         "emulator session outright, both measured "
                         "2026-09-01 in tools/drives/flagged1.drive. Its "
                         "option list has one option and it is -?",
+            # THE NO-READER CONVERTERS.  Sixteen netpbm readers decode
+            # formats no file on this disk is in -- confocal microscopes,
+            # ray tracers, AutoCAD slides, Photo CD, Amiga brushes, Gould
+            # scanners -- and netpbm here ships no WRITER for any of them,
+            # so no round trip can be staged.  Handed something else they
+            # report the bad magic number rather than guessing, and every
+            # one of these cards SAYS SO in its caption.  The screen is an
+            # error line; the card is correct.  Flagged by the rule,
+            # wrongly by the point -- same as `perr' above.
+            "brushtopbm": NOREADER, "gouldtoppm": NOREADER,
+            "hipstopgm": NOREADER, "hpcdtoppm": NOREADER,
+            "mtvtoppm": NOREADER, "spottopgm": NOREADER,
+            "ximtoppm": NOREADER, "xvminitoppm": NOREADER,
             "edir": "the event directory IS empty, and that is the finding: "
                     "nothing on this disk CREATES an event -- OS-9's own "
                     "`event' utility is Microware's and is not here -- so "

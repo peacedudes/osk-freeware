@@ -225,14 +225,45 @@ one of which is carded.  Nothing to fix.
 Measured 2026-09-12 with the repo's own detector, tools/audit_cards.py,
 which is the honest one (its header records two earlier versions that
 lied).  It flags 95 of 990 -- but 23 of those are captures the INK FLOOR
-correctly dropped, so no reader ever sees them.  The real set is the 69
+correctly dropped, so no reader ever sees them.  The real set is the 61
 that are flagged AND published:
 
-    ERROR-ONLY    24        MOSTLY-HELP     4
-    THIN-HELP     23        HELP-ONLY       1
-    NOTHING       16        MOSTLY-ERROR    1
+    THIN-HELP     23        MOSTLY-HELP     4
+    ERROR-ONLY    17        MOSTLY-ERROR    1
+    NOTHING       16
 
-(Was 95/72 until the scorer was fixed -- see below.)
+It has moved twice in one evening: 95/72 as first measured, 92/69 once
+the scorer bug was fixed, 84/61 once the eight no-reader converters were
+excepted.  Re-measure before working from it.
+
+**THE THIN-HELP AND ERROR-ONLY GROUPS ARE MOSTLY HONEST CARDS.**  Read
+one by one rather than bucketed (my regex buckets called 22 of 31
+"unclassified", which is a measurement of the regex):
+
+  device or service genuinely absent -- CORRECT cards, leave them:
+    blastem (/t0), disable + enable (/t1), xyt (no modem port), atp (no
+    config file), msntp, uulog, mail + mailx + rmail (no mail spool),
+    lnk.org.  And the spooler set -- lpq, lprm, lpshut: NO spooler is
+    loaded at boot and `spoolqueue' does not exist on the disk, so a
+    syntax line is all they can print here.  Same for submit, suspend,
+    snd_sig, sbreak, run: each needs a live process or a serial path.
+
+  NOT a defect after all -- brushtopbm, gouldtoppm, hipstopgm, hpcdtoppm,
+    mtvtoppm, spottopgm, ximtoppm and xvminitoppm are eight of SIXTEEN
+    netpbm readers for formats no file here is in, and netpbm here ships
+    no WRITER for any of them, so no round trip can be staged.  Every one
+    of those cards ALREADY SAYS SO in its caption -- "No file in that
+    format ships here; handed a colour picture it reports the bad magic
+    number rather than guessing" -- and the family stanza `noreader' makes
+    the same point for all sixteen.  audit_cards flags them because the
+    SCREEN is an error line; it cannot read the caption.  Excepted by name
+    in its `fine' dict, which exists for exactly this (`perr' is the
+    same shape).  I nearly rewrote sixteen working captions.
+
+  AND `sldtoppm'/`psidtopgm' are NOT inconsistent siblings, which I also
+    nearly "fixed": they omit the no-file-ships sentence because it does
+    not apply -- sldtoppm has a real round trip through ppmtoacad, and
+    psidtopgm decodes hex handed to it directly.  Neither is flagged.
 
 **THE DETECTOR HAD A BUG THAT INVENTED EMPTY CARDS.**  `strings' prints
 its offsets as `$00017F: <text>', and audit_cards' PROMPT pattern stripped
