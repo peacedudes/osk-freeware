@@ -794,3 +794,77 @@ the group's active era has to come from somewhere that is not IA and not
 tuhs -- a personal spool, a CD-ROM collection, or one of the German or
 Australian OS-9 user-group archives, most of which are in the dead-host
 table above. Worth retrying those hosts; not worth re-searching IA.
+
+### The OSKer -- a new source, found 2026-09-13
+
+**Six issues, July 1990 to 1991, at colorcomputerarchive.com** under
+`repo/Documents/Magazines/The OSKer/` -- issues 1-4 dated (Jul 90, Aug 90,
+Sep 90, Jan 91) and 5-6 undated. Note issue 6 is filed as `OSKer ISsue
+#6.pdf`, with the typo, which a fetch loop has to allow for. Not recorded
+anywhere in this repo before tonight.
+
+It is an **OSK magazine**, not a CoCo one -- "Nevvs and Views in the World
+of OS~/68000 and 6809" on the cover -- which is why it is worth having
+even though the rest of that site is 6809 CoCo material and out of scope.
+The PDFs have a REAL TEXT LAYER: issue 1 extracts to 151 KB, 15,982 words,
+24% common English. (Contrast the Australian National OS9 Newsletter on
+IA, whose OCR gives `BasicO', `0S9', `jmrai' and cannot be mined.)
+
+**THE LICENCE CLAUSE, read whole and worth knowing:**
+
+    All Submissions must be in the Public Domain to be considered for
+    publication.  Persons who are selected for publication will be given
+    the following 6 months of the OSKer for free, in addition to any
+    paid-up subscription.
+
+So code SUBMITTED to and printed in the OSKer was required to be public
+domain. That is real licence evidence for anything sourced from it.
+**But read the scope**: it covers submissions only -- not the magazine's
+own text, not its advertisements, and NOT commercial products merely
+reviewed in it. `MVCanvas Paint Program V2.0' and `StG Login Package BBS
+V3.0' appear in these pages as products being sold, and that clause says
+nothing about them.
+
+**Two things that look like leads and are not.** The companion-disk
+listing printed in each issue (`Directory of /dd/OSKer/Jul90') is the
+ISSUE ITSELF as text files -- `A_Tale_Of_Two_Computers',
+`Editors_Ramblings', `Goto_Shell' -- one file per article, not a software
+library. And matching the magazine's prose against the 1,016 names we
+already hold is useless: it returns 1,300 hits in one issue led by `for'
+(244), `if' (117), `what' (72), `about' (55), because a great many OS-9
+command names are ordinary English words.
+
+**VERDICT: the OSKer carries NO SOURCE TO ACQUIRE.** Measured across all
+six extracted issues: `#include' appears ZERO times in any of them, and
+the scattered `main(' and `printf(' counts (2, 5, 0, 0, 0, 4) sit beside
+brace totals of 9-95 -- the shape of prose DISCUSSING code, not listings.
+"Playing Chess in C" is an article about writing one, not a program.
+
+So its worth is as a REFERENCE and a LICENCE CITATION, not as a haul:
+the public-domain submissions clause above, and six issues of period OSK
+context naming people, products and user groups. Do not re-mine it for
+programs; there are none in it.
+
+### Archive state after the 2026-09-13 sweep -- start here, not at a search engine
+
+    Internet Archive      UP.  advancedsearch works.  But see above:
+                          comp.os.os9 1987-2002 is NOT there.
+    alt.sources           EXHAUSTED for OSK.  8 subject hits in 12,026
+                          articles, all five fetched, none shippable.
+    utzoo-wiseman         torrent only, ~700 MB, no per-group index,
+                          stops mid-1991.
+    ftp.uni-kl.de         answers 200 and is now a DEBIAN/UBUNTU MIRROR.
+                          /pub/ is driver gnu linux mozilla tmp tug
+                          uninetz windows wireshark.  No OS-9.
+    os9archive.rtsi.com   answers 200, but it is a Joomla CMS; /OS9/,
+                          /pub/, /OSK/, /OS9Archive/ all 404.  Whatever
+                          it still holds needs a person and its own menu.
+    colorcomputerarchive  UP, mostly 6809 CoCo and out of scope -- except
+                          The OSKer, above.
+    ftp.leo.org, os9forum.de, os9.org, ftp.rtsi.com,
+    minkirri.apana.org.au        still dead, no connection at all.
+
+The live question is unchanged and is NOT a tooling problem: where does
+a copy of comp.os.os9 1987-2002 exist?  Not IA, not tuhs/utzoo.  It has
+to be a personal spool, a CD-ROM collection, or one of the dead European
+or Australian user-group hosts coming back.

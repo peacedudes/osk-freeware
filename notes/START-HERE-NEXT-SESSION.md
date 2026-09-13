@@ -1093,12 +1093,21 @@ at roughly one evening per handful.
 
 Still genuinely open, in order of how much they are worth:
 
-- **Two decisions are yours**, both in FOR-RDOGGETT.md with the material
-  located: Q2 (gawk/bison/emacs source, TOP trees ready to stage) and
-  Microware's `fpu' module.
-- colorcomputerarchive.com is alive and unfetched, but it is CoCo -- 6809,
-  where this disk is 68k.  Judge scope before spending on it.
-- The Internet Archive was globally offline all night; its three Wayback
-  rows and cdrom-coco are untestable rather than refused.  Retry.
+- **The archive question is ANSWERED, 2026-09-13 -- read
+  `notes/PLAN-acquisitions.md', "Archive state after the 2026-09-13
+  sweep", before searching anything.**  The Internet Archive is back up
+  and was swept; alt.sources is exhausted for OSK (8 subject hits in
+  12,026 articles, all fetched, none shippable); colorcomputerarchive was
+  fetched and IS out of scope apart from one thing -- The OSKer, an OSK
+  magazine, six issues 1990-91, which carries a public-domain submissions
+  clause worth citing but NO source to acquire; ftp.uni-kl.de is alive
+  and is now a Debian mirror; RTSI is a CMS with no reachable tree.
+  **The one live question is where a copy of comp.os.os9 1987-2002
+  exists** -- what we hold starts in 2003, and it is not on IA and not in
+  utzoo, which is torrent-only and stops mid-1991.
+- Q2 and Microware's `fpu' are DONE (`e934210a', `7ae0a430'), and
+  FOR-RDOGGETT.md no longer lists them.  What is left there is his alone:
+  nothing pushed or tagged, the release not carrying the tar, and no
+  real-hardware test.
 - Everything in ROADMAP-freeware.md about the release -- CI never exercised,
   branch never pushed, nothing tagged -- is yours.
