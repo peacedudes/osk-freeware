@@ -1495,6 +1495,16 @@ measured 2026-09-13 while working the games sweep.
     freeb       reports LIVE DISK STATISTICS.  Rebuilding the image
                 changes them: 1081344 sectors and one fragment row
                 became 1134592 sectors and seven.  Both correct.
+    blackjack   THREE sources of variance at once: a persisted BANKROLL
+                (the score files ship and are preserved -- CLAUDE.md),
+                a clock time on the card (`This game started at
+                17:13:38'), and a shuffled deck (`** Dealer Reshuffles
+                **').  Measured 363 -> 409 and flagged a REAL candidate
+                by a sweep, which it is not.
+    hang        picks a RANDOM WORD, so the `Unused Letters' line and
+                the transcript length differ while the stanza always
+                sends the same `aeiort'.  Measured 118 -> 161 and
+                flagged as a SCROLL, which it is not.
 
 **Candidates by NAME ONLY, not measured -- do not treat as fact:**
 `wisecrack', `ask', `shuffle', `cookie', `fortune'.  They have the shape
