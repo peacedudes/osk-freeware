@@ -216,6 +216,13 @@ def main(argv):
                       "what the caption says.  Scored THIN-HELP because the "
                       "usage line counts as help, but that line is the BEFORE "
                       "half, not the subject",
+            "flink": "makes an RBF hard link and CORRUPTS THE DISK IT LINKS "
+                     "ON -- removing such an entry left `/dd/CMDS/cat' "
+                     "pointing at a DIRECTORY, with every program answering "
+                     "`cat: is a directory' until the image was rebuilt.  Its "
+                     "usage line is the only card it can ever safely have, "
+                     "and the caption says why.  See CLAUDE.md, which forbids "
+                     "running it in a test at all",
             "transfer": "copies files off a GDOS disk, and the GDOS device "
                         "DGDOS0 is not present on this disk or in os9exec -- "
                         "so `Can't load device descriptor' is the only thing "
