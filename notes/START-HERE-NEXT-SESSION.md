@@ -1254,8 +1254,8 @@ a blank card.  And alf_off() replaces a poisoned session (`090b27a5').
 
 **Three of my own claims were WRONG and are corrected in place**, all
 caught by the sibling sessions reading manuals: `../..' IS valid OS-9
-(the gate stays, on portability), SS_Opt's scope is not established, and
-`58e3c35'/`398e3c35' carry both.  A measurement trap that cost time
+(the gate stays, on portability, not validity) and SS_Opt's scope is not
+established -- both in `398e3c35'.  A measurement trap that cost time
 twice is written down, and so is why the two exception lists overlap.
 
 **The archives were swept** -- `notes/PLAN-acquisitions.md' has the state
