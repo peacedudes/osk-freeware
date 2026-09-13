@@ -1525,6 +1525,22 @@ measured 2026-09-13 while working the games sweep.
                 sends the same `aeiort'.  Measured 118 -> 161 and
                 flagged as a SCROLL, which it is not.
 
+    cuts        FLOODS `No more memory'.  The published card carries a
+                2,088,544,320-byte refusal; a re-shoot carried a
+                3,993,495,104-byte one plus `100 allocation failures so
+                far'.  Same encoded output either way -- it is the Coco
+                Usenet Transfer Utility and `.0000.I.A...BIN."fox.txt"'
+                is the program working -- but the refusal count varies,
+                and it trips screenshots.py's own `starved' replacement.
+    ape         a MARKOV TEXT GENERATOR (`ape -b=12k -l=5 < jargon.txt'):
+                different prose every run, so 630 -> 544 means nothing.
+
+**A DIFFERENT class, which DOES want re-promoting when it moves:**
+`column' lists a live directory (`ls CMDS/GAMES | column'), so its card
+goes stale whenever a program is added -- eleven were missing from it.
+Like freeb it drifts by design, but unlike freeb the newer listing is
+simply more correct, so promote it rather than restoring it.
+
 **Candidates by NAME ONLY, not measured -- do not treat as fact:**
 `wisecrack', `ask', `shuffle', `cookie', `fortune'.  They have the shape
 (random or time-dependent) and have NOT been checked.
