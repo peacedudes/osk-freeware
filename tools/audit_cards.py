@@ -252,6 +252,36 @@ def main(argv):
                        "that can safely be shown",
             "lpshut": "its card already runs `lpshut' for real and gets "
                       "`lpshut: no spooler active', which is the true state",
+            # THE EVENT PAIR, and they follow `edir' above rather than setting
+            # a precedent: NOTHING ON THIS DISK CREATES AN EVENT, because
+            # OS-9's own `event' utility is Microware's and is not here.  Both
+            # cards already RUN for real against a name that cannot exist.
+            "eset": "sets an existing event's value, and this disk has no way "
+                    "to create one -- see `edir'.  Its card already runs "
+                    "`eset testevent 1' and gets the refusal that proves it",
+            "eunlink": "the other end of the same pair; its card already runs "
+                       "it and gets `E_EVNF Event (name) not found', which is "
+                       "the whole finding",
+            # TWO MORE PIECES OF ABSENT HARDWARE.  Both read 2026-09-13.
+            "dpark": "restores a physical RBF drive's head to track 00 -- "
+                     "something you did before moving a drive, and there is "
+                     "no drive head here to park",
+            "sbreak": "sends a break on a serial device; its card already "
+                      "runs it bare and gets `sbreak: Must specify device!', "
+                      "and there is no serial device here to name",
+            # THREE TERMINAL PROGRAMS THAT NEED HARDWARE NOBODY HAS HERE, and
+            # a definition file that does not ship.  Each was read 2026-09-13
+            # and each caption already names the requirement.  `fontgen' is
+            # NOT the missing half: it writes ASSEMBLER SOURCE for a font
+            # module (`nam text80z.font', a psect, FontData) for a Gepard
+            # 80-column card -- not a downloadable font any of these load.
+            "setfont": "loads a downloadable terminal font from a path, and "
+                       "no such font ships; the terminal here has no "
+                       "downloadable font to load either",
+            "chardef": "defines a character set on a VT220 from a definition "
+                       "file; neither the file nor a VT220 is here",
+            "fkeys": "programs a VT220's user-defined keys from a definition "
+                     "file; neither the file nor a VT220 is here",
             # collect2 is a LINKER PASS, not a user-facing program: g++ runs
             # it between compiling and linking to build the global
             # constructor table.  `collect' and `gpp_collect' are the same
@@ -281,6 +311,15 @@ def main(argv):
         if not f.endswith(".shot.txt"):
             continue
         name = f[:-len(".shot.txt")]
+        # A CAPTURE WITH NO STANZA IS NOT A GALLERY CARD.  61 of the 990
+        # captures on disk belong to no stanza -- setup shots, multi-program
+        # captures, leftovers -- and `gen_screens' says so plainly every run:
+        # "N capture(s) belong to no stanza and are NOT published".  Scoring
+        # them made this tool report on things no reader can see, and put one
+        # of them (`sgi-p') in a queue of cards to go and fix.  Measured
+        # 2026-09-13: 990 scored, 929 real.
+        if name not in sheets:
+            continue
         usage, err, work, body = classify(os.path.join(CAPS, f),
                                           commands(name, sheets))
         why = ("NOTHING" if not (usage or err or work) else

@@ -1303,6 +1303,109 @@ before committing' and reported exit 0 in the same breath; run unpiped
 it exits 1.  The same trap applies to `check_disk.py'.  Redirect, then
 read `$?'.
 
+## Working the flagged-card queue down, 2026-09-13: 66 of 990 -> 37 of 929
+
+Both numbers moved, and the DENOMINATOR moving is the more interesting
+half.
+
+**`audit_cards' was scoring 61 captures the gallery never publishes.**
+`notes/playtests' holds 990 captures and the sheets define 929 stanzas;
+the other 61 are setup shots, multi-program captures and leftovers
+(`about-tar', `elm-suite', `gnuchess-builds', `cal-holidays' ...), and
+`gen_screens' names them every single run -- "N capture(s) belong to no
+stanza and are NOT published".  The audit read that directory straight
+off disk and scored all 990, so it reported on things no reader can see
+and put one of them, `sgi-p', in a queue of cards to go and fix.  It now
+skips any capture with no stanza.  Nothing else consumed that number.
+
+**Every name excepted below was READ FIRST** -- its stanza, its capture,
+its `DOC/INDEX' and `howto.psv' lines, and its binary's strings where
+that settled anything.  An exception is only honest when somebody has
+looked, and four leads died on inspection (below), which is the reason
+to keep looking rather than to stop.
+
+The count moved in this order, so a later session can see what was a fix
+and what was a judgement: 66 at the start; **59** when `classify' stopped
+eating each card's first line (a BUG, not a judgement -- seven cards were
+reported NOTHING while showing real output); 58, 57, 55, 48 as eleven
+names were read and excepted; **39** after seven more exceptions and two
+real card fixes; **37** when `afm2tfm' was fixed and `sgi-p' stopped
+being counted.  Four cards were genuinely REPAIRED tonight -- `UnMacpack',
+`macunpack', `finger', `afm2tfm' -- and each left the list by showing
+its program working, not by being excused.
+
+Eleven names went into `audit_cards.py's `fine' table, in families:
+
+  the print spooler (4)   `lpq', `lprm', `lpsched', `lpshut'.  THERE IS
+        NO SPOOLER ON THIS DISK.  Two of these already RUN for real on
+        their cards and report the true state -- `lpq: no spooler
+        installed', `lpshut: no spooler active' -- `lprm' really tries a
+        removal, and `lpsched' WAITS to open a printer if given one.
+  collect2 (3)            `collect', `gcc_collect', `gpp_collect'.  A
+        g++ LINKER PASS, not a user-facing program.  `collect' and
+        `gpp_collect' are the same binary (md5 74b3bbf3686d) in two
+        directories; `gcc_collect' is GCC139's build.  It takes no `-?'
+        and prints its usage with no arguments BY DESIGN.
+  cards that must not run (1)  `flink' -- it corrupts the disk it links
+        on; CLAUDE.md forbids running it at all.
+  cards that already do the real thing (2)  `lgrep' searches
+        `SYS/password' for `ksh', which IS in that file, and prints
+        nothing (the silence is the finding, and the caption says so);
+        `run' already does `export PORT=/term; run "whoami"'.
+  no device (1)           `transfer' wants the GDOS device DGDOS0.
+
+**Left flagged ON PURPOSE, because they are improvable:**
+
+  `submit'   a real OS-9 `.sub' DOES ship -- `DOC/hexed/hexed.sub' -- but
+             the command inside it is `cc ... -f=/d0/CMDS/hexed', which
+             needs Microware's cc, `/r0' and `/d0', none of them here.
+             A `.sub' whose command exists on this disk would make a real
+             card.  (The other two `.sub' files in the tree are autotools
+             `config.sub' scripts, not OS-9 submit files.)
+  `afm2tfm'  **FIXED.** Its caption said "there being no .afm on the
+             disk" and SIXTEEN ship in `LIB/gs403' plus two in
+             `ETC/LIB/GS33', real ones (`StartFontMetrics 3.0', URW).
+             Run on one it works: `afm2tfm n019003l.afm' answers
+             `n019003l NimbusSanL-Regu' and writes a 1,268-byte .tfm.
+             The card now converts a font instead of printing a usage
+             line, and the caption no longer says something untrue.
+  `UnMacpack' **FIXED.** Its stanza asked `-?', which the program REJECTS
+             (`UnMacpack: unknown option -?') while printing a line that
+             names the right flag: "Use macunpack -H for help".
+             `tools/help.psv' already recorded `-H'.  The card now shows
+             the whole option list -- fork modes, the Mac-to-Unix text
+             translation, the listing and query modes.
+  `finger'   **FIXED.** Its caption said it needs a network; it reads the
+             password file THIS DISK SHIPS.  `finger tester' answers with
+             the account's home directory, its shell, and the `.project'
+             and `.plan' it would print if they existed.
+  `lmail'    its caption says a real recipient hangs it.  Unverified --
+             if that is right it belongs with `flink'; nobody has tried.
+
+**Four leads that died on inspection, recorded so they are not chased
+again.**  `unsit's caption says no StuffIt archive is on the disk, and
+three `.sit' files ship in `DOC/orbit' -- which looked like a caption
+contradicting its own disk.  They are 119-124 BYTE TEXT FILES (`XXXX
+Bern-Airport', `W3VC Pittsburgh'), orbit's ground-station data wearing
+that extension, and `unsit' is not even flagged.  Judging a file by its
+extension is the same proxy trap as judging a card by its size.
+
+`fontgen' looked like the missing half of `setfont': a font generator on
+a disk whose font loader has no font.  It is not.  It writes ASSEMBLER
+SOURCE for a font data module -- `nam text80z.font', a psect, FontData --
+for the Gepard 80-column card, and `setfont' wants a downloadable
+terminal font.  Two programs about fonts are not a pipeline.  (`fontgen'
+is a good card already, work=7, never flagged.)
+
+`lnk.org' and `rcsmerge' died the same way -- see the section below.
+
+**Still flagged and NOT excepted, because a test is possible and nobody
+has run it:** `savemem' (super user and hex addresses -- the harness DOES
+run as the super user, so a small dump to a file may work, at some risk
+of taking the emulator down), and `snd_sig' (needs a live process; bash
+can background one with `&' and the pid could be signalled).  Both are
+worth ten minutes and neither has had them.
+
 ## Four flagged cards put to the test, 2026-09-13 (scratch sheet, then deleted)
 
 The way to ask "could this card be better?" is a SCRATCH SHEET run
@@ -1418,11 +1521,33 @@ rendered fine.  What changed was the demo, not the program.
 
 Re-shot solo 2026-09-13 it still comes back empty, with `(session
 replaced -- pgmedge left it unusable)', so something about the current
-form does wedge the session.  The fix to try is the older one: restore
-the `pgmtopbm | pbmtoascii' picture, which is a better card by any
-measure, and raise the wait.  **Take the exception line out only after
-the card renders** -- `audit_panels.gate()' fails on an excepted name
-that is not runnable, so removing it early breaks the gate.
+form does wedge the session.
+
+**THE OBVIOUS FIX WAS TRIED AND IT DOES NOT HOLD.  Seven runs, and
+pgmedge is FLAKY rather than size-bound:**
+
+    8x8    rendered        16x16  rendered
+    24x16  WEDGED          24x24  WEDGED
+    32x16  rendered, then WEDGED on the very next run of the same
+           stanza with the same image and the same 45-second wait
+
+So there is no size that can be relied on, and raising the wait does not
+help -- 60 seconds wedges where 45 succeeded.  A card built on 32x16
+would render about half the time and publish an empty panel the rest,
+which is worse than the honest empty card it has now, because it would
+look fixed.  **Do not restore the bigger picture.**  If anyone returns
+to this, the question is not "what size" but why a 512-pixel edge detect
+leaves the session unusable at all -- that smells like the program or
+the emulator, not the card, and `notes/os9exec-bugs/' is where it would
+go once somebody has a reproducer tighter than "about half the time".
+
+What IS settled: the exception's SYMPTOM is real and its REASONING is
+wrong.  It says pgmedge is too slow for the follow-up to render; the
+older stanza rendered its follow-up on a LARGER image with a shorter
+wait.  Slowness is not the mechanism.  The line now says what was
+measured.  **Take the exception out only after a card renders twice
+running** -- `audit_panels.gate()' fails on an excepted name that is not
+runnable, so removing it early breaks the gate.
 
 ## A card getting SHORTER is not evidence that it broke
 
