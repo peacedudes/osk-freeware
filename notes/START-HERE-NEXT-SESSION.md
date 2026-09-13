@@ -1195,15 +1195,28 @@ So do not reason about which sheets are at risk.  **Sweep them.**  That
 is the only instrument that has ever been right about this, and it is
 cheap to run measure-only with an unconditional restore.
 
-**SWEEP TALLY, 2026-09-13.**  659 of 929 stanzas swept, 270 remaining.
-Clearers by sheet: graphics 9, games 5, comms 4, system 2, files 2
-(`remove', `Ascii2Libr'), textfilters 1 (`casefix'), and ZERO in
-netpbm-ea, netpbm-in, netpbm, devtools, texttools and compilers.
-Twenty-three in all.
+**SWEEP TALLY, 2026-09-13.**  754 of 929 stanzas swept, 175 remaining.
+Clearers by sheet: graphics 9, games 5, comms 4, archives 3 (`lha',
+`lharc', `lharcs'), system 2, files 2 (`remove', `Ascii2Libr'),
+encoding 2 (`des', `macunpack'), textfilters 1 (`casefix'), and ZERO in
+netpbm-ea, netpbm-in, netpbm, devtools, texttools, compilers and tex.
+TWENTY-EIGHT in all.
 
-Swept and CLEAN, so do not re-sweep these: netpbm-ea, netpbm-in, netpbm,
-devtools, texttools, compilers, files.  Swept and worked: graphics,
-games, comms, system, textfilters.
+Every sheet swept since the guard landed has come out with 0 REAL
+candidates and 0 LOWER -- tex 32 equivalent, encoding 31, archives 30,
+files 36, compilers 40, devtools 43, texttools 42.  Clearers are found
+and caught; no card is damaged.
+
+Do not re-sweep: netpbm-ea, netpbm-in, netpbm, devtools, texttools,
+compilers, tex, encoding, archives, files.  Still unswept: editors 29,
+amusements 27, shells 22, dos 20, played 17, printing 16, calendars 15,
+maths 11, languages 10, documentation 5, toys 3.
+
+**The archives trio is the first FAMILY among the clearers**: `lha',
+`lharc' and `lharcs' are three builds of one archiver, found together.
+That is worth noticing, but it does NOT revive the profile -- see above,
+both profiles failed and `casefix' (a stdin sentence-case filter) clears
+PD_ALF while eight other clearers have no terminal handling at all.
 
 `files' is worth a note: it fired TWICE and every card still came out
 equivalent -- 36 of 36.  That is the guard doing its job rather than a
