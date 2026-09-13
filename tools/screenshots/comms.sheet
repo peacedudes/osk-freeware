@@ -264,6 +264,8 @@ cap     folder it is watching and its size.
 try     newmail -d tester
 run     newmail -?
 wait    6
+run     load /dd/CMDS/UUCP/uuname
+wait    3
 run     clear
 wait    1
 run     newmail -d tester
