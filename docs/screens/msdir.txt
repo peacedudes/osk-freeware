@@ -3,6 +3,7 @@ msdir a:
  Volume Serial Number is 35D7-0A00
  Directory for A:/
 
-MOTD     TXT        40 09-08-2026   9:29p
-        1 file(s)                40 bytes
-                          1 457 152 bytes free
+readme   txt       139 08-02-2026   2:22a readme.txt
+MOTD     TXT        40 09-13-2026  11:27a
+        2 file(s)               179 bytes
+                          1 456 640 bytes free

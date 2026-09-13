@@ -104,7 +104,7 @@ shot    msmd
 cap     msmd makes a directory on the DOS disk, the way `mkdir' does on
 cap     OS-9's own filesystem.
 try     msmd a:/DOCS; msdir a:
-run     mscd a:/ > /nil; msdeltree a:/DOCS > /nil 2>/nil
+run     mscd a:/ > /nil; msdeltree a:/DOCS > /nil 2>/nil; msdel a:MOTD.TXT > /nil 2>/nil
 wait    8
 run     clear
 wait    1
@@ -205,7 +205,7 @@ shot    msren
 cap     msren renames a file on the DOS disk in place.
 try     msren a:OLD.TXT a:NEW.TXT; msdir a: | grep TXT
 os9     msren a:OLD.TXT a:NEW.TXT; msdir a: ! grep TXT
-run     mscd a:/ > /nil; msdel a:OLD.TXT a:NEW.TXT > /nil 2>/nil; mscopy /dd/SYS/motd a:OLD.TXT > /nil
+run     mscd a:/ > /nil; msdel a:OLD.TXT a:NEW.TXT a:MOTD.TXT > /nil 2>/nil; mscopy /dd/SYS/motd a:OLD.TXT > /nil
 wait    10
 run     clear
 wait    1
@@ -295,7 +295,7 @@ cap     lists the directory, then reads every file in it in turn and
 cap     reports whether the disk came back clean.
 try     mscheck
 os9     ksh mscheck
-run     mscd a:/ > /nil; msdeltree a:/MOVED > /nil 2>/nil; msdel a:NEW.TXT a:RAW.TXT a:MOTD.TXT > /nil 2>/nil; mscopy /dd/SYS/motd a:MOTD.TXT > /nil
+run     mscd a:/ > /nil; msdeltree a:/MOVED > /nil 2>/nil; msdeltree a:/DOCS > /nil 2>/nil; msdel a:NEW.TXT a:RAW.TXT a:MOTD.TXT > /nil 2>/nil; mscopy /dd/SYS/motd a:MOTD.TXT > /nil
 wait    12
 run     clear
 wait    1

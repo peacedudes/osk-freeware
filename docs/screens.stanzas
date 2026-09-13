@@ -469,7 +469,7 @@ move eeae24bf2e1d12fb
 msattrib 447ddc9504eb95b8
 msbadblocks 66d74d636341ac20
 mscd c856a00081987149
-mscheck 618469e4870efb72
+mscheck ab06584443fc54b6
 mscopy 4ec9a79fa14054cc
 msdel 49c11e517526df67
 msdeltree 322b0a2831f51a42
@@ -478,12 +478,12 @@ msformat c3338b14d3a19e7b
 mshell 647fe4b080093c13
 msinfo a5042fc2d611b75a
 mslabel deb85be1fbad625c
-msmd 71cc2b5a5f06ec43
+msmd 60489ec46b1029e0
 msmove 5dfd3a5ba2a8e322
 msntp 1f027278b19df812
 msrd 420f1f8e77c407f4
 msread 6cd38b01edf65077
-msren ba3e99ddded6229e
+msren b58d239341761491
 mstoolstest 07b7f926b2bdca02
 mstype fce7d7fcfbeec584
 mswrite 09f0326cf5a3f8ee
