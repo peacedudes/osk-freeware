@@ -1195,22 +1195,113 @@ So do not reason about which sheets are at risk.  **Sweep them.**  That
 is the only instrument that has ever been right about this, and it is
 cheap to run measure-only with an unconditional restore.
 
-**SWEEP TALLY, 2026-09-13.**  754 of 929 stanzas swept, 175 remaining.
+**SWEEP TALLY, 2026-09-13: THE SWEEP IS COMPLETE -- 929 of 929 stanzas,
+every sheet, nothing left unswept.**  Thirty-six clearers in all.
+
 Clearers by sheet: graphics 9, games 5, comms 4, archives 3 (`lha',
-`lharc', `lharcs'), system 2, files 2 (`remove', `Ascii2Libr'),
-encoding 2 (`des', `macunpack'), textfilters 1 (`casefix'), and ZERO in
-netpbm-ea, netpbm-in, netpbm, devtools, texttools, compilers and tex.
-TWENTY-EIGHT in all.
+`lharc', `lharcs'), system 2, printing 2 (`gs33', `gs403'), files 2
+(`remove', `Ascii2Libr'), encoding 2 (`des', `macunpack'), textfilters 1
+(`casefix'), editors 1 (`vi'), shells 1 (`hist'), played 1 (`sc'),
+calendars 1 (`calen'), maths 1 (`checkfile'), documentation 1 (`help').
 
-Every sheet swept since the guard landed has come out with 0 REAL
-candidates and 0 LOWER -- tex 32 equivalent, encoding 31, archives 30,
-files 36, compilers 40, devtools 43, texttools 42.  Clearers are found
-and caught; no card is damaged.
+ZERO in netpbm-ea, netpbm-in, netpbm, devtools, texttools, compilers,
+tex, amusements, dos, languages and toys -- eleven sheets clean.
 
-Do not re-sweep: netpbm-ea, netpbm-in, netpbm, devtools, texttools,
-compilers, tex, encoding, archives, files.  Still unswept: editors 29,
-amusements 27, shells 22, dos 20, played 17, printing 16, calendars 15,
-maths 11, languages 10, documentation 5, toys 3.
+**Every sheet swept since the guard landed came out with 0 REAL
+candidates and 0 LOWER.**  That is the whole result: across 929 stanzas
+the guard caught thirty-six sessions with PD_ALF cleared and not one
+published card was damaged by one.  Equivalent counts where recorded:
+tex 32, encoding 31, archives 30, files 36, compilers 40, devtools 43,
+texttools 42, printing 14, calendars 13, maths 11, languages 10,
+documentation 5, toys 3.
+
+**Do not re-sweep anything for PD_ALF.**  The question the sweep was
+opened to answer is answered.  Re-shoot a stanza when you have a reason
+of its own -- a card that looks wrong, a program that changed -- not to
+look for clearers again.
+
+## The sweep's unexplained patterns, resolved 2026-09-13
+
+Two patterns survived the sweep looking like findings.  Neither was.
+
+**`sed' and `sed_1.06' both landing on EXACTLY 104 was batch damage, not
+a shared program.**  Solo, on a rebuilt image, they read 143 and 148
+against published 142 and 147 -- equivalent, both of them.  Two stanzas
+arriving at an identical ink is a signature of a shared FAILURE MODE
+(one wrecked session measured twice), and reads as evidence of a shared
+cause only if you forget that the batch is the thing they share.  When
+two numbers match exactly, suspect the instrument first.
+
+**The uniform +40 across the `dos' family is a STALE-CARD finding, and
+the re-shoots are the truthful side.**  `msdir' 130->170, `mscheck'
+174->214, `mscopy' 151->190, `msmd' 141->181 -- four programs, one
+number.  The cause is in the DATA they share, not in any of them: the
+shipped `disk/DOS/a.img' holds a volume label and **`README.TXT', 139
+bytes, with a long-filename entry** (read straight out of its FAT12 root
+directory host-side -- 224 root entries at offset 9728, no OS-9 needed).
+So on a FRESHLY BUILT image every listing of the DOS root carries that
+line, and four published cards do not: they were shot against a `.dd'
+whose `a.img' had lost it.
+
+**I guessed a fifth and the re-shoot refuted it, which is worth more
+than the four that were right.**  `msren' ends `msdir a: | grep TXT',
+and I wrote that it must now match `README   TXT' too.  It does not:
+mtools prints the entry with its lowercase flags honoured, as
+`readme   txt', and `grep TXT' is case-sensitive.  `msren' changed for
+an unrelated reason found in the same capture -- see below.
+
+Two things worth keeping from it.  **A uniform gain across a family of
+programs points at their shared INPUT, not at the programs** -- the four
+differ in everything except which directory they list.  And the image is
+a build artefact whose contents drift from `disk/' in ways nothing
+flags: `git status' was clean on `disk/DOS/a.img' throughout, because the
+file that had lost README.TXT was the built image, never the source.
+`tools/mkimage.sh' takes four seconds and is the first move, not the
+last.
+
+`tools/datatests/dos.cases' is unaffected -- every case asserts a name
+present or absent (`RAW      TXT', `NEW      TXT', `MOTD     TXT'), none
+asserts a file COUNT, so the extra entry breaks nothing.
+
+**What `msren' actually caught: three dos cards were showing OTHER
+STANZAS' leftovers.**  Its listing carried `MOTD     TXT', which its own
+setup never creates -- `mscopy' and `msmd' had left it on the shared
+image earlier in the same run -- and `mscheck' was reporting `Skipping
+"DOCS", is a directory' for a directory `msmd' had made.  The sheet's
+own header promises the opposite in so many words: "Every stanza puts
+the image into the state it needs before its picture, so the sheet means
+the same thing on every run."  Three setups now delete what they do not
+want (`msmd' and `msren' remove `MOTD.TXT', `mscheck' removes `DOCS'),
+which is gate twenty's rule applied to a shared DOS image rather than to
+`/dd/tmp'.
+
+## The capture directory is GITIGNORED, so "tree: 0 modified" proved nothing
+
+Found 2026-09-13, and it applies to every sweep job in this session.
+
+`notes/playtests/' is ignored in full (`.gitignore' line 52); 2,374
+captures sit on disk and FIVE are tracked.  So the reassurance those
+jobs printed after restoring -- `tree: 0 modified' -- could not have
+reported capture churn under any circumstances.  It was a check that
+cannot fail, which is this collection's signature defect, and I printed
+it a dozen times tonight without once asking what it was measuring.
+
+**The real instrument is `tools/gen_screens.py --check'**, which exits 1
+naming captures that have drifted.  Use it, and know its limit:
+
+  * It compares a capture against its STANZA -- caption and commands.
+    Edit a sheet and it names the affected shots at once (it named
+    `msmd', `msren' and `mscheck' the moment their setups changed).
+  * **It cannot see a capture that was shot against the WRONG IMAGE.**
+    The four stale dos cards had unedited stanzas, so they matched and
+    the check was silent.  Nothing in the tree can catch that class; it
+    took reading the DOS image's directory to find it.
+
+**And do not pipe a gate into `tail'** -- `$?' is then `tail's, which is
+always 0.  `gen_screens.py --check | tail -40' printed `3 stale ...
+before committing' and reported exit 0 in the same breath; run unpiped
+it exits 1.  The same trap applies to `check_disk.py'.  Redirect, then
+read `$?'.
 
 **The archives trio is the first FAMILY among the clearers**: `lha',
 `lharc' and `lharcs' are three builds of one archiver, found together.
@@ -1247,8 +1338,10 @@ Sweeping `system.sheet' (100 stanzas) the guard fired TWICE, on
 `hinterhalt' and `sddemo', and recovered `config' from 503 to 726 ink --
 a second victim of the same shape as `pdraw', which nothing had flagged.
 So clearers are spread thinly across sheets and three sheets returning
-zero says nothing about a fourth.  Known so far: graphics 9 firings,
-system 2, the three netpbm sheets 0.  772 stanzas remain unswept.
+zero says nothing about a fourth.  Known at the time: graphics 9
+firings, system 2, the three netpbm sheets 0, 772 stanzas unswept.
+(The sweep has since FINISHED -- 929 of 929, 36 clearers.  See the
+tally above; this paragraph is kept for the reasoning, not the count.)
 
 **Re-shooting was the only way to establish this**, and that is the
 point worth keeping.  A static scan cannot find these victims: `pdraw'
@@ -1331,11 +1424,12 @@ table.  IA is back up; alt.sources is exhausted for OSK; comp.os.os9
 1987-2002 is NOT on IA and that is the live question.  One new source:
 The OSKer, six issues 1990-91, public-domain submissions clause, no code.
 
-**Still unswept with the guard: ~770 stanzas** in the sheets other than
-graphics and the three netpbm ones.  Prediction does not work here -- I
-predicted netpbm would be affected and it was not (0 firings in 71) --
-so the only way to find another `pdraw' is to re-shoot and compare
-through trim().
+**All of it is swept now -- 929 of 929.**  What this paragraph used to
+say, when ~770 stanzas were outstanding, still holds as method:
+prediction does not work here -- I predicted netpbm would be affected
+and it was not (0 firings in 71) -- so the only way to find another
+`pdraw' was to re-shoot and compare through trim(), and that is what
+was done to all of it.
 
 ## Do not build a "cited commit hashes must resolve" gate
 
@@ -1461,7 +1555,9 @@ So three sheets are now known affected -- graphics 9 firings, comms 4,
 system 2, the three netpbm sheets 0 -- and the refined profile holds:
 terminal-takers and raw-byte writers (connect and sterm drive terminals,
 txmod pushes a module down a serial line, filter is a pipeline filter),
-NOT netpbm as a family.  674 stanzas remain unswept.
+NOT netpbm as a family.  674 stanzas were unswept at that point.  (The
+profile did not survive the rest of the sweep -- `casefix', a stdin
+filter with no terminal handling, clears PD_ALF too.  See the tally.)
 
 **Swept MEASURE-ONLY and every capture restored afterwards**, so the
 gallery could not move whatever turned up: 76 equivalent, tree 0
