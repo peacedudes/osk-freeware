@@ -864,7 +864,135 @@ programs; there are none in it.
     ftp.leo.org, os9forum.de, os9.org, ftp.rtsi.com,
     minkirri.apana.org.au        still dead, no connection at all.
 
-The live question is unchanged and is NOT a tooling problem: where does
-a copy of comp.os.os9 1987-2002 exist?  Not IA, not tuhs/utzoo.  It has
-to be a personal spool, a CD-ROM collection, or one of the dead European
-or Australian user-group hosts coming back.
+**AND THE WAYBACK ROUTE TO THEM IS CLOSED TOO, surveyed 2026-09-13.**
+Thirteen hosts, every one queried through the CDX API: Wayback captured
+FRONT PAGES AND LINK TEXT ONLY.  The FTP trees were never crawled.
+Across all thirteen there were 1,011 status-200 captures with an archive
+extension and **every one is out of scope** -- Debian `.gz', Aminet
+`.Z', cygwin, DOS `.zip'.  Zero OS-9/OSK archive files.
+
+    os9forum.de, chestnut.cs.wisc.edu, ftp.rtsi.com   NEVER ARCHIVED --
+        zero captures, even domain-wide with no status filter
+    os9.org            front page and images; the domain later became
+                       an iPhone site (453 rows on iphone.os9.org)
+    os9archive.rtsi.com  1,793 real captures, all Joomla CMS or the
+                       pre-2004 static site.  0 archive files
+    minkirri           a real /pub tree IS captured (585 rows) and it
+                       is APANA admin, cygwin, debian, DOS.  EXACTLY
+                       TWO OS-9 files in it (below)
+    ftp.leo.org, ftp.uni-kl.de, ftp.cs.tu-berlin.de   large mirrors,
+                       zero genuine OS-9 (FreeBSD/KDE, Debian/CCC,
+                       Aminet/Atari/C64)
+    lucy.ifi.unibas.ch, ftp.informatik.uni-hamburg.de, ftp.ethz.ch,
+    ftp.informatik.tu-muenchen.de   staff pages, /pub/unihh, a front
+                       page, a robots.txt.  Nothing.
+
+**The one lead worth keeping: RTSI's archive was at `www.rtsi.com', NOT
+`ftp.rtsi.com'** -- which is why every probe of it has failed.
+`os9archive.rtsi.com/ftparchive.html', captured 2004-04-15, documents
+the structure that was lost:
+
+    ftp://www.rtsi.com/OS9/{OSK, OS9_COMMON, DOCS, BENCHMARKS, MISC,
+                            MM1, MSDOS, OS-9000, OS-9_6X09, TOP,
+                            USERGROUPS, VENDORS, incoming}
+    plus os9archive.index -- a 203 KB master listing, 2003-08-26
+
+`OSK' and `OS9_COMMON' are this collection's scope exactly.  None of it
+is in Wayback -- all 19 captured `/OS9/' URLs are 404s or forum-paste
+artifacts -- and `os9archive.index' is not captured under any scheme or
+host.  **Keep the directory list as a MANIFEST for searching other
+mirrors**, not as a place to fetch from.
+
+Two genuine OS-9 files came out of the whole survey, and both are
+DOCUMENTS, not software: `minkirri.apana.org.au/pub/misc/os9.faq'
+(26,310 bytes, the comp.os.os9 FAQ 12th edition by Russ Hoffman) and
+its gzip, internal mtime 1994-07-11.  Both fetched, in
+`~/Developer/os9/Scraped/acquisitions-2026-09-13/wayback/'.
+
+**A method trap recorded by that survey, worth more than the negative.**
+Wayback's CDX `urlkey' normalisation STRIPS `?', so a query pattern like
+`os.?9' matched `.../mods/atmos/?952114857' and reported 245 OS-9 hits
+on tu-berlin that do not exist.  The filter was sanity-checked first by
+requiring it to match 1,793 of 1,793 rows on a host whose name really
+does contain `os9' -- which is the only reason the false positives were
+caught.  Check a filter against a case it MUST match before trusting a
+zero it returns.
+
+**THE LIVE QUESTION IS ANSWERED, 2026-09-13.  comp.os.os9 1987-2002
+exists, whole, at `usenet-rewind.com'** -- see the section below.  It is
+not IA, not tuhs/utzoo, and not free; it needs a decision from rdoggett,
+which is in `notes/FOR-RDOGGETT.md'.
+
+### comp.os.os9 FOUND: usenet-rewind.com, 1987-2023 (2026-09-13)
+
+Erie Data Systems, LLC.  `/newsgroups?group=os.os9' answers 200 and
+lists **comp.os.os9, 05/1987 to 12/2023, 17,802 messages** -- and the
+claim was checked by READING MESSAGES, not by trusting the row:
+
+  * the oldest comp.os.os9 item is `OS-9 Discussions, V3 #1', 16 May
+    1987, Daleske's moderated digest at cbdkc1, and #2-#10 follow
+    through that month.  They carry **Dieter Stoll's ARC port to
+    OS-9/68K, posted with permission**, and **James Jones' (mcrware)
+    Lempel-Ziv compress**.
+  * `mod.os.os9' goes back further still: digest #1 from `nyit!os9',
+    16 January 1986, with Bob Larson's QT+ 68000 review.
+  * the middle years are NOT thin -- per-year counts came back 1990:
+    660, 1993: 1,097, 1996: 1,995, 1999: 993, 2002: 738.
+
+The neighbours are there too: `sub.os.os9' (304), `de.comp.os.os9' (82),
+`fj.os.os9' (55), `de.alt.comp.os.os9' (78), `mod.os.os9' (38).
+
+**What is free and what is not.**  Full message BODIES render free and
+anonymously.  Gated behind a plan: the author's address (shown masked,
+`o••••@•••••.UUCP'), the original message download, and full headers --
+which is exactly what an archive wants.  Free tier is 25 searches a
+month; Researcher at $39.99/month adds a JSON search API.
+
+**Their terms forbid scraping and bulk export and explicitly carve out
+"an authorized API plan".**  So the API is the licit route and a scraper
+is not, however easy the pages look.  That is the whole reason this is
+rdoggett's decision and not a task to pick up.
+
+### Usenet routes that are CLOSED -- do not re-search these
+
+Measured 2026-09-13 alongside the find above.
+
+    narkive              200, but its own header says earliest
+                         2003-06-25.  The era we already hold.
+    usenetarchives.com   403 Cloudflare JS challenge on EVERY path,
+                         robots.txt and sitemap.xml included, by curl
+                         and by fetch.  It demonstrably HAS the group
+                         (Wayback holds view.php URLs carrying 1980s
+                         message-ids) and there is no fetchable route.
+    Google Groups        429 on nearly every request.  Its archive did
+                         index 1987 -- Wayback has browse_frm/month/
+                         1987-05 -- but those captures are 771-byte
+                         FRAMESETS whose data frames were never
+                         archived.  A trap to know about: timestamps
+                         decoded from its 2024 captures repeat
+                         identically across unrelated threads.  They
+                         are page constants, not message dates.
+    Archive Team
+    "googlegroups"       1,389 IA shards, and it is the 2011 HOSTED
+                         groups project, not Usenet.  Irrelevant.
+    Yahoo Groups rescue  no OS-9/OSK group in it.
+    groups.io            os9, os-9, nitros9, coco, os9-68k all 404.
+    IA giganews
+    usenet-comp.os       does hold comp.os.os9, and its CSV sidecars
+                         say 1,291 messages, 2003-06-25 to 2014-09-17.
+                         2003 is that corpus's wall, confirmed.
+    skrenta.com utzoo    the wget-able UTZOO mirror the SDF guide
+                         recommends is DEAD -- the domain 301s to
+                         LinkedIn and Wayback archived none of the
+                         .tgz pieces.
+    NetNews CD-ROMs      15 Sterling Software discs on IA, but April
+                         1992 to January 1993 ONLY, ~625 MB each, and
+                         the spool is "organized in order received"
+                         with .XRF cross-post files -- NOT indexed by
+                         newsgroup.  About 9 GB to pull for maybe three
+                         months of coverage.  A fallback, not a plan.
+    olduse.net           46-year replay delay.
+    schestowitz          2004+.  darkrealms is Fidonet echomail.
+
+Full working notes, 115 lines, are outside the repo at
+`~/Developer/os9/Scraped/acquisitions-2026-09-13/usenet/'.
