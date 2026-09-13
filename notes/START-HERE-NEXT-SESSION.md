@@ -1163,3 +1163,36 @@ command count rather than program behaviour, it is this.
 
     new = gen_screens.ink(gen_screens.trim(open(cap).read(), try_line))
     old = gen_screens.ink(open('docs/screens/NAME.txt').read())
+
+## The PD_ALF fault is CONFINED TO graphics.sheet, measured 2026-09-13
+
+After the guard landed I predicted three more sheets would carry it --
+`netpbm-ea' (31 stanzas), `netpbm-in' (22), `netpbm' (18) -- on the
+grounds that graphics.sheet's nine firings were all netpbm programs
+writing binary with a redirect, and those sheets are full of exactly
+that.  **The prediction was WRONG.**  All 71 re-shot with the guard in
+place:
+
+    guard fired            0 times
+    trim()-measured        70 equivalent, 0 improved, 0 degraded
+
+So no program in those three clears PD_ALF, and there are no hidden
+victims in them.  The real profile is narrower than "netpbm program plus
+redirect" -- graphics.sheet's firings were the JPEG tools (cjpeg.070,
+djpeg.070, wrjpgcom.070) and particular pipe-writers (giftopnm, gulls,
+gulls-invert, pgmbentley, pgmoil, ppmrelief), not netpbm as a family.
+
+**Re-shooting was the only way to establish this**, and that is the
+point worth keeping.  A static scan cannot find these victims: `pdraw'
+tripped no damage signature and was not thin enough to flag -- 96 ink, a
+command and a plausible prompt line, looking like a program that simply
+prints little -- and it turned out to be a casualty that recovered to
+396 once the guard was in.  An absolute ink threshold is no use either;
+`netpbm-in' and `netpbm' have median inks of 101 and 104, so "ink < 120"
+flags half of each sheet for being typical of itself, and eight of the
+names it flags are the no-reader converters that audit_cards already
+excepts by name for being CORRECT.
+
+The captures from that sweep were restored rather than promoted: all 70
+were equivalent, so publishing them would have churned 70 cards for
+nothing, the same call made on pgmcrater's re-dither.
