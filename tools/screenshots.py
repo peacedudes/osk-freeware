@@ -760,6 +760,27 @@ def run_sheet(path, image, only=None):
     return done
 
 
+def needs_sdk(sheets, only=None):
+    """Stanza names that load from /h1 -- the reader's own OS-9, the SDK here.
+
+    This exists because an unset OS9SDK does not fail, it goes quiet: /h1 is
+    never mounted, the stanza's `load /h1/...' does nothing, the program it
+    wanted is not resident, and the capture is an empty screen.  That put a
+    blank creadoc card in front of me on 2026-09-13 and read as a program
+    broken by the fix I had just made to it.  Five stanzas load from /h1.
+    """
+    names = []
+    for path in sheets:
+        for s in parse(path):
+            if only and s["name"] not in only:
+                continue
+            text = [a for _, a in s["acts"] if isinstance(a, str)]
+            text += [x for x in (s["try"], s["os9"]) if x]
+            if any("/h1/" in t for t in text):
+                names.append(s["name"])
+    return sorted(names)
+
+
 def main(argv):
     image = os.path.join(REPO, "osk-freeware.dd")
     sheets, only, i = [], None, 0
@@ -788,6 +809,14 @@ def main(argv):
     # datatest.py. A bare relative name mounts the device and lets module
     # loading work while ordinary file opens on it silently fail.
     image = os.path.abspath(image)
+
+    blind = needs_sdk(sheets, only)
+    if blind and not os.environ.get("OS9SDK"):
+        print("WARNING: OS9SDK is unset, so /h1 is absent.  These stanzas load\n"
+              "         from it and will capture a BLANK screen, not a broken\n"
+              "         program: %s\n"
+              "         Set OS9SDK to an OS-9 system to re-shoot them."
+              % ", ".join(blind), file=sys.stderr)
 
     with imagelock.held(image, "screenshots"):
         total = sum(run_sheet(s, image, only) for s in sheets)
