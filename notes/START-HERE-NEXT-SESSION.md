@@ -1552,6 +1552,13 @@ measured 2026-09-13 while working the games sweep.
                 and it trips screenshots.py's own `starved' replacement.
     ape         a MARKOV TEXT GENERATOR (`ape -b=12k -l=5 < jargon.txt'):
                 different prose every run, so 630 -> 544 means nothing.
+    cookie      prints a RANDOM SAYING.  Published: "Your project will be
+                late." / "A good workman is known by his tools."  A
+                re-shoot: "All that glitters has a high refractive
+                index." / "Annex Canada now!..."  Different sayings, not
+                truncation; the ink measures how long one happened to be.
+    fortune     the same.  Published: the Noelie Altito line.  A
+                re-shoot: the lightbulb sequence, several stanzas long.
 
 **A DIFFERENT class, which DOES want re-promoting when it moves:**
 `column' lists a live directory (`ls CMDS/GAMES | column'), so its card
@@ -1560,8 +1567,16 @@ Like freeb it drifts by design, but unlike freeb the newer listing is
 simply more correct, so promote it rather than restoring it.
 
 **Candidates by NAME ONLY, not measured -- do not treat as fact:**
-`wisecrack', `ask', `shuffle', `cookie', `fortune'.  They have the shape
-(random or time-dependent) and have NOT been checked.
+`wisecrack', `ask', `shuffle'.  They have the shape (random or
+time-dependent) and have NOT been checked.  `cookie' and `fortune' were
+on this list and are now measured, above.
+
+**HOW LITTLE ONE READING IS WORTH.**  In the texttools sweep `cookie'
+read 66 -> 363 and `fortune' 127 -> 58.  A solo re-shoot minutes later
+gave 124 and 275.  FOUR values for two cards across two runs, and the
+sweep put `cookie' in the REAL-candidates bucket on the strength of one
+of them.  The scroll and error-text tests cannot see randomness, so a
+random-output stanza will keep clearing them.
 
 **Two others are measured differently and cannot be compared by ink at
 all**: `zot' (frames) above, and the burst stanzas `back', `backgammon'
