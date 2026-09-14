@@ -127,7 +127,7 @@ line is recorded in `tools/terms.psv` or the handoff.
      and os9exec's `load` -- state no licence anywhere; the repository's
      LICENSE grant covers `tools/`, not `disk/`.  What should their cards say?
 
-16. **Seven programs' documentation directories hold another program's
+16. **Eight programs' documentation directories hold another program's
    manual, and none of those other programs is on the disk.**  Each card
    points a reader at the wrong document:
    - `DOC/bm/bm.doc` -- "User Manual for BM, Bdale's MS-Dos Mailer";
@@ -143,9 +143,23 @@ line is recorded in `tools/terms.psv` or the handoff.
      for Microware's curses package, beside the README of `screen`, which is
      Screens.  Besides being misfiled it is Microware's own document, and the
      Microware screen (tools/screen_microware.py) only looks at disk/SRC.
+   - `DOC/m4/readme` -- the readme of a different, public-domain m4 ("This
+     code *is* PD"); `m4` is GNU m4 0.50.
+   - (Not misfiled, but old: `DOC/ckermit/ckermit.doc` documents C-Kermit
+     4E(068) of 1988; the binary is 5A(190).)
    Options: remove them (they document nothing that ships); keep them under
    a name that no card claims; or leave them.  Recommended: remove, since
    git keeps them -- but it is the disk's contents, so it is yours.
+
+17. **`k`, `xy` and `z` ship as binaries, and their licence ties
+   redistribution to source.**  Tim Kientzle's notice (the same header in
+   every ft*.c of TELECOM/xyz.lzh): "Redistribution in source or binary form
+   is permitted only under the following conditions" -- among them, code
+   received "as a part of an application program ... may only be
+   redistributed with the complete source of that program", and otherwise
+   not "without explicit written permission from Tim Kientzle".  The disk
+   ships the three binaries without that source.  Ship the source beside
+   them, or decide otherwise.
 
 ## ANSWERED -- the newsgroup archive
 
