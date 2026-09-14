@@ -46,3 +46,5 @@ rpoem|Microware's math trap handler (on this disk)|measured 2026-09-14, math and
 savage|Microware's math trap handler (on this disk)|measured 2026-09-14, math and math881 withheld: "**** Can't install trap handler **** / **** math ****"
 stone|Microware's math trap handler (on this disk)|measured 2026-09-14, math and math881 withheld: "**** Can't install trap handler **** / **** math ****"
 version|Microware's math trap handler (on this disk)|measured 2026-09-14, math and math881 withheld: "**** Can't install trap handler **** / **** math ****"
+lunisolar|Microware's math trap handler (on this disk)|measured 2026-09-14: without math it stops with "**** Can't install trap handler ****" (the name prints as "A"); with math and math881 supplied it starts
+spline|Microware's math trap handler (on this disk)|measured 2026-09-14: without math it writes some plot data, then stops with "**** Can't install trap handler ****" (the name prints as "A"); with math and math881 supplied it does not
