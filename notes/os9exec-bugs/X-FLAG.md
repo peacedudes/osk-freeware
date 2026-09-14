@@ -1,7 +1,10 @@
 # NEG and NBCD never set X -- Microware's double arithmetic came out wrong
 
 **Genuine os9exec defect, fixed** on os9exec branch `fix/scf-pd-eor`,
-`209b35c` (core) and `d819c40` (regression test), 2026-09-14. Not pushed.
+`209b35c` (core), `d819c40` and `d56b1bd` (regression test), 2026-09-14.
+Not pushed.  os9exec's own session reviewed it and kept it; `d56b1bd` is
+its correction to the test.  From here an os9exec defect goes to that
+session as a report, not as a commit into its repo.
 Found porting perl 4.036, whose `<=>` never answered 0 for equal numbers.
 
 ## What was wrong
@@ -9,8 +12,10 @@ Found porting perl 4.036, whose `<=>` never answered 0 for equal numbers.
 On the 68000, `NEG`, `SUB`/`SUBI`/`SUBQ` and `NBCD` leave X equal to C.
 In `cpuemu.c` every `NEG` and `NBCD` handler, and 120 `SUB`-family
 handlers in the 68000 and 68010 tables, set C and never copied it into X.
-os9exec runs the 68020 table, whose `SUB` handlers were right, so in
-practice the bug was `NEG` and `NBCD`.
+os9exec runs only the 68020 table (`os9_uae.c` hardcodes `cpu_level=3`),
+where every `SUB` handler but one was right, so in practice the bug was
+`NEG`, `NBCD` and `SUBI.L #imm,(An)+` (`op_498_0`).  The 68000 and 68010
+edits cannot run today.
 
 Microware's software doubles (`_T$DAdd`/`_T$DSub` in `math.l`, and the same
 code in the `math` module) form a two's-complement 64-bit mantissa as
@@ -43,5 +48,8 @@ at fault.
   driver (`fsub|fsub|fsub.c|||`).
 - `xflgtst.a`: hand-written assembly. Each case sets X to the opposite of
   what the instruction must leave and reads it back with `addx.l d0,d0`.
-  Assemble on the SDK disk with `r68` and `l68`. On the parent commit four of
-  its seven cases fail: NEG.L/NEGX.L, NEG.L, NEG.B and NBCD.
+  Assemble on the SDK disk with `r68` and `l68`.  Its SUBI case is WRONG
+  as written here: r68 assembles `subi.l #1,(a2)+` as SUBQ ($539A), so
+  it could not fail.  os9exec's test uses `#$100`, which stays SUBI, and
+  against the parent commit five cases fail: NEG.L/NEGX.L, NEG.L, NEG.B,
+  SUBI and NBCD.
