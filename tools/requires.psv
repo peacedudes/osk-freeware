@@ -1,16 +1,30 @@
 # requires.psv -- what a program needs that the card cannot see for itself:
 # a Microware module the DEPENDS scan and the cio star do not record, another
 # program, or a shell.  name|requirement|where it is stated.  The card lists
-# the requirement under Needs.  Every line comes from a document on the disk
-# or a measurement written down elsewhere -- never from a guess.  A module the
-# collection does not carry is named plainly as something the reader's own
-# OS-9 system provides.
+# each requirement under Needs; a name may have several lines.  Every line
+# comes from a document on the disk or a measurement -- never from a guess.
+# The trap-module lines were measured with tools/probe_trap_needs.sh, which
+# runs each program with the module withheld and reads the module it asks for.
 a2p|perl, to run the script it writes|SRC/perl4/README-OSK; tools/datatests/perl.cases
 perl|a shell named by SHELL for system, backticks and piped opens (SYS/login sets ksh)|SRC/perl4/README-OSK
-lua|Microware's csl (on this disk)|SOURCES.txt, lua 3.0 section
-tterm|Microware's csl (on this disk), and fpu on a machine without a 68881|DOC/comms/readme
-tsu|Microware's csl (on this disk), and fpu on a machine without a 68881|DOC/comms/readme
-xyt|Microware's csl (on this disk), and fpu on a machine without a 68881|DOC/comms/readme
-gzip68k_csl|Microware's csl (on this disk)|DOC/INDEX
-gzip020_csl|Microware's csl (on this disk)|DOC/INDEX
-gzipcpu32k_csl|Microware's csl (on this disk)|DOC/INDEX
+lua|Microware's csl (on this disk)|SOURCES.txt, lua 3.0 section; measured 2026-09-14: "**** can't install csl ****"
+luac|Microware's csl (on this disk)|measured 2026-09-14: "**** Can't install trap handler **** / **** csl ****"
+tterm|Microware's csl, and fpu on a machine without a 68881 (both on this disk)|DOC/comms/readme; csl measured 2026-09-14
+tsu|Microware's csl, and fpu on a machine without a 68881 (both on this disk)|DOC/comms/readme; csl measured 2026-09-14
+xyt|Microware's csl, and fpu on a machine without a 68881 (both on this disk)|DOC/comms/readme; csl measured 2026-09-14
+gzip68k_csl|Microware's csl (on this disk)|DOC/INDEX; measured 2026-09-14
+gzip020_csl|Microware's csl (on this disk)|DOC/INDEX; measured 2026-09-14
+gzipcpu32k_csl|Microware's csl (on this disk)|DOC/INDEX; measured 2026-09-14
+basicwin|Microware's csl (on this disk)|measured 2026-09-14: "**** can't install csl ****"
+basicwin|the X11R6shl trap library (on this disk)|measured 2026-09-14, with csl supplied: "**** can't install X11R6shl trap handler ****"
+xengine|Microware's csl (on this disk)|measured 2026-09-14: "**** can't install csl ****"
+xengine|the X11R6shl trap library (on this disk)|measured 2026-09-14, with csl supplied: "**** can't install X11R6shl trap handler ****"
+colortest|Microware's csl (on this disk)|measured 2026-09-14: "**** Can't install trap handler **** / **** csl ****"
+cyberwar|Microware's csl (on this disk)|measured 2026-09-14: "**** Can't install trap handler **** / **** csl ****"
+dclock|Microware's csl (on this disk)|measured 2026-09-14: "**** Can't install trap handler **** / **** csl ****"
+puzzle|Microware's csl (on this disk)|measured 2026-09-14: "**** Can't install trap handler **** / **** csl ****"
+scriptmaster|Microware's csl (on this disk)|measured 2026-09-14: "**** Can't install trap handler **** / **** csl ****"
+msntp|Microware's csl (on this disk)|measured 2026-09-14: "**** can't install csl ****"
+g|the graph trap library (on this disk, in GAMES)|measured 2026-09-14: "**** Can't install trap handler **** / **** Graph"; DOC/INDEX
+striche|the graph trap library (on this disk, in GAMES)|measured 2026-09-14: "**** Can't install trap handler **** / **** Graph"; DOC/INDEX
+rxmod|the vmod_trap trap handler (on this disk, beside it in COMMS)|measured 2026-09-14: "can't install Vmod Trap handler"
