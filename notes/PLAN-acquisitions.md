@@ -1072,3 +1072,62 @@ Measured 2026-09-13 alongside the find above.
 
 Full working notes, 115 lines, are outside the repo at
 `~/Developer/os9/Scraped/acquisitions-2026-09-13/usenet/'.
+
+### Software FOUND in the pulled newsgroups (2026-09-14, first pass)
+
+rdoggett's aim, restated: *"we're not just collecting files, we're looking
+for other software that has been published that should belong in the
+collection"* -- and *"I don't want to go porting everything from unix, or
+necessarily anything at this point."*  So this is a CANDIDATE LIST, not a
+work queue.
+
+How it was found: `~/Developer/os9/Scraped/usenet-rewind/mine.py` over the
+18,175 unique messages pulled so far (comp.os.os9 1987 to about 1998, plus
+mod.os.os9 and the small groups) -- posts carrying a uuencoded file, a
+shell archive or `Archive-name:` headers, and posts announcing an FTP path
+-- then every name checked against disk/CMDS, disk/SRC, DOC/INDEX,
+DOC/ORIGINS, notes/pool-members.tsv and the rtsi os9archive index.
+`candidates.tsv` beside the script has every hit with its message URL; it
+carries authors' names, never addresses.  Rerun it as the pull completes.
+
+**In the pool already, never evaluated, not on the disk:**
+
+    textb       OSK/MISC textb.t.Z -- PD Mandelbrot generator, 1990; binary,
+                textb.c and textb.doc.  Posted to comp.os.os9 1990-09-20.
+    ptxm        OSK/DRIVERS ptybin.lzh -- ptxm, ptxminst, ptxm.txt (a pty
+                manager binary); ptylev.zip is unreadable (BadZipFile).
+                The PTY file manager source was posted twice: Reiner Mellin
+                1989 (binary + sources 1/2) and Ptyman 1.3 by Frank Kaefer,
+                comp.sources.os9-style v02i003-005, 1991.
+    tass        OSK/TELECOM tass.lzh -- newsreader, 13 C files, no binary.
+                Posted as "Tass for OS-9" Part01-03, 1992-12-24.
+    mnews       OSK/APPS mnews.t.Z (200 members) + mnews_src.t.Z, and
+                TELECOM mtp.lzh is ALSO MNews source (158 members, MNEWS/).
+                Full news system, source only; may overlap the news tools
+                already on the disk.  MNews.lzh is empty.
+
+**Only in the newsgroup posts (no pool or rtsi copy found):**
+
+    mtp         Alan McIvor, 1992-01-21 -- module transfer protocol, host
+                client + OS-9 daemon (mtp.c mtpd.c mtpdc.c mtpvalid.a ...),
+                one complete shar.  NOT the disk's `transfer', which is a
+                GDOS disk copier from EFFO forum1.
+    systemfm    1997-06-12 -- a /proc-like file manager "tested on 68302,
+                MVME 177, MVME 167, Eltec E6, Atari ST", uuencoded + gzip.
+    tar 1.9     Christian Engel, 1990-09-28 -- an OS-9-native tar (tar.c,
+                makefile, tar.doc, tar.hlp); the disk ships GNU tar 1.10.
+    ln/link/rename/mv   Bob Larson, 1989-01-15, for os9/68k.
+    osk_version()       Wolfgang Ocker, 1990-03-27 -- a library function.
+    Isofont     Cumana OS-9 on the Atari ST, 1991 -- hardware-specific.
+    br.bas      BASIC09 biorhythm, German, SubNet 1989 (repost 1992) --
+                a different program from the disk's C `bio'.
+
+**Checked and already on the disk:** browse (the Emde 1990 port, per
+ORIGINS), screen, patch, less, elm, lharc, bash.  **Out of scope, 6809:**
+Pete Lyall's Kreider C library, hdkit, ar and 2-pass cc driver (1988-89),
+Dru Nelson's mv (1990).
+
+**FTP sites the posts name that these notes did not know:** Wisconsin's
+cabrales/chestnut/hermit.cs.wisc.edu `/pub/OSK/...`, zelux7.zel.kfa-juelich.de
+`~ftp/pub/os9/BASH` ("OSK bash is now available", 1993), hcshh.hcs.de `/fkk`,
+and the os9tools SourceForge project (2000).
