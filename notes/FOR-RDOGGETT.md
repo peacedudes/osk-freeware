@@ -127,7 +127,7 @@ line is recorded in `tools/terms.psv` or the handoff.
      and os9exec's `load` -- state no licence anywhere; the repository's
      LICENSE grant covers `tools/`, not `disk/`.  What should their cards say?
 
-16. **Five programs' documentation directories hold another program's
+16. **Seven programs' documentation directories hold another program's
    manual, and none of those other programs is on the disk.**  Each card
    points a reader at the wrong document:
    - `DOC/bm/bm.doc` -- "User Manual for BM, Bdale's MS-Dos Mailer";
@@ -137,6 +137,12 @@ line is recorded in `tools/terms.psv` or the handoff.
    - `DOC/join/Join.doc`, `DOC/uniq/Uniq.doc` -- Gregorie's join and
      `drop`; the binaries are GNU textutils join and a different uniq.
    - `DOC/whoami/whoami.man` -- UUCP's whoami page; the binary is GNU's.
+   - `DOC/tail/tail.doc` -- Eric Williams' tail; the binary is DESIGNA VLT's
+     (both happen to take `-l=`).
+   - `DOC/screen/screen.doc` -- "Microware Screen Control Package", a manual
+     for Microware's curses package, beside the README of `screen`, which is
+     Screens.  Besides being misfiled it is Microware's own document, and the
+     Microware screen (tools/screen_microware.py) only looks at disk/SRC.
    Options: remove them (they document nothing that ships); keep them under
    a name that no card claims; or leave them.  Recommended: remove, since
    git keeps them -- but it is the disk's contents, so it is yours.
