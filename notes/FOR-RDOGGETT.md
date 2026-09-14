@@ -145,8 +145,9 @@ line is recorded in `tools/terms.psv` or the handoff.
      Microware screen (tools/screen_microware.py) only looks at disk/SRC.
    - `DOC/m4/readme` -- the readme of a different, public-domain m4 ("This
      code *is* PD"); `m4` is GNU m4 0.50.
-   - (Not misfiled, but old: `DOC/ckermit/ckermit.doc` documents C-Kermit
-     4E(068) of 1988; the binary is 5A(190).)
+   - (Not misfiled, but for another version: `DOC/ckermit/ckermit.doc`
+     documents C-Kermit 4E(068) of 1988, the binary is 5A(190); and
+     `DOC/less/less.man` is version 330's manual, the binary is less 290.)
    Options: remove them (they document nothing that ships); keep them under
    a name that no card claims; or leave them.  Recommended: remove, since
    git keeps them -- but it is the disk's contents, so it is yours.
