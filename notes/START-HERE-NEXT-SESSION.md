@@ -1,5 +1,42 @@
 # Start here, next session
 
+## 2026-09-14: perl 4.036 is in, and os9exec's floating point was wrong
+
+**perl** (471a003c): `CMDS/perl`, `LIB/perl`, `DOC/perl` (man page as text,
+words.pl for the card), `SRC/perl4` with `README-OSK` and `osk.diff`;
+recipe `perl`, card in languages.sheet, `tools/datatests/perl.cases` 7/7.
+perl's own t/ suite passes file by file except what wants /bin/rm, ./perl,
+tr, ln, touch or fork.  Not done: rmdir (OS-9 has no call for it -- would
+be clear the dir attribute and delete), mkdir on an existing name answers
+E$FNA rather than E$CEF, and x2p (a2p, s2p) is not built.
+
+**os9exec never set X after NEG or NBCD** (notes/os9exec-bugs/X-FLAG.md).
+Microware's software doubles depend on it: 1.0-1.0 was -2^-20 and exp(1)
+right to six places.  Fixed and reviewed on os9exec `fix/scf-pd-eor`
+(209b35c, tests d819c40 + d56b1bd), not pushed.  **rdoggett: while an
+os9exec Claude session is active, report emulator bugs to it with a repro
+-- never edit or commit in that repo from here.**
+
+What the bug had put into this repo, corrected: DOC/README-FLOATINGPOINT
+("math.l is single precision" -- it is not); gawk "ignores a filename
+argument" (it reads files; case, howto, INDEX, card); savage's result and
+pnmrotate 90's size in their cases.  dbz works too, from the earlier RBF
+EOF-lock fix (21d5759): flagged.cases rewritten.
+
+**Open:**
+  * Seventeen published cards show long decimals and were captured on the
+    buggy emulator: almanac argproc_demo bc config dvitype ephem ephem881
+    mtst nasa lunisolar pgmtexture printf rayshade savage sqrtx tftopl
+    vftovp.  Reshoot them and read what changed (rayshade uses the 68881
+    and measured the same; bc is arbitrary precision).  Captions quoting a
+    figure need checking too.
+  * Full datatest on a fresh image after all of the above -- the last run
+    before the case corrections was 736 of 743.
+  * The CI workflow pins os9exec; bump it once those commits are pushed.
+    CI runs check_disk and the image build, not the datatests.
+  * Scratch images dt-perl.dd, dt-perl2.dd, dt-xflag.dd in the repo root
+    are gitignored and mine to delete.
+
 ## 2026-09-13 (late): the collection as a HOST DIRECTORY -- dogfooding os9exec
 
 rdoggett's expectation, and now a standing target: unpack the tree into an
