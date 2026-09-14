@@ -8,26 +8,40 @@
 a2p|Copyright (c) 1989-1991 Larry Wall. Under either the GNU General Public License, version 1 or any later version, or the Artistic License, at your choice.|SOURCES.txt line 147
 accordian|Public domain. Its README ends "This program is public domain. -Eric Lechner".|SOURCES.txt line 910
 almanac|None is stated. A search of all 33,165 bytes of the source and of its documentation finds no copyright, no grant and no restriction.|SOURCES.txt line 2536
+answer|The Elm Mail System General Public License, (C) 1988-1992 USENET Community Trust and 1986-1987 Dave Taylor: copying and distribution permitted, at no charge.|DOC/elm/Notice
 aprocs|Freeware|SOURCES.txt line 805
-ar|No terms stated. Freely distributed binary; the author declined to release source ("I do not intend to do a general release of source code this time").|SOURCES.txt line 576
 arc|Unstated. Third-party, not Microware.|SOURCES.txt line 585
+arepdaemon|The Elm Mail System General Public License, (C) 1988-1992 USENET Community Trust and 1986-1987 Dave Taylor: copying and distribution permitted, at no charge.|DOC/elm/Notice
+ar|No terms stated. Freely distributed binary; the author declined to release source ("I do not intend to do a general release of source code this time").|SOURCES.txt line 576
+asciitopgm|Each netpbm author granted the right to use and distribute their code without charge, on a non-commercial basis; many allow more -- see each file's notice.|DOC/netpbm/COPYRIGHT
 aterm|Freeware|SOURCES.txt line 1265
+atktopbm|Each netpbm author granted the right to use and distribute their code without charge, on a non-commercial basis; many allow more -- see each file's notice.|DOC/netpbm/COPYRIGHT
 autolf|Freeware|SOURCES.txt line 1252
+autoreply|The Elm Mail System General Public License, (C) 1988-1992 USENET Community Trust and 1986-1987 Dave Taylor: copying and distribution permitted, at no charge.|DOC/elm/Notice
 bash|GNU GPL|SOURCES.txt line 762
 bc|GNU General Public License version 2. Copyright (C) 1991 Free Software Foundation, Inc.|SOURCES.txt line 2357
+bdecode|Copyright (c) University of Toronto 1985-1990. "Permission is granted to anyone to use this software for any purpose ... and to alter it and redistribute it freely", with four conditions on credit.|DOC/cnews/COPYRIGHT; SOURCES.txt, C News section
 beav|Freeware|SOURCES.txt line 677
+bioradtopgm|Each netpbm author granted the right to use and distribute their code without charge, on a non-commercial basis; many allow more -- see each file's notice.|DOC/netpbm/COPYRIGHT
+bmptoppm|Each netpbm author granted the right to use and distribute their code without charge, on a non-commercial basis; many allow more -- see each file's notice.|DOC/netpbm/COPYRIGHT
 browse|None accompanies the posting. It was posted to comp.os.os9 and has been freely redistributed since, on the same footing as the other no-notice Usenet software here.|SOURCES.txt line 2493
+brushtopbm|Each netpbm author granted the right to use and distribute their code without charge, on a non-commercial basis; many allow more -- see each file's notice.|DOC/netpbm/COPYRIGHT
 bs|None stated; carried as posted.|SOURCES.txt line 940
+byteflip|Copyright (c) University of Toronto 1985-1990. "Permission is granted to anyone to use this software for any purpose ... and to alter it and redistribute it freely", with four conditions on credit.|DOC/cnews/COPYRIGHT; SOURCES.txt, C News section
 c4|None stated. The posting carries only the author's name; it is kept and named as the author released it, the way the other unnoticed Usenet postings here are.|SOURCES.txt line 897
+c7decode|Copyright (c) University of Toronto 1985-1990. "Permission is granted to anyone to use this software for any purpose ... and to alter it and redistribute it freely", with four conditions on credit.|DOC/cnews/COPYRIGHT; SOURCES.txt, C News section
 cal|Freeware|SOURCES.txt line 749
 canfield|BSD. Copyright (c) 1980 Regents of the University of California; the usual Berkeley notice is at the head of the source.|SOURCES.txt line 1032
 cat|Public domain|SOURCES.txt line 691
 cdecl|None accompanies the release. It was posted to comp.sources.unix and has been freely redistributed since.|SOURCES.txt line 2339
 cfscores|BSD. Copyright (c) 1983 Regents of the University of California; the usual Berkeley notice heads the source, including the acknowledgement clause.|SOURCES.txt line 2577
+checkalias|The Elm Mail System General Public License, (C) 1988-1992 USENET Community Trust and 1986-1987 Dave Taylor: copying and distribution permitted, at no charge.|DOC/elm/Notice
 checksum|(c) 1992 by L.Zeller. Public, EFFO Forum 23|DOC/checksum/info_checksum
 chef|None stated; a single-author joke filter, carried as posted.|SOURCES.txt line 992
 ckermit|BSD / public domain (C-Kermit project)|SOURCES.txt line 775
+cmuwmtopbm|Each netpbm author granted the right to use and distribute their code without charge, on a non-commercial basis; many allow more -- see each file's notice.|DOC/netpbm/COPYRIGHT
 ctags|BSD.|SOURCES.txt line 741
+dbz|Copyright (c) University of Toronto 1985-1990. "Permission is granted to anyone to use this software for any purpose ... and to alter it and redistribute it freely", with four conditions on credit.|DOC/cnews/COPYRIGHT; SOURCES.txt, C News section
 dfiles|(C) Christian Mahr. Public; no conditions|DOC/dfiles/info_dfiles
 dirname|Public domain|SOURCES.txt line 702
 disdvi|Posted and freely redistributed since; no licence text accompanies the source. The README grants `disdvi' explicitly -- "use it and improve as you wish" -- and says nothing either way about dvi2tty.|SOURCES.txt line 2459
@@ -35,74 +49,247 @@ disktest|By St.Paschedag. public; no military use|DOC/disktest/info_disktest
 dpark|Public domain|SOURCES.txt line 816
 drawl|None stated; a joke filter, carried as posted.|SOURCES.txt line 1013
 ed|GNU GPL|SOURCES.txt line 1282
+elm|The Elm Mail System General Public License, (C) 1988-1992 USENET Community Trust and 1986-1987 Dave Taylor: copying and distribution permitted, at no charge.|DOC/elm/Notice
 emacs.mm1|Public domain|SOURCES.txt line 683
 etags|Public|DOC/etags/info_etags
+fastmail|The Elm Mail System General Public License, (C) 1988-1992 USENET Community Trust and 1986-1987 Dave Taylor: copying and distribution permitted, at no charge.|DOC/elm/Notice
 fc|Public domain|SOURCES.txt line 821
 fgrep|See file COPYING !. public|DOC/fgrep/info_fgrep
 file|Freeware|SOURCES.txt line 1208
 fillup|(c) 1992 by L.Zeller. Public, EFFO Forum 23|DOC/fillup/info_fillup
+filter|The Elm Mail System General Public License, (C) 1988-1992 USENET Community Trust and 1986-1987 Dave Taylor: copying and distribution permitted, at no charge.|DOC/elm/Notice
 find|Public domain|SOURCES.txt line 1290
 fish|BSD. Copyright (c) 1990 Regents of the University of California. This product includes software developed by the University of California, Berkeley and its contributors.|SOURCES.txt line 881
+fitstopnm|Each netpbm author granted the right to use and distribute their code without charge, on a non-commercial basis; many allow more -- see each file's notice.|DOC/netpbm/COPYRIGHT
 flex|See GNU copyright. public|DOC/flex/info_flex
 freeb|Public domain. The source says so in its third line: "Public domain version: 5/21/89".|SOURCES.txt line 2379
+frm|The Elm Mail System General Public License, (C) 1988-1992 USENET Community Trust and 1986-1987 Dave Taylor: copying and distribution permitted, at no charge.|DOC/elm/Notice
+fstopgm|Each netpbm author granted the right to use and distribute their code without charge, on a non-commercial basis; many allow more -- see each file's notice.|DOC/netpbm/COPYRIGHT
 fudd|None stated; a joke filter, carried as posted. Elmer Fudd is a cartoon character, not a person.|SOURCES.txt line 1003
+g3topbm|Each netpbm author granted the right to use and distribute their code without charge, on a non-commercial basis; many allow more -- see each file's notice.|DOC/netpbm/COPYRIGHT
+gemtopbm|Each netpbm author granted the right to use and distribute their code without charge, on a non-commercial basis; many allow more -- see each file's notice.|DOC/netpbm/COPYRIGHT
 getenv|Public domain|SOURCES.txt line 709
+giftopnm|Each netpbm author granted the right to use and distribute their code without charge, on a non-commercial basis; many allow more -- see each file's notice.|DOC/netpbm/COPYRIGHT
 globe|"Permission to use, copy, modify, and distribute this software and its documentation for any purpose and without fee is hereby granted" -- Jef Poskanzer, 1994.|SOURCES.txt line 1199
 gnugo|GNU General Public License, version 1 as the source states ("as published by the Free Software Foundation - version 1").|SOURCES.txt line 2655
+gouldtoppm|Each netpbm author granted the right to use and distribute their code without charge, on a non-commercial basis; many allow more -- see each file's notice.|DOC/netpbm/COPYRIGHT
 gs33|GNU GPL (AFPL)|SOURCES.txt line 1273
 gs403|Aladdin Free Public License (DOC/gs403 and LIB/gs403/public.txt):|SOURCES.txt line 310
 gzip|GNU GPL v2|SOURCES.txt line 590
 hdump|"Copying-policy: freely distributable", stated in the release's own Description file, which is on the disk as DOC/hdump/Description.|SOURCES.txt line 2396
 help|HELP and HELPINDEX (c) 1989 by Lukas Zeller, CH-Maennedorf. Public domain; 1. This Program may only be used for peaceful applications.|DOC/help/info_help
 hexa|None stated; carried as posted.|SOURCES.txt line 1061
-hexed|By H. Hoheisel-Zimmermann. public; no military use|DOC/hexed/info_hexed
 hexedit|Freeware|SOURCES.txt line 1214
+hexed|By H. Hoheisel-Zimmermann. public; no military use|DOC/hexed/info_hexed
+hipstopgm|Each netpbm author granted the right to use and distribute their code without charge, on a non-commercial basis; many allow more -- see each file's notice.|DOC/netpbm/COPYRIGHT
 hist|By H. Hoheisel. public; no military use|DOC/hist/info_hist
 howfrag|Public domain. Its doc reads: "Feel free to copy and distribute this program so long as there is no charge associated with it other than a minimal media fee."|SOURCES.txt line 798
+hpcdtoppm|Each netpbm author granted the right to use and distribute their code without charge, on a non-commercial basis; many allow more -- see each file's notice.|DOC/netpbm/COPYRIGHT
+icontopbm|Each netpbm author granted the right to use and distribute their code without charge, on a non-commercial basis; many allow more -- see each file's notice.|DOC/netpbm/COPYRIGHT
 ifdef|Public|DOC/ifdef/info_ifdef
+ilbmtoppm|Each netpbm author granted the right to use and distribute their code without charge, on a non-commercial basis; many allow more -- see each file's notice.|DOC/netpbm/COPYRIGHT
+imgtoppm|Each netpbm author granted the right to use and distribute their code without charge, on a non-commercial basis; many allow more -- see each file's notice.|DOC/netpbm/COPYRIGHT
 indent|Public|DOC/indent/info_indent
+inetdc|GNU General Public License, version 1.|DOC/wn/gnu_license; SOURCES.txt, WN section
+inetd|GNU General Public License, version 1.|DOC/wn/gnu_license; SOURCES.txt, WN section
 jotto|Free. Its header: "You may use this program and modify it as you like, so long as you leave this message as it is and don't try to make money off the program."|SOURCES.txt line 954
 kermit|BSD / public domain|SOURCES.txt line 1260
 lame|None stated; a joke filter, carried as posted.|SOURCES.txt line 1022
 larn|Copyrighted 1986 by Noah Morgan; posted to|SOURCES.txt line 1170
 less|GNU GPL|SOURCES.txt line 714
-lha|Freeware|SOURCES.txt line 596
 lharc|Freeware, no conditions attached. $AVAILABILITY freeware / $CONDITIONS (none)|SOURCES.txt line 603
+lha|Freeware|SOURCES.txt line 596
+lispmtopgm|Each netpbm author granted the right to use and distribute their code without charge, on a non-commercial basis; many allow more -- see each file's notice.|DOC/netpbm/COPYRIGHT
+listalias|The Elm Mail System General Public License, (C) 1988-1992 USENET Community Trust and 1986-1987 Dave Taylor: copying and distribution permitted, at no charge.|DOC/elm/Notice
 logisim|Public|DOC/logisim/info_logisim
 look|"This code is in the public domain. You may use this code for any purpose, commercial or noncommercial, as long as you don't try to claim you wrote it."|SOURCES.txt line 1364
-lua|Copyright (c) 1994-1997 TeCGraf, PUC-Rio. Permission granted without fee to use, copy, modify and distribute, for any purpose, provided the notice is kept.|SOURCES.txt line 130
 luac|Copyright (c) 1994-1997 TeCGraf, PUC-Rio. Permission granted without fee to use, copy, modify and distribute, for any purpose, provided the notice is kept.|SOURCES.txt line 130
+lua|Copyright (c) 1994-1997 TeCGraf, PUC-Rio. Permission granted without fee to use, copy, modify and distribute, for any purpose, provided the notice is kept.|SOURCES.txt line 130
 m4|GNU General Public License version 1, February 1989 -- the `Copying' file in the archive is the GPL v1 text in full.|SOURCES.txt line 2713
+macptopbm|Each netpbm author granted the right to use and distribute their code without charge, on a non-commercial basis; many allow more -- see each file's notice.|DOC/netpbm/COPYRIGHT
 makeinfo|GNU GPL|SOURCES.txt line 1329
 mastrm|Public domain. "Master Mind, as presented here, is intended solely for the enjoyment of the public, and is not to be used for profit." Master Mind is a trademark of Invicta Plastics;|SOURCES.txt line 966
+messages|The Elm Mail System General Public License, (C) 1988-1992 USENET Community Trust and 1986-1987 Dave Taylor: copying and distribution permitted, at no charge.|DOC/elm/Notice
 mexist|Public domain|SOURCES.txt line 1237
+mgrtopbm|Each netpbm author granted the right to use and distribute their code without charge, on a non-commercial basis; many allow more -- see each file's notice.|DOC/netpbm/COPYRIGHT
 mimecode|Released with the author's permission. Gene Heskett's readme records Tim Kientzle's permission to distribute the code ahead of the DDJ publication date.|SOURCES.txt line 556
 monop|BSD. Copyright (c) 1980 Regents of the University of California; the usual Berkeley notice is at the head of every source file.|SOURCES.txt line 1109
+mtvtoppm|Each netpbm author granted the right to use and distribute their code without charge, on a non-commercial basis; many allow more -- see each file's notice.|DOC/netpbm/COPYRIGHT
 napoleon|GNU General Public License version 1 or, at your option, any later version. Copyright (C) 1992 Pete Chown.|SOURCES.txt line 2699
+net|GNU General Public License, version 2.|DOC/ka9q/Copying; SOURCES.txt, C News and TCP/IP section
+newalias|The Elm Mail System General Public License, (C) 1988-1992 USENET Community Trust and 1986-1987 Dave Taylor: copying and distribution permitted, at no charge.|DOC/elm/Notice
+newmail|The Elm Mail System General Public License, (C) 1988-1992 USENET Community Trust and 1986-1987 Dave Taylor: copying and distribution permitted, at no charge.|DOC/elm/Notice
+newshist|Copyright (c) University of Toronto 1985-1990. "Permission is granted to anyone to use this software for any purpose ... and to alter it and redistribute it freely", with four conditions on credit.|DOC/cnews/COPYRIGHT; SOURCES.txt, C News section
+newslock|Copyright (c) University of Toronto 1985-1990. "Permission is granted to anyone to use this software for any purpose ... and to alter it and redistribute it freely", with four conditions on credit.|DOC/cnews/COPYRIGHT; SOURCES.txt, C News section
+ob68kdemo|Freely distributable "as long as ALL of the files are kept intact and not modified"; a vendor demonstration version, copyright its owner.|SOURCES.txt, vendor demonstration versions section
+osknet|Copyright Charles Hedrick 1987; "anyone may reproduce".|SOURCES.txt, C News and TCP/IP section
 othello|Free. Its header: "This program may be freely used and distributed."|SOURCES.txt line 1046
 paranoia|Public domain|SOURCES.txt line 1177
+pbmclean|Each netpbm author granted the right to use and distribute their code without charge, on a non-commercial basis; many allow more -- see each file's notice.|DOC/netpbm/COPYRIGHT
+pbmlife|Each netpbm author granted the right to use and distribute their code without charge, on a non-commercial basis; many allow more -- see each file's notice.|DOC/netpbm/COPYRIGHT
+pbmmake|Each netpbm author granted the right to use and distribute their code without charge, on a non-commercial basis; many allow more -- see each file's notice.|DOC/netpbm/COPYRIGHT
+pbmmask|Each netpbm author granted the right to use and distribute their code without charge, on a non-commercial basis; many allow more -- see each file's notice.|DOC/netpbm/COPYRIGHT
+pbmpscale|Each netpbm author granted the right to use and distribute their code without charge, on a non-commercial basis; many allow more -- see each file's notice.|DOC/netpbm/COPYRIGHT
+pbmreduce|Each netpbm author granted the right to use and distribute their code without charge, on a non-commercial basis; many allow more -- see each file's notice.|DOC/netpbm/COPYRIGHT
+pbmtext|Each netpbm author granted the right to use and distribute their code without charge, on a non-commercial basis; many allow more -- see each file's notice.|DOC/netpbm/COPYRIGHT
+pbmto10x|Each netpbm author granted the right to use and distribute their code without charge, on a non-commercial basis; many allow more -- see each file's notice.|DOC/netpbm/COPYRIGHT
+pbmto4425|Each netpbm author granted the right to use and distribute their code without charge, on a non-commercial basis; many allow more -- see each file's notice.|DOC/netpbm/COPYRIGHT
+pbmtoascii|Each netpbm author granted the right to use and distribute their code without charge, on a non-commercial basis; many allow more -- see each file's notice.|DOC/netpbm/COPYRIGHT
+pbmtoatk|Each netpbm author granted the right to use and distribute their code without charge, on a non-commercial basis; many allow more -- see each file's notice.|DOC/netpbm/COPYRIGHT
+pbmtobbnbg|Each netpbm author granted the right to use and distribute their code without charge, on a non-commercial basis; many allow more -- see each file's notice.|DOC/netpbm/COPYRIGHT
+pbmtocmuwm|Each netpbm author granted the right to use and distribute their code without charge, on a non-commercial basis; many allow more -- see each file's notice.|DOC/netpbm/COPYRIGHT
+pbmtoepsi|Each netpbm author granted the right to use and distribute their code without charge, on a non-commercial basis; many allow more -- see each file's notice.|DOC/netpbm/COPYRIGHT
+pbmtoepson|Each netpbm author granted the right to use and distribute their code without charge, on a non-commercial basis; many allow more -- see each file's notice.|DOC/netpbm/COPYRIGHT
+pbmtog3|Each netpbm author granted the right to use and distribute their code without charge, on a non-commercial basis; many allow more -- see each file's notice.|DOC/netpbm/COPYRIGHT
+pbmtogem|Each netpbm author granted the right to use and distribute their code without charge, on a non-commercial basis; many allow more -- see each file's notice.|DOC/netpbm/COPYRIGHT
+pbmtogo|Each netpbm author granted the right to use and distribute their code without charge, on a non-commercial basis; many allow more -- see each file's notice.|DOC/netpbm/COPYRIGHT
+pbmtoicon|Each netpbm author granted the right to use and distribute their code without charge, on a non-commercial basis; many allow more -- see each file's notice.|DOC/netpbm/COPYRIGHT
+pbmtolj|Each netpbm author granted the right to use and distribute their code without charge, on a non-commercial basis; many allow more -- see each file's notice.|DOC/netpbm/COPYRIGHT
+pbmtoln03|Each netpbm author granted the right to use and distribute their code without charge, on a non-commercial basis; many allow more -- see each file's notice.|DOC/netpbm/COPYRIGHT
+pbmtolps|Each netpbm author granted the right to use and distribute their code without charge, on a non-commercial basis; many allow more -- see each file's notice.|DOC/netpbm/COPYRIGHT
+pbmtomacp|Each netpbm author granted the right to use and distribute their code without charge, on a non-commercial basis; many allow more -- see each file's notice.|DOC/netpbm/COPYRIGHT
+pbmtomgr|Each netpbm author granted the right to use and distribute their code without charge, on a non-commercial basis; many allow more -- see each file's notice.|DOC/netpbm/COPYRIGHT
+pbmtopgm|Each netpbm author granted the right to use and distribute their code without charge, on a non-commercial basis; many allow more -- see each file's notice.|DOC/netpbm/COPYRIGHT
+pbmtopi3|Each netpbm author granted the right to use and distribute their code without charge, on a non-commercial basis; many allow more -- see each file's notice.|DOC/netpbm/COPYRIGHT
+pbmtopk|Each netpbm author granted the right to use and distribute their code without charge, on a non-commercial basis; many allow more -- see each file's notice.|DOC/netpbm/COPYRIGHT
+pbmtoplot|Each netpbm author granted the right to use and distribute their code without charge, on a non-commercial basis; many allow more -- see each file's notice.|DOC/netpbm/COPYRIGHT
+pbmtoptx|Each netpbm author granted the right to use and distribute their code without charge, on a non-commercial basis; many allow more -- see each file's notice.|DOC/netpbm/COPYRIGHT
+pbmtox10bm|Each netpbm author granted the right to use and distribute their code without charge, on a non-commercial basis; many allow more -- see each file's notice.|DOC/netpbm/COPYRIGHT
+pbmtoxbm|Each netpbm author granted the right to use and distribute their code without charge, on a non-commercial basis; many allow more -- see each file's notice.|DOC/netpbm/COPYRIGHT
+pbmtoybm|Each netpbm author granted the right to use and distribute their code without charge, on a non-commercial basis; many allow more -- see each file's notice.|DOC/netpbm/COPYRIGHT
+pbmtozinc|Each netpbm author granted the right to use and distribute their code without charge, on a non-commercial basis; many allow more -- see each file's notice.|DOC/netpbm/COPYRIGHT
+pbmupc|Each netpbm author granted the right to use and distribute their code without charge, on a non-commercial basis; many allow more -- see each file's notice.|DOC/netpbm/COPYRIGHT
+pcxtoppm|Each netpbm author granted the right to use and distribute their code without charge, on a non-commercial basis; many allow more -- see each file's notice.|DOC/netpbm/COPYRIGHT
 perl|Copyright (c) 1989-1991 Larry Wall. Under either the GNU General Public License, version 1 or any later version, or the Artistic License, at your choice.|SOURCES.txt line 147
+pgmbentley|Each netpbm author granted the right to use and distribute their code without charge, on a non-commercial basis; many allow more -- see each file's notice.|DOC/netpbm/COPYRIGHT
+pgmcrater|Each netpbm author granted the right to use and distribute their code without charge, on a non-commercial basis; many allow more -- see each file's notice.|DOC/netpbm/COPYRIGHT
+pgmedge|Each netpbm author granted the right to use and distribute their code without charge, on a non-commercial basis; many allow more -- see each file's notice.|DOC/netpbm/COPYRIGHT
+pgmenhance|Each netpbm author granted the right to use and distribute their code without charge, on a non-commercial basis; many allow more -- see each file's notice.|DOC/netpbm/COPYRIGHT
+pgmhist|Each netpbm author granted the right to use and distribute their code without charge, on a non-commercial basis; many allow more -- see each file's notice.|DOC/netpbm/COPYRIGHT
+pgmkernel|Each netpbm author granted the right to use and distribute their code without charge, on a non-commercial basis; many allow more -- see each file's notice.|DOC/netpbm/COPYRIGHT
+pgmnoise|Each netpbm author granted the right to use and distribute their code without charge, on a non-commercial basis; many allow more -- see each file's notice.|DOC/netpbm/COPYRIGHT
+pgmnorm|Each netpbm author granted the right to use and distribute their code without charge, on a non-commercial basis; many allow more -- see each file's notice.|DOC/netpbm/COPYRIGHT
+pgmoil|Each netpbm author granted the right to use and distribute their code without charge, on a non-commercial basis; many allow more -- see each file's notice.|DOC/netpbm/COPYRIGHT
+pgmramp|Each netpbm author granted the right to use and distribute their code without charge, on a non-commercial basis; many allow more -- see each file's notice.|DOC/netpbm/COPYRIGHT
+pgmtexture|Each netpbm author granted the right to use and distribute their code without charge, on a non-commercial basis; many allow more -- see each file's notice.|DOC/netpbm/COPYRIGHT
+pgmtofs|Each netpbm author granted the right to use and distribute their code without charge, on a non-commercial basis; many allow more -- see each file's notice.|DOC/netpbm/COPYRIGHT
+pgmtolispm|Each netpbm author granted the right to use and distribute their code without charge, on a non-commercial basis; many allow more -- see each file's notice.|DOC/netpbm/COPYRIGHT
+pgmtopbm|Each netpbm author granted the right to use and distribute their code without charge, on a non-commercial basis; many allow more -- see each file's notice.|DOC/netpbm/COPYRIGHT
+pgmtoppm|Each netpbm author granted the right to use and distribute their code without charge, on a non-commercial basis; many allow more -- see each file's notice.|DOC/netpbm/COPYRIGHT
 phoon|"Permission to use, copy, modify, and distribute this software and its documentation for any purpose and without fee is hereby granted, provided that this copyright notice appear in all copies" -- Jeffrey A.|SOURCES.txt line 1187
+pi1toppm|Each netpbm author granted the right to use and distribute their code without charge, on a non-commercial basis; many allow more -- see each file's notice.|DOC/netpbm/COPYRIGHT
+pi3topbm|Each netpbm author granted the right to use and distribute their code without charge, on a non-commercial basis; many allow more -- see each file's notice.|DOC/netpbm/COPYRIGHT
+picttoppm|Each netpbm author granted the right to use and distribute their code without charge, on a non-commercial basis; many allow more -- see each file's notice.|DOC/netpbm/COPYRIGHT
+pjtoppm|Each netpbm author granted the right to use and distribute their code without charge, on a non-commercial basis; many allow more -- see each file's notice.|DOC/netpbm/COPYRIGHT
+pktopbm|Each netpbm author granted the right to use and distribute their code without charge, on a non-commercial basis; many allow more -- see each file's notice.|DOC/netpbm/COPYRIGHT
+pnmalias|Each netpbm author granted the right to use and distribute their code without charge, on a non-commercial basis; many allow more -- see each file's notice.|DOC/netpbm/COPYRIGHT
+pnmarith|Each netpbm author granted the right to use and distribute their code without charge, on a non-commercial basis; many allow more -- see each file's notice.|DOC/netpbm/COPYRIGHT
+pnmcat|Each netpbm author granted the right to use and distribute their code without charge, on a non-commercial basis; many allow more -- see each file's notice.|DOC/netpbm/COPYRIGHT
+pnmcomp|Each netpbm author granted the right to use and distribute their code without charge, on a non-commercial basis; many allow more -- see each file's notice.|DOC/netpbm/COPYRIGHT
+pnmconvol|Each netpbm author granted the right to use and distribute their code without charge, on a non-commercial basis; many allow more -- see each file's notice.|DOC/netpbm/COPYRIGHT
+pnmcrop|Each netpbm author granted the right to use and distribute their code without charge, on a non-commercial basis; many allow more -- see each file's notice.|DOC/netpbm/COPYRIGHT
+pnmcut|Each netpbm author granted the right to use and distribute their code without charge, on a non-commercial basis; many allow more -- see each file's notice.|DOC/netpbm/COPYRIGHT
+pnmdepth|Each netpbm author granted the right to use and distribute their code without charge, on a non-commercial basis; many allow more -- see each file's notice.|DOC/netpbm/COPYRIGHT
+pnmenlarge|Each netpbm author granted the right to use and distribute their code without charge, on a non-commercial basis; many allow more -- see each file's notice.|DOC/netpbm/COPYRIGHT
+pnmfile|Each netpbm author granted the right to use and distribute their code without charge, on a non-commercial basis; many allow more -- see each file's notice.|DOC/netpbm/COPYRIGHT
+pnmflip|Each netpbm author granted the right to use and distribute their code without charge, on a non-commercial basis; many allow more -- see each file's notice.|DOC/netpbm/COPYRIGHT
+pnmgamma|Each netpbm author granted the right to use and distribute their code without charge, on a non-commercial basis; many allow more -- see each file's notice.|DOC/netpbm/COPYRIGHT
+pnmhisteq|Each netpbm author granted the right to use and distribute their code without charge, on a non-commercial basis; many allow more -- see each file's notice.|DOC/netpbm/COPYRIGHT
+pnmhistmap|Each netpbm author granted the right to use and distribute their code without charge, on a non-commercial basis; many allow more -- see each file's notice.|DOC/netpbm/COPYRIGHT
+pnminvert|Each netpbm author granted the right to use and distribute their code without charge, on a non-commercial basis; many allow more -- see each file's notice.|DOC/netpbm/COPYRIGHT
+pnmnlfilt|Each netpbm author granted the right to use and distribute their code without charge, on a non-commercial basis; many allow more -- see each file's notice.|DOC/netpbm/COPYRIGHT
+pnmnoraw|Each netpbm author granted the right to use and distribute their code without charge, on a non-commercial basis; many allow more -- see each file's notice.|DOC/netpbm/COPYRIGHT
+pnmpad|Each netpbm author granted the right to use and distribute their code without charge, on a non-commercial basis; many allow more -- see each file's notice.|DOC/netpbm/COPYRIGHT
+pnmpaste|Each netpbm author granted the right to use and distribute their code without charge, on a non-commercial basis; many allow more -- see each file's notice.|DOC/netpbm/COPYRIGHT
+pnmrotate|Each netpbm author granted the right to use and distribute their code without charge, on a non-commercial basis; many allow more -- see each file's notice.|DOC/netpbm/COPYRIGHT
+pnmscale|Each netpbm author granted the right to use and distribute their code without charge, on a non-commercial basis; many allow more -- see each file's notice.|DOC/netpbm/COPYRIGHT
+pnmshear|Each netpbm author granted the right to use and distribute their code without charge, on a non-commercial basis; many allow more -- see each file's notice.|DOC/netpbm/COPYRIGHT
+pnmsmooth|Each netpbm author granted the right to use and distribute their code without charge, on a non-commercial basis; many allow more -- see each file's notice.|DOC/netpbm/COPYRIGHT
+pnmtile|Each netpbm author granted the right to use and distribute their code without charge, on a non-commercial basis; many allow more -- see each file's notice.|DOC/netpbm/COPYRIGHT
+pnmtoddif|Each netpbm author granted the right to use and distribute their code without charge, on a non-commercial basis; many allow more -- see each file's notice.|DOC/netpbm/COPYRIGHT
+pnmtofits|Each netpbm author granted the right to use and distribute their code without charge, on a non-commercial basis; many allow more -- see each file's notice.|DOC/netpbm/COPYRIGHT
+pnmtops|Each netpbm author granted the right to use and distribute their code without charge, on a non-commercial basis; many allow more -- see each file's notice.|DOC/netpbm/COPYRIGHT
+pnmtorast|Each netpbm author granted the right to use and distribute their code without charge, on a non-commercial basis; many allow more -- see each file's notice.|DOC/netpbm/COPYRIGHT
+pnmtosgi|Each netpbm author granted the right to use and distribute their code without charge, on a non-commercial basis; many allow more -- see each file's notice.|DOC/netpbm/COPYRIGHT
+pnmtosir|Each netpbm author granted the right to use and distribute their code without charge, on a non-commercial basis; many allow more -- see each file's notice.|DOC/netpbm/COPYRIGHT
+pnmtoxwd|Each netpbm author granted the right to use and distribute their code without charge, on a non-commercial basis; many allow more -- see each file's notice.|DOC/netpbm/COPYRIGHT
+ppm3d|Each netpbm author granted the right to use and distribute their code without charge, on a non-commercial basis; many allow more -- see each file's notice.|DOC/netpbm/COPYRIGHT
+ppmbrighten|Each netpbm author granted the right to use and distribute their code without charge, on a non-commercial basis; many allow more -- see each file's notice.|DOC/netpbm/COPYRIGHT
+ppmchange|Each netpbm author granted the right to use and distribute their code without charge, on a non-commercial basis; many allow more -- see each file's notice.|DOC/netpbm/COPYRIGHT
+ppmdim|Each netpbm author granted the right to use and distribute their code without charge, on a non-commercial basis; many allow more -- see each file's notice.|DOC/netpbm/COPYRIGHT
+ppmdist|Each netpbm author granted the right to use and distribute their code without charge, on a non-commercial basis; many allow more -- see each file's notice.|DOC/netpbm/COPYRIGHT
+ppmdither|Each netpbm author granted the right to use and distribute their code without charge, on a non-commercial basis; many allow more -- see each file's notice.|DOC/netpbm/COPYRIGHT
+ppmflash|Each netpbm author granted the right to use and distribute their code without charge, on a non-commercial basis; many allow more -- see each file's notice.|DOC/netpbm/COPYRIGHT
+ppmforge|Each netpbm author granted the right to use and distribute their code without charge, on a non-commercial basis; many allow more -- see each file's notice.|DOC/netpbm/COPYRIGHT
+ppmhist|Each netpbm author granted the right to use and distribute their code without charge, on a non-commercial basis; many allow more -- see each file's notice.|DOC/netpbm/COPYRIGHT
+ppmmake|Each netpbm author granted the right to use and distribute their code without charge, on a non-commercial basis; many allow more -- see each file's notice.|DOC/netpbm/COPYRIGHT
+ppmmix|Each netpbm author granted the right to use and distribute their code without charge, on a non-commercial basis; many allow more -- see each file's notice.|DOC/netpbm/COPYRIGHT
+ppmnorm|Each netpbm author granted the right to use and distribute their code without charge, on a non-commercial basis; many allow more -- see each file's notice.|DOC/netpbm/COPYRIGHT
+ppmntsc|Each netpbm author granted the right to use and distribute their code without charge, on a non-commercial basis; many allow more -- see each file's notice.|DOC/netpbm/COPYRIGHT
+ppmpat|Each netpbm author granted the right to use and distribute their code without charge, on a non-commercial basis; many allow more -- see each file's notice.|DOC/netpbm/COPYRIGHT
+ppmquant|Each netpbm author granted the right to use and distribute their code without charge, on a non-commercial basis; many allow more -- see each file's notice.|DOC/netpbm/COPYRIGHT
+ppmqvga|Each netpbm author granted the right to use and distribute their code without charge, on a non-commercial basis; many allow more -- see each file's notice.|DOC/netpbm/COPYRIGHT
+ppmrelief|Each netpbm author granted the right to use and distribute their code without charge, on a non-commercial basis; many allow more -- see each file's notice.|DOC/netpbm/COPYRIGHT
+ppmshift|Each netpbm author granted the right to use and distribute their code without charge, on a non-commercial basis; many allow more -- see each file's notice.|DOC/netpbm/COPYRIGHT
+ppmspread|Each netpbm author granted the right to use and distribute their code without charge, on a non-commercial basis; many allow more -- see each file's notice.|DOC/netpbm/COPYRIGHT
+ppmtoacad|Each netpbm author granted the right to use and distribute their code without charge, on a non-commercial basis; many allow more -- see each file's notice.|DOC/netpbm/COPYRIGHT
+ppmtobmp|Each netpbm author granted the right to use and distribute their code without charge, on a non-commercial basis; many allow more -- see each file's notice.|DOC/netpbm/COPYRIGHT
+ppmtogif|Each netpbm author granted the right to use and distribute their code without charge, on a non-commercial basis; many allow more -- see each file's notice.|DOC/netpbm/COPYRIGHT
+ppmtoicr|Each netpbm author granted the right to use and distribute their code without charge, on a non-commercial basis; many allow more -- see each file's notice.|DOC/netpbm/COPYRIGHT
+ppmtoilbm|Each netpbm author granted the right to use and distribute their code without charge, on a non-commercial basis; many allow more -- see each file's notice.|DOC/netpbm/COPYRIGHT
+ppmtomap|Each netpbm author granted the right to use and distribute their code without charge, on a non-commercial basis; many allow more -- see each file's notice.|DOC/netpbm/COPYRIGHT
+ppmtomitsu|Each netpbm author granted the right to use and distribute their code without charge, on a non-commercial basis; many allow more -- see each file's notice.|DOC/netpbm/COPYRIGHT
+ppmtopcx|Each netpbm author granted the right to use and distribute their code without charge, on a non-commercial basis; many allow more -- see each file's notice.|DOC/netpbm/COPYRIGHT
+ppmtopgm|Each netpbm author granted the right to use and distribute their code without charge, on a non-commercial basis; many allow more -- see each file's notice.|DOC/netpbm/COPYRIGHT
+ppmtopi1|Each netpbm author granted the right to use and distribute their code without charge, on a non-commercial basis; many allow more -- see each file's notice.|DOC/netpbm/COPYRIGHT
+ppmtopict|Each netpbm author granted the right to use and distribute their code without charge, on a non-commercial basis; many allow more -- see each file's notice.|DOC/netpbm/COPYRIGHT
+ppmtopjxl|Each netpbm author granted the right to use and distribute their code without charge, on a non-commercial basis; many allow more -- see each file's notice.|DOC/netpbm/COPYRIGHT
+ppmtopj|Each netpbm author granted the right to use and distribute their code without charge, on a non-commercial basis; many allow more -- see each file's notice.|DOC/netpbm/COPYRIGHT
+ppmtopuzz|Each netpbm author granted the right to use and distribute their code without charge, on a non-commercial basis; many allow more -- see each file's notice.|DOC/netpbm/COPYRIGHT
+ppmtorgb3|Each netpbm author granted the right to use and distribute their code without charge, on a non-commercial basis; many allow more -- see each file's notice.|DOC/netpbm/COPYRIGHT
+ppmtosixel|Each netpbm author granted the right to use and distribute their code without charge, on a non-commercial basis; many allow more -- see each file's notice.|DOC/netpbm/COPYRIGHT
+ppmtotga|Each netpbm author granted the right to use and distribute their code without charge, on a non-commercial basis; many allow more -- see each file's notice.|DOC/netpbm/COPYRIGHT
+ppmtouil|Each netpbm author granted the right to use and distribute their code without charge, on a non-commercial basis; many allow more -- see each file's notice.|DOC/netpbm/COPYRIGHT
+ppmtoxpm|Each netpbm author granted the right to use and distribute their code without charge, on a non-commercial basis; many allow more -- see each file's notice.|DOC/netpbm/COPYRIGHT
+ppmtoyuvsplit|Each netpbm author granted the right to use and distribute their code without charge, on a non-commercial basis; many allow more -- see each file's notice.|DOC/netpbm/COPYRIGHT
+ppmtoyuv|Each netpbm author granted the right to use and distribute their code without charge, on a non-commercial basis; many allow more -- see each file's notice.|DOC/netpbm/COPYRIGHT
+printmail|The Elm Mail System General Public License, (C) 1988-1992 USENET Community Trust and 1986-1987 Dave Taylor: copying and distribution permitted, at no charge.|DOC/elm/Notice
+psidtopgm|Each netpbm author granted the right to use and distribute their code without charge, on a non-commercial basis; many allow more -- see each file's notice.|DOC/netpbm/COPYRIGHT
+qrttoppm|Each netpbm author granted the right to use and distribute their code without charge, on a non-commercial basis; many allow more -- see each file's notice.|DOC/netpbm/COPYRIGHT
+rasttopnm|Each netpbm author granted the right to use and distribute their code without charge, on a non-commercial basis; many allow more -- see each file's notice.|DOC/netpbm/COPYRIGHT
+rawtopgm|Each netpbm author granted the right to use and distribute their code without charge, on a non-commercial basis; many allow more -- see each file's notice.|DOC/netpbm/COPYRIGHT
+rawtoppm|Each netpbm author granted the right to use and distribute their code without charge, on a non-commercial basis; many allow more -- see each file's notice.|DOC/netpbm/COPYRIGHT
+readmsg|The Elm Mail System General Public License, (C) 1988-1992 USENET Community Trust and 1986-1987 Dave Taylor: copying and distribution permitted, at no charge.|DOC/elm/Notice
 rechne|Freeware|SOURCES.txt line 754
 remove|Public|DOC/remove/info_remove
 reversi|GNU General Public License version 2. Copyright (C) 1992 Elias Martenson. The licence travels with the program: SRC/reversi/COPYING, and ORIG/COPYING as posted.|SOURCES.txt line 2625
+rgb3toppm|Each netpbm author granted the right to use and distribute their code without charge, on a non-commercial basis; many allow more -- see each file's notice.|DOC/netpbm/COPYRIGHT
 rot22|None is stated. Nothing in the posting, the README, the manual page or the source carries a copyright, a grant or a restriction.|SOURCES.txt line 2604
 rsdsk|"copyright (c) 1997 by Bob Devries / may be freely distributed", stated at the head of each program's documentation, which is on the disk as DOC/os9dsk and DOC/rsdsk.|SOURCES.txt line 2423
 saa|Copyright 1991 John D. Ramsdell. "Permission to use, copy, modify, and distribute this software and its documentation for any purpose and without fee is hereby granted, provided that the above copyright notice appear in all copies."|SOURCES.txt line 924
 sbreak|Public domain|SOURCES.txt line 826
 scrabble|"Permission is granted to modify and re-distribute this code in any manner as long as this notice is preserved.|SOURCES.txt line 2683
 screen|Freeware|SOURCES.txt line 1220
+sddemo|Freely distributable "as long as ALL of the files are kept intact and not modified"; a vendor demonstration version, copyright its owner.|SOURCES.txt, vendor demonstration versions section
 sed|Public|DOC/sed/info_sed
-setime|Public domain|SOURCES.txt line 781
 setimex|Public domain|SOURCES.txt line 1242
-sh|Public domain|SOURCES.txt line 767
+setime|Public domain|SOURCES.txt line 781
+sgitopnm|Each netpbm author granted the right to use and distribute their code without charge, on a non-commercial basis; many allow more -- see each file's notice.|DOC/netpbm/COPYRIGHT
 shar|Public domain|SOURCES.txt line 608
+sh|Public domain|SOURCES.txt line 767
+sirtopnm|Each netpbm author granted the right to use and distribute their code without charge, on a non-commercial basis; many allow more -- see each file's notice.|DOC/netpbm/COPYRIGHT
+sldtoppm|Each netpbm author granted the right to use and distribute their code without charge, on a non-commercial basis; many allow more -- see each file's notice.|DOC/netpbm/COPYRIGHT
 space|(c) 1990 by L.Zeller. Public, with condition.; May only be used under the conditions listed in the documentation (help file).|DOC/space/info_space
+spctoppm|Each netpbm author granted the right to use and distribute their code without charge, on a non-commercial basis; many allow more -- see each file's notice.|DOC/netpbm/COPYRIGHT
 spew|Copyright 1987 Greg Smith. "Permission is granted to freely use and distribute this software."|SOURCES.txt line 980
+spottopgm|Each netpbm author granted the right to use and distribute their code without charge, on a non-commercial basis; many allow more -- see each file's notice.|DOC/netpbm/COPYRIGHT
+sputoppm|Each netpbm author granted the right to use and distribute their code without charge, on a non-commercial basis; many allow more -- see each file's notice.|DOC/netpbm/COPYRIGHT
 tail|Public domain|SOURCES.txt line 696
 tar|Public domain|SOURCES.txt line 630
+tgatoppm|Each netpbm author granted the right to use and distribute their code without charge, on a non-commercial basis; many allow more -- see each file's notice.|DOC/netpbm/COPYRIGHT
 tput|Public domain. "tput, written by Badri Lokanathan, is in the public domain, and may be freely distributed.|SOURCES.txt line 2283
 tree|(c) 1990 by C.Mahr. Public.|DOC/tree/info_tree
+ub68kdemo|Freely distributable "as long as ALL of the files are kept intact and not modified"; a vendor demonstration version, copyright its owner.|SOURCES.txt, vendor demonstration versions section
 unc|Freely distributed; no notice beyond a caution that disassembling proprietary software may breach that software's own licence -- about USE, not a term on unc.|SOURCES.txt line 726
 undump|"Copying-policy: freely distributable".|SOURCES.txt line 2410
 unshar|Public domain -- "do what you want, but let your conscience be your guide."|SOURCES.txt line 616
@@ -114,16 +301,28 @@ vi_cio|Freeware|SOURCES.txt line 667
 vi_nocio|Freeware|SOURCES.txt line 672
 whereis|BSD. Copyright (c) 1980 The Regents of the University of California. This product includes software developed by the University of California, Berkeley and its contributors.|SOURCES.txt line 1313
 which|Posted to Usenet and freely redistributed since. No licence text accompanies the source.|SOURCES.txt line 1299
+wn.stb|GNU General Public License, version 1.|DOC/wn/gnu_license; SOURCES.txt, WN section
+wndex|GNU General Public License, version 1.|DOC/wn/gnu_license; SOURCES.txt, WN section
+wn|GNU General Public License, version 1.|DOC/wn/gnu_license; SOURCES.txt, WN section
 worm|BSD. Copyright (c) 1980 Regents of the University of California. This product includes software developed by the University of California, Berkeley and its contributors.|SOURCES.txt line 849
 wump|BSD. Copyright (c) 1989 Regents of the University of California. This product includes software developed by the University of California, Berkeley and its contributors.|SOURCES.txt line 864
 wysecrack|Public domain|SOURCES.txt line 789
 xargs|Posted to Usenet and freely redistributed since. No licence text accompanies the source.|SOURCES.txt line 2323
+xbmtopbm|Each netpbm author granted the right to use and distribute their code without charge, on a non-commercial basis; many allow more -- see each file's notice.|DOC/netpbm/COPYRIGHT
 xd|Public domain. "This program is in the public domain: `Do what thou wilt shall be the whole of the law'.|SOURCES.txt line 2303
+ximtoppm|Each netpbm author granted the right to use and distribute their code without charge, on a non-commercial basis; many allow more -- see each file's notice.|DOC/netpbm/COPYRIGHT
 xmas|Posted to Usenet and freely redistributed since; no licence text. The source invites you to change its sign-off line.|SOURCES.txt line 1075
+xpmtoppm|Each netpbm author granted the right to use and distribute their code without charge, on a non-commercial basis; many allow more -- see each file's notice.|DOC/netpbm/COPYRIGHT
+xvminitoppm|Each netpbm author granted the right to use and distribute their code without charge, on a non-commercial basis; many allow more -- see each file's notice.|DOC/netpbm/COPYRIGHT
+xwdtopnm|Each netpbm author granted the right to use and distribute their code without charge, on a non-commercial basis; many allow more -- see each file's notice.|DOC/netpbm/COPYRIGHT
 yacc|Public|DOC/yacc/info_yacc
 yahtzee2|None stated in the posting; freely redistributed on comp.sources.games.|SOURCES.txt line 1129
-z|Copyright (C) 1995 Tim Kientzle and The Coriolis Group, Inc. Redistribution is permitted under seven conditions stated in the source;|SOURCES.txt line 2731
+ybmtopbm|Each netpbm author granted the right to use and distribute their code without charge, on a non-commercial basis; many allow more -- see each file's notice.|DOC/netpbm/COPYRIGHT
+yuvsplittoppm|Each netpbm author granted the right to use and distribute their code without charge, on a non-commercial basis; many allow more -- see each file's notice.|DOC/netpbm/COPYRIGHT
+yuvtoppm|Each netpbm author granted the right to use and distribute their code without charge, on a non-commercial basis; many allow more -- see each file's notice.|DOC/netpbm/COPYRIGHT
 zc|The author's own words in the source: "The code below is released to the public domain for educational purposes.|SOURCES.txt line 2555
-zip|Info-ZIP license (open source, redistribution OK)|SOURCES.txt line 641
+zeisstopnm|Each netpbm author granted the right to use and distribute their code without charge, on a non-commercial basis; many allow more -- see each file's notice.|DOC/netpbm/COPYRIGHT
 zipnote|Info-ZIP license (open source, redistribution OK)|SOURCES.txt line 646
 zipsplit|Info-ZIP license (open source, redistribution OK)|SOURCES.txt line 651
+zip|Info-ZIP license (open source, redistribution OK)|SOURCES.txt line 641
+z|Copyright (C) 1995 Tim Kientzle and The Coriolis Group, Inc. Redistribution is permitted under seven conditions stated in the source;|SOURCES.txt line 2731
