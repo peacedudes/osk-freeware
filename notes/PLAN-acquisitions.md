@@ -1319,3 +1319,27 @@ them were already in the 2026-09-11 material -- Wecker's and Omura's
 shar, compress, Pete Lyall's AR, hdkit and the Kreider C library.  The
 fifteenth, "AR for OS9/6809" (1988), is 6809-only.  Nothing new.
 
+### The usenet-rewind pull is COMPLETE (2026-09-14)
+
+Every group checked against the site's own index count, and all match:
+the 14 OS-9 groups (comp.os.os9 17,803; comp.os.OS9 4 after the
+case-variant folder fix), comp.sys.m68k 20,141, comp.sys.m68k.pc 297,
+comp.sys.m68K 8, the four CD-i groups (rec.games.video.cd-i 12,261),
+net.micro.6809 1,005, comp.sys.m6809 6,627, plus the OSK-only searches
+(bit.listserv.coco 1,323; comp.sys.tandy 33; alt.sources 31;
+comp.sys.atari.st 25 and .tech 3; comp.sources.misc 20) and CDRTOS
+site-wide (13).  6,905 result pages, 166 MB, in
+`~/Developer/os9/Scraped/usenet-rewind/` -- PRIVATE, author addresses
+included; never commit it.  `pull.py` there is resumable; `mine.py`
+finds posted and announced software.
+
+Three pull.py fixes paid for on the way, all in its header: a
+capitalised group needs its own folder on this case-insensitive disk; a
+page that fails after retries is SKIPPED, not fatal (a twenty-minute
+outage stopped a whole group); and a month window may not end after
+today (HTTP 422).
+
+What it yielded is recorded above: little new software, the CD-i and
+MM/1 findings, four os9exec bugs, and the realisation that the collection
+cannot assemble or link on the disk (see the Perl 4 work that followed).
+
