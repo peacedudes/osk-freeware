@@ -7,9 +7,9 @@
 # now, so the claim is testable, and it comes apart: render cmr10 at the
 # resolution the driver asks for and the driver uses it.
 #
-# `dvips' is the one that cannot be rescued this way: it stops at
-# `Couldn't find header file tex.pro', and there is no .pro on this disk, so
-# its PostScript prologue is missing and no font would help.
+# `dvips' reads its fonts from its own path, not this family's: pointed at
+# $W it finds its `tex.pro' prologue in SYS/TEX/DVIPS, writes the page, and
+# leaves the characters it has no bitmap for blank.
 #
 # dvijet asks for 120 dpi for this DVI and `epsonlo' in modes.mf IS 120 dpi,
 # so the match is exact -- the 300dpi CanonCX render takes twenty-four
@@ -58,8 +58,9 @@ expect  ---using nearest neighbor [/dd/tmp/DVFC/cmr10.120pk [120 dpi]] instead.
 expect  3138 /dd/tmp/DVFC/nofont.jet
 expect  7350 /dd/tmp/DVFC/story.dvi_jet
 
-case    dvips-cannot-be-rescued-this-way
-# Its prologue, not its fonts.  There is no .pro file anywhere on the disk.
+case    dvips-writes-the-page-and-leaves-unbuilt-fonts-blank
 run     /dd/CMDS/ksh -c "cd $W; /dd/CMDS/TEXCMDS/dvips story.dvi"
 expect  This is dvipsk 5.495b
-expect  Couldn't find header file tex.pro
+expect  Font cmbx10.300pk not found, characters will be left blank.
+expect  <tex.pro>. [1]
+absent  Couldn't find header file

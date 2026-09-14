@@ -17,9 +17,13 @@ setup   W=/dd/tmp/LUC
 setup   /dd/CMDS/rm -f $W/* > /nil 2>/nil
 setup   /dd/CMDS/mkdir -p $W > /nil 2>/nil
 
-case    lua-stops-on-the-csl-edition-and-says-so
+# csl edition 25 has shipped since 2026-09-04, and with it lua runs as-is.
+case    lua-prints-its-banner-and-runs-a-script
+run     /dd/CMDS/lua -v
 run     /dd/CMDS/lua /dd/DOC/lua/examples/hello.lua
-expect  **** csl traphandler mismatch ****
+expect  Lua 3.0  Copyright (C) 1994-1997 TeCGraf
+expect  hello world, from Lua!
+absent  csl traphandler mismatch
 
 case    luac-compiles-a-real-script-and-lists-its-bytecode
 # cf.lua is the temperature table, one of the eight.

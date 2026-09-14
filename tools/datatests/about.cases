@@ -46,7 +46,7 @@ case    about-on-a-program-with-source-and-documentation
 run     /dd/CMDS/about fortune
 expect  fortune        print a random quotation
 expect  for        TEXT TOOLS -- Fortune & sayings
-expect  from       usenet archive  fortune.ar
+expect  from       Usenet           fortune.ar
 expect  needs      /dd/GAMES/FORTUNE/fortunes.dat         here
 expect  source     SRC/fortune
 expect  run it     fortune

@@ -15,11 +15,8 @@ family  tex
 #     leaves TeX at its `*' prompt with a stub .dvi that every DVI driver
 #     then rejects -- which reads as ten broken drivers and is one bad file.
 #
-# THERE ARE NO FONT BITMAPS on this disk (FONTS/PK300 and PK144 hold a
-# Makefile each), so the drivers run, write their output and report zero-size
-# characters. That is asserted below rather than hidden: it is what a user
-# will see, and the day somebody generates the fonts these cases will fail
-# and want updating, which is the right way round.
+# The Computer Modern fonts ship at 300 dpi (since 2026-09-05), so the 300
+# dpi drivers render with them and the others substitute the nearest size.
 
 setup   T=/dd/CMDS/TEXCMDS
 setup   S=/dd/SYS/TEX
@@ -135,10 +132,12 @@ expect  Usage: weave webfile[.web] [changefile[.ch]] [-x].
 expect  Usage: tangle webfile[.web] [changefile[.ch]].
 
 # KNOWN DEFECT. dvips wants its PostScript header files and none is here.
-case    dvips-cannot-find-its-header-files
+case    dvips-writes-postscript-with-its-prologue
 run     $T/dvips -o /dd/tmp/x.ps /dd/small.dvi
 expect  This is dvipsk 5.495b
-expect  Couldn't find header file tex.pro
+expect  -> /dd/tmp/x.ps
+expect  <tex.pro>. [1]
+absent  Couldn't find header file
 
 # KNOWN DEFECT. texidx cannot allocate and gives up on a one-line .idx.
 #

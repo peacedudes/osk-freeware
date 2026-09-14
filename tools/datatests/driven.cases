@@ -55,13 +55,18 @@ expect  unrecognized arg '/dd/SYS/motd'
 expect  Function: generate Alps ASP-1000 printer codes
 expect  letter quality mode
 
-# lua and runc were both built against a later csl than the edition 16 that
-# ships here, and stop at the handshake. The message is the trap library's,
-# not the program's, and it is the same one the SDK's `load' gives.
-case    lua-and-runc-stop-at-the-csl-handshake
-run     /dd/CMDS/lua
-run     /dd/CMDS/runc
-expect  csl traphandler mismatch
+# lua and runc wanted csl edition 25, which has shipped since 2026-09-04.
+# runc runs a script luac has made into a module: `-m -o' writes it where
+# we say (`-x' would write it into the execution directory), `load' makes
+# it resident, and runc finds it by name.
+case    runc-runs-a-script-that-luac-made-into-a-module
+run     /dd/CMDS/rm -f /dd/tmp/DRVRUNC/greet > /nil 2>/nil
+run     /dd/CMDS/mkdir -p /dd/tmp/DRVRUNC
+run     /dd/CMDS/luac -m -o /dd/tmp/DRVRUNC/greet /dd/DOC/lua/examples/hello.lua
+run     /dd/CMDS/load /dd/tmp/DRVRUNC/greet
+run     /dd/CMDS/runc greet
+expect  hello world, from Lua!
+absent  csl traphandler mismatch
 
 # `splstat' ONLY. `splman' and `splprt' are DAEMONS -- they do not come back,
 # and running them here took the emulator session down with them and cost the

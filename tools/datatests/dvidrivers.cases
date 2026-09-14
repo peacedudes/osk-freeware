@@ -40,8 +40,11 @@ expect  [imPRESS [Imagen laser printer family]]
 expect  [Hewlett-Packard LaserJet Plus laser printer]
 expect  [Hewlett-Packard 2686A Laser Jet laser printer]
 expect  [Hewlett-Packard LaserJet II laser printer]
-expect  Font file [cmr10 [300 dpi]] could not be opened
+# The 300 dpi Computer Modern fonts ship, so the four 300 dpi drivers find
+# cmr10 and only dvijet, at 120, falls back to them.
+absent  Font file [cmr10 [300 dpi]] could not be opened
 expect  Font file [cmr10 [120 dpi]] could not be opened
+expect  ---using nearest neighbor [/DD/SYS/TEX/FONTS/pk300/cmr10.300pk [300 dpi]] instead.
 
 case    each-writes-beside-the-dvi-under-its-own-suffix
 # NOT an argument: no driver here takes an output filename.  `_djc' is
@@ -60,10 +63,12 @@ expect  story.dvi_tos
 expect  story.dvi_err
 absent  story.dvi_djp
 
-case    dvips-stops-at-its-prologue-not-at-a-font
+case    dvips-writes-postscript-with-its-prologue
 run     /dd/CMDS/ksh -c "cd $W; /dd/CMDS/TEXCMDS/dvips story.dvi"
 expect  This is dvipsk 5.495b
-expect  Couldn't find header file tex.pro
+expect  -> story.ps
+expect  <tex.pro>. [1]
+absent  Couldn't find header file
 absent  Font file
 
 case    dvitype-needs-no-printer-but-it-does-need-standard-input

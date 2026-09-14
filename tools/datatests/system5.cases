@@ -57,13 +57,13 @@ expect  -infile	String Required The name of the file to search
 expect  Copyright (c) 1991,1992 Robert Heller D/B/A Deepwoods Software
 expect  Libraian Card Catalog card printer
 
-# drop is one of the three keep/drop/kept programs written for this
-# collection, and they share one usage text.
-case    drop-shares-keeps-usage-and-explains-the-three
-run     /dd/CMDS/drop
+# unkeep (drop until 2026-09-09) is one of the three keep/unkeep/kept
+# programs written for this collection, and they share one usage text.
+case    unkeep-shares-keeps-usage-and-explains-the-three
+run     /dd/CMDS/unkeep
 expect  keep 1.0 -- OS-9 freeware collection
-expect  drop   remove exactly what keep wrote, and NOTHING whose
-expect  kept   list what has been taken, and how much it came to.
+expect  unkeep removes the files keep wrote for a program.
+expect  kept   lists every file keep has written, and the total.
 
 case    bootgen-wants-a-device-to-write-a-boot-file-to
 run     /dd/CMDS/bootgen

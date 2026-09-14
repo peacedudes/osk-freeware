@@ -37,14 +37,13 @@ run     /dd/CMDS/NETWORK/atp < /nil
 expect  Reading Configuration file...
 expect  Unable to open configuration file /dd/atprc or .atprc !
 
-# msntp is the one program here stopped by the csl EDITION SKEW rather than
-# by the missing network: we ship csl edition 16 and it wants 25. It never
-# reaches its own code, so it never gets as far as complaining about
-# /ip0#1/route0.
-case    msntp-stops-at-the-csl-edition-skew-not-at-the-network
+# msntp wanted csl edition 25, and that edition has shipped since
+# 2026-09-04.  It now starts and stops where every program here does: no
+# network to open a socket on.
+case    msntp-gets-past-the-csl-and-stops-at-the-network
 run     /dd/CMDS/NETWORK/msntp < /nil
-expect  csl traphandler mismatch
-absent  route0
+expect  unable to allocate socket for NTP
+absent  csl traphandler mismatch
 
 case    ckermit-reports-its-version-and-its-os9-modules
 run     echo "show version" > $W/k.in
