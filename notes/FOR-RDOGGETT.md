@@ -1,6 +1,6 @@
 # For rdoggett
 
-Open questions only. Nothing here is decided. Updated 2026-09-14.
+Open questions only. Nothing here is decided. Updated 2026-09-14 (evening).
 
 ## Yours alone -- nothing I can do about these
 
@@ -31,6 +31,58 @@ Open questions only. Nothing here is decided. Updated 2026-09-14.
    OS-9 newsgroup pull.  Cancelling happens on their site, in your account.
    The key is `~/.config/usenet-rewind/os9`; once the pull is verified a
    session can delete that file for you if you say so.
+
+## Licence and authorship questions the card-terms pass turned up (2026-09-14)
+
+Every card must now state its terms, so every program's source was read for
+them. Most answer plainly. These do not, and each is yours to decide -- nothing
+has been removed or rebuilt.  All are quoted from the files, and each file and
+line is recorded in `tools/terms.psv` or the handoff.
+
+8. **`time` and `timid` meet the rule you set for utilities written at
+   Microware.**  `SRC/hc_utils/time.c`'s revision history is `rfd` twice
+   ("Created rfd 08-15-85"); `timid.c` says "Cloned from sys.c rfd 85/02/02",
+   and sys.c is already on the removed list.  Both shipped binaries are built
+   from those sources (recipes `time` and `timid`; the strings match).
+   SOURCES.txt's own test -- "grep the edition-history rows for the
+   initials" -- says remove them, source and binary, with their INDEX,
+   ORIGINS, categories, help.psv, devtools card and bench.cases entries.
+   Recommended; not done, because removing a program is your call.
+   (`DOC/time/time.doc` is David J. Partington's submission of a DIFFERENT
+   TIME program, and would go or stay separately.)
+
+9. **`deton`, `sysid`, `sysmax`, `sysmin`** sit in the same `SRC/hc_utils`
+   and look like system utilities, but carry no revision history and no author
+   line, so the test above cannot catch them.  Are they yours?
+
+10. **Explicit restrictions on programs that ship:**
+   - `greed` -- "Please don't redistribute this." (Matthew T. Day, greed.c).
+   - `travesty` -- Bernstein's grant ran "Until January 1, 1994" and says the
+     rights "are automatically revoked on January 1, 1994".
+   - `sysmon` -- its header calls the source "the proprietary confidential
+     property of MAX PLANCK INSTITUTE KERNPHYSIK HEIDELBERG ... distribution in
+     any form ... is prohibited", then the author writes "I have decided to
+     distribute the source code to everybody on request !"
+   - `vi` (SRC/effo_vi) -- "originates from the sources of vi running under
+     the XENIX operating system", adapted for OS-9; nobody grants anything.
+   - `puzzle15`, `puz15`, `udate`, `uwho` -- their authors allow unmodified
+     copies only, and what ships are OS-9 builds.
+   The utime.c rule ("if there is any question about it we have to exclude.
+   Don't delete") would take these out of the build; that is your ruling to
+   apply or not.
+
+11. **`break` is a disassembly.**  `SRC/forum5/break.a` is headed
+   "Disassembled 1987 by L.Zeller" of "object code at disassembly time", and
+   the program "invokes the system level debugger".  If what was disassembled
+   is Microware's own `break`, this is Microware code in source form, which
+   the Microware-source screen does not catch because no notice survived.
+
+12. **Programs that ship with no grant at all.**  Blars UUCP's uupoll and uux,
+   the smail five, the twelve Dhrystone builds, sterm, the six smallutils
+   programs, and about 120 more from the source-tree reading, each recorded on
+   its card as "No copyright or licence statement".  The utime.c rule applies
+   to such files; the question is whether it applies to programs that have
+   shipped all along.
 
 ## ANSWERED -- the newsgroup archive
 
