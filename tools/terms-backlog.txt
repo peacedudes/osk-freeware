@@ -292,7 +292,6 @@ split
 splman
 splprt
 splstat
-sterm
 striche
 su
 subber

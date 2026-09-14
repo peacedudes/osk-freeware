@@ -538,6 +538,7 @@ spottopgm|Each netpbm author granted the right to use and distribute their code 
 sputoppm|Each netpbm author granted the right to use and distribute their code without charge, on a non-commercial basis; many allow more -- see each file's notice.|DOC/netpbm/COPYRIGHT
 sqrtx|No copyright or licence statement; the source says it is "from Plum - Reliable p.2-2", typed in by O.E. Tutzauer.|SRC/forum1/sqrtx.c lines 2-6
 ssl|No copyright or licence statement in SRC/effo_wolk or its documentation. The header names Thomas Wolk, Berlin, as author.|SRC/effo_wolk/ssl.c lines 1-18
+sterm|No copyright or licence statement in its source. STERM 1.5, from Carl Kreider's Smod9.c, modified by Mark Griffith for the OS9 Forum and others.|sterm.c lines 1-40 and every other file in TELECOM/STerm_src.lzh, Microware OS-9 archive
 stone|(c) Copyright 1986 Robert Heller. "All Rights Reserved." No distribution terms are stated in the source or in DOC/snobol/Readme.|SRC/effo_snobol/stone.c lines 7-8; DOC/snobol/Readme
 strfile|No copyright or licence statement in SRC/fortune or its documentation. The header names Ken Arnold, September 1978.|SRC/fortune/strfile.c lines 5-21
 strings|Copyright (C) 1988 Piercarlo Grandi. GNU General Public License, version 1 or later.|SRC/v_misc/strings.c lines 31-37
