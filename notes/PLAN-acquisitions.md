@@ -1158,3 +1158,49 @@ looked at are:
 commercial VMEbus vendor -- not leads.  The Wayback CDX check of the four
 is recorded beside this.
 
+### The OSK sites the newsgroups name, checked 2026-09-14
+
+rdoggett: *"you should definitely check out the osk sites you uncover in
+wisconsin, germany or wherever."*  Done for every host the posts named
+that the 2026-09-13 Wayback survey (thirteen hosts, above) had not covered.
+Method as before: the Wayback CDX API, domain-wide, then the pages read.
+
+    cabrales.cs.wisc.edu, hermit.cs.wisc.edu   never captured
+    dlso.dl.ac.uk (:8001 and :80)              never captured
+    members.xoom.com/os9/                      never captured
+    zelux7.zel.kfa-juelich.de   9 captures, COSY accelerator-control pages;
+                                the ~ftp/pub/os9/BASH tree never crawled
+    hcshh.hcs.de                142 captures; the only software is Linux
+                                packages under /users/hm (pcvt, ups, ...);
+                                Frank Kaefer's /fkk never captured
+    tornado.oche.de             157 captures, personal pages and Debian notes
+    os9tools.sourceforge.net    captured 2002-2004: Boisy Pitre's HOST-side
+                                utilities (os9dir, os9copy, os9dump ...) for
+                                OS-9 disk images, ToolShed's forerunner --
+                                they run on Linux/Windows, not on OS-9, so
+                                OUT OF SCOPE.  sourceforge.net itself answers
+                                a Cloudflare challenge (403).
+    people.delphi.com/os9al     Allen Huffman's 1997 pages (pobox ~alsplace
+                                redirects there, later disneyfans.com): an
+                                OS-9 links page and a web-tour generator; no
+                                OSK downloads.  Sub-Etha Software was
+                                commercial.
+
+**Invaders 09 has an OSK version that no archive we know holds.**
+homepage.mac.com/jamiec (captured 2004): Allen Huffman wrote it in 6809
+assembly for the CoCo 3 under OS-9 Level II; "in 1995 I rewrote Invaders
+09 in C for a 68000 based machine called the MM/1 that ran a version of
+OS-9 known as OS-9 68K. I think I released it around 1998"; the page
+offers only the 2001 Mac OS X port.  Not in the pool, rtsi or the posts.
+A lead, not a fetch: the MM/1 release would have to turn up somewhere.
+
+**Wisconsin's OSK archive is COVERED.**  The 2026-09-11 comparison of
+chestnut's 1994 index (`acquisitions-2026-09-11/os9/ftp/chestnut-missing.txt`)
+listed three OSK files the pool lacked, and the list is now STALE: the pool
+has `diff.tar' (6 members) and `os9_unix' (11 members -- Ivan Powis's rsh,
+rshd, rcp, rmt and lpr, 1992, followed in the posts from chestnut to rtsi
+through 1998; it needs Microware's ISP networking), and the third,
+`mtp.shar.Z', is McIvor's 1992 module transfer protocol, which exists whole
+in the comp.os.os9 post.  Everything else on that list is 6809, CoCo 3 or
+G-Windows, outside this collection's scope.
+
