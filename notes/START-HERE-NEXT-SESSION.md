@@ -28,12 +28,21 @@ transport; SetTerm's readme sat in DOC/mines; SOURCES.txt listed wysetime as
 removed; EFFO-INFO said i_am_i is not on the disk; README-MODULES and
 SOURCES.txt still called the soft-float math imprecise.
 
+The 32 card lines whose "public domain" or "freeware" rested on SOURCES.txt
+alone were re-checked: 16 held, 9 were wrong (cal is shareware, beav and
+emacs.mm1 non-commercial, sh and cat only "licensed free of charge", aprocs,
+hexedit, lha, dirname a bare copyright), 7 state nothing.  Cards and the
+SOURCES.txt entries are corrected; screen's entry also called it a terminal
+multiplexer (it is Screens).  tools/probe_trap_needs.sh was run end to end
+and agrees with the manual sweep (20 needing a module); it now names Graph.
+
 Still open:
-  * A re-check of the 32 remaining card lines whose "public domain" or
-    "freeware" rests on SOURCES.txt alone was running (scratchpad
-    terms-recheck.psv).  Verify its CORRECTED and UNSUPPORTED verdicts
-    against the files before changing a card.
-  * Five DOC directories hold another program's document: DOC/bm (Bdale
+  * The other ~76 card lines resting on SOURCES.txt alone ("GNU", "None",
+    Info-ZIP, BSD and the like) were being re-checked the same way
+    (scratchpad terms-recheck2.psv).
+  * A math sweep -- probe_trap_needs.sh with math and math881 withheld --
+    was running to find programs needing Microware's math trap handler.
+  * Seven DOC directories hold another program's document (FOR-RDOGGETT 16): DOC/bm (Bdale
     Garbee's MS-DOS mailer; bm is a Boyer-Moore grep), DOC/dump (a
     terminfo dump), DOC/join and DOC/uniq (Gregorie's programs, not the GNU
     binaries), DOC/whoami (UUCP's page; the binary is GNU's).  None of the
