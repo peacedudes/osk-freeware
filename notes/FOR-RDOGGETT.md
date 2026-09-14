@@ -1,6 +1,6 @@
 # For rdoggett
 
-Open questions only. Nothing here is decided. Updated 2026-09-13.
+Open questions only. Nothing here is decided. Updated 2026-09-14.
 
 ## Yours alone -- nothing I can do about these
 
@@ -13,6 +13,16 @@ Open questions only. Nothing here is decided. Updated 2026-09-13.
    wrong names.  Fixed in os9exec **4d26520** (fix/scf-pd-eor, not pushed
    yet); the CI pin must be at or past it.  The handoff has the detail.
 
+   **That branch now also carries a CPU fix, and the pin should take it
+   too** (2026-09-14): NEG and NBCD never set the 68000's X flag, so
+   Microware's software doubles came out wrong -- 1.0-1.0 was -2^-20.
+   209b35c, reviewed by the os9exec session, with its tests at d56b1bd,
+   the branch tip.  The image a CI build writes is not affected (tar
+   extracts no floating point), but every figure a program prints under
+   an older os9exec is, and this repo's cases, cards and
+   DOC/README-FLOATINGPOINT are now written against the fixed one.
+   `notes/os9exec-bugs/X-FLAG.md` has it.  The pin today is 261b4b6.
+
 3. **Nobody has tried this on real hardware.** The guides say so plainly.
    If you know someone with a real system, that is the paragraph to check.
 
@@ -22,49 +32,17 @@ Open questions only. Nothing here is decided. Updated 2026-09-13.
    The key is `~/.config/usenet-rewind/os9`; once the pull is verified a
    session can delete that file for you if you say so.
 
-## A decision that costs money, and only you can make it
+## ANSWERED -- the newsgroup archive
 
-5. **comp.os.os9 1987-2002 has been FOUND, and getting it properly costs
-   about $40.**  `usenet-rewind.com' holds the group from May 1987 to
-   December 2023, 17,802 messages -- verified by reading the May 1987
-   digests themselves, which carry period OSK postings (Dieter Stoll's
-   ARC port to OS-9/68K "posted with permission", James Jones' compress
-   from mcrware).  This is the hole the acquisitions plan has called the
-   live question for two days: the group's active era, where OSK
-   freeware was actually posted, held nowhere else we could find.
-
-   Bodies read free.  What is gated is what an archive actually needs --
-   the author addresses (masked on the free pages) and the original
-   messages with full headers.  Their Researcher plan, $39.99 for a
-   month, adds a JSON search API.
-
-   **Their terms, read whole on 2026-09-13 (dated that day), were
-   OVERSTATED here before.**  They forbid you to "Scrape, bulk-export,
-   resell, or repurpose Service data for spam, fraud, identity theft,
-   harvesting of email addresses, or any abusive purpose", and to "Place
-   automated load on the Service beyond normal interactive use, except
-   through an authorized API plan and within its limits."  So paying IS
-   the permitted route: the API with your key, within quota, is what the
-   terms allow.  Scripting the free web pages is what they do not.
-
-   Only Researcher includes contact details, headers, full-message and
-   thread downloads and the API -- Individual ($9.99) has none of them.
-   The API (`GET /api/search`, groupname + date range,
-   `returnOriginalMessage=1`) gives 10 results a page against 25,000
-   searches a month; comp.os.os9 whole is about 1,800 pages.  Caveats:
-   keys may not be "shared, pooled, or used concurrently by multiple
-   individuals or systems"; addresses must not be harvested (credit by
-   name, never republish 1980s addresses); their API page says "Pro plan"
-   where pricing says Researcher, worth one email first; and nothing
-   grants redistribution of the messages themselves.  One month would
-   cover comp.os.os9 1987-2002 plus mod.os.os9, sub.os.os9, fj.os.os9 and
-   de.comp.os.os9.
-
-   Everything else was searched and closed -- narkive starts 2003,
-   usenetarchives is behind a Cloudflare challenge on every path, Google
-   Groups 429s and its 1987 Wayback captures are empty framesets, the
-   giganews corpus walls at 2003, and the UTZOO mirrors stop mid-1991.
-   `notes/PLAN-acquisitions.md' has the whole table.
+5. ~~**comp.os.os9 1987-2002 has been FOUND, and getting it properly costs
+   about $40.**~~  **You bought the Researcher month on 2026-09-13** and
+   the pull is complete: every OS-9, m68k and CD-i group plus the
+   OSK-mention searches, each checked against the site's own index, 6,905
+   pages in `~/Developer/os9/Scraped/usenet-rewind/` -- private, author
+   addresses included, never committed.  What it yielded (little new
+   software, the CD-i and MM/1 findings, four os9exec bugs, and the push
+   to port perl) is in `notes/PLAN-acquisitions.md`.  Item 7 is what is
+   left of it: cancel before the renewal and delete the key.
 
 ## A licence question, on a file that already ships
 
@@ -94,6 +72,12 @@ Open questions only. Nothing here is decided. Updated 2026-09-13.
    `rcsmerge' as a card about a missing helper, write a `pipe()' of our
    own over OS-9's pipe device, or accept the clause for that one
    binary.  Nothing else about diff3 is blocked.
+
+   **A `pipe()' of our own now exists** (2026-09-14): the perl port
+   needed one, and `SRC/perl4/osk.c' has it -- one open of `/pipe' and a
+   dup of it, written for this collection with no clause attached.  So
+   the licence half of this question has an answer that asks nothing of
+   you, if RCS is ever wanted.  The three findings below still stand.
 
    **Three findings from 2026-09-13 that make this moot for now:**
    (a) on a real system the name is TAKEN -- rcsmerge forks a bare
