@@ -1,5 +1,35 @@
 # Start here, next session
 
+## 2026-09-14 (evening): every card states its terms -- in progress
+
+rdoggett: *"You must note on each card it's requirements, copyrights,
+whatever."*  Built and committed:
+
+  * `tools/terms.psv` -- name|terms|where recorded; the card shows the terms.
+  * `tools/terms-backlog.txt` -- programs not looked up yet (302 when this
+    was written); gate `every card states its terms` fails on a program in
+    neither file, a stale backlog name, or a name not in the catalogue.
+  * Cards without a line say "not yet looked up"; Needs now lists cio for
+    starred programs.  The page's withdrawn-tar text is gone.
+
+How the lines were found: SOURCES.txt License:/terms lines (the smallutils
+"public domain" there proved unsupported and was corrected), the licence
+files of each package (netpbm, Elm, C News, WN, KA9Q, TeX, ADL, GCC 1.39),
+and four research passes reading every SRC tree's README, documents and
+source headers, each line carrying file and line.  "No copyright or licence
+statement" is written only after the files were read.
+
+Still open:
+  * Two research passes were running over the last 302 (no DOC/ORIGINS row:
+    236 in CMDS; GAMES, REBUILT, GCC2, MM1, NETWORK, UUCP, DEMOS).  Their
+    output lands in the scratchpad as terms-C.psv and terms-D.psv, with
+    UNSURE and FLAGS sections; verify the flags against the files before
+    anything goes on a card or into FOR-RDOGGETT.
+  * Requirements that live only in prose do not reach a card yet (a2p needs
+    perl; tterm, tsu, xyt need csl and fpu).  A small hand table was the plan.
+  * FOR-RDOGGETT items 8-13 are the licence and authorship questions this
+    turned up; nothing was removed.
+
 ## 2026-09-14: perl 4.036 is in, and os9exec's floating point was wrong
 
 **perl** (471a003c): `CMDS/perl`, `LIB/perl`, `DOC/perl` (man page as text,
