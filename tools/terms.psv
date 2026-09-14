@@ -133,7 +133,7 @@ disdvi|Posted and freely redistributed since; no licence text accompanies the so
 disktest|By St.Paschedag. public; no military use|DOC/disktest/info_disktest
 dld|(c) 1986 FHL (Frank Hogg Laboratory), part of QCom. "They are not freeware or shareware or public domain. However you may freely distribute them as long as this file is included."|DOC/comms/XmodemUpDown.ReadMe line 29
 dotilde|Copyright (C) 1990, 1993 Rick Adams and Bob Billson. GNU General Public License, version 2 or later. "You cannot sell UUCPbb. You are free to modify the code and give copies of this away."|SRC/uucpbb/dotilde.c lines 2-9; DOC/uucpbb/uucpbb.doc lines 297-301; SOURCES.txt line 1647
-dpark|Public domain|SOURCES.txt line 816
+dpark|No copyright or licence statement anywhere in the smallutils package -- its one document, its sources or its binaries.|DOC/smallutils/utils.doc; every file of smallutils.tar.Z (68k archive)
 drawl|None stated; a joke filter, carried as posted.|SOURCES.txt line 1013
 draw|No copyright or licence statement in SRC/draw or its documentation.|SRC/draw/main.c; SRC/draw/draw.h; SRC/draw/command.c
 du|No copyright or licence statement; the source says it is based on Size.C by Avy Moise (1987), modified by Tom Leitner.|SRC/eff_du/du.c lines 1-8
@@ -166,7 +166,7 @@ factor|BSD licence with the advertising clause. Copyright (c) 1989 The Regents o
 fastcc|Copyright (C) 1989 Reimer Mellin. "Permission is granted to reproduce and distribute this package by any means so long as no fee is charged above a nominal handling fee" and the notice is kept. Commercial use needs the author's written permission.|SRC/effo_forum16/fastcc.c lines 3-14
 fastmail|The Elm Mail System General Public License, (C) 1988-1992 USENET Community Trust and 1986-1987 Dave Taylor: copying and distribution permitted, at no charge.|DOC/elm/Notice
 fcomp|No copyright or licence statement; the source says only that it is modified from CUG189 (C Users Group library).|SRC/bix/fcomp.c lines 1-6
-fc|Public domain|SOURCES.txt line 821
+fc|No copyright or licence statement anywhere in the smallutils package -- its one document, its sources or its binaries.|DOC/smallutils/utils.doc; every file of smallutils.tar.Z (68k archive)
 ff|No copyright or licence statement in SRC/effo_wolk or its documentation.|SRC/effo_wolk/ff.c
 fgrep|See file COPYING !. public|DOC/fgrep/info_fgrep
 fibo|No copyright or licence statement; a benchmark from Byte, July 1987, typed in by O.E. Tutzauer.|SRC/eff_bench/fibo.c lines 3-5
@@ -501,7 +501,7 @@ run|No copyright or licence statement; the source names Martin Moser, Kaufbeuren
 rxmod|Copyright W. Wittig. Public, with the author's condition: no military use.|DOC/EFFO-INFO lines 30 and 117
 saa|Copyright 1991 John D. Ramsdell. "Permission to use, copy, modify, and distribute this software and its documentation for any purpose and without fee is hereby granted, provided that the above copyright notice appear in all copies."|SOURCES.txt line 924
 savage|No copyright or licence statement; a benchmark from Byte, July 1987, typed in by O.E. Tutzauer.|SRC/eff_bench/savage.c lines 2-5
-sbreak|Public domain|SOURCES.txt line 826
+sbreak|No copyright or licence statement anywhere in the smallutils package -- its one document, its sources or its binaries.|DOC/smallutils/utils.doc; every file of smallutils.tar.Z (68k archive)
 scales|D. Jason Penney: "Please acknowledge the author in any reproduction or modification." No other terms are stated.|SRC/hc_loose/scales.c lines 6-7
 scrabble|"Permission is granted to modify and re-distribute this code in any manner as long as this notice is preserved.|SOURCES.txt line 2683
 screen|Freeware|SOURCES.txt line 1220
@@ -515,7 +515,7 @@ setimex|Public domain|SOURCES.txt line 1242
 setime|Public domain|SOURCES.txt line 781
 setterm|Copyright (c) 1991 Dynamic Software Systems (Brian C. White). "Free software; you can redistribute it and/or modify it under the terms of the GNU General Public License"; the Copying file shipped with it is version 1.|SRC/setterm2/setterm.c lines 17-20; DOC/setterm/Copying line 2
 sgitopnm|Each netpbm author granted the right to use and distribute their code without charge, on a non-commercial basis; many allow more -- see each file's notice.|DOC/netpbm/COPYRIGHT
-shar|Public domain|SOURCES.txt line 608
+shar|No copyright or licence statement anywhere in the smallutils package -- its one document, its sources or its binaries. Its note says "This is not one of my programs".|DOC/smallutils/utils.doc; every file of smallutils.tar.Z (68k archive)
 shire|Copyright 1988 by Brett Slocum. All rights reserved. "Permission is granted to distribute or modify this program, or use portions of this program in other programs, as long as this notice remains intact." Not to be sold for profit without the author's permission.|SRC/weather/weather.c lines 4-9
 shuffle|"permission is granted to freely distribute this code provided that you: 1) don't charge for it 2) leave my name and header on it 3) clearly document your changes". Stephan Dasia.|SRC/shuffle/main.c lines 2-10
 sh|Public domain|SOURCES.txt line 767
@@ -619,7 +619,8 @@ world|World C Version 1.00 copyright 1987 J.D. McDonald. "Use as you like for no
 worms|No copyright or licence statement in SRC/toys or its documentation. The source carries an SCCS id, "worms.c 4.1 82/10/24", and names Eric P. Scott, Caltech High Energy Physics, October 1980.|SRC/toys/worms.c lines 1, 15-17
 worm|BSD. Copyright (c) 1980 Regents of the University of California. This product includes software developed by the University of California, Berkeley and its contributors.|SOURCES.txt line 849
 wump|BSD. Copyright (c) 1989 Regents of the University of California. This product includes software developed by the University of California, Berkeley and its contributors.|SOURCES.txt line 864
-wysecrack|Public domain|SOURCES.txt line 789
+wysecrack|No copyright or licence statement anywhere in the smallutils package -- its one document, its sources or its binaries.|DOC/smallutils/utils.doc; every file of smallutils.tar.Z (68k archive)
+wysetime|No copyright or licence statement anywhere in the smallutils package -- its one document, its sources or its binaries.|DOC/smallutils/utils.doc; every file of smallutils.tar.Z (68k archive)
 xargs|Posted to Usenet and freely redistributed since. No licence text accompanies the source.|SOURCES.txt line 2323
 xbmtopbm|Each netpbm author granted the right to use and distribute their code without charge, on a non-commercial basis; many allow more -- see each file's notice.|DOC/netpbm/COPYRIGHT
 xcrypt|Only "(c) Copyright 1988 by A. Nowatzyk" on the xrand generator it includes. No grant of any kind.|SRC/xrand/xrand.c line 42; SRC/xrand/xcrypt.c lines 1-60

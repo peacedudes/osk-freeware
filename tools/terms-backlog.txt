@@ -347,7 +347,6 @@ windio.52
 wish
 wrjpgcom
 wrjpgcom.070
-wysetime
 xkermit
 xlate
 xlharc
