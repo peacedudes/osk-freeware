@@ -2,25 +2,32 @@
 
 ## THE FIRST MOVE, 2026-09-13 (end of session)
 
-Everything below is committed and the tree is clean; no harness is
-running and nothing is half-done.  Two things want rdoggett and are in
-`notes/FOR-RDOGGETT.md`.  Everything else is finished except ONE thread,
-and it has one obvious next step:
+Everything below is committed and the tree is clean.  Two things want
+rdoggett and are in `notes/FOR-RDOGGETT.md`.
 
-**Run the datatest suite from an EXPLICIT list of all 57 case files in
-alphabetical order** -- the same set and order `--all` builds itself:
+**The tex-driver thread is CLOSED (9cdb0577), and it was image state after
+all.**  The explicit 57-file list and `--all`, run side by side on two
+fresh images, both gave 728 of 743 with identical failures -- so `--all`
+was never the variable and nothing flapped.  Then the capture was READ:
+every driver said `can't open [/dd/story.dvi]`.  `tex.cases`' setup
+passed `'\\input ... \\end'` in single quotes, bash kept both backslashes,
+TeX stopped at `Undefined control sequence`, and no story.dvi was ever
+written.  The drivers passed whenever `text.cases` -- which sorts AFTER
+`tex` -- had left one on the image from an earlier run.  Proved both ways
+before the fix: tex alone on a used image, 3 drivers PASS; on a fresh
+image, 3 FAIL.  Fixed, and a fresh image now gives tex 17 of 18 (only the
+stale `dvips` case).  Every earlier "not image state" conclusion in the
+datatest section below rests on runs against `osk-freeware.dd`, which
+had carried story.dvi all along.
 
-```sh
-export PATH=/opt/local/bin:$PATH          # gtimeout lives there
-export OS9EXEC=$HOME/Developer/os9/os9exec/os9exec
-out=$(python3 tools/datatest.py tools/datatests/*.cases 2>&1); echo $?
-echo "$out" | grep -E 'dvialw|dvilj2|dvieps|of .* cases passed'
-```
+**The lesson, cheaper than any bisection: read the `.raw` capture in
+`notes/datatests/` for a failing case before theorising.**  The answer
+was printed in it the whole time.
 
-`tex`'s `dvialw`, `dvilj2` and `dvieps` fail under `--all` and pass in
-every explicit arrangement tried (28, 41, 48, 50, 52 families, and all
-57 with `tex` first).  That run tells you whether `--all` itself is the
-variable.  The section "The datatest suite" below has the whole picture.
+**Measured after the fix, `--all` on a fresh image: 731 of 743.**  The
+twelve failures are exactly the nine stale cases listed below (fixed
+programs whose cases still assert the failure) plus the three deliberate
+ones.  Updating those nine is the natural next job.
 
 **Do not** pipe a harness into `tail` and read `$?` -- you get `tail`'s.
 **Do not** rebuild `osk-freeware.dd` while rdoggett has an emulator open
@@ -1441,6 +1448,13 @@ its published screen will keep showing the old command with nothing to
 notice.  That is still open and is worth closing.
 
 ## The datatest suite: 727 of 743, and the disk has OUTGROWN NINE OF ITS TESTS
+
+> **RESOLVED 2026-09-13 (9cdb0577) -- read "THE FIRST MOVE" at the top
+> first.**  The tex-driver investigation below (position, bisection,
+> `--all`, accumulation) was chasing a setup line that never produced
+> `/dd/story.dvi`; the drivers passed only on images where `text` had left
+> one.  Its "not left-over image state" conclusions are WRONG.  The
+> stale-case inventory is still accurate.
 
 Run whole for the first time in a while, 2026-09-13.  **16 failures, and
 so far NINE of them are cases asserting a failure that a later commit
