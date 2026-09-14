@@ -383,6 +383,26 @@ def load_categories(path):
     return cats
 
 
+def load_terms(path):
+    """What each card says about a program's terms, from tools/terms.psv.
+
+    name|terms|where it is recorded.  Only the terms reach the card; the
+    third field is for whoever checks a line against SOURCES.txt.  A program
+    with no line here has not been looked up yet -- see terms-backlog.txt --
+    and its card says so rather than guessing.
+    """
+    out = {}
+    if not os.path.exists(path):
+        return out
+    for line in open(path, encoding="latin-1"):
+        if not line.strip() or line.startswith("#"):
+            continue
+        parts = line.rstrip("\n").split("|")
+        if len(parts) >= 2 and parts[1].strip():
+            out[parts[0]] = parts[1].strip()
+    return out
+
+
 def load_howto(path):
     """Hand-written "how do I run this" notes, from tools/howto.psv.
 
@@ -479,6 +499,8 @@ def gather(root, catfile):
     howto = load_howto(os.path.join(os.path.dirname(os.path.abspath(__file__)),
                                     "howto.psv"))
     helps = load_help(root)
+    terms = load_terms(os.path.join(os.path.dirname(os.path.abspath(__file__)),
+                                    "terms.psv"))
     out, uncategorised = [], []
     for p in sorted(progs.values(), key=lambda x: x["name"].lower()):
         if not p.get("dir"):
@@ -487,6 +509,8 @@ def gather(root, catfile):
             p["howto"] = howto[p["name"]]
         if p["name"] in helps:
             p["help"] = helps[p["name"]]
+        if p["name"] in terms:
+            p["terms"] = terms[p["name"]]
         if p["name"] in cats:
             p["cat"], p["sub"] = cats[p["name"]]
         elif p["name"] in groups:
@@ -531,7 +555,7 @@ ORDER = ["Shells","Editors","Text tools","Files & directories","Developer tools"
  "Printing","Documentation","G-Windows","Needs hardware","Uncategorised"]
 
 KEEP = ("name","desc","cat","sub","star","dir","size","origin","archive","src",
-        "docs","hassrc","military","basic09","needs","info","help","howto",
+        "docs","hassrc","military","basic09","needs","info","help","howto","terms",
         "lang","langnote")
 
 def render_markdown(progs):

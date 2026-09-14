@@ -1,0 +1,129 @@
+# terms.psv -- what each program's card says about its terms: copyright,
+# licence, conditions.  name|terms|where it is recorded.  The card shows the
+# second field.  Never write terms nobody found: `No copyright or terms
+# stated' is a finding and belongs here only once the source and its
+# documentation have been read for one.  Seeded 2026-09-14 from SOURCES.txt
+# License:/terms lines and the EFFO info files; tools/terms-backlog.txt
+# names the programs whose terms have not been looked up yet.
+a2p|Copyright (c) 1989-1991 Larry Wall. Under either the GNU General Public License, version 1 or any later version, or the Artistic License, at your choice.|SOURCES.txt line 147
+accordian|Public domain. Its README ends "This program is public domain. -Eric Lechner".|SOURCES.txt line 910
+almanac|None is stated. A search of all 33,165 bytes of the source and of its documentation finds no copyright, no grant and no restriction.|SOURCES.txt line 2536
+aprocs|Freeware|SOURCES.txt line 805
+ar|No terms stated. Freely distributed binary; the author declined to release source ("I do not intend to do a general release of source code this time").|SOURCES.txt line 576
+arc|Unstated. Third-party, not Microware.|SOURCES.txt line 585
+aterm|Freeware|SOURCES.txt line 1265
+autolf|Freeware|SOURCES.txt line 1252
+bash|GNU GPL|SOURCES.txt line 762
+bc|GNU General Public License version 2. Copyright (C) 1991 Free Software Foundation, Inc.|SOURCES.txt line 2357
+beav|Freeware|SOURCES.txt line 677
+browse|None accompanies the posting. It was posted to comp.os.os9 and has been freely redistributed since, on the same footing as the other no-notice Usenet software here.|SOURCES.txt line 2493
+bs|None stated; carried as posted.|SOURCES.txt line 940
+c4|None stated. The posting carries only the author's name; it is kept and named as the author released it, the way the other unnoticed Usenet postings here are.|SOURCES.txt line 897
+cal|Freeware|SOURCES.txt line 749
+canfield|BSD. Copyright (c) 1980 Regents of the University of California; the usual Berkeley notice is at the head of the source.|SOURCES.txt line 1032
+cat|Public domain|SOURCES.txt line 691
+cdecl|None accompanies the release. It was posted to comp.sources.unix and has been freely redistributed since.|SOURCES.txt line 2339
+cfscores|BSD. Copyright (c) 1983 Regents of the University of California; the usual Berkeley notice heads the source, including the acknowledgement clause.|SOURCES.txt line 2577
+checksum|(c) 1992 by L.Zeller. Public, EFFO Forum 23|DOC/checksum/info_checksum
+chef|None stated; a single-author joke filter, carried as posted.|SOURCES.txt line 992
+ckermit|BSD / public domain (C-Kermit project)|SOURCES.txt line 775
+ctags|BSD.|SOURCES.txt line 741
+dfiles|(C) Christian Mahr. Public; no conditions|DOC/dfiles/info_dfiles
+dirname|Public domain|SOURCES.txt line 702
+disdvi|Posted and freely redistributed since; no licence text accompanies the source. The README grants `disdvi' explicitly -- "use it and improve as you wish" -- and says nothing either way about dvi2tty.|SOURCES.txt line 2459
+disktest|By St.Paschedag. public; no military use|DOC/disktest/info_disktest
+dpark|Public domain|SOURCES.txt line 816
+drawl|None stated; a joke filter, carried as posted.|SOURCES.txt line 1013
+ed|GNU GPL|SOURCES.txt line 1282
+emacs.mm1|Public domain|SOURCES.txt line 683
+etags|Public|DOC/etags/info_etags
+fc|Public domain|SOURCES.txt line 821
+fgrep|See file COPYING !. public|DOC/fgrep/info_fgrep
+file|Freeware|SOURCES.txt line 1208
+fillup|(c) 1992 by L.Zeller. Public, EFFO Forum 23|DOC/fillup/info_fillup
+find|Public domain|SOURCES.txt line 1290
+fish|BSD. Copyright (c) 1990 Regents of the University of California. This product includes software developed by the University of California, Berkeley and its contributors.|SOURCES.txt line 881
+flex|See GNU copyright. public|DOC/flex/info_flex
+freeb|Public domain. The source says so in its third line: "Public domain version: 5/21/89".|SOURCES.txt line 2379
+fudd|None stated; a joke filter, carried as posted. Elmer Fudd is a cartoon character, not a person.|SOURCES.txt line 1003
+getenv|Public domain|SOURCES.txt line 709
+globe|"Permission to use, copy, modify, and distribute this software and its documentation for any purpose and without fee is hereby granted" -- Jef Poskanzer, 1994.|SOURCES.txt line 1199
+gnugo|GNU General Public License, version 1 as the source states ("as published by the Free Software Foundation - version 1").|SOURCES.txt line 2655
+gs33|GNU GPL (AFPL)|SOURCES.txt line 1273
+gs403|Aladdin Free Public License (DOC/gs403 and LIB/gs403/public.txt):|SOURCES.txt line 310
+gzip|GNU GPL v2|SOURCES.txt line 590
+hdump|"Copying-policy: freely distributable", stated in the release's own Description file, which is on the disk as DOC/hdump/Description.|SOURCES.txt line 2396
+help|HELP and HELPINDEX (c) 1989 by Lukas Zeller, CH-Maennedorf. Public domain; 1. This Program may only be used for peaceful applications.|DOC/help/info_help
+hexa|None stated; carried as posted.|SOURCES.txt line 1061
+hexed|By H. Hoheisel-Zimmermann. public; no military use|DOC/hexed/info_hexed
+hexedit|Freeware|SOURCES.txt line 1214
+hist|By H. Hoheisel. public; no military use|DOC/hist/info_hist
+howfrag|Public domain. Its doc reads: "Feel free to copy and distribute this program so long as there is no charge associated with it other than a minimal media fee."|SOURCES.txt line 798
+ifdef|Public|DOC/ifdef/info_ifdef
+indent|Public|DOC/indent/info_indent
+jotto|Free. Its header: "You may use this program and modify it as you like, so long as you leave this message as it is and don't try to make money off the program."|SOURCES.txt line 954
+kermit|BSD / public domain|SOURCES.txt line 1260
+lame|None stated; a joke filter, carried as posted.|SOURCES.txt line 1022
+larn|Copyrighted 1986 by Noah Morgan; posted to|SOURCES.txt line 1170
+less|GNU GPL|SOURCES.txt line 714
+lha|Freeware|SOURCES.txt line 596
+lharc|Freeware, no conditions attached. $AVAILABILITY freeware / $CONDITIONS (none)|SOURCES.txt line 603
+logisim|Public|DOC/logisim/info_logisim
+look|"This code is in the public domain. You may use this code for any purpose, commercial or noncommercial, as long as you don't try to claim you wrote it."|SOURCES.txt line 1364
+lua|Copyright (c) 1994-1997 TeCGraf, PUC-Rio. Permission granted without fee to use, copy, modify and distribute, for any purpose, provided the notice is kept.|SOURCES.txt line 130
+luac|Copyright (c) 1994-1997 TeCGraf, PUC-Rio. Permission granted without fee to use, copy, modify and distribute, for any purpose, provided the notice is kept.|SOURCES.txt line 130
+m4|GNU General Public License version 1, February 1989 -- the `Copying' file in the archive is the GPL v1 text in full.|SOURCES.txt line 2713
+makeinfo|GNU GPL|SOURCES.txt line 1329
+mastrm|Public domain. "Master Mind, as presented here, is intended solely for the enjoyment of the public, and is not to be used for profit." Master Mind is a trademark of Invicta Plastics;|SOURCES.txt line 966
+mexist|Public domain|SOURCES.txt line 1237
+mimecode|Released with the author's permission. Gene Heskett's readme records Tim Kientzle's permission to distribute the code ahead of the DDJ publication date.|SOURCES.txt line 556
+monop|BSD. Copyright (c) 1980 Regents of the University of California; the usual Berkeley notice is at the head of every source file.|SOURCES.txt line 1109
+napoleon|GNU General Public License version 1 or, at your option, any later version. Copyright (C) 1992 Pete Chown.|SOURCES.txt line 2699
+othello|Free. Its header: "This program may be freely used and distributed."|SOURCES.txt line 1046
+paranoia|Public domain|SOURCES.txt line 1177
+perl|Copyright (c) 1989-1991 Larry Wall. Under either the GNU General Public License, version 1 or any later version, or the Artistic License, at your choice.|SOURCES.txt line 147
+phoon|"Permission to use, copy, modify, and distribute this software and its documentation for any purpose and without fee is hereby granted, provided that this copyright notice appear in all copies" -- Jeffrey A.|SOURCES.txt line 1187
+rechne|Freeware|SOURCES.txt line 754
+remove|Public|DOC/remove/info_remove
+reversi|GNU General Public License version 2. Copyright (C) 1992 Elias Martenson. The licence travels with the program: SRC/reversi/COPYING, and ORIG/COPYING as posted.|SOURCES.txt line 2625
+rot22|None is stated. Nothing in the posting, the README, the manual page or the source carries a copyright, a grant or a restriction.|SOURCES.txt line 2604
+rsdsk|"copyright (c) 1997 by Bob Devries / may be freely distributed", stated at the head of each program's documentation, which is on the disk as DOC/os9dsk and DOC/rsdsk.|SOURCES.txt line 2423
+saa|Copyright 1991 John D. Ramsdell. "Permission to use, copy, modify, and distribute this software and its documentation for any purpose and without fee is hereby granted, provided that the above copyright notice appear in all copies."|SOURCES.txt line 924
+sbreak|Public domain|SOURCES.txt line 826
+scrabble|"Permission is granted to modify and re-distribute this code in any manner as long as this notice is preserved.|SOURCES.txt line 2683
+screen|Freeware|SOURCES.txt line 1220
+sed|Public|DOC/sed/info_sed
+setime|Public domain|SOURCES.txt line 781
+setimex|Public domain|SOURCES.txt line 1242
+sh|Public domain|SOURCES.txt line 767
+shar|Public domain|SOURCES.txt line 608
+space|(c) 1990 by L.Zeller. Public, with condition.; May only be used under the conditions listed in the documentation (help file).|DOC/space/info_space
+spew|Copyright 1987 Greg Smith. "Permission is granted to freely use and distribute this software."|SOURCES.txt line 980
+tail|Public domain|SOURCES.txt line 696
+tar|Public domain|SOURCES.txt line 630
+tput|Public domain. "tput, written by Badri Lokanathan, is in the public domain, and may be freely distributed.|SOURCES.txt line 2283
+tree|(c) 1990 by C.Mahr. Public.|DOC/tree/info_tree
+unc|Freely distributed; no notice beyond a caution that disassembling proprietary software may breach that software's own licence -- about USE, not a term on unc.|SOURCES.txt line 726
+undump|"Copying-policy: freely distributable".|SOURCES.txt line 2410
+unshar|Public domain -- "do what you want, but let your conscience be your guide."|SOURCES.txt line 616
+unzip|Info-ZIP license (open source, redistribution OK)|SOURCES.txt line 636
+upperdir|Freeware|SOURCES.txt line 1247
+uustat|The author's own grant, in the source: "Permission is granted to anyone to use this software for any purpose on any computer system, and to redistribute it freely", subject to four conditions -- no liability, the origin must not be misrepresented, altered versions must be plainly marked, and "Incorporation of this software into commercial products is permitted only with the written permission of the author".|SOURCES.txt line 2511
+version|Public. very public.|DOC/version/info_version
+vi_cio|Freeware|SOURCES.txt line 667
+vi_nocio|Freeware|SOURCES.txt line 672
+whereis|BSD. Copyright (c) 1980 The Regents of the University of California. This product includes software developed by the University of California, Berkeley and its contributors.|SOURCES.txt line 1313
+which|Posted to Usenet and freely redistributed since. No licence text accompanies the source.|SOURCES.txt line 1299
+worm|BSD. Copyright (c) 1980 Regents of the University of California. This product includes software developed by the University of California, Berkeley and its contributors.|SOURCES.txt line 849
+wump|BSD. Copyright (c) 1989 Regents of the University of California. This product includes software developed by the University of California, Berkeley and its contributors.|SOURCES.txt line 864
+wysecrack|Public domain|SOURCES.txt line 789
+xargs|Posted to Usenet and freely redistributed since. No licence text accompanies the source.|SOURCES.txt line 2323
+xd|Public domain. "This program is in the public domain: `Do what thou wilt shall be the whole of the law'.|SOURCES.txt line 2303
+xmas|Posted to Usenet and freely redistributed since; no licence text. The source invites you to change its sign-off line.|SOURCES.txt line 1075
+yacc|Public|DOC/yacc/info_yacc
+yahtzee2|None stated in the posting; freely redistributed on comp.sources.games.|SOURCES.txt line 1129
+z|Copyright (C) 1995 Tim Kientzle and The Coriolis Group, Inc. Redistribution is permitted under seven conditions stated in the source;|SOURCES.txt line 2731
+zc|The author's own words in the source: "The code below is released to the public domain for educational purposes.|SOURCES.txt line 2555
+zip|Info-ZIP license (open source, redistribution OK)|SOURCES.txt line 641
+zipnote|Info-ZIP license (open source, redistribution OK)|SOURCES.txt line 646
+zipsplit|Info-ZIP license (open source, redistribution OK)|SOURCES.txt line 651

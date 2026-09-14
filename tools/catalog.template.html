@@ -492,10 +492,9 @@ function about(){
     `arrangement. Your own commands and modules stay where they are: `+
     `<code>SYS/login</code> puts <code>/h1/CMDS</code> on the path for runb, the shell and `+
     `the rest, so <code>/h1</code> is the name to give your system disk while this one is `+
-    `<code>/dd</code>. Two ways to get it there: the raw RBF image, written whole to a disk `+
-    `your system mounts; or the same tree as a tar archive, unpacked at the root of the `+
-    `disk with the <code>tar</code> module shipped beside it. We have not had a real `+
-    `machine to do this on; <code>DOC/README-RUNNING</code> says what is known.</p>`+
+    `<code>/dd</code>. The collection is one RBF image, written whole to a disk your `+
+    `system mounts. We have not had a real machine to do this on; `+
+    `<code>DOC/README-RUNNING</code> says what is known.</p>`+
     `<p><b>Trying it first</b><br>`+
     `os9exec, a community emulator that builds on macOS, Linux, Windows and most `+
     `anything with a C compiler, runs the image with no OS-9 of your own. Its `+
@@ -524,7 +523,7 @@ function about(){
     `<p><b>Reading a page</b><br>`+
     `Pick a kind of program, or a letter, then a program. Its page says what it does, `+
     `gives a command to try, lists what it needs, shows it running, and prints its own `+
-    `help. Version, author and origin follow.</p>`+
+    `help. Its terms, version, author and origin follow.</p>`+
     `<p><b>See it run</b> was captured from the program on the disk image; nothing is `+
     `mocked up. The <b>shell</b> button at the top names the shell the commands are `+
     `spelt for, bash or the OS-9 shell, and pressing it changes to the other.</p>`+
@@ -538,10 +537,11 @@ function renderPanel(){
     about();
     return;
   }
-  // Real requirements only.  cio ships on the disk, so it is not a
-  // requirement worth surfacing; what a reader must supply is the data the
-  // program opens (from DEPENDS) and, for a BASIC09 program, runb.
+  // Every requirement, including the ones this disk already supplies: a
+  // reader taking a program to a system of their own needs to know about
+  // cio as much as about the data files it opens (from DEPENDS) or runb.
   const needs=[];
+  if(p.star) needs.push('Microware&rsquo;s <code>cio</code> (on this disk)');
   if(p.basic09) needs.push('Microware&rsquo;s <code>runb</code>');
   const data=alsoReads(p);
   data.forEach(x=>needs.push(`<code>${esc(x)}</code>`));
@@ -556,7 +556,7 @@ function renderPanel(){
   add("Version",   esc(i.version));
   add("Author",    esc(i.author));
   add("Copyright", esc(i.copyright));
-  add("Terms",     esc(i.availability||i.conditions));
+  add("Terms",     esc(p.terms||i.availability||i.conditions||"")||"not yet looked up &mdash; <code>SOURCES.txt</code> has what is recorded");
   add("Language",  esc(i.language));
   add("Came from", p.origin ? esc(p.origin)+(p.archive?` &mdash; ${esc(p.archive)}`:"") : "");
   add("Source",    p.src ? `<code>SRC/${esc(p.src)}</code>` : (p.hassrc?`<code>SRC/${esc(p.name)}</code>`:""));

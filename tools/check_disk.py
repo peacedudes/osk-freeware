@@ -1174,6 +1174,50 @@ def check_cio_macro_population(root):
     return not problems, "%d problem(s) with the cio-macro population" % len(problems)
 
 
+def check_cards_state_their_terms(root):
+    """Every program's card states its terms -- ratcheted.
+
+    rdoggett, 2026-09-14: "You must note on each card it's requirements,
+    copyrights, whatever."  On that day 19 of 997 cards carried a copyright
+    or conditions line, all from EFFO info files; what SOURCES.txt records
+    never reached a card.  `tools/terms.psv' holds what the card says,
+    and `tools/terms-backlog.txt' names the programs not looked up yet.  A
+    catalogued program in neither fails; so does a backlog name that now
+    has a line, and a line or backlog name that is not a program.
+    """
+    tools = os.path.dirname(os.path.abspath(__file__))
+    sys.path.insert(0, tools)
+    # Every CATALOGUE entry, not only the runnable modules: cio, math and
+    # the other trap libraries have cards too, and a reader keeping one
+    # needs its terms as much as a program's.
+    import gen_catalog
+    catalogued, _, _ = gen_catalog.gather(root, os.path.join(tools, "categories.psv"))
+    progs = {p["name"] for p in catalogued}
+    def names(path, sep):
+        out = set()
+        if os.path.exists(path):
+            for line in open(path, encoding="latin-1"):
+                line = line.strip()
+                if line and not line.startswith("#"):
+                    out.add(line.split(sep)[0] if sep else line)
+        return out
+    have = names(os.path.join(tools, "terms.psv"), "|")
+    backlog = names(os.path.join(tools, "terms-backlog.txt"), None)
+    bad = []
+    for n in sorted(progs - have - backlog):
+        bad.append("`%s' has no terms line and is not on the backlog" % n)
+    for n in sorted(backlog & have):
+        bad.append("`%s' has terms now -- take it off the backlog" % n)
+    for n in sorted((have | backlog) - progs):
+        bad.append("`%s' is in the terms files and is not a catalogued program" % n)
+    for b in bad[:12]:
+        print("    %s" % b)
+    if len(bad) > 12:
+        print("    ... and %d more" % (len(bad) - 12))
+    return not bad, "%d problem(s); %d cards still without terms" % (
+        len(bad), len(progs - have))
+
+
 def check_cards_carry_real_help(root):
     """Every card's "its own help" is what the program printed -- ratcheted.
 
@@ -1409,6 +1453,7 @@ CHECKS = [
     ("cards carry no full pathlists", check_cards_have_no_pathlists),
     ("every card says what to type", check_cards_have_a_try_line),
     ("cards carry real help text", check_cards_carry_real_help),
+    ("every card states its terms", check_cards_state_their_terms),
     ("harness env matches SYS/login", check_harness_env_matches_login),
     ("every program is accounted for", check_every_program_is_accounted_for),
     ("panels show their own program", check_panels_show_their_program),
