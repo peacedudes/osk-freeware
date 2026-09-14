@@ -97,6 +97,10 @@ frm|The Elm Mail System General Public License, (C) 1988-1992 USENET Community T
 fstopgm|Each netpbm author granted the right to use and distribute their code without charge, on a non-commercial basis; many allow more -- see each file's notice.|DOC/netpbm/COPYRIGHT
 fudd|None stated; a joke filter, carried as posted. Elmer Fudd is a cartoon character, not a person.|SOURCES.txt line 1003
 g3topbm|Each netpbm author granted the right to use and distribute their code without charge, on a non-commercial basis; many allow more -- see each file's notice.|DOC/netpbm/COPYRIGHT
+gcc_cc1plus|GNU General Public License, version 1.|DOC/gcc139/gcc.texinfo line 103
+gcc_cc1|GNU General Public License, version 1.|DOC/gcc139/gcc.texinfo line 103
+gcc_cccp|GNU General Public License, version 1.|DOC/gcc139/gcc.texinfo line 103
+gcc_collect|GNU General Public License, version 1.|DOC/gcc139/gcc.texinfo line 103
 gemtopbm|Each netpbm author granted the right to use and distribute their code without charge, on a non-commercial basis; many allow more -- see each file's notice.|DOC/netpbm/COPYRIGHT
 getenv|Public domain|SOURCES.txt line 709
 gftopk|Public domain, as its OS-9 port's manifest states: "TeX and the accompanying programs are all public domain ... Feel free to distribute this system in any way you see fit."|DOC/tex/Manifest.text line 59
@@ -339,7 +343,9 @@ undump|"Copying-policy: freely distributable".|SOURCES.txt line 2410
 unshar|Public domain -- "do what you want, but let your conscience be your guide."|SOURCES.txt line 616
 unzip|Info-ZIP license (open source, redistribution OK)|SOURCES.txt line 636
 upperdir|Freeware|SOURCES.txt line 1247
+uupoll|No copyright or licence statement. Its Readme says only that it "is distributed as-is".|DOC/uucp-blars/Readme line 3; SOURCES.txt, Blars UUCP section
 uustat|The author's own grant, in the source: "Permission is granted to anyone to use this software for any purpose on any computer system, and to redistribute it freely", subject to four conditions -- no liability, the origin must not be misrepresented, altered versions must be plainly marked, and "Incorporation of this software into commercial products is permitted only with the written permission of the author".|SOURCES.txt line 2511
+uux|No copyright or licence statement. Its Readme says only that it "is distributed as-is".|DOC/uucp-blars/Readme line 3; SOURCES.txt, Blars UUCP section
 version|Public. very public.|DOC/version/info_version
 vftovp|Public domain, as its OS-9 port's manifest states: "TeX and the accompanying programs are all public domain ... Feel free to distribute this system in any way you see fit."|DOC/tex/Manifest.text line 59
 vi_cio|Freeware|SOURCES.txt line 667

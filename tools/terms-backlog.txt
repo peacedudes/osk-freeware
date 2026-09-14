@@ -219,12 +219,8 @@ game
 gawk
 gcc
 gcc2
-gcc_cc1
-gcc_cc1plus
 gcc_cc2
-gcc_cccp
 gcc_cccp2
-gcc_collect
 gcl
 gdd
 gen
@@ -582,8 +578,6 @@ uuencode
 uuexpand
 uulog
 uuname
-uupoll
-uux
 uuxqt
 uwho
 valspeak
