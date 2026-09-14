@@ -1278,3 +1278,44 @@ candidate, terms unstated; `tar' and `tar.txt' were listed but never
 captured.  Fetched descriptions are in
 `~/Developer/os9/Scraped/acquisitions-2026-09-14/icdia/`.
 
+### The CD-i and 6809 groups, read (2026-09-14)
+
+**rec.games.video.cd-i and its three small siblings: 12,306 unique messages,
+ZERO software posts** (no uuencode, shar or Archive-name), about 57 that
+mention OS-9 or CD-RTOS at all -- it is a games-and-players group.  The
+site-wide CDRTOS search added 13 messages, none carrying software.
+
+But it answers rdoggett's question -- could a CD-i player run this
+collection? -- better than the professional-model evidence above, because
+it says ANY player:
+
+  * Andrew Davidson, Microware, 1995-07-25: "It's possible to launch an
+    OS-9 shell from a CD on a CD-i player, assuming you have a terminal
+    attached to the serial port. You don't need a hard disk."
+  * 1997-09-11: "CD-i players all have an RS-232 port"; use Port 2 as the
+    terminal (9600,N,8,1, a PC terminal program will do); the disc's
+    startup program launches an application or spawns a shell; "you need
+    to have your software environment on the CD-i disc"; anything written
+    goes to memory only; Web-i was a CD-i player running as a web-browsing
+    computer; a block device over the serial link to a PC's OS-9 partition
+    is possible in theory but "you probably need a developer system and
+    license from Microware".
+  * David Oseas, Philips Media, 1996-02-05: the ROM holds the player shell
+    and the OS-9 device drivers; patched drivers are routinely loaded from
+    the disc into RAM at run time.
+
+So a burned CD-i disc carrying these OSK modules, a startup that spawns a
+shell, and a serial terminal is a plausible way to run the collection on
+a consumer player.  The limits: 1 MB RAM base (programs run one at a
+time; cio/csl/math must fit alongside), no writable storage (scores and
+saves only to a RAM disk), a TV display the collection does not drive,
+and Green Book disc mastering we have no tools for.  UNTESTED -- no
+player here.
+
+**The 6809 groups** (net.micro.6809 1,005 + comp.sys.m6809 6,627, both
+matching the index; one net.micro.6809 page skipped in a network outage
+is being re-fetched): 15 software posts touch OSK or the 68000, and 14 of
+them were already in the 2026-09-11 material -- Wecker's and Omura's
+shar, compress, Pete Lyall's AR, hdkit and the Kreider C library.  The
+fifteenth, "AR for OS9/6809" (1988), is 6809-only.  Nothing new.
+
