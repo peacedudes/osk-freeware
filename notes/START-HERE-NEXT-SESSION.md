@@ -1,5 +1,120 @@
 # Start here, next session
 
+## 2026-09-13 (late): the collection as a HOST DIRECTORY -- dogfooding os9exec
+
+rdoggett's expectation, and now a standing target: unpack the tree into an
+empty host directory, name it as both `OS9DISK` and `OS9H0`, and everything
+works in os9exec except what makes no sense on a host dir (`free`-like
+programs).  Failures there are to be ROOT-CAUSED AS os9exec BUGS, not written
+off.  He also withdrew the tar as a second download (456437fe): the image is
+the one download; unpacking is a test arrangement, not a distribution.
+
+**How to run it.**  `python3 tools/mktar.py disk <x>.tar` (mkimage no longer
+leaves one), `tar -xpf <x>.tar -C <empty dir>` (the `-p` keeps the public
+write bits), then `datatest.py --all --image <that dir>`.  A directory takes
+several concurrent os9exec sessions safely; an image does not.
+
+**macOS, os9exec d318661: 726 of 743 on the directory, 740 on the image.**
+The fourteen directory-only failures, every one traced with `-r -d 2`:
+
+  * SEVEN were ONE os9exec bug, FIXED in os9exec a211ea4 (fix/scf-pd-eor,
+    unpushed): a mode-0 `I$Open` on a host dir has no host stream, and
+    `SS_Size` did `fstat(fileno(NULL))`; segv_handler turns the host
+    SIGSEGV into the guest's E$BusErr.  zip, zipinfo, unzip, zipsplit's
+    zipinfo, mv, texidx (+ rm-removes, which only rode on mv).  Verified
+    from outside by building a211ea4 from `git archive` and rerunning
+    archives/files/tex: 68 of 71.
+  * FOUR rename by WRITING A 32-BYTE ENTRY into a directory opened `$83`,
+    which a host dir refuses with E$BMODE: `mv` (it reaches this once the
+    SS_Size fix lets it past), `move`, `wndex` (C-library rename()) and
+    `upperdir`, which then retries forever because it never checks the
+    error -- that was the "4 MB of spaces" flood, NOT case-insensitivity.
+    Filed on os9exec's ROADMAP-68k as translating a name-only entry write
+    into a host rename.
+  * `combine` creates with attribute byte 0; on a host dir that becomes
+    host mode `----------`, unreadable, where RBF lets the super user read
+    it.  Filed with the above.
+  * THREE make no sense on a host dir: `dinfo`, `freeb`, `dam` (sector 0
+    and the allocation map).  Expected, and the only ones that should stay.
+  * `patch` fails on BOTH, at different points -- not directory-only.
+
+**And one RBF-IMAGE bug the comparison exposed: `dbz`'s "store failed" is
+os9exec, not dbz.**  On a host dir dbz stores fine.  On the image a read of
+the just-created, empty history.pag returns E$DEADLK.  FIXED in os9exec
+21d5759 (fix/scf-pd-eor, unpushed).  The mechanism, as instrumented by
+os9exec-d9 -- and NOT the stale-ring theory first sent from here: an
+update-mode open resolves its pathname THROUGH the path being opened, the
+walk reads the directory to its end and takes the DIRECTORY's EOF lock,
+and RingJoin moved the path onto the file keeping it.  So every update
+path started life holding its file's end, and dbz's two update opens of
+history.pag deadlocked each other ("the writer is us").  `flagged.cases`
+asserts "store failed" as a dbz defect: it flips once the harness's
+os9exec includes 21d5759, and the case must change in the same commit as
+that move -- not before, or it fails against the os9exec in use.
+Verified from here: 21d5759 built from `git archive`, `flagged.cases` on a
+fresh image is 7 of 8 with exactly that case failing ("store failed"
+missing, no E$DEADLK anywhere in the capture).  One thing to look at when
+the case is rewritten: `dbz -c` still reports "can't find" the record it
+has now stored -- the case expects that line too, so it still matches, but
+a store that succeeds and a lookup that cannot find it may be a second
+defect, in dbz or in os9exec.
+
+**Linux (Ubuntu 24.04 container, os9exec d318661 built from `git archive`,
+tree unpacked INSIDE the container so the host filesystem is
+case-sensitive; container runs as root):**
+
+    RBF image           737 of 743   (macOS 740)
+    unpacked directory  725 of 743   (macOS 726)
+
+  * **The three extra image failures are ONE Linux-only os9exec bug, and
+    it reaches our RELEASE IMAGE.**  The Linux build runs every pathname
+    through `include_2e` (utilstuff.c, `#ifdef linux`, since the 2002
+    sources) -- netatalk's convention of storing a host file `.x` as
+    `:2ex` -- and applied it to OS-9 pathnames on RBF images too.  So
+    `/dd/.newsrc` is looked up as `:2enewsrc` (E$PNNF: ELM's newalias,
+    `cat /dd/.newsrc`, UUCP unsubscribe), and a dot-file CREATED by a Linux
+    build lands in the image as `:2ename`.  **Our CI builds the image on
+    ubuntu-latest, and the collection's own `tar` creates `.bashrc`,
+    `.newsrc` and `.ELM` while filling it** -- a CI-built image would carry
+    them misnamed, and the workflow's "read the image back" step would not
+    notice.  FIXED in os9exec 4d26520 (respelling kept for host file names
+    only; RBF opens and chd use a new EatBackOS9).  **Before any release:
+    bump the CI's os9exec pin to 4d26520 or later, and add a read-back of
+    `/dd/.newsrc` to the workflow so it cannot recur silently.**  Rebuild
+    any image a Linux os9exec wrote before the fix -- its dot-files are
+    literal `:2ename` entries and stay that way.
+    Tonight's os9exec commits, in order, all on fix/scf-pd-eor and
+    unpushed: d318661 (paced /tN output held), a211ea4 (mode-0 host dir),
+    21d5759 (dbz E$DEADLK), 4d26520 (Linux dot-names).
+  * **Case-insensitive lookup WORKS on a Linux host directory** --
+    `/dd/SYS/MOTD`, `/dd/sys/motd`, `/DD/SYS/motd` and `whereis -b GEN`
+    all resolve.  rdoggett doubted there were case issues; he was right.
+  * Directory failures: 16 are common to both platforms.  Linux-only:
+    `last3`'s ci case is TIMING (it needs the clock not to advance between
+    two check-ins; the slower container crossed a second) and
+    `whereis-ignores-case-as-RBF-does`, whose capture ends at its marker
+    with no `@@CASE@@end` although the command takes one second.  SOLVED:
+    NOT case, NOT lost output -- the harness runs from the repo, which in
+    the container is a slow read-only bind mount of the macOS directory,
+    and os9exec's START DIRECTORY evidently gets touched during host-dir
+    walks: the identical generated script on the identical fresh tree,
+    every device named by variable, exit 0 both times, took 11 s with cwd
+    on container-local disk and 407 s with cwd=/repo.  That blows the
+    family's 300 s gtimeout and cuts off whichever `whereis` is running
+    (three reruns failed different whereis cases).  Sent to os9exec-d9 as
+    a performance lead.  **For Linux runs, `cd` somewhere container-local
+    before `datatest.py`** (it finds its cases by its own path, not cwd).
+    macOS-only: `combine`, and only because the container runs as root,
+    which reads a mode-000 file regardless.  Run as a user, Linux would
+    fail it the same way.
+  * `dbz -c` reporting "can't find" a record it has stored is dbz's own
+    behaviour, identical on image and host dir (os9exec-d9, checked on
+    21d5759); an untested guess is that it wants tab-separated history
+    fields where the case writes spaces.
+
+`CLAUDE.md`'s rule that bash's `[ -f ]`/`[ -d ]` fail on host dirs is stale
+and was corrected: both answer true on `/dd` and `/h5` as host dirs.
+
 ## THE FIRST MOVE, 2026-09-13 (end of session)
 
 Everything below is committed and the tree is clean.  Two things want

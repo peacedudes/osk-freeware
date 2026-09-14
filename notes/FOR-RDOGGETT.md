@@ -6,9 +6,21 @@ Open questions only. Nothing here is decided. Updated 2026-09-13.
 
 1. **Nothing is pushed, tagged or merged.** The branch has never left this
    machine; the CI pin is an old os9exec commit and has never run.
+   **Before a release, that pin MUST move past an os9exec fix that is not
+   in yet** (2026-09-13): the Linux build of os9exec renames every file
+   starting with `.' on an RBF image, and CI builds the image on Ubuntu --
+   so a CI-built image would carry `.bashrc', `.newsrc' and `.ELM' under
+   wrong names.  Fixed in os9exec **4d26520** (fix/scf-pd-eor, not pushed
+   yet); the CI pin must be at or past it.  The handoff has the detail.
 
 3. **Nobody has tried this on real hardware.** The guides say so plainly.
    If you know someone with a real system, that is the paragraph to check.
+
+7. **Cancel usenet-rewind before it renews, about 2026-10-13, and delete
+   the key.**  You bought one month of Researcher on 2026-09-13 for the
+   OS-9 newsgroup pull.  Cancelling happens on their site, in your account.
+   The key is `~/.config/usenet-rewind/os9`; once the pull is verified a
+   session can delete that file for you if you say so.
 
 ## A decision that costs money, and only you can make it
 
