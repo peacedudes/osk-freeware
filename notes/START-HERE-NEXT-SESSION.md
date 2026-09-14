@@ -1,42 +1,46 @@
 # Start here, next session
 
-## 2026-09-14 (evening): every card states its terms and requirements -- in progress
+## 2026-09-14 (evening): every card states its terms and requirements
 
 rdoggett: *"You must note on each card it's requirements, copyrights,
-whatever."*  Built and committed:
+whatever."*  Done for every catalogued program:
 
-  * `tools/terms.psv` -- name|terms|where recorded; the card shows the terms.
-  * `tools/terms-backlog.txt` -- programs not looked up yet; gate `every card
-    states its terms` fails on a program in neither file, a stale backlog
-    name, or a name not in the catalogue (made to fail both ways first).
-  * `tools/requires.psv` -- name|requirement|where stated, for what no scan
-    records (csl for lua, the three gzip csl builds and the tterm set, fpu
-    without a 68881; perl for a2p's output; a shell on SHELL for perl).  The
-    program-name gate reads it -- 25dcacaf only claimed that; 2a42b5a3 did it
-    and was shown failing on a bogus name.
-  * Cards without terms say "not yet looked up"; Needs lists cio for starred
-    programs and every requires.psv line.  The page's withdrawn-tar text is
-    gone.
+  * `tools/terms.psv` -- name|terms|where recorded, all 998 programs; the
+    backlog file is empty and gate `every card states its terms` keeps it so.
+  * `tools/requires.psv` -- name|requirement|where, for what no scan sees.
+    Its trap-module lines were MEASURED with `tools/probe_trap_needs.sh`:
+    sixteen programs ask for csl, basicwin and xengine then for X11R6shl,
+    g and striche for graph, rxmod for vmod_trap -- all on the disk.  The
+    program-name gate reads the file (25dcacaf only claimed that; 2a42b5a3
+    did it, shown failing on a bogus name first).
+  * Cards list cio for starred programs and every requires.psv line under
+    Needs; a card with no terms line would say "not yet looked up".
 
-How the lines were found: package licence files, SOURCES.txt (its smallutils
-"public domain" proved unsupported and was corrected), and research passes
-reading each SRC tree, DOC directory, binary strings and pool archive, each
-line carrying file and line.  "No copyright or licence statement" and
-"Origin not established" are written only after the looking.  Every flagged
-restriction was checked against its file before it reached a card.
+How: package licence files; research passes over every SRC tree, DOC
+directory, binary and pool archive, each line with file and line; every
+flagged restriction checked against its file.  SOURCES.txt was wrong more
+than once -- smallutils, the DESIGNA VLT utilities, basename/dirname and
+emacs had "public domain" or "freeware" with nothing behind them -- and
+those entries are corrected.
 
-The passes also found three errors on the disk, now fixed: atp was
-described as the KA9Q AX.25 transport and is a QWK mail reader; SetTerm's
-readme was filed under DOC/mines; SOURCES.txt listed wysetime as removed.
+Also fixed on the way: atp is a QWK mail reader, not the KA9Q AX.25
+transport; SetTerm's readme sat in DOC/mines; SOURCES.txt listed wysetime as
+removed; EFFO-INFO said i_am_i is not on the disk; README-MODULES and
+SOURCES.txt still called the soft-float math imprecise.
 
 Still open:
-  * 236 programs on the terms backlog -- the ones in CMDS with no DOC/ORIGINS
-    row.  A research pass over them writes scratchpad/terms-C.psv, with
-    UNSURE and FLAGS sections; verify flags against the files before merging.
-  * requires.psv holds only documented cases.  A measured csl sweep, like the
-    one behind the cio star, would find the rest.
-  * FOR-RDOGGETT items 8-14 are the licence and authorship questions this
-    turned up; nothing was removed or rebuilt.
+  * A re-check of the 32 remaining card lines whose "public domain" or
+    "freeware" rests on SOURCES.txt alone was running (scratchpad
+    terms-recheck.psv).  Verify its CORRECTED and UNSUPPORTED verdicts
+    against the files before changing a card.
+  * Five DOC directories hold another program's document: DOC/bm (Bdale
+    Garbee's MS-DOS mailer; bm is a Boyer-Moore grep), DOC/dump (a
+    terminfo dump), DOC/join and DOC/uniq (Gregorie's programs, not the GNU
+    binaries), DOC/whoami (UUCP's page; the binary is GNU's).  None of the
+    documented programs is on the disk.  Their cards point at the wrong
+    manual.  Nothing moved yet.
+  * FOR-RDOGGETT items 8-15 are the licence and authorship questions;
+    nothing was removed or rebuilt.
 
 ## 2026-09-14: perl 4.036 is in, and os9exec's floating point was wrong
 
