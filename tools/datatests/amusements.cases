@@ -1,0 +1,48 @@
+# amusements -- text generators, dialect filters and the moon, each asserted
+# on what it printed (2026-09-14).
+
+family  amusements
+
+setup   export USER=tester
+setup   W=/dd/tmp/AMU
+setup   /dd/CMDS/rm -rf $W > /nil 2>/nil
+setup   /dd/CMDS/mkdir -p $W > /nil 2>/nil
+setup   /dd/CMDS/printf 'Hello, world. The quick brown fox jumps over the lazy dog.\n' > $W/t.txt
+
+case    chef-speaks-swedish-chef
+run     /dd/CMDS/chef < $W/t.txt
+expect  Hellu, vurld. Zee qooeeck broon fux joomps oofer zee lezy dug.
+expect  Bork Bork Bork!
+
+case    fudd-speaks-elmer-fudd
+run     /dd/CMDS/fudd < $W/t.txt
+expect  Hewwo, wowwd. De qwick bwown fox jumps ovew de wazy dog.
+
+case    drawl-speaks-with-a-drawl
+run     /dd/CMDS/drawl < $W/t.txt
+expect  Hello, warld. The quick brown fox jumps over thuh lazy dog.
+
+case    lame-takes-its-text-as-arguments
+# lame reads its arguments, not standard input: piped text prints nothing.
+run     /dd/CMDS/lame "hello world" < /nil
+expect  hell0 w0rld
+
+case    spew-makes-as-many-headlines-as-asked
+run     /dd/CMDS/spew 3 < /nil | /dd/CMDS/wc -l
+expect  3
+
+case    phoon-draws-the-moon-for-a-given-date
+run     /dd/CMDS/phoon 1969 7 20 < /nil
+expect  New Moon +
+expect  5 20:51:06
+expect  First Quarter -
+expect  1 12:19:57
+
+case    zot-builds-its-text-a-letter-at-a-time
+run     /dd/CMDS/GAMES/zot -s=1 hello < /nil
+expect  ello
+expect  hello
+
+case    cfscores-knows-who-has-played
+run     /dd/CMDS/GAMES/cfscores < /nil
+expect  tester has never played canfield.

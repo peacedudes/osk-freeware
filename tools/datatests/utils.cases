@@ -1,0 +1,55 @@
+# utils -- small command-line tools that had no test, each asserted on the
+# data it produced (2026-09-14): a hex dump that loads back byte for byte, a
+# base64 round trip, termcap answers, a zip code, a C declaration explained.
+
+family  utils
+
+setup   W=/dd/tmp/UTL
+setup   /dd/CMDS/rm -rf $W > /nil 2>/nil
+setup   /dd/CMDS/mkdir -p $W > /nil 2>/nil
+setup   /dd/CMDS/printf 'Hello, world. The quick brown fox jumps over the lazy dog.\n' > $W/t.txt
+
+case    xd-dumps-and-loads-back-byte-for-byte
+run     /dd/CMDS/xd -c $W/t.txt
+run     /dd/CMDS/xd $W/t.txt > $W/t.xd
+run     /dd/CMDS/xd -l $W/t.xd > $W/t.back
+run     /dd/CMDS/md5 $W/t.back
+expect  48 65 6C 6C 6F 2C 20 77  6F 72 6C 64 2E 20 54 68 | Hello, world. Th
+expect  = ff5361ac468d44a269c2e10f8c2270c2
+
+case    xargs-hands-what-it-reads-to-a-command
+run     echo $W/t.txt | /dd/CMDS/xargs /dd/CMDS/cat
+expect  Hello, world. The quick brown fox jumps over the lazy dog.
+
+case    tput-answers-from-termcap
+run     /dd/CMDS/tput -Tvt100 cols
+run     /dd/CMDS/tput -Tvt100 clear | /dd/CMDS/xd -c
+expect  80
+expect  1B 5B 48 1B 5B 32 4A
+
+case    zc-names-the-city-for-a-zip-code
+run     /dd/CMDS/zc 60115 < /nil
+expect  De Kalb, IL.
+
+case    cdecl-explains-a-declaration
+run     echo "explain char *argv[]" | /dd/CMDS/cdecl
+expect  declare argv as array of pointer to char
+
+case    mimecode-base64-round-trip
+run     /dd/CMDS/mimecode -e < $W/t.txt > $W/t.b64
+run     /dd/CMDS/cat $W/t.b64
+run     /dd/CMDS/mimecode -d < $W/t.b64 > $W/t.dec
+run     /dd/CMDS/md5 $W/t.dec
+expect  SGVsbG8sIHdvcmxkLiBUaGUgcXVpY2sgYnJvd24gZm94IGp1bXBzIG92ZXIgdGhlIGxhenkg
+expect  = ff5361ac468d44a269c2e10f8c2270c2
+
+case    uustat-reports-no-queue
+run     /dd/CMDS/uustat < /nil
+expect  uucp is possibly active
+
+case    config-reports-double-precision
+# 53 digits: before os9exec 209b35c (X flag after NEG) the soft-float
+# answers were wrong, and this is a direct probe of that arithmetic.
+run     /dd/CMDS/config < /nil
+expect  Significant base digits = 53 (= at least 15 decimal digits)
+expect  Char pointers = 32 bits
