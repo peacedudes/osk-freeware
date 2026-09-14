@@ -4,7 +4,8 @@
 #     tools/probe_trap_needs.sh <scratch image> <work dir> [module ...]
 #
 # Each program under disk/CMDS runs from its own execution directory holding
-# cio, math and math881, plus any modules named on the command line, and
+# cio, math and math881 (or whatever BASE_MODULES names instead), plus any
+# modules named on the command line, and
 # NOTHING ELSE -- F$Load looks for a trap handler there -- on a copy of a
 # scratch image.  NEVER osk-freeware.dd: rdoggett keeps an emulator open on it.
 # A missing trap module fails at startup and names itself, so five seconds a
@@ -29,7 +30,7 @@ find "$R/disk/CMDS" -type f ! -path '*/archives/*' | sort | while IFS= read -r f
   name=$(basename "$f"); rel=${f#$R/disk/}
   case "$name" in flink|cio|csl|csl020|math|math881) continue;; esac
   d=$W/x; rm -rf "$d"; mkdir -p "$d"
-  cp "$R/disk/CMDS/cio" "$R/disk/CMDS/math" "$R/disk/CMDS/math881" "$d/"
+  for m in ${BASE_MODULES:-cio math math881}; do cp "$R/disk/CMDS/$m" "$d/"; done
   for m in "$@"; do cp "$R/disk/CMDS/$m" "$d/" 2>/dev/null; done
   cp "$f" "$d/$name"
   out=$(gtimeout 5 env -i OS9DISK="$IMG" OS9H0="$IMG" OS9H5="$d" OS9CMDS="$d" "$E" -r "/h5/$name" < /dev/null 2>&1 \

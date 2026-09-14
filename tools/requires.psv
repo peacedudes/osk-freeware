@@ -5,6 +5,8 @@
 # comes from a document on the disk or a measurement -- never from a guess.
 # The trap-module lines were measured with tools/probe_trap_needs.sh, which
 # runs each program with the module withheld and reads the module it asks for.
+# That sees what a program needs AT STARTUP: bm names math inside it and
+# starts without it, so a program may still want a module later.
 a2p|perl, to run the script it writes|SRC/perl4/README-OSK; tools/datatests/perl.cases
 perl|a shell named by SHELL for system, backticks and piped opens (SYS/login sets ksh)|SRC/perl4/README-OSK
 lua|Microware's csl (on this disk)|SOURCES.txt, lua 3.0 section; measured 2026-09-14: "**** can't install csl ****"
@@ -28,3 +30,19 @@ msntp|Microware's csl (on this disk)|measured 2026-09-14: "**** can't install cs
 g|the graph trap library (on this disk, in GAMES)|measured 2026-09-14: "**** Can't install trap handler **** / **** Graph"; DOC/INDEX
 striche|the graph trap library (on this disk, in GAMES)|measured 2026-09-14: "**** Can't install trap handler **** / **** Graph"; DOC/INDEX
 rxmod|the vmod_trap trap handler (on this disk, beside it in COMMS)|measured 2026-09-14: "can't install Vmod Trap handler"
+aprocs|Microware's math trap handler (on this disk)|measured 2026-09-14, math and math881 withheld: "**** Can't install trap handler **** / **** math ****"
+blackjak|Microware's math trap handler (on this disk)|measured 2026-09-14, math and math881 withheld: "**** Can't install trap handler **** / **** math ****"
+cyberwar|Microware's math trap handler (on this disk)|measured 2026-09-14, math and math881 withheld: "**** Can't install trap handler **** / **** math ****"
+england|Microware's math trap handler (on this disk)|measured 2026-09-14, math and math881 withheld: "**** Can't install trap handler **** / **** math ****"
+float|Microware's math trap handler (on this disk)|measured 2026-09-14, math and math881 withheld: "**** Can't install trap handler **** / **** math ****"
+florida|Microware's math trap handler (on this disk)|measured 2026-09-14, math and math881 withheld: "**** Can't install trap handler **** / **** math ****"
+georgia|Microware's math trap handler (on this disk)|measured 2026-09-14, math and math881 withheld: "**** Can't install trap handler **** / **** math ****"
+japan|Microware's math trap handler (on this disk)|measured 2026-09-14, math and math881 withheld: "**** Can't install trap handler **** / **** math ****"
+loan|Microware's math trap handler (on this disk)|measured 2026-09-14, math and math881 withheld: "**** Can't install trap handler **** / **** math ****"
+minnesota|Microware's math trap handler (on this disk)|measured 2026-09-14, math and math881 withheld: "**** Can't install trap handler **** / **** math ****"
+mtst|Microware's math trap handler (on this disk)|measured 2026-09-14, math and math881 withheld: "**** Can't install trap handler **** / **** math ****"
+poker|Microware's math trap handler (on this disk)|measured 2026-09-14, math and math881 withheld: "**** Can't install trap handler **** / **** math ****"
+rpoem|Microware's math trap handler (on this disk)|measured 2026-09-14, math and math881 withheld: "**** Can't install trap handler **** / **** math ****"
+savage|Microware's math trap handler (on this disk)|measured 2026-09-14, math and math881 withheld: "**** Can't install trap handler **** / **** math ****"
+stone|Microware's math trap handler (on this disk)|measured 2026-09-14, math and math881 withheld: "**** Can't install trap handler **** / **** math ****"
+version|Microware's math trap handler (on this disk)|measured 2026-09-14, math and math881 withheld: "**** Can't install trap handler **** / **** math ****"
