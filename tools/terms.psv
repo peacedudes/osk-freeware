@@ -49,6 +49,18 @@ cmuwmtopbm|Each netpbm author granted the right to use and distribute their code
 ctags|BSD.|SOURCES.txt line 741
 dbz|Copyright (c) University of Toronto 1985-1990. "Permission is granted to anyone to use this software for any purpose ... and to alter it and redistribute it freely", with four conditions on credit.|DOC/cnews/COPYRIGHT; SOURCES.txt, C News section
 dfiles|(C) Christian Mahr. Public; no conditions|DOC/dfiles/info_dfiles
+dhryGcc2in|No copyright or licence statement in the source. It names its author, Reinhold P. Weicker, and asks that results be sent to him and to Rick Richardson.|SRC/dhry/dhry_gbl.h line 13; SRC/dhry/dhry_p1.c line 13
+dhryGcc2mx|No copyright or licence statement in the source. It names its author, Reinhold P. Weicker, and asks that results be sent to him and to Rick Richardson.|SRC/dhry/dhry_gbl.h line 13; SRC/dhry/dhry_p1.c line 13
+dhryGcc2o2|No copyright or licence statement in the source. It names its author, Reinhold P. Weicker, and asks that results be sent to him and to Rick Richardson.|SRC/dhry/dhry_gbl.h line 13; SRC/dhry/dhry_p1.c line 13
+dhryGcc2|No copyright or licence statement in the source. It names its author, Reinhold P. Weicker, and asks that results be sent to him and to Rick Richardson.|SRC/dhry/dhry_gbl.h line 13; SRC/dhry/dhry_p1.c line 13
+dhryGccin|No copyright or licence statement in the source. It names its author, Reinhold P. Weicker, and asks that results be sent to him and to Rick Richardson.|SRC/dhry/dhry_gbl.h line 13; SRC/dhry/dhry_p1.c line 13
+dhryGccmx|No copyright or licence statement in the source. It names its author, Reinhold P. Weicker, and asks that results be sent to him and to Rick Richardson.|SRC/dhry/dhry_gbl.h line 13; SRC/dhry/dhry_p1.c line 13
+dhryGcco2|No copyright or licence statement in the source. It names its author, Reinhold P. Weicker, and asks that results be sent to him and to Rick Richardson.|SRC/dhry/dhry_gbl.h line 13; SRC/dhry/dhry_p1.c line 13
+dhryGcc|No copyright or licence statement in the source. It names its author, Reinhold P. Weicker, and asks that results be sent to him and to Rick Richardson.|SRC/dhry/dhry_gbl.h line 13; SRC/dhry/dhry_p1.c line 13
+dhryO2|No copyright or licence statement in the source. It names its author, Reinhold P. Weicker, and asks that results be sent to him and to Rick Richardson.|SRC/dhry/dhry_gbl.h line 13; SRC/dhry/dhry_p1.c line 13
+dhryshamu2|No copyright or licence statement in the source. It names its author, Reinhold P. Weicker, and asks that results be sent to him and to Rick Richardson.|SRC/dhry/dhry_gbl.h line 13; SRC/dhry/dhry_p1.c line 13
+dhryshamu|No copyright or licence statement in the source. It names its author, Reinhold P. Weicker, and asks that results be sent to him and to Rick Richardson.|SRC/dhry/dhry_gbl.h line 13; SRC/dhry/dhry_p1.c line 13
+dhry|No copyright or licence statement in the source. It names its author, Reinhold P. Weicker, and asks that results be sent to him and to Rick Richardson.|SRC/dhry/dhry_gbl.h line 13; SRC/dhry/dhry_p1.c line 13
 dirname|Public domain|SOURCES.txt line 702
 disdvi|Posted and freely redistributed since; no licence text accompanies the source. The README grants `disdvi' explicitly -- "use it and improve as you wish" -- and says nothing either way about dvi2tty.|SOURCES.txt line 2459
 disktest|By St.Paschedag. public; no military use|DOC/disktest/info_disktest
