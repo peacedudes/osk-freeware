@@ -30,12 +30,10 @@ EOF-lock fix (21d5759): flagged.cases rewritten.
     config's card now ends with os9exec's own `# No more memory' lines
     from its malloc probe -- announced by design, then tallied (os9exec
     make test asserts it) -- which a reader may find odd.
-  * Full datatest on a fresh image after all of the above -- the last run
-    before the case corrections was 736 of 743.
+  * Full datatest on a fresh image after all of the above: **748 of 751**
+    -- exactly the three deliberate failures (zip, todos, sir).
   * The CI workflow pins os9exec; bump it once those commits are pushed.
     CI runs check_disk and the image build, not the datatests.
-  * Scratch image dt-perl2.dd in the repo root is gitignored and mine to
-    delete once the datatest run on it is read.
 
 ## 2026-09-13 (late): the collection as a HOST DIRECTORY -- dogfooding os9exec
 
