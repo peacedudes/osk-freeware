@@ -559,8 +559,8 @@ def check_hand_lists_have_no_duplicate_keys(root):
 
 
 def check_hand_files_name_real_programs(root):
-    """tools/howto.psv, tools/categories.psv and disk/DOC/USAGE must name
-    programs that exist.
+    """tools/howto.psv, tools/categories.psv, tools/requires.psv and
+    disk/DOC/USAGE must name programs that exist.
 
     All three are hand-maintained or generated-then-kept, and a program removed
     from the disk leaves its lines behind.  On 2026-08-30 `howto.psv' still
@@ -593,7 +593,7 @@ def check_hand_files_name_real_programs(root):
 
     here = os.path.dirname(os.path.abspath(__file__))
     bad = []
-    for fname in ("howto.psv", "categories.psv"):
+    for fname in ("howto.psv", "categories.psv", "requires.psv"):
         path = os.path.join(here, fname)
         if not os.path.exists(path):
             continue
