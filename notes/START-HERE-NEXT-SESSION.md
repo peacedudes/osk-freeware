@@ -36,13 +36,25 @@ SOURCES.txt entries are corrected; screen's entry also called it a terminal
 multiplexer (it is Screens).  tools/probe_trap_needs.sh was run end to end
 and agrees with the manual sweep (20 needing a module); it now names Graph.
 
+The rest of the card lines resting on SOURCES.txt alone were re-checked too:
+of 76, 39 held and 32 were corrected -- ckermit's Columbia no-sale notice,
+zip's "not sold for profit", larn's "Copying for Profit is Prohibited", gs33
+under the Aladdin licence not the GPL, no GNU licence travelling with bash
+or less 290, makeinfo under the GNU Emacs licence, fuller BSD and GPL text
+elsewhere -- and kermit states nothing.  SOURCES.txt's own entries for those
+eleven, and dvi2tty's "no licence text" (its source says non-commercial),
+are corrected as well.
+
+Requirements measured further: probe_trap_needs.sh takes BASE_MODULES, and
+run with math and math881 withheld it found 18 programs needing Microware's
+math (lunisolar and spline print the name as "A"; confirmed by running them
+with math supplied).  It sees only STARTUP needs -- bm names math and starts
+without it.  CLAUDE.md (local) now says csl edition 25 has shipped since
+2026-09-04; csl020 is still 15.
+
 Still open:
-  * The other ~76 card lines resting on SOURCES.txt alone ("GNU", "None",
-    Info-ZIP, BSD and the like) were being re-checked the same way
-    (scratchpad terms-recheck2.psv).
-  * A math sweep -- probe_trap_needs.sh with math and math881 withheld --
-    was running to find programs needing Microware's math trap handler.
-  * Seven DOC directories hold another program's document (FOR-RDOGGETT 16): DOC/bm (Bdale
+  * FOR-RDOGGETT 16-17: eight DOC directories hold another program's document,
+    and k, xy and z ship binaries their licence ties to source.  Earlier note: DOC/bm (Bdale
     Garbee's MS-DOS mailer; bm is a Boyer-Moore grep), DOC/dump (a
     terminfo dump), DOC/join and DOC/uniq (Gregorie's programs, not the GNU
     binaries), DOC/whoami (UUCP's page; the binary is GNU's).  None of the
