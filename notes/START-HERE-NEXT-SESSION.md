@@ -24,18 +24,18 @@ pnmrotate 90's size in their cases.  dbz works too, from the earlier RBF
 EOF-lock fix (21d5759): flagged.cases rewritten.
 
 **Open:**
-  * Seventeen published cards show long decimals and were captured on the
-    buggy emulator: almanac argproc_demo bc config dvitype ephem ephem881
-    mtst nasa lunisolar pgmtexture printf rayshade savage sqrtx tftopl
-    vftovp.  Reshoot them and read what changed (rayshade uses the 68881
-    and measured the same; bc is arbitrary precision).  Captions quoting a
-    figure need checking too.
+  * The seventeen published cards with floating-point output are reshot
+    (68c19815): savage, sqrtx, config and both ephems changed for real;
+    almanac, lunisolar, dvitype and rayshade only by date or timing.
+    config's card now ends with os9exec's own `# No more memory' lines
+    from its malloc probe -- announced by design, then tallied (os9exec
+    make test asserts it) -- which a reader may find odd.
   * Full datatest on a fresh image after all of the above -- the last run
     before the case corrections was 736 of 743.
   * The CI workflow pins os9exec; bump it once those commits are pushed.
     CI runs check_disk and the image build, not the datatests.
-  * Scratch images dt-perl.dd, dt-perl2.dd, dt-xflag.dd in the repo root
-    are gitignored and mine to delete.
+  * Scratch image dt-perl2.dd in the repo root is gitignored and mine to
+    delete once the datatest run on it is read.
 
 ## 2026-09-13 (late): the collection as a HOST DIRECTORY -- dogfooding os9exec
 
