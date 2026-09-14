@@ -52,6 +52,13 @@ with math supplied).  It sees only STARTUP needs -- bm names math and starts
 without it.  CLAUDE.md (local) now says csl edition 25 has shipped since
 2026-09-04; csl020 is still 15.
 
+A recipe is not proof of what ships.  `recipes.psv` builds less, lessecho
+and lesskey from SRC/less/less_332 (version.c: "332"), but CMDS/less is the
+binary from the initial import and answers `less --version' with "290"; it
+was never replaced by the recipe's output, and the lessecho/lesskey cards
+cite other archives too.  src_census counts all three as recipe-built.
+Before quoting a program as "built from SRC", run it and compare.
+
 Still open:
   * FOR-RDOGGETT 16-17: eight DOC directories hold another program's document,
     and k, xy and z ship binaries their licence ties to source.  Earlier note: DOC/bm (Bdale
