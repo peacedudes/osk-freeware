@@ -112,6 +112,21 @@ line is recorded in `tools/terms.psv` or the handoff.
    - `ub68020demo` -- its demo terms want "ALL of the files ... kept intact",
      and CMDS/archives holds UB_68000.LZH but not a UB_68020 archive.
 
+15. **The last research pass found four more, each checked against its file:**
+   - **RCS** (`ci`, `co`, `rcs`, `rcsdiff`, `rcsident`, `rcsmerge`, `rlog`,
+     and `SRC/rcs`) -- `SRC/rcs/READ_ME` is Purdue's non-disclosure form:
+     "RCS will be used internally only" and "RCS will not be distributed in
+     any form or by any means without prior written permission by the
+     author, Walter Tichy."
+   - **SEDT** (`e`, `new_e`) -- "Sedt binaries are being made available for
+     customers and Digital internal use on the condition that ... no
+     modifications are made to the program" (EFFO forum 11, sedt.doc).
+   - **`btree`, `isam`** -- btree.doc: no longer public domain, "sondern wird
+     gegen einen 'modesten' Betrag ($65 ?) verkauft"; contact the author.
+   - **The collection's own programs** -- `keep`, `kept`, `unkeep`, `about`,
+     and os9exec's `load` -- state no licence anywhere; the repository's
+     LICENSE grant covers `tools/`, not `disk/`.  What should their cards say?
+
 ## ANSWERED -- the newsgroup archive
 
 5. ~~**comp.os.os9 1987-2002 has been FOUND, and getting it properly costs
