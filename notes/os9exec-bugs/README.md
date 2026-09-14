@@ -4,6 +4,10 @@ Each has a reproduction here that fails in seconds. All were found by running
 programs from the osk-freeware disk, and none of them is a defect in the
 collection.
 
+**A genuine CPU defect is in `X-FLAG.md`** (2026-09-14, fixed on os9exec
+`fix/scf-pd-eor`): NEG and NBCD never set X, so Microware's software double
+arithmetic was subtly wrong -- 1.0-1.0 was -2^-20.
+
 **`No more memory !!!` IS NOT AN os9exec DEFECT. Read
 `CIO-SELECTOR-MISMATCH.md` first.** The root cause was found 2026-08-31: the
 archives were linked against a `cio.l` whose stub table has `_flshbuf` at
