@@ -1,0 +1,26 @@
+# system6 -- two system tools that had no case (2026-09-14): a 68000
+# disassembler run over a module on the disk, and mtools' bad-block scan
+# run over the FAT floppy image in /dd/DOS.
+
+family  system6
+
+case    unc-disassembles-pri-to-assembler-source
+# unc writes the listing to standard output; pri is a small C program, so
+# the listing opens on cstart and names the system calls it makes.
+run     /dd/CMDS/unc /dd/CMDS/pri < /nil > /dd/tmp/unc6.a
+run     /dd/CMDS/head -n 6 /dd/tmp/unc6.a
+run     /dd/CMDS/grep F\$Fork /dd/tmp/unc6.a
+run     /dd/CMDS/wc -l /dd/tmp/unc6.a
+expect  psect     disas,Typ_Lang,Attr_Rev,Ed,stk,start
+expect  os9       F$Fork
+expect  1694 /dd/tmp/unc6.a
+
+case    msbadblocks-scans-a-floppy-and-leaves-it-readable
+# A good image has no bad clusters, and msbadblocks says nothing about
+# the ones it did not find; the test is that it succeeds and that the
+# disk still reads afterwards.
+run     /dd/CMDS/msbadblocks a: < /nil
+run     echo msbadblocks-rc=$?
+run     /dd/CMDS/msinfo a:
+expect  msbadblocks-rc=0
+expect  sectors per track: 18
