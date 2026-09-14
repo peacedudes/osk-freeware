@@ -10,6 +10,11 @@ byte for byte; advcom compiles the ADVSYS sample and advint plays it; adlrun
 plays AARD to its score line; almanac's figures are floating point, so its
 case also guards the X-flag fix; unc disassembles pri to 1694 lines.
 
+**Measured after them, `--all` on an image freshly built from `disk/`:
+782 of 785** -- exactly the three deliberate failures (zip, todos, sir).
+The bench, news and tail families each restart once after a case that
+takes the session down; the restarts re-run setup and every case passes.
+
 `tools/worklist.py --programs --no-test` is down to 91.  What is left is
 mostly NOT datatest material, and each group was probed before being set
 aside:
