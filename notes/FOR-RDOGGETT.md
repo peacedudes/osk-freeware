@@ -84,6 +84,20 @@ line is recorded in `tools/terms.psv` or the handoff.
    to such files; the question is whether it applies to programs that have
    shipped all along.
 
+13. **`make` links the `utime.c` your ruling keeps out of the build.**  The
+   ruling (2026-09-11, in PLAN-acquisitions): "`utime.c', which has a bare
+   copyright and NO grant, stays out of the build".  Three utime.c files are
+   on the disk; only one has a copyright line at all --
+   `SRC/eff_make/utime.c`, whose whole notice is "Copyright (c) 1988 by
+   Michael Hoffmann, Muenchen" -- and `tools/rebuild/recipes.psv` builds
+   `CMDS/make` from `make.c parse.c stat.c tstring.c utime.c` in that tree.
+   (blarslib's and ELM's OSK copies carry no copyright line.)  The ruling
+   does not name its tree, so this is the likeliest match, not a proven one.
+   Options: rebuild make with a utime() of the collection's own, as the
+   perl port did for pipe(); leave it; or say the ruling meant another file.
+   Asked in conversation as "we did include utime.c, right?" -- and the
+   answer is yes, in make.
+
 ## ANSWERED -- the newsgroup archive
 
 5. ~~**comp.os.os9 1987-2002 has been FOUND, and getting it properly costs
