@@ -28,10 +28,20 @@ tools/gen_screens.py --check      # no card has drifted from its stanza
 Longer, and worth running before you claim anything is finished:
 
 ```sh
-tools/datatest.py --all --image osk-freeware.dd   # 743 cases
-tools/playtest.py --all --image osk-freeware.dd   # 116 tests, 112 pass
+OS9EXEC_DIR=$HOME/Developer/os9/os9exec tools/mkimage.sh disk fresh.dd
+rm fresh.tar                                      # mkimage leaves it; not ignored
+tools/datatest.py --all --image $PWD/fresh.dd     # 743 cases
+tools/playtest.py --all --image $PWD/fresh.dd     # 116 tests, 112 pass
 tools/ci/run_workflow_locally.sh /tmp/scratch     # the whole GitHub workflow
 ```
+
+**Run the harnesses on a FRESH image under another name, never on
+`osk-freeware.dd`.**  rdoggett keeps an emulator open on that file, and an
+image that has been run on carries the last run's leftovers: for weeks
+`tex`'s three DVI drivers passed only because `text`, a LATER family, had
+left `/dd/story.dvi` behind on the image from an earlier run.  Build inside
+the repo -- mkimage cds to the output directory -- and delete the image
+afterwards.
 
 **The two tools the per-program loop runs on**, both added 2026-08-31:
 
@@ -55,35 +65,27 @@ The known failures are deliberate and each says why in its own file: three in
 valspeak). A full `datatest --all` run was **420 of 423**, measured
 2026-08-31.
 
-**Re-measured 2026-09-13 against a pristine image: 728 of 743.** The
-three deliberate failures are still there and still deliberate. Of the
-other twelve, **NINE are cases the disk has OUTGROWN** -- six of them
-asserting failures that `9befb924` ("ship csl edition 25 -- fixes lua,
-runc, msntp") and `e934210a` ("dvips renders") repaired without touching
-a single file under `tools/datatests/`, plus `dvidrivers` predating its
-own fonts, `about` quoting an origin phrase `DOC/ORIGINS` no longer uses,
-and `system5` running `drop` nine days after it became `unkeep`.
-`notes/START-HERE-NEXT-SESSION.md` names each with the commit that made
-it stale.
+**Re-measured 2026-09-13 on fresh images: 728 of 743, then fixed.**
+Twelve of the fifteen failures were the suite's own fault, and both
+kinds are closed:
 
-**The remaining THREE are CROSS-FAMILY INTERFERENCE** -- `dvialw`,
-`dvilj2` and `dvieps`. Run by hand they work and print the exact strings
-their cases look for; **run as `datatest.py tex.cases` alone the family
-is 17 of 18 and all three pass**; they fail only in a full `--all` run,
-and on a pristine image too. So an earlier family leaves state they
-depend on. **Measured: it is POSITION, not the programs.** Run the whole
-suite with `tex` FIRST and its three drivers PASS -- while `last` and
-`misc`, which pass in every other arrangement, fail instead. Same 728 of
-743 either way. The failures move to whatever family runs late, and they
-are all write failures (`missing /dd/tmp/mv1`, `Could not create output
-file`, a driver printing no `[1 pages]`). **The disk is NOT full** -- measured after a full run by reading the RBF
-allocation bitmap out of the image host-side: 130.7 MB free against
-146.3 MB allocated, nearly half the disk empty (`free` is not on this
-disk; LSN0 gives DD_TOT, DD_MAP and DD_BIT, and the bitmap starts at
-LSN 1). So the cause is still open. Ruled out so far: the programs, the
-cases, left-over image state, a neighbouring family, and space. What
-remains is whatever the emulator or RBF accumulates across 57 sequential
-sessions, and none of that has been measured yet.
+- **Nine cases the disk had OUTGROWN** (`2ac61f27`) -- asserting
+  failures that `9befb924` (csl edition 25: lua, runc, msntp) and
+  `e934210a` (dvips renders) repaired without touching a case, plus
+  `dvidrivers` predating its own fonts, `about` quoting an old origin
+  phrase, and `system5` running `drop` after it became `unkeep`.
+  **The rule this pays for: a commit that fixes a program updates the
+  case asserting it broken, in the same commit.**
+- **`tex`'s `dvialw`, `dvilj2` and `dvieps`** (`9cdb0577`) -- the
+  family's own setup never made `/dd/story.dvi` (a doubled backslash
+  inside single quotes), and the drivers passed only on an image where
+  `text`, which runs later, had left one from an earlier run. A night of
+  "position" and "accumulation" theories was wrong; the answer was
+  printed in `notes/datatests/tex.raw` the whole time. **Read the `.raw`
+  capture of a failing case before theorising about it.**
+
+Full `--all` on a fresh image after both commits: **740 of 743** --
+exactly the three deliberate failures, and nothing else.
 
 **SEVEN CASES RESTART THE FAMILY THEY ARE IN, and that is expected.**
 `paranoia` pauses for a key, `checkfile` is full-screen, and `cookhash`,

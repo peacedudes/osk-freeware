@@ -24,10 +24,21 @@ had carried story.dvi all along.
 `notes/datatests/` for a failing case before theorising.**  The answer
 was printed in it the whole time.
 
-**Measured after the fix, `--all` on a fresh image: 731 of 743.**  The
-twelve failures are exactly the nine stale cases listed below (fixed
-programs whose cases still assert the failure) plus the three deliberate
-ones.  Updating those nine is the natural next job.
+**Measured after the fix, `--all` on a fresh image: 731 of 743** -- the
+nine stale cases listed below plus the three deliberate failures.
+
+**The nine stale cases are updated too (2ac61f27)**, each rewritten to
+assert what the program does NOW, with the old failure message kept as
+an `absent` so it cannot quietly come back: `lua` prints its banner and
+runs hello.lua; `runc` runs a script `luac -m -o` made into a module
+(`-x` would write it into /dd/CMDS, so the case does not use it);
+`msntp` now stops at "unable to allocate socket for NTP"; `dvips`
+writes PostScript with `<tex.pro>` in three families; `dvidrivers`
+finds cmr10 at 300 dpi; `about` quotes `Usenet`; `system5` runs
+`unkeep`.  Measured on fresh images: the seven families 65 of 65,
+`driven` 20 of 20.  Full `--all` on a fresh image after both commits:
+**740 of 743** -- exactly the three deliberate failures.  The datatest
+suite has no open thread.
 
 **Do not** pipe a harness into `tail` and read `$?` -- you get `tail`'s.
 **Do not** rebuild `osk-freeware.dd` while rdoggett has an emulator open
@@ -1454,7 +1465,7 @@ notice.  That is still open and is worth closing.
 > `--all`, accumulation) was chasing a setup line that never produced
 > `/dd/story.dvi`; the drivers passed only on images where `text` had left
 > one.  Its "not left-over image state" conclusions are WRONG.  The
-> stale-case inventory is still accurate.
+> nine stale cases it lists are all updated as of 2ac61f27.
 
 Run whole for the first time in a while, 2026-09-13.  **16 failures, and
 so far NINE of them are cases asserting a failure that a later commit
