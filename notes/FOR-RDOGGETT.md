@@ -44,53 +44,24 @@ Open questions only. Nothing here is decided. Updated 2026-09-14.
    to port perl) is in `notes/PLAN-acquisitions.md`.  Item 7 is what is
    left of it: cancel before the renewal and delete the key.
 
-## A licence question, on a file that already ships
+## ANSWERED -- rcsmerge was never a licence question
 
-6. **`rcsmerge' could be made to work, but the last piece is
-   non-commercial-only.**  `rcsmerge' ships and cannot merge, because it
-   forks `merge' and no `merge' binary is here.  Everything needed is on
-   the disk already: `SRC/rcs/merge.sh' (RCS's own script) and
-   `SRC/diff/diff3.c' (part of the GNU diff 1.1 we already ship, just
-   never built).  I built diff3 as far as it goes: it compiles once the
-   build supplies `-DDIFF_PROGRAM="/dd/CMDS/diff"', and then the LINK
-   fails on one symbol, `pipe'.
+6. ~~**`rcsmerge' could be made to work, but the last piece is
+   non-commercial-only.**~~  **Wrongly put to you.**  Non-commercial terms
+   were settled on 2026-09-11 -- accepted, record the terms, ship -- and
+   the `utime.c' rule is only for a file with a bare copyright and no
+   grant.  ELM's OSK `pipe.c' has a grant, so it could simply be used; and
+   a `pipe()' of the collection's own now exists in `SRC/perl4/osk.c'
+   anyway.
 
-   The only `pipe()' in the pool is
-   `SRC/infoxpress/BNU/ELM_2.4/OSK/pipe.c' -- thirteen lines, and it
-   would almost certainly finish the build.  **Its own header says it
-   may be copied and distributed freely "for any non-commercial
-   purposes", and incorporated into commercial software only with the
-   authors' written permission** (Wolfgang Ocker, Ulli Dessauer, Reimer
-   Mellin, 1988).  That is NARROWER than the Elm 2.4 package it sits
-   inside, which `SOURCES.txt' records under the permissive Elm licence.
-
-   The source already ships and that is not in question.  What I have
-   not done is BUILD a binary we ship against it, because that carries
-   the non-commercial clause into the collection's own artefacts, and
-   this collection has been careful about exactly that (the `utime.c'
-   rule, `loglist' left out for want of a grant).  Your call: leave
-   `rcsmerge' as a card about a missing helper, write a `pipe()' of our
-   own over OS-9's pipe device, or accept the clause for that one
-   binary.  Nothing else about diff3 is blocked.
-
-   **A `pipe()' of our own now exists** (2026-09-14): the perl port
-   needed one, and `SRC/perl4/osk.c' has it -- one open of `/pipe' and a
-   dup of it, written for this collection with no clause attached.  So
-   the licence half of this question has an answer that asks nothing of
-   you, if RCS is ever wanted.  The three findings below still stand.
-
-   **Three findings from 2026-09-13 that make this moot for now:**
-   (a) on a real system the name is TAKEN -- rcsmerge forks a bare
-   `merge', which reaches Microware's `/h1/CMDS/merge' ("merge files to
-   standard output", concatenation, no `-p'); RCS's helper would need
-   another name and a rebuilt rcsmerge.  (b) `SRC/rcs/rcsmerge.c' is
-   TRUNCATED -- 3,434 bytes ending mid-statement at `faterror', as
-   committed in 46cef22b -- and `rcsutil.c', `rcsrev.c', `rcssyn.c',
-   which its makefile links, are absent, so rcsmerge cannot be rebuilt
-   from what ships.  (c) `ci' cannot store a second revision here
-   (`devtools.cases' asserts "diff failed"), and rcsmerge needs two.
-   The order, if RCS is wanted: an intact RCS 4 source, then `ci', then
-   the helper under a new name.
+   What actually stops rcsmerge is technical, and none of it is yours:
+   `SRC/rcs/rcsmerge.c' is truncated mid-statement and three of the
+   sources its makefile links are absent, so it cannot be rebuilt; `ci'
+   cannot store a second revision here, and a merge needs two; and the
+   helper it forks is named `merge', which on a real system is Microware's
+   concatenating utility -- so loading that first does not help, and
+   RCS's three-way merge would need another name.  An intact RCS source is
+   where it would start.  The handoff carries it.
 
 ## ANSWERED -- the dots question is closed
 
