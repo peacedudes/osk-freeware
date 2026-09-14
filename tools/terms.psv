@@ -32,7 +32,7 @@ animal|Copyright 1989 HCR Corporation, Toronto. "Permission to use, copy, modify
 answer|The Elm Mail System General Public License, (C) 1988-1992 USENET Community Trust and 1986-1987 Dave Taylor: copying and distribution permitted, at no charge.|DOC/elm/Notice
 ape|No copyright or licence statement in SRC/hc_loose or its documentation. The header says it is loosely based on a 1989 Obfuscated C Contest entry by Oskar von der Luehe.|SRC/hc_loose/ape.c lines 7-12
 apfel|Andreas Greulich's demo for his Atari ST graph package. No notice in the binary or apfel.a; the package docs say "(C:A.Greulich '88, PD)" and, for v2.1a, "Freeware". EFFO's rules treat a submission not marked Freeware as public domain.|EFFO/forum6.lzh member HARDWARE/ATARI/GRAPH/DEMOS/apfel (identical), inhalt line 52, FORUM/spielregeln lines 117-119; DOC/graph/graph.doc line 1; DOC/graph/graph2.doc line 1
-aprocs|Freeware|SOURCES.txt line 805
+aprocs|No licence grant: the binary carries only "EKF Elektronik GmbH, 59065 Hamm, Germany", "V1.10" and "(c)1996". Its archive holds the binary alone, with no document.|CMDS/aprocs (strings); CMDS/aprocs.lzh member aprocs (identical, the only member)
 ar2|No copyright or licence statement in ar.doc or the binary; ar.doc names Carl Kreider. SOURCES.txt records his ar as "no terms stated".|DOC/ar2/ar.doc lines 3-5; SOURCES.txt lines 333-343, 575-577
 arc|Unstated. Third-party, not Microware.|SOURCES.txt line 585
 areacode|No copyright or licence statement in SRC/hc_utils or its documentation. The header names Ken Yap as translator of AREACODE.MAC, with later edits by Dewey Coffman and Bruce Morgen.|SRC/hc_utils/areacode.c lines 4-29
@@ -66,7 +66,7 @@ bcd|BSD licence. Copyright (c) 1989 The Regents of the University of California.
 bcheck|No copyright or licence statement in the binary or in the EFFO forum 11 F_SCHMITT directory; the forum credits F. Schmitt.|EFFO/forum11.lzh member SOFTWARE/CODE/F_SCHMITT/bcheck (identical); contents line 102
 bc|GNU General Public License version 2. Copyright (C) 1991 Free Software Foundation, Inc.|SOURCES.txt line 2357
 bdecode|Copyright (c) University of Toronto 1985-1990. "Permission is granted to anyone to use this software for any purpose ... and to alter it and redistribute it freely", with four conditions on credit.|DOC/cnews/COPYRIGHT; SOURCES.txt, C News section
-beav|Freeware|SOURCES.txt line 677
+beav|Non-commercial. Its manual: "BEAV source and executable can be freely distributed for non-commercial purposes."|DOC/beav/beav.doc lines 23-24; SRC/beav/BEAV140/beav140.txt lines 47-48; CMDS/beav.1.40.lzh member BEAV140/beav (identical)
 bibtex|Public domain, as its OS-9 port's manifest states: "TeX and the accompanying programs are all public domain ... Feel free to distribute this system in any way you see fit."|DOC/tex/Manifest.text line 59
 bigsetter|No copyright or licence statement; the Modula-2 source names Alex Wyss (BigSet) and W. Stehling (OS-9 adaptation, 1988).|EFFO/forum8.lzh member PROGRAMME/MODULA/SET/bigsetter.mod lines 1-3 (binary identical); inhalt lines 62-64
 bincheckr|Part of GNU Chess 4.0 (OSK port). bincheckr.c carries no notice of its own; the package ships the GNU General Public License "Version 2, June 1991" as DOC/COPYING.|GAMES/gnuchess4.0.lzh member GNUCHESS4.0/SRC/bincheckr (identical); SRC/gnuchess/GNUCHESS4.0/SRC/bincheckr.c; SRC/gnuchess/GNUCHESS4.0/DOC/COPYING line 2
@@ -102,12 +102,12 @@ c7decode|Copyright (c) University of Toronto 1985-1990. "Permission is granted t
 caesar|BSD licence. Copyright (c) 1989 The Regents of the University of California. Redistribution in source and binary forms is permitted provided the notice, conditions and acknowledgement of UC Berkeley are kept.|SRC/caesar/caesar.c lines 2-20; SOURCES.txt lines 1334-1343
 calender|No copyright or licence statement; the source cites the magazine c't 3/88 p.148 and 9/88 p.80.|SRC/calender/calender.c lines 1-4
 calen|No copyright or licence statement in SRC/hc_loose or its documentation. The header names AW Rogers as author.|SRC/hc_loose/calen.c lines 7-13
-cal|Freeware|SOURCES.txt line 749
+cal|Shareware, "Copyright 1995 Bob van der Poel Software". "Under our shareware agreement you have no obligation to register"; the requested fee is $20. "You are free to redistribute this software by any means" unchanged and without charging a fee.|CMDS/cal.lzh member docs.txt lines 20-39 and registration.txt line 7; member dd/cmds/cal (identical)
 cam|No copyright or licence statement in SRC/tekdemos or its documentation. The source has no comments.|SRC/tekdemos/cam.c
 canfield|BSD. Copyright (c) 1980 Regents of the University of California; the usual Berkeley notice is at the head of the source.|SOURCES.txt line 1032
 card|No copyright or licence statement in SRC/card or its documentation. The header reads "Christmas Card From Hanoi --- by Istvan Mohos, 1984".|SRC/card/card.c line 7
 casefix|Copyright 1990 Jeff Beadles. "Permission is granted to copy this at no charge, as long as the copyright message remains intact."|SRC/hc_loose/casefix.c lines 17-19
-cat|Public domain|SOURCES.txt line 691
+cat|No licence grant: the binary carries only "cat.c 1.8 (c) Copyright S. M. Ryger 1987 Berlin". The sh 7.5 package that ships it says only that it is "licensed free of charge" with no warranty.|CMDS/cat (strings); SHELLS/sh75.lzh members CMDS/cat (identical) and DOC/sh.doc lines 26, 119
 cb|No copyright or licence statement in Carl Kreider's utilities archive (binaries and a one-line-per-program ReadMe) or in the binary.|CMDS/carlutil.lzh member cb (identical binary); DOC/carlutil/ReadMe; SOURCES.txt lines 275-278
 cc1plus|GNU C++ compiler pass, "1.40.3 (based on GCC 1.40)". Its archive holds only the binary, with no licence text; no statement found for this 1.x build.|GCC/cc1plus.lzh member cc1plus (identical, sole member); CMDS/GCC2/cc1plus strings
 cc2plus|GNU C++ 2.5.8 compiler pass. Its archive holds only the binary; the companion part, gpp_2.5.8_cmds1.lzh, ships the GNU General Public License "Version 2, June 1991" as GNU/copying.gcc2.|GCC/gpp_2.5.8_cmds2.lzh member GNU/CMDS/cc2plus (identical); GCC/gpp_2.5.8_cmds1.lzh member GNU/copying.gcc2 line 2
@@ -207,7 +207,7 @@ diff_1.1|GNU diff 1.1. "Copyright (C) 1988 Free Software Foundation"; "Everyone 
 diff|GNU DIFF General Public License. Copyright (C) 1988 Free Software Foundation. "Everyone is granted permission to copy, modify and redistribute GNU DIFF, but only under the conditions described in the GNU DIFF General Public License."|SRC/diff/diff.c lines 2-15; DOC/diff/COPYING
 digclk|Copyright (c) 1988 George M. Sipe. "This software may only be redistributed without fee and without any other form of monetary gain", unless written permission is obtained; the notice and authorship acknowledgement must be kept.|SRC/digclk/clock.c lines 1-23; DOC/digclk/README lines 24-40
 dinfo|Public domain with conditions. (c) 1988 Lukas Zeller. May be "used and distributed freely" if used only for peaceful applications -- "I do not allow using this program for anything that serves a military purpose" -- and all copyright messages are kept.|SRC/eff_dinfo/dinfo.c lines 7, 18-27; DOC/dinfo/dinfo.hlp lines 64-72
-dirname|Public domain|SOURCES.txt line 702
+dirname|No licence grant: the binary carries only "(c) M.C.Gregorie, 1994". The sh 7.5 package that ships it credits Gregorie and says only that it is "licensed free of charge" with no warranty.|CMDS/dirname (strings); SHELLS/sh75.lzh members CMDS/dirname (identical) and DOC/sh.doc lines 26, 117-123
 dir|K. Schmitt (Lim)'s dir, modified by L. Zeller: "THIS SOFTWARE MAY BE USED AND MODIFIED FREE AS LONG AS THE ORIGIN INFORMATION IS PRESERVED." Binary: "Dir Version 1.08 (C) 1988 by Lim. (Modified by L.Z)".|EFFO/forum6.lzh member PROGRAMME/C/DIR/dir.c lines 9, 24-25 (dir there same module, same size); CMDS/dir (strings)
 disable|No copyright or licence statement in SRC/bnu_uucp or its documentation.|SRC/bnu_uucp/disable.c; SRC/bnu_uucp/turnport.c lines 1-5
 disdvi|Posted and freely redistributed since; no licence text accompanies the source. The README grants `disdvi' explicitly -- "use it and improve as you wish" -- and says nothing either way about dvi2tty.|SOURCES.txt line 2459
@@ -247,7 +247,7 @@ elvis_input|elvis 1.7's alias wrapper by Peter Reinig, which starts elvis in inp
 elvis|"Elvis is freely redistributable, in either source form or executable form." Steve Kirkendall; OS-9 port by Peter Reinig. Built here from CMDS/archives/elvis1.7.lzh.|DOC/elvis/readme lines 10-11; SOURCES.txt lines 453-459
 elvprsv|"Elvis is freely redistributable, in either source form or executable form." Steve Kirkendall; OS-9 port by Peter Reinig. Built here from CMDS/archives/elvis1.7.lzh.|DOC/elvis/readme lines 10-11; SOURCES.txt lines 453-459
 elvrec|"Elvis is freely redistributable, in either source form or executable form." Steve Kirkendall; OS-9 port by Peter Reinig. Built here from CMDS/archives/elvis1.7.lzh.|DOC/elvis/readme lines 10-11; SOURCES.txt lines 453-459
-emacs.mm1|Public domain|SOURCES.txt line 683
+emacs.mm1|Non-commercial. "(C)Copyright 1988-1996 by Daniel M. Lawrence. MicroEMACS 4.0 can be copied and distributed freely for any non-commercial purposes. Commercial users may use MicroEMACS 4.0 inhouse." Incorporation or resale needs the author's permission.|CMDS/memacs400_doc.lzh member MEMACS400/DOC/readme lines 6-12; CMDS/memacs400_cmds.lzh member MEMACS400/CMDS/emacs.mm1 (same module, 10 bytes shorter before the 2026-08-31 module rename)
 emacs|MicroEMACS 4.00 (Daniel Lawrence); no licence text in the OS-9 archive. Its help: "Commercial support and usage and resale licences are also available." The 3.9e manual here: copying and distribution "for any non-commercial purposes".|CMDS/memacs400_cmds.lzh member MEMACS400/CMD/ehelp1.txt line 80 (binary identical); DOC/emacs/emacs.doc lines 29-37; SOURCES.txt line 683
 em|No copyright or licence statement in the binary; EFFO forum 3 lists it as "der neue EMACS" with no source and no terms.|EFFO/forum3.lzh member CMDS/em (identical), BRIEFE/inhalt line 40
 enable|No copyright or licence statement in SRC/bnu_uucp or its documentation.|SRC/bnu_uucp/enable.c; SRC/bnu_uucp/turnport.c lines 1-5
@@ -325,7 +325,7 @@ gemtopbm|Each netpbm author granted the right to use and distribute their code w
 gen|No copyright or licence statement; the source names Martin Moser, Kaufbeuren.|SRC/divutils/gen.c lines 9-10
 georgia|Copyright 1988 by Brett Slocum. All rights reserved. "Permission is granted to distribute or modify this program, or use portions of this program in other programs, as long as this notice remains intact." Not to be sold for profit without the author's permission.|SRC/weather/weather.c lines 4-9
 gep|Copyright 1987,1988 Roy J. Fehlandt. "Placed into the public domain for non-commercial use provided this notice is included in all copies."|SRC/bix/gep.c lines 1-3
-getenv|Public domain|SOURCES.txt line 709
+getenv|No copyright or licence statement; the binary names only "GETENV Version UTIL 2.40 by DESIGNA VLT 24.11.97" and the archive holds it as a bare module.|CMDS/getenv (strings); microware-archive CMDS/getenv (identical, no accompanying file)
 getsys|No copyright or licence statement in getsys.c or the binary; EFFO forum 23 credits Carsten Emde.|EFFO/forum23.lzh members f23b/SOFTWARE/GETSYS/getsys (identical) and getsys.c; f23a/contents line 109
 gftopk|Public domain, as its OS-9 port's manifest states: "TeX and the accompanying programs are all public domain ... Feel free to distribute this system in any way you see fit."|DOC/tex/Manifest.text line 59
 gftype|Public domain, as its OS-9 port's manifest states: "TeX and the accompanying programs are all public domain ... Feel free to distribute this system in any way you see fit."|DOC/tex/Manifest.text line 59
@@ -371,7 +371,7 @@ helpindex|(c) 1988 Lukas Zeller. "This program is public domain and may be used 
 help|HELP and HELPINDEX (c) 1989 by Lukas Zeller, CH-Maennedorf. Public domain; 1. This Program may only be used for peaceful applications.|DOC/help/info_help
 hexa|None stated; carried as posted.|SOURCES.txt line 1061
 hexbin|macutil 2.0b3 (Dik T. Winter): "use and redistribution of all such code is explicitly allowed. For some parts of it the GNU software license does apply." OS-9 port by Dean Leiber.|DOC/macutils/readme lines 434-439; APPS/macutils.lzh member MACUTILS/CMDS/hexbin (identical)
-hexedit|Freeware|SOURCES.txt line 1214
+hexedit|No licence grant: the program carries only "Hexpert [v2.4 (c)1988 Dominic Alston]". Ed Gow's OSK readme and the source header state no terms.|CMDS/hexedit.tgz members hexedit/hex.c lines 1-17 and 103, hexedit/readme.os9, hexedit/hex (identical); DOC/hexedit/readme.os9
 hexed|By H. Hoheisel-Zimmermann. public; no military use|DOC/hexed/info_hexed
 hinterhalt|No copyright or licence statement in SRC/forum7 or its documentation. The header names its programmer, Frank Braeuer, Aalen, 1988.|SRC/forum7/hinterhalt.c lines 5-8
 hipstopgm|Each netpbm author granted the right to use and distribute their code without charge, on a non-commercial basis; many allow more -- see each file's notice.|DOC/netpbm/COPYRIGHT
@@ -422,7 +422,7 @@ lfmaker|Copyright 1996 by Stephen Carville; its readme states no distribution te
 lgrep|No copyright or licence statement in lgrep.doc, lgrep.c or the binary; Helmut Hoheisel-Zimmermann.|DOC/lgrep/lgrep.doc line 1; EFFO/forum13.lzh member SOFTWARE/C/LGREP/lgrep (identical), contents line 120
 lharcs|C-LHarc 1.01, "(C) 1989-1991 Y.Tagawa, Kai Uwe Rommel". Its archive: "The GNU public license is applied to the sources ... No part of the software may be used in commercial software packages without a written permission of the authors."|SRC/lharc141.lzh members lharc/lharcs (identical), lharc/copyright.notice lines 2-4; CMDS/REBUILT/lharcs strings
 lharc|Freeware, no conditions attached. $AVAILABILITY freeware / $CONDITIONS (none)|SOURCES.txt line 603
-lha|Freeware|SOURCES.txt line 596
+lha|No licence grant: the source carries "Copyright(C) MCMLXXXIX Yooichi.Tagawa"; the binary names only "LHa Vrs. 2.08 for OSK - revised Dec. 2, 1994 M.Haaland". Its docs and readme state no terms.|ARCHIVERS/lha208src.lzh member LHA/SRC/lharc.c line 5; ARCHIVERS/lha208.lzh members lha208.bin (identical), lha208.doc, lha208.readme; DOC/lha/lha.doc
 liborder.os9|Copyright notice only, no licence: "Copyright by CERN, written by CN/CE/MS" (Antonio Pastore).|CMDS/liborder.os9 (strings); EFFO/forum15.lzh members SOFTWARE/C/LIBUTILS/liborder (identical), liborder.c line 1338, liborder.man line 102
 liborder|"Copyright by CERN, written by CN/CE/MS" (Antonio Pastore, 1990). No distribution terms are stated.|SRC/eff_libutils/liborder.c lines 3, 1338; DOC/liborder/liborder.man
 libsplit|Copyright line only, no licence: "(C) 1998 by Michael Lamparth"; its archive holds only binaries.|CMDS/libsplit (strings); APPS/libsplit.zip member libsplit (identical)
@@ -477,7 +477,7 @@ maze|No copyright or licence statement in SRC/v_misc or its documentation. The s
 mcvert|Doug Moore: "may be freely distributed for non-profit purposes. It may not be sold, by itself or as part of a collection of software. It may be freely modified as long as no modified version is distributed."|SRC/macutils/MCVERT/mcvert.c lines 16-18; APPS/macutils.lzh member MACUTILS/CMDS/mcvert (identical)
 md5|RSA Data Security's MD5: "This program is placed in the public domain for free general use by RSA Data Security." The RFC 1321 code is Copyright (C) 1991-2 RSA Data Security, Inc.|DOC/md5/md5.1 line 42; APPS/md5.lzh members MD5/md5 (identical), makefile lines 2-8, README line 6
 messages|The Elm Mail System General Public License, (C) 1988-1992 USENET Community Trust and 1986-1987 Dave Taylor: copying and distribution permitted, at no charge.|DOC/elm/Notice
-mexist|Public domain|SOURCES.txt line 1237
+mexist|No copyright or licence statement; the binary names only "MEXIST Version UTIL 2.40 by DESIGNA VLT 24.11.97" and the archive holds it as a bare module.|CMDS/mexist (strings); microware-archive CMDS/mexist (identical, no accompanying file)
 me|No licence text: the MicroEMACS 3.11 OS-9 archive holds only the binary and a note by the porter, Knut Grunwald. SOURCES.txt records it as "free".|APPS/microemacs3.11.lzh members me (identical) and README.Microemacs3.11; SOURCES.txt line 98
 mgif|No copyright or licence statement in its source, manual or readmes; mgif 3.2 by Bill Rosenkranz.|SRC/mgif/mgif.c; DOC/mgif/mgif.man; DOC/mgif/readme; GRAPHICS/mgif.lzh member gif/mgif (identical)
 mgrtopbm|Each netpbm author granted the right to use and distribute their code without charge, on a non-commercial basis; many allow more -- see each file's notice.|DOC/netpbm/COPYRIGHT
@@ -774,7 +774,7 @@ scales|D. Jason Penney: "Please acknowledge the author in any reproduction or mo
 scqref|sc 6.16 OS-9 package (Ken Scales): "may be distributed and used free of charge", provided distribution is free or for its cost and "all original files are retained without change as part of the package". Upstream sc: "It is not copyrighted, either."|APPS/sc.lzh members sc/cmds/scqref (identical) and sc/readme.sc.osk lines 330-334; DOC/sc/README line 56
 scrabble|"Permission is granted to modify and re-distribute this code in any manner as long as this notice is preserved.|SOURCES.txt line 2683
 screen_nocio|No copyright or licence statement in the source it is built from (screens.c, scandir.c, Makefile). SOURCES.txt records "License: freeware" for MISC/screen without citing a source.|tools/rebuild/recipes.psv line 177; SRC/screen/screens.c, scandir.c, Makefile; SOURCES.txt lines 1222-1224
-screen|Freeware|SOURCES.txt line 1220
+screen|No copyright or licence statement; its README gives only a bug-report address, russ@uokmax.UUCP.|DOC/screen/README; SRC/screen/screens.c, scandir.c, Makefile; CMDS/screen (strings); the Usenet screen.ar ORIGINS names is not in the pool
 scriptmaster|"Copyright 1994, 1996 by Stephen Carville" (readme; the binary says "Copyright 1995,1996"). No statement of distribution terms; SOURCES.txt flags the G-Windows programs for review on that account.|GWINDOWS/scriptmaster.lzh member scriptmaster (identical); DOC/scriptmaster/readme line 3; SOURCES.txt lines 2030-2049
 scsi_mm1a|MM/1 SCSI driver (edition 28). No copyright or licence statement in the binary; its archive holds only the seven MM/1 driver modules and no readme.|SHELLS/updates.lzh member scsi_mm1a (identical); SOURCES.txt lines 430-433
 scsiutil|SCSIUtil (c) 1991-94 Gary Duncan and Heiko Rath; OS-9 port by Andrzej Kotanski. "LICENSED FREE OF CHARGE", no warranty; "When redistributing this program ALWAYS redistribute the WHOLE archive".|DOC/scsiutil/SCSIUtil.doc lines 4, 26, 47-48; MISC/scsiutil.lzh member SCSIUTIL/SCSIutil (identical)
@@ -787,8 +787,8 @@ sed|Public|DOC/sed/info_sed
 sepwords|Copyright 1987,1988 Roy J. Fehlandt. "Placed into the public domain for non-commercial use provided this notice is included in all copies."|SRC/bix/sepwords.c lines 1-3
 setfont|No copyright or licence statement in SRC/effo_wolk or its documentation.|SRC/effo_wolk/setfont.c
 setime2|No copyright or licence statement; Y2Kit by Ken Drexler, whose readme says only "Use of these utilities is at your own risk."|acquisitions-2026-09-11/os9/pool/named/DRIVERS_file3988/y2kit/readme lines 30-32 and setime2 (identical)
-setimex|Public domain|SOURCES.txt line 1242
-setime|Public domain|SOURCES.txt line 781
+setimex|No copyright or licence statement; the binary names only "SETIMEX Version UTIL 2.80 by DESIGNA VLT 03.08.98" and the archive holds it as a bare module.|CMDS/setimex (strings); microware-archive CMDS/setimex (identical, no accompanying file)
+setime|No copyright or licence statement; the 430-byte module names nothing but itself and its "YYMMDDHHMMSS" argument, and the archive holds it as a bare module.|CMDS/setime (strings, header); microware-archive CMDS/setime (identical, no accompanying file)
 setterm|Copyright (c) 1991 Dynamic Software Systems (Brian C. White). "Free software; you can redistribute it and/or modify it under the terms of the GNU General Public License"; the Copying file shipped with it is version 1.|SRC/setterm2/setterm.c lines 17-20; DOC/setterm/Copying line 2
 setyear|No copyright or licence statement; Y2Kit by Ken Drexler, whose readme says only "Use of these utilities is at your own risk."|acquisitions-2026-09-11/os9/pool/named/DRIVERS_file3988/y2kit/readme lines 30-32 and setyear (identical)
 sgitopnm|Each netpbm author granted the right to use and distribute their code without charge, on a non-commercial basis; many allow more -- see each file's notice.|DOC/netpbm/COPYRIGHT
@@ -797,7 +797,7 @@ shdev|No copyright or licence statement in the binary; EFFO forum 1 and PD disk 
 shire|Copyright 1988 by Brett Slocum. All rights reserved. "Permission is granted to distribute or modify this program, or use portions of this program in other programs, as long as this notice remains intact." Not to be sold for profit without the author's permission.|SRC/weather/weather.c lines 4-9
 showpic|Andreas Greulich's picture loader for his graph package; its source title says "(C) A.Greulich 1988". The package docs say "PD" (v0.2) and "Freeware" (v2.1a); EFFO's rules treat a submission not marked Freeware as public domain.|EFFO/forum6.lzh member HARDWARE/ATARI/GRAPH/DEMOS/showpic (identical), FORUM/spielregeln lines 117-119; SRC/graph/showpic.a line 2; DOC/graph/graph.doc line 1; DOC/graph/graph2.doc line 1
 shuffle|"permission is granted to freely distribute this code provided that you: 1) don't charge for it 2) leave my name and header on it 3) clearly document your changes". Stephan Dasia.|SRC/shuffle/main.c lines 2-10
-sh|Public domain|SOURCES.txt line 767
+sh|Not stated to be public domain. Its manual: "Because the program is licensed free of charge, there is no warranty"; it names "copyright holders", and says sh "is available as EFFO (European Forum For OS-9) PD disk". Maintained by Carsten Emde.|DOC/sh/sh.doc lines 10-29; SHELLS/sh75.lzh members DOC/sh.doc, CMDS/sh (identical)
 sieve|No copyright or licence statement; the standard Sieve benchmark, O.E. Tutzauer, 1987.|SRC/eff_bench/sieve.c lines 3-5
 signal|No copyright or licence statement in the binary or DOC/signal/Signal.prf; EFFO PD disk 1 lists it without terms.|EFFO/pd2.lzh member CMDS/signal (identical), contents line 149; DOC/signal/Signal.prf
 sine|Andreas Greulich's demo for his graph package. No notice in the binary or sine.a; the package docs say "(C:A.Greulich '88, PD)" and "Freeware". EFFO's rules treat a submission not marked Freeware as public domain.|EFFO/forum6.lzh member HARDWARE/ATARI/GRAPH/DEMOS/sine (identical), inhalt line 52, FORUM/spielregeln lines 117-119; DOC/graph/graph.doc line 1; DOC/graph/graph2.doc line 1
@@ -848,9 +848,9 @@ t_trtest|No copyright or licence statement in SRC/forum7 or its documentation. T
 tabs|No copyright or licence statement in its documentation; no source tree exists (group key SRC/-). DOC/tabs/tabs.doc names Robert A. Larson as author.|DOC/tabs/tabs.doc line 1; DOC/ORIGINS line 282
 tab|"You may use and distribute tab freely. I retain copyright." -- Steven Weller, Windsor Systems; the binary adds "Copyright (c) 1991 Steven Weller".|DOC/tab/tab.txt line 15; CMDS/tab (strings); LANGUAGES/xlate.lzh member tab (identical)
 tac|No licence text travels with it: the binary names itself "GNU textutils version 1.0" and came from Kei Thomsen's binary-only GNU archive, which carries no COPYING.|CMDS/tac (strings); GNU/gnu.bin.t.gz member tac (same module, same size); SOURCES.txt lines 241-253
-tail|Public domain|SOURCES.txt line 696
+tail|No copyright or licence statement; the binary names only "TAIL Version UTIL 2.70 by DESIGNA VLT 27.05.98" and the archive holds it as a bare module.|CMDS/tail (strings); microware-archive CMDS/tail (identical, no accompanying file)
 tangle|Public domain, as its OS-9 port's manifest states: "TeX and the accompanying programs are all public domain ... Feel free to distribute this system in any way you see fit."|DOC/tex/Manifest.text line 59
-tar|Public domain|SOURCES.txt line 630
+tar|No copyright or licence statement; the source names Michiel Huisjes as author and the ports by Simmule Turner and Stephan Paschedag. It was published on EFFO forum disk 10.|SRC/eff_tar/tar.c lines 1-40; EFFO/forum10.lzh members SOFTWARE/C/TAR/* and contents line 110; recipes.psv line 202
 tcmp|No copyright or licence statement in Carl Kreider's utilities archive (binaries and a one-line-per-program ReadMe) or in the binary.|CMDS/carlutil.lzh member tcmp (identical binary); DOC/carlutil/ReadMe; SOURCES.txt lines 275-278
 teachgammon|The Berkeley teachgammon, ported to OS-9 and sent to EFFO forum disk 5 by Michael Baehr. The binary carries "Copyright (c) 1980 Regents of the University of California. All rights reserved." and no grant.|EFFO/forum5.lzh member CODE/teachgammon (identical), inhalt lines 62-63; CMDS/GAMES/teachgammon strings
 tess|David Lo. "This adventure is FreeShareAnythingWare." "Please share unmodified copies of this adventure with everyone you meet."|DOC/tess/tess.doc lines 4, 12
