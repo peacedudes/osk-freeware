@@ -341,6 +341,7 @@ tftopl|Public domain, as its OS-9 port's manifest states: "TeX and the accompany
 tgatoppm|Each netpbm author granted the right to use and distribute their code without charge, on a non-commercial basis; many allow more -- see each file's notice.|DOC/netpbm/COPYRIGHT
 tput|Public domain. "tput, written by Badri Lokanathan, is in the public domain, and may be freely distributed.|SOURCES.txt line 2283
 tree|(c) 1990 by C.Mahr. Public.|DOC/tree/info_tree
+tsu|Part of Stephen Carville's Tterm distribution, which "may be freely distributed as long as this documentation and all other files listed in readme are included".|DOC/comms/tterm.doc line 232; DOC/comms/readme lists tsu
 tterm|Copyright Stephen Carville. "This version (2.XX) may be freely distributed as long as this documentation and all other files listed in readme are included."|DOC/comms/tterm.doc line 232
 ub68kdemo|Freely distributable "as long as ALL of the files are kept intact and not modified"; a vendor demonstration version, copyright its owner.|SOURCES.txt, vendor demonstration versions section
 uld|(c) 1986 FHL (Frank Hogg Laboratory), part of QCom. "They are not freeware or shareware or public domain. However you may freely distribute them as long as this file is included."|DOC/comms/XmodemUpDown.ReadMe line 29
@@ -376,6 +377,7 @@ xmas|Posted to Usenet and freely redistributed since; no licence text. The sourc
 xpmtoppm|Each netpbm author granted the right to use and distribute their code without charge, on a non-commercial basis; many allow more -- see each file's notice.|DOC/netpbm/COPYRIGHT
 xvminitoppm|Each netpbm author granted the right to use and distribute their code without charge, on a non-commercial basis; many allow more -- see each file's notice.|DOC/netpbm/COPYRIGHT
 xwdtopnm|Each netpbm author granted the right to use and distribute their code without charge, on a non-commercial basis; many allow more -- see each file's notice.|DOC/netpbm/COPYRIGHT
+xyt|Copyright 1995 by Stephen Carville. Part of Stephen Carville's Tterm distribution, which "may be freely distributed as long as this documentation and all other files listed in readme are included".|DOC/comms/xyt.doc line 5; DOC/comms/tterm.doc line 232; DOC/comms/readme lists xyt
 yacc|Public|DOC/yacc/info_yacc
 yahtzee2|None stated in the posting; freely redistributed on comp.sources.games.|SOURCES.txt line 1129
 ybmtopbm|Each netpbm author granted the right to use and distribute their code without charge, on a non-commercial basis; many allow more -- see each file's notice.|DOC/netpbm/COPYRIGHT

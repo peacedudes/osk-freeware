@@ -540,7 +540,6 @@ travesty
 trunc
 tsmon2
 tsort
-tsu
 tt
 tttt
 tty
@@ -610,7 +609,6 @@ xlisp
 xrf
 xy
 xydown
-xyt
 yagi
 yes
 ynad
