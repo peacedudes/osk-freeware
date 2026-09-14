@@ -738,7 +738,7 @@ rdoc|No copyright or licence statement in SRC/eff_rdoc or its documentation. The
 read_mail|No copyright or licence statement in the binary or in the EFFO forum 13 vi package (vi.doc, sources) it came from; the forum lists the package under Helmut Hoheisel-Zimmermann.|EFFO/forum13.lzh member SOFTWARE/C/VI/read_mail (identical), vi.doc, SRC/; contents line 132
 readmsg|The Elm Mail System General Public License, (C) 1988-1992 USENET Community Trust and 1986-1987 Dave Taylor: copying and distribution permitted, at no charge.|DOC/elm/Notice
 readnews|Copyright (C) 1990, 1993 Rick Adams and Bob Billson. GNU General Public License, version 2 or later. "You cannot sell UUCPbb. You are free to modify the code and give copies of this away."|SRC/uucpbb/readnews.c lines 2-9; DOC/uucpbb/uucpbb.doc lines 297-301; SOURCES.txt line 1647
-rechne|Freeware|SOURCES.txt line 754
+rechne|No copyright or licence statement; the binary names only "RECHNE Version UTIL 2.80 by DESIGNA VLT 03.08.98".|CMDS/rechne (strings); SOURCES.txt rechne entry
 ref|"Elvis is freely redistributable, in either source form or executable form." Steve Kirkendall; OS-9 port by Peter Reinig. Built here from CMDS/archives/elvis1.7.lzh.|DOC/elvis/readme lines 10-11; SOURCES.txt lines 453-459
 remove|Public|DOC/remove/info_remove
 rendsk|Public domain with conditions. (c) 1990 Lukas Zeller. May be "used and distributed freely" if used only for peaceful applications -- "I do not allow using this program for anything that serves a military purpose" -- and all copyright messages are kept.|SRC/eff_rendsk/rendsk.c lines 6, 17-26; DOC/rendsk/rendsk.hlp lines 32-41
