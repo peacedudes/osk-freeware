@@ -7,6 +7,7 @@
 # names the programs whose terms have not been looked up yet.
 a2p|Copyright (c) 1989-1991 Larry Wall. Under either the GNU General Public License, version 1 or any later version, or the Artistic License, at your choice.|SOURCES.txt line 147
 accordian|Public domain. Its README ends "This program is public domain. -Eric Lechner".|SOURCES.txt line 910
+afm2tfm|Public domain, as its OS-9 port's manifest states: "TeX and the accompanying programs are all public domain ... Feel free to distribute this system in any way you see fit."|DOC/tex/Manifest.text line 59
 almanac|None is stated. A search of all 33,165 bytes of the source and of its documentation finds no copyright, no grant and no restriction.|SOURCES.txt line 2536
 answer|The Elm Mail System General Public License, (C) 1988-1992 USENET Community Trust and 1986-1987 Dave Taylor: copying and distribution permitted, at no charge.|DOC/elm/Notice
 aprocs|Freeware|SOURCES.txt line 805
@@ -22,6 +23,7 @@ bash|GNU GPL|SOURCES.txt line 762
 bc|GNU General Public License version 2. Copyright (C) 1991 Free Software Foundation, Inc.|SOURCES.txt line 2357
 bdecode|Copyright (c) University of Toronto 1985-1990. "Permission is granted to anyone to use this software for any purpose ... and to alter it and redistribute it freely", with four conditions on credit.|DOC/cnews/COPYRIGHT; SOURCES.txt, C News section
 beav|Freeware|SOURCES.txt line 677
+bibtex|Public domain, as its OS-9 port's manifest states: "TeX and the accompanying programs are all public domain ... Feel free to distribute this system in any way you see fit."|DOC/tex/Manifest.text line 59
 bioradtopgm|Each netpbm author granted the right to use and distribute their code without charge, on a non-commercial basis; many allow more -- see each file's notice.|DOC/netpbm/COPYRIGHT
 bmptoppm|Each netpbm author granted the right to use and distribute their code without charge, on a non-commercial basis; many allow more -- see each file's notice.|DOC/netpbm/COPYRIGHT
 browse|None accompanies the posting. It was posted to comp.os.os9 and has been freely redistributed since, on the same footing as the other no-notice Usenet software here.|SOURCES.txt line 2493
@@ -48,6 +50,18 @@ disdvi|Posted and freely redistributed since; no licence text accompanies the so
 disktest|By St.Paschedag. public; no military use|DOC/disktest/info_disktest
 dpark|Public domain|SOURCES.txt line 816
 drawl|None stated; a joke filter, carried as posted.|SOURCES.txt line 1013
+dvialw|Public domain, as its OS-9 port's manifest states: "TeX and the accompanying programs are all public domain ... Feel free to distribute this system in any way you see fit."|DOC/tex/Manifest.text line 59
+dvidjp|Public domain, as its OS-9 port's manifest states: "TeX and the accompanying programs are all public domain ... Feel free to distribute this system in any way you see fit."|DOC/tex/Manifest.text line 59
+dvieps|Public domain, as its OS-9 port's manifest states: "TeX and the accompanying programs are all public domain ... Feel free to distribute this system in any way you see fit."|DOC/tex/Manifest.text line 59
+dviimp|Public domain, as its OS-9 port's manifest states: "TeX and the accompanying programs are all public domain ... Feel free to distribute this system in any way you see fit."|DOC/tex/Manifest.text line 59
+dvijep|Public domain, as its OS-9 port's manifest states: "TeX and the accompanying programs are all public domain ... Feel free to distribute this system in any way you see fit."|DOC/tex/Manifest.text line 59
+dvijet|Public domain, as its OS-9 port's manifest states: "TeX and the accompanying programs are all public domain ... Feel free to distribute this system in any way you see fit."|DOC/tex/Manifest.text line 59
+dvilj2|Public domain, as its OS-9 port's manifest states: "TeX and the accompanying programs are all public domain ... Feel free to distribute this system in any way you see fit."|DOC/tex/Manifest.text line 59
+dvimac|Public domain, as its OS-9 port's manifest states: "TeX and the accompanying programs are all public domain ... Feel free to distribute this system in any way you see fit."|DOC/tex/Manifest.text line 59
+dvioki|Public domain, as its OS-9 port's manifest states: "TeX and the accompanying programs are all public domain ... Feel free to distribute this system in any way you see fit."|DOC/tex/Manifest.text line 59
+dvips|Public domain, as its OS-9 port's manifest states: "TeX and the accompanying programs are all public domain ... Feel free to distribute this system in any way you see fit."|DOC/tex/Manifest.text line 59
+dvitos|Public domain, as its OS-9 port's manifest states: "TeX and the accompanying programs are all public domain ... Feel free to distribute this system in any way you see fit."|DOC/tex/Manifest.text line 59
+dvitype|Public domain, as its OS-9 port's manifest states: "TeX and the accompanying programs are all public domain ... Feel free to distribute this system in any way you see fit."|DOC/tex/Manifest.text line 59
 ed|GNU GPL|SOURCES.txt line 1282
 elm|The Elm Mail System General Public License, (C) 1988-1992 USENET Community Trust and 1986-1987 Dave Taylor: copying and distribution permitted, at no charge.|DOC/elm/Notice
 emacs.mm1|Public domain|SOURCES.txt line 683
@@ -69,6 +83,8 @@ fudd|None stated; a joke filter, carried as posted. Elmer Fudd is a cartoon char
 g3topbm|Each netpbm author granted the right to use and distribute their code without charge, on a non-commercial basis; many allow more -- see each file's notice.|DOC/netpbm/COPYRIGHT
 gemtopbm|Each netpbm author granted the right to use and distribute their code without charge, on a non-commercial basis; many allow more -- see each file's notice.|DOC/netpbm/COPYRIGHT
 getenv|Public domain|SOURCES.txt line 709
+gftopk|Public domain, as its OS-9 port's manifest states: "TeX and the accompanying programs are all public domain ... Feel free to distribute this system in any way you see fit."|DOC/tex/Manifest.text line 59
+gftype|Public domain, as its OS-9 port's manifest states: "TeX and the accompanying programs are all public domain ... Feel free to distribute this system in any way you see fit."|DOC/tex/Manifest.text line 59
 giftopnm|Each netpbm author granted the right to use and distribute their code without charge, on a non-commercial basis; many allow more -- see each file's notice.|DOC/netpbm/COPYRIGHT
 globe|"Permission to use, copy, modify, and distribute this software and its documentation for any purpose and without fee is hereby granted" -- Jef Poskanzer, 1994.|SOURCES.txt line 1199
 gnugo|GNU General Public License, version 1 as the source states ("as published by the Free Software Foundation - version 1").|SOURCES.txt line 2655
@@ -92,10 +108,13 @@ imgtoppm|Each netpbm author granted the right to use and distribute their code w
 indent|Public|DOC/indent/info_indent
 inetdc|GNU General Public License, version 1.|DOC/wn/gnu_license; SOURCES.txt, WN section
 inetd|GNU General Public License, version 1.|DOC/wn/gnu_license; SOURCES.txt, WN section
+inimf|Public domain, as its OS-9 port's manifest states: "TeX and the accompanying programs are all public domain ... Feel free to distribute this system in any way you see fit."|DOC/tex/Manifest.text line 59
+initex|Public domain, as its OS-9 port's manifest states: "TeX and the accompanying programs are all public domain ... Feel free to distribute this system in any way you see fit."|DOC/tex/Manifest.text line 59
 jotto|Free. Its header: "You may use this program and modify it as you like, so long as you leave this message as it is and don't try to make money off the program."|SOURCES.txt line 954
 kermit|BSD / public domain|SOURCES.txt line 1260
 lame|None stated; a joke filter, carried as posted.|SOURCES.txt line 1022
 larn|Copyrighted 1986 by Noah Morgan; posted to|SOURCES.txt line 1170
+latex|Public domain, as its OS-9 port's manifest states: "TeX and the accompanying programs are all public domain ... Feel free to distribute this system in any way you see fit."|DOC/tex/Manifest.text line 59
 less|GNU GPL|SOURCES.txt line 714
 lharc|Freeware, no conditions attached. $AVAILABILITY freeware / $CONDITIONS (none)|SOURCES.txt line 603
 lha|Freeware|SOURCES.txt line 596
@@ -108,6 +127,7 @@ lua|Copyright (c) 1994-1997 TeCGraf, PUC-Rio. Permission granted without fee to 
 m4|GNU General Public License version 1, February 1989 -- the `Copying' file in the archive is the GPL v1 text in full.|SOURCES.txt line 2713
 macptopbm|Each netpbm author granted the right to use and distribute their code without charge, on a non-commercial basis; many allow more -- see each file's notice.|DOC/netpbm/COPYRIGHT
 makeinfo|GNU GPL|SOURCES.txt line 1329
+maketexpk|Public domain, as its OS-9 port's manifest states: "TeX and the accompanying programs are all public domain ... Feel free to distribute this system in any way you see fit."|DOC/tex/Manifest.text line 59
 mastrm|Public domain. "Master Mind, as presented here, is intended solely for the enjoyment of the public, and is not to be used for profit." Master Mind is a trademark of Invicta Plastics;|SOURCES.txt line 966
 messages|The Elm Mail System General Public License, (C) 1988-1992 USENET Community Trust and 1986-1987 Dave Taylor: copying and distribution permitted, at no charge.|DOC/elm/Notice
 mexist|Public domain|SOURCES.txt line 1237
@@ -181,7 +201,10 @@ pi1toppm|Each netpbm author granted the right to use and distribute their code w
 pi3topbm|Each netpbm author granted the right to use and distribute their code without charge, on a non-commercial basis; many allow more -- see each file's notice.|DOC/netpbm/COPYRIGHT
 picttoppm|Each netpbm author granted the right to use and distribute their code without charge, on a non-commercial basis; many allow more -- see each file's notice.|DOC/netpbm/COPYRIGHT
 pjtoppm|Each netpbm author granted the right to use and distribute their code without charge, on a non-commercial basis; many allow more -- see each file's notice.|DOC/netpbm/COPYRIGHT
+pktogf|Public domain, as its OS-9 port's manifest states: "TeX and the accompanying programs are all public domain ... Feel free to distribute this system in any way you see fit."|DOC/tex/Manifest.text line 59
 pktopbm|Each netpbm author granted the right to use and distribute their code without charge, on a non-commercial basis; many allow more -- see each file's notice.|DOC/netpbm/COPYRIGHT
+pktype|Public domain, as its OS-9 port's manifest states: "TeX and the accompanying programs are all public domain ... Feel free to distribute this system in any way you see fit."|DOC/tex/Manifest.text line 59
+pltotf|Public domain, as its OS-9 port's manifest states: "TeX and the accompanying programs are all public domain ... Feel free to distribute this system in any way you see fit."|DOC/tex/Manifest.text line 59
 pnmalias|Each netpbm author granted the right to use and distribute their code without charge, on a non-commercial basis; many allow more -- see each file's notice.|DOC/netpbm/COPYRIGHT
 pnmarith|Each netpbm author granted the right to use and distribute their code without charge, on a non-commercial basis; many allow more -- see each file's notice.|DOC/netpbm/COPYRIGHT
 pnmcat|Each netpbm author granted the right to use and distribute their code without charge, on a non-commercial basis; many allow more -- see each file's notice.|DOC/netpbm/COPYRIGHT
@@ -279,13 +302,18 @@ shar|Public domain|SOURCES.txt line 608
 sh|Public domain|SOURCES.txt line 767
 sirtopnm|Each netpbm author granted the right to use and distribute their code without charge, on a non-commercial basis; many allow more -- see each file's notice.|DOC/netpbm/COPYRIGHT
 sldtoppm|Each netpbm author granted the right to use and distribute their code without charge, on a non-commercial basis; many allow more -- see each file's notice.|DOC/netpbm/COPYRIGHT
+slitex|Public domain, as its OS-9 port's manifest states: "TeX and the accompanying programs are all public domain ... Feel free to distribute this system in any way you see fit."|DOC/tex/Manifest.text line 59
 space|(c) 1990 by L.Zeller. Public, with condition.; May only be used under the conditions listed in the documentation (help file).|DOC/space/info_space
 spctoppm|Each netpbm author granted the right to use and distribute their code without charge, on a non-commercial basis; many allow more -- see each file's notice.|DOC/netpbm/COPYRIGHT
 spew|Copyright 1987 Greg Smith. "Permission is granted to freely use and distribute this software."|SOURCES.txt line 980
 spottopgm|Each netpbm author granted the right to use and distribute their code without charge, on a non-commercial basis; many allow more -- see each file's notice.|DOC/netpbm/COPYRIGHT
 sputoppm|Each netpbm author granted the right to use and distribute their code without charge, on a non-commercial basis; many allow more -- see each file's notice.|DOC/netpbm/COPYRIGHT
 tail|Public domain|SOURCES.txt line 696
+tangle|Public domain, as its OS-9 port's manifest states: "TeX and the accompanying programs are all public domain ... Feel free to distribute this system in any way you see fit."|DOC/tex/Manifest.text line 59
 tar|Public domain|SOURCES.txt line 630
+texidx|Public domain, as its OS-9 port's manifest states: "TeX and the accompanying programs are all public domain ... Feel free to distribute this system in any way you see fit."|DOC/tex/Manifest.text line 59
+tex|Public domain, as its OS-9 port's manifest states: "TeX and the accompanying programs are all public domain ... Feel free to distribute this system in any way you see fit."|DOC/tex/Manifest.text line 59
+tftopl|Public domain, as its OS-9 port's manifest states: "TeX and the accompanying programs are all public domain ... Feel free to distribute this system in any way you see fit."|DOC/tex/Manifest.text line 59
 tgatoppm|Each netpbm author granted the right to use and distribute their code without charge, on a non-commercial basis; many allow more -- see each file's notice.|DOC/netpbm/COPYRIGHT
 tput|Public domain. "tput, written by Badri Lokanathan, is in the public domain, and may be freely distributed.|SOURCES.txt line 2283
 tree|(c) 1990 by C.Mahr. Public.|DOC/tree/info_tree
@@ -297,8 +325,13 @@ unzip|Info-ZIP license (open source, redistribution OK)|SOURCES.txt line 636
 upperdir|Freeware|SOURCES.txt line 1247
 uustat|The author's own grant, in the source: "Permission is granted to anyone to use this software for any purpose on any computer system, and to redistribute it freely", subject to four conditions -- no liability, the origin must not be misrepresented, altered versions must be plainly marked, and "Incorporation of this software into commercial products is permitted only with the written permission of the author".|SOURCES.txt line 2511
 version|Public. very public.|DOC/version/info_version
+vftovp|Public domain, as its OS-9 port's manifest states: "TeX and the accompanying programs are all public domain ... Feel free to distribute this system in any way you see fit."|DOC/tex/Manifest.text line 59
 vi_cio|Freeware|SOURCES.txt line 667
 vi_nocio|Freeware|SOURCES.txt line 672
+virmf|Public domain, as its OS-9 port's manifest states: "TeX and the accompanying programs are all public domain ... Feel free to distribute this system in any way you see fit."|DOC/tex/Manifest.text line 59
+virtex|Public domain, as its OS-9 port's manifest states: "TeX and the accompanying programs are all public domain ... Feel free to distribute this system in any way you see fit."|DOC/tex/Manifest.text line 59
+vptovf|Public domain, as its OS-9 port's manifest states: "TeX and the accompanying programs are all public domain ... Feel free to distribute this system in any way you see fit."|DOC/tex/Manifest.text line 59
+weave|Public domain, as its OS-9 port's manifest states: "TeX and the accompanying programs are all public domain ... Feel free to distribute this system in any way you see fit."|DOC/tex/Manifest.text line 59
 whereis|BSD. Copyright (c) 1980 The Regents of the University of California. This product includes software developed by the University of California, Berkeley and its contributors.|SOURCES.txt line 1313
 which|Posted to Usenet and freely redistributed since. No licence text accompanies the source.|SOURCES.txt line 1299
 wn.stb|GNU General Public License, version 1.|DOC/wn/gnu_license; SOURCES.txt, WN section
