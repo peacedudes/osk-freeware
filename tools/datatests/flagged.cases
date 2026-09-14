@@ -60,24 +60,37 @@ expect  no history entry for <one@site.uucp> nor <<one@site.uucp>>
 absent  can't open
 absent  incomprehensible
 
-case    dbz-builds-its-files-and-cannot-store-into-them
-# This is why the answer above is `no history entry' for an id that IS in
-# the file.  Build mode CREATES the .dir/.pag pair and then cannot store a
-# key into it; CHECK mode (-c) then agrees it cannot find what it was asked
-# about.  So the database is built, read and empty, and that is as far as
-# this pair goes here.  The separator is not what stops it:
-# tools/drives/flagged4.drive writes the line with real tabs and gets the
-# same `store failed'.
+case    dbz-builds-a-database-that-newshist-reads
+# A history line is the message id, a TAB, the date, a TAB and the expiry.
+# From that dbz builds the .dir/.pag pair, and newshist then finds the id.
+# Until 2026-09-14 this case asserted `store failed' even with tabs: that
+# was os9exec losing a directory's EOF lock as its RBF path moved onto the
+# file (fixed in os9exec 21d5759), not dbz.
 run     /dd/CMDS/mkdir -p /dd/lib/news > /nil 2>/nil
+run     /dd/CMDS/rm -f /dd/lib/news/history.dir > /nil 2>/nil
+run     /dd/CMDS/rm -f /dd/lib/news/history.pag > /nil 2>/nil
+run     /dd/CMDS/printf '<one@site.uucp>\t9999999\t1\n' > /dd/lib/news/history
+run     /dd/CMDS/ksh -c "cd /dd/lib/news; /dd/CMDS/NEWS/dbz history"
+run     /dd/CMDS/ksh -c "cd /dd/lib/news; /dd/CMDS/NEWS/dbz -c history"
+run     /dd/CMDS/ls /dd/lib/news
+run     /dd/CMDS/NEWS/newshist "<one@site.uucp>"
+expect  history.dir
+expect  history.pag
+expect  9999999
+absent  store failed
+absent  can't find
+absent  no history entry
+
+case    dbz-refuses-a-line-without-tabs
+# The same line with spaces is not a history line.  dbz builds from it
+# without complaint, and check mode (-c) then cannot find the line in the
+# database it made.  That is also why the newshist case above, which
+# writes spaces, answers `no history entry'.
 run     /dd/CMDS/rm -f /dd/lib/news/history.dir > /nil 2>/nil
 run     /dd/CMDS/rm -f /dd/lib/news/history.pag > /nil 2>/nil
 run     echo "<one@site.uucp> 9999999 1" > /dd/lib/news/history
 run     /dd/CMDS/ksh -c "cd /dd/lib/news; /dd/CMDS/NEWS/dbz history"
-run     /dd/CMDS/ls /dd/lib/news
 run     /dd/CMDS/ksh -c "cd /dd/lib/news; /dd/CMDS/NEWS/dbz -c history"
-expect  store failed on `<one@site.uucp> 9999999 1
-expect  history.dir
-expect  history.pag
 expect  can't find `<one@site.uucp> 9999999 1
 
 case    dbz-check-mode-needs-the-pair-that-build-mode-makes

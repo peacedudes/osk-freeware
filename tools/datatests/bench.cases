@@ -57,11 +57,15 @@ run     $D/dhryO2 < /dd/tmp/runs
 expect  Measured time too small to obtain meaningful results
 expect  Please increase number of runs
 
+# savage runs a = tan(atan(exp(log(sqrt(a*a))))) + 1 a thousand times, so
+# the ideal answer is 1000 and the distance from it is the accumulated
+# error.  This asserted 7.486e+02 until 2026-09-14: os9exec left X stale
+# after NEG and Microware's software doubles came out wrong; fixed there.
 case    float-and-savage-are-the-floating-point-benchmarks
 run     /dd/CMDS/float
 run     /dd/CMDS/savage
 expect  7000 loops done
-expect  a = 7.48642602602958e+02
+expect  a = 9.99999999981959e+02
 expect  1000 loops done
 
 # NOT a benchmark. DOC/INDEX called this "floating-point benchmark" until

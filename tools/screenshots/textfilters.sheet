@@ -465,21 +465,17 @@ cap     GNU awk 2.11, the pattern-and-action language: the password file
 cap     reformatted with `-F,' and printf to pick two fields, then the
 cap     holidays file counted in an END block -- NR is the line number, so
 cap     at the end it is the count of lines, and w has been adding up NF,
-cap     the number of fields on each line: 37 lines, 103 words.  Feed it on
-cap     standard
-cap     input -- this build ignores a filename argument and reads standard
-cap     input whatever it is given, so a named file leaves it waiting on the
-cap     terminal.
-try     cat password; gawk -F, "{printf \"%-8s %s\n\", \$1, \$6}" < password; gawk "{w+=NF} END {print NR, w}" < holidays
+cap     the number of fields on each line.
+try     cat password; gawk -F, "{printf \"%-8s %s\n\", \$1, \$6}" password; gawk "{w+=NF} END {print NR, w}" holidays
 run     builtin cd /dd/SYS
 wait    1
 run     clear
 wait    1
 run     cat password
 wait    4
-run     gawk -F, "{printf \"%-8s %s\n\", \$1, \$6}" < password
+run     gawk -F, "{printf \"%-8s %s\n\", \$1, \$6}" password
 wait    12
-run     gawk "{w+=NF} END {print NR, w}" < holidays
+run     gawk "{w+=NF} END {print NR, w}" holidays
 wait    12
 snap
 

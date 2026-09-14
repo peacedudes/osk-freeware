@@ -4,11 +4,11 @@ tester,,1.7,128,/dd/CMDS,/dd/USR/TESTER,shell
 ,,1.99,128,/dd/CMDS,/dd/USR/ANON,shell -p="anon: "
 uucp,,3.1,128,/dd/CMDS/UUCP,/dd/USR/LIB/UUCP,shell
 os9,,0.0,128,/dd/CMDS,/dd,shell
-$ gawk -F, "{printf \"%-8s %s\n\", \$1, \$6}" < password
+$ gawk -F, "{printf \"%-8s %s\n\", \$1, \$6}" password
 su       /dd/sys
 tester   /dd/USR/TESTER
          /dd/USR/ANON
 uucp     /dd/USR/LIB/UUCP
 os9      /dd
-$ gawk "{w+=NF} END {print NR, w}" < holidays
+$ gawk "{w+=NF} END {print NR, w}" holidays
 37 103

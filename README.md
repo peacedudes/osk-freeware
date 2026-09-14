@@ -113,7 +113,7 @@ is no help until you already know the name you want.
 | **Files & directories** | 34 | Listing, copying, finding, renaming, and knowing what you have. |
 | **Developer tools** | 47 | Version control, tags, cross-reference, formatters, a debugger and benchmarks. |
 | **Compilers & build** | 40 | C compilers and their passes, assemblers, linkers, make and parser generators. |
-| **Languages** | 10 | Interpreters and language systems beyond C. |
+| **Languages** | 11 | Interpreters and language systems beyond C. |
 | **Archives & compression** | 33 | Pack, unpack and shrink -- lha, zip, tar, arc, zoo, and OS-9 module libraries. |
 | **Encoding & conversion** | 29 | Between text encodings, line endings, Macintosh formats, ciphers and hashes. |
 | **Communications** | 97 | Kermit in several builds, terminal sessions, and networking. |

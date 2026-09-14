@@ -66,12 +66,12 @@ absent  32 by 16  maxval 255	32 by 16
 # It does NOT refuse a right angle -- the first draft of this asserted that
 # it names `pnmflip' and it simply rotated, writing the image to the
 # terminal because there was no redirect. A quarter turn of a 32x16 gives
-# 18x32, not 16x32: the extra two columns are the same rounding that makes
-# 30 degrees give 38x31.
+# exactly 16x32.  It gave 18x32 until 2026-09-14, and that was os9exec's
+# floating point (X left stale after NEG), not pnmrotate's rounding.
 case    pnmrotate-turns-a-right-angle-too
 run     $P/pnmrotate 90 $W/base.ppm > $W/r90.ppm
 run     $P/pnmfile $W/r90.ppm
-expect  PPM raw, 18 by 32  maxval 255
+expect  PPM raw, 16 by 32  maxval 255
 
 # ppmrelief embosses: it is a fixed convolution, so the size is preserved
 # exactly and the answer is repeatable.

@@ -107,17 +107,19 @@ case    charcnt-counts-characters
 run     /dd/CMDS/charcnt < $T
 absent  can't
 
-# gawk IGNORES A FILENAME ARGUMENT and reads standard input whatever it is
-# given.  Named a file it sits waiting on the terminal, which is why this was
-# once recorded as "reads no input".  Both halves are asserted: redirected it
-# counts the lines, named it produces nothing.
+# gawk reads the files it is named, and standard input when it is named
+# none.  Until 2026-09-14 this asserted that it IGNORED a filename argument
+# and sat waiting on the terminal: that was os9exec leaving X stale after
+# NEG, which broke Microware's software floating point, not gawk.  Both
+# halves are asserted, with standard input offering one empty line to show
+# which one it read.
 case    gawk-counts-lines-on-stdin
 run     /dd/CMDS/gawk "END{print NR\" records\"}" < $T
 expect  4 records
 
-case    gawk-ignores-a-filename-argument
+case    gawk-reads-a-named-file
 run     echo "" | /dd/CMDS/gawk "END{print NR\" records\"}" $T
-expect  1 records
+expect  4 records
 
 # `nsort' IS NOT A NUMERIC SORT, whatever its name and DOC/INDEX said until
 # 2026-08-29: it answers exactly what GNU `sort' answers with no options.

@@ -1,6 +1,6 @@
 # What is on this disk
 
-996 programs of OS-9/68K community software, gathered from the archives that kept it and made to run again. **652 of them need nothing but this disk**; the rest want Microware's `cio`, marked below with a star.
+997 programs of OS-9/68K community software, gathered from the archives that kept it and made to run again. **653 of them need nothing but this disk**; the rest want Microware's `cio`, marked below with a star.
 
 `DOC/INDEX` on the disk lists everything alphabetically. This is the same collection sorted by what each program is *for*, which is the more useful order when you do not yet know what you are looking for.
 
@@ -17,7 +17,7 @@
 | [Files & directories](#files--directories) | 34 | Listing, copying, finding, renaming, and knowing what you have. |
 | [Developer tools](#developer-tools) | 47 | Version control, tags, cross-reference, formatters, a debugger and benchmarks. |
 | [Compilers & build](#compilers--build) | 40 | C compilers and their passes, assemblers, linkers, make and parser generators. |
-| [Languages](#languages) | 10 | Interpreters and language systems beyond C. |
+| [Languages](#languages) | 11 | Interpreters and language systems beyond C. |
 | [Archives & compression](#archives--compression) | 33 | Pack, unpack and shrink -- lha, zip, tar, arc, zoo, and OS-9 module libraries. |
 | [Encoding & conversion](#encoding--conversion) | 29 | Between text encodings, line endings, Macintosh formats, ciphers and hashes. |
 | [Communications](#communications) | 97 | Kermit in several builds, terminal sessions, and networking. |
@@ -331,7 +331,7 @@
 | `field` | &#9733; select whitespace-separated fields from standard input by number, in the order asked for and tab-separated on output: `field 2 4 1' prints the second, fourth and first word of each line. `-i=c' names another input separator.<br>`field v1.0 (c) S.R.Bourne, M.C.Gregorie, 1994` |
 | `fillup` | &#9733; fills a file up to a given length with a constant byte: `fillup -n=64 -i=65 f' pads f to 64 bytes with `A' and says `24 bytes (value=65) appended'. The length option is -n=, not -l=<br>`Syntax:   fillup [<options>] <file>` |
 | `fold` | wraps long lines to a width, 80 columns unless -w says otherwise<br>`fold: illegal option -- ?` |
-| `gawk` | &#9733; GNU awk 2.11, the pattern-and-action language. This build reads standard input whatever it is given, so redirect: `gawk "{...}" < file'; named a file it waits on the terminal<br>**How:** GNU awk 2.11. IT IGNORES A FILENAME ARGUMENT and reads standard input whatever it is given, so redirect: `gawk "{print \$1}" < file', never `gawk "{print \$1}" file' -- named a file it sits waiting on the terminal. Keep the program text short: a command line wider than the window scrolls under bash and is hard to read back. Needs Microware's cio. |
+| `gawk` | &#9733; GNU awk 2.11, the pattern-and-action language: `gawk "{print $1}" file' prints the first field of every line, and named no file it reads standard input<br>**How:** GNU awk 2.11. `gawk "{print \$1}" file' prints the first field of every line; named no file, it reads standard input. Keep the program text short: a command line wider than the window scrolls under bash and is hard to read back. Needs Microware's cio. |
 | `gdd` | &#9733; GNU dd, a block copier and converter: `gdd if=<file> bs=<n> skip= seek= count=', and `conv=ucase' converts on the way through. `of=' can only name a file that already exists, so send the output through `>' instead<br>**How:** GNU dd -- a block copier and converter. `gdd if=<file> bs=8 count=1' copies eight bytes, `conv=ucase' converts on the way through. `of=' can only name a file that already exists, so send the output through `>'. Give it arguments. It uses Microware's cio; `dump' is the hex dump here. |
 | `gep` | &#9733; a global expression parser -- grep-like; its `-e' takes the path of a file holding the expressions: `gep -e=/dd/tmp/patterns <file>'. A file of patterns applied at once is what it is for and nothing else here does it. See DOC/README-GREP<br>**How:** Its expressions come from a FILE named with `-e', which its own option list marks `(required)': `gep -e=<patterns> <source>'. Handing it a pattern and a file the way you would grep earns `more than one path specified'. |
 | `head` | prints the first lines of a file: `head -n 20 file'. This GNU build wants -n 20, not -20<br>**How:** First lines of a file. This GNU build wants `head -n 20 file' -- the older `head -20' form is rejected as an unrecognized option. Needs cio. |
@@ -620,7 +620,7 @@
 
 *Interpreters and language systems beyond C.*
 
-<details><summary>10 programs</summary>
+<details><summary>11 programs</summary>
 
 **Adventure authoring**
 
@@ -638,6 +638,7 @@
 | `forth` | &#9733; TILE Forth, a Forth-83 in C. A source file named on the command line is loaded first -- `forth fibonacci.tst' in lib/tile/TST -- and then it prompts silently: `2 3 + . cr' prints 5, a colon definition makes a new word, words lists the vocabulary, bye leaves. lib/tile holds its source library and TST twenty-two test programs; sixteen manuals in DOC/forth<br>**How:** Type `2 3 + . cr' and it answers 5; `: squares 11 1 do i dup * . loop cr ;' then `squares' prints them; `words' lists its vocabulary; `bye' leaves. A source file is a command-line argument -- `forth fibonacci.tst' in lib/tile/TST loads it and gives you the prompt -- because `include' is defined in the library, not the kernel. The library and its twenty-two programs are in lib/tile and lib/tile/TST. |
 | `lua` | Lua 3.0, a small scripting language. `lua <file>' runs a script -- `lua hello.lua' in DOC/lua/examples prints hello world -- and with no file it reads one from standard input; -v prints the version. Eight example scripts are in DOC/lua/examples. luac compiles a script to bytecode, and to an OS-9 module that runc starts<br>**How:** `lua cf.lua' in DOC/lua/examples prints a temperature table; `lua hello.lua' says hello. Eight example scripts are there; -v prints the version. |
 | `luac` | &#9733; Lua bytecode compiler: `luac -o out.lc in.lua'; -l lists the instructions as it compiles, -x compiles into an OS-9 module in the execution directory for runc to start<br>**How:** `luac -l -o hello.lc hello.lua' compiles and lists the bytecode. `luac -x -o name script.lua' makes an OS-9 module in the execution directory for runc. |
+| `perl` | Perl 4.036, a text-processing language. `perl script.pl' runs a script, `perl -e' runs a line of program, and with neither it reads the script from standard input; -v prints the version. system, backticks and piped opens go through $SHELL; fork is not supported. Library in LIB/perl, manual in DOC/perl/perl.txt, source and port notes in SRC/perl4<br>**How:** Perl 4.036. `perl -e 'print 6*7, "\n";'' prints 42; `perl script.pl' runs a file; -v prints the version. system and backticks go through $SHELL, which SYS/login sets to ksh. The library is in LIB/perl and the manual in DOC/perl/perl.txt. |
 | `runc` | runs a Lua script that `luac -x' has compiled into an OS-9 module: `load greet', then `runc greet <args>'. The script reads its arguments from argv[1] onwards, with the count in argv.n<br>**How:** Compile with `luac -x -o greet greet.lua', `load greet', then `runc greet World'. The script reads argv[1] onwards; argv.n is the count. |
 | `wam.sbprolog` | SB-Prolog 2.2, a full Prolog. Needs SIMPATH=/dd/SBPROLOG/MODLIB; `wam.sbprolog SBPROLOG/MODLIB/$readloop' from /dd gives the `?-' prompt, and halt. leaves. DOC/sbprolog has the manual and README- SBPROLOG<br>**How:** Needs SIMPATH=/dd/SBPROLOG/MODLIB (login sets it). From /dd: `wam.sbprolog SBPROLOG/MODLIB/$readloop' gives the `?-' prompt; after a solution ; asks for the next and Return accepts it; halt. leaves. |
 | `xlisp` | XLISP 2.1, a Lisp interpreter with objects, at a > prompt; (exit) leaves. DOC/xlisp has the manual |
