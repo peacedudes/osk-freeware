@@ -33,8 +33,8 @@ find "$R/disk/CMDS" -type f ! -path '*/archives/*' | sort | while IFS= read -r f
   for m in "$@"; do cp "$R/disk/CMDS/$m" "$d/" 2>/dev/null; done
   cp "$f" "$d/$name"
   out=$(gtimeout 5 env -i OS9DISK="$IMG" OS9H0="$IMG" OS9H5="$d" OS9CMDS="$d" "$E" -r "/h5/$name" < /dev/null 2>&1 \
-        | tr -d '\000' | LC_ALL=C tr '\r' '\n' | grep -a -v -E '^# |^#$|^$' | head -4 | tr '\n' ' ')
-  mod=$(printf '%s' "$out" | LC_ALL=C grep -a -o -i -E "can't install ([A-Za-z0-9_]+ )?(trap handler|[A-Za-z0-9_]+)|\*\*\*\* [A-Za-z0-9_]+ \*\*\*\*" | head -2 | tr '\n' ' ')
+        | LC_ALL=C tr -d '\000' | LC_ALL=C tr '\r' '\n' | grep -a -v -E '^# |^#$|^$' | head -4 | tr '\n' ' ')
+  mod=$(printf '%s' "$out" | LC_ALL=C grep -a -o -i -E "can't install ([A-Za-z0-9_]+ )?(trap handler|[A-Za-z0-9_]+)|\*\*\*\* [A-Za-z0-9_]+( \*\*\*\*|$| )" | head -2 | tr '\n' ' ')
   if printf '%s' "$out" | LC_ALL=C grep -a -q -i "can't install"; then v=NEEDS-MODULE; else v=STARTS; fi
   printf '%s\t%s\t%s\t%s\t%s\n' "$name" "$rel" "$v" "$mod" "$(printf '%s' "$out" | cut -c1-160)" >> "$OUT"
 done
