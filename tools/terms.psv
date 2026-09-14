@@ -5,6 +5,12 @@
 # documentation have been read for one.  Seeded 2026-09-14 from SOURCES.txt
 # License:/terms lines and the EFFO info files; tools/terms-backlog.txt
 # names the programs whose terms have not been looked up yet.
+Ascii2Libr|Shareware. Copyright (c) 1991,1992 Robert Heller D/B/A Deepwoods Software. Licensed "to anyone to use at no charge"; "may be freely copied, so long as the complete package of six executable programs and the documentation files are copied together as a unit." No fee may be charged.|DOC/homelibr/HomeLibr.doc lines 1356-1389; SOURCES.txt lines 163-170
+EditLibr|Shareware. Copyright (c) 1991,1992 Robert Heller D/B/A Deepwoods Software. Licensed "to anyone to use at no charge"; "may be freely copied, so long as the complete package of six executable programs and the documentation files are copied together as a unit." No fee may be charged.|DOC/homelibr/HomeLibr.doc lines 1356-1389; SOURCES.txt lines 163-170
+Libr2Ascii|Shareware. Copyright (c) 1991,1992 Robert Heller D/B/A Deepwoods Software. Licensed "to anyone to use at no charge"; "may be freely copied, so long as the complete package of six executable programs and the documentation files are copied together as a unit." No fee may be charged.|DOC/homelibr/HomeLibr.doc lines 1356-1389; SOURCES.txt lines 163-170
+Librarian|Shareware. Copyright (c) 1991,1992 Robert Heller D/B/A Deepwoods Software. Licensed "to anyone to use at no charge"; "may be freely copied, so long as the complete package of six executable programs and the documentation files are copied together as a unit." No fee may be charged.|DOC/homelibr/HomeLibr.doc lines 1356-1389; SOURCES.txt lines 163-170
+PrintCards|Shareware. Copyright (c) 1991,1992 Robert Heller D/B/A Deepwoods Software. Licensed "to anyone to use at no charge"; "may be freely copied, so long as the complete package of six executable programs and the documentation files are copied together as a unit." No fee may be charged.|DOC/homelibr/HomeLibr.doc lines 1356-1389; SOURCES.txt lines 163-170
+PrintLabels|Shareware. Copyright (c) 1991,1992 Robert Heller D/B/A Deepwoods Software. Licensed "to anyone to use at no charge"; "may be freely copied, so long as the complete package of six executable programs and the documentation files are copied together as a unit." No fee may be charged.|DOC/homelibr/HomeLibr.doc lines 1356-1389; SOURCES.txt lines 163-170
 a2p|Copyright (c) 1989-1991 Larry Wall. Under either the GNU General Public License, version 1 or any later version, or the Artistic License, at your choice.|SOURCES.txt line 147
 accordian|Public domain. Its README ends "This program is public domain. -Eric Lechner".|SOURCES.txt line 910
 adduser|Copyright (C) 1990, 1993 Mark Griffith and Bob Billson. GNU General Public License, version 2 or later. "You cannot sell UUCPbb. You are free to modify the code and give copies of this away."|SRC/uucpbb/adduser.c lines 2-9; DOC/uucpbb/uucpbb.doc lines 297-301; SOURCES.txt line 1647
@@ -12,7 +18,9 @@ adlcomp|Copyright 1987 by Ross Cunniff, all rights reserved. "You may distribute
 adldebug|Copyright 1987 by Ross Cunniff, all rights reserved. "You may distribute the UNMODIFIED sources to ADL, provided that this notice is retained."|ADL/DEMOS/copyrigh.t
 adlrun|Copyright 1987 by Ross Cunniff, all rights reserved. "You may distribute the UNMODIFIED sources to ADL, provided that this notice is retained."|ADL/DEMOS/copyrigh.t
 adltouch|Copyright 1987 by Ross Cunniff, all rights reserved. "You may distribute the UNMODIFIED sources to ADL, provided that this notice is retained."|ADL/DEMOS/copyrigh.t
+advcom|Copyright (c) 1986 David Betz. All rights reserved. "Permission is hereby granted for unrestricted non-commercial use." The comp.sources.games moderator notes the author wants his source distributed only unmodified.|DOC/advint/README lines 14-16; DOC/advint/README2 lines 1-7; SRC/advint/advcom.c lines 4-5
 advent|Public domain. Jim Gillogly's 1977 C rewrite of Don Woods's ADVENT; the OS-9 notes say "The game was first released in the Public Domain for the IBM PC."|SOURCES.txt line 1085; DOC/advent/advent.doc line 71; SRC/adv/hdr.h lines 1-8
+advint|Copyright (c) 1986 David Betz. All rights reserved. "Permission is hereby granted for unrestricted non-commercial use." The comp.sources.games moderator notes the author wants his source distributed only unmodified.|DOC/advint/README lines 14-16; DOC/advint/README2 lines 1-7; SRC/advint/advint.c lines 4-5
 afm2tfm|Public domain, as its OS-9 port's manifest states: "TeX and the accompanying programs are all public domain ... Feel free to distribute this system in any way you see fit."|DOC/tex/Manifest.text line 59
 almanac|None is stated. A search of all 33,165 bytes of the source and of its documentation finds no copyright, no grant and no restriction.|SOURCES.txt line 2536
 animal|Copyright 1989 HCR Corporation, Toronto. "Permission to use, copy, modify, and distribute this software and its documentation for any purpose and without fee is hereby granted, provided that the above copyright notice appear in all copies."|DOC/animal/animal.6 lines 42-46; SRC/animal/an.c line 2
@@ -41,6 +49,7 @@ autolf|Freeware|SOURCES.txt line 1252
 autoreply|The Elm Mail System General Public License, (C) 1988-1992 USENET Community Trust and 1986-1987 Dave Taylor: copying and distribution permitted, at no charge.|DOC/elm/Notice
 banner|Public domain by its author's description: "a PD version of the SYS V banner program" and "There is no copyright or responsibility accepted for the use of this software." Brian Wallis, 1988.|SRC/misc/banner.c lines 5, 14-17
 bash|GNU GPL|SOURCES.txt line 762
+basicwin|Copyright 1989 O'Reilly and Associates, Inc. "See ../Copyright for complete rights and liability information." That file is not in the tree or anywhere on the disk.|SRC/x11r6pl13_lib_v0_6/basicwin.c lines 2-3
 bcd|BSD licence. Copyright (c) 1989 The Regents of the University of California. Redistribution in source and binary forms is permitted provided the notice, conditions and acknowledgement of UC Berkeley are kept.|SRC/bcd/bcd.c lines 2-15; SOURCES.txt lines 1334-1343
 bc|GNU General Public License version 2. Copyright (C) 1991 Free Software Foundation, Inc.|SOURCES.txt line 2357
 bdecode|Copyright (c) University of Toronto 1985-1990. "Permission is granted to anyone to use this software for any purpose ... and to alter it and redistribute it freely", with four conditions on credit.|DOC/cnews/COPYRIGHT; SOURCES.txt, C News section
@@ -56,6 +65,7 @@ bmgtest|The search routines carry only "James A. Woods ... Copyright (c) 1986" (
 bmptoppm|Each netpbm author granted the right to use and distribute their code without charge, on a non-commercial basis; many allow more -- see each file's notice.|DOC/netpbm/COPYRIGHT
 bog|No copyright line. "You may use this software for your enjoyment and you may share it with others. You may not sell this software or use it for any commercial purposes whatsoever." Modified versions must say what changed. By brachman@ubc.csnet, 1988.|DOC/bog/README lines 48-53; SRC/bog/bog.c line 8
 bootgen|Copyright 1987,1988 Roy J. Fehlandt. "Placed into the public domain for non-commercial use provided this notice is included in all copies."|SRC/bix/bootgen.c lines 1-3
+break|No copyright or licence statement; the source is headed "Disassembled 1987 by L.Zeller", with the edition history saying "object code at disassembly time".|SRC/forum5/break.a lines 1-20
 browse|None accompanies the posting. It was posted to comp.os.os9 and has been freely redistributed since, on the same footing as the other no-notice Usenet software here.|SOURCES.txt line 2493
 brushtopbm|Each netpbm author granted the right to use and distribute their code without charge, on a non-commercial basis; many allow more -- see each file's notice.|DOC/netpbm/COPYRIGHT
 bs|None stated; carried as posted.|SOURCES.txt line 940
@@ -92,9 +102,13 @@ colrm|BSD licence with the advertising clause. Copyright (c) 1980 The Regents of
 column|BSD licence. Copyright (c) 1989 The Regents of the University of California. Redistribution in source and binary forms is permitted provided the notice, conditions and acknowledgement of UC Berkeley are kept.|SRC/column/column.c lines 2-12; SOURCES.txt lines 1334-1343
 col|BSD licence. Copyright (c) 1990 The Regents of the University of California. Redistribution in source and binary forms is permitted provided the notice, conditions and acknowledgement of UC Berkeley are kept.|SRC/col/col.c lines 2-15; SOURCES.txt lines 1334-1343
 comm|BSD licence with the advertising clause. Copyright (c) 1989 The Regents of the University of California. Redistribution and use permitted if the notice is kept and materials credit "software developed by the University of California, Berkeley and its contributors."|SRC/comm/comm.c lines 2-22; SOURCES.txt lines 1335-1344
+compiler|No copyright or licence statement; the source names Uwe Simon, 1987-88.|SRC/eff_gshell/compiler.c line 24
+compress|No copyright or licence statement in SRC/hc_utils or its documentation. The header names Spencer W. Thomas, Jim McKie, Steve Davies, Ken Turkowski, James A. Woods and Joe Orost, with OS-9 changes by James Jones.|SRC/hc_utils/compress.c lines 1-8, 44-58; DOC/compress/compress.1
 connect|No copyright or licence statement in its source (connect.c, by Avygdor Moise, 1986) or its documentation; the Fehlandt notice on the other bix files is not in it.|SRC/bix/connect.c lines 1-5
+convert|World C Version 1.00 copyright 1987 J.D. McDonald. "Use as you like for non-commercial purposes, but please leave this note, and document any changes you make as yours."|SRC/world/vcnvrt.c lines 3-5 (the same notice heads every World source)
 cookhash|Karl Lehenbauer, 1989. "The code and cookies are released into the public domain without restriction." He asks that his name be kept in the source and that source be redistributed along with binaries.|DOC/cookie/README lines 9-11
 cookie|Karl Lehenbauer, 1989. "The code and cookies are released into the public domain without restriction." He asks that his name be kept in the source and that source be redistributed along with binaries.|DOC/cookie/README lines 9-11
+corewar|Copyrighted (C) 1989 by Na Choon Piaw. "This program and documentation is Public Domain, and may be distributed and copied by everyone provided this header remains intact."|SRC/corewars/ORIG/README lines 1-7; SOURCES.txt lines 1147-1152
 cpr|No copyright or licence statement in SRC/cpr or its documentation. The header names Paul Breslin, Human Computing Resources Corp., with additions by Rick Wise and David Wasley.|SRC/cpr/cpr.c lines 43-60; DOC/cpr/cpr.man
 creadoc|"Nur fuer nichtkommerzielle Nutzung freigegeben !" -- released for non-commercial use only. Andreas Eggenberger, 1988.|SRC/rtf/creadoc.f lines 30-31; DOC/rtf/creadoc.doc
 crib|Copyright (c) 1980 The Regents of the University of California. "Redistribution and use in source and binary forms are permitted provided that this notice is preserved and that due credit is given to the University of California at Berkeley."|SRC/crib/crib.c lines 2-10; DOC/crib/cribbage.6 lines 1-8
@@ -105,12 +119,15 @@ cursive|Copyright (c) 1985 Jan Wolter. The program and its font "may be used and
 cuts|"Copyright Simmule Turner" (cuts v1.5, 1989), in the RCS header. No distribution terms are stated in the source or its readme.|SRC/cuts/cuts.c line 2; DOC/cuts/readme.txt
 cut|Public domain: "This is a public domain version of AT&T's cut and paste commands." By John Weald.|DOC/cutpaste/README line 1; SRC/cutpaste/cut.c line 5
 cvtbase|Copyright 1988 by Mike Parker. All rights reserved. "Non-profit redistribution permitted."|SRC/misc/cvtbase.c lines 43-44 and 258-259
+cwasm|Copyrighted (C) 1989 by Na Choon Piaw. "This program and documentation is Public Domain, and may be distributed and copied by everyone provided this header remains intact."|SRC/corewars/ORIG/README lines 1-7; SOURCES.txt lines 1147-1152
+cwdis|Copyrighted (C) 1989 by Na Choon Piaw. "This program and documentation is Public Domain, and may be distributed and copied by everyone provided this header remains intact."|SRC/corewars/ORIG/README lines 1-7; SOURCES.txt lines 1147-1152
 dam|No copyright or licence statement in SRC/effo_wolk or its documentation. The header names Thomas Wolk, Berlin, as author.|SRC/effo_wolk/dam.c lines 1-20
 dback|Copyright 1991 by Cowen Software Ltd. "released to the public domain for non-commercial use".|SRC/dback/dback.c lines 26-29
 dbz|Copyright (c) University of Toronto 1985-1990. "Permission is granted to anyone to use this software for any purpose ... and to alter it and redistribute it freely", with four conditions on credit.|DOC/cnews/COPYRIGHT; SOURCES.txt, C News section
 delbak|Copyright 1991 Cowen Software Ltd. "Released to the public domain for non-commercial use."|SRC/cowen_tools/delbak.c lines 15-18
 demerge|No copyright or licence statement in its source (demerge.a, 1991) or its documentation.|SRC/effo_forum16/demerge.a lines 1-16
 des|Jim Gillogly, 1977, modified 1984 with Lauren Weinstein. "This program is now officially in the public domain, and is available for any non-profit use as long as the authorship line is retained."|SRC/des/des.c lines 27-32
+deton|No copyright or licence statement in SRC/hc_utils or its documentation. The source carries no author line.|SRC/hc_utils/deton.c lines 1-8
 dfiles|(C) Christian Mahr. Public; no conditions|DOC/dfiles/info_dfiles
 dhryGcc2in|No copyright or licence statement in the source. It names its author, Reinhold P. Weicker, and asks that results be sent to him and to Rick Richardson.|SRC/dhry/dhry_gbl.h line 13; SRC/dhry/dhry_p1.c line 13
 dhryGcc2mx|No copyright or licence statement in the source. It names its author, Reinhold P. Weicker, and asks that results be sent to him and to Rick Richardson.|SRC/dhry/dhry_gbl.h line 13; SRC/dhry/dhry_p1.c line 13
@@ -137,6 +154,7 @@ dpark|No copyright or licence statement anywhere in the smallutils package -- it
 drawl|None stated; a joke filter, carried as posted.|SOURCES.txt line 1013
 draw|No copyright or licence statement in SRC/draw or its documentation.|SRC/draw/main.c; SRC/draw/draw.h; SRC/draw/command.c
 du|No copyright or licence statement; the source says it is based on Size.C by Avy Moise (1987), modified by Tom Leitner.|SRC/eff_du/du.c lines 1-8
+dvi2tty|Copyright (C) 1984, 1985, 1986 Svante Lindahl; (C) 1988-1990 M.J.E. Mol. "It may be copied for non-commercial use only, provided that any and all copyright notices are preserved."|SRC/dvi2tty/dvi2tty.c lines 88-90; SRC/dvi2tty/dvi2tty.h lines 1-2
 dvialw|Public domain, as its OS-9 port's manifest states: "TeX and the accompanying programs are all public domain ... Feel free to distribute this system in any way you see fit."|DOC/tex/Manifest.text line 59
 dvidjp|Public domain, as its OS-9 port's manifest states: "TeX and the accompanying programs are all public domain ... Feel free to distribute this system in any way you see fit."|DOC/tex/Manifest.text line 59
 dvieps|Public domain, as its OS-9 port's manifest states: "TeX and the accompanying programs are all public domain ... Feel free to distribute this system in any way you see fit."|DOC/tex/Manifest.text line 59
@@ -185,7 +203,9 @@ float|No copyright or licence statement; a benchmark from Byte, July 1987, typed
 florida|Copyright 1988 by Brett Slocum. All rights reserved. "Permission is granted to distribute or modify this program, or use portions of this program in other programs, as long as this notice remains intact." Not to be sold for profit without the author's permission.|SRC/weather/weather.c lines 4-9
 fold|BSD licence. Copyright (c) 1990 The Regents of the University of California. Redistribution in source and binary forms is permitted provided the notice, conditions and acknowledgement of UC Berkeley are kept.|SRC/fold/fold.c lines 2-15; SOURCES.txt lines 1334-1343
 fontgen|No copyright or licence statement in SRC/forum3 or its documentation.|SRC/forum3/fontgen.c
+forth|GNU General Public License, version 1 or later. Copyright (c) 1989 Mikael R.K. Patel (TILE Forth). Its readme also calls it shareware: "You may use it freely", with a contribution to the author encouraged.|SRC/pd7/forth.c lines 4, 30-32; SRC/pd7/readme lines 296-304; DOC/forth/COPYING
 fortune|No copyright or licence statement in SRC/fortune or its documentation. The source carries only an SCCS id, "fortune.c 1.4 (Berkeley) 2/11/83".|SRC/fortune/fortune.c line 1
+for|RTF/68K Fortran-77, H. von der Schmitt, Universitaet Heidelberg. No copyright line; its manual says the package "is available free" and "It is free for non-profit organizations." No source for it is in SRC/rtf.|DOC/rtf/rtfman.txt lines 36-39, 399-400, 4172-4181
 freeb|Public domain. The source says so in its third line: "Public domain version: 5/21/89".|SOURCES.txt line 2379
 frm|The Elm Mail System General Public License, (C) 1988-1992 USENET Community Trust and 1986-1987 Dave Taylor: copying and distribution permitted, at no charge.|DOC/elm/Notice
 fstopgm|Each netpbm author granted the right to use and distribute their code without charge, on a non-commercial basis; many allow more -- see each file's notice.|DOC/netpbm/COPYRIGHT
@@ -209,9 +229,13 @@ giftopnm|Each netpbm author granted the right to use and distribute their code w
 globe|"Permission to use, copy, modify, and distribute this software and its documentation for any purpose and without fee is hereby granted" -- Jef Poskanzer, 1994.|SOURCES.txt line 1199
 gnuan|Copyright (c) 1988, 1989, 1990 John Stanback; copyright (c) 1992 Free Software Foundation. GNU General Public License, version 2 or later.|SRC/gnuchess/GNUCHESS4.0/SRC/gnuan.c lines 4-12; SRC/gnuchess/GNUCHESS4.0/DOC/COPYING line 2
 gnuchessc|Copyright (c) 1988, 1989, 1990 John Stanback; copyright (c) 1992 Free Software Foundation. GNU General Public License, version 2 or later.|SRC/gnuchess/GNUCHESS4.0/SRC/main.c lines 4-12; SRC/gnuchess/GNUCHESS4.0/SRC/Makefile header; SRC/gnuchess/GNUCHESS4.0/DOC/COPYING line 2
+gnuchessn|Copyright (c) 1988, 1989, 1990 John Stanback; copyright (c) 1992 Free Software Foundation. GNU General Public License, version 2 or later.|SRC/gnuchess/GNUCHESS4.0/SRC/main.c lines 4-12; SRC/gnuchess/GNUCHESS4.0/DOC/COPYING line 2; SOURCES.txt line 1091
+gnuchessr|Copyright (c) 1988, 1989, 1990 John Stanback; copyright (c) 1992 Free Software Foundation. GNU General Public License, version 2 or later.|SRC/gnuchess/GNUCHESS4.0/SRC/main.c lines 4-12; SRC/gnuchess/GNUCHESS4.0/DOC/COPYING line 2; SOURCES.txt line 1091
+gnuchess|Copyright (C) 1986, 1987, 1988 Free Software Foundation; copyright (c) 1988 John Stanback. "Everyone is granted permission to copy, modify and redistribute CHESS, but only under the conditions described in the CHESS General Public License."|SRC/gnu/gnuchess.c lines 6-24; DOC/gnu/COPYING line 1
 gnugo|GNU General Public License, version 1 as the source states ("as published by the Free Software Foundation - version 1").|SOURCES.txt line 2655
 gothic|No copyright or licence statement in SRC/gothic or its documentation. The header says only "Courtesy of RTW".|SRC/gothic/gothic0.c lines 7-8
 gouldtoppm|Each netpbm author granted the right to use and distribute their code without charge, on a non-commercial basis; many allow more -- see each file's notice.|DOC/netpbm/COPYRIGHT
+greed|Written by Matthew T. Day, 1989. "Document and send all source code changes to the above address, I'll make sure the approved patches are posted. Please don't redistribute this."|SRC/v_misc/greed.c lines 7-9
 greg|No copyright or licence statement; submitted by David J. Partington (Compcontrol 68000).|SRC/forum6/greg.c; DOC/greg/greg.doc line 20
 gs33|GNU GPL (AFPL)|SOURCES.txt line 1273
 gs403|Aladdin Free Public License (DOC/gs403 and LIB/gs403/public.txt):|SOURCES.txt line 310
@@ -241,10 +265,12 @@ inetdc|GNU General Public License, version 1.|DOC/wn/gnu_license; SOURCES.txt, W
 inetd|GNU General Public License, version 1.|DOC/wn/gnu_license; SOURCES.txt, WN section
 inimf|Public domain, as its OS-9 port's manifest states: "TeX and the accompanying programs are all public domain ... Feel free to distribute this system in any way you see fit."|DOC/tex/Manifest.text line 59
 initex|Public domain, as its OS-9 port's manifest states: "TeX and the accompanying programs are all public domain ... Feel free to distribute this system in any way you see fit."|DOC/tex/Manifest.text line 59
+input|input.c carries no notice. The UNaXcess sources it ships with say: Copyright (C) 1984-87 Brandon S. Allbery. "Permission is hereby granted to copy and distribute this program freely." Modification, or distribution at cost beyond a media fee, is not permitted.|SRC/effo_unaxcess/input.c; SRC/effo_unaxcess/ua.c lines 3-8
 ispell|Copyright (c) 1983 Pace Willisson. "Permission for non-profit use is hereby granted. All other rights reserved."|SRC/ispell/ispell.c lines 5-7
 japan|Copyright 1988 by Brett Slocum. All rights reserved. "Permission is granted to distribute or modify this program, or use portions of this program in other programs, as long as this notice remains intact." Not to be sold for profit without the author's permission.|SRC/weather/weather.c lines 4-9
 jotto|Free. Its header: "You may use this program and modify it as you like, so long as you leave this message as it is and don't try to make money off the program."|SOURCES.txt line 954
 kermit|BSD / public domain|SOURCES.txt line 1260
+k|Copyright (C) 1995 Tim Kientzle and The Coriolis Group, Inc. Redistribution is permitted under seven conditions stated in the source, including showing "Based on `The Working Programmer's Guide to Serial Protocols'" in documentation and user interface.|SOURCES.txt lines 2721-2741 (SRC/xyz does not exist on the disk)
 lame|None stated; a joke filter, carried as posted.|SOURCES.txt line 1022
 lander|Copyright 1989 HCR Corporation, Toronto. "Permission to use, copy, modify, and distribute this software and its documentation for any purpose and without fee is hereby granted, provided that the above copyright notice appear in all copies."|DOC/lander/lander.6 lines 26-30
 larn|Copyrighted 1986 by Noah Morgan; posted to|SOURCES.txt line 1170
@@ -259,6 +285,8 @@ lispmtopgm|Each netpbm author granted the right to use and distribute their code
 listalias|The Elm Mail System General Public License, (C) 1988-1992 USENET Community Trust and 1986-1987 Dave Taylor: copying and distribution permitted, at no charge.|DOC/elm/Notice
 lmail|Only "Copyrights (c) 1988 by reccoware systems, Wolfgang Ocker, Puchheim". No grant of any kind.|SRC/uucp/lmail.c line 4
 lmargin|Only a copyright line in its usage text: "(C) oettle + reichler Datentechnik GmbH, Paul Farquhar 1990". No grant of any kind.|SRC/forum15/lmargin.c line 34
+lnk.org|RTF/68K Fortran-77, H. von der Schmitt, Universitaet Heidelberg. No copyright line; its manual says the package "is available free" and "It is free for non-profit organizations." No source for it is in SRC/rtf.|DOC/rtf/rtfman.txt lines 36-39, 399-400, 4172-4181
+lnk|RTF/68K Fortran-77, H. von der Schmitt, Universitaet Heidelberg. No copyright line; its manual says the package "is available free" and "It is free for non-profit organizations." No source for it is in SRC/rtf.|DOC/rtf/rtfman.txt lines 36-39, 399-400, 4172-4181
 loan|No copyright or licence statement; a comp.sources.misc posting (volume 4, issue 90) by Jane Medefesser of Bill Gregg's program.|SRC/misc/loan.c lines 1-31
 logisim|Public|DOC/logisim/info_logisim
 look|"This code is in the public domain. You may use this code for any purpose, commercial or noncommercial, as long as you don't try to claim you wrote it."|SOURCES.txt line 1364
@@ -277,6 +305,7 @@ mailx|Copyright (C) 1990, 1993 Rick Adams and Bob Billson. GNU General Public Li
 makedb|Public domain, with pathalias: "is in the public domain, and may be used by any person or organization, in any way and for any purpose."|BNU/PALIAS/README in TELECOM/philmail.lzh, Microware OS-9 archive
 makeinfo|GNU GPL|SOURCES.txt line 1329
 maketexpk|Public domain, as its OS-9 port's manifest states: "TeX and the accompanying programs are all public domain ... Feel free to distribute this system in any way you see fit."|DOC/tex/Manifest.text line 59
+make|Public domain: "I am releasing this into the public domain. You may do anything you wish with it." Greg Yachuk, 1988. Its stat.c is (c) 1988 Wolfgang Ocker et al., free for non-commercial use only; its utime.c is "Copyright (c) 1988 by Michael Hoffmann", with no grant.|DOC/make/readme lines 19-20; SRC/eff_make/make.c line 4; SRC/eff_make/stat.c lines 6-13; SRC/eff_make/utime.c line 2
 mastrm|Public domain. "Master Mind, as presented here, is intended solely for the enjoyment of the public, and is not to be used for profit." Master Mind is a trademark of Invicta Plastics;|SOURCES.txt line 966
 maze|No copyright or licence statement in SRC/v_misc or its documentation. The source is eight lines of code with no comment.|SRC/v_misc/maze.c lines 1-8
 messages|The Elm Mail System General Public License, (C) 1988-1992 USENET Community Trust and 1986-1987 Dave Taylor: copying and distribution permitted, at no charge.|DOC/elm/Notice
@@ -297,6 +326,7 @@ mvolformat|Only "Copyright (c) 1988 by Robert heller. All Rights Reserved." No g
 name|Copyright 1988, 1989 Brett Slocum. "Permission is granted to distribute, modify, or use portions of this code in other programs, as long as this notice remains intact. This program or its derivatives may not be sold for profit without permission."|SRC/hc_loose/name.c lines 9-13
 napoleon|GNU General Public License version 1 or, at your option, any later version. Copyright (C) 1992 Pete Chown.|SOURCES.txt line 2699
 nasa|Part of the N3EMO orbit package: copyright (c) 1986-1990 Robert W. Berger N3EMO. "May be freely distributed, provided this notice remains intact." nasa.c itself names Berger with no notice.|SRC/eff_orbit/orbit.c lines 1-2; SRC/eff_orbit/nasa.c lines 1-2
+nchess|Copyright (C) 1986, 1987, 1988 Free Software Foundation; copyright (c) 1988 John Stanback. "Everyone is granted permission to copy, modify and redistribute CHESS, but only under the conditions described in the CHESS General Public License."|SRC/gnu/nondsp.c lines 6-24; SRC/gnu/gnuchess.c lines 6-24; DOC/gnu/COPYING line 1
 net|GNU General Public License, version 2.|DOC/ka9q/Copying; SOURCES.txt, C News and TCP/IP section
 newalias|The Elm Mail System General Public License, (C) 1988-1992 USENET Community Trust and 1986-1987 Dave Taylor: copying and distribution permitted, at no charge.|DOC/elm/Notice
 newmail|The Elm Mail System General Public License, (C) 1988-1992 USENET Community Trust and 1986-1987 Dave Taylor: copying and distribution permitted, at no charge.|DOC/elm/Notice
@@ -311,6 +341,7 @@ number|BSD licence. Copyright (c) 1988 Regents of the University of California. 
 ob68kdemo|Freely distributable "as long as ALL of the files are kept intact and not modified"; a vendor demonstration version, copyright its owner.|SOURCES.txt, vendor demonstration versions section
 orbit|Copyright (c) 1986, 1987, 1988, 1989, 1990 Robert W. Berger N3EMO. "May be freely distributed, provided this notice remains intact."|SRC/eff_orbit/orbit.c lines 1-2
 os9dsk|"copyright (c) 1997 by Bob Devries / may be freely distributes" (sic).|DOC/os9dsk/os9dsk.doc lines 3-4; SOURCES.txt lines 2423-2426
+os9lib|RTF/68K Fortran-77, H. von der Schmitt, Universitaet Heidelberg. No copyright line; its manual says the package "is available free" and "It is free for non-profit organizations." No source for it is in SRC/rtf.|DOC/rtf/rtfman.txt lines 36-39, 399-400, 4172-4181
 osknet|Copyright Charles Hedrick 1987; "anyone may reproduce".|SOURCES.txt, C News and TCP/IP section
 oskversion|Copyright (c) 1990 Wolfgang Ocker. "This program can be copied and distributed freely for any non-commercial purposes. It can only be incorporated into commercial software with the written permission of the author."|SRC/eff_oskversion/oskversion.c lines 6-11
 othello|Free. Its header: "This program may be freely used and distributed."|SOURCES.txt line 1046
@@ -359,6 +390,7 @@ pbmtozinc|Each netpbm author granted the right to use and distribute their code 
 pbmupc|Each netpbm author granted the right to use and distribute their code without charge, on a non-commercial basis; many allow more -- see each file's notice.|DOC/netpbm/COPYRIGHT
 pbyte|Copyright 1987,1988 Roy J. Fehlandt. "Placed into the public domain for non-commercial use provided this notice is included in all copies."|SRC/bix/pbyte.c lines 2-4
 pcxtoppm|Each netpbm author granted the right to use and distribute their code without charge, on a non-commercial basis; many allow more -- see each file's notice.|DOC/netpbm/COPYRIGHT
+pdraw|No notice in SRC/effo_pdraw. The OS-9 porter's covering letter calls it "ein kleines PD-Programm" (a small public-domain program); DOC/pdraw/Imakefile grants use, copying and distribution without fee, notice kept.|DOC/pdraw/brief.neerfeld line 10; DOC/pdraw/Imakefile lines 4-8
 pep|Copyright (c) 1988, 1989 Gisle Hannemyr. "Permission is granted to hack, make and distribute copies of this program as long as this notice and the copyright notices are not removed."|SRC/pep/main.c lines 9-15; DOC/pep/pep.man lines 733-738
 perl|Copyright (c) 1989-1991 Larry Wall. Under either the GNU General Public License, version 1 or any later version, or the Artistic License, at your choice.|SOURCES.txt line 147
 pgmbentley|Each netpbm author granted the right to use and distribute their code without charge, on a non-commercial basis; many allow more -- see each file's notice.|DOC/netpbm/COPYRIGHT
@@ -466,6 +498,8 @@ printmail|The Elm Mail System General Public License, (C) 1988-1992 USENET Commu
 prjob|No copyright or licence statement in SRC/eff_lp or its documentation. The header names Uwe Simon, January 1988.|SRC/eff_lp/prjob.c lines 1-3; DOC/lp/spooler.doc
 proff|Ozan Yigit. "PROFF is not copyrighted, at least for this release. Future releases may contain York University copyright."|DOC/proff/readme lines 26-27
 psidtopgm|Each netpbm author granted the right to use and distribute their code without charge, on a non-commercial basis; many allow more -- see each file's notice.|DOC/netpbm/COPYRIGHT
+puz15|(C) Copyright 1984, 1988, 1989 Peter Knoppers. "Permission to use and redistribute unmodified copies with source is granted to everyone." Distribution of modified copies is not allowed.|SRC/v_misc/puz15.c lines 175-182, 219-226
+puzzle15|(C) Copyright 1985, 1988, 1989 Peter Knoppers. "Permission to use and redistribute unmodified copies with source is granted to everyone." Distribution of modified copies is not allowed.|SRC/eff_puzzle15/puzzle15.c lines 34-41; DOC/puzzle15/puzzle15.doc lines 171-178
 pwgen|No copyright or licence statement in its source (SRC/misc/pwgen.c) or its documentation.|SRC/misc/pwgen.c lines 1-20
 pwparse|No copyright or licence statement in SRC/smail -- its Readme, documents, manual pages or source headers.|SRC/smail/BNU/SMAIL_2.5 DOC, MAN, SRC/main.c, defs.h, nptx.c, pw.c, lcasep.c
 qp|No copyright or licence statement in SRC/eff_qp or its documentation. The documentation names Helmut Hoheisel-Zimmermann, Kiel.|DOC/qp/qp.doc line 1; SRC/eff_qp/qp.c
@@ -476,6 +510,7 @@ rain|No copyright or licence statement in SRC/toys or its documentation. The sou
 rasttopnm|Each netpbm author granted the right to use and distribute their code without charge, on a non-commercial basis; many allow more -- see each file's notice.|DOC/netpbm/COPYRIGHT
 rawtopgm|Each netpbm author granted the right to use and distribute their code without charge, on a non-commercial basis; many allow more -- see each file's notice.|DOC/netpbm/COPYRIGHT
 rawtoppm|Each netpbm author granted the right to use and distribute their code without charge, on a non-commercial basis; many allow more -- see each file's notice.|DOC/netpbm/COPYRIGHT
+rdoc|No copyright or licence statement in SRC/eff_rdoc or its documentation. The header credits W. Reese, from c't magazine 1988 issue 7.|SRC/eff_rdoc/rdoc.c lines 1-5
 readmsg|The Elm Mail System General Public License, (C) 1988-1992 USENET Community Trust and 1986-1987 Dave Taylor: copying and distribution permitted, at no charge.|DOC/elm/Notice
 readnews|Copyright (C) 1990, 1993 Rick Adams and Bob Billson. GNU General Public License, version 2 or later. "You cannot sell UUCPbb. You are free to modify the code and give copies of this away."|SRC/uucpbb/readnews.c lines 2-9; DOC/uucpbb/uucpbb.doc lines 297-301; SOURCES.txt line 1647
 rechne|Freeware|SOURCES.txt line 754
@@ -496,6 +531,8 @@ rpn|Copyright "1898" [sic] Nils McCarthy. "This code may be distributed provided
 rpoem|(c) Copyright 1986 Robert Heller. "All Rights Reserved." No distribution terms are stated in the source or in DOC/snobol/Readme.|SRC/effo_snobol/rpoem.c lines 7-8; DOC/snobol/Readme
 rsdsk|"copyright (c) 1997 by Bob Devries / may be freely distributed", stated at the head of each program's documentation, which is on the disk as DOC/os9dsk and DOC/rsdsk.|SOURCES.txt line 2423
 rstory|(c) Copyright 1986 Robert Heller. "All Rights Reserved." No distribution terms are stated in the source or in DOC/snobol/Readme.|SRC/effo_snobol/rstory.c lines 7-8; DOC/snobol/Readme
+rtfdat|RTF/68K Fortran-77, H. von der Schmitt, Universitaet Heidelberg. No copyright line; its manual says the package "is available free" and "It is free for non-profit organizations." No source for it is in SRC/rtf.|DOC/rtf/rtfman.txt lines 36-39, 399-400, 4172-4181
+rtf|RTF/68K Fortran-77, H. von der Schmitt, Universitaet Heidelberg. No copyright line; its manual says the package "is available free" and "It is free for non-profit organizations." No source for it is in SRC/rtf.|DOC/rtf/rtfman.txt lines 36-39, 399-400, 4172-4181
 runc|Lua 3.0: Copyright (c) 1994-1997 TeCGraf, PUC-Rio. "Permission is hereby granted, without written agreement and without license or royalty fees, to use, copy, modify, and distribute this software ... for any purpose", notice kept. OS-9 port (C) 1997 Ilja V. Levinson.|DOC/lua/copyright lines 1-9; SRC/lua/SRC/LUAC/luac.c line 96; SOURCES.txt lines 130-132
 run|No copyright or licence statement; the source names Martin Moser, Kaufbeuren.|SRC/divutils/run.c lines 5-6
 rxmod|Copyright W. Wittig. Public, with the author's condition: no military use.|DOC/EFFO-INFO lines 30 and 117
@@ -544,6 +581,10 @@ strfile|No copyright or licence statement in SRC/fortune or its documentation. T
 strings|Copyright (C) 1988 Piercarlo Grandi. GNU General Public License, version 1 or later.|SRC/v_misc/strings.c lines 31-37
 subscribe|Copyright (C) 1990, 1993 Rick Adams and Bob Billson. GNU General Public License, version 2 or later. "You cannot sell UUCPbb. You are free to modify the code and give copies of this away."|SRC/uucpbb/subscribe.c lines 2-9; DOC/uucpbb/uucpbb.doc lines 297-301; SOURCES.txt line 1647
 suse|No copyright or licence statement in SRC/forum2 or its documentation.|SRC/forum2/suse.a lines 1-12
+sysid|No copyright or licence statement in SRC/hc_utils or its documentation. The source carries no author line.|SRC/hc_utils/sysid.c lines 1-5
+sysmax|No copyright or licence statement in SRC/hc_utils or its documentation. The source carries no comment at all.|SRC/hc_utils/sysmax.c
+sysmin|No copyright or licence statement in SRC/hc_utils or its documentation. The source carries no comment at all.|SRC/hc_utils/sysmin.c
+sysmon|Header calls it "the proprietary confidential property of Max Planck Institute Kernphysik Heidelberg", then "I have decided to distribute the source code to everybody on request !" Changes allowed if the copyright message stays. F.R. Schmitt.|SRC/sysmon/sysmon.c lines 3-10, 29-30
 t_trtest|No copyright or licence statement in SRC/forum7 or its documentation. The header reads "vix 24jul87 [documented, added savestr for net distribution]".|SRC/forum7/t_trtest.c lines 1-3
 tabs|No copyright or licence statement in its documentation; no source tree exists (group key SRC/-). DOC/tabs/tabs.doc names Robert A. Larson as author.|DOC/tabs/tabs.doc line 1; DOC/ORIGINS line 282
 tail|Public domain|SOURCES.txt line 696
@@ -556,11 +597,15 @@ tex|Public domain, as its OS-9 port's manifest states: "TeX and the accompanying
 tformat|(c) Robert P. Heller 1988. No distribution terms are stated in the source or in DOC/snobol/Readme.|SRC/effo_snobol/tformat.c lines 4-7; DOC/snobol/Readme
 tftopl|Public domain, as its OS-9 port's manifest states: "TeX and the accompanying programs are all public domain ... Feel free to distribute this system in any way you see fit."|DOC/tex/Manifest.text line 59
 tgatoppm|Each netpbm author granted the right to use and distribute their code without charge, on a non-commercial basis; many allow more -- see each file's notice.|DOC/netpbm/COPYRIGHT
+time|No copyright or licence statement in SRC/hc_utils or its documentation.|SRC/hc_utils/time.c lines 1-13
+timid|No copyright or licence statement in SRC/hc_utils or its documentation. Its edition history says it was cloned from sys.c.|SRC/hc_utils/timid.c lines 1-10
+today|No copyright or licence statement; the source names Martin Minow as author.|SRC/today/today.c lines 54-56
 top|No copyright or licence statement in SRC/eff_top or its documentation. The header names Uwe Simon, 1988.|SRC/eff_top/top.c lines 1-2; DOC/top/Read_me
 touchtype|No copyright or licence statement; the source names druco!spear, 1986.|SRC/touchtype/game.c lines 1-5
 tput|Public domain. "tput, written by Badri Lokanathan, is in the public domain, and may be freely distributed.|SOURCES.txt line 2283
 transfer|No copyright or licence statement in its source (SRC/forum1/transfer.c) or its documentation.|SRC/forum1/transfer.c lines 1-7
 trap|No copyright or licence statement in SRC/trap or its documentation.|SRC/trap/ctrap.c; SRC/trap/traptst.c; SRC/trap/makefile
+travesty|Copyright (c) 1989 Daniel J. Bernstein. All rights reserved. It granted copying and fee-free distribution of exact copies "Until January 1, 1994", and says those rights "are automatically revoked on January 1, 1994."|SRC/travesty/travesty.c lines 23-39; DOC/travesty/README lines 3-5
 tree|(c) 1990 by C.Mahr. Public.|DOC/tree/info_tree
 trunc|Carsten Emde. "May be copied for non-commercial use."|SRC/forum23/trunc.c line 9
 tsmon2|(c) 1989 Lukas Zeller. "public domain and may be used and distributed freely" only for peaceful applications -- not "for anything that has to do with development, testing or manufacturing of weapons" -- and copyright messages kept.|SRC/eff_tsmon/tsmon2.c lines 8, 17-25; DOC/tsmon2/tsmon2.doc lines 4-14
@@ -571,6 +616,7 @@ tttt|No copyright or licence statement in SRC/hc_loose or its documentation. The
 ttyexp|Public domain: "This program is in the public domain." Dennis Lo, 1989.|SRC/ttyexp/ttyexp.c lines 51-56
 txmod|Copyright W. Wittig. Public, with the author's condition: no military use.|DOC/EFFO-INFO lines 30 and 117
 ub68kdemo|Freely distributable "as long as ALL of the files are kept intact and not modified"; a vendor demonstration version, copyright its owner.|SOURCES.txt, vendor demonstration versions section
+udate|Part of UNaXcess 1.0.2. "Permission is hereby granted to copy and distribute this program freely." Permission is not given to modify it or distribute it at cost, except for charging a reasonable media/copying fee.|SRC/effo_unaxcess/udate.c lines 2-6
 uld|(c) 1986 FHL (Frank Hogg Laboratory), part of QCom. "They are not freeware or shareware or public domain. However you may freely distribute them as long as this file is included."|DOC/comms/XmodemUpDown.ReadMe line 29
 ul|BSD licence. Copyright (c) 1980 Regents of the University of California. Redistribution in source and binary forms is permitted provided the notice, conditions and acknowledgement of UC Berkeley are kept.|SRC/ul/ul.c lines 2-12; SOURCES.txt lines 1334-1343
 unc|Freely distributed; no notice beyond a caution that disassembling proprietary software may breach that software's own licence -- about USE, not a term on unc.|SOURCES.txt line 726
@@ -594,6 +640,7 @@ uupoll|No copyright or licence statement. Its Readme says only that it "is distr
 uustat|The author's own grant, in the source: "Permission is granted to anyone to use this software for any purpose on any computer system, and to redistribute it freely", subject to four conditions -- no liability, the origin must not be misrepresented, altered versions must be plainly marked, and "Incorporation of this software into commercial products is permitted only with the written permission of the author".|SOURCES.txt line 2511
 uuxqt|Copyright (C) 1990, 1993 Rick Adams and Bob Billson. GNU General Public License, version 2 or later. "You cannot sell UUCPbb. You are free to modify the code and give copies of this away."|SRC/uucpbb/uuxqt.c lines 2-9; DOC/uucpbb/uucpbb.doc lines 297-301; SOURCES.txt line 1647
 uux|No copyright or licence statement. Its Readme says only that it "is distributed as-is".|DOC/uucp-blars/Readme line 3; SOURCES.txt, Blars UUCP section
+uwho|Copyright (C) 1984, 85, 86, 87 Brandon S. Allbery. "Permission is hereby granted to copy and distribute this program freely." Permission is not given to modify it or distribute it at cost, except for charging a reasonable media/copying fee.|SRC/effo_unaxcess/uwho.c lines 3-8
 valspeak|No copyright or licence statement in SRC/toys or its documentation. The source is lex output with no comment.|SRC/toys/valspeak.c
 vecho|No copyright or licence statement in SRC/less_v177 or its documentation. The tree holds only vecho.c, which has no notice.|SRC/less_v177/vecho.c lines 1-5
 version|Public. very public.|DOC/version/info_version
@@ -603,15 +650,18 @@ vi_nocio|Freeware|SOURCES.txt line 672
 virmf|Public domain, as its OS-9 port's manifest states: "TeX and the accompanying programs are all public domain ... Feel free to distribute this system in any way you see fit."|DOC/tex/Manifest.text line 59
 virtex|Public domain, as its OS-9 port's manifest states: "TeX and the accompanying programs are all public domain ... Feel free to distribute this system in any way you see fit."|DOC/tex/Manifest.text line 59
 vis|Copyright (c) 1988 George M. Sipe. "This software may only be redistributed without fee and without any other form of monetary gain", unless written permission is obtained; the notice and authorship acknowledgement must be kept.|SRC/vis/vis.c lines 7-12; DOC/vis/README lines 19-40
+vi|No copyright or licence statement; the source says it "originates from the sources of vi running under the XENIX operating system", creators the Regents of the University of California (1981), adapted by Helmut Hoheisel-Zimmermann.|SRC/effo_vi/ex.c lines 1-7; DOC/vi/vi.doc
 vmod_trap|Part of W. Wittig's serial load utilities with rxmod and txmod: public, with the author's condition of no military use.|DOC/rxmod/Read_Me line 92; DOC/EFFO-INFO lines 30 and 117
 vptovf|Public domain, as its OS-9 port's manifest states: "TeX and the accompanying programs are all public domain ... Feel free to distribute this system in any way you see fit."|DOC/tex/Manifest.text line 59
 vtxtcn|World C Version 1.00 copyright 1987 J.D. McDonald. "Use as you like for non-commercial purposes, but please leave this note, and document any changes you make as yours."|SRC/world/vtxtcn.c lines 2-4
+wam.sbprolog|SB-Prolog General Public License. Copyright SUNY at Stony Brook, 1986. "Everyone is granted permission to copy, modify and redistribute SB-Prolog, but only under the conditions described in the SB-Prolog General Public License."|SRC/sbprolog/SIM/main.c lines 4-22; DOC/sbprolog/COPYING
 wanderer|"(C) 1988 S. Shipway", printed by the program. No distribution terms are stated.|SRC/wanderer/m.c line 184; SRC/wanderer/scores.c line 89; DOC/wanderer/README lines 58-59
 weave|Public domain, as its OS-9 port's manifest states: "TeX and the accompanying programs are all public domain ... Feel free to distribute this system in any way you see fit."|DOC/tex/Manifest.text line 59
 wgen|No copyright or licence statement in SRC/tekdemos or its documentation. The source has no header comment.|SRC/tekdemos/wgen.c
 whereis|BSD. Copyright (c) 1980 The Regents of the University of California. This product includes software developed by the University of California, Berkeley and its contributors.|SOURCES.txt line 1313
 which|Posted to Usenet and freely redistributed since. No licence text accompanies the source.|SOURCES.txt line 1299
 wisecrack|No copyright or licence statement in SRC/forum20 or its documentation. The header says it was adapted from OS-9 Insights, p.121.|SRC/forum20/wisecrack.c lines 1-4
+wish|GNU General Public License, version 1. (c) Copyright Hellmuth Michaelis 1989, 1990; "WiSH is definitively not public domain software". Some routines are credited to Herbert Schildt's book, TOP's os9lib and MicroEMACS 3.10.|SRC/wish/wish.c lines 6-21; DOC/wish/copyright lines 10-68; DOC/wish/copying
 wn.stb|GNU General Public License, version 1.|DOC/wn/gnu_license; SOURCES.txt, WN section
 wndex|GNU General Public License, version 1.|DOC/wn/gnu_license; SOURCES.txt, WN section
 wn|GNU General Public License, version 1.|DOC/wn/gnu_license; SOURCES.txt, WN section
@@ -636,6 +686,7 @@ xvminitoppm|Each netpbm author granted the right to use and distribute their cod
 xwdtopnm|Each netpbm author granted the right to use and distribute their code without charge, on a non-commercial basis; many allow more -- see each file's notice.|DOC/netpbm/COPYRIGHT
 xydown|Public domain. "XYDown and it's source are released into the public domain. This means that anyone can use this program or it's source for any reason at all, with no legal obligations whatsoever."|SRC/xydown/Readme lines 85-88
 xyt|Copyright 1995 by Stephen Carville. Part of Stephen Carville's Tterm distribution, which "may be freely distributed as long as this documentation and all other files listed in readme are included".|DOC/comms/xyt.doc line 5; DOC/comms/tterm.doc line 232; DOC/comms/readme lists xyt
+xy|Copyright (C) 1995 Tim Kientzle and The Coriolis Group, Inc. Redistribution is permitted under seven conditions stated in the source, including showing "Based on `The Working Programmer's Guide to Serial Protocols'" in documentation and user interface.|SOURCES.txt lines 2721-2741 (SRC/xyz does not exist on the disk)
 yacc|Public|DOC/yacc/info_yacc
 yahtzee2|None stated in the posting; freely redistributed on comp.sources.games.|SOURCES.txt line 1129
 ybmtopbm|Each netpbm author granted the right to use and distribute their code without charge, on a non-commercial basis; many allow more -- see each file's notice.|DOC/netpbm/COPYRIGHT
@@ -644,6 +695,7 @@ yuvsplittoppm|Each netpbm author granted the right to use and distribute their c
 yuvtoppm|Each netpbm author granted the right to use and distribute their code without charge, on a non-commercial basis; many allow more -- see each file's notice.|DOC/netpbm/COPYRIGHT
 zc|The author's own words in the source: "The code below is released to the public domain for educational purposes.|SOURCES.txt line 2555
 zeisstopnm|Each netpbm author granted the right to use and distribute their code without charge, on a non-commercial basis; many allow more -- see each file's notice.|DOC/netpbm/COPYRIGHT
+zipinfo|Info-ZIP UnZip 5.0. "Portions copyright 1992 Greg Roelofs. Portions adapted from unzip 3.1." The package COPYING lists several holders' notices; Info-ZIP says executables may be passed on so long as UnZip is not sold and source is freely available.|SRC/unzip50/zipinfo.c lines 47-48; DOC/unzip/copying lines 1-98
 zipnote|Info-ZIP license (open source, redistribution OK)|SOURCES.txt line 646
 zipsplit|Info-ZIP license (open source, redistribution OK)|SOURCES.txt line 651
 zip|Info-ZIP license (open source, redistribution OK)|SOURCES.txt line 641
