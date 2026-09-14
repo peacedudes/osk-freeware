@@ -7,6 +7,10 @@
 # names the programs whose terms have not been looked up yet.
 a2p|Copyright (c) 1989-1991 Larry Wall. Under either the GNU General Public License, version 1 or any later version, or the Artistic License, at your choice.|SOURCES.txt line 147
 accordian|Public domain. Its README ends "This program is public domain. -Eric Lechner".|SOURCES.txt line 910
+adlcomp|Copyright 1987 by Ross Cunniff, all rights reserved. "You may distribute the UNMODIFIED sources to ADL, provided that this notice is retained."|ADL/DEMOS/copyrigh.t
+adldebug|Copyright 1987 by Ross Cunniff, all rights reserved. "You may distribute the UNMODIFIED sources to ADL, provided that this notice is retained."|ADL/DEMOS/copyrigh.t
+adlrun|Copyright 1987 by Ross Cunniff, all rights reserved. "You may distribute the UNMODIFIED sources to ADL, provided that this notice is retained."|ADL/DEMOS/copyrigh.t
+adltouch|Copyright 1987 by Ross Cunniff, all rights reserved. "You may distribute the UNMODIFIED sources to ADL, provided that this notice is retained."|ADL/DEMOS/copyrigh.t
 afm2tfm|Public domain, as its OS-9 port's manifest states: "TeX and the accompanying programs are all public domain ... Feel free to distribute this system in any way you see fit."|DOC/tex/Manifest.text line 59
 almanac|None is stated. A search of all 33,165 bytes of the source and of its documentation finds no copyright, no grant and no restriction.|SOURCES.txt line 2536
 answer|The Elm Mail System General Public License, (C) 1988-1992 USENET Community Trust and 1986-1987 Dave Taylor: copying and distribution permitted, at no charge.|DOC/elm/Notice

@@ -13,10 +13,6 @@ X11R6shl
 about
 add_errmsg
 adduser
-adlcomp
-adldebug
-adlrun
-adltouch
 advcom
 advent
 advint
