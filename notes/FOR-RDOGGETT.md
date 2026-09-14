@@ -7,8 +7,6 @@ Open questions only. Nothing here is decided. Updated 2026-09-13.
 1. **Nothing is pushed, tagged or merged.** The branch has never left this
    machine; the CI pin is an old os9exec commit and has never run.
 
-2. **The release does not carry the tar.** CI builds the image only.
-
 3. **Nobody has tried this on real hardware.** The guides say so plainly.
    If you know someone with a real system, that is the paragraph to check.
 
@@ -28,12 +26,27 @@ Open questions only. Nothing here is decided. Updated 2026-09-13.
    messages with full headers.  Their Researcher plan, $39.99 for a
    month, adds a JSON search API.
 
-   **Their terms forbid scraping and bulk export, and carve out "an
-   authorized API plan" by name.**  So there is a licit route and an
-   illicit one, and I have not taken either: a scraper would be against
-   their terms, and a subscription is your card and your call.  If you
-   want it, one month of Researcher would cover comp.os.os9 1987-2002
-   plus mod.os.os9, sub.os.os9, fj.os.os9 and de.comp.os.os9.
+   **Their terms, read whole on 2026-09-13 (dated that day), were
+   OVERSTATED here before.**  They forbid you to "Scrape, bulk-export,
+   resell, or repurpose Service data for spam, fraud, identity theft,
+   harvesting of email addresses, or any abusive purpose", and to "Place
+   automated load on the Service beyond normal interactive use, except
+   through an authorized API plan and within its limits."  So paying IS
+   the permitted route: the API with your key, within quota, is what the
+   terms allow.  Scripting the free web pages is what they do not.
+
+   Only Researcher includes contact details, headers, full-message and
+   thread downloads and the API -- Individual ($9.99) has none of them.
+   The API (`GET /api/search`, groupname + date range,
+   `returnOriginalMessage=1`) gives 10 results a page against 25,000
+   searches a month; comp.os.os9 whole is about 1,800 pages.  Caveats:
+   keys may not be "shared, pooled, or used concurrently by multiple
+   individuals or systems"; addresses must not be harvested (credit by
+   name, never republish 1980s addresses); their API page says "Pro plan"
+   where pricing says Researcher, worth one email first; and nothing
+   grants redistribution of the messages themselves.  One month would
+   cover comp.os.os9 1987-2002 plus mod.os.os9, sub.os.os9, fj.os.os9 and
+   de.comp.os.os9.
 
    Everything else was searched and closed -- narkive starts 2003,
    usenetarchives is behind a Cloudflare challenge on every path, Google
@@ -69,6 +82,19 @@ Open questions only. Nothing here is decided. Updated 2026-09-13.
    `rcsmerge' as a card about a missing helper, write a `pipe()' of our
    own over OS-9's pipe device, or accept the clause for that one
    binary.  Nothing else about diff3 is blocked.
+
+   **Three findings from 2026-09-13 that make this moot for now:**
+   (a) on a real system the name is TAKEN -- rcsmerge forks a bare
+   `merge', which reaches Microware's `/h1/CMDS/merge' ("merge files to
+   standard output", concatenation, no `-p'); RCS's helper would need
+   another name and a rebuilt rcsmerge.  (b) `SRC/rcs/rcsmerge.c' is
+   TRUNCATED -- 3,434 bytes ending mid-statement at `faterror', as
+   committed in 46cef22b -- and `rcsutil.c', `rcsrev.c', `rcssyn.c',
+   which its makefile links, are absent, so rcsmerge cannot be rebuilt
+   from what ships.  (c) `ci' cannot store a second revision here
+   (`devtools.cases' asserts "diff failed"), and rcsmerge needs two.
+   The order, if RCS is wanted: an intact RCS 4 source, then `ci', then
+   the helper under a new name.
 
 ## ANSWERED -- the dots question is closed
 
