@@ -29,6 +29,7 @@ bdecode|Copyright (c) University of Toronto 1985-1990. "Permission is granted to
 beav|Freeware|SOURCES.txt line 677
 bibtex|Public domain, as its OS-9 port's manifest states: "TeX and the accompanying programs are all public domain ... Feel free to distribute this system in any way you see fit."|DOC/tex/Manifest.text line 59
 bioradtopgm|Each netpbm author granted the right to use and distribute their code without charge, on a non-commercial basis; many allow more -- see each file's notice.|DOC/netpbm/COPYRIGHT
+blastem|Its source-code rules: modify freely; distribute the original code with any changes; no money may be made from the distribution, and programs using its source must ship with their source and not be sold.|DOC/comms/blastem.doc line 38
 bmptoppm|Each netpbm author granted the right to use and distribute their code without charge, on a non-commercial basis; many allow more -- see each file's notice.|DOC/netpbm/COPYRIGHT
 browse|None accompanies the posting. It was posted to comp.os.os9 and has been freely redistributed since, on the same footing as the other no-notice Usenet software here.|SOURCES.txt line 2493
 brushtopbm|Each netpbm author granted the right to use and distribute their code without charge, on a non-commercial basis; many allow more -- see each file's notice.|DOC/netpbm/COPYRIGHT
@@ -64,6 +65,7 @@ dhry|No copyright or licence statement in the source. It names its author, Reinh
 dirname|Public domain|SOURCES.txt line 702
 disdvi|Posted and freely redistributed since; no licence text accompanies the source. The README grants `disdvi' explicitly -- "use it and improve as you wish" -- and says nothing either way about dvi2tty.|SOURCES.txt line 2459
 disktest|By St.Paschedag. public; no military use|DOC/disktest/info_disktest
+dld|(c) 1986 FHL (Frank Hogg Laboratory), part of QCom. "They are not freeware or shareware or public domain. However you may freely distribute them as long as this file is included."|DOC/comms/XmodemUpDown.ReadMe line 29
 dpark|Public domain|SOURCES.txt line 816
 drawl|None stated; a joke filter, carried as posted.|SOURCES.txt line 1013
 dvialw|Public domain, as its OS-9 port's manifest states: "TeX and the accompanying programs are all public domain ... Feel free to distribute this system in any way you see fit."|DOC/tex/Manifest.text line 59
@@ -146,6 +148,7 @@ luac|Copyright (c) 1994-1997 TeCGraf, PUC-Rio. Permission granted without fee to
 lua|Copyright (c) 1994-1997 TeCGraf, PUC-Rio. Permission granted without fee to use, copy, modify and distribute, for any purpose, provided the notice is kept.|SOURCES.txt line 130
 m4|GNU General Public License version 1, February 1989 -- the `Copying' file in the archive is the GPL v1 text in full.|SOURCES.txt line 2713
 macptopbm|Each netpbm author granted the right to use and distribute their code without charge, on a non-commercial basis; many allow more -- see each file's notice.|DOC/netpbm/COPYRIGHT
+makedb|Public domain, with pathalias: "is in the public domain, and may be used by any person or organization, in any way and for any purpose."|BNU/PALIAS/README in TELECOM/philmail.lzh, Microware OS-9 archive
 makeinfo|GNU GPL|SOURCES.txt line 1329
 maketexpk|Public domain, as its OS-9 port's manifest states: "TeX and the accompanying programs are all public domain ... Feel free to distribute this system in any way you see fit."|DOC/tex/Manifest.text line 59
 mastrm|Public domain. "Master Mind, as presented here, is intended solely for the enjoyment of the public, and is not to be used for profit." Master Mind is a trademark of Invicta Plastics;|SOURCES.txt line 966
@@ -165,6 +168,7 @@ ob68kdemo|Freely distributable "as long as ALL of the files are kept intact and 
 osknet|Copyright Charles Hedrick 1987; "anyone may reproduce".|SOURCES.txt, C News and TCP/IP section
 othello|Free. Its header: "This program may be freely used and distributed."|SOURCES.txt line 1046
 paranoia|Public domain|SOURCES.txt line 1177
+pathalias|Public domain: "pathalias, written by steve bellovin and peter honeyman, is in the public domain, and may be used by any person or organization, in any way and for any purpose."|BNU/PALIAS/README in TELECOM/philmail.lzh, Microware OS-9 archive
 pbmclean|Each netpbm author granted the right to use and distribute their code without charge, on a non-commercial basis; many allow more -- see each file's notice.|DOC/netpbm/COPYRIGHT
 pbmlife|Each netpbm author granted the right to use and distribute their code without charge, on a non-commercial basis; many allow more -- see each file's notice.|DOC/netpbm/COPYRIGHT
 pbmmake|Each netpbm author granted the right to use and distribute their code without charge, on a non-commercial basis; many allow more -- see each file's notice.|DOC/netpbm/COPYRIGHT
@@ -337,7 +341,9 @@ tftopl|Public domain, as its OS-9 port's manifest states: "TeX and the accompany
 tgatoppm|Each netpbm author granted the right to use and distribute their code without charge, on a non-commercial basis; many allow more -- see each file's notice.|DOC/netpbm/COPYRIGHT
 tput|Public domain. "tput, written by Badri Lokanathan, is in the public domain, and may be freely distributed.|SOURCES.txt line 2283
 tree|(c) 1990 by C.Mahr. Public.|DOC/tree/info_tree
+tterm|Copyright Stephen Carville. "This version (2.XX) may be freely distributed as long as this documentation and all other files listed in readme are included."|DOC/comms/tterm.doc line 232
 ub68kdemo|Freely distributable "as long as ALL of the files are kept intact and not modified"; a vendor demonstration version, copyright its owner.|SOURCES.txt, vendor demonstration versions section
+uld|(c) 1986 FHL (Frank Hogg Laboratory), part of QCom. "They are not freeware or shareware or public domain. However you may freely distribute them as long as this file is included."|DOC/comms/XmodemUpDown.ReadMe line 29
 unc|Freely distributed; no notice beyond a caution that disassembling proprietary software may breach that software's own licence -- about USE, not a term on unc.|SOURCES.txt line 726
 undump|"Copying-policy: freely distributable".|SOURCES.txt line 2410
 unshar|Public domain -- "do what you want, but let your conscience be your guide."|SOURCES.txt line 616

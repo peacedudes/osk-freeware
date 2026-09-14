@@ -51,7 +51,6 @@ bison
 bite
 blackjack
 blackjak
-blastem
 bm
 bmgtest
 bmgtest2
@@ -153,7 +152,6 @@ disable
 divide
 djpeg
 djpeg.070
-dld
 dload
 dm
 dmake
@@ -320,7 +318,6 @@ mail
 mailx
 make
 makecrc
-makedb
 makelex
 map
 marc
@@ -394,7 +391,6 @@ pageline
 passwd
 paste
 patch
-pathalias
 pbyte
 pdraw
 pep
@@ -546,7 +542,6 @@ tsmon2
 tsort
 tsu
 tt
-tterm
 tttt
 tty
 ttyexp
@@ -555,7 +550,6 @@ ub68020demo
 udate
 ul
 ularn
-uld
 umacs
 umusek
 undel
