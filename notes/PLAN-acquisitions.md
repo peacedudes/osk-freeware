@@ -1131,3 +1131,30 @@ Dru Nelson's mv (1990).
 cabrales/chestnut/hermit.cs.wisc.edu `/pub/OSK/...`, zelux7.zel.kfa-juelich.de
 `~ftp/pub/os9/BASH` ("OSK bash is now available", 1993), hcshh.hcs.de `/fkk`,
 and the os9tools SourceForge project (2000).
+
+**Second pass, 2026-09-14, over ALL 14 OS-9 groups (18,424 unique
+messages, every group's count matching the site index except comp.os.OS9,
+re-pulled separately).**  Only two posts the first pass lacked: Frank
+Kaefer's banner programs (1992, alt.sources + de.comp.sources.os9 -- the
+disk's `banner' is from misc.ar and may be a different program) and `br',
+Biorhythm v3.0 (comp.sources.misc v41i126, 1994, a later version of the
+1989 BASIC09 post).  **Software stopped travelling INSIDE messages after
+1992.**
+
+From 1994 it travelled by LINK instead: 2,370 messages carry a
+non-quoted web link, peaking 1996-1998.  But only ONE linked archive file
+is unknown to the collection and pool (a VxWorks manual, irrelevant) --
+the links point either at archives already held or at web PAGES.  So the
+later era's software is behind sites, and the sites these notes had never
+looked at are:
+
+    dlso.dl.ac.uk:8001/      Daresbury; 1995 "Re: chestnut archive?" -- a
+                             possible mirror of Wisconsin's OSK archive
+    members.xoom.com/os9/    1999-2000, incl. "OS-9 NFS Client"
+    www.pobox.com/~alsplace/os9.html   1998, a personal OS-9 page
+    homepage.mac.com/jamiec/Invaders%2009/   2001, probably 6809
+
+`klebsch.de' is only a PGP-key signature line and `dressler.de' a
+commercial VMEbus vendor -- not leads.  The Wayback CDX check of the four
+is recorded beside this.
+
