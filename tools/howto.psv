@@ -45,6 +45,7 @@ lispmtopgm|This build handles at most 16 grey levels and says "depth is too larg
 pbmtopk|A TeX font tool: it wants a pkfile, a .tfm metric file and a resolution. Point it at a .tfm.
 nroff|Formats a text with nroff requests: `nroff file.ms'. Its macro sets are in LIB (tmac.*). Point TMACDIR at LIB if a macro package is not found.
 lua|`lua cf.lua' in DOC/lua/examples prints a temperature table; `lua hello.lua' says hello. Eight example scripts are there; -v prints the version.
+a2p|`a2p prog.awk > prog.pl' writes the perl version of an awk program; run it with `perl prog.pl file'. The translation sets $[ to 1 so fields count from 1 as in awk. The manual is DOC/perl/a2p.txt.
 perl|Perl 4.036. `perl -e 'print 6*7, "\n";'' prints 42; `perl script.pl' runs a file; -v prints the version. system and backticks go through $SHELL, which SYS/login sets to ksh. The library is in LIB/perl and the manual in DOC/perl/perl.txt.
 luac|`luac -l -o hello.lc hello.lua' compiles and lists the bytecode. `luac -x -o name script.lua' makes an OS-9 module in the execution directory for runc.
 gnuplot|Type `set term' first -- it lists every output device it knows, and refuses to plot until you choose one. Its whole manual is built in: type `help'. Demos and sample data are in DOC/gnuplot/demo. Needs Microware's cio.

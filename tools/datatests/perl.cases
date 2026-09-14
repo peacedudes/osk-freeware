@@ -44,3 +44,10 @@ expect  error: (E$PNNF)
 case    perl-finds-its-library
 run     /dd/CMDS/perl -e 'require "getopts.pl"; @ARGV = ("-a", "x"); &Getopts("a:"); print "opt_a=$opt_a\n";'
 expect  opt_a=x
+
+case    a2p-translates-an-awk-program-that-perl-runs
+run     echo '{ print $2, $1 }' > /dd/tmp/PRL/swap.awk
+run     /dd/CMDS/a2p /dd/tmp/PRL/swap.awk > /dd/tmp/PRL/swap.pl
+run     echo "hello world" | /dd/CMDS/perl /dd/tmp/PRL/swap.pl
+expect  world hello
+absent  doesn't seem to exist

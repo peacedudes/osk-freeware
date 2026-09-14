@@ -441,6 +441,27 @@ try     makeinfo +version
 run     makeinfo +version
 wait    6
 
+shot    a2p
+size    24 80
+cap     a2p turns an awk program into a perl script.  count.awk adds up the
+cap     words on each line and prints the line and word counts at the end;
+cap     a2p writes the perl version, and perl runs it on the password file.
+try     a2p count.awk > count.pl; perl count.pl password
+run     rm -rf /dd/tmp/A2PC > /nil 2>/nil; mkdir -p /dd/tmp/A2PC
+wait    2
+run     builtin cd /dd/tmp/A2PC
+wait    1
+run     cp /dd/SYS/password password; echo '{ w += NF } END { print NR, w }' > count.awk
+wait    2
+run     clear
+wait    1
+run     cat count.awk
+wait    2
+run     a2p count.awk > count.pl
+wait    6
+run     perl count.pl password
+wait    6
+
 shot    p2c
 size    36 80
 cap     p2c translating Pascal into C, which is what it is for.  It writes

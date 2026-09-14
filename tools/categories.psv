@@ -667,6 +667,7 @@ gnuplot|Graphics & images|Plotting
 gawk|Text tools|Transform & filter
 sox|Encoding & conversion|Audio
 p2c|Compilers & build|Translators
+a2p|Compilers & build|Translators
 ccheck|Developer tools|Source checking
 libsplit|Developer tools|Libraries
 lwf|Printing|PostScript

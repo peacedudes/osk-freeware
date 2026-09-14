@@ -1,0 +1,5 @@
+cat count.awk
+{ w += NF } END { print NR, w }
+$ a2p count.awk > count.pl
+$ perl count.pl password
+5 10

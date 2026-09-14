@@ -970,3 +970,8 @@ gnugo|gnugo|count.c countlib.c endgame.c eval.c exambord.c findcolr.c findnext.c
 # or the two isatty psects collide; osk.c is the OS-9 process model (no fork)
 # and the Unix calls the libraries lack.  SRC/perl4/README-OSK has the rest.
 perl|perl4|array.c cmd.c cons.c consarg.c doarg.c doio.c dolist.c dump.c eval.c form.c hash.c perl.c perly.c regcomp.c regexec.c stab.c str.c toke.c util.c usersub.c osk.c|CPP2 MEM=128k|/dd/LIB/unix.l /dd/LIB/blarslib.l /dd/LIB/mytime.r /dd/LIB/math.l /dd/LIB/sys.l|
+# a2p, perl 4's awk-to-perl translator, from x2p in the same kit.  a2p.c is
+# a2p.y through this disk's own yacc with a2py.c inlined, because the driver
+# looks for main() by file.  LONGREF for its size; A2P keeps config.h's
+# osk.c mappings, which are perl's alone, out of it.
+a2p|perl4/x2p|a2p.c hash.c str.c util.c walk.c|CPP2 LONGREF MEM=64k A2P|/dd/LIB/unix.l /dd/LIB/blarslib.l|

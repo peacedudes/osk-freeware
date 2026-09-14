@@ -716,6 +716,7 @@ adltouch|adltouch -?|
 forth|forth -?|
 luac|luac -?|
 lua|none|it takes a script file, or reads one from standard input; -v prints its version, and there is no help flag
+a2p|none|it takes an awk program file, or reads one from standard input, and writes the perl script to standard output; a switch it does not know, -h among them, is answered `Unrecognized switch'
 perl|none|it takes a script file, -e with a line of program, or a script on standard input; -v prints its version, and a switch it does not know, -h among them, is answered `Unrecognized switch'
 runc|none|it takes the module name luac -x made and the script's arguments
 wam.sbprolog|none|it takes the module to start in and has no help flag

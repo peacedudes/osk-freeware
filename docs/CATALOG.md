@@ -1,6 +1,6 @@
 # What is on this disk
 
-997 programs of OS-9/68K community software, gathered from the archives that kept it and made to run again. **653 of them need nothing but this disk**; the rest want Microware's `cio`, marked below with a star.
+998 programs of OS-9/68K community software, gathered from the archives that kept it and made to run again. **654 of them need nothing but this disk**; the rest want Microware's `cio`, marked below with a star.
 
 `DOC/INDEX` on the disk lists everything alphabetically. This is the same collection sorted by what each program is *for*, which is the more useful order when you do not yet know what you are looking for.
 
@@ -16,7 +16,7 @@
 | [Text tools](#text-tools) | 127 | Search, sort, compare, reformat, split and spell-check. |
 | [Files & directories](#files--directories) | 34 | Listing, copying, finding, renaming, and knowing what you have. |
 | [Developer tools](#developer-tools) | 47 | Version control, tags, cross-reference, formatters, a debugger and benchmarks. |
-| [Compilers & build](#compilers--build) | 40 | C compilers and their passes, assemblers, linkers, make and parser generators. |
+| [Compilers & build](#compilers--build) | 41 | C compilers and their passes, assemblers, linkers, make and parser generators. |
 | [Languages](#languages) | 11 | Interpreters and language systems beyond C. |
 | [Archives & compression](#archives--compression) | 33 | Pack, unpack and shrink -- lha, zip, tar, arc, zoo, and OS-9 module libraries. |
 | [Encoding & conversion](#encoding--conversion) | 29 | Between text encodings, line endings, Macintosh formats, ciphers and hashes. |
@@ -542,7 +542,7 @@
 
 *C compilers and their passes, assemblers, linkers, make and parser generators.*
 
-<details><summary>40 programs</summary>
+<details><summary>41 programs</summary>
 
 **Alternates**
 
@@ -612,6 +612,7 @@
 
 | | |
 |---|---|
+| `a2p` | translates an awk program into a perl script: `a2p prog.awk > prog.pl', then `perl prog.pl file'. With no file it reads the awk program from standard input. Manual in DOC/perl/a2p.txt<br>**How:** `a2p prog.awk > prog.pl' writes the perl version of an awk program; run it with `perl prog.pl file'. The translation sets $[ to 1 so fields count from 1 as in awk. The manual is DOC/perl/a2p.txt. |
 | `p2c` | Pascal to C translator (GPL).  Reads LIB/p2c/p2crc; programs it emits link against LIB/libp2c.l<br>**How:** Translates Pascal to C. It reads LIB/p2c/p2crc at startup and stops with "file not found" if that is missing; programs it emits must be linked against LIB/libp2c.l. |
 
 </details>
