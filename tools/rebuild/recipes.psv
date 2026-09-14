@@ -966,3 +966,7 @@ cfscores|canfield|cfscores.c|||
 rot22|rot22|rot22.c||/dd/LIB/termlib.l|
 reversi|reversi|reversi.c comp.c graphics.c menu.c move.c||/dd/LIB/curses.l /dd/LIB/termlib.l|
 gnugo|gnugo|count.c countlib.c endgame.c eval.c exambord.c findcolr.c findnext.c findopen.c findpatn.c findsavr.c findwinr.c fioe.c genmove.c getij.c getmove.c initmark.c main.c matchpat.c opening.c openregn.c random.c seed.c sethand.c showbord.c showinst.c suicide.c|||
+# Perl 4.036 (CPAN).  CPP2 for its long macro lines; unix.l ahead of blarslib
+# or the two isatty psects collide; osk.c is the OS-9 process model (no fork)
+# and the Unix calls the libraries lack.  SRC/perl4/README-OSK has the rest.
+perl|perl4|array.c cmd.c cons.c consarg.c doarg.c doio.c dolist.c dump.c eval.c form.c hash.c perl.c perly.c regcomp.c regexec.c stab.c str.c toke.c util.c usersub.c osk.c|CPP2 MEM=128k|/dd/LIB/unix.l /dd/LIB/blarslib.l /dd/LIB/mytime.r /dd/LIB/math.l /dd/LIB/sys.l|

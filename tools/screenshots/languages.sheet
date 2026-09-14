@@ -164,6 +164,23 @@ wait    3
 run     runc greet World again
 wait    6
 
+shot    perl
+size    36 80
+cap     Perl 4, a language for reading text and reporting on it.  words.pl
+cap     is a ten-line script beside perl's README in DOC/perl: it reads the
+cap     file, counts every word in a hash, and prints the ten used most.
+cap     perl -e runs a line of program without a file; the manual is
+cap     DOC/perl/perl.txt.
+try     perl words.pl README
+run     builtin cd /dd/DOC/perl
+wait    1
+run     clear
+wait    1
+run     cat words.pl
+wait    2
+run     perl words.pl README
+wait    10
+
 shot    wam.sbprolog
 size    30 80
 cap     SB-Prolog 2.2 at its | ?- prompt.  assert adds a fact; a query

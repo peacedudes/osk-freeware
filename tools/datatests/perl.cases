@@ -1,0 +1,46 @@
+# perl 4.036, ported for this disk 2026-09-14 -- SRC/perl4/README-OSK.
+#
+# Each case checks a thing the port had to make work, not just that perl
+# starts: exact arithmetic (os9exec's NEG left X stale, and 1-1 was not 0),
+# a numeric sort (Microware's qsort overran on a sort sub), a file written
+# and read back, backticks through $SHELL, $! from SYS/errmsg, and the
+# library in LIB/perl.
+
+family  perl
+
+setup   export SHELL=/dd/CMDS/ksh
+setup   /dd/CMDS/rm -rf /dd/tmp/PRL > /nil 2>/nil
+setup   /dd/CMDS/mkdir -p /dd/tmp/PRL > /nil 2>/nil
+
+case    perl-prints-its-version
+run     /dd/CMDS/perl -v
+expect  This is perl, version 4.0
+expect  Patch level: 36
+
+case    perl-arithmetic-is-exact
+run     /dd/CMDS/perl -e 'print 6*7, " ", 2**10, " ", 1-1, " ", 0.1+0.2, " ", 2 <=> 2, "\n";'
+expect  42 1024 0 0.3 0
+
+case    perl-sorts-numerically-with-a-sort-block
+run     /dd/CMDS/perl -e '@n = sort { $a <=> $b } (10, 9, 100, 1); print join(",", @n), "\n";'
+run     /dd/CMDS/perl -e '@n = sort { $b <=> $a } (1, 2, 3); print join(",", @n), "\n";'
+expect  1,9,10,100
+expect  3,2,1
+
+case    perl-writes-a-file-and-reads-it-back
+run     /dd/CMDS/perl -e 'open(F, ">/dd/tmp/PRL/t.txt") || die "$!"; print F "one\ntwo\n"; close(F); open(F, "/dd/tmp/PRL/t.txt"); @l = <F>; print scalar(@l), " lines, ", -s "/dd/tmp/PRL/t.txt", " bytes, last $l[1]";'
+expect  2 lines, 8 bytes, last two
+
+case    perl-backticks-run-through-the-shell
+run     /dd/CMDS/perl -e '$x = `echo from ksh`; print "got: $x"; print "system: ", system("echo via system"), "\n";'
+expect  got: from ksh
+expect  via system
+expect  system: 0
+
+case    perl-error-text-comes-from-errmsg
+run     /dd/CMDS/perl -e 'open(F, "/dd/tmp/PRL/none") || print "error: $!\n";'
+expect  error: (E$PNNF)
+
+case    perl-finds-its-library
+run     /dd/CMDS/perl -e 'require "getopts.pl"; @ARGV = ("-a", "x"); &Getopts("a:"); print "opt_a=$opt_a\n";'
+expect  opt_a=x

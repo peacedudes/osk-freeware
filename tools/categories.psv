@@ -654,6 +654,7 @@ gpp_cccp|Compilers & build|C toolchain
 gpp_collect|Compilers & build|C toolchain
 mscheck|Disk & DOS|MS-DOS media (mtools)
 lua|Languages|Interpreters
+perl|Languages|Interpreters
 luac|Languages|Interpreters
 runc|Languages|Interpreters
 Ascii2Libr|Files & directories|Home Librarian

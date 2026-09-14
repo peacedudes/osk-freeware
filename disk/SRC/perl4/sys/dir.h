@@ -1,0 +1,1 @@
+/* sys/dir.h for OS-9: the BSD-style directory calls live in dir.h */#include <dir.h>
