@@ -1,5 +1,5 @@
 $ lunisolar
-The moon is a waning crescent (6% of full).
+The moon is a waxing crescent (12% of full).
 $ lunisolar 2026 EST | head -n 14
 % Lunisolar calendar for 2026.
 % Constructed for EST, 5.00 hours west of Greenwich.
@@ -14,4 +14,4 @@ $ lunisolar 2026 EST | head -n 14
 \begin{picture}(2.0,2.0)(-1.0,-1.0)
 \tiny
 \put(0,0){\makebox(0,0){\Huge Winter 2025}}
-\put(0.125493,0.992095){\makebox(0,0){12/20}}
+\put(0.124376,0.992235){\makebox(0,0){12/20}}
