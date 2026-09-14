@@ -1,0 +1,49 @@
+# games4 -- games that ship the data they run on, run against it
+# (2026-09-14): Core War's assembler rebuilds a shipped warrior byte for
+# byte, ADVSYS compiles its sample and plays it, ADL plays AARD.
+
+family  games4
+
+setup   W=/dd/tmp/GM4
+setup   /dd/CMDS/rm -rf $W > /nil 2>/nil
+setup   /dd/CMDS/mkdir -p $W/cw $W/adv > /nil 2>/nil
+
+case    cwasm-rebuilds-the-shipped-imp-exactly
+run     /dd/CMDS/cp /dd/GAMES/COREWARS/imp.rc $W/cw/imp.rc
+run     /dd/CMDS/ksh -c "cd $W/cw; /dd/CMDS/GAMES/cwasm imp.rc" < /nil
+run     /dd/CMDS/md5 $W/cw/imp.e /dd/GAMES/COREWARS/imp.e
+expect  MD5 (/dd/tmp/GM4/cw/imp.e) = 895d749669adfabb6422299aefd387a0
+expect  MD5 (/dd/GAMES/COREWARS/imp.e) = 895d749669adfabb6422299aefd387a0
+
+case    cwdis-lists-the-imp-as-one-instruction
+run     /dd/CMDS/GAMES/cwdis /dd/GAMES/COREWARS/imp.e < /nil
+expect  Number of instructions: 1
+expect  NO.	OPCODE	FIRSTPARA	SECONDPARA
+expect  0	1	0		1
+
+case    corewar-loads-both-warriors
+# Where each warrior lands is random; how many instructions it has is not.
+run     export TERM=vt100 TERMCAP=/dd/SYS/termcap
+run     /dd/CMDS/GAMES/corewar 50 /dd/GAMES/COREWARS/imp.e /dd/GAMES/COREWARS/dwarf.e < /nil | /dd/CMDS/head -c 1500
+expect  Found 1/200 instructions
+expect  Found 4/200 instructions
+
+case    advcom-compiles-the-sample-and-advint-plays-it
+run     /dd/CMDS/cp /dd/GAMES/ADVSYS/osample.adv $W/adv/osample.adv
+run     /dd/CMDS/cp /dd/GAMES/ADVSYS/objects.adi $W/adv/objects.adi
+run     /dd/CMDS/ksh -c "cd $W/adv; /dd/CMDS/GAMES/advcom osample" < /nil | /dd/CMDS/head -n 3
+run     /dd/CMDS/printf 'look\nnorth\nquit\ny\n' | /dd/CMDS/ksh -c "cd $W/adv; /dd/CMDS/GAMES/advint osample"
+expect  [ including objects.adi ]
+expect  Welcome to the sample adventure.
+expect  You are in a long narrow hallway. There is a door to the east into a small dark
+
+case    adlrun-plays-aard
+run     /dd/CMDS/printf 'look\ninventory\nquit\nyes\n' | /dd/CMDS/ksh -c "cd /dd/ADL/AARD; /dd/CMDS/ADL/adlrun aard"
+expect  Museum entrance
+expect  There is a coil of rope here.
+expect  You are empty-handed.
+expect  You scored 0 out of 250 possible points.
+
+case    maze-draws-a-maze
+run     /dd/CMDS/printf '11\n' | /dd/CMDS/GAMES/maze
+expect  ._._._._._._._._._._._._._._._._._._._._

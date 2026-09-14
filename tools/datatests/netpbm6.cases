@@ -1,0 +1,18 @@
+# netpbm6 -- two netpbm programs that had no case (2026-09-14).
+
+family  netpbm6
+
+setup   W=/dd/tmp/NP6
+setup   /dd/CMDS/rm -rf $W > /nil 2>/nil
+setup   /dd/CMDS/mkdir -p $W > /nil 2>/nil
+
+case    pgmcrater-makes-a-graymap-the-size-asked
+run     /dd/CMDS/NETPBM/pgmcrater -number 300 -xsize 40 -ysize 30 < /nil > $W/c.pgm
+run     /dd/CMDS/NETPBM/pnmfile $W/c.pgm
+expect  PGM raw, 40 by 30  maxval 255
+
+case    pbmtobbnbg-writes-bitgraph-codes
+run     /dd/CMDS/NETPBM/pbmmake -black 8 8 > $W/b.pbm
+run     /dd/CMDS/NETPBM/pbmtobbnbg < $W/b.pbm > $W/b.bg
+run     /dd/CMDS/xd -c $W/b.bg
+expect  1B 50 3A 33 3B 38 3B 38  73 0D 50 20 50 20 50 20 | .P:3;8;8s.P P P
