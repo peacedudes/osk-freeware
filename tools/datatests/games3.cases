@@ -1,0 +1,29 @@
+# games3 -- games that read their moves from standard input, fed enough to
+# show them start and set their scene, 2026-09-14.  Only the fixed text is
+# asserted: fish deals and wump places its hazards at random.  poker,
+# blackjak, jotto and mastrm are NOT here: each re-asks forever once input
+# runs out, and a head on the pipe does not stop them.
+
+family  games3
+
+case    advent-builds-its-database-and-scores-a-quit
+run     /dd/CMDS/printf 'no\nquit\nyes\n' | /dd/CMDS/GAMES/advent
+expect  Advent is ready.
+expect  Welcome to adventure!!
+expect  You scored 32 out of a possible 350 using 1 turns.
+
+case    napoleon-opens-in-the-central-office
+run     /dd/CMDS/printf 'q\n' | /dd/CMDS/GAMES/napoleon
+expect  Napoleon, version 1.02, copyright (c) Pete Chown 1992
+expect  The central office
+expect  On the desk, there is a scroll.
+
+case    fish-deals-a-hand
+run     /dd/CMDS/printf 'n\n' | /dd/CMDS/GAMES/fish
+expect  Would you like instructions (y or n)?
+expect  Your hand is:
+
+case    wump-sets-up-the-cave
+run     /dd/CMDS/printf 'n\nq\nn\n' | /dd/CMDS/GAMES/wump
+expect  You're in a cave with 20 rooms and 3 tunnels leading from each room.
+expect  Move or shoot? (m-s)

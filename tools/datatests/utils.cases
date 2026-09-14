@@ -53,3 +53,25 @@ case    config-reports-double-precision
 run     /dd/CMDS/config < /nil
 expect  Significant base digits = 53 (= at least 15 decimal digits)
 expect  Char pointers = 32 bits
+
+case    almanac-tables-the-sky-for-a-place-and-time
+# Every figure is floating point, so this doubles as a check of the soft
+# float the emulator runs it on: 20:18 UTC on 20 July 1969, from 87.45 W 41.50 N.
+run     /dd/CMDS/almanac 087.45 41.50 0720.1969 20.1800 < /nil
+run     /dd/CMDS/almanac 0720.1969 20.1800 < /nil
+expect  Topocentric Coordinates      20:18:00       7/20/1969
+expect  Sun          8.00090    20.3429   0.312892    1.01605  |   245.13     53.35
+expect  Geocentric Coordinates       20:18:00       7/20/1969
+expect  Pluto       11.59209    16.4850   0.000013   32.27423
+
+case    dfiles-finds-a-duplicate-and-writes-the-cmp
+run     /dd/CMDS/mkdir -p $W/dup/a $W/dup/b > /nil 2>/nil
+run     /dd/CMDS/printf 'same\n' > $W/dup/a/f
+run     /dd/CMDS/printf 'same\n' > $W/dup/b/f
+run     /dd/CMDS/dfiles $W/dup < /nil
+expect  cmp -s
+expect  /dd/tmp/UTL/dup/a/f
+
+case    howfrag-counts-a-files-segments
+run     /dd/CMDS/howfrag /dd/SYS/motd < /nil
+expect  /dd/SYS/motd: 1 segments
