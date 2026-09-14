@@ -934,9 +934,10 @@ run     msntp
 wait    6
 
 shot    atp
-cap     The AX.25 transport from the KA9Q packet-radio package.  It reads
-cap     its configuration first and names the file it wants -- atprc or
-cap     .atprc -- which you write for your own station.
+cap     ATP, an off-line reader for QWK mail packets -- the bundles a
+cap     bulletin board packed a caller's messages into.  It reads its
+cap     configuration first, and here names the file it wants: atprc or
+cap     .atprc.
 try     atp
 run     atp
 wait    8

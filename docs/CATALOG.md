@@ -803,6 +803,7 @@
 |---|---|
 | `answer` | &#9733; replies to the messages in a folder one at a time: it clears the screen and asks `Message to:' for a recipient, checked against the alias table |
 | `arepdaemon` | &#9733; the daemon autoreply relies on.  It reads /dd/USR/LIB/ELM/autoreply.data; without it, `Error 216 attempting fstat' -- though it still touches autoreply.log on its way there |
+| `atp` | &#9733; ATP, an off-line reader for QWK mail packets: the bundles a bulletin board packed a caller's messages into |
 | `autoreply` | &#9733; send an automatic reply while you are away.  It resolves your mailbox by the session's numeric owner rather than $USER, so under this identity it reaches for a mailbox named `su' and stops there; turning autoreplying off does not need the mailbox and answers for real |
 | `checkalias` | &#9733; check an alias resolves before you rely on it. `listalias' answers the same question and prints its result<br>`Usage: checkalias alias [alias ...]` |
 | `disable` | &#9733; disable a UUCP device<br>`Syntax: disable <port>` |
@@ -854,7 +855,6 @@
 
 | | |
 |---|---|
-| `atp` | &#9733; AX.25 transport, from the KA9Q package |
 | `finger` | &#9733; show what the system knows about a user: the home directory, the shell, and the .plan it would print; given user@host it asks that machine instead<br>**How:** `finger tester' reads the password file this disk ships and prints the account's home directory, its shell, and the .project and .plan it would show if they existed -- no network needed for a local name. `finger user@host' is the form that asks another machine. |
 | `infoxpress` | a client for the InfoXpress information service, reached over a serial line |
 | `msntp` | sets the system clock from a network time server, by SNTP; it needs a network to reach one<br>**How:** Sets the clock from a network time server. |
