@@ -543,6 +543,7 @@ function renderPanel(){
   const needs=[];
   if(p.star) needs.push('Microware&rsquo;s <code>cio</code> (on this disk)');
   if(p.basic09) needs.push('Microware&rsquo;s <code>runb</code>');
+  (p.requires||[]).forEach(r=>needs.push(esc(r)));
   const data=alsoReads(p);
   data.forEach(x=>needs.push(`<code>${esc(x)}</code>`));
   if(p.military) needs.push('the author asks no military use');

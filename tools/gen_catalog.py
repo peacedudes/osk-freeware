@@ -403,6 +403,24 @@ def load_terms(path):
     return out
 
 
+def load_requires(path):
+    """What a program needs that no scan records, from tools/requires.psv.
+
+    name|requirement|where it is stated.  A name may appear on more than one
+    line; each requirement becomes one entry under the card's Needs.
+    """
+    out = {}
+    if not os.path.exists(path):
+        return out
+    for line in open(path, encoding="latin-1"):
+        if not line.strip() or line.startswith("#"):
+            continue
+        parts = line.rstrip("\n").split("|")
+        if len(parts) >= 2 and parts[1].strip():
+            out.setdefault(parts[0], []).append(parts[1].strip())
+    return out
+
+
 def load_howto(path):
     """Hand-written "how do I run this" notes, from tools/howto.psv.
 
@@ -501,6 +519,8 @@ def gather(root, catfile):
     helps = load_help(root)
     terms = load_terms(os.path.join(os.path.dirname(os.path.abspath(__file__)),
                                     "terms.psv"))
+    requires = load_requires(os.path.join(os.path.dirname(os.path.abspath(__file__)),
+                                          "requires.psv"))
     out, uncategorised = [], []
     for p in sorted(progs.values(), key=lambda x: x["name"].lower()):
         if not p.get("dir"):
@@ -511,6 +531,8 @@ def gather(root, catfile):
             p["help"] = helps[p["name"]]
         if p["name"] in terms:
             p["terms"] = terms[p["name"]]
+        if p["name"] in requires:
+            p["requires"] = requires[p["name"]]
         if p["name"] in cats:
             p["cat"], p["sub"] = cats[p["name"]]
         elif p["name"] in groups:
@@ -555,7 +577,7 @@ ORDER = ["Shells","Editors","Text tools","Files & directories","Developer tools"
  "Printing","Documentation","G-Windows","Needs hardware","Uncategorised"]
 
 KEEP = ("name","desc","cat","sub","star","dir","size","origin","archive","src",
-        "docs","hassrc","military","basic09","needs","info","help","howto","terms",
+        "docs","hassrc","military","basic09","needs","info","help","howto","terms","requires",
         "lang","langnote")
 
 def render_markdown(progs):

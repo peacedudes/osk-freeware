@@ -1,0 +1,16 @@
+# requires.psv -- what a program needs that the card cannot see for itself:
+# a Microware module the DEPENDS scan and the cio star do not record, another
+# program, or a shell.  name|requirement|where it is stated.  The card lists
+# the requirement under Needs.  Every line comes from a document on the disk
+# or a measurement written down elsewhere -- never from a guess.  A module the
+# collection does not carry is named plainly as something the reader's own
+# OS-9 system provides.
+a2p|perl, to run the script it writes|SRC/perl4/README-OSK; tools/datatests/perl.cases
+perl|a shell named by SHELL for system, backticks and piped opens (SYS/login sets ksh)|SRC/perl4/README-OSK
+lua|Microware's csl (on this disk)|SOURCES.txt, lua 3.0 section
+tterm|Microware's csl (on this disk), and fpu on a machine without a 68881|DOC/comms/readme
+tsu|Microware's csl (on this disk), and fpu on a machine without a 68881|DOC/comms/readme
+xyt|Microware's csl (on this disk), and fpu on a machine without a 68881|DOC/comms/readme
+gzip68k_csl|Microware's csl (on this disk)|DOC/INDEX
+gzip020_csl|Microware's csl (on this disk)|DOC/INDEX
+gzipcpu32k_csl|Microware's csl (on this disk)|DOC/INDEX
