@@ -98,6 +98,20 @@ line is recorded in `tools/terms.psv` or the handoff.
    Asked in conversation as "we did include utime.c, right?" -- and the
    answer is yes, in make.
 
+14. **More from the last research pass, each checked against the binary:**
+   - `dclock` and `colortest` ship, but SOURCES.txt (G-Windows section,
+     line ~2043) says both "were NOT taken, because adding a new program on
+     unstated terms is a different question".  dclock says only "Copyright
+     1996 by High-G Software."; colortest states nothing.
+   - `cyberwar`, `puzzle`, `scriptmaster` -- Stephen Carville copyrights with
+     no distribution terms; SOURCES.txt already marks them "FLAGGED FOR
+     REVIEW, not settled".
+   - `backgammon`, `teachgammon`, `cribbage` -- "Copyright (c) 1980 Regents
+     of the University of California.  All rights reserved." and no grant in
+     what ships.
+   - `ub68020demo` -- its demo terms want "ALL of the files ... kept intact",
+     and CMDS/archives holds UB_68000.LZH but not a UB_68020 archive.
+
 ## ANSWERED -- the newsgroup archive
 
 5. ~~**comp.os.os9 1987-2002 has been FOUND, and getting it properly costs
