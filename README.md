@@ -12,18 +12,14 @@ Not for the 6809 line — these are 68k binaries.
 
 ## What it is
 
-The community's software for OS-9, made to run again on OS-9. It ships two
-ways, both built from `disk/`:
-
-- **`osk-freeware.dd`** -- one RBF disk image, 256 MB, with room left for
-  scores, saves and your own work.
-- **`osk-freeware.tar`** -- the same tree as a tar archive, with **`tar`**,
-  the collection's own trap-free tar module, beside it to unpack it with.
+The community's software for OS-9, made to run again on OS-9. It ships as
+**`osk-freeware.dd`**, one RBF disk image built from `disk/`, 256 MB, with
+room left for scores, saves and your own work.
 
 It is not a boot disk and carries no OS9Boot: it is a data disk for an OS-9
 system you already have, or for os9exec.
 
-    disk/       the tree both are built from
+    disk/       the tree the image is built from
       CMDS/       the commands, plus GAMES/ REBUILT/ NETPBM/ GCC*/ and the rest
       SRC/        C source for two thirds of it
       DOC/        per-package documentation, plus the index files below
@@ -43,13 +39,8 @@ puts `/h1/CMDS` on the path, so `/h1` is the one it expects -- and your own
 `runb`, shell, `r68` and `l68` are found there by the programs that want
 them.
 
-Two ways to get it onto that disk:
-
-- write `osk-freeware.dd`, the raw RBF image, whole onto a disk your system
-  mounts; or
-- move `osk-freeware.tar` and the `tar` module across by whatever path you
-  have -- a network, a serial line, a disk written elsewhere -- and unpack
-  the archive at the root of the disk.
+To get it onto that disk, write `osk-freeware.dd`, the raw RBF image, whole
+onto a disk your system mounts.
 
 Then `bash /dd/SYS/login` from your own shell gives you a session with the
 paths set, or use the programs directly: `SYS/login` says what it sets.

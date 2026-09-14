@@ -180,12 +180,9 @@ echo "  extracted $got/$nfiles files"
 python3 "$HERE/fixattrs.py" "$WORK" || exit 1
 
 mv "$WORK" "$OUT"
-# ---- 5. the same tree for a real OS-9 system: the tar the image was
-# populated from, and the collection's own trap-free tar module to unpack
-# it with.  Written beside the image under the image's name.  A reader
-# with an OS-9 machine and any way of moving files onto it -- a network, a
-# serial line, a disk written elsewhere -- takes these two rather than a
-# raw image their drive descriptor may not agree with.
-cp "$TMP/collection.tar" "${OUT%.*}.tar" && cp "$SRC/CMDS/tar" "$OUTDIR/tar" \
-  && echo "  wrote ${OUT%.*}.tar and $OUTDIR/tar (the module that unpacks it)"
+# The image is the one thing this writes.  A tar of the tree used to be left
+# beside it as a second download for real OS-9 systems; rdoggett withdrew it
+# on 2026-09-13 -- one download is cleaner, and it can come back if someone
+# with a real system needs it.  $TMP/collection.tar above is still how the
+# image gets filled.
 echo "  wrote $OUT ($(du -h "$OUT" | cut -f1))"

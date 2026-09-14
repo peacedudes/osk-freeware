@@ -43,8 +43,9 @@ suite has no open thread.
 **Do not** pipe a harness into `tail` and read `$?` -- you get `tail`'s.
 **Do not** rebuild `osk-freeware.dd` while rdoggett has an emulator open
 on it; build to another name INSIDE the repo (mkimage cds to the output
-directory, and outside the repo there is no `bash`), and delete the
-`.tar` it leaves beside the image.
+directory, and outside the repo there is no `bash`).  As of 2026-09-13
+it no longer leaves a `.tar` beside the image: rdoggett withdrew the tar
+as a second download.
 
 ## 2026-09-13 (overnight): the sweep finished, the card queue halved
 

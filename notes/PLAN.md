@@ -29,7 +29,6 @@ Longer, and worth running before you claim anything is finished:
 
 ```sh
 OS9EXEC_DIR=$HOME/Developer/os9/os9exec tools/mkimage.sh disk fresh.dd
-rm fresh.tar                                      # mkimage leaves it; not ignored
 tools/datatest.py --all --image $PWD/fresh.dd     # 743 cases
 tools/playtest.py --all --image $PWD/fresh.dd     # 116 tests, 112 pass
 tools/ci/run_workflow_locally.sh /tmp/scratch     # the whole GitHub workflow
