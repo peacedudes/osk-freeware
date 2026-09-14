@@ -280,7 +280,6 @@ ksh
 l
 lander
 launch
-lcasep
 lessecho
 lesskey
 lfmaker
@@ -373,7 +372,6 @@ nchess
 new_e
 newsgen
 nobs
-nptx
 nroff
 nsort
 number
@@ -416,7 +414,6 @@ puz15
 puzzle
 puzzle15
 pwgen
-pwparse
 qp
 qsort9
 qt
@@ -439,7 +436,6 @@ repeat
 rev
 rlog
 rm
-rmail
 rndir
 rndname
 rnews
@@ -454,7 +450,6 @@ rtf
 rtfdat
 run
 runc
-rxmod
 savage
 savemem
 sc
@@ -479,7 +474,6 @@ shuffle
 sieve
 signal
 sine
-smail
 snake
 snap
 snd_sig
@@ -544,7 +538,6 @@ tt
 tttt
 tty
 ttyexp
-txmod
 ub68020demo
 udate
 ul
