@@ -1,34 +1,42 @@
 # Start here, next session
 
-## 2026-09-14 (evening): every card states its terms -- in progress
+## 2026-09-14 (evening): every card states its terms and requirements -- in progress
 
 rdoggett: *"You must note on each card it's requirements, copyrights,
 whatever."*  Built and committed:
 
   * `tools/terms.psv` -- name|terms|where recorded; the card shows the terms.
-  * `tools/terms-backlog.txt` -- programs not looked up yet (302 when this
-    was written); gate `every card states its terms` fails on a program in
-    neither file, a stale backlog name, or a name not in the catalogue.
-  * Cards without a line say "not yet looked up"; Needs now lists cio for
-    starred programs.  The page's withdrawn-tar text is gone.
+  * `tools/terms-backlog.txt` -- programs not looked up yet; gate `every card
+    states its terms` fails on a program in neither file, a stale backlog
+    name, or a name not in the catalogue (made to fail both ways first).
+  * `tools/requires.psv` -- name|requirement|where stated, for what no scan
+    records (csl for lua, the three gzip csl builds and the tterm set, fpu
+    without a 68881; perl for a2p's output; a shell on SHELL for perl).  The
+    program-name gate reads it -- 25dcacaf only claimed that; 2a42b5a3 did it
+    and was shown failing on a bogus name.
+  * Cards without terms say "not yet looked up"; Needs lists cio for starred
+    programs and every requires.psv line.  The page's withdrawn-tar text is
+    gone.
 
-How the lines were found: SOURCES.txt License:/terms lines (the smallutils
-"public domain" there proved unsupported and was corrected), the licence
-files of each package (netpbm, Elm, C News, WN, KA9Q, TeX, ADL, GCC 1.39),
-and four research passes reading every SRC tree's README, documents and
-source headers, each line carrying file and line.  "No copyright or licence
-statement" is written only after the files were read.
+How the lines were found: package licence files, SOURCES.txt (its smallutils
+"public domain" proved unsupported and was corrected), and research passes
+reading each SRC tree, DOC directory, binary strings and pool archive, each
+line carrying file and line.  "No copyright or licence statement" and
+"Origin not established" are written only after the looking.  Every flagged
+restriction was checked against its file before it reached a card.
+
+The passes also found three errors on the disk, now fixed: atp was
+described as the KA9Q AX.25 transport and is a QWK mail reader; SetTerm's
+readme was filed under DOC/mines; SOURCES.txt listed wysetime as removed.
 
 Still open:
-  * Two research passes were running over the last 302 (no DOC/ORIGINS row:
-    236 in CMDS; GAMES, REBUILT, GCC2, MM1, NETWORK, UUCP, DEMOS).  Their
-    output lands in the scratchpad as terms-C.psv and terms-D.psv, with
-    UNSURE and FLAGS sections; verify the flags against the files before
-    anything goes on a card or into FOR-RDOGGETT.
-  * Requirements that live only in prose do not reach a card yet (a2p needs
-    perl; tterm, tsu, xyt need csl and fpu).  A small hand table was the plan.
-  * FOR-RDOGGETT items 8-13 are the licence and authorship questions this
-    turned up; nothing was removed.
+  * 236 programs on the terms backlog -- the ones in CMDS with no DOC/ORIGINS
+    row.  A research pass over them writes scratchpad/terms-C.psv, with
+    UNSURE and FLAGS sections; verify flags against the files before merging.
+  * requires.psv holds only documented cases.  A measured csl sweep, like the
+    one behind the cio star, would find the rest.
+  * FOR-RDOGGETT items 8-14 are the licence and authorship questions this
+    turned up; nothing was removed or rebuilt.
 
 ## 2026-09-14: perl 4.036 is in, and os9exec's floating point was wrong
 
