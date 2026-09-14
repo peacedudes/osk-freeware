@@ -1,5 +1,33 @@
 # Start here, next session
 
+## 2026-09-14 (night): cases for the programs that had none
+
+Five new families and eleven cases added to utils, each asserting what the
+program PRODUCED and each shown failing on a deliberately wrong expectation
+first: `amusements` (e2ef11d6), `games3`, `games4`, `netpbm6`, `system6`.
+Worth knowing from them: cwasm rebuilds the shipped GAMES/COREWARS/imp.e
+byte for byte; advcom compiles the ADVSYS sample and advint plays it; adlrun
+plays AARD to its score line; almanac's figures are floating point, so its
+case also guards the X-flag fix; unc disassembles pri to 1694 lines.
+
+`tools/worklist.py --programs --no-test` is down to 91.  What is left is
+mostly NOT datatest material, and each group was probed before being set
+aside:
+  * full-screen programs (animal, hang, tttt, bog, crib, saa, othello,
+    hexa, lander, corewar's map, ...) want a terminal; `drive.py` sheets are
+    their instrument, not case files.
+  * re-ask forever at end of input, so a case would hang its family for 300 s:
+    poker, blackjak, jotto, mastrm, monop, hinterhalt.
+  * hang with no output: lmail, hist, vtxtcn (vtxtcn wants world's .dat
+    files beyond q1text.dat).
+  * `**** Stack Overflow ****` on piped input: gnugo (after its banner and
+    board, fed `0', `b', `pass') and sdb (after a `q' it calls a syntax
+    error).  Not chased; not known to be os9exec.
+  * a datatest runs with NO PATH: a bare `printf' in a `run' line is
+    `command not found', and a program reading that pipe then waits
+    forever.  That is what hung the first games3 run -- use /dd/CMDS/printf.
+  * the disk's `tail' takes `-30', not `-n 30'.
+
 ## 2026-09-14 (evening): every card states its terms and requirements
 
 rdoggett: *"You must note on each card it's requirements, copyrights,
