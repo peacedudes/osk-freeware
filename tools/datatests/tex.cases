@@ -23,8 +23,13 @@ family  tex
 
 setup   T=/dd/CMDS/TEXCMDS
 setup   S=/dd/SYS/TEX
-setup   /dd/CMDS/rm /dd/small.dvi /dd/small.log /dd/small.aux
-setup   /dd/CMDS/TEXCMDS/virtex '&plain' '\\input /dd/SYS/TEX/SAMPLES/story \\end'
+setup   /dd/CMDS/rm /dd/small.dvi /dd/small.log /dd/small.aux /dd/story.dvi
+# ONE BACKSLASH EACH: inside bash's single quotes `\\' stays two characters,
+# TeX stopped at "Undefined control sequence", and no story.dvi was written.
+# The drivers below passed anyway, for weeks, on whatever story.dvi `text'
+# had left on the image -- and `text' sorts after `tex', so a fresh image
+# failed all three.  The rm above keeps a leftover from ever hiding it again.
+setup   /dd/CMDS/TEXCMDS/virtex '&plain' '\input /dd/SYS/TEX/SAMPLES/story \end'
 
 case    latex-typesets-a-document-through-virtex
 run     $T/virtex '&lplain' $S/SAMPLES/small.tex
