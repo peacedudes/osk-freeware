@@ -1204,3 +1204,36 @@ through 1998; it needs Microware's ISP networking), and the third,
 in the comp.os.os9 post.  Everything else on that list is 6809, CoCo 3 or
 G-Windows, outside this collection's scope.
 
+### CD-i: could any player run this collection? (2026-09-14, from the posts)
+
+rdoggett: CD-i software may be unusable -- the players have hardware we do
+not.  Were any CD-i systems usable as computers?  Answered from the pulled
+comp.os.os9 and comp.sys.m68k posts; rec.games.video.cd-i is queued and
+may say more.
+
+  * CD-RTOS is OS-9/68K v2.4 by Microware (Microware staff, comp.os.os9,
+    1991-10-25), on the Philips/Signetics SCC68070 -- 68000-instruction
+    compatible, with an on-chip UART, timers, I2C and DMA.
+  * The CONSUMER players (910, 220-class, 450) are not computers: "not
+    suitable as a development station" (1991-11-06); base configuration
+    1 MB RAM, no floppy, no hard disk, no keyboard as shipped (1994, 1996),
+    descriptors in ROM so xmode cannot change them (1995).
+  * The PROFESSIONAL players WERE usable as OS-9 machines: the 180 series
+    "has floppy drives, SCSI ports, etc. as optional equipment" (1991); the
+    CD-i 605 is reported in 1993-2000 running OS-9/68K 2.4 with a shell,
+    serial terminal on /t2, keyboard descriptors kb/kb1, SCSI, an Ethernet
+    card running Microware's FTP server, floppy + PCF, and mtools built for
+    it (1998); a 605T/20 with disk drive, Ethernet and SCSI (2000).  Also
+    OptImage Media Mogul's "CD-RTOS shell" on development stations.
+  * The two OS-9 COMPUTERS built on the same 68070/VSC chip set -- the
+    IMS MM/1 and Frank Hogg's TC70 -- ran full OSK with floppy, SCSI and
+    serial ports, and the disk already carries MM/1 builds.
+
+So: this collection's 68000 binaries are the right instruction set for a
+605 or 180 with floppy/SCSI and enough RAM (1 MB base is tight; the DV
+cartridge adds 1 MB).  Not measured -- no one here has a player, and
+cio/csl/math edition requirements and a console that is a TV plus
+serial port are the likely obstacles.  A 1999 post announces a CD-i
+website "with OS-9 info and software ... for usage on a OS-9/68K
+development station" -- worth finding once the CD-i group is in.
+

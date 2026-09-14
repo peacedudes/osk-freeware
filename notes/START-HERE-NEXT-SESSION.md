@@ -102,8 +102,11 @@ case-sensitive; container runs as root):**
     on container-local disk and 407 s with cwd=/repo.  That blows the
     family's 300 s gtimeout and cuts off whichever `whereis` is running
     (three reruns failed different whereis cases).  Sent to os9exec-d9 as
-    a performance lead.  **For Linux runs, `cd` somewhere container-local
-    before `datatest.py`** (it finds its cases by its own path, not cwd).
+    a performance lead.  FIXED in os9exec b77cc22 (every lookup was probing
+    all 35 device letters beside cwd -- ~280 failed host calls a scan) and
+    confirmed from here: the same family from cwd=/repo now takes 3 s and
+    2 s, all three whereis cases pass, end marker present.  On an os9exec
+    older than b77cc22, `cd` somewhere container-local before `datatest.py`.
     macOS-only: `combine`, and only because the container runs as root,
     which reads a mode-000 file regardless.  Run as a user, Linux would
     fail it the same way.
