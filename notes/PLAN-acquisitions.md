@@ -1237,3 +1237,44 @@ serial port are the likely obstacles.  A 1999 post announces a CD-i
 website "with OS-9 info and software ... for usage on a OS-9/68K
 development station" -- worth finding once the CD-i group is in.
 
+### CORRECTION to the candidate list above, and the CD-i site (2026-09-14)
+
+**Most of the "only in the newsgroup posts" list was ALREADY IN HAND.**
+The 2026-09-11 session extracted postings from a 1,345-message
+comp.os.os9 mbox plus csm/csu/csg/alt.sources indexes into
+`acquisitions-2026-09-11/os9/usenet/`, and this session did not read that
+directory before writing the list.  Checked against it:
+
+    ALREADY EXTRACTED (postings/, some decoded/):  Ptyman beta, 1989 source
+      and 1.3 source+binaries; Ocker's SCF ptys; textb (Mandelbrot); Isofont;
+      8-bit less diffs; Larson's ln/mv/link/rename; NetHack 2.2 OSK port
+      (Larson/Omura -- port files only, needs the 2.2 source) and NetHack
+      3.0f OSK binaries from TOP (B6 above); os9lib; Omura's and Wecker's
+      shar; Sampson's UUCP; browse; alarmd; simon.
+    KNOWN TO ITS THREAD INDEXES, NOT EXTRACTED:  McIvor's mtp (twn thread
+      653171), Engel's tar 1.9 (653410/653606/653637), osk_version (653515),
+      GCC 1.37 for OS-9 (NIIMI, csm), Kaefer's banner programs and tass
+      (alt.sources index), br Biorhythm (csm index).
+    GENUINELY NEW HERE:  the 1997 /proc-like system file manager
+      (comp.os.os9 1997-06-12, uuencoded); MNews in the pool; lftocr; the
+      Invaders 09 OSK lead; and the CD-i findings below.
+
+The rule this pays for is the one CLAUDE.md already states: read the
+existing acquisitions directories before calling anything new.
+
+**The CD-i website** (Jorg Kennis: kennisonline.com/cd-i/ 1999, then
+www.icdia.org 2000, which also carried the OS-9 2.4 manuals by Microware's
+permission).  Wayback holds `icdia.org/cdprosupport/files/os9/` WITH its
+files (directory dated 09-Nov-2000): a Philips/OptImage CD-i developer-BBS
+set, 1993-96, for 605 authoring players -- MediaMogul menu_edt fix, DV
+plug-ins (dv053196, dv8025, dvworm), 605 tape modules (605exa), a PC
+SyQuest descriptor (pch3), ddinits/startnet, Microware's NFS p2init, an ftp
+man page, CD-i title helpers (cdi_mmpr, cdi_vol, cdirand).  Product- and
+hardware-specific: OUT OF SCOPE.  Exceptions looked at: GED ("FREEware ...
+distributed at will") is an MPEG-multiplex entry-point extractor for CD-i
+DV authoring -- also out of scope; lftocr (1994) converts LF / CR+LF text
+to OS-9 CR in place and the disk has no such converter -- a small
+candidate, terms unstated; `tar' and `tar.txt' were listed but never
+captured.  Fetched descriptions are in
+`~/Developer/os9/Scraped/acquisitions-2026-09-14/icdia/`.
+
