@@ -653,7 +653,7 @@ wait    3
 shot    anagram
 size    24 80
 cap     Every word in the disk's word list made of exactly the letters given:
-cap     four for listen, and the words hiding in parsley.
+cap     four for listen, and for parsley only parsley itself.
 try     anagram listen parsley
 run     clear
 wait    1
