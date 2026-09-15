@@ -124,6 +124,8 @@ Open:
      261b4b6 and at b3145c3: image reads /dd/startup, runs a module,
      281M compresses to 43M.  Still never run on GitHub (Linux); the
      dot-file pin note in FOR-RDOGGETT item 1 is about exactly that.
+     e99b3a54 makes the script cd out of the repo first; verified by a
+     full passing run started from the repo root (11917 files exported).
   2k. games4's advcom case piped advcom into head; on a host dir head's
      exit cut advcom off mid-write (advint: `bad data file').  Output now
      goes to a file.  os9exec b2bee94 fixed adlrun's zero-length read.
