@@ -430,6 +430,18 @@ manual entries).  And `where' finds a program along PATH (`-l' lists it)
 -- which the disk's `which' already does, the way the shell finds it.  So
 NOTHING among TOP's native tools is new here.
 
+VCRON ASSESSED 2026-09-15 (scratch vcronpool): TOP's port of Paul Vixie's 1987
+cron -- USR/SRC/vcron.t.Z (17 files; an old tar whose `VCRON/' entry both host
+tar and Python's tarfile misread, so members were written by hand) plus
+CMDS/vcron and CMDS/crontab, both needing cio.  Terms: "Distribute freely,
+except: don't sell it" -- the Q1 ruling covers them.  Both binaries run:
+crontab prints its usage and `crontab -l' answers "no crontab for su".  But it
+is a multi-user system daemon: started from /h0/startup in the background,
+only for members of group `Cron' in the SYS group file, crontabs per user in
+/h0/SPOOL/VCRON (or a SysInfo CRONDIR), jobs run by setuid and os9fork, output
+mailed through /h0/etc/cmds/smail.  TOP's two spool crontabs are TOP's own
+site jobs.  Same class as the multi-user tools above; not shipped.
+
 Measure first: which binaries need cio (run against an image without the
 five runtime modules); every hardcoded `/h0/USR/GAMES/...` path; whether
 the native tools expect `/dd/SYS/utmp`, group, password or smail.
