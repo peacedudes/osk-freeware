@@ -1785,6 +1785,7 @@ send    e
 wait    1
 send    2
 wait    3
+snap
 
 shot    bks
 size    24 80
