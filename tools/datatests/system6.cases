@@ -24,3 +24,14 @@ run     echo msbadblocks-rc=$?
 run     /dd/CMDS/msinfo a:
 expect  msbadblocks-rc=0
 expect  sectors per track: 18
+
+case    aprocs-lists-the-processes-with-their-cpu-share
+run     /dd/CMDS/aprocs < /nil
+expect  Id PId Prior  CPU-Time  Proc-Age SYS-% PRC-%  Module-Name
+expect  aprocs
+
+case    devprc-shows-each-open-path-and-its-device
+run     /dd/CMDS/devprc < /nil
+expect  NAME=devprc
+expect  PROCESSPATH=0, SYSPATH=
+expect  PROCESSPATH=2, SYSPATH=
