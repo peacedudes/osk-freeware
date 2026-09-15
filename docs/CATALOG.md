@@ -1151,7 +1151,7 @@
 | | |
 |---|---|
 | `gnuplot` | &#9733; gnuplot 2.0 -- plots functions and data files.  Built-in help (SYS/gnuplot.gih); demos and sample data in DOC/gnuplot/demo<br>**How:** Type `set term' first -- it lists every output device it knows, and refuses to plot until you choose one. Its whole manual is built in: type `help'. Demos and sample data are in DOC/gnuplot/demo. Needs Microware's cio. |
-| `tplot` | &#9733; Plot data to a plotter.  Asks for an interval and a range and drives the output device; written for an Atari ST<br>`Usage : hiplot <-opt1> .. <-optn> <file1> .. <filen>` |
+| `tplot` | &#9733; plot data from files or standard input: it asks for the x and y intervals as two numbers each and the x, y divisions, then draws with the Atari ST's A-line graphics calls<br>`Usage : hiplot <-opt1> .. <-optn> <file1> .. <filen>` |
 
 **Ray tracing & 3D**
 

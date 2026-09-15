@@ -53,3 +53,4 @@ hist|a history file it can write, named as an argument; the default is /r0/histo
 rcsdiff|co in a directory named RCS inside CMDS, run through Microware's shell|strings: "%s/co -q -p%s %s >-%s", "/dd/cmds/rcs"; measured 2026-09-14 under the SDK shell
 rcsmerge|co in a directory named RCS inside CMDS, run through Microware's shell|strings: "%s/co -q -p%s %s >-%s", "/dd/cmds/rcs"
 cron|Microware's shell, which runs each crontab command|strings: "shell", "/dd/usr/lib/crontab"; DOC/cron/cron.txt: "The command field is a command line to be passed to the shell"
+tplot|an Atari ST: it draws through the ST's A-line graphics traps|measured 2026-09-14: after the three answers it sends ESC f and stops at instruction $A000 (E_PRCABT); its usage line names it hiplot
