@@ -104,6 +104,14 @@ Open:
      only on os9exec 143152b or later.  rcsmerge is an audit_cards
      exception with the measured reason.  Leftover no-test list is 26:
      hardware, G-Windows, a peer, or Microware's own shell and utilities.
+  2i. **Running tools/ci/run_workflow_locally.sh from the repo root fails
+     at its first step, and it is the environment, not the workflow.**
+     The repo root holds a gitignored `tar' -- an OS-9/68K module dated
+     2026-09-13 22:05 -- and this shell's PATH contains `.', so the
+     script's `git archive | tar -x' ran the OS-9 module (`cannot execute
+     binary file'), exported nothing, and every later step reported on an
+     empty tree (`cannot read /dd/startup').  Run it with cwd elsewhere.
+     The `tar' file was left alone: it is in rdoggett's working tree.
   3. System utilities on the same list (aprocs cpu devprc vc top sysmon):
      probe for case material.
 
