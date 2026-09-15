@@ -1001,3 +1001,6 @@ castle|castle|castle.c magic.c monster.c files.c store.c screens.c tty.c|GAME_HO
 # arithmetic: 4.3BSD Net/2 usr/src/games/arithmetic.  getopt bundled as wump's;
 # check_signal() on a failed read so ^C prints the score; SRC/arithmetic/README.OSK.
 arithmetic|arithmetic|arithmetic.c getopt.c||/dd/LIB/rand.r|
+# juggle: alt.sources 950426.08, Juggle 1.0 (Glenn Hutchings, GPL), curses display.
+# K&R declarations and check_signal() under OSK; SRC/juggle/README.OSK.
+juggle|juggle|juggle.c curses.c getopt.c||/dd/LIB/rand.r|

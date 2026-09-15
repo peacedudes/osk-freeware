@@ -46,3 +46,16 @@ expect  hello
 case    cfscores-knows-who-has-played
 run     /dd/CMDS/GAMES/cfscores < /nil
 expect  tester has never played canfield.
+
+# juggle (2026-09-15) checks a pattern before it draws anything: a site-swap
+# string whose throws would land two balls in one hand at once is refused, and
+# a random pattern needs a period from 2 to 9.
+case    juggle-prints-its-version
+run     /dd/CMDS/GAMES/juggle -v
+expect  Juggle v1.0, (c) Glenn Hutchings 1995
+
+case    juggle-refuses-an-unjugglable-pattern-and-a-bad-period
+run     /dd/CMDS/GAMES/juggle -p 12
+run     /dd/CMDS/GAMES/juggle -r 1
+expect  Error: pattern not jugglable
+expect  Error: invalid period

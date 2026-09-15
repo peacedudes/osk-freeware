@@ -1008,6 +1008,7 @@ almanac|almanac|
 zc|none|zc <zipcode> names the city and state; with no argument it opens a form, C clears the field and Q quits
 cfscores|none|it takes no options: run it and it reports your canfield bank, or says you have never played
 rot22|none|it takes a file name, or reads standard input; there are no options
+juggle|juggle -?|
 reversi|none|arrow keys or hjkl move the cursor, RETURN places a disk, m opens the game menu; -r resumes a saved game
 scrabble|none|hjkl move the cursor, H or V places a word across or down, T trades letters in, A asks the computer for advice, S and R save and restore, Q quits and `?' explains; -n sets the number of players and -m makes one of them the computer
 napoleon|none|it takes no options and prints no usage; the prompt is `(napoleon)' and it reads whole sentences -- compass directions move you, `look', `inventory', `get'/`drop', `examine', `read', `score', `save' and `load' do what they say, and `quit' ends the game

@@ -1,6 +1,6 @@
 # What is on this disk
 
-1009 programs of OS-9/68K community software, gathered from the archives that kept it and made to run again. **662 of them need nothing but this disk**; the rest want Microware's `cio`, marked below with a star.
+1010 programs of OS-9/68K community software, gathered from the archives that kept it and made to run again. **663 of them need nothing but this disk**; the rest want Microware's `cio`, marked below with a star.
 
 `DOC/INDEX` on the disk lists everything alphabetically. This is the same collection sorted by what each program is *for*, which is the more useful order when you do not yet know what you are looking for.
 
@@ -23,7 +23,7 @@
 | [Communications](#communications) | 97 | Kermit in several builds, terminal sessions, and networking. |
 | [Graphics & images](#graphics--images) | 195 | The netpbm toolkit, JPEG, a ray tracer, and things that draw. |
 | [Games](#games) | 92 | Adventures, board and card games, arcade ports, dungeon crawls and puzzles. |
-| [Screen toys](#screen-toys) | 9 | Animations and screen effects -- they draw on the terminal rather than print to it. Some run until you stop them. |
+| [Screen toys](#screen-toys) | 10 | Animations and screen effects -- they draw on the terminal rather than print to it. Some run until you stop them. |
 | [Amusements](#amusements) | 25 | Generators, simulators and diversions that are not quite games. |
 | [System & modules](#system--modules) | 132 | OS-9 module and process tools, devices, system state and scheduling. |
 | [Disk & DOS](#disk--dos) | 20 | Reading and writing MS-DOS media with the mtools set. |
@@ -1322,12 +1322,13 @@
 
 *Animations and screen effects -- they draw on the terminal rather than print to it. Some run until you stop them.*
 
-<details><summary>9 programs</summary>
+<details><summary>10 programs</summary>
 
 | | |
 |---|---|
 | `bite` | a skull draws itself and bites -- a screen toy; q quits<br>**How:** Full-screen: it takes over the display. **`q' quits**. |
 | `card` | Towers of Hanoi whose twelve disks are the lines of a Christmas message; VT100, wants TERMCAP |
+| `juggle` | animated juggling: balls numbered (1) (2) (3) fly between two hands in the pattern you give in site-swap digits -- `juggle -p 3' is the cascade, `-p 441' a trick, `-r 5' a random pattern of five throws.  ^C ends it<br>**How:** Full-screen animation that runs until ^C. `juggle -p 3' juggles the three-ball cascade; a pattern is site-swap digits, each the height of a throw, so `-p 51' is a shower and `-p 441' a trick, and one that cannot be juggled is refused. `-r 5' picks a random five-throw pattern, `-s 0.1' makes the steps smaller and smoother, `-h' holds 2-throws, `-n' gives it a title. |
 | `life` | Conway's Game of Life<br>**How:** life [init-file]. The patterns are in /dd/GAMES/LIFE -- try `life /dd/GAMES/LIFE/glider`. It also wants more memory than the default; from the OS-9 shell that is `life #22k <file>`, and bash has no #size syntax at all. |
 | `rain` | raindrops land on the screen and spread in rings -- a screen toy; control-C ends it<br>**How:** Full-screen: it takes over the display. **control-C gets you out**; q, Q, control-D and ESC do not. If it has a quit command of its own, its documentation in DOC/ will say. |
 | `rot22` | software rot as a screen toy: the letters of a file come loose a few at a time and fall to the bottom of the screen, piling up until the text has drained out of the top.  Name a file or pipe text in.  Not `rot', which turns a file on its side |

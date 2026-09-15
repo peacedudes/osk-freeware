@@ -1,0 +1,2 @@
+$ juggle -?
+Usage: /dd/CMDS/GAMES/juggle [-h] [-n <name>] [-p <pattern>] [-r <period>] [-s <step>] [-v]

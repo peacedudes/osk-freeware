@@ -758,6 +758,7 @@ rnews|Copyright (C) 1994 Brad Spencer. GNU General Public License, version 2 or 
 robots|No copyright or licence statement; the source and manual name Paul J. Condie, 1986-87.|SRC/rob/Main.c lines 1-4; SRC/rob/robots.1; SRC/rob/README
 roff|No copyright or licence statement in SRC/eff_roff or its documentation. The header names "the Colonel", 19 May 1983, with fixes by others and an OS-9 adaptation by Uwe Simon, 1987.|SRC/eff_roff/roff.c lines 1-15; DOC/roff/roff.doc
 rot22|None is stated. Nothing in the posting, the README, the manual page or the source carries a copyright, a grant or a restriction.|SOURCES.txt line 2604
+juggle|GNU General Public License version 1. Copyright (C) 1995 G. Hutchings; COPYING travels with the source.|SRC/juggle/juggle.c lines 1-6; SRC/juggle/COPYING; SOURCES.txt, juggle
 rot|No copyright or licence statement; the source names M. Schmidt, 1988, posted to Usenet (volume 15, issue 30).|SRC/rot/rot.c line 11; DOC/rot/intro lines 1-3
 rpn|Copyright "1898" [sic] Nils McCarthy. "This code may be distributed provided this header is kept with it"; the code, excluding the header, may be modified.|SRC/eff_rpn/rpn.c lines 4-6
 rpoem|(c) Copyright 1986 Robert Heller. "All Rights Reserved." No distribution terms are stated in the source or in DOC/snobol/Readme.|SRC/effo_snobol/rpoem.c lines 7-8; DOC/snobol/Readme

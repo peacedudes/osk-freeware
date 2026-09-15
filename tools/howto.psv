@@ -104,6 +104,7 @@ nobs|Full-screen: it takes over the display. **control-C gets you out**; q, Q, c
 puz15|Full-screen fifteen puzzle. Slide the tiles into the gap; `puz15 5x5' plays a bigger board. Control-C gets you out.
 puzzle15|The same fifteen puzzle, in CMDS. Slide the tiles into the gap; `puzzle15 5x5' plays a bigger board. Control-C gets you out.
 rain|Full-screen: it takes over the display. **control-C gets you out**; q, Q, control-D and ESC do not. If it has a quit command of its own, its documentation in DOC/ will say.
+juggle|Full-screen animation that runs until ^C. `juggle -p 3' juggles the three-ball cascade; a pattern is site-swap digits, each the height of a throw, so `-p 51' is a shower and `-p 441' a trick, and one that cannot be juggled is refused. `-r 5' picks a random five-throw pattern, `-s 0.1' makes the steps smaller and smoother, `-h' holds 2-throws, `-n' gives it a title.
 setterm|`setterm' alone reports what TERM says; give it a terminal name to change it. Run with no arguments and a terminal it wants to configure it goes FULL-SCREEN -- **ESC quits** (control-C also works, but ESC is the program's own way). SYS/setterm is the defaults file it falls back on when TERM names something it does not know, and DOC/setterm/termcap.extra has further entries you can add to SYS/termcap.
 shuffle|Full-screen: it takes over the display. **`q' quits**.
 snake|Full-screen. h/j/k/l move; reach the `$' before the snake reaches you. `x' quits.

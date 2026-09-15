@@ -44,3 +44,15 @@ run     rot22 DOC/README-CIO
 wait    3
 snap
 wait    12
+
+shot    juggle
+size    24 80
+cap     The three-ball cascade, `3' in site-swap notation: each ball is
+cap     thrown from one hand to the other and caught to be thrown again.
+cap     It runs until ^C; this is one frame of the moving picture.
+try     juggle -p 3
+run     juggle -p 3
+wait    3
+snap
+send    \003
+wait    3

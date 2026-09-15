@@ -262,7 +262,11 @@ SPARSE_OK = {"rain",
              # it.  Its old panel only cleared the floor because the
              # stanza then used a longer pathname -- ink from a path, not
              # from the program.
-             "lcasep"}
+             "lcasep",
+             # juggle draws a title and one "(n)" per ball on an empty
+             # field -- the three-ball cascade is twenty characters of ink
+             # and that is the whole picture, like rain's rings.
+             "juggle"}
 SPARSE_FLOOR = 12
 
 def ink_floor(name):

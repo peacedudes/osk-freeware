@@ -1,0 +1,15 @@
+name    juggle
+prog    juggle -p 3
+# The cascade for a few seconds, then ^C, which must end it.
+rate    0.5
+size    24 80
+wait    3
+snap    flying
+wait    2
+snap    later
+key     \003
+wait    4
+snap    stopped
+expect  Pattern 3
+expect  (1)
+expect  (3)
