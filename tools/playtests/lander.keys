@@ -1,0 +1,15 @@
+name    lander
+prog    lander
+# Lunar lander: a space starts, a digit sets thrust.
+rate    0.6
+wait    5
+key     \s
+wait    2
+key     5
+wait    2
+key     x
+wait    3
+snap    flight
+key     q
+wait    3
+expect  alt:
