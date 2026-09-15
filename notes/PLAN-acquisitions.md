@@ -1301,6 +1301,30 @@ on the disk).  The ten nothing here had assessed:
     osk-book           James Jones 1988 -- announces Dibble's OS-9 Insights.
     top-software-list  1989 -- TOP's disk list, already mined in B6.
 
+### The 135 Unix posts, triaged 2026-09-15
+
+`acquisitions-2026-09-11/unix/posts' holds 135.  79 are named somewhere in
+the tree or these notes (ported, or assessed above).  The other 56 were
+triaged by size, files, curses and stated terms.  Done or decided:
+
+    choose      DONE (1ac41c32) -- random lines, OSK arm (clock, rand, tmp)
+    pig         DONE (1ac41c32) -- lex filter, scanner from the disk's flex
+    morsecode   NOT SHIPPED: lex plus Pascal, and the disk has `morse'
+    center      NOT SHIPPED: "public domain ... Contact author for
+                redistribution rights, or inclusion in package" -- the terms
+                ask to be asked -- and fgets/feof misuse repeats a line
+    chop        NOT SHIPPED: fields and columns, which cut, colrm and field do
+    halign      NOT SHIPPED: aligns columns, which column does
+
+Still open (small and self-contained first): hanoi, telewords, anagram,
+psychic, lotto, revcat, spiro, knight, bks, ufo, therm (curses), then
+the larger games -- craps, vcraps2, torus (robots2 descendant), perp,
+thricken, malawi, sol2, jumble2, yid-slots, bj2, connect4, skewlife, mz,
+dinkum2 (410K adventure), trek73 (409K) -- and the rest: ag2, xmascard,
+weekday, chemtab, mfold, molecule, smiley, scamper, ticktalk, calcdate,
+xmases, hodge (GPL, 3M), translit (775K), magicsqr, bday, marquis,
+repunsel, xtail, qterm, colm, xfmt, banners (GPL), rise_set, soelim.
+
 ### The OSK sites the newsgroups name, checked 2026-09-14
 
 rdoggett: *"you should definitely check out the osk sites you uncover in

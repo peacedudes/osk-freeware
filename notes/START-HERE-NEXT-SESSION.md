@@ -379,6 +379,14 @@ Open:
      heap -- true output, unexplained on the card.  A crash captioned as
      working shows up only when the caption and the capture are read
      together; tools/audit_cards scores ink, not agreement.
+     **An outer timeout on datatest leaves a STALE LOCK** (<image>.lock
+     naming the dead datatest pid), and every later datatest on that image
+     then refuses to run -- silently, if its output went to /dev/null, so
+     the probe looks like it produced nothing.  It cost two runs on
+     2026-09-15 after `gtimeout 120 datatest' killed a loco probe; the
+     emulator underneath kept running until datatest's own inner timeout.
+     Give datatest its own timeout rather than wrapping it, and keep its
+     last lines visible.
   2n. **Two harness gaps, not yet fixed.**  tools/ansiscreen.py does no
      auto-wrap at column 80 (it clamps), so it cannot show what an am
      terminal does with a full row.  playtest.py's `expect' also searches
