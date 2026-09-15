@@ -88,17 +88,24 @@ expect  24 bytes (value=65) appended: total file size is now 64
 expect  64 /dd/tmp/f.txt
 expect  4141 4141 4141 4141 4141 4141 4141 4141
 
-# The proof that the file MOVED rather than being copied is that moving it a
-# second time fails: `ls' is not the witness to use, because this `ls' prints
-# the path it was given whether or not the file is there.
+# The witness is the DIRECTORY ITSELF.  This case used to expect the text
+# `/dd/tmp/mv1', which the rm on its first line prints whether or not move
+# works, and it passed while move left the old name in place: on an image
+# under os9exec (2026-09-14) mv1 survives, and moving it again succeeds, so
+# several names end up on one FD sector.  Reported to the os9exec session;
+# RBF marks a deleted entry with a zero first byte, and move's one-byte
+# write there is lost.  So this case FAILS until that is fixed.
 case    move-relinks-a-file-rather-than-copying-it
-run     /dd/CMDS/rm /dd/tmp/mv1 /dd/tmp/mv2
-run     /dd/CMDS/cp /dd/SYS/motd /dd/tmp/mv1
-run     /dd/CMDS/move /dd/tmp/mv1 /dd/tmp/mv2
-run     /dd/CMDS/md5 /dd/tmp/mv2
-run     /dd/CMDS/move /dd/tmp/mv1 /dd/tmp/mv3
+run     /dd/CMDS/rm -rf /dd/tmp/MV > /nil 2>/nil
+run     /dd/CMDS/mkdir /dd/tmp/MV
+run     /dd/CMDS/cp /dd/SYS/motd /dd/tmp/MV/mv1
+run     /dd/CMDS/move /dd/tmp/MV/mv1 /dd/tmp/MV/mv2
+run     /dd/CMDS/md5 /dd/tmp/MV/mv2
+run     echo LISTING; /dd/CMDS/ls /dd/tmp/MV
 expect  f2783580b7a4c5ef6a29ec5895e6ad95
-expect  /dd/tmp/mv1
+expect  LISTING
+expect  mv2
+absent  mv1
 
 case    delbak-deletes-the-backup-files-in-a-directory
 run     /dd/CMDS/mkdir /dd/tmp/BK
