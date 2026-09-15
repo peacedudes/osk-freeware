@@ -1,0 +1,8 @@
+name    wanderer
+prog    wanderer
+# Wanderer: its first screen, then q.
+rate    0.6
+wait    8
+snap    screen
+key     q
+wait    3

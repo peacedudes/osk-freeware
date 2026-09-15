@@ -1,0 +1,9 @@
+name    shuffle
+prog    shuffle
+# Shuffle: the switch puzzle drawn, then q.
+rate    0.6
+wait    5
+snap    puzzle
+key     q
+wait    3
+expect  +---+

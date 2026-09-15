@@ -1,0 +1,9 @@
+name    puz15
+prog    puz15
+# The fifteen puzzle, shuffled.
+rate    0.6
+wait    5
+snap    puzzle
+key     \003
+wait    2
+expect  +----+----+----+----+

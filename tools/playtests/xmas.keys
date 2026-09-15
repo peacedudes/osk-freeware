@@ -1,0 +1,9 @@
+name    xmas
+prog    xmas
+# A Christmas screen animation.
+rate    0.6
+wait    10
+snap    card
+key     \003
+wait    2
+expect  T h e    g h o s t    o f    R o b e r t    p a s t

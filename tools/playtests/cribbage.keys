@@ -1,0 +1,15 @@
+name    cribbage
+prog    cribbage
+# BSD cribbage: the cut, and a hand dealt.
+rate    0.6
+wait    6
+key     n
+key     \r
+wait    3
+key     s
+key     \r
+wait    5
+snap    hand
+key     \003
+wait    2
+expect  +-----+

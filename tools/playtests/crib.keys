@@ -1,0 +1,15 @@
+name    crib
+prog    crib
+# Cribbage against the computer: the cut, and a hand dealt.
+rate    0.6
+wait    6
+key     n
+key     \r
+wait    3
+key     S
+key     \r
+wait    5
+snap    hand
+key     \003
+wait    2
+expect  +-----+

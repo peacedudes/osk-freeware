@@ -1,0 +1,9 @@
+name    puzzle15
+prog    puzzle15
+# Another fifteen puzzle, shuffled.
+rate    0.6
+wait    5
+snap    puzzle
+key     \003
+wait    2
+expect  +----+----+----+----+

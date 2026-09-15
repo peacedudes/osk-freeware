@@ -1,0 +1,16 @@
+name    canfield
+prog    canfield
+# Canfield solitaire: the layout, then quit and confirm.
+rate    0.6
+wait    6
+key     n
+key     \r
+wait    4
+snap    layout
+key     q
+key     \r
+wait    2
+key     y
+key     \r
+wait    3
+expect  CANFIELD

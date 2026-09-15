@@ -1,0 +1,9 @@
+name    mille
+prog    mille
+# Mille Bornes: the score board and hand.
+rate    0.6
+wait    8
+snap    board
+key     \003
+wait    2
+expect  Milestones Played

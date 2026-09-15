@@ -1,0 +1,9 @@
+name    sokoban
+prog    sokoban
+# Sokoban: the first level drawn.
+rate    0.6
+wait    6
+snap    level
+key     \003
+wait    2
+expect  ##########
