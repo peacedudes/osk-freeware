@@ -1171,7 +1171,7 @@
 | | |
 |---|---|
 | `mtst` | &#9733; exercises the C maths library: ceil, floor and round on a run of numbers, integer and floating side by side -- one of the small programs a port was checked with |
-| `rayshade` | ray tracer 4.0.  It renders, and requires Microware's `shell' on the execution path: it builds its scene through popen(), which OS-9's C library implements by forking a program of exactly that name.  It also wants `cccp' in the data directory, where the forked shell looks.  With both, it renders and reports its statistics.  DOC/rayshade has the two lines.<br>**How:** Ray tracer 4.0, and it renders. REQUIRES MICROWARE'S `shell` on your execution path -- it builds its scene through popen(), and OS-9's C library implements popen() by forking a program of exactly that name. It also wants `cccp` in the DATA directory. DOC/rayshade has the two lines. |
+| `rayshade` | ray tracer 4.0.  It renders, and requires Microware's `shell' on the execution path: it builds its scene through popen(), which OS-9's C library implements by forking a program of exactly that name.  It also wants `cccp' in the data directory, where the forked shell looks.  With both, it renders and reports its statistics.  DOC/rayshade has the two lines.<br>**How:** Ray tracer 4.0, and it renders. REQUIRES MICROWARE'S `shell` on your execution path -- it builds its scene through popen(), and the C library it was linked with implements popen() by forking a program of exactly that name. It also wants `cccp` in the DATA directory. DOC/rayshade has the two lines. |
 | `rsconvert` | converts a rayshade 3 scene file to rayshade 4 syntax: `rsconvert old.ray > new.ray', or standard input to standard output |
 
 **Viewers**
