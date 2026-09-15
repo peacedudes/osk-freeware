@@ -1,0 +1,11 @@
+name    hang
+prog    hang
+# Hangman: guessed letters come off the unused list.
+rate    0.6
+wait    5
+keys    aeiort
+wait    3
+snap    board
+key     \003
+wait    2
+expect  Unused Letters

@@ -1,0 +1,11 @@
+name    accordian
+prog    accordian
+# Accordian solitaire: its deal, and a deal from the stock.
+rate    0.6
+wait    5
+key     D
+wait    3
+snap    deal
+key     x
+wait    3
+expect  Accordian Solitaire - by Eric Lechner

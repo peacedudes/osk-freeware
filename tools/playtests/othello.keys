@@ -1,0 +1,15 @@
+name    othello
+prog    othello
+# Othello: two setup answers, then a move at C4.
+rate    0.6
+wait    5
+key     1
+wait    2
+key     3
+wait    2
+keys    C4
+wait    5
+snap    board
+key     Q
+wait    3
+expect  -+---+---+---+

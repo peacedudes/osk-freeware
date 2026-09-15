@@ -1,0 +1,17 @@
+name    worm
+prog    worm
+# Worm: four turns of the worm.
+rate    0.6
+wait    4
+key     k
+wait    1
+key     l
+wait    1
+key     j
+wait    1
+key     L
+wait    2
+snap    field
+key     \003
+wait    2
+expect  Worm

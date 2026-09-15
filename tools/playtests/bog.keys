@@ -1,0 +1,11 @@
+name    bog
+prog    bog
+# Boggle: a space starts the three-minute board.
+rate    0.6
+wait    6
+key     \s
+wait    4
+snap    board
+key     \003
+wait    2
+expect  Type '?' for help

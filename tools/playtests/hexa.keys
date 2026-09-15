@@ -1,0 +1,15 @@
+name    hexa
+prog    hexa
+# Hexa: moves through the hexagon grid, then q.
+rate    0.6
+wait    5
+key     j
+wait    1
+key     n
+wait    1
+key     m
+wait    3
+snap    grid
+key     q
+wait    3
+expect  >--<

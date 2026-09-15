@@ -1,0 +1,15 @@
+name    tt
+prog    tt
+# Tetris for terminals: pieces moved and dropped.
+rate    0.6
+wait    5
+keys    ,,.
+key     \s
+wait    2
+keys    //
+key     \s
+wait    2
+snap    well
+key     q
+wait    3
+expect  TETRIS

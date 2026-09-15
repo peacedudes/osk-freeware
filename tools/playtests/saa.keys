@@ -1,0 +1,11 @@
+name    saa
+prog    saa
+# Streets and Alleys deals its layout; q leaves.
+rate    0.6
+wait    6
+snap    deal
+key     q
+wait    3
+key     \s
+wait    2
+expect  Streets and Alleys

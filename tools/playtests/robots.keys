@@ -1,0 +1,14 @@
+name    robots
+prog    robots -m
+# Robots: two moves on the field.
+rate    0.6
+wait    5
+key     8
+wait    2
+snap    first
+key     4
+wait    2
+snap    second
+key     \003
+wait    2
+expect  ROBOTS

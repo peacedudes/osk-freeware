@@ -1,0 +1,18 @@
+name    mines
+prog    mines
+# Mines: two squares opened on the minefield.
+rate    0.6
+wait    5
+keys    H
+key     \r
+wait    2
+keys    H
+key     \r
+wait    2
+keys    y
+key     \r
+wait    3
+snap    field
+key     q
+wait    3
+expect  ##A#B#C#D#E#F#G#H
