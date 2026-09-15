@@ -340,6 +340,15 @@ def main(argv):
                         "it can say here, and the caption says so.  Looked "
                         "at 2026-09-13 when the first-line fix surfaced it: "
                         "there is no other output to show",
+            # MEASURED 2026-09-14: rcsdiff and rcsmerge fetch revisions by running
+            # co from /dd/cmds/rcs through system() with a `>-' redirection.  On this
+            # disk CMDS/rcs is the rcs PROGRAM, so that directory cannot exist, and
+            # ksh cannot parse >-.  Under Microware's shell with co in CMDS/RCS,
+            # rcsdiff printed a correct diff.  requires.psv names both needs.
+            "rcsmerge": "needs a base revision named with -r, then runs co from "
+                        "a directory RCS inside CMDS through Microware's shell; "
+                        "without a base revision it says so, which is what the "
+                        "card shows",
             }
     # `texfonts-bitmap' was excepted here until 2026-09-01, on the grounds
     # that there was no .pk, .gf or .vf for its eight tools to read.  There

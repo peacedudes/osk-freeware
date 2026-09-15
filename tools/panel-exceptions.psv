@@ -29,7 +29,6 @@ disktest|measures the disk and, run on one, ends the session; its syntax is what
 trap|an example trap handler that cannot be installed from user state; the refusal is the whole of what it does here, and the card says so
 convert|starts WORLD, whose opening shows only its MORE prompt here; the card says so
 puzzle|a G-Windows program: at a terminal one line of its tile frame is all it draws, and the card says so
-vtxtcn|writes its tables silently and then leaves the capture session unusable, so NOTHING can follow it on the card -- measured 2026-09-13 with 60 seconds allowed, and the `ls' this line used to cite as its evidence has never been on the card; what the card shows is the command it ran
 unstr|asks for 75 megabytes before it reads a byte and is refused; the stop is the whole of what it does, and the card says so
 modbuster|prints only the name of the module it split out; the card shows that
 texidx|builds an index from a TeX run's entries; with none to read its usage is what there is to show
@@ -107,7 +106,7 @@ rain|a screen toy; a still frame of falling raindrops is too sparse to score, an
 liborder|reports the module concatenation order, one relocatable name per library; the libraries here each reduce to a single .r, so its answer is one line -- too little to score, and there is no larger library to show
 float|a floating-point benchmark: it runs a fixed loop of arithmetic and prints the single result value it computes; pair it with `time` for a rate. There is nothing more to show
 sieve|the Sieve of Eratosthenes benchmark: it counts the primes below its fixed limit and prints the one count; pair it with `time` for a rate
-rcsmerge|forks a `merge` helper that is not on this disk and cannot create its RCS temp files, so it aborts; rcs, ci, co, rlog and rcsident are the RCS tools that work here
+rcsmerge|needs a base revision named with -r, then fetches revisions by running co from a directory RCS inside CMDS through Microware's shell, which reads the >- in its command; on this disk CMDS/rcs is the rcs program, so that directory cannot exist -- measured 2026-09-14 with rcsdiff, which printed a correct diff under the SDK shell with co in CMDS/RCS; rcs, ci, co, rlog and rcsident are the RCS tools that work here as shipped
 lnk.org|an RTF Fortran link driver: it prints the l68 command it would run and stops, because the link needs l68 from the reader own OS-9; rtf compiles and is the working program of that set
 apfel|a Mandelbrot drawer for the Graph library display; with no such display it prints its name and aborts. Needs G-Windows
 g|a Graph-library drawing program; with no G-Windows display it prints its name and aborts

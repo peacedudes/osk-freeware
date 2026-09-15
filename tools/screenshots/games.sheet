@@ -958,16 +958,19 @@ send    quit\r
 wait    3
 
 shot    vtxtcn
-cap     A build tool for the WORLD adventure: it reads the game's .dat files
-cap     from the current directory and writes the matching .inc text tables
-cap     beside them.  It prints nothing as it runs.
+cap     A build step for the World adventure: it packs the game's text from
+cap     vtext.dat, in the current directory, into q1text.dat and writes the
+cap     qtext, objdes and gtext tables as .inc files for the compile.  It
+cap     reports the packed and unpacked sizes.  vtext.dat ships in SRC/world.
 try     vtxtcn
-run     builtin cd /dd/GAMES/WORLD
+run     rm -rf /dd/tmp/VTXT > /nil 2>/nil; mkdir -p /dd/tmp/VTXT; cp /dd/SRC/world/vtext.dat /dd/tmp/VTXT/vtext.dat
+wait    3
+run     builtin cd /dd/tmp/VTXT
 wait    1
 run     clear
 wait    1
-run     vtxtcn < /nil
-wait    12
+run     vtxtcn; ls -l
+wait    20
 
 shot    mkindex
 cap     Builds the index bog reads its dictionary through, in the
