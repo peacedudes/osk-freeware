@@ -1,0 +1,1 @@
+@remove cc1 r68 l68 cccp gccload -d stage1/cc1 stage1/gccload /h0/ucc/cmds/r68load /h0/ucc/cmds/l68make -fmakefile2 "CC=gcc -ucc -o68"

@@ -124,3 +124,14 @@ disk/SRC/bison/types.h
 disk/SRC/bison/main.c
 disk/SRC/bison/Makefile
 disk/SRC/gawk2.0/Makefile
+
+# gcc 1.42 for OS-9 (Microware archive 4073, osk_gcc_1.42_src.lzh), added
+# 2026-09-15 as the source of CMDS/GCC2/gcc.  Both flags are overlap with the
+# SDK's DEFS/GCC2, which is gcc's own header set, not Microware's.
+# math_68881.h opens "I included parts of math_68881.h from gcc 1.37.1 in
+# here. HP 24-Jun-90" -- gcc's inline 68881 math, identical to the GCC2 copy.
+disk/SRC/gcc142/math_68881.h
+# va_osk.h is "varargs.h for GCC and MicroWare C. (A.S.)", 757 bytes; its
+# overlap is with DEFS/GCC2/stdarg.h, gcc 2's header (__builtin_saveregs,
+# __GNUC__ > 1), which shares gcc's argument-rounding macros.
+disk/SRC/gcc142/va_osk.h

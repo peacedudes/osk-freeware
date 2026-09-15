@@ -1,0 +1,1 @@
+/* *  double ldexp(double value, int exp) * *  returns value * 2 ^ exp * */static double x = 2.0;static short *xx = (short *)&x;doubleldexp(value, exp)double value;int exp;{    *xx = ((exp + 1024 - 1) & 0x07ff) << 4;    return value * x;}
