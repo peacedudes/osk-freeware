@@ -54,3 +54,5 @@ rcsdiff|co in a directory named RCS inside CMDS, run through Microware's shell|s
 rcsmerge|co in a directory named RCS inside CMDS, run through Microware's shell|strings: "%s/co -q -p%s %s >-%s", "/dd/cmds/rcs"
 cron|Microware's shell, which runs each crontab command|strings: "shell", "/dd/usr/lib/crontab"; DOC/cron/cron.txt: "The command field is a command line to be passed to the shell"
 tplot|an Atari ST: it draws through the ST's A-line graphics traps|measured 2026-09-14: after the three answers it sends ESC f and stops at instruction $A000 (E_PRCABT); its usage line names it hiplot
+dm|Microware's pd, which it runs through SHELL to learn its current directory|strings: "pd >/pipe/getcwdpipe"; measured 2026-09-14: no pd under CMDS, and dm reports "ERROR 216: Can't open /pipe/getcwdpipe"
+uuxqt|Microware's procs, which it loads to see whether another uuxqt is already running|strings: "procs", "isuuxqtrunning() can't load '%s'"; its card captures that stop
