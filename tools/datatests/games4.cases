@@ -31,7 +31,11 @@ expect  Found 4/200 instructions
 case    advcom-compiles-the-sample-and-advint-plays-it
 run     /dd/CMDS/cp /dd/GAMES/ADVSYS/osample.adv $W/adv/osample.adv
 run     /dd/CMDS/cp /dd/GAMES/ADVSYS/objects.adi $W/adv/objects.adi
-run     /dd/CMDS/ksh -c "cd $W/adv; /dd/CMDS/GAMES/advcom osample" < /nil | /dd/CMDS/head -n 3
+# advcom writes to a file, not into `head': when head exits after three
+# lines it can cut advcom off before osample.dat is complete, and on a
+# host-directory /dd that race left advint with "bad data file" every time.
+run     /dd/CMDS/ksh -c "cd $W/adv; /dd/CMDS/GAMES/advcom osample" < /nil > $W/adv/advcom.out
+run     /dd/CMDS/head -n 3 $W/adv/advcom.out
 run     /dd/CMDS/printf 'look\nnorth\nquit\ny\n' | /dd/CMDS/ksh -c "cd $W/adv; /dd/CMDS/GAMES/advint osample"
 expect  [ including objects.adi ]
 expect  Welcome to the sample adventure.
