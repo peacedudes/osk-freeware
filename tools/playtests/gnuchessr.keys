@@ -1,0 +1,12 @@
+name    gnuchessr
+prog    gnuchessr
+# GNU Chess, plain-text board: e2e4.
+rate    0.6
+wait    6
+keys    e2e4
+key     \r
+wait    20
+snap    board
+key     \003
+wait    2
+expect  R N B Q K B N R

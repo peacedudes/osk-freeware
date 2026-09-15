@@ -1,0 +1,17 @@
+name    pacman
+prog    pacman
+# Pac-Man: a name, no instructions, a few moves on the keypad keys.
+rate    0.6
+size    26 80
+wait    5
+keys    Tester
+key     \r
+wait    3
+key     n
+key     \r
+wait    5
+keys    6666
+wait    3
+snap    maze
+key     \003
+wait    3

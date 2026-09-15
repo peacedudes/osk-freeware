@@ -1,0 +1,13 @@
+name    larn
+prog    larn
+# The opening text is the fullest screen; the dungeon starts mostly dark.
+# Larn: past the opening text into the dungeon.
+rate    0.6
+wait    10
+snap    intro
+key     \r
+wait    8
+snap    dungeon
+key     \003
+wait    2
+expect  Welcome to the game of Larn

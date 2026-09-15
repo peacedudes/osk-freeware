@@ -1,0 +1,14 @@
+name    ularn
+prog    ularn
+# The opening text is the fullest screen; the dungeon starts mostly dark.
+# Ultra Larn: a character class chosen, into the dungeon.
+rate    0.6
+wait    10
+snap    intro
+key     b
+wait    2
+key     \r
+wait    8
+snap    dungeon
+key     \003
+wait    2
