@@ -1396,6 +1396,22 @@ triaged by size, files, curses and stated terms.  Done or decided:
                 a terminal status line, and no terminal in SYS/termcap has one
                 (no ts/fs); it refuses to start without
     xmases      NOT SHIPPED: seasonal joke shell scripts, not a program
+    chemtab     DONE (8d537dd8) -- each global defined in one file for l68,
+                a one-key getchar, data in LIB/chemtab, manual pages in
+                DOC/chemtab; looke.c is continued across shar parts 1-2
+    vcraps2     DONE as vcraps (c001e096) -- patches 1-2 applied, rand, w_cols,
+                one Return case, getopt, ESC freed from SCF's end of file
+    translit    IN PROGRESS: builds; its tables name end-of-line as 0x0A,
+                so under OSK input CR is read as LF and output LF written as
+                CR, and the KOI8 example then matches the post's
+                example.tex except two leading spaces its input lacks
+    yid-slots   HELD with smiley (FOR-RDOGGETT 24): a slot machine of
+                stereotyped Jewish names
+    scamper     NOT SHIPPED: X11/Xlib only
+    hodge-c     DEFERRED: GPL, ANSI with GNU getopt_long, pipes frames to a
+                display monitor; it writes PPM the disk's netpbm reads
+    banners     DEFERRED: thirteen banner programs; banner, cursive and
+                gothic are already on the disk
     craps       DEFERRED: link() lock on its score list, a crypt() cheat, a
                 fork()/execl("/bin/csh") shell escape, BSD random, and every
                 key read with getchar(), which on OS-9 waits for a line; its

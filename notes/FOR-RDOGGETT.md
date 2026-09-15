@@ -248,3 +248,6 @@ line is recorded in `tools/terms.psv` or the handoff.
    ethnic or sexist jokes ("Mexican run over by train", "slut").  Ship it as
    posted, ship it with those lines taken out of faces.in (said so in
    README.OSK), or leave it out?
+   yid-slots (comp.sources.games v5) asks the same question and is not
+   ported: a slot machine whose reels are "typical Jewish" first names
+   and name halves, by an author joking about his own name.
