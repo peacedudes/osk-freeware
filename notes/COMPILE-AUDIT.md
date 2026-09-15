@@ -167,7 +167,7 @@ but the naive recipe. Two needed one library each:
 | `hist` | hist | undeclared identifier in its own `h_var.h:77` -- an `#ifdef` arm |
 | `pep` | pep | undeclared identifier, `plain.c:165`; it also wants an EPROM driver |
 | `flex` | flex | no single diagnostic; read the log |
-| `ioccc` | queens | no single diagnostic; deliberately obfuscated C, so expect nothing helpful |
+| `ioccc` | queens | no single diagnostic; deliberately obfuscated C, so expect nothing helpful.  Re-tried 2026-09-15 with the contest's own common.mk steps (cmills's four -D definitions, westley's and scjones's sed passes, a strtol for dds): cmills, jaw and scjones stop on `#include<stdio.h>' -- Microware cpp needs a space before the `<', measured; westley then links short of a putchar function; tbr needs pipe(); stig is a ksh joke, not a program; dds needs LANDER.BAS, which is not on the forum disk |
 
 Four of those (`cursive`, `proff`, `hist`, `pep`) are ordinary recipe work --
 the file list is wrong, or a define is missing. `adv`, `nobs` and `snake` are

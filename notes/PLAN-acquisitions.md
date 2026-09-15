@@ -430,6 +430,14 @@ manual entries).  And `where' finds a program along PATH (`-l' lists it)
 -- which the disk's `which' already does, the way the shell finds it.  So
 NOTHING among TOP's native tools is new here.
 
+robots2 DOES NOT RUN, and the cause is in the program (2026-09-15, found by the
+os9-dev skill session from its disassembly).  Its tgetent, when TERMCAP holds
+the capability string, copies it into a 128-byte malloc until it meets a CR
+(offset 0x98EA) -- an environment string ends in NUL, so the copy runs off
+into memory; and its termcap-FILE branch never matches an entry.  os9exec's
+dump showed F$ID only because `Last syscall' is the last call made, not where
+it died; the module is sound (good CRC and parity).  Not shipped.
+
 VCRON ASSESSED 2026-09-15 (scratch vcronpool): TOP's port of Paul Vixie's 1987
 cron -- USR/SRC/vcron.t.Z (17 files; an old tar whose `VCRON/' entry both host
 tar and Python's tarfile misread, so members were written by hand) plus
@@ -581,8 +589,13 @@ uptime and verdisk are OS-9 `ar' archives from the 6809 section (c09_) --
 CoCo-world, so last.  No pscat anywhere in the acquisitions.  EFFO forum disk
 16 is already mined (hexed, oskversion, puzzle15, rpn, top, clear, fastcc,
 demerge, lunisolar, tree) EXCEPT SOFTWARE/C/7TH_C_CONTEST -- the eleven 1990
-IOCCC winners with their hint files -- and four assembler tools, FCCTL,
-FPERMIT, EXCEPT_HANDLER and EXIT_HANDLER.  Those are next.
+IOCCC winners with their hint files -- and four assembler tools.  The four,
+read 2026-09-15 from their info files, are not user commands: FCCTL and
+FPERMIT are C interfaces to F$CCtl and F$Permit/F$Protect/F$GSPUMp for other
+programs to link, EXCEPT_HANDLER is a handler that dumps exception information
+into a data module, and EXIT_HANDLER adds two new calls to the kernel for exit
+routines.  Not shipped.  The 1990 IOCCC entries are next; the contest's rules
+required every entry to be public domain.
 
 ### Leave alone
 Microware-owned: 6809 system source, PIPELINES, Training, qpascal, ucc
