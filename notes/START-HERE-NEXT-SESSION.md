@@ -371,6 +371,14 @@ Open:
      HELLO with 24-byte entries.  SRC/ispell is a different edition from the
      binary; built, it works, and ships as REBUILT/ispell_rebuilt
      (1b74fb46).  FOR-RDOGGETT 23.
+     **Caption sweep for the same defect:** 30 published captures carry a
+     failure signature (Process Aborted, Error #, No more memory, not
+     found, Unknown terminal type).  Each was read against its whole
+     caption; every other one says what the screen shows.  config's card
+     ends with os9exec's own `# No more memory' notices as config probes the
+     heap -- true output, unexplained on the card.  A crash captioned as
+     working shows up only when the caption and the capture are read
+     together; tools/audit_cards scores ink, not agreement.
   2n. **Two harness gaps, not yet fixed.**  tools/ansiscreen.py does no
      auto-wrap at column 80 (it clamps), so it cannot show what an am
      terminal does with a full row.  playtest.py's `expect' also searches
