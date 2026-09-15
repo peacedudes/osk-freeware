@@ -294,7 +294,10 @@ Open:
      touches SS_Opt, so nothing clears any of these for you.  castle's tty.c
      clears kbich/kbach/eofch while the game runs and restores them (sc.c
      clears kbach the same way); restore measured with a probe after quit
-     and after save.  Any curses game here with an ESC key has this bug.  Also: the build links unix.l, whose
+     and after save.  Not every ESC key here has this bug: howto.psv records
+     sonnet and setterm quitting on ESC and moria taking it at character
+     creation, so those read it some other way.  Check per program.
+     Also: the build links unix.l, whose
      signal() only records -- a handler never runs by itself (the skill's
      os9-clib-reference says so).  And curses.l HAS savetty()/resetty(), so
      a shim of those names clashes at l68.
