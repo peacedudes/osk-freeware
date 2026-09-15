@@ -16,3 +16,19 @@ run     /dd/CMDS/NETPBM/pbmmake -black 8 8 > $W/b.pbm
 run     /dd/CMDS/NETPBM/pbmtobbnbg < $W/b.pbm > $W/b.bg
 run     /dd/CMDS/xd -c $W/b.bg
 expect  1B 50 3A 33 3B 38 3B 38  73 0D 50 20 50 20 50 20 | .P:3;8;8s.P P P
+
+case    rayshade-renders-boxball-at-32-by-24
+# rayshade runs its scene through cccp by popen(), which forks a module
+# named `shell' and finds cccp in the data directory.  The case puts both in
+# place, as the card does, and takes them away again after the render.
+run     /dd/CMDS/cp /dd/CMDS/sh /dd/CMDS/shell
+run     /dd/CMDS/cp /dd/CMDS/GCC139/gcc_cccp /dd/cccp
+run     /dd/CMDS/rm -f /dd/tmp/ray6.pic > /nil 2>/nil
+run     /dd/CMDS/ksh -c "cd /dd; /dd/CMDS/rayshade -R 32 24 -O tmp/ray6.pic GAMES/rayshade/boxball.ray" < /nil
+run     /dd/CMDS/wc -c /dd/tmp/ray6.pic
+run     /dd/CMDS/rm -f /dd/CMDS/shell /dd/cccp
+expect  Screen resolution: 32 x 24
+expect  Total rays:
+expect  /dd/tmp/ray6.pic
+absent  Nothing to be rendered
+absent  nowhere found
