@@ -1,0 +1,2 @@
+$ echo "Pig latin was a language popular in the forties." | pig
+Igpa atinla aswa a anguagela opularpa nia heta ortiesfa.

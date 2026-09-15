@@ -1,0 +1,1 @@
+/* PIG - a pig-latin translator */%{#include <ctype.h>char *c, start;%}%%[A-Za-z]+	{	if(yyleng >=2){		c=yytext;		if(isupper(yytext[0]))			start = tolower(yytext[0]);		else			start = yytext[0];		c++;		if(isupper(yytext[0]))			*c=toupper(*c);		printf("%s%ca",c,start);	} else {		ECHO;	}}%%main(){	yylex();}

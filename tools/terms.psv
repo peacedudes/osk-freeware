@@ -310,6 +310,8 @@ fstat|No copyright or licence statement in its source, which names Mike Haaland 
 fstopgm|Each netpbm author granted the right to use and distribute their code without charge, on a non-commercial basis; many allow more -- see each file's notice.|DOC/netpbm/COPYRIGHT
 fuddle|No copyright or licence statement in SRC/chess or its documentation.|SRC/chess/CH*/main.c lines 1-12
 fudd|None stated; a joke filter, carried as posted. Elmer Fudd is a cartoon character, not a person.|SOURCES.txt line 1003
+pig|None stated; a joke filter, carried as posted.|SRC/pig/ORIG/pig.l; SOURCES.txt, pig
+choose|No copyright or licence statement; the README names Bob Lewis (Tektronix).|SRC/choose/ORIG/README; SOURCES.txt, choose
 funzip|"Not copyrighted 1992 by Mark Adler." "You can do whatever you like with this source file", though modified copies should say so. Part of Info-ZIP UnZip 5.0.|SRC/unzip50/funzip.c lines 1-7
 g3topbm|Each netpbm author granted the right to use and distribute their code without charge, on a non-commercial basis; many allow more -- see each file's notice.|DOC/netpbm/COPYRIGHT
 game|GNU Chess 4.0 utility. "Copyright (c) 1988,1989,1990 John Stanback", "Copyright (c) 1992 Free Software Foundation"; GNU GPL "version 2, or (at your option) any later version".|GAMES/gnuchess4.0.lzh member GNUCHESS4.0/SRC/game (identical); SRC/gnuchess/GNUCHESS4.0/SRC/game.c lines 4-11

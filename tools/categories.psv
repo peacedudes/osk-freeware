@@ -1008,6 +1008,7 @@ bcd|Encoding & conversion|Text encodings
 caesar|Encoding & conversion|Ciphers & hashes
 col|Text tools|Format & typeset
 colrm|Text tools|Transform & filter
+choose|Text tools|Transform & filter
 column|Text tools|Format & typeset
 comm|Text tools|Sort, compare & merge
 factor|Maths & calculators|Calculators
@@ -1043,6 +1044,7 @@ rsdsk|System & modules|Devices & disks
 
 chef|Amusements|Generators
 fudd|Amusements|Generators
+pig|Amusements|Generators
 drawl|Amusements|Generators
 lame|Amusements|Generators
 canfield|Games|Board & card

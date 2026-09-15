@@ -93,3 +93,9 @@ run     /dd/CMDS/trigraph > $W/tri.c
 run     /dd/CMDS/diff $W/tri.c /dd/SRC/ioccc/scjones.c
 expect  46a47
 absent  < 
+
+# pig (2026-09-15, comp.sources.games v02i033): a lex filter whose scanner
+# was generated with the disk's flex.  One-letter words pass unchanged.
+case    pig-speaks-pig-latin
+run     echo "pig latin is a fun language" | /dd/CMDS/pig
+expect  igpa atinla sia a unfa anguagela

@@ -216,3 +216,23 @@ run     echo "[?1][" >> $W/sg.arr
 run     echo "x = A[I,J,K] + B[N,M]" > $W/sg.src
 run     /dd/CMDS/sgrep $W/sg.arr < $W/sg.src
 expect  x = A[I][J][K] + B[N][M]
+
+# choose (2026-09-15, comp.sources.unix volume 2): N lines at random, in
+# file order; asking for more than the file holds is refused.
+case    choose-picks-three-of-ten-and-refuses-twenty
+run     /dd/CMDS/rm -f /dd/tmp/choose10 /dd/tmp/choose3
+run     echo "line1" >> /dd/tmp/choose10
+run     echo "line2" >> /dd/tmp/choose10
+run     echo "line3" >> /dd/tmp/choose10
+run     echo "line4" >> /dd/tmp/choose10
+run     echo "line5" >> /dd/tmp/choose10
+run     echo "line6" >> /dd/tmp/choose10
+run     echo "line7" >> /dd/tmp/choose10
+run     echo "line8" >> /dd/tmp/choose10
+run     echo "line9" >> /dd/tmp/choose10
+run     echo "line10" >> /dd/tmp/choose10
+run     /dd/CMDS/choose -3 /dd/tmp/choose10 > /dd/tmp/choose3
+run     /dd/CMDS/wc -l /dd/tmp/choose3
+run     /dd/CMDS/choose -20 /dd/tmp/choose10
+expect  3 /dd/tmp/choose3
+expect  Can't choose 20 from 10.

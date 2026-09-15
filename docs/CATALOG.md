@@ -1,6 +1,6 @@
 # What is on this disk
 
-1021 programs of OS-9/68K community software, gathered from the archives that kept it and made to run again. **672 of them need nothing but this disk**; the rest want Microware's `cio`, marked below with a star.
+1023 programs of OS-9/68K community software, gathered from the archives that kept it and made to run again. **674 of them need nothing but this disk**; the rest want Microware's `cio`, marked below with a star.
 
 `DOC/INDEX` on the disk lists everything alphabetically. This is the same collection sorted by what each program is *for*, which is the more useful order when you do not yet know what you are looking for.
 
@@ -13,7 +13,7 @@
 |---|--:|---|
 | [Shells](#shells) | 24 | Unix shells to sit beside OS-9's own -- bash and ksh bring history, job control, and scripts that come across unchanged. |
 | [Editors](#editors) | 27 | vi and emacs in several flavours, line and stream editors, and editors for binary and hex. |
-| [Text tools](#text-tools) | 131 | Search, sort, compare, reformat, split and spell-check. |
+| [Text tools](#text-tools) | 132 | Search, sort, compare, reformat, split and spell-check. |
 | [Files & directories](#files--directories) | 34 | Listing, copying, finding, renaming, and knowing what you have. |
 | [Developer tools](#developer-tools) | 48 | Version control, tags, cross-reference, formatters, a debugger and benchmarks. |
 | [Compilers & build](#compilers--build) | 41 | C compilers and their passes, assemblers, linkers, make and parser generators. |
@@ -24,7 +24,7 @@
 | [Graphics & images](#graphics--images) | 195 | The netpbm toolkit, JPEG, a ray tracer, and things that draw. |
 | [Games](#games) | 96 | Adventures, board and card games, arcade ports, dungeon crawls and puzzles. |
 | [Screen toys](#screen-toys) | 10 | Animations and screen effects -- they draw on the terminal rather than print to it. Some run until you stop them. |
-| [Amusements](#amusements) | 26 | Generators, simulators and diversions that are not quite games. |
+| [Amusements](#amusements) | 27 | Generators, simulators and diversions that are not quite games. |
 | [System & modules](#system--modules) | 132 | OS-9 module and process tools, devices, system state and scheduling. |
 | [Disk & DOS](#disk--dos) | 20 | Reading and writing MS-DOS media with the mtools set. |
 | [Time & calendar](#time--calendar) | 15 | Calendars, clocks and astronomy. |
@@ -155,7 +155,7 @@
 
 *Search, sort, compare, reformat, split and spell-check.*
 
-<details><summary>131 programs</summary>
+<details><summary>132 programs</summary>
 
 **Alternates**
 
@@ -327,6 +327,7 @@
 | `ape` | writes gibberish in the style of whatever it reads -- a travesty generator; `-b' is how much source to read and `-l' how many characters must match before it follows the source. `travesty' and `newsgen' are the others of its kind here<br>**How:** A travesty generator: `-b' is how much source to read and `-l' the pattern length. Feed it VARIED text -- one word repeated makes it generate without end, because every position matches every other. |
 | `autolf` | &#9733; converts line endings between CR, LF and CR LF, expands tabs and handles ^Z, as a filter: `autolf -c -C -L < in > out' makes DOS text of OS-9 text, and `-H' explains the conversions. Given a file name it converts through a temporary it then cannot rename back, so feed it standard input<br>`autolf: copy stdin to stdout, converting end-of-line character sequences` |
 | `casefix` | sentence-cases text: every letter to lower case except the first of each sentence. A filter that reads standard input; a file named as an argument is ignored<br>**How:** It is a FILTER and reads STANDARD INPUT: `casefix < file' sentence-cases it. |
+| `choose` | prints lines picked at random from its input, in the order they stand: `choose -3 file' for three, one by default<br>**How:** `choose -3 file' prints three lines picked at random from the file, in the order they stand in it; with no number it picks one, and with no file it reads standard input. It seeds from the clock in whole seconds, so two runs in the same second pick alike. Asking for more lines than there are is refused. |
 | `colrm` | removes columns from each line: `colrm 3 5' deletes the third to fifth characters |
 | `cut` | picks fields (-f) or character columns (-c) out of each line, with -d naming the field separator<br>`cut: Illegal option -- ?` |
 | `detab` | &#9733; replaces tabs with spaces, at stops every eight columns or every n with -tn<br>`Usage: detab [-tn] [infile] or [<infile]` |
@@ -1353,7 +1354,7 @@
 
 *Generators, simulators and diversions that are not quite games.*
 
-<details><summary>26 programs</summary>
+<details><summary>27 programs</summary>
 
 **Biorhythms**
 
@@ -1382,6 +1383,7 @@
 | `lame` | rewrites its arguments into IRC leet-speak -- o->0, you->U, and->&, i->1 -- the way a lamer types.  `lame your text` |
 | `name` | &#9733; invents pronounceable names for the characters in a tabletop game, as many as you ask for, dealing vowels and consonants in turn with the letter frequencies of a Scrabble set |
 | `newsgen` | &#9733; makes up a news bulletin at random from parts -- a top story of public figures, deeds, places and reactions, then the weather -- different every run<br>`"news" or "news lp"` |
+| `pig` | turns English into pig latin: every word of two letters or more moves its first letter to the end and adds `a'.  `echo text \| pig'<br>**How:** Pipe English through it: `echo "pig latin" \| pig' prints `igpa atinla'. Each word of two or more letters moves its first letter to the end and adds `a'; one-letter words and punctuation pass unchanged. |
 | `pwgen` | &#9733; pronounceable passwords: `pwgen <length> [how many]'<br>**How:** pwgen <length> [count]: length 4 to 16. It takes a few seconds over each password, so allow for that. |
 | `rndname` | &#9733; invents pronounceable names, as many as you ask for -- the earlier version of `name', with every letter equally likely, so the names come out more exotic |
 | `rpoem` | &#9733; writes verses at random from a grammar and a word list in GAMES/SNOBOL; a number says how many, thirty without one |

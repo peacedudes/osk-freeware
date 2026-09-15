@@ -1,0 +1,1 @@
+# Makefile for pig - Pig-Latin translatorpig:	pig.l	lex pig.l	cc -o pig lex.yy.c -ll	rm lex.yy.c

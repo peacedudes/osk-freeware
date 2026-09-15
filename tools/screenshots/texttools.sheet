@@ -634,3 +634,18 @@ run     clear
 wait    1
 run     fgrep -n USR password
 wait    5
+
+shot    choose
+size    24 80
+cap     Three of the seven days picked at random, printed in the order they
+cap     stand in the file.  With no number choose picks one.
+try     choose -3 tmp/TXT/week.txt
+os9     choose -3 tmp/TXT/week.txt
+run     mkdir -p /dd/tmp/TXT > /nil 2>/nil; printf "Monday\rTuesday\rWednesday\rThursday\rFriday\rSaturday\rSunday\r" > /dd/tmp/TXT/week.txt
+wait    2
+run     builtin cd /dd
+wait    1
+run     clear
+wait    1
+run     choose -3 tmp/TXT/week.txt
+wait    3

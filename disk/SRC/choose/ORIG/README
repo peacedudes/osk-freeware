@@ -1,0 +1,1 @@
+Here is a program "choose" to select randomly lines from files.  Simplycompile it as	cc -O -o choose choose.cThe program works under 4.2bsd and should also work under UTek.  Thanks toNigel Horspool (uvicctr!nigelh), Brad Needham (tekig4!bradn), and everyoneelse who answered my earlier query on "random(3)".	- Bob Lewis	  ...!tektronix!teklds!bobl

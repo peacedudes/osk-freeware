@@ -343,6 +343,14 @@ try     echo "Be very very quiet, I am hunting rabbits." | fudd
 run     echo "Be very very quiet, I am hunting rabbits." | fudd
 wait    2
 
+shot    pig
+size    24 80
+cap     pig rewrites English in pig latin: every word of two letters or more
+cap     moves its first letter to the end and adds `a'.  Pipe text through it.
+try     echo "Pig latin was a language popular in the forties." | pig
+run     echo "Pig latin was a language popular in the forties." | pig
+wait    2
+
 shot    drawl
 size    24 80
 cap     drawl gives text a broad Texan accent, dropping g's and stretching

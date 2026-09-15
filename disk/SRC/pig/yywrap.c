@@ -1,0 +1,1 @@
+/* flex needs yywrap; fudd.l provides its own main. */int yywrap(){    return 1;}
