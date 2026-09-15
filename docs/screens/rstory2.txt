@@ -1,2 +1,0 @@
-$ rstory2
-rstory2: command not found
