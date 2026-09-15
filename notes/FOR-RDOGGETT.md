@@ -32,6 +32,17 @@ Open questions only. Nothing here is decided. Updated 2026-09-14 (late).
    The key is `~/.config/usenet-rewind/os9`; once the pull is verified a
    session can delete that file for you if you say so.
 
+18. **`disk/` is hard-linked to a second copy I cannot find, and my edits
+   reach it.**  8,896 of the 9,927 files under `disk/` have a link count of
+   2.  `find` over your home (skipping `~/mine`, `~/Library`, `~/.Trash`) finds
+   no other name, so the twin is in one of those or on another volume.
+   Every in-place write here goes through to it: tonight that was
+   `DOC/INDEX`, `DOC/DEPENDS`, `DOC/CATEGORIES` and `CMDS/GAMES/monop`.  A
+   write by rename does the opposite and breaks the link -- `CMDS/rsconvert`
+   was installed that way, so the twin keeps the old one.  What is the
+   twin, and should edits reach it?  Until you say, I keep writing in place,
+   as every generator here always has; rsconvert is the one file detached.
+
 ## Licence and authorship questions the card-terms pass turned up (2026-09-14)
 
 Every card must now state its terms, so every program's source was read for

@@ -83,6 +83,20 @@ Open:
      /dd; move still E$BMode (second update path on the same dir, entry
      at $2C0); upperdir E$Share because it holds subdir open while
      rewriting its entry.  Both traces sent to os9exec-d9.
+  2d. **rsconvert works; its header asked for 11.2k.**  It converts a
+     rayshade 3 scene to rayshade 4 syntax (INDEX said image formats), and
+     its yacc parser overflowed that stack.  `#24k' at Microware's shell was
+     enough; CMDS/rsconvert's M$Mem is now 32k (CRC recomputed with
+     rename_module.py's crc24, parity untouched since $38 is outside it).
+     netpbm6.cases asserts it, shown failing on the old binary.
+  2e. **tplot** takes each answer as two numbers (`0 10'), then draws
+     through Atari ST A-line traps ($A000) -- an ST program, not a fault.
+  2f. **os9exec host-dir assert**: a zero-length I$Read with A0=0 aborts on
+     `buffer!=NULL' in pFread (fileaccess.c:338).  adlrun does it; on an
+     image it is fine.  Sent to os9exec-d9.  This is the whole host-dir
+     games4 difference.
+  2g. **disk/ is hard-linked to an unknown twin** (FOR-RDOGGETT 18).
+     `ls -li' before changing a file under disk/.
   3. System utilities on the same list (aprocs cpu devprc vc top sysmon):
      probe for case material.
 
