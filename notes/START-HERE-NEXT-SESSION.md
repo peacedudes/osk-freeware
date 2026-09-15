@@ -120,6 +120,10 @@ Open:
      screens.js, and mkimage's gate then failed with 841 problems.  The
      five are untracked and --check now writes nothing.  Proved with
      tools/ci/run_workflow_locally.sh (run it with cwd outside the repo).
+     After the fix the WHOLE workflow passes locally at the current pin
+     261b4b6 and at b3145c3: image reads /dd/startup, runs a module,
+     281M compresses to 43M.  Still never run on GitHub (Linux); the
+     dot-file pin note in FOR-RDOGGETT item 1 is about exactly that.
   2k. games4's advcom case piped advcom into head; on a host dir head's
      exit cut advcom off mid-write (advint: `bad data file').  Output now
      goes to a file.  os9exec b2bee94 fixed adlrun's zero-length read.

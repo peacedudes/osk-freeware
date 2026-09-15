@@ -30,6 +30,10 @@ rm -rf "$W"; mkdir -p "$W"
 fail=0
 step() { printf '\n=== %s\n' "$1"; }
 
+# Leave the repository first.  If PATH holds `.', a `tar' in the current
+# directory -- the repo root has held the OS-9 tar module -- answers for the
+# host tar, exports nothing, and every later step reports on an empty tree.
+cd "$SP"
 step "Check out the collection (git archive, as a clean checkout)"
 git -C /Users/rdoggett/Developer/os9/osk-freeware archive HEAD | tar -x -C "$W"
 echo "  exported $(find "$W" -type f | wc -l | tr -d ' ') files"
