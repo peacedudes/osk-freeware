@@ -1207,7 +1207,8 @@ carries authors' names, never addresses.  Rerun it as the pull completes.
 
 **In the pool already, never evaluated, not on the disk:**
 
-    textb       OSK/MISC textb.t.Z -- PD Mandelbrot generator, 1990; binary,
+    textb       ALREADY ON THE DISK (CMDS/textb, with a recipe) -- this row was stale.
+                OSK/MISC textb.t.Z -- PD Mandelbrot generator, 1990; binary,
                 textb.c and textb.doc.  Posted to comp.os.os9 1990-09-20.
     ptxm        OSK/DRIVERS ptybin.lzh -- ptxm, ptxminst, ptxm.txt (a pty
                 manager binary); ptylev.zip is unreadable (BadZipFile).
@@ -1272,6 +1273,33 @@ looked at are:
 `klebsch.de' is only a PGP-key signature line and `dressler.de' a
 commercial VMEbus vendor -- not leads.  The Wayback CDX check of the four
 is recorded beside this.
+
+### The 44 os9 postings, the rest assessed 2026-09-15
+
+`acquisitions-2026-09-11/os9/usenet/postings' holds 44 posts.  Most are
+covered above or in B5/B9 (freeb shipped, ptyman, os9lib, alarmd, simon,
+browse, uucp, shar, isofont, nethack, less 8-bit, textb and banner already
+on the disk).  The ten nothing here had assessed:
+
+    ln-mv-link-rename  Bob Larson 1989, os9/68k, public domain.  NOT SHIPPED:
+                       ln and link make hard links by writing directory
+                       entries and the raw disk ("USE AT YOUR OWN RISK ...
+                       I'm not sure the locking works"), restricted to the
+                       super-user.  That is the RBF alias flink made, and
+                       flink corrupted this disk.  The disk's mv is GNU's.
+    dynacon            Jim Omura 1989 -- converts CoCo Dynacalc files; a 6809
+                       makefile only.  CoCo: last.
+    runat, fs walker   James Jones 1984, net.micro.6809.  CoCo: last.
+    piped-cc           Larry Harmon 1987 -- replaces the 6809 compiler's cc1
+                       pass with pipes.  6809 only.
+    icapos9 (2 parts)  Jim Omura 1989 -- Imagewise frame-grabber kit; needs
+                       the hardware.
+    st-osk-graphics    Pete Lyall 1988 -- Atari ST graphics routines, part
+                       assembly; needs the hardware.
+    mroff doc tools    Simmule Turner 1989 -- man-page macros for MROFF on
+                       OS-9/6809, not a program.
+    osk-book           James Jones 1988 -- announces Dibble's OS-9 Insights.
+    top-software-list  1989 -- TOP's disk list, already mined in B6.
 
 ### The OSK sites the newsgroups name, checked 2026-09-14
 
