@@ -1,6 +1,6 @@
 # What is on this disk
 
-1010 programs of OS-9/68K community software, gathered from the archives that kept it and made to run again. **663 of them need nothing but this disk**; the rest want Microware's `cio`, marked below with a star.
+1011 programs of OS-9/68K community software, gathered from the archives that kept it and made to run again. **663 of them need nothing but this disk**; the rest want Microware's `cio`, marked below with a star.
 
 `DOC/INDEX` on the disk lists everything alphabetically. This is the same collection sorted by what each program is *for*, which is the more useful order when you do not yet know what you are looking for.
 
@@ -22,7 +22,7 @@
 | [Encoding & conversion](#encoding--conversion) | 29 | Between text encodings, line endings, Macintosh formats, ciphers and hashes. |
 | [Communications](#communications) | 97 | Kermit in several builds, terminal sessions, and networking. |
 | [Graphics & images](#graphics--images) | 195 | The netpbm toolkit, JPEG, a ray tracer, and things that draw. |
-| [Games](#games) | 92 | Adventures, board and card games, arcade ports, dungeon crawls and puzzles. |
+| [Games](#games) | 93 | Adventures, board and card games, arcade ports, dungeon crawls and puzzles. |
 | [Screen toys](#screen-toys) | 10 | Animations and screen effects -- they draw on the terminal rather than print to it. Some run until you stop them. |
 | [Amusements](#amusements) | 25 | Generators, simulators and diversions that are not quite games. |
 | [System & modules](#system--modules) | 132 | OS-9 module and process tools, devices, system state and scheduling. |
@@ -1182,7 +1182,7 @@
 
 *Adventures, board and card games, arcade ports, dungeon crawls and puzzles.*
 
-<details><summary>92 programs</summary>
+<details><summary>93 programs</summary>
 
 **Adventure & fiction**
 
@@ -1306,6 +1306,7 @@
 | `puz15` | the 15-puzzle: slide the tiles into the gap, `puz15 5x5' for a bigger board.  A second port is CMDS/puzzle15; both have source and play the same<br>**How:** Full-screen fifteen puzzle. Slide the tiles into the gap; `puz15 5x5' plays a bigger board. Control-C gets you out. |
 | `puzzle15` | the 15-puzzle: slide the tiles into the gap, `puzzle15 5x5' for a bigger board.  A second port lives in GAMES/puz15; both have source and play the same<br>**How:** The same fifteen puzzle, in CMDS. Slide the tiles into the gap; `puzzle15 5x5' plays a bigger board. Control-C gets you out. |
 | `queens` | &#9733; an N-queens solver, an obfuscated-C contest entry: it reads the board size on standard input as a number and draws every arrangement it finds with no two queens attacking: `echo 6 \| queens'<br>**How:** Reads the board size on standard input as a number: `echo 6 \| queens'. |
+| `sod` | &#9733; Swamp of Death: cross a swamp from the top left to the X at the bottom right without stepping where you would sink. Each square you stand on shows how many of its neighbours are dangerous.  hjkl or 4 8 6 2 move; `q' and RETURN give up.  `sod -l5' picks a level from 1 to 9, `sod -s' shows the high scores<br>**How:** Full-screen. The swamp is a grid; you start top left (the marker) and the exit X is bottom right. hjkl or 4 8 6 2 move one square, and each square you have stood on shows how many of the eight around it would sink you. `q' asks "in fear to die?" and RETURN then gives up, printing that level's score table. `sod -l1' is the easiest level and `-l9' the deadliest; `sod -s' prints the high-score table. Its scores are in USR/GAMES/LIB/SOD, so mount this disk as /h0 too. |
 
 **Word & guessing**
 

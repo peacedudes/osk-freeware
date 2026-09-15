@@ -1,0 +1,22 @@
+name    sod
+prog    sod -l1
+# Easiest level: step right, right, down, and look at the counts left behind.
+rate    0.5
+size    24 80
+wait    5
+snap    start
+key     l
+wait    2
+key     l
+wait    2
+key     j
+wait    3
+snap    walked
+key     q
+wait    3
+key     \r
+wait    3
+snap    quit
+expect  >0<
+expect  X
+expect  Scoretable for level 1

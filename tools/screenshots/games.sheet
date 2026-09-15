@@ -895,6 +895,28 @@ send    \003
 wait    3
 snap
 
+shot    sod
+size    24 80
+cap     A few steps into the easiest level: each square walked on shows how
+cap     many of its neighbours would sink you, and the X at the bottom right
+cap     is the way out.
+try     sod -l1
+run     sod -l1
+wait    5
+send    l
+wait    2
+send    l
+wait    2
+send    j
+wait    2
+send    l
+wait    3
+snap
+send    q
+wait    3
+send    \r
+wait    3
+
 shot    larn
 cap     Larn: the dungeon is drawn as you find it, letters for what is in
 cap     it, and the two lines at the foot are your spells, armour class,

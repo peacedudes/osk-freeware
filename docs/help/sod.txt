@@ -1,0 +1,6 @@
+$ sod -?
+Syntax: sod [<opts>]
+Function: Swamp of death
+Options:
+     -l<=>level   plays at level <level> (1 = easy, 9 = deadly)
+     -s           see the highscoretable (if available)
