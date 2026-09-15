@@ -1320,8 +1320,19 @@ triaged by size, files, curses and stated terms.  Done or decided:
                 DONE (d63c88c4) -- telenum had the putchar double evaluation,
                 hanoimod under-allocated, lotto asked forever at end of input
 
-Still open (small and self-contained first): revcat, spiro, knight, bks,
-ufo, therm (curses), then
+    knight, bks DONE (488587fd, card fix 3e3541a6) -- knight's ESC freed
+                before initscr(); bks as BSD with tsleep and _gs_rdy
+    revcat      NOT SHIPPED: reverses line order, which tac does
+    spiro       NOT SHIPPED: draws through Unix plot(3X), which OS-9 lacks
+    therm       NOT SHIPPED: a curses library routine, not a program, and
+                "Commercial use prohibited without permission"
+    ufo         NOT SHIPPED for now: its game loop runs on ualarm() and
+                SIGALRM at millisecond intervals, with ftime() -- a timing
+                rewrite, not a port
+    malawi      NOT SHIPPED: X11/Xaw only
+
+Still open: mz (being ported: sgtty, select, gettimeofday), sol2 (termio
+raw mode), jumble2 (alarm, /usr/dict/words, score file), then
 the larger games -- craps, vcraps2, torus (robots2 descendant), perp,
 thricken, malawi, sol2, jumble2, yid-slots, bj2, connect4, skewlife, mz,
 dinkum2 (410K adventure), trek73 (409K) -- and the rest: ag2, xmascard,
