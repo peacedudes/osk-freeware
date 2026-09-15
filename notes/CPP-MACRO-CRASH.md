@@ -6,9 +6,11 @@
 > 2026-08-23 table.  A string initializer after `#include <stdio.h>` also
 > passes at 511, but an fputs line inside main() after that #include
 > bus-errors already at 505 (500 passes).  What comes before the line lowers
-> the limit.  The os9-dev skill session, bisecting its own construction, got
-> `**** source line too long ****` at 513-600 and silent aborts at 512 and
-> 735; every failing case here died with no message.  Keep joined lines well
+> the limit.  It also decides HOW cpp fails: the os9-dev skill session put one
+> 600-character line in a bare file and got `**** source line too long ****`,
+> and after `#include <stdio.h>` got a silent abort.  Every failing file here
+> had an #include or a function body first, and all died with no message.
+> Keep joined lines well
 > under 500, and when cpp dies saying nothing, measure the longest joined
 > line first.
 
