@@ -1347,8 +1347,31 @@ triaged by size, files, curses and stated terms.  Done or decided:
                 mz|mz|mz.c mzio.c sgtty.c||/dd/LIB/termlib.l|.  Terms: "may
                 be used and distributed freely ... name retained".
 
-Still open: sol2 (termio raw mode), jumble2 (alarm, /usr/dict/words,
-score file), then
+    sol, solx   DONE (33739d93) -- cpp's 512-character line counted after
+                joining continued help strings, even in a skipped #if, so
+                they print a line at a time; termlib's BC and UP are
+                pointers the programs wrote as arrays; SIGTERM; ioctl shim
+    jumble2     DONE (c622dbe9) -- GAMES/words, GAMES/JUMBLE2/scores,
+                SIGALRM 5.  `Time ran out.' at the timeout comes from
+                straight-line code after the interrupted gets(), not from
+                the SIGALRM handler (unix.l defers handlers to
+                check_signal(); measured by the skill session)
+    calcdate, soelim, ticktalk
+                DONE (3a74512d) -- soelim's usage passed *argv[0] to %s
+    weekday, repunsel
+                DONE (545b494f) -- weekday as posted with Spencer's getopt;
+                repunsel's scanner from the disk's flex
+    magicsqr    NOT SHIPPED: a REXX script, not C
+    mfold       NOT SHIPPED: the post is Patch02 alone, no base program
+    bday        NOT SHIPPED: an administrator's tool that mails birthday
+                greetings through sendmail from /usr/adm lists
+    xmascard    ALREADY ON THE DISK as `card' (Istvan Mohos, 1984)
+    rise_set    NOT SHIPPED: computes for one observer, its author's house,
+                hard-coded; needs ftime() and atan2(), which this C library
+                lacks
+    qterm       DEFERRED: termio/sgtty ioctls, alarm and setjmp
+
+Still open, then
 the larger games -- craps, vcraps2, torus (robots2 descendant), perp,
 thricken, malawi, sol2, jumble2, yid-slots, bj2, connect4, skewlife, mz,
 dinkum2 (410K adventure), trek73 (409K) -- and the rest: ag2, xmascard,

@@ -394,6 +394,17 @@ Open:
      on a terminal.  A card's shown screen is the check on its caption:
      anagram's said "the words hiding in parsley" over a screen showing only
      parsley, and gen_screens scored it fine.
+     Later the same night: knight, bks (488587fd), sol, solx (33739d93),
+     calcdate, soelim, ticktalk (3a74512d), jumble2 (c622dbe9), weekday and
+     repunsel (545b494f).  Two traps worth keeping: Microware cpp joins backslash-
+     continued lines BEFORE evaluating #if, so an over-512 string in a
+     skipped #else still kills it with no diagnostic -- the long text must
+     be absent from the compiled file; and Microware termlib's BC and UP
+     are char pointers (PC is PC_), so a program declaring them as arrays
+     links cleanly and overwrites them.  robots2: the skill session later
+     measured that the TOP termcap library's FILE route works once the
+     entry's first field is the old two-character form (`d0|vt100:...');
+     robots2 then dies later, at I$SetStt, a separate bug.
   2n. **Two harness gaps, not yet fixed.**  (2026-09-15: mz is ported and
      waiting on the first one -- notes/PLAN-acquisitions.)  tools/ansiscreen.py does no
      auto-wrap at column 80 (it clamps), so it cannot show what an am
