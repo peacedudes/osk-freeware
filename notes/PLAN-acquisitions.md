@@ -1380,6 +1380,25 @@ triaged by size, files, curses and stated terms.  Done or decided:
                 opendir/readdir and stat mode bits -- a port of its own
     xfmt        DEFERRED: a flex program that also needs a patched flex
                 skeleton (flex.skel.diff)
+    perp        DONE (796bc613, ORIGINS order 430c07ef) -- data in GAMES/PERP;
+                BSD's sprintf returned its buffer and the status panel printed
+                that; ^C needed check_signal()
+    torus       DONE (0c76281c) -- score files opened without link(), $USER
+                for the name, check_signal() in the key read
+    molecule    NOT SHIPPED: the simulation writes binary coordinates for a
+                display program built on a frame-buffer library (mginit,
+                mgihue) that has no counterpart here
+    craps       DEFERRED: link() lock on its score list, a crypt() cheat, a
+                fork()/execl("/bin/csh") shell escape, BSD random, and every
+                key read with getchar(), which on OS-9 waits for a line; its
+                REFRESH command also collides with curses's REFRESH (Microware
+                cpp keeps the first definition, 256)
+    thricken    DEFERRED: ANSI prototypes throughout (James Bonfield, 1992)
+    skewlife    DEFERRED: needs build-time N1/N2 and a results table made by
+                running makeresults first; a batch computation, low value
+    dinkum2     NOT SHIPPED: Gary A. Allen's `strict NO MODIFICATION rule' --
+                hacking encouraged but not releasing modified versions, and an
+                OS-9 build is one.  It is also ANSI-prototyped throughout.
 
 Still open, then
 the larger games -- craps, vcraps2, torus (robots2 descendant), perp,
