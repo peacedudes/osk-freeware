@@ -1425,6 +1425,17 @@ triaged by size, files, curses and stated terms.  Done or decided:
                 the disk's of the same names (disk blocks, SNOBOL poker, an
                 IOCCC entry, misc.ar's clock, toys.ar's rain); not yet
                 looked at
+    roll        DONE (3508b84c) -- unchanged, rand for random in the recipe
+    ski         DONE (3508b84c) -- unchanged, rand for random in the recipe
+    wf          DONE (3508b84c) -- 74K of word lists declared remote, four
+                `};' made `}'
+    curses-clock ALREADY ON THE DISK: the post's gdc is the grand digital
+                clock the disk ships as gcl (v_misc.ar)
+    rain (v28)  DEFERRED: a second, curses rain using usleep(); the disk's
+                rain is toys.ar's
+    hp          IN PROGRESS: floating-point RPN; its scanner fed the parser
+                through lex's input(), so under OSK flex takes characters
+                one at a time from hp.c's reader
     craps       DEFERRED: link() lock on its score list, a crypt() cheat, a
                 fork()/execl("/bin/csh") shell escape, BSD random, and every
                 key read with getchar(), which on OS-9 waits for a line; its
