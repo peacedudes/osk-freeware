@@ -1,5 +1,27 @@
 # Start here, next session
 
+## DO NEXT -- work left undone on 2026-09-14 (the session stopped instead)
+
+rdoggett found this session idle for ten hours with all of the below
+available.  None of it needs him.  Work it without stopping.
+
+1. **rcsdiff "cannot create /dd/tmp/_RCSt1000004"** -- root-cause it; it may
+   be os9exec (report to the os9exec session with a repro, never edit there).
+   A `-r -d 2` trace was started (in the old session's scratchpad -- rerun
+   it: ci -l a two-line file, change a line, rcsdiff it, PATH=/dd/CMDS); it showed
+   I$Open E_FNA twice before the E_PNNF/E_MNF search, then a run of
+   I$GetStt E_BPNUM.  The card (devtools.sheet `rcsdiff`) blames a
+   redirection "the shells here cannot make" -- unproven.
+2. **gnugo and sdb end in `**** Stack Overflow ****`** on piped input
+   (gnugo fed `\n0\nb\npass\npass\nn\n`; sdb fed `q`).  Program or emulator?
+3. **vtxtcn, lmail, hist hang silently** -- find what each waits on.
+4. **poker, blackjak, jotto, mastrm, monop, hinterhalt re-ask forever at
+   EOF** -- feed a whole game's input and test to a real ending.
+5. **Full-screen programs** on the untested list (worklist.py --programs
+   --no-test, 91) -- drive.py sheets are the instrument; test them there.
+6. perl leftovers: rmdir, mkdir on an existing name answers E$FNA not
+   E$CEF, s2p not built.
+
 ## 2026-09-14 (night): cases for the programs that had none
 
 Five new families and eleven cases added to utils, each asserting what the
