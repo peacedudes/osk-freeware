@@ -1,6 +1,6 @@
 # What is on this disk
 
-1011 programs of OS-9/68K community software, gathered from the archives that kept it and made to run again. **663 of them need nothing but this disk**; the rest want Microware's `cio`, marked below with a star.
+1012 programs of OS-9/68K community software, gathered from the archives that kept it and made to run again. **664 of them need nothing but this disk**; the rest want Microware's `cio`, marked below with a star.
 
 `DOC/INDEX` on the disk lists everything alphabetically. This is the same collection sorted by what each program is *for*, which is the more useful order when you do not yet know what you are looking for.
 
@@ -22,7 +22,7 @@
 | [Encoding & conversion](#encoding--conversion) | 29 | Between text encodings, line endings, Macintosh formats, ciphers and hashes. |
 | [Communications](#communications) | 97 | Kermit in several builds, terminal sessions, and networking. |
 | [Graphics & images](#graphics--images) | 195 | The netpbm toolkit, JPEG, a ray tracer, and things that draw. |
-| [Games](#games) | 93 | Adventures, board and card games, arcade ports, dungeon crawls and puzzles. |
+| [Games](#games) | 94 | Adventures, board and card games, arcade ports, dungeon crawls and puzzles. |
 | [Screen toys](#screen-toys) | 10 | Animations and screen effects -- they draw on the terminal rather than print to it. Some run until you stop them. |
 | [Amusements](#amusements) | 25 | Generators, simulators and diversions that are not quite games. |
 | [System & modules](#system--modules) | 132 | OS-9 module and process tools, devices, system state and scheduling. |
@@ -1182,7 +1182,7 @@
 
 *Adventures, board and card games, arcade ports, dungeon crawls and puzzles.*
 
-<details><summary>93 programs</summary>
+<details><summary>94 programs</summary>
 
 **Adventure & fiction**
 
@@ -1316,6 +1316,7 @@
 | `bog` | Boggle: sixteen lettered dice and three minutes to type every word you can trace through adjoining letters; its word list, index and help are in GAMES/BOG<br>**How:** Boggle. Space starts the three-minute round, `?' shows the rules, and you type every word you can trace through adjoining letters. Control-C leaves it. Its word list, index and help are in GAMES/BOG. |
 | `hang` | &#9733; hangman: type a letter to guess it, and the gallows fills in as you get them wrong; its word list is GAMES/dict<br>**How:** Hangman. Type a letter to guess it; the letters still unused are along the top. Control-C gets you out. Its word list is GAMES/dict. |
 | `jotto` | Jotto: you and the computer each pick a secret five-letter word of different letters and take turns guessing; a wrong guess is scored by how many of its letters are in the word |
+| `jumble` | prints every ordering of the letters of a word, one to a line, to solve a newspaper word jumble: `jumble tac' lists tac, tca, atc, act, cat and cta<br>**How:** `jumble <word>' prints every ordering of its letters, one per line, and that is all it does: read down the list for the one that is a word. A word of n letters gives n! lines -- 720 for six letters -- so keep to short words or send it through grep or less. |
 
 </details>
 

@@ -1,0 +1,2 @@
+$ jumble
+usage: jumble <word>

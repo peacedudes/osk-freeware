@@ -1,0 +1,1 @@
+* go script to make a reasonable first guess at a likely de-jumbled* word.  The jumble program generates all permutations; this script* only prints ones that are in the dictionary.*             Pete Lyall*jumble %1 ! qsort ! dict ! grep "perhaps"

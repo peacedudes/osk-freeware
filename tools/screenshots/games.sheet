@@ -917,6 +917,15 @@ wait    3
 send    \r
 wait    3
 
+shot    jumble
+size    24 80
+cap     All twenty-four orderings of the letters of `team', one to a line.
+cap     Reading down the list for real words finds meat, mate and tame.
+try     jumble team
+run     jumble team
+wait    2
+snap
+
 shot    larn
 cap     Larn: the dungeon is drawn as you find it, letters for what is in
 cap     it, and the two lines at the foot are your spells, armour class,

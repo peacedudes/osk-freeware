@@ -1004,3 +1004,5 @@ arithmetic|arithmetic|arithmetic.c getopt.c||/dd/LIB/rand.r|
 # juggle: alt.sources 950426.08, Juggle 1.0 (Glenn Hutchings, GPL), curses display.
 # K&R declarations and check_signal() under OSK; SRC/juggle/README.OSK.
 juggle|juggle|juggle.c curses.c getopt.c||/dd/LIB/rand.r|
+# jumble: Nick Flor's 1987 de-jumbler, from the 6809 archive (c09_jumble); built unchanged.
+jumble|jumble|jumble.c|||

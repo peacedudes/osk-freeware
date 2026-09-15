@@ -1,0 +1,1 @@
+#! /bin/sh# shell script to make a reasonable first guess at a likely de-jumbled# word.  The jumble program generates all permutations; this script# only prints ones that are in the dictionary.#             Bill Randle (billr@tekred.TEK.COM)#Dict=/usr/dict/wordsjumble $1 | sort | comm -12 - $Dict

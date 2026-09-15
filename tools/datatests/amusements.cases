@@ -59,3 +59,18 @@ run     /dd/CMDS/GAMES/juggle -p 12
 run     /dd/CMDS/GAMES/juggle -r 1
 expect  Error: pattern not jugglable
 expect  Error: invalid period
+
+# jumble (2026-09-15) prints the permutations of its word in a fixed order:
+# each letter in turn is swapped to the front and the rest permuted.
+case    jumble-lists-all-six-orderings-of-abc
+run     /dd/CMDS/jumble abc
+expect  abc
+expect  acb
+expect  bac
+expect  bca
+expect  cba
+expect  cab
+
+case    jumble-with-no-word-prints-its-usage
+run     /dd/CMDS/jumble
+expect  usage: jumble <word>
