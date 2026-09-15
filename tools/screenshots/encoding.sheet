@@ -463,3 +463,18 @@ run     clear
 wait    1
 run     bcd OS-9
 wait    5
+
+shot    translit
+cap     Russian text in KOI8 turned into Library of Congress romanization,
+cap     from the example that comes with it.
+try     translit -t koi8-lc.rus -i ex.ko8 | head -7
+run     rm -rf /dd/tmp/TLC > /nil 2>/nil; mkdir -p /dd/tmp/TLC
+wait    2
+run     builtin cd /dd/tmp/TLC
+wait    1
+run     uudecode /dd/SRC/translit/ORIG/example.ko8.UU; autolf -C < example.ko8 > ex.ko8
+wait    4
+run     clear
+wait    1
+run     translit -t koi8-lc.rus -i ex.ko8 | head -7
+wait    8

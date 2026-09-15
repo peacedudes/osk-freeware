@@ -198,6 +198,7 @@ atob|Encoding & conversion|Text encodings
 btoa|Encoding & conversion|Text encodings
 chardef|System & modules|Utilities
 todos|Encoding & conversion|Text encodings
+translit|Encoding & conversion|Text encodings
 toos9|Encoding & conversion|Text encodings
 uudecode|Encoding & conversion|Text encodings
 uuencode|Encoding & conversion|Text encodings

@@ -1003,6 +1003,8 @@ torus|torus|good.c main.c opt.c robot.c score.c user.c|||
 chemtab|chemtab|cleanup.c dogph.c element.c esort.c looke.c main.c ptabl.c schar.c scrmisc.c vdata.c|||
 # vcraps (comp.sources.games v11i048): casino craps, patches 1-2 applied; SRC/vcraps/README.OSK.
 vcraps|vcraps|vcraps.c crapslib.c getopt.c|-Drandom=rand -Dsrandom=srand -D_maxx=w_cols||
+# translit (comp.sources.misc v36i023): transliteration by table; SRC/translit/README.OSK.
+translit|translit|translit.c reg_exp.c reg_sub.c|||
 lame|lame|lame.c||/dd/LIB/rand.r|
 canfield|canfield|canfield.c||/dd/LIB/curses.l /dd/LIB/termlib.l /dd/LIB/rand.r|
 # atc -- Ed James's air traffic controller, 4.3BSD-Net/2.  Built on its SYSV

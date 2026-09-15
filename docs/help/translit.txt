@@ -1,0 +1,3 @@
+$ translit -?
+translit: illegal option -- ?
+Error: Usage: translit [-i inpfil] [-o outfil] [-t convtabfil] [convtabfil]

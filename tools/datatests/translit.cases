@@ -1,0 +1,25 @@
+family  translit
+setup   export PATH=/dd/CMDS
+setup   rm -rf /dd/tmp/TLIT > /nil 2>/nil; mkdir -p /dd/tmp/TLIT
+
+# The post's own KOI8 example, decoded with the disk's uudecode.  Its lines
+# end in CR LF, which autolf makes OS-9 lines.  koi8-tex.rus is found in
+# /dd/LIB/translit, not in the working directory.  The post's example.tex is
+# 9457 bytes; this is 9455, because two of its lines carry a leading space
+# the KOI8 text does not have -- measured, see SRC/translit/README.OSK.
+case    koi8-to-latex
+run     /dd/CMDS/ksh -c "cd /dd/tmp/TLIT; /dd/CMDS/uudecode /dd/SRC/translit/ORIG/example.ko8.UU"
+run     /dd/CMDS/ksh -c "cd /dd/tmp/TLIT; /dd/CMDS/autolf -C < example.ko8 > ex.ko8"
+run     /dd/CMDS/ksh -c "cd /dd/tmp/TLIT; /dd/CMDS/translit -t koi8-tex.rus -i ex.ko8 -o out.tex"
+run     /dd/CMDS/wc -c /dd/tmp/TLIT/out.tex
+expect  9455
+absent  Error
+
+# The same text in ALT, through KOI8 into LaTeX with two translits in a pipe:
+# the same 9455 bytes.
+case    alt-through-koi8-to-latex
+run     /dd/CMDS/ksh -c "cd /dd/tmp/TLIT; /dd/CMDS/uudecode /dd/SRC/translit/ORIG/example.alt.UU"
+run     /dd/CMDS/ksh -c "cd /dd/tmp/TLIT; /dd/CMDS/autolf -C < example.alt > ex.alt"
+run     /dd/CMDS/ksh -c "cd /dd/tmp/TLIT; /dd/CMDS/translit -i ex.alt -t alt-koi8.rus | /dd/CMDS/translit -t koi8-tex.rus -o out2.tex"
+run     /dd/CMDS/wc -c /dd/tmp/TLIT/out2.tex
+expect  9455

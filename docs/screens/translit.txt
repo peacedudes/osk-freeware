@@ -1,0 +1,8 @@
+translit -t koi8-lc.rus -i ex.ko8 | head -7
+A B V G D E JO ZH Z I J K L M N O P R S T U F KH C Ch Sh Shch " Y ' EH JU JA S
+a b v g d e jo zh z i j k l m n o p r s t u f kh c ch sh shch " y ' eh ju ja T
+                 (iz gazety SMoskovskie novostiT, 6.12.92)
+                               VYZOV   (chast' pervaja)
+    V kakoj suete my segodnja zhivjom.  Dazhe politika, i ta davno uzhe
+perestala nas zanimat'.  My obrashchaem na nejo vnimanie tol'ko togda, kogda
+naverkhu razgoraetsja ocherednaja svara.  Ne volnujut nas i mirovye problemy.
