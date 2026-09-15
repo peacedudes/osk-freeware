@@ -609,6 +609,7 @@ uniq|Text tools|Sort, compare & merge
 buildhash|Text tools|Spelling & words
 ispell|Text tools|Spelling & words
 anagram|Text tools|Spelling & words
+ag|Text tools|Spelling & words
 ispell_rebuilt|Text tools|Alternates
 jargon|Text tools|Spelling & words
 makelex|Text tools|Spelling & words

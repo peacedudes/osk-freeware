@@ -252,3 +252,9 @@ run     /dd/CMDS/soelim /dd/tmp/soela.r
 expect  text of b
 expect  after the include
 absent  .so /dd
+
+# ag (2026-09-15, comp.sources.games v12i082) reads GAMES/words by default.
+case    ag-finds-dormitory-in-dirty-room
+run     /dd/CMDS/ag "dirty room"
+expect  dormitory
+expect  dirty moor

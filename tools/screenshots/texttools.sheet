@@ -674,3 +674,13 @@ run     clear
 wait    1
 run     cat tmp/TXT/main.r; soelim tmp/TXT/main.r
 wait    3
+
+shot    ag
+size    24 80
+cap     Every phrase the disk's word list makes from the letters of dirty room,
+cap     dormitory among them.
+try     ag "dirty room"
+run     clear
+wait    1
+run     ag "dirty room"
+wait    6

@@ -993,6 +993,8 @@ jumble2|jumble2|jumble.c||/dd/LIB/rand.r|
 # getopt.c from SRC/arithmetic; repunsel (v07i005), its scanner made with the disk's flex.
 weekday|weekday|weekday.c getopt.c|||
 repunsel|repunsel|repunsel.c lex.yy.c|||
+# ag (comp.sources.games v12i082): Morten Lerskau Ronseth's anagram generator; SRC/ag2/README.OSK.
+ag|ag2|anagram.c|||
 lame|lame|lame.c||/dd/LIB/rand.r|
 canfield|canfield|canfield.c||/dd/LIB/curses.l /dd/LIB/termlib.l /dd/LIB/rand.r|
 # atc -- Ed James's air traffic controller, 4.3BSD-Net/2.  Built on its SYSV
