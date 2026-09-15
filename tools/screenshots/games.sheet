@@ -1871,3 +1871,25 @@ wait    6
 send    .
 wait    3
 snap
+
+shot    vcraps
+size    24 80
+cap     A $10 bet on the pass line, then r rolls the dice.
+try     vcraps
+run     clear
+wait    1
+run     vcraps
+wait    4
+send    \s
+wait    1
+send    \s
+wait    1
+send    \s
+wait    2
+send    p
+wait    1
+send    10\r
+wait    2
+send    r
+wait    6
+snap
