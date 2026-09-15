@@ -75,8 +75,9 @@ accounted for below. Nothing in this list is "unknown" any more.
 
 **A `cpp` defect -- and it is now MEASURED, not guessed.**
 
-  Microware's `cpp` bus-errors on a source line of **513 characters or more**;
-  `c68` stops at **1023**. Both measured 2026-08-23 -- see
+  Microware's `cpp` bus-errors on a source line of about **500 characters** --
+  511 at best, 505 after an #include (re-measured 2026-09-15); `c68` stops at
+  **1023**, measured 2026-08-23 -- see
   `notes/CPP-MACRO-CRASH.md`, whose title is now the only wrong thing left in
   it. It is not "nested macro expansion"; nesting is just how a line gets long.
 

@@ -1,4 +1,16 @@
-# Microware's `cpp` bus-errors on a source line of 513 characters or more
+# Microware's `cpp` bus-errors on a long source line -- around 500 characters, not one fixed length
+
+> **Re-measured 2026-09-15; the fixed figure below was wrong.**  Counting
+> characters without the CR: this file's own shape (main(){, an fputs line,
+> no #include) passes cpp at 511 and bus-errors at 512 -- one less than the
+> 2026-08-23 table.  A string initializer after `#include <stdio.h>` also
+> passes at 511, but an fputs line inside main() after that #include
+> bus-errors already at 505 (500 passes).  What comes before the line lowers
+> the limit.  The os9-dev skill session, bisecting its own construction, got
+> `**** source line too long ****` at 513-600 and silent aborts at 512 and
+> 735; every failing case here died with no message.  Keep joined lines well
+> under 500, and when cpp dies saying nothing, measure the longest joined
+> line first.
 
 > **The title of this file used to say "on nested macro expansion", and that
 > was wrong.** Nesting is not the cause, it is just the usual way a line gets
@@ -11,7 +23,7 @@ feeding each tool one-line files of rising length:
 
 | tool | limit | what happens past it |
 |---|---|---|
-| `cpp` edition 37 | **512 characters per line** | bus error at 513 — or, in some shapes, silent truncation |
+| `cpp` edition 37 | **about 500; 511 at best** (see the note above) | bus error, no message -- or, in some shapes, silent truncation or `source line too long` |
 | `c68` | **1022 characters per line** | `**** input line too long ****` at 1023 |
 
 Both are per LOGICAL line: `cpp` splices backslash-newline continuations

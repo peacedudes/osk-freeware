@@ -167,7 +167,7 @@ In rough order of how often it was the answer:
 | a header that IS in `SRC/COMPAT` still "can't open" | `$OS9COMPAT` is not set. `tools/build.sh` sets it; calling `rebuild.sh` directly used to fall back to a path that has not existed since this repo was split out. |
 | the error names something that is not on the command line at all | **SCF will not read a line longer than 512 bytes** — that is the OS, always has been, and there is nothing to fix. A longer command line arrives cut off. `mtools` has 45 sources and its `cc` line ran to 900 characters; it was cut mid-option and the error was `can't open /dd/DEFS/stdlib.h`. `rebuild.sh` measures the line it is about to type and compiles each source separately when it would be too long. |
 | unresolved symbols that are plainly IN the link | `l68` makes **one pass** per DISTINCT library FILE. A member calling another member further down the file is left unresolved — `zoo`'s `huf.c` wanted `putbits` from `io.c` 24 times. **Repeating `-l=x.l` does NOT buy another pass** (measured 2026-08-23 on mtools: five repetitions changed nothing). Give l68 COPIES under different names, which is what `compile_gcc` does. |
-| `E_BUSERR` from `cpp` itself | a source line of **513 characters or more** — measured, 2026-08-23. Nesting is not the cause, it is just how a line usually gets that long. Use the `CPP2` flag. See `notes/CPP-MACRO-CRASH.md`. |
+| `E_BUSERR` from `cpp` itself | a joined source line of about **500 characters** or more -- 511 at best, 505 after an #include (re-measured 2026-09-15; the 2026-08-23 figure of 513 was one high). Nesting is not the cause, it is just how a line usually gets that long. Use the `CPP2` flag. See `notes/CPP-MACRO-CRASH.md`. |
 | `cpp` reports nothing and the build fails anyway | in some shapes it does not crash on an over-long line, it **truncates and exits quietly**. Check the size of the `.m`, not the exit status. |
 | `**** input line too long ****` from `c68` | **1023 characters or more** — measured, same day. Only reachable through the `CPP2` path, because GNU cpp splices the backslash-newline continuations Microware's cpp keeps. `cpp2_fixup` re-wraps for this. |
 
@@ -231,7 +231,7 @@ it, followed by a line opening with a quote.
 
 **THE JOINED LINE THEN MEETS THE LINE LIMITS**, and they are per LOGICAL
 line, with backslash-newline continuations spliced BEFORE counting -- so
-continuation buys nothing.  Microware `cpp' bus-errors at 513 and `c68' stops
+continuation buys nothing.  Microware `cpp' bus-errors near 500 and `c68' stops
 at 1023.  Joining napoleon's constructs produced lines of 503 to 686
 characters, which is over cpp's limit and under c68's: that IS what `CPP2' is
 for, and it is why that recipe carries it.  One construct could not be joined
