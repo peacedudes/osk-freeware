@@ -332,6 +332,21 @@ Open:
      Plan rows go stale: ten were already shipped (memory
      os9-plan-rows-go-stale).  TOP's native tools are all duplicates or
      multi-user; B11 assessed; ASCII plasma left out; Toon incomplete.
+  2x. **agrep (1665fc8a), sgrep (f4a2b6f3), rogue 5.3 clone (520034e2).**  rogue's author put every system dependence in
+     machdep.c; its OSK arm taught three things worth knowing:
+     - **A comment can state an argument's sense backwards.**
+       md_control_keybord's comment says true sets the keyboard up; its
+       code, and start_window()'s call with 0, say false does.  Following
+       the comment left ^C/^E/ESC set during play and cleared at exit.
+     - **Two save/restore pairs that each restore a WHOLE _gs_opt copy
+       clobber each other.**  The keyboard pair saved after echo was off
+       and put echo back off after the echo pair had turned it on.  Restore
+       only the fields you changed.  Measured with castle's optprobe.
+     - **`#define getchar()' over <stdio.h>'s macro draws only a `redefined
+       macro' warning, and the build read keys wrongly until `#undef getchar'
+       came first.**  Evidence the first definition stays; not isolated.
+     Also: rogue keys its scores by USER, so a second nickname replaces the
+     entry -- two USERs are what shows fopen "r+w" keeps the file (it does).
   2n. **Two harness gaps, not yet fixed.**  tools/ansiscreen.py does no
      auto-wrap at column 80 (it clamps), so it cannot show what an am
      terminal does with a full row.  playtest.py's `expect' also searches
