@@ -14,8 +14,8 @@ This file exp  mi  ifnge  n         t          h  o do in the two cases
 where you mi lao n   nt-amadU     x to        t  t
             ght n  i a,wtheOfR u   no    o     e
 Why so many pr iwsn oatdihfdsil    kstrhngi   h
--------------- gramt ne dfi rteE atan.,eand   a
-              ---a-sh--e---ttettSmcrasgtme  ..
+------------- ogramt ne dfi rteE atan.,ean   T t
+             ----a-sh--e---ttettSmcrasgtmed ..a
 `cc -qixm` -- the-C--ib-aryeinarcaearnd trnt.handler rather than linked into
 every binary -- wa lth rnor- lnalyrtoeb  lap or OS-9, and it is why a starred
 program is often asfraetionmafwtaessizeeifd ftrap-free one.  Much of this
