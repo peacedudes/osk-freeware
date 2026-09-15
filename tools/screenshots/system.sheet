@@ -746,10 +746,10 @@ try     repeat 2 today
 run     repeat 2 today
 wait    4
 shot    cron
-cap     cron is a scheduling daemon: it reads SYS/crontab, then forks each
-cap     command at its minute, hour and day and runs until it is stopped.
-cap     It is not run here -- there is no screen for a daemon that waits --
-cap     so the screen shows the crontab it would act on.
+cap     cron is a scheduling daemon: it reads usr/lib/crontab and hands each
+cap     command to Microware's shell at its minute, hour and day, running
+cap     until it is stopped.  A daemon that waits has no screen of its own,
+cap     so this shows the crontab it acts on.
 try     cat usr/lib/crontab
 run     builtin cd /dd
 wait    1

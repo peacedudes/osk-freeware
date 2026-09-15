@@ -52,3 +52,4 @@ hist|Microware's shell, which runs each command typed at it|SRC/hist/h_main.c, s
 hist|a history file it can write, named as an argument; the default is /r0/history, on a RAM disk|DOC/hist/hist.doc; measured 2026-09-14: E$MNF opening /r0/history._
 rcsdiff|co in a directory named RCS inside CMDS, run through Microware's shell|strings: "%s/co -q -p%s %s >-%s", "/dd/cmds/rcs"; measured 2026-09-14 under the SDK shell
 rcsmerge|co in a directory named RCS inside CMDS, run through Microware's shell|strings: "%s/co -q -p%s %s >-%s", "/dd/cmds/rcs"
+cron|Microware's shell, which runs each crontab command|strings: "shell", "/dd/usr/lib/crontab"; DOC/cron/cron.txt: "The command field is a command line to be passed to the shell"
