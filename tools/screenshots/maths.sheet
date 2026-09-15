@@ -245,3 +245,25 @@ run     bc seventh.b
 wait    4
 run     bc -l pi.b
 wait    5
+
+shot    chemtab
+size    24 80
+cap     Iron, looked up by its symbol: 1 on the main menu, then 3, then Fe.
+try     chemtab
+run     clear
+wait    1
+run     chemtab
+wait    4
+send    \s
+wait    2
+send    n
+wait    1
+send    n
+wait    4
+send    1
+wait    2
+send    3
+wait    1
+send    Fe\r
+wait    4
+snap

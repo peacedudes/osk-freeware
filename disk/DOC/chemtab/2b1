@@ -1,0 +1,1 @@
+ChemTab - A Periodic Table Data Base (C) 1989 Jim King - Programmer's Manual								Page  P32b1a.  Adding an element to the program	1. Add the element to PERTABLE	2. Update tune.h (add one to MAXLM)	3. make install2b1b. Changing an element's figures	1. Update PERTABLE	2. no make is needed

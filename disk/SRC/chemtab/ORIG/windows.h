@@ -1,0 +1,1 @@
+/* * chemtab - a periodic table data base (C) 1990 Jim King (pulsar@lsrhs) * * windows.h	Curses WINDOW init */#include <curses.h>WINDOW	*srt,				/* Sort chrst window */	*graph,				/* Graph/table Window */	*mn,				/* Main Window */	*btm;				/* Bottom line */

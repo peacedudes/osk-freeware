@@ -776,6 +776,7 @@ mshell|none|it takes the menu file and nothing else
 printenv|printenv -?|
 getenv|getenv -?|
 checkenv|checkenv -?|
+chemtab|none|it has no options; it opens at its title page and every choice after that is a menu key
 exist|exist -?|
 expr|none|it takes an expression and nothing else
 if|if -?|

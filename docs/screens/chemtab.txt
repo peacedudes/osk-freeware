@@ -1,0 +1,24 @@
+Atomic Name: iron
+Atomic Symbol: Fe
+Atomic Number: 26
+Atomic Mass: 56
+
+Melting Temp: 1535 Celcius              Boiling Temp: 2750 Celcius
+
+Specific Heat: 0.11
+Density: 7.87
+Atomic Radius: 1.26 Angstroms
+
+Electronegativity: 1.8
+Discovery Year: ANCIENT, B.C.
+
+               Fe
+
+
+
+
+
+
+
+
+<< Press SPACE BAR to continue >>

@@ -999,6 +999,8 @@ ag|ag2|anagram.c|||
 perp|perp|perp.c|||
 # torus (comp.sources.games v12i066): robots on a torus; SRC/torus/README.OSK.
 torus|torus|good.c main.c opt.c robot.c score.c user.c|||
+# chemtab (comp.sources.misc v14i061): periodic table database; SRC/chemtab/README.OSK.
+chemtab|chemtab|cleanup.c dogph.c element.c esort.c looke.c main.c ptabl.c schar.c scrmisc.c vdata.c|||
 lame|lame|lame.c||/dd/LIB/rand.r|
 canfield|canfield|canfield.c||/dd/LIB/curses.l /dd/LIB/termlib.l /dd/LIB/rand.r|
 # atc -- Ed James's air traffic controller, 4.3BSD-Net/2.  Built on its SYSV

@@ -1,6 +1,6 @@
 # What is on this disk
 
-1043 programs of OS-9/68K community software, gathered from the archives that kept it and made to run again. **694 of them need nothing but this disk**; the rest want Microware's `cio`, marked below with a star.
+1044 programs of OS-9/68K community software, gathered from the archives that kept it and made to run again. **695 of them need nothing but this disk**; the rest want Microware's `cio`, marked below with a star.
 
 `DOC/INDEX` on the disk lists everything alphabetically. This is the same collection sorted by what each program is *for*, which is the more useful order when you do not yet know what you are looking for.
 
@@ -28,7 +28,7 @@
 | [System & modules](#system--modules) | 132 | OS-9 module and process tools, devices, system state and scheduling. |
 | [Disk & DOS](#disk--dos) | 20 | Reading and writing MS-DOS media with the mtools set. |
 | [Time & calendar](#time--calendar) | 18 | Calendars, clocks and astronomy. |
-| [Maths & calculators](#maths--calculators) | 16 | Calculators, plotting, orbits and number theory. |
+| [Maths & calculators](#maths--calculators) | 17 | Calculators, plotting, orbits and number theory. |
 | [Printing](#printing) | 11 | Spoolers, page formatting and PostScript. |
 | [Documentation](#documentation) | 5 | Pagers, readers and the help system. |
 | [G-Windows](#g-windows) | 6 | Programs for G-Windows, OS-9's graphical display.  There is no G-Windows here, so what their cards show is each one declining in its own words -- `Unable to access "/win" device', `dclock only runs under G-Windows', a status of 208 or 221.  None of them can be exercised without the display; they are listed for a real OS-9 workstation that has it. |
@@ -1698,7 +1698,7 @@
 
 *Calculators, plotting, orbits and number theory.*
 
-<details><summary>16 programs</summary>
+<details><summary>17 programs</summary>
 
 **Calculators**
 
@@ -1716,6 +1716,12 @@
 | `rechne` | &#9733; German command-line calculator: every answer in decimal, hex and binary at once. The expression is one argument with no spaces -- `rechne 4095+1' -- with operators + - x / m (modulo) a o p (and, or, xor) and $ for hex; -b lists the bits set<br>**How:** One expression, no spaces: `rechne 4095+1'. Operators + - x / m a o p; $ff is hex; -b lists the set bits. The other -xx switches decode status codes of the maker's own equipment. |
 | `rpn` | &#9733; reverse-Polish calculator on whole numbers. A number typed is pushed; the words add, sub, mul, div and mod combine the top two, and, or, xor and not work bitwise, pr prints an entry, pop discards one. After each line it shows the stack top and depth; ? lists the words, q leaves<br>**How:** Operators are words typed on their own line: 12, 34, add. A + sign is read as the number 0 and pushed. q leaves. |
 | `sc` | sc -- spreadsheet calculator (needs TERM)<br>**How:** The spreadsheet, version 6.16. `sc' opens and says "Type '?' for help". It reads TERMCAP as SYS/login sets it, so no `. /dd/SYS/termcap.entry' is needed first. |
+
+**Science**
+
+| | |
+|---|---|
+| `chemtab` | a periodic table database from the CRC Handbook: look up one element by name, number or symbol, select elements by up to three properties, mark them on the periodic table, or graph one property against another; full screen, menu keys<br>**How:** Full-screen. Space passes the title page; answer n (or y) to extra explanations and to keeping a transcript. On the main menu 1 looks up one element -- 3, then a symbol such as Fe and Return, shows its melting and boiling points, density, radius, electronegativity and discovery year; 2 selects elements by up to three properties, 3 lists them, 4 marks them on the periodic table, 5 graphs one property against another, 6 quits. Names are typed in lower case. The data is in LIB/chemtab and the manual pages in DOC/chemtab. |
 
 **Simulators**
 

@@ -1,0 +1,1 @@
+ChemTab - A Periodic Table Data Base (C) 1989 Jim King - Programmer's Manual								Page  P62c. Bugs to fix	1. Make all gets() routines VERY SMART	2. wgetnum doesn't accept delete	3. Erase all redefined variables	4. Make it faster!

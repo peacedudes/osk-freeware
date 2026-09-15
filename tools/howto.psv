@@ -268,6 +268,7 @@ if|bash's own `if' is a reserved word; `command if' reaches the one on this disk
 qp|Runs its expanded command through Microware's `shell'.
 xc|`xc <file>': lines beginning `% ' are commands, the rest is notes. It forks them through Microware's `shell' to run.
 checkenv|`checkenv <name> , <value>' with spaces round the comma. Meant to return an error when they differ; it returns 0 either way.
+chemtab|Full-screen. Space passes the title page; answer n (or y) to extra explanations and to keeping a transcript. On the main menu 1 looks up one element -- 3, then a symbol such as Fe and Return, shows its melting and boiling points, density, radius, electronegativity and discovery year; 2 selects elements by up to three properties, 3 lists them, 4 marks them on the periodic table, 5 graphs one property against another, 6 quits. Names are typed in lower case. The data is in LIB/chemtab and the manual pages in DOC/chemtab.
 hist|A command-line editor with C-shell-style history in front of Microware's shell, which runs each command it is given. `hist <file>' keeps the history in that file (the default is /r0/history, on a RAM disk); `h' lists it and `logout' leaves.
 run|`run '<program> <args>'' with PORT naming a terminal: the program runs with its input and output on that terminal.
 gcl|A full-screen digital clock: `gcl' runs until stopped, `gcl -n=10' for ten seconds; -s scrolls the digits, -i inverts the video.

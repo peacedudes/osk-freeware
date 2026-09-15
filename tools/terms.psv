@@ -125,6 +125,7 @@ chardef|No copyright or licence statement; the source names Uwe Simon, 1988.|SRC
 chbase|No copyright or licence statement; the binary says "OS9 Utility, created by Philip Maechler" and EFFO PD disk 1 lists it without terms.|CMDS/chbase (strings); EFFO/pd2.lzh member CMDS/chbase (identical), contents line 57
 checkalias|The Elm Mail System General Public License, (C) 1988-1992 USENET Community Trust and 1986-1987 Dave Taylor: copying and distribution permitted, at no charge.|DOC/elm/Notice
 checkenv|Copyright 1988 Cowen Software Ltd. "It is made available for any OS9/68K user freely, but may not be sold for profit, other than a reasonable handling charge."|SRC/checkenv/checkenv.c lines 14-18
+chemtab|No licence grant: the post states no terms, and each source file carries only "(C) 1990 Jim King".|SRC/chemtab/ORIG/main.c line 2; SRC/chemtab/ORIG/README
 checkfile|Copyright (c) 1992 by John R. Wainwright. "Permission is granted for any non-commercial use."|DOC/checkfile/checkfile.doc lines 3-5; SOURCES.txt lines 333-343
 checkgame|GNU Chess 4.0 utility. "Copyright (c) 1992 Free Software Foundation"; GNU GPL "version 2, or (at your option) any later version".|GAMES/gnuchess4.0.lzh member GNUCHESS4.0/SRC/checkgame (identical); SRC/gnuchess/GNUCHESS4.0/SRC/checkgame.c lines 6-12
 checksum|(c) 1992 by L.Zeller. Public, EFFO Forum 23|DOC/checksum/info_checksum
