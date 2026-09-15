@@ -1401,10 +1401,15 @@ triaged by size, files, curses and stated terms.  Done or decided:
                 DOC/chemtab; looke.c is continued across shar parts 1-2
     vcraps2     DONE as vcraps (c001e096) -- patches 1-2 applied, rand, w_cols,
                 one Return case, getopt, ESC freed from SCF's end of file
-    translit    IN PROGRESS: builds; its tables name end-of-line as 0x0A,
-                so under OSK input CR is read as LF and output LF written as
-                CR, and the KOI8 example then matches the post's
-                example.tex except two leading spaces its input lacks
+    translit    DONE (f15d0115) -- the whole package; tables name end-of-line
+                as 0x0A, so under OSK CR is read as LF and LF written as CR;
+                the post's KOI8 and ALT examples, decoded on OS-9 with
+                uudecode and `autolf -C', give its example.tex except two
+                leading spaces the input lacks.  toos9's INDEX entry named
+                `autolf -l -C', which converts nothing (fixed, 13ffcea2)
+    trek73      DONE (b20bcb93) -- parser and scanner made on OS-9 with
+                yacc and flex, flex fed through YY_INPUT, the timed prompt's
+                interrupted read handed to check_signal(), no saved games
     yid-slots   HELD with smiley (FOR-RDOGGETT 24): a slot machine of
                 stereotyped Jewish names
     scamper     NOT SHIPPED: X11/Xlib only
@@ -1412,6 +1417,14 @@ triaged by size, files, curses and stated terms.  Done or decided:
                 display monitor; it writes PPM the disk's netpbm reads
     banners     DEFERRED: thirteen banner programs; banner, cursive and
                 gothic are already on the disk
+    look_rac    ALREADY ON THE DISK as look (Net/2)
+    revcat_db   NOT SHIPPED: backwards cat, which tac does
+    more-xmas   NOT SHIPPED: a reply carrying a joke, not a program
+    ogre        NOT FETCHED: the post's directory is empty
+    map, poker, queens, clock, rain -- these posts are other programs than
+                the disk's of the same names (disk blocks, SNOBOL poker, an
+                IOCCC entry, misc.ar's clock, toys.ar's rain); not yet
+                looked at
     craps       DEFERRED: link() lock on its score list, a crypt() cheat, a
                 fork()/execl("/bin/csh") shell escape, BSD random, and every
                 key read with getchar(), which on OS-9 waits for a line; its
