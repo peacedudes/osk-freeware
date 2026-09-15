@@ -6,7 +6,8 @@ family  tail
 # else's name.
 #
 # Two entries were WRONG and are corrected out of this batch: `checkfile' is a
-# cheque-book program and not a C source checker, and `rsconvert' crashes.
+# cheque-book program and not a C source checker, and `rsconvert' crashed
+# (it runs since its memory size was raised; see its case below).
 
 setup   export TERM=vt100
 setup   export TERMCAP=/dd/SYS/termcap
@@ -116,12 +117,14 @@ expect  sc Quick Reference
 expect  C:   Cursor movement commands
 expect  N:   Financial functions
 
-# KNOWN DEFECT. rsconvert prints its own banner into the output and then
-# takes a Stack Overflow, bare and with a file.
-case    rsconvert-crashes-after-printing-its-banner
-run     /dd/CMDS/rsconvert
+# rsconvert used to take a Stack Overflow straight after its banner: its
+# module asked for 11.2k and its yacc parser needs more.  Its memory size
+# is 32k since 2026-09-14, and it converts.  netpbm6.cases has the
+# fuller rayshade-3 conversion; this pins the bare, standard-input form.
+case    rsconvert-reads-standard-input-without-overflowing
+run     /dd/CMDS/rsconvert < /nil
 expect  /* Converted by rsconvert */
-expect  Stack Overflow
+absent  Stack Overflow
 
 case    the-two-boyer-moore-tests-want-a-pattern
 run     /dd/CMDS/bmgtest

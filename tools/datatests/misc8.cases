@@ -45,12 +45,12 @@ expect      -piFLOAT Set double pi [default: 0.000000]
 # It cannot be a case in the new state either. It asks whether to create
 # `/dd/sys/nodedef', times out on the keyboard, draws its whole Process
 # Monitor screen -- `OS9/68k V4.16 Process Monitor V6.1', a task table, two
-# percentage rules -- and then takes a BUS ERROR at F$GPrDsc, the
-# get-process-descriptor call. That is the same os9exec gap `devprc -a' and
-# `top' meet at F$GPrDBT. A case whose session took an exception fails by
-# the harness's own rule, and that rule is right.
-#
-# So sysmon belongs on its gallery card, which shows the screen it draws.
+# percentage rules.  It walks the process table one id at a time with
+# F$GPrDsc; until os9exec 143152b (2026-09-14) ids past the table read host
+# memory and sometimes answered success, and sysmon took a BUS ERROR.  It
+# now stops at E$IPrcID.  It is still not a case -- it is a full-screen
+# monitor that runs until stopped -- so tools/playtests/sysmon.keys plays
+# it, and its gallery card shows the screen it draws.
 # THE LESSON IS THE OTHER ONE: an assertion about the EMULATOR's version is
 # an assertion about a moving target, and this is the only one there was.
 
