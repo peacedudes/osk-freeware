@@ -1,0 +1,22 @@
+name    bugs
+prog    bugs
+# Accept level 0 and speed 1, let pieces fall, move and turn one, quit.
+rate    0.5
+wait    4
+key     \r
+wait    2
+key     \r
+wait    3
+snap    board
+wait    4
+key     h
+key     a
+wait    2
+key     l
+key     s
+wait    3
+snap    moved
+key     q
+wait    3
+expect  Score:
+expect  Level:

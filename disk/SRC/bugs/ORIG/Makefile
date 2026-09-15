@@ -1,0 +1,1 @@
+#makefile for BUGS I - SRN 7/12/91 OBJS= main.o startup.o loop.o meat.o#bugs : &  $(OBJS)bugs :  $(OBJS)   #use above line if parallel processing is not supported	cc -O -o bugs $(OBJS) -lcurses -ltermcap $(OBJS):  info.h	clean: 	rm -f *.o core temp.c a.out

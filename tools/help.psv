@@ -1008,6 +1008,7 @@ psychic|none|it takes one optional argument, how many messages to print (three b
 lotto|lotto -?|
 knight|none|it takes no options; it asks whether you want instructions, and they list the keys
 bks|none|it takes no options; its menu lists the keys
+bugs|none|it takes no options; j and k set the level and the speed at its first two prompts, and Return accepts each
 sol|none|it takes no options; h at its cmd prompt lists the commands
 solx|none|it takes no options; h at its cmd prompt lists the commands
 calcdate|calcdate|

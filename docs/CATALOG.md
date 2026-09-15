@@ -1,6 +1,6 @@
 # What is on this disk
 
-1051 programs of OS-9/68K community software, gathered from the archives that kept it and made to run again. **702 of them need nothing but this disk**; the rest want Microware's `cio`, marked below with a star.
+1052 programs of OS-9/68K community software, gathered from the archives that kept it and made to run again. **703 of them need nothing but this disk**; the rest want Microware's `cio`, marked below with a star.
 
 `DOC/INDEX` on the disk lists everything alphabetically. This is the same collection sorted by what each program is *for*, which is the more useful order when you do not yet know what you are looking for.
 
@@ -22,7 +22,7 @@
 | [Encoding & conversion](#encoding--conversion) | 30 | Between text encodings, line endings, Macintosh formats, ciphers and hashes. |
 | [Communications](#communications) | 98 | Kermit in several builds, terminal sessions, and networking. |
 | [Graphics & images](#graphics--images) | 195 | The netpbm toolkit, JPEG, a ray tracer, and things that draw. |
-| [Games](#games) | 109 | Adventures, board and card games, arcade ports, dungeon crawls and puzzles. |
+| [Games](#games) | 110 | Adventures, board and card games, arcade ports, dungeon crawls and puzzles. |
 | [Screen toys](#screen-toys) | 10 | Animations and screen effects -- they draw on the terminal rather than print to it. Some run until you stop them. |
 | [Amusements](#amusements) | 32 | Generators, simulators and diversions that are not quite games. |
 | [System & modules](#system--modules) | 132 | OS-9 module and process tools, devices, system state and scheduling. |
@@ -1194,7 +1194,7 @@
 
 *Adventures, board and card games, arcade ports, dungeon crawls and puzzles.*
 
-<details><summary>109 programs</summary>
+<details><summary>110 programs</summary>
 
 **Adventure & fiction**
 
@@ -1213,6 +1213,7 @@
 | | |
 |---|---|
 | `bks` | Brickstop: catch the falling bricks on a paddle before they pile up to it -- `,' and `.' move, q leaves the game; high scores in GAMES/BKS<br>**How:** Full-screen. p starts a game: bricks fall at the left, and `,' or `<' and `.' or `>' move the paddle to catch them before the pile reaches it. q leaves the game and shows the high scores (kept in GAMES/BKS/hiscores); m returns to the menu and q there quits. ESC, which the menu calls pause, does nothing here. |
+| `bugs` | a Dr. Mario lookalike: two-letter pieces fall into a bottle of bugs, and four alike in a row clear them; h and l move, a and s turn, space drops, p pauses, q quits<br>**How:** Full-screen Dr. Mario lookalike. j and k choose the level, then the speed, each accepted with Return. Pieces of two letters fall into the bottle, where the bugs are letters in reverse video or underlined; four of the same letter in a row, across or down, are cleared. h and l move the falling piece, a and s turn it, space drops it, p pauses and q quits. |
 | `greed` | Greed: the screen is a field of digits and `@' is you. Move with the vi keys to eat that many digits in that direction, until no move is left<br>`Usage: /dd/CMDS/GAMES/greed [-p] [-s]` |
 | `lander` | lunar lander -- space starts a game, a digit sets the power, x or k is vertical thrust, z/j and c/l the side retros.  Its score file is GAMES/lander.hs, looked for under /h0, so mount the disk there as well<br>**How:** Full-screen. Space starts a descent, a digit sets the engine power, `x' or `k' fires the main thruster and z/j and c/l the side retros. `q' quits. |
 | `mw` | &#9733; Mazewar for up to eight players, each at a terminal of the same system, in one maze seen from above: `w' walks, `a' and `d' turn, `s' shoots, `m' drops a mine, `n' builds a wall and `Q' quits.  You score only by killing another player, and `mw -l=5' starts a computer player to hunt.  Its maze is USR/GAMES/LIB/MAZEWAR, found with this disk as /h0<br>**How:** Full-screen maze game for up to eight players on one system. `w' walks, `a'/`d' turn, `s' shoots, `m' mines, `n' walls, `Q' quits; `mw -l=5 >/nil &' first starts a computer player to play against. Needs cio; its maze is USR/GAMES/LIB/MAZEWAR. |

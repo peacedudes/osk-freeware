@@ -1949,3 +1949,18 @@ run     clear
 wait    1
 run     wf -x 12 -y 12 -t Words
 wait    5
+
+shot    bugs
+size    24 80
+cap     Level 0: a two-letter piece falls into the bottle of bugs, and four
+cap     letters alike in a row, across or down, clear them.
+try     bugs
+run     clear
+wait    1
+run     bugs
+wait    4
+send    \r
+wait    2
+send    \r
+wait    5
+snap
