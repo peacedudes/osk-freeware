@@ -1316,8 +1316,12 @@ triaged by size, files, curses and stated terms.  Done or decided:
     chop        NOT SHIPPED: fields and columns, which cut, colrm and field do
     halign      NOT SHIPPED: aligns columns, which column does
 
-Still open (small and self-contained first): hanoi, telewords, anagram,
-psychic, lotto, revcat, spiro, knight, bks, ufo, therm (curses), then
+    hanoi, hanoimod, telewords, telenum, anagram, psychic, lotto
+                DONE (d63c88c4) -- telenum had the putchar double evaluation,
+                hanoimod under-allocated, lotto asked forever at end of input
+
+Still open (small and self-contained first): revcat, spiro, knight, bks,
+ufo, therm (curses), then
 the larger games -- craps, vcraps2, torus (robots2 descendant), perp,
 thricken, malawi, sol2, jumble2, yid-slots, bj2, connect4, skewlife, mz,
 dinkum2 (410K adventure), trek73 (409K) -- and the rest: ag2, xmascard,

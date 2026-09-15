@@ -387,6 +387,13 @@ Open:
      emulator underneath kept running until datatest's own inner timeout.
      Give datatest its own timeout rather than wrapping it, and keep its
      last lines visible.
+     **From the Unix posts (notes/PLAN-acquisitions, "The 135 Unix posts"):**
+     choose and pig (1ac41c32); hanoi, hanoimod, telewords, telenum,
+     anagram, psychic and lotto (d63c88c4).  telenum was the third program
+     today with putchar's double evaluation -- `telenum hello' printed 456
+     on a terminal.  A card's shown screen is the check on its caption:
+     anagram's said "the words hiding in parsley" over a screen showing only
+     parsley, and gen_screens scored it fine.
   2n. **Two harness gaps, not yet fixed.**  tools/ansiscreen.py does no
      auto-wrap at column 80 (it clamps), so it cannot show what an am
      terminal does with a full row.  playtest.py's `expect' also searches
