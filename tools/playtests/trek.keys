@@ -1,0 +1,31 @@
+name    trek
+prog    trek
+# Star Trek: a short game at novice skill, one short-range scan, then
+# terminate and decline another game.
+rate    0.4
+size    24 80
+wait    4
+key     \r
+wait    2
+keys    s
+key     \r
+wait    2
+keys    n
+key     \r
+wait    2
+keys    x
+key     \r
+wait    4
+snap    setup
+keys    s
+key     \r
+wait    3
+snap    scan
+keys    terminate
+key     \r
+wait    2
+keys    n
+key     \r
+wait    3
+expect  Klingons
+expect  Command

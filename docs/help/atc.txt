@@ -1,0 +1,2 @@
+$ atc -u
+Usage: /dd/CMDS/GAMES/atc -[u?lstp] [-[gf] game_name] [-r random seed]

@@ -105,6 +105,8 @@ calen|No copyright or licence statement in SRC/hc_loose or its documentation. Th
 cal|Shareware, "Copyright 1995 Bob van der Poel Software". "Under our shareware agreement you have no obligation to register"; the requested fee is $20. "You are free to redistribute this software by any means" unchanged and without charging a fee.|CMDS/cal.lzh member docs.txt lines 20-39 and registration.txt line 7; member dd/cmds/cal (identical)
 cam|No copyright or licence statement in SRC/tekdemos or its documentation. The source has no comments.|SRC/tekdemos/cam.c
 canfield|BSD. Copyright (c) 1980 Regents of the University of California; the usual Berkeley notice is at the head of the source.|SOURCES.txt line 1032
+atc|BSD. Copyright (c) 1990 Regents of the University of California, with the four-clause Berkeley notice; and Copyright (c) 1987 Ed James, copy permission granted provided the notice is retained.|SRC/atc/main.c lines 1-43; SOURCES.txt, atc
+trek|BSD. Copyright (c) 1980 Regents of the University of California, with the four-clause Berkeley notice at the head of each source.|SRC/trek/main.c lines 1-32; SOURCES.txt, trek
 card|No copyright or licence statement in SRC/card or its documentation. The header reads "Christmas Card From Hanoi --- by Istvan Mohos, 1984".|SRC/card/card.c line 7
 casefix|Copyright 1990 Jeff Beadles. "Permission is granted to copy this at no charge, as long as the copyright message remains intact."|SRC/hc_loose/casefix.c lines 17-19
 cat|No licence grant: the binary carries only "cat.c 1.8 (c) Copyright S. M. Ryger 1987 Berlin". The sh 7.5 package that ships it says only that it is "licensed free of charge" with no warranty.|CMDS/cat (strings); SHELLS/sh75.lzh members CMDS/cat (identical) and DOC/sh.doc lines 26, 119

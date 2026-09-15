@@ -1,6 +1,6 @@
 # What is on this disk
 
-1001 programs of OS-9/68K community software, gathered from the archives that kept it and made to run again. **656 of them need nothing but this disk**; the rest want Microware's `cio`, marked below with a star.
+1003 programs of OS-9/68K community software, gathered from the archives that kept it and made to run again. **658 of them need nothing but this disk**; the rest want Microware's `cio`, marked below with a star.
 
 `DOC/INDEX` on the disk lists everything alphabetically. This is the same collection sorted by what each program is *for*, which is the more useful order when you do not yet know what you are looking for.
 
@@ -22,7 +22,7 @@
 | [Encoding & conversion](#encoding--conversion) | 29 | Between text encodings, line endings, Macintosh formats, ciphers and hashes. |
 | [Communications](#communications) | 97 | Kermit in several builds, terminal sessions, and networking. |
 | [Graphics & images](#graphics--images) | 195 | The netpbm toolkit, JPEG, a ray tracer, and things that draw. |
-| [Games](#games) | 86 | Adventures, board and card games, arcade ports, dungeon crawls and puzzles. |
+| [Games](#games) | 88 | Adventures, board and card games, arcade ports, dungeon crawls and puzzles. |
 | [Screen toys](#screen-toys) | 9 | Animations and screen effects -- they draw on the terminal rather than print to it. Some run until you stop them. |
 | [Amusements](#amusements) | 25 | Generators, simulators and diversions that are not quite games. |
 | [System & modules](#system--modules) | 132 | OS-9 module and process tools, devices, system state and scheduling. |
@@ -1181,7 +1181,7 @@
 
 *Adventures, board and card games, arcade ports, dungeon crawls and puzzles.*
 
-<details><summary>86 programs</summary>
+<details><summary>88 programs</summary>
 
 **Adventure & fiction**
 
@@ -1271,6 +1271,7 @@
 | | |
 |---|---|
 | `ask` | the client for `wisecrack': it reads one line from /pipe/txtpipe and prints it, and says `No Wisecracks coming' when nothing is feeding the pipe. Start the server first -- `wisecrack &' -- and it answers<br>**How:** The reader for `wisecrack': it takes the next slogan from the pipe wisecrack writes to and prints it, one a call, in German. Start the server first -- `wisecrack &' -- or ask says "No Wisecracks coming". From EFFO forum 20. |
+| `atc` | Air Traffic Controller: guide the planes on the radar from airport or entry point to the destination each one shows, at the right altitude, without letting two meet.  Talk to a plane by its letter -- `a' and a digit sets altitude and takes off, `t' and a direction key turns -- RETURN sends it and `?' shows what may come next.  `atc -l' lists the airports, `-g easy' picks one; ^C quits.  GAMES/ATC holds the airports and the score list<br>**How:** Full-screen air traffic control. `atc -l' lists the airports and `atc -g easy' picks one. Type a command to a plane by its letter: `a' and a digit sets altitude (and takes off), `t' and a direction key turns; RETURN sends it, `?' lists what may come next, ^L redraws and ^C asks to quit. Its airports are in GAMES/ATC. |
 | `backgammon` | &#9733; backgammon, with a computer opponent<br>`Syntax: backgammon [<opts>] [<file>]` |
 | `convert` | starts the WORLD text adventure: run it and the game opens with its banner, the opening paragraph and a `>' prompt<br>**How:** It STARTS the `world' adventure -- run it and the game opens. |
 | `corewar` | Core War: two Redcode battle programs fight for control of a circular memory.  `corewar <cycles> a.e b.e' runs the fight and maps the core -- a 1 or a 2 marks the cells each program holds -- as the cycles count down.  Assemble warriors with cwasm; twelve samples are in GAMES/COREWARS |
@@ -1284,6 +1285,7 @@
 | `stone` | &#9733; the stones game (SNOBOL4-in-C).  Data: GAMES/SNOBOL |
 | `teachgammon` | &#9733; backgammon that teaches you the game as you play<br>`Syntax: backgammon [<opts>] [<file>]` |
 | `tess` | &#9733; Beyond the Tesseract, a text adventure whose puzzles draw on physics and mathematics: two-word commands, about two hundred words understood, and -f skips the title and scenario |
+| `trek` | Star Trek at the Command: prompt -- choose a length, a skill and a password, then hunt the Klingons across the galaxy before time runs out.  `s' is the short-range scan, `l' the long range, `m' moves, `p' phasers, `t' torpedoes, `do' docks at a starbase; `help' lists every command and `terminate' ends the game.  `dump' saves it to trek.dump<br>**How:** Line-by-line game at a Command: prompt. RETURN past the banner, then answer the length (s/m/l), skill (n/f/g/e/c/i) and a password. `s' is the short-range scan, `l' the long range, `help' lists the commands, `terminate' ends the game and `n' at `Another game' leaves. |
 | `vtxtcn` | world - build its text tables.  Writes .inc files; needs world's .dat files in the current directory |
 | `wisecrack` | a server, and `ask' is its client. Run it in the background and every `ask' pulls one line out of it through /pipe/txtpipe -- slogans from a German OS-9 seminar, 1992-93. `wisecrack & ask "anything"' |
 | `world` | World - text adventure |

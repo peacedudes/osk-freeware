@@ -762,6 +762,55 @@ snap
 send    Q
 wait    5
 
+shot    trek
+size    24 80
+cap     A short game at novice skill, and the short-range scan of the first
+cap     quadrant: the Enterprise is E, a starbase #, stars *, and beside the
+cap     grid the ship's stardate, condition, energy, torpedoes and shields.
+cap     `help' lists the commands; `terminate' ends the game.
+try     trek
+run     export TERM=vt100
+wait    1
+run     clear
+wait    1
+run     trek
+wait    4
+send    \r
+wait    2
+send    s\r
+wait    2
+send    n\r
+wait    2
+send    x\r
+wait    4
+send    s\r
+wait    4
+snap
+send    terminate\r
+wait    2
+send    n\r
+wait    3
+
+shot    atc
+size    24 80
+cap     The easy airport a few seconds in: the radar with its exits round the
+cap     edge, airport 0 and a beacon, and the first plane as its letter and
+cap     altitude.  Beside it the clock, the count of planes brought in safely,
+cap     and each plane with where it is bound.  Talk to a plane by its letter;
+cap     `?' lists what may come next, ^C quits.
+try     atc -g easy
+run     export TERM=vt100 USER=tester
+wait    1
+run     clear
+wait    1
+run     atc -g easy
+wait    14
+snap
+send    \003
+wait    3
+send    y
+wait    6
+
 shot    larn
 cap     Larn: the dungeon is drawn as you find it, letters for what is in
 cap     it, and the two lines at the foot are your spells, armour class,

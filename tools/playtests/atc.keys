@@ -1,0 +1,19 @@
+name    atc
+prog    atc -g easy
+# Air Traffic Controller on the easy airport: let the radar draw and a plane
+# appear, ask for the input list, then interrupt and confirm the quit.
+rate    0.8
+size    24 80
+setup   export USER=tester
+wait    14
+snap    radar
+key     ?
+wait    3
+snap    help
+key     \003
+wait    4
+snap    quit
+key     y
+wait    6
+expect  Time:
+expect  Really quit?

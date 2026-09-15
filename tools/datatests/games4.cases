@@ -61,3 +61,40 @@ run     /dd/CMDS/wc -c $W/vt/q1text.dat $W/vt/qtext.inc $W/vt/objdes.inc
 expect  packed:    33490 unpacked:     5049
 expect  77824 /dd/tmp/GM4/vt/q1text.dat
 expect  11460 /dd/tmp/GM4/vt/qtext.inc
+
+# atc (2026-09-15) reads its airports from GAMES/ATC.  The list comes from
+# Game_List, the first name is the default game, and the path it prints is the
+# directory the airport files are opened in.
+case    atc-lists-the-five-shipped-airports
+run     /dd/CMDS/GAMES/atc -l
+expect  available games:
+expect  default
+expect  crossover
+expect  Killer
+expect  game_2
+
+case    atc-looks-for-its-airports-in-games-atc
+run     /dd/CMDS/GAMES/atc -p
+expect  /dd/GAMES/ATC
+
+case    atc-prints-the-score-list-header
+run     /dd/CMDS/GAMES/atc -s
+expect  planes safe
+absent  atc_score:
+
+# trek (2026-09-15) reads its answers with getchar(), so a game can be fed on
+# standard input: RETURN past the banner, a short novice game, a password,
+# one short-range scan, then terminate and no second game.
+case    trek-sets-up-a-game-and-scans-the-first-quadrant
+run     echo "" > $W/trek.in
+run     echo s >> $W/trek.in
+run     echo n >> $W/trek.in
+run     echo x >> $W/trek.in
+run     echo s >> $W/trek.in
+run     echo terminate >> $W/trek.in
+run     echo n >> $W/trek.in
+run     /dd/CMDS/GAMES/trek < $W/trek.in
+expect  It takes 250 units to kill a Klingon
+expect  Short range sensor scan
+expect  Klingons left
+expect  Another game

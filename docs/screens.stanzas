@@ -46,6 +46,7 @@ ascii 71a1f702a9db128e
 asciitopgm 7c6bbc6e3462ba38
 ask a0eca08265a42f49
 assembler 3a47d5c44d338908
+atc a2145079094e4da2
 ateri 1dfe3010a8427fcd
 aterm b592f62627fbfff1
 atob 739e7317bfb0523b
@@ -787,6 +788,7 @@ transfer a5b5f2a0a0001d1c
 trap 826cf28c3665cc74
 travesty a7b61d3796043c40
 tree f30a33dfb68549f7
+trek 71b2b7634ad40581
 trunc ed788a65427308da
 tsmon2 2d2223ddf831d141
 tsort 67fdabd5ebfb61eb
