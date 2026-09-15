@@ -30,7 +30,8 @@ Open:
   1. **os9exec: I$MakDir onto an existing DIRECTORY on an RBF image answers
      E$FNA; an existing file, or a host dir, answers E$CEF.**  Reported to
      os9exec-d9 with a repro; they will check the Technical Manual.  This is
-     perl's "mkdir answers E$FNA".  perl's rmdir is a known absence
+     perl's "mkdir answers E$FNA".  FIXED in d74b174: makdir and perl's
+     mkdir both give E$CEF now (measured).  perl's rmdir is a known absence
      (README-OSK); s2p is a shell script and is deliberately not built.
   1a. **os9exec F$GPrDsc bound check: FIXED in 143152b** (unpushed).  sysmon
      now stops walking at E$IPrcID and draws its monitor; its stanza runs
