@@ -204,3 +204,17 @@ line is recorded in `tools/terms.psv` or the handoff.
    Near matches exist: Microware archive 4066, gcc 1.37.1 OS-9 source; and
    4072, gcc 2.7.2.  Neither is the version shipped.  Keep the binaries
    without source, fetch the near matches, or remove those binaries?
+
+21. **TOP's omega and cpp: two to decide before either ships** (2026-09-15).
+   - `omega` 0.71 beta (TOP release 2's OS-9 build, 540K, with its data
+     and 1989 score lists; needs no runtime module) runs here with
+     `. /dd/SYS/termcap.entry`: the
+     welcome, the rulers list, the character question.  Brothers's licence
+     (LIB/olicense.txt) allows free copying and distribution, but "the
+     modifications are not distributed without my consent" -- and an OS-9
+     build is a modified omega, consent unknown.  Ship it, or leave it?
+   - `cpp` is TOP's OS-9 build of the public-domain DECUS C preprocessor
+     (needs cio).  It works -- macros, #if, local includes -- and writes
+     Microware's `#P`/`#5` line markers: it was built to replace
+     Microware's own `cpp` pass.  Shipped as `cpp`, it could be what a real
+     system's `cc` finds.  Ship it as `cpp`, under another name, or not?
