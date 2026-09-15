@@ -1,6 +1,6 @@
 # For rdoggett
 
-Open questions only. Nothing here is decided. Updated 2026-09-14 (late).
+Open questions only. Nothing here is decided. Updated 2026-09-15.
 
 ## Yours alone -- nothing I can do about these
 
@@ -28,6 +28,11 @@ Open questions only. Nothing here is decided. Updated 2026-09-14 (late).
    paths on one RBF sector lost each other's writes, so every `move' left
    two names on one file -- image corruption.  b3145c3 also carries
    143152b (F$GPrDsc read past its process table).  All unpushed.
+
+   **Now better still: 40facae** (2026-09-15).  F$Alarm ignored the bit that
+   means 256ths of a second, so no alarm() from the disk's unix.l ever
+   fired.  atc's clock runs only on 40facae or later; its card and
+   play-test are shot against that build.  Also unpushed.
 
 3. **Nobody has tried this on real hardware.** The guides say so plainly.
    If you know someone with a real system, that is the paragraph to check.

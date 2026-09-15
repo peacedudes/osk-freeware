@@ -174,6 +174,81 @@ Open:
      MNews is next and large: whole package as source (inews, rnews,
      sendbatch, nn 6.3); its licence forbids shipping only part of it
      (PLAN-acquisitions B9).
+  2p. **atc (4.3BSD Net/2, Ed James) in progress**: disk/SRC/atc (ORIG +
+     port), GAMES/ATC, CMDS/GAMES/atc built clean (70,778 b).  Built on the
+     source's own SYSV path with OSK guards (README.OSK).  grammar.c/lex.c
+     generated ON OS-9 by the disk's yacc -d and flex -S/dd/LIB/flex.skel,
+     both exit 0 -- dogfood that worked first time.  Four build findings,
+     each a general trap: (1) a 53K local array -> as68 `value out of
+     range' (16-bit displacement); (2) the same array static -> l68
+     `non-remote data allocation ... exceeds 64k'; malloc fixed both;
+     (3) the disk's flex skeleton omits the yywrap() macro under OSK, so the
+     program must supply yywrap(); (4) curses.l defines update(), so a game
+     function named update clashes at link.  atan2 is only in blarslib.l;
+     unix.l's alarm() sends signal 5 and DEFS/signal.h has no SIGALRM.
+     **UNBLOCKED: os9exec-d9 fixed it in 40facae** (fix/scf-pd-eor, not
+     pushed; built in scratchpad os9r).  Re-measure alarmtest/readtest/
+     sigtest/cursestest and atc on that binary with OS9EXEC=<os9r>/os9exec --
+     every harness honours OS9EXEC.  The report as filed:
+     **was BLOCKED on an os9exec bug, reported to os9exec-d9 2026-09-15:** F$Alarm
+     ignores bit 31 of d3 (Microware: bit 31 set = 256ths of a second), so
+     unix.l's alarm() -- d3 = secs<<8 | $80000000 -- never fires and atc's
+     clock never ticks.  Measured with scratchpad sigpool/alarmtest:
+     `alarm=0 errno=0 caught-after-sleep=0'.  os9exec's own F$Sleep decodes
+     the bit.  The radar draws; keys do nothing; a BEL flood follows (its
+     getAChar gets -1 in a loop -- not yet explained, re-measure once alarms
+     fire).  Microware also says an alarm during I$Read makes the read return
+     an error, so the SYSV EINTR retry is right in shape; which error number
+     (probably the signal code, per the error table) is unmeasured, and
+     include.h's EINTR 0x40 is a placeholder until then.  Uncommitted: SRC/atc,
+     GAMES/ATC, CMDS/GAMES/atc, recipe, games4 cases, catalogue rows -- the
+     gate is red until INDEX and card exist.  Skills gaps (F$Alarm encoding;
+     ipc.md "resume the wait" vs I$Read) sent to os9-dev-skill-fc.
+     **CORRECTION, measured on 40facae:** the frozen clock was ATC'S bug, not
+     os9exec's.  unix.l's signal() never calls a handler asynchronously: it
+     installs intercept(sig_catch), which only stores _last_signal_, and the
+     handler runs when the program calls check_signal().  Every `caught=0'
+     above was that, on any emulator -- the F$Alarm bit-31 fix still stands
+     on code reading and os9exec's own tests; both sessions told.  Measured:
+     Microware intercept() delivery works; an alarm during read()/readln()
+     returns -1 with errno = the signal code (5), as Microware specifies;
+     stdio then keeps ferror(stdin) set, so getchar() fails at once until
+     clearerr() -- that was the BEL flood.  Fix in graphics.c getAChar:
+     on -1 with errno==SIGALRM, clearerr + check_signal() + retry.
+     **atc PLAYS on 40facae** (measured 2026-09-15): the clock ticks (Time 1,
+     2, 3), a plane holds at the airport, ^C reaches quit() through
+     check_signal() and asks `Really quit?', no BEL.  Its getAChar retry
+     takes any signal code 1-31, not only SIGALRM, because ^C (3) aborts the
+     read the same way.  On quit it printed `getpwuid failed for uid 0':
+     blarslib.l's getpwuid (linked for atan2) reads the password file, so
+     log.c now takes the name from USER under OSK.  On d74b174 (the current
+     pin) the clock does not run at all -- the card needs 40facae or later.
+     Still to do: record, help, card, games4, gate, commit (chain running).
+     Unexplained, not chased: scratchpad sigpool/cursestest (initscr, crmode,
+     noecho, alarm, five getchar()) printed nothing at all on 40facae or
+     d74b174 -- not even its endwin; its five getchar() may never return.
+  2q. **trek (4.3BSD Net/2, Eric Allman) built and tested, commit pending**
+     (the gate is red only while atc is uncatalogued; they commit together):
+     games4 `trek-sets-up-a-game-and-scans-the-first-quadrant' passes and its
+     must-fail copy fails; card shot (ink 439); trek.keys PASS (ink 431).
+     Earlier status: disk/SRC/trek (ORIG + port), recipe, catalogue rows,
+     tools/playtests/trek.keys.  Line-oriented, no data files.  Three OSK
+     guards (README.OSK): main.c gtty; dumpgame.c creat/open modes (Unix
+     0644 as an OS-9 attribute byte sets $80, the directory bit); trek.h
+     Device[] extern.  Two general c68/cpp traps found on the way:
+     (1) c68 rejects a header definition without extern followed by the
+     same variable's initialised definition in one file (`multiple
+     definition'), where ANSI C accepts it as tentative;
+     (2) **Microware cpp: a comment opened on a #if/#ifdef/#else line must
+     close on that line.**  A two-line comment there turned the next line
+     into code, broke the #ifdef pairing, and every source reported
+     `undeclared identifier' for Device.  Put the comment above the directive.
+     (3) **l68 has no common symbols.**  A global defined (not extern) in a
+     header is defined in every file that includes it; a Unix ld merges
+     those, l68 reports `Symbol 'X' ... has already appeared' for each and
+     counts every copy toward the 64K data limit (trek: 66,476 bytes).
+     Fix used: an EXTERN prefix, extern on OSK, empty in the one file
+     (externs.c) that defines them.  Expect this in most BSD games.
   2n. **Two harness gaps, not yet fixed.**  tools/ansiscreen.py does no
      auto-wrap at column 80 (it clamps), so it cannot show what an am
      terminal does with a full row.  playtest.py's `expect' also searches
