@@ -1433,9 +1433,21 @@ triaged by size, files, curses and stated terms.  Done or decided:
                 clock the disk ships as gcl (v_misc.ar)
     rain (v28)  DEFERRED: a second, curses rain using usleep(); the disk's
                 rain is toys.ar's
-    hp          IN PROGRESS: floating-point RPN; its scanner fed the parser
-                through lex's input(), so under OSK flex takes characters
-                one at a time from hp.c's reader
+    hp          DONE (77989aad) -- floating-point RPN; its parser reads numbers
+                out of the line where lex's input() left it, so flex takes
+                characters one at a time from hp's reader, made with -I
+    xmas_pic    NOT SHIPPED: a uuencoded file of VT100 escapes to cat, not a
+                program, author unknown
+    lp-posters  NOT SHIPPED: compressed 132-column line-printer pictures and
+                a filter; several are copyrighted cartoon characters and two
+                are pinups
+    dr_mario    ported as bugs (BUGS I) -- see git log: _gs_rdy for FNDELAY,
+                tsleep for select(), globals defined once
+    letters     DEFERRED: termio/sgtty ioctls and select() for keys, a system
+                word list, a high-score file
+    cent        DEFERRED: curses centipede with tty ioctls
+    pac         DEFERRED: curses calculator in five parts
+    dialog      DEFERRED: ANSI C for ncurses, 1994
     craps       DEFERRED: link() lock on its score list, a crypt() cheat, a
                 fork()/execl("/bin/csh") shell escape, BSD random, and every
                 key read with getchar(), which on OS-9 waits for a line; its
