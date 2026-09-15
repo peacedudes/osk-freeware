@@ -645,8 +645,10 @@ compile_knr() {    # $1 arch  $2 sources  $3 oskdef  $4 defines  $5 prog  $6 ext
     fi
   done
   printf 'del ctmp.parts.l\nmerge -z=ctmp.list >ctmp.parts.l\n'
-  printf 'cc %s %s -n=%s -f=/h6/%s/R_%s -l=ctmp.parts.l -l=ctmp.parts.l -l=ctmp.parts.l %s%s' \
-         "$(obj "$mainsrc")" "$QMFLAG" "${MODNAME:-$5}" "$1" "$5" "$6" "$7"
+  local first=""
+  for s in $LINKFIRST; do first="$first $(obj "$s")"; done
+  printf 'cc %s%s %s -n=%s -f=/h6/%s/R_%s -l=ctmp.parts.l -l=ctmp.parts.l -l=ctmp.parts.l %s%s' \
+         "$(obj "$mainsrc")" "$first" "$QMFLAG" "${MODNAME:-$5}" "$1" "$5" "$6" "$7"
   printf '%s\n' "$QMLIBS"
   printf '\033\n\004\n'
 }
@@ -678,8 +680,13 @@ compile_long() {   # $1 arch  $2 sources  $3 oskdef  $4 defines  $5 prog  $6 ext
   done
 
   printf 'setenv CLIB /dd/LIB\nsetenv CDEF /dd/DEFS\nchx /dd/CMDS\nchd /h6/%s\n' "$1"
+  # The recipe's extra flags go to EVERY per-file compile, not only the link:
+  # a `-V=<dir>' header directory is a compile flag.  This path used to pass
+  # them to the final cc alone, so UMoria's -V=/dd/DEFS/ncurses never reached
+  # the three sources that include <ncurses.h> (2026-09-15).  compile_knr,
+  # just above, has always passed them.
   for s in $2; do
-    printf 'cc %s %s%s -r=/h6/%s -V=/h6/%s -V=/h7\n' "$s" "$3" "$4" "$1" "$1"
+    printf 'cc %s %s%s -r=/h6/%s -V=/h6/%s -V=/h7 %s\n' "$s" "$3" "$4" "$1" "$1" "$6"
   done
   # -l= five times, not once.  l68 makes ONE pass over a library, so a member
   # that calls another member later in the file is left unresolved: zoo's huf.c
@@ -687,8 +694,10 @@ compile_long() {   # $1 arch  $2 sources  $3 oskdef  $4 defines  $5 prog  $6 ext
   # Repeating the search costs nothing and settles any dependency depth this
   # collection has.
   printf 'del ctmp.parts.l\nmerge -z=ctmp.list >ctmp.parts.l\n'
-  printf 'cc %s.r %s -n=%s -f=/h6/%s/R_%s -l=ctmp.parts.l -l=ctmp.parts.l -l=ctmp.parts.l -l=ctmp.parts.l -l=ctmp.parts.l %s%s' \
-         "$(basename "$mainsrc" .c)" "$QMFLAG" "${MODNAME:-$5}" "$1" "$5" "$6" "$7"
+  local first=""
+  for s in $LINKFIRST; do first="$first $(basename "$s" .c).r"; done
+  printf 'cc %s.r%s %s -n=%s -f=/h6/%s/R_%s -l=ctmp.parts.l -l=ctmp.parts.l -l=ctmp.parts.l -l=ctmp.parts.l -l=ctmp.parts.l %s%s' \
+         "$(basename "$mainsrc" .c)" "$first" "$QMFLAG" "${MODNAME:-$5}" "$1" "$5" "$6" "$7"
   printf '%s\n' "$QMLIBS"
   printf '\033\n\004\n'
 }
@@ -731,7 +740,7 @@ while IFS='|' read -r prog arch srcs defs libs extra; do
   # One pass over the field, not three substitutions: `${defs/KNR/}' turns
   # `KNR=a.c,b.c' into `=a.c,b.c', which then reaches cc as `-D=a.c,b.c'.
   OSKDEF=-DOSK
-  KNRMODE=0; KNRFILES=""; CPP2MODE=0; LONGREF=0; M020=0; GCCMODE=0; GPPMODE=0; ASMMODE=0; MODNAME=""; TRAPFREE=0; CIOLINK=0; LIBWANT=0; LIBGOT=0; MEMSZ=16k; keep=""
+  KNRMODE=0; KNRFILES=""; CPP2MODE=0; LONGREF=0; M020=0; GCCMODE=0; GPPMODE=0; ASMMODE=0; MODNAME=""; TRAPFREE=0; CIOLINK=0; LIBWANT=0; LIBGOT=0; MEMSZ=16k; LINKFIRST=""; keep=""
   for x in $defs; do
     case "$x" in
       NOOSK)  OSKDEF="";;
@@ -759,6 +768,16 @@ while IFS='|' read -r prog arch srcs defs libs extra; do
       # recurses over the board. This is the knob for that, and it is a
       # per-recipe decision because the cost is real memory per process.
       MEM=*)    MEMSZ=${x#MEM=};;
+      # LINKFIRST= names sources whose objects go on the link line beside
+      # main's, not into ctmp.parts.l.  An object there is linked whatever
+      # references it; a library member is taken only when something already
+      # linked wants it.  So a replacement for a LIBRARY function has to go
+      # here: UMoria's tcentry.c replaces ncurses.l's read_entry, which only
+      # ncurses.l's own setupterm calls -- by the time l68 reaches ncurses.l
+      # the parts library has been passed, and the library's copy won.  The
+      # binary came out the same size, 372,630 bytes, with and without the shim
+      # (2026-09-15).
+      LINKFIRST=*) LINKFIRST=$(printf '%s' "${x#LINKFIRST=}" | /usr/bin/tr ',' ' ');;
       *)      keep="$keep $x";;
     esac
   done

@@ -184,6 +184,7 @@ use `KNR=<files>` with `CPP2`.
 | `KNR=a.c,b.c` | run only those sources through it |
 | `CPP2` | preprocess with GNU's `cccp2` instead of Microware's `cpp` |
 | `LONGREF` | `c68 -k` for long PC-relative branches, and NO `o68` pass |
+| `LINKFIRST=a.c,b.c` | link those objects beside main's, not from the parts library -- how a replacement for a LIBRARY function wins (UMoria's `tcentry.c` over `ncurses.l`'s `read_entry`) |
 | `M020` | the 68020 backend, `c68020`/`r68020`, for oversized stack frames |
 | `GCC` | build with the disk's own GCC 2.5.6, which is what several ports were written for |
 | `TRAPFREE` | link stdio into the module (`-qm`) instead of using the `cio` trap handler |
