@@ -1464,8 +1464,9 @@ triaged by size, files, curses and stated terms.  Done or decided:
                 for select(), globals defined once
     letters     DONE (1c377278) -- _gs_opt/_ss_opt and _gs_rdy for its termio
                 keyboard, setterm() renamed away from curses.l's, words from
-                GAMES/words, an empty score file; usleep() never under 4/256,
-                since os9exec returned at once from 1-2/256 (reported)
+                GAMES/words, an empty score file.  os9exec returned at once
+                from a sleep under a tick (reported; fixed in its 263b94a), so
+                a 4/256 floor came in and went out again (see git log)
     cent        DEFERRED: curses centipede with tty ioctls, FIONREAD, an
                 nlist() load check and a help file run through system();
                 and a licence question first -- cent.c allows redistribution
