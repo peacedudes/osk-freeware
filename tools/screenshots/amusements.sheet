@@ -379,3 +379,49 @@ run     clear
 wait    1
 run     trigraph | head -n 22
 wait    3
+
+shot    telewords
+size    24 80
+cap     The first eighteen of the 27 ways to spell 468 on a telephone keypad,
+cap     got and hot among them.
+try     telewords 468 | head -n 18
+os9     telewords 468 ! head -n 18
+run     clear
+wait    1
+run     telewords 468 | head -n 18
+wait    2
+
+shot    telenum
+size    24 80
+cap     The telephone number each word dials, one to a line.
+try     telenum hello world goodbye
+run     clear
+wait    1
+run     telenum hello world goodbye
+wait    2
+
+shot    psychic
+size    24 80
+cap     Two psychic messages, each strung together at random from stock
+cap     phrases, so no two runs read alike.
+try     psychic 2
+run     clear
+wait    1
+run     psychic 2
+wait    2
+
+shot    lotto
+size    24 80
+cap     Asked whether to hear a testimonial, whether you believe and whether
+cap     you REALLY believe -- y to all three -- it draws six numbers.
+try     lotto -a 1
+run     clear
+wait    1
+run     lotto -a 1
+wait    3
+send    y\r
+wait    3
+send    y\r
+wait    3
+send    y\r
+wait    12

@@ -1,0 +1,1 @@
+/* The exit codes anagram.c uses, with BSD's <sysexits.h> values. */#define EX_IOERR 74#define EX_OK 0#define EX_OSFILE 72#define EX_USAGE 64

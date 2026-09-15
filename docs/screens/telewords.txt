@@ -1,0 +1,19 @@
+telewords 468 | head -n 18
+gmt
+gmu
+gmv
+gnt
+gnu
+gnv
+got
+gou
+gov
+hmt
+hmu
+hmv
+hnt
+hnu
+hnv
+hot
+hou
+hov

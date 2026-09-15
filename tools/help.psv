@@ -996,6 +996,13 @@ rsdsk|rsdsk -?|
 chef|none|pipe English text through it; the/w/o become zee/v/oo and every sentence ends Bork Bork Bork
 fudd|none|pipe English text through it; r and l become w, th becomes d
 pig|none|pipe English text through it; words of two or more letters come out in pig latin
+hanoi|hanoi|
+hanoimod|hanoimod|
+telewords|telewords|
+telenum|telenum|
+anagram|anagram|
+psychic|none|it takes one optional argument, how many messages to print (three by default)
+lotto|lotto -?|
 drawl|none|pipe English text through it; -ing loses its g, vowels broaden into a Texan drawl
 lame|none|give it a sentence as arguments; o becomes 0, you becomes U, and so on
 canfield|none|name a move by its two ends -- s2, tf, 13, 2f; ht deals, c counts, b bets, q quits

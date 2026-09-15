@@ -236,3 +236,9 @@ run     /dd/CMDS/wc -l /dd/tmp/choose3
 run     /dd/CMDS/choose -20 /dd/tmp/choose10
 expect  3 /dd/tmp/choose3
 expect  Can't choose 20 from 10.
+
+# anagram (2026-09-15, comp.sources.games v02i064) reads GAMES/words.
+case    anagram-finds-listen-in-the-word-list
+run     /dd/CMDS/anagram listen
+expect  silent
+expect  tinsel

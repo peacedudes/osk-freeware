@@ -963,6 +963,16 @@ choose|choose|choose.c||/dd/LIB/rand.r|
 # pig (comp.sources.games v02i033, 1987): a lex filter; the scanner was
 # generated here with the disk's flex, as for chef and fudd.
 pig|pig|lex.yy.c yywrap.c|||
+# Five more from the 2026-09-11 Unix posts (comp.sources.misc and .games),
+# 2026-09-15.  Each tree's README.OSK lists what changed; hanoi.c,
+# telewords.c and getopt.c are as posted.
+hanoi|hanoi|hanoi.c|||
+hanoimod|hanoi|hanoimod.c|||
+telewords|telewords|telewords.c|||
+telenum|telewords|telenum.c|||
+anagram|anagram|anagram.c|||
+psychic|psychic|psychic.c||/dd/LIB/rand.r|
+lotto|lotto|lotto.c getopt.c|||
 lame|lame|lame.c||/dd/LIB/rand.r|
 canfield|canfield|canfield.c||/dd/LIB/curses.l /dd/LIB/termlib.l /dd/LIB/rand.r|
 # atc -- Ed James's air traffic controller, 4.3BSD-Net/2.  Built on its SYSV

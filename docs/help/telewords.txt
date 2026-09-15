@@ -1,0 +1,2 @@
+$ telewords
+	usage: telewords [-<digit>c...] ...  telephone-number

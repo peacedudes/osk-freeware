@@ -1,6 +1,6 @@
 # What is on this disk
 
-1023 programs of OS-9/68K community software, gathered from the archives that kept it and made to run again. **674 of them need nothing but this disk**; the rest want Microware's `cio`, marked below with a star.
+1030 programs of OS-9/68K community software, gathered from the archives that kept it and made to run again. **681 of them need nothing but this disk**; the rest want Microware's `cio`, marked below with a star.
 
 `DOC/INDEX` on the disk lists everything alphabetically. This is the same collection sorted by what each program is *for*, which is the more useful order when you do not yet know what you are looking for.
 
@@ -13,7 +13,7 @@
 |---|--:|---|
 | [Shells](#shells) | 24 | Unix shells to sit beside OS-9's own -- bash and ksh bring history, job control, and scripts that come across unchanged. |
 | [Editors](#editors) | 27 | vi and emacs in several flavours, line and stream editors, and editors for binary and hex. |
-| [Text tools](#text-tools) | 132 | Search, sort, compare, reformat, split and spell-check. |
+| [Text tools](#text-tools) | 134 | Search, sort, compare, reformat, split and spell-check. |
 | [Files & directories](#files--directories) | 34 | Listing, copying, finding, renaming, and knowing what you have. |
 | [Developer tools](#developer-tools) | 48 | Version control, tags, cross-reference, formatters, a debugger and benchmarks. |
 | [Compilers & build](#compilers--build) | 41 | C compilers and their passes, assemblers, linkers, make and parser generators. |
@@ -22,9 +22,9 @@
 | [Encoding & conversion](#encoding--conversion) | 29 | Between text encodings, line endings, Macintosh formats, ciphers and hashes. |
 | [Communications](#communications) | 98 | Kermit in several builds, terminal sessions, and networking. |
 | [Graphics & images](#graphics--images) | 195 | The netpbm toolkit, JPEG, a ray tracer, and things that draw. |
-| [Games](#games) | 96 | Adventures, board and card games, arcade ports, dungeon crawls and puzzles. |
+| [Games](#games) | 98 | Adventures, board and card games, arcade ports, dungeon crawls and puzzles. |
 | [Screen toys](#screen-toys) | 10 | Animations and screen effects -- they draw on the terminal rather than print to it. Some run until you stop them. |
-| [Amusements](#amusements) | 27 | Generators, simulators and diversions that are not quite games. |
+| [Amusements](#amusements) | 30 | Generators, simulators and diversions that are not quite games. |
 | [System & modules](#system--modules) | 132 | OS-9 module and process tools, devices, system state and scheduling. |
 | [Disk & DOS](#disk--dos) | 20 | Reading and writing MS-DOS media with the mtools set. |
 | [Time & calendar](#time--calendar) | 15 | Calendars, clocks and astronomy. |
@@ -155,7 +155,7 @@
 
 *Search, sort, compare, reformat, split and spell-check.*
 
-<details><summary>132 programs</summary>
+<details><summary>134 programs</summary>
 
 **Alternates**
 
@@ -228,6 +228,7 @@
 | `cookhash` | build the hash file cookie(1) needs, from a sayings file<br>`usage: cookhash <cookiefile >hashfile` |
 | `cookie` | print a random fortune cookie<br>**How:** Bare it prints a fortune from a default file. Given arguments it wants BOTH the cookie file and the hash `strfile' built for it: `strfile mine' then `cookie mine mine.dat'. |
 | `fortune` | print a random quotation<br>`usage:  fortune [ - ] [ -wsloa ] [ file ]` |
+| `psychic` | a fortune teller: psychic messages strung together from stock phrases, three unless you give a number<br>**How:** `psychic' prints three psychic messages, `psychic 1' one; each is assembled at random from stock phrases. |
 | `sonnet` | writes (bad) sonnets in iambic pentameter, full screen: mark the lines you like and recompose the rest; w appends the poem to a file and -l <file> loads one it wrote to go on working on it<br>**How:** Full-screen: it takes over the display. **ESC quits**, so does q at its prompt. Commands at the prompt: m# / u# mark and unmark a line, r recomposes the unmarked lines, w [file] appends the poem to a file (sonnet.out by default, -f <file> changes that). `sonnet -l <file>' loads a poem it wrote with w -- fourteen lines -- and refuses any other file. The vocabulary is compiled in (SRC/sonnet/lex.data through makelex), not read at run time. |
 | `strfile` | &#9733; builds the .dat index that fortune reads from a file of sayings separated by %% lines, and reports what it found<br>`usage:  strfile [ - ] [ -cC ] [ -sv ] inputfile [ datafile ]` |
 | `unstr` | strfile's reverse: writes the sayings back out of a fortune .dat index as plain text -- `unstr sayings.dat out'; the .dat may be left off the name<br>`usage: unstr datafile[.dat] [ outfile ]` |
@@ -279,6 +280,7 @@
 
 | | |
 |---|---|
+| `anagram` | finds the anagrams of a word in the word list GAMES/words: `anagram listen' prints enlist, listen, silent and tinsel; -l also lists near misses with their leftover letters<br>**How:** `anagram listen' lists every word in GAMES/words spelled with exactly those letters. -l adds words that use some of them, with the leftovers in brackets; -m sets the shortest word counted (2); -d names another word list. |
 | `buildhash` | build ispell's dictionary hash.  It reads a word list called `dict.191' (the name is compiled in). /dd/LIB/ispell.hash is the built hash, 490,186 bytes, and it ships, so ispell itself reads that and works.  `chardef' reads the same word list. |
 | `ispell` | interactive spelling checker, another edition than the one DOC/ispell describes, with no source here.  It faults at its first dictionary lookup; REBUILT/ispell_rebuilt works<br>**How:** Interactive spelling checker, `ispell <file>', and `ispell -l <file>' for a list of the unknown words -- but this build lists correct words as unknown too and stops with a bus error at its first dictionary lookup (measured 2026-09-15). It is another edition than DOC/ispell describes, with no source on the disk. REBUILT/ispell_rebuilt is the working build: `ispell_rebuilt -l < file'. |
 | `jargon` | a browser for the Jargon File, the hackers' dictionary: `jargon -b word' opens at an entry; it reads jargon.txt and jargon.idx from VH on its own<br>**How:** A browser for the Jargon File, which is here: VH/jargon.txt, version 3.0.0 of 27 July 1993, with its index. It will not read SYS/termcap -- do `. /dd/SYS/termcap.entry' first, then `jargon -m'. |
@@ -1189,7 +1191,7 @@
 
 *Adventures, board and card games, arcade ports, dungeon crawls and puzzles.*
 
-<details><summary>96 programs</summary>
+<details><summary>98 programs</summary>
 
 **Adventure & fiction**
 
@@ -1309,6 +1311,8 @@
 
 | | |
 |---|---|
+| `hanoi` | solves the Towers of Hanoi as a list of moves: `hanoi 3' prints the seven moves for three disks; n disks take 2^n-1<br>**How:** `hanoi 3' prints the moves that shift three disks from tower 1 to tower 2, one move a line. n disks take 2^n - 1 moves, so `hanoi 20' prints over a million lines. |
+| `hanoimod` | the Towers of Hanoi as the three towers after every move: `hanoimod 3'<br>**How:** `hanoimod 3' shows the same solution as hanoi as pictures: after each move, a line per tower listing the disks on it, largest first. n disks print 4 x (2^n - 1) lines. |
 | `hexa` | hexagonal Sokoban: push every moneybag onto a safe square on a six-sided grid, one bag at a time and only ever forward; k/j move up and down, u/i/n/m along the diagonals.  Five screens ship, and `hexa <n>' edits one |
 | `maze` | maze generator, small enough to have won an obfuscated-C contest.  It reads the number of rows on standard input and draws a maze that wide: `echo 11 \| maze'<br>**How:** Reads the number of rows on standard input: `echo 11 \| maze' draws a maze eleven rows deep. |
 | `mines` | &#9733; minesweeper on a sixteen-by-sixteen board with forty mines: name a square by its row and column letters, answer `Mark?' with Y to flag it; q quits<br>**How:** Full-screen minesweeper. Name a square by its row letter and then its column letter, and answer `Mark?' with Y to flag it rather than open it. `q' quits. |
@@ -1354,7 +1358,7 @@
 
 *Generators, simulators and diversions that are not quite games.*
 
-<details><summary>27 programs</summary>
+<details><summary>30 programs</summary>
 
 **Biorhythms**
 
@@ -1370,6 +1374,8 @@
 | `areacode` | &#9733; looks up North American telephone area codes, as many as you give it, from a table of the late 1980s; a code it does not know is said to be no area code |
 | `globe` | show the currently-lit face of the Earth in ASCII, the globe turning through the day as the hours pass |
 | `phoon` | show the phase of the moon as a little picture: `phoon' for tonight, `phoon 2025 12 25' for a date; `-l' sets the size |
+| `telenum` | turns words into the telephone number their letters dial: `telenum hello' prints 43556<br>**How:** `telenum hello world' prints the number each word dials, one a line: 43556 and 96753. Letters with no key (q and z) print as themselves. |
+| `telewords` | spells a telephone number every way its keypad letters allow, one a line: `telewords 43' prints gd ge gf ... if<br>**How:** `telewords 43' prints every spelling of the number with the letters on its keys, one a line -- gd, ge ... if. 0 and 1 stand for themselves; -<digit><letters> changes what a key spells. |
 | `touchtype` | TYPEFAST, a typing game: words fall down the screen and you type each one before it lands.  ESC ends the game and scores you in words per minute<br>**How:** Full-screen typing game. Answer `n' to the instructions question, pick a level 1-3 (q quits there), type each falling word followed by SPACE or RETURN. ESC ends the game and prints the words-per-minute score. |
 | `trigraph` | prints its own C source spelled in ANSI trigraphs -- ??< for {, ??= for # -- a 1990 obfuscated-C contest entry<br>**How:** `trigraph' prints its own source with every # { } [ ] \ ^ \| ~ written as its ANSI trigraph -- ??= ??< and the rest. Microware's cpp does not read trigraphs, so SRC/ioccc/OSK holds the translated copy it was built from. |
 
@@ -1381,6 +1387,7 @@
 | `drawl` | give text a broad Texan accent: drops the g from -ing and swaps in tuh/thuh.  `echo text \| drawl`, a stdin filter |
 | `fudd` | talk like Elmer Fudd: a filter that turns r and l into w and th into d, so text comes out in his lisp.  `echo text \| fudd` |
 | `lame` | rewrites its arguments into IRC leet-speak -- o->0, you->U, and->&, i->1 -- the way a lamer types.  `lame your text` |
+| `lotto` | picks lottery numbers after a testimonial and a demand that you believe -- answer y or n; six from 1 to 49 unless -n, -b and -t say otherwise<br>**How:** `lotto' asks whether to hear testimonials, whether you believe and whether you REALLY believe -- answer y or n -- and then draws six numbers from 1 to 49, a second apart. -n, -b and -t change how many and the range; -a sets how many testimonials. End of input quits. |
 | `name` | &#9733; invents pronounceable names for the characters in a tabletop game, as many as you ask for, dealing vowels and consonants in turn with the letter frequencies of a Scrabble set |
 | `newsgen` | &#9733; makes up a news bulletin at random from parts -- a top story of public figures, deeds, places and reactions, then the weather -- different every run<br>`"news" or "news lp"` |
 | `pig` | turns English into pig latin: every word of two letters or more moves its first letter to the end and adds `a'.  `echo text \| pig'<br>**How:** Pipe English through it: `echo "pig latin" \| pig' prints `igpa atinla'. Each word of two or more letters moves its first letter to the end and adds `a'; one-letter words and punctuation pass unchanged. |

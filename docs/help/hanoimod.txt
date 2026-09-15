@@ -1,0 +1,2 @@
+$ hanoimod
+Usage: hanoimod <number of disks>

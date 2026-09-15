@@ -22,6 +22,8 @@ setfont|Communications|Terminal & session
 ssl|System & modules|Devices & disks
 touchtype|Amusements|Curiosities
 phoon|Amusements|Curiosities
+telewords|Amusements|Curiosities
+telenum|Amusements|Curiosities
 globe|Amusements|Curiosities
 trigraph|Amusements|Curiosities
 ttyexp|Screen toys|Screen toys
@@ -259,6 +261,8 @@ gnuchessr|Games|Board & card
 mille|Games|Board & card
 nchess|Games|Board & card
 queens|Games|Puzzles
+hanoi|Games|Puzzles
+hanoimod|Games|Puzzles
 tttt|Games|Board & card
 bincheckr|Games|Chess utilities
 checkgame|Games|Chess utilities
@@ -573,6 +577,7 @@ tformat|Text tools|Format & typeset
 cookhash|Text tools|Fortune & sayings
 cookie|Text tools|Fortune & sayings
 fortune|Text tools|Fortune & sayings
+psychic|Text tools|Fortune & sayings
 rpoem|Amusements|Generators
 rstory|Amusements|Generators
 sonnet|Text tools|Fortune & sayings
@@ -600,6 +605,7 @@ unip|Text tools|Sort, compare & merge
 uniq|Text tools|Sort, compare & merge
 buildhash|Text tools|Spelling & words
 ispell|Text tools|Spelling & words
+anagram|Text tools|Spelling & words
 ispell_rebuilt|Text tools|Alternates
 jargon|Text tools|Spelling & words
 makelex|Text tools|Spelling & words
@@ -1045,6 +1051,7 @@ rsdsk|System & modules|Devices & disks
 chef|Amusements|Generators
 fudd|Amusements|Generators
 pig|Amusements|Generators
+lotto|Amusements|Generators
 drawl|Amusements|Generators
 lame|Amusements|Generators
 canfield|Games|Board & card

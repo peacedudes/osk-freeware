@@ -1,0 +1,2 @@
+$ hanoi
+Usage: hanoi <number of disks>

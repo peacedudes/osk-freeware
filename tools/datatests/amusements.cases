@@ -99,3 +99,43 @@ absent  <
 case    pig-speaks-pig-latin
 run     echo "pig latin is a fun language" | /dd/CMDS/pig
 expect  igpa atinla sia a unfa anguagela
+
+# hanoi, hanoimod, telewords, telenum, psychic, lotto (2026-09-15): Unix
+# posts built from SRC/<name>, each README.OSK listing what changed.
+case    hanoi-moves-three-disks
+run     /dd/CMDS/hanoi 3
+expect  Move disk 3 from tower 1 to tower 2
+
+case    hanoimod-draws-ten-disks-in-4092-lines
+run     /dd/CMDS/hanoimod 10 > $W/h10
+run     /dd/CMDS/wc -l $W/h10
+expect  4092 /dd/tmp/AMU/h10
+
+case    telewords-spells-43-nine-ways
+run     /dd/CMDS/telewords 43 > $W/tw43
+run     /dd/CMDS/wc -l $W/tw43
+expect  9 /dd/tmp/AMU/tw43
+
+case    telenum-dials-hello-world-through-a-pipe
+run     /dd/CMDS/telenum hello world | /dd/CMDS/cat
+expect  43556
+expect  96753
+
+case    psychic-prints-a-message
+run     /dd/CMDS/psychic 1
+run     echo "psychic exit $?"
+expect  psychic exit 0
+absent  WHOOPS
+
+case    lotto-draws-six-when-you-believe
+run     echo "y" > $W/yyy
+run     echo "y" >> $W/yyy
+run     echo "y" >> $W/yyy
+run     /dd/CMDS/lotto -a 1 < $W/yyy
+expect  Your SIXTH number is
+expect  I BELIEVE! you will win!
+
+case    lotto-ends-at-end-of-input
+run     /dd/CMDS/lotto < /nil
+run     echo "lotto exit $?"
+expect  lotto exit 0

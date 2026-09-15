@@ -26,6 +26,7 @@ afm2tfm 3130546e1aef8ea0
 agrep cf14c8b2090573fa
 almanac 6a6fc754405fe210
 alps b87fad0f1c3db62c
+anagram 857b950a012f0aa0
 animal 0a0d19a335dff202
 answer 68432d5553132353
 ape a66ed5fcbcfe0784
@@ -352,6 +353,8 @@ gzipcpu32k_csl a0b74b8bc382d82d
 hack 0fa0a0ab8bfee9d5
 hackwish 43454e5e00ab4f2a
 hang 087e991e81c527f9
+hanoi 40fd4af948e407dc
+hanoimod faf6ce27d856d41d
 hc c248b77d3ef338e8
 hdump a35b376d4a7591e6
 head 75d65b434027b00b
@@ -430,6 +433,7 @@ logisim cb402d526bf0a098
 logname 8f17510b2cfc5411
 look 22644a3ef76ff2e5
 lorenz3d 7adc33fafa9ee955
+lotto 87c55fa86b078a9e
 lout c0ebd5f69b37c4fd
 lp dbfb5d4e455235bd
 lpq 72048a1ea9770d4d
@@ -652,6 +656,7 @@ prjob 5d31d13e051d89d7
 proff dd5084898c3b214a
 psc 0bdca397b0d3f04e
 psidtopgm f1c1848f751ebeab
+psychic 77d3cca369ceebc6
 ptob adf4ce6f8152f623
 puz15 f4446639e39ed1e6
 puzzle15 681b23b46819725d
@@ -781,6 +786,8 @@ tangle 7d4969b60893eedf
 tar f899633bf18895d6
 tcmp 762791b8abc9e457
 teachgammon 9f9cf6fe5e075e8f
+telenum 98d176bcd7bd2aae
+telewords 8018c8845531afdb
 tess a6819de4d871479c
 tet dc9a16bf1fcb1b43
 tex b338940c32f30961

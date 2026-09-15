@@ -1,0 +1,1 @@
+SRC/psychic -- psychic, as built for OS-9/68000===============================================ORIG holds the post as comp.sources.games carried it.  Its header says tochange `#undef SYSV' to `#define SYSV' on a system with rand() but notrandom(); psychic.c does exactly that, under #ifdef OSK.

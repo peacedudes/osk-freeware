@@ -1,0 +1,1 @@
+lotto:	lotto.c	cc -o lotto -O lotto.c /usr/local/bin/getopt.o

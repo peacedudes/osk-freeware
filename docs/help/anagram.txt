@@ -1,0 +1,2 @@
+$ anagram
+usage: anagram [ -d <dictionary> ] [ -m <number> ] [ -l ] [ -r ] string1 [ string2 . . . ]

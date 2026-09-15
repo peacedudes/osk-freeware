@@ -1734,3 +1734,24 @@ run     bjack 500
 wait    3
 send    100\r
 wait    3
+
+shot    hanoi
+size    24 80
+cap     The seven moves that shift three disks from tower 1 to tower 2,
+cap     never setting a larger disk on a smaller one.
+try     hanoi 3
+run     clear
+wait    1
+run     hanoi 3
+wait    2
+
+shot    hanoimod
+size    24 80
+cap     The same solution drawn as towers: after each move, a line per tower
+cap     lists the disks on it, largest first.  The first five of seven moves.
+try     hanoimod 3 | head -n 20
+os9     hanoimod 3 ! head -n 20
+run     clear
+wait    1
+run     hanoimod 3 | head -n 20
+wait    2
