@@ -661,7 +661,7 @@
 | | |
 |---|---|
 | `compress_4.0` | compress 4.0, another edition of CMDS/compress<br>`Syntax   : compress [-cdfvV] [-b maxbits] [file ...]` |
-| `compress_rebuilt` | a second build of `compress' from the same source; the two write the same bytes<br>`Unknown flag: '?'; Usage: compress [-dfvoV] [-b MaxBits] [file ...]` |
+| `compress_rebuilt` | a second build of `compress' from the same source; the two write the same bytes to a file, and this one writes a pipe correctly too<br>**How:** The same program as CMDS/compress, built from SRC/hc_utils/compress.c, writing the same bytes to a file -- and correctly through a pipe, which the shipped binary does not: `compress_rebuilt -c < file \| btoa'. SRC/hc_utils/README.OSK has the three-line fix. |
 | `gtar` | another build of GNU tar, taking the long +option spellings as well: `gtar +help' lists them<br>`This is GNU tar, the tape archiving program.` |
 | `gzip020_csl` | &#9733; gzip 1.2.4, 68020, needs csl<br>`gzip020_csl 1.2.4 (18 Aug 93)` |
 | `gzip68k_csl` | &#9733; gzip 1.2.4, 68000, needs csl<br>`gzip68k_csl 1.2.4 (18 Aug 93)` |
@@ -674,7 +674,7 @@
 | | |
 |---|---|
 | `compr` | a Lempel-Ziv-Welch file compressor, another edition of `compress': -v reports the saving, -d decompresses, and the .Z file replaces the original<br>`Unknown flag: '?'; Usage: compress [-dfvcV] [-b maxbits] [file ...]` |
-| `compress` | compress and uncompress with Lempel-Ziv-Welch coding<br>`Unknown flag: '?'; Usage: compress [-dfvoV] [-b MaxBits] [file ...]` |
+| `compress` | compress and uncompress with Lempel-Ziv-Welch coding.  Write its output to a file: through a pipe it comes out corrupt, which REBUILT/compress_rebuilt's does not<br>**How:** `compress -c < file > file.Z' packs and `compress -dc < file.Z > file' unpacks; plain `compress file' replaces the file with file.Z. Write its output to a file and never into a pipe: through a pipe the bytes come out corrupt, both ways. REBUILT/compress_rebuilt is the same program with that fixed, and compr is right through a pipe too. |
 | `gzip` | GNU gzip 1.2.2: compresses a file to .gz and back again with -d; -l lists, -t tests, -1 to -9 trade speed for size<br>`gzip 1.2.2 (17 Jun 93)` |
 | `jaw` | zcat in 22 lines, a 1990 obfuscated-C contest entry: `jaw < file.Z' writes out what compress packed<br>**How:** `jaw < file.Z' writes out what compress packed into file.Z, as zcat does. It reads a pipe as well as a file. Run as a copy whose name begins with `a' it decodes btoa's text instead -- its authors' shark archiver pipes the one into the other. |
 

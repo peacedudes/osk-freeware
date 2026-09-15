@@ -121,3 +121,26 @@ expect  error
 # Before that these all reported the name of the program in /dd/CMDS they sit
 # beside: compress_4.0 said `compress', the six gzip builds all said `gzip',
 # and loading any of them answered for the shipped one.
+
+# compress_rebuilt writes a pipe correctly since 2026-09-15.  stdio's putchar
+# macro evaluates its argument twice when output is line-buffered, so
+# compress.c's putchar(*bp++) and putchar(*--stackp) skipped bytes into a pipe
+# or a terminal, and a file -- where every case above writes -- never showed
+# it.  SRC/hc_utils/README.OSK has the fix.  CMDS/compress is the period
+# binary and still corrupts a pipe; the last case records that, and will
+# fail if that binary is ever replaced -- update its INDEX and howto then.
+case    rebuilt-compress-packs-into-a-pipe-correctly
+run     $R/compress_rebuilt -c < /dd/SYS/termcap | /dd/CMDS/cat > /dd/tmp/rcp.Z
+run     /dd/CMDS/md5 /dd/tmp/rcp.Z
+expect  c3694c4f0abc8ed599498e027b44945b
+
+case    rebuilt-compress-unpacks-into-a-pipe-correctly
+run     $R/compress_rebuilt -dc < /dd/tmp/rcp.Z | /dd/CMDS/cat > /dd/tmp/rcp.out
+run     /dd/CMDS/md5 /dd/tmp/rcp.out
+expect  ee2c20fa226fe6fc78feec7f123c7a99
+
+case    shipped-compress-still-corrupts-a-pipe
+run     /dd/CMDS/compress -dc < /dd/tmp/rcp.Z | /dd/CMDS/cat > /dd/tmp/scp.out
+run     /dd/CMDS/md5 /dd/tmp/scp.out
+expect  MD5 (/dd/tmp/scp.out) =
+absent  ee2c20fa226fe6fc78feec7f123c7a99
