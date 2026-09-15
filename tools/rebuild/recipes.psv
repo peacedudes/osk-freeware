@@ -979,3 +979,10 @@ perl|perl4|array.c cmd.c cons.c consarg.c doarg.c doio.c dolist.c dump.c eval.c 
 # looks for main() by file.  LONGREF for its size; A2P keeps config.h's
 # osk.c mappings, which are perl's alone, out of it.
 a2p|perl4/x2p|a2p.c hash.c str.c util.c walk.c|CPP2 LONGREF MEM=64k A2P|/dd/LIB/unix.l /dd/LIB/blarslib.l|
+# moria -- UMoria 4.87 from TOP release 2 (Kaefer's OS-9 port).  tcentry.c
+# replaces ncurses.l's read_entry() so the library can use SYS/termcap as it
+# stands: it takes an entry whose first name is not two letters, reads the
+# termcap escape \n as a line feed (the library made it a CR), and hides am
+# where the entry has xn.  LINKFIRST is what makes the replacement win: in the
+# parts library it was never pulled, and the binary came out the same size.
+moria|moria|main.c tcentry.c misc1.c misc2.c store1.c files.c io.c create.c desc.c generate.c sets.c dungeon.c creature.c death.c eat.c help.c magic.c potions.c prayer.c save.c staffs.c wands.c scrolls.c spells.c wizard.c store2.c signals.c moria1.c moria2.c monsters.c treasure1.c treasure2.c variables.c|MEM=64k LINKFIRST=tcentry.c|/dd/LIB/ncurses.l /dd/LIB/os9lib.l|-V=/dd/DEFS/ncurses

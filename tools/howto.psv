@@ -277,3 +277,4 @@ wish|WiSH, a windowing shell over the OS-9 shell. Type a command on the top line
 worm|Full-screen. h/j/k/l steer, H/J/K/L run; with no key the worm keeps going. Eat the digits to grow. Control-C gets you out.
 xmas|Full-screen: a Christmas card that plays in a loop. Control-C gets you out.
 nethack3|Full-screen dungeon crawl. `y' lets it pick your character, SPACE clears each --More--, `?' is the command list, `S' saves and `Q' quits. It needs TERM set; its data is USR/GAMES/LIB/NETHACK3DIR.
+moria|Full-screen dungeon crawl. SPACE past the news, then pick race, sex (m/f), ESC to keep the stats, class, and type a name; SPACE past the character sheet puts you in the town. `?' is the command list, `^X' saves and `^K' quits. It needs TERM set; its data is USR/GAMES/MORIADIR.

@@ -1,0 +1,31 @@
+name    moria
+prog    moria
+# UMoria 4.87: past the news, make a human male warrior, walk into the town, quit.
+rate    0.6
+size    24 80
+setup   export USER=tester
+until   Press any key
+snap    news
+key     \s
+until   Choose a race
+key     a
+wait    3
+key     m
+wait    4
+esc
+wait    4
+key     a
+wait    4
+keys    Tester
+key     \r
+wait    8
+snap    sheet
+key     \s
+until   Town level
+wait    3
+snap    town
+key     \013
+wait    3
+key     y
+wait    6
+expect  Town level

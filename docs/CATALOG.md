@@ -1,6 +1,6 @@
 # What is on this disk
 
-999 programs of OS-9/68K community software, gathered from the archives that kept it and made to run again. **655 of them need nothing but this disk**; the rest want Microware's `cio`, marked below with a star.
+1000 programs of OS-9/68K community software, gathered from the archives that kept it and made to run again. **656 of them need nothing but this disk**; the rest want Microware's `cio`, marked below with a star.
 
 `DOC/INDEX` on the disk lists everything alphabetically. This is the same collection sorted by what each program is *for*, which is the more useful order when you do not yet know what you are looking for.
 
@@ -22,7 +22,7 @@
 | [Encoding & conversion](#encoding--conversion) | 29 | Between text encodings, line endings, Macintosh formats, ciphers and hashes. |
 | [Communications](#communications) | 97 | Kermit in several builds, terminal sessions, and networking. |
 | [Graphics & images](#graphics--images) | 195 | The netpbm toolkit, JPEG, a ray tracer, and things that draw. |
-| [Games](#games) | 84 | Adventures, board and card games, arcade ports, dungeon crawls and puzzles. |
+| [Games](#games) | 85 | Adventures, board and card games, arcade ports, dungeon crawls and puzzles. |
 | [Screen toys](#screen-toys) | 9 | Animations and screen effects -- they draw on the terminal rather than print to it. Some run until you stop them. |
 | [Amusements](#amusements) | 25 | Generators, simulators and diversions that are not quite games. |
 | [System & modules](#system--modules) | 132 | OS-9 module and process tools, devices, system state and scheduling. |
@@ -1181,7 +1181,7 @@
 
 *Adventures, board and card games, arcade ports, dungeon crawls and puzzles.*
 
-<details><summary>84 programs</summary>
+<details><summary>85 programs</summary>
 
 **Adventure & fiction**
 
@@ -1261,6 +1261,7 @@
 | `hack` | hack -- the original dungeon crawl NetHack grew out of<br>**How:** RUN IT BY ITS FULL PATH: `/dd/CMDS/GAMES/hack', not `hack'. It chdirs into its playground and then stats argv[0] to date-check saved levels, so a bare name cannot resolve and it stops with "Cannot get status of hack." Invoked in full it starts: "Are you an experienced player?". Its playground -- record, bones, rumors, help -- is in GAMES/HACK/PLAYGROUND. |
 | `hackwish` | a hack cheat: replays hack until a wizard starts with a wand of wishing, wishes for what you name, and saves the game to carry on in hack |
 | `larn` | &#9733; larn, a dungeon crawl: RETURN gets past the opening text; its saved games and score file are in GAMES/LARN/PLAYGROUND<br>**How:** Full-screen dungeon crawl. RETURN gets past the opening text. Control-C gets you out; its playground is GAMES/LARN/PLAYGROUND. |
+| `moria` | UMoria 4.87, the dungeon crawl: roll up a character by race, sex and class, buy what you can afford in the town's shops, then take the stairs down after the Balrog.  `?' lists the commands, `^X' saves and `^K' quits.  Its data is USR/GAMES/MORIADIR, found with this disk as /h0<br>**How:** Full-screen dungeon crawl. SPACE past the news, then pick race, sex (m/f), ESC to keep the stats, class, and type a name; SPACE past the character sheet puts you in the town. `?' is the command list, `^X' saves and `^K' quits. It needs TERM set; its data is USR/GAMES/MORIADIR. |
 | `nethack3` | NetHack 3.0f, the dungeon crawl grown out of hack: pick or build a character, then go down through the Mazes of Menace for the Amulet of Yendor.  `?' lists the commands, `S' saves and `Q' quits.  Its data is USR/GAMES/LIB/NETHACK3DIR, found with this disk as /h0; HACKDIR names another<br>**How:** Full-screen dungeon crawl. `y' lets it pick your character, SPACE clears each --More--, `?' is the command list, `S' saves and `Q' quits. It needs TERM set; its data is USR/GAMES/LIB/NETHACK3DIR. |
 | `ularn` | ULarn -- the larn variant, and its data is complete<br>`Cmd line format: Ularn [-slicnh] [-o<optsfile>] [-##] [++]` |
 

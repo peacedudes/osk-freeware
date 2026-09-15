@@ -707,6 +707,39 @@ wait    4
 send    n
 wait    6
 
+shot    moria
+size    24 80
+cap     A new warrior in the town at the top of the dungeon: the walls of the
+cap     six shops, numbered by their doors, the `@' that is you, and down the
+cap     left the character's stats, hit points and gold.  `?' lists the
+cap     commands, `^X' saves and `^K' quits.
+try     moria
+run     export TERM=vt100 USER=tester
+wait    1
+run     clear
+wait    1
+run     moria
+wait    12
+send    \s
+wait    5
+send    a
+wait    4
+send    m
+wait    4
+send    \e
+wait    4
+send    a
+wait    5
+send    Tester\r
+wait    8
+send    \s
+wait    10
+snap
+send    \013
+wait    4
+send    y
+wait    8
+
 shot    larn
 cap     Larn: the dungeon is drawn as you find it, letters for what is in
 cap     it, and the two lines at the foot are your spells, armour class,
