@@ -1370,6 +1370,16 @@ triaged by size, files, curses and stated terms.  Done or decided:
                 hard-coded; needs ftime() and atan2(), which this C library
                 lacks
     qterm       DEFERRED: termio/sgtty ioctls, alarm and setjmp
+    ag          DONE (fe2bbc79) -- the ag2 post's generator, default word list
+                GAMES/words; Sean Barrett's pref/postf filters kept, not built
+    colm        NOT SHIPPED: sets a list out in columns, which `column' does.
+                It was ported and works (Spencer's getopt; `static' moved
+                before the return type in column.c, which Microware C wants;
+                its usage string split, and its %s with no argument filled)
+    xtail       DEFERRED: watches files and whole directories through
+                opendir/readdir and stat mode bits -- a port of its own
+    xfmt        DEFERRED: a flex program that also needs a patched flex
+                skeleton (flex.skel.diff)
 
 Still open, then
 the larger games -- craps, vcraps2, torus (robots2 descendant), perp,
