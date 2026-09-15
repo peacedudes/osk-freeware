@@ -48,6 +48,31 @@ Open:
      tests (tools/playtests/*.keys) are the instrument.  First batch of 12
      written 2026-09-14 from their card stanzas: hang bog saa othello hexa
      robots worm mines tt accordian tttt greed.
+  2a. **Play-tests had been deleted, not missing.**  The 2026-09-03 card
+     pass (27521b0b, f7c6f94c) removed about forty tools/playtests/*.keys
+     -- animal, bog, tt, advent, chess... -- while making one card per
+     game, with no reason in either message.  A card captures; a play-test
+     asserts, and worklist.py counts only the latter, so those programs
+     reappeared as untested.  Written again 2026-09-14 from the card
+     stanzas, each committed only after it passed (hang shown failing on
+     a wrong expect first).  xmas expects the credit line, not HAPPY
+     HOLIDAYS, which only later frames draw.  larn and ularn snap the
+     opening text first: the dungeon starts dark and the ink check called
+     it STARVED.  Left out on purpose: snake (11 orphans, its stray cursor
+     text) and sddemo (writes at 24;80 forever and ignores E).
+  2b. Also settled 2026-09-14 (late): **cron works** under Microware's
+     shell -- an every-minute crontab line ran within 80 s (it reads
+     /dd/usr/lib/crontab, forks `shell').  **rnews works**; it numbers
+     articles from SYS/UUCP/active, so a case must save and restore it.
+     **rayshade renders** in a case with sh copied to CMDS/shell and
+     gcc_cccp to /dd/cccp.  kermit/kermit2/sterm/wysecrack want a line;
+     mailx wants MAIL to be a directory of per-user folders; lmargin
+     writes nothing to stdout (printer path); tplot rejects every answer
+     to `x interval ?'; creadoc and hist need Microware's shell.
+  2c. **os9exec f7b31ea (host-dir rename)**: mv and wndex pass on a host
+     /dd; move still E$BMode (second update path on the same dir, entry
+     at $2C0); upperdir E$Share because it holds subdir open while
+     rewriting its entry.  Both traces sent to os9exec-d9.
   3. System utilities on the same list (aprocs cpu devprc vc top sysmon):
      probe for case material.
 
