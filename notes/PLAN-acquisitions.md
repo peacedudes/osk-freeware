@@ -545,6 +545,22 @@ SmallTeX, bawk, disa 1.00 (TWN 653675): MW 2464, 2677, 2864, 3697, 3712,
 3713, 2575, 2588, 2594, 2585, 2324, 2751.  Also 1990 IOCCC entries (pool
 forum16), editline (CSM v31, OS-9 support), pscat (`#ifdef OSK`).
 
+ASSESSED 2026-09-15 (none is on the disk; unpacked copies in
+acquisitions-2026-09-11/os9/mw/dl/x/c09_*):
+- bawk (Boisy's awk-alike, 6 C files): the disk has GNU `gawk' and `a2p'.
+- sortc (D. R. Grafton, multi-key character sort): the disk has GNU `sort'.
+- Solve (Jim McDowell): an integer-equation routine for other programs,
+  with a test driver -- nothing to run on its own.
+- SmallTeX (Mike Meyer 1982, OS-9 changes by Paul Burega; free to
+  distribute with source and notices): writes input for Burega's Fancy
+  Font `pfont' printer back end, which is not in the archive, so its
+  output has nothing here to print it.
+- unTC (Tim Koonce 1989, public domain): extracts John Lauro's TC
+  archives from Color Computer RSDOS -- CoCo, so last.
+- jumble (Nick Flor 1987, free to distribute, not for money) and sgrep
+  (DECUS grep with substitution, not for profit): both under the Q1
+  ruling, so shippable.
+
 ### Leave alone
 Microware-owned: 6809 system source, PIPELINES, Training, qpascal, ucc
 support, csl/fpu inside STerm68k.lzh, bfed.  Restrictive: StG V3 BBS,
