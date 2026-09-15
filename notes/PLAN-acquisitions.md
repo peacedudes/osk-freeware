@@ -1388,6 +1388,14 @@ triaged by size, files, curses and stated terms.  Done or decided:
     molecule    NOT SHIPPED: the simulation writes binary coordinates for a
                 display program built on a frame-buffer library (mginit,
                 mgihue) that has no counterpart here
+    smiley      PORTED, PARKED on branch hold/smiley (FOR-RDOGGETT 24): the
+                face list has a few ethnic and sexist entries; one change,
+                an exit() wrapper, because main's return value reaches the
+                shell as 0 here
+    marquis     NOT SHIPPED: forks into the background to scroll a message on
+                a terminal status line, and no terminal in SYS/termcap has one
+                (no ts/fs); it refuses to start without
+    xmases      NOT SHIPPED: seasonal joke shell scripts, not a program
     craps       DEFERRED: link() lock on its score list, a crypt() cheat, a
                 fork()/execl("/bin/csh") shell escape, BSD random, and every
                 key read with getchar(), which on OS-9 waits for a line; its
