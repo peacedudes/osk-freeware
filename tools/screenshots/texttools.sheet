@@ -139,6 +139,17 @@ wait    1
 run     wns -w=1 GPL DOC/README
 wait    6
 
+shot    agrep
+cap     A search that allows two mistakes: `lisense' finds the lines of the
+cap     disk's README that spell the word `licence'.
+try     agrep -2 lisense DOC/README
+run     builtin cd /dd
+wait    1
+run     clear
+wait    1
+run     agrep -2 lisense DOC/README
+wait    5
+
 shot    jargon
 cap     The Jargon File browser, jumping straight to the entry for
 cap     kluge.  It reads jargon.txt and jargon.idx from the VH

@@ -1006,3 +1006,6 @@ arithmetic|arithmetic|arithmetic.c getopt.c||/dd/LIB/rand.r|
 juggle|juggle|juggle.c curses.c getopt.c||/dd/LIB/rand.r|
 # jumble: Nick Flor's 1987 de-jumbler, from the 6809 archive (c09_jumble); built unchanged.
 jumble|jumble|jumble.c|||
+# agrep: agrep 2.01 (Wu and Manber) from the MW archive; remote buffers, open mode, putchar
+# and ENOENT under OSK -- SRC/agrep/README.OSK.
+agrep|agrep|asearch.c asearch1.c bitap.c checkfile.c compat.c follow.c main.c maskgen.c parse.c preprocess.c sgrep.c mgrep.c utilities.c|||

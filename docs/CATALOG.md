@@ -1,6 +1,6 @@
 # What is on this disk
 
-1012 programs of OS-9/68K community software, gathered from the archives that kept it and made to run again. **664 of them need nothing but this disk**; the rest want Microware's `cio`, marked below with a star.
+1013 programs of OS-9/68K community software, gathered from the archives that kept it and made to run again. **665 of them need nothing but this disk**; the rest want Microware's `cio`, marked below with a star.
 
 `DOC/INDEX` on the disk lists everything alphabetically. This is the same collection sorted by what each program is *for*, which is the more useful order when you do not yet know what you are looking for.
 
@@ -13,7 +13,7 @@
 |---|--:|---|
 | [Shells](#shells) | 24 | Unix shells to sit beside OS-9's own -- bash and ksh bring history, job control, and scripts that come across unchanged. |
 | [Editors](#editors) | 27 | vi and emacs in several flavours, line and stream editors, and editors for binary and hex. |
-| [Text tools](#text-tools) | 128 | Search, sort, compare, reformat, split and spell-check. |
+| [Text tools](#text-tools) | 129 | Search, sort, compare, reformat, split and spell-check. |
 | [Files & directories](#files--directories) | 34 | Listing, copying, finding, renaming, and knowing what you have. |
 | [Developer tools](#developer-tools) | 47 | Version control, tags, cross-reference, formatters, a debugger and benchmarks. |
 | [Compilers & build](#compilers--build) | 41 | C compilers and their passes, assemblers, linkers, make and parser generators. |
@@ -155,7 +155,7 @@
 
 *Search, sort, compare, reformat, split and spell-check.*
 
-<details><summary>128 programs</summary>
+<details><summary>129 programs</summary>
 
 **Alternates**
 
@@ -243,6 +243,7 @@
 
 | | |
 |---|---|
+| `agrep` | grep that forgives spelling: `agrep -2 homogenos file' finds `homogeneous', allowing up to two letters wrong, missing or extra.  -i ignores case, -w matches whole words, -c counts, -f takes many patterns from a file, and -d splits the text into records (`-d "^From "' for a mailbox)<br>**How:** Like grep, but a number option allows mistakes: `agrep -1 recieve file' finds `receive', one substitution, insertion or deletion away. -i ignores case, -w wants whole words, -c counts matching records, -l names the files, -v inverts, -f patfile searches for every pattern in patfile, and -d sets the record delimiter, so `agrep -d "^From " word mailbox' prints whole messages. Bare, it prints its option summary. |
 | `bm` | &#9733; a fast grep by the Boyer-Moore algorithm: searches files for one or more fixed strings, with counts, file lists and character offsets on request<br>`bm: search for a given string or strings in a file or files` |
 | `bmgtest` | &#9733; Boyer-Moore-Gosper substring search demo<br>**How:** bmgtest [-i] [-n] <pattern> [file ...]. A demonstration of Boyer-Moore-Gosper searching. |
 | `bmgtest2` | &#9733; Boyer-Moore-Gosper substring search demo (variant)<br>`usage: bmgtest [-i] [-n] pattern [file ...]` |

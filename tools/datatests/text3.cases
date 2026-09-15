@@ -171,3 +171,25 @@ case    wns-prints-a-window-round-each-match
 run     /dd/CMDS/wns -w=1 GPL /dd/DOC/README < /nil
 expect  /dd/DOC/README:Where a package is under the GPL
 expect  -------------------
+
+# agrep (2026-09-15, agrep 2.01): approximate matching, a count, and many
+# patterns from a file -- the last reads through its remote pattern buffers.
+case    agrep-finds-a-word-two-errors-away
+run     echo "a homogeneous mixture" > $W/ag.txt
+run     echo "Hello there, world" >> $W/ag.txt
+run     echo "the abcd line" >> $W/ag.txt
+run     /dd/CMDS/agrep -2 homogenos $W/ag.txt
+expect  a homogeneous mixture
+absent  Hello there
+
+case    agrep-counts-and-takes-patterns-from-a-file
+run     echo "a homogeneous mixture" > $W/ag2.txt
+run     echo "Hello there, world" >> $W/ag2.txt
+run     echo "the abcd line" >> $W/ag2.txt
+run     echo "world" > $W/ag2.pat
+run     echo "abcd" >> $W/ag2.pat
+run     /dd/CMDS/agrep -c e $W/ag2.txt
+run     /dd/CMDS/agrep -f $W/ag2.pat $W/ag2.txt
+expect  3
+expect  Hello there, world
+expect  the abcd line

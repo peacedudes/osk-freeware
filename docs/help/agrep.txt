@@ -1,0 +1,15 @@
+$ agrep
+usage: agrep [-#cdehiklnpstvwxBDGIS] [-f patternfile] pattern [files]
+
+summary of frequently used options:
+-#: find matches with at most # errors
+-c: output the number of matched records
+-d: define record delimiter
+-h: do not output file names
+-i: case-insensitive search, e.g., 'a' = 'A'
+-l: output the names of files that contain a match
+-n: output record prefixed by record number
+-v: output those records containing no matches
+-w: pattern has to match as a word, e.g., 'win' will not match 'wind'
+-B: best match mode. find the closest matches to the pattern
+-G: output the files that contain a match

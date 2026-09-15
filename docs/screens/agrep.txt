@@ -1,0 +1,5 @@
+agrep -2 lisense DOC/README
+is a licence obligation for the binaries in CMDS, not a convenience.
+Two exceptions worth knowing: gcc139 carries its licence inside
+Brook's own licence (DOC/sbprolog/COPYING), not the GPL.
+                       each author's licence conditions -- read before
