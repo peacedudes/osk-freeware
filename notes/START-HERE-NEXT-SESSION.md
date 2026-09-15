@@ -97,6 +97,13 @@ Open:
      games4 difference.
   2g. **disk/ is hard-linked to an unknown twin** (FOR-RDOGGETT 18).
      `ls -li' before changing a file under disk/.
+  2h. **vtxtcn's card works** (it had run in GAMES/WORLD, where vtext.dat
+     is absent, so it read a NULL FILE forever); panel exception retired.
+     dm needs Microware's pd (`pd >/pipe/getcwdpipe' through SHELL) and
+     uuxqt needs its procs -- both in requires.psv.  sysmon.keys passes
+     only on os9exec 143152b or later.  rcsmerge is an audit_cards
+     exception with the measured reason.  Leftover no-test list is 26:
+     hardware, G-Windows, a peer, or Microware's own shell and utilities.
   3. System utilities on the same list (aprocs cpu devprc vc top sysmon):
      probe for case material.
 
