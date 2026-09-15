@@ -36,8 +36,8 @@ Open:
      now stops walking at E$IPrcID and draws its monitor; its stanza runs
      `sysmon 2>/nil' so os9exec's `F$SetSys: unimplemented 08A6/08A8'
      notices stay off the screen.  Reshoot needs OS9EXEC at or past 143152b.
-  1d. **os9exec RBF lost update -- image corruption, top of os9exec-d9's
-     queue.**  Each path keeps its own copy of the current sector and
+  1d. **os9exec RBF lost update -- image corruption: FIXED in b3145c3**
+     (unpushed; misc.cases 18 of 18 on it, measured 2026-09-14).  Each path keeps its own copy of the current sector and
      writes it all back when done, so two update paths on one sector lose
      each other's bytes.  `move' links the new entry through one path and
      zeroes the old entry's first byte through the other; the zero is lost,

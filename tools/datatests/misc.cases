@@ -92,9 +92,10 @@ expect  4141 4141 4141 4141 4141 4141 4141 4141
 # `/dd/tmp/mv1', which the rm on its first line prints whether or not move
 # works, and it passed while move left the old name in place: on an image
 # under os9exec (2026-09-14) mv1 survives, and moving it again succeeds, so
-# several names end up on one FD sector.  Reported to the os9exec session;
-# RBF marks a deleted entry with a zero first byte, and move's one-byte
-# write there is lost.  So this case FAILS until that is fixed.
+# several names end up on one FD sector.  RBF marks a deleted entry with a
+# zero first byte, and move's one-byte write there was lost between its
+# two update paths.  Fixed in os9exec b3145c3 (18 of 18 here on it); on an
+# older os9exec this case fails, and that is the emulator.
 case    move-relinks-a-file-rather-than-copying-it
 run     /dd/CMDS/rm -rf /dd/tmp/MV > /nil 2>/nil
 run     /dd/CMDS/mkdir /dd/tmp/MV

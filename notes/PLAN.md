@@ -61,7 +61,7 @@ back, forty programs to an emulator start.
 The known failures are deliberate and each says why in its own file: four in
 `datatest` -- `zip-cannot-write-its-archive`, `todos-must-change-the-file`,
 `sir-round-trip-is-lossy`, and `move-relinks-a-file-rather-than-copying-it`
-until os9exec's RBF sector-cache fix lands -- and in `playtest`, valspeak
+on any os9exec older than b3145c3 -- and in `playtest`, valspeak
 (pacman now passes; snake and puzzle have no .keys). A full `datatest --all` run was **420 of 423**, measured
 2026-08-31.
 
