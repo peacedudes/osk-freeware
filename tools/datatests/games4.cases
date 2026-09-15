@@ -47,3 +47,13 @@ expect  You scored 0 out of 250 possible points.
 case    maze-draws-a-maze
 run     /dd/CMDS/printf '11\n' | /dd/CMDS/GAMES/maze
 expect  ._._._._._._._._._._._._._._._._._._._._
+
+case    vtxtcn-builds-world-text-tables-from-vtext-dat
+# A build step for World: it reads vtext.dat from the current directory.
+run     /dd/CMDS/mkdir -p $W/vt > /nil 2>/nil
+run     /dd/CMDS/cp /dd/SRC/world/vtext.dat $W/vt/vtext.dat
+run     /dd/CMDS/ksh -c "cd $W/vt; /dd/CMDS/GAMES/vtxtcn" < /nil
+run     /dd/CMDS/wc -c $W/vt/q1text.dat $W/vt/qtext.inc $W/vt/objdes.inc
+expect  packed:    33490 unpacked:     5049
+expect  77824 /dd/tmp/GM4/vt/q1text.dat
+expect  11460 /dd/tmp/GM4/vt/qtext.inc

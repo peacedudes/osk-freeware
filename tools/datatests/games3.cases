@@ -1,8 +1,9 @@
 # games3 -- games that read their moves from standard input, fed enough to
 # show them start and set their scene, 2026-09-14.  Only the fixed text is
 # asserted: fish deals and wump places its hazards at random.  poker,
-# blackjak, jotto and mastrm are NOT here: each re-asks forever once input
-# runs out, and a head on the pipe does not stop them.
+# blackjak, jotto, mastrm, gnugo and hinterhalt re-ask forever once input
+# runs out, and a head on the pipe does not stop them -- so each case feeds
+# a whole game, to the program's own ending.
 
 family  games3
 
@@ -27,3 +28,63 @@ case    wump-sets-up-the-cave
 run     /dd/CMDS/printf 'n\nq\nn\n' | /dd/CMDS/GAMES/wump
 expect  You're in a cave with 20 rooms and 3 tunnels leading from each room.
 expect  Move or shoot? (m-s)
+
+case    gnugo-plays-a-move-and-stops-when-told
+# `stop' ends the game and asks about the score.  Input must not run out
+# before that: at end of input gnugo re-asks, recursing, until the stack
+# overflows.
+run     /dd/CMDS/printf '\n0\nb\nD4\nstop\nn\n' | /dd/CMDS/GAMES/gnugo
+expect  Number of handicap for black (0 to 17)?
+expect  my move:
+expect  Do you want to count score (y or n)?
+absent  Stack Overflow
+
+case    jotto-plays-a-game-to-its-final-score
+# Whoever guesses first, this input stays in step: a word for a guess (or
+# an unreadable count, which jotto asks again), 5 letters and `yes' for the
+# computer's guess, then `no' to another game.
+run     export USER=tester
+run     /dd/CMDS/printf 'y\nbrace\n5\nyes\nno\n' | /dd/CMDS/GAMES/jotto
+expect  Jotto 3.0
+expect  Think of a word of 5 different letters.
+expect  Your word is:
+expect  My word was:
+expect  Final score
+expect  computer  1
+
+case    poker-plays-a-hand-and-quits
+# `c' calls whatever the computer does, and is refused at the end-of-hand
+# question until `q' quits.
+run     /dd/CMDS/printf 'no\n100\n5\nb\nc\nc\nc\nq\n' | /dd/CMDS/GAMES/poker
+expect  Welcome to Cold-hand Poker
+expect  With a 5 chip ante the pot has 10 chips
+expect  You are dealt
+expect  which are not redeamable
+
+case    blackjak-plays-a-hand-and-leaves
+run     /dd/CMDS/printf 'no\n1\ns\nno\n' | /dd/CMDS/GAMES/blackjak
+expect  Welcome to Las Vagas BlackJack
+expect  You are dealt
+expect  Another round?
+expect  You leave with
+
+case    mastrm-scores-a-guess-and-quits
+run     /dd/CMDS/printf 'n\ng\nn\nwhite red blue white\nq\nn\n' | /dd/CMDS/GAMES/mastrm
+expect  Choosing a code for you to guess.
+expect  Please enter guess #1 -> 
+expect  Was that too tough for you?  I'll be nicer next time.
+expect  Would you like to play again, y/n [default is n] ->
+
+case    hinterhalt-plays-until-boxed-in
+# A move a key, 8 2 4 6; the game ends when the obstacles box you in, and
+# then asks for another game (J/N).  Two thousand moves is far more than
+# any game lasts; the rest are refused one by one before the `n'.
+run     export TERM=vt100 TERMCAP=/dd/SYS/termcap
+run     /dd/CMDS/printf 'n' > /dd/tmp/hint.keys
+run     for a in 1 2 3 4 5; do for b in 1 2 3 4 5 6 7 8 9 10; do /dd/CMDS/printf '8624862486248624862486248624862486248624'; done; done >> /dd/tmp/hint.keys
+run     /dd/CMDS/printf 'n' >> /dd/tmp/hint.keys
+run     /dd/CMDS/hinterhalt < /dd/tmp/hint.keys
+expect  HINTERHALT
+expect  Brauchen Sie eine Anleitung (J/N)?
+expect  Leistung!
+expect  Noch ein Spiel (J/N)?
