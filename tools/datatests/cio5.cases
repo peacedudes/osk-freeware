@@ -115,3 +115,14 @@ case    setfont-writes-nothing-for-a-real-file-and-that-is-not-the-mismatch
 run     /dd/CMDS/setfont $C5/a.txt > $C5/font.out
 run     /dd/CMDS/wc -c $C5/font.out
 expect  0 /dd/tmp/C5/font.out
+
+# scpp (2026-09-15, TOP release 2): only the macro named with -M is
+# interpreted; every other #define and macro use passes through untouched.
+case    scpp-expands-only-the-named-macro
+run     echo "#define WIDTH 80" > /dd/tmp/scppcase.c
+run     echo "#define DEPTH 24" >> /dd/tmp/scppcase.c
+run     echo "int w = WIDTH, d = DEPTH;" >> /dd/tmp/scppcase.c
+run     /dd/CMDS/scpp -MWIDTH /dd/tmp/scppcase.c
+expect  int w = 80, d = DEPTH;
+expect  #define DEPTH 24
+absent  #define WIDTH 80

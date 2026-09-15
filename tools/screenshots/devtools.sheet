@@ -546,3 +546,23 @@ run     echo "explain char *(*fp)()" | cdecl
 wait    3
 run     echo "declare x as pointer to function returning int" | cdecl
 wait    4
+
+shot    scpp
+size    24 80
+cap     Only the macro named is expanded: WIDTH's #define is gone and its use
+cap     is 80, while DEPTH's #define and its use are left as they were.
+try     scpp -MWIDTH s.c
+run     /dd/CMDS/rm -rf /dd/tmp/scppcard > /nil 2>/nil
+run     /dd/CMDS/mkdir -p /dd/tmp/scppcard
+run     builtin cd /dd/tmp/scppcard
+run     echo "#define WIDTH 80" > s.c
+run     echo "#define DEPTH 24" >> s.c
+run     echo "int w = WIDTH, d = DEPTH;" >> s.c
+wait    2
+run     clear
+wait    1
+run     cat s.c
+wait    2
+run     scpp -MWIDTH s.c
+wait    4
+

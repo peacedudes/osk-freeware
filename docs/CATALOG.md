@@ -1,6 +1,6 @@
 # What is on this disk
 
-1016 programs of OS-9/68K community software, gathered from the archives that kept it and made to run again. **668 of them need nothing but this disk**; the rest want Microware's `cio`, marked below with a star.
+1017 programs of OS-9/68K community software, gathered from the archives that kept it and made to run again. **668 of them need nothing but this disk**; the rest want Microware's `cio`, marked below with a star.
 
 `DOC/INDEX` on the disk lists everything alphabetically. This is the same collection sorted by what each program is *for*, which is the more useful order when you do not yet know what you are looking for.
 
@@ -15,7 +15,7 @@
 | [Editors](#editors) | 27 | vi and emacs in several flavours, line and stream editors, and editors for binary and hex. |
 | [Text tools](#text-tools) | 130 | Search, sort, compare, reformat, split and spell-check. |
 | [Files & directories](#files--directories) | 34 | Listing, copying, finding, renaming, and knowing what you have. |
-| [Developer tools](#developer-tools) | 47 | Version control, tags, cross-reference, formatters, a debugger and benchmarks. |
+| [Developer tools](#developer-tools) | 48 | Version control, tags, cross-reference, formatters, a debugger and benchmarks. |
 | [Compilers & build](#compilers--build) | 41 | C compilers and their passes, assemblers, linkers, make and parser generators. |
 | [Languages](#languages) | 11 | Interpreters and language systems beyond C. |
 | [Archives & compression](#archives--compression) | 33 | Pack, unpack and shrink -- lha, zip, tar, arc, zoo, and OS-9 module libraries. |
@@ -445,7 +445,7 @@
 
 *Version control, tags, cross-reference, formatters, a debugger and benchmarks.*
 
-<details><summary>47 programs</summary>
+<details><summary>48 programs</summary>
 
 **Assembly**
 
@@ -508,6 +508,7 @@
 | `ifdef` | resolve #ifdefs in C source<br>`Syntax: ifdef [<opts>] [<file>] [<opts>]` |
 | `indent` | reformat a C source program for readability<br>`Syntax: indent [<opts>] [<inpath> [<outpath>]] [<opts>]` |
 | `patch` | apply a diff to update a file. It recognises the diff but cannot complete the patch, leaving the target unchanged; diff itself works. |
+| `scpp` | &#9733; the selective C preprocessor: expands only the macros you name and leaves the rest of the source as it was. `scpp -MWIDTH prog.c' interprets WIDTH alone; -D defines one<br>**How:** `scpp -MNAME file' copies the C source to standard output expanding only NAME -- its #define disappears and each use becomes the value -- and leaves every other macro, #include and #ifdef untouched. Name several with -M"A B"; -DNAME=value defines one; -C keeps comments; -I adds an include directory. |
 | `unifdef` | resolve #ifdef sections in C source for one symbol: -d<sym> keeps its branch, -u<sym> the other.<br>**How:** Its option is `-d<sym>' -- lower case, no equals -- and `-u<sym>' for the other side. `-DOSK' is refused with its own help, which reads like the program working and is not. |
 
 **Source navigation**

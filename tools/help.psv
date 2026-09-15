@@ -633,6 +633,7 @@ cb|cb -?|
 indent|indent -?|
 cpr|cpr -?|
 unifdef|unifdef -?|
+scpp|none|it has no help flag -- `-?' only says `unknown switch'; its options are -M, -D, -C and -I, in DOC/scpp.doc
 ifdef|ifdef -?|
 patch|none|`patch <file> <diff>'; a switch it does not know is refused with no help text
 bcheck|bcheck -?|

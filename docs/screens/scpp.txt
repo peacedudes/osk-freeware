@@ -1,0 +1,7 @@
+cat s.c
+#define WIDTH 80
+#define DEPTH 24
+int w = WIDTH, d = DEPTH;
+$ scpp -MWIDTH s.c
+#define DEPTH 24
+int w = 80, d = DEPTH;

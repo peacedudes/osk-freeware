@@ -120,6 +120,7 @@ ifdef|Developer tools|Source formatting
 indent|Developer tools|Source formatting
 patch|Developer tools|Source formatting
 unifdef|Developer tools|Source formatting
+scpp|Developer tools|Source formatting
 ctags|Developer tools|Source navigation
 cxref|Developer tools|Source navigation
 etags|Developer tools|Source navigation

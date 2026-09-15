@@ -904,6 +904,7 @@ undel|No copyright or licence grant. Its documentation (in German) by Stephan En
 undump|"Copying-policy: freely distributable".|SOURCES.txt line 2410
 unexpand|No licence text travels with it: the binary names itself "GNU textutils version 1.0" and came from Kei Thomsen's binary-only GNU archive, which carries no COPYING.|CMDS/unexpand (strings); GNU/gnu.bin.t.gz member unexpand (same module, same size); SOURCES.txt lines 241-253
 unifdef|Its usage text states: "This is public domain software (newsnet), not for sale."|SRC/hc_utils/unifdef.c line 605
+scpp|Copyright (c) 1985 Tektronix, Inc.: "Permission is hereby granted for personal, non-commercial reproduction and use of this program, provided that this notice and all copyright notices are included in any copy." Non-commercial terms are accepted for this collection.|SRC/scpp/lex.l lines 1-12; SOURCES.txt, scpp
 unip|Copyright 1987,1988 Roy J. Fehlandt. "Placed into the public domain for non-commercial use provided this notice is included in all copies."|SRC/bix/unip.c lines 1-3
 uniq|No copyright or licence statement in Carl Kreider's utilities archive (binaries and a one-line-per-program ReadMe) or in the binary.|CMDS/carlutil.lzh member uniq (identical binary); DOC/carlutil/ReadMe; SOURCES.txt lines 275-278
 unkeep|Written for this collection (2026-08-21). Its source states no copyright or licence, and the repository LICENSE's MIT grant covers tools/, not disk/.|SRC/keep/keep.c line 3; LICENSE (THE TOOLING section)
