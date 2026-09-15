@@ -112,6 +112,17 @@ Open:
      binary file'), exported nothing, and every later step reported on an
      empty tree (`cannot read /dd/startup').  Run it with cwd elsewhere.
      The `tar' file was left alone: it is in rdoggett's working tree.
+  2j. **CI could never have built an image, found and fixed 894e158e.**
+     Five captures (corewar, cwasm, cwdis, monop, yahtzee2 .shot.txt) had
+     been committed into the gitignored notes/playtests, so a clean
+     checkout was not capture-free: `gen_screens.py --check' took the
+     regenerate path, deleted docs/screens/ and wrote a five-screen
+     screens.js, and mkimage's gate then failed with 841 problems.  The
+     five are untracked and --check now writes nothing.  Proved with
+     tools/ci/run_workflow_locally.sh (run it with cwd outside the repo).
+  2k. games4's advcom case piped advcom into head; on a host dir head's
+     exit cut advcom off mid-write (advint: `bad data file').  Output now
+     goes to a file.  os9exec b2bee94 fixed adlrun's zero-length read.
   3. System utilities on the same list (aprocs cpu devprc vc top sysmon):
      probe for case material.
 
