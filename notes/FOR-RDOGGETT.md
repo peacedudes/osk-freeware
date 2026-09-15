@@ -49,6 +49,16 @@ Open questions only. Nothing here is decided. Updated 2026-09-14 (late).
    twin, and should edits reach it?  Until you say, I keep writing in place,
    as every generator here always has; rsconvert is the one file detached.
 
+19. **My play-test harness wrote a hack save file into YOUR osk-freeware.dd.**
+   `tools/playtest.py' never passed OS9H0, so os9exec mounted the repo's `h0'
+   link -- your image -- as /h0 on every play-test run tonight, beside
+   whatever emulator you had open.  hack's playground is an /h0 path, so
+   `GAMES/HACK/PLAYGROUND/save/0tester' (16,593 bytes, 22:39 on 2026-09-14)
+   landed on your image; nothing else dated tonight is there.  Fixed in
+   29d879b6.  I have not removed the file while your emulator holds the
+   image.  Delete it (`del /dd/GAMES/HACK/PLAYGROUND/save/0tester'), or say
+   so and I will do it once the image is closed.
+
 ## Licence and authorship questions the card-terms pass turned up (2026-09-14)
 
 Every card must now state its terms, so every program's source was read for

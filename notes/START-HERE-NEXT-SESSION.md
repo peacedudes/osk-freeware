@@ -135,6 +135,38 @@ Open:
   2k. games4's advcom case piped advcom into head; on a host dir head's
      exit cut advcom off mid-write (advint: `bad data file').  Output now
      goes to a file.  os9exec b2bee94 fixed adlrun's zero-length read.
+  2l. **playtest.py never mounted its image as /h0** (fixed 29d879b6).  It
+     passed OS9DISK only, so os9exec used the repo's `h0' link -- the WORKING
+     osk-freeware.dd -- as /h0 on every play-test ever run, beside rdoggett's
+     open emulator.  hack's playground is an /h0 path: a save `0tester' was
+     written into his image at 22:39 (FOR-RDOGGETT 19).  Any play-test result
+     for a program that reads /h0 data is from the wrong disk until rerun.
+     The full --all run of 2026-09-14 night was stopped with SIGTERM for it.
+     I also committed 29d879b6 with the gate red (NetHack's card was not yet
+     shot) -- the rule is green before every commit.
+  2m. **NetHack 3.0f (TOP) is in** (4df6cc54).  **UMoria 4.87 (TOP) is
+     rebuilt from TOP's source**, game code untouched (rdoggett 2026-09-15:
+     no big changes to something already ported).  TOP's binary cannot draw
+     a screen here, measured with a corrected termcap too.  Mellin's ncurses
+     had three faults with SYS/termcap, all fixed in SRC/moria/tcentry.c, a
+     read_entry() linked ahead of ncurses.l: (1) it takes only an entry
+     whose third character is `|'; (2) it decodes termcap `\n' as OS-9 C's
+     '\n', a CR, so do=\n never moved down (this, not nonl(), was why
+     screens drew over one line -- BUGGY_CURSES is NOT needed); (3) it
+     treats am as wrap-now, and on an xn terminal cursor motion cancels the
+     wrap, so map rows piled at column 80 -- the shim hides am when xn is
+     present.  The SYS/termcap `vt|' alias noted here before is not needed
+     and SYS/termcap is unchanged.  Also found on the way: DEFS/ncurses
+     lacked terminfo.h, which its curses.h includes; the driver's long
+     path did not pass -V= to per-file compiles; and a replacement for a
+     LIBRARY function in the parts library is never pulled -- the new
+     recipe keyword LINKFIRST= puts its object on the link line.
+  2n. **Two harness gaps, not yet fixed.**  tools/ansiscreen.py does no
+     auto-wrap at column 80 (it clamps), so it cannot show what an am
+     terminal does with a full row.  playtest.py's `expect' also searches
+     the RAW stream on purpose (orbit's scrolled header), so a program that
+     prints the right words onto a garbled screen PASSES -- TOP's moria
+     passed on `Warrior' with the screen in column 80.  Read the snapshots.
   3. System utilities on the same list (aprocs cpu devprc vc top sysmon):
      probe for case material.
 
