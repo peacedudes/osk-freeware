@@ -1472,7 +1472,7 @@
 | `signal` | &#9733; send a signal to a process<br>`Syntax: signal <process-id> <signal-code> [<seconds>]` |
 | `sysmax` | &#9733; shows the system's maximum process age -- `system maximum age is 0' unless the kernel answers the F$SetSys call it uses |
 | `sysmin` | &#9733; shows the system's minimum process priority -- `system minimun priority is 0' here, from the same F$SetSys call |
-| `sysmon` | &#9733; system monitor.  It asks whether to create SYS/nodedef, times out on the keyboard and draws its Process Monitor, then takes a bus error at F$GPrDsc, the get-process- descriptor call this system does not answer -- the same gap `devprc -a' and `top' meet.  `dinfo', `map' and `space' answer the questions it would have.<br>`Syntax: sysmon [<opt>]` |
+| `sysmon` | &#9733; system monitor.  It asks whether to create SYS/nodedef and for a node name, then draws its Process Monitor -- a CPU bar chart per process -- walking the process table one id at a time with F$GPrDsc until the kernel answers E$IPrcID.  `dinfo', `map' and `space' answer related questions.<br>`Syntax: sysmon [<opt>]` |
 | `t` | a minimal trap-handler test stub: it installs, returns cleanly and prints nothing |
 | `top` | &#9733; show the busiest processes by their share of the CPU.  It prints its headings and then crashes -- its own bug: it asks about the root process's non-existent parent and does not check the error.  `aprocs' and `sysmon' show process state and run<br>`Syntax: top [<opts>] [<num>]` |
 | `vis` | &#9733; run a command over and over and refresh the screen with its output -- what `watch' does on other systems: `vis {opts} <command> <args>'.  Not the Unix `vis' that makes non-printing characters visible<br>`vis: illegal option -- ?` |
