@@ -32,11 +32,21 @@ Open:
      os9exec-d9 with a repro; they will check the Technical Manual.  This is
      perl's "mkdir answers E$FNA".  perl's rmdir is a known absence
      (README-OSK); s2p is a shell script and is deliberately not built.
-  1a. **os9exec: F$GPrDsc has no process-id bound check** (fcalls.c,
-     `procs[id]' with id from d0.w, MAXPROCESSES 129).  Ids past the table
-     read host memory and often answer success; sysmon walks them to a bus
-     error at id $1A8.  Reported to os9exec-d9 with the trace.  When fixed:
-     reshoot sysmon (system.sheet), fix its caption, and play it.
+  1a. **os9exec F$GPrDsc bound check: FIXED in 143152b** (unpushed).  sysmon
+     now stops walking at E$IPrcID and draws its monitor; its stanza runs
+     `sysmon 2>/nil' so os9exec's `F$SetSys: unimplemented 08A6/08A8'
+     notices stay off the screen.  Reshoot needs OS9EXEC at or past 143152b.
+  1d. **os9exec RBF lost update -- image corruption, top of os9exec-d9's
+     queue.**  Each path keeps its own copy of the current sector and
+     writes it all back when done, so two update paths on one sector lose
+     each other's bytes.  `move' links the new entry through one path and
+     zeroes the old entry's first byte through the other; the zero is lost,
+     and every move leaves two names on one FD (dump of /dd/tmp/MVX showed
+     mv1..mv4 all on $80AEC).  Deleting either frees sectors the other
+     uses.  misc.cases `move-relinks...' was blind (it matched its own rm's
+     message) and now requires the old name gone: it FAILS until the fix,
+     a fourth deliberate failure beside zip, todos, sir.  The release
+     image is built by tar, so it is not affected.
   1b. Lead, sent to os9exec-d9, unproven: aprocs shows every process's age
      as ~2^32 s where Microware's procs -e shows 0:00; D_Julian/D_Second
      read correctly, so suspect the descriptor's start date/time.  The

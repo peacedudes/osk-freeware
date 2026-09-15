@@ -58,10 +58,11 @@ it. Every column is derived, so none of it can go stale. `drive.py` is the
 step before a `datatest` case: it asserts nothing and shows you what came
 back, forty programs to an emulator start.
 
-The known failures are deliberate and each says why in its own file: three in
+The known failures are deliberate and each says why in its own file: four in
 `datatest` -- `zip-cannot-write-its-archive`, `todos-must-change-the-file`,
-`sir-round-trip-is-lossy` -- and four in `playtest` (pacman, puzzle, snake,
-valspeak). A full `datatest --all` run was **420 of 423**, measured
+`sir-round-trip-is-lossy`, and `move-relinks-a-file-rather-than-copying-it`
+until os9exec's RBF sector-cache fix lands -- and in `playtest`, valspeak
+(pacman now passes; snake and puzzle have no .keys). A full `datatest --all` run was **420 of 423**, measured
 2026-08-31.
 
 **Re-measured 2026-09-13 on fresh images: 728 of 743, then fixed.**
