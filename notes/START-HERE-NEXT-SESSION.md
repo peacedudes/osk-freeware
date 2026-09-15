@@ -405,6 +405,36 @@ Open:
      measured that the TOP termcap library's FILE route works once the
      entry's first field is the old two-character form (`d0|vt100:...');
      robots2 then dies later, at I$SetStt, a separate bug.
+  2z. **Later on 2026-09-15: nine more ports, and the traps they found.**
+     chemtab (8d537dd8), vcraps (c001e096), translit (f15d0115), trek73
+     (b20bcb93), roll, ski and wf (3508b84c), hp (77989aad), bugs -- the
+     dr_mario post -- (18246404); smiley is ported and parked on branch
+     hold/smiley (FOR-RDOGGETT 24); letters is under way.  Every
+     README.OSK lists its changes; notes/PLAN-acquisitions has the rest.
+     **AT&T lex programs need five things under the disk's flex** (memory
+     os9-lex-to-flex-ports): flex ignores the program's input()/unput(),
+     so feed YY_INPUT; `flex -I' when the parser reads the line through a
+     shared pointer (hp said "stack underflow" for 2 3 + without it);
+     yyrestart() before each parse; supply yywrap(); extern any global the
+     .l defines again.  Make y.tab.c and lex.yy.c ON OS-9 with the disk's
+     yacc and flex, never from a posted grammar.c.
+     **Static data past 64K: declare it `remote'** (wf's word lists, as jaw's
+     tables) -- r68 says "value out of range", l68 "exceeds 64k".
+     **A program's own setterm() collides with curses.l's**, which every
+     build links (letters); rename it under OSK.
+     **`};' after a function body is "identifier missing"** (wf, four times).
+     **Microware cpp rejects #ident even in a skipped #if** (trek73, 33
+     files); make each a comment, in the .y and .l too.
+     **A value returned from main reaches the shell as 0**; exit() gives the
+     real status (smiley's unknown-face count).
+     **toos9's INDEX entry named `autolf -l -C', which converts nothing**
+     (13ffcea2): measured, `autolf -C' makes OS-9 lines of DOS text.
+     **gen_screens drops a capture under 30 characters of ink** -- hp's first
+     card was 21 and simply did not publish; the gate says "no card".
+     Make the card show more of the program; do not lower the floor.
+     **Blunt: two translit datatests ran against osk-freeware.dd**, which
+     harnesses must never use; they wrote only to a host directory, but
+     datatest takes the image lock.  Every run since used a *-cb.dd.
   2n. **Two harness gaps, not yet fixed.**  (2026-09-15: mz is ported and
      waiting on the first one -- notes/PLAN-acquisitions.)  tools/ansiscreen.py does no
      auto-wrap at column 80 (it clamps), so it cannot show what an am

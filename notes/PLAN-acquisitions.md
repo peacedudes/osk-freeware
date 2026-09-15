@@ -1441,10 +1441,11 @@ triaged by size, files, curses and stated terms.  Done or decided:
     lp-posters  NOT SHIPPED: compressed 132-column line-printer pictures and
                 a filter; several are copyrighted cartoon characters and two
                 are pinups
-    dr_mario    ported as bugs (BUGS I) -- see git log: _gs_rdy for FNDELAY,
-                tsleep for select(), globals defined once
-    letters     DEFERRED: termio/sgtty ioctls and select() for keys, a system
-                word list, a high-score file
+    dr_mario    DONE as bugs (18246404) -- BUGS I; _gs_rdy for FNDELAY, tsleep
+                for select(), globals defined once
+    letters     IN PROGRESS: builds; _gs_opt/_ss_opt and _gs_rdy for its
+                termio keyboard, its setterm() renamed away from curses.l's,
+                GAMES/words for the dictionary, an empty score file
     cent        DEFERRED: curses centipede with tty ioctls
     pac         DEFERRED: curses calculator in five parts
     dialog      DEFERRED: ANSI C for ncurses, 1994
