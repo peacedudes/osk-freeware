@@ -1,6 +1,6 @@
 # What is on this disk
 
-1046 programs of OS-9/68K community software, gathered from the archives that kept it and made to run again. **697 of them need nothing but this disk**; the rest want Microware's `cio`, marked below with a star.
+1047 programs of OS-9/68K community software, gathered from the archives that kept it and made to run again. **698 of them need nothing but this disk**; the rest want Microware's `cio`, marked below with a star.
 
 `DOC/INDEX` on the disk lists everything alphabetically. This is the same collection sorted by what each program is *for*, which is the more useful order when you do not yet know what you are looking for.
 
@@ -22,7 +22,7 @@
 | [Encoding & conversion](#encoding--conversion) | 30 | Between text encodings, line endings, Macintosh formats, ciphers and hashes. |
 | [Communications](#communications) | 98 | Kermit in several builds, terminal sessions, and networking. |
 | [Graphics & images](#graphics--images) | 195 | The netpbm toolkit, JPEG, a ray tracer, and things that draw. |
-| [Games](#games) | 106 | Adventures, board and card games, arcade ports, dungeon crawls and puzzles. |
+| [Games](#games) | 107 | Adventures, board and card games, arcade ports, dungeon crawls and puzzles. |
 | [Screen toys](#screen-toys) | 10 | Animations and screen effects -- they draw on the terminal rather than print to it. Some run until you stop them. |
 | [Amusements](#amusements) | 31 | Generators, simulators and diversions that are not quite games. |
 | [System & modules](#system--modules) | 132 | OS-9 module and process tools, devices, system state and scheduling. |
@@ -1194,7 +1194,7 @@
 
 *Adventures, board and card games, arcade ports, dungeon crawls and puzzles.*
 
-<details><summary>106 programs</summary>
+<details><summary>107 programs</summary>
 
 **Adventure & fiction**
 
@@ -1310,6 +1310,7 @@
 | `teachgammon` | &#9733; backgammon that teaches you the game as you play<br>`Syntax: backgammon [<opts>] [<file>]` |
 | `tess` | &#9733; Beyond the Tesseract, a text adventure whose puzzles draw on physics and mathematics: two-word commands, about two hundred words understood, and -f skips the title and scenario |
 | `trek` | Star Trek at the Command: prompt -- choose a length, a skill and a password, then hunt the Klingons across the galaxy before time runs out.  `s' is the short-range scan, `l' the long range, `m' moves, `p' phasers, `t' torpedoes, `do' docks at a starbase; `help' lists every command and `terminate' ends the game.  `dump' saves it to trek.dump<br>**How:** Line-by-line game at a Command: prompt. RETURN past the banner, then answer the length (s/m/l), skill (n/f/g/e/c/i) and a password. `s' is the short-range scan, `l' the long range, `help' lists the commands, `terminate' ends the game and `n' at `Another game' leaves. |
+| `trek73` | Star Trek battle at a Code [1-32] prompt: give a name, a sex and how many enemies, then fight by number or in words -- `damage'; 32 lists the commands; wait too long and a turn passes<br>**How:** Line-by-line battle at a Code [1-32] prompt. Give the captain's last name, a sex and how many enemy vessels (1-9), and the log opens. Commands go by number -- 32 lists them -- or in words: `damage' gives the damage report. A command must come within the turn time, 30 seconds unless `-d 60' or TREK73OPTS=time=60 says otherwise; if it does not, ** TIME ** and the turn passes. -c, -s, -n and -r set the captain, sex, ship name and enemy race. Saving a game is not possible on OS-9. |
 | `typefast` | a typing game: words fall down the screen and each must be typed, ended with SPACE or RETURN, before it reaches the bottom.  Pick 1, 2 or 3 for the pace; ten missed words end the game with your words per minute.  Source `. /dd/SYS/termcap.entry' first -- it reads TERMCAP as the description itself<br>**How:** A typing game. Do `. /dd/SYS/termcap.entry' first -- it reads TERMCAP as the description itself. Then `n' skips the instructions and 1, 2 or 3 picks the pace; type each falling word and end it with SPACE. Ten misses end the game. |
 | `vtxtcn` | world - build its text tables.  Writes .inc files; needs world's .dat files in the current directory |
 | `wisecrack` | a server, and `ask' is its client. Run it in the background and every `ask' pulls one line out of it through /pipe/txtpipe -- slogans from a German OS-9 seminar, 1992-93. `wisecrack & ask "anything"' |

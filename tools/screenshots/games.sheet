@@ -1893,3 +1893,20 @@ wait    2
 send    r
 wait    6
 snap
+
+shot    trek73
+size    24 80
+cap     A battle opens after three answers: the captain's name, a sex and
+cap     one enemy vessel.  Code [1-32] waits for a command.
+try     trek73
+run     clear
+wait    1
+run     trek73
+wait    4
+send    Kirk\r
+wait    2
+send    m\r
+wait    2
+send    1\r
+wait    6
+snap

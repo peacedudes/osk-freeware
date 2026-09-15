@@ -107,6 +107,7 @@ cam|No copyright or licence statement in SRC/tekdemos or its documentation. The 
 canfield|BSD. Copyright (c) 1980 Regents of the University of California; the usual Berkeley notice is at the head of the source.|SOURCES.txt line 1032
 atc|BSD. Copyright (c) 1990 Regents of the University of California, with the four-clause Berkeley notice; and Copyright (c) 1987 Ed James, copy permission granted provided the notice is retained.|SRC/atc/main.c lines 1-43; SOURCES.txt, atc
 trek|BSD. Copyright (c) 1980 Regents of the University of California, with the four-clause Berkeley notice at the head of each source.|SRC/trek/main.c lines 1-32; SOURCES.txt, trek
+trek73|No terms stated: the post carries no copyright or licence statement. README2 names Jeff Okamoto and Peter Yee as its authors.|SRC/trek73/ORIG/README; SRC/trek73/ORIG/README2
 arithmetic|BSD. Copyright (c) 1989 Regents of the University of California, with the four-clause Berkeley notice at the head of the source.|SRC/arithmetic/ORIG/arithmetic.c lines 1-34; SOURCES.txt, arithmetic
 card|No copyright or licence statement in SRC/card or its documentation. The header reads "Christmas Card From Hanoi --- by Istvan Mohos, 1984".|SRC/card/card.c line 7
 casefix|Copyright 1990 Jeff Beadles. "Permission is granted to copy this at no charge, as long as the copyright message remains intact."|SRC/hc_loose/casefix.c lines 17-19

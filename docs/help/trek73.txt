@@ -1,0 +1,7 @@
+$ trek73 -?
+/dd/CMDS/GAMES/trek73: illegal option -- ?
+Usage: trek73 [-t] [-c captain's name] [-s sex] [-S science officer]
+        [-E engineer] [-C communications officer] [-N navigator] [-H helmsman]
+        [-f enemy captain] [-r enemy race] [-d command delay time] [-y] [-T]
+        [-n shipname] [-F enemy ship type] [-l federation ship type] [-v]
+       or trek73 -R

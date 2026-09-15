@@ -1,0 +1,24 @@
+   I'm expecting [1-9] enemy vessels 1
+
+
+
+Space, the final frontier.
+These are the voyages of the starship Republic.
+Its five year mission: to explore strange new worlds,
+to seek out new life and new civilizations,
+to boldly go where no man has gone before!
+
+                    S T A R    T R E K
+
+Kirk:  Captain's log, stardate 12609.15
+   We are headed for Malurian in response to a distress call
+   from that system.
+Sulu:  Sir, I'm picking up a vessel on an interception
+   course with the Republic.
+Spock:  Sensors identify it as a Kzinti Strike Cruiser,
+   probably under the command of Captain "Cat Who Fought Fuzzy Bear".
+Kirk:  Sound general quarters, Lieutenant!
+Uhura:  Aye, Sir!
+Computer: The Kzintis are attacking the Republic with the Comet.
+
+Kirk: Code [1-32]

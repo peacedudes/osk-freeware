@@ -1005,6 +1005,8 @@ chemtab|chemtab|cleanup.c dogph.c element.c esort.c looke.c main.c ptabl.c schar
 vcraps|vcraps|vcraps.c crapslib.c getopt.c|-Drandom=rand -Dsrandom=srand -D_maxx=w_cols||
 # translit (comp.sources.misc v36i023): transliteration by table; SRC/translit/README.OSK.
 translit|translit|translit.c reg_exp.c reg_sub.c|||
+# trek73 (comp.sources.games v3i022): Star Trek battles; y.tab.c and lex.yy.c made on OS-9; SRC/trek73/README.OSK.
+trek73|trek73|cmds1.c cmds2.c cmds3.c cmds4.c damage.c dist.c endgame.c enemycom.c firing.c globals.c init.c main.c misc.c mission.c moveships.c parseopts.c save.c ships.c special.c strat1.c subs.c vers.c parsit.c getopt.c y.tab.c|-DSYSV -DPARSER||
 lame|lame|lame.c||/dd/LIB/rand.r|
 canfield|canfield|canfield.c||/dd/LIB/curses.l /dd/LIB/termlib.l /dd/LIB/rand.r|
 # atc -- Ed James's air traffic controller, 4.3BSD-Net/2.  Built on its SYSV

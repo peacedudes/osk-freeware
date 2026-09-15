@@ -1,0 +1,24 @@
+name    trek73
+prog    trek73
+# An eight-second turn timer, so the wait at the end must end in ** TIME **.
+setup   export TREK73OPTS=time=8
+rate    0.4
+wait    4
+keys    Kirk
+key     \r
+wait    2
+keys    m
+key     \r
+wait    2
+keys    1
+key     \r
+wait    3
+snap    start
+keys    damage
+key     \r
+wait    3
+snap    damage
+wait    14
+snap    timed
+expect  Damages to the
+expect  TIME
