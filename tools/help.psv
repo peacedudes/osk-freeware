@@ -659,7 +659,7 @@ infocom|none|it takes the story file and nothing else
 paranoia|none|it takes no options; RETURN goes on and a letter chooses
 greed|greed -?|
 lander|none|it takes no options; its keys are on the card
-letters|letters -?|
+letters|none|it answers only on a terminal, so its usage cannot be captured here; its options are -q or -b (quiet, or the bell on a mistake), -l# to start at level #, and -h for the high scores
 pacman|none|it takes no options and asks its own questions
 robots|robots -?|
 snake|none|it takes no options; h, j, k and l move and x quits
