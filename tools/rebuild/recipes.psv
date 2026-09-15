@@ -1017,6 +1017,8 @@ wf|wf|wf.c|-Drandom=rand -Dsrandom=srand||
 hp|hp|hp.c y.tab.c lex.yy.c|||
 # bugs (comp.sources.games v13i003, dr_mario): BUGS I, a Dr. Mario lookalike; SRC/bugs/README.OSK.
 bugs|bugs|main.c startup.c loop.c meat.c|-Drandom=rand -Dsrandom=srand||
+# letters (comp.sources.unix v25i090): Letter Invaders 2.1, a typing game; SRC/letters/README.OSK.
+letters|letters|letters.c highscore.c kinput.c term.c word.c usleep.c|-DNOJOB -Drandom=rand -Dsrandom=srand||
 lame|lame|lame.c||/dd/LIB/rand.r|
 canfield|canfield|canfield.c||/dd/LIB/curses.l /dd/LIB/termlib.l /dd/LIB/rand.r|
 # atc -- Ed James's air traffic controller, 4.3BSD-Net/2.  Built on its SYSV

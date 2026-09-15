@@ -659,6 +659,7 @@ infocom|none|it takes the story file and nothing else
 paranoia|none|it takes no options; RETURN goes on and a letter chooses
 greed|greed -?|
 lander|none|it takes no options; its keys are on the card
+letters|letters -?|
 pacman|none|it takes no options and asks its own questions
 robots|robots -?|
 snake|none|it takes no options; h, j, k and l move and x quits

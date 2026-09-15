@@ -1964,3 +1964,14 @@ wait    2
 send    \r
 wait    5
 snap
+
+shot    letters
+size    24 80
+cap     Words falling toward the bottom of the screen, with the score, level,
+cap     words, lives and typing speed on the last line.
+try     letters
+run     clear
+wait    1
+run     letters
+wait    6
+snap

@@ -95,6 +95,7 @@ gshell|A full-screen menu of the current directory: + and - page, . changes dire
 hang|Hangman. Type a letter to guess it; the letters still unused are along the top. Control-C gets you out. Its word list is GAMES/dict.
 hotel|Full-screen: it takes over the display. **control-C gets you out**; q, Q, control-D and ESC do not. If it has a quit command of its own, its documentation in DOC/ will say.
 lander|Full-screen. Space starts a descent, a digit sets the engine power, `x' or `k' fires the main thruster and z/j and c/l the side retros. `q' quits.
+letters|Full-screen typing game. Words fall from the top of the screen, and typing a word's letters clears it; a word that reaches the bottom costs one of your lives. Every 15 words the level rises and the words fall faster. The bottom line shows the score, level, words, lives and words per minute. `letters -l5' starts at level 5, -b rings the bell for a mistake, and `letters -h' shows the top ten scores, kept in GAMES/LETTERS. The words come from GAMES/words.
 larn|Full-screen dungeon crawl. RETURN gets past the opening text. Control-C gets you out; its playground is GAMES/LARN/PLAYGROUND.
 me|Full-screen editor, MicroEMACS keys, German messages. Control-X control-C quits.
 mg|Full-screen editor, Emacs keys. Control-X control-C quits.

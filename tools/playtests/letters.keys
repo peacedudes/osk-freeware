@@ -1,0 +1,12 @@
+name    letters
+prog    letters
+# Words fall at a playable pace; untyped, the game ends and prints its score.
+rate    0.3
+wait    3
+snap    start
+wait    4
+snap    falling
+wait    12
+snap    over
+expect  Lives:
+expect  final: score = 0
