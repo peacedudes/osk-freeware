@@ -1,0 +1,21 @@
+name    bandit
+prog    bandit
+setup   . /dd/SYS/termcap.entry
+# One-Armed Bandit: no instructions, one bet of 5, then walk away.
+rate    0.5
+size    24 80
+wait    5
+key     n
+key     \r
+wait    4
+snap    start
+key     5
+key     \r
+wait    5
+snap    spin
+key     q
+key     \r
+wait    4
+expect  Starting bankroll
+expect  ONE-ARMED BANDIT
+expect  after 1 play

@@ -1,0 +1,1 @@
+# simple makefile for bandit## CFLAGS = -O# LIBS = -lcurses -ltermcap## bandit:	bandit.c#	cc -o bandit $(CFLAGS) bandit.c $(LIBS)CFLAGS = -qt=/dd -gLIBS = -l=/h0/lib/ncurses.l -l=/h0/lib/os9lib.lbandit:	bandit.c	cc -fd=bandit $(CFLAGS) bandit.r $(LIBS) -M=10 -g

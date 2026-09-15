@@ -1,6 +1,6 @@
 # What is on this disk
 
-1003 programs of OS-9/68K community software, gathered from the archives that kept it and made to run again. **658 of them need nothing but this disk**; the rest want Microware's `cio`, marked below with a star.
+1004 programs of OS-9/68K community software, gathered from the archives that kept it and made to run again. **659 of them need nothing but this disk**; the rest want Microware's `cio`, marked below with a star.
 
 `DOC/INDEX` on the disk lists everything alphabetically. This is the same collection sorted by what each program is *for*, which is the more useful order when you do not yet know what you are looking for.
 
@@ -22,7 +22,7 @@
 | [Encoding & conversion](#encoding--conversion) | 29 | Between text encodings, line endings, Macintosh formats, ciphers and hashes. |
 | [Communications](#communications) | 97 | Kermit in several builds, terminal sessions, and networking. |
 | [Graphics & images](#graphics--images) | 195 | The netpbm toolkit, JPEG, a ray tracer, and things that draw. |
-| [Games](#games) | 88 | Adventures, board and card games, arcade ports, dungeon crawls and puzzles. |
+| [Games](#games) | 89 | Adventures, board and card games, arcade ports, dungeon crawls and puzzles. |
 | [Screen toys](#screen-toys) | 9 | Animations and screen effects -- they draw on the terminal rather than print to it. Some run until you stop them. |
 | [Amusements](#amusements) | 25 | Generators, simulators and diversions that are not quite games. |
 | [System & modules](#system--modules) | 132 | OS-9 module and process tools, devices, system state and scheduling. |
@@ -1181,7 +1181,7 @@
 
 *Adventures, board and card games, arcade ports, dungeon crawls and puzzles.*
 
-<details><summary>88 programs</summary>
+<details><summary>89 programs</summary>
 
 **Adventure & fiction**
 
@@ -1273,6 +1273,7 @@
 | `ask` | the client for `wisecrack': it reads one line from /pipe/txtpipe and prints it, and says `No Wisecracks coming' when nothing is feeding the pipe. Start the server first -- `wisecrack &' -- and it answers<br>**How:** The reader for `wisecrack': it takes the next slogan from the pipe wisecrack writes to and prints it, one a call, in German. Start the server first -- `wisecrack &' -- or ask says "No Wisecracks coming". From EFFO forum 20. |
 | `atc` | Air Traffic Controller: guide the planes on the radar from airport or entry point to the destination each one shows, at the right altitude, without letting two meet.  Talk to a plane by its letter -- `a' and a digit sets altitude and takes off, `t' and a direction key turns -- RETURN sends it and `?' shows what may come next.  `atc -l' lists the airports, `-g easy' picks one; ^C quits.  GAMES/ATC holds the airports and the score list<br>**How:** Full-screen air traffic control. `atc -l' lists the airports and `atc -g easy' picks one. Type a command to a plane by its letter: `a' and a digit sets altitude (and takes off), `t' and a direction key turns; RETURN sends it, `?' lists what may come next, ^L redraws and ^C asks to quit. Its airports are in GAMES/ATC. |
 | `backgammon` | &#9733; backgammon, with a computer opponent<br>`Syntax: backgammon [<opts>] [<file>]` |
+| `bandit` | a one-armed bandit: three reels, a payoff table beside them, and a bankroll of 100.  Answer the bet prompt with 0 to 5, watch the reels, and `q' at the prompt walks away with the total.  Source `. /dd/SYS/termcap.entry' first -- it reads TERMCAP as the description itself<br>**How:** A slot machine. Do `. /dd/SYS/termcap.entry' first -- it reads TERMCAP as the description itself. Then `n' skips the instructions, a number 0-5 is the bet, and `q' at the bet prompt ends with your total. |
 | `convert` | starts the WORLD text adventure: run it and the game opens with its banner, the opening paragraph and a `>' prompt<br>**How:** It STARTS the `world' adventure -- run it and the game opens. |
 | `corewar` | Core War: two Redcode battle programs fight for control of a circular memory.  `corewar <cycles> a.e b.e' runs the fight and maps the core -- a 1 or a 2 marks the cells each program holds -- as the cycles count down.  Assemble warriors with cwasm; twelve samples are in GAMES/COREWARS |
 | `cwasm` | the Core War assembler: `cwasm w.rc' turns a Redcode warrior into the object file w.e that corewar loads.  Sample warriors are in GAMES/COREWARS |

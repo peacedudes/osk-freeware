@@ -811,6 +811,27 @@ wait    3
 send    y
 wait    6
 
+shot    bandit
+size    24 80
+cap     A pull of the one-armed bandit: the three reels after the spin, the
+cap     payoff table beside them, and the bankroll and bet prompt below.  It
+cap     reads TERMCAP as the terminal description itself, so the entry is put
+cap     in the variable first.  `q' at the bet prompt walks away with the total.
+try     bandit
+run     . /dd/SYS/termcap.entry
+wait    2
+run     clear
+wait    1
+run     bandit
+wait    5
+send    n\r
+wait    4
+send    5\r
+wait    5
+snap
+send    q\r
+wait    4
+
 shot    larn
 cap     Larn: the dungeon is drawn as you find it, letters for what is in
 cap     it, and the two lines at the foot are your spells, armour class,

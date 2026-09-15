@@ -1014,3 +1014,4 @@ gnugo|none|it asks who plays first and the handicap, then takes moves as a lette
 nethack3|none|it has no help flag; `?' inside the game lists the commands
 moria|none|it has no help flag; `?' inside the game lists the commands, and `-s' prints the score list instead of playing
 mw|mw -?|
+bandit|none|it has no help flag; `y' at its first question prints the instructions, and `q' at the bet prompt quits
