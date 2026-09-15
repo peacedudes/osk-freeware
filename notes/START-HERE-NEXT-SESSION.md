@@ -261,6 +261,19 @@ Open:
      only, not built yet.  Test files: scratchpad top3.cases, hostwith/tmp/TOP3.
      Harness trap met on the way: `expect MADE' matched inside `NOT-MADE' --
      use tokens that cannot contain each other (BUILT=yes / BUILT=no).
+  2s. **TOP's ncurses programs run UNCHANGED with SYS/termcap.entry sourced**
+     (read 2026-09-15, TOP src/ncurses/SRC/lib_setup.c lines 113-118): when
+     TERMCAP does not start with `/' it goes straight to interpret_buf(), so
+     neither the third-character `|' rule nor the name match applies, and
+     termcap.entry's do=\E[B avoids the `\n' decode fault.  Every TOP binary
+     built on ncurses -- bandit, typefast, yahtzee, wanderer2, sokoban2, and
+     TOP's own moria -- rejects plain SYS/termcap with `'vt100': Unknown
+     terminal type'.  Reach for termcap.entry before rebuilding one.  Caveat:
+     the entry declares am without xn, so a screen that writes column 80 can
+     still misdraw on an xterm (moria's full-width map did).  TOP game triage
+     is in PLAN-acquisitions B6: sokoban2, wanderer2 and yahtzee duplicate
+     disk games; bandit and typefast are new and trap-free; tetrix, robots2
+     and sod need cio.
   2n. **Two harness gaps, not yet fixed.**  tools/ansiscreen.py does no
      auto-wrap at column 80 (it clamps), so it cannot show what an am
      terminal does with a full row.  playtest.py's `expect' also searches

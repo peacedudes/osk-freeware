@@ -400,6 +400,22 @@ Effectively none of its 564 members is on the disk or in the pool.
 - Games with source: tetrix, yahtzee (HCR), gnugo 1.1 (GPL), bandit (PD), bs, typefast, sokoban2, wanderer2 (+30 screens).
 - OS-9-native, binaries only, no terms stated: oxm mailer, notes + 20 nf* tools, mmenu, mwb, mmon, logon, watch, timeout, getinfo, errlog/erradm, **mw (Mazewar, 8 players)**, sod, robots2, speak, msg, uid, where, times, wns, dc, hd.
 - Sources: os9lib (54 .c + 32 man; non-commercial -- **Q1**), vcron (don't sell -- **Q1**), v7make (PD), cpp.decus (PD), scpp (**Q1**), cdecl, clock.  Leave `zmodem.t.Z` (no grant).
+Measured 2026-09-15 (TOP game binaries, bare, on a copy of disk/ with the five
+runtime modules removed): tetrix, robots2 and sod need cio; yahtzee, bandit,
+typefast, sokoban2 and wanderer2 do not.  yahtzee, typefast and wanderer2
+reject SYS/termcap (`'vt100': Unknown terminal type').  DUPLICATES, not
+new: sokoban2 is the second version of the disk's Usenet sokoban (same
+author, same PC-derived screens), and wanderer2 is Steven Shipway's 2.2 of
+the disk's wanderer, and yahtzee is Stacey Campbell's 1988 first version
+(HCR) of the disk's yahtzee2 (Campbell 1989).  Terms: yahtzee HCR 1988
+use/copy/modify/distribute;
+bandit (Pete Granger) public domain 1989, no profit; typefast (druco!spear
+1986) no notice; wanderer2 credits-file only.
+NEW but needing cio: tetrix (Quentin Neill's curses Tetris; source already
+has an OSK port, so a -qm rebuild could drop the star; the disk's tet and
+tt are other Tetrises), robots2 (a different robots from the disk's -- hall
+of fame robots_hof, ROBOTOPTS; no author, no document, binary only), sod
+(a maze game, no author or document).
 Measure first: which binaries need cio (run against an image without the
 five runtime modules); every hardcoded `/h0/USR/GAMES/...` path; whether
 the native tools expect `/dd/SYS/utmp`, group, password or smail.
