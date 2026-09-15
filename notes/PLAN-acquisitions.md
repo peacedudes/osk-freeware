@@ -576,11 +576,29 @@ acquisitions-2026-09-11/os9/mw/dl/x/c09_*):
   Font `pfont' printer back end, which is not in the archive, so its
   output has nothing here to print it.
 - unTC (Tim Koonce 1989, public domain): extracts John Lauro's TC
-  archives from Color Computer RSDOS -- CoCo, so last.
+  archives from Color Computer RSDOS.  NOT SHIPPED 2026-09-15: no TC
+  archive exists anywhere in the pool to run it on (the only .tc files are
+  Turbo C makefiles), and a card of its usage line alone is a defect.
 - jumble (Nick Flor 1987, free to distribute, not for money): DONE (e51b6871),
   built unchanged.
 - sgrep (DECUS grep with substitution, not for profit): DONE (f4a2b6f3), built
   unchanged; its manual is DOC/sgrep.doc.
+
+THE REST OF THE c09_ TREE, assessed 2026-09-15 (almanac, reversi and spew
+are already on the disk; SmallTeX, Solve, bawk and sortc are above;
+Solitaire and StG are under Leave alone):
+- kalah (Michael J. Knudsen 1983-84, Kalah and "Pigeon Plague" against the
+  computer; a bare copyright, no grant): IN PROGRESS.  Plain stdio; its
+  6809 move.a hand-optimises count() and makel(), whose C is movesrc.c,
+  marked "for reference only" -- a 68k build needs it.
+- kutil (Bruce Isted, free with notice): NOT SHIPPED, it reads and writes
+  the kernel track of CoCo floppies and Burke & Burke hard drives.
+- peruse 2.0 (Stephen Castello 1991): NOT SHIPPED, it needs Isted's VRN
+  driver (CoCo) and is for personal use only.
+- nist (John M Semler): NOT SHIPPED, it sets the clock by dialling NIST
+  through a modem; an OSK binary came with it.
+- lpunch: NOT SHIPPED, it converts punched-card deck records, with nothing
+  here to use them.
 
 B11 LEFTOVERS, checked 2026-09-15: editline (Turner and Salz 1992, KA9Q pool,
 already with an OS-9 port in sysos9.c) is a LIBRARY for other programs -- its
@@ -1431,8 +1449,9 @@ triaged by size, files, curses and stated terms.  Done or decided:
                 `};' made `}'
     curses-clock ALREADY ON THE DISK: the post's gdc is the grand digital
                 clock the disk ships as gcl (v_misc.ar)
-    rain (v28)  DEFERRED: a second, curses rain using usleep(); the disk's
-                rain is toys.ar's
+    rain (v28)  DEFERRED: Col. G. L. Sicherman's 1994 rain -- drops fall and
+                pool; a quick port (its USLEEP path, rand for lrand48) but it
+                needs a module name beside toys.ar's rain, already shipped
     hp          DONE (77989aad) -- floating-point RPN; its parser reads numbers
                 out of the line where lex's input() left it, so flex takes
                 characters one at a time from hp's reader, made with -I
@@ -1443,10 +1462,15 @@ triaged by size, files, curses and stated terms.  Done or decided:
                 are pinups
     dr_mario    DONE as bugs (18246404) -- BUGS I; _gs_rdy for FNDELAY, tsleep
                 for select(), globals defined once
-    letters     IN PROGRESS: builds; _gs_opt/_ss_opt and _gs_rdy for its
-                termio keyboard, its setterm() renamed away from curses.l's,
-                GAMES/words for the dictionary, an empty score file
-    cent        DEFERRED: curses centipede with tty ioctls
+    letters     DONE (1c377278) -- _gs_opt/_ss_opt and _gs_rdy for its termio
+                keyboard, setterm() renamed away from curses.l's, words from
+                GAMES/words, an empty score file; usleep() never under 4/256,
+                since os9exec returned at once from 1-2/256 (reported)
+    cent        DEFERRED: curses centipede with tty ioctls, FIONREAD, an
+                nlist() load check and a help file run through system();
+                and a licence question first -- cent.c allows redistribution
+                with its notice, but the post's rand.c says "Copyright (c)
+                1982 Steven L. Wagar.  All rights reserved." with no grant
     pac         DEFERRED: curses calculator in five parts
     dialog      DEFERRED: ANSI C for ncurses, 1994
     craps       DEFERRED: link() lock on its score list, a crypt() cheat, a
