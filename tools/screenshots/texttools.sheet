@@ -127,6 +127,18 @@ wait    6
 run     grep -c "" DOC/INDEX
 wait    4
 
+shot    wns
+cap     A windowing search of the disk's own README: every line holding
+cap     `GPL', with one line either side, and a dashed line wherever two
+cap     windows do not touch.
+try     wns -w=1 GPL DOC/README
+run     builtin cd /dd
+wait    1
+run     clear
+wait    1
+run     wns -w=1 GPL DOC/README
+wait    6
+
 shot    jargon
 cap     The Jargon File browser, jumping straight to the entry for
 cap     kluge.  It reads jargon.txt and jargon.idx from the VH

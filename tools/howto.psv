@@ -282,3 +282,6 @@ mw|Full-screen maze game for up to eight players on one system. `w' walks, `a'/`
 bandit|A slot machine. Do `. /dd/SYS/termcap.entry' first -- it reads TERMCAP as the description itself. Then `n' skips the instructions, a number 0-5 is the bet, and `q' at the bet prompt ends with your total.
 atc|Full-screen air traffic control. `atc -l' lists the airports and `atc -g easy' picks one. Type a command to a plane by its letter: `a' and a digit sets altitude (and takes off), `t' and a direction key turns; RETURN sends it, `?' lists what may come next, ^L redraws and ^C asks to quit. Its airports are in GAMES/ATC.
 trek|Line-by-line game at a Command: prompt. RETURN past the banner, then answer the length (s/m/l), skill (n/f/g/e/c/i) and a password. `s' is the short-range scan, `l' the long range, `help' lists the commands, `terminate' ends the game and `n' at `Another game' leaves.
+
+wns|A grep with context: `wns -w=2 pattern file' prints two lines either side of each match, -a and -b set the after and before counts separately. Needs cio.
+dc|A full-screen integer calculator. Set DCGRAPHIC=++++|- first unless your terminal has the Atari ST's Cumana graphics, then type digits and operators; -b=h, d, o or b picks the base. Needs cio.

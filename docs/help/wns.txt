@@ -1,0 +1,2 @@
+$ wns
+usage: wns [-a=n] [-b=n] [-d] [-f] [-l=n] [-n] [-w=n] pattern [filename... ]

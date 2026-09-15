@@ -1,0 +1,14 @@
+name    dc
+prog    dc
+setup   export DCGRAPHIC="++++|-"
+# Dc, the integer desk calculator: 6*7 then leave with Q.
+rate    0.5
+size    24 80
+wait    5
+keys    6*7
+key     \r
+wait    3
+snap    result
+key     Q
+wait    3
+expect  42

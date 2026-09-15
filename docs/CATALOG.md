@@ -1,6 +1,6 @@
 # What is on this disk
 
-1004 programs of OS-9/68K community software, gathered from the archives that kept it and made to run again. **659 of them need nothing but this disk**; the rest want Microware's `cio`, marked below with a star.
+1006 programs of OS-9/68K community software, gathered from the archives that kept it and made to run again. **659 of them need nothing but this disk**; the rest want Microware's `cio`, marked below with a star.
 
 `DOC/INDEX` on the disk lists everything alphabetically. This is the same collection sorted by what each program is *for*, which is the more useful order when you do not yet know what you are looking for.
 
@@ -13,7 +13,7 @@
 |---|--:|---|
 | [Shells](#shells) | 24 | Unix shells to sit beside OS-9's own -- bash and ksh bring history, job control, and scripts that come across unchanged. |
 | [Editors](#editors) | 27 | vi and emacs in several flavours, line and stream editors, and editors for binary and hex. |
-| [Text tools](#text-tools) | 127 | Search, sort, compare, reformat, split and spell-check. |
+| [Text tools](#text-tools) | 128 | Search, sort, compare, reformat, split and spell-check. |
 | [Files & directories](#files--directories) | 34 | Listing, copying, finding, renaming, and knowing what you have. |
 | [Developer tools](#developer-tools) | 47 | Version control, tags, cross-reference, formatters, a debugger and benchmarks. |
 | [Compilers & build](#compilers--build) | 41 | C compilers and their passes, assemblers, linkers, make and parser generators. |
@@ -28,7 +28,7 @@
 | [System & modules](#system--modules) | 132 | OS-9 module and process tools, devices, system state and scheduling. |
 | [Disk & DOS](#disk--dos) | 20 | Reading and writing MS-DOS media with the mtools set. |
 | [Time & calendar](#time--calendar) | 15 | Calendars, clocks and astronomy. |
-| [Maths & calculators](#maths--calculators) | 15 | Calculators, plotting, orbits and number theory. |
+| [Maths & calculators](#maths--calculators) | 16 | Calculators, plotting, orbits and number theory. |
 | [Printing](#printing) | 11 | Spoolers, page formatting and PostScript. |
 | [Documentation](#documentation) | 5 | Pagers, readers and the help system. |
 | [G-Windows](#g-windows) | 6 | Programs for G-Windows, OS-9's graphical display.  There is no G-Windows here, so what their cards show is each one declining in its own words -- `Unable to access "/win" device', `dclock only runs under G-Windows', a status of 208 or 221.  None of them can be exercised without the display; they are listed for a real OS-9 workstation that has it. |
@@ -155,7 +155,7 @@
 
 *Search, sort, compare, reformat, split and spell-check.*
 
-<details><summary>127 programs</summary>
+<details><summary>128 programs</summary>
 
 **Alternates**
 
@@ -251,6 +251,7 @@
 | `grep` | GNU grep 2.0: prints the lines of files that match a regular expression -- -E extended, -F fixed strings, -i ignore case, -v invert, -n number, -c count<br>`grep: illegal option -- ?` |
 | `look` | prints the lines of a sorted file that begin with a string: `look abs GAMES/words'; -f ignores case<br>`usage: look [-f] string file` |
 | `soundex` | Soundex phonetic key for each word on stdin |
+| `wns` | &#9733; windowing search: grep that prints a window of lines round each match.  `wns -w=2 pattern file' shows two lines before and after, -a and -b set them apart, and windows that do not touch are divided by a dashed line<br>**How:** A grep with context: `wns -w=2 pattern file' prints two lines either side of each match, -a and -b set the after and before counts separately. Needs cio. |
 
 **Sort, compare & merge**
 
@@ -1660,7 +1661,7 @@
 
 *Calculators, plotting, orbits and number theory.*
 
-<details><summary>15 programs</summary>
+<details><summary>16 programs</summary>
 
 **Calculators**
 
@@ -1670,6 +1671,7 @@
 | `cam` | &#9733; camshaft design, not a camera: it asks for the rocker ratio, the lift at each crank angle and the base circle, and plots the lift curve for an intake lobe. The plot is Tektronix vectors, so on a vt100 it arrives as characters -- the dialogue above it is the readable part |
 | `chbase` | &#9733; converts a number from one base to another: `chbase 255 10 16' prints FF, and a target base of 0 prints every base from 2 to 36<br>`chbase   : OS9 Utility, created by Philip Maechler` |
 | `cvtbase` | converts a number between bases.  The bases are named by key -- b, d, h or x, o -- or by their value, and the number comes on standard input: `echo 255 ! cvtbase d h' answers ff<br>**How:** The bases are the arguments and the numbers come on standard input, one per line: `cvtbase d h' then 255 answers ff; Escape ends it. Bases are named b, d, h or x, o -- or by their digit characters. |
+| `dc` | &#9733; an integer desk calculator on the screen, laid out like the Atari ST keypad: type digits and operators, five memory slots down the left, and `dc -b=h' (or d, o, b) sets the base.  Its boxes are Cumana graphic characters; set DCGRAPHIC to six plain ones first, `++++\|-', on any other terminal<br>**How:** A full-screen integer calculator. Set DCGRAPHIC=++++\|- first unless your terminal has the Atari ST's Cumana graphics, then type digits and operators; -b=h, d, o or b picks the base. Needs cio. |
 | `factor` | prints the prime factors of each number it is given, or of each it reads, one to a line: `factor 1000001' |
 | `loan` | &#9733; amortisation calculator: principal, term, rate and start month in, the payment and a month-by-month schedule out<br>**How:** Answers four prompts and prints the schedule for the whole term; pipe it through head or less. |
 | `number` | writes numbers out in English words: `number 1234567'<br>`usage: number # ...` |

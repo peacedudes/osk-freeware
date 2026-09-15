@@ -163,3 +163,11 @@ run     /dd/CMDS/cookie > $W/ck.out
 run     /dd/CMDS/dump $W/ck.out
 expect  0000
 absent  usage: cookie
+
+# wns (2026-09-15, TOP release 2): a grep that prints a window of lines round
+# each match, prefixed with the file name, and a dashed line wherever two
+# windows do not touch.
+case    wns-prints-a-window-round-each-match
+run     /dd/CMDS/wns -w=1 GPL /dd/DOC/README < /nil
+expect  /dd/DOC/README:Where a package is under the GPL
+expect  -------------------

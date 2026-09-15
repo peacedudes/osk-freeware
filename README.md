@@ -109,7 +109,7 @@ is no help until you already know the name you want.
 |---|--:|---|
 | **Shells** | 24 | Unix shells to sit beside OS-9's own -- bash and ksh bring history, job control, and scripts that come across unchanged. |
 | **Editors** | 27 | vi and emacs in several flavours, line and stream editors, and editors for binary and hex. |
-| **Text tools** | 127 | Search, sort, compare, reformat, split and spell-check. |
+| **Text tools** | 128 | Search, sort, compare, reformat, split and spell-check. |
 | **Files & directories** | 34 | Listing, copying, finding, renaming, and knowing what you have. |
 | **Developer tools** | 47 | Version control, tags, cross-reference, formatters, a debugger and benchmarks. |
 | **Compilers & build** | 41 | C compilers and their passes, assemblers, linkers, make and parser generators. |
@@ -124,7 +124,7 @@ is no help until you already know the name you want.
 | **System & modules** | 132 | OS-9 module and process tools, devices, system state and scheduling. |
 | **Disk & DOS** | 20 | Reading and writing MS-DOS media with the mtools set. |
 | **Time & calendar** | 15 | Calendars, clocks and astronomy. |
-| **Maths & calculators** | 15 | Calculators, plotting, orbits and number theory. |
+| **Maths & calculators** | 16 | Calculators, plotting, orbits and number theory. |
 | **Printing** | 11 | Spoolers, page formatting and PostScript. |
 | **Documentation** | 5 | Pagers, readers and the help system. |
 | **G-Windows** | 6 | Programs for G-Windows, OS-9's graphical display.  There is no G-Windows here, so what their cards show is each one declining in its own words -- `Unable to access "/win" device', `dclock only runs under G-Windows', a status of 208 or 221.  None of them can be exercised without the display; they are listed for a real OS-9 workstation that has it. |
