@@ -1,0 +1,7 @@
+$ mw -?
+Syntax: mw [<opts>]
+Function: Plays the OS9 variante of Mazewar
+Options:
+     -l=<level>      Starts an automatic player for this user
+     -s              Show the score of all yet played users
+     -m=<maze>       Uses <maze> instead of the default one

@@ -1,0 +1,19 @@
+name    mw
+prog    mw
+# Mazewar with a computer player started in the background: both join the
+# score strip, the keyboard player turns and shoots, then quits.
+rate    0.8
+size    24 80
+setup   export USER=tester
+setup   mw -l=5 >/nil &
+wait    14
+snap    start
+key     d
+wait    3
+key     s
+wait    6
+snap    shot
+key     Q
+wait    5
+expect  1:su
+expect  2:su

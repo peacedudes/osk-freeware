@@ -740,6 +740,28 @@ wait    4
 send    y
 wait    8
 
+shot    mw
+size    24 80
+cap     The maze from above, and along the bottom the score strip for eight
+cap     players.  A computer player, started with `mw -l=5' before this game,
+cap     has joined as player 2.  `w' walks, `a' and `d' turn, `s' shoots,
+cap     `m' drops a mine and `Q' quits.
+try     mw
+run     export TERM=vt100 USER=tester
+run     mw -l=5 >/nil &
+wait    3
+run     clear
+wait    1
+run     mw
+wait    14
+send    d
+wait    3
+send    s
+wait    6
+snap
+send    Q
+wait    5
+
 shot    larn
 cap     Larn: the dungeon is drawn as you find it, letters for what is in
 cap     it, and the two lines at the foot are your spells, armour class,

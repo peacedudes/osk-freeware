@@ -1,6 +1,6 @@
 # What is on this disk
 
-1000 programs of OS-9/68K community software, gathered from the archives that kept it and made to run again. **656 of them need nothing but this disk**; the rest want Microware's `cio`, marked below with a star.
+1001 programs of OS-9/68K community software, gathered from the archives that kept it and made to run again. **656 of them need nothing but this disk**; the rest want Microware's `cio`, marked below with a star.
 
 `DOC/INDEX` on the disk lists everything alphabetically. This is the same collection sorted by what each program is *for*, which is the more useful order when you do not yet know what you are looking for.
 
@@ -22,7 +22,7 @@
 | [Encoding & conversion](#encoding--conversion) | 29 | Between text encodings, line endings, Macintosh formats, ciphers and hashes. |
 | [Communications](#communications) | 97 | Kermit in several builds, terminal sessions, and networking. |
 | [Graphics & images](#graphics--images) | 195 | The netpbm toolkit, JPEG, a ray tracer, and things that draw. |
-| [Games](#games) | 85 | Adventures, board and card games, arcade ports, dungeon crawls and puzzles. |
+| [Games](#games) | 86 | Adventures, board and card games, arcade ports, dungeon crawls and puzzles. |
 | [Screen toys](#screen-toys) | 9 | Animations and screen effects -- they draw on the terminal rather than print to it. Some run until you stop them. |
 | [Amusements](#amusements) | 25 | Generators, simulators and diversions that are not quite games. |
 | [System & modules](#system--modules) | 132 | OS-9 module and process tools, devices, system state and scheduling. |
@@ -1181,7 +1181,7 @@
 
 *Adventures, board and card games, arcade ports, dungeon crawls and puzzles.*
 
-<details><summary>85 programs</summary>
+<details><summary>86 programs</summary>
 
 **Adventure & fiction**
 
@@ -1201,6 +1201,7 @@
 |---|---|
 | `greed` | Greed: the screen is a field of digits and `@' is you. Move with the vi keys to eat that many digits in that direction, until no move is left<br>`Usage: /dd/CMDS/GAMES/greed [-p] [-s]` |
 | `lander` | lunar lander -- space starts a game, a digit sets the power, x or k is vertical thrust, z/j and c/l the side retros.  Its score file is GAMES/lander.hs, looked for under /h0, so mount the disk there as well<br>**How:** Full-screen. Space starts a descent, a digit sets the engine power, `x' or `k' fires the main thruster and z/j and c/l the side retros. `q' quits. |
+| `mw` | &#9733; Mazewar for up to eight players, each at a terminal of the same system, in one maze seen from above: `w' walks, `a' and `d' turn, `s' shoots, `m' drops a mine, `n' builds a wall and `Q' quits.  You score only by killing another player, and `mw -l=5' starts a computer player to hunt.  Its maze is USR/GAMES/LIB/MAZEWAR, found with this disk as /h0<br>**How:** Full-screen maze game for up to eight players on one system. `w' walks, `a'/`d' turn, `s' shoots, `m' mines, `n' walls, `Q' quits; `mw -l=5 >/nil &' first starts a computer player to play against. Needs cio; its maze is USR/GAMES/LIB/MAZEWAR. |
 | `pacman` | Pac-Man in an ASCII maze. It reads its board, help and score files from GAMES/pacman, asks your name and whether you want instructions, then lays out the maze: you are OS9, chased by four ghosts named for old operating systems, and the keypad moves you (8 up, 2 down, 4 left, 6 right). It positions with TeleVideo cursor codes, so the board draws on a terminal that reads them.<br>**How:** Answer the name and instructions prompts, then play with the keypad: 8 up, 2 down, 4 left, 6 right, q quits. It draws with TeleVideo cursor codes (ESC = row col), so the maze paints only on a terminal that understands them; its board, help and score files are in GAMES/pacman. |
 | `robots` | &#9733; robots: outrun them until they crash into each other. You are the `I', the robots are the `#' and a wreck is an `@'. Use -m, manual mode, one robot step per move of yours; without it the game is effectively unplayable. The keys are the numeric keypad 1-9 with 5 to stand still, `t' to teleport and `s' for a last stand<br>**How:** Play with `robots -m' -- manual mode, where the robots take one step per move you make. Keys are the numeric keypad 1-9 (5 stands still), `s' for last stand, `t' to teleport. Needs Microware's math module and a real TERM. |
 | `snake` | snake arcade game.  You are the `I', the money is the `$' and the snake chases you; h/j/k/l move, `x' quits. Run it from a login session -- bare, with no TERMCAP, it bus errors instead; see DOC/README-BUSERR.  Some of its cursor moves arrive as literal text, so the board picks up stray characters as you play.  Playable, untidy<br>**How:** Full-screen. h/j/k/l move; reach the `$' before the snake reaches you. `x' quits. |
