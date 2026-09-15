@@ -1,0 +1,15 @@
+name    torus
+prog    torus
+setup   export USER=tester
+# A new level, a few turns waiting in place, then quit.
+rate    0.6
+size    24 80
+wait    6
+snap    start
+keys    ...
+wait    3
+snap    waited
+key     q
+wait    4
+expect  heaps:
+expect  value:

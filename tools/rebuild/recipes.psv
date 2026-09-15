@@ -997,6 +997,8 @@ repunsel|repunsel|repunsel.c lex.yy.c|||
 ag|ag2|anagram.c|||
 # perp (comp.sources.games v13i087): James Bonfield's boulder-and-diamond game; SRC/perp/README.OSK.
 perp|perp|perp.c|||
+# torus (comp.sources.games v12i066): robots on a torus; SRC/torus/README.OSK.
+torus|torus|good.c main.c opt.c robot.c score.c user.c|||
 lame|lame|lame.c||/dd/LIB/rand.r|
 canfield|canfield|canfield.c||/dd/LIB/curses.l /dd/LIB/termlib.l /dd/LIB/rand.r|
 # atc -- Ed James's air traffic controller, 4.3BSD-Net/2.  Built on its SYSV

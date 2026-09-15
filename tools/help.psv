@@ -1015,6 +1015,7 @@ weekday|weekday -h|
 repunsel|none|pipe English text through it; words it has a pun for come out in capitals
 ag|none|there is no help switch; an unknown flag is only named back, and its options are -d, -a, -v, -V, -w, -W, -s and -o
 perp|none|its one argument is the level to start at; the keys are hjkl, q, S, L and ^C
+torus|none|it has no help switch; -s shows the high scores, -c plays continuously, +h and +v join the edges and +w shows safe moves
 drawl|none|pipe English text through it; -ing loses its g, vowels broaden into a Texan drawl
 lame|none|give it a sentence as arguments; o becomes 0, you becomes U, and so on
 canfield|none|name a move by its two ends -- s2, tf, 13, 2f; ht deals, c counts, b bets, q quits

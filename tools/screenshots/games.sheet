@@ -1858,3 +1858,16 @@ wait    3
 send    jjjj
 wait    4
 snap
+
+shot    torus
+size    24 80
+cap     A new level: you are the @, robots are + and the fast ones #.  Each
+cap     move you make, every robot steps toward you.
+try     torus
+run     clear
+wait    1
+run     torus
+wait    6
+send    .
+wait    3
+snap

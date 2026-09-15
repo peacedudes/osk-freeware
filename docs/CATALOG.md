@@ -1,6 +1,6 @@
 # What is on this disk
 
-1042 programs of OS-9/68K community software, gathered from the archives that kept it and made to run again. **693 of them need nothing but this disk**; the rest want Microware's `cio`, marked below with a star.
+1043 programs of OS-9/68K community software, gathered from the archives that kept it and made to run again. **694 of them need nothing but this disk**; the rest want Microware's `cio`, marked below with a star.
 
 `DOC/INDEX` on the disk lists everything alphabetically. This is the same collection sorted by what each program is *for*, which is the more useful order when you do not yet know what you are looking for.
 
@@ -22,7 +22,7 @@
 | [Encoding & conversion](#encoding--conversion) | 29 | Between text encodings, line endings, Macintosh formats, ciphers and hashes. |
 | [Communications](#communications) | 98 | Kermit in several builds, terminal sessions, and networking. |
 | [Graphics & images](#graphics--images) | 195 | The netpbm toolkit, JPEG, a ray tracer, and things that draw. |
-| [Games](#games) | 104 | Adventures, board and card games, arcade ports, dungeon crawls and puzzles. |
+| [Games](#games) | 105 | Adventures, board and card games, arcade ports, dungeon crawls and puzzles. |
 | [Screen toys](#screen-toys) | 10 | Animations and screen effects -- they draw on the terminal rather than print to it. Some run until you stop them. |
 | [Amusements](#amusements) | 31 | Generators, simulators and diversions that are not quite games. |
 | [System & modules](#system--modules) | 132 | OS-9 module and process tools, devices, system state and scheduling. |
@@ -1193,7 +1193,7 @@
 
 *Adventures, board and card games, arcade ports, dungeon crawls and puzzles.*
 
-<details><summary>104 programs</summary>
+<details><summary>105 programs</summary>
 
 **Adventure & fiction**
 
@@ -1221,6 +1221,7 @@
 | `snake` | snake arcade game.  You are the `I', the money is the `$' and the snake chases you; h/j/k/l move, `x' quits. Run it from a login session -- bare, with no TERMCAP, it bus errors instead; see DOC/README-BUSERR.  Some of its cursor moves arrive as literal text, so the board picks up stray characters as you play.  Playable, untidy<br>**How:** Full-screen. h/j/k/l move; reach the `$' before the snake reaches you. `x' quits. |
 | `sokoban` | &#9733; Sokoban: push every packet (`$') onto a storage square (`.') without trapping one. Its fifty levels, help text and saved games are in GAMES/SOKOBAN, and it asks the system for your user name, so run it from a login<br>**How:** Wants a username, so run it from a login rather than a bare shell, or it stops with "cannot get your username". |
 | `tet` | Tetris -- `p' plays; s/j and f/l move a piece, d/k turns it, space drops it, q quits to the high-score table it keeps in GAMES/tet.hs.  Needs a terminal, not a pipe<br>**How:** Tetris. `p' plays from the menu; s or j moves the piece left, f or l right, d or k turns it, space drops it, ESC pauses and q quits to the high-score table, kept in GAMES/tet.hs. Give it a real terminal: it does no terminal setup of its own (the raw-mode code in SRC/tet/tet.c is inside `#ifndef OSK'), so from a pipe it draws its board and reads nothing. |
+| `torus` | robots on a torus: each move you make, the robots close in -- lead them into each other to make scrap heaps; hjklyubn move, t teleports, q quits; scores in GAMES/TORUS<br>**How:** Full-screen. You are @; + robots step toward you each turn and # robots twice. Make them collide -- each collision leaves a scrap heap * that destroys robots running into it. h j k l y u b n move, . or w waits, t teleports to a safe square (the count is bottom left), r to a random one, a is antimatter, s sits tight to the end, q quits. The field's edges join; +h and +v flip how. `torus -s' shows the scores, kept in GAMES/TORUS. |
 | `tt` | Tetris for terminals: , and / move, . rotates, space drops, s pauses, q quits<br>**How:** Tetris for terminals, full-screen: , and / move the piece, . rotates, space drops, s pauses, q quits. |
 | `wanderer` | a Boulderdash-style maze game: dig through the earth for diamonds. Its thirty screens are in GAMES/WAND/screens, found with this disk as /dd<br>**How:** Full-screen. Dig through the earth for diamonds, forty-five on the first screen. `q' quits. Its thirty screens are in GAMES/WAND. |
 | `worm` | the growing worm: you are the `@' and your body the `o's; h/j/k/l steer, H/J/K/L run, and with no key the worm keeps going.  Eat a digit to grow that much; the wall or your own body ends it.  `worm <length>' sets how long it starts<br>**How:** Full-screen. h/j/k/l steer, H/J/K/L run; with no key the worm keeps going. Eat the digits to grow. Control-C gets you out. |
