@@ -1,0 +1,19 @@
+name    typefast
+prog    typefast
+setup   . /dd/SYS/termcap.entry
+# TYPEFAST: skip the instructions, pick the easy pace, let the words fall.
+rate    0.5
+size    24 80
+wait    5
+snap    title
+key     n
+wait    3
+snap    levels
+key     1
+wait    8
+snap    falling
+key     \003
+wait    3
+expect  The TYPEFAST Game
+expect  Hits:
+expect  Misses:

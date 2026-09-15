@@ -1012,3 +1012,4 @@ bandit|Public domain: "released to the public domain via usenet on February 15th
 
 wns|No terms stated. Neither the binary nor TOP's manual (USR/MAN/wns.man, which credits M. Mallett) carries a copyright, grant or restriction. Binary only, as TOP shipped it.|TOP release 2 USR/MAN/wns.man; SOURCES.txt, wns
 dc|No terms stated. The binary carries "Copyrighted (C) 1987, 1988 by Ulrich Dessauer, Germering, W-Germany" and no grant or restriction. Binary only, as TOP shipped it.|CMDS/dc (strings); SOURCES.txt, dc
+typefast|No terms stated. Neither the source (druco!spear, 1986) nor the binary carries a copyright, grant or restriction. TOP's binary, unchanged.|SRC/typefast/game.c lines 1-5; SOURCES.txt, typefast

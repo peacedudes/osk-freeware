@@ -1,0 +1,1 @@
+# Makefile for typefastOBJ=game.r utils.r words.rtfast:	$(OBJ)	cc -m=10 -fd=./typefast $(OBJ) -l=/dd/lib/ncurses.l -l=/dd/lib/os9lib.l

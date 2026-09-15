@@ -285,3 +285,4 @@ trek|Line-by-line game at a Command: prompt. RETURN past the banner, then answer
 
 wns|A grep with context: `wns -w=2 pattern file' prints two lines either side of each match, -a and -b set the after and before counts separately. Needs cio.
 dc|A full-screen integer calculator. Set DCGRAPHIC=++++|- first unless your terminal has the Atari ST's Cumana graphics, then type digits and operators; -b=h, d, o or b picks the base. Needs cio.
+typefast|A typing game. Do `. /dd/SYS/termcap.entry' first -- it reads TERMCAP as the description itself. Then `n' skips the instructions and 1, 2 or 3 picks the pace; type each falling word and end it with SPACE. Ten misses end the game.
