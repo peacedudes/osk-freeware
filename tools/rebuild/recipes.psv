@@ -1013,6 +1013,8 @@ roll|roll|roll.c|-Drandom=rand -Dsrandom=srand||
 ski|ski|ski.c do_level.c|-Drandom=rand -Dsrandom=srand||
 # wf (comp.sources.games v18i015): word-search squares; SRC/wf/README.OSK.
 wf|wf|wf.c|-Drandom=rand -Dsrandom=srand||
+# hp (comp.sources.unix v24i045): RPN calculator; y.tab.c, y.tab.h, lex.yy.c made on OS-9; SRC/hp/README.OSK.
+hp|hp|hp.c y.tab.c lex.yy.c|||
 lame|lame|lame.c||/dd/LIB/rand.r|
 canfield|canfield|canfield.c||/dd/LIB/curses.l /dd/LIB/termlib.l /dd/LIB/rand.r|
 # atc -- Ed James's air traffic controller, 4.3BSD-Net/2.  Built on its SYSV

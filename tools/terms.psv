@@ -404,6 +404,7 @@ hexed|By H. Hoheisel-Zimmermann. public; no military use|DOC/hexed/info_hexed
 hinterhalt|No copyright or licence statement in SRC/forum7 or its documentation. The header names its programmer, Frank Braeuer, Aalen, 1988.|SRC/forum7/hinterhalt.c lines 5-8
 hipstopgm|Each netpbm author granted the right to use and distribute their code without charge, on a non-commercial basis; many allow more -- see each file's notice.|DOC/netpbm/COPYRIGHT
 hist|By H. Hoheisel. public; no military use|DOC/hist/info_hist
+hp|No terms stated: the post carries no copyright or licence statement.|SRC/hp/ORIG/README; SRC/hp/ORIG/hp.1
 hotel|Origin not established. The binary carries "Copyright 1989 by Scott R. Turner" and no licence or distribution statement.|CMDS/GAMES/hotel strings; no DOC entry, no SOURCES.txt or ORIGINS row, not found in the pool
 howfrag|Public domain. Its doc reads: "Feel free to copy and distribute this program so long as there is no charge associated with it other than a minimal media fee."|SOURCES.txt line 798
 hpcdtoppm|Each netpbm author granted the right to use and distribute their code without charge, on a non-commercial basis; many allow more -- see each file's notice.|DOC/netpbm/COPYRIGHT

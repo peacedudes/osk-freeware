@@ -1,6 +1,6 @@
 # What is on this disk
 
-1050 programs of OS-9/68K community software, gathered from the archives that kept it and made to run again. **701 of them need nothing but this disk**; the rest want Microware's `cio`, marked below with a star.
+1051 programs of OS-9/68K community software, gathered from the archives that kept it and made to run again. **702 of them need nothing but this disk**; the rest want Microware's `cio`, marked below with a star.
 
 `DOC/INDEX` on the disk lists everything alphabetically. This is the same collection sorted by what each program is *for*, which is the more useful order when you do not yet know what you are looking for.
 
@@ -28,7 +28,7 @@
 | [System & modules](#system--modules) | 132 | OS-9 module and process tools, devices, system state and scheduling. |
 | [Disk & DOS](#disk--dos) | 20 | Reading and writing MS-DOS media with the mtools set. |
 | [Time & calendar](#time--calendar) | 18 | Calendars, clocks and astronomy. |
-| [Maths & calculators](#maths--calculators) | 17 | Calculators, plotting, orbits and number theory. |
+| [Maths & calculators](#maths--calculators) | 18 | Calculators, plotting, orbits and number theory. |
 | [Printing](#printing) | 11 | Spoolers, page formatting and PostScript. |
 | [Documentation](#documentation) | 5 | Pagers, readers and the help system. |
 | [G-Windows](#g-windows) | 6 | Programs for G-Windows, OS-9's graphical display.  There is no G-Windows here, so what their cards show is each one declining in its own words -- `Unable to access "/win" device', `dclock only runs under G-Windows', a status of 208 or 221.  None of them can be exercised without the display; they are listed for a real OS-9 workstation that has it. |
@@ -1704,7 +1704,7 @@
 
 *Calculators, plotting, orbits and number theory.*
 
-<details><summary>17 programs</summary>
+<details><summary>18 programs</summary>
 
 **Calculators**
 
@@ -1716,6 +1716,7 @@
 | `cvtbase` | converts a number between bases.  The bases are named by key -- b, d, h or x, o -- or by their value, and the number comes on standard input: `echo 255 ! cvtbase d h' answers ff<br>**How:** The bases are the arguments and the numbers come on standard input, one per line: `cvtbase d h' then 255 answers ff; Escape ends it. Bases are named b, d, h or x, o -- or by their digit characters. |
 | `dc` | &#9733; an integer desk calculator on the screen, laid out like the Atari ST keypad: type digits and operators, five memory slots down the left, and `dc -b=h' (or d, o, b) sets the base.  Its boxes are Cumana graphic characters; set DCGRAPHIC to six plain ones first, `++++\|-', on any other terminal<br>**How:** A full-screen integer calculator. Set DCGRAPHIC=++++\|- first unless your terminal has the Atari ST's Cumana graphics, then type digits and operators; -b=h, d, o or b picks the base. Needs cio. |
 | `factor` | prints the prime factors of each number it is given, or of each it reads, one to a line: `factor 1000001' |
+| `hp` | a reverse Polish calculator in floating point: `hp 2 3 +' prints 5.000; on standard input p prints the top of the stack and P the rest; x multiplies and : raises to a power<br>**How:** A reverse Polish calculator in floating point. Given an expression on the command line it prints the result: `hp 2 3 +' prints 5.000 and `hp 2 10 :' 1024.000. Read from standard input it prints only when asked: p prints the top of the stack and P the values below it. + - / and % work as usual, x (or *) multiplies, : or ^ raises to a power, d drops the top value and D empties the stack; < = > & \| and ! compare and combine, leaving 1 or 0; q quits. Dividing by zero stops it. |
 | `loan` | &#9733; amortisation calculator: principal, term, rate and start month in, the payment and a month-by-month schedule out<br>**How:** Answers four prompts and prints the schedule for the whole term; pipe it through head or less. |
 | `number` | writes numbers out in English words: `number 1234567'<br>`usage: number # ...` |
 | `primes` | lists the primes between two numbers: `primes 1 100' |

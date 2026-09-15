@@ -1,0 +1,17 @@
+family  hp
+setup   export PATH=/dd/CMDS
+
+# Expressions on the command line: the result is printed by itself.
+case    command-line
+run     /dd/CMDS/hp 2 3 +
+run     /dd/CMDS/hp 2 10 :
+run     /dd/CMDS/hp 1e3 3 -
+expect  5.000
+expect  1024.000
+expect  997.000
+
+# On standard input nothing prints until p asks.
+case    standard-input
+run     echo "2 3 + p 4 x p" | /dd/CMDS/hp
+expect  5.000000
+expect  20.000000

@@ -530,6 +530,7 @@ exist|Shells|Shell helpers
 fc|Files & directories|Split & join
 getenv|Shells|Shell helpers
 hist|Shells|Shell helpers
+hp|Maths & calculators|Calculators
 if|Shells|Shell helpers
 printenv|Shells|Shell helpers
 printf|Shells|Shell helpers

@@ -785,6 +785,7 @@ qp|qp -?|
 xc|xc -?|
 run|none|it takes the quoted command and reads PORT from the environment; there is no help flag
 hist|none|it takes no options
+hp|none|it has no help switch; the expression goes on the command line, as in hp 2 3 +, or on standard input
 printf|none|it takes a format and its arguments and nothing else
 submit|submit -?|
 shuffle|shuffle -|

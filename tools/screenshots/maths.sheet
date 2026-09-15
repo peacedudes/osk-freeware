@@ -267,3 +267,20 @@ wait    1
 send    Fe\r
 wait    4
 snap
+
+shot    hp
+size    24 80
+cap     Reverse Polish in floating point: two plus three, times four; two to
+cap     the tenth power; and a stack typed in, where P prints the values
+cap     below the top and p the top.
+try     hp 2 3 + 4 x; hp 2 10 :; echo "1.5 2.5 3.5 P + + p" | hp
+run     builtin cd /dd
+wait    1
+run     clear
+wait    1
+run     hp 2 3 + 4 x
+wait    3
+run     hp 2 10 :
+wait    3
+run     echo "1.5 2.5 3.5 P + + p" | hp
+wait    3
