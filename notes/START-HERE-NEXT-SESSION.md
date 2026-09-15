@@ -249,6 +249,18 @@ Open:
      counts every copy toward the 64K data limit (trek: 66,476 bytes).
      Fix used: an EXTERN prefix, extern on OSK, empty in the one file
      (externs.c) that defines them.  Expect this in most BSD games.
+  2r. **TOP's v7make, scpp, cpp.decus -- measured 2026-09-15, not shipped.**
+     v7make (public domain) and scpp (Tektronix 1985, non-commercial -- Q1)
+     ship as TOP binaries; both need cio (trap-handler message with the five
+     modules withheld; both run with cio alone restored).  scpp works:
+     `scpp -MWIDTH s.c' expands WIDTH and leaves DEPTH.  v7make CANNOT run a
+     command here: it does system("shell \"cmd\""), the disk has no `shell'
+     module (`Error code 663304'), and SHELL=ksh fails too (`663312').  It
+     would need a -qm rebuild that runs commands through ksh -- a change to a
+     period port, so ask before doing it.  cpp.decus (Minow, PD) is source
+     only, not built yet.  Test files: scratchpad top3.cases, hostwith/tmp/TOP3.
+     Harness trap met on the way: `expect MADE' matched inside `NOT-MADE' --
+     use tokens that cannot contain each other (BUILT=yes / BUILT=no).
   2n. **Two harness gaps, not yet fixed.**  tools/ansiscreen.py does no
      auto-wrap at column 80 (it clamps), so it cannot show what an am
      terminal does with a full row.  playtest.py's `expect' also searches

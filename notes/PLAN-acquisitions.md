@@ -487,6 +487,18 @@ notice); unshar.c carries no notice (K. Greer, S. Shafer, M. Mauldin).
 
 ### B10 -- GPL source for shipped binaries                              open (Q2)
 See open question 2.
+Version matrix measured 2026-09-15 (INDEX's own `gcc -v' readings plus
+version strings in the binaries) -- source must match the BINARY, not the
+name:
+  CMDS/GCC139: gcc 1.39 (cc1, cccp carry "1.39"); gpp 1.37.1 (cc1plus
+    carries "1.37").  No 1.39 source in the pool; funet has
+    gcc-1.37.1-osk-src.tar.Z, which may cover the g++ 1.37.1 pass only.
+  CMDS/GCC2: gcc driver 1.42 -- MATCHES pool mw/dl/osk_gcc_1.42_src.lzh
+    (version.c "1.42"); gpp/cc1plus 1.40.3 -- pool osk_gpp_1.39.1.lzh is
+    "1.39.1 (based on GCC 1.40)", NOT a match; gcc2 2.5.6 and cc2plus 2.5.8
+    -- no source found.
+  CMDS/jargon: byte-identical to CMDS/jargon inside pool MISC/vh_1.4.lzh
+    (md5 47914da1...) -- VH 1.4 source is an exact match.  Being added.
 
 ### B11 -- 6809 C that plausibly ports                                  open
 jumble, unTC (PD), Solve (PD), Spencer regexp, uptime, verdisk, sgrep, sortc,
