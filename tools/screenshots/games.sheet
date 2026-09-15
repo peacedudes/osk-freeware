@@ -1802,3 +1802,27 @@ send    ,
 wait    1
 send    ,
 wait    8
+
+shot    sol
+size    24 80
+cap     A fresh deal: the seven runs, the ace piles and the deck at the right,
+cap     and the deck thumbed once.  Commands go in at the cmd prompt.
+try     sol
+run     clear
+wait    1
+run     sol
+wait    6
+send    t\r
+wait    3
+snap
+
+shot    solx
+size    24 80
+cap     A solx deal: no deck, every card in a run, and the layout turned on
+cap     its side so a run can grow long.  Runs split where you say.
+try     solx
+run     clear
+wait    1
+run     solx
+wait    6
+snap

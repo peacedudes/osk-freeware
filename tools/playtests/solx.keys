@@ -1,0 +1,19 @@
+name    solx
+prog    solx
+# The deal, the help screen, then quit.
+rate    0.5
+size    24 80
+wait    6
+snap    start
+key     h
+key     \r
+wait    3
+snap    help
+key     \r
+wait    3
+key     q
+key     \r
+wait    4
+expect  cmd:
+expect  move cards or runs
+expect  I see you gave up

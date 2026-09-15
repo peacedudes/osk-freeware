@@ -320,6 +320,8 @@ psychic|No copyright or licence statement; posted by Bruce Holloway (1987).|SRC/
 lotto|No copyright or licence statement for lotto.c; its getopt.c says it is public domain. Posted by Bruce Holloway (1987).|SRC/lotto/ORIG/README; SRC/lotto/ORIG/getopt.c lines 1-12; SOURCES.txt, lotto
 knight|No copyright or licence statement; the README names Bob Calbridge (1988).|SRC/knight/ORIG/README; SOURCES.txt, knight
 bks|No copyright or licence statement; the README names Tim Shaw (1990), with BSD changes by Bill Randle.|SRC/bks/ORIG/README; SOURCES.txt, bks
+sol|No copyright or licence statement; the README names David Goodenough, with portability changes by Brandon Allbery (1987).|SRC/sol2/ORIG/README; SOURCES.txt, sol
+solx|No copyright or licence statement; the README names David Goodenough, with portability changes by Brandon Allbery (1987).|SRC/sol2/ORIG/README; SOURCES.txt, solx
 choose|No copyright or licence statement; the README names Bob Lewis (Tektronix).|SRC/choose/ORIG/README; SOURCES.txt, choose
 funzip|"Not copyrighted 1992 by Mark Adler." "You can do whatever you like with this source file", though modified copies should say so. Part of Info-ZIP UnZip 5.0.|SRC/unzip50/funzip.c lines 1-7
 g3topbm|Each netpbm author granted the right to use and distribute their code without charge, on a non-commercial basis; many allow more -- see each file's notice.|DOC/netpbm/COPYRIGHT

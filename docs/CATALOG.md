@@ -1,6 +1,6 @@
 # What is on this disk
 
-1032 programs of OS-9/68K community software, gathered from the archives that kept it and made to run again. **683 of them need nothing but this disk**; the rest want Microware's `cio`, marked below with a star.
+1034 programs of OS-9/68K community software, gathered from the archives that kept it and made to run again. **685 of them need nothing but this disk**; the rest want Microware's `cio`, marked below with a star.
 
 `DOC/INDEX` on the disk lists everything alphabetically. This is the same collection sorted by what each program is *for*, which is the more useful order when you do not yet know what you are looking for.
 
@@ -22,7 +22,7 @@
 | [Encoding & conversion](#encoding--conversion) | 29 | Between text encodings, line endings, Macintosh formats, ciphers and hashes. |
 | [Communications](#communications) | 98 | Kermit in several builds, terminal sessions, and networking. |
 | [Graphics & images](#graphics--images) | 195 | The netpbm toolkit, JPEG, a ray tracer, and things that draw. |
-| [Games](#games) | 100 | Adventures, board and card games, arcade ports, dungeon crawls and puzzles. |
+| [Games](#games) | 102 | Adventures, board and card games, arcade ports, dungeon crawls and puzzles. |
 | [Screen toys](#screen-toys) | 10 | Animations and screen effects -- they draw on the terminal rather than print to it. Some run until you stop them. |
 | [Amusements](#amusements) | 30 | Generators, simulators and diversions that are not quite games. |
 | [System & modules](#system--modules) | 132 | OS-9 module and process tools, devices, system state and scheduling. |
@@ -1191,7 +1191,7 @@
 
 *Adventures, board and card games, arcade ports, dungeon crawls and puzzles.*
 
-<details><summary>100 programs</summary>
+<details><summary>102 programs</summary>
 
 **Adventure & fiction**
 
@@ -1254,6 +1254,8 @@
 | `reversi` | Othello against the computer or another player at the same keyboard, with six strengths from Apprentice to Very Hard. It opens on a menu; the arrow keys or hjkl move the cursor, RETURN places a disk and `m' reopens the menu.  `-r' resumes a saved game.  A different author's program from `othello' |
 | `saa` | Streets and Alleys solitaire: eight stacks and a foundation per suit; move a stack's top card onto the next rank up or home to its foundation, and order every card to win |
 | `scrabble` | Scrabble against the computer on the full fifteen-by-fifteen board: the premium squares, the hundred-letter pool and the fifty-point bonus for laying down all seven letters at once. `hjkl' move the cursor, `H' or `V' enters a word across or down from there, `T' trades letters back into the pool, `A' asks the computer what it would play, `S' and `R' save and restore a game, and `Q' quits.  Its word list is GAMES/words. `-n' sets the number of players and `-m <n>' makes player n the computer. |
+| `sol` | Klondike solitaire at the terminal: t thumbs the deck three cards at a time, m moves a card or a run, h lists the commands and q quits<br>**How:** Full-screen Klondike. Type a command and RETURN at the cmd prompt: t (or just RETURN) thumbs the deck three cards at a time; m with a source and a destination moves -- 1-7 for a run, d for the deck, a for an ace pile; a turns on the auto pilot; r shows the rules, h the commands; q quits. s, p, d and w are cheats, and it remembers. |
+| `solx` | a harder solitaire with no deck: every card is dealt into runs, which may be split -- `m run position destination'; h lists the commands<br>**How:** Full-screen, and harder than sol: there is no deck, every card is dealt into runs that may be split, and the layout runs sideways so runs can grow long. m takes a run, the card position to split at, and the destination run (or a for an ace pile); h lists the commands and r the rules; q quits. |
 | `tttt` | tic-tac-toe<br>**How:** Full-screen tic-tac-toe on a four-by-four board. Name a square as a column letter and a row digit, `b1'. `q' quits. |
 | `yahtzee2` | Yahtzee 2.1: the poker-dice game on a curses scoreboard. Up to six players, human or computer, roll five dice up to three times a turn and bank each roll in one of thirteen categories.  Enter the player count; for each player, space toggles human or computer and `n' names them.  In play a digit holds a die, space rerolls, `b' shows the rules and `q' quits. High scores are kept in GAMES/YAHTZEE |
 

@@ -1,0 +1,23 @@
+name    sol
+prog    sol
+# The deal, one thumb of the deck, the help screen, then quit.
+rate    0.5
+size    24 80
+wait    6
+snap    start
+key     t
+key     \r
+wait    3
+snap    thumbed
+key     h
+key     \r
+wait    3
+snap    help
+key     \r
+wait    3
+key     q
+key     \r
+wait    4
+expect  cmd:
+expect  thumb the deck
+expect  I see you gave up

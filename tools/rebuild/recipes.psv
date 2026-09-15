@@ -977,6 +977,10 @@ lotto|lotto|lotto.c getopt.c|||
 # games from the same Unix posts; SRC/knight and SRC/bks README.OSK.
 knight|knight|knight.c||/dd/LIB/rand.r|
 bks|bks|bs.c|BSD|/dd/LIB/rand.r|
+# sol and solx (comp.sources.games v02i030): termcap solitaires; SRC/sol2's
+# README.OSK lists the cpp, SIGTERM and termlib changes and the ioctl shim.
+sol|sol2|sol.c solio.c||/dd/LIB/termlib.l|
+solx|sol2|solx.c solio.c||/dd/LIB/termlib.l|
 lame|lame|lame.c||/dd/LIB/rand.r|
 canfield|canfield|canfield.c||/dd/LIB/curses.l /dd/LIB/termlib.l /dd/LIB/rand.r|
 # atc -- Ed James's air traffic controller, 4.3BSD-Net/2.  Built on its SYSV
