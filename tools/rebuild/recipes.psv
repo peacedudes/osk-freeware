@@ -954,7 +954,11 @@ canfield|canfield|canfield.c||/dd/LIB/curses.l /dd/LIB/termlib.l /dd/LIB/rand.r|
 cwasm|corewars|amain.c tokenize.c parse.c lookup.c aoutput.c assem.c|SMALL||
 cwdis|corewars|disassem.c|SMALL||
 corewar|corewars|main.c load.c output.c play.c inst.c|SMALL||
-monop|monop|monop.c cards.c execute.c getinp.c houses.c jail.c misc.c morg.c print.c prop.c rent.c roll.c spec.c trade.c||/dd/LIB/rand.r|
+# monop's roll() scales rand() by a MAXRAND of 32767 unless vax or tahoe is
+# defined, and /dd/LIB/rand.r returns 31 bits: built without `vax' it rolled
+# 52400 and 10315 on two dice.  `vax' selects the branch that divides by
+# 2^31-1, and nothing else in monop tests the name.  Measured 2026-09-14.
+monop|monop|monop.c cards.c execute.c getinp.c houses.c jail.c misc.c morg.c print.c prop.c rent.c roll.c spec.c trade.c|vax|/dd/LIB/rand.r|
 yahtzee2|yahtzee2|admin.c book.c comp.c eval.c help.c main.c score.c scr.c getopt.c os9box.c||/dd/LIB/rand.r|
 dvi2tty|dvi2tty|dvi2tty.c dvistuff.c|||-dstrchr=index
 disdvi|dvi2tty|disdvi.c|||-dstrchr=index

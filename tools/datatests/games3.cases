@@ -88,3 +88,13 @@ expect  HINTERHALT
 expect  Brauchen Sie eine Anleitung (J/N)?
 expect  Leistung!
 expect  Noch ein Spiel (J/N)?
+
+case    monop-rolls-two-dice-and-quits
+# Both dice must read 1 to 6.  A build whose roll() assumed a 15-bit rand()
+# rolled 52400 and 10315.  monop's own output goes to a file, so the only
+# `roll is' in the capture is one sed has vouched for.
+run     /dd/CMDS/printf '2\nann\nbob\nroll\nno\nquit\nyes\n' | /dd/CMDS/GAMES/monop > /dd/tmp/monop.out
+run     /dd/CMDS/grep 'roll is [1-6], [1-6]$' /dd/tmp/monop.out | /dd/CMDS/sed 's/^/DICE OK: /'
+run     /dd/CMDS/grep 'Do you all really want to quit' /dd/tmp/monop.out
+expect  DICE OK: -- Command: roll is
+expect  Do you all really want to quit?
