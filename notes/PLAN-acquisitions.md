@@ -417,6 +417,19 @@ tet is already a trap-free rebuild of it with an echo fix.  TOP's binary runs
 (needs cio and termcap.entry) but adds nothing.  NEW but needing cio: robots2 (a different robots from the disk's -- hall
 of fame robots_hof, ROBOTOPTS; no author, no document, binary only), sod
 (a maze game, no author or document).
+TOP NATIVE TOOLS, triaged 2026-09-15 (each asked `-?' with and without the
+five modules; binaries in scratch toptools).  All binary-only, no terms
+stated, and ALL BUT `hd' NEED cio.  Duplicates of what the disk has:
+`more' (less), `hd' (dump, hdump, xd -- and hd reads `-?' as a file name),
+`lfcr' (autolf), `errno' (perr), `times' (time -- its own usage says
+`Syntax: time').  Multi-user system tools that want /dd/SYS/utmp, which
+the disk does not carry, or a shared machine: `mesg', `newgrp', `uid',
+`speak' and `msg' (chat between logged-in users), `oxm' (a mail front end
+with a lock file), `mmenu' (a termcap login menu system), `mwb' (edits
+manual entries).  And `where' finds a program along PATH (`-l' lists it)
+-- which the disk's `which' already does, the way the shell finds it.  So
+NOTHING among TOP's native tools is new here.
+
 Measure first: which binaries need cio (run against an image without the
 five runtime modules); every hardcoded `/h0/USR/GAMES/...` path; whether
 the native tools expect `/dd/SYS/utmp`, group, password or smail.
