@@ -193,3 +193,26 @@ run     /dd/CMDS/agrep -f $W/ag2.pat $W/ag2.txt
 expect  3
 expect  Hello there, world
 expect  the abcd line
+
+# sgrep (2026-09-15, DECUS grep with substitution): a pattern FILE and text on
+# standard input.  Without -m the pattern file holds pairs, pattern then
+# replacement; @r rescans the line until the pattern stops matching.
+case    sgrep-matches-counts-and-substitutes
+run     echo "the fish swam" > $W/sg.txt
+run     echo "nothing here" >> $W/sg.txt
+run     echo "one fish, two fish" >> $W/sg.txt
+run     echo "fish" > $W/sg.match
+run     echo "fish" > $W/sg.subst
+run     echo "aquatic animal" >> $W/sg.subst
+run     /dd/CMDS/sgrep -mc $W/sg.match < $W/sg.txt
+run     /dd/CMDS/sgrep $W/sg.subst < $W/sg.txt
+expect  2
+expect  the aquatic animal swam
+expect  one aquatic animal, two aquatic animal
+
+case    sgrep-rescan-rewrites-every-array-index
+run     echo "\[:n+,@r" > $W/sg.arr
+run     echo "[?1][" >> $W/sg.arr
+run     echo "x = A[I,J,K] + B[N,M]" > $W/sg.src
+run     /dd/CMDS/sgrep $W/sg.arr < $W/sg.src
+expect  x = A[I][J][K] + B[N][M]

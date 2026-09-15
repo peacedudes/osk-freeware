@@ -1021,6 +1021,7 @@ bandit|none|it has no help flag; `y' at its first question prints the instructio
 
 wns|wns|
 agrep|agrep|
+sgrep|sgrep|
 dc|none|it has no help flag -- given -? it only says it cannot read its terminal; set DCGRAPHIC=++++|- for plain boxes, and Q or ESC leaves it
 sod|sod -?|
 typefast|none|it has no help flag; `y' at its first question explains the game, and `q' at the level prompt quits

@@ -1009,3 +1009,5 @@ jumble|jumble|jumble.c|||
 # agrep: agrep 2.01 (Wu and Manber) from the MW archive; remote buffers, open mode, putchar
 # and ENOENT under OSK -- SRC/agrep/README.OSK.
 agrep|agrep|asearch.c asearch1.c bitap.c checkfile.c compat.c follow.c main.c maskgen.c parse.c preprocess.c sgrep.c mgrep.c utilities.c|||
+# sgrep: McKeon's DECUS grep with substitution, 6809 archive (c09_sgrep); built unchanged.
+sgrep|sgrep|sgrep.c|||

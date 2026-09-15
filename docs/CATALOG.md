@@ -1,6 +1,6 @@
 # What is on this disk
 
-1013 programs of OS-9/68K community software, gathered from the archives that kept it and made to run again. **665 of them need nothing but this disk**; the rest want Microware's `cio`, marked below with a star.
+1014 programs of OS-9/68K community software, gathered from the archives that kept it and made to run again. **666 of them need nothing but this disk**; the rest want Microware's `cio`, marked below with a star.
 
 `DOC/INDEX` on the disk lists everything alphabetically. This is the same collection sorted by what each program is *for*, which is the more useful order when you do not yet know what you are looking for.
 
@@ -13,7 +13,7 @@
 |---|--:|---|
 | [Shells](#shells) | 24 | Unix shells to sit beside OS-9's own -- bash and ksh bring history, job control, and scripts that come across unchanged. |
 | [Editors](#editors) | 27 | vi and emacs in several flavours, line and stream editors, and editors for binary and hex. |
-| [Text tools](#text-tools) | 129 | Search, sort, compare, reformat, split and spell-check. |
+| [Text tools](#text-tools) | 130 | Search, sort, compare, reformat, split and spell-check. |
 | [Files & directories](#files--directories) | 34 | Listing, copying, finding, renaming, and knowing what you have. |
 | [Developer tools](#developer-tools) | 47 | Version control, tags, cross-reference, formatters, a debugger and benchmarks. |
 | [Compilers & build](#compilers--build) | 41 | C compilers and their passes, assemblers, linkers, make and parser generators. |
@@ -155,7 +155,7 @@
 
 *Search, sort, compare, reformat, split and spell-check.*
 
-<details><summary>129 programs</summary>
+<details><summary>130 programs</summary>
 
 **Alternates**
 
@@ -251,6 +251,7 @@
 | `ggrep` | &#9733; GNU grep, a second build: the same options as `grep'<br>**How:** GNU grep. `ggrep <expr> <files...>'; -E, -F, -i, -v, -w and the rest as you would expect. |
 | `grep` | GNU grep 2.0: prints the lines of files that match a regular expression -- -E extended, -F fixed strings, -i ignore case, -v invert, -n number, -c count<br>`grep: illegal option -- ?` |
 | `look` | prints the lines of a sorted file that begin with a string: `look abs GAMES/words'; -f ignores case<br>`usage: look [-f] string file` |
+| `sgrep` | grep with substitution, reading patterns from a FILE and text on standard input: `sgrep pats <in' replaces each odd line of pats with the even line after it; -m only matches (-c counts, -n numbers, -v inverts), -y ignores case. Its manual is DOC/sgrep.doc<br>**How:** A filter: `sgrep patfile <input'. patfile holds pairs of lines, a pattern and what to put in its place, and every match in the input is replaced. With -m the file is a plain list of patterns and matching lines are printed (-c counts them, -n numbers them, -v inverts). -y ignores case. Patterns use `:a' letters, `:d' digits, `:n' alphanumerics, `*' `+' `-' repeats, and `?1' in a replacement is the first wildcard's text. DOC/sgrep.doc is its manual. |
 | `soundex` | Soundex phonetic key for each word on stdin |
 | `wns` | &#9733; windowing search: grep that prints a window of lines round each match.  `wns -w=2 pattern file' shows two lines before and after, -a and -b set them apart, and windows that do not touch are divided by a dashed line<br>**How:** A grep with context: `wns -w=2 pattern file' prints two lines either side of each match, -a and -b set the after and before counts separately. Needs cio. |
 

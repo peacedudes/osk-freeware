@@ -1,0 +1,6 @@
+cat arr src
+\[:n+,@r
+[?1][
+x = A[I,J,K] + B[N,M]
+$ sgrep arr < src
+x = A[I][J][K] + B[N][M]

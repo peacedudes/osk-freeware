@@ -1,0 +1,1 @@
+README.OSK -- sgrep on OS-9/68000ORIG/ is sgrep as the Microware OS-9 archive carried it for the 6809(OS9_6X09_APPS/sgrep.lzh): James J. McKeon's grep with substitution, fromthe DECUS public grep, with Brian Paquette's OS-9 port of it and itsmanual.  The manual is also DOC/sgrep.doc.sgrep.c is built for the 68000 exactly as it is; nothing was changed.

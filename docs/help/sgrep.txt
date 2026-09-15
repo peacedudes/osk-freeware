@@ -1,0 +1,14 @@
+$ sgrep
+Usage:  sgrep [-cmnvy] pattern-file <inputpath >outputpath
+Where:
+   c  =  Only a count of matching lines is printed
+   m  =  Match patterns only, no substitutions.
+   n  =  Each line is preceeded by its line number
+   v  =  Only print non-matching lines
+   y  =  Upper and lower case match.
+ (c,n, and v are only effective when the 'm' option is also specified.)
+
+Sgrep is a FILTER.
+It may be used in all manners in which normal filters are used.
+
+See program documentation for FULL information!

@@ -150,6 +150,25 @@ wait    1
 run     agrep -2 lisense DOC/README
 wait    5
 
+shot    sgrep
+cap     Substitution from a pattern file.  arr holds a pattern that finds a
+cap     comma inside brackets and the text to put back, rescanning each line
+cap     until nothing matches, so every A[I,J,K] becomes A[I][J][K].
+try     sgrep arr < src
+run     /dd/CMDS/rm -rf /dd/tmp/sgcard > /nil 2>/nil
+run     /dd/CMDS/mkdir -p /dd/tmp/sgcard
+run     builtin cd /dd/tmp/sgcard
+run     echo "\[:n+,@r" > arr
+run     echo "[?1][" >> arr
+run     echo "x = A[I,J,K] + B[N,M]" > src
+wait    2
+run     clear
+wait    1
+run     cat arr src
+wait    2
+run     sgrep arr < src
+wait    4
+
 shot    jargon
 cap     The Jargon File browser, jumping straight to the entry for
 cap     kluge.  It reads jargon.txt and jargon.idx from the VH
