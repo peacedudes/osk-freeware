@@ -574,6 +574,16 @@ acquisitions-2026-09-11/os9/mw/dl/x/c09_*):
 - sgrep (DECUS grep with substitution, not for profit): DONE (f4a2b6f3), built
   unchanged; its manual is DOC/sgrep.doc.
 
+B11 LEFTOVERS, checked 2026-09-15: editline (Turner and Salz 1992, KA9Q pool,
+already with an OS-9 port in sysos9.c) is a LIBRARY for other programs -- its
+only program, testit, is "a small slow shell for testing"; not shipped.
+uptime and verdisk are OS-9 `ar' archives from the 6809 section (c09_) --
+CoCo-world, so last.  No pscat anywhere in the acquisitions.  EFFO forum disk
+16 is already mined (hexed, oskversion, puzzle15, rpn, top, clear, fastcc,
+demerge, lunisolar, tree) EXCEPT SOFTWARE/C/7TH_C_CONTEST -- the eleven 1990
+IOCCC winners with their hint files -- and four assembler tools, FCCTL,
+FPERMIT, EXCEPT_HANDLER and EXIT_HANDLER.  Those are next.
+
 ### Leave alone
 Microware-owned: 6809 system source, PIPELINES, Training, qpascal, ucc
 support, csl/fpu inside STerm68k.lzh, bfed.  Restrictive: StG V3 BBS,
