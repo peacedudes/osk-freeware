@@ -1,0 +1,9 @@
+name    globe
+prog    globe
+# The Earth as lit at this hour; it prints and stops.
+rate    0.6
+size    24 80
+wait    8
+snap    globe
+key     \003
+wait    2

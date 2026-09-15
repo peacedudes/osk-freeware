@@ -1,0 +1,19 @@
+name    tet
+prog    tet
+# Tetris: p plays, spaces drop pieces, q leaves to the high-score table.
+rate    0.6
+size    24 80
+wait    6
+key     p
+wait    3
+key     \s
+wait    3
+key     \s
+wait    3
+snap    well
+key     q
+wait    4
+snap    scores
+key     \003
+wait    2
+expect  Menu
