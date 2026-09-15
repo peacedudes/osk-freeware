@@ -1,6 +1,6 @@
 # What is on this disk
 
-1008 programs of OS-9/68K community software, gathered from the archives that kept it and made to run again. **661 of them need nothing but this disk**; the rest want Microware's `cio`, marked below with a star.
+1009 programs of OS-9/68K community software, gathered from the archives that kept it and made to run again. **662 of them need nothing but this disk**; the rest want Microware's `cio`, marked below with a star.
 
 `DOC/INDEX` on the disk lists everything alphabetically. This is the same collection sorted by what each program is *for*, which is the more useful order when you do not yet know what you are looking for.
 
@@ -22,7 +22,7 @@
 | [Encoding & conversion](#encoding--conversion) | 29 | Between text encodings, line endings, Macintosh formats, ciphers and hashes. |
 | [Communications](#communications) | 97 | Kermit in several builds, terminal sessions, and networking. |
 | [Graphics & images](#graphics--images) | 195 | The netpbm toolkit, JPEG, a ray tracer, and things that draw. |
-| [Games](#games) | 91 | Adventures, board and card games, arcade ports, dungeon crawls and puzzles. |
+| [Games](#games) | 92 | Adventures, board and card games, arcade ports, dungeon crawls and puzzles. |
 | [Screen toys](#screen-toys) | 9 | Animations and screen effects -- they draw on the terminal rather than print to it. Some run until you stop them. |
 | [Amusements](#amusements) | 25 | Generators, simulators and diversions that are not quite games. |
 | [System & modules](#system--modules) | 132 | OS-9 module and process tools, devices, system state and scheduling. |
@@ -1182,7 +1182,7 @@
 
 *Adventures, board and card games, arcade ports, dungeon crawls and puzzles.*
 
-<details><summary>91 programs</summary>
+<details><summary>92 programs</summary>
 
 **Adventure & fiction**
 
@@ -1272,6 +1272,7 @@
 
 | | |
 |---|---|
+| `arithmetic` | a drill in sums at the terminal: it asks a problem and keeps asking until the answer is right, and after every twenty prints the rights, wrongs and seconds per problem.  `-o' picks the operations from +-x/, `-r' the largest number; ^C stops it with the score<br>**How:** Line-by-line drill in sums. It prints a problem such as `3 + 4 =' and waits; type the answer and RETURN. A wrong answer gets `What?' and the same problem again, and after every twenty it prints the score. `-o +-x/' picks the operations (+ and - by default), `-r 12' the largest operand (10). ^C or end of input stops it with the score so far. |
 | `ask` | the client for `wisecrack': it reads one line from /pipe/txtpipe and prints it, and says `No Wisecracks coming' when nothing is feeding the pipe. Start the server first -- `wisecrack &' -- and it answers<br>**How:** The reader for `wisecrack': it takes the next slogan from the pipe wisecrack writes to and prints it, one a call, in German. Start the server first -- `wisecrack &' -- or ask says "No Wisecracks coming". From EFFO forum 20. |
 | `atc` | Air Traffic Controller: guide the planes on the radar from airport or entry point to the destination each one shows, at the right altitude, without letting two meet.  Talk to a plane by its letter -- `a' and a digit sets altitude and takes off, `t' and a direction key turns -- RETURN sends it and `?' shows what may come next.  `atc -l' lists the airports, `-g easy' picks one; ^C quits.  GAMES/ATC holds the airports and the score list<br>**How:** Full-screen air traffic control. `atc -l' lists the airports and `atc -g easy' picks one. Type a command to a plane by its letter: `a' and a digit sets altitude (and takes off), `t' and a direction key turns; RETURN sends it, `?' lists what may come next, ^L redraws and ^C asks to quit. Its airports are in GAMES/ATC. |
 | `backgammon` | &#9733; backgammon, with a computer opponent<br>`Syntax: backgammon [<opts>] [<file>]` |

@@ -994,6 +994,7 @@ lame|none|give it a sentence as arguments; o becomes 0, you becomes U, and so on
 canfield|none|name a move by its two ends -- s2, tf, 13, 2f; ht deals, c counts, b bets, q quits
 atc|atc -u|
 trek|none|it has no help flag; `help' at its Command: prompt lists the commands
+arithmetic|arithmetic -h|
 monop|none|set up players, then at -- Command: type roll to move, print for the board, quit to end
 yahtzee2|none|enter the player count, space toggles human/computer, n names a player; in play a digit holds a die, space rerolls, b shows rules, q quits
 dvi2tty|dvi2tty|

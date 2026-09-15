@@ -1,0 +1,8 @@
+$ arithmetic -o x -r 5
+4 x 5 =   12
+What?
+6
+What?
+
+
+Rights 0; Wrongs 2; Score 0%

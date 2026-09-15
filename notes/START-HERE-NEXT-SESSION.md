@@ -298,6 +298,21 @@ Open:
      signal() only records -- a handler never runs by itself (the skill's
      os9-clib-reference says so).  And curses.l HAS savetty()/resetty(), so
      a shim of those names clashes at l68.
+  2v. **arithmetic (4.3BSD Net/2) ported; TOP's tetrix is a DUPLICATE of
+     `tet'** -- same Quentin Neill source with TOP's OSK arms, and tet is
+     already a trap-free rebuild with an echo fix, so tetrix was withdrawn
+     unshipped.  arithmetic's only real change: unix.l's signal() only
+     records, so ^C aborted fgets and it left with no score; a
+     check_signal() on the failed read runs intr() as BSD did (atc's
+     pattern).  Measured and parked: TOP's robots2 stops os9exec with
+     `Illegal instruction' in its data area just after F$ID, with
+     SYS/password open -- not yet known whether it is the program, its cio
+     linkage or the emulator.  Disassembly (m68k-elf-objdump is on this
+     Mac): 0x3fa8 is its intercept routine, which looks the signal up in a
+     table and jsr's through the entry before F$RTE; the faulting address
+     equals A0, so a signal it never registered probably sends it into the
+     table.  Which signal, and who sends it, is unmeasured.  sod (TOP, needs cio) draws its maze and
+     answers `q'; wants /h0/USR/GAMES/LIB/SOD and /dd/TMP lock files.
   2n. **Two harness gaps, not yet fixed.**  tools/ansiscreen.py does no
      auto-wrap at column 80 (it clamps), so it cannot show what an am
      terminal does with a full row.  playtest.py's `expect' also searches

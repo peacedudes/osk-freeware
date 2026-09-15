@@ -1,0 +1,21 @@
+name    arithmetic
+prog    arithmetic -o x -r 5
+# Two answers to multiplication problems, then ^C for the score.
+rate    0.5
+size    24 80
+wait    3
+snap    first
+key     1
+key     2
+key     \r
+wait    2
+key     6
+key     \r
+wait    2
+snap    answered
+key     \003
+wait    3
+snap    score
+expect  x
+expect  Rights
+expect  Score

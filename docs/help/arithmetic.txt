@@ -1,0 +1,3 @@
+$ arithmetic -h
+/dd/CMDS/GAMES/arithmetic: unknown option -h
+usage: arithmetic [-o +-x/] [-r range]

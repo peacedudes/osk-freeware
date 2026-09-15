@@ -411,9 +411,10 @@ the disk's wanderer, and yahtzee is Stacey Campbell's 1988 first version
 use/copy/modify/distribute;
 bandit (Pete Granger) public domain 1989, no profit; typefast (druco!spear
 1986) no notice; wanderer2 credits-file only.
-NEW but needing cio: tetrix (Quentin Neill's curses Tetris; source already
-has an OSK port, so a -qm rebuild could drop the star; the disk's tet and
-tt are other Tetrises), robots2 (a different robots from the disk's -- hall
+DUPLICATE, measured 2026-09-15: tetrix is the disk's `tet' -- the same Quentin
+Neill source with TOP's OSK arms (tet.c, AdvanceP/MoveL/MoveR/NewP/Rotate), and
+tet is already a trap-free rebuild of it with an echo fix.  TOP's binary runs
+(needs cio and termcap.entry) but adds nothing.  NEW but needing cio: robots2 (a different robots from the disk's -- hall
 of fame robots_hof, ROBOTOPTS; no author, no document, binary only), sod
 (a maze game, no author or document).
 Measure first: which binaries need cio (run against an image without the
@@ -428,7 +429,7 @@ the native tools expect `/dd/SYS/utmp`, group, password or smail.
 | atc | `NET2/games/atc` | 1990 | BSD (4-clause) + Ed James 1987 "copy permission ... provided that this notice is retained" | ASSESSED 2026-09-15.  10 .c + grammar.y + lex.l, 7 airport files (Game_List, default, easy, crossover, Killer, game_2, ATC_scores).  Generate grammar.c/lex.c with the DISK's own yacc and flex (dogfood).  Port: sgtty/ioctl TIOCGETP/SETP -> curses cbreak+noecho; setitimer -> alarm (unix.l has alarm; setitimer nowhere); flock/lockf in log.c -> drop; getpwuid -> USER; random/srandom -> rand/srand; bcopy/bzero/index/rindex -> memcpy/memset/strchr/strrchr or os9lib; the `!' shell escape in input.c -> drop.  _PATH_GAMES /usr/share/games/atc/ -> /h0/GAMES/ATC/ beside the other games. |
 | canfield (+cfscores) | `NET2/games/canfield` | 1980 | BSD | canfield DONE (8c133d0b) -- curses; _tty/SIGTSTP/SIGTERM shimmed; cfscores DONE (004ae08c) |
 | trek (Allman) | `NET2/games/trek` | 1980 | BSD | sgtty/select bits |
-| monop, wump, fish, arithmetic | `NET2/games/...` | 1980-90 | BSD | wump DONE (70fe4c6d), fish DONE (73cb6958), monop DONE (830dee5e) -- self-contained, getopt bundled, instructions embedded.  monop's board, properties and cards are .dat files #INCLUDED as C initialisers, so they had to be CR like source, not like data |
+| monop, wump, fish, arithmetic | `NET2/games/...` | 1980-90 | BSD | wump DONE (70fe4c6d), fish DONE (73cb6958), monop DONE (830dee5e), arithmetic DONE 2026-09-15 (check_signal() so ^C prints the score) -- self-contained, getopt bundled, instructions embedded.  monop's board, properties and cards are .dat files #INCLUDED as C initialisers, so they had to be CR like source, not like data |
 | bs (ESR battleships) | `CSG/volume8/bs/part01.gz` | 1989 | no notice | DONE (cee1197c) -- OSK curses arm shims beep/chtype/ungetch, cbreak parenthesised |
 | scrabble | `CSG/volume6/scrabble/` | 1989 | redistribute in any manner | DONE (9d6aa1e4) -- ported to Microware C |
 | saa (Streets and Alleys) | `CSG/volume12/saa/` | 1991 | permission granted | DONE (d72a0cea) -- built unchanged with -DNON_ANSI_C |

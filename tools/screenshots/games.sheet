@@ -879,6 +879,22 @@ wait    4
 send    \r
 wait    3
 
+shot    arithmetic
+size    24 80
+cap     Multiplication with operands up to 5: each problem waits for an
+cap     answer and RETURN, a wrong one gets `What?' and the same problem
+cap     again, and ^C ends the drill with the score so far.
+try     arithmetic -o x -r 5
+run     arithmetic -o x -r 5
+wait    3
+send    12\r
+wait    2
+send    6\r
+wait    2
+send    \003
+wait    3
+snap
+
 shot    larn
 cap     Larn: the dungeon is drawn as you find it, letters for what is in
 cap     it, and the two lines at the foot are your spells, armour class,

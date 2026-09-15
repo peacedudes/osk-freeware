@@ -998,3 +998,6 @@ moria|moria|main.c tcentry.c misc1.c misc2.c store1.c files.c io.c create.c desc
 # globals are extern-ised for l68, the pictures kept once, and tty.c supplies
 # savetty()/resetty(), which OS-9 curses lacks; SRC/castle/README.OSK.
 castle|castle|castle.c magic.c monster.c files.c store.c screens.c tty.c|GAME_HOURS||-V=/h6/castle/INCLUDE
+# arithmetic: 4.3BSD Net/2 usr/src/games/arithmetic.  getopt bundled as wump's;
+# check_signal() on a failed read so ^C prints the score; SRC/arithmetic/README.OSK.
+arithmetic|arithmetic|arithmetic.c getopt.c||/dd/LIB/rand.r|

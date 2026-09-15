@@ -98,3 +98,16 @@ expect  It takes 250 units to kill a Klingon
 expect  Short range sensor scan
 expect  Klingons left
 expect  Another game
+
+# arithmetic (2026-09-15) reads its answers with fgets(), so a line that is not
+# a number is refused, and its two options are checked before any problem.
+case    arithmetic-refuses-an-answer-that-is-not-a-number
+run     echo x > $W/arith.in
+run     /dd/CMDS/GAMES/arithmetic -r 3 < $W/arith.in
+expect  Please type a number.
+
+case    arithmetic-rejects-an-unknown-operation-and-a-zero-range
+run     /dd/CMDS/GAMES/arithmetic -o q
+run     /dd/CMDS/GAMES/arithmetic -r 0
+expect  arithmetic: unknown key.
+expect  arithmetic: invalid range.
