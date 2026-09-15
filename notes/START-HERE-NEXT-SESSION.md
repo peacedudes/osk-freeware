@@ -1,26 +1,55 @@
 # Start here, next session
 
-## DO NEXT -- work left undone on 2026-09-14 (the session stopped instead)
+## DO NEXT -- kept current, 2026-09-14 (late)
 
-rdoggett found this session idle for ten hours with all of the below
-available.  None of it needs him.  Work it without stopping.
+Settled this session (committed; do not re-derive):
+  * **lmail never hung** -- it retries its lock in /DD/SYS/.LOCKS/MAIL.LOCKS
+    every 10 s for 20 min, and that directory did not ship.  It ships now
+    (`.keep' placeholders, since the disk's tar drops nested empty dirs) and
+    lmail delivers; mail.cases asserts it.  uux and uupoll want the same dir.
+  * **rcsdiff works under Microware's shell** with co in a directory RCS
+    inside CMDS: its system() line is `%s/co ... >-%s' with /dd/cmds/rcs
+    compiled in.  On this disk CMDS/rcs is the rcs PROGRAM (case-insensitive
+    RBF), so that directory cannot exist beside it, and ksh cannot parse >-.
+    Card and requires.psv say so.  rcsmerge carries the same string.
+  * **hist** keeps its history on /r0 unless given a file and runs every
+    command through a module named `shell'.  Under the SDK shell with
+    `hist <file>' it works (h lists, logout leaves).
+  * **sdb's quit command is `exit'**, not q; INDEX and card said q.
+  * **gnugo, sdb Stack Overflow** is their own recursion at end of input
+    (gnugo's getmove() calls itself per illegal move).  Not os9exec.
+  * **vtxtcn works** beside SRC/world/vtext.dat (it is World's build step).
+  * **monop's dice were garbage** (rolls 52400, 10315): roll.c assumes a
+    15-bit rand() unless vax is defined and /dd/LIB/rand.r gives 31 bits.
+    Rebuilt with `vax' (6001c4a5).  The other 25 rand.r recipes were scanned
+    for 15-bit constants and are clean.
+  * Cases now play gnugo, jotto, poker, blackjak, mastrm, hinterhalt, monop
+    to a real ending.
 
-1. **rcsdiff "cannot create /dd/tmp/_RCSt1000004"** -- root-cause it; it may
-   be os9exec (report to the os9exec session with a repro, never edit there).
-   A `-r -d 2` trace was started (in the old session's scratchpad -- rerun
-   it: ci -l a two-line file, change a line, rcsdiff it, PATH=/dd/CMDS); it showed
-   I$Open E_FNA twice before the E_PNNF/E_MNF search, then a run of
-   I$GetStt E_BPNUM.  The card (devtools.sheet `rcsdiff`) blames a
-   redirection "the shells here cannot make" -- unproven.
-2. **gnugo and sdb end in `**** Stack Overflow ****`** on piped input
-   (gnugo fed `\n0\nb\npass\npass\nn\n`; sdb fed `q`).  Program or emulator?
-3. **vtxtcn, lmail, hist hang silently** -- find what each waits on.
-4. **poker, blackjak, jotto, mastrm, monop, hinterhalt re-ask forever at
-   EOF** -- feed a whole game's input and test to a real ending.
-5. **Full-screen programs** on the untested list (worklist.py --programs
-   --no-test, 91) -- drive.py sheets are the instrument; test them there.
-6. perl leftovers: rmdir, mkdir on an existing name answers E$FNA not
-   E$CEF, s2p not built.
+Open:
+  1. **os9exec: I$MakDir onto an existing DIRECTORY on an RBF image answers
+     E$FNA; an existing file, or a host dir, answers E$CEF.**  Reported to
+     os9exec-d9 with a repro; they will check the Technical Manual.  This is
+     perl's "mkdir answers E$FNA".  perl's rmdir is a known absence
+     (README-OSK); s2p is a shell script and is deliberately not built.
+  1a. **os9exec: F$GPrDsc has no process-id bound check** (fcalls.c,
+     `procs[id]' with id from d0.w, MAXPROCESSES 129).  Ids past the table
+     read host memory and often answer success; sysmon walks them to a bus
+     error at id $1A8.  Reported to os9exec-d9 with the trace.  When fixed:
+     reshoot sysmon (system.sheet), fix its caption, and play it.
+  1b. Lead, sent to os9exec-d9, unproven: aprocs shows every process's age
+     as ~2^32 s where Microware's procs -e shows 0:00; D_Julian/D_Second
+     read correctly, so suspect the descriptor's start date/time.  The
+     aprocs card's caption credits those globals.
+  1c. cpu stops with a math-handler overflow (vector 7, D0=$7FF00000)
+     straight after F$Time when run under -r; paced, the card reaches test
+     11.  Probably an elapsed time of zero; not chased.
+  2. **Full-screen programs** on `worklist.py --programs --no-test` -- play-
+     tests (tools/playtests/*.keys) are the instrument.  First batch of 12
+     written 2026-09-14 from their card stanzas: hang bog saa othello hexa
+     robots worm mines tt accordian tttt greed.
+  3. System utilities on the same list (aprocs cpu devprc vc top sysmon):
+     probe for case material.
 
 ## 2026-09-14 (night): cases for the programs that had none
 

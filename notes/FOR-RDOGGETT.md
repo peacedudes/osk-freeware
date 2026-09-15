@@ -1,6 +1,6 @@
 # For rdoggett
 
-Open questions only. Nothing here is decided. Updated 2026-09-14 (evening).
+Open questions only. Nothing here is decided. Updated 2026-09-14 (late).
 
 ## Yours alone -- nothing I can do about these
 
@@ -161,55 +161,3 @@ line is recorded in `tools/terms.psv` or the handoff.
    not "without explicit written permission from Tim Kientzle".  The disk
    ships the three binaries without that source.  Ship the source beside
    them, or decide otherwise.
-
-## ANSWERED -- the newsgroup archive
-
-5. ~~**comp.os.os9 1987-2002 has been FOUND, and getting it properly costs
-   about $40.**~~  **You bought the Researcher month on 2026-09-13** and
-   the pull is complete: every OS-9, m68k and CD-i group plus the
-   OSK-mention searches, each checked against the site's own index, 6,905
-   pages in `~/Developer/os9/Scraped/usenet-rewind/` -- private, author
-   addresses included, never committed.  What it yielded (little new
-   software, the CD-i and MM/1 findings, four os9exec bugs, and the push
-   to port perl) is in `notes/PLAN-acquisitions.md`.  Item 7 is what is
-   left of it: cancel before the renewal and delete the key.
-
-## ANSWERED -- rcsmerge was never a licence question
-
-6. ~~**`rcsmerge' could be made to work, but the last piece is
-   non-commercial-only.**~~  **Wrongly put to you.**  Non-commercial terms
-   were settled on 2026-09-11 -- accepted, record the terms, ship -- and
-   the `utime.c' rule is only for a file with a bare copyright and no
-   grant.  ELM's OSK `pipe.c' has a grant, so it could simply be used; and
-   a `pipe()' of the collection's own now exists in `SRC/perl4/osk.c'
-   anyway.
-
-   What actually stops rcsmerge is technical, and none of it is yours:
-   `SRC/rcs/rcsmerge.c' is truncated mid-statement and three of the
-   sources its makefile links are absent, so it cannot be rebuilt; `ci'
-   cannot store a second revision here, and a merge needs two; and the
-   helper it forks is named `merge', which on a real system is Microware's
-   concatenating utility -- so loading that first does not help, and
-   RCS's three-way merge would need another name.  An intact RCS source is
-   where it would start.  The handoff carries it.
-
-## ANSWERED -- the dots question is closed
-
-4. ~~**Is `../..' valid OS-9 because Microware says so, or because you
-   recall it working?**~~  **You answered this on 2026-09-13**, relayed
-   here by an os9exec session: *"yes real os-9 accepts ../../../.. no
-   problem"*, and you expect `./../.../...././file' to work too.  So it
-   is YOUR WORD rather than a manual citation, which is a perfectly good
-   footing and is now labelled as one wherever it is written down.  The
-   os9exec side reports that form working live after `985e0d8', climbing
-   exactly six levels from seven deep and NOT reaching seven -- so no
-   overclimb.
-
-   You also said to KEEP the gate: cards should use `...' rather than
-   `../..' **"because it's uniquely os9"**.  So the gate's reason is now
-   house style first -- that spelling is the one this system has and Unix
-   does not, and a collection teaching OS-9 should show it -- with
-   portability second (the chained form failed on RBF images until
-   os9exec `985e0d8', which is newer than most readers' builds).
-   `tools/check_disk.py' says exactly that now.  Nothing here needs you
-   again.
