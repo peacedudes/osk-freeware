@@ -23,7 +23,8 @@ Open questions only. Nothing here is decided. Updated 2026-09-14 (late).
    DOC/README-FLOATINGPOINT are now written against the fixed one.
    `notes/os9exec-bugs/X-FLAG.md` has it.  The pin today is 261b4b6.
 
-   **And it must reach b3145c3** (2026-09-14, late): before it, two update
+   **And it must reach b3145c3, better c360ba0** (2026-09-14, late; c360ba0
+   also fixes renames and moves on host directories).  Before b3145c3, two update
    paths on one RBF sector lost each other's writes, so every `move' left
    two names on one file -- image corruption.  b3145c3 also carries
    143152b (F$GPrDsc read past its process table).  All unpushed.
