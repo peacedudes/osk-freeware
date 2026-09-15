@@ -29,8 +29,8 @@ Longer, and worth running before you claim anything is finished:
 
 ```sh
 OS9EXEC_DIR=$HOME/Developer/os9/os9exec tools/mkimage.sh disk fresh.dd
-tools/datatest.py --all --image $PWD/fresh.dd     # 743 cases
-tools/playtest.py --all --image $PWD/fresh.dd     # 116 tests, 112 pass
+tools/datatest.py --all --image $PWD/fresh.dd     # 800 cases
+tools/playtest.py --all --image $PWD/fresh.dd     # 119 tests
 tools/ci/run_workflow_locally.sh /tmp/scratch     # the whole GitHub workflow
 ```
 
@@ -110,9 +110,9 @@ clear.
 |---|---|
 | Programs catalogued | 996 |
 | Of those, RUNNABLE (a type-$01 module) | 970 -- the rest are drivers, descriptors and trap libraries |
-| **Under no test at all** | **127** — and this row has gone the WRONG way (75 on 2026-08-31), because the collection grew |
+| **Under no test at all** | **26** (2026-09-14 late) — what is left wants hardware, G-Windows, a peer, or Microware's own shell; `worklist.py --programs --no-test` lists them |
 | No gallery card runs it by name | **1** (`fixyear`) — it was 81; the all-card sweep is what closed it |
-| `datatest` cases | **743 in 57 families**, 3 deliberate failures (`zip-cannot-write-its-archive`, `todos-must-change-the-file`, `sir-round-trip-is-lossy` — named four lines above this table) |
+| `datatest` cases | **800 in 64 families**, 4 deliberate failures (named above this table); `--all` on a fresh image: 795 of 799 before the rsconvert case |
 | `tools/drives` sheets | **76** |
 | Screens | **899 cards over 929 stanzas**, **30** still flagged by `audit_cards.py` (44 excepted by name, each with its reason in the table there) — re-measured 2026-09-13 |
 
