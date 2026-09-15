@@ -409,7 +409,7 @@ the native tools expect `/dd/SYS/utmp`, group, password or smail.
 |---|---|---|---|---|
 | phoon (Poskanzer) | `CSU/volume8/phoon.gz` | 1987 | permission granted | DONE (fc775046) -- numeric date, tws.c stands in for libtws |
 | globe (Poskanzer) | `CSM/volume43/globe/part01.gz` | 1994 | permission granted | DONE (597b2a9e) -- built unchanged |
-| atc | `NET2/games/atc` | 1990 | BSD | curses, lex/yacc, setitimer->alarm |
+| atc | `NET2/games/atc` | 1990 | BSD (4-clause) + Ed James 1987 "copy permission ... provided that this notice is retained" | ASSESSED 2026-09-15.  10 .c + grammar.y + lex.l, 7 airport files (Game_List, default, easy, crossover, Killer, game_2, ATC_scores).  Generate grammar.c/lex.c with the DISK's own yacc and flex (dogfood).  Port: sgtty/ioctl TIOCGETP/SETP -> curses cbreak+noecho; setitimer -> alarm (unix.l has alarm; setitimer nowhere); flock/lockf in log.c -> drop; getpwuid -> USER; random/srandom -> rand/srand; bcopy/bzero/index/rindex -> memcpy/memset/strchr/strrchr or os9lib; the `!' shell escape in input.c -> drop.  _PATH_GAMES /usr/share/games/atc/ -> /h0/GAMES/ATC/ beside the other games. |
 | canfield (+cfscores) | `NET2/games/canfield` | 1980 | BSD | canfield DONE (8c133d0b) -- curses; _tty/SIGTSTP/SIGTERM shimmed; cfscores companion open |
 | trek (Allman) | `NET2/games/trek` | 1980 | BSD | sgtty/select bits |
 | monop, wump, fish, arithmetic | `NET2/games/...` | 1980-90 | BSD | wump DONE (70fe4c6d), fish DONE (73cb6958), monop DONE (830dee5e) -- self-contained, getopt bundled, instructions embedded.  monop's board, properties and cards are .dat files #INCLUDED as C initialisers, so they had to be CR like source, not like data |
@@ -472,6 +472,18 @@ MNews (Dessauer) MW 3840/3841; tass pool `TELECOM/tass.lzh` (needs MNews'
 PtyDrv (Mellin) TWN 653174 + 653173 (source), 653172 (binaries); MW 3990,
 3989; 1995 fixes in pool `DRIVERS/rtclock1287.lzh` -- a file manager for
 real OS-9 (os9exec will not load one).
+MNews measured 2026-09-15: the pool's `APPS_mnews_t_Z/.t' is the WHOLE package as
+SOURCE, no binaries -- INEWS (~50 .c), RNEWS, SENDBATCH, MISC, LIB (Sys,
+Distributions), MAN (.prf), and NN_OSK, the OS-9 port of nn (~70 files, nn.1).
+`mnews_src.t.Z' is a 42-member subset (MISC + INEWS) -- use the full one.  Its
+Copyright (Ulrich Dessauer): copy and modify, not for profit (covered by Q1),
+AND "(e) redistribute only parts of the package" is not allowed -- so if any
+of it ships, the whole package ships in SRC, as the tar has it.
+nn 6.3 inside it (NN_OSK/README lines 73-103): "Copyright (c) 1989 by Kim
+Fabricius Storm" -- use, modify, reuse and "redistribute it freely", on three
+conditions: no responsibility, origin not misrepresented, altered versions
+plainly marked.  regexp.c is Henry Spencer's (U. of Toronto 1986, its own
+notice); unshar.c carries no notice (K. Greer, S. Shafer, M. Mauldin).
 
 ### B10 -- GPL source for shipped binaries                              open (Q2)
 See open question 2.

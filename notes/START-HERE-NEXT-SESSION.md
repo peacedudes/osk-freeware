@@ -161,6 +161,19 @@ Open:
      path did not pass -V= to per-file compiles; and a replacement for a
      LIBRARY function in the parts library is never pulled -- the new
      recipe keyword LINKFIRST= puts its object on the link line.
+  2o. **Mazewar (TOP, Ulrich Dessauer) staged as TOP's binary**, unchanged:
+     CMDS/GAMES/mw and USR/GAMES/LIB/MAZEWAR/maze.  No source anywhere in
+     the pool (ftp/mw/y/SRC/mw.a is a Microware logo array, unrelated); no
+     terms stated.  Needs cio -- measured: all five runtime modules withheld
+     gives "Can't install trap handler", cio alone restored runs -- so it is
+     starred and the grid is All 341.  `mw -l=5 >/nil &' starts a computer
+     player that joins as player 2; the card and mw.keys use that.  It
+     sends the xterm entry's ec (`ESC[%dX') unexpanded once, at quit.
+     tools/helpcap.py is mode 644 in git: run it as `python3 tools/helpcap.py
+     --only <name> --image <scratch>' -- it DEFAULTS to osk-freeware.dd.
+     MNews is next and large: whole package as source (inews, rnews,
+     sendbatch, nn 6.3); its licence forbids shipping only part of it
+     (PLAN-acquisitions B9).
   2n. **Two harness gaps, not yet fixed.**  tools/ansiscreen.py does no
      auto-wrap at column 80 (it clamps), so it cannot show what an am
      terminal does with a full row.  playtest.py's `expect' also searches
