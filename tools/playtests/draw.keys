@@ -1,0 +1,11 @@
+name    draw
+prog    draw
+# Draw: its command help.
+rate    0.6
+wait    5
+key     ?
+wait    3
+snap    help
+esc
+wait    3
+expect  Draw Commands

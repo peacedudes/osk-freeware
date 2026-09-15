@@ -1,0 +1,13 @@
+name    oleo
+prog    oleo
+# Oleo opens on its warranty notice.
+rate    0.6
+size    20 80
+wait    10
+snap    notice
+key     \s
+wait    3
+key     \030
+key     \003
+wait    3
+expect  NON_WARRANTY

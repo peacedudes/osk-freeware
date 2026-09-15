@@ -1,0 +1,9 @@
+name    new_e
+prog    new_e /dd/SYS/motd
+# SEDT's newer build on a file from the disk.
+rate    0.6
+wait    6
+snap    opened
+key     \003
+wait    3
+expect  File:

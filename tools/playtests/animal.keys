@@ -1,0 +1,22 @@
+name    animal
+prog    animal example
+# Animal guesses with the sample datafile.
+rate    0.6
+setup   builtin cd /dd/DOC/animal
+wait    5
+key     y
+key     \r
+wait    2
+key     y
+key     \r
+wait    2
+key     y
+key     \r
+wait    2
+key     y
+key     \r
+wait    3
+snap    guessing
+key     \003
+wait    2
+expect  using datafile: example

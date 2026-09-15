@@ -1,0 +1,10 @@
+name    umacs
+prog    umacs /dd/SYS/motd
+# uMacs on a file from the disk; its mode line names it.
+rate    0.6
+wait    6
+snap    opened
+key     \030
+key     \003
+wait    3
+expect  uMacs

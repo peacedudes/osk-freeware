@@ -1,0 +1,16 @@
+name    gnuchess
+prog    /dd/CMDS/gnuchess
+# GNU Chess on its full-screen board: level 1, then e2e4.
+rate    0.6
+setup   . /dd/SYS/termcap.entry
+size    24 80
+wait    8
+key     1
+key     \r
+wait    4
+keys    e2e4
+key     \r
+wait    25
+snap    board
+key     \003
+wait    3

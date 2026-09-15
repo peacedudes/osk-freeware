@@ -1,0 +1,13 @@
+name    gnuchessn
+prog    gnuchessn
+# GNU Chess, the curses build: e2e4.
+rate    0.6
+setup   . /dd/SYS/termcap.entry
+size    24 80
+wait    8
+keys    e2e4
+key     \r
+wait    25
+snap    board
+key     \003
+wait    3

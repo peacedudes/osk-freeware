@@ -1,0 +1,11 @@
+name    rot22
+prog    rot22 DOC/README-CIO
+# Software rot: a file's letters fall to the foot of the screen.
+rate    0.6
+setup   builtin cd /dd
+minbytes 2000
+wait    12
+snap    falling
+key     \003
+wait    2
+expect  README-CIO

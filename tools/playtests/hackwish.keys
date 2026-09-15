@@ -1,0 +1,10 @@
+name    hackwish
+prog    hackwish
+# hackwish reads hack's record files and reports what it finds.
+rate    0.6
+size    24 80
+wait    8
+snap    report
+key     \003
+wait    2
+expect  Be seeing you

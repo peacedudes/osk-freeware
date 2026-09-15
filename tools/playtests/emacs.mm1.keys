@@ -1,0 +1,10 @@
+name    emacs.mm1
+prog    emacs.mm1 /dd/SYS/motd
+# The MM/1 MicroEMACS on a file from the disk.
+rate    0.6
+wait    6
+snap    opened
+key     \030
+key     \003
+wait    3
+expect  MicroEMACS

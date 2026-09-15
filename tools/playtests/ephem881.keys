@@ -1,0 +1,12 @@
+name    ephem881
+prog    ephem881 -c ephem.cfg -d ephem.db
+# The 68881 build of the ephemeris.
+rate    0.6
+setup   builtin cd /dd/SYS
+wait    8
+key     \r
+wait    8
+snap    panel
+key     \004
+wait    3
+expect  JulianDat
