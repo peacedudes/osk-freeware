@@ -1331,8 +1331,24 @@ triaged by size, files, curses and stated terms.  Done or decided:
                 rewrite, not a port
     malawi      NOT SHIPPED: X11/Xaw only
 
-Still open: mz (being ported: sgtty, select, gettimeofday), sol2 (termio
-raw mode), jumble2 (alarm, /usr/dict/words, score file), then
+    mz          PORTED, NOT SHIPPED (2026-09-15): it builds and plays -- the
+                raw stream shows the whole maze drawn and the player and
+                monster moving -- but every maze row is exactly 80 columns
+                and relies on the terminal's auto-margin wrap, which
+                tools/ansiscreen.py does not do (START-HERE 2n), so its card
+                and play-test screens render as a blank board.  Ship it once
+                2n is fixed.  The port, all in mzio.c under #ifdef OSK:
+                vttest's sgtty.h/sgtty.c for gtty/stty; get_time() from
+                _sysdate(3,...) -- seconds since midnight, the tick in the
+                low word and ticks per second in the high word; key_pressed()
+                with _gs_rdy(0) for select(), handing a ^C byte to
+                request_quit() because sgtty.c clears the interrupt key; the
+                usage log (its author's home directory) a no-op.  Recipe:
+                mz|mz|mz.c mzio.c sgtty.c||/dd/LIB/termlib.l|.  Terms: "may
+                be used and distributed freely ... name retained".
+
+Still open: sol2 (termio raw mode), jumble2 (alarm, /usr/dict/words,
+score file), then
 the larger games -- craps, vcraps2, torus (robots2 descendant), perp,
 thricken, malawi, sol2, jumble2, yid-slots, bj2, connect4, skewlife, mz,
 dinkum2 (410K adventure), trek73 (409K) -- and the rest: ag2, xmascard,

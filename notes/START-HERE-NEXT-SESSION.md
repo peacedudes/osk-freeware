@@ -394,7 +394,8 @@ Open:
      on a terminal.  A card's shown screen is the check on its caption:
      anagram's said "the words hiding in parsley" over a screen showing only
      parsley, and gen_screens scored it fine.
-  2n. **Two harness gaps, not yet fixed.**  tools/ansiscreen.py does no
+  2n. **Two harness gaps, not yet fixed.**  (2026-09-15: mz is ported and
+     waiting on the first one -- notes/PLAN-acquisitions.)  tools/ansiscreen.py does no
      auto-wrap at column 80 (it clamps), so it cannot show what an am
      terminal does with a full row.  playtest.py's `expect' also searches
      the RAW stream on purpose (orbit's scrolled header), so a program that
