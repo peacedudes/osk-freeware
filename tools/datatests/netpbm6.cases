@@ -32,3 +32,12 @@ expect  Total rays:
 expect  /dd/tmp/ray6.pic
 absent  Nothing to be rendered
 absent  nowhere found
+
+case    rsconvert-turns-a-rayshade-3-scene-into-rayshade-4
+run     echo "screen 32 24" > /dd/tmp/rsc6.ray
+run     echo "light 1 directional 0 0 1" >> /dd/tmp/rsc6.ray
+run     /dd/CMDS/rsconvert /dd/tmp/rsc6.ray < /nil
+expect  /* Converted by rsconvert */
+expect  screen 32 24
+expect  directional 0 0 1
+absent  Stack Overflow

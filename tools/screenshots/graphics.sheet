@@ -1476,11 +1476,17 @@ kill
 # ---- Ray tracing helper
 
 shot    rsconvert
-cap     Converts rayshade image output between formats.  Run here it prints
-cap     its banner line and then stops with a stack overflow, with or
-cap     without a file named.
-try     rsconvert
-run     rsconvert; echo ""
+cap     Converts a scene file written for rayshade 3 into rayshade 4's
+cap     syntax, a statement to a line, ready for rayshade to render.  Name
+cap     the old file, or give it on standard input.
+try     rsconvert tmp/old.ray
+run     builtin cd /dd
+wait    1
+run     echo 'screen 32 24' > tmp/old.ray; echo 'light 1 directional 0 0 1' >> tmp/old.ray
+wait    2
+run     clear
+wait    1
+run     rsconvert tmp/old.ray
 wait    6
 
 # ---- Viewers

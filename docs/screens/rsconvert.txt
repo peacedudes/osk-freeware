@@ -1,3 +1,6 @@
-$ rsconvert; echo ""
+rsconvert tmp/old.ray
 /* Converted by rsconvert */
-**** Stack Overflow ****
+screen 32 24
+
+light 1
+directional 0 0 1
