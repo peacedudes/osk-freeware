@@ -1,0 +1,26 @@
+name    vttest
+prog    vttest
+# The menu, the cursor test's first page, then out.
+rate    0.5
+size    24 80
+wait    6
+snap    menu
+keys    1
+key     \r
+wait    6
+snap    cursor-test
+key     \r
+wait    4
+key     \r
+wait    4
+key     \r
+wait    4
+key     \r
+wait    4
+keys    0
+key     \r
+wait    5
+snap    exited
+expect  VT100 test program
+expect  Choose test type
+expect  That's all, folks!

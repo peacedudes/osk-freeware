@@ -1149,6 +1149,18 @@ wait    4
 run     tput -Tvt100 cup 10 20 | xd -c
 wait    4
 
+shot    vttest
+size    24 80
+cap     vttest's menu: each test draws pages that say what a correct VT100
+cap     shows.  It judges the terminal it runs on, so a screen that is not a
+cap     full VT100 shows its differences.
+try     vttest
+run     vttest
+wait    6
+snap
+send    0\r
+wait    4
+
 shot    uustat
 cap     uustat reports on the UUCP job queue -- what is waiting, for which
 cap     system, and who queued it -- and can kill a job or rejuvenate one.

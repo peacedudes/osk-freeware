@@ -116,7 +116,7 @@ is no help until you already know the name you want.
 | **Languages** | 11 | Interpreters and language systems beyond C. |
 | **Archives & compression** | 33 | Pack, unpack and shrink -- lha, zip, tar, arc, zoo, and OS-9 module libraries. |
 | **Encoding & conversion** | 29 | Between text encodings, line endings, Macintosh formats, ciphers and hashes. |
-| **Communications** | 97 | Kermit in several builds, terminal sessions, and networking. |
+| **Communications** | 98 | Kermit in several builds, terminal sessions, and networking. |
 | **Graphics & images** | 195 | The netpbm toolkit, JPEG, a ray tracer, and things that draw. |
 | **Games** | 95 | Adventures, board and card games, arcade ports, dungeon crawls and puzzles. |
 | **Screen toys** | 10 | Animations and screen effects -- they draw on the terminal rather than print to it. Some run until you stop them. |

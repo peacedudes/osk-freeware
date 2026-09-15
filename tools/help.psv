@@ -1025,5 +1025,6 @@ sgrep|sgrep|
 dc|none|it has no help flag -- given -? it only says it cannot read its terminal; set DCGRAPHIC=++++|- for plain boxes, and Q or ESC leaves it
 sod|sod -?|
 rogue|none|it has no help flag; an argument is taken as a saved game to restore
+vttest|none|it takes no options and opens its test menu; a test's number and RETURN runs it, 0 leaves
 typefast|none|it has no help flag; `y' at its first question explains the game, and `q' at the level prompt quits
 castle|none|`castle -h' pages its help file full-screen, RETURN for each page; `?' inside the game shows the command summary

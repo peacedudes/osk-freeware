@@ -1,6 +1,6 @@
 # What is on this disk
 
-1015 programs of OS-9/68K community software, gathered from the archives that kept it and made to run again. **667 of them need nothing but this disk**; the rest want Microware's `cio`, marked below with a star.
+1016 programs of OS-9/68K community software, gathered from the archives that kept it and made to run again. **668 of them need nothing but this disk**; the rest want Microware's `cio`, marked below with a star.
 
 `DOC/INDEX` on the disk lists everything alphabetically. This is the same collection sorted by what each program is *for*, which is the more useful order when you do not yet know what you are looking for.
 
@@ -20,7 +20,7 @@
 | [Languages](#languages) | 11 | Interpreters and language systems beyond C. |
 | [Archives & compression](#archives--compression) | 33 | Pack, unpack and shrink -- lha, zip, tar, arc, zoo, and OS-9 module libraries. |
 | [Encoding & conversion](#encoding--conversion) | 29 | Between text encodings, line endings, Macintosh formats, ciphers and hashes. |
-| [Communications](#communications) | 97 | Kermit in several builds, terminal sessions, and networking. |
+| [Communications](#communications) | 98 | Kermit in several builds, terminal sessions, and networking. |
 | [Graphics & images](#graphics--images) | 195 | The netpbm toolkit, JPEG, a ray tracer, and things that draw. |
 | [Games](#games) | 95 | Adventures, board and card games, arcade ports, dungeon crawls and puzzles. |
 | [Screen toys](#screen-toys) | 10 | Animations and screen effects -- they draw on the terminal rather than print to it. Some run until you stop them. |
@@ -781,7 +781,7 @@
 
 *Kermit in several builds, terminal sessions, and networking.*
 
-<details><summary>97 programs</summary>
+<details><summary>98 programs</summary>
 
 **File transfer**
 
@@ -881,6 +881,7 @@
 | `tsmon2` | tsmon replacement - terminal monitor<br>`**** TSMON2: de-luxe version of the timesharing monitor (c) 1989 by L.Zeller` |
 | `udate` | &#9733; the Unaxcess bulletin board's date display -- and it gets the year wrong: `Monday, August 31, 19126'. A two-digit year (126, meaning 2026) written into a four-digit field behind a literal `19' |
 | `uwho` | &#9733; the Unaxcess bulletin board's who-is-online. It opens `/etc/utmp'; in OS-9 a leading /etc names a device, so it wants an /etc device presenting utmp, which the BBS would supply. A Unix-ism from the port |
+| `vttest` | the VT100 compatibility test: a menu of pages for cursor movement, screen features, character sets, double-size lines, the keyboard, status reports, VT52 mode and VT102 editing, each saying what a correct terminal shows.  0 leaves<br>**How:** Full-screen menu of VT100 tests. Type a test's number and RETURN; each page says what a correct terminal should show, and RETURN moves on. 0 leaves, printing `That's all, folks!'. Run it on the terminal you mean to judge: the keyboard and reports tests read what that terminal sends back. |
 | `wysecrack` | &#9733; probe a Wyse terminal: it sends the code that asks the terminal to identify itself (`Anybody out there?' is in the binary) and reads the reply to sense its baud rate. With a Wyse terminal on the line it answers; without one it waits.  Companion to wysetime, which sets that terminal's clock |
 | `wysetime` | Wyse terminal clock-setter, in BASIC09.  `runb wysetime' prints the escape sequence a Wyse terminal reads to set its own display clock; run it by bare name at an OS-9 shell. |
 

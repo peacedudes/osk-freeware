@@ -1013,3 +1013,5 @@ agrep|agrep|asearch.c asearch1.c bitap.c checkfile.c compat.c follow.c main.c ma
 sgrep|sgrep|sgrep.c|||
 # rogue: Stoehr's rogue 5.3 clone, CSG v1 with Patch1-3; an OSK arm in machdep.c, its own curses.
 rogue|rogue|curses.c hit.c init.c inventory.c level.c machdep.c main.c message.c monster.c move.c object.c pack.c play.c random.c ring.c room.c save.c score.c spec_hit.c throw.c trap.c use.c zap.c|CURSES||
+# vttest: Lindberg's VT100 test, CSU v7; its own sgtty.c maps gtty/stty/FIONREAD onto _gs_opt/_ss_opt/_gs_rdy.
+vttest|vttest|main.c esc.c sgtty.c|||
