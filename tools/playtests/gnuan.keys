@@ -1,0 +1,22 @@
+name    gnuan
+prog    gnuan
+# gnuan analyses a game file at depth 2.
+rate    0.6
+setup   builtin cd /dd
+setup   mkdir -p /dd/tmp/GNUANK > /nil 2>/nil
+setup   echo "e2e4 e7e5 g1f3 b8c6 f1b5 a7a6" > /dd/tmp/GNUANK/moves
+size    30 80
+wait    6
+keys    tmp/GNUANK/moves
+key     \r
+wait    3
+key     2
+key     \r
+wait    3
+key     1
+key     \r
+wait    25
+snap    analysis
+key     \003
+wait    2
+expect  You will search to 2 half moves
