@@ -82,7 +82,9 @@ Open:
   2c. **os9exec f7b31ea (host-dir rename)**: mv and wndex pass on a host
      /dd; move still E$BMode (second update path on the same dir, entry
      at $2C0); upperdir E$Share because it holds subdir open while
-     rewriting its entry.  Both traces sent to os9exec-d9.
+     rewriting its entry.  Both traces sent to os9exec-d9.  upperdir FIXED
+     in 517d4f4 (system family 15/16 on a host dir, only combine left);
+     b2bee94 fixed adlrun's zero-length read.  move's append is still open.
   2d. **rsconvert works; its header asked for 11.2k.**  It converts a
      rayshade 3 scene to rayshade 4 syntax (INDEX said image formats), and
      its yacc parser overflowed that stack.  `#24k' at Microware's shell was
