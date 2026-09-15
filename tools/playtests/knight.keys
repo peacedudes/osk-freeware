@@ -1,0 +1,30 @@
+name    knight
+prog    knight
+# No instructions, select A1, three legal knight moves, a row letter
+# cancelled with ESC, then Q -- which reaches the shell only if ESC arrived.
+rate    0.6
+size    24 80
+wait    6
+snap    title
+key     n
+wait    3
+key     s
+wait    2
+keys    a1
+wait    2
+keys    b3
+wait    2
+keys    c1
+wait    2
+keys    e2
+wait    2
+snap    moved
+key     d
+wait    1
+key     \e
+wait    2
+key     q
+wait    4
+expect  CURRENT ROW
+expect  ***
+expect  bash#

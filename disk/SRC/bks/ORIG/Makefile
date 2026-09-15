@@ -1,0 +1,1 @@
+# Simple Makefile for Brickstop## Define where score file is to go here# Also define BSD if using BSD derived UnixDEFINES = -DSCOREFILE=\"hiscores\" -DBSDCFLAGS = -O $(DEFINES)# Choose the correct one below for System V (first) or BSD (second)#LIBS = -lcursesLIBS = -lcurses -ltermcapbs:	bs.c	cc $(CFLAGS) -o bs bs.c $(LIBS)

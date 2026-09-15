@@ -247,6 +247,7 @@ robots|Games|Arcade & action
 snake|Games|Arcade & action
 sokoban|Games|Arcade & action
 tet|Games|Arcade & action
+bks|Games|Arcade & action
 wanderer|Games|Arcade & action
 back|Games|Board & card
 blackjack|Games|Board & card
@@ -263,6 +264,7 @@ nchess|Games|Board & card
 queens|Games|Puzzles
 hanoi|Games|Puzzles
 hanoimod|Games|Puzzles
+knight|Games|Puzzles
 tttt|Games|Board & card
 bincheckr|Games|Chess utilities
 checkgame|Games|Chess utilities

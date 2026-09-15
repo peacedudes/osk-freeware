@@ -1,6 +1,6 @@
 # What is on this disk
 
-1030 programs of OS-9/68K community software, gathered from the archives that kept it and made to run again. **681 of them need nothing but this disk**; the rest want Microware's `cio`, marked below with a star.
+1032 programs of OS-9/68K community software, gathered from the archives that kept it and made to run again. **683 of them need nothing but this disk**; the rest want Microware's `cio`, marked below with a star.
 
 `DOC/INDEX` on the disk lists everything alphabetically. This is the same collection sorted by what each program is *for*, which is the more useful order when you do not yet know what you are looking for.
 
@@ -22,7 +22,7 @@
 | [Encoding & conversion](#encoding--conversion) | 29 | Between text encodings, line endings, Macintosh formats, ciphers and hashes. |
 | [Communications](#communications) | 98 | Kermit in several builds, terminal sessions, and networking. |
 | [Graphics & images](#graphics--images) | 195 | The netpbm toolkit, JPEG, a ray tracer, and things that draw. |
-| [Games](#games) | 98 | Adventures, board and card games, arcade ports, dungeon crawls and puzzles. |
+| [Games](#games) | 100 | Adventures, board and card games, arcade ports, dungeon crawls and puzzles. |
 | [Screen toys](#screen-toys) | 10 | Animations and screen effects -- they draw on the terminal rather than print to it. Some run until you stop them. |
 | [Amusements](#amusements) | 30 | Generators, simulators and diversions that are not quite games. |
 | [System & modules](#system--modules) | 132 | OS-9 module and process tools, devices, system state and scheduling. |
@@ -1191,7 +1191,7 @@
 
 *Adventures, board and card games, arcade ports, dungeon crawls and puzzles.*
 
-<details><summary>98 programs</summary>
+<details><summary>100 programs</summary>
 
 **Adventure & fiction**
 
@@ -1209,6 +1209,7 @@
 
 | | |
 |---|---|
+| `bks` | Brickstop: catch the falling bricks on a paddle before they pile up to it -- `,' and `.' move, q leaves the game; high scores in GAMES/BKS<br>**How:** Full-screen. p starts a game: bricks fall at the left, and `,' or `<' and `.' or `>' move the paddle to catch them before the pile reaches it. q leaves the game and shows the high scores (kept in GAMES/BKS/hiscores); m returns to the menu and q there quits. ESC, which the menu calls pause, does nothing here. |
 | `greed` | Greed: the screen is a field of digits and `@' is you. Move with the vi keys to eat that many digits in that direction, until no move is left<br>`Usage: /dd/CMDS/GAMES/greed [-p] [-s]` |
 | `lander` | lunar lander -- space starts a game, a digit sets the power, x or k is vertical thrust, z/j and c/l the side retros.  Its score file is GAMES/lander.hs, looked for under /h0, so mount the disk there as well<br>**How:** Full-screen. Space starts a descent, a digit sets the engine power, `x' or `k' fires the main thruster and z/j and c/l the side retros. `q' quits. |
 | `mw` | &#9733; Mazewar for up to eight players, each at a terminal of the same system, in one maze seen from above: `w' walks, `a' and `d' turn, `s' shoots, `m' drops a mine, `n' builds a wall and `Q' quits.  You score only by killing another player, and `mw -l=5' starts a computer player to hunt.  Its maze is USR/GAMES/LIB/MAZEWAR, found with this disk as /h0<br>**How:** Full-screen maze game for up to eight players on one system. `w' walks, `a'/`d' turn, `s' shoots, `m' mines, `n' walls, `Q' quits; `mw -l=5 >/nil &' first starts a computer player to play against. Needs cio; its maze is USR/GAMES/LIB/MAZEWAR. |
@@ -1314,6 +1315,7 @@
 | `hanoi` | solves the Towers of Hanoi as a list of moves: `hanoi 3' prints the seven moves for three disks; n disks take 2^n-1<br>**How:** `hanoi 3' prints the moves that shift three disks from tower 1 to tower 2, one move a line. n disks take 2^n - 1 moves, so `hanoi 20' prints over a million lines. |
 | `hanoimod` | the Towers of Hanoi as the three towers after every move: `hanoimod 3'<br>**How:** `hanoimod 3' shows the same solution as hanoi as pictures: after each move, a line per tower listing the disks on it, largest first. n disks print 4 x (2^n - 1) lines. |
 | `hexa` | hexagonal Sokoban: push every moneybag onto a safe square on a six-sided grid, one bag at a time and only ever forward; k/j move up and down, u/i/n/m along the diagonals.  Five screens ship, and `hexa <n>' edits one |
+| `knight` | the knight's tour: move a knight from square to square, never landing twice, and try to visit all 64 -- a row letter then a column digit; ESC cancels the row, Q quits<br>**How:** Full-screen. Answer the instructions question, then S to choose the first square or R for a random one. Each move is a row letter A-H and a column digit 1-8, and must be a knight's move to a square not yet visited; ESC after the row letter cancels it, Q at the row quits. The game ends when no move is left, with the count of squares visited. |
 | `maze` | maze generator, small enough to have won an obfuscated-C contest.  It reads the number of rows on standard input and draws a maze that wide: `echo 11 \| maze'<br>**How:** Reads the number of rows on standard input: `echo 11 \| maze' draws a maze eleven rows deep. |
 | `mines` | &#9733; minesweeper on a sixteen-by-sixteen board with forty mines: name a square by its row and column letters, answer `Mark?' with Y to flag it; q quits<br>**How:** Full-screen minesweeper. Name a square by its row letter and then its column letter, and answer `Mark?' with Y to flag it rather than open it. `q' quits. |
 | `puz15` | the 15-puzzle: slide the tiles into the gap, `puz15 5x5' for a bigger board.  A second port is CMDS/puzzle15; both have source and play the same<br>**How:** Full-screen fifteen puzzle. Slide the tiles into the gap; `puz15 5x5' plays a bigger board. Control-C gets you out. |

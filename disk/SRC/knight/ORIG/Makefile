@@ -1,0 +1,1 @@
+# simple makefile for knightCFLAGS = -O -DBSD	# Remove -DBSD if on SYSV or derivativeLIBS = -lcurses -ltermcap # don't need termcap for SYSVknight: knight.c	cc -o knight $(CFLAGS) knight.c $(LIBS)

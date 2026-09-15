@@ -1755,3 +1755,49 @@ run     clear
 wait    1
 run     hanoimod 3 | head -n 20
 wait    2
+
+shot    knight
+size    24 80
+cap     A tour begun at A1 and three moves on: every square visited is marked
+cap     ***, and the arrows point at the knight's row and column.
+try     knight
+run     clear
+wait    1
+run     knight
+wait    6
+send    n
+wait    3
+send    s
+wait    2
+send    a
+wait    1
+send    1
+wait    2
+send    b
+wait    1
+send    3
+wait    2
+send    c
+wait    1
+send    1
+wait    2
+send    e
+wait    1
+send    2
+wait    3
+
+shot    bks
+size    24 80
+cap     Bricks drop into the pit on the left and pile up at the bottom; the
+cap     paddle, ====, is there to catch them.  The menu beside it lists the keys.
+try     bks
+run     clear
+wait    1
+run     bks
+wait    5
+send    p
+wait    3
+send    ,
+wait    1
+send    ,
+wait    8

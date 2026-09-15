@@ -973,6 +973,10 @@ telenum|telewords|telenum.c|||
 anagram|anagram|anagram.c|||
 psychic|psychic|psychic.c||/dd/LIB/rand.r|
 lotto|lotto|lotto.c getopt.c|||
+# knight (comp.sources.games v03i085) and bks, Brickstop (v09i041): curses
+# games from the same Unix posts; SRC/knight and SRC/bks README.OSK.
+knight|knight|knight.c||/dd/LIB/rand.r|
+bks|bks|bs.c|BSD|/dd/LIB/rand.r|
 lame|lame|lame.c||/dd/LIB/rand.r|
 canfield|canfield|canfield.c||/dd/LIB/curses.l /dd/LIB/termlib.l /dd/LIB/rand.r|
 # atc -- Ed James's air traffic controller, 4.3BSD-Net/2.  Built on its SYSV

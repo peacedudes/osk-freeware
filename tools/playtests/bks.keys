@@ -1,0 +1,23 @@
+name    bks
+prog    bks
+setup   export USER=tester
+# The menu, a game with the paddle moved both ways, leave the game, quit.
+rate    0.5
+size    24 80
+wait    5
+snap    menu
+key     p
+wait    3
+keys    ,,,,
+wait    2
+keys    ........
+wait    4
+snap    playing
+wait    6
+key     q
+wait    3
+snap    scores
+key     q
+wait    4
+expect  HIGH SCORES
+expect  ====
