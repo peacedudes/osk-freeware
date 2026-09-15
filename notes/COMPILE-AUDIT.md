@@ -121,7 +121,7 @@ several: these trees declare prototypes, and Microware's `cc` is K&R.
 
 **Still ordinary work, nobody has done it.**
 
-  - `inform`, `ioccc` (eleven more contest entries), `macutils` (blocked on
+  - `inform`, `ioccc` (eight more contest entries), `macutils` (blocked on
     an include-path knot, see `notes/SESSION-2026-08-23.md`), `pdksh` (has its
     own `build_ksh.sh` rather than a recipe).
 
@@ -167,7 +167,7 @@ but the naive recipe. Two needed one library each:
 | `hist` | hist | undeclared identifier in its own `h_var.h:77` -- an `#ifdef` arm |
 | `pep` | pep | undeclared identifier, `plain.c:165`; it also wants an EPROM driver |
 | `flex` | flex | no single diagnostic; read the log |
-| `ioccc` | queens | no single diagnostic; deliberately obfuscated C, so expect nothing helpful.  Re-tried 2026-09-15 with the contest's own common.mk steps (cmills's four -D definitions, westley's and scjones's sed passes, a strtol for dds): cmills, jaw and scjones stop on `#include<stdio.h>' -- Microware cpp needs a space before the `<', measured; westley then links short of a putchar function; tbr needs pipe(); stig is a ksh joke, not a program; dds needs LANDER.BAS, which is not on the forum disk |
+| `ioccc` | queens, bjack, jaw, trigraph | Four of the twelve 1990 entries build (2026-09-15): baruch.c as queens unchanged; cmills.c, jaw.c and scjones.c from changed copies in SRC/ioccc/OSK, whose README.OSK lists every change (include spacing, jaw's P macro and remote tables and '\n', scjones's trigraphs translated). Not built: westley links short of a putchar function; tbr needs pipe(); stig is a ksh joke, not a program; dds needs LANDER.BAS, which is not on the forum disk; dg, loco, pjr and theorem not yet tried |
 
 Four of those (`cursive`, `proff`, `hist`, `pep`) are ordinary recipe work --
 the file list is wrong, or a define is missing. `adv`, `nobs` and `snake` are

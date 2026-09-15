@@ -218,3 +218,25 @@ line is recorded in `tools/terms.psv` or the handoff.
      Microware's `#P`/`#5` line markers: it was built to replace
      Microware's own `cpp` pass.  Shipped as `cpp`, it could be what a real
      system's `cc` finds.  Ship it as `cpp`, under another name, or not?
+
+22. **CMDS/compress writes corrupt output into a pipe** (2026-09-15).
+   `compress -c < f | ...` and `compress -dc < f.Z | ...` both come out
+   wrong; written to a file, both are right.  The cause is Microware's
+   putchar macro, which evaluates its argument twice when stdout is a pipe
+   or a terminal, and compress.c passes it `*bp++` and `*--stackp`.
+   REBUILT/compress_rebuilt is now built from the same source with a
+   three-line fix (66797841): identical bytes to a file, correct bytes
+   through a pipe.  compr and compress_4.0 were always right.  INDEX, howto
+   and README-ARCHIVERS now say to write compress's output to a file.
+   Keep the period binary as CMDS/compress, or put the fixed build there?
+
+23. **CMDS/ispell cannot look a word up** (2026-09-15).  It lists correct
+   words as unknown and stops with a bus error at its first dictionary
+   lookup, under both os9exec builds.  It is another edition than DOC/ispell
+   describes (it has -u, -z and -o=), and no source for it is on the disk.
+   SRC/ispell -- the edition the docs, the recipe and LIB/ispell.hash all
+   belong to -- builds and works: `-l' lists exactly the unknown words.  It
+   now ships as REBUILT/ispell_rebuilt (1b74fb46), and ispell's INDEX entry,
+   howto and card say what the shipped one does.  Its -a mode writes control
+   bytes, and the shipped buildhash dies on a 1010 trap, so neither is a way
+   round.  Keep CMDS/ispell as it is, or put the working build in its place?

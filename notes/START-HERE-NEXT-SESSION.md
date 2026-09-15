@@ -347,6 +347,30 @@ Open:
        came first.**  Evidence the first definition stays; not isolated.
      Also: rogue keys its scores by USER, so a second nickname replaces the
      entry -- two USERs are what shows fopen "r+w" keeps the file (it does).
+  2y. **Three more IOCCC entries, compress's pipe bug, and a stale image
+     (2026-09-15).**  bjack, jaw and trigraph (ee8962ca) build from
+     SRC/ioccc/OSK; README.OSK there lists every change, and queens's
+     credit is corrected from the contest's hint file.
+     **Microware's putc/putchar macro evaluates its argument twice when the
+     stream is line-buffered -- a pipe or a terminal -- and once into a
+     file.**  `putchar(*p++)' is exact in every redirect-to-file test and
+     corrupt through `| cat'.  jaw had it (fputc now); so does compress.c:
+     REBUILT/compress_rebuilt is fixed (66797841), CMDS/compress keeps it
+     (FOR-RDOGGETT 22).  Of the 30 SRC files passing ++/-- to putc or
+     putchar, ls, m4, proff, spew and pbmtomacp were measured through a
+     pipe and are clean.  **Test output through a pipe, not only a file.**
+     **osk-freeware.dd had last been built 2026-09-13** (sector 0, DD.DAT at
+     0x1A), so perl and everything since were missing from rdoggett's
+     `free' session; its 07:41 mtime was a session writing to it, not a
+     build.  Rebuilt 07:58, the old one kept as osk-freeware-2026-09-13.dd.
+     Read the creation date in sector 0 before trusting an image's mtime.
+     **CMDS/ispell faults at its first dictionary lookup** and its card had
+     captioned the crash as working.  Not os9exec: a probe reading the hash
+     in ispell's own three read() calls got every byte under both builds,
+     and a host-side walk of LIB/ispell.hash with hash.c finds THE, CAT and
+     HELLO with 24-byte entries.  SRC/ispell is a different edition from the
+     binary; built, it works, and ships as REBUILT/ispell_rebuilt
+     (1b74fb46).  FOR-RDOGGETT 23.
   2n. **Two harness gaps, not yet fixed.**  tools/ansiscreen.py does no
      auto-wrap at column 80 (it clamps), so it cannot show what an am
      terminal does with a full row.  playtest.py's `expect' also searches
