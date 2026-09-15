@@ -206,8 +206,8 @@ Checked absent by FUNCTION against INDEX and against Microware's commands.
 | xargs | `CSU/volume3/xargs.gz` (uses system) | 1986 | no notice |
 | vilearn | `CSM/volume33/vilearn/` | 1992 | permission granted |
 | calc (trig, many bases) | `CSU/volume14/calc.gz` | 1988 | redistribute at will |
-| agrep 2.01 | `CSU/volume26/agrep-2.01/`; also MW 4310 | 1992 | non-profit only -- **Q1** |
-| vttest | `CSU/volume7/vttest/` | 1986 | non-commercial -- **Q1** |
+| agrep 2.01 | `CSU/volume26/agrep-2.01/`; also MW 4310 | 1992 | non-profit only -- **Q1** | ASSESSED 2026-09-15: the MW archive's osk_agrep is plain agrep 2.01 SOURCE, no OS-9 changes and no binary (24 files).  Built straight it fails on memory, not portability: BlockSize and Max_record are 49152, MaxNext 66000 (two 528K `unsigned' arrays in main.c, file-scope AND again as locals), mgrep.c's MAXPATFILE 260000 -- over a megabyte of static data against l68's 64K, and ~98K stack locals past a 16-bit displacement (`value out of range', 998 of them in asearch.c alone).  MEASURED the way out: this SDK's c68 takes `remote' data -- a file-scope `remote char big[300000]' and a function-local `static remote char buf[200000]' both compile, link and run right (scratch remotepool).  So: file-scope buffers `remote', big locals `static remote' (none of those functions recurse), and checkfile.c's S_ISREG/S_ISDIR/S_ISBLK/S_ISSOCK shimmed.  A build-level port.
+| vttest | `CSU/volume7/vttest/` | 1986 | non-commercial -- **Q1** | ASSESSED 2026-09-15: 2 parts, main.c + esc.c; drives the terminal with sgtty stty() RAW/CBREAK/CRMOD/ECHO flags, ioctl FIONREAD, setjmp/signal -- each has an OS-9 equivalent (_ss_opt fields, _gs_rdy) but it is a real port, not a shim.
 Not found anywhere searched: `nl`, true `csplit`, a clean `dc`, apropos/whatis.
 
 **B4 landed 2026-09-11: `tput`, `xd`, `xargs`, `cdecl`.**  All four were

@@ -316,6 +316,22 @@ Open:
      equals A0, so a signal it never registered probably sends it into the
      table.  Which signal, and who sends it, is unmeasured.  sod (TOP, needs cio) draws its maze and
      answers `q'; wants /h0/USR/GAMES/LIB/SOD and /dd/TMP lock files.
+  2w. **Shipped since 2v: juggle (f7c4c48f), sod (09bee004), jumble
+     (e51b6871), rot22's high-bit fix (c445effd); agrep 2.01 in its gate
+     run at handoff.**  Three porting traps agrep turned up, each measured
+     and each now in the os9-dev skill's references:
+     - **`remote' storage lifts l68's 64K and the 32K stack displacement.**
+       `remote char big[300000]' at file scope and `static remote' on a big
+       local both link and read back (scratch remotepool).  agrep's megabyte
+       of buffers is REMOTE/LREMOTE under OSK.
+     - **`open(path, 0)' succeeds and every read fails** -- Unix O_RDONLY is 0,
+       OS-9 read is 1.  Named files searched as empty while stdin worked.
+     - **<stdio.h>'s putc/putchar evaluate the character twice** (the
+       line-buffer test compares it with '\n'), so putchar(*p++) prints every
+       other character.  fputc() is a function.
+     Plan rows go stale: ten were already shipped (memory
+     os9-plan-rows-go-stale).  TOP's native tools are all duplicates or
+     multi-user; B11 assessed; ASCII plasma left out; Toon incomplete.
   2n. **Two harness gaps, not yet fixed.**  tools/ansiscreen.py does no
      auto-wrap at column 80 (it clamps), so it cannot show what an am
      terminal does with a full row.  playtest.py's `expect' also searches
