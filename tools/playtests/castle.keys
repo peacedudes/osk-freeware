@@ -1,0 +1,36 @@
+name    castle
+prog    castle
+# The Realm of the Wizard: turn, step, look at the inventory, cast the
+# where-am-I spell, then quit to the score list.
+rate    0.5
+size    24 80
+wait    8
+snap    start
+key     l
+wait    3
+key     k
+wait    3
+snap    moved
+key     i
+wait    3
+snap    inventory
+key     \e
+wait    3
+key     c
+wait    3
+key     a
+wait    4
+snap    spell
+key     \r
+wait    3
+key     q
+wait    3
+key     y
+wait    5
+snap    scores
+key     \r
+wait    3
+expect  Name:
+expect  Inventory :
+expect  Dungeon Coordinates are
+expect  Killed by

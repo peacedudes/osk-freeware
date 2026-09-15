@@ -1,0 +1,1 @@
+WINDOW *view_win,*message_win,*stat_win,*debug_win;WINDOW *compass_win,*inv_win,*command_win;

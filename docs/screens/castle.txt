@@ -1,0 +1,21 @@
+                    ###########################
+Name: tester        ##/|               |  \  ##
+                    ## |               |\ |` ##
+Str: 8              ##/|               ||\   ##
+Con: 7              ##||               |   ` ##
+Dex: 5              ## |               \  \  ##
+Int: 14             ## |                \ |\ ##
+Wis: 15             ##/|                 \   ##
+                    ##||                  \` ##
+Lvl: 1              ## /                   \ ##
+Exp: 0              ##/                     \##
+CSp: 2              ---------------------------
+MSp: 3
+CHP: 12
+MHP: 12
+
+Gold : 100          Dungeon Coordinates are :
+AC : 0              row: 10
+                    col: 1
+                    level: 1
+                    Hit any Key to Continue.

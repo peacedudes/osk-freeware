@@ -274,31 +274,30 @@ Open:
      is in PLAN-acquisitions B6: sokoban2, wanderer2 and yahtzee duplicate
      disk games; bandit and typefast are new and trap-free; tetrix, robots2
      and sod need cio.
-  2t. **bandit shipped (62a90132), TOP's binary unchanged**, with
-     `. /dd/SYS/termcap.entry' as gnuchess has.  **typefast is held on a
-     termcap.entry question:** with termcap.entry it asks its first question
-     but its title lands in the wrong place, because the entry declares `am'
-     without `xn' -- TOP's ncurses writes the 80-column border and moves on
-     as if the cursor had wrapped, which an xterm (and a real vt100) has not.
-     With the same entry minus `am' (scratchpad hostnocio/tmp/noam.entry)
-     typefast draws title, level menu and falling words correctly.  Removing
-     `am' from SYS/termcap.entry is probably right for every program that
-     uses it, but gnuchess, gnuchessn, jargon and vi_cio cards were shot
-     with it.  MEASURED 2026-09-15 on a host copy with the modules: gnuchess
-     (board, and after e2e4 c7c5) and jargon (the kluge entry) draw
-     IDENTICALLY with and without `am' -- only gnuchess's clock second
-     differed.  vi_cio was being compared at handoff (scratchpad
-     cmp-vicio-*).  If it matches too, drop `am' from SYS/termcap.entry
-     (nothing pins its bytes), then ship typefast with it.
-     Also staged, not yet committed at this note: wns and dc, TOP binaries,
-     both starred (trap-handler message with no modules, run with cio
-     alone).  dc draws its keypad in Cumana graphic bytes; its own
-     DCGRAPHIC=++++|- gives plain boxes, and its card sets that out of
-     sight.  Q or ESC leaves dc.  wns works as its manual says.
+  2t. **bandit (62a90132), wns and dc (7c43b9c0), typefast (cf359c1d)
+     shipped; SYS/termcap.entry dropped `am' (509e569c).**  The entry
+     declared `am' without `xn', so TOP's ncurses misdrew any full-width
+     row; gnuchess, jargon and vi_cio draw identically without it.  wns and
+     dc need cio; bandit and typefast are trap-free.  dc's card sets
+     DCGRAPHIC=++++|- out of sight for plain boxes.
      Harness trap: playtest.py keys files treat `#' as a comment ANYWHERE, so
      a setup line holding `co#80' is silently cut -- put such a line in a file
-     and source it.  wns (M. Mallett, comp.sources.unix v15 `window-srch')
-     is not in the pool; TOP's binary is.
+     and source it.
+  2u. **castle (The Realm of the Wizard, CSG v08i093-097) ported.**  Patch1
+     (v09i031) had never been applied and is now; ORIG/patches01 keeps it.
+     Worth knowing for any curses game here: **SCF turns ^C and ^E into
+     signals, the signal aborts curses' read, stdio's error flag latches and
+     getch() spins** -- castle hung on ^C and died unsaved on ^E, its save
+     key.  **And ESC is SCF's end-of-file character: getch() returns -1 for
+     it** (measured with a curses probe), so castle's inventory, which only
+     ESC leaves, trapped the player.  Microware curses' crmode() never
+     touches SS_Opt, so nothing clears any of these for you.  castle's tty.c
+     clears kbich/kbach/eofch while the game runs and restores them (sc.c
+     clears kbach the same way); restore measured with a probe after quit
+     and after save.  Any curses game here with an ESC key has this bug.  Also: the build links unix.l, whose
+     signal() only records -- a handler never runs by itself (the skill's
+     os9-clib-reference says so).  And curses.l HAS savetty()/resetty(), so
+     a shim of those names clashes at l68.
   2n. **Two harness gaps, not yet fixed.**  tools/ansiscreen.py does no
      auto-wrap at column 80 (it clamps), so it cannot show what an am
      terminal does with a full row.  playtest.py's `expect' also searches

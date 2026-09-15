@@ -1,6 +1,6 @@
 # What is on this disk
 
-1007 programs of OS-9/68K community software, gathered from the archives that kept it and made to run again. **660 of them need nothing but this disk**; the rest want Microware's `cio`, marked below with a star.
+1008 programs of OS-9/68K community software, gathered from the archives that kept it and made to run again. **661 of them need nothing but this disk**; the rest want Microware's `cio`, marked below with a star.
 
 `DOC/INDEX` on the disk lists everything alphabetically. This is the same collection sorted by what each program is *for*, which is the more useful order when you do not yet know what you are looking for.
 
@@ -22,7 +22,7 @@
 | [Encoding & conversion](#encoding--conversion) | 29 | Between text encodings, line endings, Macintosh formats, ciphers and hashes. |
 | [Communications](#communications) | 97 | Kermit in several builds, terminal sessions, and networking. |
 | [Graphics & images](#graphics--images) | 195 | The netpbm toolkit, JPEG, a ray tracer, and things that draw. |
-| [Games](#games) | 90 | Adventures, board and card games, arcade ports, dungeon crawls and puzzles. |
+| [Games](#games) | 91 | Adventures, board and card games, arcade ports, dungeon crawls and puzzles. |
 | [Screen toys](#screen-toys) | 9 | Animations and screen effects -- they draw on the terminal rather than print to it. Some run until you stop them. |
 | [Amusements](#amusements) | 25 | Generators, simulators and diversions that are not quite games. |
 | [System & modules](#system--modules) | 132 | OS-9 module and process tools, devices, system state and scheduling. |
@@ -1182,7 +1182,7 @@
 
 *Adventures, board and card games, arcade ports, dungeon crawls and puzzles.*
 
-<details><summary>90 programs</summary>
+<details><summary>91 programs</summary>
 
 **Adventure & fiction**
 
@@ -1260,6 +1260,7 @@
 
 | | |
 |---|---|
+| `castle` | The Realm of the Wizard, a dungeon seen in the first person: the corridor ahead is drawn in character graphics beside your stats.  hjkl (or 4 2 8 6) turn, back up and step, `c' casts a spell, `i' opens the inventory, `<' and `>' take the stairs; control-E saves and `castle -r' resumes, `q' quits to the score list<br>**How:** Full-screen dungeon game seen in the first person. hjkl (or 4 2 8 6) turn left, back up, step forward and turn right, `.' turns around, `c' and a letter casts a spell (`a' tells you where you are), `i' is the inventory and ESC leaves it, `<' and `>' take the stairs. Control-E saves and leaves, `castle -r' resumes the saved game, `q' then `y' quits to the score list. Its data is GAMES/CASTLE. |
 | `hack` | hack -- the original dungeon crawl NetHack grew out of<br>**How:** RUN IT BY ITS FULL PATH: `/dd/CMDS/GAMES/hack', not `hack'. It chdirs into its playground and then stats argv[0] to date-check saved levels, so a bare name cannot resolve and it stops with "Cannot get status of hack." Invoked in full it starts: "Are you an experienced player?". Its playground -- record, bones, rumors, help -- is in GAMES/HACK/PLAYGROUND. |
 | `hackwish` | a hack cheat: replays hack until a wizard starts with a wand of wishing, wishes for what you name, and saves the game to carry on in hack |
 | `larn` | &#9733; larn, a dungeon crawl: RETURN gets past the opening text; its saved games and score file are in GAMES/LARN/PLAYGROUND<br>**How:** Full-screen dungeon crawl. RETURN gets past the opening text. Control-C gets you out; its playground is GAMES/LARN/PLAYGROUND. |
