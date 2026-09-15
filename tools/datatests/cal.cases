@@ -78,3 +78,8 @@ run     /dd/CMDS/ticktalk -afrikaans 13 45
 expect  Quarter To Two pm
 expect  Quatorze Heures Moins Le Quart
 expect  Kwart Voor Twee nm
+
+# weekday (2026-09-15) on the date its own header uses as its example.
+case    weekday-names-30-october-1989
+run     /dd/CMDS/weekday 10/30/89
+expect  30 October 1989 is on a Monday on julian day 303 in week 44

@@ -139,3 +139,8 @@ case    lotto-ends-at-end-of-input
 run     /dd/CMDS/lotto < /nil
 run     echo "lotto exit $?"
 expect  lotto exit 0
+
+# repunsel (2026-09-15, comp.sources.misc v07i005): a flex-built pun filter.
+case    repunsel-puns-and-would-root
+run     echo "And I would root" | /dd/CMDS/repunsel
+expect  ANT I WOOD ROOT

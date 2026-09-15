@@ -120,10 +120,10 @@ is no help until you already know the name you want.
 | **Graphics & images** | 195 | The netpbm toolkit, JPEG, a ray tracer, and things that draw. |
 | **Games** | 103 | Adventures, board and card games, arcade ports, dungeon crawls and puzzles. |
 | **Screen toys** | 10 | Animations and screen effects -- they draw on the terminal rather than print to it. Some run until you stop them. |
-| **Amusements** | 30 | Generators, simulators and diversions that are not quite games. |
+| **Amusements** | 31 | Generators, simulators and diversions that are not quite games. |
 | **System & modules** | 132 | OS-9 module and process tools, devices, system state and scheduling. |
 | **Disk & DOS** | 20 | Reading and writing MS-DOS media with the mtools set. |
-| **Time & calendar** | 17 | Calendars, clocks and astronomy. |
+| **Time & calendar** | 18 | Calendars, clocks and astronomy. |
 | **Maths & calculators** | 16 | Calculators, plotting, orbits and number theory. |
 | **Printing** | 11 | Spoolers, page formatting and PostScript. |
 | **Documentation** | 5 | Pagers, readers and the help system. |

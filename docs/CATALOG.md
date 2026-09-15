@@ -1,6 +1,6 @@
 # What is on this disk
 
-1038 programs of OS-9/68K community software, gathered from the archives that kept it and made to run again. **689 of them need nothing but this disk**; the rest want Microware's `cio`, marked below with a star.
+1040 programs of OS-9/68K community software, gathered from the archives that kept it and made to run again. **691 of them need nothing but this disk**; the rest want Microware's `cio`, marked below with a star.
 
 `DOC/INDEX` on the disk lists everything alphabetically. This is the same collection sorted by what each program is *for*, which is the more useful order when you do not yet know what you are looking for.
 
@@ -24,10 +24,10 @@
 | [Graphics & images](#graphics--images) | 195 | The netpbm toolkit, JPEG, a ray tracer, and things that draw. |
 | [Games](#games) | 103 | Adventures, board and card games, arcade ports, dungeon crawls and puzzles. |
 | [Screen toys](#screen-toys) | 10 | Animations and screen effects -- they draw on the terminal rather than print to it. Some run until you stop them. |
-| [Amusements](#amusements) | 30 | Generators, simulators and diversions that are not quite games. |
+| [Amusements](#amusements) | 31 | Generators, simulators and diversions that are not quite games. |
 | [System & modules](#system--modules) | 132 | OS-9 module and process tools, devices, system state and scheduling. |
 | [Disk & DOS](#disk--dos) | 20 | Reading and writing MS-DOS media with the mtools set. |
-| [Time & calendar](#time--calendar) | 17 | Calendars, clocks and astronomy. |
+| [Time & calendar](#time--calendar) | 18 | Calendars, clocks and astronomy. |
 | [Maths & calculators](#maths--calculators) | 16 | Calculators, plotting, orbits and number theory. |
 | [Printing](#printing) | 11 | Spoolers, page formatting and PostScript. |
 | [Documentation](#documentation) | 5 | Pagers, readers and the help system. |
@@ -1364,7 +1364,7 @@
 
 *Generators, simulators and diversions that are not quite games.*
 
-<details><summary>30 programs</summary>
+<details><summary>31 programs</summary>
 
 **Biorhythms**
 
@@ -1398,6 +1398,7 @@
 | `newsgen` | &#9733; makes up a news bulletin at random from parts -- a top story of public figures, deeds, places and reactions, then the weather -- different every run<br>`"news" or "news lp"` |
 | `pig` | turns English into pig latin: every word of two letters or more moves its first letter to the end and adds `a'.  `echo text \| pig'<br>**How:** Pipe English through it: `echo "pig latin" \| pig' prints `igpa atinla'. Each word of two or more letters moves its first letter to the end and adds `a'; one-letter words and punctuation pass unchanged. |
 | `pwgen` | &#9733; pronounceable passwords: `pwgen <length> [how many]'<br>**How:** pwgen <length> [count]: length 4 to 16. It takes a few seconds over each password, so allow for that. |
+| `repunsel` | a pun filter: English comes out full of plants and gardens -- `and I would root' becomes `ANT I WOOD ROOT'.  `echo text \| repunsel'<br>**How:** Pipe English through it: `echo "And I would root" \| repunsel' prints `ANT I WOOD ROOT'. Each word it has a garden pun for -- and, would, not, over, leave, care -- comes out in capitals; the rest passes through. |
 | `rndname` | &#9733; invents pronounceable names, as many as you ask for -- the earlier version of `name', with every letter equally likely, so the names come out more exotic |
 | `rpoem` | &#9733; writes verses at random from a grammar and a word list in GAMES/SNOBOL; a number says how many, thirty without one |
 | `rstory` | a cumulative tale in the shape of The Old Woman and Her Pig, the animal, the obstacle and every helper drawn at random; `rstory \| tformat' sets it justified under a dated heading. Data: GAMES/SNOBOL |
@@ -1653,7 +1654,7 @@
 
 *Calendars, clocks and astronomy.*
 
-<details><summary>17 programs</summary>
+<details><summary>18 programs</summary>
 
 **Astronomy**
 
@@ -1677,6 +1678,7 @@
 | `greg` | &#9733; converts a Julian day number to a Gregorian date: `greg 2461281' is the 29th of August 2026<br>**How:** It converts a Julian day number to a Gregorian date and is nothing to do with regular expressions: `greg 2460000' answers `2023 2 25'. |
 | `ticktalk` | tells the time in words -- `Quarter To Two pm' -- in English, French or Afrikaans; give an hour and minute, or none for now<br>**How:** `ticktalk' prints the time now in words; `ticktalk 13 45' prints a given time, Quarter To Two pm. -french and -afrikaans change the language, -before says Twenty To One rather than Twelve Forty, -approximate rounds to five minutes and -noampm drops am and pm. |
 | `today` | date, moon phase and this-day-in-history |
+| `weekday` | the day of the week, julian day and week number of a date: `weekday 10/30/89' says Monday, day 303, week 44<br>**How:** `weekday 10/30/89' prints the day of the week, the julian day and the week number; with no date it uses today. Dates are mm/dd/yy, dd-mm-yy, yyyy-mm-dd or yy.ddd, and two-digit years are 19yy. -d -D -m -M -y -w -j -n print single parts, -v drops the words between them, -s shortens names. |
 
 **Clocks**
 

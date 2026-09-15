@@ -214,3 +214,13 @@ run     clear
 wait    1
 run     ticktalk 13 45; ticktalk -french 13 45; ticktalk -afrikaans 13 45
 wait    3
+
+shot    weekday
+size    24 80
+cap     30 October 1989 in weekday's own sentence, and with -v the same facts
+cap     without the words between them.
+try     weekday 10/30/89; weekday -v 10/30/89
+run     clear
+wait    1
+run     weekday 10/30/89; weekday -v 10/30/89
+wait    3

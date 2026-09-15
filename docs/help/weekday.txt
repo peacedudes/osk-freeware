@@ -1,0 +1,18 @@
+$ weekday -h
+Usage: weekday [-svdDmMywjnah] [<date>]
+   <date>: mm/dd/yy  |  dd-mm-yy  |  yyyy-mm-dd
+  |           yy.ddd  |  Unix date
+   default is today
+   options: -s toggle short form output
+            -v toggle verbose output
+            -d prints day of week number
+            -D gives day of week name
+            -m prints the month number
+            -M outputs the month name
+            -y outputs the year number
+            -w gives the week number
+            -j outputs the julian day number
+            -n gives day of month
+            -a gives everything it knows (default)
+            -h give a usage message
+15 September 2026 is on a Tuesday on julian day 258 in week 38

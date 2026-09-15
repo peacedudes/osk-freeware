@@ -640,6 +640,7 @@ ephem|Time & calendar|Astronomy
 ephem881|Time & calendar|Astronomy
 cal|Time & calendar|Calendars
 calcdate|Time & calendar|Calendars
+weekday|Time & calendar|Calendars
 ticktalk|Time & calendar|Calendars
 calen|Time & calendar|Calendars
 calender|Time & calendar|Calendars
@@ -1058,6 +1059,7 @@ rsdsk|System & modules|Devices & disks
 chef|Amusements|Generators
 fudd|Amusements|Generators
 pig|Amusements|Generators
+repunsel|Amusements|Generators
 lotto|Amusements|Generators
 drawl|Amusements|Generators
 lame|Amusements|Generators

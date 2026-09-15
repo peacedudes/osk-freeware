@@ -989,6 +989,10 @@ soelim|soelim|soelim.c|||
 ticktalk|ticktalk|ticktalk.c|TEXT||
 # jumble2 (comp.sources.games v03i084): Dan Heller's timed word game; SRC/jumble2/README.OSK.
 jumble2|jumble2|jumble.c||/dd/LIB/rand.r|
+# weekday (comp.sources.misc v10i084) as posted, with Henry Spencer's public-domain
+# getopt.c from SRC/arithmetic; repunsel (v07i005), its scanner made with the disk's flex.
+weekday|weekday|weekday.c getopt.c|||
+repunsel|repunsel|repunsel.c lex.yy.c|||
 lame|lame|lame.c||/dd/LIB/rand.r|
 canfield|canfield|canfield.c||/dd/LIB/curses.l /dd/LIB/termlib.l /dd/LIB/rand.r|
 # atc -- Ed James's air traffic controller, 4.3BSD-Net/2.  Built on its SYSV
