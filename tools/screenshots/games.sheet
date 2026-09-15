@@ -1843,3 +1843,18 @@ wait    2
 send    1\r
 wait    8
 snap
+
+shot    perp
+size    24 80
+cap     The first screen a few steps in: the player, the boulders and keys, and
+cap     the panel counting diamonds and boulders left, score, level and moves.
+try     perp
+run     clear
+wait    1
+run     perp
+wait    6
+send    llll
+wait    3
+send    jjjj
+wait    4
+snap

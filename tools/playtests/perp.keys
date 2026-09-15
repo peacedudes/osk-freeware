@@ -1,0 +1,19 @@
+name    perp
+prog    perp
+# The first screen, a few steps, restart the level with q, then ^C to leave.
+rate    0.5
+size    24 80
+wait    6
+snap    start
+keys    llll
+wait    2
+keys    jjjj
+wait    3
+snap    moved
+key     q
+wait    6
+snap    restarted
+key     \003
+wait    4
+expect  Moves :      4
+expect  bash#
