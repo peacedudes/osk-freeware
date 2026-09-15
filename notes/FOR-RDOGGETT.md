@@ -193,3 +193,14 @@ line is recorded in `tools/terms.psv` or the handoff.
    not "without explicit written permission from Tim Kientzle".  The disk
    ships the three binaries without that source.  Ship the source beside
    them, or decide otherwise.
+
+20. **GPL binaries still shipping without their source** (2026-09-15).  VH
+   (jargon) and the gcc 1.42 driver in CMDS/GCC2 now have exact source in
+   SRC.  Nothing matching exists here for the rest:
+   - CMDS/GCC139: gcc 1.39 and its g++ pass 1.37.1;
+   - CMDS/GCC2: gpp/cc1plus 1.40.3, gcc2 2.5.6, cc2plus 2.5.8;
+   - CMDS/TEXCMDS/dvips: dvipsk 5.495b (the archive's "dvips_source" is
+     binaries and fonts, not source).
+   Near matches exist: Microware archive 4066, gcc 1.37.1 OS-9 source; and
+   4072, gcc 2.7.2.  Neither is the version shipped.  Keep the binaries
+   without source, fetch the near matches, or remove those binaries?

@@ -498,7 +498,16 @@ name:
     "1.39.1 (based on GCC 1.40)", NOT a match; gcc2 2.5.6 and cc2plus 2.5.8
     -- no source found.
   CMDS/jargon: byte-identical to CMDS/jargon inside pool MISC/vh_1.4.lzh
-    (md5 47914da1...) -- VH 1.4 source is an exact match.  Being added.
+    (md5 47914da1...) -- VH 1.4 source is an exact match.  ADDED 312d40c0
+    as SRC/vh.
+  dvips: CMDS/TEXCMDS/dvips is "dvipsk 5.495b" (Radical Eye Software).  The
+    pool's DRIVERS/dvips_source.lzh is NOT source: it holds the dvips,
+    afm2tfm and MakeTeXPK binaries, .pro PostScript headers, TFM fonts and
+    install.text -- no .c at all.  No dvips source found.
+  Not fetched, and listed in the MW archive index: 4066
+    gcc-1.37.1-osk-src.tar.Z (Blake; also on funet), 4072 gccsrc272.zip (gcc
+    2.7.2), 4071 gcc-sun4-os9-2.6.2 (a Sun cross compiler).  No 2.5.6 or 2.5.8
+    source is in either index.  osk_gcc_1.42_src.lzh has no COPYING file.
 
 ### B11 -- 6809 C that plausibly ports                                  open
 jumble, unTC (PD), Solve (PD), Spencer regexp, uptime, verdisk, sgrep, sortc,
