@@ -1008,6 +1008,7 @@ anagram|anagram|
 psychic|none|it takes one optional argument, how many messages to print (three by default)
 lotto|lotto -?|
 knight|none|it takes no options; it asks whether you want instructions, and they list the keys
+kalah|none|it takes no options; it asks which game, a skill level and who goes first
 bks|none|it takes no options; its menu lists the keys
 bugs|none|it takes no options; j and k set the level and the speed at its first two prompts, and Return accepts each
 sol|none|it takes no options; h at its cmd prompt lists the commands

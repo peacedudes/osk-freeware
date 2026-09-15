@@ -1975,3 +1975,24 @@ wait    1
 run     letters
 wait    6
 snap
+
+shot    kalah
+size    30 80
+cap     A Kalah game at skill 2: the opening move from bin 3, the computer's
+cap     reply, and its advice for the next move.
+try     kalah
+run     clear
+wait    1
+run     kalah
+wait    3
+send    k\r
+wait    1
+send    2\r
+wait    1
+send    1\r
+wait    2
+send    3\r
+wait    4
+send    -2\r
+wait    4
+snap

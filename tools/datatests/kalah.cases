@@ -1,0 +1,21 @@
+family  kalah
+setup   export PATH=/dd/CMDS
+setup   rm -rf /dd/tmp/KALAH > /nil 2>/nil; mkdir -p /dd/tmp/KALAH
+
+# A Kalah game at skill 2: move from bin 3, the computer answers, -2 asks
+# for advice, -1 twice abandons the game, q quits.
+case    kalah-first-move
+run     echo k > /dd/tmp/KALAH/k.in; echo 2 >> /dd/tmp/KALAH/k.in; echo 1 >> /dd/tmp/KALAH/k.in
+run     echo 3 >> /dd/tmp/KALAH/k.in; echo -2 >> /dd/tmp/KALAH/k.in; echo -1 >> /dd/tmp/KALAH/k.in
+run     echo -1 >> /dd/tmp/KALAH/k.in; echo q >> /dd/tmp/KALAH/k.in
+run     /dd/CMDS/GAMES/kalah < /dd/tmp/KALAH/k.in
+expect  My Move (worth
+expect  I suggest Bin
+absent  Must be from 1 thru 6
+
+# Pigeon Plague shows both sides' totals, 18 stones each at the start.
+case    pigeons-totals
+run     echo p > /dd/tmp/KALAH/p.in; echo 2 >> /dd/tmp/KALAH/p.in; echo 1 >> /dd/tmp/KALAH/p.in
+run     echo -1 >> /dd/tmp/KALAH/p.in; echo -1 >> /dd/tmp/KALAH/p.in; echo q >> /dd/tmp/KALAH/p.in
+run     /dd/CMDS/GAMES/kalah < /dd/tmp/KALAH/p.in
+expect  =18

@@ -1,0 +1,30 @@
+Type 'p' for Pigeons,
+  or 'k' for Kalah,
+  or 'q' to quit: k
+
+Type my skill level, 2 - 12: 2
+
+( 1)! 3! 3! 3! 3! 3! 3!
+    ! 1  2  3  4  5  6!    L=2
+    ! 3! 3! 3! 3! 3! 3!( 1)
+Type 1 to go first,
+  or 2 to follow me: 1
+
+When it's your turn, you may
+  type -2 to -12 for advice,
+  or 0 to re-display the board,
+  or -1 to quit & re-start game.
+
+Your move: 3
+( 1)! 3! 3! 3! 3! 3! 3!
+    ! 1  2  3  4  5  6!    L=2
+    ! 3! 3! 0! 4! 4! 4!( 1)
+Now let me think ...
+My Move (worth $1) is: 3.
+
+( 2)! 4! 4! 0! 3! 3! 3!
+    ! 1  2  3  4  5  6!    L=2
+    ! 3! 3! 0! 4! 4! 4!( 1)
+Your move: -2
+I suggest Bin #4, worth $0.
+Your move:
