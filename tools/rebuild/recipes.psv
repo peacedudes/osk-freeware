@@ -987,6 +987,8 @@ solx|sol2|solx.c solio.c||/dd/LIB/termlib.l|
 calcdate|calcdate|calcdate.c|||
 soelim|soelim|soelim.c|||
 ticktalk|ticktalk|ticktalk.c|TEXT||
+# jumble2 (comp.sources.games v03i084): Dan Heller's timed word game; SRC/jumble2/README.OSK.
+jumble2|jumble2|jumble.c||/dd/LIB/rand.r|
 lame|lame|lame.c||/dd/LIB/rand.r|
 canfield|canfield|canfield.c||/dd/LIB/curses.l /dd/LIB/termlib.l /dd/LIB/rand.r|
 # atc -- Ed James's air traffic controller, 4.3BSD-Net/2.  Built on its SYSV

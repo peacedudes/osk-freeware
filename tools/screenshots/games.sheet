@@ -1826,3 +1826,20 @@ wait    1
 run     solx
 wait    6
 snap
+
+shot    jumble2
+size    24 80
+cap     A round of one word at the simplest level: the scrambled word, the time
+cap     allowed for it, and the prompt for a guess.
+try     jumble2
+run     clear
+wait    1
+run     jumble2
+wait    4
+send    n\r
+wait    2
+send    s\r
+wait    2
+send    1\r
+wait    8
+snap

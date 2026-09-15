@@ -325,6 +325,7 @@ solx|No copyright or licence statement; the README names David Goodenough, with 
 calcdate|No copyright or licence statement; the source names Gordon A. Runkle, ORI/Calculon (1988), and the post disclaims any warranty.|SRC/calcdate/calcdate.c lines 1-22; SOURCES.txt, calcdate
 soelim|No copyright or licence statement; the source names D. A. Spicer, J. Leth and Bill Stewart of AT&T Bell Labs.|SRC/soelim/ORIG/soelim.c lines 1-10; SOURCES.txt, soelim
 ticktalk|No copyright or licence statement; the source names Art Mellor (1991-92) with Kaveh Kardan, Linda Matthew and Alan Steele.|SRC/ticktalk/ticktalk.c lines 1-29; SOURCES.txt, ticktalk
+jumble2|No copyright or licence statement; the source and README name Dan Heller.|SRC/jumble2/ORIG/README; SRC/jumble2/ORIG/jumble.c lines 1-14; SOURCES.txt, jumble2
 choose|No copyright or licence statement; the README names Bob Lewis (Tektronix).|SRC/choose/ORIG/README; SOURCES.txt, choose
 funzip|"Not copyrighted 1992 by Mark Adler." "You can do whatever you like with this source file", though modified copies should say so. Part of Info-ZIP UnZip 5.0.|SRC/unzip50/funzip.c lines 1-7
 g3topbm|Each netpbm author granted the right to use and distribute their code without charge, on a non-commercial basis; many allow more -- see each file's notice.|DOC/netpbm/COPYRIGHT

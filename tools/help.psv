@@ -1010,6 +1010,7 @@ solx|none|it takes no options; h at its cmd prompt lists the commands
 calcdate|calcdate|
 soelim|none|it reads the files named, or standard input; run bare at a terminal it prints its usage
 ticktalk|ticktalk -help|
+jumble2|none|its only switch, -s, shows the high scores; it asks whether you want directions when it starts
 drawl|none|pipe English text through it; -ing loses its g, vowels broaden into a Texan drawl
 lame|none|give it a sentence as arguments; o becomes 0, you becomes U, and so on
 canfield|none|name a move by its two ends -- s2, tf, 13, 2f; ht deals, c counts, b bets, q quits

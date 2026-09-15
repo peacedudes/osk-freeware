@@ -1,0 +1,1 @@
+Jumble --  the game in which you unscramble words to compete forpoints on a high score list of 10 and 4 levels ofdifficulty to choose from. Words are found in /usr/dict/words,the basic dictionary found on all UNIX systems.This program was written by Dan Heller.island!argv@sun.com

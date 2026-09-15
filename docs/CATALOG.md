@@ -1,6 +1,6 @@
 # What is on this disk
 
-1037 programs of OS-9/68K community software, gathered from the archives that kept it and made to run again. **688 of them need nothing but this disk**; the rest want Microware's `cio`, marked below with a star.
+1038 programs of OS-9/68K community software, gathered from the archives that kept it and made to run again. **689 of them need nothing but this disk**; the rest want Microware's `cio`, marked below with a star.
 
 `DOC/INDEX` on the disk lists everything alphabetically. This is the same collection sorted by what each program is *for*, which is the more useful order when you do not yet know what you are looking for.
 
@@ -22,7 +22,7 @@
 | [Encoding & conversion](#encoding--conversion) | 29 | Between text encodings, line endings, Macintosh formats, ciphers and hashes. |
 | [Communications](#communications) | 98 | Kermit in several builds, terminal sessions, and networking. |
 | [Graphics & images](#graphics--images) | 195 | The netpbm toolkit, JPEG, a ray tracer, and things that draw. |
-| [Games](#games) | 102 | Adventures, board and card games, arcade ports, dungeon crawls and puzzles. |
+| [Games](#games) | 103 | Adventures, board and card games, arcade ports, dungeon crawls and puzzles. |
 | [Screen toys](#screen-toys) | 10 | Animations and screen effects -- they draw on the terminal rather than print to it. Some run until you stop them. |
 | [Amusements](#amusements) | 30 | Generators, simulators and diversions that are not quite games. |
 | [System & modules](#system--modules) | 132 | OS-9 module and process tools, devices, system state and scheduling. |
@@ -1192,7 +1192,7 @@
 
 *Adventures, board and card games, arcade ports, dungeon crawls and puzzles.*
 
-<details><summary>102 programs</summary>
+<details><summary>103 programs</summary>
 
 **Adventure & fiction**
 
@@ -1335,6 +1335,7 @@
 | `hang` | &#9733; hangman: type a letter to guess it, and the gallows fills in as you get them wrong; its word list is GAMES/dict<br>**How:** Hangman. Type a letter to guess it; the letters still unused are along the top. Control-C gets you out. Its word list is GAMES/dict. |
 | `jotto` | Jotto: you and the computer each pick a secret five-letter word of different letters and take turns guessing; a wrong guess is scored by how many of its letters are in the word |
 | `jumble` | prints every ordering of the letters of a word, one to a line, to solve a newspaper word jumble: `jumble tac' lists tac, tca, atc, act, cat and cta<br>**How:** `jumble <word>' prints every ordering of its letters, one per line, and that is all it does: read down the list for the one that is a word. A word of n letters gives n! lines -- 720 for six letters -- so keep to short words or send it through grep or less. |
+| `jumble2` | unscramble words against the clock: pick a level and how many words, then type each word back; `jumble2 -s' shows the high scores, kept in GAMES/JUMBLE2<br>**How:** It asks whether you want directions, a level -- (E)xpert, (H)ard, (M)oderate or (S)imple, then RETURN -- and how many words. Type each unscrambled word and RETURN before the time runs out: ? reprints the word and the time left, p passes, q forfeits. After a round RETURN plays again, c changes level, s shows the scores and q quits. Four words or more to reach the score list, kept in GAMES/JUMBLE2; `jumble2 -s' shows it. |
 
 </details>
 

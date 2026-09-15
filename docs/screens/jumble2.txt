@@ -1,0 +1,19 @@
+jumble2
+Do you want directions? n
+
+Difficulty levels:
+(E)xpert, (H)ard, (M)oderate or (S)imple? s
+
+You need at least 4 words to get on the top ten.
+You get extra time for unscrambling each word over the 4th word.
+How many words do you want? 1
+
+1 word coming.
+
+You have 0 passes.
+Jumbling a word...
+ Time: 3 min. 21 sec.
+0 words left. 'q' to quit.
+
+ Word #1: "sfhnii".
+--->  Guess:

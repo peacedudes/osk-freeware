@@ -1,0 +1,27 @@
+name    jumble2
+prog    jumble2
+setup   export USER=tester
+# No directions, Simple, one word, forfeit it with q, then quit at the menu.
+rate    0.4
+size    24 80
+wait    5
+key     n
+key     \r
+wait    2
+key     s
+key     \r
+wait    2
+key     1
+key     \r
+wait    8
+snap    word
+key     q
+key     \r
+wait    3
+snap    lost
+key     q
+key     \r
+wait    4
+expect  Jumbling a word
+expect  The word was
+expect  (Q)uit

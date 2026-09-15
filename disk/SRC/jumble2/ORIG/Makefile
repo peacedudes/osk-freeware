@@ -1,0 +1,1 @@
+# simple makefile for jumblejumble: jumble.c	cc -o jumble jumble.cinstall: jumble	cp jumble /usr/games	# note: this path is wired into the code	# edit it if you change the path	touch /usr/games/lib/jumble.score	chmod 666 /usr/games/lib/jumble.score
