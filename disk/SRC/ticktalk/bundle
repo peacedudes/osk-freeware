@@ -1,0 +1,1 @@
+#!/bin/sh# bundle: group files into distribution packageecho '#!/bin/sh'echo '# To unbundle, sh this file. E.g. % sh file'for i do	echo "echo $i 1>&2"	echo "cat >$i <<'End of $i'"	cat $i	echo "End of $i"done

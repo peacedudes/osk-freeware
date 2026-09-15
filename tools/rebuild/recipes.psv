@@ -981,6 +981,12 @@ bks|bks|bs.c|BSD|/dd/LIB/rand.r|
 # README.OSK lists the cpp, SIGTERM and termlib changes and the ioctl shim.
 sol|sol2|sol.c solio.c||/dd/LIB/termlib.l|
 solx|sol2|solx.c solio.c||/dd/LIB/termlib.l|
+# calcdate (comp.sources.misc v03i022) and ticktalk (v28i035) build as posted --
+# ticktalk in its text-only form, TEXT defined; soelim (comp.sources.unix v08i058)
+# with one token fixed, SRC/soelim/README.OSK.
+calcdate|calcdate|calcdate.c|||
+soelim|soelim|soelim.c|||
+ticktalk|ticktalk|ticktalk.c|TEXT||
 lame|lame|lame.c||/dd/LIB/rand.r|
 canfield|canfield|canfield.c||/dd/LIB/curses.l /dd/LIB/termlib.l /dd/LIB/rand.r|
 # atc -- Ed James's air traffic controller, 4.3BSD-Net/2.  Built on its SYSV

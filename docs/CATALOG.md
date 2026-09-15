@@ -1,6 +1,6 @@
 # What is on this disk
 
-1034 programs of OS-9/68K community software, gathered from the archives that kept it and made to run again. **685 of them need nothing but this disk**; the rest want Microware's `cio`, marked below with a star.
+1037 programs of OS-9/68K community software, gathered from the archives that kept it and made to run again. **688 of them need nothing but this disk**; the rest want Microware's `cio`, marked below with a star.
 
 `DOC/INDEX` on the disk lists everything alphabetically. This is the same collection sorted by what each program is *for*, which is the more useful order when you do not yet know what you are looking for.
 
@@ -13,7 +13,7 @@
 |---|--:|---|
 | [Shells](#shells) | 24 | Unix shells to sit beside OS-9's own -- bash and ksh bring history, job control, and scripts that come across unchanged. |
 | [Editors](#editors) | 27 | vi and emacs in several flavours, line and stream editors, and editors for binary and hex. |
-| [Text tools](#text-tools) | 134 | Search, sort, compare, reformat, split and spell-check. |
+| [Text tools](#text-tools) | 135 | Search, sort, compare, reformat, split and spell-check. |
 | [Files & directories](#files--directories) | 34 | Listing, copying, finding, renaming, and knowing what you have. |
 | [Developer tools](#developer-tools) | 48 | Version control, tags, cross-reference, formatters, a debugger and benchmarks. |
 | [Compilers & build](#compilers--build) | 41 | C compilers and their passes, assemblers, linkers, make and parser generators. |
@@ -27,7 +27,7 @@
 | [Amusements](#amusements) | 30 | Generators, simulators and diversions that are not quite games. |
 | [System & modules](#system--modules) | 132 | OS-9 module and process tools, devices, system state and scheduling. |
 | [Disk & DOS](#disk--dos) | 20 | Reading and writing MS-DOS media with the mtools set. |
-| [Time & calendar](#time--calendar) | 15 | Calendars, clocks and astronomy. |
+| [Time & calendar](#time--calendar) | 17 | Calendars, clocks and astronomy. |
 | [Maths & calculators](#maths--calculators) | 16 | Calculators, plotting, orbits and number theory. |
 | [Printing](#printing) | 11 | Spoolers, page formatting and PostScript. |
 | [Documentation](#documentation) | 5 | Pagers, readers and the help system. |
@@ -155,7 +155,7 @@
 
 *Search, sort, compare, reformat, split and spell-check.*
 
-<details><summary>134 programs</summary>
+<details><summary>135 programs</summary>
 
 **Alternates**
 
@@ -218,6 +218,7 @@
 | `nroff` | nroff, the text formatter: fills and justifies text under dot requests and macro packages (-man and the rest); the macro sets are in LIB, and TMACDIR points at them<br>**How:** Formats a text with nroff requests: `nroff file.ms'. Its macro sets are in LIB (tmac.*). Point TMACDIR at LIB if a macro package is not found. |
 | `proff` | proff, a portable roff: formats text under dot requests -- fill, justify, centre, running page headers -- with its macros in LIB/proff; +n and -n select pages, -v prints statistics<br>`usage: proff [+n] [-n] [-v] [-ifile] [-s] [-pon] [infile [outfile]]` |
 | `roff` | a text formatter in the nroff line: it reads text with dot-commands at the start of a line and fills, justifies and paginates it.  `.ce' centres, `.sp' spaces, `.fi'/ `.nf' turn filling on and off, `.ad'/`.na' the right justify, `.in'/`.ti'/`.ll' set the margins and measure, `.he'/`.fo' add a running header and footer with the page number, `.sh' numbers headings.  nroff and proff are the same idea; DOC/roff has the full request list.<br>`Syntax: roff {[+00] [-00] [-s] -[h] file}` |
+| `soelim` | copies roff source to standard output with each file named by .so or .nx put in its place -- run it before nroff<br>**How:** `soelim file.r > whole.r' copies roff source with every file named on a .so or .nx line put in that line's place, so a formatter that does not follow .so gets the whole text; `-' names standard input. Paths are taken relative to the current directory. |
 | `tformat` | fills text to a width: `tformat [width]' reads standard input and writes it refilled and justified, 80 columns unless told otherwise<br>`tformat - format stdin to stdout.` |
 | `ul` | turns underlining made with backspaces into what the terminal shows as underline; -i puts the underline on a line of its own<br>`ul: illegal option -- ?` |
 
@@ -1651,7 +1652,7 @@
 
 *Calendars, clocks and astronomy.*
 
-<details><summary>15 programs</summary>
+<details><summary>17 programs</summary>
 
 **Astronomy**
 
@@ -1669,9 +1670,11 @@
 | | |
 |---|---|
 | `cal` | &#9733; Calendar. `cal -h' prints holidays with it -- SYS/holidays is here, and SYS/birthdays is an empty template for your own dates. SYS/cal.init is a printer setup for a laser<br>**How:** `cal -m=<month> -y=<year>', with flags. -h marks the holidays in SYS/holidays and anything you add to SYS/birthdays, which it includes. |
+| `calcdate` | adds days to a date or counts the days between two: `calcdate 051788 -o 30' prints 061688; dates are mmddyy<br>**How:** Dates are six digits, mmddyy. `calcdate 051788 -o 30' prints the date 30 days on (061688), and a negative offset goes back; `calcdate 010188 -d 123188' prints the days from the first date to the second (365). Years are two digits. |
 | `calen` | prints a month as a diary page, ruled for appointments, with the neighbouring months as small calendars in the corners. It reads the month, the year and how many months from its input: `echo 9 2026 1 \| calen'<br>`Invalid flag: -?` |
 | `calender` | &#9733; print a whole year's calendar (German)<br>**How:** A whole year at once, in German. It asks `Fuer welches Jahr?' (which year); RETURN at the question ends it. |
 | `greg` | &#9733; converts a Julian day number to a Gregorian date: `greg 2461281' is the 29th of August 2026<br>**How:** It converts a Julian day number to a Gregorian date and is nothing to do with regular expressions: `greg 2460000' answers `2023 2 25'. |
+| `ticktalk` | tells the time in words -- `Quarter To Two pm' -- in English, French or Afrikaans; give an hour and minute, or none for now<br>**How:** `ticktalk' prints the time now in words; `ticktalk 13 45' prints a given time, Quarter To Two pm. -french and -afrikaans change the language, -before says Twenty To One rather than Twelve Forty, -approximate rounds to five minutes and -noampm drops am and pm. |
 | `today` | date, moon phase and this-day-in-history |
 
 **Clocks**

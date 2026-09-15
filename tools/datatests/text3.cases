@@ -242,3 +242,13 @@ case    anagram-finds-listen-in-the-word-list
 run     /dd/CMDS/anagram listen
 expect  silent
 expect  tinsel
+
+# soelim (2026-09-15, comp.sources.unix v08i058) puts a .so file in place.
+case    soelim-puts-the-included-file-in-place
+run     echo ".so /dd/tmp/soelb.r" > /dd/tmp/soela.r
+run     echo "after the include" >> /dd/tmp/soela.r
+run     echo "text of b" > /dd/tmp/soelb.r
+run     /dd/CMDS/soelim /dd/tmp/soela.r
+expect  text of b
+expect  after the include
+absent  .so /dd

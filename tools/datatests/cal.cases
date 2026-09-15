@@ -62,3 +62,19 @@ run     /dd/CMDS/wc -c $W/cal.txt
 run     /dd/CMDS/head -n 3 $W/cal.txt
 expect  2986 /dd/tmp/CAL/cal.txt
 expect  Jahreskalender   2026
+
+# calcdate and ticktalk (2026-09-15) are asserted on explicit dates and times,
+# never the clock.
+case    calcdate-adds-thirty-days-and-counts-a-year
+run     /dd/CMDS/calcdate 051788 -o 30
+run     /dd/CMDS/calcdate 010188 -d 123188
+expect  061688
+expect  365
+
+case    ticktalk-says-a-quarter-to-two-three-ways
+run     /dd/CMDS/ticktalk 13 45
+run     /dd/CMDS/ticktalk -french 13 45
+run     /dd/CMDS/ticktalk -afrikaans 13 45
+expect  Quarter To Two pm
+expect  Quatorze Heures Moins Le Quart
+expect  Kwart Voor Twee nm

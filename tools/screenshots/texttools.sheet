@@ -659,3 +659,18 @@ run     clear
 wait    1
 run     anagram listen parsley
 wait    6
+
+shot    soelim
+size    24 80
+cap     A roff file that includes another with .so, and the same file after
+cap     soelim has put the included text in the .so line's place.
+try     cat tmp/TXT/main.r; soelim tmp/TXT/main.r
+run     mkdir -p /dd/tmp/TXT > /nil 2>/nil; printf ".TH NOTE 1\r.so tmp/TXT/part.r\rThe last line of main.r.\r" > /dd/tmp/TXT/main.r
+run     printf "This line lives in part.r.\r" > /dd/tmp/TXT/part.r
+wait    2
+run     builtin cd /dd
+wait    1
+run     clear
+wait    1
+run     cat tmp/TXT/main.r; soelim tmp/TXT/main.r
+wait    3

@@ -194,3 +194,23 @@ run     clear
 wait    1
 run     almanac 0101.1995 12.0000
 wait    8
+
+shot    calcdate
+size    24 80
+cap     Thirty days after 17 May 1988, and the days from 1 January to
+cap     31 December 1988.  Dates are mmddyy, with two-digit years.
+try     calcdate 051788 -o 30; calcdate 010188 -d 123188
+run     clear
+wait    1
+run     calcdate 051788 -o 30; calcdate 010188 -d 123188
+wait    3
+
+shot    ticktalk
+size    24 80
+cap     A quarter to two in the afternoon in English, French and Afrikaans.
+cap     With no time given it tells the time now.
+try     ticktalk 13 45; ticktalk -french 13 45; ticktalk -afrikaans 13 45
+run     clear
+wait    1
+run     ticktalk 13 45; ticktalk -french 13 45; ticktalk -afrikaans 13 45
+wait    3

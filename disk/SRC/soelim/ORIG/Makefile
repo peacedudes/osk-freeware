@@ -1,0 +1,1 @@
+# Makefile for soelim.soelim:		soelim.c	$(CC) $(CFLAGS) -o soelim soelim.cinstall:	soelim	@echo Copy soelim and soelim.1 to appropriate directories

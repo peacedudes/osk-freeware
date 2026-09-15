@@ -1,0 +1,3 @@
+$ calcdate
+calcdate v2.01, 17 May 88, Gordon A. Runkle, ORI/Calculon
+Usage: calcdate mmddyy { -o [-]offset | -d mmddyy }

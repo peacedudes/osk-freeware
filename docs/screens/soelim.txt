@@ -1,0 +1,7 @@
+cat tmp/TXT/main.r; soelim tmp/TXT/main.r
+.TH NOTE 1
+.so tmp/TXT/part.r
+The last line of main.r.
+.TH NOTE 1
+This line lives in part.r.
+The last line of main.r.

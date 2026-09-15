@@ -573,6 +573,7 @@ tail|Text tools|Count & inspect
 wc|Text tools|Count & inspect
 lout|Text tools|Format & typeset
 nroff|Text tools|Format & typeset
+soelim|Text tools|Format & typeset
 proff|Text tools|Format & typeset
 roff|Text tools|Format & typeset
 tformat|Text tools|Format & typeset
@@ -638,6 +639,8 @@ valspeak|Text tools|Transform & filter
 ephem|Time & calendar|Astronomy
 ephem881|Time & calendar|Astronomy
 cal|Time & calendar|Calendars
+calcdate|Time & calendar|Calendars
+ticktalk|Time & calendar|Calendars
 calen|Time & calendar|Calendars
 calender|Time & calendar|Calendars
 digclk|Time & calendar|Clocks

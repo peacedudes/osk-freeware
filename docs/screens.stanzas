@@ -100,6 +100,7 @@ c4 79e00796ab327574
 c7decode 56f4f46f18762003
 caesar d8865432f1d55b0a
 cal 901a5f69eca7c189
+calcdate feb1d691c5e46ad5
 calen 47ebd7471ad0a89b
 calender 30e2052f8d39bf1b
 cam e05ecc930a3c0842
@@ -748,6 +749,7 @@ snake 57a3a2d0ae531c69
 snap 42f8483b027f8056
 snd_sig 1113acd74ba5ec4d
 sod 42cb29479e16df52
+soelim 959365c836523243
 sokoban e5a224c805f12379
 sol 068e1c6b5df7eb40
 solx e62f6fdb2c078afe
@@ -801,6 +803,7 @@ tformat c4d190c37758eb86
 tftopl 4a4642e61fce05cf
 tga 957e110722e045fc
 tgatoppm d5a487674cad43f9
+ticktalk 16472074a7387caf
 tiffish f64869cd9cfd6f5b
 time a3ba286af1dfe84f
 timid 8ac2e5fb4322cda4

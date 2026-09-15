@@ -1,0 +1,15 @@
+$ ticktalk -help
+usage: ticktalk  [-help] [-version] [-before] [-<language>] [-approximate] \
+        [-noampm] [hour(0-23) min(0-59)]
+  where <language> is one of the following:
+    english | french | afrikaans
+  Options:
+  -help           Print this text
+  -version        Print the current version and exit
+  -before         Print time after the half hour as relative to next hour
+                    (not appropriate for some languages)
+  -approximate    Round time off to nearest 5 minutes
+  -<language>     The language to print the time in
+  -noampm         Don't put am/pm on the time string (if present otherwise)
+  hour min        Print the time corresponding to hour:min
+  With no arguments prints the current time to stdout
