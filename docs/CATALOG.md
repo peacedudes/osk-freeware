@@ -1,6 +1,6 @@
 # What is on this disk
 
-1014 programs of OS-9/68K community software, gathered from the archives that kept it and made to run again. **666 of them need nothing but this disk**; the rest want Microware's `cio`, marked below with a star.
+1015 programs of OS-9/68K community software, gathered from the archives that kept it and made to run again. **667 of them need nothing but this disk**; the rest want Microware's `cio`, marked below with a star.
 
 `DOC/INDEX` on the disk lists everything alphabetically. This is the same collection sorted by what each program is *for*, which is the more useful order when you do not yet know what you are looking for.
 
@@ -22,7 +22,7 @@
 | [Encoding & conversion](#encoding--conversion) | 29 | Between text encodings, line endings, Macintosh formats, ciphers and hashes. |
 | [Communications](#communications) | 97 | Kermit in several builds, terminal sessions, and networking. |
 | [Graphics & images](#graphics--images) | 195 | The netpbm toolkit, JPEG, a ray tracer, and things that draw. |
-| [Games](#games) | 94 | Adventures, board and card games, arcade ports, dungeon crawls and puzzles. |
+| [Games](#games) | 95 | Adventures, board and card games, arcade ports, dungeon crawls and puzzles. |
 | [Screen toys](#screen-toys) | 10 | Animations and screen effects -- they draw on the terminal rather than print to it. Some run until you stop them. |
 | [Amusements](#amusements) | 25 | Generators, simulators and diversions that are not quite games. |
 | [System & modules](#system--modules) | 132 | OS-9 module and process tools, devices, system state and scheduling. |
@@ -1184,7 +1184,7 @@
 
 *Adventures, board and card games, arcade ports, dungeon crawls and puzzles.*
 
-<details><summary>94 programs</summary>
+<details><summary>95 programs</summary>
 
 **Adventure & fiction**
 
@@ -1268,6 +1268,7 @@
 | `larn` | &#9733; larn, a dungeon crawl: RETURN gets past the opening text; its saved games and score file are in GAMES/LARN/PLAYGROUND<br>**How:** Full-screen dungeon crawl. RETURN gets past the opening text. Control-C gets you out; its playground is GAMES/LARN/PLAYGROUND. |
 | `moria` | UMoria 4.87, the dungeon crawl: roll up a character by race, sex and class, buy what you can afford in the town's shops, then take the stairs down after the Balrog.  `?' lists the commands, `^X' saves and `^K' quits.  Its data is USR/GAMES/MORIADIR, found with this disk as /h0<br>**How:** Full-screen dungeon crawl. SPACE past the news, then pick race, sex (m/f), ESC to keep the stats, class, and type a name; SPACE past the character sheet puts you in the town. `?' is the command list, `^X' saves and `^K' quits. It needs TERM set; its data is USR/GAMES/MORIADIR. |
 | `nethack3` | NetHack 3.0f, the dungeon crawl grown out of hack: pick or build a character, then go down through the Mazes of Menace for the Amulet of Yendor.  `?' lists the commands, `S' saves and `Q' quits.  Its data is USR/GAMES/LIB/NETHACK3DIR, found with this disk as /h0; HACKDIR names another<br>**How:** Full-screen dungeon crawl. `y' lets it pick your character, SPACE clears each --More--, `?' is the command list, `S' saves and `Q' quits. It needs TERM set; its data is USR/GAMES/LIB/NETHACK3DIR. |
+| `rogue` | the rogue 5.3 clone: explore a dungeon drawn as you go, fight what you meet and take the stairs down.  hjkl move, `i' is the inventory, ESC cancels a question, `Q' then `y' quits to the Top Ten.  Needs TERM set<br>**How:** Full-screen dungeon crawl. h, j, k and l move; `i' lists the pack and SPACE puts it away; `d' drops something and ESC cancels any question; `Q' then `y' ends the game and shows the Top Ten, kept in GAMES/ROGUE/rogue.scores. It needs TERM set, as SYS/login does. |
 | `ularn` | ULarn -- the larn variant, and its data is complete<br>`Cmd line format: Ularn [-slicnh] [-o<optsfile>] [-##] [++]` |
 
 **Other games**

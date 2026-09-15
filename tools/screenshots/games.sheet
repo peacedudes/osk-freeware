@@ -926,6 +926,24 @@ run     jumble team
 wait    2
 snap
 
+shot    rogue
+size    24 80
+cap     The first level of the dungeon: the room is drawn as it is found, `@'
+cap     is you, and the line at the foot keeps your level, gold, hit points,
+cap     strength, armour and experience.
+try     rogue
+run     rogue
+wait    6
+snap
+send    Q
+wait    3
+send    y
+wait    4
+send    \s
+wait    3
+send    \s
+wait    3
+
 shot    larn
 cap     Larn: the dungeon is drawn as you find it, letters for what is in
 cap     it, and the two lines at the foot are your spells, armour class,

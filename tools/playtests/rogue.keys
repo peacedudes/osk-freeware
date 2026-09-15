@@ -1,0 +1,27 @@
+name    rogue
+prog    rogue
+# The first level: a step, the drop question cancelled with ESC, then quit.
+rate    0.5
+size    24 80
+wait    6
+snap    start
+key     l
+wait    2
+key     d
+wait    3
+snap    drop-asked
+key     \e
+wait    3
+snap    cancelled
+key     Q
+wait    3
+key     y
+wait    5
+key     \s
+wait    4
+snap    topten
+key     \s
+wait    4
+expect  Level:
+expect  drop what?
+expect  Top  Ten  Rogueists

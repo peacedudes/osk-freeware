@@ -1011,3 +1011,5 @@ jumble|jumble|jumble.c|||
 agrep|agrep|asearch.c asearch1.c bitap.c checkfile.c compat.c follow.c main.c maskgen.c parse.c preprocess.c sgrep.c mgrep.c utilities.c|||
 # sgrep: McKeon's DECUS grep with substitution, 6809 archive (c09_sgrep); built unchanged.
 sgrep|sgrep|sgrep.c|||
+# rogue: Stoehr's rogue 5.3 clone, CSG v1 with Patch1-3; an OSK arm in machdep.c, its own curses.
+rogue|rogue|curses.c hit.c init.c inventory.c level.c machdep.c main.c message.c monster.c move.c object.c pack.c play.c random.c ring.c room.c save.c score.c spec_hit.c throw.c trap.c use.c zap.c|CURSES||
