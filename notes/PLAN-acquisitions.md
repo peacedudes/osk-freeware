@@ -588,9 +588,10 @@ THE REST OF THE c09_ TREE, assessed 2026-09-15 (almanac, reversi and spew
 are already on the disk; SmallTeX, Solve, bawk and sortc are above;
 Solitaire and StG are under Leave alone):
 - kalah (Michael J. Knudsen 1983-84, Kalah and "Pigeon Plague" against the
-  computer; a bare copyright, no grant): IN PROGRESS.  Plain stdio; its
+  computer; a bare copyright, no grant): DONE (726c8243).  Plain stdio; its
   6809 move.a hand-optimises count() and makel(), whose C is movesrc.c,
-  marked "for reference only" -- a 68k build needs it.
+  marked "for reference only" -- a 68k build needs it.  printf printed
+  nothing to its unbuffered stdout, and show.c called count() undeclared.
 - kutil (Bruce Isted, free with notice): NOT SHIPPED, it reads and writes
   the kernel track of CoCo floppies and Burke & Burke hard drives.
 - peruse 2.0 (Stephen Castello 1991): NOT SHIPPED, it needs Isted's VRN

@@ -435,6 +435,25 @@ Open:
      **Blunt: two translit datatests ran against osk-freeware.dd**, which
      harnesses must never use; they wrote only to a host directory, but
      datatest takes the image lock.  Every run since used a *-cb.dd.
+     **Later still:** letters (1c377278; help fixed 708aaeca, sleep 08ac93a4) and
+     kalah (726c8243), the first program from the 6809 archive's C; CoCo-only
+     items in the c09_ tree are settled in PLAN-acquisitions.
+     **os9exec returned at once from a sleep under one tick** -- letters'
+     10 ms pause was 2/256 and every word fell the whole screen.  Reported
+     with a probe; fixed in os9exec 263b94a (it now rounds up, as the manual
+     gives for F$Alarm).  A floor I had added for it was taken out again, so
+     that the game runs at its author's pace on a sleep that rounds up.
+     **letters' help capture was its tty refusal ("where are you?")**, and
+     the gate accepted it: a program that checks isatty(0) cannot be asked
+     for help by helpcap.  Its help entry is none, with the options in the
+     note.  Read a new capture, not only the gate's verdict.
+     **printf prints NOTHING to an unbuffered stdout here** (measured: fputs,
+     putc and write do; printf and fprintf do not).  setbuf(stdout,0) is
+     common in old games -- kalah's output was rows of repeated punctuation.
+     Leave stdout buffered; a terminal still shows a prompt before the read.
+     **A function returning char, called undeclared, is garbage above the
+     low byte on the 68000** -- kalah's Pigeons totals read 661522 for 18.
+     Code from a 6809 compiler relied on it; declare the function.
   2n. **Two harness gaps, not yet fixed.**  (2026-09-15: mz is ported and
      waiting on the first one -- notes/PLAN-acquisitions.)  tools/ansiscreen.py does no
      auto-wrap at column 80 (it clamps), so it cannot show what an am
