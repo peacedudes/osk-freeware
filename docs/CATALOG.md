@@ -1,6 +1,6 @@
 # What is on this disk
 
-1020 programs of OS-9/68K community software, gathered from the archives that kept it and made to run again. **671 of them need nothing but this disk**; the rest want Microware's `cio`, marked below with a star.
+1021 programs of OS-9/68K community software, gathered from the archives that kept it and made to run again. **672 of them need nothing but this disk**; the rest want Microware's `cio`, marked below with a star.
 
 `DOC/INDEX` on the disk lists everything alphabetically. This is the same collection sorted by what each program is *for*, which is the more useful order when you do not yet know what you are looking for.
 
@@ -13,7 +13,7 @@
 |---|--:|---|
 | [Shells](#shells) | 24 | Unix shells to sit beside OS-9's own -- bash and ksh bring history, job control, and scripts that come across unchanged. |
 | [Editors](#editors) | 27 | vi and emacs in several flavours, line and stream editors, and editors for binary and hex. |
-| [Text tools](#text-tools) | 130 | Search, sort, compare, reformat, split and spell-check. |
+| [Text tools](#text-tools) | 131 | Search, sort, compare, reformat, split and spell-check. |
 | [Files & directories](#files--directories) | 34 | Listing, copying, finding, renaming, and knowing what you have. |
 | [Developer tools](#developer-tools) | 48 | Version control, tags, cross-reference, formatters, a debugger and benchmarks. |
 | [Compilers & build](#compilers--build) | 41 | C compilers and their passes, assemblers, linkers, make and parser generators. |
@@ -155,13 +155,14 @@
 
 *Search, sort, compare, reformat, split and spell-check.*
 
-<details><summary>130 programs</summary>
+<details><summary>131 programs</summary>
 
 **Alternates**
 
 | | |
 |---|---|
 | `diff_1.1` | a second build of GNU diff 1.1 with the same options; see `diff'<br>`Syntax   : diff [<options>] file1 file2` |
+| `ispell_rebuilt` | ispell built from SRC/ispell, the edition DOC/ispell describes: `ispell_rebuilt -l < file' lists the words LIB/ispell.hash does not hold<br>**How:** Pace Willisson's ispell, built from SRC/ispell -- the edition DOC/ispell documents and LIB/ispell.hash was made for. `ispell_rebuilt -l < file' reads the text on standard input and lists each word the dictionary does not hold, one to a line; lines that start with `.' are formatter commands and are skipped. Its -a pipe mode writes control bytes rather than answers, so use -l. |
 
 **Banners & text art**
 
@@ -279,7 +280,7 @@
 | | |
 |---|---|
 | `buildhash` | build ispell's dictionary hash.  It reads a word list called `dict.191' (the name is compiled in). /dd/LIB/ispell.hash is the built hash, 490,186 bytes, and it ships, so ispell itself reads that and works.  `chardef' reads the same word list. |
-| `ispell` | interactive spelling checker<br>**How:** Interactive spelling checker. Takes a file: `ispell <file>'. `ispell -a' is the pipe interface programs use. |
+| `ispell` | interactive spelling checker, another edition than the one DOC/ispell describes, with no source here.  It faults at its first dictionary lookup; REBUILT/ispell_rebuilt works<br>**How:** Interactive spelling checker, `ispell <file>', and `ispell -l <file>' for a list of the unknown words -- but this build lists correct words as unknown too and stops with a bus error at its first dictionary lookup (measured 2026-09-15). It is another edition than DOC/ispell describes, with no source on the disk. REBUILT/ispell_rebuilt is the working build: `ispell_rebuilt -l < file'. |
 | `jargon` | a browser for the Jargon File, the hackers' dictionary: `jargon -b word' opens at an entry; it reads jargon.txt and jargon.idx from VH on its own<br>**How:** A browser for the Jargon File, which is here: VH/jargon.txt, version 3.0.0 of 27 July 1993, with its index. It will not read SYS/termcap -- do `. /dd/SYS/termcap.entry' first, then `jargon -m'. |
 | `makelex` | &#9733; compiles sonnet's lex.data word list into a C array |
 | `speech` | translates English text into phonemes, the front half of a speech synthesiser: run bare it reads a line and prints its transcription; `speech in out' does a whole file<br>`Error: Cannot open input file.` |

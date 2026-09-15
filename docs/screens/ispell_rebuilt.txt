@@ -1,0 +1,12 @@
+ispell_rebuilt -l < tmp/TXT/spell2.txt
+brilig
+
+slithy
+
+tovs
+
+gyre
+
+gimble
+
+wabe

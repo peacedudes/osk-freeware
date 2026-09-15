@@ -576,8 +576,9 @@ run     pageline < tmp/TXT/titles
 wait    8
 
 shot    ispell
-cap     ispell listing the words it does not know in a file: -l gives
-cap     the list instead of the interactive session.
+cap     This build of ispell lists every word of the line as unknown, correct
+cap     ones too, and stops with a bus error at its first dictionary lookup.
+cap     REBUILT/ispell_rebuilt is the edition DOC/ispell describes, and works.
 try     ispell -l tmp/TXT/spell.txt
 run     mkdir -p /dd/tmp/TXT > /nil 2>/nil; printf "Twas brilig and the slithy tovs did gyre and gimble in the wabe.\r" > /dd/tmp/TXT/spell.txt
 wait    3
@@ -587,6 +588,20 @@ run     clear
 wait    1
 run     ispell -l tmp/TXT/spell.txt
 wait    12
+
+shot    ispell_rebuilt
+cap     The words the dictionary does not hold, one to a line: -l reads the
+cap     text on standard input and skips lines that are formatter commands.
+try     ispell_rebuilt -l < tmp/TXT/spell2.txt
+os9     ispell_rebuilt -l <tmp/TXT/spell2.txt
+run     mkdir -p /dd/tmp/TXT > /nil 2>/nil; printf "Twas brilig and the slithy tovs did gyre and gimble in the wabe.\r" > /dd/tmp/TXT/spell2.txt
+wait    3
+run     builtin cd /dd
+wait    1
+run     clear
+wait    1
+run     ispell_rebuilt -l < tmp/TXT/spell2.txt
+wait    8
 
 shot    buildhash
 cap     Builds ispell's hashed dictionary from a word list and an affix

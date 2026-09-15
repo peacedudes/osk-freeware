@@ -144,3 +144,15 @@ run     /dd/CMDS/compress -dc < /dd/tmp/rcp.Z | /dd/CMDS/cat > /dd/tmp/scp.out
 run     /dd/CMDS/md5 /dd/tmp/scp.out
 expect  MD5 (/dd/tmp/scp.out) =
 absent  ee2c20fa226fe6fc78feec7f123c7a99
+
+# ispell_rebuilt (2026-09-15) is SRC/ispell built as its recipe says: the
+# edition DOC/ispell documents and LIB/ispell.hash was made for.  CMDS/ispell
+# is another edition with no source here, and it faults at its first
+# dictionary lookup, so the working build ships here.  -l reads standard input.
+case    rebuilt-ispell-lists-only-the-unknown-words
+run     echo ".sp" > /dd/tmp/isr.txt
+run     echo "Twas brilig, and the slithy tovs did gyre." >> /dd/tmp/isr.txt
+run     $R/ispell_rebuilt -l < /dd/tmp/isr.txt
+expect  brilig
+expect  tovs
+absent  the

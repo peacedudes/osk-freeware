@@ -260,7 +260,11 @@ cut|cutpaste|cut.c getopt.c spaste.c|||
 paste|cutpaste|getopt.c paste.c spaste.c|||
 proff|proff|proff.c proff01.c proff02.c lookup.c pinit.c putwrd.c pxlex.c pxxparse.c dostuff2.c eval.c stack.c map.c|||
 buildhash|ispell|buildhash.c hash.c|||
-ispell|ispell|ispell.c term.c good.c lookup.c hash.c tree.c|TERMCAPS||
+# SRC/ispell is Pace Willisson's ispell, the edition DOC/ispell documents and
+# LIB/ispell.hash was built for.  CMDS/ispell is another edition with no source
+# here, and it faults at its first dictionary lookup (2026-09-15), so this build
+# ships beside it as REBUILT/ispell_rebuilt.
+ispell_rebuilt|ispell|ispell.c term.c good.c lookup.c hash.c tree.c|TERMCAPS||
 
 # less 3.32, from its own Makefile.o9c object list
 less|less/less_332|main.c screen.c brac.c ch.c charset.c cmdbuf.c command.c decode.c edit.c filename.c forwback.c help.c ifile.c input.c jump.c line.c linenum.c lsystem.c mark.c optfunc.c option.c opttbl.c os.c output.c position.c prompt.c search.c signal.c tags.c ttyin.c version.c regexp.c|_OSK_MWC32=1 _OSK=1||
