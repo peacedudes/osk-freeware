@@ -1,3 +1,6 @@
-$ lmail -?
-Syntax: lmail <user name> {<user name>}
-Function: sends local mail to <user name(s)>
+lmail os9 < tmp/note
+$ cat SPOOL/MAIL/os9
+Subject: hello
+Status: N
+
+A note for the os9 account.

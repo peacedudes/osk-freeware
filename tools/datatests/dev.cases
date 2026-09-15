@@ -129,7 +129,16 @@ run     /dd/CMDS/forth < $W/f.fth
 expect  TILE Forth version 2.48, Copyright (c) 1989, by Mikael Patel
 expect  5
 
-# `hist' IS NOT A CASE. It says nothing to `-?' and does not return -- it
-# is a wrapper that gives a shell C-shell-style history, and with no shell
-# under it there is neither output to assert nor a return to wait for.
-# Measured twice, 2026-09-01.
+# `hist' is not a case.  It runs every command through a module named
+# `shell' -- Microware's -- and keeps its history on /r0 unless given a
+# file; with neither on this disk it stops at the first command.  Under the
+# SDK's shell with `hist <file>' it runs commands, lists them with `h' and
+# leaves on `logout' (measured 2026-09-14).
+
+case    sdb-opens-and-exit-leaves
+# The command is `exit'; `q' is a syntax error, and at end of input sdb
+# re-prompts until its stack overflows.
+run     /dd/CMDS/printf 'exit\n' | /dd/CMDS/sdb
+expect  SDB - version 2.0
+absent  syntax error
+absent  Stack Overflow

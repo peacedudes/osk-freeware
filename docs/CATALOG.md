@@ -47,7 +47,7 @@
 | `checkenv` | &#9733; compares an environment variable with a value for a script to branch on: `checkenv <name> , <value>', spaces round the comma.  It returns 0 whether the value matches or not, so `getenv -p <name>', which prints the value, is the one to use for a reliable branch<br>**How:** `checkenv <name> , <value>' with spaces round the comma. Meant to return an error when they differ; it returns 0 either way. |
 | `exist` | &#9733; test whether a file exists and answer in the exit status: 0 if it does, 1 if it does not, which is what a script wants.  -n inverts the test, -d asks whether the name is a directory.  German: its help is headed `Aufruf' and `Rueckgabewerte'.  DESIGNA VLT, version UTIL 2.40<br>`EXIST    Version UTIL 2.40 by DESIGNA VLT 24.11.97` |
 | `getenv` | &#9733; print or test an environment variable.  German prompts: `getenv -p TERM' prints the value with a newline, -l without one, -x exits with it, -n inverts the test.  Bare, or with a name and no option, it prints its own usage.  DESIGNA VLT, version UTIL 2.40<br>`GETENV   Version UTIL 2.40 by DESIGNA VLT 24.11.97` |
-| `hist` | a command-line editor with history, in front of the shell  [no military use -- EFFO-INFO]<br>**How:** A command-line editor with history in front of the shell. On this console it prints a row of asterisks and returns at once. |
+| `hist` | a command-line editor with C-shell-style history in front of Microware's shell: `h' lists it, `logout' leaves.  Name a history file; the default is on the RAM disk /r0 [no military use -- EFFO-INFO]<br>**How:** A command-line editor with C-shell-style history in front of Microware's shell, which runs each command it is given. `hist <file>' keeps the history in that file (the default is /r0/history, on a RAM disk); `h' lists it and `logout' leaves. |
 | `if` | conditional execution for a shell script: `if def <var>', `if loaded <module>' or `if varval <var> <value>', the commands, `else', `endif'.  It hands the branch to Microware's `shell' to run<br>**How:** bash's own `if' is a reserved word; `command if' reaches the one on this disk. |
 | `printenv` | &#9733; print the environment<br>`**** PRINTENV Utility for use with ZSH, (c) 1989 by L.Zeller ****` |
 | `printf` | formatted print from the shell, as on Unix: widths, numbers and floating point<br>**How:** printf as on Unix: `printf "%-8s\|%5d\n" name 12'. Widths, numbers and floating point all work. |
@@ -479,7 +479,7 @@
 
 | | |
 |---|---|
-| `sdb` | SDB 2.0, a symbolic debugger: opens a program at its prompt, where breakpoints, single steps and memory display are commands; q leaves |
+| `sdb` | SDB 2.0, a symbolic debugger: opens a program at its prompt, where breakpoints, single steps and memory display are commands; exit leaves |
 | `trap` | &#9733; an example trap handler -- it installs a trap from system state, so from an ordinary program it stops. Run it by path; trap is also a shell builtin.<br>**How:** The system-state trap-handler example: it installs a trap from system state. Ask for it BY PATH -- `/dd/CMDS/trap' -- because `trap' is also a bash builtin, and the builtin answers first, silently. |
 
 **Libraries**
@@ -815,7 +815,7 @@
 | `frm` | &#9733; list who your mail is from, one line each.  On this port it answers `tester has no mail' for a folder that `messages' counts and `readmsg' prints, so use those two<br>**How:** Lists who your mail is from, one line each. Reads $MAIL, which SYS/login sets. |
 | `lcasep` | &#9733; lower-case a name for mail<br>`/dd/CMDS/UUCP/lcasep: illegal option -- ?` |
 | `listalias` | &#9733; list the aliases you have, once newalias has compiled them: `home  os9-freeware (This Collection)'.  It builds an `egrep ... \| sort' pipeline and hands it to a shell, so `load' sort first or the fork misses it and you get the list unsorted with a `sort: nowhere found' line above it<br>`/dd/CMDS/ELM/listalias: illegal option -- ?` |
-| `lmail` | &#9733; local mail delivery.  Its usage line answers; giving it a real recipient does not return here -- it hangs, and only the session's own end brings it down<br>`Syntax: lmail <user name> {<user name>}` |
+| `lmail` | &#9733; local mail delivery: `lmail <user>' reads a message on standard input and appends it to that user's folder in SPOOL/MAIL, taking its lock in SYS/.LOCKS/MAIL.LOCKS<br>`Syntax: lmail <user name> {<user name>}` |
 | `mail` | &#9733; a simple mail sender |
 | `mailx` | &#9733; the mail reader and sender<br>`mailx v2.1 (94Sep30)  --send and receive e-mail` |
 | `makedb` | build smail's path-alias dbm: `makedb -o <name> <file>' writes <name>.dir and <name>.pag.  /dd/USR/LIB/SMAIL/palias is the source it defaults to<br>`/dd/CMDS/UUCP/makedb: illegal option -- ?` |

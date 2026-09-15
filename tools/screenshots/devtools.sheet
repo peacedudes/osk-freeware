@@ -225,9 +225,11 @@ wait    6
 
 shot    rcsdiff
 size    30 80
-cap     RCS: compares your working file against a stored revision.  To read the
-cap     revision it runs co into a temporary file, through a redirection the
-cap     shells here cannot make, so the compare has nothing to read and stops.
+cap     RCS: compares your working file against a stored revision.  It fetches
+cap     the revision by running co from a directory named RCS inside CMDS,
+cap     through Microware's shell, which reads the >- in that command.  Here
+cap     co sits beside rcs in CMDS and ksh stands in for the shell, so the
+cap     fetch stops at its redirection.
 try     rcsdiff note_v
 run     rm -rf /dd/tmp/DEV/rcs > /nil 2>/nil; mkdir -p /dd/tmp/DEV/rcs; printf "Twas brillig, and the slithy toves\r" > /dd/tmp/DEV/rcs/note; ci -t-draft /dd/tmp/DEV/rcs/note < /nil
 wait    8
@@ -472,7 +474,7 @@ wait    6
 
 shot    sdb
 cap     SDB 2.0, a symbolic debugger, opened on a program: its prompt, ready
-cap     for a command.  q leaves it.
+cap     for a command.  exit leaves it.
 try     sdb CMDS/today
 run     builtin cd /dd
 wait    1
@@ -481,7 +483,7 @@ wait    1
 run     sdb CMDS/today
 wait    8
 snap
-send    q\r
+send    exit\r
 wait    3
 
 shot    trap

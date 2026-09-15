@@ -48,3 +48,7 @@ stone|Microware's math trap handler (on this disk)|measured 2026-09-14, math and
 version|Microware's math trap handler (on this disk)|measured 2026-09-14, math and math881 withheld: "**** Can't install trap handler **** / **** math ****"
 lunisolar|Microware's math trap handler (on this disk)|measured 2026-09-14: without math it stops with "**** Can't install trap handler ****" (the name prints as "A"); with math and math881 supplied it starts
 spline|Microware's math trap handler (on this disk)|measured 2026-09-14: without math it writes some plot data, then stops with "**** Can't install trap handler ****" (the name prints as "A"); with math and math881 supplied it does not
+hist|Microware's shell, which runs each command typed at it|SRC/hist/h_main.c, system(); measured 2026-09-14 under the SDK shell
+hist|a history file it can write, named as an argument; the default is /r0/history, on a RAM disk|DOC/hist/hist.doc; measured 2026-09-14: E$MNF opening /r0/history._
+rcsdiff|co in a directory named RCS inside CMDS, run through Microware's shell|strings: "%s/co -q -p%s %s >-%s", "/dd/cmds/rcs"; measured 2026-09-14 under the SDK shell
+rcsmerge|co in a directory named RCS inside CMDS, run through Microware's shell|strings: "%s/co -q -p%s %s >-%s", "/dd/cmds/rcs"

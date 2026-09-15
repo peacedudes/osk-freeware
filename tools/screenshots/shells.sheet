@@ -185,11 +185,12 @@ wait    5
 try     run
 
 shot    hist
-cap     A command-line editor and history in front of the shell: cursor
-cap     movement, word and line deletion, and command recall.  Its own
-cap     prompt stays buffered and does not reach this console; giving it
-cap     a command, `whoami', flushes that buffer as a row of asterisks
-cap     and returns to bash.
+cap     A command-line editor with C-shell-style history, in front of
+cap     Microware's shell: cursor movement, word and line deletion, and
+cap     command recall; `h' lists what you typed and `logout' leaves.
+cap     It runs every command through that shell and keeps its history
+cap     in a file on a RAM disk unless you name one.  With neither here,
+cap     it stops at the first command.
 run     hist
 wait    3
 send    whoami\r

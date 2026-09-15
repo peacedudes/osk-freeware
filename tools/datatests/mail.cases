@@ -100,3 +100,17 @@ absent  comp.lang.c
 case    the-news-and-mail-commands-reject-input-that-is-not-theirs
 run     /dd/CMDS/NEWS/bdecode /dd/SYS/motd
 expect  Missing header
+
+case    lmail-delivers-into-a-users-mail-folder
+# lmail locks the recipient in SYS/.LOCKS/MAIL.LOCKS, which ships.  Without
+# that directory it retries the lock every ten seconds for twenty minutes,
+# which reads as a hang.  Delivered to os9 so tester's folder stays as it is.
+run     /dd/CMDS/rm -f /dd/SPOOL/MAIL/os9 > /nil 2>/nil
+run     echo "Subject: lmail case" > /dd/tmp/lmail.msg
+run     echo "" >> /dd/tmp/lmail.msg
+run     echo "Delivered by lmail." >> /dd/tmp/lmail.msg
+run     /dd/CMDS/UUCP/lmail os9 < /dd/tmp/lmail.msg
+run     /dd/CMDS/cat /dd/SPOOL/MAIL/os9
+expect  Subject: lmail case
+expect  Delivered by lmail.
+absent  unknown user

@@ -242,7 +242,7 @@ if|bash's own `if' is a reserved word; `command if' reaches the one on this disk
 qp|Runs its expanded command through Microware's `shell'.
 xc|`xc <file>': lines beginning `% ' are commands, the rest is notes. It forks them through Microware's `shell' to run.
 checkenv|`checkenv <name> , <value>' with spaces round the comma. Meant to return an error when they differ; it returns 0 either way.
-hist|A command-line editor with history in front of the shell. On this console it prints a row of asterisks and returns at once.
+hist|A command-line editor with C-shell-style history in front of Microware's shell, which runs each command it is given. `hist <file>' keeps the history in that file (the default is /r0/history, on a RAM disk); `h' lists it and `logout' leaves.
 run|`run '<program> <args>'' with PORT naming a terminal: the program runs with its input and output on that terminal.
 gcl|A full-screen digital clock: `gcl' runs until stopped, `gcl -n=10' for ten seconds; -s scrolls the digits, -i inverts the video.
 cuts|Coco Usenet Transfer Utility: it encodes a binary as mail-safe text and `-d' decodes a cuts file. Use `-d' for the half worth having; the encoder (`-e') asks for gigabytes of memory and is refused.

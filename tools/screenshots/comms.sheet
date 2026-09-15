@@ -194,12 +194,20 @@ run     listalias
 wait    6
 
 shot    lmail
-cap     Local mail delivery.  Its usage line is safe to ask for; giving
-cap     it a real recipient does not return here -- it hangs and has to
-cap     be broken out of.
-try     lmail -?
-run     lmail -?
+cap     Local mail delivery: it reads a message on standard input and adds
+cap     it to the named user's mail folder, where Elm, messages and readmsg
+cap     find it.  Here a short note goes to the os9 account.
+try     lmail os9 < tmp/note
+run     builtin cd /dd
+wait    1
+run     rm -f SPOOL/MAIL/os9; echo 'Subject: hello' > tmp/note; echo '' >> tmp/note; echo 'A note for the os9 account.' >> tmp/note
+wait    2
+run     clear
+wait    1
+run     lmail os9 < tmp/note
 wait    6
+run     cat SPOOL/MAIL/os9
+wait    3
 
 shot    mail
 cap     A simple mail sender.  It reaches for a scratch file at /r0, the
