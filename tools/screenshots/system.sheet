@@ -479,23 +479,24 @@ run     sysid
 wait    5
 shot    sysmon
 size    30 80
-cap     sysmon draws the OS-9/68k Process Monitor: the header with the
-cap     active-task count and poll delay, the per-process CPU bar chart
-cap     scaled 0 to 100 percent, and the task frame.  It wants a
-cap     SYS/nodedef node-definition file to poll continuously; without one
-cap     it draws the screen once and stops there.
+cap     The OS-9/68k Process Monitor: the node, clock and CPU in the header,
+cap     then a bar per process scaled 0 to 100 percent of the CPU, redrawn
+cap     every few seconds.  On its first run it offers to create SYS/nodedef
+cap     and asks for this system's node name; control-C leaves.
 try     sysmon
 run     export TERM=vt100
 wait    1
 run     clear
 wait    1
-run     sysmon
+run     sysmon 2>/nil
 wait    6
 send    Y
+wait    4
+send    osk\r
+wait    12
+snap
+send    \003
 wait    3
-send    \r
-wait    6
-kill
 shot    top
 cap     top lists processes by their share of the CPU.  It prints its column
 cap     headings and then crashes on the root process, whose parent is

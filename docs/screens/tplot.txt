@@ -1,6 +1,4 @@
 $ tplot
-x interval    ? 1
-x interval    ? 2
-x interval    ? 3
-x interval    ? 4
-x interval    ?
+x interval    ? 0 10
+y interval    ? 0 5
+x, y divisions ?

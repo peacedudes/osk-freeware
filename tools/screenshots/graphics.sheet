@@ -1460,24 +1460,20 @@ snap
 snap
 
 shot    tplot
-cap     Plots columns of numbers to a plotter, written for an Atari ST.  It
-cap     prompts for x intervals and drives the plotter directly; with no
-cap     plotter here it goes on asking for the next interval.
+cap     Plots columns of numbers from a file or standard input.  It asks
+cap     for the x and y intervals, two numbers each, and then the x and y
+cap     divisions, and draws through the Atari ST's A-line graphics traps --
+cap     a machine with those is what it needs to finish the plot.
 try     tplot
 run     tplot
 wait    5
-send    1\r
-wait    2
-send    2\r
-wait    2
-send    3\r
-wait    2
-send    4\r
+send    0 10\r
 wait    3
+send    0 5\r
+wait    3
+kill
 
 # ---- Ray tracing helper
-snap
-
 
 shot    rsconvert
 cap     Converts rayshade image output between formats.  Run here it prints
