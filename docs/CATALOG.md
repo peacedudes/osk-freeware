@@ -1,6 +1,6 @@
 # What is on this disk
 
-1017 programs of OS-9/68K community software, gathered from the archives that kept it and made to run again. **668 of them need nothing but this disk**; the rest want Microware's `cio`, marked below with a star.
+1020 programs of OS-9/68K community software, gathered from the archives that kept it and made to run again. **671 of them need nothing but this disk**; the rest want Microware's `cio`, marked below with a star.
 
 `DOC/INDEX` on the disk lists everything alphabetically. This is the same collection sorted by what each program is *for*, which is the more useful order when you do not yet know what you are looking for.
 
@@ -18,13 +18,13 @@
 | [Developer tools](#developer-tools) | 48 | Version control, tags, cross-reference, formatters, a debugger and benchmarks. |
 | [Compilers & build](#compilers--build) | 41 | C compilers and their passes, assemblers, linkers, make and parser generators. |
 | [Languages](#languages) | 11 | Interpreters and language systems beyond C. |
-| [Archives & compression](#archives--compression) | 33 | Pack, unpack and shrink -- lha, zip, tar, arc, zoo, and OS-9 module libraries. |
+| [Archives & compression](#archives--compression) | 34 | Pack, unpack and shrink -- lha, zip, tar, arc, zoo, and OS-9 module libraries. |
 | [Encoding & conversion](#encoding--conversion) | 29 | Between text encodings, line endings, Macintosh formats, ciphers and hashes. |
 | [Communications](#communications) | 98 | Kermit in several builds, terminal sessions, and networking. |
 | [Graphics & images](#graphics--images) | 195 | The netpbm toolkit, JPEG, a ray tracer, and things that draw. |
-| [Games](#games) | 95 | Adventures, board and card games, arcade ports, dungeon crawls and puzzles. |
+| [Games](#games) | 96 | Adventures, board and card games, arcade ports, dungeon crawls and puzzles. |
 | [Screen toys](#screen-toys) | 10 | Animations and screen effects -- they draw on the terminal rather than print to it. Some run until you stop them. |
-| [Amusements](#amusements) | 25 | Generators, simulators and diversions that are not quite games. |
+| [Amusements](#amusements) | 26 | Generators, simulators and diversions that are not quite games. |
 | [System & modules](#system--modules) | 132 | OS-9 module and process tools, devices, system state and scheduling. |
 | [Disk & DOS](#disk--dos) | 20 | Reading and writing MS-DOS media with the mtools set. |
 | [Time & calendar](#time--calendar) | 15 | Calendars, clocks and astronomy. |
@@ -654,7 +654,7 @@
 
 *Pack, unpack and shrink -- lha, zip, tar, arc, zoo, and OS-9 module libraries.*
 
-<details><summary>33 programs</summary>
+<details><summary>34 programs</summary>
 
 **Alternates**
 
@@ -676,6 +676,7 @@
 | `compr` | a Lempel-Ziv-Welch file compressor, another edition of `compress': -v reports the saving, -d decompresses, and the .Z file replaces the original<br>`Unknown flag: '?'; Usage: compress [-dfvcV] [-b maxbits] [file ...]` |
 | `compress` | compress and uncompress with Lempel-Ziv-Welch coding<br>`Unknown flag: '?'; Usage: compress [-dfvoV] [-b MaxBits] [file ...]` |
 | `gzip` | GNU gzip 1.2.2: compresses a file to .gz and back again with -d; -l lists, -t tests, -1 to -9 trade speed for size<br>`gzip 1.2.2 (17 Jun 93)` |
+| `jaw` | zcat in 22 lines, a 1990 obfuscated-C contest entry: `jaw < file.Z' writes out what compress packed<br>**How:** `jaw < file.Z' writes out what compress packed into file.Z, as zcat does. It reads a pipe as well as a file. Run as a copy whose name begins with `a' it decodes btoa's text instead -- its authors' shark archiver pipes the one into the other. |
 
 **Create & extract**
 
@@ -1186,7 +1187,7 @@
 
 *Adventures, board and card games, arcade ports, dungeon crawls and puzzles.*
 
-<details><summary>95 programs</summary>
+<details><summary>96 programs</summary>
 
 **Adventure & fiction**
 
@@ -1222,6 +1223,7 @@
 |---|---|
 | `accordian` | Accordian solitaire: the deck is dealt in a row, and a stack slides one or three places left onto a card of the same suit or rank, closing the gap; win by squeezing it to one pile |
 | `back` | &#9733; backgammon on a full board, points numbered 1 to 24, with the dice cup and the doubling status beside it. Single letters are the commands: R rolls, D doubles, H is the help, N starts a new game, Q quits<br>**How:** Single letters are the commands: R rolls, D doubles, H is the help, N starts a new game, Q quits. |
+| `bjack` | blackjack, a 1990 obfuscated-C contest entry: one deck, a stake of $1000 or the one you name (`bjack 500'); a wager of 0 or end of file quits<br>**How:** `bjack [stake]' -- $1000 unless you name one; the largest bet is 500. It asks `Wager?' before each hand, then offers double, hit, split and insurance as the cards allow; answer y or n. A wager of 0, a negative one, or end of file quits. |
 | `blackjack` | Las Vegas blackjack in BASIC09 -- `runb blackjack' asks your name and whether you want the rules, then takes a wager and deals: RETURN draws, `s' stands, `d' doubles down, `x' splits a pair, a wager of 0 ends the game (blackjak, in GAMES, is the SNOBOL4 one)<br>**How:** BASIC09 I-code: `load /h1/CMDS/runb' then `runb blackjack' (bare module name -- a pathname gives BASIC09 error 43). It asks your name and whether you want the rules, then takes a wager and deals: RETURN draws a card, `s' stands, `d' doubles down, `x' splits a pair; a wager of 0 ends the game. runb links the `math' trap handler from the execution directory, so leave chx at CMDS -- tested, plays a full hand. |
 | `blackjak` | &#9733; Las Vegas BlackJack (SNOBOL4-in-C).  Data: GAMES/SNOBOL |
 | `bs` | Battleships against the computer on a 10x10 grid: place your fleet, then hunt the computer's ships square by square with the hjklyubn cursor keys; sink the whole fleet to win |
@@ -1350,7 +1352,7 @@
 
 *Generators, simulators and diversions that are not quite games.*
 
-<details><summary>25 programs</summary>
+<details><summary>26 programs</summary>
 
 **Biorhythms**
 
@@ -1367,6 +1369,7 @@
 | `globe` | show the currently-lit face of the Earth in ASCII, the globe turning through the day as the hours pass |
 | `phoon` | show the phase of the moon as a little picture: `phoon' for tonight, `phoon 2025 12 25' for a date; `-l' sets the size |
 | `touchtype` | TYPEFAST, a typing game: words fall down the screen and you type each one before it lands.  ESC ends the game and scores you in words per minute<br>**How:** Full-screen typing game. Answer `n' to the instructions question, pick a level 1-3 (q quits there), type each falling word followed by SPACE or RETURN. ESC ends the game and prints the words-per-minute score. |
+| `trigraph` | prints its own C source spelled in ANSI trigraphs -- ??< for {, ??= for # -- a 1990 obfuscated-C contest entry<br>**How:** `trigraph' prints its own source with every # { } [ ] \ ^ \| ~ written as its ANSI trigraph -- ??= ??< and the rest. Microware's cpp does not read trigraphs, so SRC/ioccc/OSK holds the translated copy it was built from. |
 
 **Generators**
 

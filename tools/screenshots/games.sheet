@@ -1721,3 +1721,16 @@ wait    6
 snap
 send    stop\rn\r
 wait    3
+
+shot    bjack
+size    24 80
+cap     A stake of $500 and a first bet of 100, dealt from one shuffled deck.
+cap     The dealer's second card is the `?'; the game then asks each decision
+cap     the hand allows -- double, hit, split, insurance -- in turn.
+try     bjack 500
+run     clear
+wait    1
+run     bjack 500
+wait    3
+send    100\r
+wait    3

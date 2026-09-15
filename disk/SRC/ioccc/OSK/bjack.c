@@ -1,0 +1,1 @@
+/* cmills.c as its hint file's compile notes build it: M is the largest * bet, N is 52 times the number of decks, X seeds rand() and V is void or * int.  The notes pass these with -D; one of them has spaces and brackets * in it, which is easier to say here. */#define M 500#define N 52#define X srand((int)time(0L))#define V int#include "cmills.c"

@@ -223,3 +223,18 @@ run     /dd/CMDS/rm -rf /dd/tmp/UNSD
 run     /dd/CMDS/cat /dd/DOC/unshar/which6.shar | /dd/CMDS/unshar -n -d /dd/tmp/UNSD
 run     /dd/CMDS/md5 /dd/tmp/UNSD/which6.c
 expect  ec84e20efff9c28ab281eb5dec8c75b2
+
+# jaw (2026-09-15), a 1990 IOCCC zcat.  The pipe case is the one that
+# matters: stdio's putchar evaluates its argument twice when output is
+# line-buffered, and before fputc replaced it jaw wrote a file correctly
+# and a pipe wrong.
+case    jaw-unpacks-compress-output
+run     /dd/CMDS/compress -c < $T > /dd/tmp/jaw.Z
+run     /dd/CMDS/jaw < /dd/tmp/jaw.Z > /dd/tmp/jaw.out
+run     /dd/CMDS/md5 /dd/tmp/jaw.out
+expect  ee2c20fa226fe6fc78feec7f123c7a99
+
+case    jaw-writes-a-pipe-correctly
+run     /dd/CMDS/jaw < /dd/tmp/jaw.Z | /dd/CMDS/cat > /dd/tmp/jaw.pipe
+run     /dd/CMDS/md5 /dd/tmp/jaw.pipe
+expect  ee2c20fa226fe6fc78feec7f123c7a99

@@ -678,6 +678,9 @@ mille|none|it takes a saved game to restore and no options
 nchess|none|it takes no options; `help' at its prompt lists the commands
 poker|none|it takes no options and asks whether you want the rules; answer yes or no in full
 queens|none|it reads the board size on standard input and takes no options
+bjack|none|it takes one argument, the starting stake, and no options
+jaw|none|it takes no arguments: compressed data on standard input, the original on standard output
+trigraph|none|it takes no arguments and prints its own source
 tttt|none|it takes no options; q quits
 bincheckr|none|it takes the book file and nothing else
 checkgame|none|it takes the game listing and nothing else

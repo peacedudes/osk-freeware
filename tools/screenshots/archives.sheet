@@ -457,3 +457,20 @@ run     clear
 wait    1
 run     unpacklib -verbose LIB/blarslib.l
 wait    10
+
+shot    jaw
+size    24 80
+cap     A one-line sentence after compress has packed it, and jaw -- a zcat
+cap     in 22 lines of obfuscated C -- writing it back out.
+try     dump q.Z; jaw < q.Z
+os9     dump q.Z; jaw <q.Z
+run     /dd/CMDS/rm -rf /dd/tmp/jawcard > /nil 2>/nil
+run     /dd/CMDS/mkdir -p /dd/tmp/jawcard
+run     builtin cd /dd/tmp/jawcard
+run     echo "Quartz glyph jocks vend, fix, BMW." > q
+run     compress < q > q.Z
+wait    2
+run     clear
+wait    1
+run     dump q.Z; jaw < q.Z
+wait    4

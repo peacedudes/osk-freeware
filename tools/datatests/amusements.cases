@@ -74,3 +74,22 @@ expect  cab
 case    jumble-with-no-word-prints-its-usage
 run     /dd/CMDS/jumble
 expect  usage: jumble <word>
+
+# bjack and trigraph (2026-09-15): two 1990 IOCCC entries, built from
+# SRC/ioccc/OSK.  bjack reads its wager with gets(), so a file of answers
+# plays a hand and end of file quits.
+case    bjack-takes-a-stake-and-deals-a-hand
+run     echo "100" > $W/bj.in
+run     echo "n" >> $W/bj.in
+run     echo "n" >> $W/bj.in
+run     /dd/CMDS/GAMES/bjack 700 < $W/bj.in
+expect  Total $700.
+expect  Dealer:
+
+# What trigraph prints is the entry as published, trigraphs and all: it
+# differs from the original only by that file's trailing blank line.
+case    trigraph-prints-the-original-entry
+run     /dd/CMDS/trigraph > $W/tri.c
+run     /dd/CMDS/diff $W/tri.c /dd/SRC/ioccc/scjones.c
+expect  46a47
+absent  < 

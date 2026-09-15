@@ -262,6 +262,9 @@ maze|Reads the number of rows on standard input: `echo 11 | maze' draws a maze e
 pacman|Answer the name and instructions prompts, then play with the keypad: 8 up, 2 down, 4 left, 6 right, q quits. It draws with TeleVideo cursor codes (ESC = row col), so the maze paints only on a terminal that understands them; its board, help and score files are in GAMES/pacman.
 postprint|It wants gnuchess's persistent hash file -- point it at one.
 queens|Reads the board size on standard input as a number: `echo 6 | queens'.
+bjack|`bjack [stake]' -- $1000 unless you name one; the largest bet is 500. It asks `Wager?' before each hand, then offers double, hit, split and insurance as the cards allow; answer y or n. A wager of 0, a negative one, or end of file quits.
+jaw|`jaw < file.Z' writes out what compress packed into file.Z, as zcat does. It reads a pipe as well as a file. Run as a copy whose name begins with `a' it decodes btoa's text instead -- its authors' shark archiver pipes the one into the other.
+trigraph|`trigraph' prints its own source with every # { } [ ] \ ^ | ~ written as its ANSI trigraph -- ??= ??< and the rest. Microware's cpp does not read trigraphs, so SRC/ioccc/OSK holds the translated copy it was built from.
 zot|`zot -s=<1-14> "text"' animates the text in that style -- the letters slide in, bounce, sort themselves or turn up one at a time, each frame overwriting the last with a bare CR; `zot -s' names the fourteen styles; `zot -d "text"' plays them all in turn.  Under os9exec, -r (unpaced output) makes every animation instantaneous, so you see only the finished line.
 imgtoppm|Reads the Img Software Set (AT&T Image-8) format; gemtopbm reads GEM IMG. Feed it an Image-8 file.
 psidtopgm|Reads the hex digits of PostScript `image' operator data: `psidtopgm <width> <height> <bits/sample>' then the hex on standard input. `echo ffffffff00000000 | psidtopgm 4 2 8' makes a 4x2 graymap, a white row over a black one.

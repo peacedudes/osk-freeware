@@ -23,6 +23,7 @@ ssl|System & modules|Devices & disks
 touchtype|Amusements|Curiosities
 phoon|Amusements|Curiosities
 globe|Amusements|Curiosities
+trigraph|Amusements|Curiosities
 ttyexp|Screen toys|Screen toys
 wysecrack|Communications|Terminal & session
 wysetime|Communications|Terminal & session
@@ -42,6 +43,7 @@ nasa|Time & calendar|Astronomy
 # ---- Archives & compression ----
 compr|Archives & compression|Compress a file
 compress|Archives & compression|Compress a file
+jaw|Archives & compression|Compress a file
 gzip|Archives & compression|Compress a file
 ar|Archives & compression|Create & extract
 arc|Archives & compression|Create & extract
@@ -481,6 +483,7 @@ forth|Languages|Interpreters
 wam.sbprolog|Languages|Interpreters
 xlisp|Languages|Interpreters
 blackjak|Games|Board & card
+bjack|Games|Board & card
 poker|Games|Board & card
 stone|Games|Other games
 

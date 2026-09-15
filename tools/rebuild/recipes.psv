@@ -324,10 +324,14 @@ kept|keep|keep.c|MODE_KEPT||
 about|keep|about.c|||
 # `wish' is from the toys archive; its makefile names the eleven sources.
 wish|wish|wish.c files.c termcap.c keyboard.c movement.c commandline.c getwd.c more.c flabel.c paging.c cursor.c||/dd/LIB/termlib.l|
-# One IOCCC entry out of the twelve in SRC/ioccc became a program on this disk;
-# DOC/ORIGINS names it: `queens ... IOCCC entry by M. Baruch'.  The other
-# eleven are entries nobody built and there is nothing on the disk to match.
+# Four of the twelve 1990 IOCCC entries in SRC/ioccc are programs on this disk.
+# queens is baruch.c, by Doron Osovlanski and Baruch Nissenbaum.  The other
+# three (2026-09-15) build from changed copies in SRC/ioccc/OSK, whose
+# README.OSK lists every change; the originals stay beside them untouched.
 queens|ioccc|baruch.c|||
+bjack|ioccc/OSK|bjack.c|||
+jaw|ioccc/OSK|jaw.c|||
+trigraph|ioccc/OSK|scjones.c|||
 # The six xasm cross-assemblers, all from one common core plus one do<n>.c.
 # They are 6800, 6801, 6804, 6805, 6809 and 68HC11 -- NOT 68k, whatever
 # DOC/INDEX used to say.  Two defects had to go first: as.h declared Page_num
