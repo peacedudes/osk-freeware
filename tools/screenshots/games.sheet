@@ -679,6 +679,34 @@ snap
 send    \003
 wait    3
 
+shot    nethack3
+size    24 80
+cap     A new character on the first level of the Mazes of Menace: the room,
+cap     the `@' that is you and a pet beside you, and the two status lines --
+cap     strength, dexterity and the rest, then dungeon level, gold, hit points,
+cap     power, armour class and experience.  `y' at the first question lets it
+cap     choose your character; `?' lists the commands, `S' saves, `Q' quits.
+try     nethack3
+run     export TERM=vt100
+wait    1
+run     clear
+wait    1
+run     nethack3
+wait    10
+send    y
+wait    8
+send    \s
+wait    4
+send    \s
+wait    4
+snap
+send    Q
+wait    3
+send    y
+wait    4
+send    n
+wait    6
+
 shot    larn
 cap     Larn: the dungeon is drawn as you find it, letters for what is in
 cap     it, and the two lines at the foot are your spells, armour class,

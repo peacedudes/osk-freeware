@@ -1,0 +1,24 @@
+Hello tester, welcome to NetHack!
+
+
+
+           ----------
+           |........|
+           |...d@...|
+           |.......d+
+           ----+-----
+
+
+
+
+
+
+
+
+
+
+
+
+
+Tester the Troglodyte    St:18/03 Dx:12 Co:15 In:9 Wi:7 Ch:8  Lawful
+Dlvl:1  G:0  HP:16(16) Pw:1(1) AC:8  Xp:1/0

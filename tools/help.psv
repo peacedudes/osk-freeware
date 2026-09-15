@@ -1009,3 +1009,4 @@ reversi|none|arrow keys or hjkl move the cursor, RETURN places a disk, m opens t
 scrabble|none|hjkl move the cursor, H or V places a word across or down, T trades letters in, A asks the computer for advice, S and R save and restore, Q quits and `?' explains; -n sets the number of players and -m makes one of them the computer
 napoleon|none|it takes no options and prints no usage; the prompt is `(napoleon)' and it reads whole sentences -- compass directions move you, `look', `inventory', `get'/`drop', `examine', `read', `score', `save' and `load' do what they say, and `quit' ends the game
 gnugo|none|it asks who plays first and the handicap, then takes moves as a letter and number like D4; no options
+nethack3|none|it has no help flag; `?' inside the game lists the commands

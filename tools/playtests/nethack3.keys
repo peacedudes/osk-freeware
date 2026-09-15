@@ -1,0 +1,21 @@
+name    nethack3
+prog    nethack3
+# NetHack 3.0f: let it pick a character, clear the opening --More--s, look, quit.
+rate    0.6
+size    24 80
+wait    10
+key     y
+wait    8
+key     \s
+wait    4
+key     \s
+wait    4
+snap    level
+key     Q
+wait    3
+key     y
+wait    4
+key     n
+wait    6
+expect  Dlvl:1
+expect  Really quit?
