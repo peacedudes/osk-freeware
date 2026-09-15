@@ -1,0 +1,1 @@
+TARGETS = ski ski.manCFLAGS = -gOBJS = ski.o do_level.oHDRS = ski.hSOURCES = README ski.6 ski.man ski.h ski.c do_level.c makefileall: $(TARGETS)ski: $(OBJS)	$(CC) $(CFLAGS) $(OBJS) -o $@ski.man: ski.6	nroff -man ski.6 > $@$(OBJS): $(HDRS)ski.shar: $(SOURCES)	shar $(SOURCES) > ski.shar

@@ -433,3 +433,16 @@ send    y\r
 wait    3
 send    y\r
 wait    12
+
+shot    roll
+cap     Three rolls: three six-sided dice, six sets of the best three of four
+cap     dice, and two ten-sided dice twice over.
+try     roll 3d6; roll 6x3,4d6; roll 2@2d10
+run     clear
+wait    1
+run     roll 3d6
+wait    2
+run     roll 6x3,4d6
+wait    2
+run     roll 2@2d10
+wait    3

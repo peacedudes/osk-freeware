@@ -329,6 +329,7 @@ soelim|No copyright or licence statement; the source names D. A. Spicer, J. Leth
 ticktalk|No copyright or licence statement; the source names Art Mellor (1991-92) with Kaveh Kardan, Linda Matthew and Alan Steele.|SRC/ticktalk/ticktalk.c lines 1-29; SOURCES.txt, ticktalk
 jumble2|No copyright or licence statement; the source and README name Dan Heller.|SRC/jumble2/ORIG/README; SRC/jumble2/ORIG/jumble.c lines 1-14; SOURCES.txt, jumble2
 weekday|Copyright (c) 1989 1990 M.J.E. Mol: "This code or part of this code may be used by freeware, public domain or any other non-commercial product. I only ask you to give me credit for the used code in the documentation and in your source code." Non-commercial terms are accepted for this collection; getopt.c is Henry Spencer's, public domain.|SRC/weekday/weekday.c lines 126-130; SOURCES.txt, weekday
+wf|No terms stated: the post carries no copyright or licence statement; wf.c names Scott R. Turner.|SRC/wf/ORIG/wf.c lines 4-9; SRC/wf/ORIG/README
 repunsel|Public domain: "This is in the Public Domain, do with it what you will".|SRC/repunsel/ORIG/repunsel.c lines 1-7; SOURCES.txt, repunsel
 ag|No copyright or licence statement; the source names Morten Lerskau Ronseth (1988-91), after Mike Morton's algorithm in Byte, November 1987. The unbuilt filters in SRC/ag2/ORIG are Sean Barrett's, public domain.|SRC/ag2/ORIG/anagram.c lines 1-16; SRC/ag2/ORIG/README; SOURCES.txt, ag
 perp|James Bonfield: "You may redistribute and modify any of this source provided that my name is still mentioned in connection with the pieces of code I have written."|SRC/perp/ORIG/README; SOURCES.txt, perp
@@ -790,6 +791,7 @@ juggle|GNU General Public License version 1. Copyright (C) 1995 G. Hutchings; CO
 jumble|Copyright (C) 1987 Nick V. Flor: "Permission is granted to freely distribute this source. Unless you try to make money off of it." Non-commercial terms are accepted for this collection.|SRC/jumble/jumble.c lines 6-9; SOURCES.txt, jumble
 rot|No copyright or licence statement; the source names M. Schmidt, 1988, posted to Usenet (volume 15, issue 30).|SRC/rot/rot.c line 11; DOC/rot/intro lines 1-3
 rpn|Copyright "1898" [sic] Nils McCarthy. "This code may be distributed provided this header is kept with it"; the code, excluding the header, may be modified.|SRC/eff_rpn/rpn.c lines 4-6
+roll|No terms stated: the post carries no copyright or licence statement.|SRC/roll/ORIG/README; SRC/roll/ORIG/roll.c
 rpoem|(c) Copyright 1986 Robert Heller. "All Rights Reserved." No distribution terms are stated in the source or in DOC/snobol/Readme.|SRC/effo_snobol/rpoem.c lines 7-8; DOC/snobol/Readme
 rsconvert|Copyright (C) 1989, 1991 Craig E. Kolb, all rights reserved: "may be freely copied, modified, and redistributed provided that this copyright notice is preserved"; "You may not distribute this software ... as part of any commercial product without the express consent".|DOC/rayshade/Copyright lines 2-9; SRC/rayshade
 rsdsk|"copyright (c) 1997 by Bob Devries / may be freely distributed", stated at the head of each program's documentation, which is on the disk as DOC/os9dsk and DOC/rsdsk.|SOURCES.txt line 2423
@@ -1048,6 +1050,7 @@ sgrep|Copyright (C) 1980 DECUS: "General permission to copy or modify, but not f
 dc|No terms stated. The binary carries "Copyrighted (C) 1987, 1988 by Ulrich Dessauer, Germering, W-Germany" and no grant or restriction. Binary only, as TOP shipped it.|CMDS/dc (strings); SOURCES.txt, dc
 sod|No terms stated. TOP's binary, unchanged; neither it nor TOP's release names an author or carries a copyright, grant or restriction.|CMDS/GAMES/sod strings; SOURCES.txt, sod
 rogue|May be modified and distributed by anybody, with the notice kept, credit not taken, and "not to be traded, sold, or used for personal gain or profit" (the notice at the head of each source). Non-commercial terms are accepted for this collection.|SRC/rogue/main.c lines 4-9; SOURCES.txt, rogue
+ski|No licence grant: each file carries "Copyright 1983-1990 by Mark Stevans for Roy's Games, Inc." and the post grants nothing.|SRC/ski/ORIG/README lines 1-2; SRC/ski/ORIG/ski.c line 5
 vttest|"This software is (c) 1984 by QZ. Non-commercial use and copying allowed." Non-commercial terms are accepted for this collection.|SRC/vttest/main.c lines 1-15; SOURCES.txt, vttest
 typefast|No terms stated. Neither the source (druco!spear, 1986) nor the binary carries a copyright, grant or restriction. TOP's binary, unchanged.|SRC/typefast/game.c lines 1-5; SOURCES.txt, typefast
 vcraps|Public domain: "This program is in the public domain."|SRC/vcraps/ORIG/README line 76

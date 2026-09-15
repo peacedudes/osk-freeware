@@ -1910,3 +1910,42 @@ wait    2
 send    1\r
 wait    6
 snap
+
+shot    ski
+size    24 80
+cap     A run down the slope, one row a turn: you are the I, trees are Y, and
+cap     the ? waits for a letter -- here R, then L -- or Return.
+try     ski
+run     clear
+wait    1
+run     ski
+wait    4
+send    \r
+wait    1
+send    \r
+wait    1
+send    R\r
+wait    1
+send    \r
+wait    1
+send    \r
+wait    1
+send    L\r
+wait    1
+send    \r
+wait    1
+send    \r
+wait    2
+snap
+
+shot    wf
+size    30 80
+cap     A 12 by 12 square from the post's word file, with its title and the
+cap     list of the words it hid.
+try     wf -x 12 -y 12 -t Words
+run     builtin cd /dd/DOC/wf
+wait    1
+run     clear
+wait    1
+run     wf -x 12 -y 12 -t Words
+wait    5

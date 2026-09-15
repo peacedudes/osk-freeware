@@ -1,0 +1,19 @@
+name    ski
+prog    ski
+# A few turns straight down, one to the right, one to the left.
+rate    0.5
+wait    4
+key     \r
+wait    1
+key     \r
+wait    1
+key     R
+key     \r
+wait    1
+key     \r
+wait    1
+key     L
+key     \r
+wait    2
+snap    turns
+expect  Version 6.0!

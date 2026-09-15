@@ -1,0 +1,1 @@
+#	Makefile for ROLL##	Comment out the BSD line if you're on System V#	Comment out the SYSV line if you're using Berkely Unix.# SYSTEM = -DSYSVSYSTEM = -DBSDCFLAGS = -O $(SYSTEM)roll:	roll.c	cc -o roll $(CFLAGS) roll.c

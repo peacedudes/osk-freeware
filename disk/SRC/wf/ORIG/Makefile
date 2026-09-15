@@ -1,0 +1,1 @@
+##  Makefile for WordFind Program#wf: wf.c	cc -O -o wf wf.cclean:	rm *~ *.o wfshar:	shar README Makefile wf.c wf.6 words words.2 > wf.shar

@@ -1,0 +1,15 @@
+$ wf -?
+Unknown option: ?
+Options:
+   -h (Permit horizontal placement)
+   -v (Permit vertical placement)
+   -d (Permit diagonal placement)
+   -b (Permit backwards placement)
+   -a (Permit all placements)
+   -r (Select randomly from wordlist)
+   -x <num> (Specify width of puzzle)
+   -y <num> (Specify height of puzzle)
+   -t <title> (Specify title of puzzle)
+   -p (Don't print words below the puzzle)
+   -c (Print clues instead of the words used)
+   -f <file> (Specify word list file)

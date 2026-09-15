@@ -1,0 +1,10 @@
+family  wf
+setup   export PATH=/dd/CMDS
+
+# The post's Spanish word file, a titled 10 by 10 square: the title, the
+# 21-character border of a 10-wide square, and a word from the list.
+case    titled-square
+run     /dd/CMDS/ksh -c "cd /dd/DOC/wf; /dd/CMDS/GAMES/wf -x 10 -y 10 -t Animals -f words.2"
+expect  Animals
+expect  +---------------------+
+expect  gato

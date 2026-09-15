@@ -1,0 +1,16 @@
+family  roll
+setup   export PATH=/dd/CMDS
+
+# The forms the post's README shows, each printed back with its total.
+case    readme-forms
+run     /dd/CMDS/GAMES/roll 4d10
+run     /dd/CMDS/GAMES/roll 6x3,4d6
+run     /dd/CMDS/GAMES/roll 2@3d6
+expect  4d10 = 
+expect  6x3,4d6 = 
+expect  3d6 = 
+
+# A die needs two sides.
+case    one-sided
+run     /dd/CMDS/GAMES/roll 1d1
+expect  Dice must have at least two sides.

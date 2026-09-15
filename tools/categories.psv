@@ -505,6 +505,7 @@ hc|Text tools|Format & typeset
 loan|Maths & calculators|Calculators
 rechne|Maths & calculators|Calculators
 rpn|Maths & calculators|Calculators
+roll|Amusements|Generators
 sc|Maths & calculators|Calculators
 
 # ---- Printing ----
@@ -647,6 +648,7 @@ ephem881|Time & calendar|Astronomy
 cal|Time & calendar|Calendars
 calcdate|Time & calendar|Calendars
 weekday|Time & calendar|Calendars
+wf|Games|Word & guessing
 ticktalk|Time & calendar|Calendars
 calen|Time & calendar|Calendars
 calender|Time & calendar|Calendars
@@ -1105,5 +1107,6 @@ sgrep|Text tools|Search & match
 dc|Maths & calculators|Calculators
 sod|Games|Puzzles
 rogue|Games|Dungeon crawl
+ski|Games|Other games
 vttest|Communications|Terminal & session
 typefast|Games|Other games

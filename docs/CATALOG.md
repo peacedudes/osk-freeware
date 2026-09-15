@@ -1,6 +1,6 @@
 # What is on this disk
 
-1047 programs of OS-9/68K community software, gathered from the archives that kept it and made to run again. **698 of them need nothing but this disk**; the rest want Microware's `cio`, marked below with a star.
+1050 programs of OS-9/68K community software, gathered from the archives that kept it and made to run again. **701 of them need nothing but this disk**; the rest want Microware's `cio`, marked below with a star.
 
 `DOC/INDEX` on the disk lists everything alphabetically. This is the same collection sorted by what each program is *for*, which is the more useful order when you do not yet know what you are looking for.
 
@@ -22,9 +22,9 @@
 | [Encoding & conversion](#encoding--conversion) | 30 | Between text encodings, line endings, Macintosh formats, ciphers and hashes. |
 | [Communications](#communications) | 98 | Kermit in several builds, terminal sessions, and networking. |
 | [Graphics & images](#graphics--images) | 195 | The netpbm toolkit, JPEG, a ray tracer, and things that draw. |
-| [Games](#games) | 107 | Adventures, board and card games, arcade ports, dungeon crawls and puzzles. |
+| [Games](#games) | 109 | Adventures, board and card games, arcade ports, dungeon crawls and puzzles. |
 | [Screen toys](#screen-toys) | 10 | Animations and screen effects -- they draw on the terminal rather than print to it. Some run until you stop them. |
-| [Amusements](#amusements) | 31 | Generators, simulators and diversions that are not quite games. |
+| [Amusements](#amusements) | 32 | Generators, simulators and diversions that are not quite games. |
 | [System & modules](#system--modules) | 132 | OS-9 module and process tools, devices, system state and scheduling. |
 | [Disk & DOS](#disk--dos) | 20 | Reading and writing MS-DOS media with the mtools set. |
 | [Time & calendar](#time--calendar) | 18 | Calendars, clocks and astronomy. |
@@ -1194,7 +1194,7 @@
 
 *Adventures, board and card games, arcade ports, dungeon crawls and puzzles.*
 
-<details><summary>107 programs</summary>
+<details><summary>109 programs</summary>
 
 **Adventure & fiction**
 
@@ -1306,6 +1306,7 @@
 | `mkindex` | builds the index bog reads its dictionary through, from the dictionary in the current directory<br>**How:** Run it in /dd/GAMES/BOG after mkdict; it is in CMDS/GAMES. |
 | `nobs` | cribbage against the computer, a third one: it deals six cards, asks which two go to the crib, plays the hand and pegs the board above<br>**How:** Full-screen: it takes over the display. **control-C gets you out**; q, Q, control-D and ESC do not. If it has a quit command of its own, its documentation in DOC/ will say. |
 | `shuffle` | a full-screen switch puzzle: a row of numbered switches, `Wich switch ?' and a move counter, where flipping one flips its neighbours; q quits. It wants TERM. For shuffling lines, `sort -r' and `tac' are the line tools<br>**How:** Full-screen: it takes over the display. **`q' quits**. |
+| `ski` | Ski! -- down an endless slope a row a turn: R and L turn, J jumps, T teleports, I fires at the Snoman; Return waits<br>**How:** Line by line down an endless slope: each turn draws one row with you as the I, and the ? at the end of the line waits for a letter or Return. R and L turn you further right or left, J jumps and H hops, T teleports, I launches an ICBM at the Snoman (A) and D calls the Fire Demon. Trees Y, bare ground and ice # can hurt you, and the run ends when something bad happens. The manual is DOC/ski/ski.man. |
 | `stone` | &#9733; the stones game (SNOBOL4-in-C).  Data: GAMES/SNOBOL |
 | `teachgammon` | &#9733; backgammon that teaches you the game as you play<br>`Syntax: backgammon [<opts>] [<file>]` |
 | `tess` | &#9733; Beyond the Tesseract, a text adventure whose puzzles draw on physics and mathematics: two-word commands, about two hundred words understood, and -f skips the title and scenario |
@@ -1342,6 +1343,7 @@
 | `jotto` | Jotto: you and the computer each pick a secret five-letter word of different letters and take turns guessing; a wrong guess is scored by how many of its letters are in the word |
 | `jumble` | prints every ordering of the letters of a word, one to a line, to solve a newspaper word jumble: `jumble tac' lists tac, tca, atc, act, cat and cta<br>**How:** `jumble <word>' prints every ordering of its letters, one per line, and that is all it does: read down the list for the one that is a word. A word of n letters gives n! lines -- 720 for six letters -- so keep to short words or send it through grep or less. |
 | `jumble2` | unscramble words against the clock: pick a level and how many words, then type each word back; `jumble2 -s' shows the high scores, kept in GAMES/JUMBLE2<br>**How:** It asks whether you want directions, a level -- (E)xpert, (H)ard, (M)oderate or (S)imple, then RETURN -- and how many words. Type each unscrambled word and RETURN before the time runs out: ? reprints the word and the time left, p passes, q forfeits. After a round RETURN plays again, c changes level, s shows the scores and q quits. Four words or more to reach the score list, kept in GAMES/JUMBLE2; `jumble2 -s' shows it. |
+| `wf` | makes a word-search square from a file of words: `wf -f words -x 12 -y 12 -t Title'; DOC/wf has two word files<br>**How:** Makes a word-search square from a file with one word per line, optionally followed by a clue: `wf -f words' (a file named words in the current directory is the default). -x and -y set the size, up to 20; -t gives a title; -h, -v, -d, -b and -a choose which directions words may run; -r picks words at random; -p leaves the word list out and -c prints the clues instead. DOC/wf has two word files, words and words.2. |
 
 </details>
 
@@ -1370,7 +1372,7 @@
 
 *Generators, simulators and diversions that are not quite games.*
 
-<details><summary>31 programs</summary>
+<details><summary>32 programs</summary>
 
 **Biorhythms**
 
@@ -1406,6 +1408,7 @@
 | `pwgen` | &#9733; pronounceable passwords: `pwgen <length> [how many]'<br>**How:** pwgen <length> [count]: length 4 to 16. It takes a few seconds over each password, so allow for that. |
 | `repunsel` | a pun filter: English comes out full of plants and gardens -- `and I would root' becomes `ANT I WOOD ROOT'.  `echo text \| repunsel'<br>**How:** Pipe English through it: `echo "And I would root" \| repunsel' prints `ANT I WOOD ROOT'. Each word it has a garden pun for -- and, would, not, over, leave, care -- comes out in capitals; the rest passes through. |
 | `rndname` | &#9733; invents pronounceable names, as many as you ask for -- the earlier version of `name', with every letter equally likely, so the names come out more exotic |
+| `roll` | rolls dice named on its command line: `roll 3d6', six rolls with `6x3d6', the best three of four with `3,4d6', a repeat with `2@'; with nothing it rolls d100<br>**How:** Rolls dice named on its command line and prints each total. `roll 3d6' is three six-sided dice; `roll 6x3d6' rolls them six times, best first; `roll 6x3,4d6' keeps the best three of four dice each time; `roll 2@3d6' repeats the whole thing; a bare number is one die with that many sides, and with nothing it rolls d100. A die needs at least two sides. |
 | `rpoem` | &#9733; writes verses at random from a grammar and a word list in GAMES/SNOBOL; a number says how many, thirty without one |
 | `rstory` | a cumulative tale in the shape of The Old Woman and Her Pig, the animal, the obstacle and every helper drawn at random; `rstory \| tformat' sets it justified under a dated heading. Data: GAMES/SNOBOL |
 | `scales` | &#9733; deals scales and chords into a random practice order, a tick-box each, in `scales.lst' in the current directory (or a file you name): -d diatonic scales, -a altered scales, -m modes, -c chords; each entry gives the key signature and the spelling<br>**How:** Pick at least one of -d -a -m -c or it asks what you had in mind; `scales -d -c' writes 195 entries to scales.lst, and a trailing name writes elsewhere. |

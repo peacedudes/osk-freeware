@@ -1,0 +1,25 @@
+wf -x 12 -y 12 -t Words
+                                     Words
+
+
+                          +-------------------------+
+                          | S A N C T U A R Y D I S |
+                          | A A S A N D P I L E E A |
+                          | N S A N D S T O N E S N |
+                          | C S A N C T I O N E A K |
+                          | T S A N D B A G S A N E |
+                          | I S A N D P I P E R D N |
+                          | F S S A N C T I T Y A A |
+                          | Y S A N S A N D Y D L A |
+                          | S A N D P A P E R R D D |
+                          | S A N G S A N D W I C H |
+                          | N T R E A D D D T R E E |
+                          | S A N D B L A S T R E K |
+                          +-------------------------+
+
+sanctify            sanction            sanctity            sanctuary
+sand                sandal              sandbag             sandblast
+sandpaper           sandpile            sandpiper           sandstone
+sandwich            sandy               sane                sang
+sank                sans                tread               tree
+trek

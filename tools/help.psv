@@ -731,6 +731,7 @@ loan|none|it asks its four questions itself; there is no help flag
 cvtbase|cvtbase -?|
 rechne|rechne -?|
 rpn|none|`?' at its prompt lists the words; a flag is refused
+roll|none|it has no help switch; the dice go on the command line, as in roll 3d6 or roll 6x3,4d6
 checkfile|none|it takes no options; its commands are single letters on the screen
 oleo|none|it stops before it reads anything; there is no help to show
 scqref|none|it takes no options: run it and it prints the reference
@@ -1013,6 +1014,7 @@ soelim|none|it reads the files named, or standard input; run bare at a terminal 
 ticktalk|ticktalk -help|
 jumble2|none|its only switch, -s, shows the high scores; it asks whether you want directions when it starts
 weekday|weekday -h|
+wf|wf -?|
 repunsel|none|pipe English text through it; words it has a pun for come out in capitals
 ag|none|there is no help switch; an unknown flag is only named back, and its options are -d, -a, -v, -V, -w, -W, -s and -o
 perp|none|its one argument is the level to start at; the keys are hjkl, q, S, L and ^C
@@ -1054,6 +1056,7 @@ sgrep|sgrep|
 dc|none|it has no help flag -- given -? it only says it cannot read its terminal; set DCGRAPHIC=++++|- for plain boxes, and Q or ESC leaves it
 sod|sod -?|
 rogue|none|it has no help flag; an argument is taken as a saved game to restore
+ski|none|it takes no options; each turn a letter or Return at the ? on the slope line
 vttest|none|it takes no options and opens its test menu; a test's number and RETURN runs it, 0 leaves
 typefast|none|it has no help flag; `y' at its first question explains the game, and `q' at the level prompt quits
 vcraps|none|it has no help switch; -b sets the starting bankroll and -s plays single odds, and ? in the game lists every bet
