@@ -240,3 +240,11 @@ line is recorded in `tools/terms.psv` or the handoff.
    howto and card say what the shipped one does.  Its -a mode writes control
    bytes, and the shipped buildhash dies on a 1010 trap, so neither is a way
    round.  Keep CMDS/ispell as it is, or put the working build in its place?
+
+24. **smiley: ship its face list as posted?** (2026-09-15).  smiley
+   (comp.sources.misc v23) explains 589 text smileys or prints one at
+   random.  It is ported and working, parked on branch `hold/smiley`, not on
+   the disk.  Its author says the list is uncensored, and a few entries are
+   ethnic or sexist jokes ("Mexican run over by train", "slut").  Ship it as
+   posted, ship it with those lines taken out of faces.in (said so in
+   README.OSK), or leave it out?
