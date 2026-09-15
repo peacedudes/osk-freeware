@@ -240,7 +240,12 @@ def run(spec, image, with_keys, cap, marks=None, until_times=None):
     `size' directive is how a script asks for that mismatch, and the render
     grid is set to match it, so the capture is what a person would see.
     """
-    env = dict(os.environ, OS9DISK=image)
+    # /h0 IS THE IMAGE TOO.  Without OS9H0 os9exec falls back to <startPath>/h0,
+    # which in this repo is a link to the working osk-freeware.dd -- so every
+    # play-test mounted THAT as /h0, beside whatever emulator has it open, and
+    # programs reading /h0 paths saw the wrong disk (found 2026-09-14 with
+    # nethack3).  datatest.py and screenshots.py have always passed both.
+    env = dict(os.environ, OS9DISK=image, OS9H0=image)
     master, slave = pty.openpty()
     rows, cols = spec["size"]
     fcntl.ioctl(slave, termios.TIOCSWINSZ,
