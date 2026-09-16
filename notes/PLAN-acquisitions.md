@@ -1407,10 +1407,11 @@ triaged by size, files, curses and stated terms.  Done or decided:
     molecule    NOT SHIPPED: the simulation writes binary coordinates for a
                 display program built on a frame-buffer library (mginit,
                 mgihue) that has no counterpart here
-    smiley      PORTED, PARKED on branch hold/smiley (FOR-RDOGGETT 24): the
-                face list has a few ethnic and sexist entries; one change,
-                an exit() wrapper, because main's return value reaches the
-                shell as 0 here
+    smiley      DONE (0b8de539) -- one change, an exit() wrapper, because main's
+                return value reaches the shell as 0 here.  The face list ships
+                as posted.  rdoggett, 2026-09-15: "If we censor any of it, we
+                are positioning ourselves as moral police.  I say take it as it
+                is, or reject it in whole."
     marquis     NOT SHIPPED: forks into the background to scroll a message on
                 a terminal status line, and no terminal in SYS/termcap has one
                 (no ts/fs); it refuses to start without
@@ -1429,8 +1430,11 @@ triaged by size, files, curses and stated terms.  Done or decided:
     trek73      DONE (b20bcb93) -- parser and scanner made on OS-9 with
                 yacc and flex, flex fed through YY_INPUT, the timed prompt's
                 interrupted read handed to check_signal(), no saved games
-    yid-slots   HELD with smiley (FOR-RDOGGETT 24): a slot machine of
-                stereotyped Jewish names
+    yid-slots   IN PROGRESS: unblocked by the same decision.  Builds clean with
+                rand for random -- this curses library has wscanw, overwrite and
+                scrollok -- and its names file goes under GAMES.  The module is
+                yidslots: no name on the disk carries a hyphen and the
+                catalogue's entry parser does not accept one
     scamper     NOT SHIPPED: X11/Xlib only
     hodge-c     DEFERRED: GPL, ANSI with GNU getopt_long, pipes frames to a
                 display monitor; it writes PPM the disk's netpbm reads
