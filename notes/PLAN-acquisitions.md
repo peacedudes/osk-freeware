@@ -1465,8 +1465,19 @@ triaged by size, files, curses and stated terms.  Done or decided:
                 drops the hyphen, since no program name here carries one and the
                 catalogue's entry parser does not accept one
     scamper     NOT SHIPPED: X11/Xlib only
-    hodge-c     DEFERRED: GPL, ANSI with GNU getopt_long, pipes frames to a
-                display monitor; it writes PPM the disk's netpbm reads
+    hodge-c     ASSESSED 2026-09-15, not ported -- and THIS ROW'S BLOCKER
+                WAS WRONG.  The pipe to a display monitor is one output mode
+                among several, not the only one: its manual documents
+                `--animation-file-name hodge-%0003d.ppm', so it writes PPM
+                files directly, and this disk's netpbm reads them.  What
+                actually costs is the size and the option parser: 33 parts,
+                2 MB of posting, ANSI throughout with GNU getopt_long, which
+                is a substantial parser to convert on a K&R compiler that
+                ansi2knr cannot help with (its definitions put the return
+                type on the name's line, like thricken's).  GPL v2 is no
+                obstacle -- m4, napoleon and juggle already ship under the
+                GPL with COPYING beside them.  A real port, worth doing on
+                a night that starts with it rather than ends with it.
     banners     ONE SHIPPED, the rest assessed 2026-09-15.  banner1 is DONE
                 (8d58010d): banner-01 of the collection, written in 1987 by
                 Wolfgang Ocker and described by its own README as "the very
@@ -1587,8 +1598,14 @@ triaged by size, files, curses and stated terms.  Done or decided:
                 return type on the same line, so it converted NONE -- and it
                 never touches declarations.  Thirty-two constructs converted
                 by hand instead.  Data in GAMES/THRICKEN; SRC/thricken.
-    skewlife    DEFERRED: needs build-time N1/N2 and a results table made by
-                running makeresults first; a batch computation, low value
+    skewlife    NOT SHIPPED, assessed 2026-09-15: the makefile compiles it
+                twice with -DN1=1024 -DN2=1025 and -DN1=2048, and its board
+                logic comes from a GENERATED results.c that `makeresults'
+                writes -- the author's own note says that file is "big
+                (>700K)".  Three-quarters of a megabyte of generated C
+                through this cpp, for a batch life computation on skewed
+                2x2 squares with no display of its own.  The collection
+                already carries life in several forms.
     dinkum2     NOT SHIPPED: Gary A. Allen's `strict NO MODIFICATION rule' --
                 hacking encouraged but not releasing modified versions, and an
                 OS-9 build is one.  It is also ANSI-prototyped throughout.
