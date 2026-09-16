@@ -1510,7 +1510,22 @@ triaged by size, files, curses and stated terms.  Done or decided:
                 not a port.  SIGTERM/SIGTSTP/SIGCONT are absent here too.
                 bc, dc and hp already ship.  Terms: no copyright anywhere,
                 only "Author: Istvan Mohos, 1987" in each file header.
-    dialog      DEFERRED: ANSI C for ncurses, 1994
+    dialog      ASSESSED 2026-09-15, not ported: dialog 0.3 (Savio Lam,
+                comp.sources.misc v41i109-111, GPL v2 with COPYING).  The C
+                is clean for this disk -- no system(), fork(), popen(),
+                signal() or ioctl, only getenv and fopen -- and the ANSI
+                work is the same hand conversion thricken had (59
+                declarations, 24 definitions, none convertible by ansi2knr).
+                THE LIBRARY IS THE PROBLEM.  It draws every box out of the
+                ACS line-drawing characters (ACS_HLINE, ACS_RTEE, ACS_LTEE,
+                the corners, the arrows) and ACS_ appears in NO ncurses
+                header here; start_color, has_colors and init_pair are in
+                neither header nor library, and colour is what rc.c and
+                colors.h exist to configure.  Supplying those would be
+                rewriting the program's presentation layer, which is the
+                program.  Note also moria's finding: this ncurses.l cannot
+                read SYS/termcap at all without tcentry.c linked ahead of
+                it, so the substrate is thin for any new ncurses program.
     craps       DEFERRED: link() lock on its score list, a crypt() cheat, a
                 fork()/execl("/bin/csh") shell escape, BSD random, and every
                 key read with getchar(), which on OS-9 waits for a line; its

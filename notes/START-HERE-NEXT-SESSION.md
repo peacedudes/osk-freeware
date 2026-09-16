@@ -482,12 +482,17 @@ Open:
      (2) **{name} is expanded inside parentheses**, so a definition holding
      trailing context (`wh [ \t]*/[^a-z]') is illegal when used -- write
      the trailing context out in the rule instead (15 rules).
-     (3) **yyin is null until the first yylex()** -- the skeleton sets it
-     to stdin inside its init block -- so a program that does
-     `freopen(name, "r", yyin)' in main() BEFORE scanning reopens nothing,
-     scans nothing, and prints nothing with no error.  Give yyin stdin
-     first.  stdin-only use hid this completely: the bug shows only when a
-     file is NAMED.
+     (3) **yyin is null until the first yylex() ON THIS SKELETON** -- 2.16
+     declares `FILE *yyin = (FILE *) 0' and assigns stdin inside yylex's
+     init block -- so a program that does `freopen(name, "r", yyin)' in
+     main() BEFORE scanning reopens nothing, scans nothing, and prints
+     nothing with no error.  Give yyin stdin first.  **This is
+     version-specific**: the os9-dev session's skeleton declares
+     `FILE *yyin = stdin' and the same idiom works there (they checked
+     2026-09-15).  `grep -n "FILE \*yyin" <skeleton>' tells them apart.
+     stdin-only use hid this completely: the bug shows only when a file is
+     NAMED -- the same shape as the line-buffering traps, where the
+     convenient way to drive a program under test conceals the defect.
      **Four environment traps cost time tonight, all avoidable:**
      * `~/Developer/os9/os9exec' is the REPOSITORY; the binary is
        `~/Developer/os9/os9exec/os9exec'.  `[ -x ]' is TRUE for a
