@@ -146,11 +146,27 @@ class Screen:
         elif ch == "\x07":
             pass                            # bell
         elif ch >= " ":
-            self._clamp()
+            # DEFERRED WRAP, the way an `am' terminal does it.  Writing into
+            # the last column leaves the cursor PAST it (col == cols) without
+            # moving; the next printable character is what drops to column 0
+            # of the next row.  Doing it on the write instead would scroll on
+            # a line that merely fills the row exactly.  This branch is the
+            # only one that may leave col == cols, and every other branch ends
+            # in _clamp(), which pulls it back to cols-1 -- so CR, LF, tab,
+            # backspace and every cursor-positioning escape cancel the pending
+            # wrap, which is also what a real terminal does.
+            if self.col >= self.cols:
+                self.col = 0
+                self.row += 1
+                if self.row >= self.rows:          # scroll
+                    self.grid.pop(0)
+                    self.grid.append([" "] * self.cols)
+                    self.row = self.rows - 1
+            self.row = max(0, min(self.rows - 1, self.row))
+            self.col = max(0, self.col)
             self.grid[self.row][self.col] = ch
             self.col += 1
-            if self.col >= self.cols:
-                self.col = self.cols - 1
+            return
         self._clamp()
 
     def erase_display(self, mode):
