@@ -1517,7 +1517,9 @@ thricken, malawi, sol2, jumble2, yid-slots, bj2, connect4, skewlife, mz,
 dinkum2 (410K adventure), trek73 (409K) -- and the rest: ag2, xmascard,
 weekday, chemtab, mfold, molecule, smiley, scamper, ticktalk, calcdate,
 xmases, hodge (GPL, 3M), translit (775K), magicsqr, bday, marquis,
-repunsel, xtail, qterm, colm, banners (GPL), rise_set, soelim.
+xtail, qterm, colm, banners (GPL), rise_set.  (repunsel and soelim
+were still named here on 2026-09-15 and are both SHIPPED -- binary,
+ORIGINS row and recipe each; the list, not the disk, was stale.)
 
 ### The OSK sites the newsgroups name, checked 2026-09-14
 
