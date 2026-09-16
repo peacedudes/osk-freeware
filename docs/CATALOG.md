@@ -1,6 +1,6 @@
 # What is on this disk
 
-1056 programs of OS-9/68K community software, gathered from the archives that kept it and made to run again. **707 of them need nothing but this disk**; the rest want Microware's `cio`, marked below with a star.
+1057 programs of OS-9/68K community software, gathered from the archives that kept it and made to run again. **708 of them need nothing but this disk**; the rest want Microware's `cio`, marked below with a star.
 
 `DOC/INDEX` on the disk lists everything alphabetically. This is the same collection sorted by what each program is *for*, which is the more useful order when you do not yet know what you are looking for.
 
@@ -13,7 +13,7 @@
 |---|--:|---|
 | [Shells](#shells) | 24 | Unix shells to sit beside OS-9's own -- bash and ksh bring history, job control, and scripts that come across unchanged. |
 | [Editors](#editors) | 27 | vi and emacs in several flavours, line and stream editors, and editors for binary and hex. |
-| [Text tools](#text-tools) | 136 | Search, sort, compare, reformat, split and spell-check. |
+| [Text tools](#text-tools) | 137 | Search, sort, compare, reformat, split and spell-check. |
 | [Files & directories](#files--directories) | 34 | Listing, copying, finding, renaming, and knowing what you have. |
 | [Developer tools](#developer-tools) | 48 | Version control, tags, cross-reference, formatters, a debugger and benchmarks. |
 | [Compilers & build](#compilers--build) | 41 | C compilers and their passes, assemblers, linkers, make and parser generators. |
@@ -155,7 +155,7 @@
 
 *Search, sort, compare, reformat, split and spell-check.*
 
-<details><summary>136 programs</summary>
+<details><summary>137 programs</summary>
 
 **Alternates**
 
@@ -221,6 +221,7 @@
 | `soelim` | copies roff source to standard output with each file named by .so or .nx put in its place -- run it before nroff<br>**How:** `soelim file.r > whole.r' copies roff source with every file named on a .so or .nx line put in that line's place, so a formatter that does not follow .so gets the whole text; `-' names standard input. Paths are taken relative to the current directory. |
 | `tformat` | fills text to a width: `tformat [width]' reads standard input and writes it refilled and justified, 80 columns unless told otherwise<br>`tformat - format stdin to stdout.` |
 | `ul` | turns underlining made with backspaces into what the terminal shows as underline; -i puts the underline on a line of its own<br>`ul: illegal option -- ?` |
+| `xfmt` | refills ragged text to 72 columns, or the width -l gives; -m also reads the nroff -man requests a manual page is written in, -x a little TeX and -c C source, showing the fonts as your terminal's attributes with -u.  DOC/xfmt has the manual<br>**How:** Refills ragged text into even lines: `xfmt file' fills to 72 columns and `-l 30' to any width; with no file named it reads standard input. `-m' interprets the nroff -man requests a manual page is written in, `-x' a few TeX commands, and `-c' marks up C source. `-j' justifies, `-i' keeps indentation, `-p n' shifts the text right. With `-u' the fonts become your terminal's attributes and TERM must be set; `-o' overstrikes instead. An unknown option prints the usage line. The manual is DOC/xfmt/xfmt.1, and DOC/xfmt/cmds.tex lists the commands it knows. |
 
 **Fortune & sayings**
 

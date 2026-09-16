@@ -1,0 +1,19 @@
+xfmt -m DOC/xfmt/xfmt.1 | head -n 18
+
+                                                           XFMT(1) LOCAL
+
+
+
+NAME
+     xfmt - a simple text formatter
+
+SYNOPSIS
+     xfmt [ -i ] [ -j ] [ -m ] [ -x ] [ -o ] [ -u ] [ -c ] [ -l n ] [ -p
+     n ] [ -t n ] [ filenames ]
+
+DESCRIPTION
+     Xfmt is a simple text formatter.  With no options present, the
+     default behavior of xfmt is to copy its input (from specified files
+     or from stdin, if no files are specified) to its output but with
+     input reformatted into lines no longer than 72 characters long.  A
+     blank line is taken to indicate the beginning of a new paragraph.

@@ -258,3 +258,31 @@ case    ag-finds-dormitory-in-dirty-room
 run     /dd/CMDS/ag "dirty room"
 expect  dormitory
 expect  dirty moor
+
+# xfmt (2026-09-15, comp.sources.unix v16i071): a second formatter, which also
+# reads the nroff -man requests a manual page is written in.  Its named-file
+# path needed an arm of its own -- SRC/xfmt/README.OSK.
+case    xfmt-refills-a-named-file-to-the-width-asked-for
+run     echo "Twas brillig, and the slithy toves" > $W/rag.txt
+run     echo "did gyre and gimble in the wabe:" >> $W/rag.txt
+run     echo "all mimsy were the borogoves," >> $W/rag.txt
+run     echo "and the mome raths outgrabe." >> $W/rag.txt
+run     /dd/CMDS/xfmt -l 30 $W/rag.txt < /nil
+expect  Twas brillig, and the slithy
+expect  toves did gyre and gimble in
+
+case    xfmt-reads-standard-input-when-no-file-is-named
+run     /dd/CMDS/xfmt < $W/rag.txt
+expect  toves did gyre and gimble in the wabe
+
+case    xfmt-renders-a-manual-page-with-m
+run     /dd/CMDS/xfmt -m /dd/DOC/xfmt/xfmt.1 < /nil
+expect  xfmt - a simple text formatter
+expect  XFMT(1) LOCAL
+
+case    xfmt-says-so-for-an-unknown-option
+run     /dd/CMDS/xfmt -Q < /nil
+run     echo "status $?"
+expect  xfmt: illegal option -- Q
+expect  usage: xfmt [-ijcmxou] [-l n] [-p n] [-t n] [file ...]
+expect  status 1

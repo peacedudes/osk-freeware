@@ -1012,6 +1012,7 @@ xcrypt|Only "(c) Copyright 1988 by A. Nowatzyk" on the xrand generator it includ
 xc|No copyright or licence statement in SRC/v_misc or its documentation.|SRC/v_misc/xc.c lines 1-40
 xd|Public domain. "This program is in the public domain: `Do what thou wilt shall be the whole of the law'.|SOURCES.txt line 2303
 xengine|Kazuhiko Shutoh, 1990. "Permission to use, copy, modify and distribute without charge this software, documentation, images, etc. is granted, provided that this comment and the author's name is retained."|SRC/x11r6pl13_lib_v0_6/xengine.c lines 6-11
+xfmt|No terms stated: the post carries no copyright or licence statement.|SRC/xfmt/ORIG/README; SRC/xfmt/ORIG/xfmt.1
 ximtoppm|Each netpbm author granted the right to use and distribute their code without charge, on a non-commercial basis; many allow more -- see each file's notice.|DOC/netpbm/COPYRIGHT
 xkermit|No copyright or licence statement in the binary. It shares `kermit's banner; that source (Unix Kermit, Columbia University 1981-83; OS-9 by Robert Larson and others) carries none either.|CMDS/xkermit (strings); SRC/kermit/os9ker.c lines 1-30; DOC/ORIGINS line 168; notes/FREEWARE-INDEX.md line 58
 xlate|Copyright (c) 1994 Steven Weller: "I retain copyright, but permit you to modify and distribute the code as you wish. You must supply the source if requested", notices intact. "Not to be used for profit."|DOC/xlate/xlate.txt lines 5, 89-94; LANGUAGES/xlate.lzh member xlate (identical)

@@ -1068,3 +1068,4 @@ typefast|none|it has no help flag; `y' at its first question explains the game, 
 vcraps|none|it has no help switch; -b sets the starting bankroll and -s plays single odds, and ? in the game lists every bet
 translit|translit -?|
 castle|none|`castle -h' pages its help file full-screen, RETURN for each page; `?' inside the game shows the command summary
+xfmt|none|it has no help switch; an unknown option prints its usage line

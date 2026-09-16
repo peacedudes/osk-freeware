@@ -1,0 +1,1 @@
+/* flex needs yywrap; xfmt.l provides its own main. */int yywrap(){    return 1;}

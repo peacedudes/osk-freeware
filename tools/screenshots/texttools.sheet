@@ -367,6 +367,18 @@ wait    5
 run     fmt -30 tmp/TXT/rag.txt
 wait    5
 
+shot    xfmt
+cap     The other formatter here.  As well as refilling ragged text it reads
+cap     the nroff -man requests a manual page is written in -- so it can set
+cap     its own page, which is what it is doing.
+try     xfmt -m DOC/xfmt/xfmt.1 | head -n 18
+run     builtin cd /dd
+wait    1
+run     clear
+wait    1
+run     xfmt -m DOC/xfmt/xfmt.1 | head -n 18
+wait    8
+
 shot    strfile
 cap     Turns a file of sayings separated by %% lines into the indexed
 cap     .dat file fortune reads, and reports what it found.
