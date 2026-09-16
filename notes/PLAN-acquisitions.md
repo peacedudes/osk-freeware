@@ -1710,15 +1710,32 @@ triaged by size, files, curses and stated terms.  Done or decided:
                 hacking encouraged but not releasing modified versions, and an
                 OS-9 build is one.  It is also ANSI-prototyped throughout.
 
-Still open, then
-the larger games -- craps, vcraps2, torus (robots2 descendant), perp,
-thricken, malawi, sol2, jumble2, yid-slots, bj2, connect4, skewlife, mz,
-dinkum2 (410K adventure), trek73 (409K) -- and the rest: ag2, xmascard,
-weekday, chemtab, mfold, molecule, smiley, scamper, ticktalk, calcdate,
-xmases, hodge (GPL, 3M), translit (775K), magicsqr, bday, marquis,
-xtail, qterm, colm, banners (GPL), rise_set.  (repunsel and soelim
-were still named here on 2026-09-15 and are both SHIPPED -- binary,
-ORIGINS row and recipe each; the list, not the disk, was stale.)
+**RESOLVED 2026-09-16 by sweeping every name against the disk.**  The list
+that stood here opened "Still open, then" and named 36 programs.  Not one of
+them was open.  Fourteen ship under their own names (craps, torus, perp,
+thricken, sol2, jumble2, trek73, ag2, weekday, chemtab, smiley, ticktalk,
+calcdate, translit).  Five ship under another name, which is what made the
+list look alive: vcraps2 is `vcraps', connect4 is `c4', yid-slots is
+`yidslots', xmascard is `card', bj2 is `bjack'.  The rest each carry a
+recorded NOT SHIPPED decision in the rows above -- malawi and scamper
+X11-only, mfold a patch with no base program, molecule binary output,
+xmases shell scripts, magicsqr a REXX script, bday an administrator's tool,
+marquis forks into the background, colm duplicates `column', rise_set
+computes for its author's house, banners duplicates the Unix banner, and
+skewlife, dinkum2, hodge, xtail and qterm each assessed above.
+
+**One live candidate remains, `mz', and its port is NOT IN THE TREE.**
+There is no SRC/mz, no binary, no recipe and no INDEX or ORIGINS row; the
+port was done in a scratch pool that is gone.  What survives is its row
+above, which records the recipe line and every mzio.c change -- enough to
+redo it.  It is blocked on 2n, and 2n is still open: tools/ansiscreen.py
+CLAMPS the cursor at the last column (line 152) where a real terminal with
+autowrap moves to column 0 of the next row, so mz's 80-column maze rows
+render as a blank board.  Fixing that renderer is the enabling step, and it
+is behind every published screen, so it wants measuring on both sides.
+
+**Do not trust this list again without a sweep.**  That is twice now:
+repunsel and soelim on 2026-09-15, and all 36 of these on 2026-09-16.
 
 ### The OSK sites the newsgroups name, checked 2026-09-14
 
