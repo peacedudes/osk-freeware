@@ -1395,10 +1395,26 @@ triaged by size, files, curses and stated terms.  Done or decided:
                 It was ported and works (Spencer's getopt; `static' moved
                 before the return type in column.c, which Microware C wants;
                 its usage string split, and its %s with no argument filled)
-    xtail       DEFERRED: watches files and whole directories through
-                opendir/readdir and stat mode bits -- a port of its own
-    xfmt        DEFERRED: a flex program that also needs a patched flex
-                skeleton (flex.skel.diff)
+    xtail       ASSESSED 2026-09-15, not ported: everything it calls for IS
+                here -- opendir, readdir and struct direct in DEFS/dir.h,
+                S_IFMT/S_IFREG/S_IFDIR in DEFS/modes.h, SIGINT and SIGQUIT
+                in DEFS/signal.h.  The obstacle is that it never ends by
+                design: it sleeps, re-stats and prints for ever, which no
+                card or case file here can drive to a finish.  Its shar
+                needs a second extractor pattern too -- the end marker
+                comes BEFORE the redirect and carries a dot, as in
+                `sed -e 's/^X//' << 'END_OF_FILE_xtail.h' > xtail.h' --
+                and five of its seven files were silently missed until
+                that was noticed.
+    xfmt        DONE (db77304e) -- comp.sources.unix v16i071.  The post's
+                flex.skel.diff is NOT needed: this disk's flex.skel is
+                skeleton 2.16 and already carries both halves of it.  What
+                this flex did want: 17 column-1 comments in the rules
+                section indented, 15 uses of a definition holding trailing
+                context written out in place, and yyin given stdin before
+                main()'s file loop -- without that a NAMED file scanned
+                nothing and said nothing, while standard input worked.
+                SRC/xfmt/README.OSK.
     perp        DONE (796bc613, ORIGINS order 430c07ef) -- data in GAMES/PERP;
                 BSD's sprintf returned its buffer and the status panel printed
                 that; ^C needed check_signal()
@@ -1501,7 +1517,7 @@ thricken, malawi, sol2, jumble2, yid-slots, bj2, connect4, skewlife, mz,
 dinkum2 (410K adventure), trek73 (409K) -- and the rest: ag2, xmascard,
 weekday, chemtab, mfold, molecule, smiley, scamper, ticktalk, calcdate,
 xmases, hodge (GPL, 3M), translit (775K), magicsqr, bday, marquis,
-repunsel, xtail, qterm, colm, xfmt, banners (GPL), rise_set, soelim.
+repunsel, xtail, qterm, colm, banners (GPL), rise_set, soelim.
 
 ### The OSK sites the newsgroups name, checked 2026-09-14
 

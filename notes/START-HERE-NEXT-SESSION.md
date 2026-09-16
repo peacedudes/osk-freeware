@@ -467,6 +467,45 @@ Open:
      reject it in whole."  That answers FOR-RDOGGETT 24, which is gone, and it
      freed yid-slots, held for the same reason.  Both were read in full first:
      what is in them is in notes/PLAN-acquisitions and the session log.
+  2aa. **xfmt ported (db77304e) -- and the flex findings are general.**
+     comp.sources.unix v16i071, a formatter that also sets nroff -man
+     pages.  It was deferred as "needs a patched flex skeleton"; that was
+     wrong.  **The post's flex.skel.diff is already in this disk's
+     skeleton** -- flex.skel is version 2.16 and carries both halves,
+     `static int yy_start = 0' and `if ( ! yy_start ) yy_start = 1'.
+     Check the skeleton before believing a post's patch instructions.
+     Three things this flex DID want, each measured with a four-line
+     probe rather than guessed:
+     (1) **a comment starting in column 1 of the rules section is read as
+     a rule** -- "unrecognized rule"; indent it and it is fine.  A comment
+     inside an action block is C and is left alone (17 of 38 were flagged).
+     (2) **{name} is expanded inside parentheses**, so a definition holding
+     trailing context (`wh [ \t]*/[^a-z]') is illegal when used -- write
+     the trailing context out in the rule instead (15 rules).
+     (3) **yyin is null until the first yylex()** -- the skeleton sets it
+     to stdin inside its init block -- so a program that does
+     `freopen(name, "r", yyin)' in main() BEFORE scanning reopens nothing,
+     scans nothing, and prints nothing with no error.  Give yyin stdin
+     first.  stdin-only use hid this completely: the bug shows only when a
+     file is NAMED.
+     **Four environment traps cost time tonight, all avoidable:**
+     * `~/Developer/os9/os9exec' is the REPOSITORY; the binary is
+       `~/Developer/os9/os9exec/os9exec'.  `[ -x ]' is TRUE for a
+       directory, so mkimage.sh passed its own check and `mount -k' wrote
+       no image, reported as "created no image at .../hz".
+     * **rdoggett's ~/.zshrc EXPORTS OS9H0**, so any harness run that does
+       not clear it mounts osk-freeware.dd as /h0 -- the one image
+       harnesses must never touch.  Clear OS9H0 (and OS9H1) explicitly;
+       run_in_session.py and datatest.py set them themselves and are safe.
+     * **tools/ is HOST text, LF-terminated.**  The CR-only rule is for
+       disk/.  Appending CR lines to tools/rebuild/recipes.psv corrupted
+       three lines; it was caught by reading the bytes back, not by any
+       check.
+     * **rebuild.sh writes R_<prog> and .r files into the POOL**, so a
+       recipe naming `../unixlib/getopt.c' leaves a MODIFIED tracked
+       `disk/SRC/unixlib/getopt.r' behind.  Restore it and remove the new
+       .r files before committing.
+
   2n. **Two harness gaps, not yet fixed.**  (2026-09-15: mz is ported and
      waiting on the first one -- notes/PLAN-acquisitions.)  tools/ansiscreen.py does no
      auto-wrap at column 80 (it clamps), so it cannot show what an am
