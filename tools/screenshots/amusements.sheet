@@ -377,6 +377,45 @@ try     lame you are so cool and elite
 run     lame you are so cool and elite
 wait    2
 
+shot    westley
+size    24 80
+cap     Pulls the petals off a daisy, one at a time.  It won Best Layout in
+cap     the 1990 contest: its source is written to be read as a letter, and
+cap     the judges read the opening as "charlie, doubletime me, OXFACE!".
+try     westley 7
+run     clear
+wait    1
+run     westley 7
+wait    3
+
+
+shot    theorem
+size    24 80
+cap     The 1990 contest's Best of Show: it solves y'=f(x,y) by Runge-Kutta,
+cap     a step at a time.  Given y'=y starting at 1, the value at x=1 is e.
+cap     The same source is also a reversing filter, and two more programs.
+try     theorem y 0 1 0.1 1
+run     clear
+wait    1
+run     theorem y 0 1 0.1 1
+wait    4
+
+shot    dds
+size    24 80
+cap     A BASIC interpreter in 1536 characters -- the contest's Best Language
+cap     Tool.  It prompts `Ok'; here a five-line program is typed in, listed
+cap     back and run.  Input must be in capitals.
+try     dds < tmp/dds.in
+run     mkdir -p /dd/tmp > /nil 2>/nil; printf '10 PRINT "HELLO OS-9"\r20 FOR I = 1 TO 3\r30 PRINT I\r40 NEXT I\r50 END\rLIST\rRUN\rBYE\r' > /dd/tmp/dds.in
+wait    2
+run     builtin cd /dd
+wait    1
+run     clear
+wait    1
+run     dds < tmp/dds.in
+wait    4
+
+
 shot    trigraph
 size    24 80
 cap     A program that prints its own source, spelled with ANSI C trigraphs:

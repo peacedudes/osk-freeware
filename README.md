@@ -113,18 +113,18 @@ is no help until you already know the name you want.
 | **Files & directories** | 34 | Listing, copying, finding, renaming, and knowing what you have. |
 | **Developer tools** | 48 | Version control, tags, cross-reference, formatters, a debugger and benchmarks. |
 | **Compilers & build** | 41 | C compilers and their passes, assemblers, linkers, make and parser generators. |
-| **Languages** | 11 | Interpreters and language systems beyond C. |
+| **Languages** | 12 | Interpreters and language systems beyond C. |
 | **Archives & compression** | 34 | Pack, unpack and shrink -- lha, zip, tar, arc, zoo, and OS-9 module libraries. |
 | **Encoding & conversion** | 30 | Between text encodings, line endings, Macintosh formats, ciphers and hashes. |
 | **Communications** | 98 | Kermit in several builds, terminal sessions, and networking. |
 | **Graphics & images** | 195 | The netpbm toolkit, JPEG, a ray tracer, and things that draw. |
 | **Games** | 115 | Adventures, board and card games, arcade ports, dungeon crawls and puzzles. |
 | **Screen toys** | 10 | Animations and screen effects -- they draw on the terminal rather than print to it. Some run until you stop them. |
-| **Amusements** | 33 | Generators, simulators and diversions that are not quite games. |
+| **Amusements** | 34 | Generators, simulators and diversions that are not quite games. |
 | **System & modules** | 132 | OS-9 module and process tools, devices, system state and scheduling. |
 | **Disk & DOS** | 20 | Reading and writing MS-DOS media with the mtools set. |
 | **Time & calendar** | 18 | Calendars, clocks and astronomy. |
-| **Maths & calculators** | 18 | Calculators, plotting, orbits and number theory. |
+| **Maths & calculators** | 19 | Calculators, plotting, orbits and number theory. |
 | **Printing** | 11 | Spoolers, page formatting and PostScript. |
 | **Documentation** | 5 | Pagers, readers and the help system. |
 | **G-Windows** | 6 | Programs for G-Windows, OS-9's graphical display.  There is no G-Windows here, so what their cards show is each one declining in its own words -- `Unable to access "/win" device', `dclock only runs under G-Windows', a status of 208 or 221.  None of them can be exercised without the display; they are listed for a real OS-9 workstation that has it. |

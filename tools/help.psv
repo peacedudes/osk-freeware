@@ -1072,3 +1072,6 @@ xfmt|none|it has no help switch; an unknown option prints its usage line
 thricken|none|-d names a directory of screens and -l the level to start at; the keys are hjkl, s and r to save and restore the level, q and ^C to leave
 craps|none|it takes no options; `?' in the game lists every key, and q quits
 banner1|banner1 -?|
+dds|none|it has no options; it prompts with Ok and takes BASIC -- RUN, LIST, NEW, OLD, SAVE and BYE
+theorem|none|it takes five arguments: the expression, the interval, the step and the initial value; `-r 0 0 0 0' reverses standard input instead
+westley|none|it takes one argument, the number of petals

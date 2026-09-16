@@ -144,3 +144,41 @@ expect  lotto exit 0
 case    repunsel-puns-and-would-root
 run     echo "And I would root" | /dd/CMDS/repunsel
 expect  ANT I WOOD ROOT
+
+# dds and theorem (2026-09-15): two more 1990 IOCCC entries from SRC/ioccc/OSK.
+# dds is a BASIC interpreter; it reads its lines with gets(), so a file of
+# input drives it the way bjack's wager does.
+case    dds-runs-a-basic-program-it-was-given
+run     echo '10 PRINT "HELLO OS-9"' > $W/dds.in
+run     echo '20 FOR I = 1 TO 3' >> $W/dds.in
+run     echo '30 PRINT I' >> $W/dds.in
+run     echo '40 NEXT I' >> $W/dds.in
+run     echo '50 END' >> $W/dds.in
+run     echo 'RUN' >> $W/dds.in
+run     echo 'BYE' >> $W/dds.in
+run     /dd/CMDS/dds < $W/dds.in
+expect  HELLO OS-9
+expect  Ok
+
+# theorem integrates y'=y from 1, so at x=1 it reaches e.  The step is 0.1
+# and it prints every step, which is why the last line is the one asserted.
+case    theorem-solves-a-differential-equation-and-reaches-e
+run     /dd/CMDS/theorem y 0 1 0.1 1 < /nil
+expect  1.000000 2.718280
+expect  0.500000 1.648721
+
+case    theorem-also-reverses-the-lines-it-is-given
+run     echo one > $W/th.in
+run     echo two >> $W/th.in
+run     echo three >> $W/th.in
+run     /dd/CMDS/theorem -r 0 0 0 0 < $W/th.in
+expect  three
+expect  one
+
+# westley (2026-09-15): Best Layout, 1990.  It prints its own name before each
+# petal -- the entry's note says to rename it if you would rather Daisy
+# someone else -- and alternates the two answers.
+case    westley-pulls-the-petals-off-a-daisy
+run     /dd/CMDS/westley 7 < /nil
+expect  loves me
+expect  loves me, not

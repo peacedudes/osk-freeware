@@ -1,0 +1,18 @@
+dds < tmp/dds.in
+Ok
+Ok
+Ok
+Ok
+Ok
+Ok
+10 PRINT "HELLO OS-9"
+20 FOR I = 1 TO 3
+30 PRINT I
+40 NEXT I
+50 END
+Ok
+HELLO OS-9
+1
+2
+3
+Ok

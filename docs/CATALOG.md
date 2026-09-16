@@ -1,6 +1,6 @@
 # What is on this disk
 
-1060 programs of OS-9/68K community software, gathered from the archives that kept it and made to run again. **711 of them need nothing but this disk**; the rest want Microware's `cio`, marked below with a star.
+1063 programs of OS-9/68K community software, gathered from the archives that kept it and made to run again. **714 of them need nothing but this disk**; the rest want Microware's `cio`, marked below with a star.
 
 `DOC/INDEX` on the disk lists everything alphabetically. This is the same collection sorted by what each program is *for*, which is the more useful order when you do not yet know what you are looking for.
 
@@ -17,18 +17,18 @@
 | [Files & directories](#files--directories) | 34 | Listing, copying, finding, renaming, and knowing what you have. |
 | [Developer tools](#developer-tools) | 48 | Version control, tags, cross-reference, formatters, a debugger and benchmarks. |
 | [Compilers & build](#compilers--build) | 41 | C compilers and their passes, assemblers, linkers, make and parser generators. |
-| [Languages](#languages) | 11 | Interpreters and language systems beyond C. |
+| [Languages](#languages) | 12 | Interpreters and language systems beyond C. |
 | [Archives & compression](#archives--compression) | 34 | Pack, unpack and shrink -- lha, zip, tar, arc, zoo, and OS-9 module libraries. |
 | [Encoding & conversion](#encoding--conversion) | 30 | Between text encodings, line endings, Macintosh formats, ciphers and hashes. |
 | [Communications](#communications) | 98 | Kermit in several builds, terminal sessions, and networking. |
 | [Graphics & images](#graphics--images) | 195 | The netpbm toolkit, JPEG, a ray tracer, and things that draw. |
 | [Games](#games) | 115 | Adventures, board and card games, arcade ports, dungeon crawls and puzzles. |
 | [Screen toys](#screen-toys) | 10 | Animations and screen effects -- they draw on the terminal rather than print to it. Some run until you stop them. |
-| [Amusements](#amusements) | 33 | Generators, simulators and diversions that are not quite games. |
+| [Amusements](#amusements) | 34 | Generators, simulators and diversions that are not quite games. |
 | [System & modules](#system--modules) | 132 | OS-9 module and process tools, devices, system state and scheduling. |
 | [Disk & DOS](#disk--dos) | 20 | Reading and writing MS-DOS media with the mtools set. |
 | [Time & calendar](#time--calendar) | 18 | Calendars, clocks and astronomy. |
-| [Maths & calculators](#maths--calculators) | 18 | Calculators, plotting, orbits and number theory. |
+| [Maths & calculators](#maths--calculators) | 19 | Calculators, plotting, orbits and number theory. |
 | [Printing](#printing) | 11 | Spoolers, page formatting and PostScript. |
 | [Documentation](#documentation) | 5 | Pagers, readers and the help system. |
 | [G-Windows](#g-windows) | 6 | Programs for G-Windows, OS-9's graphical display.  There is no G-Windows here, so what their cards show is each one declining in its own words -- `Unable to access "/win" device', `dclock only runs under G-Windows', a status of 208 or 221.  None of them can be exercised without the display; they are listed for a real OS-9 workstation that has it. |
@@ -633,7 +633,7 @@
 
 *Interpreters and language systems beyond C.*
 
-<details><summary>11 programs</summary>
+<details><summary>12 programs</summary>
 
 **Adventure authoring**
 
@@ -648,6 +648,7 @@
 
 | | |
 |---|---|
+| `dds` | a BASIC interpreter in 1536 characters of obfuscated C: it prompts `Ok', takes numbered lines, and RUN, LIST, NEW, OLD, SAVE and BYE act at once.  Variables are a to z; FOR, GOSUB, GOTO, IF, INPUT and PRINT work.  Type in capitals<br>**How:** A BASIC interpreter in 1536 characters of obfuscated C -- the 1990 contest's Best Language Tool. It prompts with `Ok'. Type numbered lines to enter a program and bare commands to act: RUN, LIST, NEW, OLD <file>, SAVE <file>, BYE. Variables are the single letters a to z, and it understands FOR/NEXT, GOSUB/RETURN, GOTO, IF/THEN, INPUT, PRINT and REM. ALL INPUT MUST BE UPPERCASE. There is no error checking: a mistake ends the program rather than reporting itself. |
 | `forth` | &#9733; TILE Forth, a Forth-83 in C. A source file named on the command line is loaded first -- `forth fibonacci.tst' in lib/tile/TST -- and then it prompts silently: `2 3 + . cr' prints 5, a colon definition makes a new word, words lists the vocabulary, bye leaves. lib/tile holds its source library and TST twenty-two test programs; sixteen manuals in DOC/forth<br>**How:** Type `2 3 + . cr' and it answers 5; `: squares 11 1 do i dup * . loop cr ;' then `squares' prints them; `words' lists its vocabulary; `bye' leaves. A source file is a command-line argument -- `forth fibonacci.tst' in lib/tile/TST loads it and gives you the prompt -- because `include' is defined in the library, not the kernel. The library and its twenty-two programs are in lib/tile and lib/tile/TST. |
 | `lua` | Lua 3.0, a small scripting language. `lua <file>' runs a script -- `lua hello.lua' in DOC/lua/examples prints hello world -- and with no file it reads one from standard input; -v prints the version. Eight example scripts are in DOC/lua/examples. luac compiles a script to bytecode, and to an OS-9 module that runc starts<br>**How:** `lua cf.lua' in DOC/lua/examples prints a temperature table; `lua hello.lua' says hello. Eight example scripts are there; -v prints the version. |
 | `luac` | &#9733; Lua bytecode compiler: `luac -o out.lc in.lua'; -l lists the instructions as it compiles, -x compiles into an OS-9 module in the execution directory for runc to start<br>**How:** `luac -l -o hello.lc hello.lua' compiles and lists the bytecode. `luac -x -o name script.lua' makes an OS-9 module in the execution directory for runc. |
@@ -1380,7 +1381,7 @@
 
 *Generators, simulators and diversions that are not quite games.*
 
-<details><summary>33 programs</summary>
+<details><summary>34 programs</summary>
 
 **Biorhythms**
 
@@ -1401,6 +1402,7 @@
 | `telewords` | spells a telephone number every way its keypad letters allow, one a line: `telewords 43' prints gd ge gf ... if<br>**How:** `telewords 43' prints every spelling of the number with the letters on its keys, one a line -- gd, ge ... if. 0 and 1 stand for themselves; -<digit><letters> changes what a key spells. |
 | `touchtype` | TYPEFAST, a typing game: words fall down the screen and you type each one before it lands.  ESC ends the game and scores you in words per minute<br>**How:** Full-screen typing game. Answer `n' to the instructions question, pick a level 1-3 (q quits there), type each falling word followed by SPACE or RETURN. ESC ends the game and prints the words-per-minute score. |
 | `trigraph` | prints its own C source spelled in ANSI trigraphs -- ??< for {, ??= for # -- a 1990 obfuscated-C contest entry<br>**How:** `trigraph' prints its own source with every # { } [ ] \ ^ \| ~ written as its ANSI trigraph -- ??= ??< and the rest. Microware's cpp does not read trigraphs, so SRC/ioccc/OSK holds the translated copy it was built from. |
+| `westley` | picks a daisy: `westley 7' pulls seven petals, loves me, loves me not, and says how it came out.  A 1990 obfuscated-C contest entry, and the one that won Best Layout -- its source is written to be read as a letter<br>**How:** `westley <number>' picks a daisy with that many petals -- loves me, loves me not -- and says how it came out. The 1990 contest's Best Layout: its source is written to be read as English correspondence, letter by letter, and the judges' note reads the first block as "charlie, doubletime me, OXFACE! not interested, get out". Reading the source is the point of it. |
 
 **Generators**
 
@@ -1713,7 +1715,7 @@
 
 *Calculators, plotting, orbits and number theory.*
 
-<details><summary>18 programs</summary>
+<details><summary>19 programs</summary>
 
 **Calculators**
 
@@ -1732,6 +1734,7 @@
 | `rechne` | &#9733; German command-line calculator: every answer in decimal, hex and binary at once. The expression is one argument with no spaces -- `rechne 4095+1' -- with operators + - x / m (modulo) a o p (and, or, xor) and $ for hex; -b lists the bits set<br>**How:** One expression, no spaces: `rechne 4095+1'. Operators + - x / m a o p; $ff is hex; -b lists the set bits. The other -xx switches decode status codes of the maker's own equipment. |
 | `rpn` | &#9733; reverse-Polish calculator on whole numbers. A number typed is pushed; the words add, sub, mul, div and mod combine the top two, and, or, xor and not work bitwise, pr prints an entry, pop discards one. After each line it shows the stack top and depth; ? lists the words, q leaves<br>**How:** Operators are words typed on their own line: 12, 34, add. A + sign is read as the number 0 and pushed. q leaves. |
 | `sc` | sc -- spreadsheet calculator (needs TERM)<br>**How:** The spreadsheet, version 6.16. `sc' opens and says "Type '?' for help". It reads TERMCAP as SYS/login sets it, so no `. /dd/SYS/termcap.entry' is needed first. |
+| `theorem` | solves y'=f(x,y) by Runge-Kutta and prints x and y a step at a time: `theorem y 0 1 0.1 1' reaches 2.718280, which is e.  `theorem -r 0 0 0 0' reverses standard input instead -- one source, four programs, a 1990 obfuscated-C contest entry<br>**How:** The 1990 contest's Best of Show, and it is four programs in one source. `theorem <expr> <x1> <x2> <h> <y1>' solves the differential equation y'=f(x,y) by Runge-Kutta over the interval, printing x and y a step at a time: `theorem y 0 1 0.1 1' reaches 2.718280, which is e. The expression may use x, y, + - * / and ^, evaluated strictly left to right with no brackets. `theorem -r 0 0 0 0' instead reverses the lines of standard input. Feeding its own source through those two modes is how the other two programs are made; see DOC/ioccc. |
 
 **Science**
 

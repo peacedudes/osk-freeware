@@ -1102,3 +1102,13 @@ thricken|thricken|files.c main.c scores.c screen.c ../unixlib/strdup.c ../unixli
 # bus-errors on a float here, so amounts go through sprintf; REFRESH and update
 # collide with curses; SRC/craps/README.OSK.
 craps|craps|main.c dont.c etc.c help.c makeb.c pass.c pay.c prints.c props.c subs.c final.c random.c|XENIX SCORES|/dd/LIB/curses.l /dd/LIB/termlib.l /dd/LIB/math.l|
+# dds (1990 IOCCC, dds.c): a BASIC interpreter in 1536 characters.  Its arrays
+# are past the 64k a non-remote allocation reaches; SRC/ioccc/OSK/README.OSK.
+dds|ioccc/OSK|dds.c|||
+# theorem (1990 IOCCC, theorem.c): Best of Show -- a Runge-Kutta solver that is
+# also a reversing filter.  Its second set of declarations is extern here.
+theorem|ioccc/OSK|theorem.c||/dd/LIB/math.l|
+# westley (1990 IOCCC, westley.c): Best Layout -- its source reads as English
+# correspondence.  The contest own common.mk builds it with the same three
+# substitutions used here; SRC/ioccc/OSK/README.OSK.
+westley|ioccc/OSK|westley.c|||
