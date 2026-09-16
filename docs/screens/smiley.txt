@@ -1,3 +1,9 @@
 smiley "8-)" "*<|:-)"
-$ smiley -Vlaus (Ho Ho Ho)lll-crg.ARpA]
-$  version 4 patchlevel 0: 589 faces, 818 definitions
+8-)     excited
+        glasses
+        sunglasses
+        swimmer
+        wide-eyed look [figmo@lll-crg.ARpA]
+*<|:-)  Santa Claus (Ho Ho Ho)
+$ smiley -V
+smiley version 4 patchlevel 0: 589 faces, 818 definitions
