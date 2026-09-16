@@ -1,0 +1,1 @@
+/* Patch 1: * Fixed a few portability probs (such as use of signed vs unsigned) * Updated manual page * Fixed move counter * Tidied up general coding - more checks for errors and better typed functions *       James Bonfield */char ident[] = "@(#)thricken: Version 1, patchlevel 1, May 22, 1992";#define PATCHLEVEL 1

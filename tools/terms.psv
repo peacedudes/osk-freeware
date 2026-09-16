@@ -335,6 +335,7 @@ wf|No terms stated: the post carries no copyright or licence statement; wf.c nam
 repunsel|Public domain: "This is in the Public Domain, do with it what you will".|SRC/repunsel/ORIG/repunsel.c lines 1-7; SOURCES.txt, repunsel
 ag|No copyright or licence statement; the source names Morten Lerskau Ronseth (1988-91), after Mike Morton's algorithm in Byte, November 1987. The unbuilt filters in SRC/ag2/ORIG are Sean Barrett's, public domain.|SRC/ag2/ORIG/anagram.c lines 1-16; SRC/ag2/ORIG/README; SOURCES.txt, ag
 perp|James Bonfield: "You may redistribute and modify any of this source provided that my name is still mentioned in connection with the pieces of code I have written."|SRC/perp/ORIG/README; SOURCES.txt, perp
+thricken|James Bonfield: "You may redistribute and modify any of this source provided that my name is still mentioned in connection with the pieces of code I have written."|SRC/thricken/ORIG/README; SOURCES.txt, thricken
 torus|"Provided free as long as you don't make money from it!" Non-commercial terms are accepted for this collection. The Makefile in ORIG keeps Paul Pomes's notice.|SRC/torus/ORIG/main.c lines 1-15; SRC/torus/ORIG/Makefile lines 1-40; SOURCES.txt, torus
 choose|No copyright or licence statement; the README names Bob Lewis (Tektronix).|SRC/choose/ORIG/README; SOURCES.txt, choose
 funzip|"Not copyrighted 1992 by Mark Adler." "You can do whatever you like with this source file", though modified copies should say so. Part of Info-ZIP UnZip 5.0.|SRC/unzip50/funzip.c lines 1-7

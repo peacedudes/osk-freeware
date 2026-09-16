@@ -1,0 +1,1 @@
+extern int load_level(int level);extern void init_display();extern int draw_map(int y,int x);extern void update_wins();extern void draw_stats(char level);extern void draw_you(char y, char x, char c);extern void write_score();extern char *readline(FILE *fp);extern void display_scores();extern struct scored *find_level(int uid);

@@ -1,0 +1,17 @@
+name    thricken
+prog    thricken
+# The first screen, "Cyclic Madness": four steps to the right, the panel
+# counting them, then ^C to leave.
+rate    0.5
+size    24 80
+wait    6
+snap    start
+keys    llll
+wait    3
+snap    moved
+key     \003
+wait    4
+expect  Cyclic
+expect  bearings
+expect  Rince
+expect  bash#

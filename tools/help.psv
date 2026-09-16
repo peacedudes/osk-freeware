@@ -1069,3 +1069,4 @@ vcraps|none|it has no help switch; -b sets the starting bankroll and -s plays si
 translit|translit -?|
 castle|none|`castle -h' pages its help file full-screen, RETURN for each page; `?' inside the game shows the command summary
 xfmt|none|it has no help switch; an unknown option prints its usage line
+thricken|none|-d names a directory of screens and -l the level to start at; the keys are hjkl, s and r to save and restore the level, q and ^C to leave

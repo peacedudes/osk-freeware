@@ -1094,3 +1094,7 @@ vttest|vttest|main.c esc.c sgtty.c|||
 # xfmt (comp.sources.unix v16i071): a formatter that reads nroff -man, a little TeX
 # and C, and shows fonts as screen attributes; lex.yy.c made on OS-9; SRC/xfmt/README.OSK.
 xfmt|xfmt|lex.yy.c yywrap.c ../unixlib/getopt.c ../unixlib/strchr.c ../unixlib/strrchr.c||/dd/LIB/termlib.l|
+# thricken (comp.sources.games v13i101 with Patch1): collect the diamonds across
+# multiscreen levels, the sequel to perp.  ANSI C converted to K&R by hand --
+# ansi2knr converts none of it; SRC/thricken/README.OSK.
+thricken|thricken|files.c main.c scores.c screen.c ../unixlib/strdup.c ../unixlib/getopt.c||/dd/LIB/curses.l /dd/LIB/termlib.l|
